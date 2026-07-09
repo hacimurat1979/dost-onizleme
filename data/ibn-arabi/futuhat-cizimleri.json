@@ -1,0 +1,111 @@
+{
+  "intro": {
+    "tr": "İbn Arabî, Fütûhât-ı Mekkiyye'nin 371. bölümüne ('Bir Sırrın ve Muhammedî Levha'dan Taşan Üç Sırrın Meskeninin Bilinmesi Hakkında') kendi eliyle dokuz şekil çizmiştir - kozmosun en üst mertebelerinden en alt mertebelerine, âlemin tüm mimarisini tek tek dairelerle, üçgenlerle, karelerle resmeden şemalar. Aşağıdaki dört şekil, o dokuzdan seçilmiş, sitenin diğer haritalarıyla (Ontoloji, Esmâ) doğrudan kesişen örneklerdir - kendi el yazısı Konya nüshasındaki (Türk ve İslâm Eserleri Müzesi, ms 1848) tasvirlerin, akademik araştırmalara dayanan özgün bir yeniden çizimidir.",
+    "en": "Ibn Arabi drew nine diagrams with his own hand into Chapter 371 of the Futuhat al-Makkiyya ('On the Knowledge of the Abode of One Secret and Three Secrets Emanating from the Muhammadan Tablet') - schemes that picture the entire architecture of the cosmos, from its highest to its lowest levels, one by one, in circles, triangles, and squares. The four diagrams below are chosen from those nine, the ones that intersect most directly with this site's other maps (Ontology, the Beautiful Names) - an original redrawing, based on academic scholarship, of the depictions in his own holograph Konya manuscript (Türk ve İslâm Eserleri Müzesi, ms 1848).",
+    "pt": "Ibn Arabi desenhou nove diagramas com sua própria mão no Capítulo 371 do Futuhat al-Makkiyya ('Sobre o Conhecimento da Morada de um Segredo e Três Segredos Emanados da Tábua Muhammadiana') - esquemas que retratam toda a arquitetura do cosmos, de seus níveis mais altos aos mais baixos, um a um, em círculos, triângulos e quadrados. Os quatro diagramas abaixo foram escolhidos entre esses nove, os que mais diretamente se cruzam com os outros mapas deste site (Ontologia, os Belos Nomes) - um redesenho original, baseado em pesquisa acadêmica, das representações em seu próprio manuscrito hológrafo de Konya (Türk ve İslâm Eserleri Müzesi, ms 1848)."
+  },
+  "sources": [
+    "Sophie Tyser, \"Visualizing the Architecture of the Universe: Ibn al-ʿArabī's Diagrams in Chapter 371 of the Meccan Openings,\" in Sufi Cosmology (Brill, 2023)",
+    "Mohamed Haj Yousef, \"Ibn al-ʿArabī: the Treasury of Absolute Mercy,\" Journal of the Muhyiddin Ibn Arabi Society, Vol. 48 (2010); and Ibn ʿArabī: Time and Cosmology (Routledge, 2009)",
+    "Ahmet T. Karamustafa, \"Cosmographical Diagrams,\" in The History of Cartography, Vol. 2, Book 1 (University of Chicago Press, 1992)"
+  ],
+  "diagrams": [
+    {
+      "id": "bulut-sureti",
+      "name": { "tr": "Bulutun Sûreti", "en": "The Form of the Cloud", "pt": "A Forma da Nuvem" },
+      "source_ref": "Fütûhât-ı Mekkiyye III.421 — 371. Bölüm, 1. Şekil",
+      "description": {
+        "tr": "İbn Arabî'nin Fütûhât'ın 371. bölümüne kendi eliyle çizdiği ilk şekil, varlığın en üst mertebelerini tek bir daire içinde toplar. Dıştaki Bulut (Amâ), meleklerin 'sınırsız seyahat ettiği' ilk mekândır. Hakk'ın seçtiği tek melek - İlk Akıl (A'lâ Kalem) - bir üçgenle; ondan taşan Tümel Nefs (Levh-i Mahfûz), ilmî ve amelî iki kuvvesiyle bir dikdörtgenle; bu ikisinin birleşiminden doğan Tabiat mertebesi, dört unsurun (hararet-bürûdet-rutubet-yübûset) çapraz kesiştiği bir kareyle; ve en içte, her sûreti kabule hazır Heyûlâ-i Küll (Kaos/Toz), bir daireyle gösterilir.",
+        "en": "The first diagram Ibn Arabi drew with his own hand into Chapter 371 of the Futuhat gathers the highest levels of existence into a single circle. The outer Cloud (al-'Ama') is the first space in which angels 'roam without limit.' The one angel God singled out - the First Intellect (the Supreme Pen) - appears as a triangle; the Universal Soul (the Well-Guarded Tablet) that overflows from it, with its two faculties (knowing and acting), as a rectangle; the level of Nature born from their union, where the four elements (heat-cold-wet-dry) cross, as a square; and at the very center, Prime Matter (Chaos/Dust), ready to receive every form, as a circle.",
+        "pt": "O primeiro diagrama que Ibn Arabi desenhou com sua própria mão no Capítulo 371 do Futuhat reúne os níveis mais altos da existência num único círculo. A Nuvem externa (al-'Ama') é o primeiro espaço no qual os anjos 'vagam sem limites.' O único anjo que Deus escolheu - o Primeiro Intelecto (a Pena Suprema) - aparece como um triângulo; a Alma Universal (a Tábua Bem-Guardada) que transborda dele, com suas duas faculdades (saber e agir), como um retângulo; o nível da Natureza nascido de sua união, onde os quatro elementos (calor-frio-úmido-seco) se cruzam, como um quadrado; e, no centro mesmo, a Matéria Prima (Caos/Pó), pronta para receber toda forma, como um círculo."
+      },
+      "diagram": {
+        "type": "bulut-sureti",
+        "outer": { "tr": "Bulut (Amâ)", "en": "The Cloud (al-'Ama')", "pt": "A Nuvem (al-'Ama')" },
+        "intellect": { "tr": "İlk Akıl", "en": "First Intellect", "pt": "Primeiro Intelecto" },
+        "soul": { "tr": "Tümel Nefs", "en": "Universal Soul", "pt": "Alma Universal" },
+        "faculty1": { "tr": "İlmî", "en": "Knowing", "pt": "Saber" },
+        "faculty2": { "tr": "Amelî", "en": "Acting", "pt": "Agir" },
+        "nature": { "tr": "Tabiat", "en": "Nature", "pt": "Natureza" },
+        "heat": { "tr": "Hararet", "en": "Heat", "pt": "Calor" },
+        "cold": { "tr": "Bürûdet", "en": "Cold", "pt": "Frio" },
+        "wet": { "tr": "Rutûbet", "en": "Wet", "pt": "Úmido" },
+        "dry": { "tr": "Yübûset", "en": "Dry", "pt": "Seco" },
+        "core": { "tr": "Heyûlâ", "en": "Prime Matter", "pt": "Matéria Prima" }
+      }
+    },
+    {
+      "id": "ars-sureti",
+      "name": { "tr": "Arşın Sûreti", "en": "The Form of the Throne", "pt": "A Forma do Trono" },
+      "source_ref": "Fütûhât-ı Mekkiyye III.422 — 371. Bölüm, 2. Şekil",
+      "description": {
+        "tr": "İkinci şekil, birincinin en iç dairesinden (Heyûlâ) doğan Cism-i Küll'ü (Evrensel Beden) ve onun içinde beliren Arş'ı gösterir. Arş, ateş-hava-su-toprak dört unsurunun taşıdığı dört direk üzerine kuruludur; ondan sarkan iki İlahî 'kadem'den (ayak) biri cennette, biri cehennemde durur. Arş'ın içi boştur ve Kürsî'yi barındırır - İbn Arabî'nin kendi ifadesiyle, gökleri kuşatan 'şeffaf, latîf ve dairesel bir cisim'dir.",
+        "en": "The second diagram shows the Universal Body born from the innermost circle (Prime Matter) of the first, and the Throne that appears within it. The Throne rests on four pillars borne by the four elements - fire, air, water, earth; from it hang two divine 'feet,' one set in Paradise, one in Hell. The Throne is hollow and contains the Footstool (al-Kursi) - in Ibn Arabi's own words, a 'diaphanous, subtle, circular body encompassing the heavens.'",
+        "pt": "O segundo diagrama mostra o Corpo Universal nascido do círculo mais interno (Matéria Prima) do primeiro, e o Trono que aparece dentro dele. O Trono repousa sobre quatro pilares sustentados pelos quatro elementos - fogo, ar, água, terra; dele pendem dois 'pés' divinos, um situado no Paraíso, outro no Inferno. O Trono é oco e contém o Escabelo (al-Kursi) - nas palavras do próprio Ibn Arabi, um 'corpo diáfano, sutil e circular que envolve os céus.'"
+      },
+      "diagram": {
+        "type": "ars-sureti",
+        "outer": { "tr": "Cism-i Küll", "en": "Universal Body", "pt": "Corpo Universal" },
+        "throne": { "tr": "Arş", "en": "The Throne", "pt": "O Trono" },
+        "pillar1": { "tr": "Ateş", "en": "Fire", "pt": "Fogo" },
+        "pillar2": { "tr": "Hava", "en": "Air", "pt": "Ar" },
+        "pillar3": { "tr": "Su", "en": "Water", "pt": "Água" },
+        "pillar4": { "tr": "Toprak", "en": "Earth", "pt": "Terra" },
+        "core": { "tr": "Kürsî", "en": "The Footstool", "pt": "O Escabelo" },
+        "feet": { "tr": "İki Kadem", "en": "The Two Feet", "pt": "Os Dois Pés" }
+      }
+    },
+    {
+      "id": "cadir-sureti",
+      "name": { "tr": "Çadırın Sûreti: İnsan-ı Kâmil, Göğün Direği", "en": "The Form of the Tent: The Perfect Human, Pillar of the Sky", "pt": "A Forma da Tenda: O Ser Humano Perfeito, Pilar do Céu" },
+      "source_ref": "Fütûhât-ı Mekkiyye, 371. Bölüm, 4. Şekil",
+      "description": {
+        "tr": "371. bölümün dördüncü şeklinde İbn Arabî, kozmosun en alt mertebelerini bir çadır ya da kubbe olarak çizer. Yedi gök (Ay'dan Zühal'e) üst üste kubbeler hâlinde durur; hepsini dikine kesen tek bir 'direk' (amûd), Kur'ân'ın 'görmediğiniz direklerle' yükselttiği göğe işaret eder - ve bu direk, İbn Arabî'ye göre bizzat İnsan-ı Kâmil'dir. Direğin eteğinde, maden-nebat-hayvan-insan dört mertebesi yarım daireler hâlinde sıralanır. İnsan-ı Kâmil var olduğu sürece gök yere düşmez.",
+        "en": "In the fourth diagram of Chapter 371, Ibn Arabi draws the lowest levels of the cosmos as a tent or a dome. The seven heavens (from the Moon to Saturn) stand stacked as domes; a single 'pillar' (amud) cuts through all of them vertically - pointing to the sky the Qur'an says God 'raised up with pillars you cannot see' - and this pillar, for Ibn Arabi, is none other than the Perfect Human. At its foot, the four kingdoms - mineral, vegetable, animal, human - are arranged as half-circles. As long as the Perfect Human exists, the sky does not fall upon the earth.",
+        "pt": "No quarto diagrama do Capítulo 371, Ibn Arabi desenha os níveis mais baixos do cosmos como uma tenda ou uma cúpula. Os sete céus (da Lua a Saturno) ficam empilhados como cúpulas; um único 'pilar' (amud) atravessa todos eles verticalmente - apontando para o céu que o Alcorão diz que Deus 'ergueu com pilares que não vedes' - e esse pilar, para Ibn Arabi, não é senão o Ser Humano Perfeito. A seus pés, os quatro reinos - mineral, vegetal, animal, humano - se dispõem em meios-círculos. Enquanto o Ser Humano Perfeito existir, o céu não cairá sobre a terra."
+      },
+      "diagram": {
+        "type": "cadir-sureti",
+        "pillar": { "tr": "İnsan-ı Kâmil", "en": "The Perfect Human", "pt": "O Ser Humano Perfeito" },
+        "domes": [
+          { "tr": "Ay", "en": "Moon", "pt": "Lua" },
+          { "tr": "Utârid", "en": "Mercury", "pt": "Mercúrio" },
+          { "tr": "Zühre", "en": "Venus", "pt": "Vênus" },
+          { "tr": "Şems", "en": "Sun", "pt": "Sol" },
+          { "tr": "Merih", "en": "Mars", "pt": "Marte" },
+          { "tr": "Müşterî", "en": "Jupiter", "pt": "Júpiter" },
+          { "tr": "Zühal", "en": "Saturn", "pt": "Saturno" }
+        ],
+        "kingdom1": { "tr": "Maden", "en": "Mineral", "pt": "Mineral" },
+        "kingdom2": { "tr": "Nebât", "en": "Vegetable", "pt": "Vegetal" },
+        "kingdom3": { "tr": "Hayvân", "en": "Animal", "pt": "Animal" },
+        "kingdom4": { "tr": "İnsân", "en": "Human", "pt": "Humano" }
+      }
+    },
+    {
+      "id": "esma-hazretleri-sureti",
+      "name": { "tr": "Esmâ Hazretlerinin Sûreti", "en": "The Form of the Presence of the Divine Names", "pt": "A Forma da Presença dos Nomes Divinos" },
+      "source_ref": "Fütûhât-ı Mekkiyye, 371. Bölüm, 7. Şekil",
+      "description": {
+        "tr": "Yedinci şekil, dünyanın var oluşuna sebep olan yedi 'Esmâ Anası'nı (Ümmehâtü'l-Esmâ) tek bir merkez etrafında gösterir: Hayy, Alîm, Mürîd, Kâdir, Kâil (Mütekellim), Cevâd ve Muksit. İbn Arabî bunları iki 'baş' ismin - Müdebbir (tedbir eden) ve Müfassıl (ayırt eden) - 'kızları' olarak tanımlar. Bu şekil, sitenin Esmâ haritasındaki merkezi Hayy-Alîm-Mürîd... zincirinin, İbn Arabî'nin kendi el yazısındaki çiziminden geldiğini doğrular.",
+        "en": "The seventh diagram shows the seven 'Mother Names' (Ummahat al-Asma) that give rise to the world's existence, gathered around a single center: al-Hayy, al-'Alim, al-Murid, al-Qadir, al-Qa'il (al-Mutakallim), al-Jawwad, and al-Muqsit. Ibn Arabi describes them as the 'daughters' of two 'chief' names - al-Mudabbir (the one who administers) and al-Mufassil (the one who distinguishes). This diagram confirms that the central Hayy-Alim-Murid... chain in this site's own Esma map traces directly back to Ibn Arabi's own hand-drawn diagram.",
+        "pt": "O sétimo diagrama mostra os sete 'Nomes-Mães' (Ummahat al-Asma) que dão origem à existência do mundo, reunidos ao redor de um único centro: al-Hayy, al-'Alim, al-Murid, al-Qadir, al-Qa'il (al-Mutakallim), al-Jawwad, e al-Muqsit. Ibn Arabi os descreve como 'filhas' de dois nomes 'chefes' - al-Mudabbir (o que administra) e al-Mufassil (o que distingue). Este diagrama confirma que a cadeia central Hayy-Alim-Murid... no próprio mapa Esma deste site remonta diretamente ao diagrama desenhado pela própria mão de Ibn Arabi."
+      },
+      "diagram": {
+        "type": "esma-hazretleri-sureti",
+        "center": { "tr": "Esmâ Hazretleri", "en": "The Presence of Names", "pt": "A Presença dos Nomes" },
+        "parent1": { "tr": "Müdebbir", "en": "al-Mudabbir", "pt": "al-Mudabbir" },
+        "parent2": { "tr": "Müfassıl", "en": "al-Mufassil", "pt": "al-Mufassil" },
+        "names": [
+          { "tr": "Hayy", "en": "al-Hayy", "pt": "al-Hayy" },
+          { "tr": "Alîm", "en": "al-'Alim", "pt": "al-'Alim" },
+          { "tr": "Mürîd", "en": "al-Murid", "pt": "al-Murid" },
+          { "tr": "Kâdir", "en": "al-Qadir", "pt": "al-Qadir" },
+          { "tr": "Kâil", "en": "al-Qa'il", "pt": "al-Qa'il" },
+          { "tr": "Cevâd", "en": "al-Jawwad", "pt": "al-Jawwad" },
+          { "tr": "Muksit", "en": "al-Muqsit", "pt": "al-Muqsit" }
+        ]
+      }
+    }
+  ]
+}

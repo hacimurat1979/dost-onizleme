@@ -2967,3 +2967,73 @@ html[data-contrast="high"] .detail-title {
   .term-diagram-row { flex-direction: column; align-items: stretch; }
   .term-diagram-card { min-width: 0; max-width: 100%; }
 }
+
+/* Fütûhât Çizimleri — İbn Arabî'nin kendi el yazısı diyagramlarının özgün yeniden çizimleri */
+.cizimler-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 8px 0 40px;
+}
+
+.cizimler-intro {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.cizim-card {
+  background: var(--page-plane);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px 22px;
+  margin-bottom: 22px;
+}
+
+.cizim-card__ref {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+}
+
+.cizim-card__name {
+  font-size: 1.05rem;
+  margin: 0 0 14px;
+}
+
+.cizim-card__svg-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.cizim-card__svg {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  overflow: visible;
+}
+
+.cizim-card__desc {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cizimler-sources {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gridline);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.cizimler-sources li {
+  margin-bottom: 4px;
+}
+
+@media (max-width: 640px) {
+  .cizim-card { padding: 16px 16px 18px; }
+}
