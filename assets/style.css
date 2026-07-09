@@ -2765,3 +2765,35 @@ html[data-contrast="high"] .detail-title {
 @media (max-width: 640px) {
   .terimler-list { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 }
+
+/* Düğüm üzerine gelince özet bilgi (hover tooltip) */
+.node-hover-tip {
+  position: absolute;
+  z-index: 30;
+  max-width: 240px;
+  padding: 10px 14px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 14px));
+  transition: opacity 0.12s ease;
+}
+
+.node-hover-tip[hidden] {
+  display: none;
+}
+
+.node-hover-tip__title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.node-hover-tip__short {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}

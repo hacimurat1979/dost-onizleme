@@ -5,6 +5,8 @@
   const svg = d3.select("#esma-graph");
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
+  const tooltip = document.getElementById("esma-tooltip");
+  const wrapEl = document.getElementById("esma-wrap");
 
   function tt(dict) {
     return I18n.pick3(dict);
@@ -88,6 +90,16 @@
   function radialPoint(angle, radius) {
     const a = angle - Math.PI / 2;
     return [radius * Math.cos(a), radius * Math.sin(a)];
+  }
+
+  // Tek çocuklu zincirler (örn. Rab→Hayy→Alim→Mürîd→...) dallanma olmadığı
+  // için aynı açıda üst üste biner. Zincir boyunca hafif bir açısal kayma
+  // ekleyerek düğümleri okunur bir spiral hâline getiriyoruz.
+  function applySpiralOffset(node, inherited) {
+    const siblingCount = node.parent ? node.parent.children.length : 1;
+    const ownOffset = node.parent && siblingCount === 1 ? inherited + 0.16 : 0;
+    node.x += ownOffset;
+    (node.children || []).forEach((c) => applySpiralOffset(c, ownOffset));
   }
 
   function buildGraph(data) {
@@ -175,6 +187,7 @@
 
   function update(source, animate) {
     treeLayout(root);
+    applySpiralOffset(root, 0);
     const nodes = root.descendants();
     const links = root.links();
 
@@ -245,10 +258,11 @@
           toggle(d);
         }
       })
-      .on("mouseenter", (event, d) => highlight(d))
-      .on("mouseleave", () => highlight(null))
-      .on("focus", (event, d) => highlight(d))
-      .on("blur", () => highlight(null));
+      .on("mouseenter", (event, d) => { highlight(d); showTooltip(d, event); })
+      .on("mousemove", (event) => moveTooltip(event))
+      .on("mouseleave", () => { highlight(null); hideTooltip(); })
+      .on("focus", (event, d) => { highlight(d); showTooltip(d, event); })
+      .on("blur", () => { highlight(null); hideTooltip(); });
 
     nodeEnter.append("circle")
       .attr("r", (d) => radiusFor(d))
@@ -332,6 +346,32 @@
     nodeSel.style("opacity", (n) => (ids.has(n.id) || descendantIds.has(n.id) ? 1 : 0.35));
     linkSel.classed("esma-link--highlight", (l) => l.target.id === d.id);
     relationSel.style("opacity", (r) => (r.from === d.id || r.to === d.id ? 1 : 0.15));
+  }
+
+  function showTooltip(d, event) {
+    if (!tooltip) return;
+    const short = I18n.pick3(d.data.short);
+    tooltip.innerHTML = `
+      <div class="node-hover-tip__title">${I18n.pick3(d.data.name)}</div>
+      ${short ? `<div class="node-hover-tip__short">${short}</div>` : ""}
+    `;
+    tooltip.hidden = false;
+    moveTooltip(event);
+  }
+
+  function moveTooltip(event) {
+    if (!tooltip || tooltip.hidden || !wrapEl) return;
+    const rect = wrapEl.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    x = Math.max(60, Math.min(rect.width - 60, x));
+    y = Math.max(50, y);
+    tooltip.style.left = x + "px";
+    tooltip.style.top = y + "px";
+  }
+
+  function hideTooltip() {
+    if (tooltip) tooltip.hidden = true;
   }
 
   const VOLUME_LABEL_OVERRIDE = {
