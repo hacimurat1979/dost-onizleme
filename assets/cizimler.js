@@ -118,6 +118,131 @@
         </svg>
       `;
     },
+    "iki-yol-sureti": (d) => `
+      <svg class="cizim-card__svg" viewBox="0 0 320 170" role="img" aria-label="${tt(d.straight)}">
+        <circle class="term-diagram-node--sm" cx="30" cy="85" r="8"/>
+        <text class="term-diagram-note" x="30" y="115" text-anchor="middle">${tt(d.start)}</text>
+        <circle class="term-diagram-node--accent term-diagram-node--sm" cx="290" cy="85" r="8"/>
+        <text class="term-diagram-note" x="290" y="115" text-anchor="middle">${tt(d.end)}</text>
+        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="40" y1="85" x2="278" y2="85" marker-end="url(#cizimArrowEnd)"/>
+        <text class="term-diagram-label--small" x="160" y="65" text-anchor="middle">${tt(d.straight)}</text>
+        <path class="term-diagram-arrow term-diagram-arrow--dashed" d="M40,85 Q90,35 160,85 Q230,135 278,85" fill="none"/>
+        <text class="term-diagram-label--small" x="160" y="150" text-anchor="middle">${tt(d.crooked)}</text>
+      </svg>
+    `,
+    "nokta-muhit-sureti": (d) => `
+      <svg class="cizim-card__svg" viewBox="0 0 320 320" role="img" aria-label="${tt(d.point)}">
+        <circle class="term-diagram-node--dashed" cx="160" cy="170" r="140"/>
+        <text class="term-diagram-note" x="245" y="90" text-anchor="middle">${tt(d.circumference)}</text>
+        <line class="term-diagram-tether" x1="160" y1="30" x2="60" y2="220"/>
+        <line class="term-diagram-tether" x1="160" y1="30" x2="90" y2="260"/>
+        <line class="term-diagram-tether" x1="160" y1="30" x2="160" y2="290"/>
+        <line class="term-diagram-tether" x1="160" y1="30" x2="230" y2="260"/>
+        <line class="term-diagram-tether" x1="160" y1="30" x2="260" y2="220"/>
+        <circle class="term-diagram-node--accent term-diagram-node--sm" cx="160" cy="30" r="9"/>
+        <text class="term-diagram-label--small" x="160" y="18" text-anchor="middle">${tt(d.point)}</text>
+        <text class="term-diagram-note" x="160" y="235" text-anchor="middle">${tt(d.gap)}</text>
+      </svg>
+    `,
+    "insan-i-kamil-yakinsama": (d) => `
+      <svg class="cizim-card__svg" viewBox="0 0 320 200" role="img" aria-label="${tt(d.center)}">
+        <line class="term-diagram-arrow" x1="55" y1="50" x2="222" y2="95" marker-end="url(#cizimArrowEnd)"/>
+        <line class="term-diagram-arrow" x1="55" y1="100" x2="218" y2="100" marker-end="url(#cizimArrowEnd)"/>
+        <line class="term-diagram-arrow" x1="55" y1="150" x2="222" y2="105" marker-end="url(#cizimArrowEnd)"/>
+        <circle class="term-diagram-node--sm" cx="40" cy="50" r="14"/>
+        <text class="term-diagram-note" x="40" y="30" text-anchor="middle">${tt(d.source1)}</text>
+        <circle class="term-diagram-node--sm" cx="40" cy="100" r="14"/>
+        <text class="term-diagram-note" x="40" y="80" text-anchor="middle">${tt(d.source2)}</text>
+        <circle class="term-diagram-node--sm" cx="40" cy="150" r="14"/>
+        <text class="term-diagram-note" x="40" y="130" text-anchor="middle">${tt(d.source3)}</text>
+        <path class="term-diagram-mirror" d="M245,65 A50,50 0 0,1 245,135" fill="none"/>
+        <text class="term-diagram-note" x="272" y="104" text-anchor="middle">${tt(d.shadow)}</text>
+        <circle class="term-diagram-node--accent" cx="240" cy="100" r="28"/>
+        <text class="term-diagram-label--small" x="240" y="105" text-anchor="middle">${tt(d.center)}</text>
+      </svg>
+    `,
+    "uc-mertebe-cicegi": (d) => `
+      <svg class="cizim-card__svg" viewBox="0 0 340 340" role="img" aria-label="${tt(d.center)}">
+        <circle class="term-diagram-node--faint" cx="170" cy="55" r="58"/>
+        <circle class="term-diagram-node--faint" cx="55" cy="170" r="58"/>
+        <circle class="term-diagram-node--faint" cx="285" cy="170" r="58"/>
+        <circle class="term-diagram-node--faint" cx="170" cy="285" r="58"/>
+        <text class="term-diagram-note" x="170" y="28" text-anchor="middle">${tt(d.fire)}</text>
+        <text class="term-diagram-note" x="28" y="170" text-anchor="middle">${tt(d.air)}</text>
+        <text class="term-diagram-note" x="312" y="170" text-anchor="middle">${tt(d.earth)}</text>
+        <text class="term-diagram-note" x="170" y="317" text-anchor="middle">${tt(d.water)}</text>
+        <text class="term-diagram-note" x="103" y="103" text-anchor="middle">${tt(d.soul)}</text>
+        <text class="term-diagram-note" x="237" y="103" text-anchor="middle">${tt(d.intellect)}</text>
+        <text class="term-diagram-note" x="237" y="242" text-anchor="middle">${tt(d.nature)}</text>
+        <text class="term-diagram-note" x="103" y="242" text-anchor="middle">${tt(d.particles)}</text>
+        <circle class="term-diagram-node" cx="170" cy="115" r="30"/>
+        <circle class="term-diagram-node" cx="115" cy="170" r="30"/>
+        <circle class="term-diagram-node" cx="225" cy="170" r="30"/>
+        <circle class="term-diagram-node" cx="170" cy="225" r="30"/>
+        <text class="term-diagram-label--small" x="170" y="120" text-anchor="middle">${tt(d.life)}</text>
+        <text class="term-diagram-label--small" x="119" y="174" text-anchor="middle">${tt(d.power)}</text>
+        <text class="term-diagram-label--small" x="221" y="174" text-anchor="middle">${tt(d.knowledge)}</text>
+        <text class="term-diagram-label--small" x="170" y="230" text-anchor="middle">${tt(d.will)}</text>
+        <circle class="term-diagram-node--accent" cx="170" cy="170" r="32"/>
+        <text class="term-diagram-label--small" x="170" y="175" text-anchor="middle">${tt(d.center)}</text>
+      </svg>
+    `,
+    "dort-makam-sureti": (d) => `
+      <svg class="cizim-card__svg" viewBox="0 0 260 260" role="img" aria-label="${tt(d.q1)}">
+        <circle class="term-diagram-node--dashed" cx="130" cy="130" r="108"/>
+        <line class="term-diagram-axis" x1="130" y1="24" x2="130" y2="236"/>
+        <line class="term-diagram-axis" x1="24" y1="130" x2="236" y2="130"/>
+        <text class="term-diagram-label--small" x="130" y="75" text-anchor="middle">${tt(d.q1)}</text>
+        <text class="term-diagram-label--small" x="185" y="135" text-anchor="middle">${tt(d.q2)}</text>
+        <text class="term-diagram-label--small" x="130" y="195" text-anchor="middle">${tt(d.q3)}</text>
+        <text class="term-diagram-label--small" x="75" y="135" text-anchor="middle">${tt(d.q4)}</text>
+      </svg>
+    `,
+    "arz-i-hasr-sureti": (d) => `
+      <svg class="cizim-card__svg" viewBox="0 0 300 390" role="img" aria-label="${tt(d.throne)}">
+        <polygon class="term-diagram-node--accent" points="150,20 190,55 150,90 110,55"/>
+        <text class="term-diagram-label--small" x="150" y="60" text-anchor="middle">${tt(d.throne)}</text>
+        <line class="term-diagram-tether" x1="150" y1="90" x2="150" y2="112"/>
+        <circle class="term-diagram-node" cx="150" cy="135" r="23"/>
+        <text class="term-diagram-note" x="150" y="139" text-anchor="middle">${tt(d.spirit)}</text>
+        <circle class="term-diagram-node--faint" cx="75" cy="200" r="30"/>
+        <text class="term-diagram-note" x="75" y="204" text-anchor="middle">${tt(d.bookRight)}</text>
+        <circle class="term-diagram-node--faint" cx="225" cy="200" r="30"/>
+        <text class="term-diagram-note" x="225" y="204" text-anchor="middle">${tt(d.bookLeft)}</text>
+        <circle class="term-diagram-node--dashed term-diagram-node--sm" cx="150" cy="255" r="16"/>
+        <text class="term-diagram-note" x="150" y="285" text-anchor="middle">${tt(d.death)}</text>
+        <line class="term-diagram-arrow" x1="150" y1="255" x2="212" y2="308" marker-end="url(#cizimArrowEnd)"/>
+        <text class="term-diagram-note" x="195" y="298" text-anchor="middle">${tt(d.sirat)}</text>
+        <path class="term-diagram-node--faint" d="M175,340 A45,45 0 0,1 265,340 Z"/>
+        <text class="term-diagram-note" x="220" y="335" text-anchor="middle">${tt(d.hell)}</text>
+        <circle class="term-diagram-node--accent" cx="80" cy="330" r="48"/>
+        <text class="term-diagram-label--small" x="80" y="334" text-anchor="middle">${tt(d.paradiseMeadow)}</text>
+      </svg>
+    `,
+    "kesib-ur-ruya-sureti": (d) => `
+      <svg class="cizim-card__svg" viewBox="0 0 300 300" role="img" aria-label="${tt(d.center)}">
+        <line class="term-diagram-tether" x1="150" y1="150" x2="150" y2="80"/>
+        <line class="term-diagram-tether" x1="150" y1="150" x2="75" y2="150"/>
+        <line class="term-diagram-tether" x1="150" y1="150" x2="225" y2="150"/>
+        <line class="term-diagram-tether" x1="150" y1="150" x2="150" y2="220"/>
+        <circle class="term-diagram-node--dashed" cx="150" cy="65" r="28"/>
+        <text class="term-diagram-note" x="150" y="69" text-anchor="middle">${tt(d.prophets)}</text>
+        <circle class="term-diagram-node--dashed" cx="55" cy="150" r="28"/>
+        <text class="term-diagram-note" x="55" y="154" text-anchor="middle">${tt(d.saints)}</text>
+        <circle class="term-diagram-node--dashed" cx="245" cy="150" r="28"/>
+        <text class="term-diagram-note" x="245" y="154" text-anchor="middle">${tt(d.messengers)}</text>
+        <circle class="term-diagram-node--dashed" cx="150" cy="235" r="28"/>
+        <text class="term-diagram-note" x="150" y="239" text-anchor="middle">${tt(d.believers)}</text>
+        <circle class="term-diagram-node--accent" cx="150" cy="150" r="40"/>
+        <text class="term-diagram-label--small" x="150" y="155" text-anchor="middle">${tt(d.center)}</text>
+      </svg>
+    `,
+    "suretud-dirah": (d) => `
+      <svg class="cizim-card__svg" viewBox="0 0 200 200" role="img" aria-label="${tt(d.label)}">
+        <path class="term-diagram-node--accent" d="M55,30 L145,30 L145,140 A45,45 0 0 1 55,140 Z"/>
+        <text class="term-diagram-label--small" x="100" y="90" text-anchor="middle">${tt(d.label)}</text>
+      </svg>
+    `,
   };
 
   const CIZIM_DEFS = `
