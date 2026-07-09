@@ -103,6 +103,14 @@
             "en": "In the same treatise, Ibn Arabi shows through Adam and Iblis how differently one may look upon the fruits of this tree - the sheer variety of created things. Whoever the divine light strikes sees, within the seed-letters of 'Be,' the Kaf of perfection and the Nun of determinacy: like Adam, he learns all the Names and enters the shade of Divine Unity. Whoever the light does not strike sees, in those same letters, only the Kaf of denial and the Nun of fire: even after searching that same seed for forty thousand years, he falls through pride, like Iblis. As Ibn Arabi relays in a hadith: 'God most high created His creatures in a darkness, then sprinkled upon them from His light. Whomever this light struck was guided; whomever it did not strike went astray.'",
             "pt": "No mesmo tratado, Ibn Arabi mostra, através de Adão e Iblis, o quão diferente alguém pode olhar para os frutos dessa árvore - a pura variedade das coisas criadas. Quem quer que a luz divina atinja vê, nas letras-semente do 'Seja', o Kaf da perfeição e o Nun da determinação: como Adão, aprende todos os Nomes e entra na sombra da Unidade Divina. Quem quer que a luz não atinja vê, nas mesmas letras, apenas o Kaf da negação e o Nun do fogo: mesmo tendo perscrutado essa mesma semente por quarenta mil anos, cai pelo orgulho, como Iblis. Como Ibn Arabi relata num hadith: 'Deus altíssimo criou Suas criaturas numa escuridão, depois espalhou sobre elas Sua luz. Quem essa luz atingiu foi guiado; quem ela não atingiu se desviou.'"
           }
+        },
+        {
+          "volume": "ozun-ozu",
+          "text": {
+            "tr": "Özün Özü (Lübbü'l-Lübb) risalesinde, âlemlerin tümü 'Hazarât-ı Hamse' (Beş Hazret) adı altında dört büyük 'deryâ'ya benzetilir: Lâhût (Zât'ın kendisi, 'gizli hazine'), Ceberût (ilk taayyün - Esmâ ve A'yân-ı Sâbite âlemi), Melekût (ikinci taayyün - Misâl/Hayâl âlemi) ve Nâsût/Mülk (Şehâdet âlemi). Bu dört deryâ birbirine art arda dökülür - 'biri akıttığı su ile ikincisi, ondan akanla üçüncüsü, sonrası da dördüncüsü olur' - tıpkı havanın suya, suyun soğuğa inkılâp etmesi gibi; ve bu akış, göz açıp kapayıncaya kadar kısa bir anda gerçekleşir. Risale tek bir cümlede özetler: 'Her şey ondan geldi, yine ona gider.'",
+            "en": "In the treatise Lubb al-Lubb (The Kernel of the Kernel), all the worlds are likened, under the name 'the Five Divine Presences,' to four great 'seas': Lahut (the Essence itself, the 'Hidden Treasure'), Jabarut (the first determination - the world of the Names and the Fixed Entities), Malakut (the second determination - the world of Image/Imagination), and Nasut/Mulk (the world of the Visible). These four seas pour into one another in succession - 'from what the first releases the second is filled; from what flows from that, the third; and after it, the fourth' - just as air turns into water, and water into cold; and this flow occurs in less time than it takes to blink. The treatise sums it up in a single sentence: 'Everything came from Him, and returns again to Him.'",
+            "pt": "No tratado Lubb al-Lubb (O Cerne do Cerne), todos os mundos são comparados, sob o nome de 'as Cinco Presenças Divinas', a quatro grandes 'mares': Lahut (a própria Essência, o 'Tesouro Oculto'), Jabarut (a primeira determinação - o mundo dos Nomes e das Entidades Fixas), Malakut (a segunda determinação - o mundo da Imagem/Imaginação), e Nasut/Mulk (o mundo do Visível). Esses quatro mares deságuam um no outro em sucessão - 'do que o primeiro libera, o segundo se enche; do que flui deste, o terceiro; e depois dele, o quarto' - assim como o ar se transforma em água, e a água em frio; e esse fluxo ocorre em menos tempo do que se leva para piscar. O tratado resume tudo numa única frase: 'Tudo veio d'Ele, e a Ele retorna.'"
+          }
         }
       ],
       "sources": [
@@ -115,7 +123,8 @@
         "İbn Arabî'nin Fusûsu'ndaki Anahtar-Kavramlar (Toshihiko İzutsu, çev. Ahmed Yüksel Özemre) — Yazarın Önsözü",
         "El-Fükük fi Esrâr-ı Müstenidât-ı Hikemi'l-Fusûs (Sadreddin Konevî, çev. Ekrem Demirli) — Fass-ı Yûsuf (nûrun görülüp görülmemesi)",
         "Muhyiddîn İbnü'l-Arabî'nin Tasavvuf Felsefesi (A. E. Affifi, çev. Mehmet Dağ) — I. Bölüm: Varlık Nazariyesi, Bir ve Çok",
-        "Şeceretü'l-Kevn / Varlık Ağacı (İbn Arabî, çev. Vahdettin İnce, Kitsan Yayınları)"
+        "Şeceretü'l-Kevn / Varlık Ağacı (İbn Arabî, çev. Vahdettin İnce, Kitsan Yayınları)",
+        "Özün Özü / Lübbü'l-Lübb ve Sırr'üs-Sır (İbn Arabî, çev. İsmail Hakkı Bursevî, sad. Abdülkadir Akçiçek) — Hazarât-ı Hamse"
       ],
       "diagram": {
         "type": "seed-fork",
@@ -1050,7 +1059,21 @@
         "en": "Out of the desire to be known, the Essence 'determines' itself into Names and Attributes. This is not a creation but the first internal differentiation within the absolute One.",
         "pt": "Por desejo de ser conhecida, a Essência 'se determina' em Nomes e Atributos. Isso não é uma criação, mas a primeira diferenciação interna dentro do Uno absoluto."
       },
-      "kind": "descent"
+      "kind": "descent",
+      "diagram": {
+        "type": "cascade-seas",
+        "stops": [
+          { "tr": "Lâhût", "en": "Lahut", "pt": "Lahut" },
+          { "tr": "Ceberût", "en": "Jabarut", "pt": "Jabarut" },
+          { "tr": "Melekût", "en": "Malakut", "pt": "Malakut" },
+          { "tr": "Mülk", "en": "Mulk", "pt": "Mulk" }
+        ],
+        "note": {
+          "tr": "Dört deryâ birbirine dökülür - biri akıttığı ile öbürü dolar; hepsi tek bir 'Ol' anında.",
+          "en": "Four seas pour into one another - one fills from what the other releases; all within a single instant of 'Be.'",
+          "pt": "Quatro mares deságuam um no outro - um se enche do que o outro libera; tudo num único instante do 'Seja.'"
+        }
+      }
     },
     {
       "source": "sifat-asma",

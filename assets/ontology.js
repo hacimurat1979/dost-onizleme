@@ -44,6 +44,23 @@
         <text class="term-diagram-label--small" x="205" y="30" text-anchor="middle">${tt(d.rightLeaf)}</text>
       </svg>
     `,
+    "cascade-seas": (d) => {
+      const xs = [45, 145, 245, 345];
+      const classes = ["term-diagram-node--accent", "term-diagram-node", "term-diagram-node", "term-diagram-node--faint"];
+      const circles = d.stops.map((s, i) => `
+        <circle class="${classes[i]}" cx="${xs[i]}" cy="55" r="26"/>
+        <text class="term-diagram-label--small" x="${xs[i]}" y="60" text-anchor="middle">${tt(s)}</text>
+      `).join("");
+      const arrows = [0, 1, 2].map((i) => `
+        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="${xs[i] + 26}" y1="55" x2="${xs[i + 1] - 26}" y2="55" marker-end="url(#odArrowEnd)"/>
+      `).join("");
+      return `
+        <svg class="term-diagram__svg" viewBox="0 0 390 110" role="img" aria-label="${tt(d.note)}">
+          ${arrows}
+          ${circles}
+        </svg>
+      `;
+    },
   };
 
   const ODD_DIAGRAM_DEFS = `
@@ -687,6 +704,7 @@
     "izutsu-anahtar": { tr: "Anahtar-Kavramlar (İzutsu)", en: "Key Concepts (Izutsu)", pt: "Conceitos-Chave (Izutsu)" },
     "affifi-tasavvuf": { tr: "Tasavvuf Felsefesi (Affifi)", en: "The Mystical Philosophy (Affifi)", pt: "A Filosofia Mística (Affifi)" },
     "varlik-agaci": { tr: "Varlık Ağacı (Şeceretü'l-Kevn)", en: "The Tree of Being (Shajarat al-Kawn)", pt: "A Árvore do Ser (Shajarat al-Kawn)" },
+    "ozun-ozu": { tr: "Özün Özü (Lübbü'l-Lübb)", en: "The Kernel of the Kernel (Lubb al-Lubb)", pt: "O Cerne do Cerne (Lubb al-Lubb)" },
   };
 
   function volumeLabel(n) {
@@ -700,6 +718,7 @@
     "izutsu-anahtar": "İbn Arabî'nin Fusûsu'ndaki Anahtar-Kavramlar (Toshihiko İzutsu",
     "affifi-tasavvuf": "Muhyiddîn İbnü'l-Arabî'nin Tasavvuf Felsefesi (A. E. Affifi",
     "varlik-agaci": "Şeceretü'l-Kevn / Varlık Ağacı",
+    "ozun-ozu": "Özün Özü / Lübbü'l-Lübb",
   };
 
   function sourcesForInsight(ins, sources) {
