@@ -309,6 +309,15 @@ html, body {
   text-anchor: middle;
 }
 
+.esma-rings circle.esma-ring {
+  fill: none;
+  stroke: var(--gridline);
+  stroke-width: 1px;
+  stroke-dasharray: 1 5;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .esma-link {
   fill: none;
   stroke: var(--gridline);

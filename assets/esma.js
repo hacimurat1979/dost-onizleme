@@ -18,7 +18,7 @@
   let esmaDataPromise = null;
   let built = false;
   let root = null;
-  let zoomLayer, linkGroup, relationGroup, nodeGroup;
+  let zoomLayer, linkGroup, relationGroup, nodeGroup, ringGroup;
   let zoomBehavior;
   let nodeById = new Map();
   let currentDetailNode = null;
@@ -79,6 +79,17 @@
     }
   }
 
+  // Radial ("dairesel") düzen: İbn Arabî'nin İnşâü'd-Devâir'de tarif ettiği
+  // "feleklerin sûreti" gibi, merkezde Zât, dışa doğru iç içe mertebe halkaları.
+  let outerRadius = 320;
+  let maxDepth = 1;
+  let radiusScale = d3.scaleSqrt().domain([0, 1]).range([0, 320]);
+
+  function radialPoint(angle, radius) {
+    const a = angle - Math.PI / 2;
+    return [radius * Math.cos(a), radius * Math.sin(a)];
+  }
+
   function buildGraph(data) {
     svg.selectAll("*").remove();
 
@@ -94,6 +105,7 @@
     root.y0 = 0;
 
     zoomLayer = svg.append("g").attr("class", "esma-canvas");
+    ringGroup = zoomLayer.append("g").attr("class", "esma-rings");
     relationGroup = zoomLayer.append("g").attr("class", "esma-relations");
     linkGroup = zoomLayer.append("g").attr("class", "esma-links");
     nodeGroup = zoomLayer.append("g").attr("class", "esma-nodes");
@@ -121,9 +133,20 @@
     built = true;
   }
 
-  const dx = 108;
-  const dy = 92;
-  const treeLayout = d3.tree().nodeSize([dx, dy]);
+  const treeLayout = d3.tree()
+    .size([2 * Math.PI, 1])
+    .separation((a, b) => (a.parent === b.parent ? 1.1 : 2.2) / a.depth || 1);
+
+  function drawRings() {
+    const depths = Array.from(new Set(root.descendants().map((d) => d.depth))).sort((a, b) => a - b);
+    const ringSel = ringGroup.selectAll("circle.esma-ring").data(depths, (d) => d);
+    ringSel.exit().remove();
+    ringSel.enter()
+      .append("circle")
+      .attr("class", "esma-ring")
+      .merge(ringSel)
+      .attr("r", (depth) => radiusScale(depth));
+  }
 
   function zoomToFit(animate) {
     const nodes = root.descendants();
@@ -131,20 +154,20 @@
     const height = svg.node().clientHeight || 600;
     let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
     nodes.forEach((d) => {
-      x0 = Math.min(x0, d.x);
-      x1 = Math.max(x1, d.x);
-      y0 = Math.min(y0, d.y);
-      y1 = Math.max(y1, d.y);
+      const [cx, cy] = radialPoint(d.x, d.y);
+      x0 = Math.min(x0, cx);
+      x1 = Math.max(x1, cx);
+      y0 = Math.min(y0, cy);
+      y1 = Math.max(y1, cy);
     });
-    x0 -= 70; x1 += 70; y0 -= 50; y1 += 60;
+    x0 -= 70; x1 += 70; y0 -= 70; y1 += 70;
     const treeW = Math.max(1, x1 - x0);
     const treeH = Math.max(1, y1 - y0);
-    const topMargin = 70;
     const [minScale, maxScale] = zoomBehavior.scaleExtent();
-    const scale = Math.min(maxScale, 1.3, width / treeW, (height - topMargin) / treeH);
+    const scale = Math.min(maxScale, 1.3, width / treeW, height / treeH);
     const clampedScale = Math.max(minScale, scale);
     const tx = width / 2 - clampedScale * (x0 + treeW / 2);
-    const ty = topMargin - clampedScale * y0;
+    const ty = height / 2 - clampedScale * (y0 + treeH / 2);
     const transform = d3.zoomIdentity.translate(tx, ty).scale(clampedScale);
     const sel = animate ? svg.transition().duration(400) : svg;
     sel.call(zoomBehavior.transform, transform);
@@ -155,6 +178,15 @@
     const nodes = root.descendants();
     const links = root.links();
 
+    maxDepth = Math.max(1, d3.max(nodes, (d) => d.depth));
+    const width = svg.node().clientWidth || 800;
+    const height = svg.node().clientHeight || 600;
+    outerRadius = Math.max(120, Math.min(width, height) / 2 - 60);
+    radiusScale = d3.scaleSqrt().domain([0, maxDepth]).range([0, outerRadius]);
+    nodes.forEach((d) => { d.y = radiusScale(d.depth); });
+
+    drawRings();
+
     const nodeSet = new Set(nodes);
     const relations = (esmaData.relations || []).filter((r) => {
       const s = nodeById.get(r.from);
@@ -162,7 +194,7 @@
       return s && t && nodeSet.has(s) && nodeSet.has(t);
     });
 
-    const linkGen = d3.linkVertical().x((d) => d.x).y((d) => d.y);
+    const linkGen = d3.linkRadial().angle((d) => d.x).radius((d) => d.y);
 
     // links
     const link = linkGroup.selectAll("path.esma-link").data(links, (d) => d.target.id);
@@ -197,7 +229,7 @@
 
     const nodeEnter = node.enter().append("g")
       .attr("class", "node esma-node")
-      .attr("transform", `translate(${source.x0},${source.y0})`)
+      .attr("transform", () => `translate(${radialPoint(source.x0, source.y0).join(",")})`)
       .attr("tabindex", "0")
       .attr("role", "button")
       .attr("aria-label", (d) => labelFor(d))
@@ -224,8 +256,14 @@
 
     nodeEnter.append("text")
       .attr("class", "node-label")
-      .attr("dy", (d) => radiusFor(d) + 13)
-      .attr("text-anchor", "middle")
+      .attr("text-anchor", (d) => (d.depth === 0 ? "middle" : (d.x < Math.PI ? "start" : "end")))
+      .attr("transform", (d) => {
+        if (d.depth === 0) return `translate(0,${radiusFor(d) + 14})`;
+        const deg = (d.x * 180 / Math.PI) - 90;
+        const flip = d.x >= Math.PI;
+        const offset = radiusFor(d) + 8;
+        return `rotate(${deg}) translate(${offset},0) rotate(${flip ? 180 : 0})`;
+      })
       .text((d) => labelFor(d));
 
     nodeEnter.append("text")
@@ -237,7 +275,17 @@
     node.merge(nodeEnter)
       .transition().duration(300)
       .style("opacity", 1)
-      .attr("transform", (d) => `translate(${d.x},${d.y})`);
+      .attr("transform", (d) => `translate(${radialPoint(d.x, d.y).join(",")})`);
+
+    node.merge(nodeEnter).select("text.node-label")
+      .attr("text-anchor", (d) => (d.depth === 0 ? "middle" : (d.x < Math.PI ? "start" : "end")))
+      .attr("transform", (d) => {
+        if (d.depth === 0) return `translate(0,${radiusFor(d) + 14})`;
+        const deg = (d.x * 180 / Math.PI) - 90;
+        const flip = d.x >= Math.PI;
+        const offset = radiusFor(d) + 8;
+        return `rotate(${deg}) translate(${offset},0) rotate(${flip ? 180 : 0})`;
+      });
 
     node.merge(nodeEnter).select("text.esma-expand-badge")
       .text((d) => (d._children ? "+" : ""));
@@ -245,7 +293,7 @@
     node.exit()
       .transition().duration(300)
       .style("opacity", 0)
-      .attr("transform", `translate(${source.x},${source.y})`)
+      .attr("transform", `translate(${radialPoint(source.x, source.y).join(",")})`)
       .remove();
 
     nodes.forEach((d) => {
