@@ -294,6 +294,96 @@
           }
         }
       ]
+    },
+    {
+      "id": "ahad-vahid",
+      "name": {
+        "tr": "Ahad ve Vâhid: İki Farklı Teklik",
+        "en": "Ahad and Wahid: Two Kinds of Oneness",
+        "pt": "Ahad e Wahid: Dois Tipos de Unicidade"
+      },
+      "description": {
+        "tr": "İbn Arabî'nin Kitâbü'l-Elif (Teklik Kitabı) risalesinde yaptığı ince ayrım: 'Ahad' (Tek) hiçbir ilişkiye açılmayan, sayıya dönüşmeyen mutlak teklik; 'Vâhid' (Bir) ise sayının, çokluğun ve tecellînin kendisinden çıktığı birliktir. İnsan Ahadiyet üzere değil, Vâhidiyet üzere yaratılmıştır.",
+        "en": "A subtle distinction Ibn Arabi draws in his treatise Kitâb al-Alif (the Book of Oneness): 'Ahad' (the Unique) is an absolute oneness that opens onto no relation and never turns into number; 'Wahid' (the One) is the unity from which number, multiplicity, and self-disclosure themselves proceed. The human being is created upon Wahidiyya, not upon Ahadiyya.",
+        "pt": "Uma distinção sutil que Ibn Arabi traça em seu tratado Kitâb al-Alif (o Livro da Unicidade): 'Ahad' (o Único) é uma unicidade absoluta que não se abre a nenhuma relação e nunca se torna número; 'Wahid' (o Um) é a unidade da qual o próprio número, a multiplicidade e a autorrevelação procedem. O ser humano é criado sobre a Wahidiyya, não sobre a Ahadiyya."
+      },
+      "diagram": [
+        {
+          "type": "cascade",
+          "termId": "ahad",
+          "steps": [
+            {
+              "tr": "Ahad (Tek)",
+              "en": "Ahad (the Unique)",
+              "pt": "Ahad (o Único)"
+            },
+            {
+              "tr": "Vâhid (Bir)",
+              "en": "Wahid (the One)",
+              "pt": "Wahid (o Um)"
+            },
+            {
+              "tr": "Sayılar, çokluk",
+              "en": "Numbers, multiplicity",
+              "pt": "Números, multiplicidade"
+            }
+          ],
+          "relationLabel": {
+            "tr": "İzzet perdesi hiç açılmaz — Bir, kendisiyle çarpılınca yine kendisi kalır (1×1=1), ama başka sayılarla çarpılınca onlara dönüşür (1×15=15).",
+            "en": "The veil of majesty never opens — the One, multiplied by itself, remains itself (1×1=1), but multiplied by another number, becomes that number (1×15=15).",
+            "pt": "O véu da majestade nunca se abre — o Um, multiplicado por si mesmo, permanece o mesmo (1×1=1), mas multiplicado por outro número, torna-se esse número (1×15=15)."
+          },
+          "note": {
+            "tr": "Ahad'dan hiçbir şey çıkmaz; Vâhid'den bütün sayılar (çokluk, âlem) çıkar — ama sayılar yok olsa da Bir yok olmaz.",
+            "en": "Nothing proceeds from Ahad; from Wahid all numbers (multiplicity, the world) proceed — yet even if the numbers vanish, the One does not.",
+            "pt": "Nada procede de Ahad; de Wahid procedem todos os números (multiplicidade, o mundo) — mas mesmo que os números desapareçam, o Um não desaparece."
+          }
+        }
+      ]
+    },
+    {
+      "id": "nefsin-gucleri",
+      "name": {
+        "tr": "Nefsin Üç Gücü",
+        "en": "The Soul's Three Faculties",
+        "pt": "As Três Faculdades da Alma"
+      },
+      "description": {
+        "tr": "İbn Arabî'nin Mekârimü'l-Ahlâk risalesinde ahlakın kaynağı olarak tanımladığı üç nefis gücü: şehvet, gazap ve nefs-i nâtıka (akıl). Bütün huylar bu üçünün karışımından doğar; güzel ahlak, akıl gücünün diğer ikisine boyun eğdirmesiyle oluşur.",
+        "en": "The three faculties of the soul that Ibn Arabi identifies as the source of character in his treatise Mekârimü'l-Ahlâk: appetite, irascibility, and the rational/speaking soul (reason). Every trait is born from a mixture of these three; good character forms when reason subdues the other two.",
+        "pt": "As três faculdades da alma que Ibn Arabi identifica como a fonte do caráter em seu tratado Mekârimü'l-Ahlâk: apetite, irascibilidade e a alma racional/falante (razão). Todo traço nasce de uma mistura destas três; o bom caráter se forma quando a razão subjuga as outras duas."
+      },
+      "diagram": [
+        {
+          "type": "reins",
+          "termId": "nefs-i-natika",
+          "ruler": {
+            "tr": "Nefs-i Nâtıka (Akıl)",
+            "en": "Rational Soul (Reason)",
+            "pt": "Alma Racional (Razão)"
+          },
+          "left": {
+            "tr": "Şehvet Nefsi",
+            "en": "Appetitive Soul",
+            "pt": "Alma Apetitiva"
+          },
+          "right": {
+            "tr": "Gazap Nefsi",
+            "en": "Irascible Soul",
+            "pt": "Alma Irascível"
+          },
+          "rulesLabel": {
+            "tr": "boyun eğdirir",
+            "en": "reins in",
+            "pt": "refreia"
+          },
+          "note": {
+            "tr": "Nefs-i nâtıka güçlendiğinde şehvet ve gazap nefislerini dizginler; zayıf kaldığında bu iki güç insana hâkim olur.",
+            "en": "When the rational soul is strong, it reins in the appetitive and irascible souls; when it is weak, these two faculties overpower the person instead.",
+            "pt": "Quando a alma racional é forte, ela refreia as almas apetitiva e irascível; quando é fraca, essas duas faculdades dominam a pessoa."
+          }
+        }
+      ]
     }
   ],
   "terms": {
@@ -899,6 +989,183 @@
           "view": "ontoloji",
           "id": "ayan-sabite"
         }
+      ]
+    },
+    "nefs-i-natika": {
+      "id": "nefs-i-natika",
+      "group": "nefsin-gucleri",
+      "title": {
+        "tr": "Nefs-i Nâtıka",
+        "en": "The Rational Soul",
+        "pt": "A Alma Racional"
+      },
+      "arabic": "النفس الناطقة",
+      "felsefi_tanim": {
+        "tr": "'Konuşan nefis', yani akıl: düşünme, ayırt etme (temyiz) ve anlama yetisi. İnsanı diğer canlılardan ayıran, üstünlüğünün ve himmetinin kaynağı olan güçtür.",
+        "en": "The 'speaking soul,' i.e. reason: the faculty of thought, discernment, and understanding. It is what distinguishes the human being from other creatures, the source of human dignity and aspiration.",
+        "pt": "A 'alma falante', isto é, a razão: a faculdade do pensamento, do discernimento e da compreensão. É o que distingue o ser humano das outras criaturas, a fonte da dignidade e aspiração humanas."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, Mekârimü'l-Ahlâk risalesinde nefs-i nâtıkayı, insanın bütün işlerinin yönetimini üstlenen güç olarak tanımlar: şehvet ve gazap nefisleri kör bir kuvvettir, ama nefs-i nâtıka onları terbiye edip sınırlandırabilir. Nefs-i nâtıka akli ilimlerle (hakikat ilimleriyle) güçlendirildiğinde şereflenir, zayıf bırakıldığında ise diğer iki nefis insana hâkim olur — güzel ahlak ile kötü ahlak arasındaki fark, tam olarak bu gücün ne kadar güçlü olduğundan kaynaklanır.",
+        "en": "In Mekârimü'l-Ahlâk, Ibn Arabi defines the rational soul as the faculty that takes charge of managing all of a person's affairs: the appetitive and irascible souls are blind forces, but the rational soul can discipline and limit them. When strengthened through rational/rooted knowledge, the rational soul gains nobility; when left weak, the other two faculties instead overpower the person — the difference between good and bad character comes down exactly to how strong this faculty is.",
+        "pt": "Em Mekârimü'l-Ahlâk, Ibn Arabi define a alma racional como a faculdade que assume a gestão de todos os assuntos de uma pessoa: as almas apetitiva e irascível são forças cegas, mas a alma racional pode disciplá-las e limitá-las. Quando fortalecida por conhecimento racional/fundamentado, a alma racional ganha nobreza; quando deixada fraca, as outras duas faculdades dominam a pessoa — a diferença entre bom e mau caráter vem exatamente de quão forte é essa faculdade."
+      },
+      "analogy": {
+        "tr": "Nefs-i nâtıkayı, iki güçlü atı (şehvet ve gazabı) süren bir arabacı gibi düşün: arabacı dizginleri sıkı tutarsa atlar onu güvenli bir yola götürür, dizginler gevşerse atlar arabayı istedikleri yöne — çoğu zaman uçuruma — sürükler.",
+        "en": "Think of the rational soul as a charioteer driving two powerful horses (appetite and anger): if the charioteer holds the reins firmly, the horses carry the chariot down a safe road; if the reins go slack, the horses drag it wherever they please — often toward a cliff.",
+        "pt": "Pense na alma racional como um cocheiro conduzindo dois cavalos poderosos (apetite e ira): se o cocheiro segura as rédeas firmemente, os cavalos levam a carruagem por um caminho seguro; se as rédeas afrouxam, os cavalos a arrastam para onde quiserem — muitas vezes para um precipício."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Mekârimü'l-Ahlâk",
+          "alinti_tr": "Nefs-i Natika'ya gelince... insanı diğer tüm hayvanlardan ayıran, farklı, ayrıcalıklı kılan bu nefistir. Düşünme, ayırt etme ve anlama yetisi bundan kaynaklanır... İnsanın hayatındaki bütün işlerin yönetimi bu güç 'nefs-i natıka, akıl' sayesinde olur.",
+          "not_tr": "Nefs-i nâtıkanın insana özgü, yönetici güç olarak tanımlanması."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "tumel-nefs"
+      ]
+    },
+    "sehvani-nefis": {
+      "id": "sehvani-nefis",
+      "group": "nefsin-gucleri",
+      "title": {
+        "tr": "Şehvet Nefsi",
+        "en": "The Appetitive Soul",
+        "pt": "A Alma Apetitiva"
+      },
+      "arabic": "النفس الشهوانية",
+      "felsefi_tanim": {
+        "tr": "Bedensel lezzetlerin ve isteklerin kaynağı olan nefis gücü: yeme, içme ve cinsel arzuyu tatmin etme gibi bütün cismani hazlar buradan doğar. İnsanda da hayvanda da bulunur.",
+        "en": "The faculty of the soul that is the source of bodily pleasures and desires: all corporeal delights — eating, drinking, satisfying sexual desire — arise from it. It exists in both humans and animals.",
+        "pt": "A faculdade da alma que é fonte dos prazeres e desejos corporais: todos os deleites corpóreos — comer, beber, satisfazer o desejo sexual — surgem dela. Existe tanto em humanos quanto em animais."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî bu nefsi 'çok güçlü' olarak niteler: eğer insan ona galip gelip arındırmazsa, bu nefis insanı hakimiyeti altına alır ve onu hayvanlara benzetir. Terbiye edilip nefs-i nâtıkaya boyun eğdirildiğinde ise, aynı güç iffet ve kanaat gibi övülen huylara dönüşür — nefis kötü değildir, kontrolsüz bırakılması kötüdür.",
+        "en": "Ibn Arabi describes this faculty as 'very powerful': if a person does not overcome and purify it, it takes control of the person and makes them resemble animals. But once disciplined and subdued to the rational soul, that same force turns into praised traits like chastity and contentment — the faculty itself is not evil; leaving it unchecked is.",
+        "pt": "Ibn Arabi descreve essa faculdade como 'muito poderosa': se uma pessoa não a supera e purifica, ela toma o controle da pessoa e a faz se assemelhar a animais. Mas uma vez disciplinada e subjugada à alma racional, essa mesma força se transforma em traços louváveis como castidade e contentamento — a faculdade em si não é má; deixá-la sem controle é que é."
+      },
+      "analogy": {
+        "tr": "Ateş gibi düşün: ocakta kontrol altında olduğunda yemek pişirir, evi ısıtır; kontrolden çıkıp yayılırsa her şeyi yakıp kül eder. Şehvet nefsi de kendi başına ne iyi ne kötüdür — terbiye edilip edilmemesi sonucu belirler.",
+        "en": "Think of fire: contained in a hearth, it cooks food and warms a house; let loose from control, it burns everything to ash. The appetitive soul, too, is neither good nor bad in itself — whether it is disciplined determines the outcome.",
+        "pt": "Pense no fogo: contido em uma lareira, cozinha alimentos e aquece uma casa; solto do controle, queima tudo até virar cinzas. A alma apetitiva, também, não é boa nem má em si mesma — se é disciplinada determina o resultado."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Mekârimü'l-Ahlâk",
+          "alinti_tr": "Şehvani nefis, hem insanda hem de hayvanda vardır. Bütün cismani lezzetler ve şehvetler bundan kaynaklanır... Bir insan şehvani nefse galip gelmez, arındırmazsa, bu nefis insanı hakimiyeti altına alır, bütün güçlerini istila eder.",
+          "not_tr": "Şehvet nefsinin tanımı ve kontrolsüz bırakıldığında insanı hayvanlaştıran etkisi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nefs-i-natika",
+        "gazap-nefsi"
+      ]
+    },
+    "gazap-nefsi": {
+      "id": "gazap-nefsi",
+      "group": "nefsin-gucleri",
+      "title": {
+        "tr": "Gazap Nefsi",
+        "en": "The Irascible Soul",
+        "pt": "A Alma Irascível"
+      },
+      "arabic": "النفس الغضبية",
+      "felsefi_tanim": {
+        "tr": "Öfke, cesaret ve galip gelme isteğinin kaynağı olan nefis gücü. Şehvet nefsinden daha güçlü kabul edilir; hakimiyet kurduğunda daha yıkıcı sonuçlar doğurur.",
+        "en": "The faculty of the soul that is the source of anger, courage, and the drive to overcome. It is held to be stronger than the appetitive soul; when it gains control, its effects are more destructive.",
+        "pt": "A faculdade da alma que é fonte da ira, coragem e o impulso de superar. É considerada mais forte que a alma apetitiva; quando ganha controle, seus efeitos são mais destrutivos."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî'ye göre gazap nefsi hakimiyeti ele geçirdiğinde insanı 'yırtıcı bir hayvana' benzetir; kontrol altına alındığındaysa aynı güç, liderlik arzusu, adil olma ve yüksek mertebelere talip olma gibi övülen bir himmete dönüşür. Burada da nefsin kendisi değil, nefs-i nâtıkaya boyun eğip eğmemesi belirleyicidir.",
+        "en": "According to Ibn Arabi, when the irascible soul seizes control it makes a person resemble 'a predatory animal'; once brought under control, that same force turns into a praised aspiration — the desire for leadership, for justice, for high rank. Here too, it is not the faculty itself but whether it submits to the rational soul that is decisive.",
+        "pt": "Segundo Ibn Arabi, quando a alma irascível toma o controle, ela faz a pessoa se assemelhar a 'um animal predador'; uma vez sob controle, essa mesma força se transforma em uma aspiração louvável — o desejo de liderança, de justiça, de alta posição. Aqui também, não é a faculdade em si, mas se ela se submete à alma racional, que é decisivo."
+      },
+      "analogy": {
+        "tr": "Bir nehrin gücü gibi düşün: setler içinde aksa değirmeni döndürür, tarlayı sular; taşarsa köyü sürükler. Gazap nefsi de dizginlendiğinde cesarete ve adalete, dizginlenmediğinde şiddete dönüşen aynı ham güçtür.",
+        "en": "Think of a river's force: channeled within banks, it turns a mill and waters a field; overflowing, it sweeps away a village. The irascible soul, too, is the same raw force that becomes courage and justice when reined in, and violence when it is not.",
+        "pt": "Pense na força de um rio: canalizado dentro de margens, gira um moinho e rega um campo; transbordando, arrasa uma aldeia. A alma irascível, também, é a mesma força bruta que se torna coragem e justiça quando refreada, e violência quando não é."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Mekârimü'l-Ahlâk",
+          "alinti_tr": "Gazap nefsi de hem insanda hem de hayvanda bulunur. Öfke, cesaret/curet ve galip gelme isteği bu nefisten kaynaklanır. Bu nefis, şehvani nefisten daha güçlüdür... Kişiye hakim olup güçlerini istila edince de şehvani nefisten daha zararlı ve daha yıkıcı olur.",
+          "not_tr": "Gazap nefsinin tanımı ve şehvet nefsine kıyasla daha güçlü/yıkıcı oluşu."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nefs-i-natika",
+        "sehvani-nefis"
+      ]
+    },
+    "ahad": {
+      "id": "ahad",
+      "group": "ahad-vahid",
+      "title": {
+        "tr": "Ahad (Tek)",
+        "en": "Ahad (the Unique)",
+        "pt": "Ahad (o Único)"
+      },
+      "arabic": "أحد",
+      "felsefi_tanim": {
+        "tr": "Mutlak, ilişkisiz teklik. Hiçbir şeyle kıyaslanamaz, hiçbir çokluğa açılmaz, sayıya dönüşmez — 'izzet perdesi' üzerinde ebediyen kalır.",
+        "en": "Absolute, relationless oneness. It cannot be compared to anything, does not open onto any multiplicity, and never turns into number — the 'veil of majesty' remains upon it forever.",
+        "pt": "Unicidade absoluta, sem relação. Não pode ser comparada a nada, não se abre a nenhuma multiplicidade, e nunca se torna número — o 'véu da majestade' permanece sobre ela para sempre."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, Kitâbü'l-Elif'te Kur'an'ın Allah'ı 'Vâhid' değil 'Ahad' diye nitelemesine dikkat çeker (İhlas sûresi: 'Kul huvallâhu ehad'). İnsan dahi — sûretlerin en tamamı olmasına rağmen — Ahadiyet üzere değil, Vâhidiyet üzere yaratılmıştır; çünkü Ahad, hiçbir güçle 'güçlenmez', hiçbir eşe/dengi ihtimal vermez. Bu perde, Allah'ın kendisiyle bile olsa hiçbir zaman aralanmaz.",
+        "en": "In Kitab al-Alif, Ibn Arabi points out that the Qur'an describes God as 'Ahad,' not 'Wahid' (Surat al-Ikhlas: 'Say, He is God, the Unique'). Even the human being — the most complete of all forms — is created not upon Ahadiyya but upon Wahidiyya, because the Unique cannot be 'strengthened' by anything, nor admit any match or equal. This veil never parts, even for God with Himself.",
+        "pt": "No Kitab al-Alif, Ibn Arabi observa que o Alcorão descreve Deus como 'Ahad', não 'Wahid' (Surata al-Ikhlas: 'Dize, Ele é Deus, o Único'). Mesmo o ser humano — a mais completa de todas as formas — é criado não sobre a Ahadiyya, mas sobre a Wahidiyya, porque o Único não pode ser 'fortalecido' por nada, nem admite par ou igual. Esse véu nunca se abre, nem mesmo para Deus consigo mesmo."
+      },
+      "analogy": {
+        "tr": "Sayı 1'i düşün ama çarpma tablosundan tamamen çıkarılmış hâliyle: hiçbir sayı ile birleşemez, hiçbir sonuç üretemez, sadece kendi başınadır. Vâhid ise çarpma tablosundaki '1' gibidir — her sayıyla çarpılabilir, her sonuca dönüşebilir, ama kendi de bir sayıdır.",
+        "en": "Think of the number 1, but removed entirely from the multiplication table: it cannot combine with any number, cannot produce any result, it simply stands alone. Wahid, by contrast, is like the '1' inside the multiplication table — it can be multiplied by any number and become any result, yet it is still a number itself.",
+        "pt": "Pense no número 1, mas removido inteiramente da tabuada: ele não pode se combinar com nenhum número, não pode produzir nenhum resultado, apenas permanece sozinho. Wahid, em contraste, é como o '1' dentro da tabuada — pode ser multiplicado por qualquer número e se tornar qualquer resultado, mas ainda é, ele mesmo, um número."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Kitâbü'l-Elif (Teklik Kitabı)",
+          "alinti_tr": "Bilin ki, sûretlerin en mükemmeli ve varoluşların en tamamı olan insan, ahadiyet/teklik üzere değil, vahidiyet/birlik üzere yaratılmıştır. Çünkü teklik mutlak olarak müstağnidir. Bir güçlenmez, dolayısıyla bir olan insan için bu anlam (yani mutlak müstağnilik) sahih olmaz.",
+          "not_tr": "İnsanın Ahadiyet değil Vâhidiyet düzeyinde yaratıldığının doğrudan ifadesi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "vahid"
+      ]
+    },
+    "vahid": {
+      "id": "vahid",
+      "group": "ahad-vahid",
+      "title": {
+        "tr": "Vâhid (Bir)",
+        "en": "Wahid (the One)",
+        "pt": "Wahid (o Um)"
+      },
+      "arabic": "واحد",
+      "felsefi_tanim": {
+        "tr": "Sayının, çokluğun ve tecellînin kendisinden çıktığı birlik. Ahad'ın aksine, Vâhid diğer sayılarla 'çarpılarak' çokluğa açılabilir — ama bu çokluk her zaman Bir'in kendisiyle kaim kalır.",
+        "en": "The unity from which number, multiplicity, and self-disclosure themselves proceed. Unlike Ahad, Wahid can 'multiply' into plurality when combined with other numbers — yet that plurality always subsists through the One itself.",
+        "pt": "A unidade da qual o próprio número, a multiplicidade e a autorrevelação procedem. Ao contrário de Ahad, Wahid pode se 'multiplicar' em pluralidade quando combinado com outros números — mas essa pluralidade sempre subsiste através do próprio Um."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, Vâhid'in kendisiyle çarpıldığında yine kendisi kaldığını (1×1=1) ama başka bir sayıyla çarpıldığında o sayıya dönüştüğünü (1×15=15) söyler: bütün sayılar Bir'den doğar, Bir hiçbir sayıdan doğmaz. Bu yüzden bir sayı yok olduğunda Bir yok olmaz, ama Bir olmadan hiçbir sayı da var olamaz — âlemdeki bütün çokluk, tıpkı bu misalde olduğu gibi, tek bir kaynaktan (Vâhidiyet'ten) çoğalır.",
+        "en": "Ibn Arabi says the One, multiplied by itself, remains itself (1×1=1), but multiplied by another number, becomes that number (1×15=15): all numbers are born from the One, but the One is born from no number. Hence when a number vanishes the One does not, yet without the One no number could exist at all — all the multiplicity in the world, just as in this example, multiplies out from a single source (Wahidiyya).",
+        "pt": "Ibn Arabi diz que o Um, multiplicado por si mesmo, permanece o mesmo (1×1=1), mas multiplicado por outro número, torna-se esse número (1×15=15): todos os números nascem do Um, mas o Um não nasce de nenhum número. Por isso, quando um número desaparece o Um não desaparece, mas sem o Um nenhum número poderia existir — toda a multiplicidade no mundo, assim como neste exemplo, se multiplica a partir de uma única fonte (Wahidiyya)."
+      },
+      "analogy": {
+        "tr": "Bir ana dili düşün: ondan türeyen bütün lehçeler, ağızlar birbirinden çok farklı görünebilir, ama hepsi tek bir dilden 'çoğalmıştır' ve o dilin kendisi hiçbir lehçeye indirgenemez. Vâhid de âlemdeki bütün çokluğun 'çoğaldığı', ama kendisi hiçbir çokluğa indirgenemeyen o tek kaynaktır.",
+        "en": "Think of a single mother tongue: the dialects and accents that branch from it can look very different from one another, yet all of them 'multiply out' from one language, and that language itself cannot be reduced to any one dialect. Wahid, likewise, is the single source from which all multiplicity in the world 'multiplies out,' while itself never being reducible to any of that multiplicity.",
+        "pt": "Pense em uma única língua-mãe: os dialetos e sotaques que dela derivam podem parecer muito diferentes entre si, mas todos 'se multiplicam' a partir de uma língua, e essa língua em si não pode ser reduzida a nenhum dialeto. Wahid, da mesma forma, é a fonte única da qual toda a multiplicidade no mundo 'se multiplica', sem nunca ser redutível a essa multiplicidade."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Kitâbü'l-Elif (Teklik Kitabı)",
+          "alinti_tr": "Bu yüzden bir birle çarpıldığı zaman artmaz, ikisinin çarpımından çokluk doğmaz... Vahdaniyet gayrısına sirayet eder. Sayılar birden meydana gelirler, ama bir onlardan meydana gelmez. Bu yüzden sayılar birle zuhur ederler, ama sayıların yok olmasıyla bir yok olmaz.",
+          "not_tr": "Bir'in (Vâhid) sayısal çoğalma örneğiyle açıklanan, âlemin kaynağı olma işlevi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "ahad"
       ]
     }
   }

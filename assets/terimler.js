@@ -157,6 +157,19 @@
         <text class="term-diagram-label term-diagram-label--small" x="240" y="55" text-anchor="middle">${tt(d.actual)}</text>
       </svg>
     `,
+    reins: (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 300 200" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node term-diagram-node--accent" cx="150" cy="42" r="32"/>
+        <text class="term-diagram-label term-diagram-label--small" x="150" y="47" text-anchor="middle">${tt(d.ruler)}</text>
+        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="126" y1="66" x2="82" y2="132" marker-end="url(#tdArrowEnd)"/>
+        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="174" y1="66" x2="218" y2="132" marker-end="url(#tdArrowEnd)"/>
+        <circle class="term-diagram-node term-diagram-node--dashed" cx="70" cy="158" r="28"/>
+        <text class="term-diagram-label term-diagram-label--small" x="70" y="163" text-anchor="middle">${tt(d.left)}</text>
+        <circle class="term-diagram-node term-diagram-node--dashed" cx="230" cy="158" r="28"/>
+        <text class="term-diagram-label term-diagram-label--small" x="230" y="163" text-anchor="middle">${tt(d.right)}</text>
+        <text class="term-diagram-note" x="150" y="105" text-anchor="middle">${tt(d.rulesLabel)}</text>
+      </svg>
+    `,
   };
 
   const DIAGRAM_DEFS = `
@@ -243,7 +256,7 @@
     return `<div class="insight-group">${kaynaklar
       .map(
         (k, i) => `<details class="insight" ${i === 0 ? "open" : ""}>
-          <summary>${tt({ tr: `Cilt ${k.cilt}`, en: `Volume ${k.cilt}`, pt: `Volume ${k.cilt}` })}</summary>
+          <summary>${k.kaynak_adi ? k.kaynak_adi : tt({ tr: `Cilt ${k.cilt}`, en: `Volume ${k.cilt}`, pt: `Volume ${k.cilt}` })}</summary>
           <p>${k.alinti_tr}</p>
           ${k.not_tr ? `<cite>${k.not_tr}</cite>` : ""}
         </details>`
