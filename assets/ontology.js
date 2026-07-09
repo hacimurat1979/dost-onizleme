@@ -14,7 +14,7 @@
 
   // İki kavram/ilişkinin salt metinle anlatıldığında soyut kalan bağını
   // tek bakışta gösteren küçük SVG şemalar (bkz. CLAUDE.md ikinci ilke).
-  const edgeDiagramRenderers = {
+  const entityDiagramRenderers = {
     "twin-truth": (d) => `
       <svg class="term-diagram__svg" viewBox="0 0 320 180" role="img" aria-label="${tt(d.note)}">
         <circle class="term-diagram-node--venn" cx="125" cy="88" r="68"/>
@@ -26,16 +26,25 @@
         <text class="term-diagram-label term-diagram-note--accent" x="160" y="93" text-anchor="middle">${tt(d.center)}</text>
       </svg>
     `,
+    "seed-fork": (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 260 240" role="img" aria-label="${tt(d.note)}">
+        <line class="term-diagram-tether" x1="114" y1="167" x2="73" y2="197"/>
+        <line class="term-diagram-arrow" x1="130" y1="135" x2="130" y2="97" marker-end="url(#odArrowEnd)"/>
+        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="112" y1="63" x2="73" y2="37" marker-end="url(#odArrowEnd)"/>
+        <line class="term-diagram-arrow term-diagram-arrow--dashed" x1="148" y1="63" x2="187" y2="37" marker-end="url(#odArrowEnd)"/>
+        <circle class="term-diagram-node" cx="130" cy="155" r="20"/>
+        <text class="term-diagram-label--small" x="130" y="192" text-anchor="middle">${tt(d.seed)}</text>
+        <circle class="term-diagram-node--dashed" cx="55" cy="210" r="22"/>
+        <text class="term-diagram-label--small" x="55" y="215" text-anchor="middle">${tt(d.root)}</text>
+        <circle class="term-diagram-node" cx="130" cy="75" r="22"/>
+        <text class="term-diagram-label--small" x="130" y="80" text-anchor="middle">${tt(d.branch)}</text>
+        <circle class="term-diagram-node--accent" cx="55" cy="25" r="22"/>
+        <text class="term-diagram-label--small" x="55" y="30" text-anchor="middle">${tt(d.leftLeaf)}</text>
+        <circle class="term-diagram-node--faint" cx="205" cy="25" r="22"/>
+        <text class="term-diagram-label--small" x="205" y="30" text-anchor="middle">${tt(d.rightLeaf)}</text>
+      </svg>
+    `,
   };
-
-  function edgeDiagramHtml(l) {
-    const renderer = l.diagram && edgeDiagramRenderers[l.diagram.type];
-    if (!renderer) return "";
-    return `<div class="term-diagram-row"><div class="term-diagram-card">
-      ${renderer(l.diagram)}
-      <p class="term-diagram-caption">${tt(l.diagram.note)}</p>
-    </div></div>`;
-  }
 
   const ODD_DIAGRAM_DEFS = `
     <svg width="0" height="0" style="position:absolute">
@@ -46,6 +55,16 @@
       </defs>
     </svg>
   `;
+
+  function entityDiagramHtml(obj) {
+    const renderer = obj.diagram && entityDiagramRenderers[obj.diagram.type];
+    if (!renderer) return "";
+    return `<div class="term-diagram-row"><div class="term-diagram-card">
+      ${ODD_DIAGRAM_DEFS}
+      ${renderer(obj.diagram)}
+      <p class="term-diagram-caption">${tt(obj.diagram.note)}</p>
+    </div></div>`;
+  }
 
   function sirlarGestureDiagramHtml() {
     return `<div class="term-diagram-row"><div class="term-diagram-card">
@@ -667,6 +686,7 @@
     "fukuk-konevi": { tr: "Fusûsu'l-Hikem'in Sırları (Konevî)", en: "The Secrets of the Fusus (Qunawi)", pt: "Os Segredos do Fusus (Qunawi)" },
     "izutsu-anahtar": { tr: "Anahtar-Kavramlar (İzutsu)", en: "Key Concepts (Izutsu)", pt: "Conceitos-Chave (Izutsu)" },
     "affifi-tasavvuf": { tr: "Tasavvuf Felsefesi (Affifi)", en: "The Mystical Philosophy (Affifi)", pt: "A Filosofia Mística (Affifi)" },
+    "varlik-agaci": { tr: "Varlık Ağacı (Şeceretü'l-Kevn)", en: "The Tree of Being (Shajarat al-Kawn)", pt: "A Árvore do Ser (Shajarat al-Kawn)" },
   };
 
   function volumeLabel(n) {
@@ -679,6 +699,7 @@
     "fukuk-konevi": "El-Fükük fi Esrâr-ı Müstenidât-ı Hikemi'l-Fusûs (Sadreddin Konevî",
     "izutsu-anahtar": "İbn Arabî'nin Fusûsu'ndaki Anahtar-Kavramlar (Toshihiko İzutsu",
     "affifi-tasavvuf": "Muhyiddîn İbnü'l-Arabî'nin Tasavvuf Felsefesi (A. E. Affifi",
+    "varlik-agaci": "Şeceretü'l-Kevn / Varlık Ağacı",
   };
 
   function sourcesForInsight(ins, sources) {
@@ -738,6 +759,7 @@
         <p>${linkify(I18n.pick3(d.summary), "ontoloji", d.id)}</p>
       </div>
       ${analogyHtml(d.analogy)}
+      ${entityDiagramHtml(d)}
       ${insightsHtml(d.insights, d.sources, "ontoloji", d.id)}
       ${relatedEdgesHtml(d)}
     `;
@@ -766,7 +788,7 @@
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${I18n.pick3(l.relation)}</p>
       <h2 class="detail-title">${I18n.pick3(l.source.name)} → ${I18n.pick3(l.target.name)}</h2>
-      ${edgeDiagramHtml(l)}
+      ${entityDiagramHtml(l)}
       <div class="detail-block detail-block--ibnarabi">
         <p>${linkify(I18n.pick3(l.nature), null, null)}</p>
         ${insightsHtml(l.insights, null, null, null)}
