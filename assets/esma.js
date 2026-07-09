@@ -16,6 +16,36 @@
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, view, id) : text;
   }
 
+  // İki ismin/kutbun ilişkisini tek bakışta gösteren küçük SVG şemalar
+  // (bkz. CLAUDE.md ikinci ilke — mümkün olan her yerde çizim kullan).
+  const relationDiagramRenderers = {
+    nested: (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 260 190" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node--accent" cx="130" cy="100" r="78"/>
+        <text class="term-diagram-label" x="130" y="34" text-anchor="middle">${tt(d.outer)}</text>
+        <circle class="term-diagram-node--dashed" cx="130" cy="112" r="34"/>
+        <text class="term-diagram-label term-diagram-label--small" x="130" y="117" text-anchor="middle">${tt(d.inner)}</text>
+      </svg>
+    `,
+    "split-disc": (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 240 160" role="img" aria-label="${tt(d.note)}">
+        <path class="term-diagram-node--accent" d="M120,20 A70,70 0 0,0 120,160 Z"/>
+        <path class="term-diagram-node--dashed" d="M120,20 A70,70 0 0,1 120,160 Z"/>
+        <text class="term-diagram-label" x="88" y="94" text-anchor="middle">${tt(d.left)}</text>
+        <text class="term-diagram-label" x="152" y="94" text-anchor="middle">${tt(d.right)}</text>
+      </svg>
+    `,
+  };
+
+  function relationDiagramHtml(r) {
+    const renderer = r.diagram && relationDiagramRenderers[r.diagram.type];
+    if (!renderer) return "";
+    return `<div class="term-diagram-row"><div class="term-diagram-card">
+      ${renderer(r.diagram)}
+      <p class="term-diagram-caption">${tt(r.diagram.note)}</p>
+    </div></div>`;
+  }
+
   let esmaData = null;
   let esmaDataPromise = null;
   let built = false;
@@ -477,6 +507,7 @@
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "İlişki", en: "Relation", pt: "Relação" })}</p>
       <h2 class="detail-title">${I18n.pick3(from.data.name)} ↔ ${I18n.pick3(to.data.name)}</h2>
+      ${relationDiagramHtml(r)}
       <div class="detail-block detail-block--ibnarabi">
         <p>${I18n.pick3(r.label)}</p>
       </div>

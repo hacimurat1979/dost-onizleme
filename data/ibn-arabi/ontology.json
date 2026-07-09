@@ -1218,7 +1218,20 @@
           }
         }
       ],
-      "kind": "paradox"
+      "kind": "paradox",
+      "diagram": {
+        "type": "twin-truth",
+        "left": { "tr": "Tenzîh", "en": "Tanzih", "pt": "Tanzih" },
+        "leftNote": { "tr": "Hiçbir şeye benzemez", "en": "Resembles nothing", "pt": "Não se assemelha a nada" },
+        "right": { "tr": "Teşbîh", "en": "Tashbih", "pt": "Tashbih" },
+        "rightNote": { "tr": "Her sûrette tecellî eder", "en": "Discloses Himself in every form", "pt": "Se autorrevela em toda forma" },
+        "center": { "tr": "Hakk", "en": "The Real", "pt": "O Real" },
+        "note": {
+          "tr": "İkisi ayrı iki hüküm değil, aynı Zât'ın iki yüzüdür - 'tenzih teşbihe delildir.'",
+          "en": "Not two separate rulings but two faces of the same Essence - \"tanzih is itself proof of tashbih.\"",
+          "pt": "Não são dois julgamentos separados, mas duas faces da mesma Essência - \"o tanzih é prova do tashbih.\""
+        }
+      }
     }
   ]
 }

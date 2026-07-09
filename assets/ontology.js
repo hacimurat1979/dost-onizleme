@@ -12,6 +12,61 @@
     return I18n.pick3(dict);
   }
 
+  // İki kavram/ilişkinin salt metinle anlatıldığında soyut kalan bağını
+  // tek bakışta gösteren küçük SVG şemalar (bkz. CLAUDE.md ikinci ilke).
+  const edgeDiagramRenderers = {
+    "twin-truth": (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 320 180" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node--venn" cx="125" cy="88" r="68"/>
+        <circle class="term-diagram-node--venn" cx="195" cy="88" r="68"/>
+        <text class="term-diagram-label" x="68" y="42" text-anchor="middle">${tt(d.left)}</text>
+        <text class="term-diagram-note" x="68" y="150" text-anchor="middle">${tt(d.leftNote)}</text>
+        <text class="term-diagram-label" x="252" y="42" text-anchor="middle">${tt(d.right)}</text>
+        <text class="term-diagram-note" x="252" y="150" text-anchor="middle">${tt(d.rightNote)}</text>
+        <text class="term-diagram-label term-diagram-note--accent" x="160" y="93" text-anchor="middle">${tt(d.center)}</text>
+      </svg>
+    `,
+  };
+
+  function edgeDiagramHtml(l) {
+    const renderer = l.diagram && edgeDiagramRenderers[l.diagram.type];
+    if (!renderer) return "";
+    return `<div class="term-diagram-row"><div class="term-diagram-card">
+      ${renderer(l.diagram)}
+      <p class="term-diagram-caption">${tt(l.diagram.note)}</p>
+    </div></div>`;
+  }
+
+  const ODD_DIAGRAM_DEFS = `
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <marker id="odArrowEnd" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" class="term-diagram-arrowhead"/>
+        </marker>
+      </defs>
+    </svg>
+  `;
+
+  function sirlarGestureDiagramHtml() {
+    return `<div class="term-diagram-row"><div class="term-diagram-card">
+      ${ODD_DIAGRAM_DEFS}
+      <svg class="term-diagram__svg" viewBox="0 0 300 150" role="img" aria-label="${tt({ tr: "İşaret eder, açıklamaz", en: "Points, but does not explain", pt: "Aponta, mas não explica" })}">
+        <circle class="term-diagram-node--sm" cx="34" cy="75" r="7"/>
+        <line class="term-diagram-arrow term-diagram-arrow--dashed" x1="48" y1="75" x2="196" y2="75" marker-end="url(#odArrowEnd)"/>
+        <line class="term-diagram-mirror" x1="208" y1="35" x2="208" y2="115"/>
+        <circle class="term-diagram-node--barrier" cx="256" cy="75" r="38"/>
+        <text class="term-diagram-label" x="256" y="80" text-anchor="middle">?</text>
+        <text class="term-diagram-note" x="120" y="100" text-anchor="middle">${tt({ tr: "işaret", en: "gesture", pt: "gesto" })}</text>
+        <text class="term-diagram-note term-diagram-note--accent" x="256" y="132" text-anchor="middle">${tt({ tr: "açıklanmaz", en: "not explained", pt: "não explicado" })}</text>
+      </svg>
+      <p class="term-diagram-caption">${tt({
+        tr: "İbn Arabî sırrın yönünü gösterir, ama eşikte durur - içeriğini açıklamaz.",
+        en: "Ibn Arabi points toward the secret, but stops at the threshold - he does not disclose its content.",
+        pt: "Ibn Arabi aponta a direção do segredo, mas para no limiar - não revela seu conteúdo.",
+      })}</p>
+    </div></div>`;
+  }
+
   I18n.applyStatic();
   I18n.renderLangSwitcher(document.getElementById("lang-switch"), () => {
     render();
@@ -510,6 +565,7 @@
       <p class="detail-eyebrow">${tt({ tr: "İşaret Edilen, Açıklanmayan", en: "Pointed To, Not Explained", pt: "Apontado, Não Explicado" })}</p>
       <h2 class="detail-title">${tt({ tr: "Sırlar", en: "Mysteries", pt: "Mistérios" })}</h2>
       <p class="detail-resonance">${I18n.pick3(sirlarData.intro)}</p>
+      ${sirlarGestureDiagramHtml()}
       ${sirlarThemeChipsHtml()}
       ${entries.map((e, i) => sirlarEntryHtml(e, i, !focusId)).join("")}
     `;
@@ -710,6 +766,7 @@
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${I18n.pick3(l.relation)}</p>
       <h2 class="detail-title">${I18n.pick3(l.source.name)} → ${I18n.pick3(l.target.name)}</h2>
+      ${edgeDiagramHtml(l)}
       <div class="detail-block detail-block--ibnarabi">
         <p>${linkify(I18n.pick3(l.nature), null, null)}</p>
         ${insightsHtml(l.insights, null, null, null)}

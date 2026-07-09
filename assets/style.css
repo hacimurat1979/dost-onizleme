@@ -2871,6 +2871,20 @@ html[data-contrast="high"] .detail-title {
   stroke-width: 1.5px;
 }
 
+.term-diagram-node--venn {
+  fill: var(--series-theme);
+  fill-opacity: 0.16;
+  stroke: var(--series-theme);
+  stroke-width: 1.5px;
+}
+
+.term-diagram-node--barrier {
+  fill: var(--surface-1);
+  stroke: var(--text-muted);
+  stroke-width: 1.5px;
+  stroke-dasharray: 2 4;
+}
+
 .term-diagram-label {
   fill: var(--text-primary);
   font-size: 11px;
