@@ -517,9 +517,9 @@ html, body {
   background: var(--surface-1);
   border-left: 1px solid var(--border);
   box-shadow: -8px 0 24px rgba(0,0,0,0.15);
-  padding: 128px 24px 24px;
+  padding: 64px 24px 24px;
   overflow-y: auto;
-  z-index: 40;
+  z-index: 55;
 }
 .detail-panel[hidden] { display: none; }
 
@@ -537,7 +537,7 @@ html, body {
   line-height: 1;
   color: var(--text-secondary);
   cursor: pointer;
-  z-index: 51;
+  z-index: 56;
   align-items: center;
   justify-content: center;
 }
@@ -727,7 +727,7 @@ html, body {
 
 @media (max-width: 640px) {
   .app-header { flex-direction: column; }
-  .detail-panel { width: 100vw; padding-top: 200px; }
+  .detail-panel { width: 100vw; padding-top: 64px; }
   .app-header__controls { flex-wrap: wrap; row-gap: 10px; }
   .view-switch { flex-wrap: wrap; }
   .btn-ghost { padding: 6px 11px; font-size: 0.8rem; }
