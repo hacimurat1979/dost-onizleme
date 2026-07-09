@@ -2751,10 +2751,11 @@ html[data-contrast="high"] .detail-title {
   font-weight: 600;
 }
 
-.terim-card__arabic {
-  color: var(--series-theme);
-  font-size: 1.1rem;
-  font-family: "Traditional Arabic", "Scheherazade New", serif;
+.terim-card__ozet {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.3;
 }
 
 .detail-title__arabic {

@@ -235,7 +235,7 @@
       .map(
         (t) => `<button class="terim-card" data-id="${t.id}">
           <span class="terim-card__title">${tt(t.title)}</span>
-          <span class="terim-card__arabic">${t.arabic || ""}</span>
+          <span class="terim-card__ozet">${t.ozet_tr || ""}</span>
         </button>`
       )
       .join("");
