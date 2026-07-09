@@ -296,6 +296,116 @@
       ]
     },
     {
+      "id": "itibar-edilmez",
+      "name": {
+        "tr": "İtibar Edilmez Şeyler: Sahte Kâşifi Ayırt Etmek",
+        "en": "Things Not to Be Trusted: Telling the False Unveiling Apart",
+        "pt": "Coisas em Que Não Confiar: Distinguindo o Desvelamento Falso"
+      },
+      "description": {
+        "tr": "İbn Arabî'nin İtibar Edilmez Şeyler Risalesi'nde topladığı, elliye yakın madde: hangi vecd, hangi ışık, hangi 'kalp bilgisi' güvenilir DEĞİLDİR? Nadir bir kendini eleştiren metin — çoğu tasavvuf eseri tecrübeyi teşvik ederken, bu risale sahte olanı ayıklamaya çalışır.",
+        "en": "A list of nearly fifty items Ibn Arabi compiles in his Epistle of Things Not to Be Trusted: which ecstasy, which light, which 'knowledge of the heart' is NOT reliable? A rare self-critical text — where most Sufi writing encourages experience, this treatise works to sift out the counterfeit.",
+        "pt": "Uma lista de quase cinquenta itens que Ibn Arabi compila em sua Epístola das Coisas em Que Não Confiar: qual êxtase, qual luz, qual 'conhecimento do coração' NÃO é confiável? Um texto raro e autocrítico — onde a maioria dos escritos sufis incentiva a experiência, este tratado trabalha para filtrar o que é falso."
+      },
+      "diagram": [
+        {
+          "type": "spectrum",
+          "termId": "itibar-edilmez",
+          "leftLabel": {
+            "tr": "Sahte kâşif",
+            "en": "False unveiling",
+            "pt": "Desvelamento falso"
+          },
+          "leftNote": {
+            "tr": "geçer, iz bırakmaz",
+            "en": "fades, leaves no trace",
+            "pt": "desaparece, não deixa vestígio"
+          },
+          "rightLabel": {
+            "tr": "Sahih kâşif",
+            "en": "Genuine unveiling",
+            "pt": "Desvelamento genuíno"
+          },
+          "rightNote": {
+            "tr": "kalıcı bilgi bırakır",
+            "en": "leaves lasting knowledge",
+            "pt": "deixa conhecimento duradouro"
+          },
+          "leftMarker": {
+            "tr": "mizaç bozukluğundan, coşkudan doğar",
+            "en": "born of imbalance, of contagion",
+            "pt": "nasce de desequilíbrio, de contágio"
+          },
+          "rightMarker": {
+            "tr": "parıltı sönse de bilgi kalır",
+            "en": "the flash fades but knowledge remains",
+            "pt": "o clarão desaparece mas o conhecimento permanece"
+          },
+          "note": {
+            "tr": "Ölçü tektir: kesif içinde bir ilim ifade etmiyorsa ya da parıltı kesildikten sonra geride hiçbir bilgi kalmıyorsa, o kâşife itibar edilmez.",
+            "en": "There is a single criterion: if the unveiling does not convey any knowledge, or if nothing remains once the flash fades, that unveiling is not to be trusted.",
+            "pt": "Há um único critério: se o desvelamento não transmite nenhum conhecimento, ou se nada permanece quando o clarão desaparece, esse desvelamento não deve ser confiado."
+          }
+        }
+      ]
+    },
+    {
+      "id": "halvet-perdeleri",
+      "name": {
+        "tr": "Halvette Kalkan Perdeler: Basamak Basamak Bir Yolculuk",
+        "en": "The Veils Lifted in Retreat: A Journey Stage by Stage",
+        "pt": "Os Véus Erguidos no Retiro: Uma Jornada Etapa por Etapa"
+      },
+      "description": {
+        "tr": "İbn Arabî'nin Risâletü'l-Envâr'da (Nurlar Risalesi) anlattığı halvet (uzlet) yolculuğu: sâlik zikre devam ettikçe önünde sırayla farklı âlemlerin perdesi açılır — her birinde durmayıp ilerlemesi öğütlenir, ta ki İlahî huzura varana kadar.",
+        "en": "The retreat journey Ibn Arabi describes in the Risalat al-Anwar (Epistle of Lights): as the seeker persists in remembrance (dhikr), the veil over one world after another lifts before him in sequence — he is counseled not to stop at any of them, but to press on until he arrives at the Divine Presence.",
+        "pt": "A jornada de retiro que Ibn Arabi descreve no Risalat al-Anwar (Epístola das Luzes): à medida que o buscador persiste na lembrança (dhikr), o véu sobre um mundo após outro se ergue diante dele em sequência — ele é aconselhado a não parar em nenhum deles, mas a seguir em frente até chegar à Presença Divina."
+      },
+      "diagram": [
+        {
+          "type": "cascade",
+          "termId": "halvet-perdeleri",
+          "steps": [
+            {
+              "tr": "Cemâdât",
+              "en": "Minerals",
+              "pt": "Minerais"
+            },
+            {
+              "tr": "Nebâtât",
+              "en": "Plants",
+              "pt": "Plantas"
+            },
+            {
+              "tr": "Hayvanât",
+              "en": "Animals",
+              "pt": "Animais"
+            },
+            {
+              "tr": "Levh",
+              "en": "The Tablet",
+              "pt": "A Tábua"
+            },
+            {
+              "tr": "İlahî Huzur",
+              "en": "Divine Presence",
+              "pt": "Presença Divina"
+            }
+          ],
+          "relationLabel": {
+            "tr": "Her perdede durmayıp zikre devam eden, bir sonrakine yükselir.",
+            "en": "Whoever does not stop at a veil but continues in remembrance rises to the next.",
+            "pt": "Quem não para em um véu, mas continua na lembrança, sobe ao próximo."
+          },
+          "note": {
+            "tr": "İbn Arabî bu diziyi çok daha uzun anlatır (yirmiden fazla durak) — burada sadece yolun genel yayını göstermek için birkaç durak seçildi.",
+            "en": "Ibn Arabi describes this sequence at much greater length (more than twenty stops) — only a few waypoints are selected here to show the overall arc of the path.",
+            "pt": "Ibn Arabi descreve essa sequência de forma muito mais longa (mais de vinte paradas) — aqui apenas alguns pontos são selecionados para mostrar o arco geral do caminho."
+          }
+        }
+      ]
+    },
+    {
       "id": "sahv-sekr",
       "name": {
         "tr": "Sahv ve Sekr: Ayıklık ve Sarhoşluk",
@@ -1481,6 +1591,78 @@
           "kaynak_adi": "Tasavvuf Istılahları Kitabı",
           "alinti_tr": "Es-Sahv (Uyanış): Hassaların, gaybetten sonra güçlü bir vuruşla kendilerine dönmesi.",
           "not_tr": "Sahv'ın, sekr'deki 'gaybet'ten (kayboluş) sonraki dönüş olarak tanımı."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "sekr"
+      ]
+    },
+    "itibar-edilmez": {
+      "id": "itibar-edilmez",
+      "group": "itibar-edilmez",
+      "title": {
+        "tr": "İtibar Edilmez Şeyler",
+        "en": "Things Not to Be Trusted",
+        "pt": "Coisas em Que Não Confiar"
+      },
+      "arabic": "لا يُعتَمَد عليها",
+      "ozet_tr": "sahte kâşifi ayıklama ölçütü",
+      "felsefi_tanim": {
+        "tr": "İbn Arabî'nin bir araya getirdiği, hangi vecdlerin, ışıkların ve 'kalp bilgilerinin' gerçek bir manevi kazanım SAYILMAYACAĞINI gösteren yaklaşık elli maddelik bir liste.",
+        "en": "A list of roughly fifty items Ibn Arabi compiles showing which ecstasies, lights, and 'knowledges of the heart' should NOT be counted as genuine spiritual attainment.",
+        "pt": "Uma lista de aproximadamente cinquenta itens que Ibn Arabi compila mostrando quais êxtases, luzes e 'conhecimentos do coração' NÃO devem ser contados como conquista espiritual genuína."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Risâletün Lâ Yû'lu Aleyhâ'da (İtibar Edilmez Şeyler Risalesi) İbn Arabî, kendi tarikatının deneyimlerine karşı olağandışı bir eleştirel mesafeyle yaklaşır: mizaç bozukluğundan doğan vurûda, bir vecdin tetiklediği başka bir vecde, tek bir surette tekrarlanan tecellîye itibar edilmez. Verdiği tek genel ölçüt şudur: bir kâşif (kesif/unveiling) kendi içinde bir bilgi taşımıyorsa veya parıltı söndükten sonra geride hiçbir bilgi kalmıyorsa, ona güvenilmez. Örnek olarak Hz. Peygamber'in hendek kazarken karşılaştığı taştan çıkan gerçek parıltıları verir — bunlardan sonra Şam ve Yemen'in fethini haber vermiştir; sahte parıltı ise söner ve hiçbir şey bırakmaz.",
+        "en": "In the Epistle of Things Not to Be Trusted, Ibn Arabi approaches his own tradition's experiences with unusual critical distance: an influx born of a disturbed temperament, an ecstasy triggered merely by another ecstasy, a self-disclosure repeating in a single fixed form — none of these are to be trusted. The single general criterion he gives: if an unveiling carries no knowledge within it, or if nothing remains once the flash fades, it cannot be relied upon. As his example, he cites the real flashes that appeared from the rock the Prophet struck while digging the trench — from which he announced the conquests of Damascus and Yemen; a counterfeit flash, by contrast, simply fades and leaves nothing behind.",
+        "pt": "Na Epístola das Coisas em Que Não Confiar, Ibn Arabi aborda as experiências de sua própria tradição com uma distância crítica incomum: um influxo nascido de um temperamento perturbado, um êxtase desencadeado apenas por outro êxtase, uma autorrevelação que se repete em uma única forma fixa — nenhum destes deve ser confiado. O único critério geral que ele oferece: se um desvelamento não carrega nenhum conhecimento dentro de si, ou se nada permanece quando o clarão desaparece, não se pode confiar nele. Como exemplo, ele cita os clarões reais que apareceram da rocha que o Profeta atingiu ao cavar a trincheira — a partir dos quais ele anunciou as conquistas de Damasco e do Iêmen; um clarão falso, em contraste, simplesmente desaparece e não deixa nada para trás."
+      },
+      "analogy": {
+        "tr": "Bir yıldırımın anlık aydınlattığı manzara ile bir fenerin sürekli aydınlattığı yol arasındaki farkı düşün: ikisi de parlaktır, ama biri geçtikten sonra hiçbir iz bırakmaz, öbürü sana yolun geri kalanında da yardımcı olur. İbn Arabî'nin ölçütü tam olarak bu farkı arar.",
+        "en": "Think of the difference between a landscape lit for an instant by lightning and a road lit steadily by a lantern: both are bright, but one leaves no trace once it passes, while the other keeps helping you for the rest of the way. Ibn Arabi's criterion looks for exactly this difference.",
+        "pt": "Pense na diferença entre uma paisagem iluminada por um instante por um relâmpago e uma estrada iluminada continuamente por uma lanterna: ambas são brilhantes, mas uma não deixa vestígio depois de passar, enquanto a outra continua ajudando você pelo resto do caminho. O critério de Ibn Arabi busca exatamente essa diferença."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Risâletün Lâ Yû'lu Aleyhâ (İtibar Edilmez Şeyler Risalesi)",
+          "alinti_tr": "Bir nurdan, bir yıldızdan, bir ışıktan veya bir hareketten alışık olunmadık şekilde kula zuhur eden ve zuhur içinde herhangi bir ilim ifade etmeyen veya ifade ederse de parıltının kesilmesinden sonra geride ilim kalmıyorsa, hiçbir parıltıya itibar edilmez. Çünkü bu haktan değildir.",
+          "not_tr": "Sahte ile sahih kâşifi ayırt etmenin tek genel ölçütünün İbn Arabî'nin kendi ifadesiyle formülasyonu."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "sekr"
+      ]
+    },
+    "halvet-perdeleri": {
+      "id": "halvet-perdeleri",
+      "group": "halvet-perdeleri",
+      "title": {
+        "tr": "Halvette Kalkan Perdeler",
+        "en": "The Veils Lifted in Retreat",
+        "pt": "Os Véus Erguidos no Retiro"
+      },
+      "arabic": "حجب الخلوة",
+      "ozet_tr": "zikirle sırayla açılan âlemler",
+      "felsefi_tanim": {
+        "tr": "Uzlete çekilip zikre devam eden sâlikin önünde, birbiri ardınca açılan ve her birinde durmaması gereken bir dizi âlem/perde.",
+        "en": "A sequence of worlds/veils that open one after another before the seeker who withdraws into retreat and persists in remembrance — none of which he should stop at.",
+        "pt": "Uma sequência de mundos/véus que se abrem um após o outro diante do buscador que se retira e persiste na lembrança — nenhum dos quais ele deve parar."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, Risâletü'l-Envâr'da halvete giren sâlike şunu öğütler: taharet, namaz ve oruçla başla; vera, zühd ve tevekkülle devam et; sonra zikre öyle sarıl ki önce cemâdât (madenler), sonra nebâtât (bitkiler), sonra hayvanât âleminin sırları açılsın sana. Dur deme, devam et — levh üzerindeki parıldayışlar, sonra kütüb/kutbiyet mertebeleri, hamiyet ve gayret âlemleri, cennet-cehennem manzaraları, ve nihayet 'kendinden başkasını görmediğin' bir nur seni bekliyor. Her perdede durmak bir sonrakine ulaşmayı engeller; asıl tehlike, yolun ortasındaki bir hazza kapılıp saplanıp kalmaktır.",
+        "en": "In the Risalat al-Anwar, Ibn Arabi counsels the seeker entering retreat: begin with purification, prayer, and fasting; continue through scrupulousness, renunciation, and trust in God; then hold to remembrance so firmly that the secrets of the mineral world open to you first, then the plant world, then the animal world. Do not stop — flashes upon the Tablet await, then the ranks of the poles, the realms of zeal and jealousy, visions of paradise and hell, and finally a light in which 'you see nothing but yourself.' Stopping at any veil blocks arrival at the next; the real danger is becoming fixated on a pleasure found partway along the road.",
+        "pt": "No Risalat al-Anwar, Ibn Arabi aconselha o buscador que entra em retiro: comece com a purificação, a oração e o jejum; continue através do escrúpulo, da renúncia e da confiança em Deus; então se apegue à lembrança tão firmemente que os segredos do mundo mineral se abram primeiro a você, depois o mundo vegetal, depois o mundo animal. Não pare — lampejos sobre a Tábua aguardam, depois as fileiras dos polos, os reinos do zelo e do ciúme, visões do paraíso e do inferno, e finalmente uma luz na qual 'você não vê nada além de si mesmo'. Parar em qualquer véu bloqueia a chegada ao próximo; o verdadeiro perigo é fixar-se em um prazer encontrado no meio do caminho."
+      },
+      "analogy": {
+        "tr": "Uzun bir dağ yürüyüşünü düşün: her manzara noktasında oturup kalırsan zirveye hiç varamazsın. İbn Arabî'nin öğüdü de böyle — her manzara gerçek ve güzeldir, ama hiçbiri varış noktası değildir; asıl olan yürümeye devam etmektir.",
+        "en": "Think of a long mountain hike: if you sit down at every scenic overlook, you never reach the summit. Ibn Arabi's counsel is the same — every view is real and beautiful, but none of them is the destination; what matters is continuing to walk.",
+        "pt": "Pense em uma longa caminhada na montanha: se você se sentar em cada mirante, nunca chegará ao cume. O conselho de Ibn Arabi é o mesmo — cada vista é real e bela, mas nenhuma delas é o destino; o que importa é continuar caminhando."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Risâletü'l-Envâr (Nurlar Risalesi)",
+          "alinti_tr": "Eger bu noktada durmazsan, yükseltilirsin... Burada durmazsan, senin için bir nurun üzerindeki perde kaldırılır ki, onda kendinden başkasını görmezsin. Büyük bir vecde kapılırsın, şiddetli bir aşka tutulursun.",
+          "not_tr": "Halvet yolculuğunun 'durmama' ilkesinin ve varış noktasındaki nur tecrübesinin doğrudan ifadesi."
         }
       ],
       "iliskili_kavramlar": [
