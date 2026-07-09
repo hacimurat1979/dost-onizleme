@@ -296,6 +296,60 @@
       ]
     },
     {
+      "id": "velayet-risalet",
+      "name": {
+        "tr": "Velâyet ve Risâlet: Kalıcı Olan, Süreli Olan",
+        "en": "Sainthood and Messengership: The Lasting and the Temporary",
+        "pt": "Santidade e Mensageirato: O Duradouro e o Temporário"
+      },
+      "description": {
+        "tr": "İbn Arabî'nin Kitâbü'l-Kurbe risalesindeki ince ayrımı: 'velâyet en büyük nübüvvettir' sözü kişileri değil makamları kıyaslar. Aynı kişide bile velâyet (marifet) dâimîdir, risâlet (tebliğ görevi) ise tebliğle birlikte sona erer.",
+        "en": "A subtle distinction Ibn Arabi draws in his treatise Kitab al-Qurba: the saying 'sainthood is the greatest prophethood' compares stations, not persons. Even within the same person, sainthood (gnosis) is permanent, while messengership (the task of conveying the message) ends once the message is delivered.",
+        "pt": "Uma distinção sutil que Ibn Arabi traça em seu tratado Kitab al-Qurba: o dito 'a santidade é a maior profecia' compara estações, não pessoas. Mesmo dentro da mesma pessoa, a santidade (gnose) é permanente, enquanto o mensageirato (a tarefa de transmitir a mensagem) termina quando a mensagem é entregue."
+      },
+      "diagram": [
+        {
+          "type": "spectrum",
+          "termId": "velayet",
+          "leftLabel": {
+            "tr": "Velâyet",
+            "en": "Sainthood",
+            "pt": "Santidade"
+          },
+          "leftNote": {
+            "tr": "kalıcı, sürekli",
+            "en": "lasting, permanent",
+            "pt": "duradouro, permanente"
+          },
+          "rightLabel": {
+            "tr": "Risâlet",
+            "en": "Messengership",
+            "pt": "Mensageirato"
+          },
+          "rightNote": {
+            "tr": "süreli, tebliğle biter",
+            "en": "temporary, ends with delivery",
+            "pt": "temporário, termina com a entrega"
+          },
+          "leftMarker": {
+            "tr": "Huzurda mukim",
+            "en": "Abiding in the Presence",
+            "pt": "Permanecendo na Presença"
+          },
+          "rightMarker": {
+            "tr": "Huzurdan çıkıp döner",
+            "en": "Goes out and returns",
+            "pt": "Sai e retorna"
+          },
+          "note": {
+            "tr": "Aynı Hz. Muhammed'de bile velî oluşu resûl oluşundan daha yüksektir — çünkü velâyet dâimî, risâlet ise tebliğle sınırlıdır. Bu bir şahıs karşılaştırması değil, makam karşılaştırmasıdır.",
+            "en": "Even within the Prophet Muhammad himself, his being a saint outranks his being a messenger — because sainthood is permanent while messengership is bounded by the act of delivery. This is a comparison of stations, not of persons.",
+            "pt": "Mesmo dentro do próprio Profeta Muhammad, seu ser santo supera seu ser mensageiro — porque a santidade é permanente enquanto o mensageirato é limitado pelo ato de entrega. Esta é uma comparação de estações, não de pessoas."
+          }
+        }
+      ]
+    },
+    {
       "id": "lafza-i-celal",
       "name": {
         "tr": "Lafza-i Celâl: 'Allah' Kelimesinin Harfleri",
@@ -1269,6 +1323,42 @@
       "iliskili_kavramlar": [
         "ahad",
         "vahid"
+      ]
+    },
+    "velayet": {
+      "id": "velayet",
+      "group": "velayet-risalet",
+      "title": {
+        "tr": "Velâyet (Velilik/Marifet)",
+        "en": "Sainthood (Gnosis)",
+        "pt": "Santidade (Gnose)"
+      },
+      "arabic": "ولاية",
+      "ozet_tr": "kalıcı marifet makamı",
+      "felsefi_tanim": {
+        "tr": "Allah'a yakınlık ve marifet makamı; nübüvvet ve risâlet gibi belli bir görevle sınırlı değildir, kişi bu makamda dâimî olarak kalır.",
+        "en": "The station of nearness to God and gnosis; unlike prophethood and messengership, it is not bounded by a specific task — one abides in this station permanently.",
+        "pt": "A estação de proximidade com Deus e gnose; ao contrário da profecia e do mensageirato, não é limitada por uma tarefa específica — permanece-se nessa estação permanentemente."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, 'velâyet en büyük nübüvvettir' sözünün şahısları değil makamları kıyasladığını vurgular: Hz. Muhammed'de dahi velî oluş, resûl oluştan daha yüksektir, çünkü velâyet ve marifet dâimîdir, risâlet ise tebliğle birlikte sona erer. İkame etme (huzurda kalma) hâli, çıkma (tebliğ için dışarı çıkma) hâlinden daha yüksektir. Bunu, hiçbir sıradan velinin şahıs olarak bir peygamberden üstün olduğu anlamına gelmeyecek şekilde, dikkatle sınırlar.",
+        "en": "Ibn Arabi stresses that the saying 'sainthood is the greatest prophethood' compares stations, not persons: even in the Prophet Muhammad, being a saint outranks being a messenger, because sainthood and gnosis are permanent while messengership ends with the delivery of the message. The state of abiding (remaining in the Presence) is higher than the state of going out (going out to deliver the message). He carefully bounds this so it never means that some ordinary saint, as a person, outranks a prophet.",
+        "pt": "Ibn Arabi enfatiza que o dito 'a santidade é a maior profecia' compara estações, não pessoas: mesmo no Profeta Muhammad, ser santo supera ser mensageiro, porque a santidade e a gnose são permanentes enquanto o mensageirato termina com a entrega da mensagem. O estado de permanência (ficar na Presença) é mais elevado que o estado de saída (sair para entregar a mensagem). Ele delimita isso cuidadosamente para que nunca signifique que algum santo comum, como pessoa, supere um profeta."
+      },
+      "analogy": {
+        "tr": "Bir elçi ile o elçiyi gönderen kurumun kendisi arasındaki farkı düşün: elçi mesajı ulaştırıp görevini tamamlayınca iş biter, ama kurumla kurulan bağ sürer gider. Velâyet, kurumla kalıcı bağ gibidir; risâlet, tek seferlik elçilik görevi gibidir — ikisi de aynı kişide bulunabilir.",
+        "en": "Think of the difference between a messenger and the institution that sent them: once the messenger delivers the message, the errand is done, but the bond with the institution continues. Sainthood is like the lasting bond with the institution; messengership is like the one-time errand — both can exist in the very same person.",
+        "pt": "Pense na diferença entre um mensageiro e a instituição que o enviou: uma vez que o mensageiro entrega a mensagem, o serviço termina, mas o vínculo com a instituição continua. A santidade é como o vínculo duradouro com a instituição; o mensageirato é como o serviço único — ambos podem existir na mesma pessoa."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Kitâbü'l-Kurbe (Yakınlık Kitabı)",
+          "alinti_tr": "Velayet ve marifet mertebesinin varlığı daimidir. Risalet mertebesi ise sürelidir; tebliğ ile birlikte son bulur. Bu bakımdan daimi ve kalıcı olan üstündür... Bu bakımdan Hz. Nebi (s.a.v.), arif bir veli oluşu itibariyle resul oluşundan daha yüksek ve daha üstündür. Ama şahıs aynı şahıstır, sadece mertebeler değişmektedir.",
+          "not_tr": "'Velâyet en büyük nübüvvettir' sözünün şahıs değil makam kıyası olduğunun İbn Arabî'nin kendi ifadesiyle açık teyidi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nefs-i-natika"
       ]
     }
   }
