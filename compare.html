@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Dost — İbn Arabî &amp; Daphne: İç Dünyaların Haritası</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LGMR3QK3JT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LGMR3QK3JT');
+</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="viz-root">
+  <header class="app-header">
+    <div class="app-header__title">
+      <h1>Dost</h1>
+      <p class="app-header__subtitle">Muhyiddîn İbnü'l-Arabî &amp; Daphne — iki iç dünyanın örtüştüğü yerler</p>
+    </div>
+    <div class="app-header__controls">
+      <div class="lang-switch" id="lang-switch"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" id="intro-text">
+      <p data-tr="İbn Arabî, varlığın tekliğini (vahdet-i vücûd), benliğin sahte egemenliğini ve Hakk'ın her sûrette tecellisini asırlar önce anlattı. Daphne ise sistem teorisi, sibernetik ve kişisel bir dönüşüm yolculuğuyla aynı hakikatlere kendi diliyle varıyor. Aşağıdaki takımyıldızda ortadaki altın düğümler, iki dünyanın örtüştüğü temaları gösteriyor — birine tıklayın."
+         data-en="Centuries ago, Ibn Arabi described the oneness of Being, the false sovereignty of the self, and the Real's self-disclosure in every form. Daphne arrives at the same truths through systems theory, cybernetics, and a personal journey of transformation. In the constellation below, the golden nodes at the center are the themes where the two worlds overlap — click one."
+         data-pt="Séculos atrás, Ibn Arabi descreveu a unicidade do Ser, a falsa soberania do eu e a autorrevelação do Real em cada forma. Daphne chega às mesmas verdades através da teoria dos sistemas, da cibernética e de uma jornada pessoal de transformação. Na constelação abaixo, os nós dourados no centro são os temas onde os dois mundos se sobrepõem — clique em um.">
+      </p>
+    </section>
+
+    <section class="graph-wrap">
+      <svg id="graph"></svg>
+      <div class="legend" id="legend">
+        <div class="legend__item"><span class="legend__dot legend__dot--ibnarabi"></span><span data-tr="İbn Arabî kavramları" data-en="Ibn Arabi concepts" data-pt="Conceitos de Ibn Arabi">İbn Arabî kavramları</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--theme"></span><span data-tr="Ortak temalar" data-en="Shared themes" data-pt="Temas compartilhados">Ortak temalar</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--daphne"></span><span data-tr="Daphne'nin yazıları" data-en="Daphne's writings" data-pt="Escritos de Daphne">Daphne'nin yazıları</span></div>
+      </div>
+    </section>
+
+    <aside class="detail-panel" id="detail-panel" hidden>
+      <button class="detail-panel__close" id="detail-close" aria-label="Kapat">×</button>
+      <div id="detail-content"></div>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <p data-tr="Kaynaklar: thelivingfractal.com, Substack (thelivingfractal1) ve Fütûhât-ı Mekkiyye / Füsûsu'l-Hikem gibi İbn Arabî eserlerinden derlenen kavramlar."
+       data-en="Sources: thelivingfractal.com, Substack (thelivingfractal1), and concepts drawn from Ibn Arabi's works such as Futuhat al-Makkiyya / Fusus al-Hikam."
+       data-pt="Fontes: thelivingfractal.com, Substack (thelivingfractal1) e conceitos extraídos de obras de Ibn Arabi como Futuhat al-Makkiyya / Fusus al-Hikam.">
+    </p>
+  </footer>
+
+  <script src="assets/vendor/d3.min.js"></script>
+  <script src="assets/i18n.js"></script>
+  <script src="assets/compare.js"></script>
+</body>
+</html>

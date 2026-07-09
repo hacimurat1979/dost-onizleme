@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[ÖNİZLEME] Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası</title>
+<meta name="robots" content="noindex, nofollow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dost Arabî">
+<meta property="og:title" content="Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası">
+<meta property="og:description" content="Muhyiddîn İbnü'l-Arabî'nin varlık felsefesinin (vahdet-i vücûd) katmanlarını ve aralarındaki ilişkilerin tabiatını gösteren etkileşimli bir harita.">
+<meta property="og:url" content="https://dostarabi.com/">
+<meta property="og:image" content="https://dostarabi.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="pt_BR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası">
+<meta name="twitter:description" content="Muhyiddîn İbnü'l-Arabî'nin varlık felsefesinin (vahdet-i vücûd) katmanlarını ve aralarındaki ilişkilerin tabiatını gösteren etkileşimli bir harita.">
+<meta name="twitter:image" content="https://dostarabi.com/assets/og-image.png">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Dost Arabî",
+  "alternateName": ["Dost", "Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası"],
+  "url": "https://dostarabi.com/",
+  "description": "Muhyiddîn İbnü'l-Arabî'nin varlık felsefesinin (vahdet-i vücûd) katmanlarını ve aralarındaki ilişkilerin tabiatını gösteren etkileşimli bir harita.",
+  "inLanguage": ["tr", "en", "pt-BR"]
+}
+</script>
+
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="viz-root">
+  <div style="position:sticky;top:0;z-index:999;background:#c9971a;color:#1a1917;text-align:center;padding:6px 12px;font-size:0.85rem;font-family:sans-serif;">
+    ÖNİZLEME — bu canlı site değildir, sadece kontrol amaçlıdır
+  </div>
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("dost-theme");
+        var theme = (stored === "light" || stored === "dark")
+          ? stored
+          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.body.setAttribute("data-theme", theme);
+      } catch (e) {}
+    })();
+  </script>
+  <div class="welcome-screen" id="welcome-screen" role="presentation">
+    <div class="welcome-screen__stars" aria-hidden="true"></div>
+    <div class="welcome-screen__glow" id="welcome-glow" aria-hidden="true"></div>
+    <div class="welcome-screen__stage">
+      <svg class="welcome-screen__ring" viewBox="0 0 300 300" aria-hidden="true">
+        <circle class="welcome-screen__track" cx="150" cy="150" r="120"></circle>
+        <circle class="welcome-screen__beam" id="welcome-beam" cx="150" cy="150" r="120" transform="rotate(-90 150 150)"></circle>
+        <circle class="welcome-screen__spark" id="welcome-spark" cx="150" cy="30" r="4"></circle>
+      </svg>
+      <div class="welcome-screen__text" id="welcome-text">
+        <p class="welcome-screen__line welcome-screen__line--tr">O'ndan O'na</p>
+        <p class="welcome-screen__line welcome-screen__line--en">From Him to Him</p>
+        <p class="welcome-screen__line welcome-screen__line--pt">D'Ele para Ele</p>
+      </div>
+    </div>
+    <button class="welcome-screen__skip" id="welcome-skip" type="button" aria-label="Geç / Skip / Pular">Geç · Skip · Pular</button>
+  </div>
+  <script src="assets/welcome.js"></script>
+  <header class="app-header">
+    <div class="app-header__title">
+      <h1>Dost</h1>
+      <p class="app-header__subtitle" data-tr="Muhyiddîn İbnü'l-Arabî'nin iç dünyasının, varlık mertebeleri üzerinden görselleştirilmesi"
+         data-en="Muhyiddin Ibn Arabi's inner world, visualized through the levels of Being"
+         data-pt="O mundo interior de Muhyiddin Ibn Arabi, visualizado através dos níveis do Ser">Muhyiddîn İbnü'l-Arabî'nin iç dünyasının, varlık mertebeleri üzerinden görselleştirilmesi</p>
+    </div>
+    <div class="app-header__controls">
+      <div class="view-switch" id="view-switch">
+        <button class="btn-ghost btn-ghost--active" id="ontology-btn" type="button" data-tr="Ontoloji" data-en="Ontology" data-pt="Ontologia">Ontoloji</button>
+        <button class="btn-ghost" id="esma-btn" type="button" data-tr="Esmâü'l-Hüsnâ" data-en="The Beautiful Names" data-pt="Os Belos Nomes">Esmâü'l-Hüsnâ</button>
+        <button class="btn-ghost" id="hal-btn" type="button" data-tr="Hâller Haritası" data-en="Map of States" data-pt="Mapa dos Estados">Hâller Haritası</button>
+        <button class="btn-ghost" id="bookmap-btn" type="button" data-tr="Kitap Haritası" data-en="Book Map" data-pt="Mapa dos Livros">Kitap Haritası</button>
+      </div>
+      <button class="btn-ghost" id="sirlar-btn" type="button" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
+      <button class="btn-ghost" id="guide-btn" type="button" data-tr="Kılavuz" data-en="Guide" data-pt="Guia">Kılavuz</button>
+      <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.2"/><line x1="12" y1="19.8" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.2" y2="12"/><line x1="19.8" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.6" y2="4.4"/></g></svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="lang-switch" id="lang-switch"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" id="intro-text">
+      <p class="intro__who" data-tr="Muhyiddîn İbnü'l-Arabî (1165–1240), tasavvuf tarihinin en etkili düşünürlerinden biridir; bu site onun 'vahdet-i vücûd' (varlığın birliği) anlayışını görselleştirir."
+         data-en="Muhyiddin Ibn Arabi (1165–1240) is one of the most influential thinkers in the history of Islamic mysticism; this site visualizes his understanding of wahdat al-wujud, the Unity of Being."
+         data-pt="Muhyiddin Ibn Arabi (1165–1240) é um dos pensadores mais influentes da história do misticismo islâmico; este site visualiza sua compreensão do wahdat al-wujud, a Unidade do Ser.">Muhyiddîn İbnü'l-Arabî (1165–1240), tasavvuf tarihinin en etkili düşünürlerinden biridir; bu site onun 'vahdet-i vücûd' (varlığın birliği) anlayışını görselleştirir.</p>
+      <div class="intro__row">
+        <div class="intro__text">
+          <p id="intro-ontology" data-tr="Bu harita, İbn Arabî'nin 'vahdet-i vücûd' anlayışında varlığın Zât'tan görünen âleme, oradan da tekrar Zât'a nasıl döndüğünü izler. Her düğüm bir mertebeyi, her çizgi ikisi arasındaki ilişkinin tabiatını gösterir. Bir düğüme tıklayın; bağlantılarını takip edin."
+             data-en="This map traces how, in Ibn Arabi's understanding of the Unity of Being, existence flows from the Essence to the visible world — and back again. Each node is a level; each line names the nature of the relation between two levels. Click a node and follow its connections."
+             data-pt="Este mapa acompanha como, na compreensão de Ibn Arabi sobre a Unidade do Ser, a existência flui da Essência para o mundo visível — e retorna outra vez. Cada nó é um nível; cada linha nomeia a natureza da relação entre dois níveis. Clique em um nó e siga suas conexões.">
+          </p>
+          <p id="intro-esma" hidden data-tr="Bu harita, Fütûhât-ı Mekkiyye'nin kendi metnine dayanarak, Esmâü'l-Hüsnâ'nın Zât'tan başlayıp aşağıya doğru inen mertebelerini izler. Ortadaki Zât dairesine tıklayarak başlayın; her tıklama bir sonraki mertebeyi açar ve kaynağını, İbn Arabî'nin kendi ifadesini gösterir. Boş bir alanı sürükleyerek gezinebilir, Ctrl (Mac'te ⌘) tuşuyla birlikte fare tekerleğini kullanarak yakınlaştırıp uzaklaştırabilir, görünümü kaybederseniz sol üstteki dairesel düğmeyle ortalayabilirsiniz."
+             data-en="Drawing on the Futuhat al-Makkiyya's own text, this map traces the ranks of the Beautiful Names as they descend from the Essence. Click the Essence circle in the middle to begin; each click opens the next rank and shows its source and Ibn Arabi's own words. Drag an empty area to pan, hold Ctrl (⌘ on Mac) with the scroll wheel to zoom in or out, and use the circular button in the top-left corner to recenter if you lose the view."
+             data-pt="Baseando-se no próprio texto do Futuhat al-Makkiyya, este mapa acompanha as hierarquias dos Belos Nomes conforme descem da Essência. Clique no círculo da Essência no meio para começar; cada clique abre a próxima hierarquia e mostra sua fonte e as próprias palavras de Ibn Arabi. Arraste uma área vazia para navegar, segure Ctrl (⌘ no Mac) com a roda do mouse para aproximar ou afastar, e use o botão circular no canto superior esquerdo para recentralizar caso perca a vista.">
+          </p>
+          <p id="intro-hal" hidden data-tr="Bu harita, Fütûhât-ı Mekkiyye'nin kendi 'Mu'âmeleler' bölümüne dayanarak, sâlikin nefsten Hakk'a doğru çıktığı iç yolculuğu, Tövbeden başlayıp Verâ, Zühd, Sabır, Rızâ ve İstikamet gibi makamlardan geçerek Cem-Fark, Fenâ-Bekâ, Tevhit ve en sonunda Hayret'e uzanan bir daire olarak izler. Dairesel oluşu bir tesadüf değil: İbn Arabî'ye göre hayrete düşen kimse tıpkı Hakk'ın kendisi gibi bir merkez etrafında daire çizerek 'yürür' - yol, döndüğü yere geri döner. Herhangi bir düğüme tıklayın; boş bir alanı sürükleyerek gezinebilir, Ctrl (Mac'te ⌘) tuşuyla birlikte fare tekerleğini kullanarak yakınlaştırıp uzaklaştırabilir, görünümü kaybederseniz sol üstteki dairesel düğmeyle ortalayabilirsiniz."
+             data-en="Drawing on the Futuhat al-Makkiyya's own 'Practices' section, this map traces the seeker's inner journey from the soul toward the Real - from Repentance through stations like Scrupulousness, Asceticism, Patience, Contentment, and Rectitude, on to Unity-Differentiation, Annihilation-Subsistence, Divine Unity, and finally Bewilderment - as a circle. The circular shape is no accident: for Ibn Arabi, whoever falls into bewilderment 'walks' in a circle around a center, just as the Real itself does - the path returns to where it began. Click any node; drag an empty area to pan, hold Ctrl (⌘ on Mac) with the scroll wheel to zoom in or out, and use the circular button in the top-left corner to recenter if you lose the view."
+             data-pt="Baseando-se na própria seção 'Práticas' do Futuhat al-Makkiyya, este mapa acompanha a jornada interior do buscador, da alma em direção ao Real - do Arrependimento, passando por estações como Escrúpulo, Ascetismo, Paciência, Contentamento e Retidão, até a Unidade-Diferenciação, Aniquilação-Subsistência, Unidade Divina e finalmente o Espanto - como um círculo. A forma circular não é acaso: para Ibn Arabi, quem cai no espanto 'caminha' em círculo ao redor de um centro, assim como o próprio Real - o caminho retorna a onde começou. Clique em qualquer nó; arraste uma área vazia para navegar, segure Ctrl (⌘ no Mac) com a roda do mouse para aproximar ou afastar, e use o botão circular no canto superior esquerdo para recentralizar caso perca a vista.">
+          </p>
+          <p id="intro-bookmap" hidden data-tr="Bu harita, İbn Arabî'nin eserlerini — Fütûhât-ı Mekkiyye ve Füsûsu'l-Hikem gibi — kavramlar, peygamberler, temalar ve şerhler ağı olarak organize eder. Bir esere tıklayarak, içindeki ana kavramları, hangi bölümlerde geçtiğini ve modern şerhlerin onu nasıl açıkladığını keşfedin."
+             data-en="This map organizes Ibn Arabi's works — such as the Meccan Illuminations and the Bezels of Wisdom — as a network of concepts, prophets, themes, and commentaries. Click a work to discover its core concepts, where they appear, and how modern commentaries explain them."
+             data-pt="Este mapa organiza as obras de Ibn Arabi — como as Iluminações de Meca e os Engastes de Sabedoria — como uma rede de conceitos, profetas, temas e comentários. Clique em uma obra para descobrir seus conceitos centrais, onde aparecem, e como os comentários modernos os explicam.">
+          </p>
+        </div>
+        <div class="landing-quote" id="landing-quote" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="graph-wrap" id="ontology-wrap">
+      <svg id="graph"></svg>
+      <button class="graph-recenter" id="ontology-recenter" type="button" title="Görünümü ortala / Recenter view / Recentralizar vista" aria-label="Görünümü ortala / Recenter view / Recentralizar vista">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <div class="legend" id="legend">
+        <div class="legend__item"><span class="legend__dot legend__dot--descent"></span><span data-tr="Tenezzül (iniş / tecellî)" data-en="Descent (self-disclosure)" data-pt="Descida (autorrevelação)">Tenezzül</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--return"></span><span data-tr="Rücû (dönüş)" data-en="Return" data-pt="Retorno">Rücû</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--paradox"></span><span data-tr="Tenzîh-Teşbîh" data-en="Tanzih-Tashbih" data-pt="Tanzih-Tashbih">Tenzîh-Teşbîh</span></div>
+      </div>
+    </section>
+
+    <section class="graph-wrap" id="esma-wrap" hidden>
+      <svg id="esma-graph"></svg>
+      <button class="graph-recenter" id="esma-recenter" type="button" title="Görünümü ortala / Recenter view / Recentralizar vista" aria-label="Görünümü ortala / Recenter view / Recentralizar vista">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <div class="legend" id="esma-legend">
+        <div class="legend__item"><span class="legend__dot legend__dot--celal"></span><span data-tr="Celâl (Yücelik)" data-en="Jalal (Majesty)" data-pt="Jalal (Majestade)">Celâl</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--cemal"></span><span data-tr="Cemâl (Güzellik)" data-en="Jamal (Beauty)" data-pt="Jamal (Beleza)">Cemâl</span></div>
+        <div class="legend__item"><span class="legend__line legend__line--relation"></span><span data-tr="Aynı sınıf / tecellî ilişkisi" data-en="Same-class / disclosure relation" data-pt="Relação de mesma classe / autorrevelação">Aynı sınıf / tecellî ilişkisi</span></div>
+        <div class="legend__item"><span class="legend__line legend__line--zid"></span><span data-tr="Zıt kutup ilişkisi" data-en="Opposite-pole relation" data-pt="Relação de polo oposto">Zıt kutup ilişkisi</span></div>
+      </div>
+    </section>
+
+    <section class="graph-wrap" id="hal-wrap" hidden>
+      <svg id="hal-graph"></svg>
+      <button class="graph-recenter" id="hal-recenter" type="button" title="Görünümü ortala / Recenter view / Recentralizar vista" aria-label="Görünümü ortala / Recenter view / Recentralizar vista">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <div class="legend" id="hal-legend">
+        <div class="legend__item"><span class="legend__dot legend__dot--hal-nefs"></span><span data-tr="Nefs" data-en="The Soul" data-pt="A Alma">Nefs</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--hal-muameleler"></span><span data-tr="Mu'âmeleler (Tövbeden İstikamete)" data-en="Practices (Repentance to Rectitude)" data-pt="Práticas (do Arrependimento à Retidão)">Mu'âmeleler</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--hal-cemfark"></span><span data-tr="Cem ve Fark" data-en="Unity and Differentiation" data-pt="Unidade e Diferenciação">Cem / Fark</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--hal-fenabeka"></span><span data-tr="Fenâ ve Bekâ" data-en="Annihilation and Subsistence" data-pt="Aniquilação e Subsistência">Fenâ / Bekâ</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--hal-tevhit"></span><span data-tr="Tevhit" data-en="Divine Unity" data-pt="Unidade Divina">Tevhit</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--hal-hayret"></span><span data-tr="Hayret" data-en="Bewilderment" data-pt="Espanto">Hayret</span></div>
+        <div class="legend__item"><span class="legend__line legend__line--return"></span><span data-tr="Hayret'ten Nefs'e dönüş: yol, döndüğü yere geri döner" data-en="Return from Bewilderment to the Soul: the path returns to where it began" data-pt="Retorno do Espanto à Alma: o caminho retorna a onde começou">Dönüş</span></div>
+      </div>
+    </section>
+
+    <section class="bookmap-wrap" id="bookmap-wrap" hidden>
+      <div class="bookmap-grid" id="bookmap-grid"></div>
+      <div class="bookmap-detail" id="bookmap-detail" hidden></div>
+    </section>
+
+    <aside class="detail-panel" id="detail-panel" hidden>
+      <div id="detail-content"></div>
+    </aside>
+    <button class="detail-panel__close" id="detail-close" aria-label="Kapat">×</button>
+
+    <div class="guide-modal" id="guide-modal" hidden role="dialog" aria-modal="true" aria-labelledby="guide-modal-title">
+      <div class="guide-modal__overlay"></div>
+      <div class="guide-modal__content">
+        <div class="guide-modal__header">
+          <h2 id="guide-modal-title" data-tr="Kılavuz" data-en="Guide" data-pt="Guia">Kılavuz</h2>
+          <button class="guide-modal__close" type="button" aria-label="Kapat">×</button>
+        </div>
+        <div class="guide-modal__body" id="guide-content"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p data-tr="Kaynak: Fütûhât-ı Mekkiyye ve Füsûsu'l-Hikem'e dayanan bir sentez."
+       data-en="Source: a synthesis drawn from the Futuhat al-Makkiyya and the Fusus al-Hikam."
+       data-pt="Fonte: uma síntese baseada no Futuhat al-Makkiyya e no Fusus al-Hikam.">
+    </p>
+    <p data-tr="Metin içindeki altı çizili sözcükler, o kavramın haritadaki başka bir düğümüne bağlanır."
+       data-en="Underlined words within the text link to that concept's own node elsewhere on the map."
+       data-pt="Palavras sublinhadas no texto ligam a esse conceito em outro nó do mapa.">
+    </p>
+    <p class="app-footer__contact">
+      <span data-tr="İletişim:" data-en="Contact:" data-pt="Contato:">İletişim:</span>
+      <a href="mailto:hacimurat.karaman@gmail.com">hacimurat.karaman@gmail.com</a>
+    </p>
+  </footer>
+
+  <div class="app-fallback" id="app-fallback" hidden role="status" aria-live="polite">
+    <div class="app-fallback__ring" aria-hidden="true"></div>
+    <p class="app-fallback__text">
+      Dost şu anda güncelleniyor, birazdan tekrar deneyin.<br>
+      Dost is being updated right now — please check back shortly.<br>
+      Dost está sendo atualizado agora — volte em breve.
+    </p>
+  </div>
+  <script>
+    (function () {
+      var shown = false;
+      function showFallback() {
+        if (shown || window.__dostAppReady) return;
+        shown = true;
+        var el = document.getElementById("app-fallback");
+        if (el) el.hidden = false;
+      }
+      window.addEventListener("error", showFallback);
+      window.addEventListener("unhandledrejection", showFallback);
+      setTimeout(showFallback, 8000);
+    })();
+  </script>
+  <script src="assets/theme.js"></script>
+  <script src="assets/vendor/d3.min.js"></script>
+  <script src="assets/i18n.js"></script>
+  <script src="assets/search.js"></script>
+  <script src="assets/beginner-guide.js"></script>
+  <script src="assets/graph-enhancement.js"></script>
+  <script src="assets/story-mode.js"></script>
+  <script src="assets/random-concept.js"></script>
+  <script src="assets/accessibility-enhancements.js"></script>
+  <script src="assets/reading-mode.js"></script>
+  <script src="assets/book-insights.js"></script>
+  <script src="assets/discovery-mode.js"></script>
+  <script src="assets/esma.js"></script>
+  <script src="assets/hal.js"></script>
+  <script src="assets/book-map.js"></script>
+  <script src="assets/ontology.js"></script>
+  <script src="assets/secret-nav.js"></script>
+</body>
+</html>

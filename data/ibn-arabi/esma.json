@@ -1,0 +1,779 @@
+{
+  "intro": {
+    "tr": "Bu harita, Esmâü'l-Hüsnâ'nın (Allah'ın güzel isimlerinin) İbn Arabî'nin kendi metninde tarif ettiği mertebe sırasını izler: Zât'tan başlayıp Allah ismine, oradan da isimlerin birbirini takip eden mertebelerine iner. Her düğüm, Fütûhât-ı Mekkiyye'nin doğrudan bir pasajına dayanır.",
+    "en": "This map follows the rank-order of the Beautiful Names of God (al-Asma al-Husna) as Ibn Arabi himself describes it: descending from the Essence to the Name Allah, and from there through the successive ranks of the Names. Each node is grounded in a specific passage of the Futuhat al-Makkiyya.",
+    "pt": "Este mapa acompanha a ordem hierárquica dos Belos Nomes de Deus (al-Asma al-Husna) tal como o próprio Ibn Arabi a descreve: descendo da Essência ao Nome Allah, e daí pelas hierarquias sucessivas dos Nomes. Cada nó se apoia numa passagem específica do Futuhat al-Makkiyya."
+  },
+  "nodes": [
+    {
+      "id": "zat",
+      "depth": 0,
+      "name": { "tr": "Zât", "en": "The Essence", "pt": "A Essência" },
+      "short": { "tr": "İsimlerin ötesinde, bilinemeyen Kaynak", "en": "Beyond every Name, the unknowable Source", "pt": "Além de todo Nome, a Fonte incognoscível" },
+      "summary": {
+        "tr": "Esmâü'l-Hüsnâ, bizzat Zât'ın isimleri değildir; Zât her isimlendirmenin ve her belirlenimin ötesindedir. İsimler ancak Zât 'İlâh' olarak, yani bir âlemle ve bir kulla bağıntı içinde düşünüldüğünde başlar. Bu yüzden bu harita Zât'ta değil, Zât'ın ilk ve en kuşatıcı belirlenimi olan 'Allah' isminde başlar.",
+        "en": "The Beautiful Names are not names of the Essence as such; the Essence lies beyond every naming and every determination. The Names begin only once the Essence is considered as 'a God' — that is, in relation to a world and a servant. This map therefore truly begins not at the Essence but at 'Allah,' the Essence's first and most all-comprehensive determination.",
+        "pt": "Os Belos Nomes não são nomes da Essência enquanto tal; a Essência está além de toda nomeação e determinação. Os Nomes só começam quando a Essência é considerada 'um Deus' - isto é, em relação a um mundo e a um servo. Este mapa, portanto, começa verdadeiramente não na Essência, mas em 'Allah', a primeira e mais abrangente determinação da Essência."
+      },
+      "analogy": {
+        "tr": "Tıpkı beyaz ışığın kendi başına hiçbir renk taşımaması, ama bir prizmadan geçtiğinde yedi renge ayrışması gibi: Zât da kendinde hiçbir isim taşımaz, ancak bir 'İlâh' olarak - yani bir âlemle ilişkiye girdiğinde - isimlere ayrışır.",
+        "en": "Just as white light carries no color at all on its own, yet splits into seven colors when passed through a prism: the Essence likewise carries no Name in itself, and only differentiates into Names once considered as 'a God' - that is, in relation to a world.",
+        "pt": "Assim como a luz branca não carrega nenhuma cor em si mesma, mas se decompõe em sete cores ao passar por um prisma: a Essência também não carrega nenhum Nome em si, e só se diferencia em Nomes quando considerada 'um Deus' - isto é, em relação a um mundo."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: giriş"
+      ]
+    },
+    {
+      "id": "allah",
+      "depth": 1,
+      "parent": "zat",
+      "name": { "tr": "Allah", "en": "Allah", "pt": "Allah" },
+      "short": { "tr": "Bütün isimleri kuvve hâlinde kuşatan İsim", "en": "The Name that gathers every Name within itself, in potency", "pt": "O Nome que reúne todo Nome em si, em potência" },
+      "summary": {
+        "tr": "İbn Arabî, Fütûhât'ın son kısmında yüz ilâhî mertebeyi sırayla saydığı bölüme tam bu isimle başlar: 'İlahlık mertebesi tüm mertebeleri kendinde toplayan mertebedir.' Allah ismi, âlemde eseri görülen her ismin 'vekili' olarak zuhur eder; bir kul 'Ey Allah!' diye seslendiğinde, aslında kendisini bu sese sevk eden özel hâlin karşılık geldiği has ismi çağırmaktadır.",
+        "en": "In the closing section of the Futuhat, where Ibn Arabi lists a hundred divine ranks in order, he begins with precisely this Name: 'The rank of Godhood is the rank that gathers all ranks within itself.' The Name Allah appears as the 'deputy' of every Name whose effect is seen in the world; when a servant calls out 'O Allah!', he is really invoking whichever particular Name corresponds to the state that moved him to call.",
+        "pt": "Na seção final do Futuhat, onde Ibn Arabi lista cem hierarquias divinas em ordem, ele começa exatamente com este Nome: 'A hierarquia da Divindade é a hierarquia que reúne todas as hierarquias em si.' O Nome Allah aparece como o 'delegado' de todo Nome cujo efeito se vê no mundo; quando um servo clama 'Ó Allah!', ele está na verdade invocando o Nome particular que corresponde ao estado que o moveu a clamar."
+      },
+      "analogy": {
+        "tr": "Tek bir ırmağın, denize varmadan önce ovada onlarca kola ayrılıp her birinin ayrı bir adla anılması gibi - sulama kanalı, değirmen arkı, kuş cenneti deresi - oysa hepsi aynı tek ırmağın sularını taşır: Allah ismi de bütün isimleri kendinde toplayan o tek kaynaktır, her has isim ise O'nun bir koludur, bir mecrasıdır.",
+        "en": "Like a single river that, before reaching the sea, splits into dozens of channels across the plain, each known by its own name - irrigation canal, mill-race, the stream feeding a bird sanctuary - though every one of them carries the water of that same one river: the Name Allah is likewise the one source gathering all the Names within itself, and each particular Name is one of its channels, one of its courses.",
+        "pt": "Como um único rio que, antes de chegar ao mar, se divide em dezenas de canais pela planície, cada um conhecido por seu próprio nome - canal de irrigação, represa de moinho, o riacho que alimenta um santuário de aves - embora todos carreguem a água desse mesmo único rio: o Nome Allah é igualmente essa única fonte que reúne todos os Nomes em si, e cada Nome particular é um de seus canais, um de seus cursos."
+      },
+      "insights": [
+        {
+          "volume": 16,
+          "text": {
+            "tr": "'İlahi zatın tenzih isimlerini içermesine gelirsek... hiçbir isim zata delil teşkil etmede Allah ismi kadar güçlü olmamıştır.' İbn Arabî, isimleri burada üç kısma ayırır: zâtın sübûtî sıfatlarını ispat edenler (el-Âlim, el-Kadir, el-Mürid, es-Semî', el-Basîr, el-Hayy, el-Mücîb, eş-Şekûr gibi), sadece nispet ve izafet bildirenler (el-Evvel, el-Âhir, ez-Zâhir, el-Bâtın gibi) ve fiil bildirenler (el-Hâlık, er-Rezzâk, el-Bâri, el-Musavvir gibi). Her ilâhî isim bu üç kısımdan birine veya birkaçına girer, ama hepsi de Zât'a delâlet eder.",
+            "en": "'As for this rank's containing the names of transcendence [tanzih]... no Name has been as powerful a proof of the Essence as the Name Allah.' Ibn Arabi here divides the Names into three kinds: those establishing the Essence's positive attributes (such as al-'Alim, al-Qadir, al-Murid, as-Sami', al-Basir, al-Hayy, al-Mujib, ash-Shakur), those indicating mere relations (such as al-Awwal, al-Akhir, az-Zahir, al-Batin), and those indicating acts (such as al-Khaliq, ar-Razzaq, al-Bari, al-Musawwir). Every divine Name falls under one or more of these three kinds, yet all point to the Essence.",
+            "pt": "'Quanto a esta hierarquia conter os nomes de transcendência [tanzih]... nenhum Nome foi tão poderosa prova da Essência quanto o Nome Allah.' Ibn Arabi divide aqui os Nomes em três tipos: os que estabelecem os atributos positivos da Essência (como al-'Alim, al-Qadir, al-Murid, as-Sami', al-Basir, al-Hayy, al-Mujib, ash-Shakur), os que indicam meras relações (como al-Awwal, al-Akhir, az-Zahir, al-Batin), e os que indicam atos (como al-Khaliq, ar-Razzaq, al-Bari, al-Musawwir). Todo Nome divino se enquadra em um ou mais desses três tipos, mas todos apontam para a Essência."
+          }
+        },
+        {
+          "volume": 1,
+          "text": {
+            "tr": "Âlemin yaratılışını anlatan bölümün sonunda İbn Arabî bütün zinciri tek cümlede özetler: 'Bütün isimler bu imam isimlere, imam isimler ise Allah ismine yönelir. Allah ismi ise kendisinden istedikleri şeyi yerine getirmesini dileyerek zata yönelir.' Yani her isim önce kendi 'imamı'na, imamlar Allah'a, Allah ismi de Zât'a döner.",
+            "en": "At the close of the chapter on the world's creation, Ibn Arabi sums up the whole cascade in one sentence: 'All the Names turn to these imam-Names, the imam-Names turn to the Name Allah, and the Name Allah, asking that its request be fulfilled, turns to the Essence.' So every Name returns first to its own 'imam,' the imams to Allah, and Allah to the Essence.",
+            "pt": "Ao final do capítulo sobre a criação do mundo, Ibn Arabi resume toda a cascata numa frase: 'Todos os Nomes se voltam para esses Nomes-imãs, os Nomes-imãs se voltam para o Nome Allah, e o Nome Allah, pedindo que seu pedido seja atendido, se volta para a Essência.' Assim, cada Nome retorna primeiro ao seu próprio 'imã', os imãs a Allah, e Allah à Essência."
+          }
+        }
+      ],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: Âlemin Yaratılış Sebebi",
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "rahman",
+      "depth": 2,
+      "parent": "allah",
+      "name": { "tr": "er-Rahmân", "en": "Ar-Rahman (The All-Merciful)", "pt": "Ar-Rahman (O Todo-Misericordioso)" },
+      "short": { "tr": "Dünya ve âhiretin genel, kayıtsız rahmeti", "en": "The general, unconditional mercy of this world and the next", "pt": "A misericórdia geral e incondicional deste mundo e do além" },
+      "summary": {
+        "tr": "Besmele'yi açıklarken İbn Arabî üç ismin ('Allah', 'Rahmân', 'Rahîm') neden yan yana zikredildiğini sorar: 'Allah ismi bütün isimleri toplayan isimdir. Er-Rahmân, genel bir niteliktir. Binaenaleyh Allah, dünya ve âhiretin Rahmân'ıdır. Bu genel rahmet ile Allah âlemdeki her şeye dünyada rahmet eder.' Âhiretteki rahmet ise yalnızca mutluluğa tahsis edildiği için kardeşi olan Rahîm isminden ayrılır.",
+        "en": "Explaining the Basmala, Ibn Arabi asks why three Names — Allah, Rahman, Rahim — are named together: 'The Name Allah gathers all the Names. Ar-Rahman is a general quality; hence God is the Rahman of this world and the next. Through this general mercy, God shows mercy in this world to everything in existence.' Mercy in the next world, being reserved for felicity alone, is distinguished from its sister Name, ar-Rahim.",
+        "pt": "Explicando a Basmala, Ibn Arabi pergunta por que três Nomes — Allah, Rahman, Rahim — são citados juntos: 'O Nome Allah reúne todos os Nomes. Ar-Rahman é uma qualidade geral; assim, Deus é o Rahman deste mundo e do além. Através dessa misericórdia geral, Deus tem misericórdia neste mundo para com tudo o que existe.' A misericórdia no outro mundo, por ser reservada apenas à felicidade, se distingue de seu Nome irmão, ar-Rahim."
+      },
+      "analogy": {
+        "tr": "Bir bahçedeki güneş ışığının, meyve verecek olsun olmasın bahçedeki her bitkiye eşit şekilde düşmesi gibi: er-Rahmân da hiçbir şart koşmadan bütün varlığa yayılan genel bir rahmettir - bahçıvanın yalnız meyve verecek ağaçlara verdiği özel sulama ise, kardeşi olan er-Rahîm'e benzer.",
+        "en": "Like sunlight falling equally on every plant in a garden, whether or not it will ever bear fruit: ar-Rahman is likewise a general mercy spread over all existence with no condition attached - while the gardener's special watering, given only to the fruit-bearing trees, resembles its sister Name, ar-Rahim.",
+        "pt": "Como a luz do sol que cai igualmente sobre toda planta num jardim, dê ou não frutos algum dia: ar-Rahman é igualmente uma misericórdia geral espalhada sobre toda a existência sem nenhuma condição - já a rega especial do jardineiro, dada só às árvores frutíferas, se assemelha a seu Nome irmão, ar-Rahim."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Beşinci Bölüm: Besmele ve Fâtiha'nın Sırları"
+      ]
+    },
+    {
+      "id": "rab",
+      "depth": 2,
+      "parent": "allah",
+      "name": { "tr": "er-Rab", "en": "Ar-Rabb (The Lord)", "pt": "Ar-Rabb (O Senhor)" },
+      "short": { "tr": "Kulun bizzat kendisiyle irtibatta olduğu has isim", "en": "The particular Name through which each servant is bound to God", "pt": "O Nome particular através do qual cada servo está ligado a Deus" },
+      "summary": {
+        "tr": "Fütûhât'ın yüz mertebelik son bölümünde 'Allah'tan sonra ikinci mertebe 'er-Rab'dır: 'Rabbanî Mertebe'. İbn Arabî bu ismin beş hükmü olduğunu sayar: telvin (sürekli değişim içinde sebat), Hak hakkında tartışanlara karşı kesin delil, mümkünlerin maslahatlarını gözetmek, hiç bitmeyen bir kulluk, ve hayatın alışılmış sebeplerle bağlılığı. Her ferdin kendine has 'Rabbi', o kişinin Allah'a olan şahsi bağının somut adıdır.",
+        "en": "In the Futuhat's closing hundred-rank sequence, the second rank after 'Allah' is 'ar-Rabb': the 'Lordly Rank.' Ibn Arabi lists five properties of this Name: constancy amid perpetual change, decisive proof against those who dispute about God, care for the interests of possible beings, a servitude with no release, and life's dependence on customary causes. Each individual's own particular 'Lord' is the concrete name of that person's personal bond with God.",
+        "pt": "Na sequência final de cem hierarquias do Futuhat, a segunda hierarquia depois de 'Allah' é 'ar-Rabb': a 'Hierarquia Senhorial'. Ibn Arabi enumera cinco propriedades deste Nome: constância em meio à mudança perpétua, prova decisiva contra os que discutem sobre Deus, cuidado com os interesses dos seres possíveis, uma servidão sem alívio, e a dependência da vida em causas costumeiras. O 'Senhor' particular de cada indivíduo é o nome concreto do vínculo pessoal dessa pessoa com Deus."
+      },
+      "analogy": {
+        "tr": "Gece denizde yol alan bir geminin, dalgalar onu ne kadar sağa sola savursa da, hep aynı Kutup Yıldızı'na bakarak yönünü bulması gibi: Rab ismi de, hayatındaki sürekli değişim içinde seni hep aynı sabit noktaya - kendi Kutbuna - bağlı tutan isimdir.",
+        "en": "Like a ship sailing the sea at night that, however far the waves toss it side to side, always finds its bearing by looking to the same fixed Pole Star: the Name Rabb, too, keeps you bound to that same fixed point - your own Pole - through all the constant change of your life.",
+        "pt": "Como um navio navegando o mar à noite que, por mais que as ondas o joguem de um lado a outro, sempre encontra seu rumo olhando para a mesma Estrela Polar fixa: o Nome Rabb também mantém você ligado a esse mesmo ponto fixo - seu próprio Polo - através de toda a mudança constante de sua vida."
+      },
+      "insights": [
+        {
+          "volume": 16,
+          "text": {
+            "tr": "Rab isminin ilk hükmü olan 'telvin'i (değişim içinde sebat) İbn Arabî şöyle açıklar: 'Âlemdeki her nefeste başkalaşma ortaya çıkar. Bakınız! Güneş gecenin ve gündüzün sebebi olarak sürekli hareket eder, gece ve gündüzde belirli bir yerde durmaz.' Rab ismi, bu sürekli değişimin ardındaki sabit bağı temsil eder - değişenin kendisi değil, değişimi taşıyan sabit ilişki.",
+            "en": "Ibn Arabi explains the first property of the Name Rabb, 'talwin' (constancy amid change), like this: 'Transformation occurs in the world with every breath. Look: the sun, as the cause of night and day, is in constant motion, never settling in one place within night or day.' The Name Rabb represents the stable bond behind this constant change - not the thing that changes, but the fixed relation that carries the change.",
+            "pt": "Ibn Arabi explica a primeira propriedade do Nome Rabb, 'talwin' (constância em meio à mudança), assim: 'A transformação ocorre no mundo a cada respiração. Vejam: o sol, como causa da noite e do dia, está em movimento constante, nunca se fixando num único lugar dentro da noite ou do dia.' O Nome Rabb representa o vínculo estável por trás dessa mudança constante - não a coisa que muda, mas a relação fixa que carrega a mudança."
+          }
+        }
+      ],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: Rabbanî Mertebe"
+      ]
+    },
+    {
+      "id": "muddebir",
+      "depth": 3,
+      "parent": "rab",
+      "name": { "tr": "el-Müdebbir", "en": "Al-Mudabbir (The Regulator)", "pt": "Al-Mudabbir (O Regulador)" },
+      "short": { "tr": "Âlemin talebine karşılık ayağa kalkan ilk isim", "en": "The first Name to rise up in response to the world's demand", "pt": "O primeiro Nome a se erguer em resposta à demanda do mundo" },
+      "summary": {
+        "tr": "İbn Arabî, âlemin var oluş talebine ilk cevap veren ismin, el-Melik isminin isteğiyle harekete geçen el-Müdebbir ve el-Mufassıl olduğunu yazar. Bu öncelik bir varlık önceliği değil, 'mertebe önceliği'dir - tıpkı güneşin doğuşunun gündüzün başlangıcına bitişik olması, ama yine de ona öncelik etmesi gibi.",
+        "en": "Ibn Arabi writes that the first Names to answer the world's demand for existence, moved by the will of the Name al-Malik (the King), were al-Mudabbir and al-Mufassil. This priority is not a priority of existence but a 'priority of rank' - just as sunrise is contiguous with the start of day, yet still precedes it.",
+        "pt": "Ibn Arabi escreve que os primeiros Nomes a responder à demanda de existência do mundo, movidos pela vontade do Nome al-Malik (o Rei), foram al-Mudabbir e al-Mufassil. Essa prioridade não é uma prioridade de existência, mas uma 'prioridade de hierarquia' - assim como o nascer do sol é contíguo ao início do dia, mas ainda assim o precede."
+      },
+      "analogy": {
+        "tr": "Bir anahtarın kilitte dönmesiyle kapının açılması tam olarak aynı anda gerçekleşse de, anahtarın dönüşü mantıken kapının açılışından önce gelir - anahtar dönmeden kapı açılamaz. El-Müdebbir'in âlemdeki önceliği de böyle bir 'mertebe önceliği'dir, bir zaman farkı değil.",
+        "en": "A key turning in a lock and the door opening happen at exactly the same instant, yet the key's turning logically comes before the door's opening - without the turning, the door cannot open. Al-Mudabbir's priority in the world is this same kind of 'priority of rank,' not a gap in time.",
+        "pt": "Uma chave girando na fechadura e a porta se abrindo acontecem exatamente no mesmo instante, mas o girar da chave logicamente vem antes da abertura da porta - sem o girar, a porta não pode se abrir. A prioridade de al-Mudabbir no mundo é esse mesmo tipo de 'prioridade de hierarquia', não uma diferença de tempo."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: Âlemin İlk İsimleri"
+      ]
+    },
+    {
+      "id": "mufassil",
+      "depth": 3,
+      "parent": "rab",
+      "name": { "tr": "el-Mufassıl", "en": "Al-Mufassil (The Differentiator)", "pt": "Al-Mufassil (O Diferenciador)" },
+      "short": { "tr": "Âlemi ayrıntılandıran, birbirinden ayıran isim", "en": "The Name that details the world, differentiating one thing from another", "pt": "O Nome que detalha o mundo, diferenciando uma coisa da outra" },
+      "summary": {
+        "tr": "El-Müdebbir'in daimi eşi olan bu isim, İbn Arabî'ye göre 'İsimlerin Anaları' diye adlandırdığı altı ismin (el-Hayy, el-Âlim, el-Mürîd, el-Mütekellim, el-Kâdir, el-Cevâd, el-Muksit) 'babası' mesabesindedir - metinde bu altı isim 'iki ilâhî ismin kızları: el-Müdebbir ve el-Mufassıl' olarak tarif edilir.",
+        "en": "This Name, the constant companion of al-Mudabbir, is described by Ibn Arabi as the counterpart-source of the six Names he calls the 'Mothers of the Names' (al-Hayy, al-'Alim, al-Murid, al-Mutakallim, al-Qadir, al-Jawad, al-Muqsit) - the text describes these six as 'the daughters of two divine Names: al-Mudabbir and al-Mufassil.'",
+        "pt": "Este Nome, companheiro constante de al-Mudabbir, é descrito por Ibn Arabi como a fonte-contraparte dos seis Nomes que ele chama de 'Mães dos Nomes' (al-Hayy, al-'Alim, al-Murid, al-Mutakallim, al-Qadir, al-Jawad, al-Muqsit) - o texto descreve esses seis como 'as filhas de dois Nomes divinos: al-Mudabbir e al-Mufassil.'"
+      },
+      "analogy": {
+        "tr": "Bir mimarın binanın genel tasarımını çizmesi (yönetme, düzenleme) ile, her odanın ayrı ayrı ölçülerini ve sınırlarını belirleyen ayrıntılı planı çıkarması (ayrıştırma, detaylandırma) gibi: el-Müdebbir âlemi bir bütün olarak yönetirken, el-Mufassıl onu tek tek parçalarına ayırıp her birini kendine has kılar.",
+        "en": "Like an architect who both draws a building's overall design (regulating, organizing) and produces the detailed plan specifying each room's exact measurements and boundaries (differentiating, detailing): al-Mudabbir governs the world as a whole, while al-Mufassil divides it into its individual parts, making each one its own.",
+        "pt": "Como um arquiteto que desenha o projeto geral de um edifício (regular, organizar) e também produz a planta detalhada que especifica as medidas e limites exatos de cada cômodo (diferenciar, detalhar): al-Mudabbir governa o mundo como um todo, enquanto al-Mufassil o divide em suas partes individuais, tornando cada uma própria de si."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: İlâhi İsimlerin Anaları"
+      ]
+    },
+    {
+      "id": "hayy",
+      "depth": 3,
+      "parent": "rab",
+      "name": { "tr": "el-Hayy", "en": "Al-Hayy (The Living)", "pt": "Al-Hayy (O Vivo)" },
+      "short": { "tr": "İsimlerin ve kulların imamı", "en": "The imam of the Names and of servants", "pt": "O imã dos Nomes e dos servos" },
+      "summary": {
+        "tr": "İbn Arabî'nin 'İsimlerin Anaları' dediği altı ismin başında el-Hayy gelir: 'el-Hayy ismi, Rablerin ve merbûbların (Rabb'in kulu, terbiye edilen) rabbidir. O, imamdır.' Bu isim, senin varlığından önce ve sonra da 'anlaman'ı, yani idrak sahibi olmanı ispat eder. Buradan başlayan zincir, aşağıda sırasıyla el-Âlim, el-Mürîd, el-Mütekellim, el-Kâdir, el-Cevâd ve el-Muksit ismine kadar iner.",
+        "en": "At the head of the six Names Ibn Arabi calls the 'Mothers of the Names' stands al-Hayy: 'The Name al-Hayy is the lord of lords and of the ruled; it is the imam.' This Name establishes your capacity to comprehend, both before and after your existence. The chain that begins here descends, in order, through al-'Alim, al-Murid, al-Mutakallim, al-Qadir, al-Jawad, and al-Muqsit.",
+        "pt": "À frente dos seis Nomes que Ibn Arabi chama de 'Mães dos Nomes' está al-Hayy: 'O Nome al-Hayy é o senhor dos senhores e dos governados; ele é o imã.' Este Nome estabelece sua capacidade de compreender, tanto antes quanto depois de sua existência. A cadeia que começa aqui desce, em ordem, através de al-'Alim, al-Murid, al-Mutakallim, al-Qadir, al-Jawad, e al-Muqsit."
+      },
+      "analogy": {
+        "tr": "Bir ağacın gövdesinden yükselen özsuyun, dala, yaprağa, çiçeğe ve meyveye kadar her şeyi beslemesi, hiçbiri özsu ulaşmadan yeşeremezken gibi: el-Hayy de, bilme, isteme, konuşma gibi bütün diğer isimlerin üzerine kurulduğu temel 'hayat özsuyu'dur - o akmadan hiçbiri canlanmaz.",
+        "en": "Like the sap rising through a tree's trunk, nourishing branch, leaf, blossom, and fruit alike - none of which can turn green until the sap reaches it: al-Hayy is the foundational 'sap of life' upon which all the other Names - knowing, willing, speaking - are built; without its flow, none of them come alive.",
+        "pt": "Como a seiva que sobe pelo tronco de uma árvore, nutrindo igualmente galho, folha, flor e fruto - nenhum dos quais pode reverdecer antes que a seiva o alcance: al-Hayy é a 'seiva de vida' fundamental sobre a qual todos os outros Nomes - conhecer, querer, falar - são construídos; sem seu fluxo, nenhum deles ganha vida."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: İlâhi İsimlerin Anaları"
+      ]
+    },
+    {
+      "id": "alim",
+      "depth": 4,
+      "parent": "hayy",
+      "name": { "tr": "el-Âlim", "en": "Al-'Alim (The Knowing)", "pt": "Al-'Alim (O Sapiente)" },
+      "short": { "tr": "Hikmete göre var olmanı sağlayan isim", "en": "The Name that lets you exist according to wisdom", "pt": "O Nome que permite que você exista segundo a sabedoria" },
+      "summary": {
+        "tr": "'El-Âlim ismi ise varlığında hikmete göre var olmanı, varlığından önce ise takdir edilmeni sağlar.' İbn Arabî, mertebede el-Hayy'ı takip eden bu ismin ardından el-Mürîd'in geldiğini yazar.",
+        "en": "'The Name al-'Alim ensures your existing according to wisdom, and, before your existence, your having been foreordained.' Ibn Arabi writes that this Name, following al-Hayy in rank, is in turn followed by al-Murid.",
+        "pt": "'O Nome al-'Alim assegura que você exista segundo a sabedoria e, antes de sua existência, que você tenha sido predestinado.' Ibn Arabi escreve que este Nome, seguindo al-Hayy em hierarquia, é por sua vez seguido por al-Murid."
+      },
+      "analogy": {
+        "tr": "Bir halı dokuyucusunun, ilk düğümü atmadan çok önce, halının bütün desenini -her rengini, her motifini- zaten zihninde tam olarak görmüş olması gibi: el-Âlim de, senin var oluşundan önce, nasıl bir hikmetle var olacağını zaten bilir - takdir, bu önceden görülmüş desenin adıdır.",
+        "en": "Like a carpet weaver who, long before tying the first knot, has already seen the carpet's entire pattern in full in her mind - every color, every motif: al-'Alim likewise already knows, before your existence, according to what wisdom you will come to exist - foreordainment is simply the name for this already-envisioned pattern.",
+        "pt": "Como uma tecelã de tapetes que, muito antes de dar o primeiro nó, já viu por completo em sua mente todo o padrão do tapete - cada cor, cada motivo: al-'Alim também já sabe, antes da sua existência, segundo que sabedoria você virá a existir - a predestinação é apenas o nome desse padrão já vislumbrado."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: İlâhi İsimlerin Anaları"
+      ]
+    },
+    {
+      "id": "murid",
+      "depth": 5,
+      "parent": "alim",
+      "name": { "tr": "el-Mürîd", "en": "Al-Murid (The Willing)", "pt": "Al-Murid (O Que Quer)" },
+      "short": { "tr": "Seçilmeni sağlayan isim", "en": "The Name that brings about your being singled out", "pt": "O Nome que faz com que você seja escolhido" },
+      "summary": {
+        "tr": "'El-Mürîd ismi, senin seçilmeni sağlar.' Âlemin ilk isimleri olan el-Müdebbir ve el-Mufassıl faaliyete geçtiğinde, el-Mürîd ismi hemen ardından, 'el-Müdebbir isminin ibraz ettiği tarzda' âleme ilişir.",
+        "en": "'The Name al-Murid brings about your being singled out.' Once al-Mudabbir and al-Mufassil, the world's first Names, become active, the Name al-Murid attaches to the world right after, 'in the manner al-Mudabbir has manifested.'",
+        "pt": "'O Nome al-Murid faz com que você seja escolhido.' Assim que al-Mudabbir e al-Mufassil, os primeiros Nomes do mundo, se tornam ativos, o Nome al-Murid se liga ao mundo logo em seguida, 'do modo como al-Mudabbir se manifestou.'"
+      },
+      "analogy": {
+        "tr": "Taş ocağındaki sayısız birbirine benzer mermer bloğu arasından, heykeltıraşın tam da birini seçip 'bunu işleyeceğim' demesi gibi: el-Mürîd de, mümkün olan sonsuz ihtimal arasından seni seçip öne çıkaran isimdir.",
+        "en": "Like a sculptor who, among countless identical blocks of marble in a quarry, picks out this one and says 'I will carve this one': al-Murid is the Name that, among infinite possibilities, singles you out and brings you forward.",
+        "pt": "Como um escultor que, entre inúmeros blocos de mármore idênticos numa pedreira, escolhe exatamente um e diz 'vou esculpir este': al-Murid é o Nome que, entre infinitas possibilidades, escolhe você e o traz à tona."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: Âlemin İlk İsimleri"
+      ]
+    },
+    {
+      "id": "mutekellim",
+      "depth": 6,
+      "parent": "murid",
+      "name": { "tr": "el-Mütekellim (el-Kâil)", "en": "Al-Mutakallim (The Speaking)", "pt": "Al-Mutakallim (O Que Fala)" },
+      "short": { "tr": "Kadîmliğini ispat eden isim", "en": "The Name that establishes your pre-eternity", "pt": "O Nome que estabelece sua pré-eternidade" },
+      "summary": {
+        "tr": "İbn Arabî bu ismi 'el-Kâil' (söyleyen) diye de anar: 'El-Kâil kadîmliğini ispat eder.' Aynı bölümde ekler: 'Peygamberin gelişi, el-Mütekellim olarak Allah'ı bilmemizi sağlamıştır' - yani bu ismi bize tam olarak açan, akıl değil vahiydir.",
+        "en": "Ibn Arabi also calls this Name 'al-Qa'il' (the Speaker): 'Al-Qa'il establishes your pre-eternity.' In the same chapter he adds: 'The Prophet's coming has enabled us to know God as al-Mutakallim' - meaning it is revelation, not reason alone, that fully discloses this Name to us.",
+        "pt": "Ibn Arabi também chama este Nome de 'al-Qa'il' (o que fala): 'Al-Qa'il estabelece sua pré-eternidade.' No mesmo capítulo, ele acrescenta: 'A vinda do Profeta nos permitiu conhecer Deus como al-Mutakallim' - significando que é a revelação, e não apenas a razão, que nos revela plenamente este Nome."
+      },
+      "analogy": {
+        "tr": "Hiç görmediğin uzak bir akrabanın var olduğunu, dolaylı işaretlerden tahmin etmek ile, ondan sana doğrudan bir mektup gelmesi arasındaki fark gibi: el-Mütekellim ismini de bize tam olarak açan akıl yürütme değil, Peygamberin taşıdığı doğrudan 'mektup', yani vahiydir.",
+        "en": "Like the difference between guessing a distant relative you've never met exists from indirect clues, and actually receiving a letter from them directly: what fully discloses the Name al-Mutakallim to us is likewise not reasoning but the direct 'letter' carried by the Prophet - revelation.",
+        "pt": "Como a diferença entre supor que um parente distante que você nunca conheceu existe, a partir de pistas indiretas, e realmente receber uma carta dele diretamente: o que nos revela plenamente o Nome al-Mutakallim também não é o raciocínio, mas a 'carta' direta trazida pelo Profeta - a revelação."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: İlâhi İsimlerin Anaları"
+      ]
+    },
+    {
+      "id": "kadir",
+      "depth": 7,
+      "parent": "mutekellim",
+      "name": { "tr": "el-Kâdir", "en": "Al-Qadir (The Powerful)", "pt": "Al-Qadir (O Poderoso)" },
+      "short": { "tr": "Yok oluşunu da ispat eden isim", "en": "The Name that establishes your possible non-existence too", "pt": "O Nome que estabelece também sua possível não-existência" },
+      "summary": {
+        "tr": "'El-Kâdir, senin yok oluşunu ispat eder.' Var olmanı sağlayan isimlerin arasında, bu isim aynı zamanda hâlâ 'var olmayabilirdin' ihtimalinin de daima açık kaldığını hatırlatır - kudretin karşı tarafı, imkânın kendisidir.",
+        "en": "'Al-Qadir establishes your non-existence.' Among the Names that secure your existing, this one also keeps present the ever-open possibility that you might not have existed at all - the other face of power is contingency itself.",
+        "pt": "'Al-Qadir estabelece sua não-existência.' Entre os Nomes que garantem sua existência, este também mantém presente a possibilidade sempre aberta de que você poderia não ter existido - a outra face do poder é a própria contingência."
+      },
+      "analogy": {
+        "tr": "Karanlık bir odada titreyen bir mum alevinin, en hafif bir esintiyle her an sönebilecekken yine de yanmaya devam etmesi gibi: el-Kâdir de, sen var olduğun her an, 'var olmayabilirdin' ihtimalinin hâlâ orada, bir nefes kadar yakın durduğunu hatırlatan isimdir.",
+        "en": "Like a candle flame flickering in a dark room, which could be snuffed out at any instant by the faintest breath, and yet keeps burning: al-Qadir is the Name reminding you that, at every moment you exist, the possibility that 'you might not have existed' still stands as close as a single breath away.",
+        "pt": "Como a chama de uma vela tremulando num quarto escuro, que poderia se apagar a qualquer instante com o mais leve sopro, e ainda assim continua queimando: al-Qadir é o Nome que lembra que, a cada momento em que você existe, a possibilidade de que 'você poderia não ter existido' permanece tão próxima quanto um único sopro."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: İlâhi İsimlerin Anaları"
+      ]
+    },
+    {
+      "id": "cevad",
+      "depth": 8,
+      "parent": "kadir",
+      "name": { "tr": "el-Cevâd", "en": "Al-Jawad (The Generous)", "pt": "Al-Jawad (O Generoso)" },
+      "short": { "tr": "Yaratılışını ispat eden isim", "en": "The Name that establishes your having been created", "pt": "O Nome que estabelece que você foi criado" },
+      "summary": {
+        "tr": "'El-Cevâd, yaratılışını ispat eder.' Zincirde el-Kâdir'in ardından gelir; yaratılman, kudretin bir zorlaması değil, bir cömertlik (cûd) hareketidir.",
+        "en": "'Al-Jawad establishes your having been created.' It follows al-Qadir in the chain; your creation is not a compulsion of power but a movement of generosity (jud).",
+        "pt": "'Al-Jawad estabelece que você foi criado.' Ele segue al-Qadir na cadeia; sua criação não é uma compulsão do poder, mas um movimento de generosidade (jud)."
+      },
+      "analogy": {
+        "tr": "Zengin bir ev sahibinin, hiçbir zorunluluğu olmadığı hâlde, sırf cömertliğinden konuklarını sofrasına daveti gibi: el-Cevâd da, yaratılışının bir zorlama değil, sırf cömertlikten (cûd) doğan bir davet olduğunu gösteren isimdir.",
+        "en": "Like a wealthy host who, under no obligation whatsoever, invites guests to his table purely out of generosity: al-Jawad is the Name showing that your creation was not a compulsion but an invitation born purely of generosity (jud).",
+        "pt": "Como um anfitrião rico que, sem nenhuma obrigação, convida seus convidados à sua mesa puramente por generosidade: al-Jawad é o Nome que mostra que sua criação não foi uma compulsão, mas um convite nascido puramente da generosidade (jud)."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: İlâhi İsimlerin Anaları"
+      ]
+    },
+    {
+      "id": "muksit",
+      "depth": 9,
+      "parent": "cevad",
+      "name": { "tr": "el-Muksit", "en": "Al-Muqsit (The Equitable)", "pt": "Al-Muqsit (O Equânime)" },
+      "short": { "tr": "Mertebelerin Rabbi, varlık menzillerinin sonuncusu", "en": "The Lord of the ranks, the last of the stations of being", "pt": "O Senhor das hierarquias, a última das estações do ser" },
+      "summary": {
+        "tr": "İsimlerin Anaları zincirinin son halkası: 'Sonuncusu ise el-Muksit ismidir. Çünkü o, mertebelerin Rabbidir, o varlık menzillerinin sonuncusudur. Diğer isimler ise bu imam Rablerin emri altındadır.' Hayy'dan başlayıp buraya kadar inen altı isim, âlemin var oluşunda birlikte, birbirini tamamlayarak iş görür.",
+        "en": "The final link in the chain of the Mothers of the Names: 'The last is the Name al-Muqsit, for it is the lord of the ranks, the last of the stations of being. The other Names stand under the command of these imam-lords.' The six Names descending from al-Hayy to this point act together in the world's coming-to-be, each completing the others.",
+        "pt": "O elo final na cadeia das Mães dos Nomes: 'O último é o Nome al-Muqsit, pois ele é o senhor das hierarquias, a última das estações do ser. Os outros Nomes estão sob o comando desses senhores-imãs.' Os seis Nomes que descem de al-Hayy até aqui atuam juntos no vir-a-ser do mundo, cada um completando os outros."
+      },
+      "analogy": {
+        "tr": "Bir çölde ilerleyen kervanın, ancak son devenin son yükü de sıkıca bağlandığında yolculuğa hazır sayılması gibi: el-Muksit de zincirin son halkasıdır - kendinden önceki bütün isimler, âlemin var oluşunda ancak onunla tamamlanır, onun 'emri altında' iş görür.",
+        "en": "Like a caravan crossing the desert that is only counted ready for the journey once the very last camel's very last load has been securely tied down: al-Muqsit is the chain's last link - all the Names before it are completed, in the world's coming-to-be, only through it, acting under its command.",
+        "pt": "Como uma caravana atravessando o deserto que só é considerada pronta para a jornada quando a última carga do último camelo é bem amarrada: al-Muqsit é o último elo da cadeia - todos os Nomes anteriores a ele só se completam, no vir-a-ser do mundo, através dele, agindo sob seu comando."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: İlâhi İsimlerin Anaları"
+      ]
+    },
+    {
+      "id": "celal",
+      "depth": 3,
+      "parent": "rab",
+      "pole": "celal",
+      "name": { "tr": "Celâl (Yücelik)", "en": "Jalal (Majesty)", "pt": "Jalal (Majestade)" },
+      "short": { "tr": "Kalplere heybet veren, iki zıdda birden delil olan nitelik", "en": "The quality instilling awe in hearts, pointing to two opposites at once", "pt": "A qualidade que instila temor reverente nos corações, apontando para dois opostos ao mesmo tempo" },
+      "summary": {
+        "tr": "'Celâl, kalplere heybet ve tazim duygusu veren ilâhî bir niteliktir. El-Celîl ismi onunla zuhur eder.' İbn Arabî'nin en çarpıcı tespiti şudur: Celâl, 'iki zıdda delil'dir - tıpkı 'cûn' kelimesinin hem beyaza hem siyaha uygulanabilmesi gibi. Celâl hem 'O'nun benzeri yoktur' âyetlerinin tenzihine, hem de 'hastalandım, beni ziyaret etmedin' hadisindeki teşbihe kaynaklık eder.",
+        "en": "'Majesty (Jalal) is a divine quality that instills awe and reverence in hearts; the Name al-Jalil discloses itself through it.' Ibn Arabi's most striking observation: Majesty 'points to two opposites at once' - just as the word 'jawn' can describe both white and black. Majesty is the ground both of transcendence verses like 'nothing is like Him' and of immanence hadiths like 'I was sick, and you did not visit Me.'",
+        "pt": "'A Majestade (Jalal) é uma qualidade divina que instila temor reverente e reverência nos corações; o Nome al-Jalil se autorrevela através dela.' A observação mais impressionante de Ibn Arabi: a Majestade 'aponta para dois opostos ao mesmo tempo' - assim como a palavra 'jawn' pode descrever tanto o branco quanto o preto. A Majestade é o fundamento tanto de versículos de transcendência como 'nada é como Ele' quanto de hadiths de imanência como 'Eu adoeci, e tu não Me visitaste.'"
+      },
+      "analogy": {
+        "tr": "Türkçedeki 'acı' kelimesinin hem 'acı biber' gibi keskin bir tada hem de 'acı bir haber' gibi kedere işaret edebilmesi gibi: Celâl de aynı anda hem Allah'ın hiçbir benzeri olmadığını (tenzih) hem de kula en yakın, en şefkatli hâlini (teşbih) anlatan tek bir kelimedir.",
+        "en": "Like the word 'cool' in English, which can point to a low temperature or to something impressively stylish - two entirely different meanings carried by the very same word: Majesty likewise points at once to God having no likeness whatsoever (transcendence) and to His closest, most compassionate presence with the servant (immanence).",
+        "pt": "Como a palavra 'legal' em português, que pode apontar tanto para algo dentro da lei quanto para algo impressionante e admirável - dois sentidos inteiramente diferentes carregados pela mesma palavra: a Majestade também aponta ao mesmo tempo para Deus não ter semelhante algum (transcendência) e para Sua presença mais próxima e compassiva com o servo (imanência)."
+      },
+      "insights": [
+        {
+          "volume": 9,
+          "text": {
+            "tr": "İbn Arabî, Celâl mertebesinin nasıl kullara ulaştığını da açıklığa kavuşturur: 'Celâl mertebesinin yüze (zâta) ait yakıcı tecellileri vardır. Bu nedenle Allah hiçbir zaman celâlinde tecelli etmez. Fakat kullarına cemâlinin celâlinde tecelli eder.' Yani saf, arasız Celâl asla doğrudan ulaşmaz - her zaman Cemâl'in içinden, ona bürünmüş olarak gelir.",
+            "en": "Ibn Arabi also clarifies how the rank of Majesty reaches servants at all: 'The rank of Majesty holds burning self-disclosures belonging to the Face [the Essence]. For this reason God never discloses Himself in His Majesty. Rather, He discloses Himself to His servants in the Majesty of His Beauty.' Pure, unmediated Majesty never arrives directly - it always comes clothed within Beauty.",
+            "pt": "Ibn Arabi também esclarece como a hierarquia da Majestade chega aos servos: 'A hierarquia da Majestade contém autorrevelações ardentes pertencentes à Face [a Essência]. Por isso Deus nunca se autorrevela em Sua Majestade. Em vez disso, Ele se autorrevela a Seus servos na Majestade de Sua Beleza.' A Majestade pura e não mediada jamais chega diretamente - ela sempre vem revestida de Beleza."
+          }
+        }
+      ],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 9 (Ekrem Demirli çev.) — İki Yüz Kırk Birinci Bölüm: Celâl"
+      ]
+    },
+    {
+      "id": "celil",
+      "depth": 4,
+      "parent": "celal",
+      "pole": "celal",
+      "name": { "tr": "el-Celîl", "en": "Al-Jalil (The Majestic)", "pt": "Al-Jalil (O Majestoso)" },
+      "short": { "tr": "En garip hükümlere sahip isim", "en": "The Name bearing the strangest of properties", "pt": "O Nome portador das propriedades mais estranhas" },
+      "summary": {
+        "tr": "İbn Arabî'ye göre bu ismin hükmü 'en garip hükümlerdendir': aynı isim hem 'İzzet sahibi Rabbin onların nitelemelerinden münezzehtir' âyetinin tenzihini, hem de Allah'ın kendini bir muhtaç kul yerine koyduğu hadislerin teşbihini taşır. 'Celâl ile sadece Allah ilgilidir' - ârifler onunla ilgilenir, ama sevenlerin yolu doğrudan ona düşmez.",
+        "en": "For Ibn Arabi, this Name's ruling is 'among the strangest of rulings': the same Name carries both the transcendence of 'your Lord of Might is exalted above what they describe' and the immanence of the hadiths where God places Himself in the position of a needy servant. 'Only gnostics [not lovers] are concerned with Majesty as such' - the arifs relate to it directly, but lovers' path does not fall upon it in the same way.",
+        "pt": "Para Ibn Arabi, o julgamento deste Nome está 'entre os julgamentos mais estranhos': o mesmo Nome carrega tanto a transcendência de 'teu Senhor do Poder está exaltado acima do que descrevem' quanto a imanência dos hadiths onde Deus se coloca na posição de um servo necessitado. 'Somente os gnósticos [não os amantes] se relacionam com a Majestade enquanto tal' - os arifs se relacionam com ela diretamente, mas o caminho dos amantes não recai sobre ela do mesmo modo."
+      },
+      "analogy": {
+        "tr": "Ancak deneyimli dağcıların çıkabildiği, sıradan gezginlerin ise sıcak vadilerde kalmayı tercih ettiği buzlu bir zirve gibi: el-Celîl de yalnız ârif olanların doğrudan ilgilendiği bir isimdir - sevenlerin yolu, daha çok Cemâl'in sıcak vadisinden geçer.",
+        "en": "Like an icy summit that only experienced mountaineers can climb, while ordinary travelers prefer to stay in the warm valleys below: al-Jalil, too, is a Name only the gnostics engage with directly - the path of lovers runs more through the warm valley of Beauty.",
+        "pt": "Como um pico gelado que só montanhistas experientes conseguem escalar, enquanto viajantes comuns preferem ficar nos vales quentes abaixo: al-Jalil também é um Nome com o qual só os gnósticos se relacionam diretamente - o caminho dos amantes passa mais pelo vale quente da Beleza."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 9 (Ekrem Demirli çev.) — İki Yüz Kırk Birinci Bölüm: Celâl"
+      ]
+    },
+    {
+      "id": "cemal",
+      "depth": 3,
+      "parent": "rab",
+      "pole": "cemal",
+      "name": { "tr": "Cemâl (Güzellik)", "en": "Jamal (Beauty)", "pt": "Jamal (Beleza)" },
+      "short": { "tr": "'Bütün eşyada güzel olanı sevdiği' nitelik", "en": "The quality by which God 'loves what is beautiful in all things'", "pt": "A qualidade pela qual Deus 'ama o que é belo em todas as coisas'" },
+      "summary": {
+        "tr": "'Cemâl, sayesinde Hakk'ın el-Cemîl diye isimlendirildiği ve peygamberinin diliyle kendisini bütün eşyada güzel olanı sevdiği diye nitelediği özelliktir. Güzel olmayan bir şey yoktur; çünkü Allah âlemi kendi sûretine göre yarattı.' İbn Arabî, azabı bile bu Cemâl'in bir görünümü sayar: tıpkı sevdiği çocuğunu terbiye eden bir babanın sevgisinin eksilmemesi gibi.",
+        "en": "'Beauty is the quality by which the Real is named al-Jamil, and by which His Prophet described Him as loving what is beautiful in all things. Nothing exists that is not beautiful, for God created the world according to His own form.' Ibn Arabi counts even chastisement as an aspect of this Beauty - just as a father's love does not diminish when he disciplines the child he loves.",
+        "pt": "'A Beleza é a qualidade pela qual o Real é chamado al-Jamil, e pela qual Seu Profeta O descreveu como amando o que é belo em todas as coisas. Nada existe que não seja belo, pois Deus criou o mundo segundo Sua própria forma.' Ibn Arabi conta até mesmo o castigo como um aspecto dessa Beleza - assim como o amor de um pai não diminui quando ele disciplina o filho que ama."
+      },
+      "analogy": {
+        "tr": "Bir annenin, çocuğunun ilk beceriksiz çizimini bile güzel bulması gibi - resim teknik olarak kusursuz olduğu için değil, kendi çocuğunun eseri olduğu ve onda kendinden bir iz gördüğü için: Allah da âlemi güzel bulur, çünkü onu kendi sûretine göre yarattı.",
+        "en": "Like a mother who finds even her child's clumsy first drawing beautiful - not because it is technically flawless, but because it is her child's work, and she sees a trace of herself in it: God likewise finds the world beautiful, because He created it according to His own form.",
+        "pt": "Como uma mãe que acha bonito até o primeiro desenho desajeitado de seu filho - não porque seja tecnicamente perfeito, mas porque é obra de seu filho, e ela vê nele um traço de si mesma: Deus também acha o mundo belo, porque o criou segundo Sua própria forma."
+      },
+      "insights": [
+        {
+          "volume": 9,
+          "text": {
+            "tr": "İbn Arabî, güzelliğin insan üzerindeki etkisini de tarif eder: 'Güzellik, müşahede esnasında fenâ (kendinden geçme) meydana getirir. Bu mertebeden Hakk'ın ondaki tecellisinin sûreti, onu müşahede edene geçer ve söz konusu kişi onunla \"boyanır\". Bu durum güneş ışığının mekânlara girmesine benzer.' Cennette ise Celâl tecellisinin artık hiçbir hükmü kalmaz - orası yalnızca Cemâl'in mekânıdır.",
+            "en": "Ibn Arabi also describes beauty's effect on the human being: 'Beauty produces annihilation [fana] during contemplation. The form of the Real's self-disclosure at this level passes over to the one who contemplates it, and that person becomes \"colored\" by it - like sunlight entering a room.' In Paradise, the self-disclosure of Majesty no longer holds any rule at all - that is a realm belonging to Beauty alone.",
+            "pt": "Ibn Arabi também descreve o efeito da beleza sobre o ser humano: 'A Beleza produz aniquilação [fana] durante a contemplação. A forma da autorrevelação do Real neste nível passa para quem a contempla, e essa pessoa se torna \"colorida\" por ela - como a luz do sol entrando num recinto.' No Paraíso, a autorrevelação da Majestade não tem mais qualquer domínio - aquele é um reino que pertence somente à Beleza."
+          }
+        }
+      ],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 9 (Ekrem Demirli çev.) — İki Yüz Kırk İkinci Bölüm: Cemâl"
+      ]
+    },
+    {
+      "id": "cemil",
+      "depth": 4,
+      "parent": "cemal",
+      "pole": "cemal",
+      "name": { "tr": "el-Cemîl", "en": "Al-Jamil (The Beautiful)", "pt": "Al-Jamil (O Belo)" },
+      "short": { "tr": "Güzelliğin ismi: seven ve sevilen", "en": "The Name of Beauty: the Lover and the Beloved", "pt": "O Nome da Beleza: o Amante e o Amado" },
+      "summary": {
+        "tr": "'Güzelliği seven, el-Cemîl'i de sever. Seven ise, bir nimet ulaştırmak veya bilgisizce yaptığı bir işi düzeltmek amacının dışında sevgilisine azap etmez.' Bu isim aracılığıyla âşık, sevilenin sûretinde Hakk'ı görür ve seyre daldığı anda kendinden geçer (fenâ).",
+        "en": "'Whoever loves beauty loves al-Jamil too. And a lover does not cause the beloved suffering except to bestow a benefit or to correct something done in ignorance.' Through this Name the lover sees the Real in the form of the beloved, and in the moment of contemplation passes away from himself (fana).",
+        "pt": "'Quem ama a beleza também ama al-Jamil. E um amante não causa sofrimento ao amado, exceto para conceder um benefício ou corrigir algo feito por ignorância.' Através deste Nome, o amante vê o Real na forma do amado, e no momento da contemplação se aniquila de si mesmo (fana)."
+      },
+      "analogy": {
+        "tr": "Renkli bir vitray camına bakan birinin aslında camın kendisini değil, ondan süzülüp geçen ışığı görmesi gibi: âşık da sevilenin sûretine baktığında, aslında o sûretten süzülen Hakk'ın güzelliğini görür.",
+        "en": "Like someone looking at a stained-glass window who is not really seeing the glass itself but the light filtering through it: the lover, gazing at the beloved's form, is really seeing the Real's beauty filtering through that very form.",
+        "pt": "Como alguém que olha para um vitral colorido e na verdade não vê o vidro em si, mas a luz que filtra através dele: o amante, ao contemplar a forma do amado, está na verdade vendo a beleza do Real filtrando através dessa mesma forma."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 9 (Ekrem Demirli çev.) — İki Yüz Kırk İkinci Bölüm: Cemâl"
+      ]
+    },
+    {
+      "id": "zati-grup",
+      "depth": 2,
+      "parent": "allah",
+      "name": { "tr": "Zâtî (Sübûtî) İsimler", "en": "Names of the Essence's Attributes", "pt": "Nomes dos Atributos da Essência" },
+      "short": { "tr": "Zât'ın sübûtî sıfatlarını doğrudan ispat eden isimler", "en": "Names that directly establish the Essence's own positive attributes", "pt": "Nomes que estabelecem diretamente os atributos positivos da própria Essência" },
+      "summary": {
+        "tr": "İbn Arabî, isimleri üçe ayırırken bu ilk kısmı şöyle tarif eder: Zât'ın sübûtî sıfatlarını ispat edenler - el-Âlim, el-Kâdir, el-Mürîd, es-Semî', el-Basîr, el-Hayy, el-Mücîb, eş-Şekûr. Bunlardan el-Hayy, el-Âlim, el-Kâdir ve el-Mürîd zaten bu haritada 'İsimlerin Anaları' zincirinde ayrı ayrı yer alır; burada dört yeni isim daha eklenir.",
+        "en": "Dividing the Names into three, Ibn Arabi describes this first class as those establishing the Essence's positive attributes - al-'Alim, al-Qadir, al-Murid, as-Sami', al-Basir, al-Hayy, al-Mujib, ash-Shakur. Of these, al-Hayy, al-'Alim, al-Qadir and al-Murid already appear elsewhere on this map in the chain of the 'Mothers of the Names'; here four further Names join them.",
+        "pt": "Ao dividir os Nomes em três, Ibn Arabi descreve esta primeira classe como a dos que estabelecem os atributos positivos da Essência - al-'Alim, al-Qadir, al-Murid, as-Sami', al-Basir, al-Hayy, al-Mujib, ash-Shakur. Destes, al-Hayy, al-'Alim, al-Qadir e al-Murid já aparecem em outro ponto deste mapa, na cadeia das 'Mães dos Nomes'; aqui quatro novos Nomes se juntam a eles."
+      },
+      "analogy": {
+        "tr": "Bir insanı 'akıllı', 'cömert' diye tarif etmenin, o kişinin doğrudan kendi karakterine ait bir şey söylemesi gibi - bu sıfatlar, kişi kiminle ilişkide olursa olsun, ya da ne yaparsa yapsın doğru kalır: el-Âlim, el-Kâdir gibi isimler de Zât'ın böyle doğrudan, kendine ait nitelikleridir.",
+        "en": "Like describing a person as 'intelligent' or 'generous' - directly naming something in their own character, true no matter who they relate to or what they do: Names like al-'Alim and al-Qadir are likewise direct, inherent qualities belonging to the Essence itself.",
+        "pt": "Como descrever uma pessoa como 'inteligente' ou 'generosa' - nomeando algo diretamente em seu próprio caráter, verdadeiro não importa com quem ela se relacione ou o que faça: Nomes como al-'Alim e al-Qadir são igualmente qualidades diretas e inerentes pertencentes à própria Essência."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "semi",
+      "depth": 3,
+      "parent": "zati-grup",
+      "name": { "tr": "es-Semî'", "en": "As-Sami' (The All-Hearing)", "pt": "As-Sami' (O Que Tudo Ouve)" },
+      "short": { "tr": "Hiçbir sesin gizli kalmadığı işitme", "en": "The hearing from which no sound is hidden", "pt": "A audição da qual nenhum som se esconde" },
+      "summary": {
+        "tr": "İbn Arabî'nin sübûtî sıfat isimleri arasında saydığı es-Semî', Zât'ın işitmesinin, kulun içindeki en gizli fısıltıyı bile kuşattığını ispat eder - Rab ile kul arasındaki duayı taşıyan isim budur.",
+        "en": "Counted by Ibn Arabi among the Names of positive attribute, as-Sami' establishes that the Essence's hearing encompasses even the most hidden whisper within the servant - it is this Name that carries prayer between servant and Lord.",
+        "pt": "Contado por Ibn Arabi entre os Nomes de atributo positivo, as-Sami' estabelece que a audição da Essência abrange até o sussurro mais oculto dentro do servo - é este Nome que carrega a súplica entre servo e Senhor."
+      },
+      "analogy": {
+        "tr": "Uyuyan bir annenin, evin öbür ucundaki bebeğinin en hafif iniltisiyle bile derin uykusundan anında uyanması gibi: es-Semî' de, kulun içindeki en gizli fısıltıyı bile duyan, hiçbir sesin kendisinden gizlenemediği isimdir.",
+        "en": "Like a sleeping mother who wakes instantly from the deepest sleep at even the faintest whimper of her infant from the far end of the house: as-Sami' is the Name that hears even the most hidden whisper within the servant - no sound can be hidden from it.",
+        "pt": "Como uma mãe adormecida que desperta instantaneamente do sono mais profundo ao mínimo choro de seu bebê no outro extremo da casa: as-Sami' é o Nome que ouve até o sussurro mais oculto dentro do servo - nenhum som pode se esconder dele."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "basir",
+      "depth": 3,
+      "parent": "zati-grup",
+      "name": { "tr": "el-Basîr", "en": "Al-Basir (The All-Seeing)", "pt": "Al-Basir (O Que Tudo Vê)" },
+      "short": { "tr": "Görüleni de görülmeyeni de kuşatan görme", "en": "The seeing that encompasses both the seen and the unseen", "pt": "A visão que abrange tanto o visto quanto o invisível" },
+      "summary": {
+        "tr": "El-Basîr, es-Semî'in eşlik ettiği sübûtî sıfat ismidir; İbn Arabî ikisini sık sık yan yana anar, çünkü kulun bâtınındaki hâl de zâhirdeki fiil de bu iki isme aynı anda mâruzdur.",
+        "en": "Al-Basir is the companion Name to as-Sami' among the Names of positive attribute; Ibn Arabi often names the two together, since both the servant's inward state and outward act stand equally exposed to these two Names.",
+        "pt": "Al-Basir é o Nome companheiro de as-Sami' entre os Nomes de atributo positivo; Ibn Arabi frequentemente os cita juntos, pois tanto o estado interior do servo quanto o ato exterior estão igualmente expostos a esses dois Nomes."
+      },
+      "analogy": {
+        "tr": "Bir kartalın gökyüzünden süzülürken, hem açık ovadaki avı hem de çalıların altına gizlenmiş olanı aynı anda, aynı netlikte görmesi gibi: el-Basîr de görüleni de görülmeyeni de, açığa çıkanı da gizli kalanı da aynı anda kuşatan bir görmedir.",
+        "en": "Like an eagle soaring high, seeing with the same clarity both the prey out in the open field and the one hidden beneath the bushes: al-Basir is a seeing that encompasses both the seen and the unseen, both what is disclosed and what remains hidden, all at once.",
+        "pt": "Como uma águia pairando no alto, enxergando com a mesma clareza tanto a presa no campo aberto quanto a que se esconde sob os arbustos: al-Basir é uma visão que abrange tanto o visto quanto o invisível, tanto o que se revela quanto o que permanece oculto, tudo ao mesmo tempo."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "mucib",
+      "depth": 3,
+      "parent": "zati-grup",
+      "name": { "tr": "el-Mücîb", "en": "Al-Mujib (The Responsive)", "pt": "Al-Mujib (O Que Responde)" },
+      "short": { "tr": "Duayı karşılıksız bırakmayan isim", "en": "The Name that never leaves a prayer unanswered", "pt": "O Nome que nunca deixa uma súplica sem resposta" },
+      "summary": {
+        "tr": "El-Mücîb, es-Semî' ile birlikte okunur: işiten Zât, işittiğine icabet de eder. İbn Arabî bu ismi sübûtî sıfatlar arasında sayar - duanın kabulü, es-Semî'in bir sonucu olarak el-Mücîb'de tamamlanır.",
+        "en": "Al-Mujib is read together with as-Sami': the Essence that hears also responds to what it hears. Ibn Arabi counts this Name among the attributes of positive establishment - the answering of prayer, a consequence of as-Sami', is completed in al-Mujib.",
+        "pt": "Al-Mujib se lê junto com as-Sami': a Essência que ouve também responde ao que ouve. Ibn Arabi conta este Nome entre os atributos de estabelecimento positivo - a resposta à súplica, consequência de as-Sami', se completa em al-Mujib."
+      },
+      "analogy": {
+        "tr": "Bir dağ vadisinde haykırdığınızda, sesinizin mutlaka bir yankıyla size geri dönmesi gibi - dağ hiçbir zaman sessiz kalmaz: el-Mücîb de, duayı - beklenen cevap her zaman aynı olmasa da - asla karşılıksız bırakmayan isimdir.",
+        "en": "Like shouting into a mountain valley and always hearing your voice return as an echo - the mountain never stays silent: al-Mujib is the Name that never leaves a prayer unanswered, even if the answer isn't always the one expected.",
+        "pt": "Como gritar num vale de montanha e sempre ouvir sua voz retornar em eco - a montanha nunca permanece em silêncio: al-Mujib é o Nome que nunca deixa uma súplica sem resposta, mesmo que a resposta nem sempre seja a esperada."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "sekur",
+      "depth": 3,
+      "parent": "zati-grup",
+      "name": { "tr": "eş-Şekûr", "en": "Ash-Shakur (The Grateful)", "pt": "Ash-Shakur (O Grato)" },
+      "short": { "tr": "Az ameli çok mükâfatla karşılayan isim", "en": "The Name that repays a small deed with abundant reward", "pt": "O Nome que retribui um pequeno ato com recompensa abundante" },
+      "summary": {
+        "tr": "İbn Arabî'nin sübûtî sıfat isimleri listesini kapatan eş-Şekûr, kulun en küçük şükrünü bile katlayarak karşılayan isimdir - listedeki diğer yedi ismin (Hayy, Âlim, Kâdir, Mürîd, Semî', Basîr, Mücîb) tamamladığı zincirin son halkasıdır.",
+        "en": "Closing Ibn Arabi's list of the Names of positive attribute, ash-Shakur is the Name that multiplies even the servant's smallest gratitude in return - the final link completing the chain of the other seven (Hayy, 'Alim, Qadir, Murid, Sami', Basir, Mujib).",
+        "pt": "Encerrando a lista de Ibn Arabi dos Nomes de atributo positivo, ash-Shakur é o Nome que multiplica em retorno até a menor gratidão do servo - o elo final que completa a cadeia dos outros sete (Hayy, 'Alim, Qadir, Murid, Sami', Basir, Mujib)."
+      },
+      "analogy": {
+        "tr": "Kur'ân'ın verdiği örnekte olduğu gibi: toprağa düşen tek bir tohumun, yedi başak verip her başağında yüz tane taşıyan bir sümbüle dönüşmesi gibi: eş-Şekûr da, kulun en küçük şükrünü bile kat kat, adeta yüzlerce misliyle karşılayan isimdir.",
+        "en": "As in the Quran's own image: a single seed falling to the ground that grows into a plant bearing seven ears, each ear carrying a hundred grains: ash-Shakur is likewise the Name that returns even the servant's smallest gratitude multiplied, as if a hundredfold.",
+        "pt": "Como na própria imagem do Alcorão: uma única semente que cai na terra e se transforma numa planta com sete espigas, cada espiga carregando cem grãos: ash-Shakur é igualmente o Nome que retribui até a menor gratidão do servo multiplicada, como que cem vezes mais."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "nisbi-grup",
+      "depth": 2,
+      "parent": "allah",
+      "name": { "tr": "Nispet ve İzafet İsimleri", "en": "Names of Relation", "pt": "Nomes de Relação" },
+      "short": { "tr": "Zâta yeni bir sıfat eklemeyen, sadece bir bağıntı bildiren isimler", "en": "Names adding no new attribute to the Essence, only naming a relation", "pt": "Nomes que não acrescentam novo atributo à Essência, apenas nomeiam uma relação" },
+      "summary": {
+        "tr": "İbn Arabî'nin ikinci kısmı: 'sadece nispet ve izafet bildirenler' - el-Evvel, el-Âhir, ez-Zâhir, el-Bâtın. Bu dört isim, Kur'ân'da tek bir âyette ('O, Evvel'dir, Âhir'dir, Zâhir'dir, Bâtın'dır' - Hadîd, 3) yan yana zikredilir; hiçbiri Zât'a yeni bir sıfat eklemez, yalnızca O'nun zamana ve mekâna göre nasıl konumlandığını, göründüğünü ve gizlendiğini anlatır.",
+        "en": "Ibn Arabi's second class: 'those indicating mere relation and comparison' - al-Awwal, al-Akhir, az-Zahir, al-Batin. These four Names are named together in a single Quranic verse ('He is the First and the Last, the Manifest and the Hidden' - Hadid 3); none adds a new attribute to the Essence, each only describes how It stands in relation to time and place, how It appears and how It conceals itself.",
+        "pt": "A segunda classe de Ibn Arabi: 'os que indicam mera relação e comparação' - al-Awwal, al-Akhir, az-Zahir, al-Batin. Esses quatro Nomes são citados juntos num único versículo alcorânico ('Ele é o Primeiro e o Último, o Manifesto e o Oculto' - Hadid 3); nenhum acrescenta novo atributo à Essência, cada um apenas descreve como Ela se posiciona em relação ao tempo e ao lugar, como aparece e como se oculta."
+      },
+      "analogy": {
+        "tr": "Bir insanı '(birinin) ikinci çocuğu' ya da '(birinin) komşusu' diye tarif etmenin, o kişiye yeni bir nitelik eklemeden sadece bir başkasına göre konumunu bildirmesi gibi: el-Evvel, el-Âhir gibi isimler de Zât'a yeni bir sıfat eklemez, yalnızca O'nun zaman ve mekâna göre nasıl konumlandığını bildirir.",
+        "en": "Like describing a person as '(someone's) second child' or '(someone's) neighbor' - adding no new quality to that person, only stating their position relative to someone else: Names like al-Awwal and al-Akhir add no new attribute to the Essence either, they only state how It stands in relation to time and place.",
+        "pt": "Como descrever uma pessoa como 'o segundo filho (de alguém)' ou 'o vizinho (de alguém)' - sem acrescentar nova qualidade a essa pessoa, apenas indicando sua posição em relação a outra: Nomes como al-Awwal e al-Akhir também não acrescentam novo atributo à Essência, apenas indicam como Ela se posiciona em relação ao tempo e ao lugar."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi",
+        "Kur'ân-ı Kerîm, Hadîd Sûresi, 3. âyet"
+      ]
+    },
+    {
+      "id": "evvel",
+      "depth": 3,
+      "parent": "nisbi-grup",
+      "name": { "tr": "el-Evvel", "en": "Al-Awwal (The First)", "pt": "Al-Awwal (O Primeiro)" },
+      "short": { "tr": "Kendinden önce hiçbir şey olmayan", "en": "That before which there is nothing", "pt": "Aquele antes de quem não há nada" },
+      "summary": {
+        "tr": "El-Evvel, mutlak öncelik bildiren nispet ismidir; İbn Arabî'ye göre bu öncelik zaman içinde bir öncelik değildir, çünkü zamanın kendisi de sonradandır - el-Evvel, zamanın da önündedir.",
+        "en": "Al-Awwal names an absolute priority of relation; for Ibn Arabi this priority is not a priority within time, since time itself is originated - al-Awwal precedes time as well.",
+        "pt": "Al-Awwal nomeia uma prioridade absoluta de relação; para Ibn Arabi, essa prioridade não é uma prioridade dentro do tempo, já que o próprio tempo é originado - al-Awwal precede também o tempo."
+      },
+      "analogy": {
+        "tr": "Bir ırmağın kaynağının, ırmakta akan suyun zaman içinde 'ilk' damlası olmaktan çok, bütün ırmağın var olmaya devam etmesi için sürekli dayandığı bir köken olması gibi: el-Evvel de zaman içinde bir öncelik değil, zamanın kendisinin de dayandığı bir önceliktir.",
+        "en": "Like a river's source, which is less the 'first' drop of water flowing in time than the ever-present origin the whole river continuously depends on simply to keep existing: al-Awwal, too, is not a priority within time, but a priority on which time itself depends.",
+        "pt": "Como a nascente de um rio, que é menos a 'primeira' gota de água a fluir no tempo do que a origem sempre presente da qual todo o rio depende continuamente apenas para continuar existindo: al-Awwal também não é uma prioridade dentro do tempo, mas uma prioridade da qual o próprio tempo depende."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "ahir",
+      "depth": 3,
+      "parent": "nisbi-grup",
+      "name": { "tr": "el-Âhir", "en": "Al-Akhir (The Last)", "pt": "Al-Akhir (O Último)" },
+      "short": { "tr": "Kendisinden sonra hiçbir şey olmayan", "en": "That after which there is nothing", "pt": "Aquele depois de quem não há nada" },
+      "summary": {
+        "tr": "El-Evvel'in eşi olan el-Âhir, her şeyin döneceği son noktayı bildirir; İbn Arabî için Evvel ile Âhir aynı hakikatin iki ucu gibidir - O, hem başlangıçta hem sonda, aynı Zât olarak durur.",
+        "en": "Al-Akhir, the counterpart of al-Awwal, names the final point to which everything returns; for Ibn Arabi, the First and the Last are like the two ends of a single reality - He stands, as the same Essence, at both beginning and end.",
+        "pt": "Al-Akhir, a contraparte de al-Awwal, nomeia o ponto final ao qual tudo retorna; para Ibn Arabi, o Primeiro e o Último são como as duas extremidades de uma única realidade - Ele permanece, como a mesma Essência, tanto no começo quanto no fim."
+      },
+      "analogy": {
+        "tr": "Bir daire çizerken başladığın nokta ile bittiğin noktanın aslında tıpkı aynı nokta olması gibi: İbn Arabî için Evvel ile Âhir de aynı hakikatin iki ucudur - O, hem başlangıçta hem sonda, aynı Zât olarak durur.",
+        "en": "Like how, when you trace a circle, the point where you began and the point where you end turn out to be the very same point: for Ibn Arabi, the First and the Last are likewise two ends of a single reality - He stands, as the same Essence, at both beginning and end.",
+        "pt": "Como, ao traçar um círculo, o ponto onde você começou e o ponto onde termina acabam por ser o mesmíssimo ponto: para Ibn Arabi, o Primeiro e o Último são igualmente as duas extremidades de uma única realidade - Ele permanece, como a mesma Essência, tanto no começo quanto no fim."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "zahir",
+      "depth": 3,
+      "parent": "nisbi-grup",
+      "name": { "tr": "ez-Zâhir", "en": "Az-Zahir (The Manifest)", "pt": "Az-Zahir (O Manifesto)" },
+      "short": { "tr": "Görünen her şeyde görünen", "en": "That which appears in everything that appears", "pt": "Aquele que aparece em tudo o que aparece" },
+      "summary": {
+        "tr": "Ez-Zâhir, âlemin sûretlerinde tecelli edeni bildirir; İbn Arabî'nin varlık haritasında bu isim, tenzih-teşbih paradoksunun teşbih (benzetme) yakasını temsil eden isimlerdendir.",
+        "en": "Az-Zahir names That which discloses itself in the forms of the world; on Ibn Arabi's map of being, this Name stands on the tashbih (likening) side of the tanzih-tashbih paradox.",
+        "pt": "Az-Zahir nomeia Aquele que se autorrevela nas formas do mundo; no mapa do ser de Ibn Arabi, este Nome está do lado do tashbih (assemelhação) do paradoxo tanzih-tashbih."
+      },
+      "analogy": {
+        "tr": "Bir oyuncunun bir oyunun her sahnesinde, her defasında başka bir kostüm ve rolle çıkması, ama perde arkasında hep aynı kişi olması gibi: ez-Zâhir de, âlemin sayısız sûretinde defalarca görünen, ama her seferinde aynı Zât olan isimdir.",
+        "en": "Like an actor who appears in every scene of a play, each time in a different costume and role, yet remains the very same person behind the mask: az-Zahir is the Name that appears again and again in the world's countless forms, yet is the same Essence each time.",
+        "pt": "Como um ator que aparece em cada cena de uma peça, cada vez com um figurino e papel diferente, mas continua sendo a mesma pessoa por trás da máscara: az-Zahir é o Nome que aparece repetidamente nas inúmeras formas do mundo, mas é a mesma Essência a cada vez."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "batin",
+      "depth": 3,
+      "parent": "nisbi-grup",
+      "name": { "tr": "el-Bâtın", "en": "Al-Batin (The Hidden)", "pt": "Al-Batin (O Oculto)" },
+      "short": { "tr": "Hiçbir sûrette tam olarak görünmeyen", "en": "That which never fully appears in any form", "pt": "Aquele que nunca aparece plenamente em nenhuma forma" },
+      "summary": {
+        "tr": "Ez-Zâhir'in eşi olan el-Bâtın, âlemin ardında hep saklı kalanı bildirir - tenzih yakasını temsil eder. İbn Arabî'nin ontoloji haritasındaki Zât-Âlem-i Ecsâm paradoksu, tam olarak bu iki ismin (Zâhir-Bâtın) birlikte, aynı Zât'ta nasıl çeliştiğini anlatır.",
+        "en": "Al-Batin, the counterpart of az-Zahir, names That which remains forever concealed behind the world - it stands on the tanzih (transcendence) side. The paradox of Essence and the World of Bodies on Ibn Arabi's ontology map describes exactly how these two Names (Manifest-Hidden) contradict one another within the very same Essence.",
+        "pt": "Al-Batin, a contraparte de az-Zahir, nomeia Aquele que permanece para sempre oculto por trás do mundo - está do lado do tanzih (transcendência). O paradoxo da Essência e do Mundo dos Corpos no mapa ontológico de Ibn Arabi descreve exatamente como esses dois Nomes (Manifesto-Oculto) se contradizem dentro da mesma Essência."
+      },
+      "analogy": {
+        "tr": "Bir ağacın kök sistemi, toprağın üstünde gördüğün her şeyi (gövde, dal, yaprak) besleyip şekillendirse de, kendisi hiçbir zaman tam olarak görünmeyip hep toprağın altında kalması gibi: el-Bâtın da, âlemin ardında hep saklı kalan, hiçbir sûrette tam olarak görünmeyen isimdir.",
+        "en": "Like a tree's root system, which nourishes and shapes everything you see above ground - trunk, branch, leaf - yet itself never fully comes into view, always remaining underground: al-Batin is the Name that stays forever hidden behind the world, never fully appearing in any form.",
+        "pt": "Como o sistema de raízes de uma árvore, que nutre e molda tudo o que se vê acima do solo - tronco, galho, folha - mas nunca aparece plenamente, permanecendo sempre debaixo da terra: al-Batin é o Nome que permanece para sempre oculto por trás do mundo, nunca aparecendo plenamente em nenhuma forma."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "fiili-grup",
+      "depth": 2,
+      "parent": "allah",
+      "name": { "tr": "Fiilî İsimler", "en": "Names of Act", "pt": "Nomes de Ato" },
+      "short": { "tr": "Bir fiili, bir eylemi bildiren isimler", "en": "Names that name an act, a doing", "pt": "Nomes que nomeiam um ato, um fazer" },
+      "summary": {
+        "tr": "İbn Arabî'nin üçüncü kısmı: 'fiil bildirenler' - el-Hâlık, er-Rezzâk, el-Bâri, el-Musavvir. Bu dört isim de Kur'ân'da (Haşr, 24) yan yana zikredilir: 'O, Hâlık'tır, Bâri'dir, Musavvir'dir.' Zâtî isimlerin aksine, bu isimler ancak bir mahlûk, bir eser, bir sûret var olduğunda zuhur eder - fiil isimleri, âlemsiz düşünülemez.",
+        "en": "Ibn Arabi's third class: 'those indicating an act' - al-Khaliq, ar-Razzaq, al-Bari, al-Musawwir. These four Names too are named together in the Quran (Hashr 24): 'He is the Creator, the Originator, the Fashioner.' Unlike the essential Names, these Names only appear once a creature, a work, a form exists - Names of act cannot be conceived apart from the world.",
+        "pt": "A terceira classe de Ibn Arabi: 'os que indicam um ato' - al-Khaliq, ar-Razzaq, al-Bari, al-Musawwir. Esses quatro Nomes também são citados juntos no Alcorão (Hashr 24): 'Ele é o Criador, o Originador, o Formador.' Ao contrário dos Nomes essenciais, esses Nomes só aparecem quando existe uma criatura, uma obra, uma forma - Nomes de ato não podem ser concebidos apartados do mundo."
+      },
+      "analogy": {
+        "tr": "Bir insanı 'bu pastayı yapan kişi' diye tarif etmenin, ancak pasta gerçekten var olduğunda anlam kazanması gibi: el-Hâlık, er-Rezzâk gibi fiil isimleri de ancak bir eser, bir yaratılan şey var olduğunda zuhur eder.",
+        "en": "Like describing a person as 'the one who baked this cake' - a description that only makes sense once the cake actually exists: Names of act like al-Khaliq and ar-Razzaq likewise only appear once a work, a created thing, actually exists.",
+        "pt": "Como descrever uma pessoa como 'quem fez este bolo' - uma descrição que só faz sentido quando o bolo realmente existe: Nomes de ato como al-Khaliq e ar-Razzaq também só aparecem quando uma obra, uma coisa criada, realmente existe."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi",
+        "Kur'ân-ı Kerîm, Haşr Sûresi, 24. âyet"
+      ]
+    },
+    {
+      "id": "halik",
+      "depth": 3,
+      "parent": "fiili-grup",
+      "name": { "tr": "el-Hâlık", "en": "Al-Khaliq (The Creator)", "pt": "Al-Khaliq (O Criador)" },
+      "short": { "tr": "Bir şeyi bir ölçüye göre var eden", "en": "That which brings a thing into being according to a measure", "pt": "Aquele que traz uma coisa à existência segundo uma medida" },
+      "summary": {
+        "tr": "El-Hâlık, fiil isimlerinin başında gelir: bir şeyi belirlenmiş bir ölçüye (takdir) göre var eder. İbn Arabî için yaratma, yoktan bir zorlama değil, a'yân-ı sâbitenin kendi istidâdına göre bir 'ortaya çıkarma'dır.",
+        "en": "Al-Khaliq leads the Names of act: it brings a thing into being according to a determined measure (taqdir). For Ibn Arabi, creation is not a compulsion out of nothing, but a 'bringing forth' according to the fixed entity's own readiness.",
+        "pt": "Al-Khaliq lidera os Nomes de ato: traz uma coisa à existência segundo uma medida determinada (taqdir). Para Ibn Arabi, a criação não é uma compulsão a partir do nada, mas um 'trazer à tona' segundo a própria prontidão da entidade fixa."
+      },
+      "analogy": {
+        "tr": "Bir çömlekçinin, tekerleğin üzerindeki bir avuç ıslak kili, elleri arasında henüz belirsiz bir yığından, zihnindeki ölçüye göre bir kâseye doğru şekillendirmeye başlaması gibi: el-Hâlık da bir şeyi zorla değil, onun kendi istidâdına (a'yân-ı sâbitesine) göre bir ölçüyle var eder.",
+        "en": "Like a potter who begins shaping a handful of wet clay on the wheel - still a shapeless lump between the hands - toward a bowl, according to the measure held in mind: al-Khaliq likewise brings a thing into being not by force, but according to a measure suited to its own fixed readiness (its 'ayn thabita).",
+        "pt": "Como um oleiro que começa a moldar um punhado de argila molhada na roda - ainda um monte sem forma entre as mãos - rumo a uma tigela, segundo a medida guardada na mente: al-Khaliq também traz uma coisa à existência não à força, mas segundo uma medida adequada à sua própria prontidão fixa (sua 'ayn thabita)."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "rezzak",
+      "depth": 3,
+      "parent": "fiili-grup",
+      "name": { "tr": "er-Rezzâk", "en": "Ar-Razzaq (The Provider)", "pt": "Ar-Razzaq (O Provedor)" },
+      "short": { "tr": "Yaratılana rızkını ulaştıran", "en": "That which delivers sustenance to the created thing", "pt": "Aquele que faz chegar o sustento à coisa criada" },
+      "summary": {
+        "tr": "El-Hâlık'ın ardından gelen er-Rezzâk, var edilenin varlığını sürdürmesi için gereken her şeyi (yalnız gıdayı değil, bilgi, güç, hâl olarak her ne rızıksa) ulaştıran isimdir.",
+        "en": "Following al-Khaliq, ar-Razzaq is the Name that delivers everything a created thing needs to sustain its existence - not food alone, but whatever counts as sustenance, whether knowledge, strength, or state.",
+        "pt": "Seguindo al-Khaliq, ar-Razzaq é o Nome que faz chegar tudo o que uma coisa criada precisa para sustentar sua existência - não apenas alimento, mas tudo o que conte como sustento, seja conhecimento, força ou estado."
+      },
+      "analogy": {
+        "tr": "Bir ırmağın yalnızca tarladaki ekini değil, toprak altındaki su seviyesini, ağaçların köklerini, balıkları ve toprağın kendisini de beslemesi gibi: er-Rezzâk da yalnızca gıdayı değil, bilgi, güç, hâl olarak her ne rızıksa onu ulaştıran isimdir.",
+        "en": "Like a river that nourishes not only the crops in the field but also the water table underground, the roots of trees, the fish, and the soil itself: ar-Razzaq likewise delivers not only food but whatever counts as sustenance, whether knowledge, strength, or state.",
+        "pt": "Como um rio que nutre não só a plantação no campo, mas também o lençol freático, as raízes das árvores, os peixes e o próprio solo: ar-Razzaq também faz chegar não apenas alimento, mas tudo o que conte como sustento, seja conhecimento, força ou estado."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "bari",
+      "depth": 3,
+      "parent": "fiili-grup",
+      "name": { "tr": "el-Bâri", "en": "Al-Bari (The Originator)", "pt": "Al-Bari (O Originador)" },
+      "short": { "tr": "Yarattığını birbirinden ayrı, kendine has kılan", "en": "That which sets each created thing apart, proper to itself", "pt": "Aquele que torna cada coisa criada distinta, própria de si" },
+      "summary": {
+        "tr": "El-Bâri, el-Hâlık'ın genel yaratmasını, tek tek şeylerin birbirinden farklı, kendine özgü bir sûrete kavuşmasına dönüştüren isimdir - takdir edilen ölçü burada gerçek bir ayrışmaya kavuşur.",
+        "en": "Al-Bari is the Name that turns al-Khaliq's general act of creation into each single thing's arrival at a form distinct and proper to itself - the measure that was determined here becomes a real differentiation.",
+        "pt": "Al-Bari é o Nome que transforma o ato geral de criação de al-Khaliq na chegada de cada coisa singular a uma forma distinta e própria de si - a medida que foi determinada aqui se torna uma diferenciação real."
+      },
+      "analogy": {
+        "tr": "Aynı çömlekçinin, tekerlek dönerken parmaklarıyla o yığını inceltip yükselterek, artık bambaşka bir kâseden ayrı, kendine has bir sürahiye dönüştürmesi gibi: el-Bâri de, el-Hâlık'ın genel yaratmasını, her şeyin kendine özgü, birbirinden farklı bir sûrete kavuşmasına dönüştürür.",
+        "en": "Like that same potter who, as the wheel turns, thins and raises the clay with her fingers, drawing it apart from any other bowl into a pitcher distinctly its own: al-Bari turns al-Khaliq's general act of creation into each thing's arrival at a form distinct and proper to itself.",
+        "pt": "Como aquela mesma oleira que, enquanto a roda gira, afina e ergue a argila com os dedos, distinguindo-a de qualquer outra tigela para se tornar um jarro só seu: al-Bari transforma o ato geral de criação de al-Khaliq na chegada de cada coisa a uma forma distinta e própria de si."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "musavvir",
+      "depth": 3,
+      "parent": "fiili-grup",
+      "name": { "tr": "el-Musavvir", "en": "Al-Musawwir (The Fashioner)", "pt": "Al-Musawwir (O Formador)" },
+      "short": { "tr": "Her yaratılana kendi sûretini veren, zincirin son halkası", "en": "That which gives each created thing its own form, the chain's last link", "pt": "Aquele que dá a cada coisa criada sua própria forma, o último elo da cadeia" },
+      "summary": {
+        "tr": "Üçlü fiil zincirinin (Hâlık-Bâri-Musavvir) son ismi el-Musavvir, o ayrışmış şeye görülebilir, duyulur, bilinir bir sûret verir. İbn Arabî için insanın kendi sûretinde yaratılması da bizzat bu ismin en yüce eseridir.",
+        "en": "The final Name of the threefold chain of act (Khaliq-Bari-Musawwir), al-Musawwir, gives that now-differentiated thing a visible, sensible, knowable form. For Ibn Arabi, the human being's creation in his own form is itself this Name's most exalted work.",
+        "pt": "O Nome final da cadeia tríplice de ato (Khaliq-Bari-Musawwir), al-Musawwir, dá àquela coisa já diferenciada uma forma visível, sensível, cognoscível. Para Ibn Arabi, a criação do ser humano em sua própria forma é ela mesma a obra mais exaltada deste Nome."
+      },
+      "analogy": {
+        "tr": "O sürahi fırından çıktıktan sonra, üzerine sürülen sırın ve son işlenen desenin, herkesin tanıyıp elleyeceği rengi ve yüzeyi ona vermesi gibi: el-Musavvir de, ayrışmış olan şeye görülebilir, duyulur, bilinir sûretini veren son isimdir.",
+        "en": "Like that pitcher which, once out of the kiln, receives its glaze and final worked pattern - the color and surface everyone will actually recognize and touch: al-Musawwir is the final Name that gives the now-differentiated thing its visible, sensible, knowable form.",
+        "pt": "Como aquele jarro que, ao sair do forno, recebe seu esmalte e o desenho final trabalhado - a cor e a superfície que todos realmente reconhecerão e tocarão: al-Musawwir é o Nome final que dá à coisa já diferenciada sua forma visível, sensível, cognoscível."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"
+      ]
+    },
+    {
+      "id": "veli",
+      "depth": 2,
+      "parent": "allah",
+      "name": { "tr": "el-Velî", "en": "Al-Wali (The Protecting Friend)", "pt": "Al-Wali (O Amigo Protetor)" },
+      "short": { "tr": "Allah'ın kendine verdiği, ama 'Nebî' ya da 'Resûl'e hiç vermediği isim", "en": "The Name God gives Himself, but never gives to 'Prophet' or 'Messenger'", "pt": "O Nome que Deus dá a Si mesmo, mas nunca dá a 'Profeta' ou 'Mensageiro'" },
+      "summary": {
+        "tr": "İzutsu, İbn Arabî'nin Velî/Nebî/Resûl ayrımını tam da bu tespitle açar: 'Velî Allah'ın isimlerindendir, ama Allah kendini ne Nebî ve ne de Resûl diye vasıflandırmıştır; ancak Velî adıyla vasıflanmıştır.' Kur'ân'da 'Allah, mü'minlerin Velîsi'dir' (Bakara 257) ve 'O, Velî ve Hamîd'dir' (Şûrâ 28) buyrulur - ama Allah hiçbir yerde kendini 'Nebî' ya da 'Resûl' diye anmaz. Bu yüzden bir insan en yüksek mertebeye ulaştığında ona da 'Velî' denir: Velîlik, Zât'ın bir ismi ile kulun ulaşabileceği en yüksek mertebenin ortak adı olan tek kavramdır.",
+        "en": "Izutsu opens Ibn Arabi's distinction between Wali, Nabi, and Rasul with exactly this observation: 'Wali is one of God's Names, yet God has never described Himself as Nabi or Rasul - only as Wali.' The Qur'an says 'God is the Wali of the believers' (Baqara 257) and 'He is the Wali, the Praised' (Shura 28) - yet nowhere does God call Himself 'Prophet' or 'Messenger.' This is why, when a human being reaches the highest rank, he too is called 'Wali': sainthood is the one concept that names both an Essential Name and the highest rank a servant can attain.",
+        "pt": "Izutsu abre a distinção de Ibn Arabi entre Wali, Nabi e Rasul com exatamente esta observação: 'Wali é um dos Nomes de Deus, mas Deus nunca Se descreveu como Nabi ou Rasul - apenas como Wali.' O Alcorão diz 'Deus é o Wali dos crentes' (Bacara 257) e 'Ele é o Wali, o Louvado' (Shura 28) - mas em nenhum lugar Deus Se chama de 'Profeta' ou 'Mensageiro'. É por isso que, quando um ser humano alcança a hierarquia mais alta, ele também é chamado de 'Wali': a santidade é o único conceito que nomeia tanto um Nome Essencial quanto a hierarquia mais alta que um servo pode alcançar."
+      },
+      "analogy": {
+        "tr": "Güneşin bir kez doğup batması ve o günün güneşi olarak bir daha asla doğmaması, ama ay ışığının - aynı ışığın bir yansıması olarak - her gece yeniden, sonu gelmeden doğması gibi: Nebîlik ve Resûllük de Hz. Muhammed'in mührüyle tarihte bir kez kapanmıştır, ama Velîlik - aynı kaynağın ışığı - gece gece, sonsuza dek doğmaya devam eder.",
+        "en": "Like how the sun rises and sets once, and never rises again as that same day's sun, yet the moon's light - a reflection of that very light - rises anew every night, without end: Prophethood and Messengerhood likewise closed once in history with the seal of Muhammad, but Sainthood - the light of that same source - keeps rising, night after night, forever.",
+        "pt": "Como o sol que nasce e se põe uma vez, e nunca mais nasce como o sol daquele mesmo dia, mas a luz da lua - um reflexo dessa mesma luz - nasce de novo a cada noite, sem fim: a Profecia e o Envio de Mensageiros também se encerraram uma vez na história com o selo de Muhammad, mas a Santidade - a luz dessa mesma fonte - continua nascendo, noite após noite, para sempre."
+      },
+      "insights": [
+        {
+          "volume": "izutsu-anahtar",
+          "text": {
+            "tr": "İzutsu, bu ismin neden Nübüvvet ve Risâletten üstün bir kapsayıcılığa sahip olduğunu açıklar: Velîlik, Nebîliği ve Resûllüğü de içine alan en geniş kavramdır - her Resûl bir Nebî, her Nebî de bir Velî'dir, ama tersi doğru değildir. Daha da çarpıcısı: Nübüvvet ve Risâlet zamana bağlıdır ve Hz. Muhammed'le ('Peygamberlerin Mührü' olarak) sona ermiştir - artık yeni bir şeriat getirecek Nebî gelmeyecektir. Ama Velîlik hiç bitmez: 'Bu isim (Velî ismi) bâkîdir, dünyada da âhirette de Allah'ın kulları üzerinde geçerli olacaktır.' Allah ezelden ebede var olduğuna göre, O'nunla ortak bu tek isim de ebediyen sürecektir.",
+            "en": "Izutsu explains why this Name has a scope wider than either Prophethood or Messengerhood: sainthood (walaya) is the broadest concept, encompassing both prophethood and messengerhood - every Messenger is a Prophet, and every Prophet is a Saint, but not conversely. More striking still: Prophethood and Messengerhood are bound to history and ended with Muhammad (as the 'Seal of the Prophets') - no Prophet bringing a new law will ever come again. But sainthood never ends: 'This Name [Wali] is everlasting; it will hold true over God's servants both in this world and the next.' Since God exists from pre-eternity to post-eternity, this one Name shared with Him will likewise last forever.",
+            "pt": "Izutsu explica por que este Nome tem um alcance mais amplo que a Profecia ou o Envio de Mensageiros: a santidade (walaya) é o conceito mais amplo, englobando tanto a profecia quanto o envio de mensageiros - todo Mensageiro é um Profeta, e todo Profeta é um Santo, mas não o contrário. Mais impressionante ainda: a Profecia e o Envio de Mensageiros estão ligados à história e terminaram com Muhammad (como o 'Selo dos Profetas') - nenhum Profeta trazendo uma nova lei virá novamente. Mas a santidade nunca termina: 'Este Nome [Wali] é eterno; permanecerá válido sobre os servos de Deus tanto neste mundo quanto no outro.' Como Deus existe da pré-eternidade à pós-eternidade, este único Nome compartilhado com Ele também durará para sempre."
+          }
+        },
+        {
+          "volume": "izutsu-anahtar",
+          "text": {
+            "tr": "İzutsu, İbn Arabî'nin Mekke'de yaşadığı bir 'yakaza'yı (uyku ile uyanıklık arası bir görü) aktarır: Kâbe'nin duvarının altın ve gümüş tuğlalardan inşa edildiğini, ama son iki tuğlanın (biri altın, biri gümüş) eksik olduğunu görür - ve kendisinin tam da o iki eksik tuğla olduğunu, oraya yerleşip duvarı tamamladığını idrâk eder. Yorumu şöyledir: Hz. Peygamber'e Nübüvvet, tek bir tuğlası eksik bir duvar olarak temsil edilmişti - O, o tek tuğlaydı (Nebilerin Mührü). Ama 'Velilerin Mührü' için iki tuğla eksiktir: gümüş tuğla, onun zâhirde Hz. Muhammed'in şeriatına tâbi oluşunu; altın tuğla ise, aynı ilmi doğrudan Hakk'tan, tıpkı Peygamber'e vahyi getiren meleğin aldığı kaynaktan, bâtınen alışını remzeder. İbn Arabî bunu Fütûhât'ta doğrudan kendine izâfe eder: 'Velâyet Mührü, Hâşimî'nin mirası ve Mesih olan benim.'",
+            "en": "Izutsu relays a waking-vision (yaqaza) Ibn Arabi experienced in Mecca: he saw the wall of the Kaaba built of gold and silver bricks, but with its last two bricks (one gold, one silver) missing - and realized that he himself was those two missing bricks, setting himself into place to complete the wall. His reading: Prophethood had been represented to the Prophet as a wall missing a single brick - he was that one brick (the Seal of the Prophets). But for the 'Seal of the Saints,' two bricks are missing: the silver brick symbolizes his outward following of Muhammad's law, while the gold brick symbolizes his inward reception of the very same knowledge directly from the Real, from the same source the angel drew on to bring revelation to the Prophet. Ibn Arabi applies this directly to himself in the Futuhat: 'I am, without doubt, the Seal of Sainthood, heir of the Hashimite and the Messiah.'",
+            "pt": "Izutsu relata uma visão em vigília (yaqaza) que Ibn Arabi teve em Meca: ele viu o muro da Caaba construído de tijolos de ouro e prata, mas faltando os dois últimos tijolos (um de ouro, um de prata) - e percebeu que ele mesmo era esses dois tijolos faltantes, colocando-se no lugar para completar o muro. Sua leitura: a Profecia havia sido representada ao Profeta como um muro faltando um único tijolo - ele era esse único tijolo (o Selo dos Profetas). Mas para o 'Selo dos Santos', faltam dois tijolos: o tijolo de prata simboliza sua submissão exterior à lei de Muhammad, enquanto o tijolo de ouro simboliza sua recepção interior do mesmíssimo conhecimento diretamente do Real, da mesma fonte de que o anjo se valeu para trazer a revelação ao Profeta. Ibn Arabi aplica isso diretamente a si mesmo no Futuhat: 'Eu sou, sem dúvida, o Selo da Santidade, herdeiro do Hachemita e o Messias.'"
+          }
+        }
+      ],
+      "sources": [
+        "Kur'ân, Bakara Sûresi, 257. âyet",
+        "Kur'ân, Şûrâ Sûresi, 28. âyet",
+        "İbn Arabî'nin Fusûsu'ndaki Anahtar-Kavramlar (Toshihiko İzutsu, çev. Ahmed Yüksel Özemre) — XVI. Bölüm: Resûl, Nebî ve Velî"
+      ]
+    }
+  ],
+  "relations": [
+    { "from": "celal", "to": "cemal", "type": "tecelli", "label": { "tr": "Allah hiçbir zaman sadece Celâl'inde tecelli etmez; her tecelli Cemâl'in içinden gelir", "en": "God never discloses Himself in Majesty alone; every self-disclosure comes clothed in Beauty", "pt": "Deus nunca se autorrevela apenas em Majestade; toda autorrevelação vem revestida de Beleza" } },
+    { "from": "zati-grup", "to": "hayy", "type": "ayni-sinif", "label": { "tr": "el-Hayy de bu sınıfa (Zâtî/sübûtî isimler) dahildir", "en": "Al-Hayy also belongs to this class (Names of the Essence's attributes)", "pt": "Al-Hayy também pertence a esta classe (Nomes dos atributos da Essência)" } },
+    { "from": "zati-grup", "to": "alim", "type": "ayni-sinif", "label": { "tr": "el-Âlim de bu sınıfa (Zâtî/sübûtî isimler) dahildir", "en": "Al-'Alim also belongs to this class (Names of the Essence's attributes)", "pt": "Al-'Alim também pertence a esta classe (Nomes dos atributos da Essência)" } },
+    { "from": "zati-grup", "to": "murid", "type": "ayni-sinif", "label": { "tr": "el-Mürîd de bu sınıfa (Zâtî/sübûtî isimler) dahildir", "en": "Al-Murid also belongs to this class (Names of the Essence's attributes)", "pt": "Al-Murid também pertence a esta classe (Nomes dos atributos da Essência)" } },
+    { "from": "zati-grup", "to": "kadir", "type": "ayni-sinif", "label": { "tr": "el-Kâdir de bu sınıfa (Zâtî/sübûtî isimler) dahildir", "en": "Al-Qadir also belongs to this class (Names of the Essence's attributes)", "pt": "Al-Qadir também pertence a esta classe (Nomes dos atributos da Essência)" } },
+    { "from": "batin", "to": "zahir", "type": "zid", "label": { "tr": "İkisi bir aradadır: aynı Zât hem gizli (Bâtın) hem görünürdür (Zâhir)", "en": "The two stand together: the same Essence is at once hidden (Batin) and manifest (Zahir)", "pt": "Os dois estão juntos: a mesma Essência é ao mesmo tempo oculta (Batin) e manifesta (Zahir)" } }
+  ]
+}

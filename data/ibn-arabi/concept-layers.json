@@ -1,0 +1,1544 @@
+{
+  "schema": {
+    "description": "Her kavramın 6 katmanda sunulması sistemi. Ziyaretçi, her kavramı örnek, tanım, önemi, Qur'an bağlantıları, İbn Arabi'nin ifadeleri ve ilişkili kavramlar aracılığıyla derinlemesine öğrenir.",
+    "layers": [
+      {
+        "order": 1,
+        "id": "mesela",
+        "name": {
+          "tr": "Mesela",
+          "en": "Example",
+          "pt": "Exemplo"
+        },
+        "icon": "📖",
+        "description": {
+          "tr": "Günlük hayattan bir örnek. Kavramı somut ve yaşanabilir kılmak.",
+          "en": "An example from everyday life. Making the concept concrete and lived.",
+          "pt": "Um exemplo da vida cotidiana. Tornando o conceito concreto e vivido."
+        }
+      },
+      {
+        "order": 2,
+        "id": "vahdet-vucud-baglantisi",
+        "name": {
+          "tr": "Vahdet-i Vücûd Bağlantısı",
+          "en": "Connection to Unity of Being",
+          "pt": "Conexão com a Unidade do Ser"
+        },
+        "icon": "🔗",
+        "description": {
+          "tr": "Kavramın, Vahdet-i Vücûd felsefesiyle nasıl ilişkili olduğu.",
+          "en": "How this concept relates to the philosophy of Unity of Being.",
+          "pt": "Como este conceito se relaciona com a filosofia da Unidade do Ser."
+        }
+      },
+      {
+        "order": 3,
+        "id": "aciklama",
+        "name": {
+          "tr": "Açıklama",
+          "en": "Explanation",
+          "pt": "Explicação"
+        },
+        "icon": "💡",
+        "description": {
+          "tr": "Kavramın teknik tanımı ve derinlemesine açıklaması.",
+          "en": "Technical definition and deep explanation of the concept.",
+          "pt": "Definição técnica e explicação profunda do conceito."
+        }
+      },
+      {
+        "order": 4,
+        "id": "neden-onemli",
+        "name": {
+          "tr": "Neden Önemli?",
+          "en": "Why Important?",
+          "pt": "Por Que Importante?"
+        },
+        "icon": "⭐",
+        "description": {
+          "tr": "Kavramın tasavvuf yolunda ve İbn Arabi'nin sisteminde neden merkezi olduğu.",
+          "en": "Why this concept is central to the Sufi path and Ibn Arabi's system.",
+          "pt": "Por que este conceito é central no caminho Sufi e no sistema de Ibn Arabi."
+        }
+      },
+      {
+        "order": 5,
+        "id": "kuran-baglantilari",
+        "name": {
+          "tr": "Qur'an Bağlantıları",
+          "en": "Quranic Connections",
+          "pt": "Conexões Corânicas"
+        },
+        "icon": "📜",
+        "description": {
+          "tr": "Kavramla ilişkili Qur'an ayetleri ve onların anlamları.",
+          "en": "Quranic verses related to this concept and their meanings.",
+          "pt": "Versículos corânicos relacionados a este conceito e seus significados."
+        }
+      },
+      {
+        "order": 6,
+        "id": "ibn-arabi-ifadeleri",
+        "name": {
+          "tr": "İbn Arabi'nin İfadeleri",
+          "en": "Ibn Arabi's Statements",
+          "pt": "Declarações de Ibn Arabi"
+        },
+        "icon": "🗣️",
+        "description": {
+          "tr": "İbn Arabi'nin bu kavram hakkında eserlerinde kullandığı doğrudan alıntılar.",
+          "en": "Direct quotes from Ibn Arabi's works about this concept.",
+          "pt": "Citações diretas das obras de Ibn Arabi sobre este conceito."
+        }
+      },
+      {
+        "order": 7,
+        "id": "bagli-kavramlar",
+        "name": {
+          "tr": "Bağlı Kavramlar",
+          "en": "Related Concepts",
+          "pt": "Conceitos Relacionados"
+        },
+        "icon": "🌐",
+        "description": {
+          "tr": "Bu kavramla ilişkili diğer kavramlar ve aralarındaki bağlantılar.",
+          "en": "Other related concepts and the connections between them.",
+          "pt": "Outros conceitos relacionados e as conexões entre eles."
+        }
+      }
+    ]
+  },
+  "concepts": {
+    "vahdet-i-vucud": {
+      "id": "vahdet-i-vucud",
+      "title": {
+        "tr": "Vahdet-i Vücûd",
+        "en": "Unity of Being",
+        "pt": "Unidade do Ser"
+      },
+      "summary": {
+        "tr": "Tüm varlıkların, Tanrı'nın varlığından başka hakiki bir varlığı olmadığı prensibine dayanan temel doktrin.",
+        "en": "The foundational doctrine that all existence has no true existence except through God's Being.",
+        "pt": "A doutrina fundamental de que toda existência não tem verdadeira existência senão através do Ser de Deus."
+      },
+      "layers": {
+        "mesela": {
+          "title": {
+            "tr": "Mesela",
+            "en": "Example",
+            "pt": "Exemplo"
+          },
+          "content": {
+            "tr": "Güneşin önüne perde asıp koyu bir odada oturuyorsunuz. Odaya giren ışık, güneşin varlığının göstergesidir. Ancak ışığın kendisi güneş değildir — güneşin varlığının tezahürüdür. Tüm yaratılı varlıklar, bu ışık gibi Tanrı'nın tecellisidir, gerçek varlıkları Tanrı'dır.",
+            "en": "You sit in a dark room with a curtain before the sun. The light entering is an indication of the sun's existence. But the light itself is not the sun — it is the manifestation of the sun's existence. All created beings are like this light, manifestations of God; their true existence is God.",
+            "pt": "Você se senta em uma sala escura com uma cortina diante do sol. A luz que entra é uma indicação da existência do sol. Mas a própria luz não é o sol — é a manifestação da existência do sol. Todos os seres criados são como esta luz, manifestações de Deus; sua verdadeira existência é Deus."
+          }
+        },
+        "vahdet-vucud-baglantisi": {
+          "title": {
+            "tr": "Vahdet-i Vücûd ile Özdeş",
+            "en": "This IS Unity of Being",
+            "pt": "Isto É Unidade do Ser"
+          },
+          "content": {
+            "tr": "Bu kavram, Dostarabi'nin merkezinde yatıyor. Vahdet-i Vücûd, sadece bir doktrin değil; İbn Arabi'nin tüm düşüncesi için temelden temel.",
+            "en": "This concept lies at the center of Dostarabi. Unity of Being is not just a doctrine; it's foundational to all of Ibn Arabi's thought.",
+            "pt": "Este conceito está no centro de Dostarabi. A Unidade do Ser não é apenas uma doutrina; é fundamental para todo o pensamento de Ibn Arabi."
+          }
+        },
+        "aciklama": {
+          "title": {
+            "tr": "Teknik Açıklama",
+            "en": "Technical Explanation",
+            "pt": "Explicação Técnica"
+          },
+          "content": {
+            "tr": "Vahdet-i Vücûd (Birlik Varlığı), İbn Arabi'nin merkezi ilkesi. Buna göre:\n- Sadece Tanrı'nın gerçek varlığı vardır (Hak, Vücûd mutlak)\n- Yaratılı varlıklar, kendi başlarına yokluk içindedir (adem)\n- Yaratılıların varlığı, ancak Tanrı'nın varlığının yansıması/tezahürü (tecelli)\n- Gözler ancak yokluğu görebilir (kendi yokluklarını), Tanrı'nın varlığı ise görülemez\n\nBu, panteizm değildir. Yaratılılar Tanrı değildir; ama kendi başlarına varlıkları da yoktur.",
+            "en": "Unity of Being (Wahdat al-Wujud) is Ibn Arabi's central principle. According to this:\n- Only God has true existence (Haq, absolute Being)\n- Created beings are in nothingness by themselves (adam)\n- The existence of creatures is only a reflection/manifestation of God's existence (tajalli)\n- Eyes can only see nothingness (their own nothingness), God's existence cannot be seen\n\nThis is not pantheism. Creatures are not God; but neither do they have existence by themselves.",
+            "pt": "Unidade do Ser (Wahdat al-Wujud) é o princípio central de Ibn Arabi. De acordo com isso:\n- Apenas Deus tem verdadeira existência (Haq, Ser absoluto)\n- Os seres criados estão no nada por si mesmos (adam)\n- A existência das criaturas é apenas um reflexo/manifestação da existência de Deus (tajalli)\n- Os olhos podem apenas ver o nada (seu próprio nada), a existência de Deus não pode ser vista\n\nIsso não é panteísmo. As criaturas não são Deus; mas também não têm existência por si mesmas."
+          }
+        },
+        "neden-onemli": {
+          "title": {
+            "tr": "Tasavvuf Yolunda Önemi",
+            "en": "Importance in the Sufi Path",
+            "pt": "Importância no Caminho Sufi"
+          },
+          "content": {
+            "tr": "Vahdet-i Vücûd, tasavvuf yolunun tüm merhaleleri için rehberdir:\n- Müridin (talebelin) benliğini yok görmesi (Fenâ) bu ilke ile mümkündür\n- Sevginin nesnesi anlaşılır (Tanrı'dan başkası yoktur)\n- İbadet neden sadece Tanrı'ya yapılır, anlamak için bu ilke gereklidir\n- Son aşamada (İnsân-ı Kâmil), mürid tamamen bu gerçeği yaşar\n\nBu ilke olmadan, tasavvufu anlamak mümkün değildir.",
+            "en": "Unity of Being guides all stages of the Sufi path:\n- The disciple (murid) can see themselves as nonexistent (Fana) through this principle\n- The object of love becomes clear (nothing exists but God)\n- To understand why worship is only to God, this principle is necessary\n- At the final stage (Perfect Human), the murid completely lives this truth\n\nWithout this principle, it is impossible to understand Sufism.",
+            "pt": "A Unidade do Ser orienta todos os estágios do caminho Sufi:\n- O discípulo (murid) pode se ver como inexistente (Fana) através deste princípio\n- O objeto do amor se torna claro (nada existe senão Deus)\n- Para entender por que a adoração é apenas a Deus, este princípio é necessário\n- No estágio final (Homem Perfeito), o murid vive completamente essa verdade\n\nSem este princípio, é impossível compreender o Sufismo."
+          }
+        },
+        "kuran-baglantilari": [
+          {
+            "verse": "Qur'an 42:11",
+            "text": {
+              "tr": "\"Listetiği şey O'na benzer değildir. O, İşiten, Görendir.\"",
+              "en": "\"Nothing is like unto Him, and He is the Hearer, the Seer.\"",
+              "pt": "\"Nada é semelhante a Ele, e Ele é o Ouvidor, o Vidente.\""
+            },
+            "interpretation": {
+              "tr": "Yaratılılar Tanrı'ya benzetilemez; onlar yokluk, Tanrı varlıktır.",
+              "en": "Creatures cannot be likened to God; they are nothingness, God is Being.",
+              "pt": "As criaturas não podem ser comparadas a Deus; elas são nada, Deus é Ser."
+            }
+          },
+          {
+            "verse": "Qur'an 2:165",
+            "text": {
+              "tr": "\"Yaratılanları Tanrı'ya muhabbet açık (açık kalpten) sevmek haram kılındığını görmez misin?\"",
+              "en": "\"Have you not seen those who take as gods besides Allah?\"",
+              "pt": "\"Não viste aqueles que tomam além de Allah como deuses?\""
+            },
+            "interpretation": {
+              "tr": "Sadece Tanrı'ya hakiki sevgi vardır; yaratılılara duyulan sevgi, Tanrı'yı yanlış sevmenin sonucudur.",
+              "en": "True love is only toward God; any love toward creatures is a misdirection of God's love.",
+              "pt": "O verdadeiro amor é apenas para Deus; qualquer amor pelas criaturas é um desvio do amor de Deus."
+            }
+          },
+          {
+            "verse": "Qur'an 55:26-27",
+            "text": {
+              "tr": "\"Onda kim var, fani olacak. Yalnızca Rabbinin zâtı (Zâtı Celîl), Celâl ve İkrâm sahibi, bâkî kalacak.\"",
+              "en": "\"All that is on the earth will perish. But the Face of your Lord will remain, possessing Majesty and Honor.\"",
+              "pt": "\"Tudo o que está na terra perecerá. Mas a Face do seu Senhor permanecerá, possuindo Majestade e Honra.\""
+            },
+            "interpretation": {
+              "tr": "Tüm yaratılı varlıklar geçicidir; sadece Tanrı'nın Zâtı bâkîdir (ezelî-ebed).",
+              "en": "All created existence is transient; only God's Essence is eternal.",
+              "pt": "Toda existência criada é transitória; apenas a Essência de Deus é eterna."
+            }
+          }
+        ],
+        "ibn-arabi-ifadeleri": [
+          {
+            "quote": {
+              "tr": "\"Varlık, tek bir varlıktır. Sabit olan Varlık, Tanrı Zâtı'dır; diğer varlıklar, adem (yokluk)dır, sadece O'nun tecellileri, O'nun hikmet ve kudretinin eserleridir.\"",
+              "en": "\"Existence is one existence. The subsisting Existence is the Essence of God; other existences are nothingness (adam), only His manifestations, the works of His wisdom and power.\"",
+              "pt": "\"A existência é uma única existência. A Existência subsistente é a Essência de Deus; outras existências são nada (adam), apenas Suas manifestações, as obras de Sua sabedoria e poder.\""
+            },
+            "source": {
+              "tr": "Fütûhât-ı Mekkiyye",
+              "en": "Meccan Illuminations",
+              "pt": "Iluminações de Meca"
+            }
+          },
+          {
+            "quote": {
+              "tr": "\"İnsân-ı Kâmil, Tanrı'nın zâtı ve sıfatlarını, bütün çehresiyle tecelli ettirir; o, Tanrı'nın şeklidir ve şeklidir.\"",
+              "en": "\"The Perfect Human manifests God's essence and attributes in entirety; they are the form and image of God.\"",
+              "pt": "\"O Homem Perfeito manifesta a essência e atributos de Deus em sua totalidade; ele é a forma e imagem de Deus.\""
+            },
+            "source": {
+              "tr": "Füsûsu'l-Hikem",
+              "en": "Bezels of Wisdom",
+              "pt": "Engastes de Sabedoria"
+            }
+          }
+        ],
+        "bagli-kavramlar": [
+          {
+            "id": "tecelli",
+            "tr": "Tecelli (Manifestação)",
+            "en": "Tajalli (Manifestation)",
+            "pt": "Tajalli (Manifestação)"
+          },
+          {
+            "id": "fana",
+            "tr": "Fenâ (Yokluğun Farkındalığı)",
+            "en": "Fana (Annihilation)",
+            "pt": "Fana (Aniquilação)"
+          },
+          {
+            "id": "insan-kamil",
+            "tr": "İnsân-ı Kâmil (Mükemmel İnsan)",
+            "en": "Perfect Human",
+            "pt": "Homem Perfeito"
+          },
+          {
+            "id": "esma-vesicat",
+            "tr": "Esmâ ve Sıfâtlar (İsmler ve Vasıflar)",
+            "en": "Divine Names and Attributes",
+            "pt": "Nomes e Atributos Divinos"
+          }
+        ]
+      },
+      "dhat": {
+        "id": "dhat",
+        "title": {
+          "tr": "Zât",
+          "en": "The Essence",
+          "pt": "A Essência"
+        },
+        "summary": {
+          "tr": "Her türlü isim, sıfat, nitelik ve ilişkinin ötesinde, hiçbir şeyle kıyaslanamayan, bilinemeyen mutlak Kaynak.",
+          "en": "The absolute Source beyond every name, attribute, quality, or relation — unknowable and incomparable to anything.",
+          "pt": "A Fonte absoluta além de todo nome, atributo, qualidade ou relação — incognoscível e incomparável a qualquer coisa."
+        },
+        "layers": {
+          "mesela": {
+            "title": {
+              "tr": "Günlük Hayattan Mesela",
+              "en": "Everyday Example",
+              "pt": "Exemplo do Dia a Dia"
+            },
+            "content": {
+              "tr": "Beyaz ışık, gökkuşağına ayrılmadan önce hiçbir renk taşımaz — ama bütün renkleri kendinde gizil olarak barındırır. Benzer şekilde, Zât hiçbir isim ve sıfatla belirlenmemiştir — ama bütün isimler ondan çıkar.",
+              "en": "White light carries no color before it splits into a rainbow — yet holds all colors within it latently. Similarly, the Essence is determined by no name or attribute — yet every name issues from it.",
+              "pt": "A luz branca não carrega nenhuma cor antes de se dividir num arco-íris — mas contém todas as cores latentemente. Similarmente, a Essência não é determinada por nenhum nome ou atributo — mas todo nome emana dela."
+            }
+          },
+          "vahdet-vucud-baglantisi": {
+            "title": {
+              "tr": "Vahdet-i Vücûd'un Kaynağı",
+              "en": "Source of Unity of Being",
+              "pt": "Fonte da Unidade do Ser"
+            },
+            "content": {
+              "tr": "Zât, Vahdet-i Vücûd'un en yüksek mertebesini temsil eder. Ahadiyyet (Mutlak Birlik) bu mertebeyi işaret eder — hiçbir determination, hiçbir belirlenim, hiçbir ilişki.",
+              "en": "The Essence represents the highest level of Unity of Being. Ahadiyyat (Absolute Oneness) designates this rank — no determination, no qualification, no relation.",
+              "pt": "A Essência representa o nível mais elevado da Unidade do Ser. Ahadiyyat (Unidade Absoluta) designa este nível — sem determinação, sem qualificação, sem relação."
+            }
+          },
+          "aciklama": {
+            "title": {
+              "tr": "Teknik Açıklama",
+              "en": "Technical Definition",
+              "pt": "Definição Técnica"
+            },
+            "content": {
+              "tr": "Zât (Essence), Vahdet-i Vücûd sisteminde tek hakiki Varlık'tır. O'nun dışında her şey 'adem'dir (yokluk). Zât kendinde 'lâ-taayyün' (no self-determination) mertebesindedir - hiç bir isim, sıfat, nitelik, ilişki veya benzerlikle tavsif edilemez. Hatta 'İlâh' (Allah) adı bile Zât'ı tavsif etmez; yalnızca yaratık ile Zât arasındaki ilişkide Zât'a ait bir yön gösterir. Zât hakkında söylenen en azami şey 'O vardır' demektir, ama bu dahi sınırlama getirir.",
+              "en": "In the Unity of Being system, the Essence is the sole Reality. Everything else is 'adam' (nonbeing). The Essence is in the rank of 'la-ta'ayyun' (no self-determination) — it cannot be described by any name, attribute, quality, relation, or likeness. Even the name 'Allah' does not describe the Essence itself; it only designates Divinity as Divinity appears to creation. The most that can be said of the Essence is that 'It is,' but even this brings limitation.",
+              "pt": "No sistema da Unidade do Ser, a Essência é a única Realidade. Tudo o resto é 'adam' (não-ser). A Essência está no nível de 'la-ta'ayyun' (sem auto-determinação) — não pode ser descrita por nenhum nome, atributo, qualidade, relação ou semelhança. Nem mesmo o nome 'Allah' descreve a Essência em si; ele apenas designa a Divindade tal como aparece para a criação. O máximo que pode ser dito da Essência é que 'Ela é', mas até mesmo isto traz limitação."
+            }
+          },
+          "neden-onemli": {
+            "title": {
+              "tr": "Sistemde Merkeziyeti",
+              "en": "Centrality in the System",
+              "pt": "Centralidade no Sistema"
+            },
+            "content": {
+              "tr": "Zât olmaksızın İbn Arabi'nin tüm felsefesi anlamsızdır. Tecelli, isimler, varlıklar, âlemler, insan — hepsi Zât'ın tecellileridir. Zât'ı anlamak, tüm ontolojinin temeline inmektir. Tasavvuf yolunda müridin son amacı Zât'ı 'bilmek' değil (çünkü bilinmez), bilakis Zât'ın varlığına tam olarak teslim olmaktır.",
+              "en": "Without the Essence, all of Ibn Arabi's philosophy is meaningless. Manifestation, Names, existences, worlds, human — all are manifestations of the Essence. To understand the Essence is to go to the very foundation of the entire ontology. On the Sufi path, the murid's ultimate aim is not to 'know' the Essence (for it is unknowable), but to completely surrender to its Reality.",
+              "pt": "Sem a Essência, toda a filosofia de Ibn Arabi é sem sentido. Manifestação, Nomes, existências, mundos, humano — tudo são manifestações da Essência. Compreender a Essência é chegar à própria base de toda a ontologia. No caminho Sufi, o objetivo final do murid não é 'conhecer' a Essência (pois é incognoscível), mas se render completamente à sua Realidade."
+            }
+          },
+          "kuran-baglantilari": [
+            {
+              "verse": "Qur'an 42:11",
+              "text": {
+                "tr": "\"Listetiği şey O'na benzer değildir. O, İşiten, Görendir.\"",
+                "en": "\"Nothing is like unto Him, and He is the Hearer, the Seer.\"",
+                "pt": "\"Nada é semelhante a Ele, e Ele é o Ouvidor, o Vidente.\""
+              },
+              "interpretation": {
+                "tr": "Zât hiçbir şeye benzetilemez; yaratılılar O'na kıyaslanamazlar.",
+                "en": "The Essence cannot be compared to anything; creatures are incomparable to It.",
+                "pt": "A Essência não pode ser comparada a nada; as criaturas são incomparáveis a Ela."
+              }
+            },
+            {
+              "verse": "Qur'an 55:26-27",
+              "text": {
+                "tr": "\"Onda kim var, fani olacak. Yalnızca Rabbinin Zâtı (Zâtı Celîl), Celâl ve İkrâm sahibi, bâkî kalacak.\"",
+                "en": "\"All that is on the earth will perish. But the Face of your Lord will remain, possessing Majesty and Honor.\"",
+                "pt": "\"Tudo o que está na terra perecerá. Mas a Face do seu Senhor permanecerá, possuindo Majestade e Honra.\""
+              },
+              "interpretation": {
+                "tr": "Yalnızca Zât bâkîdir (ezelî-ebed); diğer her şey fânidir (geçicidir).",
+                "en": "Only the Essence is eternal; everything else is transient.",
+                "pt": "Apenas a Essência é eterna; tudo o resto é transitório."
+              }
+            }
+          ],
+          "ibn-arabi-ifadeleri": [
+            {
+              "quote": {
+                "tr": "\"Zât hakkında konuşmak, Zât'ı sınırlamaktır. Zât'ın hiçbir sûreti, hiçbir tasviri olmaz. O, guyûbü'l-guyûb'dur (gizlerin gizi).\"",
+                "en": "\"To speak of the Essence is to limit it. The Essence has no form, no description. It is the Mystery of Mysteries.\"",
+                "pt": "\"Falar sobre a Essência é limitá-la. A Essência não tem forma, nenhuma descrição. É o Mistério dos Mistérios.\""
+              },
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye",
+                "en": "Meccan Illuminations",
+                "pt": "Iluminações de Meca"
+              }
+            }
+          ],
+          "bagli-kavramlar": [
+            {
+              "id": "sifat-asma",
+              "tr": "Esmâ-i Hüsnâ (Tanrı'nın İsimleri)",
+              "en": "Divine Names",
+              "pt": "Nomes Divinos"
+            },
+            {
+              "id": "tecelli",
+              "tr": "Tecelli (Tecellinin başlangıcı)",
+              "en": "Manifestation",
+              "pt": "Manifestação"
+            },
+            {
+              "id": "ahadiyyet",
+              "tr": "Ahadiyyet (Mutlak Birlik)",
+              "en": "Absolute Oneness",
+              "pt": "Unidade Absoluta"
+            }
+          ]
+        }
+      }
+    },
+    "sifat-asma": {
+      "id": "sifat-asma",
+      "title": {
+        "tr": "Esmâ-i Hüsnâ",
+        "en": "Divine Names",
+        "pt": "Nomes Divinos"
+      },
+      "summary": {
+        "tr": "Tanrı'nın isimleri ve sıfatları; her isim Tanrı'nın bir yönü ve evrendeki bir boyuttur; tüm varlıkların varlık kaynağı.",
+        "en": "God's Names and Attributes; each Name is a facet of God and a dimension of the universe; the source of all being.",
+        "pt": "Os Nomes e Atributos de Deus; cada Nome é uma faceta de Deus e uma dimensão do universo; a fonte de todo ser."
+      },
+      "layers": {
+        "mesela": {
+          "title": {
+            "tr": "Günlük Hayattan Mesela",
+            "en": "Everyday Example",
+            "pt": "Exemplo do Dia a Dia"
+          },
+          "content": {
+            "tr": "Bir doktor, öğretmen, baba gibi roller. Tanrı'nın 99 ismi her biri farklı bir yönünü gösterir. Her isim kendi âlemini yaratır.",
+            "en": "Like doctor, teacher, father roles. God's 99 Names each reveal a different dimension. Each Name generates its own realm.",
+            "pt": "Como papéis de médico, professor, pai. Os 99 Nomes de Deus cada um revela uma dimensão diferente. Cada Nome gera seu próprio reino."
+          }
+        },
+        "vahdet-vucud-baglantisi": {
+          "title": {
+            "tr": "Vahdet-i Vücûd'daki Yeri",
+            "en": "Place in Unity of Being",
+            "pt": "Lugar na Unidade do Ser"
+          },
+          "content": {
+            "tr": "Esmâ, Zât'ın evrensel yüzüdür. Her yaratılı varlık çeşitli isimlerin kesişiminde bulunur. Tecelli her zaman bir isme dayalıdır.",
+            "en": "The Names are the universal Face of the Essence. Every being exists at the intersection of multiple Names. Manifestation occurs through a Name.",
+            "pt": "Os Nomes são o Rosto universal da Essência. Todo ser existe na intersecção de múltiplos Nomes. A manifestação ocorre através de um Nome."
+          }
+        },
+        "aciklama": {
+          "title": {
+            "tr": "Teknik Açıklama",
+            "en": "Technical Explanation",
+            "pt": "Explicação Técnica"
+          },
+          "content": {
+            "tr": "Esmâ-i Hüsnâ, yaratılı varlıkların temel kaynağıdır. Qur'an 99 ismi sayar. Her ismin kendine özgü sıfat ve âlemi vardır. Tüm varlık hiyerarşisi bu isimlerin birbirini kapsamasından oluşur.",
+            "en": "Divine Names are fundamental sources of creation. The Qur'an mentions 99 Names. Each has its own attribute and realm. The entire hierarchy emerges from the containment and relation of these Names.",
+            "pt": "Os Nomes Divinos são fontes fundamentais da criação. O Alcorão menciona 99 Nomes. Cada um tem seu próprio atributo e reino. Toda a hierarquia emerge da contenção e relacionamento desses Nomes."
+          }
+        },
+        "neden-onemli": {
+          "title": {
+            "tr": "Tasavvuf Yolunda Önemi",
+            "en": "Importance in the Sufi Path",
+            "pt": "Importância no Caminho Sufi"
+          },
+          "content": {
+            "tr": "Mürid'in ilk çalışması her ismi çağırmak ve meditasyon yoluyla tecellisini deneyimlemektir. Her ismin benliği dönüştürme gücü vardır. Son aşamada mürid tüm isimlerin tecellisini kendi içinde barındıran İnsân-ı Kâmil olur.",
+            "en": "The murid's first practice is invoking each Name and experiencing its manifestation. Each has transformative power. The murid becomes the Perfect Human embodying all Names.",
+            "pt": "A primeira prática do murid é invocar cada Nome e experimentar sua manifestação. Cada um tem poder transformador. O murid se torna o Homem Perfeito encarnando todos os Nomes."
+          }
+        },
+        "kuran-baglantilari": [
+          {
+            "verse": "Qur'an 7:180",
+            "text": {
+              "tr": "\"Allah'ın En Güzel İsimleri vardır; O'nu bu isimler ile çağırın.\"",
+              "en": "\"To Allah belong the Most Beautiful Names, so call upon Him by them.\"",
+              "pt": "\"A Allah pertencem os Nomes Mais Belos, então invoquem-no por eles.\""
+            },
+            "interpretation": {
+              "tr": "İsimleri çağırmak Tanrı'nın çeşitli yönlerine erişimin yoludur.",
+              "en": "Calling upon the Names is the path to accessing God's dimensions.",
+              "pt": "Invocar os Nomes é o caminho para acessar as dimensões de Deus."
+            }
+          },
+          {
+            "verse": "Qur'an 59:24",
+            "text": {
+              "tr": "\"Ona Esmâ-i Hüsnâ ait; gökler ve yerdeki bütün varlıklar O'nu tesbih eder.\"",
+              "en": "\"To Him belong the Most Beautiful Names; all glorify Him.\"",
+              "pt": "\"A Ele pertencem os Nomes Mais Belos; todos O glorificam.\""
+            },
+            "interpretation": {
+              "tr": "Tüm varlıklar ilgili oldukları isimleri tesbih ederek O'nu tanıtırlar.",
+              "en": "All beings glorify God through the Names related to them.",
+              "pt": "Todos os seres glorificam Deus através dos Nomes relacionados a eles."
+            }
+          }
+        ],
+        "ibn-arabi-ifadeleri": [
+          {
+            "quote": {
+              "tr": "\"Her isim bütün ilahi sıfatları içinde barındırır; ama her isim kendi hususiyetiyle öne çıkar.\"",
+              "en": "\"Each Name contains all divine attributes, yet each emphasizes its particular quality.\"",
+              "pt": "\"Cada Nome contém todos os atributos divinos, mas cada um enfatiza sua qualidade particular.\""
+            },
+            "source": {
+              "tr": "Fütûhât-ı Mekkiyye",
+              "en": "Meccan Illuminations",
+              "pt": "Iluminações de Meca"
+            }
+          }
+        ],
+        "bagli-kavramlar": [
+          {
+            "id": "dhat",
+            "tr": "Zât (Kaynağı)",
+            "en": "The Essence",
+            "pt": "A Essência"
+          },
+          {
+            "id": "tecelli",
+            "tr": "Tecelli (Aracı)",
+            "en": "Manifestation",
+            "pt": "Manifestação"
+          },
+          {
+            "id": "insan-kamil",
+            "tr": "İnsân-ı Kâmil (Aynaması)",
+            "en": "Perfect Human",
+            "pt": "Homem Perfeito"
+          }
+        ]
+      }
+    },
+    "ayan-sabite": {
+      "id": "ayan-sabite",
+      "title": {
+        "tr": "A'yân-ı Sâbite",
+        "en": "Immutable Entities",
+        "pt": "Entidades Imutáveis"
+      },
+      "summary": {
+        "tr": "Yaratılmadan önce Tanrı'nın Bilgisinde sabitlenmiş, değişmez varlık potansiyelleri; her yaratık kendi A'yân'ından tecelli eder.",
+        "en": "Fixed essences established in God's Knowledge before creation; each being manifests from its Ayn.",
+        "pt": "Essências fixas estabelecidas no Conhecimento de Deus antes da criação; cada ser se manifesta de seu Ayn."
+      },
+      "layers": {
+        "mesela": {
+          "title": {
+            "tr": "Günlük Hayattan Mesela",
+            "en": "Everyday Example",
+            "pt": "Exemplo do Dia a Dia"
+          },
+          "content": {
+            "tr": "Mimar tasarımı zihninde tamamlar. Tasarım binanın kalıbıdır. Benzer şekilde Tanrı'nın Bilgisinde her varlığın özü (A'yân-ı Sâbite) sabitlenmiştir.",
+            "en": "An architect perfects the design in mind. The design is the mold. Similarly, God's Knowledge contains every being's essence before creation.",
+            "pt": "Um arquiteto aperfeiçoa o projeto em mente. O projeto é o molde. Similarmente, o Conhecimento de Deus contém a essência de todo ser antes da criação."
+          }
+        },
+        "vahdet-vucud-baglantisi": {
+          "title": {
+            "tr": "Vahdet-i Vücûd'daki Yeri",
+            "en": "Place in Unity of Being",
+            "pt": "Lugar na Unidade do Ser"
+          },
+          "content": {
+            "tr": "A'yân-ı Sâbite, Vücûd-u Mutlak ve Adem arasında ara mertebedir. Yaratılı varlıklar kendi A'yân'larından tecelli ederler—ne Tanrı'dırlar ne de saf yokluk.",
+            "en": "Immutable Entities are intermediary between Absolute Being and nothingness. Created beings manifest from their Entities—neither God nor pure nothingness.",
+            "pt": "As Entidades Imutáveis são intermediárias entre o Ser Absoluto e o nada. Os seres criados se manifestam de suas Entidades — nem Deus nem puro nada."
+          }
+        },
+        "aciklama": {
+          "title": {
+            "tr": "Teknik Açıklama",
+            "en": "Technical Explanation",
+            "pt": "Explicação Técnica"
+          },
+          "content": {
+            "tr": "A'yân-ı Sâbite, yaratmadan evvel Tanrı'nın Ezelî Bilgisinde sabitlenmişlerdir. Her varlık mutlak olarak Tanrı tarafından bilindiğinden, bu bilinme bir 'Ayn' oluşturur. A'yân'lar kendileri varlık değildir—sadece Tanrı'nın Bilgisinde sabitlenmiş potansiyellerdirler.",
+            "en": "Immutable Entities are established in God's Eternal Knowledge before creation. Since every being is known absolutely, this knowledge constitutes its Ayn. Entities are not existence—merely potentialities fixed in God's Knowledge.",
+            "pt": "As Entidades Imutáveis estão estabelecidas no Conhecimento Eterno de Deus antes da criação. Já que todo ser é conhecido absolutamente, este conhecimento constitui seu Ayn. As Entidades não são existência — meramente potencialidades fixas no Conhecimento de Deus."
+          }
+        },
+        "neden-onemli": {
+          "title": {
+            "tr": "Mürid'in Yolculuğunda",
+            "en": "In the Murid's Journey",
+            "pt": "Na Jornada do Murid"
+          },
+          "content": {
+            "tr": "Mürid kendi A'yân'ını bilince 'Ben neyim?' sorusunun cevabını bulur. Bu benlik yok etme (Fenâ) sürecinin temeli olur.",
+            "en": "When the murid recognizes their Ayn, they find the answer to 'What am I?' This is the foundation of self-annihilation (Fana).",
+            "pt": "Quando o murid reconhece seu Ayn, descobre a resposta para 'Quem sou?' Esta é a base da auto-aniquilação (Fana)."
+          }
+        },
+        "kuran-baglantilari": [
+          {
+            "verse": "Qur'an 22:47",
+            "text": {
+              "tr": "\"Senin Rabb'inin nezdinde bir gün, sizin sayıtlığınız bin senedir.\"",
+              "en": "\"A day with your Lord is like a thousand years of your reckoning.\"",
+              "pt": "\"Um dia com seu Senhor é como mil anos de sua contagem.\""
+            },
+            "interpretation": {
+              "tr": "Tanrı'nın Bilgisinde zaman yoktur; tüm varlıklar ezelde sabittir.",
+              "en": "In God's Knowledge, time does not exist; all beings are eternally fixed.",
+              "pt": "No Conhecimento de Deus, o tempo não existe; todos os seres estão eternamente fixos."
+            }
+          },
+          {
+            "verse": "Qur'an 57:22",
+            "text": {
+              "tr": "\"Hiçbir musibetki yere ve sizin nefslerinizde olup bitmeden, onları size müjdeler ki hiç üzülüp yapmazsiniz.\"",
+              "en": "\"No disaster strikes except that it is inscribed before We create it.\"",
+              "pt": "\"Nenhuma desgraça acontece, exceto que está inscrita antes de a criarmos.\""
+            },
+            "interpretation": {
+              "tr": "Tanrı'nın Bilgisinde tüm olaylar önceden bilinmiş ve sabitlenmiştir.",
+              "en": "In God's Knowledge, all events are pre-known and fixed.",
+              "pt": "No Conhecimento de Deus, todos os eventos são pré-conhecidos e fixos."
+            }
+          }
+        ],
+        "ibn-arabi-ifadeleri": [
+          {
+            "quote": {
+              "tr": "\"A'yân-ı Sâbite, Tanrı'nın Bilgisinde sabitlenmiş varlık essensiyasıdır. Onlar varlık değildir ama adem de değildir.\"",
+              "en": "\"Immutable Entities are being fixed in God's Knowledge. They are neither existence nor nonexistence.\"",
+              "pt": "\"As Entidades Imutáveis são o ser fixo no Conhecimento de Deus. Elas não são existência nem não-existência.\""
+            },
+            "source": {
+              "tr": "Fütûhât-ı Mekkiyye",
+              "en": "Meccan Illuminations",
+              "pt": "Iluminações de Meca"
+            }
+          }
+        ],
+        "bagli-kavramlar": [
+          {
+            "id": "sifat-asma",
+            "tr": "Esmâ-i Hüsnâ (Belirler)",
+            "en": "Divine Names",
+            "pt": "Nomes Divinos"
+          },
+          {
+            "id": "tecelli",
+            "tr": "Tecelli (Giydirir)",
+            "en": "Manifestation",
+            "pt": "Manifestação"
+          },
+          {
+            "id": "fana",
+            "tr": "Fenâ (Ayn'ı bilmek)",
+            "en": "Annihilation",
+            "pt": "Aniquilação"
+          }
+        ]
+      }
+    },
+    "tecelli": {
+      "id": "tecelli",
+      "title": {
+        "tr": "Tecellî",
+        "en": "Manifestation",
+        "pt": "Manifestação"
+      },
+      "summary": {
+        "tr": "Tanrı'nın kendisini giyinme; her moment her varlık Tanrı'nın yeni bir tecellisidir.",
+        "en": "God revealing Himself; every moment is a fresh manifestation of Divinity.",
+        "pt": "Deus se revelando; cada momento é uma manifestação fresca da Divindade."
+      },
+      "layers": {
+        "mesela": {
+          "title": {
+            "tr": "Günlük Hayattan Mesela",
+            "en": "Everyday Example",
+            "pt": "Exemplo do Dia a Dia"
+          },
+          "content": {
+            "tr": "Oyuncunun farklı rolleri. Oyuncu aynı kişi ama her rol farklı yönünü gösterir. Yaratılı varlıklar Tanrı'nın tecellileridir.",
+            "en": "An actor playing many roles. The actor is the same but each role reveals a different facet. Created beings are God's manifestations.",
+            "pt": "Um ator representando muitos papéis. O ator é o mesmo mas cada papel revela uma faceta diferente. Os seres criados são manifestações de Deus."
+          }
+        },
+        "vahdet-vucud-baglantisi": {
+          "title": {
+            "tr": "Vahdet-i Vücûd'un Dinamik Yüzü",
+            "en": "Dynamic Face of Unity of Being",
+            "pt": "Rosto Dinâmico da Unidade do Ser"
+          },
+          "content": {
+            "tr": "Tecelli Vahdet-i Vücûd'un yaşayan yüzüdür. Tanrı ezelde bâkî iken tecellileri her an yenilenir. Varlık = tecellinin süreci.",
+            "en": "Manifestation is the living face of Unity of Being. While God is eternal, manifestations renew each moment. Existence equals continuous manifestation.",
+            "pt": "A manifestação é o rosto vivo da Unidade do Ser. Enquanto Deus é eterno, as manifestações se renovam a cada momento. A existência equivale a manifestação contínua."
+          }
+        },
+        "aciklama": {
+          "title": {
+            "tr": "Teknik Açıklama",
+            "en": "Technical Explanation",
+            "pt": "Explicação Técnica"
+          },
+          "content": {
+            "tr": "Tecellî Tanrı'nın İsimler yoluyla kendisini giyinmesidir. Tecelli an-be-an gerçekleşir. Rahman ismi tecelli ettiğinde merhamet oluşur. Tecellinin olmadığı bir an yoktur.",
+            "en": "Manifestation is God clothing Himself through the Names moment by moment. When Mercy manifests, compassion appears. No moment without manifestation.",
+            "pt": "A manifestação é Deus se vestindo através dos Nomes momento a momento. Quando a Misericórdia se manifesta, a compaixão aparece. Nenhum momento sem manifestação."
+          }
+        },
+        "neden-onemli": {
+          "title": {
+            "tr": "Mürid'in Üstün Hedefi",
+            "en": "For the Murid's Supreme Goal",
+            "pt": "Para o Objetivo Supremo do Murid"
+          },
+          "content": {
+            "tr": "Mürid tecellileri müşahede etmeyi öğrenir. Her varlıkta Tanrı'nın tecellisini görüp işlemeyi sezer. Son hedef mürid'in kendisinin de tecellisi olmasıdır.",
+            "en": "The murid learns to witness manifestations. In each being they perceive God's disclosure. The ultimate goal is becoming a manifestation.",
+            "pt": "O murid aprende a testemunhar as manifestações. Em cada ser percebem a revelação de Deus. O objetivo final é se tornar uma manifestação."
+          }
+        },
+        "kuran-baglantilari": [
+          {
+            "verse": "Qur'an 55:29",
+            "text": {
+              "tr": "\"Her gün O bir işle meşguldür.\"",
+              "en": "\"Every day He is upon some task.\"",
+              "pt": "\"A cada dia Ele está ocupado com alguma tarefa.\""
+            },
+            "interpretation": {
+              "tr": "Tanrı'nın işi durmamaz; tecelliler her an yenilenir.",
+              "en": "God's work never ceases; manifestations renew each instant.",
+              "pt": "A obra de Deus nunca cessa; as manifestações se renovam a cada instante."
+            }
+          },
+          {
+            "verse": "Qur'an 2:117",
+            "text": {
+              "tr": "\"Bir şey olmak isterse, O'nun söylediği budur: 'Ol! ve olur.'\"",
+              "en": "\"When He decrees a matter, He says 'Be!' and it is.\"",
+              "pt": "\"Quando Ele decreta um assunto, Ele diz 'Seja!' e é.\""
+            },
+            "interpretation": {
+              "tr": "Tanrı'nın emri tecelli ve varlık yaratmaktır.",
+              "en": "God's command brings manifestation and creation.",
+              "pt": "O comando de Deus traz manifestação e criação."
+            }
+          }
+        ],
+        "ibn-arabi-ifadeleri": [
+          {
+            "quote": {
+              "tr": "\"Her varlık Tanrı'nın bir tecellisidir. Onu görmek tecellisini görmektir; onu bilmek İsimlerinden birini bilmektir.\"",
+              "en": "\"Every being is a manifestation of God. To see it is to see His manifestation; to know it is to know one of His Names.\"",
+              "pt": "\"Todo ser é uma manifestação de Deus. Vê-lo é ver Sua manifestação; conhecê-lo é conhecer um de Seus Nomes.\""
+            },
+            "source": {
+              "tr": "Fütûhât-ı Mekkiyye",
+              "en": "Meccan Illuminations",
+              "pt": "Iluminações de Meca"
+            }
+          }
+        ],
+        "bagli-kavramlar": [
+          {
+            "id": "sifat-asma",
+            "tr": "Esmâ-i Hüsnâ (Aracı)",
+            "en": "Divine Names",
+            "pt": "Nomes Divinos"
+          },
+          {
+            "id": "ayan-sabite",
+            "tr": "A'yân-ı Sâbite (Kaynağı)",
+            "en": "Immutable Entities",
+            "pt": "Entidades Imutáveis"
+          },
+          {
+            "id": "vahdet-i-vucud",
+            "tr": "Vahdet-i Vücûd (Ontolojisi)",
+            "en": "Unity of Being",
+            "pt": "Unidade do Ser"
+          },
+          {
+            "id": "insan-kamil",
+            "tr": "İnsân-ı Kâmil (En Tamamı)",
+            "en": "Perfect Human",
+            "pt": "Homem Perfeito"
+          }
+        ]
+      }
+    },
+    "alem-ervah": {
+      "id": "alem-ervah",
+      "title": {
+        "tr": "Âlem-i Ervâh",
+        "en": "Realm of Spirits",
+        "pt": "Reino dos Espíritos"
+      },
+      "summary": {
+        "tr": "Tanrı'nın yaratılıştan sonra en soyut âlemi; ruh, irade ve bilginin alanı; tüm bedenli varlıkların ruhanî mevcudiyyeti.",
+        "en": "The most subtle realm after creation; domain of spirit, will, and knowledge; where all beings' spiritual existence originates.",
+        "pt": "O reino mais sutil após a criação; domínio de espírito, vontade e conhecimento; onde a existência espiritual de todos os seres se origina."
+      },
+      "layers": {
+        "mesela": {
+          "title": {
+            "tr": "Günlük Hayattan Mesela",
+            "en": "Everyday Example",
+            "pt": "Exemplo do Dia a Dia"
+          },
+          "content": {
+            "tr": "Mühendis köprüyü tasarlarken aklında tasarımını oluşturur. Bu tasarım henüz fiziksel değildir ama çok gerçektir. Âlem-i Ervâh tüm fiziksel varlıkların ruhani merkezi.",
+            "en": "An engineer designing a bridge creates the blueprint in mind. Not yet physical but very real. The Spiritual Realm is where all physical beings first exist spiritually.",
+            "pt": "Um engenheiro projetando uma ponte cria o projeto em mente. Não é ainda físico mas muito real. O Reino Espiritual é onde todos os seres físicos primeiro existem espiritualmente."
+          }
+        },
+        "vahdet-vucud-baglantisi": {
+          "title": {
+            "tr": "Vahdet-i Vücûd'daki Yeri",
+            "en": "Place in Unity of Being",
+            "pt": "Lugar na Unidade do Ser"
+          },
+          "content": {
+            "tr": "Âlem-i Ervâh, A'yân-ı Sâbite'nin tecellisidir. Tecellinin Zât'a en yakın mertebesinde bulunur. Yaratılı olsa da Zât'a en yakın âlem.",
+            "en": "The Spiritual Realm is manifestation of Immutable Entities. It is closest to the Essence. Though created, it is the closest realm to the Essence.",
+            "pt": "O Reino Espiritual é manifestação das Entidades Imutáveis. É o mais próximo da Essência. Embora criado, é o reino mais próximo da Essência."
+          }
+        },
+        "aciklama": {
+          "title": {
+            "tr": "Teknik Açıklama",
+            "en": "Technical Explanation",
+            "pt": "Explicação Técnica"
+          },
+          "content": {
+            "tr": "Âlem-i Ervâh ontolojide Zât'a en yakın âlem. Varlıklar burada saf ruh, bilgi, bilinç ve iradedir. Fiziksel bedenin ruhanî benzeri burada vardır—henüz madde giyinmemiş ama tamamen tasarlanmış.",
+            "en": "The Spiritual Realm is ontologically closest to the Essence. Beings here are pure spirit, knowledge, consciousness, and will. Physical bodies' spiritual counterparts exist here—not yet clothed in matter but fully designed.",
+            "pt": "O Reino Espiritual é ontologicamente o mais próximo da Essência. Os seres aqui são espírito puro, conhecimento, consciência e vontade. Os contrapartes espirituais dos corpos físicos existem aqui — ainda não vestidos de matéria mas completamente projetados."
+          }
+        },
+        "neden-onemli": {
+          "title": {
+            "tr": "Mürid'in Yolculuğunda",
+            "en": "In the Murid's Journey",
+            "pt": "Na Jornada do Murid"
+          },
+          "content": {
+            "tr": "Mürid'in nihai irtifaı sonunda kendisini bu âlemde bulur. Bedensel dünyadaki tüm haller bu ruhani âlemin aksıdır. Tanrı'nın İsimlerini bulma bu âlemde başlar ve burada tasaddı edilir.",
+            "en": "The murid's ultimate elevation leads to this realm. All physical states are reflections of this spiritual realm. Seeking God's Names begins here and is perfected here.",
+            "pt": "A elevação final do murid o leva a este reino. Todos os estados físicos são reflexos deste reino espiritual. Buscar os Nomes de Deus começa aqui e é aperfeiçoado aqui."
+          }
+        },
+        "kuran-baglantilari": [
+          {
+            "verse": "Qur'an 23:12-14",
+            "text": {
+              "tr": "\"İnsanı en güzel şekilde yarattık. Sonra onu aşağı mertebeye indirdik.\"",
+              "en": "\"We created man in the best form. Then We reduced him to the lowest...\"",
+              "pt": "\"Criamos o homem na melhor forma. Depois o reduzimos ao mais baixo...\""
+            },
+            "interpretation": {
+              "tr": "İnsan Âlem-i Ervâh'ta ahsen taksim'de yaratılır; sonra fiziksel bedene giydirilir.",
+              "en": "Man is first created in the Spiritual Realm in the best form, then clothed in body.",
+              "pt": "O homem é primeiro criado no Reino Espiritual na melhor forma, depois vestido em corpo."
+            }
+          },
+          {
+            "verse": "Qur'an 2:34",
+            "text": {
+              "tr": "\"Meleklere secde et dedik, hepsi secde ettiler; ancak İblis...\"",
+              "en": "\"When We said to the angels 'Prostrate to Adam,' they all prostrated...\"",
+              "pt": "\"Quando dissemos aos anjos 'Prostrem-se diante de Adão,' todos se prostraram...\""
+            },
+            "interpretation": {
+              "tr": "Meleklerin Âdem'e secde etmesi Âlem-i Ervâh'taki bir gerçekliktir.",
+              "en": "Angels' prostration to Adam is a spiritual reality in this realm.",
+              "pt": "A prostração dos anjos diante de Adão é uma realidade espiritual neste reino."
+            }
+          }
+        ],
+        "ibn-arabi-ifadeleri": [
+          {
+            "quote": {
+              "tr": "\"Âlem-i Ervâh'ta tüm varlıklar ruh, bilgi ve iradedir. Orada körpü kalmaz; hepsi hakiki gerçeklerin şahidleridir.\"",
+              "en": "\"In the Spiritual Realm all beings are spirit, knowledge, and will. No one remains ignorant; all witness true realities.\"",
+              "pt": "\"No Reino Espiritual todos os seres são espírito, conhecimento e vontade. Ninguém permanece ignorante; todos testemunham verdadeiras realidades.\""
+            },
+            "source": {
+              "tr": "Fütûhât-ı Mekkiyye",
+              "en": "Meccan Illuminations",
+              "pt": "Iluminações de Meca"
+            }
+          }
+        ],
+        "bagli-kavramlar": [
+          {
+            "id": "alem-misal",
+            "tr": "Âlem-i Misâl (Alt tabakası)",
+            "en": "Realm of Image",
+            "pt": "Reino da Imagem"
+          },
+          {
+            "id": "alem-ecsam",
+            "tr": "Âlem-i Ecsâm (En alt)",
+            "en": "Realm of Bodies",
+            "pt": "Reino dos Corpos"
+          },
+          {
+            "id": "insan-kamil",
+            "tr": "İnsân-ı Kâmil (Bu âlemde)",
+            "en": "Perfect Human",
+            "pt": "Homem Perfeito"
+          }
+        ]
+      }
+    },
+    "alem-misal": {
+      "id": "alem-misal",
+      "title": {
+        "tr": "Âlem-i Misâl",
+        "en": "Realm of Image",
+        "pt": "Reino da Imagem"
+      },
+      "summary": {
+        "tr": "Ruh ile bedenli âlem arasında hayal/imaj âlemi; rüyalar ve ilhâm burada oluşur; beden olmayan ama görülebilir varlıklar.",
+        "en": "Realm of imagination between spirit and body; dreams and inspiration occur here; incorporeal yet perceptible beings.",
+        "pt": "Reino da imaginação entre espírito e corpo; sonhos e inspiração ocorrem aqui; seres incorpóreos mas perceptíveis."
+      },
+      "layers": {
+        "mesela": {
+          "title": {
+            "tr": "Günlük Hayattan Mesela",
+            "en": "Everyday Example",
+            "pt": "Exemplo do Dia a Dia"
+          },
+          "content": {
+            "tr": "Uykudaki rüya. Rüyada görünen şeyler fiziksel değildir ama çok gerçek algılanır. Âlem-i Misâl benzer şekilde; varlıklar maddi değildir ama hayal biçiminde görülür.",
+            "en": "A dream while sleeping. What we see is not physical yet perceived very realistically. The Realm of Image is similar; beings are not material but perceived as images.",
+            "pt": "Um sonho enquanto dormindo. O que vemos não é físico mas percebido muito realisticamente. O Reino da Imagem é similar; seres não são materiais mas percebidos como imagens."
+          }
+        },
+        "vahdet-vucud-baglantisi": {
+          "title": {
+            "tr": "Vahdet-i Vücûd'daki Yeri",
+            "en": "Place in Unity of Being",
+            "pt": "Lugar na Unidade do Ser"
+          },
+          "content": {
+            "tr": "Âlem-i Misal Âlem-i Ervâh (ince) ve Âlem-i Ecsâm (kalın) arasında ara derecedir. Tecellinin bu derecedeki tezahürü zihne ve hayal gücüne erişimdir.",
+            "en": "The Realm of Image stands between the Spiritual (subtle) and Physical (dense) Realms. Manifestation here is accessible to mind and imagination.",
+            "pt": "O Reino da Imagem fica entre os Reinos Espiritual (sutil) e Físico (denso). A manifestação aqui é acessível à mente e imaginação."
+          }
+        },
+        "aciklama": {
+          "title": {
+            "tr": "Teknik Açıklama",
+            "en": "Technical Explanation",
+            "pt": "Explicação Técnica"
+          },
+          "content": {
+            "tr": "Âlem-i Misâl adı gibi hayalî ama gerçek bir âlem. Varlıklar madde içermez ama hayal/tasvir şeklindedir. İnsanın rüyaları, ilham, vahyi bu âlemde geçer. Burada şekil özgürce dönüşür ama rastgele değildir.",
+            "en": "The Realm of Image is imaginal yet real. Beings contain no matter but exist as images. Human dreams, inspiration, revelation occur here. Forms transform freely yet not randomly.",
+            "pt": "O Reino da Imagem é imaginal ainda que real. Os seres não contêm matéria mas existem como imagens. Sonhos humanos, inspiração, revelação ocorrem aqui. As formas se transformam livremente mas não aleatoriamente."
+          }
+        },
+        "neden-onemli": {
+          "title": {
+            "tr": "Mürid'in Keşf Yolunda",
+            "en": "On the Murid's Path of Discovery",
+            "pt": "Na Caminho do Murid de Descoberta"
+          },
+          "content": {
+            "tr": "Mürid meditasyon yoluyla bu âleme erişebilir. Burada ilham, gerçek rüya ve hayal ürünü arasındaki farkı sezer. Bu âlemin gücünü anlayan mürid niyetini burada şekillendir.",
+            "en": "The murid can access this realm through meditation. Here they discern inspiration, true dreams, and mere imagination. Understanding this power, the murid shapes intention here.",
+            "pt": "O murid pode acessar este reino através da meditação. Aqui discernem inspiração, sonhos verdadeiros e mera imaginação. Compreendendo este poder, o murid forma a intenção aqui."
+          }
+        },
+        "kuran-baglantilari": [
+          {
+            "verse": "Qur'an 37:102-105",
+            "text": {
+              "tr": "\"Babası: 'Ey oğlum, rüyada seni kurban verdiğimi gördüm. Hükmü ne?'\"",
+              "en": "\"His father said: 'O my son, I saw in a dream that I should sacrifice you...'\"",
+              "pt": "\"Seu pai disse: 'Ó meu filho, vi em sonho que devo sacrificá-lo...'\""
+            },
+            "interpretation": {
+              "tr": "Peygamber İbrâhim'in rüyası Tanrı'nın gerçek emri idi.",
+              "en": "Prophet Abraham's dream was God's true command.",
+              "pt": "O sonho do Profeta Abraão era o verdadeiro comando de Deus."
+            }
+          },
+          {
+            "verse": "Qur'an 12:4-6",
+            "text": {
+              "tr": "\"Yusuf: 'Babacığım, ben on bir yıldız, güneş ve ayı (rüyada) gördüm...'\"",
+              "en": "\"Joseph said: 'Father, I saw eleven stars and the sun and moon...'\"",
+              "pt": "\"José disse: 'Pai, vi onze estrelas, o sol e a lua...'\""
+            },
+            "interpretation": {
+              "tr": "Yusuf'un rüyası ilahî bir mesajdır.",
+              "en": "Joseph's dream is divine message.",
+              "pt": "O sonho de José é mensagem divina."
+            }
+          }
+        ],
+        "ibn-arabi-ifadeleri": [
+          {
+            "quote": {
+              "tr": "\"Âlem-i Misal, ruh ile beden arasında esneyip durmayan bir âlemdir. Hayal edilen şekil orada gerçek ölçüdedir.\"",
+              "en": "\"The Realm of Image stretches between spirit and body. An imagined form has real measure there.\"",
+              "pt": "\"O Reino da Imagem se estende entre espírito e corpo. Uma forma imaginada tem medida real lá.\""
+            },
+            "source": {
+              "tr": "Fütûhât-ı Mekkiyye",
+              "en": "Meccan Illuminations",
+              "pt": "Iluminações de Meca"
+            }
+          }
+        ],
+        "bagli-kavramlar": [
+          {
+            "id": "alem-ervah",
+            "tr": "Âlem-i Ervâh (Yukarı)",
+            "en": "Realm of Spirits",
+            "pt": "Reino dos Espíritos"
+          },
+          {
+            "id": "alem-ecsam",
+            "tr": "Âlem-i Ecsâm (Aşağı)",
+            "en": "Realm of Bodies",
+            "pt": "Reino dos Corpos"
+          },
+          {
+            "id": "ruyayi-sadika",
+            "tr": "Rü'yâ-i Sâdika (Gerçek Rüya)",
+            "en": "True Dream",
+            "pt": "Sonho Verdadeiro"
+          }
+        ]
+      }
+    },
+    "alem-ecsam": {
+      "id": "alem-ecsam",
+      "title": {
+        "tr": "Âlem-i Ecsâm",
+        "en": "Realm of Bodies",
+        "pt": "Reino dos Corpos"
+      },
+      "summary": {
+        "tr": "Fiziksel, maddi, gözle görülebilir âlem; en yoğun ve Zât'tan en uzak mertebesinde; tüm ruh âlemlerinin son tezahürü.",
+        "en": "The physical, material, visible realm; most dense and most distant from the Essence; final manifestation of all spiritual realms.",
+        "pt": "O reino físico, material, visível; mais denso e mais distante da Essência; manifestação final de todos os reinos espirituais."
+      },
+      "layers": {
+        "mesela": {
+          "title": {
+            "tr": "Günlük Hayattan Mesela",
+            "en": "Everyday Example",
+            "pt": "Exemplo do Dia a Dia"
+          },
+          "content": {
+            "tr": "Heykeltıraş önce aklında, sonra kağıda, son olarak taş/bronz'da heykel yaratır. Taş heykel en solid ama temeli yukarıdaki âlemlerdedir.",
+            "en": "A sculptor first imagines, then sketches, then carves in stone. The stone sculpture is most solid but rooted in higher realms.",
+            "pt": "Um escultor primeiro imagina, depois esboça, depois talha em pedra. A escultura de pedra é mais sólida mas enraizada em reinos superiores."
+          }
+        },
+        "vahdet-vucud-baglantisi": {
+          "title": {
+            "tr": "Vahdet-i Vücûd'daki Yeri",
+            "en": "Place in Unity of Being",
+            "pt": "Lugar na Unidade do Ser"
+          },
+          "content": {
+            "tr": "Âlem-i Ecsâm, tecellinin en yoğun ve en aldatıcı mertebesinde olduğu âlemdir. Burası da Tanrı'nın tecellisidir; tecelli sadece en gizli formda vardır.",
+            "en": "The Physical Realm is where manifestation is densest yet most deceptive. This realm is also God's manifestation; just most veiled.",
+            "pt": "O Reino Físico é onde a manifestação é mais densa mas mais enganosa. Este reino é também a manifestação de Deus; apenas mais velada."
+          }
+        },
+        "aciklama": {
+          "title": {
+            "tr": "Teknik Açıklama",
+            "en": "Technical Explanation",
+            "pt": "Explicação Técnica"
+          },
+          "content": {
+            "tr": "Âlem-i Ecsâm yaratılı varlıkların en yoğun mertebesinde bulunduğu âlem. Fizik kurallar burada açıkça görülür. Bu âlem Âlem-i Misal ve Âlem-i Ervâh'ın tezahürüdür ama en katı biçimde. Madde tecellinin en kontrakteli formudur.",
+            "en": "The Corporeal Realm where created beings exist most densely. Physical laws operate plainly. This realm is manifestation of Image and Spiritual Realms but in most solid form. Matter is manifestation's most contracted state.",
+            "pt": "O Reino Corpóreo onde os seres criados existem mais densamente. As leis físicas operam claramente. Este reino é manifestação dos Reinos da Imagem e Espiritual na forma mais sólida. A matéria é o estado mais contraído da manifestação."
+          }
+        },
+        "neden-onemli": {
+          "title": {
+            "tr": "Mürid ve Mü'min için Önemi",
+            "en": "For Believer and Murid",
+            "pt": "Para Crente e Murid"
+          },
+          "content": {
+            "tr": "Mürid bu maddi âlemin görünüşteki katılığından kurtulur. Her fiziksel şey ruhani gerçekliğin yansıması. Bu anlayış mürid'in kalbini bu âlemden azat eder.",
+            "en": "The murid transcends the apparent rigidity of this material realm. Everything physical reflects spiritual reality. This liberates the murid's heart.",
+            "pt": "O murid transcende a rigidez aparente deste reino material. Tudo físico reflete realidade espiritual. Isto liberta o coração do murid."
+          }
+        },
+        "kuran-baglantilari": [
+          {
+            "verse": "Qur'an 67:2",
+            "text": {
+              "tr": "\"O, ölüm ve hayatı yaratmış: 7 kat göğü.\"",
+              "en": "\"He who created death and life... the seven heavens...\"",
+              "pt": "\"Aquele que criou a morte e a vida... os sete céus...\""
+            },
+            "interpretation": {
+              "tr": "Fiziksel evren bir sınav meydanıdır; ama arkasında ruhani muamma çalışır.",
+              "en": "The physical universe is a testing ground; spiritual truth operates behind it.",
+              "pt": "O universo físico é um campo de teste; a verdade espiritual opera por trás dele."
+            }
+          },
+          {
+            "verse": "Qur'an 41:53",
+            "text": {
+              "tr": "\"Ufuklarda ve kendi nefislerinde ayetlerini göstereceğiz.\"",
+              "en": "\"We will show them Our signs in the horizons and in themselves...\"",
+              "pt": "\"Mostraremos nossos sinais nos horizontes e em si mesmos...\""
+            },
+            "interpretation": {
+              "tr": "Fiziksel evren ve ruh içinde Tanrı'nın tecellileri görülür.",
+              "en": "God's manifestations are seen in the universe and within the soul.",
+              "pt": "As manifestações de Deus são vistas no universo e dentro da alma."
+            }
+          }
+        ],
+        "ibn-arabi-ifadeleri": [
+          {
+            "quote": {
+              "tr": "\"Madde, donmuş ışıktır. Eğer o taş ne olmuşsa ışığa dönerse ışığı görürdün.\"",
+              "en": "\"Matter is frozen light. If that stone returned to light, you'd see light.\"",
+              "pt": "\"A matéria é luz congelada. Se aquela pedra voltasse à luz, você veria luz.\""
+            },
+            "source": {
+              "tr": "Fütûhât-ı Mekkiyye",
+              "en": "Meccan Illuminations",
+              "pt": "Iluminações de Meca"
+            }
+          }
+        ],
+        "bagli-kavramlar": [
+          {
+            "id": "alem-misal",
+            "tr": "Âlem-i Misâl (Kaynağı)",
+            "en": "Realm of Image",
+            "pt": "Reino da Imagem"
+          },
+          {
+            "id": "alem-ervah",
+            "tr": "Âlem-i Ervâh (Üst mertebes)",
+            "en": "Realm of Spirits",
+            "pt": "Reino dos Espíritos"
+          },
+          {
+            "id": "insan",
+            "tr": "İnsan (Ecsâm'da yaşayan)",
+            "en": "Human",
+            "pt": "Humano"
+          }
+        ]
+      }
+    },
+    "kalp": {
+      "id": "kalp",
+      "title": {
+        "tr": "Kalp",
+        "en": "The Heart",
+        "pt": "O Coração"
+      },
+      "summary": {
+        "tr": "İnsanın bilginin ve Tanrı bilişinin merkezi; Akal-ı Azam ile bedensel zihni bağlayan ara mertebesinde; mürid'in yolculuğunun başında ve sonunda.",
+        "en": "Center of human knowledge and God-recognition; intermediary between Universal Intellect and bodily mind; where the murid's journey begins and ends.",
+        "pt": "Centro do conhecimento humano e reconhecimento de Deus; intermediário entre Intelecto Universal e mente corporal; onde a jornada do murid começa e termina."
+      },
+      "layers": {
+        "mesela": {
+          "title": {
+            "tr": "Günlük Hayattan Mesela",
+            "en": "Everyday Example",
+            "pt": "Exemplo do Dia a Dia"
+          },
+          "content": {
+            "tr": "Bilgisayar sunucusu makineyi kontrol eder; arayüz sadece görüntüleme. Kalp manevi sunucudur—oradan ruh ve bedene emirler çıkar.",
+            "en": "A server controls the computer; the interface is just display. The Heart is the spiritual server—commands emanate from it.",
+            "pt": "Um servidor controla o computador; a interface é apenas exibição. O Coração é o servidor espiritual — comandos emanam dele."
+          }
+        },
+        "vahdet-vucud-baglantisi": {
+          "title": {
+            "tr": "Vahdet-i Vücûd'un Görülme Yeri",
+            "en": "Where Unity of Being is Witnessed",
+            "pt": "Onde a Unidade do Ser é Testemunhada"
+          },
+          "content": {
+            "tr": "Kalp Vahdet-i Vücûd'u görmek için tek aynatan yüzey. Akal-ı Azam ve yaratılı varlıklar arasında köprüdür.",
+            "en": "The Heart is the only mirror for witnessing Unity of Being. The bridge between Universal Intellect and created beings.",
+            "pt": "O Coração é o único espelho para testemunhar a Unidade do Ser. A ponte entre Intelecto Universal e seres criados."
+          }
+        },
+        "aciklama": {
+          "title": {
+            "tr": "Teknik Açıklama",
+            "en": "Technical Explanation",
+            "pt": "Explicação Técnica"
+          },
+          "content": {
+            "tr": "Kalp (Qalb) İbn Arabi'nin sisteminde hem fiziksel organ hem de manevi merkez. Manevi kalp ruh ve zihni bağlar. Akal-ı Azam'dan ilham alır; bilgi kalp'te şekillenir.",
+            "en": "The Heart (Qalb) is both physical organ and spiritual center. The spiritual heart bridges spirit and mind. It receives illumination from Universal Intellect; knowledge is shaped here.",
+            "pt": "O Coração (Qalb) é tanto órgão físico quanto centro espiritual. O coração espiritual conecta espírito e mente. Recebe iluminação do Intelecto Universal; o conhecimento é moldado aqui."
+          }
+        },
+        "neden-onemli": {
+          "title": {
+            "tr": "Tasavvuf Yolunda En Merkezi",
+            "en": "Most Central in Sufism",
+            "pt": "Mais Central no Sufismo"
+          },
+          "content": {
+            "tr": "Mürid'in tüm yolculuğu kalbini temizlemek, açmak için yapılır. Son mertebesinde kalp Tanrı'nın aynasıdır.",
+            "en": "The murid's entire journey cleanses and opens the heart. At the final rank, the heart becomes God's perfect mirror.",
+            "pt": "A jornada inteira do murid limpa e abre o coração. No nível final, o coração se torna o espelho perfeito de Deus."
+          }
+        },
+        "kuran-baglantilari": [
+          {
+            "verse": "Qur'an 22:46",
+            "text": {
+              "tr": "\"Gözler değil, göğüste olan kalpler körmez olur.\"",
+              "en": "\"It is not the eyes that are blind, but the hearts in the breasts.\"",
+              "pt": "\"Não são os olhos que ficam cegos, mas os corações no peito.\""
+            },
+            "interpretation": {
+              "tr": "Tanrı'yı bilmenin engeli kalbin körrlüğüdür.",
+              "en": "The obstacle to knowing God is spiritual blindness of heart.",
+              "pt": "O obstáculo para conhecer Deus é cegueira espiritual do coração."
+            }
+          },
+          {
+            "verse": "Qur'an 39:22",
+            "text": {
+              "tr": "\"Kalbini Allahu'nun kulluğuna açıp ışıkta yürür.\"",
+              "en": "\"Whose heart Allah has opened to Islam walks in light...\"",
+              "pt": "\"Aquele cujo coração Allah abriu para o Islã caminha na luz...\""
+            },
+            "interpretation": {
+              "tr": "Kalbinin açılması Tanrı'nın ışığında yürümek demektir.",
+              "en": "Opening the heart means walking in God's light.",
+              "pt": "Abrir o coração significa caminhar na luz de Deus."
+            }
+          }
+        ],
+        "ibn-arabi-ifadeleri": [
+          {
+            "quote": {
+              "tr": "\"Kalp, Tanrı'nın Tronu'dur. Gözler sadece başka'yı görebilir ama kalp her an Tanrı'yı müşahede eder.\"",
+              "en": "\"The Heart is God's Throne. Eyes see only others, but the Heart perpetually witnesses God.\"",
+              "pt": "\"O Coração é o Trono de Deus. Os olhos veem apenas outros, mas o Coração testemunha perpetuamente Deus.\""
+            },
+            "source": {
+              "tr": "Fütûhât-ı Mekkiyye",
+              "en": "Meccan Illuminations",
+              "pt": "Iluminações de Meca"
+            }
+          }
+        ],
+        "bagli-kavramlar": [
+          {
+            "id": "sifat-asma",
+            "tr": "Esmâ-i Hüsnâ (Yansıma)",
+            "en": "Divine Names",
+            "pt": "Nomes Divinos"
+          },
+          {
+            "id": "tecelli",
+            "tr": "Tecelli (Gözetleme)",
+            "en": "Manifestation",
+            "pt": "Manifestação"
+          },
+          {
+            "id": "insan-kamil",
+            "tr": "İnsân-ı Kâmil (Aynası)",
+            "en": "Perfect Human",
+            "pt": "Homem Perfeito"
+          },
+          {
+            "id": "tazkiye",
+            "tr": "Tazkiye (Temizliği)",
+            "en": "Purification",
+            "pt": "Purificação"
+          }
+        ]
+      }
+    },
+    "fana": {
+      "id": "fana",
+      "title": {
+        "tr": "Fenâ",
+        "en": "Annihilation",
+        "pt": "Aniquilação"
+      },
+      "summary": {
+        "tr": "Benliğin yok olması; mürid'in kendi varlığının yokluğunu görmesi; Tanrı'dan başkasının olmadığını deneyimlemesi.",
+        "en": "The annihilation of self; the murid's realization of their nonexistence; experiencing that nothing exists but God.",
+        "pt": "A aniquilação do eu; a realização do murid sobre sua inexistência; experimentar que nada existe senão Deus."
+      },
+      "layers": {
+        "mesela": {
+          "title": {
+            "tr": "Günlük Hayattan Mesela",
+            "en": "Everyday Example",
+            "pt": "Exemplo do Dia a Dia"
+          },
+          "content": {
+            "tr": "Bir tuz tanesi denize düşerse tuzluluğu kaybolurmı? Hayır, o zaten suyla bir olmuştur. Benzer şekilde mürid kendi benliğinin yok olduğunu anlayınca, aslında asla kendi başına varlığı olmadığını fark eder.",
+            "en": "A salt particle dissolves in the ocean. Does it lose its saltiness? No, it has become one with water. Similarly, when the murid realizes their nonexistence, they see they never had independent being.",
+            "pt": "Uma partícula de sal se dissolve no oceano. Perde sua salinidade? Não, tornou-se um com a água. Similarmente, quando o murid realiza sua inexistência, vê que nunca teve ser independente."
+          }
+        },
+        "vahdet-vucud-baglantisi": {
+          "title": {
+            "tr": "Vahdet-i Vücûd'daki Yeri",
+            "en": "Place in Unity of Being",
+            "pt": "Lugar na Unidade do Ser"
+          },
+          "content": {
+            "tr": "Fenâ, Vahdet-i Vücûd'u deneyimlemektir. Mürid kendi yokluğunu gördüğünde, Tanrı'nın varlığını direkt yaşar. Bu Vahdet-i Vücûd'un bilgiden deneyime geçişidir.",
+            "en": "Fana is experiencing Unity of Being. When the murid witnesses their nonexistence, they directly experience God's Being. This is the transition from knowledge to lived reality.",
+            "pt": "Fana é experimentar a Unidade do Ser. Quando o murid testemunha sua inexistência, experimenta diretamente o Ser de Deus. Esta é a transição do conhecimento para a realidade vivida."
+          }
+        },
+        "aciklama": {
+          "title": {
+            "tr": "Teknik Açıklama",
+            "en": "Technical Explanation",
+            "pt": "Explicação Técnica"
+          },
+          "content": {
+            "tr": "Fenâ (Fana), mürid'in kendi varlığının yokluğunu (adem) deneyimlemesidir. İbn Arabi'ye göre fenâ değişik derecelerde olur: ismin fenâsı, sıfatın fenâsı, zâtın fenâsı. En yüksek derece, mürid'in Tanrı'nın varlığından başka hiçbir şey görmemesidir.",
+            "en": "Fana is the murid's experiential realization of their nonexistence. According to Ibn Arabi, it occurs in degrees: annihilation of Name, of Attribute, of Essence. The highest degree is seeing only God's Being exist.",
+            "pt": "Fana é a realização experiencial do murid sobre sua inexistência. De acordo com Ibn Arabi, ocorre em graus: aniquilação do Nome, do Atributo, da Essência. O grau mais alto é ver apenas o Ser de Deus existir."
+          }
+        },
+        "neden-onemli": {
+          "title": {
+            "tr": "Tasavvuf Yolunda Dönüm Noktası",
+            "en": "Turning Point in Sufism",
+            "pt": "Ponto de Virada no Sufismo"
+          },
+          "content": {
+            "tr": "Fenâ olmaksızın Bakâ (subsistence) mümkün değildir. Fenâ mürid'in eski benliğinin ölümü, Bakâ ise Tanrı'da yeniden diriliş demektir. Fenâ tasavvuf yolunun merkezi ve en tehlikeli merhalesinde bulunur.",
+            "en": "Fana without Baqa (subsistence) is impossible. Fana is the death of the old self; Baqa is resurrection in God. Fana is the central and most dangerous station of the Sufi path.",
+            "pt": "Fana sem Baqa (subsistência) é impossível. Fana é a morte do antigo eu; Baqa é ressurreição em Deus. Fana é a estação central e mais perigosa do caminho Sufi."
+          }
+        },
+        "kuran-baglantilari": [
+          {
+            "verse": "Qur'an 28:88",
+            "text": {
+              "tr": "\"Kül fenâ (Herşey yok olur) ama Rabbin'in Zâtı bâkî (ancak Rabbinin zâtı kalır).\"",
+              "en": "\"All things will perish except His Face (His Essence).\"",
+              "pt": "\"Todas as coisas perecerão exceto Sua Face (Sua Essência).\""
+            },
+            "interpretation": {
+              "tr": "Tüm yaratılı varlıklar geçicidir; sadece Tanrı'nın Zâtı bâkîdir. Mürid fenâya ulaştığında bu ayeti yaşar.",
+              "en": "All creation is transient; only God's Essence is eternal. The murid who reaches fana lives this verse.",
+              "pt": "Toda criação é transitória; apenas a Essência de Deus é eterna. O murid que atinge fana vive este versículo."
+            }
+          },
+          {
+            "verse": "Qur'an 2:272",
+            "text": {
+              "tr": "\"Almak senin işin değildir; hidayet vermek Allah'ındır.\"",
+              "en": "\"Not upon you is [responsibility for] their guidance; rather, Allah guides whom He wills.\"",
+              "pt": "\"Não é responsabilidade sua guiá-los; Allah guia a quem quer.\""
+            },
+            "interpretation": {
+              "tr": "Fenâ'da mürid işleriyle değil, Tanrı'nın işiyle meşgul olur. Kendi iradesi tamamen silinir.",
+              "en": "In fana, the murid is occupied with God's work, not their own. Their will is completely effaced.",
+              "pt": "Em fana, o murid está ocupado com a obra de Deus, não sua própria. Sua vontade é completamente apagada."
+            }
+          }
+        ],
+        "ibn-arabi-ifadeleri": [
+          {
+            "quote": {
+              "tr": "\"Fenâ, mürid'in kendi varlığının yokluğunu görmesi demektir. O an, Tanrı'nın varlığından başka hiçbir şey kalmaz.\"",
+              "en": "\"Fana means the murid witnessing their own nonexistence. In that moment, nothing remains but God's Being.\"",
+              "pt": "\"Fana significa o murid testemunhando sua própria inexistência. Naquele momento, nada permanece senão o Ser de Deus.\""
+            },
+            "source": {
+              "tr": "Fütûhât-ı Mekkiyye",
+              "en": "Meccan Illuminations",
+              "pt": "Iluminações de Meca"
+            }
+          }
+        ],
+        "bagli-kavramlar": [
+          {
+            "id": "baqa",
+            "tr": "Bakâ (Subsistence)",
+            "en": "Subsistence",
+            "pt": "Subsistência"
+          },
+          {
+            "id": "ayan-sabite",
+            "tr": "A'yân-ı Sâbite (Özün yok olması)",
+            "en": "Immutable Entities",
+            "pt": "Entidades Imutáveis"
+          },
+          {
+            "id": "kalp",
+            "tr": "Kalp (Yolun başlatıcısı)",
+            "en": "The Heart",
+            "pt": "O Coração"
+          },
+          {
+            "id": "insan-kamil",
+            "tr": "İnsân-ı Kâmil (Fenâda dönüşmüş)",
+            "en": "Perfect Human",
+            "pt": "Homem Perfeito"
+          }
+        ]
+      }
+    },
+    "baqa": {
+      "id": "baqa",
+      "title": {
+        "tr": "Bakâ",
+        "en": "Subsistence",
+        "pt": "Subsistência"
+      },
+      "summary": {
+        "tr": "Fenâ'dan sonra Tanrı'da yaşamaya kalış; mürid kendi iradesiyle değil, Tanrı'nın iradesiyle yaşaması; Tanrı'nın sıfatlarıyla süslenmiş olmak.",
+        "en": "Subsisting in God after fana; living not by one's own will but by God's will; being adorned with God's Attributes.",
+        "pt": "Subsistir em Deus após fana; viver não pela própria vontade mas pela vontade de Deus; estar adornado com os Atributos de Deus."
+      },
+      "layers": {
+        "mesela": {
+          "title": {
+            "tr": "Günlük Hayattan Mesela",
+            "en": "Everyday Example",
+            "pt": "Exemplo do Dia a Dia"
+          },
+          "content": {
+            "tr": "Dalgaların denizde kayboluşundan sonra, dalgaların kendi deniz olması gibi. Veya bir ayna ışığı yansıttıktan sonra, ayna aslında ışıkla beraber vardır. Mürid fenâ'dan sonra Tanrı'da bâkî kalır; artık kendi iradesiyle değil, Tanrı'nın iradesiyle yaşar.",
+            "en": "Like waves dissolving in the ocean, then the waves are the ocean itself. Or a mirror reflecting light—the mirror persists with the light. After fana, the murid subsists in God, living not by their will but by God's will.",
+            "pt": "Como as ondas se dissolvem no oceano, então as ondas são o próprio oceano. Ou um espelho refletindo luz — o espelho persiste com a luz. Após fana, o murid subsiste em Deus, vivendo não pela vontade própria mas pela vontade de Deus."
+          }
+        },
+        "vahdet-vucud-baglantisi": {
+          "title": {
+            "tr": "Vahdet-i Vücûd'daki Yeri",
+            "en": "Place in Unity of Being",
+            "pt": "Lugar na Unidade do Ser"
+          },
+          "content": {
+            "tr": "Bakâ, Vahdet-i Vücûd'un daha derin bir deneyimidir. Fenâ bilinçsiz yokluk değildir; mürid Bakâ'ya ulaştığında, Tanrı'nın varlığında yaşayan bir varlık haline gelir. O artık kendisiyle değil, Tanrı'yla bütünleşmiş haldedir.",
+            "en": "Baqa is a deeper experience of Unity of Being. Fana is not unconscious extinction; when the murid reaches Baqa, they become a being living in God's existence. They are now integrated with God, not separate.",
+            "pt": "Baqa é uma experiência mais profunda da Unidade do Ser. Fana não é aniquilação inconsciente; quando o murid atinge Baqa, torna-se um ser vivendo na existência de Deus. Agora está integrado com Deus, não separado."
+          }
+        },
+        "aciklama": {
+          "title": {
+            "tr": "Teknik Açıklama",
+            "en": "Technical Explanation",
+            "pt": "Explicação Técnica"
+          },
+          "content": {
+            "tr": "Bakâ (Baqâ), Fenâ'dan sonra mürid'in Tanrı'da yaşaması demektir. Fenâ olumsuz (benliğin yok olması), Bakâ olumsuzu (Tanrı'da yaşamak) anlatır. Bakâ'da mürid Tanrı'nın sıfatlarıyla yaşar: İlim'iyle bilen, Kudret'iyle gücü olan, Rahman'la merhametli. Bu mürid'in yeni hayatıdır.",
+            "en": "Baqa is the murid's subsistence in God after Fana. Fana is the negation (self-annihilation); Baqa is the affirmation (life in God). In Baqa, the murid lives through God's Attributes: knowing by His Knowledge, empowered by His Power, merciful by His Mercy.",
+            "pt": "Baqa é a subsistência do murid em Deus após Fana. Fana é a negação (auto-aniquilação); Baqa é a afirmação (vida em Deus). Em Baqa, o murid vive através dos Atributos de Deus: sabendo por Seu Conhecimento, empoderado por Seu Poder, misericordioso por Sua Misericórdia."
+          }
+        },
+        "neden-onemli": {
+          "title": {
+            "tr": "Müridin Nihai Durumu",
+            "en": "The Murid's Final State",
+            "pt": "O Estado Final do Murid"
+          },
+          "content": {
+            "tr": "Bakâ, İnsân-ı Kâmil'in durumudur. Mürid bu mertebeye ulaştığında, artık kendi hareket, söz ve düşüncesi yapılmaz; Tanrı'nın hareket, söz ve düşüncesi mürid aracılığıyla gerçekleşir. Bu tasavvuf yolunun nihai hedefidir.",
+            "en": "Baqa is the state of the Perfect Human. When the murid reaches this station, their actions, words, and thoughts are no longer their own; God's actions, words, and thoughts are realized through them. This is the ultimate goal of the Sufi path.",
+            "pt": "Baqa é o estado do Homem Perfeito. Quando o murid atinge esta estação, suas ações, palavras e pensamentos não são mais seus; as ações, palavras e pensamentos de Deus se realizam através deles. Este é o objetivo final do caminho Sufi."
+          }
+        },
+        "kuran-baglantilari": [
+          {
+            "verse": "Qur'an 18:24",
+            "text": {
+              "tr": "\"Ve unutma deme bir şey hakkında, 'İnşaallah (Tanrı dilerse) bunu yarın yapacağım,' derken.\"",
+              "en": "\"Do not say of anything 'I shall do it tomorrow, except by saying 'If Allah wills.'\"",
+              "pt": "\"Não diga de coisa alguma 'Farei isso amanhã, exceto dizendo 'Se Allah quiser.'\""
+            },
+            "interpretation": {
+              "tr": "Bakâ'da mürid kendi iradesi olmadan, daima Tanrı'nın iradesini aramaktır. Bakâ'daki mürid böyle konuşur ve hareket eder.",
+              "en": "In Baqa, the murid is always seeking God's will, not their own. The murid in Baqa speaks and acts this way.",
+              "pt": "Em Baqa, o murid está sempre buscando a vontade de Deus, não sua própria. O murid em Baqa fala e age dessa forma."
+            }
+          },
+          {
+            "verse": "Qur'an 16:120",
+            "text": {
+              "tr": "\"İbrahim aslında bir millet olmuştu, Tanrı'ya ebed müş'min...\"",
+              "en": "\"Indeed, Abraham was a nation, devoted to Allah...\"",
+              "pt": "\"Na verdade, Abraão era uma nação, dedicado a Allah...\""
+            },
+            "interpretation": {
+              "tr": "İbrahim Bakâ'ya ulaşmış bir müriddir. Tanrı'nın direkt aracısı olarak yaşamıştır. Mürid Bakâ'ya ulaştığında İbrahim'in durumuna varır.",
+              "en": "Abraham reached Baqa. He lived as a direct instrument of God. When the murid reaches Baqa, they attain Abraham's state.",
+              "pt": "Abraão atingiu Baqa. Viveu como instrumento direto de Deus. Quando o murid atinge Baqa, atinge o estado de Abraão."
+            }
+          }
+        ],
+        "ibn-arabi-ifadeleri": [
+          {
+            "quote": {
+              "tr": "\"Bakâ, mürid'in Tanrı'nın sıfatlarıyla yaşaması demektir. Kendi sıfatları silinmiş, Tanrı'nın sıfatları mürid'de tecelli eder.\"",
+              "en": "\"Baqa means the murid living through God's Attributes. Their own attributes are erased, and God's Attributes are manifested in the murid.\"",
+              "pt": "\"Baqa significa o murid vivendo através dos Atributos de Deus. Seus próprios atributos são apagados, e os Atributos de Deus se manifestam no murid.\""
+            },
+            "source": {
+              "tr": "Fütûhât-ı Mekkiyye",
+              "en": "Meccan Illuminations",
+              "pt": "Iluminações de Meca"
+            }
+          }
+        ],
+        "bagli-kavramlar": [
+          {
+            "id": "fana",
+            "tr": "Fenâ (Öncesi)",
+            "en": "Annihilation",
+            "pt": "Aniquilação"
+          },
+          {
+            "id": "insan-kamil",
+            "tr": "İnsân-ı Kâmil (Bakâ'nın hali)",
+            "en": "Perfect Human",
+            "pt": "Homem Perfeito"
+          },
+          {
+            "id": "vahdet-i-vucud",
+            "tr": "Vahdet-i Vücûd (Deneyimi)",
+            "en": "Unity of Being",
+            "pt": "Unidade do Ser"
+          },
+          {
+            "id": "sifat-asma",
+            "tr": "Esmâ-i Hüsnâ (Giyimesi)",
+            "en": "Divine Names",
+            "pt": "Nomes Divinos"
+          }
+        ]
+      }
+    }
+  }
+}
