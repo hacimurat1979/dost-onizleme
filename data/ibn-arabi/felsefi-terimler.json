@@ -296,6 +296,60 @@
       ]
     },
     {
+      "id": "sahv-sekr",
+      "name": {
+        "tr": "Sahv ve Sekr: Ayıklık ve Sarhoşluk",
+        "en": "Sahw and Sukr: Sobriety and Intoxication",
+        "pt": "Sahw e Sukr: Sobriedade e Embriaguez"
+      },
+      "description": {
+        "tr": "İbn Arabî'nin Tasavvuf Istılahları Kitabı'ndan bir terim çifti: 'sekr', kuvvetli bir tecellînin etkisiyle kulun kendinden geçip kaybolması; 'sahv' ise, aynı tecellîden sonra kulun güçlü bir sıçrayışla kendine dönmesidir.",
+        "en": "A pair of terms from Ibn Arabi's Book of Sufi Terminology: 'sukr' is the servant's being overwhelmed and lost through the impact of a powerful self-disclosure; 'sahw' is that same servant's forceful return to himself afterward.",
+        "pt": "Um par de termos do Livro de Terminologia Sufi de Ibn Arabi: 'sukr' é o servo sendo dominado e perdido pelo impacto de uma poderosa autorrevelação; 'sahw' é o retorno vigoroso desse mesmo servo a si mesmo depois."
+      },
+      "diagram": [
+        {
+          "type": "spectrum",
+          "termId": "sekr",
+          "leftLabel": {
+            "tr": "Sekr",
+            "en": "Sukr",
+            "pt": "Sukr"
+          },
+          "leftNote": {
+            "tr": "sarhoşluk, kaybolma",
+            "en": "intoxication, being lost",
+            "pt": "embriaguez, perder-se"
+          },
+          "rightLabel": {
+            "tr": "Sahv",
+            "en": "Sahw",
+            "pt": "Sahw"
+          },
+          "rightNote": {
+            "tr": "ayıklık, kendine dönüş",
+            "en": "sobriety, returning to oneself",
+            "pt": "sobriedade, retorno a si"
+          },
+          "leftMarker": {
+            "tr": "güçlü bir varitle yitip gitme",
+            "en": "lost through a powerful influx",
+            "pt": "perdido por um influxo poderoso"
+          },
+          "rightMarker": {
+            "tr": "duyuların güçlü bir vuruşla dönüşü",
+            "en": "the senses returning with a forceful jolt",
+            "pt": "os sentidos retornando com um choque forte"
+          },
+          "note": {
+            "tr": "İbn Arabî ikisini de nötr tanımlar, birini diğerine üstün tutmaz — sekr, tecellînin şiddetinden kaybolmak; sahv, o kayboluştan sonra güçlü bir sıçrayışla geri gelmektir.",
+            "en": "Ibn Arabi defines both neutrally, without ranking one above the other — sukr is being lost through the intensity of a self-disclosure; sahw is the forceful return that follows that loss.",
+            "pt": "Ibn Arabi define ambos de forma neutra, sem hierarquizar um sobre o outro — sukr é perder-se pela intensidade de uma autorrevelação; sahw é o retorno vigoroso que se segue a essa perda."
+          }
+        }
+      ]
+    },
+    {
       "id": "velayet-risalet",
       "name": {
         "tr": "Velâyet ve Risâlet: Kalıcı Olan, Süreli Olan",
@@ -1359,6 +1413,78 @@
       ],
       "iliskili_kavramlar": [
         "nefs-i-natika"
+      ]
+    },
+    "sekr": {
+      "id": "sekr",
+      "group": "sahv-sekr",
+      "title": {
+        "tr": "Sekr (Sarhoşluk)",
+        "en": "Sukr (Intoxication)",
+        "pt": "Sukr (Embriaguez)"
+      },
+      "arabic": "سكر",
+      "ozet_tr": "tecellîyle kendinden geçme",
+      "felsefi_tanim": {
+        "tr": "Güçlü bir ilahî tecellînin etkisiyle kulun kendinden geçip kaybolması hâli.",
+        "en": "The state of the servant being overwhelmed and losing himself through the impact of a powerful divine self-disclosure.",
+        "pt": "O estado do servo sendo dominado e perdendo-se através do impacto de uma poderosa autorrevelação divina."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî'nin Tasavvuf Istılahları Kitabı'nda tanımladığı bu çift, sûfî geleneğinde uzun tartışılmış 'sekr ehli' (Bâyezid-i Bistâmî çizgisi) ile 'sahv ehli' (Cüneyd-i Bağdâdî çizgisi) ayrımının teknik kalbidir. İbn Arabî burada bir tarafı savunmaz, sadece iki hâli tanımlar: sekr, tecellînin şiddetinden kaybolmaktır; sahv ise aynı kuvvetli 'vârid'in ardından duyuların güçlü bir sıçrayışla geri dönmesidir — ikisi de aynı olayın önce ve sonrasıdır.",
+        "en": "This pair, as Ibn Arabi defines it in his Book of Sufi Terminology, is the technical core of the long-debated distinction in the Sufi tradition between the 'people of sukr' (the line of Bayazid al-Bistami) and the 'people of sahw' (the line of Junayd of Baghdad). Ibn Arabi does not take a side here — he simply defines both states: sukr is being lost through the intensity of the self-disclosure; sahw is the senses' forceful return following that same powerful influx — the two are the before and after of a single event.",
+        "pt": "Este par, como Ibn Arabi o define em seu Livro de Terminologia Sufi, é o núcleo técnico da distinção há muito debatida na tradição sufi entre o 'povo do sukr' (a linha de Bayazid al-Bistami) e o 'povo do sahw' (a linha de Junayd de Bagdá). Ibn Arabi não toma partido aqui — ele apenas define ambos os estados: sukr é perder-se pela intensidade da autorrevelação; sahw é o retorno vigoroso dos sentidos após esse mesmo influxo poderoso — os dois são o antes e o depois de um único evento."
+      },
+      "analogy": {
+        "tr": "Bir dalganın seni alıp götürmesi gibi düşün: dalga seni yerden kesip sürüklerken (sekr) hiçbir şeyin farkında değilsindir; dalga geçtikten sonra ayaklarının tekrar zemine değdiğini hissettiğin an (sahv) da aynı olayın bir parçasıdır.",
+        "en": "Think of a wave sweeping you off your feet: while it carries you off (sukr) you're aware of nothing else; the moment your feet find the ground again after it passes (sahw) is part of that very same event.",
+        "pt": "Pense em uma onda te varrendo: enquanto ela te carrega (sukr) você não tem consciência de mais nada; o momento em que seus pés encontram o chão de novo depois que ela passa (sahw) é parte desse mesmo evento."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Tasavvuf Istılahları Kitabı",
+          "alinti_tr": "Es-Sekr (Sarhoşluk): Güçlü bir varitle yitip gitme, kaybolma... Es-Sahv (Uyanış): Hassaların, gaybetten sonra güçlü bir vuruşla kendilerine dönmesi.",
+          "not_tr": "İbn Arabî'nin kendi tanımıyla sekr ve sahv'ın aynı olayın iki ardışık ânı olduğu."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "sahv"
+      ]
+    },
+    "sahv": {
+      "id": "sahv",
+      "group": "sahv-sekr",
+      "title": {
+        "tr": "Sahv (Ayıklık)",
+        "en": "Sahw (Sobriety)",
+        "pt": "Sahw (Sobriedade)"
+      },
+      "arabic": "صحو",
+      "ozet_tr": "tecelliden sonra kendine dönüş",
+      "felsefi_tanim": {
+        "tr": "Kuvvetli bir tecellînin ardından duyuların ve idrakin güçlü bir sıçrayışla kendine dönmesi hâli.",
+        "en": "The state in which the senses and awareness make a forceful return to themselves following a powerful self-disclosure.",
+        "pt": "O estado em que os sentidos e a consciência fazem um retorno vigoroso a si mesmos após uma poderosa autorrevelação."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Cüneyd-i Bağdâdî çizgisi geleneksel olarak sahv'ı sekr'e üstün tutmuştur — çünkü sahv sahibi, Hakk'ın huzurunda edebi ve mükellefiyeti sürdürebilir, sekr sahibi ise o an için bundan âcizdir. İbn Arabî burada bir hüküm vermeden sadece tanımı verir: sahv, sekr'i takip eden, ondan bağımsız düşünülemeyecek bir dönüş hâlidir.",
+        "en": "The line of Junayd of Baghdad traditionally held sahw superior to sukr — because the one in sahw can sustain propriety and duty in God's presence, while the one in sukr is, for that moment, incapable of it. Here Ibn Arabi offers no verdict, only the definition: sahw is a state of return that follows sukr and cannot be conceived independently of it.",
+        "pt": "A linha de Junayd de Bagdá tradicionalmente considerava sahw superior a sukr — porque quem está em sahw pode manter o decoro e o dever na presença de Deus, enquanto quem está em sukr é, naquele momento, incapaz disso. Aqui Ibn Arabi não dá veredito, apenas a definição: sahw é um estado de retorno que segue o sukr e não pode ser concebido independentemente dele."
+      },
+      "analogy": {
+        "tr": "Dalgayı savurup gittikten sonra tekrar ayakların üzerinde durabildiğin an gibi düşün — sarsıntı geçti, ama onun izinde, ondan sonra gelen bir dönüştür bu; sanki hiç dalga olmamış gibi değil.",
+        "en": "Think of the moment you find your footing again after the wave has swept past — the jolt is over, but this is a return that comes in its wake, not as if the wave had never happened.",
+        "pt": "Pense no momento em que você recupera o equilíbrio depois que a onda passou — o choque acabou, mas este é um retorno que vem em sua esteira, não como se a onda nunca tivesse acontecido."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Tasavvuf Istılahları Kitabı",
+          "alinti_tr": "Es-Sahv (Uyanış): Hassaların, gaybetten sonra güçlü bir vuruşla kendilerine dönmesi.",
+          "not_tr": "Sahv'ın, sekr'deki 'gaybet'ten (kayboluş) sonraki dönüş olarak tanımı."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "sekr"
       ]
     }
   }
