@@ -10,55 +10,55 @@
         meaning: "Tanrı'nın sınırsız özü",
         opposite: "Mahlukat (yaratılmışlar)",
         relatedConcepts: ["Zât", "Vahdet (birlik)"],
-        category: "Essence"
+        category: "Öz"
       },
       "sifat-asma": {
         meaning: "Tanrı'nın sıfatları ve güzel isimleri",
-        opposite: "Makhlûkat sıfatları",
+        opposite: "Mahlûkat sıfatları",
         relatedConcepts: ["Esmâü'l-Hüsnâ", "Tecellî"],
-        category: "Divine Attributes"
+        category: "İlahi Sıfatlar"
       },
       "ayan-sabite": {
-        meaning: "Varlık olarak görülmemiş, ilmî olarak var olan essences",
-        opposite: "Varlık bulan şeyler (actualized beings)",
+        meaning: "Varlık olarak görülmemiş, ilmî olarak var olan hakikatler",
+        opposite: "Varlık bulan şeyler",
         relatedConcepts: ["İlim-i İlâhî", "Varlık"],
-        category: "Intelligible World"
+        category: "Akledilir Âlem"
       },
       "tecelli": {
         meaning: "Tanrı'nın isimleri ve sıfatları aracılığıyla kendini açığa çıkarması",
         opposite: "Gizlilik (ketm)",
         relatedConcepts: ["Zâtî tecellî", "Sıfatî tecellî", "Fiilî tecellî"],
-        category: "Divine Manifestation"
+        category: "İlahi Tecellî"
       },
       "alem-ervah": {
         meaning: "Soyut ruhlar âlemi, Tanrı'nın doğrudan tecellisi",
         opposite: "Âlem-i ecsâm (madde âlemi)",
         relatedConcepts: ["Ervâh", "Nûr", "İlahi nurlar"],
-        category: "Spiritual World"
+        category: "Ruhlar Âlemi"
       },
       "alem-misal": {
         meaning: "Ruh ve madde arasında berzah, hayallı âlem",
         opposite: "Alem-i Ervâh ile Alem-i Ecsâm",
         relatedConcepts: ["Muhayyilât", "Berzah", "Rüyâ"],
-        category: "Imaginal World"
+        category: "Hayal Âlemi"
       },
       "alem-ecsam": {
         meaning: "Duyu organlarıyla algılanan madde âlemi",
         opposite: "Alem-i Ervâh (ruhlar âlemi)",
         relatedConcepts: ["Cism", "Madde", "İnsan hisler"],
-        category: "Physical World"
+        category: "Cisimler Âlemi"
       },
       "insan-i-kamil": {
         meaning: "Tanrı'nın bütün isimleri tecelli etmiş mükemmel insan",
         opposite: "Nefs-i ammâre (hakkani olmayan nefs)",
-        relatedConcepts: ["Hylal", "İnsân-ı Kâmil", "Kutup"],
-        category: "Perfect Human"
+        relatedConcepts: ["Hilâl", "İnsân-ı Kâmil", "Kutup"],
+        category: "İnsân-ı Kâmil"
       },
       "kalp": {
         meaning: "Ruh ile madde âlemleri arasında berzah, ilahi isimlerin aynası",
         opposite: "Cism (beden)",
-        relatedConcepts: ["Qalb", "Ayna", "Zikr"],
-        category: "Heart"
+        relatedConcepts: ["Kalp", "Ayna", "Zikr"],
+        category: "Kalp"
       }
     },
     en: {
@@ -122,55 +122,55 @@
         meaning: "A Essência infinita e indescritível de Deus",
         opposite: "Criação (Makhlûkat)",
         relatedConcepts: ["Essência", "Unidade (Wahda)"],
-        category: "Essence"
+        category: "Essência"
       },
       "sifat-asma": {
         meaning: "Os Atributos de Deus e os Belos Nomes",
         opposite: "Atributos da criação",
         relatedConcepts: ["Belos Nomes", "Tajalli"],
-        category: "Divine Attributes"
+        category: "Atributos Divinos"
       },
       "ayan-sabite": {
         meaning: "Essências inteligíveis existindo no conhecimento mas não atualizadas no ser",
         opposite: "Seres atualizados",
         relatedConcepts: ["Conhecimento Divino", "Ser"],
-        category: "Intelligible World"
+        category: "Mundo Inteligível"
       },
       "tecelli": {
         meaning: "A autorrevelação de Deus através de Seus Nomes e Atributos",
         opposite: "Ocultação (Ketm)",
         relatedConcepts: ["Tajalli Essencial", "Tajalli Atributivo", "Tajalli Ativo"],
-        category: "Divine Manifestation"
+        category: "Autorrevelação Divina"
       },
       "alem-ervah": {
         meaning: "O mundo dos espíritos abstratos, manifestação direta de Deus",
         opposite: "Mundo físico",
         relatedConcepts: ["Espíritos", "Luz divina", "Essências espirituais"],
-        category: "Spiritual World"
+        category: "Mundo Espiritual"
       },
       "alem-misal": {
         meaning: "O reino imaginal entre espírito e matéria, reino dos sonhos e visões",
         opposite: "Espírito puro e matéria pura",
         relatedConcepts: ["Imaginação", "Barzakh", "Sonhos"],
-        category: "Imaginal World"
+        category: "Mundo Imaginal"
       },
       "alem-ecsam": {
         meaning: "O mundo físico percebido pelos sentidos",
         opposite: "Mundo dos espíritos",
         relatedConcepts: ["Matéria", "Corpo", "Sentidos físicos"],
-        category: "Physical World"
+        category: "Mundo Físico"
       },
       "insan-i-kamil": {
         meaning: "Humano Perfeito em quem todos os Nomes de Deus se manifestam",
         opposite: "Alma escravizada (Nafs al-Ammâra)",
         relatedConcepts: ["Perfeição", "Manifestação", "Polo espiritual"],
-        category: "Perfect Human"
+        category: "Humano Perfeito"
       },
       "kalp": {
         meaning: "O coração como barzakh entre o físico e o espiritual, espelho dos Nomes Divinos",
         opposite: "Corpo (Jism)",
         relatedConcepts: ["Coração", "Espelho", "Lembrança"],
-        category: "Heart"
+        category: "Coração"
       }
     }
   };

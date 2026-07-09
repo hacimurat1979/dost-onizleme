@@ -248,7 +248,7 @@
   function showDetail(d) {
     currentDetailNode = d;
     detailContent.innerHTML = `
-      <p class="detail-eyebrow">${tt({ tr: "Hâller Haritası", en: "Map of States", pt: "Mapa dos Estados" })}</p>
+      <p class="detail-eyebrow">${tt({ tr: "Hâller", en: "States", pt: "Estados" })}</p>
       <h2 class="detail-title">${I18n.pick3(d.name)}</h2>
       <div class="detail-block detail-block--ibnarabi">
         <h3>${I18n.pick3(d.short)}</h3>

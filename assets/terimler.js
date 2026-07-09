@@ -109,7 +109,7 @@
     const VIEW_LABEL = {
       ontoloji: { tr: "Ontoloji", en: "Ontology", pt: "Ontologia" },
       esma: { tr: "Esmâü'l-Hüsnâ", en: "The Beautiful Names", pt: "Os Belos Nomes" },
-      hal: { tr: "Hâller Haritası", en: "Map of States", pt: "Mapa dos Estados" },
+      hal: { tr: "Hâller", en: "States", pt: "Estados" },
     };
     const chips = links
       .map((l) => `<button class="bookmap-concept-tag" data-view="${l.view}" data-id="${l.id}">${tt(VIEW_LABEL[l.view] || {})} → ${l.id}</button>`)
