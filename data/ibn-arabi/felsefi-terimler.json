@@ -1,0 +1,689 @@
+{
+  "description": "İbn Arabî'nin Meşşâî (Aristo kökenli İslam) felsefesinden devraldığı ve kendi sisteminde yeniden yorumladığı temel mantık/metafizik kavramları. Bu terimler İbn Arabî'nin kendi icadı değildir — onun sözlüğünü (Vahdet-i Vücûd, A'yân-ı Sâbite, Tecellî gibi) anlamak için gereken felsefi zemin/araç kutusudur.",
+  "groups": [
+    {
+      "id": "toz-nitelik",
+      "name": {
+        "tr": "Töz ve Nitelik",
+        "en": "Substance & Accident",
+        "pt": "Substância e Acidente"
+      },
+      "description": {
+        "tr": "Bir şey kendi başına mı var, yoksa başka bir şeye mi muhtaç? Cevher ile Araz arasındaki fark.",
+        "en": "Does a thing exist by itself, or does it depend on something else? The distinction between Substance and Accident.",
+        "pt": "Uma coisa existe por si mesma, ou depende de outra coisa? A distinção entre Substância e Acidente."
+      }
+    },
+    {
+      "id": "siniflandirma",
+      "name": {
+        "tr": "Sınıflandırma Mantığı",
+        "en": "Logic of Classification",
+        "pt": "Lógica de Classificação"
+      },
+      "description": {
+        "tr": "Bir şeyi tanımlarken kullandığımız merdiven: Cins, Fasıl, Tür (Nev').",
+        "en": "The ladder we use to define a thing: Genus, Differentia, Species.",
+        "pt": "A escada que usamos para definir uma coisa: Gênero, Diferença, Espécie."
+      }
+    },
+    {
+      "id": "sebep-sonuc",
+      "name": {
+        "tr": "Sebep ve Sonuç",
+        "en": "Cause & Effect",
+        "pt": "Causa e Efeito"
+      },
+      "description": {
+        "tr": "İllet (sebep) ile Malûl (o sebebin doğurduğu sonuç) arasındaki karşılıklı ilişki.",
+        "en": "The reciprocal relationship between Cause (illet) and Effect (malûl).",
+        "pt": "A relação recíproca entre Causa (illet) e Efeito (malûl)."
+      }
+    },
+    {
+      "id": "varlik-mertebesi",
+      "name": {
+        "tr": "Varlık Mertebesi",
+        "en": "Modal Ontology",
+        "pt": "Ontologia Modal"
+      },
+      "description": {
+        "tr": "Bir şeyin var olması zorunlu mu (Vâcib), yoksa olabilir/olmayabilir mi (Mümkün)?",
+        "en": "Is a thing's existence necessary (Vâcib), or merely possible (Mümkün)?",
+        "pt": "A existência de uma coisa é necessária (Vâcib), ou meramente possível (Mümkün)?"
+      }
+    },
+    {
+      "id": "kozmik-hiyerarsi",
+      "name": {
+        "tr": "Kozmik Hiyerarşi",
+        "en": "Cosmic Hierarchy",
+        "pt": "Hierarquia Cósmica"
+      },
+      "description": {
+        "tr": "Fârâbî ve İbn Sînâ'dan gelen, İbn Arabî'nin devraldığı evren tasviri: İlk Akıl ve Tümel Nefs.",
+        "en": "The cosmic hierarchy inherited from Farabi and Ibn Sina, reworked by Ibn Arabi: the First Intellect and the Universal Soul.",
+        "pt": "A hierarquia cósmica herdada de Farabi e Ibn Sina, reelaborada por Ibn Arabi: o Primeiro Intelecto e a Alma Universal."
+      }
+    },
+    {
+      "id": "kopru-kavram",
+      "name": {
+        "tr": "Köprü Kavramlar",
+        "en": "Bridge Concepts",
+        "pt": "Conceitos-Ponte"
+      },
+      "description": {
+        "tr": "Felsefeden tasavvufa geçişi sağlayan, İbn Arabî'nin en çok kendi damgasını vurduğu kavramlar.",
+        "en": "Concepts that bridge philosophy and Sufism, where Ibn Arabi leaves his own strongest mark.",
+        "pt": "Conceitos que fazem a ponte entre filosofia e Sufismo, onde Ibn Arabi deixa sua marca mais forte."
+      }
+    }
+  ],
+  "terms": {
+    "cevher": {
+      "id": "cevher",
+      "group": "toz-nitelik",
+      "title": {
+        "tr": "Cevher",
+        "en": "Substance",
+        "pt": "Substância"
+      },
+      "arabic": "جوهر",
+      "felsefi_tanim": {
+        "tr": "Kendi başına var olan, varlığı için başka bir şeye (bir 'mahal'e) muhtaç olmayan öz-varlık. Meşşâî felsefede varlığın en temel kategorisi.",
+        "en": "A self-subsisting essence that does not depend on anything else (a 'substrate') for its existence. The most basic category of being in Peripatetic philosophy.",
+        "pt": "Uma essência autossubsistente que não depende de outra coisa (um 'substrato') para sua existência. A categoria mais básica do ser na filosofia peripatética."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, cevherin 'tek' olduğunu, âlemdeki çokluğun ve değişimin aslında sûret (form) düzeyinde gerçekleştiğini söyler: cevherin kendisi bölünmez, değişen onun üzerindeki sûretlerdir. Bu, Vahdet-i Vücûd'un mantıksal bir ön-adımı gibi okunabilir — tıpkı tek bir Vücûd'un sayısız sûrette göründüğü gibi, tek bir cevher de sayısız sûrete bürünür.",
+        "en": "Ibn Arabi states that substance is 'one,' and that the multiplicity and change we see in the world actually occurs at the level of form (sûret): the substance itself is indivisible, what changes are the forms upon it. This can be read as a logical precursor to Unity of Being — just as a single Being appears in countless forms, a single substance is clothed in countless forms.",
+        "pt": "Ibn Arabi afirma que a substância é 'una', e que a multiplicidade e a mudança que vemos no mundo ocorrem, na verdade, no nível da forma (sûret): a substância em si é indivisível, o que muda são as formas sobre ela. Isso pode ser lido como um precursor lógico da Unidade do Ser — assim como um único Ser aparece em inúmeras formas, uma única substância se reveste de inúmeras formas."
+      },
+      "analogy": {
+        "tr": "Suyu düşün: buz, sıvı su ya da buhar hâlinde çok farklı görünür (sûretler değişir), ama hepsi aynı H₂O'dur (cevher değişmez).",
+        "en": "Think of water: it looks very different as ice, liquid, or steam (the forms change), but it is always the same H₂O (the substance doesn't change).",
+        "pt": "Pense na água: ela parece muito diferente como gelo, líquido ou vapor (as formas mudam), mas é sempre a mesma H₂O (a substância não muda)."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "4769",
+          "alinti_tr": "Âlemdeki her suret, cevherdeki bir arazdır. Suret, farklı cevherlere girer ve ayrılır. Cevher ise tektir. Bölünme, cevherde değil, sürettedir.",
+          "not_tr": "Cevherin birliğini ve sûretin ona göre 'araz' konumunda olduğunu açıkça ifade eder."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "araz",
+        "suret"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "dhat"
+        }
+      ]
+    },
+    "araz": {
+      "id": "araz",
+      "group": "toz-nitelik",
+      "title": {
+        "tr": "Araz",
+        "en": "Accident",
+        "pt": "Acidente"
+      },
+      "arabic": "عرض",
+      "felsefi_tanim": {
+        "tr": "Bir cevhere ilişen, ama kendi başına var olamayan nitelik. Renk, şekil, sıcaklık gibi — hepsi bir 'taşıyıcıya' (mahal) muhtaçtır.",
+        "en": "A quality that inheres in a substance but cannot exist independently — color, shape, temperature, and the like all require a 'substrate' to exist in.",
+        "pt": "Uma qualidade que inere em uma substância mas não pode existir independentemente — cor, forma, temperatura e afins precisam de um 'substrato' para existir."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, arazın kendi başına iki an bile aynı kalamayacağını, sürekli yeniden yaratıldığını vurgular — bu, onun 'ân be ân tecellî' (her an yeni bir tecelli) öğretisiyle doğrudan örtüşür: âlem, sabit bir cevher gibi durmuyor, her an Allah tarafından yeniden var ediliyor.",
+        "en": "Ibn Arabi emphasizes that an accident cannot even remain the same for two consecutive moments — it is constantly recreated. This directly parallels his teaching of renewal at every instant (tecellî ân be ân): the world does not sit still like a fixed substance, but is remade by God moment by moment.",
+        "pt": "Ibn Arabi enfatiza que um acidente não pode nem mesmo permanecer o mesmo por dois momentos consecutivos — ele é constantemente recriado. Isso se relaciona diretamente com seu ensinamento da renovação a cada instante: o mundo não permanece parado como uma substância fixa, mas é refeito por Deus a cada momento."
+      },
+      "analogy": {
+        "tr": "Bir mumun alevi gibi düşün: her an aynı görünür ama aslında her an yeni yanan bir alevdir, öncekinin devamı değil. Araz da böyle — var olduğu ikinci anda aslında 'yeniden' var edilir.",
+        "en": "Think of a candle's flame: it looks the same every moment, but it is actually a new flame each instant, not a continuation of the previous one. An accident is like this — in the very next moment of its existing, it is actually 're-created'.",
+        "pt": "Pense na chama de uma vela: parece a mesma a cada momento, mas na verdade é uma chama nova a cada instante, não uma continuação da anterior. Um acidente é assim — no momento seguinte de sua existência, ele é na verdade 're-criado'."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "4150",
+          "alinti_tr": "Arazın mekânları doldurması imkânsızdır. Çünkü araz, var olduktan sonraki ikinci anda bulunduğu yerden kendisi nedeniyle ayrılamaz... kendi başına var olabilseydi, bir mahalle muhtaç kalmazdı.",
+          "not_tr": "Arazın bağımlılığını (bir mahalle muhtaçlığını) açıkça tanımlar."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "cevher"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "tecelli"
+        }
+      ]
+    },
+    "cins": {
+      "id": "cins",
+      "group": "siniflandirma",
+      "title": {
+        "tr": "Cins",
+        "en": "Genus",
+        "pt": "Gênero"
+      },
+      "arabic": "جنس",
+      "felsefi_tanim": {
+        "tr": "Bir şeyi tanımlarken kullanılan geniş kategori. Örnek: 'canlı' — insan ve diğer hayvanlar için ortak cinstir.",
+        "en": "The broad category used in defining a thing. Example: 'living being' is the shared genus for humans and other animals.",
+        "pt": "A categoria ampla usada para definir uma coisa. Exemplo: 'ser vivo' é o gênero compartilhado por humanos e outros animais."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, Allah'ın hiçbir 'tanım'ı olamayacağını çünkü tanımın cins ve fasıldan oluştuğunu, oysa Allah'ın hiçbir şeyle ortak bir cinste buluşmadığını söyler. Bu, Tenzîh'in (Allah'ın hiçbir şeye benzemediği) mantıksal temelidir: cins, ancak karşılaştırılabilir şeyler arasında olur, Allah ise karşılaştırılamaz.",
+        "en": "Ibn Arabi argues that God can have no 'definition,' because a definition is composed of genus and differentia, yet God shares no genus with anything. This is the logical foundation of Tanzih (God's incomparability): genus can only exist among comparable things, and God is beyond comparison.",
+        "pt": "Ibn Arabi argumenta que Deus não pode ter 'definição', pois uma definição é composta de gênero e diferença, mas Deus não compartilha gênero com nada. Este é o fundamento lógico do Tanzih (a incomparabilidade de Deus): o gênero só pode existir entre coisas comparáveis, e Deus está além de comparação."
+      },
+      "analogy": {
+        "tr": "\"Meyve nedir?\" diye sorduğunda elma da armut da 'meyve' cinsine girer, karşılaştırılabilirler. Ama \"Allah nedir?\" sorusu, O'nu herhangi bir cinse sokmaya çalışır — oysa O'nunla karşılaştırılabilecek hiçbir şey yoktur.",
+        "en": "When you ask 'what is a fruit?', both an apple and a pear fall under the genus 'fruit' and can be compared. But asking 'what is God?' tries to place Him within some genus — yet there is nothing comparable to Him.",
+        "pt": "Quando você pergunta 'o que é uma fruta?', tanto uma maçã quanto uma pera se enquadram no gênero 'fruta' e podem ser comparadas. Mas perguntar 'o que é Deus?' tenta colocá-Lo em algum gênero — porém não há nada comparável a Ele."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "4289",
+          "alinti_tr": "Tanım, cins ve fasıldan meydana gelir. Tanrı için cins ve fasıl imkânsızdır. Çünkü O'nun zatı kendisinden ortaklığın gerçekleşeceği -ki bu durumda cins içine girerdi- ... herhangi bir şeyden bileşik değildir.",
+          "not_tr": "Allah'a tanım/cins/fasıl uygulanamayacağının doğrudan gerekçesi."
+        },
+        {
+          "cilt": 1,
+          "satir": "11249",
+          "alinti_tr": "Felekler ve ana unsurlar arasında bulunan münasebet, tümünü birleştiren cins olan cevhere dayalı bir münasebettir... el-Bâri ile âlem arasında adı geçen yönlerden (cevher-cins, tür ve şahıs) hiçbir münasebet yoktur.",
+          "not_tr": "Cins-Tür-Şahıs üçlüsünün Allah-âlem ilişkisine neden uygulanamayacağını gösterir."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "fasil",
+        "nev"
+      ],
+      "site_baglantilari": []
+    },
+    "fasil": {
+      "id": "fasil",
+      "group": "siniflandirma",
+      "title": {
+        "tr": "Fasıl",
+        "en": "Differentia",
+        "pt": "Diferença"
+      },
+      "arabic": "فصل",
+      "felsefi_tanim": {
+        "tr": "Bir cinsin içindeki türleri birbirinden ayıran özellik. Örnek: 'düşünen' (nâtık), insanı diğer canlılardan ayıran fasıldır.",
+        "en": "The property that distinguishes species within a genus from one another. Example: 'rational' (nâtık) is the differentia distinguishing humans from other living beings.",
+        "pt": "A propriedade que distingue as espécies dentro de um gênero umas das outras. Exemplo: 'racional' é a diferença que distingue os humanos de outros seres vivos."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Cins gibi, fasıl da karşılaştırma gerektirir — bir şey ancak aynı cinse ait başka bir şeyden 'ayrıldığında' fasla sahip olur. İbn Arabî, Allah'ın hiçbir şeyden bu şekilde 'ayrılmadığını' (çünkü zaten hiçbir ortaklığı yok) belirtir; fasıl kavramı da tıpkı cins gibi Tenzîh'i ifade etmenin bir yoludur.",
+        "en": "Like genus, differentia requires comparison — a thing only has a differentia when it is 'distinguished' from something else of the same genus. Ibn Arabi notes that God is not 'distinguished' from anything in this way (since He shares nothing in common to begin with); the concept of differentia, like genus, is another way of expressing Tanzih.",
+        "pt": "Assim como o gênero, a diferença requer comparação — uma coisa só tem uma diferença quando é 'distinguida' de outra coisa do mesmo gênero. Ibn Arabi observa que Deus não é 'distinguido' de nada dessa forma (já que Ele não compartilha nada em comum); o conceito de diferença, como o gênero, é outra forma de expressar o Tanzih."
+      },
+      "analogy": {
+        "tr": "İki kardeşi ayırt etmek için \"biri esmer, biri sarışın\" dersin — bu fasıldır, ama ikisini karşılaştırabildiğin için mümkündür. Allah'ı hiçbir şeyle karşılaştıramazsın, dolayısıyla O'nu ayırt edecek bir fasıl da aramak anlamsızdır.",
+        "en": "To distinguish two siblings you might say 'one is dark-haired, the other blonde' — that's a differentia, but it's only possible because you can compare the two. You cannot compare God to anything, so searching for a differentia to distinguish Him is meaningless.",
+        "pt": "Para distinguir dois irmãos você pode dizer 'um tem cabelo escuro, o outro loiro' — isso é uma diferença, mas só é possível porque você pode comparar os dois. Você não pode comparar Deus a nada, então procurar uma diferença para distingui-Lo não faz sentido."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "4289",
+          "alinti_tr": "...ya da kendisiyle farklılığın gerçekleşeceği -ki bu durumda da fasla dâhil olurdu- herhangi bir şeyden bileşik değildir. Dolayısıyla ne ortaklık ne cins ne de fasıl vardır.",
+          "not_tr": "Cins ile aynı pasajda, fasıl için de aynı Tenzîh argümanı."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "cins",
+        "nev"
+      ],
+      "site_baglantilari": []
+    },
+    "nev": {
+      "id": "nev",
+      "group": "siniflandirma",
+      "title": {
+        "tr": "Nev' (Tür)",
+        "en": "Species",
+        "pt": "Espécie"
+      },
+      "arabic": "نوع",
+      "felsefi_tanim": {
+        "tr": "Cins + Fasıl birleşiminin sonucu. \"Canlı\" (cins) + \"düşünen\" (fasıl) = \"insan\" (nev'/tür). Sınıflandırma merdiveninin üçüncü ve tamamlayıcı basamağı.",
+        "en": "The result of combining Genus + Differentia. 'Living being' (genus) + 'rational' (differentia) = 'human' (species). The third and completing rung of the classification ladder.",
+        "pt": "O resultado da combinação de Gênero + Diferença. 'Ser vivo' (gênero) + 'racional' (diferença) = 'humano' (espécie). O terceiro e último degrau da escada de classificação."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî bu üçlüyü (cevher/cins - tür - şahıs) tek bir mesele üzerinden gösterir: felekler ile dört ana unsur arasındaki ilişki türseldir, çünkü feleklerin doğası da bu dört unsurun bir türüdür. Ama Allah ile âlem arasında böyle bir 'türdeşlik' yoktur — bu yüzden Allah'ı âlemden yola çıkarak (şahitten gaibe) bilemeyiz, ancak O'nun bildirmesiyle biliriz.",
+        "en": "Ibn Arabi demonstrates this triad (substance/genus - species - individual) through a single example: the relationship between the celestial spheres and the four elements is one of shared species, because the nature of the spheres is itself a species of these four natures. But there is no such 'shared-species-ness' between God and the world — which is why we cannot know God by inference from the world (from the seen to the unseen), but only through what He Himself discloses.",
+        "pt": "Ibn Arabi demonstra essa tríade (substância/gênero - espécie - indivíduo) através de um único exemplo: a relação entre as esferas celestes e os quatro elementos é de espécie compartilhada, porque a natureza das esferas é ela mesma uma espécie dessas quatro naturezas. Mas não existe tal 'partilha de espécie' entre Deus e o mundo — por isso não podemos conhecer Deus por inferência a partir do mundo, mas apenas através daquilo que Ele mesmo revela."
+      },
+      "analogy": {
+        "tr": "Bir bulmacayı düşün: parçaların birbirine benzemesi (aynı türden olmaları) sayesinde bir sonraki parçayı tahmin edebilirsin. Ama Allah, bulmacanın hiçbir parçasına 'benzemez' — O'nu âlemin parçalarından tahmin edip çıkaramazsın.",
+        "en": "Think of a jigsaw puzzle: because the pieces resemble each other (being of the same kind), you can guess the next piece. But God 'resembles' no piece of the puzzle at all — you cannot deduce Him from the pieces of the world.",
+        "pt": "Pense em um quebra-cabeça: como as peças se assemelham (sendo do mesmo tipo), você pode adivinhar a próxima peça. Mas Deus não 'se assemelha' a nenhuma peça do quebra-cabeça — você não pode deduzi-Lo a partir das peças do mundo."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "11249",
+          "alinti_tr": "Söz konusu münasebet, aynı zamanda türsel münasebettir, çünkü o, tek bir cinse ait tür olduğu gibi aynı zamanda kendisi de bir türdür.",
+          "not_tr": "Felek-unsur ilişkisinin türsel olduğunu, ama Allah-âlem ilişkisinin böyle olmadığını gösteren pasajın devamı."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "cins",
+        "fasil"
+      ],
+      "site_baglantilari": []
+    },
+    "illet": {
+      "id": "illet",
+      "group": "sebep-sonuc",
+      "title": {
+        "tr": "İllet",
+        "en": "Cause",
+        "pt": "Causa"
+      },
+      "arabic": "علة",
+      "felsefi_tanim": {
+        "tr": "Bir şeyi var eden veya ona yol açan sebep. Meşşâî felsefede dörde ayrılır (fâil, gâî, maddî, sûrî illet) ama İbn Arabî çoğunlukla genel anlamda kullanır.",
+        "en": "The cause that brings a thing into existence or gives rise to it. In Peripatetic philosophy it divides into four (efficient, final, material, formal cause), though Ibn Arabi mostly uses it in a general sense.",
+        "pt": "A causa que traz uma coisa à existência ou lhe dá origem. Na filosofia peripatética se divide em quatro (causa eficiente, final, material, formal), embora Ibn Arabi geralmente a use em sentido geral."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, Allah'ın hiçbir şeyin 'illeti' olamayacağını çarpıcı bir gerekçeyle savunur: illet ile malûl karşılıklı olarak birbirini 'talep eder/arar' — oysa Allah (el-Ganî, hiçbir şeye muhtaç olmayan) hiçbir talep ile nitelenemez. Bu yüzden Allah'ın âlemle ilişkisini illet-malûl değil, 'vehb' (karşılıksız bağış, ihsan) olarak tanımlar — tek taraflı bir cömertlik, karşılıklı bir ihtiyaç değil.",
+        "en": "Ibn Arabi argues, with striking reasoning, that God cannot be the 'cause' of anything: cause and effect reciprocally 'seek/require' each other — yet God (al-Ghani, needless of all) cannot be characterized by any need. He therefore defines God's relationship to the world not as cause-effect, but as 'vehb' (unconditional gift, bestowal) — a one-sided generosity, not a mutual need.",
+        "pt": "Ibn Arabi argumenta, com um raciocínio marcante, que Deus não pode ser a 'causa' de nada: causa e efeito 'buscam/requerem' um ao outro reciprocamente — mas Deus (al-Ghani, livre de toda necessidade) não pode ser caracterizado por nenhuma necessidade. Ele portanto define a relação de Deus com o mundo não como causa-efeito, mas como 'vehb' (dádiva incondicional, doação) — uma generosidade unilateral, não uma necessidade mútua."
+      },
+      "analogy": {
+        "tr": "Bir sebep-sonuç ilişkisinde (örn. ateş-duman), ikisi birbirine muhtaçtır: duman olmadan 'sebep' demek anlamsız, ateş olmadan 'sonuç' demek anlamsızdır. Ama bir hediye verirken, veren kişi hediyeye muhtaç değildir — sadece cömertçe verir. İbn Arabî, Allah-âlem ilişkisini ikinciye benzetir.",
+        "en": "In a cause-effect relationship (like fire and smoke), the two need each other: without smoke, calling something a 'cause' is meaningless; without fire, calling something an 'effect' is meaningless. But when giving a gift, the giver does not need the gift — he simply gives generously. Ibn Arabi likens God's relation to the world to the latter.",
+        "pt": "Em uma relação causa-efeito (como fogo e fumaça), os dois precisam um do outro: sem fumaça, chamar algo de 'causa' não faz sentido; sem fogo, chamar algo de 'efeito' não faz sentido. Mas ao dar um presente, quem dá não precisa do presente — simplesmente dá com generosidade. Ibn Arabi compara a relação de Deus com o mundo a esta última."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 6,
+          "satir": "10675",
+          "alinti_tr": "el-Gani, Allah'ı herhangi bir şeyin illeti yapmaz. Çünkü malul illetini aradığı gibi, illet de nedenlisini (malul) arar. el-Gani ise taleple nitelenemez. Öyleyse onun illet olması mümkün değildir.",
+          "not_tr": "İllet-malûl karşılıklılığının Allah'a neden uygulanamayacağının doğrudan gerekçesi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "malul",
+        "mazhar"
+      ],
+      "site_baglantilari": []
+    },
+    "malul": {
+      "id": "malul",
+      "group": "sebep-sonuc",
+      "title": {
+        "tr": "Malûl",
+        "en": "Effect",
+        "pt": "Efeito"
+      },
+      "arabic": "معلول",
+      "felsefi_tanim": {
+        "tr": "Bir illetin (sebebin) doğurduğu, ona bağımlı olan sonuç. İllet olmadan malûl, malûl olmadan illet düşünülemez — ikisi çift kavramdır.",
+        "en": "The result brought about by, and dependent on, a cause (illet). Effect cannot be conceived without cause, nor cause without effect — the two form a paired concept.",
+        "pt": "O resultado trazido por, e dependente de, uma causa. O efeito não pode ser concebido sem a causa, nem a causa sem o efeito — os dois formam um conceito emparelhado."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî'nin illet için söylediği her şey malûl için de geçerlidir: âlem, Allah'ın 'malûlü' değildir, çünkü bu Allah'ı bir 'illet' konumuna, yani ihtiyaç sahibi bir konuma sokardı. Âlem, Allah'ın vehbi (karşılıksız bağışı) sayesinde var olan bir 'mevhûb'dur — malûl değil.",
+        "en": "Everything Ibn Arabi says about cause applies equally to effect: the world is not God's 'effect,' because that would place God in the position of a 'cause,' i.e. a position of need. The world is a 'mevhûb' (a bestowed gift) existing through God's vehb (unconditional bestowal) — not an effect.",
+        "pt": "Tudo o que Ibn Arabi diz sobre causa se aplica igualmente ao efeito: o mundo não é 'efeito' de Deus, pois isso colocaria Deus na posição de uma 'causa', ou seja, uma posição de necessidade. O mundo é um 'mevhûb' (uma dádiva concedida) existindo através do vehb (doação incondicional) de Deus — não um efeito."
+      },
+      "analogy": {
+        "tr": "Bir öğretmen düşün: öğrencisi olmadan 'öğretmen' unvanı anlamsızlaşır (ikisi karşılıklı tanımlar). Ama bir yazar, kitabını yazdıktan sonra kitaba 'muhtaç' değildir — kitap ondan çıkmıştır ama o kitaba bağımlı değildir. İbn Arabî, Allah-âlem ilişkisini bu ikinciye benzetir; illet-malûl'ü ise ilkine.",
+        "en": "Think of a teacher: without a student, the title 'teacher' becomes meaningless (the two mutually define each other). But an author, having written his book, does not 'need' the book — the book came from him, but he is not dependent on it. Ibn Arabi likens God's relation to the world to the latter; the cause-effect relation to the former.",
+        "pt": "Pense em um professor: sem um aluno, o título 'professor' se torna sem sentido (os dois se definem mutuamente). Mas um autor, tendo escrito seu livro, não 'precisa' do livro — o livro veio dele, mas ele não depende do livro. Ibn Arabi compara a relação de Deus com o mundo à segunda; a relação causa-efeito à primeira."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 6,
+          "satir": "10675",
+          "alinti_tr": "Çünkü malul illetini aradığı gibi, illet de nedenlisini (malul) arar.",
+          "not_tr": "İllet ile aynı pasaj — karşılıklı bağımlılığın tanımı."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "illet"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "ayan-sabite"
+        }
+      ]
+    },
+    "mumkun": {
+      "id": "mumkun",
+      "group": "varlik-mertebesi",
+      "title": {
+        "tr": "Mümkün",
+        "en": "Contingent Being",
+        "pt": "Ser Contingente"
+      },
+      "arabic": "ممكن",
+      "felsefi_tanim": {
+        "tr": "İbn Sînâ'nın üçlü varlık şemasında: var olması da olmaması da kendi başına eşit ihtimalde olan şey (yaratılmışların tamamı). Karşıtı 'Vâcib'dir (var olması zorunlu olan, yalnız Allah).",
+        "en": "In Ibn Sina's tripartite scheme of being: that whose existence and non-existence are, in themselves, equally possible (i.e., all created things). Its opposite is 'Vâcib' (that whose existence is necessary — God alone).",
+        "pt": "No esquema tripartite do ser de Ibn Sina: aquilo cuja existência e não-existência são, em si mesmas, igualmente possíveis (ou seja, todas as coisas criadas). Seu oposto é 'Vâcib' (aquilo cuja existência é necessária — somente Deus)."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî 'mümkün' kelimesini sıkça kullanır ama teknik Meşşâî anlamından kaydırarak kendi A'yân-ı Sâbite öğretisine bağlar: mümkünler, Hakk'ın tecellileriyle Hakkın 'aynasında' zuhur eden çokluktur — var olmadan önce de (ilm-i ilahide) bir 'hakikat'e (sabit ayn) sahiptirler. Yani mümkün, sadece 'olabilir/olmayabilir' değil, Allah'ın bilgisinde zaten bir sûrete sahip olan şeydir.",
+        "en": "Ibn Arabi frequently uses the word 'mümkün,' but shifts it from its strict Peripatetic sense to tie it to his own doctrine of the Fixed Entities (A'yân-ı Sâbite): the contingent beings are the multiplicity that becomes manifest in the 'mirror' of the Real through His self-disclosures — even before existing, they already possess a 'reality' (a fixed entity) in Divine Knowledge. So 'mümkün' is not merely 'could-be/could-not-be,' but something that already has a form within God's knowledge.",
+        "pt": "Ibn Arabi usa frequentemente a palavra 'mümkün', mas a desloca de seu sentido peripatético estrito para ligá-la à sua própria doutrina das Entidades Fixas (A'yân-ı Sâbite): os seres contingentes são a multiplicidade que se manifesta no 'espelho' do Real através de Suas autorrevelações — mesmo antes de existir, eles já possuem uma 'realidade' (uma entidade fixa) no Conhecimento Divino. Assim, 'mümkün' não é apenas 'poderia ser/poderia não ser', mas algo que já possui uma forma dentro do conhecimento de Deus."
+      },
+      "analogy": {
+        "tr": "Bir mimarın henüz inşa etmediği ama zihninde tüm ayrıntılarıyla tasarladığı bir bina gibi düşün: bina henüz 'var' değildir (mümkündür, olabilir de olmayabilir de), ama mimarın zihninde zaten tam bir 'gerçekliği' vardır. İbn Arabî'ye göre mümkünler de Allah'ın ilminde böyle bir 'gerçekliğe' (a'yân-ı sâbiteye) sahiptir, var olmadan önce bile.",
+        "en": "Think of a building an architect hasn't built yet but has fully designed in his mind: the building doesn't 'exist' yet (it is contingent, it may or may not come to be), but it already has a complete 'reality' in the architect's mind. According to Ibn Arabi, contingent beings likewise have such a 'reality' (a Fixed Entity) in God's knowledge, even before they exist.",
+        "pt": "Pense em um edifício que um arquiteto ainda não construiu, mas projetou completamente em sua mente: o edifício ainda não 'existe' (é contingente, pode ou não vir a ser), mas já tem uma 'realidade' completa na mente do arquiteto. Segundo Ibn Arabi, os seres contingentes também têm tal 'realidade' (uma Entidade Fixa) no conhecimento de Deus, mesmo antes de existirem."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 12,
+          "satir": "15064",
+          "alinti_tr": "Zatın tecellileriyle Hakkın aynasında mümkünlerin çokluğu zuhur etmiştir. Hak onları kendi zatında mümkünlerin hak ettikleri -ki onlar bu hakikatlerde bulunur- hakikatlerine göre kendi nuruyla idrak eder.",
+          "not_tr": "Mümkün kavramının Tecellî ve A'yân-ı Sâbite ile doğrudan bağlantısını gösterir."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "vacib"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "ayan-sabite"
+        },
+        {
+          "view": "ontoloji",
+          "id": "tecelli"
+        }
+      ]
+    },
+    "vacib": {
+      "id": "vacib",
+      "group": "varlik-mertebesi",
+      "title": {
+        "tr": "Vâcib (Vâcibü'l-Vücûd)",
+        "en": "Necessary Being",
+        "pt": "Ser Necessário"
+      },
+      "arabic": "واجب الوجود",
+      "felsefi_tanim": {
+        "tr": "İbn Sînâ'nın varlık üçlüsünde: varlığı kendi zatından dolayı zorunlu olan, var olmaması düşünülemeyen tek varlık. Bu, İbn Sînâ felsefesinde Tanrı'nın teknik adıdır.",
+        "en": "In Ibn Sina's tripartite scheme of being: the one being whose existence is necessary by virtue of its own essence, whose non-existence is inconceivable. This is the technical philosophical name for God in Avicennan philosophy.",
+        "pt": "No esquema tripartite do ser de Ibn Sina: o único ser cuja existência é necessária em virtude de sua própria essência, cuja não-existência é inconcebível. Este é o nome filosófico técnico para Deus na filosofia avicena."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İlginç bir gözlem: İbn Arabî, Fütûhât'ta bu teknik İbn Sînâcı terimi ('Vâcibü'l-Vücûd') neredeyse hiç birebir kullanmaz — onun yerine kendi vokabülerini (Hak, Zât, Vücûd-i Mutlak) tercih eder. Bu, kendi başına anlamlı bir tercihtir: İbn Arabî, felsefecilerin kavramsal/analitik dilini değil, doğrudan yaşanan/tanıklık edilen bir Hakikat dilini benimser. Vâcib-Mümkün ayrımını kabul eder ama bunu soğuk bir mantık şemasından çok, tecellî ve aşk diliyle yeniden ifade eder.",
+        "en": "An interesting observation: Ibn Arabi almost never uses this technical Avicennan term ('Vâcibü'l-Vücûd') verbatim in the Futuhat — he prefers his own vocabulary (Hak, Zât, Absolute Being) instead. This preference is itself meaningful: Ibn Arabi adopts not the conceptual/analytical language of the philosophers, but the language of a directly lived/witnessed Reality. He accepts the Necessary/Contingent distinction but re-expresses it in the language of self-disclosure and love rather than a cold logical scheme.",
+        "pt": "Uma observação interessante: Ibn Arabi quase nunca usa esse termo técnico avicenense ('Vâcibü'l-Vücûd') literalmente no Futuhat — ele prefere seu próprio vocabulário (Hak, Zât, Ser Absoluto). Essa preferência é significativa em si mesma: Ibn Arabi adota não a linguagem conceitual/analítica dos filósofos, mas a linguagem de uma Realidade diretamente vivida/testemunhada. Ele aceita a distinção Necessário/Contingente, mas a reexpressa na linguagem da autorrevelação e do amor, em vez de um esquema lógico frio."
+      },
+      "analogy": {
+        "tr": "Bir matematikçi \"2+2=4\"ü kanıtlayabilir (zorunlu bir gerçektir, başka türlü olamaz) — ama bir âşık sevgilisinin varlığını kanıtlamaya çalışmaz, onu yaşar. İbn Arabî, Vâcib'i (Allah'ın zorunlu varlığını) felsefecinin kanıtladığı değil, ârifin yaşadığı bir hakikat olarak sunar.",
+        "en": "A mathematician can prove '2+2=4' (a necessary truth that cannot be otherwise) — but a lover doesn't try to prove his beloved's existence, he lives it. Ibn Arabi presents the Necessary Being not as something the philosopher proves, but as a truth the gnostic (ârif) lives.",
+        "pt": "Um matemático pode provar que '2+2=4' (uma verdade necessária que não pode ser diferente) — mas um amante não tenta provar a existência de sua amada, ele a vive. Ibn Arabi apresenta o Ser Necessário não como algo que o filósofo prova, mas como uma verdade que o gnóstico vive."
+      },
+      "kaynaklar": [],
+      "iliskili_kavramlar": [
+        "mumkun"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "dhat"
+        }
+      ]
+    },
+    "ilk-akil": {
+      "id": "ilk-akil",
+      "group": "kozmik-hiyerarsi",
+      "title": {
+        "tr": "İlk Akıl (Akl-ı Evvel)",
+        "en": "The First Intellect",
+        "pt": "O Primeiro Intelecto"
+      },
+      "arabic": "العقل الأول",
+      "felsefi_tanim": {
+        "tr": "Fârâbî ve İbn Sînâ'nın Yeni-Eflatuncu kozmolojisinde, Bir'den (Tanrı) çıkan ilk taşma/sudur — kozmik akıllar-felekler hiyerarşisinin başlangıcı.",
+        "en": "In the Neoplatonic-influenced cosmology of Farabi and Ibn Sina, the first emanation from the One (God) — the starting point of the cosmic hierarchy of intellects and celestial spheres.",
+        "pt": "Na cosmologia neoplatônica de Farabi e Ibn Sina, a primeira emanação do Uno (Deus) — o ponto de partida da hierarquia cósmica de intelectos e esferas celestes."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, felsefecilerin 'İlk Akıl'ını doğrudan Hadis ve Kur'an imgesiyle özdeşleştirir: İlk Akıl, Kalem'dir (Yüce Kalem) — \"Allah'ın ilk yarattığı şey Kalem'dir\" hadisindeki Kalem. Böylece soyut bir felsefi kavramı, İslam'ın kendi kutsal metin geleneğine bağlar; İlk Akıl artık sadece mantıksal bir 'ilk sudur' değil, kaderleri yazan, bilgiyi taşıyan canlı bir hakikattir.",
+        "en": "Ibn Arabi directly identifies the philosophers' 'First Intellect' with a Hadith and Qur'anic image: the First Intellect is the Pen (al-Qalam al-A'la) — the Pen of the hadith 'The first thing God created was the Pen.' In this way he ties an abstract philosophical concept to Islam's own scriptural tradition; the First Intellect is no longer merely a logical 'first emanation,' but a living reality that writes destinies and carries knowledge.",
+        "pt": "Ibn Arabi identifica diretamente o 'Primeiro Intelecto' dos filósofos com uma imagem do Hadith e do Alcorão: o Primeiro Intelecto é a Pena (al-Qalam al-A'la) — a Pena do hadith 'A primeira coisa que Deus criou foi a Pena'. Assim, ele liga um conceito filosófico abstrato à própria tradição escriturística do Islã; o Primeiro Intelecto não é mais apenas uma 'primeira emanação' lógica, mas uma realidade viva que escreve destinos e carrega conhecimento."
+      },
+      "analogy": {
+        "tr": "Bir yazarın, romanını yazmadan önce zihninde bütün olay örgüsünü tasarladığını düşün. İlk Akıl (Kalem), İbn Arabî'ye göre tam olarak budur: Allah'ın, henüz gerçekleşmemiş her şeyi 'yazdığı', kaderlerin ilk taslağının çıktığı yer.",
+        "en": "Imagine an author designing the entire plot of his novel in his mind before writing it down. The First Intellect (the Pen), for Ibn Arabi, is exactly this: the place where God 'writes' everything not yet actualized, where the first draft of destinies is drawn up.",
+        "pt": "Imagine um autor projetando toda a trama de seu romance em sua mente antes de escrevê-lo. O Primeiro Intelecto (a Pena), para Ibn Arabi, é exatamente isso: o lugar onde Deus 'escreve' tudo o que ainda não se atualizou, onde o primeiro rascunho dos destinos é traçado."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "435",
+          "alinti_tr": "...marifetleri Kalem (ilk akıl) kaynaklı, bilgileri sağ elden, sırları okkadan, ruhları Levha'dan, toprağı Âdem'dendir.",
+          "not_tr": "İlk Akıl'ın Kalem ile doğrudan özdeşleştirilmesi."
+        },
+        {
+          "cilt": 1,
+          "satir": "17474",
+          "alinti_tr": "...cisimler âleminde bu doğal kaynaşma ile Yüce Kalem ve Korunmuş Levha arasındaki ilişkiye benzeyen bir ilişki meydana gelir. Bu ikisi, İlk Akıl ve Tümel Nefs olarak ifade edilmiştir.",
+          "not_tr": "İlk Akıl=Kalem, Tümel Nefs=Levh-i Mahfûz özdeşleştirmesinin en açık ifadesi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "tumel-nefs"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "alem-ervah"
+        }
+      ]
+    },
+    "tumel-nefs": {
+      "id": "tumel-nefs",
+      "group": "kozmik-hiyerarsi",
+      "title": {
+        "tr": "Tümel Nefs (Küllî Nefs)",
+        "en": "The Universal Soul",
+        "pt": "A Alma Universal"
+      },
+      "arabic": "النفس الكلية",
+      "felsefi_tanim": {
+        "tr": "Yeni-Eflatuncu kozmolojide, İlk Akıl'dan sudur eden ikinci mertebe — bütün cisimsel âlemi 'canlandıran', kuşatan kozmik ruh.",
+        "en": "In Neoplatonic cosmology, the second rank emanating from the First Intellect — the cosmic soul that 'animates' and encompasses the entire corporeal world.",
+        "pt": "Na cosmologia neoplatônica, o segundo nível emanando do Primeiro Intelecto — a alma cósmica que 'anima' e envolve todo o mundo corpóreo."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, İlk Akıl'ı Kalem ile özdeşleştirdiği gibi, Tümel Nefs'i de Levh-i Mahfûz (Korunmuş Levha) ile özdeşleştirir: Kalem yazar, Levha üzerine yazılır. Ayrıca Tümel Nefs'in kendi kendini bildiğini ama kendi sebebini (kendisini var edeni) doğrudan bilemediğini belirtir — ilginç bir epistemolojik sınır çizer.",
+        "en": "Just as Ibn Arabi identifies the First Intellect with the Pen, he identifies the Universal Soul with the Preserved Tablet (Levh-i Mahfuz): the Pen writes, and the Tablet is what is written upon. He also notes that the Universal Soul knows itself but cannot directly know its own cause (that which brought it into being) — drawing an interesting epistemological limit.",
+        "pt": "Assim como Ibn Arabi identifica o Primeiro Intelecto com a Pena, ele identifica a Alma Universal com a Tábua Preservada (Levh-i Mahfuz): a Pena escreve, e a Tábua é aquilo sobre o que se escreve. Ele também observa que a Alma Universal se conhece a si mesma, mas não pode conhecer diretamente sua própria causa (aquilo que a trouxe à existência) — traçando um limite epistemológico interessante."
+      },
+      "analogy": {
+        "tr": "Kalem-Levha ilişkisini bir yazar ve onun defteri gibi düşün: yazar (İlk Akıl/Kalem) yazar, defter (Tümel Nefs/Levha) o yazıyı taşır ve saklar. Defter kendi üzerindeki yazıyı 'bilir' (okunabilir) ama yazarın kendisini doğrudan tanımaz.",
+        "en": "Think of the Pen-Tablet relationship as a writer and his notebook: the writer (First Intellect/Pen) writes, the notebook (Universal Soul/Tablet) carries and preserves that writing. The notebook 'knows' (can display) the writing on it, but does not directly know the writer himself.",
+        "pt": "Pense na relação Pena-Tábua como um escritor e seu caderno: o escritor (Primeiro Intelecto/Pena) escreve, o caderno (Alma Universal/Tábua) carrega e preserva essa escrita. O caderno 'conhece' (pode exibir) a escrita nele, mas não conhece diretamente o próprio escritor."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "11519",
+          "alinti_tr": "...akıldan meydana gelen tümel nefstir. Tümel nefs, hiçbir zaman... bir ifadeyle tümel nefs, kendi sebebini değil, ancak kendisini bilmiştir.",
+          "not_tr": "Tümel Nefs'in epistemolojik sınırının tanımı: kendini bilir, sebebini bilemez."
+        },
+        {
+          "cilt": 1,
+          "satir": "17474",
+          "alinti_tr": "Yüce Kalem ve Korunmuş Levha arasındaki ilişkiye benzeyen bir ilişki meydana gelir. Bu ikisi, İlk Akıl ve Tümel Nefs olarak ifade edilmiştir.",
+          "not_tr": "İlk Akıl ile aynı pasaj — Kalem/Levha özdeşleştirmesi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "ilk-akil"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "alem-ervah"
+        }
+      ]
+    },
+    "mazhar": {
+      "id": "mazhar",
+      "group": "kopru-kavram",
+      "title": {
+        "tr": "Mazhar",
+        "en": "Locus of Manifestation",
+        "pt": "Lócus de Manifestação"
+      },
+      "arabic": "مظهر",
+      "felsefi_tanim": {
+        "tr": "Bir İlahi İsmin veya hakikatin kendisini gösterdiği, üzerinde 'göründüğü' yer/şey. Meşşâî felsefede tam bir karşılığı yoktur — bu, İbn Arabî'nin ve tasavvufun kendi terimidir.",
+        "en": "The place or thing upon which a Divine Name or reality manifests, or 'shows' itself. There is no exact Peripatetic counterpart — this is Ibn Arabi's own Sufi term.",
+        "pt": "O lugar ou coisa sobre a qual um Nome Divino ou realidade se manifesta, ou 'se mostra'. Não há equivalente peripatético exato — este é o próprio termo sufi de Ibn Arabi."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Mazhar, felsefeden tasavvufa geçişin tam köprüsüdür: felsefenin 'illet-malûl' (sebep-sonuç) diliyle anlatamadığı Allah-âlem ilişkisini, İbn Arabî 'tecellî-mazhar' (görünme-görünülen yer) diliyle anlatır. Âlemdeki her şey, bir veya birden fazla İlahi İsmin mazharıdır — âlem, Allah'ın 'sonucu' değil, Allah'ın isimlerinin 'göründüğü aynadır'.",
+        "en": "Mazhar is precisely the bridge from philosophy to Sufism: where philosophy's language of 'cause-effect' fails to describe the God-world relationship, Ibn Arabi describes it in the language of 'self-disclosure and locus of manifestation' (tecellî-mazhar). Everything in the world is the mazhar of one or more Divine Names — the world is not God's 'effect,' but the 'mirror' in which His Names appear.",
+        "pt": "O Mazhar é precisamente a ponte da filosofia para o Sufismo: onde a linguagem filosófica de 'causa-efeito' falha em descrever a relação Deus-mundo, Ibn Arabi a descreve na linguagem de 'autorrevelação e lócus de manifestação' (tecellî-mazhar). Tudo no mundo é o mazhar de um ou mais Nomes Divinos — o mundo não é 'efeito' de Deus, mas o 'espelho' no qual Seus Nomes aparecem."
+      },
+      "analogy": {
+        "tr": "Bir aynayı düşün: güneş aynada 'görünür' ama ayna güneşin sebebi ya da sonucu değildir, sadece onun göründüğü yerdir (mazhardır). İbn Arabî'ye göre her yaratılmış şey, Allah'ın bir ismi için böyle bir aynadır.",
+        "en": "Think of a mirror: the sun 'appears' in the mirror, but the mirror is neither the cause nor the effect of the sun — it is simply the place where it appears (its mazhar). According to Ibn Arabi, every created thing is such a mirror for one of God's Names.",
+        "pt": "Pense em um espelho: o sol 'aparece' no espelho, mas o espelho não é a causa nem o efeito do sol — é simplesmente o lugar onde ele aparece (seu mazhar). Segundo Ibn Arabi, cada coisa criada é um espelho assim para um dos Nomes de Deus."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 6,
+          "satir": "10665",
+          "alinti_tr": "Onlara 'mazhar' adı verildiğinde -ki bu isimden yoksun idiler ve el-Gani'nin bu a'yânı mazharları yapması da zorunlu değildi- bu nispet (yani mazharlık ile Zâhir arasındaki nispet) el-Vehhab ismini talep etmiştir.",
+          "not_tr": "Mazharlığın zorunlu olmadığını, el-Vehhab'ın (Bağışlayan) bir bağışı olduğunu gösterir."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "illet",
+        "malul"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "tecelli"
+        },
+        {
+          "view": "ontoloji",
+          "id": "ayan-sabite"
+        }
+      ]
+    },
+    "suret-madde": {
+      "id": "suret-madde",
+      "group": "kopru-kavram",
+      "title": {
+        "tr": "Sûret ve Mâdde",
+        "en": "Form and Matter",
+        "pt": "Forma e Matéria"
+      },
+      "arabic": "الصورة والمادة",
+      "felsefi_tanim": {
+        "tr": "Aristo'nun hylomorfizmi: her cismin, onu 'bu şey' yapan sûreti (formu) ve o sûreti taşıyan mâddesi (heyûlâ, ilk madde) vardır. İkisi birlikte cismi oluşturur.",
+        "en": "Aristotle's hylomorphism: every body has a form (sûret) that makes it 'this particular thing,' and a matter (mâdde, prime matter/heyûlâ) that carries that form. Together the two constitute a body.",
+        "pt": "O hilomorfismo de Aristóteles: todo corpo tem uma forma (sûret) que o torna 'esta coisa particular', e uma matéria (mâdde, matéria-prima/heyûlâ) que carrega essa forma. Juntas, as duas constituem um corpo."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Bir çevirmen dipnotu, İbn Arabî'nin 'Hebâ' (sitede zaten var olan, Âlem-i Misâl'e yakın bir kavram) teriminin filozofların 'heyûlâ/ilk madde' kavramıyla aynı şeye işaret ettiğini, ama İbn Arabî'nin bunu neredeyse hep 'imkân' (mümkün olma hâli) anlamında kullandığını belirtir. Yani mâdde, İbn Arabî'de saf fiziksel bir kavram değil, 'henüz sûret giymemiş saf kabul edicilik' hâlidir — a'yân-ı sâbitenin varlık kazanmadan önceki hâline yakın bir imge.",
+        "en": "A translator's footnote notes that Ibn Arabi's term 'Hebâ' (already present on this site, a concept close to the Imaginal Realm) points to the same thing as the philosophers' 'heyûlâ/prime matter,' but that Ibn Arabi almost always uses it in the sense of 'imkân' (a state of pure possibility). So matter, for Ibn Arabi, is not a purely physical concept, but a state of 'pure receptivity not yet clothed in form' — an image close to the pre-existence state of the Fixed Entities.",
+        "pt": "Uma nota do tradutor observa que o termo 'Hebâ' de Ibn Arabi (já presente neste site, um conceito próximo ao Reino Imaginal) aponta para a mesma coisa que o 'heyûlâ/matéria-prima' dos filósofos, mas que Ibn Arabi quase sempre o usa no sentido de 'imkân' (um estado de pura possibilidade). Assim, a matéria, para Ibn Arabi, não é um conceito puramente físico, mas um estado de 'pura receptividade ainda não revestida de forma' — uma imagem próxima ao estado de pré-existência das Entidades Fixas."
+      },
+      "analogy": {
+        "tr": "Balmumu ve ona basılan mühür gibi düşün: balmumu (mâdde) tek başına şekilsizdir, saf bir 'kabul edicilik'tir; mühür bastığında ortaya çıkan şekil (sûret) onu 'bu mühür' yapar. İbn Arabî'ye göre âlem de böyle: Allah'ın isimleri mühür, imkân/hebâ ise balmumu gibidir.",
+        "en": "Think of wax and a seal pressed into it: the wax alone (matter) is formless, a pure 'receptivity'; the shape (form) that appears when the seal is pressed makes it 'this particular seal-impression.' According to Ibn Arabi, the world is like this: God's Names are the seal, and possibility/Hebâ is like the wax.",
+        "pt": "Pense na cera e num selo nela pressionado: a cera sozinha (matéria) não tem forma, é uma pura 'receptividade'; a forma que aparece quando o selo é pressionado a torna 'esta impressão particular do selo'. Segundo Ibn Arabi, o mundo é assim: os Nomes de Deus são o selo, e a possibilidade/Hebâ é como a cera."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "4769",
+          "alinti_tr": "Âlemdeki her suret, cevherdeki bir arazdır. Suret, farklı cevherlere girer ve ayrılır.",
+          "not_tr": "Sûretin, cevher üzerindeki değişken/araz konumunun tanımı."
+        },
+        {
+          "cilt": 1,
+          "satir": "21359",
+          "alinti_tr": "Hebâ, heyûlâ, ilk madde anlamına gelen kelimelerdir. İbn Arabî bu gibi terimleri filozoflardan almıştır ve hemen hepsini imkân anlamında kullanır.",
+          "not_tr": "Çevirmen dipnotu — Hebâ/heyûlâ/ilk madde eşitliğini ve İbn Arabî'nin 'imkân' vurgusunu açıklar."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "cevher"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "alem-ecsam"
+        },
+        {
+          "view": "ontoloji",
+          "id": "alem-misal"
+        }
+      ]
+    },
+    "kuvve-fiil": {
+      "id": "kuvve-fiil",
+      "group": "kopru-kavram",
+      "title": {
+        "tr": "Kuvve ve Fiil",
+        "en": "Potentiality and Actuality",
+        "pt": "Potencialidade e Atualidade"
+      },
+      "arabic": "القوة والفعل",
+      "felsefi_tanim": {
+        "tr": "Aristo'nun temel çifti: 'kuvve hâlinde' olan, henüz gerçekleşmemiş ama gerçekleşme imkânı taşıyan; 'fiil hâlinde' olan ise zaten gerçekleşmiş, edimsel olandır. Örnek: tohum ağacı 'kuvve hâlinde' taşır, büyümüş ağaç 'fiil hâlindedir'.",
+        "en": "Aristotle's fundamental pair: what is 'in potentiality' has not yet been actualized but carries the possibility of being so; what is 'in actuality' has already been actualized, is real in act. Example: a seed carries a tree 'in potentiality,' a grown tree is 'in actuality.'",
+        "pt": "O par fundamental de Aristóteles: o que está 'em potência' ainda não foi atualizado mas carrega a possibilidade de sê-lo; o que está 'em ato' já foi atualizado, é real em ato. Exemplo: uma semente carrega uma árvore 'em potência', uma árvore crescida está 'em ato'."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî bu çifti hem bilgi bağlamında (bir bilginin 'kuvve hâlinden fiile çıkması' — yani içten dışa, gizliden açığa çıkması) hem de a'yân-ı sâbitenin varlık kazanma sürecinde kullanır: a'yân, Allah'ın ilminde 'kuvve hâlinde' zaten mevcuttur, tecellî ile 'fiile', yani gerçekleşmiş varlığa çıkar. Bu, kuvve-fiil çiftini Meşşâî fizik bağlamından alıp doğrudan yaratılış öğretisinin merkezine taşır.",
+        "en": "Ibn Arabi uses this pair both in the context of knowledge (a piece of knowledge 'coming out from potentiality into actuality' — i.e., moving from inward to outward, from hidden to disclosed) and in the process by which the Fixed Entities acquire existence: the entities already exist 'in potentiality' in God's knowledge, and through self-disclosure come 'into actuality,' i.e., into actualized existence. This lifts the potentiality-actuality pair out of its Peripatetic physics context and places it at the very center of the doctrine of creation.",
+        "pt": "Ibn Arabi usa esse par tanto no contexto do conhecimento (um conhecimento 'saindo da potência para o ato' — ou seja, movendo-se de dentro para fora, do oculto para o revelado) quanto no processo pelo qual as Entidades Fixas adquirem existência: as entidades já existem 'em potência' no conhecimento de Deus, e através da autorrevelação vêm 'ao ato', ou seja, à existência atualizada. Isso retira o par potência-ato de seu contexto de física peripatética e o coloca no próprio centro da doutrina da criação."
+      },
+      "analogy": {
+        "tr": "Bir fotoğraf makinesinin hafızasında henüz basılmamış bir fotoğraf gibi düşün: fotoğraf zaten oradadır (kuvve hâlinde) ama kâğıda basılana kadar 'görünür' değildir (fiile çıkmamıştır). A'yân-ı sâbite de Allah'ın ilminde tıpkı böyle 'kuvve hâlinde' durur, tecellîyle 'basılır', yani var olur.",
+        "en": "Think of a photo not yet printed, still in a camera's memory: the photo is already there (in potentiality), but is not 'visible' until printed on paper (has not come into actuality). The Fixed Entities likewise stand 'in potentiality' in God's knowledge, and through self-disclosure are 'printed,' that is, come into existence.",
+        "pt": "Pense em uma foto ainda não impressa, ainda na memória de uma câmera: a foto já está lá (em potência), mas não é 'visível' até ser impressa no papel (não veio ao ato). As Entidades Fixas igualmente permanecem 'em potência' no conhecimento de Deus, e através da autorrevelação são 'impressas', isto é, vêm à existência."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 3,
+          "satir": "3788",
+          "alinti_tr": "...bilenin amelinin ürünü, yaratanını tenzih etmenin anlamını bilmesinde ortaya çıkarak sözü ve ifadesiyle bilgiyi kuvve halinden fiile çıkarır.",
+          "not_tr": "Kuvve-fiil çiftinin bilgi/marifet bağlamında kullanımı."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "mumkun",
+        "suret-madde"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "ayan-sabite"
+        }
+      ]
+    }
+  }
+}

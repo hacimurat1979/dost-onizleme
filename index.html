@@ -87,6 +87,7 @@
         <button class="btn-ghost btn-ghost--active" id="ontology-btn" type="button" data-tr="Ontoloji" data-en="Ontology" data-pt="Ontologia">Ontoloji</button>
         <button class="btn-ghost" id="esma-btn" type="button" data-tr="Esmâü'l-Hüsnâ" data-en="The Beautiful Names" data-pt="Os Belos Nomes">Esmâü'l-Hüsnâ</button>
         <button class="btn-ghost" id="hal-btn" type="button" data-tr="Hâller Haritası" data-en="Map of States" data-pt="Mapa dos Estados">Hâller Haritası</button>
+        <button class="btn-ghost" id="terimler-btn" type="button" data-tr="Terimler Sözlüğü" data-en="Glossary of Terms" data-pt="Glossário de Termos">Terimler Sözlüğü</button>
       </div>
       <button class="btn-ghost" id="sirlar-btn" type="button" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
@@ -115,6 +116,10 @@
           <p id="intro-hal" hidden data-tr="Bu harita, Fütûhât-ı Mekkiyye'nin kendi 'Mu'âmeleler' bölümüne dayanarak, sâlikin nefsten Hakk'a doğru çıktığı iç yolculuğu, Tövbeden başlayıp Verâ, Zühd, Sabır, Rızâ ve İstikamet gibi makamlardan geçerek Cem-Fark, Fenâ-Bekâ, Tevhit ve en sonunda Hayret'e uzanan bir daire olarak izler. Dairesel oluşu bir tesadüf değil: İbn Arabî'ye göre hayrete düşen kimse tıpkı Hakk'ın kendisi gibi bir merkez etrafında daire çizerek 'yürür' - yol, döndüğü yere geri döner. Herhangi bir düğüme tıklayın; boş bir alanı sürükleyerek gezinebilir, Ctrl (Mac'te ⌘) tuşuyla birlikte fare tekerleğini kullanarak yakınlaştırıp uzaklaştırabilir, görünümü kaybederseniz sol üstteki dairesel düğmeyle ortalayabilirsiniz."
              data-en="Drawing on the Futuhat al-Makkiyya's own 'Practices' section, this map traces the seeker's inner journey from the soul toward the Real - from Repentance through stations like Scrupulousness, Asceticism, Patience, Contentment, and Rectitude, on to Unity-Differentiation, Annihilation-Subsistence, Divine Unity, and finally Bewilderment - as a circle. The circular shape is no accident: for Ibn Arabi, whoever falls into bewilderment 'walks' in a circle around a center, just as the Real itself does - the path returns to where it began. Click any node; drag an empty area to pan, hold Ctrl (⌘ on Mac) with the scroll wheel to zoom in or out, and use the circular button in the top-left corner to recenter if you lose the view."
              data-pt="Baseando-se na própria seção 'Práticas' do Futuhat al-Makkiyya, este mapa acompanha a jornada interior do buscador, da alma em direção ao Real - do Arrependimento, passando por estações como Escrúpulo, Ascetismo, Paciência, Contentamento e Retidão, até a Unidade-Diferenciação, Aniquilação-Subsistência, Unidade Divina e finalmente o Espanto - como um círculo. A forma circular não é acaso: para Ibn Arabi, quem cai no espanto 'caminha' em círculo ao redor de um centro, assim como o próprio Real - o caminho retorna a onde começou. Clique em qualquer nó; arraste uma área vazia para navegar, segure Ctrl (⌘ no Mac) com a roda do mouse para aproximar ou afastar, e use o botão circular no canto superior esquerdo para recentralizar caso perca a vista.">
+          </p>
+          <p id="intro-terimler" hidden data-tr="İbn Arabî, kendi kavramlarını (Vahdet-i Vücûd, A'yân-ı Sâbite, Tecellî gibi) kurmadan önce, Meşşâî (Aristo kökenli İslam) felsefesinin mantık ve metafizik araç kutusunu devraldı — Cevher, Araz, Cins, Fasıl, İllet, Malûl gibi kavramları. Bu sözlük, o araç kutusunu tanıtır ve İbn Arabî'nin onu nasıl yeniden yorumladığını, kendi düşüncesine nasıl bağladığını gösterir."
+             data-en="Before building his own concepts (like Unity of Being, the Fixed Entities, Self-Disclosure), Ibn Arabi inherited the logical and metaphysical toolkit of Peripatetic (Aristotelian-rooted Islamic) philosophy — concepts like Substance, Accident, Genus, Differentia, Cause, Effect. This glossary introduces that toolkit and shows how Ibn Arabi reinterpreted it and wove it into his own thought."
+             data-pt="Antes de construir seus próprios conceitos (como a Unidade do Ser, as Entidades Fixas, a Autorrevelação), Ibn Arabi herdou o conjunto de ferramentas lógicas e metafísicas da filosofia peripatética (islâmica de raiz aristotélica) — conceitos como Substância, Acidente, Gênero, Diferença, Causa, Efeito. Este glossário apresenta esse conjunto de ferramentas e mostra como Ibn Arabi o reinterpretou e o teceu em seu próprio pensamento.">
           </p>
         </div>
         <div class="landing-quote" id="landing-quote" aria-live="polite"></div>
@@ -160,6 +165,11 @@
         <div class="legend__item"><span class="legend__dot legend__dot--hal-hayret"></span><span data-tr="Hayret" data-en="Bewilderment" data-pt="Espanto">Hayret</span></div>
         <div class="legend__item"><span class="legend__line legend__line--return"></span><span data-tr="Hayret'ten Nefs'e dönüş: yol, döndüğü yere geri döner" data-en="Return from Bewilderment to the Soul: the path returns to where it began" data-pt="Retorno do Espanto à Alma: o caminho retorna a onde começou">Dönüş</span></div>
       </div>
+    </section>
+
+    <section class="terimler-wrap" id="terimler-wrap" hidden>
+      <div class="theme-chips" id="terimler-chips"></div>
+      <div class="terimler-list" id="terimler-list"></div>
     </section>
 
     <aside class="detail-panel" id="detail-panel" hidden>
@@ -213,6 +223,7 @@
   <script src="assets/reading-mode.js"></script>
   <script src="assets/esma.js"></script>
   <script src="assets/hal.js"></script>
+  <script src="assets/terimler.js"></script>
   <script src="assets/ontology.js"></script>
   <script src="assets/secret-nav.js"></script>
 </body>

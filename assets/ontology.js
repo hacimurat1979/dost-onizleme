@@ -17,6 +17,7 @@
     render();
     if (currentMainView === "esma") window.__esmaApp && window.__esmaApp.onLangChange();
     else if (currentMainView === "hal") window.__halApp && window.__halApp.onLangChange();
+    else if (currentMainView === "terimler") window.__terimlerApp && window.__terimlerApp.onLangChange();
   });
 
   detailClose.addEventListener("click", () => {
@@ -96,9 +97,11 @@
   const ontologyBtn = document.getElementById("ontology-btn");
   const esmaBtn = document.getElementById("esma-btn");
   const halBtn = document.getElementById("hal-btn");
+  const terimlerBtn = document.getElementById("terimler-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
   const halWrap = document.getElementById("hal-wrap");
+  const terimlerWrap = document.getElementById("terimler-wrap");
 
   function setMainView(view) {
     if (currentMainView === view) return;
@@ -106,15 +109,19 @@
     if (ontologyBtn) ontologyBtn.classList.toggle("btn-ghost--active", view === "ontology");
     if (esmaBtn) esmaBtn.classList.toggle("btn-ghost--active", view === "esma");
     if (halBtn) halBtn.classList.toggle("btn-ghost--active", view === "hal");
+    if (terimlerBtn) terimlerBtn.classList.toggle("btn-ghost--active", view === "terimler");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
+    if (terimlerWrap) terimlerWrap.hidden = view !== "terimler";
     const introOntology = document.getElementById("intro-ontology");
     const introEsma = document.getElementById("intro-esma");
     const introHal = document.getElementById("intro-hal");
+    const introTerimler = document.getElementById("intro-terimler");
     if (introOntology) introOntology.hidden = view !== "ontology";
     if (introEsma) introEsma.hidden = view !== "esma";
     if (introHal) introHal.hidden = view !== "hal";
+    if (introTerimler) introTerimler.hidden = view !== "terimler";
     currentDetailNode = null;
     currentDetailEdge = null;
     detailPanel.hidden = true;
@@ -124,6 +131,9 @@
     } else if (view === "hal") {
       currentDetailView = "hal";
       window.__halApp && window.__halApp.activate();
+    } else if (view === "terimler") {
+      currentDetailView = "terimler";
+      window.__terimlerApp && window.__terimlerApp.activate();
     } else {
       currentDetailView = null;
     }
@@ -132,6 +142,7 @@
   if (ontologyBtn) ontologyBtn.addEventListener("click", () => { setMainView("ontology"); updateHash("ontoloji"); });
   if (esmaBtn) esmaBtn.addEventListener("click", () => { setMainView("esma"); updateHash("esma"); });
   if (halBtn) halBtn.addEventListener("click", () => { setMainView("hal"); updateHash("hal"); });
+  if (terimlerBtn) terimlerBtn.addEventListener("click", () => { setMainView("terimler"); updateHash("terimler"); });
 
   // --- Deep linking & cross-view navigation ---
   let pendingSirlarId = null;
@@ -157,6 +168,11 @@
     if (id) window.__halApp && window.__halApp.goToNode(id);
   }
 
+  function goToTerimler(id) {
+    setMainView("terimler");
+    window.__terimlerApp && window.__terimlerApp.goToNode(id);
+  }
+
   function goToSirlar(id) {
     currentDetailNode = null;
     currentDetailEdge = null;
@@ -170,13 +186,14 @@
   }
 
   function parseHashAndGo() {
-    const m = /^#\/(ontoloji|esma|sirlar|hal)(?:\/(.+))?$/.exec(location.hash);
+    const m = /^#\/(ontoloji|esma|sirlar|hal|terimler)(?:\/(.+))?$/.exec(location.hash);
     if (!m) return;
     const [, view, id] = m;
     if (view === "ontoloji") goToOntologyNode(id);
     else if (view === "esma") goToEsma(id);
     else if (view === "sirlar") goToSirlar(id);
     else if (view === "hal") goToHal(id);
+    else if (view === "terimler") goToTerimler(id);
   }
 
   window.addEventListener("hashchange", parseHashAndGo);
@@ -187,6 +204,7 @@
       else if (view === "esma") goToEsma(id);
       else if (view === "sirlar") goToSirlar(id);
       else if (view === "hal") goToHal(id);
+      else if (view === "terimler") goToTerimler(id);
       updateHash(view, id);
     },
     setHash: updateHash,

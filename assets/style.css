@@ -2694,3 +2694,65 @@ html[data-contrast="high"] .detail-title {
 @media (max-width: 640px) {
   .search-panel { padding-top: min(8vh, 60px); }
 }
+
+/* Terimler Sözlüğü */
+.terimler-wrap {
+  position: relative;
+  width: calc(100% - clamp(32px, 8vw, 96px));
+  margin: 0 clamp(16px, 4vw, 48px);
+  max-height: min(72vh, 720px);
+  overflow-y: auto;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 32px);
+}
+
+.terimler-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.terim-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 12px;
+  background: var(--page-plane);
+  border: 1px solid var(--border);
+  border-radius: 50% / 20%;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.terim-card:hover,
+.terim-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--series-theme);
+}
+
+.terim-card__title {
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.terim-card__arabic {
+  color: var(--series-theme);
+  font-size: 1.1rem;
+  font-family: "Traditional Arabic", "Scheherazade New", serif;
+}
+
+.detail-title__arabic {
+  color: var(--series-theme);
+  font-size: 0.75em;
+  font-weight: 400;
+}
+
+@media (max-width: 640px) {
+  .terimler-list { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+}
