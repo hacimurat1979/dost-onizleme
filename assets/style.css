@@ -2797,3 +2797,154 @@ html[data-contrast="high"] .detail-title {
   color: var(--text-secondary);
   line-height: 1.35;
 }
+
+/* Terimler Sözlüğü — kavramlar arası ilişki çizimleri */
+.terimler-diagram {
+  margin: 16px 0;
+}
+
+.terimler-diagram[hidden] {
+  display: none;
+}
+
+.term-diagram-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.term-diagram-card {
+  flex: 1 1 260px;
+  min-width: 240px;
+  background: var(--page-plane);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 14px 16px 10px;
+}
+
+.term-diagram__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.term-diagram-caption {
+  margin: 8px 0 0;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.term-diagram-node {
+  fill: var(--surface-1);
+  stroke: var(--text-secondary);
+  stroke-width: 1.5px;
+}
+
+.term-diagram-node--accent {
+  fill: color-mix(in srgb, var(--series-theme) 22%, var(--surface-1));
+  stroke: var(--series-theme);
+  stroke-width: 2px;
+}
+
+.term-diagram-node--dashed {
+  fill: var(--surface-1);
+  stroke: var(--text-muted);
+  stroke-width: 1.5px;
+  stroke-dasharray: 3 3;
+}
+
+.term-diagram-node--faint {
+  fill: var(--surface-1);
+  stroke: var(--text-muted);
+  stroke-width: 1.5px;
+  opacity: 0.6;
+}
+
+.term-diagram-node--sm {
+  stroke-width: 1.5px;
+}
+
+.term-diagram-label {
+  fill: var(--text-primary);
+  font-size: 11px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--surface-1);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.term-diagram-label--small {
+  fill: var(--text-primary);
+  font-size: 9.5px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--surface-1);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.term-diagram-label--host {
+  font-size: 12px;
+}
+
+.term-diagram-note {
+  fill: var(--text-secondary);
+  font-size: 10px;
+  font-style: italic;
+}
+
+.term-diagram-note--accent {
+  fill: var(--series-theme);
+  font-weight: 600;
+}
+
+.term-diagram-op {
+  fill: var(--text-muted);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.term-diagram-arrow {
+  stroke: var(--text-secondary);
+  stroke-width: 1.5px;
+}
+
+.term-diagram-arrow--oneway {
+  stroke: var(--series-theme);
+  stroke-width: 2px;
+}
+
+.term-diagram-arrow--dashed {
+  stroke: var(--text-muted);
+  stroke-width: 1.5px;
+  stroke-dasharray: 4 3;
+}
+
+.term-diagram-tether {
+  stroke: var(--gridline);
+  stroke-width: 1px;
+}
+
+.term-diagram-axis {
+  stroke: var(--text-secondary);
+  stroke-width: 1.5px;
+}
+
+.term-diagram-mirror {
+  stroke: var(--series-theme);
+  stroke-width: 3px;
+  stroke-linecap: round;
+}
+
+.term-diagram-arrowhead {
+  fill: var(--series-theme);
+}
+
+@media (max-width: 640px) {
+  .term-diagram-row { flex-direction: column; }
+  .term-diagram-card { min-width: 0; }
+}

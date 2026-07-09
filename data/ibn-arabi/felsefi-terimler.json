@@ -12,7 +12,27 @@
         "tr": "Bir şey kendi başına mı var, yoksa başka bir şeye mi muhtaç? Cevher ile Araz arasındaki fark.",
         "en": "Does a thing exist by itself, or does it depend on something else? The distinction between Substance and Accident.",
         "pt": "Uma coisa existe por si mesma, ou depende de outra coisa? A distinção entre Substância e Acidente."
-      }
+      },
+      "diagram": [
+        {
+          "type": "host-satellite",
+          "host": {
+            "tr": "Cevher",
+            "en": "Substance",
+            "pt": "Substância"
+          },
+          "satellite": {
+            "tr": "Araz",
+            "en": "Accident",
+            "pt": "Acidente"
+          },
+          "note": {
+            "tr": "Araz, Cevher'e bağlıdır — tek başına, bir taşıyıcı olmadan var olamaz.",
+            "en": "The Accident depends on the Substance — it cannot exist alone, without a bearer.",
+            "pt": "O Acidente depende da Substância — não pode existir sozinho, sem um portador."
+          }
+        }
+      ]
     },
     {
       "id": "siniflandirma",
@@ -25,7 +45,32 @@
         "tr": "Bir şeyi tanımlarken kullandığımız merdiven: Cins, Fasıl, Tür (Nev').",
         "en": "The ladder we use to define a thing: Genus, Differentia, Species.",
         "pt": "A escada que usamos para definir uma coisa: Gênero, Diferença, Espécie."
-      }
+      },
+      "diagram": [
+        {
+          "type": "formula-merge",
+          "a": {
+            "tr": "Cins",
+            "en": "Genus",
+            "pt": "Gênero"
+          },
+          "b": {
+            "tr": "Fasıl",
+            "en": "Differentia",
+            "pt": "Diferença"
+          },
+          "result": {
+            "tr": "Nev' (Tür)",
+            "en": "Species",
+            "pt": "Espécie"
+          },
+          "note": {
+            "tr": "İkisi birleşince tam bir tanım ortaya çıkar.",
+            "en": "Together the two produce a complete definition.",
+            "pt": "Juntos os dois produzem uma definição completa."
+          }
+        }
+      ]
     },
     {
       "id": "sebep-sonuc",
@@ -38,7 +83,47 @@
         "tr": "İllet (sebep) ile Malûl (o sebebin doğurduğu sonuç) arasındaki karşılıklı ilişki.",
         "en": "The reciprocal relationship between Cause (illet) and Effect (malûl).",
         "pt": "A relação recíproca entre Causa (illet) e Efeito (malûl)."
-      }
+      },
+      "diagram": [
+        {
+          "type": "mutual-vs-oneway",
+          "left": {
+            "tr": "İllet",
+            "en": "Cause",
+            "pt": "Causa"
+          },
+          "right": {
+            "tr": "Malûl",
+            "en": "Effect",
+            "pt": "Efeito"
+          },
+          "mutualLabel": {
+            "tr": "karşılıklı arar",
+            "en": "mutually require each other",
+            "pt": "requerem-se mutuamente"
+          },
+          "oneWayFrom": {
+            "tr": "Allah",
+            "en": "God",
+            "pt": "Deus"
+          },
+          "oneWayTo": {
+            "tr": "Âlem",
+            "en": "The World",
+            "pt": "O Mundo"
+          },
+          "oneWayLabel": {
+            "tr": "Vehb — karşılıksız bağış",
+            "en": "Vehb — unconditional gift",
+            "pt": "Vehb — dádiva incondicional"
+          },
+          "note": {
+            "tr": "İllet-Malûl karşılıklı ihtiyaç demektir; İbn Arabî bunu Allah-âlem ilişkisine uygulamaz, çünkü Allah hiçbir şeye muhtaç değildir.",
+            "en": "Cause-Effect means mutual need; Ibn Arabi does not apply this to God's relation to the world, since God needs nothing.",
+            "pt": "Causa-Efeito significa necessidade mútua; Ibn Arabi não aplica isso à relação de Deus com o mundo, pois Deus não precisa de nada."
+          }
+        }
+      ]
     },
     {
       "id": "varlik-mertebesi",
@@ -51,7 +136,47 @@
         "tr": "Bir şeyin var olması zorunlu mu (Vâcib), yoksa olabilir/olmayabilir mi (Mümkün)?",
         "en": "Is a thing's existence necessary (Vâcib), or merely possible (Mümkün)?",
         "pt": "A existência de uma coisa é necessária (Vâcib), ou meramente possível (Mümkün)?"
-      }
+      },
+      "diagram": [
+        {
+          "type": "spectrum",
+          "leftLabel": {
+            "tr": "Mümkün",
+            "en": "Contingent",
+            "pt": "Contingente"
+          },
+          "leftNote": {
+            "tr": "olabilir / olmayabilir",
+            "en": "may or may not be",
+            "pt": "pode ou não ser"
+          },
+          "rightLabel": {
+            "tr": "Vâcib",
+            "en": "Necessary",
+            "pt": "Necessário"
+          },
+          "rightNote": {
+            "tr": "var olması zorunlu",
+            "en": "must necessarily be",
+            "pt": "deve necessariamente ser"
+          },
+          "leftMarker": {
+            "tr": "Âlem, mahlûkat",
+            "en": "The world, creation",
+            "pt": "O mundo, a criação"
+          },
+          "rightMarker": {
+            "tr": "Allah",
+            "en": "God",
+            "pt": "Deus"
+          },
+          "note": {
+            "tr": "Yaratılmış her şey mümkün uçtadır; sadece Allah'ın varlığı zorunludur.",
+            "en": "Everything created stands at the contingent end; only God's existence is necessary.",
+            "pt": "Tudo o que é criado está na extremidade contingente; apenas a existência de Deus é necessária."
+          }
+        }
+      ]
     },
     {
       "id": "kozmik-hiyerarsi",
@@ -64,7 +189,39 @@
         "tr": "Fârâbî ve İbn Sînâ'dan gelen, İbn Arabî'nin devraldığı evren tasviri: İlk Akıl ve Tümel Nefs.",
         "en": "The cosmic hierarchy inherited from Farabi and Ibn Sina, reworked by Ibn Arabi: the First Intellect and the Universal Soul.",
         "pt": "A hierarquia cósmica herdada de Farabi e Ibn Sina, reelaborada por Ibn Arabi: o Primeiro Intelecto e a Alma Universal."
-      }
+      },
+      "diagram": [
+        {
+          "type": "cascade",
+          "steps": [
+            {
+              "tr": "Zât / Allah",
+              "en": "Essence / God",
+              "pt": "Essência / Deus"
+            },
+            {
+              "tr": "İlk Akıl (Kalem)",
+              "en": "First Intellect (the Pen)",
+              "pt": "Primeiro Intelecto (a Pena)"
+            },
+            {
+              "tr": "Tümel Nefs (Levha)",
+              "en": "Universal Soul (the Tablet)",
+              "pt": "Alma Universal (a Tábua)"
+            }
+          ],
+          "relationLabel": {
+            "tr": "yazar / kaydeder",
+            "en": "writes / records",
+            "pt": "escreve / registra"
+          },
+          "note": {
+            "tr": "İbn Arabî: Kalem yazar, Levha üzerine yazılan her şeyi taşır.",
+            "en": "Ibn Arabi: the Pen writes, the Tablet carries all that is written upon it.",
+            "pt": "Ibn Arabi: a Pena escreve, a Tábua carrega tudo o que é escrito nela."
+          }
+        }
+      ]
     },
     {
       "id": "kopru-kavram",
@@ -77,7 +234,66 @@
         "tr": "Felsefeden tasavvufa geçişi sağlayan, İbn Arabî'nin en çok kendi damgasını vurduğu kavramlar.",
         "en": "Concepts that bridge philosophy and Sufism, where Ibn Arabi leaves his own strongest mark.",
         "pt": "Conceitos que fazem a ponte entre filosofia e Sufismo, onde Ibn Arabi deixa sua marca mais forte."
-      }
+      },
+      "diagram": [
+        {
+          "type": "mirror",
+          "termId": "mazhar",
+          "source": {
+            "tr": "İlahi İsim",
+            "en": "Divine Name",
+            "pt": "Nome Divino"
+          },
+          "target": {
+            "tr": "Mazhar (yaratılmış)",
+            "en": "Mazhar (creation)",
+            "pt": "Mazhar (criação)"
+          },
+          "note": {
+            "tr": "İsim aynada görünür ama ayna, ismin ne sebebi ne sonucudur — sadece göründüğü yerdir.",
+            "en": "The Name appears in the mirror, but the mirror is neither the Name's cause nor effect — only where it appears.",
+            "pt": "O Nome aparece no espelho, mas o espelho não é nem a causa nem o efeito do Nome — apenas onde ele aparece."
+          }
+        },
+        {
+          "type": "seal-wax",
+          "termId": "suret-madde",
+          "wax": {
+            "tr": "Mâdde",
+            "en": "Matter",
+            "pt": "Matéria"
+          },
+          "seal": {
+            "tr": "Sûret",
+            "en": "Form",
+            "pt": "Forma"
+          },
+          "note": {
+            "tr": "Mâdde şekilsizdir, saf kabul edicidir; mühür (Sûret) basılınca belirli bir şey olur.",
+            "en": "Matter is formless, pure receptivity; once the seal (Form) is pressed, it becomes a particular thing.",
+            "pt": "A matéria é sem forma, pura receptividade; uma vez que o selo (Forma) é pressionado, torna-se algo particular."
+          }
+        },
+        {
+          "type": "potential-actual",
+          "termId": "kuvve-fiil",
+          "potential": {
+            "tr": "Kuvve",
+            "en": "Potentiality",
+            "pt": "Potência"
+          },
+          "actual": {
+            "tr": "Fiil",
+            "en": "Actuality",
+            "pt": "Ato"
+          },
+          "note": {
+            "tr": "Kuvve hâlindeki şey henüz gerçekleşmemiştir; tecellî ile fiile çıkar.",
+            "en": "What is in potentiality has not yet been actualized; self-disclosure brings it into actuality.",
+            "pt": "O que está em potência ainda não foi atualizado; a autorrevelação o traz ao ato."
+          }
+        }
+      ]
     }
   ],
   "terms": {

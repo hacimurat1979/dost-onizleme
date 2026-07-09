@@ -4,9 +4,10 @@
   const I18n = window.DostI18n;
   const grid = document.getElementById("terimler-list");
   const chipsWrap = document.getElementById("terimler-chips");
+  const diagramWrap = document.getElementById("terimler-diagram");
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
-  if (!grid || !chipsWrap || !detailPanel || !detailContent) return;
+  if (!grid || !chipsWrap || !diagramWrap || !detailPanel || !detailContent) return;
 
   let glossaryData = null;
   let fetchPromise = null;
@@ -38,6 +39,164 @@
 
   function termsInGroup(groupId) {
     return Object.values(glossaryData.terms).filter((t) => groupId === "all" || t.group === groupId);
+  }
+
+  // İki (veya daha fazla) kavram arasındaki ilişkiyi tek bakışta gösteren
+  // küçük SVG şemalar. Her grubun "diagram" alanındaki tipe göre seçilir.
+  const diagramRenderers = {
+    "mutual-vs-oneway": (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 340 150" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node" cx="60" cy="34" r="24"/>
+        <text class="term-diagram-label" x="60" y="39" text-anchor="middle">${tt(d.left)}</text>
+        <circle class="term-diagram-node" cx="280" cy="34" r="24"/>
+        <text class="term-diagram-label" x="280" y="39" text-anchor="middle">${tt(d.right)}</text>
+        <line class="term-diagram-arrow term-diagram-arrow--mutual" x1="86" y1="34" x2="254" y2="34" marker-start="url(#tdArrowStart)" marker-end="url(#tdArrowEnd)"/>
+        <text class="term-diagram-note" x="170" y="20" text-anchor="middle">${tt(d.mutualLabel)}</text>
+
+        <circle class="term-diagram-node term-diagram-node--accent" cx="60" cy="116" r="24"/>
+        <text class="term-diagram-label" x="60" y="121" text-anchor="middle">${tt(d.oneWayFrom)}</text>
+        <circle class="term-diagram-node" cx="280" cy="116" r="24"/>
+        <text class="term-diagram-label" x="280" y="121" text-anchor="middle">${tt(d.oneWayTo)}</text>
+        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="86" y1="116" x2="254" y2="116" marker-end="url(#tdArrowEnd)"/>
+        <text class="term-diagram-note term-diagram-note--accent" x="170" y="145" text-anchor="middle">${tt(d.oneWayLabel)}</text>
+      </svg>
+    `,
+    "host-satellite": (d) => {
+      const cx = 150, cy = 85, hostR = 32, satR = 15, orbit = 62;
+      const angles = [-90, 30, 150];
+      const sats = angles.map((deg) => {
+        const rad = (deg * Math.PI) / 180;
+        const sx = cx + orbit * Math.cos(rad);
+        const sy = cy + orbit * Math.sin(rad);
+        return `
+          <line class="term-diagram-tether" x1="${cx}" y1="${cy}" x2="${sx}" y2="${sy}"/>
+          <circle class="term-diagram-node term-diagram-node--dashed" cx="${sx}" cy="${sy}" r="${satR}"/>
+        `;
+      }).join("");
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 300 170" role="img" aria-label="${tt(d.note)}">
+        ${sats}
+        <circle class="term-diagram-node term-diagram-node--accent" cx="${cx}" cy="${cy}" r="${hostR}"/>
+        <text class="term-diagram-label term-diagram-label--host" x="${cx}" y="${cy + 5}" text-anchor="middle">${tt(d.host)}</text>
+        <text class="term-diagram-label term-diagram-label--small" x="${cx}" y="${cy - orbit - 20}" text-anchor="middle">${tt(d.satellite)}</text>
+      </svg>
+    `;
+    },
+    "formula-merge": (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 340 100" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node" cx="55" cy="50" r="30"/>
+        <text class="term-diagram-label" x="55" y="55" text-anchor="middle">${tt(d.a)}</text>
+        <text class="term-diagram-op" x="120" y="58" text-anchor="middle">+</text>
+        <circle class="term-diagram-node" cx="185" cy="50" r="30"/>
+        <text class="term-diagram-label" x="185" y="55" text-anchor="middle">${tt(d.b)}</text>
+        <text class="term-diagram-op" x="245" y="58" text-anchor="middle">=</text>
+        <circle class="term-diagram-node term-diagram-node--accent" cx="290" cy="50" r="34"/>
+        <text class="term-diagram-label" x="290" y="55" text-anchor="middle">${tt(d.result)}</text>
+      </svg>
+    `,
+    spectrum: (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 340 120" role="img" aria-label="${tt(d.note)}">
+        <line class="term-diagram-axis" x1="30" y1="55" x2="310" y2="55" marker-end="url(#tdArrowEnd)"/>
+        <circle class="term-diagram-node term-diagram-node--sm" cx="80" cy="55" r="16"/>
+        <circle class="term-diagram-node term-diagram-node--accent term-diagram-node--sm" cx="270" cy="55" r="16"/>
+        <text class="term-diagram-note" x="80" y="90" text-anchor="middle">${tt(d.leftMarker)}</text>
+        <text class="term-diagram-note" x="270" y="90" text-anchor="middle">${tt(d.rightMarker)}</text>
+        <text class="term-diagram-label" x="30" y="20" text-anchor="start">${tt(d.leftLabel)}</text>
+        <text class="term-diagram-label--small" x="30" y="35" text-anchor="start">${tt(d.leftNote)}</text>
+        <text class="term-diagram-label" x="310" y="20" text-anchor="end">${tt(d.rightLabel)}</text>
+        <text class="term-diagram-label--small" x="310" y="35" text-anchor="end">${tt(d.rightNote)}</text>
+      </svg>
+    `,
+    cascade: (d) => {
+      const n = d.steps.length;
+      const gap = 300 / (n - 1);
+      const circles = d.steps.map((s, i) => {
+        const x = 30 + i * gap;
+        return `
+          <circle class="term-diagram-node${i === 0 ? " term-diagram-node--accent" : ""}" cx="${x}" cy="60" r="28"/>
+          <text class="term-diagram-label term-diagram-label--small" x="${x}" y="65" text-anchor="middle">${tt(s)}</text>
+        `;
+      }).join("");
+      const arrows = d.steps.slice(1).map((s, i) => {
+        const x1 = 30 + i * gap + 30;
+        const x2 = 30 + (i + 1) * gap - 30;
+        return `<line class="term-diagram-arrow term-diagram-arrow--oneway" x1="${x1}" y1="60" x2="${x2}" y2="60" marker-end="url(#tdArrowEnd)"/>`;
+      }).join("");
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 340 110" role="img" aria-label="${tt(d.note)}">
+        ${arrows}${circles}
+        <text class="term-diagram-note" x="170" y="100" text-anchor="middle">${tt(d.relationLabel)}</text>
+      </svg>
+    `;
+    },
+    mirror: (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 300 120" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node term-diagram-node--accent" cx="55" cy="55" r="26"/>
+        <text class="term-diagram-label term-diagram-label--small" x="55" y="60" text-anchor="middle">${tt(d.source)}</text>
+        <line class="term-diagram-mirror" x1="160" y1="15" x2="140" y2="95"/>
+        <line class="term-diagram-arrow term-diagram-arrow--dashed" x1="83" y1="55" x2="215" y2="55" marker-end="url(#tdArrowEnd)"/>
+        <circle class="term-diagram-node term-diagram-node--faint" cx="245" cy="55" r="26"/>
+        <text class="term-diagram-label term-diagram-label--small" x="245" y="60" text-anchor="middle">${tt(d.target)}</text>
+      </svg>
+    `,
+    "seal-wax": (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 300 130" role="img" aria-label="${tt(d.note)}">
+        <ellipse class="term-diagram-node term-diagram-node--faint" cx="150" cy="90" rx="90" ry="30"/>
+        <text class="term-diagram-label term-diagram-label--small" x="150" y="95" text-anchor="middle">${tt(d.wax)}</text>
+        <rect class="term-diagram-node term-diagram-node--accent" x="120" y="15" width="60" height="40" rx="8"/>
+        <text class="term-diagram-label term-diagram-label--small" x="150" y="40" text-anchor="middle">${tt(d.seal)}</text>
+        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="150" y1="58" x2="150" y2="68" marker-end="url(#tdArrowEnd)"/>
+      </svg>
+    `,
+    "potential-actual": (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 300 100" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node term-diagram-node--dashed" cx="60" cy="50" r="26"/>
+        <text class="term-diagram-label term-diagram-label--small" x="60" y="55" text-anchor="middle">${tt(d.potential)}</text>
+        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="90" y1="50" x2="210" y2="50" marker-end="url(#tdArrowEnd)"/>
+        <circle class="term-diagram-node term-diagram-node--accent" cx="240" cy="50" r="26"/>
+        <text class="term-diagram-label term-diagram-label--small" x="240" y="55" text-anchor="middle">${tt(d.actual)}</text>
+      </svg>
+    `,
+  };
+
+  const DIAGRAM_DEFS = `
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <marker id="tdArrowEnd" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" class="term-diagram-arrowhead"/>
+        </marker>
+        <marker id="tdArrowStart" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto">
+          <path d="M8,0 L0,4 L8,8 Z" class="term-diagram-arrowhead"/>
+        </marker>
+      </defs>
+    </svg>
+  `;
+
+  function renderDiagrams() {
+    if (activeGroup === "all") {
+      diagramWrap.innerHTML = "";
+      diagramWrap.hidden = true;
+      return;
+    }
+    const group = groupById(activeGroup);
+    const diagrams = group && group.diagram;
+    if (!diagrams || !diagrams.length) {
+      diagramWrap.innerHTML = "";
+      diagramWrap.hidden = true;
+      return;
+    }
+    diagramWrap.hidden = false;
+    const cards = diagrams
+      .map((dg) => {
+        const renderer = diagramRenderers[dg.type];
+        if (!renderer) return "";
+        return `<div class="term-diagram-card">
+          ${renderer(dg)}
+          <p class="term-diagram-caption">${tt(dg.note)}</p>
+        </div>`;
+      })
+      .join("");
+    diagramWrap.innerHTML = DIAGRAM_DEFS + `<div class="term-diagram-row">${cards}</div>`;
   }
 
   function renderChips() {
@@ -75,6 +234,7 @@
   function render() {
     if (!glossaryData) return;
     renderChips();
+    renderDiagrams();
     renderList();
   }
 
