@@ -2810,12 +2810,14 @@ html[data-contrast="high"] .detail-title {
 .term-diagram-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
 }
 
 .term-diagram-card {
   flex: 1 1 260px;
   min-width: 240px;
+  max-width: 360px;
   background: var(--page-plane);
   border: 1px dashed var(--border);
   border-radius: 12px;
@@ -2824,8 +2826,10 @@ html[data-contrast="high"] .detail-title {
 
 .term-diagram__svg {
   width: 100%;
+  max-width: 320px;
   height: auto;
   display: block;
+  margin: 0 auto;
   overflow: visible;
 }
 
@@ -2945,6 +2949,6 @@ html[data-contrast="high"] .detail-title {
 }
 
 @media (max-width: 640px) {
-  .term-diagram-row { flex-direction: column; }
-  .term-diagram-card { min-width: 0; }
+  .term-diagram-row { flex-direction: column; align-items: stretch; }
+  .term-diagram-card { min-width: 0; max-width: 100%; }
 }
