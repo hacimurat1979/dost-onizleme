@@ -3034,6 +3034,96 @@ html[data-contrast="high"] .detail-title {
   margin-bottom: 4px;
 }
 
+.cizim-card__svg-wrap {
+  cursor: zoom-in;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+
+.cizim-card__svg-wrap:hover,
+.cizim-card__svg-wrap:focus-visible {
+  background: color-mix(in srgb, var(--series-theme) 8%, transparent);
+  outline: none;
+}
+
+.cizim-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.cizim-lightbox[hidden] {
+  display: none;
+}
+
+.cizim-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--page-plane) 55%, black 25%);
+  backdrop-filter: blur(2px);
+}
+
+.cizim-lightbox__panel {
+  position: relative;
+  background: var(--page-plane);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 32px 32px;
+  max-width: min(760px, 92vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.cizim-lightbox__close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--text-secondary);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+}
+
+.cizim-lightbox__close:hover {
+  background: color-mix(in srgb, var(--text-secondary) 12%, transparent);
+}
+
+.cizim-lightbox__ref {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+}
+
+.cizim-lightbox__name {
+  margin: 0 0 18px;
+}
+
+.cizim-lightbox__svg-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.cizim-lightbox__svg-wrap .cizim-card__svg {
+  max-width: 640px;
+}
+
+body.cizim-lightbox-open {
+  overflow: hidden;
+}
+
 @media (max-width: 640px) {
   .cizim-card { padding: 16px 16px 18px; }
+  .cizim-lightbox__panel { padding: 22px 18px 24px; }
 }

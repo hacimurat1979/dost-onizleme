@@ -137,10 +137,57 @@
       <article class="cizim-card">
         <p class="cizim-card__ref">${item.source_ref}</p>
         <h3 class="cizim-card__name">${tt(item.name)}</h3>
-        <div class="cizim-card__svg-wrap">${svg}</div>
+        <div class="cizim-card__svg-wrap" data-cizim-id="${item.id}" role="button" tabindex="0"
+             aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${svg}</div>
         <p class="cizim-card__desc">${tt(item.description)}</p>
       </article>
     `;
+  }
+
+  // --- Büyütme (lightbox) ---
+  let lightboxEl = null;
+
+  function ensureLightbox() {
+    if (lightboxEl) return lightboxEl;
+    lightboxEl = document.createElement("div");
+    lightboxEl.className = "cizim-lightbox";
+    lightboxEl.hidden = true;
+    lightboxEl.innerHTML = `
+      <div class="cizim-lightbox__backdrop"></div>
+      <div class="cizim-lightbox__panel" role="dialog" aria-modal="true">
+        <button class="cizim-lightbox__close" type="button" aria-label="${tt({ tr: "Kapat", en: "Close", pt: "Fechar" })}">×</button>
+        <p class="cizim-lightbox__ref"></p>
+        <h3 class="cizim-lightbox__name"></h3>
+        <div class="cizim-lightbox__svg-wrap"></div>
+      </div>
+    `;
+    document.body.appendChild(lightboxEl);
+    lightboxEl.querySelector(".cizim-lightbox__backdrop").addEventListener("click", closeLightbox);
+    lightboxEl.querySelector(".cizim-lightbox__close").addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !lightboxEl.hidden) closeLightbox();
+    });
+    return lightboxEl;
+  }
+
+  function openLightbox(itemId) {
+    if (!data) return;
+    const item = data.diagrams.find((x) => x.id === itemId);
+    if (!item) return;
+    const renderer = cizimRenderers[item.diagram.type];
+    const svg = renderer ? renderer(item.diagram) : "";
+    const el = ensureLightbox();
+    el.querySelector(".cizim-lightbox__ref").textContent = item.source_ref;
+    el.querySelector(".cizim-lightbox__name").textContent = tt(item.name);
+    el.querySelector(".cizim-lightbox__svg-wrap").innerHTML = CIZIM_DEFS + svg;
+    el.hidden = false;
+    document.body.classList.add("cizim-lightbox-open");
+  }
+
+  function closeLightbox() {
+    if (!lightboxEl) return;
+    lightboxEl.hidden = true;
+    document.body.classList.remove("cizim-lightbox-open");
   }
 
   function render() {
@@ -153,6 +200,16 @@
       ${cards}
       <ul class="cizimler-sources">${sources}</ul>
     `;
+    listEl.querySelectorAll(".cizim-card__svg-wrap").forEach((el) => {
+      el.addEventListener("click", () => openLightbox(el.dataset.cizimId));
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openLightbox(el.dataset.cizimId);
+        }
+      });
+    });
+    if (lightboxEl && !lightboxEl.hidden) closeLightbox();
   }
 
   window.__cizimlerApp = {
