@@ -296,6 +296,53 @@
       ]
     },
     {
+      "id": "lafza-i-celal",
+      "name": {
+        "tr": "Lafza-i Celâl: 'Allah' Kelimesinin Harfleri",
+        "en": "The Word of Majesty: The Letters of 'Allah'",
+        "pt": "A Palavra da Majestade: As Letras de 'Allah'"
+      },
+      "description": {
+        "tr": "İbn Arabî'nin Kitâbü'l-Celâlet risalesinde yaptığı harf tahlili: 'Allah' kelimesinin her harfi (Elif, Lâm, Lâm, Hâ) ve telaffuzda var olup yazıda hiç görünmeyen gizli bir 'Vav', kendi başına bir mertebeye işaret eder.",
+        "en": "The letter-by-letter analysis Ibn Arabi gives in his treatise Kitab al-Jalala: each letter of the word 'Allah' (Alif, Lam, Lam, Ha) — plus a hidden 'Waw' that exists in pronunciation but never appears in writing — points to its own level of meaning.",
+        "pt": "A análise letra por letra que Ibn Arabi faz em seu tratado Kitab al-Jalala: cada letra da palavra 'Allah' (Alif, Lam, Lam, Ha) — mais um 'Waw' oculto que existe na pronúncia mas nunca aparece na escrita — aponta para seu próprio nível de significado."
+      },
+      "diagram": [
+        {
+          "type": "letter-sequence",
+          "termId": "lafza-i-celal",
+          "letters": [
+            {
+              "harf": { "tr": "ا (Elif)", "en": "ا (Alif)", "pt": "ا (Alif)" },
+              "anlam": { "tr": "Ezeliyet", "en": "Eternity", "pt": "Eternidade" }
+            },
+            {
+              "harf": { "tr": "ل (Lâm)", "en": "ل (Lam)", "pt": "ل (Lam)" },
+              "anlam": { "tr": "Marifet makamı", "en": "Station of gnosis", "pt": "Estação da gnose" }
+            },
+            {
+              "harf": { "tr": "ل (Lâm)", "en": "ل (Lam)", "pt": "ل (Lam)" },
+              "anlam": { "tr": "Mülkiyet", "en": "Ownership", "pt": "Propriedade" }
+            },
+            {
+              "harf": { "tr": "ه (Hâ)", "en": "ه (Ha)", "pt": "ه (Ha)" },
+              "anlam": { "tr": "Mutlak gayb", "en": "Absolute unseen", "pt": "Oculto absoluto" }
+            },
+            {
+              "harf": { "tr": "و (gizli Vav)", "en": "و (hidden Waw)", "pt": "و (Waw oculto)" },
+              "anlam": { "tr": "Şehâdet (gizli)", "en": "Visible world (hidden)", "pt": "Mundo visível (oculto)" },
+              "hidden": true
+            }
+          ],
+          "note": {
+            "tr": "Allah mutlak gayb olduğu için, şehâdet (görünür) âlemini simgeleyen 'vav' harfi O'nun isminde hiçbir zaman zuhur etmez — gaybın içinde gizli bir gayb kalır.",
+            "en": "Because God is absolute unseen-ness, the letter 'waw' — which symbolizes the visible world — never appears in His name at all: it remains a hidden unseen within the unseen.",
+            "pt": "Porque Deus é o absoluto oculto, a letra 'waw' — que simboliza o mundo visível — nunca aparece em Seu nome: permanece um oculto escondido dentro do oculto."
+          }
+        }
+      ]
+    },
+    {
       "id": "ahad-vahid",
       "name": {
         "tr": "Ahad ve Vâhid: İki Farklı Teklik",
@@ -1185,6 +1232,43 @@
       ],
       "iliskili_kavramlar": [
         "ahad"
+      ]
+    },
+    "lafza-i-celal": {
+      "id": "lafza-i-celal",
+      "group": "lafza-i-celal",
+      "title": {
+        "tr": "Lafza-i Celâl (\"Allah\" Kelimesi)",
+        "en": "The Word of Majesty (\"Allah\")",
+        "pt": "A Palavra da Majestade (\"Allah\")"
+      },
+      "arabic": "الله",
+      "ozet_tr": "Allah kelimesinin harf sırrı",
+      "felsefi_tanim": {
+        "tr": "'Allah' kelimesinin kendisi üzerinden yapılan bir harf tahlili: kelimenin her harfinin (ve yazıda görünmeyen bir harfin) ayrı bir varlık mertebesine işaret ettiği düşüncesi.",
+        "en": "A letter-by-letter analysis carried out on the word 'Allah' itself: the idea that each letter of the word (including one letter absent from the writing) points to its own distinct level of being.",
+        "pt": "Uma análise letra por letra realizada sobre a própria palavra 'Allah': a ideia de que cada letra da palavra (incluindo uma letra ausente da escrita) aponta para seu próprio nível distinto de ser."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî, Kitâbü'l-Celâlet risalesinde 'Allah' kelimesinin altı harften (Elif, Lâm, Lâm, Elif, Hâ + telaffuzdaki gizli Vav) oluştuğunu, ama yazıda sadece dördünün göründüğünü belirtir. İlk Elif ezeliyete, ilk Lâm marifet makamına, ikinci (idgamlı) Lâm mülkiyete, Hâ zâtın mutlak gaybiyetine işaret eder. Telaffuzda var olan ama yazıda hiç görünmeyen 'vav' ise şehâdet (görünür) âlemini temsil eder — Allah mutlak gayb olduğu için bu harf O'nun isminde asla zuhur etmez, 'gaybın içinde gizli bir gayb' olarak kalır.",
+        "en": "In Kitab al-Jalala, Ibn Arabi notes that the word 'Allah' consists of six letters (Alif, Lam, Lam, Alif, Ha, plus a hidden Waw in pronunciation), yet only four appear in writing. The first Alif points to eternity, the first Lam to the station of gnosis, the second (assimilated) Lam to ownership, and the Ha to the Essence's absolute unseenness. The 'waw,' present in pronunciation but never in writing, represents the visible world — since God is absolute unseen-ness, this letter never manifests in His name at all, remaining 'a hidden unseen within the unseen.'",
+        "pt": "No Kitab al-Jalala, Ibn Arabi observa que a palavra 'Allah' consiste em seis letras (Alif, Lam, Lam, Alif, Ha, mais um Waw oculto na pronúncia), mas apenas quatro aparecem na escrita. O primeiro Alif aponta para a eternidade, o primeiro Lam para a estação da gnose, o segundo Lam (assimilado) para a propriedade, e o Ha para o absoluto ocultamento da Essência. O 'waw', presente na pronúncia mas nunca na escrita, representa o mundo visível — já que Deus é o absoluto oculto, essa letra nunca se manifesta em Seu nome, permanecendo 'um oculto escondido dentro do oculto'."
+      },
+      "analogy": {
+        "tr": "Bir imzayı düşün: bazı harfleri kağıt üzerinde belirgin, bazıları ise iç içe geçmiş ya da bilerek belirsiz bırakılmıştır — ama imzayı atan kişi her çizginin neyi temsil ettiğini bilir. 'Allah' kelimesindeki gizli 'vav' da böyle: göze görünmez ama sesle, anlamla oradadır.",
+        "en": "Think of a signature: some letters sit clearly on the page, others are merged together or deliberately left ambiguous — yet the signer knows exactly what every stroke stands for. The hidden 'waw' in the word 'Allah' is like that: invisible to the eye, yet present in sound and meaning.",
+        "pt": "Pense em uma assinatura: algumas letras ficam claras na página, outras se fundem ou são deliberadamente deixadas ambíguas — mas quem assina sabe exatamente o que cada traço representa. O 'waw' oculto na palavra 'Allah' é assim: invisível ao olho, mas presente no som e no significado."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Kitâbü'l-Celâlet (Celâlet/Kelimetullah Kitabı)",
+          "alinti_tr": "Biliniz ki, 'ALLAH' lafzı, altı harf içermektedir: Elif, Lâm, Lâm, Elif ve Hâ... Bunlardan dördü zahirdir, yazıda görünürler... Bunlardan biri de ne lafızda ne de yazıda yer alan 'vav'dır. Ancak telaffuzda buna delalet edilir... Allah mutlak gayb olduğu için ve içinde de şehâdet âleminin vav'ı da yer alınca, dudak harfi olan bu vav'ın Allah lafzında zuhur etmesi mümkün olmamıştır.",
+          "not_tr": "Allah lafzının altı harfinin dördü yazıda görünür, biri (vav) sadece telaffuzda gizlidir — şehâdet âleminin gaybın içindeki gaybiyetinin doğrudan ifadesi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "ahad",
+        "vahid"
       ]
     }
   }

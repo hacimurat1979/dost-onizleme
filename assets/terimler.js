@@ -170,6 +170,24 @@
         <text class="term-diagram-note" x="150" y="105" text-anchor="middle">${tt(d.rulesLabel)}</text>
       </svg>
     `,
+    "letter-sequence": (d) => {
+      const n = d.letters.length;
+      const gap = 400 / (n - 1);
+      const items = d.letters.map((it, i) => {
+        const x = 20 + i * gap;
+        const nodeClass = it.hidden ? "term-diagram-node--dashed" : i === 0 ? "term-diagram-node--accent" : "term-diagram-node";
+        return `
+          <circle class="term-diagram-node ${nodeClass}" cx="${x}" cy="50" r="21"/>
+          <text class="term-diagram-label" x="${x}" y="55" text-anchor="middle">${tt(it.harf)}</text>
+          <text class="term-diagram-label--small" x="${x}" y="93" text-anchor="middle" style="font-size:8px">${tt(it.anlam)}</text>
+        `;
+      }).join("");
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 440 115" role="img" aria-label="${tt(d.note)}">
+        ${items}
+      </svg>
+    `;
+    },
   };
 
   const DIAGRAM_DEFS = `
