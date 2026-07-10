@@ -103,14 +103,6 @@
     return idx === -1 ? full : full.slice(0, idx);
   }
 
-  function collapseAll(d) {
-    if (d.children) {
-      d._children = d.children;
-      d._children.forEach(collapseAll);
-      d.children = null;
-    }
-  }
-
   // Radial ("dairesel") düzen: İbn Arabî'nin İnşâü'd-Devâir'de tarif ettiği
   // "feleklerin sûreti" gibi, merkezde Zât, dışa doğru iç içe mertebe halkaları.
   let outerRadius = 320;
@@ -142,7 +134,6 @@
     nodeById = new Map();
     root.each((d) => nodeById.set(d.id, d));
 
-    collapseAll(root);
     root.x0 = 0;
     root.y0 = 0;
 
