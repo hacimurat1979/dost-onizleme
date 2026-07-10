@@ -649,6 +649,101 @@
           }
         }
       ]
+    },
+    {
+      "id": "mebde-mead",
+      "name": {
+        "tr": "Mebde ve Mead: Başlangıç ve Dönüş",
+        "en": "Mabda' and Ma'ad: Origin and Return",
+        "pt": "Mabda' e Ma'ad: Origem e Retorno"
+      },
+      "description": {
+        "tr": "El-Bülgâ fi'l-Hikme'de İbn Arabî, varlığı bir çember olarak ele alır: yayın bir ucunda nefsin nereden geldiği sorusu (mebde), öbür ucunda ölümden sonra nasıl döndüğü sorusu (mead) durur.",
+        "en": "In al-Bulgha fi'l-Hikma, Ibn Arabi treats existence as a circle: at one end of the arc stands the question of where the soul comes from (mabda', origin), at the other the question of how it returns after death (ma'ad, return).",
+        "pt": "Em al-Bulgha fi'l-Hikma, Ibn Arabi trata a existência como um círculo: em uma ponta do arco está a questão de onde vem a alma (mabda', origem), na outra a questão de como ela retorna após a morte (ma'ad, retorno)."
+      },
+      "diagram": [
+        {
+          "type": "spectrum",
+          "termId": "nefis-ezeliyeti-meselesi",
+          "leftLabel": {
+            "tr": "Ezelî",
+            "en": "Pre-eternal",
+            "pt": "Pré-eterna"
+          },
+          "leftNote": {
+            "tr": "bedenden önce var",
+            "en": "exists before the body",
+            "pt": "existe antes do corpo"
+          },
+          "rightLabel": {
+            "tr": "Hâdis",
+            "en": "Originated",
+            "pt": "Originada"
+          },
+          "rightNote": {
+            "tr": "bedenle birlikte var olur",
+            "en": "comes to be with the body",
+            "pt": "vem a existir com o corpo"
+          },
+          "leftMarker": {
+            "tr": "elest ayeti ve ilgili hadis",
+            "en": "the Covenant verse and hadith",
+            "pt": "o versículo da Aliança e hadith"
+          },
+          "rightMarker": {
+            "tr": "bölünürse cisim olurdu",
+            "en": "if divisible, it'd be a body",
+            "pt": "se divisível, seria um corpo"
+          },
+          "note": {
+            "tr": "İbn Arabî iki tarafı da nakleder ve meseleyi kıvılcım-kandil örneğiyle açık bırakır — çözmez.",
+            "en": "Ibn Arabi reports both sides and leaves the matter open with the spark-and-candle example — he does not resolve it.",
+            "pt": "Ibn Arabi relata ambos os lados e deixa a questão em aberto com o exemplo da faísca e da vela — ele não a resolve."
+          }
+        },
+        {
+          "type": "cascade",
+          "termId": "bes-menzil-dirilis",
+          "steps": [
+            {
+              "tr": "Kalıp",
+              "en": "Bodily Form",
+              "pt": "Forma Corporal"
+            },
+            {
+              "tr": "Kalp",
+              "en": "Heart",
+              "pt": "Coração"
+            },
+            {
+              "tr": "Ruh",
+              "en": "Spirit",
+              "pt": "Espírito"
+            },
+            {
+              "tr": "Nefis",
+              "en": "Soul",
+              "pt": "Alma"
+            },
+            {
+              "tr": "Akıl",
+              "en": "Intellect",
+              "pt": "Intelecto"
+            }
+          ],
+          "relationLabel": {
+            "tr": "bir öncekinin mezarından dirilir",
+            "en": "rises from the grave of the one before",
+            "pt": "ressurge do túmulo do anterior"
+          },
+          "note": {
+            "tr": "İbn Arabî, kalıbın da toprak kabrinden dirildiğini ekler — dönüş en yoğun/cismanî olandan en ince/soyut olana doğru ilerler.",
+            "en": "Ibn Arabi adds that the bodily form itself rises from the grave of the earth — the return proceeds from what is densest/most corporeal toward what is subtlest/most abstract.",
+            "pt": "Ibn Arabi acrescenta que a própria forma corporal ressurge do túmulo da terra — o retorno segue do que é mais denso/corpóreo para o que é mais sutil/abstrato."
+          }
+        }
+      ]
     }
   ],
   "terms": {
@@ -1667,6 +1762,84 @@
       ],
       "iliskili_kavramlar": [
         "sekr"
+      ]
+    },
+    "nefis-ezeliyeti-meselesi": {
+      "id": "nefis-ezeliyeti-meselesi",
+      "group": "mebde-mead",
+      "title": {
+        "tr": "Nefsin Ezeliyeti Meselesi",
+        "en": "The Question of the Soul's Pre-Existence",
+        "pt": "A Questão da Pré-Existência da Alma"
+      },
+      "arabic": "قِدَمُ النَّفْسِ النَّاطِقَة",
+      "ozet_tr": "ruh bedenden önce mi var oldu?",
+      "felsefi_tanim": {
+        "tr": "İbn Arabî'nin El-Bülgâ fi'l-Hikme'de ele aldığı bir mesele: nefs-i nâtıka (akleden ruh) bedenden önce mi vardı, yoksa bedenle birlikte mi yaratıldı? Nakli deliller (hadisler, elest ayeti) ezeliyete işaret ederken, aklî deliller nefsin bedenle birlikte var olduğunu (hudûs) gösterir.",
+        "en": "A question Ibn Arabi takes up in al-Bulgha fi'l-Hikma: did the rational soul (nafs al-natiqa) exist before the body, or was it created together with it? Textual evidence (hadiths, the Covenant verse) points toward pre-eternity, while rational proofs point toward the soul's coming-to-be together with the body.",
+        "pt": "Uma questão que Ibn Arabi aborda em al-Bulgha fi'l-Hikma: a alma racional (nafs al-natiqa) existiu antes do corpo, ou foi criada junto com ele? As evidências textuais (hadiths, o versículo da Aliança) apontam para a pré-eternidade, enquanto as provas racionais apontam para o surgimento da alma junto com o corpo."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî önce aklî delilleri sıralar: nefis bölünebilir olsaydı cisim olurdu, bölünemezse de tek bir nefsin bütün bedenleri aynı anda yönetmesi gerekirdi — ikisi de imkânsızdır; demek ki nefis, bedenle birlikte, ona ilişince var olur. Ama sonra muhakkik sofilerin ezeliyete meylini de kaydeder: Hz. Peygamber'in 'Allah ruhları bedenlerden bin yıl önce yarattı' hadisi ve 'Ben sizin Rabbiniz değil miyim?' (A'râf 172) ayeti bu meyli güçlendirir. Meseleyi kapatmaz — bir kıvılcımın pek çok kandili tutuşturduğu anı hatırlatır: her fitildeki alev, o tek kıvılcımda önceden bilfiil mi yoksa sadece bilkuvve mi mevcuttu? Somut bir ateş örneğinde bile bilinemeyen bu şey, nefis gibi soyut bir konuda hiç bilinemez — der ve sırrı sır olarak bırakır.",
+        "en": "Ibn Arabi first lays out the rational proofs: if the soul were divisible it would be a body; if indivisible, a single soul would have to govern every body at once — both are impossible, so the soul must come into being together with the body, at the moment it attaches to it. But he then notes the inclination of the realized Sufis toward pre-eternity: the Prophet's saying 'God created the spirits a thousand years before the bodies' and the Covenant verse ('Am I not your Lord?', al-A'raf 172) reinforce that pull. He does not settle the matter — instead he recalls the moment a single spark lights many candles: was the flame in each wick already actually present in that one spark, or only potentially? If this cannot be known even for so concrete a thing as fire, it can never be known for something as abstract as the soul — and he leaves the mystery as a mystery.",
+        "pt": "Ibn Arabi primeiro expõe as provas racionais: se a alma fosse divisível, seria um corpo; se indivisível, uma única alma teria que governar todos os corpos ao mesmo tempo — ambos impossíveis, então a alma deve vir a existir junto com o corpo, no momento em que se liga a ele. Mas ele então observa a inclinação dos sufis realizados para a pré-eternidade: o dito do Profeta 'Deus criou os espíritos mil anos antes dos corpos' e o versículo da Aliança ('Não sou Eu o vosso Senhor?', al-A'raf 172) reforçam essa tendência. Ele não resolve a questão — em vez disso, lembra o momento em que uma única faísca acende muitas velas: a chama em cada pavio já estava presente de fato naquela única faísca, ou apenas em potência? Se isso não pode ser sabido nem para algo tão concreto quanto o fogo, jamais poderá ser sabido para algo tão abstrato quanto a alma — e ele deixa o mistério como mistério."
+      },
+      "analogy": {
+        "tr": "Bir mumu başka bir mumdan yakmayı düşün: alev yeni muma 'geçti' mi, yoksa yeni mumdaki fitil zaten kendi alevini taşıyordu da sadece açığa mı çıktı? Alevi elinle tutup 'işte buradaydı' diyemezsin — ruhun bedenden önceki hâli de tam bu kadar ele avuca sığmaz.",
+        "en": "Think of lighting one candle from another: did the flame 'travel' to the new candle, or was the new wick already carrying its own flame, merely waiting to be made visible? You cannot hold the flame in your hand and say 'here it was' — the soul's state before the body is exactly this elusive.",
+        "pt": "Pense em acender uma vela com outra: a chama 'viajou' para a nova vela, ou o novo pavio já carregava sua própria chama, apenas esperando para se tornar visível? Você não pode segurar a chama na mão e dizer 'aqui estava' — o estado da alma antes do corpo é exatamente assim tão elusivo."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "El-Bülgâ fi'l-Hikme",
+          "alinti_tr": "Nefs-i Natika bedenle birlikte hadistir... Eğer nefs-i natika bedenden önce mevcut olsaydı, ya bölünürdü veya bölünmezdi. Eğer bölünür olsaydı, cisim olurdu... Bu delille de ortaya çıkıyor ki nefis bedenle birlikte meydana gelir.",
+          "not_tr": "Aklî delillerle savunulan 'hâdis' (sonradan var olma) görüşü."
+        },
+        {
+          "kaynak_adi": "El-Bülgâ fi'l-Hikme",
+          "alinti_tr": "Bir kıvılcım, kandilleri tutuşturup fitillerinde sabit ateş haline geldiğinde, her bir fitilin başındaki bu ateşler o tek kıvılcımda bilfiil mi yoksa bil kuvve mi mevcuttular? Bu durum bunun gibi somut bir olayda dahi bilinmediğine göre soyut bir vakıa ile ilgili olunca durumu varın siz düşünün!",
+          "not_tr": "İbn Arabî'nin meseleyi çözmek yerine bıraktığı kıvılcım-kandil örneği."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nefs-i-natika"
+      ]
+    },
+    "bes-menzil-dirilis": {
+      "id": "bes-menzil-dirilis",
+      "group": "mebde-mead",
+      "title": {
+        "tr": "Beş Menzil Diriliş",
+        "en": "The Five Stations of Resurrection",
+        "pt": "As Cinco Estações da Ressurreição"
+      },
+      "arabic": "البعث في خمس منازل",
+      "ozet_tr": "ölümden sonra kademe kademe dönüş",
+      "felsefi_tanim": {
+        "tr": "İbn Arabî'ye göre 'mead' (dönüş) kelimesi, bir şeyin çıktığı hâle dönmesi anlamına gelir. İnsan için bu dönüş tek bir sıçrayışla değil, beş ardışık mertebede gerçekleşir — ruh ile beden arasındaki terkip çözülürken, her mertebe bir öncekinin 'mezarından' dirilir.",
+        "en": "For Ibn Arabi, the word 'ma'ad' (return) means a thing's returning to the state it originally came from. For the human being, this return unfolds not in a single leap but across five successive stations — as the composite of spirit and body comes undone, each station is 'resurrected' from the grave of the one before it.",
+        "pt": "Para Ibn Arabi, a palavra 'ma'ad' (retorno) significa o retorno de algo ao estado do qual originalmente veio. Para o ser humano, esse retorno se desdobra não em um único salto, mas em cinco estações sucessivas — à medida que o composto de espírito e corpo se desfaz, cada estação é 'ressuscitada' do túmulo da anterior."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî beş dirilişi şöyle sıralar: akıl, nefsin mezarından dirilir; nefis, ruhun mezarından dirilir; ruh, kalbin mezarından dirilir; kalp, kalıbın (bedenin) mezarından dirilir; kalıp da toprağın mezarından dirilir. Yani dönüş, en yoğun ve en cismanî olandan (toprak/kalıp) başlayıp, en ince ve en soyut olana (akıl) doğru, aşama aşama yükselerek gerçekleşir — her aşama, kendinden öncekinin 'ölümü' üzerine kurulur.",
+        "en": "Ibn Arabi lists the five resurrections in order: the intellect rises from the grave of the soul; the soul rises from the grave of the spirit; the spirit rises from the grave of the heart; the heart rises from the grave of the bodily form; and the bodily form rises from the grave of the earth. The return thus begins from what is densest and most corporeal (earth/form) and ascends, stage by stage, toward what is subtlest and most abstract (intellect) — each stage built upon the 'death' of the one before it.",
+        "pt": "Ibn Arabi lista as cinco ressurreições em ordem: o intelecto se ergue do túmulo da alma; a alma se ergue do túmulo do espírito; o espírito se ergue do túmulo do coração; o coração se ergue do túmulo da forma corporal; e a forma corporal se ergue do túmulo da terra. O retorno começa, portanto, a partir do que é mais denso e mais corpóreo (terra/forma) e ascende, etapa por etapa, em direção ao que é mais sutil e mais abstrato (intelecto) — cada etapa construída sobre a 'morte' da anterior."
+      },
+      "analogy": {
+        "tr": "İç içe kilitli kapılardan geçerek bir eve girdiğini düşün: önce dış kapı (beden/toprak) açılır, sonra ana salon (kalıp), sonra oturma odası (kalp), sonra en özel oda (ruh), en sonunda da kilitli çekmece (nefis, sonunda akıl) açılır. Her kapı, bir öncekinin kilidini çözmeden açılmaz.",
+        "en": "Picture entering a house through a series of nested, locked doors: first the outer door (body/earth) opens, then the main hall (bodily form), then the sitting room (heart), then the innermost chamber (spirit), and finally the locked drawer (soul, then intellect). No door opens until the one before it has been unlocked.",
+        "pt": "Imagine entrar em uma casa através de uma série de portas trancadas, uma dentro da outra: primeiro a porta externa (corpo/terra) se abre, depois o salão principal (forma corporal), depois a sala de estar (coração), depois a câmara mais interna (espírito), e finalmente a gaveta trancada (alma, depois intelecto). Nenhuma porta se abre até que a anterior tenha sido destrancada."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "El-Bülgâ fi'l-Hikme",
+          "alinti_tr": "Çünkü insan için söz konusu olan diriliş beş menzilde gerçekleşir... Birincisi, insanın aklının nefis kabrinden dirilmesi. İkincisi, insan nefsinin ruh kabrinden dirilmesi. Üçüncüsü, ruhunun kalp kabrinden dirilmesi. Dördüncüsü, kalbinin kalıp kabrinden dirilmesi. Beşincisi, kalıbının arz kabrinden dirilmesi.",
+          "not_tr": "'Mead (Ahiret) Hakkında' bölümünden, insana özgü beşli diriliş sıralaması."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nefs-i-natika",
+        "nefis-ezeliyeti-meselesi"
       ]
     }
   }
