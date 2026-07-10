@@ -744,6 +744,176 @@
           }
         }
       ]
+    },
+    {
+      "id": "nubuvvetin-zarureti",
+      "name": {
+        "tr": "Nübüvvetin Zarureti",
+        "en": "The Necessity of Prophethood",
+        "pt": "A Necessidade da Profecia"
+      },
+      "description": {
+        "tr": "El-Bülgâ fi'l-Hikme'den: İbn Arabî'nin nübüvvetin neden zorunlu olduğuna dair iki delili, ve nebilerin aracı ruhla ilişkilerini adlandırma biçimlerinin onların kemal derecesini nasıl yansıttığı.",
+        "en": "From al-Bulgha fi'l-Hikma: Ibn Arabi's two proofs for why prophethood must necessarily exist, and how the way each prophet names his relation to the intermediary spirit reflects his degree of completeness.",
+        "pt": "De al-Bulgha fi'l-Hikma: as duas provas de Ibn Arabi para por que a profecia deve necessariamente existir, e como a forma como cada profeta nomeia sua relação com o espírito intermediário reflete seu grau de completude."
+      },
+      "diagram": [
+        {
+          "type": "formula-merge",
+          "termId": "nubuvvet-iki-delil",
+          "a": {
+            "tr": "İlahi Gaye",
+            "en": "Divine Purpose",
+            "pt": "Propósito Divino"
+          },
+          "b": {
+            "tr": "Halkın İhtiyacı",
+            "en": "Creation's Need",
+            "pt": "Necessidade da Criação"
+          },
+          "result": {
+            "tr": "Nübüvvet",
+            "en": "Prophecy",
+            "pt": "Profecia"
+          },
+          "note": {
+            "tr": "Allah kaşın yayını bile ihmal etmezken nübüvveti mi ihmal eder? Ve tek reissiz hiçbir yapı ayakta kalmaz.",
+            "en": "Would God, who does not neglect even the shape of an eyebrow, neglect prophethood? And no structure stands without a single head.",
+            "pt": "Deus, que não negligencia nem a forma de uma sobrancelha, negligenciaria a profecia? E nenhuma estrutura permanece de pé sem uma única cabeça."
+          }
+        },
+        {
+          "type": "cascade",
+          "termId": "vasita-ruh-uc-ismi",
+          "steps": [
+            {
+              "tr": "Rab",
+              "en": "Lord",
+              "pt": "Senhor"
+            },
+            {
+              "tr": "Baba",
+              "en": "Father",
+              "pt": "Pai"
+            },
+            {
+              "tr": "Kardeş",
+              "en": "Brother",
+              "pt": "Irmão"
+            }
+          ],
+          "relationLabel": {
+            "tr": "İbrahim, İsa, Muhammed — mesafe git gide kapanır",
+            "en": "Abraham, Jesus, Muhammad — the distance steadily closes",
+            "pt": "Abraão, Jesus, Maomé — a distância se fecha progressivamente"
+          },
+          "note": {
+            "tr": "Rab uzak bir saygıyı, Baba yakın ama dikey bir ilişkiyi, Kardeş ise tam eşitliği ifade eder.",
+            "en": "Lord expresses distant respect, Father a close but vertical relation, Brother full equality.",
+            "pt": "Senhor expressa respeito distante, Pai uma relação próxima mas vertical, Irmão igualdade plena."
+          }
+        }
+      ]
+    },
+    {
+      "id": "vahyin-mertebeleri",
+      "name": {
+        "tr": "Vahyin Mertebeleri",
+        "en": "The Stations of Revelation",
+        "pt": "As Estações da Revelação"
+      },
+      "description": {
+        "tr": "El-Bülgâ fi'l-Hikme'den: İbn Arabî'nin, vahyin nebîde hangi duyuya kadar taştığına göre sınıflandırdığı üç mertebe.",
+        "en": "From al-Bulgha fi'l-Hikma: Ibn Arabi's classification of revelation into three stations, according to which sense in the prophet it overflows into.",
+        "pt": "De al-Bulgha fi'l-Hikma: a classificação de Ibn Arabi da revelação em três estações, de acordo com qual sentido do profeta ela transborda."
+      },
+      "diagram": [
+        {
+          "type": "cascade",
+          "termId": "vahyin-uc-menzili",
+          "steps": [
+            {
+              "tr": "Kalp",
+              "en": "Heart",
+              "pt": "Coração"
+            },
+            {
+              "tr": "Kulak",
+              "en": "Hearing",
+              "pt": "Audição"
+            },
+            {
+              "tr": "Göz",
+              "en": "Sight",
+              "pt": "Visão"
+            }
+          ],
+          "relationLabel": {
+            "tr": "taşarak bir sonrakine ulaşır",
+            "en": "overflows into the next",
+            "pt": "transborda para o próximo"
+          },
+          "note": {
+            "tr": "Kalpten kulağa, kulaktan göze — vahiy taşan bir su gibi bir sonraki duyuya ulaşır.",
+            "en": "From heart to hearing, from hearing to sight — revelation reaches the next sense like overflowing water.",
+            "pt": "Do coração para a audição, da audição para a visão — a revelação alcança o próximo sentido como água transbordando."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hayir-ve-ser",
+      "name": {
+        "tr": "Hayır ve Şer",
+        "en": "Good and Evil",
+        "pt": "O Bem e o Mal"
+      },
+      "description": {
+        "tr": "El-Bülgâ fi'l-Hikme'den: İbn Arabî'nin 'Allah şerri niçin yarattı?' sorusuna verdiği yanıt — şerrin bağımsız bir varlık değil, bir yokluk olduğu.",
+        "en": "From al-Bulgha fi'l-Hikma: Ibn Arabi's answer to 'why did God create evil?' — that evil is not an independent existent, but an absence.",
+        "pt": "De al-Bulgha fi'l-Hikma: a resposta de Ibn Arabi para 'por que Deus criou o mal?' — que o mal não é uma existência independente, mas uma ausência."
+      },
+      "diagram": [
+        {
+          "type": "spectrum",
+          "termId": "serrin-mahiyeti",
+          "leftLabel": {
+            "tr": "Şer",
+            "en": "Evil",
+            "pt": "O Mal"
+          },
+          "leftNote": {
+            "tr": "yokluk",
+            "en": "non-existence",
+            "pt": "não-existência"
+          },
+          "rightLabel": {
+            "tr": "Hayır",
+            "en": "Good",
+            "pt": "O Bem"
+          },
+          "rightNote": {
+            "tr": "varlık",
+            "en": "existence",
+            "pt": "existência"
+          },
+          "leftMarker": {
+            "tr": "ikinci derece, arazi",
+            "en": "secondary, incidental",
+            "pt": "secundário, incidental"
+          },
+          "rightMarker": {
+            "tr": "birinci derece, kastedilen",
+            "en": "primary, intended",
+            "pt": "primário, intencionado"
+          },
+          "note": {
+            "tr": "Şer bağımsız bir varlık değildir; hayrın ya da bir zâtın yokluğudur — bu yüzden 'şerrin faili kim' sorusu konusuz kalır.",
+            "en": "Evil is not an independent existent; it is the absence of good or of an essence — so the question 'who is evil's agent' has no real object.",
+            "pt": "O mal não é uma existência independente; é a ausência do bem ou de uma essência — por isso a pergunta 'quem é o agente do mal' não tem objeto real."
+          }
+        }
+      ]
     }
   ],
   "terms": {
@@ -1840,6 +2010,156 @@
       "iliskili_kavramlar": [
         "nefs-i-natika",
         "nefis-ezeliyeti-meselesi"
+      ]
+    },
+    "nubuvvet-iki-delil": {
+      "id": "nubuvvet-iki-delil",
+      "group": "nubuvvetin-zarureti",
+      "title": {
+        "tr": "Nübüvvetin İki Delili",
+        "en": "The Two Proofs of Prophethood",
+        "pt": "As Duas Provas da Profecia"
+      },
+      "arabic": "دليلا وجوب النبوة",
+      "ozet_tr": "iki delille zorunlu görülen peygamberlik",
+      "felsefi_tanim": {
+        "tr": "İbn Arabî'nin El-Bülgâ fi'l-Hikme'de nübüvvetin varlığının zorunlu olduğunu ispatlamak için verdiği iki ayrı delil: biri yaratıcının amacına, diğeri yaratılmışların ihtiyacına dayanır.",
+        "en": "Two separate proofs Ibn Arabi gives in al-Bulgha fi'l-Hikma to establish that prophethood must necessarily exist: one grounded in the Creator's purpose, the other in creation's need.",
+        "pt": "Duas provas separadas que Ibn Arabi apresenta em al-Bulgha fi'l-Hikma para estabelecer que a profecia deve necessariamente existir: uma fundamentada no propósito do Criador, a outra na necessidade da criação."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Birinci delil: Allah, kaşların yay biçimini, göz kenarındaki kirpik telini bile ihmal etmezken — ki bunların faydası pek azdır — âlemler için rahmet olan nübüvveti beşerî ruhlardan birine bahşetmeyi hiç ihmal eder mi? İkinci delil: Küçük âlem olan insan bedeninde bile, bütün güçlerin itaat ettiği tek bir baş olmazsa yapı kısa sürede çöker; her gücün eşit ve bağımsız kaldığı bir düzen dağılmaya mahkûmdur. Öyleyse büyük âlem — fitnelerin, sıkıntıların kaynadığı unsurlar âlemi — bir rehbere hiç muhtaç olmaz mı? İbn Arabî bunu tek bir cümleyle özetler: 'İki hanım ağalı bir evin işleri asla düzene girmez.'",
+        "en": "The first proof: God does not neglect even the bow-shape of the eyebrows or the black lashes ringing the eyes — things of the slightest use — so would He ever neglect to grant prophethood, a mercy for all the worlds, to one human soul? The second proof: even in the small world that is the human body, if no single head commands the obedience of all its faculties, the structure collapses in short order; an order where every force stands equal and independent is doomed to fall apart. How then could the greater world — the elemental world where so many afflictions and strifes boil over — ever be without a guide? Ibn Arabi sums this up in a single line: 'The affairs of a house run by two mistresses never come into order.'",
+        "pt": "A primeira prova: Deus não negligencia nem a forma em arco das sobrancelhas nem os fios negros de cílios que cercam os olhos — coisas de utilidade mínima — então Ele jamais negligenciaria conceder a profecia, uma misericórdia para todos os mundos, a uma alma humana? A segunda prova: mesmo no pequeno mundo que é o corpo humano, se nenhuma cabeça única comanda a obediência de todas as suas faculdades, a estrutura desmorona em pouco tempo; uma ordem em que cada força permanece igual e independente está condenada a se desfazer. Como então o mundo maior — o mundo elementar onde tantas aflições e conflitos fervem — poderia jamais ficar sem um guia? Ibn Arabi resume isso numa única frase: 'Os assuntos de uma casa comandada por duas senhoras nunca se organizam.'"
+      },
+      "analogy": {
+        "tr": "İbn Arabî'nin kendi örneği: iki hanımın birlikte yönettiği bir evin işleri hiçbir zaman düzene girmez — birinin sözü öbürünü boşa çıkarır, kimse kimseyi dinlemez. Bir evin tek bir sözü geçen kişiye ihtiyacı olduğu gibi, âlemin de tek bir rehbere ihtiyacı vardır.",
+        "en": "Ibn Arabi's own example: the affairs of a house run jointly by two mistresses never come into order — one's word undoes the other's, and no one truly listens to anyone. Just as a household needs one person whose word is final, the world needs a single guide.",
+        "pt": "O próprio exemplo de Ibn Arabi: os assuntos de uma casa administrada em conjunto por duas senhoras nunca se organizam — a palavra de uma desfaz a da outra, e ninguém realmente escuta ninguém. Assim como um lar precisa de uma pessoa cuja palavra seja final, o mundo precisa de um único guia."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "El-Bülgâ fi'l-Hikme",
+          "alinti_tr": "İki hanım ağalı evin işleri düzene girmez... Eğer yerde ve gökte Allah'tan başka tanrılar bulunsaydı, yer ve gök, (bunların nizamı) kesinlikle bozulup gitmişti. (Enbiya, 22)",
+          "not_tr": "Nübüvvetin gerekliliğine dair 'yaratılmışın ihtiyacı' delilinin özeti."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "velayet"
+      ]
+    },
+    "vasita-ruh-uc-ismi": {
+      "id": "vasita-ruh-uc-ismi",
+      "group": "nubuvvetin-zarureti",
+      "title": {
+        "tr": "Aracı Ruhun Üç İsmi: Rab, Baba, Kardeş",
+        "en": "The Three Names of the Intermediary Spirit: Lord, Father, Brother",
+        "pt": "Os Três Nomes do Espírito Intermediário: Senhor, Pai, Irmão"
+      },
+      "arabic": "أسماء الروح الواسطة الثلاثة",
+      "ozet_tr": "peygamberin kemaline göre değişen isim",
+      "felsefi_tanim": {
+        "tr": "İbrahim, İsa ve Muhammed (a.s.), kendileriyle Allah arasında aracı olan ruhu üç farklı isimle anmışlardır — ve bu isim farkı, her birinin hangi gücünün baskın olduğuna ve kemalinin derecesine işaret eder.",
+        "en": "Abraham, Jesus, and Muhammad each name the spirit that mediates between themselves and God with a different word — and this difference in naming points to which faculty is dominant in each, and to the degree of their completeness.",
+        "pt": "Abraão, Jesus e Maomé nomeiam, cada um, o espírito que faz a mediação entre eles e Deus com uma palavra diferente — e essa diferença de nomeação aponta para qual faculdade é dominante em cada um, e para o grau de sua completude."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbrahim (a.s), 'Ben Rabbime gidiyorum' derken aracı ruhu 'Rab' diye anar — çünkü rab, Rabbin en büyük ayetidir. İsa (a.s) ise ruhani gücü bütün diğer güçlerin üstünde olduğu için (ölüleri diriltecek kadar) aracı ruhu 'Baba' diye anmıştır — 'Babama gidiyorum' demiş, bu yüzden Hristiyanlar ona 'Allah'ın oğlu' demiştir. Musa (a.s) ise gazap gücü baskın olduğu için (bir Kıptîyi tek yumrukla öldürüp 'bu şeytan işi' demiştir) böyle bir isimlendirmeye yer vermez. Ama Rasulullah (s.a.v), bütün güçleri dengeli olduğu, hiçbiri diğerine baskın gelmediği için, aracı ruhu 'Kardeş' diye anmıştır — çünkü iki kardeş, tek bir kökten çıkan iki daldır: eşitliği ifade eder, üstünlüğü değil. İsimlendirmedeki bu ilerleme — Rab'dan Baba'ya, Baba'dan Kardeş'e — mesafenin git gide kapandığının, o eşitliğe ancak gücü en dengeli olanın erişebildiğinin işaretidir.",
+        "en": "When Abraham says 'I am going to my Lord,' he names the intermediary spirit 'Lord' — because the lord is the greatest sign of the Lord. Jesus, whose spiritual power dominated all his other faculties (to the point of raising the dead), named that same spirit 'Father' — he said 'I am going to my Father,' which led Christians to call him 'Son of God.' Moses, in whom the faculty of wrath dominated (he killed a Copt with a single blow and called it 'the work of Satan'), gives no such name at all. But the Messenger of God (peace be upon him), whose faculties were all in perfect balance, with none dominating the others, named that spirit 'Brother' — because two brothers are two branches sprung from a single root: it expresses equality, not superiority. This progression in naming — from Lord to Father, from Father to Brother — marks a distance steadily closing, one that only the most balanced soul can close all the way into equality.",
+        "pt": "Quando Abraão diz 'Vou para o meu Senhor', ele nomeia o espírito intermediário como 'Senhor' — porque o senhor é o maior sinal do Senhor. Jesus, cujo poder espiritual dominava todas as suas outras faculdades (a ponto de ressuscitar os mortos), nomeou esse mesmo espírito como 'Pai' — disse 'Vou para o meu Pai', o que levou os cristãos a chamá-lo de 'Filho de Deus'. Moisés, em quem a faculdade da ira dominava (matou um copta com um único golpe e chamou isso de 'obra de Satanás'), não dá nenhum nome desse tipo. Mas o Mensageiro de Deus (a paz esteja com ele), cujas faculdades estavam todas em equilíbrio perfeito, sem que nenhuma dominasse as outras, nomeou esse espírito como 'Irmão' — porque dois irmãos são dois ramos brotados de uma única raiz: isso expressa igualdade, não superioridade. Essa progressão na nomeação — de Senhor a Pai, de Pai a Irmão — marca uma distância que se fecha progressivamente, uma que só a alma mais equilibrada pode fechar completamente em igualdade."
+      },
+      "analogy": {
+        "tr": "Aynı öğretmene üç öğrencinin farklı şekilde seslendiğini düşün: biri ona hep 'Hocam' der (mesafeli saygı), biri 'Baba' der (yakın ama yine de bir aşağı-yukarı ilişki), biri ise 'kardeşim' der (tam bir eşitlik, çünkü aralarındaki fark neredeyse kapanmıştır). Üçü de aynı kişiden bahsediyor; değişen, konuşanın o kişiye ne kadar yakın olduğudur.",
+        "en": "Think of three students addressing the same teacher differently: one always says 'sir' (respectful distance), one says 'father' (close, but still a relation of above and below), and one says 'brother' (full equality, because the gap between them has nearly closed). All three refer to the same person; what changes is how close the speaker has come to them.",
+        "pt": "Pense em três estudantes se dirigindo ao mesmo professor de formas diferentes: um sempre diz 'senhor' (distância respeitosa), um diz 'pai' (próximo, mas ainda uma relação de cima para baixo), e um diz 'irmão' (igualdade plena, porque a diferença entre eles quase se fechou). Os três se referem à mesma pessoa; o que muda é o quão perto o interlocutor chegou dela."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "El-Bülgâ fi'l-Hikme",
+          "alinti_tr": "Ruhani kuvvetle gazap kuvveti arasındaki farkı görüyor musunuz? Ruhani kuvvet ölüleri diriltirken gazap kuvveti dirileri öldürüyor!... Araya giren ruhu kardeş olarak isimlendirmiştir. İki kardeş bir kökten doğan iki dal gibidir.",
+          "not_tr": "Dört peygamberin aracı ruhla ilişkisinin karşılaştırılması ve Hz. Muhammed'in eşitlik vurgusu."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "velayet"
+      ]
+    },
+    "vahyin-uc-menzili": {
+      "id": "vahyin-uc-menzili",
+      "group": "vahyin-mertebeleri",
+      "title": {
+        "tr": "Vahyin Üç Menzili",
+        "en": "The Three Stations of Revelation",
+        "pt": "As Três Estações da Revelação"
+      },
+      "arabic": "منازل الوحي الثلاثة",
+      "ozet_tr": "kalpten kulağa, kulaktan göze taşan vahiy",
+      "felsefi_tanim": {
+        "tr": "İbn Arabî'nin El-Bülgâ fi'l-Hikme'de tarif ettiği, vahyin nebîde hangi duyuya kadar ulaştığına göre sınıflandırdığı üç mertebe: kalbi vahiy, işitsel vahiy ve görsel vahiy — her biri bir öncekinin taşmasıyla oluşur.",
+        "en": "Three stations Ibn Arabi describes in al-Bulgha fi'l-Hikma, classifying revelation by which sense it reaches in the prophet: revelation of the heart, of hearing, and of sight — each one arising as an overflow from the one before it.",
+        "pt": "Três estações que Ibn Arabi descreve em al-Bulgha fi'l-Hikma, classificando a revelação de acordo com qual sentido ela alcança no profeta: revelação do coração, da audição e da visão — cada uma surgindo como um transbordamento da anterior."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Birinci menzil, kalbi vahiy: vahiy mertebelerinin en genelidir — bu dereceye sahip olmayan kimseye nübüvvet ismi verilmez. Bir kıvılcım nefs-i nâtıkanın madenine düşer, tıpkı battığı anda parıldayan bir yıldız gibi (Necm, 1). İkinci menzil, işitsel vahiy: nefsin cevheri dar olduğu için taşma komşusuna, yani hayvani ruha akar — dar bir gölete dökülen suyun yakındaki başka bir gölete taşması gibi — oradan işitme duyusuna sirayet eder. Üçüncü menzil, görsel vahiy: işitme duyusunun heybesi de dolunca, bu kez gözde birikmiş havaya sızar; nebi artık vahyin suretini gözüyle müşahede eder. İbn Arabî bunun son derece nadir olduğunu vurgular — Rasulullah (s.a.v) Cebrail'i bu asli sureti üzere sadece iki kere görmüştür. (Bir istisna olarak, çok daha ender görülen bir sirayet biçiminden de söz eder: koku duyusuna taşan vahiy — Yâkub'un (a.s), uzaktan Yusuf'un (a.s) gömleğinin kokusunu alması gibi.)",
+        "en": "The first station, revelation of the heart: this is the most general of revelation's ranks — without at least this degree, the name 'prophet' does not apply. A spark falls into the ore of the rational soul, like a star that shines precisely as it sets (Qur'an 53:1). The second station, revelation of hearing: because the substance of the soul is narrow, the overflow runs to its neighbor, the animal spirit — like water poured into a narrow pool spilling over into a pool beside it — and from there it reaches the sense of hearing. The third station, revelation of sight: once the vessel of hearing itself fills up, it seeps into the pooled air of the eye; the prophet now beholds the very form of the revelation with his eye. Ibn Arabi stresses how exceedingly rare this is — the Messenger of God saw Gabriel in this true form only twice. (As an aside, he even mentions a far rarer overflow into the sense of smell — as when Jacob caught the scent of Joseph's shirt from a great distance.)",
+        "pt": "A primeira estação, revelação do coração: esta é a mais geral das hierarquias da revelação — sem ao menos esse grau, o nome 'profeta' não se aplica. Uma faísca cai no minério da alma racional, como uma estrela que brilha precisamente quando se põe (Alcorão 53:1). A segunda estação, revelação da audição: como a substância da alma é estreita, o transbordamento corre para seu vizinho, o espírito animal — como água despejada numa lagoa estreita que transborda para uma lagoa ao lado — e dali alcança o sentido da audição. A terceira estação, revelação da visão: uma vez que o próprio receptáculo da audição se enche, ela filtra para o ar acumulado no olho; o profeta agora contempla a própria forma da revelação com o olho. Ibn Arabi enfatiza o quão excepcionalmente raro isso é — o Mensageiro de Deus viu Gabriel nessa forma verdadeira apenas duas vezes. (Como nota à parte, ele até menciona um transbordamento ainda mais raro, para o sentido do olfato — como quando Jacó sentiu o cheiro da camisa de José a uma grande distância.)"
+      },
+      "analogy": {
+        "tr": "Küçük bir havuza durmadan su dökmeyi düşün: önce havuz dolar (kalp), sonra taşan su yan taraftaki ikinci bir havuzu doldurur (işitme), o da dolunca üçüncü bir havuza taşar (görme). Her yeni havuz, bir öncekinin dolup taşmasıyla doldurulur — kaynak hep aynıdır, sadece ulaştığı yer değişir.",
+        "en": "Picture water poured endlessly into a small pool: it first fills that pool (the heart), then the overflow fills a second pool beside it (hearing), and once that one fills too, it spills into a third (sight). Each new pool is filled only by the previous one's overflow — the source is always the same; only where it reaches changes.",
+        "pt": "Imagine água sendo despejada sem parar numa pequena lagoa: ela primeiro enche essa lagoa (o coração), depois o transbordamento enche uma segunda lagoa ao lado (a audição), e quando essa também enche, transborda para uma terceira (a visão). Cada nova lagoa só se enche pelo transbordamento da anterior — a fonte é sempre a mesma; o que muda é apenas onde ela chega."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "El-Bülgâ fi'l-Hikme",
+          "alinti_tr": "Kısımları ise, 1) kalbi vahiy, 2) işitsel vahiy ve 3) görsel vahiy olmak üzere üç menzil şeklinde belirginleştirilebilir... Tıpkı daracık bir gölete dökülen suyun oradan yakınındaki başka bir gölete taşması gibi.",
+          "not_tr": "Vahyin üç menzilinin İbn Arabî'nin kendi tanımı ve taşma benzetmesi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nubuvvet-iki-delil",
+        "vasita-ruh-uc-ismi"
+      ]
+    },
+    "serrin-mahiyeti": {
+      "id": "serrin-mahiyeti",
+      "group": "hayir-ve-ser",
+      "title": {
+        "tr": "Şerrin Mahiyeti: Yokluk Olarak Kötülük",
+        "en": "The Nature of Evil: Evil as Non-Being",
+        "pt": "A Natureza do Mal: O Mal como Não-Ser"
+      },
+      "arabic": "ماهية الشر",
+      "ozet_tr": "kötülük yokluktur, faili yoktur",
+      "felsefi_tanim": {
+        "tr": "İbn Arabî'nin El-Bülgâ fi'l-Hikme'de 'Allah şerri niçin yarattı, şerrin faili kimdir?' sorusuna verdiği yanıt: şer, bağımsız bir varlık değil, bir zâtın veya bir sıfatın yokluğudur — ve yokluğun faile ihtiyacı yoktur.",
+        "en": "Ibn Arabi's answer, in al-Bulgha fi'l-Hikma, to the question 'why did God create evil, and who is its agent?': evil is not an independent existent at all, but the absence of an essence or an attribute — and absence requires no agent.",
+        "pt": "A resposta de Ibn Arabi, em al-Bulgha fi'l-Hikma, à pergunta 'por que Deus criou o mal, e quem é seu agente?': o mal não é de forma alguma uma existência independente, mas a ausência de uma essência ou de um atributo — e a ausência não requer agente."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "İbn Arabî önce bütün varlıkları beşe ayırır: sırf hayır, hayır tarafı ağır basan, sırf şer, şer tarafı ağır basan, ve hayır-şerrin eşit olduğu. Bunlardan yalnız ilk ikisi — sırf hayır ve hayrı ağır basan — gerçekten varlık alanına girer; geri kalanlar 'fânidir', hiç var olmazlar. Sonra asıl darbeyi indirir: şer, bir zâtın ya da sıfatının yokluğudur; yokluk ise kesinlikle bir fail gerektirmez — sadece 'şaşı Mecusiler ve tek gözlü Mu'tezililer' böyle bir iddiada bulunmuştur, der. Kur'an'da da hayır doğrudan Allah'a, şer ise sadece 'O'nun katından' izafe edilir — çünkü şerrin kaynağı halk âlemidir, emir âlemi değil. Dahası, meydana gelen az bir şer bile, önlenmesi hâlinde kaybolacak çok daha büyük hayırların bedelidir: bir yoksulun elbisesini yakan ateşi yok saymak, ateşin bütün faydasını yok saymak olurdu. Bu yüzden 'az bir şer meydana gelecek diye çok hayrı terk etmek, çok şer demektir.'",
+        "en": "Ibn Arabi first divides all existents into five kinds: purely good, predominantly good, purely evil, predominantly evil, and evil-and-good in equal balance. Only the first two — the purely good and the predominantly good — actually enter the realm of existence; the rest are 'transient,' never actualized at all. Then comes the real blow: evil is the absence of an essence or of an attribute, and absence requires no agent whatsoever — only, he says, 'the cross-eyed Zoroastrians and one-eyed Mu'tazilites' have ever claimed otherwise. In the Qur'an, too, good is attributed directly to God, while evil is only ever attributed to 'what is with Him' — because evil's origin lies in the created world, not the world of command. What's more, even the small amount of evil that does occur is the price of far greater goods that would vanish if it were prevented: to wish away the fire that burns a poor man's garment is to wish away all the benefit fire brings. Hence: 'to abandon much good for fear a little evil might occur is itself a great evil.'",
+        "pt": "Ibn Arabi primeiro divide todos os existentes em cinco tipos: puramente bom, predominantemente bom, puramente mau, predominantemente mau, e mal-e-bem em equilíbrio igual. Apenas os dois primeiros — o puramente bom e o predominantemente bom — realmente entram no reino da existência; o resto é 'transitório', nunca se atualiza. Depois vem o golpe real: o mal é a ausência de uma essência ou de um atributo, e a ausência não requer agente algum — apenas, diz ele, 'os zoroastrianos vesgos e os mu'tazilitas caolhos' já afirmaram o contrário. No Alcorão, também, o bem é atribuído diretamente a Deus, enquanto o mal é atribuído apenas a 'o que está junto a Ele' — porque a origem do mal está no mundo criado, não no mundo do comando. Além disso, mesmo a pequena quantidade de mal que ocorre é o preço de bens muito maiores que desapareceriam se fosse evitada: querer que não exista o fogo que queima a roupa de um pobre é querer que não exista todo o benefício que o fogo traz. Daí: 'abandonar muito bem por medo de que ocorra um pouco de mal é, em si, um grande mal.'"
+      },
+      "analogy": {
+        "tr": "Güzel, beyaz bir yüzdeki küçük bir beni düşün: o ben yüzü çirkinleştirmez, tam tersine güzelliğine güzellik katar, gözün oraya takılıp kalmasını sağlar. İbn Arabî'nin kendi benzetmesi budur: âlemdeki azıcık şer de, büyüklük güneşinin ışığındaki bir toz zerresi gibidir — ona zarar vermez, parlaklığını ve kemalini artırır.",
+        "en": "Think of a small beauty mark on a beautiful, fair face: the mark doesn't disfigure the face — quite the opposite, it adds beauty to beauty, drawing the eye to linger there. This is Ibn Arabi's own comparison: the small amount of evil in the world is like a speck of dust in the light of the sun of majesty — it does it no harm; it only adds to its brilliance and perfection.",
+        "pt": "Pense numa pequena pinta de beleza num rosto bonito e claro: a pinta não desfigura o rosto — pelo contrário, acrescenta beleza à beleza, fazendo o olhar se demorar ali. Esta é a própria comparação de Ibn Arabi: a pequena quantidade de mal no mundo é como um grão de poeira na luz do sol da majestade — não lhe causa dano algum; apenas acrescenta ao seu brilho e perfeição."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "El-Bülgâ fi'l-Hikme",
+          "alinti_tr": "Şer, zatın veya zatın sıfatının yokluğudur. Yokluk ise kesinlikle fail gerektirmez... Nitekim hayır varlıktır ve varlık da hayırdır.",
+          "not_tr": "'Şerrin faili kimdir?' sorusuna verilen temel cevap: şer bir yokluktur, faile ihtiyacı yoktur."
+        },
+        {
+          "kaynak_adi": "El-Bülgâ fi'l-Hikme",
+          "alinti_tr": "Bu zerre ona bir zarar vermediği gibi parlaklığını, güzelliğini, ışığını ve kemalini arttırmaktadır. Tıpkı beyaz ve güzel bir yüzdeki siyah ben gibi güzelliğine güzellik, parlaklığına parlaklık katmaktadır.",
+          "not_tr": "İbn Arabî'nin kendi 'beyaz yüzdeki ben' benzetmesi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "mumkun"
       ]
     }
   }
