@@ -190,39 +190,6 @@ html {
   color: var(--surface-1);
 }
 
-.landing-quote {
-  flex: 1 1 280px;
-  max-width: 340px;
-  min-width: 0;
-  margin: 0;
-  padding-left: 20px;
-  border-left: 2px solid var(--border);
-  pointer-events: auto;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-.landing-quote--visible { opacity: 1; transform: translateY(0); }
-.landing-quote blockquote {
-  margin: 0 0 6px;
-  font-style: italic;
-  font-size: 0.82rem;
-  line-height: 1.4;
-  color: var(--text-primary);
-  transition: color 0.2s ease;
-}
-.landing-quote:hover blockquote { color: var(--series-theme); }
-.landing-quote cite {
-  font-size: 0.72rem;
-  font-style: normal;
-  color: var(--text-secondary);
-}
-@media (prefers-reduced-motion: reduce) {
-  .landing-quote { transition: none; }
-  .landing-quote blockquote { transition: none; }
-}
-
 .graph-wrap {
   position: relative;
   width: 100%;
@@ -796,15 +763,6 @@ html:has(.detail-panel:not([hidden])) {
   .app-header__controls { flex-wrap: wrap; row-gap: 10px; }
   .view-switch { flex-wrap: wrap; }
   .btn-ghost { padding: 6px 11px; font-size: 0.8rem; }
-  .landing-quote {
-    flex: 0 1 auto;
-    max-width: none;
-    margin: 12px 0 0;
-    padding-left: 0;
-    padding-top: 12px;
-    border-left: none;
-    border-top: 1px solid var(--border);
-  }
   .welcome-screen__stage { width: min(78vw, 300px); }
   .welcome-screen__skip { bottom: 18px; font-size: 0.68rem; }
 }
@@ -1599,6 +1557,8 @@ html[data-contrast="high"] .detail-title {
   top: 0;
   z-index: 5;
   background: var(--surface-1);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .detail-breadcrumb {
@@ -1638,7 +1598,7 @@ html[data-contrast="high"] .detail-title {
 }
 
 .typography-btn {
-  background: transparent;
+  background: var(--surface-1);
   border: 1px solid var(--border);
   color: var(--text-secondary);
   width: 34px;
