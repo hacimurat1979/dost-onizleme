@@ -112,7 +112,20 @@
     else if (currentMainView === "hal") window.__halApp && window.__halApp.onLangChange();
     else if (currentMainView === "terimler") window.__terimlerApp && window.__terimlerApp.onLangChange();
     else if (currentMainView === "cizimler") window.__cizimlerApp && window.__cizimlerApp.onLangChange();
+    else if (currentMainView === "sirlar") window.__sirlarGraphApp && window.__sirlarGraphApp.onLangChange();
+    updateHeaderHeightVar();
   });
+
+  // Sabit (sticky) üst kısmın gerçek yüksekliğini ölçüp detail-panel'in
+  // altında başlamasını sağlayan CSS değişkeni.
+  function updateHeaderHeightVar() {
+    const header = document.querySelector(".app-header");
+    if (header) {
+      document.documentElement.style.setProperty("--app-header-height", header.offsetHeight + "px");
+    }
+  }
+  updateHeaderHeightVar();
+  window.addEventListener("resize", updateHeaderHeightVar);
 
   detailClose.addEventListener("click", () => {
     detailPanel.hidden = true;
@@ -182,22 +195,19 @@
     })
     .catch((err) => console.error("Alıntılar yüklenemedi / Failed to load quotes", err));
 
-  const sirlarBtn = document.getElementById("sirlar-btn");
-  if (sirlarBtn) {
-    sirlarBtn.addEventListener("click", () => goToSirlar());
-  }
-
   let currentMainView = "ontology";
   const ontologyBtn = document.getElementById("ontology-btn");
   const esmaBtn = document.getElementById("esma-btn");
   const halBtn = document.getElementById("hal-btn");
   const terimlerBtn = document.getElementById("terimler-btn");
   const cizimlerBtn = document.getElementById("cizimler-btn");
+  const sirlarBtn = document.getElementById("sirlar-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
   const halWrap = document.getElementById("hal-wrap");
   const terimlerWrap = document.getElementById("terimler-wrap");
   const cizimlerWrap = document.getElementById("cizimler-wrap");
+  const sirlarWrap = document.getElementById("sirlar-wrap");
 
   function setMainView(view) {
     if (currentMainView === view) return;
@@ -207,11 +217,13 @@
     if (halBtn) halBtn.classList.toggle("btn-ghost--active", view === "hal");
     if (terimlerBtn) terimlerBtn.classList.toggle("btn-ghost--active", view === "terimler");
     if (cizimlerBtn) cizimlerBtn.classList.toggle("btn-ghost--active", view === "cizimler");
+    if (sirlarBtn) sirlarBtn.classList.toggle("btn-ghost--active", view === "sirlar");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
     if (terimlerWrap) terimlerWrap.hidden = view !== "terimler";
     if (cizimlerWrap) cizimlerWrap.hidden = view !== "cizimler";
+    if (sirlarWrap) sirlarWrap.hidden = view !== "sirlar";
     currentDetailNode = null;
     currentDetailEdge = null;
     detailPanel.hidden = true;
@@ -227,9 +239,16 @@
     } else if (view === "cizimler") {
       currentDetailView = "cizimler";
       window.__cizimlerApp && window.__cizimlerApp.activate();
+    } else if (view === "sirlar") {
+      currentDetailView = null;
+      window.__sirlarGraphApp && window.__sirlarGraphApp.activate();
     } else {
       currentDetailView = null;
     }
+  }
+
+  if (sirlarBtn) {
+    sirlarBtn.addEventListener("click", () => { goToSirlar(); updateHash("sirlar"); });
   }
 
   if (ontologyBtn) ontologyBtn.addEventListener("click", () => { setMainView("ontology"); updateHash("ontoloji"); });
@@ -273,14 +292,16 @@
   }
 
   function goToSirlar(id) {
+    setMainView("sirlar");
     currentDetailNode = null;
     currentDetailEdge = null;
-    currentDetailView = "sirlar";
     if (!sirlarData) {
       pendingSirlarId = id || null;
       return;
     }
     pendingSirlarId = null;
+    if (!id) return;
+    currentDetailView = "sirlar";
     showSirlarPanel(id);
   }
 

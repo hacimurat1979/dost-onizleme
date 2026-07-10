@@ -90,8 +90,8 @@
         <button class="btn-ghost" id="hal-btn" type="button" data-tr="Hâller" data-en="States" data-pt="Estados">Hâller</button>
         <button class="btn-ghost" id="terimler-btn" type="button" data-tr="Terimler" data-en="Terms" data-pt="Termos">Terimler</button>
         <button class="btn-ghost" id="cizimler-btn" type="button" data-tr="Çizimler" data-en="Diagrams" data-pt="Diagramas">Çizimler</button>
+        <button class="btn-ghost" id="sirlar-btn" type="button" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
       </div>
-      <button class="btn-ghost" id="sirlar-btn" type="button" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
         <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.2"/><line x1="12" y1="19.8" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.2" y2="12"/><line x1="19.8" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.6" y2="4.4"/></g></svg>
         <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
@@ -156,6 +156,21 @@
       <div id="cizimler-list"></div>
     </section>
 
+    <section class="graph-wrap" id="sirlar-wrap" hidden>
+      <svg id="sirlar-graph"></svg>
+      <div class="node-hover-tip" id="sirlar-tooltip" hidden></div>
+      <button class="graph-recenter" id="sirlar-recenter" type="button" title="Görünümü ortala / Recenter view / Recentralizar vista" aria-label="Görünümü ortala / Recenter view / Recentralizar vista">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <div class="legend" id="sirlar-legend">
+        <div class="legend__item"><span class="legend__dot legend__dot--sir-suskunluk"></span><span data-tr="Suskunluk ve Perdeleme" data-en="Silence and Veiling" data-pt="Silêncio e Velamento">Suskunluk ve Perdeleme</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--sir-peygamber"></span><span data-tr="Peygamber Kıssalarındaki Sırlar" data-en="Secrets in the Prophets' Stories" data-pt="Segredos nas Histórias dos Profetas">Peygamber Kıssaları</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--sir-kader"></span><span data-tr="Kader, Tevhid, Tenzih-Teşbih" data-en="Destiny, Divine Unity, Tanzih-Tashbih" data-pt="Destino, Unidade Divina, Tanzih-Tashbih">Kader, Tevhid</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--sir-dil"></span><span data-tr="Dilde ve Kelimede Gizlenen Sırlar" data-en="Secrets Hidden in Language and Words" data-pt="Segredos Ocultos na Língua e nas Palavras">Dilde ve Kelimede</span></div>
+        <div class="legend__item"><span class="legend__dot legend__dot--sir-insan"></span><span data-tr="İnsan-ı Kâmil ve Velâyet" data-en="The Perfect Human and Sainthood" data-pt="O Ser Humano Perfeito e a Santidade">İnsan-ı Kâmil</span></div>
+      </div>
+    </section>
+
     <aside class="detail-panel" id="detail-panel" hidden>
       <div id="detail-content"></div>
     </aside>
@@ -209,6 +224,7 @@
   <script src="assets/hal.js"></script>
   <script src="assets/terimler.js"></script>
   <script src="assets/cizimler.js"></script>
+  <script src="assets/sirlar-graph.js"></script>
   <script src="assets/ontology.js"></script>
   <script src="assets/secret-nav.js"></script>
 </body>

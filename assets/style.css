@@ -21,6 +21,12 @@
   --series-hal-fenabeka:  #6a4b93; /* violet / annihilation and subsistence */
   --series-hal-tevhit:    #2f3a6b; /* indigo / divine unity */
   --series-hal-hayret:    #c9971a; /* gold / bewilderment */
+
+  --series-sir-suskunluk: #5c6b78; /* slate / silence and veiling */
+  --series-sir-peygamber: #c2703f; /* terracotta / prophets' stories */
+  --series-sir-kader:     #1f7d6f; /* teal / destiny and divine unity */
+  --series-sir-dil:       #8e3d68; /* plum / language and words */
+  --series-sir-insan:     #9c7a26; /* bronze / perfect human and sainthood */
 }
 
 .viz-root[data-theme="dark"] {
@@ -46,6 +52,12 @@
   --series-hal-fenabeka:  #9070c2;
   --series-hal-tevhit:    #6b7fc2;
   --series-hal-hayret:    #e0b545;
+
+  --series-sir-suskunluk: #8a99a6;
+  --series-sir-peygamber: #e0935c;
+  --series-sir-kader:     #3aa694;
+  --series-sir-dil:       #b5638f;
+  --series-sir-insan:     #c7a13e;
 }
 
 
@@ -273,6 +285,15 @@ html {
 }
 #hal-graph:active { cursor: grabbing; }
 
+#sirlar-graph {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: pan-y;
+  cursor: grab;
+}
+#sirlar-graph:active { cursor: grabbing; }
+
 .esma-expand-badge {
   fill: var(--surface-1);
   font-size: 13px;
@@ -348,6 +369,26 @@ html {
   .hal-node--active circle { filter: none; }
 }
 
+.sirlar-link {
+  fill: none;
+  stroke: var(--gridline);
+  stroke-width: 1.5px;
+}
+.sirlar-link--highlight {
+  stroke: var(--series-theme);
+  stroke-width: 2.5px;
+}
+.sirlar-node--entry circle {
+  cursor: pointer;
+}
+.sirlar-node--theme circle,
+.sirlar-node--root circle {
+  cursor: default;
+}
+.sirlar-node--theme text.node-label {
+  font-weight: 600;
+}
+
 .legend {
   position: absolute;
   bottom: 12px;
@@ -378,6 +419,11 @@ html {
 .legend__dot--hal-fenabeka { background: var(--series-hal-fenabeka); }
 .legend__dot--hal-tevhit   { background: var(--series-hal-tevhit); }
 .legend__dot--hal-hayret   { background: var(--series-hal-hayret); }
+.legend__dot--sir-suskunluk { background: var(--series-sir-suskunluk); }
+.legend__dot--sir-peygamber { background: var(--series-sir-peygamber); }
+.legend__dot--sir-kader     { background: var(--series-sir-kader); }
+.legend__dot--sir-dil       { background: var(--series-sir-dil); }
+.legend__dot--sir-insan     { background: var(--series-sir-insan); }
 .legend__line {
   width: 16px;
   height: 0;
@@ -482,23 +528,27 @@ html {
 
 .detail-panel {
   position: fixed;
-  top: 0;
+  top: var(--app-header-height, 96px);
   right: 0;
-  height: 100%;
+  height: calc(100% - var(--app-header-height, 96px));
   width: min(420px, 92vw);
   background: var(--surface-1);
   border-left: 1px solid var(--border);
   box-shadow: -8px 0 24px rgba(0,0,0,0.15);
-  padding: 64px 24px 24px;
+  padding: 52px 24px 24px;
   overflow-y: auto;
   z-index: 40;
 }
 .detail-panel[hidden] { display: none; }
 
+html:has(.detail-panel:not([hidden])) {
+  overflow: hidden;
+}
+
 .detail-panel__close {
   display: none;
   position: fixed;
-  top: 12px;
+  top: calc(var(--app-header-height, 96px) + 12px);
   right: 16px;
   background: var(--surface-1);
   border: none;
@@ -699,8 +749,8 @@ html {
 
 @media (max-width: 640px) {
   .app-header { flex-direction: column; }
-  .detail-panel { width: 100vw; padding-top: 64px; z-index: 60; }
-  .detail-panel__close { z-index: 61; }
+  .detail-panel { top: 0; height: 100%; width: 100vw; padding-top: 64px; z-index: 60; }
+  .detail-panel__close { top: 12px; z-index: 61; }
   .app-header__title { flex-basis: auto; }
   .app-header__controls { flex-wrap: wrap; row-gap: 10px; }
   .view-switch { flex-wrap: wrap; }
@@ -1492,6 +1542,10 @@ html[data-contrast="high"] .detail-title {
   padding: 0 0 12px;
   border-bottom: 1px solid var(--gridline);
   margin-bottom: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--surface-1);
 }
 
 .typography-btn {
