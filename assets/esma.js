@@ -99,6 +99,20 @@
     return ramp[Math.min(d.depth, ramp.length - 1)];
   }
 
+  const POLE_LABEL = {
+    celal: { tr: "Celâl", en: "Jalal", pt: "Jalal" },
+    cemal: { tr: "Cemâl", en: "Jamal", pt: "Jamal" },
+    kemal: { tr: "Kemâl", en: "Kamal", pt: "Kamal" },
+    neutral: { tr: "Grup", en: "Group", pt: "Grupo" },
+  };
+
+  function poleBadgeHtml(d) {
+    if (d.depth === 0) return "";
+    const label = POLE_LABEL[d.data.pole];
+    if (!label) return "";
+    return `<span class="pole-badge" style="background:${colorFor(d)}">${I18n.pick3(label)}</span>`;
+  }
+
   function labelFor(d) {
     const full = I18n.pick3(d.data.name);
     const idx = full.indexOf(" (");
@@ -375,7 +389,7 @@
     if (!tooltip) return;
     const short = I18n.pick3(d.data.short);
     tooltip.innerHTML = `
-      <div class="node-hover-tip__title">${I18n.pick3(d.data.name)}</div>
+      <div class="node-hover-tip__title">${I18n.pick3(d.data.name)} ${poleBadgeHtml(d)}</div>
       ${short ? `<div class="node-hover-tip__short">${short}</div>` : ""}
     `;
     tooltip.hidden = false;
@@ -478,7 +492,7 @@
       : "";
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Esmâü'l-Hüsnâ", en: "The Beautiful Names", pt: "Os Belos Nomes" })}</p>
-      <h2 class="detail-title">${I18n.pick3(n.name)}</h2>
+      <h2 class="detail-title">${I18n.pick3(n.name)} ${poleBadgeHtml(d)}</h2>
       <div class="detail-block detail-block--ibnarabi">
         <h3>${I18n.pick3(n.short)}</h3>
         <p>${linkify(I18n.pick3(n.summary), "esma", d.id)}</p>

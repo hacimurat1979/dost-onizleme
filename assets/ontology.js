@@ -7,6 +7,7 @@
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
   const detailClose = document.getElementById("detail-close");
+  const breadcrumbEl = document.getElementById("detail-breadcrumb");
   const tooltip = document.getElementById("ontology-tooltip");
   const wrapEl = document.getElementById("ontology-wrap");
 
@@ -263,6 +264,59 @@
   function updateHash(view, id) {
     const hash = "#/" + view + (id ? "/" + id : "");
     if (location.hash !== hash) history.replaceState(null, "", hash);
+    if (id) pushBreadcrumb(view, id);
+  }
+
+  let breadcrumbTrail = [];
+
+  function pushBreadcrumb(view, id) {
+    requestAnimationFrame(() => {
+      const titleEl = detailContent.querySelector(".detail-title");
+      let label = "";
+      if (titleEl) {
+        const clone = titleEl.cloneNode(true);
+        clone.querySelectorAll(".pole-badge").forEach((b) => b.remove());
+        label = clone.textContent.trim();
+      }
+      if (!label) return;
+      const last = breadcrumbTrail[breadcrumbTrail.length - 1];
+      if (last && last.view === view && last.id === id) {
+        last.label = label;
+        renderBreadcrumb();
+        return;
+      }
+      if (!last || last.view !== view) breadcrumbTrail = [];
+      breadcrumbTrail.push({ view, id, label });
+      if (breadcrumbTrail.length > 4) breadcrumbTrail.shift();
+      renderBreadcrumb();
+    });
+  }
+
+  function renderBreadcrumb() {
+    if (!breadcrumbEl) return;
+    if (breadcrumbTrail.length < 2) {
+      breadcrumbEl.hidden = true;
+      breadcrumbEl.innerHTML = "";
+      return;
+    }
+    breadcrumbEl.hidden = false;
+    breadcrumbEl.innerHTML = breadcrumbTrail
+      .map((c, i) => {
+        if (i === breadcrumbTrail.length - 1) {
+          return `<span class="detail-breadcrumb__item detail-breadcrumb__item--current">${c.label}</span>`;
+        }
+        return `<button type="button" class="detail-breadcrumb__item" data-view="${c.view}" data-id="${c.id}">${c.label}</button>`;
+      })
+      .join('<span class="detail-breadcrumb__sep">›</span>');
+    breadcrumbEl.querySelectorAll("button.detail-breadcrumb__item").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const view = btn.dataset.view;
+        const id = btn.dataset.id;
+        const idx = breadcrumbTrail.findIndex((c) => c.view === view && c.id === id);
+        if (idx !== -1) breadcrumbTrail = breadcrumbTrail.slice(0, idx + 1);
+        window.__dostNav.goTo(view, id);
+      });
+    });
   }
 
   function goToOntologyNode(id) {

@@ -10,7 +10,8 @@
     esma: { tr: "Esmâü'l-Hüsnâ", en: "The Beautiful Names", pt: "Os Belos Nomes" },
     hal: { tr: "Hâller Haritası", en: "Map of States", pt: "Mapa dos Estados" },
     sirlar: { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" },
-    kitap: { tr: "Kitap Haritası", en: "Book Map", pt: "Mapa dos Livros" },
+    terimler: { tr: "Felsefi Terimler", en: "Philosophical Terms", pt: "Termos Filosóficos" },
+    cizimler: { tr: "Çizimler", en: "Diagrams", pt: "Diagramas" },
   };
 
   let index = [];
@@ -44,9 +45,16 @@
           index.push({ view: "sirlar", id: e.id, label: e.topic, sub: null, searchText: allLangText(e.topic) + " " + (e.theme || "") });
         });
       }),
-      fetch("data/ibn-arabi/book-map.json").then((r) => r.json()).then((d) => {
-        (d.books || []).forEach((b) => {
-          index.push({ view: "kitap", id: b.id, label: b.title, sub: { tr: b.author, en: b.author, pt: b.author }, searchText: allLangText(b.title) + " " + b.author });
+      fetch("data/ibn-arabi/felsefi-terimler.json").then((r) => r.json()).then((d) => {
+        const terms = d.terms || {};
+        Object.keys(terms).forEach((key) => {
+          const t = terms[key];
+          index.push({ view: "terimler", id: t.id, label: t.title, sub: t.felsefi_tanim, searchText: allLangText(t.title) + " " + allLangText(t.felsefi_tanim) + " " + (t.arabic || "") });
+        });
+      }),
+      fetch("data/ibn-arabi/futuhat-cizimleri.json").then((r) => r.json()).then((d) => {
+        (d.diagrams || []).forEach((c) => {
+          index.push({ view: "cizimler", id: c.id, label: c.name, sub: c.description, searchText: allLangText(c.name) + " " + allLangText(c.description) });
         });
       }),
     ];
@@ -98,7 +106,7 @@
 
   function placeholder() {
     const lang = I18n.getLang();
-    return { tr: "Kavram, isim, hâl veya kitap ara…", en: "Search concepts, names, states, or books…", pt: "Buscar conceitos, nomes, estados ou livros…" }[lang];
+    return { tr: "Kavram, isim, hâl veya terim ara…", en: "Search concepts, names, states, or terms…", pt: "Buscar conceitos, nomes, estados ou termos…" }[lang];
   }
 
   function openPanel() {
