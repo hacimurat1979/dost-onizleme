@@ -93,6 +93,8 @@
     const pole = d.data.pole;
     if (pole === "celal") return getVar("--series-celal");
     if (pole === "cemal") return getVar("--series-cemal");
+    if (pole === "kemal") return getVar("--series-kemal");
+    if (pole === "neutral") return getVar("--series-esma-neutral");
     const ramp = isDark() ? LAYER_COLOR_DARK : LAYER_COLOR;
     return ramp[Math.min(d.depth, ramp.length - 1)];
   }
@@ -168,7 +170,7 @@
 
   const treeLayout = d3.tree()
     .size([2 * Math.PI, 1])
-    .separation((a, b) => (a.parent === b.parent ? 1.1 : 2.2) / a.depth || 1);
+    .separation((a, b) => (a.parent === b.parent ? 1.6 : 3.4) / Math.sqrt(a.depth || 1));
 
   function drawRings() {
     const depths = Array.from(new Set(root.descendants().map((d) => d.depth))).sort((a, b) => a - b);
@@ -215,7 +217,7 @@
     maxDepth = Math.max(1, d3.max(nodes, (d) => d.depth));
     const width = svg.node().clientWidth || 800;
     const height = svg.node().clientHeight || 600;
-    outerRadius = Math.max(120, Math.min(width, height) / 2 - 60);
+    outerRadius = Math.max(120, Math.min(width, height) / 2 - 40);
     radiusScale = d3.scaleSqrt().domain([0, maxDepth]).range([0, outerRadius]);
     nodes.forEach((d) => { d.y = radiusScale(d.depth); });
 

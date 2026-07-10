@@ -8,6 +8,7 @@
     {
       "id": "zat",
       "depth": 0,
+      "pole": "neutral",
       "name": { "tr": "Zât", "en": "The Essence", "pt": "A Essência" },
       "short": { "tr": "İsimlerin ötesinde, bilinemeyen Kaynak", "en": "Beyond every Name, the unknowable Source", "pt": "Além de todo Nome, a Fonte incognoscível" },
       "summary": {
@@ -29,6 +30,7 @@
       "id": "allah",
       "depth": 1,
       "parent": "zat",
+      "pole": "kemal",
       "name": { "tr": "Allah", "en": "Allah", "pt": "Allah" },
       "short": { "tr": "Bütün isimleri kuvve hâlinde kuşatan İsim", "en": "The Name that gathers every Name within itself, in potency", "pt": "O Nome que reúne todo Nome em si, em potência" },
       "summary": {
@@ -68,6 +70,7 @@
       "id": "rahman",
       "depth": 2,
       "parent": "allah",
+      "pole": "cemal",
       "name": { "tr": "er-Rahmân", "en": "Ar-Rahman (The All-Merciful)", "pt": "Ar-Rahman (O Todo-Misericordioso)" },
       "short": { "tr": "Dünya ve âhiretin genel, kayıtsız rahmeti", "en": "The general, unconditional mercy of this world and the next", "pt": "A misericórdia geral e incondicional deste mundo e do além" },
       "summary": {
@@ -89,6 +92,7 @@
       "id": "rahim",
       "depth": 2,
       "parent": "allah",
+      "pole": "cemal",
       "name": { "tr": "er-Rahîm", "en": "Ar-Rahim (The Especially Merciful)", "pt": "Ar-Rahim (O Especialmente Misericordioso)" },
       "short": { "tr": "Âhirette yalnız mutluluğa özgü rahmet", "en": "The mercy in the hereafter reserved for felicity alone", "pt": "A misericórdia no além reservada apenas à felicidade" },
       "summary": {
@@ -110,6 +114,7 @@
       "id": "rab",
       "depth": 2,
       "parent": "allah",
+      "pole": "kemal",
       "name": { "tr": "er-Rab", "en": "Ar-Rabb (The Lord)", "pt": "Ar-Rabb (O Senhor)" },
       "short": { "tr": "Kulun bizzat kendisiyle irtibatta olduğu has isim", "en": "The particular Name through which each servant is bound to God", "pt": "O Nome particular através do qual cada servo está ligado a Deus" },
       "summary": {
@@ -140,6 +145,7 @@
       "id": "muddebir",
       "depth": 3,
       "parent": "rab",
+      "pole": "celal",
       "name": { "tr": "el-Müdebbir", "en": "Al-Mudabbir (The Regulator)", "pt": "Al-Mudabbir (O Regulador)" },
       "short": { "tr": "Âlemin talebine karşılık ayağa kalkan ilk isim", "en": "The first Name to rise up in response to the world's demand", "pt": "O primeiro Nome a se erguer em resposta à demanda do mundo" },
       "summary": {
@@ -161,6 +167,7 @@
       "id": "mufassil",
       "depth": 3,
       "parent": "rab",
+      "pole": "celal",
       "name": { "tr": "el-Mufassıl", "en": "Al-Mufassil (The Differentiator)", "pt": "Al-Mufassil (O Diferenciador)" },
       "short": { "tr": "Âlemi ayrıntılandıran, birbirinden ayıran isim", "en": "The Name that details the world, differentiating one thing from another", "pt": "O Nome que detalha o mundo, diferenciando uma coisa da outra" },
       "summary": {
@@ -182,6 +189,7 @@
       "id": "hayy",
       "depth": 3,
       "parent": "rab",
+      "pole": "kemal",
       "name": { "tr": "el-Hayy", "en": "Al-Hayy (The Living)", "pt": "Al-Hayy (O Vivo)" },
       "short": { "tr": "İsimlerin ve kulların imamı", "en": "The imam of the Names and of servants", "pt": "O imã dos Nomes e dos servos" },
       "summary": {
@@ -203,6 +211,7 @@
       "id": "alim",
       "depth": 4,
       "parent": "hayy",
+      "pole": "kemal",
       "name": { "tr": "el-Âlim", "en": "Al-'Alim (The Knowing)", "pt": "Al-'Alim (O Sapiente)" },
       "short": { "tr": "Hikmete göre var olmanı sağlayan isim", "en": "The Name that lets you exist according to wisdom", "pt": "O Nome que permite que você exista segundo a sabedoria" },
       "summary": {
@@ -224,6 +233,7 @@
       "id": "murid",
       "depth": 5,
       "parent": "alim",
+      "pole": "kemal",
       "name": { "tr": "el-Mürîd", "en": "Al-Murid (The Willing)", "pt": "Al-Murid (O Que Quer)" },
       "short": { "tr": "Seçilmeni sağlayan isim", "en": "The Name that brings about your being singled out", "pt": "O Nome que faz com que você seja escolhido" },
       "summary": {
@@ -245,6 +255,7 @@
       "id": "mutekellim",
       "depth": 6,
       "parent": "murid",
+      "pole": "kemal",
       "name": { "tr": "el-Mütekellim (el-Kâil)", "en": "Al-Mutakallim (The Speaking)", "pt": "Al-Mutakallim (O Que Fala)" },
       "short": { "tr": "Kadîmliğini ispat eden isim", "en": "The Name that establishes your pre-eternity", "pt": "O Nome que estabelece sua pré-eternidade" },
       "summary": {
@@ -266,6 +277,7 @@
       "id": "kadir",
       "depth": 7,
       "parent": "mutekellim",
+      "pole": "celal",
       "name": { "tr": "el-Kâdir", "en": "Al-Qadir (The Powerful)", "pt": "Al-Qadir (O Poderoso)" },
       "short": { "tr": "Yok oluşunu da ispat eden isim", "en": "The Name that establishes your possible non-existence too", "pt": "O Nome que estabelece também sua possível não-existência" },
       "summary": {
@@ -287,6 +299,7 @@
       "id": "cevad",
       "depth": 8,
       "parent": "kadir",
+      "pole": "cemal",
       "name": { "tr": "el-Cevâd", "en": "Al-Jawad (The Generous)", "pt": "Al-Jawad (O Generoso)" },
       "short": { "tr": "Yaratılışını ispat eden isim", "en": "The Name that establishes your having been created", "pt": "O Nome que estabelece que você foi criado" },
       "summary": {
@@ -308,6 +321,7 @@
       "id": "muksit",
       "depth": 9,
       "parent": "cevad",
+      "pole": "kemal",
       "name": { "tr": "el-Muksit", "en": "Al-Muqsit (The Equitable)", "pt": "Al-Muqsit (O Equânime)" },
       "short": { "tr": "Mertebelerin Rabbi, varlık menzillerinin sonuncusu", "en": "The Lord of the ranks, the last of the stations of being", "pt": "O Senhor das hierarquias, a última das estações do ser" },
       "summary": {
@@ -435,6 +449,7 @@
       "id": "zati-grup",
       "depth": 2,
       "parent": "allah",
+      "pole": "neutral",
       "name": { "tr": "Zâtî (Sübûtî) İsimler", "en": "Names of the Essence's Attributes", "pt": "Nomes dos Atributos da Essência" },
       "short": { "tr": "Zât'ın sübûtî sıfatlarını doğrudan ispat eden isimler", "en": "Names that directly establish the Essence's own positive attributes", "pt": "Nomes que estabelecem diretamente os atributos positivos da própria Essência" },
       "summary": {
@@ -456,6 +471,7 @@
       "id": "semi",
       "depth": 3,
       "parent": "zati-grup",
+      "pole": "kemal",
       "name": { "tr": "es-Semî'", "en": "As-Sami' (The All-Hearing)", "pt": "As-Sami' (O Que Tudo Ouve)" },
       "short": { "tr": "Hiçbir sesin gizli kalmadığı işitme", "en": "The hearing from which no sound is hidden", "pt": "A audição da qual nenhum som se esconde" },
       "summary": {
@@ -477,6 +493,7 @@
       "id": "basir",
       "depth": 3,
       "parent": "zati-grup",
+      "pole": "kemal",
       "name": { "tr": "el-Basîr", "en": "Al-Basir (The All-Seeing)", "pt": "Al-Basir (O Que Tudo Vê)" },
       "short": { "tr": "Görüleni de görülmeyeni de kuşatan görme", "en": "The seeing that encompasses both the seen and the unseen", "pt": "A visão que abrange tanto o visto quanto o invisível" },
       "summary": {
@@ -498,6 +515,7 @@
       "id": "mucib",
       "depth": 3,
       "parent": "zati-grup",
+      "pole": "cemal",
       "name": { "tr": "el-Mücîb", "en": "Al-Mujib (The Responsive)", "pt": "Al-Mujib (O Que Responde)" },
       "short": { "tr": "Duayı karşılıksız bırakmayan isim", "en": "The Name that never leaves a prayer unanswered", "pt": "O Nome que nunca deixa uma súplica sem resposta" },
       "summary": {
@@ -519,6 +537,7 @@
       "id": "sekur",
       "depth": 3,
       "parent": "zati-grup",
+      "pole": "cemal",
       "name": { "tr": "eş-Şekûr", "en": "Ash-Shakur (The Grateful)", "pt": "Ash-Shakur (O Grato)" },
       "short": { "tr": "Az ameli çok mükâfatla karşılayan isim", "en": "The Name that repays a small deed with abundant reward", "pt": "O Nome que retribui um pequeno ato com recompensa abundante" },
       "summary": {
@@ -540,6 +559,7 @@
       "id": "nisbi-grup",
       "depth": 2,
       "parent": "allah",
+      "pole": "neutral",
       "name": { "tr": "Nispet ve İzafet İsimleri", "en": "Names of Relation", "pt": "Nomes de Relação" },
       "short": { "tr": "Zâta yeni bir sıfat eklemeyen, sadece bir bağıntı bildiren isimler", "en": "Names adding no new attribute to the Essence, only naming a relation", "pt": "Nomes que não acrescentam novo atributo à Essência, apenas nomeiam uma relação" },
       "summary": {
@@ -562,6 +582,7 @@
       "id": "evvel",
       "depth": 3,
       "parent": "nisbi-grup",
+      "pole": "kemal",
       "name": { "tr": "el-Evvel", "en": "Al-Awwal (The First)", "pt": "Al-Awwal (O Primeiro)" },
       "short": { "tr": "Kendinden önce hiçbir şey olmayan", "en": "That before which there is nothing", "pt": "Aquele antes de quem não há nada" },
       "summary": {
@@ -583,6 +604,7 @@
       "id": "ahir",
       "depth": 3,
       "parent": "nisbi-grup",
+      "pole": "kemal",
       "name": { "tr": "el-Âhir", "en": "Al-Akhir (The Last)", "pt": "Al-Akhir (O Último)" },
       "short": { "tr": "Kendisinden sonra hiçbir şey olmayan", "en": "That after which there is nothing", "pt": "Aquele depois de quem não há nada" },
       "summary": {
@@ -604,6 +626,7 @@
       "id": "zahir",
       "depth": 3,
       "parent": "nisbi-grup",
+      "pole": "kemal",
       "name": { "tr": "ez-Zâhir", "en": "Az-Zahir (The Manifest)", "pt": "Az-Zahir (O Manifesto)" },
       "short": { "tr": "Görünen her şeyde görünen", "en": "That which appears in everything that appears", "pt": "Aquele que aparece em tudo o que aparece" },
       "summary": {
@@ -625,6 +648,7 @@
       "id": "batin",
       "depth": 3,
       "parent": "nisbi-grup",
+      "pole": "kemal",
       "name": { "tr": "el-Bâtın", "en": "Al-Batin (The Hidden)", "pt": "Al-Batin (O Oculto)" },
       "short": { "tr": "Hiçbir sûrette tam olarak görünmeyen", "en": "That which never fully appears in any form", "pt": "Aquele que nunca aparece plenamente em nenhuma forma" },
       "summary": {
@@ -646,6 +670,7 @@
       "id": "fiili-grup",
       "depth": 2,
       "parent": "allah",
+      "pole": "neutral",
       "name": { "tr": "Fiilî İsimler", "en": "Names of Act", "pt": "Nomes de Ato" },
       "short": { "tr": "Bir fiili, bir eylemi bildiren isimler", "en": "Names that name an act, a doing", "pt": "Nomes que nomeiam um ato, um fazer" },
       "summary": {
@@ -668,6 +693,7 @@
       "id": "halik",
       "depth": 3,
       "parent": "fiili-grup",
+      "pole": "celal",
       "name": { "tr": "el-Hâlık", "en": "Al-Khaliq (The Creator)", "pt": "Al-Khaliq (O Criador)" },
       "short": { "tr": "Bir şeyi bir ölçüye göre var eden", "en": "That which brings a thing into being according to a measure", "pt": "Aquele que traz uma coisa à existência segundo uma medida" },
       "summary": {
@@ -689,6 +715,7 @@
       "id": "rezzak",
       "depth": 3,
       "parent": "fiili-grup",
+      "pole": "cemal",
       "name": { "tr": "er-Rezzâk", "en": "Ar-Razzaq (The Provider)", "pt": "Ar-Razzaq (O Provedor)" },
       "short": { "tr": "Yaratılana rızkını ulaştıran", "en": "That which delivers sustenance to the created thing", "pt": "Aquele que faz chegar o sustento à coisa criada" },
       "summary": {
@@ -710,6 +737,7 @@
       "id": "bari",
       "depth": 3,
       "parent": "fiili-grup",
+      "pole": "kemal",
       "name": { "tr": "el-Bâri", "en": "Al-Bari (The Originator)", "pt": "Al-Bari (O Originador)" },
       "short": { "tr": "Yarattığını birbirinden ayrı, kendine has kılan", "en": "That which sets each created thing apart, proper to itself", "pt": "Aquele que torna cada coisa criada distinta, própria de si" },
       "summary": {
@@ -731,6 +759,7 @@
       "id": "musavvir",
       "depth": 3,
       "parent": "fiili-grup",
+      "pole": "cemal",
       "name": { "tr": "el-Musavvir", "en": "Al-Musawwir (The Fashioner)", "pt": "Al-Musawwir (O Formador)" },
       "short": { "tr": "Her yaratılana kendi sûretini veren, zincirin son halkası", "en": "That which gives each created thing its own form, the chain's last link", "pt": "Aquele que dá a cada coisa criada sua própria forma, o último elo da cadeia" },
       "summary": {
@@ -752,6 +781,7 @@
       "id": "veli",
       "depth": 2,
       "parent": "allah",
+      "pole": "cemal",
       "name": { "tr": "el-Velî", "en": "Al-Wali (The Protecting Friend)", "pt": "Al-Wali (O Amigo Protetor)" },
       "short": { "tr": "Allah'ın kendine verdiği, ama 'Nebî' ya da 'Resûl'e hiç vermediği isim", "en": "The Name God gives Himself, but never gives to 'Prophet' or 'Messenger'", "pt": "O Nome que Deus dá a Si mesmo, mas nunca dá a 'Profeta' ou 'Mensageiro'" },
       "summary": {
@@ -792,6 +822,7 @@
       "id": "bulga-esma-grup",
       "depth": 2,
       "parent": "allah",
+      "pole": "neutral",
       "name": { "tr": "El-Bülgâ'nın İsim Silsilesi", "en": "The Sequence of Names in al-Bulgha", "pt": "A Sequência de Nomes em al-Bulgha" },
       "short": { "tr": "İbn Arabî'nin peş peşe tek tek açıkladığı isimler", "en": "Names Ibn Arabi explains one after another in sequence", "pt": "Nomes que Ibn Arabi explica um após o outro em sequência" },
       "summary": {
@@ -813,6 +844,7 @@
       "id": "melik",
       "depth": 3,
       "parent": "bulga-esma-grup",
+      "pole": "celal",
       "name": { "tr": "el-Melik", "en": "Al-Malik (The King)", "pt": "Al-Malik (O Rei)" },
       "short": { "tr": "Bütün varlıkların zatı kendisine ait olan", "en": "The one to whom the very essence of all existents belongs", "pt": "Aquele a quem pertence a própria essência de todos os existentes" },
       "summary": {
@@ -834,6 +866,7 @@
       "id": "kuddus",
       "depth": 3,
       "parent": "bulga-esma-grup",
+      "pole": "celal",
       "name": { "tr": "el-Kuddûs", "en": "Al-Quddus (The Holy)", "pt": "Al-Quddus (O Sagrado)" },
       "short": { "tr": "Her türlü noksanlıktan tam temizlenmiş olan", "en": "The one utterly cleansed of every imperfection", "pt": "Aquele completamente purificado de toda imperfeição" },
       "summary": {
@@ -855,6 +888,7 @@
       "id": "selam",
       "depth": 3,
       "parent": "bulga-esma-grup",
+      "pole": "cemal",
       "name": { "tr": "es-Selâm", "en": "As-Salam (The Source of Peace)", "pt": "As-Salam (A Fonte da Paz)" },
       "short": { "tr": "Her türlü ayıp ve afetten beri olan", "en": "The one free of every fault and affliction", "pt": "Aquele livre de toda falha e aflição" },
       "summary": {
@@ -876,6 +910,7 @@
       "id": "mumin",
       "depth": 3,
       "parent": "bulga-esma-grup",
+      "pole": "cemal",
       "name": { "tr": "el-Mü'min", "en": "Al-Mu'min (The Granter of Security)", "pt": "Al-Mu'min (O Concedente de Segurança)" },
       "short": { "tr": "Korkulardan emin kılan ve her şeyi tasdik eden", "en": "The one who secures against fear and confirms all things as true", "pt": "Aquele que dá segurança contra o medo e confirma todas as coisas como verdadeiras" },
       "summary": {
@@ -897,6 +932,7 @@
       "id": "aziz",
       "depth": 3,
       "parent": "bulga-esma-grup",
+      "pole": "celal",
       "name": { "tr": "el-Azîz", "en": "Al-'Aziz (The Mighty, The Peerless)", "pt": "Al-Aziz (O Poderoso, O Ímpar)" },
       "short": { "tr": "Gücü en şiddetli ve benzersiz olan", "en": "The one whose power is unmatched and who has no equal", "pt": "Aquele cujo poder é incomparável e que não tem igual" },
       "summary": {
@@ -918,6 +954,7 @@
       "id": "kahhar",
       "depth": 3,
       "parent": "bulga-esma-grup",
+      "pole": "celal",
       "name": { "tr": "el-Kahhâr", "en": "Al-Qahhar (The All-Subduing)", "pt": "Al-Qahhar (O Que Tudo Subjuga)" },
       "short": { "tr": "Yokluğu varlık ışığıyla kahreden", "en": "The one who overwhelms nonexistence with the light of being", "pt": "Aquele que subjuga a não-existência com a luz do ser" },
       "summary": {
@@ -939,6 +976,7 @@
       "id": "kayyum",
       "depth": 3,
       "parent": "bulga-esma-grup",
+      "pole": "kemal",
       "name": { "tr": "el-Kayyûm", "en": "Al-Qayyum (The Self-Subsisting Sustainer)", "pt": "Al-Qayyum (O Autossubsistente Sustentador)" },
       "short": { "tr": "Kendi zatıyla kaim olan, başkasını da kaim eden", "en": "The one who subsists by His own essence, and sustains all else in subsisting", "pt": "Aquele que subsiste por Sua própria essência, e sustenta tudo o mais em subsistência" },
       "summary": {
@@ -960,6 +998,7 @@
       "id": "hak",
       "depth": 3,
       "parent": "bulga-esma-grup",
+      "pole": "kemal",
       "name": { "tr": "el-Hak", "en": "Al-Haqq (The Real, The Truth)", "pt": "Al-Haqq (O Real, A Verdade)" },
       "short": { "tr": "Varlığı, sebatı, bekası hak eden yegâne", "en": "The only one who truly deserves existence, permanence, and continuance", "pt": "O único que verdadeiramente merece existência, permanência e continuidade" },
       "summary": {
@@ -981,6 +1020,7 @@
       "id": "samed",
       "depth": 3,
       "parent": "bulga-esma-grup",
+      "pole": "kemal",
       "name": { "tr": "es-Samed", "en": "As-Samad (The Utterly Self-Sufficient)", "pt": "As-Samad (O Totalmente Autossuficiente)" },
       "short": { "tr": "Boşluğu olmayan, üstünde efendi bulunmayan", "en": "The one without gap or void, having no lord above Him", "pt": "Aquele sem vazio ou lacuna, sem senhor acima de Si" },
       "summary": {
@@ -1002,6 +1042,7 @@
       "id": "ahad-esma",
       "depth": 3,
       "parent": "bulga-esma-grup",
+      "pole": "kemal",
       "name": { "tr": "el-Ahad", "en": "Al-Ahad (The Unique One)", "pt": "Al-Ahad (O Único)" },
       "short": { "tr": "Hiçbir ikincisi olmayan mutlak bir", "en": "The absolute One who admits no second whatsoever", "pt": "O Um absoluto que não admite segundo algum" },
       "summary": {

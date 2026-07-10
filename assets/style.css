@@ -14,6 +14,8 @@
   --series-daphne-line:   #f3c3d7;
   --series-celal:     #a83246; /* garnet / majesty */
   --series-cemal:     #2f8f7a; /* jade / beauty */
+  --series-kemal:     #a6821f; /* gold / names combining celal and cemal */
+  --series-esma-neutral: #9b998f; /* grey / group headers, beyond the polarity */
 
   --series-hal-nefs:      #8a8478; /* muted grey-brown / unrefined soul */
   --series-hal-muameleler: #a6572e; /* rust / sustained practice */
@@ -45,6 +47,8 @@
   --series-daphne-line:   #6b3145;
   --series-celal:     #d5677a;
   --series-cemal:     #4bb69d;
+  --series-kemal:     #d9b555;
+  --series-esma-neutral: #7c7a70;
 
   --series-hal-nefs:      #a8a296;
   --series-hal-muameleler: #d98a52;
@@ -413,6 +417,8 @@ html {
 .legend__dot--paradox  { background: var(--series-daphne); }
 .legend__dot--celal    { background: var(--series-celal); }
 .legend__dot--cemal    { background: var(--series-cemal); }
+.legend__dot--kemal    { background: var(--series-kemal); }
+.legend__dot--esma-neutral { background: var(--series-esma-neutral); }
 .legend__dot--hal-nefs     { background: var(--series-hal-nefs); }
 .legend__dot--hal-muameleler { background: var(--series-hal-muameleler); }
 .legend__dot--hal-cemfark  { background: var(--series-hal-cemfark); }
