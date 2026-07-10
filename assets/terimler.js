@@ -203,10 +203,13 @@
     </svg>
   `;
 
+  let currentDiagrams = [];
+
   function renderDiagrams() {
     if (activeGroup === "all") {
       diagramWrap.innerHTML = "";
       diagramWrap.hidden = true;
+      currentDiagrams = [];
       return;
     }
     const group = groupById(activeGroup);
@@ -214,20 +217,75 @@
     if (!diagrams || !diagrams.length) {
       diagramWrap.innerHTML = "";
       diagramWrap.hidden = true;
+      currentDiagrams = [];
       return;
     }
+    currentDiagrams = diagrams;
     diagramWrap.hidden = false;
     const cards = diagrams
-      .map((dg) => {
+      .map((dg, i) => {
         const renderer = diagramRenderers[dg.type];
         if (!renderer) return "";
         return `<div class="term-diagram-card">
-          ${renderer(dg)}
+          <div class="term-diagram-svg-wrap" data-diagram-index="${i}" role="button" tabindex="0"
+               aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${renderer(dg)}</div>
           <p class="term-diagram-caption">${tt(dg.note)}</p>
         </div>`;
       })
       .join("");
     diagramWrap.innerHTML = DIAGRAM_DEFS + `<div class="term-diagram-row">${cards}</div>`;
+    diagramWrap.querySelectorAll(".term-diagram-svg-wrap").forEach((el) => {
+      el.addEventListener("click", () => openDiagramLightbox(Number(el.dataset.diagramIndex)));
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openDiagramLightbox(Number(el.dataset.diagramIndex));
+        }
+      });
+    });
+  }
+
+  // --- Büyütme (lightbox) ---
+  let lightboxEl = null;
+
+  function ensureLightbox() {
+    if (lightboxEl) return lightboxEl;
+    lightboxEl = document.createElement("div");
+    lightboxEl.className = "cizim-lightbox";
+    lightboxEl.hidden = true;
+    lightboxEl.innerHTML = `
+      <div class="cizim-lightbox__backdrop"></div>
+      <div class="cizim-lightbox__panel" role="dialog" aria-modal="true">
+        <button class="cizim-lightbox__close" type="button" aria-label="${tt({ tr: "Kapat", en: "Close", pt: "Fechar" })}">×</button>
+        <div class="cizim-lightbox__svg-wrap"></div>
+        <p class="cizim-lightbox__caption"></p>
+      </div>
+    `;
+    document.body.appendChild(lightboxEl);
+    lightboxEl.querySelector(".cizim-lightbox__backdrop").addEventListener("click", closeLightbox);
+    lightboxEl.querySelector(".cizim-lightbox__close").addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !lightboxEl.hidden) closeLightbox();
+    });
+    return lightboxEl;
+  }
+
+  function openDiagramLightbox(index) {
+    const dg = currentDiagrams[index];
+    if (!dg) return;
+    const renderer = diagramRenderers[dg.type];
+    if (!renderer) return;
+    const el = ensureLightbox();
+    el.querySelector(".cizim-lightbox__svg-wrap").innerHTML = DIAGRAM_DEFS + renderer(dg);
+    el.querySelector(".cizim-lightbox__caption").textContent = tt(dg.note);
+    el.hidden = false;
+    document.body.classList.add("cizim-lightbox-open");
+  }
+
+  function closeLightbox() {
+    if (!lightboxEl) return;
+    lightboxEl.hidden = true;
+    document.body.classList.remove("cizim-lightbox-open");
   }
 
   function renderChips() {

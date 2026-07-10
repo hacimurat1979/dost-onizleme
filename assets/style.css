@@ -92,7 +92,7 @@ html {
 }
 
 .app-header__title {
-  flex: 0 1 300px;
+  flex: 1 1 420px;
   min-width: 0;
 }
 
@@ -106,7 +106,7 @@ html {
   margin: 4px 0 0;
   color: var(--text-secondary);
   font-size: 0.95rem;
-  max-width: 40ch;
+  max-width: 52ch;
 }
 
 .btn-ghost {
@@ -172,32 +172,6 @@ html {
 .lang-btn--active {
   background: var(--text-primary);
   color: var(--surface-1);
-}
-
-.intro {
-  padding: 0 clamp(16px, 4vw, 48px) 8px;
-}
-.intro p { color: var(--text-secondary); line-height: 1.5; }
-
-.intro__who {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  max-width: 80ch;
-  margin: 0 0 14px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.88rem;
-  color: var(--text-muted);
-}
-.intro__who::before {
-  content: "";
-  flex: 0 0 auto;
-  width: 6px;
-  height: 6px;
-  margin-bottom: 2px;
-  border-radius: 50%;
-  background: var(--series-hal-hayret, #e0b545);
 }
 
 .landing-quote {
@@ -328,15 +302,15 @@ html {
 .esma-relation {
   fill: none;
   stroke: var(--series-theme);
-  stroke-width: 1.5px;
-  stroke-dasharray: 2 4;
-  opacity: 0.65;
+  stroke-width: 2.2px;
+  stroke-dasharray: 4 3;
+  opacity: 0.9;
   cursor: pointer;
   pointer-events: stroke;
 }
 .esma-relation:hover {
   opacity: 1;
-  stroke-width: 2.5px;
+  stroke-width: 3px;
 }
 .esma-relation--zid {
   stroke: var(--series-daphne);
@@ -2834,6 +2808,18 @@ html[data-contrast="high"] .detail-title {
   overflow: visible;
 }
 
+.term-diagram-svg-wrap {
+  cursor: zoom-in;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+
+.term-diagram-svg-wrap:hover,
+.term-diagram-svg-wrap:focus-visible {
+  background: color-mix(in srgb, var(--series-theme) 8%, transparent);
+  outline: none;
+}
+
 .term-diagram-caption {
   margin: 8px 0 0;
   font-size: 0.82rem;
@@ -3115,8 +3101,17 @@ html[data-contrast="high"] .detail-title {
   justify-content: center;
 }
 
-.cizim-lightbox__svg-wrap .cizim-card__svg {
+.cizim-lightbox__svg-wrap .cizim-card__svg,
+.cizim-lightbox__svg-wrap .term-diagram__svg {
   max-width: 640px;
+}
+
+.cizim-lightbox__caption {
+  margin: 14px 0 0;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 body.cizim-lightbox-open {
