@@ -84,6 +84,11 @@
     return tt(d.data.topic);
   }
 
+  function nodeLabelFor(d) {
+    if (d.depth === 2) return tt(d.data.label);
+    return labelFor(d);
+  }
+
   function radialPoint(angle, radius) {
     const a = angle - Math.PI / 2;
     return [radius * Math.cos(a), radius * Math.sin(a)];
@@ -178,7 +183,7 @@
         const offset = radiusFor(d) + (d.depth === 1 ? 8 : 6);
         return `rotate(${deg}) translate(${offset},0) rotate(${flip ? 180 : 0})`;
       })
-      .text((d) => labelFor(d));
+      .text((d) => nodeLabelFor(d));
 
     built = true;
     zoomToFit(false);
@@ -256,7 +261,7 @@
 
   function render() {
     if (!built) return;
-    nodeGroup.selectAll("g.sirlar-node text.node-label").text((d) => labelFor(d));
+    nodeGroup.selectAll("g.sirlar-node text.node-label").text((d) => nodeLabelFor(d));
   }
 
   window.__sirlarGraphApp = {
