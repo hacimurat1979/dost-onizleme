@@ -7,6 +7,8 @@
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
   const detailClose = document.getElementById("detail-close");
+  const tooltip = document.getElementById("ontology-tooltip");
+  const wrapEl = document.getElementById("ontology-wrap");
 
   function tt(dict) {
     return I18n.pick3(dict);
@@ -210,16 +212,6 @@
     if (halWrap) halWrap.hidden = view !== "hal";
     if (terimlerWrap) terimlerWrap.hidden = view !== "terimler";
     if (cizimlerWrap) cizimlerWrap.hidden = view !== "cizimler";
-    const introOntology = document.getElementById("intro-ontology");
-    const introEsma = document.getElementById("intro-esma");
-    const introHal = document.getElementById("intro-hal");
-    const introTerimler = document.getElementById("intro-terimler");
-    const introCizimler = document.getElementById("intro-cizimler");
-    if (introOntology) introOntology.hidden = view !== "ontology";
-    if (introEsma) introEsma.hidden = view !== "esma";
-    if (introHal) introHal.hidden = view !== "hal";
-    if (introTerimler) introTerimler.hidden = view !== "terimler";
-    if (introCizimler) introCizimler.hidden = view !== "cizimler";
     currentDetailNode = null;
     currentDetailEdge = null;
     detailPanel.hidden = true;
@@ -414,10 +406,11 @@
           onNodeClick(d);
         }
       })
-      .on("mouseenter", (event, d) => highlight(d))
-      .on("mouseleave", () => highlight(null))
-      .on("focus", (event, d) => highlight(d))
-      .on("blur", () => highlight(null));
+      .on("mouseenter", (event, d) => { highlight(d); showTooltip(d, event); })
+      .on("mousemove", (event) => moveTooltip(event))
+      .on("mouseleave", () => { highlight(null); hideTooltip(); })
+      .on("focus", (event, d) => { highlight(d); showTooltip(d, event); })
+      .on("blur", () => { highlight(null); hideTooltip(); });
 
     nodeSel
       .append("circle")
@@ -694,6 +687,32 @@
   function highlightEdge(d) {
     pathSel.classed("link--highlight", (l) => l === d);
     nodeSel.style("opacity", (n) => (n.id === d.source.id || n.id === d.target.id ? 1 : 0.3));
+  }
+
+  function showTooltip(d, event) {
+    if (!tooltip) return;
+    const short = I18n.pick3(d.short);
+    tooltip.innerHTML = `
+      <div class="node-hover-tip__title">${I18n.pick3(d.name)}</div>
+      ${short ? `<div class="node-hover-tip__short">${short}</div>` : ""}
+    `;
+    tooltip.hidden = false;
+    moveTooltip(event);
+  }
+
+  function moveTooltip(event) {
+    if (!tooltip || tooltip.hidden || !wrapEl) return;
+    const rect = wrapEl.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    x = Math.max(60, Math.min(rect.width - 60, x));
+    y = Math.max(50, y);
+    tooltip.style.left = x + "px";
+    tooltip.style.top = y + "px";
+  }
+
+  function hideTooltip() {
+    if (tooltip) tooltip.hidden = true;
   }
 
   let currentDetailNode = null;

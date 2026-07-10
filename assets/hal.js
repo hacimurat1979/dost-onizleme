@@ -5,6 +5,8 @@
   const svg = d3.select("#hal-graph");
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
+  const tooltip = document.getElementById("hal-tooltip");
+  const wrapEl = document.getElementById("hal-wrap");
 
   function tt(dict) {
     return I18n.pick3(dict);
@@ -157,10 +159,11 @@
           selectNode(d);
         }
       })
-      .on("mouseenter", (event, d) => highlight(d))
-      .on("mouseleave", () => highlight(null))
-      .on("focus", (event, d) => highlight(d))
-      .on("blur", () => highlight(null));
+      .on("mouseenter", (event, d) => { highlight(d); showTooltip(d, event); })
+      .on("mousemove", (event) => moveTooltip(event))
+      .on("mouseleave", () => { highlight(null); hideTooltip(); })
+      .on("focus", (event, d) => { highlight(d); showTooltip(d, event); })
+      .on("blur", () => { highlight(null); hideTooltip(); });
 
     nodeSel.append("circle")
       .attr("r", (d) => radiusFor(d))
@@ -209,6 +212,32 @@
     }
     nodeSel.style("opacity", (n) => (n.id === d.id ? 1 : 0.4));
     linkSel.classed("hal-link--highlight", (l) => l.source.id === d.id || l.target.id === d.id);
+  }
+
+  function showTooltip(d, event) {
+    if (!tooltip) return;
+    const short = I18n.pick3(d.short);
+    tooltip.innerHTML = `
+      <div class="node-hover-tip__title">${I18n.pick3(d.name)}</div>
+      ${short ? `<div class="node-hover-tip__short">${short}</div>` : ""}
+    `;
+    tooltip.hidden = false;
+    moveTooltip(event);
+  }
+
+  function moveTooltip(event) {
+    if (!tooltip || tooltip.hidden || !wrapEl) return;
+    const rect = wrapEl.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    x = Math.max(60, Math.min(rect.width - 60, x));
+    y = Math.max(50, y);
+    tooltip.style.left = x + "px";
+    tooltip.style.top = y + "px";
+  }
+
+  function hideTooltip() {
+    if (tooltip) tooltip.hidden = true;
   }
 
   function insightsHtml(insights, excludeId) {

@@ -64,6 +64,9 @@ html, body {
   background: var(--page-plane);
   color: var(--text-primary);
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
   overflow-x: hidden;
 }
 
@@ -73,7 +76,8 @@ html, body {
   align-items: flex-start;
   padding: 24px clamp(16px, 4vw, 48px) 8px;
   gap: 16px;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 50;
   pointer-events: none;
   background: var(--page-plane);
@@ -87,6 +91,11 @@ html, body {
   gap: 10px;
 }
 
+.app-header__title {
+  flex: 0 1 300px;
+  min-width: 0;
+}
+
 .app-header__title h1 {
   margin: 0;
   font-size: 1.6rem;
@@ -97,7 +106,7 @@ html, body {
   margin: 4px 0 0;
   color: var(--text-secondary);
   font-size: 0.95rem;
-  max-width: 60ch;
+  max-width: 40ch;
 }
 
 .btn-ghost {
@@ -191,20 +200,9 @@ html, body {
   background: var(--series-hal-hayret, #e0b545);
 }
 
-.intro__row {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-}
-.intro__text {
-  flex: 1 1 auto;
-  min-width: 0;
-  max-width: 80ch;
-}
-
 .landing-quote {
-  flex: 0 1 360px;
-  max-width: 400px;
+  flex: 1 1 280px;
+  max-width: 340px;
   min-width: 0;
   margin: 0;
   padding-left: 20px;
@@ -219,8 +217,8 @@ html, body {
 .landing-quote blockquote {
   margin: 0 0 6px;
   font-style: italic;
-  font-size: 0.92rem;
-  line-height: 1.5;
+  font-size: 0.82rem;
+  line-height: 1.4;
   color: var(--text-primary);
   transition: color 0.2s ease;
 }
@@ -729,11 +727,12 @@ html, body {
   .app-header { flex-direction: column; }
   .detail-panel { width: 100vw; padding-top: 64px; z-index: 60; }
   .detail-panel__close { z-index: 61; }
+  .app-header__title { flex-basis: auto; }
   .app-header__controls { flex-wrap: wrap; row-gap: 10px; }
   .view-switch { flex-wrap: wrap; }
   .btn-ghost { padding: 6px 11px; font-size: 0.8rem; }
-  .intro__row { flex-direction: column; }
   .landing-quote {
+    flex: 0 1 auto;
     max-width: none;
     margin: 12px 0 0;
     padding-left: 0;
