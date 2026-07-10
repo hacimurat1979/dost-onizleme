@@ -2817,9 +2817,9 @@ html[data-contrast="high"] .detail-title {
 }
 
 .term-diagram-card {
-  flex: 1 1 260px;
-  min-width: 240px;
-  max-width: 360px;
+  flex: 1 1 340px;
+  min-width: 280px;
+  max-width: 480px;
   background: var(--page-plane);
   border: 1px dashed var(--border);
   border-radius: 12px;
@@ -2828,7 +2828,7 @@ html[data-contrast="high"] .detail-title {
 
 .term-diagram__svg {
   width: 100%;
-  max-width: 320px;
+  max-width: 440px;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -3074,7 +3074,7 @@ html[data-contrast="high"] .detail-title {
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 28px 32px 32px;
-  max-width: min(760px, 92vw);
+  width: min(760px, 92vw);
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0,0,0,0.35);
@@ -3126,5 +3126,6 @@ body.cizim-lightbox-open {
 
 @media (max-width: 640px) {
   .cizim-card { padding: 16px 16px 18px; }
-  .cizim-lightbox__panel { padding: 22px 18px 24px; }
+  .cizim-lightbox { padding: 8px; }
+  .cizim-lightbox__panel { width: min(760px, 96vw); padding: 20px 10px 20px; }
 }
