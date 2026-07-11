@@ -1,0 +1,1108 @@
+{
+  "intro": {
+    "tr": "İbn Arabî'yi anlamak çoğu zaman terimle değil, soruyla başlar. Aşağıdaki sorular, okuyucuların bu haritayla karşılaştığında en çok sorduğu türden sorulardır - cevapları kısa tutulmuştur, çünkü asıl derinlik haritanın geri kalanındadır: her cevabın sonunda, o konuyu bütün kaynaklarıyla işleyen ilgili düğüme bağlanabilirsiniz.",
+    "en": "Understanding Ibn Arabi usually begins not with a term but with a question. The questions below are the kind readers most often bring to this map - the answers are kept short, because the real depth lies in the rest of the map: each answer links onward to the node that treats that subject with its full sources.",
+    "pt": "Compreender Ibn Arabi geralmente começa não com um termo, mas com uma pergunta. As perguntas abaixo são do tipo que os leitores mais trazem a este mapa - as respostas são mantidas breves, porque a verdadeira profundidade está no resto do mapa: cada resposta remete ao nó que trata esse assunto com todas as suas fontes."
+  },
+  "categories": [
+    {
+      "id": "en-temel",
+      "name": {
+        "tr": "En Temel Soru",
+        "en": "The Most Basic Question",
+        "pt": "A Pergunta Mais Básica"
+      },
+      "questions": [
+        {
+          "id": "neyi-goruyordu",
+          "question": {
+            "tr": "İbnü'l-Arabî neyi görüyordu ki dünyayı böyle anlatıyordu?",
+            "en": "What was Ibn Arabi seeing, that he described the world this way?",
+            "pt": "O que Ibn Arabi estava vendo, que descrevia o mundo desta forma?"
+          },
+          "answer": {
+            "tr": "İbn Arabî kendi eserlerinde defalarca, yazdıklarının akıl yürütmenin değil, doğrudan 'keşf' (perdenin kalkması) ve 'zevk' (bizzat tadılan bilgi) denilen bir tecrübenin ürünü olduğunu söyler. Fütûhât'ın büyük bölümünü, Mekke'de tavaf sırasında gördüğünü söylediği bir gençten aldığı işaretle yazdığını anlatır. Bu yüzden site boyunca karşılaşacağınız her harita, aslında onun 'gördüğünü' aktarma çabasının bir izidir - kavramsal bir sistem kurmak değil, bir hâli tarif etmek.",
+            "en": "In his own works Ibn Arabi repeatedly says that what he wrote is not the product of reasoning, but of a direct experience called 'kashf' (the lifting of the veil) and 'dhawq' (tasted, first-hand knowledge). He describes writing much of the Futuhat under a sign he says he received from a youth he saw during the circumambulation in Mecca. Every map you encounter across this site is therefore, in a sense, a trace of his effort to convey what he 'saw' - not to build a conceptual system, but to describe a state.",
+            "pt": "Em suas próprias obras, Ibn Arabi repete várias vezes que o que escreveu não é fruto do raciocínio, mas de uma experiência direta chamada 'kashf' (o levantar do véu) e 'dhawq' (conhecimento provado, de primeira mão). Ele descreve ter escrito grande parte do Futuhat sob um sinal que diz ter recebido de um jovem que viu durante a circum-ambulação em Meca. Cada mapa que você encontra neste site é, portanto, em certo sentido, um rastro de seu esforço para transmitir o que 'viu' - não construir um sistema conceitual, mas descrever um estado."
+          },
+          "link": {
+            "view": "hal",
+            "id": "hayret"
+          },
+          "linkLabel": {
+            "tr": "Hayret hâlini haritada gör",
+            "en": "See the state of Bewilderment on the map",
+            "pt": "Veja o estado de Espanto no mapa"
+          },
+          "source": "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Kitaba Başlangıç"
+        }
+      ]
+    },
+    {
+      "id": "varlik",
+      "name": {
+        "tr": "Varlık Soruları",
+        "en": "Questions on Being",
+        "pt": "Perguntas sobre o Ser"
+      },
+      "questions": [
+        {
+          "id": "varlik-nedir",
+          "question": {
+            "tr": "Varlık nedir?",
+            "en": "What is being?",
+            "pt": "O que é o ser?"
+          },
+          "answer": {
+            "tr": "İbn Arabî için gerçek anlamda 'var' olan tek bir şey vardır: el-Hakk, yani Zât. Bizim 'varlık' dediğimiz her şey - taşlar, düşünceler, sen, ben - o tek Varlığın farklı yoğunluklarda beliren tecellîleridir; kendi başlarına bağımsız bir 'varlıkları' yoktur. Bu yüzden site, 'kaç çeşit şey var' sorusundan önce, 'Var olan nedir' sorusuyla başlar: Zât.",
+            "en": "For Ibn Arabi, only one thing truly 'is': al-Haqq, the Essence. Everything we call 'being' - stones, thoughts, you, me - is that single Being appearing at different intensities; none of it has an independent 'existence' of its own. This is why the site begins not with 'how many kinds of things are there' but with 'what is it that is': the Essence.",
+            "pt": "Para Ibn Arabi, apenas uma coisa verdadeiramente 'é': al-Haqq, a Essência. Tudo o que chamamos de 'ser' - pedras, pensamentos, você, eu - é esse único Ser aparecendo em diferentes intensidades; nada disso tem uma 'existência' independente própria. Por isso o site começa não com 'quantos tipos de coisas existem', mas com 'o que é aquilo que é': a Essência."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "dhat"
+          },
+          "linkLabel": {
+            "tr": "Zât düğümünü aç",
+            "en": "Open the Essence node",
+            "pt": "Abrir o nó da Essência"
+          }
+        },
+        {
+          "id": "kac-varlik",
+          "question": {
+            "tr": "Gerçekten kaç tane varlık vardır?",
+            "en": "How many beings are there, really?",
+            "pt": "Quantos seres existem, na verdade?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'nin cevabı 'vahdet-i vücud' (varlığın birliği) diye özetlenir, ama kendisi bu terimi neredeyse hiç kullanmaz - sonraki nesillerin adlandırmasıdır. Onun kendi ifadesiyle mesele sayı değildir: tek bir Varlık, sonsuz sayıda 'ayna'da (a'yân-ı sâbite) görünür. Aynaların çokluğu gerçektir, ama yansıyan tektir - ne saf 'bir' (panteizm), ne de saf 'çok' (adi çokluk), ikisi arasında bir üçüncü konum.",
+            "en": "Ibn Arabi's answer is usually summarized as 'wahdat al-wujud' (the oneness of being), though he himself almost never uses that exact term - it's a label later generations gave him. In his own account the issue isn't a count: a single Being appears in an infinite number of 'mirrors' (the Fixed Entities). The multiplicity of mirrors is real, but what is reflected is one - neither pure oneness (pantheism) nor plain multiplicity, but a third position between the two.",
+            "pt": "A resposta de Ibn Arabi costuma ser resumida como 'wahdat al-wujud' (a unicidade do ser), embora ele mesmo quase nunca use esse termo exato - é um rótulo que gerações posteriores lhe deram. Em seu próprio relato, a questão não é uma contagem: um único Ser aparece num número infinito de 'espelhos' (as Entidades Fixas). A multiplicidade dos espelhos é real, mas o que se reflete é um só - nem unicidade pura (panteísmo), nem mera multiplicidade, mas uma terceira posição entre as duas."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "ayan-sabite"
+          },
+          "linkLabel": {
+            "tr": "A'yân-ı Sâbite düğümünü aç",
+            "en": "Open the Fixed Entities node",
+            "pt": "Abrir o nó das Entidades Fixas"
+          }
+        },
+        {
+          "id": "allah-alem-iliskisi",
+          "question": {
+            "tr": "Allah ile âlem arasındaki ilişki nedir?",
+            "en": "What is the relation between God and the cosmos?",
+            "pt": "Qual é a relação entre Deus e o cosmos?"
+          },
+          "answer": {
+            "tr": "İbn Arabî bu ilişkiyi, felsefedeki 'illet-malûl' (sebep-sonuç) ilişkisinden bilinçli olarak ayırır. İllet ile malûl birbirini karşılıklı gerektirir - biri olmadan öteki düşünülemez. Oysa Allah ile âlem arasındaki bağ tek yönlüdür: 'vehb' (karşılıksız bağış). Âlem Allah'a muhtaçtır ama Allah âleme muhtaç değildir - bu yüzden site bu iki ilişkiyi yan yana bir çizimle karşılaştırır.",
+            "en": "Ibn Arabi deliberately distinguishes this relation from the philosophical 'cause-and-effect' (illa-ma'lul) relation. A cause and its effect mutually require each other - neither is conceivable without the other. The bond between God and the cosmos, however, is one-directional: 'wahb' (a gift with nothing owed in return). The cosmos needs God, but God does not need the cosmos - which is why the site compares these two relations side by side with a diagram.",
+            "pt": "Ibn Arabi distingue deliberadamente essa relação da relação filosófica de 'causa e efeito' (illa-ma'lul). Uma causa e seu efeito se exigem mutuamente - nenhum é concebível sem o outro. O vínculo entre Deus e o cosmos, porém, é de mão única: 'wahb' (um dom sem nada devido em troca). O cosmos precisa de Deus, mas Deus não precisa do cosmos - por isso o site compara essas duas relações lado a lado com um diagrama."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "illet"
+          },
+          "linkLabel": {
+            "tr": "İllet-Malûl karşılaştırmasını aç",
+            "en": "Open the Cause-Effect comparison",
+            "pt": "Abrir a comparação Causa-Efeito"
+          }
+        },
+        {
+          "id": "yokluk-nedir",
+          "question": {
+            "tr": "Yokluk nedir?",
+            "en": "What is non-existence?",
+            "pt": "O que é a não-existência?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'de 'saf yokluk' ile 'mümkünün yokluğu' aynı şey değildir. Bir mümkin varlık dış âlemde yokken bile, Allah'ın ilminde ezelî bir 'ayn' (sûret/hakikat) olarak durur - bu yüzden 'hiç' değildir, sadece dış varlığa henüz çıkmamıştır. Gerçek anlamda saf yokluk ise hiçbir şeyin karşılığı olmayan, düşünülemez bir sınırdır.",
+            "en": "For Ibn Arabi, 'pure non-existence' and 'the non-existence of a possible thing' are not the same. Even while a possible being is absent from the external world, it stands in God's knowledge as an eternal 'entity' (form/reality) - so it is not simply 'nothing,' only not yet manifest externally. Pure non-existence in the strict sense, by contrast, is an inconceivable limit corresponding to nothing at all.",
+            "pt": "Para Ibn Arabi, 'não-existência pura' e 'a não-existência de uma coisa possível' não são a mesma coisa. Mesmo enquanto um ser possível está ausente do mundo externo, ele permanece no conhecimento de Deus como uma 'entidade' eterna (forma/realidade) - portanto não é simplesmente 'nada', apenas ainda não se manifestou externamente. Já a não-existência pura, em sentido estrito, é um limite inconcebível que não corresponde a nada."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "ayan-sabite"
+          },
+          "linkLabel": {
+            "tr": "A'yân-ı Sâbite düğümünü aç",
+            "en": "Open the Fixed Entities node",
+            "pt": "Abrir o nó das Entidades Fixas"
+          }
+        },
+        {
+          "id": "nasil-var-olur",
+          "question": {
+            "tr": "Bir şey nasıl var olur?",
+            "en": "How does a thing come into existence?",
+            "pt": "Como uma coisa passa a existir?"
+          },
+          "answer": {
+            "tr": "İbn Arabî bu anı 'Nefesü'r-Rahmân' (Rahmân'ın Nefesi) diye adlandırır: tıpkı insanın nefes vermesinin içindeki sıkışmayı gidermesi gibi, Hakk da İsimlerin 'bilinme isteğini' bu nefesle giderir, ve o nefesin her bir 'harfi' bir varlık olarak dışa taşar. Bir şeyin var olması, o ezelî sûretinin (a'yân-ı sâbite) bu nefesle dışarı 'okunması'dır.",
+            "en": "Ibn Arabi names this moment the 'Breath of the All-Merciful' (Nafas al-Rahman): just as a person's exhalation relieves an inner constriction, the Real relieves the Names' 'desire to be known' through this Breath, and each 'letter' of that breath issues forth as a being. For a thing to exist is for its eternal form (its Fixed Entity) to be 'voiced' outward by that Breath.",
+            "pt": "Ibn Arabi nomeia esse momento de 'Sopro do Todo-Misericordioso' (Nafas al-Rahman): assim como a expiração de uma pessoa alivia uma constrição interna, o Real alivia o 'desejo de ser conhecido' dos Nomes através desse Sopro, e cada 'letra' desse sopro surge como um ser. Para uma coisa existir é para sua forma eterna (sua Entidade Fixa) ser 'pronunciada' para fora por esse Sopro."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "tecelli"
+          },
+          "linkLabel": {
+            "tr": "Tecellî düğümünü aç",
+            "en": "Open the Self-Disclosure node",
+            "pt": "Abrir o nó da Autorrevelação"
+          }
+        },
+        {
+          "id": "surekli-mi-yaratilir",
+          "question": {
+            "tr": "Varlık sürekli mi yaratılır?",
+            "en": "Is existence created continuously?",
+            "pt": "A existência é criada continuamente?"
+          },
+          "answer": {
+            "tr": "Evet - ve bu İbn Arabî'nin en özgün doktrinlerinden biridir: 'halk-ı cedîd' (her an yeniden yaratılış). Âlem hiçbir anda sabit kalmaz, sürekli yok olup yeniden yaratılır; 'iki farklı anda aynı âlemi iki kere yaşamamız mümkün değildir.' Bu değişim öylesine düzenli olur ki, sıradan göz çevredeki âlemi hep 'aynı' sanır.",
+            "en": "Yes - and this is one of Ibn Arabi's most original doctrines: 'khalq jadid,' perpetual re-creation. The world never remains fixed for a single instant; it is continuously annihilated and re-created, and 'it is impossible for us to experience the same world twice, at two different moments.' This change occurs so regularly that ordinary sight takes the surrounding world to always be 'the same.'",
+            "pt": "Sim - e esta é uma das doutrinas mais originais de Ibn Arabi: 'khalq jadid,' a recriação perpétua. O mundo nunca permanece fixo por um único instante; é continuamente aniquilado e recriado, e 'é impossível experimentarmos o mesmo mundo duas vezes, em dois momentos diferentes.' Essa mudança ocorre de modo tão regular que a visão comum toma o mundo ao redor como sempre 'o mesmo'."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "tecelli"
+          },
+          "linkLabel": {
+            "tr": "Tecellî düğümünü aç (Halk-ı Cedîd)",
+            "en": "Open the Self-Disclosure node (Perpetual Re-creation)",
+            "pt": "Abrir o nó da Autorrevelação (Recriação Perpétua)"
+          }
+        },
+        {
+          "id": "cokluk-gercek-mi",
+          "question": {
+            "tr": "Çokluk gerçekten var mı, yoksa görünüş mü?",
+            "en": "Is multiplicity real, or only appearance?",
+            "pt": "A multiplicidade é real, ou apenas aparência?"
+          },
+          "answer": {
+            "tr": "İbn Arabî her iki uç cevabı da reddeder. Çokluk salt bir 'illüzyon' değildir - a'yân-ı sâbite gerçekten farklıdır, senin hakikatinle bir taşın hakikati aynı değildir. Ama bu farklılıklar, tek bir Varlığın kendini gösterdiği farklı 'kapasitelerdir' - tıpkı aynı güneş ışığının kırmızı camdan kırmızı, mavi camdan mavi görünmesi gibi; ışık tektir, camlar gerçekten farklıdır.",
+            "en": "Ibn Arabi rejects both extreme answers. Multiplicity is not a mere 'illusion' - the Fixed Entities really differ; your reality and a stone's reality are not the same. But these differences are different 'capacities' through which a single Being shows itself - just as the same sunlight looks red through red glass and blue through blue glass; the light is one, the panes of glass are really different.",
+            "pt": "Ibn Arabi rejeita ambas as respostas extremas. A multiplicidade não é uma mera 'ilusão' - as Entidades Fixas realmente diferem; sua realidade e a realidade de uma pedra não são a mesma. Mas essas diferenças são 'capacidades' diferentes através das quais um único Ser se mostra - assim como a mesma luz solar parece vermelha através de um vidro vermelho e azul através de um vidro azul; a luz é uma só, os vidros são realmente diferentes."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "ayan-sabite"
+          },
+          "linkLabel": {
+            "tr": "A'yân-ı Sâbite düğümünü aç",
+            "en": "Open the Fixed Entities node",
+            "pt": "Abrir o nó das Entidades Fixas"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bilgi",
+      "name": {
+        "tr": "Bilgi Soruları",
+        "en": "Questions on Knowledge",
+        "pt": "Perguntas sobre o Conhecimento"
+      },
+      "questions": [
+        {
+          "id": "insan-nasil-bilir",
+          "question": {
+            "tr": "İnsan gerçekten nasıl bilir?",
+            "en": "How does a human really come to know?",
+            "pt": "Como o ser humano realmente conhece?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'ye göre bilginin üç ayrı yolu vardır: akıl (delil ve kıyasla), taklit (bir otoriteye güvenerek) ve keşf (doğrudan tatma, zevk). Bunların en güvenilirini o üçüncüsü sayar - çünkü akıl ve taklit her zaman bir aracıya muhtaçtır, keşf ise perdenin bizzat kalkmasıdır. Bu doğrudan bilmenin organı da akıl değil, kalptir.",
+            "en": "For Ibn Arabi there are three distinct paths to knowledge: reason (by proof and inference), imitation (relying on an authority), and unveiling (direct, first-hand tasting). He holds the third to be the most reliable - reason and imitation always depend on an intermediary, while unveiling is the veil itself being lifted. And the organ of this direct knowing is not the intellect, but the heart.",
+            "pt": "Para Ibn Arabi há três caminhos distintos para o conhecimento: a razão (por prova e inferência), a imitação (confiando numa autoridade) e o desvelamento (o provar direto, de primeira mão). Ele considera o terceiro o mais confiável - a razão e a imitação sempre dependem de um intermediário, enquanto o desvelamento é o próprio véu sendo levantado. E o órgão desse conhecer direto não é o intelecto, mas o coração."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "kalp"
+          },
+          "linkLabel": {
+            "tr": "Kalp düğümünü aç",
+            "en": "Open the Heart node",
+            "pt": "Abrir o nó do Coração"
+          }
+        },
+        {
+          "id": "akil-nerede-yeterli",
+          "question": {
+            "tr": "Akıl nerede yeterli, nerede yetersiz kalır?",
+            "en": "Where is reason sufficient, and where does it fall short?",
+            "pt": "Onde a razão é suficiente, e onde ela falha?"
+          },
+          "answer": {
+            "tr": "İbn Arabî aklı 'vezir' (bakan) benzetmesiyle anlatır: sultanın (kalbin/ruhun) hizmetinde, değerli ve gerekli, ama efendisi değil. Akıl, sınırları, tanımları ve zıtlıkları ayırmakta eşsizdir - Zât'ı Zât'tan ayrı düşünülen her şeyden tenzih etmek gibi. Ama akıl 'zıtları bir arada tutamaz' - oysa keşfin gördüğü şey tam da budur: aynı anda hem aşkın hem yakın olan bir Hakk.",
+            "en": "Ibn Arabi likens reason to a 'vizier': in the service of the sultan (the heart/spirit), valuable and necessary, but not the master. Reason is unmatched at drawing boundaries, definitions, and oppositions - such as declaring the Essence transcendent above everything conceived apart from it. But reason 'cannot hold opposites together' - and that is exactly what unveiling sees: a Real who is at once transcendent and near.",
+            "pt": "Ibn Arabi compara a razão a um 'vizir': a serviço do sultão (o coração/espírito), valiosa e necessária, mas não o senhor. A razão é incomparável para traçar fronteiras, definições e oposições - como declarar a Essência transcendente acima de tudo concebido à parte dela. Mas a razão 'não consegue manter os opostos juntos' - e é exatamente isso que o desvelamento vê: um Real que é ao mesmo tempo transcendente e próximo."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "akil-vezir"
+          },
+          "linkLabel": {
+            "tr": "Akıl-Vezir terimini aç",
+            "en": "Open the Intellect-as-Vizier term",
+            "pt": "Abrir o termo Intelecto-Vizir"
+          }
+        },
+        {
+          "id": "kesif-nedir",
+          "question": {
+            "tr": "Keşif nedir?",
+            "en": "What is unveiling (kashf)?",
+            "pt": "O que é o desvelamento (kashf)?"
+          },
+          "answer": {
+            "tr": "Keşif, harfi anlamıyla 'perdenin kalkması'dır: akılla ulaşılamayan bir bilginin, aradaki engel bir anda ortadan kalkınca doğrudan görülmesi. İbn Arabî bunu vahiy ve ilhamla akraba ama onlardan ayrı sayar - peygambere özgü olan 'vahiy' kapanmıştır, ama velîye açık olan 'ilham' türünden keşif sürer. Keşfin bilgisi tartışılmaz değildir; her keşif, keşfedenin kendi kapasitesiyle sınırlıdır.",
+            "en": "Unveiling, literally, is 'the lifting of the veil': a knowledge unreachable by reason, seen directly the instant the intervening barrier falls away. Ibn Arabi treats it as kin to revelation and inspiration but distinct from them - the 'revelation' proper to a prophet has closed, but the kind of unveiling open to a saint, akin to 'inspiration,' continues. The knowledge of unveiling is not beyond dispute; every unveiling is limited by the capacity of the one who receives it.",
+            "pt": "O desvelamento é, literalmente, 'o levantar do véu': um conhecimento inalcançável pela razão, visto diretamente no instante em que a barreira interveniente desaparece. Ibn Arabi o trata como aparentado à revelação e à inspiração, mas distinto delas - a 'revelação' própria de um profeta se encerrou, mas o tipo de desvelamento aberto a um santo, aparentado à 'inspiração', continua. O conhecimento do desvelamento não está acima de disputa; todo desvelamento é limitado pela capacidade de quem o recebe."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "vahyin-uc-menzili"
+          },
+          "linkLabel": {
+            "tr": "Vahyin Üç Menzili terimini aç",
+            "en": "Open The Three Stations of Revelation term",
+            "pt": "Abrir o termo As Três Estações da Revelação"
+          }
+        },
+        {
+          "id": "kalp-nasil-bilir",
+          "question": {
+            "tr": "Kalp nasıl bilir?",
+            "en": "How does the heart know?",
+            "pt": "Como o coração conhece?"
+          },
+          "answer": {
+            "tr": "Arapçada 'kalp' kelimesi 'takallüb' (durmadan dönüşüm) köküyle akrabadır - kalbin bilme biçimi de tam olarak budur: sabit bir inanca kilitlenmeden, her yeni tecellîyi yeniden kabul edebilen akışkan bir idraktir. Meşhur kutsî hadis şöyle der: 'Ne yerim ne göğüm Beni kapsar, ancak mü'min kulumun kalbi Beni kapsar.' Kalp, sabit bir kap değil, sürekli akan bir alıcıdır.",
+            "en": "In Arabic, 'heart' (qalb) is kin to the root 'taqallub' (ceaseless turning) - and that is exactly how the heart knows: a fluid perception that, without locking onto a fixed belief, can accept each new self-disclosure anew. The well-known holy tradition says: 'Neither My earth nor My heaven contains Me, but the heart of My believing servant contains Me.' The heart is not a fixed vessel, but a ceaselessly flowing receiver.",
+            "pt": "Em árabe, 'coração' (qalb) é aparentado à raiz 'taqallub' (transformação incessante) - e é exatamente assim que o coração conhece: uma percepção fluida que, sem se prender a uma crença fixa, pode acolher cada nova autorrevelação de novo. A conhecida tradição sagrada diz: 'Nem Minha terra nem Meu céu Me contêm, mas o coração de Meu servo crente Me contém.' O coração não é um vaso fixo, mas um receptor incessantemente fluente."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "kalp"
+          },
+          "linkLabel": {
+            "tr": "Kalp düğümünü aç",
+            "en": "Open the Heart node",
+            "pt": "Abrir o nó do Coração"
+          }
+        },
+        {
+          "id": "peygamber-filozof-farki",
+          "question": {
+            "tr": "Peygamber bilgisi ile filozof bilgisi arasındaki fark nedir?",
+            "en": "What is the difference between a prophet's knowledge and a philosopher's?",
+            "pt": "Qual é a diferença entre o conhecimento de um profeta e o de um filósofo?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'ye göre filozofun bilgisi delile (akıl yürütmeye) dayanır ve bu yüzden yanılabilir; aracı bir zincire bağlıdır. Peygamberin (ve onun mirasçısı velînin) bilgisi ise doğrudan verilir - delile değil, bizzat tecrübeye dayanır. İkisi çoğu zaman aynı sonuca varır, ama peygamberinki 'bilinenin ta kendisini görmek', filozofunki 'bilinenin izini takip etmek' gibidir.",
+            "en": "For Ibn Arabi, the philosopher's knowledge rests on proof (reasoning) and can therefore err; it depends on a chain of intermediaries. A prophet's knowledge (and that of the saint who inherits from him) is given directly - it rests not on proof but on experience itself. The two often arrive at the same conclusion, but the prophet's is like 'seeing the known thing itself,' while the philosopher's is like 'following its trace.'",
+            "pt": "Para Ibn Arabi, o conhecimento do filósofo repousa sobre a prova (o raciocínio) e, portanto, pode errar; depende de uma cadeia de intermediários. O conhecimento do profeta (e do santo que dele herda) é dado diretamente - não repousa sobre a prova, mas sobre a própria experiência. Os dois frequentemente chegam à mesma conclusão, mas o do profeta é como 'ver a própria coisa conhecida', enquanto o do filósofo é como 'seguir seu rastro'."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "nubuvvet-iki-delil"
+          },
+          "linkLabel": {
+            "tr": "Nübüvvetin İki Delili terimini aç",
+            "en": "Open The Two Proofs of Prophethood term",
+            "pt": "Abrir o termo As Duas Provas da Profecia"
+          }
+        },
+        {
+          "id": "hakikat-neden-farkli-gorunur",
+          "question": {
+            "tr": "Hakikat neden herkese aynı görünmez?",
+            "en": "Why doesn't the truth look the same to everyone?",
+            "pt": "Por que a verdade não parece igual para todos?"
+          },
+          "answer": {
+            "tr": "Çünkü İbn Arabî'ye göre Hakk, her 'mazhar'da (kendini gösterdiği yer/kişi) o mazharın kendi kapasitesine göre görünür - tıpkı aynı suyun konduğu kabın rengini alması gibi. Bu, Hakk'ın değiştiği anlamına gelmez; değişen, alıcının hazır olduğu 'ölçü'dür. Bu yüzden aynı âyet, aynı hâl, farklı insanlara farklı görünebilir - ikisi de yanlış değildir, ikisi de kendi kabının rengindedir.",
+            "en": "Because, for Ibn Arabi, the Real appears in every 'locus of manifestation' (the place or person it shows itself through) according to that locus's own capacity - just as the same water takes the color of whatever vessel holds it. This doesn't mean the Real changes; what changes is the 'measure' the receiver is ready for. This is why the same verse, the same state, can look different to different people - neither is wrong, each is simply the color of its own vessel.",
+            "pt": "Porque, para Ibn Arabi, o Real aparece em cada 'lócus de manifestação' (o lugar ou pessoa através do qual se mostra) segundo a capacidade própria desse lócus - assim como a mesma água toma a cor do vaso que a contém. Isso não significa que o Real mude; o que muda é a 'medida' para a qual o receptor está pronto. É por isso que o mesmo versículo, o mesmo estado, pode parecer diferente para pessoas diferentes - nenhum dos dois está errado, cada um é apenas a cor de seu próprio vaso."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "mazhar"
+          },
+          "linkLabel": {
+            "tr": "Mazhar terimini aç",
+            "en": "Open the Locus of Manifestation term",
+            "pt": "Abrir o termo Lócus de Manifestação"
+          }
+        }
+      ]
+    },
+    {
+      "id": "insan",
+      "name": {
+        "tr": "İnsan Soruları",
+        "en": "Questions on the Human Being",
+        "pt": "Perguntas sobre o Ser Humano"
+      },
+      "questions": [
+        {
+          "id": "insan-kimdir",
+          "question": {
+            "tr": "İnsan kimdir?",
+            "en": "Who is the human being?",
+            "pt": "Quem é o ser humano?"
+          },
+          "answer": {
+            "tr": "İbn Arabî için 'insan' iki farklı düzeyde konuşulur: biyolojik tür olarak insan, ve potansiyel olarak İnsan-ı Kâmil (Kâmil İnsan). İkincisi bir ünvan değil, bir imkândır - her insan, üç âlemi (ruhlar, hayal, cisimler) ve bütün İlâhî İsimleri kendinde toplayabilecek 'câmi' bir ayna olarak yaratılmıştır, ama bunu gerçekleştirip gerçekleştirmemek kendi elindedir.",
+            "en": "For Ibn Arabi, 'the human being' is spoken of on two different levels: the human as a biological species, and the human as potentially the Perfect Human (al-Insan al-Kamil). The second is not a title but a possibility - every human is created as an all-comprehensive 'mirror' capable of gathering the three worlds (spirits, image, bodies) and every Divine Name within itself, but whether that potential is realized is up to the person.",
+            "pt": "Para Ibn Arabi, 'o ser humano' é falado em dois níveis diferentes: o humano como espécie biológica, e o humano como potencialmente o Ser Humano Perfeito (al-Insan al-Kamil). O segundo não é um título, mas uma possibilidade - todo humano é criado como um 'espelho' totalmente abrangente, capaz de reunir em si os três mundos (espíritos, imagem, corpos) e todo Nome Divino, mas se esse potencial se realiza depende da pessoa."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "insan-i-kamil"
+          },
+          "linkLabel": {
+            "tr": "İnsan-ı Kâmil düğümünü aç",
+            "en": "Open the Perfect Human node",
+            "pt": "Abrir o nó do Ser Humano Perfeito"
+          }
+        },
+        {
+          "id": "insan-neden-yaratildi",
+          "question": {
+            "tr": "İnsan neden yaratıldı?",
+            "en": "Why was the human being created?",
+            "pt": "Por que o ser humano foi criado?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'nin bütün sistemi meşhur kutsî hadisin üzerine kuruludur: 'Ben gizli bir hazineydim, bilinmeyi sevdim (arzu ettim); mahlûkatı bilinmek için yarattım.' Ama diğer yaratıklar Allah'ı yalnız kısmen yansıtırken, insan - İnsan-ı Kâmil olarak - bütün İsimleri birden yansıtabilen tek aynadır; yaratılışın 'bilinme' amacı ancak onda tamamlanır.",
+            "en": "Ibn Arabi's whole system rests on the well-known holy tradition: 'I was a hidden treasure and loved (desired) to be known, so I created creatures in order to be known.' But while other creatures reflect God only partially, the human being - as the Perfect Human - is the one mirror able to reflect every Name at once; the 'being known' purpose of creation is completed only in him.",
+            "pt": "Todo o sistema de Ibn Arabi repousa sobre a conhecida tradição sagrada: 'Eu era um tesouro oculto e amei (desejei) ser conhecido, então criei as criaturas para ser conhecido.' Mas enquanto as outras criaturas refletem Deus apenas parcialmente, o ser humano - como o Ser Humano Perfeito - é o único espelho capaz de refletir todo Nome de uma vez; o propósito de 'ser conhecido' da criação só se completa nele."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "insan-i-kamil"
+          },
+          "linkLabel": {
+            "tr": "İnsan-ı Kâmil düğümünü aç",
+            "en": "Open the Perfect Human node",
+            "pt": "Abrir o nó do Ser Humano Perfeito"
+          }
+        },
+        {
+          "id": "insan-i-kamil-nedir",
+          "question": {
+            "tr": "İnsan-ı Kâmil nedir?",
+            "en": "What is the Perfect Human?",
+            "pt": "O que é o Ser Humano Perfeito?"
+          },
+          "answer": {
+            "tr": "İnsan-ı Kâmil, üç âlemin (ervâh, misâl, ecsâm) ve tüm İlâhî İsimlerin kendisinde toplandığı biricik varlıktır - 'Rahmân sûreti üzere' yaratılmıştır. Diğer her varlık İsimlerden yalnızca bir kısmını yansıtırken, o hepsini birden toplayabilen 'câmi' aynadır. Bu konum bir imtiyaz değil, bir emanettir: ne kadar berrak bir ayna olursa, o kadar tam yansıtır.",
+            "en": "The Perfect Human is the one being in whom the three worlds (spirits, image, bodies) and all the Divine Names are gathered - created 'upon the form of the All-Merciful.' While every other being reflects only some of the Names, the Perfect Human is the all-comprehensive mirror able to gather them all at once. This standing is not a privilege but a trust: the clearer the mirror, the more complete the reflection.",
+            "pt": "O Ser Humano Perfeito é o único ser em quem os três mundos (espíritos, imagem, corpos) e todos os Nomes Divinos estão reunidos - criado 'sobre a forma do Todo-Misericordioso'. Enquanto todo outro ser reflete apenas alguns dos Nomes, o Ser Humano Perfeito é o espelho totalmente abrangente, capaz de reuni-los todos de uma vez. Essa posição não é um privilégio, mas uma confiança: quanto mais claro o espelho, mais completo o reflexo."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "insan-i-kamil"
+          },
+          "linkLabel": {
+            "tr": "İnsan-ı Kâmil düğümünü aç",
+            "en": "Open the Perfect Human node",
+            "pt": "Abrir o nó do Ser Humano Perfeito"
+          }
+        },
+        {
+          "id": "ben-dedigimiz-sey",
+          "question": {
+            "tr": "Ben dediğimiz şey nedir?",
+            "en": "What is the thing we call 'I'?",
+            "pt": "O que é aquilo que chamamos de 'eu'?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'nin diliyle 'ben', nefs-i nâtıka'dır (konuşan/akleden nefis) - bedeni yöneten ve kendi hakikatini ('sen'liğini') ezelde Allah'ın ilminde bir 'ayn' olarak taşıyan idrak merkezi. Ama bu 'ben' sabit bir öz değil, sürekli hâlden hâle geçen (kalbin 'takallüb'ü) bir akıştır - her an yeni bir tecellîyle yeniden kurulur.",
+            "en": "In Ibn Arabi's vocabulary, the 'I' is the nafs al-natiqa (the rational/speaking soul) - the center of awareness that governs the body and carries its own reality (its 'you-ness') as an 'entity' in God's eternal knowledge. But this 'I' is not a fixed essence; it is a ceaseless flow from state to state (the heart's 'turning') - reconstituted anew with every self-disclosure.",
+            "pt": "No vocabulário de Ibn Arabi, o 'eu' é o nafs al-natiqa (a alma racional/falante) - o centro de consciência que governa o corpo e carrega sua própria realidade (sua 'condição de você') como uma 'entidade' no conhecimento eterno de Deus. Mas esse 'eu' não é uma essência fixa; é um fluxo incessante de estado a estado (a 'transformação' do coração) - reconstituído a cada nova autorrevelação."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "nefs-i-natika"
+          },
+          "linkLabel": {
+            "tr": "Nefs-i Nâtıka terimini aç",
+            "en": "Open the Rational Soul term",
+            "pt": "Abrir o termo Alma Racional"
+          }
+        },
+        {
+          "id": "nefis-nedir",
+          "question": {
+            "tr": "Nefis nedir?",
+            "en": "What is the nafs (soul/self)?",
+            "pt": "O que é o nafs (alma/ego)?"
+          },
+          "answer": {
+            "tr": "Nefis, insanın Hakk'a yolculuğunun ilk basamağıdır - eğitilmemiş hâliyle bedensel istekleri ve nefsâniyeti (benlik iddiasını) taşıyan yön. İbn Arabî'nin Hâller Haritası tam olarak buradan başlar: nefis, tövbeyle terbiyeye girer, ve bir dizi hâlden geçerek en sonunda hayret ve tevhide varır - dairenin başlangıç noktasıdır.",
+            "en": "The nafs is the first step of the human's journey to the Real - in its untrained state, the aspect carrying bodily desires and self-assertion (egohood). Ibn Arabi's Map of States begins exactly here: the nafs enters training through repentance, and passes through a sequence of states to arrive finally at bewilderment and divine unity - it is the circle's starting point.",
+            "pt": "O nafs é o primeiro degrau da jornada do humano rumo ao Real - em seu estado não treinado, o aspecto que carrega desejos corporais e autoafirmação (egoidade). O Mapa dos Estados de Ibn Arabi começa exatamente aqui: o nafs entra em treinamento pelo arrependimento, e passa por uma sequência de estados até chegar, finalmente, ao espanto e à unidade divina - é o ponto de partida do círculo."
+          },
+          "link": {
+            "view": "hal",
+            "id": "nefs"
+          },
+          "linkLabel": {
+            "tr": "Hâller Haritası'nı Nefs'ten başlat",
+            "en": "Start the Map of States from the Soul",
+            "pt": "Iniciar o Mapa dos Estados pela Alma"
+          }
+        },
+        {
+          "id": "ruh-nedir",
+          "question": {
+            "tr": "Ruh nedir?",
+            "en": "What is the spirit (ruh)?",
+            "pt": "O que é o espírito (ruh)?"
+          },
+          "answer": {
+            "tr": "Ruh, tecellînin en az yoğunlaştığı, mekândan ve maddeden bağımsız saf idrak seviyesidir - Âlem-i Ervâh'ın (Ruhlar Âlemi) sakinidir. İnsandaki ruh, bedeni harekete geçiren ve Hakk'a en yakın kalan o taraftır; bedenle birleştiğinde de kökeninin saflığını tam olarak kaybetmez.",
+            "en": "The spirit is the level of pure awareness where self-disclosure is at its least dense, independent of space and matter - the dweller of the Realm of Spirits. The spirit within a human being is the aspect that animates the body and remains closest to the Real; even once joined to the body, it never fully loses the purity of its origin.",
+            "pt": "O espírito é o nível de consciência pura onde a autorrevelação está em sua densidade mínima, independente do espaço e da matéria - o habitante do Reino dos Espíritos. O espírito dentro de um ser humano é o aspecto que anima o corpo e permanece mais próximo do Real; mesmo unido ao corpo, nunca perde totalmente a pureza de sua origem."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "alem-ervah"
+          },
+          "linkLabel": {
+            "tr": "Âlem-i Ervâh düğümünü aç",
+            "en": "Open the Realm of Spirits node",
+            "pt": "Abrir o nó do Reino dos Espíritos"
+          }
+        },
+        {
+          "id": "kalp-nedir",
+          "question": {
+            "tr": "Kalp nedir?",
+            "en": "What is the heart?",
+            "pt": "O que é o coração?"
+          },
+          "answer": {
+            "tr": "Kalp, İnsan-ı Kâmil'in soyut bir ünvan olmaktan çıkıp her insanın kendi tecrübesinde gerçekleşebileceği yerdir. Arapça 'kalp' kelimesi 'takallüb' (durmadan dönüşüm) köküyle akrabadır - sabit bir inanca değil, her tecellîyi yeniden kabul edebilen akışkan bir idrake işaret eder. Meşhur kutsî hadis: 'Ne yerim ne göğüm Beni kapsar, ancak mü'min kulumun kalbi Beni kapsar.'",
+            "en": "The heart is the place where the Perfect Human stops being an abstract title and becomes something realizable in every individual's own experience. The Arabic word 'qalb' (heart) is kin to the root 'taqallub' (ceaseless turning) - pointing not to a fixed belief but to a fluid perception able to accept every self-disclosure anew. The well-known holy tradition: 'Neither My earth nor My heaven contains Me, but the heart of My believing servant contains Me.'",
+            "pt": "O coração é o lugar onde o Ser Humano Perfeito deixa de ser um título abstrato e se torna algo realizável na experiência própria de cada indivíduo. A palavra árabe 'qalb' (coração) é aparentada à raiz 'taqallub' (transformação incessante) - apontando não para uma crença fixa, mas para uma percepção fluida capaz de acolher cada autorrevelação de novo. A conhecida tradição sagrada: 'Nem Minha terra nem Meu céu Me contêm, mas o coração de Meu servo crente Me contém.'"
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "kalp"
+          },
+          "linkLabel": {
+            "tr": "Kalp düğümünü aç",
+            "en": "Open the Heart node",
+            "pt": "Abrir o nó do Coração"
+          }
+        }
+      ]
+    },
+    {
+      "id": "allah",
+      "name": {
+        "tr": "Allah Soruları",
+        "en": "Questions on God",
+        "pt": "Perguntas sobre Deus"
+      },
+      "questions": [
+        {
+          "id": "allah-neden-bilinmek-istedi",
+          "question": {
+            "tr": "Allah neden bilinmek istedi?",
+            "en": "Why did God desire to be known?",
+            "pt": "Por que Deus desejou ser conhecido?"
+          },
+          "answer": {
+            "tr": "İbn Arabî bu soruyu doğrudan cevaplamaz - meşhur kutsî hadisi ('gizli bir hazineydim, bilinmeyi sevdim') bir 'neden' zinciri olarak değil, aşılamaz bir başlangıç noktası olarak aktarır. Sebep sormak bile, Zât'ın kendisinden önce bir 'sebep' arar ki bu, Zât'ın mutlaklığıyla çelişir. Site bu yüzden 'niçin' sorusunu değil, bu arzunun âlemde nasıl 'gerçekleştiğini' (tecellî) işler.",
+            "en": "Ibn Arabi does not answer this question directly - he transmits the well-known holy tradition ('I was a hidden treasure and loved to be known') not as a chain of 'reasons' but as an unsurpassable starting point. Even asking 'why' looks for a cause prior to the Essence itself, which contradicts the Essence's absoluteness. This is why the site treats not the 'why' but how this desire is 'realized' in the cosmos (self-disclosure).",
+            "pt": "Ibn Arabi não responde diretamente a essa pergunta - ele transmite a conhecida tradição sagrada ('eu era um tesouro oculto e amei ser conhecido') não como uma cadeia de 'razões', mas como um ponto de partida insuperável. Até perguntar 'por quê' busca uma causa anterior à própria Essência, o que contradiz a condição absoluta da Essência. Por isso o site trata não o 'porquê', mas como esse desejo se 'realiza' no cosmos (autorrevelação)."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "sifat-asma"
+          },
+          "linkLabel": {
+            "tr": "Zât'ın İlk Belirişi düğümünü aç",
+            "en": "Open the Essence's First Determination node",
+            "pt": "Abrir o nó da Primeira Determinação da Essência"
+          }
+        },
+        {
+          "id": "isimler-neden-var",
+          "question": {
+            "tr": "İsimler neden vardır?",
+            "en": "Why do the Names exist?",
+            "pt": "Por que os Nomes existem?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'ye göre Esmâü'l-Hüsnâ, bizzat Zât'ın isimleri değildir; Zât her isimlendirmenin ötesindedir. İsimler ancak Zât 'İlâh' olarak - yani bir âlemle ve bir kulla bağıntı içinde - düşünüldüğünde başlar. Her İsim, kendini gösterebileceği bir 'nesne' talep eder; bu talep tüm yaratılışın itici gücüdür.",
+            "en": "For Ibn Arabi, the Beautiful Names are not names of the Essence as such; the Essence lies beyond every naming. The Names begin only once the Essence is considered 'a God' - that is, in relation to a world and a servant. Every Name demands an 'object' through which it can show itself; this demand is the driving force of all creation.",
+            "pt": "Para Ibn Arabi, os Belos Nomes não são nomes da Essência enquanto tal; a Essência está além de toda nomeação. Os Nomes só começam quando a Essência é considerada 'um Deus' - isto é, em relação a um mundo e a um servo. Todo Nome exige um 'objeto' através do qual possa se mostrar; essa exigência é a força motriz de toda a criação."
+          },
+          "link": {
+            "view": "esma",
+            "id": "zat"
+          },
+          "linkLabel": {
+            "tr": "Esmâ haritasını Zât'tan başlat",
+            "en": "Start the Names map from the Essence",
+            "pt": "Iniciar o mapa dos Nomes pela Essência"
+          }
+        },
+        {
+          "id": "her-isim-nasil-tecelli-eder",
+          "question": {
+            "tr": "Her isim nasıl tecelli eder?",
+            "en": "How does each Name become manifest?",
+            "pt": "Como cada Nome se manifesta?"
+          },
+          "answer": {
+            "tr": "Bir İsim, kendini en çok gösterdiği bir mahalde/mahlûkta 'zuhur eder' ve o mahal, o kulun/şeyin 'Rabbi' olur - İbn Arabî her ferdin kendine has bir 'Rabbi' olduğunu söyler. Örneğin biri 'Abdurrahîm' (Rahîm'in kulu), biri 'Abdulkahhâr' (Kahhâr'ın kulu) olarak anılabilir; hangi İsim hükümranını sende görüyorsan, has Rabbin odur.",
+            "en": "A Name 'becomes manifest' in the locus/creature where it shows itself most, and that locus becomes that servant's or thing's 'Lord' - Ibn Arabi says every individual has their own particular 'Lord.' One person might be called 'Abd al-Rahim' (servant of the Merciful), another 'Abd al-Qahhar' (servant of the Subduer); whichever Name you see ruling in yourself, that is your particular Lord.",
+            "pt": "Um Nome 'se manifesta' no lócus/criatura onde mais se mostra, e esse lócus se torna o 'Senhor' daquele servo ou coisa - Ibn Arabi diz que cada indivíduo tem seu próprio 'Senhor' particular. Uma pessoa pode ser chamada 'Abd al-Rahim' (servo do Misericordioso), outra 'Abd al-Qahhar' (servo do Subjugador); qual Nome você vê governando em si mesmo, esse é o seu Senhor particular."
+          },
+          "link": {
+            "view": "esma",
+            "id": "rab"
+          },
+          "linkLabel": {
+            "tr": "er-Rab düğümünü aç",
+            "en": "Open the Ar-Rabb (Lord) node",
+            "pt": "Abrir o nó de Ar-Rabb (o Senhor)"
+          },
+          "source": "Fütûhât-ı Mekkiyye, Cilt 18 (Ekrem Demirli çev.)"
+        },
+        {
+          "id": "rahmet-neden-gazabi-gecer",
+          "question": {
+            "tr": "Rahmet neden gazabı geçer?",
+            "en": "Why does mercy prevail over wrath?",
+            "pt": "Por que a misericórdia prevalece sobre a ira?"
+          },
+          "answer": {
+            "tr": "İbn Arabî, kutsî hadisteki 'rahmetim gazabımı geçti' sözünü, dairenin doğasıyla açıklar: 'İş devridir; dairenin sonu başına dönmüş, ona kavuşmuş, dairenin sonu baştakinin hükmünü kazanmıştır.' Yaratılış Rahmân'ın nefesiyle başladığına göre, döngü de yine rahmete döner - gazap yolun ortasında bir uğrak, rahmet ise hem başlangıç hem varış noktasıdır.",
+            "en": "Ibn Arabi explains the holy tradition's 'My mercy has preceded My wrath' through the very nature of the circle: 'the matter is circular; the circle's end has turned back to its beginning, has rejoined it, and the end has taken on the ruling of the beginning.' Since creation began with the Breath of the All-Merciful, the cycle likewise returns to mercy - wrath is a stop along the way, while mercy is both the starting point and the destination.",
+            "pt": "Ibn Arabi explica o dito da tradição sagrada 'Minha misericórdia precedeu Minha ira' pela própria natureza do círculo: 'a questão é circular; o fim do círculo retornou ao seu início, reuniu-se a ele, e o fim assumiu o estatuto do início.' Como a criação começou com o Sopro do Todo-Misericordioso, o ciclo também retorna à misericórdia - a ira é uma parada no caminho, enquanto a misericórdia é tanto o ponto de partida quanto o destino."
+          },
+          "link": {
+            "view": "esma",
+            "id": "rahman"
+          },
+          "linkLabel": {
+            "tr": "er-Rahmân düğümünü aç",
+            "en": "Open the Ar-Rahman node",
+            "pt": "Abrir o nó de Ar-Rahman"
+          },
+          "source": "Fütûhât-ı Mekkiyye, Cilt 18 (Ekrem Demirli çev.)"
+        },
+        {
+          "id": "allah-kendini-nasil-tanitir",
+          "question": {
+            "tr": "Allah kendisini nasıl tanıtır?",
+            "en": "How does God introduce Himself?",
+            "pt": "Como Deus se apresenta?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'ye göre Allah kendini yalnız sözle değil, bizzat tecellîyle tanıtır - her an, her varlıkta yenilenen bir 'kendini gösterme'yle. Kur'ân, hadis ve keşif, hepsi bu tek tanıtımın farklı dillerdeki ifadeleridir; ama en doğrudan tanışıklık, akılla değil, o tecellîyi bizzat yaşayan kalple gerçekleşir.",
+            "en": "For Ibn Arabi, God introduces Himself not merely through speech but through self-disclosure itself - a 'showing of Himself' renewed at every instant, in every being. The Qur'an, the hadith, and unveiling are all expressions of this one introduction in different registers; but the most direct acquaintance comes not through reason, but through the heart that lives that self-disclosure firsthand.",
+            "pt": "Para Ibn Arabi, Deus se apresenta não apenas através da fala, mas através da própria autorrevelação - um 'mostrar-se' renovado a cada instante, em cada ser. O Alcorão, o hadith e o desvelamento são todos expressões dessa única apresentação em registros diferentes; mas a familiaridade mais direta vem não pela razão, mas pelo coração que vive essa autorrevelação em primeira mão."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "tecelli"
+          },
+          "linkLabel": {
+            "tr": "Tecellî düğümünü aç",
+            "en": "Open the Self-Disclosure node",
+            "pt": "Abrir o nó da Autorrevelação"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kozmos",
+      "name": {
+        "tr": "Kozmos Soruları",
+        "en": "Questions on the Cosmos",
+        "pt": "Perguntas sobre o Cosmos"
+      },
+      "questions": [
+        {
+          "id": "alem-neden-yaratildi",
+          "question": {
+            "tr": "Âlem neden yaratıldı?",
+            "en": "Why was the cosmos created?",
+            "pt": "Por que o cosmos foi criado?"
+          },
+          "answer": {
+            "tr": "İbn Arabî, âlemin yaratılışını anlatan bölümün sonunda bütün zinciri tek cümlede özetler: 'Bütün isimler bu imam isimlere, imam isimler ise Allah ismine yönelir. Allah ismi ise kendisinden istedikleri şeyi yerine getirmesini dileyerek zata yönelir.' Âlem, İsimlerin kendilerini gösterebileceği bir 'nesne' talebinin karşılığıdır.",
+            "en": "At the close of the chapter on the world's creation, Ibn Arabi sums up the whole cascade in one sentence: 'All the Names turn to these imam-Names, the imam-Names turn to the Name Allah, and the Name Allah, asking that its request be fulfilled, turns to the Essence.' The cosmos is the answer to the Names' demand for an 'object' through which to show themselves.",
+            "pt": "Ao final do capítulo sobre a criação do mundo, Ibn Arabi resume toda a cascata numa frase: 'Todos os Nomes se voltam para esses Nomes-imãs, os Nomes-imãs se voltam para o Nome Allah, e o Nome Allah, pedindo que seu pedido seja atendido, se volta para a Essência.' O cosmos é a resposta à demanda dos Nomes por um 'objeto' através do qual se mostrar."
+          },
+          "link": {
+            "view": "esma",
+            "id": "allah"
+          },
+          "linkLabel": {
+            "tr": "Allah ismi düğümünü aç",
+            "en": "Open the Name Allah node",
+            "pt": "Abrir o nó do Nome Allah"
+          },
+          "source": "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: Âlemin Yaratılış Sebebi"
+        },
+        {
+          "id": "hayal-alemi-nedir",
+          "question": {
+            "tr": "Hayal âlemi nedir?",
+            "en": "What is the realm of Image (the imaginal world)?",
+            "pt": "O que é o reino da Imagem (o mundo imaginal)?"
+          },
+          "answer": {
+            "tr": "Hayal âlemi (Âlem-i Misâl), ne saf ruh kadar soyut ne beden kadar kesif olan ara mertebedir - rüyalarda, sembollerde ve mânevî görülerde tecrübe edilen bir dünyadır. İbn Arabî'nin sisteminde 'berzah' kavramının en somut örneğidir; hem ruhu hem bedeni birbirine bağlayan menteşe konumundadır.",
+            "en": "The realm of Image (the imaginal world) is the intermediate level, neither as abstract as pure spirit nor as dense as body - a world experienced in dreams, symbols, and spiritual visions. In Ibn Arabi's system it is the most concrete instance of the concept of 'barzakh' (isthmus); it stands as the hinge connecting both spirit and body.",
+            "pt": "O reino da Imagem (o mundo imaginal) é o nível intermediário, nem tão abstrato quanto o espírito puro nem tão denso quanto o corpo - um mundo experimentado em sonhos, símbolos e visões espirituais. No sistema de Ibn Arabi é o exemplo mais concreto do conceito de 'barzakh' (istmo); ocupa a posição de dobradiça que liga tanto o espírito quanto o corpo."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "alem-misal"
+          },
+          "linkLabel": {
+            "tr": "Âlem-i Misâl düğümünü aç",
+            "en": "Open the Realm of Image node",
+            "pt": "Abrir o nó do Reino da Imagem"
+          }
+        },
+        {
+          "id": "melekler-nedir",
+          "question": {
+            "tr": "Melekler nedir?",
+            "en": "What are angels?",
+            "pt": "O que são os anjos?"
+          },
+          "answer": {
+            "tr": "Melekler, Âlem-i Ervâh'ın (Ruhlar Âlemi) sakinleridir - mekândan, zamandan ve maddeden bağımsız, saf mânâ ve idrak düzeyinde yaşarlar. İbn Arabî'ye göre insan, meleklerden bilgice üstündür - çünkü Âdem, İsimlerin bilgisini bütünüyle kuşatmış, melekler ise ancak bir kısmına sahip olmuştur.",
+            "en": "Angels are the dwellers of the Realm of Spirits - living at the level of pure meaning and awareness, independent of space, time, and matter. For Ibn Arabi, the human being surpasses angels in knowledge - because Adam encompassed the knowledge of the Names in their entirety, while angels possess only a portion of it.",
+            "pt": "Os anjos são os habitantes do Reino dos Espíritos - vivendo no nível de significado e consciência puros, independentes do espaço, do tempo e da matéria. Para Ibn Arabi, o ser humano supera os anjos em conhecimento - porque Adão abarcou o conhecimento dos Nomes em sua totalidade, enquanto os anjos possuem apenas uma parte dele."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "alem-ervah"
+          },
+          "linkLabel": {
+            "tr": "Âlem-i Ervâh düğümünü aç",
+            "en": "Open the Realm of Spirits node",
+            "pt": "Abrir o nó do Reino dos Espíritos"
+          }
+        },
+        {
+          "id": "zaman-nedir",
+          "question": {
+            "tr": "Zaman nedir?",
+            "en": "What is time?",
+            "pt": "O que é o tempo?"
+          },
+          "answer": {
+            "tr": "İbn Arabî için zaman, sabit akan bir nehir değil, 'halk-ı cedîd' (her an yeniden yaratılış) sürecinin kendisidir - her 'an' (nefes), önceki andan bağımsız yeni bir yaratılıştır. Bir tasvirinde 'an'ı, bir dairenin çevresinde keyfî olarak işaretlenmiş bir noktaya benzetir: nokta orada değildi, sen onu işaretleyince bir 'başlangıç' ve 'bitiş' kazandı.",
+            "en": "For Ibn Arabi, time is not a fixed-flowing river but the very process of 'khalq jadid' (perpetual re-creation) - each 'instant' (breath) is a new creation independent of the one before it. In one description he likens the 'instant' to a point marked arbitrarily on a circle's circumference: the point wasn't there until you marked it, and only then did it acquire a 'beginning' and an 'end.'",
+            "pt": "Para Ibn Arabi, o tempo não é um rio fixo que flui, mas o próprio processo de 'khalq jadid' (recriação perpétua) - cada 'instante' (respiração) é uma criação nova, independente da anterior. Numa descrição, ele compara o 'instante' a um ponto marcado arbitrariamente na circunferência de um círculo: o ponto não estava lá até você marcá-lo, e só então adquiriu um 'começo' e um 'fim'."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "tecelli"
+          },
+          "linkLabel": {
+            "tr": "Tecellî düğümünü aç",
+            "en": "Open the Self-Disclosure node",
+            "pt": "Abrir o nó da Autorrevelação"
+          },
+          "source": "Fütûhât-ı Mekkiyye, Cilt 14 (Ekrem Demirli çev.)"
+        },
+        {
+          "id": "mekan-nedir",
+          "question": {
+            "tr": "Mekân nedir?",
+            "en": "What is space?",
+            "pt": "O que é o espaço?"
+          },
+          "answer": {
+            "tr": "Mekân, tecellînin en yoğunlaştığı, Âlem-i Ecsâm'da (Cisimler Âlemi) ortaya çıkan bir sınırlamadır - gözle görülen, elle tutulan âlemin koşuludur. İbn Arabî bu en 'uzak' görünen mertebenin bile aslında Zât'ın kesintisiz tecellîsinden başka bir şey olmadığını, sadece yoğunluğunun farklı olduğunu vurgular.",
+            "en": "Space is a limitation that appears where self-disclosure is at its most dense, in the Realm of Bodies - the condition of the world seen with the eye and touched with the hand. Ibn Arabi stresses that even this seemingly most 'distant' level is nothing other than the Essence's uninterrupted self-disclosure - only its density differs.",
+            "pt": "O espaço é uma limitação que aparece onde a autorrevelação está em sua maior densidade, no Reino dos Corpos - a condição do mundo visto pelos olhos e tocado pelas mãos. Ibn Arabi enfatiza que mesmo esse nível aparentemente mais 'distante' não é nada além da autorrevelação ininterrupta da Essência - apenas sua densidade é diferente."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "alem-ecsam"
+          },
+          "linkLabel": {
+            "tr": "Âlem-i Ecsâm düğümünü aç",
+            "en": "Open the Realm of Bodies node",
+            "pt": "Abrir o nó do Reino dos Corpos"
+          }
+        },
+        {
+          "id": "olum-nedir",
+          "question": {
+            "tr": "Ölüm nedir?",
+            "en": "What is death?",
+            "pt": "O que é a morte?"
+          },
+          "answer": {
+            "tr": "İbn Arabî için ölüm bir 'son' değil, bir mertebe değişimidir - ruhun bir âlemden ötekine geçişi. Vahyin tasvir ettiği ölüm-sonrası yolculuk, birbirini izleyen beş ayrı 'menzil' (durak) olarak anlatılır; her menzil, insanın kendi hâline göre yeni bir bilinç ve beden biçimiyle karşılaştığı bir eşiktir.",
+            "en": "For Ibn Arabi, death is not an 'end' but a change of level - the spirit's passage from one world to another. The post-death journey depicted by revelation is described as five successive 'stations'; each station is a threshold where the person, according to their own state, meets a new form of awareness and body.",
+            "pt": "Para Ibn Arabi, a morte não é um 'fim', mas uma mudança de nível - a passagem do espírito de um mundo para outro. A jornada pós-morte descrita pela revelação é apresentada como cinco 'estações' sucessivas; cada estação é um limiar onde a pessoa, conforme seu próprio estado, encontra uma nova forma de consciência e corpo."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "bes-menzil-dirilis"
+          },
+          "linkLabel": {
+            "tr": "Beş Menzil Dirilişi terimini aç",
+            "en": "Open The Five Stations of Resurrection term",
+            "pt": "Abrir o termo As Cinco Estações da Ressurreição"
+          }
+        },
+        {
+          "id": "berzah-nedir",
+          "question": {
+            "tr": "Berzah nedir?",
+            "en": "What is the barzakh (isthmus)?",
+            "pt": "O que é o barzakh (istmo)?"
+          },
+          "answer": {
+            "tr": "Berzah, iki karşıt hâli aynı anda taşıyan ara varlık demektir - ne biri ne öteki, ikisinin arasında. Bir tanımda İbn Arabî onu geometrik olarak da anlatır: 'nokta ile çevre arasında kalan kısım.' Âlem-i Misâl (Hayal Âlemi) bu kavramın en somut örneğidir; ölümden sonraki bekleme hâli de bir berzahtır.",
+            "en": "The barzakh is an intermediate mode of being that carries two opposite states at once - neither one nor the other, but between them. In one description Ibn Arabi even puts it geometrically: 'the region left between the point and the circumference.' The realm of Image is the most concrete instance of this concept; the waiting state after death is also a barzakh.",
+            "pt": "O barzakh é um modo intermediário de ser que carrega dois estados opostos ao mesmo tempo - nem um nem outro, mas entre eles. Numa descrição, Ibn Arabi o expressa até geometricamente: 'a região deixada entre o ponto e a circunferência.' O reino da Imagem é o exemplo mais concreto desse conceito; o estado de espera após a morte também é um barzakh."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "alem-misal"
+          },
+          "linkLabel": {
+            "tr": "Âlem-i Misâl düğümünü aç",
+            "en": "Open the Realm of Image node",
+            "pt": "Abrir o nó do Reino da Imagem"
+          },
+          "source": "Fütûhât-ı Mekkiyye, Cilt 17 (Ekrem Demirli çev.)"
+        }
+      ]
+    },
+    {
+      "id": "kuran",
+      "name": {
+        "tr": "Kur'an Okuma Soruları",
+        "en": "Questions on Reading the Qur'an",
+        "pt": "Perguntas sobre a Leitura do Alcorão"
+      },
+      "questions": [
+        {
+          "id": "kurani-nasil-okuyordu",
+          "question": {
+            "tr": "İbnü'l-Arabî Kur'an'ı nasıl okuyordu?",
+            "en": "How did Ibn Arabi read the Qur'an?",
+            "pt": "Como Ibn Arabi lia o Alcorão?"
+          },
+          "answer": {
+            "tr": "İbn Arabî, Kur'an'ı yalnız tarihsel bir metin olarak değil, her okunuşunda okuyucuya yeniden 'inen' canlı bir hitap olarak okurdu. Onun tefsir yöntemi 'te'vîl' (bir lafzı, zâhir anlamının ötesine, bâtın anlamına doğru açmak) idi - ama bunu, zâhiri iptal etmeden yapardı: her âyetin hem zâhir hem bâtın anlamı birlikte geçerlidir.",
+            "en": "Ibn Arabi read the Qur'an not merely as a historical text but as a living address that 'descends' anew upon the reader with every reading. His method of interpretation was 'ta'wil' (unfolding a word beyond its outward meaning toward its inward meaning) - but without canceling the outward sense: for him, both the outward and inward meaning of every verse hold simultaneously.",
+            "pt": "Ibn Arabi lia o Alcorão não apenas como um texto histórico, mas como um chamado vivo que 'desce' de novo sobre o leitor a cada leitura. Seu método de interpretação era o 'ta'wil' (desdobrar uma palavra além de seu sentido exterior em direção ao seu sentido interior) - mas sem anular o sentido exterior: para ele, tanto o sentido exterior quanto o interior de cada versículo valem simultaneamente."
+          },
+          "link": {
+            "view": "esma",
+            "id": "zahir"
+          },
+          "linkLabel": {
+            "tr": "ez-Zâhir ismini aç",
+            "en": "Open the Name Az-Zahir",
+            "pt": "Abrir o Nome Az-Zahir"
+          }
+        },
+        {
+          "id": "bir-ayetin-kac-anlami",
+          "question": {
+            "tr": "Bir ayetin kaç anlamı olabilir?",
+            "en": "How many meanings can one verse have?",
+            "pt": "Quantos sentidos um versículo pode ter?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'ye göre teorik bir üst sınır yoktur - çünkü Kur'an'ın Söyleyicisi sonsuzdur, ve sonlu bir sözle sonsuz bir kastı taşıyabilir. Her okuyucu, kendi kapasitesi ve hâli ölçüsünde âyetten farklı bir anlam alabilir; bu, yanlış okuma değil, mazharların çokluğudur - aynı ışığın farklı camlardan farklı renklerde görünmesi gibi.",
+            "en": "For Ibn Arabi there is no theoretical upper limit - because the Speaker of the Qur'an is infinite, and can carry an infinite intent through a finite utterance. Each reader can draw a different meaning from a verse according to their own capacity and state; this is not misreading, but the multiplicity of loci of manifestation - like the same light appearing in different colors through different panes of glass.",
+            "pt": "Para Ibn Arabi não há limite superior teórico - porque o Locutor do Alcorão é infinito, e pode carregar uma intenção infinita através de uma expressão finita. Cada leitor pode extrair um sentido diferente de um versículo conforme sua própria capacidade e estado; isso não é leitura equivocada, mas a multiplicidade de lócus de manifestação - como a mesma luz aparecendo em cores diferentes através de vidros diferentes."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "mazhar"
+          },
+          "linkLabel": {
+            "tr": "Mazhar terimini aç",
+            "en": "Open the Locus of Manifestation term",
+            "pt": "Abrir o termo Lócus de Manifestação"
+          }
+        },
+        {
+          "id": "zahir-batin-nasil-birlesir",
+          "question": {
+            "tr": "Zahir ile batın nasıl birleşir?",
+            "en": "How do the outward and the inward come together?",
+            "pt": "Como o exterior e o interior se unem?"
+          },
+          "answer": {
+            "tr": "İbn Arabî, ez-Zâhir (Görünen) ve el-Bâtın (Gizli) isimlerini birbirinin karşıtı değil, tamamlayıcısı sayar - ikisi de aynı Zât'ın isimleridir. Bir şeyin 'zâhiri', o şeyin dış sûretidir; 'bâtını' ise aynı şeyin iç hakikatidir - ikisi ayrı iki katman değil, tek bir gerçekliğin iki yüzüdür, tıpkı bir sikkenin iki yüzü gibi.",
+            "en": "Ibn Arabi treats the Names az-Zahir (the Manifest) and al-Batin (the Hidden) not as opposites but as complements - both are Names of the same Essence. A thing's 'outward' is its external form; its 'inward' is the very same thing's inner reality - not two separate layers, but two faces of a single reality, like the two sides of one coin.",
+            "pt": "Ibn Arabi trata os Nomes az-Zahir (o Manifesto) e al-Batin (o Oculto) não como opostos, mas como complementares - ambos são Nomes da mesma Essência. O 'exterior' de uma coisa é sua forma externa; seu 'interior' é a realidade interna dessa mesma coisa - não duas camadas separadas, mas duas faces de uma única realidade, como os dois lados de uma moeda."
+          },
+          "link": {
+            "view": "esma",
+            "id": "batin"
+          },
+          "linkLabel": {
+            "tr": "el-Bâtın ismini aç",
+            "en": "Open the Name Al-Batin",
+            "pt": "Abrir o Nome Al-Batin"
+          }
+        },
+        {
+          "id": "kelime-neden-sonsuz-anlam",
+          "question": {
+            "tr": "Her kelime neden sonsuz anlam taşır?",
+            "en": "Why does every word carry infinite meaning?",
+            "pt": "Por que toda palavra carrega sentido infinito?"
+          },
+          "answer": {
+            "tr": "Çünkü İbn Arabî'ye göre âlemdeki her şey - kelimeler dahil - sonlu bir sûrette görünen, sonsuz bir Hakikatin izidir. Bir kelime tek bir 'işaret ettiği şey'e hapsedilemez, çünkü onu söyleyen Nefesü'r-Rahmân'ın kendisi tükenmez. Bu yüzden aynı âyet asırlar boyunca yeniden yeniden okunur, ve her seferinde gerçekten yeni bir şey söyler.",
+            "en": "Because, for Ibn Arabi, everything in the cosmos - including words - is a finite form in which an infinite Reality appears. A word cannot be confined to a single 'thing it points to,' because the Breath of the All-Merciful that utters it is itself inexhaustible. This is why the same verse is read anew across the centuries, and each time genuinely says something new.",
+            "pt": "Porque, para Ibn Arabi, tudo no cosmos - incluindo as palavras - é uma forma finita na qual uma Realidade infinita aparece. Uma palavra não pode ser confinada a uma única 'coisa a que aponta', porque o Sopro do Todo-Misericordioso que a profere é ele mesmo inesgotável. É por isso que o mesmo versículo é lido de novo através dos séculos, e a cada vez diz genuinamente algo novo."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "tecelli"
+          },
+          "linkLabel": {
+            "tr": "Tecellî düğümünü aç",
+            "en": "Open the Self-Disclosure node",
+            "pt": "Abrir o nó da Autorrevelação"
+          }
+        }
+      ]
+    },
+    {
+      "id": "metot",
+      "name": {
+        "tr": "Metot Soruları",
+        "en": "Questions on Method",
+        "pt": "Perguntas sobre o Método"
+      },
+      "questions": [
+        {
+          "id": "metni-nasil-okumaliyiz",
+          "question": {
+            "tr": "Bir metni nasıl okumalıyız?",
+            "en": "How should we read a text?",
+            "pt": "Como devemos ler um texto?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'yi okurken sitenin izlediği kural şudur: önce metnin doğrudan söylediğini (zâhir) ciddiye al, sonra onu başka bir bağlamdaki başka bir sözüyle karşılaştır. İbn Arabî kendini hiçbir zaman 'sistematik bir filozof' gibi sunmadı; aynı konuyu farklı kitaplarda farklı vurgularla anlatması bir hata değil, onun yönteminin bir parçasıdır (bkz. bir sonraki soru).",
+            "en": "The rule this site follows when reading Ibn Arabi is: first take the text's direct, outward sense seriously, then compare it against another of his statements in a different context. Ibn Arabi never presented himself as a 'systematic philosopher'; that he describes the same subject with different emphases across different books is not an error but part of his method (see the next question).",
+            "pt": "A regra que este site segue ao ler Ibn Arabi é: primeiro leve a sério o sentido direto e exterior do texto, depois compare-o com outra declaração sua em um contexto diferente. Ibn Arabi nunca se apresentou como um 'filósofo sistemático'; o fato de descrever o mesmo assunto com ênfases diferentes em livros diferentes não é um erro, mas parte de seu método (veja a próxima pergunta)."
+          }
+        },
+        {
+          "id": "sembolleri-nasil-cozmeliyiz",
+          "question": {
+            "tr": "Sembolleri nasıl çözmeliyiz?",
+            "en": "How should we decode the symbols?",
+            "pt": "Como devemos decifrar os símbolos?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'nin sembolleri (daire, nokta, ayna, nefes, deniz...) çözülecek bir şifre değil, başka türlü söylenemeyecek bir hakikati taşıyan araçlardır - onları 'düz yazıya' çevirmek genelde anlamı daraltır. Bu site sembolleri çizimlerle yan yana koyar, tercüme etmeye çalışmak yerine; okuyucunun kendi 'zevk'iyle o imgeyle karşılaşmasını hedefler.",
+            "en": "Ibn Arabi's symbols (circle, point, mirror, breath, sea...) are not a code to be decoded but vehicles carrying a truth that could not be said otherwise - translating them into 'plain prose' usually narrows their meaning. This site places symbols alongside diagrams rather than trying to translate them, aiming for the reader to encounter the image with their own 'taste.'",
+            "pt": "Os símbolos de Ibn Arabi (círculo, ponto, espelho, sopro, mar...) não são um código a ser decifrado, mas veículos que carregam uma verdade que não poderia ser dita de outra forma - traduzi-los para 'prosa simples' geralmente estreita seu significado. Este site coloca os símbolos ao lado de diagramas, em vez de tentar traduzi-los, buscando que o leitor encontre a imagem com seu próprio 'gosto/dhawq'."
+          },
+          "link": {
+            "view": "cizimler",
+            "id": null
+          },
+          "linkLabel": {
+            "tr": "Çizimler bölümünü aç",
+            "en": "Open the Diagrams section",
+            "pt": "Abrir a seção de Diagramas"
+          }
+        },
+        {
+          "id": "neden-farkli-anlatiyor",
+          "question": {
+            "tr": "Neden aynı şeyi farklı kitaplarda farklı anlatıyor?",
+            "en": "Why does he describe the same thing differently in different books?",
+            "pt": "Por que ele descreve a mesma coisa de forma diferente em livros diferentes?"
+          },
+          "answer": {
+            "tr": "Çünkü İbn Arabî'ye göre her anlatım, o anki mazharın (kimin, ne zaman, ne için sorduğunun) kapasitesine göre şekillenir - keşif tekrarlanmaz, her seferinde yeni bir 'an'da yeni bir hâlle gelir. Bu site, aynı kavram hakkında farklı kaynaklardaki farklı - hatta çelişir görünen - ifadeleri yan yana koyan bir 'Çelişen Yorumlar' bölümü içerir; amaç birini diğerine tercih etmek değil, çokluğun kendisini göstermektir.",
+            "en": "Because, for Ibn Arabi, every account is shaped by the capacity of that moment's locus of manifestation (who is asking, when, and for what) - unveiling does not repeat itself; it arrives anew each time, in a new 'instant,' with a new state. This site includes a 'Differing Readings' section that places different - even seemingly contradictory - statements about the same concept side by side; the aim is not to prefer one over the other, but to show the multiplicity itself.",
+            "pt": "Porque, para Ibn Arabi, todo relato é moldado pela capacidade do lócus de manifestação daquele momento (quem pergunta, quando e para quê) - o desvelamento não se repete; chega de novo a cada vez, num novo 'instante', com um novo estado. Este site inclui uma seção de 'Leituras Divergentes' que coloca lado a lado declarações diferentes - até aparentemente contraditórias - sobre o mesmo conceito; o objetivo não é preferir uma à outra, mas mostrar a própria multiplicidade."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "cevher"
+          },
+          "linkLabel": {
+            "tr": "Çelişen Yorumlar örneğini gör (Cevher)",
+            "en": "See an example of Differing Readings (Substance)",
+            "pt": "Ver um exemplo de Leituras Divergentes (Substância)"
+          }
+        },
+        {
+          "id": "celiski-gorunen-yerler",
+          "question": {
+            "tr": "Çelişki görünen yerler gerçekten çelişki mi?",
+            "en": "Are the places that look contradictory really contradictions?",
+            "pt": "Os lugares que parecem contraditórios são realmente contradições?"
+          },
+          "answer": {
+            "tr": "Genellikle hayır - çoğu zaman iki farklı mazhardan (bakış açısından) söylenmiş, ikisi de kendi bağlamında doğru olan iki sözdür. Ama İbn Arabî'nin kendisi de bazı yerlerde bilinçli olarak gerilim bırakır - okuyucuyu tek bir kolay cevaba değil, ikisini birden taşımaya zorlar. Bu site, hangi 'çelişkinin' bir mazhar farkı, hangisinin bilinçli bir gerilim olduğunu ayırt etmeye çalışır, ama her zaman kesin bir hüküm iddia etmez.",
+            "en": "Usually not - most of the time they are two statements made from two different loci of manifestation (viewpoints), each true within its own context. But in some places Ibn Arabi himself deliberately leaves the tension standing - forcing the reader to carry both at once rather than settle on one easy answer. This site tries to distinguish which 'contradiction' is a difference of vantage point and which is a deliberate tension, though it never claims a final verdict.",
+            "pt": "Geralmente não - na maioria das vezes são duas declarações feitas a partir de dois lócus de manifestação (pontos de vista) diferentes, cada uma verdadeira em seu próprio contexto. Mas em alguns lugares o próprio Ibn Arabi deixa a tensão deliberadamente em pé - forçando o leitor a carregar ambas ao mesmo tempo, em vez de se estabelecer numa resposta fácil. Este site tenta distinguir qual 'contradição' é uma diferença de ponto de vista e qual é uma tensão deliberada, embora nunca reivindique um veredito final."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "mazhar"
+          },
+          "linkLabel": {
+            "tr": "Mazhar terimini aç",
+            "en": "Open the Locus of Manifestation term",
+            "pt": "Abrir o termo Lócus de Manifestação"
+          }
+        }
+      ]
+    },
+    {
+      "id": "deneyim",
+      "name": {
+        "tr": "Deneyim Soruları",
+        "en": "Questions on Experience",
+        "pt": "Perguntas sobre a Experiência"
+      },
+      "questions": [
+        {
+          "id": "bilgi-yasanmadan-anlasilir-mi",
+          "question": {
+            "tr": "Bu bilgi yaşanmadan anlaşılır mı?",
+            "en": "Can this knowledge be understood without being lived?",
+            "pt": "Esse conhecimento pode ser entendido sem ser vivido?"
+          },
+          "answer": {
+            "tr": "İbn Arabî'nin kendi cevabı açıktır: hayır, tam olarak değil. Sekr (mânevî sarhoşluk - bizzat tadılan hâl) ile sahv (ayıklık - o hâlin sonradan anlatılması) arasında ayrım yapar; yazdıkları hep sahv hâlindeki bir anlatımdır, sekrin kendisi değil. Bu site de bu yüzden 'anlatmaya' çalışır ama asla 'yerine geçmeyi' iddia etmez.",
+            "en": "Ibn Arabi's own answer is clear: no, not fully. He distinguishes 'sukr' (spiritual intoxication - the state as directly tasted) from 'sahw' (sobriety - the later account of that state); everything he writes is an account given in the state of sobriety, not the intoxication itself. This is likewise why the site tries to 'describe' but never claims to substitute for the experience.",
+            "pt": "A própria resposta de Ibn Arabi é clara: não, não completamente. Ele distingue 'sukr' (embriaguez espiritual - o estado tal como diretamente provado) de 'sahw' (sobriedade - o relato posterior desse estado); tudo o que escreve é um relato dado no estado de sobriedade, não a própria embriaguez. É por isso que também este site tenta 'descrever', mas nunca reivindica substituir a experiência."
+          },
+          "link": {
+            "view": "terimler",
+            "id": "sekr"
+          },
+          "linkLabel": {
+            "tr": "Sekr terimini aç",
+            "en": "Open the Sukr (spiritual intoxication) term",
+            "pt": "Abrir o termo Sukr (embriaguez espiritual)"
+          }
+        },
+        {
+          "id": "musahede-nedir",
+          "question": {
+            "tr": "Müşahede nedir?",
+            "en": "What is contemplative witnessing (mushahada)?",
+            "pt": "O que é a testemunha contemplativa (mushahada)?"
+          },
+          "answer": {
+            "tr": "Müşahede, Hakk'ı delille değil, doğrudan 'seyrederek' bilmektir - kalbin, tecellîyi bizzat izlediği andır. Yakîn'in (şüphesiz bilginin) en yüksek derecesi sayılır: ne haber yoluyla (ilme'l-yakîn), ne çıkarımla (ayne'l-yakîn), bizzat tanıklıkla (hakka'l-yakîn) bilmek.",
+            "en": "Contemplative witnessing (mushahada) is knowing the Real not through proof but by directly 'beholding' - the moment the heart itself watches the self-disclosure taking place. It is counted as the highest degree of certainty (yaqin): knowing neither through report (the certainty of knowledge) nor through inference (the certainty of sight), but through firsthand witness (the certainty of truth).",
+            "pt": "A testemunha contemplativa (mushahada) é conhecer o Real não pela prova, mas 'contemplando' diretamente - o momento em que o próprio coração observa a autorrevelação acontecendo. É contada como o grau mais alto de certeza (yaqin): conhecer nem por relato (a certeza do conhecimento) nem por inferência (a certeza da visão), mas por testemunho em primeira mão (a certeza da verdade)."
+          },
+          "link": {
+            "view": "hal",
+            "id": "yakin"
+          },
+          "linkLabel": {
+            "tr": "Yakîn hâlini haritada gör",
+            "en": "See the state of Certainty on the map",
+            "pt": "Veja o estado de Certeza no mapa"
+          }
+        },
+        {
+          "id": "fena-nedir",
+          "question": {
+            "tr": "Fenâ nedir?",
+            "en": "What is fana (annihilation)?",
+            "pt": "O que é fana (aniquilação)?"
+          },
+          "answer": {
+            "tr": "Fenâ, kulun kendi sıfatlarının ('ben' bilincinin) tecellî karşısında geçici olarak silinmesi hâlidir - kul yok olmaz, ama kendi varlığını görme perdesi kalkar, geriye sadece Hakk'ın tecellîsi 'görünür' kalır. Hâller Haritası'nda fenâ, bekâ ile birlikte, dairenin sona yaklaştığı bir çift basamaktır.",
+            "en": "Fana is the state in which the servant's own attributes (the awareness of 'I') are temporarily effaced before the self-disclosure - the servant does not cease to exist, but the veil of seeing one's own existence is lifted, leaving only the Real's self-disclosure 'visible.' On the Map of States, fana, together with baqa, is a paired step near the circle's end.",
+            "pt": "Fana é o estado em que os próprios atributos do servo (a consciência do 'eu') são temporariamente apagados diante da autorrevelação - o servo não deixa de existir, mas o véu de ver a própria existência é levantado, deixando apenas a autorrevelação do Real 'visível'. No Mapa dos Estados, fana, junto com baqa, é um par de degraus perto do final do círculo."
+          },
+          "link": {
+            "view": "hal",
+            "id": "fenabeka"
+          },
+          "linkLabel": {
+            "tr": "Fenâ/Bekâ hâlini haritada gör",
+            "en": "See the state of Fana/Baqa on the map",
+            "pt": "Veja o estado de Fana/Baqa no mapa"
+          }
+        },
+        {
+          "id": "beka-nedir",
+          "question": {
+            "tr": "Bekâ nedir?",
+            "en": "What is baqa (subsistence)?",
+            "pt": "O que é baqa (subsistência)?"
+          },
+          "answer": {
+            "tr": "Bekâ, fenâdan sonra gelir: kul, kendi sıfatlarını Hakk'ta 'silinmiş' gördükten sonra, o sıfatlarla yine yaşamaya döner - ama artık onları kendine değil, Hakk'a ait bilerek. Fenâ 'benlik perdesinin kalkması', bekâ ise o kalkışın ardından âleme geri dönüp orada Hakk'ı görerek yaşamaktır.",
+            "en": "Baqa comes after fana: having seen his own attributes 'effaced' in the Real, the servant returns to live with those same attributes again - but now knowing them to belong to the Real, not to himself. If fana is 'the lifting of the veil of selfhood,' baqa is returning to the world after that lifting and living there while seeing the Real.",
+            "pt": "Baqa vem depois de fana: tendo visto seus próprios atributos 'apagados' no Real, o servo retorna a viver com esses mesmos atributos novamente - mas agora sabendo que pertencem ao Real, não a si mesmo. Se fana é 'o levantar do véu da individualidade', baqa é retornar ao mundo depois desse levantar e viver ali vendo o Real."
+          },
+          "link": {
+            "view": "hal",
+            "id": "fenabeka"
+          },
+          "linkLabel": {
+            "tr": "Fenâ/Bekâ hâlini haritada gör",
+            "en": "See the state of Fana/Baqa on the map",
+            "pt": "Veja o estado de Fana/Baqa no mapa"
+          }
+        },
+        {
+          "id": "marifet-nasil-olusur",
+          "question": {
+            "tr": "Marifet nasıl oluşur?",
+            "en": "How is spiritual gnosis (ma'rifa) formed?",
+            "pt": "Como se forma o conhecimento espiritual (ma'rifa)?"
+          },
+          "answer": {
+            "tr": "Marifet ('ârif'in bilgisi), bilgi ile hâlin birleştiği yerde oluşur - salt akılla ezberlenen bir doktrin değil, kalbin tecrübe ederek edindiği, kişiyle birlikte değişen bir idraktir. İbn Arabî'ye göre marifet asla 'tamamlanmış' bir noktaya varmaz; her yeni tecellî, ârifin bilgisini bir öncekinden farklı kılar.",
+            "en": "Gnosis (ma'rifa, the knowledge of the 'arif') forms where knowledge and state meet - not a doctrine merely memorized by reason, but an awareness the heart acquires through experience, one that changes together with the person. For Ibn Arabi, gnosis never arrives at a 'completed' point; every new self-disclosure makes the gnostic's knowledge different from the one before.",
+            "pt": "A gnose (ma'rifa, o conhecimento do 'arif') se forma onde o conhecimento e o estado se encontram - não uma doutrina meramente memorizada pela razão, mas uma consciência que o coração adquire pela experiência, que muda junto com a pessoa. Para Ibn Arabi, a gnose nunca chega a um ponto 'completo'; cada nova autorrevelação torna o conhecimento do gnóstico diferente do anterior."
+          },
+          "link": {
+            "view": "ontoloji",
+            "id": "kalp"
+          },
+          "linkLabel": {
+            "tr": "Kalp düğümünü aç",
+            "en": "Open the Heart node",
+            "pt": "Abrir o nó do Coração"
+          }
+        }
+      ]
+    }
+  ]
+}

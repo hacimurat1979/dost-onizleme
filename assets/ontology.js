@@ -137,6 +137,7 @@
     else if (currentMainView === "terimler") window.__terimlerApp && window.__terimlerApp.onLangChange();
     else if (currentMainView === "cizimler") window.__cizimlerApp && window.__cizimlerApp.onLangChange();
     else if (currentMainView === "sirlar") window.__sirlarGraphApp && window.__sirlarGraphApp.onLangChange();
+    else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
     updateHeaderHeightVar();
   });
 
@@ -245,12 +246,14 @@
   const terimlerBtn = document.getElementById("terimler-btn");
   const cizimlerBtn = document.getElementById("cizimler-btn");
   const sirlarBtn = document.getElementById("sirlar-btn");
+  const sorularBtn = document.getElementById("sorular-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
   const halWrap = document.getElementById("hal-wrap");
   const terimlerWrap = document.getElementById("terimler-wrap");
   const cizimlerWrap = document.getElementById("cizimler-wrap");
   const sirlarWrap = document.getElementById("sirlar-wrap");
+  const sorularWrap = document.getElementById("sorular-wrap");
 
   function setMainView(view) {
     if (currentMainView === view) return;
@@ -261,12 +264,14 @@
     if (terimlerBtn) terimlerBtn.classList.toggle("btn-ghost--active", view === "terimler");
     if (cizimlerBtn) cizimlerBtn.classList.toggle("btn-ghost--active", view === "cizimler");
     if (sirlarBtn) sirlarBtn.classList.toggle("btn-ghost--active", view === "sirlar");
+    if (sorularBtn) sorularBtn.classList.toggle("btn-ghost--active", view === "sorular");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
     if (terimlerWrap) terimlerWrap.hidden = view !== "terimler";
     if (cizimlerWrap) cizimlerWrap.hidden = view !== "cizimler";
     if (sirlarWrap) sirlarWrap.hidden = view !== "sirlar";
+    if (sorularWrap) sorularWrap.hidden = view !== "sorular";
     currentDetailNode = null;
     currentDetailEdge = null;
     detailPanel.hidden = true;
@@ -285,6 +290,9 @@
     } else if (view === "sirlar") {
       currentDetailView = null;
       window.__sirlarGraphApp && window.__sirlarGraphApp.activate();
+    } else if (view === "sorular") {
+      currentDetailView = "sorular";
+      window.__sorularApp && window.__sorularApp.activate();
     } else {
       currentDetailView = null;
     }
@@ -299,6 +307,7 @@
   if (halBtn) halBtn.addEventListener("click", () => { setMainView("hal"); updateHash("hal"); });
   if (terimlerBtn) terimlerBtn.addEventListener("click", () => { setMainView("terimler"); updateHash("terimler"); });
   if (cizimlerBtn) cizimlerBtn.addEventListener("click", () => { setMainView("cizimler"); updateHash("cizimler"); });
+  if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
 
   // --- Deep linking & cross-view navigation ---
   let pendingSirlarId = null;
@@ -401,8 +410,13 @@
     showSirlarPanel(id);
   }
 
+  function goToSorular(id) {
+    setMainView("sorular");
+    window.__sorularApp && window.__sorularApp.goToNode(id);
+  }
+
   function parseHashAndGo() {
-    const m = /^#\/(ontoloji|esma|sirlar|hal|terimler|cizimler)(?:\/(.+))?$/.exec(location.hash);
+    const m = /^#\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular)(?:\/(.+))?$/.exec(location.hash);
     if (!m) return;
     const [, view, id] = m;
     if (view === "ontoloji") goToOntologyNode(id);
@@ -411,6 +425,7 @@
     else if (view === "hal") goToHal(id);
     else if (view === "terimler") goToTerimler(id);
     else if (view === "cizimler") goToCizimler();
+    else if (view === "sorular") goToSorular(id);
   }
 
   window.addEventListener("hashchange", parseHashAndGo);
@@ -423,6 +438,7 @@
       else if (view === "hal") goToHal(id);
       else if (view === "terimler") goToTerimler(id);
       else if (view === "cizimler") goToCizimler();
+      else if (view === "sorular") goToSorular(id);
       updateHash(view, id);
     },
     setHash: updateHash,

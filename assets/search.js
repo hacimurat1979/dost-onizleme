@@ -12,6 +12,7 @@
     sirlar: { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" },
     terimler: { tr: "Felsefi Terimler", en: "Philosophical Terms", pt: "Termos Filosóficos" },
     cizimler: { tr: "Çizimler", en: "Diagrams", pt: "Diagramas" },
+    sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
   };
 
   let index = [];
@@ -55,6 +56,13 @@
       fetch("data/ibn-arabi/futuhat-cizimleri.json").then((r) => r.json()).then((d) => {
         (d.diagrams || []).forEach((c) => {
           index.push({ view: "cizimler", id: c.id, label: c.name, sub: c.description, searchText: allLangText(c.name) + " " + allLangText(c.description) });
+        });
+      }),
+      fetch("data/ibn-arabi/sorular.json").then((r) => r.json()).then((d) => {
+        (d.categories || []).forEach((c) => {
+          (c.questions || []).forEach((q) => {
+            index.push({ view: "sorular", id: q.id, label: q.question, sub: c.name, searchText: allLangText(q.question) + " " + allLangText(q.answer) });
+          });
         });
       }),
     ];
