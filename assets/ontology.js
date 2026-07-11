@@ -8,6 +8,29 @@
   const detailContent = document.getElementById("detail-content");
   const detailClose = document.getElementById("detail-close");
   const breadcrumbEl = document.getElementById("detail-breadcrumb");
+
+  // Her görünümün detay şablonu ".detail-eyebrow" + ".detail-title" ile
+  // başlıyor; bunları scroll sırasında yazı boyutu kontrollerinin hemen
+  // altında sabit kalan tek bir başlık bloğuna sarıyoruz.
+  function updateTypoHeightVar() {
+    const controls = document.getElementById("typography-controls");
+    if (!controls || !controls.offsetHeight) return;
+    document.documentElement.style.setProperty("--typo-controls-height", controls.offsetHeight + "px");
+  }
+
+  function wrapStickyHead() {
+    const eyebrow = detailContent.firstElementChild;
+    if (!eyebrow || !eyebrow.classList.contains("detail-eyebrow")) return;
+    const title = eyebrow.nextElementSibling;
+    if (!title || !title.classList.contains("detail-title")) return;
+    const head = document.createElement("div");
+    head.className = "detail-sticky-head";
+    detailContent.insertBefore(head, eyebrow);
+    head.appendChild(eyebrow);
+    head.appendChild(title);
+    updateTypoHeightVar();
+  }
+  new MutationObserver(wrapStickyHead).observe(detailContent, { childList: true });
   const tooltip = document.getElementById("ontology-tooltip");
   const wrapEl = document.getElementById("ontology-wrap");
 
@@ -127,6 +150,7 @@
   }
   updateHeaderHeightVar();
   window.addEventListener("resize", updateHeaderHeightVar);
+  window.addEventListener("resize", updateTypoHeightVar);
 
   detailClose.addEventListener("click", () => {
     detailPanel.hidden = true;

@@ -1552,7 +1552,6 @@ html[data-contrast="high"] .detail-title {
   justify-content: flex-end;
   padding: 0 0 12px;
   border-bottom: 1px solid var(--gridline);
-  margin-bottom: 16px;
   position: sticky;
   top: 0;
   z-index: 5;
@@ -1560,6 +1559,20 @@ html[data-contrast="high"] .detail-title {
   will-change: transform;
   transform: translateZ(0);
 }
+
+.detail-sticky-head {
+  position: sticky;
+  top: var(--typo-controls-height, 47px);
+  z-index: 4;
+  background: var(--surface-1);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gridline);
+  will-change: transform;
+  transform: translateZ(0);
+}
+.detail-sticky-head .detail-eyebrow { margin-top: 0; }
+.detail-sticky-head .detail-title { margin-bottom: 0; }
 
 .detail-breadcrumb {
   display: flex;
