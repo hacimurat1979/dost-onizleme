@@ -361,16 +361,38 @@
       .join("")}</div>`;
   }
 
+  function groupHue(groupId) {
+    const idx = (glossaryData.groups || []).findIndex((g) => g.id === groupId);
+    const i = idx === -1 ? 0 : idx;
+    return Math.round((i * 137.508) % 360);
+  }
+
   function relatedTermsHtml(t) {
     const related = (t.iliskili_kavramlar || [])
       .map((id) => glossaryData.terms[id])
       .filter(Boolean);
     if (!related.length) return "";
     const chips = related
-      .map((r) => `<button class="bookmap-concept-tag" data-term="${r.id}">${tt(r.title)}</button>`)
+      .map((r) => `<button class="bookmap-concept-tag bookmap-concept-tag--group" data-term="${r.id}" style="--tag-hue:${groupHue(r.group)}">${tt(r.title)}</button>`)
       .join("");
     return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "İlişkili Terimler", en: "Related Terms", pt: "Termos Relacionados" })}</p>
       <div class="bookmap-concept-tags">${chips}</div>`;
+  }
+
+  function celisenYorumlarHtml(t) {
+    const views = t.celisen_yorumlar || [];
+    if (!views.length) return "";
+    const cards = views
+      .map(
+        (v) => `<div class="divergent-view">
+          <p class="divergent-view__kaynak">${v.kaynak}</p>
+          <p>${tt(v.gorus)}</p>
+        </div>`
+      )
+      .join("");
+    return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "Çelişen Yorumlar", en: "Differing Readings", pt: "Leituras Divergentes" })}</p>
+      <div class="divergent-views">${cards}</div>
+      ${t.celisen_yorumlar_not ? `<p class="divergent-views__not">${tt(t.celisen_yorumlar_not)}</p>` : ""}`;
   }
 
   function siteLinksHtml(t) {
@@ -409,6 +431,7 @@
         <p>${tt(t.analogy)}</p>
       </div>
       ${kaynaklarHtml(t.kaynaklar)}
+      ${celisenYorumlarHtml(t)}
       ${relatedTermsHtml(t)}
       ${siteLinksHtml(t)}
     `;
