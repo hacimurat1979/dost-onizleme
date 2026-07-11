@@ -58,15 +58,18 @@
 
   function fetchData() {
     if (esmaDataPromise) return esmaDataPromise;
+    if (window.DostViewStatus) window.DostViewStatus.showLoading("esma-wrap");
     esmaDataPromise = fetch("data/ibn-arabi/esma.json")
       .then((r) => r.json())
       .then((data) => {
         esmaData = data;
+        if (window.DostViewStatus) window.DostViewStatus.hide("esma-wrap");
         return data;
       })
       .catch((err) => {
         console.error("Esmâ verisi yüklenemedi / Failed to load Esma data", err);
         esmaDataPromise = null;
+        if (window.DostViewStatus) window.DostViewStatus.showError("esma-wrap", () => window.__esmaApp.activate());
       });
     return esmaDataPromise;
   }

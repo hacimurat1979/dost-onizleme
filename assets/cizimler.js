@@ -16,14 +16,18 @@
   function fetchData() {
     if (data) return Promise.resolve(data);
     if (fetchPromise) return fetchPromise;
+    if (window.DostViewStatus) window.DostViewStatus.showLoading("cizimler-wrap");
     fetchPromise = fetch("data/ibn-arabi/futuhat-cizimleri.json")
       .then((r) => r.json())
       .then((d) => {
         data = d;
+        if (window.DostViewStatus) window.DostViewStatus.hide("cizimler-wrap");
         return d;
       })
       .catch((err) => {
         console.error("Fütûhât çizimleri yüklenemedi / Failed to load Futuhat diagrams", err);
+        fetchPromise = null;
+        if (window.DostViewStatus) window.DostViewStatus.showError("cizimler-wrap", () => window.__cizimlerApp.activate());
         return null;
       });
     return fetchPromise;

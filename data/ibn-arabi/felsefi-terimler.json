@@ -1535,6 +1535,55 @@
         }
       ]
     },
+    "akil-vezir": {
+      "id": "akil-vezir",
+      "group": "nefsin-gucleri",
+      "title": {
+        "tr": "Akıl (Vezir)",
+        "en": "Reason (the Vizier)",
+        "pt": "Razão (o Vizir)"
+      },
+      "arabic": "العقل",
+      "ozet_tr": "ruhun bedeni yönettiği vezirlik makamı",
+      "felsefi_tanim": {
+        "tr": "'Vezir' kelimesi çift kökenlidir: 'zâ'nın sükûnuyla vizr'den (yük, ağırlık) ya da 'zâ'nın fethiyle vezer'den (sığınak, melce) türer. İbn Arabî ikisini de doğru sayar - akıl hem bedenin idaresinin ağırlığını taşıyan, hem de herkesin sığındığı makamdır.",
+        "en": "The word 'vizier' has a double etymology: it derives either from vizr (burden, weight) or from vezer (refuge, shelter). Ibn Arabi treats both as valid at once - reason is both what carries the weight of governing the body and the seat everyone turns to for refuge.",
+        "pt": "A palavra 'vizir' tem uma dupla etimologia: deriva de vizr (fardo, peso) ou de vezer (refúgio, abrigo). Ibn Arabi considera ambas válidas ao mesmo tempo - a razão é tanto o que carrega o peso de governar o corpo quanto a sede a que todos recorrem em busca de refúgio."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Et-Tedbîrâtü'l-İlâhiyye'de İbn Arabî, insan bedenini bir 'memleket' olarak tasvir eder: ruh onun sultanı/imamıdır, akıl ise veziri. Akıl ile ruh arasındaki ilişkiyi ay ile güneşe benzetir: ay, güneş tam huzurdayken kendi başına görünmez - ancak güneş 'gaip' olduğunda (doğrudan tecelli etmediğinde) ay kendi ışığıyla (aslında yansıyan ışıkla) parlar. Aynı şekilde akıl da ruhun doğrudan tecellisi karşısında değil, onun perde arkasında kaldığı yerde iş görür. Akıl ayrıca bedeni tabiatın uçurumlarına düşmekten koruyan bir 'yular'a benzetilir.",
+        "en": "In et-Tadbirat al-Ilahiyya, Ibn Arabi portrays the human body as a 'kingdom': the spirit is its sultan/imam, and reason its vizier. He likens the relation between reason and spirit to the moon and the sun: the moon has no light of its own while the sun is fully present - only once the sun is 'absent' (not directly disclosing itself) does the moon shine with its own (in truth, reflected) light. Reason likewise operates not in the direct disclosure of the spirit, but where the spirit stays behind a veil. Reason is further likened to a 'bridle' that keeps the body from falling into nature's ravines.",
+        "pt": "No et-Tadbirat al-Ilahiyya, Ibn Arabi retrata o corpo humano como um 'reino': o espírito é seu sultão/imame, e a razão, seu vizir. Ele compara a relação entre razão e espírito à lua e ao sol: a lua não tem luz própria enquanto o sol está totalmente presente - só quando o sol está 'ausente' (não se autorrevelando diretamente) é que a lua brilha com sua própria luz (na verdade, refletida). Da mesma forma, a razão atua não na autorrevelação direta do espírito, mas onde o espírito permanece por trás de um véu. A razão é ainda comparada a um 'freio' que impede o corpo de cair nos precipícios da natureza."
+      },
+      "analogy": {
+        "tr": "Bir binicinin atına taktığı yular gibi düşün: at (beden/tabiat) kendi başına bırakılsa içgüdüleriyle uçuruma koşabilir; yular onu tamamen durdurmaz, sadece güvenli yolda tutar. Akıl da nefsi tamamen bastırmaz, sadece helâk vadilerine düşmekten alıkoyar.",
+        "en": "Think of the bridle a rider fits to a horse: left to itself, the horse (the body/nature) might gallop toward a cliff following pure instinct; the bridle doesn't stop it entirely, it just keeps it on the safe path. Reason likewise doesn't suppress the self entirely - it just holds it back from the ravines of ruin.",
+        "pt": "Pense no freio que um cavaleiro coloca em seu cavalo: deixado por si só, o cavalo (o corpo/a natureza) poderia galopar rumo a um precipício seguindo puro instinto; o freio não o detém completamente, apenas o mantém no caminho seguro. Da mesma forma, a razão não suprime totalmente o eu - apenas o impede de cair nos precipícios da ruína."
+      },
+      "kaynaklar": [
+        {
+          "cilt": "tedbirat-konuk",
+          "satir": "12244-12332",
+          "alinti_tr": "'Vezir' kelimesi 'fâil' vezninde olarak 'zâ'nın sükûnuyla 'vizr'den, veyahut 'zâ'nın fethiyle 'vezer'den müştakktır... Ve o memleket üzerinde, hayvan üzerindeki bağ gibidir ki, onu hazer-i firârdan hıfz eder.",
+          "not_tr": "Vezir kelimesinin çift köküyle akıl-beden ilişkisini, hemen ardından da akıl-yular benzetmesini bir arada verir."
+        },
+        {
+          "cilt": "tedbirat-konuk",
+          "satir": "12269-12274",
+          "alinti_tr": "Ay güneşin kabzasında olunca, onun üzerine istilâ-i şemsten nâşi, onun için nûr ve zuhûr yoktur. Vaktâki leyle-i bedr olur, a'yün-i nâzırînden şemsin gâib olması sebebiyle, onun için zuhûr-i tâm vâkı' olur.",
+          "not_tr": "Akıl (ay) ile ruh (güneş) arasındaki ilişkiyi kuran temel benzetme; ruh doğrudan tecelli ederken aklın kendi ışığı yoktur."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nefs-i-natika"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "insan-i-kamil"
+        }
+      ]
+    },
     "nefs-i-natika": {
       "id": "nefs-i-natika",
       "group": "nefsin-gucleri",

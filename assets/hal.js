@@ -27,15 +27,18 @@
 
   function fetchData() {
     if (halDataPromise) return halDataPromise;
+    if (window.DostViewStatus) window.DostViewStatus.showLoading("hal-wrap");
     halDataPromise = fetch("data/ibn-arabi/hal.json")
       .then((r) => r.json())
       .then((data) => {
         halData = data;
+        if (window.DostViewStatus) window.DostViewStatus.hide("hal-wrap");
         return data;
       })
       .catch((err) => {
         console.error("Hâller verisi yüklenemedi / Failed to load States data", err);
         halDataPromise = null;
+        if (window.DostViewStatus) window.DostViewStatus.showError("hal-wrap", () => window.__halApp.activate());
       });
     return halDataPromise;
   }

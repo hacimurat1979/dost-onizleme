@@ -104,6 +104,11 @@
 
     <section class="graph-wrap" id="ontology-wrap">
       <svg id="graph"></svg>
+      <div class="view-status" id="ontology-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
       <div class="node-hover-tip" id="ontology-tooltip" hidden></div>
       <button class="graph-recenter" id="ontology-recenter" type="button" title="Görünümü ortala / Recenter view / Recentralizar vista" aria-label="Görünümü ortala / Recenter view / Recentralizar vista">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
@@ -111,6 +116,13 @@
       <button class="graph-hint" type="button" title="Sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın / Drag to pan, Ctrl (⌘) + scroll to zoom, click a node / Arraste para navegar, Ctrl (⌘) + rolagem para ampliar, clique num nó" aria-label="Sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın / Drag to pan, Ctrl (⌘) + scroll to zoom, click a node / Arraste para navegar, Ctrl (⌘) + rolagem para ampliar, clique num nó">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
       </button>
+      <div class="start-hint" id="start-hint" hidden>
+        <p class="start-hint__text" data-tr="İlk kez mi buradasın? Her şeyin çıktığı ve döndüğü merkezden, Zât'tan başla." data-en="First time here? Start from the center everything emerges from and returns to: the Essence." data-pt="Primeira vez aqui? Comece pelo centro de onde tudo emerge e para onde tudo retorna: a Essência.">İlk kez mi buradasın? Her şeyin çıktığı ve döndüğü merkezden, Zât'tan başla.</p>
+        <div class="start-hint__actions">
+          <button class="start-hint__go" id="start-hint-go" type="button" data-tr="Zât'a git" data-en="Go to the Essence" data-pt="Ir para a Essência">Zât'a git</button>
+          <button class="start-hint__close" id="start-hint-close" type="button" aria-label="Kapat / Close / Fechar">×</button>
+        </div>
+      </div>
       <div class="legend" id="legend">
         <div class="legend__item"><span class="legend__dot legend__dot--descent"></span><span data-tr="Tenezzül (iniş / tecellî)" data-en="Descent (self-disclosure)" data-pt="Descida (autorrevelação)">Tenezzül</span></div>
         <div class="legend__item"><span class="legend__dot legend__dot--return"></span><span data-tr="Rücû (dönüş)" data-en="Return" data-pt="Retorno">Rücû</span></div>
@@ -120,6 +132,11 @@
 
     <section class="graph-wrap" id="esma-wrap" hidden>
       <svg id="esma-graph"></svg>
+      <div class="view-status" id="esma-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
       <div class="node-hover-tip" id="esma-tooltip" hidden></div>
       <button class="graph-recenter" id="esma-recenter" type="button" title="Görünümü ortala / Recenter view / Recentralizar vista" aria-label="Görünümü ortala / Recenter view / Recentralizar vista">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
@@ -139,6 +156,11 @@
 
     <section class="graph-wrap" id="hal-wrap" hidden>
       <svg id="hal-graph"></svg>
+      <div class="view-status" id="hal-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
       <div class="node-hover-tip" id="hal-tooltip" hidden></div>
       <button class="graph-recenter" id="hal-recenter" type="button" title="Görünümü ortala / Recenter view / Recentralizar vista" aria-label="Görünümü ortala / Recenter view / Recentralizar vista">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
@@ -158,17 +180,32 @@
     </section>
 
     <section class="terimler-wrap" id="terimler-wrap" hidden>
+      <div class="view-status" id="terimler-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
       <div class="theme-chips" id="terimler-chips"></div>
       <div class="terimler-diagram" id="terimler-diagram"></div>
       <div class="terimler-list" id="terimler-list"></div>
     </section>
 
     <section class="cizimler-wrap" id="cizimler-wrap" hidden>
+      <div class="view-status" id="cizimler-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
       <div id="cizimler-list"></div>
     </section>
 
     <section class="graph-wrap" id="sirlar-wrap" hidden>
       <svg id="sirlar-graph"></svg>
+      <div class="view-status" id="sirlar-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
       <div class="node-hover-tip" id="sirlar-tooltip" hidden></div>
       <button class="graph-recenter" id="sirlar-recenter" type="button" title="Görünümü ortala / Recenter view / Recentralizar vista" aria-label="Görünümü ortala / Recenter view / Recentralizar vista">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
@@ -189,6 +226,9 @@
       <div class="detail-breadcrumb" id="detail-breadcrumb" hidden></div>
       <div id="detail-content"></div>
     </aside>
+    <button class="detail-panel__print" id="detail-print" type="button" title="Yazdır / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="6" y="3" width="12" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="9" width="16" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+    </button>
     <button class="detail-panel__close" id="detail-close" aria-label="Kapat">×</button>
 
   </main>
@@ -233,6 +273,7 @@
   <script src="assets/theme.js"></script>
   <script src="assets/vendor/d3.min.js"></script>
   <script src="assets/i18n.js"></script>
+  <script src="assets/view-status.js"></script>
   <script src="assets/search.js"></script>
   <script src="assets/graph-enhancement.js"></script>
   <script src="assets/reading-mode.js"></script>
@@ -242,6 +283,7 @@
   <script src="assets/cizimler.js"></script>
   <script src="assets/sirlar-graph.js"></script>
   <script src="assets/ontology.js"></script>
+  <script src="assets/start-hint.js"></script>
   <script src="assets/secret-nav.js"></script>
 </body>
 </html>

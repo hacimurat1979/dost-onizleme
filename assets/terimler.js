@@ -20,14 +20,18 @@
   function fetchData() {
     if (glossaryData) return Promise.resolve(glossaryData);
     if (fetchPromise) return fetchPromise;
+    if (window.DostViewStatus) window.DostViewStatus.showLoading("terimler-wrap");
     fetchPromise = fetch("data/ibn-arabi/felsefi-terimler.json")
       .then((r) => r.json())
       .then((data) => {
         glossaryData = data;
+        if (window.DostViewStatus) window.DostViewStatus.hide("terimler-wrap");
         return data;
       })
       .catch((err) => {
         console.error("Terimler sözlüğü yüklenemedi / Failed to load glossary", err);
+        fetchPromise = null;
+        if (window.DostViewStatus) window.DostViewStatus.showError("terimler-wrap", () => window.__terimlerApp.activate());
         return null;
       });
     return fetchPromise;

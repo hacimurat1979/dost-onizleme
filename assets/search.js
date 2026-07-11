@@ -58,7 +58,12 @@
         });
       }),
     ];
-    return Promise.all(sources).then(() => { indexLoaded = true; });
+    return Promise.allSettled(sources).then((results) => {
+      results.forEach((r) => {
+        if (r.status === "rejected") console.error("Arama kaynağı yüklenemedi / Search source failed to load", r.reason);
+      });
+      indexLoaded = true;
+    });
   }
 
   function tt(dict) {
