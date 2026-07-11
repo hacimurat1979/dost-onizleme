@@ -971,7 +971,8 @@ html:has(.detail-panel:not([hidden])) {
   font-size: 0.88rem;
   color: var(--text-secondary);
   line-height: 1.55;
-  padding-top: 4px;
+  margin: 0 0 12px;
+  padding-top: 18px;
 }
 
 .app-footer {
@@ -1802,6 +1803,11 @@ html[data-contrast="high"] .detail-title {
 }
 .detail-sticky-head .detail-eyebrow { margin-top: 0; }
 .detail-sticky-head .detail-title { margin-bottom: 0; }
+
+/* A default browser top margin on whatever follows the sticky head is
+   unpainted space - scrolling content shows through it behind the sticky
+   box. Force that spacing to live in the element's own padding instead. */
+.detail-sticky-head + * { margin-top: 0; }
 
 .detail-breadcrumb {
   display: flex;
