@@ -813,6 +813,7 @@
     "tedbirat-konuk": { tr: "et-Tedbîrâtü'l-İlâhiyye (Konuk)", en: "et-Tadbirat al-Ilahiyya (Konuk)", pt: "et-Tadbirat al-Ilahiyya (Konuk)" },
     "risaleler-1": { tr: "İbn Arabî'nin Risaleleri, 1. Cild", en: "The Epistles of Ibn Arabi, Vol. 1", pt: "As Epístolas de Ibn Arabi, Vol. 1" },
     "risaleler-2": { tr: "İbn Arabî'nin Risaleleri, 2. Cild", en: "The Epistles of Ibn Arabi, Vol. 2", pt: "As Epístolas de Ibn Arabi, Vol. 2" },
+    "el-bulga": { tr: "El-Bülga fi'l-Hikme", en: "Al-Bulgha fi'l-Hikma", pt: "Al-Bulgha fi'l-Hikma" },
   };
 
   function volumeLabel(n) {
@@ -829,6 +830,7 @@
     "ozun-ozu": "Özün Özü / Lübbü'l-Lübb",
     "risaleler-1": "İbn Arabî'nin Risaleleri, 1. Cild",
     "risaleler-2": "İbn Arabî'nin Risaleleri, 2. Cild",
+    "el-bulga": "El-Bülga fi'l-Hikme",
   };
 
   function sourcesForInsight(ins, sources) {
