@@ -878,6 +878,7 @@
     "izutsu-anahtar": "İbn Arabî'nin Fusûsu'ndaki Anahtar-Kavramlar (Toshihiko İzutsu",
     "affifi-tasavvuf": "Muhyiddîn İbnü'l-Arabî'nin Tasavvuf Felsefesi (A. E. Affifi",
     "varlik-agaci": "Şeceretü'l-Kevn / Varlık Ağacı",
+    "tedbirat-konuk": "et-Tedbîrâtü'l-İlâhiyye",
     "ozun-ozu": "Özün Özü / Lübbü'l-Lübb",
     "risaleler-1": "İbn Arabî'nin Risaleleri, 1. Cild",
     "risaleler-2": "İbn Arabî'nin Risaleleri, 2. Cild",
