@@ -7,6 +7,7 @@
   const detailContent = document.getElementById("detail-content");
   const tooltip = document.getElementById("sorular-tooltip");
   const wrapEl = document.getElementById("sorular-wrap");
+  const backBtn = document.getElementById("sorular-back");
 
   function tt(dict) {
     return I18n.pick3(dict);
@@ -144,6 +145,11 @@
 
     const recenterBtn = document.getElementById("sorular-recenter");
     if (recenterBtn) recenterBtn.onclick = () => zoomToFit(true, items, cx, cy);
+
+    if (backBtn) {
+      backBtn.hidden = currentLevel !== "questions";
+      backBtn.onclick = () => showCategories();
+    }
 
     const nodeSel = nodeGroup.selectAll("g.sorular-node")
       .data(items, (d) => d.id)

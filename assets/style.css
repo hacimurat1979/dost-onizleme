@@ -440,9 +440,33 @@ html {
   color: var(--series-theme);
   border-color: var(--series-theme);
 }
+.graph-back {
+  position: absolute;
+  top: 12px;
+  left: 96px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface-1) 90%, transparent);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.graph-back:hover,
+.graph-back:focus-visible {
+  color: var(--series-theme);
+  border-color: var(--series-theme);
+  transform: rotate(-24deg);
+}
 @media (prefers-reduced-motion: reduce) {
   .graph-recenter { transition: color 0.2s ease, border-color 0.2s ease; }
   .graph-recenter:hover { transform: none; }
+  .graph-back:hover { transform: none; }
 }
 
 #esma-graph {
