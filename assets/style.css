@@ -697,6 +697,322 @@ html {
   color: var(--series-theme);
 }
 
+/* --- Fütûhât Atlas --- */
+.futuhat-wrap {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 8px clamp(16px, 4vw, 48px) 60px;
+}
+
+.futuhat-intro {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 0 0 22px;
+}
+
+.futuhat-parts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.futuhat-parts__cilt {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-right: 6px;
+  color: var(--text-primary);
+}
+
+.futuhat-part-chip {
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 5px 13px;
+  font-size: 0.82rem;
+  cursor: default;
+}
+
+button.futuhat-part-chip {
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+button.futuhat-part-chip:hover {
+  color: var(--series-theme);
+  border-color: var(--series-theme);
+}
+
+.futuhat-part-chip--current {
+  background: var(--text-primary);
+  color: var(--surface-1);
+  border-color: var(--text-primary);
+}
+
+.futuhat-part-chip--soon {
+  opacity: 0.4;
+  font-size: 0.76rem;
+}
+
+.futuhat-parts__more {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  margin-left: 6px;
+}
+
+.futuhat-shell {
+  display: grid;
+  grid-template-columns: 1fr 210px;
+  gap: 44px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .futuhat-shell {
+    grid-template-columns: 1fr;
+  }
+  .futuhat-stats {
+    position: static !important;
+    order: -1;
+  }
+}
+
+.futuhat-article {
+  min-width: 0;
+}
+
+.futuhat-hero {
+  text-align: center;
+  margin: 0 0 30px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--border);
+}
+
+.futuhat-hero__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+
+.futuhat-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 0 0 14px;
+}
+
+.futuhat-hero__summary {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.65;
+  font-size: 1.02rem;
+}
+
+.futuhat-maindiagram {
+  background: var(--page-plane);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 12px 16px;
+  margin-bottom: 34px;
+}
+
+.futuhat-tree {
+  display: flex;
+  justify-content: center;
+}
+
+.futuhat-tree__svg {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+}
+
+.futuhat-tree--inline .futuhat-tree__svg {
+  max-width: 480px;
+}
+
+.futuhat-tree__link {
+  fill: none;
+  stroke: color-mix(in srgb, var(--series-theme) 45%, var(--gridline));
+  stroke-width: 1.1px;
+}
+
+.futuhat-tree__node circle:first-of-type {
+  fill: var(--page-plane);
+  stroke: var(--text-secondary);
+  stroke-width: 1.3px;
+}
+
+.futuhat-tree__node--depth-0 circle:first-of-type {
+  fill: var(--series-theme);
+  stroke: var(--series-theme);
+}
+
+.futuhat-tree__node--depth-1 circle:first-of-type {
+  stroke: var(--series-theme);
+}
+
+.futuhat-tree__node {
+  cursor: default;
+}
+
+.futuhat-tree__node:focus-visible circle:first-of-type,
+.futuhat-tree__node:hover circle:first-of-type {
+  stroke: var(--series-theme);
+  stroke-width: 2px;
+}
+.futuhat-tree__node:focus { outline: none; }
+
+.futuhat-tree__label {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  fill: var(--text-primary);
+}
+
+.futuhat-tree__node--depth-0 .futuhat-tree__label {
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.futuhat-diagram-source {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  margin: 10px 0 0;
+  padding: 0 12px;
+}
+
+.futuhat-sections {
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.futuhat-section {
+  margin: 0 0 40px;
+}
+
+.futuhat-section__heading {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin: 0 0 14px;
+}
+
+.futuhat-section__p {
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin: 0 0 20px;
+}
+
+.futuhat-inline-diagram {
+  background: var(--page-plane);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 14px 14px;
+  margin: 24px 0;
+}
+
+.futuhat-inline-diagram__caption {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin: 10px 4px 2px;
+}
+
+.futuhat-triad__svg {
+  width: 100%;
+  max-width: 460px;
+  display: block;
+  margin: 0 auto;
+}
+
+.futuhat-triad__axis {
+  stroke: var(--gridline);
+  stroke-width: 1.2px;
+}
+
+.futuhat-triad__node circle:first-of-type {
+  fill: var(--page-plane);
+  stroke: var(--text-secondary);
+  stroke-width: 1.3px;
+}
+
+.futuhat-triad__node--accent circle:first-of-type {
+  fill: var(--series-theme);
+  stroke: var(--series-theme);
+}
+
+.futuhat-triad__label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  fill: var(--text-primary);
+}
+
+.futuhat-triad__note {
+  font-size: 0.68rem;
+  fill: var(--text-secondary);
+}
+
+.futuhat-sources {
+  max-width: 660px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.futuhat-sources ul {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.futuhat-stats {
+  position: sticky;
+  top: 90px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  background: var(--surface-1);
+}
+
+.futuhat-stats__heading {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+
+.futuhat-stats__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.86rem;
+  padding: 7px 0;
+  border-top: 1px solid var(--border);
+}
+
+.futuhat-stats__item:first-of-type {
+  border-top: none;
+}
+
+.futuhat-stats__item strong {
+  font-variant-numeric: tabular-nums;
+  color: var(--series-theme);
+}
+
 .sorular-readmore {
   display: inline-block;
   margin-top: 16px;

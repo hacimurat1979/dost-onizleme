@@ -1,0 +1,209 @@
+{
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik yalnızca Birinci Cilt'in Üçüncü Kısmı'nın girişini işledik.",
+  "book": {
+    "cilt": 1,
+    "totalKisim": 10
+  },
+  "activePartId": "c1k3",
+  "parts": [
+    {
+      "id": "c1k3",
+      "cilt": 1,
+      "kisim": 3,
+      "status": "active",
+      "title": {
+        "tr": "İlimlerin Mertebeleri",
+        "en": "The Ranks of the Sciences",
+        "pt": "As Categorias das Ciências"
+      },
+      "pageRange": "73–79",
+      "hero": {
+        "summary": {
+          "tr": "Bu kısmın girişinde Dost, kitaba başlarken önce ilimleri üçe ayırıyor; sonra üçüncü türü kendi içinde tekrar dallandırıyor. Burada bu tasnifi, kendi çizdiği sırayla, adım adım izlemeye çalışıyoruz — bu sadece Kısım III'ün ilk birkaç sayfası; kısmın geri kalanını okumaya devam ediyoruz.",
+          "en": "In this part's opening, as he begins the book, Dost first divides the sciences into three; then branches the third kind again within itself. Here we try to follow this classification step by step, in the order he lays it out — this covers only the first few pages of Part III; we continue reading the rest.",
+          "pt": "Na abertura desta parte, ao começar o livro, Dost primeiro divide as ciências em três; depois ramifica o terceiro tipo novamente dentro de si mesmo. Aqui tentamos seguir essa classificação passo a passo, na ordem em que ele a apresenta — isso cobre apenas as primeiras páginas da Parte III; continuamos lendo o restante."
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Kısmın açılışında karşımıza çıkan üçlü ayrım ve sır ilminin kendi içindeki dallanması — bu bölüm haritası, sayfa 73-75 metnine dayanır.",
+          "en": "The threefold division that opens the part, and how the science of secrets branches within itself — this map is based on the text of pages 73-75.",
+          "pt": "A divisão tríplice que abre a parte, e como a ciência dos segredos se ramifica dentro de si mesma — este mapa se baseia no texto das páginas 73-75."
+        },
+        "tree": {
+          "id": "ilimler",
+          "label": { "tr": "İlimler", "en": "The Sciences", "pt": "As Ciências" },
+          "note": {
+            "tr": "Fütûhât'ın daha ilk sayfalarında karşımıza çıkan bu üçlü ayrım.",
+            "en": "This threefold division appears on the very first pages of the Fütûhât.",
+            "pt": "Essa divisão tríplice aparece já nas primeiras páginas do Fütûhât."
+          },
+          "children": [
+            {
+              "id": "akil-ilmi",
+              "label": { "tr": "Akıl İlmi", "en": "Rational Science", "pt": "Ciência Racional" },
+              "note": {
+                "tr": "Zorunlulukla ya da delil incelemesiyle elde edilir; kendi cinsinden kuşkuları vardır — 'bir kısmı doğru, bir kısmı yanlış' derler.",
+                "en": "Obtained through necessity or by examining rational proofs; it has its own kind of doubts — they say of it, 'some of it is true, some false.'",
+                "pt": "Obtida por necessidade ou pelo exame de provas racionais; tem suas próprias dúvidas — dizem dela: 'parte é verdadeira, parte é falsa.'"
+              }
+            },
+            {
+              "id": "hal-ilmi",
+              "label": { "tr": "Hâl İlmi", "en": "Experiential Science", "pt": "Ciência do Estado" },
+              "note": {
+                "tr": "Yalnız zevk (tatma) yoluyla bilinir; balın tatlılığını tatmadan bilemezsin. Akılcı kişi onu tanımlayamaz.",
+                "en": "Known only through tasting (dhawq); you cannot know honey's sweetness without tasting it. The rationalist cannot define it.",
+                "pt": "Conhecida apenas pelo saborear (dhawq); não se pode conhecer a doçura do mel sem prová-lo. O racionalista não pode defini-la."
+              }
+            },
+            {
+              "id": "sir-ilmi",
+              "label": { "tr": "Sır İlmi", "en": "Science of Secrets", "pt": "Ciência dos Segredos" },
+              "note": {
+                "tr": "Aklın gücünün ötesindedir; Rûhu'l-Kuds'ün sırra üflediği ilimdir, yalnız peygamber ve veliye mahsustur.",
+                "en": "Beyond the power of reason; the science that the Holy Spirit breathes into the secret, reserved for the prophet and the saint alone.",
+                "pt": "Além do poder da razão; a ciência que o Espírito Santo sopra no segredo, reservada apenas ao profeta e ao santo."
+              },
+              "children": [
+                {
+                  "id": "sir-birinci-tur",
+                  "label": { "tr": "Birinci Tür", "en": "First Kind", "pt": "Primeiro Tipo" },
+                  "note": {
+                    "tr": "Akılla algılanır, ama teorik düşünceyle elde edilmemiştir — bu ilmin mertebesi, onu kendiliğinden vermiştir.",
+                    "en": "Perceived by reason, yet not obtained through theoretical reasoning — the very rank of this science has given it directly.",
+                    "pt": "Percebida pela razão, mas não obtida por raciocínio teórico — o próprio grau dessa ciência a concedeu diretamente."
+                  }
+                },
+                {
+                  "id": "sir-ikinci-tur",
+                  "label": { "tr": "İkinci Tür", "en": "Second Kind", "pt": "Segundo Tipo" },
+                  "children": [
+                    {
+                      "id": "sir-hale-yakin",
+                      "label": { "tr": "Hâl'e Yakın Olan", "en": "Close to the Experiential", "pt": "Próximo ao Estado" },
+                      "note": {
+                        "tr": "Hâl ilmine katılır, fakat hâli daha kıymetlidir.",
+                        "en": "Joins with the experiential science, yet its state is more precious.",
+                        "pt": "Junta-se à ciência do estado, mas seu estado é mais precioso."
+                      }
+                    },
+                    {
+                      "id": "rivayet-ilimleri",
+                      "label": { "tr": "Rivayet İlimleri", "en": "Reported Sciences", "pt": "Ciências Transmitidas" },
+                      "note": {
+                        "tr": "Özü gereği doğru ya da yanlış olabilir; ama haber vereninin doğruluğu ve masumiyeti kesindir — örneğin cennetin haber verilmesi.",
+                        "en": "Inherently subject to being true or false; but the reporter's truthfulness and infallibility are certain — e.g. the report of Paradise.",
+                        "pt": "Por natureza sujeita a ser verdadeira ou falsa; mas a veracidade e infalibilidade de quem relata são certas — por exemplo, o relato do Paraíso."
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "uc-ilim-bir-sir",
+          "heading": {
+            "tr": "Üç İlim, Bir Sır",
+            "en": "Three Sciences, One Secret",
+            "pt": "Três Ciências, Um Segredo"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost, kitaba dair ilk sözlerinde bir tercihten söz ediyor: önce iman esaslarına dair kesin delillerle desteklenmiş bir bölüm mü koysun, yoksa doğrudan varlığın sırlarına mı geçsin? İkincisini seçtiğini söylüyor — çünkü halvet ve zikirle meşgul olup zihnini boşaltan bir mürit, tıpkı 'hiçbir şeyi olmayan bir yoksul' gibi Rabbinin kapısında oturduğunda, Allah'ın kendisine bahşettiği ilmi bekler. Cüneyd-i Bağdâdî'ye 'ulaştıklarına neyle ulaştın' diye sorulduğunda 'bu derecenin altında otuz küsur sene oturmakla' cevabını verdiğini, Ebû Yezîd-i Bistâmî'nin ise 'siz ilminizi ölümlülerden, biz ise ölümsüz Diri'den almaktayız' dediğini aktarıyor. Bu girişin hemen ardından, ilimleri üçe ayırıyor."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III (Kitabın Girişi) — 'İlimlerin Mertebeleri', s. 73-75.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part III (Introduction to the Book) — 'The Ranks of the Sciences,' pp. 73-75.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III (Introdução ao Livro) — 'As Categorias das Ciências,' pp. 73-75."
+              },
+              "useMainDiagram": true
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost'un bu üçlü ayrımda vurguladığı bir nokta dikkat çekici: üçüncü tür — sır ilmi — öbür ikisini de içine alan, kuşatıcı bir ilim olarak tarif ediliyor. 'Bir insan onu bildiğinde, bütün ilimleri öğrenir ve kuşatır' diyor; öbür iki ilmin sahiplerinde böyle bir imkân yok, diye ekliyor. Bunu tam olarak nasıl anlamamız gerektiği — bir ilmin başka bütün ilimleri nasıl 'kuşattığı' — bizim için hâlâ açık bir soru; burada sadece metnin kendi kurduğu hiyerarşiyi aktarıyoruz. Dost ayrıca sır ilmini nakledenin güvenilirliği meselesine de değiniyor: sıradan biri için haber verenin dürüstlüğü şart koşulur, ama akıllı ve kendine karşı samimi biri için tasdik de red de zorunlu değildir — sadece çekingen kalınır."
+              }
+            }
+          ]
+        },
+        {
+          "id": "aklin-siniri-sirrin-perdesi",
+          "heading": {
+            "tr": "Aklın Sınırı, Sırrın Perdesi",
+            "en": "Reason's Limit, the Secret's Veil",
+            "pt": "O Limite da Razão, o Véu do Segredo"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu ayrımın hemen ardından Dost, okuyucusunu bir konuda uyarıyor: nebevi bir bilginin bir filozof tarafından da dile getirilmiş olması, o bilgiyi reddetmek için yeterli bir sebep değil. 'Filozofun bütün bilgileri geçersiz değildir' diyor; hatta Hz. Peygamber'in söylediği bir şey, aynı doğrulukla bir filozofun ağzından da çıkmış olabilir — özellikle nefsin tuzaklarından kaçınmakla ilgili konularda. Bu satırları, kaynağa değil içeriğe bakma çağrısı olarak okuyoruz; ama İbn Arabî'nin kendi metninde filozofa dair başka yerlerde çok daha temkinli/eleştirel ifadeler de var — bu gerilimi tam olarak nasıl bir arada tutacağımızı henüz bilmiyoruz."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Nebevi ve Teorik İlim' faslı, s. 78-79.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'Prophetic and Theoretical Science,' pp. 78-79.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'Ciência Profética e Teórica,' pp. 78-79."
+              },
+              "triad": {
+                "left": {
+                  "label": { "tr": "Teorik İlim", "en": "Theoretical Science", "pt": "Ciência Teórica" },
+                  "note": {
+                    "tr": "akılla kavranır",
+                    "en": "grasped by reason",
+                    "pt": "compreendida na razão"
+                  }
+                },
+                "middle": {
+                  "label": { "tr": "Hâl İlmi", "en": "Experiential Science", "pt": "Ciência do Estado" },
+                  "note": {
+                    "tr": "ikisi arasında",
+                    "en": "between the two",
+                    "pt": "entre as duas"
+                  }
+                },
+                "right": {
+                  "label": { "tr": "Sır İlmi", "en": "Science of Secrets", "pt": "Ciência dos Segredos" },
+                  "note": {
+                    "tr": "şiirle aktarılır",
+                    "en": "conveyed in verse",
+                    "pt": "transmitida em verso"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Hâl ilmi, sır ile akıl ilimleri arasında durur — Dost'un kendi ifadesiyle, 'zorunlu-teorik ilme' neredeyse aynıdır, ama yalnız tanık olan peygamber ya da veli aracılığıyla bilinir.",
+                "en": "Experiential science stands between the sciences of secrets and reason — in Dost's own words, it is 'almost identical' to necessary-theoretical science, yet is known only through the prophet or saint who has witnessed it.",
+                "pt": "A ciência do estado situa-se entre as ciências dos segredos e da razão — nas próprias palavras de Dost, é 'quase idêntica' à ciência teórica-necessária, mas só é conhecida através do profeta ou santo que a testemunhou."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III (Kitabın Girişi) — 'İlimlerin Mertebeleri', s. 73-75.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part III (Introduction to the Book) — 'The Ranks of the Sciences,' pp. 73-75.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III (Introdução ao Livro) — 'As Categorias das Ciências,' pp. 73-75."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Nebevi ve Teorik İlim' faslı, s. 77-79.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'Prophetic and Theoretical Science,' pp. 77-79.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'Ciência Profética e Teórica,' pp. 77-79."
+        }
+      ]
+    }
+  ]
+}

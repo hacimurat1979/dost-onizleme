@@ -138,6 +138,7 @@
     else if (currentMainView === "cizimler") window.__cizimlerApp && window.__cizimlerApp.onLangChange();
     else if (currentMainView === "sirlar") window.__sirlarGraphApp && window.__sirlarGraphApp.onLangChange();
     else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
+    else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
     updateHeaderHeightVar();
   });
 
@@ -277,6 +278,7 @@
   const cizimlerBtn = document.getElementById("cizimler-btn");
   const sirlarBtn = document.getElementById("sirlar-btn");
   const sorularBtn = document.getElementById("sorular-btn");
+  const futuhatBtn = document.getElementById("futuhat-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
   const halWrap = document.getElementById("hal-wrap");
@@ -284,6 +286,7 @@
   const cizimlerWrap = document.getElementById("cizimler-wrap");
   const sirlarWrap = document.getElementById("sirlar-wrap");
   const sorularWrap = document.getElementById("sorular-wrap");
+  const futuhatWrap = document.getElementById("futuhat-wrap");
 
   function setMainView(view) {
     if (currentMainView === view) return;
@@ -295,6 +298,7 @@
     if (cizimlerBtn) cizimlerBtn.classList.toggle("btn-ghost--active", view === "cizimler");
     if (sirlarBtn) sirlarBtn.classList.toggle("btn-ghost--active", view === "sirlar");
     if (sorularBtn) sorularBtn.classList.toggle("btn-ghost--active", view === "sorular");
+    if (futuhatBtn) futuhatBtn.classList.toggle("btn-ghost--active", view === "futuhat");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
@@ -302,6 +306,7 @@
     if (cizimlerWrap) cizimlerWrap.hidden = view !== "cizimler";
     if (sirlarWrap) sirlarWrap.hidden = view !== "sirlar";
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
+    if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
     currentDetailNode = null;
     currentDetailEdge = null;
     detailPanel.hidden = true;
@@ -323,6 +328,9 @@
     } else if (view === "sorular") {
       currentDetailView = "sorular";
       window.__sorularApp && window.__sorularApp.activate();
+    } else if (view === "futuhat") {
+      currentDetailView = null;
+      window.__futuhatApp && window.__futuhatApp.activate();
     } else {
       currentDetailView = null;
     }
@@ -338,6 +346,7 @@
   if (terimlerBtn) terimlerBtn.addEventListener("click", () => { setMainView("terimler"); updateHash("terimler"); });
   if (cizimlerBtn) cizimlerBtn.addEventListener("click", () => { setMainView("cizimler"); updateHash("cizimler"); });
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
+  if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
 
   // --- Deep linking & cross-view navigation ---
   let pendingSirlarId = null;
@@ -445,8 +454,13 @@
     window.__sorularApp && window.__sorularApp.goToNode(id);
   }
 
+  function goToFutuhat() {
+    setMainView("futuhat");
+    window.__futuhatApp && window.__futuhatApp.activate();
+  }
+
   function parseHashAndGo() {
-    const m = /^#\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular)(?:\/(.+))?$/.exec(location.hash);
+    const m = /^#\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|futuhat)(?:\/(.+))?$/.exec(location.hash);
     if (!m) return;
     const [, view, id] = m;
     if (view === "ontoloji") goToOntologyNode(id);
@@ -456,6 +470,7 @@
     else if (view === "terimler") goToTerimler(id);
     else if (view === "cizimler") goToCizimler();
     else if (view === "sorular") goToSorular(id);
+    else if (view === "futuhat") goToFutuhat();
   }
 
   window.addEventListener("hashchange", parseHashAndGo);
@@ -469,6 +484,7 @@
       else if (view === "terimler") goToTerimler(id);
       else if (view === "cizimler") goToCizimler();
       else if (view === "sorular") goToSorular(id);
+      else if (view === "futuhat") goToFutuhat();
       updateHash(view, id);
     },
     setHash: updateHash,

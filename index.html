@@ -113,6 +113,7 @@
         <button class="btn-ghost" id="cizimler-btn" type="button" data-tr="Çizimler" data-en="Diagrams" data-pt="Diagramas">Çizimler</button>
         <button class="btn-ghost" id="sirlar-btn" type="button" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
         <button class="btn-ghost" id="sorular-btn" type="button" data-tr="Sorular" data-en="Questions" data-pt="Perguntas">Sorular</button>
+        <button class="btn-ghost" id="futuhat-btn" type="button" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
       </div>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
         <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.2"/><line x1="12" y1="19.8" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.2" y2="12"/><line x1="19.8" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.6" y2="4.4"/></g></svg>
@@ -287,6 +288,21 @@
       </button>
     </section>
 
+    <section class="futuhat-wrap" id="futuhat-wrap" hidden>
+      <div class="view-status" id="futuhat-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <p class="futuhat-intro" data-tr="Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalışıyoruz — bir özet değil, tafsilatlı anlattığı konuların çizimlerle görünür kılınmaya çalışıldığı, süregiden bir okuma." data-en="We are trying to read al-Futuhat al-Makkiyya volume by volume, part by part, following Dost's own order of exposition — not a summary, but an ongoing reading in which the topics he treats in detail are made visible through diagrams." data-pt="Estamos tentando ler o al-Futuhat al-Makkiyya volume por volume, parte por parte, seguindo a própria ordem de exposição de Dost — não um resumo, mas uma leitura em andamento na qual os temas que ele trata em detalhe são tornados visíveis através de diagramas.">Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalışıyoruz — bir özet değil, tafsilatlı anlattığı konuların çizimlerle görünür kılınmaya çalışıldığı, süregiden bir okuma.</p>
+      <div class="futuhat-parts" id="futuhat-parts"></div>
+      <div class="futuhat-shell">
+        <article class="futuhat-article" id="futuhat-article"></article>
+        <aside class="futuhat-stats" id="futuhat-stats"></aside>
+      </div>
+      <div class="node-hover-tip" id="futuhat-tooltip" hidden></div>
+    </section>
+
     <aside class="detail-panel" id="detail-panel" hidden>
       <div class="detail-breadcrumb" id="detail-breadcrumb" hidden></div>
       <div id="detail-content"></div>
@@ -348,6 +364,7 @@
   <script src="assets/cizimler.js"></script>
   <script src="assets/sirlar-graph.js"></script>
   <script src="assets/sorular.js"></script>
+  <script src="assets/futuhat.js"></script>
   <script src="assets/ontology.js"></script>
   <script src="assets/start-hint.js"></script>
   <script src="assets/secret-nav.js"></script>
