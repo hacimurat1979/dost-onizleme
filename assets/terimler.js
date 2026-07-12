@@ -209,6 +209,29 @@
       </svg>
     `;
     },
+    "heart-visitors": (d) => {
+      const cx = 170, cy = 170, hostR = 34, satR = 26, orbit = 112;
+      const n = d.visitors.length;
+      const items = d.visitors.map((v, i) => {
+        const deg = -90 + (360 / n) * i;
+        const rad = (deg * Math.PI) / 180;
+        const sx = cx + orbit * Math.cos(rad);
+        const sy = cy + orbit * Math.sin(rad);
+        const nodeClass = v.accent ? "term-diagram-node--accent" : "term-diagram-node--dashed";
+        return `
+          <line class="term-diagram-tether" x1="${cx}" y1="${cy}" x2="${sx}" y2="${sy}"/>
+          <circle class="term-diagram-node ${nodeClass}" cx="${sx}" cy="${sy}" r="${satR}"/>
+          <text class="term-diagram-label--small" x="${sx}" y="${sy + 4}" text-anchor="middle">${tt(v.label)}</text>
+        `;
+      }).join("");
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 340 340" role="img" aria-label="${tt(d.note)}">
+        ${items}
+        <circle class="term-diagram-node term-diagram-node--faint" cx="${cx}" cy="${cy}" r="${hostR}"/>
+        <text class="term-diagram-label" x="${cx}" y="${cy + 5}" text-anchor="middle">${tt(d.center)}</text>
+      </svg>
+    `;
+    },
   };
 
   const DIAGRAM_DEFS = `
@@ -458,6 +481,11 @@
     goToNode(id) {
       fetchData().then((data) => {
         if (!data) return;
+        // Bir terime doğrudan bağlantıyla gelindiğinde, o terimin grubunu
+        // seçili hale getir -- aksi halde grup diyagramı (varsa) hiç
+        // görünmez, çünkü diyagramlar "activeGroup" filtresine bağlıdır.
+        const term = id && data.terms[id];
+        if (term && term.group) activeGroup = term.group;
         render();
         if (id) showTermDetail(id);
       });

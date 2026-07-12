@@ -927,6 +927,50 @@
           }
         }
       ]
+    },
+    {
+      "id": "tezkire-i-erbaa",
+      "name": {
+        "tr": "Dört Tezkire: Kalbe Kim Konuşur?",
+        "en": "The Four Decrees: Who Speaks to the Heart?",
+        "pt": "Os Quatro Éditos: Quem Fala ao Coração?"
+      },
+      "description": {
+        "tr": "Tedbîrât-ı İlâhiyye'nin dokuzuncu bâbında Ahmed Avni Konuk'un aktardığı dört 'tezkire' (fermân) — biri Hak'tan, biri meleğe, biri nefse, biri de İblis'e. Bunu tam olarak nasıl anlamamız gerektiği konusunda temkinliyiz; burada sadece metnin bize gösterdiği örüntüyü paylaşıyoruz.",
+        "en": "Four 'decrees' (tezkire) that Ahmed Avni Konuk's commentary conveys in the ninth chapter of et-Tedbîrât al-Ilâhiyya — one from God, one to the angel, one to the ego, one to Iblis. We remain cautious about exactly how to read this; here we only share the pattern the text shows us.",
+        "pt": "Quatro 'éditos' (tezkire) transmitidos pelo comentário de Ahmed Avni Konuk no nono capítulo do et-Tedbîrât al-Ilâhiyya — um de Deus, um ao anjo, um ao ego, um a Iblis. Permanecemos cautelosos quanto a como interpretar isso exatamente; aqui apenas compartilhamos o padrão que o texto nos mostra."
+      },
+      "diagram": [
+        {
+          "type": "heart-visitors",
+          "termId": "kalbin-misafirleri",
+          "center": {
+            "tr": "Kalp",
+            "en": "The Heart",
+            "pt": "O Coração"
+          },
+          "visitors": [
+            {
+              "label": { "tr": "Hak", "en": "God", "pt": "Deus" },
+              "accent": true
+            },
+            {
+              "label": { "tr": "Melek", "en": "The Angel", "pt": "O Anjo" }
+            },
+            {
+              "label": { "tr": "Nefis", "en": "The Ego", "pt": "O Ego" }
+            },
+            {
+              "label": { "tr": "İblis", "en": "Iblis", "pt": "Iblis" }
+            }
+          ],
+          "note": {
+            "tr": "Kalp, o an hangisi 'iniyorsa' onun sesini duyar gibi tasvir edilir — ama metne göre kalp bunların hiçbirinin sabit mülkü değildir.",
+            "en": "The heart is pictured as hearing whichever of the four is 'descending' upon it at that moment — yet, per the text, the heart is a fixed possession of none of them.",
+            "pt": "O coração é retratado como ouvindo qual dos quatro está 'descendo' sobre ele naquele momento — mas, segundo o texto, o coração não é posse fixa de nenhum deles."
+          }
+        }
+      ]
     }
   ],
   "terms": {
@@ -2245,6 +2289,48 @@
       ],
       "iliskili_kavramlar": [
         "mumkun"
+      ]
+    },
+    "kalbin-misafirleri": {
+      "id": "kalbin-misafirleri",
+      "group": "tezkire-i-erbaa",
+      "title": {
+        "tr": "Kalbin Misafirleri",
+        "en": "The Heart's Visitors",
+        "pt": "Os Visitantes do Coração"
+      },
+      "arabic": "تذكرة",
+      "ozet_tr": "kalbe nöbetleşe inen dört ses",
+      "felsefi_tanim": {
+        "tr": "Tedbîrât-ı İlâhiyye'nin dokuzuncu bâbında, Ahmed Avni Konuk'un aktardığı dört ayrı 'tezkire'den (fermân) söz edilir: biri Hak'tan, biri meleğe, biri nefse, biri de İblis'e verilmiş talimattır. Dördü de aynı sahneyi — kalbin o anki hâlini — konu alır.",
+        "en": "In the ninth chapter of et-Tedbîrât al-Ilâhiyya, Ahmed Avni Konuk's commentary conveys four separate 'decrees' (tezkire): one from God, one addressed to the angel, one to the ego, one to Iblis. All four concern the same scene — the heart's state at a given moment.",
+        "pt": "No nono capítulo do et-Tedbîrât al-Ilâhiyya, o comentário de Ahmed Avni Konuk transmite quatro 'éditos' (tezkire) distintos: um de Deus, um dirigido ao anjo, um ao ego, um a Iblis. Os quatro tratam da mesma cena — o estado do coração num dado momento."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Bu dört tezkire, bize göre, ortak bir kalıp izliyor: her biri kendi muhatabına önce 'kalbi üç hâlden birinde bulacaksın' diyor — Hak ile, melekle, ya da nefis/İblis ile meşgul — sonra hangi hâlde nasıl davranması gerektiğini öğretiyor. Meleğe söylenen: kalp Hak ile meşgulse araya girme, kendi hâline bırak. Nefse söylenense tam tersi bir mantık taşıyor gibi okunuyor — kalp Hak ile meşgulken nefis ona 'taarruz etsin' deniyor, çünkü bu mücadelenin bizzat kalbi olgunlaştırdığı anlaşılıyor. İblis'e verilen tezkirede ise en çarpıcı olan şu: ayartma bir yetki olarak tanımlanıyor, ama kul günahtan tövbe ederse günahın kendisi İblis'in üzerinde kalıyor; tövbe etmezse ikisi de sorumlu tutuluyor. Bu ayrıntıları tam olarak nasıl anlamamız gerektiği konusunda temkinliyiz — bir şerhin şerhini okuyoruz ve elimizdeki yalnızca bir okuma. Ama metnin kendisi kalbi sabit bir mülk değil, dört gücün nöbetleşe uğradığı bir eşik gibi tasvir ediyor.",
+        "en": "As we read it, these four decrees seem to follow a shared pattern: each tells its addressee, 'you will find the heart in one of three states' — occupied with God, with the angel, or with the ego/Iblis — then instructs how to act in each case. The angel is told: if the heart is occupied with God, do not interject, leave it be. The instruction to the ego seems to carry the opposite logic — when the heart is occupied with God, the ego is told to 'assail' it, because this very struggle appears to be what matures the heart. Most striking is the decree to Iblis: temptation is described as an authorization, yet if the servant repents of the sin, the sin remains charged to Iblis; if not, both are held responsible. We remain cautious about exactly how to read these details — we are reading a commentary on a commentary, and what we offer here is only one reading of it. But the text itself pictures the heart not as a fixed possession, but as a threshold visited in turn by four different forces.",
+        "pt": "Como o lemos, esses quatro éditos parecem seguir um padrão comum: cada um diz ao seu destinatário 'encontrarás o coração em um de três estados' — ocupado com Deus, com o anjo, ou com o ego/Iblis — e depois instrui como agir em cada caso. Ao anjo diz-se: se o coração está ocupado com Deus, não interfira, deixe-o em paz. A instrução ao ego parece carregar a lógica oposta — quando o coração está ocupado com Deus, o ego é instruído a 'atacá-lo', porque essa mesma luta parece ser o que amadurece o coração. O mais marcante é o édito a Iblis: a tentação é descrita como uma autorização, mas se o servo se arrepende do pecado, o pecado permanece a cargo de Iblis; se não se arrepender, ambos são responsabilizados. Permanecemos cautelosos quanto a como exatamente interpretar esses detalhes — estamos lendo um comentário sobre um comentário, e o que oferecemos aqui é apenas uma leitura dele. Mas o próprio texto retrata o coração não como uma posse fixa, mas como um limiar visitado, por vez, por quatro forças diferentes."
+      },
+      "analogy": {
+        "tr": "Kalbi, kapısı hep aralık duran bir eve benzet: o eve zaman zaman bir dost gelir, zaman zaman tanıdık bir ses seslenir, zaman zaman da yabancı biri kapıyı zorlar — ama ev hiçbirinin değildir, misafir kim olursa olsun hep aynı evin sahibinindir.",
+        "en": "Picture the heart as a house whose door is always left ajar: sometimes a friend visits, sometimes a familiar voice calls out, sometimes a stranger pushes at the door — yet the house belongs to none of them; it stays the same house no matter who the guest is.",
+        "pt": "Imagine o coração como uma casa cuja porta fica sempre entreaberta: às vezes um amigo visita, às vezes uma voz familiar chama, às vezes um estranho força a porta — mas a casa não pertence a nenhum deles; continua sendo a mesma casa, seja quem for o visitante."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Tedbîrât-ı İlâhiyye (Ahmed Avni Konuk tercüme ve şerhi)",
+          "alinti_tr": "Ey melek-i kerim... onu üç ahvâlin birisi üzerinde bulursun: Ya benim iledir; ya nefsi iledir; yâhut düşmanı olan İblis iledir... Ve eğer sen onu nefsi ile bulursan, kendi cânibinden muhâdeseten ona ihtâr eyle... Ve eğer onu şeytân ile bulursan ona müzâhim olup ikisinin arasına hâil ol.",
+          "not_tr": "Meleğe verilen tezkirenin, kalbin üç hâline göre değişen tavır talimatı."
+        },
+        {
+          "kaynak_adi": "Tedbîrât-ı İlâhiyye (Ahmed Avni Konuk tercüme ve şerhi)",
+          "alinti_tr": "Eğer o kimse senin ilkââtından bir şey kabül ve icrâ ettikten sonra, o ma'sıyetten tâib olup rücü' ederse onun günâhı senin üzerine olur; ve sen o günâh sebebiyle nâr-ı cehennemde hâlid ve muhalled olarak ebeden muazzeb olursun.",
+          "not_tr": "İblis'e verilen tezkirenin en çarpıcı satırı: tövbe eden kulun günahı, İblis'in üzerinde kalır."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nefs-i-natika",
+        "akil-vezir"
       ]
     }
   }
