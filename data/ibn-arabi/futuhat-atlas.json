@@ -375,6 +375,120 @@
               }
             }
           ]
+        },
+        {
+          "id": "kelam-ve-avamin-imani",
+          "heading": {
+            "tr": "Kelâm İlmi ve Avamın İmanı",
+            "en": "Kalam and the Faith of the Common Believer",
+            "pt": "O Calam e a Fé do Crente Comum"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost burada okuyucusuna, imanın kelâm ilmine (rasyonel teoloji) muhtaç olup olmadığı sorusunu açıyor. Avamın (sıradan mü'minlerin) inancı, dindar bir baba ya da eğitmenin telkiniyle oluşan bir fıtrat üzerine kuruludur; onlar kelâm ilminden herhangi bir mesele araştırmamış, çelişik mezhepleri öğrenmemişlerdir — ama Dost'a göre bu, Allah'a hamdolsun, sağlam ve doğru bir inançtır, çünkü Kur'an'ın kendisi — tevâtürle sabit, benzeri getirilemeyen bir kitap olarak — zaten yeterli bir delildir. Dost, kelâm yöntemini şart koşanlara çarpıcı bir soru yöneltiyor: araştırmadan önce ve araştırırken bu kişi Müslüman mıydı, namaz kılıyor muydu, oruç tutuyor muydu? Eğer evetse, bu zaten avamın hâlidir ve onu kendi hâline bırakmak gerekir; ama kelâm ilmini okuyup incelemesinden SONRA inanmışsa, Dost bu yöntemden 'Allah'a sığınırız' diyor."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Kelâm İlmi Bakımından Doğru İnançların Araştırılması' faslı, s. 83-85.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'Investigating Correct Beliefs from the Perspective of Kalam,' pp. 83-85.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'A Investigação das Crenças Corretas sob a Perspectiva do Calam,' pp. 83-85."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Avam", "en": "The Common Believer", "pt": "O Crente Comum" },
+                  "note": {
+                    "tr": "fıtrat ve tevâtürle sabit iman",
+                    "en": "faith grounded in disposition, mass-transmission",
+                    "pt": "fé fundada na disposição, na transmissão"
+                  }
+                },
+                "right": {
+                  "label": { "tr": "Ehl-i Nazar", "en": "The Investigators", "pt": "Os Investigadores" },
+                  "note": {
+                    "tr": "aklî delille kelâm",
+                    "en": "theology by rational proof",
+                    "pt": "teologia por prova racional"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost, avamın imanını 'sağlam ve doğru' sayıyor; kelâmı ise iman için bir ön şart değil, inkârcılara karşı geliştirilmiş bir savunma aracı olarak görüyor.",
+                "en": "Dost counts the common believer's faith as 'sound and correct'; he sees kalam not as a prerequisite for faith, but as a defensive tool developed against those who deny.",
+                "pt": "Dost considera a fé do crente comum 'sólida e correta'; ele vê o calam não como um pré-requisito para a fé, mas como uma ferramenta defensiva desenvolvida contra os que negam."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bir adım daha ileri gidiyor: Kur'an'ın kendisi, akıl kanıtlarına ihtiyaç duymadan hakikati ortaya koyar. Örnek olarak, Yahudilerin Hz. Muhammed'den 'Rabbini bize tasvir et' istemesi üzerine indiğini aktardığı İhlâs sûresini veriyor — bu sûrede tek bir aklî kanıt yoktur, ama her cümlesi bir şeyi reddederek Allah'ın birliğini kurar: 'Ahad' sayıyı, 'es-Samed' cisim olmayı, 'doğurmamış ve doğrulmamıştır' baba-çocuk ilişkisini, 'hiç kimse dengi değildir' bir eşi ya da ortağı reddeder. Dost'a göre bu lafzın kendisi, taşıdığı anlamın doğruluğuna tanıktır — ayrı bir akıl kanıtına gerek yoktur."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Kelâm İlmi Bakımından Doğru İnançların Araştırılması' faslı, s. 85-86; İhlâs Sûresi (112).",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'Investigating Correct Beliefs from the Perspective of Kalam,' pp. 85-86; Surat al-Ikhlas (112).",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'A Investigação das Crenças Corretas sob a Perspectiva do Calam,' pp. 85-86; Surata al-Ikhlas (112)."
+              },
+              "tree": {
+                "id": "ihlas-suresi-tree",
+                "label": { "tr": "İhlâs Sûresi", "en": "Surat al-Ikhlas", "pt": "Surata al-Ikhlas" },
+                "note": {
+                  "tr": "tek bir aklî kanıt taşımadan, dört reddedişle tevhidi kurar",
+                  "en": "establishes divine unity through four negations, without a single rational proof",
+                  "pt": "estabelece a unidade divina através de quatro negações, sem uma única prova racional"
+                },
+                "children": [
+                  {
+                    "id": "ahad",
+                    "label": { "tr": "Ahad", "en": "Ahad (One)", "pt": "Ahad (Um)" },
+                    "note": {
+                      "tr": "sayıyı reddeder — mutlak birlik",
+                      "en": "rejects number — absolute oneness",
+                      "pt": "rejeita o número — unidade absoluta"
+                    }
+                  },
+                  {
+                    "id": "samed",
+                    "label": { "tr": "es-Samed", "en": "as-Samad", "pt": "as-Samad" },
+                    "note": {
+                      "tr": "cisim olmayı reddeder",
+                      "en": "rejects being a body",
+                      "pt": "rejeita ser um corpo"
+                    }
+                  },
+                  {
+                    "id": "dogurmamis-dogrulmamis",
+                    "label": { "tr": "Doğurmamış, Doğrulmamıştır", "en": "Did Not Beget, Was Not Begotten", "pt": "Não Gerou, Não Foi Gerado" },
+                    "note": {
+                      "tr": "baba-çocuk ilişkisini reddeder",
+                      "en": "rejects the parent-child relation",
+                      "pt": "rejeita a relação pai-filho"
+                    }
+                  },
+                  {
+                    "id": "dengi-yoktur",
+                    "label": { "tr": "Dengi Yoktur", "en": "No Equal", "pt": "Nenhum Igual" },
+                    "note": {
+                      "tr": "bir eşi ya da ortağı reddeder",
+                      "en": "rejects an equal or partner",
+                      "pt": "rejeita um igual ou parceiro"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost aynı mantığı, Kur'an'ın Allah'ın sıfatlarını nasıl ortaya koyduğunu göstererek sürdürüyor — her sıfat için tek bir ayet yeterli sayılıyor: 'her şeye güç yetirendir' (Kadîr), 'her şeyi bilgi olarak kuşatmıştır' (Âlim), 'dilediğini yapandır' (Mürîd), 'işitmiştir' (Semî'), 'gördüğünü bilmez mi' (Basîr), 'Musa ile konuşmuştur' (Mütekellim), 'diri ve her şeyi ayakta tutandır' (Hayy). Dost bu bölümü, kelâm ilmini bir şehre bir doktorun yetmesi gibi gerekli ama herkese farz olmayan bir uzmanlık alanına benzeterek kapatıyor: fıkıh (dinin pratik hükümleri) herkes için gereklidir, ama cevher-araz gibi teorik terimleri bilmemek kimseyi sorumlu tutmaz — 'Allah, insanlara özellikle kendilerine farz kıldığı vecibelerden soracaktır.'"
+              }
+            }
+          ]
         }
       ],
       "sources": [
@@ -392,6 +506,11 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Hak Ehlinin Hakka Gidiş Yöntemleri' faslı, s. 79-82.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'the Methods of the People of the Real toward the Real,' pp. 79-82.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'os Métodos do Povo do Real rumo ao Real,' pp. 79-82."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Kelâm İlmi Bakımından Doğru İnançların Araştırılması' faslı, s. 83-88.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'Investigating Correct Beliefs from the Perspective of Kalam,' pp. 83-88.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'A Investigação das Crenças Corretas sob a Perspectiva do Calam,' pp. 83-88."
         }
       ]
     }
