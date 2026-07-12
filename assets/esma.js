@@ -308,6 +308,10 @@
       .attr("r", (d) => radiusFor(d))
       .attr("fill", (d) => colorFor(d));
 
+    nodeEnter.append("circle")
+      .attr("class", "node-sheen")
+      .attr("r", (d) => radiusFor(d));
+
     nodeEnter.append("text")
       .attr("class", "node-label")
       .attr("text-anchor", (d) => (d.depth === 0 ? "middle" : (d.x < Math.PI ? "start" : "end")))

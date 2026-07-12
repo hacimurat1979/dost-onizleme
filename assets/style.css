@@ -534,18 +534,32 @@ html {
   stroke-width: 2.5px;
 }
 .hal-link--return {
-  stroke: var(--series-hal-hayret);
-  stroke-dasharray: 2 5;
-  opacity: 0.55;
+  stroke: url(#ascent-gradient-hayret);
+  stroke-width: 2.4px;
+  stroke-linecap: round;
+  opacity: 0.8;
+  filter: drop-shadow(0 1px 3px color-mix(in srgb, var(--series-hal-hayret, #e0b545) 45%, transparent));
 }
 .hal-link--return.hal-link--highlight {
-  opacity: 0.9;
-  stroke-width: 2px;
+  opacity: 1;
+  stroke-width: 3.2px;
+}
+.hal-link--return-label {
+  font-size: 10.5px;
+  font-style: italic;
+  fill: var(--series-hal-hayret, #c9971a);
+  text-anchor: middle;
+  pointer-events: none;
+  opacity: 0.85;
 }
 .hal-node circle {
   transition: stroke 0.2s ease, stroke-width 0.2s ease;
   stroke: transparent;
   stroke-width: 0;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+}
+.viz-root[data-theme="dark"] .hal-node circle {
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.55));
 }
 .hal-node--active circle {
   stroke: var(--series-hal-hayret, #e0b545);
@@ -554,6 +568,10 @@ html {
 }
 @media (prefers-reduced-motion: reduce) {
   .hal-node--active circle { filter: none; }
+}
+.node-sheen {
+  fill: url(#node-sheen);
+  pointer-events: none;
 }
 
 .sorular-spoke {
@@ -572,9 +590,11 @@ html {
   stroke: transparent;
   stroke-width: 0;
   transition: stroke 0.2s ease, stroke-width 0.2s ease;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.28));
 }
 .viz-root[data-theme="dark"] .sorular-node circle {
   fill: hsl(var(--node-hue) 45% 62%);
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
 }
 .sorular-node--active circle {
   stroke: var(--series-theme);
@@ -780,8 +800,10 @@ html {
   stroke: var(--series-ibnarabi-line);
 }
 .link--return {
-  stroke: var(--series-theme);
-  stroke-dasharray: 2 4;
+  stroke: url(#ascent-gradient-theme);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  filter: drop-shadow(0 1px 2px color-mix(in srgb, var(--series-theme) 40%, transparent));
 }
 .link--paradox {
   stroke: var(--series-daphne);
@@ -821,6 +843,10 @@ html {
 .node circle {
   stroke: var(--surface-1);
   stroke-width: 2px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.28));
+}
+.viz-root[data-theme="dark"] .node circle {
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
 }
 .node { cursor: pointer; }
 .node:hover circle { stroke: var(--text-primary); }
@@ -3392,6 +3418,10 @@ html[data-contrast="high"] .detail-title {
   fill: var(--surface-1);
   stroke: var(--text-secondary);
   stroke-width: 1.5px;
+  filter: drop-shadow(0 2px 2.5px rgba(0, 0, 0, 0.22));
+}
+.viz-root[data-theme="dark"] .term-diagram-node {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
 }
 
 .term-diagram-node--accent {

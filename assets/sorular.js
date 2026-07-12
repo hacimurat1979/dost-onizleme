@@ -105,6 +105,11 @@
         if (currentLevel === "questions") showCategories();
       });
 
+    hubGroup.append("circle")
+      .attr("class", "node-sheen")
+      .attr("cx", cx).attr("cy", cy).attr("r", currentLevel === "categories" ? 30 : 26)
+      .style("pointer-events", "none");
+
     hubGroup.append("text")
       .attr("class", "sorular-hub__label")
       .attr("x", cx).attr("y", cy)
@@ -167,6 +172,9 @@
       .on("blur", () => { highlight(null); hideTooltip(); });
 
     nodeSel.append("circle").attr("r", currentLevel === "categories" ? 19 : 15);
+    nodeSel.append("circle")
+      .attr("class", "node-sheen")
+      .attr("r", currentLevel === "categories" ? 19 : 15);
 
     nodeSel.append("text")
       .attr("class", "node-label")

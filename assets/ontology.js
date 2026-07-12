@@ -550,6 +550,11 @@
       .attr("r", (d) => radiusFor(d))
       .attr("fill", (d) => colorFor(d));
 
+    nodeSel
+      .append("circle")
+      .attr("class", "node-sheen")
+      .attr("r", (d) => radiusFor(d));
+
     labelSel = nodeSel
       .append("text")
       .attr("class", "node-label")

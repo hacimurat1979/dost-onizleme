@@ -24,6 +24,7 @@
   let zoomLayer, linkGroup, nodeGroup;
   let zoomBehavior;
   let currentDetailNode = null;
+  let wrapCtrl = null;
 
   function fetchData() {
     if (halDataPromise) return halDataPromise;
@@ -91,6 +92,19 @@
     orderedNodes = buildOrderedChain(data.nodes);
     nodeById = new Map(orderedNodes.map((n) => [n.id, n]));
 
+    const defs = svg.append("defs");
+    defs.append("marker")
+      .attr("id", "hal-arrow-return")
+      .attr("viewBox", "0 -5 10 10")
+      .attr("refX", 8)
+      .attr("refY", 0)
+      .attr("markerWidth", 6.5)
+      .attr("markerHeight", 6.5)
+      .attr("orient", "auto")
+      .append("path")
+      .attr("d", "M0,-5L10,0L0,5")
+      .attr("fill", "var(--series-hal-hayret, #c9971a)");
+
     zoomLayer = svg.append("g").attr("class", "hal-canvas");
     linkGroup = zoomLayer.append("g").attr("class", "hal-links");
     nodeGroup = zoomLayer.append("g").attr("class", "hal-nodes");
@@ -101,12 +115,21 @@
 
     const cx = width / 2;
     const cy = height / 2;
-    const radius = Math.max(120, Math.min(width, height) / 2 - 110);
+    // Spiral, not a flat circle: her yeni hâl bir öncekinden biraz daha
+    // geniş bir yarıçapta duruyor ("O'na gidiş" bir noktaya sıkışma değil,
+    // genişleyen bir seyahat). Dönüş oku de bu yüzden merkeze çöken bir kiriş
+    // değil, halkanın DIŞINDAN geçip başa daha yüksek bir turda bağlanan bir
+    // yay olarak çiziliyor (bkz. aşağıdaki linkGen).
+    const baseRadius = Math.max(120, Math.min(width, height) / 2 - 110);
     const n = orderedNodes.length;
+    const radiusForIndex = (i) => baseRadius * (0.82 + 0.18 * (i / (n - 1)));
     orderedNodes.forEach((node, i) => {
       const angle = -Math.PI / 2 + (i / n) * Math.PI * 2;
-      node.x = cx + radius * Math.cos(angle);
-      node.y = cy + radius * Math.sin(angle);
+      const r = radiusForIndex(i);
+      node.x = cx + r * Math.cos(angle);
+      node.y = cy + r * Math.sin(angle);
+      node.__angle = angle;
+      node.__r = r;
     });
 
     zoomBehavior = d3.zoom()
@@ -130,9 +153,20 @@
     }
     links.push({ source: orderedNodes[n - 1], target: orderedNodes[0], wrap: true });
 
+    // Dönüş yayının kontrol noktası: halkanın merkezine değil, DIŞINA
+    // taşıyoruz -- son hâlden ilk hâle "çöken" değil, etrafından dolanıp
+    // bir üst turdan bağlanan bir eğri. Bow yarıçapı en dış düğümden bile
+    // büyük olduğu için yay, halkanın tamamının dışından geçiyor.
+    const wrapMidAngle = -Math.PI / 2 + ((n - 0.5) / n) * Math.PI * 2;
+    const wrapBowRadius = radiusForIndex(n - 1) * 1.34;
+    wrapCtrl = {
+      x: cx + wrapBowRadius * Math.cos(wrapMidAngle),
+      y: cy + wrapBowRadius * Math.sin(wrapMidAngle),
+    };
+
     const linkGen = (l) => {
       if (l.wrap) {
-        return `M${l.source.x},${l.source.y} Q${cx},${cy} ${l.target.x},${l.target.y}`;
+        return `M${l.source.x},${l.source.y} Q${wrapCtrl.x},${wrapCtrl.y} ${l.target.x},${l.target.y}`;
       }
       return `M${l.source.x},${l.source.y} L${l.target.x},${l.target.y}`;
     };
@@ -141,7 +175,20 @@
       .data(links, (l) => l.source.id + "->" + l.target.id)
       .join("path")
       .attr("class", (l) => "hal-link" + (l.wrap ? " hal-link--return" : ""))
+      .attr("marker-end", (l) => (l.wrap ? "url(#hal-arrow-return)" : null))
       .attr("d", linkGen);
+
+    linkGroup.selectAll("text.hal-link--return-label")
+      .data([wrapCtrl])
+      .join("text")
+      .attr("class", "hal-link--return-label")
+      .attr("x", (d) => d.x)
+      .attr("y", (d) => d.y)
+      .text(tt({
+        tr: "→ aynı hâl, bir üst turda",
+        en: "→ same state, a turn higher",
+        pt: "→ mesmo estado, um giro acima",
+      }));
 
     const nodeSel = nodeGroup.selectAll("g.hal-node")
       .data(orderedNodes, (d) => d.id)
@@ -172,6 +219,10 @@
       .attr("r", (d) => radiusFor(d))
       .attr("fill", (d) => colorFor(d));
 
+    nodeSel.append("circle")
+      .attr("class", "node-sheen")
+      .attr("r", (d) => radiusFor(d));
+
     nodeSel.append("text")
       .attr("class", "node-label")
       .attr("dy", (d) => radiusFor(d) + 13)
@@ -192,6 +243,12 @@
       y0 = Math.min(y0, d.y);
       y1 = Math.max(y1, d.y);
     });
+    if (wrapCtrl) {
+      x0 = Math.min(x0, wrapCtrl.x);
+      x1 = Math.max(x1, wrapCtrl.x);
+      y0 = Math.min(y0, wrapCtrl.y);
+      y1 = Math.max(y1, wrapCtrl.y);
+    }
     x0 -= 70; x1 += 70; y0 -= 60; y1 += 70;
     const boxW = Math.max(1, x1 - x0);
     const boxH = Math.max(1, y1 - y0);

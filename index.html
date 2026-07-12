@@ -57,6 +57,23 @@
       } catch (e) {}
     })();
   </script>
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="node-sheen" cx="34%" cy="28%" r="72%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.5"></stop>
+        <stop offset="45%" stop-color="#ffffff" stop-opacity="0.14"></stop>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+      </radialGradient>
+      <linearGradient id="ascent-gradient-hayret" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:var(--series-hal-hayret, #c9971a);stop-opacity:0.25"></stop>
+        <stop offset="100%" style="stop-color:var(--series-hal-hayret, #c9971a);stop-opacity:1"></stop>
+      </linearGradient>
+      <linearGradient id="ascent-gradient-theme" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:var(--series-theme, #6b7fd7);stop-opacity:0.25"></stop>
+        <stop offset="100%" style="stop-color:var(--series-theme, #6b7fd7);stop-opacity:1"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
   <div class="welcome-screen" id="welcome-screen" role="presentation">
     <div class="welcome-screen__stars" aria-hidden="true"></div>
     <div class="welcome-screen__glow" id="welcome-glow" aria-hidden="true"></div>
@@ -176,7 +193,7 @@
         <div class="legend__item"><span class="legend__dot legend__dot--hal-fenabeka"></span><span data-tr="Fenâ ve Bekâ" data-en="Annihilation and Subsistence" data-pt="Aniquilação e Subsistência">Fenâ / Bekâ</span></div>
         <div class="legend__item"><span class="legend__dot legend__dot--hal-tevhit"></span><span data-tr="Tevhit" data-en="Divine Unity" data-pt="Unidade Divina">Tevhit</span></div>
         <div class="legend__item"><span class="legend__dot legend__dot--hal-hayret"></span><span data-tr="Hayret" data-en="Bewilderment" data-pt="Espanto">Hayret</span></div>
-        <div class="legend__item"><span class="legend__line legend__line--return"></span><span data-tr="Hayret'ten Nefs'e dönüş: yol, döndüğü yere geri döner" data-en="Return from Bewilderment to the Soul: the path returns to where it began" data-pt="Retorno do Espanto à Alma: o caminho retorna a onde começou">Dönüş</span></div>
+        <div class="legend__item"><span class="legend__line legend__line--return"></span><span data-tr="Hayret'ten Nefs'e dönüş: aynı nokta değil, bir üst turda aynı hâl — daire değil, yükselen bir spiral" data-en="Return from Bewilderment to the Soul: not the same point, but the same state on a higher turn — a rising spiral, not a closed circle" data-pt="Retorno do Espanto à Alma: não o mesmo ponto, mas o mesmo estado num giro mais alto — uma espiral ascendente, não um círculo fechado">Dönüş</span></div>
       </div>
     </section>
 
