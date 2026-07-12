@@ -4,7 +4,7 @@
     "cilt": 1,
     "totalKisim": 10
   },
-  "activePartId": "c1k3",
+  "activePartId": "c1k4",
   "parts": [
     {
       "id": "c1k3",
@@ -672,6 +672,196 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Seçkinlerin Teorik Düşünce ve Keşif Arasındaki İnançları' faslı, s. 104-125.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'the Elite's Beliefs Between Reflection and Unveiling,' pp. 104-125.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'As Crenças da Elite Entre a Reflexão e o Desvelamento,' pp. 104-125."
+        }
+      ]
+    },
+    {
+      "id": "c1k4",
+      "cilt": 1,
+      "kisim": 4,
+      "status": "active",
+      "title": {
+        "tr": "Ruhun Yaratılışından Alınan Sırlar",
+        "en": "Secrets Drawn from the Spirit's Creation",
+        "pt": "Segredos Extraídos da Criação do Espírito"
+      },
+      "pageRange": "125–131",
+      "hero": {
+        "summary": {
+          "tr": "Kısım IV, Dost'un Kâbe'yi tavaf ederken yaşadığını aktardığı görsel bir sahneyle açılıyor: tavafta karşılaştığı esrarengiz bir 'genç' ile kurduğu, kitabın kendisinin kaynağı olduğunu söylediği bir konuşma. Şimdilik bu açılışın ilk iki durağını okuyoruz; kısmın geri kalanını okumaya devam ediyoruz.",
+          "en": "Part IV opens with a vivid scene Dost relays from his own circumambulation of the Kaaba: a conversation with a mysterious 'youth' he meets during the rite — a conversation that is itself, he tells us, the source of the book. For now we read the first two stops of this opening; we continue reading the rest of the part.",
+          "pt": "A Parte IV abre com uma cena vívida que Dost relata de sua própria circum-ambulação da Caaba: uma conversa com um 'jovem' misterioso que encontra durante o rito — uma conversa que é, ele nos diz, a própria fonte do livro. Por ora lemos as duas primeiras paradas desta abertura; continuamos lendo o restante da parte."
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Dost bu kısmın açılışında, tavaf sırasında gördüğü bir 'genç'le konuşmasını aktarırken, dairesel bir imge kullanır: pergelin ayağı, çizdiği dairenin sonuna vardığında, yine başladığı noktaya döner.",
+          "en": "As Dost relays his conversation with a 'youth' seen during the circumambulation, he reaches for a circular image: the compass's leg, on reaching the end of the circle it draws, returns to the very point it began from.",
+          "pt": "Ao relatar sua conversa com um 'jovem' visto durante a circum-ambulação, Dost recorre a uma imagem circular: a perna do compasso, ao alcançar o fim do círculo que traça, retorna ao mesmo ponto de onde partiu."
+        },
+        "tree": {
+          "id": "dairenin-sirri-tree",
+          "label": { "tr": "Dairenin Sırrı", "en": "The Circle's Secret", "pt": "O Segredo do Círculo" },
+          "note": {
+            "tr": "Pergelin ayağı, varlığının sonuna ulaştığında başlangıç noktasına döner.",
+            "en": "The compass's leg, on reaching the end of its being, returns to the starting point.",
+            "pt": "A perna do compasso, ao alcançar o fim de seu ser, retorna ao ponto de partida."
+          },
+          "children": [
+            {
+              "id": "baslangic",
+              "label": { "tr": "Başlangıç", "en": "The Beginning", "pt": "O Começo" },
+              "note": {
+                "tr": "pergelin ayağının çıktığı nokta",
+                "en": "the point the compass's leg sets out from",
+                "pt": "o ponto de onde a perna do compasso parte"
+              }
+            },
+            {
+              "id": "son",
+              "label": { "tr": "Son", "en": "The End", "pt": "O Fim" },
+              "note": {
+                "tr": "işin sonu, başına bağlanır",
+                "en": "the end of the matter binds back to its start",
+                "pt": "o fim do assunto se liga ao seu início"
+              }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "tavafta-genc",
+          "heading": {
+            "tr": "Tavafta Bir Genç ile Karşılaşma",
+            "en": "An Encounter with a Youth During the Circumambulation",
+            "pt": "Um Encontro com um Jovem Durante a Circum-ambulação"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dördüncü Kısım, Dost'un Kâbe'yi tavaf ederken yaşadığını aktardığı görsel bir sahneyle açılıyor. Tavaf ederken 'geçkin-genç, susan-konuşan' birisiyle karşılaşır — 'ne ölü ne diri, ne bileşik ne yalın, ne kuşatan ne kuşatılan' biri. Dost, Kâbe'yi tavaf eden bu gencin, aslında dirinin ölüyü tavaf etmesi gibi olduğunu fark eder. Bunun tam olarak kim ya da ne olduğunu biz de bilemiyoruz — metin bunu açıkça söylemiyor; burada sadece gördüğü sahneyi aktarıyoruz."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IV — Birinci Bâb açılışı, s. 125-127.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part IV — the opening of the First Chapter, pp. 125-127.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IV — a abertura do Primeiro Capítulo, pp. 125-127."
+              },
+              "tree": {
+                "id": "genc-tree",
+                "label": { "tr": "Genç", "en": "The Youth", "pt": "O Jovem" },
+                "note": {
+                  "tr": "geçkin-genç, susan-konuşan",
+                  "en": "aged-yet-young, silent-yet-speaking",
+                  "pt": "envelhecido-porém-jovem, silencioso-porém-falante"
+                },
+                "children": [
+                  {
+                    "id": "ne-olu-ne-diri",
+                    "label": { "tr": "Ne ölü ne diri", "en": "Neither dead nor alive", "pt": "Nem morto nem vivo" }
+                  },
+                  {
+                    "id": "ne-bilesik-ne-yalin",
+                    "label": { "tr": "Ne bileşik ne yalın", "en": "Neither composite nor simple", "pt": "Nem composto nem simples" }
+                  },
+                  {
+                    "id": "ne-kusatan-ne-kusatilan",
+                    "label": { "tr": "Ne kuşatan ne kuşatılan", "en": "Neither container nor contained", "pt": "Nem continente nem conteúdo" }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Genç, Dost'a yalnız 'remiz' (işaret/şifre) diliyle konuşacağını söylüyor — sözü, en belâgatli insanların sözünden bile daha derin bir açıklığa sahipmiş. Dost ondan, kitabına yazacağı şeyleri 'yaratılışının ayrıntısından' almasını istiyor; genç de karşılığında, tavaf sırasında Dost'a gösterilen, 'herkesin görmediği sırları' kendisine bildirmesini istiyor. Genç kendini şöyle tanımlıyor: 'Ben, ne konuşan ne konuşturanım... zâtım isimlerimden başka değil.' Bu karşılıklı öğrenme ilişkisini Dost 'gören ve görülen' diye adlandırıyor — ikisi de birbirinin hem öznesi hem nesnesi gibi görünüyor."
+              }
+            }
+          ]
+        },
+        {
+          "id": "dairenin-sirri",
+          "heading": {
+            "tr": "Dairenin Sırrı: Başlangıç Sona Bağlanır",
+            "en": "The Circle's Secret: The End Connects to the Beginning",
+            "pt": "O Segredo do Círculo: O Fim se Liga ao Começo"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu karşılıklı öğrenme sahnesinin ortasında Dost, sitenin de kalbinde duran bir imgeyi doğrudan dile getiriyor: 'Dâireyi çizerken pergelin ayağı, varlığının sonuna ulaştığında başlangıç noktasına döner; işin sonu başına bağlanır ve ebedi ezeline yönelir.' Bunu, kendi varlığının nedenini Hak'ta bulmasının bir açıklaması olarak sunuyor — Hak, kendi hakikatinin gerektirdiği şeyi ona yerleştirmemiş olsaydı, O'nu bilmeye bir yöneliş kendinde bulamazdı; 'böylelikle işin sonunda kendime dönüyorum' diyor."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IV — Birinci Bâb, s. 129-130.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part IV — the First Chapter, pp. 129-130.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IV — o Primeiro Capítulo, pp. 129-130."
+              },
+              "useMainDiagram": true
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost hemen ardından iki farklı bakış açısını karşılaştırıyor. 'Kuzeyden' bakan sâlik bir yolculuğa çıkar, isimlerin içeriklerine bakar, yükseliş basamakları arar — sanki varılacak en yüce yer oymuş gibi. Ama 'yetkin yaratılış üzerindeki fıtrat', daha ilk konumunda, yüzüyle zaten 'dairenin noktasına' dönüktür; onun için ayrı bir yolculuğa gerek yoktur. Dost bu ikisini birbirine üstün ya da eksik saymıyor gibi görünüyor — sadece iki farklı bakış yönü olarak sunuyor; ama bu satırları tam olarak nasıl anlamamız gerektiği, hangi hâlin bize daha yakın olduğu, bizim için hâlâ açık bir soru."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IV — Birinci Bâb, s. 130.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part IV — the First Chapter, p. 130.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IV — o Primeiro Capítulo, p. 130."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Kuzeyden Bakan", "en": "One Who Looks from the North", "pt": "Quem Olha do Norte" },
+                  "note": {
+                    "tr": "yolculuğa çıkar",
+                    "en": "sets out on a journey",
+                    "pt": "parte em jornada"
+                  }
+                },
+                "right": {
+                  "label": { "tr": "Yetkin Fıtrat", "en": "The Perfected Disposition", "pt": "A Disposição Aperfeiçoada" },
+                  "note": {
+                    "tr": "baştan dönüktür",
+                    "en": "faces it from the start",
+                    "pt": "já voltada desde o início"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost, bu iki bakışı sıralarken hangisinin 'daha doğru' olduğunu açıkça söylemiyor — bunu metnin kendi temkinli bıraktığı bir nokta olarak okuyoruz.",
+                "en": "In laying out these two views, Dost does not say outright which is 'more correct' — we read this as a point the text itself leaves deliberately open.",
+                "pt": "Ao expor essas duas visões, Dost não diz abertamente qual é 'mais correta' — lemos isso como um ponto que o próprio texto deixa deliberadamente em aberto."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bâb, 'İlâhi Biatı Müşahede Eden' başlığı altında sürüyor — Dost'un Hak ile kurduğu bir 'ahit' sahnesini ve kıyamet gününde insanların Hakk'ı alışık olmadıkları bir surette görüp önce O'ndan 'sığınıp' sonra tanıdıkları surete dönmelerini anlatan bir bölüm; bu, sitenin Tecellî düğümünde zaten işlediğimiz 'Allah aynı surette iki kere tecelli etmez' ilkesiyle akraba bir sahne. Kısım IV'ün geri kalanını okumaya devam ediyoruz."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IV — Birinci Bâb açılışı, s. 125-127.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part IV — the opening of the First Chapter, pp. 125-127.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IV — a abertura do Primeiro Capítulo, pp. 125-127."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IV — Birinci Bâb, s. 128-131.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part IV — the First Chapter, pp. 128-131.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IV — o Primeiro Capítulo, pp. 128-131."
         }
       ]
     }
