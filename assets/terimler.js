@@ -17,6 +17,27 @@
     return I18n.pick3(dict);
   }
 
+  function truncate(str, max) {
+    if (!str) return "";
+    if (str.length <= max) return str;
+    const cut = str.slice(0, max);
+    return cut.slice(0, cut.lastIndexOf(" ")) + "…";
+  }
+
+  function registerTerimlerCrossLinks(data) {
+    if (!window.__dostCrossLink || !window.__dostCrossLink.register) return;
+    Object.values(data.terms).forEach((t) => {
+      const def = t.felsefi_tanim || {};
+      const summary = {
+        tr: truncate(def.tr, 160),
+        en: truncate(def.en, 160),
+        pt: truncate(def.pt, 160),
+      };
+      window.__dostCrossLink.register(t.title, "terimler", t.id, summary);
+    });
+    if (window.__dostCrossLink.notifyReady) window.__dostCrossLink.notifyReady();
+  }
+
   function fetchData() {
     if (glossaryData) return Promise.resolve(glossaryData);
     if (fetchPromise) return fetchPromise;
@@ -25,6 +46,7 @@
       .then((r) => r.json())
       .then((data) => {
         glossaryData = data;
+        registerTerimlerCrossLinks(data);
         if (window.DostViewStatus) window.DostViewStatus.hide("terimler-wrap");
         return data;
       })
@@ -36,6 +58,12 @@
       });
     return fetchPromise;
   }
+
+  // Diğer görünümlerdeki metinler (örn. Fütûhât Atlası) terimlere bağlantı
+  // verebilsin diye, kullanıcı Terimler sekmesini hiç açmasa da veriyi
+  // erkenden (ana iş parçacığı boştayken) çekip kaydediyoruz.
+  const deferFetch = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
+  deferFetch(() => { fetchData(); });
 
   function groupById(id) {
     return glossaryData.groups.find((g) => g.id === id);

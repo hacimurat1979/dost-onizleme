@@ -17,6 +17,10 @@
     return I18n.pick3(dict);
   }
 
+  function linkify(text) {
+    return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text;
+  }
+
   // --- Popup (used by the "in this part" stats panel) ---
   function openPopup(title, items, renderRow, onItemClick) {
     if (!popupEl) return;
@@ -285,9 +289,14 @@
 
   function showTip(d, event) {
     if (!tooltip || !d.data.note) return;
-    tooltip.innerHTML = `<div class="node-hover-tip__title">${tt(d.data.label)}</div><p>${tt(d.data.note)}</p>`;
-    tooltip.hidden = false;
+    showTipHTML(`<div class="node-hover-tip__title">${tt(d.data.label)}</div><p>${tt(d.data.note)}</p>`);
     moveTip(event);
+  }
+
+  function showTipHTML(html) {
+    if (!tooltip) return;
+    tooltip.innerHTML = html;
+    tooltip.hidden = false;
   }
 
   function moveTip(event) {
@@ -301,8 +310,58 @@
     tooltip.style.top = y + "px";
   }
 
+  function positionTipAtElement(el) {
+    if (!tooltip || !wrapEl) return;
+    const wrapRect = wrapEl.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    let x = elRect.left + elRect.width / 2 - wrapRect.left;
+    let y = elRect.top - wrapRect.top;
+    x = Math.max(90, Math.min(wrapRect.width - 90, x));
+    y = Math.max(40, y);
+    tooltip.style.left = x + "px";
+    tooltip.style.top = y + "px";
+  }
+
   function hideTip() {
     if (tooltip) tooltip.hidden = true;
+  }
+
+  // --- Wikipedia-style hover preview for cross-links inside article prose ---
+  function showCrossLinkPreview(anchorEl, event) {
+    const view = anchorEl.dataset.view;
+    const id = anchorEl.dataset.id;
+    const summary = window.__dostCrossLink && window.__dostCrossLink.getSummary
+      ? window.__dostCrossLink.getSummary(view, id)
+      : null;
+    if (!summary) return;
+    showTipHTML(`<div class="node-hover-tip__title">${anchorEl.textContent}</div><p>${summary}</p>`);
+    if (event && typeof event.clientX === "number") moveTip(event);
+    else positionTipAtElement(anchorEl);
+  }
+
+  function setupCrossLinkPreviews() {
+    if (!articleEl) return;
+    articleEl.addEventListener("mouseover", (event) => {
+      const a = event.target.closest(".cross-link");
+      if (a) showCrossLinkPreview(a, event);
+    });
+    articleEl.addEventListener("mousemove", (event) => {
+      const a = event.target.closest(".cross-link");
+      if (a && tooltip && !tooltip.hidden) moveTip(event);
+    });
+    articleEl.addEventListener("mouseout", (event) => {
+      if (event.target.closest(".cross-link")) hideTip();
+    });
+    articleEl.addEventListener("focusin", (event) => {
+      const a = event.target.closest(".cross-link");
+      if (a) showCrossLinkPreview(a, event);
+    });
+    articleEl.addEventListener("focusout", (event) => {
+      if (event.target.closest(".cross-link")) hideTip();
+    });
+    articleEl.addEventListener("mousedown", (event) => {
+      if (event.target.closest(".cross-link")) hideTip();
+    });
   }
 
   // --- Triad diagram (three-point comparison, e.g. Teorik / Hâl / Sır) ---
@@ -499,14 +558,24 @@
   function renderPart(part) {
     articleEl.innerHTML = `
       <header class="futuhat-hero">
+        <div class="futuhat-toolbar">
+          <button class="futuhat-toolbar__btn" id="futuhat-font-decrease" type="button" title="Yazı boyutunu küçült / Decrease font size / Diminuir tamanho da fonte" aria-label="A-">A−</button>
+          <button class="futuhat-toolbar__btn" id="futuhat-font-increase" type="button" title="Yazı boyutunu büyült / Increase font size / Aumentar tamanho da fonte" aria-label="A+">A+</button>
+          <button class="futuhat-toolbar__btn futuhat-toolbar__btn--icon" id="futuhat-print" type="button" title="Yazdır / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="6" y="3" width="12" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="9" width="16" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </button>
+          <button class="futuhat-toolbar__btn futuhat-toolbar__btn--icon" id="futuhat-share" type="button" title="Paylaş / Share / Compartilhar" aria-label="Paylaş / Share / Compartilhar">
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="6" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="5.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="10.8" x2="15.7" y2="6.7" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="13.2" x2="15.7" y2="17.3" stroke="currentColor" stroke-width="1.6"/></svg>
+          </button>
+        </div>
         <p class="futuhat-hero__eyebrow">${tt({ tr: "Fütûhât-ı Mekkiyye", en: "al-Futuhat al-Makkiyya", pt: "al-Futuhat al-Makkiyya" })} · ${tt({ tr: "Cilt I", en: "Volume I", pt: "Volume I" })} · ${tt({ tr: "Kısım " + roman(part.kisim), en: "Part " + roman(part.kisim), pt: "Parte " + roman(part.kisim) })}</p>
         <h1 class="futuhat-hero__title">${tt(part.title)}</h1>
-        <p class="futuhat-hero__summary">${tt(part.hero.summary)}</p>
+        <p class="futuhat-hero__summary">${linkify(tt(part.hero.summary))}</p>
       </header>
 
       <section class="futuhat-maindiagram" data-diagram-id="main">
         <div class="futuhat-tree" id="futuhat-main-tree"></div>
-        <p class="futuhat-diagram-source">${tt(part.mainDiagram.caption)}</p>
+        <p class="futuhat-diagram-source">${linkify(tt(part.mainDiagram.caption))}</p>
       </section>
 
       <div class="futuhat-sections" id="futuhat-sections"></div>
@@ -532,7 +601,7 @@
         if (block.type === "p") {
           const p = document.createElement("p");
           p.className = "futuhat-section__p";
-          p.innerHTML = tt(block.text);
+          p.innerHTML = linkify(tt(block.text));
           secEl.appendChild(p);
         } else if (block.type === "diagram") {
           const dCard = document.createElement("div");
@@ -544,7 +613,7 @@
           if (block.caption) {
             const capP = document.createElement("p");
             capP.className = "futuhat-inline-diagram__caption";
-            capP.textContent = tt(block.caption);
+            capP.innerHTML = linkify(tt(block.caption));
             dCard.appendChild(capP);
           }
           const srcP = document.createElement("p");
@@ -568,6 +637,69 @@
     });
 
     renderStats(part);
+    setupToolbar(part);
+  }
+
+  // --- Toolbar: font size, print, share ---
+  function applyFontScale(scale) {
+    document.documentElement.style.setProperty("--detail-font-scale", scale);
+  }
+
+  function setupToolbar(part) {
+    const dec = document.getElementById("futuhat-font-decrease");
+    const inc = document.getElementById("futuhat-font-increase");
+    const printBtn = document.getElementById("futuhat-print");
+    const shareBtn = document.getElementById("futuhat-share");
+
+    let fontScale = parseFloat(localStorage.getItem("dost-font-scale")) || 1;
+    applyFontScale(fontScale);
+
+    if (dec) {
+      dec.addEventListener("click", () => {
+        fontScale = Math.max(0.8, Math.round((fontScale - 0.2) * 100) / 100);
+        applyFontScale(fontScale);
+        try { localStorage.setItem("dost-font-scale", fontScale); } catch (e) {}
+      });
+    }
+    if (inc) {
+      inc.addEventListener("click", () => {
+        fontScale = Math.min(1.8, Math.round((fontScale + 0.2) * 100) / 100);
+        applyFontScale(fontScale);
+        try { localStorage.setItem("dost-font-scale", fontScale); } catch (e) {}
+      });
+    }
+    if (printBtn) {
+      printBtn.addEventListener("click", () => window.print());
+    }
+    if (shareBtn) {
+      shareBtn.addEventListener("click", () => sharePart(part));
+    }
+  }
+
+  function sharePart(part) {
+    const url = location.origin + location.pathname + "#/futuhat/" + part.id;
+    const title = tt({ tr: "Dost Arabî", en: "Dost Arabi", pt: "Dost Arabi" }) + " — " + tt(part.title);
+    if (navigator.share) {
+      navigator.share({ title, url }).catch(() => {});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => showToast(
+        tt({ tr: "Bağlantı kopyalandı", en: "Link copied", pt: "Link copiado" })
+      ));
+    }
+  }
+
+  function showToast(message) {
+    const toast = document.createElement("div");
+    toast.className = "futuhat-toast";
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add("futuhat-toast--visible"));
+    setTimeout(() => {
+      toast.classList.remove("futuhat-toast--visible");
+      setTimeout(() => toast.remove(), 300);
+    }, 1800);
   }
 
   function activatePart(id) {
@@ -580,6 +712,7 @@
       });
     }
     renderPart(part);
+    if (window.__dostNav) window.__dostNav.setHash("futuhat", id);
   }
 
   function render() {
@@ -593,10 +726,23 @@
     activatePart(activePartId);
   }
 
+  setupCrossLinkPreviews();
+
+  let subscribedToCrossLinkReady = false;
+
   window.__futuhatApp = {
-    activate() {
+    activate(id) {
+      if (!subscribedToCrossLinkReady && window.__dostCrossLink && window.__dostCrossLink.onReady) {
+        subscribedToCrossLinkReady = true;
+        // Ontoloji/Esmâ/Hâl/Terimler each register their cross-linkable
+        // terms as their own data arrives, which can be after our first
+        // render; re-render once more terms are available so links appear
+        // without the reader needing to do anything.
+        window.__dostCrossLink.onReady(() => { if (futuhatData) render(); });
+      }
       fetchData().then((data) => {
         if (!data) return;
+        if (id && data.parts.some((p) => p.id === id)) activePartId = id;
         render();
       });
     },

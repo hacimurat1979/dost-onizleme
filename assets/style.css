@@ -788,10 +788,74 @@ button.futuhat-part-chip:hover {
 }
 
 .futuhat-hero {
+  position: relative;
   text-align: center;
   margin: 0 0 30px;
   padding-bottom: 26px;
   border-bottom: 1px solid var(--border);
+}
+
+.futuhat-toolbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 6px;
+}
+
+.futuhat-toolbar__btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.futuhat-toolbar__btn:hover,
+.futuhat-toolbar__btn:focus-visible {
+  color: var(--series-theme);
+  border-color: var(--series-theme);
+}
+
+.futuhat-toolbar__btn--icon {
+  font-size: 0;
+}
+
+.futuhat-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translate(-50%, 12px);
+  background: var(--text-primary);
+  color: var(--surface-1);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 70;
+  pointer-events: none;
+}
+
+.futuhat-toast--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 560px) {
+  .futuhat-toolbar {
+    position: static;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
 }
 
 .futuhat-hero__eyebrow {
@@ -814,8 +878,8 @@ button.futuhat-part-chip:hover {
   color: var(--text-secondary);
   max-width: 620px;
   margin: 0 auto;
-  line-height: 1.65;
-  font-size: 1.02rem;
+  line-height: calc(1.65 * var(--detail-font-scale, 1));
+  font-size: calc(1.02rem * var(--detail-font-scale, 1));
 }
 
 .futuhat-maindiagram {
@@ -908,7 +972,8 @@ button.futuhat-part-chip:hover {
 }
 
 .futuhat-section__p {
-  line-height: 1.75;
+  line-height: calc(1.75 * var(--detail-font-scale, 1));
+  font-size: calc(1rem * var(--detail-font-scale, 1));
   color: var(--text-primary);
   margin: 0 0 20px;
 }
@@ -923,8 +988,8 @@ button.futuhat-part-chip:hover {
 
 .futuhat-inline-diagram__caption {
   color: var(--text-secondary);
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: calc(0.88rem * var(--detail-font-scale, 1));
+  line-height: calc(1.6 * var(--detail-font-scale, 1));
   margin: 10px 4px 2px;
 }
 
@@ -3889,7 +3954,7 @@ html[data-contrast="high"] .detail-title {
 .node-hover-tip {
   position: absolute;
   z-index: 30;
-  max-width: 240px;
+  max-width: 280px;
   padding: 10px 14px;
   background: var(--surface-1);
   border: 1px solid var(--border);
@@ -4295,7 +4360,14 @@ body.cizim-lightbox-open {
   .detail-breadcrumb,
   .app-footer,
   .detail-resonance,
-  .cizim-lightbox {
+  .cizim-lightbox,
+  .futuhat-parts,
+  .futuhat-toolbar,
+  .futuhat-stats,
+  .futuhat-intro,
+  .node-hover-tip,
+  .futuhat-popup,
+  .futuhat-toast {
     display: none !important;
   }
   html, body {
@@ -4330,5 +4402,17 @@ body.cizim-lightbox-open {
   }
   details.insight {
     break-inside: avoid;
+  }
+  .futuhat-shell {
+    display: block;
+  }
+  .futuhat-wrap {
+    max-width: 100%;
+  }
+  .futuhat-hero {
+    color: #000;
+  }
+  .futuhat-section__p, .futuhat-inline-diagram__caption, .futuhat-hero__summary {
+    color: #000;
   }
 }

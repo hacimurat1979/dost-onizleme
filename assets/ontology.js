@@ -454,9 +454,9 @@
     window.__sorularApp && window.__sorularApp.goToNode(id);
   }
 
-  function goToFutuhat() {
+  function goToFutuhat(id) {
     setMainView("futuhat");
-    window.__futuhatApp && window.__futuhatApp.activate();
+    window.__futuhatApp && window.__futuhatApp.activate(id);
   }
 
   function parseHashAndGo() {
@@ -470,7 +470,7 @@
     else if (view === "terimler") goToTerimler(id);
     else if (view === "cizimler") goToCizimler();
     else if (view === "sorular") goToSorular(id);
-    else if (view === "futuhat") goToFutuhat();
+    else if (view === "futuhat") goToFutuhat(id);
   }
 
   window.addEventListener("hashchange", parseHashAndGo);
@@ -484,7 +484,7 @@
       else if (view === "terimler") goToTerimler(id);
       else if (view === "cizimler") goToCizimler();
       else if (view === "sorular") goToSorular(id);
-      else if (view === "futuhat") goToFutuhat();
+      else if (view === "futuhat") goToFutuhat(id);
       updateHash(view, id);
     },
     setHash: updateHash,
@@ -650,37 +650,71 @@
 
   function registerOntologyCrossLinks(data) {
     data.nodes.forEach((n) => {
-      registerCrossLinkTerm(n.name, "ontoloji", n.id);
+      registerCrossLinkTerm(n.name, "ontoloji", n.id, n.short);
     });
+    notifyCrossLinkReady();
   }
 
   function registerEsmaCrossLinks(data) {
     data.nodes.forEach((n) => {
-      registerCrossLinkTerm(n.name, "esma", n.id);
+      registerCrossLinkTerm(n.name, "esma", n.id, n.short);
     });
+    notifyCrossLinkReady();
   }
 
   function registerHalCrossLinks(data) {
     data.nodes.forEach((n) => {
-      registerCrossLinkTerm(n.name, "hal", n.id);
+      registerCrossLinkTerm(n.name, "hal", n.id, n.short);
     });
+    notifyCrossLinkReady();
   }
 
   // --- Cross-linking between insights ---
   const crossLinkTermsByLang = { tr: [], en: [], pt: [] };
+  const crossLinkSummaries = new Map();
+  const crossLinkListeners = [];
+
+  function onCrossLinkReady(fn) {
+    crossLinkListeners.push(fn);
+  }
+
+  // Registration happens across several independently-loading datasets
+  // (ontoloji/esma/hal here, terimler in its own module); consumers like
+  // the Fütûhât Atlas may render before all of them have arrived, so we
+  // let them subscribe and re-linkify once more terms become available.
+  function notifyCrossLinkReady() {
+    crossLinkListeners.slice().forEach((fn) => {
+      try { fn(); } catch (e) {}
+    });
+  }
 
   function escapeRegExp(s) {
     return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 
-  function registerCrossLinkTerm(nameDict, view, id) {
+  function registerCrossLinkTerm(nameDict, view, id, summaryDict) {
     if (!nameDict) return;
     ["tr", "en", "pt"].forEach((lang) => {
       const term = nameDict[lang];
-      if (term && term.length >= 4) {
-        crossLinkTermsByLang[lang].push({ term, view, id });
-      }
+      if (!term) return;
+      const variants = new Set();
+      if (term.length >= 4) variants.add(term);
+      // Many titles carry a parenthetical gloss ("Vâcib (Vâcibü'l-Vücûd)")
+      // or an Arabic article prefix ("el-Kâdir", "es-Semî'"); register the
+      // bare form too so ordinary running prose ("Vâcib", "Kâdir") can
+      // still resolve to the same concept.
+      const noParen = term.replace(/\s*\(.*\)\s*$/, "").trim();
+      if (noParen.length >= 4) variants.add(noParen);
+      const noPrefix = noParen.replace(/^(el|er|es)-/i, "").trim();
+      if (noPrefix.length >= 4) variants.add(noPrefix);
+      variants.forEach((v) => crossLinkTermsByLang[lang].push({ term: v, view, id }));
     });
+    if (summaryDict) crossLinkSummaries.set(view + ":" + id, summaryDict);
+  }
+
+  function getCrossLinkSummary(view, id) {
+    const dict = crossLinkSummaries.get(view + ":" + id);
+    return dict ? I18n.pick3(dict) : null;
   }
 
   function linkify(text, excludeView, excludeId) {
@@ -702,7 +736,13 @@
     });
   }
 
-  window.__dostCrossLink = { linkify };
+  window.__dostCrossLink = {
+    linkify,
+    register: registerCrossLinkTerm,
+    getSummary: getCrossLinkSummary,
+    onReady: onCrossLinkReady,
+    notifyReady: notifyCrossLinkReady,
+  };
 
   const SIRLAR_THEME_LABELS = {
     "suskunluk": { tr: "Suskunluk ve Perdeleme", en: "Silence and Veiling", pt: "Silêncio e Velamento" },
