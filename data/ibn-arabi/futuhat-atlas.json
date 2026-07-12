@@ -190,6 +190,191 @@
               }
             }
           ]
+        },
+        {
+          "id": "allaha-giden-yol",
+          "heading": {
+            "tr": "Allah'a Giden Yol: Dört Şube",
+            "en": "The Path to God: Four Branches",
+            "pt": "O Caminho para Deus: Quatro Ramos"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bu kısımda okuyucusuna bambaşka bir konu açıyor: 'kurtuluşlarını isteyen mü'minlerin seçkinleri'nin izlediği yolu en özlü haliyle tarif etmek. Bu yolu dört şubeye ayırıyor — dürtüler, çağrılar, ahlâk ve hakikatler — ve bu dördünü harekete geçiren şeyin, kul üzerine farz kılınmış üç hak olduğunu söylüyor: Allah'ın hakkı (yalnız O'na, hiçbir şeyi ortak koşmadan ibadet etmek), nefsin hakkı (nefsi kurtuluş yolundan başka bir yola asla sevk etmemek) ve yaratıkların hakkı (imkân ölçüsünde onlara iyi davranmak, şeriatın gerektirmediği hiçbir eziyeti reva görmemek)."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Hak Ehlinin Hakka Gidiş Yöntemleri' faslı, s. 79-81.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'the Methods of the People of the Real toward the Real,' pp. 79-81.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'os Métodos do Povo do Real rumo ao Real,' pp. 79-81."
+              },
+              "tree": {
+                "id": "allaha-giden-yol-tree",
+                "label": { "tr": "Allah'a Giden Yol", "en": "The Path to God", "pt": "O Caminho para Deus" },
+                "note": {
+                  "tr": "Üç hakkın (Allah'ın, nefsin, yaratıkların hakkının) harekete geçirdiği dört şube.",
+                  "en": "Four branches set in motion by the three rights (of God, of the self, of creatures).",
+                  "pt": "Quatro ramos postos em movimento pelos três direitos (de Deus, do eu, das criaturas)."
+                },
+                "children": [
+                  {
+                    "id": "durtuler",
+                    "label": { "tr": "Dürtüler", "en": "Impulses", "pt": "Impulsos" },
+                    "note": {
+                      "tr": "Tek bir sebepten doğan ilk düşünce — 'nakru'l-hatır' denir.",
+                      "en": "The first thought arising from a single cause — called 'nakr al-khatir.'",
+                      "pt": "O primeiro pensamento surgido de uma única causa — chamado 'nakr al-khatir.'"
+                    }
+                  },
+                  {
+                    "id": "cagrilar",
+                    "label": { "tr": "Çağrılar", "en": "Calls", "pt": "Chamados" },
+                    "note": {
+                      "tr": "Beş türü var: ilk düşünce, irade, azim, himmet, niyet.",
+                      "en": "Five kinds: first thought, will, resolve, aspiration, intention.",
+                      "pt": "Cinco tipos: primeiro pensamento, vontade, resolução, aspiração, intenção."
+                    }
+                  },
+                  {
+                    "id": "ahlak",
+                    "label": { "tr": "Ahlâk", "en": "Character", "pt": "Caráter" },
+                    "note": {
+                      "tr": "Geçişli, geçişli olmayan ve ortak olmak üzere üçe ayrılır.",
+                      "en": "Divides into three: transitive, intransitive, and shared.",
+                      "pt": "Divide-se em três: transitivo, intransitivo e compartilhado."
+                    }
+                  },
+                  {
+                    "id": "hakikatler",
+                    "label": { "tr": "Hakikatler", "en": "Realities", "pt": "Realidades" },
+                    "note": {
+                      "tr": "Zâta, sıfata, fiile ve mef'ûle dönen olmak üzere dörde ayrılır.",
+                      "en": "Divides into four: pertaining to Essence, Attributes, Acts, and Objects-of-act.",
+                      "pt": "Divide-se em quatro: referentes à Essência, aos Atributos, aos Atos e aos Objetos-do-ato."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bu dört şubeden özellikle 'hakikatler'i enine boyuna açıyor — belki de İbn Arabî'nin bütün varlık felsefesinin çekirdeğini burada, bu kısa fasılda, dört maddede özetlediğini söylemek abartı olmaz. Zâtî hakikatler, hiçbir şeye benzetilemeyen, nitelenemeyen, dile getirilip işaretle gösterilemeyen bir müşahede mahallidir. Sıfâtî hakikatler, Hakk'ın 'bilen, kadir, irade eden, diri' gibi -birbirinden farklı, benzer ya da karşıt- isim ve sıfatlar taşıdığını öğrendiğin her şeydir. Fiilî hakikatler, 'Kün' (Ol!) emrinin anlamını ve kudretin kendisine yöneldiği şeye nasıl 'iliştiğini' öğrendiğin müşahede mertebesidir. Mef'ûllere dönen — yani kevnî (oluşla ilgili) — hakikatler ise varlığa çıkmış şeylerin ve olguların kendisidir; bunlar da üç mertebeye ayrılır: akılla kavranan (ulvî), duyularla algılanan (süflî) ve ikisi arasında, tahayyül edilen (berzah)."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Hak Ehlinin Hakka Gidiş Yöntemleri' faslı, s. 81-82.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'the Methods of the People of the Real toward the Real,' pp. 81-82.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'os Métodos do Povo do Real rumo ao Real,' pp. 81-82."
+              },
+              "tree": {
+                "id": "hakikatler-tree",
+                "label": { "tr": "Hakikatler", "en": "Realities", "pt": "Realidades" },
+                "children": [
+                  {
+                    "id": "zati-hakikatler",
+                    "label": { "tr": "Zâtî Hakikatler", "en": "Essential Realities", "pt": "Realidades Essenciais" },
+                    "note": {
+                      "tr": "benzetilemez, nitelenemez, işaretle gösterilemez",
+                      "en": "cannot be likened, qualified, or pointed to",
+                      "pt": "não pode ser comparada, qualificada ou apontada"
+                    }
+                  },
+                  {
+                    "id": "sifati-hakikatler",
+                    "label": { "tr": "Sıfâtî Hakikatler", "en": "Attributive Realities", "pt": "Realidades Atributivas" },
+                    "note": {
+                      "tr": "Hakk'ın isim ve sıfatlarını öğrendiğin her şey",
+                      "en": "everything you learn of the Real's names and attributes",
+                      "pt": "tudo o que se aprende dos nomes e atributos do Real"
+                    }
+                  },
+                  {
+                    "id": "fiili-hakikatler",
+                    "label": { "tr": "Fiilî Hakikatler", "en": "Actional Realities", "pt": "Realidades Acionais" },
+                    "note": {
+                      "tr": "'Kün' emrinin anlamı ve kudretin ilişmesi",
+                      "en": "the meaning of 'Be!' and how power attaches",
+                      "pt": "o significado de 'Seja!' e como o poder se liga"
+                    }
+                  },
+                  {
+                    "id": "kevni-hakikatler",
+                    "label": { "tr": "Kevnî Hakikatler", "en": "Cosmic Realities", "pt": "Realidades Cósmicas" },
+                    "note": {
+                      "tr": "var olan şeyler ve olgular",
+                      "en": "existing things and events",
+                      "pt": "coisas e eventos existentes"
+                    },
+                    "children": [
+                      {
+                        "id": "ulvi",
+                        "label": { "tr": "Ulvî", "en": "Supra-sensory", "pt": "Supra-sensível" },
+                        "note": { "tr": "akılla kavranır", "en": "grasped by reason", "pt": "compreendida pela razão" }
+                      },
+                      {
+                        "id": "sufli",
+                        "label": { "tr": "Süflî", "en": "Sensory", "pt": "Sensível" },
+                        "note": { "tr": "duyularla algılanır", "en": "perceived by the senses", "pt": "percebida pelos sentidos" }
+                      },
+                      {
+                        "id": "berzah-hayal",
+                        "label": { "tr": "Berzah (Hayal)", "en": "Isthmus (Imagined)", "pt": "Istmo (Imaginado)" },
+                        "note": {
+                          "tr": "ikisi arasında, tahayyül edilir",
+                          "en": "between the two, imagined",
+                          "pt": "entre os dois, imaginado"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bütün bu saydıklarını — dürtüler, çağrılar, ahlâk, hakikatler — topluca 'hâller ve makamlar' diye adlandırıyor, ama ikisi arasında net bir çizgi çekiyor. Makam, insanın içinde 'derinleşmesi gereken ve artık ayrılmasının mümkün olmadığı' bir niteliktir — örnek olarak tövbeyi veriyor. Hâl ise insanın yalnızca bir vakit için sahip olduğu şeydir — sarhoşluk, kendinden geçme, hoşnutluk gibi; varlığı bir şarta bağlıdır, o şart kalkınca hâl de kalkar. Aynı ayrımı makamların kendi içinde de sürdürüyor: bazı makamlar dünyada ve ahirette birlikte taşınır (müşahede, celâl, cemâl, ünsiyet, heybet, bast); bazıları yalnız ölünceye kadar taşınır ve cennette 'düşer' (züht, tövbe, verâ, mücahede, riyazet); bazıları ise şartına bağlı kalıp gelip gider (sabır, şükür)."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Hak Ehlinin Hakka Gidiş Yöntemleri' faslı, s. 81-82.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'the Methods of the People of the Real toward the Real,' pp. 81-82.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'os Métodos do Povo do Real rumo ao Real,' pp. 81-82."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Makam", "en": "Station", "pt": "Estação" },
+                  "note": {
+                    "tr": "derinleşilir, ayrılmaz",
+                    "en": "grounded, unceasing",
+                    "pt": "enraizada, incessante"
+                  }
+                },
+                "right": {
+                  "label": { "tr": "Hâl", "en": "State", "pt": "Estado" },
+                  "note": {
+                    "tr": "geçicidir, şartlıdır",
+                    "en": "temporary, conditional",
+                    "pt": "temporário, condicional"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Örnek: tövbe bir makam, sarhoşluk (sekr) bir hâldir — makam kalıcıdır, hâl şartı kalkınca kalkar.",
+                "en": "Example: repentance is a station, intoxication (sukr) is a state — the station is permanent, the state vanishes once its condition vanishes.",
+                "pt": "Exemplo: o arrependimento é uma estação, a embriaguez (sukr) é um estado — a estação é permanente, o estado desaparece quando sua condição desaparece."
+              }
+            }
+          ]
         }
       ],
       "sources": [
@@ -202,6 +387,11 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Nebevi ve Teorik İlim' faslı, s. 77-79.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'Prophetic and Theoretical Science,' pp. 77-79.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'Ciência Profética e Teórica,' pp. 77-79."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Hak Ehlinin Hakka Gidiş Yöntemleri' faslı, s. 79-82.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'the Methods of the People of the Real toward the Real,' pp. 79-82.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'os Métodos do Povo do Real rumo ao Real,' pp. 79-82."
         }
       ]
     }

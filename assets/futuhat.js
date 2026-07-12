@@ -59,6 +59,13 @@
           acc.diagrams += 1;
           acc.concepts += 3;
           acc.relations += 2;
+        } else if (b.pair) {
+          acc.diagrams += 1;
+          acc.concepts += 2;
+          acc.relations += 1;
+        } else if (b.tree) {
+          acc.diagrams += 1;
+          collectTreeStats(b.tree, acc);
         } else if (!b.useMainDiagram) {
           acc.diagrams += 1;
         }
@@ -222,6 +229,47 @@
       .text((d) => tt(d.note));
   }
 
+  // --- Pair diagram (two-way comparison, e.g. Makam / Hâl) ---
+  function renderPair(mount, pair) {
+    const width = 320, height = 130, cy = 55;
+    const positions = [80, 240];
+    const items = [pair.left, pair.right];
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-triad__svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", tt(pair.left.label) + " / " + tt(pair.right.label));
+
+    svg
+      .append("line")
+      .attr("class", "futuhat-triad__axis")
+      .attr("x1", positions[0]).attr("y1", cy)
+      .attr("x2", positions[1]).attr("y2", cy);
+
+    const g = svg
+      .selectAll("g.futuhat-triad__node")
+      .data(items)
+      .join("g")
+      .attr("class", "futuhat-triad__node")
+      .attr("transform", (d, i) => `translate(${positions[i]},${cy})`);
+
+    g.append("circle").attr("r", 14);
+    g.append("circle").attr("class", "node-sheen").attr("r", 14);
+    g.append("text")
+      .attr("class", "futuhat-triad__label")
+      .attr("text-anchor", "middle")
+      .attr("y", -25)
+      .text((d) => tt(d.label));
+    g.append("text")
+      .attr("class", "futuhat-triad__note")
+      .attr("text-anchor", "middle")
+      .attr("y", 31)
+      .text((d) => tt(d.note));
+  }
+
   // --- Article rendering ---
   function renderParts() {
     if (!partsEl) return;
@@ -316,6 +364,8 @@
 
           if (block.triad) {
             renderTriad(mount, block.triad);
+          } else if (block.pair) {
+            renderPair(mount, block.pair);
           } else if (block.useMainDiagram) {
             renderRadialTree(mount, part.mainDiagram.tree, { radius: 160, ariaLabel: part.title });
           } else if (block.tree) {
