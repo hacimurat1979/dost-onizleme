@@ -999,18 +999,154 @@ button.futuhat-part-chip:hover {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  width: 100%;
+  font: inherit;
   font-size: 0.86rem;
-  padding: 7px 0;
+  color: var(--text-primary);
+  background: none;
+  border: none;
   border-top: 1px solid var(--border);
+  padding: 7px 0;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s ease;
 }
 
 .futuhat-stats__item:first-of-type {
   border-top: none;
 }
 
+.futuhat-stats__item:hover,
+.futuhat-stats__item:focus-visible {
+  color: var(--series-theme);
+}
+
 .futuhat-stats__item strong {
   font-variant-numeric: tabular-nums;
   color: var(--series-theme);
+}
+
+/* --- Fütûhât popup (opened from the stats panel) --- */
+.futuhat-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.futuhat-popup[hidden] {
+  display: none;
+}
+
+.futuhat-popup__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 9, 6, 0.5);
+}
+
+.futuhat-popup__card {
+  position: relative;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: min(480px, 100%);
+  max-height: min(72vh, 620px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.futuhat-popup__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.futuhat-popup__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.futuhat-popup__close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.futuhat-popup__close:hover {
+  color: var(--series-theme);
+}
+
+.futuhat-popup__list {
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.futuhat-popup__row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 13px 18px;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: var(--text-primary);
+}
+
+.futuhat-popup__row:last-child {
+  border-bottom: none;
+}
+
+.futuhat-popup__row:hover,
+.futuhat-popup__row:focus-visible {
+  background: color-mix(in srgb, var(--series-theme) 8%, transparent);
+}
+
+.futuhat-popup__row-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.futuhat-popup__row-note {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+@keyframes futuhat-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--series-theme) 55%, transparent); }
+  35% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--series-theme) 0%, transparent); }
+}
+
+.futuhat-pulse {
+  animation: futuhat-pulse 0.85s ease-out 2;
+  border-radius: 50%;
+}
+
+li.futuhat-pulse,
+.futuhat-maindiagram.futuhat-pulse,
+.futuhat-inline-diagram.futuhat-pulse {
+  border-radius: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .futuhat-pulse { animation: none; outline: 2px solid var(--series-theme); }
 }
 
 .sorular-readmore {

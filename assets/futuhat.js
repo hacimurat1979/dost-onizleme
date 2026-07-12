@@ -7,9 +7,64 @@
   const articleEl = document.getElementById("futuhat-article");
   const statsEl = document.getElementById("futuhat-stats");
   const tooltip = document.getElementById("futuhat-tooltip");
+  const popupEl = document.getElementById("futuhat-popup");
+  const popupBackdrop = document.getElementById("futuhat-popup-backdrop");
+  const popupClose = document.getElementById("futuhat-popup-close");
+  const popupTitleEl = document.getElementById("futuhat-popup-title");
+  const popupListEl = document.getElementById("futuhat-popup-list");
 
   function tt(dict) {
     return I18n.pick3(dict);
+  }
+
+  // --- Popup (used by the "in this part" stats panel) ---
+  function openPopup(title, items, renderRow, onItemClick) {
+    if (!popupEl) return;
+    popupTitleEl.textContent = title;
+    popupListEl.innerHTML = items.map((it, i) => renderRow(it, i)).join("");
+    popupListEl.querySelectorAll("[data-popup-idx]").forEach((el) => {
+      el.addEventListener("click", () => {
+        const idx = Number(el.dataset.popupIdx);
+        onItemClick(items[idx], idx);
+        closePopup();
+      });
+    });
+    popupEl.hidden = false;
+  }
+
+  function closePopup() {
+    if (popupEl) popupEl.hidden = true;
+  }
+
+  if (popupBackdrop) popupBackdrop.addEventListener("click", closePopup);
+  if (popupClose) popupClose.addEventListener("click", closePopup);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && popupEl && !popupEl.hidden) closePopup();
+  });
+
+  function navigateToDiagram(diagramId, nodeId) {
+    closePopup();
+    const diagramEl = wrapEl && wrapEl.querySelector(`[data-diagram-id="${CSS.escape(diagramId)}"]`);
+    if (!diagramEl) return;
+    diagramEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    const target = nodeId ? diagramEl.querySelector(`[data-node-id="${CSS.escape(nodeId)}"]`) : diagramEl;
+    if (target) {
+      setTimeout(() => {
+        target.classList.add("futuhat-pulse");
+        setTimeout(() => target.classList.remove("futuhat-pulse"), 1700);
+      }, 350);
+    }
+  }
+
+  function navigateToSource(index) {
+    closePopup();
+    const li = wrapEl && wrapEl.querySelector(`.futuhat-sources li[data-source-index="${index}"]`);
+    if (!li) return;
+    li.scrollIntoView({ behavior: "smooth", block: "center" });
+    setTimeout(() => {
+      li.classList.add("futuhat-pulse");
+      setTimeout(() => li.classList.remove("futuhat-pulse"), 1700);
+    }, 350);
   }
 
   let futuhatData = null;
@@ -74,6 +129,67 @@
     return { concepts: acc.concepts, diagrams: acc.diagrams, relations: acc.relations, sources: (part.sources || []).length };
   }
 
+  // --- Flat lists for the "in this part" popups ---
+  function walkConcepts(node, diagramId, out) {
+    out.push({ diagramId, nodeId: node.id, label: node.label, note: node.note });
+    (node.children || []).forEach((c) => walkConcepts(c, diagramId, out));
+  }
+
+  function walkRelations(node, diagramId, out) {
+    (node.children || []).forEach((c) => {
+      out.push({ diagramId, nodeId: c.id, parentLabel: node.label, childLabel: c.label, note: c.note });
+      walkRelations(c, diagramId, out);
+    });
+  }
+
+  function forEachDiagramBlock(part, fn) {
+    fn({ diagramId: "main", tree: part.mainDiagram.tree, sectionHeading: part.title });
+    (part.sections || []).forEach((s, si) => {
+      (s.blocks || []).forEach((b, bi) => {
+        if (b.type !== "diagram" || b.useMainDiagram) return;
+        fn({ diagramId: `s${si}-b${bi}`, tree: b.tree, triad: b.triad, pair: b.pair, sectionHeading: s.heading, caption: b.caption || b.source });
+      });
+    });
+  }
+
+  function collectConcepts(part) {
+    const out = [];
+    forEachDiagramBlock(part, (d) => {
+      if (d.tree) walkConcepts(d.tree, d.diagramId, out);
+      else if (d.triad) {
+        out.push({ diagramId: d.diagramId, nodeId: "left", label: d.triad.left.label, note: d.triad.left.note });
+        out.push({ diagramId: d.diagramId, nodeId: "middle", label: d.triad.middle.label, note: d.triad.middle.note });
+        out.push({ diagramId: d.diagramId, nodeId: "right", label: d.triad.right.label, note: d.triad.right.note });
+      } else if (d.pair) {
+        out.push({ diagramId: d.diagramId, nodeId: "left", label: d.pair.left.label, note: d.pair.left.note });
+        out.push({ diagramId: d.diagramId, nodeId: "right", label: d.pair.right.label, note: d.pair.right.note });
+      }
+    });
+    return out;
+  }
+
+  function collectDiagramsList(part) {
+    const out = [];
+    forEachDiagramBlock(part, (d) => {
+      out.push({ diagramId: d.diagramId, label: d.sectionHeading, caption: d.caption || part.mainDiagram.caption });
+    });
+    return out;
+  }
+
+  function collectRelations(part) {
+    const out = [];
+    forEachDiagramBlock(part, (d) => {
+      if (d.tree) walkRelations(d.tree, d.diagramId, out);
+      else if (d.triad) {
+        out.push({ diagramId: d.diagramId, nodeId: "left", parentLabel: d.triad.middle.label, childLabel: d.triad.left.label, note: d.triad.left.note });
+        out.push({ diagramId: d.diagramId, nodeId: "right", parentLabel: d.triad.middle.label, childLabel: d.triad.right.label, note: d.triad.right.note });
+      } else if (d.pair) {
+        out.push({ diagramId: d.diagramId, nodeId: "right", parentLabel: d.pair.left.label, childLabel: d.pair.right.label, note: d.pair.right.note });
+      }
+    });
+    return out;
+  }
+
   // --- Radial tree diagram (Bölüm Haritası) ---
   function renderRadialTree(mount, treeData, opts) {
     const radius = opts.radius || 190;
@@ -130,6 +246,7 @@
       .join("g")
       .attr("class", (d) => "futuhat-tree__node futuhat-tree__node--depth-" + d.depth)
       .attr("transform", (d) => `translate(${d.px},${d.py})`)
+      .attr("data-node-id", (d) => d.data.id)
       .attr("tabindex", "0")
       .attr("role", "img")
       .attr("aria-label", (d) => tt(d.data.label))
@@ -193,6 +310,7 @@
     const width = 460, height = 130, cy = 55;
     const positions = [70, 230, 390];
     const items = [triad.left, triad.middle, triad.right];
+    const nodeIds = ["left", "middle", "right"];
 
     const svg = d3
       .select(mount)
@@ -213,6 +331,7 @@
       .data(items)
       .join("g")
       .attr("class", (d, i) => "futuhat-triad__node" + (i === 1 ? " futuhat-triad__node--accent" : ""))
+      .attr("data-node-id", (d, i) => nodeIds[i])
       .attr("transform", (d, i) => `translate(${positions[i]},${cy})`);
 
     g.append("circle").attr("r", (d, i) => (i === 1 ? 15 : 12));
@@ -234,6 +353,7 @@
     const width = 320, height = 130, cy = 55;
     const positions = [80, 240];
     const items = [pair.left, pair.right];
+    const nodeIds = ["left", "right"];
 
     const svg = d3
       .select(mount)
@@ -254,6 +374,7 @@
       .data(items)
       .join("g")
       .attr("class", "futuhat-triad__node")
+      .attr("data-node-id", (d, i) => nodeIds[i])
       .attr("transform", (d, i) => `translate(${positions[i]},${cy})`);
 
     g.append("circle").attr("r", 14);
@@ -297,13 +418,82 @@
   function renderStats(part) {
     if (!statsEl) return;
     const stats = computeStats(part);
+    const row = (key, labelDict, value) => `
+      <button class="futuhat-stats__item" type="button" data-stat="${key}">
+        <span>${tt(labelDict)}</span>
+        <strong>${value}</strong>
+      </button>
+    `;
     statsEl.innerHTML = `
       <p class="futuhat-stats__heading">${tt({ tr: "Bu kısımda", en: "In this part", pt: "Nesta parte" })}</p>
-      <div class="futuhat-stats__item"><span>${tt({ tr: "Kavram", en: "Concepts", pt: "Conceitos" })}</span><strong>${stats.concepts}</strong></div>
-      <div class="futuhat-stats__item"><span>${tt({ tr: "Çizim", en: "Diagrams", pt: "Diagramas" })}</span><strong>${stats.diagrams}</strong></div>
-      <div class="futuhat-stats__item"><span>${tt({ tr: "İlişki", en: "Relations", pt: "Relações" })}</span><strong>${stats.relations}</strong></div>
-      <div class="futuhat-stats__item"><span>${tt({ tr: "Kaynak", en: "Sources", pt: "Fontes" })}</span><strong>${stats.sources}</strong></div>
+      ${row("concepts", { tr: "Kavram", en: "Concepts", pt: "Conceitos" }, stats.concepts)}
+      ${row("diagrams", { tr: "Çizim", en: "Diagrams", pt: "Diagramas" }, stats.diagrams)}
+      ${row("relations", { tr: "İlişki", en: "Relations", pt: "Relações" }, stats.relations)}
+      ${row("sources", { tr: "Kaynak", en: "Sources", pt: "Fontes" }, stats.sources)}
     `;
+
+    const bind = (key, handler) => {
+      const btn = statsEl.querySelector(`[data-stat="${key}"]`);
+      if (btn) btn.addEventListener("click", handler);
+    };
+
+    bind("concepts", () => {
+      const items = collectConcepts(part);
+      openPopup(
+        tt({ tr: "Kavramlar", en: "Concepts", pt: "Conceitos" }),
+        items,
+        (it, i) => `
+          <button class="futuhat-popup__row" type="button" data-popup-idx="${i}">
+            <span class="futuhat-popup__row-title">${tt(it.label)}</span>
+            ${it.note ? `<span class="futuhat-popup__row-note">${tt(it.note)}</span>` : ""}
+          </button>
+        `,
+        (it) => navigateToDiagram(it.diagramId, it.nodeId)
+      );
+    });
+
+    bind("diagrams", () => {
+      const items = collectDiagramsList(part);
+      openPopup(
+        tt({ tr: "Çizimler", en: "Diagrams", pt: "Diagramas" }),
+        items,
+        (it, i) => `
+          <button class="futuhat-popup__row" type="button" data-popup-idx="${i}">
+            <span class="futuhat-popup__row-title">${tt(it.label)}</span>
+            ${it.caption ? `<span class="futuhat-popup__row-note">${tt(it.caption)}</span>` : ""}
+          </button>
+        `,
+        (it) => navigateToDiagram(it.diagramId, null)
+      );
+    });
+
+    bind("relations", () => {
+      const items = collectRelations(part);
+      openPopup(
+        tt({ tr: "İlişkiler", en: "Relations", pt: "Relações" }),
+        items,
+        (it, i) => `
+          <button class="futuhat-popup__row" type="button" data-popup-idx="${i}">
+            <span class="futuhat-popup__row-title">${tt(it.parentLabel)} → ${tt(it.childLabel)}</span>
+            ${it.note ? `<span class="futuhat-popup__row-note">${tt(it.note)}</span>` : ""}
+          </button>
+        `,
+        (it) => navigateToDiagram(it.diagramId, it.nodeId)
+      );
+    });
+
+    bind("sources", () => {
+      openPopup(
+        tt({ tr: "Kaynaklar", en: "Sources", pt: "Fontes" }),
+        part.sources,
+        (s, i) => `
+          <button class="futuhat-popup__row" type="button" data-popup-idx="${i}">
+            <span class="futuhat-popup__row-title">${tt(s)}</span>
+          </button>
+        `,
+        (s, i) => navigateToSource(i)
+      );
+    });
   }
 
   function renderPart(part) {
@@ -314,7 +504,7 @@
         <p class="futuhat-hero__summary">${tt(part.hero.summary)}</p>
       </header>
 
-      <section class="futuhat-maindiagram">
+      <section class="futuhat-maindiagram" data-diagram-id="main">
         <div class="futuhat-tree" id="futuhat-main-tree"></div>
         <p class="futuhat-diagram-source">${tt(part.mainDiagram.caption)}</p>
       </section>
@@ -324,7 +514,7 @@
       <section class="futuhat-sources">
         <p class="detail-eyebrow">${tt({ tr: "Kaynaklar", en: "Sources", pt: "Fontes" })}</p>
         <ul>
-          ${part.sources.map((s) => `<li>${tt(s)}</li>`).join("")}
+          ${part.sources.map((s, i) => `<li data-source-index="${i}">${tt(s)}</li>`).join("")}
         </ul>
       </section>
     `;
@@ -334,11 +524,11 @@
     });
 
     const sectionsEl = document.getElementById("futuhat-sections");
-    part.sections.forEach((section) => {
+    part.sections.forEach((section, si) => {
       const secEl = document.createElement("section");
       secEl.className = "futuhat-section";
       secEl.innerHTML = `<h2 class="futuhat-section__heading">${tt(section.heading)}</h2>`;
-      section.blocks.forEach((block) => {
+      section.blocks.forEach((block, bi) => {
         if (block.type === "p") {
           const p = document.createElement("p");
           p.className = "futuhat-section__p";
@@ -347,6 +537,7 @@
         } else if (block.type === "diagram") {
           const dCard = document.createElement("div");
           dCard.className = "futuhat-inline-diagram";
+          if (!block.useMainDiagram) dCard.dataset.diagramId = `s${si}-b${bi}`;
           const mount = document.createElement("div");
           mount.className = "futuhat-tree futuhat-tree--inline";
           dCard.appendChild(mount);
