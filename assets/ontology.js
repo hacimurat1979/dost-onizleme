@@ -166,10 +166,40 @@
   }
 
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !detailPanel.hidden) {
+    if (e.key !== "Escape") return;
+    // Bir adım geri: önce açık detay panelini kapat; panel zaten kapalıysa
+    // ve Sırlar grafiğinde bir tema odaklanmışsa (bkz. sirlar-graph.js
+    // focusOnTheme), o odağı geri al -- "mevcut durumdan bir önceki duruma."
+    if (!detailPanel.hidden) {
       detailPanel.hidden = true;
+      return;
+    }
+    if (window.__sirlarGraphApp && window.__sirlarGraphApp.isFocused && window.__sirlarGraphApp.isFocused()) {
+      window.__sirlarGraphApp.unfocusTheme();
     }
   });
+
+  // Lejant kutuları (Ontoloji/Esmâ/Hâller/Sırlar), özellikle dokunmatik/
+  // tablet ekranlarda kısa viewport yüksekliğinde grafiğin üstüne düşüp
+  // düğümleri kapatabiliyor -- varsayılan olarak kısık/dokunmatik
+  // ekranlarda katlanmış başlasın, kullanıcı isterse açsın.
+  function setupLegendToggles() {
+    const collapseByDefault = window.matchMedia("(max-height: 700px)").matches
+      || window.matchMedia("(pointer: coarse)").matches;
+    document.querySelectorAll(".legend").forEach((legend) => {
+      const toggle = legend.querySelector(".legend__toggle");
+      if (!toggle) return;
+      if (collapseByDefault) {
+        legend.classList.add("legend--collapsed");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+      toggle.addEventListener("click", () => {
+        const collapsed = legend.classList.toggle("legend--collapsed");
+        toggle.setAttribute("aria-expanded", String(!collapsed));
+      });
+    });
+  }
+  setupLegendToggles();
 
   const TARGET = {
     "dhat": { x: 0.5, y: 0.09 },

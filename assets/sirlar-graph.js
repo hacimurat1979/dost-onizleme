@@ -34,6 +34,7 @@
   let zoomLayer, linkGroup, nodeGroup;
   let zoomBehavior;
   let nodeById = new Map();
+  let focusedTheme = null;
 
   function fetchData() {
     if (sirlarDataPromise) return sirlarDataPromise;
@@ -128,10 +129,11 @@
       })
       .on("zoom", (event) => zoomLayer.attr("transform", event.transform));
     svg.call(zoomBehavior).on("dblclick.zoom", null);
+    svg.on("click", () => { if (focusedTheme) unfocusTheme(true); });
 
     const recenterBtn = document.getElementById("sirlar-recenter");
     if (recenterBtn) {
-      recenterBtn.addEventListener("click", () => zoomToFit(true));
+      recenterBtn.addEventListener("click", () => { focusedTheme = null; zoomToFit(true); });
     }
 
     treeLayout(root);
@@ -152,18 +154,18 @@
       .join("g")
       .attr("class", (d) => "node sirlar-node sirlar-node--" + d.data.kind)
       .attr("transform", (d) => `translate(${radialPoint(d.x, d.y).join(",")})`)
-      .attr("tabindex", (d) => (d.data.kind === "entry" ? "0" : null))
-      .attr("role", (d) => (d.data.kind === "entry" ? "button" : null))
+      .attr("tabindex", "0")
+      .attr("role", "button")
       .attr("aria-label", (d) => labelFor(d))
       .on("click", (event, d) => {
-        if (d.data.kind !== "entry") return;
         event.stopPropagation();
-        window.__dostNav && window.__dostNav.goTo("sirlar", d.id);
+        activateNode(d);
       })
       .on("keydown", (event, d) => {
-        if (d.data.kind === "entry" && (event.key === "Enter" || event.key === " ")) {
+        if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          window.__dostNav && window.__dostNav.goTo("sirlar", d.id);
+          event.stopPropagation();
+          activateNode(d);
         }
       })
       .on("mouseenter", (event, d) => { highlight(d); showTooltip(d, event); })
@@ -196,8 +198,7 @@
     zoomToFit(false);
   }
 
-  function zoomToFit(animate) {
-    const nodes = root.descendants();
+  function zoomToBox(nodes, animate, margin, maxScaleCap) {
     const width = svg.node().clientWidth || 800;
     const height = svg.node().clientHeight || 600;
     let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
@@ -208,24 +209,61 @@
       y0 = Math.min(y0, cy);
       y1 = Math.max(y1, cy);
     });
-    x0 -= 80; x1 += 80; y0 -= 70; y1 += 80;
+    const m = margin || { x0: 80, x1: 80, y0: 70, y1: 80 };
+    x0 -= m.x0; x1 += m.x1; y0 -= m.y0; y1 += m.y1;
     const treeW = Math.max(1, x1 - x0);
     const treeH = Math.max(1, y1 - y0);
     const [minScale, maxScale] = zoomBehavior.scaleExtent();
-    const scale = Math.min(maxScale, 1.2, width / treeW, height / treeH);
+    const cap = maxScaleCap || 1.2;
+    const scale = Math.min(maxScale, cap, width / treeW, height / treeH);
     const clampedScale = Math.max(minScale, scale);
     const tx = width / 2 - clampedScale * (x0 + treeW / 2);
     const ty = height / 2 - clampedScale * (y0 + treeH / 2);
     const transform = d3.zoomIdentity.translate(tx, ty).scale(clampedScale);
-    const sel = animate ? svg.transition().duration(400) : svg;
+    const sel = animate ? svg.transition().duration(450) : svg;
     sel.call(zoomBehavior.transform, transform);
+  }
+
+  function zoomToFit(animate) {
+    zoomToBox(root.descendants(), animate);
+  }
+
+  function activateNode(d) {
+    if (d.data.kind === "entry") {
+      window.__dostNav && window.__dostNav.goTo("sirlar", d.id);
+    } else if (d.data.kind === "theme") {
+      if (focusedTheme && focusedTheme.id === d.id) {
+        unfocusTheme(true);
+      } else {
+        focusOnTheme(d, true);
+      }
+    } else if (d.data.kind === "root") {
+      if (focusedTheme) unfocusTheme(true);
+    }
+  }
+
+  function focusOnTheme(themeNode, animate) {
+    focusedTheme = themeNode;
+    const clusterIds = new Set(themeNode.descendants().map((n) => n.id));
+    nodeGroup.selectAll("g.sirlar-node")
+      .classed("sirlar-node--dimmed", (n) => !clusterIds.has(n.id))
+      .classed("sirlar-node--focused", (n) => n.id === themeNode.id);
+    zoomToBox(themeNode.descendants(), animate, { x0: 130, x1: 130, y0: 60, y1: 90 }, 2.5);
+  }
+
+  function unfocusTheme(animate) {
+    focusedTheme = null;
+    nodeGroup.selectAll("g.sirlar-node")
+      .classed("sirlar-node--dimmed", false)
+      .classed("sirlar-node--focused", false);
+    zoomToFit(animate);
   }
 
   function highlight(d) {
     const nodeSel = nodeGroup.selectAll("g.sirlar-node");
     const linkSel = linkGroup.selectAll("path.sirlar-link");
     if (!d) {
-      nodeSel.style("opacity", 1);
+      nodeSel.style("opacity", null);
       linkSel.classed("sirlar-link--highlight", false);
       return;
     }
@@ -280,6 +318,12 @@
     },
     onLangChange() {
       render();
+    },
+    isFocused() {
+      return !!focusedTheme;
+    },
+    unfocusTheme() {
+      if (focusedTheme) unfocusTheme(true);
     },
   };
 })();

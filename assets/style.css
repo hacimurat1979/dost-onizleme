@@ -700,10 +700,18 @@ html {
 }
 .sirlar-node--theme circle,
 .sirlar-node--root circle {
-  cursor: default;
+  cursor: pointer;
 }
 .sirlar-node--theme text.node-label {
   font-weight: 600;
+}
+.sirlar-node--dimmed {
+  opacity: 0.22;
+  transition: opacity 0.3s ease;
+}
+.sirlar-node--theme.sirlar-node--focused circle:first-of-type {
+  stroke: var(--text-primary);
+  stroke-width: 2px;
 }
 
 .legend {
@@ -713,12 +721,49 @@ html {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  max-width: min(360px, calc(100% - 24px));
   background: color-mix(in srgb, var(--surface-1) 85%, transparent);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 10px 14px;
   font-size: 0.8rem;
   color: var(--text-secondary);
+}
+.legend__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.legend__toggle-icon {
+  font-size: 0.65rem;
+  transition: transform 0.2s ease;
+}
+.legend--collapsed .legend__toggle-icon {
+  transform: rotate(-90deg);
+}
+.legend__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 42vh;
+  overflow-y: auto;
+  margin-top: 6px;
+}
+.legend--collapsed .legend__body {
+  display: none;
 }
 .legend__item { display: flex; align-items: center; gap: 8px; }
 .legend__dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
@@ -850,6 +895,7 @@ html {
 }
 .node { cursor: pointer; }
 .node:hover circle { stroke: var(--text-primary); }
+.node:focus { outline: none; }
 .node:focus-visible { outline: none; }
 .node:focus-visible circle {
   stroke: var(--series-hal-hayret, #e0b545);
