@@ -976,6 +976,7 @@
   "terms": {
     "cevher": {
       "id": "cevher",
+      "tier": 1,
       "group": "toz-nitelik",
       "title": {
         "tr": "Cevher",
@@ -1043,6 +1044,7 @@
     },
     "araz": {
       "id": "araz",
+      "tier": 3,
       "group": "toz-nitelik",
       "title": {
         "tr": "Araz",
@@ -1086,6 +1088,7 @@
     },
     "cins": {
       "id": "cins",
+      "tier": 3,
       "group": "siniflandirma",
       "title": {
         "tr": "Cins",
@@ -1131,6 +1134,7 @@
     },
     "fasil": {
       "id": "fasil",
+      "tier": 3,
       "group": "siniflandirma",
       "title": {
         "tr": "Fasıl",
@@ -1170,6 +1174,7 @@
     },
     "nev": {
       "id": "nev",
+      "tier": 3,
       "group": "siniflandirma",
       "title": {
         "tr": "Nev' (Tür)",
@@ -1209,6 +1214,7 @@
     },
     "illet": {
       "id": "illet",
+      "tier": 2,
       "group": "sebep-sonuc",
       "title": {
         "tr": "İllet",
@@ -1248,6 +1254,7 @@
     },
     "malul": {
       "id": "malul",
+      "tier": 2,
       "group": "sebep-sonuc",
       "title": {
         "tr": "Malûl",
@@ -1291,6 +1298,7 @@
     },
     "mumkun": {
       "id": "mumkun",
+      "tier": 1,
       "group": "varlik-mertebesi",
       "title": {
         "tr": "Mümkün",
@@ -1338,6 +1346,7 @@
     },
     "vacib": {
       "id": "vacib",
+      "tier": 1,
       "group": "varlik-mertebesi",
       "title": {
         "tr": "Vâcib (Vâcibü'l-Vücûd)",
@@ -1374,6 +1383,7 @@
     },
     "ilk-akil": {
       "id": "ilk-akil",
+      "tier": 1,
       "group": "kozmik-hiyerarsi",
       "title": {
         "tr": "İlk Akıl (Akl-ı Evvel)",
@@ -1423,6 +1433,7 @@
     },
     "tumel-nefs": {
       "id": "tumel-nefs",
+      "tier": 2,
       "group": "kozmik-hiyerarsi",
       "title": {
         "tr": "Tümel Nefs (Küllî Nefs)",
@@ -1472,6 +1483,7 @@
     },
     "mazhar": {
       "id": "mazhar",
+      "tier": 2,
       "group": "kopru-kavram",
       "title": {
         "tr": "Mazhar",
@@ -1520,6 +1532,7 @@
     },
     "suret-madde": {
       "id": "suret-madde",
+      "tier": 2,
       "group": "kopru-kavram",
       "title": {
         "tr": "Sûret ve Mâdde",
@@ -1573,6 +1586,7 @@
     },
     "kuvve-fiil": {
       "id": "kuvve-fiil",
+      "tier": 3,
       "group": "kopru-kavram",
       "title": {
         "tr": "Kuvve ve Fiil",
@@ -1617,6 +1631,7 @@
     },
     "akil-vezir": {
       "id": "akil-vezir",
+      "tier": 2,
       "group": "nefsin-gucleri",
       "title": {
         "tr": "Akıl (Vezir)",
@@ -1666,6 +1681,7 @@
     },
     "nefs-i-natika": {
       "id": "nefs-i-natika",
+      "tier": 2,
       "group": "nefsin-gucleri",
       "title": {
         "tr": "Nefs-i Nâtıka",
@@ -1702,6 +1718,7 @@
     },
     "sehvani-nefis": {
       "id": "sehvani-nefis",
+      "tier": 3,
       "group": "nefsin-gucleri",
       "title": {
         "tr": "Şehvet Nefsi",
@@ -1739,6 +1756,7 @@
     },
     "gazap-nefsi": {
       "id": "gazap-nefsi",
+      "tier": 3,
       "group": "nefsin-gucleri",
       "title": {
         "tr": "Gazap Nefsi",
@@ -1776,6 +1794,7 @@
     },
     "ahad": {
       "id": "ahad",
+      "tier": 1,
       "group": "ahad-vahid",
       "title": {
         "tr": "Ahad (Tek)",
@@ -1812,6 +1831,7 @@
     },
     "vahid": {
       "id": "vahid",
+      "tier": 1,
       "group": "ahad-vahid",
       "title": {
         "tr": "Vâhid (Bir)",
@@ -1848,6 +1868,7 @@
     },
     "lafza-i-celal": {
       "id": "lafza-i-celal",
+      "tier": 1,
       "group": "lafza-i-celal",
       "title": {
         "tr": "Lafza-i Celâl (\"Allah\" Kelimesi)",
@@ -1885,6 +1906,7 @@
     },
     "velayet": {
       "id": "velayet",
+      "tier": 2,
       "group": "velayet-risalet",
       "title": {
         "tr": "Velâyet (Velilik/Marifet)",
@@ -1921,6 +1943,7 @@
     },
     "sekr": {
       "id": "sekr",
+      "tier": 3,
       "group": "sahv-sekr",
       "title": {
         "tr": "Sekr (Sarhoşluk)",
@@ -1957,6 +1980,7 @@
     },
     "sahv": {
       "id": "sahv",
+      "tier": 3,
       "group": "sahv-sekr",
       "title": {
         "tr": "Sahv (Ayıklık)",
@@ -1993,6 +2017,7 @@
     },
     "itibar-edilmez": {
       "id": "itibar-edilmez",
+      "tier": 3,
       "group": "itibar-edilmez",
       "title": {
         "tr": "İtibar Edilmez Şeyler",
@@ -2029,6 +2054,7 @@
     },
     "halvet-perdeleri": {
       "id": "halvet-perdeleri",
+      "tier": 3,
       "group": "halvet-perdeleri",
       "title": {
         "tr": "Halvette Kalkan Perdeler",
@@ -2065,6 +2091,7 @@
     },
     "nefis-ezeliyeti-meselesi": {
       "id": "nefis-ezeliyeti-meselesi",
+      "tier": 3,
       "group": "mebde-mead",
       "title": {
         "tr": "Nefsin Ezeliyeti Meselesi",
@@ -2106,6 +2133,7 @@
     },
     "bes-menzil-dirilis": {
       "id": "bes-menzil-dirilis",
+      "tier": 2,
       "group": "mebde-mead",
       "title": {
         "tr": "Beş Menzil Diriliş",
@@ -2143,6 +2171,7 @@
     },
     "nubuvvet-iki-delil": {
       "id": "nubuvvet-iki-delil",
+      "tier": 2,
       "group": "nubuvvetin-zarureti",
       "title": {
         "tr": "Nübüvvetin İki Delili",
@@ -2179,6 +2208,7 @@
     },
     "vasita-ruh-uc-ismi": {
       "id": "vasita-ruh-uc-ismi",
+      "tier": 2,
       "group": "nubuvvetin-zarureti",
       "title": {
         "tr": "Aracı Ruhun Üç İsmi: Rab, Baba, Kardeş",
@@ -2215,6 +2245,7 @@
     },
     "vahyin-uc-menzili": {
       "id": "vahyin-uc-menzili",
+      "tier": 2,
       "group": "vahyin-mertebeleri",
       "title": {
         "tr": "Vahyin Üç Menzili",
@@ -2252,6 +2283,7 @@
     },
     "serrin-mahiyeti": {
       "id": "serrin-mahiyeti",
+      "tier": 2,
       "group": "hayir-ve-ser",
       "title": {
         "tr": "Şerrin Mahiyeti: Yokluk Olarak Kötülük",
@@ -2293,6 +2325,7 @@
     },
     "kalbin-misafirleri": {
       "id": "kalbin-misafirleri",
+      "tier": 2,
       "group": "tezkire-i-erbaa",
       "title": {
         "tr": "Kalbin Misafirleri",

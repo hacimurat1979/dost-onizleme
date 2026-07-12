@@ -45,6 +45,53 @@
     return Object.values(glossaryData.terms).filter((t) => groupId === "all" || t.group === groupId);
   }
 
+  // Grup başına küçük, elle çizilmiş bir sembol -- emoji değil, sitenin
+  // ince-çizgi/altın diliyle uyumlu, tek renkli (currentColor) SVG'ler.
+  const ICON_PATHS = {
+    rings: '<circle cx="10" cy="10" r="7.5"/><circle cx="10" cy="10" r="2.6"/>',
+    branch: '<path d="M10 3v6M10 9l-5 8M10 9l5 8"/><circle cx="10" cy="3" r="1.6"/><circle cx="5" cy="17" r="1.6"/><circle cx="15" cy="17" r="1.6"/>',
+    bolt: '<path d="M11 2 4 12h5l-1 6 7-10h-5l1-6z"/>',
+    steps: '<path d="M3 17h4v-4h4V9h4V5h2"/>',
+    rays: '<circle cx="10" cy="10" r="2.2"/><path d="M10 2v3M10 15v3M2 10h3M15 10h3M4.5 4.5l2 2M13.5 13.5l2 2M4.5 15.5l2-2M13.5 6.5l2-2"/>',
+    eye: '<path d="M2 10s3-5.5 8-5.5 8 5.5 8 5.5-3 5.5-8 5.5S2 10 2 10z"/><circle cx="10" cy="10" r="2.4"/>',
+    flame: '<path d="M10 2c1 3-3 4-3 7.5a3 3 0 0 0 6 0C13 6.5 10.5 7 10 2z"/><path d="M7.5 12a2.5 4 0 0 0 5 0"/>',
+    "dot-circle": '<circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="1.6"/>',
+    stroke: '<path d="M10 2v11"/><circle cx="10" cy="16" r="1.8"/>',
+    star: '<path d="M10 2l1.9 5.8h6.1l-4.9 3.6 1.9 5.8-5-3.6-5 3.6 1.9-5.8-4.9-3.6h6.1z"/>',
+    wave: '<path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 4 0"/><path d="M2 7c2-3 4-3 6 0"/>',
+    "veil-x": '<path d="M3 4c3 8 11 8 14 0" /><path d="M7 15l6-6M13 15L7 9"/>',
+    veil: '<path d="M3 5c2 2 2 4 0 6M8 4c2 2 2 8 0 10M13 4c2 2 2 8 0 10M18 5c-2 2-2 4 0 6"/>',
+    cycle: '<path d="M15.5 6.5A6 6 0 1 0 16 11"/><path d="M15.5 3v4h-4"/>',
+    lamp: '<path d="M10 2a5 5 0 0 0-3 9c0 1 0 2 1 2h4c1 0 1-1 1-2a5 5 0 0 0-3-9z"/><path d="M8.5 16h3M9 18.5h2"/>',
+    beam: '<path d="M10 2v4"/><path d="M6 8l8 0-2 10H8L6 8z"/>',
+    scale: '<path d="M10 2v15M5 6h10M5 6l-2.5 6h5L5 6zM15 6l-2.5 6h5L15 6z"/>',
+    compass: '<circle cx="10" cy="10" r="2"/><circle cx="10" cy="4" r="1.4"/><circle cx="16" cy="10" r="1.4"/><circle cx="10" cy="16" r="1.4"/><circle cx="4" cy="10" r="1.4"/><path d="M10 6v2M14 10h-2M10 14v-2M6 10h2"/>',
+  };
+  const GROUP_ICON = {
+    "toz-nitelik": "rings",
+    "siniflandirma": "branch",
+    "sebep-sonuc": "bolt",
+    "varlik-mertebesi": "steps",
+    "kozmik-hiyerarsi": "rays",
+    "kopru-kavram": "eye",
+    "nefsin-gucleri": "flame",
+    "ahad-vahid": "dot-circle",
+    "lafza-i-celal": "stroke",
+    "velayet-risalet": "star",
+    "sahv-sekr": "wave",
+    "itibar-edilmez": "veil-x",
+    "halvet-perdeleri": "veil",
+    "mebde-mead": "cycle",
+    "nubuvvetin-zarureti": "lamp",
+    "vahyin-mertebeleri": "beam",
+    "hayir-ve-ser": "scale",
+    "tezkire-i-erbaa": "compass",
+  };
+  function groupIconSvg(groupId) {
+    const key = GROUP_ICON[groupId] || "dot-circle";
+    return `<svg class="terim-card__icon-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[key]}</svg>`;
+  }
+
   // İki (veya daha fazla) kavram arasındaki ilişkiyi tek bakışta gösteren
   // küçük SVG şemalar. Her grubun "diagram" alanındaki tipe göre seçilir.
   const diagramRenderers = {
@@ -243,6 +290,10 @@
         <marker id="tdArrowStart" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto">
           <path d="M8,0 L0,4 L8,8 Z" class="term-diagram-arrowhead"/>
         </marker>
+        <filter id="tdSketchy" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="tdNoise"/>
+          <feDisplacementMap in="SourceGraphic" in2="tdNoise" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
       </defs>
     </svg>
   `;
@@ -349,15 +400,27 @@
     });
   }
 
+  function relatedChipsInline(t) {
+    const related = (t.iliskili_kavramlar || [])
+      .map((id) => glossaryData.terms[id])
+      .filter(Boolean)
+      .slice(0, 3);
+    if (!related.length) return "";
+    return `<span class="terim-card__related">${related.map((r) => tt(r.title)).join(" · ")}</span>`;
+  }
+
   function renderList() {
     const terms = termsInGroup(activeGroup);
     grid.innerHTML = terms
-      .map(
-        (t) => `<button class="terim-card" data-id="${t.id}">
+      .map((t) => {
+        const tier = t.tier || 2;
+        return `<button class="terim-card terim-card--tier-${tier}" data-id="${t.id}">
+          <span class="terim-card__icon">${groupIconSvg(t.group)}</span>
           <span class="terim-card__title">${tt(t.title)}</span>
           <span class="terim-card__ozet">${t.ozet_tr || ""}</span>
-        </button>`
-      )
+          ${relatedChipsInline(t)}
+        </button>`;
+      })
       .join("");
     grid.querySelectorAll(".terim-card").forEach((card) => {
       card.addEventListener("click", () => showTermDetail(card.dataset.id));

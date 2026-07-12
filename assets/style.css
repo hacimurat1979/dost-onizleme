@@ -3312,6 +3312,7 @@ html[data-contrast="high"] .detail-title {
 .terimler-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-auto-flow: dense;
   gap: 12px;
   margin-top: 16px;
 }
@@ -3329,6 +3330,41 @@ html[data-contrast="high"] .detail-title {
   text-align: center;
   transition: transform 0.2s ease, border-color 0.2s ease;
   animation: fade-up-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Kavramlar aynı ağırlıkta değildir: üç katmanlı görsel hiyerarşi
+   (bkz. CLAUDE.md -- temel/orta/açıklayıcı kavramlar farklı boyutta). */
+.terim-card--tier-1 {
+  padding: 26px 18px;
+  border-color: color-mix(in srgb, var(--series-theme) 42%, var(--border));
+  background: color-mix(in srgb, var(--series-theme) 7%, var(--page-plane));
+}
+.terim-card--tier-1 .terim-card__title { font-size: 1.08rem; font-weight: 700; }
+.terim-card--tier-1 .terim-card__icon-svg { width: 26px; height: 26px; }
+@media (min-width: 720px) {
+  .terim-card--tier-1 { grid-column: span 2; }
+}
+
+.terim-card--tier-3 {
+  padding: 12px 10px;
+  opacity: 0.86;
+}
+.terim-card--tier-3 .terim-card__title { font-size: 0.8rem; font-weight: 500; }
+.terim-card--tier-3 .terim-card__ozet { font-size: 0.7rem; }
+.terim-card--tier-3 .terim-card__icon-svg { width: 15px; height: 15px; }
+.terim-card--tier-3:hover, .terim-card--tier-3:focus-visible { opacity: 1; }
+
+.terim-card__icon {
+  display: flex;
+  color: color-mix(in srgb, var(--series-theme) 70%, var(--text-secondary));
+}
+.terim-card__icon-svg { width: 20px; height: 20px; }
+
+.terim-card__related {
+  color: var(--text-muted, var(--text-secondary));
+  font-size: 0.68rem;
+  letter-spacing: 0.01em;
+  opacity: 0.8;
 }
 .terim-card:nth-child(1)  { animation-delay: 0ms; }
 .terim-card:nth-child(2)  { animation-delay: 20ms; }
@@ -3425,10 +3461,14 @@ html[data-contrast="high"] .detail-title {
   flex: 1 1 340px;
   min-width: 280px;
   max-width: 480px;
-  background: var(--page-plane);
-  border: 1px dashed var(--border);
-  border-radius: 12px;
-  padding: 14px 16px 10px;
+  background:
+    radial-gradient(ellipse at 28% 18%, color-mix(in srgb, var(--series-theme) 6%, transparent), transparent 62%),
+    repeating-linear-gradient(112deg, color-mix(in srgb, var(--text-primary) 3%, transparent) 0px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(24deg, color-mix(in srgb, var(--text-primary) 2%, transparent) 0px, transparent 1px, transparent 4px),
+    color-mix(in srgb, var(--series-theme) 4%, var(--page-plane));
+  border: 1px solid color-mix(in srgb, var(--series-theme) 28%, var(--border));
+  border-radius: 4px;
+  padding: 16px 18px 12px;
 }
 
 .term-diagram__svg {
@@ -3463,7 +3503,7 @@ html[data-contrast="high"] .detail-title {
 .term-diagram-node {
   fill: var(--surface-1);
   stroke: var(--text-secondary);
-  stroke-width: 1.5px;
+  stroke-width: 1.1px;
   filter: drop-shadow(0 2px 2.5px rgba(0, 0, 0, 0.22));
 }
 .viz-root[data-theme="dark"] .term-diagram-node {
@@ -3473,38 +3513,38 @@ html[data-contrast="high"] .detail-title {
 .term-diagram-node--accent {
   fill: color-mix(in srgb, var(--series-theme) 22%, var(--surface-1));
   stroke: var(--series-theme);
-  stroke-width: 2px;
+  stroke-width: 1.4px;
 }
 
 .term-diagram-node--dashed {
   fill: var(--surface-1);
-  stroke: var(--text-muted);
-  stroke-width: 1.5px;
+  stroke: color-mix(in srgb, var(--series-theme) 35%, var(--text-muted));
+  stroke-width: 1.1px;
   stroke-dasharray: 3 3;
 }
 
 .term-diagram-node--faint {
   fill: var(--surface-1);
   stroke: var(--text-muted);
-  stroke-width: 1.5px;
+  stroke-width: 1.1px;
   opacity: 0.6;
 }
 
 .term-diagram-node--sm {
-  stroke-width: 1.5px;
+  stroke-width: 1.1px;
 }
 
 .term-diagram-node--venn {
   fill: var(--series-theme);
   fill-opacity: 0.16;
   stroke: var(--series-theme);
-  stroke-width: 1.5px;
+  stroke-width: 1.1px;
 }
 
 .term-diagram-node--barrier {
   fill: var(--surface-1);
   stroke: var(--text-muted);
-  stroke-width: 1.5px;
+  stroke-width: 1.1px;
   stroke-dasharray: 2 4;
 }
 
@@ -3550,35 +3590,39 @@ html[data-contrast="high"] .detail-title {
 }
 
 .term-diagram-arrow {
-  stroke: var(--text-secondary);
-  stroke-width: 1.5px;
+  stroke: color-mix(in srgb, var(--series-theme) 55%, var(--text-secondary));
+  stroke-width: 1.1px;
+  filter: url(#tdSketchy);
 }
 
 .term-diagram-arrow--oneway {
   stroke: var(--series-theme);
-  stroke-width: 2px;
+  stroke-width: 1.4px;
 }
 
 .term-diagram-arrow--dashed {
-  stroke: var(--text-muted);
-  stroke-width: 1.5px;
+  stroke: color-mix(in srgb, var(--series-theme) 45%, var(--text-muted));
+  stroke-width: 1.1px;
   stroke-dasharray: 4 3;
 }
 
 .term-diagram-tether {
-  stroke: var(--gridline);
-  stroke-width: 1px;
+  stroke: color-mix(in srgb, var(--series-theme) 38%, var(--gridline));
+  stroke-width: 0.9px;
+  filter: url(#tdSketchy);
 }
 
 .term-diagram-axis {
-  stroke: var(--text-secondary);
-  stroke-width: 1.5px;
+  stroke: color-mix(in srgb, var(--series-theme) 55%, var(--text-secondary));
+  stroke-width: 1.1px;
+  filter: url(#tdSketchy);
 }
 
 .term-diagram-mirror {
   stroke: var(--series-theme);
-  stroke-width: 3px;
+  stroke-width: 2.2px;
   stroke-linecap: round;
+  filter: url(#tdSketchy);
 }
 
 .term-diagram-arrowhead {
