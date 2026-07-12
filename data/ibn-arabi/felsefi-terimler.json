@@ -971,6 +971,60 @@
           }
         }
       ]
+    },
+    {
+      "id": "firaset",
+      "name": {
+        "tr": "Firâset: Çıkarımla Gelen ile Doğrudan Gelen",
+        "en": "Discernment: Inferred and Direct",
+        "pt": "Discernimento: Inferido e Direto"
+      },
+      "description": {
+        "tr": "Tedbîrât-ı İlâhiyye'nin sekizinci bâbı, sezgisel görüşün ('firâset') iki ayrı kaynaktan gelebileceğini anlatır. Bunu kesin bir sınıflandırma olarak değil, metnin bize sunduğu bir ayrım olarak okuyoruz.",
+        "en": "The eighth chapter of et-Tedbîrât al-Ilâhiyya describes discernment ('firasa') as arising from two distinct sources. We read this not as a settled classification, but as a distinction the text offers us.",
+        "pt": "O oitavo capítulo do et-Tedbîrât al-Ilâhiyya descreve o discernimento ('firasa') como algo que pode surgir de duas fontes distintas. Lemos isso não como uma classificação definitiva, mas como uma distinção que o texto nos oferece."
+      },
+      "diagram": [
+        {
+          "type": "spectrum",
+          "termId": "firaset",
+          "leftLabel": {
+            "tr": "Firâset-i Hikemiyye",
+            "en": "Discernment by Inference",
+            "pt": "Discernimento por Inferência"
+          },
+          "leftNote": {
+            "tr": "bazen yanılabilir",
+            "en": "can sometimes err",
+            "pt": "pode às vezes errar"
+          },
+          "rightLabel": {
+            "tr": "Firâset-i Şer'iyye",
+            "en": "Discernment by Divine Command",
+            "pt": "Discernimento por Ordem Divina"
+          },
+          "rightNote": {
+            "tr": "hiç şaşmaz",
+            "en": "never errs",
+            "pt": "nunca erra"
+          },
+          "leftMarker": {
+            "tr": "istidlâl (çıkarım)",
+            "en": "istidlal (inference)",
+            "pt": "istidlal (inferência)"
+          },
+          "rightMarker": {
+            "tr": "ilhâm (doğrudan biliş)",
+            "en": "ilham (direct knowing)",
+            "pt": "ilham (conhecimento direto)"
+          },
+          "note": {
+            "tr": "Metin bu ikisini eş tutmuyor: biri çıkarımsal ve arızî, öbürü metne göre doğrudan ve hiç şaşmayan.",
+            "en": "The text does not equate the two: one is inferential and occasional, the other — per the text — direct and never erring.",
+            "pt": "O texto não equipara os dois: um é inferencial e ocasional, o outro — segundo o texto — direto e que nunca erra."
+          }
+        }
+      ]
     }
   ],
   "terms": {
@@ -2364,6 +2418,48 @@
       "iliskili_kavramlar": [
         "nefs-i-natika",
         "akil-vezir"
+      ]
+    },
+    "firaset": {
+      "id": "firaset",
+      "tier": 2,
+      "group": "firaset",
+      "title": {
+        "tr": "Firâset",
+        "en": "Firasa (Discernment)",
+        "pt": "Firasa (Discernimento)"
+      },
+      "arabic": "فراسة",
+      "ozet_tr": "çıkarımla mı, doğrudan mı gelen görüş",
+      "felsefi_tanim": {
+        "tr": "Tedbîrât-ı İlâhiyye'nin sekizinci bâbında Konuk, iki tür firâseti (sezgisel görüş) birbirinden ayırır. 'Firâset-i hikemiyye', kişinin söz ve davranışlarından — dış alâmetlerden — çıkarım yoluyla iç hâlini okumaktır; 'mü'minin firâsetinden sakının, zira o Allah'ın nûruyla nazar eder' hadisi bu bağlamda anılır. Bu firâset, dayandığı delillerin zayıflığı yüzünden bazen yanılabilir. 'Firâset-i şer'iyye' ise dış bir delile ihtiyaç duymadan, doğrudan 'emr-i ilâhi' ile kalpte hâsıl olur — Hızır kıssasındaki 'ben bunu kendi emrimden yapmadım' (Kehf, 18/82) âyeti örnek gösterilir — ve metne göre bu, hiç yanılmaz.",
+        "en": "In the eighth chapter of et-Tedbîrât al-Ilâhiyya, Konuk distinguishes two kinds of discernment (firasa). 'Discernment by inference' reads a person's inner state from outward signs — their words and behavior; the hadith 'beware the believer's discernment, for he looks with God's light' is cited in this context. This kind of discernment can sometimes err, given the weakness of the signs it relies on. 'Discernment by divine command,' by contrast, arises directly in the heart without need of any outward sign — the Qur'anic verse from the story of Khidr, 'I did not do this of my own command' (18:82), is offered as an example — and, according to the text, this kind never errs.",
+        "pt": "No oitavo capítulo do et-Tedbîrât al-Ilâhiyya, Konuk distingue dois tipos de discernimento (firasa). O 'discernimento por inferência' lê o estado interior de uma pessoa a partir de sinais externos — suas palavras e comportamento; o hadith 'cuidado com o discernimento do crente, pois ele olha com a luz de Deus' é citado nesse contexto. Esse discernimento pode às vezes errar, dada a fraqueza dos sinais em que se apoia. Já o 'discernimento por ordem divina' surge diretamente no coração, sem necessidade de nenhum sinal externo — o versículo alcorânico da história de Khidr, 'eu não fiz isso por minha própria ordem' (18:82), é oferecido como exemplo — e, segundo o texto, esse tipo nunca erra."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Bize göre bu ayrım, sezginin iki farklı kaynağa dayanabileceğine işaret ediyor olabilir: biri gözlenebilir işaretlerden (söz, yüz ifadesi, davranış) yapılan bir çıkarım — her çıkarım gibi yanılabilir; öbürü metnin 'kalbin mâsivâ nakışlarından hâli olması' dediği bir hâl, dışarıdan delile ihtiyaç duymayan bir doğrudan-biliş. Metin ikincisini yalnız 'kalbi emr-i ilâhi ile kâim olan' kişilere has kılıyor; bunun tam olarak kimlere, ne ölçüde ait olduğunu bilemeyiz — burada sadece metnin kendi çizdiği ayrımı aktarıyoruz. Bâbın devamında hükemânın söz, saç, alın, kulak gibi dış görünüşten karakter çıkarsadığı uzun bir liste de yer alıyor; biz bunu firâset-i hikemiyyenin bir örneği olarak not düşüyoruz, ama kendisi ayrı bir inceleme konusu.",
+        "en": "As we read it, this distinction may point to intuition having two different sources: one an inference from observable signs (speech, facial expression, behavior) — fallible, like any inference; the other a state the text calls the heart's being 'free of the imprints of all else,' a direct knowing that needs no outward sign. The text reserves the second for those 'whose heart is established through the divine command' alone; exactly who this applies to, and to what degree, is not something we can determine — here we are only relaying the distinction the text itself draws. The rest of the chapter also contains a long list in which the philosophers infer character from outward appearance — speech, hair, forehead, ears — which we simply note as an example of discernment-by-inference, though it is a separate subject in itself.",
+        "pt": "Como o lemos, essa distinção pode apontar para a intuição tendo duas fontes diferentes: uma é uma inferência a partir de sinais observáveis (fala, expressão facial, comportamento) — falível, como qualquer inferência; a outra é um estado que o texto chama de o coração estar 'livre das marcas de tudo o mais', um conhecimento direto que não precisa de nenhum sinal externo. O texto reserva o segundo apenas para aqueles 'cujo coração se estabelece através da ordem divina'; a quem exatamente isso se aplica, e em que medida, não é algo que possamos determinar — aqui apenas relatamos a distinção que o próprio texto traça. O restante do capítulo também contém uma longa lista em que os filósofos inferem o caráter a partir da aparência externa — fala, cabelo, testa, orelhas — o que apenas registramos como um exemplo de discernimento por inferência, embora seja um assunto à parte."
+      },
+      "analogy": {
+        "tr": "Tıpkı deneyimli bir hekimin, hastanın yüzündeki solukluktan yola çıkıp bir teşhise varması gibi — bu teşhis işaretlere dayandığı için bazen yanılabilir. Firâset-i şer'iyye ise, hastalığı hiçbir dış belirtiye bakmadan doğrudan bilen biri gibi tasvir ediliyor; metin bu ikinciyi herkese değil, özel bir hâle mahsus kılıyor.",
+        "en": "Like an experienced doctor reaching a diagnosis from the pallor of a patient's face — a diagnosis that can sometimes be wrong, since it rests on signs. Discernment by divine command, by contrast, is pictured as someone who knows the illness directly, without looking at any outward symptom at all; the text reserves this second kind not for everyone, but for a particular state.",
+        "pt": "Como um médico experiente que chega a um diagnóstico a partir da palidez do rosto do paciente — diagnóstico que pode às vezes estar errado, pois se apoia em sinais. Já o discernimento por ordem divina é retratado como alguém que conhece a doença diretamente, sem olhar para nenhum sintoma externo; o texto reserva esse segundo tipo não para todos, mas para um estado particular."
+      },
+      "kaynaklar": [
+        {
+          "kaynak_adi": "Tedbîrât-ı İlâhiyye (Ahmed Avni Konuk tercüme ve şerhi)",
+          "alinti_tr": "Mü'minin firâsetinden sakınınız! Zirâ o Allâh'ın nûruyla nazar eder.",
+          "not_tr": "Hadîs-i şerif; sekizinci bâbın firâset bahsinin açılış delillerinden biri."
+        },
+        {
+          "kaynak_adi": "Tedbîrât-ı İlâhiyye (Ahmed Avni Konuk tercüme ve şerhi)",
+          "alinti_tr": "Katli gulâmı ve ta'yîb-i sefineyi ve tesviye-i cidârı ben kendi emrimden işlemedim.",
+          "not_tr": "Hızır kıssası (Kehf, 18/82); firâset-i şer'iyyenin doğrudan 'emr-i ilâhi'den geldiğine ve hiç yanılmadığına delil olarak gösterilir."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "vahyin-uc-menzili"
       ]
     }
   }
