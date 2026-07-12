@@ -1,5 +1,5 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik yalnızca Birinci Cilt'in Üçüncü Kısmı'nın girişini işledik.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik Birinci Cilt'in Üçüncü Kısmı'nı, en berrak ve merkezi gördüğümüz noktalarını seçerek işledik.",
   "book": {
     "cilt": 1,
     "totalKisim": 10
@@ -16,12 +16,12 @@
         "en": "The Ranks of the Sciences",
         "pt": "As Categorias das Ciências"
       },
-      "pageRange": "73–79",
+      "pageRange": "73–126",
       "hero": {
         "summary": {
-          "tr": "Bu kısmın girişinde Dost, kitaba başlarken önce ilimleri üçe ayırıyor; sonra üçüncü türü kendi içinde tekrar dallandırıyor. Burada bu tasnifi, kendi çizdiği sırayla, adım adım izlemeye çalışıyoruz — bu sadece Kısım III'ün ilk birkaç sayfası; kısmın geri kalanını okumaya devam ediyoruz.",
-          "en": "In this part's opening, as he begins the book, Dost first divides the sciences into three; then branches the third kind again within itself. Here we try to follow this classification step by step, in the order he lays it out — this covers only the first few pages of Part III; we continue reading the rest.",
-          "pt": "Na abertura desta parte, ao começar o livro, Dost primeiro divide as ciências em três; depois ramifica o terceiro tipo novamente dentro de si mesmo. Aqui tentamos seguir essa classificação passo a passo, na ordem em que ele a apresenta — isso cobre apenas as primeiras páginas da Parte III; continuamos lendo o restante."
+          "tr": "Bu kısmın girişinde Dost, kitaba başlarken önce ilimleri üçe ayırıyor; sonra üçüncü türü kendi içinde tekrar dallandırıyor. Kısım III'ü baştan sona okuduk; burada onun en berrak ve merkezi gördüğümüz beş durağını, kendi anlattığı sırayla, adım adım izlemeye çalışıyoruz.",
+          "en": "In this part's opening, as he begins the book, Dost first divides the sciences into three; then branches the third kind again within itself. We have read Part III from beginning to end; here we try to follow, step by step and in his own order, the five stops within it that we found clearest and most central.",
+          "pt": "Na abertura desta parte, ao começar o livro, Dost primeiro divide as ciências em três; depois ramifica o terceiro tipo novamente dentro de si mesmo. Lemos a Parte III do início ao fim; aqui tentamos seguir, passo a passo e em sua própria ordem, as cinco paradas que consideramos mais claras e centrais."
         }
       },
       "mainDiagram": {
@@ -489,6 +489,157 @@
               }
             }
           ]
+        },
+        {
+          "id": "seckinlerin-inanci",
+          "heading": {
+            "tr": "Seçkinlerin İnancı: Zât, Ulûhiyet ve Mümkünün Sırrı",
+            "en": "The Elite's Belief: Essence, Godhead, and the Secret of the Possible",
+            "pt": "A Crença da Elite: Essência, Divindade e o Segredo do Possível"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısım III burada, dört hayali bilginin — Batılı, Doğulu, Şamlı, Yemenli — göksel kubbenin altında buluşup, her birinin kendi uzmanlık alanını savunduğu uzun bir alegoriye giriyor. Her biri, terse ve yoğun 'bölüm' başlıkları altında kendi ilminin gerektirdiği kanıtları sıralıyor."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Dört Bilgin' alegorisi, s. 95-104.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the allegory of 'the Four Scholars,' pp. 95-104.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — a alegoria dos 'Quatro Sábios,' pp. 95-104."
+              },
+              "tree": {
+                "id": "dort-bilgin-tree",
+                "label": { "tr": "Dört Bilgin", "en": "The Four Scholars", "pt": "Os Quatro Sábios" },
+                "note": {
+                  "tr": "istiva çizgisinin altındaki gök kubbede buluşup, her biri kendi ilminin en kıymetli olduğunu savunur",
+                  "en": "they meet beneath the celestial dome, along the equinoctial line, each arguing that their own science is the most precious",
+                  "pt": "eles se encontram sob a cúpula celeste, junto à linha do equinócio, cada um argumentando que sua própria ciência é a mais preciosa"
+                },
+                "children": [
+                  {
+                    "id": "batili",
+                    "label": { "tr": "Batılı", "en": "The Westerner", "pt": "O Ocidental" },
+                    "note": {
+                      "tr": "cevher ilmi — kendi başına var olan taşıyıcının bilgisi",
+                      "en": "the science of substance — knowledge of the self-subsisting carrier",
+                      "pt": "a ciência da substância — conhecimento do portador autossubsistente"
+                    }
+                  },
+                  {
+                    "id": "dogulu",
+                    "label": { "tr": "Doğulu", "en": "The Easterner", "pt": "O Oriental" },
+                    "note": {
+                      "tr": "taşıyan-taşınan ilmi — kudret, irade, kelâm, sıfatlar",
+                      "en": "the science of carrier-and-carried — power, will, speech, attributes",
+                      "pt": "a ciência do portador-e-portado — poder, vontade, fala, atributos"
+                    }
+                  },
+                  {
+                    "id": "samli",
+                    "label": { "tr": "Şamlı", "en": "The Damascene", "pt": "O Damasceno" },
+                    "note": {
+                      "tr": "örneksiz yaratma ve bileştirme ilmi — kesb nazariyesi",
+                      "en": "the science of creation-without-precedent and composition — the theory of acquisition (kasb)",
+                      "pt": "a ciência da criação-sem-precedente e da composição — a teoria da aquisição (kasb)"
+                    }
+                  },
+                  {
+                    "id": "yemenli",
+                    "label": { "tr": "Yemenli", "en": "The Yemeni", "pt": "O Iemenita" },
+                    "note": {
+                      "tr": "sıralama ve özetleme ilmi — âhiret hâlleri ve imâmet şartları",
+                      "en": "the science of ordering and summarizing — the states of the afterlife and the conditions of the imamate",
+                      "pt": "a ciência da ordenação e da síntese — os estados do além e as condições do imamato"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Alegori kapandıktan sonra Dost, son faslında 'Allah ehlinden seçkinlerin teorik düşünce (nazar) ve keşif arasındaki inançlarını' ele alıyor — otuza yakın kısa 'mesele' başlığı altında nedensellik, bilgi, ezel, zaman, iyi-kötü gibi birçok konuyu art arda sıralıyor. Biz bu yoğun faslın tamamını tek tek işlemek yerine, en berrak ve merkezi gördüğümüz iki noktayı seçtik."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Seçkinlerin Teorik Düşünce ve Keşif Arasındaki İnançları' faslı, s. 104-105.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'the Elite's Beliefs Between Reflection and Unveiling,' pp. 104-105.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'As Crenças da Elite Entre a Reflexão e o Desvelamento,' pp. 104-105."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Zât", "en": "Essence (Dhat)", "pt": "Essência (Dhat)" },
+                  "note": {
+                    "tr": "müşahede edilir, bilinmez",
+                    "en": "witnessed, yet not known",
+                    "pt": "testemunhada, mas não conhecida"
+                  }
+                },
+                "right": {
+                  "label": { "tr": "Ulûhiyet", "en": "Godhead (Uluhiyya)", "pt": "Divindade (Uluhiyya)" },
+                  "note": {
+                    "tr": "bilinir, görülmez",
+                    "en": "known, yet not seen",
+                    "pt": "conhecida, mas não vista"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un çarpıcı ifadesiyle: 'Zât, Ulûhiyetin karşıtıdır.' Ulûhiyet, bir takım bağıntı ve olumsuzlamalardan ibarettir — Dost'a göre 'çokluk hakikatte değil, bağıntılardadır.'",
+                "en": "In Dost's own striking phrase: 'the Essence is the opposite of the Godhead.' The Godhead consists of a set of relations and negations — for Dost, 'multiplicity is not in reality itself, but in the relations.'",
+                "pt": "Na própria frase marcante de Dost: 'a Essência é o oposto da Divindade.' A Divindade consiste num conjunto de relações e negações — para Dost, 'a multiplicidade não está na realidade em si, mas nas relações.'"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fasıl, otuzuncu ve son meselesinde çarpıcı bir ayrımla kapanıyor: Dost'a göre 'Allah şunu yapabilir ya da yapmayabilir, mümkündür' demek doğru değildir — çünkü Hakkın fiili, hiçbir zorlayana bağlı değildir. Ama 'şu durumun var olması ya da olmaması mümkündür' denilebilir; bu durumda o şey bir 'tercih ediciye' muhtaçtır ki o da Allah'tır. Dost, bu ayrımı şeriatın tamamını inceleyerek doğruladığını söylüyor: Allah hakkında yalnız 'şu vâcibtir' ya da 'şu muhâldir' denir — asla 'şu mümkündür' denmez."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Seçkinlerin Teorik Düşünce ve Keşif Arasındaki İnançları' faslı, s. 124.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'the Elite's Beliefs Between Reflection and Unveiling,' p. 124.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'As Crenças da Elite Entre a Reflexão e o Desvelamento,' p. 124."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Mümkün Durum", "en": "A Possible Situation", "pt": "Uma Situação Possível" },
+                  "note": {
+                    "tr": "var/yok olması câizdir",
+                    "en": "may exist or not exist",
+                    "pt": "pode existir ou não existir"
+                  }
+                },
+                "right": {
+                  "label": { "tr": "Allah", "en": "God", "pt": "Deus" },
+                  "note": {
+                    "tr": "yalnız vâcib ya da muhâl",
+                    "en": "only necessary or impossible",
+                    "pt": "apenas necessário ou impossível"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "'Mümkün' (olabilir) sözü yalnız yaratılmışa uygulanır; Allah hakkında bu sözü kullanmayız — O'nun için ancak vâcib ya da muhâl deriz.",
+                "en": "The word 'possible' applies only to the created; we do not use it of God — of Him we say only necessary or impossible.",
+                "pt": "A palavra 'possível' aplica-se apenas ao criado; não a usamos para Deus — d'Ele dizemos apenas necessário ou impossível."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost, bu son satırlarda kendi kitabının yapısı hakkında da bir şey söylüyor: 'seçkinlerin seçkinlerinin' inancına burada müstakil bir bölüm ayırmadığını, bunun yerine kitabın çeşitli bölümlerine dağıtarak serpiştirdiğini belirtiyor — çünkü bu inanç, perdeli akılların çoğu için doğrudan kavranamayacak kadar yoğun. Bu itiraf, bizim bu 'Atlas'ta yaptığımız işe de bir ayna tutuyor: Dost'un tek bir yerde toplu vermediği, kitabın her yanına serpiştirdiği şeyi, parça parça, kısım kısım toplamaya çalışıyoruz — bu, Kısım III'ün sonu, ama bu çabanın sonu değil."
+              }
+            }
+          ]
         }
       ],
       "sources": [
@@ -511,6 +662,16 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Kelâm İlmi Bakımından Doğru İnançların Araştırılması' faslı, s. 83-88.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'Investigating Correct Beliefs from the Perspective of Kalam,' pp. 83-88.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'A Investigação das Crenças Corretas sob a Perspectiva do Calam,' pp. 83-88."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Dört Bilgin' alegorisi (Batılı, Doğulu, Şamlı, Yemenli), s. 95-104.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the allegory of 'the Four Scholars' (the Westerner, the Easterner, the Damascene, the Yemeni), pp. 95-104.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — a alegoria dos 'Quatro Sábios' (o Ocidental, o Oriental, o Damasceno, o Iemenita), pp. 95-104."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım III — 'Seçkinlerin Teorik Düşünce ve Keşif Arasındaki İnançları' faslı, s. 104-125.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part III — the chapter on 'the Elite's Beliefs Between Reflection and Unveiling,' pp. 104-125.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte III — o capítulo sobre 'As Crenças da Elite Entre a Reflexão e o Desvelamento,' pp. 104-125."
         }
       ]
     }
