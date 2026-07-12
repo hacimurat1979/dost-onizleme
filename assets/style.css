@@ -1045,7 +1045,7 @@ button.futuhat-part-chip:hover {
 
 .futuhat-stats {
   position: sticky;
-  top: 90px;
+  top: calc(var(--app-header-height, 96px) + 12px);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 16px 18px;
