@@ -82,6 +82,16 @@
   --series-sir-kader:     #1f7d6f; /* teal / destiny and divine unity */
   --series-sir-dil:       #8e3d68; /* plum / language and words */
   --series-sir-insan:     #9c7a26; /* bronze / perfect human and sainthood */
+
+  --series-sorular-en-temel: #917430; /* amber / the most basic question */
+  --series-sorular-varlik:   #3b5591; /* indigo / questions on being */
+  --series-sorular-bilgi:    #347779; /* teal / questions on knowledge */
+  --series-sorular-insan:    #8d6535; /* bronze / questions on the human */
+  --series-sorular-allah:    #62498d; /* violet / questions on God */
+  --series-sorular-kozmos:   #3f6b8d; /* steel blue / questions on the cosmos */
+  --series-sorular-kuran:    #9f5338; /* terracotta / questions on reading the Quran */
+  --series-sorular-metot:    #5c6e7a; /* slate / questions on method */
+  --series-sorular-deneyim:  #904761; /* plum / questions on experience */
 }
 
 .viz-root[data-theme="dark"] {
@@ -115,6 +125,16 @@
   --series-sir-kader:     #3aa694;
   --series-sir-dil:       #b5638f;
   --series-sir-insan:     #c7a13e;
+
+  --series-sorular-en-temel: #ccad66;
+  --series-sorular-varlik:   #758ec7;
+  --series-sorular-bilgi:    #62b9bc;
+  --series-sorular-insan:    #c49d6e;
+  --series-sorular-allah:    #967fbd;
+  --series-sorular-kozmos:   #759ebd;
+  --series-sorular-kuran:    #c4856e;
+  --series-sorular-metot:    #89969f;
+  --series-sorular-deneyim:  #bb8196;
 }
 
 
@@ -610,14 +630,12 @@ html {
   opacity: 1;
 }
 .sorular-node circle {
-  fill: hsl(var(--node-hue) 45% 46%);
   stroke: transparent;
   stroke-width: 0;
   transition: stroke 0.2s ease, stroke-width 0.2s ease;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.28));
 }
 .viz-root[data-theme="dark"] .sorular-node circle {
-  fill: hsl(var(--node-hue) 45% 62%);
   filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
 }
 .sorular-node--active circle {
@@ -1368,6 +1386,15 @@ li.futuhat-pulse,
 .legend__dot--sir-kader     { background: var(--series-sir-kader); }
 .legend__dot--sir-dil       { background: var(--series-sir-dil); }
 .legend__dot--sir-insan     { background: var(--series-sir-insan); }
+.legend__dot--sorular-en-temel { background: var(--series-sorular-en-temel); }
+.legend__dot--sorular-varlik    { background: var(--series-sorular-varlik); }
+.legend__dot--sorular-bilgi     { background: var(--series-sorular-bilgi); }
+.legend__dot--sorular-insan     { background: var(--series-sorular-insan); }
+.legend__dot--sorular-allah     { background: var(--series-sorular-allah); }
+.legend__dot--sorular-kozmos    { background: var(--series-sorular-kozmos); }
+.legend__dot--sorular-kuran     { background: var(--series-sorular-kuran); }
+.legend__dot--sorular-metot     { background: var(--series-sorular-metot); }
+.legend__dot--sorular-deneyim   { background: var(--series-sorular-deneyim); }
 .legend__line {
   width: 16px;
   height: 0;

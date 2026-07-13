@@ -3,6 +3,27 @@
 
   const I18n = window.DostI18n;
   const svg = d3.select("#sorular-graph");
+
+  const CATEGORY_COLOR_VAR = {
+    "en-temel": "--series-sorular-en-temel",
+    "varlik": "--series-sorular-varlik",
+    "bilgi": "--series-sorular-bilgi",
+    "insan": "--series-sorular-insan",
+    "allah": "--series-sorular-allah",
+    "kozmos": "--series-sorular-kozmos",
+    "kuran": "--series-sorular-kuran",
+    "metot": "--series-sorular-metot",
+    "deneyim": "--series-sorular-deneyim",
+  };
+
+  function getVar(name) {
+    return getComputedStyle(document.body).getPropertyValue(name).trim();
+  }
+
+  function colorFor(d) {
+    const catId = d.kind === "category" ? d.id : currentCategory.id;
+    return getVar(CATEGORY_COLOR_VAR[catId] || "--series-theme");
+  }
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
   const tooltip = document.getElementById("sorular-tooltip");
@@ -51,10 +72,6 @@
     return dataPromise;
   }
 
-  function hueFor(i) {
-    return Math.round((i * 137.508) % 360);
-  }
-
   function labelFor(dict) {
     return I18n.pick3(dict);
   }
@@ -85,8 +102,8 @@
     const radius = Math.max(110, Math.min(width, height) / 2 - 100);
 
     const items = currentLevel === "categories"
-      ? sorularData.categories.map((c, i) => ({ id: c.id, kind: "category", data: c, hue: hueFor(i) }))
-      : currentCategory.questions.map((q, i) => ({ id: q.id, kind: "question", data: q, hue: hueFor(i) }));
+      ? sorularData.categories.map((c) => ({ id: c.id, kind: "category", data: c }))
+      : currentCategory.questions.map((q) => ({ id: q.id, kind: "question", data: q }));
 
     layoutNodes(items, cx, cy, radius);
     currentNodes = items;
@@ -159,7 +176,6 @@
       .attr("tabindex", "0")
       .attr("role", "button")
       .attr("aria-label", (d) => labelFor(d.kind === "category" ? d.data.name : d.data.question))
-      .attr("style", (d) => `--node-hue:${d.hue}`)
       .on("click", (event, d) => {
         event.stopPropagation();
         activateNode(d);
@@ -177,7 +193,9 @@
       .on("focus", (event, d) => { highlight(d); showTooltip(d, event); })
       .on("blur", () => { highlight(null); hideTooltip(); });
 
-    nodeSel.append("circle").attr("r", currentLevel === "categories" ? 19 : 15);
+    nodeSel.append("circle")
+      .attr("r", currentLevel === "categories" ? 19 : 15)
+      .attr("fill", (d) => colorFor(d));
     nodeSel.append("circle")
       .attr("class", "node-sheen")
       .attr("r", currentLevel === "categories" ? 19 : 15);
