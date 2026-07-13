@@ -999,6 +999,11 @@ button.futuhat-part-chip:hover {
   -webkit-box-decoration-break: clone;
 }
 
+.viz-root[data-theme="dark"] .futuhat-section__p em {
+  background: color-mix(in srgb, var(--series-theme) 42%, transparent);
+  color: #fff6e6;
+}
+
 .futuhat-inline-diagram {
   background: var(--page-plane);
   border: 1px solid var(--border);
