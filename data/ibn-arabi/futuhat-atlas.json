@@ -1779,12 +1779,12 @@
         "en": "Portraits of the Letters",
         "pt": "Retratos das Letras"
       },
-      "pageRange": "180–202",
+      "pageRange": "180–205",
       "hero": {
         "summary": {
-          "tr": "Altıncı Kısım, Beşinci Kısım'ın kapandığı yerden hemen devam ederek biçim değiştiriyor: harfleri artık gruplar hâlinde değil, tek tek ele alan bir 'sözlük'e dönüşüyor. Her harf, önce kısa bir şiirle kendini tanıtıyor, sonra mahreci, sayısal değeri, âlemi, feleği, mertebesi ve kendisine ait ilâhî isimlerin uzun bir dökümüyle devam ediyor. Bu teknik dökümü harf harf aktarmak yerine, en çarpıcı bulduğumuz durakları seçip aktarıyoruz — Elif'in bilmecesi, Kaf'ın hilâl-dolunay imgesi, Kef'in celâl-cemâl ikiliği, Ra'nın okuyucuya seslenişi, Nun'un yarısı görünen noktası, Tı'nın beşli sır listesi, Sad'ın kişisel bir anıya dönüşen rüyası, Ba'nın besmeleyle bağı ve Mim'in Nun ile kurduğu ayna ilişkisi.",
-          "en": "Part VI continues directly from where Part V closed, but changes shape: the letters are no longer treated in groups but one by one, as a kind of dictionary. Each letter introduces itself with a short poem, then continues with a long technical rundown — its point of articulation, numeric value, world, celestial sphere, rank, and the divine Names attached to it. Rather than relay that technical rundown letter by letter, we've picked out the stops we found most striking — Elif's riddle, Qaf's crescent-and-full-moon image, Kaf's duality of majesty and beauty, Ra's direct address to the reader, Nun's half-visible point, Ta's list of five secrets, the letter Sad's dream turning into a personal memory, Ba's tie to the basmala, and Mim's mirroring relationship with Nun.",
-          "pt": "A Parte VI continua diretamente de onde a Parte V se encerrou, mas muda de forma: as letras não são mais tratadas em grupos, mas uma a uma, como uma espécie de dicionário. Cada letra se apresenta com um curto poema, depois continua com um longo levantamento técnico — seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e os Nomes divinos a ela associados. Em vez de relatar esse levantamento técnico letra por letra, escolhemos as paradas que achamos mais marcantes — o enigma de Elif, a imagem crescente-e-lua-cheia de Qaf, a dualidade majestade-beleza de Kaf, o endereçamento direto de Ra ao leitor, o ponto meio-visível de Nun, a lista de cinco segredos de Ta, o sonho da letra Sad transformando-se numa lembrança pessoal, o vínculo de Ba com a basmala, e a relação de espelhamento de Mim com Nun."
+          "tr": "Altıncı Kısım, Beşinci Kısım'ın kapandığı yerden hemen devam ederek biçim değiştiriyor: harfleri artık gruplar hâlinde değil, tek tek ele alan bir 'sözlük'e dönüşüyor. Her harf, önce kısa bir şiirle kendini tanıtıyor, sonra mahreci, sayısal değeri, âlemi, feleği, mertebesi ve kendisine ait ilâhî isimlerin uzun bir dökümüyle devam ediyor. Bu teknik dökümü harf harf aktarmak yerine, en çarpıcı bulduğumuz durakları seçip aktarıyoruz — Elif'in bilmecesi, Kaf'ın hilâl-dolunay imgesi, Kef'in celâl-cemâl ikiliği, Ra'nın okuyucuya seslenişi, Nun'un yarısı görünen noktası, Tı'nın beşli sır listesi, Sad'ın kişisel bir anıya dönüşen rüyası, Ba'nın besmeleyle bağı, Mim'in Nun ile kurduğu ayna ilişkisi ve — tekil harfler sözlüğü kapanınca — Lâm-Elif'in iki sevgili gibi kucaklaştığı şiirler.",
+          "en": "Part VI continues directly from where Part V closed, but changes shape: the letters are no longer treated in groups but one by one, as a kind of dictionary. Each letter introduces itself with a short poem, then continues with a long technical rundown — its point of articulation, numeric value, world, celestial sphere, rank, and the divine Names attached to it. Rather than relay that technical rundown letter by letter, we've picked out the stops we found most striking — Elif's riddle, Qaf's crescent-and-full-moon image, Kaf's duality of majesty and beauty, Ra's direct address to the reader, Nun's half-visible point, Ta's list of five secrets, the letter Sad's dream turning into a personal memory, Ba's tie to the basmala, Mim's mirroring relationship with Nun, and — once the dictionary of single letters closes — the poems where Lam-Elif embraces like two lovers.",
+          "pt": "A Parte VI continua diretamente de onde a Parte V se encerrou, mas muda de forma: as letras não são mais tratadas em grupos, mas uma a uma, como uma espécie de dicionário. Cada letra se apresenta com um curto poema, depois continua com um longo levantamento técnico — seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e os Nomes divinos a ela associados. Em vez de relatar esse levantamento técnico letra por letra, escolhemos as paradas que achamos mais marcantes — o enigma de Elif, a imagem crescente-e-lua-cheia de Qaf, a dualidade majestade-beleza de Kaf, o endereçamento direto de Ra ao leitor, o ponto meio-visível de Nun, a lista de cinco segredos de Ta, o sonho da letra Sad transformando-se numa lembrança pessoal, o vínculo de Ba com a basmala, a relação de espelhamento de Mim com Nun, e — uma vez fechado o dicionário das letras simples — os poemas em que Lam-Elif se abraça como dois amantes."
         }
       },
       "mainDiagram": {
@@ -1846,6 +1846,11 @@
               "id": "mim-portre",
               "label": { "tr": "Mim", "en": "Mim", "pt": "Mim" },
               "note": { "tr": "Nun'un aynası", "en": "Nun's mirror", "pt": "o espelho de Nun" }
+            },
+            {
+              "id": "lam-elif-portre",
+              "label": { "tr": "Lâm-Elif", "en": "Lam-Elif", "pt": "Lam-Elif" },
+              "note": { "tr": "iki sevgilinin kucaklaşması", "en": "the embrace of two lovers", "pt": "o abraço de dois amantes" }
             }
           ]
         }
@@ -2261,9 +2266,66 @@
             {
               "type": "p",
               "text": {
-                "tr": "Bu satırlar, Kısım IV'te işlediğimiz 'insan-ı kâmil Hak ile aynı cem' makamındadır' iddiasıyla da örtüşüyor gibi görünüyor — burada da Mim, insanı doğrudan Hakk'ın karşılığı, aynası olarak konumlandırıyor. Kısım VI'nın geri kalan harflerini (Vav, Ze, Sin, Zı, Zel, Se, Fe ve diğerleri) ayrı bir oturumda okumaya devam edeceğiz.",
-                "en": "These lines seem to echo the claim we took up in Part V — that the Perfect Human stands with the Real in the same station of unity — here too, Mim positions the human directly as the Real's counterpart, its mirror. We'll continue reading the remaining letters of Part VI (Waw, Za, Sin, Za, Dhal, Tha, Fa, and others) in a separate session.",
-                "pt": "Essas linhas parecem ecoar a afirmação que tratamos na Parte V — de que o Ser Humano Perfeito está com o Real na mesma estação de unidade — aqui também, Mim posiciona o humano diretamente como a contraparte do Real, seu espelho. Continuaremos lendo as letras restantes da Parte VI (Waw, Za, Sin, Za, Dhal, Tha, Fa, e outras) numa sessão separada."
+                "tr": "Bu satırlar, Kısım IV'te işlediğimiz 'insan-ı kâmil Hak ile aynı cem' makamındadır' iddiasıyla da örtüşüyor gibi görünüyor — burada da Mim, insanı doğrudan Hakk'ın karşılığı, aynası olarak konumlandırıyor. Mim ile birlikte Dost, 'mu'cem harfler tamamlandı' diyerek tekil harflerin sözlüğünü kapatıyor — sıra, daha önce Kısım V'te bir kez ele aldığımız bileşik harfe geliyor: Lâm-Elif.",
+                "en": "These lines seem to echo the claim we took up in Part V — that the Perfect Human stands with the Real in the same station of unity — here too, Mim positions the human directly as the Real's counterpart, its mirror. With Mim, Dost declares 'the individual letters are complete,' closing the dictionary of single letters — next comes the compound letter we already touched on once in Part V: Lam-Elif.",
+                "pt": "Essas linhas parecem ecoar a afirmação que tratamos na Parte V — de que o Ser Humano Perfeito está com o Real na mesma estação de unidade — aqui também, Mim posiciona o humano diretamente como a contraparte do Real, seu espelho. Com Mim, Dost declara que 'as letras individuais estão completas', encerrando o dicionário das letras simples — a seguir vem a letra composta que já tocamos uma vez na Parte V: Lam-Elif."
+              }
+            }
+          ]
+        },
+        {
+          "id": "lam-elifin-kucaklasmasi",
+          "heading": {
+            "tr": "Lâm-Elif: İki Sevgilinin Kucaklaşması",
+            "en": "Lam-Elif: The Embrace of Two Lovers",
+            "pt": "Lam-Elif: O Abraço de Dois Amantes"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Tekil harflerin sözlüğü kapanınca Dost, Kısım V'te bir kez değindiğimiz Lâm-Elif bağına (لا) yeniden ve çok daha ayrıntılı dönüyor. İlk şiir Kur'an'daki Tâlût kıssasına (Bakara, 2:249) gönderme yapıyor — İsrailoğulları'nın nehir kenarında sınandığı hikâyeye: <em>'Lâm'ın Elif'i ve Elifin Lâm'ı, Talut'un nehridir, avuçlama — nehri sonuna kadar iç, arzulu olmaktan ise ayrılma. İçici olduğun sürece ayağa kalk, nefsini doyurursan kalk ve ayrıl.'</em> İkinci şiir ise doğrudan bir aşk sahnesi kuruyor: <em>'Her şeyi bilen Elif ve Lâm kucaklaştı, iki sevgili gibi; avam ise uyumakta. Yüce olan ayaklar birbirine dolandı.'</em>",
+                "en": "Once the dictionary of single letters closes, Dost returns to the Lam-Elif bond (لا) — which we touched on once in Part V — this time in far more detail. The first poem alludes to the Qur'anic story of Talut (Saul, Al-Baqara 2:249) — the story of the Israelites being tested at a river: <em>'Lam's Elif and Elif's Lam is the river of Talut, a mere handful — drink from the river to the end, but do not become one of the desirous. Rise while you are drinking; if you satisfy yourself, rise and depart.'</em> The second poem builds a direct scene of love: <em>'Elif and Lam, knowers of everything, embraced like two lovers, while the common people sleep. The exalted feet became entwined with one another.'</em>",
+                "pt": "Uma vez fechado o dicionário das letras simples, Dost retorna ao vínculo Lam-Elif (لا) — que tocamos uma vez na Parte V — desta vez com muito mais detalhe. O primeiro poema alude à história corânica de Talut (Saul, Al-Baqara 2:249) — a história dos israelitas sendo testados num rio: <em>'O Elif de Lam e o Lam de Elif é o rio de Talut, um mero punhado — bebe do rio até o fim, mas não sejas um dos desejosos. Levanta-te enquanto bebes; se te satisfizeres, levanta-te e parte.'</em> O segundo poema constrói uma cena direta de amor: <em>'Elif e Lam, conhecedores de tudo, se abraçaram como dois amantes, enquanto os comuns dormem. Os pés exaltados se entrelaçaram um no outro.'</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bunun ardından uzun bir tartışmaya giriyor: Elif ile Lâm'dan hangisinin diğerine olan 'meyli' (eğilimi) daha güçlü? Sûfî bunu bir aşk hâli (vecd) olarak okur — Lâm'ın Elife yönelişini bir âşığın kendinden geçişi gibi görür. Muhakkik ise aynı ilişkiyi bilgiyle açıklar. Dost ikisini de kısmen haklı buluyor, ama kendi görüşünü ekliyor: Elif ve Lâm'ın ilk birleştiği mertebe, doğrudan <em>'Lâ ilâhe illallah'</em> (Allah'tan başka ilâh yoktur) cümlesidir — bu cümlede 'Lâ' iki kez olumsuzlukta, iki kez de olumlamada beliriyor. Elif, 'Mutlak Varlık'; Lâm ise 'sınırlı varlık' — ve Lâm, Elifin sûretine göre var olmuştur.",
+                "en": "Dost then enters a long discussion: whose 'inclination' toward the other — Elif's or Lam's — is stronger? The Sufi reads it as a state of love (wajd) — seeing Lam's leaning toward Elif as a lover's rapture. The verifier (muhaqqiq) explains the same relation through knowledge. Dost finds each partly right, but adds his own view: the first station where Elif and Lam unite is directly the phrase <em>'La ilaha illallah'</em> (there is no god but Allah) — in this phrase, 'La' appears twice in negation and twice in affirmation. Elif is 'Absolute Being'; Lam is 'delimited being' — and Lam came to exist according to Elif's form.",
+                "pt": "Dost então entra numa longa discussão: de quem é a 'inclinação' mais forte em direção ao outro — de Elif ou de Lam? O sufi lê isso como um estado de amor (wajd) — vendo a inclinação de Lam para Elif como o êxtase de um amante. O verificador (muhaqqiq) explica a mesma relação através do conhecimento. Dost considera cada um parcialmente certo, mas acrescenta sua própria visão: a primeira estação em que Elif e Lam se unem é diretamente a frase <em>'La ilaha illallah'</em> (não há divindade senão Allah) — nessa frase, 'La' aparece duas vezes na negação e duas vezes na afirmação. Elif é o 'Ser Absoluto'; Lam é o 'ser delimitado' — e Lam veio a existir conforme a forma de Elif."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Lâm-Elif, s. 203-205.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — Lam-Elif, pp. 203-205.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — Lam-Elif, pp. 203-205."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Elif", "en": "Elif", "pt": "Elif" },
+                  "note": { "tr": "Mutlak Varlık", "en": "Absolute Being", "pt": "Ser Absoluto" }
+                },
+                "right": {
+                  "label": { "tr": "Lâm", "en": "Lam", "pt": "Lam" },
+                  "note": { "tr": "sınırlı varlık", "en": "delimited being", "pt": "ser delimitado" }
+                }
+              },
+              "caption": {
+                "tr": "İkisinin ilk birleştiği yer, Dost'a göre, doğrudan 'Lâ ilâhe illallah' cümlesidir — Elif ve Lâm'ın kucaklaşması, kelime-i tevhidin kendi harflerinde tekrarlanıyor.",
+                "en": "The first place the two unite, in Dost's account, is directly the phrase 'La ilaha illallah' — the embrace of Elif and Lam repeats itself within the very letters of the declaration of God's oneness.",
+                "pt": "O primeiro lugar em que os dois se unem, segundo Dost, é diretamente a frase 'La ilaha illallah' — o abraço de Elif e Lam se repete dentro das próprias letras da declaração da unicidade de Deus."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunu, Kısım V'te işlediğimiz 'Elif-Lâm-Mim'in İnişi' bölümüyle aynı ailenin bir devamı olarak okuyoruz — orada da Elif yukarıda (tevhid), Lâm ise vasıta olarak konumlanmıştı. Burada aynı iki harf, bu kez bir aşk sahnesi ve bir sûfî-muhakkik tartışmasıyla yeniden karşımıza çıkıyor. Kısım VI'nın geri kalan harflerini (Vav, Ze, Sin, Zı, Zel, Se, Fe ve diğerleri) ayrı bir oturumda okumaya devam edeceğiz.",
+                "en": "We read this as a continuation of the same family we took up in Part V's 'The Descent of Elif-Lam-Mim' — there too, Elif stood above (oneness) with Lam as intermediary. Here the same two letters return to us once more, this time through a scene of love and a Sufi-verifier debate. We'll continue reading the remaining letters of Part VI (Waw, Za, Sin, Za, Dhal, Tha, Fa, and others) in a separate session.",
+                "pt": "Lemos isso como uma continuação da mesma família que tratamos em 'O Descenso de Elif-Lam-Mim' na Parte V — lá também, Elif estava acima (unicidade) com Lam como intermediário. Aqui as mesmas duas letras retornam a nós mais uma vez, desta vez através de uma cena de amor e um debate sufi-verificador. Continuaremos lendo as letras restantes da Parte VI (Waw, Za, Sin, Za, Dhal, Tha, Fa, e outras) numa sessão separada."
               }
             }
           ]
@@ -2319,6 +2381,11 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Mim Harfi, s. 201-202.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Mim, pp. 201-202.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Mim, pp. 201-202."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Lâm-Elif, s. 203-205.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — Lam-Elif, pp. 203-205.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — Lam-Elif, pp. 203-205."
         }
       ]
     }
