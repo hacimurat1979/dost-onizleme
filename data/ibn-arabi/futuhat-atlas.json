@@ -1,10 +1,10 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları ise en berrak ve merkezi gördüğümüz noktalarını seçerek işledik.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısma da aynı seçici yaklaşımla başladık.",
   "book": {
     "cilt": 1,
     "totalKisim": 10
   },
-  "activePartId": "c1k7",
+  "activePartId": "c1k8",
   "parts": [
     {
       "id": "c1k3",
@@ -3066,6 +3066,228 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VII — Ünsiyet Veren Harfler, Ürküten Harfler, s. 225-227.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part VII — Letters that Comfort, Letters that Startle, pp. 225-227.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VII — Letras que Confortam, Letras que Assustam, pp. 225-227."
+        }
+      ]
+    },
+    {
+      "id": "c1k8",
+      "cilt": 1,
+      "kisim": 8,
+      "status": "active",
+      "title": {
+        "tr": "Harekeler: Kelimelerin Ruhu",
+        "en": "Vowel-Marks: The Spirit of Words",
+        "pt": "Vogais: O Espírito das Palavras"
+      },
+      "pageRange": "231–236",
+      "hero": {
+        "summary": {
+          "tr": "Kısım VII'nin hemen ardından Dost, harfler âleminden harekeler âlemine geçiyor: harekeleri 'küçük harfler' olarak tanımlayıp, tıpkı insanın cisim+ruh üflenmesinden var olması gibi, kelimenin de harf+hareke bileşiminden bambaşka bir 'yaratılış' olarak ortaya çıktığını anlatıyor. Ardından kelimeleri çoğunlukla insana, azınlıkla cin/meleğe benzeyenler diye ikiye ayırıyor. Son olarak 'kelâmın türleri'ni -zat, fiil, rabıta- İsrafil'in Sûr'a üflemesi örneğiyle açıklıyor: üfleyen İsrafil, kabul eden sûretler, ikisi arasındaki sır ise Hakk'ın kendisi.",
+          "en": "Right after Part VII, Dost moves from the world of letters to the world of vowel-marks (harakat): he defines them as 'small letters,' and explains that just as a human comes into being from body plus the breathing-in of spirit, a word too emerges as an entirely different kind of 'creation' from the combination of letter plus vowel-mark. He then divides words into those that mostly resemble humans, and a minority that resemble jinn or angels. Finally he explains the 'types of speech' — essence, act, and bond — through the example of Israfil blowing the Trumpet: Israfil blows, forms receive, and the secret between the two is God Himself.",
+          "pt": "Logo após a Parte VII, Dost passa do mundo das letras para o mundo das vogais (harakat): ele as define como 'pequenas letras' e explica que, assim como um humano vem à existência a partir do corpo mais o sopro do espírito, uma palavra também surge como um tipo inteiramente diferente de 'criação' a partir da combinação de letra mais vogal. Ele então divide as palavras entre as que se assemelham majoritariamente aos humanos, e uma minoria que se assemelha a jinns ou anjos. Por fim, explica os 'tipos de discurso' — essência, ato e vínculo — através do exemplo de Israfil soprando a Trombeta: Israfil sopra, as formas recebem, e o segredo entre os dois é o próprio Deus."
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Dost'un kelime-yaratılış benzetmesi: tıpkı insanın cisim+ruh'tan var olması gibi, kelime de harf+hareke'den var olur.",
+          "en": "Dost's word-creation analogy: just as a human comes into being from body plus spirit, a word comes into being from letter plus vowel-mark.",
+          "pt": "A analogia de criação de palavras de Dost: assim como um humano vem à existência a partir do corpo mais o espírito, uma palavra vem à existência a partir da letra mais a vogal."
+        },
+        "tree": {
+          "id": "harekeler-kelime-tree",
+          "label": { "tr": "Harekeler ve Kelimeler", "en": "Vowel-Marks and Words", "pt": "Vogais e Palavras" },
+          "note": { "tr": "harf âleminin bir kademe ilerisi", "en": "one step beyond the world of letters", "pt": "um passo além do mundo das letras" },
+          "children": [
+            {
+              "id": "harf-hareke-kelime",
+              "label": { "tr": "Harf + Hareke = Kelime", "en": "Letter + Vowel-Mark = Word", "pt": "Letra + Vogal = Palavra" },
+              "note": { "tr": "cisim+ruh'tan insan doğması gibi", "en": "as a human is born from body + spirit", "pt": "como um humano nasce de corpo + espírito" }
+            },
+            {
+              "id": "insana-benzeyen",
+              "label": { "tr": "İnsana Benzeyen (Çoğunluk)", "en": "Resembling Humans (Majority)", "pt": "Semelhante a Humanos (Maioria)" },
+              "note": { "tr": "kelimelerin çoğu", "en": "most words", "pt": "a maioria das palavras" }
+            },
+            {
+              "id": "cine-benzeyen",
+              "label": { "tr": "Cin/Meleğe Benzeyen (Azınlık)", "en": "Resembling Jinn/Angels (Minority)", "pt": "Semelhante a Jinns/Anjos (Minoria)" },
+              "note": { "tr": "insanın bâtını gibi gizli", "en": "hidden like the human's inward aspect", "pt": "ocultas como o aspecto interior do humano" }
+            },
+            {
+              "id": "kelamin-turleri",
+              "label": { "tr": "Kelâmın Türleri", "en": "The Types of Speech", "pt": "Os Tipos de Discurso" },
+              "note": { "tr": "Zat, Fiil, Rabıta", "en": "Essence, Act, Bond", "pt": "Essência, Ato, Vínculo" }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "harekeler-kucuk-harfler",
+          "heading": {
+            "tr": "Harekeler: Kelimelerin Küçük Harfleri",
+            "en": "Vowel-Marks: Words' Small Letters",
+            "pt": "Vogais: As Pequenas Letras das Palavras"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısım VIII, kısa bir şiirle açılıyor: <em>'Harflerin harekeleri altıdır, onlardan Allah, onların benzeri olarak kelimeler ortaya çıkardı... Sözün esası hazftır ki, ölüm demektir, ya da sükûndur, harekelerden oluşan. Âlemlerin hâli budur. Bakınız, ölümlerdeki garip hayat sırrına!'</em> Dost ardından bu şiiri açıklamaya girişiyor: harekeler, harfler bahsinde söz edileceği daha önce söylenmiş olsa da, harflerin kelime hâline gelmesi harekeler olmadan bir işe yaramadığı için, bu konuyu 'lafızlar' (kelimeler) bahsine erteliyor.",
+                "en": "Part VIII opens with a short poem: <em>'The letters have six vowel-marks; from them God brought forth words as their likeness... The essence of speech is hazf, which means death, or sukun (stillness), made of vowel-marks that are nothing. This is the state of the worlds. Behold the strange secret of life within deaths!'</em> Dost then sets out to explain this poem: although he had promised to discuss vowel-marks in the letters section, since letters becoming words is of no use without vowel-marks, he postpones the topic to the section on 'utterances' (words).",
+                "pt": "A Parte VIII se abre com um pequeno poema: <em>'As letras têm seis vogais; a partir delas Deus fez surgir palavras à sua semelhança... A essência da fala é hazf, que significa morte, ou sukun (quietude), feita de vogais que são nada. Este é o estado dos mundos. Vede o estranho segredo da vida dentro das mortes!'</em> Dost então se propõe a explicar esse poema: embora tivesse prometido discutir as vogais na seção das letras, como as letras se tornarem palavras não serve de nada sem as vogais, ele adia o tópico para a seção das 'palavras'."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bunu doğrudan insanın yaratılışına bağlıyor: <em>'Harfler birbirine eklenerek düzenlenip kelime olur... Harflerin düzenlenmesi, yaratılışımız hakkındaki şu ayetteki duruma benzer: \"Onu düzenleyip ruhumdan üflediğimde.\" Bu, düzenlendikten sonra söz konusu harflere harekelerin konulmasıdır.'</em> Tıpkı bizim içimizden birinin 'insan' diye isimlendirilmesi gibi, harflerin bileşip harekelenmesinden de 'kelime' diye isimlenen başka bir yaratılış meydana geliyor: <em>'Kelimeler için harfler, cisimlerimizin varlığını ayakta tutmak için su, toprak, ateş ve hava gibi maddelerdir.'</em>",
+                "en": "Dost ties this directly to human creation: <em>'Letters are joined together and arranged into a word... The arrangement of letters resembles the state described in the verse about our creation: \"When I arranged him and breathed into him of My spirit.\" This is the placing of vowel-marks upon those letters once arranged.'</em> Just as one of us is called 'human,' another kind of creation called 'word' arises from letters combining and being given vowel-marks: <em>'For words, letters are like water, earth, fire, and air are for sustaining the existence of our bodies.'</em>",
+                "pt": "Dost liga isso diretamente à criação humana: <em>'As letras se juntam e se organizam em uma palavra... O arranjo das letras se assemelha ao estado descrito no versículo sobre nossa criação: \"Quando o organizei e soprei nele do Meu espírito.\" Isso é a colocação das vogais sobre essas letras uma vez organizadas.'</em> Assim como um de nós é chamado de 'humano', outro tipo de criação chamada 'palavra' surge das letras se combinando e recebendo vogais: <em>'Para as palavras, as letras são como água, terra, fogo e ar são para sustentar a existência de nossos corpos.'</em>"
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VIII, s. 231-232.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VIII, pp. 231-232.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VIII, pp. 231-232."
+              },
+              "useMainDiagram": true,
+              "caption": {
+                "tr": "Harf+hareke'den kelime doğar, tıpkı cisim+ruh'tan insanın doğması gibi — Dost'un dil-yaratılış benzetmesi.",
+                "en": "A word is born from letter plus vowel-mark, just as a human is born from body plus spirit — Dost's language-creation analogy.",
+                "pt": "Uma palavra nasce de letra mais vogal, assim como um humano nasce de corpo mais espírito — a analogia de criação-linguagem de Dost."
+              }
+            }
+          ]
+        },
+        {
+          "id": "kelimelerin-insana-cine-benzeyenleri",
+          "heading": {
+            "tr": "Kelimelerin İnsana ve Cine Benzeyenleri",
+            "en": "Words that Resemble Humans, Words that Resemble Jinn",
+            "pt": "Palavras que Se Assemelham a Humanos, Palavras que Se Assemelham a Jinns"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost, kelimeleri de -tıpkı ruh üflenmesiyle insan, cin ve meleklerin farklı biçimlerde ortaya çıkması gibi- ikiye ayırıyor: <em>'Kelimelerin bir kısmı insana benzer, bu kısım çoğunluktur. Bir kısmı, meleklere ve cinlere benzer ki her ikisi de cindir (görünmezdir), bunlar azınlıktır.'</em> Cin/melek'e benzeyen azınlık grubuna örnek olarak, tek başına durduğunda bir anlamı olmayan, ancak başka bir kelimeye bağlanınca (tamlama yapılınca) anlam kazanan harfleri veriyor: kesre yapan Ba, tekit Lâm'ı, yemin Vav'ı gibi. <em>'Bu harfi tamlama yapmaksızın tek başına kullandığında kendisinden başka bir anlamı yoktur.'</em>",
+                "en": "Dost also divides words in two — much as the breathing-in of spirit produces humans, jinn, and angels in different forms: <em>'Some words resemble humans; this portion is the majority. Some resemble angels and jinn, both of which are jinn (unseen); these are the minority.'</em> As examples of the minority group resembling jinn/angels, he gives letters that mean nothing standing alone, but gain meaning only once attached to another word (in a genitive construction) — the Ba of oaths, the emphatic Lam, the Waw of swearing, and so on: <em>'When you use this letter alone, without attaching it to something, it has no meaning beyond itself.'</em>",
+                "pt": "Dost também divide as palavras em duas — assim como o sopro do espírito produz humanos, jinns e anjos em formas diferentes: <em>'Algumas palavras se assemelham a humanos; essa parte é a maioria. Algumas se assemelham a anjos e jinns, ambos jinn (ocultos); estas são a minoria.'</em> Como exemplos do grupo minoritário que se assemelha a jinns/anjos, ele dá letras que nada significam sozinhas, mas ganham significado apenas quando ligadas a outra palavra (numa construção genitiva) — o Ba dos juramentos, o Lam enfático, o Waw de jurar, e assim por diante: <em>'Quando você usa essa letra sozinha, sem ligá-la a algo, ela não tem significado além de si mesma.'</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bu benzetmeyi insanın kendi iç yapısına da taşıyor: <em>'Bu tekil sınıfın dışındakiler ise en çok insana benzer. Bununla birlikte tekil, insanın bâtınına benzer. Çünkü insanın bâtını, gerçekte cindir (gizlidir).'</em> Yani kelimelerdeki görünen-çoğunluk/gizli-azınlık ayrımı, insanın kendi içindeki görünen (zâhir) ve gizli (bâtın) yönleri arasındaki ayrıma da bir ayna tutuyor.",
+                "en": "Dost extends this analogy to the human being's own inner structure as well: <em>'What falls outside this singular class resembles the human the most. Yet the singular resembles the human's inward aspect (batin). For the human's inward aspect is, in truth, jinn (hidden).'</em> In other words, the visible-majority/hidden-minority division among words also mirrors the division within the human being between what is outward (visible) and what is inward (hidden).",
+                "pt": "Dost estende essa analogia também à própria estrutura interior do ser humano: <em>'O que fica fora dessa classe singular se assemelha mais ao humano. No entanto, o singular se assemelha ao aspecto interior (batin) do humano. Pois o aspecto interior do humano é, na verdade, jinn (oculto).'</em> Em outras palavras, a divisão visível-maioria/oculto-minoria entre as palavras também espelha a divisão dentro do próprio ser humano entre o que é exterior (visível) e o que é interior (oculto)."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VIII, s. 232-233.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VIII, pp. 232-233.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VIII, pp. 232-233."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Çoğunluk", "en": "The Majority", "pt": "A Maioria" },
+                  "note": { "tr": "insana benzeyen kelimeler", "en": "words that resemble humans", "pt": "palavras que se assemelham a humanos" }
+                },
+                "right": {
+                  "label": { "tr": "Azınlık", "en": "The Minority", "pt": "A Minoria" },
+                  "note": { "tr": "cin/meleğe benzeyen, insanın bâtını gibi gizli", "en": "resembling jinn/angels, hidden like the human's inward aspect", "pt": "assemelhando-se a jinns/anjos, ocultas como o aspecto interior do humano" }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un kelime sınıflaması: çoğunluk insana, azınlık ise cin/meleğe benziyor — tıpkı insanın kendi zâhiri ve bâtını gibi.",
+                "en": "Dost's classification of words: the majority resemble humans, the minority resemble jinn/angels — much like the human's own outward and inward aspects.",
+                "pt": "A classificação de palavras de Dost: a maioria se assemelha a humanos, a minoria a jinns/anjos — tal como os próprios aspectos exterior e interior do humano."
+              }
+            }
+          ]
+        },
+        {
+          "id": "kelamin-turleri-israfilin-suru",
+          "heading": {
+            "tr": "Kelâmın Türleri: Zat, Fiil, Rabıta",
+            "en": "The Types of Speech: Essence, Act, and Bond",
+            "pt": "Os Tipos de Discurso: Essência, Ato e Vínculo"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost şimdi 'cevâmiu'l-kelim' (bütün hakikatleri toplayan söz) kavramına -Hz. Muhammed'e verilen bir sıfata- değinip, bunu İsrafil'in Sûr'a üflemesi örneğiyle açıklıyor: <em>'İsrafil, üfleyeceği şeyi Hakka izafe edilen Muhammedî hakikatten üfler... Üfleyen İsrafil olduğu hâlde, Allah üflemeyi kendi nefsine izafe etmiştir. O hâlde üfleme İsrafil'den, kabul ise sûretlerdendir. Bu ikisinin arasındaki Hakkın sırrı, âdeta iki kelime arasındaki bağ (rabıta) gibi, üfleyen ve üflemeyi kabul eden arasındaki anlamdır.'</em> Dost bunu <em>'ne üfleyenin ne de üflemeyi kabul edenin bilebildiği en nezih ve mukaddes fiil sırrı'</em> olarak tanımlıyor.",
+                "en": "Dost now turns to the concept of 'jawami al-kalim' (the totality of words/realities) — an attribute given to the Prophet Muhammad — and explains it through the example of Israfil blowing the Trumpet: <em>'Israfil blows what he is to blow from the Muhammadan reality attributed to the Real... Though it is Israfil who blows, God attributes the blowing to Himself. So the blowing belongs to Israfil, while the receiving belongs to the forms. The secret of the Real between the two of them is, as it were, the bond (rabita) between two words — the meaning between the one who blows and the one who receives the blowing.'</em> Dost calls this <em>'the most pure and sacred secret of an act, one that neither the blower nor the receiver of the blowing can ever know.'</em>",
+                "pt": "Dost agora se volta para o conceito de 'jawami al-kalim' (a totalidade das palavras/realidades) — um atributo dado ao Profeta Muhammad — e o explica através do exemplo de Israfil soprando a Trombeta: <em>'Israfil sopra o que há de soprar a partir da realidade muhammadiana atribuída ao Real... Embora seja Israfil quem sopra, Deus atribui o sopro a Si mesmo. Assim, o sopro pertence a Israfil, enquanto o receber pertence às formas. O segredo do Real entre os dois é, por assim dizer, o vínculo (rabita) entre duas palavras — o significado entre quem sopra e quem recebe o sopro.'</em> Dost chama isso de <em>'o segredo mais puro e sagrado de um ato, que nem quem sopra nem quem recebe o sopro jamais pode conhecer.'</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunu genelleştirerek 'kelimeler üç kısımdır' diyor: <em>'Zat, fiil ve bağ. Bu üç şey cevâmiu'l-kelim'dir.'</em> Zat, kendi başına var olan ve hiçbir şeye muhtaç olmayan (müstağni) ile kendi başına var olamayıp müstağniye muhtaç olan diye ikiye ayrılıyor -mutlak müstağnilik ise sadece Allah'a ait. Dost bu noktada <em>'zenginliği Zât, fakirliği ise fiil'</em> diye adlandırıyor; üçüncü tür ise bu iki zat arasındaki bağ, yani rabıta. Bunu nahivcilerin isim/fiil/harf sınıflamasıyla karşılaştırıyor: <em>'Nahivcilerde isim bizdeki zat, onlardaki fiil bizdeki fiil, onlardaki harf, bizdeki bağdır.'</em>",
+                "en": "Generalizing this, he says 'words are of three kinds': <em>'Essence (dhat), act (fi'l), and bond (rabita). These three things are jawami al-kalim.'</em> Essence divides into what subsists by itself, needing nothing (mustaghni), and what cannot subsist by itself and needs the self-sufficient one — absolute self-sufficiency belongs to God alone. Dost calls this <em>'richness is Essence, poverty is act,'</em> while the third kind is the bond between these two essences — the rabita. He compares this to the grammarians' classification of noun/verb/particle: <em>'Among the grammarians, the noun is our essence, their verb is our act, their particle is our bond.'</em>",
+                "pt": "Generalizando isso, ele diz que 'as palavras são de três tipos': <em>'Essência (dhat), ato (fi'l) e vínculo (rabita). Essas três coisas são jawami al-kalim.'</em> A essência se divide entre o que subsiste por si mesmo, não precisando de nada (mustaghni), e o que não pode subsistir por si mesmo e precisa do autossuficiente — a autossuficiência absoluta pertence apenas a Deus. Dost chama isso de <em>'riqueza é Essência, pobreza é ato'</em>, enquanto o terceiro tipo é o vínculo entre essas duas essências — a rabita. Ele compara isso à classificação dos gramáticos de substantivo/verbo/partícula: <em>'Entre os gramáticos, o substantivo é nossa essência, o verbo deles é nosso ato, a partícula deles é nosso vínculo.'</em>"
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VIII, s. 234-236.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VIII, pp. 234-236.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VIII, pp. 234-236."
+              },
+              "triad": {
+                "left": {
+                  "label": { "tr": "Zat (Müstağni)", "en": "Essence (Self-Sufficient)", "pt": "Essência (Autossuficiente)" },
+                  "note": { "tr": "kendi başına var, hiçbir şeye muhtaç değil", "en": "subsists by itself, needs nothing", "pt": "subsiste por si mesma, não precisa de nada" }
+                },
+                "middle": {
+                  "label": { "tr": "Rabıta (Bağ)", "en": "Bond (Link)", "pt": "Vínculo (Elo)" },
+                  "note": { "tr": "iki zat arasındaki bağ", "en": "the bond between two essences", "pt": "o vínculo entre duas essências" }
+                },
+                "right": {
+                  "label": { "tr": "Fiil (Muhtaç Zat)", "en": "Act (Needy Essence)", "pt": "Ato (Essência Necessitada)" },
+                  "note": { "tr": "müstağniye muhtaç", "en": "needs the self-sufficient", "pt": "precisa do autossuficiente" }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un üçlü ayrımı: kendi başına var olan Zât, ona muhtaç olan Fiil, ve ikisi arasındaki Rabıta — nahivcilerin isim/fiil/harf sınıflamasının bir 'Hakk'a göre' okuması.",
+                "en": "Dost's threefold division: the self-sufficient Essence, the Act that needs it, and the Bond between the two — a reading of the grammarians' noun/verb/particle classification 'according to the Real.'",
+                "pt": "A divisão tripartite de Dost: a Essência autossuficiente, o Ato que dela precisa, e o Vínculo entre os dois — uma leitura da classificação dos gramáticos substantivo/verbo/partícula 'segundo o Real.'"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunun ardından Dost, nahivcilerin fiil ve mastar tanımları (Zeccâcî'nin görüşü), harekelerin cismânî/ruhânî ayrımı ve Ebû Tâlib el-Mekkî'nin felek teorisi üzerine oldukça teknik bir dil-felsefesi tartışmasına giriyor. Bu ayrıntıları aktarmak yerine -daha önceki kısımlardaki teknik dökümlerde yaptığımız gibi- burada duruyoruz. Kısım VIII'e ilerleyen bir oturumda devam edeceğiz.",
+                "en": "After this, Dost enters a rather technical discussion of the philosophy of language — the grammarians' definitions of verb and verbal noun (Zeccaji's view), the bodily/spiritual division of vowel-marks, and Abu Talib al-Makki's theory of celestial spheres. Rather than relay these details — as we did with the technical rundowns in earlier parts — we stop here. We'll continue with Part VIII in a later session.",
+                "pt": "Depois disso, Dost entra numa discussão bastante técnica de filosofia da linguagem — as definições dos gramáticos de verbo e substantivo verbal (a visão de Zeccaji), a divisão corporal/espiritual das vogais, e a teoria das esferas celestes de Abu Talib al-Makki. Em vez de relatar esses detalhes — como fizemos com os levantamentos técnicos em partes anteriores — paramos aqui. Continuaremos com a Parte VIII numa sessão posterior."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VIII — Harekeler: Kelimelerin Küçük Harfleri, s. 231-232.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VIII — Vowel-Marks: Words' Small Letters, pp. 231-232.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VIII — Vogais: As Pequenas Letras das Palavras, pp. 231-232."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VIII — Kelimelerin İnsana ve Cine Benzeyenleri, s. 232-233.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VIII — Words that Resemble Humans, Words that Resemble Jinn, pp. 232-233.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VIII — Palavras que Se Assemelham a Humanos, Palavras que Se Assemelham a Jinns, pp. 232-233."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VIII — Kelâmın Türleri: Zat, Fiil, Rabıta, s. 234-236.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VIII — The Types of Speech: Essence, Act, and Bond, pp. 234-236.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VIII — Os Tipos de Discurso: Essência, Ato e Vínculo, pp. 234-236."
         }
       ]
     }
