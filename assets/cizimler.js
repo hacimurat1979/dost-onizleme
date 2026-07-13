@@ -274,49 +274,18 @@
   }
 
   // --- Büyütme (lightbox) ---
-  let lightboxEl = null;
-
-  function ensureLightbox() {
-    if (lightboxEl) return lightboxEl;
-    lightboxEl = document.createElement("div");
-    lightboxEl.className = "cizim-lightbox";
-    lightboxEl.hidden = true;
-    lightboxEl.innerHTML = `
-      <div class="cizim-lightbox__backdrop"></div>
-      <div class="cizim-lightbox__panel" role="dialog" aria-modal="true">
-        <button class="cizim-lightbox__close" type="button" aria-label="${tt({ tr: "Kapat", en: "Close", pt: "Fechar" })}">×</button>
-        <p class="cizim-lightbox__ref"></p>
-        <h3 class="cizim-lightbox__name"></h3>
-        <div class="cizim-lightbox__svg-wrap"></div>
-      </div>
-    `;
-    document.body.appendChild(lightboxEl);
-    lightboxEl.querySelector(".cizim-lightbox__backdrop").addEventListener("click", closeLightbox);
-    lightboxEl.querySelector(".cizim-lightbox__close").addEventListener("click", closeLightbox);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !lightboxEl.hidden) closeLightbox();
-    });
-    return lightboxEl;
-  }
-
   function openLightbox(itemId) {
     if (!data) return;
     const item = data.diagrams.find((x) => x.id === itemId);
     if (!item) return;
     const renderer = cizimRenderers[item.diagram.type];
     const svg = renderer ? renderer(item.diagram) : "";
-    const el = ensureLightbox();
-    el.querySelector(".cizim-lightbox__ref").textContent = item.source_ref;
-    el.querySelector(".cizim-lightbox__name").textContent = tt(item.name);
-    el.querySelector(".cizim-lightbox__svg-wrap").innerHTML = CIZIM_DEFS + svg;
-    el.hidden = false;
-    document.body.classList.add("cizim-lightbox-open");
-  }
-
-  function closeLightbox() {
-    if (!lightboxEl) return;
-    lightboxEl.hidden = true;
-    document.body.classList.remove("cizim-lightbox-open");
+    window.DostLightbox.open({
+      closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+      svgHtml: CIZIM_DEFS + svg,
+      ref: item.source_ref,
+      name: tt(item.name),
+    });
   }
 
   function render() {
@@ -338,7 +307,11 @@
         }
       });
     });
-    if (lightboxEl && !lightboxEl.hidden) closeLightbox();
+    // Sadece bu görünüm gerçekten açıkken kapat -- paylaşılan lightbox artık
+    // tüm görünümler arasında tek bir örnek olduğu için, arka planda (görünür
+    // değilken) bir dil değişimi başka bir görünümün açık lightbox'ını
+    // yanlışlıkla kapatmasın.
+    if (!wrap.hidden) window.DostLightbox.close();
   }
 
   window.__cizimlerApp = {

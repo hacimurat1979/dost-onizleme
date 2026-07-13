@@ -324,6 +324,7 @@
       window.__cizimlerApp && window.__cizimlerApp.activate();
     } else if (view === "sirlar") {
       currentDetailView = null;
+      currentDetailSirlarId = null;
       window.__sirlarGraphApp && window.__sirlarGraphApp.activate();
     } else if (view === "sorular") {
       currentDetailView = "sorular";
@@ -445,8 +446,7 @@
     }
     pendingSirlarId = null;
     if (!id) return;
-    currentDetailView = "sirlar";
-    showSirlarPanel(id);
+    showSirlarEntry(id);
   }
 
   function goToSorular(id) {
@@ -641,7 +641,10 @@
   }
 
   function render() {
-    if (currentDetailView === "sirlar") showSirlarPanel();
+    if (currentDetailView === "sirlar") {
+      if (currentDetailSirlarId) showSirlarEntry(currentDetailSirlarId);
+      else showSirlarOverview();
+    }
     if (!labelSel) return;
     labelSel.text((d) => labelFor(d));
     if (currentDetailNode) showNodeDetail(currentDetailNode);
@@ -752,61 +755,42 @@
     "insan-i-kamil": { tr: "İnsan-ı Kâmil ve Velâyet", en: "The Perfect Human and Sainthood", pt: "O Ser Humano Perfeito e a Santidade" },
   };
 
-  let sirlarThemeFilter = null;
-
-  function sirlarThemeChipsHtml() {
-    const themes = Object.keys(SIRLAR_THEME_LABELS);
-    const allChip = `<button type="button" class="theme-chip${sirlarThemeFilter ? "" : " theme-chip--active"}" data-theme="">${tt({ tr: "Tümü", en: "All", pt: "Todos" })}</button>`;
-    const chips = themes.map((th) => {
-      const count = sirlarData.entries.filter((e) => e.theme === th).length;
-      return `<button type="button" class="theme-chip${sirlarThemeFilter === th ? " theme-chip--active" : ""}" data-theme="${th}">${tt(SIRLAR_THEME_LABELS[th])} <span class="theme-chip__count">${count}</span></button>`;
-    }).join("");
-    return `<div class="theme-chips">${allChip}${chips}</div>`;
-  }
-
-  function sirlarEntryHtml(entry, i, openFirst) {
-    return `
-      <details class="insight" id="sir-${entry.id}" ${i === 0 && openFirst ? "open" : ""}>
-        <summary>${volumeLabel(entry.volume)} — ${I18n.pick3(entry.topic)}</summary>
-        <div class="detail-block detail-block--sir">
-          <blockquote>${I18n.pick3(entry.quote)}</blockquote>
-          <p>${linkify(I18n.pick3(entry.note), null, null)}</p>
-          <cite>${entry.source}</cite>
-        </div>
-      </details>
-    `;
-  }
-
-  function showSirlarPanel(focusId) {
-    if (!sirlarData) return;
-    if (focusId) sirlarThemeFilter = null;
-    const entries = sirlarThemeFilter
-      ? sirlarData.entries.filter((e) => e.theme === sirlarThemeFilter)
-      : sirlarData.entries;
+  // Sırlar grafiğinin merkez düğümüne (kök) tıklanınca, tek bir sırra değil,
+  // bölümün "işaret eder, açıklamaz" duruşuna dair bir genel bakış gösterilir
+  // -- Sorular'ın kategori özetine, Terimler'in "Tümü" görünümüne benzer şekilde.
+  function showSirlarOverview() {
+    currentDetailView = "sirlar";
+    currentDetailSirlarId = null;
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "İşaret Edilen, Açıklanmayan", en: "Pointed To, Not Explained", pt: "Apontado, Não Explicado" })}</p>
       <h2 class="detail-title">${tt({ tr: "Sırlar", en: "Mysteries", pt: "Mistérios" })}</h2>
-      <p class="detail-resonance">${I18n.pick3(sirlarData.intro)}</p>
+      <p class="detail-resonance">${sirlarData ? I18n.pick3(sirlarData.intro) : ""}</p>
       ${sirlarGestureDiagramHtml()}
-      ${sirlarThemeChipsHtml()}
-      ${entries.map((e, i) => sirlarEntryHtml(e, i, !focusId)).join("")}
     `;
-    detailContent.querySelectorAll(".theme-chip").forEach((chip) => {
-      chip.addEventListener("click", () => {
-        sirlarThemeFilter = chip.dataset.theme || null;
-        showSirlarPanel();
-      });
-    });
     detailPanel.hidden = false;
-    if (focusId) {
-      const el = document.getElementById("sir-" + focusId);
-      if (el) {
-        el.open = true;
-        el.classList.add("insight--focus");
-        setTimeout(() => el.scrollIntoView({ block: "start", behavior: "smooth" }), 50);
-        setTimeout(() => el.classList.remove("insight--focus"), 2600);
-      }
-    }
+  }
+  window.__sirlarShowOverview = showSirlarOverview;
+
+  // Bir sır düğümüne tıklanınca (grafikten veya deep-link'ten), diğer bütün
+  // görünümlerle (Ontoloji/Esmâ/Hâller/Sorular) tutarlı şekilde tek, odaklı
+  // bir kart gösterilir -- eski, bütün sırları tek accordion listesinde
+  // döken görünüm yerine.
+  function showSirlarEntry(id) {
+    if (!sirlarData) return;
+    const entry = sirlarData.entries.find((e) => e.id === id);
+    if (!entry) return;
+    currentDetailView = "sirlar";
+    currentDetailSirlarId = id;
+    detailContent.innerHTML = `
+      <p class="detail-eyebrow">${tt(SIRLAR_THEME_LABELS[entry.theme] || { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" })}</p>
+      <h2 class="detail-title">${volumeLabel(entry.volume)} — ${I18n.pick3(entry.topic)}</h2>
+      <div class="detail-block detail-block--sir">
+        <blockquote>${I18n.pick3(entry.quote)}</blockquote>
+        <p>${linkify(I18n.pick3(entry.note), null, null)}</p>
+        <cite>${entry.source}</cite>
+      </div>
+    `;
+    detailPanel.hidden = false;
   }
 
   const RADIUS_BY_ID = {
@@ -822,11 +806,11 @@
     return RADIUS_BY_ID[d.id] || 13;
   }
 
-  const LAYER_COLOR = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#2a78d6", "#1c5cab", "#0d366b"];
-  const LAYER_COLOR_DARK = ["#184f95", "#256abf", "#2a78d6", "#3987e5", "#5598e7", "#86b6ef", "#cde2fb"];
+  const LAYER_COLOR = window.DostGraphUtils.LAYER_COLOR;
+  const LAYER_COLOR_DARK = window.DostGraphUtils.LAYER_COLOR_DARK;
 
   function isDark() {
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return window.DostGraphUtils.isDark();
   }
 
   function colorFor(d) {
@@ -837,7 +821,7 @@
   }
 
   function getVar(name) {
-    return getComputedStyle(document.body).getPropertyValue(name).trim();
+    return window.DostGraphUtils.getVar(name);
   }
 
   function labelFor(d) {
@@ -876,23 +860,17 @@
   }
 
   function moveTooltip(event) {
-    if (!tooltip || tooltip.hidden || !wrapEl) return;
-    const rect = wrapEl.getBoundingClientRect();
-    let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
-    x = Math.max(60, Math.min(rect.width - 60, x));
-    y = Math.max(50, y);
-    tooltip.style.left = x + "px";
-    tooltip.style.top = y + "px";
+    window.DostGraphUtils.moveTooltip(tooltip, wrapEl, event);
   }
 
   function hideTooltip() {
-    if (tooltip) tooltip.hidden = true;
+    window.DostGraphUtils.hideTooltip(tooltip);
   }
 
   let currentDetailNode = null;
   let currentDetailEdge = null;
   let currentDetailView = null;
+  let currentDetailSirlarId = null;
 
   function onNodeClick(d) {
     currentDetailNode = d;

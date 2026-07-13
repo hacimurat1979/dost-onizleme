@@ -13,6 +13,21 @@
     terimler: { tr: "Felsefi Terimler", en: "Philosophical Terms", pt: "Termos Filosóficos" },
     cizimler: { tr: "Çizimler", en: "Diagrams", pt: "Diagramas" },
     sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
+    futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
+  };
+
+  // Sonuç gruplarının başında, hangi görünüme ait olduğunu tek bakışta
+  // ayırt etsin diye küçük bir renk noktası -- her görünümün kendi
+  // sayfasında zaten kullandığı bir vurgu rengine bağlanıyor.
+  const CATEGORY_DOT_VAR = {
+    ontoloji: "--series-ibnarabi",
+    esma: "--series-kemal",
+    hal: "--series-hal-hayret",
+    sirlar: "--series-sir-kader",
+    terimler: "--series-sir-dil",
+    cizimler: "--series-theme",
+    sorular: "--series-sorular-en-temel",
+    futuhat: "--series-hal-muameleler",
   };
 
   let index = [];
@@ -62,6 +77,21 @@
         (d.categories || []).forEach((c) => {
           (c.questions || []).forEach((q) => {
             index.push({ view: "sorular", id: q.id, label: q.question, sub: c.name, searchText: allLangText(q.question) + " " + allLangText(q.answer) });
+          });
+        });
+      }),
+      fetch("data/ibn-arabi/futuhat-atlas.json").then((r) => r.json()).then((d) => {
+        // Gezinme yalnızca kısım (part) düzeyinde çalıştığı için, sonuç
+        // olarak o kısmı gösteriyoruz -- ama bölüm başlıklarını da arama
+        // metnine katıyoruz ki içindeki bir konu/harf aranınca da bulunsun.
+        (d.parts || []).forEach((p) => {
+          const sectionHeadings = (p.sections || []).map((s) => allLangText(s.heading)).join(" ");
+          index.push({
+            view: "futuhat",
+            id: p.id,
+            label: p.title,
+            sub: p.hero && p.hero.summary,
+            searchText: allLangText(p.title) + " " + allLangText(p.hero && p.hero.summary) + " " + sectionHeadings,
           });
         });
       }),
@@ -173,8 +203,9 @@
             </button>`
           )
           .join("");
+        const dotVar = CATEGORY_DOT_VAR[view];
         return `<div class="search-panel__group">
-          <div class="search-panel__group-label">${tt(CATEGORY_LABEL[view])}</div>
+          <div class="search-panel__group-label">${dotVar ? `<span class="search-panel__group-dot" style="background:var(${dotVar})"></span>` : ""}${tt(CATEGORY_LABEL[view])}</div>
           ${rows}
         </div>`;
       })

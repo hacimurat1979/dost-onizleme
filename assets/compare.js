@@ -28,15 +28,21 @@
     }
   });
 
-  Promise.all([
-    fetch("data/themes.json").then((r) => r.json()),
-    fetch("data/ibn-arabi/concepts.json").then((r) => r.json()),
-  ]).then(([themes, concepts]) => {
-    const conceptById = new Map(concepts.map((c) => [c.id, c]));
-    buildGraph(themes, conceptById);
-  }).catch((err) => {
-    console.error("Veri yüklenemedi / Failed to load data", err);
-  });
+  function loadData() {
+    if (window.DostViewStatus) window.DostViewStatus.showLoading("compare-wrap");
+    Promise.all([
+      fetch("data/themes.json").then((r) => r.json()),
+      fetch("data/ibn-arabi/concepts.json").then((r) => r.json()),
+    ]).then(([themes, concepts]) => {
+      const conceptById = new Map(concepts.map((c) => [c.id, c]));
+      if (window.DostViewStatus) window.DostViewStatus.hide("compare-wrap");
+      buildGraph(themes, conceptById);
+    }).catch((err) => {
+      console.error("Veri yüklenemedi / Failed to load data", err);
+      if (window.DostViewStatus) window.DostViewStatus.showError("compare-wrap", loadData);
+    });
+  }
+  loadData();
 
   let simulation, nodeSel, linkSel, labelSel;
 
@@ -150,7 +156,7 @@
   }
 
   function getVar(name) {
-    return getComputedStyle(document.body).getPropertyValue(name).trim();
+    return window.DostGraphUtils.getVar(name);
   }
 
   function labelFor(d) {

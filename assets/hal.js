@@ -60,7 +60,7 @@
   };
 
   function getVar(name) {
-    return getComputedStyle(document.body).getPropertyValue(name).trim();
+    return window.DostGraphUtils.getVar(name);
   }
 
   function colorFor(n) {
@@ -286,18 +286,11 @@
   }
 
   function moveTooltip(event) {
-    if (!tooltip || tooltip.hidden || !wrapEl) return;
-    const rect = wrapEl.getBoundingClientRect();
-    let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
-    x = Math.max(60, Math.min(rect.width - 60, x));
-    y = Math.max(50, y);
-    tooltip.style.left = x + "px";
-    tooltip.style.top = y + "px";
+    window.DostGraphUtils.moveTooltip(tooltip, wrapEl, event);
   }
 
   function hideTooltip() {
-    if (tooltip) tooltip.hidden = true;
+    window.DostGraphUtils.hideTooltip(tooltip);
   }
 
   function insightsHtml(insights, excludeId) {

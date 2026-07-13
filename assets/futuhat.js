@@ -47,42 +47,12 @@
   });
 
   // --- Diagram lightbox (click a diagram to see it enlarged) ---
-  let diagramLightboxEl = null;
-
-  function ensureDiagramLightbox() {
-    if (diagramLightboxEl) return diagramLightboxEl;
-    diagramLightboxEl = document.createElement("div");
-    diagramLightboxEl.className = "cizim-lightbox";
-    diagramLightboxEl.hidden = true;
-    diagramLightboxEl.innerHTML = `
-      <div class="cizim-lightbox__backdrop"></div>
-      <div class="cizim-lightbox__panel" role="dialog" aria-modal="true">
-        <button class="cizim-lightbox__close" type="button" aria-label="${tt({ tr: "Kapat", en: "Close", pt: "Fechar" })}">×</button>
-        <div class="cizim-lightbox__svg-wrap"></div>
-        <p class="cizim-lightbox__caption"></p>
-      </div>
-    `;
-    document.body.appendChild(diagramLightboxEl);
-    diagramLightboxEl.querySelector(".cizim-lightbox__backdrop").addEventListener("click", closeDiagramLightbox);
-    diagramLightboxEl.querySelector(".cizim-lightbox__close").addEventListener("click", closeDiagramLightbox);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !diagramLightboxEl.hidden) closeDiagramLightbox();
-    });
-    return diagramLightboxEl;
-  }
-
   function openDiagramLightbox(mount, captionText) {
-    const el = ensureDiagramLightbox();
-    el.querySelector(".cizim-lightbox__svg-wrap").innerHTML = mount.innerHTML;
-    el.querySelector(".cizim-lightbox__caption").textContent = captionText || "";
-    el.hidden = false;
-    document.body.classList.add("cizim-lightbox-open");
-  }
-
-  function closeDiagramLightbox() {
-    if (!diagramLightboxEl) return;
-    diagramLightboxEl.hidden = true;
-    document.body.classList.remove("cizim-lightbox-open");
+    window.DostLightbox.open({
+      closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+      svgHtml: mount.innerHTML,
+      caption: captionText || "",
+    });
   }
 
   function navigateToDiagram(diagramId, nodeId) {
@@ -291,7 +261,6 @@
       .attr("transform", (d) => `translate(${d.px},${d.py})`)
       .attr("data-node-id", (d) => d.data.id)
       .attr("tabindex", "0")
-      .attr("role", "img")
       .attr("aria-label", (d) => tt(d.data.label))
       .on("mouseenter", (event, d) => showTip(d, event))
       .on("mousemove", (event) => moveTip(event))

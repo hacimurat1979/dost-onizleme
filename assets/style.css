@@ -1369,7 +1369,7 @@ li.futuhat-pulse,
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #fff;
+  color: #fff; /* JS, arka plan rengine göre yeterli kontrastlı metin rengini satır-içi olarak ayarlar */
   text-shadow: 0 1px 1px rgba(20,15,8,0.35);
   padding: 1px 7px;
   border-radius: 999px;
@@ -1705,9 +1705,6 @@ html:has(.detail-panel:not([hidden])) {
 .insight:nth-child(4) { animation-delay: 90ms; }
 .insight:nth-child(5) { animation-delay: 120ms; }
 .insight:nth-child(n+6) { animation-delay: 150ms; }
-.insight--focus {
-  background-color: color-mix(in srgb, var(--series-theme) 16%, transparent);
-}
 
 .theme-chips {
   display: flex;
@@ -3839,11 +3836,20 @@ html[data-contrast="high"] .detail-title {
 }
 
 .search-panel__group-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 10px 20px 4px;
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
+}
+.search-panel__group-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
 }
 
 .search-result {
@@ -4020,6 +4026,9 @@ html[data-contrast="high"] .detail-title {
 
 .node-hover-tip[hidden] {
   display: none;
+}
+.node-hover-tip--fixed {
+  position: fixed;
 }
 
 .node-hover-tip__title {

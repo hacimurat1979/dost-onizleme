@@ -81,15 +81,15 @@
     return Math.max(9, 16 - depth);
   }
 
-  const LAYER_COLOR = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#2a78d6", "#1c5cab", "#0d366b"];
-  const LAYER_COLOR_DARK = ["#184f95", "#256abf", "#2a78d6", "#3987e5", "#5598e7", "#86b6ef", "#cde2fb"];
+  const LAYER_COLOR = window.DostGraphUtils.LAYER_COLOR;
+  const LAYER_COLOR_DARK = window.DostGraphUtils.LAYER_COLOR_DARK;
 
   function isDark() {
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return window.DostGraphUtils.isDark();
   }
 
   function getVar(name) {
-    return getComputedStyle(document.body).getPropertyValue(name).trim();
+    return window.DostGraphUtils.getVar(name);
   }
 
   function colorFor(d) {
@@ -109,11 +109,34 @@
     neutral: { tr: "Grup", en: "Group", pt: "Grupo" },
   };
 
+  // Rozet arka planı her tema/mod kombinasyonunda değişebildiği için, sabit
+  // beyaz metin bazı renklerde (özellikle karanlık modda) yetersiz kontrast
+  // veriyordu -- bunun yerine, her arka plana göre beyaz/koyu metinden
+  // hangisi daha yüksek kontrast sağlıyorsa onu seçiyoruz.
+  function relLuminance(hex) {
+    const c = hex.replace("#", "");
+    const [r, g, b] = [0, 2, 4].map((i) => parseInt(c.substr(i, 2), 16) / 255);
+    const lin = (v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+    return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+  }
+  function contrastRatio(l1, l2) {
+    const a = Math.max(l1, l2) + 0.05;
+    const b = Math.min(l1, l2) + 0.05;
+    return a / b;
+  }
+  function textColorFor(bgHex) {
+    const bgLum = relLuminance(bgHex);
+    const whiteContrast = contrastRatio(bgLum, 1);
+    const darkContrast = contrastRatio(bgLum, relLuminance("#14100a"));
+    return whiteContrast >= darkContrast ? "#ffffff" : "#14100a";
+  }
+
   function poleBadgeHtml(d) {
     if (d.depth === 0) return "";
     const label = POLE_LABEL[d.data.pole];
     if (!label) return "";
-    return `<span class="pole-badge" style="background:${colorFor(d)}">${I18n.pick3(label)}</span>`;
+    const bg = colorFor(d);
+    return `<span class="pole-badge" style="background:${bg};color:${textColorFor(bg)}">${I18n.pick3(label)}</span>`;
   }
 
   function labelFor(d) {
@@ -404,18 +427,11 @@
   }
 
   function moveTooltip(event) {
-    if (!tooltip || tooltip.hidden || !wrapEl) return;
-    const rect = wrapEl.getBoundingClientRect();
-    let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
-    x = Math.max(60, Math.min(rect.width - 60, x));
-    y = Math.max(50, y);
-    tooltip.style.left = x + "px";
-    tooltip.style.top = y + "px";
+    window.DostGraphUtils.moveTooltip(tooltip, wrapEl, event);
   }
 
   function hideTooltip() {
-    if (tooltip) tooltip.hidden = true;
+    window.DostGraphUtils.hideTooltip(tooltip);
   }
 
   const VOLUME_LABEL_OVERRIDE = {

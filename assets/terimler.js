@@ -369,46 +369,16 @@
   }
 
   // --- Büyütme (lightbox) ---
-  let lightboxEl = null;
-
-  function ensureLightbox() {
-    if (lightboxEl) return lightboxEl;
-    lightboxEl = document.createElement("div");
-    lightboxEl.className = "cizim-lightbox";
-    lightboxEl.hidden = true;
-    lightboxEl.innerHTML = `
-      <div class="cizim-lightbox__backdrop"></div>
-      <div class="cizim-lightbox__panel" role="dialog" aria-modal="true">
-        <button class="cizim-lightbox__close" type="button" aria-label="${tt({ tr: "Kapat", en: "Close", pt: "Fechar" })}">×</button>
-        <div class="cizim-lightbox__svg-wrap"></div>
-        <p class="cizim-lightbox__caption"></p>
-      </div>
-    `;
-    document.body.appendChild(lightboxEl);
-    lightboxEl.querySelector(".cizim-lightbox__backdrop").addEventListener("click", closeLightbox);
-    lightboxEl.querySelector(".cizim-lightbox__close").addEventListener("click", closeLightbox);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !lightboxEl.hidden) closeLightbox();
-    });
-    return lightboxEl;
-  }
-
   function openDiagramLightbox(index) {
     const dg = currentDiagrams[index];
     if (!dg) return;
     const renderer = diagramRenderers[dg.type];
     if (!renderer) return;
-    const el = ensureLightbox();
-    el.querySelector(".cizim-lightbox__svg-wrap").innerHTML = DIAGRAM_DEFS + renderer(dg);
-    el.querySelector(".cizim-lightbox__caption").textContent = tt(dg.note);
-    el.hidden = false;
-    document.body.classList.add("cizim-lightbox-open");
-  }
-
-  function closeLightbox() {
-    if (!lightboxEl) return;
-    lightboxEl.hidden = true;
-    document.body.classList.remove("cizim-lightbox-open");
+    window.DostLightbox.open({
+      closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+      svgHtml: DIAGRAM_DEFS + renderer(dg),
+      caption: tt(dg.note),
+    });
   }
 
   function renderChips() {
@@ -445,7 +415,7 @@
         return `<button class="terim-card terim-card--tier-${tier}" data-id="${t.id}">
           <span class="terim-card__icon">${groupIconSvg(t.group)}</span>
           <span class="terim-card__title">${tt(t.title)}</span>
-          <span class="terim-card__ozet">${t.ozet_tr || ""}</span>
+          <span class="terim-card__ozet">${tt({ tr: t.ozet_tr, en: t.ozet_en, pt: t.ozet_pt })}</span>
           ${relatedChipsInline(t)}
         </button>`;
       })
@@ -475,10 +445,32 @@
       .join("")}</div>`;
   }
 
+  // Her grup için elle seçilmiş, sabit bir ton -- index'e bağlı rastgele bir
+  // gökkuşağı yerine, sitenin öbür yerlerindeki (Sırlar/Hâller/Sorular) muted
+  // paletlerle aynı ruhta, kasıtlı olarak seçilmiş renkler.
+  const GROUP_HUE = {
+    "toz-nitelik": 35,
+    "siniflandirma": 200,
+    "sebep-sonuc": 15,
+    "varlik-mertebesi": 265,
+    "kozmik-hiyerarsi": 225,
+    "kopru-kavram": 185,
+    "itibar-edilmez": 350,
+    "halvet-perdeleri": 300,
+    "sahv-sekr": 20,
+    "velayet-risalet": 45,
+    "lafza-i-celal": 250,
+    "ahad-vahid": 210,
+    "nefsin-gucleri": 5,
+    "mebde-mead": 330,
+    "nubuvvetin-zarureti": 40,
+    "vahyin-mertebeleri": 190,
+    "hayir-ve-ser": 100,
+    "tezkire-i-erbaa": 275,
+    "firaset": 55,
+  };
   function groupHue(groupId) {
-    const idx = (glossaryData.groups || []).findIndex((g) => g.id === groupId);
-    const i = idx === -1 ? 0 : idx;
-    return Math.round((i * 137.508) % 360);
+    return GROUP_HUE[groupId] !== undefined ? GROUP_HUE[groupId] : 40;
   }
 
   function relatedTermsHtml(t) {
