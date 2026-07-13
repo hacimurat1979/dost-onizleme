@@ -3,14 +3,12 @@
 
   const I18n = window.DostI18n;
   const grid = document.getElementById("terimler-list");
-  const chipsWrap = document.getElementById("terimler-chips");
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
-  if (!grid || !chipsWrap || !detailPanel || !detailContent) return;
+  if (!grid || !detailPanel || !detailContent) return;
 
   let glossaryData = null;
   let fetchPromise = null;
-  let activeGroup = "all";
 
   function tt(dict) {
     return I18n.pick3(dict);
@@ -70,10 +68,6 @@
 
   function groupById(id) {
     return glossaryData.groups.find((g) => g.id === id);
-  }
-
-  function termsInGroup(groupId) {
-    return Object.values(glossaryData.terms).filter((t) => groupId === "all" || t.group === groupId);
   }
 
   // Grup başına küçük, elle çizilmiş bir sembol -- emoji değil, sitenin
@@ -386,24 +380,6 @@
     });
   }
 
-  function renderChips() {
-    const allChip = `<button class="theme-chip${activeGroup === "all" ? " theme-chip--active" : ""}" data-group="all">${tt({ tr: "Tümü", en: "All", pt: "Todos" })} <span class="theme-chip__count">${Object.keys(glossaryData.terms).length}</span></button>`;
-    const groupChips = glossaryData.groups
-      .map((g) => {
-        const count = termsInGroup(g.id).length;
-        return `<button class="theme-chip${activeGroup === g.id ? " theme-chip--active" : ""}" data-group="${g.id}">${tt(g.name)} <span class="theme-chip__count">${count}</span></button>`;
-      })
-      .join("");
-    chipsWrap.innerHTML = allChip + groupChips;
-    chipsWrap.querySelectorAll(".theme-chip").forEach((chip) => {
-      chip.addEventListener("click", () => {
-        activeGroup = chip.dataset.group;
-        render();
-        if (activeGroup !== "all") showGroupDiagrams(activeGroup);
-      });
-    });
-  }
-
   function relatedChipsInline(t) {
     const related = (t.iliskili_kavramlar || [])
       .map((id) => glossaryData.terms[id])
@@ -414,7 +390,7 @@
   }
 
   function renderList() {
-    const terms = termsInGroup(activeGroup);
+    const terms = Object.values(glossaryData.terms);
     grid.innerHTML = terms
       .map((t) => {
         const tier = t.tier || 2;
@@ -433,7 +409,6 @@
 
   function render() {
     if (!glossaryData) return;
-    renderChips();
     renderList();
   }
 
@@ -539,8 +514,13 @@
     currentDetailKind = "term";
     currentDetailGroupId = null;
 
+    const groupHasDiagram = group.diagram && group.diagram.length;
+    const eyebrowHtml = groupHasDiagram
+      ? `<button type="button" class="detail-eyebrow detail-eyebrow--diagram" data-group="${group.id}">${tt(group.name)} <span class="detail-eyebrow__hint">${tt({ tr: "çizimi gör", en: "view diagram", pt: "ver diagrama" })}</span></button>`
+      : `<p class="detail-eyebrow">${tt(group.name)}</p>`;
+
     detailContent.innerHTML = `
-      <p class="detail-eyebrow">${tt(group.name)}</p>
+      ${eyebrowHtml}
       <h2 class="detail-title">${tt(t.title)}${t.arabic ? ` <span class="detail-title__arabic">${t.arabic}</span>` : ""}</h2>
       <div class="detail-block detail-block--ibnarabi">
         <h3>${tt({ tr: "Felsefi Tanım", en: "Philosophical Definition", pt: "Definição Filosófica" })}</h3>
@@ -568,6 +548,10 @@
         window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id);
       });
     });
+    const eyebrowBtn = detailContent.querySelector(".detail-eyebrow--diagram");
+    if (eyebrowBtn) {
+      eyebrowBtn.addEventListener("click", () => showGroupDiagrams(eyebrowBtn.dataset.group));
+    }
 
     detailPanel.hidden = false;
   }
@@ -582,10 +566,6 @@
     goToNode(id) {
       fetchData().then((data) => {
         if (!data) return;
-        // Bir terime doğrudan bağlantıyla gelindiğinde, o terimin grubu
-        // liste filtresinde de seçili görünsün diye grubu aktif yapıyoruz.
-        const term = id && data.terms[id];
-        if (term && term.group) activeGroup = term.group;
         render();
         if (id) showTermDetail(id);
       });
