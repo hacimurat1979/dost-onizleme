@@ -1779,12 +1779,12 @@
         "en": "Portraits of the Letters",
         "pt": "Retratos das Letras"
       },
-      "pageRange": "180–187",
+      "pageRange": "180–190",
       "hero": {
         "summary": {
-          "tr": "Altıncı Kısım, Beşinci Kısım'ın kapandığı yerden hemen devam ederek biçim değiştiriyor: harfleri artık gruplar hâlinde değil, tek tek ele alan bir 'sözlük'e dönüşüyor. Her harf, önce kısa bir şiirle kendini tanıtıyor, sonra mahreci, sayısal değeri, âlemi, feleği, mertebesi ve kendisine ait ilâhî isimlerin uzun bir dökümüyle devam ediyor. Bu teknik dökümü harf harf aktarmak yerine, en çarpıcı bulduğumuz birkaç şiiri seçip aktarıyoruz — Elif'in kendiyle konuştuğu bilmece, Kaf'ın hilâl-dolunay imgesi, Kef'in celâl-cemâl ikiliği.",
-          "en": "Part VI continues directly from where Part V closed, but changes shape: the letters are no longer treated in groups but one by one, as a kind of dictionary. Each letter introduces itself with a short poem, then continues with a long technical rundown — its point of articulation, numeric value, world, celestial sphere, rank, and the divine Names attached to it. Rather than relay that technical rundown letter by letter, we've picked out a few of the poems we found most striking — Elif's riddle spoken to itself, Kaf's crescent-and-full-moon image, Kef's duality of majesty and beauty.",
-          "pt": "A Parte VI continua diretamente de onde a Parte V se encerrou, mas muda de forma: as letras não são mais tratadas em grupos, mas uma a uma, como uma espécie de dicionário. Cada letra se apresenta com um curto poema, depois continua com um longo levantamento técnico — seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e os Nomes divinos a ela associados. Em vez de relatar esse levantamento técnico letra por letra, escolhemos alguns dos poemas que achamos mais marcantes — o enigma que Elif dirige a si mesmo, a imagem crescente-e-lua-cheia de Kaf, a dualidade majestade-beleza de Kef."
+          "tr": "Altıncı Kısım, Beşinci Kısım'ın kapandığı yerden hemen devam ederek biçim değiştiriyor: harfleri artık gruplar hâlinde değil, tek tek ele alan bir 'sözlük'e dönüşüyor. Her harf, önce kısa bir şiirle kendini tanıtıyor, sonra mahreci, sayısal değeri, âlemi, feleği, mertebesi ve kendisine ait ilâhî isimlerin uzun bir dökümüyle devam ediyor. Bu teknik dökümü harf harf aktarmak yerine, en çarpıcı bulduğumuz şiirleri seçip aktarıyoruz — Elif'in kendiyle konuştuğu bilmece, Kaf'ın hilâl-dolunay imgesi, Kef'in celâl-cemâl ikiliği, Ra'nın okuyucuya seslenişi ve Nun'un yarısı görünen yarısı görünmeyen noktası.",
+          "en": "Part VI continues directly from where Part V closed, but changes shape: the letters are no longer treated in groups but one by one, as a kind of dictionary. Each letter introduces itself with a short poem, then continues with a long technical rundown — its point of articulation, numeric value, world, celestial sphere, rank, and the divine Names attached to it. Rather than relay that technical rundown letter by letter, we've picked out the poems we found most striking — Elif's riddle spoken to itself, Kaf's crescent-and-full-moon image, Kef's duality of majesty and beauty, Ra's direct address to the reader, and Nun's point, half visible and half not.",
+          "pt": "A Parte VI continua diretamente de onde a Parte V se encerrou, mas muda de forma: as letras não são mais tratadas em grupos, mas uma a uma, como uma espécie de dicionário. Cada letra se apresenta com um curto poema, depois continua com um longo levantamento técnico — seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e os Nomes divinos a ela associados. Em vez de relatar esse levantamento técnico letra por letra, escolhemos os poemas que achamos mais marcantes — o enigma que Elif dirige a si mesmo, a imagem crescente-e-lua-cheia de Kaf, a dualidade majestade-beleza de Kef, o endereçamento direto de Ra ao leitor, e o ponto de Nun, metade visível e metade não."
         }
       },
       "mainDiagram": {
@@ -1816,6 +1816,16 @@
               "id": "kef-portre",
               "label": { "tr": "Kef", "en": "Kaf", "pt": "Kaf" },
               "note": { "tr": "celâl ve cemâl", "en": "majesty and beauty", "pt": "majestade e beleza" }
+            },
+            {
+              "id": "ra-portre",
+              "label": { "tr": "Ra", "en": "Ra", "pt": "Ra" },
+              "note": { "tr": "sevgi ve vuslat", "en": "love and union", "pt": "amor e união" }
+            },
+            {
+              "id": "nun-portre",
+              "label": { "tr": "Nun", "en": "Nun", "pt": "Nun" },
+              "note": { "tr": "yarısı görünen nokta", "en": "half-visible point", "pt": "ponto meio-visível" }
             }
           ]
         }
@@ -1932,9 +1942,99 @@
             {
               "type": "p",
               "text": {
-                "tr": "Kısım VI, harfleri bu kalıpta — kısa bir şiir, ardından uzun bir teknik döküm — birer birer sürdürüyor; toplamda yirmi sekize yakın harf var. Burada seçtiğimiz üç şiirle (Elif, Kaf, Kef) yetiniyoruz; geri kalan harfleri ve Kısım VI'nın devamını ayrı bir oturumda ele alacağız.",
-                "en": "Part VI continues through the letters one by one in this same pattern — a short poem, followed by a long technical rundown — for close to twenty-eight letters in total. We've limited ourselves here to the three poems we selected (Elif, Qaf, Kaf); we'll take up the remaining letters and the rest of Part VI in a separate session.",
-                "pt": "A Parte VI continua pelas letras uma a uma nesse mesmo padrão — um curto poema, seguido de um longo levantamento técnico — para quase vinte e oito letras no total. Aqui nos limitamos aos três poemas que selecionamos (Elif, Qaf, Kaf); trataremos das letras restantes e do resto da Parte VI numa sessão separada."
+                "tr": "Kısım VI, harfleri bu kalıpta — kısa bir şiir, ardından uzun bir teknik döküm — birer birer sürdürüyor; toplamda yirmi sekize yakın harf var. Şimdi iki şiir daha seçip aktarıyoruz: Ra ve Nun.",
+                "en": "Part VI continues through the letters one by one in this same pattern — a short poem, followed by a long technical rundown — for close to twenty-eight letters in total. We now pick out two more poems: Ra and Nun.",
+                "pt": "A Parte VI continua pelas letras uma a uma nesse mesmo padrão — um curto poema, seguido de um longo levantamento técnico — para quase vinte e oito letras no total. Agora escolhemos mais dois poemas: Ra e Nun."
+              }
+            }
+          ]
+        },
+        {
+          "id": "ra-muhabbet",
+          "heading": {
+            "tr": "Ra: Sevgi ve Vuslat",
+            "en": "Ra: Love and Union",
+            "pt": "Ra: Amor e União"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ra harfinin şiiri, önceki harflerden farklı bir şey yapıyor — doğrudan okuyucuya sesleniyor: <em>'Muhabbet Ra'sı vuslat makamında, hiçbir zaman nimet verenin evinde mahrum olmayacak. Bir vakit der ki: Ben tekim, görmem başkasını; bir vakit der ki: Ey bilinmeyen ben. Senin kalbin de Rabbinin katında böyle olsaydı, sen de en yetkin sevgili ve yakın kişi olurdun.'</em> Ra, iki farklı sözü art arda söylüyor — biri kesin bir teklik iddiası ('ben tekim'), öteki kendi kendine yabancılaşan bir soru ('ey bilinmeyen ben'). Şiir bu ikisini çözmeye çalışmadan, doğrudan okuyucuyu bu hâle davet ederek kapanıyor.",
+                "en": "The poem for the letter Ra does something the previous letters didn't — it addresses the reader directly: <em>'Ra of love, in the station of union, will never be deprived in the house of the Bestower. At one moment it says: I am alone, I see no other; at another it says: O unknown me. If your heart, too, were like this before your Lord, you would be the most perfect beloved and intimate one.'</em> Ra utters two different things in succession — one a flat claim of solitary oneness ('I am alone'), the other a question estranged from itself ('O unknown me'). The poem closes without resolving the two, inviting the reader directly into this state instead.",
+                "pt": "O poema da letra Ra faz algo que as letras anteriores não fizeram — dirige-se diretamente ao leitor: <em>'Ra do amor, na estação da união, jamais será privado na casa do Doador. Num momento diz: Sou único, não vejo outro; noutro momento diz: Ó eu desconhecido. Se teu coração também fosse assim diante de teu Senhor, serias o mais perfeito amado e íntimo.'</em> Ra pronuncia duas coisas diferentes em sucessão — uma afirmação direta de unicidade solitária ('sou único'), a outra uma pergunta estranhada de si mesma ('ó eu desconhecido'). O poema se encerra sem resolver as duas, convidando diretamente o leitor a esse estado."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Ra Harfi, s. 189-190.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ra, pp. 189-190.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ra, pp. 189-190."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "'Ben tekim'", "en": "'I am alone'", "pt": "'Sou único'" },
+                  "note": { "tr": "başkasını görmez", "en": "sees no other", "pt": "não vê outro" }
+                },
+                "right": {
+                  "label": { "tr": "'Ey bilinmeyen ben'", "en": "'O unknown me'", "pt": "'Ó eu desconhecido'" },
+                  "note": { "tr": "kendine yabancı", "en": "estranged from itself", "pt": "estranho a si mesmo" }
+                }
+              },
+              "caption": {
+                "tr": "Ra'nın iki sözü art arda geliyor, ama şiir aralarında bir tercih yapmıyor.",
+                "en": "Ra's two utterances follow one another, but the poem doesn't choose between them.",
+                "pt": "As duas falas de Ra se sucedem, mas o poema não escolhe entre elas."
+              }
+            }
+          ]
+        },
+        {
+          "id": "nunun-noktasi",
+          "heading": {
+            "tr": "Nun'un Noktası",
+            "en": "Nun's Point",
+            "pt": "O Ponto de Nun"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Nun'un şiiri, Kısım IV'te işlediğimiz nokta-yarıçap-daire okumasına doğrudan geri dönüyor: <em>'Varlık Nun'unun noktası, bir hakikat olarak mabuduna delâlet eder. Onun varlığı mabudun cömertliğinden ve bereketindendir. Bütün yüceler o noktanın cömertliğindendir. Gözünle onun varlık hakikatinin yarısına bak, bulunmayan yönünü öğrenirsin.'</em> Son satır özellikle çarpıcı: Nun'un sadece yarısı gözle görülür — 'bulunmayan' öteki yarı, ancak görünenden çıkarsanabiliyor.",
+                "en": "Nun's poem returns directly to the point-radius-circle reading we took up in Part IV: <em>'The point of the Nun of existence points, as a reality, to the One it worships. Its existence comes from the generosity and abundance of the Worshipped. All that is lofty comes from that point's generosity. Look with your eye at half of its reality of existence, and you will learn the side that is not there.'</em> The last line is especially striking: only half of Nun is visible to the eye — the other, 'absent' half can only be inferred from what shows.",
+                "pt": "O poema de Nun retorna diretamente à leitura ponto-raio-círculo que tratamos na Parte IV: <em>'O ponto do Nun da existência aponta, como realidade, para Aquele que é adorado. Sua existência vem da generosidade e abundância do Adorado. Tudo que é elevado vem da generosidade desse ponto. Olha com teus olhos para metade de sua realidade de existência, e aprenderás o lado que não está ali.'</em> A última linha é especialmente marcante: apenas metade de Nun é visível ao olho — a outra metade, 'ausente', só pode ser inferida a partir do que se mostra."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Nun Harfi, s. 190.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Nun, p. 190.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Nun, p. 190."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Görünen Yarı", "en": "The Visible Half", "pt": "A Metade Visível" },
+                  "note": { "tr": "gözle görülür", "en": "seen by the eye", "pt": "vista pelo olho" }
+                },
+                "right": {
+                  "label": { "tr": "Bulunmayan Yarı", "en": "The Absent Half", "pt": "A Metade Ausente" },
+                  "note": { "tr": "görünenden çıkarsanır", "en": "inferred from the visible", "pt": "inferida do visível" }
+                }
+              },
+              "caption": {
+                "tr": "Nun'un yarısı görünür, öteki yarısı yalnızca çıkarsanır — Kısım IV'teki 'dairenin yarısı olan Nun' okumasıyla aynı aile.",
+                "en": "Half of Nun is visible, the other half only inferred — kin to the 'Nun as half the circle' reading from Part IV.",
+                "pt": "Metade de Nun é visível, a outra metade apenas inferida — aparentada à leitura de 'Nun como metade do círculo' da Parte IV."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "İlginç bir yankı: birkaç harf önce Şın'ın şiiri de benzer bir ay imgesi taşıyordu — <em>'İnsanlar onun içerdiği sırrı görseydi, dolunayın silinmesiyle hilâlin tamamlandığını görürdü.'</em> Kaf'ın hilâl-dolunay imgesi, Nun'un görünen-görünmeyen yarısı, Şın'ın dolunay-hilâl dönüşümü — hepsi aynı 'eksik/tam' ikiliğinin farklı harflerde tekrar tekrar karşımıza çıkması gibi görünüyor. Kısım VI'nın geri kalan yirmi küsur harfini ayrı bir oturumda okumaya devam edeceğiz.",
+                "en": "An interesting echo: a few letters earlier, Shin's poem carried a similar lunar image — <em>'If people saw the secret it holds, they would see the full moon completed by the effacing of the crescent.'</em> Qaf's crescent-and-full-moon image, Nun's visible-and-absent half, Shin's full-moon-into-crescent transformation — all of these seem to be the same 'incomplete/complete' duality recurring across different letters. We'll continue reading the remaining twenty-odd letters of Part VI in a separate session.",
+                "pt": "Um eco interessante: algumas letras antes, o poema de Shin carregava uma imagem lunar semelhante — <em>'Se as pessoas vissem o segredo que ele contém, veriam a lua cheia completada pelo apagamento do crescente.'</em> A imagem crescente-e-lua-cheia de Qaf, a metade visível-e-ausente de Nun, a transformação lua-cheia-em-crescente de Shin — todas parecem ser a mesma dualidade 'incompleto/completo' recorrendo em diferentes letras. Continuaremos lendo as vinte e tantas letras restantes da Parte VI numa sessão separada."
               }
             }
           ]
@@ -1955,6 +2055,21 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Kef Harfi, s. 185-186.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Kaf, pp. 185-186.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Kaf, pp. 185-186."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Şın Harfi, s. 187-188.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Shin, pp. 187-188.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Shin, pp. 187-188."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Ra Harfi, s. 189-190.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ra, pp. 189-190.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ra, pp. 189-190."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Nun Harfi, s. 190.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Nun, p. 190.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Nun, p. 190."
         }
       ]
     }
