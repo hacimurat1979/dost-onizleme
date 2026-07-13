@@ -1,10 +1,10 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı Kısmı'nı ise en berrak ve merkezi gördüğümüz noktalarını seçerek işledik.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları ise en berrak ve merkezi gördüğümüz noktalarını seçerek işledik.",
   "book": {
     "cilt": 1,
     "totalKisim": 10
   },
-  "activePartId": "c1k6",
+  "activePartId": "c1k7",
   "parts": [
     {
       "id": "c1k3",
@@ -2775,6 +2775,173 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Hebâ ve Kısmın Kapanışı, s. 209-211.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — Hebâ and the Part's Close, pp. 209-211.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — Hebâ e o Fechamento da Parte, pp. 209-211."
+        }
+      ]
+    },
+    {
+      "id": "c1k7",
+      "cilt": 1,
+      "kisim": 7,
+      "status": "active",
+      "title": {
+        "tr": "Harflerin Velâyet Mertebeleri",
+        "en": "The Sainthood Ranks of the Letters",
+        "pt": "As Hierarquias de Santidade das Letras"
+      },
+      "pageRange": "211–215",
+      "hero": {
+        "summary": {
+          "tr": "Kısım VI'nın hemen ardından Dost, harfleri bu kez klasik tasavvuf velâyet hiyerarşisinin -Kutup, Evtad, Ebdal- terimleriyle okuyor: tıpkı velilerde olduğu gibi, harflerde de bir Kutup (Elif), dört Evtad ve yedi Ebdal var. Ardından 'muhakkiklere göre' asıl aranan şeyin duyulur sûretler değil onların taşıdığı anlamlar olduğunu anlatıyor ve ekmekte, suda, giyecekte gizli 'lâtif ruhlar'dan söz ediyor -ruhun bir yere veya şeye duyduğu aşkın, aslında oranın 'sakini'ne duyulan aşk olduğunu, iki şiirle örnekliyor.",
+          "en": "Right after Part VI, Dost reads the letters this time through the classical Sufi hierarchy of sainthood — Pole (Kutup), Pillars (Evtad), Substitutes (Ebdal): just as with saints, the letters too have one Pole (Elif), four Pillars, and seven Substitutes. He then explains that, 'according to the verifiers,' what is truly sought is not sensible forms but the meanings they carry, and speaks of subtle 'hidden spirits' within bread, water, and clothing — illustrating with two poems the claim that the soul's love for a place is really love for the one who dwells there.",
+          "pt": "Logo após a Parte VI, Dost lê as letras desta vez através da hierarquia clássica sufi de santidade — Polo (Kutup), Pilares (Evtad), Substitutos (Ebdal): assim como com os santos, as letras também têm um Polo (Elif), quatro Pilares e sete Substitutos. Ele então explica que, 'segundo os verificadores', o que realmente se busca não são as formas sensíveis, mas os significados que elas carregam, e fala de 'espíritos ocultos' sutis dentro do pão, da água e das roupas — ilustrando com dois poemas a afirmação de que o amor da alma por um lugar é, na verdade, amor por quem habita ali."
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Harflerin velâyet hiyerarşisi: bir Kutup, dört Evtad, yedi Ebdal — Elif üçüne de dâhil.",
+          "en": "The letters' sainthood hierarchy: one Pole, four Pillars, seven Substitutes — Elif belongs to all three.",
+          "pt": "A hierarquia de santidade das letras: um Polo, quatro Pilares, sete Substitutos — Elif pertence aos três."
+        },
+        "tree": {
+          "id": "velayet-tree",
+          "label": { "tr": "Harflerin Velâyeti", "en": "The Letters' Sainthood", "pt": "A Santidade das Letras" },
+          "note": { "tr": "insanlardaki velâyet hiyerarşisinin bir yansıması", "en": "a reflection of the sainthood hierarchy among humans", "pt": "um reflexo da hierarquia de santidade entre os humanos" },
+          "children": [
+            {
+              "id": "kutup-elif",
+              "label": { "tr": "Kutup: Elif", "en": "Pole: Elif", "pt": "Polo: Elif" },
+              "note": { "tr": "her şeyi ayakta tutan hayat", "en": "the life that sustains everything", "pt": "a vida que sustenta tudo" }
+            },
+            {
+              "id": "evtad-dort",
+              "label": { "tr": "Evtad (Dört Direk)", "en": "Pillars (Four Stakes)", "pt": "Pilares (Quatro Estacas)" },
+              "note": { "tr": "Elif, Vav, Ya, Nun", "en": "Elif, Waw, Ya, Nun", "pt": "Elif, Waw, Ya, Nun" }
+            },
+            {
+              "id": "ebdal-yedi",
+              "label": { "tr": "Ebdal (Yedi Bedel)", "en": "Substitutes (Seven Bedels)", "pt": "Substitutos (Sete Bedels)" },
+              "note": { "tr": "Elif, Ya, Vav, Nun, Te, Kef, He (zamirler)", "en": "Elif, Ya, Waw, Nun, Ta, Kaf, Ha (pronoun-letters)", "pt": "Elif, Ya, Waw, Nun, Ta, Kaf, Ha (letras-pronome)" }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "harflerin-kutbu",
+          "heading": {
+            "tr": "Harflerin Kutbu, Evtadı, Ebdali",
+            "en": "The Letters' Pole, Pillars, and Substitutes",
+            "pt": "O Polo, os Pilares e os Substitutos das Letras"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısım VI kapanır kapanmaz Dost, harfleri bambaşka bir çerçeveden okumaya başlıyor: <em>'Bu harfler, yükümlü insan âlemi gibidir... bu nedenle bizde olduğu gibi harfler içinde de Kutup vardır. Harflerin kutbu Elif'tir.'</em> Kutup, tasavvufun velîler hiyerarşisinde en yüksek mertebedir — Dost burada aynı terimi doğrudan harflere uyguluyor. Elif'in neden Kutup olduğunu da açıklıyor: <em>'Kutbun makamı, her şeyi ayakta tutan hayattır... Elif, harflerin çıkış yerlerinin sonundan nefeslerin son çıkış yerine kadar nefes olarak yayılır... Bütün harfler kendisine yerleşir ve ondan oluşur. Elif ise onlara yerleşmez.'</em> Tıpkı sayı birin (1) diğer sayılara yerleşmeden onları var etmesi gibi.",
+                "en": "The moment Part VI closes, Dost begins reading the letters through an entirely different frame: <em>'These letters are like the world of obligated humans... this is why, just as with us, there is a Pole among the letters too. The letters' Pole is Elif.'</em> The Pole (Kutup) is the highest rank in Sufism's hierarchy of saints — Dost applies the same term directly to the letters here. He also explains why Elif is the Pole: <em>'The Pole's station is the life that sustains everything... Elif spreads as breath from the end of the letters' points of articulation to the furthest point breath can reach... All letters settle into it and are formed from it. Elif itself settles into none of them.'</em> Much as the number one brings the other numbers into being without itself settling into any of them.",
+                "pt": "No instante em que a Parte VI se encerra, Dost começa a ler as letras através de um enquadramento inteiramente diferente: <em>'Estas letras são como o mundo dos humanos obrigados... por isso, assim como conosco, também há um Polo entre as letras. O Polo das letras é Elif.'</em> O Polo (Kutup) é a hierarquia mais alta entre os santos no sufismo — Dost aplica aqui o mesmo termo diretamente às letras. Ele também explica por que Elif é o Polo: <em>'A estação do Polo é a vida que sustenta tudo... Elif se espalha como respiração do fim dos pontos de articulação das letras até o ponto mais distante que a respiração pode alcançar... Todas as letras se assentam nela e são formadas a partir dela. O próprio Elif não se assenta em nenhuma delas.'</em> Tal como o número um traz os outros números à existência sem nunca se assentar em nenhum deles."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kutbun ardından Evtad (direkler) ve Ebdal (bedeller) geliyor — velîler hiyerarşisinde Kutup'tan sonraki mertebeler: <em>'Evtad dörttür: Elif, Vav, Ya ve Nun... Ebdal ise yedidir: Elif, Ya, Vav, Nun, Te, zamir Tesi ve Kefi ve Hesi.'</em> Elif'in üçüne de dâhil olması dikkat çekici — sanki tek bir harf, hem en tepede hem her ara mertebede kendini tekrar ediyor.",
+                "en": "After the Pole come the Pillars (Evtad) and the Substitutes (Ebdal) — the ranks that follow the Pole in the hierarchy of saints: <em>'The Pillars are four: Elif, Waw, Ya, and Nun... The Substitutes are seven: Elif, Ya, Waw, Nun, Ta, and the Ta and Kaf and Ha of the pronouns.'</em> It's striking that Elif belongs to all three — as if a single letter repeats itself both at the very top and at every rank in between.",
+                "pt": "Depois do Polo vêm os Pilares (Evtad) e os Substitutos (Ebdal) — as hierarquias que seguem o Polo na hierarquia dos santos: <em>'Os Pilares são quatro: Elif, Waw, Ya e Nun... Os Substitutos são sete: Elif, Ya, Waw, Nun, Ta, e o Ta e o Kaf e o Ha dos pronomes.'</em> É notável que Elif pertença aos três — como se uma única letra se repetisse tanto no topo quanto em cada hierarquia intermediária."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VII, s. 211-212.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VII, pp. 211-212.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VII, pp. 211-212."
+              },
+              "useMainDiagram": true,
+              "caption": {
+                "tr": "Elif, hem Kutup hem Evtad'ın hem de Ebdal'ın üyesi — tek harf, hiyerarşinin her katmanında yeniden karşımıza çıkıyor.",
+                "en": "Elif is a member of the Pole, the Pillars, and the Substitutes all at once — a single letter reappearing at every layer of the hierarchy.",
+                "pt": "Elif é membro do Polo, dos Pilares e dos Substitutos ao mesmo tempo — uma única letra reaparecendo em cada camada da hierarquia."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ebdal mertebesini örneklemek için Dost dile döner: <em>'Kumtu (kalktım) kelimesinden Te zamiri kalktığında onun yerini başka bir zamir alır. Böylece konuşan kişi kâme Zeyd (Zeyd kalktı) der.'</em> Zamir, ismin bütün harflerinin yerini alabiliyor -isim bin harften oluşsa bile- çünkü zamirin gücü, kendisini bilip yerini aldığı harfleri bilmemesinden gelir. Bunu, insan Ebdal'ının -kendi makamında bir başkasının yerini manen alabilen velîlerin- harflerdeki bir yansıması olarak okuyoruz.",
+                "en": "To illustrate the rank of the Substitutes, Dost turns to grammar: <em>'When the pronoun Ta rises out of the word qumtu (\"I stood up\"), another pronoun takes its place. So the speaker says qama Zayd (\"Zayd stood up\").'</em> A pronoun can take the place of every letter of a name — even if the name is made of a thousand letters — because the pronoun's power comes from knowing itself while not knowing the letters whose place it takes. We read this as a reflection, within the letters, of the human Substitutes (Ebdal) — the saints who can spiritually stand in for another in their station.",
+                "pt": "Para ilustrar a hierarquia dos Substitutos, Dost recorre à gramática: <em>'Quando o pronome Ta se levanta da palavra qumtu (\"eu me levantei\"), outro pronome toma seu lugar. Assim o falante diz qama Zayd (\"Zayd se levantou\").'</em> Um pronome pode tomar o lugar de todas as letras de um nome — mesmo que o nome seja composto de mil letras — porque o poder do pronome vem de conhecer a si mesmo sem conhecer as letras cujo lugar ele ocupa. Lemos isso como um reflexo, dentro das letras, dos Substitutos humanos (Ebdal) — os santos que podem espiritualmente substituir outro em sua estação."
+              }
+            }
+          ]
+        },
+        {
+          "id": "duyulur-suretler",
+          "heading": {
+            "tr": "Duyulur Sûretler ve Gizli Ruhlar",
+            "en": "Sensible Forms and Hidden Spirits",
+            "pt": "Formas Sensíveis e Espíritos Ocultos"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost burada harflerden bir an uzaklaşıp 'muhakkiklere göre' ne arandığı sorusuna dönüyor: <em>'Muhakkiklere göre elde edilmek istenen şey, lafız veya işaret olarak duyulur sûretler değil, bu yazı ve işaretlerin içerdiği anlamlardır.'</em> Ardından bu fikri çok daha çarpıcı bir örneğe taşıyor: <em>'Ekmekte, suda, bütün yiyecek, içecek ve giyeceklerde lâtif ve bilinmez ruhlar vardır. Bu ruhlar, o şeyin canlılık ve Rabbini tesbih ve bilmesinin, Yaratıcısını müşahede mertebesindeki konumunun yüksekliğinin sırrıdır.'</em>",
+                "en": "Here Dost steps away from the letters for a moment and returns to the question of what, 'according to the verifiers,' is truly sought: <em>'What the verifiers seek is not sensible forms as utterance or sign, but the meanings that this writing and these signs carry.'</em> He then carries the idea to a far more striking example: <em>'In bread, in water, in all food, drink, and clothing, there are subtle, unknown spirits. These spirits are the secret of that thing's aliveness, and of its glorifying and knowing its Lord — the loftiness of its station in witnessing its Creator.'</em>",
+                "pt": "Aqui Dost se afasta por um momento das letras e retorna à pergunta sobre o que, 'segundo os verificadores', é verdadeiramente buscado: <em>'O que os verificadores buscam não são formas sensíveis como enunciado ou sinal, mas os significados que essa escrita e esses sinais carregam.'</em> Ele então leva a ideia a um exemplo muito mais marcante: <em>'No pão, na água, em toda comida, bebida e vestimenta, há espíritos sutis e desconhecidos. Esses espíritos são o segredo da vivacidade dessa coisa, e de ela glorificar e conhecer seu Senhor — a elevação de sua estação em testemunhar seu Criador.'</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bunu ruhun sevgisine bağlıyor: <em>'Ruh, istediği şeyi kendilerinde bulunduğunu gördüğü için bu duyulur şeylere âşık olmada mazurdur. Başka bir ifadeyle duyulur şeyler, maşukunun konakladığı yerlerdir.'</em> Bu iddiayı iki şiirle örnekliyor. İlkinde: <em>'Bir yere uğrarım, Selma'nın diyarına, duvarları öpeceğim, duvarları. O yerin sevgisi kalbime geçmiş değil, fakat o diyara yerleşmiş olanın sevgisi kalbime işlemiş.'</em> Ebû İshak ez-Zivalî'den aktardığı ikincisinde ise: <em>'Ey belde, sendeki bir gazâl beni divane etmiş... Sâkininin aşkını şikâyet etsem, o zaman o diyarın yapısının yıkıldığını görürdün.'</em> İkisi de aynı noktaya işaret ediyor: sevilen aslında yer değil, oradaki sâkin.",
+                "en": "Dost ties this to the soul's love: <em>'The soul is excused for loving these sensible things, because it sees in them what it desires. In other words, sensible things are the places where the beloved dwells.'</em> He illustrates this claim with two poems. The first: <em>'I pass by a place, the land of Selma — I will kiss its walls, its walls. It is not love of that land that has entered my heart, but love of the one who has settled in that land that has penetrated my heart.'</em> The second, which he cites from Abu Ishaq az-Zivali: <em>'O town, a gazelle within you has driven me mad... If I complained of love for your dweller, you would see that town's very structure collapse.'</em> Both point to the same thing: what is loved is not really the place, but the one who dwells there.",
+                "pt": "Dost liga isso ao amor da alma: <em>'A alma é desculpada por amar essas coisas sensíveis, porque vê nelas o que deseja. Em outras palavras, as coisas sensíveis são os lugares onde o amado habita.'</em> Ele ilustra essa afirmação com dois poemas. O primeiro: <em>'Passo por um lugar, a terra de Selma — beijarei seus muros, seus muros. Não é o amor daquela terra que entrou em meu coração, mas o amor de quem se estabeleceu naquela terra que penetrou meu coração.'</em> O segundo, que ele cita de Abu Ishaq az-Zivali: <em>'Ó cidade, uma gazela em ti me deixou louco... Se eu me queixasse do amor de teu habitante, verias a própria estrutura dessa cidade desmoronar.'</em> Ambos apontam para a mesma coisa: o que se ama não é realmente o lugar, mas quem o habita."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VII, s. 213-215.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VII, pp. 213-215.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VII, pp. 213-215."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Diyar", "en": "The Land", "pt": "A Terra" },
+                  "note": { "tr": "görünen duyulur sûret", "en": "the visible sensible form", "pt": "a forma sensível visível" }
+                },
+                "right": {
+                  "label": { "tr": "Sâkini", "en": "Its Dweller", "pt": "Seu Habitante" },
+                  "note": { "tr": "aslında sevilen", "en": "what is truly loved", "pt": "o que é verdadeiramente amado" }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un iki şiirle örneklediği okuma: bir yere duyulan aşk, o yerin kendisine değil, orada oturana yönelir — Kısım IV-VI boyunca defalarca karşılaştığımız 'görünenin ardındaki' örüntüsünün bir başka görünümü.",
+                "en": "The reading Dost illustrates with two poems: love felt for a place is directed not at the place itself but at the one who lives there — another appearance of the 'behind what is seen' pattern we've met again and again across Parts IV–VI.",
+                "pt": "A leitura que Dost ilustra com dois poemas: o amor sentido por um lugar não se dirige ao lugar em si, mas a quem vive ali — outra aparição do padrão 'por trás do que se vê' que encontramos repetidas vezes nas Partes IV–VI."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu satırları, sitede sık sık karşılaştığımız bir motifin -dıştaki bir hakikatin içeride ya da 'ardında' bir karşılığı olduğu iddiasının- bir aşk diline çevrilmiş hâli olarak okuyoruz. Kısım VII'de devam edecek 'Harfler Âleminin Anlamları' bölümüne ilerleyen bir oturumda devam edeceğiz.",
+                "en": "We read these lines as the same motif we've met so often on this site — the claim that an outer truth has a counterpart within, or 'behind,' what is seen — translated here into the language of love. We'll continue with Part VII's 'Meanings of the World of Letters' section in a later session.",
+                "pt": "Lemos essas linhas como o mesmo motivo que encontramos tantas vezes neste site — a afirmação de que uma verdade exterior tem uma contraparte dentro, ou 'por trás', do que se vê — traduzido aqui para a linguagem do amor. Continuaremos com a seção 'Significados do Mundo das Letras' da Parte VII numa sessão posterior."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VII — Harflerin Kutbu, Evtadı, Ebdali, s. 211-212.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VII — The Letters' Pole, Pillars, and Substitutes, pp. 211-212.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VII — O Polo, os Pilares e os Substitutos das Letras, pp. 211-212."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VII — Duyulur Sûretler ve Gizli Ruhlar, s. 213-215.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VII — Sensible Forms and Hidden Spirits, pp. 213-215.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VII — Formas Sensíveis e Espíritos Ocultos, pp. 213-215."
         }
       ]
     }
