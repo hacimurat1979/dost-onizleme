@@ -131,12 +131,21 @@
     return whiteContrast >= darkContrast ? "#ffffff" : "#14100a";
   }
 
+  // .pole-badge'in sabit koyu text-shadow'u beyaz metni okunur kılmak için
+  // vardı; ama textColorFor bazı (özellikle Kemâl gibi orta tonlu altın)
+  // arka planlarda koyu metni seçince, aynı koyu gölge artık koyu metnin
+  // üzerine binip bulanıklaştırıyor, kontrastı iyileştirmek yerine bozuyordu.
+  function textShadowFor(textColor) {
+    return textColor === "#ffffff" ? "0 1px 1px rgba(20,15,8,0.35)" : "none";
+  }
+
   function poleBadgeHtml(d) {
     if (d.depth === 0) return "";
     const label = POLE_LABEL[d.data.pole];
     if (!label) return "";
     const bg = colorFor(d);
-    return `<span class="pole-badge" style="background:${bg};color:${textColorFor(bg)}">${I18n.pick3(label)}</span>`;
+    const color = textColorFor(bg);
+    return `<span class="pole-badge" style="background:${bg};color:${color};text-shadow:${textShadowFor(color)}">${I18n.pick3(label)}</span>`;
   }
 
   function labelFor(d) {
