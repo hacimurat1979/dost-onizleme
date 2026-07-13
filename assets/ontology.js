@@ -695,6 +695,17 @@
     return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 
+  // Turkish sentence-case lowercases ordinary nouns ("velâyet", "akıl") even
+  // when they name a registered concept ("Velâyet", "Akıl") — a plain
+  // case-insensitive regex still misses these because JS's default (non-
+  // Turkish-locale) casing folds İ/I to i/ı differently than Turkish does.
+  // Fold both sides through the same Turkish-specific rule before matching.
+  function foldForLang(lang, s) {
+    return lang === "tr"
+      ? s.replace(/İ/g, "i").replace(/I/g, "ı").toLowerCase()
+      : s.toLowerCase();
+  }
+
   function registerCrossLinkTerm(nameDict, view, id, summaryDict) {
     if (!nameDict) return;
     ["tr", "en", "pt"].forEach((lang) => {
@@ -725,18 +736,34 @@
     const lang = I18n.getLang();
     const terms = crossLinkTermsByLang[lang]
       .filter((t) => !(t.view === excludeView && t.id === excludeId))
-      .sort((a, b) => b.term.length - a.term.length);
+      .map((t) => ({ ...t, folded: foldForLang(lang, t.term) }))
+      .sort((a, b) => b.folded.length - a.folded.length);
     if (!terms.length) return text;
-    const pattern = terms.map((t) => `(?<![\\p{L}])${escapeRegExp(t.term)}(?![\\p{L}])`).join("|");
+    const pattern = terms.map((t) => `(?<![\\p{L}])${escapeRegExp(t.folded)}(?![\\p{L}])`).join("|");
     const re = new RegExp(pattern, "gu");
+    const foldedText = foldForLang(lang, text);
     const seen = new Set();
-    return text.replace(re, (match) => {
-      if (seen.has(match)) return match;
-      const hit = terms.find((t) => t.term === match);
-      if (!hit) return match;
-      seen.add(match);
-      return `<a href="#/${hit.view}/${hit.id}" class="cross-link" data-view="${hit.view}" data-id="${hit.id}">${match}</a>`;
-    });
+    let result = "";
+    let lastIndex = 0;
+    let m;
+    while ((m = re.exec(foldedText))) {
+      const start = m.index;
+      const end = start + m[0].length;
+      const hit = terms.find((t) => t.folded === m[0]);
+      if (!hit) continue;
+      const original = text.slice(start, end);
+      result += text.slice(lastIndex, start);
+      const key = hit.view + ":" + hit.id;
+      if (seen.has(key)) {
+        result += original;
+      } else {
+        seen.add(key);
+        result += `<a href="#/${hit.view}/${hit.id}" class="cross-link" data-view="${hit.view}" data-id="${hit.id}">${original}</a>`;
+      }
+      lastIndex = end;
+    }
+    result += text.slice(lastIndex);
+    return result;
   }
 
   window.__dostCrossLink = {

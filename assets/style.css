@@ -724,10 +724,14 @@ html {
 }
 
 .futuhat-intro {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   line-height: 1.6;
   max-width: 720px;
   margin: 0 0 22px;
+  padding: 14px 20px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--series-theme) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--series-theme) 35%, transparent);
 }
 
 .futuhat-parts {
