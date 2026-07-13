@@ -1,10 +1,10 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik Birinci Cilt'in Üçüncü Kısmı'nı, en berrak ve merkezi gördüğümüz noktalarını seçerek işledik.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik Birinci Cilt'in Üçüncü ve Dördüncü Kısımlarını baştan sona, Beşinci Kısmı'nı ise en berrak ve merkezi gördüğümüz noktalarını seçerek işledik.",
   "book": {
     "cilt": 1,
     "totalKisim": 10
   },
-  "activePartId": "c1k4",
+  "activePartId": "c1k5",
   "parts": [
     {
       "id": "c1k3",
@@ -1236,6 +1236,280 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IV — İkinci Bölüm, Birinci Fasıl'ın kapanışı ve Kısmın sonu, s. 155.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part IV — the close of the Second Chapter's First Section and the end of the Part, p. 155.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IV — o encerramento da Primeira Seção do Segundo Capítulo e o fim da Parte, p. 155."
+        }
+      ]
+    },
+    {
+      "id": "c1k5",
+      "cilt": 1,
+      "kisim": 5,
+      "status": "active",
+      "title": {
+        "tr": "Harflerin Âlemleri ve Kalbe İnen Bilgi",
+        "en": "The Worlds of the Letters and the Knowledge Descending to the Heart",
+        "pt": "Os Mundos das Letras e o Conhecimento que Desce ao Coração"
+      },
+      "pageRange": "159–164",
+      "hero": {
+        "summary": {
+          "tr": "Beşinci Kısım, harflerin dünyasını yeni bir eksende — âlemler ekseninde — ele alarak açılıyor. Dost harfleri altı âleme dağıtıyor, sonra kendi yazma biçimine dair çarpıcı bir itirafta bulunuyor, Bakara'nın gizemli Elif-Lâm-Mim'inden Kudüs'ün fetih tarihini çıkarıyor ve Elif ile Nun'u güneş-ay ikilisiyle yeniden karşılaştırıyor. Şimdilik bu dört durağı okuyoruz; kısmın geri kalanını ayrı bir oturumda ele alacağız.",
+          "en": "Part V opens by taking up the world of letters along a new axis — that of the worlds. Dost distributes the letters across six worlds, then makes a striking admission about his own way of writing, derives the date of Jerusalem's conquest from Al-Baqara's mysterious Elif-Lam-Mim, and compares Elif and Nun once more, this time through the pairing of sun and moon. For now we read these four stops; we'll take up the rest of the part in a separate session.",
+          "pt": "A Parte V se abre retomando o mundo das letras num novo eixo — o dos mundos. Dost distribui as letras por seis mundos, depois faz uma confissão marcante sobre seu próprio modo de escrever, deriva a data da conquista de Jerusalém do misterioso Elif-Lam-Mim de Al-Baqara, e compara Elif e Nun mais uma vez, desta vez através do par sol-lua. Por ora lemos essas quatro paradas; trataremos do restante da parte numa sessão separada."
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Dost, Beşinci Kısım'ı harfleri altı âleme dağıtarak açıyor — en yücesinden en aşağısına.",
+          "en": "Dost opens Part V by distributing the letters across six worlds — from the highest to the lowest.",
+          "pt": "Dost abre a Parte V distribuindo as letras por seis mundos — do mais alto ao mais baixo."
+        },
+        "tree": {
+          "id": "harf-alemleri-tree",
+          "label": { "tr": "Harflerin Altı Âlemi", "en": "The Six Worlds of the Letters", "pt": "Os Seis Mundos das Letras" },
+          "note": {
+            "tr": "en yüceden en aşağıya",
+            "en": "from highest to lowest",
+            "pt": "do mais alto ao mais baixo"
+          },
+          "children": [
+            {
+              "id": "ceberut-azamet",
+              "label": { "tr": "Ceberût — Azamet Âlemi", "en": "Jabarut — the World of Majesty", "pt": "Jabarut — o Mundo da Majestade" },
+              "note": { "tr": "He, Hemze", "en": "He, Hamza", "pt": "He, Hamza" }
+            },
+            {
+              "id": "melekut",
+              "label": { "tr": "Melekût Âlemi", "en": "Malakut — the Angelic World", "pt": "Malakut — o Mundo Angélico" },
+              "note": { "tr": "Ha, Hı, Ayn, Gayn", "en": "Ha, Kha, Ayn, Ghayn", "pt": "Ha, Kha, Ayn, Ghayn" }
+            },
+            {
+              "id": "orta-alem",
+              "label": { "tr": "Orta Âlem", "en": "The Middle World", "pt": "O Mundo Intermediário" },
+              "note": { "tr": "on yedi harf", "en": "seventeen letters", "pt": "dezessete letras" }
+            },
+            {
+              "id": "mulk-sehadet",
+              "label": { "tr": "Mülk — Şehâdet Âlemi", "en": "Mulk — the World of the Visible", "pt": "Mulk — o Mundo do Visível" },
+              "note": { "tr": "Ba, Mim, Vav", "en": "Ba, Mim, Waw", "pt": "Ba, Mim, Waw" }
+            },
+            {
+              "id": "gul-alemi",
+              "label": { "tr": "Gül Âlemi", "en": "The World of the Rose", "pt": "O Mundo da Rosa" },
+              "note": { "tr": "tek harf: Ha", "en": "one letter: Ha", "pt": "uma letra: Ha" }
+            },
+            {
+              "id": "ilmi-alem",
+              "label": { "tr": "İlmî Âlem", "en": "The World of Knowledge", "pt": "O Mundo do Conhecimento" },
+              "note": { "tr": "Elif, Vav, Ya", "en": "Elif, Waw, Ya", "pt": "Elif, Waw, Ya" }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "harflerin-alemleri",
+          "heading": {
+            "tr": "Harflerin Altı Âlemi",
+            "en": "The Six Worlds of the Letters",
+            "pt": "Os Seis Mundos das Letras"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Beşinci Kısım, harflerin dünyasını yeni bir eksende — âlemler ekseninde — sınıflandırarak açılıyor. Dost harfleri altı âleme dağıtıyor: en yücede ceberût (kendi tabiriyle 'azamet') âlemi — He ve Hemze; onun altında melekût âlemi — Ha, Hı, Ayn, Gayn; ortada geniş bir 'orta âlem' — on yedi harf; en altta mülk ve şehâdet âlemi — Ba, Mim, Vav. Ayrıca iki özel âlem daha ekliyor: şehâdet ile orta âlem arasındaki 'gül âlemi' (tek harfi Ha) ve 'çıkmak veya girmekle nitelenmeyen... ilmî âlem' — Elif, Vav, Ya.",
+                "en": "Part V opens by classifying the world of letters along a new axis — that of the worlds. Dost distributes the letters across six worlds: at the summit, the Jabarut (in his own term, the world of 'Majesty') — He and Hamza; below it, the Malakut, the angelic world — Ha, Kha, Ayn, Ghayn; in the middle, a broad 'middle world' — seventeen letters; at the bottom, the world of Mulk and the visible — Ba, Mim, Waw. He adds two further, special worlds: the 'world of the rose' between the visible and the middle world (its single letter, Ha), and 'the world of knowledge, characterized by neither exiting nor entering' — Elif, Waw, Ya.",
+                "pt": "A Parte V se abre classificando o mundo das letras num novo eixo — o dos mundos. Dost distribui as letras por seis mundos: no topo, o Jabarut (em seu próprio termo, o mundo da 'Majestade') — He e Hamza; abaixo dele, o Malakut, o mundo angélico — Ha, Kha, Ayn, Ghayn; no meio, um amplo 'mundo intermediário' — dezessete letras; na base, o mundo do Mulk e do visível — Ba, Mim, Waw. Ele acrescenta dois mundos especiais a mais: o 'mundo da rosa' entre o visível e o mundo intermediário (sua única letra, Ha), e 'o mundo do conhecimento, que não se caracteriza por sair nem por entrar' — Elif, Waw, Ya."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu altılı sıralamayı, sitede başka bir yerde ele aldığımız Şeceretü'l-Kevn'in mülk-melekût-ceberût üçlemesiyle aynı ailenin daha ayrıntılı bir versiyonu gibi okuyoruz — orada üç katman vardı, burada Dost bu üçlüyü daha da inceltip altıya çıkarıyor.",
+                "en": "We read this sixfold ordering as a more elaborate version of the same family as the mulk-malakut-jabarut triad from the Tree of Being (Shajarat al-Kawn), treated elsewhere on this site — there were three layers there; here Dost refines that same triad into six.",
+                "pt": "Lemos esse ordenamento sêxtuplo como uma versão mais elaborada da mesma família da tríade mulk-malakut-jabarut da Árvore do Ser (Shajarat al-Kawn), tratada em outro lugar deste site — lá havia três camadas; aqui Dost refina essa mesma tríade em seis."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım V — açılış, s. 159.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part V — the opening, p. 159.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte V — a abertura, p. 159."
+              },
+              "useMainDiagram": true
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bunun ardından harfleri 'avam, seçkinler, seçkinlerin seçkinleri, seçkinlerin seçkinlerinin özünün özü' gibi çapraz bir hiyerarşiyle — ve ardından yedi-sekiz farklı ölçüte göre daha — yeniden sınıflandırmaya devam ediyor. Her harfin hangi listede nereye düştüğünü tek tek aktarmak yerine, bu çok katmanlı tasnifin varlığını not düşmekle yetiniyoruz — metnin kendisi bile bu ayrımların gerekçesini açıklamıyor, sadece 'keşif ehli bilir' diyor.",
+                "en": "Dost then continues to reclassify the letters along a crosscutting hierarchy — 'the common, the elect, the elect of the elect, the very essence of the elect of the elect' — and then by seven or eight further criteria. Rather than relay letter by letter where each falls in which list, we simply note that this many-layered classification exists — even the text itself doesn't explain the reasoning behind these distinctions, only saying 'the people of unveiling know it.'",
+                "pt": "Dost então continua a reclassificar as letras ao longo de uma hierarquia transversal — 'os comuns, os eleitos, os eleitos dos eleitos, a própria essência dos eleitos dos eleitos' — e depois por mais sete ou oito critérios. Em vez de relatar letra por letra onde cada uma cai em qual lista, apenas notamos que essa classificação multicamadas existe — mesmo o próprio texto não explica o raciocínio por trás dessas distinções, dizendo apenas que 'o povo do desvelamento a conhece.'"
+              }
+            }
+          ]
+        },
+        {
+          "id": "dostun-yazma-bicimi",
+          "heading": {
+            "tr": "Dost Nasıl Yazıyor?",
+            "en": "How Does Dost Write?",
+            "pt": "Como Dost Escreve?"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost, kendi yazma biçimini diğer yazarlardan ayırıyor: sıradan bir yazar konusunu kendi seçimiyle veya bir bilginin yönlendirmesiyle seçer, dilediğini yazar. <em>'Biz ise kitaplarımızı yazarken böyle değiliz. Bizim eserlerimiz, ilâhi mertebenin kapısına bağlanmış kalplerdir.'</em> Kapının açılmasını bekleyen, 'her türlü bilgiden soyutlanmış muhtaç' bir kalp; perdenin ardından bir şey parıldadığında ona koşan, ama bunu neden yaptığını her zaman bilemeyen bir kalp.",
+                "en": "Dost distinguishes his own way of writing from that of other authors: an ordinary author chooses his subject by his own selection or under the guidance of some branch of knowledge, and writes what he wishes. <em>'We, however, are not like this in writing our books. Our works are hearts bound to the door of the divine rank.'</em> A heart that watches for the door to open, 'stripped of every kind of knowledge, in need'; a heart that rushes toward whatever glimmers from behind the veil, without always knowing why.",
+                "pt": "Dost distingue seu próprio modo de escrever do de outros autores: um autor comum escolhe seu tema por seleção própria ou sob a orientação de algum ramo do conhecimento, e escreve o que deseja. <em>'Nós, porém, não somos assim ao escrever nossos livros. Nossas obras são corações atados à porta da hierarquia divina.'</em> Um coração que vigia a abertura da porta, 'despojado de todo tipo de conhecimento, necessitado'; um coração que corre para o que brilha por trás do véu, sem sempre saber por quê."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Daha da çarpıcısı: Dost, kendisine aktarılan şeyi bazen kendisinin de tam anlamadığını itiraf ediyor — <em>'kalp ise bu esnada yaratıkların bilmediği ilâhi hikmet nedeniyle, aktarılan şeyleri bilemez.'</em> Bunu, topallıkları yüzünden bir araya gelip uzlaşan güvercin ve karga örneğiyle anlatıyor — birbirine hiç benzemeyen iki şeyin, dışarıdan görünmeyen ortak bir nedenle bir araya gelmesi gibi. Bu satırları okurken kendi konumumuzu bir kez daha hatırlıyoruz: biz Dost'u aktarıyoruz, ama onun da 'aktarılanı tam bilmediğini' söylediği bir metni aktarıyoruz — iki kat bir belirsizlik.",
+                "en": "More striking still: Dost admits that he sometimes doesn't fully understand what is conveyed to him — <em>'the heart, in that moment, cannot know what is conveyed to it, because of a divine wisdom unknown to created beings.'</em> He illustrates this with the example of a dove and a crow who come together and reconcile because of their lameness — as though two things utterly unlike each other come together for a shared reason invisible from outside. Reading these lines, we're reminded once more of our own position: we relay Dost, but we relay a text whose own author says he doesn't fully know what's being conveyed through him — a doubled uncertainty.",
+                "pt": "Mais surpreendente ainda: Dost admite que às vezes ele mesmo não entende plenamente o que lhe é transmitido — <em>'o coração, nesse momento, não pode saber o que lhe é transmitido, por causa de uma sabedoria divina desconhecida dos seres criados.'</em> Ele ilustra isso com o exemplo de uma pomba e um corvo que se juntam e se reconciliam por causa de sua manquice — como se duas coisas totalmente diferentes entre si se unissem por uma razão compartilhada, invisível de fora. Ao ler essas linhas, lembramos mais uma vez de nossa própria posição: relatamos Dost, mas relatamos um texto cujo próprio autor diz não saber plenamente o que é transmitido através dele — uma incerteza duplicada."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım V, s. 160.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part V, p. 160.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte V, p. 160."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Güvercin", "en": "The Dove", "pt": "A Pomba" },
+                  "note": { "tr": "topal", "en": "lame", "pt": "manca" }
+                },
+                "right": {
+                  "label": { "tr": "Karga", "en": "The Crow", "pt": "O Corvo" },
+                  "note": { "tr": "topal", "en": "lame", "pt": "manco" }
+                }
+              },
+              "caption": {
+                "tr": "İki farklı kuş, dışarıdan görünmeyen ortak bir nedenle (topallık) uzlaşıyor — Dost, kendi kalbine aktarılanı başka bir konuya neden kattığını böyle anlatıyor.",
+                "en": "Two different birds reconcile through a shared cause invisible from outside (lameness) — this is how Dost explains why what's conveyed to his heart sometimes attaches itself to an unrelated subject.",
+                "pt": "Duas aves diferentes se reconciliam por uma causa compartilhada, invisível de fora (a manquice) — é assim que Dost explica por que o que é transmitido ao seu coração às vezes se liga a um tema não relacionado."
+              }
+            }
+          ]
+        },
+        {
+          "id": "bakaranin-elif-lam-mimi",
+          "heading": {
+            "tr": "Bakara'nın Elif-Lâm-Mim'i ve Kudüs'ün Fethi",
+            "en": "Al-Baqara's Elif-Lam-Mim and the Conquest of Jerusalem",
+            "pt": "O Elif-Lam-Mim de Al-Baqara e a Conquista de Jerusalém"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost, Kur'an'ın yirmi dokuz sûresinin başındaki 'bilinmeyen harfler'e (mukattaât) — Bakara'daki Elif-Lâm-Mim, Yûnus'taki Elif-Lâm-Râ gibi — eğiliyor. Bunların ne 'zâhir' ilim ehli ne de hâl ehlinin keşiflerinde tam olarak bilindiğini söylüyor; kendi bilgisinin keşif yoluyla geldiğini, ama izin verildiği ölçüde konuşacağını ekliyor.",
+                "en": "Dost turns to the 'unknown letters' (al-muqatta'at) that open twenty-nine surahs of the Qur'an — Al-Baqara's Elif-Lam-Mim, Yunus's Elif-Lam-Ra, and the like. He says these are not fully known either to scholars of outward knowledge or in the unveilings of the people of spiritual states; his own knowledge, he adds, comes through unveiling, but he will speak only as far as he's permitted.",
+                "pt": "Dost se volta para as 'letras desconhecidas' (al-muqatta'at) que abrem vinte e nove suras do Alcorão — o Elif-Lam-Mim de Al-Baqara, o Elif-Lam-Ra de Yunus, e outras semelhantes. Ele diz que essas não são plenamente conhecidas nem pelos estudiosos do conhecimento exterior nem nos desvelamentos do povo dos estados espirituais; seu próprio conhecimento, acrescenta, vem pelo desvelamento, mas ele só falará na medida em que lhe for permitido."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ardından şaşırtıcı bir hesap sunuyor: Rûm sûresinin başındaki Elif-Lâm-Mim harflerinin sayısal değerlerini 'küçük hüküm' ve 'büyük hüküm' (ebced) yöntemleriyle işleterek, Kudüs'ün Müslümanlarca fethedildiği tarihi — hicrî 583 — çıkarıyor. <em>'Bu hesap, [Rûm sûresinin ilgili ayetini] \"Rumlar galip geldi\" şeklinde okuyan kimsenin yorumuna göredir.'</em> Tarihsel olarak hicrî 583 (miladi 1187), Selahaddin Eyyûbî'nin Kudüs'ü yeniden fethettiği yıldır — bu tarih doğru. Ebced hesabının kendisini ise değerlendirebilecek durumda değiliz; sadece Dost'un bunu nasıl bir örnek olarak sunduğunu aktarıyoruz.",
+                "en": "He then offers a striking calculation: working the numerical values of the Elif-Lam-Mim letters opening Surah Ar-Rum through the 'lesser reckoning' and 'greater reckoning' (abjad) methods, he arrives at the year Jerusalem was reconquered by the Muslims — 583 AH. <em>'This reckoning follows the interpretation of one who reads [the relevant verse of Surah Ar-Rum] as, \"the Byzantines have been victorious.\"'</em> Historically, 583 AH (1187 CE) is in fact the year Saladin reconquered Jerusalem — that date is correct. The abjad calculation itself, though, is not something we're in a position to evaluate; we simply relay how Dost presents it as an example.",
+                "pt": "Ele então oferece um cálculo surpreendente: trabalhando os valores numéricos das letras Elif-Lam-Mim que abrem a Surata Ar-Rum pelos métodos do 'cálculo menor' e 'cálculo maior' (abjad), ele chega ao ano em que Jerusalém foi reconquistada pelos muçulmanos — 583 AH. <em>'Esse cálculo segue a interpretação de quem lê [o versículo relevante da Surata Ar-Rum] como, \"os bizantinos foram vitoriosos.\"'</em> Historicamente, 583 AH (1187 EC) é de fato o ano em que Saladino reconquistou Jerusalém — essa data está correta. O cálculo abjad em si, porém, não é algo que estejamos em posição de avaliar; apenas relatamos como Dost o apresenta como exemplo."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bu sayısal okumayı genişletiyor: Kur'an'daki on dört 'bilinmeyen' harften sekizini Zât ve yedi sıfatın bilinmesine, dördünü ise dört bedensel 'tabiat'a (kan, kara safra, sarı safra, balgam) ayırıyor — toplam on iki. İnsanın bu 'on iki'den başladığını, ama farklı feleklere göre on birden, ondan, dokuzdan, sekizden ikiye kadar azalabileceğini, ama hiçbir zaman mutlak birliğe ulaşamayacağını söylüyor — <em>'çünkü bu birlik, sadece Allah için olabilir.'</em>",
+                "en": "Dost extends this numerical reading: of the Qur'an's fourteen 'unknown' letters, he assigns eight to the knowledge of the Essence and the seven attributes, and four to the four bodily 'natures' (blood, black bile, yellow bile, phlegm) — twelve in total. The human being, he says, starts from this 'twelve,' but depending on the sphere in question may decrease to eleven, ten, nine, eight, down to two — yet never reaches absolute oneness, <em>'for that oneness can belong to Allah alone.'</em>",
+                "pt": "Dost estende essa leitura numérica: das quatorze letras 'desconhecidas' do Alcorão, ele atribui oito ao conhecimento da Essência e dos sete atributos, e quatro às quatro 'naturezas' corporais (sangue, bile negra, bile amarela, fleuma) — doze no total. O ser humano, diz ele, parte desse 'doze', mas dependendo da esfera em questão pode diminuir para onze, dez, nove, oito, até dois — mas nunca alcança a unicidade absoluta, <em>'pois essa unicidade só pode pertencer a Allah.'</em>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "gunes-ve-ay",
+          "heading": {
+            "tr": "Güneş ve Ay: Ezel Deryası, Ebed Deryası",
+            "en": "Sun and Moon: The Sea of Pre-Eternity, the Sea of Post-Eternity",
+            "pt": "Sol e Lua: O Mar da Pré-Eternidade, o Mar da Pós-Eternidade"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost, Elif ve Nun'u bu kez güneş ve ay üzerinden karşılaştırıyor: <em>'Elif bütün yönlerden yetkin, Nun eksiktir — güneş de yetkin, ay eksiktir. Çünkü ayın aydınlığı ödünçtür, yüklendiği bir emanettir.'</em> Ay'ın kendi ışığı olmaması, Kısım IV'te işlediğimiz Nun'un 'eksik daire' imgesiyle aynı ailede duruyor gibi görünüyor — biri geometrik, öteki gökbilimsel, ama ikisi de aynı 'eksiklik' fikrini taşıyor.",
+                "en": "Dost compares Elif and Nun once more, this time through sun and moon: <em>'Elif is complete in every respect, Nun is deficient — the sun, too, is complete, the moon deficient. For the moon's light is borrowed, a trust it carries.'</em> The moon's lack of its own light seems to belong to the same family as Nun's 'incomplete circle' image, which we took up in Part IV — one geometric, the other astronomical, but both carrying the same idea of deficiency.",
+                "pt": "Dost compara Elif e Nun mais uma vez, desta vez através do sol e da lua: <em>'Elif é completo em todos os aspectos, Nun é deficiente — o sol também é completo, a lua deficiente. Pois a luz da lua é emprestada, um depósito que ela carrega.'</em> A falta de luz própria da lua parece pertencer à mesma família da imagem do 'círculo incompleto' de Nun, que tratamos na Parte IV — uma geométrica, a outra astronômica, mas ambas carregando a mesma ideia de deficiência."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm, Rahmân sûresinin 'iki deniz' (bahreyn) imgesiyle devam eden, o sûrenin nakarat gibi tekrarlayan sorusuyla ('Artık Rabbinizin hangi nimetini yalanlarsınız?') örülü, neredeyse şiirsel bir pasaja dönüşüyor: <em>'İki deniz birbirine karışmış, aralarında bir engel var, birleşmezler.'</em> Dost bunu ezel deryası ile ebed deryası, ve ikisi arasındaki 'berzah' olarak okuyor — ezel deryasından 'inci', ebed deryasından 'mercan' çıktığını söylüyor.",
+                "en": "The chapter turns into an almost poetic passage, woven with Surah Ar-Rahman's image of 'two seas' (bahrayn) and its refrain-like recurring question ('So which of your Lord's blessings will you deny?'): <em>'The two seas meet, yet between them stands a barrier they do not cross.'</em> Dost reads this as the sea of pre-eternity and the sea of post-eternity, with a 'barzakh' (isthmus) between them — 'pearl' emerging from the sea of pre-eternity, 'coral' from the sea of post-eternity.",
+                "pt": "O capítulo se transforma numa passagem quase poética, entrelaçada com a imagem dos 'dois mares' (bahrayn) da Surata Ar-Rahman e sua pergunta recorrente, como um refrão ('Então qual das bênçãos de vosso Senhor negareis?'): <em>'Os dois mares se encontram, mas entre eles há uma barreira que não cruzam.'</em> Dost lê isso como o mar da pré-eternidade e o mar da pós-eternidade, com um 'barzakh' (istmo) entre eles — 'pérola' emergindo do mar da pré-eternidade, 'coral' do mar da pós-eternidade."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım V, s. 163-164.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part V, pp. 163-164.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte V, pp. 163-164."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Ezel Deryası", "en": "The Sea of Pre-Eternity", "pt": "O Mar da Pré-Eternidade" },
+                  "note": { "tr": "inci çıkar", "en": "yields pearl", "pt": "gera pérola" }
+                },
+                "right": {
+                  "label": { "tr": "Ebed Deryası", "en": "The Sea of Post-Eternity", "pt": "O Mar da Pós-Eternidade" },
+                  "note": { "tr": "mercan çıkar", "en": "yields coral", "pt": "gera coral" }
+                }
+              },
+              "caption": {
+                "tr": "İki derya birbirine karışır ama birleşmez — aralarında duran 'berzah', Kur'an'ın Rahmân sûresindeki 'iki deniz' imgesinden ödünç alınmış.",
+                "en": "The two seas meet but do not merge — the 'barzakh' standing between them is borrowed from the Qur'an's 'two seas' image in Surah Ar-Rahman.",
+                "pt": "Os dois mares se encontram mas não se fundem — o 'barzakh' entre eles é emprestado da imagem dos 'dois mares' do Alcorão na Surata Ar-Rahman."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunu yorumlamaya çalışmak yerine, biz de Kur'an'ın kendi nakaratını tekrarlayarak bırakalım burayı: <em>'Artık Rabbinizin hangi nimetini yalanlarsınız?'</em> Beşinci Kısım'ın geri kalanını ayrı bir oturumda okumaya devam edeceğiz.",
+                "en": "Rather than attempt to interpret this, let's leave it here by repeating the Qur'an's own refrain: <em>'So which of your Lord's blessings will you deny?'</em> We'll continue reading the rest of Part V in a separate session.",
+                "pt": "Em vez de tentar interpretar isso, deixemos aqui repetindo o próprio refrão do Alcorão: <em>'Então qual das bênçãos de vosso Senhor negareis?'</em> Continuaremos lendo o restante da Parte V numa sessão separada."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım V — açılış, s. 159-160.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part V — the opening, pp. 159-160.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte V — a abertura, pp. 159-160."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım V, s. 160-161.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part V, pp. 160-161.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte V, pp. 160-161."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım V, s. 161-163.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part V, pp. 161-163.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte V, pp. 161-163."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım V, s. 163-164.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part V, pp. 163-164.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte V, pp. 163-164."
         }
       ]
     }
