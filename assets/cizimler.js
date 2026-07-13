@@ -13,6 +13,10 @@
     return I18n.pick3(dict);
   }
 
+  function linkify(text, id) {
+    return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, "cizimler", id) : text;
+  }
+
   function fetchData() {
     if (data) return Promise.resolve(data);
     if (fetchPromise) return fetchPromise;
@@ -268,7 +272,7 @@
         <h3 class="cizim-card__name">${tt(item.name)}</h3>
         <div class="cizim-card__svg-wrap" data-cizim-id="${item.id}" role="button" tabindex="0"
              aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${svg}</div>
-        <p class="cizim-card__desc">${tt(item.description)}</p>
+        <p class="cizim-card__desc">${linkify(tt(item.description), item.id)}</p>
       </article>
     `;
   }
@@ -294,7 +298,7 @@
     const sources = (data.sources || []).map((s) => `<li>${s}</li>`).join("");
     listEl.innerHTML = `
       ${CIZIM_DEFS}
-      <p class="cizimler-intro">${tt(data.intro)}</p>
+      <p class="cizimler-intro">${linkify(tt(data.intro), null)}</p>
       ${cards}
       <ul class="cizimler-sources">${sources}</ul>
     `;

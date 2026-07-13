@@ -4,10 +4,9 @@
   const I18n = window.DostI18n;
   const grid = document.getElementById("terimler-list");
   const chipsWrap = document.getElementById("terimler-chips");
-  const diagramWrap = document.getElementById("terimler-diagram");
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
-  if (!grid || !chipsWrap || !diagramWrap || !detailPanel || !detailContent) return;
+  if (!grid || !chipsWrap || !detailPanel || !detailContent) return;
 
   let glossaryData = null;
   let fetchPromise = null;
@@ -331,24 +330,20 @@
   `;
 
   let currentDiagrams = [];
+  let currentDetailKind = null; // "term" | "group-diagram"
+  let currentDetailGroupId = null;
 
-  function renderDiagrams() {
-    if (activeGroup === "all") {
-      diagramWrap.innerHTML = "";
-      diagramWrap.hidden = true;
-      currentDiagrams = [];
-      return;
-    }
-    const group = groupById(activeGroup);
+  // Bir grup çipine tıklandığında o grubun çizimlerini artık ana sayfada
+  // değil, sağdaki detay panelinde gösteriyoruz -- terim listesinin hemen
+  // üstünde büyük bir blok olarak durmak yerine, tıklanan çipe karşılık gelen
+  // bir içerik olarak.
+  function showGroupDiagrams(groupId) {
+    const group = groupById(groupId);
     const diagrams = group && group.diagram;
-    if (!diagrams || !diagrams.length) {
-      diagramWrap.innerHTML = "";
-      diagramWrap.hidden = true;
-      currentDiagrams = [];
-      return;
-    }
+    if (!diagrams || !diagrams.length) return;
     currentDiagrams = diagrams;
-    diagramWrap.hidden = false;
+    currentDetailKind = "group-diagram";
+    currentDetailGroupId = groupId;
     const cards = diagrams
       .map((dg, i) => {
         const renderer = diagramRenderers[dg.type];
@@ -360,8 +355,13 @@
         </div>`;
       })
       .join("");
-    diagramWrap.innerHTML = DIAGRAM_DEFS + `<div class="term-diagram-row">${cards}</div>`;
-    diagramWrap.querySelectorAll(".term-diagram-svg-wrap").forEach((el) => {
+    detailContent.innerHTML = `
+      <p class="detail-eyebrow">${tt({ tr: "Grup Çizimi", en: "Group Diagram", pt: "Diagrama do Grupo" })}</p>
+      <h2 class="detail-title">${tt(group.name)}</h2>
+      ${DIAGRAM_DEFS}
+      <div class="term-diagram-row term-diagram-row--panel">${cards}</div>
+    `;
+    detailContent.querySelectorAll(".term-diagram-svg-wrap").forEach((el) => {
       el.addEventListener("click", () => openDiagramLightbox(Number(el.dataset.diagramIndex)));
       el.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -370,6 +370,7 @@
         }
       });
     });
+    detailPanel.hidden = false;
   }
 
   // --- Büyütme (lightbox) ---
@@ -398,6 +399,7 @@
       chip.addEventListener("click", () => {
         activeGroup = chip.dataset.group;
         render();
+        if (activeGroup !== "all") showGroupDiagrams(activeGroup);
       });
     });
   }
@@ -432,7 +434,6 @@
   function render() {
     if (!glossaryData) return;
     renderChips();
-    renderDiagrams();
     renderList();
   }
 
@@ -535,6 +536,8 @@
     const t = glossaryData.terms[id];
     if (!t) return;
     const group = groupById(t.group);
+    currentDetailKind = "term";
+    currentDetailGroupId = null;
 
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt(group.name)}</p>
@@ -579,9 +582,8 @@
     goToNode(id) {
       fetchData().then((data) => {
         if (!data) return;
-        // Bir terime doğrudan bağlantıyla gelindiğinde, o terimin grubunu
-        // seçili hale getir -- aksi halde grup diyagramı (varsa) hiç
-        // görünmez, çünkü diyagramlar "activeGroup" filtresine bağlıdır.
+        // Bir terime doğrudan bağlantıyla gelindiğinde, o terimin grubu
+        // liste filtresinde de seçili görünsün diye grubu aktif yapıyoruz.
         const term = id && data.terms[id];
         if (term && term.group) activeGroup = term.group;
         render();
@@ -589,7 +591,12 @@
       });
     },
     onLangChange() {
-      if (glossaryData) render();
+      if (!glossaryData) return;
+      render();
+      // Panelde bir grup çizimi açıksa, dil değiştiğinde onu da tazeleyelim.
+      if (currentDetailKind === "group-diagram" && currentDetailGroupId && !detailPanel.hidden) {
+        showGroupDiagrams(currentDetailGroupId);
+      }
     },
   };
 })();

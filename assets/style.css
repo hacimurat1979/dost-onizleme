@@ -4044,6 +4044,11 @@ html[data-contrast="high"] .detail-title {
 }
 .node-hover-tip--fixed {
   position: fixed;
+  /* Taban .node-hover-tip'in z-index:30'u .detail-panel'in (40) altında
+     kalıyordu -- panel açıkken üzerine gelen bağlantıların önizlemesi,
+     panelin opak arka planının altına gömülüp sadece panel dışına taşan
+     kenarı görünür kalıyordu. */
+  z-index: 55;
 }
 .node-hover-tip--lightbox {
   position: fixed;
@@ -4063,20 +4068,23 @@ html[data-contrast="high"] .detail-title {
   line-height: 1.35;
 }
 
-/* Terimler Sözlüğü — kavramlar arası ilişki çizimleri */
-.terimler-diagram {
-  margin: 16px 0;
-}
-
-.terimler-diagram[hidden] {
-  display: none;
-}
-
+/* Terimler Sözlüğü — kavramlar arası ilişki çizimleri (artık sağdaki
+   detay panelinde, bir grup çipine tıklanınca gösteriliyor) */
 .term-diagram-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
+}
+
+.term-diagram-row--panel {
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 16px;
+}
+.term-diagram-row--panel .term-diagram-card {
+  max-width: 100%;
+  min-width: 0;
 }
 
 .term-diagram-card {

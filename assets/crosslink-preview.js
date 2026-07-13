@@ -1,13 +1,20 @@
 // Fütûhât Atlası'ndaki makale metninde, bir cross-link'in üzerine gelince
-// önizleme çıkan davranış (Wikipedia tarzı) sadece o görünüme özeldi. Bütün
-// görünümler aynı paylaşılan #detail-content paneline yazdığı için, bu
-// önizlemeyi burada TEK bir yerden bağlamak Ontoloji/Esmâ/Hâller/Sırlar/
-// Terimler/Sorular'ın hepsine birden kazandırıyor.
+// önizleme çıkan davranış (Wikipedia tarzı) sadece o görünüme özeldi. Bunu
+// tek bir yerden, tüm belgeye (document) bağlıyoruz -- böylece paylaşılan
+// #detail-content paneline yazan Ontoloji/Esmâ/Hâller/Sırlar/Terimler/
+// Sorular'ın yanında, kendi ana sayfasına doğrudan basan Çizimler gibi
+// görünümler de otomatik olarak aynı davranışı kazanıyor. Fütûhât Atlası
+// kendi çizim düğümleriyle paylaştığı ayrı bir tooltip mekanizmasını zaten
+// kullanıyor (bkz. futuhat.js), o yüzden #futuhat-article içindeki
+// bağlantıları burada atlıyoruz ki aynı anda iki önizleme kutusu çıkmasın.
 (function () {
   "use strict";
 
-  const container = document.getElementById("detail-content");
-  if (!container) return;
+  const container = document;
+
+  function hasOwnPreview(el) {
+    return !!el.closest("#futuhat-article");
+  }
 
   let tip = null;
 
@@ -55,23 +62,26 @@
 
   container.addEventListener("mouseover", (event) => {
     const a = event.target.closest("a.cross-link");
-    if (a) showPreview(a, event);
+    if (a && !hasOwnPreview(a)) showPreview(a, event);
   });
   container.addEventListener("mousemove", (event) => {
     const a = event.target.closest("a.cross-link");
-    if (a) moveTip(event, a);
+    if (a && !hasOwnPreview(a)) moveTip(event, a);
   });
   container.addEventListener("mouseout", (event) => {
-    if (event.target.closest("a.cross-link")) hideTip();
+    const a = event.target.closest("a.cross-link");
+    if (a && !hasOwnPreview(a)) hideTip();
   });
   container.addEventListener("focusin", (event) => {
     const a = event.target.closest("a.cross-link");
-    if (a) showPreview(a, event);
+    if (a && !hasOwnPreview(a)) showPreview(a, event);
   });
   container.addEventListener("focusout", (event) => {
-    if (event.target.closest("a.cross-link")) hideTip();
+    const a = event.target.closest("a.cross-link");
+    if (a && !hasOwnPreview(a)) hideTip();
   });
   container.addEventListener("mousedown", (event) => {
-    if (event.target.closest("a.cross-link")) hideTip();
+    const a = event.target.closest("a.cross-link");
+    if (a && !hasOwnPreview(a)) hideTip();
   });
 })();
