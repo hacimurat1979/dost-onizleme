@@ -46,6 +46,13 @@
     if (e.key === "Escape" && popupEl && !popupEl.hidden) closePopup();
   });
 
+  // Ağaç düğümüne tıklanınca gösterilen bilgi kutusu; aynı düğüme tekrar
+  // tıklanınca veya başka bir yere tıklanınca kapanır.
+  let activeTipNodeId = null;
+  document.addEventListener("click", () => {
+    if (activeTipNodeId) hideTip();
+  });
+
   // --- Diagram lightbox (click a diagram to see it enlarged) ---
   function openDiagramLightbox(mount, captionText) {
     window.DostLightbox.open({
@@ -266,7 +273,20 @@
       .on("mousemove", (event) => moveTip(event))
       .on("mouseleave", hideTip)
       .on("focus", (event, d) => showTip(d, event))
-      .on("blur", hideTip);
+      .on("blur", hideTip)
+      .on("click", (event, d) => {
+        // Fare ile üzerine gelmenin (hover) açığa çıkardığı bilgiyi, dokunmatik
+        // ekranlarda hover diye bir şey olmadığı için tıklamayla da göster --
+        // ikinci kez aynı düğüme dokununca kapansın, yayılımı (propagation)
+        // durdurup mount'un "büyüt" tıklamasını tetiklemesin.
+        event.stopPropagation();
+        if (activeTipNodeId === d.data.id) {
+          hideTip();
+        } else {
+          showTip(d, event);
+          activeTipNodeId = d.data.id;
+        }
+      });
 
     nodeSel
       .append("circle")
@@ -332,6 +352,7 @@
 
   function hideTip() {
     if (tooltip) tooltip.hidden = true;
+    activeTipNodeId = null;
   }
 
   // --- Wikipedia-style hover preview for cross-links inside article prose ---
