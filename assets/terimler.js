@@ -17,6 +17,10 @@
     return I18n.pick3(dict);
   }
 
+  function linkify(text, view, id) {
+    return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, view, id) : text;
+  }
+
   function truncate(str, max) {
     if (!str) return "";
     if (str.length <= max) return str;
@@ -432,14 +436,14 @@
     renderList();
   }
 
-  function kaynaklarHtml(kaynaklar) {
+  function kaynaklarHtml(kaynaklar, id) {
     if (!kaynaklar || !kaynaklar.length) return "";
     return `<div class="insight-group">${kaynaklar
       .map(
         (k, i) => `<details class="insight" ${i === 0 ? "open" : ""}>
           <summary>${k.kaynak_adi ? k.kaynak_adi : tt({ tr: `Cilt ${k.cilt}`, en: `Volume ${k.cilt}`, pt: `Volume ${k.cilt}` })}</summary>
-          <p>${k.alinti_tr}</p>
-          ${k.not_tr ? `<cite>${k.not_tr}</cite>` : ""}
+          <p>${linkify(k.alinti_tr, "terimler", id)}</p>
+          ${k.not_tr ? `<cite>${linkify(k.not_tr, "terimler", id)}</cite>` : ""}
         </details>`
       )
       .join("")}</div>`;
@@ -492,14 +496,25 @@
       .map(
         (v) => `<div class="divergent-view">
           <p class="divergent-view__kaynak">${v.kaynak}</p>
-          <p>${tt(v.gorus)}</p>
+          <p>${linkify(tt(v.gorus), "terimler", t.id)}</p>
         </div>`
       )
       .join("");
     return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "Çelişen Yorumlar", en: "Differing Readings", pt: "Leituras Divergentes" })}</p>
       <div class="divergent-views">${cards}</div>
-      ${t.celisen_yorumlar_not ? `<p class="divergent-views__not">${tt(t.celisen_yorumlar_not)}</p>` : ""}`;
+      ${t.celisen_yorumlar_not ? `<p class="divergent-views__not">${linkify(tt(t.celisen_yorumlar_not), "terimler", t.id)}</p>` : ""}`;
   }
+
+  // Terim gruplarındaki GROUP_HUE'ya paralel, ama bölüm bazında: her görünüm
+  // (ontoloji/esma/hal/...) kendi sabit tonuyla ayırt edilsin diye.
+  const VIEW_HUE = {
+    ontoloji: 40,
+    esma: 200,
+    hal: 265,
+    terimler: 15,
+    sorular: 225,
+    futuhat: 340,
+  };
 
   function siteLinksHtml(t) {
     const links = t.site_baglantilari || [];
@@ -510,7 +525,7 @@
       hal: { tr: "Hâller", en: "States", pt: "Estados" },
     };
     const chips = links
-      .map((l) => `<button class="bookmap-concept-tag" data-view="${l.view}" data-id="${l.id}">${tt(VIEW_LABEL[l.view] || {})} → ${l.id}</button>`)
+      .map((l) => `<button class="bookmap-concept-tag bookmap-concept-tag--group" data-view="${l.view}" data-id="${l.id}" style="--tag-hue:${VIEW_HUE[l.view] !== undefined ? VIEW_HUE[l.view] : 40}">${tt(VIEW_LABEL[l.view] || {})} → ${l.id}</button>`)
       .join("");
     return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "Haritada Gör", en: "See on the Map", pt: "Ver no Mapa" })}</p>
       <div class="bookmap-concept-tags">${chips}</div>`;
@@ -526,17 +541,17 @@
       <h2 class="detail-title">${tt(t.title)}${t.arabic ? ` <span class="detail-title__arabic">${t.arabic}</span>` : ""}</h2>
       <div class="detail-block detail-block--ibnarabi">
         <h3>${tt({ tr: "Felsefi Tanım", en: "Philosophical Definition", pt: "Definição Filosófica" })}</h3>
-        <p>${tt(t.felsefi_tanim)}</p>
+        <p>${linkify(tt(t.felsefi_tanim), "terimler", t.id)}</p>
       </div>
       <div class="detail-block">
         <h3>${tt({ tr: "İbn Arabî'nin Yorumu", en: "Ibn Arabi's Interpretation", pt: "A Interpretação de Ibn Arabi" })}</h3>
-        <p>${tt(t.ibn_arabi_yorumu)}</p>
+        <p>${linkify(tt(t.ibn_arabi_yorumu), "terimler", t.id)}</p>
       </div>
       <div class="detail-analogy">
         <p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p>
-        <p>${tt(t.analogy)}</p>
+        <p>${linkify(tt(t.analogy), "terimler", t.id)}</p>
       </div>
-      ${kaynaklarHtml(t.kaynaklar)}
+      ${kaynaklarHtml(t.kaynaklar, t.id)}
       ${celisenYorumlarHtml(t)}
       ${relatedTermsHtml(t)}
       ${siteLinksHtml(t)}

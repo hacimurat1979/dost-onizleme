@@ -3483,11 +3483,13 @@ html[data-contrast="high"] .detail-title {
   margin: 0 clamp(16px, 4vw, 48px);
   max-height: min(72vh, 720px);
   overflow-y: auto;
+  scrollbar-width: none; /* Firefox -- ayrıntısı .terimler-wrap kuralında */
   background: var(--surface-1);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: clamp(16px, 3vw, 32px);
 }
+.bookmap-wrap::-webkit-scrollbar { display: none; }
 
 .bookmap-grid {
   display: grid;
@@ -3692,8 +3694,11 @@ html[data-contrast="high"] .detail-title {
 .bookmap-concept-tag--group {
   position: relative;
   padding-left: 28px;
-  background: hsl(var(--tag-hue) 58% 50% / 0.14);
-  border-color: hsl(var(--tag-hue) 58% 45% / 0.4);
+  /* Sitenin öbür yerlerindeki (Sırlar/Hâller/Sorular) elle seçilmiş, kısılmış
+     tonlarla aynı ruhta kalması için düşük doygunluk -- ham hsl(hue,58%,50%)
+     çok parlak/gökkuşağı kaçıyordu, site genelinin sakin paletiyle çatışıyordu. */
+  background: hsl(var(--tag-hue) 34% 46% / 0.14);
+  border-color: hsl(var(--tag-hue) 34% 40% / 0.4);
 }
 .bookmap-concept-tag--group::before {
   content: "";
@@ -3704,23 +3709,23 @@ html[data-contrast="high"] .detail-title {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: hsl(var(--tag-hue) 62% 46%);
+  background: hsl(var(--tag-hue) 38% 42%);
 }
 .bookmap-concept-tag--group:hover {
-  background: hsl(var(--tag-hue) 58% 50% / 0.28);
-  border-color: hsl(var(--tag-hue) 58% 45% / 0.7);
+  background: hsl(var(--tag-hue) 34% 46% / 0.28);
+  border-color: hsl(var(--tag-hue) 34% 40% / 0.7);
   color: var(--text-primary);
 }
 .viz-root[data-theme="dark"] .bookmap-concept-tag--group {
-  background: hsl(var(--tag-hue) 50% 60% / 0.18);
-  border-color: hsl(var(--tag-hue) 50% 60% / 0.4);
+  background: hsl(var(--tag-hue) 32% 58% / 0.18);
+  border-color: hsl(var(--tag-hue) 32% 58% / 0.4);
 }
 .viz-root[data-theme="dark"] .bookmap-concept-tag--group::before {
-  background: hsl(var(--tag-hue) 60% 65%);
+  background: hsl(var(--tag-hue) 36% 62%);
 }
 .viz-root[data-theme="dark"] .bookmap-concept-tag--group:hover {
-  background: hsl(var(--tag-hue) 50% 60% / 0.32);
-  border-color: hsl(var(--tag-hue) 50% 60% / 0.7);
+  background: hsl(var(--tag-hue) 32% 58% / 0.32);
+  border-color: hsl(var(--tag-hue) 32% 58% / 0.7);
 }
 
 .bookmap-list {
@@ -3907,11 +3912,17 @@ html[data-contrast="high"] .detail-title {
   margin: 0 clamp(16px, 4vw, 48px);
   max-height: min(72vh, 720px);
   overflow-y: auto;
+  /* Sağda açılan detay paneli de kendi kaydırma çubuğunu taşıyor; ikisi
+     yan yana durunca "çift kaydırma çubuğu" görüntüsü veriyordu. Bu listeyi
+     tekerlek/dokunuşla kaydırılabilir tutup sadece görsel çubuğunu gizliyoruz
+     -- panel açıkken göze çarpması gereken tek çubuk onunki olsun diye. */
+  scrollbar-width: none; /* Firefox */
   background: var(--surface-1);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: clamp(16px, 3vw, 32px);
 }
+.terimler-wrap::-webkit-scrollbar { display: none; }
 
 .terimler-list {
   display: grid;
