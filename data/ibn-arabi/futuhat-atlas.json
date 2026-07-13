@@ -1,10 +1,10 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik Birinci Cilt'in Üçüncü ve Dördüncü Kısımlarını baştan sona, Beşinci Kısmı'nı ise en berrak ve merkezi gördüğümüz noktalarını seçerek işledik.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — şimdilik Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı Kısmı'nı ise en berrak ve merkezi gördüğümüz noktalarını seçerek işledik.",
   "book": {
     "cilt": 1,
     "totalKisim": 10
   },
-  "activePartId": "c1k5",
+  "activePartId": "c1k6",
   "parts": [
     {
       "id": "c1k3",
@@ -1766,6 +1766,195 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım V — kapanış, s. 174-177.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part V — the close, pp. 174-177.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte V — o encerramento, pp. 174-177."
+        }
+      ]
+    },
+    {
+      "id": "c1k6",
+      "cilt": 1,
+      "kisim": 6,
+      "status": "active",
+      "title": {
+        "tr": "Harflerin Portreleri",
+        "en": "Portraits of the Letters",
+        "pt": "Retratos das Letras"
+      },
+      "pageRange": "180–187",
+      "hero": {
+        "summary": {
+          "tr": "Altıncı Kısım, Beşinci Kısım'ın kapandığı yerden hemen devam ederek biçim değiştiriyor: harfleri artık gruplar hâlinde değil, tek tek ele alan bir 'sözlük'e dönüşüyor. Her harf, önce kısa bir şiirle kendini tanıtıyor, sonra mahreci, sayısal değeri, âlemi, feleği, mertebesi ve kendisine ait ilâhî isimlerin uzun bir dökümüyle devam ediyor. Bu teknik dökümü harf harf aktarmak yerine, en çarpıcı bulduğumuz birkaç şiiri seçip aktarıyoruz — Elif'in kendiyle konuştuğu bilmece, Kaf'ın hilâl-dolunay imgesi, Kef'in celâl-cemâl ikiliği.",
+          "en": "Part VI continues directly from where Part V closed, but changes shape: the letters are no longer treated in groups but one by one, as a kind of dictionary. Each letter introduces itself with a short poem, then continues with a long technical rundown — its point of articulation, numeric value, world, celestial sphere, rank, and the divine Names attached to it. Rather than relay that technical rundown letter by letter, we've picked out a few of the poems we found most striking — Elif's riddle spoken to itself, Kaf's crescent-and-full-moon image, Kef's duality of majesty and beauty.",
+          "pt": "A Parte VI continua diretamente de onde a Parte V se encerrou, mas muda de forma: as letras não são mais tratadas em grupos, mas uma a uma, como uma espécie de dicionário. Cada letra se apresenta com um curto poema, depois continua com um longo levantamento técnico — seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e os Nomes divinos a ela associados. Em vez de relatar esse levantamento técnico letra por letra, escolhemos alguns dos poemas que achamos mais marcantes — o enigma que Elif dirige a si mesmo, a imagem crescente-e-lua-cheia de Kaf, a dualidade majestade-beleza de Kef."
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Altıncı Kısım'da her harf kendi şiiriyle açılıyor — burada üçünü örnekliyoruz.",
+          "en": "In Part VI, every letter opens with its own poem — here we sample three of them.",
+          "pt": "Na Parte VI, cada letra se abre com seu próprio poema — aqui exemplificamos três delas."
+        },
+        "tree": {
+          "id": "harf-portreleri-tree",
+          "label": { "tr": "Harflerin Portreleri", "en": "Portraits of the Letters", "pt": "Retratos das Letras" },
+          "note": {
+            "tr": "her harf kendi şiiriyle açılır",
+            "en": "each letter opens with its own poem",
+            "pt": "cada letra se abre com seu próprio poema"
+          },
+          "children": [
+            {
+              "id": "elif-portre",
+              "label": { "tr": "Elif", "en": "Elif", "pt": "Elif" },
+              "note": { "tr": "zayıf kul, aziz sultan", "en": "weak servant, mighty sovereign", "pt": "servo fraco, soberano poderoso" }
+            },
+            {
+              "id": "kaf-portre",
+              "label": { "tr": "Kaf", "en": "Qaf", "pt": "Qaf" },
+              "note": { "tr": "hilâl ve dolunay", "en": "crescent and full moon", "pt": "crescente e lua cheia" }
+            },
+            {
+              "id": "kef-portre",
+              "label": { "tr": "Kef", "en": "Kaf", "pt": "Kaf" },
+              "note": { "tr": "celâl ve cemâl", "en": "majesty and beauty", "pt": "majestade e beleza" }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "elifin-bilmecesi",
+          "heading": {
+            "tr": "Elif'in Bilmecesi",
+            "en": "Elif's Riddle",
+            "pt": "O Enigma de Elif"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısım, harfleri artık tek tek ele almaya başlıyor — Elif'ten başlayarak. Her harf önce kısa bir şiirle konuşuyor, sonra mahreç (çıkış yeri), sayısal değer, âlem, felek, mertebe ve o harfe ait ilâhî isimlerin uzun bir listesiyle devam ediyor. Bu ikinci kısmı — ki hemen her harfte aynı kalıpta tekrarlanıyor — teker teker aktarmak yerine, sadece şiirleri seçip aktarıyoruz.",
+                "en": "The part begins treating the letters one by one — starting with Elif. Each letter first speaks through a short poem, then continues with its point of articulation, numeric value, world, celestial sphere, rank, and a long list of divine Names attached to it. Rather than relay that second part — which repeats in nearly the same pattern for almost every letter — we're picking out only the poems.",
+                "pt": "A parte começa a tratar as letras uma a uma — começando por Elif. Cada letra primeiro fala através de um curto poema, depois continua com seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e uma longa lista de Nomes divinos a ela associados. Em vez de relatar essa segunda parte — que se repete quase no mesmo padrão em quase toda letra — escolhemos apenas os poemas."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Elif'in şiiri, harfin kendi kendiyle konuştuğu bir bilmece gibi okunuyor: <em>'Zat Elif'i münezzeh oldun, acaba var olanlarda bir hakikatin ve yerin var mı? Dedi ki: Yok, iltifatımdan gayri, ben ise ebed harfiyim, ezeli içeririm. İşte ben seçilmiş zayıf kulum, ve ben sultanım, aziz ve yüce olan.'</em> Aynı dizede Elif hem 'zayıf kul' hem 'aziz sultan' olarak konuşuyor — bu çelişkiyi çözmeye çalışmak yerine, Dost'un burada bir bilmece bıraktığını düşünüyoruz.",
+                "en": "Elif's poem reads like a riddle the letter speaks to itself: <em>'You transcended as Elif of the Essence — do you then have a reality and a place among existing things? It said: None, apart from my own favor, for I am the letter of everlastingness, containing eternity-without-beginning. I am the chosen, weak servant, and I am the sovereign, mighty and exalted.'</em> In the same lines Elif speaks as both 'weak servant' and 'mighty sovereign' — rather than try to resolve this contradiction, we take it as a riddle Dost leaves standing here.",
+                "pt": "O poema de Elif se lê como um enigma que a letra dirige a si mesma: <em>'Transcendeste como o Elif da Essência — tens então uma realidade e um lugar entre as coisas existentes? Disse: Nenhum, além do meu próprio favor, pois sou a letra da perpetuidade, contendo a eternidade-sem-começo. Sou o servo escolhido e fraco, e sou o soberano, poderoso e exaltado.'</em> Nas mesmas linhas Elif fala tanto como 'servo fraco' quanto como 'soberano poderoso' — em vez de tentar resolver essa contradição, a tomamos como um enigma que Dost deixa em aberto aqui."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Elif Harfi, s. 179-180.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Elif, pp. 179-180.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Elif, pp. 179-180."
+              },
+              "useMainDiagram": true
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Teknik dökümden yalnızca bir ayrıntıyı aktarmak istiyoruz, çünkü Kısım IV-V'te izlediğimiz nokta-daire imgesiyle akraba: Dost, Elif'in mertebesini tarif ederken şöyle diyor — <em>'O, dairenin noktası ve çevresi, âlemlerin yalını ve bileşiğidir.'</em> Elif burada da, harflerin geri kalanının kendisinden çıktığı merkez nokta olarak konumlanıyor.",
+                "en": "We want to relay just one detail from the technical rundown, because it's kin to the point-and-circle image we've followed through Parts IV-V: describing Elif's rank, Dost says — <em>'It is the circle's point and its circumference, the simple and the composite of the worlds.'</em> Here too, Elif is positioned as the center point from which the rest of the letters emerge.",
+                "pt": "Queremos relatar apenas um detalhe do levantamento técnico, porque é aparentado à imagem do ponto e círculo que seguimos pelas Partes IV-V: descrevendo a hierarquia de Elif, Dost diz — <em>'Ele é o ponto do círculo e sua circunferência, o simples e o composto dos mundos.'</em> Aqui também, Elif é posicionado como o ponto central do qual as demais letras emergem."
+              }
+            }
+          ]
+        },
+        {
+          "id": "kaf-hilal-dolunay",
+          "heading": {
+            "tr": "Kaf: Hilâl ile Dolunay",
+            "en": "Qaf: Crescent and Full Moon",
+            "pt": "Qaf: Crescente e Lua Cheia"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Birkaç harf sonra Kaf'ın şiiri, doğrudan harfin yazılı şekline bakarak görsel bir imge kuruyor: <em>'Onun hilâl gibi olan eğrisine bakınız, dolunay gibi olan başının şekline bakınız.'</em> Arapça yazıda Kaf harfi gerçekten de bir eğri gövde (hilâl) ve üzerinde bir yuvarlak nokta veya halkaya benzer bir baş taşır — Dost bu iki şekli doğrudan ay'ın iki hâline benzetiyor.",
+                "en": "A few letters later, Qaf's poem builds a visual image straight from the letter's written shape: <em>'Look at its curve, like a crescent; look at the shape of its head, like a full moon.'</em> In Arabic script, the letter Qaf really does carry a curved body (crescent) with a round dot or loop above it (full moon) — Dost likens these two shapes directly to the moon's two phases.",
+                "pt": "Algumas letras depois, o poema de Qaf constrói uma imagem visual diretamente a partir da forma escrita da letra: <em>'Olha para sua curva, como um crescente; olha para a forma de sua cabeça, como uma lua cheia.'</em> Na escrita árabe, a letra Qaf realmente carrega um corpo curvo (crescente) com um ponto redondo ou laço acima (lua cheia) — Dost compara essas duas formas diretamente às duas fases da lua."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunu, Kısım V'te işlediğimiz Elif-güneş / Nun-ay karşılaştırmasının bir devamı gibi okuyoruz — orada ay 'eksik, ödünç ışıklı' olarak Elif'in karşısına konmuştu; burada aynı ay, hilâl ve dolunay olarak, tek bir harfin (Kaf) kendi içinde taşıdığı iki hâl olarak beliriyor. Şiir, bu şekli 'başka bir yaratılışın ilkesi' olarak tarif ederek kapanıyor — ne demek istediğini tam bilmiyoruz, ama harfin kendi şeklinin bir kozmik imgeye dönüştüğü bu okuma bize çarpıcı geliyor.",
+                "en": "We read this as a continuation of the Elif-sun / Nun-moon comparison we took up in Part V — there the moon appeared opposite Elif as 'deficient, borrowed light'; here that same moon, as crescent and full moon, appears as two states carried within a single letter (Qaf). The poem closes by describing this shape as 'the principle of another creation' — we don't fully know what is meant, but we find this reading, where the letter's own shape turns into a cosmic image, striking.",
+                "pt": "Lemos isso como uma continuação da comparação Elif-sol / Nun-lua que tratamos na Parte V — lá a lua aparecia diante de Elif como 'deficiente, de luz emprestada'; aqui essa mesma lua, como crescente e lua cheia, aparece como dois estados carregados dentro de uma única letra (Qaf). O poema se encerra descrevendo essa forma como 'o princípio de outra criação' — não sabemos completamente o que se quer dizer, mas achamos essa leitura, em que a própria forma da letra se transforma numa imagem cósmica, impressionante."
+              }
+            }
+          ]
+        },
+        {
+          "id": "kef-celal-cemal",
+          "heading": {
+            "tr": "Kef: Celâl ile Cemâl",
+            "en": "Kaf: Majesty and Beauty",
+            "pt": "Kaf: Majestade e Beleza"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kef harfinin şiiri, sitede başka bir yerde ele aldığımız Celâl-Cemâl ikiliğini doğrudan devreye sokuyor: <em>'Ümit Kef'i celâli müşahede eder, ihsan müşahede eden korku Kef'inden. Kabz ve bast'a bak! Birisi sana ayrılmayı, öteki kavuşmayı verir. Allah birine celâlini göstermiş, diğerine ise ufkundan cemâlini gösterir.'</em> Kabz (daralma) ve bast (genişleme) hâllerini, Celâl ve Cemâl tecellilerinin birer sonucu olarak sunuyor.",
+                "en": "The poem for the letter Kaf brings the Jalal-Jamal (majesty-beauty) duality — treated elsewhere on this site — directly into play: <em>'Hope witnesses Kaf's majesty, and the Kaf of fear witnesses grace. Look at contraction and expansion! One gives you separation, the other union. Allah has shown His majesty to one, and shown His beauty from His horizon to the other.'</em> It presents the states of qabd (contraction) and bast (expansion) as consequences of the theophanies of Jalal and Jamal.",
+                "pt": "O poema para a letra Kaf traz diretamente a dualidade Jalal-Jamal (majestade-beleza) — tratada em outro lugar deste site — para o primeiro plano: <em>'A esperança testemunha a majestade de Kaf, e o Kaf do medo testemunha a graça. Olha para a contração e a expansão! Uma te dá a separação, a outra a união. Allah mostrou Sua majestade a um, e mostrou Sua beleza a partir de Seu horizonte ao outro.'</em> Apresenta os estados de qabd (contração) e bast (expansão) como consequências das teofanias de Jalal e Jamal."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Kef Harfi, s. 185-186.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Kaf, pp. 185-186.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Kaf, pp. 185-186."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Celâl", "en": "Jalal", "pt": "Jalal" },
+                  "note": { "tr": "kabz, ayrılık", "en": "contraction, separation", "pt": "contração, separação" }
+                },
+                "right": {
+                  "label": { "tr": "Cemâl", "en": "Jamal", "pt": "Jamal" },
+                  "note": { "tr": "bast, kavuşma", "en": "expansion, union", "pt": "expansão, união" }
+                }
+              },
+              "caption": {
+                "tr": "Kef harfinin şiirinde kabz-bast hâlleri, Celâl-Cemâl tecellilerinin birer izi olarak beliriyor.",
+                "en": "In the poem for the letter Kaf, the states of contraction and expansion appear as traces of the theophanies of Jalal and Jamal.",
+                "pt": "No poema para a letra Kaf, os estados de contração e expansão aparecem como vestígios das teofanias de Jalal e Jamal."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısım VI, harfleri bu kalıpta — kısa bir şiir, ardından uzun bir teknik döküm — birer birer sürdürüyor; toplamda yirmi sekize yakın harf var. Burada seçtiğimiz üç şiirle (Elif, Kaf, Kef) yetiniyoruz; geri kalan harfleri ve Kısım VI'nın devamını ayrı bir oturumda ele alacağız.",
+                "en": "Part VI continues through the letters one by one in this same pattern — a short poem, followed by a long technical rundown — for close to twenty-eight letters in total. We've limited ourselves here to the three poems we selected (Elif, Qaf, Kaf); we'll take up the remaining letters and the rest of Part VI in a separate session.",
+                "pt": "A Parte VI continua pelas letras uma a uma nesse mesmo padrão — um curto poema, seguido de um longo levantamento técnico — para quase vinte e oito letras no total. Aqui nos limitamos aos três poemas que selecionamos (Elif, Qaf, Kaf); trataremos das letras restantes e do resto da Parte VI numa sessão separada."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Elif Harfi, s. 179-180.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Elif, pp. 179-180.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Elif, pp. 179-180."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Kaf Harfi, s. 184-185.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Qaf, pp. 184-185.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Qaf, pp. 184-185."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Kef Harfi, s. 185-186.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Kaf, pp. 185-186.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Kaf, pp. 185-186."
         }
       ]
     }
