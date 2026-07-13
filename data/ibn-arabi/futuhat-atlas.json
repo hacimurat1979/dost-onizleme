@@ -1779,12 +1779,12 @@
         "en": "Portraits of the Letters",
         "pt": "Retratos das Letras"
       },
-      "pageRange": "180–195",
+      "pageRange": "180–202",
       "hero": {
         "summary": {
-          "tr": "Altıncı Kısım, Beşinci Kısım'ın kapandığı yerden hemen devam ederek biçim değiştiriyor: harfleri artık gruplar hâlinde değil, tek tek ele alan bir 'sözlük'e dönüşüyor. Her harf, önce kısa bir şiirle kendini tanıtıyor, sonra mahreci, sayısal değeri, âlemi, feleği, mertebesi ve kendisine ait ilâhî isimlerin uzun bir dökümüyle devam ediyor. Bu teknik dökümü harf harf aktarmak yerine, en çarpıcı bulduğumuz durakları seçip aktarıyoruz — Elif'in bilmecesi, Kaf'ın hilâl-dolunay imgesi, Kef'in celâl-cemâl ikiliği, Ra'nın okuyucuya seslenişi, Nun'un yarısı görünen noktası, Tı'nın beşli sır listesi ve Sad'ın — Dost'un kendi hayatından bir anıya dönüşen — rüyası.",
-          "en": "Part VI continues directly from where Part V closed, but changes shape: the letters are no longer treated in groups but one by one, as a kind of dictionary. Each letter introduces itself with a short poem, then continues with a long technical rundown — its point of articulation, numeric value, world, celestial sphere, rank, and the divine Names attached to it. Rather than relay that technical rundown letter by letter, we've picked out the stops we found most striking — Elif's riddle, Qaf's crescent-and-full-moon image, Kaf's duality of majesty and beauty, Ra's direct address to the reader, Nun's half-visible point, Ta's list of five secrets, and the letter Sad's dream, which turns into a memory from Dost's own life.",
-          "pt": "A Parte VI continua diretamente de onde a Parte V se encerrou, mas muda de forma: as letras não são mais tratadas em grupos, mas uma a uma, como uma espécie de dicionário. Cada letra se apresenta com um curto poema, depois continua com um longo levantamento técnico — seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e os Nomes divinos a ela associados. Em vez de relatar esse levantamento técnico letra por letra, escolhemos as paradas que achamos mais marcantes — o enigma de Elif, a imagem crescente-e-lua-cheia de Qaf, a dualidade majestade-beleza de Kaf, o endereçamento direto de Ra ao leitor, o ponto meio-visível de Nun, a lista de cinco segredos de Ta, e o sonho da letra Sad, que se transforma numa lembrança da própria vida de Dost."
+          "tr": "Altıncı Kısım, Beşinci Kısım'ın kapandığı yerden hemen devam ederek biçim değiştiriyor: harfleri artık gruplar hâlinde değil, tek tek ele alan bir 'sözlük'e dönüşüyor. Her harf, önce kısa bir şiirle kendini tanıtıyor, sonra mahreci, sayısal değeri, âlemi, feleği, mertebesi ve kendisine ait ilâhî isimlerin uzun bir dökümüyle devam ediyor. Bu teknik dökümü harf harf aktarmak yerine, en çarpıcı bulduğumuz durakları seçip aktarıyoruz — Elif'in bilmecesi, Kaf'ın hilâl-dolunay imgesi, Kef'in celâl-cemâl ikiliği, Ra'nın okuyucuya seslenişi, Nun'un yarısı görünen noktası, Tı'nın beşli sır listesi, Sad'ın kişisel bir anıya dönüşen rüyası, Ba'nın besmeleyle bağı ve Mim'in Nun ile kurduğu ayna ilişkisi.",
+          "en": "Part VI continues directly from where Part V closed, but changes shape: the letters are no longer treated in groups but one by one, as a kind of dictionary. Each letter introduces itself with a short poem, then continues with a long technical rundown — its point of articulation, numeric value, world, celestial sphere, rank, and the divine Names attached to it. Rather than relay that technical rundown letter by letter, we've picked out the stops we found most striking — Elif's riddle, Qaf's crescent-and-full-moon image, Kaf's duality of majesty and beauty, Ra's direct address to the reader, Nun's half-visible point, Ta's list of five secrets, the letter Sad's dream turning into a personal memory, Ba's tie to the basmala, and Mim's mirroring relationship with Nun.",
+          "pt": "A Parte VI continua diretamente de onde a Parte V se encerrou, mas muda de forma: as letras não são mais tratadas em grupos, mas uma a uma, como uma espécie de dicionário. Cada letra se apresenta com um curto poema, depois continua com um longo levantamento técnico — seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e os Nomes divinos a ela associados. Em vez de relatar esse levantamento técnico letra por letra, escolhemos as paradas que achamos mais marcantes — o enigma de Elif, a imagem crescente-e-lua-cheia de Qaf, a dualidade majestade-beleza de Kaf, o endereçamento direto de Ra ao leitor, o ponto meio-visível de Nun, a lista de cinco segredos de Ta, o sonho da letra Sad transformando-se numa lembrança pessoal, o vínculo de Ba com a basmala, e a relação de espelhamento de Mim com Nun."
         }
       },
       "mainDiagram": {
@@ -1836,6 +1836,16 @@
               "id": "sad-portre",
               "label": { "tr": "Sad", "en": "Sad", "pt": "Sad" },
               "note": { "tr": "iki rüya, bir sır", "en": "two dreams, one secret", "pt": "dois sonhos, um segredo" }
+            },
+            {
+              "id": "ba-portre",
+              "label": { "tr": "Ba", "en": "Ba", "pt": "Ba" },
+              "note": { "tr": "besmelenin ilk harfi", "en": "basmala's first letter", "pt": "primeira letra da basmala" }
+            },
+            {
+              "id": "mim-portre",
+              "label": { "tr": "Mim", "en": "Mim", "pt": "Mim" },
+              "note": { "tr": "Nun'un aynası", "en": "Nun's mirror", "pt": "o espelho de Nun" }
             }
           ]
         }
@@ -2167,6 +2177,96 @@
               }
             }
           ]
+        },
+        {
+          "id": "ba-bismillah",
+          "heading": {
+            "tr": "Ba: Bismillah'ın İlk Harfi",
+            "en": "Ba: The First Letter of Bismillah",
+            "pt": "Ba: A Primeira Letra do Bismillah"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ba harfinin şiiri gerçek bir isimle açılıyor — meşhur sûfî Şiblî: <em>'Ârif Şiblî için Ba muteberdir. Noktasında ise kalp için bir hatırlatıcı vardır. Yüksek ubûdiyet sırrı ona karışmıştır, bu nedenle Hakkın nâibi oldu, dikkat ediniz! \"Adı ile\" (bi-ismi) ifadesinden hakikati düşünülmez mi? Çünkü Ba onun yerini alır, işte bu ölçüdür.'</em> Şiirin son satırındaki 'bi-ismi' göndermesi doğrudan besmeleye — 'Bismillâhirrahmânirrahîm'e — işaret ediyor: Ba, Kur'an'ın ve her sûrenin (biri hariç) başındaki ilk harf.",
+                "en": "The poem for the letter Ba opens with a real name — the famous Sufi Shibli: <em>'Ba is esteemed for the knower Shibli. In its dot lies a reminder for the heart. The secret of lofty servitude has mingled with it, and so it became the Real's deputy — take note! Should the reality not be considered from the expression \"in the name of\" (bi-ismi)? For Ba takes its place; this is the measure.'</em> The poem's closing reference to 'bi-ismi' points directly to the basmala — 'Bismillah, in the name of Allah, the Merciful, the Compassionate' — Ba is the very first letter of the Qur'an and of nearly every surah.",
+                "pt": "O poema para a letra Ba se abre com um nome real — o famoso sufi Shibli: <em>'Ba é estimado para o conhecedor Shibli. Em seu ponto há um lembrete para o coração. O segredo da elevada servidão se misturou a ele, e assim ele se tornou o delegado do Real — atentai! A realidade não deveria ser considerada a partir da expressão \"em nome de\" (bi-ismi)? Pois Ba toma seu lugar; esta é a medida.'</em> A referência final do poema a 'bi-ismi' aponta diretamente para a basmala — 'Bismillah, em nome de Allah, o Misericordioso, o Compassivo' — Ba é a própria primeira letra do Alcorão e de quase toda surata."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Ba Harfi, s. 201.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ba, p. 201.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ba, p. 201."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Ba", "en": "Ba", "pt": "Ba" },
+                  "note": { "tr": "Bismillah'ın ilk harfi", "en": "Bismillah's first letter", "pt": "primeira letra do Bismillah" }
+                },
+                "right": {
+                  "label": { "tr": "Noktası", "en": "Its Dot", "pt": "Seu Ponto" },
+                  "note": { "tr": "kalbin hatırlatıcısı", "en": "the heart's reminder", "pt": "o lembrete do coração" }
+                }
+              },
+              "caption": {
+                "tr": "Ba'nın altındaki tek nokta, Arapça yazıda onu benzer harflerden (Te, Se, Ye) ayıran tek işaret — Dost bunu 'kalp için bir hatırlatıcı' olarak okuyor.",
+                "en": "The single dot beneath Ba is, in Arabic script, the only mark distinguishing it from similarly-shaped letters (Ta, Tha, Ya) — Dost reads it as 'a reminder for the heart.'",
+                "pt": "O único ponto sob Ba é, na escrita árabe, a única marca que o distingue de letras de forma semelhante (Ta, Tha, Ya) — Dost o lê como 'um lembrete para o coração.'"
+              }
+            }
+          ]
+        },
+        {
+          "id": "mim-nunun-aynasi",
+          "heading": {
+            "tr": "Mim: Nun'un Aynası",
+            "en": "Mim: Nun's Mirror",
+            "pt": "Mim: O Espelho de Nun"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Mim'in şiiri, Kısım IV'ten beri defalarca karşımıza çıkan Nun'u doğrudan çağırıyor ve onunla bir ayna ilişkisi kuruyor: <em>'Mim Nun gibidir, sırlarını incelersen — oluşun gayesinde, hakikat olarak ve başlangıçlarda. O halde Nun Hak içindir, kerim Mim ise benim içindir. Başlangıç için başlangıç, gayeler için gayeler. Şu halde Nun'un berzahı bilgilerindeki ruhtur, Mim'in berzahı ise yaratıklarda Rab'tir.'</em>",
+                "en": "The poem for Mim directly invokes Nun — the letter we've met again and again since Part IV — and sets up a mirroring relationship with it: <em>'Mim is like Nun, if you examine its secrets — in the aim of coming-to-be, as a reality, and in beginnings. Nun, then, is for the Real; noble Mim is for me. Beginning for beginning, aims for aims. Nun's isthmus, then, is the spirit within its knowledges; Mim's isthmus is the Lord within creatures.'</em>",
+                "pt": "O poema para Mim invoca diretamente Nun — a letra que encontramos repetidas vezes desde a Parte IV — e estabelece uma relação de espelhamento com ela: <em>'Mim é como Nun, se examinares seus segredos — no propósito do vir-a-ser, como realidade, e nos começos. Nun, então, é para o Real; o nobre Mim é para mim. Começo para começo, propósitos para propósitos. O istmo de Nun, então, é o espírito dentro de seus conhecimentos; o istmo de Mim é o Senhor dentro das criaturas.'</em>"
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Mim Harfi, s. 201-202.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Mim, pp. 201-202.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Mim, pp. 201-202."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Nun", "en": "Nun", "pt": "Nun" },
+                  "note": { "tr": "Hak için", "en": "for the Real", "pt": "para o Real" }
+                },
+                "right": {
+                  "label": { "tr": "Mim", "en": "Mim", "pt": "Mim" },
+                  "note": { "tr": "insan için", "en": "for the human", "pt": "para o humano" }
+                }
+              },
+              "caption": {
+                "tr": "Dost, Kısım IV'te 'dairenin yarısı' olarak tanıttığı Nun'u burada Mim ile eşleştiriyor — biri Hakk'ın, öteki insanın tarafında.",
+                "en": "Dost pairs Nun — which he introduced in Part IV as 'half the circle' — with Mim here: one on the side of the Real, the other on the side of the human.",
+                "pt": "Dost emparelha Nun — que ele apresentou na Parte IV como 'metade do círculo' — com Mim aqui: um do lado do Real, o outro do lado do humano."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu satırlar, Kısım IV'te işlediğimiz 'insan-ı kâmil Hak ile aynı cem' makamındadır' iddiasıyla da örtüşüyor gibi görünüyor — burada da Mim, insanı doğrudan Hakk'ın karşılığı, aynası olarak konumlandırıyor. Kısım VI'nın geri kalan harflerini (Vav, Ze, Sin, Zı, Zel, Se, Fe ve diğerleri) ayrı bir oturumda okumaya devam edeceğiz.",
+                "en": "These lines seem to echo the claim we took up in Part V — that the Perfect Human stands with the Real in the same station of unity — here too, Mim positions the human directly as the Real's counterpart, its mirror. We'll continue reading the remaining letters of Part VI (Waw, Za, Sin, Za, Dhal, Tha, Fa, and others) in a separate session.",
+                "pt": "Essas linhas parecem ecoar a afirmação que tratamos na Parte V — de que o Ser Humano Perfeito está com o Real na mesma estação de unidade — aqui também, Mim posiciona o humano diretamente como a contraparte do Real, seu espelho. Continuaremos lendo as letras restantes da Parte VI (Waw, Za, Sin, Za, Dhal, Tha, Fa, e outras) numa sessão separada."
+              }
+            }
+          ]
         }
       ],
       "sources": [
@@ -2209,6 +2309,16 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Sad Harfi, s. 193-195.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Sad, pp. 193-195.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Sad, pp. 193-195."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Ba Harfi, s. 201.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ba, p. 201.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ba, p. 201."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Mim Harfi, s. 201-202.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Mim, pp. 201-202.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Mim, pp. 201-202."
         }
       ]
     }
