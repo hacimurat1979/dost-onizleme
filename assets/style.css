@@ -4030,6 +4030,10 @@ html[data-contrast="high"] .detail-title {
 .node-hover-tip--fixed {
   position: fixed;
 }
+.node-hover-tip--lightbox {
+  position: fixed;
+  z-index: 80; /* .cizim-lightbox (70)'ın üzerinde görünsün diye */
+}
 
 .node-hover-tip__title {
   font-weight: 700;

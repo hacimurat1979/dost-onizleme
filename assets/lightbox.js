@@ -54,6 +54,9 @@ window.DostLightbox = (function () {
     if (!el) return;
     el.hidden = true;
     document.body.classList.remove("cizim-lightbox-open");
+    // Lightbox içeriğine özel, ayrı bir kutu (ör. Fütûhât'ın düğüm bilgi
+    // kutusu) açık kalmış olabilir -- lightbox kapanınca o da kapansın.
+    document.querySelectorAll(".node-hover-tip--lightbox").forEach((t) => { t.hidden = true; });
   }
 
   return { open, close };

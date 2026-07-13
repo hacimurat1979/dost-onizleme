@@ -60,6 +60,77 @@
       svgHtml: mount.innerHTML,
       caption: captionText || "",
     });
+    wireLightboxNodeTooltips();
+  }
+
+  // mount.innerHTML sadece bir metin dizesi olarak kopyalanıp lightbox'ın
+  // içine yeniden ayrıştırıldığı için, orijinal düğümlere D3 ile bağlanmış
+  // olay dinleyicileri (hover/tıklama) ve bağlı veri (d.data) kopyada
+  // kaybolur. Bu yüzden lightbox açılınca, düğümlerin üzerine önceden
+  // gömdüğümüz data-label-*/data-note-* özniteliklerinden okuyan, ayrı ve
+  // sabit-konumlu (position:fixed) bir bilgi kutusunu yeniden bağlıyoruz.
+  let lightboxTipEl = null;
+  let lightboxActiveTipId = null;
+
+  function ensureLightboxTip() {
+    if (lightboxTipEl) return lightboxTipEl;
+    lightboxTipEl = document.createElement("div");
+    lightboxTipEl.className = "node-hover-tip node-hover-tip--lightbox";
+    lightboxTipEl.hidden = true;
+    document.body.appendChild(lightboxTipEl);
+    return lightboxTipEl;
+  }
+
+  function dataI18n(el, base) {
+    const lang = I18n.getLang();
+    return el.getAttribute(`data-${base}-${lang}`) || el.getAttribute(`data-${base}-en`) || el.getAttribute(`data-${base}-tr`) || "";
+  }
+
+  function moveLightboxTip(event) {
+    if (!lightboxTipEl || lightboxTipEl.hidden) return;
+    let x = event.clientX;
+    let y = event.clientY;
+    x = Math.max(90, Math.min(window.innerWidth - 90, x));
+    y = Math.max(40, y);
+    lightboxTipEl.style.left = x + "px";
+    lightboxTipEl.style.top = y + "px";
+  }
+
+  function wireLightboxNodeTooltips() {
+    const wrap = document.querySelector(".cizim-lightbox__svg-wrap");
+    if (!wrap) return;
+    const tip = ensureLightboxTip();
+    tip.hidden = true;
+    lightboxActiveTipId = null;
+    wrap.querySelectorAll(".futuhat-tree__node").forEach((el) => {
+      const note = dataI18n(el, "note");
+      if (!note) return;
+      const label = dataI18n(el, "label");
+      const show = (event) => {
+        tip.innerHTML = `<div class="node-hover-tip__title">${label}</div><p>${note}</p>`;
+        tip.hidden = false;
+        moveLightboxTip(event);
+      };
+      const hide = () => {
+        tip.hidden = true;
+        lightboxActiveTipId = null;
+      };
+      el.addEventListener("mouseenter", show);
+      el.addEventListener("mousemove", moveLightboxTip);
+      el.addEventListener("mouseleave", hide);
+      el.addEventListener("focus", show);
+      el.addEventListener("blur", hide);
+      el.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const id = el.getAttribute("data-node-id");
+        if (lightboxActiveTipId === id) {
+          hide();
+        } else {
+          show(event);
+          lightboxActiveTipId = id;
+        }
+      });
+    });
   }
 
   function navigateToDiagram(diagramId, nodeId) {
@@ -267,6 +338,12 @@
       .attr("class", (d) => "futuhat-tree__node futuhat-tree__node--depth-" + d.depth)
       .attr("transform", (d) => `translate(${d.px},${d.py})`)
       .attr("data-node-id", (d) => d.data.id)
+      .attr("data-label-tr", (d) => (d.data.label ? d.data.label.tr : ""))
+      .attr("data-label-en", (d) => (d.data.label ? d.data.label.en : ""))
+      .attr("data-label-pt", (d) => (d.data.label ? d.data.label.pt : ""))
+      .attr("data-note-tr", (d) => (d.data.note ? d.data.note.tr : ""))
+      .attr("data-note-en", (d) => (d.data.note ? d.data.note.en : ""))
+      .attr("data-note-pt", (d) => (d.data.note ? d.data.note.pt : ""))
       .attr("tabindex", "0")
       .attr("aria-label", (d) => tt(d.data.label))
       .on("mouseenter", (event, d) => showTip(d, event))
