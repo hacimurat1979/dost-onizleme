@@ -990,6 +990,15 @@ button.futuhat-part-chip:hover {
   margin: 0 0 20px;
 }
 
+.futuhat-section__p em {
+  font-style: italic;
+  background: color-mix(in srgb, var(--series-theme) 18%, transparent);
+  padding: 0.05em 0.35em;
+  border-radius: 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 .futuhat-inline-diagram {
   background: var(--page-plane);
   border: 1px solid var(--border);

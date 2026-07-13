@@ -14,6 +14,7 @@
 <meta property="og:image" content="https://dostarabi.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin varlık haritası">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:locale:alternate" content="pt_BR">
@@ -31,12 +32,31 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Dost Arabî",
-  "alternateName": ["Dost", "Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası"],
-  "url": "https://dostarabi.com/",
-  "description": "Muhyiddîn İbnü'l-Arabî'nin varlık felsefesini (vahdet-i vücûd) anlatmaya değil, anlamaya çalışan mütevazı ve etkileşimli bir harita.",
-  "inLanguage": ["tr", "en", "pt-BR"]
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://dostarabi.com/#website",
+      "name": "Dost Arabî",
+      "alternateName": ["Dost", "Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası", "Ibn Arabi Map", "Mapa de Ibn Arabi"],
+      "url": "https://dostarabi.com/",
+      "description": "Muhyiddîn İbnü'l-Arabî'nin varlık felsefesini (vahdet-i vücûd) anlatmaya değil, anlamaya çalışan mütevazı ve etkileşimli bir harita.",
+      "inLanguage": ["tr", "en", "pt-BR"],
+      "about": { "@id": "https://dostarabi.com/#ibnarabi" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://dostarabi.com/#ibnarabi",
+      "name": "Muhyiddîn İbnü'l-Arabî",
+      "alternateName": ["Ibn Arabi", "Ibn al-'Arabi", "Muhyiddin Ibn Arabi", "İbn Arabî", "Şeyh-i Ekber", "Şeyhü'l-Ekber"],
+      "birthDate": "1165-07-28",
+      "deathDate": "1240-11-10",
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Ibn_Arabi",
+        "https://tr.wikipedia.org/wiki/Muhyiddin_%C4%B0bn%C3%BC'l-Arab%C3%AE",
+        "https://www.wikidata.org/wiki/Q46420"
+      ]
+    }
+  ]
 }
 </script>
 
