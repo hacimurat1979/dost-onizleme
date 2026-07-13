@@ -4342,7 +4342,7 @@ html[data-contrast="high"] .detail-title {
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 28px 32px 32px;
-  width: min(760px, 92vw);
+  width: min(1100px, 94vw);
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(20,15,8,0.35);
@@ -4389,7 +4389,7 @@ html[data-contrast="high"] .detail-title {
 .cizim-lightbox__svg-wrap .futuhat-tree__svg,
 .cizim-lightbox__svg-wrap .futuhat-triad__svg {
   width: 100%;
-  max-width: 640px;
+  max-width: 1000px;
 }
 
 .cizim-lightbox__caption {
@@ -4407,7 +4407,7 @@ body.cizim-lightbox-open {
 @media (max-width: 640px) {
   .cizim-card { padding: 16px 16px 18px; }
   .cizim-lightbox { padding: 8px; }
-  .cizim-lightbox__panel { width: min(760px, 96vw); padding: 20px 10px 20px; }
+  .cizim-lightbox__panel { width: min(1100px, 96vw); padding: 20px 10px 20px; }
 }
 
 @media print {
