@@ -324,20 +324,15 @@
   `;
 
   let currentDiagrams = [];
-  let currentDetailKind = null; // "term" | "group-diagram"
-  let currentDetailGroupId = null;
 
-  // Bir grup çipine tıklandığında o grubun çizimlerini artık ana sayfada
-  // değil, sağdaki detay panelinde gösteriyoruz -- terim listesinin hemen
-  // üstünde büyük bir blok olarak durmak yerine, tıklanan çipe karşılık gelen
-  // bir içerik olarak.
-  function showGroupDiagrams(groupId) {
-    const group = groupById(groupId);
+  // Bir terimin grubunun çizimi varsa, terim detayının içine (Benzetme'den
+  // hemen sonra) gömülü olarak gösteriyoruz -- ayrı bir tıklama gerekmeden,
+  // terime bakan herkes çizimi de görsün diye. Tıklanınca büyütme (lightbox)
+  // aynı şekilde çalışıyor.
+  function groupDiagramHtml(group) {
     const diagrams = group && group.diagram;
-    if (!diagrams || !diagrams.length) return;
+    if (!diagrams || !diagrams.length) return "";
     currentDiagrams = diagrams;
-    currentDetailKind = "group-diagram";
-    currentDetailGroupId = groupId;
     const cards = diagrams
       .map((dg, i) => {
         const renderer = diagramRenderers[dg.type];
@@ -349,22 +344,11 @@
         </div>`;
       })
       .join("");
-    detailContent.innerHTML = `
-      <p class="detail-eyebrow">${tt({ tr: "Grup Çizimi", en: "Group Diagram", pt: "Diagrama do Grupo" })}</p>
-      <h2 class="detail-title">${tt(group.name)}</h2>
+    return `
+      <p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "Grup Çizimi", en: "Group Diagram", pt: "Diagrama do Grupo" })}</p>
       ${DIAGRAM_DEFS}
       <div class="term-diagram-row term-diagram-row--panel">${cards}</div>
     `;
-    detailContent.querySelectorAll(".term-diagram-svg-wrap").forEach((el) => {
-      el.addEventListener("click", () => openDiagramLightbox(Number(el.dataset.diagramIndex)));
-      el.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openDiagramLightbox(Number(el.dataset.diagramIndex));
-        }
-      });
-    });
-    detailPanel.hidden = false;
   }
 
   // --- Büyütme (lightbox) ---
@@ -511,16 +495,9 @@
     const t = glossaryData.terms[id];
     if (!t) return;
     const group = groupById(t.group);
-    currentDetailKind = "term";
-    currentDetailGroupId = null;
-
-    const groupHasDiagram = group.diagram && group.diagram.length;
-    const eyebrowHtml = groupHasDiagram
-      ? `<button type="button" class="detail-eyebrow detail-eyebrow--diagram" data-group="${group.id}">${tt(group.name)} <span class="detail-eyebrow__hint">${tt({ tr: "çizimi gör", en: "view diagram", pt: "ver diagrama" })}</span></button>`
-      : `<p class="detail-eyebrow">${tt(group.name)}</p>`;
 
     detailContent.innerHTML = `
-      ${eyebrowHtml}
+      <p class="detail-eyebrow">${tt(group.name)}</p>
       <h2 class="detail-title">${tt(t.title)}${t.arabic ? ` <span class="detail-title__arabic">${t.arabic}</span>` : ""}</h2>
       <div class="detail-block detail-block--ibnarabi">
         <h3>${tt({ tr: "Felsefi Tanım", en: "Philosophical Definition", pt: "Definição Filosófica" })}</h3>
@@ -534,6 +511,7 @@
         <p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p>
         <p>${linkify(tt(t.analogy), "terimler", t.id)}</p>
       </div>
+      ${groupDiagramHtml(group)}
       ${kaynaklarHtml(t.kaynaklar, t.id)}
       ${celisenYorumlarHtml(t)}
       ${relatedTermsHtml(t)}
@@ -548,10 +526,15 @@
         window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id);
       });
     });
-    const eyebrowBtn = detailContent.querySelector(".detail-eyebrow--diagram");
-    if (eyebrowBtn) {
-      eyebrowBtn.addEventListener("click", () => showGroupDiagrams(eyebrowBtn.dataset.group));
-    }
+    detailContent.querySelectorAll(".term-diagram-svg-wrap").forEach((el) => {
+      el.addEventListener("click", () => openDiagramLightbox(Number(el.dataset.diagramIndex)));
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openDiagramLightbox(Number(el.dataset.diagramIndex));
+        }
+      });
+    });
 
     detailPanel.hidden = false;
   }
@@ -573,10 +556,6 @@
     onLangChange() {
       if (!glossaryData) return;
       render();
-      // Panelde bir grup çizimi açıksa, dil değiştiğinde onu da tazeleyelim.
-      if (currentDetailKind === "group-diagram" && currentDetailGroupId && !detailPanel.hidden) {
-        showGroupDiagrams(currentDetailGroupId);
-      }
     },
   };
 })();

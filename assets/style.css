@@ -1710,38 +1710,6 @@ html:has(.detail-panel:not([hidden])) {
 .insight:nth-child(5) { animation-delay: 120ms; }
 .insight:nth-child(n+6) { animation-delay: 150ms; }
 
-/* Terim detayının üst etiketi (grup adı) -- grubun bir çizimi varsa
-   tıklanabilir bir düğmeye dönüşüyor, çizimi panelde gösteriyor. */
-.detail-eyebrow--diagram {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  cursor: pointer;
-}
-.detail-eyebrow--diagram:hover,
-.detail-eyebrow--diagram:focus-visible {
-  color: var(--series-theme);
-}
-.detail-eyebrow--diagram:hover .detail-eyebrow__hint,
-.detail-eyebrow--diagram:focus-visible .detail-eyebrow__hint {
-  opacity: 1;
-}
-.detail-eyebrow__hint {
-  font-size: 0.9em;
-  text-transform: none;
-  letter-spacing: normal;
-  font-style: italic;
-  color: var(--series-theme);
-  opacity: 0.7;
-  transition: opacity 0.15s ease;
-}
 .insight summary {
   cursor: pointer;
   font-size: 0.78rem;
