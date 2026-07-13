@@ -905,6 +905,18 @@ button.futuhat-part-chip:hover {
   max-width: 480px;
 }
 
+.futuhat-tree--clickable {
+  cursor: zoom-in;
+  border-radius: 12px;
+  transition: background 0.15s ease;
+}
+
+.futuhat-tree--clickable:hover,
+.futuhat-tree--clickable:focus-visible {
+  background: color-mix(in srgb, var(--series-theme) 6%, transparent);
+  outline: none;
+}
+
 .futuhat-tree__link {
   fill: none;
   stroke: color-mix(in srgb, var(--series-theme) 45%, var(--gridline));
@@ -4323,7 +4335,10 @@ html[data-contrast="high"] .detail-title {
 }
 
 .cizim-lightbox__svg-wrap .cizim-card__svg,
-.cizim-lightbox__svg-wrap .term-diagram__svg {
+.cizim-lightbox__svg-wrap .term-diagram__svg,
+.cizim-lightbox__svg-wrap .futuhat-tree__svg,
+.cizim-lightbox__svg-wrap .futuhat-triad__svg {
+  width: 100%;
   max-width: 640px;
 }
 

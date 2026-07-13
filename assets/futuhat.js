@@ -46,6 +46,45 @@
     if (e.key === "Escape" && popupEl && !popupEl.hidden) closePopup();
   });
 
+  // --- Diagram lightbox (click a diagram to see it enlarged) ---
+  let diagramLightboxEl = null;
+
+  function ensureDiagramLightbox() {
+    if (diagramLightboxEl) return diagramLightboxEl;
+    diagramLightboxEl = document.createElement("div");
+    diagramLightboxEl.className = "cizim-lightbox";
+    diagramLightboxEl.hidden = true;
+    diagramLightboxEl.innerHTML = `
+      <div class="cizim-lightbox__backdrop"></div>
+      <div class="cizim-lightbox__panel" role="dialog" aria-modal="true">
+        <button class="cizim-lightbox__close" type="button" aria-label="${tt({ tr: "Kapat", en: "Close", pt: "Fechar" })}">×</button>
+        <div class="cizim-lightbox__svg-wrap"></div>
+        <p class="cizim-lightbox__caption"></p>
+      </div>
+    `;
+    document.body.appendChild(diagramLightboxEl);
+    diagramLightboxEl.querySelector(".cizim-lightbox__backdrop").addEventListener("click", closeDiagramLightbox);
+    diagramLightboxEl.querySelector(".cizim-lightbox__close").addEventListener("click", closeDiagramLightbox);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !diagramLightboxEl.hidden) closeDiagramLightbox();
+    });
+    return diagramLightboxEl;
+  }
+
+  function openDiagramLightbox(mount, captionText) {
+    const el = ensureDiagramLightbox();
+    el.querySelector(".cizim-lightbox__svg-wrap").innerHTML = mount.innerHTML;
+    el.querySelector(".cizim-lightbox__caption").textContent = captionText || "";
+    el.hidden = false;
+    document.body.classList.add("cizim-lightbox-open");
+  }
+
+  function closeDiagramLightbox() {
+    if (!diagramLightboxEl) return;
+    diagramLightboxEl.hidden = true;
+    document.body.classList.remove("cizim-lightbox-open");
+  }
+
   function navigateToDiagram(diagramId, nodeId) {
     closePopup();
     const diagramEl = wrapEl && wrapEl.querySelector(`[data-diagram-id="${CSS.escape(diagramId)}"]`);
@@ -221,7 +260,7 @@
       x0 = Math.min(x0, d.px); x1 = Math.max(x1, d.px);
       y0 = Math.min(y0, d.py); y1 = Math.max(y1, d.py);
     });
-    x0 -= 150; x1 += 150; y0 -= 36; y1 += 36;
+    x0 -= 220; x1 += 220; y0 -= 36; y1 += 36;
 
     const svg = d3
       .select(mount)
@@ -588,8 +627,21 @@
       </section>
     `;
 
-    renderRadialTree(document.getElementById("futuhat-main-tree"), part.mainDiagram.tree, {
+    const mainTreeEl = document.getElementById("futuhat-main-tree");
+    renderRadialTree(mainTreeEl, part.mainDiagram.tree, {
       ariaLabel: part.title,
+    });
+    mainTreeEl.classList.add("futuhat-tree--clickable");
+    mainTreeEl.tabIndex = 0;
+    mainTreeEl.setAttribute("role", "button");
+    mainTreeEl.setAttribute("aria-label", tt({ tr: "Çizimi büyüt", en: "Enlarge diagram", pt: "Ampliar diagrama" }));
+    const mainCaption = tt(part.mainDiagram.caption);
+    mainTreeEl.addEventListener("click", () => openDiagramLightbox(mainTreeEl, mainCaption));
+    mainTreeEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openDiagramLightbox(mainTreeEl, mainCaption);
+      }
     });
 
     const sectionsEl = document.getElementById("futuhat-sections");
@@ -631,6 +683,19 @@
           } else if (block.tree) {
             renderRadialTree(mount, block.tree, { radius: 160, ariaLabel: section.heading });
           }
+
+          mount.classList.add("futuhat-tree--clickable");
+          mount.tabIndex = 0;
+          mount.setAttribute("role", "button");
+          mount.setAttribute("aria-label", tt({ tr: "Çizimi büyüt", en: "Enlarge diagram", pt: "Ampliar diagrama" }));
+          const lightboxCaption = block.caption ? tt(block.caption) : tt(block.source);
+          mount.addEventListener("click", () => openDiagramLightbox(mount, lightboxCaption));
+          mount.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openDiagramLightbox(mount, lightboxCaption);
+            }
+          });
         }
       });
       sectionsEl.appendChild(secEl);
