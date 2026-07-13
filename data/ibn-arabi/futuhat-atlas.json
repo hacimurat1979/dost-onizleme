@@ -1779,12 +1779,12 @@
         "en": "Portraits of the Letters",
         "pt": "Retratos das Letras"
       },
-      "pageRange": "180–190",
+      "pageRange": "180–195",
       "hero": {
         "summary": {
-          "tr": "Altıncı Kısım, Beşinci Kısım'ın kapandığı yerden hemen devam ederek biçim değiştiriyor: harfleri artık gruplar hâlinde değil, tek tek ele alan bir 'sözlük'e dönüşüyor. Her harf, önce kısa bir şiirle kendini tanıtıyor, sonra mahreci, sayısal değeri, âlemi, feleği, mertebesi ve kendisine ait ilâhî isimlerin uzun bir dökümüyle devam ediyor. Bu teknik dökümü harf harf aktarmak yerine, en çarpıcı bulduğumuz şiirleri seçip aktarıyoruz — Elif'in kendiyle konuştuğu bilmece, Kaf'ın hilâl-dolunay imgesi, Kef'in celâl-cemâl ikiliği, Ra'nın okuyucuya seslenişi ve Nun'un yarısı görünen yarısı görünmeyen noktası.",
-          "en": "Part VI continues directly from where Part V closed, but changes shape: the letters are no longer treated in groups but one by one, as a kind of dictionary. Each letter introduces itself with a short poem, then continues with a long technical rundown — its point of articulation, numeric value, world, celestial sphere, rank, and the divine Names attached to it. Rather than relay that technical rundown letter by letter, we've picked out the poems we found most striking — Elif's riddle spoken to itself, Kaf's crescent-and-full-moon image, Kef's duality of majesty and beauty, Ra's direct address to the reader, and Nun's point, half visible and half not.",
-          "pt": "A Parte VI continua diretamente de onde a Parte V se encerrou, mas muda de forma: as letras não são mais tratadas em grupos, mas uma a uma, como uma espécie de dicionário. Cada letra se apresenta com um curto poema, depois continua com um longo levantamento técnico — seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e os Nomes divinos a ela associados. Em vez de relatar esse levantamento técnico letra por letra, escolhemos os poemas que achamos mais marcantes — o enigma que Elif dirige a si mesmo, a imagem crescente-e-lua-cheia de Kaf, a dualidade majestade-beleza de Kef, o endereçamento direto de Ra ao leitor, e o ponto de Nun, metade visível e metade não."
+          "tr": "Altıncı Kısım, Beşinci Kısım'ın kapandığı yerden hemen devam ederek biçim değiştiriyor: harfleri artık gruplar hâlinde değil, tek tek ele alan bir 'sözlük'e dönüşüyor. Her harf, önce kısa bir şiirle kendini tanıtıyor, sonra mahreci, sayısal değeri, âlemi, feleği, mertebesi ve kendisine ait ilâhî isimlerin uzun bir dökümüyle devam ediyor. Bu teknik dökümü harf harf aktarmak yerine, en çarpıcı bulduğumuz durakları seçip aktarıyoruz — Elif'in bilmecesi, Kaf'ın hilâl-dolunay imgesi, Kef'in celâl-cemâl ikiliği, Ra'nın okuyucuya seslenişi, Nun'un yarısı görünen noktası, Tı'nın beşli sır listesi ve Sad'ın — Dost'un kendi hayatından bir anıya dönüşen — rüyası.",
+          "en": "Part VI continues directly from where Part V closed, but changes shape: the letters are no longer treated in groups but one by one, as a kind of dictionary. Each letter introduces itself with a short poem, then continues with a long technical rundown — its point of articulation, numeric value, world, celestial sphere, rank, and the divine Names attached to it. Rather than relay that technical rundown letter by letter, we've picked out the stops we found most striking — Elif's riddle, Qaf's crescent-and-full-moon image, Kaf's duality of majesty and beauty, Ra's direct address to the reader, Nun's half-visible point, Ta's list of five secrets, and the letter Sad's dream, which turns into a memory from Dost's own life.",
+          "pt": "A Parte VI continua diretamente de onde a Parte V se encerrou, mas muda de forma: as letras não são mais tratadas em grupos, mas uma a uma, como uma espécie de dicionário. Cada letra se apresenta com um curto poema, depois continua com um longo levantamento técnico — seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e os Nomes divinos a ela associados. Em vez de relatar esse levantamento técnico letra por letra, escolhemos as paradas que achamos mais marcantes — o enigma de Elif, a imagem crescente-e-lua-cheia de Qaf, a dualidade majestade-beleza de Kaf, o endereçamento direto de Ra ao leitor, o ponto meio-visível de Nun, a lista de cinco segredos de Ta, e o sonho da letra Sad, que se transforma numa lembrança da própria vida de Dost."
         }
       },
       "mainDiagram": {
@@ -1826,6 +1826,16 @@
               "id": "nun-portre",
               "label": { "tr": "Nun", "en": "Nun", "pt": "Nun" },
               "note": { "tr": "yarısı görünen nokta", "en": "half-visible point", "pt": "ponto meio-visível" }
+            },
+            {
+              "id": "ti-portre",
+              "label": { "tr": "Tı", "en": "Ta", "pt": "Ta" },
+              "note": { "tr": "beş saklı sır", "en": "five hidden secrets", "pt": "cinco segredos ocultos" }
+            },
+            {
+              "id": "sad-portre",
+              "label": { "tr": "Sad", "en": "Sad", "pt": "Sad" },
+              "note": { "tr": "iki rüya, bir sır", "en": "two dreams, one secret", "pt": "dois sonhos, um segredo" }
             }
           ]
         }
@@ -2032,9 +2042,128 @@
             {
               "type": "p",
               "text": {
-                "tr": "İlginç bir yankı: birkaç harf önce Şın'ın şiiri de benzer bir ay imgesi taşıyordu — <em>'İnsanlar onun içerdiği sırrı görseydi, dolunayın silinmesiyle hilâlin tamamlandığını görürdü.'</em> Kaf'ın hilâl-dolunay imgesi, Nun'un görünen-görünmeyen yarısı, Şın'ın dolunay-hilâl dönüşümü — hepsi aynı 'eksik/tam' ikiliğinin farklı harflerde tekrar tekrar karşımıza çıkması gibi görünüyor. Kısım VI'nın geri kalan yirmi küsur harfini ayrı bir oturumda okumaya devam edeceğiz.",
-                "en": "An interesting echo: a few letters earlier, Shin's poem carried a similar lunar image — <em>'If people saw the secret it holds, they would see the full moon completed by the effacing of the crescent.'</em> Qaf's crescent-and-full-moon image, Nun's visible-and-absent half, Shin's full-moon-into-crescent transformation — all of these seem to be the same 'incomplete/complete' duality recurring across different letters. We'll continue reading the remaining twenty-odd letters of Part VI in a separate session.",
-                "pt": "Um eco interessante: algumas letras antes, o poema de Shin carregava uma imagem lunar semelhante — <em>'Se as pessoas vissem o segredo que ele contém, veriam a lua cheia completada pelo apagamento do crescente.'</em> A imagem crescente-e-lua-cheia de Qaf, a metade visível-e-ausente de Nun, a transformação lua-cheia-em-crescente de Shin — todas parecem ser a mesma dualidade 'incompleto/completo' recorrendo em diferentes letras. Continuaremos lendo as vinte e tantas letras restantes da Parte VI numa sessão separada."
+                "tr": "İlginç bir yankı: birkaç harf önce Şın'ın şiiri de benzer bir ay imgesi taşıyordu — <em>'İnsanlar onun içerdiği sırrı görseydi, dolunayın silinmesiyle hilâlin tamamlandığını görürdü.'</em> Kaf'ın hilâl-dolunay imgesi, Nun'un görünen-görünmeyen yarısı, Şın'ın dolunay-hilâl dönüşümü — hepsi aynı 'eksik/tam' ikiliğinin farklı harflerde tekrar tekrar karşımıza çıkması gibi görünüyor. Şimdi iki durak daha ekliyoruz: Tı'nın beşli sır listesi ve Sad harfinin — Dost'un kendi hayatından bir anıya dönüşen — rüyası.",
+                "en": "An interesting echo: a few letters earlier, Shin's poem carried a similar lunar image — <em>'If people saw the secret it holds, they would see the full moon completed by the effacing of the crescent.'</em> Qaf's crescent-and-full-moon image, Nun's visible-and-absent half, Shin's full-moon-into-crescent transformation — all of these seem to be the same 'incomplete/complete' duality recurring across different letters. We now add two more stops: Ta's list of five secrets, and the letter Sad's dream — which turns into a memory from Dost's own life.",
+                "pt": "Um eco interessante: algumas letras antes, o poema de Shin carregava uma imagem lunar semelhante — <em>'Se as pessoas vissem o segredo que ele contém, veriam a lua cheia completada pelo apagamento do crescente.'</em> A imagem crescente-e-lua-cheia de Qaf, a metade visível-e-ausente de Nun, a transformação lua-cheia-em-crescente de Shin — todas parecem ser a mesma dualidade 'incompleto/completo' recorrendo em diferentes letras. Agora acrescentamos mais duas paradas: a lista de cinco segredos de Ta, e o sonho da letra Sad — que se transforma numa lembrança da própria vida de Dost."
+              }
+            }
+          ]
+        },
+        {
+          "id": "tinin-bes-sirri",
+          "heading": {
+            "tr": "Tı'nın Beş Sırrı",
+            "en": "Ta's Five Secrets",
+            "pt": "Os Cinco Segredos de Ta"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Tı harfinin şiiri, bir bilmece yerine düzenli bir liste sunuyor — beş gizli karşılık: <em>'Tı'da beş saklı sır var: birisi, hükümdarda mülkün hakikati; ve yaratılmıştaki Hak; sırlar nâiptir; nur narda (ateşte), insan melektedir. İşte bunlar beştir; bunlarla ilgilenirsen geminin felekte bulunduğunu anlarsın.'</em> Her biri bir 'büyüğün' bir 'küçükte' nasıl saklı olduğunu gösteren beş örnek: hükümdar/mülk, Hak/yaratılmış, sır/vekil, nur/ateş, insan/melek.",
+                "en": "Ta's poem offers a tidy list instead of a riddle — five hidden correspondences: <em>'In Ta there are five hidden secrets: one, the reality of the kingdom within the king; and the Real within the created; secrets are a deputy; light is within fire, the human within the angel. These are five; attend to them and you will understand that the ship is within the celestial sphere.'</em> Each is an example of how something 'greater' is hidden within something 'lesser': king/kingdom, the Real/the created, secret/deputy, light/fire, human/angel.",
+                "pt": "O poema de Ta oferece uma lista organizada em vez de um enigma — cinco correspondências ocultas: <em>'Em Ta há cinco segredos ocultos: um, a realidade do reino dentro do rei; e o Real dentro do criado; segredos são um delegado; a luz está dentro do fogo, o humano dentro do anjo. São cinco; atenta a eles e entenderás que o navio está dentro da esfera celeste.'</em> Cada um é um exemplo de como algo 'maior' está oculto dentro de algo 'menor': rei/reino, o Real/o criado, segredo/delegado, luz/fogo, humano/anjo."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Tı Harfi, s. 190-191.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ta, pp. 190-191.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ta, pp. 190-191."
+              },
+              "tree": {
+                "id": "ti-bes-sir-tree",
+                "label": { "tr": "Tı'nın Beş Sırrı", "en": "Ta's Five Secrets", "pt": "Os Cinco Segredos de Ta" },
+                "note": {
+                  "tr": "büyük, küçükte saklı",
+                  "en": "the greater hides in the lesser",
+                  "pt": "o maior se oculta no menor"
+                },
+                "children": [
+                  {
+                    "id": "hukumdar-mulk",
+                    "label": { "tr": "Hükümdar — Mülk", "en": "King — Kingdom", "pt": "Rei — Reino" },
+                    "note": { "tr": "mülkün hakikati", "en": "the kingdom's reality", "pt": "a realidade do reino" }
+                  },
+                  {
+                    "id": "hak-yaratilmis",
+                    "label": { "tr": "Hak — Yaratılmış", "en": "The Real — The Created", "pt": "O Real — O Criado" },
+                    "note": { "tr": "yaratılmıştaki Hak", "en": "the Real within the created", "pt": "o Real no criado" }
+                  },
+                  {
+                    "id": "sir-vekil",
+                    "label": { "tr": "Sır — Vekil", "en": "Secret — Deputy", "pt": "Segredo — Delegado" },
+                    "note": { "tr": "sırlar nâiptir", "en": "secrets are a deputy", "pt": "segredos são um delegado" }
+                  },
+                  {
+                    "id": "nur-ates",
+                    "label": { "tr": "Nur — Ateş", "en": "Light — Fire", "pt": "Luz — Fogo" },
+                    "note": { "tr": "nur narda", "en": "light within fire", "pt": "luz dentro do fogo" }
+                  },
+                  {
+                    "id": "insan-melek",
+                    "label": { "tr": "İnsan — Melek", "en": "Human — Angel", "pt": "Humano — Anjo" },
+                    "note": { "tr": "insan melektedir", "en": "human within angel", "pt": "humano dentro do anjo" }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "sadin-ruyasi",
+          "heading": {
+            "tr": "Sad'ın Rüyası",
+            "en": "Sad's Dream",
+            "pt": "O Sonho de Sad"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sad harfinin bölümü, önceki harflerden tamamen farklı bir şeyle açılıyor: Dost, bu harfin sırrına uykuda ulaştığını anlatıyor — <em>'Bu harfin sırrını yazdım... Sad harfinin sırrına ancak uykuda ulaşılabileceğini belirttim, çünkü ben o sırra uykuda ulaştığım gibi Hak da onun sırrının bilgisini bana uykuda verdi.'</em> Yazdıklarını düzeltmesi için bir arkadaşına okuttuğunu, okuma Sad harfine geldiğinde bu tecrübesini dostlarına Mescid-i Haram'daki bir mecliste anlattığını aktarıyor.",
+                "en": "The section on the letter Sad opens with something quite different from the previous letters: Dost recounts that he reached this letter's secret in his sleep — <em>'I wrote down this letter's secret... I said that the secret of the letter Sad can only be reached in sleep, because just as I reached that secret in sleep, the Real gave me knowledge of its secret in sleep as well.'</em> He relates having a friend read his writing back to him for correction, and that when the reading reached the letter Sad, he told his friends about this experience at a gathering in the Sacred Mosque.",
+                "pt": "A seção sobre a letra Sad se abre com algo bem diferente das letras anteriores: Dost relata que alcançou o segredo dessa letra em seu sono — <em>'Escrevi o segredo dessa letra... Eu disse que o segredo da letra Sad só pode ser alcançado no sono, porque assim como alcancei esse segredo dormindo, o Real também me deu o conhecimento de seu segredo dormindo.'</em> Ele relata ter pedido a um amigo que lesse seu texto de volta para ele para correção, e que quando a leitura chegou à letra Sad, contou essa experiência aos amigos numa reunião na Mesquita Sagrada."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "O gece, aynı arkadaşı bir rüya görüyor — Dost'un, sırtüstü uzanmış hâlde Sad harfini anlattığı bir rüya. Rüyada arkadaşı Dost'a doğaçlama bir beyit okuyor: <em>'Sad şerefli bir harftir, Sad sad içinde daha doğrudur/güçlüdür.'</em> Dost rüyada 'delilin nedir?' diye soruyor, arkadaşı da şöyle yanıtlıyor: <em>'Çünkü Sad dönmenin şeklidir. Dönüşten daha önce bir şey yoktur.'</em> Arkadaşı bu cevapla uyanıyor.",
+                "en": "That same night, this friend has a dream — a dream in which Dost, lying on his back, is speaking about the letter Sad. In the dream his friend recites an improvised couplet to Dost: <em>'Sad is a noble letter; Sad is truer, stronger, within Sad.'</em> Dost asks in the dream, 'what is your evidence?' and his friend answers: <em>'Because Sad is the shape of turning. There is nothing before turning.'</em> His friend wakes at this answer.",
+                "pt": "Naquela mesma noite, esse amigo tem um sonho — um sonho em que Dost, deitado de costas, está falando sobre a letra Sad. No sonho, seu amigo recita um dístico improvisado a Dost: <em>'Sad é uma letra nobre; Sad é mais verdadeiro, mais forte, dentro de Sad.'</em> Dost pergunta no sonho, 'qual é tua evidência?' e seu amigo responde: <em>'Porque Sad é a forma do girar. Não há nada antes do girar.'</em> Seu amigo acorda com essa resposta."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Sad Harfi, s. 193-195.",
+                "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Sad, pp. 193-195.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Sad, pp. 193-195."
+              },
+              "pair": {
+                "left": {
+                  "label": { "tr": "Dost'un Uykusu", "en": "Dost's Sleep", "pt": "O Sono de Dost" },
+                  "note": { "tr": "Sad'ın sırrını alır", "en": "receives Sad's secret", "pt": "recebe o segredo de Sad" }
+                },
+                "right": {
+                  "label": { "tr": "Arkadaşının Rüyası", "en": "His Friend's Dream", "pt": "O Sonho de Seu Amigo" },
+                  "note": { "tr": "aynı gece, doğrular", "en": "same night, confirms it", "pt": "mesma noite, confirma" }
+                }
+              },
+              "caption": {
+                "tr": "İki ayrı uyku deneyimi, aynı geceye rastlayıp birbirini doğruluyor — Dost bunu tesadüf değil, bir işaret olarak okuyor.",
+                "en": "Two separate sleep experiences, falling on the same night, confirm one another — Dost reads this not as coincidence but as a sign.",
+                "pt": "Duas experiências de sono separadas, caindo na mesma noite, se confirmam mutuamente — Dost lê isso não como coincidência, mas como um sinal."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bu çakışmayı çarpıcı buluyor: <em>'Arkadaşımın rüyasında bir önceki gün mecliste dostlara anlattığım halimi keşf etmesine şaşırdım.'</em> Bunu, kendi tecrübesinin doğrulanması olarak okuyor — 'bu surede (Sad sûresi) bir takım sırlar bulunduğu gibi arkadaşımın gördüğü rüyada da bir takım sırlar vardır' diyor. Bize göre bu satırların en dikkat çekici yanı, Dost'un burada soyut bir doktrin değil, gerçek bir arkadaşının adını vererek (Ebû Yahya) anlattığı, kendi hayatından, tarihli, yerli (Mescid-i Haram) bir anı paylaşması — bu Kısım VI'da şimdiye dek gördüğümüz en kişisel sahne.",
+                "en": "Dost finds this coincidence striking: <em>'I was amazed that my friend's dream uncovered the state I had described to friends at the gathering the day before.'</em> He reads it as a confirmation of his own experience — 'just as this surah (Surah Sad) contains certain secrets, my friend's dream, too, contains certain secrets,' he says. What strikes us most about these lines is that Dost isn't offering an abstract doctrine here, but sharing a dated, located (the Sacred Mosque) memory from his own life, naming a real friend (Abu Yahya) — the most personal scene we've come across yet in Part VI.",
+                "pt": "Dost acha essa coincidência marcante: <em>'Fiquei espantado que o sonho de meu amigo descobrisse o estado que eu havia descrito aos amigos na reunião do dia anterior.'</em> Ele lê isso como uma confirmação de sua própria experiência — 'assim como esta surata (Surata Sad) contém certos segredos, o sonho de meu amigo também contém certos segredos', diz ele. O que mais nos chama atenção nessas linhas é que Dost não está oferecendo aqui uma doutrina abstrata, mas compartilhando uma lembrança datada e localizada (a Mesquita Sagrada) de sua própria vida, nomeando um amigo real (Abu Yahya) — a cena mais pessoal que encontramos até agora na Parte VI."
               }
             }
           ]
@@ -2070,6 +2199,16 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Nun Harfi, s. 190.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Nun, p. 190.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Nun, p. 190."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Tı Harfi, s. 190-191.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ta, pp. 190-191.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ta, pp. 190-191."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Sad Harfi, s. 193-195.",
+          "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Sad, pp. 193-195.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Sad, pp. 193-195."
         }
       ]
     }
