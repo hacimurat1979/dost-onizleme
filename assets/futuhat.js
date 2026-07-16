@@ -470,6 +470,38 @@
     });
   }
 
+  // Uzun notlar tek satırda merkezden taşıp SVG viewBox kenarından kırpılmasın
+  // diye (özellikle uçtaki sol/sağ düğümlerde), metni birden çok tspan'a bölüyoruz.
+  // Karakter sayısına göre bölüyoruz (piksel genişliği değil) çünkü
+  // getComputedTextLength() ilk render anında özel yazı tipi (Source Sans
+  // Dost) henüz yüklenmemişse yedek fontla ölçüp yanlışlıkla dar sonuç
+  // verebiliyor -- bu da satır bölünmesinin hiç tetiklenmemesine yol açıyordu.
+  function wrapSvgText(textSelection, maxChars) {
+    textSelection.each(function () {
+      const el = d3.select(this);
+      const words = el.text().split(/\s+/).filter(Boolean);
+      const x = el.attr("x") || 0;
+      const y = el.attr("y");
+      el.text(null);
+      let line = [];
+      let lineNumber = 0;
+      const lineHeight = 1.15;
+      let tspan = el.append("tspan").attr("x", x).attr("y", y);
+      words.forEach((word) => {
+        const candidate = line.concat(word).join(" ");
+        if (line.length && candidate.length > maxChars) {
+          tspan.text(line.join(" "));
+          line = [word];
+          lineNumber += 1;
+          tspan = el.append("tspan").attr("x", x).attr("y", y).attr("dy", `${lineNumber * lineHeight}em`);
+        } else {
+          line.push(word);
+        }
+        tspan.text(line.join(" "));
+      });
+    });
+  }
+
   // --- Triad diagram (three-point comparison, e.g. Teorik / Hâl / Sır) ---
   function renderTriad(mount, triad) {
     const width = 460, height = 130, cy = 55;
@@ -510,7 +542,8 @@
       .attr("class", "futuhat-triad__note")
       .attr("text-anchor", "middle")
       .attr("y", 32)
-      .text((d) => tt(d.note));
+      .text((d) => tt(d.note))
+      .call(wrapSvgText, 24);
   }
 
   // --- Pair diagram (two-way comparison, e.g. Makam / Hâl) ---
@@ -553,7 +586,8 @@
       .attr("class", "futuhat-triad__note")
       .attr("text-anchor", "middle")
       .attr("y", 31)
-      .text((d) => tt(d.note));
+      .text((d) => tt(d.note))
+      .call(wrapSvgText, 24);
   }
 
   // --- Article rendering ---

@@ -700,10 +700,14 @@
   // case-insensitive regex still misses these because JS's default (non-
   // Turkish-locale) casing folds İ/I to i/ı differently than Turkish does.
   // Fold both sides through the same Turkish-specific rule before matching.
+  // EN/PT keep exact-case matching -- folding those too would turn ordinary
+  // lowercase words (many registered term names are plain English/Portuguese
+  // nouns, e.g. "Patience", "Certainty") into unwanted auto-links wherever
+  // they appear in running prose, not just where they name the concept.
   function foldForLang(lang, s) {
     return lang === "tr"
       ? s.replace(/İ/g, "i").replace(/I/g, "ı").toLowerCase()
-      : s.toLowerCase();
+      : s;
   }
 
   function registerCrossLinkTerm(nameDict, view, id, summaryDict) {

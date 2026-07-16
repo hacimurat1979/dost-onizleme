@@ -4021,8 +4021,10 @@ html[data-contrast="high"] .detail-title {
   /* Taban .node-hover-tip'in z-index:30'u .detail-panel'in (40) altında
      kalıyordu -- panel açıkken üzerine gelen bağlantıların önizlemesi,
      panelin opak arka planının altına gömülüp sadece panel dışına taşan
-     kenarı görünür kalıyordu. */
-  z-index: 55;
+     kenarı görünür kalıyordu. 65, .detail-panel'in mobildeki (max-width:640px)
+     z-index:60 değerinin de üzerinde kalsın diye seçildi -- .cizim-lightbox'ın
+     (70) altında. */
+  z-index: 65;
 }
 .node-hover-tip--lightbox {
   position: fixed;
