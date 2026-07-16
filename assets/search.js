@@ -100,6 +100,13 @@
       results.forEach((r) => {
         if (r.status === "rejected") console.error("Arama kaynağı yüklenemedi / Search source failed to load", r.reason);
       });
+      // Normalize + tokenize once here, at index-build time, rather than on
+      // every keystroke -- with a few hundred entries the fuzzy pass below
+      // touches every word of every entry per search() call.
+      index.forEach((item) => {
+        item.normText = normalize(item.searchText);
+        item.words = item.normText.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+      });
       indexLoaded = true;
     });
   }
@@ -112,12 +119,58 @@
     return (s || "").toLocaleLowerCase("tr").normalize("NFD").replace(/[̀-ͯ]/g, "");
   }
 
+  // Basit bir yazım hatasını (örn. "hayet" yerine "hayret") tolere etmek için
+  // Levenshtein mesafesi -- yeni bir kütüphane eklemeden, tek kelimelik
+  // yaklaşık eşleşme için yeterli.
+  function levenshtein(a, b) {
+    if (a === b) return 0;
+    const al = a.length, bl = b.length;
+    if (!al) return bl;
+    if (!bl) return al;
+    let prev = new Array(bl + 1);
+    let curr = new Array(bl + 1);
+    for (let j = 0; j <= bl; j++) prev[j] = j;
+    for (let i = 1; i <= al; i++) {
+      curr[0] = i;
+      for (let j = 1; j <= bl; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        curr[j] = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
+      }
+      [prev, curr] = [curr, prev];
+    }
+    return prev[bl];
+  }
+
+  // Kısa sorgularda (2-3 harf) bulanık eşleşme çok fazla alakasız sonuç
+  // getirir; sorgu uzadıkça bir-iki harflik hataya izin ver.
+  function fuzzyThreshold(len) {
+    if (len <= 3) return 0;
+    if (len <= 5) return 1;
+    return 2;
+  }
+
   function search(query) {
     const q = normalize(query);
     if (!q) return [];
-    return index
-      .filter((item) => normalize(item.searchText).includes(q))
-      .slice(0, 30);
+    const threshold = fuzzyThreshold(q.length);
+    const scored = [];
+    index.forEach((item) => {
+      if (item.normText.includes(q)) {
+        scored.push({ item, score: 0 });
+        return;
+      }
+      if (!threshold) return;
+      let best = Infinity;
+      for (const w of item.words) {
+        if (Math.abs(w.length - q.length) > threshold) continue;
+        const d = levenshtein(q, w);
+        if (d < best) best = d;
+        if (!best) break;
+      }
+      if (best <= threshold) scored.push({ item, score: best + 1 });
+    });
+    scored.sort((a, b) => a.score - b.score);
+    return scored.slice(0, 30).map((s) => s.item);
   }
 
   // --- UI ---
