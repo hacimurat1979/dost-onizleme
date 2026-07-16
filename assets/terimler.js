@@ -483,6 +483,9 @@
       ontoloji: { tr: "Ontoloji", en: "Ontology", pt: "Ontologia" },
       esma: { tr: "Esmâü'l-Hüsnâ", en: "The Beautiful Names", pt: "Os Belos Nomes" },
       hal: { tr: "Hâller", en: "States", pt: "Estados" },
+      terimler: { tr: "Terimler", en: "Terms", pt: "Termos" },
+      sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
+      futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
     };
     const chips = links
       .map((l) => `<button class="bookmap-concept-tag bookmap-concept-tag--group" data-view="${l.view}" data-id="${l.id}" style="--tag-hue:${VIEW_HUE[l.view] !== undefined ? VIEW_HUE[l.view] : 40}">${tt(VIEW_LABEL[l.view] || {})} → ${l.id}</button>`)
