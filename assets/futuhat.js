@@ -610,8 +610,16 @@
   }
 
   function roman(n) {
-    const map = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
-    return map[n - 1] || String(n);
+    const table = [[10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]];
+    let out = "";
+    let rem = n;
+    for (const [value, symbol] of table) {
+      while (rem >= value) {
+        out += symbol;
+        rem -= value;
+      }
+    }
+    return out || String(n);
   }
 
   function renderStats(part) {
