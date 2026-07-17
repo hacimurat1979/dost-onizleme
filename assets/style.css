@@ -1159,7 +1159,7 @@ button.futuhat-part-chip:hover {
 .futuhat-stats__item {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   width: 100%;
   font: inherit;
   font-size: 0.86rem;
@@ -1167,7 +1167,7 @@ button.futuhat-part-chip:hover {
   background: none;
   border: none;
   border-top: 1px solid var(--border);
-  padding: 7px 0;
+  padding: 8px 0;
   cursor: pointer;
   text-align: left;
   transition: color 0.15s ease;
@@ -1182,9 +1182,31 @@ button.futuhat-part-chip:hover {
   color: var(--series-theme);
 }
 
-.futuhat-stats__item strong {
+.futuhat-stats__label {
+  flex: 1;
+}
+
+.futuhat-stats__badge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 4px;
+  border-radius: 50%;
+  border: 1.5px solid var(--series-theme);
   font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--series-theme);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.futuhat-stats__item:hover .futuhat-stats__badge,
+.futuhat-stats__item:focus-visible .futuhat-stats__badge {
+  background-color: var(--series-theme);
+  color: var(--surface-1);
 }
 
 /* --- Fütûhât popup (opened from the stats panel) --- */

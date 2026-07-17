@@ -627,8 +627,8 @@
     const stats = computeStats(part);
     const row = (key, labelDict, value) => `
       <button class="futuhat-stats__item" type="button" data-stat="${key}">
-        <span>${tt(labelDict)}</span>
-        <strong>${value}</strong>
+        <span class="futuhat-stats__label">${tt(labelDict)}</span>
+        <span class="futuhat-stats__badge">${value}</span>
       </button>
     `;
     statsEl.innerHTML = `
