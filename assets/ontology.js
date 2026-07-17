@@ -279,6 +279,7 @@
   const sirlarBtn = document.getElementById("sirlar-btn");
   const sorularBtn = document.getElementById("sorular-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
+  const hakkindaBtn = document.getElementById("hakkinda-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
   const halWrap = document.getElementById("hal-wrap");
@@ -287,6 +288,7 @@
   const sirlarWrap = document.getElementById("sirlar-wrap");
   const sorularWrap = document.getElementById("sorular-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
+  const hakkindaWrap = document.getElementById("hakkinda-wrap");
 
   function setMainView(view) {
     if (currentMainView === view) return;
@@ -299,6 +301,7 @@
     if (sirlarBtn) sirlarBtn.classList.toggle("btn-ghost--active", view === "sirlar");
     if (sorularBtn) sorularBtn.classList.toggle("btn-ghost--active", view === "sorular");
     if (futuhatBtn) futuhatBtn.classList.toggle("btn-ghost--active", view === "futuhat");
+    if (hakkindaBtn) hakkindaBtn.classList.toggle("btn-ghost--active", view === "hakkinda");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
@@ -307,6 +310,7 @@
     if (sirlarWrap) sirlarWrap.hidden = view !== "sirlar";
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
+    if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
     currentDetailNode = null;
     currentDetailEdge = null;
     detailPanel.hidden = true;
@@ -348,6 +352,7 @@
   if (cizimlerBtn) cizimlerBtn.addEventListener("click", () => { setMainView("cizimler"); updateHash("cizimler"); });
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
+  if (hakkindaBtn) hakkindaBtn.addEventListener("click", () => { setMainView("hakkinda"); updateHash("hakkinda"); });
 
   // --- Deep linking & cross-view navigation ---
   let pendingSirlarId = null;
@@ -459,8 +464,12 @@
     window.__futuhatApp && window.__futuhatApp.activate(id);
   }
 
+  function goToHakkinda() {
+    setMainView("hakkinda");
+  }
+
   function parseHashAndGo() {
-    const m = /^#\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|futuhat)(?:\/(.+))?$/.exec(location.hash);
+    const m = /^#\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|futuhat|hakkinda)(?:\/(.+))?$/.exec(location.hash);
     if (!m) return;
     const [, view, id] = m;
     if (view === "ontoloji") goToOntologyNode(id);
@@ -471,6 +480,7 @@
     else if (view === "cizimler") goToCizimler();
     else if (view === "sorular") goToSorular(id);
     else if (view === "futuhat") goToFutuhat(id);
+    else if (view === "hakkinda") goToHakkinda();
   }
 
   window.addEventListener("hashchange", parseHashAndGo);
@@ -485,6 +495,7 @@
       else if (view === "cizimler") goToCizimler();
       else if (view === "sorular") goToSorular(id);
       else if (view === "futuhat") goToFutuhat(id);
+      else if (view === "hakkinda") goToHakkinda();
       updateHash(view, id);
     },
     setHash: updateHash,

@@ -118,12 +118,6 @@
   </div>
   <script src="assets/welcome.js"></script>
   <header class="app-header">
-    <div class="app-header__title">
-      <h1>Dost</h1>
-      <p class="app-header__subtitle" data-tr="Muhyiddîn İbnü'l-Arabî (1165–1240), tasavvuf tarihinin en etkili düşünürlerinden biridir. Bu site onun 'vahdet-i vücûd' (varlığın birliği) anlayışını anlatmaya değil, anlamaya çalışan mütevazı bir haritadır."
-         data-en="Muhyiddin Ibn Arabi (1165–1240) is one of the most influential thinkers in the history of Islamic mysticism. This site is a humble attempt to understand his teaching of wahdat al-wujud (the Oneness of Being) — not to explain it."
-         data-pt="Muhyiddin Ibn Arabi (1165–1240) é um dos pensadores mais influentes da história do misticismo islâmico. Este site é uma tentativa humilde de compreender seu ensinamento sobre wahdat al-wujud (a Unidade do Ser) — não de explicá-lo.">Muhyiddîn İbnü'l-Arabî (1165–1240), tasavvuf tarihinin en etkili düşünürlerinden biridir. Bu site onun 'vahdet-i vücûd' (varlığın birliği) anlayışını anlatmaya değil, anlamaya çalışan mütevazı bir haritadır.</p>
-    </div>
     <div class="app-header__controls">
       <div class="view-switch" id="view-switch">
         <button class="btn-ghost btn-ghost--active" id="ontology-btn" type="button" data-tr="Ontoloji" data-en="Ontology" data-pt="Ontologia">Ontoloji</button>
@@ -134,6 +128,7 @@
         <button class="btn-ghost" id="sirlar-btn" type="button" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
         <button class="btn-ghost" id="sorular-btn" type="button" data-tr="Sorular" data-en="Questions" data-pt="Perguntas">Sorular</button>
         <button class="btn-ghost" id="futuhat-btn" type="button" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
+        <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
       </div>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
         <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.2"/><line x1="12" y1="19.8" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.2" y2="12"/><line x1="19.8" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.6" y2="4.4"/></g></svg>
@@ -329,9 +324,8 @@
         <p class="view-status__text"></p>
         <button class="view-status__retry" type="button" hidden></button>
       </div>
-      <p class="futuhat-intro" data-tr="Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalışıyoruz — bir özet değil, tafsilatlı anlattığı konuların çizimlerle görünür kılınmaya çalışıldığı, süregiden bir okuma." data-en="We are trying to read al-Futuhat al-Makkiyya volume by volume, part by part, following Dost's own order of exposition — not a summary, but an ongoing reading in which the topics he treats in detail are made visible through diagrams." data-pt="Estamos tentando ler o al-Futuhat al-Makkiyya volume por volume, parte por parte, seguindo a própria ordem de exposição de Dost — não um resumo, mas uma leitura em andamento na qual os temas que ele trata em detalhe são tornados visíveis através de diagramas.">Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalışıyoruz — bir özet değil, tafsilatlı anlattığı konuların çizimlerle görünür kılınmaya çalışıldığı, süregiden bir okuma.</p>
-      <div class="futuhat-parts" id="futuhat-parts"></div>
       <div class="futuhat-shell">
+        <div class="futuhat-parts" id="futuhat-parts"></div>
         <article class="futuhat-article" id="futuhat-article"></article>
         <aside class="futuhat-stats" id="futuhat-stats"></aside>
       </div>
@@ -344,6 +338,19 @@
             <button class="futuhat-popup__close" id="futuhat-popup-close" type="button" aria-label="Kapat / Close / Fechar">×</button>
           </div>
           <div class="futuhat-popup__list" id="futuhat-popup-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hakkinda-wrap" id="hakkinda-wrap" hidden>
+      <div class="hakkinda-content">
+        <h1 class="hakkinda-content__title">Dost</h1>
+        <p class="hakkinda-content__subtitle" data-tr="Muhyiddîn İbnü'l-Arabî (1165–1240), tasavvuf tarihinin en etkili düşünürlerinden biridir. Bu site onun 'vahdet-i vücûd' (varlığın birliği) anlayışını anlatmaya değil, anlamaya çalışan mütevazı bir haritadır."
+           data-en="Muhyiddin Ibn Arabi (1165–1240) is one of the most influential thinkers in the history of Islamic mysticism. This site is a humble attempt to understand his teaching of wahdat al-wujud (the Oneness of Being) — not to explain it."
+           data-pt="Muhyiddin Ibn Arabi (1165–1240) é um dos pensadores mais influentes da história do misticismo islâmico. Este site é uma tentativa humilde de compreender seu ensinamento sobre wahdat al-wujud (a Unidade do Ser) — não de explicá-lo.">Muhyiddîn İbnü'l-Arabî (1165–1240), tasavvuf tarihinin en etkili düşünürlerinden biridir. Bu site onun 'vahdet-i vücûd' (varlığın birliği) anlayışını anlatmaya değil, anlamaya çalışan mütevazı bir haritadır.</p>
+        <div class="hakkinda-content__section">
+          <h2 data-tr="Fütûhât-ı Mekkiyye Okuması" data-en="Reading al-Futuhat al-Makkiyya" data-pt="Leitura do al-Futuhat al-Makkiyya">Fütûhât-ı Mekkiyye Okuması</h2>
+          <p data-tr="Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalışıyoruz — bir özet değil, tafsilatlı anlattığı konuların çizimlerle görünür kılınmaya çalışıldığı, süregiden bir okuma." data-en="We are trying to read al-Futuhat al-Makkiyya volume by volume, part by part, following Dost's own order of exposition — not a summary, but an ongoing reading in which the topics he treats in detail are made visible through diagrams." data-pt="Estamos tentando ler o al-Futuhat al-Makkiyya volume por volume, parte por parte, seguindo a própria ordem de exposição de Dost — não um resumo, mas uma leitura em andamento na qual os temas que ele trata em detalhe são tornados visíveis através de diagramas.">Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalışıyoruz — bir özet değil, tafsilatlı anlattığı konuların çizimlerle görünür kılınmaya çalışıldığı, süregiden bir okuma.</p>
         </div>
       </div>
     </section>
