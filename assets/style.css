@@ -243,6 +243,31 @@ html {
   max-width: 65ch;
 }
 
+.hakkinda-content__section p + .hakkinda-poem {
+  margin-top: 16px;
+}
+
+.hakkinda-poem {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  max-width: 52ch;
+  margin: 0;
+  padding: 4px 0 4px 20px;
+  border-left: 2px solid var(--series-ibnarabi);
+  white-space: pre-line;
+}
+
+.hakkinda-content__section p.hakkinda-poem__source {
+  margin: 10px 0 0;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 .btn-ghost {
   background: transparent;
   border: 1px solid var(--border);
