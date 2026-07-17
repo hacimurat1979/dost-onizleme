@@ -207,9 +207,9 @@
     "sifat-asma": { x: 0.5, y: 0.21 },
     "ayan-sabite": { x: 0.5, y: 0.33 },
     "tecelli": { x: 0.5, y: 0.45 },
-    "alem-ervah": { x: 0.20, y: 0.60 },
+    "alem-ervah": { x: 0.10, y: 0.60 },
     "alem-misal": { x: 0.5, y: 0.60 },
-    "alem-ecsam": { x: 0.80, y: 0.60 },
+    "alem-ecsam": { x: 0.90, y: 0.60 },
     "insan-i-kamil": { x: 0.5, y: 0.75 },
     "kalp": { x: 0.5, y: 0.90 },
   };
@@ -692,8 +692,31 @@
     const recenterBtn = document.getElementById("ontology-recenter");
     if (recenterBtn) {
       recenterBtn.addEventListener("click", () => {
-        svg.transition().duration(400).call(zoom.transform, d3.zoomIdentity);
+        svg.transition().duration(400).call(zoom.transform, computeFitTransform());
       });
+    }
+
+    function computeFitTransform() {
+      const pad = 48;
+      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+      nodes.forEach((n) => {
+        const r = radiusFor(n);
+        minX = Math.min(minX, n.tx - r);
+        maxX = Math.max(maxX, n.tx + r);
+        minY = Math.min(minY, n.ty - r);
+        maxY = Math.max(maxY, n.ty + r);
+      });
+      const bboxW = Math.max(maxX - minX, 1);
+      const bboxH = Math.max(maxY - minY, 1);
+      const scale = Math.min(
+        4,
+        Math.max(0.5, Math.min((width - pad * 2) / bboxW, (height - pad * 2) / bboxH))
+      );
+      const cx = (minX + maxX) / 2;
+      const cy = (minY + maxY) / 2;
+      return d3.zoomIdentity
+        .translate(width / 2 - scale * cx, height / 2 - scale * cy)
+        .scale(scale);
     }
 
     const linkGroup = zoomLayer.append("g").attr("class", "links");
@@ -716,6 +739,7 @@
       .data(nodes)
       .join("g")
       .attr("class", "node ontology-node")
+      .classed("node--root", (d) => d.id === "dhat")
       .attr("tabindex", "0")
       .attr("role", "button")
       .attr("aria-label", (d) => labelFor(d))
@@ -732,6 +756,11 @@
       .on("mouseleave", () => { highlight(null); hideTooltip(); })
       .on("focus", (event, d) => { highlight(d); showTooltip(d, event); })
       .on("blur", () => { highlight(null); hideTooltip(); });
+
+    nodeSel
+      .append("circle")
+      .attr("class", "node-halo")
+      .attr("r", (d) => radiusFor(d) * 1.4);
 
     nodeSel
       .append("circle")
@@ -754,6 +783,8 @@
       pathSel.attr("d", (d) => edgePath(d));
       nodeSel.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
+
+    svg.call(zoom.transform, computeFitTransform());
 
     window.__ontologyApp = { nodes, links, nodeById };
   }

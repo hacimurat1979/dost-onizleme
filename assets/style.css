@@ -1578,6 +1578,29 @@ li.futuhat-pulse,
   .node--active circle { filter: none; }
 }
 
+/* Zât/Essence root node: a slow, quiet breathing glow -
+   "from Him we come, to Him we go" made into the one animated signature. */
+.node-halo {
+  stroke: none;
+  filter: none;
+  fill: none;
+  opacity: 0;
+  pointer-events: none;
+}
+.node--root .node-halo {
+  fill: var(--series-theme);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-halo-breathe 6s ease-in-out infinite;
+}
+@keyframes node-halo-breathe {
+  0%, 100% { opacity: 0.14; transform: scale(1); }
+  50%      { opacity: 0.34; transform: scale(1.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .node--root .node-halo { animation: none; opacity: 0.2; }
+}
+
 .detail-panel {
   position: fixed;
   top: 0;
@@ -2360,6 +2383,10 @@ html:has(.detail-panel:not([hidden])) {
   flex-direction: column;
   justify-content: space-between;
   animation: story-fade-in 0.5s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-frame { animation: none; }
 }
 
 @keyframes story-fade-in {
@@ -3616,6 +3643,10 @@ html[data-contrast="high"] .detail-title {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .bookmap-detail { animation: none; }
+}
+
 .bookmap-detail__header {
   display: flex;
   align-items: flex-start;
@@ -3843,6 +3874,34 @@ html[data-contrast="high"] .detail-title {
   border-color: var(--series-theme);
 }
 
+.surprise-toggle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.surprise-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--series-theme);
+}
+
+.surprise-toggle:active {
+  transform: rotate(150deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surprise-toggle { transition: color 0.2s ease, border-color 0.2s ease; }
+  .surprise-toggle:active { transform: none; }
+}
+
 .search-panel {
   position: fixed;
   inset: 0;
@@ -3971,6 +4030,7 @@ html[data-contrast="high"] .detail-title {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   grid-auto-flow: dense;
+  align-items: start;
   gap: 12px;
   margin-top: 16px;
 }
