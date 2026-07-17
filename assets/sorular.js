@@ -302,7 +302,8 @@
     if (!q.link) return "";
     const view = q.link.view;
     const id = q.link.id;
-    const href = id ? `#/${view}/${id}` : `#/${view}`;
+    const base = window.__dostRouteBase || "";
+    const href = id ? `${base}/${view}/${id}` : `${base}/${view}`;
     const label = q.linkLabel ? I18n.pick3(q.linkLabel) : tt({ tr: "Devamını oku", en: "Read more", pt: "Ler mais" });
     return `<a class="cross-link sorular-readmore" href="${href}">${label} →</a>`;
   }

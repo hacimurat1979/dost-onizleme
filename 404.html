@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dost Arabî</title>
+<script>
+  // GitHub Pages statik dosya sunucusu olduğu için /futuhat/c1k9 gibi
+  // gerçek path'lere doğrudan gelindiğinde (adres çubuğuna yazma, dış
+  // bağlantı, sayfa yenileme) burada 404 döner. İstenen path'i bir sorgu
+  // parametresine gömüp köke yönlendiriyoruz; index.html açılışında bunu
+  // okuyup adres çubuğunu tekrar temiz path'e çeviriyor (bkz. index.html).
+  (function () {
+    // dostarabi.com kökten servis ediyor (basePrefix ""); önizleme kopyası
+    // hacimurat1979.github.io/dost-onizleme/ altında servis edildiği için
+    // bu satır index.html'in gerçekte nerede durduğunu bilsin diye
+    // "/dost-onizleme" yapılır (bkz. scripts/sync-to-preview.py). Hedef
+    // path'in kendisi (prefix dahil, olduğu gibi) korunur -- onu prefix'ten
+    // arındırıp adres çubuğuna geri koyma işini ontology.js (ROUTE_BASE) yapar.
+    var basePrefix = "/dost-onizleme";
+    var loc = window.location;
+    var target = loc.pathname + loc.search + loc.hash;
+    loc.replace(loc.origin + basePrefix + "/?p=" + encodeURIComponent(target));
+  })();
+</script>
+</head>
+<body></body>
+</html>

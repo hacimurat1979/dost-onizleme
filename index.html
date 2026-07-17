@@ -2,6 +2,13 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
+<!-- Gerçek path'lerle gezinme (bkz. 404.html) adres çubuğunu /futuhat/c1k9 gibi
+     köke bağlı olmayan derinliklere taşıyor; bu <base> olmadan o an sayfadaki
+     her bağıl fetch/asset yolu ("data/...", "assets/...") o yanlış dizine göre
+     çözülüp 404 verir. dostarabi.com kökten servis ediyor ("/"); önizleme
+     kopyası hacimurat1979.github.io/dost-onizleme/ altında olduğu için bu
+     satırı "/dost-onizleme/" yapar (bkz. scripts/sync-to-preview.py). -->
+<base href="/dost-onizleme/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>[ÖNİZLEME] Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası</title>
 <meta name="robots" content="noindex, nofollow">
@@ -74,6 +81,19 @@
           ? stored
           : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
         document.body.setAttribute("data-theme", theme);
+      } catch (e) {}
+    })();
+  </script>
+  <script>
+    // GitHub Pages'te gerçek path'lerle (/futuhat/c1k9 gibi) doğrudan
+    // gelindiğinde 404.html devreye girip isteği burada ?p= parametresiyle
+    // yeniden yazıyor; adres çubuğunu, JS routing'i çalışmadan önce
+    // tekrar temiz path'e döndürüyoruz (bkz. 404.html).
+    (function () {
+      try {
+        var params = new URLSearchParams(location.search);
+        var redirect = params.get("p");
+        if (redirect) history.replaceState(null, "", redirect);
       } catch (e) {}
     })();
   </script>

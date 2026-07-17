@@ -703,6 +703,14 @@
     });
   }
 
+  function updatePartMeta(part) {
+    document.title = "Dost Arabî — " + tt(part.title);
+    const canonicalEl = document.querySelector('link[rel="canonical"]');
+    if (canonicalEl) canonicalEl.setAttribute("href", "https://dostarabi.com/futuhat/" + part.id);
+    const descEl = document.querySelector('meta[name="description"]');
+    if (descEl) descEl.setAttribute("content", tt(part.hero.summary));
+  }
+
   function renderPart(part) {
     articleEl.innerHTML = `
       <header class="futuhat-hero">
@@ -851,7 +859,7 @@
   }
 
   function sharePart(part) {
-    const url = location.origin + location.pathname + "#/futuhat/" + part.id;
+    const url = location.origin + (window.__dostRouteBase || "") + "/futuhat/" + part.id;
     const title = tt({ tr: "Dost Arabî", en: "Dost Arabi", pt: "Dost Arabi" }) + " — " + tt(part.title);
     if (navigator.share) {
       navigator.share({ title, url }).catch(() => {});
@@ -887,6 +895,10 @@
     }
     renderPart(part);
     if (window.__dostNav) window.__dostNav.setHash("futuhat", id);
+    // setHash az önce genel "futuhat" başlık/canonical/description'ını yazdı
+    // (bkz. ontology.js updateMeta) -- bu kısma özel olanlarla en son biz
+    // üzerine yazıyoruz ki kazanan bu olsun.
+    updatePartMeta(part);
   }
 
   function render() {

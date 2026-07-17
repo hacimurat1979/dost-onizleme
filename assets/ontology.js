@@ -357,9 +357,114 @@
   // --- Deep linking & cross-view navigation ---
   let pendingSirlarId = null;
 
+  // dostarabi.com'da site kökten servis ediliyor, ama önizleme kopyası
+  // hacimurat1979.github.io/dost-onizleme/ altında bir alt path'te duruyor
+  // (bkz. scripts/sync-to-preview.py, index.html <base>). Adres çubuğuna
+  // yazdığımız/okuduğumuz her path bu kökü hesaba katmalı; <base>'in kendi
+  // href'inden okuyoruz ki iki dağıtım da aynı kodu kullanabilsin.
+  const ROUTE_BASE = (function () {
+    const baseEl = document.querySelector("base");
+    if (!baseEl) return "";
+    try {
+      const u = new URL(baseEl.getAttribute("href"), location.origin);
+      return u.pathname.replace(/\/+$/, "");
+    } catch (e) {
+      return "";
+    }
+  })();
+  window.__dostRouteBase = ROUTE_BASE;
+
+  const VIEW_META = {
+    ontoloji: {
+      title: { tr: "Ontoloji", en: "Ontology", pt: "Ontologia" },
+      desc: {
+        tr: "Muhyiddîn İbnü'l-Arabî'nin varlık felsefesini (vahdet-i vücûd) anlatmaya değil, anlamaya çalışan mütevazı ve etkileşimli bir harita.",
+        en: "A modest, interactive map that tries to understand — not explain — Ibn Arabi's philosophy of Being (wahdat al-wujud).",
+        pt: "Um mapa modesto e interativo que tenta compreender — não explicar — a filosofia do Ser de Ibn Arabi (wahdat al-wujud).",
+      },
+    },
+    esma: {
+      title: { tr: "Esmâü'l-Hüsnâ", en: "The Beautiful Names", pt: "Os Belos Nomes" },
+      desc: {
+        tr: "Allah'ın güzel isimlerinin İbn Arabî'deki hiyerarşisini ve isimler arası ilişkileri anlamaya çalışan bir harita.",
+        en: "A map that tries to understand the hierarchy of, and relations between, God's Beautiful Names in Ibn Arabi's thought.",
+        pt: "Um mapa que tenta compreender a hierarquia e as relações entre os Belos Nomes de Deus no pensamento de Ibn Arabi.",
+      },
+    },
+    hal: {
+      title: { tr: "Hâller", en: "States", pt: "Estados" },
+      desc: {
+        tr: "Tasavvuftaki hâl ve makamların (nefs, hayret, fenâ-bekâ...) İbn Arabî'deki seyrini izleyen bir harita.",
+        en: "A map that follows the course of Sufi states and stations (the self, bewilderment, annihilation and subsistence...) in Ibn Arabi.",
+        pt: "Um mapa que acompanha o percurso dos estados e estações sufis (o ego, o assombro, a aniquilação e subsistência...) em Ibn Arabi.",
+      },
+    },
+    terimler: {
+      title: { tr: "Terimler", en: "Terms", pt: "Termos" },
+      desc: {
+        tr: "İbn Arabî'nin temel terimlerinin (a'yân-ı sâbite, berzah, tecellî...) anlamını ve aralarındaki bağı arayan bir sözlük.",
+        en: "A glossary that searches for the meaning of, and connections between, Ibn Arabi's core terms.",
+        pt: "Um glossário que busca o sentido e as conexões entre os termos fundamentais de Ibn Arabi.",
+      },
+    },
+    cizimler: {
+      title: { tr: "Çizimler", en: "Diagrams", pt: "Diagramas" },
+      desc: {
+        tr: "İbn Arabî'nin kendi elinden çıkan şemaların bir araya toplandığı bölüm.",
+        en: "A section gathering the diagrams Ibn Arabi himself drew.",
+        pt: "Uma seção que reúne os diagramas que o próprio Ibn Arabi desenhou.",
+      },
+    },
+    sirlar: {
+      title: { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" },
+      desc: {
+        tr: "İbn Arabî'nin işaret edip açıklamadığı yerlerin külliyat boyunca izini süren bir derleme.",
+        en: "A compilation tracing, across the corpus, the places Ibn Arabi points to but leaves unexplained.",
+        pt: "Uma coletânea que rastreia, por toda a obra, os lugares que Ibn Arabi aponta mas deixa sem explicação.",
+      },
+    },
+    sorular: {
+      title: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
+      desc: {
+        tr: "İbn Arabî'yi okurken biriken, henüz kapanmamış soruların toplandığı bölüm.",
+        en: "A section gathering the still-open questions that accumulate while reading Ibn Arabi.",
+        pt: "Uma seção que reúne as perguntas ainda em aberto que se acumulam ao ler Ibn Arabi.",
+      },
+    },
+    futuhat: {
+      title: { tr: "Fütûhât-ı Mekkiyye", en: "Futuhat al-Makkiyya", pt: "Futuhat al-Makkiyya" },
+      desc: {
+        tr: "Fütûhât-ı Mekkiyye'nin cilt cilt, kısım kısım okunup anlaşılmaya çalışıldığı bölüm.",
+        en: "A section reading Futuhat al-Makkiyya volume by volume, part by part.",
+        pt: "Uma seção que lê o Futuhat al-Makkiyya volume a volume, parte a parte.",
+      },
+    },
+    hakkinda: {
+      title: { tr: "Dost Arabî Hakkında", en: "About Dost Arabi", pt: "Sobre Dost Arabi" },
+      desc: {
+        tr: "Dost Arabî projesinin ve Muhyiddîn İbnü'l-Arabî'nin kısaca tanıtıldığı sayfa.",
+        en: "A page briefly introducing the Dost Arabi project and Muhyiddin Ibn Arabi.",
+        pt: "Uma página que apresenta brevemente o projeto Dost Arabi e Muhyiddin Ibn Arabi.",
+      },
+    },
+  };
+
+  function updateMeta(view) {
+    const meta = VIEW_META[view];
+    if (!meta) return;
+    document.title = view === "ontoloji"
+      ? "Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası"
+      : "Dost Arabî — " + I18n.pick3(meta.title);
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute("href", "https://dostarabi.com/" + (view === "ontoloji" ? "" : view));
+    const descEl = document.querySelector('meta[name="description"]');
+    if (descEl) descEl.setAttribute("content", I18n.pick3(meta.desc));
+  }
+
   function updateHash(view, id) {
-    const hash = "#/" + view + (id ? "/" + id : "");
-    if (location.hash !== hash) history.replaceState(null, "", hash);
+    const path = ROUTE_BASE + "/" + view + (id ? "/" + id : "");
+    if (location.pathname !== path) history.replaceState(null, "", path);
+    updateMeta(view);
     if (id) pushBreadcrumb(view, id);
   }
 
@@ -469,9 +574,11 @@
   }
 
   function parseHashAndGo() {
-    const m = /^#\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|futuhat|hakkinda)(?:\/(.+))?$/.exec(location.hash);
+    const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|futuhat|hakkinda)(?:\/(.+))?\/?$/.exec(rawPath);
     if (!m) return;
     const [, view, id] = m;
+    updateMeta(view);
     if (view === "ontoloji") goToOntologyNode(id);
     else if (view === "esma") goToEsma(id);
     else if (view === "sirlar") goToSirlar(id);
@@ -483,7 +590,24 @@
     else if (view === "hakkinda") goToHakkinda();
   }
 
-  window.addEventListener("hashchange", parseHashAndGo);
+  window.addEventListener("popstate", parseHashAndGo);
+
+  // Site içi tüm gezinme #/view yerine gerçek /view yollarını kullanıyor
+  // (bkz. 404.html) — bu yüzden linkify()'ın ürettiği <a class="cross-link">
+  // etiketleri artık gerçek path'lere işaret ediyor. Tıklama tam sayfa
+  // yenilemesi tetiklemesin diye burada yakalayıp SPA içi yönlendirmeye
+  // çeviriyoruz; yeni sekmede aç / orta tık gibi tarayıcı varsayılanlarını
+  // bozmamak için değiştirici tuş basılıysa dokunmuyoruz.
+  document.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const a = event.target.closest("a.cross-link");
+    if (!a) return;
+    const view = a.dataset.view;
+    if (!view) return;
+    event.preventDefault();
+    window.__dostNav.goTo(view, a.dataset.id || undefined);
+  });
 
   window.__dostNav = {
     goTo(view, id) {
@@ -773,7 +897,7 @@
         result += original;
       } else {
         seen.add(key);
-        result += `<a href="#/${hit.view}/${hit.id}" class="cross-link" data-view="${hit.view}" data-id="${hit.id}">${original}</a>`;
+        result += `<a href="${ROUTE_BASE}/${hit.view}/${hit.id}" class="cross-link" data-view="${hit.view}" data-id="${hit.id}">${original}</a>`;
       }
       lastIndex = end;
     }
