@@ -148,6 +148,7 @@
         <button class="btn-ghost" id="sirlar-btn" type="button" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
         <button class="btn-ghost" id="sorular-btn" type="button" data-tr="Sorular" data-en="Questions" data-pt="Perguntas">Sorular</button>
         <button class="btn-ghost" id="futuhat-btn" type="button" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
+        <button class="btn-ghost" id="biriken-parcalar-btn" type="button" data-tr="Biriken Parçalar" data-en="Gathered Pieces" data-pt="Peças Reunidas">Biriken Parçalar</button>
         <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
       </div>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
@@ -362,6 +363,20 @@
       </div>
     </section>
 
+    <section class="terimler-wrap" id="biriken-parcalar-wrap" hidden>
+      <div class="view-status" id="biriken-parcalar-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <section class="intro">
+        <p data-tr="Dost, bir sırrı tek seferde açıklamadığını, kitabının farklı yerlerine zeki araştırmacının bir araya getirip fark edeceği işaretler serpiştirdiğini söyler. Burada, külliyatı kısım kısım okurken karşımıza çıkan, birbirini tamamlayan parçaları -kesin bir sonuç iddiası taşımadan- bir araya topluyoruz."
+           data-en="Dost says he does not disclose a secret all at once, but scatters signs across his book for the intelligent researcher to gather and notice. Here we gather the pieces that complete one another as we read the corpus part by part -- without claiming a firm conclusion."
+           data-pt="Dost diz que não revela um segredo de uma só vez, mas espalha sinais por seu livro para que o pesquisador inteligente os reúna e perceba. Aqui reunimos as peças que se completam umas às outras à medida que lemos o corpus parte por parte -- sem reivindicar uma conclusão firme."></p>
+      </section>
+      <div class="terimler-list" id="biriken-parcalar-list"></div>
+    </section>
+
     <section class="hakkinda-wrap" id="hakkinda-wrap" hidden>
       <div class="hakkinda-content">
         <h1 class="hakkinda-content__title">Dost</h1>
@@ -439,6 +454,7 @@
   <script src="assets/sirlar-graph.js"></script>
   <script src="assets/sorular.js"></script>
   <script src="assets/futuhat.js"></script>
+  <script src="assets/biriken-parcalar.js"></script>
   <script src="assets/ontology.js"></script>
   <script src="assets/crosslink-preview.js"></script>
   <script src="assets/start-hint.js"></script>
