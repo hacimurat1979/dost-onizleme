@@ -170,7 +170,7 @@ html {
 
 .app-header {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   padding: 18px clamp(16px, 4vw, 48px);
   gap: 16px;
@@ -193,6 +193,18 @@ html {
   max-width: 720px;
   margin: 0 auto;
   padding: 48px clamp(16px, 4vw, 48px) 60px;
+}
+
+.intro {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px clamp(16px, 4vw, 48px) 10px;
+}
+
+.intro p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
 }
 
 .hakkinda-content__title {
