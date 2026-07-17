@@ -575,9 +575,16 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|futuhat|hakkinda)(?:\/(.+))?\/?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|futuhat|hakkinda)(\/.*)?$/.exec(rawPath);
     if (!m) return;
-    const [, view, id] = m;
+    const [, view, restRaw] = m;
+    // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
+    // "edge/nodeA-nodeB"), üstelik gerçek statik dosyalar (futuhat/c1k5/
+    // index.html gibi) "/futuhat/c1k5/" biçiminde sondaki "/" ile de
+    // istenebiliyor, hatta id'siz bir görünüm de ("/esma/") aynı şekilde
+    // sondaki slaş'la gelebiliyor -- baştaki/sondaki slaş'ları ayıklayıp
+    // geriye boş kalırsa id'yi undefined yap.
+    const id = restRaw ? (restRaw.replace(/^\//, "").replace(/\/$/, "") || undefined) : undefined;
     updateMeta(view);
     if (view === "ontoloji") goToOntologyNode(id);
     else if (view === "esma") goToEsma(id);
