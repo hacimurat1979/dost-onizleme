@@ -18,13 +18,15 @@ window.DostI18n = (function () {
   }
 
   function getLang() {
-    const l = localStorage.getItem("dost-lang");
+    let l = null;
+    try { l = localStorage.getItem("dost-lang"); } catch (e) {}
     if (LANGS.includes(l)) return l;
     return detectBrowserLang();
   }
 
   function setLang(l) {
-    if (LANGS.includes(l)) localStorage.setItem("dost-lang", l);
+    if (!LANGS.includes(l)) return;
+    try { localStorage.setItem("dost-lang", l); } catch (e) {}
   }
 
   // obj has keys like `${base}_tr`, `${base}_en`, `${base}_pt`

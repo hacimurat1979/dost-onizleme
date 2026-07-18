@@ -873,6 +873,7 @@
   const crossLinkTermsByLang = { tr: [], en: [], pt: [] };
   const crossLinkSummaries = new Map();
   const crossLinkListeners = [];
+  const registeredVariantKeys = new Set();
 
   function onCrossLinkReady(fn) {
     crossLinkListeners.push(fn);
@@ -931,13 +932,22 @@
     "the visible", "o visível",
   ]);
 
+  // The >=4-char rule below exists to keep short, ordinary words from
+  // becoming accidental links (see GENERIC_VARIANT_BLOCKLIST above for the
+  // opposite problem). A few short titles are genuinely distinctive
+  // technical/religious terms with no everyday-word collision risk in any
+  // of the three languages -- without this allowlist they'd be unlinkable
+  // from prose no matter how often they're used (confirmed zero cross-links
+  // for "Amâ"/"Arş" across all 22 Fütûhât parts despite heavy use).
+  const SHORT_TERM_ALLOWLIST = new Set(["amâ", "arş"]);
+
   function registerCrossLinkTerm(nameDict, view, id, summaryDict) {
     if (!nameDict) return;
     ["tr", "en", "pt"].forEach((lang) => {
       const term = nameDict[lang];
       if (!term) return;
       const variants = new Set();
-      if (term.length >= 4) variants.add(term);
+      if (term.length >= 4 || SHORT_TERM_ALLOWLIST.has(term.toLowerCase())) variants.add(term);
       // Many titles carry a parenthetical gloss ("Vâcib (Vâcibü'l-Vücûd)",
       // "Bedel (Ebdal)") or an Arabic article prefix ("el-Kâdir", "es-Semî'");
       // register the bare form AND the parenthetical's own content as
@@ -946,15 +956,25 @@
       // the same concept.
       const parenMatch = term.match(/^(.*?)\s*\((.*)\)\s*$/);
       const noParen = (parenMatch ? parenMatch[1] : term).trim();
-      if (noParen.length >= 4) variants.add(noParen);
+      if (noParen.length >= 4 || SHORT_TERM_ALLOWLIST.has(noParen.toLowerCase())) variants.add(noParen);
       if (parenMatch) {
         const parenContent = parenMatch[2].trim();
         if (parenContent.length >= 4) variants.add(parenContent);
       }
       const noPrefix = noParen.replace(/^(el|er|es)-/i, "").trim();
-      if (noPrefix.length >= 4) variants.add(noPrefix);
+      if (noPrefix.length >= 4 || SHORT_TERM_ALLOWLIST.has(noPrefix.toLowerCase())) variants.add(noPrefix);
       variants.forEach((v) => {
         if (GENERIC_VARIANT_BLOCKLIST.has(v.toLowerCase())) return;
+        // The same concept sometimes exists as a near-identical entry in two
+        // datasets (e.g. "Zât"/"The Essence" is both ontology.json's "dhat"
+        // and esma.json's "zat"). Registering both under the same name
+        // would silently make one shadow the other with no clear winner
+        // documented anywhere; keep only the first registration for a given
+        // name so the choice is explicit and doesn't grow the match list
+        // with an entry that could never actually be reached.
+        const dedupeKey = lang + ":" + v.toLowerCase();
+        if (registeredVariantKeys.has(dedupeKey)) return;
+        registeredVariantKeys.add(dedupeKey);
         crossLinkTermsByLang[lang].push({ term: v, view, id });
       });
     });

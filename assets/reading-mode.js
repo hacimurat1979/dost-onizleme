@@ -20,7 +20,9 @@
     const detailContent = document.getElementById("detail-content");
     detailPanel.insertBefore(controls, detailContent);
 
-    let fontScale = parseFloat(localStorage.getItem("dost-font-scale")) || 1;
+    let stored = null;
+    try { stored = localStorage.getItem("dost-font-scale"); } catch (e) {}
+    let fontScale = parseFloat(stored) || 1;
     applyFontSize(fontScale);
 
     document.getElementById("font-size-decrease").addEventListener("click", () => {
@@ -41,7 +43,8 @@
   }
 
   function restoreReadingPreferences() {
-    const savedFontScale = localStorage.getItem("dost-font-scale");
+    let savedFontScale = null;
+    try { savedFontScale = localStorage.getItem("dost-font-scale"); } catch (e) {}
     if (savedFontScale) applyFontSize(savedFontScale);
   }
 

@@ -34,7 +34,7 @@
     catch (e) { return []; }
   }
   function setQueue(q) {
-    localStorage.setItem(QUEUE_KEY, JSON.stringify(q));
+    try { localStorage.setItem(QUEUE_KEY, JSON.stringify(q)); } catch (e) {}
     updateBadge();
   }
 
@@ -111,7 +111,7 @@
 
   function clearQueue() {
     if (!confirm("Bekleyen tüm düzenlemeler silinsin mi? / Clear all pending edits?")) return;
-    localStorage.removeItem(QUEUE_KEY);
+    try { localStorage.removeItem(QUEUE_KEY); } catch (e) {}
     document.querySelectorAll("[data-dost-edit-idx]").forEach((el) => delete el.dataset.dostEditIdx);
     updateBadge();
   }

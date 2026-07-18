@@ -34,6 +34,7 @@
 
   let index = [];
   let indexLoaded = false;
+  let indexPromise = null;
 
   function allLangText(dict) {
     if (!dict) return "";
@@ -42,6 +43,7 @@
   }
 
   function buildIndex() {
+    if (indexPromise) return indexPromise;
     const sources = [
       fetch("data/ibn-arabi/ontology.json").then((r) => r.json()).then((d) => {
         (d.nodes || []).forEach((n) => {
@@ -103,7 +105,7 @@
         });
       }),
     ];
-    return Promise.allSettled(sources).then((results) => {
+    indexPromise = Promise.allSettled(sources).then((results) => {
       results.forEach((r) => {
         if (r.status === "rejected") console.error("Arama kaynağı yüklenemedi / Search source failed to load", r.reason);
       });
@@ -116,6 +118,7 @@
       });
       indexLoaded = true;
     });
+    return indexPromise;
   }
 
   function tt(dict) {

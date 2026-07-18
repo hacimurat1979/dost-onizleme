@@ -15,6 +15,8 @@
     sirlar: { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" },
     sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
     futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
+    cizimler: { tr: "Çizimler", en: "Diagrams", pt: "Diagramas" },
+    terimler: { tr: "Terimler", en: "Terms", pt: "Termos" },
   };
 
   let pageData = null;
@@ -39,8 +41,8 @@
       })
       .catch((err) => {
         console.error("Biriken Parçalar verisi yüklenemedi / Failed to load Gathered Pieces data", err);
+        fetchPromise = null;
         if (window.DostViewStatus) window.DostViewStatus.showError("biriken-parcalar-wrap", () => window.__birikenParcalarApp.activate());
-        throw err;
       });
     return fetchPromise;
   }
@@ -99,11 +101,15 @@
   }
 
   function activate() {
-    fetchData().then(() => renderList());
+    fetchData().then((data) => {
+      if (!data) return;
+      renderList();
+    });
   }
 
   function goToNode(id) {
-    fetchData().then(() => {
+    fetchData().then((data) => {
+      if (!data) return;
       renderList();
       if (id) showEntryDetail(id);
     });

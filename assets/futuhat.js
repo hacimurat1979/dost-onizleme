@@ -854,7 +854,9 @@
     const printBtn = document.getElementById("futuhat-print");
     const shareBtn = document.getElementById("futuhat-share");
 
-    let fontScale = parseFloat(localStorage.getItem("dost-font-scale")) || 1;
+    let storedScale = null;
+    try { storedScale = localStorage.getItem("dost-font-scale"); } catch (e) {}
+    let fontScale = parseFloat(storedScale) || 1;
     applyFontScale(fontScale);
 
     if (dec) {

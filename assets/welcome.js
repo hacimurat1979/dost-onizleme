@@ -5,7 +5,9 @@
   if (!root) return;
 
   const SEEN_KEY = "dost-welcome-seen";
-  if (sessionStorage.getItem(SEEN_KEY)) {
+  let seen = false;
+  try { seen = !!sessionStorage.getItem(SEEN_KEY); } catch (e) {}
+  if (seen) {
     root.hidden = true;
     return;
   }
@@ -40,7 +42,7 @@
   function leave() {
     if (root.classList.contains("welcome-screen--leaving") || root.hidden) return;
     root.classList.add("welcome-screen--leaving");
-    sessionStorage.setItem(SEEN_KEY, "1");
+    try { sessionStorage.setItem(SEEN_KEY, "1"); } catch (e) {}
     setTimeout(() => {
       root.hidden = true;
     }, 950);

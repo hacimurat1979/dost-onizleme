@@ -111,6 +111,9 @@
     "vahyin-mertebeleri": "beam",
     "hayir-ve-ser": "scale",
     "tezkire-i-erbaa": "compass",
+    "kutbiyet-hiyerarsisi": "steps",
+    "ahval-makamat": "wave",
+    "kurani-kozmoloji": "rays",
   };
   function groupIconSvg(groupId) {
     const key = GROUP_ICON[groupId] || "dot-circle";
@@ -432,6 +435,9 @@
     "hayir-ve-ser": 100,
     "tezkire-i-erbaa": 275,
     "firaset": 55,
+    "kutbiyet-hiyerarsisi": 165,
+    "ahval-makamat": 70,
+    "kurani-kozmoloji": 235,
   };
   function groupHue(groupId) {
     return GROUP_HUE[groupId] !== undefined ? GROUP_HUE[groupId] : 40;
@@ -474,6 +480,9 @@
     terimler: 15,
     sorular: 225,
     futuhat: 340,
+    sirlar: 100,
+    cizimler: 185,
+    "biriken-parcalar": 45,
   };
 
   function siteLinksHtml(t) {
@@ -486,6 +495,9 @@
       terimler: { tr: "Terimler", en: "Terms", pt: "Termos" },
       sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
       futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
+      sirlar: { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" },
+      cizimler: { tr: "Çizimler", en: "Diagrams", pt: "Diagramas" },
+      "biriken-parcalar": { tr: "Biriken Parçalar", en: "Gathered Pieces", pt: "Peças Reunidas" },
     };
     const chips = links
       .map((l) => `<button class="bookmap-concept-tag bookmap-concept-tag--group" data-view="${l.view}" data-id="${l.id}" style="--tag-hue:${VIEW_HUE[l.view] !== undefined ? VIEW_HUE[l.view] : 40}">${tt(VIEW_LABEL[l.view] || {})} → ${l.id}</button>`)
