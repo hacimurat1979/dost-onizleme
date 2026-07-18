@@ -1,19 +1,18 @@
 (function () {
   "use strict";
 
-  // Gizli düzenleme modu: Ctrl+Alt (veya Cmd+Alt) basılıyken "revise"
-  // yazınca açılır/kapanır. Sadece elle yazılmış düz yazıyı (kısım metinleri,
-  // terim/hâl/sır açıklamaları, hakkında sayfası) contenteditable yapar;
-  // hiçbir şeyi doğrudan siteye yazmaz -- her değişiklik yalnızca bu
-  // tarayıcıda (localStorage) tutulur, "Dışa Aktar" ile bir JSON dosyası
-  // olarak indirilip bir sonraki oturumda Claude'a verilir. Bu yüzden
-  // kombinasyon "gizli" olsa da güvenlik açığı değildir -- kimse siteyi
-  // doğrudan değiştiremez.
+  // Gizli düzenleme modu: düz metin içinde "revise" yazınca açılır/kapanır.
+  // Sadece elle yazılmış düz yazıyı (kısım metinleri, terim/hâl/sır
+  // açıklamaları, hakkında sayfası) contenteditable yapar; hiçbir şeyi
+  // doğrudan siteye yazmaz -- her değişiklik yalnızca bu tarayıcıda
+  // (localStorage) tutulur, "Dışa Aktar" ile bir JSON dosyası olarak
+  // indirilip bir sonraki oturumda Claude'a verilir. Bu yüzden kombinasyon
+  // "gizli" olsa da güvenlik açığı değildir -- kimse siteyi doğrudan
+  // değiştiremez. "revise" nadir bir kelime olduğu için (eski "uyan"ın
+  // aksine) düz yazı içinde geçen sıradan kelimelerle çakışmıyor.
   const CODE = "revise";
-  const MAX_GAP_MS = 1500;
   const QUEUE_KEY = "dost-edit-queue";
   let buffer = "";
-  let lastKeyAt = 0;
   let editModeOn = false;
   let panel = null;
   let observer = null;
@@ -162,27 +161,12 @@
 
   window.addEventListener("keydown", (e) => {
     if (e.key.length !== 1) return;
-    if (!(e.ctrlKey || e.metaKey) || !e.altKey || e.shiftKey) return;
-
-    const now = Date.now();
-    if (now - lastKeyAt > MAX_GAP_MS) buffer = "";
-    lastKeyAt = now;
-
-    const key = e.key.toLowerCase();
-    const candidate = buffer + key;
-    if (CODE.startsWith(candidate)) {
-      e.preventDefault();
-      buffer = candidate;
-      if (buffer === CODE) {
-        buffer = "";
-        if (editModeOn) disableEditMode();
-        else enableEditMode();
-      }
-    } else if (key === CODE[0]) {
-      e.preventDefault();
-      buffer = key;
-    } else {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    buffer = (buffer + e.key.toLowerCase()).slice(-CODE.length);
+    if (buffer === CODE) {
       buffer = "";
+      if (editModeOn) disableEditMode();
+      else enableEditMode();
     }
   });
 })();
