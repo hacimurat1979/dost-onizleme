@@ -1,12 +1,12 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik; On Altıncı, On Yedinci, On Sekizinci, On Dokuzuncu ve Yirminci Kısımlar da bu okumaya eklendi.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik; On Altıncı, On Yedinci, On Sekizinci, On Dokuzuncu, Yirminci ve Yirmi Birinci Kısımlar da bu okumaya eklendi.",
   "book": {
     "cilts": [
       { "cilt": 1, "kisimStart": 1, "kisimEnd": 14 },
       { "cilt": 2, "kisimStart": 15, "kisimEnd": 28 }
     ]
   },
-  "activePartId": "c2k20",
+  "activePartId": "c2k21",
   "parts": [
     {
       "id": "c1k3",
@@ -8551,6 +8551,384 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XX — İsevi Kutupların Bilinmesi, Onların Sırları, s. 197-202.",
           "en": "al-Futuhat al-Makkiyya, Vol. II, Part XX — Knowing the Christic Poles, Their Secrets, pp. 197-202.",
           "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XX — Conhecendo os Polos Crísticos, Seus Segredos, pp. 197-202."
+        }
+      ]
+    },
+    {
+      "id": "c2k21",
+      "cilt": 2,
+      "kisim": 21,
+      "status": "active",
+      "title": {
+        "tr": "Düşüşün Sırrı: Yükseliş Olarak Alçalma, ve Mucizenin Üç Yüzü",
+        "en": "The Secret of the Fall: Descent as Ascent, and the Three Faces of the Miraculous",
+        "pt": "O Segredo da Queda: Descida como Ascensão, e as Três Faces do Miraculoso"
+      },
+      "pageRange": "203–227",
+      "hero": {
+        "summary": {
+          "tr": "Kısım XXI, üç bölümüyle bize göre kısmın en insani anlarından bazılarını taşıyor: Dost'un kendi manevi deneyimini Ebû Yezîd el-Bistâmî'yle karşılaştırdığı, 'perde' istediği bir sahne; velinin bir makamdan düşmesinin aslında bir yükseliş olabileceğine dair alışılmadık bir okuma; ve âdetin aşılmasını (sihir, keramet, mucize) sistematik olarak birbirinden ayırma çabası. Kısım, Fas'ta karşılaştığı bir fırıncıyla yaşadığı somut bir hâl-aktarımı sahnesiyle ve Uleym el-Esved'in 'hakikatler değişmez' sözüyle de zenginleşiyor.",
+          "en": "Part XXI, across its three chapters, carries what feel to us like some of the part's most human moments: a scene where Dost compares his own spiritual experience to Abu Yazid al-Bistami's, and asks for a 'veil'; an unusual reading of a wali's fall from a station as possibly itself an ascent; and a systematic attempt to distinguish sorcery, wonder-working, and miracle from one another. The part is further enriched by a concrete scene of state-transmission with a baker Dost met in Fez, and by Ulaym al-Aswad's saying that 'realities do not change.'",
+          "pt": "A Parte XXI, em seus três capítulos, traz o que nos parecem alguns dos momentos mais humanos da parte: uma cena em que Dost compara sua própria experiência espiritual à de Abu Yazid al-Bistami, e pede um 'véu'; uma leitura incomum de que a queda de um wali de uma estação pode ser, ela mesma, uma ascensão; e uma tentativa sistemática de distinguir feitiçaria, prodígio e milagre entre si. A parte se enriquece ainda com uma cena concreta de transmissão de estado com um padeiro que Dost encontrou em Fez, e com o dito de Ulaym al-Aswad de que 'as realidades não mudam.'"
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Bölüm 38'in açılışındaki bir ayrım: sözün lafzen mi yoksa anlamen mi nakledildiği, iki farklı zincir doğuruyor -- biri tek/dolaysız, öteki kuşaktan kuşağa çoğalan.",
+          "en": "A distinction opening Chapter 38: whether a word is transmitted literally or by meaning gives rise to two different chains -- one single and direct, the other multiplying generation to generation.",
+          "pt": "Uma distinção que abre o Capítulo 38: se uma palavra é transmitida literalmente ou por seu sentido dá origem a duas cadeias diferentes -- uma única e direta, a outra se multiplicando geração após geração."
+        },
+        "tree": {
+          "id": "nakil-tree",
+          "label": {
+            "tr": "Vahyin ve Sözün Aktarılması",
+            "en": "The Transmission of Revelation and Word",
+            "pt": "A Transmissão da Revelação e da Palavra"
+          },
+          "note": {
+            "tr": "iki nakil türü, iki farklı zincir doğuruyor",
+            "en": "two kinds of transmission give rise to two different chains",
+            "pt": "dois tipos de transmissão dão origem a duas cadeias diferentes"
+          },
+          "children": [
+            {
+              "id": "lafzen-nakil",
+              "label": {
+                "tr": "Lafzen Nakil",
+                "en": "Literal Transmission",
+                "pt": "Transmissão Literal"
+              },
+              "note": {
+                "tr": "Kur'an ehli, hadisçiler -- kıyamette peygamberler safında haşrolunur",
+                "en": "the people of the Qur'an, hadith-transmitters -- gathered in the ranks of the prophets on the Day of Resurrection",
+                "pt": "o povo do Alcorão, transmissores de hadith -- reunidos nas fileiras dos profetas no Dia da Ressurreição"
+              }
+            },
+            {
+              "id": "anlamen-nakil",
+              "label": {
+                "tr": "Anlamen Nakil",
+                "en": "Transmission by Meaning",
+                "pt": "Transmissão pelo Sentido"
+              },
+              "note": {
+                "tr": "fakihler, müçtehidler -- kendi anladıklarını naklettikleri için 'kendi elçileridir'",
+                "en": "jurists, those who exercise independent judgment -- 'their own messengers,' since they transmit what they themselves understood",
+                "pt": "juristas, os que exercem juízo independente -- 'seus próprios mensageiros,' pois transmitem o que eles mesmos entenderam"
+              },
+              "children": [
+                {
+                  "id": "sahabe",
+                  "label": {
+                    "tr": "Sahâbe",
+                    "en": "The Companions",
+                    "pt": "Os Companheiros"
+                  },
+                  "note": {
+                    "tr": "Allah'ın elçisinin elçileri",
+                    "en": "the messengers of the Messenger of Allah",
+                    "pt": "os mensageiros do Mensageiro de Allah"
+                  }
+                },
+                {
+                  "id": "tabiin",
+                  "label": {
+                    "tr": "Tâbiîn",
+                    "en": "The Followers",
+                    "pt": "Os Seguidores"
+                  },
+                  "note": {
+                    "tr": "sahâbenin elçileri",
+                    "en": "the messengers of the Companions",
+                    "pt": "os mensageiros dos Companheiros"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "lafzen-anlamen-nakil",
+          "heading": {
+            "tr": "Nübüvvet Kesildi, Velayet Sürüyor: Sözün İki Nakli",
+            "en": "Prophecy Has Ended, Sainthood Continues: Two Ways a Word Is Transmitted",
+            "pt": "A Profecia Terminou, a Santidade Continua: Duas Formas de Transmitir uma Palavra"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm, 'benden sonra ne nebi ne resul vardır' sözünün velilere yaşattığı bir yoksunlukla açılıyor: risalet ve nübüvvet kesildiğinde geriye ne kalır? Dost'un cevabı, geriye kalan tek ismin <strong>el-Velî</strong> olduğu -- bu da Allah'ın kendi peygamberinden aldığı, sonra yine ona giydirdiği bir isim. Bize göre bu, kitabın kutbiyet/velayet üzerine kurduğu bütün mimarinin sessizce dayandığı bir öncül: velayet, nübüvvetin bittiği yerde başlayan değil, nübüvvetin içinde zaten var olan ve ondan sonra da sürmeye devam eden bir şey olarak okunabilir.",
+                "en": "The chapter opens with a certain deprivation that the saying 'there is no prophet or messenger after me' brings to the awliya: when messengership and prophecy end, what remains? Dost's answer is that the one name left is <strong>al-Wali</strong> (the Friend/Saint) -- a name Allah took from His own Prophet and then clothed him in again. To us, this reads as a premise the whole architecture of the book's teaching on pole-hood and sainthood quietly rests on: sainthood need not be read as something that begins where prophecy ends, but as something already present within prophecy, which then continues after it.",
+                "pt": "O capítulo se abre com certa privação que o dito 'não há profeta ou mensageiro depois de mim' traz aos awliya: quando o mensageirado e a profecia terminam, o que resta? A resposta de Dost é que o único nome que resta é <strong>al-Wali</strong> (o Amigo/Santo) -- um nome que Allah tomou de Seu próprio Profeta e depois voltou a vesti-lo com ele. Para nós, isso se lê como uma premissa sobre a qual toda a arquitetura do ensinamento do livro acerca do polo e da santidade silenciosamente repousa: a santidade não precisa ser lida como algo que começa onde a profecia termina, mas como algo já presente dentro da profecia, que depois continua após ela."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ardından, kısmın merkezindeki ayrım geliyor: vahyi <strong>lafzen</strong> nakleden (Kur'an hafızları, hadisçiler) ile <strong>anlamen</strong> nakleden (fakihler, kendi anladıklarını üreten kimseler) arasındaki fark. Sadece birinciler kıyamet günü peygamberlerin safında haşredilir; ikinciler ise 'kendi elçileridir' -- çünkü naklettikleri şey, kendi anlayışlarının süzgecinden geçmiştir. Bu zincir sahâbeye ve tâbiîne kadar uzatılıyor: sahâbe 'Allah'ın elçisinin elçileri', tâbiîn ise 'sahâbenin elçileri' sayılıyor. Bu ayrım bize, niyet-amel ilişkisi üzerine önceki kısımlarda okuduklarımızın bir yankısı gibi geliyor: aktarımın da, tıpkı amelin de, 'sadakati' bir ölçü olarak öne çıkıyor.",
+                "en": "Then comes the distinction at the part's center: the difference between transmitting revelation <strong>literally</strong> (Qur'an-memorizers, hadith transmitters) and transmitting it <strong>by meaning</strong> (jurists, those who produce their own understanding). Only the former are gathered among the prophets' ranks on the Day of Resurrection; the latter are 'their own messengers' -- because what they transmit has passed through the filter of their own understanding. This chain is extended to the Companions and the Followers: the Companions are counted as 'the messengers of the Messenger of Allah,' the Followers as 'the messengers of the Companions.' To us, this distinction echoes something we read in earlier parts about the relation between intention and action: transmission, like action, seems to be measured above all by its faithfulness.",
+                "pt": "Depois vem a distinção no centro da parte: a diferença entre transmitir a revelação <strong>literalmente</strong> (memorizadores do Alcorão, transmissores de hadith) e transmiti-la <strong>pelo sentido</strong> (juristas, os que produzem seu próprio entendimento). Somente os primeiros são reunidos entre as fileiras dos profetas no Dia da Ressurreição; os segundos são 'seus próprios mensageiros' -- pois o que transmitem passou pelo filtro de seu próprio entendimento. Essa cadeia se estende aos Companheiros e aos Seguidores: os Companheiros contam como 'os mensageiros do Mensageiro de Allah', os Seguidores como 'os mensageiros dos Companheiros'. Para nós, essa distinção ecoa algo que lemos em partes anteriores sobre a relação entre intenção e ação: a transmissão, como a ação, parece ser medida acima de tudo por sua fidelidade."
+              }
+            }
+          ]
+        },
+        {
+          "id": "nisan-ve-perde",
+          "heading": {
+            "tr": "Bir Nişan, Bir Perde: Ebû Yezîd'le Karşılaştırma",
+            "en": "A Mark, a Veil: A Comparison with Abu Yazid",
+            "pt": "Uma Marca, um Véu: Uma Comparação com Abu Yazid"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölümün en dolaysız anlarından biri burada: Dost, kulluğun yetkinlik makamına önce Ebû Yezîd el-Bistâmî'nin nasıl ulaştığını anlatıyor -- niyaz ve dilekten sonra, 'iğne deliği kadarıyla' kendisine gösterilen bu makama ayağını koymak istemiş, ayağı yanmış; bu makama zevk yoluyla ulaşılamayacağını anlamış. Dost kendi deneyimini buna karşı konumlandırıyor: <em>'Allah beni ona muttali kılınca, bu durum benim dileğimle olmamış, Allah'ın inayeti olarak gerçekleşmiştir... ben o makama ulaşım ve merdivenlerinde yükselmem için emir geldi. Böylece onun bir sınama hitabı ve deneme emri olduğunu anladım... Bunun üzerine durdum ve perde istedim.'</em> (s. 207)",
+                "en": "One of the chapter's most unguarded moments is here: Dost first recounts how Abu Yazid al-Bistami reached the station of the perfection of servanthood -- after supplication and longing, shown this station only 'the width of a needle's eye,' he wished to set his foot on it, and his foot was burned; he understood the station could not be reached through mere yearning. Dost positions his own experience against this: <em>'when Allah made me aware of it, this did not happen through my own wish, but came about as Allah's grace... a command came for me to reach that station and ascend its stairs. I thus understood it to be a testing address and a trial command... At this I stopped, and asked for a veil.'</em> (p. 207)",
+                "pt": "Um dos momentos mais desprotegidos do capítulo está aqui: Dost primeiro relata como Abu Yazid al-Bistami alcançou a estação da perfeição da servidão -- depois de súplica e anseio, mostrada a ele essa estação apenas 'na largura do buraco de uma agulha,' quis colocar seu pé nela, e seu pé se queimou; compreendeu que a estação não podia ser alcançada por mero anseio. Dost posiciona sua própria experiência diante disso: <em>'quando Allah me deu ciência disso, isso não aconteceu por meu próprio desejo, mas se deu como graça de Allah... veio uma ordem para que eu alcançasse aquela estação e subisse seus degraus. Assim compreendi que era um discurso de prova e uma ordem de teste... Diante disso, parei e pedi um véu.'</em> (p. 207)"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Perde çekiliyor, ve Dost bunun için teşekkür ediyor -- ihsanın artmasını değil. <em>'Kulluğun yetkinliği olan perdeyi istemişken, artırmasını nasıl talep edebilirdim ki?'</em> (s. 207) diyerek şükrünü sınırlıyor. Ardından, bize göre kısmın en çıplak itiraflarından biri geliyor: <em>'Nice şeye çağrıldım ve icabet etmedim.'</em> (s. 207) Bu tek cümle, bir yandan Dost'un kendi manevi tarihinin övgüyle değil, bazı çağrılara kulak tıkamış olma itirafıyla anlatılmasına izin veriyor -- önceki kısımlarda karşılaştığımız otobiyografik anlar (babasının ölümü, kendi terakki hikâyesi) dizisine eklenmesi gereken bir başka parça olarak duruyor.",
+                "en": "The veil is drawn, and Dost gives thanks for it -- not for an increase of favor. <em>'Having asked for the veil that is the perfection of servanthood, how could I then ask for its increase?'</em> (p. 207) he says, deliberately bounding his own gratitude. Then comes what feels to us like one of the part's barest admissions: <em>'I was called to many a thing, and I did not answer.'</em> (p. 207) This single sentence lets Dost's own spiritual history be told not through praise, but through the confession of having turned a deaf ear to certain calls -- another piece that should be added to the sequence of autobiographical moments we have met in earlier parts (his father's death, his own account of ascent).",
+                "pt": "O véu é corrido, e Dost agradece por ele -- não por um aumento de favor. <em>'Tendo pedido o véu que é a perfeição da servidão, como poderia então pedir seu aumento?'</em> (p. 207) diz ele, delimitando deliberadamente sua própria gratidão. Depois vem o que nos parece uma das confissões mais nuas da parte: <em>'Fui chamado para muitas coisas, e não respondi.'</em> (p. 207) Esta única frase permite que a própria história espiritual de Dost seja contada não através do elogio, mas através da confissão de ter feito ouvidos moucos a certos chamados -- outra peça que deveria se somar à sequência de momentos autobiográficos que encontramos em partes anteriores (a morte de seu pai, seu próprio relato de ascensão)."
+              }
+            }
+          ]
+        },
+        {
+          "id": "isanin-sozu-ibrahimin-tevili",
+          "heading": {
+            "tr": "İbrahim'in Üç Sözü, İsa'nın Kendini Tanıtması",
+            "en": "Abraham's Three Sayings, Jesus's Self-Introduction",
+            "pt": "As Três Palavras de Abraão, a Autoapresentação de Jesus"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm, Hz. İbrahim'in üç 'tevili'yle devam ediyor: Sara için 'kardeşimdir' demesi, 'ben hastayım' demesi, putları kırdıktan sonra 'onu (en büyüğünü) yaptı' demesi -- her biri sözlükte yalan değil, farklı bir doğruluk katmanına işaret eden bir söz olarak okunuyor. Bunun ardından Hz. İsa'nın Kur'an'daki (Meryem, 19:30-33) beşikte konuşup kendini tanıttığı sahne, Hz. Muhammed'e -- kendini tanıtma biçimi bakımından -- bir model olarak sunuluyor.",
+                "en": "The chapter continues with Abraham's three 'interpretive sayings': calling Sarah 'my sister,' saying 'I am sick,' and saying, after breaking the idols, that 'the biggest one did it' -- each read not as a lie in the dictionary sense but as a statement pointing to a different layer of truth. This is followed by the scene, in the Qur'an (Maryam 19:30-33), of Jesus speaking from the cradle to introduce himself -- offered as a model for Muhammad, in terms of the manner of self-introduction.",
+                "pt": "O capítulo continua com as três 'palavras interpretativas' de Abraão: chamar Sara de 'minha irmã,' dizer 'estou doente,' e dizer, depois de quebrar os ídolos, que 'o maior deles o fez' -- cada uma lida não como uma mentira no sentido do dicionário, mas como um enunciado que aponta para uma camada diferente de verdade. Segue-se a cena, no Alcorão (Maryam 19:30-33), de Jesus falando do berço para se apresentar -- oferecida como modelo para Muhammad, quanto à maneira de se apresentar."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu, bize göre, kısımların tekrar tekrar döndüğü Muhammedi/İsevi/Musevi nispet motifinin bir başka yüzü: burada İsa, Muhammed'e doğrudan bir 'söz söyleme' modeli olarak sunuluyor -- önceki kısımlarda gördüğümüz keramet karşılaştırmalarından (su üzerinde yürüme/havada yürüme gibi) farklı, dile ve kendini ifade etme biçimine dair bir bağ. Bölüm, ilahi isimlerle ahlâklanırken temkinli olma ve 'vekil' olup 'ortak' olmama uyarısıyla kapanıyor -- kulun en yetkin makamda bile bir sınırın içinde kalması gerektiğini hatırlatan bir kapanış.",
+                "en": "This is, to us, another face of the Muhammadan/Christic/Mosaic affiliation motif the parts keep returning to: here Jesus is offered to Muhammad directly as a model of 'speech' -- a link concerning language and self-expression, distinct from the wonder-comparisons we have seen in earlier parts (walking on water/walking on air). The chapter closes with a caution about taking on the divine names' character while remaining a 'deputy' and not a 'partner' -- a closing that reminds us the servant must stay within a limit even at the most perfect station.",
+                "pt": "Isso é, para nós, outra face do motivo de filiação Muhammadano/Crístico/Mosaico ao qual as partes voltam repetidamente: aqui Jesus é oferecido a Muhammad diretamente como modelo de 'fala' -- um vínculo relativo à linguagem e à autoexpressão, distinto das comparações de prodígios que vimos em partes anteriores (caminhar sobre a água/caminhar no ar). O capítulo se encerra com uma advertência sobre assumir o caráter dos nomes divinos permanecendo um 'representante' e não um 'sócio' -- um encerramento que nos lembra que o servo deve permanecer dentro de um limite mesmo na estação mais perfeita."
+              }
+            }
+          ]
+        },
+        {
+          "id": "dusus-yukselistir",
+          "heading": {
+            "tr": "Düşüş, Aslında Bir Yükseliştir",
+            "en": "The Fall Is, in Fact, an Ascent",
+            "pt": "A Queda É, de Fato, uma Ascensão"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Otuz Dokuzuncu Bölüm, bize göre kısmın en özgün tezini bir kasideyle açıyor: <em>'Veli düştüğünde, bu düşüş, gerçekte / Yücelik mertebelerde bir yükseliş ve terakkidir. / Çünkü Hakta sınırlanma yoktur / Uzaklıkta yakınlık vardır.'</em> (s. 209) Bu satırlar, bir velinin makamından düşmesinin -- mekânla sınırlanmayan Hak karşısında -- aslında daha yüksek bir mertebeye çıkışın ta kendisi olabileceğini öne sürüyor. Bize göre bu okuma, sitenin kendi kökensel duruşuyla (anlamaya çalışıyoruz, anlatmaya değil) tuhaf bir akrabalık taşıyor: en yetkin kişi bile kendi 'düşüşünü' bir kapanış değil, süregiden bir yolculuğun parçası olarak görebiliyor.",
+                "en": "Chapter Thirty-Nine opens, to us, with what feels like the part's most distinctive thesis, in a qasida: <em>'When the wali falls, this fall is, in truth / an ascent and advance among the ranks of loftiness. / For in the Real there is no confinement / In distance there is nearness.'</em> (p. 209) These lines suggest that a wali's fall from a station -- before a Real unconfined by place -- may in fact be the very act of rising to a higher rank. To us, this reading bears a curious kinship with the site's own foundational stance (we are trying to understand, not to describe): even the most perfect person can see their own 'fall' not as a closure, but as part of an ongoing journey.",
+                "pt": "O Capítulo Trinta e Nove se abre, para nós, com o que parece ser a tese mais distintiva da parte, numa qasida: <em>'Quando o wali cai, essa queda é, em verdade, / uma ascensão e um avanço entre os graus da altivez. / Pois no Real não há confinamento / Na distância há proximidade.'</em> (p. 209) Estas linhas sugerem que a queda de um wali de uma estação -- diante de um Real não confinado pelo lugar -- pode de fato ser o próprio ato de subir a um grau mais alto. Para nós, essa leitura tem um curioso parentesco com a postura fundacional do próprio site (estamos tentando compreender, não descrever): até a pessoa mais perfeita pode ver sua própria 'queda' não como um fechamento, mas como parte de uma jornada em curso."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXI — Otuz Dokuzuncu Bölüm, s. 209-211.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXI — Chapter Thirty-Nine, pp. 209-211.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXI — Capítulo Trinta e Nove, pp. 209-211."
+              },
+              "pair": {
+                "left": {
+                  "label": {
+                    "tr": "Emir (İblis'e Secde)",
+                    "en": "Command (Iblis's Prostration)",
+                    "pt": "Ordem (A Prostração de Iblis)"
+                  },
+                  "note": {
+                    "tr": "varlıksal, nefse ağır bir yükümlülük -- 'yapmak'",
+                    "en": "an existential, heavy obligation for the self -- 'to do'",
+                    "pt": "uma obrigação existencial, pesada para o eu -- 'fazer'"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Nehiy (Âdem-Havva'ya Ağaç Yasağı)",
+                    "en": "Prohibition (the Tree Forbidden to Adam and Eve)",
+                    "pt": "Proibição (a Árvore Proibida a Adão e Eva)"
+                  },
+                  "note": {
+                    "tr": "ademî -- 'yapmamak', mümkünün hakikatine daha yakın",
+                    "en": "a not-being -- 'to not do,' closer to the reality of the contingent",
+                    "pt": "um não-ser -- 'não fazer,' mais próximo da realidade do contingente"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un ayrımı: emre karşı gelmek (İblis) ile bir yasağa yaklaşmak (Âdem-Havva) aynı 'itaatsizlik' değil -- biri varlıksal bir yapmayı, öteki ademî bir sınırı ihlal ediyor. Bize göre bu ayrım, İblis'in cezasının nihai oluşuyla Âdem-Havva'nın 'düşüşünün' bir vaadin başlangıcı olması arasındaki farkı da açıklıyor olabilir.",
+                "en": "Dost's distinction: defying a command (Iblis) and approaching a prohibition (Adam and Eve) are not the same 'disobedience' -- one violates an existential doing, the other a not-being limit. To us, this distinction may also help explain the difference between the finality of Iblis's punishment and Adam and Eve's 'fall' being the start of a promise.",
+                "pt": "A distinção de Dost: desafiar uma ordem (Iblis) e se aproximar de uma proibição (Adão e Eva) não é a mesma 'desobediência' -- uma viola um fazer existencial, a outra um limite de não-ser. Para nós, essa distinção também pode ajudar a explicar a diferença entre a finalidade do castigo de Iblis e a 'queda' de Adão e Eva ser o início de uma promessa."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fas-firincisi-abdulkadir",
+          "heading": {
+            "tr": "Fas'ta Bir Fırıncı, ve Abdülkadir el-Cîlî'nin İtirafı",
+            "en": "A Baker in Fez, and Abd al-Qadir al-Jilani's Confession",
+            "pt": "Um Padeiro em Fez, e a Confissão de Abd al-Qadir al-Jilani"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm, bize göre kısmın en somut sahnelerinden birini taşıyor: Dost, Fas'ta aba giymiş, fırında çalışan bir adamla karşılaşıyor. Adama büyük şeyh Ebü'l-Abbas el-Hassâr'ı sorunca, cevap şöyle geliyor: <em>'Sözünü ettiğin kişi, bir makamda bulunup oradan düşmüştür... O kadar utandı ve kırıldı ki, insanların konuşması karşısında susması şart oldu. Onunla sürekli böyle ilaçlarla şakalaşıyorum, ilaçla ondan bu horluğun hastalığını gidermeye çalışıyorum.'</em> (s. 213) Dost'u yanına oturtuyor -- ve tedavi, sözle değil, dolaysız bir yakınlıkla, Dost'un kendi bedenine de yayılıyor: gülümsüyor, 'kalp gözünde kabule dönük bir kapı' açılıyor.",
+                "en": "The chapter carries, to us, one of the part's most concrete scenes: Dost meets a man wearing a cloak, working in a bakery, in Fez. Asking the man about the great shaykh Abu'l-Abbas al-Hassar, he gets this answer: <em>'The one you speak of was once in a station, and fell from it... He was so ashamed and broken that he had to fall silent before people's talk. I keep joking with him with remedies like this, trying to relieve him of the sickness of this abasement.'</em> (p. 213) The man seats Dost beside him -- and the treatment spreads, not through words but through unmediated closeness, into Dost's own body: he smiles, and 'a door turned toward acceptance opens in the eye of the heart.'",
+                "pt": "O capítulo traz, para nós, uma das cenas mais concretas da parte: Dost encontra um homem vestindo um manto, trabalhando numa padaria, em Fez. Ao perguntar ao homem sobre o grande xeque Abu'l-Abbas al-Hassar, recebe esta resposta: <em>'Aquele de quem falas esteve numa estação, e dela caiu... Ficou tão envergonhado e abatido que teve de calar-se diante da fala das pessoas. Fico sempre brincando com ele com remédios assim, tentando aliviá-lo da doença desse rebaixamento.'</em> (p. 213) O homem senta Dost ao seu lado -- e o tratamento se espalha, não por palavras mas por uma proximidade não mediada, para o próprio corpo de Dost: ele sorri, e 'uma porta voltada para a aceitação se abre no olho do coração.'"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Aynı bölümde iki keskin söz daha var. Ebû Yezîd el-Bistâmî'ye 'Bir arif günah işler mi?' diye sorulduğunda cevabı: <em>'Allah'ın emri takdir edilmiştir.'</em> (s. 213) Utbetü'l-Gulâm'a büyüklenmekle ilgili bir eleştiri geldiğinde ise: <em>'Nasıl böbürlenmem ki: Benim bir Efendim oldu, ben de onun kölesi oldum.'</em> (s. 215) Bölüm, Abdülkadir el-Cîlî'nin ölüm anındaki itirafıyla kapanıyor: ölümüne birkaç nefes kala secdeye kapanıp, o hâlin dünyada yerine getirmesi gereken bir hak olduğunu itiraf ediyor -- talebesi Ebü's-Suûd ise ölene dek hiç 'kendini bırakma'ya girmeden kulluğa bağlı kalıyor. Ardından Dost, kendi konumunu şaşırtıcı bir alçakgönüllülükle tanımlıyor: <em>'Abdülkadir'in yolu, velilerin yolları içinde gariptir. Bizim yolumuz ise, Abdülkadir'in yolu içinde gariptir.'</em> (s. 215) -- kendi yolunu, zaten 'garip' sayılan bir yolun içinde ayrıca 'garip' (nadir) olarak konumlandıran bir cümle.",
+                "en": "The same chapter holds two more piercing sayings. When Abu Yazid al-Bistami is asked, 'Does a knower of God sin?', his answer is: <em>'The command of Allah is decreed.'</em> (p. 213) When Utba al-Ghulam faces a criticism about pride, his answer is: <em>'How could I not be proud: I have gained a Master, and I have become His slave.'</em> (p. 215) The chapter closes with Abd al-Qadir al-Jilani's confession at the moment of death: with only a few breaths of life left, he prostrates himself, confessing that this state is a due owed in this world -- while his student Abu'l-Su'ud, in contrast, stays bound to servanthood without ever 'letting go,' until death. Dost then describes his own position with a surprising humility: <em>'Abd al-Qadir's path is strange among the paths of the saints. Our own path is strange within Abd al-Qadir's path.'</em> (p. 215) -- a sentence that places his own path as strange (rare) even within a path already considered strange.",
+                "pt": "O mesmo capítulo traz mais dois ditos penetrantes. Quando perguntam a Abu Yazid al-Bistami, 'Um conhecedor de Deus peca?', sua resposta é: <em>'A ordem de Allah está decretada.'</em> (p. 213) Quando Utba al-Ghulam enfrenta uma crítica sobre orgulho, sua resposta é: <em>'Como não me orgulharia: ganhei um Senhor, e me tornei Seu escravo.'</em> (p. 215) O capítulo se encerra com a confissão de Abd al-Qadir al-Jilani no momento da morte: com apenas alguns alentos de vida restantes, ele se prostra, confessando que esse estado é uma dívida devida neste mundo -- enquanto seu discípulo Abu'l-Su'ud, em contraste, permanece ligado à servidão sem nunca 'se entregar,' até a morte. Dost então descreve sua própria posição com uma surpreendente humildade: <em>'O caminho de Abd al-Qadir é estranho entre os caminhos dos santos. Nosso próprio caminho é estranho dentro do caminho de Abd al-Qadir.'</em> (p. 215) -- uma frase que situa seu próprio caminho como estranho (raro) mesmo dentro de um caminho já considerado estranho."
+              }
+            }
+          ]
+        },
+        {
+          "id": "sihir-keramet-mucize",
+          "heading": {
+            "tr": "Sihir, Keramet, Mucize: Âdetin Aşılmasının Üç Yüzü",
+            "en": "Sorcery, Wonder-Working, Miracle: Three Faces of Transcending the Norm",
+            "pt": "Feitiçaria, Prodígio, Milagre: Três Faces da Transcendência da Norma"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kırkıncı Bölüm, âdetin aşılmasını üç şekle ayırıyor. <strong>Sihir</strong>de dış gerçeklik yoktur -- sihirbaz, gözlerde/kulaklarda oluşan şeyin gerçek olmadığını bilir, bu ya nefsi kuvvete ya isimlerin özelliklerine dayanır. <strong>Keramet</strong>te gerçek bir varlıksal karşılık vardır, ama bu velinin bilgi ve himmet gücüne dayanarak meydana gelir. <strong>Mucize</strong>de ise ne nefis gücü ne isim özelliği işler -- Dost'un verdiği örnek çarpıcı: Hz. Musa'nın asası yılana dönüştüğünde, bizzat Musa bile korkup kaçmıştır; mucize, kendisinde gerçekleştiği kişinin bile tam bilmediği/anlamadığı bir şey olarak tarif ediliyor.",
+                "en": "Chapter Forty divides the transcending of the norm into three forms. In <strong>sorcery</strong> there is no external reality -- the sorcerer knows that what forms in the eyes/ears is not real, and this rests either on the power of the self or on the properties of names. In <strong>wonder-working</strong> there is a real existential counterpart, but it comes about through the wali's power of knowledge and spiritual aspiration. In <strong>miracle</strong>, neither the power of the self nor the property of a name is at work -- Dost's example is striking: when Moses's staff turned into a serpent, even Moses himself fled in fear; the miracle is described as something even the one it occurs through does not fully know or understand.",
+                "pt": "O Capítulo Quarenta divide a transcendência da norma em três formas. Na <strong>feitiçaria</strong> não há realidade externa -- o feiticeiro sabe que o que se forma nos olhos/ouvidos não é real, e isso repousa ou no poder do eu ou nas propriedades dos nomes. No <strong>prodígio</strong> há uma contraparte existencial real, mas ela advém do poder de conhecimento e aspiração espiritual do wali. No <strong>milagre</strong>, nem o poder do eu nem a propriedade de um nome atuam -- o exemplo de Dost é marcante: quando o cajado de Moisés se transformou numa serpente, o próprio Moisés fugiu com medo; o milagre é descrito como algo que mesmo aquele por meio de quem ele ocorre não conhece nem compreende plenamente."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXI — Kırkıncı Bölüm, s. 217-219.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXI — Chapter Forty, pp. 217-219.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXI — Capítulo Quarenta, pp. 217-219."
+              },
+              "triad": {
+                "left": {
+                  "label": {
+                    "tr": "Sihir",
+                    "en": "Sorcery",
+                    "pt": "Feitiçaria"
+                  },
+                  "note": {
+                    "tr": "beşer gücü -- failin kendisi bunun gerçek olmadığını bilir",
+                    "en": "human power -- the agent knows it is not real",
+                    "pt": "poder humano -- o agente sabe que não é real"
+                  }
+                },
+                "middle": {
+                  "label": {
+                    "tr": "Keramet",
+                    "en": "Wonder-Working",
+                    "pt": "Prodígio"
+                  },
+                  "note": {
+                    "tr": "velinin bilgi ve himmet gücü -- gerçek bir karşılığı var",
+                    "en": "the wali's power of knowledge and aspiration -- has a real counterpart",
+                    "pt": "o poder de conhecimento e aspiração do wali -- tem uma contraparte real"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Mucize",
+                    "en": "Miracle",
+                    "pt": "Milagre"
+                  },
+                  "note": {
+                    "tr": "ne nefis ne isim -- failin kendisi bile tam bilmez",
+                    "en": "neither self nor name -- even the agent does not fully know",
+                    "pt": "nem o eu nem o nome -- mesmo o agente não sabe plenamente"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un âdetin aşılması sınıflandırması: fark, dış gerçekliğin olup olmamasında değil, failin bunun üzerinde ne kadar bilgi/otorite sahibi olduğunda -- sihirbaz her şeyi bilir, veli kısmen bilir, mucizede fail bile bilmez.",
+                "en": "Dost's classification of transcending the norm: the difference lies not in whether external reality is present, but in how much knowledge/authority the agent has over it -- the sorcerer knows everything, the wali knows in part, and in a miracle even the agent does not know.",
+                "pt": "A classificação de Dost sobre a transcendência da norma: a diferença não está na presença ou não de realidade externa, mas em quanto conhecimento/autoridade o agente tem sobre ela -- o feiticeiro sabe tudo, o wali sabe em parte, e no milagre nem mesmo o agente sabe."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu üçlü ayrımın hemen ardından Uleym el-Esved'in anlatısı geliyor: mescitte bir mermer sütuna vurunca sütun altına dönüşüyor, yanındaki salih kişi onu altın olarak görüyor. Uleym'in cevabı: <em>'Be adam! Hakikatler değişmez. Sen, Rabbin karşısındaki hakikatin nedeniyle onu böyle görüyorsun. Gerçekte durum böyle değildir.'</em> (s. 218) Dost bunu cevher-suret ilişkisiyle açıyor: cevher (taş) sabit kalır, sadece suret (altın görünümü) değişir -- tıpkı insanın ilahi isimleri 'giyerken' kulluk hakikatinden hiç ayrılmaması gibi. Bize göre bu sahne, ileride Füsûs'ta karşılaşacağımız 'sabit ayn' (a'yân-ı sâbite) fikrinin erken bir izi olabilir -- şimdilik yalnızca not düşüyoruz, kesin bir bağlantı iddia etmiyoruz.",
+                "en": "Right after this threefold distinction comes Ulaym al-Aswad's story: he strikes a marble column in a mosque, and it turns to gold; the righteous man beside him sees it as gold. Ulaym's answer: <em>'Man! Realities do not change. You see it this way because of the reality you hold before your Lord. In truth, the matter is not so.'</em> (p. 218) Dost unfolds this through the relation of substance and form: the substance (stone) stays fixed, only the form (the appearance of gold) changes -- just as a human, in 'wearing' the divine names, never departs from the reality of servanthood. To us, this scene might be an early trace of the 'fixed archetype' (a'yan al-thabita) idea we will meet later in the Fusus -- for now we simply note it, without claiming a firm connection.",
+                "pt": "Logo após essa distinção tripla vem a história de Ulaym al-Aswad: ele bate numa coluna de mármore numa mesquita, e ela se transforma em ouro; o homem justo ao seu lado a vê como ouro. A resposta de Ulaym: <em>'Homem! As realidades não mudam. Você a vê assim por causa da realidade que sustenta diante do seu Senhor. Em verdade, a questão não é essa.'</em> (p. 218) Dost desdobra isso através da relação entre substância e forma: a substância (pedra) permanece fixa, apenas a forma (a aparência de ouro) muda -- assim como um humano, ao 'vestir' os nomes divinos, jamais se afasta da realidade da servidão. Para nós, essa cena pode ser um traço precoce da ideia de 'arquétipo fixo' (a'yan al-thabita) que encontraremos mais adiante no Fusus -- por ora apenas a registramos, sem afirmar uma conexão firme."
+              }
+            }
+          ]
+        },
+        {
+          "id": "musanin-asasi-kutbiyetin-yeni-yuzu",
+          "heading": {
+            "tr": "Musa'nın Asası, ve Kutbiyetin Bir Başka Yüzü",
+            "en": "Moses's Staff, and Another Face of Pole-hood",
+            "pt": "O Cajado de Moisés, e Outra Face do Polo"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm, Musa'nın asası ve sihirbazlar kıssasını uzun uzun işliyor: Musa'nın önce yılandan, sonra insanların şüphesinden duyduğu iki farklı korku; sihirbazların, Musa'nın korkusunu görünce onun sihir bilmediğini anlayıp iman etmeleri; ve 'Musa'nın ve Harun'un Rabbine iman ettik' demeleri -- Firavun'un 'ben âlemlerin rabbiyim' iddiasından kendilerini ayırma kaygısıyla. Ardından Cebrail'in Meryem'e 'yakışıklı bir adam suretinde' görünmesi, dokunduğu yeri diriltmesi, ve Sâmirî'nin Cebrail'in ayak izinden bir tutam alıp buzağıya atarak canlandırması geliyor -- Sâmirî'nin kendi itirafıyla: <em>'İşte nefsim bunu bana böyle süslemiştir.'</em> (s. 225)",
+                "en": "The chapter dwells at length on Moses's staff and the story of the sorcerers: Moses's two different fears, first of the serpent, then of people's doubt; the sorcerers, seeing Moses's fear, coming to believe that he did not know sorcery, and so believing; and their saying 'we believe in the Lord of Moses and Aaron' -- out of a concern to distinguish themselves from Pharaoh's claim of 'I am the lord of the worlds.' Then comes Gabriel appearing to Mary 'in the form of a well-formed man,' bringing to life whatever he touches, and al-Samiri taking a handful from Gabriel's footprint and casting it on the calf to animate it -- in al-Samiri's own confession: <em>'Thus did my self adorn it for me.'</em> (p. 225)",
+                "pt": "O capítulo se demora longamente no cajado de Moisés e na história dos feiticeiros: os dois medos diferentes de Moisés, primeiro da serpente, depois da dúvida das pessoas; os feiticeiros, vendo o medo de Moisés, passando a crer que ele não sabia feitiçaria, e assim vindo a crer; e seu dito 'cremos no Senhor de Moisés e Aarão' -- por uma preocupação em se distinguir da afirmação do Faraó de 'eu sou o senhor dos mundos.' Vem então Gabriel aparecendo a Maria 'na forma de um homem bem formado,' trazendo à vida tudo que toca, e al-Samiri tomando um punhado da pegada de Gabriel e lançando-o sobre o bezerro para animá-lo -- na própria confissão de al-Samiri: <em>'Assim meu eu me adornou isso.'</em> (p. 225)"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm, bu menzilin kutuplarını tanımlayarak kapanıyor -- ve bu, kutbiyet üzerine önceki kısımlarda (ayak sayısına göre Efrad/İmam/Direk/Bedel) okuduklarımıza yeni bir eksen ekliyor: <em>'kendi himmetinin dışında üzerinde âdetin aşılmasının gözüktüğü her veli'</em> (s. 225-226) burada kutbiyet sahibi sayılıyor -- yani sınıflandırma artık ayak sayısına göre değil, harikulade hal karşısındaki konuma göre yapılıyor. Kısım, tıpkı Kısım XX'de olduğu gibi Efrad'a dönerek kapanıyor: <em>'Bu makam, Ebü Yezîd el-Bistâmî ve Efrad'ın makamlarından biridir.'</em> (s. 227) Bize göre bu kapanış cümlesi, kısmın baştan beri işlediği farklı görünen konuların (nakil, düşüş, mucize) hepsinin aynı 'yetkinlik menzili'ne farklı kapılardan açıldığını ima ediyor -- ama bu bir kesinlik iddiası değil, sadece bizim şu an gördüğümüz bir örüntü.",
+                "en": "The chapter closes by defining this station's poles -- adding a new axis to what we have read in earlier parts about pole-hood (Afrad/Imam/Awtad/Abdal, classified by number of feet): <em>'every wali on whom the transcending of the norm appears, outside their own aspiration'</em> (pp. 225-226) is here counted as holding pole-hood -- meaning the classification is now made not by number of feet but by one's position before the extraordinary state. The part closes, as Part XX did, by returning to the Afrad: <em>'This station is one of the stations of Abu Yazid al-Bistami and the Afrad.'</em> (p. 227) To us, this closing sentence suggests that the apparently different topics this part has worked through from the start (transmission, falling, miracle) all open onto the same 'station of perfection' through different doors -- though this is not a claim of certainty, only a pattern we happen to see right now.",
+                "pt": "O capítulo se encerra definindo os polos desta estação -- acrescentando um novo eixo ao que lemos em partes anteriores sobre o polo (Afrad/Imam/Awtad/Abdal, classificados pelo número de pés): <em>'todo wali sobre quem a transcendência da norma aparece, fora de sua própria aspiração'</em> (pp. 225-226) é aqui contado como detentor do polo -- ou seja, a classificação agora se faz não pelo número de pés, mas pela posição de cada um diante do estado extraordinário. A parte se encerra, como a Parte XX, retornando aos Afrad: <em>'Esta estação é uma das estações de Abu Yazid al-Bistami e dos Afrad.'</em> (p. 227) Para nós, esta frase de encerramento sugere que os temas aparentemente diferentes que esta parte percorreu desde o início (transmissão, queda, milagre) todos se abrem para a mesma 'estação de perfeição' por portas diferentes -- embora isso não seja uma afirmação de certeza, apenas um padrão que, por ora, nos parece ver."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXI — Kutuplardan Makam-ı Muhammed'e Ulaşanların ve Ulaşmayanların Bilinmesi, s. 203-208.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXI — Knowing Those Among the Poles Who Reach the Station of Muhammad and Those Who Do Not, pp. 203-208.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXI — Conhecendo os que, entre os Polos, Alcançam a Estação de Muhammad e os que Não Alcançam, pp. 203-208."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXI — Hak Civarından Kendisini Uzaklaştırdığında Velinin Sığınacağı Menzilin Bilinmesi, s. 209-216.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXI — Knowing the Station the Wali Takes Refuge in When Distanced from the Real's Vicinity, pp. 209-216.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXI — Conhecendo a Estação em que o Wali Se Refugia Quando Afastado da Vizinhança do Real, pp. 209-216."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXI — Oluş İlimlerinden Tikel Bir İlme Komşu Olanın Menzilinin Bilinmesi, s. 217-227.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXI — Knowing the Station Neighboring a Particular Knowledge Among the Sciences of Coming-to-Be, pp. 217-227.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXI — Conhecendo a Estação Vizinha a um Conhecimento Particular entre as Ciências do Devir, pp. 217-227."
         }
       ]
     }
