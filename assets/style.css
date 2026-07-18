@@ -1625,6 +1625,21 @@ li.futuhat-pulse,
 @media (prefers-reduced-motion: reduce) {
   .node--root .node-halo { animation: none; opacity: 0.2; }
 }
+/* Dark mode: the flat --series-theme gold reads too dim against a near-black
+   plane at these opacities, so the halo gets its own brighter gold, a soft
+   blur, and a stronger breathing range to stay visible. */
+.viz-root[data-theme="dark"] .node--root .node-halo {
+  fill: #ffc233;
+  filter: blur(4px);
+  animation: node-halo-breathe-dark 6s ease-in-out infinite;
+}
+@keyframes node-halo-breathe-dark {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%      { opacity: 0.65; transform: scale(1.45); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .viz-root[data-theme="dark"] .node--root .node-halo { animation: none; opacity: 0.45; }
+}
 
 .detail-panel {
   position: fixed;
