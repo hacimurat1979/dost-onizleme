@@ -593,12 +593,28 @@
   // --- Article rendering ---
   const CILT_ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII"];
 
+  function progressRingHtml(done, total) {
+    const r = 9;
+    const circumference = 2 * Math.PI * r;
+    const fillLen = (done / total) * circumference;
+    const label = tt({ tr: `${done}/${total} kısım işlendi`, en: `${done}/${total} parts read`, pt: `${done}/${total} partes lidas` });
+    return `<span class="futuhat-parts__progress" title="${label}" aria-label="${label}">
+      <svg viewBox="0 0 22 22" width="18" height="18">
+        <circle class="futuhat-parts__progress-track" cx="11" cy="11" r="${r}" fill="none" stroke-width="2.5"></circle>
+        <circle class="futuhat-parts__progress-fill" cx="11" cy="11" r="${r}" fill="none" stroke-width="2.5"
+          stroke-dasharray="${fillLen} ${circumference}" transform="rotate(-90 11 11)"></circle>
+      </svg>
+      <span class="futuhat-parts__progress-label">${done}/${total}</span>
+    </span>`;
+  }
+
   function renderParts() {
     if (!partsEl) return;
     const cilts = futuhatData.book.cilts || [];
     partsEl.innerHTML = cilts
       .map((c) => {
         const kisimlar = Array.from({ length: c.kisimEnd - c.kisimStart + 1 }, (_, i) => c.kisimStart + i);
+        const doneCount = kisimlar.filter((no) => futuhatData.parts.some((p) => p.cilt === c.cilt && p.kisim === no)).length;
         const chips = kisimlar
           .map((no) => {
             const part = futuhatData.parts.find((p) => p.cilt === c.cilt && p.kisim === no);
@@ -608,7 +624,7 @@
             return `<span class="futuhat-part-chip futuhat-part-chip--soon" title="${tt({ tr: "Yakında", en: "Coming soon", pt: "Em breve" })}">${roman(no)}</span>`;
           })
           .join("");
-        return `<span class="futuhat-parts__cilt">${tt({ tr: "Cilt " + CILT_ROMAN[c.cilt], en: "Volume " + CILT_ROMAN[c.cilt], pt: "Volume " + CILT_ROMAN[c.cilt] })}</span>${chips}`;
+        return `<span class="futuhat-parts__cilt">${tt({ tr: "Cilt " + CILT_ROMAN[c.cilt], en: "Volume " + CILT_ROMAN[c.cilt], pt: "Volume " + CILT_ROMAN[c.cilt] })}${progressRingHtml(doneCount, kisimlar.length)}</span>${chips}`;
       })
       .join("");
     partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: "Cilt III–XVIII yakında", en: "Volumes III–XVIII coming soon", pt: "Volumes III–XVIII em breve" })}</span>`;

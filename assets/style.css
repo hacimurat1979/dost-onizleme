@@ -801,6 +801,29 @@ html {
   font-size: 0.68rem;
   color: var(--text-muted);
   margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.futuhat-parts__progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+.futuhat-parts__progress-track { stroke: var(--gridline); }
+.futuhat-parts__progress-fill {
+  stroke: var(--series-theme);
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.4s ease;
+}
+.futuhat-parts__progress-label {
+  font-size: 0.66rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .futuhat-part-chip {
