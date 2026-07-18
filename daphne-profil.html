@@ -39,7 +39,14 @@
       </p>
     </section>
 
-    <section class="graph-wrap" id="profile-wrap">
+    <div class="bookmap-tabs" id="profile-tabs" role="tablist">
+      <button type="button" class="bookmap-tab bookmap-tab--active" data-tab="map" role="tab" aria-selected="true"
+        data-tr="Harita" data-en="Map" data-pt="Mapa"></button>
+      <button type="button" class="bookmap-tab" data-tab="articles" role="tab" aria-selected="false"
+        data-tr="Taranan Yazılar" data-en="Articles Surveyed" data-pt="Textos Analisados"></button>
+    </div>
+
+    <section class="graph-wrap" id="profile-wrap" data-tab-panel="map">
       <svg id="profile-graph"></svg>
       <div class="view-status" id="profile-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
@@ -53,9 +60,8 @@
       <div id="detail-content"></div>
     </aside>
 
-    <section class="hakkinda-content__section" id="articles-list-section">
-      <h2 data-tr="Taranan Yazılar" data-en="Articles Surveyed" data-pt="Textos Analisados"></h2>
-      <ul id="articles-list" class="daphne-profile-articles"></ul>
+    <section class="daphne-profile-articles-wrap" id="articles-list-section" data-tab-panel="articles" hidden>
+      <div id="articles-list" class="daphne-profile-articles-grid"></div>
     </section>
   </main>
 

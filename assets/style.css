@@ -1641,25 +1641,61 @@ li.futuhat-pulse,
   .viz-root[data-theme="dark"] .node--root .node-halo { animation: none; opacity: 0.45; }
 }
 
-.daphne-profile-articles {
-  list-style: none;
-  margin: 16px 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+#profile-tabs {
+  margin: 0 clamp(16px, 4vw, 48px) 12px;
 }
-.daphne-profile-articles li {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
+.daphne-profile-articles-wrap {
+  margin: 0 clamp(16px, 4vw, 48px) 32px;
 }
-.daphne-profile-articles a {
+.daphne-profile-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.daphne-profile-card {
+  display: block;
+  padding: 16px 18px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.daphne-profile-card:hover,
+.daphne-profile-card:focus-visible {
+  border-color: var(--series-daphne);
+  transform: translateY(-1px);
+}
+.daphne-profile-card__title {
+  display: block;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.daphne-profile-card__status {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.daphne-profile-card__status--done {
   color: var(--series-daphne);
+  background: color-mix(in srgb, var(--series-daphne) 14%, transparent);
 }
-.daphne-profile-articles__note {
+.daphne-profile-card__status--pending {
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--text-muted) 14%, transparent);
+}
+.daphne-profile-card__note {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
   color: var(--text-muted);
   font-style: italic;
+  line-height: 1.5;
 }
 
 .detail-panel {

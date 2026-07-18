@@ -16,6 +16,19 @@
   I18n.applyStatic();
   I18n.renderLangSwitcher(document.getElementById("lang-switch"), () => render());
 
+  const tabButtons = document.querySelectorAll("#profile-tabs .bookmap-tab");
+  const tabPanels = document.querySelectorAll("[data-tab-panel]");
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      tabButtons.forEach((b) => {
+        b.classList.toggle("bookmap-tab--active", b === btn);
+        b.setAttribute("aria-selected", String(b === btn));
+      });
+      tabPanels.forEach((p) => { p.hidden = p.dataset.tabPanel !== btn.dataset.tab; });
+      if (btn.dataset.tab !== "map") detailPanel.hidden = true;
+    });
+  });
+
   detailClose.addEventListener("click", () => {
     detailPanel.hidden = true;
   });
@@ -207,8 +220,15 @@
     if (!articlesList) return;
     articlesList.innerHTML = data.articles
       .map((a) => {
-        const note = a.note_tr ? `<span class="daphne-profile-articles__note"> — ${tt({ tr: a.note_tr, en: a.note_en, pt: a.note_pt })}</span>` : "";
-        return `<li><a href="${a.url}" target="_blank" rel="noopener">${a.title}</a>${note}</li>`;
+        const status = a.note_tr
+          ? `<span class="daphne-profile-card__status daphne-profile-card__status--pending">${tt({ tr: "Henüz işlenmedi", en: "Not yet processed", pt: "Ainda não processado" })}</span>`
+          : `<span class="daphne-profile-card__status daphne-profile-card__status--done">${tt({ tr: "Profile işlendi", en: "Worked into profile", pt: "Incorporado ao perfil" })}</span>`;
+        const note = a.note_tr ? `<p class="daphne-profile-card__note">${tt({ tr: a.note_tr, en: a.note_en, pt: a.note_pt })}</p>` : "";
+        return `<a class="daphne-profile-card" href="${a.url}" target="_blank" rel="noopener">
+          <span class="daphne-profile-card__title">${a.title}</span>
+          ${status}
+          ${note}
+        </a>`;
       })
       .join("");
   }
