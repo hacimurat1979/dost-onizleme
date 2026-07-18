@@ -2813,7 +2813,14 @@ html[data-contrast="high"] .detail-title {
   display: flex;
   gap: 8px;
   justify-content: flex-end;
-  padding: 0 0 12px;
+  /* The panel's own print/close buttons are position:fixed at the same
+     top offset with a higher z-index (see .detail-panel__print/__close),
+     reserving roughly the rightmost 96px of the viewport -- without this
+     padding these A-/A+ buttons render directly underneath them, fully
+     hidden (only a sliver of their border visible past the panel's own
+     24px padding). Push them clear of that reserved zone instead of
+     letting them sit underneath it. */
+  padding: 0 104px 12px 0;
   border-bottom: 1px solid var(--gridline);
   position: sticky;
   top: 0;
