@@ -1825,6 +1825,25 @@ html:has(.detail-panel:not([hidden])) {
 }
 .detail-block p { margin: 0; line-height: 1.55; font-size: 0.92rem; }
 
+.gorulen-yer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.gorulen-yer-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.gorulen-yer-item .bookmap-concept-tag {
+  align-self: flex-start;
+}
+.gorulen-yer-item p {
+  margin: 0;
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+
 .detail-analogy {
   border-radius: 8px;
   padding: 12px 18px;

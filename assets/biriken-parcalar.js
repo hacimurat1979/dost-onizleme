@@ -45,13 +45,19 @@
     return fetchPromise;
   }
 
-  function kaynaklarChipsHtml(kaynaklar) {
-    if (!kaynaklar || !kaynaklar.length) return "";
-    const chips = kaynaklar
-      .map((l) => `<button class="bookmap-concept-tag bookmap-concept-tag--group" data-view="${l.view}" data-id="${l.id}">${tt(VIEW_LABEL[l.view] || {})} → ${l.id}</button>`)
+  function gorulenYerlerHtml(kaynaklar, gorulenYerler) {
+    if (!kaynaklar || !gorulenYerler) return "";
+    return kaynaklar
+      .map((k, i) => {
+        const text = gorulenYerler[i];
+        if (!text) return "";
+        const chipLabel = k.label ? tt(k.label) : `${tt(VIEW_LABEL[k.view] || {})} → ${k.id}`;
+        return `<div class="gorulen-yer-item">
+          <button class="bookmap-concept-tag bookmap-concept-tag--group" data-view="${k.view}" data-id="${k.id}">${chipLabel}</button>
+          <p>${tt(text)}</p>
+        </div>`;
+      })
       .join("");
-    return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "Görüldüğü Yerler", en: "Where It Appears", pt: "Onde Aparece" })}</p>
-      <div class="bookmap-concept-tags">${chips}</div>`;
   }
 
   function renderList() {
@@ -76,13 +82,12 @@
       <h2 class="detail-title">${tt(e.title)}</h2>
       <div class="detail-block">
         <h3>${tt({ tr: "Görüldüğü Yerler", en: "Where It Appears", pt: "Onde Aparece" })}</h3>
-        <p>${tt(e.gorulen_yerler)}</p>
+        <div class="gorulen-yer-list">${gorulenYerlerHtml(e.kaynaklar, e.gorulen_yerler)}</div>
       </div>
       <div class="detail-block detail-block--ibnarabi">
         <h3>${tt({ tr: "Bir Okuma Denemesi", en: "A Reading Attempt", pt: "Uma Tentativa de Leitura" })}</h3>
         <p>${tt(e.sentez)}</p>
       </div>
-      ${kaynaklarChipsHtml(e.kaynaklar)}
     `;
     detailContent.querySelectorAll(".bookmap-concept-tag[data-view]").forEach((btn) => {
       btn.addEventListener("click", () => {

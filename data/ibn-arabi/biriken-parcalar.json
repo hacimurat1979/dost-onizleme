@@ -17,21 +17,38 @@
         "en": "The same image reappears across four consecutive parts of Volume I, each time in an increasingly technical register.",
         "pt": "A mesma imagem reaparece em quatro partes consecutivas do Volume I, cada vez num registro cada vez mais técnico."
       },
-      "gorulen_yerler": {
-        "tr": "Kısım XI'de varlığın kendisini bir daire olarak kuşatması; Kısım XII'de mülkün devirsel oluşu (mülk devri); Kısım XIII'te Hz. Muhammed'in ruhunun zamanı bir devir olarak kuşatması ve şefaat zincirinin sonunun başına bitişmesi; Kısım XIV'te ise felek ilmi bahsinde, imge en açık ve en teknik ifadesine ulaşıyor: 'merkezdeki nokta, kendisini çevreleyen bütün parçalara zatıyla bakar; kuşatan çevre, kuşatılan ise nokta olduğu gibi, bunun tersi de doğrudur. Düşününüz!'",
-        "en": "In Part XI, existence itself is encompassed as a circle; in Part XII, dominion (mulk) is described as cyclical (the cycle of dominion); in Part XIII, the Prophet Muhammad's spirit encompasses time as a cycle, and the chain of intercession closes its end upon its beginning; in Part XIV, in the section on the science of the celestial sphere, the image reaches its clearest and most technical expression yet: 'the point at the center looks, by its very essence, upon every part that surrounds it; just as the encompassing circumference encompasses the point, the reverse is equally true. Reflect!'",
-        "pt": "Na Parte XI, a própria existência é abrangida como um círculo; na Parte XII, o domínio (mulk) é descrito como cíclico (o ciclo do domínio); na Parte XIII, o espírito do Profeta Muhammad abrange o tempo como um ciclo, e a cadeia de intercessão fecha seu fim sobre seu começo; na Parte XIV, na seção sobre a ciência da esfera celeste, a imagem alcança sua expressão mais clara e técnica até então: 'o ponto no centro olha, por sua própria essência, para cada parte que o cerca; assim como a circunferência que envolve envolve o ponto, o inverso é igualmente verdadeiro. Reflita!'"
-      },
+      "gorulen_yerler": [
+        {
+          "tr": "Kısım XI'de varlığın kendisini bir daire olarak kuşatması.",
+          "en": "In Part XI, existence itself is encompassed as a circle.",
+          "pt": "Na Parte XI, a própria existência é abrangida como um círculo."
+        },
+        {
+          "tr": "Kısım XII'de mülkün devirsel oluşu (mülk devri).",
+          "en": "In Part XII, dominion (mulk) is described as cyclical (the cycle of dominion).",
+          "pt": "Na Parte XII, o domínio (mulk) é descrito como cíclico (o ciclo do domínio)."
+        },
+        {
+          "tr": "Kısım XIII'te Hz. Muhammed'in ruhunun zamanı bir devir olarak kuşatması ve şefaat zincirinin sonunun başına bitişmesi.",
+          "en": "In Part XIII, the Prophet Muhammad's spirit encompasses time as a cycle, and the chain of intercession closes its end upon its beginning.",
+          "pt": "Na Parte XIII, o espírito do Profeta Muhammad abrange o tempo como um ciclo, e a cadeia de intercessão fecha seu fim sobre seu começo."
+        },
+        {
+          "tr": "Kısım XIV'te ise felek ilmi bahsinde, imge en açık ve en teknik ifadesine ulaşıyor: 'merkezdeki nokta, kendisini çevreleyen bütün parçalara zatıyla bakar; kuşatan çevre, kuşatılan ise nokta olduğu gibi, bunun tersi de doğrudur. Düşününüz!'",
+          "en": "In Part XIV, in the section on the science of the celestial sphere, the image reaches its clearest and most technical expression yet: 'the point at the center looks, by its very essence, upon every part that surrounds it; just as the encompassing circumference encompasses the point, the reverse is equally true. Reflect!'",
+          "pt": "Na Parte XIV, na seção sobre a ciência da esfera celeste, a imagem alcança sua expressão mais clara e técnica até então: 'o ponto no centro olha, por sua própria essência, para cada parte que o cerca; assim como a circunferência que envolve envolve o ponto, o inverso é igualmente verdadeiro. Reflita!'"
+        }
+      ],
       "sentez": {
         "tr": "Dost bu imgeyi hiçbir yerde tek seferde tam açıklamıyor; dört farklı bağlamda (varlık, mülk, zaman, felek) gitgide netleşen bir dille tekrarlıyor, sonunda okuyucuyu bizzat 'düşününüz' diyerek bu imgeyi kendi başına tamamlamaya çağırıyor. Bize göre bu, bir tesadüf değil, kasıtlı bir öğretim yöntemi gibi görünüyor -- ve ilginç bir şekilde, bu sitenin kendi tasarım ilkesiyle (daire ve merkez) örtüşüyor: biz de bu ilkeyi 2026-07-12'de, bu dördüncü tekrarı henüz görmeden, sitenin tasarım diline almıştık. Bu örtüşmeyi kesin bir 'kanıt' olarak değil, metnin kendisinde bulduğumuz hoş bir doğrulama olarak okuyoruz.",
         "en": "Dost never fully explains this image in one place; he repeats it across four different contexts (existence, dominion, time, the celestial sphere) in an increasingly explicit register, finally inviting the reader to complete the image alone by saying 'reflect!' To our reading, this does not look like a coincidence but a deliberate pedagogical method -- and, interestingly, it matches the site's own design principle (circle and center): we had already adopted this principle into the site's design language on 2026-07-12, before seeing this fourth repetition. We read this correspondence not as firm 'proof' but as a pleasant confirmation we found within the text itself.",
         "pt": "Dost nunca explica totalmente esta imagem num único lugar; ele a repete em quatro contextos diferentes (existência, domínio, tempo, a esfera celeste) num registro cada vez mais explícito, finalmente convidando o leitor a completar a imagem sozinho ao dizer 'reflita!' Em nossa leitura, isso não parece uma coincidência, mas um método pedagógico deliberado -- e, curiosamente, corresponde ao próprio princípio de design do site (círculo e centro): já havíamos adotado esse princípio na linguagem de design do site em 12/07/2026, antes de ver esta quarta repetição. Lemos essa correspondência não como uma 'prova' firme, mas como uma confirmação agradável que encontramos no próprio texto."
       },
       "kaynaklar": [
-        { "view": "futuhat", "id": "c1k11" },
-        { "view": "futuhat", "id": "c1k12" },
-        { "view": "futuhat", "id": "c1k13" },
-        { "view": "futuhat", "id": "c1k14" }
+        { "view": "futuhat", "id": "c1k11", "label": { "tr": "Kısım XI", "en": "Part XI", "pt": "Parte XI" } },
+        { "view": "futuhat", "id": "c1k12", "label": { "tr": "Kısım XII", "en": "Part XII", "pt": "Parte XII" } },
+        { "view": "futuhat", "id": "c1k13", "label": { "tr": "Kısım XIII", "en": "Part XIII", "pt": "Parte XIII" } },
+        { "view": "futuhat", "id": "c1k14", "label": { "tr": "Kısım XIV", "en": "Part XIV", "pt": "Parte XIV" } }
       ]
     },
     {
@@ -46,21 +63,38 @@
         "en": "The concept of Haba (the cosmic 'dust'/primordial matter) is not treated in a single part but deepens piece by piece across three consecutive parts.",
         "pt": "O conceito de Haba (a 'poeira' cósmica/matéria primordial) não é tratado numa única parte, mas se aprofunda peça por peça em três partes consecutivas."
       },
-      "gorulen_yerler": {
-        "tr": "Kısım XI, Hebâ'nın kökenini illet-i mübdia (yaratıcı/başlatıcı illet) bağlamında ele alıyor. Kısım XII, doğrudan 'Hebâ'nın Doğduğu Yer' başlığını taşıyor ve onu Etkin Babalar/Edilgen Analar şemasına yerleştiriyor. Kısım XIII ise Hebâ'yı yeniden tanımlıyor: 'mutlak yokluk mesabesindeki saf karanlık.' Kısım XIV'teki kozmogoni özetinde de Hebâ, Âdem'in yaratılış zincirinde ('akıldan, sonra nefsten, sonra Hebâ'dan, sonra felekten...') yerini koruyor.",
-        "en": "Part XI treats Haba's origin in the context of the illa mubdi'a (the originating/initiating cause). Part XII is directly titled 'Where Haba Was Born' and places it within the scheme of Active Fathers/Receptive Mothers. Part XIII redefines Haba: 'the pure darkness standing in the place of absolute non-existence.' In the cosmogony summary of Part XIV, Haba also keeps its place in the chain of Adam's creation ('from reason, then from the self, then from Haba, then from the celestial sphere...').",
-        "pt": "A Parte XI trata da origem de Haba no contexto da illa mubdi'a (a causa originadora/iniciadora). A Parte XII se intitula diretamente 'Onde Haba Nasceu' e a situa no esquema dos Pais Ativos/Mães Receptivas. A Parte XIII redefine Haba: 'a pura escuridão que ocupa o lugar da inexistência absoluta.' No resumo cosmogônico da Parte XIV, Haba também mantém seu lugar na cadeia da criação de Adão ('da razão, depois do eu, depois de Haba, depois da esfera celeste...')."
-      },
+      "gorulen_yerler": [
+        {
+          "tr": "Kısım XI, Hebâ'nın kökenini illet-i mübdia (yaratıcı/başlatıcı illet) bağlamında ele alıyor.",
+          "en": "Part XI treats Haba's origin in the context of the illa mubdi'a (the originating/initiating cause).",
+          "pt": "A Parte XI trata da origem de Haba no contexto da illa mubdi'a (a causa originadora/iniciadora)."
+        },
+        {
+          "tr": "Kısım XII, doğrudan 'Hebâ'nın Doğduğu Yer' başlığını taşıyor ve onu Etkin Babalar/Edilgen Analar şemasına yerleştiriyor.",
+          "en": "Part XII is directly titled 'Where Haba Was Born' and places it within the scheme of Active Fathers/Receptive Mothers.",
+          "pt": "A Parte XII se intitula diretamente 'Onde Haba Nasceu' e a situa no esquema dos Pais Ativos/Mães Receptivas."
+        },
+        {
+          "tr": "Kısım XIII ise Hebâ'yı yeniden tanımlıyor: 'mutlak yokluk mesabesindeki saf karanlık.'",
+          "en": "Part XIII redefines Haba: 'the pure darkness standing in the place of absolute non-existence.'",
+          "pt": "A Parte XIII redefine Haba: 'a pura escuridão que ocupa o lugar da inexistência absoluta.'"
+        },
+        {
+          "tr": "Kısım XIV'teki kozmogoni özetinde de Hebâ, Âdem'in yaratılış zincirinde ('akıldan, sonra nefsten, sonra Hebâ'dan, sonra felekten...') yerini koruyor.",
+          "en": "In the cosmogony summary of Part XIV, Haba also keeps its place in the chain of Adam's creation ('from reason, then from the self, then from Haba, then from the celestial sphere...').",
+          "pt": "No resumo cosmogônico da Parte XIV, Haba também mantém seu lugar na cadeia da criação de Adão ('da razão, depois do eu, depois de Haba, depois da esfera celeste...')."
+        }
+      ],
       "sentez": {
         "tr": "Hebâ'nın üç kısım boyunca hiç tekrar etmeyen, her seferinde yeni bir açıdan (köken, doğuş, öz-tanım, kozmogonik sıra) ele alınması bize göre şunu gösteriyor olabilir: Dost, kavramı bir kerede tanımlamak yerine, okuyucunun onu farklı bağlamlarda gördükçe kendi zihninde bir araya getirmesini istiyor -- tam da bu sayfanın kendi yöntemi gibi. Hebâ'nın 'mutlak yokluk mesabesindeki saf karanlık' olarak tarifi, belki de kavramın en açık ifadesi, ama bu ifade ancak önceki iki kısımda kurulan zemin üzerinden tam anlaşılıyor.",
         "en": "That Haba is never repeated identically across the three parts, but is each time approached from a new angle (origin, birth, self-definition, cosmogonic order), may to our reading show this: Dost wants the reader, rather than defining the concept once, to gather it together in their own mind as it appears in different contexts -- much like this very page's own method. Haba's description as 'the pure darkness standing in the place of absolute non-existence' is perhaps the concept's clearest expression, but this expression is only fully understood on the ground built by the two preceding parts.",
         "pt": "O fato de Haba nunca se repetir identicamente ao longo das três partes, mas ser abordada a cada vez por um novo ângulo (origem, nascimento, autodefinição, ordem cosmogônica), pode, em nossa leitura, mostrar isto: Dost quer que o leitor, em vez de definir o conceito de uma só vez, o reúna em sua própria mente à medida que aparece em contextos diferentes -- muito como o próprio método desta página. A descrição de Haba como 'a pura escuridão que ocupa o lugar da inexistência absoluta' é talvez a expressão mais clara do conceito, mas essa expressão só é plenamente compreendida sobre o terreno construído pelas duas partes precedentes."
       },
       "kaynaklar": [
-        { "view": "futuhat", "id": "c1k11" },
-        { "view": "futuhat", "id": "c1k12" },
-        { "view": "futuhat", "id": "c1k13" },
-        { "view": "futuhat", "id": "c1k14" }
+        { "view": "futuhat", "id": "c1k11", "label": { "tr": "Kısım XI", "en": "Part XI", "pt": "Parte XI" } },
+        { "view": "futuhat", "id": "c1k12", "label": { "tr": "Kısım XII", "en": "Part XII", "pt": "Parte XII" } },
+        { "view": "futuhat", "id": "c1k13", "label": { "tr": "Kısım XIII", "en": "Part XIII", "pt": "Parte XIII" } },
+        { "view": "futuhat", "id": "c1k14", "label": { "tr": "Kısım XIV", "en": "Part XIV", "pt": "Parte XIV" } }
       ]
     },
     {
@@ -75,19 +109,26 @@
         "en": "The 'chain of poles' left open at the end of Part XIII does not continue in Part XIV -- instead, an entirely different form of polarity appears.",
         "pt": "A 'cadeia de polos' deixada em aberto no final da Parte XIII não continua na Parte XIV -- em vez disso, aparece uma forma inteiramente diferente de polaridade."
       },
-      "gorulen_yerler": {
-        "tr": "Kısım XIII, Âdem'den Hz. Muhammed'e uzanan, 23 isimli bir 'kutuplar' listesiyle kapanıyor. İlk okumamızda bunu tarihsel-ardışık bir zincir gibi okumuştuk, ama bu pasajın kendi başlığı bize önemli bir uyarı veriyor: 'Kutup Allah'ın yarattığı günden beri tektir, ölmemiştir.' Metin hemen ardından da şunu söylüyor: 'Tek kutup ise Hz. Muhammed'in ruhudur.' Yani bu 23 isim, art arda gelen 23 ayrı kişiden çok, tek bir ezelî rûhun önceki ümmetlerde aldığı farklı isimler/mazharlar olarak okunabilir. Kısım XIV'in daha ilk satırlarında 'kutuplar' teması yeniden açılıyor, ama bu sefer tamamen farklı bir yapıda: Kutup (1) → İki İmam → Evtad (4) → Ebdal (7) şeklinde, zamansız, her devirde eşzamanlı var olan işlevsel bir hiyerarşi.",
-        "en": "Part XIII closes with a list of 23 named 'poles' stretching from Adam to Muhammad. On our first reading we took this as a historical-sequential chain, but the heading of this very passage gives us an important warning: 'The Pole has been one since the day God created it, and has not died.' The text goes on to say directly: 'The one Pole is the spirit of Muhammad.' So these 23 names may be read not as 23 separate people succeeding one another, but as different names/loci that a single eternal spirit took on among earlier communities. In the very first lines of Part XIV, the theme of 'poles' reopens, but this time in an entirely different structure: a timeless, functional hierarchy existing simultaneously in every age -- Pole (1) → Two Imams → Awtad (4) → Abdal (7).",
-        "pt": "A Parte XIII se encerra com uma lista de 23 'polos' nomeados que se estende de Adão a Muhammad. Em nossa primeira leitura, entendemos isso como uma cadeia histórico-sequencial, mas o próprio título dessa passagem traz um aviso importante: 'O Polo é um só desde o dia em que Deus o criou, e não morreu.' O texto logo em seguida afirma diretamente: 'O único Polo é o espírito de Muhammad.' Ou seja, esses 23 nomes podem ser lidos não como 23 pessoas distintas que se sucederam, mas como nomes/loci diferentes que um único espírito eterno assumiu entre as comunidades anteriores. Já nas primeiras linhas da Parte XIV, o tema dos 'polos' reabre, mas desta vez numa estrutura inteiramente diferente: uma hierarquia funcional atemporal, existindo simultaneamente em cada época -- Polo (1) → Dois Imames → Awtad (4) → Abdal (7)."
-      },
+      "gorulen_yerler": [
+        {
+          "tr": "Kısım XIII, Âdem'den Hz. Muhammed'e uzanan, 23 isimli bir 'kutuplar' listesiyle kapanıyor. İlk okumamızda bunu tarihsel-ardışık bir zincir gibi okumuştuk, ama bu pasajın kendi başlığı bize önemli bir uyarı veriyor: 'Kutup Allah'ın yarattığı günden beri tektir, ölmemiştir.' Metin hemen ardından da şunu söylüyor: 'Tek kutup ise Hz. Muhammed'in ruhudur.' Yani bu 23 isim, art arda gelen 23 ayrı kişiden çok, tek bir ezelî rûhun önceki ümmetlerde aldığı farklı isimler/mazharlar olarak okunabilir.",
+          "en": "Part XIII closes with a list of 23 named 'poles' stretching from Adam to Muhammad. On our first reading we took this as a historical-sequential chain, but the heading of this very passage gives us an important warning: 'The Pole has been one since the day God created it, and has not died.' The text goes on to say directly: 'The one Pole is the spirit of Muhammad.' So these 23 names may be read not as 23 separate people succeeding one another, but as different names/loci that a single eternal spirit took on among earlier communities.",
+          "pt": "A Parte XIII se encerra com uma lista de 23 'polos' nomeados que se estende de Adão a Muhammad. Em nossa primeira leitura, entendemos isso como uma cadeia histórico-sequencial, mas o próprio título dessa passagem traz um aviso importante: 'O Polo é um só desde o dia em que Deus o criou, e não morreu.' O texto logo em seguida afirma diretamente: 'O único Polo é o espírito de Muhammad.' Ou seja, esses 23 nomes podem ser lidos não como 23 pessoas distintas que se sucederam, mas como nomes/loci diferentes que um único espírito eterno assumiu entre as comunidades anteriores."
+        },
+        {
+          "tr": "Kısım XIV'in daha ilk satırlarında 'kutuplar' teması yeniden açılıyor, ama bu sefer tamamen farklı bir yapıda: Kutup (1) → İki İmam → Evtad (4) → Ebdal (7) şeklinde, zamansız, her devirde eşzamanlı var olan işlevsel bir hiyerarşi.",
+          "en": "In the very first lines of Part XIV, the theme of 'poles' reopens, but this time in an entirely different structure: a timeless, functional hierarchy existing simultaneously in every age -- Pole (1) → Two Imams → Awtad (4) → Abdal (7).",
+          "pt": "Já nas primeiras linhas da Parte XIV, o tema dos 'polos' reabre, mas desta vez numa estrutura inteiramente diferente: uma hierarquia funcional atemporal, existindo simultaneamente em cada época -- Polo (1) → Dois Imames → Awtad (4) → Abdal (7)."
+        }
+      ],
       "sentez": {
         "tr": "İlk okumamızda bu iki sistemi, biri zaman ekseninde diğeri mertebe ekseninde olmak üzere, birbirinden bağımsız iki farklı kutupsallık biçimi olarak okumuştuk. Ama Kısım XIII'ün kendi başlığındaki 'Kutup Allah'ın yarattığı günden beri tektir, ölmemiştir' ifadesi, bu okumayı biraz revize etmemizi gerektiriyor: burada muhtemelen iki farklı 'kutup' kullanımı iç içe geçmiş. Biri -tek, ezelî, ölümsüz Kutup, yani Hz. Muhammed'in rûhu- zamanın dışında duruyor; önceki ümmetlerdeki 23 isim de bu tek rûhun farklı görünüşleri olabilir. Diğeri ise 'zamanın kutbu' dediğimiz, her devirde bir insanın taşıyıp bir sonrakine devrettiği ölümlü bir makam -nitekim metin, Müdâviü'l-külüm'den sonra bu sırrın el-Müsteslim'e, oradan Hakkın mazharına, el-Hâic'e, Vâziu'l-hikem'e (belki Lokman) ve Câmiü'l-hikem'e geçtiğini anlatıyor. Kısım XIV'in Kutup→İki İmam→Evtad→Ebdal hiyerarşisi muhtemelen bu ikinci, ölümlü-makam anlamıyla ilgili. Bunu şimdilik erken bir düzeltme olarak not düşüyoruz -kendi tespitlerimizi de zaman zaman gözden geçirmemiz gerektiğini hatırlatan bir örnek; ileriki kısımlarda bu iki 'kutup' kullanımının nasıl bir araya geldiğine dair daha fazla ipucu bulabiliriz.",
         "en": "On our first reading we took these two systems as two independent forms of polarity, one along the axis of time, the other along the axis of rank. But the statement in Part XIII's own heading -- 'The Pole has been one since the day God created it, and has not died' -- asks us to revise that reading somewhat: what seems to be happening here is that two different uses of 'Pole' are intertwined. One -- the single, eternal, undying Pole, the spirit of Muhammad -- stands outside time; the 23 names among earlier communities may be different appearances of this one spirit. The other is what we might call 'the Pole of the age': a mortal office that one person holds in a given era and hands to the next -- indeed the text describes this secret passing, after Mudawi'l-Kulum, to al-Mustaslim, then to a 'locus of the Real,' to al-Ha'ij, to Wadi'ul-Hikam (perhaps Luqman), and to Jami'ul-Hikam. Part XIV's Pole → Two Imams → Awtad → Abdal hierarchy is probably related to this second, mortal-office sense. We note this here as an early correction for now -- a reminder that we too need to revisit our own findings from time to time; in later parts we may find further clues to how these two uses of 'Pole' come together.",
         "pt": "Em nossa primeira leitura, entendemos esses dois sistemas como duas formas independentes de polaridade, uma ao longo do eixo do tempo, a outra ao longo do eixo do grau. Mas a afirmação no próprio título da Parte XIII -- 'O Polo é um só desde o dia em que Deus o criou, e não morreu' -- nos pede para revisar um pouco essa leitura: o que parece estar acontecendo aqui é que dois usos diferentes de 'Polo' estão entrelaçados. Um -- o Polo único, eterno, imortal, o espírito de Muhammad -- está fora do tempo; os 23 nomes entre as comunidades anteriores podem ser aparições diferentes desse único espírito. O outro é o que poderíamos chamar de 'o Polo da época': um cargo mortal que uma pessoa ocupa numa era e transmite à seguinte -- de fato, o texto descreve esse segredo passando, depois de Mudawi'l-Kulum, para al-Mustaslim, depois para um 'locus do Real', para al-Ha'ij, para Wadi'ul-Hikam (talvez Luqman) e para Jami'ul-Hikam. A hierarquia Polo → Dois Imames → Awtad → Abdal da Parte XIV provavelmente está relacionada a esse segundo sentido, o do cargo mortal. Registramos isso aqui como uma correção precoce por ora -- um lembrete de que também precisamos revisitar nossos próprios achados de tempos em tempos; em partes posteriores talvez encontremos mais pistas sobre como esses dois usos de 'Polo' se conectam."
       },
       "kaynaklar": [
-        { "view": "futuhat", "id": "c1k13" },
-        { "view": "futuhat", "id": "c1k14" }
+        { "view": "futuhat", "id": "c1k13", "label": { "tr": "Kısım XIII", "en": "Part XIII", "pt": "Parte XIII" } },
+        { "view": "futuhat", "id": "c1k14", "label": { "tr": "Kısım XIV", "en": "Part XIV", "pt": "Parte XIV" } }
       ]
     },
     {
@@ -102,19 +143,26 @@
         "en": "The theme of 'the cycle of time' opened in Part XIII deepens, in Part XIV, all the way to identifying time itself with a divine name.",
         "pt": "O tema do 'ciclo do tempo' aberto na Parte XIII se aprofunda, na Parte XIV, até identificar o próprio tempo com um nome divino."
       },
-      "gorulen_yerler": {
-        "tr": "Kısım XIII, Hz. Muhammed'in ruhunun zamanı bir devir olarak kuşatmasını, el-Bâtın'dan ez-Zâhir'e geçişle anlatıyor. Kısım XIV'te, müdâvi'l-külüm kutbunun soyundan gelen el-Müsteslim adlı halifenin uzmanlığı olarak zaman/dehr bilgisi karşımıza çıkıyor: 'İlk Dehir', 'Dehirlerin Dehri' kavramları ve 'Dehre sövmeyiniz, çünkü Allah Dehr'dir' hadisinin yorumu.",
-        "en": "Part XIII narrates the Prophet Muhammad's spirit encompassing time as a cycle, through the passage from al-Batin to al-Zahir. In Part XIV, the knowledge of time/dahr appears as the specialty of al-Mustaslim, a successor descending from the pole mudawi'l-kulum's line: the concepts of 'the First Dahr,' 'the Dahr of Dahrs,' and the interpretation of the hadith 'do not curse dahr, for God is Dahr.'",
-        "pt": "A Parte XIII narra o espírito do Profeta Muhammad abrangendo o tempo como um ciclo, através da passagem de al-Batin a al-Zahir. Na Parte XIV, o conhecimento do tempo/dahr aparece como a especialidade de al-Mustaslim, um sucessor descendente da linhagem do polo mudawi'l-kulum: os conceitos de 'o Primeiro Dahr,' 'o Dahr dos Dahrs,' e a interpretação do hadice 'não amaldiçoem o dahr, pois Deus é Dahr.'"
-      },
+      "gorulen_yerler": [
+        {
+          "tr": "Kısım XIII, Hz. Muhammed'in ruhunun zamanı bir devir olarak kuşatmasını, el-Bâtın'dan ez-Zâhir'e geçişle anlatıyor.",
+          "en": "Part XIII narrates the Prophet Muhammad's spirit encompassing time as a cycle, through the passage from al-Batin to al-Zahir.",
+          "pt": "A Parte XIII narra o espírito do Profeta Muhammad abrangendo o tempo como um ciclo, através da passagem de al-Batin a al-Zahir."
+        },
+        {
+          "tr": "Kısım XIV'te, müdâvi'l-külüm kutbunun soyundan gelen el-Müsteslim adlı halifenin uzmanlığı olarak zaman/dehr bilgisi karşımıza çıkıyor: 'İlk Dehir', 'Dehirlerin Dehri' kavramları ve 'Dehre sövmeyiniz, çünkü Allah Dehr'dir' hadisinin yorumu.",
+          "en": "In Part XIV, the knowledge of time/dahr appears as the specialty of al-Mustaslim, a successor descending from the pole mudawi'l-kulum's line: the concepts of 'the First Dahr,' 'the Dahr of Dahrs,' and the interpretation of the hadith 'do not curse dahr, for God is Dahr.'",
+          "pt": "Na Parte XIV, o conhecimento do tempo/dahr aparece como a especialidade de al-Mustaslim, um sucessor descendente da linhagem do polo mudawi'l-kulum: os conceitos de 'o Primeiro Dahr,' 'o Dahr dos Dahrs,' e a interpretação do hadice 'não amaldiçoem o dahr, pois Deus é Dahr.'"
+        }
+      ],
       "sentez": {
         "tr": "İki kısım birlikte okununca, zaman teması giderek somutlaşan bir çizgi izliyor: önce (XIII) zamanın bir 'devir' olduğu, sonra (XIV) bu devrin kaynağının, zamanın kendisinin (dehr) bir ilâhî isimle özdeşleştirildiği anlatılıyor. Bu, sitenin daha önce not ettiği 'daire imgesi'yle de örtüşüyor -- zamanın kendisi de dairesel bir yapı olarak okunuyor.",
         "en": "Read together, the two parts follow an increasingly concrete line on the theme of time: first (XIII) that time is a 'cycle,' then (XIV) that the source of this cycle, time itself (dahr), is identified with a divine name. This also overlaps with the 'circle image' noted elsewhere on this page -- time itself is read as a circular structure too.",
         "pt": "Lidas juntas, as duas partes seguem uma linha cada vez mais concreta sobre o tema do tempo: primeiro (XIII) que o tempo é um 'ciclo,' depois (XIV) que a fonte desse ciclo, o próprio tempo (dahr), é identificada com um nome divino. Isso também se sobrepõe à 'imagem do círculo' notada em outro ponto desta página -- o próprio tempo também é lido como uma estrutura circular."
       },
       "kaynaklar": [
-        { "view": "futuhat", "id": "c1k13" },
-        { "view": "futuhat", "id": "c1k14" }
+        { "view": "futuhat", "id": "c1k13", "label": { "tr": "Kısım XIII", "en": "Part XIII", "pt": "Parte XIII" } },
+        { "view": "futuhat", "id": "c1k14", "label": { "tr": "Kısım XIV", "en": "Part XIV", "pt": "Parte XIV" } }
       ]
     },
     {
@@ -129,11 +177,28 @@
         "en": "The 'pole' theme opened in Part XIII has deepened piece by piece across four separate parts (XIII, XIV, XVI, XVII), and now seems to have acquired both a numerical and a functional skeleton.",
         "pt": "O tema do 'polo' aberto na Parte XIII se aprofundou peça por peça em quatro partes separadas (XIII, XIV, XVI, XVII), e agora parece ter adquirido um esqueleto tanto numérico quanto funcional."
       },
-      "gorulen_yerler": {
-        "tr": "Kısım XIII: Kutup'un 'Allah'ın yarattığı günden beri tek ve ölümsüz' olduğu, buna karşın 'zamanın kutbu' denen ölümlü bir makamın el değiştirdiği (Müdâviü'l-külüm → el-Müsteslim → ... → Câmiü'l-hikem) tespit edildi. Kısım XIV: Kutup(1) → İki İmam → Evtad(4) → Ebdal(7) şeklinde, zamansız ve eşzamanlı bir mertebe hiyerarşisi verildi. Kısım XVI: Bölüm 22 VASIL 3'te bu hiyerarşiye kesin bir aritmetik eklendi -- '12 Nakip + 7 Bedel (4 Evtad + 2 İmam + 1 Kutup) = 19 Rical' -- ve Bölüm 23'te hiyerarşinin en gizli/en alt sınıfı olan 'Efrad' (Melâmîler, tanınmayan veliler) somut bir ahlâki tasvirle tanıtıldı. Kısım XVII: Bambaşka, işlevsel bir eksen ortaya çıktı -- her ayetin bir zâhiri, bâtını, haddi ve matla'ı olduğu gibi, bu dört mertebenin de (zâhir/bâtın/had/matla' adamları) kendi kutbu var; ayrıca Dost'un kendi pîri Ebû Medyen açıkça 'İki İmam'dan biri' olarak anıldı.",
-        "en": "Part XIII: it was found that the Pole 'has been one and undying since the day God created it,' while a mortal office called 'the Pole of the age' changes hands (Mudawi'l-Kulum → al-Mustaslim → ... → Jami'ul-Hikam). Part XIV: a timeless, simultaneous rank-hierarchy was given -- Pole(1) → Two Imams → Awtad(4) → Abdal(7). Part XVI: in Chapter 22's third VASIL, firm arithmetic was added to this hierarchy -- '12 Naqibs + 7 Badals (4 Awtad + 2 Imams + 1 Pole) = 19 Rijal' -- and in Chapter 23 the hierarchy's most hidden, lowest class, the 'Afrad' (Malamis, unrecognized saints), was introduced with a concrete ethical portrait. Part XVII: an entirely different, functional axis emerged -- just as every verse has an outward, an inward, a limit, and a rising-place, these four ranks (the men of the outward/inward/limit/rising-place) each have their own pole; Dost's own spiritual master Abu Madyan was also explicitly named as 'one of the Two Imams.'",
-        "pt": "Parte XIII: constatou-se que o Polo 'é um só e imortal desde o dia em que Deus o criou,' enquanto um cargo mortal chamado 'o Polo da época' muda de mãos (Mudawi'l-Kulum → al-Mustaslim → ... → Jami'ul-Hikam). Parte XIV: foi dada uma hierarquia de graus atemporal e simultânea -- Polo(1) → Dois Imames → Awtad(4) → Abdal(7). Parte XVI: no terceiro VASIL do Capítulo 22, uma aritmética firme foi acrescentada a essa hierarquia -- '12 Naqibs + 7 Badals (4 Awtad + 2 Imames + 1 Polo) = 19 Rijal' -- e no Capítulo 23 a classe mais oculta e mais baixa da hierarquia, os 'Afrad' (Malamis, santos não reconhecidos), foi apresentada com um retrato ético concreto. Parte XVII: emergiu um eixo inteiramente diferente, funcional -- assim como todo versículo tem um exterior, um interior, um limite e um lugar do nascer, esses quatro graus (os homens do exterior/interior/limite/lugar do nascer) têm cada um seu próprio polo; o próprio mestre espiritual de Dost, Abu Madyan, também foi explicitamente nomeado como 'um dos Dois Imames.'"
-      },
+      "gorulen_yerler": [
+        {
+          "tr": "Kutup'un 'Allah'ın yarattığı günden beri tek ve ölümsüz' olduğu, buna karşın 'zamanın kutbu' denen ölümlü bir makamın el değiştirdiği (Müdâviü'l-külüm → el-Müsteslim → ... → Câmiü'l-hikem) tespit edildi.",
+          "en": "It was found that the Pole 'has been one and undying since the day God created it,' while a mortal office called 'the Pole of the age' changes hands (Mudawi'l-Kulum → al-Mustaslim → ... → Jami'ul-Hikam).",
+          "pt": "Constatou-se que o Polo 'é um só e imortal desde o dia em que Deus o criou,' enquanto um cargo mortal chamado 'o Polo da época' muda de mãos (Mudawi'l-Kulum → al-Mustaslim → ... → Jami'ul-Hikam)."
+        },
+        {
+          "tr": "Kutup(1) → İki İmam → Evtad(4) → Ebdal(7) şeklinde, zamansız ve eşzamanlı bir mertebe hiyerarşisi verildi.",
+          "en": "A timeless, simultaneous rank-hierarchy was given -- Pole(1) → Two Imams → Awtad(4) → Abdal(7).",
+          "pt": "Foi dada uma hierarquia de graus atemporal e simultânea -- Polo(1) → Dois Imames → Awtad(4) → Abdal(7)."
+        },
+        {
+          "tr": "Bölüm 22 VASIL 3'te bu hiyerarşiye kesin bir aritmetik eklendi -- '12 Nakip + 7 Bedel (4 Evtad + 2 İmam + 1 Kutup) = 19 Rical' -- ve Bölüm 23'te hiyerarşinin en gizli/en alt sınıfı olan 'Efrad' (Melâmîler, tanınmayan veliler) somut bir ahlâki tasvirle tanıtıldı.",
+          "en": "In Chapter 22's third VASIL, firm arithmetic was added to this hierarchy -- '12 Naqibs + 7 Badals (4 Awtad + 2 Imams + 1 Pole) = 19 Rijal' -- and in Chapter 23 the hierarchy's most hidden, lowest class, the 'Afrad' (Malamis, unrecognized saints), was introduced with a concrete ethical portrait.",
+          "pt": "No terceiro VASIL do Capítulo 22, uma aritmética firme foi acrescentada a essa hierarquia -- '12 Naqibs + 7 Badals (4 Awtad + 2 Imames + 1 Polo) = 19 Rijal' -- e no Capítulo 23 a classe mais oculta e mais baixa da hierarquia, os 'Afrad' (Malamis, santos não reconhecidos), foi apresentada com um retrato ético concreto."
+        },
+        {
+          "tr": "Bambaşka, işlevsel bir eksen ortaya çıktı -- her ayetin bir zâhiri, bâtını, haddi ve matla'ı olduğu gibi, bu dört mertebenin de (zâhir/bâtın/had/matla' adamları) kendi kutbu var; ayrıca Dost'un kendi pîri Ebû Medyen açıkça 'İki İmam'dan biri' olarak anıldı.",
+          "en": "An entirely different, functional axis emerged -- just as every verse has an outward, an inward, a limit, and a rising-place, these four ranks (the men of the outward/inward/limit/rising-place) each have their own pole; Dost's own spiritual master Abu Madyan was also explicitly named as 'one of the Two Imams.'",
+          "pt": "Emergiu um eixo inteiramente diferente, funcional -- assim como todo versículo tem um exterior, um interior, um limite e um lugar do nascer, esses quatro graus (os homens do exterior/interior/limite/lugar do nascer) têm cada um seu próprio polo; o próprio mestre espiritual de Dost, Abu Madyan, também foi explicitamente nomeado como 'um dos Dois Imames.'"
+        }
+      ],
       "sentez": {
         "tr": "Bu dört kısımdan çıkan parçaları yan yana koyduğumuzda, bize göre kutbiyetin tek bir çizgi değil, en az üç farklı düzlemde iş gördüğü ortaya çıkıyor: (1) ezelî/tekil düzlem -- tek ve ölümsüz Kutup, Hz. Muhammed'in rûhu; (2) tarihsel/ardışık düzlem -- 'zamanın kutbu' makamının el değiştirmesi, ve ona eşlik eden 12 Nakip + 7 Bedel'lik sayısal-eşzamanlı hiyerarşi (Kutup-İki İmam-Evtad); (3) işlevsel/mertebesel düzlem -- her idrak seviyesinin (zâhir/bâtın/had/matla') kendi kutbu. Bu üç düzlemin birbiriyle tam olarak nasıl örtüştüğünü Dost hiçbir yerde açıkça söylemiyor -- örneğin 'zamanın kutbu' ile 'matla' adamlarının kutbu' aynı kişi mi, farklı mı, belirsiz kalıyor. Yine de dikkat çekici bir şey var: 19 sayısının hem 'kevni ilimler' taksonomisinde (19 menzil, Kısım XVI) hem 'Rical' sınıflandırmasında (12+7) tekrarlanması, ve Efrad'ın (en gizli sınıf) bu sayının tamamen dışında, ayrı bir kategori olarak durması. Bunu şimdilik açık bir soru olarak bırakıyoruz; belki ileride, başka bir kısımda, bu üç düzlemi birbirine bağlayan bir ipucuyla karşılaşırız.",
         "en": "Placing the pieces from these four parts side by side, it seems to us that pole-hood does not operate along a single line, but works on at least three different planes: (1) the pre-eternal/singular plane -- the one, undying Pole, the spirit of Muhammad; (2) the historical/sequential plane -- the changing hands of the 'Pole of the age' office, accompanied by the numerical-simultaneous hierarchy of 12 Naqibs + 7 Badals (Pole-Two Imams-Awtad); (3) the functional/rank plane -- each level of perception (outward/inward/limit/rising-place) having its own pole. Dost never states explicitly how these three planes exactly correspond to one another -- for instance, whether the 'Pole of the age' and the 'pole of the men of the rising-place' are the same person or different remains unclear. Still, something notable stands out: the number 19 recurs both in the 'cosmic sciences' taxonomy (19 stations, Part XVI) and in the 'Rijal' classification (12+7), with the Afrad (the most hidden class) standing entirely outside this count, as a separate category. We leave this as an open question for now -- perhaps later, in some other part, we will come across a clue that ties these three planes together.",
@@ -142,19 +207,23 @@
       "kaynaklar": [
         {
           "view": "futuhat",
-          "id": "c1k13"
+          "id": "c1k13",
+          "label": { "tr": "Kısım XIII", "en": "Part XIII", "pt": "Parte XIII" }
         },
         {
           "view": "futuhat",
-          "id": "c1k14"
+          "id": "c1k14",
+          "label": { "tr": "Kısım XIV", "en": "Part XIV", "pt": "Parte XIV" }
         },
         {
           "view": "futuhat",
-          "id": "c2k16"
+          "id": "c2k16",
+          "label": { "tr": "Kısım XVI", "en": "Part XVI", "pt": "Parte XVI" }
         },
         {
           "view": "futuhat",
-          "id": "c2k17"
+          "id": "c2k17",
+          "label": { "tr": "Kısım XVII", "en": "Part XVII", "pt": "Parte XVII" }
         }
       ]
     }
