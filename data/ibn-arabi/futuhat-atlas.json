@@ -1,12 +1,12 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik; On Altıncı Kısım da bu okumaya eklendi.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik; On Altıncı ve On Yedinci Kısımlar da bu okumaya eklendi.",
   "book": {
     "cilts": [
       { "cilt": 1, "kisimStart": 1, "kisimEnd": 14 },
       { "cilt": 2, "kisimStart": 15, "kisimEnd": 28 }
     ]
   },
-  "activePartId": "c2k16",
+  "activePartId": "c2k17",
   "parts": [
     {
       "id": "c1k3",
@@ -7018,6 +7018,444 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Korunmuş Kutupların Bilinmesi, s. 67-72.",
           "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — Knowing the Protected Poles, pp. 67-72.",
           "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — Conhecendo os Polos Protegidos, pp. 67-72."
+        }
+      ]
+    },
+    {
+      "id": "c2k17",
+      "cilt": 2,
+      "kisim": 17,
+      "status": "active",
+      "title": {
+        "tr": "Kutupların Dört Sınıfı ve Hızır'la Üç Karşılaşma",
+        "en": "The Four Classes of Poles and Three Encounters with Khidr",
+        "pt": "As Quatro Classes de Polos e Três Encontros com Khidr"
+      },
+      "pageRange": "73–99",
+      "hero": {
+        "summary": {
+          "tr": "Kısım XVII, bölüm başlıklarının neredeyse tamamının 'kutupların bilinmesi' ibaresiyle kurulduğu, kutbiyet temasının en yoğun işlendiği kısımlardan biri. Kısım XIII ve XVI'da toplanan çerçeveye sayısal değil, işlevsel bir eksen ekleniyor gibi görünüyor: her mertebenin (zâhir/bâtın/had/matla') kendi kutbu. Kısmın en canlı katmanı ise Hızır'la üç ayrı otobiyografik karşılaşma ve harfler ilmine dair özgün bir zihin-etkinliği tartışması.",
+          "en": "Part XVII is one of the parts where the pole theme is treated most intensely, with nearly every chapter heading built around the phrase 'knowing the poles.' It seems to add, to the framework gathered in Parts XIII and XVI, not a numerical but a functional axis: each rank (outward/inward/limit/rising-place) has its own pole. The part's most vivid layer is three separate autobiographical encounters with Khidr, and an original discussion of the mind's role in a letter's efficacy.",
+          "pt": "A Parte XVII é uma das partes em que o tema do polo é tratado mais intensamente, com quase todos os títulos de capítulo construídos em torno da frase 'conhecendo os polos.' Ela parece acrescentar, ao arcabouço reunido nas Partes XIII e XVI, não um eixo numérico, mas um eixo funcional: cada grau (exterior/interior/limite/lugar do nascer) tem seu próprio polo. A camada mais viva da parte são três encontros autobiográficos separados com Khidr, e uma discussão original sobre o papel da mente na eficácia de uma letra."
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Dost'un dört kutup sınıfı: her mertebenin (zâhir, bâtın, had, matla') kendi adamları ve kendi kutbu var -- 'bu keşfin feleği, o kutbun etrafında döner.'",
+          "en": "Dost's four classes of poles: each rank (outward, inward, limit, rising-place) has its own men and its own pole -- 'the sphere of this unveiling turns around that pole.'",
+          "pt": "As quatro classes de polos de Dost: cada grau (exterior, interior, limite, lugar do nascer) tem seus próprios homens e seu próprio polo -- 'a esfera deste desvelamento gira em torno daquele polo.'"
+        },
+        "tree": {
+          "id": "dort-sinif-kutup-tree",
+          "label": {
+            "tr": "Dört Kutup Sınıfı",
+            "en": "The Four Classes of Poles",
+            "pt": "As Quatro Classes de Polos"
+          },
+          "note": {
+            "tr": "her ayetin bir zâhiri, bâtını, haddi ve matla'ı vardır -- her birinin kendi kutbu",
+            "en": "every verse has an outward, an inward, a limit, and a rising-place -- each with its own pole",
+            "pt": "todo versículo tem um exterior, um interior, um limite e um lugar do nascer -- cada um com seu próprio polo"
+          },
+          "children": [
+            {
+              "id": "zahir-adamlari",
+              "label": {
+                "tr": "Zâhir Adamları",
+                "en": "The Men of the Outward",
+                "pt": "Os Homens do Exterior"
+              },
+              "note": {
+                "tr": "sözünü tutanlar; mülk/şehadet âleminde tasarruf",
+                "en": "those who keep their word; act within the visible world",
+                "pt": "os que cumprem sua palavra; atuam no mundo visível"
+              }
+            },
+            {
+              "id": "batin-adamlari",
+              "label": {
+                "tr": "Bâtın Adamları",
+                "en": "The Men of the Inward",
+                "pt": "Os Homens do Interior"
+              },
+              "note": {
+                "tr": "ticaretin zikirden alıkoymadığı, Hak ile oturanlar",
+                "en": "those for whom trade never distracts from remembrance; who sit with the Real",
+                "pt": "aqueles para quem o comércio nunca distrai da lembrança; que se assentam com o Real"
+              }
+            },
+            {
+              "id": "had-arif-adamlari",
+              "label": {
+                "tr": "Had/Araf Adamları",
+                "en": "The Men of the Limit",
+                "pt": "Os Homens do Limite"
+              },
+              "note": {
+                "tr": "niteliklerden arınmış olanlar (Ebû Yezid el-Bistâmî örneği)",
+                "en": "those stripped of attributes (as with Abu Yazid al-Bistami)",
+                "pt": "os despojados de atributos (como com Abu Yazid al-Bistami)"
+              }
+            },
+            {
+              "id": "matla-adamlari",
+              "label": {
+                "tr": "Matla' Adamları",
+                "en": "The Men of the Rising-Place",
+                "pt": "Os Homens do Lugar do Nascer"
+              },
+              "note": {
+                "tr": "Melâmîler; davete yaya koşanlar; ilahi isimlerde tasarruf",
+                "en": "the Malamis; who run to the call on foot; act within the divine names",
+                "pt": "os Malamis; que correm ao chamado a pé; atuam nos nomes divinos"
+              }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "mulkun-mulku-hatmul-velayet",
+          "heading": {
+            "tr": "Mülkün Mülkü ve Hatmü'l-Velayet",
+            "en": "The Dominion of Dominion and the Seal of Sainthood",
+            "pt": "O Domínio do Domínio e o Selo da Santidade"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısım, 'mülkün mülkü' (mülkiyetin mülkiyeti) kavramıyla açılıyor: Allah, kulun duasına icabet etmeyi kendi üzerine farz kılarak, âdeta mülk (âlem) üzerinde kulla bir tasarruf ortaklığı kurmuş gibi sunuluyor. Dost bunu izafe (tamlama) mantığıyla temellendiriyor -- Zeyd-Ömer, köle-sahip gibi örneklerle, bir tamlamanın iki tarafının birbirini karşılıklı olarak var ettiğini gösteriyor: <em>'Bu tamlama, mülkün mülkü diye tabir edilen bir nitelik verilmiştir... Allah kula \"beni anmak için namaz kıl\" dediği gibi kul da \"Rabbim beni bağışla\" der.'</em> Bize göre bu, kulun Allah'la ilişkisini tek yönlü bir tabiiyet değil, dilin kendi mantığının (tamlamanın iki ucu) da yansıttığı karşılıklı bir çağrı-cevap yapısı olarak sunuyor.",
+                "en": "The part opens with the notion of 'the dominion of dominion': by making it incumbent upon Himself to answer the servant's prayer, God is presented as having, in a sense, established a partnership of disposal over dominion (the world) together with the servant. Dost grounds this in the logic of genitive construction (idafa) -- using examples such as Zayd-Umar, slave-master, to show that the two sides of a genitive construction mutually bring each other into being: <em>'This construction has been given a quality termed the dominion of dominion... Just as God says to the servant \"pray to remember Me,\" the servant says \"My Lord, forgive me.\"'</em> To us, this presents the servant's relation to God not as one-directional subordination, but as a call-and-response structure that language's own logic (the two ends of a genitive construction) also reflects.",
+                "pt": "A parte se abre com a noção do 'domínio do domínio': ao tornar incumbência sobre Si mesmo responder à oração do servo, Deus é apresentado como tendo, em certo sentido, estabelecido uma parceria de disposição sobre o domínio (o mundo) junto com o servo. Dost fundamenta isso na lógica da construção genitiva (idafa) -- usando exemplos como Zayd-Umar, escravo-senhor, para mostrar que os dois lados de uma construção genitiva mutuamente se trazem à existência: <em>'A esta construção foi dada uma qualidade chamada o domínio do domínio... Assim como Deus diz ao servo \"reza para Me lembrar,\" o servo diz \"Meu Senhor, perdoa-me.\"'</em> Para nós, isso apresenta a relação do servo com Deus não como subordinação unidirecional, mas como uma estrutura de chamado e resposta que a própria lógica da linguagem (as duas pontas de uma construção genitiva) também reflete."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bir VASIL'de Dost, kendi çağında karşılaştığını söylediği, 'sonluk nişanı'nı gördüğü bir hatemü'l-velayet figüründen söz ediyor -- iddialı ve otobiyografik bir pasaj: <em>'Söz konusu kimse, bizim zamanımızda doğmuştur ve ben de kendisini gördüm. Onunla bir araya geldim, kendisindeki sonluk nişanını gördüm.'</em> İkinci bir VASIL'de ise (Rahmani Nefeslere Âşık Kalpler) çarpıcı bir sayısal kozmoloji karşımıza çıkıyor -- nefeslerin sayısına dair bir hesaplama; bu, Kısım XVI'daki '12 Nakip+7 Bedel=19' gibi sayısal-mistik iskeletlerin bir başka örneği. Dost burada kendi amcası Abdullah b. Muhammed el-Arabî'yi de bu makamın ehlinden biri olarak anıyor -- ailevi/biyografik küçük bir iz.",
+                "en": "In one VASIL, Dost speaks of a figure he says he encountered in his own age, a seal of sainthood in whom he saw the 'mark of finality' -- a bold, autobiographical passage: <em>'This person was born in our time, and I myself saw him. I met with him, and I saw in him the mark of finality.'</em> In a second VASIL (Hearts in Love with the Merciful Breaths), a striking numerical cosmology appears -- a calculation of the number of breaths; this is another example of the numerical-mystical frameworks we saw in Part XVI's '12 Naqibs + 7 Badals = 19.' Dost also mentions his own uncle, Abdullah b. Muhammad al-Arabi, as one belonging to this station -- a small familial, biographical trace.",
+                "pt": "Em um VASIL, Dost fala de uma figura que diz ter encontrado em sua própria época, um selo da santidade em quem viu a 'marca da finalidade' -- uma passagem ousada e autobiográfica: <em>'Esta pessoa nasceu em nosso tempo, e eu mesmo o vi. Encontrei-me com ele, e vi nele a marca da finalidade.'</em> Em um segundo VASIL (Corações Apaixonados pelos Alentos Misericordiosos), aparece uma cosmologia numérica marcante -- um cálculo do número de alentos; este é outro exemplo dos arcabouços numérico-místicos que vimos em '12 Naqibs + 7 Badals = 19' da Parte XVI. Dost também menciona seu próprio tio, Abdullah b. Muhammad al-Arabi, como alguém pertencente a esta estação -- um pequeno traço familiar e biográfico."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVII — Mülkün Mülkü, s. 73-82.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVII — The Dominion of Dominion, pp. 73-82.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVII — O Domínio do Domínio, pp. 73-82."
+              },
+              "pair": {
+                "left": {
+                  "label": {
+                    "tr": "Kul: \"Rabbim beni bağışla\"",
+                    "en": "The servant: \"My Lord, forgive me\"",
+                    "pt": "O servo: \"Meu Senhor, perdoa-me\""
+                  },
+                  "note": {
+                    "tr": "kulun çağrısı",
+                    "en": "the servant's call",
+                    "pt": "o chamado do servo"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Allah: \"beni anmak için namaz kıl\"",
+                    "en": "God: \"pray to remember Me\"",
+                    "pt": "Deus: \"reza para Me lembrar\""
+                  },
+                  "note": {
+                    "tr": "Hakkın çağrısı",
+                    "en": "the Real's call",
+                    "pt": "o chamado do Real"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "'Mülkün mülkü': tamlamanın (izafe) iki tarafı, tıpkı kul ile Rab gibi, birbirini karşılıklı çağırarak var ediyor.",
+                "en": "'The dominion of dominion': the two sides of a genitive construction, just like the servant and the Lord, bring each other into being through mutual calling.",
+                "pt": "'O domínio do domínio': os dois lados de uma construção genitiva, assim como o servo e o Senhor, trazem-se mutuamente à existência através do chamado recíproco."
+              }
+            }
+          ]
+        },
+        {
+          "id": "hizirla-uc-karsilasma",
+          "heading": {
+            "tr": "Hızır'la Üç Karşılaşma",
+            "en": "Three Encounters with Khidr",
+            "pt": "Três Encontros com Khidr"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu kısmın en canlı otobiyografik malzemesi burada: Dost, Hızır'la yaşadığını söylediği üç ayrı karşılaşmayı anlatıyor. İkincisinde, gemide bir gece, denizin ortasındaki bir aydınlığa doğru yürüyen bir adam görüyor: <em>'Aramızda iki milden daha fazla mesafe vardı ve bu mesafeyi iki veya üç adımda katetmişti.'</em> Ertesi gün karaya çıktığında biri ona sorar: <em>'Dün gemide Hızır ile geçen nasıldı, sana ne dedi, sen ona ne dedin?'</em> -- yani karşılaşma, sadece kendi tanıklığıyla değil, başkalarının da bildiği bir olay olarak aktarılıyor.",
+                "en": "This part's most vivid autobiographical material is found here: Dost recounts three separate encounters he says he had with Khidr. In the second, one night aboard a ship, he sees a man walking toward a light in the middle of the sea: <em>'There was more than two miles between us, and he covered that distance in two or three steps.'</em> The next day, upon reaching shore, someone asks him: <em>'How was your night with Khidr on the ship, what did he say to you, what did you say to him?'</em> -- meaning the encounter is conveyed not only as his own testimony, but as something others already knew of.",
+                "pt": "O material autobiográfico mais vivo desta parte está aqui: Dost relata três encontros separados que diz ter tido com Khidr. No segundo, uma noite a bordo de um navio, ele vê um homem caminhando em direção a uma luz no meio do mar: <em>'Havia mais de duas milhas entre nós, e ele percorreu essa distância em dois ou três passos.'</em> No dia seguinte, ao chegar à costa, alguém lhe pergunta: <em>'Como foi sua noite com Khidr no navio, o que ele te disse, o que você disse a ele?'</em> -- ou seja, o encontro é transmitido não apenas como seu próprio testemunho, mas como algo que outros já sabiam."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Üçüncü karşılaşma ise harap bir mescitte geçiyor -- Dost'un yanındaki, velilerin olağanüstü hallerini inkâr eden bir arkadaşının da tanık olduğu bir sahne: <em>'Hızır olduğunu söylediğim adam bir anda mescidin mihrabında bulunan bir hasırı aldı. Onu yerden yedi kulaç yüksekliğinde havaya yayıp hasırın üzerinde havada nafile namaz kılmaya başladı.'</em> Bize göre bu üç sahne, Dost'un çoğu kısımda soyut/doktrinel bir sesle konuştuğu yerlerden çok farklı bir tonda -- somut, tarih ve yer belirten, başka tanıkları olan bir anlatı sesiyle aktarılıyor; bu da onları külliyat içinde ayrıca dikkat çekici kılıyor.",
+                "en": "The third encounter takes place in a ruined mosque -- witnessed also by a companion of Dost's who denied the extraordinary states of saints: <em>'The man I said was Khidr suddenly took a mat lying at the mosque's prayer-niche. He spread it seven cubits up in the air and began performing a voluntary prayer while standing on it, in mid-air.'</em> To us, these three scenes are conveyed in a tone very different from the abstract, doctrinal voice Dost uses in most of the part -- a concrete narrative voice giving dates and places, with other witnesses present; this is part of what makes them stand out within the wider corpus.",
+                "pt": "O terceiro encontro ocorre numa mesquita em ruínas -- testemunhado também por um companheiro de Dost que negava os estados extraordinários dos santos: <em>'O homem que eu disse ser Khidr de repente pegou um tapete que estava no nicho de oração da mesquita. Ele o estendeu sete côvados no ar e começou a realizar uma oração voluntária de pé sobre ele, no meio do ar.'</em> Para nós, essas três cenas são transmitidas num tom muito diferente da voz abstrata e doutrinária que Dost usa na maior parte da parte -- uma voz narrativa concreta, dando datas e lugares, com outras testemunhas presentes; isso é parte do que as torna notáveis dentro do corpus mais amplo."
+              }
+            }
+          ]
+        },
+        {
+          "id": "dort-sinif-kutup",
+          "heading": {
+            "tr": "Dört Sınıf Kutup: Zâhir, Bâtın, Had, Matla'",
+            "en": "Four Classes of Poles: Outward, Inward, Limit, Rising-Place",
+            "pt": "Quatro Classes de Polos: Exterior, Interior, Limite, Lugar do Nascer"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Aynı bölümün doktrinel ağırlığı, dört mertebe tasnifinde: Şeyh Ebû Muhammed Abdullah eş-Şekkâz'dan naklen, her ayetin bir zâhiri, bâtını, haddi ve matla'ı olduğu, ve her mertebenin kendi adamlarının ve kendi kutbunun bulunduğu söyleniyor: <em>'Bu mertebelerden her birinin adamları olduğu gibi bu gruplardan her birinin de bir kutbu vardır. Bu keşfin feleği, işte o kutbun etrafında döner.'</em> Bize göre bu cümle -- bir 'keşif feleği'nin kutbun etrafında dönmesi -- sitenin merkez-çevre ilkesiyle doğrudan örtüşen, çok net bir daire/merkez imgesi. Dört sınıf sırasıyla tarif ediliyor: zâhir adamları (sözünü tutanlar), bâtın adamları (ticaretin zikirden alıkoymadığı, Hak ile oturanlar), had/Araf adamları (Ebû Yezid el-Bistâmî örneğiyle, niteliklerden arınmış olanlar), matla' adamları (Melâmîler, davete yaya koşanlar).",
+                "en": "The same chapter's doctrinal weight lies in a fourfold classification: quoting Shaykh Abu Muhammad Abdullah al-Shakkaz, it is said that every verse has an outward, an inward, a limit, and a rising-place, and that each rank has its own men and its own pole: <em>'Just as each of these ranks has its men, each of these groups has a pole. The sphere of this unveiling turns around that pole.'</em> To us, this sentence -- a 'sphere of unveiling' turning around the pole -- is a very clear circle/center image that directly aligns with the site's center-circumference principle. The four classes are described in turn: the men of the outward (those who keep their word), the men of the inward (those for whom trade never distracts from remembrance, who sit with the Real), the men of the limit (as with Abu Yazid al-Bistami, those stripped of attributes), and the men of the rising-place (the Malamis, who run to the call on foot).",
+                "pt": "O peso doutrinário do mesmo capítulo está numa classificação quádrupla: citando o Xeique Abu Muhammad Abdullah al-Shakkaz, diz-se que todo versículo tem um exterior, um interior, um limite e um lugar do nascer, e que cada grau tem seus próprios homens e seu próprio polo: <em>'Assim como cada um desses graus tem seus homens, cada um desses grupos tem um polo. A esfera deste desvelamento gira em torno daquele polo.'</em> Para nós, esta frase -- uma 'esfera de desvelamento' girando em torno do polo -- é uma imagem de círculo/centro muito clara que se alinha diretamente com o princípio centro-circunferência do site. As quatro classes são descritas em sequência: os homens do exterior (os que cumprem sua palavra), os homens do interior (aqueles para quem o comércio nunca distrai da lembrança, que se assentam com o Real), os homens do limite (como com Abu Yazid al-Bistami, os despojados de atributos), e os homens do lugar do nascer (os Malamis, que correm ao chamado a pé)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bize göre bu dörtlü yapı, Kısım XVI'daki '12 Nakip+7 Bedel=19' sayısal iskeletinden farklı, ama onu tamamlayan bir eksen sunuyor -- sayısal değil, işlevsel bir tasnif (her sınıfın tasarruf ettiği âlem farklı: mülk/şehadet, gayb/melekût, ceberut/berzah, ilahi isimler gibi okunabilir). Ayrıca dikkat çekici bir bağlantı: Dost'un kendi pîri Ebû Medyen, bu bölümde açıkça 'iki imamdan biri' olarak anılıyor -- bu, Kısım XIV ve XVI'da topladığımız 'İki İmam' makamına canlı, isimli bir örnek kazandırıyor. Ebu's-Suud b. eş-Şibl'in on beş yıldır elindeki tasarruf gücünü bilerek terk ettiğini anlatan anekdot da, kutbiyet-feragat ilişkisine dair ayrıca ilginç bir örnek.",
+                "en": "To us, this fourfold structure seems different from Part XVI's '12 Naqibs + 7 Badals = 19' numerical framework, yet complementary to it -- not a numerical but a functional classification (each class can be read as governing a different domain: the visible world, the unseen/malakut, the jabarut/barzakh, the divine names). There is also a notable connection here: Dost's own spiritual master, Abu Madyan, is explicitly named in this chapter as 'one of the two Imams' -- giving a living, named instance of the 'Two Imams' station we gathered in Parts XIV and XVI. The anecdote of Abu'l-Suʿud b. al-Shibl, who is said to have knowingly relinquished the power of disposal he had held for fifteen years, is also an interesting example of the relation between pole-hood and renunciation.",
+                "pt": "Para nós, essa estrutura quádrupla parece diferente do arcabouço numérico '12 Naqibs + 7 Badals = 19' da Parte XVI, mas complementar a ele -- uma classificação não numérica, mas funcional (cada classe pode ser lida como governando um domínio diferente: o mundo visível, o invisível/malakut, o jabarut/barzakh, os nomes divinos). Há também uma conexão notável aqui: o próprio mestre espiritual de Dost, Abu Madyan, é explicitamente nomeado neste capítulo como 'um dos dois Imames' -- dando um exemplo vivo e nomeado da estação dos 'Dois Imames' que reunimos nas Partes XIV e XVI. A anedota de Abu'l-Suʿud b. al-Shibl, que teria abandonado conscientemente o poder de disposição que detinha havia quinze anos, é também um exemplo interessante da relação entre condição de polo e renúncia."
+              }
+            }
+          ]
+        },
+        {
+          "id": "remiz-kutuplari-harfler",
+          "heading": {
+            "tr": "Remiz Kutupları: Ezel, Ebed ve Harflerin Etkinliği",
+            "en": "The Poles of Signs: Pre-Eternity, Post-Eternity, and the Efficacy of Letters",
+            "pt": "Os Polos dos Sinais: Pré-Eternidade, Pós-Eternidade e a Eficácia das Letras"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Remiz (simge) kavramı Kur'an örnekleriyle açıldıktan sonra, Dost ezel ve ebed'i apofatik (olumsuzlama yoluyla) tanımlıyor: <em>'Ezel, kendisiyle nitelenen kimseden ilk olmayı nefyetmek demektir.'</em> ve <em>'Ebed, sonluğun nefyi demektir.'</em> Yani bu iki kavram, doğrudan bir 'şey' tanımlamıyor, sadece belirli bir sınırlamanın yokluğunu ifade ediyor.",
+                "en": "After opening the notion of the sign (ramz) with Quranic examples, Dost defines pre-eternity and post-eternity apophatically (through negation): <em>'Pre-eternity means negating firstness from the one so described.'</em> and <em>'Post-eternity means the negation of finality.'</em> That is, neither concept describes a 'thing' directly -- each only expresses the absence of a particular limitation.",
+                "pt": "Depois de abrir a noção do sinal (ramz) com exemplos corânicos, Dost define a pré-eternidade e a pós-eternidade de forma apofática (por negação): <em>'A pré-eternidade significa negar a primeiridade daquele assim descrito.'</em> e <em>'A pós-eternidade significa a negação da finalidade.'</em> Ou seja, nenhum dos dois conceitos descreve uma 'coisa' diretamente -- cada um apenas expressa a ausência de uma limitação particular."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölümün bize göre en özgün fikri, harflerin etkinliği üzerine. Harfleri üçe ayırdıktan sonra (rakamsal, lafzi, zihinde canlandırılan), Dost şaşırtıcı bir tez öne sürüyor: bir harfin 'amel etmesi' (etkili olması), harfin kendisinden değil, ona eşlik eden zihinsel canlandırmadan (tasavvur) kaynaklanıyor: <em>'İster rakamsal ister telaffuz edilen harf olsun tek harf, kendisiyle amel eden kişi lafız veya rakamda hayalen zihninde canlandırmaktan yoksun kaldığında, harf amel etmez. Tek harf ile birlikte zihinde canlandırmak da varsa, bu durumda tek harf amel eder... Hiç kimse zihinde canlandırmanın anlamını kavrayamamıştır.'</em> Bize göre bu, günlük hayattan bir örnekle kolayca somutlaştırılabilir bir fikir -- bir kelimeyi dalgın okumakla, ona tam dikkat vererek okumak arasındaki fark gibi: harfin/sözün kendisi aynı kalsa da, ona eşlik eden zihinsel hazır bulunuşluk, sonucu değiştiriyor.",
+                "en": "The chapter's, to us, most original idea concerns the efficacy of letters. After dividing letters into three kinds (numerical, spoken, mentally visualized), Dost puts forward a striking thesis: a letter's 'acting' (its being effective) does not come from the letter itself, but from the mental visualization (tasawwur) that accompanies it: <em>'Whether numerical or spoken, a single letter does not act when the one working with it lacks a mental visualization of the word or number in imagination. When mental visualization accompanies the single letter, then the single letter acts... No one has grasped the meaning of mental visualization.'</em> To us, this is an idea that can easily be grounded in an everyday example -- like the difference between reading a word absent-mindedly and reading it with full attention: even though the letter or word itself stays the same, the mental presence accompanying it changes the outcome.",
+                "pt": "A ideia mais original do capítulo, para nós, diz respeito à eficácia das letras. Depois de dividir as letras em três tipos (numérica, falada, visualizada mentalmente), Dost apresenta uma tese marcante: o 'agir' de uma letra (sua eficácia) não vem da própria letra, mas da visualização mental (tasawwur) que a acompanha: <em>'Seja numérica ou falada, uma única letra não age quando aquele que trabalha com ela carece de uma visualização mental da palavra ou número na imaginação. Quando a visualização mental acompanha a letra única, então a letra única age... Ninguém compreendeu o significado da visualização mental.'</em> Para nós, esta é uma ideia que pode ser facilmente fundamentada num exemplo cotidiano -- como a diferença entre ler uma palavra distraidamente e lê-la com plena atenção: mesmo que a letra ou palavra em si permaneça a mesma, a presença mental que a acompanha muda o resultado."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVII — Remiz Kutupları, s. 88-93.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVII — The Poles of Signs, pp. 88-93.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVII — Os Polos dos Sinais, pp. 88-93."
+              },
+              "triad": {
+                "left": {
+                  "label": {
+                    "tr": "Rakamsal Harf",
+                    "en": "The Numerical Letter",
+                    "pt": "A Letra Numérica"
+                  },
+                  "note": {
+                    "tr": "sayı değeriyle",
+                    "en": "by its numerical value",
+                    "pt": "por seu valor numérico"
+                  }
+                },
+                "middle": {
+                  "label": {
+                    "tr": "Lafzi Harf",
+                    "en": "The Spoken Letter",
+                    "pt": "A Letra Falada"
+                  },
+                  "note": {
+                    "tr": "söylenişiyle",
+                    "en": "by its utterance",
+                    "pt": "por sua enunciação"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Zihinde Canlandırılan",
+                    "en": "The Mentally Visualized",
+                    "pt": "A Visualizada Mentalmente"
+                  },
+                  "note": {
+                    "tr": "tasavvurla -- amel ancak bununla gerçekleşir",
+                    "en": "through imagination -- only with this does the letter act",
+                    "pt": "através da imaginação -- só com isso a letra age"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un harf tasnifi: hangi türden olursa olsun, bir harfin etkili olması, ona eşlik eden zihinsel canlandırmaya bağlı.",
+                "en": "Dost's classification of letters: whichever kind it is, a letter's efficacy depends on the mental visualization that accompanies it.",
+                "pt": "A classificação de Dost das letras: seja qual for o tipo, a eficácia de uma letra depende da visualização mental que a acompanha."
+              }
+            }
+          ]
+        },
+        {
+          "id": "soyleme-duyma-menzilleri-namaz",
+          "heading": {
+            "tr": "Söyleme ve Duyma Menzilleri: Namazın Gidiş-Gelişi",
+            "en": "The Stations of Speaking and Hearing: Prayer's Journey Back and Forth",
+            "pt": "As Estações de Falar e Ouvir: A Ida e Volta da Oração"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu bölümün bize göre en özgün fikri, namazı iki menzil arasında gidip gelen bir yolculuk olarak tasvir etmesi: kul <em>'hamd âlemlerin rabbi Allah'adır'</em> dediğinde 'söyleme' menzilinden çıkıyor, Hakkın 'kulum beni övmüştür' cevabını duymak için 'duyma' menziline geçiyor, sonra tekrar döner: <em>'Sonra kul, söyleme menzilinden Hakkın sözüne karşılık verişini duymak için duyma menziline geçer. İşte bu, sefer ve yolculuktur. Bu nedenle kul, bu iki menzil arasındaki yolu yürümek için ayakkabılarını giymiştir.'</em> Bize göre bu, tam bir daire değil ama merkez-çevre ilkesiyle akraba bir 'gidip-dönme' ritmi -- söyleme ve duyma arasında salınan, sürekli yeniden başlayan bir yolculuk.",
+                "en": "This chapter's, to us, most original idea is its portrayal of prayer as a journey moving back and forth between two stations: when the servant says <em>'praise belongs to God, Lord of the worlds,'</em> he departs the station of 'speaking' and passes into the station of 'hearing' in order to hear the Real's reply, 'My servant has praised Me,' then returns again: <em>'Then the servant passes from the station of speaking to the station of hearing, in order to hear the Real's response to his words. This is the journey and the voyage. For this reason the servant has put on his shoes in order to walk the road between these two stations.'</em> To us, this is not a full circle, but a 'going and returning' rhythm kindred to the center-circumference principle -- a journey oscillating between speaking and hearing, endlessly beginning again.",
+                "pt": "A ideia mais original deste capítulo, para nós, é sua descrição da oração como uma jornada que vai e vem entre duas estações: quando o servo diz <em>'o louvor pertence a Deus, Senhor dos mundos,'</em> ele parte da estação de 'falar' e passa para a estação de 'ouvir' a fim de ouvir a resposta do Real, 'Meu servo Me louvou,' depois retorna novamente: <em>'Então o servo passa da estação de falar para a estação de ouvir, a fim de ouvir a resposta do Real às suas palavras. Esta é a jornada e a viagem. Por isso o servo calçou seus sapatos para percorrer o caminho entre essas duas estações.'</em> Para nós, isso não é um círculo completo, mas um ritmo de 'ir e voltar' aparentado ao princípio centro-circunferência -- uma jornada oscilando entre falar e ouvir, recomeçando sem cessar."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Aynı bölümde Hz. Musa'nın ayakkabılarının (ölü eşek derisinden olduğu rivayet edilen) üçlü sembolizmi de işleniyor -- zâhirlik, ahmaklık ve ölüm/bilgisizlik ile ilişkilendiriliyor. Bölümün sonunda kutupların sırları sıralanırken, aralarında 'zemherir dairesinin sırrı' da geçiyor: <em>'...zemherir dairesinin sırrı, Hakkın serapta bulunmasının sırrı, ilahi perdeler sırrı...'</em> Bu, önceki kısımlarda daire imgesinin 'feleklerin dairesel hareketi' (Kısım XVI, zaman bahsi) bağlamında çıkmasından farklı olarak, burada zemherir (aşırı soğuk/cehennemi bir hal) ile ilişkilendirilen ayrı bir 'daire' -- bize göre henüz erken bir ipucu, ileride derinleşebilir ya da başka bir kısımda tekrar karşımıza çıkabilir.",
+                "en": "In the same chapter, the threefold symbolism of Moses's sandals (said to be made of dead donkey hide) is also treated -- linked to outwardness, foolishness, and death/ignorance. Toward the end of the chapter, as the secrets of the poles are listed, 'the secret of the circle of zamharir' is among them: <em>'...the secret of the circle of zamharir, the secret of the Real being present in the mirage, the secret of the divine veils...'</em> Unlike the earlier appearances of the circle image tied to 'the circular motion of the spheres' (Part XVI, the discussion of time), this is a separate 'circle' associated with zamharir (an extremely cold, infernal state) -- to us, an early clue for now, one that may deepen or resurface in some other part.",
+                "pt": "No mesmo capítulo, o simbolismo tríplice das sandálias de Moisés (ditas feitas de pele de burro morto) também é tratado -- ligado à exterioridade, à tolice e à morte/ignorância. Perto do final do capítulo, ao se listarem os segredos dos polos, 'o segredo do círculo do zamharir' está entre eles: <em>'...o segredo do círculo do zamharir, o segredo do Real estar presente na miragem, o segredo dos véus divinos...'</em> Diferente das aparições anteriores da imagem do círculo ligada ao 'movimento circular das esferas' (Parte XVI, a discussão do tempo), este é um 'círculo' separado, associado ao zamharir (um estado extremamente frio, infernal) -- para nós, uma pista precoce por ora, que pode se aprofundar ou ressurgir em alguma outra parte."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVII — Söyleme ve Duyma Menzilleri, s. 93-97.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVII — The Stations of Speaking and Hearing, pp. 93-97.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVII — As Estações de Falar e Ouvir, pp. 93-97."
+              },
+              "pair": {
+                "left": {
+                  "label": {
+                    "tr": "Söyleme Menzili",
+                    "en": "The Station of Speaking",
+                    "pt": "A Estação de Falar"
+                  },
+                  "note": {
+                    "tr": "kul: \"hamd âlemlerin rabbi Allah'adır\"",
+                    "en": "the servant: \"praise belongs to God, Lord of the worlds\"",
+                    "pt": "o servo: \"o louvor pertence a Deus, Senhor dos mundos\""
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Duyma Menzili",
+                    "en": "The Station of Hearing",
+                    "pt": "A Estação de Ouvir"
+                  },
+                  "note": {
+                    "tr": "Hak: \"kulum beni övmüştür\"",
+                    "en": "the Real: \"My servant has praised Me\"",
+                    "pt": "o Real: \"Meu servo Me louvou\""
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Namaz, bu iki menzil arasında gidip gelen bir yolculuk: kul her sûreyi bitirdiğinde tekrar duyma menziline döner.",
+                "en": "Prayer is a journey going back and forth between these two stations: the servant returns to the station of hearing each time he finishes a verse.",
+                "pt": "A oração é uma jornada que vai e volta entre essas duas estações: o servo retorna à estação de ouvir cada vez que termina um versículo."
+              }
+            }
+          ]
+        },
+        {
+          "id": "dort-soru-edati",
+          "heading": {
+            "tr": "Dört Soru Edatı: Hel, Mâ, Keyfe, Lime",
+            "en": "Four Question Particles: Hal, Mā, Kayfa, Lima",
+            "pt": "Quatro Partículas Interrogativas: Hal, Mā, Kayfa, Lima"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu bölüm saf bir epistemoloji tartışması: Allah hakkında hangi soru edatlarıyla soru sorulabileceği. Dost dört ana edatı sayıyor: <em>'Ana soru edatları, dörttür. Bunlar varlığı soran hel (mıdır?), mahiyeti soran ma (nedir?), hali soran keyfe (nasıl?), neden ve sebebi soran lime (niçin?) edatlarıdır.'</em> Filozoflar ve şeriatçılar arasındaki ayrılık ayrıntılı işleniyor -- 'hel' ile soru sormanın (Allah var mıdır?) kabul gördüğü, ama diğerlerinin (özellikle mahiyet/keyfiyet soran ma ve keyfe) tartışmalı olduğu anlaşılıyor.",
+                "en": "This chapter is a pure epistemological discussion: with which question particles may one ask about God? Dost lists four main particles: <em>'The main question particles are four. These are hal (is it?) asking about existence, mā (what is it?) asking about quiddity, kayfa (how?) asking about state, and lima (why?) asking about cause and reason.'</em> The disagreement between philosophers and jurist-theologians is treated in detail -- asking with 'hal' (does God exist?) is agreed upon, but the others (especially mā and kayfa, asking about quiddity and modality) prove contentious.",
+                "pt": "Este capítulo é uma discussão puramente epistemológica: com quais partículas interrogativas se pode perguntar sobre Deus? Dost lista quatro partículas principais: <em>'As partículas interrogativas principais são quatro. São hal (é?) perguntando pela existência, mā (o que é?) perguntando pela quididade, kayfa (como?) perguntando pelo estado, e lima (por quê?) perguntando pela causa e razão.'</em> O desacordo entre filósofos e teólogos-juristas é tratado em detalhe -- perguntar com 'hal' (Deus existe?) é aceito por consenso, mas as demais (especialmente mā e kayfa, perguntando pela quididade e modalidade) mostram-se controversas."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost, tartışmanın sonunda kendi epistemik tavrını ortaya koyuyor: her iki tarafa da kesin ret veya kabul hükmü vermekten kaçınmayı tavsiye ediyor. Bize göre bu tavır, sitenin kendi 'anlamaya çalışıyoruz, anlatmaya değil' duruşuyla ilginç bir rezonans kuruyor -- Dost da, kendisinden çok daha teknik bir kelam tartışmasında, kesin bir taraf tutmak yerine bir tevazu çizgisi seçiyor.",
+                "en": "At the end of the discussion, Dost sets out his own epistemic stance: he advises against handing down a final verdict of rejection or acceptance to either side. To us, this stance resonates interestingly with the site's own posture of 'trying to understand, not to explain' -- Dost too, in a far more technical theological debate than our own, chooses a line of humility rather than taking a definitive side.",
+                "pt": "Ao final da discussão, Dost expõe sua própria postura epistêmica: aconselha evitar proferir um veredito final de rejeição ou aceitação a qualquer um dos lados. Para nós, essa postura ressoa de modo interessante com a própria posição do site de 'tentar entender, não explicar' -- também Dost, num debate teológico muito mais técnico que o nosso, escolhe uma linha de humildade em vez de tomar um lado definitivo."
+              }
+            }
+          ]
+        },
+        {
+          "id": "selman-i-farisi-temizlik",
+          "heading": {
+            "tr": "Selman-ı Fârisî: Soyla Değil Temizlikle Ehl-i Beyt'e Katılmak",
+            "en": "Salman al-Farisi: Joining the Household Not by Lineage, But by Purity",
+            "pt": "Salman al-Farisi: Juntar-se à Família Não pela Linhagem, Mas pela Pureza"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısmın son bölümü, Selman-ı Fârisî'nin Hz. Peygamber'in 'sözleşmeli azadlığı' yoluyla Ehl-i Beyt'e nasıl dahil olduğunu anlatıyor -- ölçüt soy değil, tathir ayetindeki 'temizlik'. Dost, kendi zühd döneminden otobiyografik bir ayrıntı da paylaşıyor: <em>'Bu makama ulaştıktan sonra hiçbir hayvanım, hatta giydiğim bir elbisem bile olmadı.'</em> Bize göre bu, kısmın en somut, en az doktrinel anı -- Dost'un kendi çilekeşlik döneminin dolaysız bir tanıklığı.",
+                "en": "The part's final chapter tells how Salman al-Farisi came to be included in the Household of the Prophet through the Prophet's 'covenanted manumission' -- the criterion being not lineage but the 'purity' spoken of in the verse of purification. Dost also shares an autobiographical detail from his own period of asceticism: <em>'After reaching this station, I owned no animal, not even the garment I wore.'</em> To us, this is the part's most concrete, least doctrinal moment -- a direct testimony to Dost's own period of self-denial.",
+                "pt": "O capítulo final da parte conta como Salman al-Farisi passou a ser incluído na Família do Profeta através da 'manumissão pactuada' do Profeta -- o critério não sendo a linhagem, mas a 'pureza' de que fala o versículo da purificação. Dost também compartilha um detalhe autobiográfico de seu próprio período de ascetismo: <em>'Depois de alcançar esta estação, eu não possuía nenhum animal, nem sequer a roupa que vestia.'</em> Para nós, este é o momento mais concreto e menos doutrinário da parte -- um testemunho direto do próprio período de autonegação de Dost."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısım kapanırken, zaman/dehr teması kısa ama not edilmeye değer bir biçimde beliriyor: inanç ehlinin, kalbe gelen tecellinin 'zorlayıcı sebebi'ni farklı isimlendirdiği belirtiliyor: <em>'Bazı kimselere göre söz konusu sebep doğa, bazı kimselere göre dehr (zaman), bazı kimselere göre ise başka bir şeydir.'</em> Bize göre bu, Kısım XVI'daki 'zaman mevhum bir şeydir' tespitiyle doğrudan devam eden bir açıklama değil, ama 'dehr' kelimesinin yine felsefi bir tartışmanın (bu kez inanç oluşumunun sebebi) bir seçeneği olarak anıldığı, biriktirmeye değer kısa bir geçiş.",
+                "en": "As the part closes, the time/dahr theme appears once more, briefly but worth noting: it is stated that people of belief name the 'compelling cause' of the disclosure that comes to the heart differently: <em>'According to some, this cause is nature; according to some, it is dahr (time); according to some, it is something else.'</em> To us, this is not a direct continuation of Part XVI's finding that 'time is an imagined thing,' but it is a short passage worth gathering, since 'dahr' is again named as one option within a philosophical debate (this time, about the cause of belief's formation).",
+                "pt": "Ao se encerrar a parte, o tema tempo/dahr aparece mais uma vez, brevemente mas digno de nota: afirma-se que as pessoas de crença nomeiam de modo diferente a 'causa compelente' da revelação que chega ao coração: <em>'Segundo alguns, essa causa é a natureza; segundo alguns, é dahr (tempo); segundo alguns, é outra coisa.'</em> Para nós, isso não é uma continuação direta da conclusão da Parte XVI de que 'o tempo é uma coisa imaginada,' mas é uma passagem breve digna de ser reunida, já que 'dahr' é novamente nomeado como uma opção dentro de um debate filosófico (desta vez, sobre a causa da formação da crença)."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVII — Mülkün Mülkü ve Hatmü'l-Velayet, s. 73-82.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVII — The Dominion of Dominion and the Seal of Sainthood, pp. 73-82.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVII — O Domínio do Domínio e o Selo da Santidade, pp. 73-82."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVII — Hızır'la Üç Karşılaşma ve Dört Sınıf Kutup, s. 82-88.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVII — Three Encounters with Khidr and the Four Classes of Poles, pp. 82-88.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVII — Três Encontros com Khidr e as Quatro Classes de Polos, pp. 82-88."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVII — Remiz Kutupları: Ezel, Ebed, Harfler, s. 88-93.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVII — The Poles of Signs: Pre-Eternity, Post-Eternity, Letters, pp. 88-93.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVII — Os Polos dos Sinais: Pré-Eternidade, Pós-Eternidade, Letras, pp. 88-93."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVII — Söyleme ve Duyma Menzilleri, s. 93-97.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVII — The Stations of Speaking and Hearing, pp. 93-97.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVII — As Estações de Falar e Ouvir, pp. 93-97."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVII — Dört Soru Edatı, s. 97-98.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVII — Four Question Particles, pp. 97-98.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVII — Quatro Partículas Interrogativas, pp. 97-98."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVII — Selman-ı Fârisî ve Kısmın Kapanışı, s. 98-99.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVII — Salman al-Farisi and the Part's Close, pp. 98-99.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVII — Salman al-Farisi e o Fechamento da Parte, pp. 98-99."
         }
       ]
     }
