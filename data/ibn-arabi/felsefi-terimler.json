@@ -1025,6 +1025,165 @@
           }
         }
       ]
+    },
+    {
+      "id": "kutbiyet-hiyerarsisi",
+      "name": {
+        "tr": "Kutbiyet Hiyerarşisi",
+        "en": "The Hierarchy of Pole-hood",
+        "pt": "A Hierarquia do Polo"
+      },
+      "description": {
+        "tr": "Fütûhât'ın kutuplar/veliler hiyerarşisi: tek bir Kutup'tan başlayıp İki İmam, Evtad, Bedel, Nakip'e -- ve bunların dışında kalan Efrad'a -- genişleyen bir mertebeler dizisi.",
+        "en": "The Futuhat's hierarchy of poles/saints: a sequence of ranks starting from a single Pole and expanding to Two Imams, Awtad, Abdal, Naqibs -- and the Afrad, who stand outside this count entirely.",
+        "pt": "A hierarquia de polos/santos do Futuhat: uma sequência de graus que começa num único Polo e se expande para Dois Imames, Awtad, Abdal, Naqibs -- e os Afrad, que ficam inteiramente fora dessa contagem."
+      },
+      "diagram": [
+        {
+          "type": "cascade",
+          "steps": [
+            {
+              "tr": "Kutup (1)",
+              "en": "Pole (1)",
+              "pt": "Polo (1)"
+            },
+            {
+              "tr": "İki İmam (2)",
+              "en": "Two Imams (2)",
+              "pt": "Dois Imames (2)"
+            },
+            {
+              "tr": "Evtad (4)",
+              "en": "Awtad (4)",
+              "pt": "Awtad (4)"
+            },
+            {
+              "tr": "Bedel (7)",
+              "en": "Abdal (7)",
+              "pt": "Abdal (7)"
+            },
+            {
+              "tr": "Nakip (12)",
+              "en": "Naqib (12)",
+              "pt": "Naqib (12)"
+            }
+          ],
+          "relationLabel": {
+            "tr": "toplamı 19 Rical eder",
+            "en": "together make 19 Rijal",
+            "pt": "juntos formam 19 Rijal"
+          },
+          "note": {
+            "tr": "'Rical'den (adamlar) benzerleri, on iki nakip ve yedi beldeldir. Bu yedi bedelden dördü evtad, iki tanesi iki imam, biri kutuptur.' Efrad ise bu sayının tamamen dışındadır -- Kutub'un hükmü onlarda geçmez.",
+            "en": "'Among the Rijal (men), the counterparts are twelve naqibs and seven abdal. Of these seven abdal, four are awtad, two are the two imams, one is the pole.' The Afrad stand entirely outside this count -- the Pole's authority does not extend over them.",
+            "pt": "'Entre os Rijal (homens), as contrapartes são doze naqibs e sete abdal. Desses sete abdal, quatro são awtad, dois são os dois imames, um é o polo.' Os Afrad ficam inteiramente fora dessa contagem -- a autoridade do Polo não se estende sobre eles."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ahval-makamat",
+      "name": {
+        "tr": "Hâller ve Makamlar Sözlüğü",
+        "en": "Glossary of States and Stations",
+        "pt": "Glossário de Estados e Estações"
+      },
+      "description": {
+        "tr": "Fütûhât'ta tekrar tekrar karşılaştığımız erdem/hâl kavramları: vera, fütüvvet, himmet, keramet, mucize, sihir, fenâ, bekâ, istidrac.",
+        "en": "Virtue/state concepts we repeatedly meet in the Futuhat: wara', futuwwa, aspiration, wonder-working, miracle, sorcery, self-effacement, subsistence, gradual luring.",
+        "pt": "Conceitos de virtude/estado que encontramos repetidamente no Futuhat: wara', futuwwa, aspiração, prodígio, milagre, feitiçaria, autoaniquilação, subsistência, sedução gradual."
+      },
+      "diagram": [
+        {
+          "type": "spectrum",
+          "termId": "sihir",
+          "leftLabel": {
+            "tr": "Sihir",
+            "en": "Sorcery",
+            "pt": "Feitiçaria"
+          },
+          "leftNote": {
+            "tr": "beşer gücü -- failin kendisi bunun gerçek olmadığını bilir",
+            "en": "human power -- the agent knows it is not real",
+            "pt": "poder humano -- o agente sabe que não é real"
+          },
+          "rightLabel": {
+            "tr": "Mucize",
+            "en": "Miracle",
+            "pt": "Milagre"
+          },
+          "rightNote": {
+            "tr": "ne nefis ne isim -- failin kendisi bile tam bilmez",
+            "en": "neither self nor name -- even the agent does not fully know",
+            "pt": "nem o eu nem o nome -- mesmo o agente não sabe plenamente"
+          },
+          "leftMarker": {
+            "tr": "Dış gerçeklik yok",
+            "en": "No external reality",
+            "pt": "Sem realidade externa"
+          },
+          "rightMarker": {
+            "tr": "Failin bilgisi yok",
+            "en": "No knowledge on the agent's part",
+            "pt": "Sem conhecimento por parte do agente"
+          },
+          "note": {
+            "tr": "İkisinin arasında Keramet durur: gerçek bir varlıksal karşılığı vardır, ama velinin bilgi ve himmet gücüne dayanır. Fark, dış gerçekliğin olup olmamasında değil, failin bunun üzerinde ne kadar bilgi/otorite sahibi olduğunda.",
+            "en": "Between the two stands Wonder-Working (Karamat): it has a real existential counterpart, but comes about through the wali's power of knowledge and aspiration. The difference lies not in whether external reality is present, but in how much knowledge/authority the agent has over it.",
+            "pt": "Entre os dois está o Prodígio (Karamat): ele tem uma contraparte existencial real, mas advém do poder de conhecimento e aspiração do wali. A diferença não está na presença ou não de realidade externa, mas em quanto conhecimento/autoridade o agente tem sobre ela."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kurani-kozmoloji",
+      "name": {
+        "tr": "Kur'ânî Kozmoloji Mertebeleri",
+        "en": "Qur'anic Cosmological Ranks",
+        "pt": "Graus Cosmológicos Alcorânicos"
+      },
+      "description": {
+        "tr": "Fârâbî/İbn Sînâ'nın Akıl-Nefs zincirinden farklı, doğrudan Kur'an ve hadis kaynaklı bir kozmoloji: Hebâ, Dehr, Zâhir/Bâtın, Had/Matla', Amâ, Kürsî, Arş, Berzah.",
+        "en": "A cosmology distinct from Farabi/Avicenna's Intellect-Soul chain, drawn directly from the Qur'an and hadith: Haba, Dahr, Outward/Inward, Limit/Rising-Place, the Cloud, the Footstool, the Throne, the Isthmus.",
+        "pt": "Uma cosmologia distinta da cadeia Intelecto-Alma de Farabi/Avicena, extraída diretamente do Alcorão e do hadith: Haba, Dahr, Exterior/Interior, Limite/Lugar do Nascer, a Nuvem, o Escabelo, o Trono, o Istmo."
+      },
+      "diagram": [
+        {
+          "type": "cascade",
+          "steps": [
+            {
+              "tr": "Yedi Gök",
+              "en": "The Seven Heavens",
+              "pt": "Os Sete Céus"
+            },
+            {
+              "tr": "Kürsî",
+              "en": "The Footstool",
+              "pt": "O Escabelo"
+            },
+            {
+              "tr": "Arş",
+              "en": "The Throne",
+              "pt": "O Trono"
+            },
+            {
+              "tr": "Arş Ötesi (Amâ)",
+              "en": "Beyond the Throne (the Cloud)",
+              "pt": "Além do Trono (a Nuvem)"
+            }
+          ],
+          "relationLabel": {
+            "tr": "mertebe yükseldikçe himmet de yükselir",
+            "en": "as rank rises, so does aspiration",
+            "pt": "conforme o grau se eleva, também se eleva a aspiração"
+          },
+          "note": {
+            "tr": "'Hak, bazı himmetleri İlk Akıl'da karşılar... bazı himmetler ise, O'nunla Amâ'da karşılaşırken bazı himmetler Âdem'in toprağının kalıntısından yaratılmış yerde O'nunla karşılaşır.'",
+            "en": "'The Real meets some aspirations at the First Intellect... some aspirations meet Him at the Cloud, while some meet Him at the place created from the remnant of Adam's clay.'",
+            "pt": "'O Real recebe algumas aspirações no Primeiro Intelecto... algumas aspirações O encontram na Nuvem, enquanto outras O encontram no lugar criado a partir do resto do barro de Adão.'"
+          }
+        }
+      ]
     }
   ],
   "terms": {
@@ -2528,6 +2687,1244 @@
       ],
       "iliskili_kavramlar": [
         "vahyin-uc-menzili"
+      ]
+    },
+    "kutup": {
+      "id": "kutup",
+      "tier": 1,
+      "group": "kutbiyet-hiyerarsisi",
+      "title": {
+        "tr": "Kutup (Kutbiyet)",
+        "en": "Pole (Pole-hood)",
+        "pt": "Polo (Condição de Polo)"
+      },
+      "arabic": "قطب",
+      "ozet_tr": "her devrin manevi ekseni",
+      "ozet_en": "the spiritual axis of every age",
+      "ozet_pt": "o eixo espiritual de cada época",
+      "felsefi_tanim": {
+        "tr": "Velîler hiyerarşisinin en üst mertebesi -- her devirde âlemin manevi düzenini gözeten tek kişi. Fütûhât iki farklı 'kutup' kullanımını iç içe geçirir: biri tek, ezelî ve ölümsüz olan Kutup (Hz. Muhammed'in rûhu), diğeri her devirde bir kişiden bir sonrakine devrolunan ölümlü bir makam olan 'zamanın kutbu'.",
+        "en": "The highest rank of the hierarchy of saints -- the single person in every age who watches over the world's spiritual order. The Futuhat interweaves two different uses of 'Pole': one is the single, pre-eternal, undying Pole (the spirit of the Prophet Muhammad), the other is 'the Pole of the age,' a mortal office handed from one person to the next in every era.",
+        "pt": "O grau mais alto da hierarquia dos santos -- a única pessoa em cada época que zela pela ordem espiritual do mundo. O Futuhat entrelaça dois usos diferentes de 'Polo': um é o Polo único, pré-eterno e imortal (o espírito do Profeta Muhammad), o outro é 'o Polo da época,' um cargo mortal transmitido de uma pessoa à seguinte em cada era."
+      },
+      "analogy": {
+        "tr": "Bir orkestranın şefi gibi düşün: orkestra (âlem) her an değişse, çalan müzisyenler değişse bile, o an için tek bir şef vardır -- ve bir sonraki şef, önceki şefin yerini alır.",
+        "en": "Think of an orchestra's conductor: even as the orchestra (the world) constantly changes, even as the musicians playing change, there is only ever one conductor at a time -- and the next conductor takes the previous one's place.",
+        "pt": "Pense no regente de uma orquestra: mesmo que a orquestra (o mundo) mude constantemente, mesmo que os músicos que tocam mudem, há sempre apenas um regente por vez -- e o próximo regente assume o lugar do anterior."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "2538-2539",
+          "alinti_tr": "Rical'den (adamlar) benzerleri, on iki nakip ve yedi beldeldir. Bu yedi bedelden dördü evtad (direkler), iki tanesi iki imam, biri kutuptur.",
+          "not_tr": "Kutbiyet hiyerarşisinin sayısal formülü: 12 Nakip + 7 Bedel (4 Evtad + 2 İmam + 1 Kutup) = 19 Rical."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "efrad",
+        "bedel",
+        "evtad",
+        "nakip",
+        "rical"
+      ]
+    },
+    "efrad": {
+      "id": "efrad",
+      "tier": 1,
+      "group": "kutbiyet-hiyerarsisi",
+      "title": {
+        "tr": "Efrad (Fertler)",
+        "en": "Afrad (Solitaries)",
+        "pt": "Afrad (Solitários)"
+      },
+      "arabic": "أفراد",
+      "ozet_tr": "kutbiyet hiyerarşisinin tamamen dışında kalan gizli grup",
+      "ozet_en": "the hidden group standing entirely outside the hierarchy of poles",
+      "ozet_pt": "o grupo oculto que fica inteiramente fora da hierarquia dos polos",
+      "felsefi_tanim": {
+        "tr": "Kutbiyet hiyerarşisinin (Kutup, İmam, Evtad, Bedel, Nakip) sayısına dahil olmayan, Kutub'un otoritesinin geçmediği ayrı bir veli sınıfı. İbn Kâid'in gördüğü ayak hiyerarşisinde Efrad, doğrudan sadece peygamberin ayağını görür -- en az aracıya sahip, ama sayıca en gizli/tanınmayan grup.",
+        "en": "A separate class of saints not counted within the hierarchy of pole-hood (Pole, Imam, Awtad, Abdal, Naqib), over whom the Pole's authority does not extend. In the hierarchy of feet Ibn Qa'id saw, the Afrad see only the Prophet's own foot directly -- the fewest intermediaries, yet the most hidden/unrecognized group in number.",
+        "pt": "Uma classe separada de santos não contada dentro da hierarquia do polo (Polo, Imam, Awtad, Abdal, Naqib), sobre a qual a autoridade do Polo não se estende. Na hierarquia de pés que Ibn Qa'id viu, os Afrad veem diretamente apenas o próprio pé do Profeta -- os menos intermediários, mas o grupo mais oculto/não reconhecido em número."
+      },
+      "analogy": {
+        "tr": "Bir şirketin resmi organizasyon şemasında yer almayan, kimseye rapor vermeyen ama yine de kurumun işleyişine sessizce katkıda bulunan bağımsız bir danışman gibi düşünülebilir.",
+        "en": "Think of an independent consultant who appears on no official org chart, reports to no one, yet still quietly contributes to how the institution runs.",
+        "pt": "Pense num consultor independente que não aparece em nenhum organograma oficial, não se reporta a ninguém, mas ainda assim contribui silenciosamente para o funcionamento da instituição."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "5041-5047",
+          "alinti_tr": "Süvariler, bu yolda Efrad'dır (fertler, tekler)... Bu bölüm Efrad'a aittir. Onlar, Kutub'un hükmünün dışındaki yegâne gruptur. Kutub'un onlarda tasarrufu yoktur.",
+          "not_tr": "Efrad'ın kutbiyet hiyerarşisinin otoritesi dışında kaldığının doğrudan ifadesi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "kutup",
+        "bedel",
+        "evtad"
+      ]
+    },
+    "bedel": {
+      "id": "bedel",
+      "tier": 1,
+      "group": "kutbiyet-hiyerarsisi",
+      "title": {
+        "tr": "Bedel (Ebdal)",
+        "en": "Abdal (Substitutes)",
+        "pt": "Abdal (Substitutos)"
+      },
+      "arabic": "بدل",
+      "ozet_tr": "yedi kişilik veli grubu -- biri ölünce yerine bir başkası geçer",
+      "ozet_en": "a group of seven saints -- when one dies, another takes their place",
+      "ozet_pt": "um grupo de sete santos -- quando um morre, outro toma seu lugar",
+      "felsefi_tanim": {
+        "tr": "Kutbiyet hiyerarşisinde yedi kişilik bir grup: dördü Evtad, ikisi İki İmam, biri Kutup'un kendisidir. 'Bedel' adı, bu makamlardan biri boşaldığında (o kişi öldüğünde) bir alttaki mertebeden birinin yerine geçmesinden (bedelleşmesinden) gelir.",
+        "en": "A group of seven within the hierarchy of pole-hood: four are the Awtad, two are the Two Imams, one is the Pole himself. The name 'Substitute' comes from the fact that when one of these stations becomes vacant (its holder dies), someone from the rank below takes their place (substitutes for them).",
+        "pt": "Um grupo de sete dentro da hierarquia do polo: quatro são os Awtad, dois são os Dois Imames, um é o próprio Polo. O nome 'Substituto' vem do fato de que, quando uma dessas estações fica vaga (seu titular morre), alguém do grau abaixo toma seu lugar (o substitui)."
+      },
+      "analogy": {
+        "tr": "Bir kabine koltuğu boşaldığında yerine bir alt kademeden birinin terfi ettirilmesi gibi -- makam hiç boş kalmaz, sadece kim o makamda olduğu değişir.",
+        "en": "Like a cabinet seat that, when vacated, is filled by promoting someone from the rank below -- the position never stays empty, only who holds it changes.",
+        "pt": "Como um cargo de gabinete que, quando vago, é preenchido pela promoção de alguém do grau abaixo -- o cargo nunca fica vazio, apenas quem o ocupa muda."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "2538-2539",
+          "alinti_tr": "Rical'den (adamlar) benzerleri, on iki nakip ve yedi beldeldir. Bu yedi bedelden dördü evtad (direkler), iki tanesi iki imam, biri kutuptur.",
+          "not_tr": "Bedel'in kutbiyet formülündeki yeri."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "kutup",
+        "evtad",
+        "nakip"
+      ]
+    },
+    "evtad": {
+      "id": "evtad",
+      "tier": 1,
+      "group": "kutbiyet-hiyerarsisi",
+      "title": {
+        "tr": "Evtad (Direkler)",
+        "en": "Awtad (Pillars)",
+        "pt": "Awtad (Pilares)"
+      },
+      "arabic": "أوتاد",
+      "ozet_tr": "dört kişilik veli grubu -- âlemin dört yönünü tutan 'kazıklar'",
+      "ozet_en": "a group of four saints -- the 'pegs' holding the world's four directions",
+      "ozet_pt": "um grupo de quatro santos -- as 'estacas' que sustentam as quatro direções do mundo",
+      "felsefi_tanim": {
+        "tr": "Kutbiyet hiyerarşisinde dört kişilik bir grup, İbn Kâid'in ayak hiyerarşisinde 'üç ayak' görme mertebesindeki (peygamber + kutup + imam) veliler. İsim, çadırı yerinde tutan kazıklara benzetmeden gelir -- Evtad, dünyanın dört yönünü manevi olarak 'yerinde tutar'.",
+        "en": "A group of four within the hierarchy of pole-hood; in Ibn Qa'id's hierarchy of feet, they are the rank that sees 'three feet' (the Prophet + the Pole + the Imam). The name comes from an analogy to the pegs that hold a tent in place -- the Awtad spiritually 'hold in place' the world's four directions.",
+        "pt": "Um grupo de quatro dentro da hierarquia do polo; na hierarquia de pés de Ibn Qa'id, são o grau que vê 'três pés' (o Profeta + o Polo + o Imam). O nome vem de uma analogia com as estacas que sustentam uma tenda -- os Awtad 'sustentam' espiritualmente as quatro direções do mundo."
+      },
+      "analogy": {
+        "tr": "Bir çadırın dört köşesine çakılan kazıklar gibi -- görünmezler, ama çadır (âlem) onlar sayesinde ayakta durur.",
+        "en": "Like the pegs driven into a tent's four corners -- they go unseen, but the tent (the world) stands because of them.",
+        "pt": "Como as estacas fincadas nos quatro cantos de uma tenda -- passam despercebidas, mas a tenda (o mundo) permanece de pé graças a elas."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "2538-2539",
+          "alinti_tr": "Bu yedi bedelden dördü evtad (direkler), iki tanesi iki imam, biri kutuptur.",
+          "not_tr": "Evtad'ın kutbiyet formülündeki yeri (dört kişi)."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "kutup",
+        "bedel",
+        "nakip"
+      ]
+    },
+    "nakip": {
+      "id": "nakip",
+      "tier": 1,
+      "group": "kutbiyet-hiyerarsisi",
+      "title": {
+        "tr": "Nakip",
+        "en": "Naqib",
+        "pt": "Naqib"
+      },
+      "arabic": "نقيب",
+      "ozet_tr": "on iki kişilik veli grubu, kutbiyet hiyerarşisinin en kalabalık mertebesi",
+      "ozet_en": "a group of twelve saints, the most populous rank of the hierarchy of pole-hood",
+      "ozet_pt": "um grupo de doze santos, o grau mais numeroso da hierarquia do polo",
+      "felsefi_tanim": {
+        "tr": "Kutbiyet hiyerarşisinde on iki kişilik bir grup -- Kutup, İki İmam, Evtad ve Bedel'in altında, Rical'in (19 kişilik toplam) en kalabalık kademesi. 'Nakip' kelimesi Arapçada bir topluluğun temsilcisi/gözcüsü anlamına gelir.",
+        "en": "A group of twelve within the hierarchy of pole-hood -- beneath the Pole, the Two Imams, the Awtad and the Abdal, the most populous rank of the Rijal (nineteen in total). The word 'naqib' in Arabic means a community's representative/overseer.",
+        "pt": "Um grupo de doze dentro da hierarquia do polo -- abaixo do Polo, dos Dois Imames, dos Awtad e dos Abdal, o grau mais numeroso dos Rijal (dezenove ao todo). A palavra 'naqib' em árabe significa representante/supervisor de uma comunidade."
+      },
+      "analogy": {
+        "tr": "Bir şehrin mahalle muhtarları gibi düşünülebilir -- her biri kendi bölgesinden sorumlu, sayıca en çok olan ama hiyerarşinin en tepesinde olmayan temsilciler.",
+        "en": "Think of a city's neighborhood representatives -- each responsible for their own district, the most numerous representatives, though not at the very top of the hierarchy.",
+        "pt": "Pense nos representantes de bairro de uma cidade -- cada um responsável por seu próprio distrito, os representantes mais numerosos, embora não estejam no topo da hierarquia."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "2538",
+          "alinti_tr": "Rical'den (adamlar) benzerleri, on iki nakip ve yedi beldeldir.",
+          "not_tr": "Nakip'in sayısı (12) ve Rical formülündeki yeri."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "kutup",
+        "rical"
+      ]
+    },
+    "rical": {
+      "id": "rical",
+      "tier": 1,
+      "group": "kutbiyet-hiyerarsisi",
+      "title": {
+        "tr": "Rical (Ricâlullah)",
+        "en": "Rijal (the Men of God)",
+        "pt": "Rijal (os Homens de Deus)"
+      },
+      "arabic": "رجال",
+      "ozet_tr": "kutbiyet hiyerarşisinin bütününe verilen toplu ad, 19 kişi",
+      "ozet_en": "the collective name given to the whole hierarchy of pole-hood, nineteen persons",
+      "ozet_pt": "o nome coletivo dado a toda a hierarquia do polo, dezenove pessoas",
+      "felsefi_tanim": {
+        "tr": "Kutup, İki İmam, Evtad, Bedel ve Nakip'in toplamına verilen ad -- 1+2+4+7+12'den oluşan 19 kişilik bütün. Fütûhât bu sayıyı Kur'an'daki cehennem bekçilerinin sayısıyla (19 melek) ve başka sembolik onsekiz/ondokuzluklarla karşılaştırır.",
+        "en": "The name given to the sum of the Pole, the Two Imams, the Awtad, the Abdal and the Naqibs -- a whole of nineteen persons made up of 1+2+4+7+12. The Futuhat compares this number to the number of hell's gatekeepers in the Qur'an (nineteen angels) and other symbolic groupings of eighteen or nineteen.",
+        "pt": "O nome dado à soma do Polo, dos Dois Imames, dos Awtad, dos Abdal e dos Naqibs -- um todo de dezenove pessoas composto por 1+2+4+7+12. O Futuhat compara esse número ao número dos guardiões do inferno no Alcorão (dezenove anjos) e a outros agrupamentos simbólicos de dezoito ou dezenove."
+      },
+      "analogy": {
+        "tr": "Bir ülkenin tüm kabine üyelerine toplu olarak 'hükûmet' denmesi gibi -- Rical, tek tek mertebelerin (Kutup, İmam, Evtad...) toplamına verilen ortak isim.",
+        "en": "Like calling all of a country's cabinet members collectively 'the government' -- Rijal is the shared name given to the sum of the individual ranks (Pole, Imam, Awtad...).",
+        "pt": "Como chamar todos os membros do gabinete de um país coletivamente de 'o governo' -- Rijal é o nome compartilhado dado à soma dos graus individuais (Polo, Imam, Awtad...)."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "2533-2539",
+          "alinti_tr": "Bu menzillerin Kuran'dan olan benzerleri... on dokuz melekten ibaret olan cehennem bekçileridir... Rical'den (adamlar) benzerleri, on iki nakip ve yedi beldeldir.",
+          "not_tr": "Rical'in toplam sayısının (19) Kur'an'daki cehennem bekçileriyle sembolik karşılaştırması."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "kutup",
+        "nakip",
+        "bedel",
+        "evtad"
+      ]
+    },
+    "vera": {
+      "id": "vera",
+      "tier": 2,
+      "group": "ahval-makamat",
+      "title": {
+        "tr": "Vera' (Kuşkulu Şeylerden Sakınma)",
+        "en": "Wara' (Guarding Against the Doubtful)",
+        "pt": "Wara' (Cautela Diante do Duvidoso)"
+      },
+      "arabic": "ورع",
+      "ozet_tr": "yasak olma ihtimali olan her şeyden sakınma",
+      "ozet_en": "avoiding everything that might possibly be forbidden",
+      "ozet_pt": "evitar tudo que possa ser proibido",
+      "felsefi_tanim": {
+        "tr": "Yasaklardan ve yasaklayan yönünden içinde kuşku bulunan her şeyden sakınmak. Vera sahibi, açıkça haram olduğu bilinmese bile, bir şeyin haram olana benzerliği nedeniyle ondan uzak durur. Fütûhât bunun 'seçkinler' (Bâyezîd Bistâmî, Ebû Medyen) ve 'avam' seviyeleri olduğunu ayırt eder.",
+        "en": "Avoiding everything in which there is doubt from the direction of prohibitions and what forbids. One who holds wara' stays away from a thing because of its resemblance to what is known to be forbidden, even without explicit certainty. The Futuhat distinguishes an 'elite' level of this (Bayazid Bistami, Abu Madyan) from an 'ordinary' one.",
+        "pt": "Evitar tudo em que haja dúvida quanto às proibições e ao que proíbe. Quem possui wara' se afasta de algo por sua semelhança com o que se sabe ser proibido, mesmo sem certeza explícita. O Futuhat distingue um nível 'de elite' disso (Bayazid Bistami, Abu Madyan) de um nível 'comum'."
+      },
+      "analogy": {
+        "tr": "Bir gıda etiketinde 'iz miktarda fıstık içerebilir' yazsa, fıstık alerjisi olmayan biri bile o ürünü almaktan kaçınması gibi -- kesin bir zarar bilinmese de, ihtimal yeterlidir sakınmak için.",
+        "en": "Like avoiding a food labeled 'may contain traces of peanuts' even if you have no peanut allergy -- no certain harm is known, but the mere possibility is enough to abstain.",
+        "pt": "Como evitar um alimento rotulado 'pode conter traços de amendoim' mesmo sem ter alergia a amendoim -- nenhum dano certo é conhecido, mas a mera possibilidade já basta para se abster."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "10659-10660",
+          "alinti_tr": "vera, yasaklardan ve yasaklayan yönünden içinde kuşku bulunan her şeyden sakınmak demektir. Vera sahibi, bu kuşkudan dolayı o şeyden uzak durur.",
+          "not_tr": "Fütûhât Kısım XXII, Kırk Üçüncü Bölüm'ün vera tanımı."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "futuvvet",
+        "himmet"
+      ]
+    },
+    "futuvvet": {
+      "id": "futuvvet",
+      "tier": 2,
+      "group": "ahval-makamat",
+      "title": {
+        "tr": "Fütüvvet (Gençlik/Yiğitlik)",
+        "en": "Futuwwa (Youthfulness/Chivalry)",
+        "pt": "Futuwwa (Juventude/Cavalaria)"
+      },
+      "arabic": "فتوة",
+      "ozet_tr": "kendi arzusunu bırakıp efendinin hükmüne uymak",
+      "ozet_en": "setting aside one's own desire to follow the master's command",
+      "ozet_pt": "deixar de lado o próprio desejo para seguir a ordem do mestre",
+      "felsefi_tanim": {
+        "tr": "Bir 'kuvvet makamı' -- çocukluk ile yaşlılık arası bir dönemin adı. Bir Genç (fetâ), birbiriyle çatışan iki insanın amaçlarını aynı anda memnun edemeyeceği için, kendi nefsinin arzusunu bırakıp sadece efendisinin (Allah'ın) hükmüne uyar. 'Kavmin hizmetkârı onların efendisidir' hadisiyle özetlenir.",
+        "en": "A 'station of strength' -- the name of a period between childhood and old age. Because a Youth (fata) cannot satisfy the conflicting aims of two people at once, he sets aside his own self's desire to follow only his master's (God's) command. Summarized by the hadith, 'the servant of a people is their master.'",
+        "pt": "Uma 'estação de força' -- o nome de um período entre a infância e a velhice. Como um Jovem (fata) não pode satisfazer os objetivos conflitantes de duas pessoas ao mesmo tempo, ele deixa de lado o desejo de seu próprio eu para seguir apenas a ordem de seu mestre (Deus). Resumido pelo hadith, 'o servo de um povo é seu senhor.'"
+      },
+      "analogy": {
+        "tr": "İyi bir asistan gibi düşün: kendi tercihini öne sürmez, patronunun talimatına göre hareket eder -- ama tam da bu yüzden, işleri gerçekte kimin yürüttüğü asistandır.",
+        "en": "Think of a good assistant: they do not push their own preference, but act on their boss's instruction -- and precisely because of this, it is the assistant who actually runs things.",
+        "pt": "Pense num bom assistente: ele não impõe sua própria preferência, mas age segundo a instrução de seu chefe -- e é precisamente por isso que é o assistente quem realmente administra as coisas."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "10540-10541",
+          "alinti_tr": "Genç, her zaman hizmet menzilinde bulunur. Hz. Peygamber şöyle buyurur: 'Kavmin hizmetkârı onların efendisidir.'",
+          "not_tr": "Fütüvvetin özünü özetleyen hadis, Fütûhât Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "vera",
+        "himmet"
+      ]
+    },
+    "himmet": {
+      "id": "himmet",
+      "tier": 2,
+      "group": "ahval-makamat",
+      "title": {
+        "tr": "Himmet",
+        "en": "Aspiration (Himma)",
+        "pt": "Aspiração (Himma)"
+      },
+      "arabic": "همة",
+      "ozet_tr": "kalbin/ruhun yönelişi, Hakk'ın karşıladığı yer kişinin mertebesine göre değişir",
+      "ozet_en": "the heart's/spirit's orientation; where the Real meets it varies by one's rank",
+      "ozet_pt": "a orientação do coração/espírito; onde o Real a recebe varia conforme o grau",
+      "felsefi_tanim": {
+        "tr": "Bir velinin ruhsal yöneliminin/talebinin gücü ve yüksekliği. Fütûhât'ta himmet, gece ibadetinde yükselen bir şey olarak tasvir edilir -- Hak, kişinin mertebesine göre kimi himmeti yakın gökte, kimini Kürsî'de, kimini Arş'ta, kimini Arş'ın da ötesinde karşılar; yükselmemiş himmetler bile yükselenlerin aldığı cevaplardan feyz alır.",
+        "en": "The power and elevation of a saint's spiritual orientation/aspiration. In the Futuhat, aspiration is depicted as something that rises during night-worship -- depending on a person's rank, God meets some aspirations at the nearest heaven, some at the Footstool, some at the Throne, some even beyond the Throne; even aspirations that have not risen draw benefit from the answers given to those that have.",
+        "pt": "O poder e a elevação da orientação/aspiração espiritual de um santo. No Futuhat, a aspiração é retratada como algo que se eleva durante a adoração noturna -- conforme o grau da pessoa, Deus recebe algumas aspirações no céu mais próximo, algumas no Escabelo, algumas no Trono, algumas até além do Trono; mesmo as aspirações que não se elevaram tiram proveito das respostas dadas às que se elevaram."
+      },
+      "analogy": {
+        "tr": "Bir radyo sinyali gibi düşün: verici (himmet) ne kadar güçlüyse, sinyal o kadar uzak bir istasyona ulaşır -- ama zayıf sinyaller bile, güçlü olanların ulaştığı yayından bir şekilde yararlanır.",
+        "en": "Think of a radio signal: the stronger the transmitter (aspiration), the farther the station it reaches -- but even weak signals somehow benefit from the broadcast the strong ones reach.",
+        "pt": "Pense num sinal de rádio: quanto mais forte o transmissor (aspiração), mais longe chega a estação -- mas até sinais fracos, de algum modo, se beneficiam da transmissão que os fortes alcançam."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "9991-9999",
+          "alinti_tr": "Hak, himmetlerin bir kısmını yakın gökte, bir kısmını ikinci gökte... bir kısmını ilk inişte Arş'ta ve o ikisinin (Arş ile Kürsü) arasında karşılar.",
+          "not_tr": "Himmetlerin gökler hiyerarşisinde karşılanması, Fütûhât Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "kutup",
+        "kursi",
+        "ars"
+      ]
+    },
+    "keramet": {
+      "id": "keramet",
+      "tier": 2,
+      "group": "ahval-makamat",
+      "title": {
+        "tr": "Keramet",
+        "en": "Wonder-Working (Karama)",
+        "pt": "Prodígio (Karama)"
+      },
+      "arabic": "كرامة",
+      "ozet_tr": "gerçek bir varlıksal karşılığı olan, velinin bilgi ve himmet gücüne dayanan olağanüstülük",
+      "ozet_en": "an extraordinary event with a real existential counterpart, arising from the wali's power of knowledge and aspiration",
+      "ozet_pt": "um evento extraordinário com uma contraparte existencial real, que surge do poder de conhecimento e aspiração do wali",
+      "felsefi_tanim": {
+        "tr": "Âdetin aşılmasının üç türünden biri (diğerleri sihir ve mucize). Sihirden farkı, gerçek bir dış karşılığının olması; mucizeden farkı ise, velinin kendi bilgi ve himmet gücüne dayanarak meydana gelmesi -- fail (veli), olanı bir dereceye kadar bilir/yönetir.",
+        "en": "One of three ways the norm is transcended (the others being sorcery and miracle). Unlike sorcery, it has a real external counterpart; unlike miracle, it comes about through the wali's own power of knowledge and aspiration -- the agent (the wali) knows/directs what happens to some degree.",
+        "pt": "Uma das três formas de transcender a norma (as outras sendo feitiçaria e milagre). Diferente da feitiçaria, tem uma contraparte externa real; diferente do milagre, advém do próprio poder de conhecimento e aspiração do wali -- o agente (o wali) conhece/dirige o que acontece até certo ponto."
+      },
+      "analogy": {
+        "tr": "Deneyimli bir ustanın, çırağın göremediği bir çözümü sezgiyle bulması gibi -- gerçek bir beceridir, ama bilinç ve irade dahildir; tamamen açıklanamaz bir mucize değildir.",
+        "en": "Like a seasoned craftsperson intuiting a solution an apprentice cannot see -- a real skill, but consciousness and will are involved; it is not a wholly inexplicable miracle.",
+        "pt": "Como um artesão experiente intuindo uma solução que um aprendiz não consegue ver -- uma habilidade real, mas consciência e vontade estão envolvidas; não é um milagre totalmente inexplicável."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "9309-9320",
+          "alinti_tr": "Bilmelisin ki: Âdetin aşılması üç şekildedir... Nefsi kuvvetten ibaret olan diğer kısım ise, gözün gördüğü... isimlerin özelliklerinden meydana gelen bir şeyin nefsi kuvvetten meydana gelmesidir.",
+          "not_tr": "Sihir/keramet/mucize üçlü ayrımının açıldığı pasaj, Fütûhât Kısım XXI."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "mucize",
+        "sihir",
+        "himmet"
+      ]
+    },
+    "mucize": {
+      "id": "mucize",
+      "tier": 2,
+      "group": "ahval-makamat",
+      "title": {
+        "tr": "Mucize",
+        "en": "Miracle (Mu'jiza)",
+        "pt": "Milagre (Mu'jiza)"
+      },
+      "arabic": "معجزة",
+      "ozet_tr": "failin kendisinin bile tam bilmediği/anlamadığı olağanüstülük",
+      "ozet_en": "an extraordinary event even its own agent does not fully know or understand",
+      "ozet_pt": "um evento extraordinário que mesmo seu próprio agente não conhece nem compreende plenamente",
+      "felsefi_tanim": {
+        "tr": "Âdetin aşılmasının en yüksek türü: ne nefis gücüne ne isimlerin özelliklerine dayanır. Örnek: Hz. Musa'nın asası yılana dönüştüğünde, bizzat Musa bile korkup kaçmıştır -- mucize, kendisinde gerçekleştiği kişinin bile tam bilmediği bir şeydir.",
+        "en": "The highest kind of transcending the norm: it rests on neither the power of the self nor the properties of names. Example: when Moses's staff turned into a serpent, even Moses himself fled in fear -- a miracle is something even the person it occurs through does not fully know.",
+        "pt": "O tipo mais elevado de transcender a norma: não se apoia nem no poder do eu nem nas propriedades dos nomes. Exemplo: quando o cajado de Moisés se transformou numa serpente, o próprio Moisés fugiu com medo -- um milagre é algo que mesmo a pessoa por meio de quem ele ocorre não conhece plenamente."
+      },
+      "analogy": {
+        "tr": "Bir sanatçının, kendi de nereden geldiğini tam açıklayamadığı bir ilham anında eser üretmesi gibi -- eser gerçektir, ama yaratıcısı bile sürecin tam kontrolünde/bilgisinde değildir.",
+        "en": "Like an artist producing a work in a moment of inspiration they cannot fully explain the source of -- the work is real, but even its creator is not fully in control of or aware of the process.",
+        "pt": "Como um artista produzindo uma obra num momento de inspiração cuja origem nem ele consegue explicar plenamente -- a obra é real, mas até seu criador não está plenamente no controle ou ciente do processo."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "9354",
+          "alinti_tr": "Allah, Hz. Musa'nın asası hakkında şöyle buyurur: 'Elindeki nedir...'",
+          "not_tr": "Musa'nın asası örneği, mucizenin failin bile bilmediği bir şey olduğunun kanıtı olarak, Fütûhât Kısım XXI."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "keramet",
+        "sihir"
+      ]
+    },
+    "sihir": {
+      "id": "sihir",
+      "tier": 2,
+      "group": "ahval-makamat",
+      "title": {
+        "tr": "Sihir",
+        "en": "Sorcery (Sihr)",
+        "pt": "Feitiçaria (Sihr)"
+      },
+      "arabic": "سحر",
+      "ozet_tr": "dış gerçekliği olmayan, failin kendisinin gerçek olmadığını bildiği olağanüstülük",
+      "ozet_en": "an extraordinary appearance with no external reality, which its own agent knows is not real",
+      "ozet_pt": "uma aparência extraordinária sem realidade externa, que seu próprio agente sabe não ser real",
+      "felsefi_tanim": {
+        "tr": "Âdetin aşılmasının en alt türü: dış gerçekliği yoktur. Sihirbaz, gözlerde/kulaklarda oluşan şeyin gerçek olmadığını bilir; bu ya nefsi kuvvete ya isimlerin özelliklerine dayanır. 'Sihrin etkisinden, onların koştuğunu zannetti' ayeti örnek verilir.",
+        "en": "The lowest kind of transcending the norm: it has no external reality. The sorcerer knows that what forms in the eyes/ears is not real; this rests either on the power of the self or on the properties of names. The verse 'because of the sorcery he thought they were moving' is given as an example.",
+        "pt": "O tipo mais baixo de transcender a norma: não tem realidade externa. O feiticeiro sabe que o que se forma nos olhos/ouvidos não é real; isso repousa ou no poder do eu ou nas propriedades dos nomes. O versículo 'por causa da feitiçaria ele pensou que se moviam' é dado como exemplo."
+      },
+      "analogy": {
+        "tr": "Bir sahne illüzyonisti gibi düşün: seyirci gerçek bir dönüşüm gördüğünü sanır, ama illüzyonistin kendisi bunun bir numara olduğunu bilir -- gösteri gerçek değildir, sadece algıyı yönetir.",
+        "en": "Think of a stage illusionist: the audience believes they see a real transformation, but the illusionist themselves knows it is a trick -- the show is not real, it only manages perception.",
+        "pt": "Pense num ilusionista de palco: a plateia acredita ver uma transformação real, mas o próprio ilusionista sabe que é um truque -- o espetáculo não é real, apenas administra a percepção."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "9309-9319",
+          "alinti_tr": "Örnek olarak 'sihrin etkisinden, onların koştuğunu zannetti' ayetini verebiliriz... Sihirbaz, gözlerde ve kulaklarda meydana gelenlerin gerçekte var olmadığını bilir.",
+          "not_tr": "Sihrin tanımı ve Kur'an örneği, Fütûhât Kısım XXI."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "keramet",
+        "mucize"
+      ]
+    },
+    "fena": {
+      "id": "fena",
+      "tier": 2,
+      "group": "ahval-makamat",
+      "title": {
+        "tr": "Fenâ",
+        "en": "Fana (Self-Effacement)",
+        "pt": "Fana (Autoaniquilação)"
+      },
+      "arabic": "فناء",
+      "ozet_tr": "kulun kendi varlığından geçtiği vuslat hâli",
+      "ozet_en": "the state of union in which the servant passes away from their own existence",
+      "ozet_pt": "o estado de união no qual o servo se apaga de sua própria existência",
+      "felsefi_tanim": {
+        "tr": "Kulun, yaratılmışlığın izlerinin Kadîm'e (ezelî olana) bitişmesiyle kendinden geçtiği vuslat makamı. Fenâ hâlindeki kişi, kendi 'ben'ini/varlığını öne çıkaran bir söz bile söylemekten kaçınır -- çünkü ortada artık ispat edilecek bir 'kul' izlenimi yoktur.",
+        "en": "The station of union in which the servant passes away from themselves as the traces of createdness merge with the Pre-Eternal. Someone in the state of fana avoids even a statement that would foreground their own self/existence -- because there is no longer an impression of a 'servant' left to assert.",
+        "pt": "A estação de união na qual o servo se apaga de si mesmo, à medida que os traços da condição de criado se fundem com o Pré-Eterno. Alguém no estado de fana evita até uma afirmação que destacaria seu próprio eu/existência -- pois já não resta uma impressão de 'servo' a ser afirmada."
+      },
+      "analogy": {
+        "tr": "Bir damla suyun okyanusa karışması gibi düşünülebilir -- damla, ayrı bir varlık olarak 'ben buradayım' diyemez artık, çünkü sınırı okyanusta erimiştir.",
+        "en": "Can be thought of like a drop of water merging into the ocean -- the drop can no longer say 'here I am' as a separate entity, because its boundary has dissolved into the ocean.",
+        "pt": "Pode ser pensado como uma gota d'água se fundindo no oceano -- a gota já não pode dizer 'aqui estou' como entidade separada, pois seu limite se dissolveu no oceano."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "12830-12832",
+          "alinti_tr": "İşte bu vuslat makamı ve fena sahiplerinin kendilerinden geçme halidir. Hal sahibi, fena halinden fâni olursa elhamdülillah da demez.",
+          "not_tr": "Fenâ hâlinin, kulluk izlerinin bile silinmesi olarak tarifi, Fütûhât Cilt I."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "beka"
+      ]
+    },
+    "beka": {
+      "id": "beka",
+      "tier": 2,
+      "group": "ahval-makamat",
+      "title": {
+        "tr": "Bekâ",
+        "en": "Baqa (Subsistence)",
+        "pt": "Baqa (Subsistência)"
+      },
+      "arabic": "بقاء",
+      "ozet_tr": "fenâdan sonra Hak ile sürüp giden varlık",
+      "ozet_en": "the existence that continues with the Real after fana",
+      "ozet_pt": "a existência que continua com o Real após a fana",
+      "felsefi_tanim": {
+        "tr": "Bâki (sürekli) olanda varlığın sürekliliği. Bekâ, fenânın karşıtı/tamamlayıcısıdır: kul önce kendi varlığından geçer (fenâ), sonra Hak'la birlikte -- ama artık kendi adına değil -- sürüp gider (bekâ). İbn Arabî, bekânın kendisinin de başka bir bekâya muhtaç olmadığını, arazî bir nitelik olarak kendi başına yeterli olduğunu vurgular.",
+        "en": "The continuity of existence in what is Everlasting. Baqa is fana's counterpart/completion: the servant first passes away from their own existence (fana), then continues along with the Real -- but no longer in their own name (baqa). Ibn Arabi stresses that baqa itself does not need another baqa; as an accidental attribute, it is sufficient in itself.",
+        "pt": "A continuidade da existência no que é Eterno. Baqa é a contraparte/completação de fana: o servo primeiro se apaga de sua própria existência (fana), depois continua junto com o Real -- mas não mais em seu próprio nome (baqa). Ibn Arabi enfatiza que o próprio baqa não precisa de outro baqa; como atributo acidental, é suficiente em si mesmo."
+      },
+      "analogy": {
+        "tr": "Denize karışan damlanın, artık kendi adına değil ama okyanusun bir parçası olarak var olmaya devam etmesi gibi -- varlık sürer, ama sahiplik değişir.",
+        "en": "Like the drop that merged into the sea continuing to exist, not in its own name but as part of the ocean -- existence continues, but ownership changes.",
+        "pt": "Como a gota que se fundiu ao mar continua a existir, não em seu próprio nome, mas como parte do oceano -- a existência continua, mas a posse muda."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "5145-5146",
+          "alinti_tr": "Bekâ, bâki olanda varlığın sürekliliği demektir; o kadar. Bekâ, başka bir bekâya muhtaç olarak teselsüle giden bir nitelik değildir.",
+          "not_tr": "Bekânın sade tanımı, Fütûhât Cilt I, Üçüncü Kısım."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "fena"
+      ]
+    },
+    "istidrac": {
+      "id": "istidrac",
+      "tier": 2,
+      "group": "ahval-makamat",
+      "title": {
+        "tr": "İstidrâc",
+        "en": "Istidraj (Gradual Luring)",
+        "pt": "Istidraj (Sedução Gradual)"
+      },
+      "arabic": "استدراج",
+      "ozet_tr": "kişiyi cezalandırmadan, yavaş yavaş aldatan gizli bir ilahi lütuf görüntüsü",
+      "ozet_en": "a deceptive appearance of divine favor that gradually lures a person without punishing them",
+      "ozet_pt": "uma aparência enganosa de favor divino que seduz gradualmente uma pessoa sem puni-la",
+      "felsefi_tanim": {
+        "tr": "Görünüşte bir lütuf/ihsan gibi gelen ama gerçekte kişiyi yavaş yavaş uzaklaştıran bir hâl -- hem iyilerde hem kötülerde meydana gelebilir. Fütûhât, bir günah işleyip Allah cezalandırmamış olsa bile, gerçekleşen günahtan utanma ve kırıklık duygusunun hâlâ hâkim olduğunu; bunun yokluğunun ise istidracın bir işareti olabileceğini belirtir.",
+        "en": "A state that outwardly looks like a favor/grace but actually draws a person away little by little -- it can occur in both the righteous and the wicked. The Futuhat notes that even when God does not punish someone for a sin they committed, a feeling of shame and brokenness over that sin still dominates; its absence may itself be a sign of istidraj.",
+        "pt": "Um estado que exteriormente parece um favor/graça, mas na verdade afasta uma pessoa pouco a pouco -- pode ocorrer tanto nos justos quanto nos ímpios. O Futuhat observa que, mesmo quando Deus não pune alguém por um pecado cometido, um sentimento de vergonha e de abatimento por esse pecado ainda predomina; sua ausência pode ser, em si, um sinal de istidraj."
+      },
+      "analogy": {
+        "tr": "Bir kumarbaza art arda küçük kazançlar verilmesi gibi düşünülebilir -- her kazanç bir lütuf gibi görünür, ama aslında kişiyi daha derin bir kayba doğru yavaşça çekmektedir.",
+        "en": "Can be thought of like a gambler being given small consecutive wins -- each win looks like a favor, but is actually slowly drawing the person toward a deeper loss.",
+        "pt": "Pode ser pensado como um jogador recebendo pequenas vitórias consecutivas -- cada vitória parece um favor, mas na verdade está atraindo a pessoa lentamente para uma perda mais profunda."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "9140-9142",
+          "alinti_tr": "hamedmemiş olsa bile, gerçekleşen günahtan utanma duygusu ve kırıklık onda hâkimdir. Böylelikle istidrac, iyilikte ve kötülükte mutlu ve bedbahtlarda meydana gelmiştir.",
+          "not_tr": "İstidracın hem iyi hem kötü kişilerde görülebileceğinin ifadesi, Fütûhât Kısım XXI."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "vera"
+      ]
+    },
+    "heba": {
+      "id": "heba",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Hebâ",
+        "en": "Haba (Primordial Dust)",
+        "pt": "Haba (Poeira Primordial)"
+      },
+      "arabic": "هباء",
+      "ozet_tr": "yaratılışın ilk maddesi, âlemdeki suretlerin harcı ve toprağı",
+      "ozet_en": "the first matter of creation, the mortar and soil of the world's forms",
+      "ozet_pt": "a primeira matéria da criação, a argamassa e o solo das formas do mundo",
+      "felsefi_tanim": {
+        "tr": "Allah'ın âlemin bütün suretlerini içinde açtığı, yaratılışın en başlangıç noktasındaki 'yalın âlem'. Hebâ, içinde istenilen şekil ve suretlerin meydana getirilmesi için binanın harcı ve toprağı gibidir -- âlemde var edilen ilk şeydir, kendisi bilkuvve her şeyi barındırır.",
+        "en": "The 'bare world' at the very starting point of creation, within which God unfolds all the world's forms. Haba is like the mortar and soil of a building for bringing about the desired shapes and forms -- it is the first thing brought into existence in the world, itself potentially containing everything.",
+        "pt": "O 'mundo nu' no ponto de partida mesmo da criação, dentro do qual Deus desdobra todas as formas do mundo. Haba é como a argamassa e o solo de um edifício para trazer à existência as formas e figuras desejadas -- é a primeira coisa trazida à existência no mundo, contendo em si, potencialmente, tudo."
+      },
+      "analogy": {
+        "tr": "Bir heykeltıraşın henüz şekil verilmemiş kil bloğu gibi düşün -- kendi başına belirli bir suret değildir, ama içinde sonsuz sayıda mümkün heykel bilkuvve saklıdır.",
+        "en": "Think of a sculptor's not-yet-shaped block of clay -- it is not itself any particular form, but holds countless possible sculptures within it, potentially.",
+        "pt": "Pense no bloco de argila ainda não moldado de um escultor -- não é em si nenhuma forma particular, mas guarda em si, potencialmente, inúmeras esculturas possíveis."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "15255-15257",
+          "alinti_tr": "ondan hebâ diye isimlendirilen bir hakikat meydana gelmiştir. Hebâ, içinde istenilen şekil ve suretlerin meydana getirilmesi için binanın harcı ve toprağı gibidir ve o âlemde yaratılmış ilk varlıktır.",
+          "not_tr": "Hebânın 'yaratılışın ilk maddesi' olarak tanımı, Fütûhât Kısım XI."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "dehr",
+        "ayn-i-sabite"
+      ]
+    },
+    "dehr": {
+      "id": "dehr",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Dehr",
+        "en": "Dahr (Time Itself)",
+        "pt": "Dahr (O Próprio Tempo)"
+      },
+      "arabic": "دهر",
+      "ozet_tr": "zamanın kendisi, ilahi bir isimle özdeşleştirilen kaynak",
+      "ozet_en": "time itself, a source identified with a divine name",
+      "ozet_pt": "o próprio tempo, uma fonte identificada com um nome divino",
+      "felsefi_tanim": {
+        "tr": "Sıradan 'zaman' değil, zamanın kendisinin kaynağı/aslı. Fütûhât, 'Dehre sövmeyiniz, çünkü Allah Dehr'dir' hadisini bu ismin sahih ve sabit bir hadis olduğunu vurgulayarak aktarır -- yani zamanı kötülemek, dolaylı olarak zamanın kaynağını kötülemektir.",
+        "en": "Not ordinary 'time,' but the source/root of time itself. The Futuhat relates the hadith, 'do not curse dahr, for God is Dahr,' emphasizing that this designation is a sound and firmly established hadith -- meaning that to curse time is, indirectly, to curse time's own source.",
+        "pt": "Não o 'tempo' comum, mas a fonte/raiz do próprio tempo. O Futuhat relata o hadith, 'não amaldiçoem o dahr, pois Deus é Dahr,' enfatizando que essa designação é um hadith sólido e firmemente estabelecido -- ou seja, amaldiçoar o tempo é, indiretamente, amaldiçoar a própria fonte do tempo."
+      },
+      "analogy": {
+        "tr": "Bir nehrin akışını suçlamanın, aslında o nehri besleyen kaynağı suçlamak anlamına gelmesi gibi -- zamanın akışından şikayet etmek, onun kaynağına yönelik bir söz olur.",
+        "en": "Like blaming a river's flow actually amounting to blaming the spring that feeds it -- complaining about the flow of time becomes a statement directed at its very source.",
+        "pt": "Como culpar o fluxo de um rio na verdade equivale a culpar a nascente que o alimenta -- reclamar do fluxo do tempo se torna uma afirmação dirigida à sua própria fonte."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "20042-20043",
+          "alinti_tr": "Allah'ın böyle isimlendirilmesi 'Dehre sövmeyiniz, çünkü Allah Dehr'dir' anlamındaki hadiste geçer. Hadis, sahih ve sabit bir hadistir.",
+          "not_tr": "Dehr'in ilahi isimle özdeşleştirilmesi, Fütûhât Kısım XIV civarı."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "heba",
+        "berzah"
+      ]
+    },
+    "zahir": {
+      "id": "zahir",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Zâhir (Dış/Görünen)",
+        "en": "The Outward (al-Zahir)",
+        "pt": "O Exterior (al-Zahir)"
+      },
+      "arabic": "ظاهر",
+      "ozet_tr": "her ayetin/mertebenin dışa dönük, görünen yüzü",
+      "ozet_en": "the outward-facing, visible face of every verse/rank",
+      "ozet_pt": "a face voltada para fora, visível, de todo versículo/grau",
+      "felsefi_tanim": {
+        "tr": "Hz. Peygamber'in 'her ayetin bir zâhiri, bir bâtını, bir haddi ve bir matla'ı vardır' sözüyle tanımlanan dört mertebeden ilki. Zâhir, bir şeyin herkesin görebildiği, doğrudan anlaşılan yüzüdür -- bâtınla (iç anlamla) daima birlikte düşünülür, biri diğerini dışlamaz.",
+        "en": "The first of the four ranks defined by the Prophet's saying, 'every verse has an outward, an inward, a limit, and a rising-place.' The outward is a thing's face that everyone can see, its directly understood surface -- always thought of together with the inward (the inner meaning), neither excluding the other.",
+        "pt": "O primeiro dos quatro graus definidos pelo dito do Profeta: 'todo versículo tem um exterior, um interior, um limite e um lugar do nascer.' O exterior é a face de uma coisa que todos podem ver, sua superfície diretamente compreendida -- sempre pensada junto com o interior (o sentido interno), sem que um exclua o outro."
+      },
+      "analogy": {
+        "tr": "Bir kitabın sayfadaki harfleri (zâhir) ile o harflerin taşıdığı anlam (bâtın) gibi düşünülebilir -- ikisi de aynı anda oradadır, biri diğerini iptal etmez.",
+        "en": "Can be thought of like a book's letters on the page (the outward) versus the meaning those letters carry (the inward) -- both are there at once, neither cancels the other.",
+        "pt": "Pode ser pensado como as letras de um livro na página (o exterior) versus o significado que essas letras carregam (o interior) -- ambos estão presentes ao mesmo tempo, nenhum anula o outro."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "3446-3455",
+          "alinti_tr": "Allah adamları, dört mertebede bulunur. Birinci kısım zâhir, ikinci kısım bâtın, üçüncüsü hak, dördüncüsü matla' mertebesine sahiptir... Her ayetin bir zâhiri, bir bâtını, bir haddi ve bir matla'ı vardır.",
+          "not_tr": "Zâhir/Bâtın/Had/Matla' dörtlüsünün hadis kaynaklı tanımı, Fütûhât Kısım XVII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "batin",
+        "had",
+        "matla"
+      ]
+    },
+    "batin": {
+      "id": "batin",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Bâtın (İç/Gizli)",
+        "en": "The Inward (al-Batin)",
+        "pt": "O Interior (al-Batin)"
+      },
+      "arabic": "باطن",
+      "ozet_tr": "her ayetin/mertebenin içe dönük, gizli anlamı",
+      "ozet_en": "the inward-facing, hidden meaning of every verse/rank",
+      "ozet_pt": "o significado voltado para dentro, oculto, de todo versículo/grau",
+      "felsefi_tanim": {
+        "tr": "Zâhirin karşılığı: bir şeyin herkese açık olmayan, ancak keşif/anlayışla ulaşılan iç anlamı. Nübüvvet kapısı kapandığında geriye kalan, Hz. Ali'nin ifadesiyle, 'Allah'ın Kur'an hakkında kişiye verdiği anlayış'tır -- bâtın, bu anlayışın alanıdır.",
+        "en": "The counterpart of the outward: a thing's inner meaning, not open to everyone, reached only through unveiling/understanding. What remains once the door of prophecy has closed is, in Ali's words, 'the understanding God gives a person concerning the Qur'an' -- the inward is the domain of this understanding.",
+        "pt": "A contraparte do exterior: o significado interno de uma coisa, não aberto a todos, alcançado apenas pelo desvelamento/compreensão. O que resta uma vez fechada a porta da profecia é, nas palavras de Ali, 'o entendimento que Deus dá a uma pessoa acerca do Alcorão' -- o interior é o domínio desse entendimento."
+      },
+      "analogy": {
+        "tr": "Bir müzik parçasının notaları (zâhir) ile o parçayı dinlerken hissedilen duygu (bâtın) gibi -- notalar herkese aynı görünür, ama hissedilen anlam kişiden kişiye derinleşir.",
+        "en": "Like a piece of music's notes (the outward) versus the feeling one senses while listening to it (the inward) -- the notes look the same to everyone, but the felt meaning deepens differently from person to person.",
+        "pt": "Como as notas de uma peça musical (o exterior) versus o sentimento que se sente ao ouvi-la (o interior) -- as notas parecem iguais para todos, mas o significado sentido se aprofunda de pessoa para pessoa."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "3450-3452",
+          "alinti_tr": "Hz. Ali şöyle derdi: 'Allahın peygamberinden sonra vahiy kesilmiştir. Geride kalan, Allah'ın bu Kuran hakkında kişiye verdiği anlayıştır.'",
+          "not_tr": "Bâtının, nübüvvet-sonrası anlayış alanı olarak tanımı, Fütûhât Kısım XVII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "zahir",
+        "had",
+        "matla"
+      ]
+    },
+    "had": {
+      "id": "had",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Had (Sınır)",
+        "en": "The Limit (al-Hadd)",
+        "pt": "O Limite (al-Hadd)"
+      },
+      "arabic": "حد",
+      "ozet_tr": "her ayetin/mertebenin kendine özgü sınırı, onu başkasından ayıran çizgi",
+      "ozet_en": "each verse's/rank's own particular limit, the line that distinguishes it from another",
+      "ozet_pt": "o limite particular de cada versículo/grau, a linha que o distingue de outro",
+      "felsefi_tanim": {
+        "tr": "Zâhir-bâtın ikilisinden sonra gelen üçüncü mertebe: bir şeyin nereye kadar uzandığını, hangi noktada başka bir şeyden ayrıldığını belirleyen çizgi. Bu dört mertebeden (zâhir, bâtın, had, matla') her birinin kendi 'adamları' ve kendi kutbu vardır.",
+        "en": "The third rank after the outward-inward pair: the line that determines how far a thing extends, at what point it separates from another thing. Each of these four ranks (outward, inward, limit, rising-place) has its own 'men' and its own pole.",
+        "pt": "O terceiro grau após o par exterior-interior: a linha que determina até onde uma coisa se estende, em que ponto ela se separa de outra. Cada um desses quatro graus (exterior, interior, limite, lugar do nascer) tem seus próprios 'homens' e seu próprio polo."
+      },
+      "analogy": {
+        "tr": "İki komşu arsa arasındaki tapu sınırı gibi düşün -- görünmez ama kesindir, her arsanın nereye kadar kendisine ait olduğunu belirler.",
+        "en": "Think of the deeded boundary line between two neighboring plots of land -- invisible but exact, determining how far each plot belongs to its owner.",
+        "pt": "Pense na linha de fronteira registrada entre dois terrenos vizinhos -- invisível, mas exata, determinando até onde cada terreno pertence a seu dono."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "3454-3457",
+          "alinti_tr": "Her ayetin bir zâhiri, bir bâtını, bir haddi ve bir matla'ı vardır. Bu mertebelerden her birinin adamları olduğu gibi bu gruplardan her birinin de bir kutbu vardır.",
+          "not_tr": "Had'ın dörtlü mertebe sisteminde yeri, Fütûhât Kısım XVII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "zahir",
+        "batin",
+        "matla"
+      ]
+    },
+    "matla": {
+      "id": "matla",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Matla' (Doğum Yeri)",
+        "en": "The Rising-Place (al-Matla')",
+        "pt": "O Lugar do Nascer (al-Matla')"
+      },
+      "arabic": "مطلع",
+      "ozet_tr": "bir hakikatin/mananın 'doğduğu', ilk göründüğü yer",
+      "ozet_en": "the place where a reality/meaning 'is born,' first appears",
+      "ozet_pt": "o lugar onde uma realidade/significado 'nasce,' aparece pela primeira vez",
+      "felsefi_tanim": {
+        "tr": "Zâhir-bâtın-had üçlüsünü tamamlayan dördüncü mertebe; bir şiirde matla', kasidenin 'doğum yeri' olan ilk beyit anlamına da gelir. Bir kasidede İbn Arabî, matla'ı doğrudan 'ayn-ı sâbite' (sabit ayn) ile birlikte anar -- bir hakikatin ilk göründüğü yer, onun sabit özüyle ilişkilendirilir.",
+        "en": "The fourth rank completing the outward-inward-limit triad; in poetry, matla' also means a qasida's opening couplet, its 'birthplace.' In one qasida, Ibn Arabi names the rising-place directly alongside the 'fixed archetype' (ayn al-thabita) -- the place where a reality first appears is linked with its fixed essence.",
+        "pt": "O quarto grau que completa a tríade exterior-interior-limite; na poesia, matla' também significa o dístico de abertura de uma qasida, seu 'lugar de nascimento.' Numa qasida, Ibn Arabi nomeia o lugar do nascer diretamente ao lado do 'arquétipo fixo' (ayn al-thabita) -- o lugar onde uma realidade aparece pela primeira vez é ligado à sua essência fixa."
+      },
+      "analogy": {
+        "tr": "Güneşin her gün ufkun aynı noktasından doğması gibi -- matla', bir anlamın/hakikatin âleme 'doğduğu' sabit noktadır.",
+        "en": "Like the sun rising each day from the same point on the horizon -- the rising-place is the fixed point where a meaning/reality is 'born' into the world.",
+        "pt": "Como o sol nascendo todo dia do mesmo ponto do horizonte -- o lugar do nascer é o ponto fixo onde um significado/realidade 'nasce' para o mundo."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "1968-1970",
+          "alinti_tr": "Bir hikmeti talep edenin sırrı erdiğinde / Bereketler hakikatlerine; matla' (doğum yeri, ayn-ı sâbite) istisna olur.",
+          "not_tr": "Matla'ın ayn-ı sâbite ile birlikte anıldığı kaside dizesi."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "zahir",
+        "batin",
+        "had",
+        "ayn-i-sabite"
+      ]
+    },
+    "ama": {
+      "id": "ama",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Amâ (Bulut)",
+        "en": "The Cloud (al-'Ama)",
+        "pt": "A Nuvem (al-'Ama)"
+      },
+      "arabic": "عماء",
+      "ozet_tr": "Arş'ın da ötesindeki, belirlemenin sınırlayamadığı en nezih menzil",
+      "ozet_en": "the most exalted station, beyond even the Throne, uncontained by any determination",
+      "ozet_pt": "a estação mais exaltada, além até do Trono, não contida por nenhuma determinação",
+      "felsefi_tanim": {
+        "tr": "Hak'ın kendisine sorulduğunda 'yaratılıştan önce neredeydi' sorusuna cevaben andığı menzillerden biri -- Arş'ın bile ötesinde, ölçü ve miktar âleminde bulunmayan bir uzaklık. Fütûhât'ta bazı himmetlerin Hakk'ı doğrudan Amâ'da karşıladığı anlatılır.",
+        "en": "One of the stations mentioned in response to the question 'where was He before creation' -- a distance beyond even the Throne, not found in the realm of measure and quantity. The Futuhat relates that some aspirations meet the Real directly at the Cloud.",
+        "pt": "Uma das estações mencionadas em resposta à pergunta 'onde Ele estava antes da criação' -- uma distância além até do Trono, não encontrada no reino da medida e da quantidade. O Futuhat relata que algumas aspirações encontram o Real diretamente na Nuvem."
+      },
+      "analogy": {
+        "tr": "Bir haritanın kenarındaki 'burada canavarlar var' yazan boş alan gibi düşünülebilir -- bilinen, ölçülebilir dünyanın tamamen dışında kalan, tarif edilemeyen bir uzaklık.",
+        "en": "Can be thought of like the blank area at a map's edge marked 'here be monsters' -- a distance entirely outside the known, measurable world, one that cannot be described.",
+        "pt": "Pode ser pensado como a área em branco na borda de um mapa marcada 'aqui há monstros' -- uma distância inteiramente fora do mundo conhecido e mensurável, que não pode ser descrita."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "10021-10023",
+          "alinti_tr": "Hak, bazı himmetleri İlk Akıl'da karşılar... Bazı himmetler ise, O'nunla Amâ'da karşılaşırken bazı himmetler Âdem'in toprağının kalıntısından yaratılmış yerde O'nunla karşılaşır.",
+          "not_tr": "Amâ'nın himmetlerin karşılandığı en yüksek menzillerden biri olarak anılışı, Fütûhât Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "kursi",
+        "ars",
+        "himmet"
+      ]
+    },
+    "kursi": {
+      "id": "kursi",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Kürsî",
+        "en": "The Footstool (al-Kursi)",
+        "pt": "O Escabelo (al-Kursi)"
+      },
+      "arabic": "كرسي",
+      "ozet_tr": "yedi göğün ötesinde, Arş'tan önceki kozmolojik mertebe",
+      "ozet_en": "the cosmological rank beyond the seven heavens, before the Throne",
+      "ozet_pt": "o grau cosmológico além dos sete céus, antes do Trono",
+      "felsefi_tanim": {
+        "tr": "Fütûhât'ın himmetlerin karşılandığı yerler hiyerarşisinde, yedi göğün üstünde ve Arş'ın altında yer alan bir mertebe. Bazı himmetler Hakk'ı doğrudan Kürsî'de, bazıları Kürsî ile Arş arasında karşılar.",
+        "en": "In the Futuhat's hierarchy of places where aspirations are met, a rank above the seven heavens and below the Throne. Some aspirations meet the Real directly at the Footstool, others between the Footstool and the Throne.",
+        "pt": "Na hierarquia do Futuhat dos lugares onde as aspirações são recebidas, um grau acima dos sete céus e abaixo do Trono. Algumas aspirações encontram o Real diretamente no Escabelo, outras entre o Escabelo e o Trono."
+      },
+      "analogy": {
+        "tr": "Bir binada asansörün yedi katı geçtikten sonra durduğu bir ara kat gibi düşün -- son kat (Arş) değil, ama sıradan katların (yedi gök) da üstünde bir basamak.",
+        "en": "Think of an intermediate floor an elevator stops at after passing seven ordinary floors -- not the top floor (the Throne), but a step above the ordinary floors (the seven heavens).",
+        "pt": "Pense num andar intermediário onde um elevador para depois de passar por sete andares comuns -- não o andar mais alto (o Trono), mas um degrau acima dos andares comuns (os sete céus)."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "9995-9997",
+          "alinti_tr": "bir kısmını yedinci gökte ve o ikisinin arasında, bir kısmını Kürşü'de ve o ikisinin arasında, bir kısmını ilk inişte Arş'ta... karşılar.",
+          "not_tr": "Kürsî'nin himmetler hiyerarşisindeki yeri, Fütûhât Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "ars",
+        "ama",
+        "himmet"
+      ]
+    },
+    "ars": {
+      "id": "ars",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Arş (Rahmân'ın İstiva Mahalli)",
+        "en": "The Throne (al-'Arsh)",
+        "pt": "O Trono (al-'Arsh)"
+      },
+      "arabic": "عرش",
+      "ozet_tr": "Rahmân'ın istiva ettiği yer, Kürsî'nin üstündeki mertebe",
+      "ozet_en": "the place where the All-Merciful establishes Himself, the rank above the Footstool",
+      "ozet_pt": "o lugar onde o Todo-Misericordioso Se estabelece, o grau acima do Escabelo",
+      "felsefi_tanim": {
+        "tr": "Fütûhât'ın himmetler hiyerarşisinde Kürsî'nin üstünde yer alan, ve Kur'an'ın 'Rahmân Arş'a istiva etti' ayetinde geçen mertebe. Arş'ın ötesinde de Nefs-i Küllî, İlk Akıl ve Amâ gibi daha da yüksek menziller vardır -- Arş, kozmolojinin son noktası değildir.",
+        "en": "In the Futuhat's hierarchy of aspirations, the rank above the Footstool, mentioned in the Qur'anic verse 'the All-Merciful established Himself upon the Throne.' Beyond the Throne there are still higher stations such as the Universal Soul, the First Intellect, and the Cloud -- the Throne is not the final point of the cosmology.",
+        "pt": "Na hierarquia de aspirações do Futuhat, o grau acima do Escabelo, mencionado no versículo alcorânico 'o Todo-Misericordioso Se estabeleceu sobre o Trono.' Além do Trono ainda há estações mais altas, como a Alma Universal, o Primeiro Intelecto e a Nuvem -- o Trono não é o ponto final da cosmologia."
+      },
+      "analogy": {
+        "tr": "Bir gökdelenin en üst katı sanılan, ama aslında üstünde hâlâ bir çatı terasının olduğu bir kat gibi düşün -- yüksek bir nokta, ama son nokta değil.",
+        "en": "Think of a floor thought to be a skyscraper's top, which actually still has a rooftop terrace above it -- a high point, but not the final one.",
+        "pt": "Pense num andar que se pensa ser o mais alto de um arranha-céu, mas que na verdade ainda tem um terraço no telhado acima dele -- um ponto alto, mas não o final."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "9996-9997",
+          "alinti_tr": "bir kısmını ilk inişte Arş'ta ve O ikisinin (Arş ile Kürsü) arasında karşılar. Arş, Rahman'ın istiva mahallidir.",
+          "not_tr": "Arş'ın 'Rahman'ın istiva mahalli' olarak tanımı, Fütûhât Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "kursi",
+        "ama",
+        "himmet"
+      ]
+    },
+    "berzah": {
+      "id": "berzah",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Berzah (Ara Bölge)",
+        "en": "Barzakh (the Isthmus)",
+        "pt": "Barzakh (o Istmo)"
+      },
+      "arabic": "برزخ",
+      "ozet_tr": "iki şey arasında duran, ikisinden de pay alan ama ikisine de indirgenemeyen ara bölge",
+      "ozet_en": "an intermediate region standing between two things, sharing in both yet reducible to neither",
+      "ozet_pt": "uma região intermediária entre duas coisas, participando de ambas sem se reduzir a nenhuma",
+      "felsefi_tanim": {
+        "tr": "İki âlem/hâl arasında bulunan, ne tamamen birine ne tamamen ötekine ait olan ara bölge. Fütûhât'ta hayalin/rüyanın kendisi berzahî (ara bölgeye ait) olarak tarif edilir -- aynadaki suret gibi, ne tam gerçek ne tam yok sayılabilecek bir varoluş biçimi.",
+        "en": "An intermediate region between two worlds/states, belonging fully to neither. In the Futuhat, imagination/dream itself is described as barzakhi (of the intermediate region) -- like the image in a mirror, a mode of existence that can be called neither fully real nor fully non-existent.",
+        "pt": "Uma região intermediária entre dois mundos/estados, não pertencendo plenamente a nenhum. No Futuhat, a própria imaginação/sonho é descrita como barzakhi (da região intermediária) -- como a imagem num espelho, um modo de existência que não pode ser chamado nem plenamente real nem plenamente inexistente."
+      },
+      "analogy": {
+        "tr": "Bir aynadaki yansımanı düşün: orada bir 'sen' görünür, ama ayna kırılınca içinden bir insan çıkmaz -- ne tam gerçeksin orada, ne tam yoksun.",
+        "en": "Think of your reflection in a mirror: a 'you' appears there, but no person steps out if the mirror breaks -- you are neither fully real there, nor fully absent.",
+        "pt": "Pense no seu reflexo num espelho: um 'você' aparece ali, mas nenhuma pessoa sai de dentro se o espelho quebrar -- você não está nem plenamente real ali, nem plenamente ausente."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "290",
+          "alinti_tr": "Aynadaki suret, berzahi (ara bölgeye ait) bir bedendir.",
+          "not_tr": "Berzah kavramının ayna-suret örneğiyle tanımı, Fütûhât Cilt I."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "dehr",
+        "heba"
+      ]
+    },
+    "ayn-i-sabite": {
+      "id": "ayn-i-sabite",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Ayn-ı Sâbite (Sabit Ayn)",
+        "en": "The Fixed Archetype ('Ayn al-Thabita)",
+        "pt": "O Arquétipo Fixo ('Ayn al-Thabita)"
+      },
+      "arabic": "عين ثابتة",
+      "ozet_tr": "bir şeyin ilim mertebesinde hep sabit kalan, varlıksa da değişmeyen kendisi/özü",
+      "ozet_en": "a thing's own self/essence, fixed forever at the level of Divine Knowledge even as its existence changes",
+      "ozet_pt": "o próprio eu/essência de uma coisa, fixado para sempre no nível do Conhecimento Divino, ainda que sua existência mude",
+      "felsefi_tanim": {
+        "tr": "İbn Arabî'nin külliyatında merkezi bir kavram -- her varlığın Allah'ın ilmindeki değişmez, sabit sureti/kimliği. Fütûhât'ta matla' (doğum yeri) kavramıyla birlikte anılır: bir hakikatin âleme 'doğduğu' yer, onun ilimdeki sabit özüyle (ayn-ı sâbite) ilişkilendirilir.",
+        "en": "A central concept in Ibn Arabi's corpus -- every being's unchanging, fixed form/identity within God's knowledge. In the Futuhat it is named alongside the rising-place (matla'): the place where a reality is 'born' into the world is linked with its fixed essence within Divine Knowledge.",
+        "pt": "Um conceito central no corpus de Ibn Arabi -- a forma/identidade fixa e imutável de cada ser dentro do conhecimento de Deus. No Futuhat, é nomeado ao lado do lugar do nascer (matla'): o lugar onde uma realidade 'nasce' para o mundo é ligado à sua essência fixa dentro do Conhecimento Divino."
+      },
+      "analogy": {
+        "tr": "Bir binanın mimari planı gibi düşün: bina yıkılıp yeniden yapılsa bile, mimarın çiziminde o binanın 'gerçek hâli' hep aynı ve değişmeden durur.",
+        "en": "Think of a building's architectural blueprint: even if the building is demolished and rebuilt, the building's 'true form' in the architect's drawing always remains the same, unchanged.",
+        "pt": "Pense na planta arquitetônica de um edifício: mesmo que o edifício seja demolido e reconstruído, a 'forma verdadeira' do edifício no desenho do arquiteto permanece sempre a mesma, inalterada."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "1968-1970",
+          "alinti_tr": "Bir hikmeti talep edenin sırrı erdiğinde / Bereketler hakikatlerine; matla' (doğum yeri, ayn-ı sâbite) istisna olur.",
+          "not_tr": "Bu erken iz, ileride Füsûsu'l-Hikem'de merkezi hâle gelecek 'ayn-ı sâbite' kavramına Fütûhât'ta rastladığımız nadir bir yer -- kesin bir bağlantı iddiası değil, sadece bir işaret olarak not düşüyoruz."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "matla",
+        "heba"
+      ]
+    },
+    "nubuvvet": {
+      "id": "nubuvvet",
+      "tier": 2,
+      "group": "velayet-risalet",
+      "title": {
+        "tr": "Nübüvvet (Peygamberlik)",
+        "en": "Nubuwwa (Prophecy)",
+        "pt": "Nubuwwa (Profecia)"
+      },
+      "arabic": "نبوة",
+      "ozet_tr": "Hz. Muhammed'in bedeninden önce var olan, evrensel/soyut bir mertebe",
+      "ozet_en": "a universal/abstract rank that existed before the Prophet Muhammad's body",
+      "ozet_pt": "um grau universal/abstrato que existiu antes do corpo do Profeta Muhammad",
+      "felsefi_tanim": {
+        "tr": "Risâletten farklı olarak, belli bir ümmete gönderilmiş bir tebliğ görevine indirgenmeyen, evrensel bir mertebe. Hz. Muhammed, 'Âdem su ve toprak arasındayken ben peygamber idim' sözüyle, bedeni yaratılmadan önce de bu mertebeyi taşıyan soyut bir rûh olduğunu bildirir -- bu yüzden 'teşrifatçıların teşrifatçısı' sayılır.",
+        "en": "Unlike messengership, a universal rank not reduced to a delivery-mission sent to a particular community. The Prophet Muhammad declares, in the saying 'I was a prophet while Adam was between water and clay,' that he already carried this rank as an abstract spirit before his body was created -- which is why he is counted as 'the usher of ushers.'",
+        "pt": "Diferente do mensageirado, um grau universal não reduzido a uma missão de entrega enviada a uma comunidade particular. O Profeta Muhammad declara, no dito 'eu era profeta enquanto Adão estava entre água e barro,' que já portava esse grau como espírito abstrato antes de seu corpo ser criado -- por isso é contado como 'o introdutor dos introdutores.'"
+      },
+      "analogy": {
+        "tr": "Bir şirketin kurucu vizyonu gibi düşün: şirket henüz kurulmadan, hatta binası inşa edilmeden önce bile o vizyon zaten vardı -- kuruluş, sadece o önceden var olan şeyin görünür hâle gelmesidir.",
+        "en": "Think of a company's founding vision: that vision already existed before the company was even established, before its building was even built -- the founding is only that pre-existing thing becoming visible.",
+        "pt": "Pense na visão fundadora de uma empresa: essa visão já existia antes mesmo de a empresa ser fundada, antes mesmo de seu prédio ser construído -- a fundação é apenas essa coisa preexistente se tornando visível."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "10510-10513",
+          "alinti_tr": "Hz. Muhammed ise, diğer peygamberlerden farklı olarak, peygamberliği genel olduğu için teşrifatçıların teşrifatçısıdır. Diğer peygamberler ise, Âdem'den son peygamber ve resule kadar, Hz. Muhammed'in teşrifatçılarıdır.",
+          "not_tr": "Nübüvvetin evrenselliği ve teşrifatçılar hiyerarşisi, Fütûhât Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "risalet",
+        "velayet",
+        "hatmul-velaye"
+      ]
+    },
+    "risalet": {
+      "id": "risalet",
+      "tier": 2,
+      "group": "velayet-risalet",
+      "title": {
+        "tr": "Risâlet (Elçilik)",
+        "en": "Risala (Messengership)",
+        "pt": "Risala (Mensageirato)"
+      },
+      "arabic": "رسالة",
+      "ozet_tr": "belli bir ümmete gönderilen, tebliğle sınırlı görev",
+      "ozet_en": "a mission sent to a particular community, bounded by the act of delivery",
+      "ozet_pt": "uma missão enviada a uma comunidade particular, limitada pelo ato de entrega",
+      "felsefi_tanim": {
+        "tr": "Nübüvvetten farklı olarak, belli bir peygamberin belli bir ümmete gönderilen, tebliğ görevi tamamlanınca sona eren mertebe. Hz. Musa örneği verilir: Musa, kendi döneminde kendi ümmetinin 'kapının teşrifatçısı'ydı, ama 'Musa yaşıyor olsaydı, bana uymaktan başka bir çaresi olmazdı' hadisiyle, risâletinin Hz. Muhammed'in evrensel nübüvvetine tabi olduğu vurgulanır.",
+        "en": "Unlike prophecy, a rank sent to a particular community by a particular prophet, ending once the delivery-mission is complete. The example of Moses is given: in his own time Moses was the 'usher of the door' for his own community, but the hadith 'had Moses been alive, he would have had no choice but to follow me' stresses that his messengership was subordinate to Muhammad's universal prophecy.",
+        "pt": "Diferente da profecia, um grau enviado a uma comunidade particular por um profeta particular, terminando uma vez completada a missão de entrega. É dado o exemplo de Moisés: em seu próprio tempo, Moisés era o 'introdutor da porta' de sua própria comunidade, mas o hadith 'se Moisés estivesse vivo, não teria escolha senão me seguir' enfatiza que seu mensageirado era subordinado à profecia universal de Muhammad."
+      },
+      "analogy": {
+        "tr": "Bir şubenin bölge müdürü gibi düşün: kendi bölgesinde tam yetkilidir, ama genel merkezin (evrensel nübüvvetin) politikasına her zaman tabidir.",
+        "en": "Think of a branch's regional manager: fully authorized within their own region, but always subordinate to headquarters' (universal prophecy's) policy.",
+        "pt": "Pense no gerente regional de uma filial: com plena autoridade em sua própria região, mas sempre subordinado à política da matriz (a profecia universal)."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "10534-10537",
+          "alinti_tr": "Meseleyi bilmeyen kimse, Hz. Musa'nın da Hz. Muhammed gibi kendi şeriatıyla müstakil peygamber olduğunu zannedebilir. Hâlbuki Hz. Peygamber şöyle buyurur: 'Musa yaşıyor olsaydı, bana uymaktan başka bir çaresi olmazdı.'",
+          "not_tr": "Risâletin nübüvvete tabi oluşunun Musa örneğiyle gösterilmesi, Fütûhât Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nubuvvet",
+        "velayet"
+      ]
+    },
+    "hatmul-velaye": {
+      "id": "hatmul-velaye",
+      "tier": 2,
+      "group": "velayet-risalet",
+      "title": {
+        "tr": "Hatmü'l-Velâye (Velâyetin Mührü)",
+        "en": "The Seal of Sainthood (Khatm al-Walaya)",
+        "pt": "O Selo da Santidade (Khatm al-Walaya)"
+      },
+      "arabic": "ختم الولاية",
+      "ozet_tr": "velâyet zincirinin nihai/kapanış makamı",
+      "ozet_en": "the final/closing station of the chain of sainthood",
+      "ozet_pt": "a estação final/de encerramento da cadeia de santidade",
+      "felsefi_tanim": {
+        "tr": "İbn Arabî'nin kendisi için kullandığı, velâyet zincirinin kapanışına dair iddialı bir öz-tanımlama. Bir kasidede kendini doğrudan şöyle tarif eder: 'Ben hatmü'l-velâyeyim, hiç kuşkusuz Mesih ile birlikte, Hâşimî'ye vâris olarak... Aynı zamanda ben soylu Ebû Bekir'im' -- tek bir kimlikle değil, birkaç referans noktasının (Mesih, Hâşimî mirası, Ebû Bekir) kesişimiyle.",
+        "en": "A bold self-description Ibn Arabi applies to himself, concerning the closing of the chain of sainthood. In one qasida he describes himself directly: 'I am the seal of sainthood, without doubt, together with the Messiah, as heir to the Hashimite... I am also the noble Abu Bakr' -- not through a single identity, but through the intersection of several reference points (the Messiah, the Hashimite inheritance, Abu Bakr).",
+        "pt": "Uma ousada autodescrição que Ibn Arabi aplica a si mesmo, referente ao encerramento da cadeia de santidade. Numa qasida ele se descreve diretamente: 'Eu sou o selo da santidade, sem dúvida, junto com o Messias, como herdeiro do Hachemita... Eu também sou o nobre Abu Bakr' -- não através de uma única identidade, mas através da interseção de vários pontos de referência (o Messias, a herança Hachemita, Abu Bakr)."
+      },
+      "analogy": {
+        "tr": "Bir kitap serisinin son cildinin, önceki bütün ciltlerin ipuçlarını bir araya toplayıp kapatması gibi düşünülebilir -- kapanış, öncekileri reddetmez, onları bir araya getirir.",
+        "en": "Can be thought of like a book series' final volume gathering together and closing off all the earlier volumes' threads -- the closing does not reject what came before, it brings it together.",
+        "pt": "Pode ser pensado como o volume final de uma série de livros reunindo e encerrando todos os fios das partes anteriores -- o encerramento não rejeita o que veio antes, ele o reúne."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "10615-10623",
+          "alinti_tr": "Ben hatmü'l-velâyeyim (velîliğin sonu, mührü), hiç kuşkusuz / Mesih ile birlikte, Hâşimî'ye vâris olarak... Aynı zamanda ben soylu Ebû Bekir'im.",
+          "not_tr": "İbn Arabî'nin kendi hatmü'l-velaye iddiasının açıldığı kaside, Fütûhât Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "velayet",
+        "nubuvvet"
+      ]
+    },
+    "mesrep": {
+      "id": "mesrep",
+      "tier": 2,
+      "group": "velayet-risalet",
+      "title": {
+        "tr": "Meşrep",
+        "en": "Temperament (Mashrab)",
+        "pt": "Temperamento (Mashrab)"
+      },
+      "arabic": "مشرب",
+      "ozet_tr": "bir velinin hangi peygamberin 'zevkine' göre yol aldığı",
+      "ozet_en": "which prophet's 'taste' a saint's own path follows",
+      "ozet_pt": "o 'gosto' de qual profeta o próprio caminho de um santo segue",
+      "felsefi_tanim": {
+        "tr": "Bir velinin manevi yolunun, hangi peygamberin (Muhammedî, İsevî, Musevî...) tarzına/zevkine göre şekillendiğini belirten kavram. İbn Arabî kendi manevi terakkisini bu çerçevede anlatır: önce İsevî, sonra Musevî-Şemsî, sonra Hûd'a, sonra Hz. Muhammed'e nakledilen bir seyir.",
+        "en": "A concept marking which prophet's (Muhammadan, Christic, Mosaic...) manner/taste shapes a saint's spiritual path. Ibn Arabi describes his own spiritual progression within this framework: first Christic, then Mosaic-Solar, then transferred to Hud, then to the Prophet Muhammad.",
+        "pt": "Um conceito que marca segundo a maneira/gosto de qual profeta (Muhammadano, Crístico, Mosaico...) se molda o caminho espiritual de um santo. Ibn Arabi descreve sua própria progressão espiritual dentro dessa estrutura: primeiro Crístico, depois Mosaico-Solar, depois transferido para Hud, depois para o Profeta Muhammad."
+      },
+      "analogy": {
+        "tr": "Bir müzisyenin hangi ustadan etkilenerek kendi tarzını bulduğunu söylemesi gibi -- meşrep, kişinin manevi 'ekolünü' belirtir.",
+        "en": "Like a musician saying which master's influence shaped their own style -- temperament marks a person's spiritual 'school.'",
+        "pt": "Como um músico dizendo qual mestre influenciou a formação de seu próprio estilo -- o temperamento marca a 'escola' espiritual de uma pessoa."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "8009-8012",
+          "alinti_tr": "Şeyhimiz Ebu'l-Abbas el-Ureybi bu yolda bizim başlangıç mertebemiz olan son mertebesinde İsevi idi. Sonra biz, Musevi-Şemsi (Musa Peygamber'e ve Güneşe mensup) fethe aktarıldık. Bundan sonra ise Hud'a, sonra Hz. Muhammed'e nakledildik.",
+          "not_tr": "İbn Arabî'nin kendi meşrep/nispet seyrini anlattığı pasaj, Fütûhât Kısım XX."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nispet",
+        "hatmul-velaye"
+      ]
+    },
+    "nispet": {
+      "id": "nispet",
+      "tier": 2,
+      "group": "velayet-risalet",
+      "title": {
+        "tr": "Nispet",
+        "en": "Affiliation (Nisba)",
+        "pt": "Filiação (Nisba)"
+      },
+      "arabic": "نسبة",
+      "ozet_tr": "bir velinin hangi peygambere 'bağlı/nispetli' olduğu ilişki sistemi",
+      "ozet_en": "the system of relation marking which prophet a saint is 'affiliated' with",
+      "ozet_pt": "o sistema de relação que marca a qual profeta um santo é 'filiado'",
+      "felsefi_tanim": {
+        "tr": "Meşrebe yakın ama daha geniş bir kavram: bir velinin, kerametinin/hâlinin hangi peygamberin mirasına bağlandığını gösteren ilişki. Örneğin su üzerinde yürüme kerameti İsevî nispete, havada yürüme ise Muhammedî nispete bağlanır -- üstünlük bir inanç gücü yarışı değil, hangi peygambere tabi olunduğuna bağlı bir sonuçtur.",
+        "en": "A concept close to but broader than temperament: the relation showing which prophet's legacy a saint's wonder/state is bound to. For example, the wonder of walking on water is bound to Christic affiliation, walking on air to Muhammadan affiliation -- superiority is not a contest of belief-strength, but a consequence of which prophet one follows.",
+        "pt": "Um conceito próximo ao temperamento, mas mais amplo: a relação que mostra a qual legado profético o prodígio/estado de um santo está ligado. Por exemplo, o prodígio de caminhar sobre a água está ligado à filiação Crística, caminhar no ar à filiação Muhammadana -- a superioridade não é uma disputa de força de crença, mas uma consequência de qual profeta se segue."
+      },
+      "analogy": {
+        "tr": "Bir sporcunun hangi antrenörün ekolünden geldiğinin, onun oyun tarzını belirlemesi gibi -- başarı kişisel değil, o ekolün mirasının bir yansımasıdır.",
+        "en": "Like which coach's school an athlete comes from determining their style of play -- the achievement is not personal, but a reflection of that school's legacy.",
+        "pt": "Como a escola de qual treinador um atleta vem determinando seu estilo de jogo -- a conquista não é pessoal, mas um reflexo do legado dessa escola."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "10504-10513",
+          "alinti_tr": "'Musa (yanındaki) Gence dediğinde' ayeti de, fütüvvettendir... Her ümmetin özel ilahi bir kapısı vardır. Şeriatlarını getiren peygamber, kendisinden Allah'ın huzuruna girdikleri bu kapının teşrifatçısıdır.",
+          "not_tr": "Nispet sisteminin teşrifatçılar hiyerarşisi üzerinden anlatımı, Fütûhât Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "mesrep",
+        "nubuvvet"
+      ]
+    },
+    "halife": {
+      "id": "halife",
+      "tier": 2,
+      "group": "velayet-risalet",
+      "title": {
+        "tr": "Halife (Hilâfet)",
+        "en": "Caliph (Vicegerency)",
+        "pt": "Califa (Vice-regência)"
+      },
+      "arabic": "خليفة",
+      "ozet_tr": "Allah adına yeryüzünde temsilci/vekil olma makamı",
+      "ozet_en": "the station of being a representative/deputy on earth on God's behalf",
+      "ozet_pt": "a estação de ser representante/vice-regente na terra em nome de Deus",
+      "felsefi_tanim": {
+        "tr": "İnsanın yeryüzünde 'ruhlar adına' temsilci kılınması -- Kur'an'daki halifelik/istihlaf fikrinin özü. Halifelik, kendi adına bir egemenlik değil, temsil ettiği asıl (ruh, ya da Allah'ın kendisi) adına bir vekâlettir; bu yüzden İnsan-ı Kâmil ile yakından ilişkilidir.",
+        "en": "The human being appointed as representative on earth 'on behalf of spirits' -- the essence of the Qur'anic idea of vicegerency/succession. Vicegerency is not a sovereignty in its own name, but a deputyship on behalf of what it represents (the spirit, or God Himself) -- which is why it is closely tied to the Perfect Human.",
+        "pt": "O ser humano designado como representante na terra 'em nome dos espíritos' -- a essência da ideia alcorânica de vice-regência/sucessão. A vice-regência não é uma soberania em nome próprio, mas uma representação em nome daquilo que representa (o espírito, ou o próprio Deus) -- por isso está intimamente ligada ao Ser Humano Perfeito."
+      },
+      "analogy": {
+        "tr": "Bir büyükelçi gibi düşün: kendi adına değil, temsil ettiği devlet adına konuşur ve yetki kullanır -- yetkisi gerçek ama ödünçtür.",
+        "en": "Think of an ambassador: they speak and exercise authority not in their own name, but on behalf of the state they represent -- their authority is real, but borrowed.",
+        "pt": "Pense num embaixador: ele fala e exerce autoridade não em nome próprio, mas em nome do Estado que representa -- sua autoridade é real, mas emprestada."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 1,
+          "satir": "3804",
+          "alinti_tr": "bedenleri yeryüzünde (ruhlar adına) halife yapmıştır.",
+          "not_tr": "Halifeliğin 'ruhlar adına' bir vekâlet olarak tanımı, Fütûhât Cilt I."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nubuvvet"
+      ]
+    },
+    "tecelli": {
+      "id": "tecelli",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Tecellî",
+        "en": "Theophany (Tajalli)",
+        "pt": "Teofania (Tajalli)"
+      },
+      "arabic": "تجلي",
+      "ozet_tr": "Hakk'ın bir kula/mahalle görünmesi, kendini açması",
+      "ozet_en": "the Real's self-disclosure, His appearing to a servant/locus",
+      "ozet_pt": "a auto-revelação do Real, Ele Se manifestando a um servo/lócus",
+      "felsefi_tanim": {
+        "tr": "Allah'ın, bilinemez zâtından çıkarak bir suretle/hâlle kula görünmesi, kendini açması. Fütûhât'ta gece ehline yakın gökten tecelli eden Hakk'ın 'Beni sevdiğini iddia edip gece olduğunda uyuyan kimse yalancıdır!' hitabı, tecellinin somut, sesli/hitaplı bir örneği olarak anlatılır.",
+        "en": "God's appearing to, and self-disclosure before, a servant in some form/state, emerging out of His unknowable essence. In the Futuhat, the Real's theophany to the people of the night from the nearest heaven -- with the address, 'whoever claims to love Me and sleeps when night comes is a liar!' -- is told as a concrete, verbal example of theophany.",
+        "pt": "O aparecer de Deus, e Sua auto-revelação diante de um servo, em alguma forma/estado, emergindo de Sua essência incognoscível. No Futuhat, a teofania do Real ao povo da noite a partir do céu mais próximo -- com o discurso, 'quem afirma Me amar e dorme quando a noite chega é um mentiroso!' -- é narrada como um exemplo concreto e verbal de teofania."
+      },
+      "analogy": {
+        "tr": "Güneşin kendisine bakılamasa da, bir su birikintisinde yansımasının görülebilmesi gibi -- tecelli, doğrudan görülemeyenin bir surette/hâlde görünür kılınmasıdır.",
+        "en": "Like the sun itself being unbearable to look at directly, yet its reflection being visible in a puddle -- theophany is making what cannot be seen directly visible in some form.",
+        "pt": "Como o próprio sol sendo insuportável de se olhar diretamente, mas seu reflexo sendo visível numa poça d'água -- a teofania é tornar visível, em alguma forma, o que não pode ser visto diretamente."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "9744-9747",
+          "alinti_tr": "Allah geceleyin onlar için yakın göğe iner... Allah, bir rivayette belirtildiği gibi, yakın gökten onlara tecelli eder ve şöyle der: 'Beni sevdiğini iddia edip gece olduğunda uyuyan kimse yalancıdır!'",
+          "not_tr": "Tecellinin nüzûl hadisiyle birlikte somut bir örneği, Fütûhât Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "nuzul",
+        "himmet"
+      ]
+    },
+    "nuzul": {
+      "id": "nuzul",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Nüzûl (İniş)",
+        "en": "Descent (Nuzul)",
+        "pt": "Descida (Nuzul)"
+      },
+      "arabic": "نزول",
+      "ozet_tr": "Allah'ın her gece yakın göğe 'inişi'ni anlatan hadis ve bu inişin kendisi",
+      "ozet_en": "the hadith describing God's nightly 'descent' to the nearest heaven, and the descent itself",
+      "ozet_pt": "o hadith que descreve a 'descida' noturna de Deus ao céu mais próximo, e a própria descida",
+      "felsefi_tanim": {
+        "tr": "Allah'ın her gece yakın göğe inip kullarına seslendiğini anlatan meşhur hadis. Fütûhât, bu inişte Allah ile kul arasında herhangi bir feleki perde kalmadığını, bunun gece ehli için bir rahmet olduğunu vurgular -- nüzûl, gece ibadetinin bütün gerekçesini oluşturur.",
+        "en": "The well-known hadith describing God descending to the nearest heaven every night and addressing His servants. The Futuhat stresses that in this descent no celestial veil remains between God and the servant, and that this is a mercy for the people of the night -- the descent forms the entire rationale of night-worship.",
+        "pt": "O conhecido hadith que descreve Deus descendo ao céu mais próximo toda noite e se dirigindo a Seus servos. O Futuhat enfatiza que, nessa descida, nenhum véu celestial permanece entre Deus e o servo, e que isso é uma misericórdia para o povo da noite -- a descida constitui toda a razão de ser da adoração noturna."
+      },
+      "analogy": {
+        "tr": "Bir hükümdarın, her gece halkının en yakınına inip kapıyı bizzat kendisinin açması gibi düşün -- aradaki bütün protokol/mesafe o an için kalkar.",
+        "en": "Think of a ruler descending each night to be nearest to their people and personally opening the door -- all the protocol/distance in between lifts for that moment.",
+        "pt": "Pense num governante descendo toda noite para ficar mais perto de seu povo e abrindo a porta pessoalmente -- todo o protocolo/distância entre eles se dissipa naquele momento."
+      },
+      "kaynaklar": [
+        {
+          "cilt": 2,
+          "satir": "9744-9746",
+          "alinti_tr": "Allah geceleyin onlar için yakın göğe iner. Bu esnada Allah ile aralarında herhangi bir feleki perde kalmaz. Allah'ın onlara inmesi, kendilerine bir rahmettir.",
+          "not_tr": "Nüzûl hadisinin Fütûhât'taki genişletilmiş okuması, Kısım XXII."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "tecelli"
       ]
     }
   }

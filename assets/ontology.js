@@ -907,6 +907,30 @@
       : s;
   }
 
+  // Now that linkify() matches case-insensitively (see below), a handful of
+  // older glossary titles are themselves plain, everyday English/Portuguese
+  // words/phrases used as a gloss ("Reason", "Cause", "Species", "The Heart",
+  // "Certainty", "The Essence", "The First", "The Last") rather than a
+  // distinctive technical name. Registered as-is, these would auto-link
+  // every ordinary occurrence of that common word throughout running prose,
+  // regardless of whether that occurrence has anything to do with the
+  // concept. Block just these known offenders from being registered as
+  // match variants -- the term/node itself is unaffected and still findable
+  // by browsing/search, it simply won't be auto-linked from prose.
+  const GENERIC_VARIANT_BLOCKLIST = new Set([
+    "reason", "cause", "causa", "razão", "species", "espécie",
+    "the one", "o um", "a um", "o único",
+    "the first", "o primeiro", "a primeira",
+    "the last", "o último", "a última",
+    "the heart", "o coração",
+    "certainty", "certeza",
+    "the essence", "a essência",
+    "difference", "diferença",
+    "effect", "efeito",
+    "the soul", "a alma",
+    "the visible", "o visível",
+  ]);
+
   function registerCrossLinkTerm(nameDict, view, id, summaryDict) {
     if (!nameDict) return;
     ["tr", "en", "pt"].forEach((lang) => {
@@ -914,15 +938,25 @@
       if (!term) return;
       const variants = new Set();
       if (term.length >= 4) variants.add(term);
-      // Many titles carry a parenthetical gloss ("Vâcib (Vâcibü'l-Vücûd)")
-      // or an Arabic article prefix ("el-Kâdir", "es-Semî'"); register the
-      // bare form too so ordinary running prose ("Vâcib", "Kâdir") can
-      // still resolve to the same concept.
-      const noParen = term.replace(/\s*\(.*\)\s*$/, "").trim();
+      // Many titles carry a parenthetical gloss ("Vâcib (Vâcibü'l-Vücûd)",
+      // "Bedel (Ebdal)") or an Arabic article prefix ("el-Kâdir", "es-Semî'");
+      // register the bare form AND the parenthetical's own content as
+      // separate variants, so ordinary running prose using either name
+      // ("Vâcib" or "Vâcibü'l-Vücûd", "Bedel" or "Ebdal") still resolves to
+      // the same concept.
+      const parenMatch = term.match(/^(.*?)\s*\((.*)\)\s*$/);
+      const noParen = (parenMatch ? parenMatch[1] : term).trim();
       if (noParen.length >= 4) variants.add(noParen);
+      if (parenMatch) {
+        const parenContent = parenMatch[2].trim();
+        if (parenContent.length >= 4) variants.add(parenContent);
+      }
       const noPrefix = noParen.replace(/^(el|er|es)-/i, "").trim();
       if (noPrefix.length >= 4) variants.add(noPrefix);
-      variants.forEach((v) => crossLinkTermsByLang[lang].push({ term: v, view, id }));
+      variants.forEach((v) => {
+        if (GENERIC_VARIANT_BLOCKLIST.has(v.toLowerCase())) return;
+        crossLinkTermsByLang[lang].push({ term: v, view, id });
+      });
     });
     if (summaryDict) crossLinkSummaries.set(view + ":" + id, summaryDict);
   }
@@ -940,8 +974,13 @@
       .map((t) => ({ ...t, folded: foldForLang(lang, t.term) }))
       .sort((a, b) => b.folded.length - a.folded.length);
     if (!terms.length) return text;
+    // Case-insensitive ("i" flag) for every language, not just Turkish's own
+    // fold: English/Portuguese running prose commonly lowercases a technical
+    // term mid-sentence ("the pole of the age") even though the glossary
+    // registers it title-case ("Pole") for display -- without this, those
+    // terms would only ever link when capitalized exactly as registered.
     const pattern = terms.map((t) => `(?<![\\p{L}])${escapeRegExp(t.folded)}(?![\\p{L}])`).join("|");
-    const re = new RegExp(pattern, "gu");
+    const re = new RegExp(pattern, "giu");
     const foldedText = foldForLang(lang, text);
     const seen = new Set();
     let result = "";
@@ -950,7 +989,8 @@
     while ((m = re.exec(foldedText))) {
       const start = m.index;
       const end = start + m[0].length;
-      const hit = terms.find((t) => t.folded === m[0]);
+      const matchLower = m[0].toLowerCase();
+      const hit = terms.find((t) => t.folded.toLowerCase() === matchLower);
       if (!hit) continue;
       const original = text.slice(start, end);
       result += text.slice(lastIndex, start);
