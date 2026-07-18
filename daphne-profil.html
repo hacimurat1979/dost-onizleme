@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Daphne — İç Dünyanın Haritası</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LGMR3QK3JT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LGMR3QK3JT');
+</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="viz-root">
+  <header class="app-header">
+    <div class="app-header__title">
+      <h1>Daphne</h1>
+      <p class="app-header__subtitle"
+         data-tr="İç dünyanın haritası -- kendi yazılarında sık sık döndüğü eksenler"
+         data-en="A map of the inner world -- the axes her own writing keeps returning to"
+         data-pt="Um mapa do mundo interior -- os eixos aos quais sua própria escrita retorna"></p>
+    </div>
+    <div class="app-header__controls">
+      <div class="lang-switch" id="lang-switch"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" id="intro-text">
+      <p data-tr="Bu harita, Dost ile örtüşüp örtüşmediğine bakmaksızın, Daphne'nin (thelivingfractal) kendi yazılarında tekrar tekrar döndüğü eksenleri bir araya getirmeye çalışıyor. Merkezdeki düğüm Daphne, çevresindekiler ise onun kendi cümleleriyle -- mümkün olduğunca -- kurulmuş temel parametreler. Bu kapanmış bir profil değil; yeni bir yazı paylaşıldıkça güncellenen bir taslak. Bir düğüme tıklayın."
+         data-en="This map tries to gather, independent of any overlap with Dost, the axes Daphne's (thelivingfractal) own writing keeps returning to. The center node is Daphne; the surrounding ones are core parameters built, as much as possible, from her own words. This is not a closed profile -- it is a draft that updates as new pieces are shared. Click a node."
+         data-pt="Este mapa tenta reunir, independentemente de qualquer sobreposição com Dost, os eixos aos quais a própria escrita de Daphne (thelivingfractal) retorna repetidamente. O nó central é Daphne; os que a rodeiam são parâmetros centrais construídos, tanto quanto possível, a partir de suas próprias palavras. Este não é um perfil fechado -- é um rascunho que se atualiza à medida que novos textos são compartilhados. Clique num nó.">
+      </p>
+    </section>
+
+    <section class="graph-wrap" id="profile-wrap">
+      <svg id="profile-graph"></svg>
+      <div class="view-status" id="profile-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+    </section>
+
+    <aside class="detail-panel" id="detail-panel" hidden>
+      <button class="detail-panel__close" id="detail-close" aria-label="Kapat">×</button>
+      <div id="detail-content"></div>
+    </aside>
+
+    <section class="hakkinda-content__section" id="articles-list-section">
+      <h2 data-tr="Taranan Yazılar" data-en="Articles Surveyed" data-pt="Textos Analisados"></h2>
+      <ul id="articles-list" class="daphne-profile-articles"></ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p data-tr="Kaynak: thelivingfractal.com ve Substack (thelivingfractal1). Bu bir okuma denemesidir, kapanmış bir teşhis değil."
+       data-en="Source: thelivingfractal.com and Substack (thelivingfractal1). This is a reading attempt, not a closed diagnosis."
+       data-pt="Fonte: thelivingfractal.com e Substack (thelivingfractal1). Esta é uma tentativa de leitura, não um diagnóstico fechado.">
+    </p>
+  </footer>
+
+  <script src="assets/vendor/d3.min.js"></script>
+  <script src="assets/i18n.js"></script>
+  <script src="assets/view-status.js"></script>
+  <script src="assets/graph-utils.js"></script>
+  <script src="assets/daphne-profil.js"></script>
+</body>
+</html>

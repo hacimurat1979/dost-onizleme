@@ -1641,6 +1641,27 @@ li.futuhat-pulse,
   .viz-root[data-theme="dark"] .node--root .node-halo { animation: none; opacity: 0.45; }
 }
 
+.daphne-profile-articles {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.daphne-profile-articles li {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.daphne-profile-articles a {
+  color: var(--series-daphne);
+}
+.daphne-profile-articles__note {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
 .detail-panel {
   position: fixed;
   top: 0;
