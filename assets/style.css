@@ -3927,6 +3927,93 @@ html[data-contrast="high"] .detail-title {
   .surprise-toggle:active { transform: none; }
 }
 
+/* Gizli düzenleme modu ("uyan" yazınca açılır) -- bkz. assets/edit-mode.js */
+.dost-edit-mode [data-dost-editable] {
+  cursor: text;
+  border-radius: 3px;
+  outline: 1px dashed transparent;
+  outline-offset: 3px;
+  transition: outline-color 0.15s ease, background-color 0.15s ease;
+}
+.dost-edit-mode [data-dost-editable]:hover {
+  outline-color: color-mix(in srgb, var(--series-theme) 55%, transparent);
+}
+.dost-edit-mode [data-dost-editable]:focus {
+  outline: 1px solid var(--series-theme);
+  background-color: color-mix(in srgb, var(--series-theme) 8%, transparent);
+}
+
+.dost-edit-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.dost-edit-panel__toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--series-theme);
+  background: var(--surface-1);
+  color: var(--series-theme);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(20, 15, 8, 0.18);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.dost-edit-panel__icon { font-size: 0.95rem; }
+
+.dost-edit-panel__count {
+  font-variant-numeric: tabular-nums;
+}
+
+.dost-edit-panel__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  width: 240px;
+  max-width: calc(100vw - 40px);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  box-shadow: 0 8px 24px rgba(20, 15, 8, 0.18);
+}
+
+.dost-edit-panel__hint {
+  margin: 0 0 4px;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.dost-edit-panel__menu button {
+  font: inherit;
+  font-size: 0.82rem;
+  text-align: left;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--page-plane);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.dost-edit-panel__menu button:hover,
+.dost-edit-panel__menu button:focus-visible {
+  border-color: var(--series-theme);
+}
+
 .search-panel {
   position: fixed;
   inset: 0;
