@@ -1,12 +1,12 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik; On Altıncı Kısım da bu okumaya eklendi.",
   "book": {
     "cilts": [
       { "cilt": 1, "kisimStart": 1, "kisimEnd": 14 },
       { "cilt": 2, "kisimStart": 15, "kisimEnd": 28 }
     ]
   },
-  "activePartId": "c2k15",
+  "activePartId": "c2k16",
   "parts": [
     {
       "id": "c1k3",
@@ -6522,6 +6522,502 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — İlahi İlimde Tevâlüd ve Kısmın Kapanışı, s. 41-42.",
           "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — Generation Within Divine Knowledge and the Part's Close, pp. 41-42.",
           "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — Geração no Conhecimento Divino e o Fechamento da Parte, pp. 41-42."
+        }
+      ]
+    },
+    {
+      "id": "c2k16",
+      "cilt": 2,
+      "kisim": 16,
+      "status": "active",
+      "title": {
+        "tr": "On Dokuz Menzil ve Gizli Veliler: Kevnî İlimlerin Taksonomisi",
+        "en": "Nineteen Stations and the Hidden Saints: A Taxonomy of Cosmic Knowledge",
+        "pt": "Dezenove Estações e os Santos Ocultos: Uma Taxonomia do Conhecimento Cósmico"
+      },
+      "pageRange": "43–72",
+      "hero": {
+        "summary": {
+          "tr": "Kısım XVI, önceki dört kısmın daha anlatısal/biyografik tonundan uzaklaşıp, bütün 'kevnî ilimleri' on dokuz 'menzil' altında toplayan sistematik bir taksonomiye yöneliyor gibi görünüyor. Bu geniş sınıflandırmanın içinde, Kısım XIII'ten beri topladığımız kutbiyet ve zaman/dehr parçalarına yeni bir sayısal çerçeve eklendiğini görüyoruz; kısım, gizlenmiş velilerin (Efrad) ahlâkıyla kapanıyor.",
+          "en": "Part XVI seems to step back from the more narrative and biographical tone of the previous four parts toward a systematic taxonomy gathering all 'cosmic sciences' under nineteen 'stations.' Within this broad classification, a new numerical framework seems to attach itself to the pole-hierarchy and time/dahr pieces we have been gathering since Part XIII; the part closes with the ethics of the hidden saints (the Afrad).",
+          "pt": "A Parte XVI parece se afastar do tom mais narrativo e biográfico das quatro partes anteriores em direção a uma taxonomia sistemática que reúne todas as 'ciências cósmicas' sob dezenove 'estações'. Dentro dessa ampla classificação, uma nova estrutura numérica parece se somar às peças sobre a hierarquia dos polos e o tema tempo/dahr que vínhamos reunindo desde a Parte XIII; a parte se encerra com a ética dos santos ocultos (os Afrad)."
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Dost'un 'Rical' (adamlar) hiyerarşisi: on dokuz menzile paralel biçimde, on iki Nakip ve yedi Bedel'den (dört Evtad, iki İmam, bir Kutup) oluşan on dokuz kişilik bir sayısal iskelet.",
+          "en": "Dost's hierarchy of the 'Rijal' (men): parallel to the nineteen stations, a nineteen-member numerical skeleton made of twelve Naqibs and seven Badals (four Awtad, two Imams, one Pole).",
+          "pt": "A hierarquia de Dost dos 'Rijal' (homens): paralela às dezenove estações, um esqueleto numérico de dezenove membros composto por doze Naqibs e sete Badals (quatro Awtad, dois Imames, um Polo)."
+        },
+        "tree": {
+          "id": "rical-hiyerarsisi-tree",
+          "label": {
+            "tr": "On Dokuz Rical (19)",
+            "en": "The Nineteen Rijal (19)",
+            "pt": "Os Dezenove Rijal (19)"
+          },
+          "note": {
+            "tr": "on dokuz menzile 'benzer' olduğu söylenen adamlar sınıfı",
+            "en": "the class of men said to be the 'likeness' of the nineteen stations",
+            "pt": "a classe de homens dita ser a 'semelhança' das dezenove estações"
+          },
+          "children": [
+            {
+              "id": "nakip",
+              "label": {
+                "tr": "Nakip (12)",
+                "en": "Naqib (12)",
+                "pt": "Naqib (12)"
+              },
+              "note": {
+                "tr": "kendileri hakkında az bilgi verilen bir sınıf",
+                "en": "a class about whom little is disclosed",
+                "pt": "uma classe sobre a qual pouco é revelado"
+              }
+            },
+            {
+              "id": "bedel",
+              "label": {
+                "tr": "Bedel (7)",
+                "en": "Badal (7)",
+                "pt": "Badal (7)"
+              },
+              "note": {
+                "tr": "üç alt-mertebeye ayrılır",
+                "en": "divides into three sub-ranks",
+                "pt": "divide-se em três sub-graus"
+              },
+              "children": [
+                {
+                  "id": "evtad-c2k16",
+                  "label": {
+                    "tr": "Evtad (4)",
+                    "en": "Awtad (4)",
+                    "pt": "Awtad (4)"
+                  },
+                  "note": {
+                    "tr": "dört direk",
+                    "en": "the four pillars",
+                    "pt": "os quatro pilares"
+                  }
+                },
+                {
+                  "id": "imameyn-c2k16",
+                  "label": {
+                    "tr": "İki İmam (2)",
+                    "en": "Two Imams (2)",
+                    "pt": "Dois Imames (2)"
+                  },
+                  "note": {
+                    "tr": "kutbun iki yardımcısı",
+                    "en": "the pole's two assistants",
+                    "pt": "os dois assistentes do polo"
+                  }
+                },
+                {
+                  "id": "kutup-c2k16",
+                  "label": {
+                    "tr": "Kutup (1)",
+                    "en": "The Pole (1)",
+                    "pt": "O Polo (1)"
+                  },
+                  "note": {
+                    "tr": "tek ve ölümsüz olduğu Kısım XIII'te söylenen makam",
+                    "en": "the station said in Part XIII to be one and undying",
+                    "pt": "a estação dita na Parte XIII ser una e imortal"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "on-dokuz-menzil-taksonomi",
+          "heading": {
+            "tr": "On Dokuz Menzil: Kevnî İlimlerin Taksonomisi",
+            "en": "Nineteen Stations: A Taxonomy of Cosmic Knowledge",
+            "pt": "Dezenove Estações: Uma Taxonomia do Conhecimento Cósmico"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısım XVI, Yirmi İkinci Bölüm'ün başında Dost'un bütün kevnî (yaratılmışlara dair) ilimleri kapsamaya çalışan geniş bir taksonomi kurduğunu görüyoruz. Önce üç basamaklı bir bilgi-sıralaması öne sürülüyor: <em>'Bu sıralama, önce tekilin, sonra bileşimin, sonra bileşiğin bilinmesidir. Dördüncü bir şey yoktur.'</em> Ardından on dokuz 'menzil' (Övgü, Remizler, Dua, Fiiller, Başlangıç, Tenzih, Yakınlık, Umut, Bereketler, Yeminler, Zât, Dehirler, Lâm-Elif, Takrir, Ülfet, Haber Öğrenme, Tehdit, Emir ve birkaçı daha) sıralanıyor; her biri dört alt-sınıfa ayrılıyor: <em>'Birinci sınıf, delalet menzilleri; ikinci sınıf, tanım menzilleri; üçüncü sınıf, seçkinlerin menzilleri; dördüncü sınıf ise, sır menzilleri diye isimlendirilir.'</em> Kısmın geri kalanı, bu on dokuz menzili tek tek, şiir ve şerh biçiminde ele alıyor.",
+                "en": "At the start of the Twenty-Second Chapter, we find Dost building a broad taxonomy meant to encompass all cosmic (created) sciences. First a three-step order of knowledge is proposed: <em>'This ordering is first knowing the singular, then the compound, then the composite. There is no fourth.'</em> Then nineteen 'stations' (Praise, Signs, Supplication, Acts, Beginning, Transcendence, Nearness, Hope, Blessings, Oaths, Essence, the Ages, Lam-Elif, Affirmation, Intimacy, Learning of News, Threat, Command, and a few more) are listed; each divides into four subclasses: <em>'The first class is called the stations of indication; the second, the stations of definition; the third, the stations of the elect; the fourth, the stations of the secret.'</em> The rest of the part takes up these nineteen stations one by one, in verse followed by commentary.",
+                "pt": "No início do Vigésimo Segundo Capítulo, encontramos Dost construindo uma ampla taxonomia que busca abarcar todas as ciências cósmicas (referentes ao criado). Primeiro se propõe uma ordem de conhecimento em três passos: <em>'Esta ordenação é primeiro conhecer o singular, depois o composto, depois o compósito. Não há um quarto.'</em> Em seguida, dezenove 'estações' são listadas (Louvor, Sinais, Súplica, Atos, Início, Transcendência, Proximidade, Esperança, Bênçãos, Juramentos, Essência, as Eras, Lam-Elif, Afirmação, Intimidade, Aprendizado de Notícias, Ameaça, Ordem, e mais algumas); cada uma se divide em quatro subclasses: <em>'A primeira classe se chama estações de indicação; a segunda, estações de definição; a terceira, estações dos eleitos; a quarta, estações do segredo.'</em> O resto da parte trata dessas dezenove estações uma a uma, em verso seguido de comentário."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Menziller Menzilinin Bilinmesi, s. 43-45.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — Knowing the Station of Stations, pp. 43-45.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — Conhecendo a Estação das Estações, pp. 43-45."
+              },
+              "triad": {
+                "left": {
+                  "label": {
+                    "tr": "Tekil",
+                    "en": "The Singular",
+                    "pt": "O Singular"
+                  },
+                  "note": {
+                    "tr": "en basit bilinen birim",
+                    "en": "the simplest known unit",
+                    "pt": "a unidade mais simples conhecida"
+                  }
+                },
+                "middle": {
+                  "label": {
+                    "tr": "Bileşim",
+                    "en": "The Compound",
+                    "pt": "O Composto"
+                  },
+                  "note": {
+                    "tr": "tekillerin bir araya gelişi",
+                    "en": "the coming-together of singulars",
+                    "pt": "a reunião dos singulares"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Bileşik",
+                    "en": "The Composite",
+                    "pt": "O Compósito"
+                  },
+                  "note": {
+                    "tr": "bileşimden doğan yeni bütün",
+                    "en": "the new whole born of the compound",
+                    "pt": "o novo todo nascido do composto"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un bilgi-sıralaması: her bilinen ya tekildir, ya bileşim, ya da bileşik -- 'dördüncü bir şey yoktur.'",
+                "en": "Dost's order of knowledge: everything known is either singular, compound, or composite -- 'there is no fourth.'",
+                "pt": "A ordem de conhecimento de Dost: tudo o que se conhece é singular, composto ou compósito -- 'não há um quarto.'"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ovgu-remizler-tunus-feryat",
+          "heading": {
+            "tr": "Övgü ve Remizler Menzilleri: Kul-Rab İlişkisi ve Tunus'taki Feryat",
+            "en": "The Stations of Praise and Signs: The Servant-Lord Bond and the Cry in Tunis",
+            "pt": "As Estações do Louvor e dos Sinais: O Vínculo Servo-Senhor e o Grito em Túnis"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Övgü Menzili, kulun Allah'a kulluğunun hiçbir zaman bitmeyeceği fikri üzerine kuruluyor: <em>'Kölenin, efendisinin nitelikleriyle nitelenmesi, onun adına bir övgü değildir... Rab sonsuza kadar rab, kul da sonsuza kadar kuldur.'</em> Dost burada Süleyman (a.s.) kıssasını naklediyor: denizden çıkan bir hayvan rızık istediğinde, Süleyman 'bana yeter' dediği rızkı ona teklif eder, ama hayvan bunu reddeder -- çünkü Allah kendisine bunun on katını her gün zaten vermektedir. Bize göre bu küçük anekdot, insanın kendi 'yeter'ini mutlak ölçü sanmasının sınırını hatırlatan, günlük hayata yakın bir örnek.",
+                "en": "The Station of Praise is built on the idea that a servant's servitude to God never ends: <em>'The servant being described by his master's qualities is not, on his account, a praise... The Lord remains Lord forever, and the servant remains servant forever.'</em> Dost recounts here the story of Solomon (peace be upon him): when a creature emerging from the sea asks for provision, Solomon offers it the amount he considers 'enough,' but the creature refuses -- for God already gives it ten times that amount every day. To us, this small anecdote reads as a down-to-earth reminder of the limits of taking one's own sense of 'enough' as an absolute measure.",
+                "pt": "A Estação do Louvor se constrói sobre a ideia de que a servidão do servo a Deus nunca termina: <em>'O servo ser descrito pelos atributos de seu senhor não é, por sua conta, um louvor... O Senhor permanece Senhor para sempre, e o servo permanece servo para sempre.'</em> Dost relata aqui a história de Salomão (a paz esteja com ele): quando uma criatura que emerge do mar pede sustento, Salomão lhe oferece a quantia que considera 'suficiente', mas a criatura recusa -- pois Deus já lhe dá dez vezes essa quantia todos os dias. Para nós, esta pequena anedota soa como um lembrete, próximo da vida cotidiana, dos limites de tomar o próprio senso de 'suficiente' como medida absoluta."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Remizler Menzili'nde ise kısmın en somut otobiyografik sahnelerinden birine rastlıyoruz. Dost, Tunus'ta imamlık ederken yaşadığı bir hâli şöyle anlatıyor: <em>'Tunustayken bu menzile girdiğimde, benden bir feryat koptu... onu duyan herkes bayılıp düştü... İlk ayılan, bendim... Bir müddet sonra ayıldıklarında kendilerine sordum: -Ne oldu size böyle?... Şöyle cevap verdim: -Vallahi bağırdığımın farkında bile değildim!'</em> Bu sahne, Dost'un kendi bedensel/ruhsal kontrolünün tamamen dışına çıktığı, nadir rastlanan somut bir hâl tasviri. Aynı menzilde, 'Allah bizi bize bir ihtiyaç duymadan kendisi için yarattı, dolayısıyla ben Rabbimin simgesi ve remziyim' (satır 1671-1672 civarı) ifadesiyle, kulun varoluş amacının kendi faydası değil doğrudan Hakk'ın kendisi olduğu vurgulanıyor.",
+                "en": "In the Station of Signs, we come across one of the part's most concrete autobiographical scenes. Dost describes a state he experienced while leading prayer in Tunis: <em>'When I entered this station while in Tunis, a cry broke out of me... everyone who heard it fainted... I was the first to come to... When they came to after a while, I asked them: What happened to you?... I answered: By God, I wasn't even aware I had cried out!'</em> This scene is a rare, concrete portrait of Dost stepping entirely outside his own bodily and spiritual control. In the same station, the statement 'God created us for Himself without needing us, therefore I am my Lord's symbol and sign' underscores that the servant's purpose in existing is not his own benefit but the Real Himself.",
+                "pt": "Na Estação dos Sinais, encontramos uma das cenas autobiográficas mais concretas da parte. Dost descreve um estado que viveu enquanto liderava a oração em Túnis: <em>'Quando entrei nesta estação estando em Túnis, um grito irrompeu de mim... todos os que o ouviram desmaiaram... Fui o primeiro a voltar a si... Quando voltaram a si depois de um tempo, perguntei-lhes: O que houve com vocês?... Respondi: Por Deus, eu nem sequer estava ciente de ter gritado!'</em> Esta cena é um retrato raro e concreto de Dost saindo inteiramente do próprio controle corporal e espiritual. Na mesma estação, a afirmação 'Deus nos criou para Si sem necessitar de nós, portanto eu sou o símbolo e sinal do meu Senhor' sublinha que o propósito da existência do servo não é seu próprio benefício, mas o próprio Real."
+              }
+            }
+          ]
+        },
+        {
+          "id": "dua-fiiller-tenzih-simsek",
+          "heading": {
+            "tr": "Dua, Fiiller ve Tenzih Menzilleri: Şimşek İmgesi ve Dönen Tenzih",
+            "en": "The Stations of Supplication, Acts, and Transcendence: The Lightning Image and Transcendence That Returns",
+            "pt": "As Estações da Súplica, dos Atos e da Transcendência: A Imagem do Relâmpago e a Transcendência Que Retorna"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fiiller Menzili, kader-kesb (kulun fiilinin kime ait olduğu) tartışmasına şaşırtıcı bir imge katıyor: <em>'İnsanlar kulların fiilleri hakkında ikiye ayrılır: Bir kısmı, fiillerin kullardan, bir kısmı ise Allah'tan olduğunu görür... parlayan bir şimşek kendilerine görünür.'</em> Bize göre bu şimşek imgesi, iki taraf arasındaki gerçek farkın bir an için, sonra tekrar kaybolacak biçimde 'aydınlanması'na işaret ediyor -- kesin bir çözüme değil. Aynı temayı, kısmın ilerleyen Lâm-Elif menzilinde çok daha teknik biçimde tekrar göreceğiz.",
+                "en": "The Station of Acts adds a striking image to the predestination-versus-earning (whose action is it, really?) debate: <em>'People are divided into two regarding the acts of servants: some see the acts as belonging to servants, others see them as belonging to God... a flashing bolt of lightning appears to them.'</em> To us, this lightning image seems to point to the real difference between the two sides being 'illuminated' for a single instant, only to vanish again -- not to a final resolution. We will meet the same theme again, in a far more technical form, in the part's later Station of Lam-Elif.",
+                "pt": "A Estação dos Atos acrescenta uma imagem impressionante ao debate predestinação-versus-aquisição (a quem pertence, de fato, a ação?): <em>'As pessoas se dividem em duas quanto aos atos dos servos: alguns veem os atos como pertencentes aos servos, outros os veem como pertencentes a Deus... um relâmpago fulgurante lhes aparece.'</em> Para nós, essa imagem do relâmpago parece apontar para a diferença real entre os dois lados sendo 'iluminada' por um único instante, apenas para desaparecer de novo -- não para uma resolução final. Encontraremos o mesmo tema novamente, de forma muito mais técnica, na Estação de Lam-Elif mais adiante na parte."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Tenzih Menzili'nde ise ilginç bir dönüşlülük fikri karşımıza çıkıyor: tenzih (Allah'ı eksiklikten arındırma), aslında tenzihi yapan kişiye geri döner -- Allah'ı tenzih etmek, tenzih edeni arındırır. Bu, bir eylemin öznesine geri dönmesi bakımından, sitenin dairesel/döngüsel motifiyle uzaktan akraba bir yapı: doğrusal bir 'özneden nesneye' hareket değil, öznede kapanan bir döngü.",
+                "en": "In the Station of Transcendence, we encounter an interesting reflexive idea: transcendence (declaring God free of any deficiency) actually returns to the one performing it -- declaring God transcendent purifies the one who declares it. In that an action returns to its own subject, this bears a distant kinship to the site's circular/cyclical motif: not a linear subject-to-object movement, but a loop that closes back upon the subject.",
+                "pt": "Na Estação da Transcendência, encontramos uma ideia reflexiva interessante: a transcendência (declarar Deus livre de qualquer deficiência) na verdade retorna a quem a realiza -- declarar a transcendência de Deus purifica quem a declara. Por uma ação retornar ao seu próprio sujeito, isso guarda um parentesco distante com o motivo circular/cíclico do site: não um movimento linear de sujeito a objeto, mas um laço que se fecha de volta sobre o sujeito."
+              }
+            }
+          ]
+        },
+        {
+          "id": "zat-dehirler-aynalar-zaman",
+          "heading": {
+            "tr": "Zât ve Dehirler Menzilleri: Aynalar ve Mevhum Zaman",
+            "en": "The Stations of Essence and the Ages: Mirrors and Imagined Time",
+            "pt": "As Estações da Essência e das Eras: Espelhos e o Tempo Imaginado"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Zât Menzili'nde tanıdık bir tasavvuf imgesi -- ayna -- yeniden karşımıza çıkıyor: <em>'Her hakikat diğeri için bir aynadır. Hz. Peygamber şöyle buyurur: Mümin, mümin kardeşinin aynasıdır.'</em> Dost bunu, Zât'ın tecellisinin 'derece derece' olduğu fikrine bağlıyor -- her mertebe kendi kapasitesince Hakk'ı yansıtıyor.",
+                "en": "In the Station of Essence, a familiar Sufi image -- the mirror -- appears once more: <em>'Every reality is a mirror for another. The Prophet says: The believer is the mirror of his believing brother.'</em> Dost ties this to the idea that the self-disclosure of the Essence happens 'degree by degree' -- each rank reflecting the Real according to its own capacity.",
+                "pt": "Na Estação da Essência, uma imagem sufi familiar -- o espelho -- reaparece: <em>'Toda realidade é um espelho para outra. O Profeta diz: O crente é o espelho de seu irmão crente.'</em> Dost liga isso à ideia de que a auto-revelação da Essência acontece 'grau a grau' -- cada grau refletindo o Real de acordo com sua própria capacidade."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dehirler Menzili ise bu kısmın zaman/dehr temasına en yoğun katkısını yapıyor. Dost, zamanı doğrudan feleklerin dairesel hareketine bağlıyor: <em>'Menzillerden biri de belirlenmiş menzildir. Tıpkı zaman gibi, çünkü o, mevhum bir şeydir. Dönüşleriyle daireler onu gösterir.'</em> Ve ekliyor: <em>'Hak için ezel mevhum bir durum olduğu gibi zaman da O'nun için mevhum bir durumdur. Başka bir ifadeyle zaman, feleklerin hareketlerinin kat ettiği mevhum bir süredir.'</em> Bize göre bu, Kısım XIII-XV boyunca topladığımız 'zaman/dehr' parçalarına yeni ve çarpıcı bir açı ekliyor: zaman, kendi başına var olan bir 'şey' değil, dönen göklerin (feleklerin) hareketinden çıkarsanan, hem Hak hem halk için simetrik biçimde 'mevhum' (itibarî) bir kavram olarak sunuluyor -- ve bu mevhumluk, doğrudan dairesel harekete bağlanıyor.",
+                "en": "The Station of the Ages makes this part's most intense contribution to the time/dahr theme. Dost ties time directly to the circular motion of the celestial spheres: <em>'One of the stations is the determined station. Just like time, for it is an imagined thing. The circling of the spheres shows it.'</em> And he adds: <em>'Just as pre-eternity is an imagined state for the Real, time too is an imagined state for Him. In other words, time is an imagined duration traversed by the motions of the spheres.'</em> To us, this seems to add a striking new angle to the time/dahr pieces we have been gathering since Part XIII: time is presented not as a 'thing' existing in its own right, but as a notion inferred from the turning of the heavens -- 'imagined' (a matter of convention) symmetrically for both the Real and for creation -- and this imagined quality is tied directly to circular motion.",
+                "pt": "A Estação das Eras traz a contribuição mais intensa desta parte ao tema tempo/dahr. Dost liga o tempo diretamente ao movimento circular das esferas celestes: <em>'Uma das estações é a estação determinada. Assim como o tempo, pois ele é uma coisa imaginada. O giro das esferas o mostra.'</em> E acrescenta: <em>'Assim como a pré-eternidade é um estado imaginado para o Real, o tempo também é um estado imaginado para Ele. Em outras palavras, o tempo é uma duração imaginada percorrida pelos movimentos das esferas.'</em> Para nós, isso parece acrescentar um ângulo novo e marcante às peças sobre tempo/dahr que vínhamos reunindo desde a Parte XIII: o tempo é apresentado não como uma 'coisa' existente por si mesma, mas como uma noção inferida do giro dos céus -- 'imaginada' (uma questão convencional) simetricamente tanto para o Real quanto para a criação -- e essa qualidade imaginada está ligada diretamente ao movimento circular."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Dehirler Menzili, s. 57-58.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — The Station of the Ages, pp. 57-58.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — A Estação das Eras, pp. 57-58."
+              },
+              "pair": {
+                "left": {
+                  "label": {
+                    "tr": "Ezel",
+                    "en": "Pre-Eternity",
+                    "pt": "Pré-Eternidade"
+                  },
+                  "note": {
+                    "tr": "Hakk için mevhum bir durum",
+                    "en": "an imagined state for the Real",
+                    "pt": "um estado imaginado para o Real"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Zaman",
+                    "en": "Time",
+                    "pt": "Tempo"
+                  },
+                  "note": {
+                    "tr": "halk için mevhum bir durum",
+                    "en": "an imagined state for creation",
+                    "pt": "um estado imaginado para a criação"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost'a göre ezel ve zaman, feleklerin dairesel hareketinden çıkarsanan, simetrik biçimde 'mevhum' iki durum.",
+                "en": "For Dost, pre-eternity and time are two symmetrically 'imagined' states, both inferred from the circular motion of the spheres.",
+                "pt": "Para Dost, a pré-eternidade e o tempo são dois estados simetricamente 'imaginados', ambos inferidos do movimento circular das esferas."
+              }
+            }
+          ]
+        },
+        {
+          "id": "lam-elif-sasirtma-harfi",
+          "heading": {
+            "tr": "Lâm-Elif Menzili: Tek Görünen, İki Olan Harf",
+            "en": "The Station of Lam-Elif: A Letter That Looks Single but Is Two",
+            "pt": "A Estação de Lam-Elif: Uma Letra Que Parece Única, Mas É Duas"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu kısmın bize göre en özgün malzemesi, Lâm-Elif Menzili'nde. Arapçada 'lâ' (لا) yazılışı tek bir harf gibi görünür, ama aslında iki ayrı harfin (Lâm + Elif) birleşiminden oluşur -- ve hattatlar bile hangisinin önce yazıldığı konusunda anlaşamaz. Dost bunu, kulun fiilinin gerçekte kime ait olduğu (kesb) tartışmasına doğrudan bir analoji yapıyor: <em>'İşte bu harf, yani Lam-Elif, fiillerde şaşırtma harfidir. Böylece yaratılmışın elinde ortaya çıkan fiilin gerçekte kime ait olduğu belli olmamıştır. Bu fiil Allah'a aittir dersen, doğru söylemiş olursun; yaratılmışa aittir dersen, yine doğru söylemişsindir.'</em> Ve ekliyor: <em>'Hangi ayağı Lam sayarsan say, haklısın.'</em> Bize göre bu, günlük hayattan (yazı/harf) bir örnekle teknik bir kelam tartışmasını somutlaştıran, gerçekten çarpıcı bir analoji: iki farklı harften oluşan ama tek bir işaret gibi görünen bir yazı biriminin, hangi 'ayağının' önce geldiğinin kesin olarak belirlenemeyişi, fiilin Allah'a mı kula mı ait olduğunun da kesin olarak ayrıştırılamayacağını gösteriyor. Bu, aynı Lâm-Elif ikilisinin Kısım VI'da işlediğimiz 'kucaklaşma' (Elif=Mutlak Varlık, Lâm=sınırlı varlık) okumasından farklı ama aynı aileden bir başka görünüşü -- orada birleşme bir aşk sahnesiydi, burada ise bir 'şaşırtma'; ikisi de aynı iki harfin çözülemez iç içeliğine işaret ediyor.",
+                "en": "To us, this part's most original material is found in the Station of Lam-Elif. In Arabic, the written form 'la' (لا) looks like a single letter, but it is actually a fusion of two separate letters (Lam + Elif) -- and even calligraphers disagree on which one is written first. Dost draws a direct analogy from this to the debate over whose action a servant's act really is (kasb): <em>'This letter, that is, Lam-Elif, is the letter that confounds in matters of acts. Thus it is never settled to whom the act appearing at the creature's hand truly belongs. If you say this act belongs to God, you have spoken truly; if you say it belongs to the creature, you have spoken just as truly.'</em> And he adds: <em>'Whichever foot you count as the Lam, you are right.'</em> To us, this is a genuinely striking analogy that grounds a technical theological debate in an everyday example (writing/letters): a written unit made of two different letters yet appearing as a single mark, whose 'foot' cannot be decided to come first, mirrors how an act cannot be finally sorted as belonging to God or to the creature. This is a different but kindred appearance of the same Lam-Elif pair we took up in Part VI's reading of their 'embrace' (Elif as Absolute Being, Lam as delimited being) -- there, the union was a scene of love; here, it is a 'confounding'; both point to the same two letters' irresolvable interlacing.",
+                "pt": "Para nós, o material mais original desta parte está na Estação de Lam-Elif. Em árabe, a forma escrita 'la' (لا) parece uma única letra, mas é na verdade a fusão de duas letras distintas (Lam + Elif) -- e até os calígrafos discordam sobre qual delas é escrita primeiro. Dost extrai daí uma analogia direta para o debate sobre a quem realmente pertence o ato de um servo (kasb): <em>'Esta letra, isto é, Lam-Elif, é a letra que confunde em matéria de atos. Assim, nunca se estabelece a quem realmente pertence o ato que aparece na mão da criatura. Se dizes que este ato pertence a Deus, disseste a verdade; se dizes que pertence à criatura, disseste igualmente a verdade.'</em> E acrescenta: <em>'Qualquer que seja o pé que contes como o Lam, tens razão.'</em> Para nós, esta é uma analogia genuinamente marcante que fundamenta um debate teológico técnico num exemplo cotidiano (escrita/letras): uma unidade escrita feita de duas letras diferentes, mas que aparece como uma única marca, cujo 'pé' não se pode decidir vir primeiro, espelha como um ato não pode ser finalmente classificado como pertencente a Deus ou à criatura. Esta é uma aparição diferente, mas aparentada, do mesmo par Lam-Elif que tratamos na leitura de seu 'abraço' na Parte VI (Elif como Ser Absoluto, Lam como ser delimitado) -- lá, a união era uma cena de amor; aqui, é uma 'confusão'; ambas apontam para o mesmo entrelaçamento irresolúvel das duas letras."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Lâm-Elif Menzili, s. 58-60.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — The Station of Lam-Elif, pp. 58-60.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — A Estação de Lam-Elif, pp. 58-60."
+              },
+              "pair": {
+                "left": {
+                  "label": {
+                    "tr": "\"Allah'a aittir\" dersen",
+                    "en": "If you say \"it belongs to God\"",
+                    "pt": "Se dizes \"pertence a Deus\""
+                  },
+                  "note": {
+                    "tr": "doğru söylemişsindir",
+                    "en": "you have spoken truly",
+                    "pt": "disseste a verdade"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "\"Kula aittir\" dersen",
+                    "en": "If you say \"it belongs to the creature\"",
+                    "pt": "Se dizes \"pertence à criatura\""
+                  },
+                  "note": {
+                    "tr": "yine doğru söylemişsindir",
+                    "en": "you have spoken just as truly",
+                    "pt": "disseste igualmente a verdade"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Lâm-Elif'in çözülemez ikiliği: tek görünen harf, iki ayaktan (Lâm + Elif) oluşur -- hangisi önce sayılırsa sayılsın, aynı belirsizlik fiilin Allah'a mı kula mı ait olduğu sorusunda da tekrarlanır.",
+                "en": "The unresolvable duality of Lam-Elif: the letter that looks single is made of two feet (Lam + Elif) -- whichever is counted first, the same indeterminacy recurs in the question of whether an act belongs to God or to the creature.",
+                "pt": "A dualidade irresolúvel de Lam-Elif: a letra que parece única é feita de dois pés (Lam + Elif) -- qualquer que seja contado primeiro, a mesma indeterminação se repete na questão de se um ato pertence a Deus ou à criatura."
+              }
+            }
+          ]
+        },
+        {
+          "id": "takrir-donen-ates-fena",
+          "heading": {
+            "tr": "Takrir Menzili: Döndürülen Ateş ve Sabit Olmayan Görüntü",
+            "en": "The Station of Affirmation: The Whirled Fire and the Unsteady Image",
+            "pt": "A Estação da Afirmação: O Fogo Girado e a Imagem Instável"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Takrir Menzili'nde, hareketin algıyı nasıl yanılttığına dair günlük hayattan bir örnek daha buluyoruz: <em>'Sâbitlik, menzilleri ortaya çıkarır... Hareketin hızının verdiği kuşkuyu görmez misin? Böylece, genleşme hareketi hızlandırıldığında kordaki ateş ya da fitilin başındaki ateşin uzayan bir çizgi olduğunu iddia eder. Ya da hızla çevrildiğinde, havada bir ateş dairesi görür. Bunun nedeni, sabitliğin olmayışıdır.'</em> Bize göre bu -- döndürülen bir kor parçasının gözde bir 'ateş dairesi' yanılsaması yaratması -- kısmın en somut, en doğrudan aktarılabilir daire örneklerinden biri: gerçek sabit nokta, hız yüzünden bir çembere dönüşmüş gibi görünüyor. Dost bunu, hakikatlerin ancak sabit kaldığında doğru görülebileceğine, aceleci/değişken bir bakışın ise yanlış hükme varabileceğine dair bir uyarı olarak kullanıyor.",
+                "en": "In the Station of Affirmation, we find another everyday example of how motion deceives perception: <em>'Steadiness makes the stations manifest... Do you not see the doubt that the speed of motion produces? Thus, when the motion of expansion is sped up, the fire on the ember or at the tip of the wick is claimed to be an extended line. Or, when whirled rapidly, one sees a circle of fire in the air. The reason for this is the absence of steadiness.'</em> To us, this -- a whirled ember creating the illusion of a 'circle of fire' before the eye -- is one of the part's most concrete, most directly transferable examples of the circle motif: a genuinely fixed point comes to look like a ring purely because of speed. Dost uses this as a warning that realities can only be seen correctly when they remain steady, while a hasty or shifting gaze may arrive at a false judgment.",
+                "pt": "Na Estação da Afirmação, encontramos outro exemplo cotidiano de como o movimento engana a percepção: <em>'A estabilidade manifesta as estações... Não vês a dúvida que a velocidade do movimento produz? Assim, quando o movimento de expansão é acelerado, o fogo na brasa ou na ponta do pavio é tido como uma linha estendida. Ou, quando girado rapidamente, vê-se um círculo de fogo no ar. A razão disso é a ausência de estabilidade.'</em> Para nós, isso -- uma brasa girada criando a ilusão de um 'círculo de fogo' diante dos olhos -- é um dos exemplos mais concretos e diretamente transponíveis do motivo do círculo nesta parte: um ponto genuinamente fixo passa a parecer um anel puramente por causa da velocidade. Dost usa isso como um aviso de que as realidades só podem ser vistas corretamente quando permanecem estáveis, enquanto um olhar apressado ou instável pode chegar a um juízo falso."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Aynı menzil içinde, 'Oluşun Yok Oluşu Menzili' ayrı ele alınıyor -- fenâ hâli, 'kadir gecesi' imgesiyle anlatılıyor: <em>'O benim kadir gecedir / Ne nuru ne gölgesi vardır / O mutlak nurun kendisidir.'</em> Şiirin devamında Dost kendini 'imam' ilan ediyormuş gibi görünen dizeler kullanıyor, ama şerhte bunu Hakk'ı müşahede etmenin kişiye özel bir yönü olarak açıklıyor -- yani burada geçen 'imam', kutbiyet hiyerarşisindeki İki İmam değil, mecazi bir konum.",
+                "en": "Within the same station, the 'Station of the Passing-Away of Becoming' is treated separately -- the state of fana (self-annihilation) is conveyed through the image of the 'Night of Power': <em>'It is my night of power / It has neither light nor shadow / It is the very essence of absolute light.'</em> Further in the poem Dost uses lines that seem to declare himself an 'imam,' but the commentary explains this as a personal facet of witnessing the Real -- meaning the 'imam' mentioned here is not the Two Imams of the pole-hierarchy, but a figurative position.",
+                "pt": "Dentro da mesma estação, a 'Estação da Extinção do Devir' é tratada separadamente -- o estado de fana (aniquilação do eu) é transmitido pela imagem da 'Noite do Destino': <em>'É minha noite do destino / Não tem luz nem sombra / É a própria essência da luz absoluta.'</em> Mais adiante no poema, Dost usa versos que parecem se declarar 'imame', mas o comentário explica isso como uma faceta pessoal de testemunhar o Real -- ou seja, o 'imame' mencionado aqui não é os Dois Imames da hierarquia dos polos, mas uma posição figurada."
+              }
+            }
+          ]
+        },
+        {
+          "id": "menzillerin-benzerleri-nakip-bedel",
+          "heading": {
+            "tr": "Menzillerin Benzerleri: On İki Nakip, Yedi Bedel",
+            "en": "The Likenesses of the Stations: Twelve Naqibs, Seven Badals",
+            "pt": "As Semelhanças das Estações: Doze Naqibs, Sete Badals"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm 22'nin sonundaki dört VASIL'dan (ek fasıl) üçüncüsü, on dokuz menzilin çeşitli alanlardaki 'benzerlerini' sıralıyor -- Kur'an'ın hece harfleri, cehennem bekçileri, burçlar ve felekler arasında. Bunlardan biri, önceki kısımlarda topladığımız kutbiyet hiyerarşisine (Kutup, İki İmam, Evtad, Ebdal, Efrad) doğrudan sayısal bir çerçeve ekliyor: <em>'Rical'den (adamlar) benzerleri, on iki nakip ve yedi bedeldir. Bu yedi bedelden dördü evtad (direkler), iki tanesi iki imam, biri kutuptur.'</em> Bize göre bu, Kısım XIII-XV boyunca nitel olarak topladığımız hiyerarşiye (Kutup(1) → İki İmam → Evtad(4) → Ebdal(7)) somut bir aritmetik ekliyor: 7 Bedel = 4 Evtad + 2 İmam + 1 Kutup, ve buna 12 Nakip eklenince toplam 19 -- tıpkı 19 menzil gibi. 19 sayısının hem menziller hem 'Rical' sınıflandırmasında tekrarlanması, muhtemelen tesadüfi değil; Dost bu paralelliği kasıtlı kuruyor gibi görünüyor.",
+                "en": "The third of the four VASILs (supplementary sections) at the end of Chapter 22 lists the 'likenesses' of the nineteen stations across various domains -- the disjointed Quranic letters, the guardians of Hell, the zodiac signs, and the celestial spheres. One of these adds a direct numerical framework to the pole-hierarchy (Pole, Two Imams, Awtad, Abdal, Afrad) we have been gathering since earlier parts: <em>'Their likenesses among the Rijal (men) are twelve Naqibs and seven Badals. Of these seven Badals, four are Awtad (pillars), two are the Two Imams, one is the Pole.'</em> To us, this seems to add concrete arithmetic to the hierarchy we had gathered qualitatively across Parts XIII-XV (Pole(1) → Two Imams → Awtad(4) → Abdal(7)): 7 Badals = 4 Awtad + 2 Imams + 1 Pole, and adding the 12 Naqibs brings the total to 19 -- just like the 19 stations. That the number 19 recurs in both the stations and the 'Rijal' classification is likely not a coincidence; Dost seems to be building this parallel deliberately.",
+                "pt": "O terceiro dos quatro VASILs (seções suplementares) ao final do Capítulo 22 lista as 'semelhanças' das dezenove estações em vários domínios -- as letras desconexas do Alcorão, os guardiões do Inferno, os signos do zodíaco e as esferas celestes. Uma delas acrescenta uma estrutura numérica direta à hierarquia dos polos (Polo, Dois Imames, Awtad, Abdal, Afrad) que vínhamos reunindo desde partes anteriores: <em>'Suas semelhanças entre os Rijal (homens) são doze Naqibs e sete Badals. Desses sete Badals, quatro são Awtad (pilares), dois são os Dois Imames, um é o Polo.'</em> Para nós, isso parece acrescentar uma aritmética concreta à hierarquia que vínhamos reunindo qualitativamente ao longo das Partes XIII-XV (Polo(1) → Dois Imames → Awtad(4) → Abdal(7)): 7 Badals = 4 Awtad + 2 Imames + 1 Polo, e somando os 12 Naqibs chega-se a um total de 19 -- assim como as 19 estações. O fato de o número 19 se repetir tanto nas estações quanto na classificação dos 'Rijal' provavelmente não é coincidência; Dost parece construir esse paralelismo deliberadamente."
+              }
+            }
+          ]
+        },
+        {
+          "id": "apacik-imam-129600-ilim",
+          "heading": {
+            "tr": "Apaçık İmam ve Söylenmeyen Bir Sır: 129.600 İlim",
+            "en": "The Manifest Register and an Unspoken Secret: 129,600 Sciences",
+            "pt": "O Registro Manifesto e um Segredo Não Revelado: 129.600 Ciências"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Son VASIL, 'Menzillerin Menzili veya Apaçık İmam' başlığını taşıyor -- Kur'an'daki 'İmâm-ı Mübîn' (apaçık imam/kayıt) kavramına, her şeyin yazıldığı kozmik bir kayıt defteri olarak bakılıyor: <em>'Menzillerin menzili, Arş'tan en aşağıdaki toprağa kadar dünya âleminde ortaya çıkan bütün menzilleri içeren menzildir. O apaçık imam diye isimlendirilen şeydir.'</em> Ardından Dost, güvendiği ama adını vermeyi reddettiği bir 'arkadaşından' öğrendiğini söylediği bir sayı aktarıyor: ana ilimlerin sayısı 129.600 türdür. Bunlardan hiç kimsenin -Allah'ın kendisi dışında- hepsini bilemeyeceğini, Kur'an'daki 'Rabbinin ordularını kendisinden başka kimse bilemez' ayetine bağlıyor.",
+                "en": "The final VASIL bears the heading 'The Station of Stations, or the Manifest Register' -- it treats the Quranic notion of the 'Manifest Register' (Imam Mubin) as a cosmic ledger in which everything is written: <em>'The station of stations is the station that contains all the stations appearing in the world of creation, from the Throne down to the lowest earth. It is what is called the Manifest Register.'</em> Dost then relates a figure he says he learned from a 'friend' he trusts but refuses to name: the primary sciences number 129,600 types. He ties the impossibility of anyone -- other than God Himself -- knowing them all to the Quranic verse 'None knows the hosts of your Lord but Him.'",
+                "pt": "O VASIL final traz o título 'A Estação das Estações, ou o Registro Manifesto' -- trata a noção corânica do 'Registro Manifesto' (Imam Mubin) como um livro-razão cósmico no qual tudo está escrito: <em>'A estação das estações é a estação que contém todas as estações que aparecem no mundo da criação, do Trono até a terra mais baixa. É o que se chama Registro Manifesto.'</em> Dost então relata um número que diz ter aprendido com um 'amigo' em quem confia, mas cujo nome se recusa a revelar: as ciências primárias somam 129.600 tipos. Ele liga a impossibilidade de que alguém -- exceto o próprio Deus -- as conheça todas ao versículo corânico 'Ninguém conhece as hostes do teu Senhor senão Ele.'"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunun hemen ardından, Hz. Peygamber'in iki hanımı ve Lût (a.s.)'un 'güçlü bir rükne dayanma' hadisiyle ilgili bir 'saklı bilgi' iması geliyor -- Dost, konuyu açıklamadan bırakıyor. Bize göre bu, CLAUDE.md'de de andığımız Tedbîrât-ı İlâhiyye pasajıyla aynı ruhta bir jest: Dost, bir şeye işaret edip söylemeden bırakıyor, 'zeki araştırmacının' bir gün fark edeceği bir iz gibi. Biz de bunu çözmeye çalışmak yerine, bu perdeleme hareketinin kendisini kaydediyoruz.",
+                "en": "Right after this comes a hint at 'hidden knowledge' connected to two wives of the Prophet and the hadith of Lot (peace be upon him) 'leaning on a strong support' -- Dost leaves the matter unexplained. To us, this feels like a gesture in the same spirit as the Tedbirat al-Ilahiyya passage we have noted elsewhere: Dost points at something and leaves it unsaid, like a trace the 'discerning researcher' will one day notice. Rather than trying to solve it, we simply record this act of veiling itself.",
+                "pt": "Logo em seguida vem uma insinuação de 'conhecimento oculto' ligada a duas esposas do Profeta e ao hadith de Lot (a paz esteja com ele) 'apoiando-se num suporte forte' -- Dost deixa o assunto sem explicação. Para nós, isso soa como um gesto no mesmo espírito da passagem do Tedbirat al-Ilahiyya que já notamos alhures: Dost aponta para algo e o deixa não dito, como um rastro que o 'pesquisador perspicaz' um dia notará. Em vez de tentar resolvê-lo, apenas registramos este próprio gesto de velamento."
+              }
+            }
+          ]
+        },
+        {
+          "id": "korunmus-kutuplar-efrad-melamet",
+          "heading": {
+            "tr": "Korunmuş Kutuplar: Efrad ve Melâmet Ahlâkı",
+            "en": "The Protected Poles: The Afrad and the Ethics of Malamat",
+            "pt": "Os Polos Protegidos: Os Afrad e a Ética do Malamat"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Yirmi Üçüncü Bölüm, başlığında 'kutup' kelimesini taşısa da (Korunmuş Kutupların Bilinmesi), içerik klasik Kutup/İki İmam hiyerarşisini değil, Allah'ın gizlediği/koruduğu velileri (Melâmiler) ele alıyor. Bu velilere ait sınıf açıkça 'Efrad' (Tekler) olarak adlandırılıyor: <em>'Onlar, dünya ve ahirette Allah ile beraberdir. Onlar Efrad'dır.'</em> Bu, Kısım XIII-XV'te topladığımız kutbiyet hiyerarşisindeki (Kutup/İki İmam/Evtad/Ebdal/Efrad) en gizli/en alt sınıfın somut bir tasvirini veriyor -- ünlü olmayan, insanlar içinde tanınmayan, sürekli Hakk'a dönük veliler. Çarpıcı bir hadis de naklediliyor: <em>'Benim katımda en gıpta edilir velim, namazdan payı olan, gizlide ve açıkta Rabbine güzelce ibadet ve itaat eden ve insanlar içinde gizli kalan bir mümindir.'</em>",
+                "en": "Although the Twenty-Third Chapter bears the word 'pole' in its title (Knowing the Protected Poles), its content does not deal with the classical Pole/Two-Imams hierarchy but with the saints God hides and protects (the Malamis). This class of saints is explicitly named 'Afrad' (Singulars): <em>'They are with God in this world and the next. They are the Afrad.'</em> This gives a concrete portrait of the most hidden, lowest tier of the pole-hierarchy (Pole/Two Imams/Awtad/Abdal/Afrad) gathered across Parts XIII-XV -- saints who are not famous, not recognized among people, and constantly turned toward the Real. A striking hadith is also related: <em>'The believer most enviable to me is one who has a share of prayer, who beautifully worships and obeys his Lord in private and in public, and who remains hidden among people.'</em>",
+                "pt": "Embora o Vigésimo Terceiro Capítulo traga a palavra 'polo' em seu título (Conhecendo os Polos Protegidos), seu conteúdo não trata da hierarquia clássica Polo/Dois Imames, mas dos santos que Deus oculta e protege (os Malamis). Essa classe de santos é explicitamente chamada de 'Afrad' (Singulares): <em>'Eles estão com Deus neste mundo e no outro. Eles são os Afrad.'</em> Isso oferece um retrato concreto do nível mais oculto e mais baixo da hierarquia dos polos (Polo/Dois Imames/Awtad/Abdal/Afrad) reunida ao longo das Partes XIII-XV -- santos que não são famosos, não são reconhecidos entre as pessoas, e estão constantemente voltados para o Real. Um hadith marcante também é relatado: <em>'O crente mais invejável para mim é aquele que tem uma parte na oração, que adora e obedece belamente a seu Senhor em privado e em público, e que permanece oculto entre as pessoas.'</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm, korunma menzillerinin somut, günlük pratik tavsiyeleriyle devam ediyor -- farzları cemaatle kılmak ama mescitte sabit yer tutmamak, tanınmaya başlanırsa göç etmek, gerekirse kılık değiştirmek. Bize göre bu, tasavvufun soyut bir hâl tarifinden çok, günlük hayata dönük somut bir 'gizlenme ahlâkı' sunması bakımından dikkat çekici. Kısım, velilerin hükümlere peygamberlerle aynı doğrudan kaynaktan değil, peygamberlere uymak suretiyle ulaştığı vurgusuyla kapanıyor -- kısmın genel taksonomik/sistematik tonuna uygun, düzenleyici bir kapanış notu.",
+                "en": "The chapter continues with concrete, everyday practical advice on the stations of protection -- performing obligatory prayers in congregation but not claiming a fixed spot in the mosque, moving away if one becomes recognized, changing one's appearance if necessary. To us, this stands out for offering, rather than an abstract description of a spiritual state, a concrete 'ethics of hiddenness' oriented toward daily life. The part closes with the emphasis that saints reach their rulings not from the same direct source as prophets but by following the prophets -- a regulating closing note fitting the part's overall taxonomic, systematic tone.",
+                "pt": "O capítulo continua com conselhos práticos e cotidianos sobre as estações de proteção -- realizar as orações obrigatórias em congregação mas não reivindicar um lugar fixo na mesquita, mudar-se caso se torne reconhecido, alterar a própria aparência se necessário. Para nós, isso se destaca por oferecer, mais do que uma descrição abstrata de um estado espiritual, uma 'ética do ocultamento' concreta voltada para a vida cotidiana. A parte se encerra com a ênfase de que os santos chegam às suas decisões não pela mesma fonte direta dos profetas, mas seguindo os profetas -- uma nota de fechamento reguladora, condizente com o tom taxonômico e sistemático geral da parte."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Menziller Menzilinin Bilinmesi, s. 43-45.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — Knowing the Station of Stations, pp. 43-45.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — Conhecendo a Estação das Estações, pp. 43-45."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Övgü ve Remizler Menzilleri, s. 45-49.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — The Stations of Praise and Signs, pp. 45-49.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — As Estações do Louvor e dos Sinais, pp. 45-49."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Fiiller ve Tenzih Menzilleri, s. 49-55.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — The Stations of Acts and Transcendence, pp. 49-55.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — As Estações dos Atos e da Transcendência, pp. 49-55."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Zât ve Dehirler Menzilleri, s. 55-58.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — The Stations of Essence and the Ages, pp. 55-58.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — As Estações da Essência e das Eras, pp. 55-58."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Lâm-Elif Menzili, s. 58-60.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — The Station of Lam-Elif, pp. 58-60.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — A Estação de Lam-Elif, pp. 58-60."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Takrir Menzili ve Oluşun Yok Oluşu, s. 60-63.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — The Station of Affirmation and the Passing-Away of Becoming, pp. 60-63.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — A Estação da Afirmação e a Extinção do Devir, pp. 60-63."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Menzillerin Benzerleri (VASIL), s. 63-64.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — The Likenesses of the Stations (VASIL), pp. 63-64.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — As Semelhanças das Estações (VASIL), pp. 63-64."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Apaçık İmam (VASIL), s. 64-67.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — The Manifest Register (VASIL), pp. 64-67.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — O Registro Manifesto (VASIL), pp. 64-67."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVI — Korunmuş Kutupların Bilinmesi, s. 67-72.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVI — Knowing the Protected Poles, pp. 67-72.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVI — Conhecendo os Polos Protegidos, pp. 67-72."
         }
       ]
     }
