@@ -1,10 +1,12 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını şimdilik tamamladık. Sırada İkinci Cilt var.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik.",
   "book": {
-    "cilt": 1,
-    "totalKisim": 14
+    "cilts": [
+      { "cilt": 1, "kisimStart": 1, "kisimEnd": 14 },
+      { "cilt": 2, "kisimStart": 15, "kisimEnd": 28 }
+    ]
   },
-  "activePartId": "c1k14",
+  "activePartId": "c2k15",
   "parts": [
     {
       "id": "c1k3",
@@ -6100,6 +6102,426 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIV — Evtad: Dört Direk ve Kısmın Kapanışı, s. 464-476.",
           "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIV — The Awtad: The Four Pillars and the Part's Close, pp. 464-476.",
           "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIV — Os Awtad: Os Quatro Pilares e o Fechamento da Parte, pp. 464-476."
+        }
+      ]
+    },
+    {
+      "id": "c2k15",
+      "cilt": 2,
+      "kisim": 15,
+      "status": "active",
+      "title": {
+        "tr": "İkinci Cildin Açılışı: Kevni İlimlerin Değişmesi, Teheccüd, Harfler ve Üreme Benzetmesi",
+        "en": "The Opening of Volume II: The Change of Cosmic Sciences, Night Prayer, Letters, and the Analogy of Generation",
+        "pt": "A Abertura do Volume II: A Mudança das Ciências Cósmicas, a Oração Noturna, as Letras e a Analogia da Geração"
+      },
+      "pageRange": "17–42",
+      "hero": {
+        "summary": {
+          "tr": "Cilt II'nin ilk kısmı, Fütûhât'ın kendi iç bölümlemesindeki 'Üçüncü Sifr'in de başlangıcı. Kısım XIV'ün kapanışta vaat ettiği 'Oluşa Dair İlimlerin İntikali' konusu burada neredeyse birebir karşılığını buluyor: Dost, âlemdeki her şeyin her nefeste bir halden başkasına geçtiğini, bu 'intikal'i Cüveynî'nin 'istirsâl', Râzî'nin 'taalluk' dediğini ama kendisinin bunu keşif temelli başka bir çerçevede okuduğunu anlatıyor. Ardından teheccüd ilmi (gece namazının kendine özgü bilgisi, uyku ile ibadeti Hakkın iki farklı 'bakışı' olarak okuyan bir ikilik), ilimlerin artma-eksilme sebepleri (herkesin kendine özgü, başkasının çıkamayacağı bir mi'râc merdiveni olduğu), İsevî ilim (harfler ilmi, 'Kün' kelimesinin üç harften dokuza açılan kozmolojisi, ve içine gömülü uzun bir cehennem-eskatolojisi), ve son olarak mantıksal kıyası cinsel/doğal üremeye benzeten 'üç kevni ilim' bahsi işleniyor. Dikkat çekici bir gözlem: Cilt I boyunca (özellikle XI-XIV'te) biriktirdiğimiz dört motif -daire, Hebâ, kutuplar zinciri, zaman/dehr- bu kısımda hiç görünmüyor; taramamıza göre hepsi, bu kısmın hemen ardından gelen Kısım XVI'da toplu halde ve yoğun biçimde geri dönüyor -sanki kitap burada bir 'nefes molası' veriyor.",
+          "en": "The first part of Volume II is also the opening of the Futuhat's own inner division, the 'Third Sifr.' The topic Part XIV promised in its closing — 'the transfer of the sciences of coming-to-be' — finds an almost exact match here: Dost explains that everything in the cosmos passes, with every breath, from one state to another, and that this 'transfer' was called 'istirsal' (extension) by al-Juwayni and 'ta'alluq' (relation) by Fakhr al-Din al-Razi — but he reads it through his own unveiling-based framework instead. The part then takes up the science of tahajjud (night prayer, with a duality reading sleep and worship as two different 'gazes' of the Real), the causes of increase and decrease in knowledge (each wayfarer has a ladder of ascent unique to them, which no one else can climb), the Christic/Isawi science (the science of letters, a cosmology unfolding the word 'Kun' from three letters into nine, with a long embedded eschatology of Hell), and finally the 'three cosmic sciences' section, which likens logical syllogism to sexual and natural generation. A striking observation: the four motifs we have gathered across Volume I (especially XI–XIV) — the circle, Haba, the chain of poles, and time/dahr — do not appear at all in this part; our scan suggests all four return together, and intensely, in the very next part, XVI — as if the book takes a 'breath' here before returning to them.",
+          "pt": "A primeira parte do Volume II é também a abertura da própria divisão interna do Futuhat, o 'Terceiro Sifr'. O tema que a Parte XIV prometeu em seu fechamento — 'a transferência das ciências do vir-a-ser' — encontra aqui uma correspondência quase exata: Dost explica que tudo no cosmos passa, a cada respiração, de um estado a outro, e que essa 'transferência' foi chamada de 'istirsal' (extensão) por al-Juwayni e 'ta'alluq' (relação) por Fakhr al-Din al-Razi — mas ele a lê através de seu próprio referencial baseado no desvelamento. A parte então aborda a ciência do tahajjud (oração noturna, com uma dualidade que lê o sono e a adoração como dois 'olhares' diferentes do Real), as causas do aumento e diminuição do conhecimento (cada caminhante tem uma escada de ascensão exclusivamente sua, que ninguém mais pode subir), a ciência isáica/crística (a ciência das letras, uma cosmogonia que desdobra a palavra 'Kun' de três letras em nove, com uma longa escatologia do Inferno incorporada), e finalmente a seção das 'três ciências cósmicas', que compara o silogismo lógico à geração sexual e natural. Uma observação marcante: os quatro motivos que reunimos ao longo do Volume I (especialmente XI-XIV) — o círculo, Haba, a cadeia de polos e o tempo/dahr — não aparecem em nenhum momento nesta parte; nossa varredura sugere que os quatro retornam juntos, e intensamente, na parte seguinte, XVI — como se o livro tomasse um 'fôlego' aqui antes de retornar a eles."
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Dost'un harfler kozmolojisi: 'Kün' (Ol) kelimesi üç harften oluşur, her harf kendi içinde üçe ayrılarak dokuza ulaşır -bu dokuz, dokuz feleğe karşılık gelir.",
+          "en": "Dost's cosmology of letters: the word 'Kun' (Be) is made of three letters, each of which divides into three, reaching nine — this nine corresponds to the nine celestial spheres.",
+          "pt": "A cosmologia das letras de Dost: a palavra 'Kun' (Seja) é feita de três letras, cada uma das quais se divide em três, chegando a nove — esse nove corresponde às nove esferas celestes."
+        },
+        "tree": {
+          "id": "kun-harfler-kozmolojisi-tree",
+          "label": {
+            "tr": "Kün (Ol)",
+            "en": "Kun (Be)",
+            "pt": "Kun (Seja)"
+          },
+          "note": {
+            "tr": "üç harf, her biri üçe ayrılarak dokuz feleğe açılır",
+            "en": "three letters, each dividing into three, opening onto the nine spheres",
+            "pt": "três letras, cada uma se dividindo em três, abrindo-se para as nove esferas"
+          },
+          "children": [
+            {
+              "id": "kaf-harfi",
+              "label": {
+                "tr": "Kef",
+                "en": "Kaf",
+                "pt": "Kaf"
+              },
+              "note": {
+                "tr": "kendi içinde üçe ayrılır",
+                "en": "divides into three within itself",
+                "pt": "se divide em três dentro de si"
+              }
+            },
+            {
+              "id": "vav-harfi",
+              "label": {
+                "tr": "Vav",
+                "en": "Waw",
+                "pt": "Waw"
+              },
+              "note": {
+                "tr": "kendi içinde üçe ayrılır",
+                "en": "divides into three within itself",
+                "pt": "se divide em três dentro de si"
+              }
+            },
+            {
+              "id": "nun-harfi",
+              "label": {
+                "tr": "Nûn",
+                "en": "Nun",
+                "pt": "Nun"
+              },
+              "note": {
+                "tr": "kendi içinde üçe ayrılır",
+                "en": "divides into three within itself",
+                "pt": "se divide em três dentro de si"
+              }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "giris-kevni-ilimlerin-degismesi",
+          "heading": {
+            "tr": "Giriş: Kevni İlimlerin Sürekli Değişmesi",
+            "en": "Introduction: The Continuous Change of Cosmic Sciences",
+            "pt": "Introdução: A Mudança Contínua das Ciências Cósmicas"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Cilt II'nin ilk kısmı, tam da Kısım XIV'ün kapanışta vaat ettiği konuyla açılıyor: 'O her gün bir iştedir' ayetine dayanarak, âlemdeki her şeyin her nefeste bir halden başka bir hale geçtiği, bu yüzden ilimlerin de sabit bir bilinenle sınırlı kalmayıp sürekli yer değiştirdiği (intikal) anlatılıyor. Dost, bu olguyu Cüveynî'nin 'istirsâl' (sarkma/uzama), Fahreddin er-Râzî'nin ise 'taalluk' (ilgi) diye adlandırdığını aktarıyor, ama ikisini de reddedip kendi keşif temelli okumasını sunuyor: <em>'İntikal, benzerlerde olabilir... hareketin değişmesiyle senin bilgin de değişir'</em> -yani değişen, şeylerin Hak nezdindeki sabit hakikati değil, bizim algımızdaki benzer-suretlerin ardışıklığıdır.",
+                "en": "The first part of Volume II opens with exactly the topic Part XIV promised in its closing: drawing on the verse 'Every day He is upon some task,' it explains that everything in the cosmos passes, with every breath, from one state to another — and so the sciences, too, are not confined to a fixed known but continually transfer (intiqal). Dost reports that al-Juwayni called this phenomenon 'istirsal' (extension) and Fakhr al-Din al-Razi called it 'ta'alluq' (relation), but he rejects both and offers his own unveiling-based reading instead: <em>'Transfer can occur among similars... as motion changes, your knowledge changes with it'</em> — meaning what changes is not the fixed reality of things as they stand with the Real, but the succession of similar forms in our own perception.",
+                "pt": "A primeira parte do Volume II se abre exatamente com o tema que a Parte XIV prometeu em seu fechamento: baseando-se no versículo 'Todo dia Ele está em alguma tarefa', explica que tudo no cosmos passa, a cada respiração, de um estado a outro — e assim, as ciências também não se confinam a um conhecido fixo, mas se transferem continuamente (intiqal). Dost relata que al-Juwayni chamou esse fenômeno de 'istirsal' (extensão) e Fakhr al-Din al-Razi de 'ta'alluq' (relação), mas rejeita ambos e oferece sua própria leitura baseada no desvelamento: <em>'A transferência pode ocorrer entre semelhantes... conforme o movimento muda, seu conhecimento muda com ele'</em> — ou seja, o que muda não é a realidade fixa das coisas tal como estão junto ao Real, mas a sucessão de formas semelhantes em nossa própria percepção."
+              }
+            }
+          ]
+        },
+        {
+          "id": "mesele-basliklari-nispet-ayna-insan-i-kamil",
+          "heading": {
+            "tr": "Kısa 'Mesele'ler: Nispet, Ayna ve İnsan-ı Kâmil",
+            "en": "Short 'Problems': Relation, the Mirror, and the Perfect Human",
+            "pt": "Pequenos 'Problemas': Relação, o Espelho e o Ser Humano Perfeito"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm 17, bir dizi kısa 'mesele' (problem) başlığı altında ilerliyor. İlk olarak, ilahi isimlerin zata ilave bağımsız hakikatler değil, birer nispet (bağıntı) olduğu -mütekellimlerin sıfat tartışmasına dolaylı bir cevap olarak- ele alınıyor. Ardından çarpıcı bir epistemoloji teorisi geliyor: aynadaki suret, misal/berzah âlemine aittir -Dost bunu rüya ve ölüm tecrübeleriyle aynı mekanizmaya bağlıyor, üçü de aynı 'berzahî görme' biçiminin farklı görünümleri olarak okunuyor. Son olarak, insan-ı kâmilin gerçekten en yetkin varlık olup olmadığı tartışmaya açılıyor -kesin bir hükme varmadan, meseleyi soru olarak bırakan bir üslupla.",
+                "en": "Part 17 proceeds through a series of short 'problem' headings. First, the divine names are treated as relations (nisab), not independent realities added to the Essence — an indirect answer to the theologians' debate over attributes. Then comes a striking epistemological theory: the image in a mirror belongs to the realm of imaginal forms/barzakh — Dost ties this to the experiences of dreaming and death, reading all three as different appearances of the same 'barzakh-vision.' Finally, whether the Perfect Human is truly the most complete of existents is opened to debate — in a manner that leaves the question open rather than settling it.",
+                "pt": "A Parte 17 avança através de uma série de pequenos títulos de 'problema'. Primeiro, os nomes divinos são tratados como relações (nisab), não realidades independentes acrescentadas à Essência — uma resposta indireta ao debate dos teólogos sobre os atributos. Depois vem uma teoria epistemológica marcante: a imagem no espelho pertence ao reino das formas imaginais/barzakh — Dost liga isso às experiências de sonhar e morrer, lendo os três como aparições diferentes da mesma 'visão-barzakh'. Por fim, se o Ser Humano Perfeito é realmente o mais completo dos existentes é aberto ao debate — de uma maneira que deixa a questão em aberto em vez de resolvê-la."
+              }
+            }
+          ]
+        },
+        {
+          "id": "rahmet-gazabi-gecti",
+          "heading": {
+            "tr": "Rahmetin Gazabı Geçmesi",
+            "en": "Mercy Overtaking Wrath",
+            "pt": "A Misericórdia Superando a Ira"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm 17, 'Allah dileseydi herkesi hidayete erdirirdi' ayetinin, rahmetin nihayette gazabı geçeceği çerçevesinde okunmasıyla kapanıyor. Dost, gazap ile rahmeti iki daire gibi düşünürsek, rahmetin gazabı kapsayan, onu içine alan daha geniş bir daire olduğunu ima ediyor -hüküm nihayetinde rahmete ait olur.",
+                "en": "Part 17 closes by reading the verse 'Had God willed, He would have guided everyone' within the frame of mercy ultimately overtaking wrath. If we think of wrath and mercy as two circles, Dost implies that mercy is the wider circle, the one that encompasses and contains wrath — in the end, the ruling belongs to mercy.",
+                "pt": "A Parte 17 se encerra lendo o versículo 'Se Deus quisesse, teria guiado a todos' dentro do enquadramento de que a misericórdia, ao final, supera a ira. Se pensarmos na ira e na misericórdia como dois círculos, Dost sugere que a misericórdia é o círculo mais amplo, aquele que abrange e contém a ira — no final, o julgamento pertence à misericórdia."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — Kevni İlimlerin Değişmesi, s. 17-21.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — The Change of Cosmic Sciences, pp. 17-21.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — A Mudança das Ciências Cósmicas, pp. 17-21."
+              },
+              "pair": {
+                "left": {
+                  "label": {
+                    "tr": "Gazap",
+                    "en": "Wrath",
+                    "pt": "Ira"
+                  },
+                  "note": {
+                    "tr": "kuşatılan, daha dar daire",
+                    "en": "the encompassed, the narrower circle",
+                    "pt": "o que é envolvido, o círculo mais estreito"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Rahmet",
+                    "en": "Mercy",
+                    "pt": "Misericórdia"
+                  },
+                  "note": {
+                    "tr": "kuşatan, her şeyi içine alan daire",
+                    "en": "the encompasser, the circle that takes in everything",
+                    "pt": "o que envolve, o círculo que abrange tudo"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un rahmet-gazap okuması: rahmet, gazabı kuşatan ve nihayette onu geçen daha geniş bir dairedir.",
+                "en": "Dost's reading of mercy and wrath: mercy is the wider circle, one that encompasses wrath and ultimately overtakes it.",
+                "pt": "A leitura de Dost sobre misericórdia e ira: a misericórdia é o círculo mais amplo, que envolve a ira e, ao final, a supera."
+              }
+            }
+          ]
+        },
+        {
+          "id": "teheccud-ilmi-uyku-uyaniklik",
+          "heading": {
+            "tr": "Teheccüd İlmi: Uyku ve Uyanıklık",
+            "en": "The Science of Tahajjud: Sleep and Wakefulness",
+            "pt": "A Ciência do Tahajjud: Sono e Vigília"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm 18, teheccüdün (gece namazının) sahibine özgü, başka isimlere değil doğrudan 'Hak' ismine dayanan bir ilim verdiğini anlatıyor. Burada zarif bir ikilik kuruluyor: kişinin uykusu, Hakkın âlem olmaksızın sadece kendisine baktığı bir haldir; kalkıp ibadet etmesi ise Hakkın âleme yöneldiği, kişinin de Hakkın üzerindeki hakkını eda ettiği bir haldir. <em>'Âlem olmaksızın Hakkın kendisine bakması, kişinin uyku haliyken; Allah'ın âleme bakması, insanın Hakkın üzerindeki hakkını eda etmek için kalkma halidir.'</em> Makam-ı Mahmûd (övülmüş makam) da burada, sadece Hz. Peygamber'e özgü ayrı bir mertebe olarak vurgulanıyor.",
+                "en": "Part 18 explains that tahajjud (night prayer) grants its practitioner a knowledge that depends on no name but the Real Himself. A graceful duality is built here: a person's sleep is a state in which the Real looks upon Himself alone, without the cosmos; rising to worship is a state in which the Real turns toward the cosmos, and the person discharges what is due to the Real. <em>'The Real looking upon Himself without the cosmos is the person's state of sleep; God looking upon the cosmos is the state of rising, so that the human being may discharge the Real's due upon them.'</em> The Praiseworthy Station (Maqam Mahmud) is also emphasized here as a rank belonging to the Prophet alone.",
+                "pt": "A Parte 18 explica que o tahajjud (oração noturna) concede a quem o pratica um conhecimento que depende apenas do próprio Real, e de nenhum outro nome. Uma dualidade graciosa é construída aqui: o sono de uma pessoa é um estado em que o Real olha apenas para Si mesmo, sem o cosmos; levantar-se para adorar é um estado em que o Real se volta para o cosmos, e a pessoa cumpre o que é devido ao Real. <em>'O Real olhando para Si mesmo sem o cosmos é o estado de sono da pessoa; Deus olhando para o cosmos é o estado de se levantar, para que o ser humano cumpra o que é devido ao Real.'</em> A Estação Louvável (Maqam Mahmud) também é enfatizada aqui como um grau pertencente exclusivamente ao Profeta."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — Teheccüd İlmi, s. 21-25.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — The Science of Tahajjud, pp. 21-25.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — A Ciência do Tahajjud, pp. 21-25."
+              },
+              "pair": {
+                "left": {
+                  "label": {
+                    "tr": "Uyku",
+                    "en": "Sleep",
+                    "pt": "Sono"
+                  },
+                  "note": {
+                    "tr": "Hak, âlem olmaksızın kendisine bakar",
+                    "en": "the Real looks upon Himself without the cosmos",
+                    "pt": "o Real olha para Si mesmo sem o cosmos"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Uyanıklık / İbadet",
+                    "en": "Wakefulness / Worship",
+                    "pt": "Vigília / Adoração"
+                  },
+                  "note": {
+                    "tr": "Hak âleme yönelir, kul hakkını eda eder",
+                    "en": "the Real turns to the cosmos, the servant discharges what is due",
+                    "pt": "o Real se volta para o cosmos, o servo cumpre o que é devido"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un teheccüd okuması: uyku ve uyanıklık, Hakkın iki farklı 'bakışının' insan bedenindeki yansımasıdır.",
+                "en": "Dost's reading of tahajjud: sleep and wakefulness are the reflection, in the human body, of two different 'gazes' of the Real.",
+                "pt": "A leitura de Dost do tahajjud: sono e vigília são o reflexo, no corpo humano, de dois 'olhares' diferentes do Real."
+              }
+            }
+          ]
+        },
+        {
+          "id": "ilimlerin-artmasi-eksilmesi-mirac-merdiveni",
+          "heading": {
+            "tr": "İlmin Artması, Eksilmesi ve Herkesin Kendine Özgü Merdiveni",
+            "en": "The Increase and Decrease of Knowledge, and Everyone's Own Ladder",
+            "pt": "O Aumento e a Diminuição do Conhecimento, e a Escada Própria de Cada Um"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm 19, 'Rabbim ilmimi artır' ayeti ve 'Allah ilmi âlimlerin göğsünden çekip almaz, âlimleri öldürerek alır' hadisi çerçevesinde ilerliyor: bilgideki artış zâhir veya bâtına yönelen bir tecelliden kaynaklanır; sûfiler bu kaynağı bilirken, ârif olmayanlar artışı kendi düşüncelerine nispet eder -Dost bu yanlış nispeti sert bir dille eleştiriyor. Eksilmenin iki ayrı sebebi ayırt ediliyor: yaratılıştaki asli bir kötülük (değiştirilemez -Hızır'ın öldürdüğü çocuğun 'kâfir yaratılmış' olması örneğiyle) ile geçici bir bozulma (tıpla veya nefis terbiyesiyle giderilebilir). En çarpıcı yer, mi'râc/merdiven metaforu: <em>'Allah ehlinden her şahsın kendisine özgü bir merdiveni vardır ki, başkası onda yükselemez.'</em> Dost bunun aksini savunmanın peygamberliği 'kazanılabilir' (mükteseb) hale getireceğini, bunun imkânsız olduğunu vurguluyor. Mertebeler zinciri de burada sıralanıyor: İslam (teslimiyet) → iman → ihsan → ilim → ... → fenâ → bekâ.",
+                "en": "Part 19 proceeds within the frame of the verse 'My Lord, increase me in knowledge' and the hadith 'God does not take away knowledge by wresting it from the hearts of the learned, but by taking the learned themselves' — an increase in knowledge stems from a self-disclosure directed toward the outward or the inward; the Sufis know this source, while those without gnosis attribute the increase to their own thinking, a misattribution Dost criticizes sharply. Two distinct causes of decrease are distinguished: an original evil in one's creation (unchangeable — illustrated by the example of the boy Khidr killed, 'created an unbeliever') versus a temporary corruption (remediable through medicine or disciplining the ego). The most striking passage is the ladder/ascension metaphor: <em>'Every person among the folk of God has a ladder unique to himself, which no one else can climb.'</em> Dost stresses that arguing otherwise would make prophethood something 'acquirable,' which is impossible. The chain of ranks is also listed here: Islam (submission) → faith → excellence (ihsan) → knowledge → ... → fana → baqa.",
+                "pt": "A Parte 19 avança dentro do enquadramento do versículo 'Meu Senhor, aumenta-me em conhecimento' e do hadice 'Deus não retira o conhecimento arrancando-o dos corações dos sábios, mas levando os próprios sábios' — um aumento no conhecimento provém de uma autorrevelação dirigida ao exterior ou ao interior; os sufis conhecem essa fonte, enquanto os que carecem de gnose atribuem o aumento ao próprio pensamento, uma atribuição equivocada que Dost critica duramente. Duas causas distintas de diminuição são distinguidas: um mal original na própria criação (imutável — ilustrado pelo exemplo do menino que Khidr matou, 'criado incrédulo') versus uma corrupção temporária (remediável através da medicina ou da disciplina do ego). A passagem mais marcante é a metáfora da escada/ascensão: <em>'Todo indivíduo entre o povo de Deus tem uma escada exclusivamente sua, que ninguém mais pode subir.'</em> Dost enfatiza que argumentar o contrário tornaria a profecia algo 'adquirível', o que é impossível. A cadeia de graus também é listada aqui: Islã (submissão) → fé → excelência (ihsan) → conhecimento → ... → fana → baqa."
+              }
+            }
+          ]
+        },
+        {
+          "id": "isevi-ilim-harfler-kun-kozmolojisi",
+          "heading": {
+            "tr": "İsevî İlim: Harfler ve 'Kün' Kozmolojisi",
+            "en": "The Isawi Science: Letters and the Cosmology of 'Kun'",
+            "pt": "A Ciência Isáica: Letras e a Cosmologia de 'Kun'"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm 20, İsevî ilmi (harfler ilmi) ele alıyor: nefes/üfleme, kalpten çıkan havanın kesintiye uğramasıyla harfleri oluşturur. 'Kün' (Ol) kelimesi üç harften (Kef-Vav-Nun) oluşur, her harf de kendi içinde üçe ayrılarak dokuz sayısına ulaşır -bu dokuz, dokuz felekle ilişkilendiriliyor. Hallac'tan aktarılan bir terimleştirme de dikkat çekici: harflerin 'uzunluğu' (ruhlar âlemindeki etkisi) ve 'genişliği' (cisimler âlemindeki etkisi) ayrımı.",
+                "en": "Part 20 takes up the Isawi science (the science of letters): breath, the interruption of air issuing from the heart, forms the letters. The word 'Kun' (Be) is made of three letters (Kaf-Waw-Nun), each of which divides within itself into three, reaching the number nine — this nine is correlated with the nine celestial spheres. A striking piece of terminology, reported from al-Hallaj, is also notable: the distinction between the letters' 'length' (their effect in the world of spirits) and 'breadth' (their effect in the world of bodies).",
+                "pt": "A Parte 20 aborda a ciência isáica (a ciência das letras): o alento, a interrupção do ar que sai do coração, forma as letras. A palavra 'Kun' (Seja) é feita de três letras (Kaf-Waw-Nun), cada uma das quais se divide dentro de si em três, chegando ao número nove — esse nove é correlacionado com as nove esferas celestes. Uma terminologia marcante, relatada por al-Hallaj, também é notável: a distinção entre o 'comprimento' das letras (seu efeito no mundo dos espíritos) e a 'largura' (seu efeito no mundo dos corpos)."
+              }
+            }
+          ]
+        },
+        {
+          "id": "cehennemin-yil-dilimleri",
+          "heading": {
+            "tr": "Cehennemin Yıl Dilimleri: Unutulmaya Dönüşen Azap",
+            "en": "Hell's Spans of Years: Punishment Turning into Being Forgotten",
+            "pt": "Os Intervalos de Anos do Inferno: O Castigo Que se Torna Esquecimento"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm 20'nin içine, uzun ve çarpıcı bir eskatoloji pasajı gömülü: gazabın rahmeti geçmesiyle, cehennemliklerin belirli yıl dilimleri halinde -önce kesintisiz bir azap (23.000 yıl), sonra ardışık baygınlık/unutma ve tekrar azap dönemleri (19.000, 15.000, 11.000, 7.000, 3.000 yıl gibi rakamlarla)- yaşayıp, nihayetinde 'el-Vâsi' isminin rahmetiyle azabın duyusal olmaktan çıkıp psikolojik bir korkuya dönüştüğü bir şema sunuluyor. <em>'Cehennemlikler, bu hali ganimet bilip şöyle derler: Unutulduk.'</em> Bize göre bu pasaj, bir önceki bölümdeki 'rahmetin gazabı geçmesi' temasının, en uç örnek üzerinden (cehennemin kendisi) somutlaştırılmış hâli gibi okunabilir -ama İbn Arabî bu rakamların kesin bir hesap mı yoksa sembolik bir derecelenme mi olduğunu açıkça belirtmiyor.",
+                "en": "Embedded within Part 20 is a long and striking eschatological passage: as wrath is overtaken by mercy, the people of Hell pass through specific spans of years — first an unbroken punishment (23,000 years), then successive periods of fainting/forgetting and renewed punishment (spans given as 19,000, 15,000, 11,000, 7,000, 3,000 years) — until, through the mercy of the name al-Wasi' (the All-Encompassing), the punishment ceases to be sensory and becomes a psychological dread instead. <em>'The people of Hell, counting this state a boon, say: We have been forgotten.'</em> To our reading, this passage can be taken as the previous section's theme of 'mercy overtaking wrath' made concrete through its most extreme case (Hell itself) — though Ibn Arabi does not clearly state whether these numbers are meant as a precise reckoning or a symbolic gradation.",
+                "pt": "Embutida na Parte 20 está uma longa e marcante passagem escatológica: à medida que a ira é superada pela misericórdia, o povo do Inferno atravessa intervalos específicos de anos — primeiro um castigo ininterrupto (23.000 anos), depois períodos sucessivos de desmaio/esquecimento e castigo renovado (intervalos de 19.000, 15.000, 11.000, 7.000, 3.000 anos) — até que, pela misericórdia do nome al-Wasi' (o Onipresente), o castigo deixa de ser sensorial e se torna, em vez disso, um pavor psicológico. <em>'O povo do Inferno, contando esse estado como uma dádiva, diz: Fomos esquecidos.'</em> Em nossa leitura, esta passagem pode ser lida como o tema da seção anterior, 'a misericórdia superando a ira', concretizado através de seu caso mais extremo (o próprio Inferno) — embora Ibn Arabi não declare claramente se esses números pretendem ser um cálculo preciso ou uma gradação simbólica."
+              }
+            }
+          ]
+        },
+        {
+          "id": "uc-kevni-ilim-kiyas-ureme-benzetmesi",
+          "heading": {
+            "tr": "Üç Kevni İlim: Mantık Kıyası, Üremeye Benzetiliyor",
+            "en": "The Three Cosmic Sciences: Logical Syllogism Likened to Generation",
+            "pt": "As Três Ciências Cósmicas: O Silogismo Lógico Comparado à Geração"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bölüm 21, aslında bir 'üreme/çoğalma ilmi' bahsi: Dost bunu dört düzeyde ele alıyor -duyusal üreme (anne-baba-çocuk), doğadaki üreme (yağmur+toprak=hayat, hurma aşılaması), ve en özgün olanı, 'manalardaki üreme': mantık ilminde iki öncülden bir sonucun çıkışı, doğrudan cinsel üremeye benzetiliyor. Tekil kavramlar anne-babaya, orta terim ('hadd-i evsat') ikisini birleştiren bağa, sonuç ise çocuğa karşılık geliyor. Dost bu tartışmayı kendi sınırını çizerek kapatıyor: <em>'Bu bölümden bu kadar kâfidir... Çünkü bu kitap, düşünce ilimlerinden değil, algılama ve tecelli ilimlerinden ortaya çıkmıştır.'</em> -mantık/kıyas tartışmasını bilerek sınırlandırıp kesmesi, kendi epistemik duruşunu (keşif, akıldan önce gelir) açıkça beyan ettiği bir yer.",
+                "en": "Part 21 is, in effect, a discussion of the 'science of generation/multiplication': Dost treats it on four levels — sensory generation (mother-father-child), generation in nature (rain+earth=life, the pollination of palm trees), and, most originally, 'generation among meanings': the emergence of a conclusion from two premises in the science of logic, likened directly to sexual generation. The singular concepts correspond to mother and father, the middle term (hadd al-awsat) to the bond joining them, and the conclusion to the child. Dost closes this discussion by drawing his own boundary: <em>'This much suffices from this section... for this book has arisen not from the rational sciences, but from the sciences of perception and self-disclosure.'</em> — a place where he deliberately limits and cuts short the logic/syllogism discussion, openly stating his own epistemic stance (unveiling comes before reason).",
+                "pt": "A Parte 21 é, na verdade, uma discussão sobre a 'ciência da geração/multiplicação': Dost a trata em quatro níveis — geração sensorial (mãe-pai-filho), geração na natureza (chuva+terra=vida, a polinização das tamareiras), e, o mais original, 'geração entre significados': o surgimento de uma conclusão a partir de duas premissas na ciência da lógica, comparado diretamente à geração sexual. Os conceitos singulares correspondem à mãe e ao pai, o termo médio (hadd al-awsat) ao vínculo que os une, e a conclusão ao filho. Dost encerra essa discussão traçando seu próprio limite: <em>'Isso basta desta seção... pois este livro surgiu não das ciências racionais, mas das ciências da percepção e da autorrevelação.'</em> — um lugar onde ele deliberadamente limita e interrompe a discussão de lógica/silogismo, declarando abertamente sua própria postura epistêmica (o desvelamento vem antes da razão)."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — Üç Kevni İlim, s. 38-41.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — The Three Cosmic Sciences, pp. 38-41.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — As Três Ciências Cósmicas, pp. 38-41."
+              },
+              "triad": {
+                "left": {
+                  "label": {
+                    "tr": "Öncül (Anne)",
+                    "en": "Premise (Mother)",
+                    "pt": "Premissa (Mãe)"
+                  },
+                  "note": {
+                    "tr": "birinci tekil kavram",
+                    "en": "the first singular concept",
+                    "pt": "o primeiro conceito singular"
+                  }
+                },
+                "middle": {
+                  "label": {
+                    "tr": "Orta Terim (Hadd-i Evsat)",
+                    "en": "Middle Term (Hadd al-Awsat)",
+                    "pt": "Termo Médio (Hadd al-Awsat)"
+                  },
+                  "note": {
+                    "tr": "ikisini birleştiren bağ",
+                    "en": "the bond joining the two",
+                    "pt": "o vínculo que une os dois"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Sonuç (Çocuk)",
+                    "en": "Conclusion (Child)",
+                    "pt": "Conclusão (Filho)"
+                  },
+                  "note": {
+                    "tr": "iki öncülden doğan netice",
+                    "en": "the outcome born from the two premises",
+                    "pt": "o resultado nascido das duas premissas"
+                  }
+                }
+              },
+              "caption": {
+                "tr": "Dost'un mantık-üreme benzetmesi: bir kıyasın iki öncülü ve sonucu, anne-baba-çocuk üçlüsüne karşılık gelir.",
+                "en": "Dost's logic-generation analogy: a syllogism's two premises and its conclusion correspond to the triad of mother, father, and child.",
+                "pt": "A analogia lógica-geração de Dost: as duas premissas de um silogismo e sua conclusão correspondem à tríade mãe, pai e filho."
+              }
+            }
+          ]
+        },
+        {
+          "id": "ilahi-ilimde-tevalud-kapanis",
+          "heading": {
+            "tr": "İlahi İlimde Tevâlüd ve Kısmın Kapanışı",
+            "en": "Generation Within Divine Knowledge, and the Part's Close",
+            "pt": "Geração no Conhecimento Divino, e o Fechamento da Parte"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısım, üreme benzetmesini en yükseğe, ilahi ilme taşıyarak kapanıyor: âlem, Hakkın 'sırf zatı'ndan değil, üç akledilir hakikatten (zat + kudret + irade/talep) meydana geliyor -bu, Ehl-i Sünnet'in 'Allah âlemin nedenidir' görüşüne dolaylı bir eleştiri de içeriyor. <em>'Âlem, ilahi ilimde akledilir üç hakikatten meydana geldi.'</em> Kısım XIV'ün vaadiyle bu kısmın ilk bölümü arasındaki örtüşme çok güçlüydü, ama Kısım XV bununla sınırlı kalmadı -teheccüd, ilim artışı, harfler/Kün kozmolojisi ve üreme benzetmesi gibi dört bölüm daha ekleyerek konuyu çok öteye taşıdı. Bize göre bu, Fütûhât'ın 'kısım' yapısının, kapanışta duyurulan tek bir konuyu değil, o konu etrafında toplanmış bir bölümler kümesini işaret ettiğini gösteriyor. Cilt I boyunca biriktirdiğimiz dört motif -daire, Hebâ, kutuplar zinciri, zaman/dehr- bu kısımda hiç görünmedi; taramamıza göre hepsi, hemen ardından gelen Kısım XVI'da toplu halde geri dönüyor. Belki de İbn Arabî (ya da metnin kendi iç mimarisi), bu dört temaya yeniden dönmeden önce bilerek bir 'ara' vermiş -bunu şimdilik bir gözlem olarak kaydediyoruz, Kısım XVI'da ne bulacağımızı henüz bilmiyoruz.",
+                "en": "The part closes by carrying the generation analogy to its highest register, divine knowledge itself: the cosmos comes to be not from the Real's 'sheer Essence' but from three intelligible realities (Essence + power + will/demand) — this also carries an indirect critique of the Ash'ari view that 'God is the cause of the cosmos.' <em>'The cosmos came to be from three realities made intelligible within divine knowledge.'</em> The overlap between Part XIV's promise and this part's opening section was very strong, but Part XV did not stop there — it carried the topic much further, adding four more sections (tahajjud, the increase of knowledge, the letters/Kun cosmology, and the generation analogy). To our reading, this shows that the Futuhat's 'part' structure points not to a single topic announced at closing, but to a cluster of sections gathered around that topic. The four motifs we have gathered across Volume I — the circle, Haba, the chain of poles, time/dahr — did not appear at all in this part; our scan suggests all four return together in the very next part, XVI. Perhaps Ibn Arabi (or the text's own inner architecture) has deliberately taken a 'pause' before returning to these four themes — for now we simply note this as an observation; we do not yet know what we will find in Part XVI.",
+                "pt": "A parte se encerra levando a analogia da geração ao seu registro mais elevado, o próprio conhecimento divino: o cosmos vem a ser não da 'pura Essência' do Real, mas de três realidades inteligíveis (Essência + poder + vontade/demanda) — isso também carrega uma crítica indireta à visão ash'arita de que 'Deus é a causa do cosmos'. <em>'O cosmos veio a ser a partir de três realidades tornadas inteligíveis dentro do conhecimento divino.'</em> A sobreposição entre a promessa da Parte XIV e a seção de abertura desta parte foi muito forte, mas a Parte XV não parou aí — levou o tema muito mais longe, acrescentando mais quatro seções (tahajjud, o aumento do conhecimento, a cosmologia das letras/Kun, e a analogia da geração). Em nossa leitura, isso mostra que a estrutura de 'parte' do Futuhat aponta não para um único tema anunciado no fechamento, mas para um agrupamento de seções reunidas em torno desse tema. Os quatro motivos que reunimos ao longo do Volume I — o círculo, Haba, a cadeia de polos, tempo/dahr — não apareceram em nenhum momento nesta parte; nossa varredura sugere que os quatro retornam juntos na parte seguinte, XVI. Talvez Ibn Arabi (ou a própria arquitetura interna do texto) tenha deliberadamente feito uma 'pausa' antes de retornar a esses quatro temas — por ora, apenas registramos isso como uma observação; ainda não sabemos o que encontraremos na Parte XVI."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — Kevni İlimlerin Değişmesi, s. 17-19.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — The Change of Cosmic Sciences, pp. 17-19.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — A Mudança das Ciências Cósmicas, pp. 17-19."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — Nispet, Ayna ve İnsan-ı Kâmil Meseleleri, s. 19-21.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — The Problems of Relation, the Mirror, and the Perfect Human, pp. 19-21.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — Os Problemas da Relação, do Espelho e do Ser Humano Perfeito, pp. 19-21."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — Rahmetin Gazabı Geçmesi, s. 21.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — Mercy Overtaking Wrath, p. 21.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — A Misericórdia Superando a Ira, p. 21."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — Teheccüd İlmi, s. 21-25.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — The Science of Tahajjud, pp. 21-25.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — A Ciência do Tahajjud, pp. 21-25."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — İlmin Artması, Eksilmesi ve Mi'râc Merdiveni, s. 25-29.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — The Increase and Decrease of Knowledge and the Ladder of Ascension, pp. 25-29.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — O Aumento e a Diminuição do Conhecimento e a Escada de Ascensão, pp. 25-29."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — İsevî İlim: Harfler ve Kün Kozmolojisi, s. 29-33.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — The Isawi Science: Letters and the Kun Cosmology, pp. 29-33.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — A Ciência Isáica: Letras e a Cosmologia de Kun, pp. 29-33."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — Cehennemin Yıl Dilimleri, s. 33-37.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — Hell's Spans of Years, pp. 33-37.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — Os Intervalos de Anos do Inferno, pp. 33-37."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — Üç Kevni İlim: Kıyas-Üreme Benzetmesi, s. 37-41.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — The Three Cosmic Sciences: The Syllogism-Generation Analogy, pp. 37-41.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — As Três Ciências Cósmicas: A Analogia Silogismo-Geração, pp. 37-41."
+        },
+        {
+          "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XV — İlahi İlimde Tevâlüd ve Kısmın Kapanışı, s. 41-42.",
+          "en": "al-Futuhat al-Makkiyya, Vol. II, Part XV — Generation Within Divine Knowledge and the Part's Close, pp. 41-42.",
+          "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XV — Geração no Conhecimento Divino e o Fechamento da Parte, pp. 41-42."
         }
       ]
     }

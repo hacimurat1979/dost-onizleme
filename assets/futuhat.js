@@ -591,22 +591,27 @@
   }
 
   // --- Article rendering ---
+  const CILT_ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII"];
+
   function renderParts() {
     if (!partsEl) return;
-    const kisimlar = Array.from({ length: futuhatData.book.totalKisim }, (_, i) => i + 1);
-    partsEl.innerHTML = `
-      <span class="futuhat-parts__cilt">${tt({ tr: "Cilt I", en: "Volume I", pt: "Volume I" })}</span>
-      ${kisimlar
-        .map((no) => {
-          const part = futuhatData.parts.find((p) => p.cilt === 1 && p.kisim === no);
-          if (part) {
-            return `<button class="futuhat-part-chip futuhat-part-chip--active" type="button" data-id="${part.id}">${tt({ tr: "Kısım " + roman(no), en: "Part " + roman(no), pt: "Parte " + roman(no) })}</button>`;
-          }
-          return `<span class="futuhat-part-chip futuhat-part-chip--soon" title="${tt({ tr: "Yakında", en: "Coming soon", pt: "Em breve" })}">${roman(no)}</span>`;
-        })
-        .join("")}
-      <span class="futuhat-parts__more">${tt({ tr: "Cilt II–XVIII yakında", en: "Volumes II–XVIII coming soon", pt: "Volumes II–XVIII em breve" })}</span>
-    `;
+    const cilts = futuhatData.book.cilts || [];
+    partsEl.innerHTML = cilts
+      .map((c) => {
+        const kisimlar = Array.from({ length: c.kisimEnd - c.kisimStart + 1 }, (_, i) => c.kisimStart + i);
+        const chips = kisimlar
+          .map((no) => {
+            const part = futuhatData.parts.find((p) => p.cilt === c.cilt && p.kisim === no);
+            if (part) {
+              return `<button class="futuhat-part-chip futuhat-part-chip--active" type="button" data-id="${part.id}">${tt({ tr: "Kısım " + roman(no), en: "Part " + roman(no), pt: "Parte " + roman(no) })}</button>`;
+            }
+            return `<span class="futuhat-part-chip futuhat-part-chip--soon" title="${tt({ tr: "Yakında", en: "Coming soon", pt: "Em breve" })}">${roman(no)}</span>`;
+          })
+          .join("");
+        return `<span class="futuhat-parts__cilt">${tt({ tr: "Cilt " + CILT_ROMAN[c.cilt], en: "Volume " + CILT_ROMAN[c.cilt], pt: "Volume " + CILT_ROMAN[c.cilt] })}</span>${chips}`;
+      })
+      .join("");
+    partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: "Cilt III–XVIII yakında", en: "Volumes III–XVIII coming soon", pt: "Volumes III–XVIII em breve" })}</span>`;
   }
 
   function roman(n) {
