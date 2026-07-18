@@ -33,6 +33,15 @@
     detailPanel.hidden = true;
   });
 
+  // Node clicks bubble up to this same listener; skip those so the panel
+  // that a click just opened isn't immediately closed by that same click.
+  document.addEventListener("click", (e) => {
+    if (detailPanel.hidden) return;
+    if (detailPanel.contains(e.target) || e.target === detailClose) return;
+    if (e.target.closest && e.target.closest(".node")) return;
+    detailPanel.hidden = true;
+  });
+
   window.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     if (!detailPanel.hidden) {
@@ -41,6 +50,19 @@
       window.location.href = "compare.html";
     }
   });
+
+  // Touch devices have no Escape key -- give tablet/mobile users the same
+  // "go back a level" gesture by making the header title tappable, mirroring
+  // the conventional click-the-logo-to-go-back pattern.
+  const headerTitle = document.querySelector(".app-header__title");
+  if (headerTitle) {
+    headerTitle.classList.add("app-header__title--clickable");
+    headerTitle.style.cursor = "pointer";
+    headerTitle.title = "Geri dön / Go back / Voltar";
+    headerTitle.addEventListener("click", () => {
+      window.location.href = "compare.html";
+    });
+  }
 
   let pageData = null;
   let nodeSel, linkSel, labelSel;

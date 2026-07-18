@@ -183,6 +183,9 @@ html {
 .app-header__controls {
   pointer-events: auto;
 }
+.app-header__title--clickable {
+  pointer-events: auto;
+}
 .app-header__controls {
   display: flex;
   align-items: center;
@@ -4354,6 +4357,18 @@ html[data-contrast="high"] .detail-title {
   color: var(--series-theme);
   font-size: 0.75em;
   font-weight: 400;
+}
+
+/* Honorific seals auto-inserted after Allah/the Prophet's name --
+   see assets/honorifics.js. Sized to sit quietly inline with running text
+   rather than calling attention to itself. */
+.honorific {
+  font-family: "Traditional Arabic", "Arabic Typesetting", "Noto Naskh Arabic", "Geeza Pro", serif;
+  color: var(--series-theme);
+  font-size: 1.05em;
+  font-style: normal;
+  margin: 0 0.05em;
+  unicode-bidi: isolate;
 }
 
 @media (max-width: 640px) {

@@ -93,6 +93,11 @@
   }
 
   function colorFor(d) {
+    // Zât is the one node whose own "color" is unknowable -- it is known
+    // only through its glow (the halo below), so its circle itself is left
+    // the whitest tone possible rather than given a pole/layer color. Same
+    // treatment as the ontology graph's "dhat" root node.
+    if (d.id === "zat") return "#ffffff";
     const pole = d.data.pole;
     if (pole === "celal") return getVar("--series-celal");
     if (pole === "cemal") return getVar("--series-cemal");
@@ -290,6 +295,7 @@
 
     const nodeEnter = node.enter().append("g")
       .attr("class", "node esma-node")
+      .classed("node--root", (d) => d.id === "zat")
       .attr("transform", () => `translate(${radialPoint(source.x0, source.y0).join(",")})`)
       .attr("tabindex", "0")
       .attr("role", "button")
@@ -311,6 +317,10 @@
       .on("mouseleave", () => { highlight(null); hideTooltip(); })
       .on("focus", (event, d) => { highlight(d); showTooltip(d, event); })
       .on("blur", () => { highlight(null); hideTooltip(); });
+
+    nodeEnter.append("circle")
+      .attr("class", "node-halo")
+      .attr("r", (d) => radiusFor(d) * 1.4);
 
     nodeEnter.append("circle")
       .attr("r", (d) => radiusFor(d))

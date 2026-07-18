@@ -1102,6 +1102,10 @@
   }
 
   function colorFor(d) {
+    // Zât is the one node whose own "color" is unknowable -- it is known
+    // only through its glow (the halo below), so its circle itself is left
+    // the whitest tone possible rather than given a layer color.
+    if (d.id === "dhat") return "#ffffff";
     if (d.id === "insan-i-kamil") return getVar("--series-daphne");
     if (d.id === "kalp") return getVar("--series-theme");
     const ramp = isDark() ? LAYER_COLOR_DARK : LAYER_COLOR;
