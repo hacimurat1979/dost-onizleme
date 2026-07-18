@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  // Gizli düzenleme modu: Ctrl (veya Cmd) basılıyken "revise" yazınca
-  // açılır/kapanır. Sadece elle yazılmış düz yazıyı (kısım metinleri,
+  // Gizli düzenleme modu: Ctrl+Alt (veya Cmd+Alt) basılıyken "revise"
+  // yazınca açılır/kapanır. Sadece elle yazılmış düz yazıyı (kısım metinleri,
   // terim/hâl/sır açıklamaları, hakkında sayfası) contenteditable yapar;
   // hiçbir şeyi doğrudan siteye yazmaz -- her değişiklik yalnızca bu
   // tarayıcıda (localStorage) tutulur, "Dışa Aktar" ile bir JSON dosyası
@@ -162,7 +162,7 @@
 
   window.addEventListener("keydown", (e) => {
     if (e.key.length !== 1) return;
-    if (!(e.ctrlKey || e.metaKey) || e.altKey || e.shiftKey) return;
+    if (!(e.ctrlKey || e.metaKey) || !e.altKey || e.shiftKey) return;
 
     const now = Date.now();
     if (now - lastKeyAt > MAX_GAP_MS) buffer = "";

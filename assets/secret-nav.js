@@ -7,7 +7,7 @@
 
   window.addEventListener("keydown", (e) => {
     if (e.key.length !== 1) return;
-    if (!(e.ctrlKey || e.metaKey) || e.altKey || e.shiftKey) return;
+    if (!(e.ctrlKey || e.metaKey) || !e.altKey || e.shiftKey) return;
 
     const now = Date.now();
     if (now - lastKeyAt > MAX_GAP_MS) buffer = "";
