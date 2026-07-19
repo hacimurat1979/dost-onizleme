@@ -1076,10 +1076,13 @@ button.futuhat-part-chip:hover {
   cursor: default;
 }
 
-.futuhat-tree__node:focus-visible circle:first-of-type,
 .futuhat-tree__node:hover circle:first-of-type {
-  stroke: var(--series-theme);
+  stroke: var(--accent-interactive);
   stroke-width: 2px;
+}
+.futuhat-tree__node:focus-visible circle:first-of-type {
+  stroke: var(--accent-interactive);
+  stroke-width: 3px;
 }
 .futuhat-tree__node:focus { outline: none; }
 
@@ -1631,8 +1634,8 @@ li.futuhat-pulse,
 .node:focus { outline: none; }
 .node:focus-visible { outline: none; }
 .node:focus-visible circle {
-  stroke: var(--series-hal-hayret, #e0b545);
-  stroke-width: 2.5px;
+  stroke: var(--accent-interactive, #e0b545);
+  stroke-width: 3px;
 }
 .node--active circle {
   stroke: var(--series-hal-hayret, #e0b545);

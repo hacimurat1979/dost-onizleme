@@ -98,6 +98,12 @@
     // the whitest tone possible rather than given a pole/layer color. Same
     // treatment as the ontology graph's "dhat" root node.
     if (d.id === "zat") return "#ffffff";
+    // Allah -- the Name that gathers every Name in itself, emerging directly
+    // from the Essence -- gets the site's own signature accent gold rather
+    // than blending into the ordinary Kemal-pole tone shared by other names,
+    // so it reads as distinct at a glance without competing with Zât's own
+    // (white + glow) treatment.
+    if (d.id === "allah") return getVar("--series-theme");
     const pole = d.data.pole;
     if (pole === "celal") return getVar("--series-celal");
     if (pole === "cemal") return getVar("--series-cemal");
@@ -250,6 +256,13 @@
     outerRadius = Math.max(120, Math.min(width, height) / 2 - 40);
     radiusScale = d3.scaleSqrt().domain([0, maxDepth]).range([0, outerRadius]);
     nodes.forEach((d) => { d.y = radiusScale(d.depth); });
+    // A rare, single deep chain (Rab -> Hayy -> Alim -> Murid -> ...) pushes
+    // maxDepth well past the rest of the tree, which compresses the sqrt
+    // scale's inner depths -- at depth 1 this crowds the root's breathing
+    // halo (peaks at ~1.4x its own 1.4x-radius circle) right up against its
+    // own child node. Floor depth-1 orbit distance so it always clears the
+    // halo regardless of how deep any one chain elsewhere happens to go.
+    nodes.forEach((d) => { if (d.depth === 1) d.y = Math.max(d.y, 115); });
 
     drawRings();
 

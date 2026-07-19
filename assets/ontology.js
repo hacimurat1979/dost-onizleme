@@ -1082,7 +1082,7 @@
   }
 
   const RADIUS_BY_ID = {
-    "dhat": 22,
+    "dhat": 34, // matches esma.js's "zat" root radius -- same node, same size in both graphs
     "sifat-asma": 15,
     "ayan-sabite": 14,
     "tecelli": 14,
