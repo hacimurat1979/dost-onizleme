@@ -50,11 +50,14 @@
   let esmaDataPromise = null;
   let built = false;
   let root = null;
-  let zoomLayer, linkGroup, relationGroup, nodeGroup, ringGroup;
+  let zatDatum = null;
+  let zoomLayer, linkGroup, relationGroup, nodeGroup, ringGroup, boundaryGroup, zatGroup;
   let zoomBehavior;
   let nodeById = new Map();
   let currentDetailNode = null;
   let currentDetailRelation = null;
+  let currentDetailIsZat = false;
+  let lastBoundaryRadius = 0;
 
   function fetchData() {
     if (esmaDataPromise) return esmaDataPromise;
@@ -75,8 +78,9 @@
   }
 
   function radiusFor(d) {
+    if (d.isZat) return 34;
     const depth = d.depth;
-    if (depth === 0) return 34;
+    if (depth === 0) return 34; // Allah -- the map's true center
     if (depth === 1) return 22;
     return Math.max(9, 16 - depth);
   }
@@ -97,7 +101,7 @@
     // only through its glow (the halo below), so its circle itself is left
     // the whitest tone possible rather than given a pole/layer color. Same
     // treatment as the ontology graph's "dhat" root node.
-    if (d.id === "zat") return "#ffffff";
+    if (d.isZat) return "#ffffff";
     // Allah -- the Name that gathers every Name in itself, emerging directly
     // from the Essence -- gets the site's own signature accent gold rather
     // than blending into the ordinary Kemal-pole tone shared by other names,
@@ -128,7 +132,7 @@
   // her zaman beyaz tutmak -- bu üç kutbun rengiyle de yeterli kontrastı
   // sağlıyor.
   function poleBadgeHtml(d) {
-    if (d.depth === 0) return "";
+    if (d.isZat) return "";
     const label = POLE_LABEL[d.data.pole];
     if (!label) return "";
     const bg = colorFor(d);
@@ -141,11 +145,16 @@
     return idx === -1 ? full : full.slice(0, idx);
   }
 
-  // Radial ("dairesel") düzen: İbn Arabî'nin İnşâü'd-Devâir'de tarif ettiği
-  // "feleklerin sûreti" gibi, merkezde Zât, dışa doğru iç içe mertebe halkaları.
+  // Radial ("dairesel") düzen. İbn Arabî'nin kendi ifadesiyle (bkz. "allah"
+  // düğümünün insight'ı): "Bütün isimler ... imam isimlere, imam isimler ...
+  // Allah ismine ... Allah ismi ise ... zata yönelir." Yani isimler Allah'a,
+  // Allah da Zât'a döner -- Zât ise (kendi özetinin dediği gibi) "her
+  // isimlendirmenin ötesinde," isimler arasında bir isim değil. Bu yüzden
+  // harita Allah'ı merkeze alır (Ism-i A'zam, bütün isimleri kendinde
+  // toplayan İsim); Zât ise halkaların dışında, haritanın kendisini saran
+  // bir çerçeve olarak durur -- kendi düğümü tepe noktasında, ayrı ve
+  // tıklanabilir.
   let outerRadius = 320;
-  let maxDepth = 1;
-  let radiusScale = d3.scaleSqrt().domain([0, 1]).range([0, 320]);
 
   function radialPoint(angle, radius) {
     const a = angle - Math.PI / 2;
@@ -165,21 +174,33 @@
   function buildGraph(data) {
     svg.selectAll("*").remove();
 
+    // Zât is excluded from the tree itself and rendered separately (see
+    // updateZatMarker) -- the ring system is rooted at "Allah" so it takes
+    // the map's true center. Allah's own `parent` (originally "zat", used
+    // when Zât WAS part of the tree) is cleared so stratify roots there.
+    zatDatum = data.nodes.find((n) => n.id === "zat");
+    const treeInput = data.nodes
+      .filter((n) => n.id !== "zat")
+      .map((n) => (n.id === "allah" ? Object.assign({}, n, { parent: undefined }) : n));
+
     root = d3.stratify()
       .id((d) => d.id)
-      .parentId((d) => d.parent)(data.nodes);
+      .parentId((d) => d.parent)(treeInput);
 
     nodeById = new Map();
     root.each((d) => nodeById.set(d.id, d));
+    nodeById.set("zat", { id: "zat", data: zatDatum, isZat: true });
 
     root.x0 = 0;
     root.y0 = 0;
 
     zoomLayer = svg.append("g").attr("class", "esma-canvas");
+    boundaryGroup = zoomLayer.append("g").attr("class", "esma-boundary-group");
     ringGroup = zoomLayer.append("g").attr("class", "esma-rings");
     relationGroup = zoomLayer.append("g").attr("class", "esma-relations");
     linkGroup = zoomLayer.append("g").attr("class", "esma-links");
     nodeGroup = zoomLayer.append("g").attr("class", "esma-nodes");
+    zatGroup = zoomLayer.append("g").attr("class", "esma-zat-group");
 
     const width = svg.node().clientWidth || 800;
     const height = svg.node().clientHeight || 600;
@@ -208,15 +229,74 @@
     .size([2 * Math.PI, 1])
     .separation((a, b) => (a.parent === b.parent ? 1.6 : 3.4) / Math.sqrt(a.depth || 1));
 
-  function drawRings() {
-    const depths = Array.from(new Set(root.descendants().map((d) => d.depth))).sort((a, b) => a - b);
-    const ringSel = ringGroup.selectAll("circle.esma-ring").data(depths, (d) => d);
+  function drawRings(ring1, ring2) {
+    const rings = [ring1, ring2];
+    const ringSel = ringGroup.selectAll("circle.esma-ring").data(rings, (d, i) => i);
     ringSel.exit().remove();
     ringSel.enter()
       .append("circle")
       .attr("class", "esma-ring")
       .merge(ringSel)
-      .attr("r", (depth) => radiusScale(depth));
+      .attr("r", (d) => d);
+  }
+
+  // Zât'ın kendi düğümü ağacın dışında olduğu için ayrı bir grup halinde
+  // çizilir: haritayı saran, sabit (nefes almayan) bir çerçeve dairesi +
+  // tepe noktasında (saat 12 yönü) kendi tıklanabilir işareti -- ontoloji
+  // grafiğindeki "dhat" düğümüyle aynı görsel dil (beyaz daire + altın
+  // nefes alan hale).
+  function updateZatMarker(boundaryRadius) {
+    lastBoundaryRadius = boundaryRadius;
+
+    const boundary = boundaryGroup.selectAll("circle.esma-boundary").data([boundaryRadius]);
+    boundary.enter()
+      .append("circle")
+      .attr("class", "esma-boundary")
+      .merge(boundary)
+      .attr("r", (d) => d);
+
+    const [zx, zy] = radialPoint(0, boundaryRadius);
+    const zatWrapper = { data: zatDatum, isZat: true };
+
+    const zatSel = zatGroup.selectAll("g.esma-zat-node").data([zatWrapper]);
+    const zatEnter = zatSel.enter().append("g")
+      .attr("class", "node esma-zat-node node--root")
+      .attr("tabindex", "0")
+      .attr("role", "button")
+      .attr("aria-label", () => tt(zatDatum.name))
+      .on("click", (event) => {
+        event.stopPropagation();
+        showZatDetail();
+      })
+      .on("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          event.stopPropagation();
+          showZatDetail();
+        }
+      })
+      .on("mouseenter", (event) => { showTooltip(zatWrapper, event); })
+      .on("mousemove", (event) => moveTooltip(event))
+      .on("mouseleave", () => hideTooltip())
+      .on("focus", (event) => { showTooltip(zatWrapper, event); })
+      .on("blur", () => hideTooltip());
+
+    zatEnter.append("circle").attr("class", "node-halo").attr("r", radiusFor(zatWrapper) * 1.4);
+    zatEnter.append("circle").attr("fill", colorFor(zatWrapper)).attr("r", radiusFor(zatWrapper));
+    zatEnter.append("circle").attr("class", "node-sheen").attr("r", radiusFor(zatWrapper));
+    zatEnter.append("text")
+      .attr("class", "node-label")
+      .attr("text-anchor", "middle")
+      .attr("transform", `translate(0,${radiusFor(zatWrapper) + 14})`)
+      .text(() => {
+        const full = tt(zatDatum.name);
+        const idx = full.indexOf(" (");
+        return idx === -1 ? full : full.slice(0, idx);
+      });
+
+    zatGroup.selectAll("g.esma-zat-node")
+      .classed("node--active", currentDetailIsZat)
+      .attr("transform", `translate(${zx},${zy})`);
   }
 
   function zoomToFit(animate) {
@@ -231,6 +311,14 @@
       y0 = Math.min(y0, cy);
       y1 = Math.max(y1, cy);
     });
+    // Zât's boundary frame + top marker enclose the whole map -- include
+    // them so the fit never crops the frame itself.
+    if (lastBoundaryRadius) {
+      x0 = Math.min(x0, -lastBoundaryRadius);
+      x1 = Math.max(x1, lastBoundaryRadius);
+      y0 = Math.min(y0, -lastBoundaryRadius - 34);
+      y1 = Math.max(y1, lastBoundaryRadius);
+    }
     x0 -= 70; x1 += 70; y0 -= 70; y1 += 70;
     const treeW = Math.max(1, x1 - x0);
     const treeH = Math.max(1, y1 - y0);
@@ -250,21 +338,36 @@
     const nodes = root.descendants();
     const links = root.links();
 
-    maxDepth = Math.max(1, d3.max(nodes, (d) => d.depth));
     const width = svg.node().clientWidth || 800;
     const height = svg.node().clientHeight || 600;
     outerRadius = Math.max(120, Math.min(width, height) / 2 - 40);
-    radiusScale = d3.scaleSqrt().domain([0, maxDepth]).range([0, outerRadius]);
-    nodes.forEach((d) => { d.y = radiusScale(d.depth); });
-    // A rare, single deep chain (Rab -> Hayy -> Alim -> Murid -> ...) pushes
-    // maxDepth well past the rest of the tree, which compresses the sqrt
-    // scale's inner depths -- at depth 1 this crowds the root's breathing
-    // halo (peaks at ~1.4x its own 1.4x-radius circle) right up against its
-    // own child node. Floor depth-1 orbit distance so it always clears the
-    // halo regardless of how deep any one chain elsewhere happens to go.
-    nodes.forEach((d) => { if (d.depth === 1) d.y = Math.max(d.y, 115); });
 
-    drawRings();
+    // Two true rings, matching Ibn Arabi's own three-way classification of
+    // the Names in the "allah" node's insight text (ring 1: the Names/
+    // groups directly under Allah -- er-Rahmân, er-Rahîm, er-Rab, el-Velî,
+    // and the Zâtî/Nispetî/Fiilî groupings; ring 2: the particular Names
+    // nested under those). A single rare chain (Hayy -> Âlim -> Mürîd ->
+    // Mütekellim -> Kâdir -> Cevâd -> Muksit) descends much deeper than
+    // anything else in the tree -- rather than force several more
+    // mostly-empty rings to fit it, it continues outward past ring 2 as its
+    // own spiraling "sequence of derivation" tail (each Name in the chain
+    // necessarily implying the next).
+    const ring1 = outerRadius * 0.42;
+    const ring2 = outerRadius * 0.74;
+    const tailStep = outerRadius * 0.11;
+    function radiusForDepth(depth) {
+      if (depth <= 0) return 0;
+      if (depth === 1) return ring1;
+      if (depth === 2) return ring2;
+      return ring2 + (depth - 2) * tailStep;
+    }
+    nodes.forEach((d) => { d.y = radiusForDepth(d.depth); });
+
+    const maxDepth = Math.max(2, d3.max(nodes, (d) => d.depth));
+    const boundaryRadius = Math.max(outerRadius * 1.1, radiusForDepth(maxDepth) + 50);
+
+    drawRings(ring1, ring2);
+    updateZatMarker(boundaryRadius);
 
     const nodeSet = new Set(nodes);
     const relations = (esmaData.relations || []).filter((r) => {
@@ -308,7 +411,6 @@
 
     const nodeEnter = node.enter().append("g")
       .attr("class", "node esma-node")
-      .classed("node--root", (d) => d.id === "zat")
       .attr("transform", () => `translate(${radialPoint(source.x0, source.y0).join(",")})`)
       .attr("tabindex", "0")
       .attr("role", "button")
@@ -485,7 +587,14 @@
 
   function relatedNamesHtml(d) {
     const rows = [];
-    if (d.parent) rows.push({ other: d.parent, arrow: "↑", note: I18n.pick3(d.parent.data.short) });
+    if (d.id === "allah") {
+      // Zât sits outside the tree now (see buildGraph), so Allah's "return
+      // to the Essence" -- the very cascade this map's intro describes --
+      // has to be added by hand rather than found via d.parent.
+      rows.push({ other: { data: zatDatum }, arrow: "↑", note: I18n.pick3(zatDatum.short) });
+    } else if (d.parent) {
+      rows.push({ other: d.parent, arrow: "↑", note: I18n.pick3(d.parent.data.short) });
+    }
     const kids = d.children || d._children || [];
     kids.forEach((c) => rows.push({ other: c, arrow: "↓", note: I18n.pick3(c.data.short) }));
     const relations = (esmaData.relations || []).filter(
@@ -517,6 +626,7 @@
   function showDetail(d) {
     currentDetailNode = d;
     currentDetailRelation = null;
+    currentDetailIsZat = false;
     const n = d.data;
     const hint = d._children
       ? `<p class="detail-resonance">${tt({ tr: "Devamı için düğüme tekrar tıklayın.", en: "Click the node again to reveal what follows.", pt: "Clique no nó novamente para revelar o que se segue." })}</p>`
@@ -534,12 +644,43 @@
       ${relatedNamesHtml(d)}
     `;
     detailPanel.hidden = false;
-    nodeGroup.selectAll("g.esma-node").classed("node--active", (n) => n.id === d.id);
+    nodeGroup.selectAll("g.esma-node").classed("node--active", (nd) => nd.id === d.id);
+    zatGroup.selectAll("g.esma-zat-node").classed("node--active", false);
+  }
+
+  function showZatDetail() {
+    currentDetailNode = null;
+    currentDetailRelation = null;
+    currentDetailIsZat = true;
+    const n = zatDatum;
+    const allahNode = nodeById.get("allah");
+    const related = allahNode ? `
+      <p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "İlişkiler", en: "Relations", pt: "Relações" })}</p>
+      <div class="detail-block detail-block--edge">
+        <h3>↓ ${I18n.pick3(allahNode.data.name)}</h3>
+        <p>${I18n.pick3(allahNode.data.short)}</p>
+      </div>
+    ` : "";
+    detailContent.innerHTML = `
+      <p class="detail-eyebrow">${tt({ tr: "Esmâü'l-Hüsnâ", en: "The Beautiful Names", pt: "Os Belos Nomes" })}</p>
+      <h2 class="detail-title">${I18n.pick3(n.name)}</h2>
+      <div class="detail-block detail-block--ibnarabi">
+        <h3>${I18n.pick3(n.short)}</h3>
+        <p>${linkify(I18n.pick3(n.summary), "esma", "zat")}</p>
+      </div>
+      ${analogyHtml(n.analogy)}
+      ${insightsHtml(n.insights, n.sources, "zat")}
+      ${related}
+    `;
+    detailPanel.hidden = false;
+    nodeGroup.selectAll("g.esma-node").classed("node--active", false);
+    zatGroup.selectAll("g.esma-zat-node").classed("node--active", true);
   }
 
   function showRelationDetail(r) {
     currentDetailNode = null;
     currentDetailRelation = r;
+    currentDetailIsZat = false;
     const from = nodeById.get(r.from);
     const to = nodeById.get(r.to);
     detailContent.innerHTML = `
@@ -552,6 +693,7 @@
     `;
     detailPanel.hidden = false;
     nodeGroup.selectAll("g.esma-node").classed("node--active", false);
+    zatGroup.selectAll("g.esma-zat-node").classed("node--active", false);
   }
 
   function render() {
@@ -560,9 +702,14 @@
     relationGroup.selectAll("path.esma-relation title").text((r) => I18n.pick3(r.label));
     if (currentDetailNode) showDetail(currentDetailNode);
     else if (currentDetailRelation) showRelationDetail(currentDetailRelation);
+    else if (currentDetailIsZat) showZatDetail();
   }
 
   function revealPathTo(id) {
+    if (id === "zat") {
+      showZatDetail();
+      return;
+    }
     const target = nodeById.get(id);
     if (!target) return;
     let n = target.parent;

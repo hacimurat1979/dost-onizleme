@@ -616,6 +616,21 @@ html {
   pointer-events: none;
 }
 
+/* Zât's frame -- encloses the whole map from outside the ring system,
+   deliberately static (no breathing animation, unlike Zât's own marker):
+   a quiet boundary, not another animated focal point. */
+.esma-boundary {
+  fill: none;
+  stroke: var(--series-theme);
+  stroke-width: 1.5px;
+  stroke-dasharray: 2 7;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.viz-root[data-theme="dark"] .esma-boundary {
+  opacity: 0.45;
+}
+
 .esma-link {
   fill: none;
   stroke: var(--gridline);
