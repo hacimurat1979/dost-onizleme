@@ -54,11 +54,18 @@
 
   --surface-1:      #fcfcfb;
   --page-plane:     #f9f9f7;
-  --text-primary:   #0b0b0b;
+  --text-primary:   #1a1a1a;
   --text-secondary: #52514e;
   --text-muted:     #898781;
   --gridline:       #e1e0d9;
   --border:         rgba(11,11,11,0.10);
+
+  /* Separate from --series-theme/--series-hal-hayret below: those are tuned
+     by eye for decorative use (node fills, breathing-glow halo) and read
+     well on a dark background, but fall under WCAG's 3:1 UI-contrast floor
+     for focus/hover indicators on this light page-plane (~2.1-2.5:1). This
+     token is for interactive-state color only. */
+  --accent-interactive: #8a6100;
 
   --series-ibnarabi:  #2a78d6; /* blue */
   --series-theme:     #eda100; /* yellow / gold */
@@ -97,11 +104,16 @@
 .viz-root[data-theme="dark"] {
   --surface-1:      #1a1a19;
   --page-plane:     #0d0d0d;
-  --text-primary:   #ffffff;
+  --text-primary:   #ede9e2;
   --text-secondary: #c3c2b7;
   --text-muted:     #898781;
   --gridline:       #2c2c2a;
   --border:         rgba(255,255,255,0.10);
+
+  /* Dark mode's --series-theme is already well past the 3:1 UI-contrast
+     floor (6.3:1+), so this is just an alias -- kept so both themes can use
+     the same --accent-interactive token for focus/hover states. */
+  --accent-interactive: #c98500;
 
   --series-ibnarabi:  #3987e5;
   --series-theme:     #c98500;
@@ -151,7 +163,7 @@
 
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--series-hal-hayret, #e0b545);
+  outline: 2px solid var(--accent-interactive, #e0b545);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -307,8 +319,8 @@ html {
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 .theme-toggle:hover {
-  color: var(--series-theme);
-  border-color: var(--series-theme);
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
 }
 .theme-toggle__icon { display: none; }
 [data-theme="light"] .theme-toggle__icon--moon { display: block; }
@@ -375,8 +387,8 @@ html {
   transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 .graph-recenter:hover {
-  color: var(--series-theme);
-  border-color: var(--series-theme);
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
   transform: rotate(90deg);
 }
 .view-status {
@@ -424,8 +436,8 @@ html {
 }
 .view-status__retry:hover,
 .view-status__retry:focus-visible {
-  color: var(--series-theme);
-  border-color: var(--series-theme);
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
 }
 @media (prefers-reduced-motion: reduce) {
   .view-status__spinner { animation: none; border-top-color: var(--border); }
@@ -474,7 +486,7 @@ html {
 }
 .start-hint__go:hover,
 .start-hint__go:focus-visible {
-  background: var(--series-theme);
+  background: var(--accent-interactive);
 }
 .start-hint__close {
   background: transparent;
@@ -519,8 +531,8 @@ html {
 }
 .graph-hint:hover,
 .graph-hint:focus-visible {
-  color: var(--series-theme);
-  border-color: var(--series-theme);
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
 }
 .graph-back {
   position: absolute;
@@ -541,8 +553,8 @@ html {
 }
 .graph-back:hover,
 .graph-back:focus-visible {
-  color: var(--series-theme);
-  border-color: var(--series-theme);
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
   transform: rotate(-24deg);
 }
 @media (prefers-reduced-motion: reduce) {
@@ -754,8 +766,8 @@ html {
 }
 .sorular-question-row:hover,
 .sorular-question-row:focus-visible {
-  border-color: var(--series-theme);
-  background: color-mix(in srgb, var(--series-theme) 8%, transparent);
+  border-color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
 }
 .sorular-question-row__arrow {
   color: var(--text-secondary);
@@ -774,7 +786,7 @@ html {
   font-size: 0.75rem;
 }
 .sorular-back-link:hover {
-  color: var(--series-theme);
+  color: var(--accent-interactive);
 }
 
 /* --- Fütûhât Atlas --- */
@@ -847,8 +859,8 @@ button.futuhat-part-chip {
 }
 
 button.futuhat-part-chip:hover {
-  color: var(--series-theme);
-  border-color: var(--series-theme);
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
 }
 
 .futuhat-part-chip--current {
@@ -942,8 +954,8 @@ button.futuhat-part-chip:hover {
 
 .futuhat-toolbar__btn:hover,
 .futuhat-toolbar__btn:focus-visible {
-  color: var(--series-theme);
-  border-color: var(--series-theme);
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
 }
 
 .futuhat-toolbar__btn--icon {
@@ -989,6 +1001,7 @@ button.futuhat-part-chip:hover {
 
 .futuhat-hero__title {
   font-family: var(--font-display);
+  font-weight: 600;
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   margin: 0 0 14px;
 }
@@ -1034,7 +1047,7 @@ button.futuhat-part-chip:hover {
 
 .futuhat-tree--clickable:hover,
 .futuhat-tree--clickable:focus-visible {
-  background: color-mix(in srgb, var(--series-theme) 6%, transparent);
+  background: color-mix(in srgb, var(--accent-interactive) 6%, transparent);
   outline: none;
 }
 
@@ -1100,6 +1113,7 @@ button.futuhat-part-chip:hover {
 
 .futuhat-section__heading {
   font-family: var(--font-display);
+  font-weight: 600;
   font-size: 1.3rem;
   margin: 0 0 14px;
 }
@@ -1230,7 +1244,7 @@ button.futuhat-part-chip:hover {
 
 .futuhat-stats__item:hover,
 .futuhat-stats__item:focus-visible {
-  color: var(--series-theme);
+  color: var(--accent-interactive);
 }
 
 .futuhat-stats__label {
@@ -1256,7 +1270,7 @@ button.futuhat-part-chip:hover {
 
 .futuhat-stats__item:hover .futuhat-stats__badge,
 .futuhat-stats__item:focus-visible .futuhat-stats__badge {
-  background-color: var(--series-theme);
+  background-color: var(--accent-interactive);
   color: var(--surface-1);
 }
 
@@ -1320,7 +1334,7 @@ button.futuhat-part-chip:hover {
 }
 
 .futuhat-popup__close:hover {
-  color: var(--series-theme);
+  color: var(--accent-interactive);
 }
 
 .futuhat-popup__list {
@@ -1349,7 +1363,7 @@ button.futuhat-part-chip:hover {
 
 .futuhat-popup__row:hover,
 .futuhat-popup__row:focus-visible {
-  background: color-mix(in srgb, var(--series-theme) 8%, transparent);
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
 }
 
 .futuhat-popup__row-title {
@@ -1790,8 +1804,8 @@ html:has(.detail-panel:not([hidden])) {
 }
 .detail-panel__print:hover,
 .detail-panel__print:focus-visible {
-  color: var(--series-theme);
-  border-color: var(--series-theme);
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
 }
 #detail-panel:not([hidden]) ~ .detail-panel__print {
   display: flex;
@@ -1980,7 +1994,7 @@ html:has(.detail-panel:not([hidden])) {
 }
 .cross-link:hover { border-bottom-style: solid; }
 .cross-link:focus-visible {
-  outline: 2px solid var(--series-theme);
+  outline: 2px solid var(--accent-interactive);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -2874,7 +2888,7 @@ html[data-contrast="high"] .detail-title {
 }
 .detail-breadcrumb__item:hover,
 .detail-breadcrumb__item:focus-visible {
-  color: var(--series-theme);
+  color: var(--accent-interactive);
   text-decoration-color: currentColor;
 }
 .detail-breadcrumb__item--current {
@@ -2922,6 +2936,7 @@ html[data-contrast="high"] .detail-title {
 
 #detail-content h2,
 #detail-content h3 {
+  font-weight: 600;
   font-size: calc(1.4rem * var(--detail-font-scale));
   line-height: calc(1.3 * var(--detail-line-height));
   margin-bottom: 12px;
@@ -3171,8 +3186,8 @@ html[data-contrast="high"] .detail-title {
 }
 
 .book-btn--extract:hover {
-  background: var(--series-theme);
-  border-color: var(--series-theme);
+  background: var(--accent-interactive);
+  border-color: var(--accent-interactive);
 }
 
 @media (max-width: 640px) {
@@ -3731,7 +3746,7 @@ html[data-contrast="high"] .detail-title {
 .bookmap-card:hover,
 .bookmap-card:focus-visible {
   transform: translateY(-3px);
-  border-color: var(--series-theme);
+  border-color: var(--accent-interactive);
 }
 
 .bookmap-card__badge {
@@ -3833,7 +3848,7 @@ html[data-contrast="high"] .detail-title {
 
 .bookmap-detail__close:hover {
   color: var(--text-primary);
-  border-color: var(--series-theme);
+  border-color: var(--accent-interactive);
 }
 
 .bookmap-tabs {
@@ -3909,8 +3924,8 @@ html[data-contrast="high"] .detail-title {
 }
 
 .bookmap-concept-tag:hover {
-  background: var(--series-theme);
-  border-color: var(--series-theme);
+  background: var(--accent-interactive);
+  border-color: var(--accent-interactive);
   color: #1a1a19;
 }
 
@@ -4020,7 +4035,7 @@ html[data-contrast="high"] .detail-title {
 
 .search-toggle:hover {
   color: var(--text-primary);
-  border-color: var(--series-theme);
+  border-color: var(--accent-interactive);
 }
 
 .surprise-toggle {
@@ -4039,7 +4054,7 @@ html[data-contrast="high"] .detail-title {
 
 .surprise-toggle:hover {
   color: var(--text-primary);
-  border-color: var(--series-theme);
+  border-color: var(--accent-interactive);
 }
 
 .surprise-toggle:active {
@@ -4060,11 +4075,11 @@ html[data-contrast="high"] .detail-title {
   transition: outline-color 0.15s ease, background-color 0.15s ease;
 }
 .dost-edit-mode [data-dost-editable]:hover {
-  outline-color: color-mix(in srgb, var(--series-theme) 55%, transparent);
+  outline-color: color-mix(in srgb, var(--accent-interactive) 55%, transparent);
 }
 .dost-edit-mode [data-dost-editable]:focus {
-  outline: 1px solid var(--series-theme);
-  background-color: color-mix(in srgb, var(--series-theme) 8%, transparent);
+  outline: 1px solid var(--accent-interactive);
+  background-color: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
 }
 
 .dost-edit-panel {
@@ -4135,7 +4150,7 @@ html[data-contrast="high"] .detail-title {
 }
 .dost-edit-panel__menu button:hover,
 .dost-edit-panel__menu button:focus-visible {
-  border-color: var(--series-theme);
+  border-color: var(--accent-interactive);
 }
 
 .search-panel {
@@ -4337,7 +4352,7 @@ html[data-contrast="high"] .detail-title {
 .terim-card:hover,
 .terim-card:focus-visible {
   transform: translateY(-2px);
-  border-color: var(--series-theme);
+  border-color: var(--accent-interactive);
 }
 
 .terim-card__title {
@@ -4471,7 +4486,7 @@ html[data-contrast="high"] .detail-title {
 
 .term-diagram-svg-wrap:hover,
 .term-diagram-svg-wrap:focus-visible {
-  background: color-mix(in srgb, var(--series-theme) 8%, transparent);
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
   outline: none;
 }
 
@@ -4691,7 +4706,7 @@ html[data-contrast="high"] .detail-title {
 
 .cizim-card__svg-wrap:hover,
 .cizim-card__svg-wrap:focus-visible {
-  background: color-mix(in srgb, var(--series-theme) 8%, transparent);
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
   outline: none;
 }
 
