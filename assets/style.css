@@ -56,7 +56,7 @@
   --page-plane:     #f9f9f7;
   --text-primary:   #1a1a1a;
   --text-secondary: #52514e;
-  --text-muted:     #898781;
+  --text-muted:     #7c7a72;
   --gridline:       #e1e0d9;
   --border:         rgba(11,11,11,0.10);
 
@@ -158,13 +158,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .terim-card, .insight, .detail-panel:not([hidden]) { animation: none !important; }
+  .terim-card, .insight, .detail-panel:not([hidden]), .start-hint { animation: none !important; }
 }
 
 button:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--accent-interactive, #e0b545);
   outline-offset: 2px;
+}
+
+a:focus-visible:not([class]) {
   border-radius: 4px;
 }
 
@@ -174,6 +177,11 @@ html, body {
   background: var(--page-plane);
   color: var(--text-primary);
   font-family: var(--font-body);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html, body { transition: none; }
 }
 
 html {
@@ -458,8 +466,17 @@ html {
   gap: 12px;
   box-shadow: 0 4px 18px rgba(20,15,8,0.12);
   z-index: 3;
+  animation: start-hint-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .start-hint[hidden] { display: none; }
+
+/* Keeps the base rule's translateX(-50%) centering intact through the
+   entrance -- reusing the shared fade-up-in keyframe as-is would replace
+   it with a translateY-only transform for the animation's duration. */
+@keyframes start-hint-in {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
 .start-hint__text {
   margin: 0;
   font-size: 0.82rem;
@@ -812,7 +829,7 @@ html {
   color: var(--text-muted);
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   font-size: 0.75rem;
 }
 .sorular-back-link:hover {
@@ -842,7 +859,7 @@ html {
 
 .futuhat-parts__cilt {
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   font-size: 0.68rem;
   color: var(--text-muted);
   margin: 0 0 6px;
@@ -967,8 +984,8 @@ button.futuhat-part-chip:hover {
 }
 
 .futuhat-toolbar__btn {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: 1px solid var(--border);
   background: var(--surface-1);
@@ -1023,7 +1040,7 @@ button.futuhat-part-chip:hover {
 
 .futuhat-hero__eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.06em;
   font-size: 0.72rem;
   color: var(--text-muted);
   margin: 0 0 10px;
@@ -1248,7 +1265,7 @@ button.futuhat-part-chip:hover {
 
 .futuhat-stats__heading {
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   font-size: 0.68rem;
   color: var(--text-muted);
   margin: 0 0 12px;
@@ -1364,6 +1381,7 @@ button.futuhat-part-chip:hover {
   color: var(--text-secondary);
   cursor: pointer;
   padding: 2px 6px;
+  transition: color 0.2s ease;
 }
 
 .futuhat-popup__close:hover {
@@ -1500,7 +1518,7 @@ li.futuhat-pulse,
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.06em;
   color: var(--text-secondary);
   cursor: pointer;
 }
@@ -1784,8 +1802,20 @@ li.futuhat-pulse,
   overflow-y: auto;
   z-index: 55;
   animation: detail-panel-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  /* This is meant to be the one visible scrollbar next to lists that hide
+     their own (see .terimler-wrap's comment) -- so instead of hiding it,
+     give it a thin, custom-colored track/thumb matching the site's own
+     palette rather than leaving the browser's bare default in view. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
 .detail-panel[hidden] { display: none; }
+.detail-panel::-webkit-scrollbar { width: 8px; }
+.detail-panel::-webkit-scrollbar-track { background: transparent; }
+.detail-panel::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 8px;
+}
 
 @keyframes detail-panel-in {
   from { opacity: 0; transform: translateX(14px); }
@@ -1813,6 +1843,11 @@ html:has(.detail-panel:not([hidden])) {
   z-index: 56;
   align-items: center;
   justify-content: center;
+  transition: color 0.2s ease;
+}
+.detail-panel__close:hover,
+.detail-panel__close:focus-visible {
+  color: var(--accent-interactive);
 }
 #detail-panel:not([hidden]) ~ .detail-panel__close {
   display: flex;
@@ -1855,7 +1890,7 @@ html:has(.detail-panel:not([hidden])) {
 .detail-eyebrow {
   font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
   margin: 0 0 12px;
 }
@@ -1906,7 +1941,7 @@ html:has(.detail-panel:not([hidden])) {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--series-theme);
+  color: var(--accent-interactive);
   font-weight: 600;
   margin: 0 0 6px;
   font-family: var(--font-body);
@@ -1998,7 +2033,7 @@ html:has(.detail-panel:not([hidden])) {
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--series-theme);
+  color: var(--accent-interactive);
   list-style: none;
 }
 .insight summary::-webkit-details-marker { display: none; }
@@ -2021,9 +2056,9 @@ html:has(.detail-panel:not([hidden])) {
   font-style: normal;
 }
 .cross-link {
-  color: var(--series-theme);
+  color: var(--accent-interactive);
   text-decoration: none;
-  border-bottom: 1px dotted var(--series-theme);
+  border-bottom: 1px dotted var(--accent-interactive);
 }
 .cross-link:hover { border-bottom-style: solid; }
 .cross-link:focus-visible {
@@ -2450,13 +2485,12 @@ html:has(.detail-panel:not([hidden])) {
   border-top: 1px solid var(--gridline);
 }
 
-/* Detail panel metadata block */
+/* Detail panel metadata block -- inherits the shared .detail-block
+   radius/padding/margin so it reads as the same component family as
+   .detail-block--ibnarabi/--daphne, only the accent color differs. */
 .detail-block--metadata {
   background: var(--page-plane);
-  border-left: 3px solid var(--series-ibnarabi);
-  padding: 12px 14px;
-  margin: 12px 0;
-  border-radius: 4px;
+  border-left: 4px solid var(--series-ibnarabi);
 }
 
 .detail-metadata__category {
@@ -2949,16 +2983,13 @@ html[data-contrast="high"] .detail-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.typography-btn:hover {
-  background: rgba(20, 15, 8, 0.04);
-  border-color: var(--text-secondary);
-}
-
-.viz-root[data-theme="dark"] .typography-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+.typography-btn:hover,
+.typography-btn:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
 }
 
 /* Reading Mode Typography */
@@ -3929,7 +3960,7 @@ html[data-contrast="high"] .detail-title {
   display: block;
   font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
   margin-bottom: 4px;
 }
@@ -3956,7 +3987,8 @@ html[data-contrast="high"] .detail-title {
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.bookmap-concept-tag:hover {
+.bookmap-concept-tag:hover,
+.bookmap-concept-tag:focus-visible {
   background: var(--accent-interactive);
   border-color: var(--accent-interactive);
   color: #1a1a19;
@@ -3982,7 +4014,8 @@ html[data-contrast="high"] .detail-title {
   border-radius: 50%;
   background: hsl(var(--tag-hue) 38% 42%);
 }
-.bookmap-concept-tag--group:hover {
+.bookmap-concept-tag--group:hover,
+.bookmap-concept-tag--group:focus-visible {
   background: hsl(var(--tag-hue) 34% 46% / 0.28);
   border-color: hsl(var(--tag-hue) 34% 40% / 0.7);
   color: var(--text-primary);
@@ -4067,7 +4100,7 @@ html[data-contrast="high"] .detail-title {
 }
 
 .search-toggle:hover {
-  color: var(--text-primary);
+  color: var(--accent-interactive);
   border-color: var(--accent-interactive);
 }
 
@@ -4086,7 +4119,7 @@ html[data-contrast="high"] .detail-title {
 }
 
 .surprise-toggle:hover {
-  color: var(--text-primary);
+  color: var(--accent-interactive);
   border-color: var(--accent-interactive);
 }
 
@@ -4223,6 +4256,11 @@ html[data-contrast="high"] .detail-title {
   font-size: 1.05rem;
   padding: 18px 20px;
   outline: none;
+  transition: border-bottom-color 0.2s ease;
+}
+
+.search-panel__input:focus {
+  border-bottom-color: var(--accent-interactive);
 }
 
 .search-panel__results {
@@ -4237,7 +4275,7 @@ html[data-contrast="high"] .detail-title {
   padding: 10px 20px 4px;
   font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
 }
 .search-panel__group-dot {
@@ -4435,11 +4473,20 @@ html[data-contrast="high"] .detail-title {
   box-shadow: 0 8px 24px rgba(20, 15, 8, 0.18);
   pointer-events: none;
   transform: translate(-50%, calc(-100% - 14px));
-  transition: opacity 0.12s ease;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.12s ease, visibility 0s linear 0s;
 }
 
+/* [hidden] would normally collapse straight to display:none (no
+   transition possible) -- overriding display keeps the tooltip in the
+   render tree just long enough for the opacity fade to actually play,
+   with visibility flipped only once that fade completes. */
 .node-hover-tip[hidden] {
-  display: none;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.12s ease, visibility 0s linear 0.12s;
 }
 .node-hover-tip--fixed {
   position: fixed;
@@ -4498,7 +4545,7 @@ html[data-contrast="high"] .detail-title {
     repeating-linear-gradient(24deg, color-mix(in srgb, var(--text-primary) 2%, transparent) 0px, transparent 1px, transparent 4px),
     color-mix(in srgb, var(--series-theme) 4%, var(--page-plane));
   border: 1px solid color-mix(in srgb, var(--series-theme) 28%, var(--border));
-  border-radius: 4px;
+  border-radius: 12px;
   padding: 16px 18px 12px;
 }
 
@@ -4789,6 +4836,7 @@ html[data-contrast="high"] .detail-title {
   width: 40px;
   height: 40px;
   border-radius: 999px;
+  transition: background-color 0.15s ease;
 }
 
 .cizim-lightbox__close:hover {
