@@ -301,6 +301,27 @@
       .attr("transform", `translate(${zx},${zy})`);
   }
 
+  // For a wide hub (e.g. the Hundred Divine Ranks group, whose children fan
+  // out across most of the circle), fitting the whole cluster's bounding
+  // box into view caps the pan/zoom scale near 1x -- the box is already
+  // nearly as wide as the full map. Panning alone can't make the focused
+  // cluster read as "brought forward" in that case, so the cluster's own
+  // nodes are additionally scaled up in place (via the node group's own
+  // transform, after its translate) -- this is what actually delivers the
+  // "büyütüp" (enlarge) half of the request, independent of how much the
+  // pan/zoom can fit.
+  const FOCUS_NODE_SCALE = 1.4;
+
+  function focusedClusterIds() {
+    return focusedNode ? new Set(focusedNode.descendants().map((n) => n.id)) : null;
+  }
+
+  function nodeTransform(d, clusterIds) {
+    const [cx, cy] = radialPoint(d.x, d.y);
+    const scaled = clusterIds && clusterIds.has(d.id);
+    return `translate(${cx},${cy})${scaled ? ` scale(${FOCUS_NODE_SCALE})` : ""}`;
+  }
+
   function zoomToBox(nodes, animate, margin, maxScaleCap) {
     const width = svg.node().clientWidth || 800;
     const height = svg.node().clientHeight || 600;
@@ -473,10 +494,11 @@
       .attr("text-anchor", "middle")
       .text((d) => (d._children ? "+" : ""));
 
+    const clusterIds = focusedClusterIds();
     node.merge(nodeEnter)
       .transition().duration(300)
       .style("opacity", 1)
-      .attr("transform", (d) => `translate(${radialPoint(d.x, d.y).join(",")})`);
+      .attr("transform", (d) => nodeTransform(d, clusterIds));
 
     node.merge(nodeEnter).select("text.node-label")
       .attr("text-anchor", (d) => (d.depth === 0 ? "middle" : (d.x < Math.PI ? "start" : "end")))
@@ -529,9 +551,23 @@
       .classed("esma-node--focused", (n) => n.id === focusedNode.id);
   }
 
+  // applyFocusClasses() only toggles CSS (dimmed/opacity); when a focus
+  // change is driven through toggle() -> update(), the node scale is
+  // already baked into that same position transition via nodeTransform(),
+  // so no separate call is needed there. But unfocusing via the SVG
+  // background, the recenter button, or Allah's own root-toggle never runs
+  // update() -- this is the one place those paths need to shrink the
+  // previously-focused cluster's nodes back down explicitly.
+  function resetFocusTransforms(animate) {
+    const sel = nodeGroup.selectAll("g.esma-node");
+    const target = animate ? sel.transition().duration(350) : sel;
+    target.attr("transform", (d) => nodeTransform(d, null));
+  }
+
   function unfocusNode(animate) {
     focusedNode = null;
     applyFocusClasses();
+    resetFocusTransforms(animate);
     zoomToFit(animate);
   }
 
