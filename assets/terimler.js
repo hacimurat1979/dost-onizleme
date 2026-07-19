@@ -348,7 +348,7 @@
       })
       .join("");
     return `
-      <p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "Grup Çizimi", en: "Group Diagram", pt: "Diagrama do Grupo" })}</p>
+      <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Grup Çizimi", en: "Group Diagram", pt: "Diagrama do Grupo" })}</p>
       ${DIAGRAM_DEFS}
       <div class="term-diagram-row term-diagram-row--panel">${cards}</div>
     `;
@@ -451,7 +451,7 @@
     const chips = related
       .map((r) => `<button class="bookmap-concept-tag bookmap-concept-tag--group" data-term="${r.id}" style="--tag-hue:${groupHue(r.group)}">${tt(r.title)}</button>`)
       .join("");
-    return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "İlişkili Terimler", en: "Related Terms", pt: "Termos Relacionados" })}</p>
+    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "İlişkili Terimler", en: "Related Terms", pt: "Termos Relacionados" })}</p>
       <div class="bookmap-concept-tags">${chips}</div>`;
   }
 
@@ -466,7 +466,7 @@
         </div>`
       )
       .join("");
-    return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "Çelişen Yorumlar", en: "Differing Readings", pt: "Leituras Divergentes" })}</p>
+    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Çelişen Yorumlar", en: "Differing Readings", pt: "Leituras Divergentes" })}</p>
       <div class="divergent-views">${cards}</div>
       ${t.celisen_yorumlar_not ? `<p class="divergent-views__not">${linkify(tt(t.celisen_yorumlar_not), "terimler", t.id)}</p>` : ""}`;
   }
@@ -502,7 +502,7 @@
     const chips = links
       .map((l) => `<button class="bookmap-concept-tag bookmap-concept-tag--group" data-view="${l.view}" data-id="${l.id}" style="--tag-hue:${VIEW_HUE[l.view] !== undefined ? VIEW_HUE[l.view] : 40}">${tt(VIEW_LABEL[l.view] || {})} → ${l.id}</button>`)
       .join("");
-    return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "Haritada Gör", en: "See on the Map", pt: "Ver no Mapa" })}</p>
+    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Haritada Gör", en: "See on the Map", pt: "Ver no Mapa" })}</p>
       <div class="bookmap-concept-tags">${chips}</div>`;
   }
 

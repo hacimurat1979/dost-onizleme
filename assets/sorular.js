@@ -327,7 +327,7 @@
         </button>
       `).join("");
       return `
-        ${isSingleCategory ? "" : `<p class="detail-eyebrow" style="margin-top:18px;">${I18n.pick3(cat.name)}</p>`}
+        ${isSingleCategory ? "" : `<p class="detail-eyebrow detail-eyebrow--section">${I18n.pick3(cat.name)}</p>`}
         <div class="sorular-question-list">${rows}</div>
       `;
     }).join("");

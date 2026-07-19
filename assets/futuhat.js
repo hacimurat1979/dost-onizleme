@@ -611,6 +611,22 @@
   function renderParts() {
     if (!partsEl) return;
     const cilts = futuhatData.book.cilts || [];
+    // The list was one long unbroken scroll of every kısım chip in every
+    // cilt at once -- collapsing each cilt into its own <details> (native,
+    // so it's keyboard/screen-reader accessible for free, same pattern as
+    // .insight elsewhere) keeps the whole book navigable without forcing
+    // a wall of chips. The cilt holding the currently-open part starts
+    // expanded; if none is open yet, the last cilt with any read parts is
+    // (most likely to be where the reader left off).
+    const currentPart = futuhatData.parts.find((p) => p.id === activePartId);
+    const currentCilt = currentPart ? currentPart.cilt : null;
+    let fallbackCilt = null;
+    cilts.forEach((c) => {
+      const hasAny = futuhatData.parts.some((p) => p.cilt === c.cilt);
+      if (hasAny) fallbackCilt = c.cilt;
+    });
+    const openCilt = currentCilt !== null ? currentCilt : fallbackCilt;
+
     partsEl.innerHTML = cilts
       .map((c) => {
         const kisimlar = Array.from({ length: c.kisimEnd - c.kisimStart + 1 }, (_, i) => c.kisimStart + i);
@@ -624,7 +640,10 @@
             return `<span class="futuhat-part-chip futuhat-part-chip--soon" title="${tt({ tr: "Yakında", en: "Coming soon", pt: "Em breve" })}">${roman(no)}</span>`;
           })
           .join("");
-        return `<span class="futuhat-parts__cilt">${tt({ tr: "Cilt " + CILT_ROMAN[c.cilt], en: "Volume " + CILT_ROMAN[c.cilt], pt: "Volume " + CILT_ROMAN[c.cilt] })}${progressRingHtml(doneCount, kisimlar.length)}</span>${chips}`;
+        return `<details class="futuhat-cilt-group"${c.cilt === openCilt ? " open" : ""}>
+          <summary class="futuhat-parts__cilt">${tt({ tr: "Cilt " + CILT_ROMAN[c.cilt], en: "Volume " + CILT_ROMAN[c.cilt], pt: "Volume " + CILT_ROMAN[c.cilt] })}${progressRingHtml(doneCount, kisimlar.length)}</summary>
+          <div class="futuhat-cilt-group__chips">${chips}</div>
+        </details>`;
       })
       .join("");
     partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: "Cilt III–XVIII yakında", en: "Volumes III–XVIII coming soon", pt: "Volumes III–XVIII em breve" })}</span>`;
@@ -898,6 +917,8 @@
   function showToast(message) {
     const toast = document.createElement("div");
     toast.className = "futuhat-toast";
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
     toast.textContent = message;
     document.body.appendChild(toast);
     requestAnimationFrame(() => toast.classList.add("futuhat-toast--visible"));
@@ -915,6 +936,9 @@
       partsEl.querySelectorAll(".futuhat-part-chip").forEach((chip) => {
         chip.classList.toggle("futuhat-part-chip--current", chip.dataset.id === id);
       });
+      const currentChip = partsEl.querySelector(`.futuhat-part-chip[data-id="${id}"]`);
+      const containingGroup = currentChip && currentChip.closest("details.futuhat-cilt-group");
+      if (containingGroup) containingGroup.open = true;
     }
     renderPart(part);
     if (window.__dostNav) window.__dostNav.setHash("futuhat", id);

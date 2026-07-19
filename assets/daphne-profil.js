@@ -230,7 +230,7 @@
       <div class="detail-block detail-block--daphne">
         <p>${tt(param.note)}</p>
       </div>
-      ${related ? `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "İlgili Yazılar", en: "Related Articles", pt: "Textos Relacionados" })}</p><div class="bookmap-concept-tags">${related}</div>` : ""}
+      ${related ? `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "İlgili Yazılar", en: "Related Articles", pt: "Textos Relacionados" })}</p><div class="bookmap-concept-tags">${related}</div>` : ""}
     `;
     detailContent.querySelectorAll("[data-url]").forEach((btn) => {
       btn.addEventListener("click", () => window.open(btn.dataset.url, "_blank", "noopener"));

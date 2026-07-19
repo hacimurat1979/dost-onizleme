@@ -59,6 +59,8 @@
   let currentDetailIsZat = false;
   let lastBoundaryRadius = 0;
   let focusedNode = null;
+  let detailHistory = [];
+  let suppressHistoryPush = false;
 
   function fetchData() {
     if (esmaDataPromise) return esmaDataPromise;
@@ -98,11 +100,9 @@
   }
 
   function colorFor(d) {
-    // Zât is the one node whose own "color" is unknowable -- it is known
-    // only through its glow (the halo below), so its circle itself is left
-    // the whitest tone possible rather than given a pole/layer color. Same
-    // treatment as the ontology graph's "dhat" root node.
-    if (d.isZat) return "#ffffff";
+    // Same treatment as the ontology graph's "dhat" root node -- see
+    // DostGraphUtils.ZAT_FILL for why.
+    if (d.isZat) return window.DostGraphUtils.ZAT_FILL;
     // Allah -- the Name that gathers every Name in itself, emerging directly
     // from the Essence -- gets the site's own signature accent gold rather
     // than blending into the ordinary Kemal-pole tone shared by other names,
@@ -222,6 +222,18 @@
     if (recenterBtn) {
       recenterBtn.addEventListener("click", () => unfocusNode(true));
     }
+
+    // Guarded on wrapEl.hidden (only the currently active view's own
+    // #esma-wrap is unhidden) so this doesn't also fire while some other
+    // view (Ontoloji, Hâller, ...) is the one on screen -- every view
+    // module shares the same document, so an unguarded listener here
+    // would react to Escape no matter which graph is actually visible.
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      if (wrapEl.hidden || detailPanel.hidden) return;
+      if (!currentDetailNode && !currentDetailIsZat && !currentDetailRelation) return;
+      goBackInHistory();
+    });
 
     update(root, false);
     built = true;
@@ -712,7 +724,7 @@
         ${note ? `<p>${note}</p>` : ""}
       </div>
     `).join("");
-    return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "İlişkiler", en: "Relations", pt: "Relações" })}</p>${items}`;
+    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "İlişkiler", en: "Relations", pt: "Relações" })}</p>${items}`;
   }
 
   function analogyHtml(analogy) {
@@ -723,7 +735,39 @@
     </div>`;
   }
 
+  // Esc steps back through whatever was shown in the detail panel just
+  // before the current thing -- a node, Zât, or a cross-relation. Each
+  // show* function records what was on screen right before it takes over,
+  // but only when the target actually differs (otherwise re-rendering the
+  // same node on a language switch, or re-clicking an already-open node,
+  // would each wrongly count as a new history step).
+  function pushCurrentToHistory() {
+    if (suppressHistoryPush) return;
+    if (currentDetailNode) detailHistory.push({ type: "node", id: currentDetailNode.id });
+    else if (currentDetailIsZat) detailHistory.push({ type: "zat" });
+    else if (currentDetailRelation) detailHistory.push({ type: "relation", from: currentDetailRelation.from, to: currentDetailRelation.to });
+  }
+
+  function goBackInHistory() {
+    const prev = detailHistory.pop();
+    if (!prev) return false;
+    suppressHistoryPush = true;
+    try {
+      if (prev.type === "zat") showZatDetail();
+      else if (prev.type === "relation") {
+        const r = (esmaData.relations || []).find((rel) => rel.from === prev.from && rel.to === prev.to);
+        if (r) showRelationDetail(r);
+      } else if (prev.type === "node") {
+        revealPathTo(prev.id);
+      }
+    } finally {
+      suppressHistoryPush = false;
+    }
+    return true;
+  }
+
   function showDetail(d) {
+    if (!currentDetailNode || currentDetailNode.id !== d.id) pushCurrentToHistory();
     currentDetailNode = d;
     currentDetailRelation = null;
     currentDetailIsZat = false;
@@ -749,13 +793,14 @@
   }
 
   function showZatDetail() {
+    if (!currentDetailIsZat) pushCurrentToHistory();
     currentDetailNode = null;
     currentDetailRelation = null;
     currentDetailIsZat = true;
     const n = zatDatum;
     const allahNode = nodeById.get("allah");
     const related = allahNode ? `
-      <p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "İlişkiler", en: "Relations", pt: "Relações" })}</p>
+      <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "İlişkiler", en: "Relations", pt: "Relações" })}</p>
       <div class="detail-block detail-block--edge">
         <h3>↓ ${I18n.pick3(allahNode.data.name)}</h3>
         <p>${I18n.pick3(allahNode.data.short)}</p>
@@ -778,6 +823,7 @@
   }
 
   function showRelationDetail(r) {
+    if (!currentDetailRelation || currentDetailRelation.from !== r.from || currentDetailRelation.to !== r.to) pushCurrentToHistory();
     currentDetailNode = null;
     currentDetailRelation = r;
     currentDetailIsZat = false;

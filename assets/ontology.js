@@ -1102,10 +1102,7 @@
   }
 
   function colorFor(d) {
-    // Zât is the one node whose own "color" is unknowable -- it is known
-    // only through its glow (the halo below), so its circle itself is left
-    // the whitest tone possible rather than given a layer color.
-    if (d.id === "dhat") return "#ffffff";
+    if (d.id === "dhat") return window.DostGraphUtils.ZAT_FILL;
     if (d.id === "insan-i-kamil") return getVar("--series-daphne");
     if (d.id === "kalp") return getVar("--series-theme");
     const ramp = isDark() ? LAYER_COLOR_DARK : LAYER_COLOR;
@@ -1290,7 +1287,7 @@
         ${insightsHtml(l.insights, null, null, null)}
       </div>`;
     }).join("");
-    return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "İlişkiler", en: "Relations", pt: "Relações" })}</p>${items}`;
+    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "İlişkiler", en: "Relations", pt: "Relações" })}</p>${items}`;
   }
 
   function showEdgeDetail(l) {

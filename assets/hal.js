@@ -316,7 +316,7 @@
         <p>${I18n.pick3(other.short)}</p>
       </div>
     `).join("");
-    return `<p class="detail-eyebrow" style="margin-top:18px;">${tt({ tr: "Basamak Sırası", en: "Sequence", pt: "Sequência" })}</p>${items}`;
+    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Basamak Sırası", en: "Sequence", pt: "Sequência" })}</p>${items}`;
   }
 
   function analogyHtml(analogy) {
