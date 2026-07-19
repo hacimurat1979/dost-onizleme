@@ -300,9 +300,19 @@
         "en": "Like a candle flame flickering in a dark room, which could be snuffed out at any instant by the faintest breath, and yet keeps burning: al-Qadir is the Name reminding you that, at every moment you exist, the possibility that 'you might not have existed' still stands as close as a single breath away.",
         "pt": "Como a chama de uma vela tremulando num quarto escuro, que poderia se apagar a qualquer instante com o mais leve sopro, e ainda assim continua queimando: al-Qadir é o Nome que lembra que, a cada momento em que você existe, a possibilidade de que 'você poderia não ter existido' permanece tão próxima quanto um único sopro."
       },
-      "insights": [],
+      "insights": [
+        {
+          "volume": 17,
+          "text": {
+            "tr": "Fütûhât'ın 558. Bölümündeki 'İktidar Mertebesi'nde İbn Arabî el-Kâdir ile el-Muktedir arasına ince bir çizgi çekiyor: 'Muktedirin hükmü kâdirin hükmünden farklı bir hükümdür. İktidar eşyanın sebepler vesilesiyle ortaya çıkışında el-Kâdir'in hükmüdür.' Bunu 'halk âlemi / emir âlemi' ayrımına bağlıyor: 'Allah emir âlemi bakımından Kâdir iken halk âlemi yönünden Muktedir'dir.' Ayrımı kendi verdiği bir örnekle somutlaştırıyor: 'Komutan hırsıza vurdu' ya da 'Komutan hırsızın elini kesti' denir - kesme işini bizzat bir görevli yapar, ama emir komutandan çıktığı için iş komutana nispet edilir, bu durumda komutan 'muktedir' diye isimlendirilir; vurma işini bizzat kendisi yapsaydı, o zaman 'kâdir' olurdu. Sonuç cümlesi çarpıcı: 'Allah bir araçla yaratırsa Muktedir, araç olmaksızın yarattığında Kâdir'dir. Kudret iktidardan daha gizlidir. Bununla birlikte iktidar kâdirin halidir.'",
+            "en": "In the 'Rank of Power' within Fütûhât's 558th chapter, Ibn Arabi draws a fine line between al-Qadir and al-Muqtadir: 'The judgment of al-Muqtadir is a different judgment from that of al-Qadir. Power (iqtidar), when things come about by way of causes, is the judgment of al-Qadir.' He ties this to the distinction between the 'world of creation' and the 'world of command': 'God is Qadir with respect to the world of command, while He is Muqtadir with respect to the world of creation.' He makes the distinction concrete with his own example: one says 'the commander struck the thief' or 'the commander cut off the thief's hand' - the cutting is carried out by an officer, but since the order issued from the commander, the act is attributed to him, in which case the commander is called 'muqtadir'; had he struck the blow himself, he would be 'qadir.' His striking conclusion: 'When God creates through an instrument, He is Muqtadir; when He creates without an instrument, He is Qadir. Power (qudra) is more hidden than iqtidar. Yet iqtidar is still the very state of the Qadir.'",
+            "pt": "No 'Grau do Poder' dentro do 558º capítulo do Fütûhât, Ibn Arabi traça uma linha sutil entre al-Qadir e al-Muqtadir: 'O julgamento de al-Muqtadir é um julgamento diferente do de al-Qadir. O poder (iqtidar), quando as coisas surgem por meio de causas, é o julgamento de al-Qadir.' Ele liga isso à distinção entre o 'mundo da criação' e o 'mundo do comando': 'Deus é Qadir quanto ao mundo do comando, enquanto é Muqtadir quanto ao mundo da criação.' Ele torna a distinção concreta com seu próprio exemplo: diz-se 'o comandante golpeou o ladrão' ou 'o comandante cortou a mão do ladrão' - o corte é executado por um oficial, mas como a ordem partiu do comandante, o ato lhe é atribuído, caso em que o comandante é chamado de 'muqtadir'; se ele mesmo tivesse desferido o golpe, seria 'qadir'. Sua conclusão marcante: 'Quando Deus cria através de um instrumento, Ele é Muqtadir; quando cria sem instrumento, Ele é Qadir. O poder (qudra) é mais oculto do que o iqtidar. Contudo, o iqtidar ainda é o próprio estado do Qadir.'"
+          }
+        }
+      ],
       "sources": [
-        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: İlâhi İsimlerin Anaları"
+        "Fütûhât-ı Mekkiyye, Cilt 1 (Ekrem Demirli çev.) — Dördüncü Bölüm: İlâhi İsimlerin Anaları",
+        "Fütûhât-ı Mekkiyye, Cilt 17 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İktidar Mertebesi (el-Kâdir, el-Kadir, el-Muktedir)"
       ]
     },
     {
@@ -2392,6 +2402,28 @@
       "insights": [],
       "sources": [
         "Fütûhât-ı Mekkiyye, Cilt 17 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: Sabır Mertebesi (es-Sabûr)"
+      ]
+    },
+    {
+      "id": "vali",
+      "depth": 3,
+      "parent": "yuz-mertebe-grup",
+      "pole": "kemal",
+      "name": { "tr": "el-Vâli", "en": "Al-Wali (The Governor)", "pt": "Al-Wali (O Governador)" },
+      "short": { "tr": "İnsan olmak bakımından senin de yaratılmışlar üzerinde valin olduğun isim", "en": "The Name by which you too, simply in virtue of being human, are a governor over creation", "pt": "O Nome pelo qual você também, simplesmente por ser humano, é um governador sobre a criação" },
+      "summary": {
+        "tr": "İmamet Mertebesi'nde İbn Arabî el-Vâli'yi doğrudan tanımlıyor: 'Abdulvali işleri kendi başına yürüten demektir... vali diye isimlendirilmesinin nedeni -ihmal olmaksızın- işleri yönetmesidir.' Vali kavramını daha da yakınlaştırıyor: 'Bir insan olmak bakımından sen yaratılmışlar üzerinde valisin.' Hz. İbrahim örneğini veriyor: 'Allah, dostu Hz. İbrahim'e \"Seni insanlar için imam kıldım\" buyururken talebi olmaksızın onu imam kılmıştır' - imamlık istenmeden verilen bir lütuf ve ahit, 'Zalimler benim ahdime ulaşamaz' sözüyle sınırlanmış. Mertebenin en çarpıcı yeri Âdem kıssasına bağlandığı yer: 'Kâmil insan, ilâhi isimler arasında hüküm verendir' deniyor, melekler bu yüzden Âdem'e secde ile memur oluyor - ama secde emri aynı zamanda bir 'ilaç': yüksek mertebenin getirdiği kendini beğenme hastalığına karşı, imama da Kâbe'ye secde emredilmiş, böylece 'kendisinin meleklerden üstün olmadığını' öğreniyor.",
+        "en": "In the Rank of Imamate, Ibn Arabi defines al-Wali directly: 'Abd al-Wali means one who runs affairs on his own... he is named wali because he manages affairs - without neglect.' He brings the concept remarkably close to home: 'Simply in virtue of being human, you are a governor (wali) over what has been created.' He gives the example of Abraham: 'When God said to His friend Abraham, \"I have made you an imam for the people,\" He made him imam without Abraham having asked for it' - imamate as a gift and covenant granted unrequested, bounded by the words 'the wrongdoers shall not attain My covenant.' The most striking turn of the rank ties it to the story of Adam: 'The Perfect Human is the one who judges among the divine Names,' which is why the angels were commanded to prostrate to Adam - yet that same command doubles as a 'medicine': against the sickness of self-regard that a high rank brings, the imam too is commanded to prostrate toward the Kaaba, and so learns that 'he himself is not superior to the angels.'",
+        "pt": "No Grau do Imamato, Ibn Arabi define al-Wali diretamente: 'Abd al-Wali significa aquele que conduz os assuntos por conta própria... ele é chamado wali porque administra os assuntos - sem negligência.' Ele aproxima o conceito de forma notável: 'Simplesmente por ser humano, você é um governador (wali) sobre o que foi criado.' Ele dá o exemplo de Abraão: 'Quando Deus disse a Seu amigo Abraão, \"Eu te fiz um imame para o povo\", Ele o fez imame sem que Abraão tivesse pedido' - o imamato como um dom e uma aliança concedidos sem solicitação, limitado pelas palavras 'os injustos não alcançarão Minha aliança'. A virada mais marcante do grau o liga à história de Adão: 'O Ser Humano Perfeito é aquele que julga entre os Nomes divinos', razão pela qual os anjos foram ordenados a prostrar-se diante de Adão - mas esse mesmo comando também funciona como um 'remédio': contra a doença da autoestima excessiva que um alto grau traz, o próprio imame é ordenado a se prostrar em direção à Caaba, aprendendo assim que 'ele mesmo não é superior aos anjos.'"
+      },
+      "analogy": {
+        "tr": "Bir okul müdürünün, öğretmenlerine ders programını hazırlama yetkisini devretse bile, o okulda olup biten her şeyin nihai sorumluluğunu üstünde taşımaya devam etmesi gibi düşün - 'vali/yönetici' olmak, işi bizzat yapmak değil, hiçbir şeyi ihmal etmeden bütününe göz kulak olmaktır. el-Vâli'nin işaret ettiği valilik de buna benzeyebilir: sen de -sırf insan olarak- üzerinde bulunduğun her şeyden bu şekilde sorumlusun.",
+        "en": "Picture a school principal who, even after delegating the task of preparing lesson schedules to the teachers, still carries the final responsibility for everything that happens in that school - being a 'governor' isn't doing the work with your own hands, it's watching over the whole without ever neglecting it. The governance pointed to by al-Wali may resemble something like this: simply by being human, you too carry this same kind of responsibility for whatever is placed under you.",
+        "pt": "Imagine um diretor de escola que, mesmo depois de delegar aos professores a tarefa de preparar os horários das aulas, continua carregando a responsabilidade final por tudo o que acontece naquela escola - ser um 'governador' não é fazer o trabalho com as próprias mãos, é zelar pelo todo sem jamais negligenciá-lo. A governança apontada por al-Wali pode se assemelhar a algo assim: simplesmente por ser humano, você também carrega esse mesmo tipo de responsabilidade por tudo o que está sob você."
+      },
+      "insights": [],
+      "sources": [
+        "Fütûhât-ı Mekkiyye, Cilt 17 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İmamet Mertebesi (el-Vâli)"
       ]
     }
   ],
