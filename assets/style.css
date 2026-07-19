@@ -607,6 +607,18 @@ html {
   text-anchor: middle;
 }
 
+/* Clicking a hub node (a group heading, or a name that opens onto a chain
+   of others) dims everything outside its own cluster and zooms in --
+   mirrors sirlar-graph.js's theme-focus. */
+.esma-node--dimmed {
+  opacity: 0.22;
+  transition: opacity 0.3s ease;
+}
+.esma-node--focused circle:first-of-type {
+  stroke: var(--text-primary);
+  stroke-width: 2px;
+}
+
 .esma-rings circle.esma-ring {
   fill: none;
   stroke: var(--gridline);
@@ -622,13 +634,16 @@ html {
 .esma-boundary {
   fill: none;
   stroke: var(--series-theme);
-  stroke-width: 1.5px;
+  stroke-width: 2px;
   stroke-dasharray: 2 7;
-  opacity: 0.4;
+  opacity: 0.62;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--series-theme) 65%, transparent));
   pointer-events: none;
 }
 .viz-root[data-theme="dark"] .esma-boundary {
-  opacity: 0.45;
+  stroke: #ffc233;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 9px color-mix(in srgb, #ffc233 70%, transparent));
 }
 
 .esma-link {
