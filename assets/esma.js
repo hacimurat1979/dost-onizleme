@@ -208,7 +208,7 @@
     svg.attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
 
     zoomBehavior = d3.zoom()
-      .scaleExtent([0.35, 2.5])
+      .scaleExtent([0.35, 5])
       .filter((event) => {
         if (event.type === "wheel") return event.ctrlKey || event.metaKey;
         if (event.touches) return event.touches.length > 1;
@@ -227,9 +227,23 @@
     built = true;
   }
 
+  // While a cluster is focused, its own children need much more angular
+  // room than the default layout gives every ring member -- otherwise
+  // zooming in just enlarges the same cramped, overlapping arrangement.
+  // Set right before treeLayout(root) runs in update(); the tree's total
+  // angular budget is fixed, so this necessarily compresses everything
+  // else, which is fine since the rest of the map is dimmed anyway.
+  let focusSeparationIds = null;
+
   const treeLayout = d3.tree()
     .size([2 * Math.PI, 1])
-    .separation((a, b) => (a.parent === b.parent ? 1.6 : 3.4) / Math.sqrt(a.depth || 1));
+    .separation((a, b) => {
+      const base = (a.parent === b.parent ? 1.6 : 3.4) / Math.sqrt(a.depth || 1);
+      if (a.parent === b.parent && focusSeparationIds && focusSeparationIds.has(a.parent.id)) {
+        return base * 7;
+      }
+      return base;
+    });
 
   function drawRings(ring1, ring2) {
     const rings = [ring1, ring2];
@@ -301,27 +315,6 @@
       .attr("transform", `translate(${zx},${zy})`);
   }
 
-  // For a wide hub (e.g. the Hundred Divine Ranks group, whose children fan
-  // out across most of the circle), fitting the whole cluster's bounding
-  // box into view caps the pan/zoom scale near 1x -- the box is already
-  // nearly as wide as the full map. Panning alone can't make the focused
-  // cluster read as "brought forward" in that case, so the cluster's own
-  // nodes are additionally scaled up in place (via the node group's own
-  // transform, after its translate) -- this is what actually delivers the
-  // "büyütüp" (enlarge) half of the request, independent of how much the
-  // pan/zoom can fit.
-  const FOCUS_NODE_SCALE = 1.4;
-
-  function focusedClusterIds() {
-    return focusedNode ? new Set(focusedNode.descendants().map((n) => n.id)) : null;
-  }
-
-  function nodeTransform(d, clusterIds) {
-    const [cx, cy] = radialPoint(d.x, d.y);
-    const scaled = clusterIds && clusterIds.has(d.id);
-    return `translate(${cx},${cy})${scaled ? ` scale(${FOCUS_NODE_SCALE})` : ""}`;
-  }
-
   function zoomToBox(nodes, animate, margin, maxScaleCap) {
     const width = svg.node().clientWidth || 800;
     const height = svg.node().clientHeight || 600;
@@ -364,6 +357,7 @@
   }
 
   function update(source, animate) {
+    focusSeparationIds = focusedNode ? new Set(focusedNode.descendants().map((n) => n.id)) : null;
     treeLayout(root);
     applySpiralOffset(root, 0);
     const nodes = root.descendants();
@@ -494,11 +488,15 @@
       .attr("text-anchor", "middle")
       .text((d) => (d._children ? "+" : ""));
 
-    const clusterIds = focusedClusterIds();
+    // Target opacity has to account for focus-dimming here, not just rely
+    // on the .esma-node--dimmed CSS class -- this transition sets opacity
+    // inline (needed for the enter fade-in), and an inline style always
+    // wins over a class, so a flat "1" here would silently erase the
+    // class's 0.12 on every single update(), focused or not.
     node.merge(nodeEnter)
       .transition().duration(300)
-      .style("opacity", 1)
-      .attr("transform", (d) => nodeTransform(d, clusterIds));
+      .style("opacity", (d) => (focusSeparationIds && !focusSeparationIds.has(d.id) ? 0.12 : 1))
+      .attr("transform", (d) => `translate(${radialPoint(d.x, d.y).join(",")})`);
 
     node.merge(nodeEnter).select("text.node-label")
       .attr("text-anchor", (d) => (d.depth === 0 ? "middle" : (d.x < Math.PI ? "start" : "end")))
@@ -526,7 +524,7 @@
 
     applyFocusClasses();
     if (focusedNode && nodeById.get(focusedNode.id)) {
-      zoomToBox(focusedNode.descendants(), animate !== false, { x0: 80, x1: 80, y0: 70, y1: 80 }, 2.2);
+      zoomToBox(focusedNode.descendants(), animate !== false, { x0: 80, x1: 80, y0: 70, y1: 80 }, 4.5);
     } else {
       focusedNode = null;
       zoomToFit(animate !== false);
@@ -543,32 +541,27 @@
   function applyFocusClasses() {
     if (!focusedNode) {
       nodeGroup.selectAll("g.esma-node").classed("esma-node--dimmed", false).classed("esma-node--focused", false);
+      linkGroup.selectAll("path.esma-link").classed("esma-link--dimmed", false);
       return;
     }
     const clusterIds = new Set(focusedNode.descendants().map((n) => n.id));
     nodeGroup.selectAll("g.esma-node")
       .classed("esma-node--dimmed", (n) => !clusterIds.has(n.id))
       .classed("esma-node--focused", (n) => n.id === focusedNode.id);
+    linkGroup.selectAll("path.esma-link")
+      .classed("esma-link--dimmed", (l) => !clusterIds.has(l.target.id));
   }
 
-  // applyFocusClasses() only toggles CSS (dimmed/opacity); when a focus
-  // change is driven through toggle() -> update(), the node scale is
-  // already baked into that same position transition via nodeTransform(),
-  // so no separate call is needed there. But unfocusing via the SVG
-  // background, the recenter button, or Allah's own root-toggle never runs
-  // update() -- this is the one place those paths need to shrink the
-  // previously-focused cluster's nodes back down explicitly.
-  function resetFocusTransforms(animate) {
-    const sel = nodeGroup.selectAll("g.esma-node");
-    const target = animate ? sel.transition().duration(350) : sel;
-    target.attr("transform", (d) => nodeTransform(d, null));
-  }
-
+  // Focus now widens the focused cluster's own separation at layout time
+  // (see focusSeparationIds), so clearing focus has to re-run the full
+  // treeLayout, not just reset a transform -- otherwise every other
+  // branch would stay compressed into the room that widening made for the
+  // (no longer focused) cluster. update()'s own tail already re-applies
+  // focus classes and picks zoomToBox vs zoomToFit correctly once
+  // focusedNode is cleared here.
   function unfocusNode(animate) {
     focusedNode = null;
-    applyFocusClasses();
-    resetFocusTransforms(animate);
-    zoomToFit(animate);
+    update(root, animate);
   }
 
   function toggle(d) {
@@ -606,18 +599,28 @@
   }
 
   function highlight(d) {
+    // Hover-based ancestor/descendant emphasis and cluster-focus dimming
+    // both work by setting opacity, but this one used to set it inline
+    // (nodeSel.style(...)), which -- being higher-precedence than any CSS
+    // class -- silently overwrote .esma-node--dimmed's 0.12 the moment the
+    // mouse left a node after a focus click. Bailing out entirely while a
+    // cluster is focused (rather than trying to layer both systems) avoids
+    // that clash; clearing via `null` rather than forcing `1` elsewhere
+    // means the underlying CSS class (dimmed or not) is always what
+    // actually governs resting opacity.
+    if (focusedNode) return;
     const nodeSel = nodeGroup.selectAll("g.esma-node");
     const linkSel = linkGroup.selectAll("path.esma-link");
     const relationSel = relationGroup.selectAll("path.esma-relation");
     if (!d) {
-      nodeSel.style("opacity", 1);
+      nodeSel.style("opacity", null);
       linkSel.classed("esma-link--highlight", false);
       relationSel.style("opacity", null);
       return;
     }
     const ids = new Set(d.ancestors().map((a) => a.id));
     const descendantIds = new Set(d.descendants().map((a) => a.id));
-    nodeSel.style("opacity", (n) => (ids.has(n.id) || descendantIds.has(n.id) ? 1 : 0.35));
+    nodeSel.style("opacity", (n) => (ids.has(n.id) || descendantIds.has(n.id) ? null : 0.35));
     linkSel.classed("esma-link--highlight", (l) => l.target.id === d.id);
     relationSel.style("opacity", (r) => (r.from === d.id || r.to === d.id ? 1 : 0.15));
   }

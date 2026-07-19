@@ -628,7 +628,7 @@ html {
    of others) dims everything outside its own cluster and zooms in --
    mirrors sirlar-graph.js's theme-focus. */
 .esma-node--dimmed {
-  opacity: 0.22;
+  opacity: 0.12;
   transition: opacity 0.3s ease;
 }
 .esma-node--focused circle:first-of-type {
@@ -667,10 +667,14 @@ html {
   fill: none;
   stroke: var(--gridline);
   stroke-width: 1.5px;
+  transition: opacity 0.3s ease;
 }
 .esma-link--highlight {
   stroke: var(--series-ibnarabi);
   stroke-width: 2.5px;
+}
+.esma-link--dimmed {
+  opacity: 0.12;
 }
 .esma-relation {
   fill: none;
