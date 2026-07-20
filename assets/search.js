@@ -303,13 +303,22 @@
 
     results.querySelectorAll(".search-result").forEach((btn) => {
       btn.addEventListener("click", () => {
+        window.dostTrack && window.dostTrack("arama_sonucu_tiklandi", { view: btn.dataset.view, id: btn.dataset.id });
         closePanel();
         window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id);
       });
     });
   }
 
+  let searchTrackTimer = null;
   input.addEventListener("input", () => {
     renderResults(search(input.value));
+    const q = input.value.trim();
+    if (q.length >= 2) {
+      clearTimeout(searchTrackTimer);
+      searchTrackTimer = setTimeout(() => {
+        window.dostTrack && window.dostTrack("arama_yapildi", { query: q });
+      }, 600);
+    }
   });
 })();

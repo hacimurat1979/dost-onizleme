@@ -953,7 +953,10 @@
     renderParts();
     if (partsEl) {
       partsEl.querySelectorAll(".futuhat-part-chip[data-id]").forEach((chip) => {
-        chip.addEventListener("click", () => activatePart(chip.dataset.id));
+        chip.addEventListener("click", () => {
+          window.dostTrack && window.dostTrack("kitap_bolumu_acildi", { part: chip.dataset.id });
+          activatePart(chip.dataset.id);
+        });
       });
     }
     activatePart(activePartId);

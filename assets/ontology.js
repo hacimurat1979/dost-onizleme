@@ -1162,6 +1162,7 @@
   let currentDetailSirlarId = null;
 
   function onNodeClick(d) {
+    window.dostTrack && window.dostTrack("bilgi_grafi_node_tiklandi", { id: d.id });
     currentDetailNode = d;
     currentDetailEdge = null;
     currentDetailView = null;

@@ -360,6 +360,7 @@
     if (!dg) return;
     const renderer = diagramRenderers[dg.type];
     if (!renderer) return;
+    window.dostTrack && window.dostTrack("sema_acildi", { type: dg.type });
     window.DostLightbox.open({
       closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
       svgHtml: DIAGRAM_DEFS + renderer(dg),
@@ -509,6 +510,7 @@
   function showTermDetail(id) {
     const t = glossaryData.terms[id];
     if (!t) return;
+    window.dostTrack && window.dostTrack("kavram_sayfasi_goruntulendi", { id: t.id });
     const group = groupById(t.group);
 
     detailContent.innerHTML = `
@@ -534,7 +536,10 @@
     `;
 
     detailContent.querySelectorAll(".bookmap-concept-tag[data-term]").forEach((btn) => {
-      btn.addEventListener("click", () => showTermDetail(btn.dataset.term));
+      btn.addEventListener("click", () => {
+        window.dostTrack && window.dostTrack("ilgili_kavram_secildi", { from: id, to: btn.dataset.term });
+        showTermDetail(btn.dataset.term);
+      });
     });
     detailContent.querySelectorAll(".bookmap-concept-tag[data-view]").forEach((btn) => {
       btn.addEventListener("click", () => {
