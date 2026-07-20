@@ -56,7 +56,7 @@
   --page-plane:     #f9f9f7;
   --text-primary:   #1a1a1a;
   --text-secondary: #52514e;
-  --text-muted:     #7c7a72;
+  --text-muted:     #6f6d65; /* darkened from #7c7a72 -- that shade only reached ~4.08:1 on this page-plane, under WCAG AA's 4.5:1 floor for normal text; this reaches ~4.92:1 */
   --gridline:       #e1e0d9;
   --border:         rgba(11,11,11,0.10);
 
@@ -100,19 +100,6 @@
   --series-sorular-kuran:    #b1512f; /* terracotta / questions on reading the Quran */
   --series-sorular-metot:    #38759f; /* slate / questions on method */
   --series-sorular-deneyim:  #a92d59; /* plum / questions on experience */
-
-  /* Halka-i Vücûd: dhat kendisi ZAT_FILL (beyaz) kullanır, ayrı bir token
-     gerekmez. Kalan sekiz mertebe merkezden çevreye doğru bir "yoğunlaşma"
-     izlenimi versin diye: ince/saf (mor-mavi) -> üç âlem (teal-amber-toprak)
-     -> İnsan-ı Kâmil (Zât'ı yansıtan altın) -> Kalp (sıcak, yakın bir ton). */
-  --series-halka-sifat:   #5b3d8f; /* violet / names and attributes emerging */
-  --series-halka-ayan:    #3d4f8f; /* indigo / immutable entities, mirror of the names */
-  --series-halka-tecelli: #2f6f8f; /* steel teal / self-disclosure, the breath reaching them */
-  --series-halka-ervah:   #2f8f9f; /* pale teal / world of spirits, least dense */
-  --series-halka-misal:   #af8a1f; /* amber / world of image, the isthmus */
-  --series-halka-ecsam:   #8a4f2f; /* rust brown / world of bodies, most dense */
-  --series-halka-insan:   #c9971a; /* gold / the perfect human, the clearest mirror */
-  --series-halka-kalp:    #a8324f; /* rose / the heart, unmediated contact */
 }
 
 .viz-root[data-theme="dark"] {
@@ -162,15 +149,6 @@
   --series-sorular-kuran:    #d87c5a;
   --series-sorular-metot:    #7c98ac;
   --series-sorular-deneyim:  #ce6e91;
-
-  --series-halka-sifat:   #8f6fd0;
-  --series-halka-ayan:    #6f83d0;
-  --series-halka-tecelli: #5b9fc2;
-  --series-halka-ervah:   #4fb5c2;
-  --series-halka-misal:   #d9ad4f;
-  --series-halka-ecsam:   #c2825b;
-  --series-halka-insan:   #e0b545;
-  --series-halka-kalp:    #d5677a;
 }
 
 
@@ -650,15 +628,6 @@ html {
 }
 #sorular-graph:active { cursor: grabbing; }
 
-#halka-i-vucud-graph {
-  width: 100%;
-  height: 100%;
-  display: block;
-  touch-action: pan-y;
-  cursor: grab;
-}
-#halka-i-vucud-graph:active { cursor: grabbing; }
-
 .esma-expand-badge {
   fill: var(--surface-1);
   font-size: 13px;
@@ -781,68 +750,6 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .hal-node--active circle { filter: none; }
 }
-.halka-link {
-  fill: none;
-  stroke: var(--gridline);
-  stroke-width: 1.5px;
-}
-.halka-link--highlight {
-  stroke: var(--series-halka-insan);
-  stroke-width: 2.5px;
-}
-.halka-link--gather {
-  stroke-dasharray: 1 0;
-  opacity: 0.75;
-}
-.halka-link--return {
-  stroke: url(#ascent-gradient-theme);
-  stroke-width: 2.4px;
-  stroke-linecap: round;
-  opacity: 0.85;
-  filter: drop-shadow(0 1px 3px color-mix(in srgb, var(--series-halka-insan, #c9971a) 45%, transparent));
-}
-.halka-link--return.halka-link--highlight {
-  opacity: 1;
-  stroke-width: 3.2px;
-}
-.halka-link--return-label {
-  font-size: 10px;
-  font-style: italic;
-  fill: var(--series-halka-insan, #c9971a);
-  text-anchor: middle;
-  pointer-events: none;
-  opacity: 0.85;
-}
-.halka-link--paradox {
-  stroke: var(--series-theme);
-  stroke-width: 1.8px;
-  stroke-dasharray: 3 3;
-  opacity: 0.6;
-}
-.halka-node circle.halka-node__core {
-  transition: stroke 0.2s ease, stroke-width 0.2s ease;
-  stroke: transparent;
-  stroke-width: 0;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
-}
-.viz-root[data-theme="dark"] .halka-node circle.halka-node__core {
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.55));
-}
-.halka-node--active circle.halka-node__core {
-  stroke: var(--series-halka-insan, #e0b545);
-  stroke-width: 2.5px;
-  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--series-halka-insan, #e0b545) 65%, transparent));
-}
-.halka-node--dhat circle.halka-node__core {
-  filter: drop-shadow(0 0 10px color-mix(in srgb, #ffffff 55%, transparent));
-}
-.viz-root[data-theme="dark"] .halka-node--dhat circle.halka-node__core {
-  filter: drop-shadow(0 0 14px color-mix(in srgb, #ffffff 70%, transparent));
-}
-@media (prefers-reduced-motion: reduce) {
-  .halka-node--active circle.halka-node__core { filter: none; }
-}
-
 .node-sheen {
   fill: url(#node-sheen);
   pointer-events: none;
@@ -1721,15 +1628,6 @@ li.futuhat-pulse,
 .legend__dot--sorular-kuran     { background: var(--series-sorular-kuran); }
 .legend__dot--sorular-metot     { background: var(--series-sorular-metot); }
 .legend__dot--sorular-deneyim   { background: var(--series-sorular-deneyim); }
-.legend__dot--halka-dhat    { background: #ffffff; border: 1px solid var(--border); }
-.legend__dot--halka-sifat   { background: var(--series-halka-sifat); }
-.legend__dot--halka-ayan    { background: var(--series-halka-ayan); }
-.legend__dot--halka-tecelli { background: var(--series-halka-tecelli); }
-.legend__dot--halka-ervah   { background: var(--series-halka-ervah); }
-.legend__dot--halka-misal   { background: var(--series-halka-misal); }
-.legend__dot--halka-ecsam   { background: var(--series-halka-ecsam); }
-.legend__dot--halka-insan   { background: var(--series-halka-insan); }
-.legend__dot--halka-kalp    { background: var(--series-halka-kalp); }
 .legend__line {
   width: 16px;
   height: 0;
@@ -1744,13 +1642,6 @@ li.futuhat-pulse,
 }
 .legend__line--return {
   border-top-color: var(--series-hal-hayret);
-}
-.legend__line--halka-return {
-  border-top-color: var(--series-halka-insan);
-}
-.legend__line--halka-paradox {
-  border-top-style: dashed;
-  border-top-color: var(--series-theme);
 }
 
 .node-label {
