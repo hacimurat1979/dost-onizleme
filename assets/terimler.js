@@ -484,6 +484,7 @@
     sirlar: 100,
     cizimler: 185,
     "biriken-parcalar": 45,
+    "halka-i-vucud": 290,
   };
 
   function siteLinksHtml(t) {
@@ -499,6 +500,7 @@
       sirlar: { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" },
       cizimler: { tr: "Çizimler", en: "Diagrams", pt: "Diagramas" },
       "biriken-parcalar": { tr: "Biriken Parçalar", en: "Gathered Pieces", pt: "Peças Reunidas" },
+      "halka-i-vucud": { tr: "Halka-i Vücûd", en: "The Ring of Being", pt: "O Anel do Ser" },
     };
     const chips = links
       .map((l) => `<button class="bookmap-concept-tag bookmap-concept-tag--group" data-view="${l.view}" data-id="${l.id}" style="--tag-hue:${VIEW_HUE[l.view] !== undefined ? VIEW_HUE[l.view] : 40}">${tt(VIEW_LABEL[l.view] || {})} → ${l.id}</button>`)

@@ -140,6 +140,7 @@
     else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
     else if (currentMainView === "biriken-parcalar") window.__birikenParcalarApp && window.__birikenParcalarApp.onLangChange();
+    else if (currentMainView === "halka-i-vucud") window.__halkaIVucudApp && window.__halkaIVucudApp.onLangChange();
     updateHeaderHeightVar();
   });
 
@@ -281,6 +282,7 @@
   const sorularBtn = document.getElementById("sorular-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
   const birikenParcalarBtn = document.getElementById("biriken-parcalar-btn");
+  const halkaIVucudBtn = document.getElementById("halka-i-vucud-btn");
   const hakkindaBtn = document.getElementById("hakkinda-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
@@ -291,6 +293,7 @@
   const sorularWrap = document.getElementById("sorular-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
   const birikenParcalarWrap = document.getElementById("biriken-parcalar-wrap");
+  const halkaIVucudWrap = document.getElementById("halka-i-vucud-wrap");
   const hakkindaWrap = document.getElementById("hakkinda-wrap");
 
   function setMainView(view) {
@@ -305,6 +308,7 @@
     if (sorularBtn) sorularBtn.classList.toggle("btn-ghost--active", view === "sorular");
     if (futuhatBtn) futuhatBtn.classList.toggle("btn-ghost--active", view === "futuhat");
     if (birikenParcalarBtn) birikenParcalarBtn.classList.toggle("btn-ghost--active", view === "biriken-parcalar");
+    if (halkaIVucudBtn) halkaIVucudBtn.classList.toggle("btn-ghost--active", view === "halka-i-vucud");
     if (hakkindaBtn) hakkindaBtn.classList.toggle("btn-ghost--active", view === "hakkinda");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
@@ -315,6 +319,7 @@
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
     if (birikenParcalarWrap) birikenParcalarWrap.hidden = view !== "biriken-parcalar";
+    if (halkaIVucudWrap) halkaIVucudWrap.hidden = view !== "halka-i-vucud";
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
     currentDetailNode = null;
     currentDetailEdge = null;
@@ -344,6 +349,9 @@
     } else if (view === "biriken-parcalar") {
       currentDetailView = "biriken-parcalar";
       window.__birikenParcalarApp && window.__birikenParcalarApp.activate();
+    } else if (view === "halka-i-vucud") {
+      currentDetailView = "halka-i-vucud";
+      window.__halkaIVucudApp && window.__halkaIVucudApp.activate();
     } else {
       currentDetailView = null;
     }
@@ -361,6 +369,7 @@
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
   if (birikenParcalarBtn) birikenParcalarBtn.addEventListener("click", () => { setMainView("biriken-parcalar"); updateHash("biriken-parcalar"); });
+  if (halkaIVucudBtn) halkaIVucudBtn.addEventListener("click", () => { setMainView("halka-i-vucud"); updateHash("halka-i-vucud"); });
   if (hakkindaBtn) hakkindaBtn.addEventListener("click", () => { setMainView("hakkinda"); updateHash("hakkinda"); });
 
   // --- Deep linking & cross-view navigation ---
@@ -454,6 +463,14 @@
         tr: "Külliyatı kısım kısım okurken karşımıza çıkan, birbirini tamamlayan parçaları -aynı imgenin farklı kitaplarda nasıl yeniden belirdiğini- bir araya toplayan bir sayfa.",
         en: "A page gathering the pieces that complete one another as we read the corpus part by part -- how the same image reappears across different books.",
         pt: "Uma página que reúne as peças que se completam umas às outras à medida que lemos o corpus parte por parte -- como a mesma imagem reaparece em diferentes livros.",
+      },
+    },
+    "halka-i-vucud": {
+      title: { tr: "Halka-i Vücûd", en: "The Ring of Being", pt: "O Anel do Ser" },
+      desc: {
+        tr: "Zât'tan başlayıp bütün varlık mertebelerinden geçerek yine Zât'a dönen sarmalı gösteren bir görselleştirme -- daire değil, yükselen bir spiral.",
+        en: "A visualization of the spiral descent from the Essence through every level of being and back to the Essence -- not a closed circle, but a rising spiral.",
+        pt: "Uma visualização da espiral que desce da Essência por todos os níveis do ser e retorna à Essência -- não um círculo fechado, mas uma espiral ascendente.",
       },
     },
     hakkinda: {
@@ -591,13 +608,18 @@
     window.__birikenParcalarApp && window.__birikenParcalarApp.goToNode(id);
   }
 
+  function goToHalkaIVucud(id) {
+    setMainView("halka-i-vucud");
+    window.__halkaIVucudApp && window.__halkaIVucudApp.goToNode(id);
+  }
+
   function goToHakkinda() {
     setMainView("hakkinda");
   }
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|futuhat|biriken-parcalar|hakkinda)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|futuhat|biriken-parcalar|halka-i-vucud|hakkinda)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -617,6 +639,7 @@
     else if (view === "sorular") goToSorular(id);
     else if (view === "futuhat") goToFutuhat(id);
     else if (view === "biriken-parcalar") goToBirikenParcalar(id);
+    else if (view === "halka-i-vucud") goToHalkaIVucud(id);
     else if (view === "hakkinda") goToHakkinda();
   }
 
@@ -650,6 +673,7 @@
       else if (view === "sorular") goToSorular(id);
       else if (view === "futuhat") goToFutuhat(id);
       else if (view === "biriken-parcalar") goToBirikenParcalar(id);
+      else if (view === "halka-i-vucud") goToHalkaIVucud(id);
       else if (view === "hakkinda") goToHakkinda();
       updateHash(view, id);
     },

@@ -15,6 +15,7 @@
     sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
     futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
     "biriken-parcalar": { tr: "Biriken Parçalar", en: "Gathered Pieces", pt: "Peças Reunidas" },
+    "halka-i-vucud": { tr: "Halka-i Vücûd", en: "The Ring of Being", pt: "O Anel do Ser" },
   };
 
   // Sonuç gruplarının başında, hangi görünüme ait olduğunu tek bakışta
@@ -30,6 +31,7 @@
     sorular: "--series-sorular-en-temel",
     futuhat: "--series-hal-muameleler",
     "biriken-parcalar": "--series-theme",
+    "halka-i-vucud": "--series-halka-insan",
   };
 
   let index = [];
@@ -46,8 +48,14 @@
     if (indexPromise) return indexPromise;
     const sources = [
       fetch("data/ibn-arabi/ontology.json").then((r) => r.json()).then((d) => {
+        // Halka-i Vücûd aynı 9 düğümü (data/ibn-arabi/ontology.json) farklı
+        // bir düzende (sarmal) gösteriyor -- ikinci bir fetch yerine aynı
+        // veriden iki ayrı görünüm ({view:"ontoloji"} ve
+        // {view:"halka-i-vucud"}) için arama girdisi üretiyoruz.
         (d.nodes || []).forEach((n) => {
-          index.push({ view: "ontoloji", id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) });
+          const entry = { id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) };
+          index.push(Object.assign({ view: "ontoloji" }, entry));
+          index.push(Object.assign({ view: "halka-i-vucud" }, entry));
         });
       }),
       fetch("data/ibn-arabi/esma.json").then((r) => r.json()).then((d) => {

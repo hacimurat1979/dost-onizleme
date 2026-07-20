@@ -151,6 +151,7 @@
         <button class="btn-ghost" id="sorular-btn" type="button" data-tr="Sorular" data-en="Questions" data-pt="Perguntas">Sorular</button>
         <button class="btn-ghost" id="futuhat-btn" type="button" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
         <button class="btn-ghost" id="biriken-parcalar-btn" type="button" data-tr="Biriken Parçalar" data-en="Gathered Pieces" data-pt="Peças Reunidas">Biriken Parçalar</button>
+        <button class="btn-ghost" id="halka-i-vucud-btn" type="button" data-tr="Halka-i Vücûd" data-en="The Ring of Being" data-pt="O Anel do Ser">Halka-i Vücûd</button>
         <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
       </div>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
@@ -379,6 +380,41 @@
       <div class="terimler-list" id="biriken-parcalar-list"></div>
     </section>
 
+    <section class="graph-wrap" id="halka-i-vucud-wrap" hidden>
+      <svg id="halka-i-vucud-graph"></svg>
+      <div class="view-status" id="halka-i-vucud-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="halka-i-vucud-tooltip" hidden></div>
+      <button class="graph-recenter" id="halka-i-vucud-recenter" type="button" title="Görünümü ortala / Recenter view / Recentralizar vista" aria-label="Görünümü ortala / Recenter view / Recentralizar vista">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" title="Sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın / Drag to pan, Ctrl (⌘) + scroll to zoom, click a node / Arraste para navegar, Ctrl (⌘) + rolagem para ampliar, clique num nó" aria-label="Sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın / Drag to pan, Ctrl (⌘) + scroll to zoom, click a node / Arraste para navegar, Ctrl (⌘) + rolagem para ampliar, clique num nó">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+      <div class="legend" id="halka-i-vucud-legend">
+        <button class="legend__toggle" type="button" aria-expanded="true">
+          <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
+          <span class="legend__toggle-icon" aria-hidden="true">▾</span>
+        </button>
+        <div class="legend__body">
+          <div class="legend__item"><span class="legend__dot legend__dot--halka-dhat"></span><span data-tr="Zât" data-en="The Essence" data-pt="A Essência">Zât</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--halka-sifat"></span><span data-tr="Esmâ-i Hüsnâ ve Sıfat" data-en="The Divine Names and Attributes" data-pt="Os Nomes e Atributos Divinos">Esmâ ve Sıfat</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--halka-ayan"></span><span data-tr="A'yân-ı Sâbite" data-en="The Immutable Entities" data-pt="As Entidades Imutáveis">A'yân-ı Sâbite</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--halka-tecelli"></span><span data-tr="Tecellî ve Nefesü'r-Rahmân" data-en="Self-Disclosure and the Breath" data-pt="Autorrevelação e o Sopro">Tecellî</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--halka-ervah"></span><span data-tr="Âlem-i Ervâh" data-en="The World of Spirits" data-pt="O Mundo dos Espíritos">Âlem-i Ervâh</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--halka-misal"></span><span data-tr="Âlem-i Misâl" data-en="The World of Image" data-pt="O Mundo da Imagem">Âlem-i Misâl</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--halka-ecsam"></span><span data-tr="Âlem-i Ecsâm" data-en="The World of Bodies" data-pt="O Mundo dos Corpos">Âlem-i Ecsâm</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--halka-insan"></span><span data-tr="İnsan-ı Kâmil" data-en="The Perfect Human" data-pt="O Ser Humano Perfeito">İnsan-ı Kâmil</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--halka-kalp"></span><span data-tr="Kalp" data-en="The Heart" data-pt="O Coração">Kalp</span></div>
+          <div class="legend__item"><span class="legend__line legend__line--halka-return"></span><span data-tr="Rücû (Dönüş): daire değil, yükselen bir spiral — aynı merkeze bir üst turdan bağlanış" data-en="Return: not a closed circle but a rising spiral — connecting back to the same center from a higher turn" data-pt="Retorno: não um círculo fechado, mas uma espiral ascendente — ligando-se ao mesmo centro a partir de um giro mais alto">Rücû</span></div>
+          <div class="legend__item"><span class="legend__line legend__line--halka-paradox"></span><span data-tr="Tenzîh-Teşbîh: öte ve içkin, aynı anda" data-en="Tanzih-Tashbih: beyond and immanent, at once" data-pt="Tanzih-Tashbih: além e imanente, ao mesmo tempo">Tenzîh-Teşbîh</span></div>
+        </div>
+      </div>
+    </section>
+
     <section class="hakkinda-wrap" id="hakkinda-wrap" hidden>
       <div class="hakkinda-content">
         <h1 class="hakkinda-content__title">Dost</h1>
@@ -502,6 +538,7 @@ essa é minha religião e minha fé."></blockquote>
   <script src="assets/sorular.js"></script>
   <script src="assets/futuhat.js"></script>
   <script src="assets/biriken-parcalar.js"></script>
+  <script src="assets/halka-i-vucud.js"></script>
   <script src="assets/ontology.js"></script>
   <script src="assets/crosslink-preview.js"></script>
   <script src="assets/start-hint.js"></script>
