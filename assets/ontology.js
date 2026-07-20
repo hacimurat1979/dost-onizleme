@@ -271,6 +271,16 @@
       .catch((err) => console.error("Hâller verisi yüklenemedi / Failed to load States data", err));
   });
 
+  deferFetch(() => {
+    fetch("data/ibn-arabi/sozluk-ipuclari.json")
+      .then((r) => r.json())
+      .then((data) => {
+        (data.terms || []).forEach((t) => registerGlossaryTerm(t.id, t.term, t.definition));
+        render();
+      })
+      .catch((err) => console.error("Sözlük ipuçları yüklenemedi / Failed to load glossary hints", err));
+  });
+
   let currentMainView = "ontology";
   const ontologyBtn = document.getElementById("ontology-btn");
   const esmaBtn = document.getElementById("esma-btn");
@@ -875,6 +885,63 @@
   const crossLinkListeners = [];
   const registeredVariantKeys = new Set();
 
+  // --- Inline glossary hints: general vocabulary (e.g. "Meşşâî") that has
+  // no node of its own on the site's concept map, so it can't become a real
+  // cross-link -- just a dotted-underline span with a short definition on
+  // hover/focus. Data-driven (data/ibn-arabi/sozluk-ipuclari.json) so new
+  // terms can be added without touching this code.
+  const glossaryTermsByLang = { tr: [], en: [], pt: [] };
+
+  function registerGlossaryTerm(id, termDict, defDict) {
+    ["tr", "en", "pt"].forEach((lang) => {
+      const term = termDict && termDict[lang];
+      const def = defDict && defDict[lang];
+      if (!term || !def) return;
+      glossaryTermsByLang[lang].push({ id, term, def, folded: foldForLang(lang, term) });
+    });
+  }
+
+  function escapeHtmlAttr(s) {
+    return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // Runs after linkify(), on its HTML output -- splits on existing tags so
+  // it only ever touches plain-text segments, never a cross-link's own
+  // content or attributes.
+  function glossify(html) {
+    if (!html) return html;
+    const lang = I18n.getLang();
+    const terms = glossaryTermsByLang[lang];
+    if (!terms || !terms.length) return html;
+    const sorted = terms.slice().sort((a, b) => b.folded.length - a.folded.length);
+    const pattern = sorted.map((t) => `(?<![\\p{L}])${escapeRegExp(t.folded)}(?![\\p{L}])`).join("|");
+    const re = new RegExp(pattern, "giu");
+    const parts = html.split(/(<[^>]+>)/);
+    return parts
+      .map((part) => {
+        if (part.startsWith("<")) return part;
+        const foldedPart = foldForLang(lang, part);
+        let result = "";
+        let lastIndex = 0;
+        let m;
+        re.lastIndex = 0;
+        while ((m = re.exec(foldedPart))) {
+          const start = m.index;
+          const end = start + m[0].length;
+          const matchLower = m[0].toLowerCase();
+          const hit = sorted.find((t) => t.folded.toLowerCase() === matchLower);
+          if (!hit) continue;
+          const original = part.slice(start, end);
+          result += part.slice(lastIndex, start);
+          result += `<span class="glossary-hint" tabindex="0" data-glossary-def="${escapeHtmlAttr(hit.def)}">${original}</span>`;
+          lastIndex = end;
+        }
+        result += part.slice(lastIndex);
+        return result;
+      })
+      .join("");
+  }
+
   function onCrossLinkReady(fn) {
     crossLinkListeners.push(fn);
   }
@@ -993,7 +1060,7 @@
       .filter((t) => !(t.view === excludeView && t.id === excludeId))
       .map((t) => ({ ...t, folded: foldForLang(lang, t.term) }))
       .sort((a, b) => b.folded.length - a.folded.length);
-    if (!terms.length) return text;
+    if (!terms.length) return glossify(text);
     // Case-insensitive ("i" flag) for every language, not just Turkish's own
     // fold: English/Portuguese running prose commonly lowercases a technical
     // term mid-sentence ("the pole of the age") even though the glossary
@@ -1024,7 +1091,7 @@
       lastIndex = end;
     }
     result += text.slice(lastIndex);
-    return result;
+    return glossify(result);
   }
 
   window.__dostCrossLink = {

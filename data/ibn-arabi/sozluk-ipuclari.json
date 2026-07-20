@@ -1,0 +1,18 @@
+{
+  "description": {
+    "tr": "Sitenin kendi kavram haritasında ayrı bir düğümü olmayan, ama tanımlarda/metinlerde geçtiğinde kısa bir açıklamaya ihtiyaç duyulabilecek genel terimler için satır-arası sözlük ipuçları. Bunlar birer sayfaya/düğüme bağlanmaz (cross-link değildir) -- sadece üzerine gelindiğinde kısa bir tanım gösterir.",
+    "en": "Inline glossary hints for general terms that don't have their own node on the site's concept map, but may need a brief gloss wherever they appear in a definition or passage. These do not link to a page (they are not cross-links) -- hovering just shows a short definition.",
+    "pt": "Dicas de glossário embutidas no texto, para termos gerais que não têm seu próprio nó no mapa de conceitos do site, mas que podem precisar de uma breve explicação onde quer que apareçam numa definição ou trecho. Elas não linkam para uma página (não são cross-links) -- passar o cursor apenas mostra uma definição curta."
+  },
+  "terms": [
+    {
+      "id": "messai",
+      "term": { "tr": "Meşşâî", "en": "Peripatetic", "pt": "Peripatético" },
+      "definition": {
+        "tr": "Aristoteles'in mantık ve doğa felsefesini esas alan, İslam düşüncesinde İbn Sînâ gibi filozoflarca sürdürülen felsefe okulu.",
+        "en": "The philosophical school grounded in Aristotle's logic and natural philosophy, carried into Islamic thought by philosophers such as Ibn Sina.",
+        "pt": "A escola filosófica fundamentada na lógica e na filosofia natural de Aristóteles, levada ao pensamento islâmico por filósofos como Ibn Sina."
+      }
+    }
+  ]
+}

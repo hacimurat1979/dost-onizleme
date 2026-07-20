@@ -2115,6 +2115,19 @@ html:has(.detail-panel:not([hidden])) {
   outline-offset: 2px;
   border-radius: 2px;
 }
+/* Sözlük ipucu: cross-link'ten kasıtlı olarak farklı -- vurgu rengi yok
+   (bağlanılan ayrı bir sayfa yok, sadece bir tanım), cursor:help ile
+   "buraya tıklarsan bir yere gitmezsin, sadece açıklama görürsün" hissi
+   veriliyor. */
+.glossary-hint {
+  border-bottom: 1px dotted var(--text-muted);
+  cursor: help;
+}
+.glossary-hint:focus-visible {
+  outline: 2px solid var(--text-muted);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 .detail-block blockquote {
   margin: 0;
   font-style: italic;

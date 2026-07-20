@@ -60,25 +60,48 @@
     moveTip(event, anchorEl);
   }
 
+  // Sözlük ipucu (.glossary-hint) cross-link'ten farklı: bağlı olduğu bir
+  // sayfa/düğüm yok, tanım metni doğrudan span'ın kendi data-glossary-def
+  // özniteliğinde geliyor (bkz. assets/ontology.js'teki glossify()) --
+  // burada ayrı bir lookup gerekmiyor.
+  function showGlossaryPreview(el, event) {
+    const def = el.dataset.glossaryDef;
+    if (!def) return;
+    const tip = ensureTip();
+    tip.innerHTML = `<p>${def}</p>`;
+    tip.hidden = false;
+    moveTip(event, el);
+  }
+
   container.addEventListener("mouseover", (event) => {
     const a = event.target.closest("a.cross-link");
-    if (a && !hasOwnPreview(a)) showPreview(a, event);
+    if (a && !hasOwnPreview(a)) { showPreview(a, event); return; }
+    const g = event.target.closest(".glossary-hint");
+    if (g) showGlossaryPreview(g, event);
   });
   container.addEventListener("mousemove", (event) => {
     const a = event.target.closest("a.cross-link");
-    if (a && !hasOwnPreview(a)) moveTip(event, a);
+    if (a && !hasOwnPreview(a)) { moveTip(event, a); return; }
+    const g = event.target.closest(".glossary-hint");
+    if (g) moveTip(event, g);
   });
   container.addEventListener("mouseout", (event) => {
     const a = event.target.closest("a.cross-link");
-    if (a && !hasOwnPreview(a)) hideTip();
+    if (a && !hasOwnPreview(a)) { hideTip(); return; }
+    const g = event.target.closest(".glossary-hint");
+    if (g) hideTip();
   });
   container.addEventListener("focusin", (event) => {
     const a = event.target.closest("a.cross-link");
-    if (a && !hasOwnPreview(a)) showPreview(a, event);
+    if (a && !hasOwnPreview(a)) { showPreview(a, event); return; }
+    const g = event.target.closest(".glossary-hint");
+    if (g) showGlossaryPreview(g, event);
   });
   container.addEventListener("focusout", (event) => {
     const a = event.target.closest("a.cross-link");
-    if (a && !hasOwnPreview(a)) hideTip();
+    if (a && !hasOwnPreview(a)) { hideTip(); return; }
+    const g = event.target.closest(".glossary-hint");
+    if (g) hideTip();
   });
   container.addEventListener("mousedown", (event) => {
     const a = event.target.closest("a.cross-link");
