@@ -67,17 +67,31 @@
   // ilişkilere doğru sırayla belirsin istiyoruz (bkz. kullanıcının onayladığı
   // öneri #9). Bu bayrak yalnızca İLK build'de true olur; sonraki her
   // toggle/focus güncellemesi normal, gecikmesiz geçişini korur.
+  //
+  // İlk sürümdeki tempo (~2.3sn, 260ms'lik adımlar) kullanıcıya göre sitenin
+  // sakin, tefekküre açık havasına göre fazla hızlı geldi -- her katmanın
+  // kendi başına "yerleşmesi" için daha uzun soluklu, yavaş bir tempoya
+  // (~5.5sn, 700-950ms'lik adımlar ve geçişler) çevirdik.
   let firstReveal = true;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const REVEAL_STEP = 700;
+  const REVEAL_BASE = 950;
+  const REVEAL_NODE_DURATION = 900;
+  const REVEAL_ZAT_DURATION = 1100;
+  const REVEAL_RELATIONS_DURATION = 900;
 
   // Zât (haritanın çerçevesi) en önce, Allah (merkez) hemen ardından, sonra
   // halka halka dışa doğru -- derinlik arttıkça isimler de "türeyerek" ortaya
   // çıkıyor hissini verir. reduceMotion'da gecikme uygulanmaz.
   function revealDelayFor(depth) {
     if (reduceMotion || !firstReveal) return 0;
-    return 480 + Math.min(depth || 0, 4) * 260;
+    return REVEAL_BASE + Math.min(depth || 0, 4) * REVEAL_STEP;
   }
-  const REVEAL_RELATIONS_DELAY = 480 + 5 * 260; // isimlerin en son katmanından sonra
+  function revealNodeDuration() {
+    return firstReveal && !reduceMotion ? REVEAL_NODE_DURATION : 300;
+  }
+  const REVEAL_RELATIONS_DELAY = REVEAL_BASE + 5 * REVEAL_STEP; // isimlerin en son katmanından sonra
 
   function fetchData() {
     if (esmaDataPromise) return esmaDataPromise;
@@ -256,7 +270,7 @@
     built = true;
 
     if (firstReveal && !reduceMotion) {
-      setTimeout(() => { firstReveal = false; }, REVEAL_RELATIONS_DELAY + 500);
+      setTimeout(() => { firstReveal = false; }, REVEAL_RELATIONS_DELAY + REVEAL_RELATIONS_DURATION);
     } else {
       firstReveal = false;
     }
@@ -307,7 +321,7 @@
       .style("opacity", boundaryIsNew && !reduceMotion && firstReveal ? 0 : null);
     boundaryEnter.merge(boundary).attr("r", (d) => d);
     if (boundaryIsNew && !reduceMotion && firstReveal) {
-      boundaryEnter.transition().delay(80).duration(500).style("opacity", 1);
+      boundaryEnter.transition().delay(200).duration(REVEAL_ZAT_DURATION).style("opacity", 1);
     }
 
     const [zx, zy] = radialPoint(0, boundaryRadius);
@@ -356,7 +370,7 @@
       .attr("transform", `translate(${zx},${zy})`);
 
     if (zatIsNew && !reduceMotion && firstReveal) {
-      zatEnter.transition().delay(0).duration(500).style("opacity", 1);
+      zatEnter.transition().delay(0).duration(REVEAL_ZAT_DURATION).style("opacity", 1);
     }
   }
 
@@ -459,7 +473,7 @@
       .attr("d", () => linkGen({ source: { x: source.x0, y: source.y0 }, target: { x: source.x0, y: source.y0 } }))
       .style("opacity", firstReveal && !reduceMotion ? 0 : null);
     linkEnter.merge(link)
-      .transition().duration(300)
+      .transition().duration(revealNodeDuration())
       .delay((d) => revealDelayFor(d.target.depth))
       .style("opacity", 1)
       .attr("d", linkGen);
@@ -483,7 +497,7 @@
       .attr("d", (r) => linkGen({ source: nodeById.get(r.from), target: nodeById.get(r.to) }));
     relEnter.transition()
       .delay(firstReveal && !reduceMotion ? REVEAL_RELATIONS_DELAY : 0)
-      .duration(400)
+      .duration(firstReveal && !reduceMotion ? REVEAL_RELATIONS_DURATION : 400)
       .style("opacity", 1);
     relationGroup.selectAll("path.esma-relation title").text((r) => I18n.pick3(r.label));
 
@@ -550,7 +564,7 @@
     // wins over a class, so a flat "1" here would silently erase the
     // class's 0.12 on every single update(), focused or not.
     node.merge(nodeEnter)
-      .transition().duration(300)
+      .transition().duration(revealNodeDuration())
       .delay((d) => revealDelayFor(d.depth))
       .style("opacity", (d) => (focusSeparationIds && !focusSeparationIds.has(d.id) ? 0.12 : 1))
       .attr("transform", (d) => `translate(${radialPoint(d.x, d.y).join(",")})`);
