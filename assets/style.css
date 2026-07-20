@@ -1583,6 +1583,14 @@ li.futuhat-pulse,
 @media (prefers-reduced-motion: reduce) {
   .legend__body, .legend__toggle-icon { transition: none; }
 }
+.legend__note {
+  margin: 0 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
 .legend__item { display: flex; align-items: center; gap: 8px; }
 .legend__dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
 .legend__dot--ibnarabi { background: var(--series-ibnarabi); }

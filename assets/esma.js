@@ -62,6 +62,23 @@
   let detailHistory = [];
   let suppressHistoryPush = false;
 
+  // "Varlığın zuhuru" -- haritanın ilk açılışında her şey aynı anda değil,
+  // Zât'tan Allah'a, oradan halka halka isimlere, en son da aralarındaki
+  // ilişkilere doğru sırayla belirsin istiyoruz (bkz. kullanıcının onayladığı
+  // öneri #9). Bu bayrak yalnızca İLK build'de true olur; sonraki her
+  // toggle/focus güncellemesi normal, gecikmesiz geçişini korur.
+  let firstReveal = true;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Zât (haritanın çerçevesi) en önce, Allah (merkez) hemen ardından, sonra
+  // halka halka dışa doğru -- derinlik arttıkça isimler de "türeyerek" ortaya
+  // çıkıyor hissini verir. reduceMotion'da gecikme uygulanmaz.
+  function revealDelayFor(depth) {
+    if (reduceMotion || !firstReveal) return 0;
+    return 480 + Math.min(depth || 0, 4) * 260;
+  }
+  const REVEAL_RELATIONS_DELAY = 480 + 5 * 260; // isimlerin en son katmanından sonra
+
   function fetchData() {
     if (esmaDataPromise) return esmaDataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("esma-wrap");
@@ -237,6 +254,12 @@
 
     update(root, false);
     built = true;
+
+    if (firstReveal && !reduceMotion) {
+      setTimeout(() => { firstReveal = false; }, REVEAL_RELATIONS_DELAY + 500);
+    } else {
+      firstReveal = false;
+    }
   }
 
   // While a cluster is focused, its own children need much more angular
@@ -276,19 +299,25 @@
   function updateZatMarker(boundaryRadius) {
     lastBoundaryRadius = boundaryRadius;
 
+    const boundaryIsNew = boundaryGroup.selectAll("circle.esma-boundary").empty();
     const boundary = boundaryGroup.selectAll("circle.esma-boundary").data([boundaryRadius]);
-    boundary.enter()
+    const boundaryEnter = boundary.enter()
       .append("circle")
       .attr("class", "esma-boundary")
-      .merge(boundary)
-      .attr("r", (d) => d);
+      .style("opacity", boundaryIsNew && !reduceMotion && firstReveal ? 0 : null);
+    boundaryEnter.merge(boundary).attr("r", (d) => d);
+    if (boundaryIsNew && !reduceMotion && firstReveal) {
+      boundaryEnter.transition().delay(80).duration(500).style("opacity", 1);
+    }
 
     const [zx, zy] = radialPoint(0, boundaryRadius);
     const zatWrapper = { data: zatDatum, isZat: true };
 
+    const zatIsNew = zatGroup.selectAll("g.esma-zat-node").empty();
     const zatSel = zatGroup.selectAll("g.esma-zat-node").data([zatWrapper]);
     const zatEnter = zatSel.enter().append("g")
       .attr("class", "node esma-zat-node node--root")
+      .style("opacity", zatIsNew && !reduceMotion && firstReveal ? 0 : null)
       .attr("tabindex", "0")
       .attr("role", "button")
       .attr("aria-label", () => tt(zatDatum.name))
@@ -325,6 +354,10 @@
     zatGroup.selectAll("g.esma-zat-node")
       .classed("node--active", currentDetailIsZat)
       .attr("transform", `translate(${zx},${zy})`);
+
+    if (zatIsNew && !reduceMotion && firstReveal) {
+      zatEnter.transition().delay(0).duration(500).style("opacity", 1);
+    }
   }
 
   function zoomToBox(nodes, animate, margin, maxScaleCap) {
@@ -421,19 +454,26 @@
       .transition().duration(300)
       .attr("d", () => linkGen({ source: { x: source.x, y: source.y }, target: { x: source.x, y: source.y } }))
       .remove();
-    link.enter().append("path")
+    const linkEnter = link.enter().append("path")
       .attr("class", "esma-link")
       .attr("d", () => linkGen({ source: { x: source.x0, y: source.y0 }, target: { x: source.x0, y: source.y0 } }))
-      .merge(link)
+      .style("opacity", firstReveal && !reduceMotion ? 0 : null);
+    linkEnter.merge(link)
       .transition().duration(300)
+      .delay((d) => revealDelayFor(d.target.depth))
+      .style("opacity", 1)
       .attr("d", linkGen);
 
-    // cross-relations (dashed) — only drawn once both endpoints are visible
+    // cross-relations (dashed) — only drawn once both endpoints are visible,
+    // and (on first reveal) only after every name has already appeared, so
+    // the relations read as connections discovered between names already on
+    // screen rather than arriving alongside them.
     const relSel = relationGroup.selectAll("path.esma-relation")
       .data(relations, (r) => `${r.from}->${r.to}`);
     relSel.exit().remove();
     const relEnter = relSel.enter().append("path")
       .attr("class", (r) => `esma-relation esma-relation--${r.type}`)
+      .style("opacity", firstReveal && !reduceMotion ? 0 : null)
       .on("click", (event, r) => {
         event.stopPropagation();
         showRelationDetail(r);
@@ -441,6 +481,10 @@
     relEnter.append("title").text((r) => I18n.pick3(r.label));
     relEnter.merge(relSel)
       .attr("d", (r) => linkGen({ source: nodeById.get(r.from), target: nodeById.get(r.to) }));
+    relEnter.transition()
+      .delay(firstReveal && !reduceMotion ? REVEAL_RELATIONS_DELAY : 0)
+      .duration(400)
+      .style("opacity", 1);
     relationGroup.selectAll("path.esma-relation title").text((r) => I18n.pick3(r.label));
 
     // nodes
@@ -507,6 +551,7 @@
     // class's 0.12 on every single update(), focused or not.
     node.merge(nodeEnter)
       .transition().duration(300)
+      .delay((d) => revealDelayFor(d.depth))
       .style("opacity", (d) => (focusSeparationIds && !focusSeparationIds.has(d.id) ? 0.12 : 1))
       .attr("transform", (d) => `translate(${radialPoint(d.x, d.y).join(",")})`);
 
