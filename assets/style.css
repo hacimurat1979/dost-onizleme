@@ -70,6 +70,7 @@
   --series-ibnarabi:  #2a78d6; /* blue */
   --series-ibnarabi-text: #1a5cb0; /* darker text-safe variant of the above, ~6.2:1 on this page-plane */
   --series-theme:     #eda100; /* yellow / gold */
+  --series-theme-text: #8f6000; /* darker text-safe variant of the above, ~5.3:1 on this page-plane */
   --series-daphne:    #e87ba4; /* magenta */
   --series-ibnarabi-line: #9ec5f4;
   --series-daphne-line:   #f3c3d7;
@@ -119,6 +120,7 @@
   --series-ibnarabi:  #3987e5;
   --series-ibnarabi-text: #3987e5; /* already passes AA on this dark page-plane (5.3:1+), so just an alias */
   --series-theme:     #c98500;
+  --series-theme-text: #c98500; /* already passes AA on this dark page-plane (5.67:1+), so just an alias */
   --series-daphne:    #d55181;
   --series-ibnarabi-line: #184f95;
   --series-daphne-line:   #6b3145;
@@ -410,6 +412,50 @@ html {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
   transform: rotate(90deg);
+}
+/* Esmâ'nın ilk açılışındaki kademeli belirme animasyonu (~5.5sn) sırasında
+   ekranda uzunca bir süre sadece Zât + boş bir halka görünüyordu -- veri
+   zaten yüklenmiş olduğu için .view-status'un "Yükleniyor…" göstergesi bu
+   anı kapsamıyor. Bu, ayrı ve kasıtlı olarak ince/geçici bir ipucu: sadece
+   ilk açılışta (firstReveal) görünür, isimler belirdikçe kendiliğinden
+   solar (bkz. assets/esma.js). */
+.esma-forming-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 18%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-1) 82%, transparent);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 2;
+}
+.esma-forming-hint--visible {
+  opacity: 1;
+}
+.esma-forming-hint__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--series-theme);
+  animation: esma-forming-pulse 1.6s ease-in-out infinite;
+}
+@keyframes esma-forming-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .esma-forming-hint { display: none; }
+  .esma-forming-hint__dot { animation: none; }
 }
 .view-status {
   position: absolute;
@@ -1413,7 +1459,7 @@ button.futuhat-part-chip:hover {
   font-variant-numeric: tabular-nums;
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--series-theme);
+  color: var(--series-theme-text);
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
@@ -1815,7 +1861,7 @@ li.futuhat-pulse,
   border-left: 4px dashed var(--series-theme);
 }
 .detail-block--sir h3 {
-  color: var(--series-theme);
+  color: var(--series-theme-text);
 }
 .detail-block--edge h3 em {
   color: var(--text-primary);
@@ -2779,7 +2825,7 @@ html:has(.detail-panel:not([hidden])) {
   height: 44px;
   border-radius: 50%;
   background: color-mix(in srgb, var(--series-theme) 18%, transparent);
-  color: var(--series-theme);
+  color: var(--series-theme-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3126,7 +3172,7 @@ html:has(.detail-panel:not([hidden])) {
   border-radius: 50%;
   border: 1px solid var(--series-theme);
   background: var(--surface-1);
-  color: var(--series-theme);
+  color: var(--series-theme-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3401,7 +3447,7 @@ html:has(.detail-panel:not([hidden])) {
 }
 
 .detail-title__arabic {
-  color: var(--series-theme);
+  color: var(--series-theme-text);
   font-size: 0.75em;
   font-weight: 400;
 }
@@ -3411,7 +3457,7 @@ html:has(.detail-panel:not([hidden])) {
    rather than calling attention to itself. */
 .honorific {
   font-family: "Traditional Arabic", "Arabic Typesetting", "Noto Naskh Arabic", "Geeza Pro", serif;
-  color: var(--series-theme);
+  color: var(--series-theme-text);
   font-size: 1.05em;
   font-style: normal;
   margin: 0 0.05em;

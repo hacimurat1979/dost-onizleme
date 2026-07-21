@@ -315,6 +315,14 @@
     built = true;
 
     if (firstReveal && !reduceMotion) {
+      const formingHint = document.getElementById("esma-forming-hint");
+      if (formingHint) {
+        // Belirir belirmez değil, Zât+boundary yerleştikten hemen sonra
+        // görünsün (üstlerine binmesin); isimlerin son katmanı ortaya
+        // çıktığında da ilişkiler henüz çizilmemişken sessizce solsun.
+        setTimeout(() => formingHint.classList.add("esma-forming-hint--visible"), 300);
+        setTimeout(() => formingHint.classList.remove("esma-forming-hint--visible"), REVEAL_RELATIONS_DELAY);
+      }
       setTimeout(() => { firstReveal = false; }, REVEAL_RELATIONS_DELAY + REVEAL_RELATIONS_DURATION);
     } else {
       firstReveal = false;
