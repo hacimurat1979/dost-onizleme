@@ -193,7 +193,7 @@
     const label = POLE_LABEL[d.data.pole];
     if (!label) return "";
     const bg = colorFor(d);
-    return `<span class="pole-badge" style="background:color-mix(in srgb, ${bg} 72%, black);color:#ffffff">${I18n.pick3(label)}</span>`;
+    return `<span class="pole-badge" style="background:color-mix(in srgb, ${bg} 72%, black)">${I18n.pick3(label)}</span>`;
   }
 
   function labelFor(d) {

@@ -755,7 +755,7 @@
     articleEl.innerHTML = `
       <header class="futuhat-hero">
         <div class="futuhat-toolbar">
-          <button class="futuhat-toolbar__btn" id="futuhat-font-decrease" type="button" title="Yazı boyutunu küçült / Decrease font size / Diminuir tamanho da fonte" aria-label="A-">A−</button>
+          <button class="futuhat-toolbar__btn" id="futuhat-font-decrease" type="button" title="Yazı boyutunu küçült / Decrease font size / Diminuir tamanho da fonte" aria-label="A− / A- / A-">A−</button>
           <button class="futuhat-toolbar__btn" id="futuhat-font-increase" type="button" title="Yazı boyutunu büyült / Increase font size / Aumentar tamanho da fonte" aria-label="A+">A+</button>
           <button class="futuhat-toolbar__btn futuhat-toolbar__btn--icon" id="futuhat-print" type="button" title="Yazdır / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">
             <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="6" y="3" width="12" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="9" width="16" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -863,35 +863,15 @@
   }
 
   // --- Toolbar: font size, print, share ---
-  function applyFontScale(scale) {
-    document.documentElement.style.setProperty("--detail-font-scale", scale);
-  }
-
   function setupToolbar(part) {
-    const dec = document.getElementById("futuhat-font-decrease");
-    const inc = document.getElementById("futuhat-font-increase");
     const printBtn = document.getElementById("futuhat-print");
     const shareBtn = document.getElementById("futuhat-share");
 
-    let storedScale = null;
-    try { storedScale = localStorage.getItem("dost-font-scale"); } catch (e) {}
-    let fontScale = parseFloat(storedScale) || 1;
-    applyFontScale(fontScale);
+    window.DostFontScale.bindFontScaleButtons(
+      document.getElementById("futuhat-font-decrease"),
+      document.getElementById("futuhat-font-increase")
+    );
 
-    if (dec) {
-      dec.addEventListener("click", () => {
-        fontScale = Math.max(0.8, Math.round((fontScale - 0.2) * 100) / 100);
-        applyFontScale(fontScale);
-        try { localStorage.setItem("dost-font-scale", fontScale); } catch (e) {}
-      });
-    }
-    if (inc) {
-      inc.addEventListener("click", () => {
-        fontScale = Math.min(1.8, Math.round((fontScale + 0.2) * 100) / 100);
-        applyFontScale(fontScale);
-        try { localStorage.setItem("dost-font-scale", fontScale); } catch (e) {}
-      });
-    }
     if (printBtn) {
       printBtn.addEventListener("click", () => window.print());
     }

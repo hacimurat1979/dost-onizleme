@@ -220,7 +220,7 @@
     const tx = width / 2 - clampedScale * (x0 + treeW / 2);
     const ty = height / 2 - clampedScale * (y0 + treeH / 2);
     const transform = d3.zoomIdentity.translate(tx, ty).scale(clampedScale);
-    const sel = animate ? svg.transition().duration(450) : svg;
+    const sel = animate ? svg.transition().duration(400) : svg;
     sel.call(zoomBehavior.transform, transform);
   }
 

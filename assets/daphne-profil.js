@@ -256,23 +256,6 @@
   }
 
   function drag(sim) {
-    function dragstarted(event, d) {
-      if (d.type === "hub") return;
-      if (!event.active) sim.alphaTarget(0.2).restart();
-      d.fx = d.x;
-      d.fy = d.y;
-    }
-    function dragged(event, d) {
-      if (d.type === "hub") return;
-      d.fx = event.x;
-      d.fy = event.y;
-    }
-    function dragended(event, d) {
-      if (d.type === "hub") return;
-      if (!event.active) sim.alphaTarget(0);
-      d.fx = null;
-      d.fy = null;
-    }
-    return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
+    return window.DostGraphUtils.createDragBehavior(sim, (d) => d.type === "hub");
   }
 })();

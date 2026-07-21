@@ -185,23 +185,7 @@
   // tablet ekranlarda kısa viewport yüksekliğinde grafiğin üstüne düşüp
   // düğümleri kapatabiliyor -- varsayılan olarak kısık/dokunmatik
   // ekranlarda katlanmış başlasın, kullanıcı isterse açsın.
-  function setupLegendToggles() {
-    const collapseByDefault = window.matchMedia("(max-height: 700px)").matches
-      || window.matchMedia("(pointer: coarse)").matches;
-    document.querySelectorAll(".legend").forEach((legend) => {
-      const toggle = legend.querySelector(".legend__toggle");
-      if (!toggle) return;
-      if (collapseByDefault) {
-        legend.classList.add("legend--collapsed");
-        toggle.setAttribute("aria-expanded", "false");
-      }
-      toggle.addEventListener("click", () => {
-        const collapsed = legend.classList.toggle("legend--collapsed");
-        toggle.setAttribute("aria-expanded", String(!collapsed));
-      });
-    });
-  }
-  setupLegendToggles();
+  window.DostGraphUtils.setupLegendToggles();
 
   const TARGET = {
     "dhat": { x: 0.5, y: 0.09 },
@@ -1373,20 +1357,6 @@
   }
 
   function drag(sim) {
-    function dragstarted(event, d) {
-      if (!event.active) sim.alphaTarget(0.2).restart();
-      d.fx = d.x;
-      d.fy = d.y;
-    }
-    function dragged(event, d) {
-      d.fx = event.x;
-      d.fy = event.y;
-    }
-    function dragended(event, d) {
-      if (!event.active) sim.alphaTarget(0);
-      d.fx = null;
-      d.fy = null;
-    }
-    return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
+    return window.DostGraphUtils.createDragBehavior(sim);
   }
 })();

@@ -72,16 +72,22 @@
         <button class="view-status__retry" type="button" hidden></button>
       </div>
       <div class="legend" id="legend">
-        <div class="legend__item"><span class="legend__dot legend__dot--ibnarabi"></span><span data-tr="İbn Arabî kavramları" data-en="Ibn Arabi concepts" data-pt="Conceitos de Ibn Arabi">İbn Arabî kavramları</span></div>
-        <div class="legend__item"><span class="legend__dot legend__dot--theme"></span><span data-tr="Ortak temalar" data-en="Shared themes" data-pt="Temas compartilhados">Ortak temalar</span></div>
-        <div class="legend__item"><span class="legend__dot legend__dot--daphne"></span><span data-tr="Daphne'nin yazıları" data-en="Daphne's writings" data-pt="Escritos de Daphne">Daphne'nin yazıları</span></div>
+        <button class="legend__toggle" type="button" aria-expanded="true">
+          <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
+          <span class="legend__toggle-icon" aria-hidden="true">▾</span>
+        </button>
+        <div class="legend__body">
+          <div class="legend__item"><span class="legend__dot legend__dot--ibnarabi"></span><span data-tr="İbn Arabî kavramları" data-en="Ibn Arabi concepts" data-pt="Conceitos de Ibn Arabi">İbn Arabî kavramları</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--theme"></span><span data-tr="Ortak temalar" data-en="Shared themes" data-pt="Temas compartilhados">Ortak temalar</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--daphne"></span><span data-tr="Daphne'nin yazıları" data-en="Daphne's writings" data-pt="Escritos de Daphne">Daphne'nin yazıları</span></div>
+        </div>
       </div>
     </section>
 
     <aside class="detail-panel" id="detail-panel" hidden>
       <div id="detail-content"></div>
     </aside>
-    <button class="detail-panel__close" id="detail-close" aria-label="Kapat">×</button>
+    <button class="detail-panel__close" id="detail-close" aria-label="Kapat / Close / Fechar">×</button>
   </main>
 
   <footer class="app-footer">
@@ -96,6 +102,7 @@
   <script src="assets/i18n.js"></script>
   <script src="assets/view-status.js"></script>
   <script src="assets/graph-utils.js"></script>
+  <script src="assets/font-scale.js"></script>
   <script src="assets/reading-mode.js"></script>
   <script src="assets/honorifics.js"></script>
   <script src="assets/compare.js"></script>

@@ -66,6 +66,10 @@
      for focus/hover indicators on this light page-plane (~2.1-2.5:1). This
      token is for interactive-state color only. */
   --accent-interactive: #8a6100;
+  /* Fixed dark text for use ON TOP of --accent-interactive's bright amber --
+     stays the same in both themes since the accent itself stays bright in
+     both (unlike --surface-1, which flips light/dark). */
+  --on-accent-text: #1a1a19;
 
   --series-ibnarabi:  #2a78d6; /* blue */
   --series-ibnarabi-text: #1a5cb0; /* darker text-safe variant of the above, ~6.2:1 on this page-plane */
@@ -121,6 +125,9 @@
   --series-ibnarabi-text: #3987e5; /* already passes AA on this dark page-plane (5.3:1+), so just an alias */
   --series-theme:     #c98500;
   --series-theme-text: #c98500; /* already passes AA on this dark page-plane (5.67:1+), so just an alias */
+  /* Brighter gold used only where the flat --series-theme reads too dim
+     against a near-black plane (Zât's halo, the Esmâ boundary ring). */
+  --accent-glow-dark: #ffc233;
   --series-daphne:    #d55181;
   --series-ibnarabi-line: #184f95;
   --series-daphne-line:   #6b3145;
@@ -327,22 +334,40 @@ html {
   gap: 6px;
 }
 
-.theme-toggle {
+/* Shared 34x34 circular icon-button chrome -- theme-toggle/graph-recenter/
+   search-toggle/typography-btn/futuhat-toolbar__btn all repeat this shape;
+   only their background/position/font vary below. */
+.theme-toggle,
+.graph-recenter,
+.search-toggle,
+.surprise-toggle,
+.typography-btn,
+.futuhat-toolbar__btn {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: transparent;
   border: 1px solid var(--border);
   color: var(--text-secondary);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.theme-toggle:hover {
+.theme-toggle:hover,
+.graph-recenter:hover,
+.search-toggle:hover,
+.surprise-toggle:hover,
+.typography-btn:hover,
+.typography-btn:focus-visible,
+.futuhat-toolbar__btn:hover,
+.futuhat-toolbar__btn:focus-visible {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
+}
+
+.theme-toggle {
+  background: transparent;
 }
 .theme-toggle__icon { display: none; }
 [data-theme="light"] .theme-toggle__icon--moon { display: block; }
@@ -395,22 +420,11 @@ html {
   position: absolute;
   top: 12px;
   left: 12px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
   background: color-mix(in srgb, var(--surface-1) 90%, transparent);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   z-index: 2;
   transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 .graph-recenter:hover {
-  color: var(--accent-interactive);
-  border-color: var(--accent-interactive);
   transform: rotate(90deg);
 }
 /* Esmâ'nın ilk açılışındaki kademeli belirme animasyonu (~5.5sn) sırasında
@@ -716,9 +730,9 @@ html {
   pointer-events: none;
 }
 .viz-root[data-theme="dark"] .esma-boundary {
-  stroke: #ffc233;
+  stroke: var(--accent-glow-dark);
   opacity: 0.7;
-  filter: drop-shadow(0 0 9px color-mix(in srgb, #ffc233 70%, transparent));
+  filter: drop-shadow(0 0 9px color-mix(in srgb, var(--accent-glow-dark) 70%, transparent));
 }
 
 .esma-link {
@@ -1129,18 +1143,9 @@ button.futuhat-part-chip:hover {
 }
 
 .futuhat-toolbar__btn {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
   background: var(--surface-1);
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 0.72rem;
   font-weight: 600;
-  cursor: pointer;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -1309,7 +1314,7 @@ button.futuhat-part-chip:hover {
 .futuhat-section__heading {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: calc(1.3rem * var(--detail-font-scale, 1));
   margin: 0 0 14px;
 }
 
@@ -1501,6 +1506,9 @@ button.futuhat-part-chip:hover {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+.viz-root[data-theme="dark"] .futuhat-popup__card {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
 }
 
 .futuhat-popup__header {
@@ -1840,10 +1848,6 @@ li.futuhat-pulse,
   stroke-width: 2px;
 }
 
-.ontology-node circle {
-  stroke: var(--surface-1);
-  stroke-width: 2px;
-}
 .ontology-node text.node-label {
   font-size: 12px;
 }
@@ -1920,7 +1924,7 @@ li.futuhat-pulse,
    plane at these opacities, so the halo gets its own brighter gold, a soft
    blur, and a stronger breathing range to stay visible. */
 .viz-root[data-theme="dark"] .node--root .node-halo {
-  fill: #ffc233;
+  fill: var(--accent-glow-dark);
   filter: blur(4px);
   animation: node-halo-breathe-dark 6s ease-in-out infinite;
 }
@@ -2008,6 +2012,9 @@ li.futuhat-pulse,
      palette rather than leaving the browser's bare default in view. */
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
+}
+.viz-root[data-theme="dark"] .detail-panel {
+  box-shadow: -8px 0 24px rgba(0,0,0,0.4);
 }
 .detail-panel[hidden] { display: none; }
 .detail-panel::-webkit-scrollbar { width: 8px; }
@@ -2683,19 +2690,9 @@ html:has(.detail-panel:not([hidden])) {
 
 .typography-btn {
   background: var(--surface-1);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  width: 34px;
-  height: 34px;
   padding: 0;
-  border-radius: 50%;
-  cursor: pointer;
   font-size: 0.95rem;
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .typography-btn:hover,
@@ -2998,7 +2995,7 @@ html:has(.detail-panel:not([hidden])) {
 .bookmap-concept-tag:focus-visible {
   background: var(--accent-interactive);
   border-color: var(--accent-interactive);
-  color: #1a1a19;
+  color: var(--on-accent-text);
 }
 
 .bookmap-concept-tag--group {
@@ -3093,41 +3090,13 @@ html:has(.detail-panel:not([hidden])) {
 
 /* Search */
 .search-toggle {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
   background: transparent;
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.search-toggle:hover {
-  color: var(--accent-interactive);
-  border-color: var(--accent-interactive);
-}
-
 .surprise-toggle {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
   background: transparent;
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   transition: color 0.2s ease, border-color 0.2s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.surprise-toggle:hover {
-  color: var(--accent-interactive);
-  border-color: var(--accent-interactive);
 }
 
 .surprise-toggle:active {
@@ -3182,6 +3151,9 @@ html:has(.detail-panel:not([hidden])) {
   font-size: 0.72rem;
   font-weight: 600;
 }
+.viz-root[data-theme="dark"] .dost-edit-panel__toggle {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
 
 .dost-edit-panel__icon { font-size: 0.95rem; }
 
@@ -3200,6 +3172,9 @@ html:has(.detail-panel:not([hidden])) {
   border: 1px solid var(--border);
   background: var(--surface-1);
   box-shadow: 0 8px 24px rgba(20, 15, 8, 0.18);
+}
+.viz-root[data-theme="dark"] .dost-edit-panel__menu {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
 .dost-edit-panel__hint {
@@ -3252,6 +3227,9 @@ html:has(.detail-panel:not([hidden])) {
   max-height: min(70vh, 620px);
   display: flex;
   flex-direction: column;
+}
+.viz-root[data-theme="dark"] .search-panel__box {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .search-panel__input {
@@ -3483,6 +3461,9 @@ html:has(.detail-panel:not([hidden])) {
   opacity: 1;
   visibility: visible;
   transition: opacity 0.12s ease, visibility 0s linear 0s;
+}
+.viz-root[data-theme="dark"] .node-hover-tip {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
 /* [hidden] would normally collapse straight to display:none (no
@@ -3828,6 +3809,9 @@ html:has(.detail-panel:not([hidden])) {
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(20,15,8,0.35);
+}
+.viz-root[data-theme="dark"] .cizim-lightbox__panel {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
 }
 
 .cizim-lightbox__close {
