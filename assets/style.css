@@ -688,6 +688,14 @@ html {
 .esma-link--dimmed {
   opacity: 0.12;
 }
+/* İlişki-tipi taksonomisi: sekiz tip, dört "aile" halinde (bkz.
+   RELATION_TYPE_META, assets/esma.js). Her aile bir rengi paylaşır --
+   gold: kimlik/özdeşlik (tecelli parıltılı+oklu, ayni kalın çizgisiz);
+   gri: yapısal/sınıflandırıcı (ayni-sinif kesikli, parça noktalı+soluk);
+   mavi: nedensel/temsili (sebep dolu+oklu, temsil noktalı);
+   macenta: karşıtlık/mertebe (zid kesikli, mertebe kesikli+oklu). Aile
+   içindeki ayrım ok ucu ve çizgi dolgusuyla kuruluyor, yeni bir renk
+   icat etmeden. */
 .esma-relation {
   fill: none;
   stroke: var(--series-theme);
@@ -701,9 +709,65 @@ html {
   opacity: 1;
   stroke-width: 3px;
 }
+.esma-relation--tecelli {
+  stroke: var(--series-theme);
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--series-theme) 65%, transparent));
+}
+.esma-relation--ayni-sinif {
+  stroke: var(--series-esma-neutral);
+  stroke-width: 1.6px;
+  stroke-dasharray: 4 3;
+}
 .esma-relation--zid {
   stroke: var(--series-daphne);
+  stroke-dasharray: 4 3;
 }
+.esma-relation--sebep {
+  stroke: var(--series-ibnarabi);
+  stroke-dasharray: none;
+}
+.esma-relation--parca {
+  stroke: var(--series-esma-neutral);
+  stroke-width: 1.4px;
+  stroke-dasharray: 1 3;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+.esma-relation--ayni {
+  stroke: var(--series-theme);
+  stroke-width: 3px;
+  stroke-dasharray: none;
+}
+.esma-relation--temsil {
+  stroke: var(--series-ibnarabi);
+  stroke-width: 1.6px;
+  stroke-dasharray: 1 3;
+  stroke-linecap: round;
+}
+.esma-relation--mertebe {
+  stroke: var(--series-daphne);
+  stroke-dasharray: 3 2;
+}
+.esma-arrowhead {
+  stroke: none;
+}
+.esma-arrowhead--tecelli { fill: var(--series-theme); }
+.esma-arrowhead--sebep   { fill: var(--series-ibnarabi); }
+.esma-arrowhead--mertebe { fill: var(--series-daphne); }
+
+.pole-badge--relation {
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(20,15,8,0.35);
+}
+.pole-badge--relation-tecelli,
+.pole-badge--relation-ayni { background: color-mix(in srgb, var(--series-theme) 78%, black); }
+.pole-badge--relation-ayni-sinif,
+.pole-badge--relation-parca { background: color-mix(in srgb, var(--series-esma-neutral) 78%, black); }
+.pole-badge--relation-sebep,
+.pole-badge--relation-temsil { background: color-mix(in srgb, var(--series-ibnarabi) 78%, black); }
+.pole-badge--relation-zid,
+.pole-badge--relation-mertebe { background: color-mix(in srgb, var(--series-daphne) 78%, black); }
 
 .hal-link {
   fill: none;
@@ -1650,6 +1714,27 @@ li.futuhat-pulse,
 }
 .legend__line--return {
   border-top-color: var(--series-hal-hayret);
+}
+.legend__line--tecelli {
+  border-top: 2px solid var(--series-theme);
+}
+.legend__line--ayni-sinif {
+  border-top: 2px dashed var(--series-esma-neutral);
+}
+.legend__line--sebep {
+  border-top: 2px solid var(--series-ibnarabi);
+}
+.legend__line--parca {
+  border-top: 1px dotted var(--series-esma-neutral);
+}
+.legend__line--ayni {
+  border-top: 3px solid var(--series-theme);
+}
+.legend__line--temsil {
+  border-top: 2px dotted var(--series-ibnarabi);
+}
+.legend__line--mertebe {
+  border-top: 2px dashed var(--series-daphne);
 }
 
 .node-label {

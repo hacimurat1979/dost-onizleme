@@ -156,6 +156,31 @@
     neutral: { tr: "Grup", en: "Group", pt: "Grupo" },
   };
 
+  // İlişki-tipi taksonomisi (kullanıcının onayladığı öneri, 2026-07-21):
+  // iki isim arasındaki bağın NE TÜRDEN bir bağ olduğunu (yalnızca "bir
+  // ilişki var" değil) adlandırır. Sekiz tip -- sebep/sonuç tek bir yönlü
+  // tipe (sebep) indirgeniyor, çünkü `from`/`to` alanları zaten yönü taşıyor
+  // (from = sebep, to = sonuç). Her tip için `label` (lejant + detay
+  // panelindeki rozet metni) ve `directional` (ok ucu gerekip gerekmediği,
+  // bkz. RELATION_ARROW_TYPES) burada bir arada tutuluyor ki yeni bir tip
+  // eklendiğinde tek bir yerden CSS sınıfı + lejant + rozet senkron kalsın.
+  const RELATION_TYPE_META = {
+    tecelli: { label: { tr: "Tecellî", en: "Self-disclosure", pt: "Autorrevelação" }, directional: true },
+    "ayni-sinif": { label: { tr: "Aynı Sınıf", en: "Same Class", pt: "Mesma Classe" }, directional: false },
+    zid: { label: { tr: "Zıt Kutup", en: "Opposite Pole", pt: "Polo Oposto" }, directional: false },
+    sebep: { label: { tr: "Sebep — Sonuç", en: "Cause — Effect", pt: "Causa — Efeito" }, directional: true },
+    parca: { label: { tr: "Parça — Bütün", en: "Part — Whole", pt: "Parte — Todo" }, directional: false },
+    ayni: { label: { tr: "Aynıdır (Özdeş)", en: "Identical", pt: "Idêntico" }, directional: false },
+    temsil: { label: { tr: "Temsil Eder", en: "Represents", pt: "Representa" }, directional: false },
+    mertebe: { label: { tr: "Mertebe (Derece)", en: "Rank (Degree)", pt: "Grau (Posição)" }, directional: true },
+  };
+
+  function relationTypeBadgeHtml(r) {
+    const meta = RELATION_TYPE_META[r.type];
+    if (!meta) return "";
+    return `<span class="pole-badge pole-badge--relation pole-badge--relation-${r.type}">${tt(meta.label)}</span>`;
+  }
+
   // Rozet, düğümün kendi (bazen açık tonlu -- örn. Kemâl altını) rengini
   // aynen kullanırsa beyaz metin bazı renklerde okunmuyordu; koyu metin
   // seçmek de başka renklerde okunurluğu bozuyordu (bkz. eski deneme,
@@ -203,8 +228,28 @@
     (node.children || []).forEach((c) => applySpiralOffset(c, ownOffset));
   }
 
+  // İlişki-tipi oku uçları. Yalnızca yönü anlamlı olan tipler (sebep,
+  // tecelli, mertebe) kendi ok rengiyle bir marker alır; simetrik tipler
+  // (ayni, ayni-sinif, zid, parca, temsil) oksuz kalır -- bkz. RELATION_TYPE_META.
+  const RELATION_ARROW_TYPES = ["sebep", "tecelli", "mertebe"];
+
   function buildGraph(data) {
     svg.selectAll("*").remove();
+
+    const defs = svg.append("defs");
+    RELATION_ARROW_TYPES.forEach((type) => {
+      defs.append("marker")
+        .attr("id", `esma-arrow-${type}`)
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 9)
+        .attr("refY", 0)
+        .attr("markerWidth", 6)
+        .attr("markerHeight", 6)
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M0,-5L10,0L0,5")
+        .attr("class", `esma-arrowhead esma-arrowhead--${type}`);
+    });
 
     // Zât is excluded from the tree itself and rendered separately (see
     // updateZatMarker) -- the ring system is rooted at "Allah" so it takes
@@ -487,6 +532,7 @@
     relSel.exit().remove();
     const relEnter = relSel.enter().append("path")
       .attr("class", (r) => `esma-relation esma-relation--${r.type}`)
+      .attr("marker-end", (r) => (RELATION_ARROW_TYPES.includes(r.type) ? `url(#esma-arrow-${r.type})` : null))
       .style("opacity", firstReveal && !reduceMotion ? 0 : null)
       .on("click", (event, r) => {
         event.stopPropagation();
@@ -890,7 +936,7 @@
     const to = nodeById.get(r.to);
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "İlişki", en: "Relation", pt: "Relação" })}</p>
-      <h2 class="detail-title">${I18n.pick3(from.data.name)} ↔ ${I18n.pick3(to.data.name)}</h2>
+      <h2 class="detail-title">${I18n.pick3(from.data.name)} ↔ ${I18n.pick3(to.data.name)} ${relationTypeBadgeHtml(r)}</h2>
       ${relationDiagramHtml(r)}
       <div class="detail-block detail-block--ibnarabi">
         <p>${I18n.pick3(r.label)}</p>
