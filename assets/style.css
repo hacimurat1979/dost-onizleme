@@ -596,7 +596,10 @@ html {
     align-items: stretch;
     border-radius: 16px;
     padding: 14px 16px;
-    bottom: 12px;
+    /* Both this and .legend are bottom-anchored on narrow viewports; without
+       this offset the two overlap and the hint's own button silently
+       swallows clicks meant for the legend toggle underneath it. */
+    bottom: 70px;
   }
   .start-hint__actions { justify-content: flex-end; }
 }
@@ -1656,6 +1659,11 @@ li.futuhat-pulse,
   padding: 10px 14px;
   font-size: 0.8rem;
   color: var(--text-secondary);
+  /* Above .start-hint (z-index: 3) -- on Ontoloji's mobile layout the two
+     are both bottom-anchored, and if a first-time visitor expands the
+     legend before dismissing the hint, the legend (the persistent control)
+     should stay on top and clickable rather than the transient hint. */
+  z-index: 4;
 }
 .legend__toggle {
   display: flex;
