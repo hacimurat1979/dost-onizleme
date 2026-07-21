@@ -1,12 +1,12 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik; On Altıncı, On Yedinci, On Sekizinci, On Dokuzuncu, Yirminci, Yirmi Birinci, Yirmi İkinci, Yirmi Üçüncü, Yirmi Dördüncü, Yirmi Beşinci, Yirmi Altıncı ve Yirmi Yedinci Kısımlar da bu okumaya eklendi.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik; On Altıncı, On Yedinci, On Sekizinci, On Dokuzuncu, Yirminci, Yirmi Birinci, Yirmi İkinci, Yirmi Üçüncü, Yirmi Dördüncü, Yirmi Beşinci, Yirmi Altıncı ve Yirmi Yedinci Kısımlar da bu okumaya eklendi. Yirmi Sekizinci Kısım'ın tamamlanmasıyla İkinci Cilt'in (metnin kendi ifadesiyle 'Dördüncü Sifr'in) okuması tamamlandı; sıradaki durağımız Üçüncü Cilt'in Yirmi Dokuzuncu Kısmı.",
   "book": {
     "cilts": [
       { "cilt": 1, "kisimStart": 1, "kisimEnd": 14 },
       { "cilt": 2, "kisimStart": 15, "kisimEnd": 28 }
     ]
   },
-  "activePartId": "c2k27",
+  "activePartId": "c2k28",
   "parts": [
     {
       "id": "c1k3",
@@ -12651,6 +12651,824 @@
           "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXVII — Altmış Üçüncü Bölüm: İnsanların Dünya Âlemi ve Diriliş Arasındaki Berzah'ta Kalmasının Bilinmesi, s. 418-429.",
           "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXVII — Chapter Sixty-Three: Knowing How Human Beings Remain in the Isthmus (Barzakh) Between the World and the Resurrection, pp. 418-429.",
           "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXVII — Capítulo Sexagésimo Terceiro: Conhecendo Como os Seres Humanos Permanecem no Istmo (Barzakh) Entre o Mundo e a Ressurreição, pp. 418-429."
+        }
+      ]
+    },
+    {
+      "id": "c2k28",
+      "cilt": 2,
+      "kisim": 28,
+      "status": "active",
+      "title": {
+        "tr": "Kıyametin Elli Durağından Büyük Şefaate: Ölümün Kurban Edildiği Gün",
+        "en": "From the Fifty Stations of the Resurrection to the Greatest Intercession: The Day Death Itself Is Sacrificed",
+        "pt": "Das Cinquenta Estações da Ressurreição à Grande Intercessão: O Dia em Que a Própria Morte É Sacrificada"
+      },
+      "pageRange": "430–458",
+      "hero": {
+        "summary": {
+          "tr": "Kısım XXVIII, Cilt II'nin -- ve metnin kendi ifadesiyle 'dördüncü sifr'in -- son kısmı: kısmın kapanışında Dost, \"Yirmi sekizinci kısmın tamamlanmasıyla dördüncü sifr tamamlandı. Onu yirmi dokuzuncu kısım, onu ise otuzuncu kısım takip edecektir\" diye yazıyor (s. 458) -- yani elimizdeki cilt-02.txt dosyası burada bitiyor, Kısım XXIX bir sonraki cilt dosyasında sürecek. Önceki kısımlardan farklı olarak burada tek bir bölüm var -- Altmış Dördüncü Bölüm, \"Kıyameti, Menzillerini ve Dirilişin Niteliğini Bilmek\" -- ama bu bölüm, kısmın en uzunlarından biri kadar geniş: yeryüzünün ve göğün başkalaşımından başlayıp, meleklerin göklerden inişine, Hakkın üç nidasına, ateşten yükselen bir boyunun günahkârları yutmasına, sonra bir hadisle aktarılan -- her biri bin yıl süren -- elli durağa (kabir kapısı, ateş merdivenleri, on hesap merdiveni, mahşerin on beş durağı, terazi, Allah'ın önündeki on iki durak, sırattaki yedi köprü) uzanıyor. Ardından Dost, kendi sesiyle konuya dönüp dirilişin niteliğini tartışıyor: ölümün 'küçük kıyamet' olduğunu, haşrin tikel nefislerin tümel nefiste toplanması olduğunu, kuyruk sokumunun ahiret yaratılışının çekirdeği olduğunu, ve dünya-berzah-ahiret'in üç ardışık uyanıklık mertebesi kurduğunu anlatıyor. Bölümün ortasında, Âdem'den Nuh'a, İbrahim'e, Musa'ya, İsa'ya uzanıp her birinin çekindiği, sonunda Hz. Muhammed'in üstlendiği büyük şefaat sahnesi var. Kapanışa doğru ise kıyametin yedi temel yeri (sunum, defter, terazi, sırat, araf, ölümün kurban edilmesi, ziyafet sofrası) sıralanıyor -- bunların arasında en çarpıcısı, bize göre, ölümün kendisinin 'parlak bir koç suretinde' kurban edilip hem cennetliklere hem cehennemliklere artık ebedi kalacaklarının ilan edildiği sahne. Bu kısım, önceki iki kısımda (c2k26, c2k27) dört kez karşımıza çıkan 'ne ölür ne diri kalır' motifiyle -- aşağıda ayrıntısını verdiğimiz gibi -- ilginç bir şekilde konuşuyor: orada sürmekte olan bir ara-hal olarak tarif edilen bu müphemlik, burada ölümün kurban edilmesiyle nihai olarak kapatılıyor gibi görünüyor. Bütün bu malzemeyi, kökensel duruşumuza sadık kalarak -- kıyamet ve azap sahnelerini kesin bir bilgi olarak değil, Dost'un bize aktardığı, kendi de zaman zaman 'bilmiyorum' diyerek temkinli durduğu bir anlatı olarak -- aktarmaya çalıştık.",
+          "en": "Part XXVIII is the final part of Volume II -- and, in the text's own words, of the 'Fourth Sifr': at the part's close, Dost writes, \"With the completion of the twenty-eighth part, the fourth sifr is complete. The twenty-ninth part will follow it, and the thirtieth part will follow that\" (p. 458) -- meaning the cilt-02.txt file we have ends here, and Part XXIX continues in the next volume file. Unlike the recent parts, this one holds a single chapter -- Chapter Sixty-Four, \"Knowing the Resurrection, Its Stations, and the Nature of Revival\" -- but that one chapter is as long as some entire parts: it opens with the earth and sky's transformation, the angels' descent from the heavens, the Real's three calls, a neck rising from the fire to swallow the defiant, and then, carried through a hadith, fifty stations of a thousand years each (the grave's threshold, the fiery stairs, ten stairs of reckoning, the Gathering's fifteen stations, the scale, twelve stations before God, and seven bridges over the Path). Dost then returns in his own voice to discuss the nature of revival: that death is the 'small resurrection,' that the Gathering is the collecting of particular souls into the Universal Soul, that the tailbone is the seed from which the afterlife's creation grows, and that this world, the barzakh, and the afterlife form three successive degrees of wakefulness. At the chapter's center stands the scene of the greatest intercession -- from Adam to Noah, Abraham, Moses, and Jesus, each declining in turn, until Muhammad accepts. Toward the close, the seven fundamental places of the Resurrection are listed (the presentation, the record, the scale, the Path, al-A'raf, the sacrifice of death, and the banquet) -- among which, to us, the most striking is the scene where death itself, in the form of a radiant ram, is slaughtered, and both the people of Paradise and of Hell are told they will remain forever. This part speaks, we find, in an interesting way with the phrase 'they neither die nor remain alive,' which we met four times across the two previous parts (c2k26, c2k27) -- there it described an ongoing in-between condition; here that very ambiguity seems to be brought to a final close through the sacrifice of death. We have tried to carry all of this material in keeping with our founding stance -- treating the scenes of resurrection and punishment not as settled knowledge but as a narrative Dost hands down to us, one before which he himself, at points, pauses and says 'I do not know.'",
+          "pt": "A Parte XXVIII é a parte final do Volume II -- e, nas próprias palavras do texto, do 'quarto sifr': ao fechar a parte, Dost escreve, \"Com a conclusão da vigésima oitava parte, o quarto sifr está completo. A vigésima nona parte a seguirá, e a trigésima parte seguirá esta\" (p. 458) -- ou seja, o arquivo cilt-02.txt que temos termina aqui, e a Parte XXIX continua no próximo arquivo do volume. Diferente das partes recentes, esta contém um único capítulo -- o Capítulo Sexagésimo Quarto, \"Conhecer a Ressurreição, Suas Estações, e a Natureza da Revivificação\" -- mas esse único capítulo é tão extenso quanto partes inteiras: abre com a transformação da terra e do céu, a descida dos anjos dos céus, os três chamados do Real, um pescoço que se ergue do fogo para engolir os desafiadores, e então, transmitidas por um hadith, cinquenta estações de mil anos cada (o limiar da sepultura, as escadas de fogo, dez degraus de prestação de contas, as quinze estações da Reunião, a balança, doze estações diante de Deus, e sete pontes sobre o Caminho). Dost então retorna com sua própria voz para discutir a natureza da revivificação: que a morte é a 'pequena ressurreição', que a Reunião é o recolhimento das almas particulares na Alma Universal, que o cóccix é a semente da qual cresce a criação da vida futura, e que este mundo, o barzakh, e a vida futura formam três graus sucessivos de vigília. No centro do capítulo está a cena da grande intercessão -- de Adão a Noé, Abraão, Moisés e Jesus, cada um recusando por sua vez, até que Maomé aceita. Perto do fechamento, são listados os sete lugares fundamentais da Ressurreição (a apresentação, o registro, a balança, o Caminho, al-A'raf, o sacrifício da morte, e o banquete) -- entre os quais, para nós, o mais impressionante é a cena em que a própria morte, na forma de um carneiro radiante, é degolada, e tanto o povo do Paraíso quanto o do Inferno são informados de que permanecerão para sempre. Esta parte dialoga, percebemos, de modo interessante com a frase 'nem morrem nem permanecem vivos', que encontramos quatro vezes ao longo das duas partes anteriores (c2k26, c2k27) -- lá ela descrevia uma condição intermediária em curso; aqui essa mesma ambiguidade parece ser finalmente encerrada através do sacrifício da morte. Tentamos conduzir todo esse material fiéis à nossa postura fundadora -- tratando as cenas de ressurreição e punição não como conhecimento estabelecido, mas como uma narrativa que Dost nos transmite, diante da qual ele mesmo, em certos pontos, para e diz 'não sei.'"
+        }
+      },
+      "mainDiagram": {
+        "caption": {
+          "tr": "Metnin kendisi bu tek uzun bölümü böyle dört başlığa ayırmıyor -- bu, bizim önerdiğimiz bir okuma çerçevesi, bölümün kendi açık bir alt-başlıklandırması değil. Dost'un anlattığı sıra korunuyor: önce sahnenin kendisi (dünyanın başkalaşımı ve duraklar), sonra dirilişin ne olduğuna dair kendi tartışması, sonra büyük şefaat, en sonunda kıyametin yedi temel yeri.",
+          "en": "The text itself does not divide this single long chapter into these four headings -- this is a reading framework we are proposing, not the chapter's own explicit subdivision. We keep Dost's own order: first the scene itself (the world's transformation and its stations), then his own discussion of what revival is, then the greatest intercession, and finally the seven fundamental places of the Resurrection.",
+          "pt": "O próprio texto não divide este único e longo capítulo nesses quatro títulos -- este é um esquema de leitura que propomos, não a subdivisão explícita do próprio capítulo. Mantemos a ordem do próprio Dost: primeiro a cena em si (a transformação do mundo e suas estações), depois sua própria discussão sobre o que é a revivificação, depois a grande intercessão, e por fim os sete lugares fundamentais da Ressurreição."
+        },
+        "tree": {
+          "id": "kiyamet-sahneleri-tree",
+          "label": {
+            "tr": "Kıyamet Sahneleri (Altmış Dördüncü Bölüm)",
+            "en": "The Scenes of the Resurrection (Chapter Sixty-Four)",
+            "pt": "As Cenas da Ressurreição (Capítulo Sexagésimo Quarto)"
+          },
+          "note": {
+            "tr": "tek bir bölüm, ama dört evre gibi okunabilir",
+            "en": "a single chapter, but readable as four unfolding phases",
+            "pt": "um único capítulo, mas legível como quatro fases que se desdobram"
+          },
+          "children": [
+            {
+              "id": "dunyanin-baskalaşimi",
+              "label": {
+                "tr": "Dünyanın Başkalaşımı ve Duraklar",
+                "en": "The World's Transformation and the Stations",
+                "pt": "A Transformação do Mundo e as Estações"
+              },
+              "note": {
+                "tr": "yeryüzü-gök değişimi, üç nida, elli durak hadisi",
+                "en": "the earth-sky transformation, the three calls, the fifty-station hadith",
+                "pt": "a transformação terra-céu, os três chamados, o hadith das cinquenta estações"
+              }
+            },
+            {
+              "id": "dirilisin-anlami",
+              "label": {
+                "tr": "Dirilişin Anlamı ve Niteliği",
+                "en": "The Meaning and Nature of Revival",
+                "pt": "O Sentido e a Natureza da Revivificação"
+              },
+              "note": {
+                "tr": "küçük kıyamet, kuyruk sokumu, üç uyanıklık mertebesi",
+                "en": "the small resurrection, the tailbone, the three degrees of wakefulness",
+                "pt": "a pequena ressurreição, o cóccix, os três graus de vigília"
+              }
+            },
+            {
+              "id": "buyuk-sefaat",
+              "label": {
+                "tr": "Büyük Şefaat",
+                "en": "The Greatest Intercession",
+                "pt": "A Grande Intercessão"
+              },
+              "note": {
+                "tr": "Âdem'den Hz. Muhammed'e, suretlerde tecelli, secde sınavı",
+                "en": "from Adam to Muhammad, the Real's self-disclosure in forms, the test of prostration",
+                "pt": "de Adão a Maomé, a autorrevelação do Real em formas, a prova da prostração"
+              }
+            },
+            {
+              "id": "yedi-temel-yer",
+              "label": {
+                "tr": "Kıyametin Yedi Temel Yeri",
+                "en": "The Seven Fundamental Places of the Resurrection",
+                "pt": "Os Sete Lugares Fundamentais da Ressurreição"
+              },
+              "note": {
+                "tr": "sunum, defter, terazi, sırat, araf, ölümün kurbanı, ziyafet",
+                "en": "presentation, record, scale, Path, al-A'raf, death's sacrifice, banquet",
+                "pt": "apresentação, registro, balança, Caminho, al-A'raf, sacrifício da morte, banquete"
+              }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "kiyamet-gununun-anlami",
+          "heading": {
+            "tr": "Kıyamet Gününün Anlamı ve Yeryüzünün Başkalaşımı",
+            "en": "The Meaning of the Day of Resurrection and the Earth's Transformation",
+            "pt": "O Significado do Dia da Ressurreição e a Transformação da Terra"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bölüme, \"kıyamet\" isminin nereden geldiğini açıklayarak başlıyor: bu günün böyle adlandırılmasının nedeni, insanların \"âlemlerin rabbinin karşısında ayağa kalkması\"dır (s. 432-433); burada özellikle er-Rab isminin geçtiğini, er-Rahman'ın değil, çünkü o günde \"gazap ve hesaba çekilmenin\" de kaçınılmaz olduğunu vurguluyor -- yine de \"rahmeti gazabını geçer\" diyor (s. 433). Sonra sahne büyüyor: Allah yeryüzünü \"uyanıklık\" diye adlandırılan, \"üzerinde uykunun bulunmadığı\" başka bir yeryüzüyle değiştiriyor, \"derinin uzatılması gibi\" -- <em>\"Bu miktar, yirmi bir parçadan doksan dokuz parçaya kadar olabilir\"</em> (s. 433). Gök ise \"yazılı kağıtların dürülmesi gibi\" dürülüp bu yeni yeryüzünün üstüne atılıyor (s. 434).",
+                "en": "Dost opens the chapter by explaining where the name \"resurrection\" (qiyama) comes from: the day is so named because people \"rise standing before the Lord of the worlds\" (pp. 432-433); he notes that it is specifically the name al-Rabb that appears here, not al-Rahman, since on that day \"wrath and reckoning\" are also unavoidable -- and yet, he adds, \"His mercy outstrips His wrath\" (p. 433). The scene then widens: God exchanges the earth for another earth called \"wakefulness,\" one \"upon which there is no sleep,\" stretching it \"as one stretches a hide\" -- <em>\"this measure may reach from twenty-one parts to ninety-nine parts\"</em> (p. 433). The sky, meanwhile, is rolled up \"like the rolling of written scrolls\" and cast down onto this new earth (p. 434).",
+                "pt": "Dost abre o capítulo explicando de onde vem o nome \"ressurreição\" (qiyama): o dia é assim chamado porque as pessoas \"se levantam diante do Senhor dos mundos\" (pp. 432-433); ele nota que é especificamente o nome al-Rabb que aparece aqui, não al-Rahman, pois nesse dia \"a ira e a prestação de contas\" também são inevitáveis -- e, ainda assim, acrescenta, \"Sua misericórdia supera Sua ira\" (p. 433). A cena então se expande: Deus troca a terra por outra terra chamada \"vigília,\" uma \"sobre a qual não há sono,\" esticando-a \"como se estica um couro\" -- <em>\"essa medida pode chegar de vinte e uma partes a noventa e nove partes\"</em> (p. 433). O céu, por sua vez, é enrolado \"como se enrolam pergaminhos escritos\" e lançado sobre essa nova terra (p. 434)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ardından melekler göklerden iner -- her gökten ayrı bir dalga, öncekinden kalabalık. Her inişte yaratıklar aynı soruyu sorar: <em>\"Rabbimiz de aranızda mıdır?\"</em> ve melekler her seferinde aynı cevabı verir: <em>\"Rabbimizi tenzih ederiz! Aramızda değildir, gelecek!\"</em> (s. 433-434) -- bu sahne yedi kez, yedi gök için tekrarlanıyor, sanki Dost bize insanların büyüklük karşısında sürekli yanılıp düzeltildiği bir öğrenme eğrisi çiziyor. En sonunda Hak \"karanlık bulutlar içinde\" gelir, solunda cehennem vardır; cehennem, zorbalara karşı \"kabarır ve öfkesinden solur\" -- bu, \"büyük korkunun kendilerini mahzun etmeyeceği kimseler\" dışında herkes için \"en büyük korku\"dur (s. 434-435). Bu sahneleri okurken, bunların bize neyi \"kanıtlamak\" için değil, insanı bu dehşetin ortasında nasıl bir konuma yerleştirdiğini sezmemiz için aktarıldığını düşünüyoruz.",
+                "en": "The angels then descend from the heavens -- a fresh wave from each sky, each more numerous than the last. At every descent the creatures ask the same question: <em>\"Is our Lord among you?\"</em> and the angels give the same answer each time: <em>\"We declare our Lord transcendent! He is not among us, He is coming!\"</em> (pp. 433-434) -- the scene repeats seven times, once for each heaven, as though Dost is tracing for us a learning curve in which people keep mistaking greatness for its bearer and are corrected each time. At last the Real comes \"amid dark clouds,\" with Hell at His left; Hell, before the tyrannical, \"surges and pants with rage\" -- this is \"the greatest fear\" for everyone except \"those whom the greatest fear will not grieve\" (pp. 434-435). Reading these scenes, we find ourselves taking them not as something meant to 'prove' anything, but as an attempt to let us feel the position a human being occupies at the center of this dread.",
+                "pt": "Os anjos então descem dos céus -- uma nova onda de cada céu, cada uma mais numerosa que a anterior. A cada descida as criaturas fazem a mesma pergunta: <em>\"Nosso Senhor está entre vós?\"</em> e os anjos dão a mesma resposta a cada vez: <em>\"Declaramos nosso Senhor transcendente! Ele não está entre nós, Ele está vindo!\"</em> (pp. 433-434) -- a cena se repete sete vezes, uma para cada céu, como se Dost estivesse traçando para nós uma curva de aprendizado em que as pessoas continuam confundindo a grandeza com seu portador e são corrigidas a cada vez. Por fim o Real vem \"em meio a nuvens escuras,\" com o Inferno à Sua esquerda; o Inferno, diante dos tiranos, \"se agita e resfolega de ira\" -- este é \"o maior medo\" para todos, exceto \"aqueles a quem o maior medo não entristecerá\" (pp. 434-435). Ao ler essas cenas, percebemos que as tomamos não como algo destinado a 'provar' algo, mas como uma tentativa de nos deixar sentir a posição que um ser humano ocupa no centro desse pavor."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXVIII — Altmış Dördüncü Bölüm, s. 432-434.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXVIII — Chapter Sixty-Four, pp. 432-434.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXVIII — Capítulo Sexagésimo Quarto, pp. 432-434."
+              },
+              "caption": {
+                "tr": "Bu ilk sahnede, dünyanın kendisi de bir başkalaşıma uğruyor -- ve bu başkalaşımın ekseni, ilerleyen bölümlerde tekrar tekrar karşımıza çıkacak bir motife, uyku ile uyanıklığa dayanıyor. Bu karşılaştırma bize ait bir vurgu; metin bu ikisini yan yana koymuyor, ama aralarındaki fark bize kısmın geri kalanının anahtarı gibi görünüyor.",
+                "en": "In this opening scene, the world itself undergoes a transformation -- and the axis of that transformation rests on a motif we will meet again and again through the rest of the chapter: sleep and wakefulness. This juxtaposition is our own emphasis; the text does not place the two side by side, but the difference between them looks to us like a key to the rest of the part.",
+                "pt": "Nesta cena inicial, o próprio mundo passa por uma transformação -- e o eixo dessa transformação repousa sobre um motivo que encontraremos repetidamente ao longo do resto do capítulo: sono e vigília. Essa justaposição é uma ênfase nossa; o texto não coloca os dois lado a lado, mas a diferença entre eles nos parece uma chave para o resto da parte."
+              },
+              "pair": {
+                "left": {
+                  "label": {
+                    "tr": "Bu Dünyanın Yeryüzü",
+                    "en": "This World's Earth",
+                    "pt": "A Terra Deste Mundo"
+                  },
+                  "note": {
+                    "tr": "üzerinde uyku vardır",
+                    "en": "sleep dwells upon it",
+                    "pt": "sobre ela habita o sono"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "\"Uyanıklık\" Yeryüzü",
+                    "en": "The Earth of \"Wakefulness\"",
+                    "pt": "A Terra da \"Vigília\""
+                  },
+                  "note": {
+                    "tr": "uzatılmış, uykusuz, ahirete ait",
+                    "en": "stretched, sleepless, belonging to the afterlife",
+                    "pt": "estendida, sem sono, pertencente à vida futura"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "hakkin-uc-nidasi-atesten-boyun",
+          "heading": {
+            "tr": "Hakkın Üç Nidası ve Ateşten Yükselen Boyun",
+            "en": "The Real's Three Calls and the Neck That Rises from the Fire",
+            "pt": "Os Três Chamados do Real e o Pescoço Que Se Ergue do Fogo"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Allah tarafından bir nidacı üç kez bağırıyor -- ve Dost, kendi temkinli sesiyle araya giriyor: <em>\"Onlar -veya ben- bu nidanın bizzat Hakkın nidası mıdır, yoksa Hakkın emrinden olan bir nida mıdır bilmez\"</em> (s. 435). Bu, bize göre kısmın en dikkat çekici cümlelerinden biri -- Dost, aktardığı sahnenin kaynağı konusunda bile kendi bilgisinin sınırını işaretliyor. Nidalar sırasıyla şu grupları çağırıyor: geceleri secdede geçirenler, ticaretin Allah'ı anmaktan alıkoymadığı kimseler, ve verdiği sözde duranlar (s. 435-436) -- her biri cennete götürülüyor.",
+                "en": "A caller cries out three times on God's behalf -- and Dost steps in with his own careful hedge: <em>\"They -- or I -- do not know whether this call is the Real's own call, or a call issued by His command\"</em> (p. 435). To us this is one of the chapter's most striking sentences -- Dost marks the limit of his own knowledge even about the source of the very scene he is transmitting. The calls summon, in turn: those who spend their nights in prostration, those whom trade did not distract from remembering God, and those who kept their word (pp. 435-436) -- each group is led to Paradise.",
+                "pt": "Um pregoeiro clama três vezes em nome de Deus -- e Dost intervém com sua própria ressalva cautelosa: <em>\"Eles -- ou eu -- não sabemos se esse chamado é o próprio chamado do Real, ou um chamado emitido por Sua ordem\"</em> (p. 435). Para nós, esta é uma das frases mais marcantes do capítulo -- Dost assinala o limite de seu próprio conhecimento mesmo sobre a fonte da própria cena que está transmitindo. Os chamados convocam, em ordem: os que passam suas noites em prostração, os que o comércio não distraiu de lembrar-se de Deus, e os que mantiveram sua palavra (pp. 435-436) -- cada grupo é conduzido ao Paraíso."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sonra sahne sertleşiyor: \"ateşten bir boyun\" çıkıyor, iki gözü ve anlaşılır bir dili varmış gibi konuşuyor. Üç kez bağırıyor, ve her seferinde vakfedeki bir grubu -- <em>\"tıpkı bir kuşun susam tanelerini yuttuğu gibi\"</em> -- yutuyor: önce \"inatçı-zorbalar\", sonra \"Allah'a ve peygamberine eziyet edenler\", en sonunda \"Allah'ın yarattığı gibi yaratmaya kalkışanlar\" -- yani tapılsın diye suret/put yapanlar (s. 436-437). Bu üçüncü grup için Dost bir ayrım yapıyor: yalnızca tapınılmak amacıyla suret yapanlar bu boyun tarafından yutuluyor; kendi zanaatı için suret yapıp ona tapınılmasını istemeyenler değil -- çünkü onlardan yaptıklarına ruh üflemeleri de istenmeyecek (s. 437). Bu ayrıntı bize, sahnenin kaba bir toptancılıktan çok, niyete göre inceldiğini gösteriyor.",
+                "en": "Then the scene sharpens: \"a neck of fire\" rises up, speaking as though it had two eyes and an intelligible tongue. It cries out three times, and each time swallows a group from those still standing -- <em>\"just as a bird swallows sesame seeds\"</em> -- first \"the defiant tyrants,\" then \"those who wronged God and His messenger,\" and finally \"those who set out to create as God creates\" -- that is, those who fashioned images or idols to be worshipped (pp. 436-437). For this third group Dost draws a distinction: only those who made images for the purpose of worship are swallowed by this neck; those who made images as a craft, without wanting them worshipped, are not -- for they, too, will not be asked to breathe spirit into what they made (p. 437). This detail suggests to us that the scene is finer-grained than blanket condemnation; it turns on intent.",
+                "pt": "Então a cena se intensifica: \"um pescoço de fogo\" se ergue, falando como se tivesse dois olhos e uma língua compreensível. Ele clama três vezes, e a cada vez engole um grupo dentre os que ainda estão de pé -- <em>\"assim como um pássaro engole sementes de gergelim\"</em> -- primeiro \"os tiranos desafiadores,\" depois \"os que ofenderam Deus e Seu mensageiro,\" e por fim \"os que se propuseram a criar como Deus cria\" -- ou seja, os que fabricaram imagens ou ídolos para serem adorados (pp. 436-437). Para esse terceiro grupo Dost faz uma distinção: apenas os que fizeram imagens com o propósito de adoração são engolidos por esse pescoço; os que fizeram imagens como um ofício, sem desejar que fossem adoradas, não o são -- pois deles também não se pedirá que soprem espírito no que fizeram (p. 437). Esse detalhe nos sugere que a cena é mais matizada do que uma condenação genérica; ela gira em torno da intenção."
+              }
+            }
+          ]
+        },
+        {
+          "id": "elli-durak-ilk-uc",
+          "heading": {
+            "tr": "Elli Durağın Hadisi: İlk Üç Durak",
+            "en": "The Hadith of the Fifty Stations: The First Three",
+            "pt": "O Hadith das Cinquenta Estações: As Três Primeiras"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost burada uzun bir isnad zinciri veriyor -- Şeyhi el-Kassâr'ın, hicri 599'da Mekke'de, Kâbe'nin Rükn-i Yemânî tarafında kendisine aktardığı bir hadis (s. 436-437), Ali b. Ebî Tâlib'den Hz. Peygamber'e uzanan bir rivayet zinciriyle. Bu ayrıntı bize, Dost'un aktardığı sahnelerin çoğunun kendi kurgusu değil, dikkatle kaydedilmiş bir rivayet geleneğinden geldiğini hatırlatıyor. Hadis şöyle başlıyor: <em>\"Kıyamette her birinin süresi bin yıl olan elli durak vardır\"</em> (s. 437).",
+                "en": "Here Dost gives a long chain of transmission -- a hadith conveyed to him by his shaykh al-Qassar, in Mecca in 599 AH, at the Yemeni Corner of the Kaaba (pp. 436-437), tracing back through Ali ibn Abi Talib to the Prophet. This detail reminds us that most of the scenes Dost transmits are not his own invention but come from a carefully recorded tradition. The hadith opens: <em>\"On the Day of Resurrection there are fifty stations, each lasting a thousand years\"</em> (p. 437).",
+                "pt": "Aqui Dost fornece uma longa cadeia de transmissão -- um hadith que lhe foi transmitido por seu xeique al-Qassar, em Meca, no ano 599 da Hégira, no Canto Iemenita da Caaba (pp. 436-437), remontando através de Ali ibn Abi Talib até o Profeta. Esse detalhe nos lembra que a maioria das cenas que Dost transmite não são invenção própria, mas provêm de uma tradição cuidadosamente registrada. O hadith se abre: <em>\"No Dia da Ressurreição há cinquenta estações, cada uma durando mil anos\"</em> (p. 437)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "İlk durakta insanlar kabirlerinden kalkıp \"kabirlerinin kapılarında bin sene çıplak, yalın ayak, aç susuz\" kalıyor; imanının şartlarını eksiksiz taşıyanlar kurtuluyor, kuşkuya kapılanlar ise \"açlık, susuzluk, keder, üzüntü içinde bin sene\" bekliyor (s. 437). İkinci durakta yaratıklar \"ateşten merdivenler üzerinde güneşin sıcaklığı altında bin sene ayakta\" bekliyor -- <em>\"bu esnada Arş'ın gölgesinden başka gölge yoktur\"</em> (s. 437-438). Üçüncü durakta ise \"nur ve karanlığa\" sevk ediliyorlar; kalbinde ikiyüzlülük olmayanlar \"göz açıp kapatıncaya kadar\" karanlıktan nura çıkıyor, aksine hareket edenler bin sene karanlıkta kalıp sonunda yüzü kararmış çıkıyor (s. 438). Bu üç durağın ортak noktası, süre olarak eşit (bin yıl) ama kurtuluşun süresinin kişiden kişiye -- imanın/amelin kesinliğine göre -- değişebilmesi.",
+                "en": "At the first station people rise from their graves and remain \"at the doors of their graves for a thousand years, naked, barefoot, hungry and thirsty\"; those whose faith carries every condition intact are delivered, while those who harbored doubt wait \"a thousand years in hunger, thirst, grief, and sorrow\" (p. 437). At the second station the creatures stand \"upon stairs of fire beneath the sun's heat for a thousand years\" -- <em>\"and there is no shade there but the shade of the Throne\"</em> (pp. 437-438). At the third they are driven \"into light and darkness\"; those whose hearts held no hypocrisy pass from darkness to light \"in the twinkling of an eye,\" while those who acted otherwise remain in darkness a thousand years and emerge at last with blackened faces (p. 438). What these three stations share is an equal duration -- a thousand years each -- while the length of one's actual deliverance varies from person to person, according to the certainty of their faith and deeds.",
+                "pt": "Na primeira estação as pessoas se erguem de seus túmulos e permanecem \"às portas de seus túmulos por mil anos, nuas, descalças, famintas e sedentas\"; aquelas cuja fé carrega intactas todas as condições são libertadas, enquanto as que abrigaram dúvida esperam \"mil anos em fome, sede, tristeza e pesar\" (p. 437). Na segunda estação as criaturas permanecem \"sobre escadas de fogo sob o calor do sol por mil anos\" -- <em>\"e não há ali sombra alguma além da sombra do Trono\"</em> (pp. 437-438). Na terceira, são conduzidas \"à luz e à escuridão\"; aquelas cujos corações não abrigavam hipocrisia passam da escuridão à luz \"num piscar de olhos,\" enquanto as que agiram de outro modo permanecem na escuridão por mil anos e emergem por fim com rostos enegrecidos (p. 438). O que essas três estações compartilham é uma duração igual -- mil anos cada -- enquanto a duração da libertação efetiva de cada um varia de pessoa a pessoa, segundo a certeza de sua fé e de seus atos."
+              }
+            }
+          ]
+        },
+        {
+          "id": "hesap-merdivenleri-mahser-on-bes",
+          "heading": {
+            "tr": "Hesap Merdivenleri (On) ve Mahşerin On Beş Durağı",
+            "en": "The Ten Stairs of Reckoning and the Gathering's Fifteen Stations",
+            "pt": "As Dez Escadas da Prestação de Contas e as Quinze Estações da Reunião"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Hadis, artık sayıca büyüyen bir soruşturma yapısına giriyor. Önce on \"hesap merdiveni\" -- her biri bin yıl -- sırasıyla haramlar, arzular, ana-baba hakkı, insanlara dinlerini öğretme, mülkiyetindekilerin hakkı, akraba hakları, yakın akraba ziyareti, haset, hile, ve aldatmadan sorguya çekiyor; her merdivende eksiği olmayan bir sonraki merdivene geçiyor, on birincisine (kurtuluşa) ulaşan ise \"gözleri aydınlanmış, kalbi sevinçle dolu\" Arş'ın gölgesine yerleşiyor (s. 438-439). Ardından \"on beş durak\"tan oluşan bir mahşer soruşturması geliyor -- sadaka, doğru sözlülük, iyiliği emretme, kötülükten alıkoyma, iyi ahlâk, Allah için sevip-nefret etme, haram maldan kaçınma, şaraptan kaçınma, zina, yalan, yalan yemin, faiz, iffetli kadınlara iftira, yalan tanıklık, ve bühtandan sorgulayarak -- on beşincisini geçen \"Hamd Sancağı\"nın altına yerleşiyor (s. 439-440).",
+                "en": "The hadith now enters a structure of ever-expanding inquiry. First come ten \"stairs of reckoning\" -- each a thousand years -- questioning, in turn, forbidden acts, desires, the rights of parents, teaching others their religion, the rights of those under one's charge, the rights of kin, visiting close relatives, envy, deceit, and fraud; whoever is found lacking at none of them climbs to the next, and whoever reaches the eleventh (deliverance) settles \"with eyes alight, heart full of joy\" in the shade of the Throne (pp. 438-439). Then comes a gathering-inquiry of \"fifteen stations\" -- questioning charity, truthfulness, enjoining good, forbidding wrong, good character, loving and hating for God's sake, avoiding unlawful wealth, avoiding wine, adultery, lying, false oaths, usury, slandering chaste women, false testimony, and calumny -- whoever passes the fifteenth settles \"beneath the Banner of Praise\" (pp. 439-440).",
+                "pt": "O hadith agora entra numa estrutura de inquérito cada vez mais expandida. Primeiro vêm dez \"escadas de prestação de contas\" -- cada uma de mil anos -- questionando, em ordem, os atos proibidos, os desejos, os direitos dos pais, ensinar aos outros sua religião, os direitos daqueles sob seus cuidados, os direitos dos parentes, visitar parentes próximos, inveja, engano e fraude; quem não for encontrado em falta em nenhuma delas sobe para a seguinte, e quem alcança a décima primeira (libertação) se instala \"com os olhos radiantes, o coração cheio de alegria\" à sombra do Trono (pp. 438-439). Depois vem um inquérito de reunião de \"quinze estações\" -- questionando a caridade, a veracidade, ordenar o bem, proibir o mal, o bom caráter, amar e odiar por causa de Deus, evitar riqueza ilícita, evitar o vinho, o adultério, a mentira, os falsos juramentos, a usura, caluniar mulheres castas, o falso testemunho, e a calúnia -- quem passa pela décima quinta se instala \"sob o Estandarte do Louvor\" (pp. 439-440)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Her iki listede de -- hesap merdivenlerinde ve mahşerin on beş durağında -- Dost aynı kalıbı tekrar ediyor: eksiği olan, her durakta bin sene \"aç, susuz, üzüntülü, gamlı ve endişeli\" kalıyor, en sonunda \"Allah onun hakkında dilediği şekilde hüküm veriyor\" (s. 439-440). Bu tekrar eden kapanış cümlesini -- \"Allah dilediği gibi hüküm verir\" -- bize göre kesin bir infazdan çok, hükmün son sözünün insana değil Hakka bırakıldığını hatırlatan bir hatırlatma olarak okuyoruz; hadisin ayrıntılı sayım-listeleme üslubu bile bu son noktada bir açık kapı bırakıyor gibi görünüyor.",
+                "en": "In both lists -- the stairs of reckoning and the Gathering's fifteen stations -- Dost repeats the same pattern: whoever is found lacking remains at each station a thousand years \"hungry, thirsty, sorrowful, grieved and anxious,\" until at last \"God judges concerning him as He wills\" (pp. 439-440). We read this recurring closing phrase -- \"God judges as He wills\" -- less as a final verdict already sealed than as a reminder that the last word belongs to God, not to the enumeration; even the hadith's meticulous, list-making style seems to leave an open door at this final point.",
+                "pt": "Em ambas as listas -- as escadas de prestação de contas e as quinze estações da Reunião -- Dost repete o mesmo padrão: quem for encontrado em falta permanece em cada estação por mil anos \"faminto, sedento, pesaroso, angustiado e ansioso,\" até que por fim \"Deus julga a seu respeito como quiser\" (pp. 439-440). Lemos essa frase de encerramento recorrente -- \"Deus julga como quiser\" -- menos como um veredito já selado do que como um lembrete de que a última palavra pertence a Deus, não à enumeração; mesmo o estilo meticuloso e enumerativo do hadith parece deixar uma porta aberta nesse ponto final."
+              }
+            }
+          ]
+        },
+        {
+          "id": "terazi-oniki-durak-yedi-kopru",
+          "heading": {
+            "tr": "Terazi, Allah'ın Önündeki On İki Durak, ve Sırattaki Yedi Köprü",
+            "en": "The Scale, the Twelve Stations Before God, and the Path's Seven Bridges",
+            "pt": "A Balança, as Doze Estações Diante de Deus, e as Sete Pontes do Caminho"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Defterler sağ veya sol elden verildikten sonra -- cömert olanın okuması kolaylaşıp cennet elbiseleri giydirilirken, cimrinin defteri sol elinden verilip \"ateşten bir parça\" kesiliyor (s. 440) -- sıra teraziye geliyor: \"iyilikleri ağır basan kimse başarıya erer\", tersi olan ise bin sene \"tasa, üzüntü, hüzün, azap, açlık, susuzluk içinde hapis\" kalıyor (s. 440). Ardından \"Allah'ın önündeki on iki durak\" başlıyor -- köle azadı, Kur'an, cihat, dedikodu, söz taşıma, yalan, bilgi peşinde koşma, kendini beğenme, büyüklenme, Allah'ın rahmetinden ümit kesmeme, Allah'ın tuzağından emin olmama, ve komşu hakkından sorularak (s. 440-441); on ikincisini geçen \"gözleri parlak, kalbi rahat, yüzü aydınlık\" Allah'ın önüne oturtuluyor ve Rabbi ona \"hoş geldin\" diyor (s. 441).",
+                "en": "Once the records are handed out from the right or left hand -- the generous find their reading made easy and are clothed in garments of Paradise, while the miser's record is given from the left and \"a piece of fire is cut off for him\" (p. 440) -- the sequence moves to the scale: \"whoever's good deeds outweigh\" succeeds, while the reverse means being held a thousand years \"in grief, sorrow, sadness, torment, hunger and thirst\" (p. 440). Then begin \"the twelve stations before God\" -- questioning the freeing of slaves, the Qur'an, striving in God's cause, backbiting, talebearing, lying, the pursuit of knowledge, self-admiration, arrogance, despairing of God's mercy, feeling secure from God's plan, and the rights of one's neighbor (pp. 440-441); whoever passes the twelfth is seated before God \"eyes bright, heart at ease, face radiant,\" and the Lord says to him, \"welcome\" (p. 441).",
+                "pt": "Uma vez que os registros são entregues pela mão direita ou esquerda -- os generosos têm sua leitura facilitada e são vestidos com trajes do Paraíso, enquanto o registro do avarento é entregue pela esquerda e \"um pedaço de fogo é cortado para ele\" (p. 440) -- a sequência passa para a balança: \"quem tiver as boas ações mais pesadas\" tem êxito, enquanto o inverso significa ser mantido por mil anos \"em pesar, tristeza, angústia, tormento, fome e sede\" (p. 440). Então começam \"as doze estações diante de Deus\" -- questionando a libertação de escravos, o Alcorão, o esforço na causa de Deus, a maledicência, a fofoca, a mentira, a busca do conhecimento, a autoadmiração, a arrogância, o desespero da misericórdia de Deus, o sentir-se seguro do plano de Deus, e os direitos do vizinho (pp. 440-441); quem passa pela décima segunda é sentado diante de Deus \"de olhos brilhantes, coração tranquilo, rosto radiante,\" e o Senhor lhe diz, \"bem-vindo\" (p. 441)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Son olarak yaratıklar sırata gidiyor -- \"kıldan ince, kılıçtan keskin\", <em>\"köprülerin sayısı yedidir\"</em> ve her köprü üzerinde \"toplamı üç bin senelik yolu olan sarp tepeler\" var: \"bin senesi yokuş, bin senesi düz, bin senesi ise iniş\" (s. 441-442). Her köprüde sırasıyla iman, namaz, zekât, oruç, hac, temizlik ve haksızlıktan sorgulanıyor; yedincisini geçen doğrudan cennete ulaşıyor (s. 441-442). Rivayetin ravisi burada hadisi kesip devamını -- cennetle ilgili olduğu için -- başka bir yere bırakıyor (s. 442). Dost bu noktada önemli bir vurgu ekliyor: <em>\"Ahiretin yaratılışı hayali değil, duyulur bir yaratılıştır. Kıyamet de gerçek bir şeydir ve mevcuttur, insanın dünyadaki durumu gibi duyusaldır\"</em> (s. 442) -- bu cümle, ilerleyen VASIL bölümünde açacağı büyük bir tartışmanın ilk işareti gibi duruyor.",
+                "en": "Finally the creatures proceed to the Path -- \"finer than a hair, sharper than a sword,\" <em>\"the bridges number seven\"</em> and upon each bridge there are \"steep hills whose total length is a journey of three thousand years\": \"a thousand years uphill, a thousand years level, a thousand years downhill\" (pp. 441-442). Each bridge questions, in turn, faith, prayer, alms, fasting, pilgrimage, purity, and injustice; whoever passes the seventh arrives directly at Paradise (pp. 441-442). Here the hadith's narrator breaks off, leaving its continuation -- since it concerns Paradise -- for another place (p. 442). At this point Dost adds an important emphasis: <em>\"The creation of the afterlife is not imaginal but sensory. The Resurrection, too, is a real and existing thing, sensory just as the human being's condition in this world is\"</em> (p. 442) -- a sentence that reads to us like the first sign of a larger discussion he is about to open in the following VASIL section.",
+                "pt": "Finalmente as criaturas seguem para o Caminho -- \"mais fino que um cabelo, mais afiado que uma espada,\" <em>\"as pontes são sete\"</em> e sobre cada ponte há \"colinas íngremes cuja extensão total é uma jornada de três mil anos\": \"mil anos de subida, mil anos plano, mil anos de descida\" (pp. 441-442). Cada ponte questiona, em ordem, a fé, a oração, a esmola, o jejum, a peregrinação, a pureza, e a injustiça; quem passa pela sétima chega diretamente ao Paraíso (pp. 441-442). Aqui o narrador do hadith interrompe, deixando sua continuação -- por dizer respeito ao Paraíso -- para outro lugar (p. 442). Nesse ponto Dost acrescenta uma ênfase importante: <em>\"A criação da vida futura não é imaginal, mas sensorial. A Ressurreição, também, é algo real e existente, sensorial assim como a condição do ser humano neste mundo\"</em> (p. 442) -- uma frase que nos parece o primeiro sinal de uma discussão maior que ele está prestes a abrir na seção VASIL seguinte."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXVIII — Altmış Dördüncü Bölüm, s. 436-442.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXVIII — Chapter Sixty-Four, pp. 436-442.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXVIII — Capítulo Sexagésimo Quarto, pp. 436-442."
+              },
+              "caption": {
+                "tr": "Hadisin kendi anlattığı duraklar zinciri, bize göre şöyle bir sıra izliyor -- ama bu gruplama bize ait bir düzenleme denemesi, hadisin kendisi bu altı kümeyi böyle ayırmıyor, sadece art arda anlatıyor. Zincirdeki sayılar (1, 1, 1, 10, 15, 12, 7) tam elli etmiyor; hadisin \"elli durak\" ifadesini kesin bir toplam olarak değil, genel bir çerçeve olarak okumak gerektiğini düşünüyoruz.",
+                "en": "The chain of stations the hadith narrates follows, as we read it, the sequence below -- but this grouping is our own arranging attempt; the hadith itself does not divide these six clusters this way, it simply narrates them one after another. The numbers in the chain (1, 1, 1, 10, 15, 12, 7) do not add up to exactly fifty; we think the hadith's phrase \"fifty stations\" should be read as a general framework rather than a precise total.",
+                "pt": "A cadeia de estações que o hadith narra segue, em nossa leitura, a sequência abaixo -- mas esse agrupamento é uma tentativa nossa de organização; o próprio hadith não divide esses seis grupos dessa forma, apenas os narra um após o outro. Os números na cadeia (1, 1, 1, 10, 15, 12, 7) não somam exatamente cinquenta; pensamos que a expressão do hadith \"cinquenta estações\" deve ser lida como um quadro geral, não como um total preciso."
+              },
+              "tree": {
+                "id": "elli-durak-zinciri-tree",
+                "label": {
+                  "tr": "Duraklar Zinciri (Her Biri Bin Yıl)",
+                  "en": "The Chain of Stations (Each a Thousand Years)",
+                  "pt": "A Cadeia de Estações (Cada Uma de Mil Anos)"
+                },
+                "note": {
+                  "tr": "hadiste anlatılan sıra",
+                  "en": "the order the hadith narrates",
+                  "pt": "a ordem narrada pelo hadith"
+                },
+                "children": [
+                  {
+                    "id": "ilk-uc-durak",
+                    "label": {
+                      "tr": "İlk Üç Durak",
+                      "en": "The First Three Stations",
+                      "pt": "As Três Primeiras Estações"
+                    },
+                    "note": {
+                      "tr": "kabir kapısı, ateş merdiveni, nur-karanlık",
+                      "en": "the grave's threshold, the fiery stairs, light and darkness",
+                      "pt": "o limiar da sepultura, as escadas de fogo, luz e escuridão"
+                    }
+                  },
+                  {
+                    "id": "on-hesap-merdiveni",
+                    "label": {
+                      "tr": "On Hesap Merdiveni",
+                      "en": "Ten Stairs of Reckoning",
+                      "pt": "Dez Escadas de Prestação de Contas"
+                    },
+                    "note": {
+                      "tr": "haramdan aldatmaya",
+                      "en": "from the unlawful to fraud",
+                      "pt": "do ilícito à fraude"
+                    }
+                  },
+                  {
+                    "id": "mahser-onbes",
+                    "label": {
+                      "tr": "Mahşerin On Beş Durağı",
+                      "en": "The Gathering's Fifteen Stations",
+                      "pt": "As Quinze Estações da Reunião"
+                    },
+                    "note": {
+                      "tr": "sadakadan bühtana",
+                      "en": "from charity to calumny",
+                      "pt": "da caridade à calúnia"
+                    }
+                  },
+                  {
+                    "id": "defter-terazi",
+                    "label": {
+                      "tr": "Defterin Okunması ve Terazi",
+                      "en": "The Reading of the Record and the Scale",
+                      "pt": "A Leitura do Registro e a Balança"
+                    },
+                    "note": {
+                      "tr": "sağ/sol el, iyilik-kötülük tartısı",
+                      "en": "the right or left hand, the weighing of deeds",
+                      "pt": "a mão direita ou esquerda, a pesagem dos atos"
+                    }
+                  },
+                  {
+                    "id": "oniki-durak",
+                    "label": {
+                      "tr": "Allah'ın Önünde On İki Durak",
+                      "en": "Twelve Stations Before God",
+                      "pt": "Doze Estações Diante de Deus"
+                    },
+                    "note": {
+                      "tr": "köle azadından komşu hakkına",
+                      "en": "from freeing slaves to a neighbor's rights",
+                      "pt": "da libertação de escravos aos direitos do vizinho"
+                    }
+                  },
+                  {
+                    "id": "yedi-kopru",
+                    "label": {
+                      "tr": "Sırattaki Yedi Köprü",
+                      "en": "The Path's Seven Bridges",
+                      "pt": "As Sete Pontes do Caminho"
+                    },
+                    "note": {
+                      "tr": "her biri üç bin senelik yol",
+                      "en": "each a journey of three thousand years",
+                      "pt": "cada uma uma jornada de três mil anos"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "hasr-nesr-kucuk-kiyamet",
+          "heading": {
+            "tr": "Haşr ve Neşr: Dirilişin Yorumları ve \"Küçük Kıyamet\"",
+            "en": "Gathering and Raising: Interpretations of Revival and the \"Small Resurrection\"",
+            "pt": "Reunião e Ressurreição: Interpretações da Revivificação e a \"Pequena Ressurreição\""
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bir \"VASIL\" başlığıyla Dost artık kendi sesiyle konuşmaya başlıyor. İnsanların yeniden yaratılış konusunda ayrıştığını, bazılarının ahiretteki yaratılışı \"duyulur değil akli durumlar\" olarak yorumladığını söylüyor -- ve bu yorumu tümüyle reddetmiyor, sadece eksik buluyor: <em>\"Bu yorum sahibi orada bedenlerin yaratılışı ve ruhların yaratılışı diye iki yaratılış tarzı bulunduğunu anlamamıştır\"</em> (s. 442). Ardından, bize göre kısmın en yoğun cümlelerinden biri geliyor: <em>\"İnsanın ölmesi, onun kıyametidir. Fakat bu küçük kıyamettir\"</em> -- Hz. Peygamber'in \"kim ölmüşse, onun kıyameti kopmuştur\" sözüne dayanarak (s. 442). Haşr ise, Dost'un tarifiyle, \"tikel nefislerin tümel nefiste toplanması\"dır (s. 442).",
+                "en": "Under a \"VASIL\" heading Dost now begins to speak in his own voice. He says people diverge on the matter of re-creation, and that some interpret the creation of the afterlife as \"rational, not sensory, states\" -- he does not reject this reading outright, only finds it incomplete: <em>\"the holder of this interpretation has not understood that there are two modes of creation there -- the creation of bodies and the creation of spirits\"</em> (p. 442). What follows is, to us, one of the chapter's most charged sentences: <em>\"A person's dying is his resurrection. But this is the small resurrection\"</em> -- grounded in the Prophet's saying, \"whoever has died, his resurrection has already occurred\" (p. 442). The Gathering, in Dost's own formulation, is \"the collecting of particular souls into the Universal Soul\" (p. 442).",
+                "pt": "Sob um título \"VASIL\" Dost agora começa a falar com sua própria voz. Ele diz que as pessoas divergem quanto à re-criação, e que alguns interpretam a criação da vida futura como \"estados racionais, não sensoriais\" -- ele não rejeita essa leitura completamente, apenas a considera incompleta: <em>\"quem sustenta essa interpretação não compreendeu que há ali dois modos de criação -- a criação dos corpos e a criação dos espíritos\"</em> (p. 442). O que se segue é, para nós, uma das frases mais carregadas do capítulo: <em>\"A morte de uma pessoa é sua ressurreição. Mas esta é a pequena ressurreição\"</em> -- fundamentada no dito do Profeta, \"quem morreu, sua ressurreição já ocorreu\" (p. 442). A Reunião, na formulação do próprio Dost, é \"o recolhimento das almas particulares na Alma Universal\" (p. 442)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu iki cümleyi -- \"küçük kıyamet\" ve \"tikel nefislerin tümel nefiste toplanması\" -- önceki iki kısımda (c2k26, c2k27) dört kez karşılaştığımız \"ne ölür ne diri kalır\" motifiyle yan yana koyduğumuzda, aralarında bir yankı seziyoruz, ama bunu kesin bir denklik olarak sunmaktan çekiniyoruz: orada \"ölüm\" ile \"hayat\" arasındaki bulanıklık cehennem/berzah'ın sürmekte olan bir hâli olarak tarif ediliyordu; burada ise Dost, bireysel ölümü doğrudan \"küçük kıyamet\" diye adlandırarak, bireysel ile kozmik ölçek arasında bir benzerlik kuruyor. İki metnin aynı soruya (ölüm nedir, ne zaman biter) farklı ölçeklerden baktığını düşünüyoruz. Dost ardından tenasühü tartışan görüşlere de yer veriyor, ama kendi payına düşeni söylüyor: <em>\"Bu konularda söz konusu insanlardan herhangi bir yolu tutan herkesin gerçek ve sahih bir yönü vardır\"</em> (s. 442-443) -- bize göre bu, farklı okumalara karşı takındığı hoşgörülü bir tavrın örneği.",
+                "en": "When we place these two sentences -- \"the small resurrection\" and \"the collecting of particular souls into the Universal Soul\" -- next to the \"they neither die nor remain alive\" motif we met four times across the previous two parts (c2k26, c2k27), we sense an echo between them, though we hesitate to present this as a strict equivalence: there, the blur between \"death\" and \"life\" described an ongoing condition of Hell/barzakh; here, Dost names individual death directly as the \"small resurrection,\" drawing a likeness between the individual and cosmic scales. We think the two texts are looking at the same question -- what death is, and when it ends -- from different scales. Dost then makes room for views discussing reincarnation (tanasukh), but states his own share of the matter: <em>\"In these matters, everyone who holds to any of these paths has a real and sound aspect to their view\"</em> (pp. 442-443) -- to us an example of the tolerant stance he takes toward differing readings.",
+                "pt": "Quando colocamos essas duas frases -- \"a pequena ressurreição\" e \"o recolhimento das almas particulares na Alma Universal\" -- ao lado do motivo \"nem morrem nem permanecem vivos\" que encontramos quatro vezes nas duas partes anteriores (c2k26, c2k27), percebemos um eco entre elas, embora hesitemos em apresentar isso como uma equivalência estrita: lá, a confusão entre \"morte\" e \"vida\" descrevia uma condição em curso do Inferno/barzakh; aqui, Dost nomeia a morte individual diretamente como a \"pequena ressurreição,\" traçando uma semelhança entre a escala individual e a cósmica. Pensamos que os dois textos olham para a mesma pergunta -- o que é a morte, e quando ela termina -- a partir de escalas diferentes. Dost então abre espaço para visões que discutem a reencarnação (tanasukh), mas afirma sua própria posição sobre o assunto: <em>\"Nessas questões, todo aquele que segue qualquer um desses caminhos tem um aspecto real e sólido em sua visão\"</em> (pp. 442-443) -- para nós, um exemplo da postura tolerante que ele adota diante de leituras divergentes."
+              }
+            }
+          ]
+        },
+        {
+          "id": "dogal-omur-dirilisin-niteligi",
+          "heading": {
+            "tr": "Doğal Ömrün Sınırı ve Dirilişin Niteliği",
+            "en": "The Limit of Natural Lifespan and the Nature of Revival",
+            "pt": "O Limite da Vida Natural e a Natureza da Revivificação"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bir yan konuya giriyor: doğa ilmi insan ömrünü \"yüz yirmi sene\" olarak sayar, ama bunun kesin bir yargı olmadığını, bir insanın ömrünün bunu \"binlerce sene\" aşmasının ya da sürekli olmasının bile \"doğanın dışına çıkmadan\" mümkün olabileceğini söylüyor (s. 443). Sonra can alıcı noktaya geliyor: <em>\"Şeriat dünya hayatının süresinin bitip herkesin öleceğini, tekrar dirilişi, ahireti ve orada ahiret yaratılışıyla sonsuza değin yerleşmeyi bildirmeseydi\"</em> ölüm, diriliş, cennet ve cehennem gibi bütün bu durumları \"kestiremezdik\" (s. 443-444). Yani Dost'a göre bu bilgiler akılla değil, vahiyle ulaşılabilir bilgilerdir -- akıl ancak vahiy geldikten sonra bunları imkânsız görmemekle yükümlüdür.",
+                "en": "Dost takes up a side matter: the natural sciences count the human lifespan as \"one hundred and twenty years,\" but he says this is no fixed verdict -- a person's life exceeding this by \"thousands of years,\" or even continuing without end, could still remain \"within nature\" rather than outside it (p. 443). Then he reaches the crucial point: <em>\"had the Law not informed us that the span of worldly life will end and everyone will die, that there will be a re-creation, an afterlife, and an eternal settling there through the creation of the afterlife\"</em> we could not have \"foreseen\" any of this -- death, revival, Paradise, Hell (pp. 443-444). For Dost, then, this knowledge is not reached by reason but by revelation -- reason's task, once revelation has arrived, is only to refrain from calling it impossible.",
+                "pt": "Dost aborda uma questão colateral: as ciências naturais contam a vida humana como \"cento e vinte anos,\" mas diz que este não é um veredito fixo -- a vida de uma pessoa ultrapassando isso em \"milhares de anos,\" ou mesmo continuando sem fim, ainda poderia permanecer \"dentro da natureza\" e não fora dela (p. 443). Então ele chega ao ponto crucial: <em>\"se a Lei não nos tivesse informado que o período da vida mundana terminará e todos morrerão, que haverá uma recriação, uma vida futura, e um assentamento eterno ali através da criação da vida futura\"</em> não poderíamos ter \"previsto\" nada disso -- morte, revivificação, Paraíso, Inferno (pp. 443-444). Para Dost, portanto, esse conhecimento não é alcançado pela razão, mas pela revelação -- a tarefa da razão, uma vez chegada a revelação, é apenas se abster de chamá-la impossível."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ardından dirilişin nasıl gerçekleşeceği tartışılıyor: bir kısım müminler ilk yaratılıştaki gibi cinsel birleşme ve üremeyle olacağını söylüyor -- Dost burada Şeyh Ebu'l-Kâsım İbnü'l-Kâsî'nin (Halü'n-Na'leyn kitabında) bu görüşü aktardığını, ama bunun kendi görüşü mü yoksa \"Halfullah adlı bir ümmi\"den mi aktarıldığını tam bilemediğini itiraf ediyor (s. 444-445) -- yine kendi bilgisinin sınırını işaretleyen bir cümle. Diğerleri ise \"gök meniye benzer bir yağmur yağdırır, yeryüzü hamile kalır\" hadisine dayanıyor (s. 444). Dost, ayetlerin ('sizi yarattığı gibi tekrar yaratacaktır') bir örneğe dayanmadan yapılan bir yaratmaya işaret ettiğini, ve bunun \"hiç kuşkusuz duyulur bir yaratma\" olduğunu vurguluyor (s. 445). Bir şairin dizeleriyle bölümü süslüyor: <em>\"Müneccim ve doktor zannetti ki: Bedenler diriltilmeyecek. İkisine de dedim ki: Sizin söylediğiniz doğruysa, ben bir zarar görmem. Ama benim sözüm doğruysa, esas zararda olan sizsiniz!\"</em> (s. 444).",
+                "en": "How revival will take place is then discussed: some believers hold it will happen through sexual union and reproduction as in the first creation -- Dost reports this view as conveyed by Shaykh Abu al-Qasim ibn al-Qasi (in his book Khal' al-Na'layn), though he admits he is not certain whether this is Ibn al-Qasi's own view or one relayed from \"an illiterate man named Half Allah\" (pp. 444-445) -- again a sentence marking the limit of his own knowledge. Others rely on a hadith: \"the sky rains down something like semen, and the earth becomes pregnant\" (p. 444). Dost emphasizes that the verses (\"He will re-create you as He created you\") point to a creation made without precedent, and that this is \"without doubt a sensory creation\" (p. 445). He adorns the section with a poet's verses: <em>\"The astrologer and the physician supposed: bodies will not be revived. I said to both of them: if what you say is true, I lose nothing. But if my word is true, it is you who truly lose!\"</em> (p. 444).",
+                "pt": "Como se dará a revivificação é então discutido: alguns crentes sustentam que ocorrerá através da união sexual e da reprodução, como na primeira criação -- Dost relata essa visão como transmitida pelo Xeique Abu al-Qasim ibn al-Qasi (em seu livro Khal' al-Na'layn), embora admita não ter certeza se é a própria visão de Ibn al-Qasi ou uma relatada por \"um homem analfabeto chamado Half Allah\" (pp. 444-445) -- novamente uma frase que assinala o limite de seu próprio conhecimento. Outros se baseiam num hadith: \"o céu chove algo semelhante ao sêmen, e a terra fica grávida\" (p. 444). Dost enfatiza que os versículos (\"Ele vos recriará como vos criou\") apontam para uma criação feita sem precedente, e que esta é \"sem dúvida uma criação sensorial\" (p. 445). Ele adorna a seção com versos de um poeta: <em>\"O astrólogo e o médico supuseram: os corpos não serão revividos. Eu disse a ambos: se o que dizeis é verdade, nada perco. Mas se minha palavra é verdadeira, sois vós que realmente perdeis!\"</em> (p. 444)."
+              }
+            }
+          ]
+        },
+        {
+          "id": "kuyruk-sokumu-uc-uyaniklik",
+          "heading": {
+            "tr": "Kuyruk Sokumu ve Üç Uyanıklık Mertebesi",
+            "en": "The Tailbone and the Three Degrees of Wakefulness",
+            "pt": "O Cóccix e os Três Graus de Vigília"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost, ahiret yaratılışının hangi çekirdek üzerinde kurulacağını tartışıyor: Ebû Hâmid (Gazâlî), \"kuyruk sokumu\"nun (acbü'z-zeneb) nefis olduğunu söylerken, Ebû Zeyd er-Rakrâkî bunun bu dünya yaratılışından geriye kalan \"cevher-i ferd\" (bölünemez temel cevher; metinde \"cevher-i Jert\" olarak geçiyor, muhtemelen bir OCR hatası) olduğunu öne sürüyor. Dost kendi keşfinden gelen bilgiyi paylaşıyor: <em>\"Kuyruk sokumu, yaratılışın kendisiyle bilfiil varlık kazandığı şey[dir]... eskimez, başka bir ifadeyle eskimeye konu olmaz\"</em> (s. 446). Sonra İsrafil'in iki üflemesini anlatıyor: birinci üfleme berzahtaki suretlere dokunup onları söndürüyor; ikinci üfleme ise \"tutuşma için istidatlı\" olan surete geliyor -- <em>\"Böylelikle berzahtaki suretler ruhlarıyla tutuşur. Bir anda hepsi bakışarak ayağa kalkarlar\"</em> (s. 446-447).",
+                "en": "Dost discusses what seed the creation of the afterlife will be built upon: Abu Hamid (al-Ghazali) holds that the \"tailbone\" ('ajb al-dhanab) is the soul, while Abu Zayd al-Raqraqi proposes it is the \"single/atomic substance\" (cevher-i ferd -- the text reads \"cevher-i Jert,\" likely an OCR error) left over from this world's creation. Dost offers knowledge from his own unveiling: <em>\"The tailbone is that by which creation itself comes into actual existence... it does not wear out, that is to say it is not subject to wearing out\"</em> (p. 446). He then narrates Israfil's two blasts: the first blast touches the barzakh-forms and extinguishes them; the second comes to the form now \"prepared to catch fire\" -- <em>\"and so the barzakh-forms catch fire with their spirits. All at once, gazing at one another, they rise\"</em> (pp. 446-447).",
+                "pt": "Dost discute sobre qual semente a criação da vida futura será construída: Abu Hamid (al-Ghazali) sustenta que o \"cóccix\" ('ajb al-dhanab) é a alma, enquanto Abu Zayd al-Raqraqi propõe que é a \"substância única/atômica\" (cevher-i ferd -- o texto traz \"cevher-i Jert,\" provavelmente um erro de OCR) restante da criação deste mundo. Dost oferece um conhecimento vindo de seu próprio desvelamento: <em>\"O cóccix é aquilo pelo qual a própria criação vem à existência efetiva... não se desgasta, isto é, não está sujeito ao desgaste\"</em> (p. 446). Ele então narra os dois sopros de Israfil: o primeiro sopro toca as formas do barzakh e as extingue; o segundo vem à forma já \"preparada para pegar fogo\" -- <em>\"e assim as formas do barzakh se acendem com seus espíritos. De uma só vez, olhando-se umas às outras, elas se erguem\"</em> (pp. 446-447)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunun hemen ardından Dost, dünya-berzah-ahiret arasında üç ardışık uyanıklık mertebesi kuruyor: dünya hayatı bir uykudur; berzah, ondan uyanmış olma hâlidir; ama ahiret hayatı, \"herhangi bir şekilde uyku içermeyen\" gerçek uyanıklıktır. <em>\"Öyleyse dünya berzaha göre uyku içinde uykudur. Çünkü berzah gerçek duruma daha yakındır\"</em> -- ve berzah da ahirete göre yine uykudur (s. 447). Hz. Peygamber'in \"İnsanlar uykudadır, öldüklerinde uyanırlar\" sözü bu hiyerarşinin temelini oluşturuyor. Bu üçlü kademelenmeyi -- \"berzah gerçek duruma daha yakındır\" cümlesiyle birlikte -- c2k27'de genişçe işlenen berzah tarifiyle (aynadaki suret gibi, ne tam var ne tam yok bir ara-hâl) yan yana koyduğumuzda, iki tarifin birbirini çelişmediğini ama farklı eksenlerde (biri varlık derecesi, öteki uyanıklık derecesi) durduğunu düşünüyoruz; bu ilişkiyi tam çözebildiğimizi iddia etmiyoruz.",
+                "en": "Right after this, Dost sets up three successive degrees of wakefulness across this world, the barzakh, and the afterlife: worldly life is a sleep; the barzakh is the state of having woken from it; but the afterlife is true wakefulness, one that \"contains no sleep whatsoever.\" <em>\"Thus this world, relative to the barzakh, is sleep within sleep. For the barzakh is nearer to the true condition\"</em> -- and the barzakh, in turn, is itself a sleep relative to the afterlife (p. 447). The Prophet's saying \"people are asleep, and when they die they awaken\" grounds this hierarchy. Placing this three-tiered structure -- together with the phrase \"the barzakh is nearer to the true condition\" -- next to the extensive account of the barzakh in c2k27 (like an image in a mirror, an in-between state neither fully existent nor fully non-existent), we think the two descriptions do not contradict each other, but stand on different axes -- one a degree of being, the other a degree of wakefulness; we do not claim to have fully resolved how they relate.",
+                "pt": "Logo depois disso, Dost estabelece três graus sucessivos de vigília ao longo deste mundo, do barzakh, e da vida futura: a vida mundana é um sono; o barzakh é o estado de ter despertado dele; mas a vida futura é a verdadeira vigília, aquela que \"não contém sono algum.\" <em>\"Assim, este mundo, em relação ao barzakh, é sono dentro do sono. Pois o barzakh está mais próximo da condição verdadeira\"</em> -- e o barzakh, por sua vez, é ele mesmo um sono em relação à vida futura (p. 447). O dito do Profeta \"as pessoas estão dormindo, e quando morrem despertam\" fundamenta essa hierarquia. Ao colocar essa estrutura de três níveis -- junto com a frase \"o barzakh está mais próximo da condição verdadeira\" -- ao lado do relato extenso do barzakh em c2k27 (como uma imagem num espelho, um estado intermediário nem plenamente existente nem plenamente inexistente), pensamos que as duas descrições não se contradizem, mas se situam em eixos diferentes -- um grau de ser, o outro grau de vigília; não afirmamos ter resolvido completamente como se relacionam."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXVIII — Altmış Dördüncü Bölüm, s. 446-447.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXVIII — Chapter Sixty-Four, pp. 446-447.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXVIII — Capítulo Sexagésimo Quarto, pp. 446-447."
+              },
+              "caption": {
+                "tr": "Dost'un kendi cümlesi bu üçlüyü açıkça sıralıyor -- burada bizim eklediğimiz şey sadece bunu bir üçlü şema olarak göstermek.",
+                "en": "Dost's own sentence explicitly sets out this triad -- what we add here is only the choice to display it as a three-part scheme.",
+                "pt": "A própria frase de Dost estabelece explicitamente essa tríade -- o que acrescentamos aqui é apenas a escolha de exibi-la como um esquema de três partes."
+              },
+              "triad": {
+                "left": {
+                  "label": {
+                    "tr": "Dünya",
+                    "en": "This World",
+                    "pt": "Este Mundo"
+                  },
+                  "note": {
+                    "tr": "uyku içinde uyku",
+                    "en": "sleep within sleep",
+                    "pt": "sono dentro do sono"
+                  }
+                },
+                "middle": {
+                  "label": {
+                    "tr": "Berzah",
+                    "en": "The Barzakh",
+                    "pt": "O Barzakh"
+                  },
+                  "note": {
+                    "tr": "uyanmışlık -- ama ahirete göre yine uyku",
+                    "en": "wakefulness -- yet still sleep relative to the afterlife",
+                    "pt": "vigília -- mas ainda sono em relação à vida futura"
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Ahiret",
+                    "en": "The Afterlife",
+                    "pt": "A Vida Futura"
+                  },
+                  "note": {
+                    "tr": "hiç uyku içermeyen gerçek uyanıklık",
+                    "en": "true wakefulness containing no sleep at all",
+                    "pt": "a verdadeira vigília que não contém sono algum"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "buyuk-sefaat",
+          "heading": {
+            "tr": "Büyük Şefaat: Âdem'den Hz. Muhammed'e",
+            "en": "The Greatest Intercession: From Adam to Muhammad",
+            "pt": "A Grande Intercessão: De Adão a Maomé"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dehşet doruğa ulaştığında -- yıldızlar döküldüğünde, denizler tutuşturulduğunda, Rabbin \"karanlık bulutlar içinde\" geldiğinde -- insanlar birbirine \"Haydi, babamız Âdem'e gidelim\" diyor (s. 447-448). Âdem'e gelip yalvarıyorlar; Âdem kendi hatasını hatırlayıp \"Allah bugün daha önce hiçbir benzeri olmayacak şekilde öfkelenmiştir\" diyerek çekiniyor (s. 448). Aynı istek sırasıyla Nuh'a (kavmine bedduasını hatırlayarak çekiniyor), İbrahim'e (söylediği \"üç yalanı\" hatırlayarak), Musa'ya ve İsa'ya götürülüyor -- her biri Âdem'in verdiği cevabın benzerini veriyor (s. 448). En sonunda \"kıyamet günü insanların efendisi\" olan Hz. Muhammed'e geliyorlar; O, \"Şefaat benim işim!\" diyor, secdeye kapanıp Allah'ın kendisine o an ilham ettiği övgülerle O'nu övüyor, sonra şefaat kapısının açılmasını istiyor -- ve Allah açıyor (s. 448-449).",
+                "en": "When the dread reaches its peak -- as the stars scatter, the seas are set ablaze, and the Lord comes \"amid dark clouds\" -- people say to one another, \"Come, let us go to our father Adam\" (pp. 447-448). They come to Adam and plead with him; Adam, recalling his own error, holds back, saying \"today God has become angry as He has never been before\" (p. 448). The same plea is carried in turn to Noah (who holds back, recalling his curse upon his people), to Abraham (recalling the \"three lies\" he told), to Moses, and to Jesus -- each giving an answer like Adam's (p. 448). At last they come to Muhammad, \"the master of humankind on the Day of Resurrection\"; he says, \"intercession is my task!\", falls into prostration, praises God with praises inspired to him in that very moment, and then asks that the gate of intercession be opened -- and God opens it (pp. 448-449).",
+                "pt": "Quando o pavor atinge seu ápice -- quando as estrelas se dispersam, os mares se incendeiam, e o Senhor vem \"em meio a nuvens escuras\" -- as pessoas dizem umas às outras, \"Vinde, vamos a nosso pai Adão\" (pp. 447-448). Vêm a Adão e imploram; Adão, recordando seu próprio erro, se retrai, dizendo \"hoje Deus se irou como nunca antes\" (p. 448). O mesmo pedido é levado, em ordem, a Noé (que se retrai, lembrando sua maldição contra seu povo), a Abraão (lembrando as \"três mentiras\" que disse), a Moisés, e a Jesus -- cada um dando uma resposta semelhante à de Adão (p. 448). Por fim chegam a Maomé, \"o senhor da humanidade no Dia da Ressurreição\"; ele diz, \"a intercessão é minha tarefa!\", cai em prostração, louva a Deus com louvores que lhe são inspirados naquele mesmo momento, e então pede que o portão da intercessão seja aberto -- e Deus o abre (pp. 448-449)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bu sahnenin ardından ince bir ayrım yapıyor: Hz. Muhammed \"ben insanların efendisiyim\" demiş, ama içine meleklerin de girdiği \"bütün yaratıkların efendisiyim\" dememiş -- Dost bunu bir saygı göstergesi olarak okuyor, çünkü o gün Hz. Muhammed'in otoritesi zaten bütün yaratıklar üzerinde ortaya çıkacaktır (s. 449). Bu, bize göre kısmın nazik bir ayrıntısı: en yüksek makama ulaşan biri bile, kendi sözünde kendi payına düşenden fazlasını iddia etmiyor.",
+                "en": "After this scene Dost draws a fine distinction: Muhammad said, \"I am the master of humankind,\" but did not say \"I am the master of all creatures,\" which would include the angels -- Dost reads this as a mark of reverence, since his authority over all creatures will in any case become manifest on that day (p. 449). To us, this is one of the chapter's gentle details: even one who has reached the highest station does not, in his own words, claim more than his own share.",
+                "pt": "Após essa cena Dost traça uma distinção sutil: Maomé disse, \"eu sou o senhor da humanidade,\" mas não disse \"eu sou o senhor de todas as criaturas,\" o que incluiria os anjos -- Dost lê isso como um sinal de reverência, já que sua autoridade sobre todas as criaturas de qualquer modo se manifestará naquele dia (p. 449). Para nós, este é um dos detalhes delicados do capítulo: mesmo quem alcança a estação mais alta não reivindica, em suas próprias palavras, mais do que lhe cabe."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXVIII — Altmış Dördüncü Bölüm, s. 447-449.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXVIII — Chapter Sixty-Four, pp. 447-449.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXVIII — Capítulo Sexagésimo Quarto, pp. 447-449."
+              },
+              "caption": {
+                "tr": "Metin bu zinciri açıkça bu sırayla anlatıyor -- her peygamber bir öncekinin çekindiği yerde tekrar çekiniyor, ta ki zincir Hz. Muhammed'e ulaşıp kırılana kadar. Burada bizim eklediğimiz tek şey, bu tekrarı bir ağaç şeması olarak göstermek.",
+                "en": "The text itself narrates this chain explicitly in this order -- each prophet holds back where the one before him held back, until the chain reaches Muhammad and breaks. The only thing we add here is displaying this repetition as a tree diagram.",
+                "pt": "O próprio texto narra essa cadeia explicitamente nessa ordem -- cada profeta se retrai onde o anterior se retraiu, até que a cadeia chega a Maomé e se rompe. A única coisa que acrescentamos aqui é exibir essa repetição como um diagrama em árvore."
+              },
+              "tree": {
+                "id": "buyuk-sefaat-zinciri-tree",
+                "label": {
+                  "tr": "Büyük Şefaat İsteği",
+                  "en": "The Plea for the Greatest Intercession",
+                  "pt": "O Pedido pela Grande Intercessão"
+                },
+                "note": {
+                  "tr": "insanlar sırayla her peygambere gidiyor",
+                  "en": "people go in turn to each prophet",
+                  "pt": "as pessoas vão, em ordem, a cada profeta"
+                },
+                "children": [
+                  {
+                    "id": "adem-cekinir",
+                    "label": {
+                      "tr": "Âdem",
+                      "en": "Adam",
+                      "pt": "Adão"
+                    },
+                    "note": {
+                      "tr": "kendi hatasını hatırlayıp çekinir",
+                      "en": "recalls his own error and holds back",
+                      "pt": "recorda seu próprio erro e se retrai"
+                    }
+                  },
+                  {
+                    "id": "nuh-cekinir",
+                    "label": {
+                      "tr": "Nuh",
+                      "en": "Noah",
+                      "pt": "Noé"
+                    },
+                    "note": {
+                      "tr": "kavmine bedduasını hatırlayıp çekinir",
+                      "en": "recalls his curse upon his people and holds back",
+                      "pt": "recorda sua maldição contra seu povo e se retrai"
+                    }
+                  },
+                  {
+                    "id": "ibrahim-cekinir",
+                    "label": {
+                      "tr": "İbrahim",
+                      "en": "Abraham",
+                      "pt": "Abraão"
+                    },
+                    "note": {
+                      "tr": "üç yalanını hatırlayıp çekinir",
+                      "en": "recalls his three lies and holds back",
+                      "pt": "recorda suas três mentiras e se retrai"
+                    }
+                  },
+                  {
+                    "id": "musa-cekinir",
+                    "label": {
+                      "tr": "Musa",
+                      "en": "Moses",
+                      "pt": "Moisés"
+                    },
+                    "note": {
+                      "tr": "Âdem'in cevabının benzerini verir",
+                      "en": "gives an answer like Adam's",
+                      "pt": "dá uma resposta semelhante à de Adão"
+                    }
+                  },
+                  {
+                    "id": "isa-cekinir",
+                    "label": {
+                      "tr": "İsa",
+                      "en": "Jesus",
+                      "pt": "Jesus"
+                    },
+                    "note": {
+                      "tr": "Âdem'in cevabının benzerini verir",
+                      "en": "gives an answer like Adam's",
+                      "pt": "dá uma resposta semelhante à de Adão"
+                    }
+                  },
+                  {
+                    "id": "muhammed-kabul",
+                    "label": {
+                      "tr": "Hz. Muhammed",
+                      "en": "Muhammad",
+                      "pt": "Maomé"
+                    },
+                    "note": {
+                      "tr": "\"Şefaat benim işim!\" -- kabul eder",
+                      "en": "\"Intercession is my task!\" -- accepts",
+                      "pt": "\"A intercessão é minha tarefa!\" -- aceita"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "suretlerde-tecelli-secde-sinavi",
+          "heading": {
+            "tr": "Hakkın Suretlerde Tecellisi ve Secde Sınavı",
+            "en": "The Real's Self-Disclosure in Forms and the Test of Prostration",
+            "pt": "A Autorrevelação do Real em Formas e a Prova da Prostração"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Şefaat kapısı açıldıktan sonra Hak, önce \"kendisinde tecelli ettiği suretlerin en bayağısında\" bu ümmete görünüp \"Ben sizin Rabbinizim!\" diyor; onlar \"Senden Allah'a sığınırız, Rabbimiz gelinceye kadar burada bekleyeceğiz\" diye karşılık veriyor (s. 450). Allah onlara aralarındaki bir alâmeti sorup, sonra o alâmetle -- yani tanıyabilecekleri bir suretle -- tekrar tecelli ediyor; ancak o zaman \"sen bizim Rabbimizsin\" diyorlar (s. 450). Bu sahne bize, tanımanın sadece Hakkın kendisine değil, aynı zamanda hangi surette göründüğüne de bağlı olduğunu hatırlatıyor gibi -- ama bunu kesin bir yoruma bağlamaktan çekiniyoruz.",
+                "en": "After the gate of intercession opens, the Real first appears to this community \"in the basest of the forms in which He discloses Himself\" and says, \"I am your Lord!\"; they answer, \"we seek refuge in God from you, we will wait here until our Lord comes\" (p. 450). God then asks them for a sign known between them, and discloses Himself again through that sign -- that is, through a form they can recognize; only then do they say, \"you are indeed our Lord\" (p. 450). This scene seems to us to suggest that recognition depends not only on the Real Himself but also on the form in which He appears -- though we hesitate to press this into a fixed interpretation.",
+                "pt": "Após o portão da intercessão se abrir, o Real primeiro aparece a essa comunidade \"na mais vil das formas em que Se autorrevela\" e diz, \"Eu sou vosso Senhor!\"; eles respondem, \"buscamos refúgio em Deus de ti, esperaremos aqui até que nosso Senhor venha\" (p. 450). Deus então lhes pergunta sobre um sinal conhecido entre eles, e Se autorrevela novamente através desse sinal -- ou seja, através de uma forma que possam reconhecer; só então dizem, \"tu és de fato nosso Senhor\" (p. 450). Essa cena nos sugere que o reconhecimento depende não apenas do próprio Real, mas também da forma em que Ele aparece -- embora hesitemos em fixar isso numa interpretação definitiva."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sonra secde emri geliyor -- dünya hayatında içtenlikle secde eden herkes orada da secde ediyor; ama \"korkarak veya ikiyüzlüce\" secde edenlerin sırtı \"kurşundan bir tabakaya\" dönüyor, her secde denemesinde \"kafasının üstüne\" düşüyor (s. 450). Dost bunu \"topuk\" imgesiyle bağlıyor -- Araplar'ın \"harp topuğundan çıktı\" (savaş şiddetlendi) deyimini örnek göstererek, ayetteki \"topuk topuğa dolanır\" ifadesinin \"korkular ve çetin işlerin birbirine karışması\" anlamına geldiğini açıklıyor (s. 450) -- dilsel bir kanıtla eskatolojik bir imgeyi birbirine bağlayan, Dost'un sık başvurduğu bir yöntem örneği.",
+                "en": "Then the command to prostrate comes -- everyone who prostrated sincerely in worldly life prostrates there too; but the backs of those who prostrated \"out of fear or hypocrisy\" turn into \"a sheet of lead,\" and at every attempt to prostrate they fall \"upon their heads\" (p. 450). Dost ties this to the image of the \"heel\" -- citing the Arab idiom \"the war came out of its heel\" (meaning the war intensified), he explains that the verse's phrase \"heel entangled with heel\" means \"fears and hard matters become entangled with one another\" (p. 450) -- an example of Dost's frequent method of tying an eschatological image to a piece of linguistic evidence.",
+                "pt": "Então vem a ordem de prostração -- todos os que se prostraram sinceramente na vida mundana se prostram também ali; mas as costas dos que se prostraram \"por medo ou hipocrisia\" se transformam em \"uma placa de chumbo,\" e a cada tentativa de se prostrar caem \"sobre suas cabeças\" (p. 450). Dost vincula isso à imagem do \"calcanhar\" -- citando a expressão árabe \"a guerra saiu de seu calcanhar\" (significando que a guerra se intensificou), ele explica que a frase do versículo \"calcanhar enredado no calcanhar\" significa \"os medos e as questões difíceis se entrelaçam uns aos outros\" (p. 450) -- um exemplo do método frequente de Dost de vincular uma imagem escatológica a uma evidência linguística."
+              }
+            }
+          ]
+        },
+        {
+          "id": "akli-dini-tevhid",
+          "heading": {
+            "tr": "Akli Tevhid ile Dini Tevhid Arasındaki Fark",
+            "en": "The Difference Between Rational and Religious Affirmation of Unity",
+            "pt": "A Diferença Entre a Afirmação Racional e Religiosa da Unidade"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Şefaat başladığında, herhangi bir peygamberin dinine göre \"hardal tanesi kadar ya da ondan daha küçük\" bir amel işlemiş olan herkes cehennemden çıkarılıyor -- ama Dost burada ince bir ayrım yapıyor: <em>\"Allah'ın birliğini akli kanıtlarla bilen akılcı tevhitçiler ise cehennemde kalır\"</em> (s. 450) -- yani Allah'a ortak koşmayan ama hiçbir peygambere dinen bağlanmamış, sadece akılla \"Allah birdir\" sonucuna varmış kimseler. Bunlar \"imandan bir zerre ya da daha azı bulunmayan\" insanlar olarak tarif ediliyor (s. 450-451). Yine de Dost, onların da nihayet \"merhametlilerin en merhametlisi\" tarafından cehennemden çıkarılacağını ekliyor -- Hz. Peygamber'in aktardığı hadiste özellikle \"iman ederek\" değil \"bilerek ölen\" ifadesinin tercih edildiğini vurgulayarak (s. 451).",
+                "en": "Once intercession begins, everyone who performed even \"a mustard seed's weight, or less,\" of a deed prescribed by any prophet's religion is brought out of Hell -- but here Dost draws a fine distinction: <em>\"the rationalist affirmers of unity, who know God's oneness through rational proofs, remain in Hell\"</em> (p. 450) -- that is, those who do not associate partners with God but are not religiously bound to any prophet, having arrived at \"God is one\" through reason alone. These are described as people \"in whom there is not a mustard seed's worth of faith, or less\" (pp. 450-451). Still, Dost adds that they too will eventually be brought out of Hell by \"the most merciful of the merciful\" -- noting that the hadith specifically prefers the phrase \"died while knowing\" rather than \"died while believing\" (p. 451).",
+                "pt": "Uma vez que a intercessão começa, todos os que realizaram sequer \"o peso de um grão de mostarda, ou menos,\" de um ato prescrito por qualquer religião profética são retirados do Inferno -- mas aqui Dost traça uma distinção sutil: <em>\"os afirmadores racionalistas da unidade, que conhecem a unicidade de Deus por provas racionais, permanecem no Inferno\"</em> (p. 450) -- ou seja, aqueles que não associam parceiros a Deus, mas não estão religiosamente vinculados a nenhum profeta, tendo chegado a \"Deus é um\" apenas pela razão. Estes são descritos como pessoas \"em quem não há sequer o peso de um grão de mostarda de fé, ou menos\" (pp. 450-451). Ainda assim, Dost acrescenta que eles também serão eventualmente retirados do Inferno pelo \"mais misericordioso dos misericordiosos\" -- observando que o hadith prefere especificamente a frase \"morreu sabendo\" em vez de \"morreu crendo\" (p. 451)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost kendi kendine bir itiraz yöneltip yanıtlıyor: \"İblis de Allah'ın bir olduğunu bilir\" -- \"haklısın\" diyor, ama İblis \"ortak koşanların ilkidir\", bu yüzden onların vebali de kendi boynuna yükleniyor; belki de \"düşüncesine ilişen bir kuşku nedeniyle\" şirk koşarak ölmüştür (s. 451). Ve ekliyor: <em>\"Hangi nedenle ateşten çıkmayacağını ise en iyi Allah bilir\"</em> (s. 451) -- burada da, en kesin görünen bir hükmün (İblis'in ebedi kalışı) arkasında bile Dost bir bilinemezlik payı bırakıyor. Bize göre bu bölüm, kısmın \"bilgiyle iman\" ile \"sadece bilgi\" arasında çizdiği ince ama önemli bir çizgiyi gösteriyor -- ve bu çizginin bile son sözü, insan hükmüne değil Hakkın merhametine bırakıldığını hatırlatıyor.",
+                "en": "Dost raises an objection to himself and answers it: \"but Iblis too knows that God is one\" -- \"you are right,\" he says, yet Iblis \"is the first of those who associate partners,\" and so their burden too falls upon his shoulders; perhaps he died in a state of associating partners \"through some doubt that touched his thought\" (p. 451). And he adds: <em>\"as for the reason he will not come out of the fire, God knows best\"</em> (p. 451) -- here too, behind even what looks like the most settled of verdicts (Iblis's eternal remaining), Dost leaves a share of the unknowable. To us, this section traces a fine but important line the chapter draws between \"faith joined with knowledge\" and \"knowledge alone\" -- and reminds us that even the last word on this line is left not to human judgment but to God's mercy.",
+                "pt": "Dost levanta uma objeção a si mesmo e a responde: \"mas Iblis também sabe que Deus é um\" -- \"tens razão,\" ele diz, mas Iblis \"é o primeiro dos que associam parceiros,\" e assim o fardo deles também recai sobre seus ombros; talvez ele tenha morrido associando parceiros \"por alguma dúvida que tocou seu pensamento\" (p. 451). E acrescenta: <em>\"quanto à razão pela qual ele não sairá do fogo, Deus sabe melhor\"</em> (p. 451) -- aqui também, por trás mesmo do que parece o mais assentado dos veredictos (a permanência eterna de Iblis), Dost deixa uma margem de incognoscível. Para nós, esta seção traça uma linha sutil, mas importante, que o capítulo desenha entre \"fé unida ao conhecimento\" e \"conhecimento apenas\" -- e nos lembra que até a última palavra nessa linha é deixada não ao julgamento humano, mas à misericórdia de Deus."
+              }
+            }
+          ]
+        },
+        {
+          "id": "yedi-temel-yer-sunum-defter-terazi",
+          "heading": {
+            "tr": "Kıyametin Yedi Temel Yeri: Sunumdan Teraziye",
+            "en": "The Seven Fundamental Places of the Resurrection: From Presentation to the Scale",
+            "pt": "Os Sete Lugares Fundamentais da Ressurreição: Da Apresentação à Balança"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost artık kıyameti \"kıyamet mekânlarından çok bilinen\" yedi temel yere göre yeniden özetliyor: sunum yeri, defterlerin alınması, terazi, sırat, araf, ölümün kurban edilmesi, ve cennet meydanındaki ziyafet sofrası -- bunların, cehennemin yedi kapısı ve cennetin yedi kapısıyla aynı sayıda olduğunu ekliyor; sekizinci kapı ise yalnızca \"Görme Cenneti\"ne ait, hiç açılmayacak bir kapı, çünkü \"cehennemlikler Rablerini görmekten perdelenir\" (s. 451-452). Sunum yeri, Hz. Aişe'nin sorduğu bir hadisle açıklanıyor: \"kolay hesap\"tan kasıt sunumdur, \"hesaba çekilmede zorlanan kimseye azap edilmiştir\" -- ameller, askerin sancağı gibi, insanları simalarından tanıtıyor (s. 452).",
+                "en": "Dost now resummarizes the Resurrection according to seven fundamental places, \"the best-known among the places of the Resurrection\": the place of presentation, the taking of records, the scale, the Path, al-A'raf, the sacrifice of death, and the banquet in the courtyard of Paradise -- he adds that these match in number the seven gates of Hell and the seven gates of Paradise; an eighth gate belongs only to the \"Paradise of Vision,\" a gate that will never open, \"for the people of Hell are veiled from seeing their Lord\" (pp. 451-452). The place of presentation is explained through a hadith prompted by Aisha's question: what is meant by \"an easy reckoning\" is presentation itself -- \"whoever is pressed hard in the reckoning has been punished\" -- deeds, like a soldier's banner, mark people out by their faces (p. 452).",
+                "pt": "Dost agora resume novamente a Ressurreição segundo sete lugares fundamentais, \"os mais conhecidos entre os lugares da Ressurreição\": o lugar da apresentação, a retirada dos registros, a balança, o Caminho, al-A'raf, o sacrifício da morte, e o banquete no pátio do Paraíso -- ele acrescenta que estes correspondem em número aos sete portões do Inferno e aos sete portões do Paraíso; um oitavo portão pertence apenas ao \"Paraíso da Visão,\" um portão que nunca se abrirá, \"pois o povo do Inferno é velado de ver seu Senhor\" (pp. 451-452). O lugar da apresentação é explicado através de um hadith motivado pela pergunta de Aisha: o que se entende por \"uma prestação de contas fácil\" é a própria apresentação -- \"quem é pressionado na prestação de contas foi castigado\" -- os atos, como o estandarte de um soldado, distinguem as pessoas por seus rostos (p. 452)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Defterlerin alınması, üç grubu ayırıyor: sağ elinden alan mümin, sol elinden alan münafık (çünkü \"kâfirin defteri yoktur\"), ve arkasından alan -- kendisine indirilen kitabı arkasına atıp değersiz bir pahaya satan kimse (s. 452-453). Sonra terazi geliyor: teraziye bütün ameller ve zikirler girerken, tek bir cümle girmiyor -- <em>\"Allah'tan başka ilâh yoktur\"</em> -- çünkü bu cümlenin \"diğer kefede karşıtı olacak bir cümle\" yok; sadece ortak koşmak onun karşıtı olabilir, ama ikisi \"tek bir terazide bir araya gelmez\" (s. 453). \"Kayıtlar sahibi\"nin -- doksan dokuz kötülük kaydına karşı sadece bir kere, samimice söylenmiş \"Allah'tan başka ilâh yoktur\" cümlesinin ağır bastığı -- hikâyesi, bize göre bu bölümün en çarpıcı imgesi (s. 453).",
+                "en": "The taking of records separates three groups: the believer, who receives it from the right hand; the hypocrite, who receives it from the left (\"for the unbeliever has no record\"); and one who receives it from behind -- someone who threw the book sent down to them behind their back and sold it for a paltry price (pp. 452-453). Then comes the scale: while every deed and every act of remembrance enters the scale, one phrase alone does not -- <em>\"there is no god but God\"</em> -- for this phrase has \"no counterpart to weigh against it on the other pan\"; only associating partners could be its opposite, but the two \"can never come together on a single scale\" (p. 453). The story of \"the man with the record\" -- whose ninety-nine records of wrongdoing are outweighed by a single sincerely spoken utterance of \"there is no god but God\" -- is, to us, this section's most striking image (p. 453).",
+                "pt": "A retirada dos registros separa três grupos: o crente, que o recebe da mão direita; o hipócrita, que o recebe da esquerda (\"pois o descrente não tem registro\"); e aquele que o recebe por trás -- alguém que jogou às costas o livro que lhe foi enviado e o vendeu por um preço ínfimo (pp. 452-453). Então vem a balança: enquanto todo ato e toda menção entram na balança, uma única frase não entra -- <em>\"não há deus senão Deus\"</em> -- pois essa frase \"não tem contrapartida para pesar contra ela no outro prato\"; apenas associar parceiros poderia ser seu oposto, mas as duas \"nunca podem se reunir numa única balança\" (p. 453). A história do \"homem com o registro\" -- cujos noventa e nove registros de má conduta são superados por uma única expressão sincera de \"não há deus senão Deus\" -- é, para nós, a imagem mais impressionante desta seção (p. 453)."
+              }
+            }
+          ]
+        },
+        {
+          "id": "sirat-araf-adaletin-inceligi",
+          "heading": {
+            "tr": "Sırat, Araf, ve İlahi Adaletin İnceliği",
+            "en": "The Path, al-A'raf, and the Fine Grain of Divine Justice",
+            "pt": "O Caminho, al-A'raf, e o Refinamento da Justiça Divina"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sırat -- \"kıldan ince ve kılıçtan keskin\" -- Dost'a göre dünyada da bir karşılığı olan bir yol: <em>\"Bu, dünyada bu yol, şeriatın bilgisidir\"</em> (s. 454-455); bir mesele hakkında Allah katındaki doğru yorumun kesin olarak bilinemediğini, bu yüzden müçtehitlerin \"güçlü zanlara göre\" ibadet ettiğini, doğru hükme ulaşanın yalnızca bir kişi olduğunu, farklı müçtehitlerin ise \"doğru hükme değil, ücrete\" ulaştığını söylüyor (s. 455) -- fıkıh usulünden bir ilkeyi eskatolojik bir imgeyle birleştiren, Dost'un sık kullandığı bir yöntem. Köprünün genişliği de sabit değil: <em>\"Sırat köprüsü kıyamet günü insanlara sahip oldukları nur ölçüsünde görünür. Böylece köprü bir grup hakkında incelirken, bir grup hakkında genişler\"</em> (s. 456) -- yani yolun zorluğu, kişinin taşıdığı ışıkla orantılı.",
+                "en": "The Path -- \"finer than a hair, sharper than a sword\" -- has, for Dost, a counterpart in this world too: <em>\"in this world, this path is the knowledge of the Law\"</em> (pp. 454-455); he says that the correct interpretation before God on a given matter can never be known with certainty, so jurists worship \"according to strong probabilities,\" that only one person ever arrives at the correct ruling, while other jurists arrive \"not at the correct ruling, but at a reward\" (p. 455) -- a method Dost often uses, joining a principle from legal theory to an eschatological image. The bridge's width is not fixed either: <em>\"On the Day of Resurrection the Path appears to people in proportion to the light they possess. Thus the bridge narrows for one group while it widens for another\"</em> (p. 456) -- meaning the path's difficulty is proportional to the light a person carries.",
+                "pt": "O Caminho -- \"mais fino que um cabelo, mais afiado que uma espada\" -- tem, para Dost, uma contrapartida também neste mundo: <em>\"neste mundo, este caminho é o conhecimento da Lei\"</em> (pp. 454-455); ele diz que a interpretação correta diante de Deus sobre determinada questão nunca pode ser conhecida com certeza, de modo que os juristas adoram \"segundo fortes probabilidades,\" que apenas uma pessoa chega ao julgamento correto, enquanto outros juristas chegam \"não ao julgamento correto, mas a uma recompensa\" (p. 455) -- um método que Dost frequentemente usa, unindo um princípio da teoria jurídica a uma imagem escatológica. A largura da ponte também não é fixa: <em>\"No Dia da Ressurreição o Caminho aparece às pessoas na proporção da luz que possuem. Assim a ponte se estreita para um grupo enquanto se alarga para outro\"</em> (p. 456) -- ou seja, a dificuldade do caminho é proporcional à luz que a pessoa carrega."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Köprüdeki \"dikenler, kancalar ve çengeller\"in kaynağı da açıklanıyor: bunlar \"Âdemoğullarının amellerinin suretlerinden\" meydana geliyor -- yani insanı yolda tutan şey, dışarıdan gelen bir ceza değil, kendi amellerinin bir sureti (s. 456). Beşinci yer olan Araf'a gelince: cennet-cehennem arasında bir sur, içi rahmet dışı azap; orada terazisinin kefeleri tam eşit olan, ne cennete ne cehenneme girmesini sağlayacak bir üstünlüğe sahip olmayan kimseler bulunuyor -- ama secde çağrısına hemen uyunca kurtuluyorlar (s. 456-457). Dost, bu insanların \"Allah'ın zerre miktarınca kimseye haksızlık yapmayacağını\" bildiklerini, ve tam bu yüzden Allah'ın cömertliğine \"tamah\" ettiklerini vurguluyor (s. 457) -- adaletin bu kadar dakik işlemesi (bir zerrenin bile kefeyi değiştirebilmesi), bize göre, sitenin başka yerlerinde de karşılaştığımız \"Hakkın hiçbir ayrıntıyı gözden kaçırmaması\" temasıyla örtüşüyor.",
+                "en": "The source of the bridge's \"thorns, hooks, and barbs\" is also explained: they arise \"from the forms of the deeds of the children of Adam\" -- meaning what holds a person back on the path is not an external punishment but a form of their own deeds (p. 456). As for the fifth place, al-A'raf: a wall between Paradise and Hell, its inner face mercy and its outer face punishment; there stand those whose scales are perfectly balanced, possessing no advantage that would grant them entry to either Paradise or Hell -- but they are delivered the moment they respond to the call to prostrate (pp. 456-457). Dost emphasizes that these people know \"God will not wrong anyone by so much as an atom's weight,\" and precisely for this reason they \"covet\" God's generosity (p. 457) -- justice operating with such precision that even a single atom can tip the scale strikes us as resonating with a theme we have met elsewhere on this site: that the Real overlooks no detail, however small.",
+                "pt": "A origem dos \"espinhos, ganchos e farpas\" da ponte também é explicada: eles surgem \"das formas dos atos dos filhos de Adão\" -- ou seja, o que retém uma pessoa no caminho não é um castigo externo, mas uma forma de seus próprios atos (p. 456). Quanto ao quinto lugar, al-A'raf: um muro entre o Paraíso e o Inferno, sua face interna misericórdia e sua face externa castigo; ali estão aqueles cujas balanças estão perfeitamente equilibradas, não possuindo vantagem alguma que lhes garanta a entrada no Paraíso ou no Inferno -- mas são libertados no momento em que respondem ao chamado para se prostrar (pp. 456-457). Dost enfatiza que essas pessoas sabem que \"Deus não injustiçará ninguém nem mesmo pelo peso de um átomo,\" e precisamente por isso \"cobiçam\" a generosidade de Deus (p. 457) -- a justiça operando com tal precisão que um único átomo pode inclinar a balança nos parece ressoar com um tema que já encontramos em outros pontos deste site: que o Real não negligencia nenhum detalhe, por menor que seja."
+              }
+            }
+          ]
+        },
+        {
+          "id": "olumun-kurban-edilmesi-ziyafet",
+          "heading": {
+            "tr": "Ölümün Kurban Edilmesi ve Ziyafet Sofrası",
+            "en": "The Sacrifice of Death and the Banquet",
+            "pt": "O Sacrifício da Morte e o Banquete"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Altıncı yerde, bize göre kısmın en çarpıcı sahnesi geliyor. Ölüm -- \"dışta gerçekliği bulunmayan bir nispet olsa bile\" -- Allah tarafından kıyamet günü \"parlak bir koç suretinde\" ortaya çıkarılıyor. \"Ey cennetlikler!\" diye bağırılıyor, onlar başlarını kaldırıyor; \"Ey cehennemlikler!\" diye bağırılıyor, onlar da başlarını kaldırıyor. İkisine de \"Bunu tanıyor musunuz?\" diye soruluyor, ikisi de \"O ölümdür\" diye cevap veriyor. Yahya (as.) elinde bıçakla gelip ölümü yatırıp boğazını kesiyor. Sonra bir münadi bağırıyor: <em>\"Cennetlikler! Artık ebedi kalıcısınız, ölüm yoktur! Cehennemlikler! Ebedi kalıcısınız, ölüm yoktur! İşte bu gün, üzülme günüdür\"</em> (s. 457-458).",
+                "en": "At the sixth place comes, to us, the chapter's most striking scene. Death -- \"even though it is a relation with no reality outside the mind\" -- is brought forth by God on the Day of Resurrection \"in the form of a radiant ram.\" \"O people of Paradise!\" is called out, and they lift their heads; \"O people of Hell!\" is called out, and they too lift their heads. Both are asked, \"do you recognize this?\", and both answer, \"it is death.\" John (Yahya), peace be upon him, comes with a knife in hand, lays death down, and slits its throat. Then a herald cries out: <em>\"O people of Paradise! You now abide forever, there is no more death! O people of Hell! You abide forever, there is no more death! This, indeed, is the day of grief\"</em> (pp. 457-458).",
+                "pt": "No sexto lugar vem, para nós, a cena mais impressionante do capítulo. A morte -- \"ainda que seja uma relação sem realidade fora da mente\" -- é trazida por Deus no Dia da Ressurreição \"na forma de um carneiro radiante.\" \"Ó povo do Paraíso!\" é clamado, e eles erguem suas cabeças; \"Ó povo do Inferno!\" é clamado, e eles também erguem suas cabeças. A ambos é perguntado, \"reconheceis isto?\", e ambos respondem, \"é a morte.\" João (Yahya), a paz esteja sobre ele, vem com uma faca na mão, deita a morte e degola-a. Então um arauto clama: <em>\"Ó povo do Paraíso! Agora permaneceis para sempre, não há mais morte! Ó povo do Inferno! Permaneceis para sempre, não há mais morte! Este, de fato, é o dia do pesar\"</em> (pp. 457-458)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Cennetlikler ölümü büyük bir sevinçle karşılıyor -- \"Sen bize gelen hayırlı bir konuktun\" diyorlar, Hz. Peygamber'in \"Ölüm mümin için bir hediyedir\" sözünü hatırlatarak (s. 458). Cehennemlikler ise ondan kaçmaya çalışıyor, \"Belki bizi öldürür de biz de içinde bulunduğumuz durumdan kurtuluruz\" diye umutlanıyor -- ama artık bu mümkün değil (s. 458). Bu sahneyi, önceki kısımlarda (c2k26, c2k27) dört kez karşılaştığımız \"ne ölür ne diri kalır\" motifiyle birlikte okuduğumuzda, aralarında bir gerilim seziyoruz: orada cehennem/berzah hâli süregelen bir müphemlik, ne tam ölüm ne tam hayat, olarak tarif ediliyordu; burada ise bu müphemliğin kendisi -- ölümün bizzat kurban edilmesiyle -- nihai olarak kapatılıyor, her iki taraf için de kesin bir ebediyet ilan ediliyor. Bunun önceki motifin bir \"çözümü\" mü, yoksa aynı meseleye (ölüm-hayat sınırının bulanıklığı) farklı bir andan bakan ayrı bir sahne mi olduğunu tam bilemiyoruz -- ama iki metnin birbiriyle konuştuğunu düşünüyoruz.",
+                "en": "The people of Paradise greet death with great joy -- \"you were a blessed guest who came to us,\" they say, recalling the Prophet's saying, \"death is a gift for the believer\" (p. 458). The people of Hell, by contrast, try to flee from it, hoping \"perhaps it will kill us, and we will be delivered from the state we are in\" -- but this is no longer possible (p. 458). Reading this scene alongside the \"they neither die nor remain alive\" motif we met four times in the previous parts (c2k26, c2k27), we sense a tension between them: there, the condition of Hell/barzakh was described as an ongoing ambiguity, neither fully death nor fully life; here, that very ambiguity is finally closed -- through the sacrifice of death itself -- and a definite eternity is declared for both sides. We cannot say for certain whether this is a \"resolution\" of the earlier motif, or a separate scene looking at the same question -- the blurred boundary between death and life -- from a different moment; but we sense the two texts are speaking to one another.",
+                "pt": "O povo do Paraíso recebe a morte com grande alegria -- \"foste um hóspede bendito que veio até nós,\" dizem, recordando o dito do Profeta, \"a morte é um presente para o crente\" (p. 458). O povo do Inferno, por outro lado, tenta fugir dela, esperando \"talvez ela nos mate, e sejamos libertados do estado em que estamos\" -- mas isso não é mais possível (p. 458). Lendo essa cena junto ao motivo \"nem morrem nem permanecem vivos\" que encontramos quatro vezes nas partes anteriores (c2k26, c2k27), percebemos uma tensão entre elas: lá, a condição do Inferno/barzakh era descrita como uma ambiguidade em curso, nem plenamente morte nem plenamente vida; aqui, essa mesma ambiguidade é finalmente encerrada -- através do sacrifício da própria morte -- e uma eternidade definitiva é declarada para ambos os lados. Não podemos dizer com certeza se isso é uma \"resolução\" do motivo anterior, ou uma cena separada que olha para a mesma questão -- a fronteira turva entre morte e vida -- a partir de um momento diferente; mas percebemos que os dois textos estão dialogando entre si."
+              }
+            },
+            {
+              "type": "diagram",
+              "source": {
+                "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXVIII — Altmış Dördüncü Bölüm, s. 457-458.",
+                "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXVIII — Chapter Sixty-Four, pp. 457-458.",
+                "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXVIII — Capítulo Sexagésimo Quarto, pp. 457-458."
+              },
+              "caption": {
+                "tr": "Aynı sahne -- ölümün kurban edilmesi -- iki taraf için tam ters iki tepki doğuruyor; metin bu karşıtlığı açıkça anlatıyor, biz sadece yan yana koyuyoruz.",
+                "en": "The same scene -- the sacrifice of death -- provokes two opposite reactions in the two sides; the text itself narrates this contrast explicitly, we only place the two side by side.",
+                "pt": "A mesma cena -- o sacrifício da morte -- provoca duas reações opostas nos dois lados; o próprio texto narra esse contraste explicitamente, nós apenas os colocamos lado a lado."
+              },
+              "pair": {
+                "left": {
+                  "label": {
+                    "tr": "Cennetlikler",
+                    "en": "The People of Paradise",
+                    "pt": "O Povo do Paraíso"
+                  },
+                  "note": {
+                    "tr": "sevinç -- \"hayırlı bir konuk\"",
+                    "en": "joy -- \"a blessed guest\"",
+                    "pt": "alegria -- \"um hóspede bendito\""
+                  }
+                },
+                "right": {
+                  "label": {
+                    "tr": "Cehennemlikler",
+                    "en": "The People of Hell",
+                    "pt": "O Povo do Inferno"
+                  },
+                  "note": {
+                    "tr": "dehşet -- ondan kaçmaya çalışırlar",
+                    "en": "dread -- they try to flee from it",
+                    "pt": "pavor -- tentam fugir dela"
+                  }
+                }
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kısım, yedinci yer olan ziyafet sofrasıyla kapanıyor: cennetliklerin yemeği \"Yunus balığının ciğerinden arta kalan\" -- ciğer, \"kanın evi\", canlılığın kaynağı; cehennemliklerin yemeği ise \"boğadan çıkarılan dalak\" -- dalak, \"pisliklerin evi\", bedenin bozuk kanının toplandığı yer (s. 458). Dost bu iki organı simgesel olarak okuyor: biri hayatın sürmesinin müjdesi, öteği hastalık ve sakatlığın kaynağı. Bölüm, sade bir cümleyle kapanıyor: <em>\"Sonra cennetlikler cennete girer: 'Onlar oradan çıkmayacaktır.' 'Allah hakkı söyler ve doğru yola ulaştırır'\"</em> (s. 458). Ve tam burada -- kısmın son satırlarında -- Dost bize kitabının kendi iç mimarisini hatırlatıyor: <em>\"Yirmi sekizinci kısmın tamamlanmasıyla dördüncü sifr tamamlandı. Onu yirmi dokuzuncu kısım, onu ise otuzuncu kısım takip edecektir\"</em> (s. 458) -- elimizdeki cilt burada bitiyor.",
+                "en": "The part closes with the seventh place, the banquet: the food of the people of Paradise is \"what remains of the liver of the whale\" -- the liver, \"the house of blood,\" the source of vitality; the food of the people of Hell is \"the spleen cut from a bull\" -- the spleen, \"the house of impurities,\" where the body's corrupted blood collects (p. 458). Dost reads these two organs symbolically: one the promise of life's continuance, the other the source of sickness and affliction. The chapter closes with a simple sentence: <em>\"Then the people of Paradise enter Paradise: 'they shall not leave it.' 'God speaks the truth and guides to the right way'\"</em> (p. 458). And right here -- in the part's final lines -- Dost reminds us of his book's own inner architecture: <em>\"With the completion of the twenty-eighth part, the fourth sifr is complete. The twenty-ninth part will follow it, and the thirtieth part will follow that\"</em> (p. 458) -- the volume before us ends here.",
+                "pt": "A parte se encerra com o sétimo lugar, o banquete: o alimento do povo do Paraíso é \"o que resta do fígado da baleia\" -- o fígado, \"a casa do sangue,\" a fonte da vitalidade; o alimento do povo do Inferno é \"o baço extraído de um touro\" -- o baço, \"a casa das impurezas,\" onde se acumula o sangue corrompido do corpo (p. 458). Dost lê esses dois órgãos simbolicamente: um a promessa da continuidade da vida, o outro a fonte da doença e da aflição. O capítulo se encerra com uma frase simples: <em>\"Então o povo do Paraíso entra no Paraíso: 'eles não sairão dele.' 'Deus fala a verdade e guia ao caminho certo'\"</em> (p. 458). E é justamente aqui -- nas linhas finais da parte -- que Dost nos lembra da arquitetura interna de seu próprio livro: <em>\"Com a conclusão da vigésima oitava parte, o quarto sifr está completo. A vigésima nona parte a seguirá, e a trigésima parte seguirá esta\"</em> (p. 458) -- o volume diante de nós termina aqui."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXVIII — Altmış Dördüncü Bölüm: Kıyameti, Menzillerini ve Dirilişin Niteliğini Bilmek",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXVIII — Chapter Sixty-Four: Knowing the Resurrection, Its Stations, and the Nature of Revival",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXVIII — Capítulo Sexagésimo Quarto: Conhecer a Ressurreição, Suas Estações, e a Natureza da Revivificação"
+          },
+          "pageRange": "430–458"
         }
       ]
     }
