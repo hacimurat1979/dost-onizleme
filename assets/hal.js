@@ -2,6 +2,7 @@
   "use strict";
 
   const I18n = window.DostI18n;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const svg = d3.select("#hal-graph");
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
@@ -258,7 +259,7 @@
     const tx = width / 2 - clampedScale * (x0 + boxW / 2);
     const ty = height / 2 - clampedScale * (y0 + boxH / 2);
     const transform = d3.zoomIdentity.translate(tx, ty).scale(clampedScale);
-    const sel = animate ? svg.transition().duration(400) : svg;
+    const sel = (animate && !reduceMotion) ? svg.transition().duration(400) : svg;
     sel.call(zoomBehavior.transform, transform);
   }
 

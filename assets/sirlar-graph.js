@@ -2,6 +2,7 @@
   "use strict";
 
   const I18n = window.DostI18n;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const svg = d3.select("#sirlar-graph");
   const wrapEl = document.getElementById("sirlar-wrap");
   const tooltip = document.getElementById("sirlar-tooltip");
@@ -220,7 +221,7 @@
     const tx = width / 2 - clampedScale * (x0 + treeW / 2);
     const ty = height / 2 - clampedScale * (y0 + treeH / 2);
     const transform = d3.zoomIdentity.translate(tx, ty).scale(clampedScale);
-    const sel = animate ? svg.transition().duration(400) : svg;
+    const sel = (animate && !reduceMotion) ? svg.transition().duration(400) : svg;
     sel.call(zoomBehavior.transform, transform);
   }
 

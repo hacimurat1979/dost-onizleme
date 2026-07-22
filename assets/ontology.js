@@ -2,6 +2,7 @@
   "use strict";
 
   const I18n = window.DostI18n;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const svg = d3.select("#graph");
   const detailPanel = document.getElementById("detail-panel");
@@ -710,7 +711,8 @@
     const recenterBtn = document.getElementById("ontology-recenter");
     if (recenterBtn) {
       recenterBtn.addEventListener("click", () => {
-        svg.transition().duration(400).call(zoom.transform, computeFitTransform());
+        const sel = reduceMotion ? svg : svg.transition().duration(400);
+        sel.call(zoom.transform, computeFitTransform());
       });
     }
 

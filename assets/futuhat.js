@@ -793,7 +793,7 @@
           </button>
         </div>
         <p class="futuhat-hero__eyebrow">${tt({ tr: "Fütûhât-ı Mekkiyye", en: "al-Futuhat al-Makkiyya", pt: "al-Futuhat al-Makkiyya" })} · ${tt({ tr: "Cilt " + CILT_ROMAN[part.cilt], en: "Volume " + CILT_ROMAN[part.cilt], pt: "Volume " + CILT_ROMAN[part.cilt] })} · ${tt({ tr: "Kısım " + roman(part.kisim), en: "Part " + roman(part.kisim), pt: "Parte " + roman(part.kisim) })}</p>
-        <h1 class="futuhat-hero__title">${tt(part.title)}</h1>
+        <h2 class="futuhat-hero__title">${tt(part.title)}</h2>
         <p class="futuhat-hero__summary">${linkify(tt(part.hero.summary))}</p>
       </header>
 
@@ -833,7 +833,7 @@
     part.sections.forEach((section, si) => {
       const secEl = document.createElement("section");
       secEl.className = "futuhat-section";
-      secEl.innerHTML = `<h2 class="futuhat-section__heading">${tt(section.heading)}</h2>`;
+      secEl.innerHTML = `<h3 class="futuhat-section__heading">${tt(section.heading)}</h3>`;
       section.blocks.forEach((block, bi) => {
         if (block.type === "p") {
           const p = document.createElement("p");
@@ -958,14 +958,23 @@
     // yanıp sönme olmasın); yalnızca ilk açılışta "yükleniyor" göster.
     const alreadyRendered = articleEl && articleEl.querySelector(".futuhat-hero");
     if (!partCache.has(id) && !alreadyRendered && articleEl) {
-      articleEl.innerHTML = `<p class="futuhat-part-loading">${tt({ tr: "Yükleniyor…", en: "Loading…", pt: "Carregando…" })}</p>`;
+      articleEl.innerHTML = `
+        <div class="view-status futuhat-part-loading">
+          <div class="view-status__spinner" aria-hidden="true"></div>
+          <p class="view-status__text">${tt({ tr: "Yükleniyor…", en: "Loading…", pt: "Carregando…" })}</p>
+        </div>`;
     }
     fetchPart(id).then((part) => {
       // Kullanıcı bu fetch dönmeden başka bir kısma geçtiyse eskiyi basma.
       if (activePartId !== id) return;
       if (!part) {
         if (articleEl) {
-          articleEl.innerHTML = `<div class="futuhat-part-error"><p>${tt({ tr: "Bu kısım yüklenemedi.", en: "This part could not be loaded.", pt: "Esta parte não pôde ser carregada." })}</p><button type="button" class="futuhat-part-retry">${tt({ tr: "Tekrar dene", en: "Retry", pt: "Tentar novamente" })}</button></div>`;
+          articleEl.innerHTML = `
+            <div class="view-status view-status--error futuhat-part-loading">
+              <div class="view-status__spinner" aria-hidden="true"></div>
+              <p class="view-status__text">${tt({ tr: "Bu kısım yüklenemedi.", en: "This part could not be loaded.", pt: "Esta parte não pôde ser carregada." })}</p>
+              <button type="button" class="view-status__retry futuhat-part-retry">${tt({ tr: "Tekrar dene", en: "Retry", pt: "Tentar novamente" })}</button>
+            </div>`;
           const retry = articleEl.querySelector(".futuhat-part-retry");
           if (retry) retry.addEventListener("click", () => activatePart(id));
         }
