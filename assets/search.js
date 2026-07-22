@@ -14,7 +14,6 @@
     cizimler: { tr: "Çizimler", en: "Diagrams", pt: "Diagramas" },
     sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
     futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
-    "biriken-parcalar": { tr: "Biriken Parçalar", en: "Gathered Pieces", pt: "Peças Reunidas" },
   };
 
   // Sonuç gruplarının başında, hangi görünüme ait olduğunu tek bakışta
@@ -29,7 +28,6 @@
     cizimler: "--series-theme",
     sorular: "--series-sorular-en-temel",
     futuhat: "--series-hal-muameleler",
-    "biriken-parcalar": "--series-theme",
   };
 
   let index = [];
@@ -99,11 +97,6 @@
             sub: p.hero && p.hero.summary,
             searchText: allLangText(p.title) + " " + allLangText(p.hero && p.hero.summary) + " " + sectionHeadings,
           });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/biriken-parcalar.json").then((d) => {
-        (d.entries || []).forEach((e) => {
-          index.push({ view: "biriken-parcalar", id: e.id, label: e.title, sub: e.ozet, searchText: allLangText(e.title) + " " + allLangText(e.ozet) + " " + allLangText(e.sentez) });
         });
       }),
     ];

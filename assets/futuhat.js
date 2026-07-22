@@ -5,7 +5,6 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const wrapEl = document.getElementById("futuhat-wrap");
   const mapEl = document.getElementById("futuhat-map");
-  const motifsEl = document.getElementById("futuhat-motifs");
   const partsEl = document.getElementById("futuhat-parts");
   const articleEl = document.getElementById("futuhat-article");
   const statsEl = document.getElementById("futuhat-stats");
@@ -164,9 +163,6 @@
   let futuhatData = null;
   let dataPromise = null;
   let activePartId = null;
-  let motifEntries = null;
-  let motifFetchPromise = null;
-  let activeMotifId = null;
 
   // Atlas artık ikiye bölünmüş yükleniyor (bkz. scripts/build-static-routes.py
   // -> write_futuhat_split): önce hafif indeks (kısım listesi + arama için,
@@ -707,13 +703,12 @@
     }
 
     mapEl.innerHTML = `
-      <p class="futuhat-map__label">${tt({ tr: "Neredeyim: Sifr · Cilt · Kısım", en: "Where am I: Sifr · Volume · Part", pt: "Onde estou: Sifr · Volume · Parte" })}</p>
+      <p class="futuhat-map__label">${tt({ tr: "Neredeyim", en: "Where am I", pt: "Onde estou" })}</p>
       <svg viewBox="0 0 ${size} ${size}" role="img" aria-label="${tt({ tr: "Fütûhât'ın sifr, cilt ve kısım bölümlemesini gösteren iç içe halka haritası", en: "Nested-ring map of Futuhat's sifr, volume, and part divisions", pt: "Mapa de anéis aninhados das divisões de sifr, volume e parte do Futuhat" })}">
         ${ciltWedges}
         ${sifrWedges}
         ${kisimWedges.join("")}
       </svg>
-      <p class="futuhat-map__note">${tt({ tr: "En dış halka: cilt. Orta halka: sifr (Kısım 1–28 arası henüz sifr bazında ayrıştırılmadı, bkz. açık sorular). İç halka: her dilim bir kısım -- dolu olan yayında, soluk olan yakında.", en: "Outermost ring: volume. Middle ring: sifr (Parts 1–28 not yet broken down by sifr, see open questions). Inner ring: each wedge is one part -- solid ones are published, faint ones are coming soon.", pt: "Anel externo: volume. Anel do meio: sifr (Partes 1–28 ainda não divididas por sifr, ver questões em aberto). Anel interno: cada fatia é uma parte -- as sólidas estão publicadas, as tênues estão a caminho." })}</p>
     `;
     mapEl.querySelectorAll(".futuhat-map__kisim--published[data-id]").forEach((wedge) => {
       wedge.addEventListener("click", () => activatePart(wedge.dataset.id));
@@ -759,64 +754,6 @@
       })
       .join("");
     partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: "Cilt IV–XVIII yakında", en: "Volumes IV–XVIII coming soon", pt: "Volumes IV–XVIII em breve" })}</span>`;
-  }
-
-  // Motif izleme: "biriken parçalar" motiflerinin (aynı imgenin/temanın
-  // farklı kısımlarda tekrar tekrar belirmesi) hangi kısımlara değindiğini
-  // kısım listesinde doğrudan görünür kılan bir filtre katmanı. Veri zaten
-  // var (biriken-parcalar.json her motifin kaynaklarını {view,id} olarak
-  // tutuyor) -- burada sadece Fütûhât'a değinen motifleri seçip listeye
-  // bir vurgu katmanı ekliyoruz.
-  function fetchMotifs() {
-    if (motifEntries) return Promise.resolve(motifEntries);
-    if (motifFetchPromise) return motifFetchPromise;
-    motifFetchPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/biriken-parcalar.json")
-      .then((data) => {
-        motifEntries = (data.entries || []).filter((e) => (e.kaynaklar || []).some((k) => k.view === "futuhat"));
-        return motifEntries;
-      })
-      .catch((err) => {
-        console.error("Motif verisi yüklenemedi / Failed to load motif data", err);
-        motifEntries = [];
-        motifFetchPromise = null;
-        return motifEntries;
-      });
-    return motifFetchPromise;
-  }
-
-  function renderMotifs() {
-    if (!motifsEl || !motifEntries || !motifEntries.length) return;
-    motifsEl.hidden = false;
-    const activeEntry = activeMotifId ? motifEntries.find((e) => e.id === activeMotifId) : null;
-    motifsEl.innerHTML = `
-      <p class="futuhat-motifs__label">${tt({ tr: "Motif izle", en: "Track a motif", pt: "Rastrear um motivo" })}</p>
-      <div class="futuhat-motifs__chips">
-        ${motifEntries
-          .map(
-            (e, i) => `<button class="futuhat-motifs__chip${e.id === activeMotifId ? " futuhat-motifs__chip--active" : ""}" type="button" data-motif-id="${e.id}" style="--tag-hue:${(i * 47) % 360}">${tt(e.title)}</button>`
-          )
-          .join("")}
-      </div>
-      ${activeEntry ? `<p class="futuhat-motifs__note">${tt(activeEntry.ozet)}</p>` : ""}
-    `;
-    motifsEl.querySelectorAll(".futuhat-motifs__chip").forEach((chip) => {
-      chip.addEventListener("click", () => {
-        const id = chip.dataset.motifId;
-        activeMotifId = activeMotifId === id ? null : id;
-        renderMotifs();
-        applyMotifHighlight();
-      });
-    });
-  }
-
-  function applyMotifHighlight() {
-    if (!partsEl) return;
-    const activeEntry = activeMotifId && motifEntries ? motifEntries.find((e) => e.id === activeMotifId) : null;
-    const ids = activeEntry ? new Set((activeEntry.kaynaklar || []).filter((k) => k.view === "futuhat").map((k) => k.id)) : null;
-    partsEl.querySelectorAll(".futuhat-part-chip[data-id]").forEach((chip) => {
-      chip.classList.toggle("futuhat-part-chip--motif", !!(ids && ids.has(chip.dataset.id)));
-      chip.classList.toggle("futuhat-part-chip--motif-dim", !!(ids && !ids.has(chip.dataset.id)));
-    });
   }
 
   function roman(n) {
@@ -1244,7 +1181,6 @@
         });
       });
     }
-    applyMotifHighlight();
     activatePart(activePartId);
   }
 
@@ -1267,13 +1203,9 @@
         if (id && data.parts.some((p) => p.id === id)) activePartId = id;
         render();
       });
-      fetchMotifs().then((entries) => {
-        if (entries && entries.length) renderMotifs();
-      });
     },
     onLangChange() {
       render();
-      if (motifEntries && motifEntries.length) renderMotifs();
     },
     stopTts,
   };
