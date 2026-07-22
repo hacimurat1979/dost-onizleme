@@ -121,15 +121,7 @@
     const height = svg.node().clientHeight || 600;
     svg.attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
 
-    zoomBehavior = d3.zoom()
-      .scaleExtent([0.35, 2.5])
-      .filter((event) => {
-        if (event.type === "wheel") return event.ctrlKey || event.metaKey;
-        if (event.touches) return event.touches.length > 1;
-        return true;
-      })
-      .on("zoom", (event) => zoomLayer.attr("transform", event.transform));
-    svg.call(zoomBehavior).on("dblclick.zoom", null);
+    zoomBehavior = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.35, 2.5]);
     svg.on("click", () => { if (focusedTheme) unfocusTheme(true); });
 
     const recenterBtn = document.getElementById("sirlar-recenter");

@@ -63,6 +63,26 @@ window.DostGraphUtils = (function () {
     });
   }
 
+  // Shared D3 zoom setup (esma/hal/sorular/sirlar-graph/ontology all
+  // repeated this identically, only scaleExtent differing). Ctrl/Cmd+wheel
+  // or a two-finger touch to zoom -- plain wheel/scroll is left free for
+  // the page itself to scroll. `extraFilter(event)`, if given, is ANDed
+  // into the fallback case (ontology.js's force-layout needs this to keep
+  // a node-drag click from also panning the whole canvas; the four
+  // fixed-layout tree/radial views don't need it and pass nothing).
+  function createZoomBehavior(svg, zoomLayer, scaleExtent, extraFilter) {
+    const zoomBehavior = d3.zoom()
+      .scaleExtent(scaleExtent)
+      .filter((event) => {
+        if (event.type === "wheel") return event.ctrlKey || event.metaKey;
+        if (event.touches) return event.touches.length > 1;
+        return extraFilter ? extraFilter(event) : true;
+      })
+      .on("zoom", (event) => zoomLayer.attr("transform", event.transform));
+    svg.call(zoomBehavior).on("dblclick.zoom", null);
+    return zoomBehavior;
+  }
+
   // Shared D3 force-simulation drag behavior (Ontoloji/Compare/Daphne-profil
   // all wired this up independently). `shouldSkip(d)`, if given, excludes
   // nodes (e.g. a fixed central hub) from being draggable.
@@ -129,5 +149,5 @@ window.DostGraphUtils = (function () {
     });
   }
 
-  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus };
+  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior };
 })();

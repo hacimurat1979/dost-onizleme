@@ -696,17 +696,7 @@
 
     const zoomLayer = svg.append("g").attr("class", "zoom-layer");
 
-    const zoom = d3
-      .zoom()
-      .scaleExtent([0.5, 4])
-      .filter((event) => {
-        if (event.type === "wheel") return event.ctrlKey || event.metaKey;
-        if (event.touches) return event.touches.length > 1;
-        return !event.target.closest(".node");
-      })
-      .on("zoom", (event) => zoomLayer.attr("transform", event.transform));
-
-    svg.call(zoom).on("dblclick.zoom", null);
+    const zoom = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.5, 4], (event) => !event.target.closest(".node"));
     window.__ontologyZoom = { svg, zoom };
 
     const recenterBtn = document.getElementById("ontology-recenter");
@@ -886,6 +876,36 @@
       if (!term || !def) return;
       glossaryTermsByLang[lang].push({ id, term, def, folded: foldForLang(lang, term) });
     });
+    invalidateGlossifyCache();
+  }
+
+  // glossify()/linkify() render on essentially every paragraph on the site
+  // (see call sites in futuhat.js, and every detail-panel field elsewhere).
+  // The term lists only grow over the project's lifetime ("biriken parçalar"
+  // -- see CLAUDE.md), so rebuilding the sorted array + compiled regex + a
+  // linear .find() per match on EVERY call would get measurably slower as
+  // the corpus grows. Cache the compiled regex + a term-lookup Map per
+  // language, invalidated only when new terms register or the language
+  // changes (I18n.getLang() picks the current cache bucket).
+  let glossifyCacheByLang = {};
+  function invalidateGlossifyCache() {
+    glossifyCacheByLang = {};
+  }
+  function buildGlossifyCache(lang) {
+    const terms = glossaryTermsByLang[lang];
+    if (!terms || !terms.length) return { regex: null, byFoldedLower: new Map() };
+    const sorted = terms.slice().sort((a, b) => b.folded.length - a.folded.length);
+    const byFoldedLower = new Map();
+    sorted.forEach((t) => {
+      const key = t.folded.toLowerCase();
+      if (!byFoldedLower.has(key)) byFoldedLower.set(key, t);
+    });
+    const pattern = sorted.map((t) => `(?<![\\p{L}])${escapeRegExp(t.folded)}(?![\\p{L}])`).join("|");
+    return { regex: new RegExp(pattern, "giu"), byFoldedLower };
+  }
+  function getGlossifyCache(lang) {
+    if (!glossifyCacheByLang[lang]) glossifyCacheByLang[lang] = buildGlossifyCache(lang);
+    return glossifyCacheByLang[lang];
   }
 
   function escapeHtmlAttr(s) {
@@ -898,11 +918,9 @@
   function glossify(html) {
     if (!html) return html;
     const lang = I18n.getLang();
-    const terms = glossaryTermsByLang[lang];
-    if (!terms || !terms.length) return html;
-    const sorted = terms.slice().sort((a, b) => b.folded.length - a.folded.length);
-    const pattern = sorted.map((t) => `(?<![\\p{L}])${escapeRegExp(t.folded)}(?![\\p{L}])`).join("|");
-    const re = new RegExp(pattern, "giu");
+    const cache = getGlossifyCache(lang);
+    if (!cache.regex) return html;
+    const re = cache.regex;
     const parts = html.split(/(<[^>]+>)/);
     return parts
       .map((part) => {
@@ -916,7 +934,7 @@
           const start = m.index;
           const end = start + m[0].length;
           const matchLower = m[0].toLowerCase();
-          const hit = sorted.find((t) => t.folded.toLowerCase() === matchLower);
+          const hit = cache.byFoldedLower.get(matchLower);
           if (!hit) continue;
           const original = part.slice(start, end);
           result += part.slice(lastIndex, start);
@@ -1033,6 +1051,29 @@
       });
     });
     if (summaryDict) crossLinkSummaries.set(view + ":" + id, summaryDict);
+    invalidateLinkifyCache();
+  }
+
+  // Same rationale/cache shape as glossify()'s cache above -- see comment there.
+  let linkifyCacheByLang = {};
+  function invalidateLinkifyCache() {
+    linkifyCacheByLang = {};
+  }
+  function buildLinkifyCache(lang) {
+    const terms = crossLinkTermsByLang[lang].map((t) => ({ ...t, folded: foldForLang(lang, t.term) }));
+    terms.sort((a, b) => b.folded.length - a.folded.length);
+    if (!terms.length) return { regex: null, byFoldedLower: new Map() };
+    const byFoldedLower = new Map();
+    terms.forEach((t) => {
+      const key = t.folded.toLowerCase();
+      if (!byFoldedLower.has(key)) byFoldedLower.set(key, t);
+    });
+    const pattern = terms.map((t) => `(?<![\\p{L}])${escapeRegExp(t.folded)}(?![\\p{L}])`).join("|");
+    return { regex: new RegExp(pattern, "giu"), byFoldedLower };
+  }
+  function getLinkifyCache(lang) {
+    if (!linkifyCacheByLang[lang]) linkifyCacheByLang[lang] = buildLinkifyCache(lang);
+    return linkifyCacheByLang[lang];
   }
 
   function getCrossLinkSummary(view, id) {
@@ -1043,18 +1084,15 @@
   function linkify(text, excludeView, excludeId) {
     if (!text) return text;
     const lang = I18n.getLang();
-    const terms = crossLinkTermsByLang[lang]
-      .filter((t) => !(t.view === excludeView && t.id === excludeId))
-      .map((t) => ({ ...t, folded: foldForLang(lang, t.term) }))
-      .sort((a, b) => b.folded.length - a.folded.length);
-    if (!terms.length) return glossify(text);
+    const cache = getLinkifyCache(lang);
+    if (!cache.regex) return glossify(text);
     // Case-insensitive ("i" flag) for every language, not just Turkish's own
     // fold: English/Portuguese running prose commonly lowercases a technical
     // term mid-sentence ("the pole of the age") even though the glossary
     // registers it title-case ("Pole") for display -- without this, those
     // terms would only ever link when capitalized exactly as registered.
-    const pattern = terms.map((t) => `(?<![\\p{L}])${escapeRegExp(t.folded)}(?![\\p{L}])`).join("|");
-    const re = new RegExp(pattern, "giu");
+    const re = cache.regex;
+    re.lastIndex = 0;
     const foldedText = foldForLang(lang, text);
     const seen = new Set();
     let result = "";
@@ -1064,16 +1102,31 @@
       const start = m.index;
       const end = start + m[0].length;
       const matchLower = m[0].toLowerCase();
-      const hit = terms.find((t) => t.folded.toLowerCase() === matchLower);
+      const hit = cache.byFoldedLower.get(matchLower);
       if (!hit) continue;
       const original = text.slice(start, end);
+      // excludeView/excludeId used to be filtered out of the term list
+      // before building the regex (a node never links to its own detail
+      // page); the shared cache now matches against ALL terms and skips
+      // creating the link here instead. Equivalent in every case except one
+      // rare corner: if the excluded term is itself a longer match that
+      // fully contains a shorter, different registered term at the same
+      // starting position, that inner term is no longer picked up (the
+      // longer alternative wins and gets suppressed, rather than the
+      // shorter one being tried) -- accepted as negligible given how rare a
+      // self-referencing name containing another exact term is in practice.
+      const isSelf = hit.view === excludeView && hit.id === excludeId;
       result += text.slice(lastIndex, start);
-      const key = hit.view + ":" + hit.id;
-      if (seen.has(key)) {
+      if (isSelf) {
         result += original;
       } else {
-        seen.add(key);
-        result += `<a href="${ROUTE_BASE}/${hit.view}/${hit.id}" class="cross-link" data-view="${hit.view}" data-id="${hit.id}">${original}</a>`;
+        const key = hit.view + ":" + hit.id;
+        if (seen.has(key)) {
+          result += original;
+        } else {
+          seen.add(key);
+          result += `<a href="${ROUTE_BASE}/${hit.view}/${hit.id}" class="cross-link" data-view="${hit.view}" data-id="${hit.id}">${original}</a>`;
+        }
       }
       lastIndex = end;
     }

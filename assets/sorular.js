@@ -151,15 +151,7 @@
       .attr("x1", cx).attr("y1", cy)
       .attr("x2", (d) => d.x).attr("y2", (d) => d.y);
 
-    zoomBehavior = d3.zoom()
-      .scaleExtent([0.5, 3])
-      .filter((event) => {
-        if (event.type === "wheel") return event.ctrlKey || event.metaKey;
-        if (event.touches) return event.touches.length > 1;
-        return true;
-      })
-      .on("zoom", (event) => zoomLayer.attr("transform", event.transform));
-    svg.call(zoomBehavior).on("dblclick.zoom", null);
+    zoomBehavior = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.5, 3]);
 
     const recenterBtn = document.getElementById("sorular-recenter");
     if (recenterBtn) recenterBtn.onclick = () => zoomToFit(true, items, cx, cy);

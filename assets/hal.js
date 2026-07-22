@@ -133,15 +133,7 @@
       node.__r = r;
     });
 
-    zoomBehavior = d3.zoom()
-      .scaleExtent([0.4, 3])
-      .filter((event) => {
-        if (event.type === "wheel") return event.ctrlKey || event.metaKey;
-        if (event.touches) return event.touches.length > 1;
-        return true;
-      })
-      .on("zoom", (event) => zoomLayer.attr("transform", event.transform));
-    svg.call(zoomBehavior).on("dblclick.zoom", null);
+    zoomBehavior = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.4, 3]);
 
     const recenterBtn = document.getElementById("hal-recenter");
     if (recenterBtn) {
