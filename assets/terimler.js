@@ -377,17 +377,46 @@
     return `<span class="terim-card__related">${related.map((r) => tt(r.title)).join(" · ")}</span>`;
   }
 
+  // 68 terim düz bir ızgarada değil, kendi 22 ilişkisel grubuna göre
+  // kümelenmiş gösteriliyor -- bir sözlük için tam bir kuvvet-yönlü graf
+  // (68 düğüm) hem taramayı zorlaştırırdı hem de CLAUDE.md'nin kendi
+  // uyarısına ("bir öğe doğası gereği dairesel değilse zorla daireye
+  // sokma") aykırı düşerdi; bunun yerine her grup başlığına, o grubun
+  // kendi rengiyle (GROUP_HUE) boyanmış küçük dairesel bir "küme" rozeti
+  // eklendi -- ilişkiyi taramayı bozmadan görünür kılan, daha ölçülü bir
+  // orta yol.
   function renderList() {
-    const terms = Object.values(glossaryData.terms);
-    grid.innerHTML = terms
-      .map((t) => {
-        const tier = t.tier || 2;
-        return `<button class="terim-card terim-card--tier-${tier}" data-id="${t.id}">
-          <span class="terim-card__icon">${groupIconSvg(t.group)}</span>
-          <span class="terim-card__title">${tt(t.title)}</span>
-          <span class="terim-card__ozet">${tt({ tr: t.ozet_tr, en: t.ozet_en, pt: t.ozet_pt })}</span>
-          ${relatedChipsInline(t)}
-        </button>`;
+    const terms = glossaryData.terms;
+    const byGroup = new Map();
+    Object.values(terms).forEach((t) => {
+      if (!byGroup.has(t.group)) byGroup.set(t.group, []);
+      byGroup.get(t.group).push(t);
+    });
+    grid.innerHTML = (glossaryData.groups || [])
+      .map((g) => {
+        const groupTerms = byGroup.get(g.id) || [];
+        if (!groupTerms.length) return "";
+        const cards = groupTerms
+          .map((t) => {
+            const tier = t.tier || 2;
+            return `<button class="terim-card terim-card--tier-${tier}" data-id="${t.id}">
+              <span class="terim-card__icon">${groupIconSvg(t.group)}</span>
+              <span class="terim-card__title">${tt(t.title)}</span>
+              <span class="terim-card__ozet">${tt({ tr: t.ozet_tr, en: t.ozet_en, pt: t.ozet_pt })}</span>
+              ${relatedChipsInline(t)}
+            </button>`;
+          })
+          .join("");
+        return `<section class="terimler-group">
+          <header class="terimler-group__header">
+            <span class="terimler-group__badge" style="--tag-hue:${groupHue(g.id)}">${groupTerms.length}</span>
+            <div>
+              <h2 class="terimler-group__title">${tt(g.name)}</h2>
+              <p class="terimler-group__desc">${tt(g.description)}</p>
+            </div>
+          </header>
+          <div class="terimler-group__cards">${cards}</div>
+        </section>`;
       })
       .join("");
     grid.querySelectorAll(".terim-card").forEach((card) => {

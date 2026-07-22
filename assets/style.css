@@ -1117,10 +1117,72 @@ button.futuhat-part-chip:hover {
   font-size: 0.76rem;
 }
 
+/* Motif izleme: seçilen motifin değindiği kısımlar altın bir halkayla
+   vurgulanır, geri kalanı hafifçe soluklaşır (daire ilkesi: vurgu bir
+   halka/nokta, düz bir renk bloğu değil). */
+.futuhat-part-chip--motif {
+  border-color: var(--series-theme);
+  box-shadow: 0 0 0 1px var(--series-theme);
+}
+.futuhat-part-chip--motif-dim {
+  opacity: 0.45;
+}
+
 .futuhat-parts__more {
   color: var(--text-muted);
   font-size: 0.76rem;
   margin-top: 4px;
+}
+
+.futuhat-motifs {
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.futuhat-motifs__label {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.futuhat-motifs__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.futuhat-motifs__chip {
+  border-radius: 999px;
+  border: 1px solid hsl(var(--tag-hue) 34% 40% / 0.4);
+  background: hsl(var(--tag-hue) 34% 46% / 0.12);
+  color: var(--text-primary);
+  padding: 5px 12px;
+  font-size: 0.74rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.futuhat-motifs__chip:hover,
+.futuhat-motifs__chip:focus-visible {
+  border-color: hsl(var(--tag-hue) 34% 40% / 0.8);
+}
+.futuhat-motifs__chip--active {
+  background: hsl(var(--tag-hue) 34% 46% / 0.32);
+  border-color: hsl(var(--tag-hue) 34% 40%);
+  font-weight: 600;
+}
+.viz-root[data-theme="dark"] .futuhat-motifs__chip {
+  background: hsl(var(--tag-hue) 32% 58% / 0.16);
+  border-color: hsl(var(--tag-hue) 32% 58% / 0.4);
+}
+.viz-root[data-theme="dark"] .futuhat-motifs__chip--active {
+  background: hsl(var(--tag-hue) 32% 58% / 0.34);
+  border-color: hsl(var(--tag-hue) 32% 58%);
+}
+.futuhat-motifs__note {
+  margin: 8px 0 0;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 .futuhat-shell {
@@ -2172,6 +2234,53 @@ html:has(.detail-panel:not([hidden])) {
 }
 .detail-block p { margin: 0; line-height: 1.55; font-size: 0.92rem; }
 
+/* "Görüldüğü Yerler" -- dağınık kaynakların bir senteze yakınsadığını
+   gösteren dairesel diyagram (daire+çizim ilkeleri, bkz. CLAUDE.md). Her
+   kaynak kendi görünüm rengiyle (--tag-hue, terimler.js'teki VIEW_HUE ile
+   aynı) bir istasyon; merkeze uzanan çizgi o kaynaktan senteze giden okumayı
+   temsil ediyor. */
+.gorulen-yer-diagram {
+  display: block;
+  width: min(100%, 320px);
+  height: auto;
+  margin: 0 auto 20px;
+}
+.gorulen-yer-diagram__spoke {
+  stroke: hsl(var(--tag-hue) 34% 46% / 0.45);
+  stroke-width: 1.5px;
+}
+.gorulen-yer-diagram__center {
+  fill: var(--surface-1);
+  stroke: var(--text-secondary);
+  stroke-width: 1.5px;
+}
+.gorulen-yer-diagram__node circle {
+  fill: hsl(var(--tag-hue) 34% 46% / 0.82);
+  stroke: hsl(var(--tag-hue) 34% 40%);
+  stroke-width: 1px;
+  cursor: pointer;
+  transition: stroke-width 0.15s ease;
+}
+.gorulen-yer-diagram__node text {
+  font-size: 9px;
+  fill: var(--text-secondary);
+  pointer-events: none;
+}
+.gorulen-yer-diagram__node:hover circle,
+.gorulen-yer-diagram__node:focus-visible circle {
+  stroke-width: 2.5px;
+}
+.gorulen-yer-diagram__node:focus-visible {
+  outline: none;
+}
+.viz-root[data-theme="dark"] .gorulen-yer-diagram__spoke {
+  stroke: hsl(var(--tag-hue) 32% 58% / 0.5);
+}
+.viz-root[data-theme="dark"] .gorulen-yer-diagram__node circle {
+  fill: hsl(var(--tag-hue) 32% 58% / 0.85);
+  stroke: hsl(var(--tag-hue) 32% 62%);
+}
+
 .gorulen-yer-list {
   display: flex;
   flex-direction: column;
@@ -2182,8 +2291,24 @@ html:has(.detail-panel:not([hidden])) {
   flex-direction: column;
   gap: 6px;
 }
-.gorulen-yer-item .bookmap-concept-tag {
-  align-self: flex-start;
+.gorulen-yer-item__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.gorulen-yer-item__dot {
+  width: 9px;
+  height: 9px;
+  min-width: 9px;
+  border-radius: 50%;
+  background: hsl(var(--tag-hue) 34% 46%);
+}
+.viz-root[data-theme="dark"] .gorulen-yer-item__dot {
+  background: hsl(var(--tag-hue) 32% 58%);
 }
 .gorulen-yer-item p {
   margin: 0;
@@ -3172,12 +3297,60 @@ html:has(.detail-panel:not([hidden])) {
 .terimler-wrap::-webkit-scrollbar { display: none; }
 
 .terimler-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 16px;
+}
+
+.terimler-group__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+/* Grubun kendi rengiyle boyanmış dairesel bir "küme" rozeti -- 68 terimi
+   tek bir kuvvet-yönlü grafa zorlamak yerine (taramayı zorlaştırır),
+   ilişkiyi gruplama + bu daire ile görünür kılan daha ölçülü bir yol. */
+.terimler-group__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 50%;
+  background: hsl(var(--tag-hue) 34% 46% / 0.16);
+  border: 1px solid hsl(var(--tag-hue) 34% 40% / 0.4);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+.viz-root[data-theme="dark"] .terimler-group__badge {
+  background: hsl(var(--tag-hue) 32% 58% / 0.2);
+  border-color: hsl(var(--tag-hue) 32% 58% / 0.45);
+}
+.terimler-group__title {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.terimler-group__desc {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+.terimler-group__cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   grid-auto-flow: dense;
   align-items: start;
   gap: 12px;
-  margin-top: 16px;
 }
 
 .terim-card {

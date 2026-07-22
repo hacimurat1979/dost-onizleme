@@ -19,12 +19,34 @@
     "biriken-parcalar": { tr: "Biriken Parçalar", en: "Gathered Pieces", pt: "Peças Reunidas" },
   };
 
+  // terimler.js'teki VIEW_HUE'nun aynısı -- her görünüm sitede aynı sabit
+  // tonla anılıyor (chip'lerde olduğu gibi burada da düğüm/istasyon rengi).
+  const VIEW_HUE = {
+    ontoloji: 40,
+    esma: 200,
+    hal: 265,
+    terimler: 15,
+    sorular: 225,
+    futuhat: 340,
+    sirlar: 100,
+    cizimler: 185,
+    "biriken-parcalar": 45,
+  };
+
   let pageData = null;
   let fetchPromise = null;
   let entryById = new Map();
 
   function tt(dict) {
     return I18n.pick3(dict);
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function escapeHtmlAttr(s) {
+    return escapeHtml(s).replace(/"/g, "&quot;");
   }
 
   function fetchData() {
@@ -46,19 +68,76 @@
     return fetchPromise;
   }
 
+  // Bu bölümün tüm anlamı "dağınık parçaların bir merkeze yakınsaması"
+  // (bkz. CLAUDE.md üçüncü ilke) -- düz bir liste yerine, her kaynağı bir
+  // istasyon, senteze giden her okumayı da o istasyondan merkeze uzanan bir
+  // ışın olarak gösteren dairesel bir diyagram (daire+çizim ilkeleri burada
+  // birebir örtüşüyor). Düğümler tıklanabilir/klavye erişilebilir kalır --
+  // eski chip butonunun yaptığı navigasyonu üstleniyor.
+  function convergenceDiagramSvg(kaynaklar) {
+    const n = kaynaklar.length;
+    if (!n) return "";
+    // Genişlik yüksekten fazla: sol/sağ uçtaki düğümlerin etiketleri yatayda
+    // dışa doğru uzanıyor (text-anchor start/end), kare bir viewBox'ta bu
+    // metinler kenardan taşıp kırpılıyordu -- yatay pay için genişlik artırıldı.
+    const width = 320;
+    const height = 260;
+    const cx = 160;
+    const cy = height / 2;
+    const outerR = 92;
+    const nodeR = 9;
+    const centerR = 14;
+    const nodes = kaynaklar.map((k, i) => {
+      const angle = (2 * Math.PI * i) / n - Math.PI / 2;
+      const x = cx + outerR * Math.cos(angle);
+      const y = cy + outerR * Math.sin(angle);
+      const hue = VIEW_HUE[k.view] !== undefined ? VIEW_HUE[k.view] : 40;
+      const chipLabel = k.label ? tt(k.label) : tt(VIEW_LABEL[k.view] || {});
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      const anchor = cos > 0.2 ? "start" : cos < -0.2 ? "end" : "middle";
+      const labelX = x + (cos > 0.2 ? nodeR + 6 : cos < -0.2 ? -(nodeR + 6) : 0);
+      const labelY = y + (sin > 0.4 ? 18 : sin < -0.4 ? -12 : 4);
+      return { x, y, hue, chipLabel, anchor, labelX, labelY, view: k.view, id: k.id };
+    });
+    const convergingLabel = tt({
+      tr: "Bu okumanın toplandığı yerler",
+      en: "Where this reading converges from",
+      pt: "De onde esta leitura converge",
+    });
+    const spokes = nodes
+      .map((nd) => `<line class="gorulen-yer-diagram__spoke" x1="${cx}" y1="${cy}" x2="${nd.x.toFixed(1)}" y2="${nd.y.toFixed(1)}" style="--tag-hue:${nd.hue}"></line>`)
+      .join("");
+    const nodeEls = nodes
+      .map(
+        (nd) => `<g class="gorulen-yer-diagram__node" tabindex="0" role="button" data-view="${nd.view}" data-id="${nd.id}" style="--tag-hue:${nd.hue}" aria-label="${escapeHtmlAttr(nd.chipLabel)}">
+          <circle cx="${nd.x.toFixed(1)}" cy="${nd.y.toFixed(1)}" r="${nodeR}"></circle>
+          <text x="${nd.labelX.toFixed(1)}" y="${nd.labelY.toFixed(1)}" text-anchor="${nd.anchor}">${escapeHtml(nd.chipLabel)}</text>
+        </g>`
+      )
+      .join("");
+    return `<svg class="gorulen-yer-diagram" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtmlAttr(convergingLabel)}">
+      ${spokes}
+      <circle class="gorulen-yer-diagram__center" cx="${cx}" cy="${cy}" r="${centerR}"></circle>
+      ${nodeEls}
+    </svg>`;
+  }
+
   function gorulenYerlerHtml(kaynaklar, gorulenYerler) {
     if (!kaynaklar || !gorulenYerler) return "";
-    return kaynaklar
+    const items = kaynaklar
       .map((k, i) => {
         const text = gorulenYerler[i];
         if (!text) return "";
+        const hue = VIEW_HUE[k.view] !== undefined ? VIEW_HUE[k.view] : 40;
         const chipLabel = k.label ? tt(k.label) : `${tt(VIEW_LABEL[k.view] || {})} → ${k.id}`;
         return `<div class="gorulen-yer-item">
-          <button class="bookmap-concept-tag bookmap-concept-tag--group" data-view="${k.view}" data-id="${k.id}">${chipLabel}</button>
+          <p class="gorulen-yer-item__label" style="--tag-hue:${hue}"><span class="gorulen-yer-item__dot"></span>${chipLabel}</p>
           <p>${tt(text)}</p>
         </div>`;
       })
       .join("");
+    return `${convergenceDiagramSvg(kaynaklar)}<div class="gorulen-yer-list">${items}</div>`;
   }
 
   function renderList() {
@@ -83,16 +162,21 @@
       <h2 class="detail-title">${tt(e.title)}</h2>
       <div class="detail-block">
         <h3>${tt({ tr: "Görüldüğü Yerler", en: "Where It Appears", pt: "Onde Aparece" })}</h3>
-        <div class="gorulen-yer-list">${gorulenYerlerHtml(e.kaynaklar, e.gorulen_yerler)}</div>
+        ${gorulenYerlerHtml(e.kaynaklar, e.gorulen_yerler)}
       </div>
       <div class="detail-block detail-block--ibnarabi">
         <h3>${tt({ tr: "Bir Okuma Denemesi", en: "A Reading Attempt", pt: "Uma Tentativa de Leitura" })}</h3>
         <p>${tt(e.sentez)}</p>
       </div>
     `;
-    detailContent.querySelectorAll(".bookmap-concept-tag[data-view]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id);
+    detailContent.querySelectorAll(".gorulen-yer-diagram__node").forEach((node) => {
+      const go = () => window.__dostNav && window.__dostNav.goTo(node.dataset.view, node.dataset.id);
+      node.addEventListener("click", go);
+      node.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          go();
+        }
       });
     });
     detailPanel.hidden = false;

@@ -3,6 +3,7 @@
 
   const I18n = window.DostI18n;
   const wrapEl = document.getElementById("futuhat-wrap");
+  const motifsEl = document.getElementById("futuhat-motifs");
   const partsEl = document.getElementById("futuhat-parts");
   const articleEl = document.getElementById("futuhat-article");
   const statsEl = document.getElementById("futuhat-stats");
@@ -161,6 +162,9 @@
   let futuhatData = null;
   let dataPromise = null;
   let activePartId = null;
+  let motifEntries = null;
+  let motifFetchPromise = null;
+  let activeMotifId = null;
 
   // Atlas artık ikiye bölünmüş yükleniyor (bkz. scripts/build-static-routes.py
   // -> write_futuhat_split): önce hafif indeks (kısım listesi + arama için,
@@ -672,6 +676,64 @@
     partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: "Cilt IV–XVIII yakında", en: "Volumes IV–XVIII coming soon", pt: "Volumes IV–XVIII em breve" })}</span>`;
   }
 
+  // Motif izleme: "biriken parçalar" motiflerinin (aynı imgenin/temanın
+  // farklı kısımlarda tekrar tekrar belirmesi) hangi kısımlara değindiğini
+  // kısım listesinde doğrudan görünür kılan bir filtre katmanı. Veri zaten
+  // var (biriken-parcalar.json her motifin kaynaklarını {view,id} olarak
+  // tutuyor) -- burada sadece Fütûhât'a değinen motifleri seçip listeye
+  // bir vurgu katmanı ekliyoruz.
+  function fetchMotifs() {
+    if (motifEntries) return Promise.resolve(motifEntries);
+    if (motifFetchPromise) return motifFetchPromise;
+    motifFetchPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/biriken-parcalar.json")
+      .then((data) => {
+        motifEntries = (data.entries || []).filter((e) => (e.kaynaklar || []).some((k) => k.view === "futuhat"));
+        return motifEntries;
+      })
+      .catch((err) => {
+        console.error("Motif verisi yüklenemedi / Failed to load motif data", err);
+        motifEntries = [];
+        motifFetchPromise = null;
+        return motifEntries;
+      });
+    return motifFetchPromise;
+  }
+
+  function renderMotifs() {
+    if (!motifsEl || !motifEntries || !motifEntries.length) return;
+    motifsEl.hidden = false;
+    const activeEntry = activeMotifId ? motifEntries.find((e) => e.id === activeMotifId) : null;
+    motifsEl.innerHTML = `
+      <p class="futuhat-motifs__label">${tt({ tr: "Motif izle", en: "Track a motif", pt: "Rastrear um motivo" })}</p>
+      <div class="futuhat-motifs__chips">
+        ${motifEntries
+          .map(
+            (e, i) => `<button class="futuhat-motifs__chip${e.id === activeMotifId ? " futuhat-motifs__chip--active" : ""}" type="button" data-motif-id="${e.id}" style="--tag-hue:${(i * 47) % 360}">${tt(e.title)}</button>`
+          )
+          .join("")}
+      </div>
+      ${activeEntry ? `<p class="futuhat-motifs__note">${tt(activeEntry.ozet)}</p>` : ""}
+    `;
+    motifsEl.querySelectorAll(".futuhat-motifs__chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const id = chip.dataset.motifId;
+        activeMotifId = activeMotifId === id ? null : id;
+        renderMotifs();
+        applyMotifHighlight();
+      });
+    });
+  }
+
+  function applyMotifHighlight() {
+    if (!partsEl) return;
+    const activeEntry = activeMotifId && motifEntries ? motifEntries.find((e) => e.id === activeMotifId) : null;
+    const ids = activeEntry ? new Set((activeEntry.kaynaklar || []).filter((k) => k.view === "futuhat").map((k) => k.id)) : null;
+    partsEl.querySelectorAll(".futuhat-part-chip[data-id]").forEach((chip) => {
+      chip.classList.toggle("futuhat-part-chip--motif", !!(ids && ids.has(chip.dataset.id)));
+      chip.classList.toggle("futuhat-part-chip--motif-dim", !!(ids && !ids.has(chip.dataset.id)));
+    });
+  }
+
   function roman(n) {
     const table = [[10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]];
     let out = "";
@@ -990,6 +1052,7 @@
         });
       });
     }
+    applyMotifHighlight();
     activatePart(activePartId);
   }
 
@@ -1012,9 +1075,13 @@
         if (id && data.parts.some((p) => p.id === id)) activePartId = id;
         render();
       });
+      fetchMotifs().then((entries) => {
+        if (entries && entries.length) renderMotifs();
+      });
     },
     onLangChange() {
       render();
+      if (motifEntries && motifEntries.length) renderMotifs();
     },
   };
 })();
