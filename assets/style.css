@@ -763,6 +763,13 @@ html {
 .esma-link--dimmed {
   opacity: 0.12;
 }
+/* hayy->alim->murid->mutekellim->kadir zincirinde, Kısım XVI'daki Dua
+   Menzili pasajından öğrendiğimiz kapsama ilişkisini soy-kütüğü çizgisinden
+   ayırt eder -- bkz. assets/esma.js linkEmphasis mantığı. */
+.esma-link--kapsar {
+  stroke: var(--series-kemal);
+  stroke-width: 2.4px;
+}
 /* İlişki-tipi taksonomisi: sekiz tip, dört "aile" halinde (bkz.
    RELATION_TYPE_META, assets/esma.js). Her aile bir rengi paylaşır --
    gold: kimlik/özdeşlik (tecelli parıltılı+oklu, ayni kalın çizgisiz);
@@ -824,12 +831,18 @@ html {
   stroke: var(--series-daphne);
   stroke-dasharray: 3 2;
 }
+.esma-relation--kapsar {
+  stroke: var(--series-kemal);
+  stroke-width: 2.6px;
+  stroke-dasharray: none;
+}
 .esma-arrowhead {
   stroke: none;
 }
 .esma-arrowhead--tecelli { fill: var(--series-theme); }
 .esma-arrowhead--sebep   { fill: var(--series-ibnarabi); }
 .esma-arrowhead--mertebe { fill: var(--series-daphne); }
+.esma-arrowhead--kapsar  { fill: var(--series-kemal); }
 
 .pole-badge--relation {
   color: #fff;
@@ -843,6 +856,7 @@ html {
 .pole-badge--relation-temsil { background: color-mix(in srgb, var(--series-ibnarabi) 78%, black); }
 .pole-badge--relation-zid,
 .pole-badge--relation-mertebe { background: color-mix(in srgb, var(--series-daphne) 78%, black); }
+.pole-badge--relation-kapsar { background: color-mix(in srgb, var(--series-kemal) 78%, black); }
 
 .hal-link {
   fill: none;
@@ -1851,6 +1865,9 @@ li.futuhat-pulse,
 }
 .legend__line--mertebe {
   border-top: 2px dashed var(--series-daphne);
+}
+.legend__line--kapsar {
+  border-top: 3px solid var(--series-kemal);
 }
 
 .node-label {

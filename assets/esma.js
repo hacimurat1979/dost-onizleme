@@ -158,7 +158,7 @@
 
   // İlişki-tipi taksonomisi (kullanıcının onayladığı öneri, 2026-07-21):
   // iki isim arasındaki bağın NE TÜRDEN bir bağ olduğunu (yalnızca "bir
-  // ilişki var" değil) adlandırır. Sekiz tip -- sebep/sonuç tek bir yönlü
+  // ilişki var" değil) adlandırır. Dokuz tip -- sebep/sonuç tek bir yönlü
   // tipe (sebep) indirgeniyor, çünkü `from`/`to` alanları zaten yönü taşıyor
   // (from = sebep, to = sonuç). Her tip için `label` (lejant + detay
   // panelindeki rozet metni) ve `directional` (ok ucu gerekip gerekmediği,
@@ -173,6 +173,7 @@
     ayni: { label: { tr: "Aynıdır (Özdeş)", en: "Identical", pt: "Idêntico" }, directional: false },
     temsil: { label: { tr: "Temsil Eder", en: "Represents", pt: "Representa" }, directional: false },
     mertebe: { label: { tr: "Mertebe (Derece)", en: "Rank (Degree)", pt: "Grau (Posição)" }, directional: true },
+    kapsar: { label: { tr: "Kapsar (İçerir)", en: "Contains", pt: "Contém" }, directional: true },
   };
 
   function relationTypeBadgeHtml(r) {
@@ -229,9 +230,9 @@
   }
 
   // İlişki-tipi oku uçları. Yalnızca yönü anlamlı olan tipler (sebep,
-  // tecelli, mertebe) kendi ok rengiyle bir marker alır; simetrik tipler
+  // tecelli, mertebe, kapsar) kendi ok rengiyle bir marker alır; simetrik tipler
   // (ayni, ayni-sinif, zid, parca, temsil) oksuz kalır -- bkz. RELATION_TYPE_META.
-  const RELATION_ARROW_TYPES = ["sebep", "tecelli", "mertebe"];
+  const RELATION_ARROW_TYPES = ["sebep", "tecelli", "mertebe", "kapsar"];
 
   function buildGraph(data) {
     svg.selectAll("*").remove();
@@ -521,11 +522,24 @@
       .transition().duration(300)
       .attr("d", () => linkGen({ source: { x: source.x, y: source.y }, target: { x: source.x, y: source.y } }))
       .remove();
+    // Bir bağın hedefinde linkEmphasis alanı varsa (bkz. data/ibn-arabi/esma.json
+    // -- şu an yalnızca hayy->alim->murid->mutekellim->kadir zincirinde,
+    // Kısım XVI'daki Dua Menzili pasajından: "Bu isme özgü hakikat, mertebe
+    // bakımından altında bulunan ilahi isimleri içermiş olmaktır"), o bağ
+    // sıradan bir soy-kütüğü çizgisi değil bir KAPSAMA ilişkisi olarak
+    // vurgulanır -- ok ucuyla ve ayrı bir renkle, ama ayrı bir kenar EKLEMEDEN
+    // (aynı iki düğüm zaten ağaç kenarıyla bağlı; ikinci bir path relationGroup
+    // linkGroup'tan önce çizildiği için görünmez kalırdı).
+    const emphasisClass = (d) => (d.target.data.linkEmphasis ? ` esma-link--${d.target.data.linkEmphasis}` : "");
+    const emphasisMarker = (d) => (d.target.data.linkEmphasis ? `url(#esma-arrow-${d.target.data.linkEmphasis})` : null);
     const linkEnter = link.enter().append("path")
-      .attr("class", "esma-link")
+      .attr("class", (d) => "esma-link" + emphasisClass(d))
+      .attr("marker-end", emphasisMarker)
       .attr("d", () => linkGen({ source: { x: source.x0, y: source.y0 }, target: { x: source.x0, y: source.y0 } }))
       .style("opacity", firstReveal && !reduceMotion ? 0 : null);
     linkEnter.merge(link)
+      .attr("class", (d) => "esma-link" + emphasisClass(d))
+      .attr("marker-end", emphasisMarker)
       .transition().duration(revealNodeDuration())
       .delay((d) => revealDelayFor(d.target.depth))
       .style("opacity", 1)
