@@ -15,6 +15,7 @@
   I18n.applyStatic();
   I18n.renderLangSwitcher(document.getElementById("lang-switch"), () => render());
   window.DostGraphUtils.setupLegendToggles();
+  window.DostGraphUtils.setupDetailPanelFocus();
 
   detailClose.addEventListener("click", () => {
     detailPanel.hidden = true;
@@ -128,10 +129,21 @@
       .data(nodes)
       .join("g")
       .attr("class", "node")
+      .attr("tabindex", "0")
+      .attr("role", "button")
+      .attr("aria-label", (d) => labelFor(d))
       .call(drag(simulation))
       .on("click", (event, d) => onNodeClick(d))
+      .on("keydown", (event, d) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onNodeClick(d);
+        }
+      })
       .on("mouseenter", (event, d) => highlight(d))
-      .on("mouseleave", () => highlight(null));
+      .on("mouseleave", () => highlight(null))
+      .on("focus", (event, d) => highlight(d))
+      .on("blur", () => highlight(null));
 
     nodeSel
       .append("circle")

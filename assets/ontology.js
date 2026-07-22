@@ -187,6 +187,7 @@
   // düğümleri kapatabiliyor -- varsayılan olarak kısık/dokunmatik
   // ekranlarda katlanmış başlasın, kullanıcı isterse açsın.
   window.DostGraphUtils.setupLegendToggles();
+  window.DostGraphUtils.setupDetailPanelFocus();
 
   const TARGET = {
     "dhat": { x: 0.5, y: 0.09 },

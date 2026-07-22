@@ -87,5 +87,47 @@ window.DostGraphUtils = (function () {
     return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
   }
 
-  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior };
+  // #detail-panel/#detail-close aynı id'lerle her üç sayfada da yaşıyor
+  // (index.html/ontology.js, compare.html/compare.js, daphne-profil.html/
+  // daphne-profil.js) -- her görünümün kendi "hidden = false" satırını tek
+  // tek yamamak yerine (14+ çağrı yeri), MutationObserver ile TEK bir yerden
+  // odak yönetimi ekliyoruz: panel açılınca kapatma düğmesine odaklan,
+  // panel kapanınca odağı paneli açan öğeye geri döndür.
+  function setupDetailPanelFocus() {
+    const panel = document.getElementById("detail-panel");
+    if (!panel) return;
+    let lastFocused = null;
+    const observer = new MutationObserver(() => {
+      if (panel.hidden) {
+        if (lastFocused && document.contains(lastFocused) && typeof lastFocused.focus === "function") {
+          lastFocused.focus();
+        }
+        lastFocused = null;
+      } else {
+        lastFocused = document.activeElement;
+        const closeBtn = document.getElementById("detail-close");
+        if (closeBtn) closeBtn.focus();
+      }
+    });
+    observer.observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+
+    // Basit odak-tuzağı: panel açıkken Tab, arkadaki sayfaya kaçmasın.
+    panel.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab") return;
+      const focusable = Array.from(panel.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])'))
+        .filter((n) => !n.hidden && n.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
+  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus };
 })();
