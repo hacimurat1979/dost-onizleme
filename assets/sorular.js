@@ -76,12 +76,22 @@
     return I18n.pick3(dict);
   }
 
+  // Altın açı (~137.5°) ile ayçiçeği/phyllotaxis deseni (Vogel modeli):
+  // her düğüm bir öncekinden hem farklı açıda hem farklı yarıçapta durur.
+  // Önceki hâl -- eşit açılı, tek yarıçaplı bir tekerlek -- kategorileri/
+  // soruları kapanmış bir taksonomi gibi (bir kadran/menü) gösteriyordu;
+  // bu site "hâlâ arıyoruz, henüz kapanmamış" duruşuyla (bkz. CLAUDE.md
+  // kökensel duruş) örtüşmüyordu. Merkezden dışa doğru organik bir
+  // yayılım, sorunun kendisinin de hâlâ açık olduğunu sezdiriyor.
+  const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
+
   function layoutNodes(items, cx, cy, radius) {
     const n = items.length;
     items.forEach((node, i) => {
-      const angle = -Math.PI / 2 + (i / n) * Math.PI * 2;
-      node.x = cx + radius * Math.cos(angle);
-      node.y = cy + radius * Math.sin(angle);
+      const angle = -Math.PI / 2 + i * GOLDEN_ANGLE;
+      const r = radius * Math.sqrt((i + 1) / n);
+      node.x = cx + r * Math.cos(angle);
+      node.y = cy + r * Math.sin(angle);
     });
   }
 
