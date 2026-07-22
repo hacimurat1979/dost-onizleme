@@ -1134,6 +1134,71 @@ button.futuhat-part-chip:hover {
   margin-top: 4px;
 }
 
+/* Sifr × Cilt × Kısım iç içe halka haritası -- "neredeyim" sorusuna
+   tek bakışta cevap. En dış halka cilt, orta halka sifr (kısmen -- bkz.
+   OPEN_QUESTIONS #10), iç halka her kısmın kendi dilimi. */
+.futuhat-map {
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.futuhat-map__label {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.futuhat-map svg {
+  display: block;
+  width: min(100%, 200px);
+  height: auto;
+  margin: 0 auto;
+}
+.futuhat-map__cilt {
+  fill: hsl(var(--ring-hue) 34% 46% / 0.32);
+  stroke: var(--surface-1);
+  stroke-width: 1px;
+}
+.futuhat-map__sifr {
+  fill: var(--text-muted);
+  opacity: 0.22;
+  stroke: var(--surface-1);
+  stroke-width: 1px;
+}
+.futuhat-map__kisim {
+  fill: var(--border);
+  opacity: 0.4;
+  stroke: var(--surface-1);
+  stroke-width: 0.75px;
+}
+.futuhat-map__kisim--published {
+  fill: hsl(var(--ring-hue) 34% 46%);
+  opacity: 1;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.futuhat-map__kisim--published:hover,
+.futuhat-map__kisim--published:focus-visible {
+  opacity: 0.75;
+}
+.futuhat-map__kisim--current {
+  stroke: var(--series-theme);
+  stroke-width: 2px;
+}
+.viz-root[data-theme="dark"] .futuhat-map__cilt {
+  fill: hsl(var(--ring-hue) 32% 58% / 0.36);
+}
+.viz-root[data-theme="dark"] .futuhat-map__kisim--published {
+  fill: hsl(var(--ring-hue) 32% 58%);
+}
+.futuhat-map__note {
+  margin: 8px 0 0;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
 .futuhat-motifs {
   padding-bottom: 14px;
   margin-bottom: 14px;
@@ -1255,6 +1320,29 @@ button.futuhat-part-chip:hover {
 
 .futuhat-toolbar__btn--icon {
   font-size: 0;
+}
+
+#futuhat-tts[aria-pressed="true"] {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+/* SVG'nin `hidden` özniteliği tarayıcıların SVG ad alanı için varsayılan
+   stil sayfasında tanımlı olmayabiliyor (HTML'deki gibi otomatik
+   display:none vermiyor) -- bu yüzden play/pause ikonu arasındaki geçiş
+   burada, düğümün kendi aria-pressed durumuna göre açıkça yönetiliyor. */
+#futuhat-tts .futuhat-tts-icon--pause { display: none; }
+#futuhat-tts[aria-pressed="true"] .futuhat-tts-icon--play { display: none; }
+#futuhat-tts[aria-pressed="true"] .futuhat-tts-icon--pause { display: block; }
+
+/* Sesli dinleme (TTS) pilotu: o an okunan paragraf/başlık görsel olarak
+   vurgulanır, dinleyen kişi metni gözüyle de takip edebilsin diye. */
+.futuhat-tts-active {
+  background: color-mix(in srgb, var(--accent-interactive) 12%, transparent);
+  border-radius: 4px;
+  box-shadow: -3px 0 0 var(--accent-interactive);
+  padding-left: 10px;
+  margin-left: -10px;
+  transition: background-color 0.2s ease;
 }
 
 .futuhat-toast {
@@ -2314,6 +2402,99 @@ html:has(.detail-panel:not([hidden])) {
   margin: 0;
   line-height: 1.55;
   font-size: 0.92rem;
+}
+
+/* Anlayış-evrimi zaman çizelgesi -- anlama çabasının kapanmış bir sonuç
+   değil, sürmekte olan bir okuma olduğunu somutlaştıran, damıtılmış ve
+   kamuya açık iki örnek (bkz. CLAUDE.md dördüncü ilke). Ham araştırma
+   notları değil, önce/fark-edişi/şimdi üç durağını yumuşak bir eğri
+   üzerinde gösteren küçük bir diyagram + üç kısa paragraf. */
+.anlayis-timeline {
+  margin: 28px 0 8px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.anlayis-timeline__heading {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+.anlayis-timeline__intro {
+  margin: 0 0 20px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+.anlayis-timeline__entries {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.anlayis-timeline__entry {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  background: var(--surface-1);
+}
+.anlayis-timeline__entry-title {
+  margin: 0 0 10px;
+  font-size: 0.98rem;
+}
+.anlayis-timeline__diagram {
+  display: block;
+  width: min(100%, 320px);
+  height: auto;
+  margin: 0 auto 12px;
+}
+.anlayis-timeline__path {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1.5px;
+  stroke-dasharray: 3 4;
+}
+.anlayis-timeline__node circle {
+  stroke-width: 1.5px;
+}
+.anlayis-timeline__node text {
+  font-size: 10px;
+  fill: var(--text-secondary);
+}
+.anlayis-timeline__node--once circle {
+  fill: color-mix(in srgb, var(--text-secondary) 35%, transparent);
+  stroke: var(--text-secondary);
+}
+.anlayis-timeline__node--fark circle {
+  fill: color-mix(in srgb, var(--accent-interactive) 55%, transparent);
+  stroke: var(--accent-interactive);
+}
+.anlayis-timeline__node--simdi circle {
+  fill: var(--series-ibnarabi);
+  stroke: var(--series-ibnarabi);
+}
+.anlayis-timeline__stages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.anlayis-timeline__stage-label {
+  margin: 0 0 4px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.anlayis-timeline__stage--fark .anlayis-timeline__stage-label { color: var(--accent-interactive); }
+.anlayis-timeline__stage--simdi .anlayis-timeline__stage-label { color: var(--series-ibnarabi); }
+.anlayis-timeline__stage p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+@media (max-width: 640px) {
+  .anlayis-timeline__stages {
+    grid-template-columns: 1fr;
+  }
 }
 
 .detail-analogy {

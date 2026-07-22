@@ -286,6 +286,9 @@
 
   function setMainView(view) {
     if (currentMainView === view) return;
+    if (currentMainView === "futuhat" && window.__futuhatApp && window.__futuhatApp.stopTts) {
+      window.__futuhatApp.stopTts();
+    }
     currentMainView = view;
     if (ontologyBtn) ontologyBtn.classList.toggle("btn-ghost--active", view === "ontology");
     if (esmaBtn) esmaBtn.classList.toggle("btn-ghost--active", view === "esma");

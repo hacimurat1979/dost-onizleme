@@ -140,6 +140,74 @@
     return `${convergenceDiagramSvg(kaynaklar)}<div class="gorulen-yer-list">${items}</div>`;
   }
 
+  // Üç durak (önce / fark edişi / şimdi) hafif bir eğri üzerinde --
+  // düz bir "1-2-3" kutusu yerine, sitenin köşeli değil eğrisel/dairesel
+  // biçimleri tercih etme ilkesine uygun bir yumuşak yay. Tam bir daireye
+  // zorlamıyoruz (CLAUDE.md: doğası gereği dairesel olmayanı zorlama) --
+  // bu bir gelişim/derinleşme süreci, başa dönüş değil.
+  function timelineDiagramSvg(labels) {
+    const width = 320;
+    const height = 110;
+    const xs = [36, 160, 284];
+    const ys = [70, 30, 55];
+    const r = 8;
+    const path = `M ${xs[0]} ${ys[0]} Q ${xs[1]} ${ys[1] - 30} ${xs[1]} ${ys[1]} Q ${xs[1]} ${ys[2] - 20} ${xs[2]} ${ys[2]}`;
+    const stageClasses = ["anlayis-timeline__node--once", "anlayis-timeline__node--fark", "anlayis-timeline__node--simdi"];
+    const nodes = labels
+      .map(
+        (label, i) => `<g class="anlayis-timeline__node ${stageClasses[i]}">
+          <circle cx="${xs[i]}" cy="${ys[i]}" r="${r}"></circle>
+          <text x="${xs[i]}" y="${ys[i] + (i === 1 ? -16 : 20)}" text-anchor="middle">${escapeHtml(label)}</text>
+        </g>`
+      )
+      .join("");
+    return `<svg class="anlayis-timeline__diagram" viewBox="0 0 ${width} ${height}" role="img" aria-hidden="true">
+      <path class="anlayis-timeline__path" d="${path}"></path>
+      ${nodes}
+    </svg>`;
+  }
+
+  function renderTimeline() {
+    const section = document.getElementById("anlayis-timeline");
+    const introEl = document.getElementById("anlayis-timeline-intro");
+    const entriesEl = document.getElementById("anlayis-timeline-entries");
+    if (!section || !introEl || !entriesEl) return;
+    const tc = pageData.zaman_cizelgesi;
+    if (!tc || !tc.entries || !tc.entries.length) {
+      section.hidden = true;
+      return;
+    }
+    section.hidden = false;
+    introEl.textContent = tt(tc.intro);
+    const stageLabels = tt({
+      tr: ["Önce", "Fark Edişi", "Şimdi"],
+      en: ["Before", "The Realization", "Now"],
+      pt: ["Antes", "A Percepção", "Agora"],
+    });
+    entriesEl.innerHTML = tc.entries
+      .map(
+        (e) => `<article class="anlayis-timeline__entry">
+          <h3 class="anlayis-timeline__entry-title">${tt(e.konu)}</h3>
+          ${timelineDiagramSvg(stageLabels)}
+          <div class="anlayis-timeline__stages">
+            <div class="anlayis-timeline__stage anlayis-timeline__stage--once">
+              <p class="anlayis-timeline__stage-label">${escapeHtml(stageLabels[0])}</p>
+              <p>${tt(e.once)}</p>
+            </div>
+            <div class="anlayis-timeline__stage anlayis-timeline__stage--fark">
+              <p class="anlayis-timeline__stage-label">${escapeHtml(stageLabels[1])}</p>
+              <p>${tt(e.fark_edis)}</p>
+            </div>
+            <div class="anlayis-timeline__stage anlayis-timeline__stage--simdi">
+              <p class="anlayis-timeline__stage-label">${escapeHtml(stageLabels[2])}</p>
+              <p>${tt(e.simdi)}</p>
+            </div>
+          </div>
+        </article>`
+      )
+      .join("");
+  }
+
   function renderList() {
     grid.innerHTML = pageData.entries
       .map(
@@ -187,6 +255,7 @@
     fetchData().then((data) => {
       if (!data) return;
       renderList();
+      renderTimeline();
     });
   }
 
@@ -194,12 +263,16 @@
     fetchData().then((data) => {
       if (!data) return;
       renderList();
+      renderTimeline();
       if (id) showEntryDetail(id);
     });
   }
 
   function onLangChange() {
-    if (pageData) renderList();
+    if (pageData) {
+      renderList();
+      renderTimeline();
+    }
   }
 
   window.__birikenParcalarApp = { activate, goToNode, onLangChange };

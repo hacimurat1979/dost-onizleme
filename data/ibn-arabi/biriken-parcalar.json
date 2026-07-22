@@ -303,5 +303,60 @@
         }
       ]
     }
-  ]
+  ],
+  "zaman_cizelgesi": {
+    "intro": {
+      "tr": "Bu site kapandığında bitmiş bir sonuç değil; sürmekte olan bir okuma denemesidir. Zaman zaman önceki anlayışımızın kaynak metni tam okumadan kurduğu bir sonuç olduğunu, kaynağa dönüp dikkatle okuyunca değiştiğini fark ediyoruz. İşte bunun iki örneği -- ham araştırma notları değil, bu değişimin damıtılmış, kamuya açık bir özeti.",
+      "en": "This site is not a finished conclusion; it is an ongoing reading attempt. From time to time we notice that an earlier understanding of ours was drawn before fully reading the source text, and it changed once we returned and read carefully. Here are two examples of that -- not the raw research notes, but a distilled, public summary of that shift.",
+      "pt": "Este site não é uma conclusão terminada; é uma tentativa de leitura em curso. De tempos em tempos notamos que um entendimento anterior nosso foi formado antes de ler completamente o texto-fonte, e mudou quando voltamos e lemos com atenção. Aqui estão dois exemplos disso -- não as notas brutas de pesquisa, mas um resumo destilado e público dessa mudança."
+    },
+    "entries": [
+      {
+        "id": "kutbiyet-19-aritmetigi",
+        "konu": {
+          "tr": "Kutbiyet hiyerarşisinde 19 sayısı",
+          "en": "The number 19 in the pole-hood hierarchy",
+          "pt": "O número 19 na hierarquia do polo"
+        },
+        "once": {
+          "tr": "Kutbiyet mertebelerini (Kutub, İmâmeyn, Evtâd, Büdelâ, Nukabâ, Rical...) art arda sıralayıp sayılarını (1+2+4+7+12...) doğrudan topluyorduk; bu bize 26 gibi bir toplam veriyordu.",
+          "en": "We were listing the pole-hood ranks (the Pole, the Two Imams, the Pegs, the Substitutes, the Deputies, Rical...) one after another and simply summing their counts (1+2+4+7+12...), which gave us a total like 26.",
+          "pt": "Estávamos listando os graus da hierarquia do polo (o Polo, os Dois Imames, os Pilares, os Substitutos, os Delegados, Rical...) em sequência e somando diretamente seus números (1+2+4+7+12...), o que nos dava um total como 26."
+        },
+        "fark_edis": {
+          "tr": "Kaynak metne dönüp dikkatle okuduğumuzda, bu mertebelerin ayrı ayrı toplanan bağımsız kümeler olmadığını, iç içe geçtiğini fark ettik: Rical denen 19 kişi, aslında Nakip ve Bedel gibi başka mertebelerdeki kişileri de içinde barındırıyor -- yani bir kısmı zaten önceki sayılara dahildi.",
+          "en": "Returning to the source text and reading it carefully, we noticed these ranks are not separately-summed independent sets but nested within one another: the 19 people called Rical actually contain people who also hold other ranks like Nakîb and Bedel -- meaning part of the count was already included in the earlier numbers.",
+          "pt": "Ao voltar ao texto-fonte e lê-lo com atenção, percebemos que esses graus não são conjuntos independentes somados separadamente, mas aninhados uns nos outros: as 19 pessoas chamadas Rical na verdade contêm pessoas que também ocupam outros graus, como Nakîb e Bedel -- ou seja, parte da contagem já estava incluída nos números anteriores."
+        },
+        "simdi": {
+          "tr": "Artık bu hiyerarşiyi düz bir toplama değil, iç içe kümelenme (Bedel'in içinde Nakip, onun içinde...) olarak okuyoruz; sitedeki cascade diyagramı bunu +/= işaretleriyle gösteriyor. Bunun da kesin/kapanmış bir çözüm olduğunu iddia etmiyoruz -- külliyatın başka yerlerinde bu sayının farklı bir okumasıyla karşılaşırsak, yeniden gözden geçireceğiz.",
+          "en": "We now read this hierarchy not as a flat sum but as nested clustering (Nakîb within Bedel, and so on); the site's cascade diagram now shows this with +/= signs. We don't claim this is a final, closed solution either -- if we come across a different reading of this number elsewhere in the corpus, we will revisit it.",
+          "pt": "Agora lemos essa hierarquia não como uma soma linear, mas como um agrupamento aninhado (Nakîb dentro de Bedel, e assim por diante); o diagrama em cascata do site agora mostra isso com sinais de +/=. Também não afirmamos que esta seja uma solução final e fechada -- se encontrarmos uma leitura diferente desse número em outra parte do corpus, vamos revisá-la."
+        }
+      },
+      {
+        "id": "esma-siralama-mi-kapsama-mi",
+        "konu": {
+          "tr": "Esmâ arasındaki mertebe: sıralama mı, kapsama mı?",
+          "en": "Rank among the Names: sequence, or containment?",
+          "pt": "Grau entre os Nomes: sequência, ou contenção?"
+        },
+        "once": {
+          "tr": "Esmâ grafiğinde Hayy, Alîm, Mürîd, Kadîr gibi isimleri, aralarında bir öncelik/sonralık olduğunu düşünerek adeta bir sıra halinde (önce Hayat, sonra İlim, sonra İrade...) okuyorduk -- sanki bir yarış sırası gibi.",
+          "en": "In the Esmâ graph we were reading names like Hayy (the Living), Alîm (the Knowing), Mürîd (the Willing), and Kadîr (the Powerful) as if arranged in a strict sequence of priority (Life first, then Knowledge, then Will...) -- almost like an order of finish.",
+          "pt": "No grafo dos Esmâ, líamos nomes como Hayy (o Vivo), Alîm (o Sciente), Mürîd (o Querente) e Kadîr (o Poderoso) como se estivessem numa sequência estrita de prioridade (primeiro a Vida, depois o Conhecimento, depois a Vontade...) -- quase como uma ordem de chegada."
+        },
+        "fark_edis": {
+          "tr": "Kısım XVI'daki Dua Menzili pasajını okurken, mertebe farkının bir önce/sonra sıralaması değil, bir kapsama ilişkisi olarak anlatıldığını fark ettik: örneğin İlim, İradeyi kapsıyor/gerektiriyor -- biri diğerinden sadece 'önce gelmiyor', onu içinde taşıyor.",
+          "en": "While reading the Prayer-Station passage in Part XVI, we noticed the difference in rank is described not as a before/after sequence but as a relation of containment: Knowledge, for instance, contains/requires Will -- one doesn't merely 'come before' the other, it carries it within itself.",
+          "pt": "Ao ler a passagem da Estação da Oração na Parte XVI, percebemos que a diferença de grau é descrita não como uma sequência de antes/depois, mas como uma relação de contenção: o Conhecimento, por exemplo, contém/requer a Vontade -- um não apenas 'vem antes' do outro, mas o carrega dentro de si."
+        },
+        "simdi": {
+          "tr": "Esmâ grafiğine bu ilişkiyi ayrı bir 'kapsar' bağlantı tipi olarak ekledik -- ilgili isimlerin kendi ebeveynine giden kenarı artık bu özel anlamı taşıyan bir vurguyla (altın renk, ok ucu) işaretleniyor. Bunun da külliyatın tamamını temsil eden nihai bir şema olduğunu iddia etmiyoruz; sadece Dost'un bu tek pasajda kurduğu ilişkiyi olduğu gibi görselleştirmeye çalıştık.",
+          "en": "We added this relation to the Esmâ graph as a distinct 'contains' link type -- the relevant names' edge to their own parent node is now marked with a special emphasis carrying this meaning (gold color, arrowhead). We don't claim this is a final scheme representing the whole corpus either; we only tried to visualize, as it is, the relation Dost sets out in this one passage.",
+          "pt": "Adicionamos essa relação ao grafo dos Esmâ como um tipo de vínculo distinto de 'contém' -- a aresta dos nomes relevantes até seu próprio nó-pai agora é marcada com uma ênfase especial que carrega esse significado (cor dourada, ponta de seta). Também não afirmamos que este seja um esquema final representando todo o corpus; apenas tentamos visualizar, tal como está, a relação que Dost estabelece nesta única passagem."
+        }
+      }
+    ]
+  }
 }
