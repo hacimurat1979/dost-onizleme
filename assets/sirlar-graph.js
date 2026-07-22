@@ -40,8 +40,7 @@
   function fetchData() {
     if (sirlarDataPromise) return sirlarDataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("sirlar-wrap");
-    sirlarDataPromise = fetch("data/ibn-arabi/sirlar.json")
-      .then((r) => r.json())
+    sirlarDataPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar.json")
       .then((data) => {
         sirlarData = data;
         if (window.DostViewStatus) window.DostViewStatus.hide("sirlar-wrap");

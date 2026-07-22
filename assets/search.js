@@ -45,46 +45,46 @@
   function buildIndex() {
     if (indexPromise) return indexPromise;
     const sources = [
-      fetch("data/ibn-arabi/ontology.json").then((r) => r.json()).then((d) => {
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/ontology.json").then((d) => {
         (d.nodes || []).forEach((n) => {
           index.push({ view: "ontoloji", id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) });
         });
       }),
-      fetch("data/ibn-arabi/esma.json").then((r) => r.json()).then((d) => {
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/esma.json").then((d) => {
         (d.nodes || []).forEach((n) => {
           index.push({ view: "esma", id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) });
         });
       }),
-      fetch("data/ibn-arabi/hal.json").then((r) => r.json()).then((d) => {
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/hal.json").then((d) => {
         (d.nodes || []).forEach((n) => {
           index.push({ view: "hal", id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) });
         });
       }),
-      fetch("data/ibn-arabi/sirlar.json").then((r) => r.json()).then((d) => {
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar.json").then((d) => {
         (d.entries || []).forEach((e) => {
           index.push({ view: "sirlar", id: e.id, label: e.topic, sub: null, searchText: allLangText(e.topic) + " " + (e.theme || "") });
         });
       }),
-      fetch("data/ibn-arabi/felsefi-terimler.json").then((r) => r.json()).then((d) => {
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/felsefi-terimler.json").then((d) => {
         const terms = d.terms || {};
         Object.keys(terms).forEach((key) => {
           const t = terms[key];
           index.push({ view: "terimler", id: t.id, label: t.title, sub: t.felsefi_tanim, searchText: allLangText(t.title) + " " + allLangText(t.felsefi_tanim) + " " + (t.arabic || "") });
         });
       }),
-      fetch("data/ibn-arabi/futuhat-cizimleri.json").then((r) => r.json()).then((d) => {
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/futuhat-cizimleri.json").then((d) => {
         (d.diagrams || []).forEach((c) => {
           index.push({ view: "cizimler", id: c.id, label: c.name, sub: c.description, searchText: allLangText(c.name) + " " + allLangText(c.description) });
         });
       }),
-      fetch("data/ibn-arabi/sorular.json").then((r) => r.json()).then((d) => {
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/sorular.json").then((d) => {
         (d.categories || []).forEach((c) => {
           (c.questions || []).forEach((q) => {
             index.push({ view: "sorular", id: q.id, label: q.question, sub: c.name, searchText: allLangText(q.question) + " " + allLangText(q.answer) });
           });
         });
       }),
-      fetch("data/ibn-arabi/futuhat-atlas-index.json").then((r) => r.json()).then((d) => {
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/futuhat-atlas-index.json").then((d) => {
         // Gezinme yalnızca kısım (part) düzeyinde çalıştığı için, sonuç
         // olarak o kısmı gösteriyoruz -- ama bölüm başlıklarını da arama
         // metnine katıyoruz ki içindeki bir konu/harf aranınca da bulunsun.
@@ -101,7 +101,7 @@
           });
         });
       }),
-      fetch("data/ibn-arabi/biriken-parcalar.json").then((r) => r.json()).then((d) => {
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/biriken-parcalar.json").then((d) => {
         (d.entries || []).forEach((e) => {
           index.push({ view: "biriken-parcalar", id: e.id, label: e.title, sub: e.ozet, searchText: allLangText(e.title) + " " + allLangText(e.ozet) + " " + allLangText(e.sentez) });
         });

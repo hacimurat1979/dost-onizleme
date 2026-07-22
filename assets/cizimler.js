@@ -21,8 +21,7 @@
     if (data) return Promise.resolve(data);
     if (fetchPromise) return fetchPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("cizimler-wrap");
-    fetchPromise = fetch("data/ibn-arabi/futuhat-cizimleri.json")
-      .then((r) => r.json())
+    fetchPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/futuhat-cizimleri.json")
       .then((d) => {
         data = d;
         if (window.DostViewStatus) window.DostViewStatus.hide("cizimler-wrap");

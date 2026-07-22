@@ -203,8 +203,7 @@
 
   function loadOntologyData() {
     if (window.DostViewStatus) window.DostViewStatus.showLoading("ontology-wrap");
-    fetch("data/ibn-arabi/ontology.json")
-      .then((r) => r.json())
+    window.DostGraphUtils.fetchJson("data/ibn-arabi/ontology.json")
       .then((data) => {
         buildGraph(data);
         registerOntologyCrossLinks(data);
@@ -227,8 +226,7 @@
 
   let sirlarData = null;
   deferFetch(() => {
-    fetch("data/ibn-arabi/sirlar.json")
-      .then((r) => r.json())
+    window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar.json")
       .then((data) => {
         sirlarData = data;
         if (pendingSirlarId) goToSirlar(pendingSirlarId);
@@ -238,8 +236,7 @@
   });
 
   deferFetch(() => {
-    fetch("data/ibn-arabi/esma.json")
-      .then((r) => r.json())
+    window.DostGraphUtils.fetchJson("data/ibn-arabi/esma.json")
       .then((data) => {
         registerEsmaCrossLinks(data);
         render();
@@ -248,8 +245,7 @@
   });
 
   deferFetch(() => {
-    fetch("data/ibn-arabi/hal.json")
-      .then((r) => r.json())
+    window.DostGraphUtils.fetchJson("data/ibn-arabi/hal.json")
       .then((data) => {
         registerHalCrossLinks(data);
         render();
@@ -258,8 +254,7 @@
   });
 
   deferFetch(() => {
-    fetch("data/ibn-arabi/sozluk-ipuclari.json")
-      .then((r) => r.json())
+    window.DostGraphUtils.fetchJson("data/ibn-arabi/sozluk-ipuclari.json")
       .then((data) => {
         (data.terms || []).forEach((t) => registerGlossaryTerm(t.id, t.term, t.definition));
         render();

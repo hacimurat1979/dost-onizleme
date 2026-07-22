@@ -31,8 +31,7 @@
     if (pageData) return Promise.resolve(pageData);
     if (fetchPromise) return fetchPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("biriken-parcalar-wrap");
-    fetchPromise = fetch("data/ibn-arabi/biriken-parcalar.json")
-      .then((r) => r.json())
+    fetchPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/biriken-parcalar.json")
       .then((data) => {
         pageData = data;
         entryById = new Map(data.entries.map((e) => [e.id, e]));

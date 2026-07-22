@@ -53,8 +53,7 @@
   function fetchData() {
     if (dataPromise) return dataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("sorular-wrap");
-    dataPromise = fetch("data/ibn-arabi/sorular.json")
-      .then((r) => r.json())
+    dataPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/sorular.json")
       .then((data) => {
         sorularData = data;
         categoryById = new Map(data.categories.map((c) => [c.id, c]));

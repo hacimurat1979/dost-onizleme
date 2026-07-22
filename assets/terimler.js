@@ -43,8 +43,7 @@
     if (glossaryData) return Promise.resolve(glossaryData);
     if (fetchPromise) return fetchPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("terimler-wrap");
-    fetchPromise = fetch("data/ibn-arabi/felsefi-terimler.json")
-      .then((r) => r.json())
+    fetchPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/felsefi-terimler.json")
       .then((data) => {
         glossaryData = data;
         registerTerimlerCrossLinks(data);

@@ -71,8 +71,7 @@
 
   function loadData() {
     if (window.DostViewStatus) window.DostViewStatus.showLoading("profile-wrap");
-    fetch("data/daphne-profile.json")
-      .then((r) => r.json())
+    window.DostGraphUtils.fetchJson("data/daphne-profile.json")
       .then((data) => {
         pageData = data;
         if (window.DostViewStatus) window.DostViewStatus.hide("profile-wrap");

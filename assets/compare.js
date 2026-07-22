@@ -55,8 +55,8 @@
   function loadData() {
     if (window.DostViewStatus) window.DostViewStatus.showLoading("compare-wrap");
     Promise.all([
-      fetch("data/themes.json").then((r) => r.json()),
-      fetch("data/ibn-arabi/concepts.json").then((r) => r.json()),
+      window.DostGraphUtils.fetchJson("data/themes.json"),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/concepts.json"),
     ]).then(([themes, concepts]) => {
       const conceptById = new Map(concepts.map((c) => [c.id, c]));
       if (window.DostViewStatus) window.DostViewStatus.hide("compare-wrap");

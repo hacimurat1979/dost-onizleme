@@ -169,8 +169,7 @@
   function fetchData() {
     if (dataPromise) return dataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("futuhat-wrap");
-    dataPromise = fetch("data/ibn-arabi/futuhat-atlas-index.json")
-      .then((r) => r.json())
+    dataPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/futuhat-atlas-index.json")
       .then((data) => {
         futuhatData = data;
         activePartId = data.activePartId;
@@ -194,11 +193,7 @@
   const partCache = new Map();
   function fetchPart(id) {
     if (partCache.has(id)) return partCache.get(id);
-    const p = fetch("data/ibn-arabi/futuhat-parts/" + id + ".json")
-      .then((r) => {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return r.json();
-      })
+    const p = window.DostGraphUtils.fetchJson("data/ibn-arabi/futuhat-parts/" + id + ".json")
       .catch((err) => {
         console.error("Fütûhât kısmı yüklenemedi / Failed to load Futuhat part", id, err);
         partCache.delete(id);

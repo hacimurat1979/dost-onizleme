@@ -30,8 +30,7 @@
   function fetchData() {
     if (halDataPromise) return halDataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("hal-wrap");
-    halDataPromise = fetch("data/ibn-arabi/hal.json")
-      .then((r) => r.json())
+    halDataPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/hal.json")
       .then((data) => {
         halData = data;
         if (window.DostViewStatus) window.DostViewStatus.hide("hal-wrap");

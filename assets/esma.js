@@ -96,8 +96,7 @@
   function fetchData() {
     if (esmaDataPromise) return esmaDataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("esma-wrap");
-    esmaDataPromise = fetch("data/ibn-arabi/esma.json")
-      .then((r) => r.json())
+    esmaDataPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/esma.json")
       .then((data) => {
         esmaData = data;
         if (window.DostViewStatus) window.DostViewStatus.hide("esma-wrap");

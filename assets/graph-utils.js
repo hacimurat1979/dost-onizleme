@@ -1,6 +1,18 @@
 window.DostGraphUtils = (function () {
   "use strict";
 
+  // Every view's data-loading boilerplate was `fetch(url).then(r => r.json())`
+  // with no check that the response actually succeeded -- a 404/500 (bad
+  // deploy, renamed file) surfaced as an opaque "Unexpected token '<'"
+  // JSON-parse error instead of a clear failure. One shared helper for all
+  // ~24 call sites across the site's view modules.
+  function fetchJson(url) {
+    return fetch(url).then((r) => {
+      if (!r.ok) throw new Error(`fetchJson: ${url} -> HTTP ${r.status}`);
+      return r.json();
+    });
+  }
+
   function getVar(name) {
     return getComputedStyle(document.body).getPropertyValue(name).trim();
   }
@@ -149,5 +161,5 @@ window.DostGraphUtils = (function () {
     });
   }
 
-  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior };
+  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, fetchJson };
 })();
