@@ -16,7 +16,7 @@
     sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
     futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
     cizimler: { tr: "Çizimler", en: "Diagrams", pt: "Diagramas" },
-    terimler: { tr: "Terimler", en: "Terms", pt: "Termos" },
+    "biriken-parcalar": { tr: "Biriken Parçalar", en: "Gathered Pieces", pt: "Peças Reunidas" },
   };
 
   let pageData = null;

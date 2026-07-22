@@ -1,0 +1,454 @@
+{
+  "id": "c1k11",
+  "cilt": 1,
+  "kisim": 11,
+  "status": "active",
+  "title": {
+    "tr": "Dairenin Kapanışı, Hakikat Arzı'nın Sırrı",
+    "en": "The Circle Closes, the Secret of the Reality-Earth",
+    "pt": "O Círculo se Fecha, o Segredo da Terra da Realidade"
+  },
+  "pageRange": "341–377",
+  "hero": {
+    "summary": {
+      "tr": "Kısım XI, Fâtiha okumasından kozmogoniye dönüyor: Dost, âlemin nereden, nerede, hangi surete göre, niçin ve hangi gaye ile var olduğunu beş soruyla ele alıyor, cevabı Hebâ'da beliren Hakikat-i Muhammediye'de buluyor. Büyük âlem ile insan-küçük âlem arasında ayrıntılı bir tekabül kuruyor, sonra Âdem, Havva, İsa ve Âdemoğulları'nı -aynı 'insan' tanımını taşısalar da- birbirinden bambaşka dört yaratılış yolu olarak ayırıyor. Varlığı, İlk Akıl'la açılıp insanla kapanan tek bir daireye benzetiyor; kısmın sonunda ise bir ârifin doğrudan tanıklığıyla anlatılan, Âdem'in çamurunun fazlasından yaratılmış berzah-âlemi Hakikat Arzı'nın görkemli bir tasvirine yer veriyor.",
+      "en": "Part XI turns from the reading of the Fatiha back to cosmogony: Dost takes up where, in what place, according to what form, why, and to what end the cosmos came to be, in five questions, and finds the answer in the Muhammadan Reality that first appears within Haba (the primordial dust). He draws a detailed correspondence between the macrocosm and the human microcosm, then distinguishes Adam, Eve, Jesus, and the children of Adam — who all carry the same definition of 'human' — as four utterly different paths of creation. He likens existence to a single circle opened by the First Intellect and closed by the human; toward the end of the part, he offers a magnificent account, related through a gnostic's direct witness, of the Reality-Earth — a barzakh-world created from the surplus of Adam's clay.",
+      "pt": "A Parte XI volta da leitura da Fatiha para a cosmogonia: Dost retoma de onde, em que lugar, segundo qual forma, por que e para que fim o cosmos veio a existir, em cinco perguntas, e encontra a resposta na Realidade Muhammadiana que primeiro aparece dentro de Haba (a poeira primordial). Ele traça uma correspondência detalhada entre o macrocosmo e o microcosmo humano, depois distingue Adão, Eva, Jesus e os filhos de Adão — que carregam a mesma definição de 'humano' — como quatro caminhos de criação totalmente diferentes. Ele compara a existência a um único círculo aberto pelo Primeiro Intelecto e fechado pelo humano; perto do fim da parte, oferece um relato magnífico, transmitido pelo testemunho direto de um gnóstico, da Terra da Realidade — um mundo-barzakh criado do excedente do barro de Adão."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Dost'un daire imgesi: varlık, İlk Akıl'ın var oluşuyla açılan, insanla kendi başına kapanan tek bir çemberdir -tıpkı bir noktadan çevreye uzanan çizgilerin çevrenin her noktasına eşit uzaklıkta olması gibi, Hak da bütün yaratılmışlara aynı nispette yakındır.",
+      "en": "Dost's image of the circle: existence is a single circle, opened by the coming-to-be of the First Intellect and closed upon itself by the human — just as lines drawn from a point to its circumference are equally distant at every point, the Real stands in the same relation to all created things.",
+      "pt": "A imagem do círculo em Dost: a existência é um único círculo, aberto pelo vir-a-ser do Primeiro Intelecto e fechado sobre si mesmo pelo humano — assim como as linhas traçadas de um ponto até sua circunferência são igualmente distantes em cada ponto, o Real se relaciona da mesma forma com todas as coisas criadas."
+    },
+    "tree": {
+      "id": "varligin-dairesi-tree",
+      "label": {
+        "tr": "Varlığın Dairesi",
+        "en": "The Circle of Being",
+        "pt": "O Círculo do Ser"
+      },
+      "note": {
+        "tr": "İlk Akıl'la açılıp insanla kapanan tek çember",
+        "en": "a single circle, opened by the First Intellect, closed by the human",
+        "pt": "um único círculo, aberto pelo Primeiro Intelecto, fechado pelo humano"
+      },
+      "children": [
+        {
+          "id": "ilk-akil-bas",
+          "label": {
+            "tr": "İlk Akıl (Dairenin Başı)",
+            "en": "The First Intellect (Start of the Circle)",
+            "pt": "O Primeiro Intelecto (Início do Círculo)"
+          },
+          "note": {
+            "tr": "ilk yaratılan, ilk cins",
+            "en": "the first created, the first genus",
+            "pt": "o primeiro criado, o primeiro gênero"
+          }
+        },
+        {
+          "id": "insan-son",
+          "label": {
+            "tr": "İnsan (Dairenin Sonu)",
+            "en": "The Human (End of the Circle)",
+            "pt": "O Humano (Fim do Círculo)"
+          },
+          "note": {
+            "tr": "son tür, türeyenlerin nihayeti",
+            "en": "the last species, the terminus of what proceeds",
+            "pt": "a última espécie, o término do que procede"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "bes-soru-heba-hakikat-i-muhammediye",
+      "heading": {
+        "tr": "Beş Soru, Hebâ, Hakikat-i Muhammediye",
+        "en": "Five Questions, Haba, the Muhammadan Reality",
+        "pt": "Cinco Perguntas, Haba, a Realidade Muhammadiana"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım XI, ruhani yaratılışın başlangıcını beş soruyla çözümleyerek açılıyor: âlem nereden, nerede, hangi surete göre, niçin ve hangi gaye ile var oldu? Dost'un yanıtı hepsini tek bir yere bağlıyor: her şey Hebâ'dadır -henüz sûretlenmemiş, saf kabiliyet halindeki ilk madde- ve onda ilk var olan, Rahmân'a nispet edilen Hakikat-i Muhammediye'dir. Buradan hareketle şu meşhur rivayeti hatırlatıyor: <em>'Allah var idi ve O'nunla beraber başka bir şey yoktu... Sonra, bu rivayete O, şimdi de olduğu gibidir ifadesi eklenmiştir.'</em> Yani Hak, yaratılıştan önce nasıl idiyse, yaratılıştan sonra da öyledir -değişen, O'nun sıfatları değil, âlemin O'na göre konumudur.",
+            "en": "Part XI opens by resolving the beginning of spiritual creation into five questions: where, in what place, according to what form, why, and to what end did the cosmos come to be? Dost's answer ties all of them to a single point: everything is within Haba — the first matter, still unformed, a pure receptivity — and the first thing to exist within it is the Muhammadan Reality, attributed to al-Rahman. From here he recalls the well-known report: <em>'God was, and with Him there was nothing else... Later, the phrase and He is now as He was then was added to this report.'</em> That is, the Real is, after creation, exactly as He was before it — what changes is not His attributes, but the cosmos's position relative to Him.",
+            "pt": "A Parte XI se abre resolvendo o começo da criação espiritual em cinco perguntas: de onde, em que lugar, segundo qual forma, por que e para que fim veio o cosmos a existir? A resposta de Dost liga todas elas a um único ponto: tudo está dentro de Haba — a primeira matéria, ainda sem forma, uma pura receptividade — e a primeira coisa a existir nela é a Realidade Muhammadiana, atribuída a al-Rahman. A partir daqui ele relembra o conhecido relato: <em>'Deus era, e com Ele não havia mais nada... Mais tarde, a frase e Ele é agora como era então foi acrescentada a esse relato.'</em> Ou seja, o Real é, depois da criação, exatamente como era antes dela — o que muda não são Seus atributos, mas a posição do cosmos em relação a Ele."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dort-bilinen",
+      "heading": {
+        "tr": "Dört Bilinen: Hak, Hakikatler Hakikati, Âlem, İnsan",
+        "en": "Four Knowables: the Real, the Reality of Realities, the Cosmos, the Human",
+        "pt": "Quatro Cognoscíveis: o Real, a Realidade das Realidades, o Cosmos, o Humano"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, bilinebilecek şeyleri dörde ayırıyor: Hak -zâtı bilinmez, ama sıfatları bilinir-; Hakikatler Hakikati -ne kadîm ne hâdis olan, her varlıkta bölünmeden bulunan tümel öz-; bütün âlem; ve halife-insan. İnsanın hem cisimce küçük hem 'teellüh' (ilâhlaşma, Hakk'ın isimleriyle ahlaklanma) kabiliyetiyle büyük olduğunu vurguluyor -küçük âlem denmesi, yalnızca cismani ölçeğe bakıldığında doğru.",
+            "en": "Dost divides the knowable into four: the Real — whose essence is unknowable, though His attributes are known; the Reality of Realities — a universal essence, neither eternal nor originated, present undivided within every existent; the entire cosmos; and the human as vicegerent. He stresses that the human is small only in body, yet great through the capacity for ta'alluh — becoming godlike by taking on the character of the divine names; calling the human a 'microcosm' holds true only when one looks at the bodily scale alone.",
+            "pt": "Dost divide o cognoscível em quatro: o Real — cuja essência é incognoscível, embora Seus atributos sejam conhecidos; a Realidade das Realidades — uma essência universal, nem eterna nem originada, presente indivisa em cada existente; todo o cosmos; e o humano como vice-regente. Ele enfatiza que o humano é pequeno apenas no corpo, mas grande pela capacidade de ta'alluh — tornar-se semelhante a Deus ao assumir o caráter dos nomes divinos; chamar o humano de 'microcosmo' só é válido quando se olha apenas para a escala corporal."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Ruhani Yaratılışın Başlangıcı, s. 342-344.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — The Beginning of Spiritual Creation, pp. 342-344.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — O Início da Criação Espiritual, pp. 342-344."
+          },
+          "tree": {
+            "id": "dort-bilinen-tree",
+            "label": {
+              "tr": "Bilinenler Dörttür",
+              "en": "The Knowables Are Four",
+              "pt": "Os Cognoscíveis São Quatro"
+            },
+            "note": {
+              "tr": "her biri farklı bir bilinme tarzı taşır",
+              "en": "each carries a different mode of being known",
+              "pt": "cada um carrega um modo diferente de ser conhecido"
+            },
+            "children": [
+              {
+                "id": "hak-bilinen",
+                "label": {
+                  "tr": "Hak",
+                  "en": "The Real",
+                  "pt": "O Real"
+                },
+                "note": {
+                  "tr": "zâtı bilinmez, sıfatı bilinir",
+                  "en": "essence unknowable, attributes known",
+                  "pt": "essência incognoscível, atributos conhecidos"
+                }
+              },
+              {
+                "id": "hakikatler-hakikati-bilinen",
+                "label": {
+                  "tr": "Hakikatler Hakikati",
+                  "en": "The Reality of Realities",
+                  "pt": "A Realidade das Realidades"
+                },
+                "note": {
+                  "tr": "ne kadîm ne hâdis, bölünmeyen öz",
+                  "en": "neither eternal nor originated, an undivided essence",
+                  "pt": "nem eterna nem originada, uma essência indivisa"
+                }
+              },
+              {
+                "id": "alem-bilinen",
+                "label": {
+                  "tr": "Âlem",
+                  "en": "The Cosmos",
+                  "pt": "O Cosmos"
+                },
+                "note": {
+                  "tr": "melek, felek, unsur",
+                  "en": "angel, celestial sphere, element",
+                  "pt": "anjo, esfera celeste, elemento"
+                }
+              },
+              {
+                "id": "insan-halife-bilinen",
+                "label": {
+                  "tr": "İnsan-Halife",
+                  "en": "The Human-Vicegerent",
+                  "pt": "O Humano-Vice-regente"
+                },
+                "note": {
+                  "tr": "cismen küçük, teellühle büyük",
+                  "en": "small in body, great through ta'alluh",
+                  "pt": "pequeno no corpo, grande pelo ta'alluh"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Dost'un dört bilinen ayrımı: Hak ve Hakikatler Hakikati bilinmenin iki farklı, dolaysız katmanını; âlem ve insan ise bu bilinmenin görünür sahnesini oluşturur.",
+            "en": "Dost's fourfold division of the knowable: the Real and the Reality of Realities form two distinct, unmediated layers of what can be known; the cosmos and the human form the visible stage of that knowing.",
+            "pt": "A divisão quádrupla de Dost do cognoscível: o Real e a Realidade das Realidades formam duas camadas distintas e não mediadas do que pode ser conhecido; o cosmos e o humano formam o palco visível desse conhecer."
+          }
+        }
+      ]
+    },
+    {
+      "id": "alemin-gayesi-ibadet-canlilik",
+      "heading": {
+        "tr": "Âlemin Yaratılış Gayesi: İbadet ve Canlılık",
+        "en": "The Purpose of Creation: Worship and Livingness",
+        "pt": "O Propósito da Criação: Adoração e Vivacidade"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Âlemin niçin var olduğu sorusuna Dost'un yanıtı doğrudan ayete dayanıyor: <em>'Ben insanları ve cinleri bana ibadet etsinler diye yarattım.'</em> Ama bu ibadeti yalnızca insan ve cinle sınırlamıyor -taşın, hurma kütüğünün, her şeyin canlı ve düşünen olduğunu, yalnızca 'bilen'in bunu görebildiğini söylüyor: <em>'Canlılık sırrı bütün âleme yayılmıştır... müezzinin sesini duyan kuru ve yaş her şey onun lehinde tanıklık yapacaktır.'</em> Kısım, mahşerde ayrışacak 'iki avuç' -mutlu ve bedbaht karışımı- metaforuyla bu bölümü tamamlıyor: âlem şimdilik karışık bir hamur, ama sonu ayrışmaya varacak.",
+            "en": "To the question of why the cosmos exists, Dost's answer rests directly on the verse: <em>'I created jinn and mankind only that they might worship Me.'</em> But he does not limit this worship to jinn and humans alone — he says that the stone, the palm-trunk, everything, is alive and thinking, and only 'the one who knows' can see this: <em>'The secret of livingness is spread through the whole cosmos... everything dry and moist that hears the muezzin's call will testify on his behalf.'</em> The part completes this theme with the metaphor of the 'two handfuls' that will separate on the Day of Gathering — the happy and the wretched, mixed together — the cosmos is, for now, a mixed dough, but its end will arrive at separation.",
+            "pt": "À pergunta sobre por que o cosmos existe, a resposta de Dost se apoia diretamente no versículo: <em>'Criei os jinn e os humanos apenas para que Me adorassem.'</em> Mas ele não limita essa adoração a jinn e humanos — diz que a pedra, o tronco da palmeira, tudo, está vivo e pensando, e só 'quem conhece' pode ver isso: <em>'O segredo da vivacidade se espalha por todo o cosmos... tudo o que é seco e úmido que ouve o chamado do almuadem testemunhará a seu favor.'</em> A parte completa esse tema com a metáfora dos 'dois punhados' que se separarão no Dia da Reunião — os felizes e os infelizes, misturados — o cosmos é, por ora, uma massa misturada, mas seu fim chegará à separação."
+          }
+        }
+      ]
+    },
+    {
+      "id": "buyuk-alem-kucuk-alem",
+      "heading": {
+        "tr": "Büyük Âlem, Küçük Âlem: Bedendeki Kozmos",
+        "en": "Macrocosm, Microcosm: the Cosmos Within the Body",
+        "pt": "Macrocosmo, Microcosmo: o Cosmos no Corpo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost burada kitabın en sistematik 'harita'larından birini kuruyor: dört âlemi (en yüce/bekâ âlemi, dönüşme âlemi, imar etme âlemi, nispetler âlemi) ve gökcisimlerini, unsurlarını, güçlerini insanın organ ve kuvvetleriyle tek tek eşleştiriyor. Arş bedene, Kürsî nefse, Beyt-i Mamur kalbe karşılık geliyor; yedi gezegen ise insandaki yedi psişik güce (akıl, fikir, hayal, vehim, musavvire, müfekkire, hafıza gibi) denk düşüyor. Bu tekabül, 'küçük âlem' ifadesinin mecaz olmadığını, İbn Arabî için neredeyse harfi harfine bir yapı benzerliği olduğunu gösteriyor.",
+            "en": "Here Dost builds one of the book's most systematic 'maps': he matches, one by one, the four worlds (the world of supreme subsistence, the world of transformation, the world of building-up, the world of relations) and their celestial bodies, elements, and powers to the human's organs and faculties. The Throne corresponds to the body, the Footstool to the self, the Frequented House to the heart; the seven planets correspond to the seven psychic powers within the human (intellect, reflection, imagination, estimation, the form-giving faculty, the thinking faculty, memory, and the like). This correspondence shows that the phrase 'microcosm' is, for Ibn Arabi, not a mere figure of speech but almost a literal structural likeness.",
+            "pt": "Aqui Dost constrói um dos 'mapas' mais sistemáticos do livro: ele associa, um a um, os quatro mundos (o mundo da subsistência suprema, o mundo da transformação, o mundo da edificação, o mundo das relações) e seus corpos celestes, elementos e potências às faculdades e órgãos do humano. O Trono corresponde ao corpo, o Escabelo ao eu, a Casa Frequentada ao coração; os sete planetas correspondem às sete potências psíquicas no humano (intelecto, reflexão, imaginação, estimativa, a faculdade formadora, a faculdade pensante, memória, e afins). Essa correspondência mostra que a expressão 'microcosmo' não é, para Ibn Arabi, uma mera figura de linguagem, mas quase uma semelhança estrutural literal."
+          }
+        }
+      ]
+    },
+    {
+      "id": "feleklerin-besrin-yaratilisi",
+      "heading": {
+        "tr": "Feleklerin ve Beşerin Yaratılışı",
+        "en": "The Creation of the Celestial Spheres and of Humankind",
+        "pt": "A Criação das Esferas Celestes e da Humanidade"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kalem ve Levh, sırasıyla Akıl ve Ruh olarak isimlendiriliyor; Atlas feleğinin, parçalanmaz tek bir hareketle döndüğü belirtiliyor. Dost, melek sayılarına dair rivayetleri de aktarıyor -önce 51, sonra buna 974 ekleniyor- ve dünya ile ahiret arasındaki kozmik zaman hesaplarına giriyor. Bölüm, Âdem'in iki elle yoğrulmasıyla ve sırtına -henüz yaratılmadan- mutlu ve bedbaht olacak zürriyetin yerleştirilmesiyle kapanıyor.",
+            "en": "The Pen and the Tablet are named, respectively, the Intellect and the Spirit; the Atlas sphere, Dost notes, turns with a single, indivisible motion. He also relays the reports concerning the number of angels — first 51, then 974 more are added — and enters into cosmic calculations of time between this world and the next. The section closes with Adam being kneaded with two hands, and with the placement, upon his back, of the offspring — not yet created — who will be happy or wretched.",
+            "pt": "A Pena e a Tábua são nomeadas, respectivamente, o Intelecto e o Espírito; a esfera Atlas, observa Dost, gira com um único movimento indivisível. Ele também transmite os relatos sobre o número de anjos — primeiro 51, depois mais 974 são acrescentados — e entra em cálculos cósmicos de tempo entre este mundo e o próximo. A seção se encerra com Adão sendo amassado com duas mãos, e com a colocação, em suas costas, da descendência — ainda não criada — que será feliz ou infeliz."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dort-beden-turu",
+      "heading": {
+        "tr": "Dört Beden Türü: Âdem, Havva, İsa, Âdemoğulları",
+        "en": "Four Kinds of Body: Adam, Eve, Jesus, the Children of Adam",
+        "pt": "Quatro Tipos de Corpo: Adão, Eva, Jesus, os Filhos de Adão"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, aynı 'insan' tanımını taşısalar da birbirinden nedensel olarak bambaşka dört yaratılış yolunu ayırıyor: Âdem topraktan, iki elle yoğrularak; Havva, Âdem'in kaburgasından; İsa, babasız bir rahimden; Âdemoğulları ise cinsel birleşmeyle var oluyor. Havva ile Âdem arasındaki ilişkiyi karşılıklı bir 'elbise' metaforuyla anlatıyor: <em>'Havva, Âdem için bir elbise olduğu gibi Âdem de onun için bir elbise olmuştur.'</em> Bu dörtlü ayrım, 'insan olmak' ile 'nasıl var olmak' sorularının Dost için birbirinden bağımsız olduğunu gösteriyor.",
+            "en": "Dost distinguishes four paths of creation that, though all bear the same definition of 'human,' are causally utterly different from one another: Adam from clay, kneaded with two hands; Eve from Adam's rib; Jesus from a womb without a father; and the children of Adam through sexual union. He describes the relation between Eve and Adam through a mutual 'garment' metaphor: <em>'Just as Eve was a garment for Adam, Adam too became a garment for her.'</em> This fourfold distinction shows that, for Dost, the question of 'being human' and the question of 'how one comes to exist' are entirely independent of each other.",
+            "pt": "Dost distingue quatro caminhos de criação que, embora todos carreguem a mesma definição de 'humano', são causalmente inteiramente diferentes entre si: Adão do barro, amassado com duas mãos; Eva da costela de Adão; Jesus de um ventre sem pai; e os filhos de Adão através da união sexual. Ele descreve a relação entre Eva e Adão por meio de uma metáfora mútua de 'vestimenta': <em>'Assim como Eva foi uma vestimenta para Adão, Adão também se tornou uma vestimenta para ela.'</em> Essa distinção quádrupla mostra que, para Dost, a pergunta sobre 'ser humano' e a pergunta sobre 'como se vem a existir' são inteiramente independentes uma da outra."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Beşeri Cisimlerin Yaradılışının Başlangıcı, s. 359-363.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — The Beginning of the Creation of Human Bodies, pp. 359-363.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — O Início da Criação dos Corpos Humanos, pp. 359-363."
+          },
+          "tree": {
+            "id": "dort-beden-turu-tree",
+            "label": {
+              "tr": "Beşeri Cisimler",
+              "en": "Human Bodies",
+              "pt": "Corpos Humanos"
+            },
+            "note": {
+              "tr": "aynı tanım, dört ayrı yaratılış nedeni",
+              "en": "the same definition, four distinct causes of creation",
+              "pt": "a mesma definição, quatro causas distintas de criação"
+            },
+            "children": [
+              {
+                "id": "adem-beden",
+                "label": {
+                  "tr": "Âdem",
+                  "en": "Adam",
+                  "pt": "Adão"
+                },
+                "note": {
+                  "tr": "topraktan, iki elle",
+                  "en": "from clay, with two hands",
+                  "pt": "do barro, com duas mãos"
+                }
+              },
+              {
+                "id": "havva-beden",
+                "label": {
+                  "tr": "Havva",
+                  "en": "Eve",
+                  "pt": "Eva"
+                },
+                "note": {
+                  "tr": "kaburgadan",
+                  "en": "from a rib",
+                  "pt": "de uma costela"
+                }
+              },
+              {
+                "id": "isa-beden",
+                "label": {
+                  "tr": "İsa",
+                  "en": "Jesus",
+                  "pt": "Jesus"
+                },
+                "note": {
+                  "tr": "babasız rahimden",
+                  "en": "from a womb without a father",
+                  "pt": "de um ventre sem pai"
+                }
+              },
+              {
+                "id": "ademogullari-beden",
+                "label": {
+                  "tr": "Âdemoğulları",
+                  "en": "The Children of Adam",
+                  "pt": "Os Filhos de Adão"
+                },
+                "note": {
+                  "tr": "cinsel birleşmeyle",
+                  "en": "through sexual union",
+                  "pt": "através da união sexual"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Dost'un dört beden ayrımı: 'insan' tek bir tanım taşısa da, o tanıma varmanın nedensel yolu her seferinde bambaşkadır.",
+            "en": "Dost's fourfold division of bodies: though 'human' carries a single definition, the causal path to reaching that definition is different each time.",
+            "pt": "A divisão quádrupla de corpos em Dost: embora 'humano' carregue uma única definição, o caminho causal até essa definição é diferente a cada vez."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dairenin-kapanisi-akil-fikir",
+      "heading": {
+        "tr": "Dairenin Kapanışı: İlk Akıl'dan İnsana",
+        "en": "The Circle Closes: From the First Intellect to the Human",
+        "pt": "O Círculo se Fecha: Do Primeiro Intelecto ao Humano"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, varlığı tek bir daireye benzetiyor: <em>'Varlık bir dairedir. Dairenin başlangıcı İlk Aklın var olmasıdır... daire tamamlanmış ve dairenin sonu başına bitişip daire meydana geldiği gibi insan da akla bitişmiştir.'</em> Bu geometrik imge Hakk'ın yaratılmışlara nispetine de uygulanıyor: <em>'Noktadan -dairenin merkezinde bulunur- çevreye doğru uzayan çizgiler çevrenin her bir parçası için eşit şekilde ortaya çıktığı gibi, Hakkın bütün yaratılmışlara nispeti de aynı nispettir.'</em> İnsana özgü olan 'fikir' gücü ise burada bir imtihan olarak beliriyor: Akıl doğrudan/duru bilgi verirken, fikir yanılıp kuşkuyu bilgi sanabilir -Dost bunu insanın en büyük sınavı sayıyor.",
+            "en": "Dost likens existence to a single circle: <em>'Existence is a circle. The beginning of the circle is the coming-to-be of the First Intellect... just as the circle is completed when its end joins its beginning to form the circle, so too has the human joined onto the intellect.'</em> This geometric image is also applied to the Real's relation to created things: <em>'Just as the lines extending from the point — located at the circle's center — toward the circumference appear equally for every part of the circumference, so too is the Real's relation to all created things the same relation.'</em> The faculty unique to the human, reflection (fikr), appears here as a trial: while the intellect gives direct, unclouded knowledge, reflection can err and mistake doubt for knowledge — Dost counts this as the human's greatest test.",
+            "pt": "Dost compara a existência a um único círculo: <em>'A existência é um círculo. O começo do círculo é o vir-a-ser do Primeiro Intelecto... assim como o círculo se completa quando seu fim se junta ao seu começo para formar o círculo, também o humano se juntou ao intelecto.'</em> Essa imagem geométrica também é aplicada à relação do Real com as coisas criadas: <em>'Assim como as linhas que se estendem do ponto — localizado no centro do círculo — em direção à circunferência aparecem igualmente para cada parte da circunferência, também a relação do Real com todas as coisas criadas é a mesma relação.'</em> A faculdade própria do humano, a reflexão (fikr), aparece aqui como uma prova: enquanto o intelecto dá conhecimento direto e não turvado, a reflexão pode errar e confundir dúvida com conhecimento — Dost considera isso a maior prova do humano."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Dairenin Kapanışı, s. 363-365.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — The Circle Closes, pp. 363-365.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — O Círculo se Fecha, pp. 363-365."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Akıl",
+                "en": "The Intellect",
+                "pt": "O Intelecto"
+              },
+              "note": {
+                "tr": "doğrudan, duru bilgi verir",
+                "en": "gives direct, unclouded knowledge",
+                "pt": "dá conhecimento direto, não turvado"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Fikir",
+                "en": "Reflection",
+                "pt": "A Reflexão"
+              },
+              "note": {
+                "tr": "yanılıp kuşkuyu bilgi sanabilir",
+                "en": "can err, mistaking doubt for knowledge",
+                "pt": "pode errar, confundindo dúvida com conhecimento"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İnsana özgü iki bilme gücü arasındaki fark: Akıl güvenilir ama sınırlı bir kaynaktır; fikir daha geniş bir alana açılır, ama aynı zamanda yanılma riskini de taşır.",
+            "en": "The difference between the human's two cognitive powers: the intellect is a reliable but bounded source; reflection opens onto a wider field, but also carries the risk of error.",
+            "pt": "A diferença entre as duas potências cognitivas do humano: o intelecto é uma fonte confiável, mas limitada; a reflexão se abre para um campo mais amplo, mas também carrega o risco de erro."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hakikat-arzi",
+      "heading": {
+        "tr": "Hakikat Arzı: Berzahtaki Görü Coğrafyası",
+        "en": "The Reality-Earth: a Geography of Vision in the Barzakh",
+        "pt": "A Terra da Realidade: uma Geografia de Visão no Barzakh"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısmın en uzun ve en edebî bölümü, Âdem'in çamurunun fazlasından yaratıldığı söylenen -hurmayı bu yüzden Âdem'in 'kız kardeşi' sayan- bir berzah-âlemiyle, Hakikat Arzı'yla kapanıyor. Dost bunu bir ârifin doğrudan tanıklığı üzerinden anlatıyor: altın, gümüş, kâfur ve zağferan diyarlarından, birbirine komşu olup karışmayan denizlerden -<em>'İki denizi birbiriyle buluşmak üzere salıvermiştir; aralarında berzah vardır, kavuşmazlar.'</em>-, kendini yenileyen meyvelerden, on üç ışık şehrinden ve kendine özgü hükümdarlardan (Zül-Urf, Sâbih, Sâbık, el-Kâim bi-emrillah, Râdi) oluşan bir görü coğrafyası. Hükümdar Sâbık'ın misafire ihtiyacını söylemeden hizmet etme ahlakını açıklayan sözü dikkat çekici: <em>'İstek sahibinin yüzünde herhangi bir yaratıktan bir şey istemenin horluğunu görmek istemem. Çünkü kimsenin Allah'tan başkasının karşısında hor ve hakir olmasını kabul edemem.'</em> Dost, bu âlemin rüyalarda, meleklerde ve cinlerde görülen bütün sûretlerin de kaynağı olduğunu; buradaki tecellinin dünyadakinin aksine kişiyi kendinden geçirmeyip <em>'kendisiyle baş başa'</em> bıraktığını söylüyor.",
+            "en": "The part's longest and most literary section closes with a barzakh-world said to be created from the surplus of Adam's clay — which is why the date-palm is counted as Adam's 'sister' — the Reality-Earth. Dost relates it through a gnostic's direct witness: a geography of vision made of lands of gold, silver, camphor, and saffron; of seas that neighbor one another without mixing — <em>'He let loose the two seas, meeting one another; between them is a barzakh they do not cross.'</em> — of fruits that renew themselves, of thirteen cities of light, and of rulers proper to that world (Dhu'l-'Urf, Sabih, Sabiq, al-Qa'im bi-Amrillah, Radi). The saying of the ruler Sabiq, explaining the ethic of serving a guest's need without his having to voice it, stands out: <em>'I do not wish to see, on the face of one who has a need, the humiliation of asking anything of any creature — for I cannot accept that anyone be humbled before other than God.'</em> Dost says this world is also the source of every form seen in dreams, in angels, and in jinn; and that the self-disclosure occurring there, unlike that of this world, does not take one out of oneself but rather leaves one <em>'alone with oneself.'</em>",
+            "pt": "A seção mais longa e literária da parte se encerra com um mundo-barzakh dito ser criado do excedente do barro de Adão — por isso a tamareira é contada como 'irmã' de Adão — a Terra da Realidade. Dost a relata através do testemunho direto de um gnóstico: uma geografia de visão feita de terras de ouro, prata, cânfora e açafrão; de mares que são vizinhos sem se misturar — <em>'Ele deixou soltos os dois mares, que se encontram; entre eles há um barzakh que não atravessam.'</em> —, de frutos que se renovam, de treze cidades de luz, e de governantes próprios daquele mundo (Dhu'l-'Urf, Sabih, Sabiq, al-Qa'im bi-Amrillah, Radi). O dito do governante Sabiq, explicando a ética de servir a necessidade de um hóspede sem que ele precise dizê-la, se destaca: <em>'Não desejo ver, no rosto de quem tem uma necessidade, a humilhação de pedir algo a qualquer criatura — pois não posso aceitar que alguém se humilhe diante de outro que não seja Deus.'</em> Dost diz que esse mundo é também a fonte de toda forma vista em sonhos, em anjos e em jinn; e que a autorrevelação que ali ocorre, ao contrário da deste mundo, não tira ninguém de si mesmo, mas o deixa <em>'a sós consigo mesmo.'</em>"
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Ruhani Yaratılışın Başlangıcı: Beş Soru, s. 341-342.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — The Beginning of Spiritual Creation: Five Questions, pp. 341-342.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — O Início da Criação Espiritual: Cinco Perguntas, pp. 341-342."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Dört Bilinen, s. 342-344.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — The Four Knowables, pp. 342-344.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — Os Quatro Cognoscíveis, pp. 342-344."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Âlemin Yaratılış Gayesi, s. 344-348.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — The Purpose of Creation, pp. 344-348.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — O Propósito da Criação, pp. 344-348."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Büyük Âlem, Küçük Âlem, s. 348-350.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — Macrocosm, Microcosm, pp. 348-350.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — Macrocosmo, Microcosmo, pp. 348-350."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Feleklerin ve Beşerin Yaratılışı, s. 351-359.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — The Creation of the Celestial Spheres and of Humankind, pp. 351-359.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — A Criação das Esferas Celestes e da Humanidade, pp. 351-359."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Beşeri Cisimlerin Yaradılışının Başlangıcı, s. 359-363.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — The Beginning of the Creation of Human Bodies, pp. 359-363.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — O Início da Criação dos Corpos Humanos, pp. 359-363."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Dairenin Kapanışı, s. 363-365.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — The Circle Closes, pp. 363-365.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — O Círculo se Fecha, pp. 363-365."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XI — Âdem'in Çamurunun Kalıntısından Yaratılan Hakikat Arzı, s. 365-377.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XI — The Reality-Earth Created from the Remainder of Adam's Clay, pp. 365-377.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XI — A Terra da Realidade Criada do Resto do Barro de Adão, pp. 365-377."
+    }
+  ]
+}

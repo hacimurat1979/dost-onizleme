@@ -1,0 +1,618 @@
+{
+  "id": "c1k10",
+  "cilt": 1,
+  "kisim": 10,
+  "status": "active",
+  "title": {
+    "tr": "Fâtiha'nın Harfleri: Dairenin Yarısı, Noktanın Sırrı",
+    "en": "The Letters of the Fatiha: Half the Circle, the Secret of the Point",
+    "pt": "As Letras da Fatiha: Metade do Círculo, o Segredo do Ponto"
+  },
+  "pageRange": "291–340",
+  "hero": {
+    "summary": {
+      "tr": "Kısım X, Fâtiha sûresinin baştan sona harf harf, kelime kelime bir iç okumasına ayrılıyor: Dost, Besmele'deki üç ismin ('Allah', 'er-Rahman', 'er-Rahim') her harfini bir varlık mertebesine, bir hareke veya mahrece bağlıyor. Bu harf-sökümü, Fâtiha'nın geri kalan ayetlerine doğru genişleyerek kul ile Rab arasındaki ilişkiyi canlı bir sahneye -Ruh'un Hak'la konuşması, Nefs'in Ruh ile Hevâ arasında kalması- dönüştürüyor. Kısım, 'görünüşte kâfir olan gizli veliler' ile 'görünüşte mümin olan münafıklar' arasındaki ayna simetrisiyle kapanıyor.",
+      "en": "Part X is devoted to a letter-by-letter, word-by-word inward reading of the Fatiha: Dost ties every letter of the three names in the Basmala ('Allah,' 'al-Rahman,' 'al-Rahim') to a level of existence, a vowel-mark, or a point of articulation. This unraveling of letters expands into the rest of the Fatiha's verses, turning the relation between servant and Lord into a vivid scene — the Spirit speaking with the Real, the Self caught between the Spirit and Desire. The part closes with a mirrored symmetry between 'hidden saints who appear as unbelievers' and 'hypocrites who appear as believers.'",
+      "pt": "A Parte X é dedicada a uma leitura interior, letra por letra, palavra por palavra, da Fatiha: Dost liga cada letra dos três nomes na Basmala ('Allah,' 'al-Rahman,' 'al-Rahim') a um nível de existência, uma vogal ou um ponto de articulação. Esse desvendar de letras se expande para o resto dos versículos da Fatiha, transformando a relação entre servo e Senhor numa cena vívida — o Espírito falando com o Real, o Eu preso entre o Espírito e o Desejo. A parte se encerra com uma simetria espelhada entre 'santos ocultos que parecem descrentes' e 'hipócritas que parecem crentes.'"
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Dost'un Nun harfi okuması: harfin eğrisi görünen, bölünebilen bir yarımdır; altındaki nokta ise görünmeyen, bölünmez öbür yarım -tıpkı bir dairenin çevresi ile merkezi gibi.",
+      "en": "Dost's reading of the letter Nun: the letter's curve is the visible, divisible half; the dot beneath it is the invisible, indivisible other half — like the circumference and center of a single circle.",
+      "pt": "A leitura de Dost da letra Nun: a curva da letra é a metade visível, divisível; o ponto abaixo dela é a outra metade, invisível e indivisível — como a circunferência e o centro de um único círculo."
+    },
+    "tree": {
+      "id": "nun-harfi-daire-tree",
+      "label": {
+        "tr": "Nun Harfi (Daire)",
+        "en": "The Letter Nun (Circle)",
+        "pt": "A Letra Nun (Círculo)"
+      },
+      "note": {
+        "tr": "tek bir dairenin iki yarısı",
+        "en": "the two halves of a single circle",
+        "pt": "as duas metades de um único círculo"
+      },
+      "children": [
+        {
+          "id": "egri-zahir",
+          "label": {
+            "tr": "Eğri (Zâhir)",
+            "en": "The Curve (Manifest)",
+            "pt": "A Curva (Manifesto)"
+          },
+          "note": {
+            "tr": "görünen, bölünebilen, çokluk",
+            "en": "visible, divisible, multiplicity",
+            "pt": "visível, divisível, multiplicidade"
+          }
+        },
+        {
+          "id": "nokta-batin",
+          "label": {
+            "tr": "Nokta (Bâtın)",
+            "en": "The Dot (Hidden)",
+            "pt": "O Ponto (Oculto)"
+          },
+          "note": {
+            "tr": "gizli, bölünmez, merkez",
+            "en": "hidden, indivisible, the center",
+            "pt": "oculto, indivisível, o centro"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "allah-isminin-harfleri",
+      "heading": {
+        "tr": "\"Allah\" İsminin Harfleri: Fenâ Makamından Dört Âleme",
+        "en": "The Letters of \"Allah\": From the Station of Annihilation to Four Worlds",
+        "pt": "As Letras de \"Allah\": Da Estação da Aniquilação a Quatro Mundos"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım IX'un besmele bahsinin devamında Dost, önce bir şiirle uyarıyor: <em>'Akıllı kişi dünyayı sınadığında, dost kisvesinde bir düşman olarak kendisine açılır.'</em> Sonra fenâ makamını -hallerinde fâni olmuş, müşahedelerini anlatamayan, 'Allah'ın gelinleri' (arâisü'l-Hak) diye andığı velilerin makamını- tarif ediyor: bu kişiler halkın içinde yaşasa da gerçekte onlarla değildir, tıpkı bir marangozun yanında oturup onu seyreden ama kendi işine karışmayan biri gibi.",
+            "en": "Continuing the discussion of the Basmala from Part IX, Dost first warns with a poem: <em>'When the intelligent person tests the world, it reveals itself to him as an enemy wearing the garb of a friend.'</em> He then describes the station of annihilation (fana) — the station of saints who have become annihilated in their states, unable to describe what they witness, whom he calls 'the brides of the Real' (ara'is al-Haqq): they live among people yet are not truly with them, like someone sitting beside a carpenter, watching him work, without meddling in his craft.",
+            "pt": "Continuando a discussão da Basmala da Parte IX, Dost primeiro adverte com um poema: <em>'Quando a pessoa inteligente põe o mundo à prova, ele se revela a ela como um inimigo vestido de amigo.'</em> Ele então descreve a estação da aniquilação (fana) — a estação dos santos que se aniquilaram em seus estados, incapazes de descrever o que testemunham, a quem chama de 'as noivas do Real' (ara'is al-Haqq): vivem entre as pessoas, mas não estão verdadeiramente com elas, como alguém sentado ao lado de um carpinteiro, observando-o trabalhar, sem se intrometer em seu ofício."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ardından Dost, 'Allah' isminin altı harfini (hemze, elif, iki lâm, ikinci elif, he, vav) teknik bir çözümlemeyle ele alıyor: her harf bir mahreç (kalp/dil/damak/dudak) ve bir varlık mertebesi (zât, mülk, melekût, ceberût) ile eşleşiyor. İki Lâm'ın (harfin ortasındaki iki 'l' sesi) birbirini örten şekli, tevhidin dil düzeyinde nasıl kurulduğunu simgeliyor -Dost'un deyişiyle, <em>'nefsini bilen, Rabbini bilir; ikinci Lâm'ı bilen, Elif'i bilir.'</em>",
+            "en": "Dost then takes up the six letters of the name 'Allah' (hamza, alif, two lams, second alif, ha, waw) in a technical breakdown: each letter is matched to a point of articulation (heart/tongue/palate/lips) and a level of existence (essence, dominion, malakut, jabarut). The overlapping shape of the two Lams (the two 'l' sounds at the letter's center) symbolizes how divine oneness is constructed at the level of language itself — in Dost's words, <em>'whoever knows their own self knows their Lord; whoever knows the second Lam knows the Alif.'</em>",
+            "pt": "Dost então aborda as seis letras do nome 'Allah' (hamza, alif, dois lams, segundo alif, ha, waw) numa decomposição técnica: cada letra é associada a um ponto de articulação (coração/língua/palato/lábios) e a um nível de existência (essência, domínio, malakut, jabarut). A forma sobreposta dos dois Lams (os dois sons 'l' no centro da palavra) simboliza como a unicidade divina é construída no próprio nível da linguagem — nas palavras de Dost, <em>'quem conhece a si mesmo conhece seu Senhor; quem conhece o segundo Lam conhece o Alif.'</em>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rahman-isminin-sirlari",
+      "heading": {
+        "tr": "er-Rahmân'ın Sırları: Dairenin Yarısı, Bilinemezliğin Şerefi",
+        "en": "The Secrets of al-Rahman: Half the Circle, the Honor of Unknowability",
+        "pt": "Os Segredos de al-Rahman: Metade do Círculo, a Honra da Incognoscibilidade"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "er-Rahmân ismi de zât ve sıfat yönünden ikiye ayrılıyor: Elif-Lâm-Ra ilim/irade/kudreti, Ha-Mim-Nun ise kelâm/işitme/görmeyi temsil ediyor. En çarpıcı pasaj Nun harfi üzerine: Dost onu <em>'dairenin yarısı'</em> olarak tasvir ediyor -harfin görünen eğrisi bölünebilen, çokluğa açık zâhir yarım; altındaki nokta ise bölünmez, gizli, bâtın öbür yarım. (Yukarıdaki ana çizime bakın.) Mim harfinin eğrisi de benzer bir daire imgesi taşıyor.",
+            "en": "The name al-Rahman also divides into essence and attribute: Alif-Lam-Ra represents knowledge/will/power, while Ha-Mim-Nun represents speech/hearing/sight. The most striking passage concerns the letter Nun: Dost describes it as <em>'half of a circle'</em> — the letter's visible curve is the manifest half, divisible and open to multiplicity; the dot beneath it is the other half, hidden and indivisible. (See the main diagram above.) The curve of the letter Mim carries a similar circular image.",
+            "pt": "O nome al-Rahman também se divide em essência e atributo: Alif-Lam-Ra representa conhecimento/vontade/poder, enquanto Ha-Mim-Nun representa fala/audição/visão. A passagem mais marcante trata da letra Nun: Dost a descreve como <em>'metade de um círculo'</em> — a curva visível da letra é a metade manifesta, divisível e aberta à multiplicidade; o ponto abaixo dela é a outra metade, oculta e indivisível. (Veja o diagrama principal acima.) A curva da letra Mim carrega uma imagem circular semelhante."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost buradan bilinemezliğe bağlanıyor: <em>'Allah yolunda ulaşılabilecek en değerli makam, O'nu bilememek ve bilememeyi bilmek makamıdır. Çünkü bu, kulluğun hakikatidir.'</em> Müseyleme, İblis ve Deccal'in hilafet iddialarının neden geçersiz kaldığını bu çerçevede tartışıyor; görmenin bilmekten üstün olduğunu da -<em>'görmenin mânâ olarak bir sırrı vardır, bu nedenle Mûsâ görmek istedi'</em>- vurguluyor.",
+            "en": "From here Dost turns to unknowability: <em>'The most precious station attainable on the path to God is the station of not knowing Him and knowing that you do not know — for this is the reality of servanthood.'</em> He discusses, in this light, why the claims to vicegerency made by Musaylima, Iblis, and the Dajjal fail; he also stresses that seeing surpasses knowing — <em>'there is a secret meaning in seeing, which is why Moses wished to see.'</em>",
+            "pt": "A partir daqui Dost se volta para a incognoscibilidade: <em>'A estação mais preciosa alcançável no caminho a Deus é a estação de não O conhecer e saber que não O conhece — pois esta é a realidade da condição de servo.'</em> Ele discute, sob essa luz, por que as reivindicações de vice-regência feitas por Musaylima, Iblis e o Dajjal falham; enfatiza também que ver supera conhecer — <em>'há um significado secreto em ver, por isso Moisés desejou ver.'</em>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rahim-ismi-muhammed-adem",
+      "heading": {
+        "tr": "er-Rahîm: Muhammed, Âdem ve Mağaradaki İki Dost",
+        "en": "al-Rahim: Muhammad, Adam, and the Two Friends in the Cave",
+        "pt": "al-Rahim: Muhammad, Adão e os Dois Amigos na Caverna"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "er-Rahîm ismi Hz. Muhammed'in niteliği sayılıyor, Besmele'nin 'bismi' kısmı ise babamız Âdem'e izafe ediliyor: <em>'er-Rahîm Hz. Muhammed'dir, bismi ise babamız Âdem'dir... Hz. Muhammed birleştirir, Âdem ise ayırır.'</em> Bism'deki Elif gizli, Rahîm'deki Elif görünürdür -bu fark, ikisinin peygamberlik/velayet konumlarındaki asimetriyle açıklanıyor.",
+            "en": "The name al-Rahim is counted as an attribute of the Prophet Muhammad, while the 'bismi' portion of the Basmala is attributed to our father Adam: <em>'al-Rahim is Muhammad, and bismi is our father Adam... Muhammad unites, while Adam divides.'</em> The Alif in bismi is hidden, while the Alif in Rahim is visible — a difference Dost explains through the asymmetry between their stations of prophecy and sainthood.",
+            "pt": "O nome al-Rahim é contado como um atributo do Profeta Muhammad, enquanto a porção 'bismi' da Basmala é atribuída a nosso pai Adão: <em>'al-Rahim é Muhammad, e bismi é nosso pai Adão... Muhammad une, enquanto Adão divide.'</em> O Alif em bismi é oculto, enquanto o Alif em Rahim é visível — uma diferença que Dost explica pela assimetria entre suas estações de profecia e santidade."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "er-Rahîm'in iki noktası Hz. Muhammed ve Ebû Bekir'e -mağara kıssasındaki iki dosta- işaret ediyor: Ebû Bekir, Hz. Peygamber olmasaydı onun makamına geçecekken, o an <em>'arkadaşının arkadaşı'</em> olarak kalmayı seçiyor. Dost, Hz. Peygamber'in <em>'Bir dost edinseydim, Ebû Bekir'i dost edinirdim'</em> hadisini bu bağlamda hatırlatıyor. Bölüm, er-Rahîm'in yedi harfini yedi göksel/nefsanî mertebeye (Arş, Kürsî, Kalem, Levh...) eşleştiren bir listeyle kapanıyor.",
+            "en": "The two dots of al-Rahim point to the Prophet Muhammad and Abu Bakr — the two friends of the cave story: had the Prophet not existed, Abu Bakr would have risen to his station, yet in that moment he chooses to remain <em>'the friend of the friend.'</em> Dost recalls, in this context, the Prophet's saying: <em>'Had I taken a friend, I would have taken Abu Bakr as a friend.'</em> The section closes with a list matching al-Rahim's seven letters to seven celestial/psychic ranks (the Throne, the Footstool, the Pen, the Tablet...).",
+            "pt": "Os dois pontos de al-Rahim apontam para o Profeta Muhammad e Abu Bakr — os dois amigos da história da caverna: se o Profeta não existisse, Abu Bakr teria ascendido à sua estação, mas naquele momento ele escolhe permanecer <em>'o amigo do amigo.'</em> Dost relembra, nesse contexto, o dito do Profeta: <em>'Se eu tivesse tomado um amigo, teria tomado Abu Bakr como amigo.'</em> A seção se encerra com uma lista que associa as sete letras de al-Rahim a sete graus celestes/psíquicos (o Trono, o Escabelo, a Pena, a Tábua...)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — er-Rahîm İsminin Sırları, s. 308-316.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — The Secrets of the Name al-Rahim, pp. 308-316.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — Os Segredos do Nome al-Rahim, pp. 308-316."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Bismi (Âdem)",
+                "en": "Bismi (Adam)",
+                "pt": "Bismi (Adão)"
+              },
+              "note": {
+                "tr": "gizli Elif; ayıran",
+                "en": "hidden Alif; the one who divides",
+                "pt": "Alif oculto; aquele que divide"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Rahîm (Muhammed)",
+                "en": "Rahim (Muhammad)",
+                "pt": "Rahim (Muhammad)"
+              },
+              "note": {
+                "tr": "görünür Elif; birleştiren",
+                "en": "visible Alif; the one who unites",
+                "pt": "Alif visível; aquele que une"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un asimetrisi: Besmele'nin 'bismi' kısmı Âdem'e (gizli Elif, ayırma), 'Rahîm' kısmı ise Hz. Muhammed'e (görünür Elif, birleştirme) izafe edilir.",
+            "en": "Dost's asymmetry: the 'bismi' portion of the Basmala is attributed to Adam (hidden Alif, division), while the 'Rahim' portion is attributed to Muhammad (visible Alif, union).",
+            "pt": "A assimetria de Dost: a porção 'bismi' da Basmala é atribuída a Adão (Alif oculto, divisão), enquanto a porção 'Rahim' é atribuída a Muhammad (Alif visível, união)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fatihanin-girisi-umm-ul-kuran",
+      "heading": {
+        "tr": "Fâtiha'nın Girişi: Kur'an'ın Anası",
+        "en": "The Opening of the Fatiha: The Mother of the Qur'an",
+        "pt": "A Abertura da Fatiha: A Mãe do Alcorão"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Besmele'den Fâtiha'ya geçen Dost, sûreyi 'kitabın anahtarı' ve 'Ümmü'l-Kur'an' (Kur'an'ın anası) olarak tanıtıyor -çünkü ona göre bütün Kur'an ondan doğar: <em>'Ona Fâtiha isminin verilmesinin nedeni, kendisiyle varlık kitabının açıldığı ilk şey olmasıdır.'</em> Burada çarpıcı bir benzetme kuruyor: Meryem-İsa-var eden fâil ilişkisini, nefs (ana)-Kur'an (oğul)-ruh (fâil) üçlüsüyle örtüştürüyor.",
+            "en": "Turning from the Basmala to the Fatiha, Dost introduces the sura as 'the key to the Book' and 'Umm al-Qur'an' (the Mother of the Qur'an) — for in his view, the entire Qur'an is born from it: <em>'It is called the Fatiha because it is the first thing by which the book of existence is opened.'</em> Here he draws a striking analogy, mapping the relation of Mary–Jesus–the Agent who brings into being onto the triad of self (mother)–Qur'an (son)–spirit (agent).",
+            "pt": "Voltando-se da Basmala para a Fatiha, Dost apresenta a surata como 'a chave do Livro' e 'Umm al-Qur'an' (a Mãe do Alcorão) — pois, em sua visão, todo o Alcorão nasce dela: <em>'É chamada Fatiha porque é a primeira coisa pela qual o livro da existência é aberto.'</em> Aqui ele traça uma analogia marcante, mapeando a relação de Maria–Jesus–o Agente que traz à existência sobre a tríade de eu (mãe)–Alcorão (filho)–espírito (agente)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — Fâtiha'nın Girişi ve Ümmü'l-Kur'an, s. 316-319.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — The Opening of the Fatiha and Umm al-Qur'an, pp. 316-319.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — A Abertura da Fatiha e Umm al-Qur'an, pp. 316-319."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Nefs (Ana)",
+                "en": "Self (Mother)",
+                "pt": "Eu (Mãe)"
+              },
+              "note": {
+                "tr": "Meryem'e benzer",
+                "en": "likened to Mary",
+                "pt": "assemelhado a Maria"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Ruh (Fâil)",
+                "en": "Spirit (Agent)",
+                "pt": "Espírito (Agente)"
+              },
+              "note": {
+                "tr": "var eden",
+                "en": "the one who brings into being",
+                "pt": "aquele que traz à existência"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Fâtiha (Oğul)",
+                "en": "The Fatiha (Son)",
+                "pt": "A Fatiha (Filho)"
+              },
+              "note": {
+                "tr": "İsa'ya benzer; Kur'an ondan doğar",
+                "en": "likened to Jesus; the Qur'an is born from it",
+                "pt": "assemelhado a Jesus; o Alcorão nasce dela"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un benzetmesi: Meryem-Ruh-İsa üçlüsü, nefs-ruh-Fâtiha üçlüsüne karşılık gelir -Fâtiha, bütün Kur'an'ın kendisinden doğduğu 'ana'dır.",
+            "en": "Dost's analogy: the triad of Mary–Spirit–Jesus corresponds to the triad of self–spirit–Fatiha — the Fatiha is the 'mother' from whom the entire Qur'an is born.",
+            "pt": "A analogia de Dost: a tríade Maria–Espírito–Jesus corresponde à tríade eu–espírito–Fatiha — a Fatiha é a 'mãe' da qual todo o Alcorão nasce."
+          }
+        }
+      ]
+    },
+    {
+      "id": "elhamdulillahin-sirri",
+      "heading": {
+        "tr": "Elhamdülillah'ın Sırrı: Osman'ın Rüyası, Lâm'ın Tevazuu",
+        "en": "The Secret of Alhamdulillah: Uthman's Vision, the Humility of Lam",
+        "pt": "O Segredo de Alhamdulillah: A Visão de Uthman, a Humildade do Lam"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost kişisel bir rüya/vâkıa anlatıyor: Hz. Peygamber'in emriyle Hz. Osman onu minbere davet eder, orada 'el-Hamdü lillah' ayetinin sırrını keşfeder. Lâm harfinin mecrur (kesreli) hâli kulun tevazuunu simgeler: <em>'Hamd, Lâm'ın aynıdır... Hak ise bütün bunların ardındadır.'</em> Metin, 'el-hamdü lillah' (fenâ makamı, seni yok eder) ile 'el-hamdü billah' (bekā makamı, seni bâki kılar) arasındaki ince farkı ayırt ediyor.",
+            "en": "Dost recounts a personal vision: at the Prophet's command, Uthman invites him to the pulpit, where he discovers the secret of the verse 'al-Hamdu lillah.' The genitive (kasra) form of the letter Lam symbolizes the servant's humility: <em>'Praise is the very likeness of the Lam... while the Real stands behind all of it.'</em> The text distinguishes a fine difference between 'al-hamdu lillah' (the station of annihilation, which effaces you) and 'al-hamdu billah' (the station of subsistence, which makes you abide).",
+            "pt": "Dost relata uma visão pessoal: por ordem do Profeta, Uthman o convida ao púlpito, onde ele descobre o segredo do versículo 'al-Hamdu lillah.' A forma genitiva (kasra) da letra Lam simboliza a humildade do servo: <em>'O louvor é a própria semelhança do Lam... enquanto o Real está por trás de tudo isso.'</em> O texto distingue uma diferença sutil entre 'al-hamdu lillah' (a estação da aniquilação, que te apaga) e 'al-hamdu billah' (a estação da subsistência, que te faz permanecer)."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Arifler bu ikisini de bilir, ama avam gibi görünmeden ilkini söyleyemez. Bölüm, Âdem'in aynada kendini görüp hapşırıp 'elhamdülillah' demesi kıssasıyla renkleniyor -kendisine söylenen: <em>'Gördüğüne hamd et.'</em>",
+            "en": "The gnostics know both, yet cannot utter the first without appearing like the common people. The section is colored by the story of Adam, who sees himself in a mirror, sneezes, and says 'alhamdulillah' — to which he is told: <em>'Give thanks for what you have seen.'</em>",
+            "pt": "Os gnósticos conhecem ambos, mas não podem pronunciar o primeiro sem parecer como o povo comum. A seção é colorida pela história de Adão, que se vê num espelho, espirra, e diz 'alhamdulillah' — ao que lhe é dito: <em>'Agradece pelo que viste.'</em>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rab-merbub-diyalogu",
+      "heading": {
+        "tr": "Rab-Merbûb Diyaloğu: Ruh, Nefs, Akıl ve Hevâ",
+        "en": "The Lord-Servant Dialogue: Spirit, Self, Reason, and Desire",
+        "pt": "O Diálogo Senhor-Servo: Espírito, Eu, Razão e Desejo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısmın en dramatik sahnesi burada: Hak, tümel Ruh'a (Kelime) sorar: 'Benim, senin nezdindeki ismim nedir?' Ruh, <em>'Sen benim Rabbimsin'</em> der; Hak da karşılık verir: <em>'Sen benim merbûbumsun (kulumsun)... sen benim elbisemsin, örtümsün, perdemsin.'</em> Ruh 'mülkünü' sorunca Hak ondan Nefs'i çıkarır; Nefs de Ruh'u kendi Rabbi bilir -aynı diyalog bir kademe aşağıda tekrarlanır.",
+            "en": "The part's most dramatic scene unfolds here: the Real asks the universal Spirit (the Word), 'What is My name with you?' The Spirit answers, <em>'You are my Lord,'</em> and the Real replies: <em>'You are My servant... you are My garment, My covering, My veil.'</em> When the Spirit asks about its 'dominion,' the Real brings forth the Self (nafs) from it; the Self, in turn, knows the Spirit as its own Lord — the same dialogue repeats one rank lower.",
+            "pt": "A cena mais dramática da parte se desenrola aqui: o Real pergunta ao Espírito universal (a Palavra), 'Qual é o Meu nome contigo?' O Espírito responde, <em>'Tu és meu Senhor,'</em> e o Real replica: <em>'Tu és Meu servo... tu és Minha veste, Minha cobertura, Meu véu.'</em> Quando o Espírito pergunta sobre seu 'domínio,' o Real faz surgir dele o Eu (nafs); o Eu, por sua vez, conhece o Espírito como seu próprio Senhor — o mesmo diálogo se repete um grau abaixo."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Sonra iki 'vezir' ortaya çıkıyor: Akıl (Ruh'un veziri) ve Hevâ/Şehvet (Nefs'i kendine çağıran rakip güç). Ruh nihayet Hevâ'yı 'yokluk kılıcıyla' etkisiz kılıp Nefs'i teslim alıyor. Dost bunu şu sözle özetliyor: <em>'Seni gören kişi beni görmüş, sana itaat eden bana itaat etmiş, seni bilen beni bilmiş, seni bilmeyen ise beni de bilmemiştir.'</em> Bölüm, âlemler hiyerarşisinin (ayrık-şehâdet, bitişik-şehâdet/ceberût, melekût, Kelime, el-Vâhid) her katmanında bir Rab-merbûb ilişkisi bulunduğunu özetliyor.",
+            "en": "Then two 'viziers' appear: Reason (the Spirit's vizier) and Desire/Appetite (the rival power calling the Self to itself). The Spirit finally disarms Desire 'with the sword of non-existence' and takes the Self into its charge. Dost sums this up: <em>'Whoever sees you has seen me; whoever obeys you has obeyed me; whoever knows you has known me; and whoever does not know you does not know me either.'</em> The section closes by noting that a Lord–servant relation runs through every layer of the hierarchy of worlds — the separate visible world, the connected visible world/jabarut, malakut, the Word, and the One.",
+            "pt": "Então dois 'vizires' aparecem: a Razão (o vizir do Espírito) e o Desejo/Apetite (o poder rival que chama o Eu para si). O Espírito finalmente desarma o Desejo 'com a espada da não-existência' e assume a guarda do Eu. Dost resume assim: <em>'Quem te vê, viu-me; quem te obedece, obedeceu-me; quem te conhece, conheceu-me; e quem não te conhece, também não me conhece.'</em> A seção se encerra observando que uma relação Senhor-servo percorre cada camada da hierarquia dos mundos — o mundo visível separado, o mundo visível conectado/jabarut, malakut, a Palavra, e o Uno."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — Rab-Merbûb Diyaloğu ve Âlemler Hiyerarşisi, s. 322-327.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — The Lord-Servant Dialogue and the Hierarchy of Worlds, pp. 322-327.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — O Diálogo Senhor-Servo e a Hierarquia dos Mundos, pp. 322-327."
+          },
+          "tree": {
+            "id": "rab-merbub-hiyerarsi-tree",
+            "label": {
+              "tr": "el-Vâhid (Bir)",
+              "en": "al-Wahid (The One)",
+              "pt": "al-Wahid (O Uno)"
+            },
+            "note": {
+              "tr": "her katmanda tekrarlanan Rab-merbûb ilişkisinin kaynağı",
+              "en": "the source of the Lord-servant relation repeated at every layer",
+              "pt": "a fonte da relação Senhor-servo repetida em cada camada"
+            },
+            "children": [
+              {
+                "id": "kelime",
+                "label": {
+                  "tr": "Kelime (Tümel Ruh)",
+                  "en": "The Word (Universal Spirit)",
+                  "pt": "A Palavra (Espírito Universal)"
+                },
+                "note": {
+                  "tr": "'Sen benim Rabbimsin' der",
+                  "en": "says 'You are my Lord'",
+                  "pt": "diz 'Tu és meu Senhor'"
+                }
+              },
+              {
+                "id": "melekut",
+                "label": {
+                  "tr": "Melekût",
+                  "en": "Malakut",
+                  "pt": "Malakut"
+                },
+                "note": {
+                  "tr": "Kelime'nin merbûbu",
+                  "en": "servant of the Word",
+                  "pt": "servo da Palavra"
+                }
+              },
+              {
+                "id": "bitisik-sehadet",
+                "label": {
+                  "tr": "Bitişik Şehâdet (Ceberût)",
+                  "en": "Connected Visible World (Jabarut)",
+                  "pt": "Mundo Visível Conectado (Jabarut)"
+                },
+                "note": {
+                  "tr": "Melekût'un merbûbu",
+                  "en": "servant of Malakut",
+                  "pt": "servo do Malakut"
+                }
+              },
+              {
+                "id": "ayrik-sehadet",
+                "label": {
+                  "tr": "Ayrık Şehâdet",
+                  "en": "Separate Visible World",
+                  "pt": "Mundo Visível Separado"
+                },
+                "note": {
+                  "tr": "hiyerarşinin son katmanı: Nefs ve Hevâ'nın çatıştığı yer",
+                  "en": "the final layer: where the Self and Desire contend",
+                  "pt": "a camada final: onde o Eu e o Desejo disputam"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Rab-merbûb ilişkisi tek bir katmanda kalmaz: el-Vâhid'den Kelime'ye, Kelime'den Melekût'a, oradan Ceberût'a ve nihayet Ruh-Nefs-Hevâ sahnesinin geçtiği ayrık şehâdete kadar, her mertebe bir öncekinin merbûbu, bir sonrakinin Rabbidir.",
+            "en": "The Lord-servant relation does not stop at one layer: from the One to the Word, from the Word to Malakut, from there to Jabarut, and finally to the separate visible world where the Spirit-Self-Desire scene unfolds — each rank is the servant of the one before it and the Lord of the one after.",
+            "pt": "A relação Senhor-servo não para numa única camada: do Uno à Palavra, da Palavra ao Malakut, dali ao Jabarut, e finalmente ao mundo visível separado onde se desenrola a cena Espírito-Eu-Desejo — cada grau é servo do anterior e Senhor do seguinte."
+          }
+        }
+      ]
+    },
+    {
+      "id": "melik-ve-dogru-yol",
+      "heading": {
+        "tr": "Melik ve Doğru Yol: Fâtiha'nın Kapanışı",
+        "en": "The King and the Straight Path: The Fatiha's Close",
+        "pt": "O Rei e o Caminho Reto: O Fecho da Fatiha"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Önceki bölümün Ruh-Hevâ mücadelesi devam ediyor: Ruh, 'din gününün sahibi' (el-Melik) unvanını hak ediyor; Dost eskatolojik bir tabloda cehennemin nihayetinde cennete dönüştüğünü, <em>'merhametlilerin en merhametlisi'</em>nin şefaatiyle azabın nimete karışacağını anlatıyor: <em>'Cehennem bekçisi Mâlik gider, cennet bekçisi Rıdvân kalır.'</em>",
+            "en": "The Spirit–Desire struggle from the previous section continues: the Spirit earns the title 'Master of the Day of Judgment' (al-Malik); in an eschatological vision, Dost describes how hell finally turns into paradise, how punishment mingles with blessing through the intercession of <em>'the most merciful of the merciful'</em>: <em>'The keeper of Hell, Malik, departs; the keeper of Paradise, Ridwan, remains.'</em>",
+            "pt": "A luta Espírito-Desejo da seção anterior continua: o Espírito ganha o título 'Senhor do Dia do Juízo' (al-Malik); numa visão escatológica, Dost descreve como o inferno finalmente se transforma em paraíso, como a punição se mescla com a bênção através da intercessão d<em>'o mais misericordioso dos misericordiosos'</em>: <em>'O guardião do Inferno, Malik, parte; o guardião do Paraíso, Ridwan, permanece.'</em>"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ardından 'İyyâke na'budu ve iyyâke nesta'în' ayeti tefsir ediliyor: <em>'İyyâke'deki Ya harfi, tevhidin iki Elif'i arasında sınırlandı'</em> -kulluk ve yardım isteme, birbirinden ayrı iki makam olarak ayrıştırılıyor. Son olarak 'Bizi doğru yola ulaştır' ayetinde Nefs, önündeki iki yolu -eğri (iddia) ve doğru (tevhid)- tanıyor ve Rabbinden yardım diliyor.",
+            "en": "Then the verse 'You alone we worship, and You alone we ask for help' is interpreted: <em>'The letter Ya in iyyaka is confined between the two Alifs of divine oneness'</em> — servanthood and the seeking of help are separated as two distinct stations. Finally, in the verse 'Guide us to the straight path,' the Self recognizes the two paths before it — the crooked (of false claims) and the straight (of divine oneness) — and asks its Lord for help.",
+            "pt": "Em seguida, o versículo 'Só a Ti adoramos, e só a Ti pedimos ajuda' é interpretado: <em>'A letra Ya em iyyaka está confinada entre os dois Alifs da unicidade divina'</em> — a condição de servo e a busca de ajuda são separadas como duas estações distintas. Por fim, no versículo 'Guia-nos ao caminho reto,' o Eu reconhece os dois caminhos diante de si — o tortuoso (de falsas pretensões) e o reto (da unicidade divina) — e pede ajuda a seu Senhor."
+          }
+        }
+      ]
+    },
+    {
+      "id": "gizli-veliler",
+      "heading": {
+        "tr": "Gizli Veliler: Düşman Kisvesinde Dostlar",
+        "en": "Hidden Saints: Friends in the Garb of Enemies",
+        "pt": "Santos Ocultos: Amigos com Roupagem de Inimigos"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bakara sûresinin 'kâfirleri korkutsan da korkutmasan da fark etmez' ayetini Dost çarpıcı biçimde tersine çeviriyor: ona göre burada asıl kastedilen, Hakk'ın kendi velilerini -kıskançlıktan (gayret)- 'kâfir' görünümü altında saklamasıdır. Bu veliler Hakk'ı öyle sevmiştir ki sevgilerini gizlemek zorunda kalmıştır; Hak da kıskançlığından başkalarının onları tanımasını engellemiştir: <em>'Sizi sıfatlarım vasıtasıyla zâtımdan perdelemem gerekir.'</em> Ebû Yezîd el-Bistâmî'nin Arş'taki tecelli karşısında bayılıp düşmesi bu bağlamda anılıyor.",
+            "en": "Dost strikingly inverts the Qur'anic verse 'it is the same whether you warn the disbelievers or not': in his reading, what is really meant is that the Real hides His own saints — out of jealous protectiveness (ghayra) — under the guise of 'unbelief.' These saints have loved the Real so intensely that they have had to conceal their love; the Real, in His own jealousy, prevents others from recognizing them: <em>'I must veil you from My Essence through My attributes.'</em> Abu Yazid al-Bistami's fainting collapse before the theophany at the Throne is recalled in this context.",
+            "pt": "Dost inverte de forma marcante o versículo corânico 'é o mesmo se avisas os descrentes ou não': em sua leitura, o que se quer dizer é que o Real oculta Seus próprios santos — por proteção ciumenta (ghayra) — sob a aparência de 'descrença.' Esses santos amaram o Real tão intensamente que tiveram de esconder seu amor; o Real, em Seu próprio ciúme, impede que outros os reconheçam: <em>'Devo velar-vos de Minha Essência através de Meus atributos.'</em> O desmaio de Abu Yazid al-Bistami diante da teofania junto ao Trono é lembrado nesse contexto."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu tema, kısmın en başındaki 'dünya, dost kisvesinde bir düşmandır' şiiriyle bir ayna simetrisi kuruyor: orada dünya dost gibi görünüp düşman çıkıyordu, burada ise veliler düşman gibi görünüp dost çıkıyor -zâhir ile bâtın'ın iki yönden de ters çevrildiği, kısmın baş ve sonuna simetrik olarak yerleşmiş bir okuma.",
+            "en": "This theme forms a mirror symmetry with the poem at the very start of the part — 'the world is an enemy wearing the garb of a friend': there the world appeared friendly and turned out to be an enemy, while here the saints appear as enemies and turn out to be friends — a reading in which manifest and hidden are inverted from both directions, placed symmetrically at the beginning and end of the part.",
+            "pt": "Esse tema forma uma simetria espelhada com o poema logo no início da parte — 'o mundo é um inimigo vestido de amigo': ali o mundo parecia amigável e se revelava inimigo, enquanto aqui os santos parecem inimigos e se revelam amigos — uma leitura em que manifesto e oculto são invertidos em ambas as direções, posicionados simetricamente no início e no fim da parte."
+          }
+        }
+      ]
+    },
+    {
+      "id": "munafiklar-ve-iman-mertebeleri",
+      "heading": {
+        "tr": "Münafıklar ve İmanın Altı Mertebesi",
+        "en": "Hypocrites and the Six Ranks of Faith",
+        "pt": "Hipócritas e os Seis Graus da Fé"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, münafıklığın Kur'ânî tasvirleriyle kapanıyor: 'yeryüzünde bozgunculuk yapmayın' ve 'insanlar gibi iman edin' ayetleri, dış-iç çelişkisi taşıyan kişilerin bâtınî durumu olarak yorumlanıyor. Dost, münafıkların Allah'la alay ettiğini sandığı yerde aslında Allah'ın onlarla alay ettiğini vurguluyor.",
+            "en": "The part closes with Qur'anic depictions of hypocrisy: the verses 'do not spread corruption on the earth' and 'believe as the people believe' are read as describing the inward state of those who carry a contradiction between outside and inside. Dost stresses that where the hypocrites think they are mocking God, it is in fact God who is mocking them.",
+            "pt": "A parte se encerra com retratos corânicos da hipocrisia: os versículos 'não espalheis corrupção na terra' e 'crede como o povo crê' são lidos como descrevendo o estado interior daqueles que carregam uma contradição entre o exterior e o interior. Dost enfatiza que onde os hipócritas pensam estar zombando de Deus, é de fato Deus quem zomba deles."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "En dikkat çekici pasaj, imanın altı mertebeye ayrılması: taklit imanı (avam), bilgi imanı (delil sahipleri), görme imanı (müşahede sahipleri), hak imanı (arifler), hakikat imanı (vâkıf olanlar) ve 'hakikatin hakikati' -bu son mertebeyi asaleten miras alan bilginlerin makamı. Dost bu son mertebe için şunu söylüyor: <em>'Bunun açıklanması yasaklandı, dolayısıyla izah edilmesi imkânsızdır.'</em>",
+            "en": "The most striking passage divides faith into six ranks: the faith of imitation (the common people), the faith of knowledge (those who hold proofs), the faith of vision (those who witness), the faith of truth (the gnostics), the faith of reality (those who have arrived), and 'the reality of the reality' — the station of those scholars who inherit it directly by right. Of this final rank Dost says: <em>'Its disclosure has been forbidden, and so explaining it is impossible.'</em>",
+            "pt": "A passagem mais marcante divide a fé em seis graus: a fé da imitação (o povo comum), a fé do conhecimento (os que possuem provas), a fé da visão (os que testemunham), a fé da verdade (os gnósticos), a fé da realidade (os que chegaram), e 'a realidade da realidade' — a estação dos estudiosos que a herdam diretamente por direito. Sobre este último grau, Dost diz: <em>'Sua revelação foi proibida, e por isso explicá-la é impossível.'</em>"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — Münafıklar ve İmanın Mertebeleri, s. 336-340.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — Hypocrites and the Ranks of Faith, pp. 336-340.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — Hipócritas e os Graus da Fé, pp. 336-340."
+          },
+          "tree": {
+            "id": "iman-mertebeleri-tree",
+            "label": {
+              "tr": "İmanın Altı Mertebesi",
+              "en": "The Six Ranks of Faith",
+              "pt": "Os Seis Graus da Fé"
+            },
+            "note": {
+              "tr": "sonuncusunun açıklanması yasaklanmıştır",
+              "en": "the last of which its disclosure is forbidden",
+              "pt": "cuja última revelação é proibida"
+            },
+            "children": [
+              {
+                "id": "taklit-imani",
+                "label": {
+                  "tr": "Taklit İmanı",
+                  "en": "Faith of Imitation",
+                  "pt": "Fé da Imitação"
+                },
+                "note": {
+                  "tr": "avam",
+                  "en": "the common people",
+                  "pt": "o povo comum"
+                }
+              },
+              {
+                "id": "bilgi-imani",
+                "label": {
+                  "tr": "Bilgi İmanı",
+                  "en": "Faith of Knowledge",
+                  "pt": "Fé do Conhecimento"
+                },
+                "note": {
+                  "tr": "delil sahipleri",
+                  "en": "those who hold proofs",
+                  "pt": "os que possuem provas"
+                }
+              },
+              {
+                "id": "gorme-imani",
+                "label": {
+                  "tr": "Görme İmanı",
+                  "en": "Faith of Vision",
+                  "pt": "Fé da Visão"
+                },
+                "note": {
+                  "tr": "müşahede sahipleri",
+                  "en": "those who witness",
+                  "pt": "os que testemunham"
+                }
+              },
+              {
+                "id": "hak-imani",
+                "label": {
+                  "tr": "Hak İmanı",
+                  "en": "Faith of Truth",
+                  "pt": "Fé da Verdade"
+                },
+                "note": {
+                  "tr": "arifler",
+                  "en": "the gnostics",
+                  "pt": "os gnósticos"
+                }
+              },
+              {
+                "id": "hakikat-imani",
+                "label": {
+                  "tr": "Hakikat İmanı",
+                  "en": "Faith of Reality",
+                  "pt": "Fé da Realidade"
+                },
+                "note": {
+                  "tr": "vâkıf olanlar",
+                  "en": "those who have arrived",
+                  "pt": "os que chegaram"
+                }
+              },
+              {
+                "id": "hakikatin-hakikati",
+                "label": {
+                  "tr": "Hakikatin Hakikati",
+                  "en": "The Reality of the Reality",
+                  "pt": "A Realidade da Realidade"
+                },
+                "note": {
+                  "tr": "açıklanması yasaklanmış son mertebe",
+                  "en": "the final rank whose disclosure is forbidden",
+                  "pt": "o grau final cuja revelação é proibida"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Dost'un iman merdiveni: taklitten başlayıp 'hakikatin hakikati'nde biten altı basamak -ama sonuncusu hakkında bilerek susuyor, sadece 'zeki araştırmacının' fark edeceği şekilde işaret ediyor.",
+            "en": "Dost's ladder of faith: six rungs beginning with imitation and ending in 'the reality of the reality' — but about this last rung he deliberately falls silent, only pointing toward it in a way 'the intelligent seeker' might notice.",
+            "pt": "A escada da fé de Dost: seis degraus começando pela imitação e terminando na 'realidade da realidade' — mas sobre este último degrau ele deliberadamente se cala, apenas apontando para ele de um modo que 'o buscador inteligente' possa notar."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — \"Allah\" İsminin Harfleri ve Fenâ Makamı, s. 291-299.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — The Letters of \"Allah\" and the Station of Annihilation, pp. 291-299.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — As Letras de \"Allah\" e a Estação da Aniquilação, pp. 291-299."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — er-Rahmân İsminin Sırları: Nun Harfi ve Bilinemezlik, s. 299-308.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — The Secrets of al-Rahman: The Letter Nun and Unknowability, pp. 299-308.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — Os Segredos de al-Rahman: A Letra Nun e a Incognoscibilidade, pp. 299-308."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — er-Rahîm İsminin Sırları, s. 308-316.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — The Secrets of the Name al-Rahim, pp. 308-316.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — Os Segredos do Nome al-Rahim, pp. 308-316."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — Fâtiha'nın Girişi ve Ümmü'l-Kur'an, s. 316-319.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — The Opening of the Fatiha and Umm al-Qur'an, pp. 316-319.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — A Abertura da Fatiha e Umm al-Qur'an, pp. 316-319."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — Elhamdülillah'ın Sırrı ve Osman'ın Rüyası, s. 319-322.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — The Secret of Alhamdulillah and Uthman's Vision, pp. 319-322.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — O Segredo de Alhamdulillah e a Visão de Uthman, pp. 319-322."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — Rab-Merbûb Diyaloğu ve Âlemler Hiyerarşisi, s. 322-327.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — The Lord-Servant Dialogue and the Hierarchy of Worlds, pp. 322-327.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — O Diálogo Senhor-Servo e a Hierarquia dos Mundos, pp. 322-327."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — Melik, Doğru Yol ve Fâtiha'nın Kapanışı, s. 327-331.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — The King, the Straight Path, and the Fatiha's Close, pp. 327-331.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — O Rei, o Caminho Reto, e o Fecho da Fatiha, pp. 327-331."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — Gizli Veliler: Düşman Kisvesinde Dostlar, s. 331-336.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — Hidden Saints: Friends in the Garb of Enemies, pp. 331-336.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — Santos Ocultos: Amigos com Roupagem de Inimigos, pp. 331-336."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım X — Münafıklar ve İmanın Mertebeleri, s. 336-340.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part X — Hypocrites and the Ranks of Faith, pp. 336-340.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte X — Hipócritas e os Graus da Fé, pp. 336-340."
+    }
+  ]
+}

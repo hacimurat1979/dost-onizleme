@@ -1,0 +1,389 @@
+{
+  "id": "c2k22",
+  "cilt": 2,
+  "kisim": 22,
+  "status": "active",
+  "title": {
+    "tr": "Gece Ehli, Gençlik Makamı ve Kuşkulu Şeylerden Sakınma",
+    "en": "The People of the Night, the Station of Youthfulness, and Guarding Against the Doubtful",
+    "pt": "O Povo da Noite, a Estação da Juventude, e a Cautela Diante do Duvidoso"
+  },
+  "pageRange": "228–258",
+  "hero": {
+    "summary": {
+      "tr": "Kısım XXII, üç ayrı erdem alanını (gece ibadeti, fütüvvet/gençlik, vera/kuşkulu şeylerden sakınma) art arda ele alıyor -- ve üçünün de başlığında 'kutup' geçmesi bize göre dikkat çekici: sanki kutbiyet burada tek bir zirve değil, her erdemin kendi merkezi gibi okunabiliyor. En çarpıcı iki an: İbn Arabî'nin kendi orijinal buluşu olduğunu belirttiği 'iki nur' analojisi, ve kısmın açılışında kendini 'hatmü'l-velâye... Mesih ile birlikte' diye tanımladığı yoğun bir öz-tanımlama.",
+      "en": "Part XXII takes up, one after another, three distinct fields of virtue (night-worship, futuwwa/youthfulness, wara'/guarding against the doubtful) -- and it strikes us that all three chapters name a 'pole' in their heading: as if pole-hood here can be read not as a single peak but as each virtue's own center. Two of the most striking moments: the 'two lights' analogy, which Dost states is his own original insight, and the part's opening, where he describes himself as 'the seal of sainthood... together with the Messiah,' in a dense act of self-description.",
+      "pt": "A Parte XXII aborda, uma após a outra, três campos distintos de virtude (a adoração noturna, futuwwa/juventude, wara'/cautela diante do duvidoso) -- e nos chama a atenção que os três capítulos nomeiam um 'polo' em seu título: como se a condição de polo aqui pudesse ser lida não como um único cume, mas como o próprio centro de cada virtude. Dois dos momentos mais marcantes: a analogia das 'duas luzes,' que Dost afirma ser sua própria percepção original, e a abertura da parte, onde ele se descreve como 'o selo da santidade... junto com o Messias,' num denso ato de autodescrição."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Gece ehlinin himmetinin karşılandığı yer, kişinin mertebesine göre değişiyor -- yakın gökten Arş'a, oradan da Arş'ın bile ötesindeki en nezih menzillere kadar.",
+      "en": "The place where a night-worshipper's aspiration is met varies by rank -- from the nearest heaven to the Throne, and from there to the most exalted stations beyond even the Throne.",
+      "pt": "O lugar onde a aspiração de quem adora à noite é recebida varia conforme o grau -- do céu mais próximo ao Trono, e daí às estações mais exaltadas, além até do Trono."
+    },
+    "tree": {
+      "id": "himmet-gokler-tree",
+      "label": {
+        "tr": "Himmetin Karşılandığı Yer",
+        "en": "Where Aspiration Is Met",
+        "pt": "Onde a Aspiração É Recebida"
+      },
+      "note": {
+        "tr": "mertebe yükseldikçe karşılanma yeri de yükseliyor",
+        "en": "as rank rises, so does the place of meeting",
+        "pt": "conforme o grau se eleva, também se eleva o lugar do encontro"
+      },
+      "children": [
+        {
+          "id": "yedi-gok",
+          "label": {
+            "tr": "Yedi Gök",
+            "en": "The Seven Heavens",
+            "pt": "Os Sete Céus"
+          },
+          "note": {
+            "tr": "yakın gökten yedincisine, her gökte ayrı bir himmet karşılanır",
+            "en": "from the nearest heaven to the seventh, a different aspiration met at each",
+            "pt": "do céu mais próximo ao sétimo, uma aspiração diferente recebida em cada um"
+          }
+        },
+        {
+          "id": "kursi",
+          "label": {
+            "tr": "Kürsî",
+            "en": "The Footstool (Kursi)",
+            "pt": "O Escabelo (Kursi)"
+          },
+          "note": {
+            "tr": "göklerin ötesinde bir sonraki durak",
+            "en": "the next station beyond the heavens",
+            "pt": "a próxima estação além dos céus"
+          }
+        },
+        {
+          "id": "ars",
+          "label": {
+            "tr": "Arş",
+            "en": "The Throne (Arsh)",
+            "pt": "O Trono (Arsh)"
+          },
+          "note": {
+            "tr": "Rahmân'ın istiva mahalli",
+            "en": "the seat of the All-Merciful's establishment",
+            "pt": "a sede do estabelecimento do Todo-Misericordioso"
+          }
+        },
+        {
+          "id": "ars-otesi",
+          "label": {
+            "tr": "Arş Ötesi",
+            "en": "Beyond the Throne",
+            "pt": "Além do Trono"
+          },
+          "note": {
+            "tr": "Nefs-i Küllî, İlk Akıl, yakın melekler, Amâ -- belirlemenin sınırlayamadığı en nezih menziller",
+            "en": "the Universal Soul, the First Intellect, the near angels, the Cloud (Ama) -- the most exalted stations, uncontained by any determination",
+            "pt": "a Alma Universal, o Primeiro Intelecto, os anjos próximos, a Nuvem (Ama) -- as estações mais exaltadas, não contidas por nenhuma determinação"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "gece-ehlinin-sirri",
+      "heading": {
+        "tr": "Gece Ehli: Allah İçin En Hayırlı, Kendi Adlarına En 'Kötü'",
+        "en": "The People of the Night: Best Before God, 'Worst' in Their Own Name",
+        "pt": "O Povo da Noite: Os Melhores Diante de Deus, os 'Piores' em Seu Próprio Nome"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk Birinci Bölüm, gece ibadetinin kendine özgü bir halk oluşturduğu fikriyle açılıyor. İbn Arabî'nin tarifi bize göre kısmın en çarpıcı paradoksu: <em>'Onlar, Allah için en hayırlı topluluk iken, kendi adlarına en kötü kimselerdir.'</em> (s. 231) Bunun nedeni, gece ehlinin peygamberlik kapısının kapanmasından sonra 'veli' bile denilemeyecek kadar gizli kalması -- kendilerine sadece 'evliya' (çoğul, isimsiz) denebiliyor, ve müjdelenseler bile bunu söylemiyorlar. Bize göre bu paradoks, Kısım XXI'de okuduğumuz 'düşüşün aslında yükseliş olması' fikrinin bir başka yüzü gibi duruyor: yüksek/düşük, iyi/kötü kategorileri göründüğü gibi olmayabiliyor.",
+            "en": "Chapter Forty-One opens with the idea that night-worship forms its own distinct people. Dost's description is, to us, the part's most striking paradox: <em>'They are the best community before God, while being the worst in their own name.'</em> (p. 231) The reason is that the people of the night remain so hidden -- after the door of prophecy closed -- that they cannot even be called 'wali'; they can only be called 'awliya' (plural, nameless), and even when given good news they do not speak of it. To us, this paradox looks like another face of the 'the fall is in fact an ascent' idea we read in Part XXI: the categories of high/low, good/bad may not be what they appear to be.",
+            "pt": "O Capítulo Quarenta e Um se abre com a ideia de que a adoração noturna forma um povo próprio e distinto. A descrição de Dost é, para nós, o paradoxo mais marcante da parte: <em>'Eles são a melhor comunidade diante de Deus, sendo os piores em seu próprio nome.'</em> (p. 231) A razão é que o povo da noite permanece tão oculto -- depois que a porta da profecia se fechou -- que nem sequer pode ser chamado de 'wali'; só pode ser chamado de 'awliya' (plural, sem nome), e mesmo quando recebem boas novas, não falam sobre isso. Para nós, esse paradoxo parece outra face da ideia de que 'a queda é, de fato, uma ascensão,' que lemos na Parte XXI: as categorias de alto/baixo, bom/mau podem não ser o que parecem."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Gece, onlara Allah'ın verdiği bir 'elbise' -- başkalarının gözünden onları gizleyen bir örtü (s. 231). Uyku bile, Allah'ın gece ehlini gözetlenmekten korumak için başkalarına verdiği bir perde olarak okunuyor: <em>'insanların uyuması gece ehli için bir rahatlıktır.'</em> (s. 231) Bize göre bu, gündüz ve gece arasında bir tür ikili karşıtlık kuruyor -- gündüz 'senin işlerin'in zamanıyken, gece Allah'ın münhasıran kendine ayırdığı bir zaman dilimi oluyor.",
+            "en": "Night is a 'garment' God has given them -- a covering that hides them from others' eyes (p. 231). Even sleep is read as a veil God gives to others, to protect the people of the night from being watched: <em>'people's sleeping is a comfort for the people of the night.'</em> (p. 231) To us, this sets up a kind of pairing between day and night -- day being the time of 'your own affairs,' night becoming the time slice God reserves exclusively for Himself.",
+            "pt": "A noite é uma 'veste' que Deus lhes deu -- um manto que os esconde dos olhos alheios (p. 231). Até o sono é lido como um véu que Deus dá aos outros, para proteger o povo da noite de ser observado: <em>'o sono das pessoas é um conforto para o povo da noite.'</em> (p. 231) Para nós, isso estabelece uma espécie de pareamento entre dia e noite -- o dia sendo o tempo dos 'próprios afazeres,' a noite se tornando a fatia de tempo que Deus reserva exclusivamente para Si."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXII — Kırk Birinci Bölüm, s. 231-233.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXII — Chapter Forty-One, pp. 231-233.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXII — Capítulo Quarenta e Um, pp. 231-233."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Gündüz",
+                "en": "Day",
+                "pt": "Dia"
+              },
+              "note": {
+                "tr": "'senin işlerin' -- meşguliyet, başkalarının gözü önünde",
+                "en": "'your own affairs' -- occupation, under others' eyes",
+                "pt": "'seus próprios afazeres' -- ocupação, sob os olhos alheios"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Gece",
+                "en": "Night",
+                "pt": "Noite"
+              },
+              "note": {
+                "tr": "Allah'a ait, gece ehlinin gizlendiği ve Rableriyle baş başa kaldığı vakit",
+                "en": "belonging to God, the time when the people of the night are veiled and left alone with their Lord",
+                "pt": "pertencente a Deus, o tempo em que o povo da noite é velado e deixado a sós com seu Senhor"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un ayrımı: gündüz kişinin kendi işlerinin, gece ise Allah'ın münhasıran kendine ayırdığı bir zaman dilimi -- gece ehli bu yüzden başkalarının uykusundan bile bir rahatlık, bir perde olarak yararlanıyor.",
+            "en": "Dost's distinction: day belongs to a person's own affairs, night to a time slice God reserves exclusively for Himself -- which is why the people of the night draw comfort, a veil, even from others' sleep.",
+            "pt": "A distinção de Dost: o dia pertence aos próprios afazeres de uma pessoa, a noite a uma fatia de tempo que Deus reserva exclusivamente para Si -- por isso o povo da noite tira conforto, um véu, até do sono alheio."
+          }
+        }
+      ]
+    },
+    {
+      "id": "nuzul-hitabi-niffari",
+      "heading": {
+        "tr": "'Gece Bana Aittir': Niffârî'nin Aktardığı İlahî Hitap",
+        "en": "'The Night Belongs to Me': The Divine Address Niffari Relates",
+        "pt": "'A Noite Me Pertence': O Discurso Divino Relatado por Niffari"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölümün uzun ve en tiyatral pasajı, Allah'ın her gece yakın göğe inişini anlatan 'nüzûl' hadisinin genişletilmiş bir okuması. <strong>Muhammed b. Abdulcabbar en-Nifterî</strong> (Niffârî) özel adıyla anılıyor -- 'Hak beni bilgi durağında durdurdu' diyen bu zat, gecenin bizzat Allah'a ait olduğunu bildiren bir ilahî hitabı aktarıyor: <em>'Ey kulum! Gece bana aittir, okunan Kur'an'a ait değildir. Gece (bana) hamd etmeye ve övgüye değil, bana aittir.'</em> (s. 233) Hitap devam ediyor: <em>'Beni sevdiğini iddia edip gece olduğunda uyuyan kimse yalancıdır! ... İşte ben kullarıma tecelli ettim. Dua eden yok mu? Duasını kabul edeyim. Tövbe eden yok mu? Tövbesini kabul edeyim. Bağışlanmak isteyen yok mu? Onu bağışlayayım.'</em> (s. 232)",
+            "en": "The chapter's longest and most theatrical passage is an expanded reading of the 'descent' hadith describing God's nightly descent to the nearest heaven. It names <strong>Muhammad b. Abd al-Jabbar al-Niffari</strong> specifically -- who says 'the Real stopped me at the station of knowledge' -- relating a divine address declaring that night itself belongs to God: <em>'O My servant! The night belongs to Me, not to the Qur'an that is recited. The night belongs to Me, not to praise and glorification (of Me).'</em> (p. 233) The address continues: <em>'Whoever claims to love Me and sleeps when night comes is a liar! ... Here I have made Myself manifest to My servants. Is there anyone who prays? Let Me answer his prayer. Is there anyone who repents? Let Me accept his repentance. Is there anyone who seeks forgiveness? Let Me forgive him.'</em> (p. 232)",
+            "pt": "A passagem mais longa e mais teatral do capítulo é uma leitura expandida do hadith da 'descida,' que descreve a descida noturna de Deus ao céu mais próximo. Ela nomeia especificamente <strong>Muhammad b. Abd al-Jabbar al-Niffari</strong> -- que diz 'o Real me deteve na estação do conhecimento' -- relatando um discurso divino que declara que a própria noite pertence a Deus: <em>'Ó Meu servo! A noite Me pertence, não pertence ao Alcorão que é recitado. A noite Me pertence, não pertence ao louvor e à glorificação (de Mim).'</em> (p. 233) O discurso continua: <em>'Quem afirma Me amar e dorme quando a noite chega é um mentiroso! ... Eis que Me manifestei a Meus servos. Há alguém que reza? Que eu responda à sua oração. Há alguém que se arrepende? Que eu aceite seu arrependimento. Há alguém que busca perdão? Que eu o perdoe.'</em> (p. 232)"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Hitabın en ince noktası bize göre şurada: Kur'an'ın cennet/cehennem ayetlerini okuyup anlamıyla meşgul olan kişiye Allah şöyle sesleniyor: <em>'Ben seni Kuran oku diye istemedim ki, onun anlamlarıyla ilgileniyorsun. Kur'an'ın anlamları seni benden ayırır... Peki, sen cibinliklerdeki hurilerle cennetimdeyken ben nerede kaldım!'</em> (s. 233) Yani asıl istenen, anlamla değil bizzat Allah'ın kendisiyle meşgul olmak. Bu fikir, küçük ama çarpıcı bir anekdotla somutlaşıyor: bir arif, kardeşinin 'Rabbinle baş başa kaldığında beni hatırla' ricasına şu cevabı veriyor: <em>'Seni hatırlarsam, O'nunla yalnız kalamam ki.'</em> (s. 234) Bölümün ikinci yarısı, gece ehlinin farklı mertebelerini (zâhid, mütevekkil...) ve himmetlerinin göklerde nerede karşılandığını ele alıyor (bkz. mainDiagram) -- yükselmemiş himmetlerin bile, yükselenlerin aldığı cevaplardan feyz aldığı özellikle vurgulanıyor (s. 236-237).",
+            "en": "The address's most delicate point, to us, is here: to someone reciting the Qur'an's verses about paradise and hell and dwelling on their meaning, God says: <em>'I did not ask you to recite the Qur'an so that you would occupy yourself with its meanings. The Qur'an's meanings separate you from Me... Then where was I left, while you were in My paradise with the houris in their tents!'</em> (p. 233) That is, what is truly wanted is not to be occupied with meaning, but with God Himself. This idea is given concrete form in a small but striking anecdote: when a knower's brother asks him, 'remember me when you are alone with your Lord,' he answers: <em>'If I remembered you, I could not be alone with Him.'</em> (p. 234) The chapter's second half takes up the different ranks of the people of the night (the ascetic, the one who relies on God...) and where their aspirations are met among the heavens (see mainDiagram) -- it is specifically stressed that even aspirations that have not risen draw benefit from the answers given to those that have (pp. 236-237).",
+            "pt": "O ponto mais delicado do discurso, para nós, está aqui: a alguém que recita os versículos do Alcorão sobre o paraíso e o inferno e se detém em seu significado, Deus diz: <em>'Não te pedi para recitar o Alcorão para que te ocupasses com seus significados. Os significados do Alcorão te separam de Mim... Então onde eu fiquei, enquanto estavas em Meu paraíso com as huris em suas tendas!'</em> (p. 233) Ou seja, o que realmente se deseja não é ocupar-se com o significado, mas com o próprio Deus. Essa ideia ganha forma concreta num pequeno mas marcante anedota: quando o irmão de um conhecedor lhe pede, 'lembra-te de mim quando estiveres a sós com teu Senhor,' ele responde: <em>'Se me lembrasse de ti, não poderia estar a sós com Ele.'</em> (p. 234) A segunda metade do capítulo trata dos diferentes graus do povo da noite (o asceta, o que confia em Deus...) e de onde suas aspirações são recebidas entre os céus (ver mainDiagram) -- é especificamente enfatizado que mesmo as aspirações que não se elevaram tiram proveito das respostas dadas àquelas que se elevaram (pp. 236-237)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "iki-nur-bulusu",
+      "heading": {
+        "tr": "İki Nur: Dost'un Kendi Orijinal Buluşu",
+        "en": "Two Lights: Dost's Own Original Insight",
+        "pt": "Duas Luzes: A Própria Percepção Original de Dost"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölüm, felsefi açıdan en özgün pasajlardan biriyle kapanıyor. İbn Arabî, karanlık bir odada bir keşif sahibinin, yanındaki uykudaki arkadaşının hiçbir şey görmediği bir karanlıkta, her şeyi gündüz gibi net gördüğünü anlatıyor: <em>'Burası öyle aydınlanmış ki, sanki güneş batmamış diyecektim.'</em> (s. 240) Bunu şöyle açıklıyor: <em>'bütün oluş, asli varlığında karanlıktır, dolayısıyla ancak iki nur sayesinde görülebilir.'</em> (s. 240) Ve bunun kendi özgün bir tespiti olduğunu açıkça belirtiyor: <em>'Bu mesele hiç kimsenin dikkat çektiğini görmediğim bir konudur. Biri dikkat çekmiş ise de bana ulaşmamıştır.'</em> (s. 240) -- külliyatında nadiren rastladığımız türden bir doğrudan özgünlük iddiası.",
+            "en": "The chapter closes with one of its most philosophically original passages. Dost relates that in a dark room, a knower of unveiling sees everything as clearly as by day, in a darkness where his sleeping companion beside him sees nothing at all: <em>'This place has become so illumined that I would say the sun had not set.'</em> (p. 240) He explains this: <em>'all coming-to-be is, in its essential existence, darkness, and can therefore only be seen by means of two lights.'</em> (p. 240) And he states plainly that this is his own original observation: <em>'This is a matter I have not seen anyone else draw attention to. If someone has, it has not reached me.'</em> (p. 240) -- a rare instance of a direct claim of originality in his corpus.",
+            "pt": "O capítulo se encerra com uma de suas passagens filosoficamente mais originais. Dost relata que, num quarto escuro, um conhecedor do desvelamento vê tudo tão claramente quanto de dia, numa escuridão em que seu companheiro adormecido ao lado nada vê: <em>'Este lugar se iluminou tanto que eu diria que o sol não se pôs.'</em> (p. 240) Ele explica isso: <em>'todo devir é, em sua existência essencial, escuridão, e só pode, portanto, ser visto por meio de duas luzes.'</em> (p. 240) E afirma claramente que esta é sua própria observação original: <em>'Esta é uma questão que não vi ninguém mais chamar atenção. Se alguém o fez, não chegou até mim.'</em> (p. 240) -- uma rara instância de uma reivindicação direta de originalidade em seu corpus."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXII — Kırk Birinci Bölüm, s. 240.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXII — Chapter Forty-One, p. 240.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXII — Capítulo Quarenta e Um, p. 240."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Görmek",
+                "en": "Seeing",
+                "pt": "Ver"
+              },
+              "note": {
+                "tr": "gözün nuru + aydınlanmış cismin nuru = görme",
+                "en": "the light of the eye + the light of the illuminated body = sight",
+                "pt": "a luz do olho + a luz do corpo iluminado = visão"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Var Olmak",
+                "en": "Existing",
+                "pt": "Existir"
+              },
+              "note": {
+                "tr": "mümkünün kabul edici özelliği + Hakkın kudreti = varlık",
+                "en": "the contingent's own receptivity + the Real's power = existence",
+                "pt": "a receptividade do contingente + o poder do Real = existência"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un analojisi: tıpkı görmenin iki ayrı nurun birleşmesini gerektirmesi gibi, mümkün varlığın var oluşu da kendi başına karanlık/yokluktur -- ancak mümkünün 'kabul edicilik'i ile Hakkın kudretinin birleşmesiyle görünür/var olur.",
+            "en": "Dost's analogy: just as sight requires the union of two separate lights, the existence of the contingent is in itself darkness/non-existence -- it becomes visible/existent only through the union of the contingent's own receptivity with the Real's power.",
+            "pt": "A analogia de Dost: assim como a visão requer a união de duas luzes separadas, a existência do contingente é em si escuridão/inexistência -- ela se torna visível/existente apenas através da união da receptividade do próprio contingente com o poder do Real."
+          }
+        }
+      ]
+    },
+    {
+      "id": "futuvvet-teslimiyet-hiyerarsisi",
+      "heading": {
+        "tr": "Fütüvvet: Kendi Arzunu Bırakıp Efendinin Hükmüne Uymak",
+        "en": "Futuwwa: Setting Aside One's Own Desire for the Master's Command",
+        "pt": "Futuwwa: Deixar de Lado o Próprio Desejo pela Ordem do Mestre"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk İkinci Bölüm, fütüvveti (gençlik/yiğitlik) bir 'kuvvet makamı' olarak tanıtıyor, çocukluk ile yaşlılık arası bir dönem olarak konumlandırıyor. Ana tez: bir Genç (fetâ), birbiriyle çatışan iki insanın amaçlarını aynı anda memnun edemez; bu yüzden kendi nefsinin arzusunu bırakıp sadece efendisinin (Allah'ın) hükmüne uyar. Bu, bir teşrifatçılar hiyerarşisiyle somutlaştırılıyor: her ümmetin kendi peygamberi o ümmetin 'kapının teşrifatçısı'dır, ama <em>'Hz. Muhammed ise, diğer peygamberlerden farklı olarak, peygamberliği genel olduğu için teşrifatçıların teşrifatçısıdır. Diğer peygamberler ise, Âdem'den son peygamber ve resule kadar, Hz. Muhammed'in teşrifatçılarıdır.'</em> (s. 247) Hz. Musa örneği veriliyor: Kehf suresinde yanındaki 'Genç' (Yeşu) ona hizmet ederken, Musa'nın kendisi de o dönemde kendi ümmetinin teşrifatçısıydı -- <em>'Musa yaşıyor olsaydı, bana uymaktan başka bir çaresi olmazdı.'</em> (s. 248) hadisiyle bu hiyerarşi pekiştiriliyor.",
+            "en": "Chapter Forty-Two introduces futuwwa (youthfulness/chivalry) as a 'station of strength,' positioning it as a period between childhood and old age. Its central thesis: a Youth (fata) cannot satisfy the conflicting aims of two people at once, and so sets aside his own self's desire to follow only his master's (God's) command. This is given concrete form through a hierarchy of ushers: each community's own prophet is that community's 'usher of the door,' but <em>'Muhammad, unlike the other prophets, is the usher of ushers, since his prophecy is universal. The other prophets, from Adam to the last prophet and messenger, are Muhammad's ushers.'</em> (p. 247) The example of Moses is given: in Surat al-Kahf, the 'Youth' beside him (Joshua) serves him, while Moses himself was, in his own time, the usher of his own community -- reinforced by the hadith, <em>'Had Moses been alive, he would have had no choice but to follow me.'</em> (p. 248)",
+            "pt": "O Capítulo Quarenta e Dois apresenta futuwwa (juventude/cavalaria) como uma 'estação de força,' posicionando-a como um período entre a infância e a velhice. Sua tese central: um Jovem (fata) não pode satisfazer os objetivos conflitantes de duas pessoas ao mesmo tempo, e por isso deixa de lado o desejo de seu próprio eu para seguir apenas a ordem de seu mestre (Deus). Isso ganha forma concreta através de uma hierarquia de introdutores: o próprio profeta de cada comunidade é o 'introdutor da porta' dessa comunidade, mas <em>'Muhammad, diferentemente dos outros profetas, é o introdutor dos introdutores, já que sua profecia é universal. Os outros profetas, de Adão ao último profeta e mensageiro, são introdutores de Muhammad.'</em> (p. 247) É dado o exemplo de Moisés: na Surat al-Kahf, o 'Jovem' ao seu lado (Josué) o serve, enquanto o próprio Moisés era, em seu tempo, o introdutor de sua própria comunidade -- reforçado pelo hadith, <em>'Se Moisés estivesse vivo, não teria escolha senão me seguir.'</em> (p. 248)"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölümde otobiyografik bir iz de var: İbn Arabî, <strong>Fahreddin er-Râzî</strong>ye (Fahr Muhammed b. Ömer b. Hatîb er-Rey) yazdığı 'Risâletü'l-Ahlâk' adlı eserinden bahsediyor (s. 244) -- kendi entelektüel çevresine dair doğrudan bir referans. Fütüvvetin özü, bir hadiste özetleniyor: <em>'Kavmin hizmetkârı onların efendisidir.'</em> (s. 248) Bize göre bu tek cümle, bölümün bütün mantığını taşıyor: hizmet ile efendilik, göründüğü gibi zıt değil, aynı şeyin iki yüzü.",
+            "en": "The chapter also carries an autobiographical trace: Dost mentions his own work, 'The Epistle on Character,' which he wrote for <strong>Fakhr al-Din al-Razi</strong> (Fakhr Muhammad b. Umar b. al-Khatib al-Razi) (p. 244) -- a direct reference to his own intellectual circle. The essence of futuwwa is summarized in a hadith: <em>'The servant of a people is their master.'</em> (p. 248) To us, this single sentence carries the whole chapter's logic: service and mastery are not opposites, as they appear, but two faces of the same thing.",
+            "pt": "O capítulo também traz um traço autobiográfico: Dost menciona sua própria obra, 'A Epístola sobre o Caráter,' que escreveu para <strong>Fakhr al-Din al-Razi</strong> (Fakhr Muhammad b. Umar b. al-Khatib al-Razi) (p. 244) -- uma referência direta ao seu próprio círculo intelectual. A essência de futuwwa é resumida num hadith: <em>'O servo de um povo é seu senhor.'</em> (p. 248) Para nós, esta única frase carrega toda a lógica do capítulo: servir e ser senhor não são opostos, como parecem, mas duas faces da mesma coisa."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ibrahimin-put-kirma-karinca",
+      "heading": {
+        "tr": "İbrahim'in Putları, ve Sofradaki Karınca",
+        "en": "Abraham's Idols, and the Ant at the Table",
+        "pt": "Os Ídolos de Abraão, e a Formiga à Mesa"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Fütüvvet bölümü, Hz. İbrahim'in put kırma kıssasını uzun uzun tahlil ediyor -- putlar konuşabilseydi ne diyecekleri üzerine incelikli bir mantık yürütmeyle. İbn Arabî'ye göre İbrahim'in fütüvveti, <em>'nefsini yaratanı uğruna değil, yaratanının mutlak birliği uğruna satması (feda etmesi)'</em>ydi (s. 247) -- çünkü ortak koşan kişi yaratıcının varlığını değil, sadece birliğini reddediyor. Bölüm, hayvanlara karşı fütüvvet gösterme örneğiyle devam ediyor: bir ziyafet sahibi, sofradaki bir karıncayı zorla kovmak yerine, karınca kendiliğinden gidene kadar konuklara yemeği getirmeyi geciktiriyor (s. 246).",
+            "en": "The futuwwa chapter dwells at length on Abraham's idol-breaking story -- through a careful piece of reasoning about what the idols would say if they could speak. According to Dost, Abraham's futuwwa lay in <em>'selling (sacrificing) himself not for his Creator's sake, but for his Creator's absolute oneness'</em> (p. 247) -- because one who associates partners with God does not deny the Creator's existence, only His oneness. The chapter continues with an example of showing futuwwa toward animals: a host, rather than forcibly driving away an ant at the table, delays bringing food to his guests until the ant leaves on its own (p. 246).",
+            "pt": "O capítulo sobre futuwwa se demora longamente na história de Abraão quebrando os ídolos -- através de um cuidadoso raciocínio sobre o que os ídolos diriam se pudessem falar. Segundo Dost, a futuwwa de Abraão estava em <em>'vender (sacrificar) a si mesmo não por causa de seu Criador, mas pela unicidade absoluta de seu Criador'</em> (p. 247) -- pois quem associa parceiros a Deus não nega a existência do Criador, apenas Sua unicidade. O capítulo continua com um exemplo de demonstrar futuwwa para com os animais: um anfitrião, em vez de afastar à força uma formiga da mesa, atrasa trazer a comida aos convidados até que a formiga saia por conta própria (p. 246)."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "İki Fas anekdotu da fütüvvetin somut örnekleri olarak veriliyor. <strong>Şeyhimiz Ebü Abbas el-Ureybî</strong>ye biri 'Efendimiz! Yakın olanlar iyiliğe daha layıktır' dediğinde, şeyh duraksamadan cevap veriyor: <em>'Tabii ki, Allah'a yakın olanlar.'</em> (s. 249) <strong>Ebü Abdullah Muhammed b. Kasım et-Temimî el-Fâsî</strong>nin ise, kendi mecned bulunduğu meclislerde hiç kimsenin gıybetinin yapılmadığını anlattığı bir anekdot var (s. 249) -- İbn Arabî bu zatın menkıbelerinin ayrı bir eserde ('el-Müstefâde...') toplandığını belirtiyor. Bize göre bu iki Fas anekdotu, Kısım XXI'deki Fas'taki fırıncı sahnesiyle aynı damardan geliyor -- İbn Arabî'nin Fas dönemine dair biriken otobiyografik izlerinden bir başkası.",
+            "en": "Two anecdotes from Fez are also given as concrete examples of futuwwa. When someone tells <strong>our shaykh Abu'l-Abbas al-Urayni</strong>, 'Master! Those who are near deserve kindness more,' the shaykh answers without hesitation: <em>'Of course -- those who are near to God.'</em> (p. 249) There is also an anecdote about <strong>Abu Abdullah Muhammad b. Qasim al-Tamimi al-Fasi</strong>, who relates that in the gatherings he attended, no one was ever spoken ill of behind their back (p. 249) -- Dost notes that this man's accounts are collected in a separate work ('al-Mustafada...'). To us, these two Fez anecdotes come from the same vein as the baker scene in Fez we read in Part XXI -- another piece in the autobiographical traces gathering around Dost's time in Fez.",
+            "pt": "Duas anedotas de Fez também são dadas como exemplos concretos de futuwwa. Quando alguém diz a <strong>nosso xeque Abu'l-Abbas al-Urayni</strong>, 'Mestre! Os que estão próximos merecem mais bondade,' o xeque responde sem hesitar: <em>'Claro -- os que estão próximos de Deus.'</em> (p. 249) Há também uma anedota sobre <strong>Abu Abdullah Muhammad b. Qasim al-Tamimi al-Fasi</strong>, que relata que, nas reuniões que frequentava, nunca se falou mal de ninguém pelas costas (p. 249) -- Dost observa que os relatos desse homem estão reunidos numa obra separada ('al-Mustafada...'). Para nós, essas duas anedotas de Fez vêm da mesma veia da cena do padeiro em Fez que lemos na Parte XXI -- mais uma peça nos traços autobiográficos que se acumulam em torno da passagem de Dost por Fez."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hatmul-velaye-ozdeglendirme",
+      "heading": {
+        "tr": "'Ben Hatmü'l-Velâyeyim': Vera Bölümünün Açılışı",
+        "en": "'I Am the Seal of Sainthood': The Wara' Chapter's Opening",
+        "pt": "'Eu Sou o Selo da Santidade': A Abertura do Capítulo sobre Wara'"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk Üçüncü Bölüm, kısmın en yoğun öz-tanımlama pasajıyla açılıyor -- bir kasidede İbn Arabî kendini doğrudan şöyle tanımlıyor: <em>'Ben hatmü'l-velâyeyim (velîliğin sonu, mührü), hiç kuşkusuz / Mesih ile birlikte, Hâşimî'ye vâris olarak.'</em> (s. 250) Ve hemen ardından: <em>'Aynı zamanda ben soylu Ebû Bekir'im / Her beden ve ruh sahibiyle savaşırım.'</em> (s. 250) Bize göre bu dört unsurlu öz-tanımlama (hatmü'l-velâye + Mesih ortaklığı + Hâşimî'ye vârislik + Ebû Bekir) -- Kısım XX ve XXI'de gördüğümüz Muhammedi/İsevi/Musevi nispet sisteminin en yoğun, en doğrudan ifade edildiği yerlerden biri. Burada İbn Arabî, kendi velâyet iddiasını tek bir kimlikle değil, birkaç referans noktasının kesişimiyle tarif ediyor.",
+            "en": "Chapter Forty-Three opens with the part's most dense act of self-description -- in a qasida, Dost describes himself directly: <em>'I am the seal of sainthood, without doubt / together with the Messiah, as heir to the Hashimite.'</em> (p. 250) And right after: <em>'I am also the noble Abu Bakr / I fight everyone possessed of body and spirit.'</em> (p. 250) To us, this four-part self-description (seal of sainthood + partnership with the Messiah + heirship to the Hashimite + Abu Bakr) is one of the most dense, most direct expressions of the Muhammadan/Christic/Mosaic affiliation system we have seen in Parts XX and XXI. Here Dost describes his own claim to sainthood not through a single identity, but through the intersection of several reference points.",
+            "pt": "O Capítulo Quarenta e Três se abre com o ato de autodescrição mais denso da parte -- numa qasida, Dost se descreve diretamente: <em>'Eu sou o selo da santidade, sem dúvida / junto com o Messias, como herdeiro do Hachemita.'</em> (p. 250) E logo em seguida: <em>'Eu também sou o nobre Abu Bakr / Luto contra todo aquele que possui corpo e espírito.'</em> (p. 250) Para nós, essa autodescrição em quatro partes (selo da santidade + parceria com o Messias + herança do Hachemita + Abu Bakr) é uma das expressões mais densas e diretas do sistema de filiação Muhammadano/Crístico/Mosaico que vimos nas Partes XX e XXI. Aqui Dost descreve sua própria reivindicação de santidade não através de uma única identidade, mas através da interseção de vários pontos de referência."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Vera (kuşkulu şeylerden sakınma), 'yasak olma ihtimali olan her şeyden sakınma' olarak tanımlanıyor, ve makamın kutuplarından örnekler veriliyor: <strong>Ebû Yezîd el-Bistâmî</strong> ve <strong>şeyhimiz Ebû Medyen</strong> 'seçkinlerden', <strong>Bişr-i Hâfî</strong> ise açıkça 'o makamın kutuplarından biri' olarak anılıyor (s. 254). Ahmed b. Hanbel'in kabak yememesi örneği -- Hz. Peygamber'in kabağı nasıl yediğini tam bilmediği için -- ittibâın en ince ayrıntıdaki tezahürü olarak veriliyor (s. 257). Bölüm, serçenin kıyamet günü <em>'Rabbim! Şu adama sor, beni boş yere niçin öldürdü'</em> (s. 258) diye şikâyette bulunacağı rivayetiyle kapanıyor.",
+            "en": "Wara' (guarding against the doubtful) is defined as 'avoiding everything that might possibly be forbidden,' and examples are given of the station's poles: <strong>Abu Yazid al-Bistami</strong> and <strong>our shaykh Abu Madyan</strong> are named among 'the elite,' while <strong>Bishr al-Hafi</strong> is explicitly called 'one of that station's poles' (p. 254). The example of Ahmad ibn Hanbal not eating squash -- because he did not know exactly how the Prophet ate it -- is given as the finest-grained manifestation of following the Prophet's example (p. 257). The chapter closes with the report that on the Day of Resurrection the sparrow will complain, <em>'My Lord! Ask this man why he killed me for nothing.'</em> (p. 258)",
+            "pt": "Wara' (cautela diante do duvidoso) é definido como 'evitar tudo que possa ser proibido,' e são dados exemplos dos polos dessa estação: <strong>Abu Yazid al-Bistami</strong> e <strong>nosso xeque Abu Madyan</strong> são nomeados entre 'a elite,' enquanto <strong>Bishr al-Hafi</strong> é explicitamente chamado 'um dos polos dessa estação' (p. 254). O exemplo de Ahmad ibn Hanbal não comer abóbora -- porque não sabia exatamente como o Profeta a comia -- é dado como a manifestação mais fina de seguir o exemplo do Profeta (p. 257). O capítulo se encerra com o relato de que, no Dia da Ressurreição, o pardal reclamará: <em>'Meu Senhor! Pergunta a este homem por que me matou à toa.'</em> (p. 258)"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXII — Kırk Birinci-Kırk Üçüncü Bölümler, s. 231-258.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXII — Chapters Forty-One to Forty-Three, pp. 231-258.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXII — Capítulos Quarenta e Um a Quarenta e Três, pp. 231-258."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Gece Ehli Kutbu",
+                "en": "Pole of the Night",
+                "pt": "Polo da Noite"
+              },
+              "note": {
+                "tr": "Niffârî -- bilgi durağında duran",
+                "en": "Niffari -- one who stood at the station of knowledge",
+                "pt": "Niffari -- aquele que parou na estação do conhecimento"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Fütüvvet Kutbu",
+                "en": "Pole of Futuwwa",
+                "pt": "Polo da Futuwwa"
+              },
+              "note": {
+                "tr": "Hz. İbrahim -- birliği uğruna kendini feda eden",
+                "en": "Abraham -- who sacrificed himself for the sake of oneness",
+                "pt": "Abraão -- que se sacrificou pela unicidade"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Vera Kutbu",
+                "en": "Pole of Wara'",
+                "pt": "Polo da Wara'"
+              },
+              "note": {
+                "tr": "Bâyezîd Bistâmî, Ebû Medyen, Bişr-i Hâfî",
+                "en": "Bayazid Bistami, Abu Madyan, Bishr al-Hafi",
+                "pt": "Bayazid Bistami, Abu Madyan, Bishr al-Hafi"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Bu kısımdaki üç bölümün üçü de başlığında 'kutup' geçiriyor -- bize göre bu, kutbiyetin tek bir zirve değil, her erdem alanının kendi merkezine sahip olduğu çoğul bir yapı olarak okunabileceğine işaret ediyor. Bu bir okuma denemesi; ilerleyen kısımlarda bu örüntünün tekrar edip etmediğini izlemeye devam edeceğiz.",
+            "en": "All three chapters in this part name a 'pole' in their title -- to us, this suggests pole-hood might be read not as a single peak, but as a plural structure in which each field of virtue has its own center. This is a tentative reading; we will keep watching whether this pattern recurs in later parts.",
+            "pt": "Os três capítulos desta parte nomeiam um 'polo' em seu título -- para nós, isso sugere que a condição de polo talvez possa ser lida não como um único cume, mas como uma estrutura plural em que cada campo de virtude tem seu próprio centro. Esta é uma leitura provisória; continuaremos observando se esse padrão se repete em partes posteriores."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXII — Gece Ehlinin Bilinmesi, Tabakalarının Farklılığı, Mertebelerindeki Farklılaşma, Kutuplarının Sırları, s. 231-241.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXII — Knowing the People of the Night, the Difference of Their Ranks, the Distinctions Among Their Stations, the Secrets of Their Poles, pp. 231-241.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXII — Conhecendo o Povo da Noite, a Diferença de Seus Graus, as Distinções entre Suas Estações, os Segredos de Seus Polos, pp. 231-241."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXII — Fütüvvet ve Gençlerin Bilinmesi, Menzilleri, Tabakaları ve Kutuplarının Sırları, s. 242-249.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXII — Knowing Futuwwa and the Youths, Their Stations, Their Ranks and the Secrets of Their Poles, pp. 242-249.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXII — Conhecendo a Futuwwa e os Jovens, Suas Estações, Seus Graus e os Segredos de Seus Polos, pp. 242-249."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXII — Kuşkulu Şeylerden Sakınanların Kutuplarından Bir Grubun Bilinmesi, Bu Makamın Genel Durumu, s. 250-258.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXII — Knowing a Group Among the Poles of Those Who Guard Against the Doubtful, the General State of This Station, pp. 250-258.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXII — Conhecendo um Grupo entre os Polos dos que se Cautelam do Duvidoso, o Estado Geral desta Estação, pp. 250-258."
+    }
+  ]
+}

@@ -1,0 +1,933 @@
+{
+  "id": "c3k31",
+  "cilt": 3,
+  "kisim": 31,
+  "status": "active",
+  "title": {
+    "tr": "Mest Üzerine Mesh, Sular ve Abdesti Bozan Şeyler: Tenzihin Beş Kaynağı",
+    "en": "Wiping Over Footwear, Waters, and What Breaks Ablution: The Five Sources of Transcendence",
+    "pt": "O Gesto de Esfregar Sobre o Calçado, as Águas, e o Que Invalida a Ablução: As Cinco Fontes da Transcendência"
+  },
+  "pageRange": "97-130",
+  "hero": {
+    "summary": {
+      "tr": "Kısım XXXI, önceki kısmın (c3k30) tek bölümünün devamı olarak, taharetin en ince fıkhî ayrıntılarına giriyor: mest üstüne mesh, çoraba mesh, yırtık mest, meshin süresi ve şartları, genel su hükümleri, az/çok su, kullanılmış su, hayvan ve insan artığı, nebiz ile abdest, ve son olarak abdesti bozan şeyler. Metnin kendi üç ana BAB'ı (Mest Üstüne Meshetmek / Neye Mesh Yapılır / Artık Sularla Temizlenme) altında, ikinci BAB beklenenden çok daha geniş bir alana yayılıyor -- çorap tartışmasından çıkıp neredeyse bütün su hükümlerini içine alıyor. Bize göre kısmın altını çizmeye değer tarafı şu: hemen her VASIL'de aynı soru tekrarlanıyor -- bu tenzih (Hakkı tenzih etme/münezzeh kılma) kimin işi, kime dönüyor? Bazen cevap doğrudan Hakkın kendisi (mestin üstü, en yüce Rabbin ismi), bazen kulun kendi ameli (mestin altı, müstehap), bazen de doğrudan bir ilâhî isim (el-Bâtın, ez-Zâhir, el-Cebbar) oluyor. Kısım ayrıca -- bize göre kısmın en dikkat çekici anlarından biri -- deniz suyu tartışmasını Hakkın gazap sıfatına bağlarken, kimsenin kızacağı bir şey görmeyen insanın halini açıkça \"hayret makamı\" olarak adlandırıyor. Kısım, dışkının çıkışını münafığın sözüyle karşılaştıran bir pasajla kapanıp Otuz İkinci Kısım'a bırakıyor yerini.",
+      "en": "Part XXXI, continuing the single chapter of the previous part (c3k30), takes up the finest legal details of ritual purity: wiping over footwear, wiping over socks, torn footwear, the duration and conditions of the wipe, general rulings on water, water in small or large quantity, used water, animal and human leftover water, ablution with date-wine, and finally what breaks ablution. Under the text's own three main chapter-headings (Wiping Over Footwear / What Is Wiped Upon / Purifying with Leftover Waters), the second heading spreads far wider than expected -- moving past socks into nearly the whole of water law. To us, what stands out is that nearly every hidden-meaning passage (vasl) returns to the same question: whose transcending is this -- whose declaring God beyond likeness -- and to whom does it return? Sometimes the answer is the Real Himself (the top of the footwear, the Name \"Most High\"), sometimes the servant's own act (the sole, merely recommended), and sometimes a specific divine Name (al-Batin, al-Zahir, al-Jabbar). We also find, in what strikes us as one of the part's most striking moments, the discussion of sea-water tied to the divine attribute of wrath, while the state of a person who sees no one in creation worthy of anger is named outright as \"the station of bewilderment\" (hayrah). The part closes comparing the exiting of excrement to the speech of the hypocrite, handing off to Part XXXII.",
+      "pt": "A Parte XXXI, dando continuidade ao capítulo único da parte anterior (c3k30), trata dos detalhes legais mais finos da pureza ritual: esfregar sobre o calçado, esfregar sobre meias, calçado rasgado, a duração e as condições do gesto, regras gerais sobre a água, água em pequena ou grande quantidade, água usada, restos de água de animais e de humanos, ablução com vinho de tâmara, e finalmente o que invalida a ablução. Sob os três títulos principais do próprio texto (Esfregar Sobre o Calçado / Sobre o Que se Esfrega / Purificação com Águas Residuais), o segundo título se espalha muito mais do que o esperado -- passando das meias para quase toda a lei da água. Para nós, o que se destaca é que quase toda passagem de sentido oculto (vasl) retorna à mesma questão: de quem é essa transcendência -- essa declaração de que Deus está além da semelhança -- e para quem ela retorna? Às vezes a resposta é o próprio Real (o topo do calçado, o Nome \"o Mais Alto\"), às vezes o próprio ato do servo (a sola, apenas recomendado), e às vezes um Nome divino específico (al-Batin, al-Zahir, al-Jabbar). Encontramos também, no que nos parece um dos momentos mais marcantes da parte, a discussão da água do mar ligada ao atributo divino da ira, enquanto o estado de quem não vê ninguém na criação digno de raiva é nomeado abertamente como \"a estação do assombro\" (hayrah). A parte se encerra comparando a saída do excremento à fala do hipócrita, passando o bastão para a Parte XXXII."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Metin bu kısmı üç BAB altında topluyor (Mest Üstüne Mesh / Neye Mesh Yapılır / Artık Sularla Temizlenme), ama bize göre bunların hepsinde tekrarlayan bir soru var: bu tenzih kimin? Aşağıdaki ağaç, kısmın kendi BAB yapısını değil, bizim önerdiğimiz bu ortak sorunun izini takip ediyor.",
+      "en": "The text groups this part under three main chapters (Wiping Over Footwear / What Is Wiped Upon / Purifying with Leftover Waters), but to us a recurring question runs through all of them: whose transcending is this? The tree below does not follow the part's own chapter structure but traces this shared question, as we propose reading it.",
+      "pt": "O texto agrupa esta parte sob três capítulos principais (Esfregar Sobre o Calçado / Sobre o Que se Esfrega / Purificação com Águas Residuais), mas para nós há uma questão recorrente em todos eles: de quem é essa transcendência? A árvore abaixo não segue a estrutura de capítulos da própria parte, mas rastreia essa questão compartilhada, como propomos lê-la."
+    },
+    "tree": {
+      "id": "tenzih-kimin-tree",
+      "label": {
+        "tr": "Tekrarlayan Soru: Bu Tenzih Kimin? (Kısım XXXI'e Önerilen Bir Okuma)",
+        "en": "The Recurring Question: Whose Transcending Is This? (A Proposed Reading of Part XXXI)",
+        "pt": "A Questão Recorrente: De Quem É Essa Transcendência? (Uma Leitura Proposta da Parte XXXI)"
+      },
+      "note": {
+        "tr": "hemen her VASIL'de aynı ayrım tekrar ediyor gibi görünüyor",
+        "en": "the same distinction seems to recur in nearly every vasl",
+        "pt": "a mesma distinção parece se repetir em quase todo vasl"
+      },
+      "children": [
+        {
+          "id": "hakka-ait-tenzih",
+          "label": {
+            "tr": "Hakka Ait Tenzih",
+            "en": "Transcendence Belonging to the Real",
+            "pt": "Transcendência Pertencente ao Real"
+          },
+          "note": {
+            "tr": "zâtın kendisi gereği, gerçek ve zorunlu",
+            "en": "necessary and real, by virtue of the Essence itself",
+            "pt": "necessária e real, em virtude da própria Essência"
+          },
+          "children": [
+            {
+              "id": "mestin-ustu-ornegi",
+              "label": {
+                "tr": "Mestin Üstü: \"En Yüce Rabbinin İsmini Tesbih Et\"",
+                "en": "The Top of the Footwear: \"Glorify the Name of Your Most High Lord\"",
+                "pt": "O Topo do Calçado: \"Glorifica o Nome do Teu Senhor Altíssimo\""
+              }
+            },
+            {
+              "id": "el-batin-ez-zahir-ornegi",
+              "label": {
+                "tr": "el-Bâtın / ez-Zâhir İsimlerinden Gelen Tenzih",
+                "en": "Transcendence Arising from the Names al-Batin / al-Zahir",
+                "pt": "Transcendência Decorrente dos Nomes al-Batin / al-Zahir"
+              }
+            }
+          ]
+        },
+        {
+          "id": "kula-ait-tenzih",
+          "label": {
+            "tr": "Kula Ait Tenzih",
+            "en": "Transcendence Belonging to the Servant",
+            "pt": "Transcendência Pertencente ao Servo"
+          },
+          "note": {
+            "tr": "arizî, sonucu kendisine döner, müstehap düzeyinde kalır",
+            "en": "accidental, its result returns to the servant, stays at the level of the recommended",
+            "pt": "acidental, seu resultado retorna ao servo, permanece no nível do recomendado"
+          },
+          "children": [
+            {
+              "id": "mestin-alti-ornegi",
+              "label": {
+                "tr": "Mestin Altı: Kulun Amelinin Kendine Dönüşü",
+                "en": "The Sole of the Footwear: The Servant's Act Returning to Himself",
+                "pt": "A Sola do Calçado: O Ato do Servo Retornando a Si Mesmo"
+              }
+            },
+            {
+              "id": "mest-corap-delil-ornegi",
+              "label": {
+                "tr": "Mest/Çorap: Delil Olma Gücündeki Fark",
+                "en": "Footwear/Socks: The Difference in the Power to Serve as Proof",
+                "pt": "Calçado/Meias: A Diferença no Poder de Servir como Prova"
+              }
+            }
+          ]
+        },
+        {
+          "id": "aradaki-gecis",
+          "label": {
+            "tr": "Aradaki Geçiş: Öğreten-Öğrenen, Delil-Medlul",
+            "en": "The Passage Between: Teacher-Learner, Indicant-Indicated",
+            "pt": "A Passagem Entre: Professor-Aluno, Indicador-Indicado"
+          },
+          "note": {
+            "tr": "tenzih bir bilgi/amel olarak bir taraftan diğerine \"yolculuk\" eder",
+            "en": "transcendence, as a knowledge/act, \"travels\" from one side to the other",
+            "pt": "a transcendência, como conhecimento/ato, \"viaja\" de um lado para o outro"
+          },
+          "children": [
+            {
+              "id": "mesh-suresi-ornegi",
+              "label": {
+                "tr": "Mesh Süresi: Öğretmenin Üç Kez Tekrarı",
+                "en": "Duration of the Wipe: The Teacher's Threefold Repetition",
+                "pt": "Duração do Gesto: A Tríplice Repetição do Professor"
+              }
+            },
+            {
+              "id": "yirtik-mest-ornegi",
+              "label": {
+                "tr": "Yırtık Mest: Şeriatın \"Yırtılması\" ve Tevhide Geçiş",
+                "en": "Torn Footwear: The Law \"Tearing\" and the Passage to Oneness",
+                "pt": "Calçado Rasgado: A Lei \"Se Rasgando\" e a Passagem à Unicidade"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "acilis-mest-mesh-ihtilafi",
+      "heading": {
+        "tr": "Açılış: Mest Üstüne Mesh Hakkında Zâhir İhtilaf",
+        "en": "Opening: The Outward Dispute Over Wiping Over Footwear",
+        "pt": "Abertura: A Disputa Exterior Sobre Esfregar Sobre o Calçado"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Kısım XXX'ün (c3k30) tek bölümünün -- Altmış Sekizinci Bölüm, \"Temizliğin Sırları\" -- devamı olarak açılıyor; yeni bir BÖLÜM başlığı yok, doğrudan yeni bir BAB ile başlıyor (s. 97). Dost önce şeriat bilginlerinin mest üstüne mesh konusundaki zâhir ihtilafını özetliyor: kimileri bunu genel olarak caiz görürken (İbn Abbas gibi) bir kısmı reddediyor, bir kısmı ise sadece yolculukta caiz görüyor. Bu kısımda da, c3k30'da kurulan yöntem aynen sürüyor: her zâhir ihtilaf, bir VASIL ile bâtınî bir okumaya bağlanıyor.",
+            "en": "The part opens as a continuation of Part XXX's (c3k30) single chapter -- Chapter Sixty-Eight, \"The Secrets of Purity\" -- with no new chapter heading, moving straight into a new bab (p. 97). Dost first summarizes the jurists' outward dispute over wiping over footwear: some hold it generally permissible (like Ibn Abbas), some reject it, and some allow it only while traveling. Here too the method set up in c3k30 continues unchanged: every outward dispute is tied, through a vasl, to a hidden reading.",
+            "pt": "A parte se abre como continuação do capítulo único da Parte XXX (c3k30) -- o Capítulo Sexagésimo Oitavo, \"Os Segredos da Pureza\" -- sem novo título de capítulo, entrando direto em um novo bab (p. 97). Dost primeiro resume a disputa exterior dos juristas sobre esfregar sobre o calçado: alguns o consideram geralmente permitido (como Ibn Abbas), alguns o rejeitam, e alguns o permitem apenas em viagem. Aqui também o método estabelecido em c3k30 continua sem mudança: toda disputa exterior é ligada, por meio de um vasl, a uma leitura oculta."
+          }
+        }
+      ]
+    },
+    {
+      "id": "mest-perde-kul-hakka-perdedir",
+      "heading": {
+        "tr": "Mest Bir Perdedir: Kul Hakka Perdedir",
+        "en": "The Footwear Is a Veil: The Servant Is a Veil Before the Real",
+        "pt": "O Calçado É um Véu: O Servo É um Véu Diante do Real"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İlk VASIL'in (s. 98-99) kurduğu okuma şu: mest, abdest alan kişi ile suyun ayağa ulaşması arasında bir perdedir -- tıpkı insanın Hakkı tenzih etmesinin (münezzeh/tenzih edilmiş kılmasının) böyle bir perde olması gibi. Dost'un dikkat çektiği nokta şu: \"Hak, kendisi nedeniyle, zâtı tenzih edilendir, yoksa kulun tenzihi nedeniyle tenzih edilmiş değildir.\" Yani kul Hakkı tenzih ettiğinde, bu tenzihin sonucu gerçekte Hakka ulaşmaz -- Hak zaten kendi zâtı gereği münezzehtir. Sonuç, tenzihi yapan kula döner: kul, kendini bilgisizlikten temizlemiş olur. Dost bunu \"kul Hakka perdedir\" diye özetliyor -- fiillerin gerçek faili Haktan kaynaklanır, ama insanlar bunu göremediği için kul \"yaptım, oruç tuttum, namaz kıldım\" der ve fiilleri kendine izafe eder.",
+            "en": "The first vasl (pp. 98-99) sets up this reading: the footwear is a veil between the person performing ablution and the water reaching the foot -- just as a person's declaring God transcendent (tanzih) is itself such a veil. What Dost draws attention to is this: \"the Real, by virtue of Himself, is the one whose Essence is transcendent -- He is not made transcendent because of the servant's tanzih.\" That is, when the servant declares God transcendent, the result of this declaration does not actually reach the Real -- He is already transcendent by virtue of His own Essence. The result returns instead to the servant performing the declaring: the servant purifies himself of ignorance. Dost summarizes this as \"the servant is a veil before the Real\" -- the true agent behind acts originates from the Real, but since people cannot see this, the servant says \"I did it, I fasted, I prayed\" and attributes the acts to himself.",
+            "pt": "O primeiro vasl (pp. 98-99) estabelece esta leitura: o calçado é um véu entre a pessoa que realiza a ablução e a água que alcança o pé -- assim como declarar Deus transcendente (tanzih) por parte de uma pessoa é, em si, um véu desse tipo. O que Dost destaca é isto: \"o Real, em virtude de Si mesmo, é aquele cuja Essência é transcendente -- Ele não se torna transcendente por causa do tanzih do servo.\" Ou seja, quando o servo declara Deus transcendente, o resultado dessa declaração não alcança de fato o Real -- Ele já é transcendente em virtude de Sua própria Essência. O resultado retorna, em vez disso, ao servo que realiza a declaração: o servo se purifica da ignorância. Dost resume isso como \"o servo é um véu diante do Real\" -- o verdadeiro agente por trás dos atos se origina do Real, mas como as pessoas não conseguem ver isso, o servo diz \"eu fiz isso, eu jejuei, eu orei\" e atribui os atos a si mesmo."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Mest Üstüne Meshetmek, VASIL: Meselenin Bâtıni Hükmü, s. 98-99.",
+            "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- Wiping Over Footwear, Vasl: The Hidden Ruling, pp. 98-99.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- Esfregar Sobre o Calçado, Vasl: A Regra Oculta, pp. 98-99."
+          },
+          "pair": {
+            "left": {
+              "id": "hakkin-tenzihi",
+              "label": {
+                "tr": "Hakkın Tenzihi",
+                "en": "The Real's Own Transcendence",
+                "pt": "A Própria Transcendência do Real"
+              },
+              "note": {
+                "tr": "öz gereği, zaten gerçek -- kulun tenzihine muhtaç değil",
+                "en": "already real by virtue of the Essence -- not in need of the servant's declaring",
+                "pt": "já real em virtude da Essência -- não precisa da declaração do servo"
+              }
+            },
+            "right": {
+              "id": "kulun-tenzihi",
+              "label": {
+                "tr": "Kulun Tenzihi",
+                "en": "The Servant's Declaring-Transcendent",
+                "pt": "A Declaração-Transcendente do Servo"
+              },
+              "note": {
+                "tr": "arizî bir bilgi/amel -- sonucu Hakka değil, kulun kendisine döner",
+                "en": "an accidental knowledge/act -- its result returns not to the Real but to the servant himself",
+                "pt": "um conhecimento/ato acidental -- seu resultado retorna não ao Real, mas ao próprio servo"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Bu ikilik metinde açıkça kurulu -- bize göre kısmın geri kalanındaki hemen her VASIL, bu iki taraftan hangisine ait olduğunu soruşturan bir varyasyon.",
+            "en": "This duality is clearly established in the text -- to us, nearly every subsequent vasl in the part is a variation asking which of these two sides a given ruling belongs to.",
+            "pt": "Essa dualidade está claramente estabelecida no texto -- para nós, quase todo vasl subsequente na parte é uma variação perguntando a qual desses dois lados pertence uma dada regra."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ayagin-nispeti-hervele-kosma",
+      "heading": {
+        "tr": "Ayağın Allah'a Nispeti: \"Hervele\" (Koşma) ve el-Cebbar",
+        "en": "The Foot's Relation to God: \"Harwala\" (Running) and al-Jabbar",
+        "pt": "A Relação do Pé com Deus: \"Harwala\" (Correr) e al-Jabbar"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Aynı VASIL içinde (s. 99-101) Dost, \"el-Cebbar ayağını ateşe koyar\" hadisindeki \"ayak\" ifadesinin, yaratık ayağıyla karıştırılabileceği (eş-adlılık/iştirak-i lafzî) sorununu ele alıyor. Çözüm olarak, Allah'ın kendini \"hervele\" (hızlı yürüme, koşma) fiiliyle nitelediğine dikkat çekiyor: bu, \"ayak\" sözünün bilinçli bir nispet olduğunu, ama yaratık ayağına benzemediğini gösteriyor -- \"O'nun benzeri yoktur\" âyeti bunu sınırlıyor. Dost'un vurgusu: akıl bu nispeti reddedebilir, ama iman şeriatın söylediğini olduğu gibi kabul eder ve \"nasıl\" olduğunu Allah'a bırakır. Mest üstüne mest giymek de aynı şekilde, koşma özelliğiyle nitelenmiş oluyor -- çünkü koşmak yürümenin, yürümek ise ayağın bir özelliği.",
+            "en": "Within the same vasl (pp. 99-101), Dost takes up the problem that the word \"foot\" in the hadith \"al-Jabbar puts His foot in the Fire\" might be confused with a created foot (a problem of homonymy). His solution draws attention to God describing Himself with the act of \"harwala\" (fast walking, running): this shows that the word \"foot\" is a conscious relation, yet unlike a created foot -- the verse \"there is nothing like Him\" bounds it. Dost's emphasis: reason may reject this relation, but faith accepts what the Law says as it is, leaving the \"how\" to God. Wearing footwear over footwear is likewise described by the quality of running -- since running is a quality of walking, and walking a quality of the foot.",
+            "pt": "Dentro do mesmo vasl (pp. 99-101), Dost aborda o problema de que a palavra \"pé\" no hadith \"al-Jabbar coloca Seu pé no Fogo\" pode ser confundida com um pé criado (um problema de homonímia). Sua solução chama atenção para Deus descrever a Si mesmo com o ato de \"harwala\" (caminhar rápido, correr): isso mostra que a palavra \"pé\" é uma relação consciente, mas diferente de um pé criado -- o versículo \"nada é semelhante a Ele\" a delimita. A ênfase de Dost: a razão pode rejeitar essa relação, mas a fé aceita o que a Lei diz tal como é, deixando o \"como\" para Deus. Vestir calçado sobre calçado é igualmente descrito pela qualidade de correr -- já que correr é uma qualidade de caminhar, e caminhar uma qualidade do pé."
+          }
+        }
+      ]
+    },
+    {
+      "id": "iki-mest-beden-ruh",
+      "heading": {
+        "tr": "İki Mest: Beden ve Ruh Yaratılışı",
+        "en": "Two Kinds of Footwear: The Creation of Body and Spirit",
+        "pt": "Dois Tipos de Calçado: A Criação do Corpo e do Espírito"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İlk BAB'ın son VASIL'i (\"VASIL ve TAMAMLAMA\", s. 102) kısa ama yoğun: iki mest hakkındaki hüküm, bâtında iki yaratılışa işaret ediyor -- beden yaratılışı ve ruh yaratılışı. Dost'un notu kısa: \"Her yaratılışın kendine yaraşır bir temizliği vardır.\" Bu, c3k30'da kurulan \"manevi temizlik / maddi temizlik\" ikili yapısını (nefis-akıl-sır üçlüsü ile organların temizliği) hatırlatan, ama burada beden/ruh ikiliği üzerinden yeniden söylenen bir motif gibi okunabilir.",
+            "en": "The last vasl of the first bab (\"Vasl and Completion,\" p. 102) is brief but dense: the ruling on two layers of footwear points, in its hidden sense, to two kinds of creation -- the creation of the body and the creation of the spirit. Dost's note is terse: \"Every creation has the purification befitting it.\" This can be read as recalling the twofold structure set up in c3k30 (spiritual purity of self/intellect/innermost secret versus material purity of the organs), here restated through the body/spirit pairing.",
+            "pt": "O último vasl do primeiro bab (\"Vasl e Complemento\", p. 102) é breve, mas denso: a regra sobre duas camadas de calçado aponta, em seu sentido oculto, para dois tipos de criação -- a criação do corpo e a criação do espírito. A nota de Dost é concisa: \"Toda criação tem a purificação que lhe convém.\" Isso pode ser lido como uma retomada da estrutura dupla estabelecida em c3k30 (pureza espiritual do ego/intelecto/segredo íntimo versus pureza material dos órgãos), aqui reafirmada através do par corpo/espírito."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- VASIL ve TAMAMLAMA, s. 102.",
+            "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- Vasl and Completion, p. 102.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- Vasl e Complemento, p. 102."
+          },
+          "pair": {
+            "left": {
+              "id": "beden-yaratilisi",
+              "label": {
+                "tr": "Beden Yaratılışı",
+                "en": "The Creation of the Body",
+                "pt": "A Criação do Corpo"
+              },
+              "note": {
+                "tr": "kendine yaraşır bir temizliği var",
+                "en": "has its own befitting purification",
+                "pt": "tem sua própria purificação que lhe convém"
+              }
+            },
+            "right": {
+              "id": "ruh-yaratilisi",
+              "label": {
+                "tr": "Ruh Yaratılışı",
+                "en": "The Creation of the Spirit",
+                "pt": "A Criação do Espírito"
+              },
+              "note": {
+                "tr": "kendine yaraşır ayrı bir temizliği var",
+                "en": "has a different befitting purification of its own",
+                "pt": "tem uma purificação diferente que lhe é própria"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost bu ikiliği sadece bir cümleyle açıyor (\"Anlayınız!\") -- burada sadece görselleştiriyoruz, ayrıntısını kendisi doldurmuyor.",
+            "en": "Dost opens this duality in a single sentence (\"Understand!\") -- we only visualize it here; he does not fill in its detail himself.",
+            "pt": "Dost abre essa dualidade em uma única frase (\"Compreenda!\") -- aqui apenas a visualizamos; ele mesmo não preenche seu detalhe."
+          }
+        }
+      ]
+    },
+    {
+      "id": "mestin-ustu-alti-zahir-batin-isimleri",
+      "heading": {
+        "tr": "Mestin Üstü ve Altı: ez-Zâhir ve el-Bâtın İsimleri",
+        "en": "The Top and Sole of the Footwear: The Names al-Zahir and al-Batin",
+        "pt": "O Topo e a Sola do Calçado: Os Nomes al-Zahir e al-Batin"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısmın en yoğun teorik pasajı burada (s. 102-104): meshin mestin üstünde mi altında mı farz olduğu tartışması, tenzihin beş ayrı \"kaynağına\" göre okunuyor. (1) Yükseklik Allah'a aittir -- \"En yüce Rabbinin ismini tesbih et\" âyeti mestin üstünün meshine bağlanıyor, aşağıda olmak ise kula ait. (2) Tenzihin kula izafe edilmesi müstehap düzeyinde kalıyor -- mestin altını meshetmek bu görüşe denk düşüyor. (3) Bazen tenzih, Hakkın hem zâhir hem bâtın olması bakımından ilişiyor -- bu, mestin hem içinin hem dışının meshini farz görenlerin okuması. (4) Bazen tenzih, Hakkın zâtındaki yetkinlik nedeniyle zorunlu oluyor -- bu görüşte olan, yaratıkları tenzih etmeyi (bir yetkinlik sıfatıyla) müstehap saymıyor. (5) Son olarak, doğrudan el-Bâtın isminden kaynaklanan bir tenzih var: \"Bâtın, bâtın olmak nedeniyle taşıdığı celal özellikleriyle bilinmeyi uzaklaştıran bir yerdir\" -- bu yüzden mestin altını meshi farz, üstünü müstehap gören Eşheb gibi bilginlerin görüşü buraya bağlanıyor. ez-Zâhir isminden gelen tenzih ise, Hakkın kullarına \"suretlerde tecelli\"sini herhangi bir suretle sınırlamamayı ifade ediyor.",
+            "en": "The part's most theoretically dense passage is here (pp. 102-104): the dispute over whether the wipe is obligatory on the top or the sole of the footwear is read through five distinct \"sources\" of transcendence. (1) Height belongs to God -- the verse \"glorify the name of your Most High Lord\" is tied to wiping the top, while lowness belongs to the servant. (2) Attributing transcendence to the servant stays at the level of the recommended -- wiping the sole corresponds to this view. (3) Sometimes transcendence touches the Real by virtue of His being both outward and hidden -- this is the reading of those who hold wiping both the inside and outside obligatory. (4) Sometimes transcendence becomes necessary because of a perfection in the Essence itself -- on this view, one does not consider it recommended to declare creatures transcendent of a perfection-quality. (5) Finally, there is a transcendence arising directly from the Name al-Batin: \"the Hidden is a place that, by virtue of being hidden, keeps itself unknown through the majestic qualities it carries\" -- hence scholars like Ashhab, who hold wiping the sole obligatory and the top merely recommended, are tied to this. Transcendence from the Name al-Zahir, meanwhile, expresses not confining God's self-disclosure \"in forms\" to any single form.",
+            "pt": "A passagem teoricamente mais densa da parte está aqui (pp. 102-104): a disputa sobre se o gesto de esfregar é obrigatório no topo ou na sola do calçado é lida através de cinco fontes distintas de transcendência. (1) A altura pertence a Deus -- o versículo \"glorifica o nome do teu Senhor Altíssimo\" está ligado a esfregar o topo, enquanto o baixo pertence ao servo. (2) Atribuir a transcendência ao servo permanece no nível do recomendado -- esfregar a sola corresponde a essa visão. (3) Às vezes a transcendência toca o Real em virtude de Ele ser tanto exterior quanto oculto -- esta é a leitura daqueles que consideram obrigatório esfregar tanto o interior quanto o exterior. (4) Às vezes a transcendência se torna necessária por causa de uma perfeição na própria Essência -- nessa visão, não se considera recomendado declarar as criaturas transcendentes de uma qualidade de perfeição. (5) Por fim, há uma transcendência que surge diretamente do Nome al-Batin: \"o Oculto é um lugar que, por ser oculto, mantém-se desconhecido através das qualidades de majestade que carrega\" -- daí eruditos como Ashhab, que consideram obrigatório esfregar a sola e apenas recomendado o topo, estarem ligados a isso. A transcendência a partir do Nome al-Zahir, por sua vez, expressa não confinar a autorrevelação de Deus \"em formas\" a nenhuma forma única."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Meste Meshin Tanımlanması ve Bunun Anlamı, VASIL: Bu Konunun Bâtındaki Hükmü, s. 102-104.",
+            "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- The Definition of Wiping and Its Meaning, Vasl: The Hidden Ruling, pp. 102-104.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- A Definição do Gesto de Esfregar e Seu Significado, Vasl: A Regra Oculta, pp. 102-104."
+          },
+          "tree": {
+            "id": "tenzihin-bes-kaynagi-tree",
+            "label": {
+              "tr": "Tenzihin Beş Kaynağı",
+              "en": "The Five Sources of Transcendence",
+              "pt": "As Cinco Fontes da Transcendência"
+            },
+            "note": {
+              "tr": "mestin üstü/altı meselesine Dost'un verdiği beş ayrı okuma",
+              "en": "the five distinct readings Dost gives to the question of the top/sole of the footwear",
+              "pt": "as cinco leituras distintas que Dost dá à questão do topo/sola do calçado"
+            },
+            "children": [
+              {
+                "id": "hakkin-kendisi",
+                "label": {
+                  "tr": "Hakkın Kendisi",
+                  "en": "The Real Himself",
+                  "pt": "O Próprio Real"
+                },
+                "note": {
+                  "tr": "yükseklik Allah'a ait -- mestin üstü",
+                  "en": "height belongs to God -- the top of the footwear",
+                  "pt": "a altura pertence a Deus -- o topo do calçado"
+                }
+              },
+              {
+                "id": "kulun-ameli",
+                "label": {
+                  "tr": "Kulun Ameli",
+                  "en": "The Servant's Own Act",
+                  "pt": "O Próprio Ato do Servo"
+                },
+                "note": {
+                  "tr": "müstehap düzeyinde -- mestin altı",
+                  "en": "at the level of the recommended -- the sole of the footwear",
+                  "pt": "no nível do recomendado -- a sola do calçado"
+                }
+              },
+              {
+                "id": "zahir-batin-olmasi",
+                "label": {
+                  "tr": "Hakkın Hem Zâhir Hem Bâtın Olması",
+                  "en": "The Real Being Both Outward and Hidden",
+                  "pt": "O Real Sendo Tanto Exterior Quanto Oculto"
+                },
+                "note": {
+                  "tr": "mestin hem içi hem dışı farz",
+                  "en": "both inside and outside obligatory",
+                  "pt": "tanto o interior quanto o exterior obrigatórios"
+                }
+              },
+              {
+                "id": "zatindaki-yetkinlik",
+                "label": {
+                  "tr": "Zâtındaki Yetkinlik",
+                  "en": "The Perfection in His Essence",
+                  "pt": "A Perfeição em Sua Essência"
+                },
+                "note": {
+                  "tr": "yaratıkları bu sıfatla tenzih müstehap sayılmaz",
+                  "en": "declaring creatures transcendent by this quality is not held recommended",
+                  "pt": "declarar as criaturas transcendentes por essa qualidade não é tido como recomendado"
+                }
+              },
+              {
+                "id": "el-batin-ez-zahir",
+                "label": {
+                  "tr": "el-Bâtın / ez-Zâhir İsimleri",
+                  "en": "The Names al-Batin / al-Zahir",
+                  "pt": "Os Nomes al-Batin / al-Zahir"
+                },
+                "note": {
+                  "tr": "el-Bâtın'dan tenzih vacip (alt farz), ez-Zâhir suretle sınırlanmaz (üst müstehap)",
+                  "en": "transcendence from al-Batin is obligatory (sole obligatory), al-Zahir is not confined to a form (top recommended)",
+                  "pt": "a transcendência a partir de al-Batin é obrigatória (sola obrigatória), al-Zahir não se confina a uma forma (topo recomendado)"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Bu beş dallanma metnin kendi ayrımı -- biz sadece art arda gelen paragrafları bir ağaç olarak düzenledik. el-Bâtın/ez-Zâhir dalı, kısmın esma.json'daki mevcut isim node'larıyla en güçlü örtüştüğü yer.",
+            "en": "These five branches are the text's own distinctions -- we have simply organized the successive paragraphs as a tree. The al-Batin/al-Zahir branch is where the part overlaps most strongly with the existing Name nodes in esma.json.",
+            "pt": "Esses cinco ramos são as próprias distinções do texto -- apenas organizamos os parágrafos sucessivos como uma árvore. O ramo al-Batin/al-Zahir é onde a parte mais se sobrepõe aos nós de Nomes já existentes em esma.json."
+          }
+        }
+      ]
+    },
+    {
+      "id": "mest-corap-guclu-zayif-delil-melamet",
+      "heading": {
+        "tr": "Mest ve Çorap: Güçlü/Zayıf Delil, ve Melâmet",
+        "en": "Footwear and Socks: Strong/Weak Proof, and Malamat",
+        "pt": "Calçado e Meias: Prova Forte/Fraca, e Malamat"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İkinci BAB'ın (\"Neye Mesh Yapılır\", s. 104-106) VASIL'i, mest ile çorabı karşılaştırıyor: mest suyu geçirmediği için güçlü bir perde/delildir, çorap ise gedikli olduğundan zayıf. Bâtında bu, insanların Allah'a delil olma güçlerindeki farka bağlanıyor -- \"Allah'ın velileri kimdir?\" sorusuna Hz. Peygamber'in \"görüldüklerinde Allah hatırlanan kimseler\" cevabı aktarılıyor (Ebu Nuaym, *Hilyetü'l-evliyâ*'dan). Ardından deri kaplı mest, doğrudan Melâmet ehline işaret ediyor: böyle bir mest, insanlar kişinin Allah katındaki mertebesini fark etmesin diye kendini \"mübahlarla\" örten bir veliyi temsil ediyor -- toprağın çorabı acıtmaması gibi, melâmînin de aşağı âlemden mübahlarla korunması.",
+            "en": "The vasl of the second bab (\"What Is Wiped Upon,\" pp. 104-106) compares footwear to socks: footwear, being watertight, is a strong veil/proof, while socks, being porous, are weak. In its hidden sense this is tied to the difference in people's power to serve as proof of God -- the answer to \"who are God's friends?\" is given as the Prophet's saying, \"those who, when seen, call God to mind\" (from Abu Nu'aym's *Hilyat al-Awliya'*). Leather-covered footwear then points directly to the people of Malamat (blame-seeking): such footwear represents a friend of God who covers himself with permissible ordinary things so that people will not notice his rank before God -- just as leather protects the sock from the pain of the ground, the Malamati is protected from the lower world by permissible things.",
+            "pt": "O vasl do segundo bab (\"Sobre o Que se Esfrega\", pp. 104-106) compara o calçado às meias: o calçado, sendo à prova d'água, é um véu/prova forte, enquanto as meias, sendo porosas, são fracas. Em seu sentido oculto isso está ligado à diferença no poder das pessoas de servir como prova de Deus -- a resposta a \"quem são os amigos de Deus?\" é dada como o dito do Profeta, \"aqueles que, quando vistos, fazem lembrar Deus\" (do *Hilyat al-Awliya* de Abu Nu'aym). O calçado revestido de couro então aponta diretamente para o povo do Malamat (busca da culpa): tal calçado representa um amigo de Deus que se cobre com coisas permitidas e comuns para que as pessoas não percebam sua posição diante de Deus -- assim como o couro protege a meia da dor do chão, o Malamati é protegido do mundo inferior por coisas permitidas."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Neye Mesh Yapılır, VASIL: Meselenin Bâtıni Hükmü, s. 104-106.",
+            "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- What Is Wiped Upon, Vasl: The Hidden Ruling, pp. 104-106.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- Sobre o Que se Esfrega, Vasl: A Regra Oculta, pp. 104-106."
+          },
+          "pair": {
+            "left": {
+              "id": "mest-guclu-delil",
+              "label": {
+                "tr": "Mest: Güçlü Delil",
+                "en": "Footwear: Strong Proof",
+                "pt": "Calçado: Prova Forte"
+              },
+              "note": {
+                "tr": "su geçirmez -- Allah'a güçlü delil olan veli",
+                "en": "watertight -- the friend of God who is strong proof",
+                "pt": "à prova d'água -- o amigo de Deus que é prova forte"
+              }
+            },
+            "right": {
+              "id": "corap-zayif-delil",
+              "label": {
+                "tr": "Çorap: Zayıf Delil",
+                "en": "Socks: Weak Proof",
+                "pt": "Meias: Prova Fraca"
+              },
+              "note": {
+                "tr": "gedikli -- sıradan müminin zayıf delili",
+                "en": "porous -- the ordinary believer's weak proof",
+                "pt": "porosas -- a prova fraca do crente comum"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Bu karşılaştırma metinde açık -- deri kaplı mest ile melâmet ehli arasındaki ek bağlantı ise bizim vurguladığımız bir ayrıntı, metnin ana argümanının bir uzantısı.",
+            "en": "This comparison is explicit in the text -- the additional link between leather-covered footwear and the people of Malamat is a detail we highlight, an extension of the text's main argument.",
+            "pt": "Essa comparação é explícita no texto -- o vínculo adicional entre o calçado revestido de couro e o povo do Malamat é um detalhe que destacamos, uma extensão do argumento principal do texto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "yirtik-mest-seriatin-yirtilmasi",
+      "heading": {
+        "tr": "Yırtık Mest: Şeriatın \"Yırtılması\" ve Tevhide Geçiş",
+        "en": "Torn Footwear: The Law \"Tearing\" and the Passage to Oneness",
+        "pt": "Calçado Rasgado: A Lei \"Se Rasgando\" e a Passagem à Unicidade"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İki ardışık BÂB (s. 106-109), yırtık mestin hükmünü ele alıyor: mest adını koruduğu sürece (yırtık az ya da çok olsun) üzerine mesh caiz -- Dost kendi görüşünü de böyle veriyor. Ad kaybolduğunda ise mesh biter, ayağın tamamı yıkanır. Bâtındaki hüküm bunu doğrudan şeriat/tevhid ilişkisine taşıyor: \"Şeriatın zâhiri... tevhit hükmünün hakikati üzerindeki bir örtüdür.\" Dost'un verdiği örnek çarpıcı: fiilleri her bakımdan Allah'a nispet edip kendi itaat/isyanına değer vermeyen bir tevhit anlayışı, şeriatın hükmünü ortadan kaldırır -- \"nitekim mest adını yitirdiğinde artık mest üstüne mesh yapılamaz\" diyerek bu tevhidi doğrudan mest-adı-kaybı ile özdeşleştiriyor. Ama Dost bu noktada net: böyle bir tevhit anlayışından uzak durmak gerekir, çünkü bu, şeriatın (ve dolayısıyla Allah'ın hükmünün) ortadan kalkması anlamına gelir. Mesti üç parmakla sınırlayan görüş ise, tevhidin insanın mana/duyu/hayal üçlü menzilinde nasıl ortaya çıkabileceğine (ve nereye kadar caiz olduğuna) işaret ediyor.",
+            "en": "Two consecutive babs (pp. 106-109) take up the ruling on torn footwear: as long as it keeps the name \"footwear\" (whether the tear is small or large), wiping over it remains valid -- Dost states this as his own view too. Once the name is lost, the wipe ends and the whole foot must be washed. The hidden ruling carries this straight into the relation between Law and Oneness (tawhid): \"the outward of the Law... is a covering over the reality of the ruling of Oneness.\" Dost's example is striking: a conception of Oneness that attributes acts to God in every respect and no longer values one's own obedience or disobedience dissolves the Law's ruling -- \"just as, when the footwear loses its name, wiping over it is no longer possible,\" identifying this kind of Oneness directly with the footwear losing its name. But Dost is clear here: one must keep away from such a conception of Oneness, since it amounts to the Law -- and hence God's own ruling -- being dissolved. The view limiting the tear to three fingers' width, meanwhile, points to how far Oneness may legitimately appear across the threefold register of a person's meaning, sense-perception, and imagination.",
+            "pt": "Dois babs consecutivos (pp. 106-109) tratam da regra sobre o calçado rasgado: enquanto mantiver o nome \"calçado\" (seja o rasgo pequeno ou grande), esfregar sobre ele permanece válido -- Dost afirma isso também como sua própria opinião. Uma vez perdido o nome, o gesto termina e todo o pé deve ser lavado. A regra oculta leva isso diretamente para a relação entre a Lei e a Unicidade (tawhid): \"o exterior da Lei... é uma cobertura sobre a realidade da regra da Unicidade.\" O exemplo de Dost é marcante: uma concepção de Unicidade que atribui os atos a Deus em todos os aspectos e não mais valoriza a própria obediência ou desobediência dissolve a regra da Lei -- \"assim como, quando o calçado perde seu nome, esfregar sobre ele não é mais possível\", identificando esse tipo de Unicidade diretamente com a perda do nome do calçado. Mas Dost é claro aqui: deve-se manter distância de tal concepção de Unicidade, já que ela equivale à dissolução da Lei -- e, portanto, da própria regra de Deus. A visão que limita o rasgo a três dedos de largura, por sua vez, aponta para até onde a Unicidade pode legitimamente aparecer através do registro triplo do significado, da percepção sensorial e da imaginação de uma pessoa."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Üzerine Mesh Yapılan Şeyin Özelliği / Bu Konuda Bâtının Hükmü, s. 106-109.",
+            "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- The Quality of What Is Wiped Upon / The Hidden Ruling on This Matter, pp. 106-109.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- A Qualidade do Que é Esfregado / A Regra Oculta Sobre Esta Questão, pp. 106-109."
+          },
+          "tree": {
+            "id": "mest-adi-tree",
+            "label": {
+              "tr": "Mestin Adı: Şeriatın Sınırı",
+              "en": "The Name \"Footwear\": The Law's Boundary",
+              "pt": "O Nome \"Calçado\": O Limite da Lei"
+            },
+            "note": {
+              "tr": "yırtık mest = şeriatın tevhit karşısındaki sınırı için bir örnek",
+              "en": "torn footwear = an example of the Law's boundary against Oneness",
+              "pt": "calçado rasgado = um exemplo do limite da Lei diante da Unicidade"
+            },
+            "children": [
+              {
+                "id": "mest-adini-koruyor",
+                "label": {
+                  "tr": "Mest Adını Koruyor",
+                  "en": "The Footwear Keeps Its Name",
+                  "pt": "O Calçado Mantém Seu Nome"
+                },
+                "note": {
+                  "tr": "yırtık az ya da çok olsun, mesh geçerli -- şeriat sağlam kalır",
+                  "en": "whether the tear is small or large, the wipe remains valid -- the Law stays intact",
+                  "pt": "seja o rasgo pequeno ou grande, o gesto permanece válido -- a Lei permanece intacta"
+                }
+              },
+              {
+                "id": "mest-adini-yitirdi",
+                "label": {
+                  "tr": "Mest Adını Yitirdi",
+                  "en": "The Footwear Loses Its Name",
+                  "pt": "O Calçado Perde Seu Nome"
+                },
+                "note": {
+                  "tr": "mesh biter, çıplak ayağa dönülür -- Dost'a göre böyle bir tevhide (fiilleri tümüyle Hakka nispet edip itaat-isyanı önemsememeye) uzak durulmalı",
+                  "en": "the wipe ends, one returns to the bare foot -- Dost holds one should keep away from such a Oneness (attributing acts wholly to the Real while disregarding obedience/disobedience)",
+                  "pt": "o gesto termina, retorna-se ao pé descalço -- Dost sustenta que se deve manter distância de tal Unicidade (atribuir os atos inteiramente ao Real desconsiderando obediência/desobediência)"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Bize göre bu ağaç, c3k30'da kurulan üçlü insan tasnifinin (zâhir ehli / Allah yolunun ehli / bâtınîler) ortasındaki duruşu -- zâhiri terk etmeden bâtını görmeyi -- somut bir fıkhî örnek üzerinden savunuyor gibi okunabilir; ama bu bir bağlantı önerisi, metnin kendi açık ifadesi değil.",
+            "en": "To us, this tree can be read as defending, through a concrete legal example, the middle stance set up in c3k30's threefold classification of people (outward-only / people of God's path / Batinis) -- seeing the hidden without abandoning the outward; but this is a proposed connection, not the text's own explicit statement.",
+            "pt": "Para nós, essa árvore pode ser lida como uma defesa, por meio de um exemplo legal concreto, da posição intermediária estabelecida na classificação tripla de pessoas de c3k30 (apenas exterior / povo do caminho de Deus / Batinis) -- ver o oculto sem abandonar o exterior; mas esta é uma conexão proposta, não a afirmação explícita do próprio texto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "mesh-suresi-ogretmenin-tekrari",
+      "heading": {
+        "tr": "Mesh Süresi: Öğretmenin Üç Kez Tekrarı, Cünüplük = Gurbet",
+        "en": "Duration of the Wipe: The Teacher's Threefold Repetition, Sexual Impurity = Estrangement",
+        "pt": "Duração do Gesto: A Tríplice Repetição do Professor, Impureza Sexual = Estranhamento"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "BÂB \"Mesh (Süresi)\" (s. 109-110) yolcu için üç gün üç gece, yerleşik (mukim) için bir gün bir gece süre veriyor. VASIL bunu Hz. Peygamber'in öğretirken sözü \"anlamaları için üç kez tekrarlaması\"na bağlıyor: öğreten, öğrenenin anlayıp anlamadığından emin olmadığı için tekrar eder -- yolcunun üç günü bu. Mukim ise zaten bildiği emri bir kez uygulayıp geçer, kendine tekrarlamaz -- bu da bir gün. Süre sınırlamayanlar ise, öğrencilerin farklı yaratılışını (bazısı ilk seferde anlar, bazısı defalarca tekrar ister) dikkate alıyor. Ardından cünüplüğün meshi bozması, \"gurbet\" (yabancılık) olarak okunuyor: cünüp, gurbetteki kimse demek -- kalbe şeriat-dışı bir fikir (Brahmani örneği verilen, şeriat delilini kabul etmeyen bir görüş) geldiğinde, artık şeriat delili değil akıl/teorik delil ile ilerlenmesi gerekiyor; bu durumda mest (şeriat) çıkarılmalı.",
+            "en": "The bab \"Duration of the Wipe\" (pp. 109-110) gives three days and three nights for the traveler, one day and one night for the resident. The vasl ties this to the Prophet repeating his words three times while teaching, \"so they would understand\": the teacher repeats because he is not certain the learner has understood -- this is the traveler's three days. The resident, already knowing the command, applies it once and moves on, without repeating it to himself -- hence one day. Those who set no fixed duration take into account the differing natures of learners (some understand at once, some need repeated explanation). Sexual impurity (janaba) breaking the wipe is then read as \"estrangement\" (ghurba): the junub is one who is estranged -- when a thought foreign to the Law enters the heart (the example given is a \"Brahmani\" position that does not accept the Law's proof), one must proceed no longer by the Law's proof but by reason/theoretical proof; in that case the footwear (the Law) must be removed.",
+            "pt": "O bab \"Duração do Gesto\" (pp. 109-110) dá três dias e três noites para o viajante, um dia e uma noite para o residente. O vasl liga isso ao Profeta repetindo suas palavras três vezes ao ensinar, \"para que compreendessem\": o professor repete porque não tem certeza de que o aluno compreendeu -- estes são os três dias do viajante. O residente, já conhecendo o mandamento, o aplica uma vez e segue adiante, sem repeti-lo para si mesmo -- daí um dia. Aqueles que não fixam duração levam em conta as naturezas diferentes dos alunos (alguns compreendem de imediato, outros precisam de explicação repetida). A impureza sexual (janaba) invalidando o gesto é então lida como \"estranhamento\" (ghurba): o junub é aquele que está estranhado -- quando um pensamento estranho à Lei entra no coração (o exemplo dado é uma posição \"brâmane\" que não aceita a prova da Lei), deve-se proceder não mais pela prova da Lei, mas pela razão/prova teórica; nesse caso o calçado (a Lei) deve ser removido."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Mesh (Süresi), VASIL: Bâtındaki Hükmü, s. 109-110.",
+            "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- Duration of the Wipe, Vasl: The Hidden Ruling, pp. 109-110.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- Duração do Gesto, Vasl: A Regra Oculta, pp. 109-110."
+          },
+          "pair": {
+            "left": {
+              "id": "yolcu-ogrenen",
+              "label": {
+                "tr": "Yolcu: Öğrenen",
+                "en": "The Traveler: The Learner",
+                "pt": "O Viajante: O Aluno"
+              },
+              "note": {
+                "tr": "tekrar gerekir -- üç gün üç gece",
+                "en": "repetition is needed -- three days and three nights",
+                "pt": "a repetição é necessária -- três dias e três noites"
+              }
+            },
+            "right": {
+              "id": "mukim-bilen",
+              "label": {
+                "tr": "Mukim: Bilen",
+                "en": "The Resident: The One Who Already Knows",
+                "pt": "O Residente: Aquele Que Já Sabe"
+              },
+              "note": {
+                "tr": "tekrara gerek yok -- bir gün bir gece",
+                "en": "no repetition needed -- one day and one night",
+                "pt": "não precisa de repetição -- um dia e uma noite"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Öğretmen-öğrenci benzetmesi metinde açık kurulu; cünüplük=gurbet okuması ayrı bir VASIL'de geliyor, burada aynı sayfalarda oldukları için birlikte özetledik.",
+            "en": "The teacher-learner analogy is clearly set up in the text; the reading of sexual impurity as estrangement comes in a separate vasl, which we have summarized together here since they occupy the same pages.",
+            "pt": "A analogia professor-aluno está claramente estabelecida no texto; a leitura da impureza sexual como estranhamento vem em um vasl separado, que resumimos juntos aqui por ocuparem as mesmas páginas."
+          }
+        }
+      ]
+    },
+    {
+      "id": "mesh-sartlari-hakkin-kosarak-gelmesi",
+      "heading": {
+        "tr": "Mesh Şartları: Hakkın \"Koşarak\" Gelmesi",
+        "en": "Conditions of the Wipe: The Real \"Running\" to Meet",
+        "pt": "Condições do Gesto: O Real \"Correndo\" ao Encontro"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "BÂB \"Mest Üstüne Meshin Şartları\" (s. 110-112) ayakların önce abdestle ya da kaba pislikten temizlenmiş olması, ve mestin mest üstüne giyilmesi şartlarını tartışıyor. VASIL, kısmın başındaki \"hervele\" (koşma) temasına geri dönüyor: Allah'ın \"kendisine yürüyerek giden kuluna koşarak gideceğini\" bildiren kutsi hadisi hatırlatılıyor -- yürümek ve koşmak ayakların eylemi. Hakkı \"koşmak\" fiilinden tenzih etmeye kalkışan (yani bu nispeti reddeden) kimse, Hakkın kendini nitelediği bir şeyi yalanlamış oluyor; iman bu nispeti teorik kanıtla tevil etmeye kalkışmadan kabul ediyor. Mest üstüne mest giymek, böylece Hakkın kendini koşma özelliğiyle nitelemesine denk düşüyor -- çünkü koşma yürümenin, yürüme de ayağın bir özelliği; ikisi arasında bir ara-kademe (yürümek) daha var, tıpkı mest üstüne mest gibi.",
+            "en": "The bab \"Conditions of Wiping Over Footwear\" (pp. 110-112) discusses the requirement that the feet first be purified by ablution or of gross impurity, and that footwear be worn over footwear. The vasl returns to the \"harwala\" (running) theme from the part's opening: it recalls the sacred hadith in which God declares that He will come running to the servant who comes walking toward Him -- walking and running are both acts of the feet. Whoever tries to declare God transcendent of the act of \"running\" (that is, rejects this relation) has in effect denied something God has described Himself with; faith accepts this relation without trying to reinterpret it away through theoretical proof. Wearing footwear over footwear thus corresponds to God describing Himself by the quality of running -- since running is a quality of walking, and walking a quality of the foot; there is one more intermediate rank (walking) between them, just like footwear over footwear.",
+            "pt": "O bab \"Condições de Esfregar Sobre o Calçado\" (pp. 110-112) discute a exigência de que os pés estejam primeiro purificados pela ablução ou de impureza grosseira, e que o calçado seja usado sobre calçado. O vasl retorna ao tema de \"harwala\" (correr) da abertura da parte: recorda o hadith sagrado em que Deus declara que virá correndo ao servo que vem caminhando em Sua direção -- caminhar e correr são ambos atos dos pés. Quem tenta declarar Deus transcendente do ato de \"correr\" (ou seja, rejeita essa relação) negou, com efeito, algo com que Deus descreveu a Si mesmo; a fé aceita essa relação sem tentar reinterpretá-la através de prova teórica. Vestir calçado sobre calçado corresponde, assim, a Deus descrever a Si mesmo pela qualidade de correr -- já que correr é uma qualidade de caminhar, e caminhar uma qualidade do pé; há mais uma hierarquia intermediária (caminhar) entre eles, assim como calçado sobre calçado."
+          }
+        }
+      ]
+    },
+    {
+      "id": "su-bablari-hayret-gazap",
+      "heading": {
+        "tr": "Su Bâbları: Kalplere Hayat Veren Su, Gazap İsmi ve Hayret Makamı",
+        "en": "The Water Chapters: Water That Gives Life to Hearts, the Name of Wrath, and the Station of Bewilderment",
+        "pt": "Os Capítulos da Água: A Água Que Dá Vida aos Corações, o Nome da Ira, e a Estação do Assombro"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "\"SU BÂBLARI\" başlığıyla (s. 113) yeni bir küme açılıyor; Dost önce yağmur/nehir suyu farkını (c3k30'da işlenmişti) hatırlatıp genel su hükümlerine geçiyor. VASIL'de su, bâtında \"kalplere hayat veren şey\" olarak okunuyor -- her kalp onunla bilgisizlikten temizlenir. Ardından tartışmalı olan deniz suyu, Hakkın gazap sıfatına bağlanıyor: gazap uzaklaştırır, temizlik ise yakınlaştırır -- bu yüzden bir gerilim var. Dost kendi görüşünü açıkça belirtiyor: \"Allah'ın gazabının uzaklaşmaya değil yaklaşmaya sevk ettiğini düşünen kimse deniz suyuyla temizlenebilmeyi kabul eder ki ben de bu görüşteyim.\" Sonra tevhidde ileri gitmiş, âlemde kızılacak hiçbir fiil görmeyen insanın haline geçiyor -- Dost bunu açıkça adlandırıyor: \"Bu makam, hayret makamıdır.\" Bu insan için iki yönde de tuzak var: bu makamdayken öfkelenirse yazık, ahirette (başka bir makamda) öfkelenmezse yine yazık. Dost'un vardığı sonuç: \"Allah için öfkelenmek, daha esenlikli, daha kurtarıcı ve insan adına daha iyidir\" -- çünkü bu, dince belirlenmiş edebe bağlanmak demektir.",
+            "en": "Under the heading \"Water Chapters\" (p. 113) a new cluster opens; Dost first recalls the distinction between rain-water and river-water (already treated in c3k30) before moving to general water rulings. In the vasl, water is read in its hidden sense as \"that which gives life to hearts\" -- every heart is purified of ignorance by it. The disputed case of sea-water is then tied to God's attribute of wrath: wrath pushes away, purity draws near -- hence a tension. Dost states his own view plainly: \"whoever holds that God's wrath drives toward nearness rather than distance accepts that one may purify oneself with sea-water, and this is my own view.\" He then moves to the case of one advanced in Oneness who sees no act in creation worthy of anger -- Dost names this outright: \"This station is the station of bewilderment (hayrah).\" For such a person there is a trap on both sides: to be angered while in this station is a pity; not to be angered in the hereafter (a different station) is likewise a pity. Dost's conclusion: \"being angered for God's sake is more sound, more saving, and better for the person\" -- since it means holding fast to the etiquette the religion has set.",
+            "pt": "Sob o título \"Capítulos da Água\" (p. 113) um novo agrupamento se abre; Dost primeiro relembra a distinção entre água da chuva e água de rio (já tratada em c3k30) antes de passar às regras gerais sobre a água. No vasl, a água é lida em seu sentido oculto como \"aquilo que dá vida aos corações\" -- todo coração é purificado da ignorância por ela. O caso disputado da água do mar é então ligado ao atributo divino da ira: a ira afasta, a pureza aproxima -- daí uma tensão. Dost declara sua própria visão claramente: \"quem sustenta que a ira de Deus impele à proximidade e não ao afastamento aceita que se pode purificar com água do mar, e esta é minha própria visão.\" Ele então passa ao caso de alguém avançado na Unicidade que não vê nenhum ato na criação digno de raiva -- Dost nomeia isso abertamente: \"Esta estação é a estação do assombro (hayrah).\" Para tal pessoa há uma armadilha em ambos os lados: irritar-se enquanto nesta estação é uma pena; não se irritar no além (uma estação diferente) é igualmente uma pena. A conclusão de Dost: \"irritar-se por causa de Deus é mais são, mais salvador, e melhor para a pessoa\" -- já que significa se ater à etiqueta que a religião estabeleceu."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Genel Anlamda Sular, VASIL: Bu Konuda Bâtının Hükmü, s. 113-115.",
+            "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- Water in General, Vasl: The Hidden Ruling, pp. 113-115.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- A Água em Geral, Vasl: A Regra Oculta, pp. 113-115."
+          },
+          "pair": {
+            "left": {
+              "id": "tatli-su-bilgi",
+              "label": {
+                "tr": "Tatlı/Nehir Suyu",
+                "en": "Sweet/River Water",
+                "pt": "Água Doce/de Rio"
+              },
+              "note": {
+                "tr": "kalplere hayat veren bilgi, tartışmasız temiz",
+                "en": "the knowledge that gives life to hearts, undisputedly pure",
+                "pt": "o conhecimento que dá vida aos corações, indiscutivelmente puro"
+              }
+            },
+            "right": {
+              "id": "deniz-suyu-gazap",
+              "label": {
+                "tr": "Deniz Suyu",
+                "en": "Sea-Water",
+                "pt": "Água do Mar"
+              },
+              "note": {
+                "tr": "Hakkın gazap isminden yaratılmış -- tartışmalı, Dost'a göre yine de temizleyici",
+                "en": "created from the Real's name of wrath -- disputed, though Dost still holds it purifying",
+                "pt": "criada a partir do nome da ira do Real -- disputada, embora Dost ainda a considere purificadora"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Bu ikilik metinde kurulu; hayret makamına atıf ise aynı VASIL'in ilerisinde geliyor, burada aynı tartışmanın devamı olduğu için birlikte özetledik. \"Hayret\" burada Dost'un kendi terimi -- sitenin kendi kökensel ilkesinde de anılan aynı makam.",
+            "en": "This duality is established in the text; the reference to the station of bewilderment comes further along in the same vasl, summarized here together since it continues the same discussion. \"Hayrah\" here is Dost's own term -- the same station invoked in the site's own foundational principle.",
+            "pt": "Essa dualidade está estabelecida no texto; a referência à estação do assombro vem mais adiante no mesmo vasl, resumida aqui em conjunto por dar continuidade à mesma discussão. \"Hayrah\" aqui é o próprio termo de Dost -- a mesma estação invocada no princípio fundacional do próprio site."
+          }
+        }
+      ]
+    },
+    {
+      "id": "az-cok-su-tek-delil-cok-delil",
+      "heading": {
+        "tr": "Az Su, Çok Su: Tek Delil ve Çok Delil",
+        "en": "Little Water, Much Water: Single Proof and Multiple Proof",
+        "pt": "Pouca Água, Muita Água: Prova Única e Prova Múltipla"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "BÂB \"Niteliklerinden Birini Değiştirmeden Pisliğin Karıştığı Su\" (s. 118-121), az veya çok suya bulaşan pisliğin suyu bozup bozmadığını tartışıyor. VASIL'de bu, Allah'ı bilmenin dayandığı delil sayısına bağlanıyor: az su (tek delile dayanan bilgi), bir kuşku o tek delili etkilerse bilgi olmaktan çıkabilir; çok su (birden fazla delile dayanan bilgi) ise, kuşku delillerden birine zarar verse bile diğerlerine dayanabildiği için etkilenmez. Miktarı önemsemeyip her durumda suyun bozulacağını söyleyenler ise, bâtında \"kanıtın birliğini değil, hakikatin birliğini\" dikkate almış oluyor -- kuşku, sonradan giderilse bile, tasavvur edildiği an bilgiye zarar verir görüşünde.",
+            "en": "The bab \"Water Mixed with Impurity Without a Change in Its Qualities\" (pp. 118-121) discusses whether impurity falling into water, whether little or much, corrupts it. In the vasl this is tied to the number of proofs on which knowledge of God rests: little water (knowledge resting on a single proof) may cease to be knowledge if a doubt affects that one proof; much water (knowledge resting on several proofs) is unaffected, since even if doubt harms one proof, it can rest on the others. Those who hold, regardless of quantity, that the water is corrupted in every case are, in their hidden sense, considering \"not the oneness of the proof but the oneness of the reality\" -- holding that doubt harms knowledge the moment it is conceived, even if later removed.",
+            "pt": "O bab \"Água Misturada com Impureza Sem Mudança em Suas Qualidades\" (pp. 118-121) discute se a impureza caindo na água, seja pouca ou muita, a corrompe. No vasl isso está ligado ao número de provas sobre as quais repousa o conhecimento de Deus: pouca água (conhecimento apoiado em uma única prova) pode deixar de ser conhecimento se uma dúvida afeta essa única prova; muita água (conhecimento apoiado em várias provas) não é afetada, pois mesmo que a dúvida prejudique uma prova, pode-se apoiar nas outras. Aqueles que sustentam, independentemente da quantidade, que a água é corrompida em todo caso estão, em seu sentido oculto, considerando \"não a unicidade da prova, mas a unicidade da realidade\" -- sustentando que a dúvida prejudica o conhecimento no momento em que é concebida, mesmo que depois removida."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Niteliklerinden Birini Değiştirmeden Pisliğin Karıştığı Su, VASIL: Meselenin Bâtıni Hükmü, s. 118-121.",
+            "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- Water Mixed with Impurity Without a Change in Its Qualities, Vasl: The Hidden Ruling, pp. 118-121.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- Água Misturada com Impureza Sem Mudança em Suas Qualidades, Vasl: A Regra Oculta, pp. 118-121."
+          },
+          "pair": {
+            "left": {
+              "id": "az-su-tek-delil",
+              "label": {
+                "tr": "Az Su: Tek Delil",
+                "en": "Little Water: Single Proof",
+                "pt": "Pouca Água: Prova Única"
+              },
+              "note": {
+                "tr": "bir kuşku etkilerse, bilgi olmaktan çıkabilir",
+                "en": "if a single doubt affects it, it may cease to be knowledge",
+                "pt": "se uma única dúvida a afeta, pode deixar de ser conhecimento"
+              }
+            },
+            "right": {
+              "id": "cok-su-cok-delil",
+              "label": {
+                "tr": "Çok Su: Çok Delil",
+                "en": "Much Water: Multiple Proof",
+                "pt": "Muita Água: Prova Múltipla"
+              },
+              "note": {
+                "tr": "bir delil zarar görse de diğerlerine dayanır, kuşku etkilemez",
+                "en": "even if one proof is harmed, it rests on the others, unaffected by doubt",
+                "pt": "mesmo que uma prova seja prejudicada, apoia-se nas outras, não afetada pela dúvida"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Bu benzetme metinde açık kurulu -- bir sonraki BÂB'da (sudan ayrı temiz bir şeyin karışması, akıl/şeriat-teşbih/tenzih ekseninde) aynı ailenin küçük bir varyasyonu geliyor, burada ayrı bir diyagrama gerek görmedik.",
+            "en": "This analogy is clearly set up in the text -- the next bab (a pure but non-water substance mixing in, on the axis of reason/Law and anthropomorphism/transcendence) brings a small variation of the same family; we did not see a need for a separate diagram there.",
+            "pt": "Essa analogia está claramente estabelecida no texto -- o próximo bab (uma substância pura mas não aquosa se misturando, no eixo razão/Lei e antropomorfismo/transcendência) traz uma pequena variação da mesma família; não vimos necessidade de um diagrama separado ali."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kullanilmis-su-ariflerin-tevhid-ihtilafi",
+      "heading": {
+        "tr": "Kullanılmış Su: Âriflerin Tevhid Konusundaki İhtilafı",
+        "en": "Used Water: The Gnostics' Dispute over Oneness",
+        "pt": "Água Usada: A Disputa dos Gnósticos Sobre a Unicidade"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "BÂB \"Temizlikte Kullanılmış Su\" (s. 122-123), bir kez abdestte kullanılmış suyla yeniden temizlenmenin caiz olup olmadığını tartışıyor -- Dost, caiz görenlerden. VASIL bunu, âriflerin fiillerin mutlak birliğini zâtın birliğine irca ettikten sonra bu \"kullanılmış tevhidi\" nasıl değerlendirdiğine bağlıyor: bir kısım ârif \"Hak bu tevhidi zâtı bakımından kabul etmez\" diyerek onu zâtı bilmede kullanmazken, bir kısmı \"Allah onu kabul eder, çünkü zâid bir hakikat ispat etmedik\" diyor. Kullanılmış suyun pis olduğunu söyleyenler ise, mutlak tevhidin sadece Allah'a yaraşacağını, \"ahadiyyetü külli ahad\" (her birin kendi birliği) düzeyine indiğinde bunun artık mümkün varlığın özelliğini taşıdığını -- yani pisliğin kaynağının bu olduğunu -- söylüyor.",
+            "en": "The bab \"Water Used in Purification\" (pp. 122-123) discusses whether one may purify oneself again with water already used in ablution -- Dost holds it permissible. The vasl ties this to how the gnostics, having referred the absolute oneness of acts back to the oneness of the Essence, then evaluate this \"used\" oneness: some gnostics say \"the Real does not accept this oneness with respect to His Essence\" and so do not use it in knowing the Essence, while others say \"God accepts it, because we have not established any additional reality.\" Those who hold used water impure say that absolute oneness befits only God, and that once it descends to the level of \"the oneness proper to each single thing\" it takes on the character of contingent existence -- which is, for them, the very source of the impurity.",
+            "pt": "O bab \"Água Usada na Purificação\" (pp. 122-123) discute se é permitido purificar-se novamente com água já usada na ablução -- Dost sustenta que sim. O vasl liga isso à forma como os gnósticos, tendo remetido a unicidade absoluta dos atos de volta à unicidade da Essência, avaliam então essa unicidade \"usada\": alguns gnósticos dizem \"o Real não aceita essa unicidade com respeito à Sua Essência\" e assim não a usam para conhecer a Essência, enquanto outros dizem \"Deus a aceita, porque não estabelecemos nenhuma realidade adicional.\" Os que sustentam que a água usada é impura dizem que a unicidade absoluta convém apenas a Deus, e que, uma vez descendo ao nível da \"unicidade própria de cada coisa singular\", ela assume o caráter da existência contingente -- que é, para eles, a própria fonte da impureza."
+          }
+        }
+      ]
+    },
+    {
+      "id": "musluman-canlinin-artigi-nefsini-bilen",
+      "heading": {
+        "tr": "Müslümanın ve Canlının Artığı: \"Nefsini Bilen Rabbini Bilir\"",
+        "en": "The Leftover of the Muslim and the Living: \"Whoever Knows Himself Knows His Lord\"",
+        "pt": "O Resto do Muçulmano e do Ser Vivo: \"Quem Conhece a Si Mesmo Conhece Seu Senhor\""
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "BÂB \"Müslümanların Artığının Temizliği, Tırnaklı Hayvanların Temizliği\" (s. 123-124), müslümanın ve evcil hayvanın artığının (kullandığı suyun) temiz olduğunda görüş birliği olduğunu, başka canlılarda ihtilaf bulunduğunu aktarıyor. VASIL kısa ve net: müminin ve her canlının artığı temizdir, çünkü iman ve hayat, mümin ve canlıda temizliğin ta kendisidir. Dost burada hadisi hatırlatıyor: \"Nefsini bilen, Rabbini bilir\" -- kendini bilmekten özge, kul için bilinebilecek bir şey kalmaz; her canlı da, Allah'ı göstermede insana ortaktır. Bu nedenle \"istisna\" arayan bilginlerin, canlı ya da müminin canlı/mümin olması yönüne dikkat etmediği söyleniyor.",
+            "en": "The bab \"Purity of the Leftover of Muslims, and of Purity of Clawed Animals\" (pp. 123-124) reports agreement that the leftover (used water) of a Muslim and a domestic animal is pure, with dispute over other living things. The vasl is short and clear: the leftover of the believer and of every living thing is pure, because faith and life are themselves purity in the believer and the living. Dost recalls the hadith here: \"whoever knows himself knows his Lord\" -- beyond knowing oneself, nothing further remains knowable for the servant; every living thing, too, shares with the human being in showing forth God. For this reason, the scholars seeking an \"exception\" are said not to have attended to the fact of a thing's being living or believing at all.",
+            "pt": "O bab \"Pureza do Resto dos Muçulmanos, e da Pureza dos Animais com Garras\" (pp. 123-124) relata concordância de que o resto (água usada) de um muçulmano e de um animal doméstico é puro, havendo disputa sobre outros seres vivos. O vasl é breve e claro: o resto do crente e de todo ser vivo é puro, porque a fé e a vida são, em si mesmas, pureza no crente e no ser vivo. Dost recorda aqui o hadith: \"quem conhece a si mesmo conhece seu Senhor\" -- além de conhecer a si mesmo, nada mais permanece cognoscível para o servo; todo ser vivo, também, compartilha com o ser humano em manifestar Deus. Por essa razão, diz-se que os eruditos que buscam uma \"exceção\" não atentaram para o fato de a coisa ser viva ou crente em si mesma."
+          }
+        }
+      ]
+    },
+    {
+      "id": "artik-sularla-erkek-kadin-fail-munfail",
+      "heading": {
+        "tr": "Artık Sularla Temizlenme: Erkek ve Kadın, Etken ve Edilgen",
+        "en": "Purifying with Leftover Waters: Man and Woman, Agent and Patient",
+        "pt": "Purificação com Águas Residuais: Homem e Mulher, Agente e Paciente"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Üçüncü ana BAB, \"Artık Sularla Temizlenme\" (s. 124-126), erkeğin kadının (ya da tersi) kullandığı suyla temizlenip temizlenemeyeceği konusunda beş ayrı görüşü sıralıyor. VASIL bu görüşleri, erkek ve kadının Allah'ı bilmede sağladığı kanıtın (delilin) farklı olup olmadığına bağlıyor: bir görüşe göre erkeğin \"ilave bir derecesi\" var ve bu, kadının temsil ettiği kanıtın bilgisinin o ölçüde eksik kalacağı anlamına geliyor; artıkla temizlenmeyi caiz görmeyenler ise, erkek-kadın farkını etken-edilgen (fâil-münfail) bilgisine bağlıyor ve böyle bir bilginin Allah'ı bilmede esas alınamayacağını söylüyor. Caiz görenler ise daha sade bir okumaya dayanıyor: \"Allah hakkındaki bilginin özü, O'nun bizim ve bütün mümkünlerin Yaratıcısı olduğunu bilmekle sınırlıdır\" -- gerisi önemli değil. Kadının artığıyla erkeğin temizlenmesinin şartı olarak verilen \"hayızlı olmaması\" da, hayız halinin Hakka yakarıştaki bir uzaklığa (el-Bâid isminin perdesine) işaret ettiği söyleniyor. Bu pasajı burada, Dost'un kendi kesin bir hüküm vermediğini, sadece farklı görüşlerin gerekçesini sıraladığını vurgulayarak, temkinli bir okuma olarak aktarıyoruz.",
+            "en": "The third main bab, \"Purifying with Leftover Waters\" (pp. 124-126), lists five distinct positions on whether a man may purify himself with water already used by a woman (or vice versa). The vasl ties these positions to whether the proof a man and a woman each provide in knowing God differs: on one view, the man carries an \"additional degree,\" meaning the proof the woman represents remains, to that extent, incomplete in its knowledge; those who reject purifying with the other's leftover tie the man/woman difference to agent/patient (fa'il/munfa'il) knowledge, holding that such knowledge cannot serve as a basis for knowing God. Those who permit it rest instead on a simpler reading: \"the essence of knowledge about God is limited to knowing that He is the Creator of us and of all possible things\" -- the rest does not matter. The condition given for a man purifying himself with a woman's leftover -- that she not be menstruating -- is said to point to how the state of menstruation marks a distance in turning toward the Real (a veiling under the Name al-Ba'id, the Distant). We present this passage here as a cautious reading, stressing that Dost himself does not render a final verdict, only lays out the reasoning behind the differing positions.",
+            "pt": "O terceiro bab principal, \"Purificação com Águas Residuais\" (pp. 124-126), lista cinco posições distintas sobre se um homem pode se purificar com água já usada por uma mulher (ou vice-versa). O vasl liga essas posições a se a prova que um homem e uma mulher fornecem cada um ao conhecer Deus difere: em uma visão, o homem carrega um \"grau adicional\", significando que a prova que a mulher representa permanece, nessa medida, incompleta em seu conhecimento; os que rejeitam a purificação com o resto do outro ligam a diferença homem/mulher ao conhecimento agente/paciente (fa'il/munfa'il), sustentando que tal conhecimento não pode servir de base para conhecer Deus. Os que a permitem se apoiam, em vez disso, em uma leitura mais simples: \"a essência do conhecimento sobre Deus se limita a saber que Ele é o Criador de nós e de todas as coisas possíveis\" -- o resto não importa. A condição dada para um homem se purificar com o resto de uma mulher -- que ela não esteja menstruada -- é dita apontar para como o estado de menstruação marca uma distância no voltar-se para o Real (um velamento sob o Nome al-Ba'id, o Distante). Apresentamos esta passagem aqui como uma leitura cautelosa, enfatizando que o próprio Dost não emite um veredito final, apenas expõe o raciocínio por trás das posições divergentes."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Artık Sularla Temizlenme, VASIL: Bu Konunun Bâtındaki Hükmü, s. 124-126.",
+            "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- Purifying with Leftover Waters, Vasl: The Hidden Ruling, pp. 124-126.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- Purificação com Águas Residuais, Vasl: A Regra Oculta, pp. 124-126."
+          },
+          "pair": {
+            "left": {
+              "id": "erkek-fail-iddiasi",
+              "label": {
+                "tr": "Erkek: Bir Kanaate Göre \"İlave\" Etkinlik Bilgisi",
+                "en": "Man: On One View, an \"Additional\" Knowledge of Agency",
+                "pt": "Homem: Em Uma Visão, um Conhecimento \"Adicional\" de Agência"
+              },
+              "note": {
+                "tr": "bazı bilginlere göre kadının verdiği bilgiye ek bir bilgi taşır",
+                "en": "on some scholars' view, carries a knowledge beyond what the woman provides",
+                "pt": "na visão de alguns eruditos, carrega um conhecimento além do que a mulher fornece"
+              }
+            },
+            "right": {
+              "id": "kadin-munfail-bilgi",
+              "label": {
+                "tr": "Kadın: Edilgen (Münfail) Bilgi",
+                "en": "Woman: Patient (Munfa'il) Knowledge",
+                "pt": "Mulher: Conhecimento Paciente (Munfa'il)"
+              },
+              "note": {
+                "tr": "bu görüşe göre etkin-edilgen ayrımının edilgen ucu",
+                "en": "on this view, the passive pole of the agent/patient distinction",
+                "pt": "nessa visão, o polo passivo da distinção agente/paciente"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Bu ayrım, Dost'un aktardığı görüşlerden biri -- kendi kesin hükmü değil. Bâtındaki gerekçeyi görselleştirirken, bunun kapanmış bir sonuç değil, dönemin fıkıh tartışmalarının bir yansıması olduğunu vurguluyoruz.",
+            "en": "This distinction is one of the positions Dost reports -- not his own final verdict. In visualizing the hidden reasoning, we stress this is not a closed conclusion but a reflection of the period's legal debates.",
+            "pt": "Essa distinção é uma das posições que Dost relata -- não seu próprio veredito final. Ao visualizar o raciocínio oculto, enfatizamos que isso não é uma conclusão fechada, mas um reflexo dos debates jurídicos da época."
+          }
+        }
+      ]
+    },
+    {
+      "id": "nebiz-abdest-akil-din-delili",
+      "heading": {
+        "tr": "Nebiz (Hurma Suyu) ile Abdest: Akıl Delili ile Din Delilinin Karışması",
+        "en": "Ablution with Date-Wine (Nabidh): Reason's Proof Mixed with the Law's Proof",
+        "pt": "Ablução com Vinho de Tâmara (Nabidh): A Prova da Razão Misturada com a Prova da Lei"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "BÂB \"Ekşi Hurma Suyuyla (Nebiz) Abdest Almak\" (s. 126-127), çoğunluğun (Dost dahil) nebizle abdesti reddettiğini, sahih bir nas bulunmadığını aktarıyor. VASIL, nebizi caiz görenlerin \"hurma temiz, su da temiz\" hadisini yanlış okuduğunu söylüyor -- bu iki delilin (akıl delili ile din delilinin) karışmasından kaynaklanıyor. Taklitçi (körü körüne izleyen) kişi bu iki kanıtı birbirinden ayıramadığı için, karışımın akıl kanıtını da içerdiğini bilmeden nebizi caiz görüyor; oysa doğrusu, Şâri'nin (Peygamberin) onu \"içecek\" diye isimlendirip \"su\" adını kaybettirdiğidir.",
+            "en": "The bab \"Ablution with Sour Date-Water (Nabidh)\" (pp. 126-127) reports that the majority (Dost included) reject ablution with nabidh, there being no sound textual basis. The vasl says those who permit it misread the hadith \"the date is pure, and water is pure\" -- this arises from a mixing of two proofs (the proof of reason and the proof of religion). The uncritical follower, unable to separate the two proofs, permits nabidh without realizing the mixture also carries a rational proof within it; the correct view, rather, is that the Lawgiver (the Prophet) named it a \"drink,\" so that it lost the name \"water.\"",
+            "pt": "O bab \"Ablução com Água Ácida de Tâmara (Nabidh)\" (pp. 126-127) relata que a maioria (incluindo Dost) rejeita a ablução com nabidh, não havendo base textual sólida. O vasl diz que os que a permitem interpretam mal o hadith \"a tâmara é pura, e a água é pura\" -- isso surge de uma mistura de duas provas (a prova da razão e a prova da religião). O seguidor acrítico, incapaz de separar as duas provas, permite o nabidh sem perceber que a mistura também carrega uma prova racional dentro de si; a visão correta, ao contrário, é que o Legislador (o Profeta) o nomeou uma \"bebida\", de modo que perdeu o nome \"água\"."
+          }
+        }
+      ]
+    },
+    {
+      "id": "abdesti-bozan-seyler-nifak",
+      "heading": {
+        "tr": "Abdesti Bozan Şeyler: Dışkının Üç Yönü ve Münafığın Sözü",
+        "en": "What Breaks Ablution: The Three Aspects of Excretion and the Hypocrite's Speech",
+        "pt": "O Que Invalida a Ablução: Os Três Aspectos da Excreção e a Fala do Hipócrita"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "\"ABDESTİ BOZAN ŞEYLER BÂBLARI\" başlığıyla (s. 128) yeni bir küme açılıyor, kısmın son BÂB'ına (\"Bedenden Çıkan Dışkı Nedeniyle Abdestin Bozulması\", s. 128-130) götürüyor. Girişte ilke konuyor: abdesti bozan şeyler bâtında, \"Allah'ı bilmenin dayandığı akıl ve dini kanıtları zedeleyen her şey\"dir. BÂB'ta üç görüş sıralanıyor: sadece çıkan şeyi (neresinden çıkarsa çıksın), sadece çıkış yerini (ön-arka), ya da her ikisini birlikte dikkate alanlar (Dost'un kendi görüşü de bu). Son VASIL bunların üçünü de münafığın örneğine bağlıyor: \"çıkan şeyi\" dikkate alanlar, insanın ağzından çıkan sözün lafzına (örneğin İslam'dan uzaklaştıran bir yemin) dikkat eden kimseler; \"çıkış yerini\" dikkate alanlar, münafığın iki yüzlü kalbinden hem iman hem inkârın çıkabildiğini (\"kitabın bir kısmına inanır, bir kısmını inkâr eder\" âyeti) gösterenler; üçüncüsü ise hem çıkanı hem çıkış yerini hem çıkış tarzını (hastalıkta taklitçi / sağlıkta bile bile inkâr eden) birlikte değerlendiriyor. Kısım burada, \"Allah doğruyu söyler ve doğru yola ulaştırır\" ile kapanıp Otuz İkinci Kısım'a bırakıyor yerini.",
+            "en": "Under the heading \"The Chapters on What Breaks Ablution\" (p. 128) a new cluster opens, leading into the part's final bab (\"The Breaking of Ablution by Excrement Leaving the Body,\" pp. 128-130). The opening sets the principle: what breaks ablution is, in its hidden sense, \"whatever damages the rational and religious proofs on which knowing God rests.\" The bab lists three positions: considering only what exits (regardless of where from), only where it exits from (front or back), or both together (Dost's own view). The final vasl ties all three to the example of the hypocrite: those who consider \"what exits\" attend to the wording of what leaves a person's mouth (for instance, an oath that estranges one from Islam); those who consider \"where it exits from\" show how both faith and denial can leave the hypocrite's two-faced heart (\"he believes part of the Book and denies part of it\"); the third evaluates what exits, where it exits from, and the manner of exiting together (the blind follower in illness / the one who denies knowingly while healthy). The part closes here with \"God speaks the truth and guides to the right path,\" handing off to Part XXXII.",
+            "pt": "Sob o título \"Os Capítulos Sobre o Que Invalida a Ablução\" (p. 128) um novo agrupamento se abre, levando ao bab final da parte (\"A Invalidação da Ablução pela Saída de Excremento do Corpo\", pp. 128-130). A abertura estabelece o princípio: o que invalida a ablução é, em seu sentido oculto, \"tudo o que danifica as provas racionais e religiosas sobre as quais repousa o conhecimento de Deus\". O bab lista três posições: considerar apenas o que sai (independentemente de onde), apenas de onde sai (frente ou trás), ou ambos juntos (a própria visão de Dost). O vasl final liga os três ao exemplo do hipócrita: os que consideram \"o que sai\" atentam para a formulação do que sai da boca de uma pessoa (por exemplo, um juramento que a estranha do Islã); os que consideram \"de onde sai\" mostram como tanto a fé quanto a negação podem sair do coração duplo do hipócrita (\"ele crê em parte do Livro e nega parte dele\"); o terceiro avalia juntos o que sai, de onde sai, e a maneira de sair (o seguidor acrítico na doença / aquele que nega conscientemente estando saudável). A parte se encerra aqui com \"Deus fala a verdade e guia ao caminho certo\", passando o bastão para a Parte XXXII."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Bedenden Çıkan Dışkı Nedeniyle Abdestin Bozulması, VASIL: Bu Konuda Bâtıni Hüküm, s. 128-130.",
+            "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- The Breaking of Ablution by Excrement Leaving the Body, Vasl: The Hidden Ruling, pp. 128-130.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- A Invalidação da Ablução pela Saída de Excremento do Corpo, Vasl: A Regra Oculta, pp. 128-130."
+          },
+          "triad": {
+            "left": {
+              "id": "cikan-soz",
+              "label": {
+                "tr": "Çıkan (Söz)",
+                "en": "What Exits (Speech)",
+                "pt": "O Que Sai (Fala)"
+              },
+              "note": {
+                "tr": "ağızdan çıkan sözün lafzı -- örneğin İslam'dan uzaklaştıran bir yemin",
+                "en": "the wording of what leaves the mouth -- e.g. an oath estranging one from Islam",
+                "pt": "a formulação do que sai da boca -- ex. um juramento que estranha do Islã"
+              }
+            },
+            "middle": {
+              "id": "cikis-yeri-kalp",
+              "label": {
+                "tr": "Çıkış Yeri (Kalp)",
+                "en": "Where It Exits From (the Heart)",
+                "pt": "De Onde Sai (o Coração)"
+              },
+              "note": {
+                "tr": "münafığın iki yüzlü kalbinden hem iman hem inkâr çıkabilir",
+                "en": "from the hypocrite's two-faced heart, both faith and denial can exit",
+                "pt": "do coração duplo do hipócrita, tanto a fé quanto a negação podem sair"
+              }
+            },
+            "right": {
+              "id": "cikis-tarzi",
+              "label": {
+                "tr": "Çıkış Tarzı (Sağlıklı/Hasta)",
+                "en": "The Manner of Exiting (Healthy/Ill)",
+                "pt": "A Maneira de Sair (Saudável/Doente)"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Bu üçlü tasnif metinde kurulu; hepsinin ortak örneği münafığın sözü ve imanı -- Dost'un \"kitabın bir kısmına inanır, bir kısmını inkâr eder\" âyetini doğrudan alıntılamasıyla bağlanıyor.",
+            "en": "This threefold classification is set up in the text; its shared example throughout is the hypocrite's speech and faith -- tied together by Dost's direct citation of the verse \"he believes part of the Book and denies part of it.\"",
+            "pt": "Essa classificação tripla está estabelecida no texto; seu exemplo compartilhado ao longo é a fala e a fé do hipócrita -- unidos pela citação direta de Dost do versículo \"ele crê em parte do Livro e nega parte dele\"."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Altmış Sekizinci Bölüm (devamı): Mest Üstüne Meshetmek",
+        "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- Chapter Sixty-Eight (continued): Wiping Over Footwear",
+        "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- Capítulo Sexagésimo Oitavo (continuação): Esfregar Sobre o Calçado"
+      },
+      "pageRange": "97-102"
+    },
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Altmış Sekizinci Bölüm (devamı): Neye Mesh Yapılır ve Su Bâbları",
+        "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- Chapter Sixty-Eight (continued): What Is Wiped Upon and the Water Chapters",
+        "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- Capítulo Sexagésimo Oitavo (continuação): Sobre o Que se Esfrega e os Capítulos da Água"
+      },
+      "pageRange": "102-124"
+    },
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt III, Kısım XXXI -- Altmış Sekizinci Bölüm (devamı ve kapanışı): Artık Sularla Temizlenme, Nebiz, Abdesti Bozan Şeyler",
+        "en": "al-Futuhat al-Makkiyya, Vol. III, Part XXXI -- Chapter Sixty-Eight (continued and closing): Purifying with Leftover Waters, Nabidh, What Breaks Ablution",
+        "pt": "al-Futuhat al-Makkiyya, Vol. III, Parte XXXI -- Capítulo Sexagésimo Oitavo (continuação e encerramento): Purificação com Águas Residuais, Nabidh, O Que Invalida a Ablução"
+      },
+      "pageRange": "124-130"
+    }
+  ]
+}

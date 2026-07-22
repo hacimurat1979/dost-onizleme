@@ -1,0 +1,562 @@
+{
+  "id": "c1k9",
+  "cilt": 1,
+  "kisim": 9,
+  "status": "active",
+  "title": {
+    "tr": "Perdelenen Akıl, Yorumlanan Söz",
+    "en": "The Veiled Intellect, The Interpreted Word",
+    "pt": "O Intelecto Velado, a Palavra Interpretada"
+  },
+  "pageRange": "259–289",
+  "hero": {
+    "summary": {
+      "tr": "Kısım VIII'in harekeler bahsinin hemen ardından Dost, Allah'ın hiçbir insani yolla bilinemeyeceği iddiasını temellendiriyor: soru edatlarından beş duyuya, hayalden akla kadar bütün idrak güçlerini tek tek eleyip, hiçbirinin Hak ile aramızdaki 'münasebetsizliği' aşamadığını gösteriyor. Sonra sahneyi çeviriyor ve Kur'an-hadislerdeki 'parmak', 'gülme', 'öfke', 'nefes' gibi teşbih görünümlü ifadelerin nasıl tenzih diliyle okunması gerektiğini örnekliyor. Dostu Abdülazîz el-Mehdevî'ye yazdığı bir mektupla Mekke'nin kalbe etkisini andıktan sonra, âlemin var oluş sebebini ilâhî isimler üzerinden ele alıyor ve kısmı, Besmele'nin harflerinin sembolik çözümlemesiyle kapatıyor.",
+      "en": "Right after Part VIII's discussion of vowel-marks, Dost sets out to ground a striking claim: that God cannot be known by any human faculty at all. He eliminates them one by one — from the interrogative particles to the five senses, from imagination to reason — showing that none can cross the 'lack of relation' between us and the Real. Then he turns the scene around, showing how Qur'anic and hadith expressions that look like anthropomorphism — 'finger,' 'laughter,' 'anger,' 'breath' — should instead be read in the language of transcendence. After a personal letter to his friend Abd al-Aziz al-Mahdawi touching on how Mecca affects the heart, he takes up the reason for the world's existence through the divine names, and closes the part with a symbolic reading of the letters of the Basmala.",
+      "pt": "Logo após a discussão sobre as vogais na Parte VIII, Dost busca fundamentar uma afirmação marcante: que Deus não pode ser conhecido por nenhuma faculdade humana. Ele as elimina uma a uma — das partículas interrogativas aos cinco sentidos, da imaginação à razão — mostrando que nenhuma consegue atravessar a 'falta de relação' entre nós e o Real. Em seguida, ele inverte a cena, mostrando como expressões corânicas e do hadith que parecem antropomórficas — 'dedo,' 'riso,' 'ira,' 'sopro' — devem ser lidas na linguagem da transcendência. Após uma carta pessoal ao seu amigo Abd al-Aziz al-Mahdawi sobre como Meca afeta o coração, ele aborda a razão da existência do mundo através dos nomes divinos, e encerra a parte com uma leitura simbólica das letras da Basmala."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Dost'un elemesi: duyudan hafızaya, insanın bütün idrak güçleri tek tek sıralanır — hiçbiri Hak ile aramızdaki 'münasebetsizliği' aşamaz.",
+      "en": "Dost's elimination: from sense to memory, every human faculty of perception is examined in turn — none can cross the 'lack of relation' between us and the Real.",
+      "pt": "A eliminação de Dost: do sentido à memória, cada faculdade humana de percepção é examinada por sua vez — nenhuma consegue atravessar a 'falta de relação' entre nós e o Real."
+    },
+    "tree": {
+      "id": "bes-idrak-gucu-tree",
+      "label": {
+        "tr": "Beş İdrak Gücü",
+        "en": "Five Faculties of Perception",
+        "pt": "Cinco Faculdades de Percepção"
+      },
+      "note": {
+        "tr": "hepsi Hak'tan perdeli",
+        "en": "all veiled from the Real",
+        "pt": "todas veladas do Real"
+      },
+      "children": [
+        {
+          "id": "duyu",
+          "label": {
+            "tr": "Duyu",
+            "en": "Sense",
+            "pt": "Sentido"
+          },
+          "note": {
+            "tr": "yalnız yakınlık-uzaklığa göre değişir",
+            "en": "varies only with nearness and distance",
+            "pt": "varia apenas com proximidade e distância"
+          }
+        },
+        {
+          "id": "hayal",
+          "label": {
+            "tr": "Hayal",
+            "en": "Imagination",
+            "pt": "Imaginação"
+          },
+          "note": {
+            "tr": "duyunun verdiğini aşamaz",
+            "en": "cannot go beyond what sense provides",
+            "pt": "não pode ir além do que o sentido fornece"
+          }
+        },
+        {
+          "id": "fikir",
+          "label": {
+            "tr": "Fikir (Düşünce)",
+            "en": "Reflection",
+            "pt": "Reflexão"
+          },
+          "note": {
+            "tr": "yalnız aralarında münasebet olanı bilir",
+            "en": "knows only what shares a relation",
+            "pt": "conhece apenas o que compartilha uma relação"
+          }
+        },
+        {
+          "id": "akil",
+          "label": {
+            "tr": "Akıl",
+            "en": "Reason",
+            "pt": "Razão"
+          },
+          "note": {
+            "tr": "yalnız bedihi olanı ya da fikrin verdiğini kabul eder",
+            "en": "accepts only the self-evident or what reflection provides",
+            "pt": "aceita apenas o evidente ou o que a reflexão fornece"
+          }
+        },
+        {
+          "id": "hafiza",
+          "label": {
+            "tr": "Hafıza",
+            "en": "Memory",
+            "pt": "Memória"
+          },
+          "note": {
+            "tr": "yalnız unutulanı hatırlar",
+            "en": "recalls only what was forgotten",
+            "pt": "recorda apenas o que foi esquecido"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "soru-edatlari-ve-idrak-siniri",
+      "heading": {
+        "tr": "Sorulamayan Zât: Soru Edatlarının Sınırı",
+        "en": "The Unquestionable Essence: The Limit of Interrogatives",
+        "pt": "A Essência Inquestionável: O Limite dos Interrogativos"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, Kısım VIII'in bittiği yerden devam ederek dört temel soru edatını ele alıyor: hel (mi), mâ (ne), keyfe (nasıl), lime (niçin). Bunların hiçbirinin Allah hakkında sorulamayacağını söylüyor -çünkü <em>'tevhit bilgisinden bilinebilecek şey, Allah'tan başkasında bulunan şeyin Allah'tan olumsuzlanmasıdır'</em>. Ruhlar için bile 'nasıl' diye sorulamazken, Allah için hiç sorulamaz; O, yalnız olumsuzlama (tenzih) yoluyla bilinir.",
+            "en": "Continuing right where Part VIII left off, Dost takes up the four basic interrogative particles: hal (whether), ma (what), kayfa (how), lima (why). He says none of them can be asked of God — because <em>'what can be known from the knowledge of divine oneness is the negation, from God, of whatever is found in something other than God.'</em> Even the spirits cannot be asked 'how'; God can never be asked at all. He is known only through negation (tanzih).",
+            "pt": "Continuando exatamente de onde a Parte VIII parou, Dost aborda as quatro partículas interrogativas básicas: hal (se), ma (o que), kayfa (como), lima (por que). Ele diz que nenhuma delas pode ser perguntada sobre Deus — porque <em>'o que se pode saber a partir do conhecimento da unicidade divina é a negação, de Deus, de tudo o que se encontra em algo além de Deus.'</em> Nem mesmo aos espíritos se pode perguntar 'como'; a Deus jamais se pode perguntar nada. Ele só é conhecido através da negação (tanzih)."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ardından bir VASIL ile varlıkları ikiye ayırıyor: 'zatıyla algılanan' (duyulur, yoğun şeyler) ve 'fiiliyle algılanan' (akledilir, lâtif şeyler). Allah ikisiyle de münezzehtir, çünkü O'nunla yaratılmışlar arasında <em>hiçbir münasebet</em> yoktur. Burada ince bir ayrım var: Hakk'ın fiili 'ibdâ'dır -bir şeyden değil, yoktan yaratmak- oysa yaratılmışın fiili bir şeyi başka bir şeyden yapmaktır. Bu yüzden hiçbir ürün, kendi yapıcısını -ilk Akıl/Hakikat-i Muhammediye dahil- tam olarak bilemez; çünkü fail ile mef'ul arasında bilgiyi taşıyacak bir 'benzerlik' bulunmuyor.",
+            "en": "He then draws a division, in a section marked VASIL: things are either 'perceived through their essence' (sensory, dense things) or 'perceived through their act' (intelligible, subtle things). God transcends both, since there is <em>no relation whatsoever</em> between Him and creation. A fine distinction follows: the Real's act is 'ibda' — creating from nothing, not from something — while a creature's act is making one thing out of another. This is why no product can ever fully know its own maker, not even the First Intellect / the Muhammadan Reality: there is no 'resemblance' between agent and effect to carry the knowledge across.",
+            "pt": "Ele então traça uma divisão, numa seção marcada VASIL: as coisas são 'percebidas por sua essência' (coisas sensoriais, densas) ou 'percebidas por seu ato' (coisas inteligíveis, sutis). Deus transcende ambas, pois não há <em>relação alguma</em> entre Ele e a criação. Segue-se uma distinção sutil: o ato do Real é 'ibda' — criar do nada, não de algo — enquanto o ato de uma criatura é fazer uma coisa a partir de outra. É por isso que nenhum produto pode jamais conhecer plenamente seu próprio criador, nem mesmo o Primeiro Intelecto / a Realidade Muhammadiana: não há 'semelhança' entre agente e efeito para carregar o conhecimento através deles."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — Soru Edatları ve Zatıyla/Fiiliyle Algılanan Ayrımı, s. 259-260.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — Interrogatives and the Distinction Between Essential and Actional Perception, pp. 259-260.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — Interrogativos e a Distinção entre Percepção Essencial e Percepção pelo Ato, pp. 259-260."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "İbdâ (Hiçten)",
+                "en": "Ibda (From Nothing)",
+                "pt": "Ibda (Do Nada)"
+              },
+              "note": {
+                "tr": "Hakk'ın fiili; münasebetsiz, bilinemez",
+                "en": "the Real's act; without relation, unknowable",
+                "pt": "o ato do Real; sem relação, incognoscível"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Sudûr (Bir Şeyden)",
+                "en": "Sudur (From Something)",
+                "pt": "Sudur (De Algo)"
+              },
+              "note": {
+                "tr": "yaratılmışın fiili; kısmi benzerlik, kısmen bilinebilir",
+                "en": "the creature's act; partial resemblance, partly knowable",
+                "pt": "o ato da criatura; semelhança parcial, parcialmente cognoscível"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Hakk'ın 'ibdâ'sı ile yaratılmışın 'sudûr'u arasındaki fark: biri hiçbir benzerlik bırakmadan yoktan yaratır, diğeri kendi izini taşıyan bir şeyden var eder — bu yüzden yalnız ikincisi kısmen bilinebilir.",
+            "en": "The difference between the Real's 'ibda' and the creature's 'sudur': one creates from nothing, leaving no trace of resemblance; the other brings something into being from what already carries its own imprint — so only the second can be partly known.",
+            "pt": "A diferença entre o 'ibda' do Real e o 'sudur' da criatura: um cria do nada, sem deixar traço de semelhança; o outro faz existir algo a partir do que já carrega sua própria marca — por isso apenas o segundo pode ser parcialmente conhecido."
+          }
+        }
+      ]
+    },
+    {
+      "id": "bes-guc-hakki-idrak-edemez",
+      "heading": {
+        "tr": "Beş Güç, Tek Perde: Hiçbiri Hakk'a Ulaşamaz",
+        "en": "Five Faculties, One Veil: None Reach the Real",
+        "pt": "Cinco Faculdades, Um Véu: Nenhuma Alcança o Real"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost şimdi insanın bütün bilme yollarını tek tek eliyor. Duyu, mesafeye göre değişir -yakından görülen ile uzaktan görülen aynı değildir- ve Allah duyulur bir şey olmadığından duyuyla asla bilinemez. Hayal, duyunun verdiğini aşamaz. Fikir (düşünce) gücü, yalnız kendi nezdindekiler arasında bir 'münasebet' bulduğunda bilgi üretir; Allah ile yaratılmışlar arasında münasebet olmadığından fikir de işe yaramaz.",
+            "en": "Dost now eliminates every human way of knowing, one by one. Sense varies with distance — what is seen up close differs from what is seen from afar — and since God is not a sensory thing, He can never be known through sense. Imagination cannot go beyond what sense provides. Reflection produces knowledge only when it finds a 'relation' among things already within its reach; since there is no relation between God and creation, reflection is useless here too.",
+            "pt": "Dost agora elimina cada via humana de conhecer, uma a uma. O sentido varia com a distância — o que se vê de perto difere do que se vê de longe — e como Deus não é uma coisa sensorial, Ele jamais pode ser conhecido pelo sentido. A imaginação não pode ir além do que o sentido fornece. A reflexão produz conhecimento apenas quando encontra uma 'relação' entre coisas já ao seu alcance; como não há relação entre Deus e a criação, a reflexão também é inútil aqui."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Akıl da böyledir: yalnız bedihi olanı ya da fikrin verdiğini kabul edebilir -Allah'ın <em>ihsan ettiği</em> bir bilgiyi kabul edebilse de, ona kendiliğinden ulaşamaz ve onu kanıtlayamaz. Hafıza ise yalnız unutulanı hatırlar. Dost bunu doğal dünyadan bir örnekle destekliyor: canlılar yalnız kendi cinslerinden beslenir, çünkü kendilerinde o cinsten bir 'pay' vardır; insanda da Allah'tan hiçbir 'pay' bulunmadığından, nefis O'nu kendinden bilemez. Aktarılan hadis: <em>'Allah gözlerden perdeli olduğu gibi akıllardan da perdelenmiştir.'</em>",
+            "en": "Reason is the same: it can accept only what is self-evident or what reflection supplies — it may accept a knowledge that God <em>bestows</em>, but it cannot reach that knowledge on its own or prove it. Memory only recalls what was forgotten. Dost backs this with an example from the natural world: living things feed only on their own kind, because they carry a 'share' of that kind within them; since the human self carries no 'share' of God, it can never know Him from itself. The hadith he cites: <em>'God is veiled from the eyes as He is veiled from the intellects.'</em>",
+            "pt": "A razão é a mesma: só pode aceitar o que é evidente por si ou o que a reflexão fornece — pode aceitar um conhecimento que Deus <em>concede</em>, mas não pode alcançar esse conhecimento por si mesma nem prová-lo. A memória só recorda o que foi esquecido. Dost sustenta isso com um exemplo do mundo natural: os seres vivos se alimentam apenas de sua própria espécie, pois carregam em si uma 'porção' dessa espécie; como o eu humano não carrega porção alguma de Deus, jamais pode conhecê-Lo a partir de si mesmo. O hadith que ele cita: <em>'Deus está velado dos olhos como está velado dos intelectos.'</em>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tesbih-lafizlarinin-ruhu",
+      "heading": {
+        "tr": "Parmak, Kabza, Sağ El: Teşbihin Ruhunu Okumak",
+        "en": "Finger, Grasp, Right Hand: Reading the Spirit of Anthropomorphic Speech",
+        "pt": "Dedo, Punho, Mão Direita: Lendo o Espírito da Linguagem Antropomórfica"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bilme güçlerini kapattıktan sonra Dost yöntemini gösteriyor: Kur'an ve hadiste geçen, Allah'ı bir 'organ'a veya 'hâl'e sahipmiş gibi gösteren ifadeleri (teşbih) ne düz literal okumalı -bu, O'nu cisimleştirmek (mücessime) olur- ne de anlamsız sayıp reddetmeli. Doğru yol, lafzın 'ruhunu' -Allah'a yakışan anlamı- bulup, organ/hâl anlamını elemek. Muhakkiklerin en üstün grubu, kalplerini teorik düşünceden boşaltıp bu anlamı doğrudan keşifle müşahede ederler; diğerleri ise aktarma, ilham ve nakille bu anlama ulaşır.",
+            "en": "Having closed off every faculty of knowing, Dost now demonstrates his method: expressions in the Qur'an and hadith that seem to give God an 'organ' or a 'state' (tashbih) should be read neither literally — that would be anthropomorphism (tajsim) — nor dismissed as meaningless. The right path is to find the word's 'spirit' — the meaning befitting God — and set aside the organ/state reading. The highest group of verifiers empty their hearts of theoretical reasoning and witness this meaning directly through unveiling; others reach it through transmission, inspiration, and report.",
+            "pt": "Tendo fechado toda faculdade de conhecer, Dost agora demonstra seu método: expressões no Alcorão e no hadith que parecem dar a Deus um 'órgão' ou um 'estado' (tashbih) não devem ser lidas literalmente — isso seria antropomorfismo (tajsim) — nem descartadas como sem sentido. O caminho certo é encontrar o 'espírito' da palavra — o significado que convém a Deus — e descartar a leitura de órgão/estado. O grupo mais elevado dos verificadores esvazia o coração do raciocínio teórico e testemunha esse significado diretamente através do desvelamento; outros o alcançam por transmissão, inspiração e relato."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Örnek: 'Müminin kalbi Rahman'ın iki parmağı arasındadır' hadisindeki 'parmak', bir organ değil, hızlı ve kolay bir tasarruf gücünü simgeler. 'Bütün yeryüzü kıyamet günü O'nun kabzasındadır' ifadesindeki 'kabza' (avuç), mülkiyet ve hüküm altında olmayı anlatır. 'Sağ el' de Kur'an'da güç ve yetkinliğin simgesidir. Dost'un vurgusu şu: bu lafızları anlama işi bilginler arasında derece derecedir -kimi sadece tenzih eder ve durur, kimi lafzın hangi anlama geldiğini keşifle bizzat görür.",
+            "en": "An example: in the hadith 'the believer's heart is between two fingers of the All-Merciful,' 'finger' is not an organ but a symbol of swift, effortless power. In 'the whole earth will be in His grasp on the Day of Resurrection,' 'grasp' expresses being owned and under judgment. 'The right hand,' too, is a Qur'anic symbol of power and mastery. Dost's point is that understanding these words comes in degrees among scholars — some simply negate the literal sense and stop there, while others directly witness, through unveiling, which meaning is actually intended.",
+            "pt": "Um exemplo: no hadith 'o coração do crente está entre dois dedos do Todo-Misericordioso,' 'dedo' não é um órgão, mas um símbolo de poder veloz e sem esforço. Em 'toda a terra estará em Seu punho no Dia da Ressurreição,' 'punho' expressa estar possuído e sob julgamento. 'A mão direita,' também, é um símbolo corânico de poder e domínio. O ponto de Dost é que compreender essas palavras vem em graus entre os estudiosos — alguns simplesmente negam o sentido literal e param aí, enquanto outros testemunham diretamente, através do desvelamento, qual significado é de fato pretendido."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — Teşbih Vehmi Veren Sözlerin Yorumu, s. 265-268.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — The Interpretation of Anthropomorphic-Sounding Expressions, pp. 265-268.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — A Interpretação de Expressões de Aparência Antropomórfica, pp. 265-268."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Zâhir: 'Parmak'",
+                "en": "Literal: 'Finger'",
+                "pt": "Literal: 'Dedo'"
+              },
+              "note": {
+                "tr": "organ gibi okunursa cisimleştirme (teşbih) olur",
+                "en": "read as an organ, this becomes anthropomorphism",
+                "pt": "lido como um órgão, isso se torna antropomorfismo"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Rûh: Hızlı Tasarruf",
+                "en": "Spirit: Swift Power",
+                "pt": "Espírito: Poder Veloz"
+              },
+              "note": {
+                "tr": "lafzın Allah'a yakışan anlamı",
+                "en": "the meaning of the word that befits God",
+                "pt": "o significado da palavra que convém a Deus"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un yöntemi: teşbih görünümlü bir lafzın organ/hâl anlamı elenir, geriye Allah'a yakışan 'ruh' kalır — burada 'parmak' hızlı ve kolay bir tasarruf gücüne işaret eder.",
+            "en": "Dost's method: the organ/state-meaning of an anthropomorphic-sounding word is set aside, leaving the 'spirit' that befits God — here 'finger' points to a swift, effortless power.",
+            "pt": "O método de Dost: o significado de órgão/estado de uma palavra de aparência antropomórfica é descartado, restando o 'espírito' que convém a Deus — aqui 'dedo' aponta para um poder veloz e sem esforço."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hakkin-insani-halleri",
+      "heading": {
+        "tr": "Gülme, Öfke, Unutma: Hakk'a İzafe Edilen 'İnsanî' Hâller",
+        "en": "Laughter, Anger, Forgetting: The 'Human' States Attributed to the Real",
+        "pt": "Riso, Ira, Esquecimento: Os Estados 'Humanos' Atribuídos ao Real"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Aynı yöntemle Dost bir dizi daha örneği sıralıyor: 'şaşırma' bilmemek değil, olağanüstülüğe işarettir; 'gülme/tebessüm' kabul ve rızayı; 'öfke' bir ceza fiilini; 'unutma' ise terk etmeyi simgeler. 'Nefesü'r-Rahman' (Rahman'ın nefesi) tabiri için aktarılan hadis: <em>'Rüzgâra sövmeyin, o Rahman'ın nefesindendir'</em> -sıkıntıyı giderme anlamında. 'Rabbimi genç bir delikanlı sûretinde gördüm' rivayeti için ise Dost, bunun akli değil dilsel bir benzetme olduğunu vurguluyor.",
+            "en": "Using the same method, Dost lists a further series of examples: 'astonishment' signals not ignorance but extraordinariness; 'laughing/smiling' signals acceptance and good pleasure; 'anger' signals an act of punishment; 'forgetting' signals abandonment. For the phrase 'Breath of the All-Merciful' he cites the hadith: <em>'Do not curse the wind, for it is of the breath of the All-Merciful'</em> — meaning the relief of distress. As for the report 'I saw my Lord in the form of a young man,' Dost stresses that this is a linguistic likeness, not a rational one.",
+            "pt": "Usando o mesmo método, Dost lista uma nova série de exemplos: 'espanto' sinaliza não ignorância, mas extraordinariedade; 'rir/sorrir' sinaliza aceitação e boa satisfação; 'ira' sinaliza um ato de punição; 'esquecer' sinaliza abandono. Para a expressão 'Sopro do Todo-Misericordioso' ele cita o hadith: <em>'Não amaldiçoem o vento, pois ele é do sopro do Todo-Misericordioso'</em> — significando o alívio da aflição. Quanto ao relato 'Vi meu Senhor na forma de um jovem,' Dost enfatiza que se trata de uma semelhança linguística, não racional."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Zirâ/kulaç ve kadem/ayak gibi ölçü ifadeleri de mecazi -topluluk veya güç anlamında- okunuyor; 'istivâ' ise yerleşme değil, kast/irade ve istilâ (kuşatma) anlamındadır. Bölüm, hayret dolu bir imge ile kapanıyor: Hak kendi sûretinde beliren Âdem'e hayret eder, sevinir, öfkelenir, unutur -hepsi mecaz, hiçbiri organ ya da hâl değil.",
+            "en": "Expressions of measure like 'cubit' and 'foot' are likewise read figuratively — as multitude or power — while 'istiwa' (settling on the Throne) means not literal sitting but intent/will and encompassing dominion. The section closes on an image full of wonder: the Real is astonished at, delights in, grows angry with, and forgets Adam who appears in His own form — all of it figurative, none of it an organ or a state.",
+            "pt": "Expressões de medida como 'côvado' e 'pé' são igualmente lidas de forma figurada — como multidão ou poder — enquanto 'istiwa' (assentar-se no Trono) significa não sentar-se literalmente, mas intenção/vontade e domínio abrangente. A seção se encerra numa imagem cheia de espanto: o Real se espanta, se deleita, se ira e esquece Adão, que aparece em Sua própria forma — tudo figurado, nada disso um órgão ou um estado."
+          }
+        }
+      ]
+    },
+    {
+      "id": "mekkeye-mektup",
+      "heading": {
+        "tr": "Bir Dosta Mektup: Mekke'nin Kalbe Tesiri",
+        "en": "A Letter to a Friend: How Mecca Touches the Heart",
+        "pt": "Uma Carta a um Amigo: Como Meca Toca o Coração"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dördüncü bölüme kişisel bir girişle başlıyor Dost: dostu Ebû Muhammed Abdülazîz el-Mehdevî'ye, daha önce yazdığı <em>İnşâü'd-Devâir</em> ve <em>Ankâ-i Muğrib</em>'e atıfla, âlemin yaratılış sebebini yeniden ele alacağını söylüyor. Ardından Mekke'nin diğer mekânlardan üstünlüğüne değiniyor: ruhani ve cismani 'menzillerin' derece derece olduğunu -taş ile çamurun bir olmadığı gibi- ve Mescid-i Haram'ı imar eden meleklerin en üstün bilgiye sahip olduğunu anlatıyor.",
+            "en": "Dost opens the fourth chapter with a personal note: writing to his friend Abu Muhammad Abd al-Aziz al-Mahdawi, referring back to his earlier works Insha' al-Dawa'ir and al-'Anqa' al-Mughrib, he says he will take up the reason for the world's creation once more. He then turns to Mecca's superiority over other places: spiritual and physical 'stations' come in degrees — stone and clay are not the same — and the angels who built the Sacred Mosque possess the most excellent knowledge.",
+            "pt": "Dost abre o quarto capítulo com uma nota pessoal: escrevendo a seu amigo Abu Muhammad Abd al-Aziz al-Mahdawi, remetendo-se às suas obras anteriores Insha' al-Dawa'ir e al-'Anqa' al-Mughrib, ele diz que retomará a razão da criação do mundo. Ele então se volta para a superioridade de Meca sobre outros lugares: 'estações' espirituais e físicas vêm em graus — pedra e barro não são iguais — e os anjos que construíram a Mesquita Sagrada possuem o conhecimento mais excelente."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost'un vurgusu ince: kalbin bazı mekânlarda diğerlerinden daha çok 'vecd' bulması, mekânın kendisinden değil, oraya yerleşmiş sâlih kimselerin himmetinden kaynaklanır. Mekân, sadece o himmetin biriktiği bir kaptır.",
+            "en": "Dost's emphasis is subtle: that the heart finds more 'ecstasy' in some places than others comes not from the place itself, but from the spiritual power (himma) of the righteous who have settled there. The place is only the vessel in which that power has gathered.",
+            "pt": "A ênfase de Dost é sutil: que o coração encontre mais 'êxtase' em alguns lugares do que em outros não vem do lugar em si, mas do poder espiritual (himma) dos justos que ali se estabeleceram. O lugar é apenas o vaso onde esse poder se reuniu."
+          }
+        }
+      ]
+    },
+    {
+      "id": "isimlerin-analari",
+      "heading": {
+        "tr": "İsimlerin Anaları: Altı İsim, Tek Yöneliş",
+        "en": "Mothers of the Names: Six Names, One Direction",
+        "pt": "Mães dos Nomes: Seis Nomes, Uma Direção"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost şimdi âlemin yaratılış sebebini ilâhî isimler üzerinden ele alıyor. İsimleri tek tek incelemek yerine bir kısayol öneriyor: <em>'Ana isimlerin dayandığı bir takım isimler vardır ki, bunlar aynı zamanda isimlerin analarıdır... Bu analardan kızlara geçiş yapmak kolaylaştığı gibi, kızları annelerine döndürmek de kolaylaşır.'</em> Âlemin var oluşuna göre bu 'ana' isimler altıdır: el-Hayy (diri), el-Âlim (bilen), el-Mürid (irade eden), el-Kâdir (güç yetiren), el-Cevâd (cömert), el-Muksit (adaletli) -ve bunların hepsi, el-Müdebbir (yöneten) ile el-Mufassıl (ayrıntılandıran) isimlerinin 'kızları'dır.",
+            "en": "Dost now takes up the reason for the world's existence through the divine names. Rather than examine each name one by one, he offers a shortcut: <em>'There are certain names on which the mother-names rest, which are at once the mothers of the [other] names... Just as passing from these mothers to their daughters is made easy, so too is returning the daughters to their mothers.'</em> With respect to the world's existence, these 'mother' names are six: al-Hayy (the Living), al-'Alim (the Knowing), al-Murid (the Willing), al-Qadir (the Powerful), al-Jawad (the Generous), al-Muqsit (the Just) — and all of them are 'daughters' of al-Mudabbir (the Director) and al-Mufassil (the One Who Differentiates).",
+            "pt": "Dost agora aborda a razão da existência do mundo através dos nomes divinos. Em vez de examinar cada nome um a um, ele oferece um atalho: <em>'Há certos nomes sobre os quais repousam os nomes-mãe, que são ao mesmo tempo as mães dos [demais] nomes... Assim como passar dessas mães para suas filhas é facilitado, também o é devolver as filhas às suas mães.'</em> Quanto à existência do mundo, esses nomes 'mãe' são seis: al-Hayy (o Vivo), al-'Alim (o Sapiente), al-Murid (o Volitivo), al-Qadir (o Poderoso), al-Jawad (o Generoso), al-Muqsit (o Justo) — e todos eles são 'filhas' de al-Mudabbir (o Diretor) e al-Mufassil (Aquele Que Diferencia)."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu altı isim arasında da bir mertebe sırası var: el-Hayy imamdır (ilk), onu el-Âlim, el-Mürid, el-Kâdir, el-Cevâd izler; el-Muksit ise sonuncusudur -çünkü o, <em>'mertebelerin Rabbi'</em>dir, varlık menzillerinin son noktasıdır. Dost ilginç bir itiraza da cevap veriyor: madem yalnız el-Basîr 'görür', âlemin her parçası nasıl 'görülmüş' olur? Cevabı, her ilâhî ismin kendi içinde bütün isimlerin bir izini taşıdığıdır -tıpkı bir cevherin (bölünmez birim) tek olmasına rağmen, ona bakan her yönden ayrı bir ismi (kudretini, ilmini, iradesini...) 'talep etmesi' gibi.",
+            "en": "There is also a rank-order among these six: al-Hayy is the imam (first), followed by al-'Alim, al-Murid, al-Qadir, al-Jawad; al-Muqsit comes last — for it is <em>'the Lord of the ranks,'</em> the final point of the stations of existence. Dost also answers a striking objection: if only al-Basir 'sees,' how can every part of the world be said to be 'seen'? His answer is that every divine name carries within itself a trace of all the names — just as a single indivisible substance, though one, 'calls for' a separate name (its power, its knowledge, its will...) from every angle from which it is regarded.",
+            "pt": "Há também uma ordem de grau entre esses seis: al-Hayy é o imame (primeiro), seguido por al-'Alim, al-Murid, al-Qadir, al-Jawad; al-Muqsit vem por último — pois é <em>'o Senhor dos graus,'</em> o ponto final das estações da existência. Dost também responde a uma objeção marcante: se apenas al-Basir 'vê,' como pode cada parte do mundo ser dita 'vista'? Sua resposta é que cada nome divino carrega em si um traço de todos os nomes — assim como uma única substância indivisível, embora una, 'exige' um nome separado (seu poder, seu conhecimento, sua vontade...) a partir de cada ângulo do qual é considerada."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — İlâhî İsimlerin Anaları, s. 278-279.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — The Mothers of the Divine Names, pp. 278-279.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — As Mães dos Nomes Divinos, pp. 278-279."
+          },
+          "tree": {
+            "id": "isimlerin-analari-tree",
+            "label": {
+              "tr": "el-Müdebbir + el-Mufassıl",
+              "en": "al-Mudabbir + al-Mufassil",
+              "pt": "al-Mudabbir + al-Mufassil"
+            },
+            "note": {
+              "tr": "altı ana ismin kaynağı",
+              "en": "the source of the six mother names",
+              "pt": "a fonte dos seis nomes-mãe"
+            },
+            "children": [
+              {
+                "id": "el-hayy-9",
+                "label": {
+                  "tr": "el-Hayy",
+                  "en": "al-Hayy",
+                  "pt": "al-Hayy"
+                },
+                "note": {
+                  "tr": "1. mertebe, imam",
+                  "en": "1st rank, the imam",
+                  "pt": "1º grau, o imame"
+                }
+              },
+              {
+                "id": "el-alim-9",
+                "label": {
+                  "tr": "el-Âlim",
+                  "en": "al-'Alim",
+                  "pt": "al-'Alim"
+                },
+                "note": {
+                  "tr": "2. mertebe",
+                  "en": "2nd rank",
+                  "pt": "2º grau"
+                }
+              },
+              {
+                "id": "el-murid-9",
+                "label": {
+                  "tr": "el-Mürid",
+                  "en": "al-Murid",
+                  "pt": "al-Murid"
+                },
+                "note": {
+                  "tr": "3. mertebe",
+                  "en": "3rd rank",
+                  "pt": "3º grau"
+                }
+              },
+              {
+                "id": "el-kadir-9",
+                "label": {
+                  "tr": "el-Kâdir",
+                  "en": "al-Qadir",
+                  "pt": "al-Qadir"
+                },
+                "note": {
+                  "tr": "4. mertebe",
+                  "en": "4th rank",
+                  "pt": "4º grau"
+                }
+              },
+              {
+                "id": "el-cevad-9",
+                "label": {
+                  "tr": "el-Cevâd",
+                  "en": "al-Jawad",
+                  "pt": "al-Jawad"
+                },
+                "note": {
+                  "tr": "5. mertebe",
+                  "en": "5th rank",
+                  "pt": "5º grau"
+                }
+              },
+              {
+                "id": "el-muksit-9",
+                "label": {
+                  "tr": "el-Muksit",
+                  "en": "al-Muqsit",
+                  "pt": "al-Muqsit"
+                },
+                "note": {
+                  "tr": "son mertebe, 'mertebelerin Rabbi'",
+                  "en": "final rank, 'Lord of the ranks'",
+                  "pt": "grau final, 'Senhor dos graus'"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Dost'un 'ana isimler' şeması: el-Müdebbir ve el-Mufassıl'dan doğan altı isim, el-Hayy'dan el-Muksit'e uzanan bir mertebe zinciri oluşturur — her biri bir öncekinin ardından gelir, sonuncusu 'mertebelerin Rabbi'dir.",
+            "en": "Dost's scheme of the 'mother names': six names born from al-Mudabbir and al-Mufassil form a chain of rank running from al-Hayy to al-Muqsit — each follows the one before, the last being 'the Lord of the ranks.'",
+            "pt": "O esquema de Dost dos 'nomes-mãe': seis nomes nascidos de al-Mudabbir e al-Mufassil formam uma cadeia de grau que vai de al-Hayy a al-Muqsit — cada um segue o anterior, sendo o último 'o Senhor dos graus.'"
+          }
+        }
+      ]
+    },
+    {
+      "id": "besmelenin-harfleri",
+      "heading": {
+        "tr": "Besmele'nin Harfleri: Ba, Nokta, Hareke",
+        "en": "The Letters of the Basmala: Ba, Dot, Vowel-Mark",
+        "pt": "As Letras da Basmala: Ba, Ponto, Vogal"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Beşinci bölüme geçen Dost, önce şiirsel bir girişle Besmele ve Fâtiha'nın sırlarına değiniyor, sonra şöyle diyor: <em>'Bize göre âlem, büyük mushaftır... Hakkın bize okuduğu bir okumadır.'</em> Besmele üç isme (Allah, Rahmân, Rahîm) tahsis edilmiştir: Allah ismi bütün isimleri toplar; er-Rahmân dünya-ahiret genelidir; er-Rahîm ise ahirette yalnız iman edenlere özeldir.",
+            "en": "Turning to the fifth chapter, Dost first touches on the secrets of the Basmala and the Fatiha with a poetic opening, then says: <em>'For us, the world is the great mushaf [scripture]... a reading that the Real recites to us.'</em> The Basmala is allotted to three names — Allah, al-Rahman, al-Rahim: the name Allah gathers all the names; al-Rahman is general, covering this world and the next; al-Rahim is specific to believers alone, in the hereafter.",
+            "pt": "Voltando-se para o quinto capítulo, Dost primeiro toca nos segredos da Basmala e da Fatiha com uma abertura poética, depois diz: <em>'Para nós, o mundo é o grande mushaf [escritura]... uma leitura que o Real nos recita.'</em> A Basmala é destinada a três nomes — Allah, al-Rahman, al-Rahim: o nome Allah reúne todos os nomes; al-Rahman é geral, abrangendo este mundo e o próximo; al-Rahim é específico apenas aos crentes, no além."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Sonra harf harf iniyor: <em>'Ben Ba harfinin altındaki noktayım'</em> demiş İmam Şiblî -nokta, kulu (âbid) Allah'tan (mabud) ayıran işarettir. Elif zatı, Ba ise sıfatı ifade eder. Ve Dost'un kendi özeti: <em>'Ba harfinde üç tür meydana gelmiştir: Ba'nın şekli, nokta ve hareke. Âlemler ise üçtür.'</em> Ba'nın şekli Melekût'tan, altındaki nokta Ceberût'tan, üzerindeki hareke ise Şehâdet ve Mülk âleminden bir işarettir.",
+            "en": "Then he descends letter by letter: Imam Shibli said, <em>'I am the dot beneath the letter Ba'</em> — the dot being the mark that separates the servant (worshipper) from the Worshipped. Alif expresses essence, Ba expresses attribute. And in Dost's own summary: <em>'Three kinds occur within the letter Ba: the shape of Ba, the dot, and the vowel-mark. And the worlds, too, are three.'</em> The shape of Ba carries a trace of Malakut, the dot beneath it of Jabarut, and the vowel-mark above it of the world of Shahada and Mulk (the visible, manifest world).",
+            "pt": "Então ele desce letra por letra: o Imame Shibli disse, <em>'Eu sou o ponto sob a letra Ba'</em> — o ponto sendo a marca que separa o servo (adorador) do Adorado. Alif expressa a essência, Ba expressa o atributo. E no próprio resumo de Dost: <em>'Três tipos ocorrem dentro da letra Ba: a forma do Ba, o ponto, e a vogal. E os mundos, também, são três.'</em> A forma do Ba carrega um traço do Malakut, o ponto abaixo dela do Jabarut, e a vogal acima dela do mundo do Shahada e Mulk (o mundo visível, manifesto)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — Besmele'nin Harflerinin Sembolik Çözümlemesi, s. 283-289.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — A Symbolic Reading of the Basmala's Letters, pp. 283-289.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — Uma Leitura Simbólica das Letras da Basmala, pp. 283-289."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Ba'nın Şekli",
+                "en": "The Shape of Ba",
+                "pt": "A Forma do Ba"
+              },
+              "note": {
+                "tr": "Melekût âlemi",
+                "en": "the world of Malakut",
+                "pt": "o mundo do Malakut"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Nokta",
+                "en": "The Dot",
+                "pt": "O Ponto"
+              },
+              "note": {
+                "tr": "Ceberût âlemi; kulu Hak'tan ayıran işaret",
+                "en": "the world of Jabarut; the mark separating servant from Lord",
+                "pt": "o mundo do Jabarut; a marca que separa o servo do Senhor"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Hareke",
+                "en": "The Vowel-Mark",
+                "pt": "A Vogal"
+              },
+              "note": {
+                "tr": "Şehâdet ve Mülk âlemi",
+                "en": "the world of Shahada and Mulk",
+                "pt": "o mundo do Shahada e Mulk"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost, tek bir harfin (Ba) içinde üç âlemi buluyor: şeklin kendisi Melekût'tan, altındaki nokta Ceberût'tan, üzerindeki hareke ise görünen-mülk âleminden bir iz taşır.",
+            "en": "Dost finds three worlds within a single letter (Ba): its shape carries a trace of Malakut, the dot beneath it of Jabarut, and the vowel-mark above it of the visible world of Mulk.",
+            "pt": "Dost encontra três mundos dentro de uma única letra (Ba): sua forma carrega um traço do Malakut, o ponto abaixo dela do Jabarut, e a vogal acima dela do mundo visível do Mulk."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — Soru Edatları ve Zatıyla/Fiiliyle Algılanan Ayrımı, s. 259-260.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — Interrogatives and the Distinction Between Essential and Actional Perception, pp. 259-260.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — Interrogativos e a Distinção entre Percepção Essencial e Percepção pelo Ato, pp. 259-260."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — Beş Duyu ve Gerçekte İdrak Ettikleri Şeyler, s. 261-264.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — The Five Senses and What They Really Perceive, pp. 261-264.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — Os Cinco Sentidos e o Que Realmente Percebem, pp. 261-264."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — Teşbih Vehmi Veren Sözlerin Yorumu, s. 265-268.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — The Interpretation of Anthropomorphic-Sounding Expressions, pp. 265-268.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — A Interpretação de Expressões de Aparência Antropomórfica, pp. 265-268."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — Hakk'a İzafe Edilen İnsanî Hâller, s. 269-274.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — The 'Human' States Attributed to the Real, pp. 269-274.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — Os Estados 'Humanos' Atribuídos ao Real, pp. 269-274."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — Abdülazîz el-Mehdevî'ye Mektup ve Mekke'nin Fazileti, s. 274-277.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — Letter to Abd al-Aziz al-Mahdawi and the Merit of Mecca, pp. 274-277.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — Carta a Abd al-Aziz al-Mahdawi e o Mérito de Meca, pp. 274-277."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — İlâhî İsimlerin Anaları, s. 277-282.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — The Mothers of the Divine Names, pp. 277-282.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — As Mães dos Nomes Divinos, pp. 277-282."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım IX — Besmele ve Fâtiha'nın Sırları, s. 283-289.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part IX — The Secrets of the Basmala and the Fatiha, pp. 283-289.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte IX — Os Segredos da Basmala e da Fatiha, pp. 283-289."
+    }
+  ]
+}

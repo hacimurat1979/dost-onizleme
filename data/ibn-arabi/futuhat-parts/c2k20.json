@@ -1,0 +1,293 @@
+{
+  "id": "c2k20",
+  "cilt": 2,
+  "kisim": 20,
+  "status": "active",
+  "title": {
+    "tr": "Babanın Ölümü, İsevi Kutuplar ve Havada Yürümenin Sırrı",
+    "en": "A Father's Death, the Christic Poles, and the Secret of Walking on Air",
+    "pt": "A Morte de um Pai, os Polos Crísticos, e o Segredo de Caminhar no Ar"
+  },
+  "pageRange": "175–202",
+  "hero": {
+    "summary": {
+      "tr": "Kısım XX, nefesler ehlinin ölüm sonrası sırlarıyla açılıyor -kısmın en dokunaklı anı, Dost'un kendi babasının ölümünü anlattığı, yüzde diri damarda ölü bir bedeni tasvir eden sahne. Ardından 'İsevi kutuplar' üzerinden bir nispet sistemi (Muhammedi/İsevi/Musevi) kuruluyor; Kısım XVIII'de tanıtılan Efrad kategorisinin somut bir örneği (İbn Bersemla) burada karşımıza çıkıyor, ve kısım, görünmez bir 'hal'in elle taşınıp bedene nüfuz etmesini anlatan çarpıcı bir imgeyle kapanıyor.",
+      "en": "Part XX opens with the secrets after the death of the people of breaths -- the part's most moving moment being Dost's account of his own father's death, a scene depicting a body alive in the face yet dead in the pulse. It then builds a system of affiliation (Muhammadan/Christic/Mosaic) around 'Christic poles'; a concrete example of the Afrad category introduced in Part XVIII (Ibn Bersemla) appears here, and the part closes with a striking image of an invisible 'state' being carried by hand and penetrating the body.",
+      "pt": "A Parte XX se abre com os segredos após a morte do povo dos alentos -- o momento mais comovente da parte sendo o relato de Dost sobre a morte de seu próprio pai, uma cena que retrata um corpo vivo no rosto mas morto no pulso. Em seguida constrói um sistema de filiação (Muhammadano/Crístico/Mosaico) em torno dos 'polos crísticos'; um exemplo concreto da categoria Afrad introduzida na Parte XVIII (Ibn Bersemla) aparece aqui, e a parte se encerra com uma imagem marcante de um 'estado' invisível sendo carregado pela mão e penetrando o corpo."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Dost'un nispet sistemi: Muhammedi şeriat önceki bütün şeriatları içerir, ama bir amel önceki bir peygamberin zevkine denk düşerse o bilgiye İsevi/Musevi/İbrahimi nispet edilir.",
+      "en": "Dost's system of affiliation: the Muhammadan law contains all previous laws, but if an act corresponds to the taste of an earlier prophet, that knowledge is affiliated as Christic/Mosaic/Abrahamic.",
+      "pt": "O sistema de filiação de Dost: a lei muhammadana contém todas as leis anteriores, mas se um ato corresponde ao gosto de um profeta anterior, esse conhecimento é filiado como Crístico/Mosaico/Abraâmico."
+    },
+    "tree": {
+      "id": "nispet-sistemi-tree",
+      "label": {
+        "tr": "Muhammedi Şeriat",
+        "en": "The Muhammadan Law",
+        "pt": "A Lei Muhammadana"
+      },
+      "note": {
+        "tr": "bütün önceki şeriatları içerir",
+        "en": "contains all previous laws",
+        "pt": "contém todas as leis anteriores"
+      },
+      "children": [
+        {
+          "id": "isevi-zevk",
+          "label": {
+            "tr": "İsevi Zevk",
+            "en": "Christic Taste",
+            "pt": "Gosto Crístico"
+          },
+          "note": {
+            "tr": "su üzerinde yürüme kerameti",
+            "en": "the wonder of walking on water",
+            "pt": "o prodígio de caminhar sobre a água"
+          }
+        },
+        {
+          "id": "musevi-zevk",
+          "label": {
+            "tr": "Musevi Zevk",
+            "en": "Mosaic Taste",
+            "pt": "Gosto Mosaico"
+          },
+          "note": {
+            "tr": "Dost'un kendi sülûkunda geçtiği bir mertebe",
+            "en": "a station Dost passed through in his own path",
+            "pt": "um estágio que Dost atravessou em seu próprio caminho"
+          }
+        },
+        {
+          "id": "ibrahimi-zevk",
+          "label": {
+            "tr": "İbrahimi Zevk",
+            "en": "Abrahamic Taste",
+            "pt": "Gosto Abraâmico"
+          },
+          "note": {
+            "tr": "nispet sisteminin bir başka dalı",
+            "en": "another branch of the affiliation system",
+            "pt": "outro ramo do sistema de filiação"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "iman-ve-kesif",
+      "heading": {
+        "tr": "İman ve Keşif: Akılcıların Tevili, Müminin Doğrudan Kabulü",
+        "en": "Faith and Unveiling: The Rationalists' Interpretation, the Believer's Direct Acceptance",
+        "pt": "Fé e Desvelamento: A Interpretação dos Racionalistas, a Aceitação Direta do Crente"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, nefsî sıfat ile manevi sıfat ayrımı üzerinden, akılcıların (mütekellimîn/felsefeciler) Allah'ı tevil yoluyla anlaması ile keşif ehlinin/müminin doğrudan kabulü arasındaki karşıtlığı işleyerek açılıyor: <em>'Doğru bilgi, Allah'ın bilenin kalbine attığı şeydir... Keşfi olmayanın bilgisi de yoktur.'</em> Bize göre bu, sitenin kendi 'anlamaya çalışıyoruz, anlatmaya değil' duruşuyla ilginç bir karşılaştırma sunuyor -Dost burada kendi yöntemini kesinlik iddiasıyla değil, kalbe doğrudan gelen bir bilgiye dayandırıyor.",
+            "en": "The part opens by treating, through the distinction between an essential attribute and a spiritual attribute, the contrast between the rationalists' (theologians'/philosophers') understanding of God through interpretation and the direct acceptance of the people of unveiling/the believer: <em>'True knowledge is what God casts into the heart of the knower... The one without unveiling has no knowledge either.'</em> To us, this offers an interesting comparison with the site's own posture of 'trying to understand, not to explain' -- here Dost grounds his own method not in a claim to certainty, but in knowledge that comes directly to the heart.",
+            "pt": "A parte se abre tratando, através da distinção entre um atributo essencial e um atributo espiritual, o contraste entre a compreensão de Deus pelos racionalistas (teólogos/filósofos) através da interpretação e a aceitação direta do povo do desvelamento/do crente: <em>'O verdadeiro conhecimento é o que Deus lança no coração de quem conhece... Quem não tem desvelamento também não tem conhecimento.'</em> Para nós, isso oferece uma comparação interessante com a própria postura do site de 'tentar entender, não explicar' -- aqui Dost fundamenta seu próprio método não numa afirmação de certeza, mas num conhecimento que chega diretamente ao coração."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ebu-medyenin-oglu",
+      "heading": {
+        "tr": "Ebû Medyen'in Oğlu: Babası Vasıtasıyla Görmek",
+        "en": "Abu Madyan's Son: Seeing Through His Father",
+        "pt": "O Filho de Abu Madyan: Vendo Através de Seu Pai"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu bölümün en özgün anlarından biri, Şeyh Ebû Medyen'in yedi yaşındaki oğluyla ilgili anlatı. Çocuk, uzak denizdeki gemileri görüp doğru tarif ediyor; ona nasıl gördüğü sorulunca cevabı katman katman değişiyor: <em>'Neyle görüyorsun' diye sorulmuş, o da, 'gözümle' diye cevap vermiş. Sonra şöyle demiştir: 'Hayır, kalbimle görüyorum.' Sonra şöyle demiştir: 'Hayır, onu babam vasıtasıyla görüyorum. Babam burada bulunduğunda ve ona baktığımda size bildirdiğim şeyi görüyorum. Babamı görmediğimde ise böyle bir şey görmüyorum.'</em> Bize göre bu, günlük hayattan (bir çocuğun babasına bakarak 'görmesi') doğrudan alınmış, aracılık/vasıta fikrini çok somut anlatan bir örnek -hemen ardından kutsî hadisle ('kendisiyle işittiği kulağı... olurum') bağlanıyor.",
+            "en": "One of this chapter's most original moments is the account concerning Shaykh Abu Madyan's seven-year-old son. The boy sees ships on a distant sea and describes them accurately; when asked how he sees, his answer shifts layer by layer: <em>'He was asked, \"With what do you see?\" and he answered, \"With my eye.\" Then he said, \"No, I see with my heart.\" Then he said, \"No, I see it through my father. When my father is present and I look at him, I see what I have told you. When I do not see my father, I do not see such a thing.\"'</em> To us, this is an example taken directly from everyday life (a child 'seeing' by looking at his father) that conveys the idea of mediation/intermediary very concretely -- it is immediately tied to the hadith qudsi ('I become the ear with which he hears...').",
+            "pt": "Um dos momentos mais originais deste capítulo é o relato sobre o filho de sete anos do Xeique Abu Madyan. O menino vê navios num mar distante e os descreve com precisão; quando perguntado como vê, sua resposta muda camada por camada: <em>'Perguntaram-lhe: \"Com que vês?\" e ele respondeu: \"Com meu olho.\" Depois disse: \"Não, vejo com meu coração.\" Depois disse: \"Não, vejo através de meu pai. Quando meu pai está presente e olho para ele, vejo o que vos disse. Quando não vejo meu pai, não vejo tal coisa.\"'</em> Para nós, este é um exemplo tirado diretamente da vida cotidiana (uma criança 'vendo' ao olhar para seu pai) que transmite a ideia de mediação/intermediário de forma muito concreta -- é imediatamente ligado ao hadith qudsi ('torno-me o ouvido com que ele ouve...')."
+          }
+        }
+      ]
+    },
+    {
+      "id": "babamin-olumu",
+      "heading": {
+        "tr": "Babamın Ölümü: Yüzde Diri, Nabızda Ölü",
+        "en": "My Father's Death: Alive in the Face, Dead in the Pulse",
+        "pt": "A Morte de Meu Pai: Vivo no Rosto, Morto no Pulso"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısmın en dokunaklı ve bize göre en değerli otobiyografik anı burada: Dost, kendi babasının ölümünü doğrudan tanıklığıyla anlatıyor. On beş gün önceden ölüm gününü bildiğini, ölüm günü şiddetli hastalık içindeyken doğrulup <em>'Evladım! Bugün seyahat ve kavuşma gerçekleşecek'</em> dediğini aktarıyor. Ardından, bedeninde diri ile ölünün bir arada göründüğü çarpıcı bir sahne: <em>'Ben bu olayı babamda gözlemledim. Neredeyse, onu defnederken kuşkuya kapıldık. Bunun nedeni, onun yüzündeki canlılık ile nabzının durmuş, nefesinin kesilmiş olması gibi canlılık ve ölüm özellikleriydi.'</em> Bize göre bu, Dost'un külliyatındaki en dolaysız, en insani anlardan biri -teorik bir tartışma değil, kendi gözleriyle gördüğü bir bedenin tasviri.",
+            "en": "The part's most moving and, to us, most valuable autobiographical moment is here: Dost recounts his own father's death as a direct witness. He relates that he knew the day of death fifteen days in advance, and that on the day of death, while in severe illness, his father sat up and said, <em>'My son! Today the journey and the meeting will take place.'</em> What follows is a striking scene in which the living and the dead appear together in one body: <em>'I observed this event in my father. We nearly hesitated while burying him. The reason was the combination of liveliness and death in him -- the liveliness in his face, alongside his stopped pulse and cut-off breath.'</em> To us, this is one of the most direct, most human moments in Dost's corpus -- not a theoretical discussion, but the description of a body he witnessed with his own eyes.",
+            "pt": "O momento autobiográfico mais comovente e, para nós, mais valioso da parte está aqui: Dost relata a morte de seu próprio pai como testemunha direta. Ele relata que soube do dia da morte quinze dias antes, e que no dia da morte, em meio a uma doença grave, seu pai se sentou e disse: <em>'Meu filho! Hoje se realizará a viagem e o encontro.'</em> Segue-se uma cena marcante em que o vivo e o morto aparecem juntos num só corpo: <em>'Observei este evento em meu pai. Quase hesitamos ao sepultá-lo. A razão foi a combinação de vivacidade e morte nele -- a vivacidade em seu rosto, junto com seu pulso parado e sua respiração cessada.'</em> Para nós, este é um dos momentos mais diretos e mais humanos de todo o corpus de Dost -- não uma discussão teórica, mas a descrição de um corpo que ele testemunhou com os próprios olhos."
+          }
+        }
+      ]
+    },
+    {
+      "id": "muhammedi-isevi-musevi-nispet",
+      "heading": {
+        "tr": "Muhammedi, İsevi, Musevi: Nispet Sistemi ve Dost'un Kendi Sülûku",
+        "en": "Muhammadan, Christic, Mosaic: The System of Affiliation and Dost's Own Path",
+        "pt": "Muhammadano, Crístico, Mosaico: O Sistema de Filiação e o Próprio Caminho de Dost"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu bölüm, Hz. Muhammed'in şeriatının bütün önceki şeriatları içerdiğini, ama bir 'Muhammedi'nin bir amel işlerken kalbinde önceki bir peygamberin yoluna denk düşerse o bilgiye 'İsevi/Musevi/İbrahimi' dendiğini açıklıyor. Sadece iki kişiye tam anlamıyla 'Muhammedi' denebileceği belirtiliyor: önceki hiçbir şeriatta bulunmayan yeni bir hükmün mirasçısı, ya da Ebû Yezîd gibi bütün makamları toplayıp makamsızlığa çıkan kişi.",
+            "en": "This chapter explains that Muhammad's law contains all previous laws, but that if a 'Muhammadan,' while performing an act, finds his heart corresponding to the path of an earlier prophet, that knowledge is called 'Christic/Mosaic/Abrahamic.' It states that only two kinds of people can be called 'Muhammadan' in the full sense: the heir of a new ruling found in no previous law, or one who, like Abu Yazid, gathers all stations and emerges into stationlessness.",
+            "pt": "Este capítulo explica que a lei de Muhammad contém todas as leis anteriores, mas que se um 'Muhammadano', ao realizar um ato, encontra seu coração correspondendo ao caminho de um profeta anterior, esse conhecimento é chamado de 'Crístico/Mosaico/Abraâmico.' Afirma-se que apenas dois tipos de pessoas podem ser chamadas de 'Muhammadanas' em sentido pleno: o herdeiro de uma nova norma não encontrada em nenhuma lei anterior, ou alguém que, como Abu Yazid, reúne todas as estações e emerge na ausência de estação."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, kendi manevi terakkisini bu nispet sistemi üzerinden, otobiyografik biçimde anlatıyor: <em>'Şeyhimiz Ebu'l-Abbas el-Ureybî bu yolda bizim başlangıç mertebemiz olan son mertebesinde İsevi idi. Sonra biz, Musevi-Şemsi fethe aktarıldık. Bundan sonra ise Hûd'a, sonra Hz. Muhammed'e nakledildik.'</em> Bize göre bu, kendi kutbiyet/nispet sistemini soyut bir teori olarak değil, doğrudan kendi biyografik yolculuğu üzerinden örneklediği, külliyatın en kişisel anlarından biri.",
+            "en": "Dost recounts his own spiritual progression autobiographically through this system of affiliation: <em>'Our shaykh Abu'l-Abbas al-Urayni was, at the final station that was our own starting station on this path, Christic. Then we were transferred to a Mosaic-Solar opening. After that we were transferred to Hud, then to Muhammad.'</em> To us, this is one of the corpus's most personal moments, where Dost exemplifies his own pole-hierarchy/affiliation system not as abstract theory, but directly through his own biographical journey.",
+            "pt": "Dost relata sua própria progressão espiritual de forma autobiográfica através desse sistema de filiação: <em>'Nosso xeique Abu'l-Abbas al-Urayni era, na estação final que era nossa própria estação inicial neste caminho, Crístico. Depois fomos transferidos para uma abertura Mosaico-Solar. Depois disso fomos transferidos para Hud, depois para Muhammad.'</em> Para nós, este é um dos momentos mais pessoais de todo o corpus, em que Dost exemplifica seu próprio sistema de hierarquia de polos/filiação não como teoria abstrata, mas diretamente através de sua própria jornada biográfica."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ibn-bersemla-efrad-havada-yurume",
+      "heading": {
+        "tr": "İbn Bersemla: Efrad'dan Biri, ve Havada Yürümenin Sırrı",
+        "en": "Ibn Bersemla: One of the Afrad, and the Secret of Walking on Air",
+        "pt": "Ibn Bersemla: Um dos Afrad, e o Segredo de Caminhar no Ar"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Uzun bir isnad zinciriyle aktarılan bir anlatıda, Irak'ta bir dağdan gelen bir sesin Hz. İsa'nın vasisi olduğunu söyleyip Hz. Ömer'e selam göndermesi ve bir dizi kıyamet alameti sıralaması anlatılıyor (Dost, hadisin isnadını zayıf bulsa da 'keşif bakımından sahih' olduğunu ekliyor). Bize göre kısmın kutbiyet temasına en değerli katkısı burada: <em>'İbn Bersemla, Efrad'dan idi. Bilgileri alış yöntemi, Hz. Musa'nın arkadaşı Hızır'ın yoludur.'</em> Bu, Kısım XVIII'de İbn Kâid'in 'ayak sayısı' sistemiyle (Efrad=1 ayak, yalnızca peygamberin ayağı) tanıtılan Efrad kategorisinin somut, canlı bir örneği -dağda inzivada yaşayan, doğrudan Hızır yoluyla, vasıtasız bilgi alan bir figür.",
+            "en": "In an account transmitted through a long chain of narration, a voice from a mountain in Iraq claims to be Jesus's deputy, sends greetings to Umar, and lists a series of signs of the Hour (Dost notes that although he finds the chain of transmission weak, he considers it 'sound with respect to unveiling'). To us, the part's most valuable contribution to the pole-hood theme is here: <em>'Ibn Bersemla was of the Afrad. His method of receiving knowledge is the way of Khidr, Moses's companion.'</em> This is a concrete, living example of the Afrad category introduced in Part XVIII through Ibn Qa'id's 'number of feet' system (Afrad = 1 foot, only the Prophet's foot) -- a figure living in seclusion on a mountain, receiving knowledge directly through Khidr, without intermediary.",
+            "pt": "Num relato transmitido através de uma longa cadeia de narração, uma voz vinda de uma montanha no Iraque afirma ser o vigário de Jesus, envia saudações a Umar, e lista uma série de sinais da Hora (Dost observa que, embora considere a cadeia de transmissão fraca, a considera 'sólida quanto ao desvelamento'). Para nós, a contribuição mais valiosa da parte ao tema da condição de polo está aqui: <em>'Ibn Bersemla era dos Afrad. Seu método de receber conhecimento é o caminho de Khidr, companheiro de Moisés.'</em> Este é um exemplo concreto e vivo da categoria Afrad introduzida na Parte XVIII através do sistema de 'número de pés' de Ibn Qa'id (Afrad = 1 pé, apenas o pé do Profeta) -- uma figura vivendo em reclusão numa montanha, recebendo conhecimento diretamente através de Khidr, sem intermediário."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölüm, İsevi ile Muhammedi arasındaki bir keramet karşılaştırmasıyla devam ediyor: <em>'Bu ümmetten İsevi olan kimse havada yürümek gibi bir kerâmete sahip değildir. Onlar su üzerinde yürüyebilir. Muhammedi olan ise, tabi olması hükmüyle, havada yürüyebilir... Havada yürümemizin Hz. İsa'nın inancından daha fazla inanmamız sayesinde değil, Hz. Muhammed'e uymamızın doğruluğundan kaynaklandığını kesin olarak anladık.'</em> Bize göre bu ayrım önemli: üstünlük iddiası bir inanç gücü yarışı değil, sadece 'kime tabi olunduğu'na bağlı bir sonuç olarak sunuluyor -Dost bunu açıkça Hz. İsa'yı küçümseme olarak okumaktan kaçınıyor ('Böyle bir şey söylemekten Allah'a sığınırım').",
+            "en": "The chapter continues with a comparison of wonders between the Christic and the Muhammadan: <em>'The one among this community who is Christic does not possess a wonder such as walking on air. They can walk on water. The one who is Muhammadan, however, by virtue of following, can walk on air... We came to understand with certainty that our walking on air stems not from believing more than Jesus's own faith, but from the correctness of our following Muhammad.'</em> To us, this distinction matters: the claim of superiority is presented not as a contest of strength of belief, but simply as a consequence of 'whom one follows' -- Dost explicitly avoids reading this as a diminishment of Jesus ('I seek refuge in God from saying such a thing').",
+            "pt": "O capítulo continua com uma comparação de prodígios entre o Crístico e o Muhammadano: <em>'Aquele desta comunidade que é Crístico não possui um prodígio como caminhar no ar. Eles podem caminhar sobre a água. Aquele que é Muhammadano, porém, em virtude de seguir, pode caminhar no ar... Compreendemos com certeza que nosso caminhar no ar não decorre de crermos mais do que a própria fé de Jesus, mas da correção de nosso seguimento de Muhammad.'</em> Para nós, essa distinção importa: a reivindicação de superioridade não é apresentada como uma disputa de força de crença, mas simplesmente como consequência de 'a quem se segue' -- Dost evita explicitamente ler isso como um rebaixamento de Jesus ('Busco refúgio em Deus de dizer tal coisa')."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XX — İsevilerin Bilinmesi, s. 191-197.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XX — Knowing the Christics, pp. 191-197.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XX — Conhecendo os Crísticos, pp. 191-197."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "İsevi Meşrep",
+                "en": "Christic Temperament",
+                "pt": "Temperamento Crístico"
+              },
+              "note": {
+                "tr": "su üzerinde yürüme kerameti",
+                "en": "the wonder of walking on water",
+                "pt": "o prodígio de caminhar sobre a água"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Muhammedi Meşrep",
+                "en": "Muhammadan Temperament",
+                "pt": "Temperamento Muhammadano"
+              },
+              "note": {
+                "tr": "havada yürüme kerameti -- tabi olmanın sonucu",
+                "en": "the wonder of walking on air -- a result of following",
+                "pt": "o prodígio de caminhar no ar -- resultado de seguir"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un keramet karşılaştırması: üstünlük bir inanç gücü yarışı değil, hangi peygambere tabi olunduğuna bağlı bir sonuç.",
+            "en": "Dost's comparison of wonders: superiority is not a contest of belief-strength, but a consequence of which prophet one follows.",
+            "pt": "A comparação de prodígios de Dost: a superioridade não é uma disputa de força de crença, mas uma consequência de qual profeta se segue."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hal-aktarimi-havayi-elbiseye",
+      "heading": {
+        "tr": "Hal Aktarımı: Havayı Avuçlayıp Elbiseye Doldurmak",
+        "en": "Transmitting a State: Grasping Air and Filling It Into a Garment",
+        "pt": "Transmitindo um Estado: Agarrando o Ar e Enchendo-o numa Vestimenta"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Son bölüm, İsevi kutupların iki mirası (İsa'nın zevkinden gelen ruhsal miras + Muhammedi miras) taşıdığını anlatarak açılıyor, ve bize göre kısmın en çarpıcı, en günlük-hayat diline yakın imgesiyle devam ediyor: İsevi meşrepliler bir kişiye hal vermek istediklerinde ona dokunur, sarılır, öper ya da 'elbiseni aç' deyip eliyle havayı avuçlayıp o elbiseye doldururlar -bakan kişi sadece havayı avuçladıklarını sanır. Bunun somut örneği, Hz. Peygamber'in unutkanlığından şikâyet eden Ebû Hureyre'ye yaptığı: <em>'Ebû Hureyre! Elbiseni aç!' Ebû Hureyre elbisesini yaymış, Hz. Peygamber bir veya üç avuç havayı almış, Ebû Hureyre'nin örtüsüne atmış... Ebû Hureyre elbisesini giydikten sonra bir daha duyduğu hiçbir şeyi unutmamış.'</em> Bize göre bu, görünmez bir 'şey'in (hal/ilim) elle taşınıp giysiyle bedene nüfuz etmesini anlatan, kendi başına tam bir imge -el/dokunuş → hal → elbise/beden şeklinde küçük bir akış olarak da görselleştirilebilir.",
+            "en": "The final chapter opens by explaining that Christic poles carry two inheritances -- the spiritual inheritance from Jesus's own taste, together with the Muhammadan inheritance -- and continues with, to us, the part's most striking image, closest to everyday language: when Christic-tempered saints wish to bestow a state upon someone, they touch, embrace, or kiss them, or say 'open your garment' and grasp the air with their hand, filling it into that garment -- the onlooker merely thinks they are grasping air. A concrete example of this is what the Prophet did for Abu Hurayra, who complained of forgetfulness: <em>'\"Abu Hurayra! Open your garment!\" Abu Hurayra spread out his garment, and the Prophet took one or three handfuls of air and cast them into Abu Hurayra's cloak... After putting on his garment, Abu Hurayra never again forgot anything he heard.'</em> To us, this is a complete image in itself, describing an invisible 'thing' (a state/knowledge) being carried by hand and penetrating the body through a garment -- it can also be visualized as a small flow: hand/touch → state → garment/body.",
+            "pt": "O capítulo final se abre explicando que os polos crísticos carregam duas heranças -- a herança espiritual do próprio gosto de Jesus, junto com a herança Muhammadana -- e continua com, para nós, a imagem mais marcante da parte, mais próxima da linguagem cotidiana: quando santos de temperamento crístico desejam conceder um estado a alguém, eles tocam, abraçam, ou beijam, ou dizem 'abre tua vestimenta' e agarram o ar com a mão, enchendo-o nessa vestimenta -- quem observa apenas pensa que estão agarrando ar. Um exemplo concreto disso é o que o Profeta fez por Abu Hurayra, que se queixava de esquecimento: <em>'\"Abu Hurayra! Abre tua vestimenta!\" Abu Hurayra estendeu sua vestimenta, e o Profeta tomou um ou três punhados de ar e os lançou no manto de Abu Hurayra... Depois de vestir sua vestimenta, Abu Hurayra nunca mais esqueceu nada que ouvisse.'</em> Para nós, esta é uma imagem completa em si mesma, descrevendo uma 'coisa' invisível (um estado/conhecimento) sendo carregada pela mão e penetrando o corpo através de uma vestimenta -- também pode ser visualizada como um pequeno fluxo: mão/toque → estado → vestimenta/corpo."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölüm ayrıca, olgunlaşmış bir İsevi kutba 'en yakın dedesinden miras' olarak 600 ilahi güç verildiğini, gizlemenin göstermekten üstün olduğunu, ve Sidre-i Münteha'nın amellerin nihai berzahı olduğunu anlatarak kapanıyor -atalara (dedelere) yönelme oranında yükseliş sınırının genişlediği fikriyle.",
+            "en": "The chapter also closes by describing how a matured Christic pole is granted 600 divine powers 'as an inheritance from his nearest forefather,' that concealment is superior to display, and that the Lote Tree of the Utmost Boundary is the final isthmus of deeds -- with the idea that the limit of ascent widens in proportion to one's orientation toward one's forefathers.",
+            "pt": "O capítulo também se encerra descrevendo como um polo crístico amadurecido recebe 600 poderes divinos 'como herança de seu antepassado mais próximo,' que o ocultamento é superior à exibição, e que a Árvore do Lótus do Limite Extremo é o istmo final das ações -- com a ideia de que o limite da ascensão se amplia na proporção da orientação de alguém em direção a seus antepassados."
+          }
+        }
+      ]
+    },
+    {
+      "id": "konusan-bitkiler-tevhid",
+      "heading": {
+        "tr": "Konuşan Bitkiler: Tevhidin İnceliği",
+        "en": "The Speaking Plants: A Subtlety of Divine Unity",
+        "pt": "As Plantas Falantes: Uma Sutileza da Unidade Divina"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Ebû Abdullah el-Gazzâl'ın hikâyesiyle kapanıyor: seyr-i sülûk esnasında bütün bitkilerin kendisine fayda/zararlarını söylediğini duyan mürit, şeyhi tarafından ed-Dâr/en-Nâfi (Allah'ın isimleri) ile bitkilerin doğrudan konuşması arasındaki farkı görmediği için sınandığını öğreniyor. Şeyhinin sözü: <em>'Allah seni denemiş ve imtihan etmiştir. Ben sana sadece Allah'a ulaşmayı gösterdim, başkasına değil. Senin tövbenin doğruluk ölçüsü, tekrar o yere gidip tövbende dürüst isen; daha önce seninle konuşan bitkilerin artık konuşmamasıdır.'</em> Mürit tövbe edip aynı yere döndüğünde sesler artık duyulmuyor. Bize göre bu, tevhidin derinliğine dair ince bir uyarı -aracıların (bitkiler, sebepler) kendiliğinden konuşmadığı, asıl konuşanın Hak olduğu vurgulanıyor; kısmın kapanışına uygun, mütevazı ama ince bir son nokta.",
+            "en": "The part closes with the story of Abu Abdullah al-Ghazzal: during his spiritual wayfaring, a disciple who hears all the plants telling him of their benefit or harm learns from his shaykh that he was being tested, for failing to see the difference between al-Darr/al-Nafi' (the names of God) and the plants speaking directly. His shaykh's words: <em>'God has tested and tried you. I showed you only the way to reach God, not to anything else. The measure of the truthfulness of your repentance is this: if you return to that place and are sincere in your repentance, the plants that once spoke to you will no longer speak.'</em> When the disciple repents and returns to the same place, the voices are no longer heard. To us, this is a subtle warning about the depth of divine unity -- emphasizing that intermediaries (plants, causes) do not speak of themselves, and that it is the Real who truly speaks; a modest but subtle closing point fitting for the part's end.",
+            "pt": "A parte se encerra com a história de Abu Abdullah al-Ghazzal: durante sua peregrinação espiritual, um discípulo que ouve todas as plantas lhe dizendo seu benefício ou dano aprende com seu xeique que estava sendo testado, por não ver a diferença entre al-Darr/al-Nafi' (os nomes de Deus) e as plantas falando diretamente. As palavras de seu xeique: <em>'Deus te testou e te provou. Eu te mostrei apenas o caminho para alcançar Deus, não para outra coisa. A medida da veracidade de teu arrependimento é esta: se voltares àquele lugar e fores sincero em teu arrependimento, as plantas que antes falavam contigo não falarão mais.'</em> Quando o discípulo se arrepende e retorna ao mesmo lugar, as vozes não são mais ouvidas. Para nós, esta é uma advertência sutil sobre a profundidade da unidade divina -- enfatizando que os intermediários (plantas, causas) não falam de si mesmos, e que é o Real quem verdadeiramente fala; um ponto de fechamento modesto mas sutil, adequado ao final da parte."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XX — İman ve Keşif, s. 175-183.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XX — Faith and Unveiling, pp. 175-183.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XX — Fé e Desvelamento, pp. 175-183."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XX — Nefesler Menzilinde Muhakkik: Babanın Ölümü, s. 183-187.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XX — The Verifier in the Station of Breaths: A Father's Death, pp. 183-187.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XX — O Verificador na Estação dos Alentos: A Morte de um Pai, pp. 183-187."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XX — İsevilerin Bilinmesi, Onların Kutupları ve Esasları, s. 187-197.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XX — Knowing the Christics, Their Poles and Foundations, pp. 187-197.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XX — Conhecendo os Crísticos, Seus Polos e Fundamentos, pp. 187-197."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XX — İsevi Kutupların Bilinmesi, Onların Sırları, s. 197-202.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XX — Knowing the Christic Poles, Their Secrets, pp. 197-202.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XX — Conhecendo os Polos Crísticos, Seus Segredos, pp. 197-202."
+    }
+  ]
+}

@@ -1,0 +1,488 @@
+{
+  "id": "c2k23",
+  "cilt": 2,
+  "kisim": 23,
+  "status": "active",
+  "title": {
+    "tr": "Delilik, Dönüşün Üç Adımı, ve Bilginin Tekliği",
+    "en": "Madness, the Three Steps of Return, and the Oneness of Knowledge",
+    "pt": "A Loucura, os Três Passos do Retorno, e a Unicidade do Conhecimento"
+  },
+  "pageRange": "259–279",
+  "hero": {
+    "summary": {
+      "tr": "Kısım XXIII, üç bölümüyle bize göre bu okuma projesinin en yoğun -- ve biz de tam çözemediğimiz -- anlarından bazılarını taşıyor. Kırk Dördüncü Bölüm, 'behlüller' (deliler) üzerine: İbn Arabî bunu bir eksiklik değil, ansızın gelen bir tecelliye dayanma biçimi olarak okuyor, ve kendi tanıklığını da araya katıyor -- bir keresinde cemaate imamlık yaptığını, ama o sırada hiçbir şeyin farkında olmadığını anlatıyor. Kırk Beşinci Bölüm, 'erdikten sonra geri dönme' meselesini Ebû Medyen'in kaçmak-bulmak-dönmek formülüyle işliyor -- burada Kısım XXI'deki 'nübüvvet kesildi, velayet sürüyor' tespitinin doğrudan devamı gibi duran bir vâris/peygamber ortaklığı tanımı buluyoruz. Aynı bölüm, erenleri sınıflamak için birbirinden bağımsız üç yeni eksen daha sunuyor -- isim, organ (sekiz beden organı), nur (sekiz ışık mertebesi) -- ve Ebû Yezîd el-Bistâmî, birkaç sayfa arayla hem 'hiç dönmeyen' hem 'zorla dönen' kategorisinde beliriyor; bu gerilimi çözmeden, olduğu gibi aktarmayı tercih ettik. Kırk Altıncı Bölüm ise, Hızır'ın kuş kıssasıyla bilginin birliğini, bilinenlerin çokluğunu ve vehbî/kesbî ilim ayrımını işliyor.",
+      "en": "Part XXIII, across its three chapters, carries some of what feel to us like the most intense -- and least fully resolved -- moments in this reading project so far. Chapter Forty-Four concerns the 'behluls' (madmen): Dost reads this not as a deficiency but as a way of bearing a sudden, overwhelming self-disclosure, and folds in his own testimony -- he once led congregational prayer while, by his own account, aware of nothing at all. Chapter Forty-Five takes up 'returning after arrival' through Abu Madyan's formula of fleeing-finding-returning -- here we find a description of the heir/prophet partnership that reads like a direct continuation of Part XXI's 'prophecy ended, sainthood continues' finding. The same chapter offers three more independent axes for sorting those who arrive -- name, organ (eight bodily organs), light (eight ranks of illumination) -- and Abu Yazid al-Bistami appears, a few pages apart, in both the 'never returns' and the 'forced to return' categories; we have chosen to pass this tension along rather than resolve it. Chapter Forty-Six takes up, through Khidr's bird parable, the oneness of knowledge, the multiplicity of the known, and the distinction between given and acquired knowledge.",
+      "pt": "A Parte XXIII, em seus três capítulos, traz para nós alguns dos momentos mais intensos -- e menos totalmente resolvidos -- deste projeto de leitura até agora. O Capítulo Quarenta e Quatro trata dos 'behlüls' (loucos): Dost lê isso não como uma deficiência, mas como uma forma de suportar uma autorrevelação súbita e avassaladora, e insere seu próprio testemunho -- certa vez liderou a oração coletiva enquanto, segundo seu próprio relato, não tinha consciência de nada. O Capítulo Quarenta e Cinco aborda o 'retorno após a chegada' através da fórmula de Abu Madyan de fugir-encontrar-retornar -- aqui encontramos uma descrição da parceria herdeiro/profeta que soa como continuação direta da constatação da Parte XXI de que 'a profecia terminou, a santidade continua.' O mesmo capítulo oferece mais três eixos independentes para classificar os que chegam -- nome, órgão (oito órgãos corporais), luz (oito graus de iluminação) -- e Abu Yazid al-Bistami aparece, a poucas páginas de distância, tanto na categoria de 'nunca retorna' quanto na de 'forçado a retornar'; optamos por transmitir essa tensão em vez de resolvê-la. O Capítulo Quarenta e Seis aborda, através da parábola do pássaro de Khidr, a unicidade do conhecimento, a multiplicidade do conhecido, e a distinção entre conhecimento dado e adquirido."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Kalbe gelen tecelli (varid) ile kişinin kendi gücü arasındaki denge, dört farklı hali ortaya çıkarıyor -- metin, bunun dışında beşinci bir halin bulunmadığını açıkça belirtiyor.",
+      "en": "The balance between what comes to the heart (varid) and a person's own power produces four distinct states -- the text explicitly states there is no fifth.",
+      "pt": "O equilíbrio entre o que chega ao coração (varid) e o próprio poder da pessoa produz quatro estados distintos -- o texto afirma explicitamente que não existe um quinto."
+    },
+    "tree": {
+      "id": "tecelli-dort-hal-tree",
+      "label": {
+        "tr": "Tecelli Karşısında Dört Hal",
+        "en": "Four States Before a Tecelli",
+        "pt": "Quatro Estados Diante de uma Tecelli"
+      },
+      "note": {
+        "tr": "varid (gelen) ile kişinin gücü arasındaki dengeye göre",
+        "en": "according to the balance between the varid and the person's power",
+        "pt": "conforme o equilíbrio entre o varid e o poder da pessoa"
+      },
+      "children": [
+        {
+          "id": "varid-buyuk",
+          "label": {
+            "tr": "Varid Güçten Büyük",
+            "en": "Varid Exceeds Power",
+            "pt": "O Varid Excede o Poder"
+          },
+          "note": {
+            "tr": "hüküm ömür boyu sürerse delilik -- Ebû İkâl el-Mağribî örneği (4 yıl susuz, yemeksiz)",
+            "en": "if it lasts a lifetime, this is madness -- the example of Abu Iqal al-Maghribi (four years without food or water)",
+            "pt": "se durar a vida toda, é a loucura -- exemplo de Abu Iqal al-Maghribi (quatro anos sem comida ou água)"
+          }
+        },
+        {
+          "id": "varid-denk-hayvani",
+          "label": {
+            "tr": "Varid Güce Denk, Hayvani Akıl Kalır",
+            "en": "Varid Matches Power, Animal Reason Remains",
+            "pt": "O Varid Iguala o Poder, a Razão Animal Permanece"
+          },
+          "note": {
+            "tr": "'delilerin akıllıları' -- yer, içer, ama akıllarını bilinçli kullanmaktan perdelenmiştir",
+            "en": "'the sane ones among the madmen' -- they eat and drink, but are veiled from using reason deliberately",
+            "pt": "'os sensatos entre os loucos' -- comem e bebem, mas são velados do uso deliberado da razão"
+          }
+        },
+        {
+          "id": "varid-gecici",
+          "label": {
+            "tr": "Varid Geçici, Akıl Geri Döner",
+            "en": "Varid Passes, Reason Returns",
+            "pt": "O Varid Passa, a Razão Retorna"
+          },
+          "note": {
+            "tr": "peygamberler ve hâl sahibi veliler; kendi gücü varidden üstün olanlar da bu uca yakın okunabilir",
+            "en": "prophets and awliya of states; those whose own power exceeds the varid can also be read close to this end",
+            "pt": "profetas e santos de estado; os que têm poder superior ao varid também podem ser lidos perto deste extremo"
+          }
+        },
+        {
+          "id": "varid-eser-yok",
+          "label": {
+            "tr": "Varid Güce Denk, Eser Görünmez",
+            "en": "Varid Matches Power, No Trace Appears",
+            "pt": "O Varid Iguala o Poder, Nenhum Traço Aparece"
+          },
+          "note": {
+            "tr": "tecelli gerçekleşir ama dışa vurmaz; ancak yakından bakan bir dalgınlık fark eder",
+            "en": "the tecelli happens but produces no outward sign; only close attention notices a moment of absent-mindedness",
+            "pt": "a tecelli acontece mas não se manifesta externamente; só uma atenção próxima percebe um momento de distração"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "behlullerin-sirri-tecelli-perdesi",
+      "heading": {
+        "tr": "Behlüllerin Sırrı: Amelle Perdelenen Akıl",
+        "en": "The Secret of the Behluls: Reason Veiled by Devotion",
+        "pt": "O Segredo dos Behlüls: A Razão Velada pela Devoção"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk Dördüncü Bölüm, bir şiirle açılıyor: <em>'Behlüller (deliler) gibi ol, hallerinde / Vaktin hükmüne göre akıllı gibi yürürler.'</em> (s. 259) Bölümün doktrinel çekirdeği ise bir ayet okumasında: Allah'ın 'İnsanları sarhoş gibi görürsün, hâlbuki onlar sarhoş değillerdir' (4:43) ayetini Dost şöyle okuyor: <em>'Allah'ın öyle bir grubu vardır ki, yerine getirdikleri amellerle akılları perdelenmiştir.'</em> (s. 260) Bize göre bu okuma, kısmın baştan sona taşıdığı asıl iddiayı özetliyor: burada söz konusu olan bir hastalık ya da eksiklik değil, kişiyi hazırlıksız yakalayan bir tecellinin doğrudan sonucu. Metin şöyle devam ediyor: <em>'Bunun üzerine böyle bir insan, aklını kaybeder... O da, bu işte hayrete düşer ve onunla birlikte devam eder.'</em> (s. 260) Böyle insanlardan sorumluluk kalkıyor -- çünkü 'onların yükümlülüğü anlayabilecekleri ve kabul edebilecekleri akılları yoktur' (s. 260).",
+            "en": "Chapter Forty-Four opens with a poem: <em>'Be like the behluls (madmen); in their states / they walk as though sane, following the ruling of the moment.'</em> (p. 259) The chapter's doctrinal core lies in a reading of a Qur'anic verse: Dost reads God's 'You see them as though drunk, though they are not drunk' (4:43) this way: <em>'God has a group whose reason has been veiled by the very acts they perform.'</em> (p. 260) To us, this reading sums up the claim the whole part carries: what is at stake here is not an illness or a deficiency, but the direct consequence of a self-disclosure that catches a person unprepared. The text continues: <em>'At this, such a person loses his reason... he falls into astonishment over it and continues on with it.'</em> (p. 260) Responsibility is lifted from such people -- because 'they do not have the reason able to understand and accept what is required of them' (p. 260).",
+            "pt": "O Capítulo Quarenta e Quatro se abre com um poema: <em>'Sê como os behlüls (loucos); em seus estados / andam como se sensatos, seguindo o julgamento do momento.'</em> (p. 259) O núcleo doutrinal do capítulo está numa leitura de um versículo alcorânico: Dost lê assim o 'Tu os vês como bêbados, embora não estejam bêbados' (4:43) de Deus: <em>'Deus tem um grupo cuja razão foi velada pelos próprios atos que realizam.'</em> (p. 260) Para nós, essa leitura resume a afirmação que a parte inteira carrega: o que está em jogo aqui não é uma doença ou uma deficiência, mas a consequência direta de uma autorrevelação que apanha a pessoa despreparada. O texto continua: <em>'Diante disso, tal pessoa perde a razão... cai em espanto diante disso e continua com isso.'</em> (p. 260) A responsabilidade é retirada dessas pessoas -- porque 'não têm a razão capaz de compreender e aceitar o que lhes é exigido' (p. 260)."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bir alt-grup ayrıca isimlendiriliyor: 'delilerin akıllıları' (s. 260-261) -- bunlar hayvani ruhlarının pratik aklını korurlar (yer, içer, gündelik işlerini görürler) ama bu aklı bilinçli kullanmaktan perdelenmişlerdir: <em>'Onlar, akılları olmaksızın akıl sahipleridir. Dışta ise, deli diye bilinirler.'</em> (s. 261) Ebü's-Suûd b. Eş-Şibl el-Bağdâdî'ye bu konu sorulduğunda şöyle cevap vermiş: <em>'Onlar, hoş kimselerdir. Akıllılar ise, onlardan daha hoştur.'</em> Hakkın delilerini başkalarından nasıl ayırt edeceği sorulduğunda ise: <em>'Hakkın delilerinde kudretin eserleri ortaya çıkar, Akıllılar ise, müşahedeleri ile Hakkı görür.'</em> (s. 261) Ayrıca ekliyor: <em>'Onların müşahede ettiğini müşahede edip aklını yitirmeyen kimse, (onlardan) daha güzel ve daha iyidir.'</em> (s. 261) -- çünkü böyle bir insan, peygamberlere verilmiş güce yakın bir güce yerleştirilmiştir. Bize göre bu üçlü karşılaştırma (deliler / delilerin akıllıları / aklını kaybetmeyen ârif), tek bir 'delilik' kategorisi yerine, tecelli karşısında dayanma gücüne göre sıralanan bir yelpaze sunuyor.",
+            "en": "A subgroup is also named: 'the sane ones among the madmen' (pp. 260-261) -- these retain their animal soul's practical reason (they eat, drink, manage their daily affairs) but are veiled from using that reason deliberately: <em>'They are possessors of reason without reason. Outwardly, they are known as mad.'</em> (p. 261) Asked about this, Abu'l-Suud b. al-Shibl al-Baghdadi answered: <em>'They are pleasant. The sane are more pleasant than they are.'</em> Asked how to tell God's madmen apart from others, he said: <em>'In God's madmen the effects of power appear; the sane see the Real through their own witnessing.'</em> (p. 261) He adds: <em>'One who witnesses what they witness without losing his reason is more beautiful and better [than they].'</em> (p. 261) -- because such a person is placed near a power close to that given to prophets. To us, this threefold comparison (the mad / the sane among the mad / the knower who does not lose his reason) offers not a single category of 'madness,' but a spectrum ranked by how much one can bear an overwhelming self-disclosure.",
+            "pt": "Um subgrupo também é nomeado: 'os sensatos entre os loucos' (pp. 260-261) -- estes mantêm a razão prática de sua alma animal (comem, bebem, administram seus afazeres diários), mas são velados do uso deliberado dessa razão: <em>'Eles são possuidores de razão sem razão. Externamente, são conhecidos como loucos.'</em> (p. 261) Perguntado sobre isso, Abu'l-Suud b. al-Shibl al-Baghdadi respondeu: <em>'Eles são agradáveis. Os sensatos são mais agradáveis do que eles.'</em> Perguntado como distinguir os loucos de Deus dos demais, disse: <em>'Nos loucos de Deus aparecem os efeitos do poder; os sensatos veem o Real através de seu próprio testemunho.'</em> (p. 261) Acrescenta: <em>'Quem testemunha o que eles testemunham sem perder a razão é mais belo e melhor [do que eles].'</em> (p. 261) -- pois tal pessoa é colocada perto de um poder próximo ao dado aos profetas. Para nós, essa comparação tripla (os loucos / os sensatos entre os loucos / o conhecedor que não perde a razão) oferece não uma única categoria de 'loucura,' mas um espectro ordenado pela capacidade de suportar uma autorrevelação avassaladora."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIII — Kırk Dördüncü Bölüm, s. 259-261.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIII — Chapter Forty-Four, pp. 259-261.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIII — Capítulo Quarenta e Quatro, pp. 259-261."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Deli (Mutlak)",
+                "en": "The Madman (Absolute)",
+                "pt": "O Louco (Absoluto)"
+              },
+              "note": {
+                "tr": "varid güçten büyük, hüküm ömür boyu sürer -- akıl tamamen gider (Ebû İkâl örneği)",
+                "en": "varid exceeds power, the ruling lasts a lifetime -- reason departs entirely (the example of Abu Iqal)",
+                "pt": "o varid excede o poder, o julgamento dura a vida toda -- a razão parte por completo (exemplo de Abu Iqal)"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Delilerin Akıllısı",
+                "en": "The Sane One Among the Mad",
+                "pt": "O Sensato entre os Loucos"
+              },
+              "note": {
+                "tr": "varid güce denk, ama hayvani ruhun pratik aklı kalır -- 'akılları olmaksızın akıl sahibi'",
+                "en": "varid matches power, but the animal soul's practical reason remains -- 'possessor of reason without reason'",
+                "pt": "o varid iguala o poder, mas a razão prática da alma animal permanece -- 'possuidor de razão sem razão'"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İki hal de aynı köke -- ansızın gelen tecelli -- dayanıyor; farkları, hayvani ruhun günlük işleyişi koruyup korumamasında. Metnin gözünde ikisi de bir eksiklik değil, farklı bir dayanma biçimi.",
+            "en": "Both states rest on the same root -- a sudden self-disclosure; the difference lies in whether the animal soul's daily functioning is preserved. In the text's own eyes, neither is a deficiency, only a different way of bearing it.",
+            "pt": "Ambos os estados repousam na mesma raiz -- uma autorrevelação súbita; a diferença está em o funcionamento cotidiano da alma animal ser ou não preservado. Aos olhos do próprio texto, nenhum dos dois é uma deficiência, apenas uma forma diferente de suportá-la."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tecellinin-dort-hali",
+      "heading": {
+        "tr": "Varid ile Güç Arasında: Tecellinin Dört Hali",
+        "en": "Between Varid and Power: The Four States Before a Tecelli",
+        "pt": "Entre o Varid e o Poder: Os Quatro Estados Diante de uma Tecelli"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölüm, insanları kalbe gelen tecelli (varid) ile kişinin kendi gücü arasındaki dengeye göre sınıflandırıyor -- ve bu sınıflandırmayı açıkça kapatıyor: <em>'Bu yol ehlinin kalplerine gelen Hakkın tecellilerinde dördüncü bir durum yoktur.'</em> (s. 263) Dört hal şöyle: (1) Varid, kişinin gücünden büyükse, 'varid kişiyi hükmü altına alır... Bu hal ömrünün sonuna kadar sürerse, tasavvuf yolunda bu kişinin durumu delilik diye isimlendirilir' -- örnek olarak Ebû İkâl el-Mağribî veriliyor (s. 262). (2) Varid güce denkse ama hayvani yön korunursa, 'delilerin akıllıları' ortaya çıkıyor (s. 262). (3) Varidin hükmü sürmezse, kişi aklıyla geri döner: 'Bunlar, peygamber ve hâl sahibi velilerdir' (s. 262). (4) Varid güce tam denkse, üzerinde 'hükmeden bir eseri görülmez' -- ama gizlice fark edilebilir; Dost bunu, sohbet sırasında gelen bir elçiye kulak kesilen bir hükümdarın haline benzetiyor (s. 263).",
+            "en": "The chapter classifies people according to the balance between what comes to the heart (varid) and the person's own power -- and closes this classification explicitly: <em>'There is no fourth situation among the self-disclosures of the Real that come to the hearts of the people of this path.'</em> (p. 263) The four states: (1) If the varid exceeds the person's power, 'the varid takes hold of the person's ruling... if this state lasts until the end of his life, on the Sufi path this person's condition is named madness' -- Abu Iqal al-Maghribi is given as the example (p. 262). (2) If the varid matches the power but the animal side is preserved, 'the sane ones among the mad' result (p. 262). (3) If the varid's ruling does not last, the person returns with his reason: 'These are the prophets and the awliya of states' (p. 262). (4) If the varid fully matches the power, 'no ruling trace of it is seen' -- but it can be quietly noticed; Dost compares this to a courtier who breaks off conversation to listen intently to a newly arrived messenger (p. 263).",
+            "pt": "O capítulo classifica as pessoas conforme o equilíbrio entre o que chega ao coração (varid) e o próprio poder da pessoa -- e fecha explicitamente essa classificação: <em>'Não há uma quarta situação entre as autorrevelações do Real que chegam aos corações do povo deste caminho.'</em> (p. 263) Os quatro estados: (1) Se o varid excede o poder da pessoa, 'o varid toma posse do julgamento da pessoa... se esse estado durar até o fim de sua vida, no caminho sufi a condição dessa pessoa é chamada de loucura' -- Abu Iqal al-Maghribi é dado como exemplo (p. 262). (2) Se o varid iguala o poder, mas o lado animal é preservado, resultam 'os sensatos entre os loucos' (p. 262). (3) Se o julgamento do varid não perdura, a pessoa retorna com sua razão: 'Estes são os profetas e os santos de estado' (p. 262). (4) Se o varid iguala totalmente o poder, 'nenhum traço de julgamento dele é visto' -- mas pode ser percebido discretamente; Dost compara isso a um cortesão que interrompe a conversa para ouvir atentamente um mensageiro recém-chegado (p. 263)."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu dörtlü çerçeve, aynı zamanda peygamberlerin kendi tecrübesini de açıklıyor -- Dost'a göre, eğer risalet görevi olmasaydı, Allah aynı şiddetteki tecelliler karşısında peygamberlerin de aklını tamamen giderirdi: <em>'hiç kuşkusuz, Allah müşahede ettikleri şeyin büyüklüğü nedeniyle peygamberlerin akıllarını giderirdi.'</em> (s. 262) Hz. Musa'nın Tûr'da bayılması (<em>'Rabbi dağa tecelli ettiğinde onu param parça etmiş, Musa bayılıp düşmüştür'</em>, s. 261-262) ve Hz. Peygamber'in vahiy anındaki titremesi -- <em>'Beni örtünüz, beni örtünüz'</em> (s. 262) -- aynı tayfın en yoğun uçlarında okunuyor. Bize göre bu, bölümün en çarpıcı fikirlerinden biri: delilik ile peygamberlik arasındaki fark, tecellinin niteliğinde değil, kişinin göreviyle -- yani geri döndürülüp döndürülmemesiyle -- ilgili. Metin, bu dört halin dışında, kişinin kendi gücünün varidden daha güçlü olduğu, kısaca değinilen ayrı bir durumdan da söz ediyor (s. 263) -- biz bunu üçüncü halin bir uzantısı gibi okuduk, ama bu, metnin kendi sayımına tam sadık bir okuma olmayabilir; bu noktada temkinli olmayı tercih ediyoruz.",
+            "en": "This fourfold framework also explains the prophets' own experience -- according to Dost, had it not been for the task of prophethood, God would have taken the prophets' reason away entirely before self-disclosures of the same intensity: <em>'without doubt, God would have taken the prophets' reason away because of the magnitude of what they witnessed.'</em> (p. 262) Moses fainting at Sinai (<em>'when his Lord disclosed Himself to the mountain, He made it crumble to pieces, and Moses fell down unconscious,'</em> pp. 261-262) and the Prophet's trembling at the moment of revelation -- <em>'Cover me, cover me'</em> (p. 262) -- are read at the most intense ends of the same spectrum. To us, this is one of the chapter's most striking ideas: the difference between madness and prophecy lies not in the quality of the self-disclosure, but in the person's task -- that is, in whether or not he is sent back. Beyond these four states, the text also briefly mentions a separate case, where a person's own power exceeds the varid (p. 263) -- we have read this as an extension of the third state, though this may not be a perfectly faithful reading of the text's own count; we prefer caution here.",
+            "pt": "Essa estrutura quádrupla também explica a própria experiência dos profetas -- segundo Dost, se não fosse pela tarefa da profecia, Deus teria retirado inteiramente a razão dos profetas diante de autorrevelações da mesma intensidade: <em>'sem dúvida, Deus teria retirado a razão dos profetas por causa da magnitude do que testemunharam.'</em> (p. 262) O desmaio de Moisés no Sinai (<em>'quando seu Senhor se autorrevelou à montanha, fê-la desmoronar em pedaços, e Moisés caiu inconsciente,'</em> pp. 261-262) e o tremor do Profeta no momento da revelação -- <em>'Cobri-me, cobri-me'</em> (p. 262) -- são lidos nos extremos mais intensos do mesmo espectro. Para nós, esta é uma das ideias mais marcantes do capítulo: a diferença entre a loucura e a profecia não está na qualidade da autorrevelação, mas na tarefa da pessoa -- ou seja, em ser ou não enviada de volta. Além desses quatro estados, o texto também menciona brevemente um caso separado, em que o próprio poder da pessoa excede o varid (p. 263) -- lemos isso como uma extensão do terceiro estado, embora esta possa não ser uma leitura perfeitamente fiel à própria contagem do texto; preferimos a cautela neste ponto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ebu-ikal-ve-sutunlar",
+      "heading": {
+        "tr": "Ebû İkâl'in Dört Yılı, ve Sütunlar: Mermer mi, Adam mı?",
+        "en": "Abu Iqal's Four Years, and the Pillars: Marble or Men?",
+        "pt": "Os Quatro Anos de Abu Iqal, e as Colunas: Mármore ou Homens?"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ebû İkâl el-Mağribî, bölümün en uç örneği olarak tekrar tekrar anılıyor: <em>'kendisinde alındığı günden öldüğü güne kadar yemek yememiş, su içmemiş. Bu durum, Mekke'de dört sene sürmüştür.'</em> (s. 263) Dost onu 'duyu âleminden uzaklaşmış gizli biri' olarak tanımlıyor (s. 263). Bunu izleyen uzun bir sahne, Dost'un gençliğinde tanık olduğu bir deliyle karşılaşmasını anlatıyor: kalabalık bir topluluğun önünde konuşan bu zat, mescidin sütunlarına bakarak şöyle diyor: <em>'Ey miskinler! Sizler körsünüz, benim gördüğümü görmüyorsunuz ve (mesela) \"bu mescidin çatısını şu sütunlar ayakta tutmaktadır\" dersiniz... Ben ise, onları Allah'ı zikreden ve öven adamlar olarak görürüm.'</em> (s. 264) Ve kapanışta: <em>'Bilmiyorum, ben mi körüm de sütunları mermer olarak görmüyorum; yoksa siz mi körsünüz de bu sütunları adamlar olarak görmüyorsunuz?... Hayır, hayır! Vallahi, kör olan sizlersiniz.'</em> (s. 264)",
+            "en": "Abu Iqal al-Maghribi is repeatedly cited as the chapter's most extreme example: <em>'from the day he was taken until the day he died, he neither ate nor drank. This lasted four years in Mecca.'</em> (p. 263) Dost describes him as 'a hidden one withdrawn from the world of the senses' (p. 263). A long scene that follows recounts an encounter with a madman Dost witnessed in his youth: speaking before a crowd, this man looks at the mosque's pillars and says: <em>'O you wretched ones! You are blind, you do not see what I see, and you say, for instance, \"these pillars hold up the mosque's roof\"... I see them as men remembering and praising God.'</em> (p. 264) And in closing: <em>'I do not know -- am I the blind one, for not seeing the pillars as marble, or are you the blind ones, for not seeing these pillars as men?... No, no! By God, you are the blind ones.'</em> (p. 264)",
+            "pt": "Abu Iqal al-Maghribi é citado repetidamente como o exemplo mais extremo do capítulo: <em>'desde o dia em que foi tomado até o dia em que morreu, não comeu nem bebeu. Isso durou quatro anos em Meca.'</em> (p. 263) Dost o descreve como 'um oculto afastado do mundo dos sentidos' (p. 263) Uma longa cena que se segue relata um encontro com um louco que Dost testemunhou em sua juventude: falando diante de uma multidão, esse homem olha para as colunas da mesquita e diz: <em>'Ó desgraçados! Sois cegos, não vedes o que eu vejo, e dizeis, por exemplo, \"estas colunas sustentam o teto da mesquita\"... Eu as vejo como homens que lembram e louvam a Deus.'</em> (p. 264) E ao concluir: <em>'Não sei -- sou eu o cego, por não ver as colunas como mármore, ou sois vós os cegos, por não ver estas colunas como homens?... Não, não! Por Deus, sois vós os cegos.'</em> (p. 264)"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Sahnenin devamı kişisel bir dokunuş taşıyor: adam topluluk içinden yalnız genç İbn Arabî'yi tanık tutuyor -- 'Delikanlı! Doğru söylemiyor muyum?' -- ve onay alınca gülerek şöyle diyor: <em>'Kokmuş arkalar birbirine yellenir. Bu delikanlı benim gibi bir kokmuş!... Siz, şimdi onu akıllı, beni deli zannediyorsunuz ha! O benden kat be kat delidir.'</em> (s. 264) Bize göre bu ifade, bölümün ima ettiği ama açıkça söylemediği bir şeyi dile getiriyor: dışarıdan 'akıllı' görünmek, içeride ne olup bittiğine dair hiçbir şey söylemiyor -- genç İbn Arabî'nin kendisi de, kendi aktardığı bu sözde, gizli bir 'delilik' taşıyor olabilir. Bölüm, benzer bir ikinci karşılaşmayla devam ediyor -- bu sefer İbn Arabî'nin karşılaştığı 'en büyük delilerden biri', kendisine 'sen gerçekten de delinin tekisin, aklım olsaydı bana bunu sorar mıydın' diye cevap veriyor (s. 265) ve kendini 'vahşi bir hayvan, bana binilmez' diye tanımlıyor (s. 265).",
+            "en": "The scene's continuation carries a personal touch: the man singles out young Ibn Arabi from the crowd as a witness -- 'Young man! Am I not speaking the truth?' -- and once he receives confirmation, laughs and says: <em>'Rotten backs pass wind on each other. This young man is rotten just like me!... You now think him sane and me mad! He is many times madder than I am.'</em> (p. 264) To us, this remark voices something the chapter implies but never states outright: appearing 'sane' on the outside says nothing about what is happening within -- young Ibn Arabi himself, in these very words he records, may be carrying a hidden 'madness' of his own. The chapter continues with a similar second encounter -- this time 'one of the greatest madmen' Ibn Arabi ever met answers him: 'you really are a madman yourself; if I had reason, would you ask me this?' (p. 265) and describes himself as 'a wild animal, I cannot be ridden' (p. 265).",
+            "pt": "A continuação da cena traz um toque pessoal: o homem escolhe o jovem Ibn Arabi na multidão como testemunha -- 'Jovem! Não estou dizendo a verdade?' -- e, ao receber confirmação, ri e diz: <em>'Costas podres soltam vento umas nas outras. Este jovem é podre como eu!... Agora o pensais sensato e a mim louco! Ele é muitas vezes mais louco do que eu.'</em> (p. 264) Para nós, essa fala expressa algo que o capítulo insinua mas nunca declara abertamente: parecer 'sensato' por fora nada diz sobre o que acontece por dentro -- o próprio jovem Ibn Arabi, nestas mesmas palavras que registra, pode estar carregando uma 'loucura' oculta sua. O capítulo continua com um segundo encontro semelhante -- desta vez, 'um dos maiores loucos' que Ibn Arabi já conheceu lhe responde: 'você realmente é um louco; se eu tivesse razão, você me perguntaria isso?' (p. 265) e se descreve como 'um animal selvagem, não posso ser montado' (p. 265)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "namazda-kendinden-gecmek",
+      "heading": {
+        "tr": "Namazda Kendinden Geçmek: 'Niyet Nasıl Bir Şeydir?', ve Dost'un Kendi Tanıklığı",
+        "en": "Losing Oneself in Prayer: 'What Is Intention?', and Dost's Own Testimony",
+        "pt": "Perder-se na Oração: 'O Que É a Intenção?', e o Próprio Testemunho de Dost"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İkinci deli, namaz kılarken görülüyor. Sorulduğunda, 'namaz kıldığını' reddediyor: <em>'Hayır, Vallahi, O'nun beni ayakta tuttuğunu ve oturttuğunu görüyorum. Benim hakkımda neyi istediğini bilmiyorum.'</em> (s. 265) Niyet edip etmediği sorulduğunda ise şaşkınlıkla karşılık veriyor: <em>'Niyet nasıl bir şeydir?'</em> -- ve niyetin 'bu amellerle Hakka yaklaşmaya yönelmek' olduğu açıklandığında gülerek şöyle diyor: <em>'Ben adama diyorum ki, O'nun beni ayakta tuttuğunu ve oturttuğunu görüyorum. Benimle beraber olan ve kendisini müşahede ettiğim ve benden gizlenmeyen birine yaklaşmaya nasıl niyet edebilirim ki? Böyle bir söz delilerin sözüdür, hiç aldırış yok.'</em> (s. 266) Bize göre bu diyalog, niyet kavramının kendisini tersine çeviriyor -- niyet bir mesafeyi (yaklaşmayı) varsayar; ama bu adam için mesafe zaten yok, dolayısıyla 'yaklaşma niyeti' anlamsız kalıyor.",
+            "en": "The second madman is seen at prayer. Asked, he denies 'praying': <em>'No, by God, I see that He is the one making me stand and sit. I do not know what He wants of me.'</em> (p. 265) Asked whether he forms an intention, he answers in bewilderment: <em>'What is intention?'</em> -- and once told that intention means turning toward the Real through these acts, he laughs and says: <em>'I tell the man, I see that He is the one making me stand and sit. How can I form an intention to approach one who is with me, whom I witness, and who is not hidden from me? Such a statement is the speech of madmen, pay it no mind.'</em> (p. 266) To us, this dialogue turns the concept of intention on its head -- intention presupposes a distance (an approach); but for this man there is no distance to begin with, so 'the intention to approach' becomes meaningless.",
+            "pt": "O segundo louco é visto orando. Perguntado, nega estar 'orando': <em>'Não, por Deus, vejo que é Ele quem me faz ficar de pé e sentar. Não sei o que Ele quer de mim.'</em> (p. 265) Perguntado se forma uma intenção, responde perplexo: <em>'O que é a intenção?'</em> -- e, ao lhe explicarem que a intenção significa voltar-se para o Real através desses atos, ri e diz: <em>'Eu digo ao homem, vejo que é Ele quem me faz ficar de pé e sentar. Como posso formar a intenção de me aproximar de alguém que está comigo, a quem testemunho, e que não está oculto de mim? Tal afirmação é o discurso dos loucos, não lhe deis atenção.'</em> (p. 266) Para nós, esse diálogo inverte o próprio conceito de intenção -- a intenção pressupõe uma distância (uma aproximação); mas para esse homem não há distância alguma para começar, de modo que 'a intenção de se aproximar' se torna sem sentido."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölüm, Dost'un kendi tanıklığıyla kapanıyor: <em>'Ben de bu makamı tattım. Bu esnada bana bir hal geldi. Bu halde, beş vakit namazı bana söylendiği gibi rükü, secde ve namazın bütün fiil ve sözlerini tamamlayarak cemaate imamlık yaparak kılıyordum. Bütün bu hallerde hiçbir bilgim yoktu.'</em> (s. 266-267) Bunu Şiblî ile karşılaştırıyor -- rivayete göre Şiblî namaz vakitlerinde 'akıllılık haline döndürülürdü,' ve Cüneyd, Şiblî'den söz edildiğinde şöyle demiş: <em>'O'nun dilinden günah döktürmeyen Allah'a hamd olsun.'</em> (s. 267) Dost, kendi deneyimini şöyle anlatıyor: <em>'Zatımı, önümde rükü ve secde ederken görüyordum ve rükü ve secde edenin de kendim olduğunu biliyordum... Bir el alnımdaydı. Buna şaşırdım. Onun ne ben ne benden başkası olmadığını anladım.'</em> (s. 267) Bölüm, 'Buradan, sorumlu tutan, tutulan ve teklifin ne olduğunu anladım' cümlesiyle kapanıyor (s. 267) -- bize göre bu, kısmın en kişisel anlarından biri: Dost, üçüncü şahıs örneklerle anlattığı bir hali, birinci şahısta bizzat yaşadığını itiraf ediyor.",
+            "en": "The chapter closes with Dost's own testimony: <em>'I too tasted this station. A state came upon me during which, performing the five daily prayers exactly as prescribed -- the bowing, the prostration, all the acts and words of prayer -- I led the congregation. In all these states I had no knowledge whatsoever.'</em> (pp. 266-267) He compares this to Shibli -- reportedly, Shibli was 'returned to a state of sanity' at prayer times, and Junayd, when Shibli was mentioned to him, said: <em>'Praise God who let no sin fall from his tongue.'</em> (p. 267) Dost describes his own experience: <em>'I would see my own self before me, bowing and prostrating, and I knew that the one bowing and prostrating was myself... A hand was on my forehead. I was astonished by this. I understood that it was neither me nor other than me.'</em> (p. 267) The chapter closes with the sentence 'From this I understood who holds one responsible, who is held responsible, and what obligation is' (p. 267) -- to us, this is one of the part's most personal moments: Dost admits, in the first person, to having lived himself the very state he had been describing through third-person examples.",
+            "pt": "O capítulo se encerra com o próprio testemunho de Dost: <em>'Eu também provei esta estação. Um estado veio sobre mim durante o qual, realizando as cinco orações diárias exatamente como prescrito -- a inclinação, a prostração, todos os atos e palavras da oração -- eu liderava a congregação. Em todos esses estados eu não tinha conhecimento algum.'</em> (pp. 266-267) Ele compara isso a Shibli -- segundo relatos, Shibli era 'devolvido a um estado de sensatez' nos horários de oração, e Junayd, quando Shibli foi mencionado a ele, disse: <em>'Louvado seja Deus que não deixou nenhum pecado cair de sua língua.'</em> (p. 267) Dost descreve sua própria experiência: <em>'Eu via a mim mesmo diante de mim, inclinando-me e prostrando-me, e sabia que quem se inclinava e prostrava era eu mesmo... Uma mão estava em minha testa. Fiquei espantado com isso. Compreendi que não era nem eu nem outro que não eu.'</em> (p. 267) O capítulo se encerra com a frase 'A partir disso, compreendi quem responsabiliza, quem é responsabilizado, e o que é a obrigação' (p. 267) -- para nós, este é um dos momentos mais pessoais da parte: Dost admite, em primeira pessoa, ter vivido ele mesmo o próprio estado que vinha descrevendo através de exemplos em terceira pessoa."
+          }
+        }
+      ]
+    },
+    {
+      "id": "peygamberlik-velilik-varislik",
+      "heading": {
+        "tr": "Peygamberlik, Velilik, Vârislik: Ebû Medyen'in Üç Adımı",
+        "en": "Prophecy, Sainthood, Inheritance: Abu Madyan's Three Steps",
+        "pt": "Profecia, Santidade, Herança: Os Três Passos de Abu Madyan"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk Beşinci Bölüm, iki hadisle açılıyor: <em>'Âlimler peygamberlerin vârisleridir'</em> ve <em>'Peygamberler para veya dirhem miras bırakmaz. Onlar, bilgiyi miras bırakır.'</em> (s. 268) Hz. Peygamber'in kendi yolculuğu -- Hira'da ibadet, ansızın gelen tecelli, peygamberlik görevinin teslimi -- 'yetkin vâris veli'nin de şablonu oluyor: Allah bu veliye, bir iç tecelliyle, Hz. Muhammed'e indirilenin anlamını açıyor, sonra onu insanlara geri gönderiyor -- <em>'Allah'ın peygamberine ortak yaptığı kimsedir.'</em> (s. 269) Bu ortaklık sadece davete değil, sıkıntıya da uzanıyor: Dost, 'peygamberleri haksız yere öldürenler' ayetini (3:21) vârislere de uyguluyor -- <em>'Böylece Allah vârisler ile peygamberleri Allah'a çağırmada ortak yaptığı gibi belalara maruz kalmada da ortak yapmıştır.'</em> (s. 269) Ama sınır da net çiziliyor: <em>'vâris, bir şeriat ihdas etmediği gibi yerleşik bir hükmü de ortadan kaldırmaz, sadece açıklar.'</em> (s. 269)",
+            "en": "Chapter Forty-Five opens with two hadiths: <em>'Scholars are the heirs of the prophets'</em> and <em>'Prophets leave no money or coin as inheritance. They leave knowledge as inheritance.'</em> (p. 268) The Prophet's own journey -- worship at Hira, a sudden self-disclosure, the delivery of the prophetic commission -- also becomes the template for the 'perfect heir-saint': through an inward tecelli God opens to this saint the meaning of what was sent down to Muhammad, then sends him back to people -- <em>'he is the one whom God has made a partner to His messenger.'</em> (p. 269) This partnership extends not only to the call but to affliction: Dost applies the verse on 'those who kill the prophets unjustly' (3:21) to heirs as well -- <em>'Thus God has made the heirs partners to the prophets both in calling to God and in being exposed to trials.'</em> (p. 269) But the boundary is also drawn clearly: <em>'the heir originates no new law, just as he abolishes no established ruling -- he only explains.'</em> (p. 269)",
+            "pt": "O Capítulo Quarenta e Cinco se abre com dois hadiths: <em>'Os sábios são os herdeiros dos profetas'</em> e <em>'Os profetas não deixam dinheiro ou moeda como herança. Eles deixam o conhecimento como herança.'</em> (p. 268) A própria jornada do Profeta -- a adoração em Hira, uma autorrevelação súbita, a entrega da missão profética -- torna-se também o modelo do 'santo herdeiro perfeito': através de uma tecelli interior, Deus abre a esse santo o significado do que foi revelado a Maomé, depois o envia de volta às pessoas -- <em>'é aquele a quem Deus fez parceiro de Seu mensageiro.'</em> (p. 269) Essa parceria se estende não apenas ao chamado, mas também à aflição: Dost aplica o versículo sobre 'os que matam os profetas injustamente' (3:21) também aos herdeiros -- <em>'Assim Deus fez dos herdeiros parceiros dos profetas tanto em chamar a Deus quanto em estar expostos às provações.'</em> (p. 269) Mas o limite também é traçado com clareza: <em>'o herdeiro não institui nenhuma lei nova, assim como não revoga nenhum julgamento estabelecido -- apenas explica.'</em> (p. 269)"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölümün merkez metaforu, Şeyhimiz Ebû Medyen'e ait üç adımlı bir formül: <em>'Müridin iradesindeki doğruluğunun belirtisi, yaratıklardan kaçmasıdır... İnsanlardan kaçmasındaki dürüstlüğün belirtisi ise, Hakkı bulmasıdır... Müridin Hakkı bulmasının doğruluğunun kanı ise yaratıklara dönmesidir.'</em> (s. 269-270) Dost bu üç adımı doğrudan Hz. Peygamber'in kendi hayatına yerleştiriyor: kaçmak (Hira'ya çekilme), bulmak (ansızın gelen tecelli), dönmek (peygamberlik görevi). Vârisler için 'dönmek,' insanları irşat etmek ve şeriatı öğretmek niyetiyle geri dönmek anlamına geliyor (s. 270). Bize göre bu üçlü formül, kısmın Kırk Dördüncü Bölüm'de anlattığı 'geri döndürülen' ve 'döndürülmeyen' insanlar arasındaki farkı da önceden hazırlıyor -- kaçma-bulma-dönme sırası, tam da bir sonraki bölümün konusu olan 'erdikten sonra geri dönme' meselesinin iskeletini oluşturuyor.",
+            "en": "The chapter's central metaphor is a three-step formula belonging to our shaykh Abu Madyan: <em>'The sign of sincerity in a novice's will is fleeing from creatures... the sign of sincerity in fleeing people is finding the Real... the proof of sincerity in the novice's finding the Real is returning to creatures.'</em> (pp. 269-270) Dost maps these three steps directly onto the Prophet's own life: fleeing (withdrawal to Hira), finding (the sudden self-disclosure), returning (the prophetic commission). For heirs, 'returning' means coming back with the intention of guiding people and teaching them the sharia (p. 270). To us, this threefold formula also lays the groundwork for the distinction, drawn in Chapter Forty-Four, between people who are 'sent back' and those who are not -- the sequence of fleeing-finding-returning forms exactly the skeleton of the next chapter's subject, 'returning after arrival.'",
+            "pt": "A metáfora central do capítulo é uma fórmula de três passos de nosso xeque Abu Madyan: <em>'O sinal da sinceridade na vontade de um noviço é fugir das criaturas... o sinal da sinceridade em fugir das pessoas é encontrar o Real... a prova da sinceridade do noviço em encontrar o Real é retornar às criaturas.'</em> (pp. 269-270) Dost mapeia esses três passos diretamente sobre a própria vida do Profeta: fugir (retiro em Hira), encontrar (a autorrevelação súbita), retornar (a missão profética). Para os herdeiros, 'retornar' significa voltar com a intenção de guiar as pessoas e ensinar-lhes a shari'a (p. 270). Para nós, essa fórmula tríplice também prepara o terreno para a distinção, traçada no Capítulo Quarenta e Quatro, entre as pessoas que são 'enviadas de volta' e as que não são -- a sequência fugir-encontrar-retornar forma exatamente o esqueleto do assunto do próximo capítulo, o 'retorno após a chegada.'"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIII — Kırk Beşinci Bölüm, s. 268-270.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIII — Chapter Forty-Five, pp. 268-270.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIII — Capítulo Quarenta e Cinco, pp. 268-270."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Kaçmak",
+                "en": "Fleeing",
+                "pt": "Fugir"
+              },
+              "note": {
+                "tr": "yaratıklardan -- müridin doğruluğunun ilk belirtisi",
+                "en": "from creatures -- the first sign of the novice's sincerity",
+                "pt": "das criaturas -- o primeiro sinal da sinceridade do noviço"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Bulmak",
+                "en": "Finding",
+                "pt": "Encontrar"
+              },
+              "note": {
+                "tr": "Hakkı -- kaçıştaki dürüstlüğün belirtisi",
+                "en": "the Real -- the sign of sincerity in the fleeing",
+                "pt": "o Real -- o sinal da sinceridade na fuga"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Dönmek",
+                "en": "Returning",
+                "pt": "Retornar"
+              },
+              "note": {
+                "tr": "yaratıklara -- bulmadaki doğruluğun kanıtı; Hz. Peygamber'in Hira'dan dönüşü örnek",
+                "en": "to creatures -- the proof of sincerity in the finding; the Prophet's return from Hira is the example",
+                "pt": "às criaturas -- a prova da sinceridade no encontro; o retorno do Profeta de Hira é o exemplo"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Ebû Medyen'in üç adımı, Hz. Peygamber'in kendi yolculuğuna (Hira'ya çekilme, ansızın gelen tecelli, peygamberlik göreviyle geri dönüş) birebir uyuyor -- ve vâris velinin de aynı üçlü ritmi tekrarladığı düşünülüyor.",
+            "en": "Abu Madyan's three steps map exactly onto the Prophet's own journey (withdrawal to Hira, sudden self-disclosure, return with the prophetic commission) -- and the heir-saint is thought to repeat the same threefold rhythm.",
+            "pt": "Os três passos de Abu Madyan se ajustam exatamente à própria jornada do Profeta (retiro em Hira, autorrevelação súbita, retorno com a missão profética) -- e pensa-se que o santo herdeiro repete o mesmo ritmo tríplice."
+          }
+        }
+      ]
+    },
+    {
+      "id": "donen-donmeyen-vakıf",
+      "heading": {
+        "tr": "Dönen, Dönmeyen, Duran: Yokuşun Zirvesinde",
+        "en": "The One Who Returns, the One Who Doesn't, and the One Who Stands Still: At the Summit of the Slope",
+        "pt": "Quem Retorna, Quem Não Retorna, e Quem Permanece: No Cume da Encosta"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Erdikten sonra dönmemenin kendi mazereti de var. Allah ehlinin büyüklerinden biri, birinin 'erdiğini' iddia ettiğini duyunca şöyle demiş: <em>'Ermiş, ama cehenneme!'</em> -- çünkü böyle bir iddia, Allah'a erişmenin dini yükümlülükleri düşürdüğünü ima ediyor (s. 271). Şeyhimiz Ebû Yakub Yusuf b. Yahlef el-Kûmî'nin yokuş benzetmesi bu meseleyi başka bir açıdan çerçeveliyor: <em>'Bizim ile arzuladığımız Hak arasında sarp bir yokuş vardır. Biz doğa bakımından yokuşun ta dibindeyiz ve en zirvesine ulaşıncaya kadar sürekli bu yokuşu tırmanmaya devam ediyoruz. Zirvenin ardına ulaştığımızda ise, artık oradan dönmeyiz.'</em> (s. 271) Zirveye ulaşmadan geri dönenler, 'yetkinleşme talebi' yüzünden dönüyor -- ama gerçekten ulaşanlar aşağı inmiyor, sadece o makamdan insanları Hakka davet ediyor. Hiç dönmeyip zirvede kalanlara ise 'duran' (vâkıf) deniyor; örnek olarak Ebû Yezîd el-Bistâmî ve Ebû İkâl el-Mağribî veriliyor (s. 271).",
+            "en": "Not returning after arrival has its own justification. One of the great masters of God's people, hearing that someone claimed to have 'arrived,' said: <em>'Arrived -- but to hell!'</em> -- because such a claim implies that reaching God lifts religious obligation (p. 271). Our shaykh Abu Yaqub Yusuf b. Yahlaf al-Qumi's slope metaphor frames the matter from another angle: <em>'Between us and the Real we desire there is a steep slope. By our nature we are at the very bottom of the slope, and we keep climbing it until we reach its very summit. Once we reach beyond the summit, we no longer return from there.'</em> (p. 271) Those who turn back before reaching the summit do so out of 'the wish to be perfected' -- but those who truly arrive do not come back down; they only call people to the Real from that station. Those who never return at all, remaining at the summit, are called 'the standing one' (vaqif); Abu Yazid al-Bistami and Abu Iqal al-Maghribi are given as examples (p. 271).",
+            "pt": "Não retornar após a chegada tem sua própria justificativa. Um dos grandes mestres do povo de Deus, ao ouvir que alguém alegava ter 'chegado,' disse: <em>'Chegou -- mas para o inferno!'</em> -- pois tal alegação implica que alcançar Deus suspende a obrigação religiosa (p. 271). A metáfora da encosta de nosso xeque Abu Yaqub Yusuf b. Yahlaf al-Qumi enquadra a questão de outro ângulo: <em>'Entre nós e o Real que desejamos há uma encosta íngreme. Por natureza estamos bem no fundo da encosta, e continuamos a escalá-la até alcançar seu cume. Uma vez alcançado o além do cume, não retornamos mais dali.'</em> (p. 271) Os que voltam antes de alcançar o cume o fazem por 'o desejo de se aperfeiçoar' -- mas os que realmente chegam não descem; apenas chamam as pessoas ao Real a partir dessa estação. Os que nunca retornam, permanecendo no cume, são chamados de 'o que permanece' (vaqif); Abu Yazid al-Bistami e Abu Iqal al-Maghribi são dados como exemplos (p. 271)."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Burada metnin kendi içinde ilginç bir gerilim var, biz de çözmeden aktarmayı tercih ediyoruz: birkaç sayfa sonra Dost, dönenleri ikiye ayırıyor -- <em>'Bir kısmı, Ebâ Medyen gibi, isteyerek döner, bir kısmı ise Ebü Yezid gibi zorla ve mecburen dönenlerdir.'</em> (s. 272) Burada Bistâmî artık 'duran' değil, 'mecburen dönen' kategorisinde -- Allah ona irşat vârisliği niteliklerini giydirdiğinde bir adım attığı, bayıldığı ve bir nidanın 'Sevgilimi bana gönderiniz, onun benden ayrılmaya tahammülü yoktur' dediği anlatılıyor (s. 272). Aynı isim, birkaç sayfa arayla, iki farklı sınıflandırmada beliriyor. Bunu bir çelişki olarak damgalamak yerine, bize göre bu, Bistâmî'nin külliyat boyunca -- ve bu okuma projesinde defalarca -- karşımıza tam olarak sabitlenemeyen, sınıflandırmadan sınıflandırmaya kayan bir figür olarak çıktığının bir işareti olabilir.",
+            "en": "There is an interesting tension within the text itself here, and we prefer to pass it along rather than resolve it: a few pages later, Dost splits those who return into two -- <em>'Some return willingly, like Abu Madyan, while others return forcibly and under compulsion, like Abu Yazid.'</em> (p. 272) Here Bistami is no longer among 'the standing ones' but among 'those who return under compulsion' -- it is recounted that when God clothed him with the qualities of heir-guidance, he took a single step [back toward creation] and fainted, and a voice cried out: 'Send My beloved back to Me, he cannot bear to be separated from Me.' (p. 272) The same name appears, a few pages apart, in two different classifications. Rather than stamping this a contradiction, to us this may be a sign that Bistami, across the corpus -- and repeatedly in this very reading project -- keeps appearing as a figure who cannot be pinned down once and for all, sliding from one classification to another.",
+            "pt": "Há aqui uma tensão interessante dentro do próprio texto, e preferimos transmiti-la em vez de resolvê-la: algumas páginas depois, Dost divide os que retornam em dois -- <em>'Alguns retornam de boa vontade, como Abu Madyan, enquanto outros retornam à força e sob compulsão, como Abu Yazid.'</em> (p. 272) Aqui Bistami já não está entre 'os que permanecem,' mas entre 'os que retornam sob compulsão' -- relata-se que, quando Deus o revestiu das qualidades da herança-guia, ele deu um único passo [de volta em direção à criação] e desmaiou, e uma voz clamou: 'Devolve-Me o meu amado, ele não suporta estar separado de Mim.' (p. 272) O mesmo nome aparece, a poucas páginas de distância, em duas classificações diferentes. Em vez de marcar isso como uma contradição, para nós isso pode ser um sinal de que Bistami, ao longo do corpus -- e repetidamente neste próprio projeto de leitura -- continua aparecendo como uma figura que não pode ser fixada de uma vez por todas, deslizando de uma classificação para outra."
+          }
+        }
+      ]
+    },
+    {
+      "id": "isim-organ-nur-vasitasiyla-erme",
+      "heading": {
+        "tr": "İsim, Organ, Nur: Ermenin Üç Ayrı Kapısı",
+        "en": "Name, Organ, Light: Three Separate Doors to Arrival",
+        "pt": "Nome, Órgão, Luz: Três Portas Diferentes para a Chegada"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Erenler, hangi 'kapı' üzerinden Hakka ulaştıklarına göre de ayrılıyor. Bir kısmı, kendilerini erdiren isim yönünden erer -- el-Hâlık, eş-Şekûr, el-Ganî gibi bir ismin gerektirdiği meşrepte kalır ve o isme izafeten çağrılır: Abdü'ş-Şekûr, Abdü'l-Ganî (s. 271-272). Bir kısmı ise, kendini erdiren isimden başka bir bilgi getiriyor -- bu, sûfî olmayanların bazen tepki gösterdiği, 'halinden yüksek görünen' bir bilgi. Dost burada net bir hüküm veriyor: <em>'Bize göre böyle bir insan, kendisini erdiren ismin müşahedesine ulaşan kimseden daha üstündür.'</em> (s. 272) Ve Ebû Yezîd'den bir söz aktarıyor: <em>'Ârif söylediğinden yukarı, âlim ise, söylediğinin altındadır.'</em> (s. 272)",
+            "en": "Those who arrive are also distinguished by which 'door' they arrive at the Real through. Some arrive by way of the very name that leads them there -- remaining within the mode required by a name like al-Khaliq, al-Shakur, al-Ghani, and being addressed accordingly: Abdu'l-Shakur, Abdu'l-Ghani (pp. 271-272). Others bring back knowledge different from the name that brought them there -- knowledge that some who are not versed in the Sufi path sometimes object to, as 'appearing higher than his station.' Here Dost gives a clear judgment: <em>'To us, such a person is superior to one who arrives at the witnessing of the very name that brought him there.'</em> (p. 272) And he cites a saying of Abu Yazid: <em>'The knower stands above what he says; the scholar stands below what he says.'</em> (p. 272)",
+            "pt": "Os que chegam também se distinguem pela 'porta' pela qual chegam ao Real. Alguns chegam por meio do próprio nome que os conduz até lá -- permanecendo dentro do modo exigido por um nome como al-Khaliq, ash-Shakur, al-Ghani, e sendo chamados de acordo: Abdu'l-Shakur, Abdu'l-Ghani (pp. 271-272). Outros trazem de volta um conhecimento diferente do nome que os conduziu -- conhecimento ao qual alguns não versados no caminho sufi por vezes reagem, por 'parecer superior à sua estação.' Aqui Dost dá um julgamento claro: <em>'Para nós, tal pessoa é superior àquela que chega ao testemunho do próprio nome que a conduziu.'</em> (p. 272) E cita um dito de Abu Yazid: <em>'O conhecedor está acima do que diz; o erudito está abaixo do que diz.'</em> (p. 272)"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Başka bir grup ise, isimler hakkında hiçbir bilgi taşımadan, sekiz beden organından biri üzerinden açılan bir kapıyla erir: <em>'El, ayak, karın, dil, kulak, göz, cinsel uzuv ve kalp. Bunlardan başka bir şey yoktur.'</em> (s. 273) Hangi organ üzerinden açılırsa, o kişinin kerameti (veli ise) ya da mucizesi (peygamber ise) o organ türünden gerçekleşiyor -- abdest alıp iki rekat namaz kılan kimseye cennetin sekiz kapısının açılacağını bildiren bir hadisle destekleniyor (s. 273). Bir başka sekizli şema, bu kez ışık üzerinden kuruluyor: <em>'Bir kısmının yardımı, şimşek nurundan gelir... Bir kısmının nur mertebesinden gelen yardımı, güneş nurundan, bir kısmının, dolunay nurundan, bir kısmının yardımı ay nurundan, bir kısmının yardımı hilal nurundan, bir kısmının yardımı kandil nurundan, bir kısmının yardımı yıldızların nurundan, bir kısmının yardımı ateş nurundandır.'</em> (s. 274) Son bir grup ise, ne isim ne organ ne nur bilgisi taşımadan, doğrudan bir peygamberin 'hakikatine' vâris oluyor -- Musevi ya da İsevi bir müşahede kazanıyor (s. 274). Bize göre bu üç şema (isim / organ / nur / peygamber-hakikati), tek bir kutbiyet piramidi yerine, aynı 'erme' olgusunu birbirinden bağımsız eksenlerden okuyan paralel haritalar gibi duruyor.",
+            "en": "Another group arrives without carrying any knowledge of the names at all, through a door opened instead via one of eight bodily organs: <em>'The hand, the foot, the belly, the tongue, the ear, the eye, the sexual organ, and the heart. There is nothing beyond these.'</em> (p. 273) Whichever organ the opening occurs through, that person's karamat (if a saint) or miracles (if a prophet) take that organ's form -- supported by a hadith stating that whoever performs ablution and prays two rak'ahs will have the eight gates of paradise opened to him (p. 273). A further eightfold scheme is set up around light: <em>'Some are aided by the light of lightning... some are aided, at the rank of light, by the light of the sun, some by the light of the full moon, some by the light of the [waning] moon, some by the light of the crescent, some by the light of the lamp, some by the light of the stars, some by the light of fire.'</em> (p. 274) A final group, carrying no knowledge of name, organ, or light at all, inherits directly the 'reality' of a particular prophet -- gaining a Mosaic or Christic witnessing (p. 274). To us, these three schemes (name / organ / light / prophetic reality) do not add up to a single pyramid of pole-hood, but stand as parallel maps, each reading the same phenomenon of 'arrival' along its own independent axis.",
+            "pt": "Outro grupo chega sem carregar nenhum conhecimento dos nomes, através de uma porta aberta por meio de um dos oito órgãos corporais: <em>'A mão, o pé, o ventre, a língua, o ouvido, o olho, o órgão sexual e o coração. Não há nada além destes.'</em> (p. 273) Seja qual for o órgão pelo qual a abertura ocorre, os karamat dessa pessoa (se santo) ou milagres (se profeta) assumem a forma desse órgão -- apoiado por um hadith que declara que quem realiza a ablução e reza dois rak'ahs terá as oito portas do paraíso abertas para si (p. 273). Um outro esquema óctuplo se organiza em torno da luz: <em>'Alguns são ajudados pela luz do relâmpago... alguns são ajudados, no grau da luz, pela luz do sol, alguns pela luz da lua cheia, alguns pela luz da lua [minguante], alguns pela luz do crescente, alguns pela luz da lâmpada, alguns pela luz das estrelas, alguns pela luz do fogo.'</em> (p. 274) Um último grupo, sem carregar nenhum conhecimento de nome, órgão ou luz, herda diretamente a 'realidade' de um profeta específico -- ganhando um testemunho mosaico ou críptico (p. 274). Para nós, esses três esquemas (nome / órgão / luz / realidade profética) não se somam a uma única pirâmide de condição de polo, mas se apresentam como mapas paralelos, cada um lendo o mesmo fenômeno da 'chegada' a partir de seu próprio eixo independente."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIII — Kırk Beşinci Bölüm, s. 273-274.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIII — Chapter Forty-Five, pp. 273-274.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIII — Capítulo Quarenta e Cinco, pp. 273-274."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Organ Kapıları",
+                "en": "The Organ Doors",
+                "pt": "As Portas dos Órgãos"
+              },
+              "note": {
+                "tr": "el, ayak, karın, dil, kulak, göz, cinsel uzuv, kalp -- keramet/mucizenin dışa vurduğu yer",
+                "en": "hand, foot, belly, tongue, ear, eye, sexual organ, heart -- where karamat/miracle becomes outwardly visible",
+                "pt": "mão, pé, ventre, língua, ouvido, olho, órgão sexual, coração -- onde o karamat/milagre se torna visível externamente"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Nur Mertebeleri",
+                "en": "The Ranks of Light",
+                "pt": "Os Graus de Luz"
+              },
+              "note": {
+                "tr": "şimşek, güneş, dolunay, ay, hilal, kandil, yıldız, ateş -- yardımın içe geldiği kaynak",
+                "en": "lightning, sun, full moon, moon, crescent, lamp, star, fire -- the source from which aid comes inwardly",
+                "pt": "relâmpago, sol, lua cheia, lua, crescente, lâmpada, estrela, fogo -- a fonte de onde vem a ajuda internamente"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İki paralel sekizli şema: biri erenin hangi organında keramet/mucize belirdiğini, diğeri hangi ışık mertebesinden yardım aldığını sınıflıyor -- ikisi de aynı 'erme' olgusunu farklı eksenlerden okuyor.",
+            "en": "Two parallel eightfold schemes: one classifies through which organ karamat/miracle appears in the one who arrives, the other classifies from which rank of light the aid comes -- both read the same phenomenon of 'arrival' along different axes.",
+            "pt": "Dois esquemas óctuplos paralelos: um classifica por qual órgão o karamat/milagre aparece em quem chega, o outro classifica de qual grau de luz vem a ajuda -- ambos leem o mesmo fenômeno de 'chegada' a partir de eixos diferentes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "az-ilim-vehbi-kesbi",
+      "heading": {
+        "tr": "Az İlim: Bilginin Birliği, Vehbî ile Kesbî Arasında",
+        "en": "The Little Knowledge: The Oneness of Knowledge, Between Given and Acquired",
+        "pt": "O Pouco Conhecimento: A Unicidade do Conhecimento, Entre o Dado e o Adquirido"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk Altıncı Bölüm, 'Size bilgiden çok azı verilmiştir' ayetiyle (17:85) açılıyor. Şeyhimiz Ebû Medyen'in yorumu keskin: <em>'Bize verilen az ilim de bize ait değildir, sadece ödünçtür. İlmin çoğuna ise ulaşamadık. O halde biz sürekli cahiliz.'</em> (s. 275) Hızır'ın Musa'ya anlattığı kuş kıssası bu fikri somutlaştırıyor: denizden gagasıyla su alan bir kuşu gösteren Hızır şöyle diyor: <em>'Bu kuş diyor ki: Benim ve senin bilgin Allah'ın bilgisinden gagamın şu denizden eksilttiği su kadar bilgi eksiltmiştir.'</em> (s. 275) Dost'un incelikli düzeltmesi: burada çoğalan şey bilginin kendisi değil, bilinenler -- <em>'Bilgi çoğalsaydı, varlığa sonsuz şeylerin girmesine yol açardı ki böyle bir şey imkânsızdır.'</em> (s. 275) Allah'ın bilgisi tek bir gerçekliktir, sonsuz sayıda şeye ilişir; tıpkı 'bir'in kendisi sayı olmadığı halde bütün sayıların ondan doğması gibi (s. 276).",
+            "en": "Chapter Forty-Six opens with the verse 'You have been given only a little of knowledge' (17:85). Our shaykh Abu Madyan's gloss is sharp: <em>'Even the little knowledge given to us is not our own, only lent to us. We have not reached the greater part of knowledge. So we remain forever ignorant.'</em> (p. 275) Khidr's bird parable, told to Moses, gives this idea concrete form: pointing to a bird dipping its beak into the sea, Khidr says: <em>'This bird is saying: my knowledge and yours have diminished God's knowledge no more than what my beak has taken from this sea.'</em> (p. 275) Dost's careful correction: what multiplies here is not knowledge itself but the known things -- <em>'If knowledge itself multiplied, it would open the way for infinite things to enter existence, which is impossible.'</em> (p. 275) God's knowledge is a single reality that touches infinite things, just as the number 'one' is not itself a number even though all numbers arise from it (p. 276).",
+            "pt": "O Capítulo Quarenta e Seis se abre com o versículo 'Foi-vos dado apenas um pouco de conhecimento' (17:85). O comentário de nosso xeque Abu Madyan é incisivo: <em>'Mesmo o pouco conhecimento que nos foi dado não é nosso, apenas nos foi emprestado. Não alcançamos a maior parte do conhecimento. Portanto, permanecemos ignorantes para sempre.'</em> (p. 275) A parábola do pássaro de Khidr, contada a Moisés, dá forma concreta a essa ideia: apontando para um pássaro que molha o bico no mar, Khidr diz: <em>'Este pássaro está dizendo: meu conhecimento e o teu diminuíram o conhecimento de Deus tanto quanto meu bico tirou deste mar.'</em> (p. 275) A correção cuidadosa de Dost: o que se multiplica aqui não é o conhecimento em si, mas as coisas conhecidas -- <em>'Se o conhecimento em si se multiplicasse, abriria caminho para que coisas infinitas entrassem na existência, o que é impossível.'</em> (p. 275) O conhecimento de Deus é uma única realidade que toca coisas infinitas, assim como o número 'um' não é em si um número, embora todos os números surjam dele (p. 276)."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölümün ikinci yarısı, iki bilgi türü arasında net bir ayrım kuruyor: <em>'Biz, düşüncelerimiz (fikir) ve duyularımızdan elde ettiğimiz bir bilginin bulunduğunu biliyoruz. Bir de kendimiz kaynaklı herhangi bir şey vasıtasıyla elde etmediğimiz, aksine Allah'ın bir ihsanı olan bilgi daha vardır.'</em> (s. 277) İkincisi, 'vehbî' (verili) ilim -- takva ya da doğru düşünce aracılığıyla kazanılan bilgiden bile farklı, çünkü takva burada sadece bir 'yol,' bir sebep; oysa gerçek vehbî ilim hiçbir sebepten meydana gelmiyor (s. 277-278). <em>'Bütün peygamberlik (bilgileri), verili (vehbî) ilimlerdir... Bütün şeriatlar... verili ilimlerdir.'</em> (s. 278) Şeriat-dışı vehbî ilim alan veliler ise çok az -- ve Hızır, bunların en açık örneği olarak veriliyor, Âdem, İlyas, Zekeriya, Yahya, İsa, İdris, İsmail gibi peygamberlerle birlikte anılıyor (s. 278). Bölüm, Hz. Peygamber'in bile kıyamet günü Allah'a edeceği övgüleri şimdiden bilmediğini hatırlatarak kapanıyor -- <em>'hiç kimsenin bilgisinin sonsuza ilişmediği'</em> sonucuna varılıyor (s. 279).",
+            "en": "The chapter's second half draws a clear line between two kinds of knowledge: <em>'We know that there is a knowledge we obtain through our reflection and our senses. And there is also a further knowledge, which we do not obtain by any means originating in ourselves, but which is a sheer gift of God.'</em> (p. 277) The latter is 'given' (vehbi) knowledge -- different even from knowledge gained through piety or sound reflection, since piety here is only a 'way,' a cause; whereas true given knowledge arises from no cause at all (pp. 277-278). <em>'All prophetic knowledge is given (vehbi) knowledge... all sharias... are given knowledge.'</em> (p. 278) Awliya who receive given knowledge outside the sharia are very few -- Khidr is offered as the clearest example, named alongside prophets such as Adam, Elijah, Zachariah, John, Jesus, Idris, and Ishmael (p. 278). The chapter closes by recalling that even the Prophet does not yet know the praises he will offer God at the Gate of Intercession on the Day of Judgment -- arriving at the conclusion that <em>'no one's knowledge touches the infinite'</em> (p. 279).",
+            "pt": "A segunda metade do capítulo traça uma linha clara entre dois tipos de conhecimento: <em>'Sabemos que há um conhecimento que obtemos por meio de nossa reflexão e de nossos sentidos. E há também um outro conhecimento, que não obtemos por nenhum meio originado em nós mesmos, mas que é um puro dom de Deus.'</em> (p. 277) Este último é o conhecimento 'dado' (vehbi) -- diferente até do conhecimento obtido através da piedade ou da reflexão correta, já que a piedade aqui é apenas um 'caminho,' uma causa; enquanto o verdadeiro conhecimento dado não surge de causa alguma (pp. 277-278). <em>'Todo conhecimento profético é conhecimento dado (vehbi)... todas as shari'as... são conhecimento dado.'</em> (p. 278) Os santos que recebem conhecimento dado fora da shari'a são muito poucos -- Khidr é oferecido como o exemplo mais claro, nomeado ao lado de profetas como Adão, Elias, Zacarias, João, Jesus, Idris e Ismael (p. 278). O capítulo se encerra lembrando que mesmo o Profeta ainda não conhece os louvores que oferecerá a Deus no Portão da Intercessão no Dia do Juízo -- chegando à conclusão de que <em>'o conhecimento de ninguém toca o infinito'</em> (p. 279)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIII — Kırk Altıncı Bölüm, s. 277-278.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIII — Chapter Forty-Six, pp. 277-278.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIII — Capítulo Quarenta e Seis, pp. 277-278."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Kesbî İlim",
+                "en": "Acquired Knowledge",
+                "pt": "Conhecimento Adquirido"
+              },
+              "note": {
+                "tr": "fikir + duyular; takva ve doğru düşünce de burada -- bir 'yol'dan geçerek elde edilir",
+                "en": "reflection + the senses; piety and sound thinking also belong here -- obtained by passing through a 'way'",
+                "pt": "reflexão + sentidos; a piedade e o pensamento correto também pertencem aqui -- obtido ao passar por um 'caminho'"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Vehbî İlim",
+                "en": "Given Knowledge",
+                "pt": "Conhecimento Dado"
+              },
+              "note": {
+                "tr": "hiçbir sebepten meydana gelmez, doğrudan Allah katından -- bütün peygamberlik bilgileri ve şeriatlar buraya girer",
+                "en": "arises from no cause at all, directly from God -- all prophetic knowledge and all sharias belong here",
+                "pt": "não surge de causa alguma, diretamente de Deus -- todo conhecimento profético e todas as shari'as pertencem aqui"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un ayrımı: kazanılan bilgi bir sebep/yol gerektirir (fikir, duyu, hatta takva); verilen bilgi hiçbir aracıya ihtiyaç duymaz -- Hızır ve peygamberler bu ikincisinin paradigma örnekleri.",
+            "en": "Dost's distinction: acquired knowledge requires a cause/way (reflection, sense, even piety); given knowledge needs no intermediary at all -- Khidr and the prophets are the paradigm examples of the latter.",
+            "pt": "A distinção de Dost: o conhecimento adquirido requer uma causa/caminho (reflexão, sentido, até a piedade); o conhecimento dado não precisa de nenhum intermediário -- Khidr e os profetas são os exemplos paradigmáticos deste último."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIII — Behlüller (Deliler) ve Onların İmamlarının Bilinmesi, s. 259-267.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIII — Knowing the Madmen (Behluls) and Their Imams, pp. 259-267.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIII — Conhecendo os Loucos (Behlüls) e Seus Imames, pp. 259-267."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIII — Erdikten Sonra Geri Dönenin ve Kimin Döndürdüğünün Bilinmesi, s. 267-274.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIII — Knowing the One Who Returns After Arriving, and Who Turns Him Back, pp. 267-274.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIII — Conhecendo Aquele Que Retorna Após Chegar, e Quem o Faz Retornar, pp. 267-274."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIII — Az İlmin ve Onu Salihlerden Kimin Elde Ettiğinin Bilinmesi, s. 274-279.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIII — Knowing the Little Knowledge, and Which of the Righteous Attain It, pp. 274-279.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIII — Conhecendo o Pouco Conhecimento, e Quais dos Justos o Alcançam, pp. 274-279."
+    }
+  ]
+}

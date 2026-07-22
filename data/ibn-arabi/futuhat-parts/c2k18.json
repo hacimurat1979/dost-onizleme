@@ -1,0 +1,440 @@
+{
+  "id": "c2k18",
+  "cilt": 2,
+  "kisim": 18,
+  "status": "active",
+  "title": {
+    "tr": "Süvari Kutuplar: Ayakların Hiyerarşisi ve Dünya Bir Rüyadır",
+    "en": "The Cavalier Poles: The Hierarchy of Feet, and the World Is a Dream",
+    "pt": "Os Polos Cavaleiros: A Hierarquia dos Pés, e o Mundo É um Sonho"
+  },
+  "pageRange": "121–148",
+  "hero": {
+    "summary": {
+      "tr": "Kısım XVIII, Kutub'un tasarrufu dışında kalan 'süvari' (fürsan/rükban) sınıfını -Efrad'ın bir alt-koluymuş gibi görünen, iki tabakalı bir veli grubunu- ele alıyor. Kısım XVII'nin 'her mertebenin kendi kutbu var' fikri burada, İbn Kâid'in gördüğü 'ayak sayısı' ile somut bir ölçüye kavuşuyor gibi görünüyor; kısım, 'dünya hayatı bir uykudur, ölüm uyanıştır' fikriyle kapanıyor.",
+      "en": "Part XVIII takes up the class of 'cavaliers' (fursan/rukban) -- a two-tiered group of saints standing outside the Pole's jurisdiction, appearing to be a sub-branch of the Afrad. Part XVII's idea that 'each rank has its own pole' seems to acquire a concrete measure here, through the 'number of feet' Ibn Qa'id saw; the part closes with the idea that 'worldly life is a sleep, and death is the awakening.'",
+      "pt": "A Parte XVIII trata da classe dos 'cavaleiros' (fursan/rukban) -- um grupo de santos em dois níveis, situado fora da jurisdição do Polo, parecendo ser um sub-ramo dos Afrad. A ideia da Parte XVII de que 'cada grau tem seu próprio polo' parece adquirir aqui uma medida concreta, através do 'número de pés' que Ibn Qa'id viu; a parte se encerra com a ideia de que 'a vida mundana é um sono, e a morte é o despertar.'"
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "İbn Kâid'in gördüğü 'ayaklar': her mertebe, önündeki ayak sayısıyla ölçülüyor -- Efrad sadece peygamberin ayağını görür, İmam iki, Direk üç, Bedel dört ayak görmelidir.",
+      "en": "The 'feet' Ibn Qa'id saw: each rank is measured by the number of feet before it -- the Afrad see only the Prophet's foot, the Imam two, the Awtad three, the Badal four.",
+      "pt": "Os 'pés' que Ibn Qa'id viu: cada grau é medido pelo número de pés diante dele -- o Afrad vê apenas o pé do Profeta, o Imam dois, o Awtad três, o Badal quatro."
+    },
+    "tree": {
+      "id": "ayak-hiyerarsisi-tree",
+      "label": {
+        "tr": "Ayakların Hiyerarşisi",
+        "en": "The Hierarchy of Feet",
+        "pt": "A Hierarquia dos Pés"
+      },
+      "note": {
+        "tr": "mertebe yükseldikçe görülen ayak sayısı artıyor",
+        "en": "the number of feet seen increases as rank rises",
+        "pt": "o número de pés vistos aumenta conforme o grau se eleva"
+      },
+      "children": [
+        {
+          "id": "efrad-1-ayak",
+          "label": {
+            "tr": "Efrad — 1 Ayak",
+            "en": "Afrad — 1 Foot",
+            "pt": "Afrad — 1 Pé"
+          },
+          "note": {
+            "tr": "sadece peygamberin ayağı",
+            "en": "only the Prophet's foot",
+            "pt": "apenas o pé do Profeta"
+          }
+        },
+        {
+          "id": "imam-2-ayak",
+          "label": {
+            "tr": "İmam — 2 Ayak",
+            "en": "Imam — 2 Feet",
+            "pt": "Imam — 2 Pés"
+          },
+          "note": {
+            "tr": "peygamber + vaktin kutbu",
+            "en": "the Prophet + the Pole of the age",
+            "pt": "o Profeta + o Polo da época"
+          }
+        },
+        {
+          "id": "direk-3-ayak",
+          "label": {
+            "tr": "Direk (Evtad) — 3 Ayak",
+            "en": "Pillar (Watad) — 3 Feet",
+            "pt": "Pilar (Watad) — 3 Pés"
+          },
+          "note": {
+            "tr": "peygamber + kutup + imam",
+            "en": "the Prophet + the Pole + the Imam",
+            "pt": "o Profeta + o Polo + o Imam"
+          }
+        },
+        {
+          "id": "bedel-4-ayak",
+          "label": {
+            "tr": "Bedel (Ebdal) — 4 Ayak",
+            "en": "Substitute (Abdal) — 4 Feet",
+            "pt": "Substituto (Abdal) — 4 Pés"
+          },
+          "note": {
+            "tr": "bir önceki üçü + direk",
+            "en": "the previous three + the pillar",
+            "pt": "os três anteriores + o pilar"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "suvarilerin-sirri-hiyerarsi",
+      "heading": {
+        "tr": "Süvarilerin Sırrı: Fürsan ve Rükban",
+        "en": "The Secret of the Cavaliers: Fursan and Rukban",
+        "pt": "O Segredo dos Cavaleiros: Fursan e Rukban"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Kutub'un tasarrufu dışında kalan bir veli sınıfının -süvarilerin- neden bu adı taşıdığını açıklayarak başlıyor: bir kısmı 'himmet bineği'ne, bir kısmı 'amel bineği'ne bindiği için Dost onları birinci ve ikinci tabaka diye ikiye ayırıyor. Bu sınıf Efrad'dan sayılıyor -Kutub'un hükmünün dışında kalan, sayıları üç ve üstü tek sayılarla sınırlı bir grup. Dost burada tam kutbiyet hiyerarşisini bir arada sayıyor: <em>'Kutuplar, İmamlar, Direkler, Bedeller, Nakipler, Necipler, Recebiyyân ve Efrad.'</em> Bu, Kısım XI'den beri parça parça topladığımız hiyerarşinin en toplu listelerinden biri. Otobiyografik bir not da ekliyor: <em>'Onlardan her bir grubu gördüm ve batı şehirlerinde, Hicaz ve doğu şehirlerinde onlarla oturup kalktım.'</em>",
+            "en": "The part opens by explaining why this class of saints outside the Pole's jurisdiction -- the cavaliers -- bears this name: some ride the 'mount of spiritual aspiration,' others the 'mount of action,' so Dost divides them into a first and second tier. This class is counted among the Afrad -- a group outside the Pole's rule, limited to odd numbers of three and above. Here Dost lists the full pole-hierarchy together: <em>'Poles, Imams, Pillars, Substitutes, Naqibs, Najibs, Rajabiyyun, and Afrad.'</em> This is one of the most complete lists of the hierarchy we have been gathering piece by piece since Part XI. He adds an autobiographical note: <em>'I have seen each of these groups, and have sat and risen with them in the western cities, in the Hijaz, and in the eastern cities.'</em>",
+            "pt": "A parte se abre explicando por que essa classe de santos fora da jurisdição do Polo -- os cavaleiros -- carrega esse nome: alguns cavalgam a 'montaria da aspiração espiritual,' outros a 'montaria da ação,' de modo que Dost os divide num primeiro e num segundo nível. Essa classe é contada entre os Afrad -- um grupo fora do domínio do Polo, limitado a números ímpares a partir de três. Aqui Dost lista junta toda a hierarquia dos polos: <em>'Polos, Imames, Pilares, Substitutos, Naqibs, Najibs, Rajabiyyun, e Afrad.'</em> Esta é uma das listas mais completas da hierarquia que vínhamos reunindo peça por peça desde a Parte XI. Ele acrescenta uma nota autobiográfica: <em>'Vi cada um desses grupos, e sentei e me levantei com eles nas cidades ocidentais, no Hejaz, e nas cidades orientais.'</em>"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bize göre en ilginç ayrıntı, sayısal-metafizik bir üçleme: <em>'Mutlak birlik anlamındaki ahadiyet -ki o, bir demektir- Hakkın zatına aittir. İki ise mertebeye aittir, o da, ulûhiyetin birlenmesidir. Üç ise oluşun (âlem) Allah'tan var olmasının ilkesidir.'</em> Bu üçleme (Bir=Zât, İki=Mertebe/Ulûhiyet, Üç=Oluşun İlkesi), süvarilerin neden tek sayılarla (üç ve üstü) sınırlı olduğuna bir gerekçe gibi okunabilir -- sanki sayının kendisi bir mertebe göstergesi.",
+            "en": "To us, the most interesting detail is a numerical-metaphysical triad: <em>'Ahadiyya in the sense of absolute unity -- which is one -- belongs to the Essence of the Real. Two belongs to rank, which is the oneness of divinity. Three is the principle by which becoming (the cosmos) comes to exist from God.'</em> This triad (One=Essence, Two=Rank/Divinity, Three=Principle of Becoming) can be read as a rationale for why the cavaliers are limited to odd numbers of three and above -- as though the number itself were an indicator of rank.",
+            "pt": "Para nós, o detalhe mais interessante é uma tríade numérico-metafísica: <em>'A ahadiyya no sentido de unidade absoluta -- que é um -- pertence à Essência do Real. Dois pertence ao grau, que é a unicidade da divindade. Três é o princípio pelo qual o devir (o cosmos) passa a existir a partir de Deus.'</em> Essa tríade (Um=Essência, Dois=Grau/Divindade, Três=Princípio do Devir) pode ser lida como uma justificativa para por que os cavaleiros se limitam a números ímpares a partir de três -- como se o próprio número fosse um indicador de grau."
+          }
+        }
+      ]
+    },
+    {
+      "id": "zindiklikla-suclanmak",
+      "heading": {
+        "tr": "Zındıklıkla Suçlanmak: Velilerin Sakladığı Bilgi",
+        "en": "Accused of Heresy: The Knowledge Saints Withhold",
+        "pt": "Acusados de Heresia: O Conhecimento Que os Santos Retêm"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölümün geri kalanı, velilerin peygamberden gelmeyen ama gerçek olan bilgileri yüzünden nasıl tekfir edildiğini, Hızır-Musa kıssası etrafında işliyor. Cüneyd el-Bağdadî'den çarpıcı bir söz aktarılıyor: <em>'Bir kimse, bin güvenilir insan tarafından zındık diye suçlanmadıkça hakikat derecelerine yükselemez.'</em> Ebû Hureyre'nin (Buhârî'den) sözü ise, Dost'un kendi kısıtlı-açıklama tavrıyla da örtüşen bir emsal: <em>'Hz. Peygamber'den iki ilim aldım. Birincisi size bildirdiğimdir. İkincisini açıklamış olsaydım, şu gırtlağım kesilirdi.'</em> İbn Abbas da benzer bir şey söylüyor -bir ayetin tefsirini açıklarsa taşlanacağını.",
+            "en": "The rest of the chapter treats, around the Khidr-Moses story, how saints have been declared heretics because of knowledge that is true but does not come from the Prophet. A striking saying is related from Junayd al-Baghdadi: <em>'A person cannot rise to the degrees of truth until a thousand trustworthy people have accused him of heresy.'</em> Abu Hurayra's saying (from Bukhari) is a precedent that resonates with Dost's own restrained-disclosure stance: <em>'I received two kinds of knowledge from the Prophet. The first is what I have conveyed to you. Had I disclosed the second, this throat of mine would be cut.'</em> Ibn Abbas says something similar -- that he would be stoned if he explained the exegesis of a certain verse.",
+            "pt": "O restante do capítulo trata, em torno da história de Khidr-Moisés, de como santos foram declarados hereges por causa de um conhecimento que é verdadeiro mas não vem do Profeta. Um dito marcante é relatado de Junayd al-Baghdadi: <em>'Uma pessoa não pode se elevar aos graus da verdade até que mil pessoas confiáveis a tenham acusado de heresia.'</em> O dito de Abu Hurayra (de Bukhari) é um precedente que ressoa com a própria postura de divulgação reservada de Dost: <em>'Recebi dois tipos de conhecimento do Profeta. O primeiro é o que transmiti a vocês. Se eu tivesse revelado o segundo, esta minha garganta seria cortada.'</em> Ibn Abbas diz algo semelhante -- que seria apedrejado se explicasse a exegese de um certo versículo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ebu-kubeys-ibn-kaid-ayaklar",
+      "heading": {
+        "tr": "Ebû Kubeys'teki Yetmiş Kutup ve İbn Kâid'in Ayakları",
+        "en": "The Seventy Poles on Abu Qubays and Ibn Qa'id's Feet",
+        "pt": "Os Setenta Polos em Abu Qubays e os Pés de Ibn Qa'id"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu bölümün en zengin katmanı otobiyografik: <em>'Ey dostum! Bu makamın kutuplarından yetmişten fazla bir grupla Mekke'de Ebu Kubeys dağında karşılaştık.'</em> Dost, Ebu's-Suud ile ilgili dolaylı bir tanıklık biçimi de aktarıyor -doğrudan görüşmediği ama 'kokladığı' bir varlık: <em>'Ben onunla karşılaşmadım ve onu görmedim. Fakat ona dair güzel bir koku ve hoş bir nefes kokladım.'</em> Abdülkadir el-Cîlî (Geylânî) ise açıkça 'vaktinin kutbu' olarak anılıyor.",
+            "en": "This chapter's richest layer is autobiographical: <em>'O my friend! We met with a group of more than seventy poles of this station on Mount Abu Qubays in Mecca.'</em> Dost also relates an indirect form of testimony regarding Abu'l-Su'ud -- a presence he never met directly but 'caught the scent' of: <em>'I did not meet him and did not see him. But I caught a beautiful scent and a pleasant breath from him.'</em> Abd al-Qadir al-Jili (Gilani) is explicitly named 'the Pole of his age.'",
+            "pt": "A camada mais rica deste capítulo é autobiográfica: <em>'Ó meu amigo! Encontramos um grupo de mais de setenta polos desta estação no Monte Abu Qubays, em Meca.'</em> Dost também relata uma forma indireta de testemunho a respeito de Abu'l-Su'ud -- uma presença que nunca encontrou diretamente mas da qual 'captou o aroma': <em>'Não o encontrei nem o vi. Mas captei dele um belo aroma e um alento agradável.'</em> Abd al-Qadir al-Jili (Gilani) é explicitamente chamado de 'o Polo de sua época.'"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ardından gelen İbn Kâid el-Evânî hikâyesi, Kısım XVII'de beliren 'her mertebenin kendi kutbu var' fikrini somut, görsel bir ölçüye bağlıyor: <em>'İbn Kâid, bu makamdayken önünde peygamberin ayağından başka bir ayak görmediğini iddia etmiştir... Efrad'dan olmasaydı, peygamberin ayağının yanı sıra -şayet imam ise- vaktin kutbunun ayağını da görmesi gerekirdi; direk ise, bu durumda önünde üç ayak; bedel ise, dört ayak görmelidir.'</em> Bize göre bu, önceki kısımlarda soyut kalan mertebe farklarını ilk kez sayısal-görsel bir ölçüye bağlayan, gerçekten özgün bir imge: mertebe yükseldikçe, kişinin önünde 'gördüğü' ayak sayısı artıyor -Efrad'ın teki (1), İmam'ın ikisi (2), Direk'in üçü (3), Bedel'in dördü (4).",
+            "en": "The story of Ibn Qa'id al-Awani that follows ties Part XVII's emerging idea that 'each rank has its own pole' to a concrete, visual measure: <em>'Ibn Qa'id claimed that, while in this station, he saw no foot before him other than the Prophet's foot... Had he not been of the Afrad, he would have had to see, alongside the Prophet's foot, the foot of the Pole of the age -- if he were an Imam; the Pillar, in that case, must see three feet before him; the Substitute must see four feet.'</em> To us, this is a genuinely original image that, for the first time, ties the rank-differences left abstract in earlier parts to a numerical-visual measure: as rank rises, the number of feet a person 'sees' before them increases -- one (1) for the Afrad, two (2) for the Imam, three (3) for the Pillar, four (4) for the Substitute.",
+            "pt": "A história de Ibn Qa'id al-Awani que se segue liga a ideia emergente da Parte XVII de que 'cada grau tem seu próprio polo' a uma medida concreta e visual: <em>'Ibn Qa'id afirmou que, nesta estação, não via diante de si nenhum pé além do pé do Profeta... Se não fosse dos Afrad, teria que ver, além do pé do Profeta, o pé do Polo da época -- se fosse Imam; o Pilar, nesse caso, deve ver três pés diante de si; o Substituto deve ver quatro pés.'</em> Para nós, esta é uma imagem genuinamente original que, pela primeira vez, liga as diferenças de grau deixadas abstratas em partes anteriores a uma medida numérico-visual: conforme o grau se eleva, o número de pés que a pessoa 'vê' diante de si aumenta -- um (1) para o Afrad, dois (2) para o Imam, três (3) para o Pilar, quatro (4) para o Substituto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dehr-siiri-suvarinin-durakligi",
+      "heading": {
+        "tr": "Dehr Şiiri ve Süvarinin Durağanlığı",
+        "en": "The Poem of Dahr and the Cavalier's Stillness",
+        "pt": "O Poema do Dahr e a Imobilidade do Cavaleiro"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Otuz Birinci Bölüm, doğrudan Dehr temalı bir şiirle açılıyor -zaman/dehr temasına Kısım XVI'daki 'zaman mevhumdur' tespitinden farklı, neredeyse kişileştirilmiş bir katkı: <em>'Dehr bize ilgi gösterdi ve müşfik davrandı / Hükmünde geçti ve ihmal etmedi... / Benim şefaatçim Dehr'imdir / Dehr'i yönlendiren zat bizi de yönlendirendir.'</em> Bize göre bu, Dehr'i insanı yönlendiren değil, kendisi de yönlendirilen bir aracı olarak sunan ilginç bir açı.",
+            "en": "The Thirty-First Chapter opens directly with a poem on Dahr (time/the age) -- a contribution to the time/dahr theme that differs from Part XVI's finding that 'time is an imagined thing,' here almost personifying it: <em>'Dahr showed us regard and behaved tenderly / It passed in its rule and did not neglect... / My intercessor is my Dahr / The one who directs Dahr is the one who directs us too.'</em> To us, this is an interesting angle that presents Dahr not as directing the human, but as itself a directed intermediary.",
+            "pt": "O Trigésimo Primeiro Capítulo se abre diretamente com um poema sobre o Dahr (tempo/a era) -- uma contribuição ao tema tempo/dahr que difere da conclusão da Parte XVI de que 'o tempo é uma coisa imaginada,' aqui quase o personificando: <em>'O Dahr nos mostrou consideração e se comportou com ternura / Passou em seu julgamento e não negligenciou... / Meu intercessor é meu Dahr / Aquele que dirige o Dahr é quem também nos dirige.'</em> Para nós, este é um ângulo interessante que apresenta o Dahr não como diretor do ser humano, mas como ele próprio um intermediário dirigido."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölümün ana fikri, süvarinin 'hareketten soyutlanması': süvari, binek üstünde durağan kalıp hareketi bineğe (yani Hakk'a) izafe eden kişidir: <em>'Onlar, binekleri üzerinde durağan, bineklerinin hareket ettirmesiyle hareket eden kimselerdir... Kendisi ise, horluk, acizlik, gevşeklik ve zayıflık sahibidir.'</em> Dost bunu 'Attığında sen atmadın, fakat Allah attı' ayetine bağlıyor. Ardından, zikir formüllerinin bir 'binek' olarak elenmesi ilginç bir sıralı-mantık örneği sunuyor: Elhamdülillah (vuslatın özelliği), Sübhanallah (tecellinin özelliği), Lâ ilâhe illallah (iddia özelliği) ve Allahu Ekber (mukayeseli üstünlük özelliği) sırayla 'bu makama uygun binek değil' diye eleniyor, ve nihayet <em>Lâ havle velâ kuvvete illâ billâh</em> -amel özelliği taşıdığı için- uygun binek olarak ortaya çıkıyor.",
+            "en": "The chapter's main idea is the cavalier's 'abstraction from motion': the cavalier is one who remains still upon his mount, attributing motion to the mount (that is, to the Real): <em>'They are those who remain still upon their mounts, moving only by the motion of their mounts... while they themselves possess lowliness, incapacity, slackness, and weakness.'</em> Dost ties this to the verse 'You did not throw when you threw, but God threw.' Then, an interesting example of sequential logic appears in the elimination of dhikr formulas as a 'mount': Alhamdulillah (the quality of union), Subhanallah (the quality of theophany), La ilaha illallah (the quality of claim), and Allahu Akbar (the quality of comparative superiority) are eliminated one by one as 'not a fitting mount for this station,' until finally <em>La hawla wa la quwwata illa billah</em> -- carrying the quality of action -- emerges as the fitting mount.",
+            "pt": "A ideia central do capítulo é a 'abstração do movimento' do cavaleiro: o cavaleiro é aquele que permanece imóvel sobre sua montaria, atribuindo o movimento à montaria (isto é, ao Real): <em>'Eles são os que permanecem imóveis sobre suas montarias, movendo-se apenas pelo movimento de suas montarias... enquanto eles mesmos possuem baixeza, incapacidade, frouxidão e fraqueza.'</em> Dost liga isso ao versículo 'Não foste tu que lançaste quando lançaste, mas foi Deus que lançou.' Em seguida, um exemplo interessante de lógica sequencial aparece na eliminação das fórmulas de dhikr como uma 'montaria': Alhamdulillah (a qualidade da união), Subhanallah (a qualidade da teofania), La ilaha illallah (a qualidade da reivindicação), e Allahu Akbar (a qualidade da superioridade comparativa) são eliminadas uma a uma como 'não sendo montaria adequada para esta estação,' até que finalmente <em>La hawla wa la quwwata illa billah</em> -- por carregar a qualidade da ação -- surge como a montaria adequada."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVIII — Süvarilerin Esasları, s. 129-133.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVIII — The Foundations of the Cavaliers, pp. 129-133.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVIII — Os Fundamentos dos Cavaleiros, pp. 129-133."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Dört Zikir Formülü",
+                "en": "Four Dhikr Formulas",
+                "pt": "Quatro Fórmulas de Dhikr"
+              },
+              "note": {
+                "tr": "Elhamdülillah, Sübhanallah, Lâ ilâhe illallah, Allahu Ekber -- bu makama uygun binek değil",
+                "en": "Alhamdulillah, Subhanallah, La ilaha illallah, Allahu Akbar -- not a fitting mount for this station",
+                "pt": "Alhamdulillah, Subhanallah, La ilaha illallah, Allahu Akbar -- não é montaria adequada para esta estação"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Lâ havle velâ kuvvete illâ billâh",
+                "en": "La hawla wa la quwwata illa billah",
+                "pt": "La hawla wa la quwwata illa billah"
+              },
+              "note": {
+                "tr": "amel özelliği taşıyan uygun binek",
+                "en": "the fitting mount, carrying the quality of action",
+                "pt": "a montaria adequada, carregando a qualidade da ação"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Süvarinin zikir-eleme mantığı: dört zikir formülü sırayla elenip, eylem/amel özelliği taşıyan tek formülde karar kılınıyor.",
+            "en": "The cavalier's dhikr-elimination logic: four dhikr formulas are eliminated in turn, settling on the one formula that carries the quality of action.",
+            "pt": "A lógica de eliminação de dhikr do cavaleiro: quatro fórmulas de dhikr são eliminadas uma a uma, decidindo-se pela única fórmula que carrega a qualidade da ação."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kok-dal-cicek-meyve",
+      "heading": {
+        "tr": "Kök, Dal, Çiçek, Meyve: Nafile İbadetin Aşamaları",
+        "en": "Root, Branch, Blossom, Fruit: The Stages of Supererogatory Worship",
+        "pt": "Raiz, Ramo, Flor, Fruto: As Etapas da Adoração Supererrogatória"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu kısmın bize göre en özgün ve en kolay aktarılabilir imgesi, kutsî hadis üzerinden geliştirilen dört aşamalı, organik bir büyüme şeması. Farzlar 'kök', nafile ibadetler (namaz, zekât, oruç, hac, zikir türünden) 'köke en yakın dal' olarak tanımlanıyor. Bu nafile amel Allah'ın kulu sevmesini sağlıyor -bu sevgi 'ikinci dal, çiçek mesabesinde'. Bu sevgi de kulun işitmesi, görmesi ve eli olmasını sağlıyor -bu da 'üçüncü dal ve çiçekten çıkan meyve mesabesinde': <em>'Bu esnada kul, Hak ile konuşur, Hak ile duyar, Hak ile görür, Hak ile tutar ve Hak ile idrak eder. İşte bu, bu makamın vermiş olduğu özel ilahi vahiydir. Melek, bu vahiyde aracı değildir.'</em> Bize göre bu -bir bitkinin kök→dal→çiçek→meyve aşamaları- ibadetin dereceli, organik bir olgunlaşma süreci olduğunu anlatmak için günlük hayattan doğrudan alınmış, çarpıcı bir analoji: metnin kendisi zaten bunu bir bitki büyümesi olarak kuruyor.",
+            "en": "To us, this part's most original and most easily conveyed image is a four-stage, organic growth scheme developed from a hadith qudsi. Obligatory acts are described as the 'root,' supererogatory acts of worship (prayer, alms, fasting, pilgrimage, remembrance) as 'the branch nearest the root.' This supererogatory action causes God to love the servant -- this love being 'the second branch, at the rank of the blossom.' This love in turn causes the servant's hearing, sight, and hand to become God's -- this being 'the third branch, and at the rank of the fruit that emerges from the blossom': <em>'At this point the servant speaks through the Real, hears through the Real, sees through the Real, holds through the Real, and perceives through the Real. This is the special divine revelation this station gives. The angel is not an intermediary in this revelation.'</em> To us, this -- a plant's root→branch→blossom→fruit stages -- is a striking analogy taken directly from everyday life to convey that worship is a graded, organic process of ripening: the text itself already frames it as a plant's growth.",
+            "pt": "Para nós, a imagem mais original e mais facilmente transmissível desta parte é um esquema de crescimento orgânico em quatro estágios, desenvolvido a partir de um hadith qudsi. Os atos obrigatórios são descritos como a 'raiz,' os atos supererrogatórios de adoração (oração, esmola, jejum, peregrinação, lembrança) como 'o ramo mais próximo da raiz.' Essa ação supererrogatória faz com que Deus ame o servo -- esse amor sendo 'o segundo ramo, no grau da flor.' Esse amor, por sua vez, faz com que a audição, a visão e a mão do servo se tornem de Deus -- isso sendo 'o terceiro ramo, e no grau do fruto que emerge da flor': <em>'Nesse momento o servo fala através do Real, ouve através do Real, vê através do Real, segura através do Real, e percebe através do Real. Esta é a revelação divina especial que esta estação concede. O anjo não é intermediário nessa revelação.'</em> Para nós, isso -- os estágios de raiz→ramo→flor→fruto de uma planta -- é uma analogia marcante tirada diretamente da vida cotidiana para transmitir que a adoração é um processo gradual e orgânico de amadurecimento: o próprio texto já a enquadra como o crescimento de uma planta."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVIII — Süvarilerin Esasları, s. 133-134.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVIII — The Foundations of the Cavaliers, pp. 133-134.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVIII — Os Fundamentos dos Cavaleiros, pp. 133-134."
+          },
+          "tree": {
+            "id": "kok-dal-cicek-meyve-tree",
+            "label": {
+              "tr": "Kök: Farz",
+              "en": "Root: Obligatory Acts",
+              "pt": "Raiz: Atos Obrigatórios"
+            },
+            "note": {
+              "tr": "ibadetin başlangıç noktası",
+              "en": "the starting point of worship",
+              "pt": "o ponto de partida da adoração"
+            },
+            "children": [
+              {
+                "id": "dal-nafile",
+                "label": {
+                  "tr": "Dal: Nafile İbadet",
+                  "en": "Branch: Supererogatory Worship",
+                  "pt": "Ramo: Adoração Supererrogatória"
+                },
+                "note": {
+                  "tr": "köke en yakın dal",
+                  "en": "the branch nearest the root",
+                  "pt": "o ramo mais próximo da raiz"
+                },
+                "children": [
+                  {
+                    "id": "cicek-sevgi",
+                    "label": {
+                      "tr": "Çiçek: Allah'ın Sevgisi",
+                      "en": "Blossom: God's Love",
+                      "pt": "Flor: O Amor de Deus"
+                    },
+                    "note": {
+                      "tr": "nafile amelin doğurduğu özel sevgi",
+                      "en": "the special love born of supererogatory action",
+                      "pt": "o amor especial nascido da ação supererrogatória"
+                    },
+                    "children": [
+                      {
+                        "id": "meyve-dogrudan-idrak",
+                        "label": {
+                          "tr": "Meyve: Hak ile İdrak",
+                          "en": "Fruit: Perceiving Through the Real",
+                          "pt": "Fruto: Perceber Através do Real"
+                        },
+                        "note": {
+                          "tr": "kul artık Hak ile duyar, görür, tutar",
+                          "en": "the servant now hears, sees, holds through the Real",
+                          "pt": "o servo agora ouve, vê, segura através do Real"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Nafile ibadetin dört aşaması: farz kök, nafile ilk dal, Allah'ın sevgisi çiçek, doğrudan idrak ise bu çiçekten çıkan meyve.",
+            "en": "The four stages of supererogatory worship: the obligatory act is the root, supererogatory worship the first branch, God's love the blossom, and direct perception the fruit that emerges from that blossom.",
+            "pt": "Os quatro estágios da adoração supererrogatória: o ato obrigatório é a raiz, a adoração supererrogatória o primeiro ramo, o amor de Deus a flor, e a percepção direta o fruto que emerge dessa flor."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, bu bağlamda Hz. İbrahim'in edebine dikkat çekiyor -Hz. İbrahim, hastalığını Allah'a değil kendine izafe ediyor ('beni hasta eden' değil, 'hastalandığımda bana şifa veren'). Kısmın en özgün gözlemlerinden biri de, Hızır'ın gemi-duvar-çocuk kıssasının **anlatım sırasının** kendisi üzerine: olayların başta/ortada/sonda anlatılış biçiminin, hikmetin nasıl kavrandığını etkilediğine dair ince bir edebî-teolojik analiz sunuluyor -yapının kendisinin de bir anlam taşıdığı fikri.",
+            "en": "In this context, Dost draws attention to the etiquette of Abraham -- Abraham attributes his illness to himself, not to God ('when I am ill, He cures me,' not 'He who makes me ill'). One of the part's most original observations concerns the very order of narration in Khidr's ship-wall-child story: a subtle literary-theological analysis is offered on how the order in which events are narrated -- first, middle, or last -- affects how the wisdom in them is grasped -- the idea that structure itself carries meaning.",
+            "pt": "Nesse contexto, Dost chama atenção para a etiqueta de Abraão -- Abraão atribui sua doença a si mesmo, não a Deus ('quando adoeço, Ele me cura,' não 'Aquele que me faz adoecer'). Uma das observações mais originais da parte diz respeito à própria ordem da narração na história do navio-muro-criança de Khidr: é oferecida uma análise literário-teológica sutil sobre como a ordem em que os eventos são narrados -- primeiro, meio, ou último -- afeta como a sabedoria neles é apreendida -- a ideia de que a própria estrutura carrega significado."
+          }
+        }
+      ]
+    },
+    {
+      "id": "isbiliyye-dort-veli",
+      "heading": {
+        "tr": "Süvarilerle Dostluk: İşbiliyye'deki Dört Veli",
+        "en": "Friendship with the Cavaliers: The Four Saints of Seville",
+        "pt": "Amizade com os Cavaleiros: Os Quatro Santos de Sevilha"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Otuz İkinci Bölüm, süvarilerin ikinci tabakasından dört kişiyle İşbiliyye'de (Sevilla) tanışmayı anlatan zengin bir otobiyografik pasajla açılıyor: <em>'Bu tabakadan bir grupla Endülüs şehirlerinden İşbiliyye'de karşılaştım. Onlardan biri, Ebû Yahya es-Sünhâcî ed-Darîr idi... Ölünceye kadar kendisiyle arkadaşlık ettim.'</em> Ebû Yahya'nın defniyle ilgili bir keramet anlatılıyor: <em>'Doğu'da çok rüzgârlı yüksek bir dağa defnedildi... Allah dağın rüzgârını kesti ve onu dağa koyduğumuz andan itibaren rüzgâr esmedi... Ayrılır ayrılmaz, eskiden olduğu gibi, tekrar rüzgâr esmeye başlayınca, insanlar bu olaya şaşırmıştır.'</em> Diğer üçü: kırk yıl yalnız yaşamış Salih el-Berberî, elli yıl kandilsiz yaşamış Abdullah eş-Şarkî, ve su üzerinde yürüyen Ebu'l-Haccâc eş-Şuburbelî. Dost bunları kendi kitabı 'ed-Dürretü'l-Fâhire'de de andığını belirtiyor -külliyat-içi bir çapraz referans.",
+            "en": "The Thirty-Second Chapter opens with a rich autobiographical passage recounting a meeting with four people of the cavaliers' second tier in Seville: <em>'I met with a group of this tier from the cities of Andalusia in Seville. One of them was Abu Yahya al-Sunhaji al-Darir... I remained his friend until he died.'</em> A wonder concerning Abu Yahya's burial is related: <em>'He was buried on a high, very windy mountain in the East... God cut off the mountain's wind, and from the moment we placed him on the mountain, the wind did not blow... As soon as we departed, the wind began blowing again as before, and people were astonished at this.'</em> The other three: Salih al-Barbari, who lived alone for forty years; Abdullah al-Sharqi, who lived without a lamp for fifty years; and Abu'l-Hajjaj al-Shuburbeli, who walked on water. Dost notes that he mentions these same figures in his own book 'al-Durrat al-Fakhira' -- a cross-reference within his own corpus.",
+            "pt": "O Trigésimo Segundo Capítulo se abre com uma rica passagem autobiográfica relatando um encontro com quatro pessoas do segundo nível dos cavaleiros em Sevilha: <em>'Encontrei um grupo desse nível das cidades da Andaluzia em Sevilha. Um deles era Abu Yahya al-Sunhaji al-Darir... Permaneci seu amigo até que ele morreu.'</em> Um prodígio relativo ao sepultamento de Abu Yahya é relatado: <em>'Ele foi sepultado numa montanha alta e muito ventosa no Oriente... Deus cortou o vento da montanha, e a partir do momento em que o colocamos na montanha, o vento não soprou... Assim que partimos, o vento começou a soprar novamente como antes, e as pessoas ficaram maravilhadas com isso.'</em> Os outros três: Salih al-Barbari, que viveu sozinho por quarenta anos; Abdullah al-Sharqi, que viveu sem lâmpada por cinquenta anos; e Abu'l-Hajjaj al-Shuburbeli, que caminhava sobre a água. Dost observa que menciona essas mesmas figuras em seu próprio livro 'al-Durrat al-Fakhira' -- uma referência cruzada dentro de seu próprio corpus."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bize göre bu otobiyografik malzeme, kısmın en insani katmanı: Ebu Kubeys'teki 70 kutupla karşılaşma, İşbiliyye'deki dört veliyle (özellikle rüzgâr kerameti olan Ebû Yahya ile) yıllarca süren dostluk -hepsi Dost'un 'gördüm, karşılaştım, arkadaşlık ettim' diliyle bizzat tanıklık ettiği anılar. Bu tanıklıkların coğrafyası da (Mekke, İşbiliyye, doğu/batı şehirleri) dikkat çekici -Dost'un kutbiyet hiyerarşisine dair bilgisinin sadece kitabi değil, bizzat yaşanmış bir coğrafyaya yayıldığını gösteriyor.",
+            "en": "To us, this autobiographical material is the part's most human layer: the encounter with seventy poles on Abu Qubays, and years of friendship with the four saints of Seville (especially Abu Yahya, with his wonder of the wind) -- all memories Dost personally attests to in the language of 'I saw, I met, I befriended.' The geography of these testimonies is also notable (Mecca, Seville, eastern and western cities) -- showing that Dost's knowledge of the pole-hierarchy was not merely textual but spread across a geography he had personally lived through.",
+            "pt": "Para nós, esse material autobiográfico é a camada mais humana da parte: o encontro com setenta polos em Abu Qubays, e anos de amizade com os quatro santos de Sevilha (especialmente Abu Yahya, com seu prodígio do vento) -- todas memórias que Dost atesta pessoalmente na linguagem de 'eu vi, eu encontrei, eu fiz amizade.' A geografia desses testemunhos também é notável (Meca, Sevilha, cidades orientais e ocidentais) -- mostrando que o conhecimento de Dost sobre a hierarquia dos polos não era meramente textual, mas se espalhava por uma geografia que ele próprio havia vivido."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dunya-ruya-olum-uyanis",
+      "heading": {
+        "tr": "Dünya Bir Rüyadır, Ölüm Uyanıştır",
+        "en": "The World Is a Dream, Death Is the Awakening",
+        "pt": "O Mundo É um Sonho, a Morte É o Despertar"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısmın kapanışına doğru, bize göre en çarpıcı fikir beliriyor: Rûm sûresindeki 'gece ve gündüz uyumanız' ayeti üzerinden geliştirilen 'dünya hayatı=uyku, ölüm=uyanış' fikri. Dost, ayette uyanıklığın değil uykunun zikredilmiş olmasına dikkat çekiyor: <em>'Bu durum, uyanmanın ancak ölümde gerçekleşeceğini ve ölmediği sürece insanın sürekli uykuda olduğunu gösterir... İnsanlar uykudadır, öldüklerinde uyanırlar.'</em> İnce bir dilbilimsel gözlem de ekliyor: ayette 'gece' kelimesi harf-i cerle geldiği halde 'gündüz'ün gelmemesi, 'alışılagelen uyanıklık halindeki uyku'yu kastettiğine işaret ediyor.",
+            "en": "Toward the part's close, to us the most striking idea appears: developed from the Surah al-Rum verse on 'your sleeping by night and by day,' the idea that 'worldly life = sleep, death = the awakening.' Dost draws attention to the fact that the verse mentions sleep, not wakefulness: <em>'This indicates that awakening only occurs at death, and that as long as one has not died, one remains continuously asleep... People are asleep; when they die, they awaken.'</em> He adds a subtle linguistic observation: that the word 'night' comes with a preposition in the verse while 'day' does not, pointing to the sleep that occurs within what is customarily called wakefulness.",
+            "pt": "Perto do fechamento da parte, para nós a ideia mais marcante aparece: desenvolvida a partir do versículo da Surah al-Rum sobre 'vosso dormir de noite e de dia,' a ideia de que 'a vida mundana = sono, a morte = o despertar.' Dost chama atenção para o fato de que o versículo menciona o sono, não a vigília: <em>'Isso indica que o despertar só ocorre na morte, e que, enquanto não morrer, a pessoa permanece continuamente adormecida... As pessoas estão dormindo; quando morrem, despertam.'</em> Ele acrescenta uma observação linguística sutil: que a palavra 'noite' vem com uma preposição no versículo enquanto 'dia' não vem, apontando para o sono que ocorre dentro do que costumeiramente se chama vigília."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu fikir, dünyayı geçilecek bir köprü olarak tarif eden bir sonuca varıyor: <em>'O halde dünya bir köprüdür, geçilir, imar edilmez.'</em> ve <em>'Allah'ın, basiretini nurlandırıp ölümden önce dünyada rüyasını tabir eden kimse kurtuluşa ermiş demektir.'</em> Bize göre bu, kendi içinde zaten bir günlük-hayat analojisi taşıyan nadir pasajlardan biri -rüyanın uyanınca elde kalmaması, bir tabircinin yorumuna muhtaç olması gibi- ekstra bir analoji eklemeye gerek duyulmayacak kadar somut. Kısım, Kadir gecesinin bu ikinci tabakaya özgü, zamandan farklı bir 'pay' olduğu tespitiyle kapanıyor: <em>'Kadir gecesinin hakikatini bilmek, onun tespiti, sırrı ve anlamı bu ikinci tabakaya aittir... Kadir gecesi, onların zamandan olan payıdır... Çünkü Kadir Gecesi, seksen üç yıl ve dört aydır.'</em> Bize göre bu, Kısım XVI'daki 'zaman mevhumdur/itibaridir' tespitiyle ilginç bir gerilim taşıyor: zaman itibariyse, bazı zaman dilimlerinin (Kadir gecesi gibi) diğerlerinden 'seksen küsur kat' daha değerli sayılması ne anlama geliyor? Bunu şimdilik açık bir soru olarak bırakıyoruz.",
+            "en": "This idea arrives at a conclusion describing the world as a bridge to be crossed: <em>'The world, then, is a bridge -- it is crossed, not built upon.'</em> and <em>'Whoever, before dying, has God illuminate his insight and interpret his dream in this world has attained salvation.'</em> To us, this is one of the rare passages that already carries its own everyday analogy -- a dream not remaining once one wakes, needing an interpreter's reading -- concrete enough that no further analogy needs adding. The part closes with the finding that the Night of Power is a 'share of time' peculiar to this second tier, different from ordinary time: <em>'Knowing the reality of the Night of Power, its determination, its secret and its meaning belongs to this second tier... The Night of Power is their share of time... For the Night of Power is eighty-three years and four months.'</em> To us, this carries an interesting tension with Part XVI's finding that 'time is an imagined/conventional thing': if time is conventional, what does it mean for some spans of time (like the Night of Power) to be counted as 'eighty-some times' more valuable than others? We leave this as an open question for now.",
+            "pt": "Essa ideia chega a uma conclusão que descreve o mundo como uma ponte a ser atravessada: <em>'O mundo, então, é uma ponte -- atravessa-se, não se constrói sobre ela.'</em> e <em>'Quem, antes de morrer, tiver Deus a iluminar sua percepção e a interpretar seu sonho neste mundo, terá alcançado a salvação.'</em> Para nós, esta é uma das raras passagens que já carrega sua própria analogia cotidiana -- um sonho que não permanece ao despertar, precisando da leitura de um intérprete -- concreta o bastante para não precisar de mais nenhuma analogia. A parte se encerra com a constatação de que a Noite do Destino é uma 'porção do tempo' peculiar a este segundo nível, diferente do tempo comum: <em>'Conhecer a realidade da Noite do Destino, sua determinação, seu segredo e seu significado pertence a este segundo nível... A Noite do Destino é a porção deles no tempo... Pois a Noite do Destino tem oitenta e três anos e quatro meses.'</em> Para nós, isso carrega uma tensão interessante com a conclusão da Parte XVI de que 'o tempo é uma coisa imaginada/convencional': se o tempo é convencional, o que significa que alguns intervalos de tempo (como a Noite do Destino) sejam contados como 'oitenta e tantas vezes' mais valiosos que outros? Deixamos isso como uma questão em aberto por ora."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVIII — İkinci Tabakadan Yönetici Süvariler, s. 143-147.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVIII — The Governing Cavaliers of the Second Tier, pp. 143-147.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVIII — Os Cavaleiros Governantes do Segundo Nível, pp. 143-147."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Dünya Hayatı",
+                "en": "Worldly Life",
+                "pt": "A Vida Mundana"
+              },
+              "note": {
+                "tr": "sürekli bir uyku hali",
+                "en": "a continuous state of sleep",
+                "pt": "um estado contínuo de sono"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Ölüm",
+                "en": "Death",
+                "pt": "A Morte"
+              },
+              "note": {
+                "tr": "gerçek uyanış",
+                "en": "the true awakening",
+                "pt": "o verdadeiro despertar"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un okuması: Kur'an ayetinde uyanıklığın değil uykunun zikredilmesi, dünya hayatının bir uyku, ölümün ise asıl uyanış olduğuna işaret ediyor.",
+            "en": "Dost's reading: the Quranic verse's mention of sleep rather than wakefulness points to worldly life being a sleep, and death being the true awakening.",
+            "pt": "A leitura de Dost: a menção do versículo corânico ao sono, em vez da vigília, aponta para a vida mundana sendo um sono, e a morte sendo o verdadeiro despertar."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVIII — Süvari Kutuplardan Birinci ve İkinci Tabaka, s. 121-127.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVIII — The First and Second Tiers of the Cavalier Poles, pp. 121-127.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVIII — Os Primeiro e Segundo Níveis dos Polos Cavaleiros, pp. 121-127."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVIII — Ebû Kubeys ve İbn Kâid'in Ayakları, s. 127-129.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVIII — Abu Qubays and Ibn Qa'id's Feet, pp. 127-129.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVIII — Abu Qubays e os Pés de Ibn Qa'id, pp. 127-129."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVIII — Süvarilerin Esaslarının Bilinmesi, s. 129-140.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVIII — Knowing the Foundations of the Cavaliers, pp. 129-140.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVIII — Conhecendo os Fundamentos dos Cavaleiros, pp. 129-140."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XVIII — İkinci Tabakadan Yönetici Süvariler, s. 141-148.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XVIII — The Governing Cavaliers of the Second Tier, pp. 141-148.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XVIII — Os Cavaleiros Governantes do Segundo Nível, pp. 141-148."
+    }
+  ]
+}

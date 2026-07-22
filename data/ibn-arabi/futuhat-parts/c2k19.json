@@ -1,0 +1,362 @@
+{
+  "id": "c2k19",
+  "cilt": 2,
+  "kisim": 19,
+  "status": "active",
+  "title": {
+    "tr": "Niyet Kutupları ve Gecenin Üçe Bölünmesi",
+    "en": "The Poles of Intention, and the Threefold Division of the Night",
+    "pt": "Os Polos da Intenção, e a Divisão Tríplice da Noite"
+  },
+  "pageRange": "149–174",
+  "hero": {
+    "summary": {
+      "tr": "Kısım XIX iki bölümden oluşuyor: önce 'niyet adamları'nı bir yağmur analojisiyle tanıtıyor -kısmın en dikkat çekici anı, döngüsel semâ hareketinin (devran) burada yüceltilmek yerine 'hayvani' bir hal olarak konumlanması. Sonra altı idrak aracını ve gecenin gök/yer/insan olmak üzere üçe bölünüşünü işliyor -bu ikinci bölüm, Kısım XVI'daki 'zaman mevhumdur' ve Kısım XVIII'deki 'Kadir gecesi zamandan farklı bir paydır' tespitlerini birbirine bağlayan yeni bir halka sunuyor gibi görünüyor.",
+      "en": "Part XIX consists of two chapters: first it introduces 'the men of intention' through a rain analogy -- the part's most notable moment being that circular motion in sama (dawaran) is here positioned as an 'animal' state rather than exalted. It then treats the six instruments of perception and the night's threefold division into sky, earth, and the human being -- this second chapter seems to offer a new link tying together Part XVI's finding that 'time is an imagined thing' and Part XVIII's finding that 'the Night of Power is a share of time unlike ordinary time.'",
+      "pt": "A Parte XIX consiste em dois capítulos: primeiro apresenta 'os homens da intenção' através de uma analogia da chuva -- o momento mais notável da parte sendo que o movimento circular no sama (dawaran) é aqui posicionado como um estado 'animal' em vez de exaltado. Em seguida trata os seis instrumentos da percepção e a divisão tríplice da noite em céu, terra e o ser humano -- este segundo capítulo parece oferecer um novo elo ligando a conclusão da Parte XVI de que 'o tempo é uma coisa imaginada' e a conclusão da Parte XVIII de que 'a Noite do Destino é uma porção do tempo diferente do tempo comum.'"
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Gecenin üçe bölünmesi: gök ve yer geçici olarak 'gider', insan ise gecenin kalan üçte biri olarak ebedi kalır -Kur'an bu son dilimde indiği için 'insan-ı kâmil' olarak okunuyor.",
+      "en": "The night's threefold division: sky and earth transiently 'pass away,' while the human being, as the night's remaining third, endures eternally -- since the Qur'an descended in this last portion, it is read as 'the perfect human.'",
+      "pt": "A divisão tríplice da noite: o céu e a terra 'passam' transitoriamente, enquanto o ser humano, como o terço restante da noite, permanece eternamente -- como o Alcorão desceu nessa última porção, ele é lido como 'o ser humano perfeito.'"
+    },
+    "tree": {
+      "id": "gecenin-uce-bolunmesi-tree",
+      "label": {
+        "tr": "Gece (Döngüsel Zaman Birimi)",
+        "en": "The Night (A Cyclical Unit of Time)",
+        "pt": "A Noite (Uma Unidade Cíclica de Tempo)"
+      },
+      "note": {
+        "tr": "üç eşit dilime ayrılıyor",
+        "en": "divided into three equal portions",
+        "pt": "dividida em três porções iguais"
+      },
+      "children": [
+        {
+          "id": "gok-ilk-uc",
+          "label": {
+            "tr": "Gök — İlk Üçte Bir",
+            "en": "Sky — First Third",
+            "pt": "Céu — Primeiro Terço"
+          },
+          "note": {
+            "tr": "gider, geçicidir",
+            "en": "passes away, transient",
+            "pt": "passa, transitório"
+          }
+        },
+        {
+          "id": "yer-ikinci-uc",
+          "label": {
+            "tr": "Yer — İkinci Üçte Bir",
+            "en": "Earth — Second Third",
+            "pt": "Terra — Segundo Terço"
+          },
+          "note": {
+            "tr": "gider, geçicidir",
+            "en": "passes away, transient",
+            "pt": "passa, transitório"
+          }
+        },
+        {
+          "id": "insan-son-uc",
+          "label": {
+            "tr": "İnsan — Kalan Üçte Bir",
+            "en": "Human — Remaining Third",
+            "pt": "Ser Humano — Terço Restante"
+          },
+          "note": {
+            "tr": "ebedi kalır; Kur'an bu dilimde indi",
+            "en": "endures eternally; the Qur'an descended in this portion",
+            "pt": "permanece eternamente; o Alcorão desceu nesta porção"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "niyet-kutuplari-yagmur",
+      "heading": {
+        "tr": "Niyet Kutupları ve Yağmur Örneği",
+        "en": "The Poles of Intention and the Rain Analogy",
+        "pt": "Os Polos da Intenção e a Analogia da Chuva"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, 'niyet sahipleri' denen özel bir Allah ehli grubunu tanıtarak açılıyor: bu adamlar, ameli değil amelin ardındaki 'asıl'ı önemsiyor. Dost bunu çok somut bir günlük-hayat analojisiyle açıklıyor: <em>'Niyetin durumuna örnek olarak yağmuru verebiliriz. Onun işlevi, yağmak veya toprağa karışmaktır. Ölü toprağın onunla canlanması veya yağmur nedeniyle yoksul-biçarenin evinin yıkılması, yağmura ait bir durum değildir... güzel ve çirkin meyveler de toprağın mizacının iyi veya kötü olması ya da tohumun iyi veya kötü olması yönünden ortaya çıkar.'</em> Bize göre bu analoji zaten kendi içinde tam ve aktarılmaya hazır: niyet (yağmur) sabit kalırken, amelin (meyvenin) güzelliği ya da çirkinliği, o niyeti alan kalbin (toprağın) mizacına bağlı.",
+            "en": "The part opens by introducing a special group of God's people called 'the men of intention': these men care not about the act itself but about the 'root' behind the act. Dost explains this through a thoroughly concrete, everyday analogy: <em>'As an example of the state of intention, we may give rain. Its function is to fall or to mix into the soil. That dead soil comes alive through it, or that a poor, helpless person's house is destroyed because of the rain, is not something belonging to the rain itself... beautiful and ugly fruits likewise arise from whether the soil's or the seed's disposition is good or bad.'</em> To us, this analogy is already complete and ready to convey on its own: while the intention (rain) stays constant, the beauty or ugliness of the act (the fruit) depends on the disposition of the heart (the soil) that receives it.",
+            "pt": "A parte se abre apresentando um grupo especial do povo de Deus chamado 'os homens da intenção': esses homens não se importam com o ato em si, mas com a 'raiz' por trás do ato. Dost explica isso através de uma analogia inteiramente concreta e cotidiana: <em>'Como exemplo do estado da intenção, podemos dar a chuva. Sua função é cair ou misturar-se ao solo. Que o solo morto ganhe vida através dela, ou que a casa de um pobre e indefeso seja destruída por causa da chuva, não é algo que pertença à própria chuva... frutos belos e feios também surgem conforme a disposição do solo ou da semente seja boa ou má.'</em> Para nós, esta analogia já está completa e pronta para ser transmitida por si só: enquanto a intenção (chuva) permanece constante, a beleza ou feiura do ato (o fruto) depende da disposição do coração (o solo) que a recebe."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XIX — Niyet Kutuplarının Bilinmesi, s. 149-153.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XIX — Knowing the Poles of Intention, pp. 149-153.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XIX — Conhecendo os Polos da Intenção, pp. 149-153."
+          },
+          "tree": {
+            "id": "niyet-yagmur-tree",
+            "label": {
+              "tr": "Niyet: Yağmur",
+              "en": "Intention: Rain",
+              "pt": "Intenção: Chuva"
+            },
+            "note": {
+              "tr": "kendinde ne güzel ne çirkin",
+              "en": "in itself neither beautiful nor ugly",
+              "pt": "em si nem bela nem feia"
+            },
+            "children": [
+              {
+                "id": "iyi-toprak",
+                "label": {
+                  "tr": "İyi Toprak/Tohum",
+                  "en": "Good Soil/Seed",
+                  "pt": "Bom Solo/Semente"
+                },
+                "note": {
+                  "tr": "güzel meyve verir",
+                  "en": "yields a beautiful fruit",
+                  "pt": "produz um fruto belo"
+                }
+              },
+              {
+                "id": "kotu-toprak",
+                "label": {
+                  "tr": "Kötü Toprak/Tohum",
+                  "en": "Bad Soil/Seed",
+                  "pt": "Solo/Semente Ruins"
+                },
+                "note": {
+                  "tr": "çirkin meyve verir",
+                  "en": "yields an ugly fruit",
+                  "pt": "produz um fruto feio"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Niyet-amel ayrımı: yağmur (niyet) sabit kalırken, meyvenin (amelin) güzelliği toprağın (kalbin) mizacından çıkar.",
+            "en": "The intention-action distinction: while the rain (intention) stays constant, the beauty of the fruit (the act) arises from the disposition of the soil (the heart).",
+            "pt": "A distinção intenção-ato: enquanto a chuva (intenção) permanece constante, a beleza do fruto (o ato) surge da disposição do solo (o coração)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ebu-yezid-cabbar-rahman",
+      "heading": {
+        "tr": "Ebû Yezîd'in Ağlaması: Cabbâr'dan Rahman'a",
+        "en": "Abu Yazid's Weeping: From al-Jabbar to al-Rahman",
+        "pt": "O Choro de Abu Yazid: De al-Jabbar a al-Rahman"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bir alt-bölümde Dost, Ebû Yezîd el-Bistâmî'nin 'Takva sahipleri Rahman'a getirilir' âyetini duyunca ağlamasını anlatıyor ve buna kendi yorumunu ekliyor: <em>'Şaşılacak olan Ebû Yezîd'in sözüdür... Takva sahibi el-Cabbâr ismiyle oturan kimsedir.'</em> Dost'a göre takva sahibi dünyada el-Cabbâr isminin himayesinde yaşıyor, âhirette ise er-Rahman'a 'götürülüyor' -çünkü Cabbâr'ın (zorlayıcı, kahredici) saldırısından güvene geçiyor. Bize göre bu, aynı kişinin iki farklı ilahi isim altında yaşadığı iki ayrı hâl arasındaki geçişi -korkudan güvene- somutlaştıran ince bir okuma.",
+            "en": "In a sub-section, Dost recounts Abu Yazid al-Bistami weeping upon hearing the verse 'The God-fearing are brought to al-Rahman,' and adds his own interpretation: <em>'What is astonishing is Abu Yazid's statement... The God-fearing is one who dwells under the name al-Jabbar.'</em> For Dost, the God-fearing lives in this world under the protection of the name al-Jabbar (the Compeller), while in the hereafter he is 'brought' to al-Rahman -- because he passes into safety from al-Jabbar's onslaught. To us, this is a subtle reading that gives concrete shape to the same person's transition between two states lived under two different divine names -- from fear into safety.",
+            "pt": "Numa subseção, Dost relata Abu Yazid al-Bistami chorando ao ouvir o versículo 'Os tementes a Deus são trazidos a al-Rahman,' e acrescenta sua própria interpretação: <em>'O que é espantoso é a afirmação de Abu Yazid... O temente a Deus é aquele que habita sob o nome al-Jabbar.'</em> Para Dost, o temente a Deus vive neste mundo sob a proteção do nome al-Jabbar (o Compelidor), enquanto no além é 'trazido' a al-Rahman -- porque passa para a segurança diante do ataque de al-Jabbar. Para nós, esta é uma leitura sutil que dá forma concreta à transição da mesma pessoa entre dois estados vividos sob dois nomes divinos diferentes -- do medo para a segurança."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dogal-sema-ilahi-sema-devran",
+      "heading": {
+        "tr": "Doğal Semâ, İlahî Semâ: Devranın Ters Çevrilmiş Anlamı",
+        "en": "Natural Sama, Divine Sama: The Inverted Meaning of Circling",
+        "pt": "Sama Natural, Sama Divino: O Sentido Invertido do Giro"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu bölümde, semâ (dinleme/işitme yoluyla gelen vecd) tartışması, doğal semâ (nağmelerle bedenin devrana/dönmeye girmesi) ile ilahî semâ (anlamdan gelen, bedeni sükûna erdiren varid) arasındaki farkı işliyor. Dost'un ifadesi çok net: <em>'Nağmenin sana tesirinde deveyle aranda bir fark yoktur.'</em> Bize göre bu, sitenin dairesel/döngüsel motifiyle ilgilenirken dikkate değer bir nüans taşıyor: devran (çember çizen dönme hareketi) burada yüceltilmiyor, tam tersine 'doğal/hayvani' bir hâl olarak konumlanıyor -peygamberler vahiy alırken dönmez, yere yatar (kendi asıllarına, toprağa döner). Yani döngü burada nefsanî, sükûnet/yere yatma ise ilahî olan. Bu, döngüsel hareketin her zaman 'yücelik' anlamına gelmediğini, bağlama göre değiştiğini hatırlatan bir uyarı gibi okunabilir.",
+            "en": "In this section, the discussion of sama (ecstatic states arising from listening) treats the difference between natural sama (the body entering circling/dawaran through melodies) and divine sama (an inrush arising from meaning, which brings the body to stillness). Dost's statement is unambiguous: <em>'In the effect a melody has on you, there is no difference between you and a camel.'</em> To us, this carries a notable nuance for the site's own circular motif: circling (the wheeling motion tracing a circle) is not exalted here -- quite the opposite, it is positioned as a 'natural/animal' state -- prophets receiving revelation do not circle, they lie down (returning to their own origin, the earth). So the circle here is carnal, while stillness/lying down is divine. This can be read as a reminder that circular motion does not always signify exaltation -- it depends on context.",
+            "pt": "Nesta seção, a discussão do sama (estados extáticos surgidos da escuta) trata a diferença entre o sama natural (o corpo entrando em giro/dawaran através de melodias) e o sama divino (um influxo surgido do significado, que traz o corpo à quietude). A afirmação de Dost é inequívoca: <em>'No efeito que uma melodia tem sobre você, não há diferença entre você e um camelo.'</em> Para nós, isso carrega uma nuance notável para o próprio motivo circular do site: o giro (o movimento rotativo que traça um círculo) não é exaltado aqui -- pelo contrário, é posicionado como um estado 'natural/animal' -- os profetas, ao receberem a revelação, não giram, eles se deitam (retornando à sua própria origem, a terra). Assim, o círculo aqui é carnal, enquanto a quietude/o deitar-se é divino. Isso pode ser lido como um lembrete de que o movimento circular nem sempre significa exaltação -- depende do contexto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "yunusun-ikinci-dogumu-dunya-kopru",
+      "heading": {
+        "tr": "Yunus'un İkinci Doğumu ve Dünya: Ahşap Bir Köprü",
+        "en": "Jonah's Second Birth, and the World: A Wooden Bridge",
+        "pt": "O Segundo Nascimento de Jonas, e o Mundo: Uma Ponte de Madeira"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yunus peygamberin öfkesi ve balığın karnında geçirdiği süre üzerinden, çarpıcı bir 'ikinci doğum' motifi işleniyor: <em>'Ademoğullarından hiç kimse iki kez doğmadı, Yunus ise... dışarı çıktı.'</em> Bu makamın en büyük temsilcisi olarak Hz. Ebû Bekir gösteriliyor.",
+            "en": "Through Jonah's anger and the time he spent in the fish's belly, a striking 'second birth' motif is developed: <em>'None of the children of Adam were ever born twice, but Jonah... came forth.'</em> Abu Bakr is presented as the greatest representative of this station.",
+            "pt": "Através da ira de Jonas e do tempo que passou no ventre do peixe, um motivo marcante de 'segundo nascimento' é desenvolvido: <em>'Nenhum dos filhos de Adão jamais nasceu duas vezes, mas Jonas... saiu.'</em> Abu Bakr é apresentado como o maior representante desta estação."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bize göre kısmın en güçlü ve en doğrudan aktarılabilir imgesi burada geliyor -dünyayı 'ahşap bir köprü' olarak tarif eden uzun bir pasaj: <em>'Onların dünyayı büyük bir nehir üzerine konulmuş ahşap bir köprü saymalarıdır. Onlar, bu köprüde yürür, ondan geçerler. Siz hiç ahşap köprü üzerinde ev yapanı gördünüz mü? Hayır! Yemin olsun ki, görülmemiştir... Köprü üzerinde ev yapan bir insan telef olur.'</em> Dost bunu doğrudan bir peygamber sözüne bağlıyor: <em>'dünya bir köprüdür'</em> ifadesinin kendisinin vahiy yoluyla geldiğini söylüyor. Bize göre bu analoji, günlük hayattan (bir nehir üzerindeki köprü, üzerine ev kurmanın saçmalığı) doğrudan alınmış, ekstra bir açıklamaya ihtiyaç duymayan, kendi içinde tam bir örnek.",
+            "en": "To us, the part's most powerful and most directly transferable image appears here -- a lengthy passage describing the world as 'a wooden bridge': <em>'They regard the world as a wooden bridge set over a great river. They walk upon this bridge and cross it. Have you ever seen anyone build a house upon a wooden bridge? No! By God, this has never been seen... A person who builds a house upon a bridge perishes.'</em> Dost ties this directly to a prophetic saying, stating that the phrase 'the world is a bridge' itself came through revelation. To us, this analogy -- a bridge over a river, and the absurdity of building a house upon it -- is taken directly from everyday life and needs no further explanation; it is already complete in itself.",
+            "pt": "Para nós, a imagem mais poderosa e mais diretamente transponível da parte aparece aqui -- uma longa passagem que descreve o mundo como 'uma ponte de madeira': <em>'Eles consideram o mundo uma ponte de madeira colocada sobre um grande rio. Caminham nesta ponte e a atravessam. Vocês já viram alguém construir uma casa sobre uma ponte de madeira? Não! Por Deus, isso nunca foi visto... Uma pessoa que constrói uma casa sobre uma ponte perece.'</em> Dost liga isso diretamente a um dito profético, afirmando que a própria frase 'o mundo é uma ponte' veio por revelação. Para nós, esta analogia -- uma ponte sobre um rio, e o absurdo de construir sobre ela -- é tirada diretamente da vida cotidiana e não precisa de explicação adicional; já está completa em si mesma."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XIX — Niyet Kutuplarının Bilinmesi, s. 159-161.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XIX — Knowing the Poles of Intention, pp. 159-161.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XIX — Conhecendo os Polos da Intenção, pp. 159-161."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Köprü Üzerinde Ev Kuran",
+                "en": "The One Who Builds a House on the Bridge",
+                "pt": "Aquele Que Constrói uma Casa na Ponte"
+              },
+              "note": {
+                "tr": "dünyayı ebedi sanır, telef olur",
+                "en": "thinks the world is permanent, and perishes",
+                "pt": "acha que o mundo é permanente, e perece"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Köprüden Sadece Geçen",
+                "en": "The One Who Merely Crosses the Bridge",
+                "pt": "Aquele Que Apenas Atravessa a Ponte"
+              },
+              "note": {
+                "tr": "dünyayı geçilecek bir yol bilir",
+                "en": "knows the world as a path to be crossed",
+                "pt": "sabe que o mundo é um caminho a ser atravessado"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un köprü analojisi: dünya, üzerine ev kurulacak bir yer değil, büyük bir nehrin üzerinde geçilecek ahşap bir köprüdür.",
+            "en": "Dost's bridge analogy: the world is not a place to build a house upon, but a wooden bridge over a great river, meant to be crossed.",
+            "pt": "A analogia da ponte de Dost: o mundo não é um lugar para se construir uma casa, mas uma ponte de madeira sobre um grande rio, feita para ser atravessada."
+          }
+        }
+      ]
+    },
+    {
+      "id": "niyet-kutuplari-muhasebe-defteri",
+      "heading": {
+        "tr": "Niyet Adamlarının Kutupları: Dost'un Kendi Muhasebe Defteri",
+        "en": "The Poles of the Men of Intention: Dost's Own Ledger of Self-Reckoning",
+        "pt": "Os Polos dos Homens da Intenção: O Próprio Livro de Autoavaliação de Dost"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölüm, otobiyografik bir notla kapanıyor: Dost, 'niyet adamlarının kutupları' olarak İşbiliyye'de tanıdığı Ebû Abdullah b. Mücahid ve Ebû Abdullah b. Kassum'u anıyor -kutbiyet hiyerarşisine, Kısım XVIII'deki 'süvari' örneğine benzer biçimde, belirli bir meşrebe özgü yeni bir alt-kategori daha ekleniyor. Dost ayrıca kendi nefis-muhasebe pratiğini paylaşıyor: konuşma ve fiillerinin yanına düşüncelerini de yazdığı kişisel bir defter tuttuğunu anlatıyor. Bize göre bu küçük ayrıntı, kutbiyet hiyerarşisinin sadece uzak/tarihsel figürlere değil, Dost'un kendi günlük pratiğine kadar indiğini gösteren, mütevazı ama değerli bir otobiyografik iz.",
+            "en": "The chapter closes with an autobiographical note: Dost recalls Abu Abdullah b. Mujahid and Abu Abdullah b. Qassum, whom he knew in Seville as 'the poles of the men of intention' -- adding, in a manner similar to Part XVIII's 'cavalier' example, yet another sub-category specific to a particular temperament to the pole-hierarchy. Dost also shares his own practice of self-reckoning: he describes keeping a personal ledger in which he recorded his thoughts alongside his speech and actions. To us, this small detail is a modest but valuable autobiographical trace, showing that the pole-hierarchy descends not only to distant, historical figures but into Dost's own daily practice.",
+            "pt": "O capítulo se encerra com uma nota autobiográfica: Dost recorda Abu Abdullah b. Mujahid e Abu Abdullah b. Qassum, que conheceu em Sevilha como 'os polos dos homens da intenção' -- acrescentando, de maneira semelhante ao exemplo do 'cavaleiro' da Parte XVIII, mais uma subcategoria específica de um determinado temperamento à hierarquia dos polos. Dost também compartilha sua própria prática de autoavaliação: descreve manter um livro-razão pessoal no qual registrava seus pensamentos junto com sua fala e ações. Para nós, este pequeno detalhe é um traço autobiográfico modesto mas valioso, mostrando que a hierarquia dos polos desce não apenas a figuras distantes e históricas, mas à própria prática diária de Dost."
+          }
+        }
+      ]
+    },
+    {
+      "id": "alti-idrak-gemi-safra",
+      "heading": {
+        "tr": "Altı İdrak ve İki Günlük-Hayat Yanılsaması",
+        "en": "The Six Instruments of Perception, and Two Everyday Illusions",
+        "pt": "Os Seis Instrumentos da Percepção, e Duas Ilusões Cotidianas"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İkinci bölüm, idrak/bilgi epistemolojisine geniş yer ayırıyor. Dost altı idrak aracı sayıyor: <em>'İdrâk edenler altıdır: Duyma, görme, koklama, dokunma, tatma ve düşünme.'</em> Ana tezi şu: duyular hiçbir zaman yanılmaz, yanılma her zaman 'hüküm veren'e (akla) aittir. Bunu iki hazır günlük-hayat analojisiyle destekliyor: <em>gemiyle giderken sahilin hareket ediyormuş gibi görünmesi</em>, ve <em>safra nedeniyle şekerin acı tadılması</em>. Bize göre bu iki örnek, metnin kendi içinde zaten 'analoji' ilkesini uyguladığı, doğrudan aktarılabilir malzeme: her iki durumda da duyu organı doğru bilgi veriyor (göz gerçekten hareket algılıyor, dil gerçekten acılık algılıyor), ama bu ham veriyi yanlış yorumlayan akıl/hüküm.",
+            "en": "The second chapter devotes considerable space to the epistemology of perception and knowledge. Dost lists six instruments of perception: <em>'Those that perceive are six: hearing, sight, smell, touch, taste, and reflection.'</em> His main thesis is that the senses never err; error always belongs to the one who 'renders judgment' (the intellect). He supports this with two ready-made everyday analogies: <em>the shore appearing to move while traveling by ship</em>, and <em>sugar tasting bitter because of bile</em>. To us, these two examples are directly transferable material where the text itself already applies the principle of analogy: in both cases the sense organ delivers correct information (the eye truly perceives motion, the tongue truly perceives bitterness), but it is the intellect/judgment that misinterprets this raw data.",
+            "pt": "O segundo capítulo dedica um espaço considerável à epistemologia da percepção e do conhecimento. Dost lista seis instrumentos de percepção: <em>'Os que percebem são seis: audição, visão, olfato, tato, paladar, e reflexão.'</em> Sua tese principal é que os sentidos nunca erram; o erro sempre pertence a quem 'emite o julgamento' (o intelecto). Ele apoia isso com duas analogias cotidianas já prontas: <em>a costa parecendo se mover enquanto se viaja de navio</em>, e <em>o açúcar tendo gosto amargo por causa da bile</em>. Para nós, esses dois exemplos são material diretamente transponível, em que o próprio texto já aplica o princípio da analogia: em ambos os casos o órgão sensorial fornece informação correta (o olho de fato percebe movimento, a língua de fato percebe amargor), mas é o intelecto/julgamento que interpreta mal esse dado bruto."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölüm ayrıca, bazı kullara Allah'ın 'âdeti aşan' idrak güçleri (feraset) verdiğini anlatıyor -burada ilginç, küçük bir dilbilimsel not düşülüyor: <em>'âdet' kelimesinin 'avdet' (dönmek) kökünden geldiği, çünkü 'her bakışta ya da koklamada aynı sonuç kendisine döner.'</em> Bize göre bu, döngüsellik temasının çok küçük ama gerçek bir izi -merkez-çevre değil, ama 'geri dönen sonuç' fikri.",
+            "en": "The chapter also describes God granting certain servants perceptive powers (firasa) that exceed the 'customary' (ada) -- here an interesting, small linguistic note is dropped: <em>that the word 'ada' (custom) comes from the root 'awda' (to return), because 'with every glance or scent, the same result returns to itself.'</em> To us, this is a very small but genuine trace of the circularity theme -- not center-circumference, but the idea of a 'returning result.'",
+            "pt": "O capítulo também descreve Deus concedendo a certos servos poderes perceptivos (firasa) que excedem o 'costumeiro' (ada) -- aqui uma nota linguística pequena e interessante é lançada: <em>que a palavra 'ada' (costume) vem da raiz 'awda' (retornar), porque 'a cada olhar ou aroma, o mesmo resultado retorna a si mesmo.'</em> Para nós, este é um traço muito pequeno mas genuíno do tema da circularidade -- não centro-circunferência, mas a ideia de um 'resultado que retorna.'"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gecenin-uce-bolunmesi",
+      "heading": {
+        "tr": "Gecenin Üçe Bölünmesi: Gök, Yer, İnsan-ı Kâmil",
+        "en": "The Night's Threefold Division: Sky, Earth, the Perfect Human",
+        "pt": "A Divisão Tríplice da Noite: Céu, Terra, o Ser Humano Perfeito"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölümün en yoğun ve bize göre en çarpıcı kısmı, Amâ-Arş-Rahman ilişkisi üzerinden gecenin üçe bölünmesini işliyor: <em>'Gök gider: O, gecenin ilk üçte biridir. Yeryüzü de gider: O, gecenin ikinci üçte biridir. İnsan ise, ahiret hayatında sonsuza dek ebedi olarak kalır: İnsan, gecenin kalan üçte biridir... Kur'an, gecenin son üçte birindeki mübarek gecede inmiştir. Dolayısıyla Kur'an, insan-ı kâmildir.'</em> Bize göre bu, Kısım XVIII'de tespit ettiğimiz 'Kadir gecesi zamandan farklı bir paydır' fikrine yeni bir katman ekliyor: gece döngüsel/somut bir zaman birimiyken, onun 'kalan üçte biri' zamanın dışına taşıp ebediyete (insan-ı kâmil, Kur'an) bağlanıyor -sanki zaman içinde zaman-dışı bir cep var. Bu, Kısım XVI'daki 'zaman mevhumdur' tespitiyle de ilginç bir gerilim taşıyor: zaman itibariyse, gecenin bir dilimi nasıl ebediyete kapı açabiliyor?",
+            "en": "The chapter's most intense and, to us, most striking part treats the night's threefold division through the relation of al-'Ama-the Throne-al-Rahman: <em>'The sky passes away: it is the first third of the night. The earth too passes away: it is the second third of the night. The human being, however, endures eternally in the hereafter: the human is the remaining third of the night... The Qur'an descended in the blessed night within the night's final third. Therefore the Qur'an is the perfect human.'</em> To us, this adds a new layer to Part XVIII's finding that 'the Night of Power is a share of time unlike ordinary time': while the night is a cyclical, concrete unit of time, its 'remaining third' steps outside of time and attaches to eternity (the perfect human, the Qur'an) -- as if there were a pocket outside time within time. This also carries an interesting tension with Part XVI's finding that 'time is an imagined thing': if time is conventional, how can a slice of the night open a door onto eternity?",
+            "pt": "A parte mais intensa e, para nós, mais marcante do capítulo trata a divisão tríplice da noite através da relação al-'Ama-o Trono-al-Rahman: <em>'O céu passa: é o primeiro terço da noite. A terra também passa: é o segundo terço da noite. O ser humano, porém, permanece eternamente no além: o ser humano é o terço restante da noite... O Alcorão desceu na noite bendita, dentro do último terço da noite. Portanto o Alcorão é o ser humano perfeito.'</em> Para nós, isso acrescenta uma nova camada à conclusão da Parte XVIII de que 'a Noite do Destino é uma porção do tempo diferente do tempo comum': enquanto a noite é uma unidade de tempo cíclica e concreta, seu 'terço restante' sai do tempo e se liga à eternidade (o ser humano perfeito, o Alcorão) -- como se houvesse um bolso fora do tempo dentro do tempo. Isso também carrega uma tensão interessante com a conclusão da Parte XVI de que 'o tempo é uma coisa imaginada': se o tempo é convencional, como pode uma fatia da noite abrir uma porta para a eternidade?"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, bu üçlü yapıya bir de veled-i zina (gayrimeşru çocuk) örneğiyle paralellik kuruyor: <em>'Şâri'nin veled-i zina hakkında ne söylediğini görmez misin: Veled-i zina, üçlünün en kötüsüdür.'</em> Anne-baba-çocuk üçlüsü ile gecenin üç dilimi arasında bilinçli bir benzerlik kuruluyor -bize göre bu, üçlü/triad yapıların Dost'ta tekrarlayan bir düşünme biçimi olduğunu gösteren bir örnek daha (Kısım XVIII'de de 'ahadiyet-mertebe-oluş' üçlemesi görülmüştü).",
+            "en": "Dost draws a parallel to this threefold structure with the example of the illegitimate child: <em>'Do you not see what the Lawgiver says about the illegitimate child: the illegitimate child is the worst of the threesome.'</em> A deliberate resemblance is drawn between the parent-parent-child triad and the night's three portions -- to us, this is one more example showing that triadic structures are a recurring pattern of thought for Dost (we saw the same in Part XVIII's 'unity-rank-becoming' triad).",
+            "pt": "Dost traça um paralelo com essa estrutura tripla através do exemplo do filho ilegítimo: <em>'Não vês o que o Legislador diz sobre o filho ilegítimo: o filho ilegítimo é o pior do trio.'</em> Uma semelhança deliberada é traçada entre a tríade pai-mãe-filho e as três porções da noite -- para nós, este é mais um exemplo mostrando que estruturas triádicas são um padrão de pensamento recorrente em Dost (vimos o mesmo na tríade 'unidade-grau-devir' da Parte XVIII)."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XIX — Niyet Kutuplarının Bilinmesi, s. 149-153.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XIX — Knowing the Poles of Intention, pp. 149-153.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XIX — Conhecendo os Polos da Intenção, pp. 149-153."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XIX — İsimler ve Zât, s. 153-155.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XIX — Names and Essence, pp. 153-155.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XIX — Nomes e Essência, pp. 153-155."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XIX — Semâ Tartışması, s. 155-157.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XIX — The Discussion of Sama, pp. 155-157.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XIX — A Discussão do Sama, pp. 155-157."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XIX — Yunus Kalbi ve Dünyanın Köprüsü, s. 157-161.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XIX — Jonah's Heart and the World's Bridge, pp. 157-161.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XIX — O Coração de Jonas e a Ponte do Mundo, pp. 157-161."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XIX — Niyet Adamlarının Kutupları, s. 161-163.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XIX — The Poles of the Men of Intention, pp. 161-163.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XIX — Os Polos dos Homens da Intenção, pp. 161-163."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XIX — Nefesler Menzilini Araştırıp İdrakleri Bilmek, s. 163-169.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XIX — Investigating the Station of Breaths and Knowing the Instruments of Perception, pp. 163-169.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XIX — Investigando a Estação dos Alentos e Conhecendo os Instrumentos da Percepção, pp. 163-169."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XIX — Rabbin Arş'tan Yakın Göğe İnmesi ve Kısmın Kapanışı, s. 169-174.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XIX — The Lord's Descent from the Throne to the Nearest Heaven, and the Part's Close, pp. 169-174.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XIX — A Descida do Senhor do Trono ao Céu Mais Próximo, e o Fechamento da Parte, pp. 169-174."
+    }
+  ]
+}

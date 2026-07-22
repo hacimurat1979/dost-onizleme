@@ -1195,6 +1195,33 @@ button.futuhat-part-chip:hover {
   transform: translate(-50%, 0);
 }
 
+.futuhat-part-loading,
+.futuhat-part-error {
+  padding: 48px 16px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.futuhat-part-retry {
+  margin-top: 12px;
+  padding: 8px 20px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  font-style: normal;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.futuhat-part-retry:hover,
+.futuhat-part-retry:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+
 @media (max-width: 560px) {
   .futuhat-toolbar {
     position: static;

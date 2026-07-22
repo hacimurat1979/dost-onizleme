@@ -1,0 +1,601 @@
+{
+  "id": "c2k24",
+  "cilt": 2,
+  "kisim": 24,
+  "status": "active",
+  "title": {
+    "tr": "Dairenin Dönüşü, Namazın Nuru, ve Nedenin Sınırı",
+    "en": "The Circle's Return, the Light of Prayer, and the Limit of Causation",
+    "pt": "O Retorno do Círculo, a Luz da Oração, e o Limite da Causação"
+  },
+  "pageRange": "281–312",
+  "hero": {
+    "summary": {
+      "tr": "Kısım XXIV, iki bölümüyle -- Kırk Yedinci ve Kırk Sekizinci Bölüm -- önceki dört kısımdan belirgin şekilde farklı bir hava taşıyor: burada Dost'un kendi başından geçen bir sahne (baba ölümü, bilinçsiz imamlık gibi) yok, daha çok sistematik bir doktrin işleniyor. Ama açılışı, bize göre kısmın en çarpıcı anı: 'Her iş ve her mevcut, kendisinden var olduğu başlangıca dönen bir dairedir' cümlesi, bu sitenin kendi 'daire ve merkez' ilkesinin neredeyse birebir kaynağı gibi okunabiliyor. Kırk Yedinci Bölüm, namaz-sadaka-sabrı nur-burhan-aydınlık üçlüsüyle eşleştiren bir hadis etrafında ilerliyor, ve bir yerde Dost kendi çevresindeki bir grubu -- meleklerden üstün olduğumuzu iddia ettikleri için -- açıkça eleştiriyor. Kırk Sekizinci Bölüm ise nedensellik üzerine yoğun bir mantıksal soruşturma: neden ile şart arasındaki fark, Allah'ın hiçbir zaman 'neden' diye adlandırılmaması gerektiği, ve bölümü kapatan, kısmın kendi açılışıyla yankılanan bir döngüsel zincir -- ilahi nispetten şeriata, oradan yeniden nispete dönen sekiz halkalı bir daire.",
+      "en": "Part XXIV, across its two chapters -- Forty-Seven and Forty-Eight -- carries a noticeably different air from the previous four parts: there is no scene here drawn from Dost's own life (no father's death, no unconscious prayer-leading); the material is more systematically doctrinal. But its opening is, to us, the part's most striking moment: the line 'every act and every existent is a circle that returns to the beginning from which it came into existence' can be read almost as the direct source of this site's own 'circle and center' principle. Chapter Forty-Seven moves around a hadith that maps prayer-almsgiving-endurance onto light-proof-luminosity, and at one point Dost openly criticizes a group within his own circle for claiming that the perfected human is, in general, superior to the angels. Chapter Forty-Eight is an intense logical inquiry into causation: the difference between a cause and a condition, why God should never be called a 'cause,' and, closing the chapter, a circular chain that echoes the part's own opening -- an eight-link circle running from divine attribution through to sacred law and back to attribution again.",
+      "pt": "A Parte XXIV, em seus dois capítulos -- Quarenta e Sete e Quarenta e Oito -- traz um ar visivelmente diferente das quatro partes anteriores: não há aqui uma cena tirada da própria vida de Dost (nem a morte do pai, nem a liderança inconsciente da oração); o material é mais sistematicamente doutrinal. Mas sua abertura é, para nós, o momento mais marcante da parte: a frase 'todo ato e todo existente é um círculo que retorna ao começo do qual veio à existência' pode ser lida quase como a fonte direta do próprio princípio de 'círculo e centro' deste site. O Capítulo Quarenta e Sete gira em torno de um hadith que mapeia oração-esmola-perseverança sobre luz-prova-luminosidade, e em certo ponto Dost critica abertamente um grupo dentro de seu próprio círculo por alegar que o ser humano perfeito é, em geral, superior aos anjos. O Capítulo Quarenta e Oito é uma investigação lógica intensa sobre a causação: a diferença entre uma causa e uma condição, por que Deus nunca deveria ser chamado de 'causa,' e, encerrando o capítulo, uma cadeia circular que ecoa a própria abertura da parte -- um círculo de oito elos que vai da atribuição divina até a lei sagrada e volta novamente à atribuição."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Sekiz kavram, birbirini sırayla açıklayan bir zincir oluşturuyor -- ve son halka (şeriat), zincirin başındaki ilahi nispete geri dönüyor. Metnin kendi ifadesiyle: 'dairesel her bir şeyin her parçası, varsayımsal olarak ilk, son ve orta olabilir.'",
+      "en": "Eight concepts form a chain, each explaining the next in sequence -- and the last link (sacred law) loops back to the divine attribution the chain began with. In the text's own words: 'every part of this circular thing can, hypothetically, be first, last, and middle.'",
+      "pt": "Oito conceitos formam uma cadeia, cada um explicando o seguinte em sequência -- e o último elo (a lei sagrada) retorna à atribuição divina com que a cadeia começou. Nas palavras do próprio texto: 'cada parte desta coisa circular pode, hipoteticamente, ser primeira, última e do meio.'"
+    },
+    "tree": {
+      "id": "dongusel-zincir-tree",
+      "label": {
+        "tr": "Nispetten Nispete: Döngüsel Zincir",
+        "en": "From Attribution Back to Attribution: The Circular Chain",
+        "pt": "Da Atribuição de Volta à Atribuição: A Cadeia Circular"
+      },
+      "note": {
+        "tr": "ilahi nispetten başlayıp sekiz halka sonra yine ilahi nispete dönen zincir",
+        "en": "a chain that begins from divine attribution and, after eight links, returns to divine attribution again",
+        "pt": "uma cadeia que começa na atribuição divina e, após oito elos, retorna novamente à atribuição divina"
+      },
+      "children": [
+        {
+          "id": "hal",
+          "label": {
+            "tr": "Hal",
+            "en": "State",
+            "pt": "Estado"
+          },
+          "note": {
+            "tr": "kulun hali (hastalık, açlık, boğulma...) hangi ismin çağrılacağını belirler",
+            "en": "the servant's state (illness, hunger, drowning...) determines which divine name is called upon",
+            "pt": "o estado do servo (doença, fome, afogamento...) determina qual nome divino é invocado"
+          },
+          "children": [
+            {
+              "id": "zaman",
+              "label": {
+                "tr": "Zaman",
+                "en": "Time",
+                "pt": "Tempo"
+              },
+              "note": {
+                "tr": "ilkbahar, yaz, sonbahar, kış -- hallerin farklılığı zamanın farklılığından gelir",
+                "en": "spring, summer, autumn, winter -- states differ because time differs",
+                "pt": "primavera, verão, outono, inverno -- os estados diferem porque o tempo difere"
+              },
+              "children": [
+                {
+                  "id": "hareket",
+                  "label": {
+                    "tr": "Hareket",
+                    "en": "Motion",
+                    "pt": "Movimento"
+                  },
+                  "note": {
+                    "tr": "feleklerin hareketi -- gece-gündüzü, ayları, mevsimleri belirler",
+                    "en": "the motion of the celestial spheres -- determines day and night, months, seasons",
+                    "pt": "o movimento das esferas celestes -- determina dia e noite, meses, estações"
+                  },
+                  "children": [
+                    {
+                      "id": "yonelis",
+                      "label": {
+                        "tr": "Yöneliş",
+                        "en": "Directedness",
+                        "pt": "Direcionamento"
+                      },
+                      "note": {
+                        "tr": "Allah'ın yaratma fiiliyle harekete yönelmesi -- 'bir şeyi irade ettiğimizde'",
+                        "en": "God's turning toward motion through the act of creation -- 'when We will a thing'",
+                        "pt": "o voltar-se de Deus para o movimento pelo ato de criar -- 'quando Nós queremos uma coisa'"
+                      },
+                      "children": [
+                        {
+                          "id": "maksat",
+                          "label": {
+                            "tr": "Maksat",
+                            "en": "Aim",
+                            "pt": "Propósito"
+                          },
+                          "note": {
+                            "tr": "her yönelişin özel bir maksadı vardır -- rıza ile gazap farklı yönelir",
+                            "en": "each directedness carries its own particular aim -- turning in approval differs from turning in wrath",
+                            "pt": "cada direcionamento carrega seu próprio propósito -- voltar-se com aprovação difere de voltar-se com ira"
+                          },
+                          "children": [
+                            {
+                              "id": "tecelli",
+                              "label": {
+                                "tr": "Tecelli",
+                                "en": "Self-Disclosure",
+                                "pt": "Autorrevelação"
+                              },
+                              "note": {
+                                "tr": "her maksadın kendine özgü, tekrarsız bir tecellisi vardır",
+                                "en": "each aim has its own, unrepeated self-disclosure",
+                                "pt": "cada propósito tem sua própria autorrevelação, sem repetição"
+                              },
+                              "children": [
+                                {
+                                  "id": "seriat",
+                                  "label": {
+                                    "tr": "Şeriat",
+                                    "en": "Sacred Law",
+                                    "pt": "Lei Sagrada"
+                                  },
+                                  "note": {
+                                    "tr": "tecelliler şeriatların farklılığıyla farklılaşır -- ve zincir buradan yeniden İlahi Nispet'e döner",
+                                    "en": "self-disclosures differ according to the difference among sacred laws -- and from here the chain returns again to Divine Attribution",
+                                    "pt": "as autorrevelações diferem conforme a diferença entre as leis sagradas -- e daqui a cadeia retorna novamente à Atribuição Divina"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "daireye-donus-vatan-ozlemi",
+      "heading": {
+        "tr": "Dairenin Dönüşü: Başlangıca Duyulan Özlem",
+        "en": "The Circle's Return: The Longing for the Beginning",
+        "pt": "O Retorno do Círculo: A Saudade do Começo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk Yedinci Bölüm bir şiirle açılıyor -- Hakkı 'el-Evvel' (İlk) diye görüp 'başlangıç denizine' gelmekten söz eden dizeler (s. 281). Şiirin hemen ardından, kısmın -- ve bize göre bu sitenin kendi 'daire ve merkez' ilkesinin de doğrudan kaynağı sayılabilecek -- en çarpıcı pasajı geliyor: <em>'Bilmelisin ki: Âlem küre şeklinde olduğu için, insan sonundayken başlangıcına özlem duyar. Böylece yokluktan varlığa çıkışımız O'nunla gerçekleştiği gibi yine O'na döneriz.'</em> (s. 282) Dost bunu somut bir çizim önerisiyle netleştiriyor: <em>'Bir daire çizmeye başladığında, başına ulaşıncaya kadar onun döndüğünü görmez misin? Bu durumda daire meydana gelir. İş böyle olmayıp O'nun katından doğrusal bir çizgi halinde çıkmış olsaydık, O'na dönemezdik... Her iş ve her mevcut, kendisinden var olduğu başlangıca dönen bir dairedir.'</em> (s. 282) Bize göre bu satırlar sadece bir imge değil, kısmın geri kalanının -- ve hatta, bölüm 9'da göreceğimiz gibi, kısmın kendi kompozisyonunun -- örtük bir haritası gibi duruyor.",
+            "en": "Chapter Forty-Seven opens with a poem -- lines about seeing the Real as 'al-Awwal' (the First) and coming to 'the sea of the beginning' to draw from it (p. 281). Right after the poem comes what feels to us like the part's most striking passage -- one that could almost be read as the direct source of this site's own 'circle and center' principle: <em>'Know that because the cosmos is spherical in shape, when a human being reaches the end he longs for the beginning. Thus, just as our emergence from non-existence into existence occurred through Him, we return to Him again.'</em> (p. 282) Dost sharpens this with a concrete image of drawing: <em>'When you begin to draw a circle, do you not see it turning until it reaches its own starting point? This is how a circle comes about. Had it not been so -- had we instead emerged from His presence along a straight line -- we could not have returned to Him... Every act and every existent is a circle that returns to the beginning from which it came into existence.'</em> (p. 282) To us, these lines are not just an image; they read like an implicit map for the rest of the part -- and, as we will see in section 9, even for the part's own composition.",
+            "pt": "O Capítulo Quarenta e Sete se abre com um poema -- versos sobre ver o Real como 'al-Awwal' (o Primeiro) e chegar ao 'mar do começo' para dele beber (p. 281). Logo após o poema vem o que nos parece a passagem mais marcante da parte -- uma que quase poderia ser lida como a fonte direta do próprio princípio de 'círculo e centro' deste site: <em>'Saiba que, por ser o cosmos de forma esférica, quando o ser humano chega ao fim, sente saudade do começo. Assim, tal como nossa saída da não-existência para a existência se deu por meio Dele, a Ele retornamos novamente.'</em> (p. 282) Dost torna isso mais nítido com uma imagem concreta de desenho: <em>'Quando você começa a desenhar um círculo, não vê que ele gira até alcançar seu próprio ponto de partida? É assim que um círculo se forma. Se não fosse assim -- se em vez disso tivéssemos saído da presença Dele em linha reta -- não poderíamos retornar a Ele... Todo ato e todo existente é um círculo que retorna ao começo do qual veio à existência.'</em> (p. 282) Para nós, essas linhas não são apenas uma imagem; soam como um mapa implícito para o resto da parte -- e, como veremos na seção 9, até para a própria composição da parte."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bunu bir mertebe (makam) öğretisi izliyor: bazı varlıklar kendi mertebesinde yaratılıp hiç ayrılmaz -- onlar için 'başlangıç' ve 'son' kavramları anlamsızdır -- insan ve cin ise önce kendi mertebesinde var olup sonra 'doğalarının âlemine' iner. Allah, her birinin kalbine, onu kendi (gizlenmiş) mertebesine geri çağıran bir <em>dâî</em> (davetçi) yerleştirmiştir (s. 282-283). Bu davetin verdiği haz, vatan sevgisine kadar uzanıyor -- Dost burada tasavvuf çevresinden olmayan şair İbnü'r-Rûmî'den bir alıntı yapıyor: <em>'Vatanları insanlara sevdirmiştir / Gençlerin gerçekleştiği hedefleri // Vatanlarını yâd ettiklerinde, onu yâd ettiren şey / Özlemle andıkları çocukluk dönemleridir.'</em> (s. 283) Bize göre bu, bölümün soyut daire öğretisini günlük bir duyguya -- gurbette çocukluğu özlemeye -- bağlayan, sitenin kendi analoji ilkesiyle de örtüşen bir an.",
+            "en": "This is followed by a teaching on rank (maqam): some existents are created within their own rank and never leave it -- for them the concepts of 'beginning' and 'end' are meaningless -- while humans and jinn first exist within their own rank and then descend into 'the world of their natures.' God places in each heart a <em>da'i</em> (a caller) that summons it back to its own (hidden) rank (pp. 282-283). The pleasure this call brings extends even to love of homeland -- Dost quotes here from Ibn al-Rumi, a poet outside Sufi circles: <em>'It is homelands that have made themselves beloved to people, / the very goals youth strives to reach; // What makes them remember their homelands / are the childhood years they recall with longing.'</em> (p. 283) To us, this is a moment where the chapter's abstract circle-teaching is tied to an everyday feeling -- missing one's childhood while far from home -- and it resonates with this site's own principle of reaching for an everyday analogy.",
+            "pt": "Segue-se um ensinamento sobre posição (maqam): alguns existentes são criados dentro de sua própria posição e dela nunca saem -- para eles os conceitos de 'começo' e 'fim' não fazem sentido -- enquanto humanos e gênios primeiro existem dentro de sua própria posição e depois descem ao 'mundo de suas naturezas.' Deus coloca em cada coração um <em>da'i</em> (um convocador) que o chama de volta à sua própria posição (oculta) (pp. 282-283). O prazer que esse chamado traz se estende até o amor pela pátria -- Dost cita aqui Ibn al-Rumi, poeta fora dos círculos sufis: <em>'São as pátrias que se fizeram amadas pelas pessoas, / os próprios objetivos que a juventude busca alcançar; // O que as faz lembrar de suas pátrias / são os anos de infância que recordam com saudade.'</em> (p. 283) Para nós, este é um momento em que o ensinamento abstrato do círculo do capítulo se liga a um sentimento cotidiano -- sentir falta da própria infância longe de casa -- e ressoa com o próprio princípio deste site de buscar uma analogia do dia a dia."
+          }
+        }
+      ]
+    },
+    {
+      "id": "uc-berat-baslangica-ozlem",
+      "heading": {
+        "tr": "Üç Berat, ve Başlangıca Duyulan Özlemin Sırrı",
+        "en": "Three Pardons, and the Secret of Longing for the Beginning",
+        "pt": "Três Perdões, e o Segredo da Saudade do Começo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Tövbe süreci bir sahne halinde anlatılıyor: kişi 'gaflet uykusundan' uyanıp kendini yok oluşa sürükleyen amellerini tanıyınca korkuya kapılır (s. 283). Bunun üzerine 'kapı teşrifatçısı' ona sırayla üç 'berat' (bağışlanma belgesi) sunar. Birincisi Furkân suresinden ayetler taşır: <em>'Bu günahı işleyene günahının cezası, kıyamet günü katmerli olarak verilir. Tövbe edip iman edenler ise, kötülüğü iyiliğe dönüştürülecek olanlardır.'</em> (s. 283) Metin burada kişiyi 'yabanıl' diye adlandırıyor -- bu kelime bağlamda bize tuhaf geldi, muhtemelen bir aktarım/dizgi sorunu olabilir; olduğu gibi, açıklamayı zorlamadan aktarıyoruz. İkinci berat, 'Allah kendisine şirk koşulmasını bağışlamaz, bunun dışında dilediğini bağışlar' ayetini taşır; üçüncüsü ise: <em>'Ey kendilerine haksızlık eden kullarım! Allah'ın rahmetinden ümit kesmeyiniz. Allah bütün günahları bağışlar.'</em> (s. 283-284) Üçüncü beratı okuyunca kişi teslim olur: 'Tamamdır.'",
+            "en": "The process of repentance is told as a scene: a person wakes from 'the sleep of heedlessness' and, recognizing the deeds that had been dragging him toward ruin, is seized with fear (p. 283). At this, 'the gatekeeper' hands him, one after another, three 'pardons' (documents of forgiveness). The first carries verses from Surat al-Furqan: <em>'For one who commits this sin, the penalty of his sin is doubled on the Day of Resurrection. But those who repent and believe are the ones whose evil deeds will be turned into good ones.'</em> (p. 283) The text here calls the person a 'wild one' [yabanıl] -- a word that struck us as odd in context, possibly a transmission or scanning issue; we pass it along as it stands, without forcing a resolution. The second pardon carries the verse 'God does not forgive that partners be associated with Him, but forgives whatever is less than that to whomever He wills'; the third reads: <em>'O My servants who have wronged themselves! Do not despair of God's mercy. God forgives all sins.'</em> (pp. 283-284) On reading the third pardon, the person submits: 'It is settled.'",
+            "pt": "O processo do arrependimento é narrado como uma cena: uma pessoa desperta do 'sono da negligência' e, reconhecendo os atos que a arrastavam à ruína, é tomada pelo medo (p. 283). Diante disso, 'o porteiro' lhe entrega, um após o outro, três 'perdões' (documentos de perdão). O primeiro traz versículos da Surata al-Furqan: <em>'A quem comete esse pecado, a pena de seu pecado é dobrada no Dia da Ressurreição. Mas os que se arrependem e creem são aqueles cujas más ações serão transformadas em boas.'</em> (p. 283) O texto aqui chama a pessoa de 'selvagem' [yabanıl] -- palavra que nos pareceu estranha no contexto, possivelmente um problema de transmissão ou digitalização; a transmitimos como está, sem forçar uma resolução. O segundo perdão traz o versículo 'Deus não perdoa que associem parceiros a Ele, mas perdoa o que é menos que isso a quem Ele quiser'; o terceiro diz: <em>'Ó Meus servos que injustiçaram a si mesmos! Não desespereis da misericórdia de Deus. Deus perdoa todos os pecados.'</em> (pp. 283-284) Ao ler o terceiro perdão, a pessoa se submete: 'Está resolvido.'"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Tövbe sonrası gelen haz, kişi Hakkın celalini ve kendi kusurunu daha derinden tanıdıkça kayboluyor, yerini bir tasa alıyor (s. 285-286) -- ve tam burada bölüm başlığındaki soruya cevap geliyor: <em>'Nefs, doğası gereği haz veren şeyleri sever... Bu nedenle nefs, makamının yüceliğine rağmen, o mertebeye bitişmiş haz nedeniyle başlangıç haline özlem duyar (yönelir)... İşte, sona erenlerin başlangıçlarına özlem duymasının sebebi budur.'</em> (s. 286) Bize göre bu, bir önceki bölümdeki daire öğretisiyle sıkı sıkıya bağlı bir fikir: son, başlangıca sadece kozmolojik değil, psikolojik olarak da 'komşu'dur -- en yüksek makama ulaşmış kişi bile, ilk hazzın tadını özlüyor.",
+            "en": "The pleasure that follows repentance fades as the person comes to know God's majesty and his own shortcomings more deeply, and worry takes its place (pp. 285-286) -- and it is precisely here that the chapter's title-question is answered: <em>'The soul, by its nature, loves what gives it pleasure... This is why the soul, despite the loftiness of its station, longs for (turns toward) the state of the beginning, on account of the pleasure that was bound up with that station... This is the reason those who have reached the end long for their beginnings.'</em> (p. 286) To us, this is an idea tightly bound to the circle-teaching of the previous section: the end is 'neighbor' to the beginning not only cosmologically but psychologically -- even someone who has reached the highest station still misses the taste of that first pleasure.",
+            "pt": "O prazer que se segue ao arrependimento se dissolve à medida que a pessoa conhece mais profundamente a majestade de Deus e as próprias falhas, e a preocupação toma seu lugar (pp. 285-286) -- e é justamente aqui que a pergunta-título do capítulo é respondida: <em>'A alma, por sua natureza, ama o que lhe dá prazer... Por isso a alma, apesar da altura de sua estação, sente saudade (volta-se) do estado do começo, por causa do prazer que estava ligado àquela posição... Esta é a razão pela qual os que chegaram ao fim sentem saudade de seus começos.'</em> (p. 286) Para nós, esta é uma ideia estreitamente ligada ao ensinamento do círculo da seção anterior: o fim é 'vizinho' do começo não apenas cosmologicamente, mas também psicologicamente -- mesmo quem alcançou a mais alta posição ainda sente falta do gosto daquele primeiro prazer."
+          }
+        }
+      ]
+    },
+    {
+      "id": "namaz-nur-sadaka-burhan-sabir-aydinlik",
+      "heading": {
+        "tr": "Namaz Nur, Sadaka Burhan, Sabır Aydınlık",
+        "en": "Prayer Is Light, Almsgiving Is Proof, Endurance Is Luminosity",
+        "pt": "A Oração É Luz, a Esmola É Prova, a Perseverança É Luminosidade"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Aşağı menziller -- namaz, cihat, oruç gibi bedensel ameller; sabır ve riyazet gibi nefs kaynaklı ameller -- tanıtıldıktan sonra (s. 286), bölümün geri kalanına yön veren bir hadis geliyor: <em>'Namaz nurdur, sadaka burhandır, sabır (oruç ve hac) aydınlıktır, Kur'an lehinde veya aleyhinde delildir. Sabahlayan herkes nefsini satın alır; ya onu azat eder ya da köleleştirir.'</em> (s. 286-287) Namaz'ın nur oluşu şöyle açıklanıyor: namaz kılan kul, sadece en-Nur isminden yakarır, ve 'Allah kulu kendisine en-Nur isminden yakardığında, onunla baş başa kalıp yakarışında Hakkı müşahede etmesiyle de bütün varlıkların silineceğiyle müjdelemiştir' (s. 286-287). Gizli ve açık zikri birleştirme farzı da burada işleniyor -- kutsi hadis: 'Beni içinden zikrederse, ben de onu içimden zikrederim. Beni bir toplulukta zikrederse, ben de kendisini o topluluktan daha hayırlı bir toplulukta zikrederim.' (s. 287)",
+            "en": "After the lower waystations are introduced -- bodily acts like prayer, striving, fasting; soul-rooted acts like endurance and self-discipline (p. 286) -- comes a hadith that shapes the rest of the chapter: <em>'Prayer is light, almsgiving is proof, endurance (fasting and pilgrimage) is luminosity, the Qur'an is a witness for you or against you. Everyone who rises in the morning trades his soul; he either frees it or enslaves it.'</em> (pp. 286-287) Prayer's being light is explained this way: the servant at prayer calls only upon the name al-Nur, and 'when God is called upon by His servant through the name al-Nur, He gives glad tidings that being alone with Him in this supplication, witnessing the Real in it, will cause all existents to be effaced' (pp. 286-287). The obligation to combine silent and vocal remembrance is also treated here -- a sacred hadith: 'If he remembers Me within himself, I remember him within Myself. If he remembers Me in an assembly, I remember him in an assembly better than that one.' (p. 287)",
+            "pt": "Depois de apresentadas as estações inferiores -- atos corporais como a oração, o esforço, o jejum; atos enraizados na alma como a perseverança e a disciplina (p. 286) -- vem um hadith que molda o restante do capítulo: <em>'A oração é luz, a esmola é prova, a perseverança (jejum e peregrinação) é luminosidade, o Alcorão é uma testemunha a seu favor ou contra você. Todo aquele que amanhece negocia sua alma; ou a liberta ou a escraviza.'</em> (pp. 286-287) O fato de a oração ser luz é explicado assim: o servo em oração invoca apenas o nome al-Nur, e 'quando Deus é invocado por Seu servo através do nome al-Nur, Ele dá as boas novas de que estar a sós com Ele nessa súplica, testemunhando o Real nela, fará com que todos os existentes sejam apagados' (pp. 286-287). A obrigação de unir a lembrança silenciosa e a vocal também é tratada aqui -- um hadith sagrado: 'Se ele se lembra de Mim dentro de si mesmo, Eu me lembro dele dentro de Mim mesmo. Se ele se lembra de Mim numa assembleia, Eu me lembro dele numa assembleia melhor do que essa.' (p. 287)"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Secde bahsinde çarpıcı bir sahne var -- Allah'ın, kula ulaştığı için meleklere karşı övünmesi: <em>'Ben sizi bir ameliniz olmaksızın yaklaştırdım ve meleklerimin seçkinlerinden yaptım. Şu ise, kulumdur. Kendisiyle yakınlık makamı arasına pek çok perde ve nefsin arzuları, maddi istekler, aile geçindirmek, mal, çocuk, hizmetçi, arkadaş gibi büyük engeller ve çetin sıkıntılar koydum. O ise bunların hepsini aştı ve secde edip yaklaşıncaya kadar gayret gösterdi ve yakın kimselerden oldu.'</em> (s. 287) Melekler buna cevaben, kendi adlarına dilemedikleri bu menzilleri kulun adına ister, Allah da verir (s. 287-288). Sadaka'nın burhan oluşu ise insanın doğası gereği hırslı ve cimri yaratılmasından geliyor -- sadaka veren kişi, bu doğal cimrilikten korunmuş olduğuna dair kanıt (burhan) sunuyor (s. 288-289). Sabır (oruç+hac) ise 'ziya' kavramıyla açıklanıyor -- ışıkla karanlığın karışımı: <em>'Salt karanlık perde olduğu gibi, salt ışık da bir perdedir.'</em> (s. 288-289) Bir hadis: 'Allah'ın karanlık ve ışıktan yetmiş -başka bir rivayette yetmiş bin- perdesi vardır'; ve Hz. Peygamber'e 'Rabbini gördün mü?' diye sorulduğunda verdiği cevap: 'Nuranidir, nasıl göreyim' (s. 289).",
+            "en": "The section on prostration holds a striking scene -- God boasting to the angels over a servant who has reached Him: <em>'I brought you near without any deed of yours, and made you among the elite of My angels. But this one is My servant. Between him and the station of nearness I placed many veils and grave obstacles -- the soul's desires, worldly needs, providing for a family, wealth, children, servants, friends. Yet he crossed all of these, striving until he prostrated and drew near, and became one of the near ones.'</em> (p. 287) In response, the angels ask, on the servant's behalf, for the very stations they themselves would not have wished for, and God grants them (pp. 287-288). Almsgiving's being proof follows from the fact that human nature is created greedy and miserly -- one who gives alms offers proof (burhan) that he has been protected from this native miserliness (pp. 288-289). Endurance (fasting and pilgrimage) is explained through the concept of 'ziya' -- the mixture of light and darkness: <em>'Just as pure darkness is a veil, pure light too is a veil.'</em> (pp. 288-289) A hadith: 'God has seventy -- in another report, seventy thousand -- veils of darkness and light'; and the Prophet's answer when asked 'Have you seen your Lord?': 'He is luminous -- how could I see Him?' (p. 289).",
+            "pt": "A seção sobre a prostração traz uma cena marcante -- Deus se gabando diante dos anjos por causa de um servo que O alcançou: <em>'Eu vos trouxe para perto sem nenhum feito vosso, e vos fiz parte da elite de Meus anjos. Mas este é Meu servo. Entre ele e a estação da proximidade coloquei muitos véus e graves obstáculos -- os desejos da alma, as necessidades mundanas, sustentar uma família, riqueza, filhos, servos, amigos. Ainda assim ele atravessou tudo isso, esforçando-se até prostrar-se e aproximar-se, tornando-se um dos próximos.'</em> (p. 287) Em resposta, os anjos pedem, em nome do servo, as próprias estações que não teriam desejado para si, e Deus as concede (pp. 287-288). O fato de a esmola ser prova decorre de a natureza humana ser criada gananciosa e avarenta -- quem dá esmola oferece prova (burhan) de ter sido protegido dessa avareza nativa (pp. 288-289). A perseverança (jejum e peregrinação) é explicada pelo conceito de 'ziya' -- a mistura de luz e escuridão: <em>'Assim como a escuridão pura é um véu, a luz pura também é um véu.'</em> (pp. 288-289) Um hadith: 'Deus tem setenta -- em outro relato, setenta mil -- véus de escuridão e luz'; e a resposta do Profeta quando perguntado 'Você viu seu Senhor?': 'Ele é luminoso -- como eu O veria?' (p. 289)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIV — Kırk Yedinci Bölüm, s. 286-289.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIV — Chapter Forty-Seven, pp. 286-289.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIV — Capítulo Quarenta e Sete, pp. 286-289."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Namaz",
+                "en": "Prayer",
+                "pt": "Oração"
+              },
+              "note": {
+                "tr": "en-Nur isminden yakarış -- bütün meşguliyetleri keser",
+                "en": "supplication through the name al-Nur -- cuts off every preoccupation",
+                "pt": "súplica através do nome al-Nur -- corta toda preocupação"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Sadaka",
+                "en": "Almsgiving",
+                "pt": "Esmola"
+              },
+              "note": {
+                "tr": "cimrilikten korunmuş olduğuna dair kanıt (burhan)",
+                "en": "proof (burhan) of having been protected from miserliness",
+                "pt": "prova (burhan) de ter sido protegido da avareza"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Sabır (Oruç + Hac)",
+                "en": "Endurance (Fasting + Pilgrimage)",
+                "pt": "Perseverança (Jejum + Peregrinação)"
+              },
+              "note": {
+                "tr": "ziya -- ışıkla karanlığın karışımı; salt ışık da salt karanlık kadar perdedir",
+                "en": "ziya -- the mixture of light and darkness; pure light is as much a veil as pure darkness",
+                "pt": "ziya -- a mistura de luz e escuridão; a luz pura é tão véu quanto a escuridão pura"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Hz. Peygamber'in hadisi, üç ibadeti üç ayrı ışık türüyle eşleştiriyor -- namazın nuru dolaysız bir yakarıştan, sadakanın burhanı insan nefsinin doğal cimriliğine karşı bir kanıttan, sabrın aydınlığı ise salt ışıkla salt karanlığın 'perde' olduğu bir görme mantığından geliyor.",
+            "en": "The Prophet's hadith maps three acts of worship onto three distinct kinds of light -- prayer's light comes from unmediated supplication, almsgiving's proof comes from resisting the soul's native miserliness, and endurance's luminosity comes from a logic of sight in which pure light, like pure darkness, is itself a veil.",
+            "pt": "O hadith do Profeta mapeia três atos de adoração sobre três tipos distintos de luz -- a luz da oração vem de uma súplica sem mediação, a prova da esmola vem de resistir à avareza nativa da alma, e a luminosidade da perseverança vem de uma lógica de visão em que a luz pura, como a escuridão pura, é ela mesma um véu."
+          }
+        }
+      ]
+    },
+    {
+      "id": "oruc-benimdir-dort-olum",
+      "heading": {
+        "tr": "'Oruç Benimdir': Ödülün Sahibi, ve Dört Ölüm",
+        "en": "'Fasting Is Mine': Who Owns the Reward, and the Four Deaths",
+        "pt": "'O Jejum É Meu': Quem É o Dono da Recompensa, e as Quatro Mortes"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Oruç, ayrı bir mantıkla açıklanıyor: yeme-içmeden kaçınmak, yaratılmışın değil bizzat Allah'ın niteliğidir -- kul bu niteliği ödünç alır, bu yüzden orucun sevabını bizzat Allah verir. Kutsi hadis: <em>'Âdemoğlunun her ameli kendisine aittir. Oruç ise öyle değildir. Oruç bana aittir, onun ödülünü ben vereceğim.'</em> (s. 289-290) Dost bunu şöyle açıyor: <em>'Oruç senin değil, benimdir... Yemesi ve içmesi gerekmeyen kimse -sen değil- benim. Oruç bu özellikte olduğu ve senin oruç tutmanın sebebi benim onu sana farz kılmam olduğu için, onun ödülünü verecek olan benim.'</em> (s. 289-290) 'Oruçlunun iki sevinci vardır' hadisi bu mantığı tamamlıyor: iftar vaktindeki sevinç hayvani ruha ait, rabbe kavuştuğu andaki sevinç ise düşünen nefse ait ve müşahededir -- bu ikinci sevinç nedeniyle oruç, namazdan 'daha tam' sayılıyor (s. 289-290).",
+            "en": "Fasting is explained by a different logic: abstaining from food and drink is not a created being's attribute but God's own -- the servant borrows this attribute, which is why God Himself gives the reward for fasting. A sacred hadith: <em>'Every deed of the son of Adam belongs to him. Fasting is not like this. Fasting is Mine, and I will give its reward.'</em> (pp. 289-290) Dost unpacks this: <em>'Fasting is not yours, it is Mine... The One who has no need to eat or drink is not you -- it is Me. Since fasting has this character, and the reason you fast is that I have made it obligatory for you, it is I who will give its reward.'</em> (pp. 289-290) The hadith 'the fasting person has two joys' completes this logic: the joy at breaking the fast belongs to the animal spirit, while the joy of the moment of meeting one's Lord belongs to the thinking soul and is a form of witnessing -- and because of this second joy, fasting is counted 'more complete' than prayer (pp. 289-290).",
+            "pt": "O jejum é explicado por uma lógica diferente: abster-se de comer e beber não é atributo de um ser criado, mas do próprio Deus -- o servo toma esse atributo emprestado, por isso é o próprio Deus quem dá a recompensa do jejum. Um hadith sagrado: <em>'Toda obra do filho de Adão pertence a ele. O jejum não é assim. O jejum é Meu, e Eu darei sua recompensa.'</em> (pp. 289-290) Dost explica: <em>'O jejum não é seu, é Meu... Aquele que não precisa comer nem beber não é você -- sou Eu. Como o jejum tem esse caráter, e a razão pela qual você jejua é que Eu o tornei obrigatório para você, sou Eu quem dará sua recompensa.'</em> (pp. 289-290) O hadith 'o jejuador tem duas alegrias' completa essa lógica: a alegria na hora de romper o jejum pertence ao espírito animal, enquanto a alegria do momento de encontrar seu Senhor pertence à alma pensante e é uma forma de testemunho -- e por causa dessa segunda alegria, o jejum é considerado 'mais completo' do que a oração (pp. 289-290)."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu bölüm, süfilerin dört ölüm taksonomisiyle kapanıyor: <em>'Süfiler, açlığı dört ölüm içinde beyaz ölüm diye isimlendirir... İkincisi kırmızı ölümdür, arzularında nefse karşı çıkmak demektir. Üçüncüsü yeşil ölümdür. Yeşil ölüm, yamalı elbiseler giymektir. Dördüncüsü siyah ölümdür. Siyah ölüm, yaratıkların sıkıntısına, hatta her türlü ezaya katlanmaktır.'</em> (s. 291) Her renk bir benzetmeyle gerekçelendiriliyor -- yeşil, yeryüzünün farklı bitki örtüsüne benzetildiği için; siyah, tasanın nefsin karanlığı olmasından; kırmızı ise kanın kızıllığından, çünkü arzusuna karşı çıkan kişi 'nefsini kurban etmiştir' (s. 291).",
+            "en": "This section closes with the Sufis' taxonomy of the four deaths: <em>'Among the four deaths, Sufis name hunger the white death... The second is the red death, meaning opposing the soul in its desires. The third is the green death. The green death is wearing patched clothing. The fourth is the black death. The black death is enduring the vexation of creatures, even every kind of injury.'</em> (p. 291) Each color is grounded in an analogy -- green, because it resembles the earth's varied vegetation; black, because worry is the soul's darkness; red, because of the redness of blood, since one who opposes his desire 'has sacrificed his own soul' (p. 291).",
+            "pt": "Esta seção se encerra com a taxonomia sufi das quatro mortes: <em>'Entre as quatro mortes, os sufis chamam a fome de morte branca... A segunda é a morte vermelha, que significa opor-se à alma em seus desejos. A terceira é a morte verde. A morte verde é vestir roupas remendadas. A quarta é a morte negra. A morte negra é suportar o incômodo das criaturas, até mesmo todo tipo de agravo.'</em> (p. 291) Cada cor se fundamenta numa analogia -- o verde, por se assemelhar à vegetação variada da terra; o negro, porque a preocupação é a escuridão da alma; o vermelho, pela vermelhidão do sangue, já que quem se opõe ao próprio desejo 'sacrificou sua própria alma' (p. 291)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIV — Kırk Yedinci Bölüm, s. 291.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIV — Chapter Forty-Seven, p. 291.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIV — Capítulo Quarenta e Sete, p. 291."
+          },
+          "tree": {
+            "id": "dort-olum-tree",
+            "label": {
+              "tr": "Dört Ölüm",
+              "en": "The Four Deaths",
+              "pt": "As Quatro Mortes"
+            },
+            "note": {
+              "tr": "süfilerin, dünyevi bağın kesilişini sınıflandırdığı dört renk",
+              "en": "the four colors by which Sufis classify the severing of a worldly tie",
+              "pt": "as quatro cores pelas quais os sufis classificam o corte de um laço mundano"
+            },
+            "children": [
+              {
+                "id": "beyaz-olum",
+                "label": {
+                  "tr": "Beyaz Ölüm",
+                  "en": "White Death",
+                  "pt": "Morte Branca"
+                },
+                "note": {
+                  "tr": "açlık",
+                  "en": "hunger",
+                  "pt": "fome"
+                }
+              },
+              {
+                "id": "kirmizi-olum",
+                "label": {
+                  "tr": "Kırmızı Ölüm",
+                  "en": "Red Death",
+                  "pt": "Morte Vermelha"
+                },
+                "note": {
+                  "tr": "arzularında nefse karşı çıkmak",
+                  "en": "opposing the soul in its desires",
+                  "pt": "opor-se à alma em seus desejos"
+                }
+              },
+              {
+                "id": "yesil-olum",
+                "label": {
+                  "tr": "Yeşil Ölüm",
+                  "en": "Green Death",
+                  "pt": "Morte Verde"
+                },
+                "note": {
+                  "tr": "yamalı elbiseler giymek",
+                  "en": "wearing patched clothing",
+                  "pt": "vestir roupas remendadas"
+                }
+              },
+              {
+                "id": "siyah-olum",
+                "label": {
+                  "tr": "Siyah Ölüm",
+                  "en": "Black Death",
+                  "pt": "Morte Negra"
+                },
+                "note": {
+                  "tr": "yaratıkların sıkıntısına, her türlü ezaya katlanmak",
+                  "en": "enduring the vexation of creatures, every kind of injury",
+                  "pt": "suportar o incômodo das criaturas, todo tipo de agravo"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Dört renk, dört farklı türden 'ölüm'ü -- dünyevi bir bağın kesilmesini -- simgeliyor: açlık, arzuya direnme, sadelik, ve başkalarının verdiği sıkıntıya katlanma.",
+            "en": "The four colors stand for four distinct kinds of 'death' -- the severing of a worldly tie: hunger, resisting desire, simplicity, and enduring the vexation others cause.",
+            "pt": "As quatro cores representam quatro tipos distintos de 'morte' -- o corte de um laço mundano: fome, resistência ao desejo, simplicidade, e suportar o incômodo causado por outros."
+          }
+        }
+      ]
+    },
+    {
+      "id": "melekler-mi-ademoglu-mu",
+      "heading": {
+        "tr": "Melekler mi, Âdemoğlu mu Üstün? Bir Kendi-Eleştiri",
+        "en": "Angels or the Children of Adam? A Self-Critique",
+        "pt": "Anjos ou os Filhos de Adão? Uma Autocrítica"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "'Fasıl: İlahi Sır' başlığı altında, meleklerin 'her birimizin bilinen bir makamı vardır' (Sâffât 164) sözü tartışılıyor -- insan ve cin dışındaki her varlık kendi makamında sabit yaratılmıştır, insan ve cin ise 'bilinen ama kendilerinden gizlenmiş' bir makama doğru seyreder (s. 291-292). Dost burada, nadir görülen bir hamleyle, kendi çevresindeki bir grubu açıkça eleştiriyor: <em>'Arkadaşlarımızdan bir grup keşif sahibi olmadıkları için bu konuda... yanılmış, düşünce gücü ve bozuk fikir ile şunu iddia etmişlerdir: Âdemoğlundan yetkin kişi, Allah katında genel anlamda meleklerden daha üstündür.'</em> (s. 293) Bu grup, delil olarak 'Âdemoğlu her nefes yükselir, meleklerin böyle bir özelliği yoktur' iddiasını öne sürüyor.",
+            "en": "Under the heading 'A Section: A Divine Secret,' the angels' statement 'each of us has a known station' (Qur'an 37:164) is discussed -- every existent besides humans and jinn is created fixed within its own station, while humans and jinn journey toward a station that is 'known, yet hidden from themselves' (pp. 291-292). Here, in a move rarely seen elsewhere, Dost openly criticizes a group within his own circle: <em>'A group among our companions, lacking unveiling, erred on this matter... claiming, through defective reasoning and faulty opinion, that the perfected son of Adam is, in a general sense, superior to the angels before God.'</em> (p. 293) This group cites as evidence the claim that 'the son of Adam ascends with every breath, while the angels have no such characteristic.'",
+            "pt": "Sob o título 'Uma Seção: Um Segredo Divino,' discute-se a afirmação dos anjos 'cada um de nós tem uma posição conhecida' (Alcorão 37:164) -- todo existente além de humanos e gênios é criado fixo dentro de sua própria posição, enquanto humanos e gênios caminham rumo a uma posição que é 'conhecida, mas oculta de si mesmos' (pp. 291-292). Aqui, num gesto raramente visto em outros lugares, Dost critica abertamente um grupo dentro de seu próprio círculo: <em>'Um grupo entre nossos companheiros, por falta de desvelamento, errou nesta questão... alegando, por raciocínio defeituoso e opinião falha, que o filho de Adão aperfeiçoado é, em sentido geral, superior aos anjos diante de Deus.'</em> (p. 293) Esse grupo cita como evidência a alegação de que 'o filho de Adão ascende a cada respiração, enquanto os anjos não têm tal característica.'"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost'un cevabı ince bir ayrım taşıyor: gerçek yükseliş amelle değil bilgiyle olur, ve bu noktada melekler insanla eşittir: <em>'Allah bize Âdem'in diliyle meleklere isimleri öğrettiğini bildirmiştir. Böylelikle daha önce sahip olmadıkları ilahi isimler hakkında yeni bilgiler öğrenmiş... O halde, amel ile değil, bilgi ile yükselmede melekler bizimle eşit olduğu gibi biz de teklif ortadan kalktığı için ahiret amelleriyle yükselmeyiz.'</em> (s. 293-294) İnsanın dünyada meleklerin zaten sahip olduğu makama 'yükseltilmesi', üstünlükten değil, sadece sınanmaktan kaynaklanıyor: 'Ona yükselmemizin nedeni, sadece sınanmaktır.' (s. 294) Bize göre bu, kısmın en dikkat çekici anlarından biri -- Dost, kendi camiasının yaygın bir iddiasını, keşif eksikliğine bağlayarak doğrudan reddediyor.",
+            "en": "Dost's response carries a fine distinction: true ascent happens not through deeds but through knowledge, and on this point the angels are equal to us: <em>'God has informed us that He taught the angels the names through Adam's own tongue. In this way they learned new knowledge about divine names they had not possessed before... Therefore, just as the angels are equal to us in ascending through knowledge rather than deeds, so too we do not ascend through deeds in the afterlife, since obligation is lifted there.'</em> (pp. 293-294) A human being's being 'raised' in this world to a station the angels already occupy comes not from superiority but purely from being tested: 'The reason we were raised to it is only that we might be tested.' (p. 294) To us, this is one of the part's most notable moments -- Dost directly rejects a widespread claim within his own circle, tracing it back to a lack of unveiling.",
+            "pt": "A resposta de Dost carrega uma distinção sutil: a verdadeira ascensão ocorre não por meio de atos, mas de conhecimento, e nisto os anjos são iguais a nós: <em>'Deus nos informou que ensinou os nomes aos anjos através da própria língua de Adão. Assim eles aprenderam novo conhecimento sobre nomes divinos que antes não possuíam... Portanto, assim como os anjos são iguais a nós na ascensão por conhecimento em vez de atos, também nós não ascendemos por atos no além, já que ali a obrigação é suspensa.'</em> (pp. 293-294) O fato de o ser humano ser 'elevado' neste mundo a uma posição que os anjos já ocupam não vem da superioridade, mas puramente de ser posto à prova: 'A razão pela qual fomos elevados a ela é apenas para sermos postos à prova.' (p. 294) Para nós, este é um dos momentos mais notáveis da parte -- Dost rejeita diretamente uma alegação difundida em seu próprio círculo, atribuindo-a a uma falta de desvelamento."
+          }
+        }
+      ]
+    },
+    {
+      "id": "nokta-cevre-en-guzel-alem",
+      "heading": {
+        "tr": "Nokta, Çevre, ve 'Birden Bir Çıkar' Görüşünün Reddi",
+        "en": "Point, Circumference, and the Rejection of 'From the One, Only One Emerges'",
+        "pt": "Ponto, Circunferência, e a Rejeição de 'Do Um, Só Um Emerge'"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ardışık üç 'Fasıl: İlahi Sır' başlığı altında yoğun bir geometrik-metafizik pasaj geliyor. İlki: <em>'Dairenin sonu, başlangıcına komşudur. O, özü gereği noktayı (ulaşmak) ister, nokta ise onu istemez.'</em> (s. 294) Bu asimetriyle âlemin Hakka muhtaçlığı, Hakkın ise âlemden müstağniliği açıklanıyor. Himmet yoluyla yaratma da burada işleniyor -- ahirette herkes için, dünyada ise yalnızca istisnai kişilerde gerçekleşiyor; örnek olarak, önceki dört kısımda hiç geçmeyen bir isim -- Kadîbü'l-Bân -- veriliyor (s. 294-295). Bu bağlamda Gazâlî'nin ünlü sözü doğrulanıyor: <em>'İmkanda bu âlemden daha güzeli yoktur.'</em> (s. 294-295) Çünkü insan-ı kâmilin üzerinde yaratıldığı suretten daha yetkin bir suret yoktur -- öyle bir suret olsaydı, âlemde ilahi mertebeden ibaret olan suretten daha yetkin bir şey bulunmuş olurdu.",
+            "en": "Under three consecutive headings, 'A Section: A Divine Secret,' comes a dense geometric-metaphysical passage. The first: <em>'The end of the circle is neighbor to its beginning. It desires, by its very essence, to reach the point, while the point does not desire it.'</em> (p. 294) This asymmetry explains the world's need for the Real and the Real's independence from the world. Creation through himma (spiritual aspiration) is also treated here -- occurring for everyone in the afterlife, but in this world only in exceptional individuals; as an example, a name that appears in none of the previous four parts is given -- Qadib al-Ban (p. 294-295). In this context Ghazali's famous saying is affirmed: <em>'There is nothing more beautiful than this world within the realm of possibility.'</em> (pp. 294-295) For there is no form more perfect than the one upon which the Perfect Human was created -- were there such a form, something more perfect than the form that is nothing but the divine level would exist in the cosmos.",
+            "pt": "Sob três títulos consecutivos, 'Uma Seção: Um Segredo Divino,' vem uma passagem densa, geométrico-metafísica. A primeira: <em>'O fim do círculo é vizinho de seu começo. Ele deseja, por sua própria essência, alcançar o ponto, enquanto o ponto não o deseja.'</em> (p. 294) Essa assimetria explica a necessidade do mundo pelo Real e a independência do Real em relação ao mundo. A criação através da himma (aspiração espiritual) também é tratada aqui -- ocorrendo para todos no além, mas neste mundo apenas em indivíduos excepcionais; como exemplo, é dado um nome que não aparece em nenhuma das quatro partes anteriores -- Qadib al-Ban (pp. 294-295). Nesse contexto, o famoso dito de Al-Ghazali é confirmado: <em>'Não há nada mais belo do que este mundo dentro do reino da possibilidade.'</em> (pp. 294-295) Pois não há forma mais perfeita do que aquela sobre a qual o Ser Humano Perfeito foi criado -- se houvesse tal forma, existiria no cosmos algo mais perfeito do que a forma que não é senão o próprio nível divino."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "İkinci fasılda nokta-çevre-çizgi geometrisi üzerinden Neoplatonik 'birden ancak bir çıkar' doktrini açıkça reddediliyor: <em>'Böylece çokluk, hakikati tek olandan ortaya çıkmış, o hakikat ise, kendiliğinden çoğalmamıştır. Böylece \"birden bir çıkar\" diyenin görüşü geçersizleşmiştir.'</em> (s. 295-296) Tür-cins hiyerarşisi 'Toprak'a kadar iniyor (s. 296) -- metinde bu kelimenin tek başına durması, bize göre orijinalde gerçek bir ağaç şeması olduğunu, ama tarama sürecinin bunu düzyazıya indirgediğini düşündürüyor. Üçüncü fasılda insan/cin nefsindeki 'üçüncü güç' (bilgi ve amel gücüne ek olarak düşünme gücü) tanıtılıyor -- ve Dost burada nadir bir kendi-kuşkusunu dile getiriyor: <em>'Bir grup bu konuda yanılmış olsa bile... Bu, doğru olabileceği gibi yanlış da olabilir.'</em> (s. 297) Bölüm, vergi (vehb/ilahi feyiz) ile teorik düşünce arasındaki ayrımla kapanıyor -- 'dostlarımız' derken kastedilenin abid, zahit ya da genel süfiler değil, özellikle 'hakikat ve tahkik ehli' olduğu açıklanıyor (s. 298).",
+            "en": "In the second section, through point-circumference-line geometry, the Neoplatonic doctrine that 'from the One only one can emerge' is explicitly rejected: <em>'Thus multiplicity has arisen, in reality, from the One, while that reality has not multiplied of itself. In this way the view of the one who says \"from the one, one emerges\" is invalidated.'</em> (pp. 295-296) The genus-species hierarchy descends all the way to 'Earth' (p. 296) -- the word standing alone in the text suggests to us that the original contained an actual tree-diagram, which the scanning process reduced to prose. The third section introduces the 'third power' within the human/jinn soul (in addition to the powers of knowledge and deed: the power of reflection) -- and here Dost voices a rare doubt about his own claim: <em>'Even if a group has erred on this matter... this could be true just as it could be false.'</em> (p. 297) The chapter closes with the distinction between vergi (given, divine outpouring) and theoretical reflection -- clarifying that by 'our companions' is meant not the devout, the ascetic, or Sufis in general, but specifically 'the people of realization and verification' (p. 298).",
+            "pt": "Na segunda seção, através da geometria ponto-circunferência-linha, a doutrina neoplatônica de que 'do Um só pode emergir um' é explicitamente rejeitada: <em>'Assim a multiplicidade surgiu, em realidade, do Um, enquanto essa realidade não se multiplicou por si mesma. Desse modo, a visão de quem diz \"do um emerge um\" fica invalidada.'</em> (pp. 295-296) A hierarquia de gênero-espécie desce até 'a Terra' (p. 296) -- a palavra isolada no texto sugere para nós que o original continha um verdadeiro diagrama em árvore, que o processo de digitalização reduziu a prosa. A terceira seção introduz o 'terceiro poder' dentro da alma humana/dos gênios (além dos poderes de conhecimento e ação: o poder da reflexão) -- e aqui Dost expressa uma rara dúvida sobre sua própria afirmação: <em>'Mesmo que um grupo tenha errado nesta questão... isso pode ser verdadeiro assim como pode ser falso.'</em> (p. 297) O capítulo se encerra com a distinção entre vergi (dado, efusão divina) e reflexão teórica -- esclarecendo que por 'nossos companheiros' entende-se não os devotos, os ascetas ou os sufis em geral, mas especificamente 'o povo da realização e da verificação' (p. 298)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "neden-mi-sart-mi",
+      "heading": {
+        "tr": "Neden mi, Şart mı? Âlemin Hakka Nispeti",
+        "en": "Cause or Condition? The World's Relation to the Real",
+        "pt": "Causa ou Condição? A Relação do Mundo com o Real"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk Sekizinci Bölüm bir uyarı şiiriyle açılıyor: <em>'Yaratanımızın varlığını nedene bağlama / O zaman gidişiniz yokluğa olur / O Ilk'tir ki, / O'nun ilklikte ve hâdislikte başlangıcı yoktur.'</em> (s. 298-299) Merkezi ayrım neden (illet) ile şart (koşul) arasında: neden özü gereği nedenlisini ister -- nedenin varlığı, nedenlinin varlığını zorunlu kılar; şart ise şartlısını zorunlu kılmaz. Dost bunu somut bir örnekle açıklıyor: <em>'Bilgi hayat şartına bağlıdır. Hayat var ise bilginin de bulunması gerekmez... Hayat ortadan kalksaydı bilgi de ortadan kalkardı [ama] bilgi ortadan kalksaydı, hayatın ortadan kalkması gerekmez.'</em> (s. 299-300)",
+            "en": "Chapter Forty-Eight opens with a cautionary poem: <em>'Do not tie our Creator's existence to a cause -- / then your path leads to nonexistence. / He is the First, / who has no beginning in firstness or in coming-to-be.'</em> (pp. 298-299) The central distinction is between cause (illa) and condition (shart): a cause, by its very essence, requires its effect -- the cause's existence necessitates the effect's existence; a condition does not necessitate the conditioned. Dost explains this with a concrete example: <em>'Knowledge is bound to the condition of life. Where there is life, knowledge need not be present... If life were to cease, knowledge would cease too [but] if knowledge were to cease, life need not cease.'</em> (pp. 299-300)",
+            "pt": "O Capítulo Quarenta e Oito se abre com um poema de advertência: <em>'Não vincule a existência de nosso Criador a uma causa -- / então seu caminho leva à não-existência. / Ele é o Primeiro, / que não tem começo na primeiridade nem no vir-a-ser.'</em> (pp. 298-299) A distinção central é entre causa (illa) e condição (shart): uma causa, por sua própria essência, requer seu efeito -- a existência da causa necessita a existência do efeito; uma condição não necessita o condicionado. Dost explica isso com um exemplo concreto: <em>'O conhecimento está ligado à condição da vida. Onde há vida, o conhecimento não precisa estar presente... Se a vida cessasse, o conhecimento também cessaria [mas] se o conhecimento cessasse, a vida não precisaria cessar.'</em> (pp. 299-300)"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Âlemin Hakka nispetinin hangisine benzediği sorulunca, Dost şaşırtıcı bir uzlaştırmaya varıyor: Eş'ari kelamcılar 'ilahi bilgi âlemin var olmasını takdir ettiği için âlem var olmalıdır' derken, filozoflar 'Allah zatı gereği âlemin var olmasını gerektirir' diyor -- ve Dost'a göre ikisi de aslında aynı yapıyı farklı isimlerle anlatıyor: <em>'bilginin âlemin varlığına ezeli olarak ilişmesini neden diye isimlendirdiğimiz gibi filozof da zatı neden diye isimlendirir ve bunların arasında bir fark yoktur.'</em> (s. 300) Bir nedenlinin iki nedeni olamayacağı uzun bir mantıksal ispatla (teselsül argümanıyla) gösteriliyor (s. 301-302); din tarafından tespit edilmiş nedensellik ise istisna tutuluyor (s. 302). Bölümün en çarpıcı notu: şeriat Allah'ı hiçbir zaman 'neden' diye adlandırmadığı için, biz de bu ismi O'na vermeyiz: <em>'Şu var ki, şeriat bu lafzı Allah hakkında kullanmamıştır. Dolayısıyla biz bu adı O'na vermeyiz ve bu isimle O'na dua etmeyiz.'</em> (s. 302) Ardından gelen şiir bu paradoksu yoğunlaştırıyor: <em>'O bilgisinin nedenlisidir / Kendisinin nedenlisi değildir.'</em> (s. 302-303) -- açıkçası bu dizelerin tam ne kastettiği bize göre açık değil; zorlamadan, olduğu gibi aktarıyoruz.",
+            "en": "When asked which relation the world's relation to the Real resembles, Dost arrives at a surprising reconciliation: while the Ash'ari theologians say 'the world must exist because divine knowledge has predetermined its existence,' the philosophers say 'God, by His very essence, necessitates the world's existence' -- and according to Dost the two are, in fact, describing the same structure under different names: <em>'Just as we name the eternal bearing of [divine] knowledge on the world's existence a cause, the philosopher too names the essence a cause, and there is no difference between the two.'</em> (p. 300) A long logical proof (via the argument from infinite regress) shows that an effect cannot have two causes (pp. 301-302); causation as established by revealed law is held as an exception (p. 302). The chapter's most striking note: since revealed law never calls God a 'cause,' we too withhold this name from Him: <em>'It remains that the sacred law has not used this term for God. Therefore we do not give Him this name, nor do we call upon Him by it.'</em> (p. 302) The poem that follows condenses this paradox: <em>'He is the caused of His own knowledge, / not the cause of Himself.'</em> (pp. 302-303) -- frankly, what these lines fully intend is not clear to us; we pass them along as they are, without forcing a resolution.",
+            "pt": "Quando questionado sobre a qual relação se assemelha a relação do mundo com o Real, Dost chega a uma reconciliação surpreendente: enquanto os teólogos ash'aritas dizem 'o mundo deve existir porque o conhecimento divino predeterminou sua existência,' os filósofos dizem 'Deus, por Sua própria essência, necessita a existência do mundo' -- e segundo Dost os dois, na verdade, descrevem a mesma estrutura sob nomes diferentes: <em>'Assim como chamamos de causa a ligação eterna do conhecimento [divino] com a existência do mundo, o filósofo também chama a essência de causa, e não há diferença entre os dois.'</em> (p. 300) Uma longa prova lógica (pelo argumento do regresso infinito) mostra que um efeito não pode ter duas causas (pp. 301-302); a causação estabelecida pela lei revelada é mantida como exceção (p. 302). A nota mais marcante do capítulo: como a lei revelada nunca chama Deus de 'causa,' também nós Lhe negamos esse nome: <em>'Resta que a lei sagrada não usou esse termo para Deus. Portanto não Lhe damos esse nome, nem O invocamos por ele.'</em> (p. 302) O poema que segue condensa esse paradoxo: <em>'Ele é o causado de Seu próprio conhecimento, / não a causa de Si mesmo.'</em> (pp. 302-303) -- francamente, o que esses versos pretendem por completo não nos é claro; os transmitimos como estão, sem forçar uma resolução."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIV — Kırk Sekizinci Bölüm, s. 299-300.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIV — Chapter Forty-Eight, pp. 299-300.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIV — Capítulo Quarenta e Oito, pp. 299-300."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Neden (İllet)",
+                "en": "Cause",
+                "pt": "Causa"
+              },
+              "note": {
+                "tr": "özü gereği nedenlisini ister -- neden varsa nedenli de zorunlu olarak vardır",
+                "en": "by its very nature requires its effect -- where the cause exists, the effect necessarily exists too",
+                "pt": "por sua própria natureza requer seu efeito -- onde a causa existe, o efeito necessariamente também existe"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Şart (Koşul)",
+                "en": "Condition",
+                "pt": "Condição"
+              },
+              "note": {
+                "tr": "şartlısını zorunlu kılmaz -- hayat bilginin şartıdır ama hayat varken bilgi bulunmayabilir",
+                "en": "does not necessitate the conditioned -- life is a condition of knowledge, but knowledge need not exist wherever life does",
+                "pt": "não necessita o condicionado -- a vida é condição do conhecimento, mas o conhecimento não precisa existir onde há vida"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'a göre âlemin Hakka nispeti ne salt nedenli-neden ne de salt şartlı-şart ilişkisiyle tam örtüşüyor -- ama tartışmanın kendisi bu iki kavramı keskin biçimde ayırıyor: biri zorunlu sonuç doğurur, öteki sadece imkanın önkoşuludur.",
+            "en": "For Dost, the world's relation to the Real does not map cleanly onto either the effect-cause or the conditioned-condition relation -- but the discussion itself sharply distinguishes the two concepts: one necessarily produces its result, the other is only the precondition for a possibility.",
+            "pt": "Para Dost, a relação do mundo com o Real não se encaixa perfeitamente nem na relação efeito-causa nem na relação condicionado-condição -- mas a própria discussão distingue nitidamente os dois conceitos: um produz necessariamente seu resultado, o outro é apenas a pré-condição de uma possibilidade."
+          }
+        }
+      ]
+    },
+    {
+      "id": "adem-halife-secde",
+      "heading": {
+        "tr": "Âdem, İsimler, Halifelik ve Secde",
+        "en": "Adam, the Names, Caliphate, and Prostration",
+        "pt": "Adão, os Nomes, o Califado, e a Prostração"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ayrı bir 'mesele' başlığı altında, 'bu ancak şunun için oldu' formülü bela/afiyet (mutluluk/bedbahtlık) bağlamında ele alınıyor -- ve burada ilişki neden-nedenli değil şart-şartlıdır: 'Şart var olmadığı zaman şartlının var olması da mümkün değildir, hâlbuki şartlı bulunmasa bile şart var olabilir.' (s. 303) Buradan, cehennemdeki azabın sonsuz olmayabileceği ihtimali açıkça tartışılıyor -- Dost, Şâri'den bu konuda kesin/tevile kapalı bir nas gelmediğini vurguluyor: <em>'Bir mümkün hakkında azabın hükmü ortadan kalkarsa -ki onlar cennetliktir- aynı şekilde cehennemliklerden de ateşte oldukları halde azabın varlığı kalkabilir... Rahmetim gazabımı geçti.'</em> (s. 303-304) Metnin kendisi de temkinli: 'Akıl bakımından elimizde azabın varlığının sürekli olduğuna dair bir kanıt yoktur.' Biz de bu temkini koruyarak aktarıyoruz -- bu, kesinleştirilmiş bir sonuç değil, metnin kendi açtığı bir olasılık.",
+            "en": "Under a separate 'matter,' the formula 'this was only for that' is taken up in the context of affliction and well-being (misery and felicity) -- and here the relation is not cause-effect but condition-conditioned: 'When the condition does not exist, the conditioned cannot exist either; yet the condition can exist even when the conditioned does not.' (p. 303) From here, the possibility that the punishment of hell might not be eternal is openly discussed -- Dost stresses that no decisive, non-interpretable text has come from the Lawgiver on this matter: <em>'If the ruling of punishment can be lifted from one possible being -- namely, the people of paradise -- then in the same way the existence of punishment could be lifted from the people of hell, even while they remain in the fire... My mercy has preceded My wrath.'</em> (pp. 303-304) The text itself is cautious: 'Rationally speaking, we have no proof that punishment's existence is perpetual.' We too preserve this caution as we pass it along -- this is not a settled conclusion but a possibility the text itself opens.",
+            "pt": "Sob um 'assunto' separado, a fórmula 'isto foi apenas por aquilo' é retomada no contexto da aflição e do bem-estar (miséria e felicidade) -- e aqui a relação não é causa-efeito, mas condição-condicionado: 'Quando a condição não existe, o condicionado também não pode existir; porém a condição pode existir mesmo quando o condicionado não existe.' (p. 303) A partir daí, discute-se abertamente a possibilidade de que o castigo do inferno não seja eterno -- Dost enfatiza que nenhum texto decisivo e não interpretável veio do Legislador sobre essa questão: <em>'Se o julgamento do castigo pode ser suspenso de um ser possível -- a saber, o povo do paraíso -- então, do mesmo modo, a existência do castigo poderia ser suspensa do povo do inferno, mesmo enquanto permanecem no fogo... Minha misericórdia precedeu Minha ira.'</em> (pp. 303-304) O próprio texto é cauteloso: 'Racionalmente falando, não temos prova de que a existência do castigo seja perpétua.' Também preservamos essa cautela ao transmitir isso -- não é uma conclusão fechada, mas uma possibilidade que o próprio texto abre."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Sonra Âdem'in iki elle ve ilahi surete göre yaratılışı işleniyor -- bütün isimler ona öğretiliyor, meleklere değil: <em>'Bu bilgiyi Allah, insana göre daha yüce ve üstün âlem olan meleklere vermemiştir.'</em> (s. 304) Bunu uzun bir halife-peygamber ayrımı izliyor: <em>'Her peygamber halife değildir. Emreden, yasaklayan, cezalandıran, bağışlayan, Allah'ın kendisine itaat edilmesini emrettiği ve bu nitelikleri topladığı kimse halifedir. Allah'ın emir ve yasağını bildirip kendiliğinden emir ve yasak koymaya izinli olmayan kimse ise, Rabbinin gönderdiğini tebliğ eden bir peygamberdir.'</em> (s. 306) Bu ayrım, Nisâ 59'un ('Allah'a itaat edin... Peygambere itaat edin... sizden olan emir sahiplerine de') ayrıntılı bir tefsiriyle destekleniyor (s. 306-307). Bölüm, Âdem'e secde meselesiyle kapanıyor -- secde, üst yön (Arş'a istiva) ile alt yön (yakın göğe iniş) arasındaki görünür çelişkinin aslında bir ve aynı olduğunu gösteriyor; ünlü kutsi hadis burada geçiyor: <em>'Beni yerim ve göğüm sığdıramadı, mümin kulumun kalbi sığdırdı.'</em> (s. 308)",
+            "en": "Next comes the treatment of Adam's creation with two hands and according to the divine form -- all the names are taught to him, not to the angels: <em>'God did not give this knowledge to the angels, though they are a loftier and more excellent world than the human being.'</em> (p. 304) This is followed by an extended distinction between caliph and prophet: <em>'Not every prophet is a caliph. The caliph is the one who commands, forbids, punishes, forgives, and gathers within himself these qualities, one whom God has commanded to be obeyed. One who conveys God's command and prohibition but is not authorized to issue command or prohibition on his own is a prophet who delivers what his Lord has sent.'</em> (p. 306) This distinction is backed by a detailed exegesis of Qur'an 4:59 ('Obey God... obey the Messenger... and those in authority among you') (pp. 306-307). The chapter closes with the matter of the prostration to Adam -- prostration shows that the apparent contradiction between the upward direction (God's rising over the Throne) and the downward direction (His descent to the near heaven) is, in fact, one and the same; the famous sacred hadith appears here: <em>'Neither My earth nor My heaven could contain Me, but the heart of My believing servant contained Me.'</em> (p. 308)",
+            "pt": "Em seguida vem o tratamento da criação de Adão com duas mãos e conforme a forma divina -- todos os nomes lhe são ensinados, não aos anjos: <em>'Deus não deu esse conhecimento aos anjos, embora sejam um mundo mais elevado e excelente do que o ser humano.'</em> (p. 304) Segue-se uma extensa distinção entre califa e profeta: <em>'Nem todo profeta é califa. O califa é aquele que comanda, proíbe, pune, perdoa, e reúne em si essas qualidades, aquele a quem Deus ordenou que fosse obedecido. Aquele que transmite a ordem e a proibição de Deus, mas não está autorizado a emitir ordem ou proibição por conta própria, é um profeta que entrega o que seu Senhor enviou.'</em> (p. 306) Essa distinção é sustentada por uma exegese detalhada do Alcorão 4:59 ('Obedecei a Deus... obedecei ao Mensageiro... e aos que têm autoridade entre vós') (pp. 306-307). O capítulo se encerra com a questão da prostração diante de Adão -- a prostração mostra que a contradição aparente entre a direção ascendente (a elevação de Deus sobre o Trono) e a direção descendente (Sua descida ao céu próximo) é, na verdade, uma só e mesma coisa; o famoso hadith sagrado aparece aqui: <em>'Nem Minha terra nem Meu céu puderam Me conter, mas o coração de Meu servo crente Me conteve.'</em> (p. 308)"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIV — Kırk Sekizinci Bölüm, s. 305-307.",
+            "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIV — Chapter Forty-Eight, pp. 305-307.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIV — Capítulo Quarenta e Oito, pp. 305-307."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Halife",
+                "en": "Caliph",
+                "pt": "Califa"
+              },
+              "note": {
+                "tr": "emreder, yasaklar, cezalandırır, bağışlar -- kendisine itaat edilmesi emredilmiştir",
+                "en": "commands, forbids, punishes, forgives -- obedience to him has been commanded",
+                "pt": "comanda, proíbe, pune, perdoa -- a obediência a ele foi ordenada"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Peygamber (Halife Olmayan)",
+                "en": "Prophet (Who Is Not a Caliph)",
+                "pt": "Profeta (Que Não É Califa)"
+              },
+              "note": {
+                "tr": "sadece Rabbinin gönderdiğini tebliğ eder, kendiliğinden emir-yasak koyamaz",
+                "en": "only conveys what his Lord has sent, cannot issue commands or prohibitions on his own",
+                "pt": "apenas transmite o que seu Senhor enviou, não pode emitir ordens ou proibições por conta própria"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Her halife peygamberdir ama her peygamber halife değildir -- Dost bu ayrımı Davud Peygamber örneğiyle somutlaştırıyor, ve Nisâ 59'daki 'Allah'a itaat edin / Peygambere itaat edin / sizden olan emir sahiplerine' sıralamasını bu ayrımın kanıtı olarak okuyor.",
+            "en": "Every caliph is a prophet, but not every prophet is a caliph -- Dost grounds this distinction in the example of the Prophet David, and reads the sequence in Qur'an 4:59 ('obey God / obey the Messenger / those in authority among you') as evidence for it.",
+            "pt": "Todo califa é profeta, mas nem todo profeta é califa -- Dost fundamenta essa distinção no exemplo do Profeta Davi, e lê a sequência do Alcorão 4:59 ('obedecei a Deus / obedecei ao Mensageiro / aos que têm autoridade entre vós') como evidência disso."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dongusel-zincir",
+      "heading": {
+        "tr": "Döngüsel Zincir: Nispetten Nispete",
+        "en": "The Circular Chain: From Attribution Back to Attribution",
+        "pt": "A Cadeia Circular: Da Atribuição de Volta à Atribuição"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu meselenin başlığı bile 'Bu Bâbdan Döngüsel Bir Mesele' diye geçiyor (s. 308) -- alt başlığı 'Farklılaşmaların Şekli'. Metinde burada ciddi bir tarama bozulması var; bize göre orijinalinde gerçek bir dairesel şema vardı ve tarama süreci bunu düzyazıya indirgeyemedi. Ama takip eden açıklama, zinciri adım adım veriyor: <em>'İlahi nispetlerin (isim ve nitelikler) farklılığı nedeniyle şeriatlar da farklılaşmıştır dedik.'</em> (nispet → şeriat, s. 308) <em>'Peki, ilahi nispetler niçin farklılaşır? Çünkü haller birbirinden farklıdır.'</em> (hal → nispet, s. 308-309) <em>'Hallerin farklılığı zamanların farklılığı nedeniyledir.'</em> (zaman → hal, s. 309) <em>'Zamanlar, hareketlerin farklılaşması nedeniyle farklılaşır.'</em> (hareket → zaman, s. 309-310) <em>'Hareketler, yönelişlerin farklılaşmasıyla farklılaşır.'</em> (yöneliş → hareket, s. 310) <em>'Yönelişler ise, maksatların farklılaşmasıyla farklılaşır.'</em> (maksat → yöneliş, s. 310) <em>'Maksatlar tecellilerin farklılaşmasıyla farklılaşır.'</em> (tecelli → maksat, s. 310)",
+            "en": "Even the heading of this matter reads 'A Circular Matter Under This Chapter' (p. 308) -- its subtitle, 'The Shape of the Differentiations.' The text suffers serious scanning corruption here; we believe the original contained an actual circular diagram, which the scanning process could not preserve as anything but garbled prose. But the explanation that follows spells out the chain step by step: <em>'We said that, because of the difference among divine attributions (names and qualities), sacred laws also come to differ.'</em> (attribution → sacred law, p. 308) <em>'Why, then, do divine attributions differ? We answer thus: because states differ from one another.'</em> (state → attribution, pp. 308-309) <em>'The difference among states is due to the difference among times.'</em> (time → state, p. 309) <em>'Times differ because of the differentiation of motions.'</em> (motion → time, pp. 309-310) <em>'Motions differ through the differentiation of directednesses.'</em> (directedness → motion, p. 310) <em>'Directednesses differ through the differentiation of aims.'</em> (aim → directedness, p. 310) <em>'Aims differ through the differentiation of self-disclosures.'</em> (self-disclosure → aim, p. 310)",
+            "pt": "Até o título deste assunto se lê 'Um Assunto Circular Sob Este Capítulo' (p. 308) -- seu subtítulo, 'A Forma das Diferenciações.' O texto sofre séria corrupção de digitalização aqui; acreditamos que o original continha um diagrama circular real, que o processo de digitalização não conseguiu preservar senão como prosa embaralhada. Mas a explicação que se segue expõe a cadeia passo a passo: <em>'Dissemos que, por causa da diferença entre as atribuições divinas (nomes e qualidades), as leis sagradas também passam a diferir.'</em> (atribuição → lei sagrada, p. 308) <em>'Por que, então, as atribuições divinas diferem? Respondemos assim: porque os estados diferem entre si.'</em> (estado → atribuição, pp. 308-309) <em>'A diferença entre os estados se deve à diferença entre os tempos.'</em> (tempo → estado, p. 309) <em>'Os tempos diferem por causa da diferenciação dos movimentos.'</em> (movimento → tempo, pp. 309-310) <em>'Os movimentos diferem através da diferenciação dos direcionamentos.'</em> (direcionamento → movimento, p. 310) <em>'Os direcionamentos diferem através da diferenciação dos propósitos.'</em> (propósito → direcionamento, p. 310) <em>'Os propósitos diferem através da diferenciação das autorrevelações.'</em> (autorrevelação → propósito, p. 310)"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ve son halka zinciri kapatıyor: <em>'Tecelliler, şeriatların farklılığı nedeniyle farklılaşır.'</em> (şeriat → tecelli, s. 310-311) Metin bunu bizzat fark ediyor: <em>'Böylece başladığımız noktaya ulaştık. Bu meselelerden hangisini alırsan o, ilk, son ve orta olmaya uygundur. Başka bir ifadeyle dairesel her bir şeyin her parçası, varsayımsal olarak ilk, son ve orta olabilir.'</em> (s. 311) Bize göre bu, kısmın açılışındaki daire öğretisiyle doğrudan yankılanan, kısmın yapısını da bir daireye çeviren bir kapanış. Kısım, Dost'un kendi kitabı *et-Tedbîrâtü'l-İlâhiyye*'den bir alıntıyla son buluyor -- bahçe-devlet-sultan-yasa-hükümdar-asker-mal-tebaa-adalet zincirinin, yine bahçenin iyiliğine dönmesiyle: <em>'Âlem, koruyucu çitleri devlet olan bir bahçedir... Tebaa, köledir, adalet onları itaat ettirir. Adalet, âlemin iyiliğinin kendisinde bulunduğu bir imkandır.'</em> Ve son cümle: <em>'Böylece iş başa döner.'</em> (s. 311-312)",
+            "en": "And the last link closes the chain: <em>'Self-disclosures differ because of the difference among sacred laws.'</em> (sacred law → self-disclosure, pp. 310-311) The text notices this itself: <em>'Thus we have reached the point from which we began. Whichever of these matters you take up, it is fit to be first, last, and middle. In other words, every part of a circular thing can, hypothetically, be first, last, and middle.'</em> (p. 311) To us, this closing directly echoes the circle-teaching that opened the part, turning the part's own structure into a circle as well. The part ends with a quotation from Dost's own book *al-Tadbirat al-Ilahiyya* -- a chain of garden-state-sultan-law-ruler-army-wealth-subjects-justice that likewise returns to the garden's own good: <em>'The world is a garden whose protective hedge is the state. The state is the sultan. The sultan is bounded by the law. The law is the policy the ruler applies. The ruler is a shepherd. The army supports him. The soldiers are helpers, gathered by wealth. Wealth is the sustenance the subjects collect. The subjects are servants, made obedient by justice. Justice is the very possibility in which the well-being of the world resides.'</em> And the closing sentence: <em>'Thus the matter returns to its starting point.'</em> (pp. 311-312)",
+            "pt": "E o último elo fecha a cadeia: <em>'As autorrevelações diferem por causa da diferença entre as leis sagradas.'</em> (lei sagrada → autorrevelação, pp. 310-311) O próprio texto percebe isso: <em>'Assim chegamos ao ponto de onde partimos. Qualquer um desses assuntos que você tome, ele é apto a ser primeiro, último e do meio. Em outras palavras, cada parte de uma coisa circular pode, hipoteticamente, ser primeira, última e do meio.'</em> (p. 311) Para nós, esse fechamento ecoa diretamente o ensinamento do círculo que abriu a parte, transformando a própria estrutura da parte também num círculo. A parte termina com uma citação do próprio livro de Dost, *al-Tadbirat al-Ilahiyya* -- uma cadeia de jardim-estado-sultão-lei-governante-exército-riqueza-súditos-justiça que igualmente retorna ao próprio bem do jardim: <em>'O mundo é um jardim cuja cerca protetora é o estado. O estado é o sultão. O sultão é limitado pela lei. A lei é a política que o governante aplica. O governante é um pastor. O exército o apoia. Os soldados são auxiliares, reunidos pela riqueza. A riqueza é o sustento que os súditos recolhem. Os súditos são servos, tornados obedientes pela justiça. A justiça é a própria possibilidade na qual reside o bem-estar do mundo.'</em> E a frase final: <em>'Assim o assunto retorna ao seu ponto de partida.'</em> (pp. 311-312)"
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIV — Kırk Yedinci Bölüm: Süfli Menzillerin ve Makamlarının Niteliğinin Sırlarının Bilinmesi, s. 281-298.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIV — Chapter Forty-Seven: Knowing the Secrets of the Nature of the Lower Waystations and Stations, pp. 281-298.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIV — Capítulo Quarenta e Sete: Conhecendo os Segredos da Natureza das Estações e Moradas Inferiores, pp. 281-298."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXIV — Kırk Sekizinci Bölüm: 'Bu, Ancak Şunun İçin Oldu' İfadesinin Bilinmesi, Neden ve Sebeplerin İspatı, s. 298-312.",
+      "en": "al-Futuhat al-Makkiyya, Vol. II, Part XXIV — Chapter Forty-Eight: Knowing the Expression 'This Was Only for That,' and the Proof of Causes and Reasons, pp. 298-312.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. II, Parte XXIV — Capítulo Quarenta e Oito: Conhecendo a Expressão 'Isto Foi Apenas Por Aquilo,' e a Prova das Causas e Razões, pp. 298-312."
+    }
+  ]
+}

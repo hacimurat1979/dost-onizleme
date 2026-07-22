@@ -1,0 +1,1401 @@
+{
+  "id": "c1k6",
+  "cilt": 1,
+  "kisim": 6,
+  "status": "active",
+  "title": {
+    "tr": "Harflerin Portreleri",
+    "en": "Portraits of the Letters",
+    "pt": "Retratos das Letras"
+  },
+  "pageRange": "180–211",
+  "hero": {
+    "summary": {
+      "tr": "Altıncı Kısım, Beşinci Kısım'ın kapandığı yerden hemen devam ederek biçim değiştiriyor: harfleri artık gruplar hâlinde değil, tek tek ele alan bir 'sözlük'e dönüşüyor. Her harf, önce kısa bir şiirle kendini tanıtıyor, sonra mahreci, sayısal değeri, âlemi, feleği, mertebesi ve kendisine ait ilâhî isimlerin uzun bir dökümüyle devam ediyor. Bu teknik dökümü harf harf aktarmak yerine, en çarpıcı bulduğumuz durakları seçip aktarıyoruz — Elif'in bilmecesinden Fe'nin bize kapalı kalan satırlarına kadar on yedi harfin portresi. Tekil harfler sözlüğü kapanınca Dost, Lâm-Elif'e üçüncü kez döner ve bu sefer onu 'cins' (genus) ve 'hakikatler hakikati' (bütün varlığı kuşatan, kendisi ne var ne yok olan en genel gerçeklik) üzerinden okur — kendi ifadesiyle bize de zor gelen bir pasaj. Kısım, hakikatler hakikatine en çok benzeyenin 'hebâ' (henüz hiçbir sûret giymemiş saf kabul edicilik) olduğu ve ondan nur, hava, su, maden, ahşaba uzanan bir benzerlik zinciriyle kapanıyor — Dost'un kendi cümlesiyle: 'Altıncı kısım sona ermiştir, hamdolsun.'",
+      "en": "Part VI continues directly from where Part V closed, but changes shape: the letters are no longer treated in groups but one by one, as a kind of dictionary. Each letter introduces itself with a short poem, then continues with a long technical rundown — its point of articulation, numeric value, world, celestial sphere, rank, and the divine Names attached to it. Rather than relay that technical rundown letter by letter, we've picked out the stops we found most striking — seventeen letters' portraits, from Elif's riddle to Fe's lines that remain closed to us. Once the dictionary of single letters closes, Dost returns a third time to Lam-Elif, this time reading it through 'genus' and the 'reality of realities' (the most general reality that encompasses all existence, itself neither existent nor non-existent) — a passage that, by his own account, is difficult for us too. The Part closes with the claim that what most resembles the reality of realities is 'hebâ' (a pure receptivity not yet clothed in any form), and a chain of resemblance running from it through light, air, water, mineral, and wood — in Dost's own words: 'Part Six has ended, praise be to God.'",
+      "pt": "A Parte VI continua diretamente de onde a Parte V se encerrou, mas muda de forma: as letras não são mais tratadas em grupos, mas uma a uma, como uma espécie de dicionário. Cada letra se apresenta com um curto poema, depois continua com um longo levantamento técnico — seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e os Nomes divinos a ela associados. Em vez de relatar esse levantamento técnico letra por letra, escolhemos as paradas que achamos mais marcantes — os retratos de dezessete letras, do enigma de Elif às linhas de Fe que permanecem fechadas para nós. Uma vez fechado o dicionário das letras simples, Dost retorna pela terceira vez a Lam-Elif, desta vez lendo-o através do 'gênero' e da 'realidade das realidades' (a realidade mais geral que abrange toda a existência, ela mesma nem existente nem inexistente) — uma passagem que, por sua própria conta, também é difícil para nós. A Parte se encerra com a afirmação de que o que mais se assemelha à realidade das realidades é o 'hebâ' (uma pura receptividade ainda não revestida de nenhuma forma), e uma cadeia de semelhança que vai dele até a luz, o ar, a água, o mineral e a madeira — nas próprias palavras de Dost: 'A Sexta Parte chegou ao fim, louvado seja Deus.'"
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Altıncı Kısım'da her harf kendi şiiriyle açılıyor — burada üçünü örnekliyoruz.",
+      "en": "In Part VI, every letter opens with its own poem — here we sample three of them.",
+      "pt": "Na Parte VI, cada letra se abre com seu próprio poema — aqui exemplificamos três delas."
+    },
+    "tree": {
+      "id": "harf-portreleri-tree",
+      "label": {
+        "tr": "Harflerin Portreleri",
+        "en": "Portraits of the Letters",
+        "pt": "Retratos das Letras"
+      },
+      "note": {
+        "tr": "her harf kendi şiiriyle açılır",
+        "en": "each letter opens with its own poem",
+        "pt": "cada letra se abre com seu próprio poema"
+      },
+      "children": [
+        {
+          "id": "elif-portre",
+          "label": {
+            "tr": "Elif",
+            "en": "Elif",
+            "pt": "Elif"
+          },
+          "note": {
+            "tr": "zayıf kul, aziz sultan",
+            "en": "weak servant, mighty sovereign",
+            "pt": "servo fraco, soberano poderoso"
+          }
+        },
+        {
+          "id": "kaf-portre",
+          "label": {
+            "tr": "Kaf",
+            "en": "Qaf",
+            "pt": "Qaf"
+          },
+          "note": {
+            "tr": "hilâl ve dolunay",
+            "en": "crescent and full moon",
+            "pt": "crescente e lua cheia"
+          }
+        },
+        {
+          "id": "kef-portre",
+          "label": {
+            "tr": "Kef",
+            "en": "Kaf",
+            "pt": "Kaf"
+          },
+          "note": {
+            "tr": "celâl ve cemâl",
+            "en": "majesty and beauty",
+            "pt": "majestade e beleza"
+          }
+        },
+        {
+          "id": "ra-portre",
+          "label": {
+            "tr": "Ra",
+            "en": "Ra",
+            "pt": "Ra"
+          },
+          "note": {
+            "tr": "sevgi ve vuslat",
+            "en": "love and union",
+            "pt": "amor e união"
+          }
+        },
+        {
+          "id": "nun-portre",
+          "label": {
+            "tr": "Nun",
+            "en": "Nun",
+            "pt": "Nun"
+          },
+          "note": {
+            "tr": "yarısı görünen nokta",
+            "en": "half-visible point",
+            "pt": "ponto meio-visível"
+          }
+        },
+        {
+          "id": "ti-portre",
+          "label": {
+            "tr": "Tı",
+            "en": "Ta",
+            "pt": "Ta"
+          },
+          "note": {
+            "tr": "beş saklı sır",
+            "en": "five hidden secrets",
+            "pt": "cinco segredos ocultos"
+          }
+        },
+        {
+          "id": "sad-portre",
+          "label": {
+            "tr": "Sad",
+            "en": "Sad",
+            "pt": "Sad"
+          },
+          "note": {
+            "tr": "iki rüya, bir sır",
+            "en": "two dreams, one secret",
+            "pt": "dois sonhos, um segredo"
+          }
+        },
+        {
+          "id": "ba-portre",
+          "label": {
+            "tr": "Ba",
+            "en": "Ba",
+            "pt": "Ba"
+          },
+          "note": {
+            "tr": "besmelenin ilk harfi",
+            "en": "basmala's first letter",
+            "pt": "primeira letra da basmala"
+          }
+        },
+        {
+          "id": "mim-portre",
+          "label": {
+            "tr": "Mim",
+            "en": "Mim",
+            "pt": "Mim"
+          },
+          "note": {
+            "tr": "Nun'un aynası",
+            "en": "Nun's mirror",
+            "pt": "o espelho de Nun"
+          }
+        },
+        {
+          "id": "lam-elif-portre",
+          "label": {
+            "tr": "Lâm-Elif",
+            "en": "Lam-Elif",
+            "pt": "Lam-Elif"
+          },
+          "note": {
+            "tr": "iki sevgilinin kucaklaşması",
+            "en": "the embrace of two lovers",
+            "pt": "o abraço de dois amantes"
+          }
+        },
+        {
+          "id": "vav-portre",
+          "label": {
+            "tr": "Vav",
+            "en": "Waw",
+            "pt": "Waw"
+          },
+          "note": {
+            "tr": "içimizde kurulan Sidre",
+            "en": "the Sidre established within us",
+            "pt": "a Sidra estabelecida em nós"
+          }
+        },
+        {
+          "id": "ze-portre",
+          "label": {
+            "tr": "Ze",
+            "en": "Za",
+            "pt": "Za"
+          },
+          "note": {
+            "tr": "Zâtı yalnız Zât bilir",
+            "en": "only the Essence knows the Essence",
+            "pt": "só a Essência conhece a Essência"
+          }
+        },
+        {
+          "id": "zi-portre",
+          "label": {
+            "tr": "Zı",
+            "en": "Za (Ẓāʾ)",
+            "pt": "Za (Ẓāʾ)"
+          },
+          "note": {
+            "tr": "görünmenin bedeli",
+            "en": "the price of appearing",
+            "pt": "o preço de aparecer"
+          }
+        },
+        {
+          "id": "zel-portre",
+          "label": {
+            "tr": "Zel",
+            "en": "Dhal",
+            "pt": "Dhal"
+          },
+          "note": {
+            "tr": "Vâhid ve Samed",
+            "en": "al-Wahid and As-Samad",
+            "pt": "al-Wahid e As-Samad"
+          }
+        },
+        {
+          "id": "se-portre",
+          "label": {
+            "tr": "Se",
+            "en": "Tha",
+            "pt": "Tha"
+          },
+          "note": {
+            "tr": "üç günün Zât-Sıfat-Fiil'i",
+            "en": "the Essence-Attribute-Act of three days",
+            "pt": "a Essência-Atributo-Ato de três dias"
+          }
+        },
+        {
+          "id": "fe-portre",
+          "label": {
+            "tr": "Fe",
+            "en": "Fa",
+            "pt": "Fa"
+          },
+          "note": {
+            "tr": "Ya ile karışımı",
+            "en": "its mixture with Ya",
+            "pt": "sua mistura com Ya"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "elifin-bilmecesi",
+      "heading": {
+        "tr": "Elif'in Bilmecesi",
+        "en": "Elif's Riddle",
+        "pt": "O Enigma de Elif"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, harfleri artık tek tek ele almaya başlıyor — Elif'ten başlayarak. Her harf önce kısa bir şiirle konuşuyor, sonra mahreç (çıkış yeri), sayısal değer, âlem, felek, mertebe ve o harfe ait ilâhî isimlerin uzun bir listesiyle devam ediyor. Bu ikinci kısmı — ki hemen her harfte aynı kalıpta tekrarlanıyor — teker teker aktarmak yerine, sadece şiirleri seçip aktarıyoruz.",
+            "en": "The part begins treating the letters one by one — starting with Elif. Each letter first speaks through a short poem, then continues with its point of articulation, numeric value, world, celestial sphere, rank, and a long list of divine Names attached to it. Rather than relay that second part — which repeats in nearly the same pattern for almost every letter — we're picking out only the poems.",
+            "pt": "A parte começa a tratar as letras uma a uma — começando por Elif. Cada letra primeiro fala através de um curto poema, depois continua com seu ponto de articulação, valor numérico, mundo, esfera celeste, hierarquia, e uma longa lista de Nomes divinos a ela associados. Em vez de relatar essa segunda parte — que se repete quase no mesmo padrão em quase toda letra — escolhemos apenas os poemas."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Elif'in şiiri, harfin kendi kendiyle konuştuğu bir bilmece gibi okunuyor: <em>'Zat Elif'i münezzeh oldun, acaba var olanlarda bir hakikatin ve yerin var mı? Dedi ki: Yok, iltifatımdan gayri, ben ise ebed harfiyim, ezeli içeririm. İşte ben seçilmiş zayıf kulum, ve ben sultanım, aziz ve yüce olan.'</em> Aynı dizede Elif hem 'zayıf kul' hem 'aziz sultan' olarak konuşuyor — bu çelişkiyi çözmeye çalışmak yerine, Dost'un burada bir bilmece bıraktığını düşünüyoruz.",
+            "en": "Elif's poem reads like a riddle the letter speaks to itself: <em>'You transcended as Elif of the Essence — do you then have a reality and a place among existing things? It said: None, apart from my own favor, for I am the letter of everlastingness, containing eternity-without-beginning. I am the chosen, weak servant, and I am the sovereign, mighty and exalted.'</em> In the same lines Elif speaks as both 'weak servant' and 'mighty sovereign' — rather than try to resolve this contradiction, we take it as a riddle Dost leaves standing here.",
+            "pt": "O poema de Elif se lê como um enigma que a letra dirige a si mesma: <em>'Transcendeste como o Elif da Essência — tens então uma realidade e um lugar entre as coisas existentes? Disse: Nenhum, além do meu próprio favor, pois sou a letra da perpetuidade, contendo a eternidade-sem-começo. Sou o servo escolhido e fraco, e sou o soberano, poderoso e exaltado.'</em> Nas mesmas linhas Elif fala tanto como 'servo fraco' quanto como 'soberano poderoso' — em vez de tentar resolver essa contradição, a tomamos como um enigma que Dost deixa em aberto aqui."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Elif Harfi, s. 179-180.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Elif, pp. 179-180.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Elif, pp. 179-180."
+          },
+          "useMainDiagram": true
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Teknik dökümden yalnızca bir ayrıntıyı aktarmak istiyoruz, çünkü Kısım IV-V'te izlediğimiz nokta-daire imgesiyle akraba: Dost, Elif'in mertebesini tarif ederken şöyle diyor — <em>'O, dairenin noktası ve çevresi, âlemlerin yalını ve bileşiğidir.'</em> Elif burada da, harflerin geri kalanının kendisinden çıktığı merkez nokta olarak konumlanıyor.",
+            "en": "We want to relay just one detail from the technical rundown, because it's kin to the point-and-circle image we've followed through Parts IV-V: describing Elif's rank, Dost says — <em>'It is the circle's point and its circumference, the simple and the composite of the worlds.'</em> Here too, Elif is positioned as the center point from which the rest of the letters emerge.",
+            "pt": "Queremos relatar apenas um detalhe do levantamento técnico, porque é aparentado à imagem do ponto e círculo que seguimos pelas Partes IV-V: descrevendo a hierarquia de Elif, Dost diz — <em>'Ele é o ponto do círculo e sua circunferência, o simples e o composto dos mundos.'</em> Aqui também, Elif é posicionado como o ponto central do qual as demais letras emergem."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kaf-hilal-dolunay",
+      "heading": {
+        "tr": "Kaf: Hilâl ile Dolunay",
+        "en": "Qaf: Crescent and Full Moon",
+        "pt": "Qaf: Crescente e Lua Cheia"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Birkaç harf sonra Kaf'ın şiiri, doğrudan harfin yazılı şekline bakarak görsel bir imge kuruyor: <em>'Onun hilâl gibi olan eğrisine bakınız, dolunay gibi olan başının şekline bakınız.'</em> Arapça yazıda Kaf harfi gerçekten de bir eğri gövde (hilâl) ve üzerinde bir yuvarlak nokta veya halkaya benzer bir baş taşır — Dost bu iki şekli doğrudan ay'ın iki hâline benzetiyor.",
+            "en": "A few letters later, Qaf's poem builds a visual image straight from the letter's written shape: <em>'Look at its curve, like a crescent; look at the shape of its head, like a full moon.'</em> In Arabic script, the letter Qaf really does carry a curved body (crescent) with a round dot or loop above it (full moon) — Dost likens these two shapes directly to the moon's two phases.",
+            "pt": "Algumas letras depois, o poema de Qaf constrói uma imagem visual diretamente a partir da forma escrita da letra: <em>'Olha para sua curva, como um crescente; olha para a forma de sua cabeça, como uma lua cheia.'</em> Na escrita árabe, a letra Qaf realmente carrega um corpo curvo (crescente) com um ponto redondo ou laço acima (lua cheia) — Dost compara essas duas formas diretamente às duas fases da lua."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bunu, Kısım V'te işlediğimiz Elif-güneş / Nun-ay karşılaştırmasının bir devamı gibi okuyoruz — orada ay 'eksik, ödünç ışıklı' olarak Elif'in karşısına konmuştu; burada aynı ay, hilâl ve dolunay olarak, tek bir harfin (Kaf) kendi içinde taşıdığı iki hâl olarak beliriyor. Şiir, bu şekli 'başka bir yaratılışın ilkesi' olarak tarif ederek kapanıyor — ne demek istediğini tam bilmiyoruz, ama harfin kendi şeklinin bir kozmik imgeye dönüştüğü bu okuma bize çarpıcı geliyor.",
+            "en": "We read this as a continuation of the Elif-sun / Nun-moon comparison we took up in Part V — there the moon appeared opposite Elif as 'deficient, borrowed light'; here that same moon, as crescent and full moon, appears as two states carried within a single letter (Qaf). The poem closes by describing this shape as 'the principle of another creation' — we don't fully know what is meant, but we find this reading, where the letter's own shape turns into a cosmic image, striking.",
+            "pt": "Lemos isso como uma continuação da comparação Elif-sol / Nun-lua que tratamos na Parte V — lá a lua aparecia diante de Elif como 'deficiente, de luz emprestada'; aqui essa mesma lua, como crescente e lua cheia, aparece como dois estados carregados dentro de uma única letra (Qaf). O poema se encerra descrevendo essa forma como 'o princípio de outra criação' — não sabemos completamente o que se quer dizer, mas achamos essa leitura, em que a própria forma da letra se transforma numa imagem cósmica, impressionante."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kef-celal-cemal",
+      "heading": {
+        "tr": "Kef: Celâl ile Cemâl",
+        "en": "Kaf: Majesty and Beauty",
+        "pt": "Kaf: Majestade e Beleza"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kef harfinin şiiri, sitede başka bir yerde ele aldığımız Celâl-Cemâl ikiliğini doğrudan devreye sokuyor: <em>'Ümit Kef'i celâli müşahede eder, ihsan müşahede eden korku Kef'inden. Kabz ve bast'a bak! Birisi sana ayrılmayı, öteki kavuşmayı verir. Allah birine celâlini göstermiş, diğerine ise ufkundan cemâlini gösterir.'</em> Kabz (daralma) ve bast (genişleme) hâllerini, Celâl ve Cemâl tecellilerinin birer sonucu olarak sunuyor.",
+            "en": "The poem for the letter Kaf brings the Jalal-Jamal (majesty-beauty) duality — treated elsewhere on this site — directly into play: <em>'Hope witnesses Kaf's majesty, and the Kaf of fear witnesses grace. Look at contraction and expansion! One gives you separation, the other union. Allah has shown His majesty to one, and shown His beauty from His horizon to the other.'</em> It presents the states of qabd (contraction) and bast (expansion) as consequences of the theophanies of Jalal and Jamal.",
+            "pt": "O poema para a letra Kaf traz diretamente a dualidade Jalal-Jamal (majestade-beleza) — tratada em outro lugar deste site — para o primeiro plano: <em>'A esperança testemunha a majestade de Kaf, e o Kaf do medo testemunha a graça. Olha para a contração e a expansão! Uma te dá a separação, a outra a união. Allah mostrou Sua majestade a um, e mostrou Sua beleza a partir de Seu horizonte ao outro.'</em> Apresenta os estados de qabd (contração) e bast (expansão) como consequências das teofanias de Jalal e Jamal."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Kef Harfi, s. 185-186.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Kaf, pp. 185-186.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Kaf, pp. 185-186."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Celâl",
+                "en": "Jalal",
+                "pt": "Jalal"
+              },
+              "note": {
+                "tr": "kabz, ayrılık",
+                "en": "contraction, separation",
+                "pt": "contração, separação"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Cemâl",
+                "en": "Jamal",
+                "pt": "Jamal"
+              },
+              "note": {
+                "tr": "bast, kavuşma",
+                "en": "expansion, union",
+                "pt": "expansão, união"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Kef harfinin şiirinde kabz-bast hâlleri, Celâl-Cemâl tecellilerinin birer izi olarak beliriyor.",
+            "en": "In the poem for the letter Kaf, the states of contraction and expansion appear as traces of the theophanies of Jalal and Jamal.",
+            "pt": "No poema para a letra Kaf, os estados de contração e expansão aparecem como vestígios das teofanias de Jalal e Jamal."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım VI, harfleri bu kalıpta — kısa bir şiir, ardından uzun bir teknik döküm — birer birer sürdürüyor; toplamda yirmi sekize yakın harf var. Şimdi iki şiir daha seçip aktarıyoruz: Ra ve Nun.",
+            "en": "Part VI continues through the letters one by one in this same pattern — a short poem, followed by a long technical rundown — for close to twenty-eight letters in total. We now pick out two more poems: Ra and Nun.",
+            "pt": "A Parte VI continua pelas letras uma a uma nesse mesmo padrão — um curto poema, seguido de um longo levantamento técnico — para quase vinte e oito letras no total. Agora escolhemos mais dois poemas: Ra e Nun."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ra-muhabbet",
+      "heading": {
+        "tr": "Ra: Sevgi ve Vuslat",
+        "en": "Ra: Love and Union",
+        "pt": "Ra: Amor e União"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ra harfinin şiiri, önceki harflerden farklı bir şey yapıyor — doğrudan okuyucuya sesleniyor: <em>'Muhabbet Ra'sı vuslat makamında, hiçbir zaman nimet verenin evinde mahrum olmayacak. Bir vakit der ki: Ben tekim, görmem başkasını; bir vakit der ki: Ey bilinmeyen ben. Senin kalbin de Rabbinin katında böyle olsaydı, sen de en yetkin sevgili ve yakın kişi olurdun.'</em> Ra, iki farklı sözü art arda söylüyor — biri kesin bir teklik iddiası ('ben tekim'), öteki kendi kendine yabancılaşan bir soru ('ey bilinmeyen ben'). Şiir bu ikisini çözmeye çalışmadan, doğrudan okuyucuyu bu hâle davet ederek kapanıyor.",
+            "en": "The poem for the letter Ra does something the previous letters didn't — it addresses the reader directly: <em>'Ra of love, in the station of union, will never be deprived in the house of the Bestower. At one moment it says: I am alone, I see no other; at another it says: O unknown me. If your heart, too, were like this before your Lord, you would be the most perfect beloved and intimate one.'</em> Ra utters two different things in succession — one a flat claim of solitary oneness ('I am alone'), the other a question estranged from itself ('O unknown me'). The poem closes without resolving the two, inviting the reader directly into this state instead.",
+            "pt": "O poema da letra Ra faz algo que as letras anteriores não fizeram — dirige-se diretamente ao leitor: <em>'Ra do amor, na estação da união, jamais será privado na casa do Doador. Num momento diz: Sou único, não vejo outro; noutro momento diz: Ó eu desconhecido. Se teu coração também fosse assim diante de teu Senhor, serias o mais perfeito amado e íntimo.'</em> Ra pronuncia duas coisas diferentes em sucessão — uma afirmação direta de unicidade solitária ('sou único'), a outra uma pergunta estranhada de si mesma ('ó eu desconhecido'). O poema se encerra sem resolver as duas, convidando diretamente o leitor a esse estado."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Ra Harfi, s. 189-190.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ra, pp. 189-190.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ra, pp. 189-190."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "'Ben tekim'",
+                "en": "'I am alone'",
+                "pt": "'Sou único'"
+              },
+              "note": {
+                "tr": "başkasını görmez",
+                "en": "sees no other",
+                "pt": "não vê outro"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "'Ey bilinmeyen ben'",
+                "en": "'O unknown me'",
+                "pt": "'Ó eu desconhecido'"
+              },
+              "note": {
+                "tr": "kendine yabancı",
+                "en": "estranged from itself",
+                "pt": "estranho a si mesmo"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Ra'nın iki sözü art arda geliyor, ama şiir aralarında bir tercih yapmıyor.",
+            "en": "Ra's two utterances follow one another, but the poem doesn't choose between them.",
+            "pt": "As duas falas de Ra se sucedem, mas o poema não escolhe entre elas."
+          }
+        }
+      ]
+    },
+    {
+      "id": "nunun-noktasi",
+      "heading": {
+        "tr": "Nun'un Noktası",
+        "en": "Nun's Point",
+        "pt": "O Ponto de Nun"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Nun'un şiiri, Kısım IV'te işlediğimiz nokta-yarıçap-daire okumasına doğrudan geri dönüyor: <em>'Varlık Nun'unun noktası, bir hakikat olarak mabuduna delâlet eder. Onun varlığı mabudun cömertliğinden ve bereketindendir. Bütün yüceler o noktanın cömertliğindendir. Gözünle onun varlık hakikatinin yarısına bak, bulunmayan yönünü öğrenirsin.'</em> Son satır özellikle çarpıcı: Nun'un sadece yarısı gözle görülür — 'bulunmayan' öteki yarı, ancak görünenden çıkarsanabiliyor.",
+            "en": "Nun's poem returns directly to the point-radius-circle reading we took up in Part IV: <em>'The point of the Nun of existence points, as a reality, to the One it worships. Its existence comes from the generosity and abundance of the Worshipped. All that is lofty comes from that point's generosity. Look with your eye at half of its reality of existence, and you will learn the side that is not there.'</em> The last line is especially striking: only half of Nun is visible to the eye — the other, 'absent' half can only be inferred from what shows.",
+            "pt": "O poema de Nun retorna diretamente à leitura ponto-raio-círculo que tratamos na Parte IV: <em>'O ponto do Nun da existência aponta, como realidade, para Aquele que é adorado. Sua existência vem da generosidade e abundância do Adorado. Tudo que é elevado vem da generosidade desse ponto. Olha com teus olhos para metade de sua realidade de existência, e aprenderás o lado que não está ali.'</em> A última linha é especialmente marcante: apenas metade de Nun é visível ao olho — a outra metade, 'ausente', só pode ser inferida a partir do que se mostra."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Nun Harfi, s. 190.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Nun, p. 190.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Nun, p. 190."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Görünen Yarı",
+                "en": "The Visible Half",
+                "pt": "A Metade Visível"
+              },
+              "note": {
+                "tr": "gözle görülür",
+                "en": "seen by the eye",
+                "pt": "vista pelo olho"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Bulunmayan Yarı",
+                "en": "The Absent Half",
+                "pt": "A Metade Ausente"
+              },
+              "note": {
+                "tr": "görünenden çıkarsanır",
+                "en": "inferred from the visible",
+                "pt": "inferida do visível"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Nun'un yarısı görünür, öteki yarısı yalnızca çıkarsanır — Kısım IV'teki 'dairenin yarısı olan Nun' okumasıyla aynı aile.",
+            "en": "Half of Nun is visible, the other half only inferred — kin to the 'Nun as half the circle' reading from Part IV.",
+            "pt": "Metade de Nun é visível, a outra metade apenas inferida — aparentada à leitura de 'Nun como metade do círculo' da Parte IV."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "İlginç bir yankı: birkaç harf önce Şın'ın şiiri de benzer bir ay imgesi taşıyordu — <em>'İnsanlar onun içerdiği sırrı görseydi, dolunayın silinmesiyle hilâlin tamamlandığını görürdü.'</em> Kaf'ın hilâl-dolunay imgesi, Nun'un görünen-görünmeyen yarısı, Şın'ın dolunay-hilâl dönüşümü — hepsi aynı 'eksik/tam' ikiliğinin farklı harflerde tekrar tekrar karşımıza çıkması gibi görünüyor. Şimdi iki durak daha ekliyoruz: Tı'nın beşli sır listesi ve Sad harfinin — Dost'un kendi hayatından bir anıya dönüşen — rüyası.",
+            "en": "An interesting echo: a few letters earlier, Shin's poem carried a similar lunar image — <em>'If people saw the secret it holds, they would see the full moon completed by the effacing of the crescent.'</em> Qaf's crescent-and-full-moon image, Nun's visible-and-absent half, Shin's full-moon-into-crescent transformation — all of these seem to be the same 'incomplete/complete' duality recurring across different letters. We now add two more stops: Ta's list of five secrets, and the letter Sad's dream — which turns into a memory from Dost's own life.",
+            "pt": "Um eco interessante: algumas letras antes, o poema de Shin carregava uma imagem lunar semelhante — <em>'Se as pessoas vissem o segredo que ele contém, veriam a lua cheia completada pelo apagamento do crescente.'</em> A imagem crescente-e-lua-cheia de Qaf, a metade visível-e-ausente de Nun, a transformação lua-cheia-em-crescente de Shin — todas parecem ser a mesma dualidade 'incompleto/completo' recorrendo em diferentes letras. Agora acrescentamos mais duas paradas: a lista de cinco segredos de Ta, e o sonho da letra Sad — que se transforma numa lembrança da própria vida de Dost."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tinin-bes-sirri",
+      "heading": {
+        "tr": "Tı'nın Beş Sırrı",
+        "en": "Ta's Five Secrets",
+        "pt": "Os Cinco Segredos de Ta"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Tı harfinin şiiri, bir bilmece yerine düzenli bir liste sunuyor — beş gizli karşılık: <em>'Tı'da beş saklı sır var: birisi, hükümdarda mülkün hakikati; ve yaratılmıştaki Hak; sırlar nâiptir; nur narda (ateşte), insan melektedir. İşte bunlar beştir; bunlarla ilgilenirsen geminin felekte bulunduğunu anlarsın.'</em> Her biri bir 'büyüğün' bir 'küçükte' nasıl saklı olduğunu gösteren beş örnek: hükümdar/mülk, Hak/yaratılmış, sır/vekil, nur/ateş, insan/melek.",
+            "en": "Ta's poem offers a tidy list instead of a riddle — five hidden correspondences: <em>'In Ta there are five hidden secrets: one, the reality of the kingdom within the king; and the Real within the created; secrets are a deputy; light is within fire, the human within the angel. These are five; attend to them and you will understand that the ship is within the celestial sphere.'</em> Each is an example of how something 'greater' is hidden within something 'lesser': king/kingdom, the Real/the created, secret/deputy, light/fire, human/angel.",
+            "pt": "O poema de Ta oferece uma lista organizada em vez de um enigma — cinco correspondências ocultas: <em>'Em Ta há cinco segredos ocultos: um, a realidade do reino dentro do rei; e o Real dentro do criado; segredos são um delegado; a luz está dentro do fogo, o humano dentro do anjo. São cinco; atenta a eles e entenderás que o navio está dentro da esfera celeste.'</em> Cada um é um exemplo de como algo 'maior' está oculto dentro de algo 'menor': rei/reino, o Real/o criado, segredo/delegado, luz/fogo, humano/anjo."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Tı Harfi, s. 190-191.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ta, pp. 190-191.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ta, pp. 190-191."
+          },
+          "tree": {
+            "id": "ti-bes-sir-tree",
+            "label": {
+              "tr": "Tı'nın Beş Sırrı",
+              "en": "Ta's Five Secrets",
+              "pt": "Os Cinco Segredos de Ta"
+            },
+            "note": {
+              "tr": "büyük, küçükte saklı",
+              "en": "the greater hides in the lesser",
+              "pt": "o maior se oculta no menor"
+            },
+            "children": [
+              {
+                "id": "hukumdar-mulk",
+                "label": {
+                  "tr": "Hükümdar — Mülk",
+                  "en": "King — Kingdom",
+                  "pt": "Rei — Reino"
+                },
+                "note": {
+                  "tr": "mülkün hakikati",
+                  "en": "the kingdom's reality",
+                  "pt": "a realidade do reino"
+                }
+              },
+              {
+                "id": "hak-yaratilmis",
+                "label": {
+                  "tr": "Hak — Yaratılmış",
+                  "en": "The Real — The Created",
+                  "pt": "O Real — O Criado"
+                },
+                "note": {
+                  "tr": "yaratılmıştaki Hak",
+                  "en": "the Real within the created",
+                  "pt": "o Real no criado"
+                }
+              },
+              {
+                "id": "sir-vekil",
+                "label": {
+                  "tr": "Sır — Vekil",
+                  "en": "Secret — Deputy",
+                  "pt": "Segredo — Delegado"
+                },
+                "note": {
+                  "tr": "sırlar nâiptir",
+                  "en": "secrets are a deputy",
+                  "pt": "segredos são um delegado"
+                }
+              },
+              {
+                "id": "nur-ates",
+                "label": {
+                  "tr": "Nur — Ateş",
+                  "en": "Light — Fire",
+                  "pt": "Luz — Fogo"
+                },
+                "note": {
+                  "tr": "nur narda",
+                  "en": "light within fire",
+                  "pt": "luz dentro do fogo"
+                }
+              },
+              {
+                "id": "insan-melek",
+                "label": {
+                  "tr": "İnsan — Melek",
+                  "en": "Human — Angel",
+                  "pt": "Humano — Anjo"
+                },
+                "note": {
+                  "tr": "insan melektedir",
+                  "en": "human within angel",
+                  "pt": "humano dentro do anjo"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sadin-ruyasi",
+      "heading": {
+        "tr": "Sad'ın Rüyası",
+        "en": "Sad's Dream",
+        "pt": "O Sonho de Sad"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Sad harfinin bölümü, önceki harflerden tamamen farklı bir şeyle açılıyor: Dost, bu harfin sırrına uykuda ulaştığını anlatıyor — <em>'Bu harfin sırrını yazdım... Sad harfinin sırrına ancak uykuda ulaşılabileceğini belirttim, çünkü ben o sırra uykuda ulaştığım gibi Hak da onun sırrının bilgisini bana uykuda verdi.'</em> Yazdıklarını düzeltmesi için bir arkadaşına okuttuğunu, okuma Sad harfine geldiğinde bu tecrübesini dostlarına Mescid-i Haram'daki bir mecliste anlattığını aktarıyor.",
+            "en": "The section on the letter Sad opens with something quite different from the previous letters: Dost recounts that he reached this letter's secret in his sleep — <em>'I wrote down this letter's secret... I said that the secret of the letter Sad can only be reached in sleep, because just as I reached that secret in sleep, the Real gave me knowledge of its secret in sleep as well.'</em> He relates having a friend read his writing back to him for correction, and that when the reading reached the letter Sad, he told his friends about this experience at a gathering in the Sacred Mosque.",
+            "pt": "A seção sobre a letra Sad se abre com algo bem diferente das letras anteriores: Dost relata que alcançou o segredo dessa letra em seu sono — <em>'Escrevi o segredo dessa letra... Eu disse que o segredo da letra Sad só pode ser alcançado no sono, porque assim como alcancei esse segredo dormindo, o Real também me deu o conhecimento de seu segredo dormindo.'</em> Ele relata ter pedido a um amigo que lesse seu texto de volta para ele para correção, e que quando a leitura chegou à letra Sad, contou essa experiência aos amigos numa reunião na Mesquita Sagrada."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "O gece, aynı arkadaşı bir rüya görüyor — Dost'un, sırtüstü uzanmış hâlde Sad harfini anlattığı bir rüya. Rüyada arkadaşı Dost'a doğaçlama bir beyit okuyor: <em>'Sad şerefli bir harftir, Sad sad içinde daha doğrudur/güçlüdür.'</em> Dost rüyada 'delilin nedir?' diye soruyor, arkadaşı da şöyle yanıtlıyor: <em>'Çünkü Sad dönmenin şeklidir. Dönüşten daha önce bir şey yoktur.'</em> Arkadaşı bu cevapla uyanıyor.",
+            "en": "That same night, this friend has a dream — a dream in which Dost, lying on his back, is speaking about the letter Sad. In the dream his friend recites an improvised couplet to Dost: <em>'Sad is a noble letter; Sad is truer, stronger, within Sad.'</em> Dost asks in the dream, 'what is your evidence?' and his friend answers: <em>'Because Sad is the shape of turning. There is nothing before turning.'</em> His friend wakes at this answer.",
+            "pt": "Naquela mesma noite, esse amigo tem um sonho — um sonho em que Dost, deitado de costas, está falando sobre a letra Sad. No sonho, seu amigo recita um dístico improvisado a Dost: <em>'Sad é uma letra nobre; Sad é mais verdadeiro, mais forte, dentro de Sad.'</em> Dost pergunta no sonho, 'qual é tua evidência?' e seu amigo responde: <em>'Porque Sad é a forma do girar. Não há nada antes do girar.'</em> Seu amigo acorda com essa resposta."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Sad Harfi, s. 193-195.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Sad, pp. 193-195.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Sad, pp. 193-195."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Dost'un Uykusu",
+                "en": "Dost's Sleep",
+                "pt": "O Sono de Dost"
+              },
+              "note": {
+                "tr": "Sad'ın sırrını alır",
+                "en": "receives Sad's secret",
+                "pt": "recebe o segredo de Sad"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Arkadaşının Rüyası",
+                "en": "His Friend's Dream",
+                "pt": "O Sonho de Seu Amigo"
+              },
+              "note": {
+                "tr": "aynı gece, doğrular",
+                "en": "same night, confirms it",
+                "pt": "mesma noite, confirma"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İki ayrı uyku deneyimi, aynı geceye rastlayıp birbirini doğruluyor — Dost bunu tesadüf değil, bir işaret olarak okuyor.",
+            "en": "Two separate sleep experiences, falling on the same night, confirm one another — Dost reads this not as coincidence but as a sign.",
+            "pt": "Duas experiências de sono separadas, caindo na mesma noite, se confirmam mutuamente — Dost lê isso não como coincidência, mas como um sinal."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost bu çakışmayı çarpıcı buluyor: <em>'Arkadaşımın rüyasında bir önceki gün mecliste dostlara anlattığım halimi keşf etmesine şaşırdım.'</em> Bunu, kendi tecrübesinin doğrulanması olarak okuyor — 'bu surede (Sad sûresi) bir takım sırlar bulunduğu gibi arkadaşımın gördüğü rüyada da bir takım sırlar vardır' diyor. Bize göre bu satırların en dikkat çekici yanı, Dost'un burada soyut bir doktrin değil, gerçek bir arkadaşının adını vererek (Ebû Yahya) anlattığı, kendi hayatından, tarihli, yerli (Mescid-i Haram) bir anı paylaşması — bu Kısım VI'da şimdiye dek gördüğümüz en kişisel sahne.",
+            "en": "Dost finds this coincidence striking: <em>'I was amazed that my friend's dream uncovered the state I had described to friends at the gathering the day before.'</em> He reads it as a confirmation of his own experience — 'just as this surah (Surah Sad) contains certain secrets, my friend's dream, too, contains certain secrets,' he says. What strikes us most about these lines is that Dost isn't offering an abstract doctrine here, but sharing a dated, located (the Sacred Mosque) memory from his own life, naming a real friend (Abu Yahya) — the most personal scene we've come across yet in Part VI.",
+            "pt": "Dost acha essa coincidência marcante: <em>'Fiquei espantado que o sonho de meu amigo descobrisse o estado que eu havia descrito aos amigos na reunião do dia anterior.'</em> Ele lê isso como uma confirmação de sua própria experiência — 'assim como esta surata (Surata Sad) contém certos segredos, o sonho de meu amigo também contém certos segredos', diz ele. O que mais nos chama atenção nessas linhas é que Dost não está oferecendo aqui uma doutrina abstrata, mas compartilhando uma lembrança datada e localizada (a Mesquita Sagrada) de sua própria vida, nomeando um amigo real (Abu Yahya) — a cena mais pessoal que encontramos até agora na Parte VI."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ba-bismillah",
+      "heading": {
+        "tr": "Ba: Bismillah'ın İlk Harfi",
+        "en": "Ba: The First Letter of Bismillah",
+        "pt": "Ba: A Primeira Letra do Bismillah"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ba harfinin şiiri gerçek bir isimle açılıyor — meşhur sûfî Şiblî: <em>'Ârif Şiblî için Ba muteberdir. Noktasında ise kalp için bir hatırlatıcı vardır. Yüksek ubûdiyet sırrı ona karışmıştır, bu nedenle Hakkın nâibi oldu, dikkat ediniz! \"Adı ile\" (bi-ismi) ifadesinden hakikati düşünülmez mi? Çünkü Ba onun yerini alır, işte bu ölçüdür.'</em> Şiirin son satırındaki 'bi-ismi' göndermesi doğrudan besmeleye — 'Bismillâhirrahmânirrahîm'e — işaret ediyor: Ba, Kur'an'ın ve her sûrenin (biri hariç) başındaki ilk harf.",
+            "en": "The poem for the letter Ba opens with a real name — the famous Sufi Shibli: <em>'Ba is esteemed for the knower Shibli. In its dot lies a reminder for the heart. The secret of lofty servitude has mingled with it, and so it became the Real's deputy — take note! Should the reality not be considered from the expression \"in the name of\" (bi-ismi)? For Ba takes its place; this is the measure.'</em> The poem's closing reference to 'bi-ismi' points directly to the basmala — 'Bismillah, in the name of Allah, the Merciful, the Compassionate' — Ba is the very first letter of the Qur'an and of nearly every surah.",
+            "pt": "O poema para a letra Ba se abre com um nome real — o famoso sufi Shibli: <em>'Ba é estimado para o conhecedor Shibli. Em seu ponto há um lembrete para o coração. O segredo da elevada servidão se misturou a ele, e assim ele se tornou o delegado do Real — atentai! A realidade não deveria ser considerada a partir da expressão \"em nome de\" (bi-ismi)? Pois Ba toma seu lugar; esta é a medida.'</em> A referência final do poema a 'bi-ismi' aponta diretamente para a basmala — 'Bismillah, em nome de Allah, o Misericordioso, o Compassivo' — Ba é a própria primeira letra do Alcorão e de quase toda surata."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Ba Harfi, s. 201.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ba, p. 201.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ba, p. 201."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Ba",
+                "en": "Ba",
+                "pt": "Ba"
+              },
+              "note": {
+                "tr": "Bismillah'ın ilk harfi",
+                "en": "Bismillah's first letter",
+                "pt": "primeira letra do Bismillah"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Noktası",
+                "en": "Its Dot",
+                "pt": "Seu Ponto"
+              },
+              "note": {
+                "tr": "kalbin hatırlatıcısı",
+                "en": "the heart's reminder",
+                "pt": "o lembrete do coração"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Ba'nın altındaki tek nokta, Arapça yazıda onu benzer harflerden (Te, Se, Ye) ayıran tek işaret — Dost bunu 'kalp için bir hatırlatıcı' olarak okuyor.",
+            "en": "The single dot beneath Ba is, in Arabic script, the only mark distinguishing it from similarly-shaped letters (Ta, Tha, Ya) — Dost reads it as 'a reminder for the heart.'",
+            "pt": "O único ponto sob Ba é, na escrita árabe, a única marca que o distingue de letras de forma semelhante (Ta, Tha, Ya) — Dost o lê como 'um lembrete para o coração.'"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mim-nunun-aynasi",
+      "heading": {
+        "tr": "Mim: Nun'un Aynası",
+        "en": "Mim: Nun's Mirror",
+        "pt": "Mim: O Espelho de Nun"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Mim'in şiiri, Kısım IV'ten beri defalarca karşımıza çıkan Nun'u doğrudan çağırıyor ve onunla bir ayna ilişkisi kuruyor: <em>'Mim Nun gibidir, sırlarını incelersen — oluşun gayesinde, hakikat olarak ve başlangıçlarda. O halde Nun Hak içindir, kerim Mim ise benim içindir. Başlangıç için başlangıç, gayeler için gayeler. Şu halde Nun'un berzahı bilgilerindeki ruhtur, Mim'in berzahı ise yaratıklarda Rab'tir.'</em>",
+            "en": "The poem for Mim directly invokes Nun — the letter we've met again and again since Part IV — and sets up a mirroring relationship with it: <em>'Mim is like Nun, if you examine its secrets — in the aim of coming-to-be, as a reality, and in beginnings. Nun, then, is for the Real; noble Mim is for me. Beginning for beginning, aims for aims. Nun's isthmus, then, is the spirit within its knowledges; Mim's isthmus is the Lord within creatures.'</em>",
+            "pt": "O poema para Mim invoca diretamente Nun — a letra que encontramos repetidas vezes desde a Parte IV — e estabelece uma relação de espelhamento com ela: <em>'Mim é como Nun, se examinares seus segredos — no propósito do vir-a-ser, como realidade, e nos começos. Nun, então, é para o Real; o nobre Mim é para mim. Começo para começo, propósitos para propósitos. O istmo de Nun, então, é o espírito dentro de seus conhecimentos; o istmo de Mim é o Senhor dentro das criaturas.'</em>"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Mim Harfi, s. 201-202.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Mim, pp. 201-202.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Mim, pp. 201-202."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Nun",
+                "en": "Nun",
+                "pt": "Nun"
+              },
+              "note": {
+                "tr": "Hak için",
+                "en": "for the Real",
+                "pt": "para o Real"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Mim",
+                "en": "Mim",
+                "pt": "Mim"
+              },
+              "note": {
+                "tr": "insan için",
+                "en": "for the human",
+                "pt": "para o humano"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost, Kısım IV'te 'dairenin yarısı' olarak tanıttığı Nun'u burada Mim ile eşleştiriyor — biri Hakk'ın, öteki insanın tarafında.",
+            "en": "Dost pairs Nun — which he introduced in Part IV as 'half the circle' — with Mim here: one on the side of the Real, the other on the side of the human.",
+            "pt": "Dost emparelha Nun — que ele apresentou na Parte IV como 'metade do círculo' — com Mim aqui: um do lado do Real, o outro do lado do humano."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu satırlar, Kısım IV'te işlediğimiz 'insan-ı kâmil Hak ile aynı cem' makamındadır' iddiasıyla da örtüşüyor gibi görünüyor — burada da Mim, insanı doğrudan Hakk'ın karşılığı, aynası olarak konumlandırıyor. Mim ile birlikte Dost, 'mu'cem harfler tamamlandı' diyerek tekil harflerin sözlüğünü kapatıyor — sıra, daha önce Kısım V'te bir kez ele aldığımız bileşik harfe geliyor: Lâm-Elif.",
+            "en": "These lines seem to echo the claim we took up in Part V — that the Perfect Human stands with the Real in the same station of unity — here too, Mim positions the human directly as the Real's counterpart, its mirror. With Mim, Dost declares 'the individual letters are complete,' closing the dictionary of single letters — next comes the compound letter we already touched on once in Part V: Lam-Elif.",
+            "pt": "Essas linhas parecem ecoar a afirmação que tratamos na Parte V — de que o Ser Humano Perfeito está com o Real na mesma estação de unidade — aqui também, Mim posiciona o humano diretamente como a contraparte do Real, seu espelho. Com Mim, Dost declara que 'as letras individuais estão completas', encerrando o dicionário das letras simples — a seguir vem a letra composta que já tocamos uma vez na Parte V: Lam-Elif."
+          }
+        }
+      ]
+    },
+    {
+      "id": "lam-elifin-kucaklasmasi",
+      "heading": {
+        "tr": "Lâm-Elif: İki Sevgilinin Kucaklaşması",
+        "en": "Lam-Elif: The Embrace of Two Lovers",
+        "pt": "Lam-Elif: O Abraço de Dois Amantes"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Tekil harflerin sözlüğü kapanınca Dost, Kısım V'te bir kez değindiğimiz Lâm-Elif bağına (لا) yeniden ve çok daha ayrıntılı dönüyor. İlk şiir Kur'an'daki Tâlût kıssasına (Bakara, 2:249) gönderme yapıyor — İsrailoğulları'nın nehir kenarında sınandığı hikâyeye: <em>'Lâm'ın Elif'i ve Elifin Lâm'ı, Talut'un nehridir, avuçlama — nehri sonuna kadar iç, arzulu olmaktan ise ayrılma. İçici olduğun sürece ayağa kalk, nefsini doyurursan kalk ve ayrıl.'</em> İkinci şiir ise doğrudan bir aşk sahnesi kuruyor: <em>'Her şeyi bilen Elif ve Lâm kucaklaştı, iki sevgili gibi; avam ise uyumakta. Yüce olan ayaklar birbirine dolandı.'</em>",
+            "en": "Once the dictionary of single letters closes, Dost returns to the Lam-Elif bond (لا) — which we touched on once in Part V — this time in far more detail. The first poem alludes to the Qur'anic story of Talut (Saul, Al-Baqara 2:249) — the story of the Israelites being tested at a river: <em>'Lam's Elif and Elif's Lam is the river of Talut, a mere handful — drink from the river to the end, but do not become one of the desirous. Rise while you are drinking; if you satisfy yourself, rise and depart.'</em> The second poem builds a direct scene of love: <em>'Elif and Lam, knowers of everything, embraced like two lovers, while the common people sleep. The exalted feet became entwined with one another.'</em>",
+            "pt": "Uma vez fechado o dicionário das letras simples, Dost retorna ao vínculo Lam-Elif (لا) — que tocamos uma vez na Parte V — desta vez com muito mais detalhe. O primeiro poema alude à história corânica de Talut (Saul, Al-Baqara 2:249) — a história dos israelitas sendo testados num rio: <em>'O Elif de Lam e o Lam de Elif é o rio de Talut, um mero punhado — bebe do rio até o fim, mas não sejas um dos desejosos. Levanta-te enquanto bebes; se te satisfizeres, levanta-te e parte.'</em> O segundo poema constrói uma cena direta de amor: <em>'Elif e Lam, conhecedores de tudo, se abraçaram como dois amantes, enquanto os comuns dormem. Os pés exaltados se entrelaçaram um no outro.'</em>"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost bunun ardından uzun bir tartışmaya giriyor: Elif ile Lâm'dan hangisinin diğerine olan 'meyli' (eğilimi) daha güçlü? Sûfî bunu bir aşk hâli (vecd) olarak okur — Lâm'ın Elife yönelişini bir âşığın kendinden geçişi gibi görür. Muhakkik ise aynı ilişkiyi bilgiyle açıklar. Dost ikisini de kısmen haklı buluyor, ama kendi görüşünü ekliyor: Elif ve Lâm'ın ilk birleştiği mertebe, doğrudan <em>'Lâ ilâhe illallah'</em> (Allah'tan başka ilâh yoktur) cümlesidir — bu cümlede 'Lâ' iki kez olumsuzlukta, iki kez de olumlamada beliriyor. Elif, 'Mutlak Varlık'; Lâm ise 'sınırlı varlık' — ve Lâm, Elifin sûretine göre var olmuştur.",
+            "en": "Dost then enters a long discussion: whose 'inclination' toward the other — Elif's or Lam's — is stronger? The Sufi reads it as a state of love (wajd) — seeing Lam's leaning toward Elif as a lover's rapture. The verifier (muhaqqiq) explains the same relation through knowledge. Dost finds each partly right, but adds his own view: the first station where Elif and Lam unite is directly the phrase <em>'La ilaha illallah'</em> (there is no god but Allah) — in this phrase, 'La' appears twice in negation and twice in affirmation. Elif is 'Absolute Being'; Lam is 'delimited being' — and Lam came to exist according to Elif's form.",
+            "pt": "Dost então entra numa longa discussão: de quem é a 'inclinação' mais forte em direção ao outro — de Elif ou de Lam? O sufi lê isso como um estado de amor (wajd) — vendo a inclinação de Lam para Elif como o êxtase de um amante. O verificador (muhaqqiq) explica a mesma relação através do conhecimento. Dost considera cada um parcialmente certo, mas acrescenta sua própria visão: a primeira estação em que Elif e Lam se unem é diretamente a frase <em>'La ilaha illallah'</em> (não há divindade senão Allah) — nessa frase, 'La' aparece duas vezes na negação e duas vezes na afirmação. Elif é o 'Ser Absoluto'; Lam é o 'ser delimitado' — e Lam veio a existir conforme a forma de Elif."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Lâm-Elif, s. 203-205.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — Lam-Elif, pp. 203-205.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — Lam-Elif, pp. 203-205."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Elif",
+                "en": "Elif",
+                "pt": "Elif"
+              },
+              "note": {
+                "tr": "Mutlak Varlık",
+                "en": "Absolute Being",
+                "pt": "Ser Absoluto"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Lâm",
+                "en": "Lam",
+                "pt": "Lam"
+              },
+              "note": {
+                "tr": "sınırlı varlık",
+                "en": "delimited being",
+                "pt": "ser delimitado"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İkisinin ilk birleştiği yer, Dost'a göre, doğrudan 'Lâ ilâhe illallah' cümlesidir — Elif ve Lâm'ın kucaklaşması, kelime-i tevhidin kendi harflerinde tekrarlanıyor.",
+            "en": "The first place the two unite, in Dost's account, is directly the phrase 'La ilaha illallah' — the embrace of Elif and Lam repeats itself within the very letters of the declaration of God's oneness.",
+            "pt": "O primeiro lugar em que os dois se unem, segundo Dost, é diretamente a frase 'La ilaha illallah' — o abraço de Elif e Lam se repete dentro das próprias letras da declaração da unicidade de Deus."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bunu, Kısım V'te işlediğimiz 'Elif-Lâm-Mim'in İnişi' bölümüyle aynı ailenin bir devamı olarak okuyoruz — orada da Elif yukarıda (tevhid), Lâm ise vasıta olarak konumlanmıştı. Burada aynı iki harf, bu kez bir aşk sahnesi ve bir sûfî-muhakkik tartışmasıyla yeniden karşımıza çıkıyor. Sayfa sırasında Lâm-Elif'ten önce duran Vav'a şimdi dönüyoruz; Kısım VI'nın geri kalan harflerini (Ze, Sin, Zı, Zel, Se, Fe ve diğerleri) ise ayrı bir oturumda okumaya devam edeceğiz.",
+            "en": "We read this as a continuation of the same family we took up in Part V's 'The Descent of Elif-Lam-Mim' — there too, Elif stood above (oneness) with Lam as intermediary. Here the same two letters return to us once more, this time through a scene of love and a Sufi-verifier debate. We now turn back to Waw, which on the page actually stands before Lam-Elif; we'll continue reading the remaining letters of Part VI (Za, Sin, Za, Dhal, Tha, Fa, and others) in a separate session.",
+            "pt": "Lemos isso como uma continuação da mesma família que tratamos em 'O Descenso de Elif-Lam-Mim' na Parte V — lá também, Elif estava acima (unicidade) com Lam como intermediário. Aqui as mesmas duas letras retornam a nós mais uma vez, desta vez através de uma cena de amor e um debate sufi-verificador. Voltamos agora a Waw, que na página está na verdade antes de Lam-Elif; continuaremos lendo as letras restantes da Parte VI (Za, Sin, Za, Dhal, Tha, Fa, e outras) numa sessão separada."
+          }
+        }
+      ]
+    },
+    {
+      "id": "vavin-sidresi",
+      "heading": {
+        "tr": "Vav: İçimizde Kurulan Sidre",
+        "en": "Vav: The Lote Tree Established Within Us",
+        "pt": "Vav: A Árvore de Lótus Estabelecida em Nós"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Sayfa sırasında Mim'den hemen sonra, Lâm-Elif'ten önce gelen Vav'ın şiiri şöyle: <em>'İyyâke'nin Vav'ı daha mukaddestir, benim varlığımdan ve daha nefistir. O mükemmel bir ruhtur, o altılı bir sırdır. Nerede hakikati parıldarsa, denilir ki: mukaddes arz. Onun evi yüce Sidre — bizde tesis edilmiş olan Sidre.'</em> Bunu, Fatiha'daki 'İyyâke na'budu' (Ancak Sana kulluk ederiz) ifadesinin içindeki Vav harfine bir işaret olarak okuyoruz — ama emin değiliz, bu bir yorumdur.",
+            "en": "Right after Mim on the page, and just before Lam-Elif, comes Vav's poem: <em>'The Vav of \"You alone\" is more sacred than my own being. It is a perfect spirit, a six-fold secret. Wherever its truth shines, it is called the sacred land. Its home is the lofty Sidre — the Sidre established within us.'</em> We read this as a pointer to the Vav inside 'iyyaka na'budu' (You alone we worship) from the Fatiha — though we're not certain; this is one reading.",
+            "pt": "Logo após Mim na página, e pouco antes de Lam-Elif, vem o poema de Vav: <em>'O Vav de \"Só a Ti\" é mais sagrado que meu próprio ser. É um espírito perfeito, um segredo sêxtuplo. Onde sua verdade brilhar, chama-se terra sagrada. Sua casa é a elevada Sidra — a Sidra estabelecida em nós.'</em> Lemos isso como um apontamento para o Vav dentro de 'iyyaka na'budu' (só a Ti adoramos) da Fatiha — embora não tenhamos certeza; esta é uma leitura possível."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Teknik dökümden yalnızca şunu aktarıyoruz: Vav, mülk-şehâdet-kahır âlemindendir; çıkış yeri iki dudak arası, sayısal değeri altıdır — şiirdeki 'altılı sır' ifadesiyle örtüşüyor. Dost'un burada değindiği Sidretü'l-Müntehâ (Mi'râc'ta Peygamber'in ulaştığı söylenen, yaratılmışlığın son sınırındaki ağaç) imgesi ilginç bir çifte yerleşime sahip: bir yanda gökte, öte yanda -şiirin son mısraına göre- 'bizde tesis edilmiş.'",
+            "en": "From the technical rundown we relay just this: Vav belongs to the dominion-witnessed-compulsion realm; its point of articulation is between the two lips, its numeric value six — matching the poem's 'six-fold secret.' The image Dost touches on here, Sidrat al-Muntaha (the tree at the farthest boundary of createdness, which the Prophet is said to have reached during the Mi'raj), has a curious double placement: on one hand in the heavens, and on the other — per the poem's last line — 'established within us.'",
+            "pt": "Do levantamento técnico, relatamos apenas isto: Vav pertence ao reino domínio-testemunhado-compulsão; seu ponto de articulação é entre os dois lábios, seu valor numérico é seis — coincidindo com o 'segredo sêxtuplo' do poema. A imagem que Dost toca aqui, Sidrat al-Muntaha (a árvore no limite extremo da criaturidade, que o Profeta teria alcançado durante o Mi'raj), tem uma curiosa dupla colocação: por um lado nos céus, por outro — segundo o último verso do poema — 'estabelecida em nós.'"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Vav Harfi, s. 202-203.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Waw, pp. 202-203.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Waw, pp. 202-203."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Sidretü'l-Müntehâ",
+                "en": "Sidrat al-Muntaha",
+                "pt": "Sidrat al-Muntaha"
+              },
+              "note": {
+                "tr": "dışta, gökte",
+                "en": "outward, in the heavens",
+                "pt": "para fora, nos céus"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Vav'ın Sidresi",
+                "en": "Vav's Sidre",
+                "pt": "A Sidra de Vav"
+              },
+              "note": {
+                "tr": "içte, bizde tesis edilmiş",
+                "en": "inward, established within us",
+                "pt": "para dentro, estabelecida em nós"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Şiirin son mısraı, Mi'râc'ın son sınır ağacını dışarıdan içeriye taşıyor gibi görünüyor — bu, Kısım IV-VI boyunca defalarca karşılaştığımız 'dıştaki âlemin bizde yankılanması' örüntüsünün bir başka görünümü olabilir.",
+            "en": "The poem's last line seems to carry the Mi'raj's farthest-boundary tree from outside to inside — perhaps another appearance of the pattern we've met again and again across Parts IV–VI, of the outer world echoing within us.",
+            "pt": "O último verso do poema parece transportar a árvore do limite extremo do Mi'raj de fora para dentro — talvez outra aparição do padrão que encontramos repetidas vezes nas Partes IV–VI, do mundo exterior ecoando dentro de nós."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Nun'un yarısı görünen noktasında, Mim'in Nun'u aynalamasında da gördüğümüz bir hareketin burada bir kez daha karşımıza çıktığını düşünüyoruz: dışarıdaki bir hakikatin içeride bir karşılığı olduğu iddiası. Kısım VI'nın geri kalan harflerine (Ze, Sin, Zı, Zel, Se, Fe ve diğerlerine) ilerleyen bir oturumda devam edeceğiz.",
+            "en": "We think we're seeing, once more, the same movement we found in Nun's half-visible point and in Mim's mirroring of Nun: the claim that an outer truth has an inner counterpart. We'll continue with the remaining letters of Part VI (Za, Sin, Za, Dhal, Tha, Fa, and others) in a later session.",
+            "pt": "Achamos que estamos vendo, mais uma vez, o mesmo movimento que encontramos no ponto meio-visível de Nun e no espelhamento de Nun por Mim: a afirmação de que uma verdade exterior tem uma contraparte interior. Continuaremos com as letras restantes da Parte VI (Za, Sin, Za, Dhal, Tha, Fa, e outras) numa sessão posterior."
+          }
+        }
+      ]
+    },
+    {
+      "id": "zenin-fenasi",
+      "heading": {
+        "tr": "Ze: Münezzeh Zâtın Tek Tanığı",
+        "en": "Ze: The Sole Witness of the Transcendent Essence",
+        "pt": "Ze: A Única Testemunha da Essência Transcendente"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ze'nin şiiri, bu kez bir sırrı çözmekten çok, o sırra ulaşma yolunu tarif ediyor: <em>'Ze'de bir sır var ki anlamını iyice araştırdığında, işin ruhunun hakikati onu söyler hale gelir. Hikmetiyle bir kalbe tecelli ettiğinde, tenzih halinden fena haline, onu müstağni kılar. O halde münezzeh Zât'ın harflerinde yoktur, O'ndan başka, bilgiyi tahkik eden ya da onu bilebilen.'</em> Son mısra çarpıcı: Zât'ı gerçekten bilenin yalnızca Zât'ın kendisi olduğu iddiası — bu, Kısım V'te ve Sırlar'da defalarca karşılaştığımız 'bilinemezlik' temasının bir başka görünümü.",
+            "en": "This time, Ze's poem describes less a secret to be solved than the path toward it: <em>'There is a secret in Ze that, once its meaning is thoroughly searched, the very spirit of the matter comes to speak it. When it discloses itself to a heart through wisdom, it makes that heart self-sufficient — from the state of transcendence into the state of annihilation. So among the letters of the transcendent Essence there is none, other than Him, who verifies this knowledge or who can know it.'</em> The last line is striking: the claim that the only one who truly knows the Essence is the Essence itself — another appearance of the 'unknowability' theme we've met again and again in Part V and in Mysteries.",
+            "pt": "Desta vez, o poema de Ze descreve menos um segredo a ser resolvido do que o caminho até ele: <em>'Há um segredo em Ze que, uma vez investigado a fundo seu significado, o próprio espírito do assunto vem a falá-lo. Quando ele se revela a um coração através da sabedoria, torna esse coração autossuficiente — do estado de transcendência ao estado de aniquilação. Assim, entre as letras da Essência transcendente não há ninguém, senão Ele, que verifique esse conhecimento ou que possa conhecê-lo.'</em> O último verso é marcante: a afirmação de que o único que verdadeiramente conhece a Essência é a própria Essência — outra aparição do tema da 'incognoscibilidade' que encontramos repetidas vezes na Parte V e em Mistérios."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Ze Harfi, s. 197.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Za, p. 197.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Za, p. 197."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Tenzih",
+                "en": "Tenzih",
+                "pt": "Tenzih"
+              },
+              "note": {
+                "tr": "münezzeh Zât",
+                "en": "the transcendent Essence",
+                "pt": "a Essência transcendente"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Fenâ",
+                "en": "Fana",
+                "pt": "Fana"
+              },
+              "note": {
+                "tr": "kalbin müstağni oluşu",
+                "en": "the heart's self-sufficiency",
+                "pt": "a autossuficiência do coração"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Ze'nin şiirine göre, hikmetin bir kalbe tecellisi onu tenzih halinden fenâ haline taşıyor — Kısım V'teki 'Cem' ve Fark' bölümünde işlediğimiz birlik-ayrım tartışmasının bir yankısı.",
+            "en": "According to Ze's poem, wisdom's self-disclosure to a heart carries it from the state of transcendence into the state of annihilation — an echo of the unity-distinction discussion we took up in Part V's 'Unity and Distinction.'",
+            "pt": "Segundo o poema de Ze, a autorrevelação da sabedoria a um coração o transporta do estado de transcendência ao estado de aniquilação — um eco da discussão sobre unidade-distinção que tratamos em 'Unidade e Distinção' na Parte V."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ze'nin hemen ardından gelen Sin'in şiiri daha kısa ve daha kapalı: <em>'Sin'de varlığın dört sırrı bulunur, tahakkuk ve en yüce makam ona aittir, kendisiyle ortaya çıkar gayb âleminden.'</em> Dost bu dört sırrı burada açmıyor; biz de -sitenin 'işaret edilen, açıklanmayan' ilkesine sadık kalarak- bu kapalılığı olduğu gibi bırakıyoruz.",
+            "en": "Sin's poem, right after Ze's, is shorter and more closed: <em>'In Sin lie four secrets of being; verification and the loftiest station belong to it; through it, what lies in the unseen realm comes forth.'</em> Dost doesn't unpack these four secrets here; true to the site's own principle of 'pointed to, not explained,' we leave this closedness as it is.",
+            "pt": "O poema de Sin, logo após o de Ze, é mais curto e mais fechado: <em>'Em Sin residem quatro segredos do ser; a verificação e a mais elevada estação lhe pertencem; através dele, o que está no reino invisível vem à tona.'</em> Dost não desvenda aqui esses quatro segredos; fiéis ao princípio do próprio site de 'apontado, não explicado', deixamos esse fechamento como está."
+          }
+        }
+      ]
+    },
+    {
+      "id": "zininin-bedeli",
+      "heading": {
+        "tr": "Zı: Görünmenin Bedeli",
+        "en": "Zı: The Price of Appearing",
+        "pt": "Zı: O Preço de Aparecer"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Zı'nın şiiri, Kaf'ın hilâl-dolunay imgesiyle ve Kef'in celâl-cemâl ikiliğiyle aynı ailede duruyor gibi görünüyor: <em>'Zı'da altı saklı sır vardır ki gizlidirler; onlar yaratıklarca bilinmez. Mecazen bilinebilir; ihsanıyla cömertlik yaptığında, hakikatin zuhurunda onun güzelliği görünür. Allah'tan umar ve adaletinden korkar; oluşundan gizlenirse hiçbir varlık ortaya çıkmaz.'</em> Son mısra en çarpıcısı: varlığın kendisinin, Hakk'ın sürekli görünür kalmasına bağlı olduğu iddiası.",
+            "en": "Zı's poem seems to stand in the same family as Qaf's crescent-and-full-moon image and Kaf's duality of majesty and beauty: <em>'In Zı there are six hidden secrets; they are concealed, unknown to created things. They can be known only figuratively — when His generosity gives freely, in the manifestation of the Real, His beauty appears. One hopes in Allah and fears His justice; were He to hide Himself from bringing-into-being, no existent thing would appear at all.'</em> The last line is the most striking: the claim that existence itself depends on the Real remaining continuously visible.",
+            "pt": "O poema de Zı parece pertencer à mesma família da imagem crescente-lua-cheia de Qaf e da dualidade majestade-beleza de Kaf: <em>'Em Zı há seis segredos ocultos; estão velados, desconhecidos das coisas criadas. Só podem ser conhecidos figurativamente — quando Sua generosidade se dá livremente, na manifestação do Real, Sua beleza aparece. Espera-se em Allah e teme-se Sua justiça; se Ele Se ocultasse de trazer à existência, nenhum ser existente apareceria.'</em> O último verso é o mais marcante: a afirmação de que a própria existência depende de o Real permanecer continuamente visível."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Zı Harfi, s. 198-199.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Za, pp. 198-199.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Za, pp. 198-199."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "İhsanla Zuhur",
+                "en": "Manifest Through Grace",
+                "pt": "Manifesto Através da Graça"
+              },
+              "note": {
+                "tr": "güzellik görünür",
+                "en": "beauty appears",
+                "pt": "a beleza aparece"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Gizlenirse",
+                "en": "If Hidden",
+                "pt": "Se Oculto"
+              },
+              "note": {
+                "tr": "hiçbir varlık yok",
+                "en": "no being at all",
+                "pt": "nenhum ser algum"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Zı'nın şiirine göre, varlığın sürmesi Hakk'ın kendini göstermeye devam etmesine bağlıdır — bu, sitenin defalarca karşılaştığı 'sürekli yaratma' (halk-ı cedîd) sezgisiyle örtüşüyor.",
+            "en": "According to Zı's poem, the continuation of existence depends on the Real continuing to disclose Himself — this resonates with the 'renewed creation' (khalq jadid) intuition we've met again and again on this site.",
+            "pt": "Segundo o poema de Zı, a continuação da existência depende de o Real continuar a se revelar — isso ressoa com a intuição de 'criação renovada' (khalq jadid) que encontramos repetidas vezes neste site."
+          }
+        }
+      ]
+    },
+    {
+      "id": "zelin-sesi",
+      "heading": {
+        "tr": "Zel: Vâhid ve Samed'in Sesi",
+        "en": "Zel: The Voice of Al-Wahid and As-Samad",
+        "pt": "Zel: A Voz de Al-Wahid e As-Samad"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Zel'in şiiri, tıpkı Ra'nın okuyucuya doğrudan seslenişi gibi, birinci tekil şahısla konuşuyor: <em>'Zel bazen bedenime iner, istemeden; bazen ise nefsime iner, isteyerek; bundan ve ondan kaybolur, artık kimse üzerinde değerli bir eser görünmez. O benzeri gibinin olmadığı önderdir. İsimleri el-Vâhid ve es-Samed diye onu çağırır.'</em> Şiir, Zel'in iki farklı inişini betimliyor -biri istemsiz, bedene; öteki istemli, nefse- ve ikisinin de ardından bir çekilme, bir görünmezleşme geliyor.",
+            "en": "Like Ra's direct address to the reader, Zel's poem speaks in the first person: <em>'Zel sometimes descends into my body, unwillingly; and sometimes descends into my soul, willingly; then vanishes from this and from that, so that no precious trace remains visible upon anyone. He is the leader who has no likeness or equal; His Names call Him al-Wahid (the One) and As-Samad (the Utterly Self-Sufficient).'</em> The poem describes two different descents of Zel — one involuntary, into the body; the other willed, into the soul — and both are followed by a withdrawal, a becoming-invisible.",
+            "pt": "Assim como o endereçamento direto de Ra ao leitor, o poema de Zel fala na primeira pessoa: <em>'Zel às vezes desce ao meu corpo, involuntariamente; e às vezes desce à minha alma, voluntariamente; depois desaparece disto e daquilo, de modo que nenhum traço precioso permanece visível sobre ninguém. Ele é o líder que não tem semelhante nem igual. Seus Nomes O chamam de al-Wahid (o Único) e As-Samad (o Totalmente Autossuficiente).'</em> O poema descreve dois descensos diferentes de Zel — um involuntário, ao corpo; o outro querido, à alma — e ambos são seguidos por um recolhimento, um tornar-se invisível."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Zel Harfi, s. 199.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Dhal, p. 199.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Dhal, p. 199."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Bedene İnen Zel",
+                "en": "Zel Descending into the Body",
+                "pt": "Zel Descendo ao Corpo"
+              },
+              "note": {
+                "tr": "istemeden",
+                "en": "unwillingly",
+                "pt": "involuntariamente"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Nefse İnen Zel",
+                "en": "Zel Descending into the Soul",
+                "pt": "Zel Descendo à Alma"
+              },
+              "note": {
+                "tr": "isteyerek",
+                "en": "willingly",
+                "pt": "voluntariamente"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Şiirin son mısraı, bu iki inişin ardından çekilen Zel'i doğrudan iki isimle -el-Vâhid ve es-Samed- adlandırıyor; ikisi de Esmâü'l-Hüsnâ'nın birlik ve kendine-yeterlilik ekseninde duruyor.",
+            "en": "The poem's last line names Zel, withdrawn after these two descents, directly with two Names — al-Wahid and As-Samad — both standing on the Beautiful Names' axis of oneness and self-sufficiency.",
+            "pt": "O último verso do poema nomeia Zel, recolhido após esses dois descensos, diretamente com dois Nomes — al-Wahid e As-Samad — ambos situados no eixo de unicidade e autossuficiência dos Belos Nomes."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Sayfa sırasında Zel'den hemen sonra, daha önce işlediğimiz Ba/Mim/Vav üçlüsünden hemen önce duran Se ve Fe'ye şimdi dönüyoruz — bunlarla birlikte Kısım VI'nın tekil harfler sözlüğünü artık tamamlamış oluyoruz.",
+            "en": "We now turn to Se and Fe, which on the page stand right after Zel and right before the Ba/Mim/Waw trio we already covered — with them, we've now completed Part VI's dictionary of single letters.",
+            "pt": "Voltamo-nos agora para Se e Fe, que na página estão logo após Zel e logo antes do trio Ba/Mim/Waw que já cobrimos — com eles, completamos agora o dicionário de letras simples da Parte VI."
+          }
+        }
+      ]
+    },
+    {
+      "id": "senin-uc-gunu",
+      "heading": {
+        "tr": "Se: Üç Günün Zâtı, Sıfatı, Fiili",
+        "en": "Se: The Essence, Attribute, and Act of Three Days",
+        "pt": "Se: A Essência, o Atributo e o Ato de Três Dias"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Se'nin şiiri, harfi doğrudan haftanın ilk üç gününe bağlıyor — Kısım VI'da ilk kez karşılaştığımız bu türden bir kozmolojik eşleme: <em>'Se'nin zâtî özellikleri yücedir, nitelikte ve fiilde; kalemler onları yazar. Tek başına Zât sırrıyla tecelli ederse, birinci günde (Pazar) halk ona ibadet eder. Nitelik sırrıyla sabit olarak tecelli ederse, ikinci gün, nitelik kendisini över. Fiil sırrıyla tecelli ederse, üçüncü gününde âlemi mutlu eder.'</em> Zât, Sıfat ve Fiil üçlüsü — Terimler'de 'Kuvve ve Fiil' ile 'Sûret ve Mâdde' başlıkları altında işlediğimiz aynı üçlü ayrımın bir başka görünümü — burada üç ayrı güne, üç ayrı tecelliye karşılık geliyor.",
+            "en": "Se's poem ties the letter directly to the first three days of the week — a cosmological pairing of a kind we're meeting here for the first time in Part VI: <em>'Se's essential qualities are lofty, in Attribute and in Act; pens write them down. If it discloses itself alone by the secret of the Essence, on the first day (Sunday), people worship it. If it discloses itself, fixed, by the secret of the Attribute, on the second day, the Attribute praises itself. If it discloses itself by the secret of the Act, on the third day, the world is made joyful by it.'</em> The triad of Essence (Zat), Attribute (Sifat), and Act (Fi'l) — another appearance of the same threefold distinction we took up in Terms under 'Potential and Actual' and 'Form and Matter' — here corresponds to three separate days, three separate self-disclosures.",
+            "pt": "O poema de Se liga a letra diretamente aos três primeiros dias da semana — um emparelhamento cosmológico de um tipo que encontramos aqui pela primeira vez na Parte VI: <em>'As qualidades essenciais de Se são elevadas, em Atributo e em Ato; penas as escrevem. Se ela se revela sozinha pelo segredo da Essência, no primeiro dia (domingo), o povo a adora. Se ela se revela, fixa, pelo segredo do Atributo, no segundo dia, o Atributo louva a si mesmo. Se ela se revela pelo segredo do Ato, no terceiro dia, o mundo se alegra com ela.'</em> A tríade Essência (Zat), Atributo (Sifat) e Ato (Fi'l) — outra aparição da mesma distinção tripartite que tratamos em Termos sob 'Potência e Ato' e 'Forma e Matéria' — corresponde aqui a três dias distintos, três autorrevelações distintas."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Se Harfi, s. 199-200.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Tha, pp. 199-200.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Tha, pp. 199-200."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Zât",
+                "en": "Essence",
+                "pt": "Essência"
+              },
+              "note": {
+                "tr": "Pazar — halk ibadet eder",
+                "en": "Sunday — people worship",
+                "pt": "domingo — o povo adora"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Sıfat",
+                "en": "Attribute",
+                "pt": "Atributo"
+              },
+              "note": {
+                "tr": "Pazartesi — kendini över",
+                "en": "Monday — praises itself",
+                "pt": "segunda — louva a si mesmo"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Fiil",
+                "en": "Act",
+                "pt": "Ato"
+              },
+              "note": {
+                "tr": "Salı — âlemi mutlu eder",
+                "en": "Tuesday — makes the world joyful",
+                "pt": "terça — alegra o mundo"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Se'nin şiirine göre, aynı üçlü ayrım (Zât-Sıfat-Fiil) haftanın ilk üç gününe karşılık geliyor — her tecelli türü kendi gününe, kendi karşılığına sahip.",
+            "en": "According to Se's poem, the same threefold distinction (Essence-Attribute-Act) corresponds to the first three days of the week — each kind of self-disclosure has its own day, its own counterpart.",
+            "pt": "Segundo o poema de Se, a mesma distinção tripartite (Essência-Atributo-Ato) corresponde aos três primeiros dias da semana — cada tipo de autorrevelação tem seu próprio dia, sua própria contrapartida."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Se'nin hemen ardından gelen Fe'nin şiiri ise bizim için çok daha kapalı kalıyor: <em>'Fe tahkik âleminden, hatırla. Ondan başkasına bak, bir ölçüye göre gelir. Onun Ya ile varlıkta bir karışımı vardır, karışım ile Haktan ve beşerden çözülmez. Ya'nın kavuşmasını kesersen, ona yaklaşır -çeşitli bakımlardan- ruhlar ve sûretler âlemi.'</em> Doğrusu bu satırları tam olarak çözebildiğimizi iddia edemeyiz; Fe'nin Ya ile kurduğu 'karışım' ve bunun Hak-beşer ilişkisiyle bağı, bize kapalı kalan bir işaret olarak duruyor. Bununla birlikte, Se'nin üç günlük tecellisiyle birlikte, Kısım VI'nın tekil harfler sözlüğü -Elif'ten Fe'ye- artık tamamlanmış oluyor.",
+            "en": "Fe's poem, right after Se's, remains far more closed to us: <em>'Remember: Fe belongs to the realm of verification. Look at what is other than it, and it comes according to a measure. It has a mixture with Ya within existence; by that mixture it cannot be resolved apart from the Real or from the human. If you cut off its union with Ya, it draws nearer — from various respects — to the realm of spirits and forms.'</em> We honestly cannot claim to have fully worked out these lines; the 'mixture' Fe forms with Ya, and its tie to the Real-human relation, remains for us a gesture we can't unpack. Still, together with Se's three-day self-disclosure, Part VI's dictionary of single letters — from Elif to Fe — is now complete.",
+            "pt": "O poema de Fe, logo após o de Se, permanece muito mais fechado para nós: <em>'Lembra: Fe pertence ao reino da verificação. Olha para o que é outro que não ele, e ele vem segundo uma medida. Ele tem uma mistura com Ya na existência; por essa mistura não pode ser dissolvido do Real nem do humano. Se cortares sua união com Ya, ele se aproxima -sob vários aspectos- do reino dos espíritos e das formas.'</em> Sinceramente não podemos afirmar ter decifrado por completo essas linhas; a 'mistura' que Fe forma com Ya, e seu vínculo com a relação Real-humano, permanece para nós um gesto que não conseguimos desvendar. Ainda assim, junto com a autorrevelação de três dias de Se, o dicionário de letras simples da Parte VI — de Elif a Fe — está agora completo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "elif-lamin-cinsi",
+      "heading": {
+        "tr": "Lâm'ın Elif'i: Cins ve Hakikatler Hakikati",
+        "en": "Lam's Elif: Genus and the Reality of Realities",
+        "pt": "O Elif de Lam: Gênero e a Realidade das Realidades"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Tekil harfler sözlüğü kapandıktan sonra Dost, Kısım V'te ve az önce Kısım VI'da iki kez ele aldığımız Lâm-Elif bağına üçüncü kez, bu sefer 'cins' (tür/genus) kavramı üzerinden dönüyor: <em>'Lâm'ın Elif'i zâtları bilmek içindir, ayrıca kurumuş kemikleri diriltmek için. Zuhur ettiğinde hepsini düzenler mahyasıyla; artık dağınıklık kalmaz. Ahdi dürüstçe yerine getirir ve onundur — mertebelerin varlığını yüceltme hâli.'</em> Ardından gelen açıklama yalın: <em>'Elif Hakkın, Lâm insanın payı olduğuna göre, Elif ve Lâm cinse aittir. Buna göre Elif'i ve Lâm'ı zikrettiğinde, bütün oluşu ve Yaratan'ı zikretmiş olursun.'</em>",
+            "en": "Once the dictionary of single letters closes, Dost returns a third time to the Lam-Elif bond we've already taken up twice — once in Part V, once earlier in Part VI — this time through the concept of 'genus' (cins): <em>'Lam's Elif exists to make the essences known, and also to bring dried bones back to life. When it manifests, it sets everything in order by its own line; no scattering is left. It keeps the covenant faithfully, and the covenant is its own — a state that exalts the existence of the ranks.'</em> The explanation that follows is plain: <em>'Since Elif is the Real's share and Lam is the human's share, Elif and Lam belong to genus. So when you mention Elif and Lam, you have mentioned the whole of what is created, together with the Creator.'</em>",
+            "pt": "Uma vez fechado o dicionário das letras simples, Dost retorna pela terceira vez ao vínculo Lam-Elif que já tratamos duas vezes — uma na Parte V, outra antes na Parte VI — desta vez através do conceito de 'gênero' (cins): <em>'O Elif de Lam existe para fazer conhecer as essências, e também para devolver a vida a ossos ressecados. Quando se manifesta, ordena tudo por sua própria linha; nenhuma dispersão permanece. Cumpre a aliança fielmente, e a aliança é sua — um estado que exalta a existência das hierarquias.'</em> A explicação que se segue é simples: <em>'Como Elif é a porção do Real e Lam é a porção do humano, Elif e Lam pertencem ao gênero. Assim, quando menciona Elif e Lam, você mencionou a totalidade do que é criado, juntamente com o Criador.'</em>"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost buradan çok daha zor bir yere taşıyor tartışmayı: Elif-Lâm'ın ait olduğu bu en genel cinsin kendisi, dediğine göre, 'hakikatler hakikati'dir (hakâik'ul-hakâik) — ve bu hakikat, kendi zâtına göre 'ne mevcuttur ne de yoktur'; kadimlikte kadim, ama kendi zâtında değil, yaratılmışta yaratılmıştır. Doğrusu bu satırları tam bir netlikle çözebildiğimizi iddia edemeyiz — bu, İbn Arabî literatüründe hakkında çok tartışılan, a'yân-ı sâbite'nin varlık kazanmadan önceki hâline yakın durduğu söylenen zor bir kavram. Burada da sitenin ilkesine sadık kalıp, kapalı kalanı kapalı bırakmayı tercih ediyoruz.",
+            "en": "From here Dost carries the discussion somewhere much harder: this most general genus that Elif-Lam belongs to is, he says, the 'reality of realities' (haqa'iq al-haqa'iq) — and relative to its own essence, this reality is 'neither existent nor non-existent'; eternal in the eternal, yet not in its own essence — created in the created. We honestly cannot claim to have worked this out with full clarity — it's a difficult notion, much discussed in the Ibn Arabi literature, said to stand close to the state of the Fixed Entities before they take on existence. Here too, true to the site's own principle, we'd rather leave what remains closed as closed.",
+            "pt": "A partir daqui Dost leva a discussão a um lugar muito mais difícil: esse gênero mais geral ao qual Elif-Lam pertence é, segundo ele, a 'realidade das realidades' (haqa'iq al-haqa'iq) — e, em relação à sua própria essência, essa realidade 'não é existente nem inexistente'; eterna no eterno, mas não em sua própria essência — criada no criado. Sinceramente não podemos afirmar ter compreendido isso com total clareza — é uma noção difícil, muito discutida na literatura sobre Ibn Arabi, dita estar próxima do estado das Entidades Fixas antes de assumirem existência. Também aqui, fiéis ao princípio do próprio site, preferimos deixar o que permanece fechado como fechado."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hebanin-zinciri",
+      "heading": {
+        "tr": "Hebâ: Sûretlerin Benzerlik Zinciri",
+        "en": "Hebâ: The Chain of Resemblance Among Forms",
+        "pt": "Hebâ: A Cadeia de Semelhança Entre as Formas"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "'Hakikatler hakikati'ne en çok benzeyen yaratılmış şeyin ne olduğunu sorduktan sonra Dost, kendi cevabını veriyor: <em>'Sonradan var olanlar içinden hakikatler hakikatine en çok benzeyen yüce varlık, hebâdır. Hebâ, Allah'ın âlemin sûretlerini içinde açtığı şeydir. Sonra, nuru ona benzer yapmıştır... Nur'a en çok benzeyen şey hava, havaya en çok benzeyen su, suya en çok benzeyen maden, madene en çok benzeyen ahşap ve benzeri şeylerdir.'</em> Terimler'de zaten işlediğimiz Sûret ve Mâdde ikiliğinin bir uzantısı gibi okunabilir bu satırlar: hebâ, henüz hiçbir sûret giymemiş saf bir 'kabul edicilik' hâli olarak, âlemin bütün sûretlerinin içinde açıldığı zemin.",
+            "en": "After asking what created thing most resembles the 'reality of realities,' Dost gives his own answer: <em>'Among things that have come into being, the exalted existent that most resembles the reality of realities is hebâ. Hebâ is that within which God opens up the forms of the world. He then made light (nûr) resemble it... What most resembles light is air, what most resembles air is water, what most resembles water is mineral, what most resembles mineral is wood, and so on.'</em> These lines can be read as an extension of the Form-and-Matter pairing we already took up in Terms: hebâ, as a pure state of 'receptivity' not yet clothed in any form, is the ground within which all the forms of the world are opened up.",
+            "pt": "Depois de perguntar o que, entre as coisas criadas, mais se assemelha à 'realidade das realidades', Dost dá sua própria resposta: <em>'Entre as coisas que vieram a existir, o existente exaltado que mais se assemelha à realidade das realidades é o hebâ. O hebâ é aquilo dentro do qual Deus abre as formas do mundo. Ele então fez a luz (nûr) se assemelhar a ele... O que mais se assemelha à luz é o ar, o que mais se assemelha ao ar é a água, o que mais se assemelha à água é o mineral, o que mais se assemelha ao mineral é a madeira, e assim por diante.'</em> Essas linhas podem ser lidas como uma extensão do par Forma-e-Matéria que já tratamos em Termos: o hebâ, como um estado puro de 'receptividade' ainda não revestido de nenhuma forma, é o terreno dentro do qual todas as formas do mundo se abrem."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI, s. 209-210.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI, pp. 209-210.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI, pp. 209-210."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Hebâ",
+                "en": "Hebâ",
+                "pt": "Hebâ"
+              },
+              "note": {
+                "tr": "saf kabul edicilik",
+                "en": "pure receptivity",
+                "pt": "pura receptividade"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Ahşap",
+                "en": "Wood",
+                "pt": "Madeira"
+              },
+              "note": {
+                "tr": "zincirin en yoğun ucu",
+                "en": "the chain's densest end",
+                "pt": "a extremidade mais densa"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Aradaki zincir: Hebâ → Nur → Hava → Su → Maden → Ahşap. Her hâlka bir öncekine 'en çok benzeyen' olarak tanıtılıyor — hebâ'nın saf kabul ediciliğinden, giderek daha yoğun sûretlere doğru inen bir zincir.",
+            "en": "The chain between them: Hebâ → light → air → water → mineral → wood. Each link is introduced as the thing that 'most resembles' the one before it — a chain descending from hebâ's pure receptivity toward increasingly dense forms.",
+            "pt": "A cadeia entre eles: Hebâ → luz → ar → água → mineral → madeira. Cada elo é apresentado como aquilo que 'mais se assemelha' ao anterior — uma cadeia que desce da pura receptividade do hebâ rumo a formas cada vez mais densas."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost bu uzun tartışmayı birkaç dilbilgisi örneğiyle kapatıyor ve şöyle diyor: <em>'Bu örnekler yeter; bu bölüm uzamıştır.'</em> Hemen ardından tek bir cümleyle Kısım VI'yı kapatıyor: <em>'Altıncı kısım sona ermiştir, hamdolsun.'</em> Böylece Elif'in bilmecesiyle açılan bu uzun kısım -harflerin tek tek portreleri, Lâm-Elif'in üç farklı okunuşu ve son olarak hakikatler hakikati ile hebâ üzerine bu zor pasaj- burada kapanıyor. Kısım VII'ye ilerleyen bir oturumda devam edeceğiz.",
+            "en": "Dost closes this long discussion with a few grammatical examples and says: <em>'These examples suffice; this section has grown long.'</em> Right after, in a single sentence, he closes Part VI: <em>'Part Six has ended, praise be to God.'</em> With that, this long part — which opened with Elif's riddle, moved through the letters' individual portraits, three different readings of Lam-Elif, and finally this difficult passage on the reality of realities and hebâ — closes here. We'll continue with Part VII in a later session.",
+            "pt": "Dost encerra essa longa discussão com alguns exemplos gramaticais e diz: <em>'Esses exemplos bastam; esta seção se alongou.'</em> Logo depois, numa única frase, ele encerra a Parte VI: <em>'A Sexta Parte chegou ao fim, louvado seja Deus.'</em> Com isso, esta longa parte — que se abriu com o enigma de Elif, passou pelos retratos individuais das letras, três leituras diferentes de Lam-Elif, e finalmente esta difícil passagem sobre a realidade das realidades e o hebâ — se encerra aqui. Continuaremos com a Parte VII numa sessão posterior."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Elif Harfi, s. 179-180.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Elif, pp. 179-180.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Elif, pp. 179-180."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Kaf Harfi, s. 184-185.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Qaf, pp. 184-185.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Qaf, pp. 184-185."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Kef Harfi, s. 185-186.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Kaf, pp. 185-186.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Kaf, pp. 185-186."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Şın Harfi, s. 187-188.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Shin, pp. 187-188.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Shin, pp. 187-188."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Ra Harfi, s. 189-190.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ra, pp. 189-190.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ra, pp. 189-190."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Nun Harfi, s. 190.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Nun, p. 190.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Nun, p. 190."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Tı Harfi, s. 190-191.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ta, pp. 190-191.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ta, pp. 190-191."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Sad Harfi, s. 193-195.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Sad, pp. 193-195.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Sad, pp. 193-195."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Ba Harfi, s. 201.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Ba, p. 201.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Ba, p. 201."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Mim Harfi, s. 201-202.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Mim, pp. 201-202.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Mim, pp. 201-202."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Lâm-Elif, s. 203-205.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — Lam-Elif, pp. 203-205.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — Lam-Elif, pp. 203-205."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Vav Harfi, s. 202-203.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Waw, pp. 202-203.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Waw, pp. 202-203."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Ze ve Sin Harfleri, s. 197-198.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letters Za and Sin, pp. 197-198.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — As Letras Za e Sin, pp. 197-198."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Zı Harfi, s. 198-199.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Za, pp. 198-199.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Za, pp. 198-199."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Zel Harfi, s. 199.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letter Dhal, p. 199.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — A Letra Dhal, p. 199."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Se ve Fe Harfleri, s. 199-201.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — The Letters Tha and Fa, pp. 199-201.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — As Letras Tha e Fa, pp. 199-201."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Lâm'ın Elif'i, s. 206-208.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — Lam's Elif, pp. 206-208.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — O Elif de Lam, pp. 206-208."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım VI — Hebâ ve Kısmın Kapanışı, s. 209-211.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part VI — Hebâ and the Part's Close, pp. 209-211.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte VI — Hebâ e o Fechamento da Parte, pp. 209-211."
+    }
+  ]
+}

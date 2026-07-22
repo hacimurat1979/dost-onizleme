@@ -1,0 +1,506 @@
+{
+  "id": "c1k13",
+  "cilt": 1,
+  "kisim": 13,
+  "status": "active",
+  "title": {
+    "tr": "Zamanın Devri: Bâtın'dan Zâhir'e, Arş'ı Taşıyanlar",
+    "en": "The Cycle of Time: From the Hidden to the Manifest, the Bearers of the Throne",
+    "pt": "O Ciclo do Tempo: Do Oculto ao Manifesto, os Portadores do Trono"
+  },
+  "pageRange": "417–439",
+  "hero": {
+    "summary": {
+      "tr": "Kısım XIII, Hz. Muhammed'in ruhunun zamanı nasıl kuşattığını anlatan bir 'devir' teorisiyle açılıyor: zaman, önce el-Bâtın isminin hükmü altındayken, Hz. Peygamber'in bedensel zuhuruyla ez-Zâhir'e geçiyor -ve şefaat zincirinin sonu başına bitişerek üçüncü kez bir daire çiziyor. Ardından Arş'ı taşıyan varlıkları (suret, ruh, gıda, mertebe -her biri ikişer kısma ayrılarak sekizi oluşturuyor) ve Amâ'dan başlayan tam bir kozmogoniyi ele alıyor; bu arada Kısım XII'de tanıtılan Hebâ, burada 'mutlak yokluk mesabesindeki saf karanlık' olarak yeniden beliriyor. Kısım, nebi-resul-veli ayrımıyla ve Âdem'den Hz. Muhammed'e uzanan, sonu Kısım XIV'e açık bırakılan bir kutuplar zinciriyle kapanıyor.",
+      "en": "Part XIII opens with a theory of 'cycles' describing how the Prophet Muhammad's spirit encompasses time itself: time first stood under the rule of the name al-Batin (the Hidden), then passed to al-Zahir (the Manifest) with the Prophet's bodily manifestation — and the chain of intercession closes its end upon its beginning, drawing a circle for the third time. The part then takes up the bearers of the Throne (form, spirit, sustenance, and rank — each divided into two, making eight) and a full cosmogony beginning from al-'Ama (the Cloud); along the way, Haba, introduced in Part XII, reappears here as 'the pure darkness standing in the place of absolute non-existence.' The part closes with the distinction between prophet, messenger, and saint, and a chain of poles stretching from Adam to Muhammad, left open-ended into Part XIV.",
+      "pt": "A Parte XIII se abre com uma teoria de 'ciclos' descrevendo como o espírito do Profeta Muhammad abrange o próprio tempo: o tempo esteve primeiro sob o domínio do nome al-Batin (o Oculto), depois passou a al-Zahir (o Manifesto) com a manifestação corporal do Profeta — e a cadeia de intercessão fecha seu fim sobre seu começo, desenhando um círculo pela terceira vez. A parte então aborda os portadores do Trono (forma, espírito, sustento e grau — cada um dividido em dois, totalizando oito) e uma cosmogonia completa começando em al-'Ama (a Nuvem); nesse percurso, Haba, apresentada na Parte XII, reaparece aqui como 'a pura escuridão que ocupa o lugar da inexistência absoluta'. A parte se encerra com a distinção entre profeta, mensageiro e santo, e uma cadeia de polos que se estende de Adão a Muhammad, deixada em aberto para a Parte XIV."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Dost'un Arş şeması: mülkün taşıyıcıları dört ana mesele -suret, ruh, gıda, mertebe- olarak ayrılır, her biri kendi içinde ikiye bölünerek sekiz taşıyıcıyı oluşturur.",
+      "en": "Dost's scheme of the Throne: the bearers of dominion divide into four principal matters — form, spirit, sustenance, and rank — each of which splits in two, making up the eight bearers.",
+      "pt": "O esquema do Trono em Dost: os portadores do domínio se dividem em quatro questões principais — forma, espírito, sustento e grau — cada uma das quais se divide em duas, formando os oito portadores."
+    },
+    "tree": {
+      "id": "arsi-tasiyanlar-tree",
+      "label": {
+        "tr": "Arş (Mülk)",
+        "en": "The Throne (Dominion)",
+        "pt": "O Trono (Domínio)"
+      },
+      "note": {
+        "tr": "dört mesele, ikişer kısma ayrılarak sekiz taşıyıcıyı oluşturur",
+        "en": "four matters, each split into two, make up the eight bearers",
+        "pt": "quatro questões, cada uma dividida em duas, formam os oito portadores"
+      },
+      "children": [
+        {
+          "id": "suret-dal",
+          "label": {
+            "tr": "Suret",
+            "en": "Form",
+            "pt": "Forma"
+          },
+          "note": {
+            "tr": "cismin görünen katmanı",
+            "en": "the visible layer of body",
+            "pt": "a camada visível do corpo"
+          },
+          "children": [
+            {
+              "id": "suret-unsur",
+              "label": {
+                "tr": "Unsurdan Suret",
+                "en": "Form from the Elements",
+                "pt": "Forma dos Elementos"
+              },
+              "note": {
+                "tr": "cisimsel, yoğun",
+                "en": "corporeal, dense",
+                "pt": "corpóreo, denso"
+              }
+            },
+            {
+              "id": "suret-nur",
+              "label": {
+                "tr": "Nurdan Suret",
+                "en": "Form from Light",
+                "pt": "Forma da Luz"
+              },
+              "note": {
+                "tr": "cisimsel, saf",
+                "en": "corporeal, pure",
+                "pt": "corpóreo, puro"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ruh-dal",
+          "label": {
+            "tr": "Ruh",
+            "en": "Spirit",
+            "pt": "Espírito"
+          },
+          "note": {
+            "tr": "sureti yöneten görünmez katman",
+            "en": "the invisible layer governing form",
+            "pt": "a camada invisível que governa a forma"
+          },
+          "children": [
+            {
+              "id": "ruh-yoneten",
+              "label": {
+                "tr": "Sureti Yöneten Ruhlar",
+                "en": "Spirits That Govern Form",
+                "pt": "Espíritos Que Governam a Forma"
+              },
+              "note": {
+                "tr": "Cebrail-Muhammed türü",
+                "en": "of the Gabriel-Muhammad type",
+                "pt": "do tipo Gabriel-Muhammad"
+              }
+            },
+            {
+              "id": "ruh-berzah",
+              "label": {
+                "tr": "Berzah Suretlerinin Ruhları",
+                "en": "Spirits of Barzakh Forms",
+                "pt": "Espíritos das Formas do Barzakh"
+              },
+              "note": {
+                "tr": "uykuda/ölümden sonra görünen",
+                "en": "appearing in sleep or after death",
+                "pt": "que aparecem no sono ou após a morte"
+              }
+            }
+          ]
+        },
+        {
+          "id": "gida-dal",
+          "label": {
+            "tr": "Gıda",
+            "en": "Sustenance",
+            "pt": "Sustento"
+          },
+          "note": {
+            "tr": "varlığı ayakta tutan besleme",
+            "en": "the nourishment that sustains existence",
+            "pt": "o alimento que sustenta a existência"
+          },
+          "children": [
+            {
+              "id": "gida-maddi",
+              "label": {
+                "tr": "Maddi Rızık",
+                "en": "Material Sustenance",
+                "pt": "Sustento Material"
+              },
+              "note": {
+                "tr": "beden için",
+                "en": "for the body",
+                "pt": "para o corpo"
+              }
+            },
+            {
+              "id": "gida-manevi",
+              "label": {
+                "tr": "Manevi Rızık",
+                "en": "Spiritual Sustenance",
+                "pt": "Sustento Espiritual"
+              },
+              "note": {
+                "tr": "bilgi, tecelli, hâl",
+                "en": "knowledge, self-disclosure, state",
+                "pt": "conhecimento, autorrevelação, estado"
+              }
+            }
+          ]
+        },
+        {
+          "id": "mertebe-dal",
+          "label": {
+            "tr": "Mertebe",
+            "en": "Rank",
+            "pt": "Grau"
+          },
+          "note": {
+            "tr": "varlığın nihai konumu",
+            "en": "the final station of a being",
+            "pt": "a posição final de um ser"
+          },
+          "children": [
+            {
+              "id": "mertebe-mutluluk",
+              "label": {
+                "tr": "Mutluluk",
+                "en": "Felicity",
+                "pt": "Felicidade"
+              },
+              "note": {
+                "tr": "yetkinlik, mizaç veya şeriat yoluyla",
+                "en": "through perfection, temperament, or law",
+                "pt": "através da perfeição, temperamento ou lei"
+              }
+            },
+            {
+              "id": "mertebe-bedbahtlik",
+              "label": {
+                "tr": "Bedbahtlık",
+                "en": "Wretchedness",
+                "pt": "Infelicidade"
+              },
+              "note": {
+                "tr": "aynı üç yoldan, olumsuz",
+                "en": "through the same three paths, inverted",
+                "pt": "pelos mesmos três caminhos, invertidos"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "zamanin-devri-batindan-zahire",
+      "heading": {
+        "tr": "Zamanın Devri: Bâtın'dan Zâhir'e",
+        "en": "The Cycle of Time: From the Hidden to the Manifest",
+        "pt": "O Ciclo do Tempo: Do Oculto ao Manifesto"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım XIII, Hz. Muhammed'in ruhunun ilk yaratılan ruh olduğunu ve zamanı bir 'devir' olarak kuşattığını anlatarak açılıyor: zaman önce el-Bâtın isminin hükmündeyken, Hz. Peygamber'in bedensel zuhuruyla ez-Zâhir'e geçiyor. Dost, dört haram ayı (Zülkade, Zilhicce, Muharrem, Recep) dört peygamberle (Hûd, Salih, Şuayb, Muhammed) eşleştiriyor, sonra şefaat hiyerarşisini (Hz. Muhammed - er-Rahim - el-Müntakim - el-Mun'im el-Müfaddıl) bir çembere bağlıyor: <em>'Sonu merhametlilerin en merhametlisi olan dönen bir daireden daha büyük hangi şeref vardır? Dairenin sonu başına bitişmiştir.'</em> Bu, Kısım XI'in varlık dairesi ve Kısım XII'nin mülk devrinden sonra, aynı imgenin üçüncü kez, bu defa şefaat zinciri bağlamında karşımıza çıkışıdır.",
+            "en": "Part XIII opens by describing the Prophet Muhammad's spirit as the first spirit created, one that encompasses time itself as a 'cycle': time first stood under the rule of the name al-Batin (the Hidden), then passed to al-Zahir (the Manifest) with the Prophet's bodily manifestation. Dost pairs the four sacred months (Dhu al-Qi'dah, Dhu al-Hijjah, Muharram, Rajab) with four prophets (Hud, Salih, Shu'ayb, Muhammad), then binds the hierarchy of intercession (Muhammad – al-Rahim – al-Muntaqim – al-Mun'im al-Mufaddil) into a circle: <em>'What honor is greater than a revolving circle whose end is the most merciful of the merciful? The end of the circle has joined its beginning.'</em> After the circle of existence in Part XI and the cycle of dominion in Part XII, this is the same image's third appearance, now in the context of the chain of intercession.",
+            "pt": "A Parte XIII se abre descrevendo o espírito do Profeta Muhammad como o primeiro espírito criado, um que abrange o próprio tempo como um 'ciclo': o tempo esteve primeiro sob o domínio do nome al-Batin (o Oculto), depois passou a al-Zahir (o Manifesto) com a manifestação corporal do Profeta. Dost associa os quatro meses sagrados (Dhu al-Qi'dah, Dhu al-Hijjah, Muharram, Rajab) a quatro profetas (Hud, Salih, Shu'ayb, Muhammad), depois liga a hierarquia de intercessão (Muhammad – al-Rahim – al-Muntaqim – al-Mun'im al-Mufaddil) num círculo: <em>'Que honra é maior que um círculo giratório cujo fim é o mais misericordioso dos misericordiosos? O fim do círculo se juntou ao seu começo.'</em> Depois do círculo da existência na Parte XI e do ciclo do domínio na Parte XII, esta é a terceira aparição da mesma imagem, agora no contexto da cadeia de intercessão."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Zamanın Devri, s. 417-420.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — The Cycle of Time, pp. 417-420.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — O Ciclo do Tempo, pp. 417-420."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "el-Bâtın",
+                "en": "Al-Batin (The Hidden)",
+                "pt": "Al-Batin (O Oculto)"
+              },
+              "note": {
+                "tr": "ilk devir, henüz zuhur etmemiş hüküm",
+                "en": "the first cycle, a rule not yet manifest",
+                "pt": "o primeiro ciclo, um domínio ainda não manifesto"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "ez-Zâhir",
+                "en": "Al-Zahir (The Manifest)",
+                "pt": "Al-Zahir (O Manifesto)"
+              },
+              "note": {
+                "tr": "Hz. Peygamber'in bedensel zuhuruyla başlayan devir",
+                "en": "the cycle beginning with the Prophet's bodily manifestation",
+                "pt": "o ciclo que começa com a manifestação corporal do Profeta"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un zaman okuması: zaman tek bir çizgi değil, gizli bir isimden açık bir isme geçen bir devirdir.",
+            "en": "Dost's reading of time: time is not a single line but a cycle passing from a hidden name to a manifest one.",
+            "pt": "A leitura de Dost do tempo: o tempo não é uma linha única, mas um ciclo que passa de um nome oculto a um manifesto."
+          }
+        }
+      ]
+    },
+    {
+      "id": "zaman-ve-mizan",
+      "heading": {
+        "tr": "Zaman ve Mizan",
+        "en": "Time and the Scale",
+        "pt": "O Tempo e a Balança"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, 'zaman' kelimesinin harflerinin 'mizan' (terazi) kelimesinde saklı olduğunu gözlemleyerek işârî bir delil kuruyor: <em>'Hz. Peygamber zaman deyip dehr ya da başka bir şey dememiş olması, mizanın varlığına dikkat çeker. Çünkü mizan kelimesinde bulunan harflerden hiçbirisi, zaman kelimesi zikredildiğinde dışta kalmaz.'</em> 78.000 yıllık kozmik devir ve on iki burç hesaba katılıyor; ahlâkın 'mahalline göre' değiştiği ilkesi de burada işleniyor. Dost, taşların Allah'ı zikrettiğini bizzat duyduğunu söylüyor: <em>'Gözümüzle görerek ve kulaklarımızla duyarak, taşların Allah'ı dille zikrettiğini duyduk.'</em>",
+            "en": "Dost builds an allusive proof by observing that the letters of the word 'time' (zaman) lie hidden within the word 'scale' (mizan): <em>'That the Prophet said time and not age or anything else draws attention to the existence of the scale — for none of the letters found in the word scale falls outside when the word time is mentioned.'</em> A cosmic cycle of 78,000 years and the twelve zodiacal signs are brought into the calculation; the principle that morality changes 'according to its locus' is also treated here. Dost says he has himself heard stones remembering God: <em>'Seeing with our own eyes and hearing with our own ears, we heard stones remembering God with a tongue.'</em>",
+            "pt": "Dost constrói uma prova alusiva observando que as letras da palavra 'tempo' (zaman) estão ocultas na palavra 'balança' (mizan): <em>'Que o Profeta tenha dito tempo e não idade ou outra coisa chama a atenção para a existência da balança — pois nenhuma das letras encontradas na palavra balança fica de fora quando a palavra tempo é mencionada.'</em> Um ciclo cósmico de 78.000 anos e os doze signos do zodíaco entram no cálculo; o princípio de que a moralidade muda 'segundo seu lugar' também é tratado aqui. Dost diz que ele mesmo ouviu pedras lembrando-se de Deus: <em>'Vendo com nossos próprios olhos e ouvindo com nossos próprios ouvidos, ouvimos pedras se lembrarem de Deus com uma língua.'</em>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "yedi-gogun-vahyi",
+      "heading": {
+        "tr": "Yedi Göğün Vahyi: Hz. Muhammed'e Özgü Yedi Ayrıcalık",
+        "en": "The Revelation of the Seven Heavens: Seven Privileges Unique to Muhammad",
+        "pt": "A Revelação dos Sete Céus: Sete Privilégios Exclusivos de Muhammad"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Her göğe vahyedilen özel bir emirden Hz. Peygamber'e tahsis edilen bir nitelik çıkıyor: birinci gökten Kur'an'ın korunmuşluğu, ikinciden merhamet ve yumuşaklık, üçüncüden kılıç-hilafet-melek desteği, dördüncüden şeriatının bütün dinlerden üstünlüğü, beşinciden kadın sevgisi, altıncıdan Kur'an'ın mucizeliğine dair altı özel şey, yedinciden yetkinlik sureti. Bu yedili liste, Kısım XII'deki 'mülk devri' fikrinin yedi göğe yayılmış somut bir dökümü gibi okunabilir.",
+            "en": "From the specific command revealed to each heaven, a quality assigned to the Prophet emerges: from the first heaven, the preservation of the Qur'an; from the second, mercy and gentleness; from the third, the sword, the caliphate, and angelic support; from the fourth, the superiority of his law over every religion; from the fifth, the love of women; from the sixth, six special things pertaining to the Qur'an's miraculousness; from the seventh, the form of perfection. This sevenfold list can be read as a concrete accounting, spread across the seven heavens, of Part XII's idea of the 'cycle of dominion.'",
+            "pt": "Do mandamento específico revelado a cada céu, emerge uma qualidade atribuída ao Profeta: do primeiro céu, a preservação do Alcorão; do segundo, a misericórdia e a brandura; do terceiro, a espada, o califado e o apoio angelical; do quarto, a superioridade de sua lei sobre toda religião; do quinto, o amor pelas mulheres; do sexto, seis coisas especiais referentes à miraculosidade do Alcorão; do sétimo, a forma da perfeição. Essa lista sétupla pode ser lida como uma contabilização concreta, espalhada pelos sete céus, da ideia do 'ciclo do domínio' da Parte XII."
+          }
+        }
+      ]
+    },
+    {
+      "id": "arsi-tasiyanlar-mulk-taht",
+      "heading": {
+        "tr": "Arş'ı Taşıyanlar: Mülk ve Taht",
+        "en": "The Bearers of the Throne: Dominion and Seat",
+        "pt": "Os Portadores do Trono: Domínio e Assento"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "'Arş' kelimesi hem mülk hem taht anlamına geliyor; dünyada dört, kıyamette sekiz taşıyıcısı var. Dost, İbn Meserre el-Cebelî'nin şemasını aktarıyor: taşıyıcılık dört ana meseleye -suret, ruh, gıda, mertebe- ayrılıyor, her biri kendi içinde ikiye bölünerek sekizi tamamlıyor (bkz. yukarıdaki ana şema).",
+            "en": "The word 'Throne' (Arsh) means both dominion and seat; it has four bearers in this world and eight at the Resurrection. Dost relays the scheme of Ibn Masarra al-Jabali: bearing divides into four principal matters — form, spirit, sustenance, and rank — each of which splits in two, completing the eight (see the main diagram above).",
+            "pt": "A palavra 'Trono' (Arsh) significa tanto domínio quanto assento; tem quatro portadores neste mundo e oito na Ressurreição. Dost transmite o esquema de Ibn Masarra al-Jabali: o suporte se divide em quatro questões principais — forma, espírito, sustento e grau — cada uma das quais se divide em duas, completando os oito (veja o diagrama principal acima)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kozmogoni-amadan-arsa",
+      "heading": {
+        "tr": "Kozmogoni: Amâ'dan Arş'a",
+        "en": "Cosmogony: From al-'Ama to the Throne",
+        "pt": "Cosmogonia: de al-'Ama ao Trono"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, tam bir kozmogoni özeti sunuyor: <em>'Amâ, Hakkın zuhur ettiği ilk mazhardır... Amâ, nur ile boyandığında, Allah doğal cisimler âleminin üzerinde bulunan güçlü meleklerin suretlerini onda açmıştır. Onlardan önce ne Arş ne de herhangi başka bir yaratık vardı.'</em> Ardından İlk Akıl/Kalem ve Levha yaratılıyor, Levha'da beliren ilk ilim 'doğa ilmi' oluyor. Bu noktada Kısım XII'nin Hebâ'sıyla doğrudan buluşan bir cümle geliyor: <em>'Sonra Allah, bu nurun karşısında mutlak varlığın karşıtı olan mutlak yokluk mesabesindeki saf karanlığı yarattı... Ardından Arş diye isimlendirilen cisim ortaya çıkmış, er-Rahman ismi ez-Zâhir ismiyle onun üstüne yerleşmiştir.'</em> Hebâ'nın 'mutlak yokluk mesabesindeki saf karanlık' olarak yeniden tarif edilişi, Kısım XII'de 'Doğa'nın ikiz kız kardeşi' olarak tanıtılan Hebâ'ya ontolojik bir derinlik daha katıyor.",
+            "en": "Dost offers a complete cosmogonic summary: <em>'al-'Ama is the first locus of the Real's manifestation... When al-'Ama was dyed with light, God disclosed within it the forms of the mighty angels who stand above the world of natural bodies. Before them, there was neither the Throne nor any other creature.'</em> The First Intellect (the Pen) and the Tablet are then created, and the first knowledge to appear on the Tablet is 'the knowledge of nature.' At this point comes a sentence that meets Part XII's Haba directly: <em>'Then God created, opposite this light, the pure darkness standing in the place of absolute non-existence, the counterpart of absolute existence... Then the body named the Throne appeared, and the name al-Rahman, together with the name al-Zahir, settled upon it.'</em> This redescription of Haba as 'pure darkness standing in the place of absolute non-existence' adds a further layer of ontological depth to the Haba introduced in Part XII as 'Nature's twin sister.'",
+            "pt": "Dost oferece um resumo cosmogônico completo: <em>'al-'Ama é o primeiro locus da manifestação do Real... Quando al-'Ama foi tingida de luz, Deus revelou nela as formas dos anjos poderosos que estão acima do mundo dos corpos naturais. Antes deles, não havia nem o Trono nem qualquer outra criatura.'</em> O Primeiro Intelecto (a Pena) e a Tábua são então criados, e o primeiro conhecimento a aparecer na Tábua é 'o conhecimento da natureza'. Neste ponto vem uma frase que se encontra diretamente com a Haba da Parte XII: <em>'Então Deus criou, em frente a essa luz, a pura escuridão que ocupa o lugar da inexistência absoluta, a contraparte da existência absoluta... Então o corpo chamado Trono apareceu, e o nome al-Rahman, junto com o nome al-Zahir, se estabeleceu sobre ele.'</em> Essa redescrição de Haba como 'pura escuridão que ocupa o lugar da inexistência absoluta' acrescenta mais uma camada de profundidade ontológica à Haba apresentada na Parte XII como 'irmã gêmea da Natureza'."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ruhlar-berzah-suretleri-gida",
+      "heading": {
+        "tr": "Ruhlar, Berzah Suretleri ve Gıda",
+        "en": "Spirits, Barzakh Forms, and Sustenance",
+        "pt": "Espíritos, Formas do Barzakh e Sustento"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Suret ile ruh arasındaki ilişki, ruhların tek bir zattan nasıl ayrıştığı üzerinden ele alınıyor. Uykuda ya da ölümden sonra görünen hayali-bedensel suretler (berzah suretleri) burada ayrı bir kategori olarak tanımlanıyor -Kısım XI'in Hakikat Arzı'nda tasvir edilen berzah-âlemiyle aynı kavramsal aileden. Maddi rızık ile manevi rızık (bilgi, tecelli, hâl) arasındaki ayrım da bu bölümde işleniyor.",
+            "en": "The relation between form and spirit is treated through how spirits separate from a single essence. The imaginal-corporeal forms (barzakh forms) that appear in sleep or after death are defined here as a distinct category — belonging to the same conceptual family as the barzakh-world depicted in Part XI's Reality-Earth. The distinction between material and spiritual sustenance (knowledge, self-disclosure, state) is also treated in this section.",
+            "pt": "A relação entre forma e espírito é tratada através de como os espíritos se separam de uma única essência. As formas imaginal-corpóreas (formas do barzakh) que aparecem no sono ou após a morte são definidas aqui como uma categoria distinta — pertencente à mesma família conceitual do mundo-barzakh retratado na Terra da Realidade da Parte XI. A distinção entre sustento material e espiritual (conhecimento, autorrevelação, estado) também é tratada nesta seção."
+          }
+        }
+      ]
+    },
+    {
+      "id": "mertebeler-mutluluk-bedbahtlik",
+      "heading": {
+        "tr": "Mertebeler: Mutluluk ve Bedbahtlık",
+        "en": "Ranks: Felicity and Wretchedness",
+        "pt": "Graus: Felicidade e Infelicidade"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Mutluluğun ve bedbahtlığın üçer türü (yetkinlik, mizaç, şeriat yoluyla) sıralanıyor; Arş'ın sekiz taşıyıcısı Hakkın sekiz sıfatına (hayat, ilim, kudret, irade, kelâm, sem', basar, ve yeme-koklama-dokunma algısı) bağlanıyor. Taht anlamındaki Arş'ın dört taşıyıcı sureti (insan, aslan, kartal, boğa) sayılıyor ve Sâmirî'nin buzağısına telmih yapılıyor.",
+            "en": "The three kinds of felicity and wretchedness — through perfection, temperament, or revealed law — are laid out; the eight bearers of the Throne are tied to the eight attributes of the Real (life, knowledge, power, will, speech, hearing, sight, and the perception of taste-smell-touch). The four bearer-forms of the Throne in the sense of 'seat' (human, lion, eagle, bull) are enumerated, with an allusion to the calf of al-Samiri.",
+            "pt": "Os três tipos de felicidade e infelicidade — por meio da perfeição, do temperamento ou da lei revelada — são expostos; os oito portadores do Trono são ligados aos oito atributos do Real (vida, conhecimento, poder, vontade, fala, audição, visão e a percepção de paladar-olfato-tato). As quatro formas portadoras do Trono no sentido de 'assento' (humano, leão, águia, touro) são enumeradas, com uma alusão ao bezerro de al-Samiri."
+          }
+        }
+      ]
+    },
+    {
+      "id": "peygamberlerin-sirri-nebi-resul-veli",
+      "heading": {
+        "tr": "Peygamberlerin Sırrı: Nebi-Resul-Veli Ayrımı",
+        "en": "The Secret of the Prophets: Prophet, Messenger, Saint",
+        "pt": "O Segredo dos Profetas: Profeta, Mensageiro, Santo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Nebi ve resul tanımları, meleğin peygambere geliş biçimleriyle birlikte ele alınıyor. Hz. İsa'nın hem nebi-resul hem hâtemü'l-evliyâ (velilerin sonuncusu) olması, onu kıyamette iki kez diriltilecek tek kişi yapıyor: <em>'Bu nedenle Hz. İsa kıyamet günü iki kez diriltilecektir: Peygamberlerle resul, bizimle beraber ise Hz. Muhammed'e bağlı bir veli olarak diriltilecektir.'</em> Dost, keşif ehlinin hadis tenkidindeki rolünü de anlatıyor: <em>'Hz. Peygamber de o hadisi reddeder ve şöyle cevap verir: Ben onu söylemedim ve ona göre hüküm vermedim. Böylece keşif sahibi, hadisin zayıf olduğunu öğrenir.'</em>",
+            "en": "The definitions of prophet (nabi) and messenger (rasul) are treated together with the ways the angel comes to the prophet. Jesus's status as both prophet-messenger and hatam al-awliya (the seal of the saints) makes him the only person to be resurrected twice: <em>'For this reason Jesus will be resurrected twice on the Day of Resurrection: with the prophets, as a messenger; and with us, as a saint attached to Muhammad.'</em> Dost also describes the role of the people of unveiling in the criticism of hadith: <em>'The Prophet himself rejects that hadith and answers: I did not say it, and I did not judge according to it. Thus the possessor of unveiling learns that the hadith is weak.'</em>",
+            "pt": "As definições de profeta (nabi) e mensageiro (rasul) são tratadas junto com as formas em que o anjo vem ao profeta. O status de Jesus como profeta-mensageiro e hatam al-awliya (o selo dos santos) o torna a única pessoa a ser ressuscitada duas vezes: <em>'Por essa razão, Jesus será ressuscitado duas vezes no Dia da Ressurreição: com os profetas, como mensageiro; e conosco, como um santo ligado a Muhammad.'</em> Dost também descreve o papel dos possuidores do desvelamento na crítica do hadith: <em>'O próprio Profeta rejeita esse hadith e responde: Eu não o disse, e não julguei de acordo com ele. Assim o possuidor do desvelamento aprende que o hadith é fraco.'</em>"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Peygamberlerin Sırrı, s. 434-438.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — The Secret of the Prophets, pp. 434-438.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — O Segredo dos Profetas, pp. 434-438."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Kalbe Doğrudan İniş",
+                "en": "Direct Descent to the Heart",
+                "pt": "Descida Direta ao Coração"
+              },
+              "note": {
+                "tr": "aracısız vahiy",
+                "en": "revelation without intermediary",
+                "pt": "revelação sem intermediário"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Beden Suretinde Kulağa İniş",
+                "en": "Descent to the Ear in Bodily Form",
+                "pt": "Descida ao Ouvido em Forma Corpórea"
+              },
+              "note": {
+                "tr": "melek işitilir bir surette gelir",
+                "en": "the angel comes in an audible form",
+                "pt": "o anjo vem numa forma audível"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Beden Suretinde Göze İniş",
+                "en": "Descent to the Eye in Bodily Form",
+                "pt": "Descida ao Olho em Forma Corpórea"
+              },
+              "note": {
+                "tr": "melek görülür bir surette gelir",
+                "en": "the angel comes in a visible form",
+                "pt": "o anjo vem numa forma visível"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un vahiy tasnifi: meleğin peygambere gelişi tek bir biçimde değil, üç farklı kanaldan gerçekleşir.",
+            "en": "Dost's classification of revelation: the angel does not come to the prophet in a single way, but through three different channels.",
+            "pt": "A classificação de Dost da revelação: o anjo não vem ao profeta de uma única forma, mas por três canais diferentes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kutuplar-zinciri-ademden-muhammede",
+      "heading": {
+        "tr": "Kutuplar Zinciri: Âdem'den Muhammed'e",
+        "en": "The Chain of Poles: From Adam to Muhammad",
+        "pt": "A Cadeia de Polos: de Adão a Muhammad"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, önceki ümmetlerin 23 kutbunun isimlerini (el-Mufarrık, Müdâvi'l-külüm gibi) sayarak kapanıyor. Dost, bunları Kurruba şehrinde berzah mertebesinde bizzat gördüğünü söylüyor: <em>'Kurruba şehrinde, yüce bir müşahede halinde berzah mertebesindeyken onlar bana gösterildi; ben de onları gördüm.'</em> Tek Kutup olarak Hz. Muhammed'in ruhunun adı 'Müdâviü'l-külüm' (yaraları iyileştiren) oluyor; sırrın kendisinden sonra kimlere intikal ettiğine dair zincir ise açık uçlu bırakılıyor -yazar bir sonraki ismi vermeden kısmı bitiriyor, konuyu Kısım XIV'e taşıyor.",
+            "en": "The part closes by enumerating the names of the 23 poles of previous communities (such as al-Mufarriq, Mudawi al-Kulum). Dost says he saw them himself, at the station of the barzakh, in the city of Qurruba: <em>'While I was in the city of Qurruba, in a sublime witnessing at the station of the barzakh, they were shown to me; and I saw them.'</em> As the single Pole, the name of the Prophet Muhammad's spirit is 'Mudawi al-Kulum' (Healer of Wounds); the chain of those to whom the secret passed after him is left open-ended — the author ends the part without naming the next link, carrying the matter over into Part XIV.",
+            "pt": "A parte se encerra enumerando os nomes dos 23 polos das comunidades anteriores (como al-Mufarriq, Mudawi al-Kulum). Dost diz que os viu ele mesmo, na estação do barzakh, na cidade de Qurruba: <em>'Enquanto eu estava na cidade de Qurruba, num testemunho sublime na estação do barzakh, eles me foram mostrados; e eu os vi.'</em> Como o Polo único, o nome do espírito do Profeta Muhammad é 'Mudawi al-Kulum' (Curador de Feridas); a cadeia daqueles a quem o segredo passou depois dele é deixada em aberto — o autor encerra a parte sem nomear o próximo elo, levando o assunto para a Parte XIV."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Zamanın Devri: Bâtın'dan Zâhir'e, s. 417-420.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — The Cycle of Time: From the Hidden to the Manifest, pp. 417-420.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — O Ciclo do Tempo: Do Oculto ao Manifesto, pp. 417-420."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Zaman ve Mizan, s. 425-428.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — Time and the Scale, pp. 425-428.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — O Tempo e a Balança, pp. 425-428."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Yedi Göğün Vahyi, s. 420-425.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — The Revelation of the Seven Heavens, pp. 420-425.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — A Revelação dos Sete Céus, pp. 420-425."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Arş'ı Taşıyanlar, s. 428-430.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — The Bearers of the Throne, pp. 428-430.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — Os Portadores do Trono, pp. 428-430."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Kozmogoni: Amâ'dan Arş'a, s. 430-432.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — Cosmogony: From al-'Ama to the Throne, pp. 430-432.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — Cosmogonia: de al-'Ama ao Trono, pp. 430-432."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Ruhlar, Berzah Suretleri ve Gıda, s. 432-433.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — Spirits, Barzakh Forms, and Sustenance, pp. 432-433.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — Espíritos, Formas do Barzakh e Sustento, pp. 432-433."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Mertebeler: Mutluluk ve Bedbahtlık, s. 433-434.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — Ranks: Felicity and Wretchedness, pp. 433-434.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — Graus: Felicidade e Infelicidade, pp. 433-434."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Peygamberlerin Sırrı, s. 434-438.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — The Secret of the Prophets, pp. 434-438.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — O Segredo dos Profetas, pp. 434-438."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XIII — Kutuplar Zinciri: Âdem'den Muhammed'e, s. 438-439.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XIII — The Chain of Poles: From Adam to Muhammad, pp. 438-439.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XIII — A Cadeia de Polos: de Adão a Muhammad, pp. 438-439."
+    }
+  ]
+}

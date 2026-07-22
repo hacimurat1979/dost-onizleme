@@ -1,0 +1,457 @@
+{
+  "id": "c1k12",
+  "cilt": 1,
+  "kisim": 12,
+  "status": "active",
+  "title": {
+    "tr": "Etkin Babalar, Edilgen Analar: Hebâ'nın Doğduğu Yer",
+    "en": "Active Fathers, Receptive Mothers: Where Haba Was Born",
+    "pt": "Pais Ativos, Mães Receptivas: Onde Haba Nasceu"
+  },
+  "pageRange": "380–413",
+  "hero": {
+    "summary": {
+      "tr": "Kısım XII, cinlerin ateş-kökenli yaratılışıyla ve İlk Şeytan Hâris'in Âdem'e secde etmeyi reddedişiyle açılıyor; ardından 'mülk devri' kavramıyla Hz. Muhammed'in görünmeyen bir hükümdar olarak bütün peygamberlerin gerçek efendisi olduğunu, ve İsa ile Muhammed arası fetret döneminde yaşayanların kurtuluş derecelerini ele alıyor. Kısım, en özgün fikrini sona saklıyor: kozmosun tamamını 'etkin baba - edilgen ana' kalıbının tekrarı olarak okuyan bir şema -İlk Akıl ile Levha, sonra Levha'nın doğurduğu ikizler Doğa ile Hebâ, sonra gökler ile unsurlar, sonra gece ile gündüz. Bu son şema, Kısım XI'de tanıtılan ama kökeni açıklanmayan Hebâ'nın nereden geldiğini doğrudan cevaplıyor.",
+      "en": "Part XII opens with the fiery origin of the jinn and the story of the first Iblis, Haris, refusing to prostrate before Adam; it then takes up the concept of the 'cycle of dominion' (mulk), arguing that the Prophet Muhammad is, as an unseen ruler, the true master of every prophet, and classifies the degrees of salvation available to those who lived in the gap between Jesus and Muhammad. The part saves its most original idea for last: a scheme reading the entire cosmos as a repetition of the pattern 'active father, receptive mother' — the First Intellect and the Tablet, then the Tablet's twin offspring Nature and Haba, then the heavens and the elements, then night and day. This closing scheme directly answers a question left open in Part XI: where Haba, first introduced there, actually comes from.",
+      "pt": "A Parte XII se abre com a origem ígnea dos jinn e a história do primeiro Iblis, Haris, recusando-se a prostrar-se diante de Adão; em seguida, aborda o conceito de 'ciclo do domínio' (mulk), argumentando que o Profeta Muhammad é, como um governante invisível, o verdadeiro senhor de todo profeta, e classifica os graus de salvação disponíveis para quem viveu no intervalo entre Jesus e Muhammad. A parte guarda sua ideia mais original para o final: um esquema que lê todo o cosmos como uma repetição do padrão 'pai ativo, mãe receptiva' — o Primeiro Intelecto e a Tábua, depois os filhos gêmeos da Tábua, Natureza e Haba, depois os céus e os elementos, depois a noite e o dia. Esse esquema final responde diretamente a uma pergunta deixada em aberto na Parte XI: de onde afinal vem Haba, ali apresentada pela primeira vez."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Dost'un kozmik doğurganlık şeması: İlk Akıl'dan gece-gündüze kadar bütün varlık katmanları, tek bir 'etkin baba-edilgen ana' kalıbının tekrarıdır -Kısım XI'de tanıtılan Hebâ'nın nereden geldiğini de bu şema açıklar.",
+      "en": "Dost's scheme of cosmic parenthood: every layer of existence, from the First Intellect down to night and day, repeats a single pattern of 'active father, receptive mother' — this same scheme also explains where Haba, introduced in Part XI, actually comes from.",
+      "pt": "O esquema de paternidade cósmica de Dost: cada camada da existência, do Primeiro Intelecto até a noite e o dia, repete um único padrão de 'pai ativo, mãe receptiva' — esse mesmo esquema também explica de onde vem Haba, apresentada na Parte XI."
+    },
+    "tree": {
+      "id": "babalar-analar-tree",
+      "label": {
+        "tr": "Etkin Babalar, Edilgen Analar",
+        "en": "Active Fathers, Receptive Mothers",
+        "pt": "Pais Ativos, Mães Receptivas"
+      },
+      "note": {
+        "tr": "kozmosun tamamı bu tek kalıbın tekrarıdır",
+        "en": "the whole cosmos repeats this single pattern",
+        "pt": "todo o cosmos repete este único padrão"
+      },
+      "children": [
+        {
+          "id": "ilk-akil-levha",
+          "label": {
+            "tr": "İlk Akıl (Kalem) & Levha",
+            "en": "The First Intellect (Pen) & the Tablet",
+            "pt": "O Primeiro Intelecto (Pena) & a Tábua"
+          },
+          "note": {
+            "tr": "ilk baba-ilk ana",
+            "en": "the first father, the first mother",
+            "pt": "o primeiro pai, a primeira mãe"
+          }
+        },
+        {
+          "id": "doga-heba",
+          "label": {
+            "tr": "Doğa & Hebâ",
+            "en": "Nature & Haba",
+            "pt": "Natureza & Haba"
+          },
+          "note": {
+            "tr": "Levha'nın ikiz çocukları, nikâhlarından Tümel Cisim doğar",
+            "en": "twin children of the Tablet; their union bears the Universal Body",
+            "pt": "filhos gêmeos da Tábua; sua união gera o Corpo Universal"
+          }
+        },
+        {
+          "id": "gokler-unsurlar",
+          "label": {
+            "tr": "Gökler & Dört Unsur",
+            "en": "The Heavens & the Four Elements",
+            "pt": "Os Céus & os Quatro Elementos"
+          },
+          "note": {
+            "tr": "ürünleri: maden, bitki, hayvan, insan",
+            "en": "their offspring: mineral, plant, animal, human",
+            "pt": "sua prole: mineral, planta, animal, humano"
+          }
+        },
+        {
+          "id": "gece-gunduz",
+          "label": {
+            "tr": "Gece & Gündüz",
+            "en": "Night & Day",
+            "pt": "Noite & Dia"
+          },
+          "note": {
+            "tr": "karşılıklı örtünme, zamandaki her olayın ana-babası",
+            "en": "mutually veiling one another, parents of every event in time",
+            "pt": "velando-se mutuamente, pais de todo evento no tempo"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "cinlerin-yaratilisi-tabiati",
+      "heading": {
+        "tr": "Cinlerin Yaratılışı ve Tabiatı",
+        "en": "The Creation and Nature of the Jinn",
+        "pt": "A Criação e a Natureza dos Jinn"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım XII, Kısım XI'in 'ruhani yaratılış' temasını cinlerle tamamlıyor: cinler hava ile ateşin karışımından (mâric) yaratılır, tıpkı Âdem'in su ile topraktan (tin) yaratılması gibi. Dost, bu ikili kökenin doğal bir eğilim yarattığını söylüyor -ateşten yaratılan cinlerde büyüklenme, topraktan yaratılan Âdem'de ise tevazu potansiyel olarak baştan vardır. Hz. Peygamber'in Rahman sûresini cinlere okuması, cinlerin beslenme biçimi (kemik kokusuyla) ve hünsa (çift cinsiyetli) üreme teorisi de bu bölümde ele alınıyor.",
+            "en": "Part XII completes Part XI's theme of 'spiritual creation' with the jinn: they are created from a mixture of wind and fire (marij), just as Adam was created from water and clay (tin). Dost says this dual origin produces a natural tendency from the start — arrogance is latent in the fire-born jinn, humility in the clay-born Adam. The chapter also covers the Prophet's recitation of Surah al-Rahman to the jinn, their manner of feeding (on the smell of bone), and a theory of their hermaphroditic reproduction.",
+            "pt": "A Parte XII completa o tema da 'criação espiritual' da Parte XI com os jinn: eles são criados de uma mistura de vento e fogo (marij), assim como Adão foi criado de água e barro (tin). Dost diz que essa origem dupla produz uma tendência natural desde o início — a arrogância é latente nos jinn nascidos do fogo, a humildade em Adão, nascido do barro. O capítulo também aborda a recitação da Surah al-Rahman pelo Profeta aos jinn, sua forma de se alimentar (do cheiro dos ossos), e uma teoria sobre sua reprodução hermafrodita."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XII — Cinlerin Yaratılışı ve Tabiatı, s. 380-384.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part XII — The Creation and Nature of the Jinn, pp. 380-384.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XII — A Criação e a Natureza dos Jinn, pp. 380-384."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Âdem",
+                "en": "Adam",
+                "pt": "Adão"
+              },
+              "note": {
+                "tr": "su+toprak (tin), doğal eğilim: tevazu",
+                "en": "water and clay (tin), natural tendency: humility",
+                "pt": "água e barro (tin), tendência natural: humildade"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Cin",
+                "en": "The Jinn",
+                "pt": "O Jinn"
+              },
+              "note": {
+                "tr": "hava+ateş (mâric), doğal eğilim: büyüklenme",
+                "en": "wind and fire (marij), natural tendency: arrogance",
+                "pt": "vento e fogo (marij), tendência natural: arrogância"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un ikili köken okuması: madde neyden yaratılırsa, o maddenin eğilimi de mizaca sızar.",
+            "en": "Dost's reading of dual origin: whatever matter a being is created from, that matter's tendency seeps into its temperament.",
+            "pt": "A leitura de Dost da origem dupla: de qualquer matéria que um ser seja criado, a tendência dessa matéria se infiltra em seu temperamento."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ruhanilerin-goruntusu",
+      "heading": {
+        "tr": "Ruhanilerin Görünüşü: Kandil Metaforu",
+        "en": "The Appearance of Spirits: The Lamp Metaphor",
+        "pt": "A Aparência dos Espíritos: A Metáfora da Lâmpada"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, ruhani bir varlığın nasıl bir surete girip göründüğünü çarpıcı bir imgeyle anlatıyor: <em>'Suret ile ruhaninin ilişkisine örnek olarak ışığı duvarlara yayılan kandil ve onun ışığını verebiliriz. Kandilin cismi gizlendiğinde ışık da kaybolur.'</em> Kur'an'da ruhanilerin göründüğü suretlerin neden 'ceset' diye anıldığını da açıklıyor: <em>'Onun (Hz. Süleyman'ın) Kürsüsüne bir ceset attık... Onları yemek yemeyen cesetler yapmadık.'</em> Cinler âleminin yaratılışında meleklerin katmanlı görev paylaşımı da bu bölümde ayrıntılandırılıyor.",
+            "en": "Dost describes, with a striking image, how a spiritual being enters and appears through a form: <em>'As an example of the relation between a form and the spirit, we may take a lamp whose light spreads over the walls, and the light itself. When the body of the lamp is hidden, its light too disappears.'</em> He also explains why the forms in which spirits appear are called 'body' (jasad) in the Qur'an: <em>'We cast upon his (Solomon's) throne a mere body... We did not make them bodies that eat no food.'</em> The layered division of angelic duties in the creation of the jinn-world is also detailed here.",
+            "pt": "Dost descreve, com uma imagem marcante, como um ser espiritual entra e aparece através de uma forma: <em>'Como exemplo da relação entre uma forma e o espírito, podemos tomar uma lâmpada cuja luz se espalha pelas paredes, e a própria luz. Quando o corpo da lâmpada é escondido, sua luz também desaparece.'</em> Ele também explica por que as formas em que os espíritos aparecem são chamadas de 'corpo' (jasad) no Alcorão: <em>'Lançamos sobre seu (de Salomão) trono um mero corpo... Não os fizemos corpos que não comem alimento.'</em> A divisão em camadas das funções angélicas na criação do mundo dos jinn também é detalhada aqui."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ilk-seytan-haris",
+      "heading": {
+        "tr": "İlk Şeytan Hâris ve Cehennemin Sırrı",
+        "en": "The First Satan, Haris, and the Secret of Hell",
+        "pt": "O Primeiro Satã, Haris, e o Segredo do Inferno"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Hâris'in Âdem'e secde etmeyi reddedişi ve <em>'ben ondan hayırlıyım, beni ateşten onu ise topraktan yarattın'</em> iddiası, su-ateş güç hiyerarşisiyle çürütülüyor -meleklerin Allah'a sorduğu bir diyalogla: <em>'Rabbimiz! Ateşten daha güçlü bir şey yarattın mı? Allah: Evet, suyu yarattım... Havadan daha güçlü bir şey yarattın mı? Allah: Evet, Âdemoğlunu yarattım.'</em> Bölüm, cehennem isminin kökenine (sıcaklık-soğukluk karşıtlığı) ve bir velinin gözyaşı döken uyarısına da yer veriyor: <em>'İblis ateşle azap görse bile, insan için ateşle pişirilmek daha ağır bir azaptır. Sakınınız!'</em>",
+            "en": "Haris's refusal to prostrate before Adam, and his claim that <em>'I am better than him — You created me from fire, and him from clay,'</em> is refuted through a hierarchy of water and fire, in a dialogue where the angels ask God: <em>'Our Lord! Have You created anything stronger than fire? God said: Yes, I created water... Have You created anything stronger than wind? God said: Yes, I created the son of Adam.'</em> The section also touches on the origin of the name 'hell' (the opposition of heat and cold) and records the tearful warning of a gnostic: <em>'Even though Iblis is punished by fire, for the human being to be cooked by fire is a still heavier punishment. Beware!'</em>",
+            "pt": "A recusa de Haris em se prostrar diante de Adão, e sua alegação de que <em>'sou melhor do que ele — Tu me criaste do fogo, e a ele do barro,'</em> é refutada através de uma hierarquia entre água e fogo, num diálogo em que os anjos perguntam a Deus: <em>'Nosso Senhor! Criaste algo mais forte que o fogo? Deus disse: Sim, criei a água... Criaste algo mais forte que o vento? Deus disse: Sim, criei o filho de Adão.'</em> A seção também toca na origem do nome 'inferno' (a oposição entre calor e frio) e registra o aviso, com lágrimas, de um gnóstico: <em>'Mesmo que Iblis seja punido pelo fogo, para o ser humano ser cozido pelo fogo é um castigo ainda mais pesado. Cuidado!'</em>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mulk-devri",
+      "heading": {
+        "tr": "Mülk Devri: Hz. Muhammed'in Bütün Peygamberlerin Efendisi Oluşu",
+        "en": "The Cycle of Dominion: Muhammad as Master of Every Prophet",
+        "pt": "O Ciclo do Domínio: Muhammad como Senhor de Todo Profeta"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Onuncu Bölüm, bu şiirle açılıyor: <em>'Mülkün varlığı olmasaydı, Melik bilinmezdi... Mülk devri ona kesin kanıttır; bunun için uçları kesişmiş ve böylece ortaya çıkmış, sonu başlangıcı gibi olmuştur.'</em> Bu, Kısım XI'deki 'daire' imgesinin -sonunun başına bitiştiği çember- neredeyse birebir tekrarı, ama burada varlık değil hükümranlık (mülk) döngüsüne uygulanıyor. Dost, bütün peygamberlerin aslında Hz. Muhammed'in 'vekilleri' olduğunu, şeriatların birbirini geçersiz kılmasının (nesh) onları Muhammedi şeriattan çıkarmadığını, çünkü Hz. Peygamber'in görünmeyen bir hükümdar olarak bütün zamanın gerçek sahibi olduğunu savunuyor.",
+            "en": "The Tenth Chapter opens with this poem: <em>'Had dominion had no existence, the King would not be known... The cycle of dominion is decisive proof of this; for this its two ends have met and crossed, so that its end has become like its beginning.'</em> This is an almost exact repetition of Part XI's image of the 'circle' — where the end joins the beginning — now applied not to existence itself but to the cycle of dominion (mulk). Dost argues that all the prophets are, in reality, Muhammad's 'deputies,' and that the abrogation of one law by another (naskh) does not remove them from the Muhammadan law, because the Prophet, as an unseen ruler, is the true possessor of all time.",
+            "pt": "O Décimo Capítulo se abre com este poema: <em>'Se o domínio não tivesse existência, o Rei não seria conhecido... O ciclo do domínio é prova decisiva disso; por isso suas duas extremidades se encontraram e se cruzaram, de modo que seu fim se tornou como seu começo.'</em> Isso é quase uma repetição exata da imagem do 'círculo' na Parte XI — onde o fim se junta ao começo — agora aplicada não à existência em si, mas ao ciclo do domínio (mulk). Dost argumenta que todos os profetas são, na realidade, 'delegados' de Muhammad, e que a ab-rogação de uma lei por outra (naskh) não os remove da lei muhammadiana, porque o Profeta, como um governante invisível, é o verdadeiro possuidor de todo o tempo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fetret-ehli-mertebeleri",
+      "heading": {
+        "tr": "Fetret Ehlinin Mertebeleri",
+        "en": "The Ranks of Those Who Lived in the Interval",
+        "pt": "Os Graus dos Que Viveram no Intervalo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İsa ile Muhammed arasındaki fetret döneminde yaşayanların kurtuluş dereceleri ayrıntılı bir sınıflandırmayla ele alınıyor: delil, nur veya keşif yoluyla kurtulanlardan; kendi fikriyle ya da taklitle inkâra (ta'til) düşenlere, hatta şirke sürüklenenlere kadar geniş bir yelpaze. Bu sınıflandırma, Dost'un kurtuluşu tek bir kapıya değil, kişinin hakikate ulaşma yoluna (delil/nur/keşif) göre dereceli bir yelpazeye yaydığını gösteriyor.",
+            "en": "The degrees of salvation available to those who lived in the interval (fatra) between Jesus and Muhammad are treated through a detailed classification: from those saved through evidence, light, or unveiling, to those who fell into denial (ta'til) through their own reasoning or through blind imitation, even into association (shirk). This classification shows that Dost spreads salvation not through a single door, but across a graded range depending on the path — evidence, light, or unveiling — by which a person reaches the truth.",
+            "pt": "Os graus de salvação disponíveis para os que viveram no intervalo (fatra) entre Jesus e Muhammad são tratados através de uma classificação detalhada: dos que se salvaram por evidência, luz ou desvelamento, até os que caíram na negação (ta'til) por raciocínio próprio ou por imitação cega, e até os que caíram na associação (shirk). Essa classificação mostra que Dost distribui a salvação não por uma única porta, mas por uma gradação que depende do caminho — evidência, luz ou desvelamento — pelo qual a pessoa alcança a verdade."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XII — Fetret Ehlinin Mertebeleri, s. 398-400.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part XII — The Ranks of Those Who Lived in the Interval, pp. 398-400.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XII — Os Graus dos Que Viveram no Intervalo, pp. 398-400."
+          },
+          "tree": {
+            "id": "fetret-ehli-tree",
+            "label": {
+              "tr": "Fetret Ehli",
+              "en": "Those Who Lived in the Interval",
+              "pt": "Os Que Viveram no Intervalo"
+            },
+            "note": {
+              "tr": "kurtuluş, ulaşma yoluna göre derecelenir",
+              "en": "salvation is graded by the path of attainment",
+              "pt": "a salvação é gradeada pelo caminho de alcance"
+            },
+            "children": [
+              {
+                "id": "mutlu-siniflar",
+                "label": {
+                  "tr": "Mutlu Sınıflar",
+                  "en": "The Fortunate Classes",
+                  "pt": "As Classes Afortunadas"
+                },
+                "note": {
+                  "tr": "delil, nur veya keşif yoluyla kurtulanlar",
+                  "en": "saved through evidence, light, or unveiling",
+                  "pt": "salvos por evidência, luz ou desvelamento"
+                }
+              },
+              {
+                "id": "bedbaht-siniflar",
+                "label": {
+                  "tr": "Bedbaht Sınıflar",
+                  "en": "The Wretched Classes",
+                  "pt": "As Classes Infelizes"
+                },
+                "note": {
+                  "tr": "kendi fikriyle ya da taklitle inkâra, hatta şirke düşenler",
+                  "en": "fallen into denial through their own reasoning or imitation, even into association",
+                  "pt": "caídos na negação por raciocínio próprio ou imitação, até a associação"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Dost'un fetret ehli sınıflandırması: kurtuluş tek bir kapı değil, hakikate ulaşma yoluna göre dereceli bir yelpazedir.",
+            "en": "Dost's classification of those in the interval: salvation is not a single door but a graded range depending on the path to truth.",
+            "pt": "A classificação de Dost dos que viveram no intervalo: a salvação não é uma única porta, mas uma gradação segundo o caminho até a verdade."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ilk-ayrilan-son-ayrilan",
+      "heading": {
+        "tr": "İlk Ayrılan, Son Ayrılan: Altı Cins",
+        "en": "The First to Separate, the Last to Separate: Six Genera",
+        "pt": "O Primeiro a Se Separar, o Último a Se Separar: Seis Gêneros"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, 'ilk baba-ilk ana' zincirini (İsa-Meryem, Havva-Âdem) yeniden okuyup, İlk Akıl'dan Tümel Nefs'in ayrılışıyla Âdem'den Havva'nın ayrılışını simetrik iki uç olarak sunuyor. Âlemdeki altı cinsi (melek, cin, maden, bitki, hayvan, insan) sıralıyor ve gerçek insanı bu hiyerarşinin hem sonu hem halifesi sayıyor: <em>'Fakat gerçek insan, toplayıcı kelime ve âlemin suretidir ve âlemde bulunan her şey onun parçasıdır. Gerçek insan tek başına âlemin parçası değildir.'</em>",
+            "en": "Dost rereads the chain of 'first father, first mother' (Jesus-Mary, Eve-Adam), presenting the separation of the Universal Soul from the First Intellect and the separation of Eve from Adam as two symmetrical ends. He lists the six genera of the cosmos (angel, jinn, mineral, plant, animal, human), and counts the true human as both the end and the vicegerent of this hierarchy: <em>'But the true human is the all-comprehensive word and the form of the cosmos, and everything found in the cosmos is a part of him; the true human is not merely one part of the cosmos among others.'</em>",
+            "pt": "Dost relê a cadeia de 'primeiro pai, primeira mãe' (Jesus-Maria, Eva-Adão), apresentando a separação da Alma Universal do Primeiro Intelecto e a separação de Eva de Adão como duas extremidades simétricas. Ele lista os seis gêneros do cosmos (anjo, jinn, mineral, planta, animal, humano), e conta o humano verdadeiro como o fim e o vice-regente dessa hierarquia: <em>'Mas o humano verdadeiro é a palavra que tudo abrange e a forma do cosmos, e tudo o que se encontra no cosmos é parte dele; o humano verdadeiro não é apenas uma parte do cosmos entre outras.'</em>"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XII — İlk Ayrılan, Son Ayrılan, s. 394-398.",
+            "en": "al-Futuhat al-Makkiyya, Vol. I, Part XII — The First to Separate, the Last to Separate, pp. 394-398.",
+            "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XII — O Primeiro a Se Separar, o Último a Se Separar, pp. 394-398."
+          },
+          "tree": {
+            "id": "alti-cins-tree",
+            "label": {
+              "tr": "Âlemdeki Altı Cins",
+              "en": "The Six Genera of the Cosmos",
+              "pt": "Os Seis Gêneros do Cosmos"
+            },
+            "note": {
+              "tr": "hiyerarşinin sonu ve halifesi: gerçek insan",
+              "en": "the end and vicegerent of the hierarchy: the true human",
+              "pt": "o fim e o vice-regente da hierarquia: o humano verdadeiro"
+            },
+            "children": [
+              {
+                "id": "melek-cins",
+                "label": {
+                  "tr": "Melek",
+                  "en": "Angel",
+                  "pt": "Anjo"
+                },
+                "note": {
+                  "tr": "nurdan, arzusuz itaat",
+                  "en": "of light, obedience without desire",
+                  "pt": "de luz, obediência sem desejo"
+                }
+              },
+              {
+                "id": "cin-cins",
+                "label": {
+                  "tr": "Cin",
+                  "en": "Jinn",
+                  "pt": "Jinn"
+                },
+                "note": {
+                  "tr": "ateşten, seçme kabiliyetiyle",
+                  "en": "of fire, with the capacity to choose",
+                  "pt": "de fogo, com a capacidade de escolher"
+                }
+              },
+              {
+                "id": "maden-cins",
+                "label": {
+                  "tr": "Maden",
+                  "en": "Mineral",
+                  "pt": "Mineral"
+                },
+                "note": {
+                  "tr": "en yoğun, en durağan",
+                  "en": "the densest, the most fixed",
+                  "pt": "o mais denso, o mais fixo"
+                }
+              },
+              {
+                "id": "bitki-cins",
+                "label": {
+                  "tr": "Bitki",
+                  "en": "Plant",
+                  "pt": "Planta"
+                },
+                "note": {
+                  "tr": "büyüyen ama duyusuz",
+                  "en": "growing, yet without sense",
+                  "pt": "que cresce, mas sem sentido"
+                }
+              },
+              {
+                "id": "hayvan-cins",
+                "label": {
+                  "tr": "Hayvan",
+                  "en": "Animal",
+                  "pt": "Animal"
+                },
+                "note": {
+                  "tr": "duyusu var, aklı yok",
+                  "en": "possessing sense, but not intellect",
+                  "pt": "possui sentido, mas não intelecto"
+                }
+              },
+              {
+                "id": "insan-cins",
+                "label": {
+                  "tr": "İnsan",
+                  "en": "Human",
+                  "pt": "Humano"
+                },
+                "note": {
+                  "tr": "toplayıcı kelime, âlemin sureti",
+                  "en": "the all-comprehensive word, the form of the cosmos",
+                  "pt": "a palavra que tudo abrange, a forma do cosmos"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Dost'un altı cins sıralaması: insan bu hiyerarşinin sadece bir halkası değil, hepsini kendinde toplayan son ve halifedir.",
+            "en": "Dost's ordering of the six genera: the human is not merely one link in this hierarchy but its end and vicegerent, gathering all of them within itself.",
+            "pt": "A ordenação de Dost dos seis gêneros: o humano não é apenas um elo nessa hierarquia, mas seu fim e vice-regente, reunindo todos eles em si mesmo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "etkin-babalar-edilgen-analar",
+      "heading": {
+        "tr": "Etkin Babalar, Edilgen Analar: Kozmik Doğurganlık Şeması",
+        "en": "Active Fathers, Receptive Mothers: The Scheme of Cosmic Parenthood",
+        "pt": "Pais Ativos, Mães Receptivas: O Esquema da Paternidade Cósmica"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "On Birinci Bölüm, kısmın en sistematik fikrini sunuyor: İlk Akıl (Kalem) ile Korunmuş Levha ilk baba-ana çiftidir; Levha'nın (Tümel Nefs'in) doğurduğu ikizler Doğa ile Hebâ'dır -Kısım XI'de tanıtılan ama kökeni açıklanmayan Hebâ, işte burada, Doğa'nın kız kardeşi/eşi olarak beliriyor: <em>'Tümel Nefs ikiz doğuran ilk ana idi. Önce Doğa, ardından Hebâ doğmuştur... Doğa Hebâ'yı nikâhlamış, bu ilişkiden tümel cismin sureti doğmuştur.'</em> Aynı kalıp gökler-unsurlar ve gece-gündüz çiftlerinde de tekrarlanıyor. Bölüm, bir şeyhin son derece mahviyetkâr bir öğüdüyle kapanıyor: <em>'Bir yoldaşına selâm verdiğinde, Allah'ın yeryüzünde ve gökteki ölü ve diri bütün iyi kullarını aklına getir... Keşke kimse verdiğin selâmı duymasaydı da, Hak onların yerine selâmını alsaydı.'</em>",
+            "en": "The Eleventh Chapter presents the part's most systematic idea: the First Intellect (the Pen) and the Preserved Tablet are the first father-mother pair; the twins born of the Tablet (the Universal Soul) are Nature and Haba — and Haba, introduced in Part XI but never explained there, appears here as Nature's sister and spouse: <em>'The Universal Soul was the first mother to bear twins. First Nature was born, then Haba... Nature took Haba in marriage, and from this union the form of the universal body was born.'</em> The same pattern repeats in the pairs of heavens-and-elements and night-and-day. The chapter closes with a strikingly self-effacing piece of counsel from a shaykh: <em>'When you greet a companion, bring to mind all of God's righteous servants, living and dead, on earth and in the heavens... I wish that no one heard the greeting you gave, and that the Real received your greeting in their place instead.'</em>",
+            "pt": "O Décimo Primeiro Capítulo apresenta a ideia mais sistemática da parte: o Primeiro Intelecto (a Pena) e a Tábua Preservada são o primeiro par pai-mãe; os gêmeos nascidos da Tábua (a Alma Universal) são Natureza e Haba — e Haba, apresentada na Parte XI mas nunca explicada ali, aparece aqui como irmã e esposa da Natureza: <em>'A Alma Universal foi a primeira mãe a gerar gêmeos. Primeiro nasceu a Natureza, depois Haba... A Natureza tomou Haba em casamento, e dessa união nasceu a forma do corpo universal.'</em> O mesmo padrão se repete nos pares céus-e-elementos e noite-e-dia. O capítulo se encerra com um conselho de humildade impressionante de um xeique: <em>'Quando saudares um companheiro, traze à mente todos os servos justos de Deus, vivos e mortos, na terra e nos céus... Gostaria que ninguém ouvisse a saudação que deste, e que o Real recebesse tua saudação em seu lugar.'</em>"
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XII — Cinlerin Yaratılışı ve Tabiatı, s. 380-384.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XII — The Creation and Nature of the Jinn, pp. 380-384.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XII — A Criação e a Natureza dos Jinn, pp. 380-384."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XII — Ruhanilerin Görünüşü, s. 384-387.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XII — The Appearance of Spirits, pp. 384-387.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XII — A Aparência dos Espíritos, pp. 384-387."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XII — İlk Şeytan Hâris ve Cehennemin Sırrı, s. 387-389.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XII — The First Satan, Haris, and the Secret of Hell, pp. 387-389.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XII — O Primeiro Satã, Haris, e o Segredo do Inferno, pp. 387-389."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XII — Mülk Devri, s. 389-394.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XII — The Cycle of Dominion, pp. 389-394.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XII — O Ciclo do Domínio, pp. 389-394."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XII — İlk Ayrılan, Son Ayrılan, s. 394-398.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XII — The First to Separate, the Last to Separate, pp. 394-398.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XII — O Primeiro a Se Separar, o Último a Se Separar, pp. 394-398."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XII — Fetret Ehlinin Mertebeleri, s. 398-400.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XII — The Ranks of Those Who Lived in the Interval, pp. 398-400.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XII — Os Graus dos Que Viveram no Intervalo, pp. 398-400."
+    },
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt I, Kısım XII — Etkin Babalar, Edilgen Analar, s. 400-413.",
+      "en": "al-Futuhat al-Makkiyya, Vol. I, Part XII — Active Fathers, Receptive Mothers, pp. 400-413.",
+      "pt": "al-Futuhat al-Makkiyya, Vol. I, Parte XII — Pais Ativos, Mães Receptivas, pp. 400-413."
+    }
+  ]
+}

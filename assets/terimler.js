@@ -99,6 +99,7 @@
     "varlik-mertebesi": "steps",
     "kozmik-hiyerarsi": "rays",
     "kopru-kavram": "eye",
+    "firaset": "eye",
     "nefsin-gucleri": "flame",
     "ahad-vahid": "dot-circle",
     "lafza-i-celal": "stroke",

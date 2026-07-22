@@ -162,10 +162,14 @@
   let dataPromise = null;
   let activePartId = null;
 
+  // Atlas artık ikiye bölünmüş yükleniyor (bkz. scripts/build-static-routes.py
+  // -> write_futuhat_split): önce hafif indeks (kısım listesi + arama için,
+  // ~240KB), sonra açılan her kısmın tam içeriği talep üzerine (~100KB).
+  // Böylece Fütûhât görünümü 2.5MB'lık tek dosyayı baştan çekmiyor.
   function fetchData() {
     if (dataPromise) return dataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("futuhat-wrap");
-    dataPromise = fetch("data/ibn-arabi/futuhat-atlas.json")
+    dataPromise = fetch("data/ibn-arabi/futuhat-atlas-index.json")
       .then((r) => r.json())
       .then((data) => {
         futuhatData = data;
@@ -174,13 +178,37 @@
         return data;
       })
       .catch((err) => {
-        console.error("Fütûhât atlası yüklenemedi / Failed to load Futuhat atlas", err);
+        console.error("Fütûhât indeksi yüklenemedi / Failed to load Futuhat index", err);
         dataPromise = null;
         if (window.DostViewStatus) window.DostViewStatus.showError("futuhat-wrap", () => window.__futuhatApp.activate());
       });
     return dataPromise;
   }
 
+  // Bir kısmın TAM içeriğini (mainDiagram + sections + sources) talep üzerine
+  // çeker ve önbelleğe alır; renderPart/computeStats/forEachDiagramBlock bunu
+  // kullanır. İndeksteki hafif kayıt yalnızca liste + başlık/özet içindir.
+  // Promise'in kendisi önbelleğe alınıyor ki aynı kısım için eşzamanlı iki
+  // çağrı (örn. açılışta activate + cross-link-ready re-render) tek fetch'e
+  // insin; hata durumunda kayıt siliniyor ki "tekrar dene" gerçekten denesin.
+  const partCache = new Map();
+  function fetchPart(id) {
+    if (partCache.has(id)) return partCache.get(id);
+    const p = fetch("data/ibn-arabi/futuhat-parts/" + id + ".json")
+      .then((r) => {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .catch((err) => {
+        console.error("Fütûhât kısmı yüklenemedi / Failed to load Futuhat part", id, err);
+        partCache.delete(id);
+        return null;
+      });
+    partCache.set(id, p);
+    return p;
+  }
+
+  // İndeksteki hafif kayıt (id/cilt/kisim/title/pageRange/hero.summary).
   function partById(id) {
     return futuhatData.parts.find((p) => p.id === id);
   }
@@ -646,7 +674,7 @@
         </details>`;
       })
       .join("");
-    partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: "Cilt III–XVIII yakında", en: "Volumes III–XVIII coming soon", pt: "Volumes III–XVIII em breve" })}</span>`;
+    partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: "Cilt IV–XVIII yakında", en: "Volumes IV–XVIII coming soon", pt: "Volumes IV–XVIII em breve" })}</span>`;
   }
 
   function roman(n) {
@@ -909,8 +937,8 @@
   }
 
   function activatePart(id) {
-    const part = partById(id);
-    if (!part) return;
+    const meta = partById(id);
+    if (!meta) return;
     activePartId = id;
     if (partsEl) {
       partsEl.querySelectorAll(".futuhat-part-chip").forEach((chip) => {
@@ -920,12 +948,31 @@
       const containingGroup = currentChip && currentChip.closest("details.futuhat-cilt-group");
       if (containingGroup) containingGroup.open = true;
     }
-    renderPart(part);
     if (window.__dostNav) window.__dostNav.setHash("futuhat", id);
     // setHash az önce genel "futuhat" başlık/canonical/description'ını yazdı
     // (bkz. ontology.js updateMeta) -- bu kısma özel olanlarla en son biz
-    // üzerine yazıyoruz ki kazanan bu olsun.
-    updatePartMeta(part);
+    // üzerine yazıyoruz ki kazanan bu olsun. Meta (title+summary) indekste
+    // olduğu için anında; makale gövdesi ise tam kısım gelince render edilir.
+    updatePartMeta(meta);
+    // Zaten bir kısım görünüyorsa, yenisi yüklenene kadar onu bırak (boş
+    // yanıp sönme olmasın); yalnızca ilk açılışta "yükleniyor" göster.
+    const alreadyRendered = articleEl && articleEl.querySelector(".futuhat-hero");
+    if (!partCache.has(id) && !alreadyRendered && articleEl) {
+      articleEl.innerHTML = `<p class="futuhat-part-loading">${tt({ tr: "Yükleniyor…", en: "Loading…", pt: "Carregando…" })}</p>`;
+    }
+    fetchPart(id).then((part) => {
+      // Kullanıcı bu fetch dönmeden başka bir kısma geçtiyse eskiyi basma.
+      if (activePartId !== id) return;
+      if (!part) {
+        if (articleEl) {
+          articleEl.innerHTML = `<div class="futuhat-part-error"><p>${tt({ tr: "Bu kısım yüklenemedi.", en: "This part could not be loaded.", pt: "Esta parte não pôde ser carregada." })}</p><button type="button" class="futuhat-part-retry">${tt({ tr: "Tekrar dene", en: "Retry", pt: "Tentar novamente" })}</button></div>`;
+          const retry = articleEl.querySelector(".futuhat-part-retry");
+          if (retry) retry.addEventListener("click", () => activatePart(id));
+        }
+        return;
+      }
+      renderPart(part);
+    });
   }
 
   function render() {

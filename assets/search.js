@@ -84,12 +84,14 @@
           });
         });
       }),
-      fetch("data/ibn-arabi/futuhat-atlas.json").then((r) => r.json()).then((d) => {
+      fetch("data/ibn-arabi/futuhat-atlas-index.json").then((r) => r.json()).then((d) => {
         // Gezinme yalnızca kısım (part) düzeyinde çalıştığı için, sonuç
         // olarak o kısmı gösteriyoruz -- ama bölüm başlıklarını da arama
         // metnine katıyoruz ki içindeki bir konu/harf aranınca da bulunsun.
+        // Hafif indeks section başlıklarını sectionHeadings olarak taşır
+        // (tam sections yalnızca kısım açılınca yüklenir -- atlas bölme).
         (d.parts || []).forEach((p) => {
-          const sectionHeadings = (p.sections || []).map((s) => allLangText(s.heading)).join(" ");
+          const sectionHeadings = (p.sectionHeadings || []).map((h) => allLangText(h)).join(" ");
           index.push({
             view: "futuhat",
             id: p.id,
