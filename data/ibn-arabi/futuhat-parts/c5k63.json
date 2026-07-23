@@ -1,0 +1,435 @@
+{
+  "id": "c5k63",
+  "cilt": 5,
+  "kisim": 63,
+  "status": "active",
+  "title": {
+    "tr": "Kavisin Doğruluğu: İhramda Beden, İsim ve Sınır",
+    "en": "The Rightness of the Curve: Body, Name, and Limit in the Pilgrim's Garb",
+    "pt": "A Retidão do Arco: Corpo, Nome e Limite no Traje do Peregrino"
+  },
+  "pageRange": "282-301",
+  "hero": {
+    "summary": {
+      "tr": "Altmış Üçüncü Kısım, ihramın fıkhî ayrıntılarını -- giysi, mest, koku, eşle ilişki, yıkanma -- tek tek işlerken, hepsinin altında aynı soruyu tekrarlar: bir isim, bir sınır içinde nasıl geçici olarak öbürünü bastırır ya da onunla çekişir? Dost, kadın ile erkek arasındaki farkı kendi döneminin sembolik diliyle bir 'parça-bütün' ilişkisi olarak okur -- biz bunu kesin bir hüküm değil, tarihsel bağlamı içinde bir okuma denemesi olarak aktarıyoruz. Kısım, dikişsiz giysinin Hakk'a atfedilen bir nitelik oluşundan, tenzihin akıldaki dereceli hallerine, isimlerin tek bir nefiste çekişmesinden rububiyet-ubudiyet gerilimine uzanır.",
+      "en": "The Sixty-Third Section takes up the legal details of the pilgrim's state of consecration (ihram) -- clothing, footwear, scent, marital relations, washing -- one by one, and beneath all of them repeats the same question: how does one Name temporarily suppress or contend with another within a limit? Dost reads the difference between woman and man, in the symbolic language of his own era, as a 'part-to-whole' relation -- we pass this on not as a settled ruling but as a reading attempt within its historical context. The section moves from the seamless garment as an attribute ascribed to the Real, through the graded states of transcendence available to reason, to the contention of Names within a single self, and on to the tension between lordship and servanthood.",
+      "pt": "A Sexagésima Terceira Parte trata dos detalhes jurídicos do estado de consagração do peregrino (ihram) -- vestimenta, calçado, perfume, relações conjugais, banho -- um a um, e por baixo de todos repete a mesma pergunta: como um Nome suprime ou disputa temporariamente com outro dentro de um limite? Dost lê a diferença entre mulher e homem, na linguagem simbólica de sua própria época, como uma relação de 'parte para o todo' -- transmitimos isso não como um julgamento definitivo, mas como uma tentativa de leitura dentro de seu contexto histórico. A parte passa da veste sem costura como um atributo atribuído ao Real, pelos estados graduais de transcendência disponíveis à razão, até a disputa dos Nomes dentro de um único ser, e à tensão entre senhorio e servidão."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Kısım 63'te işlenen altı eksen ve her birinin bağlandığı tema.",
+      "en": "The six axes taken up in Part 63, and the theme each is tied to.",
+      "pt": "Os seis eixos tratados na Parte 63, e o tema ao qual cada um está ligado."
+    },
+    "tree": {
+      "id": "kisim-lxiii-tree",
+      "label": {
+        "tr": "Altmış Üçüncü Kısım: İhramın Hükümleri",
+        "en": "Part Sixty-Three: The Rulings of Ihram",
+        "pt": "Parte Sessenta e Três: Os Estatutos do Ihram"
+      },
+      "note": {
+        "tr": "Kadın-erkek farkından giysiye, mestten kokuya, isimlerin çekişmesinden yıkanmaya uzanır.",
+        "en": "Moves from the difference between woman and man, through garment, footwear, and scent, to the contention of the Names and washing.",
+        "pt": "Passa da diferença entre mulher e homem, pela veste, calçado e perfume, até a disputa dos Nomes e o banho."
+      },
+      "children": [
+        {
+          "id": "kadin-erkek-dal",
+          "label": {
+            "tr": "Kadın-Erkek: Parça-Bütün",
+            "en": "Woman-Man: Part and Whole",
+            "pt": "Mulher-Homem: Parte e Todo"
+          },
+          "note": {
+            "tr": "Kavisin kendi eğriliğinde bulduğu doğruluk.",
+            "en": "The rightness a curve finds in its own bend.",
+            "pt": "A retidão que um arco encontra em sua própria curva."
+          }
+        },
+        {
+          "id": "giysi-dal",
+          "label": {
+            "tr": "Giysi: Dikişsizlik",
+            "en": "Garment: Seamlessness",
+            "pt": "Veste: Ausência de Costura"
+          },
+          "note": {
+            "tr": "Hakk'a atfedilen bir kutsi hadisle bağlanır.",
+            "en": "Tied to a sacred hadith ascribed to the Real.",
+            "pt": "Ligada a um hadith sagrado atribuído ao Real."
+          }
+        },
+        {
+          "id": "tenzih-dal",
+          "label": {
+            "tr": "Ayak: Tenzih Dereceleri",
+            "en": "Footwear: The Degrees of Transcendence",
+            "pt": "Calçado: Os Graus da Transcendência"
+          },
+          "note": {
+            "tr": "Kesilmiş mest üzerinden akli tenzihin sınırına kadar.",
+            "en": "From a cut sock to the very limit of rational transcendence.",
+            "pt": "De uma meia cortada até o próprio limite da transcendência racional."
+          }
+        },
+        {
+          "id": "koku-dal",
+          "label": {
+            "tr": "Koku: el-Evvel'in Otoritesi",
+            "en": "Scent: The Authority of al-Awwal",
+            "pt": "Perfume: A Autoridade de al-Awwal"
+          },
+          "note": {
+            "tr": "İhramın başı ve sonu bu isme bağlanır.",
+            "en": "The beginning and end of consecration are tied to this Name.",
+            "pt": "O início e o fim da consagração se ligam a este Nome."
+          }
+        },
+        {
+          "id": "isimler-dal",
+          "label": {
+            "tr": "İsimlerin Çekişmesi",
+            "en": "The Contention of the Names",
+            "pt": "A Disputa dos Nomes"
+          },
+          "note": {
+            "tr": "Dost'un kendi tereddüdünü açıkça itiraf ettiği bahis.",
+            "en": "The passage where Dost openly admits his own hesitation.",
+            "pt": "A passagem em que Dost admite abertamente sua própria hesitação."
+          }
+        },
+        {
+          "id": "yikanma-dal",
+          "label": {
+            "tr": "Yıkanma: Rububiyet ve Ubudiyet",
+            "en": "Washing: Lordship and Servanthood",
+            "pt": "Banho: Senhorio e Servidão"
+          },
+          "note": {
+            "tr": "Eşyanın insana muhtaçlığıyla kapanır.",
+            "en": "Closes with the neediness of things for the human being.",
+            "pt": "Encerra-se com a necessidade das coisas em relação ao ser humano."
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "kadin-erkek-parca-butun",
+      "heading": {
+        "tr": "Kadın ve Erkek: Kavisin Kendi Doğruluğu",
+        "en": "Woman and Man: The Curve's Own Rightness",
+        "pt": "Mulher e Homem: A Retidão Própria do Arco"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, kadının hac hükümlerinde erkekten farklı olduğunu söyleyerek açılır ve bunu kendi döneminin sembolik diliyle bir 'parça-bütün' ilişkisi üzerinden okur: <em>\"Kadın ise, parçanın bütüne duyduğu sevgi şeklinde erkeği sever... kadının erkek sevgisi, bir tür vatan sevgisidir, çünkü erkek kadının vatanıdır.\"</em> (s.282) Dost, bunun bir eksiklik değil bir mertebe farkı olduğunu vurgular: <em>\"Bütün nerede, parça nerede! Kemalde kadın erkeğe ulaşsa bile, söz konusu olan özel kemaldir.\"</em> (s.282-283) Bu satırları -- İbn Arabî'nin kendi zamanının kozmolojik-sembolik diliyle konuştuğunu hatırda tutarak -- temkinle aktarıyoruz; bize göre burada asıl dikkat çeken, hemen ardından gelen kavis meseli: <em>\"Kavisin eğikliği, onun doğruluğudur. Onu bilinen çizgisel bir doğruluğa zorlarsan, kırarsın ve istediğini elde edemezsin.\"</em> (s.284) -- yani her varlık biçimi, kendi eğri/dolambaçlı yoluyla tamdır; başka bir biçimin düz çizgisine zorlanması, kendi bütünlüğünü kırar.",
+            "en": "The section opens by saying that woman differs from man in the rulings of pilgrimage, and reads this, in the symbolic language of its own era, through a 'part-to-whole' relation: <em>\"The woman loves the man as a part loves its whole... the woman's love for the man is a kind of love of homeland, for the man is the woman's homeland.\"</em> (p.282) Dost stresses that this is not a deficiency but a difference of rank: <em>\"Where is the whole, and where the part! Even if the woman should reach the man in perfection, what is meant is a particular perfection.\"</em> (p.282-283) We pass these lines on with caution -- keeping in mind that Ibn Arabi is speaking in the cosmological-symbolic language of his own time -- and to us, what draws real attention is the image of the curve that follows immediately after: <em>\"The curvature of the arc is its own rightness. If you force it into a familiar, straight rightness, you break it and fail to get what you wanted.\"</em> (p.284) -- meaning every form of being is whole through its own curved, winding path; forcing it into another form's straight line breaks its own wholeness.",
+            "pt": "A seção se abre dizendo que a mulher difere do homem nos estatutos da peregrinação, e lê isso, na linguagem simbólica de sua própria época, através de uma relação de 'parte para o todo': <em>\"A mulher ama o homem como a parte ama o todo... o amor da mulher pelo homem é uma espécie de amor pela pátria, pois o homem é a pátria da mulher.\"</em> (p.282) Dost enfatiza que isso não é uma deficiência, mas uma diferença de categoria: <em>\"Onde está o todo, e onde a parte! Mesmo que a mulher alcance o homem em perfeição, o que se quer dizer é uma perfeição particular.\"</em> (p.282-283) Transmitimos essas linhas com cautela -- tendo em mente que Ibn Arabi fala na linguagem cosmológico-simbólica de seu próprio tempo -- e, para nós, o que realmente chama a atenção é a imagem do arco que se segue logo depois: <em>\"A curvatura do arco é sua própria retidão. Se a forças a uma retidão reta e familiar, tu a quebras e não obténs o que querias.\"</em> (p.284) -- ou seja, toda forma de existência é completa através de seu próprio caminho curvo e sinuoso; forçá-la à linha reta de outra forma quebra sua própria integridade."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXIII, s. 282-284.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXIII, pp. 282-284.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXIII, pp. 282-284."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Doğrusal Zorlama",
+                "en": "Forced Straight Line",
+                "pt": "Linha Reta Forçada"
+              },
+              "note": {
+                "tr": "kendi eğriliğine yabancı bir doğruluk -- kırılır",
+                "en": "a rightness foreign to its own curve -- it breaks",
+                "pt": "uma retidão estranha à sua própria curva -- ela se quebra"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Kavisin Kendi Doğruluğu",
+                "en": "The Curve's Own Rightness",
+                "pt": "A Retidão Própria do Arco"
+              },
+              "note": {
+                "tr": "eğik olanın kendi bütünlüğü",
+                "en": "the wholeness proper to what is curved",
+                "pt": "a integridade própria do que é curvo"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'a göre her varlık biçimi, kendi eğri yoluyla tamdır.",
+            "en": "For Dost, every form of being is whole through its own curved path.",
+            "pt": "Para Dost, toda forma de existência é completa através de seu próprio caminho curvo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dikissiz-giysi",
+      "heading": {
+        "tr": "Dikişsiz Giysi: Hakk'a Atfedilen Bir Sıfat",
+        "en": "The Seamless Garment: An Attribute Ascribed to the Real",
+        "pt": "A Veste Sem Costura: Um Atributo Atribuído ao Real"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Şalvardan başka bir şey bulamayan ihramlının ne giyeceği tartışılırken Dost, ihram giysisinin (izar/rida) neden dikişsiz olması gerektiğine değinir ve bunu doğrudan bir kutsi hadise bağlar: <em>\"Büyüklük ridam, azamet izarımdır.\"</em> (s.285) Bize göre bu bağlantı çarpıcı: dikişsizlik, yani bir araya getirilmiş parçaların bileşikliğinden uzak oluş, burada Hakk'ın kendi sıfatlarından biri olarak sunuluyor -- sanki bileşiklik bir tür eksiklik, dikişsizlik ise bütünlüğün kendisi.",
+            "en": "While discussing what a pilgrim who can find nothing but trousers should wear, Dost takes up why the garments of consecration (izar/rida) must be seamless, and ties this directly to a sacred hadith: <em>\"Greatness is My cloak, and majesty is My mantle.\"</em> (p.285) To us, this connection is striking: seamlessness -- being free of the compositeness of pieces joined together -- is presented here as one of the Real's own attributes, as if compositeness were itself a kind of deficiency, and seamlessness were wholeness itself.",
+            "pt": "Ao discutir o que deve vestir um peregrino que não encontra nada além de calças, Dost trata de por que as vestes de consagração (izar/rida) devem ser sem costura, e liga isso diretamente a um hadith sagrado: <em>\"A grandeza é o meu manto, e a majestade é minha veste.\"</em> (p.285) Para nós, essa ligação é marcante: a ausência de costura -- estar livre da composição de peças unidas -- é apresentada aqui como um dos próprios atributos do Real, como se a composição fosse em si uma espécie de deficiência, e a ausência de costura fosse a própria integridade."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXIII, s. 285.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXIII, p. 285.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXIII, p. 285."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Dikişsiz (İzar/Rida)",
+                "en": "Seamless (Izar/Rida)",
+                "pt": "Sem Costura (Izar/Rida)"
+              },
+              "note": {
+                "tr": "Hakk'ın kendi sıfatı olarak sunulur",
+                "en": "presented as one of the Real's own attributes",
+                "pt": "apresentada como um dos próprios atributos do Real"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Dikişli Giysi",
+                "en": "Seamed Garment",
+                "pt": "Veste Costurada"
+              },
+              "note": {
+                "tr": "ihramda yasaklanır -- bileşiklik",
+                "en": "forbidden during ihram -- compositeness",
+                "pt": "proibida durante o ihram -- composição"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dikişsizlik burada sadece bir kumaş meselesi değil, bütünlüğe dair bir işaret gibi okunuyor.",
+            "en": "Seamlessness here reads as more than a matter of cloth -- it seems to point toward wholeness itself.",
+            "pt": "A ausência de costura aqui parece ser mais que uma questão de tecido -- parece apontar para a própria integridade."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tenzih-dereceleri",
+      "heading": {
+        "tr": "Tenzihin Dereceleri: Bişr'in Irak'ı ve Arş'ın İstivası",
+        "en": "The Degrees of Transcendence: Bishr's Iraq and the Throne's Mounting",
+        "pt": "Os Graus da Transcendência: o Iraque de Bishr e a Ascensão do Trono"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kesilmiş mestin ne mest ne ayakkabı sayılacağı tartışması (s.288: <em>\"Kesilme nedeniyle mest adı ortadan kalkar... Böyle bir şey ne mesttir ne ayakkabı!\"</em>), Dost'u tenzihin akıldaki dereceli hallerine götürür: <em>\"Tenzihin akılda bir takım dereceleri vardır. Bunun en aşağısı, teşbih ile tenzih etmek iken en üstünü akılda tenzihsiz teşbihtir.\"</em> (s.289) Bunu bir şairin abartılı övgüsüyle örnekler: <em>\"Kuşkusuz Bişr Irak'ı istiva etmiştir, kılıçsız ve kan akıtmaksızın.\"</em> ve hemen bunun sınırını çizer: <em>\"Bişr'in Irak'ı istiva etmesi nerede, Hakkın Arş'a istiva etmesi nerede!\"</em> (s.289) Bize göre bu karşılaştırma, en yüksek tenzihin bile -- akıl bir benzetme kullanmadan duramadığı için -- sonunda kendi sınırına çarptığını gösteriyor; gerçek tenzihsizlik ancak şeriatin 'O'nun benzeri yoktur' sözünde bulunabiliyor, akılda değil.",
+            "en": "The debate over whether a cut leather sock counts as neither sock nor shoe (p.288: <em>\"Because of the cutting, the name 'sock' falls away... Such a thing is neither a sock nor a shoe!\"</em>) leads Dost to the graded states of transcendence available to reason: <em>\"Transcendence has certain degrees within reason. The lowest of these is transcendence through likening, while the highest is a likening within reason that is free of likening.\"</em> (p.289) He illustrates this with a poet's exaggerated praise: <em>\"Surely Bishr has conquered Iraq, without a sword and without shedding blood,\"</em> then immediately draws its limit: <em>\"Where is Bishr's conquest of Iraq, and where is the Real's mounting of the Throne!\"</em> (p.289) To us, this comparison shows that even the highest transcendence -- since reason cannot help but use some likeness -- eventually strikes its own limit; true freedom from likeness can only be found in the Law's own words, 'there is nothing like unto Him,' not within reason.",
+            "pt": "O debate sobre se uma meia de couro cortada conta como meia ou como sapato (p.288: <em>\"Por causa do corte, o nome 'meia' desaparece... Tal coisa não é nem meia nem sapato!\"</em>) leva Dost aos estados graduais de transcendência disponíveis à razão: <em>\"A transcendência tem certos graus dentro da razão. O mais baixo deles é a transcendência por semelhança, enquanto o mais alto é uma semelhança dentro da razão que está livre de semelhança.\"</em> (p.289) Ele ilustra isso com o elogio exagerado de um poeta: <em>\"Certamente Bishr conquistou o Iraque, sem espada e sem derramar sangue,\"</em> e imediatamente traça seu limite: <em>\"Onde está a conquista do Iraque por Bishr, e onde está a ascensão do Real ao Trono!\"</em> (p.289) Para nós, essa comparação mostra que mesmo a transcendência mais alta -- já que a razão não pode deixar de usar alguma semelhança -- acaba esbarrando em seu próprio limite; a verdadeira ausência de semelhança só pode ser encontrada nas próprias palavras da Lei, 'nada há semelhante a Ele', não dentro da razão."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXIII, s. 288-289.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXIII, pp. 288-289.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXIII, pp. 288-289."
+          },
+          "tree": {
+            "id": "tenzih-dereceleri-tree",
+            "label": {
+              "tr": "Tenzihin Dereceleri",
+              "en": "The Degrees of Transcendence",
+              "pt": "Os Graus da Transcendência"
+            },
+            "note": {
+              "tr": "En yüksek akli tenzih bile kendi sınırına çarpar.",
+              "en": "Even the highest rational transcendence strikes its own limit.",
+              "pt": "Mesmo a mais alta transcendência racional esbarra em seu próprio limite."
+            },
+            "children": [
+              {
+                "id": "tesbihle-tenzih",
+                "label": {
+                  "tr": "Teşbihle Tenzih",
+                  "en": "Transcendence Through Likening",
+                  "pt": "Transcendência por Semelhança"
+                },
+                "note": {
+                  "tr": "en aşağı derece -- akılda",
+                  "en": "the lowest degree -- within reason",
+                  "pt": "o grau mais baixo -- dentro da razão"
+                }
+              },
+              {
+                "id": "tesbihsiz-tenzih",
+                "label": {
+                  "tr": "Teşbihsiz Tenzih",
+                  "en": "Transcendence Free of Likening",
+                  "pt": "Transcendência Livre de Semelhança"
+                },
+                "note": {
+                  "tr": "en yüksek derece -- yine de akılda bir iz taşır",
+                  "en": "the highest degree -- yet still carries a trace within reason",
+                  "pt": "o grau mais alto -- ainda carrega um traço dentro da razão"
+                }
+              },
+              {
+                "id": "seriatin-benzeri-yoktur",
+                "label": {
+                  "tr": "Şeriatin 'Benzeri Yoktur'ı",
+                  "en": "The Law's \"Nothing Like Unto Him\"",
+                  "pt": "O \"Nada Semelhante\" da Lei"
+                },
+                "note": {
+                  "tr": "akıl değil, şeriat sözü -- gerçek tenzihsizlik",
+                  "en": "not reason but the Law's own word -- true freedom from likeness",
+                  "pt": "não a razão, mas a própria palavra da Lei -- a verdadeira ausência de semelhança"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "En yüksek akli tenzih bile kendi sınırına çarpar; gerçek tenzihsizlik ancak şeriatin sözünde bulunur.",
+            "en": "Even the highest rational transcendence strikes its own limit; true freedom from likeness is found only in the Law's own word.",
+            "pt": "Mesmo a mais alta transcendência racional esbarra em seu próprio limite; a verdadeira ausência de semelhança só se encontra na própria palavra da Lei."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kokunun-sirri-ve-evvel",
+      "heading": {
+        "tr": "Kokunun Sırrı: el-Evvel'in Otoritesi",
+        "en": "The Secret of Scent: The Authority of al-Awwal",
+        "pt": "O Segredo do Perfume: A Autoridade de al-Awwal"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İhrama girmezden önce güzel koku sürme meselesinde Dost, Hz. Aişe'den aktarılan bir rivayeti aktarırken kendi belirsizliğini de itiraf eder: <em>\"Hz. Aişe'nin bu ifadesinin Peygamber'den öğrendiği bir bilgiden mi, yoksa kendi düşünce ve anlayışıyla mı [söylediği belli değil].\"</em> (s.289-290) Bize göre bu, Dost'un nadiren gösterdiği açık bir belirsizlik itirafı. İhramın başı ve sonu, Dost'a göre el-Evvel isminin otoritesine bağlıdır (s.292) -- bu, Kısım 62'deki el-Evvel/el-Ahir bahsinin somut bir devamı gibi okunabilir. Usfur çiçeğiyle boyanmış elbise meselesinde ise ince bir dil oyunu kurar: <em>\"Bir şeyin sufr'u, sıfır demektir... Kul da bu ibadeti yerine getirirken kendinden boş kalırsa... usfurla boyanmış elbise giymesi caizdir. Rabbinden uzak kalırsa, onunla boyanmış elbise giymesi caiz değildir.\"</em> (s.291) -- yani rengin kendisi değil, kulun o renk sürerken kimden 'boş' olduğu asıl mesele.",
+            "en": "On the question of applying perfume before entering the state of consecration, Dost relates a report from A'isha while also admitting his own uncertainty: <em>\"Whether A'isha's statement came from knowledge she learned from the Prophet, or from her own thought and understanding, [is not clear].\"</em> (p.289-290) To us, this is a rare, open admission of uncertainty on Dost's part. The beginning and end of the state of consecration, for Dost, rest on the authority of the Name al-Awwal (p.292) -- which reads as a concrete continuation of Part 62's discussion of al-Awwal and al-Akhir. On the matter of garments dyed with safflower, he builds a subtle wordplay: <em>\"The sufr of a thing means zero... If the servant, in performing this act of worship, becomes empty of himself... then wearing a garment dyed with safflower is permitted. If he remains distant from his Lord, wearing it dyed with it is not permitted.\"</em> (p.291) -- meaning the color itself is not the real issue, but rather what the servant is 'empty' of while wearing it.",
+            "pt": "Sobre a questão de aplicar perfume antes de entrar no estado de consagração, Dost relata um relato de A'isha enquanto também admite sua própria incerteza: <em>\"Se a afirmação de A'isha veio de um conhecimento que ela aprendeu do Profeta, ou de seu próprio pensamento e compreensão, [não está claro].\"</em> (p.289-290) Para nós, esta é uma rara admissão aberta de incerteza da parte de Dost. O início e o fim do estado de consagração, para Dost, repousam na autoridade do Nome al-Awwal (p.292) -- o que se lê como uma continuação concreta da discussão da Parte 62 sobre al-Awwal e al-Akhir. Sobre a questão das vestes tingidas com açafrão-bastardo, ele constrói um jogo de palavras sutil: <em>\"O sufr de uma coisa significa zero... Se o servo, ao realizar este ato de adoração, se torna vazio de si mesmo... então vestir uma veste tingida com açafrão-bastardo é permitido. Se permanece distante de seu Senhor, vesti-la tingida com ele não é permitido.\"</em> (p.291) -- ou seja, a cor em si não é a questão real, mas sim aquilo de que o servo está 'vazio' enquanto a veste."
+          }
+        }
+      ]
+    },
+    {
+      "id": "isimlerin-cekismesi",
+      "heading": {
+        "tr": "İsimlerin Çekişmesi ve Dost'un Kendi İtirafı",
+        "en": "The Contention of the Names, and Dost's Own Admission",
+        "pt": "A Disputa dos Nomes, e a Própria Admissão de Dost"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısmın en uzun ve en yoğun bahsi, hac sırasında eşle ilişkinin hükümlerini ele alır. Dost burada -- bizim ayrıntısına girmeyeceğimiz fıkhî tartışmanın ötesinde -- ilginç bir teori kurar: tek bir nefiste birden fazla ilâhî ismin aynı anda çekişebileceğini söyler, örneğin biri el-Muiz (aziz kılan) ile onurlanırken aynı kişi el-Müzil (zelil kılan) ile de düşebilir; nadir geçen el-Hazil (yardımsız bırakan) ismini de bu çekişmenin bir tarafı olarak anar. Bize göre burada en dikkat çekici olan, Dost'un kendi tereddüdünü açıkça itiraf etmesi: <em>\"Bununla birlikte ben bu düşünceyi zihnimden atamadığım gibi ona göre amel de edemiyor, fetva veremiyor ve bir delil bulamıyorum.\"</em> (s.293) -- yani Dost, ulemanın icmaına uyduğunu ama kendi aklının buna tam olarak razı olmadığını saklamıyor. Bu, Şibli'nin Kısım 62'deki hac sorgusuyla ('yaptın mı yapmadın mı') aynı damardan besleniyor gibi görünüyor: zâhirî hükmün bâtınî karşılığı her zaman tam örtüşmeyebilir.",
+            "en": "The section's longest and most intense passage takes up the rulings on marital relations during pilgrimage. Here -- beyond the legal debate whose details we will not enter into -- Dost builds an interesting theory: that more than one divine Name may contend at once within a single self; for instance, one may be honored by al-Mu'izz (the Bestower of Honor) while the same person falls under al-Mudhill (the Bestower of Abasement); he also names the rarely-mentioned al-Khadhil (the One who leaves without help) as one side of this contention. To us, what draws the most attention here is Dost's open admission of his own hesitation: <em>\"Yet I can neither cast this thought from my mind, nor act upon it, nor issue a legal opinion on it, nor find a proof for it.\"</em> (p.293) -- meaning Dost does not hide that, while he follows the scholars' consensus, his own reason is not entirely at rest with it. This seems to draw on the same vein as Shibli's interrogation of pilgrimage in Part 62 ('did you do it, or did you not') -- the inward counterpart of an outward ruling may not always fully align.",
+            "pt": "A passagem mais longa e intensa da seção trata dos estatutos das relações conjugais durante a peregrinação. Aqui -- além do debate jurídico em cujos detalhes não entraremos -- Dost constrói uma teoria interessante: que mais de um Nome divino pode disputar ao mesmo tempo dentro de um único ser; por exemplo, alguém pode ser honrado por al-Mu'izz (o Doador de Honra) enquanto essa mesma pessoa cai sob al-Mudhill (o Doador de Abatimento); ele também nomeia o raramente mencionado al-Khadhil (Aquele que deixa sem ajuda) como um lado dessa disputa. Para nós, o que mais chama a atenção aqui é a admissão aberta de Dost de sua própria hesitação: <em>\"No entanto, não consigo nem afastar esse pensamento de minha mente, nem agir de acordo com ele, nem emitir um parecer jurídico sobre ele, nem encontrar uma prova para ele.\"</em> (p.293) -- ou seja, Dost não esconde que, embora siga o consenso dos sábios, sua própria razão não está inteiramente em paz com isso. Isso parece se alimentar da mesma veia do interrogatório de Shibli sobre a peregrinação na Parte 62 ('fizeste, ou não fizeste') -- a contraparte interior de um estatuto exterior pode nem sempre se alinhar totalmente."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXIII, s. 293-295.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXIII, pp. 293-295.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXIII, pp. 293-295."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "el-Muiz",
+                "en": "al-Mu'izz",
+                "pt": "al-Mu'izz"
+              },
+              "note": {
+                "tr": "aziz/onurlu kılan",
+                "en": "the Bestower of Honor",
+                "pt": "o Doador de Honra"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Tek Nefis",
+                "en": "A Single Self",
+                "pt": "Um Único Ser"
+              },
+              "note": {
+                "tr": "isimlerin aynı anda çekiştiği yer",
+                "en": "where the Names contend at once",
+                "pt": "onde os Nomes disputam ao mesmo tempo"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "el-Müzil / el-Hazil",
+                "en": "al-Mudhill / al-Khadhil",
+                "pt": "al-Mudhill / al-Khadhil"
+              },
+              "note": {
+                "tr": "zelil kılan / yardımsız bırakan",
+                "en": "the Bestower of Abasement / the One who leaves without help",
+                "pt": "o Doador de Abatimento / Aquele que deixa sem ajuda"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'a göre birden fazla isim, aynı kul içinde aynı anda hüküm sürebilir.",
+            "en": "For Dost, more than one Name can hold sway within the same servant at the same time.",
+            "pt": "Para Dost, mais de um Nome pode reinar dentro do mesmo servo ao mesmo tempo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "yikanma-ve-rububiyet-ubudiyet",
+      "heading": {
+        "tr": "Yıkanma: Rububiyet, Ubudiyet ve Eşyanın Muhtaçlığı",
+        "en": "Washing: Lordship, Servanthood, and the Neediness of Things",
+        "pt": "Banho: Senhorio, Servidão e a Necessidade das Coisas"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, ihramdan sonra yıkanma bahsiyle kapanır. Dost, cenabetlik hâlini bir 'vatanına dönüş' çağrısı gibi okur ve bunu bir şiirle derinleştirir: <em>\"Sen bir hükümdarsın ve bir kulsun. Sen 'sen' içinde ödünçsün. Hakikatten başkasında varlık yok! ... Ne fena ne de beka, ne kaçış ve ne de yerleşme vardır!\"</em> (s.298) Kısmın son cümlesi ise geniş bir ufka açılır: <em>\"Her şey O'ndan O'nadır, hatta her şey O'nun aynıdır.\"</em> (s.301) ve kapanış notu olarak: <em>\"Sen eşyaya karşı izzetli davranmadın... Allah, eşyanın sana ulaşmasını engelledi.\"</em> (s.301) Bize göre bu son cümle, kısmın en başındaki 'kavis'in kendi doğruluğu' ilkesine güzel bir dönüş yapıyor -- her şey, kendi yerinde, insana muhtaç ya da insan tarafından ihtiyaç duyulan bir ilişki içinde anlam kazanıyor.",
+            "en": "The section closes with the matter of washing after the state of consecration. Dost reads the state of ritual impurity as a kind of call to 'return to one's homeland,' and deepens this with a poem: <em>\"You are a sovereign, and you are a servant. Within 'you,' you are but borrowed. There is no existence apart from the Real! ... There is neither passing away nor abiding, neither flight nor settling!\"</em> (p.298) The section's final sentence opens onto a wide horizon: <em>\"Everything is from Him to Him, indeed everything is His very self.\"</em> (p.301) and, as a closing note: <em>\"You did not act with dignity toward things... God prevented things from reaching you.\"</em> (p.301) To us, this final sentence makes a fitting return to the section's opening principle of the curve's own rightness -- everything, in its own place, gains its meaning within a relation of being needed by, or in need of, the human being.",
+            "pt": "A seção se encerra com a questão do banho após o estado de consagração. Dost lê o estado de impureza ritual como uma espécie de chamado para 'retornar à própria pátria', e aprofunda isso com um poema: <em>\"Tu és um soberano, e és um servo. Dentro de 'ti', tu és apenas emprestado. Não há existência além do Real! ... Não há nem extinção nem permanência, nem fuga nem estabelecimento!\"</em> (p.298) A frase final da seção se abre para um horizonte amplo: <em>\"Tudo é Dele para Ele, aliás tudo é a própria essência Dele.\"</em> (p.301) e, como nota de encerramento: <em>\"Não agiste com dignidade para com as coisas... Deus impediu que as coisas chegassem a ti.\"</em> (p.301) Para nós, esta frase final faz um retorno apropriado ao princípio de abertura da seção, a retidão própria do arco -- tudo, em seu próprio lugar, ganha seu sentido dentro de uma relação de ser necessitado pelo, ou de precisar do, ser humano."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXIII (Ahmed Avni Konuk şerhi)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXIII (Ahmed Avni Konuk's commentary)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXIII (comentário de Ahmed Avni Konuk)"
+      },
+      "pageRange": "282-301"
+    }
+  ]
+}
