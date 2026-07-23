@@ -17,13 +17,43 @@ window.__esma3dApp = (function () {
   // Okunabilirlik için: sadece Zât ve Allah (derinlik 0-1) her zaman
   // yazıyla etiketli; geri kalan 101 isim üzerine gelindiğinde (hover)
   // beliriyor -- aksi hâlde derinlik-3'teki 84 isim aynı anda yazılınca
-  // okunaksız bir kalabalık oluşuyordu.
+  // okunaksız bir kalabalık oluşuyordu. Etiketler renkli birer "rozet"
+  // (düğümün kendi rengi, koyulaştırılmış) olarak açılıyor -- düz metin +
+  // ince kontur, dönen bir sahnenin üzerinde okunaksız kalıyordu.
+  //
+  // Renkler/efektler kasıtlı olarak esma.js'teki (2B) şemayla BİREBİR
+  // aynı: Zât beyaz dolgu + altın "soluyan" halo (bkz. paylaşılan
+  // .node--root .node-halo kuralı), Allah --series-theme altını, diğer
+  // isimler kutuplarına göre (celâl/cemâl/kemâl/nötr), hepsinde aynı
+  // parlaklık/sheen dolgusu (#node-sheen, index.html'deki paylaşılan SVG
+  // defs). Zât'ın yarıçapı (34px) da Ontoloji ve Esmâ'nın 2B
+  // graflarındaki "dhat"/"zat" düğümüyle birebir aynı (bkz. ontology.js
+  // RADIUS_BY_ID yorumu: "matches esma.js's zat root radius").
 
-  const Z_STEP = 95;
-  const BASE_R = 46;
-  const R_STEP = 15;
-  const FOCAL = 640;
+  const Z_STEP = 130;
+  const FOCAL = 900;
   const ALWAYS_LABELED_DEPTH = 1;
+
+  // Mertebe başına yörünge yarıçapı -- derinlik 3'te 84 isim olduğu için
+  // (en kalabalık halka) orana göre çok daha geniş bir yörünge alıyor;
+  // derinlik 4+ zaten birkaç isimden oluştuğu için sıkışma riski yok.
+  const RING_R = { 0: 0, 1: 120, 2: 250, 3: 560, 4: 700, 5: 750, 6: 790, 7: 820, 8: 848, 9: 872 };
+  function ringRadiusFor(depth) {
+    return RING_R[depth] !== undefined ? RING_R[depth] : 872;
+  }
+
+  // Düğüm yarıçapı -- esma.js'in kendi radiusFor()'uyla birebir aynı
+  // ölçek: Zât ve Allah 34 (esma.js/ontology.js'teki paylaşılan 34px),
+  // ana isimler (esma.json depth 2) 22, geri kalanı esma.js'teki
+  // Math.max(9, 16 - derinlik) formülüyle -- sadece derinlik burada bir
+  // kaydırmayla (esma.js'in ağacı Zât'ı dışarıda tutup Allah'ı kök
+  // saydığı için) hesaplanıyor.
+  function dotRadiusFor(depth) {
+    if (depth <= 1) return 34;
+    const treeDepth = depth - 1;
+    if (treeDepth === 1) return 22;
+    return Math.max(9, 16 - treeDepth);
+  }
 
   let data = null;
   let root = null;
@@ -31,8 +61,8 @@ window.__esma3dApp = (function () {
   let built = false;
   let toggled = false;
   let yaw = 0.5;
-  let pitch = -0.28;
-  let zoomScale = 1;
+  let pitch = -0.14;
+  let zoomScale = 0.5;
   let dragging = false;
   let hovering = false;
   let hoveredId = null;
@@ -53,12 +83,23 @@ window.__esma3dApp = (function () {
     });
   }
 
-  function colorFor(node) {
-    if (node.depth === 0) return "var(--series-esma-neutral)";
-    if (node.pole === "celal") return "var(--series-celal)";
-    if (node.pole === "cemal") return "var(--series-cemal)";
-    if (node.pole === "kemal") return "var(--series-kemal)";
-    return "var(--series-esma-neutral)";
+  function colorFor(node, id) {
+    if (node.depth === 0) return GU.ZAT_FILL;
+    if (id === "allah") return GU.getVar("--series-theme");
+    if (node.pole === "celal") return GU.getVar("--series-celal");
+    if (node.pole === "cemal") return GU.getVar("--series-cemal");
+    if (node.pole === "kemal") return GU.getVar("--series-kemal");
+    return GU.getVar("--series-esma-neutral");
+  }
+
+  // Rozetin (etiket arka planının) rengi genelde düğümün kendi rengini
+  // koyulaştırıyor (bkz. render()'daki color-mix) -- ama Zât'ın dolgusu
+  // beyaz (GU.ZAT_FILL, 2B ile birebir aynı) olduğu için bu formül
+  // neredeyse renksiz, soluk bir gri üretirdi. Zât'ın rozeti bunun yerine
+  // kendi altın halosuyla aynı tonu (--series-theme) kullanıyor.
+  function badgeColorFor(node, id) {
+    if (node.depth === 0) return GU.getVar("--series-theme");
+    return colorFor(node, id);
   }
 
   function buildHierarchy() {
@@ -71,7 +112,7 @@ window.__esma3dApp = (function () {
     nodesFlat = root.descendants().map((d) => {
       const depth = d.depth;
       const theta = d.x;
-      const r = depth === 0 ? 0 : BASE_R + (depth - 1) * R_STEP;
+      const r = ringRadiusFor(depth);
       return {
         node: d.data,
         depth,
@@ -100,8 +141,15 @@ window.__esma3dApp = (function () {
     // (negatif) bir SVG yarıçapı üretiyordu. z2'yi kamera düzleminin
     // önünde kalacak şekilde kırpmak, ölçeği her zaman pozitif tutuyor.
     const zClamped = Math.max(z2, -FOCAL * 0.85);
-    const scale = (FOCAL / (FOCAL + zClamped)) * zoomScale;
-    return { sx: x2 * scale, sy: y2 * scale, scale, z2 };
+    // depthScale sadece derinliğe (kameraya uzaklığa) bağlı -- opaklık
+    // ("sis") buradan hesaplanıyor. scale ise kullanıcının yakınlaştırma
+    // seviyesini de içeriyor ve konum/boyut için kullanılıyor. İkisini
+    // karıştırmak, kullanıcı uzaklaştırdığında (zoomScale küçüldüğünde)
+    // Zât dahil BÜTÜN düğümlerin -- sadece küçülmesi değil -- solup
+    // yıkanmış görünmesine yol açıyordu.
+    const depthScale = FOCAL / (FOCAL + zClamped);
+    const scale = depthScale * zoomScale;
+    return { sx: x2 * scale, sy: y2 * scale, scale, depthScale, z2 };
   }
 
   let svgSel = null;
@@ -139,8 +187,20 @@ window.__esma3dApp = (function () {
       .selectAll("g.esma3d-node")
       .data(sortedNodes, (d) => d.node.id)
       .join((enter) => {
-        const g = enter.append("g").attr("class", "esma3d-node").attr("data-id", (d) => d.node.id);
+        const g = enter.append("g")
+          .attr("class", (d) => "esma3d-node" + (d.depth === 0 ? " node--root" : ""))
+          .attr("data-id", (d) => d.node.id);
+        // Zât'a özgü altın "soluyan" halo -- ontoloji/esma 2B graflarındaki
+        // paylaşılan .node--root .node-halo kuralını doğrudan yeniden
+        // kullanıyor (index.html'in defs'i, style.css'in animasyonu).
+        g.filter((d) => d.depth === 0)
+          .append("circle")
+          .attr("class", "node-halo");
         g.append("circle").attr("class", "esma3d-node__dot");
+        // Her düğüme aynı parlaklık/sheen bindirmesi -- esma.js'in her
+        // düğüme uyguladığı #node-sheen ile birebir aynı.
+        g.append("circle").attr("class", "node-sheen");
+        g.append("rect").attr("class", "esma3d-node__badge");
         g.append("text").attr("class", "esma3d-node__label");
         g.on("pointerenter", (event, d) => { hoveredId = d.node.id; render(); });
         g.on("pointerleave", (event, d) => { if (hoveredId === d.node.id) hoveredId = null; render(); });
@@ -153,21 +213,43 @@ window.__esma3dApp = (function () {
 
     nodeSel
       .attr("transform", (d) => `translate(${d.sx},${d.sy})`)
-      .style("opacity", (d) => Math.max(0.22, Math.min(1, d.scale * 1.05)));
+      .style("opacity", (d) => Math.max(0.35, Math.min(1, d.depthScale * 1.05)));
 
-    nodeSel.select(".esma3d-node__dot")
-      .attr("r", (d) => (d.depth === 0 ? 22 : Math.max(3.2, 9 - d.depth * 0.6)) * d.scale)
-      .style("fill", (d) => colorFor(d.node));
+    nodeSel.each(function (d) {
+      const g = d3.select(this);
+      const r = dotRadiusFor(d.depth) * d.scale;
+      const color = colorFor(d.node, d.node.id);
 
-    nodeSel.select(".esma3d-node__label")
-      .attr("y", (d) => -((d.depth === 0 ? 22 : Math.max(3.2, 9 - d.depth * 0.6)) * d.scale) - 4)
-      .style("font-size", (d) => Math.max(7, 12 - d.depth * 0.6) + "px")
-      .style("opacity", (d) => {
-        if (d.node.id === hoveredId) return 1;
-        if (d.depth <= ALWAYS_LABELED_DEPTH) return 1;
-        return 0;
-      })
-      .text((d) => I18n.pick3(d.node.name));
+      g.select(".node-halo").attr("r", r * 1.4);
+
+      g.select(".esma3d-node__dot")
+        .attr("r", r)
+        .style("fill", color);
+
+      g.select(".node-sheen").attr("r", r);
+
+      const showLabel = d.node.id === hoveredId || d.depth <= ALWAYS_LABELED_DEPTH;
+      const label = g.select(".esma3d-node__label")
+        .attr("y", -r - 6)
+        .style("font-size", Math.max(11, 13 - d.depth * 0.4) + "px")
+        .style("display", showLabel ? null : "none")
+        .text(I18n.pick3(d.node.name));
+
+      const badge = g.select(".esma3d-node__badge")
+        .style("display", showLabel ? null : "none");
+
+      if (showLabel) {
+        const bbox = label.node().getBBox();
+        const badgeColor = badgeColorFor(d.node, d.node.id);
+        badge
+          .attr("x", bbox.x - 7)
+          .attr("y", bbox.y - 3)
+          .attr("width", bbox.width + 14)
+          .attr("height", bbox.height + 6)
+          .attr("rx", (bbox.height + 6) / 2)
+          .style("fill", `color-mix(in srgb, ${badgeColor} 78%, black)`);
+      }
+    });
   }
 
   function showTooltip(node, event) {
@@ -260,7 +342,7 @@ window.__esma3dApp = (function () {
 
     viewport.addEventListener("wheel", (e) => {
       e.preventDefault();
-      zoomScale = Math.max(0.4, Math.min(3, zoomScale * (e.deltaY < 0 ? 1.08 : 0.93)));
+      zoomScale = Math.max(0.15, Math.min(3, zoomScale * (e.deltaY < 0 ? 1.08 : 0.93)));
       render();
     }, { passive: false });
 

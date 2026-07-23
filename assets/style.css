@@ -4068,13 +4068,17 @@ body.cizim-lightbox-open {
   stroke: var(--border);
   stroke-width: 1;
 }
+/* Etiketler renkli birer rozet olarak açılıyor (düğümün rengi, koyulaştırılmış
+   arka plan -- bkz. esma-3d.js'in colorFor()+color-mix() kullanımı, .pole-badge
+   ile aynı dil) -- düz metin + ince kontur, dönen bir sahnenin üzerinde
+   yeterince net kalmıyordu. */
+.esma3d-node__badge {
+  pointer-events: none;
+}
 .esma3d-node__label {
-  fill: var(--text-primary);
+  fill: #fff;
   font-weight: 600;
   text-anchor: middle;
-  paint-order: stroke;
-  stroke: var(--surface-1);
-  stroke-width: 3px;
   pointer-events: none;
 }
 .esma3d-node {
