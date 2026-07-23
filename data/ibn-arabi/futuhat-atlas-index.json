@@ -1,5 +1,5 @@
 {
-  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik; On Altıncı, On Yedinci, On Sekizinci, On Dokuzuncu, Yirminci, Yirmi Birinci, Yirmi İkinci, Yirmi Üçüncü, Yirmi Dördüncü, Yirmi Beşinci, Yirmi Altıncı ve Yirmi Yedinci Kısımlar da bu okumaya eklendi. Yirmi Sekizinci Kısım'ın tamamlanmasıyla İkinci Cilt'in (metnin kendi ifadesiyle 'Dördüncü Sifr'in) okuması tamamlandı; şimdi Üçüncü Cilt'e (metnin kendi ifadesiyle 'Beşinci Sifr'e), Yirmi Dokuzuncu Kısım'dan başlayıp Otuz Dördüncü Kısım'a kadar ilerledik; Otuz Dördüncü Kısım'ın tamamlanmasıyla metnin kendi ifadesiyle 'Beşinci Sifr' de tamamlanmış oldu. Otuz Beşinci, Otuz Altıncı, Otuz Yedinci, Otuz Sekizinci, Otuz Dokuzuncu ve Kırkıncı Kısımlarla (namazın sırları, namazın fiillerinden hâllerine -- imamete -- geçiş) 'Altıncı Sifr' de tamamlanmış oldu; Kırkıncı Kısım'ın kapanışıyla Üçüncü Cilt'in okuması da bitti.",
+  "description": "Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalıştığımız bir bölüm. Amacımız kitabı özetlemek değil; Dost'un bir konuyu tafsilatlı şekilde anlatırken çizdiği zihinsel haritayı, mümkün olduğunca kendi çizimleriyle görünür kılmaktır. Bu, tamamlanmış bir okuma değil, sürmekte olan bir çabadır — Birinci Cilt'in Üçüncü, Dördüncü ve Beşinci Kısımlarını baştan sona, Altıncı ve Yedinci Kısımları en berrak ve merkezi gördüğümüz noktalarını seçerek işledik; Sekizinci Kısımdan Ondördüncü Kısma (Cilt I'in sonuna) kadar da, aynı seçici yaklaşımla devam ederek, bu cildin okumasını tamamladık. Şimdi İkinci Cilt'e (Onbeşinci Kısımdan başlayarak) geçtik; On Altıncı, On Yedinci, On Sekizinci, On Dokuzuncu, Yirminci, Yirmi Birinci, Yirmi İkinci, Yirmi Üçüncü, Yirmi Dördüncü, Yirmi Beşinci, Yirmi Altıncı ve Yirmi Yedinci Kısımlar da bu okumaya eklendi. Yirmi Sekizinci Kısım'ın tamamlanmasıyla İkinci Cilt'in (metnin kendi ifadesiyle 'Dördüncü Sifr'in) okuması tamamlandı; şimdi Üçüncü Cilt'e (metnin kendi ifadesiyle 'Beşinci Sifr'e), Yirmi Dokuzuncu Kısım'dan başlayıp Otuz Dördüncü Kısım'a kadar ilerledik; Otuz Dördüncü Kısım'ın tamamlanmasıyla metnin kendi ifadesiyle 'Beşinci Sifr' de tamamlanmış oldu. Otuz Beşinci, Otuz Altıncı, Otuz Yedinci, Otuz Sekizinci, Otuz Dokuzuncu ve Kırkıncı Kısımlarla (namazın sırları, namazın fiillerinden hâllerine -- imamete -- geçiş) 'Altıncı Sifr' de tamamlanmış oldu; Kırkıncı Kısım'ın kapanışıyla Üçüncü Cilt'in okuması da bitti. Şimdi Dördüncü Cilt'e (metnin kendi ifadesiyle 'Yedinci Sifr'e), Kırk Birinci Kısım'la (Cuma namazının fasılları) başlıyoruz.",
   "book": {
     "cilts": [
       {
@@ -16,10 +16,15 @@
         "cilt": 3,
         "kisimStart": 29,
         "kisimEnd": 40
+      },
+      {
+        "cilt": 4,
+        "kisimStart": 41,
+        "kisimEnd": 53
       }
     ]
   },
-  "activePartId": "c3k40",
+  "activePartId": "c4k41",
   "parts": [
     {
       "id": "c1k3",
@@ -2801,6 +2806,72 @@
           "tr": "Sakin Kapanış: Bir Sifr'in Sonu, Sıradan Bir Fıkıh Meselesiyle",
           "en": "A Quiet Closing: A Sifr's End, on an Ordinary Point of Law",
           "pt": "Um Encerramento Tranquilo: O Fim de um Sifr, numa Questão Jurídica Comum"
+        }
+      ]
+    },
+    {
+      "id": "c4k41",
+      "cilt": 4,
+      "kisim": 41,
+      "status": "active",
+      "title": {
+        "tr": "Cuma'nın Fasılları: Tek Kişiyle Kılınamayan Namaz, Çokluğun Bilgisi",
+        "en": "The Chapters of Friday Prayer: The Prayer That Cannot Be Prayed Alone, the Knowledge of Multiplicity",
+        "pt": "Os Capítulos da Oração de Sexta-Feira: A Oração Que Não Pode Ser Rezada Sozinho, o Conhecimento da Multiplicidade"
+      },
+      "pageRange": "10-46",
+      "hero": {
+        "summary": {
+          "tr": "Kırk Birinci Kısım, kitabın kendi fihristine göre \"Yedinci Sifr\"in ilk kısmı -- ama bu geçiş hiçbir tantanayla işaretlenmiyor, metin doğrudan besmeleyle ve sakin bir fıkhî üslupla \"Cuma'nın Fasılları\" başlığını açıyor. Bize göre bu, Altıncı Sifr'i kapatan aynı sessiz tonun (Kısım 40) devamı gibi okunabilir -- büyük bir cilt/sifr eşiği bile gösterişsiz bırakılıyor. Kısım, tek bir kalıbı ders-kitabı düzenliliğinde tekrarlıyor: önce Cuma namazına dair bir fıkhî mesele (farziyeti, kime farz olduğu, vakti, ezanı, cemaat sayısı, hutbesi, gusül, adabı) bilginlerin görüş ayrılığıyla sunuluyor, hemen ardından aynı meselenin \"bâtınî yorumu\" geliyor. Bu yapı, sitenin zâhir-bâtın ilkesiyle doğrudan örtüşüyor. Bize göre kısmın en merkezi fikri şu: Cuma, tek başına kılınamayan -- cemaat gerektiren -- bir namaz olduğu için, diğer namazların taşıdığı \"Zâtın mutlak birliği\" bilgisini değil, \"çokluğun birliği\" (ilahlık, Rab olarak bilinen Hak) bilgisini taşıyor. Kısım boyunca kime farz olduğu (kadın, köle, yolcu, çocuk), cemaat sayısının kaç olması gerektiği (3, 12, 30, 40), hutbenin ve minberin sembolizmi, ve gusül/adab bahisleri hep bu \"tek-çok\" eksenine bağlanarak okunuyor.",
+          "en": "Part Forty-One is, according to the book's own table of contents, the first part of the \"Seventh Sifr\" -- but this transition is marked with no fanfare at all; the text opens directly with the basmala and a calm legal register, under the heading \"The Chapters of Friday Prayer.\" To us, this reads as a continuation of the same quiet tone that closed the Sixth Sifr (Part Forty) -- even a major volume/sifr threshold is left unadorned. The part repeats a single pattern with textbook regularity: first a point of Friday-prayer law (its obligatory status, who it is obligatory for, its time, its call to prayer, the required congregation size, its sermon, ritual washing, its etiquette) is presented along with scholarly disagreement, then immediately the same question's \"inward reading\" follows. This structure aligns directly with the site's own outward/inward principle. To us, the part's most central idea is this: because Friday prayer cannot be prayed alone -- it requires a congregation -- it carries not the knowledge of \"the Essence's absolute oneness\" that other prayers carry, but the knowledge of \"the oneness of multiplicity\" (divinity, the Real known as Lord). Throughout the part, who it is obligatory for (women, slaves, travelers, children), how large the congregation must be (3, 12, 30, 40), the symbolism of the sermon and the pulpit, and the questions of washing/etiquette are all read back onto this same one-many axis.",
+          "pt": "A Parte Quarenta e Um é, segundo o próprio sumário do livro, a primeira parte do \"Sétimo Sifr\" -- mas essa transição não é marcada com nenhuma solenidade; o texto se abre diretamente com a basmala e um registro jurídico calmo, sob o título \"Os Capítulos da Oração de Sexta-Feira\". Para nós, isso soa como uma continuação do mesmo tom silencioso que encerrou o Sexto Sifr (Parte Quarenta) -- mesmo um grande limiar de volume/sifr é deixado sem adornos. A parte repete um único padrão com regularidade de livro didático: primeiro um ponto de lei sobre a oração de sexta-feira (sua obrigatoriedade, para quem é obrigatória, seu horário, seu chamado, o tamanho exigido da congregação, seu sermão, a purificação ritual, sua etiqueta) é apresentado junto com o desacordo entre os estudiosos, depois vem imediatamente a \"leitura interior\" da mesma questão. Essa estrutura se alinha diretamente com o próprio princípio exterior/interior do site. Para nós, a ideia mais central da parte é esta: como a oração de sexta-feira não pode ser rezada sozinha -- exige uma congregação --, ela carrega não o conhecimento da \"unicidade absoluta da Essência\" que as outras orações carregam, mas o conhecimento da \"unicidade da multiplicidade\" (a divindade, o Real conhecido como Senhor). Ao longo da parte, para quem é obrigatória (mulheres, escravos, viajantes, crianças), quão grande deve ser a congregação (3, 12, 30, 40), o simbolismo do sermão e do púlpito, e as questões de purificação/etiqueta são todos lidos de volta sobre esse mesmo eixo um-múltiplo."
+        }
+      },
+      "sectionHeadings": [
+        {
+          "tr": "Cuma'nın Farz Olup Olmadığı: Tek'in Değil Çokluğun Bilgisi",
+          "en": "Whether Friday Prayer Is Obligatory: Not the Knowledge of the One, but of Multiplicity",
+          "pt": "Se a Oração de Sexta É Obrigatória: Não o Conhecimento do Uno, mas da Multiplicidade"
+        },
+        {
+          "tr": "Kime Farzdır: Birleştirme Kapasitesi",
+          "en": "Who It Is Obligatory For: The Capacity to Unite",
+          "pt": "Para Quem É Obrigatória: A Capacidade de Unir"
+        },
+        {
+          "tr": "Gölge ve Güneş: Cuma'nın Vakti",
+          "en": "Shadow and Sun: The Time of Friday Prayer",
+          "pt": "Sombra e Sol: O Horário da Oração de Sexta"
+        },
+        {
+          "tr": "Ezan ve Cemaat Sayısı: Sayıların Sırrı",
+          "en": "The Call to Prayer and the Congregation's Size: The Secret of Numbers",
+          "pt": "O Chamado à Oração e o Tamanho da Congregação: O Segredo dos Números"
+        },
+        {
+          "tr": "Tek Şehirde İki Cuma: İnsan Bir Şehirdir",
+          "en": "Two Friday Prayers in One City: The Human Being Is a City",
+          "pt": "Duas Orações de Sexta numa Só Cidade: O Ser Humano É uma Cidade"
+        },
+        {
+          "tr": "Hutbe: Hakkın Vekillik Zinciri",
+          "en": "The Sermon: The Real's Chain of Deputyship",
+          "pt": "O Sermão: A Cadeia de Representação do Real"
+        },
+        {
+          "tr": "Minber Basamakları: İsimlerin Üç Mertebesi",
+          "en": "The Pulpit's Steps: The Three Ranks of the Names",
+          "pt": "Os Degraus do Púlpito: As Três Categorias dos Nomes"
+        },
+        {
+          "tr": "Cuma Günü Yıkanmak: Cebrail'in Cilalı Aynası",
+          "en": "Washing on Friday: Gabriel's Polished Mirror",
+          "pt": "Lavar-se na Sexta-Feira: O Espelho Polido de Gabriel"
+        },
+        {
+          "tr": "Kapanış: Güzel Elbise ve Kurb-i Nevâfil'in Tersine Çevrilmesi",
+          "en": "Closing: The Beautiful Garment and the Reversal of the Hadith of Supererogatory Nearness",
+          "pt": "Encerramento: A Bela Vestimenta e a Reversão do Hadith da Proximidade Supererrogatória"
         }
       ]
     }
