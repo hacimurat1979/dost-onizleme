@@ -235,16 +235,29 @@
         return `<button class="bookmap-concept-tag bookmap-concept-tag--group" data-url="${url}">${title}</button>`;
       })
       .join("");
+    const resonance = param.dost_resonance
+      ? `<div class="detail-analogy">
+          <p class="detail-analogy__label">${tt({ tr: "Dost'un dünyasından bir yankı", en: "An echo from Dost's world", pt: "Um eco do mundo de Dost" })}</p>
+          <p>${tt(param.dost_resonance)}</p>
+          ${param.dost_resonance.link ? `<button type="button" class="bookmap-concept-tag bookmap-concept-tag--group" data-nav-view="${param.dost_resonance.link.view}" data-nav-id="${param.dost_resonance.link.id}">${tt({ tr: "Dost'ta ilgili sayfaya git", en: "Go to the related page in Dost", pt: "Ir à página relacionada em Dost" })}</button>` : ""}
+        </div>`
+      : "";
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Temel Parametre", en: "Core Parameter", pt: "Parâmetro Central" })}</p>
       <h2 class="detail-title">${tt(param.label)}</h2>
       <div class="detail-block detail-block--daphne">
         <p>${tt(param.note)}</p>
       </div>
+      ${resonance}
       ${related ? `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "İlgili Yazılar", en: "Related Articles", pt: "Textos Relacionados" })}</p><div class="bookmap-concept-tags">${related}</div>` : ""}
     `;
     detailContent.querySelectorAll("[data-url]").forEach((btn) => {
       btn.addEventListener("click", () => window.open(btn.dataset.url, "_blank", "noopener"));
+    });
+    detailContent.querySelectorAll("[data-nav-view]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        window.open(`${btn.dataset.navView}/${btn.dataset.navId}/`, "_blank", "noopener");
+      });
     });
     detailPanel.hidden = false;
   }
