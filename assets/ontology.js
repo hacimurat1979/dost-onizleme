@@ -136,6 +136,7 @@
     if (currentMainView === "esma") {
       window.__esmaApp && window.__esmaApp.onLangChange();
       window.__esma3dApp && window.__esma3dApp.onLangChange();
+      window.__esma3dFullApp && window.__esma3dFullApp.onLangChange();
     }
     else if (currentMainView === "hal") window.__halApp && window.__halApp.onLangChange();
     else if (currentMainView === "terimler") window.__terimlerApp && window.__terimlerApp.onLangChange();

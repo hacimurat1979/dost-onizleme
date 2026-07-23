@@ -4031,6 +4031,9 @@ body.cizim-lightbox-open {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
 }
+.esma-3d-toggle--full {
+  left: 168px;
+}
 
 .esma3d {
   position: absolute;
@@ -4141,3 +4144,40 @@ body.cizim-lightbox-open {
   .esma3d__caption { font-size: 0.76rem; }
   .esma3d__node { font-size: 0.7rem; }
 }
+
+/* Yöntem 2 (D3 + elle 3B projeksiyon, bkz. assets/esma-3d-full.js): aynı
+   .esma3d kabuğunu paylaşıyor ama içi bir <div> sahnesi yerine tek bir
+   SVG -- performans nedeniyle (103 isim), ve dış öğe olarak .esma3d--full
+   sadece viewport'un svg'ye yer açmasını sağlıyor. */
+.esma3d--full .esma3d__viewport {
+  cursor: grab;
+  touch-action: none;
+}
+.esma3d--full .esma3d__viewport:active { cursor: grabbing; }
+.esma3d__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.e3f-link {
+  stroke: var(--series-esma-neutral);
+  stroke-width: 1;
+  fill: none;
+}
+.e3f-node__dot {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+.e3f-node__label {
+  fill: var(--text-primary);
+  font-weight: 600;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--surface-1);
+  stroke-width: 3px;
+  pointer-events: none;
+}
+.e3f-node {
+  cursor: pointer;
+}
+.e3f-settling { transition: none; }
