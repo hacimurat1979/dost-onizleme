@@ -649,15 +649,21 @@
   // Sifr × Cilt × Kısım iç içe halka haritası: üç bölümleme düzlemini
   // (bkz. TERM_EVOLUTION "sifr/bölüm/kısım") tek bir dairesel görselde
   // üst üste bindirip okuyucunun "neredeyim" sorusunu tek bakışta
-  // cevaplamasını sağlıyor. Sifr sınırları için kaynak metinde SADECE
-  // Kısım 28/34/40'ı işaretleyen net "bitmesiyle" ifadeleri bulundu (bkz.
-  // OPEN_QUESTIONS #10); Kısım 1-28 içindeki Sifr I-IV alt-sınırları
-  // doğrulanamadığı için kendi aritmetiğimizle icat edilmedi -- o aralık
-  // tek, ayrıştırılmamış bir halka dilimi olarak dürüstçe gösteriliyor.
+  // cevaplamasını sağlıyor. Sifr V-X sınırları kaynak metindeki doğrudan
+  // "bitmesiyle" ifadeleriyle (V-VII) ya da bir sonraki cildin
+  // içindekiler listesinden dolaylı ama kesin biçimde (VIII-X, bkz.
+  // OPEN_QUESTIONS #24) doğrulandı; Kısım 1-28 içindeki Sifr I-IV
+  // alt-sınırları doğrulanamadığı için (OPEN_QUESTIONS #10) kendi
+  // aritmetiğimizle icat edilmedi -- o aralık tek, ayrıştırılmamış bir
+  // halka dilimi olarak dürüstçe gösteriliyor.
   const SIFR_SEGMENTS = [
     { label: { tr: "Sifr I–IV", en: "Sifr I–IV", pt: "Sifr I–IV" }, k0: 1, k1: 28 },
     { label: { tr: "Sifr V", en: "Sifr V", pt: "Sifr V" }, k0: 29, k1: 34 },
     { label: { tr: "Sifr VI", en: "Sifr VI", pt: "Sifr VI" }, k0: 35, k1: 40 },
+    { label: { tr: "Sifr VII", en: "Sifr VII", pt: "Sifr VII" }, k0: 41, k1: 47 },
+    { label: { tr: "Sifr VIII", en: "Sifr VIII", pt: "Sifr VIII" }, k0: 48, k1: 53 },
+    { label: { tr: "Sifr IX", en: "Sifr IX", pt: "Sifr IX" }, k0: 54, k1: 60 },
+    { label: { tr: "Sifr X", en: "Sifr X", pt: "Sifr X" }, k0: 61, k1: 69 },
   ];
 
   function arcWedgePath(cx, cy, r1, r2, a0, a1) {
