@@ -26,30 +26,40 @@ window.__esma3dApp = (function () {
   // .node--root .node-halo kuralı), Allah --series-theme altını, diğer
   // isimler kutuplarına göre (celâl/cemâl/kemâl/nötr), hepsinde aynı
   // parlaklık/sheen dolgusu (#node-sheen, index.html'deki paylaşılan SVG
-  // defs). Zât'ın yarıçapı (34px) da Ontoloji ve Esmâ'nın 2B
-  // graflarındaki "dhat"/"zat" düğümüyle birebir aynı (bkz. ontology.js
-  // RADIUS_BY_ID yorumu: "matches esma.js's zat root radius").
+  // defs). Zât'ın ekranda kapladığı GERÇEK piksel alanı da Ontoloji ve
+  // Esmâ'nın 2B grafiğindeki "dhat"/"zat" düğümüyle eşit -- ama bunu
+  // sağlayan raw r değeri buradaki 65, çünkü üç grafiğin kendi otomatik
+  // ölçekleri (Ontoloji ~0.96, Esmâ 2B ~0.61, bu 3B sahne varsayılan
+  // zoomScale=0.5) birbirinden farklı; eşitlik getBoundingClientRect ile
+  // ampirik ölçülerek bulundu, ham r değerlerinin eşit olmasıyla DEĞİL.
 
   const Z_STEP = 130;
   const FOCAL = 900;
   const ALWAYS_LABELED_DEPTH = 1;
 
-  // Mertebe başına yörünge yarıçapı -- derinlik 3'te 84 isim olduğu için
-  // (en kalabalık halka) orana göre çok daha geniş bir yörünge alıyor;
-  // derinlik 4+ zaten birkaç isimden oluştuğu için sıkışma riski yok.
-  const RING_R = { 0: 0, 1: 120, 2: 250, 3: 560, 4: 700, 5: 750, 6: 790, 7: 820, 8: 848, 9: 872 };
+  // Mertebe başına yörünge yarıçapı -- derinlik 2'de artık 74 isim var
+  // (allah'a doğrudan bağlı isimler; el-Bülgâ/Yüz Mertebe grup düğümleri
+  // kaldırılıp çocukları doğrudan allah'a bağlandığı için bu halka en
+  // kalabalık hale geldi), derinlik 3'te sadece 17 isim kaldı (rab/zâtî/
+  // nispetî/fiilî gruplarının çocukları); derinlik 1 (Allah) de Zât'ın
+  // yeni (65px) yarıçapıyla çakışmaması için genişletildi. derinlik 4+
+  // zaten birkaç isimden oluşan tek bir zincir (hayy->alim->...->muksit)
+  // olduğu için sıkışma riski yok, değiştirilmedi.
+  const RING_R = { 0: 0, 1: 300, 2: 760, 3: 560, 4: 700, 5: 750, 6: 790, 7: 820, 8: 848, 9: 872 };
   function ringRadiusFor(depth) {
     return RING_R[depth] !== undefined ? RING_R[depth] : 872;
   }
 
-  // Düğüm yarıçapı -- esma.js'in kendi radiusFor()'uyla birebir aynı
-  // ölçek: Zât ve Allah 34 (esma.js/ontology.js'teki paylaşılan 34px),
-  // ana isimler (esma.json depth 2) 22, geri kalanı esma.js'teki
+  // Düğüm yarıçapı -- esma.js'in kendi radiusFor()'uyla aynı mantık,
+  // ama raw değer burada 65 (esma.js'te 54): iki grafiğin otomatik
+  // ölçekleri farklı olduğu için ekranda EŞİT görünmesi için ham r
+  // değerlerinin FARKLI olması gerekiyor (bkz. yukarıdaki not). Ana
+  // isimler (esma.json depth 2) 22, geri kalanı esma.js'teki
   // Math.max(9, 16 - derinlik) formülüyle -- sadece derinlik burada bir
   // kaydırmayla (esma.js'in ağacı Zât'ı dışarıda tutup Allah'ı kök
   // saydığı için) hesaplanıyor.
   function dotRadiusFor(depth) {
-    if (depth <= 1) return 34;
+    if (depth <= 1) return 102;
     const treeDepth = depth - 1;
     if (treeDepth === 1) return 22;
     return Math.max(9, 16 - treeDepth);
@@ -62,7 +72,12 @@ window.__esma3dApp = (function () {
   let toggled = false;
   let yaw = 0.5;
   let pitch = -0.14;
-  let zoomScale = 0.5;
+  // 0.5 -> 0.32: derinlik 2 halkası artık 760 birim (74 isim için, bkz.
+  // RING_R yorumu) -- eski 0.5 varsayılan yakınlaştırmada bu halkadaki
+  // isimlerin yaklaşık yarısı ilk açılışta ekranın dışında kalıyordu.
+  // 0.32, sahnenin çoğunu ilk karede görünür kılıyor (kullanıcı yine de
+  // tekerlekle daha da yakınlaştırabilir).
+  let zoomScale = 0.32;
   let dragging = false;
   let hovering = false;
   let hoveredId = null;

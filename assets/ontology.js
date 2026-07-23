@@ -1163,7 +1163,13 @@
   }
 
   const RADIUS_BY_ID = {
-    "dhat": 34, // matches esma.js's "zat" root radius -- same node, same size in both graphs
+    // Bu grafiğin kendi otomatik-yakınlaştırma ölçeği (~0.96) esma.js'in
+    // ölçeğinden (~0.61) farklı olduğu için, esma.js/esma-3d.js'teki Zât
+    // düğümünün ham r değeri kasıtlı olarak burada değil (54/65) --
+    // ekranda EŞİT piksel boyutu getBoundingClientRect ile ampirik olarak
+    // eşitlendi, ham değerler eşit olduğu için değil (bkz. esma.js
+    // radiusFor()'daki not).
+    "dhat": 34,
     "sifat-asma": 15,
     "ayan-sabite": 14,
     "tecelli": 14,

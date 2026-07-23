@@ -110,10 +110,16 @@
     return esmaDataPromise;
   }
 
+  // Zât ve Allah'ın çapı burada 34 değil 54 -- Ontoloji grafiğindeki Zât
+  // (dhat) düğümüyle aynı RAW r değeri kullanmak görsel eşitlik SAĞLAMIYOR,
+  // çünkü bu iki grafiğin kendi otomatik-yakınlaştırma ölçekleri farklı
+  // (Ontoloji ~0.96, Esmâ ~0.61 -- pencere boyutuna göre değişebilir).
+  // 54, iki grafikte ekrana çizilen GERÇEK piksel boyutunu (getBoundingClientRect
+  // ile ölçülerek) eşitleyecek şekilde ampirik olarak bulunmuş bir değerdir.
   function radiusFor(d) {
-    if (d.isZat) return 34;
+    if (d.isZat) return 111;
     const depth = d.depth;
-    if (depth === 0) return 34; // Allah -- the map's true center
+    if (depth === 0) return 111; // Allah -- the map's true center
     if (depth === 1) return 22;
     return Math.max(9, 16 - depth);
   }
@@ -283,7 +289,12 @@
     const height = svg.node().clientHeight || 600;
     svg.attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
 
-    zoomBehavior = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.35, 5]);
+    // Alt sınır 0.35'ten 0.18'e indirildi: derinlik 2 halkasındaki isim
+    // sayısı artık pencereye değil veriye bağlı (bkz. update()'teki
+    // minRing1ForSpacing) ve 74 isme çıktığında gereken sığdırma ölçeği
+    // eski 0.35 tabanının altına düşüyor -- taban çok yüksek kalırsa
+    // zoomToFit dairenin tamamını sığdıramayıp Zât'ı üstten kırpıyordu.
+    zoomBehavior = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.18, 5]);
     svg.on("click", () => { if (focusedNode) unfocusNode(true); });
 
     const recenterBtn = document.getElementById("esma-recenter");
@@ -451,7 +462,7 @@
     const nodes = root.descendants();
     if (lastBoundaryRadius) {
       nodes.push(
-        { x: 0, y: lastBoundaryRadius + 34 },
+        { x: 0, y: lastBoundaryRadius + radiusFor({ isZat: true }) },
         { x: Math.PI, y: lastBoundaryRadius },
         { x: Math.PI / 2, y: lastBoundaryRadius },
         { x: -Math.PI / 2, y: lastBoundaryRadius }
@@ -481,14 +492,25 @@
     // mostly-empty rings to fit it, it continues outward past ring 2 as its
     // own spiraling "sequence of derivation" tail (each Name in the chain
     // necessarily implying the next).
-    const ring1 = outerRadius * 0.42;
+    // Ring 1'in payı sabit değil: el-Bülgâ/Yüz Mertebe grup düğümleri
+    // kaldırılıp çocukları doğrudan allah'a bağlandığından (bkz. yukarıdaki
+    // yorum) bu halkadaki isim sayısı pencereye göre değil, veriye göre
+    // değişiyor (şu an 74) -- sabit bir oran, bu kadar çok ismi aynı
+    // dairede sıkıştırıp üst üste bindirirdi. Bu yüzden ring1, ya pencere
+    // oranını ya da o derinlikteki gerçek düğüm sayısının gerektirdiği asgari
+    // çevre uzunluğunu (hangisi büyükse) kullanıyor; zoomToFit sahnenin
+    // tamamını orantılı küçülttüğü için bu oran korunuyor, sıkışma geri
+    // gelmiyor.
+    const depth1Count = nodes.filter((d) => d.depth === 1).length;
+    const minRing1ForSpacing = (depth1Count * (radiusFor({ depth: 1 }) * 2 + 14)) / (2 * Math.PI);
+    const ring1 = Math.max(outerRadius * 0.42, minRing1ForSpacing);
     const ring2 = outerRadius * 0.74;
     const tailStep = outerRadius * 0.11;
     function radiusForDepth(depth) {
       if (depth <= 0) return 0;
       if (depth === 1) return ring1;
-      if (depth === 2) return ring2;
-      return ring2 + (depth - 2) * tailStep;
+      if (depth === 2) return Math.max(ring2, ring1 + 60);
+      return radiusForDepth(2) + (depth - 2) * tailStep;
     }
     nodes.forEach((d) => { d.y = radiusForDepth(d.depth); });
 
