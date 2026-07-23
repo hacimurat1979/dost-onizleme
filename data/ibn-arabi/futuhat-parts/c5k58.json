@@ -1,0 +1,376 @@
+{
+  "id": "c5k58",
+  "cilt": 5,
+  "kisim": 58,
+  "status": "active",
+  "title": {
+    "tr": "Aşure'den Perşembe'ye: Nafile Oruçların Mertebeleri",
+    "en": "From Ashura to Thursday: The Ranks of Supererogatory Fasting",
+    "pt": "De Achura a Quinta-feira: As Categorias do Jejum Supererogatório"
+  },
+  "pageRange": "141-173",
+  "hero": {
+    "summary": {
+      "tr": "Elli Sekizinci Kısım, Kısım 57'den (iftar/sahur) sarkan kısa bir vasılla açılıp yedi ayrı nafile oruç türünü -- Aşure, Arife, Şevval'in altı günü, ayın başındaki üç gün, Eyyâm-ı Bîz, Pazartesi ve Perşembe -- tek tek ele alıyor. Her biri önce fıkhî bir tartışmayla açılıyor, sonra kendi bâtıni okumasına bağlanıyor; biz burada en çarpıcı bulduğumuz beş durağı, kendi sırasıyla izlemeye çalıştık.",
+      "en": "Part Fifty-Eight opens with a short passage carried over from Part 57 (breaking the fast/pre-dawn meal) and then takes up seven distinct kinds of supererogatory fasting one by one -- Ashura, Arafah, the six days of Shawwal, the three days at the start of the month, Ayyam al-Bid, and Monday and Thursday. Each opens with a legal debate before being tied to its own inward reading; here we try to follow, in their own order, the five stops we found most striking.",
+      "pt": "A Parte Cinquenta e Oito se abre com uma breve passagem que se estende da Parte 57 (fim do jejum/refeição pré-alvorecer) e trata, um a um, de sete tipos distintos de jejum supererogatório -- Achura, Arafah, os seis dias de Shawwal, os três dias do início do mês, Ayyam al-Bid, e segunda e quinta-feira. Cada um se abre com um debate jurídico antes de ligar-se à sua própria leitura interior; aqui tentamos seguir, em sua própria ordem, as cinco paradas que consideramos mais marcantes."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Kısım 58'de ele alınan altı nafile oruç türü ve her birinin bağlandığı isim/mertebe.",
+      "en": "The six kinds of supererogatory fasting taken up in Part 58, and the Name/rank each is tied to.",
+      "pt": "Os seis tipos de jejum supererogatório tratados na Parte 58, e o Nome/grau ao qual cada um está ligado."
+    },
+    "tree": {
+      "id": "kisim-lviii-tree",
+      "label": {
+        "tr": "Elli Sekizinci Kısım: Nafile Oruçlar",
+        "en": "Part Fifty-Eight: Supererogatory Fasts",
+        "pt": "Parte Cinquenta e Oito: Jejuns Supererogatórios"
+      },
+      "note": {
+        "tr": "Kısım 57'den (iftar/sahur) sarkan kısa bir vasılla açılıyor, sonra altı nafile oruç türünü sırayla ele alıyor.",
+        "en": "Opens with a short passage carried over from Part 57 (breaking the fast/pre-dawn meal), then takes up six kinds of supererogatory fasting in turn.",
+        "pt": "Abre-se com uma breve passagem que se estende da Parte 57 (fim do jejum/refeição pré-alvorecer), depois trata seis tipos de jejum supererogatório em sequência."
+      },
+      "children": [
+        {
+          "id": "asure-dal",
+          "label": {
+            "tr": "Aşure",
+            "en": "Ashura",
+            "pt": "Achura"
+          },
+          "note": {
+            "tr": "el-Evvel/el-Ahir -- geçmişi kaldırır",
+            "en": "al-Awwal/al-Akhir -- lifts the past",
+            "pt": "al-Awwal/al-Akhir -- levanta o passado"
+          }
+        },
+        {
+          "id": "arife-dal",
+          "label": {
+            "tr": "Arife",
+            "en": "Arafah",
+            "pt": "Arafah"
+          },
+          "note": {
+            "tr": "marifet/ehâdiyet -- kaldırır ve uzaklaştırır",
+            "en": "gnosis/ahadiyya -- lifts and distances",
+            "pt": "gnose/ahadiyya -- levanta e afasta"
+          }
+        },
+        {
+          "id": "sevval-alti-gun-dal",
+          "label": {
+            "tr": "Şevval'in Altı Günü",
+            "en": "The Six Days of Shawwal",
+            "pt": "Os Seis Dias de Shawwal"
+          },
+          "note": {
+            "tr": "visâl orucu -- 'Oruç bana aittir'",
+            "en": "visal fasting -- 'Fasting belongs to Me'",
+            "pt": "jejum visal -- 'O jejum Me pertence'"
+          }
+        },
+        {
+          "id": "ayin-uc-gunu-dal",
+          "label": {
+            "tr": "Ayın Üç Günü",
+            "en": "The Three Days of the Month",
+            "pt": "Os Três Dias do Mês"
+          },
+          "note": {
+            "tr": "oruç Hakkın bir niteliği -- İnsan-ı Kâmil kasidesi",
+            "en": "fasting as an attribute of the Real -- the Perfect Human qasida",
+            "pt": "o jejum como atributo do Real -- a qasida do Ser Humano Perfeito"
+          }
+        },
+        {
+          "id": "eyyam-i-biz-dal",
+          "label": {
+            "tr": "Eyyâm-ı Bîz",
+            "en": "Ayyam al-Bid",
+            "pt": "Ayyam al-Bid"
+          },
+          "note": {
+            "tr": "ed-Dehr ismi -- ay/güneş",
+            "en": "the Name ad-Dahr -- moon/sun",
+            "pt": "o Nome ad-Dahr -- lua/sol"
+          }
+        },
+        {
+          "id": "pazartesi-persembe-dal",
+          "label": {
+            "tr": "Pazartesi-Perşembe",
+            "en": "Monday-Thursday",
+            "pt": "Segunda-Quinta"
+          },
+          "note": {
+            "tr": "Âdem-Musa -- on iki pınar",
+            "en": "Adam-Moses -- the twelve springs",
+            "pt": "Adão-Moisés -- as doze fontes"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "asure-ile-arife",
+      "heading": {
+        "tr": "Aşure ile Arife: Kaldırma ile Uzaklaştırma",
+        "en": "Ashura and Arafah: Lifting and Distancing",
+        "pt": "Achura e Arafah: Levantar e Afastar"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, bir önceki kısımdan sarkan kısa bir vasılla açılıyor -- zorunlu ile gönüllü ibadet arasındaki farkın, kulun kendi seçimiyle bir zorunluluğu gönüllüye çevirip çeviremeyeceği sorusu (s.141) -- ve ardından yedi ayrı nafile oruç türünü, her birini önce fıkhî tartışmayla sonra kendi bâtıni okumasıyla ele alarak sürüyor. İlk durak Aşure: dokuzuncu mu onuncu gün mü tutulacağı tartışması, iki isme bağlanıyor. <em>\"Kendi zatının birliğinde yerleştirilen kimse, onuncu günü tutar. Çünkü on, basamaklı sayıların ilkidir. el-Ahir isminin makamına yerleştirilen kimse ise, tek sayıların sonuncusu olan dokuzuncu gün oruç tutar.\"</em> (s.142-143) Dost bunu, Aşure'nin geçmiş yılın günahlarına kefaret olacağını umduran hadisle birlikte veriyor: <em>\"Aşure'nin bir önceki senenin kefareti olacağını Allah'tan umarım.\"</em> (s.143) Bize göre burada sayı (dokuz/on) sırf aritmetik değil, ismin kendi mertebesinde okunuyor -- on, bir dizinin başlangıcı; dokuz, bir öncekinin bitişi -- döngüsel bir sınır noktası.",
+            "en": "The part opens with a short passage carried over from the previous part -- the question of whether the servant's own choice can turn an obligatory act into a voluntary one (p.141) -- and then proceeds through seven distinct kinds of supererogatory fasting, each first taken up as a legal debate and then given its own inward reading. The first stop is Ashura: the debate over whether it falls on the ninth or tenth day is tied to two Names. <em>\"Whoever is placed within the oneness of his own essence fasts on the tenth day, for ten is the first of the compound numbers. Whoever is placed in the station of the Name al-Akhir fasts on the ninth day, the last of the single-digit numbers.\"</em> (pp.142-143) Dost gives this alongside the hadith expressing the hope that Ashura will atone for the sins of the previous year: <em>\"I hope from God that the fast of Ashura will be an atonement for the previous year.\"</em> (p.143) We read the numbers here (nine/ten) not as mere arithmetic but as read at the very rank of the Name -- ten as the beginning of one sequence, nine as the end of the one before it -- a cyclical boundary point.",
+            "pt": "A parte se abre com uma breve passagem que se estende da parte anterior -- a questão de saber se a própria escolha do servo pode transformar um ato obrigatório em voluntário (p.141) -- e prossegue tratando de sete tipos distintos de jejum supererogatório, cada um primeiro como um debate jurídico e depois com sua própria leitura interior. A primeira parada é Achura: o debate sobre se cai no nono ou no décimo dia está ligado a dois Nomes. <em>\"Quem está colocado na unidade de sua própria essência jejua no décimo dia, pois dez é o primeiro dos números compostos. Quem está colocado na estação do Nome al-Akhir jejua no nono dia, o último dos números de um dígito.\"</em> (pp.142-143) Dost dá isso junto com o hadith que expressa a esperança de que o jejum de Achura seja uma expiação do ano anterior: <em>\"Espero de Deus que o jejum de Achura seja uma expiação do ano anterior.\"</em> (p.143) Lemos os números aqui (nove/dez) não como mera aritmética, mas lidos no próprio grau do Nome -- dez como o início de uma sequência, nove como o fim da anterior -- um ponto cíclico de fronteira."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Arife günü ise bambaşka bir eksenden ele alınıyor: marifet ile ilim arasındaki fark. Dost, marifetin tek nesne aldığını, sadece mutlak birliğe (ehâdiyet) özgü olduğunu söylüyor: <em>\"Marifet, ehadiyeti (mutlak birlik) bilmektir... Ârif ise, bize göre, mutlak birliği bilenlerin ismidir.\"</em> (s.147-148) Oruç ile Arife arasındaki bağ da aynı eksenden kuruluyor: <em>\"Öyleyse oruç gerçekte Allah'a ait olduğu gibi mutlak birlik de gerçekte Allah'a aittir. Böylelikle oruç ile Arife günü arasında karşılıklı ilişki ortaya çıkmıştır.\"</em> (s.149-150) Dost'un Aşure ile Arife'yi birbirine bağladığı son cümle, bize göre kısmın en çarpıcı karşılaştırmalarından biri: <em>\"Aşure kaldırırken Arife hem kaldırır hem uzaklaştırır. Böylelikle Arife, kaldırmayla uzaklaştırmayı kendinde birleştirmiş, bu özelliğiyle Hakka uygun olmuştur.\"</em> (s.150) Aşure sadece geçmişi kaldırıyor (kefaret); Arife hem geçmişi kaldırıyor hem geleceği uzaklaştırıyor -- iki günün arasındaki bu fark, aşağıdaki şemada yan yana konmuş.",
+            "en": "The Day of Arafah is taken up from an entirely different axis: the difference between gnosis (ma'rifa) and knowledge ('ilm). Dost says gnosis takes only a single object, proper to absolute oneness (ahadiyya) alone: <em>\"Gnosis is knowing the ahadiyya (absolute oneness)... The gnostic, in our view, is the name of those who know absolute oneness.\"</em> (pp.147-148) The bond between fasting and the Day of Arafah is built on the same axis: <em>\"Just as fasting truly belongs to God, so absolute oneness truly belongs to God. Thus a mutual relation has emerged between fasting and the Day of Arafah.\"</em> (pp.149-150) Dost's closing sentence tying Ashura to Arafah is, to us, one of the part's most striking comparisons: <em>\"While Ashura lifts, Arafah both lifts and distances. Arafah has thus united lifting with distancing within itself, and through this quality has become fitting for the Real.\"</em> (p.150) Ashura only lifts the past (as atonement); Arafah both lifts the past and distances the future -- this difference between the two days is set side by side in the diagram below.",
+            "pt": "O Dia de Arafah é tratado a partir de um eixo totalmente diferente: a diferença entre gnose (ma'rifa) e conhecimento ('ilm). Dost diz que a gnose toma apenas um único objeto, própria somente da unidade absoluta (ahadiyya): <em>\"Gnose é conhecer a ahadiyya (unidade absoluta)... O gnóstico, em nossa opinião, é o nome daqueles que conhecem a unidade absoluta.\"</em> (pp.147-148) O vínculo entre o jejum e o Dia de Arafah é construído no mesmo eixo: <em>\"Assim como o jejum verdadeiramente pertence a Deus, a unidade absoluta também verdadeiramente pertence a Deus. Assim surgiu uma relação mútua entre o jejum e o Dia de Arafah.\"</em> (pp.149-150) A frase final de Dost, ligando Achura a Arafah, é, para nós, uma das comparações mais marcantes da parte: <em>\"Enquanto Achura levanta, Arafah levanta e afasta. Arafah uniu assim o levantar com o afastar em si mesma, e por essa qualidade tornou-se adequada ao Real.\"</em> (p.150) Achura apenas levanta o passado (como expiação); Arafah levanta o passado e afasta o futuro -- essa diferença entre os dois dias está lado a lado no diagrama abaixo."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LVIII, s. 142-150.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LVIII, pp. 142-150.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LVIII, pp. 142-150."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Aşure",
+                "en": "Ashura",
+                "pt": "Achura"
+              },
+              "note": {
+                "tr": "geçmişi kaldırır (kefaret) -- el-Evvel/el-Ahir",
+                "en": "lifts the past (atonement) -- al-Awwal/al-Akhir",
+                "pt": "levanta o passado (expiação) -- al-Awwal/al-Akhir"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Arife",
+                "en": "Arafah",
+                "pt": "Arafah"
+              },
+              "note": {
+                "tr": "hem kaldırır hem uzaklaştırır -- marifet/ehâdiyet",
+                "en": "both lifts and distances -- gnosis/ahadiyya",
+                "pt": "levanta e afasta -- gnose/ahadiyya"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'un kendi ifadesiyle: \"Aşure kaldırırken Arife hem kaldırır hem uzaklaştırır.\"",
+            "en": "In Dost's own words: \"While Ashura lifts, Arafah both lifts and distances.\"",
+            "pt": "Nas próprias palavras de Dost: \"Enquanto Achura levanta, Arafah levanta e afasta.\""
+          }
+        }
+      ]
+    },
+    {
+      "id": "visal-orucu",
+      "heading": {
+        "tr": "Visâl Orucu: 'Oruç Bana Aittir'",
+        "en": "Visal Fasting: 'Fasting Belongs to Me'",
+        "pt": "Jejum Visal: 'O Jejum Me Pertence'"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Şevval ayından altı gün oruç bahsi, visâl orucuna (iftarsız art arda oruç tutmaya) bağlanıyor. Dost, bunun hikmetini doğrudan Kısım 55'i (\"Orucun Sırrı: Oruç Bana Aittir\") yankılayan bir cümleyle veriyor: <em>\"Visal orucunun hikmeti, Hakkın 'Oruç bana aittir' demiş olmasında saklıdır. Allah orucu benzeri olmayan bir ibadet yaptı.\"</em> (s.154) Hz. Peygamber'in visâl orucu tutarken söylediği aktarılıyor: Rabbinin kendisini yedirip içirdiği. Dost burada nadir bir birinci-şahıs tanıklığa geçiyor: <em>\"Bizi de visal gecesinde gecelerken Rabbimiz yedirdi ve içirdi... Rabbimizin bize yedirdiği yemeğin kokusu bizden duyuluyor.\"</em> (s.153) Bize göre bu satırlar, 'oruç bana aittir' hadisinin sadece bir yorum değil, Dost'un kendi yaşadığını iddia ettiği bir tecrübe olarak sunulduğunu gösteriyor -- kısmın geri kalanındaki daha teorik okumalardan farklı bir kayıt.",
+            "en": "The account of fasting six days of Shawwal ties into visal fasting (fasting consecutive days without breaking the fast). Dost gives its wisdom in a sentence that directly echoes Part 55 (\"The Secret of Fasting: Fasting Belongs to Me\"): <em>\"The wisdom of visal fasting lies hidden in the Real's having said, 'Fasting belongs to Me.' God made fasting an act of worship without equal.\"</em> (p.154) What the Prophet is reported to have said while keeping the visal fast is related here -- that his Lord fed and gave him drink. Dost moves here into a rare first-person testimony: <em>\"We too, as we passed the night of visal, were fed and given drink by our Lord... the scent of the food our Lord fed us could be smelled from us.\"</em> (p.153) To us, these lines show that the hadith \"fasting belongs to Me\" is presented here not merely as an interpretation but as an experience Dost claims to have lived himself -- a different register from the more theoretical readings elsewhere in the part.",
+            "pt": "O relato do jejum de seis dias de Shawwal se liga ao jejum visal (jejuar dias consecutivos sem quebrar o jejum). Dost dá sua sabedoria numa frase que ecoa diretamente a Parte 55 (\"O Segredo do Jejum: O Jejum Me Pertence\"): <em>\"A sabedoria do jejum visal está oculta no fato de o Real ter dito: 'O jejum Me pertence.' Deus fez do jejum um ato de adoração sem igual.\"</em> (p.154) O que se relata que o Profeta disse enquanto mantinha o jejum visal é referido aqui -- que seu Senhor o alimentou e lhe deu de beber. Dost passa aqui a um raro testemunho em primeira pessoa: <em>\"Nós também, ao passarmos a noite do visal, fomos alimentados e recebemos de beber de nosso Senhor... o aroma do alimento que nosso Senhor nos deu podia ser sentido em nós.\"</em> (p.153) Para nós, essas linhas mostram que o hadith \"o jejum Me pertence\" é apresentado aqui não meramente como uma interpretação, mas como uma experiência que Dost afirma ter vivido ele mesmo -- um registro diferente das leituras mais teóricas em outras partes desta seção."
+          }
+        }
+      ]
+    },
+    {
+      "id": "vaktin-kutbu",
+      "heading": {
+        "tr": "Vaktin Kutbu: Ahmed es-Sebti",
+        "en": "The Pole of the Age: Ahmad al-Sabti",
+        "pt": "O Polo da Época: Ahmad al-Sabti"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısmın en canlı sahnesi burada: Mekke'de tavaf sırasında tanımadığı bir adamla (Harun er-Reşid'in oğlu Ahmed es-Sebti olduğu söylenen biriyle) karşılaşması. Adam, haftanın günlerini nasıl paylaştırdığını anlatıyor: <em>\"Çünkü Allah bizi Pazar günü yaratmaya başladı, Cuma günü bitirdi. Ben de bu günleri Allah'a ibadete ayırdım. O günlerde kendime ait bir hazzın bulunduğu işlerle ilgilenmiyorum. Cumartesi günü geldiğinde ise, nefsime ait işi yapıyorum.\"</em> (s.155) Dost'un ona sorduğu soru ve aldığı cevap, sitenin kutbiyet/kutup kavramına en somut örneklerden biri: <em>\"Bunun üzerine kendisine 'Senin zamanında vaktin kutbu kimdir?' diye sordum. O da 'Benim?' diye cevap verdi.\"</em> (s.156) Bize göre bu, kutbun kendini bu kadar dolaysız tanıttığı ender sahnelerden -- teorik bir tanım değil, bizzat yaşanmış bir karşılaşma.",
+            "en": "The part's most vivid scene appears here: his encounter, while circumambulating in Mecca, with a man he did not recognize (said to be Ahmad al-Sabti, son of Harun al-Rashid). The man describes how he divides the days of the week: <em>\"For God began creating us on Sunday and finished on Friday. I too have set these days aside for worshipping God. On those days I occupy myself with nothing in which I have a pleasure of my own. When Saturday comes, I do the work that belongs to my own self.\"</em> (p.155) The question Dost asks him, and the answer he receives, is among the site's most concrete examples of the concept of the Pole (qutb): <em>\"So I asked him, 'Who is the Pole of the age in your time?' He answered, 'Me?'\"</em> (p.156) To us, this is one of the rare scenes where the Pole introduces himself this directly -- not a theoretical definition, but a lived encounter.",
+            "pt": "A cena mais vívida da parte aparece aqui: seu encontro, durante a circum-ambulação em Meca, com um homem que ele não reconheceu (dito ser Ahmad al-Sabti, filho de Harun al-Rashid). O homem descreve como divide os dias da semana: <em>\"Pois Deus começou a nos criar no domingo e terminou na sexta-feira. Eu também reservei esses dias para adorar a Deus. Nesses dias não me ocupo de nada em que eu tenha um prazer próprio. Quando chega o sábado, faço o trabalho que pertence ao meu próprio eu.\"</em> (p.155) A pergunta que Dost lhe faz, e a resposta que recebe, está entre os exemplos mais concretos do site sobre o conceito do Polo (qutb): <em>\"Então lhe perguntei: 'Quem é o Polo da época em seu tempo?' Ele respondeu: 'Eu?'\"</em> (p.156) Para nós, esta é uma das raras cenas em que o Polo se apresenta de forma tão direta -- não uma definição teórica, mas um encontro vivido."
+          }
+        }
+      ]
+    },
+    {
+      "id": "melegin-bilemedigi-nitelik",
+      "heading": {
+        "tr": "Oruç: Meleğin Bilemediği Bir Nitelik",
+        "en": "Fasting: A Quality the Angel Cannot Know",
+        "pt": "O Jejum: Uma Qualidade que o Anjo Não Pode Conhecer"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ayın başındaki üç gün bahsinde Dost, orucu doğrudan Hakkın bir niteliği olarak sunuyor -- ve bunu meleğin yapamayacağı bir şeyle karşılaştırıyor: <em>\"Oruç Hakkın bir niteliğidir ve bütün ameller içinden orucu kendisine ayırmıştır. Oruç bu yaratılışa özgü bir ameldir. Bir melek oruç tutamaz. Öyleyse Hakkı bir yakın melek oruçla ilgili bir müşahedede göremeyeceği gibi Hak da kendisine hiçbir zaman oruçla ilgili bir müşahedede tecelli etmez.\"</em> (s.157) Ardından, 'sırlı bir vakıada' duyduğunu söylediği uzun bir kaside geliyor -- Hak ile İnsan-ı Kâmil arasında karşılıklı bir ayna gibi kurulmuş: <em>\"Suretimi göstereyim diye seni evimde tuttum / Nezih tecelligâhsınız, kendim de münezzehim / Senin gözlerin benim gibi kâmili görmedi / Benim gözlerim de senin gibi insan görmedi.\"</em> (s.159) Kasidenin en keskin dizesi belki de şu: <em>\"Sen benim zatım değilsin! Hayır! Ben de sizin zatınız değilim.\"</em> (s.160) Bize göre bu dize, ayna imgesinin sınırını da baştan çiziyor -- yansıyan ile yansıtan aynı değil, ama biri olmadan diğeri de görünmez.",
+            "en": "In the account of the three days at the start of the month, Dost presents fasting directly as an attribute of the Real -- and compares it to something an angel cannot do: <em>\"Fasting is an attribute of the Real, and of all acts of worship He has set fasting apart for Himself. Fasting is an act proper to this creation alone. An angel cannot fast. Just as a near angel could never witness the Real in connection with fasting, the Real, too, never discloses Himself in connection with fasting.\"</em> (p.157) What follows is a long qasida he says he heard in \"a secret occurrence\" -- built as a mutual mirror between the Real and the Perfect Human: <em>\"I kept you in My house so that I might show My form / You are pure loci of My self-disclosure, and I too am pure / Your eyes have not seen a perfect one like me / My eyes too have not seen a human like you.\"</em> (p.159) Perhaps the sharpest line of the qasida is this: <em>\"You are not My Essence! No! Nor am I your Essence.\"</em> (p.160) To us, this line draws the very boundary of the mirror image from the outset -- the reflected and the reflecting are not the same, yet neither is visible without the other.",
+            "pt": "No relato dos três dias do início do mês, Dost apresenta o jejum diretamente como um atributo do Real -- e o compara a algo que um anjo não pode fazer: <em>\"O jejum é um atributo do Real, e de todos os atos de adoração Ele reservou o jejum para Si mesmo. O jejum é um ato próprio apenas desta criação. Um anjo não pode jejuar. Assim como um anjo próximo jamais poderia testemunhar o Real em conexão com o jejum, o Real também nunca Se autorrevela em conexão com o jejum.\"</em> (p.157) Segue-se uma longa qasida que ele diz ter ouvido em \"uma ocorrência secreta\" -- construída como um espelho mútuo entre o Real e o Ser Humano Perfeito: <em>\"Eu te mantive em Minha casa para que eu pudesse mostrar Minha forma / Vocês são loci puros da Minha autorrevelação, e eu também sou puro / Teus olhos não viram um perfeito como eu / Meus olhos também não viram um humano como você.\"</em> (p.159) Talvez o verso mais afiado da qasida seja este: <em>\"Você não é Minha Essência! Não! Nem eu sou tua Essência.\"</em> (p.160) Para nós, este verso já traça a própria fronteira da imagem especular -- o refletido e o que reflete não são o mesmo, mas nenhum é visível sem o outro."
+          }
+        }
+      ]
+    },
+    {
+      "id": "eyyam-i-biz",
+      "heading": {
+        "tr": "Eyyâm-ı Bîz: Ayın Üç Günü",
+        "en": "Ayyam al-Bid: The Three Middle Days of the Month",
+        "pt": "Ayyam al-Bid: Os Três Dias do Meio do Mês"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ayın ortasındaki üç günü (Eyyâm-ı Bîz) oruçlu geçirmek, ay ile güneş arasındaki ilişkiye, ed-Dehr ismine bağlanıyor. Dost, meşhur bir kutsî hadisi aktarıyor: <em>\"Dehre sövmeyiniz, çünkü Allah ed-Dehr'dir.\"</em> (s.165) Ve orucu doğrudan bu isme bağlıyor: <em>\"Biz günleri oruç tutmak, ed-Dehr (olan Allah'a ait) orucudur... Burada orucu (Allah'ın bir ismi olan) ed-Dehre tamlama yapmıştır ki, bu ifade 'Oruç benimdir' ifadesiyle aynı anlama gelir.\"</em> (s.166) Bize göre ay, burada güneşin ışığını yansıtan bir ayna olarak okunabilir -- dolunay ile hilal arasındaki döngü, ez-Zâhir ile el-Bâtın arasındaki gel-gitle örtüşüyor; oruçlu insan da benzer bir 'yansıtma' ilişkisine giriyor gibi.",
+            "en": "Fasting the three middle days of the month (Ayyam al-Bid) is tied to the relation between the moon and the sun, and to the Name ad-Dahr. Dost relates a famous holy hadith: <em>\"Do not curse time (dahr), for God is ad-Dahr.\"</em> (p.165) And he ties fasting directly to this Name: <em>\"To fast these days is the fast of ad-Dahr (belonging to God)... Here he has made fasting a construct with ad-Dahr (one of God's Names), which carries the same meaning as the expression 'Fasting is Mine.'\"</em> (p.166) To us, the moon here can be read as a mirror reflecting the sun's light -- the cycle between the full moon and the crescent overlaps with the ebb and flow between az-Zahir and al-Batin; the fasting person seems to enter a similar relation of \"reflection.\"",
+            "pt": "Jejuar os três dias do meio do mês (Ayyam al-Bid) está ligado à relação entre a lua e o sol, e ao Nome ad-Dahr. Dost relata um famoso hadith sagrado: <em>\"Não amaldiçoeis o tempo (dahr), pois Deus é ad-Dahr.\"</em> (p.165) E liga o jejum diretamente a este Nome: <em>\"Jejuar esses dias é o jejum de ad-Dahr (pertencente a Deus)... Aqui ele fez do jejum uma construção com ad-Dahr (um dos Nomes de Deus), o que carrega o mesmo sentido da expressão 'O jejum é Meu.'\"</em> (p.166) Para nós, a lua aqui pode ser lida como um espelho que reflete a luz do sol -- o ciclo entre a lua cheia e o crescente se sobrepõe ao fluxo e refluxo entre az-Zahir e al-Batin; quem jejua parece entrar numa relação semelhante de \"reflexo.\""
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LVIII, s. 164-167.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LVIII, pp. 164-167.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LVIII, pp. 164-167."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Dolunay (ez-Zâhir)",
+                "en": "Full Moon (az-Zahir)",
+                "pt": "Lua Cheia (az-Zahir)"
+              },
+              "note": {
+                "tr": "ışığın tam yansıması",
+                "en": "the light fully reflected",
+                "pt": "a luz totalmente refletida"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Hilal (el-Bâtın)",
+                "en": "Crescent (al-Batin)",
+                "pt": "Crescente (al-Batin)"
+              },
+              "note": {
+                "tr": "ışığın gizlenmesi",
+                "en": "the light concealed",
+                "pt": "a luz oculta"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Ay'ın evreleri, Zâhir-Bâtın döngüsünün gökteki bir yansıması gibi okunabilir.",
+            "en": "The moon's phases can be read as a sky-borne reflection of the Zahir-Batin cycle.",
+            "pt": "As fases da lua podem ser lidas como um reflexo celeste do ciclo Zahir-Batin."
+          }
+        }
+      ]
+    },
+    {
+      "id": "adem-musa-oniki-pinar",
+      "heading": {
+        "tr": "Âdem, Musa ve On İki Pınar",
+        "en": "Adam, Moses, and the Twelve Springs",
+        "pt": "Adão, Moisés e as Doze Fontes"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Pazartesi ve Perşembe oruçlarıyla kapanıyor -- ilki Âdem'e, ikincisi Musa'ya bağlanan iki gün. Hadis: <em>\"Bu iki günde ameller âlemlerin rabbine sunulur. Amelimin ben oruçlu iken Allah'a sunulmasını isterim.\"</em> (s.169) Dost, iki peygamberi ortak bir nitelikle birleştiriyor: <em>\"Pazartesi günü Âdem'e, Perşembe günü ise Musa'ya aittir... Musa ile Hz. Peygamber'i birleştiren özellik yumuşaklıktır.\"</em> (s.169) Musa'nın asasıyla taştan çıkardığı on iki pınar (Bakara 60) burada bir bilgi/keşif simgesi olarak okunuyor: <em>\"On iki pınarı bilen kimse... sayı isimlerinin nerde sonlandığını da bilir.\"</em> (s.171-172) Bize göre bu kapanış, kısmın baştan beri sürdürdüğü deseni özetliyor: her nafile oruç türü, bir ismin ya da bir peygamberin mertebesine bağlanarak okunuyor -- sayılar, günler, isimler hep aynı çerçevede buluşuyor.",
+            "en": "The part closes with the Monday and Thursday fasts -- two days tied respectively to Adam and to Moses. Hadith: <em>\"On these two days deeds are presented to the Lord of the worlds. I wish for my deeds to be presented to God while I am fasting.\"</em> (p.169) Dost unites the two prophets through a shared quality: <em>\"Monday belongs to Adam, Thursday to Moses... The quality that unites Moses with the Prophet is gentleness.\"</em> (p.169) The twelve springs Moses brought forth from the rock with his staff (Quran 2:60) are read here as a symbol of knowledge/unveiling: <em>\"Whoever knows the twelve springs... also knows where the names of numbers come to an end.\"</em> (pp.171-172) To us, this closing sums up the pattern the part has carried from its start: each supererogatory fast is read by being tied to the rank of a Name or a prophet -- numbers, days, and Names all meeting within the same frame.",
+            "pt": "A parte se encerra com os jejuns de segunda e quinta-feira -- dois dias ligados, respectivamente, a Adão e a Moisés. Hadith: <em>\"Nesses dois dias as ações são apresentadas ao Senhor dos mundos. Desejo que minhas ações sejam apresentadas a Deus enquanto estou jejuando.\"</em> (p.169) Dost une os dois profetas por uma qualidade compartilhada: <em>\"Segunda-feira pertence a Adão, quinta-feira a Moisés... A qualidade que une Moisés ao Profeta é a mansidão.\"</em> (p.169) As doze fontes que Moisés fez brotar da rocha com seu bastão (Alcorão 2:60) são lidas aqui como um símbolo de conhecimento/desvelamento: <em>\"Quem conhece as doze fontes... também sabe onde terminam os nomes dos números.\"</em> (pp.171-172) Para nós, este encerramento resume o padrão que a parte carregou desde o início: cada jejum supererogatório é lido ao ser ligado ao grau de um Nome ou de um profeta -- números, dias e Nomes todos se encontram dentro do mesmo quadro."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LVIII, s. 169-172.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LVIII, pp. 169-172.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LVIII, pp. 169-172."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Âdem (Pazartesi)",
+                "en": "Adam (Monday)",
+                "pt": "Adão (segunda-feira)"
+              },
+              "note": {
+                "tr": "yaratılışın başlangıcı",
+                "en": "the beginning of creation",
+                "pt": "o início da criação"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Oruçlu Kul",
+                "en": "The Fasting Servant",
+                "pt": "O Servo Jejuante"
+              },
+              "note": {
+                "tr": "ameli Hakka sunulan",
+                "en": "whose deed is presented to the Real",
+                "pt": "cuja ação é apresentada ao Real"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Musa (Perşembe)",
+                "en": "Moses (Thursday)",
+                "pt": "Moisés (quinta-feira)"
+              },
+              "note": {
+                "tr": "yumuşaklık, on iki pınar",
+                "en": "gentleness, the twelve springs",
+                "pt": "mansidão, as doze fontes"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İki peygamberin günleri, oruçlu kulun ameli aracılığıyla buluşuyor.",
+            "en": "The days of the two prophets meet through the deed of the fasting servant.",
+            "pt": "Os dias dos dois profetas se encontram através da ação do servo jejuante."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LVIII (Ahmed Avni Konuk şerhi)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LVIII (Ahmed Avni Konuk's commentary)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LVIII (comentário de Ahmed Avni Konuk)"
+      },
+      "pageRange": "141-173"
+    }
+  ]
+}
