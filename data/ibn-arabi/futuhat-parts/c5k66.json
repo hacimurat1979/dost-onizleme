@@ -1,0 +1,422 @@
+{
+  "id": "c5k66",
+  "cilt": 5,
+  "kisim": 66,
+  "status": "active",
+  "title": {
+    "tr": "Kâbe'nin Öfkesi ve Barışı: Bir Tavafın Tamamlanışı",
+    "en": "The Kaaba's Anger and Its Peace: A Circumambulation Completed",
+    "pt": "A Ira da Caaba e Sua Paz: Uma Circum-ambulação Concluída"
+  },
+  "pageRange": "350-370",
+  "hero": {
+    "summary": {
+      "tr": "Altmış Altıncı Kısım, Kısım 65'in yarım bıraktığı rüya/vakıa sahnesini -- araya hiçbir kısım kapanışı bile girmeden -- doğrudan sürdürür: Kâbe, Dost'u öfkeyle karşılar ('Sen benim kadrimi ne kadar düşürdün, Âdemoğlunu nasıl yükseltirsin?'), Dost korkuya kapılır, sonra Allah'ın kendisini terbiye ettiğini anlayıp şükreder; şiirlerle Kâbe yatışır, barış kurulur, Hacer-i Esved kıyamet günü için bir tanıklık vaadi taşır. Kısım, bu dramatik sahneden remelin hızına, tek-çift sayı metafiziğine, Hicr-i İsmail'in hikâyesine ve tavafın sürekli-tecelli ilkesine uzanır.",
+      "en": "The Sixty-Sixth Section directly continues -- without even a section-closing formula in between -- the dream-vision scene Part 65 left unfinished: the Kaaba receives Dost with anger ('How you have lowered my worth -- how do you raise the son of Adam so high?'), Dost is gripped by fear, then comes to understand that God was disciplining him and gives thanks; verses calm the Kaaba, peace is made, and the Black Stone carries a pledge of witness for the Day of Judgment. From this dramatic scene the section moves to the speed of the ritual running (ramal), the metaphysics of odd and even numbers, the story of Hijr Isma'il, and the principle of continuous self-disclosure in circumambulation.",
+      "pt": "A Sexagésima Sexta Parte prossegue diretamente -- sem sequer uma fórmula de encerramento de seção entre elas -- a cena de sonho-visão que a Parte 65 deixou inacabada: a Caaba recebe Dost com ira ('Quanto rebaixaste meu valor -- como elevas tanto o filho de Adão?'), Dost é tomado pelo medo, depois compreende que Deus o estava disciplinando e agradece; versos acalmam a Caaba, a paz se faz, e a Pedra Negra carrega uma promessa de testemunho para o Dia do Juízo. Dessa cena dramática, a seção passa à velocidade da corrida ritual (ramal), à metafísica dos números ímpares e pares, à história do Hijr Isma'il, e ao princípio da autorrevelação contínua na circum-ambulação."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Kısım 66'da işlenen altı eksen ve her birinin bağlandığı tema.",
+      "en": "The six axes taken up in Part 66, and the theme each is tied to.",
+      "pt": "Os seis eixos tratados na Parte 66, e o tema ao qual cada um está ligado."
+    },
+    "tree": {
+      "id": "kisim-lxvi-tree",
+      "label": {
+        "tr": "Altmış Altıncı Kısım: Kâbe'nin Öfkesi ve Barışı",
+        "en": "Part Sixty-Six: The Kaaba's Anger and Its Peace",
+        "pt": "Parte Sessenta e Seis: A Ira da Caaba e Sua Paz"
+      },
+      "note": {
+        "tr": "Kısım 65'in yarım kalan sahnesinin devamıyla açılır, remel ve sayı metafiziğinden Hicr'e, sürekli tecelliden üç tavafın sınıflamasına uzanır.",
+        "en": "Opens by continuing the scene left unfinished in Part 65, moves through ramal and number metaphysics to the Hijr, and from continuous self-disclosure to the classification of the three circumambulations.",
+        "pt": "Abre-se continuando a cena deixada inacabada na Parte 65, passa pelo ramal e a metafísica dos números até o Hijr, e da autorrevelação contínua até a classificação das três circum-ambulações."
+      },
+      "children": [
+        {
+          "id": "ofke-baris-dal",
+          "label": {
+            "tr": "Kâbe ile Diyalog ve Uzlaşma",
+            "en": "Dialogue and Reconciliation with the Kaaba",
+            "pt": "Diálogo e Reconciliação com a Caaba"
+          },
+          "note": {
+            "tr": "Hata, korku, şükür ve barıştan oluşan bir dramatik yay.",
+            "en": "A dramatic arc of error, fear, gratitude, and peace.",
+            "pt": "Um arco dramático de erro, medo, gratidão e paz."
+          }
+        },
+        {
+          "id": "sag-el-dal",
+          "label": {
+            "tr": "Sağ El ve Zuhur-Mazhar",
+            "en": "The Right Hand and Manifestation-Locus",
+            "pt": "A Mão Direita e Manifestação-Lugar"
+          },
+          "note": {
+            "tr": "Hacer-i Esved, Allah'ın 'sağ eli' olarak anılır.",
+            "en": "The Black Stone is called God's 'right hand.'",
+            "pt": "A Pedra Negra é chamada de 'mão direita' de Deus."
+          }
+        },
+        {
+          "id": "remel-dal",
+          "label": {
+            "tr": "Remel ve Ol Emrinin Hızı",
+            "en": "Ramal and the Speed of the Command \"Be\"",
+            "pt": "Ramal e a Velocidade da Ordem \"Seja\""
+          },
+          "note": {
+            "tr": "Bir daire yokken daire algılamak.",
+            "en": "Perceiving a circle where no circle exists.",
+            "pt": "Perceber um círculo onde nenhum círculo existe."
+          }
+        },
+        {
+          "id": "tek-cift-dal",
+          "label": {
+            "tr": "Tek-Çift Metafiziği ve Hicr",
+            "en": "The Metaphysics of Odd and Even, and the Hijr",
+            "pt": "A Metafísica do Ímpar e do Par, e o Hijr"
+          },
+          "note": {
+            "tr": "Yedi şavt yedi feleğe, iki rekât bedene ve nefse benzetilir.",
+            "en": "Seven circuits likened to the seven spheres, two prostrations to body and self.",
+            "pt": "Sete circuitos comparados às sete esferas, duas prostrações ao corpo e ao ser."
+          }
+        },
+        {
+          "id": "surekli-tecelli-dal",
+          "label": {
+            "tr": "Sürekli Tecelli ve İkinci Rüya",
+            "en": "Continuous Self-Disclosure and a Second Dream",
+            "pt": "Autorrevelação Contínua e um Segundo Sonho"
+          },
+          "note": {
+            "tr": "Tecelliyi hiçbir vakit sınırlamaz.",
+            "en": "No time bounds self-disclosure.",
+            "pt": "Nenhum tempo limita a autorrevelação."
+          }
+        },
+        {
+          "id": "kudum-ifaza-veda-dal",
+          "label": {
+            "tr": "Kudüm, İfaza, Veda Tavafı",
+            "en": "Qudum, Ifadah, Farewell Circumambulation",
+            "pt": "Qudum, Ifadah, Circum-ambulação de Despedida"
+          },
+          "note": {
+            "tr": "Bir yolculuğun varış-doruk-ayrılış yapısı.",
+            "en": "The arrival-peak-departure structure of a journey.",
+            "pt": "A estrutura de chegada-ápice-partida de uma jornada."
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "kabenin-ofkesi-ve-baris",
+      "heading": {
+        "tr": "Kâbe'nin Öfkesi ve Barışı",
+        "en": "The Kaaba's Anger and Its Peace",
+        "pt": "A Ira da Caaba e Sua Paz"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Kısım 65'in yarım bıraktığı sahneyi -- araya bir kısım kapanışı bile girmeden -- doğrudan sürdürür. Kâbe, Dost'u öfkeyle karşılar: <em>\"Gel de, sana ne yapacağımı gör! Sen benim kadrimi ne kadar da düşürdün. Âdemoğlunu nasıl yükseltirsin? Ârifleri benden ve izzet sahibi olana karşı nasıl üstün tutarsın?\"</em> (s.350-351) Dost korkuya kapılır, ama sonra Allah'ın kendisini bu yolla terbiye ettiğini anlayıp şükreder; şiirlerle Kâbe'yi yatıştırır. Barış kurulduğunda Kâbe ona bir söz verir: <em>\"Bu bendeki bir emanettir, onu senin için kıyamet gününe götüreceğim, Allah katında, senin lehine onunla tanıklık edeceğim.\"</em> (s.351) Bize göre bu sahne, Kısım 65'in kapanışındaki 'kendi eski hatası' itirafının tam karşılığı gibi okunabilir -- hata, korku, şükür, barış ve tanıklık vaadinden oluşan tek bir dramatik yay.",
+            "en": "The section directly continues the scene Part 65 left unfinished -- without even a section-closing formula in between. The Kaaba receives Dost with anger: <em>\"Come, and see what I shall do to you! How you have lowered my worth. How do you raise the son of Adam so high? How do you set the gnostics above me and above the One who holds all glory?\"</em> (p.350-351) Dost is gripped by fear, but then comes to understand that God was disciplining him through this, and gives thanks; verses calm the Kaaba. When peace is made, the Kaaba gives him a pledge: <em>\"This is a trust held with me; I shall carry it for you to the Day of Judgment, and bear witness with it in your favor before God.\"</em> (p.351) To us, this scene reads as the exact counterpart of the admission of an old 'error' with which Part 65 closed -- a single dramatic arc of error, fear, gratitude, peace, and a pledge of witness.",
+            "pt": "A seção prossegue diretamente a cena que a Parte 65 deixou inacabada -- sem sequer uma fórmula de encerramento de seção entre elas. A Caaba recebe Dost com ira: <em>\"Vem, e vê o que farei contigo! Quanto rebaixaste meu valor. Como elevas tanto o filho de Adão? Como colocas os gnósticos acima de mim e Daquele que detém toda glória?\"</em> (p.350-351) Dost é tomado pelo medo, mas depois compreende que Deus o estava disciplinando através disso, e agradece; versos acalmam a Caaba. Quando a paz se faz, a Caaba lhe dá uma promessa: <em>\"Isto é um depósito guardado comigo; eu o levarei por ti até o Dia do Juízo, e testemunharei com ele a teu favor diante de Deus.\"</em> (p.351) Para nós, esta cena se lê como a exata contrapartida da admissão de um antigo 'erro' com que a Parte 65 se encerrou -- um único arco dramático de erro, medo, gratidão, paz e uma promessa de testemunho."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXVI, s. 350-352.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXVI, pp. 350-352.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXVI, pp. 350-352."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Kâbe'nin Öfkesi",
+                "en": "The Kaaba's Anger",
+                "pt": "A Ira da Caaba"
+              },
+              "note": {
+                "tr": "\"Sen benim kadrimi ne kadar düşürdün\"",
+                "en": "\"How you have lowered my worth\"",
+                "pt": "\"Quanto rebaixaste meu valor\""
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Kâbe'nin Barışı",
+                "en": "The Kaaba's Peace",
+                "pt": "A Paz da Caaba"
+              },
+              "note": {
+                "tr": "kıyamet günü için bir tanıklık vaadi",
+                "en": "a pledge of witness for the Day of Judgment",
+                "pt": "uma promessa de testemunho para o Dia do Juízo"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Hata, korku, şükür ve barış -- tek bir dramatik yayın dört durağı.",
+            "en": "Error, fear, gratitude, and peace -- four stops on a single dramatic arc.",
+            "pt": "Erro, medo, gratidão e paz -- quatro paradas de um único arco dramático."
+          }
+        }
+      ]
+    },
+    {
+      "id": "sag-el-ve-zuhur-mazhar",
+      "heading": {
+        "tr": "Sağ El ve Zuhur-Mazhar İlişkisi",
+        "en": "The Right Hand and the Manifestation-Locus Relation",
+        "pt": "A Mão Direita e a Relação Manifestação-Lugar"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Barış sahnesinin ardından Dost, Hacer-i Esved'i Allah'ın 'sağ eli' olarak andığı bir şiire döner: <em>\"O mübarek sağ el sendedir, Hatalarımın siyah bir elbise giydirdiği el.\"</em> (s.352) Bunu genel bir zuhur/mazhar ilkesine bağlar: <em>\"Buradan varlıkta Allah'tan başka bir şey bulunmadığı öğrenilir... Şu halde varlık kazanan şey, varlık verenin ta kendisidir.\"</em> (s.353-354) ve daha da yoğun bir cümleyle: <em>\"Zâhir vardı ve mazharın suretinde tecelli ve suret yoktu.\"</em> (s.354) Bu son cümleyi tam kavradığımızı iddia edemeyiz -- bize göre burada Dost, zuhurun kendisinin bile mazhardan (belirli bir görünme yerinden) önce geldiğini, mazharın sonradan bu zuhuru 'aldığını' söylüyor gibi, ama bu ayrımın tam nasıl işlediği açık değil.",
+            "en": "After the scene of reconciliation, Dost turns to a poem in which he calls the Black Stone God's 'right hand': <em>\"That blessed right hand is in you, the hand my faults have dressed in a black garment.\"</em> (p.352) He ties this to a general principle of manifestation and locus: <em>\"From this it is learned that nothing exists in being apart from God... What gains existence, then, is the very Giver of existence.\"</em> (p.353-354) and, in a still more dense sentence: <em>\"The manifest existed, and there was no self-disclosure or form in the form of the locus.\"</em> (p.354) We cannot claim to fully grasp this last sentence -- to us, Dost seems to be saying that manifestation itself precedes the locus (the particular place of appearing), and that the locus only afterward 'receives' this manifestation, but exactly how this distinction works is not clear.",
+            "pt": "Após a cena de reconciliação, Dost se volta para um poema em que chama a Pedra Negra de 'mão direita' de Deus: <em>\"Aquela mão direita abençoada está em ti, a mão que minhas faltas vestiram de negro.\"</em> (p.352) Ele liga isso a um princípio geral de manifestação e lugar: <em>\"Disto se aprende que nada existe no ser além de Deus... O que ganha existência, então, é o próprio Doador da existência.\"</em> (p.353-354) e, numa frase ainda mais densa: <em>\"O manifesto existia, e não havia autorrevelação nem forma na forma do lugar.\"</em> (p.354) Não podemos afirmar que compreendemos totalmente esta última frase -- para nós, Dost parece estar dizendo que a própria manifestação precede o lugar (o local particular de aparecimento), e que o lugar só depois 'recebe' essa manifestação, mas como exatamente essa distinção funciona não está claro."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXVI, s. 352-354.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXVI, pp. 352-354.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXVI, pp. 352-354."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Genel Zâhir",
+                "en": "The General Manifest",
+                "pt": "O Manifesto Geral"
+              },
+              "note": {
+                "tr": "mazhardan önce gelen zuhur",
+                "en": "manifestation preceding the locus",
+                "pt": "a manifestação que precede o lugar"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Sınırlı Mazhar",
+                "en": "The Bounded Locus",
+                "pt": "O Lugar Limitado"
+              },
+              "note": {
+                "tr": "Hacer-i Esved gibi belirli bir görünme yeri",
+                "en": "a particular place of appearing, like the Black Stone",
+                "pt": "um local particular de aparecimento, como a Pedra Negra"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Bu ayrımı tam kavradığımızı iddia edemeyiz; Dost'un kendi ifadesini olduğu gibi aktarıyoruz.",
+            "en": "We cannot claim to fully grasp this distinction; we pass on Dost's own words as they stand.",
+            "pt": "Não podemos afirmar que compreendemos totalmente esta distinção; transmitimos as próprias palavras de Dost tal como estão."
+          }
+        }
+      ]
+    },
+    {
+      "id": "remel-ve-ol-emrinin-hizi",
+      "heading": {
+        "tr": "Remel ve 'Ol' Emrinin Hızı: Hayretin Hayreti",
+        "en": "Ramal and the Speed of \"Be\": The Bewilderment of Bewilderment",
+        "pt": "Ramal e a Velocidade do \"Seja\": O Espanto do Espanto"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Tavafta hızlı yürüyüş (remel) hükmünü işlerken Dost, bunu 'Ol' (Kün) emrinin hızına bağlayan çarpıcı bir benzetme kurar: <em>\"Bizim işimiz -ki ol sözüdür- tektir, tıpkı bir ateş topu gibi... Bu ise, bir daire yok iken daire algılamaktır.\"</em> (s.355) -- yani hızla döndürülen bir ateşin gözde bıraktığı daire yanılsaması gibi, yaratılış da göze tek bir 'an' olarak görünür, oysa aslında ardışık bir iştir. Bu, sitenin kendi 'daire ve merkez' ilkesiyle de örtüşen çarpıcı bir imge. Dost, bu bahsi hayret üzerine nadir görülen bir cümleyle derinleştirir: <em>\"Hayret, kendisiyle şaşıran olmazsa, kendiliğinde hayrete düşer... Bilakis o hayretin hayretidir.\"</em> (s.356-357) -- yani hayret, kendi kendinin nesnesi de olabilen bir hâl.",
+            "en": "While treating the ruling on the swift walking (ramal) during circumambulation, Dost draws a striking likeness, tying it to the speed of the command 'Be' (Kun): <em>\"Our work -- which is the word 'Be' -- is one, like a ball of fire... This is perceiving a circle where no circle exists.\"</em> (p.355) -- meaning that, just as a fire whirled quickly leaves the illusion of a circle in the eye, creation too appears to the eye as a single 'instant,' though it is in truth a sequential act. This is a striking image that resonates with the site's own principle of the circle and its center. Dost deepens this passage with a rare sentence on bewilderment (hayrah): <em>\"Bewilderment, if there is no one bewildered by it, falls into bewilderment of itself... rather, it is the bewilderment of bewilderment.\"</em> (p.356-357) -- meaning bewilderment is a state that can even become the object of itself.",
+            "pt": "Ao tratar do estatuto da caminhada rápida (ramal) durante a circum-ambulação, Dost traça uma semelhança marcante, ligando-a à velocidade da ordem 'Seja' (Kun): <em>\"Nossa obra -- que é a palavra 'Seja' -- é uma só, como uma bola de fogo... Isto é perceber um círculo onde nenhum círculo existe.\"</em> (p.355) -- ou seja, assim como um fogo girado rapidamente deixa a ilusão de um círculo na vista, a criação também aparece à vista como um único 'instante', embora seja, na verdade, um ato sequencial. Esta é uma imagem marcante que ressoa com o próprio princípio do site sobre o círculo e seu centro. Dost aprofunda essa passagem com uma frase rara sobre o espanto (hayrah): <em>\"O espanto, se não há quem se espante com ele, cai em espanto de si mesmo... antes, é o espanto do espanto.\"</em> (p.356-357) -- ou seja, o espanto é um estado que pode até se tornar objeto de si mesmo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tek-cift-metafizigi-ve-hicr",
+      "heading": {
+        "tr": "Tek-Çift Metafiziği, Hicr ve Kâbe'nin Anahtarı",
+        "en": "The Metaphysics of Odd and Even, the Hijr, and the Kaaba's Key",
+        "pt": "A Metafísica do Ímpar e do Par, o Hijr, e a Chave da Caaba"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Tavaftan sonraki namazı işlerken Dost, tek sayının (vitir) Hakk'a has bir nitelik olduğunu söyler: <em>\"Hak hiçbir zaman üç, beş, yedi vb. sayılara göre tektir... Hakkın özelliği kendinden kaynaklanır. Çünkü o, tekliğin ilkesidir.\"</em> (s.360-362) Yedi şavtlık tavafı yedi feleğe, iki rekâtlık namazı da beden ile nefs-i nâtıkaya benzetir. Kısım, Hicr-i İsmail ve Kâbe'nin anahtarını taşıyan Beni Şeybe ailesinin hikâyesiyle devam eder -- emanetin ehline verilmesi ayetine bağlanan bir anlatı -- ve şu sözle kapanır: <em>\"Allah'ın kapısı ise, sonuna kadar açıktır.\"</em> (s.364) Bize göre bu son cümle, tüm kısmın (öfke-barış, zuhur-mazhar, tek-çift) altında yatan tek bir vaadi özetliyor: kapı, hatalara rağmen, hep açık kalır.",
+            "en": "While treating the prayer after circumambulation, Dost says that the odd number (witr) is an attribute proper to the Real: <em>\"The Real is never one according to numbers such as three, five, seven; His property arises from Himself, for He is the principle of oneness.\"</em> (p.360-362) He likens the seven circuits of circumambulation to the seven celestial spheres, and the two prostrations of prayer to the body and the rational soul. The section continues with the story of Hijr Isma'il and the Banu Shaybah family who hold the Kaaba's key -- a narrative tied to the verse on returning a trust to those worthy of it -- and closes with the words: <em>\"God's door, however, remains open to the very end.\"</em> (p.364) To us, this closing sentence sums up a single promise underlying the whole section (anger and peace, manifestation and locus, odd and even): the door, despite all errors, remains ever open.",
+            "pt": "Ao tratar da oração após a circum-ambulação, Dost diz que o número ímpar (witr) é um atributo próprio do Real: <em>\"O Real nunca é um segundo números como três, cinco, sete; Sua propriedade surge de Si mesmo, pois Ele é o princípio da unicidade.\"</em> (p.360-362) Ele compara os sete circuitos da circum-ambulação às sete esferas celestes, e as duas prostrações da oração ao corpo e à alma racional. A seção prossegue com a história do Hijr Isma'il e da família Banu Shaybah, guardiã da chave da Caaba -- uma narrativa ligada ao versículo sobre devolver um depósito a quem dele é digno -- e se encerra com as palavras: <em>\"A porta de Deus, porém, permanece aberta até o fim.\"</em> (p.364) Para nós, esta frase de encerramento resume uma única promessa subjacente a toda a seção (ira e paz, manifestação e lugar, ímpar e par): a porta, apesar de todos os erros, permanece sempre aberta."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXVI, s. 360-362.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXVI, pp. 360-362.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXVI, pp. 360-362."
+          },
+          "tree": {
+            "id": "tavaf-yedi-felek-tree",
+            "label": {
+              "tr": "Tavaf: Yedi Felek",
+              "en": "Circumambulation: The Seven Spheres",
+              "pt": "Circum-ambulação: As Sete Esferas"
+            },
+            "note": {
+              "tr": "Yedi şavt yedi feleğe, iki rekât ise beden ve nefs-i nâtıkaya benzetilir.",
+              "en": "Seven circuits are likened to the seven spheres, two prostrations to the body and the rational soul.",
+              "pt": "Sete circuitos são comparados às sete esferas, duas prostrações ao corpo e à alma racional."
+            },
+            "children": [
+              {
+                "id": "yedi-savt",
+                "label": {
+                  "tr": "Yedi Şavt",
+                  "en": "Seven Circuits",
+                  "pt": "Sete Circuitos"
+                },
+                "note": {
+                  "tr": "gökyüzünün yedi feleğine benzetilir",
+                  "en": "likened to the sky's seven spheres",
+                  "pt": "comparados às sete esferas do céu"
+                }
+              },
+              {
+                "id": "iki-rekat",
+                "label": {
+                  "tr": "İki Rekât",
+                  "en": "Two Prostrations",
+                  "pt": "Duas Prostrações"
+                },
+                "note": {
+                  "tr": "beden ve nefs-i nâtıkaya benzetilir",
+                  "en": "likened to the body and the rational soul",
+                  "pt": "comparadas ao corpo e à alma racional"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Yedi şavt gökyüzünün yedi feleğine, iki rekât ise beden ile nefs-i nâtıkaya benzetilir.",
+            "en": "The seven circuits are likened to the sky's seven spheres, the two prostrations to the body and the rational soul.",
+            "pt": "Os sete circuitos são comparados às sete esferas do céu, as duas prostrações ao corpo e à alma racional."
+          }
+        }
+      ]
+    },
+    {
+      "id": "surekli-tecelli-ve-ikinci-ruya",
+      "heading": {
+        "tr": "Sürekli Tecelli ve İkinci Bir Rüya",
+        "en": "Continuous Self-Disclosure, and a Second Dream",
+        "pt": "Autorrevelação Contínua, e um Segundo Sonho"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Tavafın hangi vakitte caiz olduğunu tartışırken Dost, güneşe tapanların yasakladığı belirli saatlere karşı geniş bir ilke koyar: <em>\"Bilmelisin ki Allah sürekli tecelli eder ve onun tecellisini vakitler sınırlamaz. Perdeler sadece bizim gözümüzden kalkar.\"</em> (s.366-367) Bunu, Hz. Peygamber'i gördüğü ikinci bir rüyayla destekler -- rüyada Peygamber şöyle buyurur: <em>\"Ey Abdimenaf oğulları! Bu evi tavaf etmek ve dilediği gece veya gündüz bir vakitte namaz kılmak isteyenleri engellemeyiniz!\"</em> (s.365) Bize göre bu ilke -- tecellinin hiçbir vakitle sınırlanmaması -- Kısım 60'taki Kadir Gecesi'nin yıl boyunca dönmesi fikriyle de akraba: zaman, Hakk'ın tecellisini kısıtlayan değil, o tecellinin göründüğü bir yüzey.",
+            "en": "While discussing at what times circumambulation is permitted, Dost sets a wide principle against those specific hours forbidden by sun-worshippers: <em>\"Know that God discloses Himself continuously, and no times bound His self-disclosure. Only the veils lift from our own sight.\"</em> (p.366-367) He supports this with a second dream in which he sees the Prophet -- who commands: <em>\"O sons of Abd Manaf! Do not prevent those who wish to circumambulate this House and pray at whatever hour, night or day, they wish!\"</em> (p.365) To us, this principle -- that self-disclosure is bound by no time -- is kin to the idea, from Part 60, that the Night of Power moves through the year: time is not what restricts the Real's self-disclosure, but merely the surface on which that self-disclosure appears.",
+            "pt": "Ao discutir em que horários a circum-ambulação é permitida, Dost estabelece um princípio amplo contra as horas específicas proibidas pelos adoradores do sol: <em>\"Sabe que Deus se autorrevela continuamente, e nenhum tempo limita Sua autorrevelação. Apenas os véus se levantam de nossa própria vista.\"</em> (p.366-367) Ele apoia isso com um segundo sonho em que vê o Profeta -- que ordena: <em>\"Ó filhos de Abd Manaf! Não impeçam aqueles que desejam circungirar esta Casa e rezar em qualquer hora, noite ou dia, que desejarem!\"</em> (p.365) Para nós, este princípio -- que a autorrevelação não é limitada por tempo algum -- é aparentado com a ideia, vinda da Parte 60, de que a Noite do Destino se move ao longo do ano: o tempo não é o que restringe a autorrevelação do Real, mas apenas a superfície em que essa autorrevelação aparece."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kudum-ifaza-veda-tavafi",
+      "heading": {
+        "tr": "Kudüm, İfaza, Veda: Üç Tavaf",
+        "en": "Qudum, Ifadah, Farewell: Three Circumambulations",
+        "pt": "Qudum, Ifadah, Despedida: Três Circum-ambulações"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, tavafın üç türünü sınıflandırarak kapanır: kudüm (varış) tavafı, ifaza (asıl hac) tavafı ve veda tavafı. Aralarında, fasığın imamlığı ve hüsn-i zan ilkesi üzerine kısa ama çarpıcı bir tartışma yer alır -- bir bedelin Dost'a öfkeyle söylediği <em>\"Allahın kullarından sana ne! Sadece iyilik söyle.\"</em> (s.368) sözü ve buna karşılık gelen kutsi hadis: <em>\"Ben ise kullarımın zannına göreyim. Öyleyse benim hakkında iyi zanda bulunsunlar.\"</em> (s.369) Üç tavafın kendisini Dost açıkça bâtınî bir mertebe şemasına bağlamaz, ama bize göre kudüm-ifaza-veda sıralaması, bir yolculuğun varış-doruk-ayrılış yapısını taşıyor gibi görünüyor.",
+            "en": "The section closes by classifying the three kinds of circumambulation: the arrival circumambulation (qudum), the main pilgrimage circumambulation (ifadah), and the farewell circumambulation. Between them comes a brief but striking discussion on the leading of prayer by an unrighteous person and the principle of thinking well of others -- a substitute-saint's angry words to Dost, <em>\"What business of yours are God's servants! Speak only good.\"</em> (p.368) and the sacred hadith answering it: <em>\"I am as My servant thinks of Me. Let them, then, think well of Me.\"</em> (p.369) Dost does not explicitly tie the three circumambulations to an inward scheme of ranks, but to us, the sequence of qudum-ifadah-farewell seems to carry the structure of a journey's arrival, peak, and departure.",
+            "pt": "A seção se encerra classificando os três tipos de circum-ambulação: a circum-ambulação de chegada (qudum), a circum-ambulação principal da peregrinação (ifadah), e a circum-ambulação de despedida. Entre elas vem uma discussão breve mas marcante sobre a liderança da oração por uma pessoa injusta e o princípio de pensar bem dos outros -- as palavras irritadas de um substituto-santo a Dost, <em>\"Que negócio é teu com os servos de Deus! Fala só o bem.\"</em> (p.368) e o hadith sagrado que lhe responde: <em>\"Eu sou como Meu servo pensa de Mim. Que pensem, então, bem de Mim.\"</em> (p.369) Dost não liga explicitamente as três circum-ambulações a um esquema interior de categorias, mas, para nós, a sequência qudum-ifadah-despedida parece carregar a estrutura de chegada, ápice e partida de uma jornada."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXVI, s. 369-370.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXVI, pp. 369-370.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXVI, pp. 369-370."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Kudüm",
+                "en": "Qudum",
+                "pt": "Qudum"
+              },
+              "note": {
+                "tr": "varış tavafı",
+                "en": "the arrival circumambulation",
+                "pt": "a circum-ambulação de chegada"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "İfaza",
+                "en": "Ifadah",
+                "pt": "Ifadah"
+              },
+              "note": {
+                "tr": "asıl hac tavafı",
+                "en": "the main pilgrimage circumambulation",
+                "pt": "a circum-ambulação principal da peregrinação"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Veda",
+                "en": "Farewell",
+                "pt": "Despedida"
+              },
+              "note": {
+                "tr": "ayrılış tavafı",
+                "en": "the farewell circumambulation",
+                "pt": "a circum-ambulação de despedida"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Üç tavaf, bir yolculuğun varış-doruk-ayrılış yapısını taşıyor gibi okunabilir.",
+            "en": "The three circumambulations can be read as carrying the structure of a journey's arrival, peak, and departure.",
+            "pt": "As três circum-ambulações podem ser lidas como carregando a estrutura de chegada, ápice e partida de uma jornada."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXVI (Ahmed Avni Konuk şerhi)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXVI (Ahmed Avni Konuk's commentary)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXVI (comentário de Ahmed Avni Konuk)"
+      },
+      "pageRange": "350-370"
+    }
+  ]
+}
