@@ -1,0 +1,392 @@
+{
+  "id": "c5k65",
+  "cilt": 5,
+  "kisim": 65,
+  "status": "active",
+  "title": {
+    "tr": "İhramdan Tavafa: Efendilik ile Kulluğun İç İçeliği",
+    "en": "From Ihram to Circumambulation: Lordship and Servanthood Interwoven",
+    "pt": "Do Ihram à Circum-ambulação: Senhorio e Servidão Entrelaçados"
+  },
+  "pageRange": "327-347",
+  "hero": {
+    "summary": {
+      "tr": "Altmış Beşinci Kısım, ihram için yıkanmadan niyete, telbiyeden Kâbe'nin geometrisine, mikattan tavafa uzanan hac fiillerini tek tek işlerken, her birinde rablık ile kulluğun nasıl iç içe geçtiğini gösterir: kulun tenzihi (ihram) Hakk'ın tenzihine benzetilir, Kâbe'ye yöneliş aslında kendi nefsine yöneliş olarak okunur. Kısım, beklenmedik bir şekilde otobiyografik bir düzleme geçip Dost'un Kâbe ile kurduğu kişisel ilişkiyi, kendi eski bir 'hatasını' ve yarım kalmış bir rüya/vakıa sahnesiyle kapanır.",
+      "en": "The Sixty-Fifth Section takes up, one by one, the acts of pilgrimage from washing before consecration to intention, from the call of talbiyah to the geometry of the Kaaba, from the threshold of place to circumambulation -- and in each shows how lordship and servanthood are interwoven: the servant's own transcendence (ihram) is likened to the Real's transcendence, and turning toward the Kaaba is read as, in truth, turning toward one's own self. The section unexpectedly shifts to an autobiographical register, closing with Dost's personal relation to the Kaaba, an old 'error' of his own, and an unfinished dream-vision scene.",
+      "pt": "A Sexagésima Quinta Parte trata, uma a uma, dos atos da peregrinação -- da lavagem antes da consagração à intenção, do chamado do talbiyah à geometria da Caaba, do limiar de lugar à circum-ambulação -- e em cada um mostra como o senhorio e a servidão se entrelaçam: a própria transcendência do servo (ihram) é comparada à transcendência do Real, e voltar-se para a Caaba é lido como, na verdade, voltar-se para o próprio ser. A seção muda inesperadamente para um registro autobiográfico, encerrando-se com a relação pessoal de Dost com a Caaba, um antigo 'erro' seu, e uma cena de sonho-visão inacabada."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Kısım 65'te işlenen altı eksen ve her birinin bağlandığı tema.",
+      "en": "The six axes taken up in Part 65, and the theme each is tied to.",
+      "pt": "Os seis eixos tratados na Parte 65, e o tema ao qual cada um está ligado."
+    },
+    "tree": {
+      "id": "kisim-lxv-tree",
+      "label": {
+        "tr": "Altmış Beşinci Kısım: İhramdan Tavafa",
+        "en": "Part Sixty-Five: From Ihram to Circumambulation",
+        "pt": "Parte Sessenta e Cinco: Do Ihram à Circum-ambulação"
+      },
+      "note": {
+        "tr": "Yıkanma ve niyetten telbiyeye, Kâbe'nin geometrisinden mikata, oradan tavaf ve otobiyografik bir sahneye uzanır.",
+        "en": "Moves from washing and intention through talbiyah, the Kaaba's geometry, the threshold, to circumambulation and an autobiographical scene.",
+        "pt": "Passa da lavagem e intenção pelo talbiyah, a geometria da Caaba, o limiar, até a circum-ambulação e uma cena autobiográfica."
+      },
+      "children": [
+        {
+          "id": "yikanma-niyet-dal",
+          "label": {
+            "tr": "Yıkanma ve Niyet",
+            "en": "Washing and Intention",
+            "pt": "Lavagem e Intenção"
+          },
+          "note": {
+            "tr": "Her fiil, bir ismin bir mazharda zuhuru.",
+            "en": "Every act is a Name coming into view within a locus.",
+            "pt": "Todo ato é um Nome que vem à vista dentro de um lugar."
+          }
+        },
+        {
+          "id": "telbiye-dal",
+          "label": {
+            "tr": "Telbiye ve Kâbe'ye Yöneliş",
+            "en": "Talbiyah and Turning Toward the Kaaba",
+            "pt": "Talbiyah e o Voltar-se para a Caaba"
+          },
+          "note": {
+            "tr": "Eve yönelmek, gerçekte nefsine yönelmektir.",
+            "en": "Turning toward the House is, in truth, turning toward one's own self.",
+            "pt": "Voltar-se para a Casa é, na verdade, voltar-se para o próprio ser."
+          }
+        },
+        {
+          "id": "kabenin-geometrisi-dal",
+          "label": {
+            "tr": "Kâbe'nin Geometrisi",
+            "en": "The Geometry of the Kaaba",
+            "pt": "A Geometria da Caaba"
+          },
+          "note": {
+            "tr": "Dört rükünden üçe, oradan ellere ve avuçlara.",
+            "en": "From four corners to three, and from there to hands and palms.",
+            "pt": "De quatro cantos a três, e daí a mãos e palmas."
+          }
+        },
+        {
+          "id": "mikat-mekkeli-dal",
+          "label": {
+            "tr": "Mikat: Mekkeli ve Gurbetçi",
+            "en": "Threshold: The Meccan and the Stranger",
+            "pt": "Limiar: o Mequense e o Forasteiro"
+          },
+          "note": {
+            "tr": "Aynı sınır, geçildiği yöne göre zıt bir anlam taşır.",
+            "en": "The same boundary carries an opposite meaning depending on the direction crossed.",
+            "pt": "O mesmo limite carrega um significado oposto conforme a direção cruzada."
+          }
+        },
+        {
+          "id": "telbiyeyi-kesmek-dal",
+          "label": {
+            "tr": "Telbiyeyi Kesmek ve Ârif",
+            "en": "Ending the Talbiyah, and the Gnostic",
+            "pt": "Encerrar o Talbiyah, e o Gnóstico"
+          },
+          "note": {
+            "tr": "Ârif için telbiye hiç kesilmez.",
+            "en": "For the gnostic, the talbiyah never ends.",
+            "pt": "Para o gnóstico, o talbiyah nunca termina."
+          }
+        },
+        {
+          "id": "tavaf-dal",
+          "label": {
+            "tr": "Tavaf ve Kâbe ile Diyalog",
+            "en": "Circumambulation and Dialogue with the Kaaba",
+            "pt": "Circum-ambulação e Diálogo com a Caaba"
+          },
+          "note": {
+            "tr": "Otobiyografik, yarım kalmış bir sahneyle kapanır.",
+            "en": "Closes with an unfinished autobiographical scene.",
+            "pt": "Encerra-se com uma cena autobiográfica inacabada."
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "yikanma-ve-niyet",
+      "heading": {
+        "tr": "Yıkanma ve Niyet: Bir Mazharda Zuhur",
+        "en": "Washing and Intention: Manifestation Within a Locus",
+        "pt": "Lavagem e Intenção: Manifestação Dentro de um Lugar"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, ihram için yıkanma bahsiyle açılır; Dost bu temizlik eylemini doğrudan bir isme bağlar: <em>\"Öyleyse bunu bir temizlik eylemiyle karşılamak daha yerindedir. Çünkü sen bu temizlikle el-Kuddüs ismine girmek iradesine sahipsin.\"</em> (s.328) Niyet bahsinde ise geniş bir ilke ortaya koyar: <em>\"Allah'ın dışındaki her mevcut, hakikat değil, bir nispettir.\"</em> (s.329) ve ihrama niyetlenmeyi şöyle tanımlar: <em>\"İhrama niyet... bu ise, yakınlaşmanın zirvesidir: Bir mazharda zuhur.\"</em> (s.329-330) Bize göre bu iki cümle birlikte, hac fiillerinin neden bu kadar sık 'isim' diliyle anlatıldığını açıklıyor: her fiil, aslında bir ismin belirli bir mazharda (kul bedeninde) görünüşe çıkışı.",
+            "en": "The section opens with washing before consecration; Dost ties this act of cleansing directly to a Name: <em>\"It is fitting, then, to meet this with an act of purification, for through this purification you hold the will to enter the Name al-Quddus.\"</em> (p.328) On the matter of intention, he lays out a wide-reaching principle: <em>\"Everything that exists apart from God is not reality, but a relation.\"</em> (p.329) and defines the intention to enter consecration thus: <em>\"The intention for ihram... is the summit of nearness: manifestation within a locus.\"</em> (p.329-330) To us, these two sentences together explain why the acts of pilgrimage are so often described in the language of Names: each act is, in truth, a Name coming into view within a particular locus -- the servant's own body.",
+            "pt": "A seção se abre com a lavagem antes da consagração; Dost liga esse ato de purificação diretamente a um Nome: <em>\"É apropriado, então, receber isto com um ato de purificação, pois através dessa purificação tens a vontade de entrar no Nome al-Quddus.\"</em> (p.328) Sobre a questão da intenção, ele estabelece um princípio de amplo alcance: <em>\"Tudo o que existe além de Deus não é realidade, mas uma relação.\"</em> (p.329) e define a intenção de entrar em consagração assim: <em>\"A intenção para o ihram... é o cume da proximidade: manifestação dentro de um lugar.\"</em> (p.329-330) Para nós, essas duas frases juntas explicam por que os atos da peregrinação são tão frequentemente descritos na linguagem dos Nomes: cada ato é, na verdade, um Nome que vem à vista dentro de um lugar particular -- o próprio corpo do servo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "telbiye-ve-kabeye-yonelis",
+      "heading": {
+        "tr": "Telbiye ve Kâbe'ye Yöneliş: Kulun Tenzihi",
+        "en": "Talbiyah and Turning Toward the Kaaba: The Servant's Transcendence",
+        "pt": "Talbiyah e o Voltar-se para a Caaba: A Transcendência do Servo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısmın en uzun ve en yoğun bahsi, telbiyenin niyeti gereksiz kılıp kılmadığını tartışırken Kâbe'ye yönelişin gerçek anlamını sorar: <em>\"Kâbe'ye yönelmek, Allah'a değil, Allah'tan dolayı olduğuna göre, O'na kendiliğinle değil Rabbinle yönelmeye çalışmalısın... Nefsini bilen Rabbini bilir. Eve yöneldiğinde, gerçekte nefsine yönelmişsin demektir.\"</em> (s.332) Dost, Ebu Yezid Bistâmî'nin 'Rabbinin tutuşu pek şiddetlidir' ayeti okunduğunda söylediği 'Benim tutuşum daha güçlüdür' sözünü aktarır, ama kendi yorumunun Ebu Yezid'inkinden farklı olduğunu belirtip Ebu Yezid'in ne kastettiğini açıklamadan bırakır -- bunun yerine kendi okumasını sunar: kulun tutuşu, rahmetten yoksun olduğu için daha şiddetlidir (s.332). İhramın kendisini ise doğrudan tenzihle özdeşleştirir: <em>\"Kul için ihram Hak için tenzihin bir benzeridir.\"</em> (s.338) -- yani ihramdaki 'şunu yapma, bunu giyme' yasakları, Hak hakkında söylenen 'O şöyle değildir, böyle değildir' tenzih diliyle aynı yapıyı paylaşıyor.",
+            "en": "The section's longest and most intense passage, while discussing whether talbiyah renders intention unnecessary, asks the real meaning of turning toward the Kaaba: <em>\"Since turning toward the Kaaba is for God's sake, not toward God Himself, you should strive to turn toward Him not through yourself but through your Lord... Whoever knows his own self knows his Lord. When you turn toward the House, you have, in truth, turned toward your own self.\"</em> (p.332) Dost relates how Abu Yazid al-Bistami, upon hearing the verse 'your Lord's grip is very severe,' said 'my grip is stronger' -- but Dost notes that his own reading differs from Abu Yazid's without explaining what Abu Yazid meant, offering instead his own reading: the servant's grip is more severe because it lacks mercy (p.332). Ihram itself he identifies directly with transcendence: <em>\"For the servant, ihram is a likeness of transcendence for the Real.\"</em> (p.338) -- meaning the prohibitions of ihram ('do not do this, do not wear that') share the same structure as the language of transcendence used of the Real ('He is not thus, He is not thus').",
+            "pt": "A passagem mais longa e intensa da seção, ao discutir se o talbiyah torna a intenção desnecessária, pergunta o real significado de voltar-se para a Caaba: <em>\"Já que voltar-se para a Caaba é por causa de Deus, e não para Deus mesmo, deves te esforçar para te voltar para Ele não através de ti mesmo, mas através do teu Senhor... Quem conhece a si mesmo conhece o seu Senhor. Quando te voltas para a Casa, na verdade te voltaste para ti mesmo.\"</em> (p.332) Dost relata como Abu Yazid al-Bistami, ao ouvir o versículo 'a garra de teu Senhor é muito severa', disse 'minha garra é mais forte' -- mas Dost observa que sua própria leitura difere da de Abu Yazid sem explicar o que Abu Yazid quis dizer, oferecendo em vez disso sua própria leitura: a garra do servo é mais severa porque carece de misericórdia (p.332). O próprio ihram ele identifica diretamente com a transcendência: <em>\"Para o servo, o ihram é uma semelhança da transcendência para o Real.\"</em> (p.338) -- ou seja, as proibições do ihram ('não faças isto, não vistas aquilo') compartilham a mesma estrutura da linguagem de transcendência usada para o Real ('Ele não é assim, Ele não é assim')."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXV, s. 332-338.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXV, pp. 332-338.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXV, pp. 332-338."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Kulun Tenzihi",
+                "en": "The Servant's Transcendence",
+                "pt": "A Transcendência do Servo"
+              },
+              "note": {
+                "tr": "ihram -- şunu yapma, bunu giyme",
+                "en": "ihram -- do not do this, do not wear that",
+                "pt": "ihram -- não faças isto, não vistas aquilo"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Hakk'ın Tenzihi",
+                "en": "The Real's Transcendence",
+                "pt": "A Transcendência do Real"
+              },
+              "note": {
+                "tr": "O şöyle değildir, böyle değildir",
+                "en": "He is not thus, He is not thus",
+                "pt": "Ele não é assim, Ele não é assim"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost'a göre ihramın yasakları, Hak hakkındaki tenzih diliyle aynı yapıyı paylaşır.",
+            "en": "For Dost, the prohibitions of ihram share the same structure as the language of transcendence used of the Real.",
+            "pt": "Para Dost, as proibições do ihram compartilham a mesma estrutura da linguagem de transcendência usada para o Real."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kabenin-geometrisi",
+      "heading": {
+        "tr": "Kâbe'nin Geometrisi: Dört Rükünden Ellere",
+        "en": "The Geometry of the Kaaba: From Four Corners to Hands",
+        "pt": "A Geometria da Caaba: dos Quatro Cantos às Mãos"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, Kâbe'nin yapısını ayrıntılı bir geometrik yorumla ele alır: <em>\"Ev, şekil bakımından dört rükünlüdür... ilk yapımında üç rükne sahiptir... iki kenar -- eller ve avuçlar -- topuk.\"</em> (s.335-336) Bu, bize göre kısmın en esoterik ve tam kavrayamadığımız pasajlarından biri -- dört rüknün üçe, sonra ellere/avuçlara indirgenişi ve bunun cennet-cehennemle ilişkisi metinde yeterince açılmıyor; yine de Kâbe'nin fiziksel biçiminin bile bir anlam taşıdığı fikri, sitenin 'her ayrıntıda bir işaret arama' duruşuyla örtüşüyor.",
+            "en": "Dost takes up the Kaaba's structure through an elaborate geometric reading: <em>\"The House, in its shape, has four corners... in its first construction it had three corners... two sides -- hands and palms -- a heel.\"</em> (p.335-336) To us, this is one of the section's most esoteric passages, one we cannot fully grasp -- the reduction of the four corners to three, and then to hands and palms, and its connection to paradise and hell, is not sufficiently unfolded in the text; still, the idea that even the Kaaba's physical form carries meaning fits the site's own stance of looking for a sign in every detail.",
+            "pt": "Dost trata da estrutura da Caaba através de uma leitura geométrica elaborada: <em>\"A Casa, em sua forma, tem quatro cantos... em sua primeira construção tinha três cantos... dois lados -- mãos e palmas -- um calcanhar.\"</em> (p.335-336) Para nós, esta é uma das passagens mais esotéricas da seção, uma que não conseguimos captar totalmente -- a redução dos quatro cantos a três, e depois a mãos e palmas, e sua ligação com o paraíso e o inferno, não é suficientemente desdobrada no texto; ainda assim, a ideia de que até a forma física da Caaba carrega sentido se encaixa na própria postura do site de buscar um sinal em cada detalhe."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXV, s. 335-336.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXV, pp. 335-336.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXV, pp. 335-336."
+          },
+          "tree": {
+            "id": "kabenin-geometrisi-tree",
+            "label": {
+              "tr": "Kâbe'nin Geometrisi",
+              "en": "The Geometry of the Kaaba",
+              "pt": "A Geometria da Caaba"
+            },
+            "note": {
+              "tr": "Dört rükünden üçe, oradan ellere ve avuçlara.",
+              "en": "From four corners to three, and from there to hands and palms.",
+              "pt": "De quatro cantos a três, e daí a mãos e palmas."
+            },
+            "children": [
+              {
+                "id": "dort-rukun",
+                "label": {
+                  "tr": "Dört Rükün",
+                  "en": "Four Corners",
+                  "pt": "Quatro Cantos"
+                },
+                "note": {
+                  "tr": "Kâbe'nin bugünkü şekli",
+                  "en": "the Kaaba's present form",
+                  "pt": "a forma atual da Caaba"
+                }
+              },
+              {
+                "id": "uc-rukun",
+                "label": {
+                  "tr": "Üç Rükün",
+                  "en": "Three Corners",
+                  "pt": "Três Cantos"
+                },
+                "note": {
+                  "tr": "ilk yapımı -- üçgen",
+                  "en": "its first construction -- a triangle",
+                  "pt": "sua primeira construção -- um triângulo"
+                }
+              },
+              {
+                "id": "eller-avuclar",
+                "label": {
+                  "tr": "Eller ve Avuçlar",
+                  "en": "Hands and Palms",
+                  "pt": "Mãos e Palmas"
+                },
+                "note": {
+                  "tr": "cennet-cehennemle bağlantısı tam açılmıyor",
+                  "en": "its link to paradise and hell is not fully unfolded",
+                  "pt": "sua ligação com o paraíso e o inferno não é totalmente desdobrada"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Kâbe'nin biçimi bile, Dost'a göre, kendi başına bir işaret taşıyor gibi görünüyor.",
+            "en": "Even the Kaaba's form, for Dost, seems to carry a sign of its own.",
+            "pt": "Até a forma da Caaba, para Dost, parece carregar um sinal próprio."
+          }
+        }
+      ]
+    },
+    {
+      "id": "mikat-mekkeli-gurbetci",
+      "heading": {
+        "tr": "Mikat: Mekkelinin ve Gurbetçinin Ters Ekonomisi",
+        "en": "Threshold: The Reversed Economy of the Meccan and the Stranger",
+        "pt": "Limiar: A Economia Invertida do Mequense e do Forasteiro"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İhram mikatı bahsinde Dost, Hz. Peygamber'in kendisinin nereden ihrama girdiğini tartışır, sonra Mekkeli bir insanın umre için nasıl ihrama gireceği sorusuna geçer. Burada ilginç bir ters simetri kurulur: Mekkeli için Harem'den çıkmak bir mertebe kaybı iken, gurbetçi için Harem'e girmek bir mertebe kazancıdır -- yani aynı sınırın (Harem) iki yönden geçilmesi, kişiye göre tam zıt anlamlar taşıyor. Bu, Dost'un daha önceki kısımlarda da işlediği 'aynı sınırın farklı taraflardan farklı hüküm taşıması' ilkesinin hac coğrafyasındaki somut bir örneği gibi okunabilir.",
+            "en": "In the section on the threshold of consecration, Dost discusses where the Prophet himself entered consecration, then turns to how a Meccan should enter consecration for umrah. An interesting reversed symmetry emerges here: for the Meccan, leaving the Sanctuary is a loss of rank, while for the stranger, entering the Sanctuary is a gain of rank -- meaning the same boundary (the Sanctuary), crossed from two directions, carries exactly opposite meanings depending on the person. This can be read as a concrete example, within the geography of pilgrimage, of a principle Dost has taken up in earlier sections: that the same limit can carry a different ruling depending on which side one stands.",
+            "pt": "Na seção sobre o limiar da consagração, Dost discute onde o próprio Profeta entrou em consagração, depois se volta para como um mequense deve entrar em consagração para a umrah. Uma simetria invertida interessante surge aqui: para o mequense, deixar o Santuário é uma perda de categoria, enquanto para o forasteiro, entrar no Santuário é um ganho de categoria -- ou seja, o mesmo limite (o Santuário), cruzado a partir de duas direções, carrega significados exatamente opostos dependendo da pessoa. Isso pode ser lido como um exemplo concreto, dentro da geografia da peregrinação, de um princípio que Dost já tratou em seções anteriores: que o mesmo limite pode carregar um estatuto diferente dependendo do lado em que se está."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXV, s. 339-341.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXV, pp. 339-341.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXV, pp. 339-341."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Mekkeli",
+                "en": "The Meccan",
+                "pt": "O Mequense"
+              },
+              "note": {
+                "tr": "Harem'den çıkmak -- mertebe kaybı",
+                "en": "leaving the Sanctuary -- a loss of rank",
+                "pt": "deixar o Santuário -- uma perda de categoria"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Gurbetçi",
+                "en": "The Stranger",
+                "pt": "O Forasteiro"
+              },
+              "note": {
+                "tr": "Harem'e girmek -- mertebe kazancı",
+                "en": "entering the Sanctuary -- a gain of rank",
+                "pt": "entrar no Santuário -- um ganho de categoria"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Aynı sınır, geçildiği yöne göre tam zıt bir anlam taşıyor.",
+            "en": "The same boundary carries an exactly opposite meaning depending on the direction it is crossed.",
+            "pt": "O mesmo limite carrega um significado exatamente oposto dependendo da direção em que é cruzado."
+          }
+        }
+      ]
+    },
+    {
+      "id": "telbiyeyi-kesmek-ve-arif",
+      "heading": {
+        "tr": "Telbiyeyi Kesmek ve Ârifin Kesintisiz İcabeti",
+        "en": "Ending the Talbiyah, and the Gnostic's Unbroken Response",
+        "pt": "Encerrar o Talbiyah, e a Resposta Ininterrupta do Gnóstico"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Hacının telbiyeyi ne zaman keseceği tartışılırken Dost, ârifin durumunu sıradan hacıdan ayırır: <em>\"Ârif ise, kulağı perdeli olmayan kimsedir ve bu nedenle her zaman olumlu karşılık verendir.\"</em> (s.343) Bunu bir şiirle derinleştirir: <em>\"Tecelli kesintisiz ve süreklidir; Hakkı görmede bir ara ve fasıla yoktur... Her an bir öncekinden üstün bir makama intikal edilir.\"</em> (s.343) Bize göre bu satırlar, telbiyenin (Allah'ın davetine 'buyur' demenin) sıradan hacı için belirli bir zamanla sınırlıyken, ârif için hiç kesilmeyen bir hal olduğunu ima ediyor -- her an yeni bir tecelliye 'lebbeyk' demek.",
+            "en": "While discussing when a pilgrim should end the talbiyah, Dost distinguishes the gnostic's state from the ordinary pilgrim's: <em>\"The gnostic, however, is one whose ear carries no veil, and for this reason is always the one who responds affirmatively.\"</em> (p.343) He deepens this with a poem: <em>\"Self-disclosure is unbroken and continuous; there is no gap or interval in witnessing the Real... At every instant one moves to a station higher than the one before.\"</em> (p.343) To us, these lines seem to imply that talbiyah -- saying 'here I am' to God's call -- is bound to a set time for the ordinary pilgrim, but for the gnostic is a state that never ends: saying 'labbayk' to a new self-disclosure at every instant.",
+            "pt": "Ao discutir quando um peregrino deve encerrar o talbiyah, Dost distingue o estado do gnóstico do peregrino comum: <em>\"O gnóstico, porém, é aquele cujo ouvido não carrega véu algum, e por isso é sempre quem responde afirmativamente.\"</em> (p.343) Ele aprofunda isso com um poema: <em>\"A autorrevelação é ininterrupta e contínua; não há lacuna ou intervalo em testemunhar o Real... A cada instante move-se para uma categoria superior à anterior.\"</em> (p.343) Para nós, essas linhas parecem sugerir que o talbiyah -- dizer 'aqui estou' ao chamado de Deus -- é limitado a um tempo determinado para o peregrino comum, mas para o gnóstico é um estado que nunca termina: dizer 'labbayk' a uma nova autorrevelação a cada instante."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tavaf-ve-kabe-ile-diyalog",
+      "heading": {
+        "tr": "Tavaf: İnsan-ı Kâmil ve Kâbe ile Diyalog",
+        "en": "Circumambulation: The Perfect Human and Dialogue with the Kaaba",
+        "pt": "Circum-ambulação: o Ser Humano Perfeito e o Diálogo com a Caaba"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Kâbe'yi tavaf bahsiyle kapanışa geçer. Dost, insan-ı kâmili şöyle tanımlar: <em>\"Bize göre mükemmel insan, işlerin kendisiyle ilişkisinin Allah ile ilişkileri gibi olduğu kimsedir. Böyle bir insan, her şeyde Hakkın yüzünü gören kişidir.\"</em> (s.344) Ardından bambaşka bir üsluba, otobiyografik ve neredeyse şiirsel bir sahneye geçer: Kâbe ile bir diyalog kurar -- <em>\"Ey Allah'ın Kâbe'si ve ey zemzem! Ne kadar zamandır bana kavuşmak istiyorsun... Bu bir istek değil, size merhamettir.\"</em> (s.345-346) Bu, Dost'un kendi eski bir 'hatasını' -- bir dönem kendi makamını Kâbe'nin üstünde görmesini -- itiraf ettiği nadir bir andır; ama doğru mertebenin tam ne olduğunu açık bırakır.",
+            "en": "The section moves toward its close with the matter of circumambulating the Kaaba. Dost defines the Perfect Human thus: <em>\"For us, the perfect human being is one whose relation to affairs is like God's relation to them. Such a person is one who sees the face of the Real in everything.\"</em> (p.344) He then shifts into an altogether different register, an autobiographical and almost poetic scene: he holds a dialogue with the Kaaba -- <em>\"O Kaaba of God, and O Zamzam! For how long have you wished to meet me... This is not a desire, but mercy toward you.\"</em> (p.345-346) This is a rare moment in which Dost admits an old 'error' of his own -- a time when he saw his own station as above the Kaaba's -- though he leaves what the true station is fully open.",
+            "pt": "A seção se move em direção ao seu encerramento com a questão de circungirar a Caaba. Dost define o Ser Humano Perfeito assim: <em>\"Para nós, o ser humano perfeito é aquele cuja relação com os assuntos é como a relação de Deus com eles. Tal pessoa é quem vê o rosto do Real em tudo.\"</em> (p.344) Ele então muda para um registro totalmente diferente, uma cena autobiográfica e quase poética: ele estabelece um diálogo com a Caaba -- <em>\"Ó Caaba de Deus, e ó Zamzam! Por quanto tempo desejastes me encontrar... Isto não é um desejo, mas misericórdia para convosco.\"</em> (p.345-346) Este é um momento raro em que Dost admite um antigo 'erro' seu -- uma época em que via sua própria categoria como acima da Caaba -- embora deixe totalmente em aberto qual é a verdadeira categoria."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, beklenmedik bir şekilde yarım kalmış bir rüya/vakıa sahnesiyle kapanır: <em>\"Beni dolunayın çıktığı bir gecede -- yağmur da vardı -- döşeğime yerleştirdi... şiddetli bir sıkıntıyla tavafa çıktım... zannediyorum ki bir kişiden başka kimse yoktu.\"</em> (s.347) Sahne burada kesiliyor; devamı bir sonraki kısma sarkıyor. Bize göre bu ani kesiliş, kısmın kendisi kadar anlamlı: Dost'un tecrübesi de, telbiyenin ârif için hiç kesilmemesi gibi, bir sonraki kısma taşan, kapanmamış bir an olarak bırakılıyor.",
+            "en": "The section closes unexpectedly with an unfinished dream-vision scene: <em>\"He placed me on my bed on a night when the full moon had risen -- there was also rain... I went out to circumambulate in severe distress... I believe there was no one there but a single person.\"</em> (p.347) The scene is cut off here; its continuation spills into the next section. To us, this sudden interruption is as meaningful as the section itself: Dost's own experience, like the talbiyah that never ends for the gnostic, is left as an unclosed moment carrying over into what follows.",
+            "pt": "A seção se encerra inesperadamente com uma cena de sonho-visão inacabada: <em>\"Ele me colocou em minha cama numa noite em que a lua cheia havia surgido -- também havia chuva... Saí para circungirar em severa aflição... Creio que não havia ninguém ali além de uma única pessoa.\"</em> (p.347) A cena é interrompida aqui; sua continuação se estende para a seção seguinte. Para nós, essa interrupção repentina é tão significativa quanto a própria seção: a experiência de Dost, como o talbiyah que nunca termina para o gnóstico, é deixada como um momento não fechado que se estende para o que vem depois."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXV (Ahmed Avni Konuk şerhi)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXV (Ahmed Avni Konuk's commentary)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXV (comentário de Ahmed Avni Konuk)"
+      },
+      "pageRange": "327-347"
+    }
+  ]
+}
