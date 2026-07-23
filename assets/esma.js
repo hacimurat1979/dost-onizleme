@@ -119,11 +119,11 @@
   // ampirik olarak bulunmuş bir değerdir -- ring1'in (aşağıdaki update())
   // hesabı değiştikçe bu değer de yeniden ölçülüp ayarlanmalı.
   function radiusFor(d) {
-    if (d.isZat) return 131;
+    if (d.isZat) return 160;
     const depth = d.depth;
-    if (depth === 0) return 131; // Allah -- the map's true center
-    if (depth === 1) return 30;
-    return Math.max(13, 22 - 2 * depth);
+    if (depth === 0) return 160; // Allah -- the map's true center
+    if (depth === 1) return 42;
+    return Math.max(18, 30 - 3 * depth);
   }
 
   const LAYER_COLOR = window.DostGraphUtils.LAYER_COLOR;
@@ -515,6 +515,14 @@
       return radiusForDepth(2) + (depth - 2) * tailStep;
     }
     nodes.forEach((d) => { d.y = radiusForDepth(d.depth); });
+    // Deneme: ring1'deki 74 isim artık düz bir daire değil, hafif bir
+    // "dalgalanma" (spiral hissi) ile duruyor -- komşu isimler dönüşümlü
+    // olarak biraz içeri/dışarı kayıyor, bu da salt çevresel boşluğun
+    // üzerine bir miktar RADYAL boşluk da ekliyor (aynı çevre uzunluğunda
+    // daha az sıkışma hissi).
+    nodes.forEach((d) => {
+      if (d.depth === 1) d.y = ring1 * (1 + 0.12 * Math.sin(d.x * 9));
+    });
 
     const maxDepth = Math.max(2, d3.max(nodes, (d) => d.depth));
     const boundaryRadius = Math.max(outerRadius * 1.1, radiusForDepth(maxDepth) + 50);
