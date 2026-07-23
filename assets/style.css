@@ -4004,11 +4004,11 @@ body.cizim-lightbox-open {
   }
 }
 
-/* Esmâ'nın 2 boyutlu mertebe/kapsayıcılık ilişkisini üç boyutta -- ayrı bir
-   framework/bağımlılık eklemeden, salt CSS 3D transform'larıyla -- deneyen
-   deneysel görünüm (bkz. assets/esma-3d.js). Sadece ilk üç mertebeyi
-   (Zât, Allah, dokuz ana isim) gösterir; derinlik (translateZ) doğrudan
-   esma.json'daki depth alanına karşılık gelir. */
+/* Esmâ'nın mertebe/kapsayıcılık ilişkisini üç boyutta gösteren görünüm --
+   ayrı bir framework/bağımlılık eklemeden (Three.js değil), D3'ün kendi
+   radyal ağaç düzenini yeniden kullanıp derinliği gerçek bir Z eksenine
+   taşıyan, elle yaw/pitch + perspektif projeksiyonlu bir SVG sahnesi
+   (bkz. assets/esma-3d.js). */
 .esma-3d-toggle {
   position: absolute;
   top: 12px;
@@ -4031,9 +4031,6 @@ body.cizim-lightbox-open {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
 }
-.esma-3d-toggle--full {
-  left: 168px;
-}
 
 .esma3d {
   position: absolute;
@@ -4050,7 +4047,6 @@ body.cizim-lightbox-open {
   width: 100%;
   flex: 1 1 auto;
   min-height: 0;
-  perspective: 1400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4058,57 +4054,33 @@ body.cizim-lightbox-open {
   touch-action: none;
 }
 .esma3d__viewport:active { cursor: grabbing; }
-.esma3d__scene {
-  position: relative;
-  width: 1px;
-  height: 1px;
-  transform-style: preserve-3d;
-  /* JS sürükleme sırasında rotateX/Y'yi doğrudan günceller; transition
-     sadece bırakıldıktan sonraki durma/yavaşlama için devrede -- bkz.
-     esma-3d.js'teki .esma3d__scene--settling sınıfı. Kendisi sadece bir
-     konumlandırma sarmalayıcısı; pointer-events:none olmadan, 3B
-     dönüşümle taşınan düğümlerin ÜZERİNDE (görsel olarak arkasında kalan)
-     bu 1x1'lik kutu isabet testinde öne çıkıp tıklamaları yutuyordu. */
+.esma3d__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.esma3d-link {
+  stroke: var(--series-esma-neutral);
+  stroke-width: 1;
+  fill: none;
+}
+.esma3d-node__dot {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+.esma3d-node__label {
+  fill: var(--text-primary);
+  font-weight: 600;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--surface-1);
+  stroke-width: 3px;
   pointer-events: none;
 }
-.esma3d__scene--settling {
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.esma3d__node {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--node-d, 64px);
-  height: var(--node-d, 64px);
-  margin: calc(var(--node-d, 64px) / -2) 0 0 calc(var(--node-d, 64px) / -2);
-  border-radius: 50%;
-  border: 1.5px solid color-mix(in srgb, var(--node-color, var(--series-kemal)) 70%, var(--border));
-  background: radial-gradient(circle at 32% 28%, color-mix(in srgb, var(--node-color, var(--series-kemal)) 55%, var(--surface-1)), color-mix(in srgb, var(--node-color, var(--series-kemal)) 22%, var(--surface-1)));
-  color: var(--text-primary);
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-align: center;
-  line-height: 1.15;
-  padding: 4px;
+.esma3d-node {
   cursor: pointer;
-  user-select: none;
-  box-shadow: 0 4px 14px rgba(20, 15, 8, 0.16);
 }
-.viz-root[data-theme="dark"] .esma3d__node {
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-}
-.esma3d__node:hover,
-.esma3d__node:focus-visible {
-  border-color: var(--accent-interactive);
-}
-.esma3d__node--zat {
-  border-color: var(--series-esma-neutral);
-  font-weight: 700;
-}
+.esma3d-settling { transition: none; }
 .esma3d__caption {
   max-width: 520px;
   margin: 0 auto 8px;
@@ -4137,47 +4109,26 @@ body.cizim-lightbox-open {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
 }
-@media (prefers-reduced-motion: reduce) {
-  .esma3d__scene--settling { transition: none; }
-}
 @media (max-width: 640px) {
   .esma3d__caption { font-size: 0.76rem; }
-  .esma3d__node { font-size: 0.7rem; }
 }
 
-/* Yöntem 2 (D3 + elle 3B projeksiyon, bkz. assets/esma-3d-full.js): aynı
-   .esma3d kabuğunu paylaşıyor ama içi bir <div> sahnesi yerine tek bir
-   SVG -- performans nedeniyle (103 isim), ve dış öğe olarak .esma3d--full
-   sadece viewport'un svg'ye yer açmasını sağlıyor. */
-.esma3d--full .esma3d__viewport {
-  cursor: grab;
-  touch-action: none;
+/* .graph-hint'e tıklanınca beliren baloncuk (bkz. assets/graph-hint.js) --
+   önceden bu buton sadece native title tooltip'ine (yalnızca hover)
+   güveniyordu, dokunmatik cihazlarda tamamen erişilemezdi. */
+.graph-hint-popover {
+  position: fixed;
+  z-index: 50;
+  max-width: 280px;
+  padding: 10px 14px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(20, 15, 8, 0.18);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--text-primary);
 }
-.esma3d--full .esma3d__viewport:active { cursor: grabbing; }
-.esma3d__svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+.viz-root[data-theme="dark"] .graph-hint-popover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
-.e3f-link {
-  stroke: var(--series-esma-neutral);
-  stroke-width: 1;
-  fill: none;
-}
-.e3f-node__dot {
-  stroke: var(--border);
-  stroke-width: 1;
-}
-.e3f-node__label {
-  fill: var(--text-primary);
-  font-weight: 600;
-  text-anchor: middle;
-  paint-order: stroke;
-  stroke: var(--surface-1);
-  stroke-width: 3px;
-  pointer-events: none;
-}
-.e3f-node {
-  cursor: pointer;
-}
-.e3f-settling { transition: none; }

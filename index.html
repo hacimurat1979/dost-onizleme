@@ -213,27 +213,16 @@
       <button class="graph-hint" type="button" title="Sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın / Drag to pan, Ctrl (⌘) + scroll to zoom, click a node / Arraste para navegar, Ctrl (⌘) + rolagem para ampliar, clique num nó" aria-label="Sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın / Drag to pan, Ctrl (⌘) + scroll to zoom, click a node / Arraste para navegar, Ctrl (⌘) + rolagem para ampliar, clique num nó">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
       </button>
-      <button class="esma-3d-toggle" id="esma-3d-toggle" type="button" title="Kapsayıcılığı 3 boyutlu dene — sade, ilk üç mertebe (deneysel) / Try containment in 3D — simple, first three ranks (experimental) / Experimente a contenção em 3D — simples, três primeiros graus (experimental)" aria-label="Kapsayıcılığı 3 boyutlu dene — sade, ilk üç mertebe (deneysel) / Try containment in 3D — simple, first three ranks (experimental) / Experimente a contenção em 3D — simples, três primeiros graus (experimental)">
-        <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M12 3 20 7.5V16.5L12 21 4 16.5V7.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 3V12M12 12 4 7.5M12 12 20 7.5M12 12V21" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="esma-3d-toggle esma-3d-toggle--full" id="esma-3d-full-toggle" type="button" title="3 boyutlu dene — bütün isimlerle (deneysel) / Try in 3D — with all Names (experimental) / Experimente em 3D — com todos os Nomes (experimental)" aria-label="3 boyutlu dene — bütün isimlerle (deneysel) / Try in 3D — with all Names (experimental) / Experimente em 3D — com todos os Nomes (experimental)">
+      <button class="esma-3d-toggle" id="esma-3d-toggle" type="button" title="3 boyutlu dene — bütün isimlerle / Try in 3D — with all Names / Experimente em 3D — com todos os Nomes" aria-label="3 boyutlu dene — bütün isimlerle / Try in 3D — with all Names / Experimente em 3D — com todos os Nomes">
         <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M12 3 20 7.5V16.5L12 21 4 16.5V7.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.1" fill="currentColor"/><circle cx="12" cy="3" r="1.3" fill="currentColor"/><circle cx="20" cy="7.5" r="1.3" fill="currentColor"/><circle cx="20" cy="16.5" r="1.3" fill="currentColor"/><circle cx="12" cy="21" r="1.3" fill="currentColor"/><circle cx="4" cy="16.5" r="1.3" fill="currentColor"/><circle cx="4" cy="7.5" r="1.3" fill="currentColor"/></svg>
       </button>
       <div class="esma3d" id="esma3d" hidden>
         <div class="esma3d__viewport" id="esma3d-viewport">
-          <div class="esma3d__scene" id="esma3d-scene"></div>
+          <svg id="esma3d-svg" class="esma3d__svg"></svg>
         </div>
-        <p class="esma3d__caption" data-tr="Yöntem 1 (sade CSS 3D): ilk üç mertebe (Zât, Allah, dokuz ana isim) — sürükleyerek döndürün. Halkalar birbirini kuşatır; derinlik mertebe farkını gösterir." data-en="Method 1 (simple CSS 3D): the first three ranks (the Essence, Allah, the nine principal Names) — drag to rotate. The rings enclose one another; depth marks the difference in rank." data-pt="Método 1 (CSS 3D simples): os três primeiros graus (a Essência, Allah, os nove Nomes principais) — arraste para girar. Os anéis se envolvem; a profundidade marca a diferença de grau.">Yöntem 1 (sade CSS 3D): ilk üç mertebe (Zât, Allah, dokuz ana isim) — sürükleyerek döndürün. Halkalar birbirini kuşatır; derinlik mertebe farkını gösterir.</p>
+        <p class="esma3d__caption" data-tr="Bütün isimler (103), derinliğe göre arkaya doğru diziliyor. Sürükleyerek döndürün, tekerlekle yakınlaştırın; bir isme tıklayın." data-en="All Names (103), arranged receding by depth. Drag to rotate, scroll to zoom; click a Name." data-pt="Todos os Nomes (103), dispostos recuando por profundidade. Arraste para girar, role para ampliar; clique num Nome.">Bütün isimler (103), derinliğe göre arkaya doğru diziliyor. Sürükleyerek döndürün, tekerlekle yakınlaştırın; bir isme tıklayın.</p>
         <div class="node-hover-tip" id="esma3d-tooltip" hidden></div>
         <button class="esma3d__exit" id="esma3d-exit" type="button" data-tr="2B'ye dön" data-en="Back to 2D" data-pt="Voltar ao 2D">2B'ye dön</button>
-      </div>
-      <div class="esma3d esma3d--full" id="esma3d-full" hidden>
-        <div class="esma3d__viewport" id="esma3d-full-viewport">
-          <svg id="esma3d-full-svg" class="esma3d__svg"></svg>
-        </div>
-        <p class="esma3d__caption" data-tr="Yöntem 2 (D3 + elle projeksiyon): bütün isimler (103), derinliğe göre arkaya doğru diziliyor. Sürükleyerek döndürün, tekerlekle yakınlaştırın." data-en="Method 2 (D3 + manual projection): all Names (103), arranged receding by depth. Drag to rotate, scroll to zoom." data-pt="Método 2 (D3 + projeção manual): todos os Nomes (103), dispostos recuando por profundidade. Arraste para girar, role para ampliar.">Yöntem 2 (D3 + elle projeksiyon): bütün isimler (103), derinliğe göre arkaya doğru diziliyor. Sürükleyerek döndürün, tekerlekle yakınlaştırın.</p>
-        <div class="node-hover-tip" id="esma3d-full-tooltip" hidden></div>
-        <button class="esma3d__exit" id="esma3d-full-exit" type="button" data-tr="2B'ye dön" data-en="Back to 2D" data-pt="Voltar ao 2D">2B'ye dön</button>
       </div>
       <div class="legend" id="esma-legend">
         <button class="legend__toggle" type="button" aria-expanded="true">
@@ -596,6 +585,7 @@ essa é minha religião e minha fé."></blockquote>
   <script src="assets/i18n.js"></script>
   <script src="assets/view-status.js"></script>
   <script src="assets/graph-utils.js"></script>
+  <script src="assets/graph-hint.js"></script>
   <script src="assets/lightbox.js"></script>
   <script src="assets/search.js"></script>
   <script src="assets/graph-enhancement.js"></script>
@@ -604,7 +594,6 @@ essa é minha religião e minha fé."></blockquote>
   <script src="assets/honorifics.js"></script>
   <script src="assets/esma.js"></script>
   <script src="assets/esma-3d.js"></script>
-  <script src="assets/esma-3d-full.js"></script>
   <script src="assets/hal.js"></script>
   <script src="assets/terimler.js"></script>
   <script src="assets/cizimler.js"></script>
