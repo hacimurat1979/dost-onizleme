@@ -4003,3 +4003,141 @@ body.cizim-lightbox-open {
     color: #000;
   }
 }
+
+/* Esmâ'nın 2 boyutlu mertebe/kapsayıcılık ilişkisini üç boyutta -- ayrı bir
+   framework/bağımlılık eklemeden, salt CSS 3D transform'larıyla -- deneyen
+   deneysel görünüm (bkz. assets/esma-3d.js). Sadece ilk üç mertebeyi
+   (Zât, Allah, dokuz ana isim) gösterir; derinlik (translateZ) doğrudan
+   esma.json'daki depth alanına karşılık gelir. */
+.esma-3d-toggle {
+  position: absolute;
+  top: 12px;
+  left: 116px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface-1) 90%, transparent);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.esma-3d-toggle:hover,
+.esma-3d-toggle:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+
+.esma3d {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: var(--surface-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.esma3d[hidden] { display: none; }
+.esma3d__viewport {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  perspective: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
+}
+.esma3d__viewport:active { cursor: grabbing; }
+.esma3d__scene {
+  position: relative;
+  width: 1px;
+  height: 1px;
+  transform-style: preserve-3d;
+  /* JS sürükleme sırasında rotateX/Y'yi doğrudan günceller; transition
+     sadece bırakıldıktan sonraki durma/yavaşlama için devrede -- bkz.
+     esma-3d.js'teki .esma3d__scene--settling sınıfı. Kendisi sadece bir
+     konumlandırma sarmalayıcısı; pointer-events:none olmadan, 3B
+     dönüşümle taşınan düğümlerin ÜZERİNDE (görsel olarak arkasında kalan)
+     bu 1x1'lik kutu isabet testinde öne çıkıp tıklamaları yutuyordu. */
+  pointer-events: none;
+}
+.esma3d__scene--settling {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.esma3d__node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--node-d, 64px);
+  height: var(--node-d, 64px);
+  margin: calc(var(--node-d, 64px) / -2) 0 0 calc(var(--node-d, 64px) / -2);
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--node-color, var(--series-kemal)) 70%, var(--border));
+  background: radial-gradient(circle at 32% 28%, color-mix(in srgb, var(--node-color, var(--series-kemal)) 55%, var(--surface-1)), color-mix(in srgb, var(--node-color, var(--series-kemal)) 22%, var(--surface-1)));
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.15;
+  padding: 4px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 14px rgba(20, 15, 8, 0.16);
+}
+.viz-root[data-theme="dark"] .esma3d__node {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+.esma3d__node:hover,
+.esma3d__node:focus-visible {
+  border-color: var(--accent-interactive);
+}
+.esma3d__node--zat {
+  border-color: var(--series-esma-neutral);
+  font-weight: 700;
+}
+.esma3d__caption {
+  max-width: 520px;
+  margin: 0 auto 8px;
+  padding: 0 24px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+.esma3d__exit {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-1) 90%, transparent);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.esma3d__exit:hover,
+.esma3d__exit:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+@media (prefers-reduced-motion: reduce) {
+  .esma3d__scene--settling { transition: none; }
+}
+@media (max-width: 640px) {
+  .esma3d__caption { font-size: 0.76rem; }
+  .esma3d__node { font-size: 0.7rem; }
+}

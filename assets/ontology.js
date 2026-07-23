@@ -133,7 +133,10 @@
   I18n.applyStatic();
   I18n.renderLangSwitcher(document.getElementById("lang-switch"), () => {
     render();
-    if (currentMainView === "esma") window.__esmaApp && window.__esmaApp.onLangChange();
+    if (currentMainView === "esma") {
+      window.__esmaApp && window.__esmaApp.onLangChange();
+      window.__esma3dApp && window.__esma3dApp.onLangChange();
+    }
     else if (currentMainView === "hal") window.__halApp && window.__halApp.onLangChange();
     else if (currentMainView === "terimler") window.__terimlerApp && window.__terimlerApp.onLangChange();
     else if (currentMainView === "cizimler") window.__cizimlerApp && window.__cizimlerApp.onLangChange();
