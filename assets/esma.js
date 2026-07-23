@@ -110,18 +110,20 @@
     return esmaDataPromise;
   }
 
-  // Zât ve Allah'ın çapı burada 34 değil 54 -- Ontoloji grafiğindeki Zât
-  // (dhat) düğümüyle aynı RAW r değeri kullanmak görsel eşitlik SAĞLAMIYOR,
-  // çünkü bu iki grafiğin kendi otomatik-yakınlaştırma ölçekleri farklı
-  // (Ontoloji ~0.96, Esmâ ~0.61 -- pencere boyutuna göre değişebilir).
-  // 54, iki grafikte ekrana çizilen GERÇEK piksel boyutunu (getBoundingClientRect
-  // ile ölçülerek) eşitleyecek şekilde ampirik olarak bulunmuş bir değerdir.
+  // Zât ve Allah'ın çapı burada Ontoloji grafiğindeki Zât (dhat) düğümüyle
+  // aynı RAW r değerini kullanmıyor -- bunu yapmak görsel eşitlik
+  // SAĞLAMIYOR, çünkü bu iki grafiğin kendi otomatik-yakınlaştırma
+  // ölçekleri farklı (pencere boyutuna ve içerik yoğunluğuna göre
+  // değişebilir). Buradaki 111, iki grafikte ekrana çizilen GERÇEK piksel
+  // boyutunu (getBoundingClientRect ile ölçülerek) eşitleyecek şekilde
+  // ampirik olarak bulunmuş bir değerdir -- ring1'in (aşağıdaki update())
+  // hesabı değiştikçe bu değer de yeniden ölçülüp ayarlanmalı.
   function radiusFor(d) {
-    if (d.isZat) return 111;
+    if (d.isZat) return 131;
     const depth = d.depth;
-    if (depth === 0) return 111; // Allah -- the map's true center
-    if (depth === 1) return 22;
-    return Math.max(9, 16 - depth);
+    if (depth === 0) return 131; // Allah -- the map's true center
+    if (depth === 1) return 30;
+    return Math.max(13, 22 - 2 * depth);
   }
 
   const LAYER_COLOR = window.DostGraphUtils.LAYER_COLOR;
