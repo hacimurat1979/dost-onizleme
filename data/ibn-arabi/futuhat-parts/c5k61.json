@@ -1,0 +1,448 @@
+{
+  "id": "c5k61",
+  "cilt": 5,
+  "kisim": 61,
+  "status": "active",
+  "title": {
+    "tr": "Onuncu Sifr'in Açılışı: Hac ve Kalbin Kâbe'si",
+    "en": "The Opening of the Tenth Sifr: Pilgrimage and the Heart's Kaaba",
+    "pt": "A Abertura do Décimo Sifr: A Peregrinação e a Caaba do Coração"
+  },
+  "pageRange": "235-255",
+  "hero": {
+    "summary": {
+      "tr": "Altmış Birinci Kısım, Fütûhât'ın büyük iç bölümlenmesinde yeni bir kapıyı -- Onuncu Sifr'i -- açar ve konu olarak haccı seçer. Önceki üç kısmın zaman eksenini (nafile oruçlar, Kadir Gecesi, itikâf, vaktin efendisi) burada mekânın merkezine, Kâbe'ye ve onun kalple kurduğu benzerliğe bırakır. Dost, 'Allah ile' değil 'Allah için' hac yapmanın farkını, Kâbe'nin dört rüknüyle kalbin dört düşüncesi arasındaki örtüşmeyi ve çocuğun haccının neden bazen büyüğünkinden daha yetkin sayıldığını anlatır.",
+      "en": "The Sixty-First Section opens a new gate in the Futuhat's great inner structure -- the Tenth Sifr -- and chooses pilgrimage (hajj) as its subject. Where the previous three sections turned on the axis of time (supererogatory fasts, the Night of Power, retreat, the master of the moment), this one turns to the center of space: the Kaaba, and its likeness to the heart. Dost describes the difference between making pilgrimage 'with God' and 'for God,' the correspondence between the Kaaba's four corners and the heart's four thoughts, and why a child's pilgrimage is sometimes counted more complete than an adult's.",
+      "pt": "A Sexagésima Primeira Parte abre uma nova porta na grande estrutura interna do Futuhat -- o Décimo Sifr -- e escolhe a peregrinação (hajj) como tema. Onde as três partes anteriores giravam sobre o eixo do tempo (jejuns supererogatórios, a Noite do Destino, o retiro, o senhor do instante), esta se volta para o centro do espaço: a Caaba, e sua semelhança com o coração. Dost descreve a diferença entre peregrinar 'com Deus' e 'para Deus', a correspondência entre os quatro cantos da Caaba e os quatro pensamentos do coração, e por que a peregrinação de uma criança às vezes é considerada mais completa que a de um adulto."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Kısım 61'de işlenen altı eksen ve her birinin bağlandığı tema.",
+      "en": "The six axes taken up in Part 61, and the theme each is tied to.",
+      "pt": "Os seis eixos tratados na Parte 61, e o tema ao qual cada um está ligado."
+    },
+    "tree": {
+      "id": "kisim-lxi-tree",
+      "label": {
+        "tr": "Onuncu Sifr: Hac ve Sırları",
+        "en": "The Tenth Sifr: Pilgrimage and Its Secrets",
+        "pt": "O Décimo Sifr: A Peregrinação e Seus Segredos"
+      },
+      "note": {
+        "tr": "Bir kasideyle açılır, Kâbe'nin kalple benzerliğinden isimlere, çocuğun haccından vekilliğe uzanır.",
+        "en": "Opens with a qasida, moves from the Kaaba's likeness to the heart, through the Names, to the child's pilgrimage and deputyship.",
+        "pt": "Abre-se com uma qasida, passa da semelhança da Caaba com o coração, pelos Nomes, até a peregrinação da criança e a procuração."
+      },
+      "children": [
+        {
+          "id": "maallah-lillah-dal",
+          "label": {
+            "tr": "Allah İle / Allah İçin",
+            "en": "With God / For God",
+            "pt": "Com Deus / Para Deus"
+          },
+          "note": {
+            "tr": "Lamba meseli -- yoldaşlık ile uzaklık arasındaki fark.",
+            "en": "The lamp simile -- the difference between companionship and distance.",
+            "pt": "O símile da lamparina -- a diferença entre companhia e distância."
+          }
+        },
+        {
+          "id": "kabe-kalp-dal",
+          "label": {
+            "tr": "Kâbe ve Kalp",
+            "en": "The Kaaba and the Heart",
+            "pt": "A Caaba e o Coração"
+          },
+          "note": {
+            "tr": "Gök ve yerin sığdıramadığını sığdıran kalp.",
+            "en": "The heart that holds what heaven and earth cannot.",
+            "pt": "O coração que contém o que o céu e a terra não podem."
+          }
+        },
+        {
+          "id": "dort-rukun-dal",
+          "label": {
+            "tr": "Kâbe'nin Dört Rüknü",
+            "en": "The Kaaba's Four Corners",
+            "pt": "Os Quatro Cantos da Caaba"
+          },
+          "note": {
+            "tr": "Hak, melek, nefis ve şeytandan gelen düşüncelere karşılık gelir.",
+            "en": "Corresponding to thoughts from the Real, an angel, the self, and Satan.",
+            "pt": "Correspondendo a pensamentos vindos do Real, de um anjo, do ego e de Satanás."
+          }
+        },
+        {
+          "id": "allah-rahman-dal",
+          "label": {
+            "tr": "Allah ve Rahman İsimleri",
+            "en": "The Names Allah and ar-Rahman",
+            "pt": "Os Nomes Allah e ar-Rahman"
+          },
+          "note": {
+            "tr": "Biri geniş bilinir, öteki ancak imanla görülür.",
+            "en": "One is widely known, the other seen only through faith.",
+            "pt": "Um é amplamente conhecido, o outro só se vê pela fé."
+          }
+        },
+        {
+          "id": "cocugun-hacci-dal",
+          "label": {
+            "tr": "Çocuğun Haccı ve İstitaat",
+            "en": "The Child's Pilgrimage and Capacity",
+            "pt": "A Peregrinação da Criança e a Capacidade"
+          },
+          "note": {
+            "tr": "Fıtrat imanı ve sebeplere karşı dengeli duruş.",
+            "en": "Innate faith, and a balanced stance toward causes.",
+            "pt": "A fé inata e uma postura equilibrada diante das causas."
+          }
+        },
+        {
+          "id": "vekillik-dal",
+          "label": {
+            "tr": "Vekillik",
+            "en": "Deputyship",
+            "pt": "A Procuração"
+          },
+          "note": {
+            "tr": "Üç görüş, kesin bir tercih belirtilmeden yan yana konur.",
+            "en": "Three views set side by side without a sharp preference stated.",
+            "pt": "Três visões colocadas lado a lado sem uma preferência clara."
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "maallah-lillah-hac",
+      "heading": {
+        "tr": "Şiirin Uyarısı: 'Allah İle' Değil, 'Allah İçin'",
+        "en": "The Poem's Warning: Not \"With God,\" but \"For God\"",
+        "pt": "O Aviso do Poema: Não \"Com Deus\", mas \"Para Deus\""
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, hac üzerine bir kasideyle açılır ve haccın imgelerini (menziller, durak yerleri, taşlama) içsel bir yolculuğa çevirir: <em>\"Onun hali, her menzilde ve durakta seni davet eder.\"</em> (s.235) Dost, en keskin uyarısını ise şu beyitle yapar: <em>\"Allah ile değil de Allah için hac yapan kimse, kendi karanlığı nedeniyle, lambanın ışığıyla koşan adama benzer.\"</em> (s.236-237) Bize göre bu benzetme, iki hac arasındaki farkı çok yalın gösteriyor: biri Allah'ı bir amaç, öteki O'nu bir yoldaş sayıyor. Taşlama imgesi de aynı içe dönüşü sürdürür: <em>\"Ben düşkün olduğum halhallerin katiliyim; tavaf esnasında, küpelerin ve vesveselerin de.\"</em> (s.236)",
+            "en": "The section opens with a qasida on pilgrimage, turning its images -- the stations, the stops, the stoning -- into an inward journey: <em>\"Its state calls you at every station and every stop.\"</em> (p.235) Dost delivers his sharpest warning in this couplet: <em>\"One who makes pilgrimage for God rather than with God resembles, because of his own darkness, a man running toward the light of a lamp.\"</em> (p.236-237) To us, this likeness shows the difference between the two pilgrimages very plainly: one takes God as a destination, the other as a companion. The image of stoning carries the same inward turn: <em>\"I am the slayer of the anklets I was fond of; during the circling, of the earrings and whisperings too.\"</em> (p.236)",
+            "pt": "A parte se abre com uma qasida sobre a peregrinação, transformando suas imagens -- as estações, as paradas, o apedrejamento -- numa jornada interior: <em>\"Seu estado te chama em cada estação e em cada parada.\"</em> (p.235) Dost faz seu aviso mais agudo neste dístico: <em>\"Quem peregrina para Deus, e não com Deus, se assemelha, por causa de sua própria escuridão, a um homem correndo em direção à luz de uma lamparina.\"</em> (p.236-237) Para nós, essa semelhança mostra a diferença entre as duas peregrinações de forma muito clara: uma toma Deus como destino, a outra como companheiro. A imagem do apedrejamento carrega o mesmo giro interior: <em>\"Sou o matador dos tornozeleiras que eu apreciava; durante a circum-ambulação, dos brincos e sussurros também.\"</em> (p.236)"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXI, s. 235-237.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXI, pp. 235-237.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXI, pp. 235-237."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Allah İle Hac",
+                "en": "Pilgrimage With God",
+                "pt": "Peregrinação Com Deus"
+              },
+              "note": {
+                "tr": "O'nu yoldaş bilen hac",
+                "en": "a pilgrimage that takes Him as companion",
+                "pt": "uma peregrinação que toma Ele como companheiro"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Allah İçin Hac",
+                "en": "Pilgrimage For God",
+                "pt": "Peregrinação Para Deus"
+              },
+              "note": {
+                "tr": "O'nu uzak bir amaç bilen -- lamba meseli",
+                "en": "a pilgrimage that takes Him as a distant goal -- the lamp simile",
+                "pt": "uma peregrinação que toma Ele como meta distante -- o símile da lamparina"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İki hac da aynı fiili paylaşır, ama biri yoldaşlık, öteki uzaklıktır.",
+            "en": "Both pilgrimages share the same act, but one is companionship, the other distance.",
+            "pt": "Ambas as peregrinações compartilham o mesmo ato, mas uma é companhia, a outra é distância."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kabe-kalbin-benzeri",
+      "heading": {
+        "tr": "Kâbe ve Kalp: Sığmayanı Sığdıran",
+        "en": "The Kaaba and the Heart: What Holds the Unholdable",
+        "pt": "A Caaba e o Coração: O Que Contém o Incontível"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, Kâbe'yi tavaf eden çoğu kişinin fark edemediği bir övgüyü aktarır: <em>\"...gök ve yer kendisini sığdıramazken bu kalbin Allah'ı sığdırabildiğini belirtmiştir.\"</em> (s.238) Nebilerin kalplerinin de Kâbe'nin şekli gibi üçgen olduğunu söyler (s.239) ve Selman ed-Dünbülî'nin elli küsur yıldır aklına kötü bir düşünce gelmediği tanıklığını (s.239) bu kalp-Kâbe benzerliğinin somut bir örneği olarak sunar. İblis'in Ebu Medyen hakkında söylediği şu söz ise ilginç bir karşıt-örnek: <em>\"Okyanusa küçük abdestini yapan birine 'niçin böyle yaptın?' diye sorulduğunda 'kirleteyim de, kendisiyle temizlik yapılamasın' diye karşılık vermiş... Onun kalbine her ne attıysam, değiştirdi ve başkalaştırdı.\"</em> (s.240) -- yani bazı kalpler, kendilerine atılan her bulanıklığı bile kendi temizliğine çevirir.",
+            "en": "Dost relates a praise that most who circle the Kaaba fail to notice: <em>\"...it has been stated that while heaven and earth cannot hold Him, this heart can hold God.\"</em> (p.238) He says that the hearts of the prophets, too, are triangular like the shape of the Kaaba (p.239), and offers Salman ad-Dunbuli's testimony -- that for fifty-odd years no evil thought had entered his mind (p.239) -- as a concrete instance of this heart-Kaaba likeness. Iblis's remark about Abu Madyan offers an interesting counter-example: <em>\"When one who relieved himself in the ocean was asked 'why did you do that?' he answered, 'so that I might defile it, that it could no longer be used for purification'... Whatever I cast into his heart, he turned and transformed it.\"</em> (p.240) -- meaning some hearts turn even whatever murk is thrown at them into their own purity.",
+            "pt": "Dost relata um elogio que a maioria dos que circungiram a Caaba não percebe: <em>\"...foi dito que, enquanto o céu e a terra não podem contê-Lo, este coração pode conter Deus.\"</em> (p.238) Ele diz que os corações dos profetas também são triangulares como a forma da Caaba (p.239), e oferece o testemunho de Salman ad-Dunbuli -- de que por mais de cinquenta anos nenhum pensamento mau entrou em sua mente (p.239) -- como um exemplo concreto dessa semelhança coração-Caaba. A observação de Iblis sobre Abu Madyan oferece um contra-exemplo interessante: <em>\"Quando perguntaram a alguém que se aliviou no oceano 'por que fizeste isso?', ele respondeu: 'para que eu o contaminasse, e não pudesse mais ser usado para purificação'... O que quer que eu lançasse em seu coração, ele o transformava e o tornava outra coisa.\"</em> (p.240) -- ou seja, alguns corações transformam até a lama que lhes é lançada em sua própria pureza."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kabenin-dort-rukni",
+      "heading": {
+        "tr": "Kâbe'nin Dört Rüknü, Kalbin Dört Düşüncesi",
+        "en": "The Kaaba's Four Corners, the Heart's Four Thoughts",
+        "pt": "Os Quatro Cantos da Caaba, os Quatro Pensamentos do Coração"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, Kâbe'nin dört rüknünü kalbe düşen dört farklı düşünce kaynağına bağlar: Hacer-i Esved Hak'tan gelen düşünceye, Rükn-i Yemani melekten gelene, altıgen köşe nefisten gelene, Rükn-i Irâkî ise şeytandan gelen düşünceye karşılık gelir. Bu paralellik, tavafın kendisinin de bir iç-döngü olduğunu ima ediyor gibi görünüyor -- kalbe uğrayan her düşünce, sanki Kâbe'nin bir köşesinden geçiyor. Aynı bölümde Dost, ilâhi isimlerin kalp evini nasıl sürekli 'ziyaret ettiğini' anlatır: <em>\"İlâhi isimler kalp evini haccederler.\"</em> (s.243) -- yani hac, sadece kulun Kâbe'ye gidişi değil, isimlerin de kalbe dönüşe benzer bir gelişidir.",
+            "en": "Dost ties the Kaaba's four corners to four distinct sources from which a thought falls upon the heart: the Black Stone corresponds to a thought coming from the Real, the Yemeni Corner to one coming from an angel, the hexagonal corner to one coming from the self, and the Iraqi Corner to one coming from Satan. This correspondence seems to imply that circling itself is an inward cycle -- as if every thought that visits the heart passes through one of the Kaaba's corners. In the same passage, Dost describes how the divine Names continually 'visit' the house of the heart: <em>\"The divine Names make pilgrimage to the house of the heart.\"</em> (p.243) -- meaning pilgrimage is not only the servant's going to the Kaaba, but also something like the Names' own arrival, a return to the heart.",
+            "pt": "Dost liga os quatro cantos da Caaba a quatro fontes distintas das quais um pensamento cai sobre o coração: a Pedra Negra corresponde a um pensamento vindo do Real, o Canto Iemenita a um vindo de um anjo, o canto hexagonal a um vindo do ego, e o Canto Iraquiano a um vindo de Satanás. Essa correspondência parece sugerir que a própria circum-ambulação é um ciclo interior -- como se todo pensamento que visita o coração passasse por um dos cantos da Caaba. Na mesma passagem, Dost descreve como os Nomes divinos 'visitam' continuamente a casa do coração: <em>\"Os Nomes divinos peregrinam à casa do coração.\"</em> (p.243) -- ou seja, a peregrinação não é apenas a ida do servo à Caaba, mas também algo semelhante à própria chegada dos Nomes, um retorno ao coração."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXI, s. 238-243.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXI, pp. 238-243.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXI, pp. 238-243."
+          },
+          "tree": {
+            "id": "dort-rukun-tree",
+            "label": {
+              "tr": "Kâbe'nin Dört Rüknü",
+              "en": "The Kaaba's Four Corners",
+              "pt": "Os Quatro Cantos da Caaba"
+            },
+            "note": {
+              "tr": "Kalbe düşen her düşünce, bu dört köşeden birine karşılık gelir.",
+              "en": "Every thought that falls upon the heart corresponds to one of these four corners.",
+              "pt": "Todo pensamento que cai sobre o coração corresponde a um destes quatro cantos."
+            },
+            "children": [
+              {
+                "id": "hacer-i-esved",
+                "label": {
+                  "tr": "Hacer-i Esved",
+                  "en": "The Black Stone",
+                  "pt": "A Pedra Negra"
+                },
+                "note": {
+                  "tr": "Hak'tan gelen düşünce",
+                  "en": "a thought from the Real",
+                  "pt": "um pensamento do Real"
+                }
+              },
+              {
+                "id": "rukn-i-yemani",
+                "label": {
+                  "tr": "Rükn-i Yemani",
+                  "en": "The Yemeni Corner",
+                  "pt": "O Canto Iemenita"
+                },
+                "note": {
+                  "tr": "melekten gelen düşünce",
+                  "en": "a thought from an angel",
+                  "pt": "um pensamento de um anjo"
+                }
+              },
+              {
+                "id": "altigen-kose",
+                "label": {
+                  "tr": "Altıgen Köşe",
+                  "en": "The Hexagonal Corner",
+                  "pt": "O Canto Hexagonal"
+                },
+                "note": {
+                  "tr": "nefisten gelen düşünce",
+                  "en": "a thought from the self",
+                  "pt": "um pensamento do ego"
+                }
+              },
+              {
+                "id": "rukn-i-iraki",
+                "label": {
+                  "tr": "Rükn-i Irâkî",
+                  "en": "The Iraqi Corner",
+                  "pt": "O Canto Iraquiano"
+                },
+                "note": {
+                  "tr": "şeytandan gelen düşünce",
+                  "en": "a thought from Satan",
+                  "pt": "um pensamento de Satanás"
+                }
+              }
+            ]
+          },
+          "caption": {
+            "tr": "Kalbe uğrayan her düşünce, sanki Kâbe'nin bir köşesinden geçer.",
+            "en": "Every thought that visits the heart seems to pass through one of the Kaaba's corners.",
+            "pt": "Todo pensamento que visita o coração parece passar por um dos cantos da Caaba."
+          }
+        }
+      ]
+    },
+    {
+      "id": "altin-levha-ve-isimler",
+      "heading": {
+        "tr": "Altın Levhanın Sırrı, Allah ve Rahman İsimleri",
+        "en": "The Secret of the Golden Plate, the Names Allah and ar-Rahman",
+        "pt": "O Segredo da Placa de Ouro, os Nomes Allah e ar-Rahman"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, kendisine 598 yılında gösterilen bir altın levhadan söz eder, ama üzerindeki yazının içeriğini bilerek paylaşmaz: <em>\"Bunun nedeni, benim ile Allah'ın arasında kalmış bir şeydi... ahir zamanda el-Kaim bi-emrillah çıkartsın diye bırakmıştı.\"</em> (s.241) Bu, Dost'un külliyatında sık karşılaştığımız bir jestin -- işaret edip açıklamama jestinin -- bir başka örneği. Hemen ardından Allah ile Rahman isimleri arasındaki kapsam farkına geçer: inkârcıların 'Rahman nedir ki?' sorusuna karşılık, <em>\"Allah hal gereği bilinirken Rahman hal gereği inkâr edilir.\"</em> (s.242-243) der -- yani Allah ismi daha geniş, doğrudan tanınan bir isim iken, Rahman ismi ancak imanla görülebilen daha ince bir isim. Bu ayrımı 'ahfa' (daha gizli) kavramıyla derinleştirir: <em>\"İki uç arasında engel olup ikisini belirleyen ve ikisini ayırt eden orta, o iki şeyden daha gizlidir.\"</em> (s.243) -- güneşle gölge arasındaki sınır, tatlı ve tuzlu denizler arasındaki berzah gibi.",
+            "en": "Dost mentions a golden plate shown to him in the year 598, but deliberately withholds the content of what was written on it: <em>\"The reason for this was a matter that remained between myself and God... He had left it so that, in the end times, al-Qa'im bi-Amrillah might bring it forth.\"</em> (p.241) This is another instance of a gesture we meet often in Dost's corpus -- pointing without explaining. He then turns to the difference in scope between the Names Allah and ar-Rahman: against the deniers' question 'What is ar-Rahman?', he says <em>\"Allah is known by virtue of one's state, while ar-Rahman is denied by virtue of one's state.\"</em> (p.242-243) -- meaning the Name Allah is wider, recognized directly, while the Name ar-Rahman is a subtler Name, seen only through faith. He deepens this distinction with the concept of 'akhfa' (more hidden): <em>\"The middle that stands as a barrier between two ends, defining and distinguishing both, is more hidden than either of the two.\"</em> (p.243) -- like the boundary between sun and shadow, or the isthmus between the sweet and salty seas.",
+            "pt": "Dost menciona uma placa de ouro que lhe foi mostrada no ano 598, mas deliberadamente não revela o conteúdo do que estava escrito nela: <em>\"A razão disso foi um assunto que permaneceu entre mim e Deus... Ele a deixou para que, nos últimos tempos, al-Qa'im bi-Amrillah pudesse trazê-la à tona.\"</em> (p.241) Este é mais um exemplo de um gesto que encontramos com frequência no corpus de Dost -- apontar sem explicar. Ele então se volta para a diferença de alcance entre os Nomes Allah e ar-Rahman: contra a pergunta dos negadores 'O que é ar-Rahman?', ele diz <em>\"Allah é conhecido em virtude do estado de cada um, enquanto ar-Rahman é negado em virtude do estado de cada um.\"</em> (p.242-243) -- ou seja, o Nome Allah é mais amplo, reconhecido diretamente, enquanto o Nome ar-Rahman é um Nome mais sutil, visto apenas pela fé. Ele aprofunda essa distinção com o conceito de 'akhfa' (mais oculto): <em>\"O meio que serve de barreira entre dois extremos, definindo e distinguindo ambos, é mais oculto que os dois.\"</em> (p.243) -- como a fronteira entre o sol e a sombra, ou o istmo entre os mares doce e salgado."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXI, s. 241-243.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXI, pp. 241-243.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXI, pp. 241-243."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Allah (İsim)",
+                "en": "Allah (the Name)",
+                "pt": "Allah (o Nome)"
+              },
+              "note": {
+                "tr": "hal gereği doğrudan bilinir",
+                "en": "known directly, by virtue of one's state",
+                "pt": "conhecido diretamente, em virtude do estado"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Rahman (İsim)",
+                "en": "ar-Rahman (the Name)",
+                "pt": "ar-Rahman (o Nome)"
+              },
+              "note": {
+                "tr": "hal gereği ancak imanla görülür",
+                "en": "seen only through faith, by virtue of one's state",
+                "pt": "visto apenas pela fé, em virtude do estado"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İki isim de aynı Zâta işaret eder, ama biri geniş bilinir, öteki ancak imanla ayırt edilir.",
+            "en": "Both Names point to the same Essence, but one is widely known, the other discerned only through faith.",
+            "pt": "Ambos os Nomes apontam para a mesma Essência, mas um é amplamente conhecido, o outro só se discerne pela fé."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cocugun-hacci-ve-istitaat",
+      "heading": {
+        "tr": "Çocuğun Haccı ve Sebeplere Bel Bağlamamak",
+        "en": "The Child's Pilgrimage and Not Relying on Causes",
+        "pt": "A Peregrinação da Criança e o Não Depender das Causas"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Fasıllarda Dost, çocuğun haccının geçerliliğini tartışırken şaşırtıcı bir iddiada bulunur: <em>\"Bebeğin imanı, hiç kuşkusuz, büyükten daha tam olduğu gibi haccı da büyüğün haccından daha yetkindir.\"</em> (s.251) Bunu kendi kızıyla yaşadığı bir anıyla somutlaştırır -- süt emen kızının fıkhi bir soruya (gusül) doğru cevap vermesi karşısında kendisinin bayıldığını anlatır (s.251-252). İstitaat (güç yetirme) bahsinde ise sebeplerle ilişkiyi şöyle dengeye oturtur: <em>\"Sebeplerin etkisi, onlardan soyutlanmaktan daha güçlüdür. Sebeplerden soyutlanmak hikmete, onlara bel bağlamak ise bilgiye aykırıdır. İnsanın sebepleri kabul edip onlara göre davranması, fakat onlara bel bağlamaması gerekir. Sağlam adam, budur.\"</em> (s.253) Bize göre bu iki öğreti -- çocuğun fıtrat imanı ve sebeplere karşı dengeli duruş -- aynı bir noktaya işaret ediyor: en sahih hâl, ne saf bir hesap ne de saf bir teslimiyet, ikisi arasında durabilmek.",
+            "en": "In the sections on legal detail, Dost makes a surprising claim while discussing the validity of a child's pilgrimage: <em>\"Just as an infant's faith is, without doubt, more complete than an adult's, so too is the infant's pilgrimage more perfect than the adult's.\"</em> (p.251) He grounds this in a memory of his own daughter -- recounting how, when his nursing daughter gave the correct answer to a legal question (on ritual bathing), he himself fainted (p.251-252). On the question of capacity (istita'ah), he settles the relation to causes into a balance: <em>\"The effect of causes is stronger than detachment from them. Detachment from causes runs against wisdom, while relying on them runs against knowledge. A person must accept causes and act according to them, yet not rely on them. This is the sound man.\"</em> (p.253) To us, these two teachings -- the infant's innate faith, and the balanced stance toward causes -- seem to point to the same thing: the soundest state is neither pure calculation nor pure surrender, but the capacity to stand between the two.",
+            "pt": "Nas seções de detalhe jurídico, Dost faz uma afirmação surpreendente ao discutir a validade da peregrinação de uma criança: <em>\"Assim como a fé de um bebê é, sem dúvida, mais completa que a de um adulto, também a peregrinação do bebê é mais perfeita que a do adulto.\"</em> (p.251) Ele fundamenta isso numa memória de sua própria filha -- relatando como, quando sua filha ainda de colo deu a resposta correta a uma questão jurídica (sobre a ablução ritual), ele próprio desmaiou (p.251-252). Sobre a questão da capacidade (istita'ah), ele estabelece a relação com as causas num equilíbrio: <em>\"O efeito das causas é mais forte que o desprendimento delas. O desprendimento das causas vai contra a sabedoria, enquanto depender delas vai contra o conhecimento. A pessoa deve aceitar as causas e agir de acordo com elas, mas não depender delas. Este é o homem são.\"</em> (p.253) Para nós, esses dois ensinamentos -- a fé inata do bebê e a postura equilibrada diante das causas -- parecem apontar para a mesma coisa: o estado mais são não é nem o cálculo puro nem a entrega pura, mas a capacidade de permanecer entre os dois."
+          }
+        }
+      ]
+    },
+    {
+      "id": "vekillik-kapanisi",
+      "heading": {
+        "tr": "Vekillik: Üç Görüş ve Yolculuk Duası",
+        "en": "Deputyship: Three Views and the Traveler's Prayer",
+        "pt": "A Procuração: Três Visões e a Oração do Viajante"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, haccı yapma imkânı olmayanın vekil edinmesi bahsiyle kapanır. Dost, vekillik meselesinde üç farklı görüşü yan yana koyar: Hakk'ın kula vekil olması, kulun Hakk'a vekil olması, ya da bu iki yönün karşılıklı olması -- her birini tartışmaya açık bırakıp kendi tercihini keskin biçimde belirtmez. Kısmı, Peygamber'in yolculuk duasıyla kapatır: <em>\"Allah'ım! Sen yolculukta arkadaş, ailede vekilsin.\"</em> (s.254) Bize göre bu dua, kısmın en başındaki 'Allah ile' hac ilkesine güzel bir dönüş yapıyor -- yol arkadaşı olan Allah, aynı zamanda geride bırakılanın da vekili.",
+            "en": "The section closes with the matter of appointing a proxy for one unable to perform the pilgrimage in person. Dost sets three different views on deputyship side by side: the Real acting as proxy for the servant, the servant acting as proxy for the Real, or the two aspects being mutual -- leaving each open to debate without stating a sharp preference of his own. He closes the section with the Prophet's traveler's prayer: <em>\"O God! You are the companion on the journey, and the deputy over the family.\"</em> (p.254) To us, this prayer makes a fitting return to the section's opening principle of pilgrimage 'with God' -- the God who is a traveling companion is, at the same time, deputy over what is left behind.",
+            "pt": "A seção se encerra com a questão de nomear um procurador para quem não pode realizar a peregrinação pessoalmente. Dost coloca lado a lado três visões diferentes sobre a procuração: o Real agindo como procurador do servo, o servo agindo como procurador do Real, ou os dois aspectos sendo mútuos -- deixando cada uma aberta ao debate sem declarar uma preferência clara sua. Ele encerra a seção com a oração do viajante do Profeta: <em>\"Ó Deus! Tu és o companheiro na viagem, e o procurador sobre a família.\"</em> (p.254) Para nós, essa oração faz um retorno apropriado ao princípio de abertura da seção, a peregrinação 'com Deus' -- o Deus que é companheiro de viagem é, ao mesmo tempo, procurador sobre o que fica para trás."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXI, s. 254-255.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXI, pp. 254-255.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXI, pp. 254-255."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Hak → Kul",
+                "en": "The Real → Servant",
+                "pt": "O Real → o Servo"
+              },
+              "note": {
+                "tr": "birinci görüş: Hak, kulun vekilidir",
+                "en": "first view: the Real is proxy for the servant",
+                "pt": "primeira visão: o Real é procurador do servo"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Karşılıklı",
+                "en": "Mutual",
+                "pt": "Mútua"
+              },
+              "note": {
+                "tr": "üçüncü görüş: ikisi de birbirine vekildir",
+                "en": "third view: each is proxy for the other",
+                "pt": "terceira visão: cada um é procurador do outro"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Kul → Hak",
+                "en": "Servant → The Real",
+                "pt": "O Servo → o Real"
+              },
+              "note": {
+                "tr": "ikinci görüş: kul, Hakkın vekilidir",
+                "en": "second view: the servant is proxy for the Real",
+                "pt": "segunda visão: o servo é procurador do Real"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Dost, üç görüşü de tartışmaya açık bırakır, kendi tercihini keskin biçimde belirtmez.",
+            "en": "Dost leaves all three views open to debate, without sharply stating his own preference.",
+            "pt": "Dost deixa as três visões abertas ao debate, sem declarar claramente sua própria preferência."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXI (Ahmed Avni Konuk şerhi)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXI (Ahmed Avni Konuk's commentary)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXI (comentário de Ahmed Avni Konuk)"
+      },
+      "pageRange": "235-255"
+    }
+  ]
+}
