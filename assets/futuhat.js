@@ -19,6 +19,20 @@
     return I18n.pick3(dict);
   }
 
+  // Kısımlar iki farklı `sources` şemasıyla yazıldı: eski kısımlarda her
+  // kaynak düz {tr,en,pt} (sayfa aralığı metnin içine gömülü, "s. 291-299."
+  // gibi); Cilt III'ten (c2k28'den) itibaren {title:{tr,en,pt}, pageRange}
+  // olarak ayrıştırıldı. Bu fonksiyon olmadan yeni şemadaki kaynaklar
+  // tt(s) çağrısıyla boş string dönüyordu (s'in kendisinde tr/en/pt yok,
+  // s.title'da var) -- hem Kaynaklar popup'ı hem sayfa altındaki liste
+  // sessizce boş satırlar gösteriyordu.
+  function sourceLabel(s) {
+    if (s.title) {
+      return tt(s.title) + (s.pageRange ? `, s. ${s.pageRange}.` : "");
+    }
+    return tt(s);
+  }
+
   function linkify(text) {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text;
   }
@@ -842,7 +856,7 @@
         part.sources,
         (s, i) => `
           <button class="futuhat-popup__row" type="button" data-popup-idx="${i}">
-            <span class="futuhat-popup__row-title">${tt(s)}</span>
+            <span class="futuhat-popup__row-title">${sourceLabel(s)}</span>
           </button>
         `,
         (s, i) => navigateToSource(i)
@@ -891,7 +905,7 @@
       <section class="futuhat-sources">
         <p class="detail-eyebrow">${tt({ tr: "Kaynaklar", en: "Sources", pt: "Fontes" })}</p>
         <ul>
-          ${part.sources.map((s, i) => `<li data-source-index="${i}">${tt(s)}</li>`).join("")}
+          ${part.sources.map((s, i) => `<li data-source-index="${i}">${sourceLabel(s)}</li>`).join("")}
         </ul>
       </section>
     `;
