@@ -1,0 +1,435 @@
+{
+  "id": "c5k59",
+  "cilt": 5,
+  "kisim": 59,
+  "status": "active",
+  "title": {
+    "tr": "Vaktin Oğlu: Haftanın Günleri ve Oruç Sırları",
+    "en": "Son of the Moment: The Days of the Week and the Secrets of Fasting",
+    "pt": "Filho do Instante: Os Dias da Semana e os Segredos do Jejum"
+  },
+  "pageRange": "176-209",
+  "hero": {
+    "summary": {
+      "tr": "Elli Dokuzuncu Kısım, Aşure ve Arife'den sonra haftanın kendi günlerine döner: Cuma, Cumartesi ve Pazar'ın her biri ayrı bir isme ve mertebeye bağlanır. Hilalin görülüşünden Dâvûd, Meryem ve İsa'nın oruçlarına, misvakın gizli anlamından Rabbin sofrasına konuk olmaya uzanan bu kısımda, Dost bize sık sık aynı cümleyi hatırlatır: insan, ne geçmişin ne geleceğin değil, yalnızca içinde bulunduğu vaktin çocuğudur.",
+      "en": "The Fifty-Ninth Section turns from Ashura and Arafah to the week's own days: Friday, Saturday, and Sunday, each tied to its own Name and rank. From the sighting of the new moon to the fasts of David, Mary, and Jesus, from the hidden meaning of the tooth-stick to being a guest at the Lord's table, Dost keeps returning to one sentence: a person is the child of the moment they are in -- neither the past nor the future rules over them.",
+      "pt": "A Quinquagésima Nona Parte volta de Achura e Arafah para os próprios dias da semana: sexta, sábado e domingo, cada um ligado a um Nome e a uma categoria própria. Do avistamento da lua nova aos jejuns de Davi, Maria e Jesus, do sentido oculto do graveto dental a ser hóspede à mesa do Senhor, Dost volta sempre à mesma frase: o ser humano é filho do instante em que se encontra -- nem o passado nem o futuro têm domínio sobre ele."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Kısım 59'da işlenen beş eksen ve her birinin bağlandığı tema.",
+      "en": "The five axes taken up in Part 59, and the theme each is tied to.",
+      "pt": "Os cinco eixos tratados na Parte 59, e o tema ao qual cada um está ligado."
+    },
+    "tree": {
+      "id": "kisim-lix-tree",
+      "label": {
+        "tr": "Elli Dokuzuncu Kısım: Günlerin ve Orucun Perdeleri",
+        "en": "Part Fifty-Nine: The Veils of Days and Fasting",
+        "pt": "Parte Cinquenta e Nove: Os Véus dos Dias e do Jejum"
+      },
+      "note": {
+        "tr": "Cuma günü orucu tartışmasıyla açılır, haftanın günlerinden nebilerin oruçlarına, oradan âdâba ve visal orucuna uzanır.",
+        "en": "Opens with the debate over the Friday fast, moves from the days of the week to the fasts of the prophets, then to etiquette and the fast of visal.",
+        "pt": "Abre-se com o debate sobre o jejum de sexta-feira, passa dos dias da semana aos jejuns dos profetas, depois à etiqueta e ao jejum de visal."
+      },
+      "children": [
+        {
+          "id": "haftanin-gunleri-dal",
+          "label": {
+            "tr": "Haftanın Günleri",
+            "en": "Days of the Week",
+            "pt": "Os Dias da Semana"
+          },
+          "note": {
+            "tr": "Cuma, Cumartesi, Pazar -- her biri ayrı bir isim ve mertebeye bağlı.",
+            "en": "Friday, Saturday, Sunday -- each tied to its own Name and rank.",
+            "pt": "Sexta, sábado, domingo -- cada um ligado a um Nome e categoria próprios."
+          }
+        },
+        {
+          "id": "vakit-ve-hilal-dal",
+          "label": {
+            "tr": "Vakit ve Hilal",
+            "en": "The Moment and the New Moon",
+            "pt": "O Instante e a Lua Nova"
+          },
+          "note": {
+            "tr": "İnsan vaktinin oğludur; hilal tanıklığı zâhir ve bâtın şahidi bir arada ister.",
+            "en": "A person is the child of the moment; witnessing the new moon calls for both an outer and an inner witness.",
+            "pt": "O ser humano é filho do instante; testemunhar a lua nova exige uma testemunha exterior e uma interior."
+          }
+        },
+        {
+          "id": "nebiler-orucu-dal",
+          "label": {
+            "tr": "Nebilerin Orucu",
+            "en": "The Fasting of the Prophets",
+            "pt": "O Jejum dos Profetas"
+          },
+          "note": {
+            "tr": "Dâvûd, Meryem, İsa ve ed-Dehr -- artan yoğunlukta dört ölçü.",
+            "en": "David, Mary, Jesus, and ed-Dehr -- four measures of increasing intensity.",
+            "pt": "Davi, Maria, Jesus e ed-Dahr -- quatro medidas de intensidade crescente."
+          }
+        },
+        {
+          "id": "zikir-teskrik-dal",
+          "label": {
+            "tr": "Zikir ve Teşrik Günleri",
+            "en": "Remembrance and the Days of Tashriq",
+            "pt": "Lembrança e os Dias de Tashriq"
+          },
+          "note": {
+            "tr": "Teşrik günlerinde zikrin oruçtan üstün tutulması tartışılır.",
+            "en": "On the days of Tashriq, remembrance is debated as superior to fasting.",
+            "pt": "Nos dias de Tashriq, discute-se se a lembrança é superior ao jejum."
+          }
+        },
+        {
+          "id": "misvak-konukluk-dal",
+          "label": {
+            "tr": "Misvak ve Konukluk",
+            "en": "The Tooth-Stick and Being a Guest",
+            "pt": "O Miswak e a Hospedagem"
+          },
+          "note": {
+            "tr": "Misvakın gizli anlamı ve sûfînin Rabbin konuğu oluşu.",
+            "en": "The hidden meaning of the tooth-stick, and the Sufi as guest of the Lord.",
+            "pt": "O sentido oculto do miswak, e o sufi como hóspede do Senhor."
+          }
+        },
+        {
+          "id": "vacip-visal-dal",
+          "label": {
+            "tr": "Vâcip Günler ve Visal",
+            "en": "The Obligatory Days and Visal",
+            "pt": "Os Dias Obrigatórios e o Visal"
+          },
+          "note": {
+            "tr": "Vacip oruç günlerinin sayısı ve Ramazan'ın visal orucuyla kapanışı.",
+            "en": "The number of obligatory fasting days, and Ramadan's closing with the fast of visal.",
+            "pt": "O número de dias de jejum obrigatório, e o encerramento do Ramadã com o jejum de visal."
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "cuma-cumartesi-pazar",
+      "heading": {
+        "tr": "Cuma, Cumartesi, Pazar: Üç Günün Üç İsmi",
+        "en": "Friday, Saturday, Sunday: Three Days, Three Names",
+        "pt": "Sexta, Sábado, Domingo: Três Dias, Três Nomes"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, Cuma günü orucu üzerindeki fıkhî tartışmayla açılır: bazı bilginlere göre bu oruç, önceki veya sonraki günle birlikte tutulmadıkça mekruhtur -- Hz. Peygamber'in Cüveyriye'ye sorduğu meşhur soru (\"dün tuttun mu, yarın tutacak mısın?\") bunun delilidir. Ama Dost'un asıl ilgisi fıkhın ötesinde: ona göre Cuma, insanın yaratılışının tamamlandığı gün olduğu için el-Evvel ve el-Âhir isimleriyle, gündüzü ve gecesiyle de ez-Zâhir ve el-Bâtın isimleriyle birlikte anılır. <em>\"Bu garip şeylerden biridir: Allah'ın rahmetinden yaratılmış, ama rahmetten daha geniş!\"</em> (s.176) derken Dost, insan kalbinin -- yaratılmış olmasına rağmen -- kendisini yaratan rahmeti bile kuşatabildiğine işaret ediyor gibi görünüyor. Orucun kendisi de bu tekilliğe ortak: <em>\"Orucun ise, ibadetler içinde bir benzeri yoktur. Bu sayede oruç, 'benzerin olmayışı' özelliğinde benzeri olmayana (Hak) benzemiştir.\"</em> (s.177)",
+            "en": "Dost opens with the juridical debate over the Friday fast: some scholars hold it disliked unless paired with the day before or after -- the famous question the Prophet put to Juwayriyah (\"did you fast yesterday? will you fast tomorrow?\") is offered as evidence. But Dost's real interest lies beyond jurisprudence: for him, Friday is the day on which the human being's creation is completed, and so it carries the Names al-Awwal and al-Akhir, while its day and night carry az-Zahir and al-Batin. When he says, <em>\"This is one of the strange things: created from God's mercy, yet wider than mercy!\"</em> (p.176), Dost seems to be pointing to how the human heart -- though itself created -- can still encompass the very mercy that created it. The fast itself shares in this singularity: <em>\"Fasting has no likeness among acts of worship. Through this, in its very lack of likeness, fasting resembles the One who has no likeness (the Real).\"</em> (p.177)",
+            "pt": "Dost abre com o debate jurídico sobre o jejum de sexta-feira: para alguns sábios, ele é reprovável a menos que acompanhado do dia anterior ou posterior -- a famosa pergunta que o Profeta fez a Juwayriyah (\"jejuaste ontem? jejuarás amanhã?\") é citada como prova. Mas o real interesse de Dost está além da jurisprudência: para ele, a sexta-feira é o dia em que a criação do ser humano se completa, e por isso carrega os Nomes al-Awwal e al-Akhir, enquanto seu dia e sua noite carregam az-Zahir e al-Batin. Ao dizer <em>\"Esta é uma das coisas estranhas: criado a partir da misericórdia de Deus, e ainda assim mais amplo que a misericórdia!\"</em> (p.176), Dost parece apontar para como o coração humano -- mesmo sendo criado -- consegue abarcar a própria misericórdia que o criou. O próprio jejum compartilha dessa singularidade: <em>\"O jejum não tem semelhante entre os atos de adoração. Por isso, em sua própria falta de semelhante, o jejum se assemelha Àquele que não tem semelhante (o Real).\"</em> (p.177)"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LIX, s. 176-182.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LIX, pp. 176-182.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LIX, pp. 176-182."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Cuma",
+                "en": "Friday",
+                "pt": "Sexta-feira"
+              },
+              "note": {
+                "tr": "el-Evvel/el-Âhir, ez-Zâhir/el-Bâtın -- yaratılışın tamamlandığı, benzeri olmayan gün.",
+                "en": "al-Awwal/al-Akhir, az-Zahir/al-Batin -- the day creation is completed, a day with no likeness.",
+                "pt": "al-Awwal/al-Akhir, az-Zahir/al-Batin -- o dia em que a criação se completa, um dia sem semelhante."
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Cumartesi",
+                "en": "Saturday",
+                "pt": "Sábado"
+              },
+              "note": {
+                "tr": "Ebedilik günü -- gecesi cehennemliklere, gündüzü cennetliklere ait.",
+                "en": "The day of eternity -- its night belongs to the people of Hell, its day to the people of Paradise.",
+                "pt": "O dia da eternidade -- sua noite pertence ao povo do Inferno, seu dia ao povo do Paraíso."
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Pazar",
+                "en": "Sunday",
+                "pt": "Domingo"
+              },
+              "note": {
+                "tr": "Tenzih ve ilklik günü -- oruç da bir tenzih niteliğidir.",
+                "en": "The day of transcendence and primacy -- fasting too is a quality of transcendence.",
+                "pt": "O dia da transcendência e da primazia -- o jejum também é uma qualidade de transcendência."
+              }
+            }
+          },
+          "caption": {
+            "tr": "Haftanın üç günü, üç ayrı isim ve mertebeyle anılır.",
+            "en": "The week's three days are named after three distinct Names and ranks.",
+            "pt": "Os três dias da semana são nomeados por três Nomes e categorias distintos."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hilalin-iki-sahidi",
+      "heading": {
+        "tr": "Hilalin İki Şahidi: Vaktin Oğlu",
+        "en": "The Moon's Two Witnesses: Son of the Moment",
+        "pt": "As Duas Testemunhas da Lua Nova: Filho do Instante"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ramazan hilalinin görülüşü meselesinde Dost, tek bir tanığın yeterli olup olmadığını tartışır ve bunu zâhir ile bâtın arasındaki çift tanıklık ilkesine bağlar: gökteki hilal zâhir şahittir, insanın kendi vaktini hissedişi ise bâtın şahit. Bu ikisinin birlikte aranması gerektiğini söylerken Dost, orucun neden tam da bir 'an' meselesi olduğunu da açıklamış olur -- çünkü <em>\"insan veya sûfi, vaktinin oğludur; ne geçmiş ne gelecek zaman, onun üzerinde hüküm sahibidir.\"</em> (s.184) Bu cümle, Dost'un pek çok yerde tekrarladığı bir ilkenin en yalın söylenişlerinden biri: hakikat, geçmişte kalan hafızada ya da gelecekte beklenen bir vaatte değil, yalnızca şimdi, bu nefeste bulunur.",
+            "en": "On the question of sighting the Ramadan crescent, Dost debates whether a single witness suffices, and ties this to the principle of double testimony between the outer and the inner: the crescent in the sky is the outer witness, a person's own sensing of their moment is the inner one. In saying both must be sought together, Dost also explains why fasting is precisely a matter of a single instant -- for <em>\"a person, or a Sufi, is the child of their moment; neither past nor future time holds authority over them.\"</em> (p.184) This is one of the plainest statements of a principle Dost repeats in many places: the truth is not found in a memory left behind or a promise awaited ahead, but only now, in this breath.",
+            "pt": "Na questão do avistamento da lua nova do Ramadã, Dost debate se uma única testemunha basta, e liga isso ao princípio do duplo testemunho entre o exterior e o interior: o crescente no céu é a testemunha exterior, o próprio sentir do instante pela pessoa é a interior. Ao dizer que ambos devem ser buscados juntos, Dost também explica por que o jejum é precisamente uma questão de um único instante -- pois <em>\"o ser humano, ou o sufi, é filho do seu instante; nem o tempo passado nem o futuro têm autoridade sobre ele.\"</em> (p.184) Esta é uma das afirmações mais simples de um princípio que Dost repete em muitos lugares: a verdade não se encontra numa memória deixada para trás nem numa promessa aguardada adiante, mas apenas agora, neste sopro."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LIX, s. 182-186.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LIX, pp. 182-186.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LIX, pp. 182-186."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Zâhir Şahit",
+                "en": "Outer Witness",
+                "pt": "Testemunha Exterior"
+              },
+              "note": {
+                "tr": "gökteki hilalin görülmesi",
+                "en": "the sighting of the crescent in the sky",
+                "pt": "o avistamento do crescente no céu"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Bâtın Şahit",
+                "en": "Inner Witness",
+                "pt": "Testemunha Interior"
+              },
+              "note": {
+                "tr": "insanın kendi vaktini hissedişi",
+                "en": "a person's own sensing of their moment",
+                "pt": "o próprio sentir do instante pela pessoa"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Hilal tanıklığı, dış gözle iç hissin bir arada aranmasını ister.",
+            "en": "Witnessing the crescent calls for the outer eye and the inner sense to be sought together.",
+            "pt": "Testemunhar o crescente exige que o olho exterior e o sentir interior sejam buscados juntos."
+          }
+        }
+      ]
+    },
+    {
+      "id": "davud-meryem-isa-orucu",
+      "heading": {
+        "tr": "Dâvûd'dan İsa'ya: Nebilerin Oruç Ölçüsü",
+        "en": "From David to Jesus: The Prophets' Measure of Fasting",
+        "pt": "De Davi a Jesus: A Medida do Jejum dos Profetas"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dost, nebilerin oruçlarını artan bir yoğunluk sırasıyla anar: Dâvûd bir gün tutar bir gün tutmaz -- dengeyi temsil eder; Meryem'in orucu bu dengeyi biraz aşarak iki gün oruç bir gün ara şeklindedir; İsa ise -- bir rivayete göre -- bütün yılı oruçla geçirir. Dost, İsa'nın bu aşırılığını ed-Dehr ve el-Kayyûm isimleriyle açıklar: <em>\"O, âlemde gündüz ed-Dehr ismiyle, gece ise kendisini uyuma ve gafletin almadığı el-Kayyûm ismiyle zuhur ederdi.\"</em> (s.196) Bu ölçek, sanki orucun kendisinin de bir 'nebiler hiyerarşisi' içinde okunabileceğini düşündürüyor -- her ölçü bir dengeyi, bir sonraki ise o dengenin biraz ötesini gösteriyor.",
+            "en": "Dost recalls the fasts of the prophets in an order of increasing intensity: David fasts one day and breaks it the next -- representing balance; Mary's fast slightly exceeds this balance, two days of fasting to one day's pause; Jesus, according to one account, spends the entire year fasting. Dost explains this excess in Jesus through the Names ed-Dahr and al-Qayyum: <em>\"By day he would appear in the world through the Name ed-Dahr, and by night through al-Qayyum, the Name that neither sleep nor heedlessness takes hold of.\"</em> (p.196) This scale suggests that fasting itself might be read within a kind of 'hierarchy of prophets' -- each measure showing a balance, and the next showing something just beyond that balance.",
+            "pt": "Dost recorda os jejuns dos profetas numa ordem de intensidade crescente: Davi jejua um dia e rompe no seguinte -- representando o equilíbrio; o jejum de Maria excede um pouco esse equilíbrio, dois dias de jejum para um dia de pausa; Jesus, segundo um relato, passa o ano inteiro jejuando. Dost explica esse excesso em Jesus através dos Nomes ed-Dahr e al-Qayyum: <em>\"Ele aparecia no mundo de dia pelo Nome ed-Dahr, e de noite pelo al-Qayyum, o Nome que nem o sono nem o descuido tomam.\"</em> (p.196) Essa escala sugere que o próprio jejum poderia ser lido dentro de uma espécie de 'hierarquia dos profetas' -- cada medida mostrando um equilíbrio, e a seguinte mostrando algo um pouco além desse equilíbrio."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LIX, s. 194-197.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LIX, pp. 194-197.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LIX, pp. 194-197."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Dâvûd",
+                "en": "David",
+                "pt": "Davi"
+              },
+              "note": {
+                "tr": "bir gün oruç, bir gün ara -- denge",
+                "en": "one day fasting, one day rest -- balance",
+                "pt": "um dia de jejum, um dia de descanso -- equilíbrio"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Meryem",
+                "en": "Mary",
+                "pt": "Maria"
+              },
+              "note": {
+                "tr": "iki gün oruç, bir gün ara",
+                "en": "two days fasting, one day rest",
+                "pt": "dois dias de jejum, um dia de descanso"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "İsa (ed-Dehr)",
+                "en": "Jesus (ed-Dahr)",
+                "pt": "Jesus (ed-Dahr)"
+              },
+              "note": {
+                "tr": "bütün yıl -- ed-Dehr/el-Kayyûm",
+                "en": "the whole year -- ed-Dahr/al-Qayyum",
+                "pt": "o ano inteiro -- ed-Dahr/al-Qayyum"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Üç nebinin orucu, dengeden aşırılığa doğru artan bir ölçek gibi okunabilir.",
+            "en": "The fasts of the three prophets can be read as a scale rising from balance toward excess.",
+            "pt": "Os jejuns dos três profetas podem ser lidos como uma escala que cresce do equilíbrio ao excesso."
+          }
+        }
+      ]
+    },
+    {
+      "id": "zikir-ve-teskrik-gunleri",
+      "heading": {
+        "tr": "Teşrik Günlerinde Zikir mi, Oruç mu?",
+        "en": "On the Days of Tashriq: Remembrance or Fasting?",
+        "pt": "Nos Dias de Tashriq: Lembrança ou Jejum?"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Teşrik günlerinde (bayramı izleyen üç gün) oruç tutmanın yasak olmasını Dost, bu günlerin zikre ayrıldığı fikriyle açıklar: <em>\"Sen ibadette Allah'ı zikrettiğinde, seninle oturan Allah'tır.\"</em> (s.190) Bir sûfiden aktarılan şu cevap, zikrin nasıl bir müşahedeye dönüştüğünü gösterir -- kendisine 'Allah ile yalnız kaldığında beni hatırla' denildiğinde, <em>\"Seni hatırlarsam Allah ile yalnız kalamam\"</em> demiştir (s.191). Aynı bölümde Dost, oruçluyken bir davete icabet etmenin edebini de ele alır ve şu ölçüyü verir: <em>\"Sadakaların en üstünü nefsine verdiğin sadakadır.\"</em> (s.194) -- yani orucu bozup davete katılmak, bazen nefse karşı bir cömertlik olarak okunabilir.",
+            "en": "Dost explains the prohibition on fasting during the days of Tashriq (the three days following the festival) through the idea that these days are set aside for remembrance: <em>\"When you remember God in worship, it is God who sits with you.\"</em> (p.190) A reply attributed to a Sufi shows how remembrance can turn into a kind of witnessing -- told 'remember me when you are alone with God,' he answered, <em>\"If I remembered you, I could not be alone with God.\"</em> (p.191) In the same passage Dost also takes up the etiquette of accepting an invitation while fasting, offering this measure: <em>\"The best of charities is the charity you give to your own self.\"</em> (p.194) -- meaning that breaking one's fast to join an invitation can sometimes be read as a generosity toward the self.",
+            "pt": "Dost explica a proibição de jejuar nos dias de Tashriq (os três dias que seguem a festa) pela ideia de que esses dias são reservados à lembrança: <em>\"Quando lembras de Deus na adoração, é Deus quem se senta contigo.\"</em> (p.190) Uma resposta atribuída a um sufi mostra como a lembrança pode se tornar uma espécie de testemunho -- ao lhe dizerem 'lembra-te de mim quando estiveres a sós com Deus', ele respondeu: <em>\"Se me lembrasse de ti, não poderia estar a sós com Deus.\"</em> (p.191) Na mesma passagem, Dost também trata da etiqueta de aceitar um convite enquanto se jejua, oferecendo esta medida: <em>\"A melhor das esmolas é a esmola que dás a ti mesmo.\"</em> (p.194) -- ou seja, romper o jejum para atender a um convite pode às vezes ser lido como uma generosidade para consigo mesmo."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LIX, s. 188-194.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LIX, pp. 188-194.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LIX, pp. 188-194."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Oruç (Terk)",
+                "en": "Fasting (Renunciation)",
+                "pt": "Jejum (Renúncia)"
+              },
+              "note": {
+                "tr": "nefsin isteklerinden çekilme",
+                "en": "withdrawing from the self's desires",
+                "pt": "retirar-se dos desejos do ego"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Zikir (İsbat)",
+                "en": "Remembrance (Affirmation)",
+                "pt": "Lembrança (Afirmação)"
+              },
+              "note": {
+                "tr": "Allah ile birlikte oturma bilinci",
+                "en": "the awareness of sitting together with God",
+                "pt": "a consciência de sentar-se junto com Deus"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Teşrik günlerinde terk yerini isbata, oruç yerini zikre bırakır.",
+            "en": "On the days of Tashriq, renunciation gives way to affirmation, fasting to remembrance.",
+            "pt": "Nos dias de Tashriq, a renúncia cede lugar à afirmação, o jejum à lembrança."
+          }
+        }
+      ]
+    },
+    {
+      "id": "misvak-ve-konukluk",
+      "heading": {
+        "tr": "Misvakın Sırrı ve Rabbin Konukları",
+        "en": "The Secret of the Tooth-Stick and the Guests of the Lord",
+        "pt": "O Segredo do Miswak e os Hóspedes do Senhor"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Oruçluyken misvak kullanmanın câizliğini tartışırken Dost, kelimenin kendisinde gizli bir işarete döner: <em>\"'Sivâke' (senden başkası demektir), yani senden başkası Rabbindir... Rabbin vasıtasıyla namaz kılman nefsin vasıtasıyla namaz kılmandan hayırlıdır.\"</em> (s.202) Ebu Medyen'den aktardığı bir söz bu iki okumayı -- zâhir (diş temizliği) ve bâtın (Rabb'e işaret) -- bir arada tutmanın erdemini özetler: <em>\"İki ucu birleştiren, Sünnet ve bilgide kâmil olandır.\"</em> (s.202)",
+            "en": "In discussing whether using the tooth-stick is permitted while fasting, Dost turns to a hidden hint within the word itself: <em>\"'Siwak' (meaning 'other than you'), that is, other than you is your Lord... To pray by means of your Lord is better than to pray by means of your self.\"</em> (p.202) A saying he quotes from Abu Madyan sums up the virtue of holding both readings -- outer (cleaning the teeth) and inner (a pointer to the Lord) -- together: <em>\"The one who is perfect in the Sunnah and in knowledge is the one who joins the two ends.\"</em> (p.202)",
+            "pt": "Ao discutir se o uso do miswak é permitido durante o jejum, Dost se volta para uma pista oculta na própria palavra: <em>\"'Siwak' (que significa 'outro que não tu'), isto é, outro que não tu é o teu Senhor... Rezar por meio do teu Senhor é melhor do que rezar por meio de ti mesmo.\"</em> (p.202) Um dito que ele cita de Abu Madyan resume a virtude de sustentar juntas as duas leituras -- exterior (limpar os dentes) e interior (um apontar para o Senhor): <em>\"Aquele que é perfeito na Sunnah e no conhecimento é quem une as duas pontas.\"</em> (p.202)"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, misafirin -- yani sûfînin -- Allah'ın konuğu oluşu üzerine bir bölümle devam eder. Ebu Medyen'e atfedilen bir kıssada, kendisine bir meslek edinmesi söylendiğinde verdiği cevap aktarılır: <em>\"Biz Rabbimizin konuklarıyız. Biz sonsuza dek evine yerleşmek üzere O'na konuk olduk.\"</em> (s.205) Dost, oruç ile misafirlik arasındaki bu bağı, orucun aslında kulun kendi rızkını değil Rabbinin sofrasını beklediği bir hâl olarak okur -- iftar, bu bekleyişin günlük bir küçük tekrarıdır.",
+            "en": "The section continues with a passage on the guest -- that is, the Sufi -- being God's guest. In a story attributed to Abu Madyan, when he was told to take up a trade, his reply is recorded: <em>\"We are guests of our Lord. We have become His guests in order to settle in His house forever.\"</em> (p.205) Dost reads this bond between fasting and being a guest as a state in which the servant is not, in truth, awaiting their own provision but the Lord's table -- breaking the fast is a small daily repetition of that waiting.",
+            "pt": "A seção continua com uma passagem sobre o hóspede -- isto é, o sufi -- sendo hóspede de Deus. Numa história atribuída a Abu Madyan, quando lhe disseram para adotar um ofício, sua resposta é registrada: <em>\"Somos hóspedes do nosso Senhor. Tornamo-nos Seus hóspedes para nos estabelecermos em Sua casa para sempre.\"</em> (p.205) Dost lê esse vínculo entre o jejum e ser hóspede como um estado em que o servo não está, na verdade, à espera do próprio sustento, mas da mesa do Senhor -- romper o jejum é uma pequena repetição diária dessa espera."
+          }
+        }
+      ]
+    },
+    {
+      "id": "vacip-gunler-ve-visal",
+      "heading": {
+        "tr": "Sayılamayan Günler ve Orucun Sonu",
+        "en": "Days That Cannot Be Counted, and the End of the Fast",
+        "pt": "Dias que Não Podem Ser Contados, e o Fim do Jejum"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Vacip oruç günlerinin sayısını (Ramazan'ın 29 veya 30 günü ile birlikte toplamda değişen bir toplam) ele alırken Dost, bu sayılar arasındaki ilişkiyi tam olarak açıklamaktan kaçınır -- ve bunu bilerek yaptığını söyler: <em>\"Seni bu ilişkileri ortaya çıkartma hususunda kendi haline bıraktık... Bu durum, beni bu ilişkileri açıklamaktan engelledi.\"</em> (s.199) Bu, Dost'un külliyatında sık karşılaştığımız bir jestin -- işaret edip açıklamama jestinin -- bir başka örneği: bir sır, taşınamayacağı için değil, okuyucunun kendi çabasıyla bulması gerektiği için sessizlikte bırakılıyor.",
+            "en": "In taking up the number of obligatory fasting days (a total that varies together with Ramadan's 29 or 30 days), Dost avoids fully explaining the relation among these numbers -- and says he does so deliberately: <em>\"We have left you to your own devices in bringing these relations to light... This has kept me from explaining these relations.\"</em> (p.199) This is another instance of a gesture we meet often across Dost's corpus -- pointing without explaining: a secret is left in silence not because it cannot be borne, but because the reader is meant to find it through their own effort.",
+            "pt": "Ao tratar do número de dias de jejum obrigatório (um total que varia junto com os 29 ou 30 dias do Ramadã), Dost evita explicar por completo a relação entre esses números -- e diz que o faz deliberadamente: <em>\"Deixamos-te por tua própria conta para trazer essas relações à luz... Isso me impediu de explicar essas relações.\"</em> (p.199) Este é mais um exemplo de um gesto que encontramos com frequência ao longo do corpus de Dost -- apontar sem explicar: um segredo é deixado em silêncio não porque não possa ser suportado, mas porque cabe ao leitor encontrá-lo por seu próprio esforço."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Ramazan orucu ve visal (aralıksız oruç) üzerine bir kapanışla biter. Dost, visalin -- Hz. Peygamber'in yasakladığı ama kendisinin istisna tutulduğu bu hâlin -- bir tadılış meselesi olduğunu, kendi tecrübesinden aktararak anlatır: <em>\"'Aranızdan birisi gibi değilim, ben gecelerim ve Rabbim beni yedirir ve içirir' hadisinin ne anlama geldiğini buradan öğrendim... Bizzat kendim bunu tecrübe ettim.\"</em> (s.208-209) Ardından kısmı bir şiirle kapatır: <em>\"Oruçta gerçekte benim bir katkım yok ki!\"</em> (s.209) -- oruç tutan kul, sonunda kendi fiilinin bile ödünç olduğunu görür.",
+            "en": "The section closes with a passage on the fast of Ramadan and visal (unbroken fasting). Dost relates, drawing on his own experience, that visal -- a state the Prophet forbade but was himself exempted from -- is a matter of tasting: <em>\"I learned from this what the hadith means: 'I am not like one of you; I pass the night and my Lord feeds and gives me to drink' ... I myself have tasted this.\"</em> (p.208-209) He then closes the section with a verse: <em>\"In fasting, truly, I have no part of my own!\"</em> (p.209) -- the fasting servant comes, in the end, to see that even their own act was only ever borrowed.",
+            "pt": "A seção se encerra com uma passagem sobre o jejum do Ramadã e o visal (jejum ininterrupto). Dost relata, a partir de sua própria experiência, que o visal -- um estado que o Profeta proibiu mas do qual ele próprio foi isento -- é uma questão de provar: <em>\"Aprendi com isso o que significa o hadith: 'Não sou como um de vós; passo a noite e meu Senhor me alimenta e me dá de beber' ... Eu mesmo provei isso.\"</em> (p.208-209) Em seguida encerra a seção com um verso: <em>\"No jejum, na verdade, não tenho parte alguma minha!\"</em> (p.209) -- o servo jejuante vem, ao final, a ver que até seu próprio ato era apenas emprestado."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LIX (Ahmed Avni Konuk şerhi)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LIX (Ahmed Avni Konuk's commentary)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LIX (comentário de Ahmed Avni Konuk)"
+      },
+      "pageRange": "176-209"
+    }
+  ]
+}
