@@ -1,0 +1,403 @@
+{
+  "id": "c5k62",
+  "cilt": 5,
+  "kisim": 62,
+  "status": "active",
+  "title": {
+    "tr": "Zaman, Mekân ve Niyet Arasında: Haccın Mikatları",
+    "en": "Between Time, Place, and Intention: The Thresholds of Pilgrimage",
+    "pt": "Entre Tempo, Lugar e Intenção: Os Limiares da Peregrinação"
+  },
+  "pageRange": "258-279",
+  "hero": {
+    "summary": {
+      "tr": "Altmış İkinci Kısım, Kısım 61'in vekillik bahsini sürdürerek açılır ve haccın sınırlarını -- vekilin durumu, kölenin haccı, kadının farziyeti, umrenin ziyaret oluşu, mekân ve zaman mikatları -- tek tek işler. Dost, kurban kıssalarından (İbrahim-koç, bir şeyhin kızını fidye vermesi) el-Evvel/el-Ahir isimlerinin iç içeliğine, oradan Şibli'nin ünlü hac sorgusuna uzanır: zâhiren yapılan her hareketin, aslında yapılıp yapılmadığını sorgulayan bir dizi soru-cevapla kısmı kapatır.",
+      "en": "The Sixty-Second Section opens by continuing Part 61's discussion of deputyship, then takes up the thresholds of pilgrimage one by one -- the deputy's own standing, a slave's pilgrimage, its obligation upon women, the pilgrimage of visitation that is umrah, and the thresholds of place and time. Dost moves from stories of ransom and sacrifice (Abraham and the ram, a shaykh who offered his daughter as ransom) to the interweaving of the Names al-Awwal and al-Akhir, and closes with Shibli's famous interrogation of pilgrimage: a chain of questions and answers that asks whether each outwardly performed act was, in truth, performed at all.",
+      "pt": "A Sexagésima Segunda Parte se abre continuando a discussão da Parte 61 sobre a procuração, depois trata um a um dos limiares da peregrinação -- a posição do procurador, a peregrinação de um escravo, sua obrigatoriedade para as mulheres, a peregrinação de visitação que é a umrah, e os limiares de lugar e tempo. Dost passa de histórias de resgate e sacrifício (Abraão e o carneiro, um xeque que ofereceu sua filha em resgate) ao entrelaçamento dos Nomes al-Awwal e al-Akhir, e encerra com o célebre interrogatório de Shibli sobre a peregrinação: uma cadeia de perguntas e respostas que questiona se cada ato realizado exteriormente foi, de fato, realizado."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Kısım 62'de işlenen altı eksen ve her birinin bağlandığı tema.",
+      "en": "The six axes taken up in Part 62, and the theme each is tied to.",
+      "pt": "Os seis eixos tratados na Parte 62, e o tema ao qual cada um está ligado."
+    },
+    "tree": {
+      "id": "kisim-lxii-tree",
+      "label": {
+        "tr": "Altmış İkinci Kısım: Haccın Mikatları ve Bâtını",
+        "en": "Part Sixty-Two: The Thresholds of Pilgrimage and Their Inward Meaning",
+        "pt": "Parte Sessenta e Dois: Os Limiares da Peregrinação e Seu Sentido Interior"
+      },
+      "note": {
+        "tr": "Vekillik bahsiyle açılır, kölenin haccı ve umrenin ziyaret oluşundan mekân ve zaman mikatlarına, oradan Şibli'nin sorgusuna uzanır.",
+        "en": "Opens with deputyship, moves through the slave's pilgrimage and umrah as visitation to the thresholds of place and time, then to Shibli's interrogation.",
+        "pt": "Abre-se com a procuração, passa pela peregrinação do escravo e a umrah como visitação até os limiares de lugar e tempo, depois ao interrogatório de Shibli."
+      },
+      "children": [
+        {
+          "id": "vekillik-isar-dal",
+          "label": {
+            "tr": "Vekillik ve Îsâr",
+            "en": "Deputyship and Self-Sacrifice",
+            "pt": "Procuração e Auto-Sacrifício"
+          },
+          "note": {
+            "tr": "Vekilin kendi haccını önce yapması şartı.",
+            "en": "The requirement that the deputy first perform his own pilgrimage.",
+            "pt": "A exigência de que o procurador faça primeiro sua própria peregrinação."
+          }
+        },
+        {
+          "id": "kolelik-dal",
+          "label": {
+            "tr": "Kölenin Haccı",
+            "en": "The Slave's Pilgrimage",
+            "pt": "A Peregrinação do Escravo"
+          },
+          "note": {
+            "tr": "Şer'i kölelik ile azatlık kabul etmeyen kölelik arasındaki fark.",
+            "en": "The difference between legal servitude and servitude that accepts no manumission.",
+            "pt": "A diferença entre a servidão jurídica e a servidão que não aceita alforria."
+          }
+        },
+        {
+          "id": "hac-umre-dal",
+          "label": {
+            "tr": "Hac ve Umre: İki Ziyaret",
+            "en": "Hajj and Umrah: Two Visitations",
+            "pt": "Hajj e Umrah: Duas Visitações"
+          },
+          "note": {
+            "tr": "Kimin kimi ziyaret ettiği -- oruç ile haccın karşılaştırılması.",
+            "en": "Who visits whom -- fasting compared with pilgrimage.",
+            "pt": "Quem visita quem -- o jejum comparado com a peregrinação."
+          }
+        },
+        {
+          "id": "mikat-kurban-dal",
+          "label": {
+            "tr": "Mekân Mikatları ve Kurban",
+            "en": "The Thresholds of Place and Sacrifice",
+            "pt": "Os Limiares de Lugar e o Sacrifício"
+          },
+          "note": {
+            "tr": "İbrahim-koç ve şeyh-kız kıssaları, teraziler.",
+            "en": "The stories of Abraham and the ram, and the shaykh and his daughter; the scales.",
+            "pt": "As histórias de Abraão e o carneiro, e do xeque e sua filha; as balanças."
+          }
+        },
+        {
+          "id": "evvel-ahir-dehr-dal",
+          "label": {
+            "tr": "el-Evvel, el-Ahir ve ed-Dehr",
+            "en": "al-Awwal, al-Akhir, and ad-Dahr",
+            "pt": "al-Awwal, al-Akhir e ad-Dahr"
+          },
+          "note": {
+            "tr": "Hz. Peygamber'in hatemü'l-enbiyalığı ve zaman mikatları.",
+            "en": "The Prophet's being the seal of the prophets, and the thresholds of time.",
+            "pt": "O Profeta como o selo dos profetas, e os limiares do tempo."
+          }
+        },
+        {
+          "id": "siblinin-sorgusu-dal",
+          "label": {
+            "tr": "Şibli'nin Hac Sorgusu",
+            "en": "Shibli's Interrogation of Pilgrimage",
+            "pt": "O Interrogatório de Shibli sobre a Peregrinação"
+          },
+          "note": {
+            "tr": "Zâhiren yapılan her hareketin bâtınî karşılığı sorgulanır.",
+            "en": "The inward counterpart of every outwardly performed act is questioned.",
+            "pt": "A contraparte interior de todo ato realizado exteriormente é questionada."
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "vekillik-ve-isar",
+      "heading": {
+        "tr": "Vekilin Kendi Haccı ve Îsâr",
+        "en": "The Deputy's Own Pilgrimage and Self-Sacrifice",
+        "pt": "A Própria Peregrinação do Procurador e o Auto-Sacrifício"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Kısım 61'in son bahsi olan vekillik konusunu doğrudan sürdürür: <em>\"Bir insan kendi adına hac yapmazdan önce başkası adına vekil olarak hac yapamaz.\"</em> (s.258) Dost, vekillik için tutulan kişinin ücreti meselesine de değinir ve peygamberlerin kendi ücretlerini nasıl Allah'a bıraktıklarını hatırlatır: <em>\"Benim ücretim Allah'a kalmıştır.\"</em> (s.259-260) Bunu izleyen sûfi kıssası çarpıcıdır: havada yürüyen bir topluluktan biri, yerdeki bir pınarı görüp içinden 'keşke iki rekât namaz kılsaydım' diye geçirince yere düşer -- <em>\"Onu bu ibadete sevk eden şey, doğal olarak güzel olan bu yerde namaz kılmayı istemiş olmasıydı. Bu nedenle de cezalandırıldı!\"</em> (s.260) Bize göre bu kıssa, en güzel niyetin bile -- eğer bir 'kendi için' arzusu taşıyorsa -- yüceliğin dışına düşürebileceğine dair sert bir uyarı.",
+            "en": "The section directly continues Part 61's closing topic of deputyship: <em>\"A person cannot make pilgrimage as a deputy on another's behalf before making his own pilgrimage.\"</em> (p.258) Dost also touches on the wage of one hired for deputyship, recalling how the prophets left their own wage to God: <em>\"My wage rests with God.\"</em> (p.259-260) The Sufi story that follows is striking: one among a company walking through the air sees a spring on the ground and thinks to himself, 'if only I could pray two rak'ahs there' -- and falls to earth -- <em>\"What drove him to this act of worship was that he wished to pray in this naturally beautiful place for its own sake. And so he was punished for it!\"</em> (p.260) To us, this story is a sharp warning that even the most beautiful intention -- if it carries a wish 'for oneself' -- can drop one out of that height.",
+            "pt": "A seção continua diretamente o tema de encerramento da Parte 61, a procuração: <em>\"Uma pessoa não pode fazer a peregrinação como procurador em nome de outra antes de fazer sua própria peregrinação.\"</em> (p.258) Dost também toca na questão do salário de quem é contratado para a procuração, lembrando como os profetas deixavam seu próprio salário para Deus: <em>\"Meu salário permanece com Deus.\"</em> (p.259-260) A história sufi que se segue é marcante: um de um grupo que caminhava pelo ar vê uma fonte no chão e pensa consigo mesmo, 'se ao menos eu pudesse rezar duas rak'ahs ali' -- e cai ao chão -- <em>\"O que o levou a esse ato de adoração foi que ele desejou rezar naquele lugar naturalmente belo por si mesmo. E por isso foi punido!\"</em> (p.260) Para nós, essa história é um aviso severo de que até a intenção mais bela -- se carrega um desejo 'para si mesmo' -- pode fazer alguém cair dessa altura."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kolenin-hacci",
+      "heading": {
+        "tr": "Kölenin Haccı: İki Türlü Kölelik",
+        "en": "The Slave's Pilgrimage: Two Kinds of Servitude",
+        "pt": "A Peregrinação do Escravo: Dois Tipos de Servidão"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kölenin haccı bahsinde Dost, şer'i kölelik ile bambaşka bir kölelik türünü karşı karşıya koyar. Efendisi izin vermediği için hacca gidemeyen köle için şöyle der: <em>\"Yapmamaya gücü yettiği halde kölenin hacca gitmesini engelleyen efendi, bize göre, Allah yolundan alıkoyan kimselerden biridir.\"</em> (s.261) Ama asıl vurgusu, kölenin kendisinde: <em>\"Azatlık kabul etmeyen kölelik.\"</em> (s.261) -- yani bazı kulluklar, dışarıdan azat edilse bile, iç yapısı gereği hep kul kalır; bu, sahibi tarafından bağışlanabilen hukuki köleliğin çok ötesinde bir bağlılık.",
+            "en": "In the section on a slave's pilgrimage, Dost sets legal servitude against an altogether different kind of servitude. Of the slave whose master forbids the pilgrimage, he says: <em>\"The master who prevents his slave from making pilgrimage, though he is able to permit it, is, in our view, among those who bar the way of God.\"</em> (p.261) But his real emphasis falls on the slave himself: <em>\"A servitude that does not accept manumission.\"</em> (p.261) -- meaning some forms of servanthood, even if freed from without, remain servants by their very inner constitution; a bond far beyond the legal servitude a master can release.",
+            "pt": "Na seção sobre a peregrinação de um escravo, Dost contrapõe a servidão jurídica a um tipo de servidão inteiramente diferente. Sobre o escravo cujo senhor proíbe a peregrinação, ele diz: <em>\"O senhor que impede seu escravo de peregrinar, embora possa permiti-lo, está, em nossa visão, entre os que barram o caminho de Deus.\"</em> (p.261) Mas sua ênfase real recai sobre o próprio escravo: <em>\"Uma servidão que não aceita alforria.\"</em> (p.261) -- ou seja, algumas formas de servidão, mesmo libertadas por fora, permanecem servas por sua própria constituição interior; um vínculo muito além da servidão jurídica que um senhor pode liberar."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXII, s. 260-261.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXII, pp. 260-261.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXII, pp. 260-261."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Şer'i Kölelik",
+                "en": "Legal Servitude",
+                "pt": "Servidão Jurídica"
+              },
+              "note": {
+                "tr": "efendi tarafından azat edilebilir",
+                "en": "can be released by a master",
+                "pt": "pode ser liberada por um senhor"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Azatlık Kabul Etmeyen Kölelik",
+                "en": "Servitude With No Manumission",
+                "pt": "Servidão Sem Alforria"
+              },
+              "note": {
+                "tr": "iç yapısı gereği hep kul kalan bağlılık",
+                "en": "a bond that remains servant by its own inner constitution",
+                "pt": "um vínculo que permanece servo por sua própria constituição interior"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Bir kölelik dışarıdan çözülebilir, öteki kulun kendi özüne aittir.",
+            "en": "One servitude can be undone from without; the other belongs to the servant's very essence.",
+            "pt": "Uma servidão pode ser desfeita de fora; a outra pertence à própria essência do servo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hac-ile-oruc-ziyaret",
+      "heading": {
+        "tr": "Hac ve Oruç: Kimin Kimi Ziyaret Ettiği",
+        "en": "Pilgrimage and Fasting: Who Visits Whom",
+        "pt": "Peregrinação e Jejum: Quem Visita Quem"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Umrenin farziyeti bahsinde Dost, kelimenin kökünü (ziyaret) esas alarak hac ile oruç arasında zarif bir karşıtlık kurar: <em>\"Kul, hediyelerle Hakkın kendisini ziyaret etmesini istediğinde oruç tutar... Kul olarak kendisini ziyaret etmek istediğinde ise, hac yapar.\"</em> (s.264-265) Bu ayrım, Kısım 61'deki 'Allah ile hac' ilkesine bir eş getiriyor gibi görünüyor -- orada yoldaşlık/uzaklık farkı vardı, burada ziyaret eden/ziyaret edilen farkı var. Dost bunu kısa bir formülle özetler: <em>\"Namaz bir nur, hac ise kulluktur.\"</em> (s.265-266)",
+            "en": "In the section on the obligation of umrah, Dost draws on the word's root -- visitation -- to build an elegant contrast between pilgrimage and fasting: <em>\"When the servant wishes the Real to visit him with gifts, he fasts... When he wishes to visit the Real as a servant, he makes pilgrimage.\"</em> (p.264-265) This distinction seems to pair with Part 61's principle of pilgrimage 'with God' -- there the difference was companionship versus distance; here it is who visits and who is visited. Dost sums this up in a brief formula: <em>\"Prayer is a light, while pilgrimage is servanthood.\"</em> (p.265-266)",
+            "pt": "Na seção sobre a obrigatoriedade da umrah, Dost se apoia na raiz da palavra -- visitação -- para construir um contraste elegante entre a peregrinação e o jejum: <em>\"Quando o servo deseja que o Real o visite com dádivas, ele jejua... Quando deseja visitar o Real como servo, ele peregrina.\"</em> (p.264-265) Essa distinção parece formar um par com o princípio da Parte 61 da peregrinação 'com Deus' -- ali a diferença era companhia versus distância; aqui é quem visita e quem é visitado. Dost resume isso numa fórmula breve: <em>\"A oração é uma luz, enquanto a peregrinação é servidão.\"</em> (p.265-266)"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXII, s. 264-266.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXII, pp. 264-266.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXII, pp. 264-266."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Oruç",
+                "en": "Fasting",
+                "pt": "Jejum"
+              },
+              "note": {
+                "tr": "Hak, hediyelerle kulu ziyaret eder",
+                "en": "the Real visits the servant with gifts",
+                "pt": "o Real visita o servo com dádivas"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Hac",
+                "en": "Pilgrimage",
+                "pt": "Peregrinação"
+              },
+              "note": {
+                "tr": "kul, kendisini Hakk'ı ziyarete gönderir",
+                "en": "the servant sends himself to visit the Real",
+                "pt": "o servo se envia para visitar o Real"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İki ibadet de bir ziyarettir, ama yönü tersinedir.",
+            "en": "Both acts of worship are a visitation, but the direction is reversed.",
+            "pt": "Ambos os atos de adoração são uma visitação, mas a direção é invertida."
+          }
+        }
+      ]
+    },
+    {
+      "id": "mikat-kurban-terazi",
+      "heading": {
+        "tr": "Mikatların Hükmü: Kurban, Fidye ve Teraziler",
+        "en": "The Ruling of the Thresholds: Sacrifice, Ransom, and the Scales",
+        "pt": "O Estatuto dos Limiares: Sacrifício, Resgate e as Balanças"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Mikatların hükmünü işlerken Dost, İbrahim'in oğlunu kurban etme kıssasını ince bir ayrımla okur: <em>\"Kesilen şey, İbrahim'in oğlu değil, koçun sureti olmuştu.\"</em> (s.266-267) Bunu izleyen bir şeyh kıssası daha da çarpıcıdır -- ölüm meleğine kızını fidye olarak sunan bir şeyh şöyle der: <em>\"Rabbine götüreceğin bir ruh mutlaka olmalıdır! İşte kızım!\"</em> (s.267-268) ve Dost bunun ardından ekler: <em>\"Kim Allah katında ise, mutlaka diridir.\"</em> (s.268) Teraziler bahsinde ise icma, müçtehid ve keşif sahiplerinin hükümlerini <em>\"Onlar, yanılmayan terazilerdir, çünkü onlar, Allah tarafından kıyamet günü için indirilmişlerdir.\"</em> (s.268-269) diyerek över -- ama hangi terazinin diğerine üstün olduğunu açık bırakır.",
+            "en": "In treating the ruling of the thresholds, Dost reads the story of Abraham's sacrifice of his son through a fine distinction: <em>\"What was slaughtered was not Abraham's son, but the form of the ram.\"</em> (p.266-267) A shaykh's story that follows is still more striking -- a shaykh, offering his daughter as ransom to the angel of death, says: <em>\"There must surely be a soul you take to your Lord! Here is my daughter!\"</em> (p.267-268) and Dost adds afterward: <em>\"Whoever is with God is surely alive.\"</em> (p.268) In the section on the scales, he praises the rulings of consensus, independent jurists, and the possessors of unveiling by saying: <em>\"They are scales that do not err, for they were sent down by God for the Day of Resurrection.\"</em> (p.268-269) -- but leaves open which scale outweighs the others.",
+            "pt": "Ao tratar do estatuto dos limiares, Dost lê a história do sacrifício do filho de Abraão através de uma distinção sutil: <em>\"O que foi degolado não foi o filho de Abraão, mas a forma do carneiro.\"</em> (p.266-267) Uma história de um xeque que se segue é ainda mais marcante -- um xeque, oferecendo sua filha como resgate ao anjo da morte, diz: <em>\"Deve haver certamente uma alma que levas ao teu Senhor! Aqui está minha filha!\"</em> (p.267-268) e Dost acrescenta depois: <em>\"Quem está com Deus está certamente vivo.\"</em> (p.268) Na seção sobre as balanças, ele elogia os julgamentos do consenso, dos juristas independentes e dos possuidores do desvelamento dizendo: <em>\"Elas são balanças que não erram, pois foram enviadas por Deus para o Dia da Ressurreição.\"</em> (p.268-269) -- mas deixa em aberto qual balança pesa mais que as outras."
+          }
+        }
+      ]
+    },
+    {
+      "id": "evvel-ahir-ve-dehr",
+      "heading": {
+        "tr": "el-Evvel el-Ahir'de: Hz. Peygamber ve ed-Dehr",
+        "en": "al-Awwal Within al-Akhir: The Prophet and ad-Dahr",
+        "pt": "al-Awwal Dentro de al-Akhir: O Profeta e ad-Dahr"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bir mikat yerine uğrayıp önünde başka bir mikat bulunması meselesi, Dost'u el-Evvel ve el-Ahir isimlerinin iç içeliğine götürür: <em>\"Öyleyse ârif, el-Ahir ismiyle sınırlanmayan mutlak el-Evvel'i değil de, el-Ahir ismiyle sınırlanan el-Evvel'i müşahede edebilir.\"</em> (s.271) Bunu Hz. Peygamber örneğiyle somutlaştırır: <em>\"Hz. Peygamber peygamberlerin sonuncusudur... kendi özelliğiyle de onlardan fazla olmuştur, çünkü o, peygamberlerin sonuncusudur.\"</em> (s.271) -- yani sonuncu olmak, burada bir eksiklik değil, öncekilerin hepsini kendinde toplayan bir fazlalık.",
+            "en": "The question of arriving at one threshold with another already ahead of it leads Dost to the interweaving of the Names al-Awwal (the First) and al-Akhir (the Last): <em>\"So the gnostic may witness not the absolute al-Awwal, unbounded by al-Akhir, but the al-Awwal that is bounded by al-Akhir.\"</em> (p.271) He grounds this in the example of the Prophet: <em>\"The Prophet is the last of the prophets... and by this very quality he exceeds them, precisely because he is the last of the prophets.\"</em> (p.271) -- meaning being last is not, here, a deficiency, but a surplus that gathers all who came before into itself.",
+            "pt": "A questão de chegar a um limiar tendo outro já adiante leva Dost ao entrelaçamento dos Nomes al-Awwal (o Primeiro) e al-Akhir (o Último): <em>\"Assim, o gnóstico pode testemunhar não o al-Awwal absoluto, não limitado por al-Akhir, mas o al-Awwal que é limitado por al-Akhir.\"</em> (p.271) Ele fundamenta isso no exemplo do Profeta: <em>\"O Profeta é o último dos profetas... e por essa própria qualidade ele os excede, precisamente por ser o último dos profetas.\"</em> (p.271) -- ou seja, ser o último não é, aqui, uma deficiência, mas um excedente que reúne em si todos os que vieram antes."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXII, s. 269-272.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXII, pp. 269-272.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXII, pp. 269-272."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Mutlak el-Evvel",
+                "en": "Absolute al-Awwal",
+                "pt": "al-Awwal Absoluto"
+              },
+              "note": {
+                "tr": "el-Ahir ile sınırlanmayan",
+                "en": "unbounded by al-Akhir",
+                "pt": "não limitado por al-Akhir"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Sınırlanan el-Evvel",
+                "en": "Bounded al-Awwal",
+                "pt": "al-Awwal Limitado"
+              },
+              "note": {
+                "tr": "el-Ahir ile -- ârifin müşahede edebildiği, Hz. Peygamber örneği",
+                "en": "by al-Akhir -- what the gnostic can witness, the example of the Prophet",
+                "pt": "por al-Akhir -- o que o gnóstico pode testemunhar, o exemplo do Profeta"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Sonuncu olmak burada bir eksiklik değil, öncekilerin hepsini toplayan bir fazlalıktır.",
+            "en": "Being last here is not a deficiency, but a surplus gathering all that came before.",
+            "pt": "Ser o último aqui não é uma deficiência, mas um excedente que reúne tudo o que veio antes."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, niyetsiz yolculardan Allah adamlarının iki türüne geçer: <em>\"Allah adamları iki türlüdür: Birincisi yürütüldüklerini, diğeri ise yürüdüklerini görenlerdir.\"</em> (s.272) Zaman mikatlarını ise ed-Dehr ismine bağlar: <em>\"Zamansal mikatları Allah'ın ed-Dehr ismi belirler.\"</em> (s.273-274) 'Dehr'e sövmeyin, çünkü Allah Dehr'dir' hadisini aktarırken de kendi yorumunu ekler: <em>\"Hak, faildir. Edilgin ise, Dehr'de ortaya çıkmıştır. Fiil, fail ve edilgen arasındaki bir haldir.\"</em> (s.274)",
+            "en": "The section moves from travelers without intention to two kinds of God's people: <em>\"The people of God are of two kinds: those who see themselves as being made to walk, and those who see themselves as walking.\"</em> (p.272) It ties the thresholds of time to the Name ad-Dahr: <em>\"The thresholds of time are set by God's Name ad-Dahr.\"</em> (p.273-274) In relating the hadith 'do not curse ad-Dahr, for God is ad-Dahr,' he adds his own reading: <em>\"The Real is the agent. What is acted upon appears within Dahr. The act is a state between the agent and what is acted upon.\"</em> (p.274)",
+            "pt": "A seção passa de viajantes sem intenção a dois tipos de gente de Deus: <em>\"A gente de Deus é de dois tipos: os que se veem sendo levados a andar, e os que se veem andando.\"</em> (p.272) Liga os limiares do tempo ao Nome ad-Dahr: <em>\"Os limiares do tempo são fixados pelo Nome de Deus ad-Dahr.\"</em> (p.273-274) Ao relatar o hadith 'não amaldiçoeis ad-Dahr, pois Deus é ad-Dahr', ele acrescenta sua própria leitura: <em>\"O Real é o agente. O que é agido aparece dentro de Dahr. O ato é um estado entre o agente e o que é agido.\"</em> (p.274)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "siblinin-hac-sorgusu",
+      "heading": {
+        "tr": "Şibli'nin Hac Sorgusu: Yaptın mı, Yapmadın mı?",
+        "en": "Shibli's Interrogation of Pilgrimage: Did You, or Did You Not?",
+        "pt": "O Interrogatório de Shibli sobre a Peregrinação: Fizeste, ou Não?"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Şibli ile arasında geçen ünlü bir diyalogla kapanır. Şibli, hac yapıp yapmadığını soran birine karşı, her adımı tek tek sorgular -- tekrar eden aynı kalıpla: 'mi?' 'Hayır.' 'Öyleyse yapmamışsın.' Örneğin: <em>\"Hacer'e el süren kimse, hiç kuşkusuz, Hak ile tokalaşmış demektir.\"</em> (s.275-279) diyerek, zâhiren yapılan her hareketin bâtınî bir karşılığı olmadıkça 'yapılmış' sayılamayacağını gösterir. Kısmı kapatan cümle basit ama ağırdır: <em>\"Kuşkusuz sana haccı anlattım.\"</em> (s.279) Dost, kısmı Allah'ın üç türlü konuğuyla bitirir: <em>\"Allah'ın konukları üç kişidir: Gaziler, hacılar ve umre yapanlar.\"</em> (s.279)",
+            "en": "The section closes with a famous dialogue between Shibli and another. When asked whether he had made pilgrimage, Shibli interrogates each step one by one -- in the same recurring pattern: 'did you?' 'No.' 'Then you have not done it.' For instance: <em>\"Whoever touches the Black Stone has, without doubt, shaken hands with the Real.\"</em> (p.275-279) -- showing that no outwardly performed act can be counted as 'done' unless it carries an inward counterpart. The sentence that closes the section is simple but weighty: <em>\"I have surely explained pilgrimage to you.\"</em> (p.279) Dost ends the section with God's three kinds of guests: <em>\"God's guests are three: those who wage the holy struggle, those who make pilgrimage, and those who make umrah.\"</em> (p.279)",
+            "pt": "A seção se encerra com um famoso diálogo entre Shibli e outra pessoa. Quando perguntado se havia feito a peregrinação, Shibli interroga cada passo um a um -- no mesmo padrão recorrente: 'fizeste?' 'Não.' 'Então não o fizeste.' Por exemplo: <em>\"Quem toca a Pedra Negra apertou, sem dúvida, a mão do Real.\"</em> (p.275-279) -- mostrando que nenhum ato realizado exteriormente pode ser contado como 'feito' a menos que carregue uma contraparte interior. A frase que encerra a seção é simples mas pesada: <em>\"Certamente te expliquei a peregrinação.\"</em> (p.279) Dost encerra a seção com os três tipos de hóspedes de Deus: <em>\"Os hóspedes de Deus são três: os que travam a luta sagrada, os que peregrinam, e os que fazem a umrah.\"</em> (p.279)"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXII, s. 275-279.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXII, pp. 275-279.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXII, pp. 275-279."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Zâhiren Yapılan",
+                "en": "Outwardly Done",
+                "pt": "Feito Exteriormente"
+              },
+              "note": {
+                "tr": "hareketin kendisi -- yeterli değil",
+                "en": "the act itself -- not sufficient alone",
+                "pt": "o próprio ato -- não basta sozinho"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Hakikaten Yapılan",
+                "en": "Truly Done",
+                "pt": "Verdadeiramente Feito"
+              },
+              "note": {
+                "tr": "bâtınî karşılığıyla birlikte -- Hakk'ı bulan",
+                "en": "together with its inward counterpart -- finding the Real",
+                "pt": "junto com sua contraparte interior -- encontrando o Real"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Şibli'ye göre, bâtınî karşılığı olmayan hiçbir hareket 'yapılmış' sayılmaz.",
+            "en": "For Shibli, no act counts as 'done' without its inward counterpart.",
+            "pt": "Para Shibli, nenhum ato conta como 'feito' sem sua contraparte interior."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXII (Ahmed Avni Konuk şerhi)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXII (Ahmed Avni Konuk's commentary)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXII (comentário de Ahmed Avni Konuk)"
+      },
+      "pageRange": "258-279"
+    }
+  ]
+}
