@@ -2,7 +2,6 @@
   "use strict";
 
   const I18n = window.DostI18n;
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const wrapEl = document.getElementById("futuhat-wrap");
   const mapEl = document.getElementById("futuhat-map");
   const partsEl = document.getElementById("futuhat-parts");
@@ -873,7 +872,6 @@
   }
 
   function renderPart(part) {
-    stopTts();
     articleEl.innerHTML = `
       <header class="futuhat-hero">
         <div class="futuhat-toolbar">
@@ -884,10 +882,6 @@
           </button>
           <button class="futuhat-toolbar__btn futuhat-toolbar__btn--icon" id="futuhat-share" type="button" title="Paylaş / Share / Compartilhar" aria-label="Paylaş / Share / Compartilhar">
             <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="6" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="5.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="10.8" x2="15.7" y2="6.7" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="13.2" x2="15.7" y2="17.3" stroke="currentColor" stroke-width="1.6"/></svg>
-          </button>
-          <button class="futuhat-toolbar__btn futuhat-toolbar__btn--icon" id="futuhat-tts" type="button" hidden title="Dinle / Listen / Ouvir" aria-label="Dinle / Listen / Ouvir" aria-pressed="false">
-            <svg class="futuhat-tts-icon futuhat-tts-icon--play" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M6 4.5v15l13-7.5z" fill="currentColor"/></svg>
-            <svg class="futuhat-tts-icon futuhat-tts-icon--pause" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="5" y="4.5" width="5" height="15" fill="currentColor"/><rect x="14" y="4.5" width="5" height="15" fill="currentColor"/></svg>
           </button>
         </div>
         <p class="futuhat-hero__eyebrow">${tt({ tr: "Fütûhât-ı Mekkiyye", en: "al-Futuhat al-Makkiyya", pt: "al-Futuhat al-Makkiyya" })} · ${tt({ tr: "Cilt " + CILT_ROMAN[part.cilt], en: "Volume " + CILT_ROMAN[part.cilt], pt: "Volume " + CILT_ROMAN[part.cilt] })} · ${tt({ tr: "Kısım " + roman(part.kisim), en: "Part " + roman(part.kisim), pt: "Parte " + roman(part.kisim) })}</p>
@@ -988,102 +982,10 @@
     setupToolbar(part);
   }
 
-  // --- Sesli dinleme (TTS) pilotu: kısmın paragraflarını sırayla, tarayıcının
-  // yerleşik SpeechSynthesis'iyle okur -- yeni bir bağımlılık/ses dosyası
-  // yok, tamamen istemci tarafında. Okunan paragraf görsel olarak da
-  // vurgulanır (metni dinlerken takip edebilmek için).
-  let ttsQueue = [];
-  let ttsIndex = -1;
-  let ttsPlaying = false;
-  let ttsCurrentEl = null;
-
-  function ttsSupported() {
-    return "speechSynthesis" in window && typeof SpeechSynthesisUtterance !== "undefined";
-  }
-
-  function ttsLangCode() {
-    const lang = I18n.getLang();
-    return lang === "tr" ? "tr-TR" : lang === "pt" ? "pt-BR" : "en-US";
-  }
-
-  function updateTtsButton() {
-    const btn = document.getElementById("futuhat-tts");
-    if (!btn) return;
-    // İkon geçişi CSS'te [aria-pressed] seçicisiyle yapılıyor (bkz. stil
-    // dosyasındaki not) -- SVG içindeki `hidden` özniteliği tarayıcıların
-    // SVG ad alanı için varsayılan stil sayfasında tanımlı olmayabiliyor.
-    btn.setAttribute("aria-pressed", String(ttsPlaying));
-    const label = ttsPlaying
-      ? tt({ tr: "Duraklat", en: "Pause", pt: "Pausar" })
-      : tt({ tr: "Dinle", en: "Listen", pt: "Ouvir" });
-    btn.title = label;
-    btn.setAttribute("aria-label", label);
-  }
-
-  function stopTts() {
-    if (ttsSupported()) window.speechSynthesis.cancel();
-    ttsQueue = [];
-    ttsIndex = -1;
-    ttsPlaying = false;
-    if (ttsCurrentEl) {
-      ttsCurrentEl.classList.remove("futuhat-tts-active");
-      ttsCurrentEl = null;
-    }
-    updateTtsButton();
-  }
-
-  function speakNext() {
-    if (ttsCurrentEl) ttsCurrentEl.classList.remove("futuhat-tts-active");
-    ttsIndex += 1;
-    if (!ttsPlaying || ttsIndex >= ttsQueue.length) {
-      stopTts();
-      return;
-    }
-    const { text, el } = ttsQueue[ttsIndex];
-    ttsCurrentEl = el || null;
-    if (ttsCurrentEl) {
-      ttsCurrentEl.classList.add("futuhat-tts-active");
-      ttsCurrentEl.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
-    }
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = ttsLangCode();
-    utter.onend = () => { if (ttsPlaying) speakNext(); };
-    utter.onerror = () => { if (ttsPlaying) speakNext(); };
-    window.speechSynthesis.speak(utter);
-  }
-
-  function toggleTts() {
-    if (!ttsSupported()) return;
-    if (ttsPlaying) {
-      ttsPlaying = false;
-      window.speechSynthesis.pause();
-      updateTtsButton();
-      return;
-    }
-    if (window.speechSynthesis.paused && ttsQueue.length) {
-      ttsPlaying = true;
-      window.speechSynthesis.resume();
-      updateTtsButton();
-      return;
-    }
-    const nodes = Array.from(
-      articleEl.querySelectorAll(".futuhat-hero__summary, .futuhat-section__heading, .futuhat-section__p")
-    );
-    ttsQueue = nodes
-      .map((el) => ({ text: el.textContent.trim(), el }))
-      .filter((n) => n.text);
-    if (!ttsQueue.length) return;
-    ttsIndex = -1;
-    ttsPlaying = true;
-    updateTtsButton();
-    speakNext();
-  }
-
-  // --- Toolbar: font size, print, share, dinle ---
+  // --- Toolbar: font size, print, share ---
   function setupToolbar(part) {
     const printBtn = document.getElementById("futuhat-print");
     const shareBtn = document.getElementById("futuhat-share");
-    const ttsBtn = document.getElementById("futuhat-tts");
 
     window.DostFontScale.bindFontScaleButtons(
       document.getElementById("futuhat-font-decrease"),
@@ -1095,10 +997,6 @@
     }
     if (shareBtn) {
       shareBtn.addEventListener("click", () => sharePart(part));
-    }
-    if (ttsBtn) {
-      ttsBtn.hidden = !ttsSupported();
-      ttsBtn.addEventListener("click", toggleTts);
     }
   }
 
@@ -1221,6 +1119,5 @@
     onLangChange() {
       render();
     },
-    stopTts,
   };
 })();

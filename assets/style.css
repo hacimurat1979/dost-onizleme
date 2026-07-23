@@ -1269,29 +1269,6 @@ button.futuhat-part-chip:hover {
   font-size: 0;
 }
 
-#futuhat-tts[aria-pressed="true"] {
-  color: var(--accent-interactive);
-  border-color: var(--accent-interactive);
-}
-/* SVG'nin `hidden` özniteliği tarayıcıların SVG ad alanı için varsayılan
-   stil sayfasında tanımlı olmayabiliyor (HTML'deki gibi otomatik
-   display:none vermiyor) -- bu yüzden play/pause ikonu arasındaki geçiş
-   burada, düğümün kendi aria-pressed durumuna göre açıkça yönetiliyor. */
-#futuhat-tts .futuhat-tts-icon--pause { display: none; }
-#futuhat-tts[aria-pressed="true"] .futuhat-tts-icon--play { display: none; }
-#futuhat-tts[aria-pressed="true"] .futuhat-tts-icon--pause { display: block; }
-
-/* Sesli dinleme (TTS) pilotu: o an okunan paragraf/başlık görsel olarak
-   vurgulanır, dinleyen kişi metni gözüyle de takip edebilsin diye. */
-.futuhat-tts-active {
-  background: color-mix(in srgb, var(--accent-interactive) 12%, transparent);
-  border-radius: 4px;
-  box-shadow: -3px 0 0 var(--accent-interactive);
-  padding-left: 10px;
-  margin-left: -10px;
-  transition: background-color 0.2s ease;
-}
-
 .futuhat-toast {
   position: fixed;
   left: 50%;
