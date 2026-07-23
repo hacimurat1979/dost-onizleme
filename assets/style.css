@@ -177,6 +177,29 @@
   border: 0;
 }
 
+/* Header'da 9 view-sekmesi + tema + dil seçici var -- klavye
+   kullanıcısı her sayfa yüklemesinde bunları Tab'lamak zorunda kalmasın
+   diye. Odak almadan .sr-only gibi gizli, Tab ile odak aldığında görünür
+   olur (standart "içeriğe atla" deseni). */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 200;
+  padding: 10px 18px;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
 @keyframes fade-up-in {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -597,6 +620,7 @@ html {
   background: var(--accent-interactive);
 }
 .start-hint__close {
+  position: relative;
   background: transparent;
   border: none;
   color: var(--text-muted);
@@ -604,6 +628,19 @@ html {
   line-height: 1;
   cursor: pointer;
   padding: 4px 6px;
+}
+/* Görsel boyut, sıkışık ipucu şeridine uysun diye küçük kalıyor, ama
+   site genelindeki 44x44 dokunma-hedefi standardını (bkz.
+   .detail-panel__close vb.) görünmez bir hit-area ile koruyoruz --
+   mobilde kapatmak için hassas bir dokunuş gerekmiyor. */
+.start-hint__close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
 }
 .start-hint__close:hover,
 .start-hint__close:focus-visible {

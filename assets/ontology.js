@@ -284,18 +284,29 @@
   const futuhatWrap = document.getElementById("futuhat-wrap");
   const hakkindaWrap = document.getElementById("hakkinda-wrap");
 
+  // Görsel olarak aktif sekmeyi işaretlemek (.btn-ghost--active) ekran
+  // okuyucuya hiçbir şey söylemiyordu -- dil seçicideki aria-pressed'in
+  // aksine. aria-current="page", 9 sekmeden hangisinin şu an gösterildiğini
+  // ekran okuyucuya da bildiriyor.
+  function markActiveNavButton(btn, isActive) {
+    if (!btn) return;
+    btn.classList.toggle("btn-ghost--active", isActive);
+    if (isActive) btn.setAttribute("aria-current", "page");
+    else btn.removeAttribute("aria-current");
+  }
+
   function setMainView(view) {
     if (currentMainView === view) return;
     currentMainView = view;
-    if (ontologyBtn) ontologyBtn.classList.toggle("btn-ghost--active", view === "ontology");
-    if (esmaBtn) esmaBtn.classList.toggle("btn-ghost--active", view === "esma");
-    if (halBtn) halBtn.classList.toggle("btn-ghost--active", view === "hal");
-    if (terimlerBtn) terimlerBtn.classList.toggle("btn-ghost--active", view === "terimler");
-    if (cizimlerBtn) cizimlerBtn.classList.toggle("btn-ghost--active", view === "cizimler");
-    if (sirlarBtn) sirlarBtn.classList.toggle("btn-ghost--active", view === "sirlar");
-    if (sorularBtn) sorularBtn.classList.toggle("btn-ghost--active", view === "sorular");
-    if (futuhatBtn) futuhatBtn.classList.toggle("btn-ghost--active", view === "futuhat");
-    if (hakkindaBtn) hakkindaBtn.classList.toggle("btn-ghost--active", view === "hakkinda");
+    markActiveNavButton(ontologyBtn, view === "ontology");
+    markActiveNavButton(esmaBtn, view === "esma");
+    markActiveNavButton(halBtn, view === "hal");
+    markActiveNavButton(terimlerBtn, view === "terimler");
+    markActiveNavButton(cizimlerBtn, view === "cizimler");
+    markActiveNavButton(sirlarBtn, view === "sirlar");
+    markActiveNavButton(sorularBtn, view === "sorular");
+    markActiveNavButton(futuhatBtn, view === "futuhat");
+    markActiveNavButton(hakkindaBtn, view === "hakkinda");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
@@ -1248,6 +1259,27 @@
   let currentDetailView = null;
   let currentDetailSirlarId = null;
 
+  // Esmâ/Hâller/Sorular/Sırlar'ın hepsi bir düğüme gidildiğinde ekranı
+  // ona doğru yumuşakça kaydırıyor (reduceMotion'a duyarlı); Ontoloji --
+  // sitenin en çok kullanılan görünümü -- bu tutarlılıktan yoksundu,
+  // düğüme tıklamak sadece detay panelini açıyordu. Mevcut yakınlaştırma
+  // seviyesini koruyarak sadece merkezi düğüme kaydırıyor (diğer
+  // görünümlerin "bir kutuya sığdır" davranışının aksine, burada tek bir
+  // nokta var, sığdırılacak bir kutu değil).
+  function panToNode(d) {
+    const oz = window.__ontologyZoom;
+    if (!oz || typeof d.tx !== "number" || typeof d.ty !== "number") return;
+    const svgEl = oz.svg.node();
+    const width = svgEl.clientWidth || 800;
+    const height = svgEl.clientHeight || 600;
+    const currentScale = d3.zoomTransform(svgEl).k;
+    const transform = d3.zoomIdentity
+      .translate(width / 2 - currentScale * d.tx, height / 2 - currentScale * d.ty)
+      .scale(currentScale);
+    const sel = reduceMotion ? oz.svg : oz.svg.transition().duration(400);
+    sel.call(oz.zoom.transform, transform);
+  }
+
   function onNodeClick(d) {
     window.dostTrack && window.dostTrack("bilgi_grafi_node_tiklandi", { id: d.id });
     currentDetailNode = d;
@@ -1255,6 +1287,7 @@
     currentDetailView = null;
     showNodeDetail(d);
     updateHash("ontoloji", d.id);
+    panToNode(d);
   }
 
   function onEdgeClick(l) {

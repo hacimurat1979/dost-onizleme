@@ -100,6 +100,7 @@
     })();
   </script>
   <h1 class="sr-only" data-tr="Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası" data-en="Dost Arabî — A Map of Muhyiddin Ibn Arabi's Ontology" data-pt="Dost Arabî — Um Mapa da Ontologia de Muhyiddin Ibn Arabi">Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası</h1>
+  <a class="skip-link" href="#main-content" data-tr="İçeriğe atla" data-en="Skip to content" data-pt="Pular para o conteúdo">İçeriğe atla</a>
   <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
     <defs>
       <radialGradient id="node-sheen" cx="34%" cy="28%" r="72%">
@@ -143,7 +144,7 @@
   <header class="app-header">
     <div class="app-header__controls">
       <div class="view-switch" id="view-switch">
-        <button class="btn-ghost btn-ghost--active" id="ontology-btn" type="button" data-tr="Ontoloji" data-en="Ontology" data-pt="Ontologia">Ontoloji</button>
+        <button class="btn-ghost btn-ghost--active" id="ontology-btn" type="button" aria-current="page" data-tr="Ontoloji" data-en="Ontology" data-pt="Ontologia">Ontoloji</button>
         <button class="btn-ghost" id="esma-btn" type="button" data-tr="Esmâü'l-Hüsnâ" data-en="The Beautiful Names" data-pt="Os Belos Nomes">Esmâü'l-Hüsnâ</button>
         <button class="btn-ghost" id="hal-btn" type="button" data-tr="Hâller" data-en="States" data-pt="Estados">Hâller</button>
         <button class="btn-ghost" id="terimler-btn" type="button" data-tr="Terimler" data-en="Terms" data-pt="Termos">Terimler</button>
@@ -161,7 +162,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
 
     <section class="graph-wrap" id="ontology-wrap">
       <svg id="graph"></svg>
@@ -215,6 +216,17 @@
       <button class="graph-hint" type="button" title="Sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın / Drag to pan, Ctrl (⌘) + scroll to zoom, click a node / Arraste para navegar, Ctrl (⌘) + rolagem para ampliar, clique num nó" aria-label="Sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın / Drag to pan, Ctrl (⌘) + scroll to zoom, click a node / Arraste para navegar, Ctrl (⌘) + rolagem para ampliar, clique num nó">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
       </button>
+      <button class="esma-3d-toggle" id="esma-3d-toggle" type="button" title="3 boyutlu dene — bütün isimlerle / Try in 3D — with all Names / Experimente em 3D — com todos os Nomes" aria-label="3 boyutlu dene — bütün isimlerle / Try in 3D — with all Names / Experimente em 3D — com todos os Nomes">
+        <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M12 3 20 7.5V16.5L12 21 4 16.5V7.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.1" fill="currentColor"/><circle cx="12" cy="3" r="1.3" fill="currentColor"/><circle cx="20" cy="7.5" r="1.3" fill="currentColor"/><circle cx="20" cy="16.5" r="1.3" fill="currentColor"/><circle cx="12" cy="21" r="1.3" fill="currentColor"/><circle cx="4" cy="16.5" r="1.3" fill="currentColor"/><circle cx="4" cy="7.5" r="1.3" fill="currentColor"/></svg>
+      </button>
+      <div class="esma3d" id="esma3d" hidden>
+        <div class="esma3d__viewport" id="esma3d-viewport">
+          <svg id="esma3d-svg" class="esma3d__svg"></svg>
+        </div>
+        <p class="esma3d__caption" data-tr="Bütün isimler (103), derinliğe göre arkaya doğru diziliyor. Sürükleyerek döndürün, tekerlekle yakınlaştırın; bir isme tıklayın." data-en="All Names (103), arranged receding by depth. Drag to rotate, scroll to zoom; click a Name." data-pt="Todos os Nomes (103), dispostos recuando por profundidade. Arraste para girar, role para ampliar; clique num Nome.">Bütün isimler (103), derinliğe göre arkaya doğru diziliyor. Sürükleyerek döndürün, tekerlekle yakınlaştırın; bir isme tıklayın.</p>
+        <div class="node-hover-tip" id="esma3d-tooltip" hidden></div>
+        <button class="esma3d__exit" id="esma3d-exit" type="button" data-tr="2B'ye dön" data-en="Back to 2D" data-pt="Voltar ao 2D">2B'ye dön</button>
+      </div>
       <div class="legend" id="esma-legend">
         <button class="legend__toggle" type="button" aria-expanded="true">
           <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
@@ -576,6 +588,7 @@ essa é minha religião e minha fé."></blockquote>
   <script src="assets/i18n.js"></script>
   <script src="assets/view-status.js"></script>
   <script src="assets/graph-utils.js"></script>
+  <script src="assets/graph-hint.js"></script>
   <script src="assets/lightbox.js"></script>
   <script src="assets/search.js"></script>
   <script src="assets/graph-enhancement.js"></script>
@@ -583,6 +596,7 @@ essa é minha religião e minha fé."></blockquote>
   <script src="assets/reading-mode.js"></script>
   <script src="assets/honorifics.js"></script>
   <script src="assets/esma.js"></script>
+  <script src="assets/esma-3d.js"></script>
   <script src="assets/hal.js"></script>
   <script src="assets/terimler.js"></script>
   <script src="assets/cizimler.js"></script>

@@ -204,7 +204,10 @@ window.__esma3dApp = (function () {
       .join((enter) => {
         const g = enter.append("g")
           .attr("class", (d) => "esma3d-node" + (d.depth === 0 ? " node--root" : ""))
-          .attr("data-id", (d) => d.node.id);
+          .attr("data-id", (d) => d.node.id)
+          .attr("tabindex", "0")
+          .attr("role", "button")
+          .attr("aria-label", (d) => I18n.pick3(d.node.name));
         // Zât'a özgü altın "soluyan" halo -- ontoloji/esma 2B graflarındaki
         // paylaşılan .node--root .node-halo kuralını doğrudan yeniden
         // kullanıyor (index.html'in defs'i, style.css'in animasyonu).
@@ -219,6 +222,22 @@ window.__esma3dApp = (function () {
         g.append("text").attr("class", "esma3d-node__label");
         g.on("pointerenter", (event, d) => { hoveredId = d.node.id; render(); });
         g.on("pointerleave", (event, d) => { if (hoveredId === d.node.id) hoveredId = null; render(); });
+        g.on("focus", (event, d) => { hoveredId = d.node.id; render(); });
+        g.on("blur", (event, d) => { if (hoveredId === d.node.id) hoveredId = null; render(); });
+        // Diğer graf görünümlerindeki (esma.js, ontology.js, hal.js vb.)
+        // tabindex+keydown deseniyle aynı -- fare olmadan da isim
+        // düğümlerine ulaşılıp Enter/Space ile açılabilsin diye. Fare
+        // olayının aksine klavye olayında imleç konumu olmadığından,
+        // düğümün kendi ekran konumu tooltip'i konumlandırmak için
+        // kullanılıyor.
+        g.on("keydown", function (event, d) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            event.stopPropagation();
+            const rect = this.getBoundingClientRect();
+            showTooltip(d.node, { clientX: rect.x + rect.width / 2, clientY: rect.y + rect.height / 2 });
+          }
+        });
         return g;
       });
 
