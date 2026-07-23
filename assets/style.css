@@ -915,15 +915,17 @@ html {
   pointer-events: none;
 }
 
-.sorular-spoke {
-  fill: none;
+.sorular-link {
   stroke: var(--gridline);
-  stroke-width: 1.2px;
-  opacity: 0.7;
+  stroke-width: 1px;
+  stroke-dasharray: 3 3;
+  opacity: 0.55;
+  transition: opacity 0.2s ease;
 }
-.sorular-spoke--highlight {
+.sorular-link--highlight {
   stroke: var(--series-theme);
-  stroke-width: 2px;
+  stroke-width: 1.6px;
+  stroke-dasharray: none;
   opacity: 1;
 }
 .sorular-node circle {
@@ -943,25 +945,30 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .sorular-node--active circle { filter: none; }
 }
-.sorular-hub__circle {
-  fill: var(--surface-1);
-  stroke: var(--border);
-  stroke-width: 1.5px;
-}
-.sorular-hub__label {
-  font-size: 13px;
-  font-weight: 600;
-  fill: var(--text-primary);
-  text-anchor: middle;
+/* Merkezdeki nefes alan işaret -- daire/merkez ilkesi (bkz. CLAUDE.md):
+   tıklanamaz, sadece hâlâ açık kalan sorunun kendisini sezdiren dekoratif
+   bir nokta. Ontoloji'deki Zât düğümünün .node-halo soluma deseniyle
+   aynı -- bkz. .node--root .node-halo -- burada da doğrudan uygulanıyor. */
+.sorular-center {
   pointer-events: none;
 }
-.sorular-hub__back {
-  font-size: 10px;
-  fill: var(--text-secondary);
-  text-anchor: middle;
-  pointer-events: none;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+.sorular-center .node-halo {
+  fill: var(--series-theme);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-halo-breathe 6s ease-in-out infinite;
+}
+.viz-root[data-theme="dark"] .sorular-center .node-halo {
+  fill: var(--accent-glow-dark);
+  filter: blur(4px);
+  animation: node-halo-breathe-dark 6s ease-in-out infinite;
+}
+.sorular-center__core {
+  fill: var(--text-muted);
+  opacity: 0.5;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sorular-center .node-halo { animation: none; opacity: 0.2; }
 }
 
 .sorular-question-list {
@@ -1010,6 +1017,30 @@ html {
 }
 .sorular-back-link:hover {
   color: var(--accent-interactive);
+}
+
+.sorular-category-tag {
+  display: inline-block;
+  margin: 0 0 14px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.sorular-question-row--related {
+  align-items: flex-start;
+}
+.sorular-related__q {
+  display: block;
+  font-weight: 500;
+}
+.sorular-related__note {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-style: italic;
 }
 
 /* --- Fütûhât Atlas --- */
