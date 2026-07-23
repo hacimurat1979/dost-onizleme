@@ -1,0 +1,419 @@
+{
+  "id": "c5k64",
+  "cilt": 5,
+  "kisim": 64,
+  "status": "active",
+  "title": {
+    "tr": "Kıran, Temettu, İfrad: Tek Nefiste İsimlerin Çekişmesi",
+    "en": "Qiran, Tamattu, Ifrad: The Contention of Names Within a Single Self",
+    "pt": "Qiran, Tamattu, Ifrad: A Disputa dos Nomes Dentro de um Único Ser"
+  },
+  "pageRange": "303-325",
+  "hero": {
+    "summary": {
+      "tr": "Altmış Dördüncü Kısım, hamamdan avlanmaya, nikâhtan haccın üç türüne (kıran, temettu, ifrad) uzanan dağınık görünüşlü fıkhî meseleleri işlerken, hepsinin altında ısrarla aynı soruyu tekrarlar: bir yerde, bir anda birden fazla ilâhî isim ya da hüküm bir arada durabilir mi? Dost, Kısım 63'teki isimlerin çekişmesi teorisini burada bir adım öteye taşır -- ama bu kez vurgu çekişmenin kendisinde değil, sonunda yalnızca tek bir hükmün geçerli olabileceği ilkesinde. Bu ince fark, bizim tam çözemediğimiz bir gerilim olarak kalıyor; belki ileride başka kısımlarda netleşecek bir 'biriken parça.'",
+      "en": "The Sixty-Fourth Section takes up a seemingly scattered set of legal questions -- from the bathhouse to hunting, from marriage to the three forms of pilgrimage (qiran, tamattu, ifrad) -- and beneath all of them repeats the same insistent question: can more than one divine Name or ruling hold sway in one place, at one time? Dost carries Part 63's theory of the Names' contention one step further here -- but this time the emphasis falls not on the contention itself, but on the principle that, in the end, only a single ruling can hold. This fine difference remains, for us, an unresolved tension -- perhaps a 'gathered piece' that later sections will clarify.",
+      "pt": "A Sexagésima Quarta Parte trata de um conjunto aparentemente disperso de questões jurídicas -- do banho público à caça, do casamento às três formas de peregrinação (qiran, tamattu, ifrad) -- e por baixo de todas repete a mesma pergunta insistente: pode mais de um Nome divino ou estatuto reinar num mesmo lugar, ao mesmo tempo? Dost leva a teoria da disputa dos Nomes da Parte 63 um passo adiante aqui -- mas desta vez a ênfase não recai sobre a disputa em si, mas sobre o princípio de que, no fim, só um único estatuto pode valer. Essa diferença sutil permanece, para nós, uma tensão não resolvida -- talvez uma 'peça reunida' que partes posteriores esclarecerão."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "Kısım 64'te işlenen altı eksen ve her birinin bağlandığı tema.",
+      "en": "The six axes taken up in Part 64, and the theme each is tied to.",
+      "pt": "Os seis eixos tratados na Parte 64, e o tema ao qual cada um está ligado."
+    },
+    "tree": {
+      "id": "kisim-lxiv-tree",
+      "label": {
+        "tr": "Altmış Dördüncü Kısım: Kıran, Temettu, İfrad",
+        "en": "Part Sixty-Four: Qiran, Tamattu, Ifrad",
+        "pt": "Parte Sessenta e Quatro: Qiran, Tamattu, Ifrad"
+      },
+      "note": {
+        "tr": "Hamam ve avlanmadan nikâha, Veda Haccı'ndan haccın üç türüne, tenzih-teşbihten tek hükmün ilkesine uzanır.",
+        "en": "Moves from the bathhouse and hunting through marriage, the Farewell Pilgrimage, and the three forms of pilgrimage, to transcendence-likening and the principle of a single ruling.",
+        "pt": "Passa do banho e da caça pelo casamento, a Peregrinação de Despedida e as três formas de peregrinação, até a transcendência-semelhança e o princípio de um único estatuto."
+      },
+      "children": [
+        {
+          "id": "hamam-avlanma-dal",
+          "label": {
+            "tr": "Hamam ve Avlanma",
+            "en": "The Bathhouse and Hunting",
+            "pt": "O Banho e a Caça"
+          },
+          "note": {
+            "tr": "Zahidin ve ârifin avı arasındaki fark.",
+            "en": "The difference between the ascetic's prey and the gnostic's prey.",
+            "pt": "A diferença entre a presa do asceta e a do gnóstico."
+          }
+        },
+        {
+          "id": "epistemik-dal",
+          "label": {
+            "tr": "Bilmediğini Söylemek",
+            "en": "Saying What One Does Not Know",
+            "pt": "Dizer o Que Não Se Sabe"
+          },
+          "note": {
+            "tr": "Cebir ve ihtiyar arasında açık bırakılan bir üçüncü hâl.",
+            "en": "A third state left open between compulsion and free will.",
+            "pt": "Um terceiro estado deixado em aberto entre compulsão e livre-arbítrio."
+          }
+        },
+        {
+          "id": "nikah-dal",
+          "label": {
+            "tr": "Nikâh: Koru Meseli",
+            "en": "Marriage: The Enclosure",
+            "pt": "Casamento: O Cercado"
+          },
+          "note": {
+            "tr": "İhram bir korudur; birlik ve çokluk aynı anda doğru olabilir.",
+            "en": "Ihram is an enclosure; unity and multiplicity can both be true at once.",
+            "pt": "O ihram é um cercado; unidade e multiplicidade podem ser verdadeiras ao mesmo tempo."
+          }
+        },
+        {
+          "id": "hac-turleri-dal",
+          "label": {
+            "tr": "Kıran, Temettu, İfrad",
+            "en": "Qiran, Tamattu, Ifrad",
+            "pt": "Qiran, Tamattu, Ifrad"
+          },
+          "note": {
+            "tr": "Rablık ve kulluğun bir kulda kurabileceği üç farklı ilişki.",
+            "en": "Three different relations lordship and servanthood may form within a servant.",
+            "pt": "Três relações diferentes que o senhorio e a servidão podem formar dentro de um servo."
+          }
+        },
+        {
+          "id": "tenzih-teshbih-dal",
+          "label": {
+            "tr": "Ödünç Nitelikler: Tenzih ve Teşbih",
+            "en": "Borrowed Attributes: Transcendence and Likening",
+            "pt": "Atributos Emprestados: Transcendência e Semelhança"
+          },
+          "note": {
+            "tr": "Kulda görünen her nitelik gerçekte Hakk'a aittir.",
+            "en": "Every attribute that appears in the servant in truth belongs to the Real.",
+            "pt": "Todo atributo que aparece no servo, na verdade, pertence ao Real."
+          }
+        },
+        {
+          "id": "tek-hukum-dal",
+          "label": {
+            "tr": "Tek Mahalde Tek Hüküm",
+            "en": "One Ruling in One Place",
+            "pt": "Um Estatuto em Um Lugar"
+          },
+          "note": {
+            "tr": "İsimler yönelebilir, ama tek bir hüküm geçerli olur.",
+            "en": "The Names may turn toward it, but only a single ruling holds.",
+            "pt": "Os Nomes podem se voltar para ele, mas só um único estatuto vale."
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "hamam-ve-avlanma",
+      "heading": {
+        "tr": "Hamam ve Avlanma: Zahidin ve Ârifin Avı",
+        "en": "The Bathhouse and Hunting: The Prey of the Ascetic and the Gnostic",
+        "pt": "O Banho e a Caça: A Presa do Asceta e do Gnóstico"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, ihramlının hamama girmesiyle açılır ve Ömer b. el-Harab'ın sözünü aktarır: <em>\"Hamam ne güzel yerdir! Bedene kuvvet verir, kirleri giderir, ahireti hatırlatır.\"</em> (s.303) Dost bunu bâtınî bir yoruma bağlar: <em>\"Hamama girmek, ahiret için ölümden daha güçlü bir delildir.\"</em> (s.303) Avlanma yasağını ise güzel bir metaforla derinleştirir: <em>\"Zahit, Hakkın dünyadan olan avıyken ârif, Hakkın cennetten olan avıdır.\"</em> (s.304) ve ekler: <em>\"Avcının ipine düşer ve avcı kendisini yakalar ki amaç da buydu. Böyle bir av, özü gereği aranır.\"</em> (s.304) Hakkın ihsan kullarını neden bazen reddettiğini de kıskançlığa bağlar -- filozoftan aktardığı bir sözle: <em>\"Bir amaç nedeniyle seninle arkadaşlık yapan kişinin dostluğu, amaçla birlikte sona erer.\"</em> (s.305)",
+            "en": "The section opens with the pilgrim entering the bathhouse, and relates a saying of Umar ibn al-Kharrab: <em>\"What a fine place the bathhouse is! It strengthens the body, removes filth, and calls the afterlife to mind.\"</em> (p.303) Dost ties this to an inward reading: <em>\"Entering the bathhouse is a stronger proof for the afterlife than death itself.\"</em> (p.303) He deepens the prohibition on hunting with a fine metaphor: <em>\"The ascetic is the Real's prey from the world, while the gnostic is the Real's prey from paradise.\"</em> (p.304) and adds: <em>\"He falls into the hunter's snare, and the hunter catches him, for that was the very aim. Such prey is sought for its own sake.\"</em> (p.304) He also ties the Real's occasional rejection of devoted servants to jealousy -- with a saying he relates from a philosopher: <em>\"The friendship of one who befriends you for a purpose ends together with that purpose.\"</em> (p.305)",
+            "pt": "A seção se abre com o peregrino entrando no banho público, e relata um dito de Umar ibn al-Kharrab: <em>\"Que belo lugar é o banho! Fortalece o corpo, remove a sujeira e traz à mente a vida futura.\"</em> (p.303) Dost liga isso a uma leitura interior: <em>\"Entrar no banho é uma prova mais forte para a vida futura do que a própria morte.\"</em> (p.303) Ele aprofunda a proibição da caça com uma bela metáfora: <em>\"O asceta é a presa do Real vinda do mundo, enquanto o gnóstico é a presa do Real vinda do paraíso.\"</em> (p.304) e acrescenta: <em>\"Ele cai na armadilha do caçador, e o caçador o apanha, pois esse era precisamente o objetivo. Tal presa é buscada por si mesma.\"</em> (p.304) Ele também liga a rejeição ocasional do Real aos servos devotados ao ciúme -- com um dito que relata de um filósofo: <em>\"A amizade de quem se torna teu amigo por um propósito termina junto com esse propósito.\"</em> (p.305)"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXIV, s. 303-305.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXIV, pp. 303-305.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXIV, pp. 303-305."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Zahidin Avı",
+                "en": "The Ascetic's Prey",
+                "pt": "A Presa do Asceta"
+              },
+              "note": {
+                "tr": "Hakk'ın dünyadan olan avı",
+                "en": "the Real's prey from the world",
+                "pt": "a presa do Real vinda do mundo"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Ârifin Avı",
+                "en": "The Gnostic's Prey",
+                "pt": "A Presa do Gnóstico"
+              },
+              "note": {
+                "tr": "Hakk'ın cennetten olan avı",
+                "en": "the Real's prey from paradise",
+                "pt": "a presa do Real vinda do paraíso"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İkisi de aranan bir avdır, ama her biri farklı bir yerden gelir.",
+            "en": "Both are prey that is sought, but each comes from a different place.",
+            "pt": "Ambas são presas buscadas, mas cada uma vem de um lugar diferente."
+          }
+        }
+      ]
+    },
+    {
+      "id": "bilmedigini-soylemek",
+      "heading": {
+        "tr": "Bilmediğini Söylemek: Cebir, İhtiyar ve Açık Bırakılan Sorular",
+        "en": "Saying What One Does Not Know: Compulsion, Free Will, and Questions Left Open",
+        "pt": "Dizer o Que Não Se Sabe: Compulsão, Livre-Arbítrio e Perguntas Deixadas em Aberto"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İhramlının başkasının avından yiyip yiyemeyeceği tartışılırken Dost, nadir görülen bir açıklıkla kendi bilgisinin sınırını itiraf eder: <em>\"Hakkın bunlardan hangisini kastettiğini veya her ikisini birden mi kastettiğini ise bilmiyoruz.\"</em> (s.306) ve başka bir yerde: <em>\"Biz bu konuda kesin bir hüküm vermedik... bu nokta açık değildir.\"</em> (s.307) Zorda kalan ihramlının ölü ya da av eti yiyip yiyemeyeceği bahsi ise bir cebir/ihtiyar (zorunluluk/özgür irade) şiiriyle kapanır: <em>\"Âlem mecburdur ve özellikle asıl da mecburdur. Nerede kaldı özgürlük? ... Kendi niteliklerinde Hak ile ol; ne zorunlu bir cebir ne de ihtiyar arasındaki nitelikler.\"</em> (s.308-309) -- yani Dost, cebir ile ihtiyar arasındaki klasik tartışmayı çözmek yerine, ikisinin arasında bir üçüncü hâlin (Hak ile olmanın) mümkün olduğunu ima ediyor.",
+            "en": "While discussing whether the pilgrim may eat from another's catch, Dost admits, with rare openness, the limit of his own knowledge: <em>\"We do not know which of these the Real intended, or whether both were intended at once.\"</em> (p.306) and elsewhere: <em>\"We have not given a definitive ruling on this matter... this point is not clear.\"</em> (p.307) The passage on whether a pilgrim in dire need may eat carrion or hunted meat closes with a poem on compulsion and free will: <em>\"The world is compelled, and especially the essence is compelled. Where, then, is freedom? ... Be with the Real in your own attributes; neither compulsion nor free will lies among the attributes.\"</em> (p.308-309) -- meaning Dost, rather than settling the classical debate between compulsion and free will, hints that a third state -- being with the Real -- is possible between the two.",
+            "pt": "Ao discutir se o peregrino pode comer da caça de outrem, Dost admite, com rara abertura, o limite de seu próprio conhecimento: <em>\"Não sabemos qual destes o Real quis dizer, ou se ambos foram pretendidos ao mesmo tempo.\"</em> (p.306) e em outro lugar: <em>\"Não demos um julgamento definitivo sobre esta questão... este ponto não está claro.\"</em> (p.307) A passagem sobre se um peregrino em necessidade extrema pode comer carniça ou carne de caça se encerra com um poema sobre compulsão e livre-arbítrio: <em>\"O mundo é compelido, e especialmente a essência é compelida. Onde, então, está a liberdade? ... Está com o Real em teus próprios atributos; nem compulsão nem livre-arbítrio estão entre os atributos.\"</em> (p.308-309) -- ou seja, Dost, em vez de resolver o debate clássico entre compulsão e livre-arbítrio, sugere que um terceiro estado -- estar com o Real -- é possível entre os dois."
+          }
+        }
+      ]
+    },
+    {
+      "id": "nikah-ve-koru-meseli",
+      "heading": {
+        "tr": "Nikâh: İhram Bir Korudur",
+        "en": "Marriage: Ihram Is an Enclosure",
+        "pt": "Casamento: O Ihram É um Cercado"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İhramlının nikâh kıyamayacağı ya da kıyılamayacağı hükmünü Dost bir koru benzetmesiyle açıklar: <em>\"İhram bir korudur ve korunun etrafında dolaşan kimse koruya düşer.\"</em> (s.309) Cüneyd-i Bağdadi'den aktardığı bir söz ise bambaşka bir bahsi -- vahdet-kesret meselesini -- açar: <em>\"Suyun rengi kabın rengidir.\"</em> (s.309) Dost bunu şöyle genişletir: <em>\"Varlıkta sadece 'bir vardır' dersen doğru söylemiş olacağın gibi, 'iki kişi vardır' dersen yine doğru söylemiş olursun.\"</em> (s.309-310) -- yani tekliğe ya da çokluğa vurgu, bakış açısına göre ikisi de doğru olabiliyor; biri diğerini yalanlamıyor.",
+            "en": "Dost explains the ruling that a pilgrim may not contract or officiate a marriage through the likeness of an enclosure: <em>\"Ihram is an enclosure, and whoever wanders around the enclosure falls into it.\"</em> (p.309) A saying he relates from Junayd of Baghdad opens an altogether different matter -- the question of unity and multiplicity: <em>\"The color of water is the color of its vessel.\"</em> (p.309) Dost expands on this: <em>\"If you say of existence only that 'there is one,' you will have spoken truly; and if you say 'there are two,' you will likewise have spoken truly.\"</em> (p.309-310) -- meaning that emphasis on oneness or on multiplicity can both be true, depending on the vantage point; one does not falsify the other.",
+            "pt": "Dost explica o estatuto de que um peregrino não pode contrair nem oficializar um casamento através da semelhança de um cercado: <em>\"O ihram é um cercado, e quem vagueia ao seu redor cai nele.\"</em> (p.309) Um dito que ele relata de Junayd de Bagdá abre uma questão totalmente diferente -- a questão da unidade e da multiplicidade: <em>\"A cor da água é a cor de seu recipiente.\"</em> (p.309) Dost expande isso: <em>\"Se disseres da existência apenas que 'há um', terás falado com verdade; e se disseres 'há dois', também terás falado com verdade.\"</em> (p.309-310) -- ou seja, a ênfase na unidade ou na multiplicidade pode ser verdadeira em ambos os casos, dependendo do ponto de vista; um não invalida o outro."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kiran-temettu-ifrad",
+      "heading": {
+        "tr": "Kıran, Temettu, İfrad: Üç Hac, Üç Nitelik İlişkisi",
+        "en": "Qiran, Tamattu, Ifrad: Three Pilgrimages, Three Relations of Attributes",
+        "pt": "Qiran, Tamattu, Ifrad: Três Peregrinações, Três Relações de Atributos"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Câbir b. Abdullah'ın aktardığı uzun Veda Haccı hadisiyle devam eder -- Hz. Peygamber'in kendi haccını bizzat nasıl yaptığının anlatıldığı bu bölüm, cahiliye âdetlerini kaldıran hükümlerle doludur: <em>\"Cahiliyeden kalma bütün işler ayaklarımın altındadır.\"</em> (s.312) ve kadınlar hakkında: <em>\"Kadınlar hakkında Allah'tan korkunuz! Çünkü siz onları Allah'ın emaneti olarak aldınız.\"</em> (s.312) Dost, bu tarihsel anlatının ardından haccın üç türünü (kıran, temettu, ifrad) rablık ve kulluk niteliklerinin bir kulda farklı ilişkiye girme biçimleri olarak okur: kıran bu niteliklerin birleşmesini, ifrad her birinin yalnız başına kalmasını, temettu ise birinin bitip ötekinin başlamasını temsil eder.",
+            "en": "The section continues with the long Farewell Pilgrimage hadith related by Jabir ibn Abdullah -- an account of how the Prophet himself performed his pilgrimage, filled with rulings that abolished pre-Islamic customs: <em>\"All the practices of the Age of Ignorance are beneath my feet.\"</em> (p.312) and concerning women: <em>\"Fear God concerning women! For you have taken them as a trust from God.\"</em> (p.312) After this historical narrative, Dost reads the three forms of pilgrimage (qiran, tamattu, ifrad) as different ways in which the attributes of lordship and servanthood can relate within a single servant: qiran represents these attributes' union, ifrad represents each remaining alone, and tamattu represents one ending as the other begins.",
+            "pt": "A seção prossegue com o longo hadith da Peregrinação de Despedida relatado por Jabir ibn Abdullah -- um relato de como o próprio Profeta realizou sua peregrinação, repleto de estatutos que aboliram costumes pré-islâmicos: <em>\"Todas as práticas da Era da Ignorância estão sob meus pés.\"</em> (p.312) e a respeito das mulheres: <em>\"Temei a Deus quanto às mulheres! Pois as tomastes como um depósito confiado por Deus.\"</em> (p.312) Após esse relato histórico, Dost lê as três formas de peregrinação (qiran, tamattu, ifrad) como diferentes modos pelos quais os atributos de senhorio e servidão podem se relacionar dentro de um único servo: qiran representa a união desses atributos, ifrad representa cada um permanecendo sozinho, e tamattu representa um terminando enquanto o outro começa."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXIV, s. 314-315.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXIV, pp. 314-315.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXIV, pp. 314-315."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Kıran",
+                "en": "Qiran",
+                "pt": "Qiran"
+              },
+              "note": {
+                "tr": "rablık ve kulluk niteliklerinin birleşmesi",
+                "en": "the union of lordship and servanthood",
+                "pt": "a união do senhorio e da servidão"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Temettu",
+                "en": "Tamattu",
+                "pt": "Tamattu"
+              },
+              "note": {
+                "tr": "biri bitip öbürünün başlaması",
+                "en": "one ending as the other begins",
+                "pt": "um terminando enquanto o outro começa"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "İfrad",
+                "en": "Ifrad",
+                "pt": "Ifrad"
+              },
+              "note": {
+                "tr": "her nitelik yalnız başına kalır",
+                "en": "each attribute remains alone",
+                "pt": "cada atributo permanece sozinho"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Üç hac türü, rablık ve kulluğun bir kulda kurabileceği üç farklı ilişkiyi temsil eder gibi okunabilir.",
+            "en": "The three forms of pilgrimage can be read as representing three different relations lordship and servanthood may form within a servant.",
+            "pt": "As três formas de peregrinação podem ser lidas como representando três relações diferentes que o senhorio e a servidão podem formar dentro de um servo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tenzih-teshbih-odunc",
+      "heading": {
+        "tr": "Ödünç Nitelikler: Tenzih ve Teşbih",
+        "en": "Borrowed Attributes: Transcendence and Likening",
+        "pt": "Atributos Emprestados: Transcendência e Semelhança"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Temettu haccının bâtınî yorumu, Dost'u tenzih ve teşbih nitelikleri arasındaki ilişkiye götürür. Bu niteliklerin bize değil Hakk'a ait olduğunu, bizde ancak ödünç bulunduğunu vurgular: <em>\"Hakkın kendisini bilmediğimiz gibi bunların... niteliğini de bilemeyiz.\"</em> (s.317) ve daha da açık biçimde: <em>\"Kul, bu niteliği kendisi üretmediği gibi Hak da kendiliğiyle onunla nitelenmiş değildir.\"</em> (s.317) Kısmın en çarpıcı cümlelerinden biri şudur: <em>\"Bu nitelikler, öyleyse, gerçekte Allah'a ait iken ödünç olarak bizimdir. Çünkü Allah vardı ve biz yoktuk.\"</em> (s.317) -- yani insana ait görünen her nitelik, aslında geçici bir ödünç, kalıcı sahibi ise hep Hak.",
+            "en": "The inward reading of tamattu pilgrimage leads Dost to the relation between the attributes of transcendence and likening. He stresses that these attributes belong not to us but to the Real, and are only lent to us: <em>\"Just as we do not know the Real Himself, we cannot know the... nature of these attributes.\"</em> (p.317) and even more plainly: <em>\"Just as the servant did not produce this attribute himself, the Real, too, is not characterized by it of Himself.\"</em> (p.317) One of the section's most striking sentences is this: <em>\"These attributes, then, in reality belong to God, while being ours only as a loan. For God existed, and we did not.\"</em> (p.317) -- meaning every attribute that seems to belong to the human being is, in truth, a temporary loan, while its lasting owner is always the Real.",
+            "pt": "A leitura interior da peregrinação de tamattu leva Dost à relação entre os atributos de transcendência e semelhança. Ele enfatiza que esses atributos não nos pertencem, mas ao Real, e nos são apenas emprestados: <em>\"Assim como não conhecemos o próprio Real, não podemos conhecer a... natureza desses atributos.\"</em> (p.317) e ainda mais claramente: <em>\"Assim como o servo não produziu esse atributo por si mesmo, o Real, também, não é caracterizado por ele por Si próprio.\"</em> (p.317) Uma das frases mais marcantes da seção é esta: <em>\"Esses atributos, então, na realidade pertencem a Deus, sendo nossos apenas como empréstimo. Pois Deus existia, e nós não.\"</em> (p.317) -- ou seja, todo atributo que parece pertencer ao ser humano é, na verdade, um empréstimo temporário, enquanto seu dono duradouro é sempre o Real."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXIV, s. 317.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXIV, p. 317.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXIV, p. 317."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Tenzih",
+                "en": "Transcendence",
+                "pt": "Transcendência"
+              },
+              "note": {
+                "tr": "Hakk'a ait bir nitelik",
+                "en": "an attribute belonging to the Real",
+                "pt": "um atributo pertencente ao Real"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Teşbih",
+                "en": "Likening",
+                "pt": "Semelhança"
+              },
+              "note": {
+                "tr": "yine Hakk'a ait, kulda ödünç",
+                "en": "likewise belonging to the Real, lent to the servant",
+                "pt": "também pertencente ao Real, emprestado ao servo"
+              }
+            }
+          },
+          "caption": {
+            "tr": "Kulda görünen her nitelik, gerçekte Hakk'a ait bir ödünçtür.",
+            "en": "Every attribute that appears in the servant is, in truth, a loan belonging to the Real.",
+            "pt": "Todo atributo que aparece no servo é, na verdade, um empréstimo pertencente ao Real."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tek-mahalde-tek-hukum",
+      "heading": {
+        "tr": "Tek Mahalde Tek Hüküm: Kesb ve İsimlerin Sonu",
+        "en": "One Ruling in One Place: Acquisition and the Limit of the Names",
+        "pt": "Um Estatuto em Um Lugar: A Aquisição e o Limite dos Nomes"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, fesih (niyet değiştirme) bahsiyle devam eder -- <em>\"Attığında sen atmadın... Sen niyetini değiştirdiğinde onu değiştiren sen değilsin!\"</em> (s.320) -- ve kıran haccına dönerek kesb/yaratma (fiilin Allah'a mı kula mı ait olduğu) tartışmasına girer. Dost burada Kısım 63'teki isimlerin çekişmesi fikrini bir adım öteye taşır, ama vurguyu değiştirir: örnek olarak el-Afuv, el-Gaffar, el-Muntakim ve el-Muakib isimlerinin bir günahkâr üzerinde aynı anda yönelebileceğini söyler, ama ekler: <em>\"Bir yer o hükümler arasındaki karşıtlığı kabul edemez... İlâhi mertebe ise, tektir.\"</em> (s.325) ve kapanışta: <em>\"Hakikat bir, hüküm değişiktir.\"</em> (s.325) Bize göre bu, Kısım 63'ün 'birden fazla isim aynı anda hüküm sürebilir' iddiasıyla gerilimli duruyor -- belki Dost burada 'çekişme' (henüz kararlaşmamış bir yönelme) ile 'hüküm' (sonunda geçerli olan tekil sonuç) arasında bir ayrım kastediyor, ama bu ayrımı tam açıklamıyor; biz de bu gerilimi çözülmüş saymak yerine, ileride başka kısımlarda netleşebilecek bir soru olarak kaydediyoruz.",
+            "en": "The section continues with the matter of dissolution (changing one's intention) -- <em>\"When you threw, it was not you who threw... When you changed your intention, it was not you who changed it!\"</em> (p.320) -- and, returning to qiran pilgrimage, enters the debate over acquisition and creation (whether an act belongs to God or to the servant). Here Dost carries Part 63's idea of the Names' contention one step further, but shifts its emphasis: as an example, he says that the Names al-Afuww, al-Ghaffar, al-Muntaqim, and al-Mu'aqqib may all turn toward a sinner at once, but adds: <em>\"A single locus cannot admit the opposition between these rulings... the divine rank, however, is one.\"</em> (p.325) and, in closing: <em>\"The reality is one, the ruling varies.\"</em> (p.325) To us, this seems to sit in tension with Part 63's claim that 'more than one Name can hold sway at once' -- perhaps Dost means to distinguish here between 'contention' (a turning not yet decided) and 'ruling' (the single result that finally holds); but he does not fully spell out this distinction, and rather than treat the tension as resolved, we note it as a question that later sections may clarify.",
+            "pt": "A seção prossegue com a questão da dissolução (mudar a própria intenção) -- <em>\"Quando lançaste, não foste tu que lançaste... Quando mudaste tua intenção, não foste tu que a mudaste!\"</em> (p.320) -- e, retornando à peregrinação de qiran, entra no debate sobre aquisição e criação (se um ato pertence a Deus ou ao servo). Aqui Dost leva a ideia da disputa dos Nomes da Parte 63 um passo adiante, mas desloca sua ênfase: como exemplo, diz que os Nomes al-Afuww, al-Ghaffar, al-Muntaqim e al-Mu'aqqib podem todos se voltar ao mesmo tempo para um pecador, mas acrescenta: <em>\"Um único lugar não pode admitir a oposição entre esses estatutos... a categoria divina, porém, é uma.\"</em> (p.325) e, ao encerrar: <em>\"A realidade é uma, o estatuto varia.\"</em> (p.325) Para nós, isso parece estar em tensão com a afirmação da Parte 63 de que 'mais de um Nome pode reinar ao mesmo tempo' -- talvez Dost queira distinguir aqui entre 'disputa' (um voltar-se ainda não decidido) e 'estatuto' (o resultado único que finalmente vale); mas ele não explicita totalmente essa distinção, e, em vez de tratar a tensão como resolvida, a registramos como uma pergunta que partes posteriores poderão esclarecer."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXIV, s. 324-325.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXIV, pp. 324-325.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXIV, pp. 324-325."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "el-Afuv / el-Gaffar",
+                "en": "al-Afuww / al-Ghaffar",
+                "pt": "al-Afuww / al-Ghaffar"
+              },
+              "note": {
+                "tr": "affeden isimler",
+                "en": "the forgiving Names",
+                "pt": "os Nomes que perdoam"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Tek Mahal",
+                "en": "One Locus",
+                "pt": "Um Único Lugar"
+              },
+              "note": {
+                "tr": "karşıtlığı kabul etmez",
+                "en": "cannot admit opposition",
+                "pt": "não admite oposição"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "el-Muntakim / el-Muakib",
+                "en": "al-Muntaqim / al-Mu'aqqib",
+                "pt": "al-Muntaqim / al-Mu'aqqib"
+              },
+              "note": {
+                "tr": "cezalandıran isimler",
+                "en": "the punishing Names",
+                "pt": "os Nomes que castigam"
+              }
+            }
+          },
+          "caption": {
+            "tr": "İsimler aynı anda yönelebilir, ama Dost'a göre bir mahalde sonunda yalnızca tek bir hüküm geçerli olabilir.",
+            "en": "The Names may turn at once, but for Dost, in the end only a single ruling can hold in one locus.",
+            "pt": "Os Nomes podem se voltar ao mesmo tempo, mas, para Dost, no fim só um único estatuto pode valer em um lugar."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt V, Kısım LXIV (Ahmed Avni Konuk şerhi)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. V, Part LXIV (Ahmed Avni Konuk's commentary)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. V, Parte LXIV (comentário de Ahmed Avni Konuk)"
+      },
+      "pageRange": "303-325"
+    }
+  ]
+}
