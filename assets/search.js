@@ -242,6 +242,9 @@
     input.value = "";
     input.placeholder = placeholder();
     results.innerHTML = "";
+    resultButtons = [];
+    activeIndex = -1;
+    input.removeAttribute("aria-activedescendant");
     requestAnimationFrame(() => input.focus());
     if (!indexLoaded) buildIndex();
   }
@@ -266,7 +269,49 @@
     }
   });
 
+  // Ok tuşuyla gezinme: görünür sonuç düğmelerinin düz (gruplanmamış) listesi
+  // üzerinde yukarı/aşağı hareket eder, ekrana kaydırır; Enter seçili olanı
+  // açar (hiçbiri seçili değilken ilk sonucu açar -- klasik komut paleti
+  // davranışı). Liste her renderResults() çağrısında yenilendiğinden,
+  // activeIndex de her yeniden çizimde sıfırlanır.
+  let resultButtons = [];
+  let activeIndex = -1;
+
+  function setActive(i) {
+    if (resultButtons[activeIndex]) {
+      resultButtons[activeIndex].classList.remove("is-active");
+      resultButtons[activeIndex].removeAttribute("aria-selected");
+    }
+    activeIndex = i;
+    const btn = resultButtons[activeIndex];
+    if (btn) {
+      btn.classList.add("is-active");
+      btn.setAttribute("aria-selected", "true");
+      btn.scrollIntoView({ block: "nearest" });
+      input.setAttribute("aria-activedescendant", btn.id);
+    } else {
+      input.removeAttribute("aria-activedescendant");
+    }
+  }
+
+  function moveActive(delta) {
+    if (!resultButtons.length) return;
+    const next = activeIndex < 0
+      ? (delta > 0 ? 0 : resultButtons.length - 1)
+      : (activeIndex + delta + resultButtons.length) % resultButtons.length;
+    setActive(next);
+  }
+
+  function activateResult(btn) {
+    window.dostTrack && window.dostTrack("arama_sonucu_tiklandi", { view: btn.dataset.view, id: btn.dataset.id });
+    closePanel();
+    window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id);
+  }
+
   function renderResults(items) {
+    resultButtons = [];
+    activeIndex = -1;
+    input.removeAttribute("aria-activedescendant");
     if (!items.length) {
       results.innerHTML = input.value
         ? `<div class="search-panel__empty" data-tr="Sonuç bulunamadı" data-en="No results" data-pt="Nenhum resultado">...</div>`
@@ -278,11 +323,12 @@
     items.forEach((it) => {
       (byView[it.view] = byView[it.view] || []).push(it);
     });
+    let rowIndex = 0;
     results.innerHTML = Object.keys(byView)
       .map((view) => {
         const rows = byView[view]
           .map(
-            (it) => `<button class="search-result" data-view="${it.view}" data-id="${it.id}">
+            (it) => `<button class="search-result" id="search-result-${rowIndex++}" role="option" data-view="${it.view}" data-id="${it.id}">
               <span class="search-result__label">${tt(it.label)}</span>
               ${it.sub ? `<span class="search-result__sub">${tt(it.sub)}</span>` : ""}
             </button>`
@@ -296,14 +342,34 @@
       })
       .join("");
 
-    results.querySelectorAll(".search-result").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        window.dostTrack && window.dostTrack("arama_sonucu_tiklandi", { view: btn.dataset.view, id: btn.dataset.id });
-        closePanel();
-        window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id);
-      });
+    resultButtons = Array.from(results.querySelectorAll(".search-result"));
+    resultButtons.forEach((btn) => {
+      btn.addEventListener("click", () => activateResult(btn));
+      btn.addEventListener("pointerenter", () => setActive(resultButtons.indexOf(btn)));
     });
   }
+
+  input.setAttribute("role", "combobox");
+  input.setAttribute("aria-expanded", "true");
+  input.setAttribute("aria-controls", "search-results");
+  input.setAttribute("aria-autocomplete", "list");
+  results.setAttribute("role", "listbox");
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      moveActive(1);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      moveActive(-1);
+    } else if (e.key === "Enter") {
+      const btn = resultButtons[activeIndex] || resultButtons[0];
+      if (btn) {
+        e.preventDefault();
+        activateResult(btn);
+      }
+    }
+  });
 
   let searchTrackTimer = null;
   input.addEventListener("input", () => {

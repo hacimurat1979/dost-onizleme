@@ -3465,8 +3465,12 @@ html:has(.detail-panel:not([hidden])) {
 }
 
 .search-result:hover,
-.search-result:focus-visible {
+.search-result:focus-visible,
+.search-result.is-active {
   background: var(--page-plane);
+}
+.search-result.is-active {
+  box-shadow: inset 3px 0 0 var(--accent-interactive);
 }
 
 .search-result__label {
