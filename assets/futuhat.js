@@ -772,7 +772,16 @@
         </details>`;
       })
       .join("");
-    partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: "Cilt IX–XVIII yakında", en: "Volumes IX–XVIII coming soon", pt: "Volumes IX–XVIII em breve" })}</span>`;
+    // Son cildi hardcode etmek yerine hesapla -- her yeni cilt eklendiğinde
+    // bu metnin bayat kalmasına yol açan, iki kez tekrarlanmış bir hataydı
+    // (bkz. research/anlayis-evrimi/MISUNDERSTANDINGS.md #4).
+    const lastCilt = cilts.length ? cilts[cilts.length - 1].cilt : 0;
+    const TOTAL_CILT = 18;
+    if (lastCilt < TOTAL_CILT) {
+      const nextRoman = CILT_ROMAN[lastCilt + 1];
+      const lastRoman = CILT_ROMAN[TOTAL_CILT];
+      partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: `Cilt ${nextRoman}–${lastRoman} yakında`, en: `Volumes ${nextRoman}–${lastRoman} coming soon`, pt: `Volumes ${nextRoman}–${lastRoman} em breve` })}</span>`;
+    }
   }
 
   function roman(n) {
