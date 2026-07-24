@@ -1,0 +1,526 @@
+{
+  "id": "c6k71",
+  "cilt": 6,
+  "kisim": 71,
+  "status": "active",
+  "title": {
+    "tr": "Hac Hadisleri: Darlıktan Genişliğe, Kuldan Konuğa",
+    "en": "Hadiths of the Pilgrimage: From Constriction to Expanse, From Servant to Guest",
+    "pt": "Hadiths da Peregrinação: Da Estreiteza à Amplidão, do Servo ao Convidado"
+  },
+  "pageRange": {
+    "tr": "s. 11-32",
+    "en": "pp. 11-32",
+    "pt": "pp. 11-32"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Onbirinci Sifr, Onuncu Sifr'in hac üzerine kurduğu zemini şimdi on iki hadisin şerhiyle sürdürüyor — kefaretten Arife'ye, konukluktan telbide, oradan beş şer'î hükmün ilahi mertebedeki yankısına.",
+      "en": "The Eleventh Sifr carries forward the ground the Tenth Sifr built around the pilgrimage, now through the commentary of twelve hadiths — from atonement to the Day of Arafat, from being God's guest to the anointing of the hair, and on to the five legal rulings' echo in the divine order.",
+      "pt": "O Décimo Primeiro Sifr dá continuidade ao terreno que o Décimo Sifr construiu em torno da peregrinação, agora através do comentário de doze hadiths — da expiação ao Dia de Arafat, de ser hóspede de Deus à unção dos cabelos, e daí ao eco dos cinco preceitos legais na ordem divina."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "71. Kısım'da sırayla zikredilen on iki hadis ve her birinin ele aldığı konu.",
+      "en": "The twelve hadiths cited in turn in Part 71, and the subject each takes up.",
+      "pt": "Os doze hadiths citados em sequência na Parte 71, e o tema que cada um aborda."
+    },
+    "tree": {
+      "id": "kisim-lxxi-tree",
+      "label": {
+        "tr": "Yetmiş Birinci Kısım: On İki Hadis",
+        "en": "Part Seventy-One: Twelve Hadiths",
+        "pt": "Parte Setenta e Um: Doze Hadiths"
+      },
+      "note": {
+        "tr": "Kefaret bahsiyle açılır, Arife ve konukluktan geçip beş şer'î hükmün ilahi mertebedeki karşılığıyla kapanır.",
+        "en": "Opens with atonement, passes through ʿArafa and guest-status, and closes with the five legal rulings' counterpart in the divine order.",
+        "pt": "Abre-se com a expiação, passa por ʿArafa e pela condição de hóspede, e encerra-se com a contrapartida dos cinco preceitos legais na ordem divina."
+      },
+      "children": [
+        {
+          "id": "hadis-fazilet",
+          "label": {
+            "tr": "Fazilet",
+            "en": "Merit",
+            "pt": "Mérito"
+          },
+          "note": {
+            "tr": "umre ve hac kefareti",
+            "en": "atonement of ʿumra and pilgrimage",
+            "pt": "expiação da ʿumra e da peregrinação"
+          }
+        },
+        {
+          "id": "hadis-tesvik",
+          "label": {
+            "tr": "Teşvik",
+            "en": "Encouragement",
+            "pt": "Encorajamento"
+          },
+          "note": {
+            "tr": "körüğün pas temizlemesi",
+            "en": "the bellows removing impurity",
+            "pt": "o fole removendo a impureza"
+          }
+        },
+        {
+          "id": "hadis-kabe",
+          "label": {
+            "tr": "Kâbe'ye Gelmenin Fazileti",
+            "en": "Merit of Reaching the Kaʿba",
+            "pt": "Mérito de Chegar à Kaʿba"
+          },
+          "note": {
+            "tr": "doğduğu gün gibi dönüş",
+            "en": "returning like the day of birth",
+            "pt": "retorno como no dia do nascimento"
+          }
+        },
+        {
+          "id": "hadis-arife",
+          "label": {
+            "tr": "Arife",
+            "en": "The Day of ʿArafa",
+            "pt": "O Dia de ʿArafa"
+          },
+          "note": {
+            "tr": "ateşten en çok kurtuluş",
+            "en": "greatest freedom from the Fire",
+            "pt": "maior libertação do Fogo"
+          }
+        },
+        {
+          "id": "hadis-konukluk",
+          "label": {
+            "tr": "Konukluk",
+            "en": "Being God's Guest",
+            "pt": "Ser Hóspede de Deus"
+          },
+          "note": {
+            "tr": "gazi, hacı, umreci",
+            "en": "the warrior, the pilgrim, the ʿumra-goer",
+            "pt": "o guerreiro, o peregrino, o de ʿumra"
+          }
+        },
+        {
+          "id": "hadis-kuran-ehli",
+          "label": {
+            "tr": "Kur'an Ehli",
+            "en": "People of the Qur'an",
+            "pt": "Povo do Alcorão"
+          },
+          "note": {
+            "tr": "ümmetin özelliği",
+            "en": "a trait of this community",
+            "pt": "um traço desta comunidade"
+          }
+        },
+        {
+          "id": "hadis-farziyet",
+          "label": {
+            "tr": "Farziyet",
+            "en": "Obligation",
+            "pt": "Obrigação"
+          },
+          "note": {
+            "tr": "evet deseydi yapamazdınız",
+            "en": "had he said yes, you could not",
+            "pt": "se ele tivesse dito sim, não poderíeis"
+          }
+        },
+        {
+          "id": "hadis-sarure",
+          "label": {
+            "tr": "Sarûre",
+            "en": "Never Having Made Pilgrimage",
+            "pt": "Nunca Ter Peregrinado"
+          },
+          "note": {
+            "tr": "niyetin karşılığı",
+            "en": "the reward of intention",
+            "pt": "a recompensa da intenção"
+          }
+        },
+        {
+          "id": "hadis-kadin-izin",
+          "label": {
+            "tr": "Kadın-İzin",
+            "en": "Woman's Permission",
+            "pt": "Permissão da Mulher"
+          },
+          "note": {
+            "tr": "nefsin yönelişi",
+            "en": "the self's turning",
+            "pt": "a volta do eu"
+          }
+        },
+        {
+          "id": "hadis-kole-yolculuk",
+          "label": {
+            "tr": "Köle-Yolculuk",
+            "en": "Slave's Travel",
+            "pt": "Viagem do Escravo"
+          },
+          "note": {
+            "tr": "yalnız yolculuğun zayiası",
+            "en": "the loss of unaccompanied travel",
+            "pt": "a perda da viagem desacompanhada"
+          }
+        },
+        {
+          "id": "hadis-telbid",
+          "label": {
+            "tr": "Telbid",
+            "en": "Anointing the Hair",
+            "pt": "Unção dos Cabelos"
+          },
+          "note": {
+            "tr": "arıya vahiy benzetmesi",
+            "en": "likened to the bee's revelation",
+            "pt": "assemelhado à revelação da abelha"
+          }
+        },
+        {
+          "id": "hadis-tavaf-hukumler",
+          "label": {
+            "tr": "Tavaf-Hükümler",
+            "en": "Circumambulation Rulings",
+            "pt": "Preceitos da Circum-ambulação"
+          },
+          "note": {
+            "tr": "beş şer'î hükme açılır",
+            "en": "opens onto the five legal rulings",
+            "pt": "abre-se para os cinco preceitos legais"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "kefaret-ve-iki-oncul",
+      "heading": {
+        "tr": "Kefaret ve İki Öncülden Bir Sonuç",
+        "en": "Atonement, and a Conclusion from Two Premises",
+        "pt": "Expiação, e uma Conclusão a Partir de Duas Premissas"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Cilt V'in kapanışı, Onuncu Sifr'in ardından yetmişinci kısmın geleceğini söylüyordu. Elimizdeki kaynak metinde ise Onbirinci Sifr doğrudan yetmiş birinci kısımla açılıyor — kısım 70'e dair ne bir başlık ne de bir dipnot var. Bunu, daha önce Cilt IV ile V arasında da karşılaştığımız, muhtemelen Dost'un kendi metninden değil çeviri/baskı ciltlemesinden kaynaklanan bir numaralandırma boşluğu olarak not düşüyoruz; kesin bir açıklamamız yok, sadece dürüst bir gözlem. Kısım, on iki hadisin sırayla zikredilip yorumlandığı bir 'vasıl' olarak açılıyor. İlk ikisi kefaret üzerine: <em>\"Bir umre, diğer umreye kadar işlenen günahların kefaretidir. Mebrür bir haccın ödülü ise sadece cennet olabilir\"</em> (s. 12) ve <em>\"Hac ve umreyi peşpeşe yapınız, çünkü o ikisi, tıpkı körüğün altın ve gümüşün pasını silmesi gibi, yoksulluğu ve günahları temizler\"</em> (s. 14). Dost burada bir mantık şeması kuruyor gibi görünüyor: sonuç tek bir öncülden değil, iki öncülün bir araya gelmesinden doğuyor — umre tek başına değil, umrenin tekrarı kefareti tamamlıyor.",
+            "en": "Volume V's closing lines said the seventieth part would follow the Tenth Sifr. In the source text before us, however, the Eleventh Sifr opens directly with the seventy-first part — no heading or footnote marks part 70 at all. We note this, as we did once before between Volumes IV and V, as a numbering gap most likely stemming from the translation/printing binding rather than from Dost's own text; we have no firm explanation, only an honest observation. The part opens as a single 'vasıl' in which twelve hadiths are cited and glossed in turn. The first two concern atonement: <em>\"An ʿumra is an atonement for the sins committed between it and the next ʿumra. The reward of an accepted pilgrimage can only be paradise\"</em> (p. 12) and <em>\"Perform the pilgrimage and the ʿumra one after another, for the two of them remove poverty and sins the way a bellows removes the impurity from gold and silver\"</em> (p. 14). Dost appears to be building a kind of logical scheme here: the conclusion is not born of a single premise but of two premises together — a single ʿumra does not suffice; its repetition completes the atonement.",
+            "pt": "As linhas finais do Volume V diziam que a septuagésima parte se seguiria ao Décimo Sifr. No texto-fonte que temos diante de nós, porém, o Décimo Primeiro Sifr se abre diretamente com a septuagésima primeira parte — nenhum título ou nota de rodapé assinala a parte 70. Registramos isso, como já fizemos uma vez entre os Volumes IV e V, como uma lacuna de numeração provavelmente originada na encadernação da tradução/impressão, e não no próprio texto de Dost; não temos uma explicação firme, apenas uma observação honesta. A parte se abre como um único 'vasıl' no qual doze hadiths são citados e comentados em sequência. Os dois primeiros tratam da expiação: <em>\"Uma ʿumra é uma expiação para os pecados cometidos entre ela e a próxima ʿumra. A recompensa de uma peregrinação aceita só pode ser o paraíso\"</em> (p. 12) e <em>\"Realizai a peregrinação e a ʿumra uma após a outra, pois as duas removem a pobreza e os pecados como um fole remove a impureza do ouro e da prata\"</em> (p. 14). Dost parece construir aqui uma espécie de esquema lógico: a conclusão não nasce de uma única premissa, mas da junção de duas — uma única ʿumra não basta; sua repetição completa a expiação."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXI, s. 12-14.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXI, pp. 12-14.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXI, pp. 12-14."
+          },
+          "caption": {
+            "tr": "Sonuç tek bir öncülden değil, iki öncülden doğar.",
+            "en": "The conclusion is born not of one premise, but of two.",
+            "pt": "A conclusão nasce não de uma premissa, mas de duas."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Umre + Umre",
+                "en": "ʿUmra + ʿUmra",
+                "pt": "ʿUmra + ʿUmra"
+              },
+              "note": {
+                "tr": "günah kefareti",
+                "en": "atonement for sin",
+                "pt": "expiação do pecado"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Mebrûr Hac",
+                "en": "Accepted Pilgrimage",
+                "pt": "Peregrinação Aceita"
+              },
+              "note": {
+                "tr": "ödülü sadece cennet",
+                "en": "reward is paradise alone",
+                "pt": "recompensa é somente o paraíso"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "darliktan-genislige-dogan-cocuk",
+      "heading": {
+        "tr": "Darlıktan Genişliğe: Doğan Çocuk",
+        "en": "From Constriction to Expanse: The Newborn Child",
+        "pt": "Da Estreiteza à Amplidão: A Criança Recém-Nascida"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Üçüncü hadis, haccı bitirip dönen kişiyi <em>\"annesinin kendisini doğurduğu günkü gibidir\"</em> (s. 19) diye tarif ediyor. Dost bu imgeyi, doğumun kendisinin bir darlıktan genişliğe çıkış olduğunu hatırlatarak okuyor — anne karnının darlığından dünyanın genişliğine. Sonra bu okumayı tersine çeviriyor: âlemin Haktan zuhuru, tam tersi yönde, genişlikten darlığa doğru bir harekettir. Bu ters-ayna kurgusu bize kesin bir sonuç olarak değil, iki farklı 'doğum'un birbirini aydınlatan birer okuması olarak görünüyor.",
+            "en": "The third hadith describes the one who completes the pilgrimage and returns as being <em>\"like the day his mother bore him\"</em> (p. 19). Dost reads this image by recalling that birth itself is a passage from constriction to expanse — from the narrowness of the womb to the breadth of the world. He then reverses the reading: the world's emergence from the Real moves, he suggests, in the opposite direction, from expanse toward constriction. This mirror-image construction strikes us not as a settled conclusion but as two readings of 'birth' illuminating one another.",
+            "pt": "O terceiro hadith descreve quem completa a peregrinação e regressa como estando <em>\"como no dia em que sua mãe o deu à luz\"</em> (p. 19). Dost lê essa imagem lembrando que o próprio nascimento é uma passagem da estreiteza à amplidão — da estreiteza do ventre à amplidão do mundo. Em seguida, ele inverte essa leitura: o surgimento do mundo a partir do Real move-se, sugere, na direção oposta, da amplidão para a estreiteza. Essa construção em espelho nos parece não uma conclusão fechada, mas duas leituras do 'nascimento' que se iluminam mutuamente."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXI, s. 18-19.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXI, pp. 18-19.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXI, pp. 18-19."
+          },
+          "caption": {
+            "tr": "İki 'doğum', birbirinin ters aynası gibi okunuyor.",
+            "en": "Two 'births', read as mirror images of one another.",
+            "pt": "Dois 'nascimentos', lidos como imagens espelhadas um do outro."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Doğan Çocuk",
+                "en": "The Newborn",
+                "pt": "O Recém-Nascido"
+              },
+              "note": {
+                "tr": "darlıktan genişliğe",
+                "en": "from constriction to expanse",
+                "pt": "da estreiteza à amplidão"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Zuhur Eden Âlem",
+                "en": "The Emerging World",
+                "pt": "O Mundo que Surge"
+              },
+              "note": {
+                "tr": "genişlikten darlığa",
+                "en": "from expanse to constriction",
+                "pt": "da amplidão à estreiteza"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "arife-ve-allahin-konuklari",
+      "heading": {
+        "tr": "Arife ve Allah'ın Konukları",
+        "en": "The Day of ʿArafa, and God's Guests",
+        "pt": "O Dia de ʿArafa, e os Hóspedes de Deus"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dördüncü ve beşinci hadisler Arife gününü ve hacılığın konukluk yönünü işliyor: <em>\"Arife gününden başka Allah'ın, kendisinde kulu ateşten daha çok kurtardığı gün yoktur\"</em> (s. 21) ve <em>\"Allah'ın konukları üç kişidir: Gazi, hacı ve umre yapan insan\"</em> (s. 22). Dost'a göre hacı yolculuğa çıktığında evde el-Hafîz ismi onun vekili olur, yol boyunca başka bir isim ona eşlik eder, Kâbe'de yine başka bir isim onu karşılar — <em>\"haccın her unsurunda yeni bir ilahi isim onları karşılar\"</em> (s. 23). Bu, c5k66'daki 'her tavaf turunda yeni bir tecelli' fikriyle aynı damardan besleniyor gibi görünüyor; ama metin hangi ismin ne zaman eşlik ettiğini kesin olarak belirtmiyor, biz de bunu sabit bir sıra diye sunmuyoruz.",
+            "en": "The fourth and fifth hadiths take up the Day of ʿArafa and the guest-status of the pilgrim: <em>\"There is no day on which God frees the servant from the Fire more than on the Day of ʿArafa\"</em> (p. 21) and <em>\"God's guests are three: the one waging jihad, the pilgrim, and the one performing ʿumra\"</em> (p. 22). For Dost, when the pilgrim sets out, the name al-Hafiz (the Preserver) becomes his deputy at home, another name accompanies him on the road, and yet another receives him at the Kaʿba — <em>\"a new divine name meets them in every element of the pilgrimage\"</em> (p. 23). This appears to draw on the same vein as the idea in c5k66 of 'a new theophany with every circuit of the circumambulation'; but the text does not fix precisely which name accompanies when, so we do not present this as a settled sequence either.",
+            "pt": "O quarto e o quinto hadiths tratam do Dia de ʿArafa e da condição de hóspede do peregrino: <em>\"Não há dia em que Deus liberte mais o servo do Fogo do que o Dia de ʿArafa\"</em> (p. 21) e <em>\"Os hóspedes de Deus são três: aquele que combate, o peregrino e aquele que realiza a ʿumra\"</em> (p. 22). Para Dost, quando o peregrino parte, o nome al-Hafiz (o Preservador) torna-se seu representante em casa, outro nome o acompanha pelo caminho, e ainda outro o recebe na Kaʿba — <em>\"um novo nome divino os encontra em cada elemento da peregrinação\"</em> (p. 23). Isso parece beber da mesma veia da ideia em c5k66 de 'uma nova teofania a cada volta da circum-ambulação'; mas o texto não fixa precisamente qual nome acompanha em cada momento, de modo que também não apresentamos isso como uma sequência estabelecida."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXI, s. 21-23.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXI, pp. 21-23.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXI, pp. 21-23."
+          },
+          "caption": {
+            "tr": "Yolculuk boyunca isimler kula eşlik ediyor, birbirine devrediliyor.",
+            "en": "Names accompany the servant through the journey, handed from one to the next.",
+            "pt": "Os nomes acompanham o servo ao longo da jornada, transmitidos de um a outro."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Evde",
+                "en": "At Home",
+                "pt": "Em Casa"
+              },
+              "note": {
+                "tr": "el-Hafîz vekâlette",
+                "en": "al-Hafiz as deputy",
+                "pt": "al-Hafiz como representante"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Yolda",
+                "en": "On the Road",
+                "pt": "No Caminho"
+              },
+              "note": {
+                "tr": "eşlik eden isim",
+                "en": "the accompanying name",
+                "pt": "o nome que acompanha"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Kâbe'de",
+                "en": "At the Kaʿba",
+                "pt": "Na Kaʿba"
+              },
+              "note": {
+                "tr": "karşılayan isim",
+                "en": "the name that receives",
+                "pt": "o nome que recebe"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "haccin-farziyeti-ve-tevhid",
+      "heading": {
+        "tr": "Haccın Farziyeti ve Tevhid",
+        "en": "The Obligation of Pilgrimage, and Tevhid",
+        "pt": "A Obrigatoriedade da Peregrinação, e o Tevhid"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yedinci hadis haccın niçin ömürde bir kez farz kılındığını soruyor; Hz. Peygamber'in cevabı Dost'a göre bir uyarı taşıyor: <em>\"Evet deseydim farz olacaktı ve siz onu yapamayacaktınız\"</em> (s. 24). Namaz ve oruç tekrarlanırken haccın tekil kalması, Dost'un elinde tevhidle ilişkilendiriliyor — <em>\"İslam tevhid ifadesiyle başlar, hac ile -ki o da birliktir- sona erer\"</em> (s. 25). Sekizinci hadis (sarûre — hiç hac yapmamış olma hali) ise niyetin bile bir karşılığı olduğunu, namazı bekleyenin sanki namaz kılmış gibi sayılmasına benzer bir mantıkla anlatıyor.",
+            "en": "The seventh hadith asks why the pilgrimage was made obligatory only once in a lifetime; the Prophet's answer, in Dost's reading, carries a warning: <em>\"Had I said yes, it would have become obligatory, and you would not have been able to do it\"</em> (p. 24). While prayer and fasting repeat, the pilgrimage's singularity is linked, in Dost's hands, to tevhid (oneness) — <em>\"Islam begins with the declaration of tevhid and ends with the pilgrimage, which is likewise a oneness\"</em> (p. 25). The eighth hadith (sarûra — the state of never having made the pilgrimage) explains, by a logic resembling the one waiting for prayer being counted as having prayed, that even intention carries its own reward.",
+            "pt": "O sétimo hadith pergunta por que a peregrinação foi tornada obrigatória apenas uma vez na vida; a resposta do Profeta, na leitura de Dost, carrega uma advertência: <em>\"Se eu tivesse dito sim, ela se tornaria obrigatória, e vós não conseguiríeis cumpri-la\"</em> (p. 24). Enquanto a oração e o jejum se repetem, a singularidade da peregrinação é ligada, nas mãos de Dost, ao tevhid (unicidade) — <em>\"O Islã começa com a declaração do tevhid e termina com a peregrinação, que é igualmente uma unicidade\"</em> (p. 25). O oitavo hadith (sarûra — o estado de nunca ter peregrinado) explica, por uma lógica semelhante à de quem espera pela oração ser contado como tendo orado, que até a intenção carrega sua própria recompensa."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kadin-izin-ve-telbid",
+      "heading": {
+        "tr": "Kadın, İzin ve Telbid",
+        "en": "The Woman, Permission, and the Anointing",
+        "pt": "A Mulher, a Permissão e a Unção"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Dokuzuncu ve onuncu hadisler kadının hac için kocasından izin istemesini ve köle ile birlikte yolculuğun sakıncasını konu ediyor; Dost bunu nefsin Allah'ı bilmeye yönelişiyle, akıl-şeriat gerilimine (Eş'arî-Mu'tezile telmihiyle) bağlıyor. On birinci hadiste ise Hz. Peygamber'in ihramda saçını balla ovup tek örgü yapması (telbid) anlatılıyor; Dost bunu <em>\"Rabbin arıya vahyetti\"</em> (s. 29) ayetine bağlayarak, çoğalan hükümlerin tek bir hakikate indirgenmesinin bir sembolü olarak okuyor.",
+            "en": "The ninth and tenth hadiths concern the woman seeking her husband's permission for pilgrimage, and the risk of a slave traveling unaccompanied; Dost ties this to the self's turning toward the knowledge of God, alluding to the tension between reason and revealed law (with a nod to the Ashʿarite-Muʿtazilite dispute). The eleventh hadith recounts the Prophet anointing and braiding his hair with honey while in the state of ihram (telbid); Dost links this to the verse <em>\"Your Lord revealed to the bee\"</em> (p. 29), reading it as a symbol of manifold rulings being reduced to a single truth.",
+            "pt": "O nono e o décimo hadiths tratam da mulher que pede permissão ao marido para peregrinar, e do risco de um escravo viajar desacompanhado; Dost liga isso à volta do eu em direção ao conhecimento de Deus, aludindo à tensão entre razão e lei revelada (com um aceno à disputa Ashʿarita-Muʿtazilita). O décimo primeiro hadith relata o Profeta ungindo e trançando seus cabelos com mel enquanto em estado de ihram (telbid); Dost liga isso ao versículo <em>\"Teu Senhor revelou à abelha\"</em> (p. 29), lendo-o como um símbolo de preceitos múltiplos sendo reduzidos a uma única verdade."
+          }
+        }
+      ]
+    },
+    {
+      "id": "bes-seri-hukum-ve-kapanis",
+      "heading": {
+        "tr": "Beş Şer'î Hüküm ve Kapanış",
+        "en": "The Five Legal Rulings, and the Closing",
+        "pt": "Os Cinco Preceitos Legais, e o Encerramento"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "On ikinci ve son hadis (ihramlının küdûm tavafından sonra sadece ifaza tavafını yapabilmesi) vesilesiyle Dost, hadisin sınırlarını aşıp farz/mendub/mubah/mekruh/haram beşlisinin ilahi mertebedeki karşılıklarını sistematik biçimde tartışıyor (s. 29-32). Bu, bir sonraki kısımlarda tekrar karşımıza çıkabilecek bir çerçeve kurma girişimi gibi görünüyor; şimdilik sadece bu kısımda nasıl açıldığını not ediyoruz.",
+            "en": "On the occasion of the twelfth and final hadith (that the one in ihram may perform only the tawaf al-ifada after the tawaf al-qudum), Dost moves beyond the hadith itself to discuss, systematically, the divine-order counterparts of the five legal rulings — obligatory, recommended, permitted, disliked, forbidden (pp. 29-32). This looks like an attempt to build a framework that may resurface in later parts; for now we simply note how it opens here.",
+            "pt": "Por ocasião do décimo segundo e último hadith (de que aquele em ihram só pode realizar o tawaf al-ifada após o tawaf al-qudum), Dost vai além do hadith em si para discutir, sistematicamente, as contrapartidas dos cinco preceitos legais — obrigatório, recomendado, permitido, reprovável, proibido — na ordem divina (pp. 29-32). Isso parece uma tentativa de construir um arcabouço que pode reaparecer em partes posteriores; por ora, apenas registramos como ele se abre aqui."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, yoğun bir fena diliyle biten bir şiirle kapanıyor: <em>\"Dersem ki ben İlah'tan başka değilim / O 'ben'im, çünkü o bilmez / Ben ben olandan daha cahilim / O benim, öyleyse fiil yapan kimdir?\"</em> (s. 32) — hemen ardından Cüneyd'in dengeleyici sözü geliyor: <em>\"Suyun rengi kabının rengidir\"</em> (s. 32). Bu ikisinin yan yana konması, şiirin literal bir ittihad iddiası mı yoksa bir itiraz-cevap üslubu mu olduğunu bize açık bırakıyor; biz de bu belirsizliği kapatmadan, olduğu gibi aktarmayı tercih ediyoruz.",
+            "en": "The part closes with a poem ending in intensely unitive language: <em>\"Were I to say I am naught but the Divine / He is 'I', for He does not know / I am more ignorant than the one who is I / He is me — so who then performs the act?\"</em> (p. 32) — immediately followed by Cüneyd's balancing remark: <em>\"The color of the water is the color of its vessel\"</em> (p. 32). Placing the two side by side leaves open, for us, whether the poem is a literal claim of union or a raised-and-answered objection; we prefer to convey this uncertainty as it stands rather than resolve it.",
+            "pt": "A parte se encerra com um poema que termina numa linguagem intensamente unitiva: <em>\"Se eu dissesse que não sou senão o Divino / Ele é 'eu', pois Ele não sabe / Sou mais ignorante do que aquele que sou / Ele é eu — quem então realiza o ato?\"</em> (p. 32) — seguido imediatamente pela observação equilibradora de Cüneyd: <em>\"A cor da água é a cor de seu recipiente\"</em> (p. 32). Colocar os dois lado a lado deixa em aberto, para nós, se o poema é uma reivindicação literal de união ou uma objeção seguida de resposta; preferimos transmitir essa incerteza tal como está, sem resolvê-la."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXI, s. 29-32.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXI, pp. 29-32.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXI, pp. 29-32."
+          },
+          "caption": {
+            "tr": "Beş şer'î hükmün her biri, ilahi mertebede bir karşılık buluyor.",
+            "en": "Each of the five legal rulings finds a counterpart in the divine order.",
+            "pt": "Cada um dos cinco preceitos legais encontra uma contrapartida na ordem divina."
+          },
+          "tree": {
+            "id": "bes-hukum-tree",
+            "label": {
+              "tr": "Beş Hüküm",
+              "en": "The Five Rulings",
+              "pt": "Os Cinco Preceitos"
+            },
+            "note": {
+              "tr": "hadisin son faslında açılan sistematik çerçeve",
+              "en": "the systematic framework opened in the hadith's final section",
+              "pt": "o arcabouço sistemático aberto na seção final do hadith"
+            },
+            "children": [
+              {
+                "id": "hukum-farz",
+                "label": {
+                  "tr": "Farz",
+                  "en": "Obligatory",
+                  "pt": "Obrigatório"
+                }
+              },
+              {
+                "id": "hukum-mendub",
+                "label": {
+                  "tr": "Mendub",
+                  "en": "Recommended",
+                  "pt": "Recomendado"
+                }
+              },
+              {
+                "id": "hukum-mubah",
+                "label": {
+                  "tr": "Mubah",
+                  "en": "Permitted",
+                  "pt": "Permitido"
+                }
+              },
+              {
+                "id": "hukum-mekruh",
+                "label": {
+                  "tr": "Mekruh",
+                  "en": "Disliked",
+                  "pt": "Reprovável"
+                }
+              },
+              {
+                "id": "hukum-haram",
+                "label": {
+                  "tr": "Haram",
+                  "en": "Forbidden",
+                  "pt": "Proibido"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXI (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXI (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXI (trad. Ekrem Demirli)"
+      },
+      "pageRange": "11-32"
+    }
+  ]
+}

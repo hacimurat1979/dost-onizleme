@@ -1,0 +1,400 @@
+{
+  "id": "c6k89",
+  "cilt": 6,
+  "kisim": 89,
+  "status": "active",
+  "title": {
+    "tr": "Perdeden Sevgiye: Cilt VI'nın Kapanışı",
+    "en": "From the Veil to Love: The Closing of Volume VI",
+    "pt": "Do Véu ao Amor: O Fechamento do Volume VI"
+  },
+  "pageRange": {
+    "tr": "s. 412-429",
+    "en": "pp. 412-429",
+    "pt": "pp. 412-429"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Cilt VI'nın son kısmı, ziya mülkünden (nur-perde ayrımı) kutsiyete, vechin parıltılarından kısmın ağırlık merkezi olan sevgi bahsine uzanıyor; kenz-i mahfi hadisiyle âlemin 'bilinmek istenmesi'ne değiniyor ve cildin iki Sifr'inin birlikte çizdiği yayı bir okuma denemesiyle kapatıyor.",
+      "en": "The final part of Volume VI moves from the dominion of radiance (the distinction between light and its veil) to holiness, from the face's gleams to the part's center of gravity — love; it touches the hadith of the hidden treasure and the world's 'wish to be known,' and closes by attempting a reading of the arc the volume's two Sifrs trace together.",
+      "pt": "A parte final do Volume VI se move do domínio do resplendor (a distinção entre luz e seu véu) à santidade, dos lampejos da face ao centro de gravidade da parte — o amor; toca o hadith do tesouro oculto e o 'desejo de ser conhecido' do mundo, e se encerra tentando uma leitura do arco que os dois Sifrs do volume traçam juntos."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "89. Kısım, Tirmizî'nin 112-117. sorularını dört kümede toplayıp Cilt VI'yı kapatıyor.",
+      "en": "Part 89 gathers al-Tirmidhi's questions 112 through 117 into four clusters, closing Volume VI.",
+      "pt": "A Parte 89 reúne as perguntas 112 a 117 de al-Tirmidhi em quatro grupos, encerrando o Volume VI."
+    },
+    "tree": {
+      "id": "kisim-lxxxix-tree",
+      "label": {
+        "tr": "Seksen Dokuzuncu Kısım: Perdeden Sevgiye",
+        "en": "Part Eighty-Nine: From the Veil to Love",
+        "pt": "Parte Oitenta e Nove: Do Véu ao Amor"
+      },
+      "note": {
+        "tr": "Ziya mülküyle açılır, kutsiyet ve vechin parıltılarından geçip sevgi şarabı ve kâsesiyle Cilt VI'yı kapatır.",
+        "en": "Opens with the dominion of radiance, passes through holiness and the face's gleams, and closes Volume VI with the wine and cup of love.",
+        "pt": "Abre-se com o domínio do resplendor, passa pela santidade e pelos lampejos da face, e encerra o Volume VI com o vinho e a taça do amor."
+      },
+      "children": [
+        {
+          "id": "ziya-dal",
+          "label": {
+            "tr": "Ziya Mülkü (Soru 112)",
+            "en": "The Dominion of Radiance (Q112)",
+            "pt": "O Domínio do Resplendor (P112)"
+          },
+          "note": {
+            "tr": "nur perdedir, ziya perdesiz sonuç",
+            "en": "light is a veil, radiance its unveiled result",
+            "pt": "a luz é um véu, o resplendor seu resultado desvelado"
+          }
+        },
+        {
+          "id": "kutsiyet-dal",
+          "label": {
+            "tr": "El-Melikü'l-Kuddûs, Kutsiyet (Soru 113-114)",
+            "en": "Al-Malik al-Quddus, Holiness (Q113-114)",
+            "pt": "Al-Malik al-Quddus, a Santidade (P113-114)"
+          },
+          "note": {
+            "tr": "zâti / arazi kutsiyet",
+            "en": "essential / accidental holiness",
+            "pt": "santidade essencial / acidental"
+          }
+        },
+        {
+          "id": "vech-dal",
+          "label": {
+            "tr": "Vechin Parıltıları (Soru 115)",
+            "en": "The Gleams of the Face (Q115)",
+            "pt": "Os Lampejos da Face (P115)"
+          },
+          "note": {
+            "tr": "yetmiş nur ve karanlık perde",
+            "en": "seventy veils of light and darkness",
+            "pt": "setenta véus de luz e escuridão"
+          }
+        },
+        {
+          "id": "sevgi-dal",
+          "label": {
+            "tr": "Sevgi Şarabı ve Kâsesi (Soru 116-117)",
+            "en": "The Wine and Cup of Love (Q116-117)",
+            "pt": "O Vinho e a Taça do Amor (P116-117)"
+          },
+          "note": {
+            "tr": "kenz-i mahfi, doyumsuz sevgi",
+            "en": "the hidden treasure, insatiable love",
+            "pt": "o tesouro oculto, o amor insaciável"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "ziya-mulku-ve-nurun-perdesi",
+      "heading": {
+        "tr": "Ziya Mülkü: Nur Perdedir, Ziya Perdesiz Sonucudur",
+        "en": "The Dominion of Radiance: Light Is a Veil, Radiance Its Unveiled Result",
+        "pt": "O Domínio do Resplendor: A Luz É um Véu, o Resplendor Seu Resultado Desvelado"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz on ikinci soru mülkün ziyasını (aydınlığını) sorguluyor; cevap nur ile ziya arasında keskin bir ayrım çekiyor: <em>\"Nur ise, perdedir. Peygamber Hak için şöyle der: 'Onun perdesi nurdur.' Başka bir hadiste ise 'Nur idi, nasıl görebilirim ki?' der. Ziya ise perde değildir. Ziya nurun sonucudur ve o bir gölgedir\"</em> (s. 412) — ve ekliyor: <em>\"Ziya nurun ruhudur ve ziya nur için zâtî bir şeydir. Öyleyse ziya mülkü, zâti bir mülktür\"</em> (s. 412-413). Bu ayrım, kısım 88'in izzet-azamet-kibriya 'örtü ailesi'yle aynı damardan besleniyor gibi görünüyor: nur da tıpkı o örtüler gibi Hakk'ı perdeliyor, oysa ziya — nurun bir sonucu, bir gölgesi olarak — keşfe açık kalıyor.",
+            "en": "The hundred-and-twelfth question inquires into the radiance of dominion; the answer draws a sharp distinction between light and radiance: <em>\"light is a veil. The Prophet says of the Real: 'His veil is light.' In another hadith he says, 'He was light — how could I see Him?' Radiance, however, is not a veil. Radiance is the result of light, and it is a shadow\"</em> (p. 412) — adding: <em>\"radiance is the spirit of light, and radiance is something essential to light. Thus the dominion of radiance is an essential dominion\"</em> (pp. 412-413). This distinction appears to draw from the same vein as Part 88's family of veils — glory, magnificence, kibriya: light, too, veils the Real just as those veils do, while radiance — as a result, a shadow of light — remains open to unveiling.",
+            "pt": "A centésima décima segunda pergunta questiona o resplendor do domínio; a resposta traça uma distinção nítida entre luz e resplendor: <em>\"a luz é um véu. O Profeta diz do Real: 'Seu véu é luz.' Noutro hadith diz: 'Era luz — como poderia vê-Lo?' O resplendor, porém, não é um véu. O resplendor é o resultado da luz, e é uma sombra\"</em> (p. 412) — acrescentando: <em>\"o resplendor é o espírito da luz, e o resplendor é algo essencial à luz. Assim, o domínio do resplendor é um domínio essencial\"</em> (pp. 412-413). Essa distinção parece se alimentar da mesma veia da família de véus da Parte 88 — glória, magnificência, kibriya: a luz também vela o Real assim como esses véus, enquanto o resplendor — como resultado, sombra da luz — permanece aberto ao desvelamento."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXXIX, s. 412-413.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXXIX, pp. 412-413.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXXIX, pp. 412-413."
+          },
+          "caption": {
+            "tr": "Nur perdeler, ziya perdesiz kalır — nurun sonucu, gölgesi olarak.",
+            "en": "Light veils, radiance remains unveiled — as light's result, its shadow.",
+            "pt": "A luz vela, o resplendor permanece desvelado — como resultado da luz, sua sombra."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Nur",
+                "en": "Light",
+                "pt": "Luz"
+              },
+              "note": {
+                "tr": "perdedir, idrak dışıdır",
+                "en": "a veil, beyond perception",
+                "pt": "um véu, além da percepção"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Ziya",
+                "en": "Radiance",
+                "pt": "Resplendor"
+              },
+              "note": {
+                "tr": "perdesiz, nurun gölgesi",
+                "en": "unveiled, light's shadow",
+                "pt": "desvelado, sombra da luz"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "el-melikul-kuddus-ve-zati-arazi-kutsiyet",
+      "heading": {
+        "tr": "El-Melikü'l-Kuddûs: Zâti ve Arazi Kutsiyet",
+        "en": "Al-Malik al-Quddus: Essential and Accidental Holiness",
+        "pt": "Al-Malik al-Quddus: Santidade Essencial e Acidental"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz on üçüncü soru el-Melikü'l-Kuddûs isminin niteliklerini, yüz on dördüncü soru ise kutsiyetin ne demek olduğunu sorguluyor. Dost burada dikkatli bir temkin cümlesiyle konuşuyor: <em>\"Ben bu makamı (kimin ulaştığıyla ilgili olarak) ne reddediyor ne de ispat ediyorum!\"</em> (s. 415-416). Kutsiyet iki mertebeye ayrılıyor: Hakk'a mahsus, değişime kapalı zâti kutsiyet, ve insanların riyazetle derece derece katılabildiği arazi kutsiyet. Bu ayrımın ardından gelen bir cümle, sitenin kendi epistemik duruşunu neredeyse birebir yansıtıyor: <em>\"Ârif olan ve olmayan müşahedede ayrışmış, hepsi doğru söylemiş, bir anlama işaret etmiş, fakat tek bir anlamda uzlaşmamıştır. Bu yolda gerçek bir ayrım düşünülemez\"</em> (s. 419) — 'anlamaya çalışıyoruz, anlatmaya değil' duruşuyla çarpıcı bir yakınlık taşıyan bir cümle.",
+            "en": "The hundred-and-thirteenth question inquires into the qualities of the name al-Malik al-Quddus, and the hundred-and-fourteenth into what holiness means. Here Dost speaks with a careful reservation: <em>\"I neither deny nor affirm this station, as regards who has attained it!\"</em> (pp. 415-416). Holiness divides into two ranks: an essential holiness proper to the Real, closed to change, and an accidental holiness in which human beings can share by degrees through spiritual exercise. A sentence following this distinction reflects, almost word for word, the site's own epistemic stance: <em>\"the knower and the non-knower have differed in witnessing; all have spoken truly, each pointing to a meaning, yet without agreeing on a single meaning. On this path no real distinction can be conceived\"</em> (p. 419) — a sentence bearing a striking closeness to the stance of 'we are trying to understand, not to explain.'",
+            "pt": "A centésima décima terceira pergunta questiona as qualidades do nome al-Malik al-Quddus, e a centésima décima quarta o que significa a santidade. Aqui Dost fala com uma reserva cuidadosa: <em>\"eu nem nego nem afirmo esta estação, quanto a quem a alcançou!\"</em> (pp. 415-416). A santidade se divide em duas categorias: uma santidade essencial própria do Real, fechada à mudança, e uma santidade acidental na qual os seres humanos podem participar por graus através do exercício espiritual. Uma frase que segue essa distinção reflete, quase palavra por palavra, a própria postura epistêmica do site: <em>\"o conhecedor e o não conhecedor divergiram no testemunho; todos falaram verdadeiramente, cada um apontando para um significado, mas sem concordar num único significado. Neste caminho nenhuma distinção real pode ser concebida\"</em> (p. 419) — uma frase que guarda uma proximidade impressionante com a postura de 'estamos tentando compreender, não explicar'."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXXIX, s. 418-419.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXXIX, pp. 418-419.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXXIX, pp. 418-419."
+          },
+          "caption": {
+            "tr": "Kutsiyet iki mertebede: biri değişmez, biri riyazetle kazanılır.",
+            "en": "Holiness in two ranks: one unchanging, the other attained through spiritual exercise.",
+            "pt": "A santidade em duas categorias: uma imutável, a outra alcançada através do exercício espiritual."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Zâti Kutsiyet",
+                "en": "Essential Holiness",
+                "pt": "Santidade Essencial"
+              },
+              "note": {
+                "tr": "değişime kapalı, el-Kuddûs'e mahsus",
+                "en": "closed to change, proper to al-Quddus",
+                "pt": "fechada à mudança, própria de al-Quddus"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Arazi Kutsiyet",
+                "en": "Accidental Holiness",
+                "pt": "Santidade Acidental"
+              },
+              "note": {
+                "tr": "değişime açık, riyazetle kazanılır",
+                "en": "open to change, attained through exercise",
+                "pt": "aberta à mudança, alcançada pelo exercício"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "vechin-piriltilari-ve-yetmis-perde",
+      "heading": {
+        "tr": "Vechin Parıltıları: Yetmiş Perde",
+        "en": "The Gleams of the Face: Seventy Veils",
+        "pt": "Os Lampejos da Face: Setenta Véus"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz on beşinci soru 'vechin parıltıları'nı sorguluyor; cevap Hakk'ın yüzünü kalıcılığın tek kaynağı olarak sunuyor: <em>\"Hakkın vechi hariç her şey helak olacaktır\"</em> (s. 420-421) — ve bu yüzün örtülü kaldığını hatırlatan çarpıcı bir hadisle devam ediyor: <em>\"Allah'ın karanlık ve nurdan yetmiş perdesi vardır. Onları açsaydı, yüzünün tecellileri gözün gördüğü her şeyi yakardı\"</em> (s. 421). Adı belirtilmeyen bir şeyhin ürkek cevabı, bu perdelenmenin nedenini konuşanın kendi tarafına da işaret ediyor: <em>\"Olumsuzlamanın (yoktur, lâ ifadesi) vahşeti içinde ölmekten korkuyorum, çünkü her harf bir nefestir\"</em> (s. 420) — konuşmanın bile bir tür risk taşıdığı bir temkin.",
+            "en": "The hundred-and-fifteenth question inquires into the 'gleams of the face'; the answer presents the Real's face as the sole source of permanence: <em>\"everything will perish except the face of the Real\"</em> (pp. 420-421) — continuing with a striking hadith recalling that this face remains veiled: <em>\"God has seventy veils of darkness and light. Were He to lift them, the theophanies of His face would burn up everything the eye perceives\"</em> (p. 421). An unnamed shaykh's timid answer points the cause of this veiling toward the speaker himself: <em>\"I fear dying within the savagery of negation (the word 'no,' la), for every letter is a breath\"</em> (p. 420) — a reservation in which even speech carries a kind of risk.",
+            "pt": "A centésima décima quinta pergunta questiona os 'lampejos da face'; a resposta apresenta a face do Real como a única fonte de permanência: <em>\"tudo perecerá exceto a face do Real\"</em> (pp. 420-421) — continuando com um hadith marcante que lembra que essa face permanece velada: <em>\"Deus tem setenta véus de escuridão e luz. Se os levantasse, as teofanias de Sua face queimariam tudo que o olho percebe\"</em> (p. 421). A resposta tímida de um xeique não identificado aponta a causa desse velamento para o próprio falante: <em>\"temo morrer na selvageria da negação (a palavra 'não', la), pois cada letra é um sopro\"</em> (p. 420) — uma reserva em que até a fala carrega uma espécie de risco."
+          }
+        }
+      ]
+    },
+    {
+      "id": "sevgi-sarabinin-uc-mertebesi",
+      "heading": {
+        "tr": "Sevgi Şarabı: Doyumsuz İçki ve Üç Mertebe",
+        "en": "The Wine of Love: The Insatiable Drink and Three Ranks",
+        "pt": "O Vinho do Amor: A Bebida Insaciável e Três Categorias"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz on altıncı soru — kısmın en uzun ve en yoğun bölümü — sevgiyi sorguluyor; cevap sevgiyi tanımlamanın imkânsızlığıyla açılıyor: <em>\"Sevgiyi tanımlayan kimse, onu bilmemiştir. Ondan bir şey tatmayan kimse, onu tanımamıştır. Ondan 'kandım' diyen kimse, sevgiyi tanımamıştır. Sevgi doyması olmayan bir içecektir\"</em> (s. 422) — Ebu Yezid'in sözüyle pekişen bir doyumsuzluk: <em>\"Adam dediğin denizleri yudumlasa bile, dili susuzluktan dışarı çıkan kimsedir\"</em> (s. 423). Dost sevgiyi üç mertebeye ayırıyor: hayvani ruhun sevgisi (cinsel birleşmeyle biten), ruhani-nefsani sevgi (sevgiliye benzemeye çalışan), ve ilahi sevgi (kulun Hakk'ın mazharı olduğunu bildiği karşılıklı bir sevgi).",
+            "en": "The hundred-and-sixteenth question — the part's longest and most intense passage — inquires into love; the answer opens with the impossibility of defining it: <em>\"whoever defines love has not known it. Whoever has tasted nothing of it has not known it. Whoever says of it 'I am satisfied' has not known love. Love is a drink with no satiation\"</em> (p. 422) — an insatiability reinforced by a saying of Abu Yazid: <em>\"the one you call a man is one whose tongue still emerges thirsty even after sipping the seas\"</em> (p. 423). Dost divides love into three ranks: the love of the animal spirit (which ends with sexual union), spiritual-psychic love (which strives to resemble the beloved), and divine love (a mutual love in which the servant knows himself to be a locus of the Real's manifestation).",
+            "pt": "A centésima décima sexta pergunta — a passagem mais longa e intensa da parte — questiona o amor; a resposta se abre com a impossibilidade de defini-lo: <em>\"quem define o amor não o conheceu. Quem não provou nada dele não o conheceu. Quem dele diz 'estou satisfeito' não conheceu o amor. O amor é uma bebida sem saciedade\"</em> (p. 422) — uma insaciabilidade reforçada por um dito de Abu Yazid: <em>\"aquele a quem chamas de homem é aquele cuja língua ainda emerge sedenta mesmo depois de sorver os mares\"</em> (p. 423). Dost divide o amor em três categorias: o amor do espírito animal (que termina com a união sexual), o amor espiritual-psíquico (que se esforça por se assemelhar ao amado), e o amor divino (um amor mútuo no qual o servo sabe ser um lócus da manifestação do Real)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXXIX, s. 422-425.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXXIX, pp. 422-425.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXXIX, pp. 422-425."
+          },
+          "caption": {
+            "tr": "Sevginin üç mertebesi: her biri sevgiliyi farklı bir yerde arıyor.",
+            "en": "Three ranks of love, each seeking the beloved in a different place.",
+            "pt": "Três categorias de amor, cada uma buscando o amado num lugar diferente."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Hayvani",
+                "en": "Animal",
+                "pt": "Animal"
+              },
+              "note": {
+                "tr": "cinsel birleşmeyle biter",
+                "en": "ends with sexual union",
+                "pt": "termina com a união sexual"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Ruhani-Nefsani",
+                "en": "Spiritual-Psychic",
+                "pt": "Espiritual-Psíquico"
+              },
+              "note": {
+                "tr": "sevgiliye benzemeye çalışır",
+                "en": "strives to resemble the beloved",
+                "pt": "esforça-se por se assemelhar ao amado"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "İlahi",
+                "en": "Divine",
+                "pt": "Divino"
+              },
+              "note": {
+                "tr": "karşılıklı mazhar olma bilinci",
+                "en": "mutual awareness of being a locus of manifestation",
+                "pt": "consciência mútua de ser um lócus de manifestação"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "kenz-i-mahfi-ve-sevgi-kasesi",
+      "heading": {
+        "tr": "Kenz-i Mahfi ve Sevgi Kâsesi: Kısmın Kapanışı",
+        "en": "The Hidden Treasure and the Cup of Love: The Part's Close",
+        "pt": "O Tesouro Oculto e a Taça do Amor: O Fechamento da Parte"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İlahi sevginin köküne inen kısım, kenz-i mahfi hadisiyle taçlanıyor: <em>\"Ben bir hazineydim, bilinmek istedim, halkı yarattım, onlara bilindim, onlar da beni bildi\"</em> (s. 425-426) — âlemin yaratılış sebebinin bizzat bu sevgi/bilinme isteği olduğu bir okuma. Bu, <em>\"Akıl konuşmak, sevgi susmak içindir\"</em> (s. 425) cümlesiyle, konuşmanın kendi sınırına vurgu yapıyor. Kısmın en sert cümlelerinden biri yaratılmışın kendi başına bir varlığı olmadığını söylüyor: <em>\"Öyleyse yaratılmış hiçbir zaman mevcut değildir\"</em> (s. 428). Yüz on yedinci ve son soru — çok kısa, âdeta bir sonraki cilde sarkan bir soluklanma gibi — sevgi kâsesini soruyor; cevap kâseyi kalple özdeşleştiriyor: <em>\"Sevgi kâsesi sevenin ne aklı ne duyusudur bilakis kalbidir, çünkü kalp halden hale girer (tekallüb)\"</em> (s. 429) — saf bir kabın kendi rengi olmadan içindeki sıvıya göre renk aldığı bir imge, kısmı ve Cilt VI'yı kapatan bir son nota.",
+            "en": "The part descending to the root of divine love is crowned with the hadith of the hidden treasure: <em>\"I was a hidden treasure and I wished to be known, so I created creation, and I made Myself known to them, and they came to know Me\"</em> (pp. 425-426) — a reading in which the very reason for the world's creation is this wish for love/being known. This is joined by <em>\"reason is for speaking, love is for falling silent\"</em> (p. 425), emphasizing speech's own limit. One of the part's harshest sentences states that the created thing has no existence of its own: <em>\"thus the created thing is never existent\"</em> (p. 428). The hundred-and-seventeenth and final question — very brief, almost a breath spilling over into the next volume — asks about the cup of love; the answer identifies the cup with the heart: <em>\"the cup of love is neither the lover's reason nor his senses, but rather his heart, for the heart turns from state to state (taqallub)\"</em> (p. 429) — an image of a pure vessel taking on the color of what it holds without a color of its own, a closing note for both the part and Volume VI.",
+            "pt": "A parte que desce à raiz do amor divino se coroa com o hadith do tesouro oculto: <em>\"eu era um tesouro oculto e desejei ser conhecido, então criei a criação, e Me fiz conhecido a eles, e eles vieram a Me conhecer\"</em> (pp. 425-426) — uma leitura em que a própria razão da criação do mundo é esse desejo de amor/ser conhecido. Isso se junta a <em>\"a razão é para falar, o amor é para se calar\"</em> (p. 425), enfatizando o próprio limite da fala. Uma das frases mais duras da parte afirma que a coisa criada não tem existência própria: <em>\"assim, a coisa criada nunca é existente\"</em> (p. 428). A centésima décima sétima e última pergunta — muito breve, quase um sopro que transborda para o próximo volume — questiona a taça do amor; a resposta identifica a taça com o coração: <em>\"a taça do amor não é a razão nem os sentidos do amante, mas sim seu coração, pois o coração se transforma de estado em estado (taqallub)\"</em> (p. 429) — uma imagem de um recipiente puro que assume a cor do que contém sem ter cor própria, uma nota de fechamento tanto para a parte quanto para o Volume VI."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cilt-vi-nin-kapanisi-iki-yay",
+      "heading": {
+        "tr": "Cilt VI'nın Kapanışı: Bir'den Çoğa, Çoktan Bir'e İki Yay",
+        "en": "The Closing of Volume VI: Two Arcs, One from Unity to Multiplicity, One from Multiplicity to Unity",
+        "pt": "O Fechamento do Volume VI: Dois Arcos, Um da Unidade à Multiplicidade, Outro da Multiplicidade à Unidade"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Cilt VI'nın 71-89. kısımları iki Sifr'e ayrılıyor, ve her biri aynı 'O'ndan geldik, O'na gidiyoruz' hareketini farklı bir yönde tekrarlıyor gibi görünüyor — bu kesin bir sonuç iddiası değil, cildin tamamı bitince önümüze çıkan bir okuma denemesi. Onbirinci Sifr (71-79) somut bir başlangıçtan (hac, tavaf) sayılı bir gayb hiyerarşisine (Kutub-Evtad-Bedel-Nakib), oradan sınırsız bir erdem kataloğuna doğru dışa doğru açılan bir yay çiziyordu. Onikinci Sifr (80-89) ise tam tersi yönde bir hareket sergiliyor: Tirmizî'nin yüz elli beş sınama sorusunun kendisi zaten çoğul/parçalı bir yapı, ama her tek soru ısrarla aynı noktaya geri dönüyor — 'sondan başa dönen daire' (kısım 81), 'dönülen yer' (kısım 86), 'sen ...ayıran nokta'sın' (kısım 87), ve nihayet burada kenz-i mahfi ('bilinmek istedim'). Kısmın kapanışındaki sevgi kâsesi imgesi — kendi başına bir rengi olmayan, içindeki sıvıya göre renk alan saf bir kap — bu iki yayın da aynı tek 'asıl'ın üzerinden geçen görünümler olduğu fikrine uygun bir son simge gibi duruyor. Cilt VII'nin bu okumayı nasıl değiştireceği ya da derinleştireceği ise önümüzdeki kısımlarda görülecek.",
+            "en": "Parts 71 through 89 of Volume VI divide into two Sifrs, and each appears to repeat the same movement of 'from Him we came, to Him we go' in a different direction — this is not a claim to a settled conclusion, but a reading that presents itself to us now that the whole volume is complete. The Eleventh Sifr (71-79) traced an arc opening outward, from a concrete beginning (pilgrimage, circumambulation) to a numbered hierarchy of the unseen (the Pole, the Pillars, the Substitutes, the Deputies), and from there to an unbounded catalogue of virtues. The Twelfth Sifr (80-89), however, displays a movement in the opposite direction: al-Tirmidhi's hundred and fifty-five testing questions form, in themselves, an already plural, fragmented structure, yet each single question insistently returns to the same point — 'the circle returning from end to beginning' (Part 81), 'the place of return' (Part 86), 'you are the point that separates...' (Part 87), and now here, the hidden treasure ('I wished to be known'). The image of the cup of love that closes this part — a pure vessel with no color of its own, taking its color from what it holds — stands as a fitting closing emblem for the idea that both arcs are appearances passing over one and the same 'root.' How Volume VII will change or deepen this reading remains to be seen in the parts ahead.",
+            "pt": "As partes 71 a 89 do Volume VI se dividem em dois Sifrs, e cada um parece repetir o mesmo movimento de 'd'Ele viemos, a Ele vamos' numa direção diferente — isso não é uma afirmação de conclusão definitiva, mas uma leitura que se apresenta a nós agora que todo o volume está completo. O Décimo Primeiro Sifr (71-79) traçou um arco que se abre para fora, de um começo concreto (peregrinação, circum-ambulação) a uma hierarquia numerada do invisível (o Polo, os Pilares, os Substitutos, os Delegados), e daí a um catálogo ilimitado de virtudes. O Décimo Segundo Sifr (80-89), porém, exibe um movimento na direção oposta: as cento e cinquenta e cinco perguntas de prova de al-Tirmidhi formam, em si mesmas, uma estrutura já plural e fragmentada, mas cada pergunta isolada retorna insistentemente ao mesmo ponto — 'o círculo que retorna do fim ao começo' (Parte 81), 'o lugar do retorno' (Parte 86), 'você é o ponto que separa...' (Parte 87), e agora aqui, o tesouro oculto ('desejei ser conhecido'). A imagem da taça do amor que encerra esta parte — um recipiente puro sem cor própria, que toma a cor do que contém — permanece como um emblema de fechamento adequado para a ideia de que ambos os arcos são aparências que passam sobre uma mesma 'raiz'. Como o Volume VII mudará ou aprofundará essa leitura, resta ver nas partes adiante."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Cilt VI'nın tamamı (Kısım LXXI-LXXXIX), s. 1-429.",
+            "en": "The whole of Volume VI (Parts LXXI-LXXXIX), pp. 1-429.",
+            "pt": "Todo o Volume VI (Partes LXXI-LXXXIX), pp. 1-429."
+          },
+          "caption": {
+            "tr": "İki Sifr, iki yön: biri dışa açılıyor, biri içe dönüyor — ikisi de aynı merkezi işaret ediyor olabilir.",
+            "en": "Two Sifrs, two directions: one opens outward, one turns inward — both may point to the same center.",
+            "pt": "Dois Sifrs, duas direções: um se abre para fora, outro se volta para dentro — ambos podem apontar para o mesmo centro."
+          },
+          "tree": {
+            "id": "cilt-vi-kapanis-tree",
+            "label": {
+              "tr": "Cilt VI: İki Yay",
+              "en": "Volume VI: Two Arcs",
+              "pt": "Volume VI: Dois Arcos"
+            },
+            "note": {
+              "tr": "her iki Sifr da aynı 'asıl'a doğru/'asıl'dan hareket ediyor olabilir",
+              "en": "both Sifrs may be moving toward/from the same 'root'",
+              "pt": "ambos os Sifrs podem estar se movendo em direção a/a partir da mesma 'raiz'"
+            },
+            "children": [
+              {
+                "id": "onbirinci-sifr-dal",
+                "label": {
+                  "tr": "Onbirinci Sifr (71-79)",
+                  "en": "Eleventh Sifr (71-79)",
+                  "pt": "Décimo Primeiro Sifr (71-79)"
+                },
+                "note": {
+                  "tr": "dışa açılan yay — somut → sayılı hiyerarşi → sınırsız erdem",
+                  "en": "the outward-opening arc — concrete → numbered hierarchy → unbounded virtue",
+                  "pt": "o arco que se abre — concreto → hierarquia numerada → virtude ilimitada"
+                }
+              },
+              {
+                "id": "onikinci-sifr-dal",
+                "label": {
+                  "tr": "Onikinci Sifr (80-89)",
+                  "en": "Twelfth Sifr (80-89)",
+                  "pt": "Décimo Segundo Sifr (80-89)"
+                },
+                "note": {
+                  "tr": "içe dönen yay — 155 soru → tekrarlayan 'dönüş' motifleri → kenz-i mahfi",
+                  "en": "the inward-turning arc — 155 questions → recurring motifs of 'return' → the hidden treasure",
+                  "pt": "o arco que se volta para dentro — 155 perguntas → motivos recorrentes de 'retorno' → o tesouro oculto"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXXIX (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXXIX (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXXIX (trad. Ekrem Demirli)"
+      },
+      "pageRange": "412-429"
+    }
+  ]
+}

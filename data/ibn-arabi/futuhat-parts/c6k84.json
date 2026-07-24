@@ -1,0 +1,440 @@
+{
+  "id": "c6k84",
+  "cilt": 6,
+  "kisim": 84,
+  "status": "active",
+  "title": {
+    "tr": "Fıtrat, Beşer ve Hazineler Zinciri",
+    "en": "Fitra, the Human, and the Chain of Treasuries",
+    "pt": "Fitra, o Humano e a Cadeia de Tesouros"
+  },
+  "pageRange": {
+    "tr": "s. 299-320",
+    "en": "pp. 299-320",
+    "pt": "pp. 299-320"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Kısım 83'ün fıtrat sorusundan doğrudan devam eden bu kısım, fıtratı Amâ'nın karanlığına karşıt bir nur olarak tanımlayıp Âdem'in meleklerden önceliğine, oradan ahlâk/ihsan/amel/nebilik/sezgi hazinelerinin uzun bir taksonomisine ilerliyor.",
+      "en": "Continuing directly from Part 83's question on innate disposition (fitra), this part defines fitra as a light opposed to the Cloud's darkness, moves to Adam's precedence over the angels, and then to a long taxonomy of the treasuries of character, grace, deeds, prophecy, and intuition.",
+      "pt": "Continuando diretamente da pergunta da Parte 83 sobre a disposição inata (fitra), esta parte define a fitra como uma luz oposta à escuridão da Nuvem, move-se para a precedência de Adão sobre os anjos, e depois para uma longa taxonomia dos tesouros de caráter, graça, atos, profecia e intuição."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "84. Kısım, Tirmizî'nin 43-54. sorularını iki dalda topluyor: Âdem'in önceliği, ve hazineler.",
+      "en": "Part 84 gathers al-Tirmidhi's questions 43 through 54 into two branches: Adam's precedence, and the treasuries.",
+      "pt": "A Parte 84 reúne as perguntas 43 a 54 de al-Tirmidhi em dois ramos: a precedência de Adão, e os tesouros."
+    },
+    "tree": {
+      "id": "kisim-lxxxiv-tree",
+      "label": {
+        "tr": "Seksen Dördüncü Kısım: Fıtrattan Hazinelere",
+        "en": "Part Eighty-Four: From Innate Disposition to Treasuries",
+        "pt": "Parte Oitenta e Quatro: Da Disposição Inata aos Tesouros"
+      },
+      "note": {
+        "tr": "Fıtrat tanımıyla açılır, Âdem'in önceliğinden geçip ahlâk, ihsan, amel, nebilik ve sezgi hazineleriyle kapanır.",
+        "en": "Opens with the definition of fitra, passes through Adam's precedence, and closes with the treasuries of character, grace, deeds, prophecy, and intuition.",
+        "pt": "Abre-se com a definição da fitra, passa pela precedência de Adão, e encerra-se com os tesouros de caráter, graça, atos, profecia e intuição."
+      },
+      "children": [
+        {
+          "id": "fitrat-dal",
+          "label": {
+            "tr": "Fıtrat: Nur (Soru 43)",
+            "en": "Fitra: Light (Q43)",
+            "pt": "Fitra: Luz (P43)"
+          },
+          "note": {
+            "tr": "Amâ'nın karşıt kutbu",
+            "en": "the opposite pole of the Cloud",
+            "pt": "o polo oposto da Nuvem"
+          }
+        },
+        {
+          "id": "besher-dal",
+          "label": {
+            "tr": "Beşer, İlk Akıl (Soru 44)",
+            "en": "Human, the First Intellect (Q44)",
+            "pt": "Humano, o Primeiro Intelecto (P44)"
+          },
+          "note": {
+            "tr": "mübaşeret, basit/bileşik",
+            "en": "direct contact, simple/composite",
+            "pt": "contato direto, simples/composto"
+          }
+        },
+        {
+          "id": "oncelik-dal",
+          "label": {
+            "tr": "Âdem'in Önceliği (Soru 45)",
+            "en": "Adam's Precedence (Q45)",
+            "pt": "A Precedência de Adão (P45)"
+          },
+          "note": {
+            "tr": "cevâmiü'l-kelim",
+            "en": "the comprehensive words",
+            "pt": "as palavras abrangentes"
+          }
+        },
+        {
+          "id": "ahlak-dal",
+          "label": {
+            "tr": "Ahlâk Hazineleri (Soru 46-48)",
+            "en": "Treasuries of Character (Q46-48)",
+            "pt": "Tesouros de Caráter (P46-48)"
+          },
+          "note": {
+            "tr": "300 ve 117 ahlâk",
+            "en": "300 and 117 traits",
+            "pt": "300 e 117 traços"
+          }
+        },
+        {
+          "id": "ihsan-dal",
+          "label": {
+            "tr": "İhsan, Amel Hazineleri (Soru 49-52)",
+            "en": "Treasuries of Grace, Deeds (Q49-52)",
+            "pt": "Tesouros de Graça, Atos (P49-52)"
+          },
+          "note": {
+            "tr": "nimet-azap, mekân",
+            "en": "grace-affliction, place",
+            "pt": "graça-aflição, lugar"
+          }
+        },
+        {
+          "id": "nebilik-sezgi-dal",
+          "label": {
+            "tr": "Nebilik, Sezgi Hazineleri (Soru 53-54)",
+            "en": "Treasuries of Prophecy, Intuition (Q53-54)",
+            "pt": "Tesouros de Profecia, Intuição (P53-54)"
+          },
+          "note": {
+            "tr": "daralan hiyerarşi",
+            "en": "a narrowing hierarchy",
+            "pt": "uma hierarquia que se estreita"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "fitrat-nur-amanin-karsit-kutbu",
+      "heading": {
+        "tr": "Fıtrat: Amâ'nın Karşıt Kutbunda Bir Nur",
+        "en": "Fitra: A Light at the Opposite Pole of the Cloud",
+        "pt": "Fitra: Uma Luz no Polo Oposto da Nuvem"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk üçüncü soru, kısım 83'ün son cevabının doğrudan devamı olarak fıtratın ne olduğunu soruyor: <em>\"Fıtrat, mümkünlerin karanlıklarının parçalanıp sûretler arasında ayrımın gerçekleşmesini sağlayan ışık ve nurdur\"</em> (s. 299) — kısım 83'teki Amâ'nın (Hakkın mekân-dışı, tanımlanamaz karanlığının) tam karşıt kutbu gibi okunabilecek bir tanım. Dost bu bahiste eşyanın Hak karşısındaki konumunu da netleştiriyor: <em>\"Eşya, Hakkın zuhuru karşısında, bir şey değildi. Varlık, O'nun varlığıdır, kullar O'nun kullarıdır. Onlar hakikatleri (a'yân) bakımından kullar, varlıkları bakımından Haktır\"</em> (s. 300).",
+            "en": "The forty-third question, as a direct continuation of Part 83's final answer, asks what innate disposition (fitra) is: <em>\"fitra is the light that shatters the darknesses of the possible things, enabling distinction to occur among forms\"</em> (p. 299) — a definition that can be read as the exact opposite pole of Part 83's Cloud (al-ʿAmaʾ), the Real's placeless, indefinable darkness. In this discussion, Dost also clarifies things' standing before the Real: <em>\"things, before the Real's manifestation, were nothing. Existence is His existence, servants are His servants. They are servants in respect of their realities (aʿyan), and the Real in respect of their existence\"</em> (p. 300).",
+            "pt": "A quadragésima terceira pergunta, como continuação direta da resposta final da Parte 83, questiona o que é a disposição inata (fitra): <em>\"a fitra é a luz que rompe as escuridões das coisas possíveis, possibilitando que a distinção ocorra entre as formas\"</em> (p. 299) — uma definição que pode ser lida como o polo exatamente oposto da Nuvem (al-ʿAmaʾ) da Parte 83, a escuridão sem lugar e indefinível do Real. Nessa discussão, Dost também esclarece a posição das coisas diante do Real: <em>\"as coisas, antes da manifestação do Real, eram nada. A existência é Sua existência, os servos são Seus servos. Eles são servos quanto às suas realidades (aʿyan), e o Real quanto à sua existência\"</em> (p. 300)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "besherin-isimlendirilmesi-ve-ilk-akil",
+      "heading": {
+        "tr": "Beşerin İsimlendirilmesi, ve İlk Akıl-Âdem Paralelliği",
+        "en": "The Naming of the Human, and the First-Intellect–Adam Parallel",
+        "pt": "A Nomeação do Humano, e o Paralelo Primeiro-Intelecto–Adão"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk dördüncü soru, insanın niçin 'beşer' diye isimlendirildiğini soruyor; cevap bunu 'doğrudan temas' (mübaşeret) fikrine bağlıyor — Âdem'in iki elle, doğrudan yaratılışına işaret ederek. Dost burada İlk Akıl ile Âdem arasında çarpıcı bir paralellik kuruyor: <em>\"İnsan cisimleri içinde Âdem'in yeri, İlk Akıl'ın akıllar içindeki yeriyle birdir\"</em> (s. 301) — kısım 83'teki kandil-fitil analojisinin burada yeni bir uygulamasını buluyoruz. Ama aralarında bir fark da var: İlk Akıl basit olduğu için tek bir vasıtayla yaratılırken, Âdem'in bileşik oluşu iki eli (iki farklı ilahi niteliğin doğrudan temasını) gerektiriyor.",
+            "en": "The forty-fourth question asks why the human being is named 'bashar' (human, of the flesh); the answer ties this to the idea of direct contact (mubashara) — pointing to Adam's creation with both hands, directly. Here Dost draws a striking parallel between the First Intellect and Adam: <em>\"Adam's place among human bodies is one with the First Intellect's place among intellects\"</em> (p. 301) — we find here a new application of Part 83's lamp-and-wick analogy. Yet a difference remains: since the First Intellect is simple, it is created through a single means, while Adam's being composite requires both hands (the direct contact of two different divine attributes).",
+            "pt": "A quadragésima quarta pergunta questiona por que o ser humano é chamado de 'bashar' (humano, de carne); a resposta liga isso à ideia de contato direto (mubashara) — apontando para a criação de Adão com ambas as mãos, diretamente. Aqui Dost traça um paralelo marcante entre o Primeiro Intelecto e Adão: <em>\"o lugar de Adão entre os corpos humanos é um só com o lugar do Primeiro Intelecto entre os intelectos\"</em> (p. 301) — encontramos aqui uma nova aplicação da analogia da lâmpada e do pavio da Parte 83. Contudo, permanece uma diferença: como o Primeiro Intelecto é simples, ele é criado através de um único meio, enquanto o ser composto de Adão requer ambas as mãos (o contato direto de dois atributos divinos diferentes)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXXIV, s. 301.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXXIV, p. 301.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXXIV, p. 301."
+          },
+          "caption": {
+            "tr": "Aynı konum, iki farklı yaratılış tarzıyla dolduruluyor.",
+            "en": "The same position is filled through two different modes of creation.",
+            "pt": "A mesma posição é preenchida através de dois modos diferentes de criação."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "İlk Akıl",
+                "en": "The First Intellect",
+                "pt": "O Primeiro Intelecto"
+              },
+              "note": {
+                "tr": "basit — tek vasıta yeter",
+                "en": "simple — a single means suffices",
+                "pt": "simples — um único meio basta"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Âdem",
+                "en": "Adam",
+                "pt": "Adão"
+              },
+              "note": {
+                "tr": "bileşik — iki el gerekir",
+                "en": "composite — both hands required",
+                "pt": "composto — ambas as mãos são necessárias"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ademin-meleklerden-onceligi",
+      "heading": {
+        "tr": "Âdem'in Meleklerden Önceliği",
+        "en": "Adam's Precedence over the Angels",
+        "pt": "A Precedência de Adão sobre os Anjos"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk beşinci soru, Âdem'in hangi özellik nedeniyle meleklerden önce geldiğini soruyor. Cevap, isimlerin öğretilmesine (cevâmiü'l-kelim — toplayıcı isimler) dayanıyor: <em>\"'Bütün' 'cevâmi' (toplayanlar) demek iken, 'kelim' de isimler demektir. Âdem bu isimler ile ve Allah'ın kendisine göre yarattığı (ilahi) sûret vasıtasıyla meleklere karşı öncelik elde etti\"</em> (s. 305) — bu, kısım 83'teki Âdem'in 'toplayıcı kitap' oluşuna yeni bir katman ekliyor ve Hz. Muhammed'e verilen 'cevâmiu'l-kelim' hadisiyle doğrudan bağlanıyor. Meleklerin bu bilgiyi kabullenişi de dikkat çekici bir alçakgönüllülükle anlatılıyor: <em>\"Bu halifeye bize gizli kalan ve bize vermediklerini verdin. Yaratılış mertebesi bunu gerektirmeseydi, ilahi hikmet, bu bilginin —bize değil de— kendisine tahsis ettiğin beşere ait olmasını gerektirmezdi\"</em> (s. 304) — öğretmene öğrenci secdesi gibi okunabilecek bir sahne.",
+            "en": "The forty-fifth question asks by what quality Adam came before the angels. The answer rests on being taught the names (jawami' al-kalim — the comprehensive words): <em>\"'jawami'' means 'those that gather,' while 'kalim' means names. Adam gained precedence over the angels through these names, and through the divine form in which God created him\"</em> (p. 305) — adding a new layer to Adam's being the 'comprehensive book' from Part 83, and tying directly to the hadith granting Muhammad jawami' al-kalim. The angels' acceptance of this knowledge is described with a striking humility: <em>\"You have given this vicegerent what remained hidden from us, what You did not give us. Had the rank of creation not required it, divine wisdom would not have required that this knowledge belong -not to us, but to the human You singled out for it\"</em> (p. 304) — a scene that can be read as a student's prostration before a teacher.",
+            "pt": "A quadragésima quinta pergunta questiona por qual qualidade Adão veio antes dos anjos. A resposta se apoia em ser ensinado os nomes (jawami' al-kalim — as palavras abrangentes): <em>\"'jawami'' significa 'os que reúnem', enquanto 'kalim' significa nomes. Adão obteve precedência sobre os anjos através desses nomes, e através da forma divina na qual Deus o criou\"</em> (p. 305) — acrescentando uma nova camada ao fato de Adão ser o 'livro abrangente' da Parte 83, e ligando-se diretamente ao hadith que concede a Muhammad jawami' al-kalim. A aceitação desse conhecimento pelos anjos é descrita com uma humildade marcante: <em>\"Destes a este vice-regente o que permaneceu oculto de nós, o que não nos destes. Se a categoria da criação não o exigisse, a sabedoria divina não exigiria que esse conhecimento pertencesse -não a nós, mas ao humano que escolheste para ele\"</em> (p. 304) — uma cena que pode ser lida como a prostração de um aluno diante de um professor."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ahlak-hazineleri",
+      "heading": {
+        "tr": "Ahlâk Hazineleri: Üç Yüz ve Yüz On Yedi",
+        "en": "Treasuries of Character: Three Hundred and a Hundred Seventeen",
+        "pt": "Tesouros de Caráter: Trezentos e Cento e Dezessete"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk altı-kırk sekizinci sorular ahlâk hazinelerini üç kısma ayırıyor: yalnız yaratılmışlara ait olabilenler (örnek: er-Rahîm), hem Allah'a hem yaratılmışlara ait olanlar (örnek: el-Gafûr), ve yalnız Allah'a özgü olanlar (300 tanesi). Bu üçüncü grup için Dost şöyle diyor: <em>\"Bu ahlâk, kazanımın dışındadır ve çabayla elde edilemez. Allah onları bir ayrıcalık olarak verir\"</em> (s. 306) — el-Vehhâb mertebesinden gelen saf bir ihsan olarak. Peygamberlere özgü 117 ahlâktan bahsedilirken bir ârifin şiiri araya giriyor: <em>\"Sen gaybının sırrından kalbin perdesisin / Sen olmasaydın, ona mühür basılmazdı\"</em> (s. 308) — 14 tanesinin yalnız Allah'ın, 13 tanesinin ise yalnız cennetliklerin bileceği söylenip isim verilmeden bırakılıyor.",
+            "en": "The forty-sixth through forty-eighth questions divide the treasuries of character into three kinds: those that can belong only to created beings (example: al-Rahim), those belonging to both God and created beings (example: al-Ghafur), and those proper to God alone (300 of them). Of this third group, Dost says: <em>\"this character lies beyond acquisition and cannot be gained through effort. God gives it as a distinction\"</em> (p. 306) — a pure grace arriving from the rank of al-Wahhab. As the 117 traits proper to the prophets are discussed, a gnostic's verse intervenes: <em>\"you are the heart's veil from the secret of its unseen / had you not been, no seal would have been set upon it\"</em> (p. 308) — fourteen of them said to be known only to God, thirteen only to the people of paradise, left without being named.",
+            "pt": "A quadragésima sexta à quadragésima oitava perguntas dividem os tesouros de caráter em três tipos: os que só podem pertencer a seres criados (exemplo: al-Rahim), os que pertencem tanto a Deus quanto aos seres criados (exemplo: al-Ghafur), e os próprios apenas a Deus (300 deles). Sobre esse terceiro grupo, Dost diz: <em>\"esse caráter está além da aquisição e não pode ser obtido através do esforço. Deus o dá como uma distinção\"</em> (p. 306) — uma graça pura vinda da categoria de al-Wahhab. Ao discutir os 117 traços próprios dos profetas, intervém um verso de um gnóstico: <em>\"tu és o véu do coração diante do segredo de seu oculto / se não fosses, nenhum selo seria posto nele\"</em> (p. 308) — quatorze deles ditos conhecidos apenas por Deus, treze apenas pelo povo do paraíso, deixados sem serem nomeados."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXXIV, s. 305-307.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXXIV, pp. 305-307.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXXIV, pp. 305-307."
+          },
+          "caption": {
+            "tr": "300 ahlâk, üç ayrı sahiplik derecesinde toplanıyor.",
+            "en": "The 300 traits are gathered across three distinct degrees of ownership.",
+            "pt": "Os 300 traços se reúnem em três graus distintos de posse."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Yaratılmışlara Özgü",
+                "en": "Proper to Creatures",
+                "pt": "Próprio das Criaturas"
+              },
+              "note": {
+                "tr": "örnek: er-Rahîm",
+                "en": "example: al-Rahim",
+                "pt": "exemplo: al-Rahim"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Ortak",
+                "en": "Shared",
+                "pt": "Compartilhado"
+              },
+              "note": {
+                "tr": "örnek: el-Gafûr",
+                "en": "example: al-Ghafur",
+                "pt": "exemplo: al-Ghafur"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Yalnız Hakk'a Özgü",
+                "en": "Proper to the Real Alone",
+                "pt": "Próprio Apenas ao Real"
+              },
+              "note": {
+                "tr": "kazanılamaz, 300 tanesi",
+                "en": "unattainable, 300 in number",
+                "pt": "inatingível, 300 no total"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "nimet-azap-ve-mekan",
+      "heading": {
+        "tr": "Nimet ve Azap Bir Arada, ve Mekân Teması",
+        "en": "Grace and Affliction Together, and the Theme of Place",
+        "pt": "Graça e Aflição Juntas, e o Tema do Lugar"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kırk dokuz-elli birinci sorular bahsinde bir şiir, mazhar olmanın hem nimet hem azap taşıyabileceğini anlatıyor: <em>\"Bir âşığı duydunuz mu? / Bir ucu sağlam (diğeri) hasta / Nimetlenir bir azap ile / Azap görür bir nimet ile\"</em> (s. 309) — ve Dost bunu şöyle yorumluyor: <em>\"Mazharların ehli, nimet ve azap ehlidir. Zâtın mutlak birliğinin ehlinin ise, ne nimeti ne azabı olabilir!\"</em> (s. 309) — Ebu Yezid'in sözüyle taçlanan bir hâl: <em>\"Bir zaman ağladım, bir zaman güldüm. Şimdi ne ağlıyorum, ne gülüyorum… Ne akşamım var, ne sabahım! Benim ise niteliğim yok ki?\"</em> (s. 309). Elli ikinci soru ihsan hazinelerini ele alırken mekân üzerine çarpıcı bir ters-çevirme sunuyor: <em>\"O, bizim için bir yerde değilken, biz O'nun için bir mekânız. O halde mekânı olmayan biziz. Bizim varlıklarımız, O'nun zuhur mekânlarıdır\"</em> (s. 313) — kısım 81'deki 'mülkün mülkü' paradoksuyla aynı damardan beslenen bir karşılıklılık.",
+            "en": "In the discussion around the forty-ninth through fifty-first questions, a poem describes how being a locus of manifestation can carry both grace and affliction at once: <em>\"have you heard of a lover? / one end sound, the other ailing / made blissful by an affliction / afflicted by a bliss\"</em> (p. 309) — which Dost glosses thus: <em>\"the people of the loci of manifestation are the people of grace and affliction. But the people of the Essence's absolute oneness can have neither grace nor affliction!\"</em> (p. 309) — a state crowned by Abu Yazid's saying: <em>\"once I wept, once I laughed. Now I neither weep nor laugh... I have no evening, no morning! For I have no attribute at all\"</em> (p. 309). The fifty-second question, taking up the treasuries of deeds, offers a striking reversal on the theme of place: <em>\"while He is not, for us, in a place, we are a place for Him. Thus it is we who have no place. Our existences are His loci of manifestation\"</em> (p. 313) — a mutuality drawing on the same vein as Part 81's paradox of 'the dominion's dominion.'",
+            "pt": "Na discussão em torno da quadragésima nona à quinquagésima primeira perguntas, um poema descreve como ser um lugar de manifestação pode carregar graça e aflição ao mesmo tempo: <em>\"já ouvistes falar de um amante? / uma extremidade sã, a outra doente / feito venturoso por uma aflição / afligido por uma ventura\"</em> (p. 309) — que Dost comenta assim: <em>\"o povo dos lugares de manifestação é o povo da graça e da aflição. Mas o povo da unicidade absoluta da Essência não pode ter nem graça nem aflição!\"</em> (p. 309) — um estado coroado pelo dito de Abu Yazid: <em>\"outrora chorei, outrora ri. Agora não choro nem rio... não tenho noite, não tenho manhã! Pois não tenho atributo algum\"</em> (p. 309). A quinquagésima segunda pergunta, tratando dos tesouros dos atos, oferece uma reviravolta marcante sobre o tema do lugar: <em>\"enquanto Ele não está, para nós, num lugar, nós somos um lugar para Ele. Assim, somos nós que não temos lugar. Nossas existências são Seus lugares de manifestação\"</em> (p. 313) — uma mutualidade que bebe da mesma veia do paradoxo da Parte 81 do 'domínio do domínio.'"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXXIV, s. 309.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXXIV, p. 309.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXXIV, p. 309."
+          },
+          "caption": {
+            "tr": "Aynı mazhar, aynı anda nimet ve azabı bir arada taşıyor.",
+            "en": "The same locus of manifestation carries grace and affliction at once.",
+            "pt": "O mesmo lugar de manifestação carrega graça e aflição ao mesmo tempo."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Nimet",
+                "en": "Grace",
+                "pt": "Graça"
+              },
+              "note": {
+                "tr": "bir azapla gelir",
+                "en": "arrives with an affliction",
+                "pt": "chega com uma aflição"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Azap",
+                "en": "Affliction",
+                "pt": "Aflição"
+              },
+              "note": {
+                "tr": "bir nimetle gelir",
+                "en": "arrives with a grace",
+                "pt": "chega com uma graça"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "nebilik-ve-sezgi-hazineleri",
+      "heading": {
+        "tr": "Nebilik ve Sezgi Hazineleri: Daralan Bir Hiyerarşi",
+        "en": "Treasuries of Prophecy and Intuition: A Narrowing Hierarchy",
+        "pt": "Tesouros de Profecia e Intuição: Uma Hierarquia que se Estreita"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Elli üçüncü soru nebilere hazinelerin nereden verildiğini soruyor; Dost burada kendi bilgisinin sınırını açıkça itiraf ediyor — şeriatsız 'mutlak nebilik' verilmiş birine hiç rastlamadığını, ama 'verilmiş de bilmemiş olabileceğini' söylüyor (s. 318). Elli dördüncü soru velilerden sezgi sahiplerinin hazinelerini sorunca, cevap yaratılmışları daralan bir hiyerarşide sıralıyor: hayırlılardan müminlere, velilerden nebilere, teşrî sahibi nebilerden resullere, en tepede Hz. Muhammed'e uzanan bir koni. Kısım, her şeyin (cansız, bitki, hayvan) keşf ehline göre gerçekten -hayalde değil- konuştuğu fikriyle kapanıyor: <em>\"Deriler şöyle diyecektir: 'Bizi her şeyi konuşturan Allah konuşturdu.' Öyleyse, zâhirde söz esas iken susma perdeli hakkında ortaya çıkan geçici bir durumdur\"</em> (s. 319-320) — susmanın asıl, konuşmanın istisna olmadığını, tam tersini söyleyen çarpıcı bir ters-çevirme.",
+            "en": "The fifty-third question asks whence the prophets' treasuries are given; here Dost openly admits the limit of his own knowledge — he says he has never encountered anyone given 'absolute prophecy' without a revealed law, but that he 'may have been given it without knowing' (p. 318). When the fifty-fourth question asks about the treasuries of the saints who possess intuition, the answer arranges created beings in a narrowing hierarchy: from the virtuous to believers, from saints to prophets, from law-bearing prophets to messengers, narrowing to a cone with Muhammad at its summit. The part closes with the idea that everything (inanimate, plant, animal) truly speaks -not in imagination- according to the people of unveiling: <em>\"the skins will say: 'God, who makes everything speak, made us speak.' Thus, while speech is fundamental in the outward, silence is a temporary condition arising for the one who is veiled\"</em> (pp. 319-320) — a striking reversal saying that silence, not speech, is the exception.",
+            "pt": "A quinquagésima terceira pergunta questiona de onde são dados os tesouros dos profetas; aqui Dost admite abertamente o limite de seu próprio conhecimento — diz que nunca encontrou alguém a quem tenha sido dada a 'profecia absoluta' sem uma lei revelada, mas que 'pode ter recebido isso sem saber' (p. 318). Quando a quinquagésima quarta pergunta questiona sobre os tesouros dos santos que possuem intuição, a resposta organiza os seres criados numa hierarquia que se estreita: dos virtuosos aos crentes, dos santos aos profetas, dos profetas portadores de lei aos mensageiros, estreitando-se num cone com Muhammad no cume. A parte se encerra com a ideia de que tudo (inanimado, planta, animal) verdadeiramente fala -não na imaginação- segundo o povo do desvelamento: <em>\"as peles dirão: 'Deus, que faz tudo falar, nos fez falar.' Assim, embora a fala seja fundamental no exterior, o silêncio é uma condição temporária que surge para quem está velado\"</em> (pp. 319-320) — uma reviravolta marcante que diz que o silêncio, não a fala, é a exceção."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXXIV, s. 318-320.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXXIV, pp. 318-320.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXXIV, pp. 318-320."
+          },
+          "caption": {
+            "tr": "Yaratılmışlar, tepede Hz. Muhammed'e daralan bir hiyerarşi içinde sıralanıyor.",
+            "en": "Created beings are arranged in a hierarchy narrowing toward Muhammad at its summit.",
+            "pt": "Os seres criados se organizam numa hierarquia que se estreita em direção a Muhammad no cume."
+          },
+          "tree": {
+            "id": "daralan-hiyerarsi-tree",
+            "label": {
+              "tr": "Hz. Muhammed",
+              "en": "Muhammad",
+              "pt": "Muhammad"
+            },
+            "note": {
+              "tr": "hiyerarşinin tepesi",
+              "en": "the summit of the hierarchy",
+              "pt": "o cume da hierarquia"
+            },
+            "children": [
+              {
+                "id": "hiyerarsi-resuller",
+                "label": {
+                  "tr": "Resuller",
+                  "en": "Messengers",
+                  "pt": "Mensageiros"
+                }
+              },
+              {
+                "id": "hiyerarsi-nebiler",
+                "label": {
+                  "tr": "Teşrî Nebileri",
+                  "en": "Law-Bearing Prophets",
+                  "pt": "Profetas Portadores de Lei"
+                }
+              },
+              {
+                "id": "hiyerarsi-veliler",
+                "label": {
+                  "tr": "Veliler",
+                  "en": "Saints",
+                  "pt": "Santos"
+                }
+              },
+              {
+                "id": "hiyerarsi-muminler",
+                "label": {
+                  "tr": "Müminler",
+                  "en": "Believers",
+                  "pt": "Crentes"
+                }
+              },
+              {
+                "id": "hiyerarsi-hayirlilar",
+                "label": {
+                  "tr": "Hayırlılar",
+                  "en": "The Virtuous",
+                  "pt": "Os Virtuosos"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt VI, Kısım LXXXIV (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. VI, Part LXXXIV (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. VI, Parte LXXXIV (trad. Ekrem Demirli)"
+      },
+      "pageRange": "299-320"
+    }
+  ]
+}
