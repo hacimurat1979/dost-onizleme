@@ -4378,6 +4378,20 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
   z-index: 3; display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
   pointer-events: none;
+  transition: right 0.3s ease;
+}
+/* #esma-wrap açık bir detay paneli izlerken (bkz. wirePanelAwareControls),
+   sağa sabitlenmiş bu kontroller panelin (420px) ALTINDA kalıp tıklanamaz
+   oluyordu -- panel genişliği kadar sola kaydır. Dar ekranda panel neredeyse
+   tüm genişliği kapladığından kaydırmak yerine gizlemek daha güvenli. */
+#esma-wrap.esma-panel-open .esmaX-controls { right: calc(14px + min(420px, 92vw)); }
+#esma-wrap.esma-panel-open .esmaX-explore { right: calc(12px + min(420px, 92vw)); }
+@media (max-width: 680px) {
+  #esma-wrap.esma-panel-open .esmaX-controls,
+  #esma-wrap.esma-panel-open .esmaX-explore { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .esmaX-controls, .esmaX-explore { transition: none; }
 }
 .esmaX-depth { display: flex; flex-direction: column; gap: 10px; pointer-events: auto; }
 .esmaX-depth-btn {
@@ -4407,7 +4421,7 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   background: color-mix(in srgb, var(--surface-1) 90%, transparent);
   border: 1px solid var(--border); color: var(--text-secondary);
   font-size: 0.82rem; cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, right 0.3s ease;
 }
 .esmaX-explore:hover { color: var(--series-theme-text); border-color: color-mix(in srgb, var(--series-theme) 45%, var(--border)); }
 .esmaX-explore.is-on { color: var(--series-theme-text); border-color: var(--series-theme); background: color-mix(in srgb, var(--series-theme) 12%, var(--surface-1)); }

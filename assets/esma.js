@@ -216,8 +216,11 @@
   }
 
   function radiusFromImportance(kind, importance) {
-    if (kind === "allah") return 46;
-    if (kind === "zat") return 27;
+    // Zât, Allah'ın bile ötesindeki Kaynak'tır ("her isimlendirmenin
+    // ötesinde") -- haritada Allah'tan daha küçük görünmesi bu hiyerarşiyle
+    // çelişiyordu; şimdi en büyük düğüm Zât.
+    if (kind === "zat") return 52;
+    if (kind === "allah") return 44;
     if (kind === "cluster") return 25;
     return 6 + importance * 20; // 8.7 .. 20.4
   }
@@ -587,7 +590,10 @@
 
     render(ts);
 
-    if (active || exploreOn) ensureFrame();
+    // Zât/Allah'ın nefes alan halosu sürekli hafifçe değişiyor -- reduceMotion
+    // kapalıyken kare döngüsü hep sürsün ki bu ambient nefes hiç durmasın
+    // (diğer graflardaki -- hal.js, sirlar-graph.js -- aynı desen).
+    if (active || exploreOn || !reduceMotion) ensureFrame();
   }
 
   function warmthColor(base, depthA) {
@@ -619,6 +625,31 @@
     return Math.max(0.12, 0.6 - (n.depthA - 1) * 0.12);
   }
 
+  // Halo rengi (#f3 düzeltmesi): önceden HER düğüm için CSS'te sabit
+  // --series-theme (altın) kullanılıyordu -- Zât'ın beyaz noktası bu yüzden
+  // hep sabit, kendi rengiyle ilgisiz bir sarı halenin içinde duruyordu.
+  // Şimdi her düğümün halosu kendi rengine (ya da Zât için özel, luminous bir
+  // sıcak-beyaza) dayanıyor.
+  function haloColor(n) {
+    if (n.kind === "zat") {
+      return isDark()
+        ? `color-mix(in srgb, #ffffff 62%, ${getVar("--accent-glow-dark")} 38%)`
+        : `color-mix(in srgb, #ffffff 58%, #e8a63c 42%)`;
+    }
+    return warmthColor(colorForNode(n), n.depthA);
+  }
+
+  // Nefes alan halo (#f3 düzeltmesi): önceden opaklık tamamen statikti ("sanki
+  // daima sabit bir halenin içinde"); Zât ve Allah -- haritanın iki en kutsal
+  // noktası -- artık hal.js/sirlar-graph.js'teki "yavaş nefes" deseniyle aynı
+  // ritimde (6sn) hafifçe büyüyüp küçülüyor.
+  function haloBreath(n, ts) {
+    if (reduceMotion) return 1;
+    if (n.kind === "zat") return 1 + 0.10 * Math.sin(ts / 6000 + 1.2);
+    if (n.kind === "allah") return 1 + 0.08 * Math.sin(ts / 6000);
+    return 1;
+  }
+
   function labelMode(n, effScale) {
     // Zoom seviyesine göre kademeli etiket (#5): düşük=daire, orta=kısa,
     // yüksek=tam. Seçili/hover/merkez düğümler her zaman tam.
@@ -635,8 +666,9 @@
     return idx === -1 ? full : full.slice(0, idx);
   }
 
-  function render() {
+  function render(ts) {
     if (!nodeLayer) return;
+    ts = ts || performance.now();
     nodes.forEach(project);
 
     const relSet = selectedId ? relationSets(selectedId) : null;
@@ -658,6 +690,53 @@
       if (tilt > 0.02) o *= Math.max(0.4, Math.min(1, n.depthScale * 1.02));
       return o;
     }
+
+    // Etiket çakışma-önleme (#f2 düzeltmesi): eskiden mod salt zoom seviyesine
+    // bakıyordu, komşu etiketlerle örtüşmeyi hiç kontrol etmiyordu -- yoğun
+    // kümelerde (özellikle uzun, birleşik eşanlamlı isimlerde, örn. "Al-Ghaffar
+    // / Al-Ghafir / Al-Ghafur") onlarca "tam" etiket aynı anda üst üste
+    // biniyordu. Önce her düğümün ZOOM'a göre aday modunu/metnini/önceliğini
+    // topluyoruz; sonra önem sırasına göre açgözlü (greedy) bir yerleştirme
+    // geçişiyle çakışan düşük-öncelikli etiketleri "none"a düşürüyoruz.
+    // Zât/Allah/kutup/seçili/hover her zaman kazanır (öncelik sonsuz).
+    function estimateLabelBox(n, mode) {
+      const eff = n.pscale;
+      const fontSize = Math.max(10, Math.min(17, 11 + n.importance * 8));
+      const text = mode === "full" ? fullName(n.raw) : shortName(n.raw);
+      const w = Math.max(20, text.length * fontSize * 0.56);
+      const h = fontSize * 1.25;
+      const labelY = n.py - n.radius * eff - 7;
+      return { x0: n.px - w / 2, x1: n.px + w / 2, y0: labelY - h, y1: labelY, text };
+    }
+    function boxesOverlap(a, b) {
+      const pad = 3;
+      return a.x0 - pad < b.x1 && a.x1 + pad > b.x0 && a.y0 - pad < b.y1 && a.y1 + pad > b.y0;
+    }
+    function buildLabelPlan() {
+      const plan = new Map();
+      const always = [];
+      const candidates = [];
+      nodes.forEach((n) => {
+        if (nodeOpacity(n) < 0.02) { plan.set(n.id, "none"); return; }
+        const forced = n.id === selectedId || n.id === hoverId || n.kind === "zat" || n.kind === "allah" || n.kind === "cluster";
+        const mode = labelMode(n, n.pscale);
+        if (mode === "none") { plan.set(n.id, "none"); return; }
+        const priority = forced ? Infinity : n.importance;
+        const item = { n, mode, priority, box: estimateLabelBox(n, mode) };
+        if (forced) always.push(item); else candidates.push(item);
+      });
+      const placed = [];
+      always.forEach((it) => { placed.push(it.box); plan.set(it.n.id, it.mode); });
+      candidates.sort((a, b) => b.priority - a.priority);
+      candidates.forEach((it) => {
+        const collides = placed.some((p) => boxesOverlap(it.box, p));
+        if (collides) { plan.set(it.n.id, "none"); return; }
+        placed.push(it.box);
+        plan.set(it.n.id, it.mode);
+      });
+      return plan;
+    }
+    const labelPlan = buildLabelPlan();
 
     // düğümler (ressam algoritması: arkadan öne)
     const ordered = nodes.slice().sort((a, b) => b.pz - a.pz);
@@ -690,13 +769,14 @@
       const hs = haloStrength(n);
       const isActive = n.id === selectedId;
       g.classed("is-active", isActive);
+      const breath = haloBreath(n, ts);
       g.select(".esmaX-halo")
-        .attr("r", r * (1.25 + hs * 0.85))
-        .style("opacity", (0.07 + hs * 0.20) * (isActive ? 1.7 : 1));
+        .attr("r", r * (1.25 + hs * 0.85) * breath)
+        .style("fill", haloColor(n))
+        .style("opacity", (0.07 + hs * 0.20) * (isActive ? 1.7 : 1) * breath);
       g.select(".esmaX-dot").attr("r", r).style("fill", warmthColor(colorForNode(n), n.depthA));
       g.select(".node-sheen").attr("r", r);
-      const eff = n.pscale;
-      const mode = labelMode(n, eff);
+      const mode = labelPlan.get(n.id) || "none";
       const label = g.select(".esmaX-label");
       if (mode === "none") { label.style("display", "none"); }
       else {
@@ -1160,6 +1240,11 @@
   }
 
   // ---- 3 adımlı onboarding (#9) ----
+  // onboardRedraw: kutucuk açıkken dil değişirse (bkz. onLangChange) aynı
+  // draw() kapanışını yeniden çağırıp mevcut adımı GÜNCEL dilde tazelemek
+  // için tutulan referans -- #f1 düzeltmesi: önceden dil değişince kutucuk
+  // ilk açıldığı dilde donuk kalıyordu (sayfa dili ile popup dili uyuşmuyordu).
+  let onboardRedraw = null;
   function maybeShowOnboarding() {
     try { if (sessionStorage.getItem("dost-esma-onboard-seen")) return; } catch (_) {}
     const steps = [
@@ -1191,12 +1276,14 @@
     }
     function done() {
       try { sessionStorage.setItem("dost-esma-onboard-seen", "1"); } catch (_) {}
+      onboardRedraw = null;
       ov.classList.add("esmaX-onb--out");
       setTimeout(() => ov.remove(), reduceMotion ? 0 : 320);
     }
     ov.addEventListener("keydown", (e) => { if (e.key === "Escape") done(); });
     if (reduceMotion) ov.classList.add("esmaX-onb--nomo");
     wrapEl.appendChild(ov);
+    onboardRedraw = draw;
     draw();
     setTimeout(() => { const nx = ov.querySelector(".esmaX-onb__next"); if (nx) nx.focus(); }, 60);
   }
@@ -1204,12 +1291,28 @@
   // ---------------------------------------------------------------------------
   // 9) Kuruluş + public API
   // ---------------------------------------------------------------------------
+  // Sağ kenara sabitlenmiş derinlik-noktaları ve Keşfet düğmesi, sağdan açılan
+  // #detail-panel (420px) altında kalıp tıklanamaz hâle geliyordu -- bir
+  // düğüme her tıklandığında (ki grafiğin asıl kullanım biçimi budur) bu iki
+  // temel kontrol fiilen erişilemez oluyordu. Panel açık olduğunu izleyip
+  // kontrolleri panel genişliği kadar sola kaydırıyoruz (bkz. .esma-panel-open
+  // CSS kuralı) -- diğer graflardaki paylaşılan setupDetailPanelFocus() ile
+  // aynı MutationObserver deseni.
+  function wirePanelAwareControls() {
+    if (!detailPanel || wrapEl.dataset.wiredPanelObs) return;
+    wrapEl.dataset.wiredPanelObs = "1";
+    const sync = () => wrapEl.classList.toggle("esma-panel-open", !detailPanel.hidden);
+    sync();
+    new MutationObserver(sync).observe(detailPanel, { attributes: true, attributeFilter: ["hidden"] });
+  }
+
   function buildAll(data) {
     prepareScene(data);
     buildDom();
     buildControls();
     wireInteractions();
     wireTiltToggle();
+    wirePanelAwareControls();
     rebuildParticles();
     built = true;
     setRevealLevel(0, { force: true });
@@ -1253,6 +1356,7 @@
     onLangChange() {
       if (!built) return;
       relangControls();
+      if (onboardRedraw) onboardRedraw();
       // açık panel içeriğini yeniden çiz
       if (currentDetailNode) { const n = byId.get(currentDetailNode); if (n) showNameDetail(n); }
       else if (currentDetailIsZat) showZatDetail();
