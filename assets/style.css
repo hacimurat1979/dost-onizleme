@@ -4173,3 +4173,140 @@ body.cizim-lightbox-open {
 .viz-root[data-theme="dark"] .graph-hint-popover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
+
+/* ==========================================================================
+   Esmâü'l-Hüsnâ — ilerlemeli-açılım / birleşik 2B-3B sahne motoru (esma.js)
+   Namespace: .esmaX-*  (eski .esma-* radyal-ağaç stilleri artık kullanılmıyor
+   ama zararsız duruyor.)
+   ========================================================================== */
+
+/* Neredeyse görünmez İslami geometrik doku (%~2.8) -- atmosfer, asla rekabet
+   etmez. */
+.esmaX-bg { opacity: 0.028; pointer-events: none; }
+:root[data-theme="dark"] .esmaX-bg,
+body[data-theme="dark"] .esmaX-bg { opacity: 0.05; }
+.esmaX-geo-line { fill: none; stroke: var(--text-primary); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+/* Düğümler */
+.esmaX-node { cursor: pointer; outline: none; }
+.esmaX-node:focus-visible .esmaX-dot { stroke: var(--series-theme); stroke-width: 2; }
+.esmaX-halo {
+  fill: var(--series-theme);
+  filter: blur(5px);
+  pointer-events: none;
+}
+:root[data-theme="dark"] .esmaX-halo,
+body[data-theme="dark"] .esmaX-halo { fill: var(--accent-glow-dark); filter: blur(6px); }
+.esmaX-dot { stroke: rgba(0,0,0,0.12); stroke-width: 0.6; }
+:root[data-theme="dark"] .esmaX-dot,
+body[data-theme="dark"] .esmaX-dot { stroke: rgba(255,255,255,0.14); }
+.esmaX-node.is-active .esmaX-dot { stroke: var(--series-theme); stroke-width: 2; }
+.node-sheen { pointer-events: none; }
+
+.esmaX-label {
+  fill: var(--text-secondary);
+  font-family: inherit;
+  paint-order: stroke;
+  stroke: var(--page-plane);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  user-select: none;
+}
+.esmaX-label--strong { fill: var(--text-primary); font-weight: 600; }
+
+/* Kenarlar (ebeveyn-çocuk) + akış */
+.esmaX-edge { stroke: var(--text-muted); stroke-width: 1; pointer-events: none; }
+.esmaX-edge--flow { stroke: var(--series-theme); stroke-width: 1.6; }
+
+/* Çapraz ilişkiler -- sakin, ince kesikli altın; seçince parlar */
+.esmaX-rel { stroke: var(--series-theme); stroke-width: 1.2; stroke-dasharray: 3 5; cursor: pointer; }
+
+/* Yavaş ışık parçacıkları */
+.esmaX-particle { fill: var(--series-theme); pointer-events: none; }
+:root[data-theme="dark"] .esmaX-particle,
+body[data-theme="dark"] .esmaX-particle { fill: var(--accent-glow-dark); }
+
+/* Altın tecellî akışı */
+.esmaX-flow-line { fill: none; stroke: var(--series-theme); stroke-width: 2.4; stroke-linecap: round; opacity: 0.9; }
+.esmaX-flow-comet { fill: #fff6db; }
+:root[data-theme="dark"] .esmaX-flow-line,
+body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
+
+/* Derinlik göstergesi (sağ orta, dikey dairesel noktalar) */
+.esmaX-controls {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  z-index: 3; display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+  pointer-events: none;
+}
+.esmaX-depth { display: flex; flex-direction: column; gap: 10px; pointer-events: auto; }
+.esmaX-depth-btn {
+  width: 26px; height: 26px; border-radius: 50%; border: none; background: none;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;
+}
+.esmaX-depth-btn span {
+  width: 11px; height: 11px; border-radius: 50%;
+  border: 1.6px solid var(--text-muted); background: transparent;
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+.esmaX-depth-btn:hover span { border-color: var(--series-theme); }
+.esmaX-depth-btn.is-active span { background: var(--series-theme); border-color: var(--series-theme); transform: scale(1.25); }
+.esmaX-depth-hint {
+  pointer-events: none; max-width: 190px; text-align: right; margin: 0;
+  font-size: 0.74rem; line-height: 1.35; color: var(--text-muted);
+  background: color-mix(in srgb, var(--surface-1) 78%, transparent);
+  padding: 6px 9px; border-radius: 8px;
+}
+@media (max-width: 620px) { .esmaX-depth-hint { display: none; } .esmaX-controls { right: 8px; } }
+
+/* Keşfet düğmesi (sağ üst) */
+.esmaX-explore {
+  position: absolute; top: 12px; right: 12px; z-index: 3;
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 34px; padding: 0 12px; border-radius: 18px;
+  background: color-mix(in srgb, var(--surface-1) 90%, transparent);
+  border: 1px solid var(--border); color: var(--text-secondary);
+  font-size: 0.82rem; cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.esmaX-explore:hover { color: var(--series-theme-text); border-color: color-mix(in srgb, var(--series-theme) 45%, var(--border)); }
+.esmaX-explore.is-on { color: var(--series-theme-text); border-color: var(--series-theme); background: color-mix(in srgb, var(--series-theme) 12%, var(--surface-1)); }
+.esma-3d-toggle.is-on { color: var(--series-theme-text); border-color: var(--series-theme); }
+@media (max-width: 620px) { .esmaX-explore__txt { display: none; } .esmaX-explore { padding: 0 9px; } }
+
+/* Onboarding (3 adım) */
+.esmaX-onb {
+  position: absolute; inset: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--page-plane) 74%, transparent);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  animation: esmaX-onb-in 0.4s ease;
+}
+.esmaX-onb--out { opacity: 0; transition: opacity 0.3s ease; }
+.esmaX-onb__card {
+  max-width: min(440px, calc(100% - 40px));
+  background: var(--surface-1); border: 1px solid var(--border);
+  border-radius: 16px; padding: 26px 26px 20px;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.28);
+  text-align: center;
+}
+.esmaX-onb__dots { display: flex; gap: 7px; justify-content: center; margin-bottom: 16px; }
+.esmaX-onb__dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+.esmaX-onb__dots span.is-active { background: var(--series-theme); }
+.esmaX-onb__card h2 { font-size: 1.24rem; margin: 0 0 10px; color: var(--text-primary); }
+.esmaX-onb__card p { font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary); margin: 0 0 20px; }
+.esmaX-onb__actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.esmaX-onb__skip { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.85rem; }
+.esmaX-onb__skip:hover { color: var(--text-secondary); }
+.esmaX-onb__next {
+  background: var(--series-theme); color: #1a1710; border: none; cursor: pointer;
+  padding: 9px 20px; border-radius: 20px; font-size: 0.88rem; font-weight: 600;
+}
+.esmaX-onb__next:hover { filter: brightness(1.06); }
+@keyframes esmaX-onb-in { from { opacity: 0; } to { opacity: 1; } }
+.esmaX-onb--nomo, .esmaX-onb--nomo * { animation: none !important; transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .esmaX-depth-btn span { transition: none; }
+  .esmaX-onb, .esmaX-onb--out { animation: none; transition: none; }
+}
