@@ -1803,32 +1803,84 @@ li.futuhat-pulse,
   color: var(--text-secondary);
 }
 
-.sirlar-link {
-  fill: none;
-  stroke: var(--gridline);
-  stroke-width: 1.5px;
+/* ============================================================================
+   Sırlar — "canlı organizma" grafiği (assets/sirlar-graph.js)
+   Force-tabanlı yaşayan ağaç: nefes alan düğümler, akan bezier bağlantılar,
+   yaklaştıkça açılan katmanlar. Renk / opaklık / yarıçap büyük ölçüde JS'te
+   inline (`.style(...)`) set edilir; buradaki CSS pointer-events, imleç,
+   yumuşak geçişler, etiket tipografisi (#4 yatay + gölge), cam-lejant (#13),
+   ince arka plan (#14), okuma modu (#17) ve reduced-motion ile ilgilenir.
+   ============================================================================ */
+.sir-node { cursor: pointer; outline: none; }
+.sir-node .sir-dot,
+.sir-node .sir-glow,
+.sir-node .sir-halo,
+.sir-node .sir-depth,
+.sir-node .sir-label { transition: opacity 0.25s ease; }
+.sir-node:focus-visible .sir-dot { stroke: var(--text-primary); stroke-width: 1.6px; }
+.sir-glow, .sir-depth, .sir-bubble, .sir-particle, .sir-link { pointer-events: none; }
+.sir-halo { fill: none; stroke-width: 1.4px; pointer-events: none; }
+.sir-bg circle { pointer-events: none; fill: var(--text-muted); }
+
+/* #4 — yatay, okunur etiket: yumuşak gölge için paint-order ile arka-plan
+   renginde bir kontur (glossy değil, sadece zemine karşı okunaklılık). */
+.sir-label {
+  fill: var(--text-secondary);
+  font-family: inherit;
+  paint-order: stroke;
+  stroke: var(--page-plane);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
 }
-.sirlar-link--highlight {
-  stroke: var(--series-theme);
-  stroke-width: 2.5px;
+.sir-label--root { fill: var(--text-primary); font-weight: 700; letter-spacing: 0.015em; }
+.sir-label--theme { fill: var(--text-primary); font-weight: 600; }
+.sir-label--strong { fill: var(--text-primary); font-weight: 600; }
+
+/* #17 — okuma modu: odaklanılan dal dışındaki her şey JS'te sönümlenir;
+   burada yalnızca kalan etiketlere biraz daha nefes veriyoruz. */
+#sirlar-wrap.sir-reading .sir-label { letter-spacing: 0.01em; }
+
+/* #14 — çok ince radyal zemin (parçacıklar JS'te .sir-bg içine çizilir). */
+#sirlar-graph {
+  background: radial-gradient(circle at 50% 46%,
+    color-mix(in srgb, var(--series-theme) 4%, transparent), transparent 60%);
 }
-.sirlar-node--entry circle {
-  cursor: pointer;
+
+/* #13 — lejantı yüzen cam panele çevir (yalnız Sırlar'a özel; .legend paylaşımlı). */
+#sirlar-legend {
+  background: color-mix(in srgb, var(--surface-1) 58%, transparent);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
 }
-.sirlar-node--theme circle,
-.sirlar-node--root circle {
-  cursor: pointer;
+#sirlar-legend .legend__item {
+  border-radius: 9px;
+  padding: 2px 5px;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
-.sirlar-node--theme text.node-label {
-  font-weight: 600;
+#sirlar-legend .legend__item:hover {
+  color: var(--text-primary);
+  transform: translateX(2px);
+  background: color-mix(in srgb, var(--surface-2) 55%, transparent);
 }
-.sirlar-node--dimmed {
-  opacity: 0.22;
-  transition: opacity 0.3s ease;
+#sirlar-legend .legend__dot { animation: sirDotPulse 3.6s ease-in-out infinite; }
+#sirlar-legend .legend__item:nth-child(2) .legend__dot { animation-delay: 0.5s; }
+#sirlar-legend .legend__item:nth-child(3) .legend__dot { animation-delay: 1.0s; }
+#sirlar-legend .legend__item:nth-child(4) .legend__dot { animation-delay: 1.5s; }
+#sirlar-legend .legend__item:nth-child(5) .legend__dot { animation-delay: 2.0s; }
+@keyframes sirDotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.82; }
+  50% { transform: scale(1.16); opacity: 1; }
 }
-.sirlar-node--theme.sirlar-node--focused circle:first-of-type {
-  stroke: var(--text-primary);
-  stroke-width: 2px;
+:root[data-theme="dark"] #sirlar-legend,
+body[data-theme="dark"] #sirlar-legend {
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.42), 0 2px 8px rgba(0, 0, 0, 0.28);
+}
+@media (prefers-reduced-motion: reduce) {
+  #sirlar-legend .legend__dot { animation: none; }
 }
 
 .legend {
