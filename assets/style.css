@@ -437,7 +437,7 @@ html {
 .graph-wrap {
   position: relative;
   width: 100%;
-  height: min(72vh, 720px);
+  height: min(80vh, 820px);
   background: var(--surface-1);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -902,85 +902,169 @@ html {
 .pole-badge--relation-mertebe { background: color-mix(in srgb, var(--series-daphne) 78%, black); }
 .pole-badge--relation-kapsar { background: color-mix(in srgb, var(--series-kemal) 78%, black); }
 
-.hal-link {
-  fill: none;
-  stroke: var(--gridline);
-  stroke-width: 1.5px;
+/* ============================================================================
+   Hâller Haritası — "manevi yükseliş yolculuğu" (assets/hal.js)
+   Işıyan küre düğümler, akan gradyan yol, altın dönüş yayı, ilerlemeli açılış,
+   ambient nefes. Renk/opaklık/yarıçap büyük ölçüde JS'te inline set edilir;
+   buradaki CSS imleç, tipografi, sabit stiller, ivory zemin ve reduced-motion.
+   ============================================================================ */
+/* #14 — çok ince, sıcak dokulu zemin (ivory hissi) */
+#hal-graph {
+  background:
+    radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--series-hal-hayret) 5%, transparent), transparent 58%),
+    radial-gradient(circle at 50% 92%, color-mix(in srgb, var(--series-hal-tevhit) 4%, transparent), transparent 55%);
 }
-.hal-link--highlight {
-  stroke: var(--series-hal-hayret);
-  stroke-width: 2.5px;
-}
-.hal-link--return {
-  stroke: url(#ascent-gradient-hayret);
-  stroke-width: 2.4px;
+.hal-seg { pointer-events: none; stroke-linecap: round; transition: opacity 0.25s ease; }
+.hal-seg--major { filter: drop-shadow(0 0 3px currentColor); }
+.hal-return {
+  stroke: var(--series-hal-hayret, #e0b545);
+  stroke-width: 2.6px;
   stroke-linecap: round;
-  opacity: 0.8;
-  filter: drop-shadow(0 1px 3px color-mix(in srgb, var(--series-hal-hayret, #e0b545) 45%, transparent));
+  pointer-events: none;
+  filter: drop-shadow(0 1px 4px color-mix(in srgb, var(--series-hal-hayret, #e0b545) 50%, transparent));
 }
-.hal-link--return.hal-link--highlight {
-  opacity: 1;
-  stroke-width: 3.2px;
-}
-.hal-link--return-label {
+.hal-return-label {
   font-size: 10.5px;
   font-style: italic;
   fill: var(--series-hal-hayret-text, #8a690e);
-  text-anchor: middle;
   pointer-events: none;
-  opacity: 0.85;
+  transition: opacity 0.25s ease;
 }
-.hal-node circle {
-  transition: stroke 0.2s ease, stroke-width 0.2s ease;
-  stroke: transparent;
-  stroke-width: 0;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+.hal-node { cursor: pointer; outline: none; }
+.hal-glow, .hal-halo, .hal-shimmer { pointer-events: none; }
+.hal-halo { fill: none; stroke-width: 1.6px; }
+.hal-shimmer { fill: var(--series-hal-hayret, #e0b545); pointer-events: none; }
+.hal-sphere { filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.28)); }
+.viz-root[data-theme="dark"] .hal-sphere { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)); }
+.hal-sheen { fill: url(#node-sheen); pointer-events: none; }
+.hal-node:focus-visible .hal-sphere { stroke: var(--text-primary); stroke-width: 1.6px; }
+.hal-label {
+  fill: var(--text-secondary);
+  font-size: 11px;
+  paint-order: stroke;
+  stroke: var(--page-plane);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
 }
-.viz-root[data-theme="dark"] .hal-node circle {
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.55));
-}
-.hal-node--active circle {
-  stroke: var(--series-hal-hayret, #e0b545);
-  stroke-width: 2.5px;
-  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--series-hal-hayret, #e0b545) 65%, transparent));
-}
-@media (prefers-reduced-motion: reduce) {
-  .hal-node--active circle { filter: none; }
-}
+.hal-label--landmark { fill: var(--text-primary); font-weight: 600; font-size: 12.5px; }
+.hal-label--peak { fill: var(--series-hal-hayret-text, #8a690e); font-weight: 700; font-size: 14px; letter-spacing: 0.01em; }
+.viz-root[data-theme="dark"] .hal-label--peak { fill: var(--series-hal-hayret, #e0b545); }
+.hal-label--strong { fill: var(--text-primary); }
 .node-sheen {
   fill: url(#node-sheen);
   pointer-events: none;
 }
 
-.sorular-link {
-  stroke: var(--gridline);
-  stroke-width: 1px;
-  stroke-dasharray: 3 3;
-  opacity: 0.55;
-  transition: opacity 0.2s ease;
+/* ============================================================================
+   Sorular — "keşfedilen bir mana evreni" (assets/sorular.js)
+   Işıyan küre düğümler, düşük opaklıkta organik bezier bağlantılar, atmosfer
+   parçacıkları, derinlik süzgeci, minimap. Renk/opaklık/yarıçap JS'te inline.
+   ============================================================================ */
+/* #10 — çok ince atmosfer: radyal ışık (parçacıklar JS'te .sorular-bg'de). */
+#sorular-graph {
+  background: radial-gradient(circle at 50% 44%,
+    color-mix(in srgb, var(--series-theme) 4%, transparent), transparent 60%);
 }
-.sorular-link--highlight {
+.sorular-bg circle { pointer-events: none; fill: var(--text-muted); }
+.sorular-link { pointer-events: none; stroke: var(--gridline); stroke-width: 1px; transition: opacity 0.25s ease; }
+.sorular-link--active { stroke-width: 1.7px; }
+.sorular-flow, .sorular-glow, .sorular-halo, .sorular-sheen { pointer-events: none; }
+.sorular-halo { fill: none; stroke-width: 1.5px; }
+.sorular-sphere { filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.26)); }
+.viz-root[data-theme="dark"] .sorular-sphere { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)); }
+.sorular-sheen { fill: url(#node-sheen); pointer-events: none; }
+.sorular-node { cursor: pointer; outline: none; }
+.sorular-node:focus-visible .sorular-sphere { stroke: var(--text-primary); stroke-width: 1.6px; }
+.sorular-label {
+  fill: var(--text-secondary);
+  paint-order: stroke;
+  stroke: var(--page-plane);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.sorular-label--strong { fill: var(--text-primary); font-weight: 600; }
+
+/* Hover mini bilgi kartı ek satırı (#7) */
+.node-hover-tip__meta {
+  margin-top: 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Derinlik süzgeci (#6) — yüzen cam segmentli denetim */
+.sorular-depth {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  background: color-mix(in srgb, var(--surface-1) 60%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  border-radius: 999px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.1);
+}
+.sorular-depth__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0 6px 0 4px;
+}
+.sorular-depth__btn {
+  font: inherit;
+  font-size: 0.78rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 3px 11px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.sorular-depth__btn:hover { color: var(--text-primary); }
+.sorular-depth__btn.is-active {
+  background: color-mix(in srgb, var(--series-theme) 22%, transparent);
+  color: var(--text-primary);
+}
+
+/* Minimap (#8) — sağ alt köşe */
+.sorular-minimap {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 3;
+  width: 150px;
+  height: 110px;
+  background: color-mix(in srgb, var(--surface-1) 62%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  border-radius: 12px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+.sorular-minimap svg { width: 100%; height: 100%; display: block; cursor: pointer; }
+.sorular-minimap__vp {
+  fill: color-mix(in srgb, var(--series-theme) 12%, transparent);
   stroke: var(--series-theme);
-  stroke-width: 1.6px;
-  stroke-dasharray: none;
-  opacity: 1;
+  stroke-width: 1;
+  opacity: 0.8;
 }
-.sorular-node circle {
-  stroke: transparent;
-  stroke-width: 0;
-  transition: stroke 0.2s ease, stroke-width 0.2s ease;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.28));
-}
-.viz-root[data-theme="dark"] .sorular-node circle {
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
-}
-.sorular-node--active circle {
-  stroke: var(--series-theme);
-  stroke-width: 2.5px;
-  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--series-theme) 55%, transparent));
-}
-@media (prefers-reduced-motion: reduce) {
-  .sorular-node--active circle { filter: none; }
+@media (max-width: 620px) {
+  .sorular-minimap { width: 108px; height: 80px; }
+  .sorular-depth { top: 8px; }
 }
 /* Merkezdeki nefes alan işaret -- daire/merkez ilkesi (bkz. CLAUDE.md):
    tıklanamaz, sadece hâlâ açık kalan sorunun kendisini sezdiren dekoratif
