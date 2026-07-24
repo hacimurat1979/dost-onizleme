@@ -26,6 +26,14 @@ window.DostGraphUtils = (function () {
     y = Math.max(50, y);
     tooltip.style.left = x + "px";
     tooltip.style.top = y + "px";
+    // .node-hover-tip'in tabanı imlecin ~14px üstünde büyür (bkz. style.css
+    // transform: translate(-50%, calc(-100% - 14px))) -- uzun bir alıntı
+    // (örn. Sırlar'daki bir sır'ın tam metni) imleç ekranın üst kısmındayken
+    // bu yükseklikle görünüm alanının üstüne taşabiliyordu. İçerik
+    // yerleştirildikten sonra gerçek yüksekliği ölçüp üstten taşıyorsa
+    // imlecin ALTINA doğru büyümeye çeviriyoruz.
+    tooltip.classList.remove("node-hover-tip--flip");
+    if (tooltip.getBoundingClientRect().top < 4) tooltip.classList.add("node-hover-tip--flip");
   }
 
   function hideTooltip(tooltip) {

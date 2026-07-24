@@ -178,7 +178,7 @@
 
     const rc = document.getElementById("hal-recenter");
     if (rc && !rc.dataset.wiredHal) { rc.dataset.wiredHal = "1"; rc.addEventListener("click", () => { clearFocus(); fitView(true); }); }
-    svg.on("click", () => { if (currentDetailNode) { /* boş alana tıklama odağı bırakır */ } });
+    svg.on("click", () => { if (currentDetailNode) clearFocus(); });
   }
 
   function initShimmer() {

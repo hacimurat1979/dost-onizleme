@@ -3723,6 +3723,12 @@ html:has(.detail-panel:not([hidden])) {
   position: fixed;
   z-index: 80; /* .cizim-lightbox (70)'ın üzerinde görünsün diye */
 }
+/* İmleç görünüm alanının üst kenarına yakınken (bkz. moveTooltip() -- ölçülen
+   yükseklik ekranın üstüne taşıyorsa eklenir): taban büyüme yönünü yukarıdan
+   aşağıya çevirir, imlecin hemen ALTINDA açılsın diye. */
+.node-hover-tip.node-hover-tip--flip {
+  transform: translate(-50%, 14px);
+}
 
 .node-hover-tip__title {
   font-weight: 700;

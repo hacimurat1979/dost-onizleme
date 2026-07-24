@@ -625,29 +625,29 @@
     return Math.max(0.12, 0.6 - (n.depthA - 1) * 0.12);
   }
 
-  // Halo rengi (#f3 düzeltmesi): önceden HER düğüm için CSS'te sabit
-  // --series-theme (altın) kullanılıyordu -- Zât'ın beyaz noktası bu yüzden
-  // hep sabit, kendi rengiyle ilgisiz bir sarı halenin içinde duruyordu.
-  // Şimdi her düğümün halosu kendi rengine (ya da Zât için özel, luminous bir
-  // sıcak-beyaza) dayanıyor.
+  // Halo rengi: Zât, Ontoloji grafiğindeki .node--root ile aynı ışıması
+  // gerekiyor -- orada halo her zaman doğrudan --series-theme (dark modda
+  // --accent-glow-dark), soluk bir beyaz-altın karışımı değil, doygun/solid
+  // altın rengidir (bkz. style.css .node--root .node-halo). Önceki soluk
+  // color-mix burada bir "iyileştirme" sanılmıştı ama aslında Zât'ı sönük/
+  // içi boş bir halkaya çeviriyordu -- iki grafikte de aynı Zât'ın aynı
+  // ışımayla görünmesi için buradan da doğrudan tema rengi kullanılıyor.
   function haloColor(n) {
-    if (n.kind === "zat") {
-      return isDark()
-        ? `color-mix(in srgb, #ffffff 62%, ${getVar("--accent-glow-dark")} 38%)`
-        : `color-mix(in srgb, #ffffff 58%, #e8a63c 42%)`;
-    }
+    if (n.kind === "zat") return isDark() ? getVar("--accent-glow-dark") : getVar("--series-theme");
     return warmthColor(colorForNode(n), n.depthA);
   }
 
-  // Nefes alan halo (#f3 düzeltmesi): önceden opaklık tamamen statikti ("sanki
-  // daima sabit bir halenin içinde"); Zât ve Allah -- haritanın iki en kutsal
-  // noktası -- artık hal.js/sirlar-graph.js'teki "yavaş nefes" deseniyle aynı
-  // ritimde (6sn) hafifçe büyüyüp küçülüyor.
-  function haloBreath(n, ts) {
-    if (reduceMotion) return 1;
-    if (n.kind === "zat") return 1 + 0.10 * Math.sin(ts / 6000 + 1.2);
-    if (n.kind === "allah") return 1 + 0.08 * Math.sin(ts / 6000);
-    return 1;
+  // Nefes alan halo: Ontoloji'deki .node--root .node-halo keyframe'iyle
+  // (node-halo-breathe: 0%/100% opacity .14 scale 1 -> 50% opacity .34 scale
+  // 1.4, 6sn) BİREBİR aynı genlikte -- 0 (dip) ile 1 (tepe) arasında bir faz
+  // döndürür; çağıran yer bunu ontoloji'deki gibi opacity/scale'e uygular.
+  // Önceki ±%8-10'luk ince salınım ontoloji'nin göze çarpan nefesiyle
+  // eşleşmiyordu ("canlı glow etkisi yok" şikâyeti kısmen buradandı).
+  function haloBreathPhase(n, ts) {
+    if (reduceMotion) return 0.5;
+    const period = 6000;
+    const phase = n.kind === "allah" ? 0 : Math.PI; // Zât/Allah farklı ritimde nefes alsın
+    return (1 - Math.cos((ts / period) * 2 * Math.PI + phase)) / 2;
   }
 
   function labelMode(n, effScale) {
@@ -769,11 +769,23 @@
       const hs = haloStrength(n);
       const isActive = n.id === selectedId;
       g.classed("is-active", isActive);
-      const breath = haloBreath(n, ts);
+      const isRoot = n.kind === "zat" || n.kind === "allah";
+      let haloR, haloOp;
+      if (isRoot) {
+        // Ontoloji'deki .node--root .node-halo dinlenme boyutu, kendi
+        // düğümünün ~1.95 katı (bkz. RADIUS_BY_ID notu); 0.4'lük ek katsayı
+        // nefes tepe noktasında bu tabanın üzerine (~%40) ekleniyor.
+        const phase = reduceMotion ? 0.5 : haloBreathPhase(n, ts);
+        haloR = r * 1.95 * (1 + 0.4 * phase);
+        haloOp = (0.14 + 0.20 * phase) * (isActive ? 1.7 : 1);
+      } else {
+        haloR = r * (1.25 + hs * 0.85);
+        haloOp = (0.07 + hs * 0.20) * (isActive ? 1.7 : 1);
+      }
       g.select(".esmaX-halo")
-        .attr("r", r * (1.25 + hs * 0.85) * breath)
+        .attr("r", haloR)
         .style("fill", haloColor(n))
-        .style("opacity", (0.07 + hs * 0.20) * (isActive ? 1.7 : 1) * breath);
+        .style("opacity", haloOp);
       g.select(".esmaX-dot").attr("r", r).style("fill", warmthColor(colorForNode(n), n.depthA));
       g.select(".node-sheen").attr("r", r);
       const mode = labelPlan.get(n.id) || "none";
@@ -901,7 +913,18 @@
 
   function onNodeActivate(n) {
     // Küme ve isimler seçilebilir; seçildiğinde önce (gerekiyorsa) o katmanı aç.
-    if (n.level > revealLevel) setRevealLevel(n.level);
+    // Önceden bu yalnız n'nin KENDİ katmanı gizliyken (deep-link/arama) işe
+    // yarıyordu -- bir kümeye (kutup) ya da bir isme tıklamak, altındaki bir
+    // sonraki katmanı hiç açmıyordu; tek yol sağdaki 3 derinlik düğmesiydi.
+    // Şimdi n'nin doğrudan çocuklarının katmanına da bakılıyor, ki bir
+    // kümeye/isme tıklamak kendi altındaki katmanı da açsın.
+    let targetLv = revealLevel;
+    if (n.level > targetLv) targetLv = n.level;
+    n.childIds.forEach((cid) => {
+      const c = byId.get(cid);
+      if (c && c.level > targetLv) targetLv = c.level;
+    });
+    if (targetLv > revealLevel) setRevealLevel(targetLv);
     selectNode(n.id, { flow: true });
   }
 
