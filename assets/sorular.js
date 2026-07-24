@@ -68,9 +68,13 @@
     let out = hex;
     if (/^#/.test(hex)) {
       const [h, , l0] = rgbToHsl.apply(null, hexToRgb(hex));
-      const s = 0.42;
+      const s = 0.55;
       const l = GU.isDark() ? Math.min(0.7, Math.max(0.56, l0)) : Math.min(0.6, Math.max(0.46, l0));
-      out = `hsl(${h.toFixed(0)} ${(s * 100).toFixed(0)}% ${(l * 100).toFixed(0)}%)`;
+      // d3.color() (v7) only parses the legacy comma-separated hsl() syntax,
+      // not CSS Color 4's space-separated form -- the latter silently fails
+      // to parse and falls back to gray, which is why every sphere/particle
+      // rendered achromatic despite this function's saturation math.
+      out = `hsl(${h.toFixed(0)}, ${(s * 100).toFixed(0)}%, ${(l * 100).toFixed(0)}%)`;
     }
     muteCache.set(key, out);
     return out;

@@ -772,11 +772,15 @@
         </details>`;
       })
       .join("");
-    partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: "Cilt IV–XVIII yakında", en: "Volumes IV–XVIII coming soon", pt: "Volumes IV–XVIII em breve" })}</span>`;
+    partsEl.innerHTML += `<span class="futuhat-parts__more">${tt({ tr: "Cilt IX–XVIII yakında", en: "Volumes IX–XVIII coming soon", pt: "Volumes IX–XVIII em breve" })}</span>`;
   }
 
   function roman(n) {
-    const table = [[10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]];
+    const table = [
+      [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"],
+      [100, "C"], [90, "XC"], [50, "L"], [40, "XL"],
+      [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"],
+    ];
     let out = "";
     let rem = n;
     for (const [value, symbol] of table) {

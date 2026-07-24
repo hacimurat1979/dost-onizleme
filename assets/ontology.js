@@ -995,8 +995,11 @@
   // technical/religious terms with no everyday-word collision risk in any
   // of the three languages -- without this allowlist they'd be unlinkable
   // from prose no matter how often they're used (confirmed zero cross-links
-  // for "Amâ"/"Arş" across all 22 Fütûhât parts despite heavy use).
-  const SHORT_TERM_ALLOWLIST = new Set(["amâ", "arş"]);
+  // for "Amâ"/"Arş" across all 22 Fütûhât parts despite heavy use). "Zât"
+  // joins them for the same reason -- its EN/PT names ("The Essence"/"A
+  // Essência") are already generic-blocked above, so only the TR form needs
+  // the allowlist to become linkable.
+  const SHORT_TERM_ALLOWLIST = new Set(["amâ", "arş", "zât"]);
 
   function registerCrossLinkTerm(nameDict, view, id, summaryDict) {
     if (!nameDict) return;
