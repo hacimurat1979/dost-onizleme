@@ -394,6 +394,7 @@
       .on("pointerleave", () => { setHover(null); hideTooltip(); })
       .on("focus", (e, d) => { setHover(d.id); showTooltip(d, e); })
       .on("blur", () => { setHover(null); hideTooltip(); });
+    enter.append("circle").attr("class", "sir-hit");                        // görünmez, büyütülmüş tıklama alanı
     enter.append("circle").attr("class", "sir-glow");                       // dış parıltı (#5)
     enter.append("circle").attr("class", "sir-halo");                       // hover halosu (#10)
     enter.append("circle").attr("class", "sir-dot");                        // renk gövde
@@ -431,6 +432,8 @@
       g.style("opacity", op).style("display", op < 0.02 ? "none" : null)
         .attr("transform", `translate(${d.x.toFixed(1)},${d.y.toFixed(1)})`);
       g.classed("is-anchor", act && d.id === act.anchor);
+      // görünmez tıklama alanı: küçük yaprak düğümlerde (r=6) gerçek dokunma hedefi sağlar
+      g.select(".sir-hit").attr("r", Math.max(14, r + 8));
       // dış parıltı (rengiyle uyumlu, glossy değil)
       const glowStrength = d.kind === "root" ? 1 : d.kind === "theme" ? 0.7 : 0.4;
       g.select(".sir-glow").attr("r", r * 1.7).style("fill", col).style("opacity", (d.kind === "root" ? 0.22 : 0.13) * glowStrength * (act && d.id === act.anchor ? 1.6 : 1));

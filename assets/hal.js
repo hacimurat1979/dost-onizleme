@@ -179,6 +179,14 @@
     const rc = document.getElementById("hal-recenter");
     if (rc && !rc.dataset.wiredHal) { rc.dataset.wiredHal = "1"; rc.addEventListener("click", () => { clearFocus(); fitView(true); }); }
     svg.on("click", () => { if (currentDetailNode) clearFocus(); });
+    if (!document.body.dataset.wiredHalEsc) {
+      document.body.dataset.wiredHalEsc = "1";
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (wrapEl.hidden) return;
+        if (currentDetailNode) clearFocus();
+      });
+    }
   }
 
   function initShimmer() {
@@ -339,7 +347,7 @@
 
   // ---------------------------------------------------------------------------
   function setHover(id) { if (hoveredId === id) return; hoveredId = id; ensureFrame(); }
-  function clearFocus() { currentDetailNode = null; hoveredId = null; ensureFrame(); }
+  function clearFocus() { currentDetailNode = null; hoveredId = null; detailPanel.hidden = true; ensureFrame(); }
 
   function fitView(animate) {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 640;

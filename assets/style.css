@@ -1903,6 +1903,7 @@ li.futuhat-pulse,
 .sir-node .sir-label { transition: opacity 0.25s ease; }
 .sir-node:focus-visible .sir-dot { stroke: var(--text-primary); stroke-width: 1.6px; }
 .sir-glow, .sir-depth, .sir-bubble, .sir-particle, .sir-link { pointer-events: none; }
+.sir-hit { fill: transparent; stroke: none; pointer-events: all; }
 .sir-halo { fill: none; stroke-width: 1.4px; pointer-events: none; }
 .sir-bg circle { pointer-events: none; fill: var(--text-muted); }
 
