@@ -1,0 +1,385 @@
+{
+  "id": "c7k93",
+  "cilt": 7,
+  "kisim": 93,
+  "status": "active",
+  "title": {
+    "tr": "Halvetten Firara: Yalnızlığın Dört Hali",
+    "en": "From Seclusion to Flight: Four States of Solitude",
+    "pt": "Da Reclusão à Fuga: Quatro Estados de Solidão"
+  },
+  "pageRange": {
+    "tr": "s. 123-146",
+    "en": "pp. 123-146",
+    "pt": "pp. 123-146"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Tövbe ve mücahedenin ardından, bu kısım Makamlar silsilesinin dört durağını işliyor: halvet ve onun terki olan celvet, uzlet ve onun terki, Musa'nın kıssasıyla somutlaşan firar ve firarın terki, ve kısım 94'e köprü kuran 'Allah'tan takva' bahsi — her hâlin hemen ardından gelen bir 'terk'le tamamlandığı tekrarlayan bir örüntü.",
+      "en": "Following repentance and struggle, this part takes up four stations of the sequence of spiritual stations: seclusion and its abandonment (unveiling), withdrawal and its abandonment, flight given concrete form through Moses's story and its abandonment, and the discussion of 'godwariness from God' bridging to Part 94 — a recurring pattern in which each state is immediately completed by an 'abandonment.'",
+      "pt": "Após o arrependimento e a luta, esta parte trata de quatro estações da sequência de estações espirituais: a reclusão e seu abandono (desvelamento), o retraimento e seu abandono, a fuga que toma forma concreta através da história de Moisés e seu abandono, e a discussão da 'temor a Deus vindo de Deus' que faz a ponte para a Parte 94 — um padrão recorrente em que cada estado é imediatamente completado por um 'abandono.'"
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "93. Kısım, Yetmiş Sekizinci'den Seksen Dördüncü Bölüme dört 'hal-terk' çiftinde ilerliyor.",
+      "en": "Part 93 proceeds through four 'state-abandonment' pairs from the Seventy-Eighth to the Eighty-Fourth Chapter.",
+      "pt": "A Parte 93 avança em quatro pares de 'estado-abandono' do Septuagésimo Oitavo ao Octogésimo Quarto Capítulo."
+    },
+    "tree": {
+      "id": "kisim-xciii-tree",
+      "label": {
+        "tr": "Doksan Üçüncü Kısım: Halvetten Firara",
+        "en": "Part Ninety-Three: From Seclusion to Flight",
+        "pt": "Parte Noventa e Três: Da Reclusão à Fuga"
+      },
+      "note": {
+        "tr": "Halvet-celvetle açılır, uzlet ve firardan geçip Allah'tan takvayla kısım 94'e köprü kurar.",
+        "en": "Opens with seclusion-unveiling, passes through withdrawal and flight, and bridges to Part 94 with godwariness from God.",
+        "pt": "Abre-se com reclusão-desvelamento, passa pelo retraimento e a fuga, e faz a ponte para a Parte 94 com o temor a Deus vindo de Deus."
+      },
+      "children": [
+        {
+          "id": "halvet-dal",
+          "label": {
+            "tr": "Halvet ve Celvet (Bölüm 78-79)",
+            "en": "Seclusion and Unveiling (Ch. 78-79)",
+            "pt": "Reclusão e Desvelamento (Cap. 78-79)"
+          },
+          "note": {
+            "tr": "kalbin boşalması, keşf halveti imkânsızlaştırır",
+            "en": "the heart's emptying, unveiling makes seclusion impossible",
+            "pt": "o esvaziamento do coração, o desvelamento torna a reclusão impossível"
+          }
+        },
+        {
+          "id": "uzlet-dal",
+          "label": {
+            "tr": "Uzlet ve Terki (Bölüm 80-81)",
+            "en": "Withdrawal and Its Abandonment (Ch. 80-81)",
+            "pt": "Retraimento e Seu Abandono (Cap. 80-81)"
+          },
+          "note": {
+            "tr": "kendini bilen Rabbini bilir",
+            "en": "one who knows himself knows his Lord",
+            "pt": "quem conhece a si mesmo conhece seu Senhor"
+          }
+        },
+        {
+          "id": "firar-dal",
+          "label": {
+            "tr": "Firar ve Terki (Bölüm 82-83)",
+            "en": "Flight and Its Abandonment (Ch. 82-83)",
+            "pt": "A Fuga e Seu Abandono (Cap. 82-83)"
+          },
+          "note": {
+            "tr": "Musa'nın kıssası, kimden kaçıyorsun?",
+            "en": "Moses's story, from whom do you flee?",
+            "pt": "a história de Moisés, de quem você foge?"
+          }
+        },
+        {
+          "id": "takva-dal",
+          "label": {
+            "tr": "Allah'tan Takva (Bölüm 84)",
+            "en": "Godwariness from God (Ch. 84)",
+            "pt": "O Temor a Deus Vindo de Deus (Cap. 84)"
+          },
+          "note": {
+            "tr": "kısım 94'e köprü",
+            "en": "a bridge to Part 94",
+            "pt": "uma ponte para a Parte 94"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "halvet-ve-celvet",
+      "heading": {
+        "tr": "Halvet: Kalbin Yaratıklardan Boşalması",
+        "en": "Seclusion: The Heart's Emptying of Creatures",
+        "pt": "Reclusão: O Esvaziamento do Coração das Criaturas"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yetmiş Sekizinci Bölüm halveti (yalnızlık/inziva) ele alıyor; tanım, kalbin bir tür ontolojik boşalmasına dayanıyor: <em>\"Halvet (yalnızlık), makamların en üstünüdür. O, insanın imar ettiği ve zâtıyla doldurduğu bir menzildir. Dolayısıyla halvette başkasına yer kalmaz!\"</em> (s. 124) — ve bu boşalmanın kendisi bir zuhur koşuluna dönüşüyor: <em>\"Kalp ne zaman bütün yaratıklardan boşalır, Hak özü gereği onda ortaya çıkar\"</em> (s. 124). Ama bu makamın kendisi de sınırlı: keşf ehli için halvet hiçbir zaman gerçekleşmez, çünkü keşif bizzat perdesizliktir: <em>\"Keşf halveti imkânsızlaştırır. Çünkü insan halvetteyken perdelidir. Keşf olduğunda ise, halvette olmadığını görür\"</em> (s. 129). Yetmiş Dokuzuncu Bölüm bu farkı celvet (açıklık/topluluk) kavramıyla tamamlıyor: <em>\"İnsan ilahından başkasını görmezse / Her bir varlıkta; halvet o zaman imkânsızdır // Sen bu halde olursan, celvet içindesindir\"</em> (s. 129) — ve bu ikiliği isimlere bağlıyor: <em>\"Allah'ın el-Evvel ve el-Bâtın ismi halveti talep ederken ez-Zâhir ve el-Âhir ismi celveti talep eder. Hangi isim sana hâkim ise, ona uymalısın!\"</em> (s. 129).",
+            "en": "The Seventy-Eighth Chapter takes up seclusion, its definition resting on a kind of ontological emptying of the heart: <em>\"seclusion is the highest of the stations. It is a dwelling that the human being builds and fills with his own essence. Thus in seclusion there remains no room for another!\"</em> (p. 124) — and this very emptying becomes the condition for manifestation: <em>\"whenever the heart empties of all creatures, the Real appears in it by His own essence\"</em> (p. 124). Yet this station has its own limit: for the people of unveiling, seclusion never actually occurs, since unveiling is itself the absence of veils: <em>\"unveiling makes seclusion impossible. For the human being is veiled while in seclusion. Once unveiling occurs, he sees that he is not in seclusion\"</em> (p. 129). The Seventy-Ninth Chapter completes this distinction with the concept of unveiling-as-openness (jalwa): <em>\"if the human being sees none but his God / in every existent thing, seclusion then becomes impossible // if you are in this state, you are in openness\"</em> (p. 129) — tying this duality to the divine names: <em>\"the name al-Awwal and al-Batin of God demand seclusion, while az-Zahir and al-Akhir demand openness. Whichever name has mastery over you, you must follow it!\"</em> (p. 129).",
+            "pt": "O Septuagésimo Oitavo Capítulo trata da reclusão, cuja definição repousa numa espécie de esvaziamento ontológico do coração: <em>\"a reclusão é a mais alta das estações. É uma morada que o ser humano constrói e preenche com sua própria essência. Assim, na reclusão não resta lugar para outro!\"</em> (p. 124) — e esse próprio esvaziamento se torna a condição para a manifestação: <em>\"sempre que o coração se esvazia de todas as criaturas, o Real aparece nele por Sua própria essência\"</em> (p. 124). No entanto, essa estação tem seu próprio limite: para o povo do desvelamento, a reclusão nunca ocorre de fato, pois o desvelamento é em si a ausência de véus: <em>\"o desvelamento torna a reclusão impossível. Pois o ser humano está velado enquanto em reclusão. Uma vez que o desvelamento ocorre, ele vê que não está em reclusão\"</em> (p. 129). O Septuagésimo Nono Capítulo completa essa distinção com o conceito de abertura (jalwa): <em>\"se o ser humano não vê senão seu Deus / em cada coisa existente, a reclusão então se torna impossível // se você está nesse estado, você está na abertura\"</em> (p. 129) — ligando essa dualidade aos nomes divinos: <em>\"o nome al-Awwal e al-Batin de Deus exigem reclusão, enquanto az-Zahir e al-Akhir exigem abertura. Qualquer nome que tenha domínio sobre você, você deve segui-lo!\"</em> (p. 129)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCIII, s. 124-129.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCIII, pp. 124-129.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCIII, pp. 124-129."
+          },
+          "caption": {
+            "tr": "İki isim çifti, iki farklı hâli talep ediyor.",
+            "en": "Two pairs of names, demanding two different states.",
+            "pt": "Dois pares de nomes, exigindo dois estados diferentes."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Halvet",
+                "en": "Seclusion",
+                "pt": "Reclusão"
+              },
+              "note": {
+                "tr": "el-Evvel/el-Bâtın talep eder",
+                "en": "demanded by al-Awwal/al-Batin",
+                "pt": "exigida por al-Awwal/al-Batin"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Celvet",
+                "en": "Openness",
+                "pt": "Abertura"
+              },
+              "note": {
+                "tr": "ez-Zâhir/el-Âhir talep eder",
+                "en": "demanded by az-Zahir/al-Akhir",
+                "pt": "exigida por az-Zahir/al-Akhir"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "uzlet-ve-terki",
+      "heading": {
+        "tr": "Uzlet: Kendini Bilen Rabbini Bilir",
+        "en": "Withdrawal: One Who Knows Himself Knows His Lord",
+        "pt": "Retraimento: Quem Conhece a Si Mesmo Conhece Seu Senhor"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Sekseninci Bölüm uzleti (halktan çekilme) ele alıyor; bu makamın koşulu kendini bilmekle kuruluyor: <em>\"Kendini bilen kişi uzlete girebilir. Kendini bilen ise, Rabbini bilir\"</em> (s. 131) — bir şiir bu makamın yanlış anlaşılmasını da uyarıyor: <em>\"Uzlet ile sevinmeyin, çünkü o / Bilgisizliktir. Allah nerede, ruhlar nerede!\"</em> (s. 133). Seksen Birinci Bölüm bu makamın da bir terkle tamamlandığını gösteriyor: kul, âlemin Hak ile kendisinden hiç ayrılmayacak şekilde irtibatlı olduğunu gördüğünde uzlet imkânsızlaşıyor: <em>\"Kul âlemin Allah ile kendisinden ayrılmayacak şekilde irtibatlı olduğunu görmüştür... Bu durumda onun için uzlet etmek mümkün olmaz\"</em> (s. 135) — halvet-celvet çiftinde gördüğümüz aynı örüntünün, bu kez ayrılık-irtibat ekseninde tekrarı.",
+            "en": "The Eightieth Chapter takes up withdrawal (from the common people); the condition for this station is established through self-knowledge: <em>\"one who knows himself can enter withdrawal. And one who knows himself knows his Lord\"</em> (p. 131) — a verse also warns against misunderstanding this station: <em>\"do not rejoice in withdrawal, for it / is ignorance. Where is God, and where are spirits!\"</em> (p. 133). The Eighty-First Chapter shows that this station, too, is completed by an abandonment: when the servant sees that the world is bound to God in a way that never separates from himself, withdrawal becomes impossible: <em>\"the servant has seen that the world's bond with God never separates from himself... in this case, withdrawal becomes impossible for him\"</em> (p. 135) — the same pattern we saw in the seclusion-openness pair, now repeated on the axis of separation and bond.",
+            "pt": "O Octogésimo Capítulo trata do retraimento (das pessoas comuns); a condição para essa estação se estabelece através do autoconhecimento: <em>\"quem conhece a si mesmo pode entrar no retraimento. E quem conhece a si mesmo conhece seu Senhor\"</em> (p. 131) — um verso também alerta contra o mal-entendido dessa estação: <em>\"não se alegre com o retraimento, pois ele / é ignorância. Onde está Deus, e onde estão os espíritos!\"</em> (p. 133). O Octogésimo Primeiro Capítulo mostra que essa estação também se completa com um abandono: quando o servo vê que o vínculo do mundo com Deus nunca se separa de si mesmo, o retraimento se torna impossível: <em>\"o servo viu que o vínculo do mundo com Deus nunca se separa de si mesmo... nesse caso, o retraimento se torna impossível para ele\"</em> (p. 135) — o mesmo padrão que vimos no par reclusão-abertura, agora repetido no eixo da separação e do vínculo."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCIII, s. 131-135.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCIII, pp. 131-135.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCIII, pp. 131-135."
+          },
+          "caption": {
+            "tr": "Uzlet, âlemle Hak arasındaki kopmaz irtibatı görünce imkânsızlaşıyor.",
+            "en": "Withdrawal becomes impossible once the unbreakable bond between the world and the Real is seen.",
+            "pt": "O retraimento se torna impossível ao se ver o vínculo indissolúvel entre o mundo e o Real."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Uzlet",
+                "en": "Withdrawal",
+                "pt": "Retraimento"
+              },
+              "note": {
+                "tr": "halktan çekilme, kendini bilme",
+                "en": "withdrawal from the common, self-knowledge",
+                "pt": "retraimento do comum, autoconhecimento"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Uzletin Terki",
+                "en": "The Abandonment of Withdrawal",
+                "pt": "O Abandono do Retraimento"
+              },
+              "note": {
+                "tr": "kopmaz irtibatı görme",
+                "en": "seeing the unbreakable bond",
+                "pt": "ver o vínculo indissolúvel"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "firar-ve-musa-kissasi",
+      "heading": {
+        "tr": "Firar: Musa'nın Kaçışı, ve Kimden Kaçıyorsun?",
+        "en": "Flight: Moses's Escape, and From Whom Do You Flee?",
+        "pt": "A Fuga: A Fuga de Moisés, e de Quem Você Foge?"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Seksen İkinci Bölüm firarı (kaçış) ele alıyor; Musa'nın (as.) kıssası bu makamın iki türünü somutlaştırıyor: <em>\"Kaçanın (Musa) cezası nebi yapılmaktı / Musa kabul etmediğinde kaçmıştı // O'ndan O'nunla O'na kaçan kişi / Sevdiğini seven haline getirdi\"</em> (s. 136) — Musa'nın kaçışının belirli bir şeyden (Firavun'dan) olduğu, ama nereye kaçtığının belirsiz kaldığı bir okuma; bu belirsizlik, Musa'ya verilen 'kesik' bir ödülle (nebilik, ölümle sona eren bir hilafet) sonuçlanıyor. Buna karşılık ümmetin kaçışı 'Allah'a Allah'tan' — aynı isme, dolayısıyla daha bütün bir dönüş. Cevap bir soruyla dorukta buluyor: <em>\"Kimden kaçıyorsun? Başkası mı var ki? ... Artık kaçma ve talebe boyun eğme! Gördüğün her şey: İşte o Allah'tır\"</em> (s. 140) — firarın nihayetinde kaçacak bir 'başkası' bulamadığı bir kapanış.",
+            "en": "The Eighty-Second Chapter takes up flight; the story of Moses (peace be upon him) gives concrete form to two kinds of this station: <em>\"the penalty of the one who fled (Moses) was to be made a prophet / Moses had fled when he refused // the one who flees from Him, by Him, to Him / turns the beloved into the lover\"</em> (p. 136) — a reading in which Moses's flight was from something definite (Pharaoh), yet where he fled to remained indefinite; this indefiniteness results in a 'truncated' reward given to Moses (prophethood, a vicegerency ending in death). The community's flight, by contrast, is 'to God, from God' — toward the same name, hence a more complete return. The answer culminates in a question: <em>\"from whom do you flee? Is there another? ... flee no more, and submit no more to seeking! Everything you see: that is God\"</em> (p. 140) — a closing in which flight, in the end, finds no 'other' to flee from.",
+            "pt": "O Octogésimo Segundo Capítulo trata da fuga; a história de Moisés (a paz esteja com ele) dá forma concreta a dois tipos dessa estação: <em>\"a penalidade daquele que fugiu (Moisés) foi ser feito profeta / Moisés havia fugido quando recusou // aquele que foge Dele, por Ele, para Ele / transforma o amado em amante\"</em> (p. 136) — uma leitura em que a fuga de Moisés foi de algo definido (Faraó), mas para onde ele fugiu permaneceu indefinido; essa indefinição resulta numa recompensa 'truncada' dada a Moisés (profecia, uma vice-regência que termina em morte). A fuga da comunidade, em contraste, é 'para Deus, de Deus' — em direção ao mesmo nome, portanto um retorno mais completo. A resposta culmina numa pergunta: <em>\"de quem você foge? Há outro? ... não fuja mais, e não se submeta mais à busca! Tudo que você vê: isso é Deus\"</em> (p. 140) — um fechamento em que a fuga, no final, não encontra 'outro' de quem fugir."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCIII, s. 136.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCIII, p. 136.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCIII, p. 136."
+          },
+          "caption": {
+            "tr": "Aynı fiil (kaçmak), üç farklı nispetle üç farklı sonuç doğuruyor.",
+            "en": "The same act (flight) yields three different results through three different relations.",
+            "pt": "O mesmo ato (fugir) produz três resultados diferentes através de três relações diferentes."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Musa'nın Kaçışı",
+                "en": "Moses's Flight",
+                "pt": "A Fuga de Moisés"
+              },
+              "note": {
+                "tr": "belirli bir şeyden, belirsiz bir yere",
+                "en": "from something definite, to somewhere indefinite",
+                "pt": "de algo definido, para algum lugar indefinido"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Ümmetin Kaçışı",
+                "en": "The Community's Flight",
+                "pt": "A Fuga da Comunidade"
+              },
+              "note": {
+                "tr": "Allah'a Allah'tan — aynı isim",
+                "en": "to God, from God — the same name",
+                "pt": "para Deus, de Deus — o mesmo nome"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Nihai Soru",
+                "en": "The Final Question",
+                "pt": "A Pergunta Final"
+              },
+              "note": {
+                "tr": "kimden kaçıyorsun, başkası mı var?",
+                "en": "from whom do you flee, is there another?",
+                "pt": "de quem você foge, há outro?"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "firari-terk",
+      "heading": {
+        "tr": "Firarı Terk: Bir Nispet, Bir Makam Değil",
+        "en": "The Abandonment of Flight: A Relation, Not a Station",
+        "pt": "O Abandono da Fuga: Uma Relação, Não uma Estação"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Seksen Üçüncü Bölüm firarın terkini ele alıyor; Dost, firarın diğer iki hâlden (uzlet, halvet) farklı bir statüde olduğunu netleştiriyor: <em>\"Firarın bir makam değil, uzlet ve halvet gibi bir nispet olduğu bellidir\"</em> (s. 137) — firarın kendi başına bağımsız bir makam değil, öteki makamlara eşlik eden bir ilişki biçimi olduğu bir ayrım. Bu, kısmın tekrar eden 'hal-terk' örüntüsünün en açık teorik ifadesi: her hâlin, kendi mutlaklığını aşan bir terkle tamamlanması gerektiği bir ilke.",
+            "en": "The Eighty-Third Chapter takes up the abandonment of flight; Dost clarifies that flight holds a different status from the other two states (withdrawal, seclusion): <em>\"it is clear that flight is not a station but a relation, like withdrawal and seclusion\"</em> (p. 137) — a distinction in which flight is not, in itself, an independent station, but a mode of relation accompanying the other stations. This is the part's clearest theoretical statement of its recurring 'state-abandonment' pattern: a principle that every state must be completed by an abandonment surpassing its own absoluteness.",
+            "pt": "O Octogésimo Terceiro Capítulo trata do abandono da fuga; Dost esclarece que a fuga tem um status diferente dos outros dois estados (retraimento, reclusão): <em>\"é claro que a fuga não é uma estação, mas uma relação, como o retraimento e a reclusão\"</em> (p. 137) — uma distinção em que a fuga não é, em si mesma, uma estação independente, mas um modo de relação que acompanha as outras estações. Esta é a declaração teórica mais clara da parte sobre seu padrão recorrente de 'estado-abandono': um princípio segundo o qual todo estado deve ser completado por um abandono que supera sua própria absolutidade."
+          }
+        }
+      ]
+    },
+    {
+      "id": "allahtan-takva",
+      "heading": {
+        "tr": "Allah'tan Takva: Kısım 94'e Köprü",
+        "en": "Godwariness from God: A Bridge to Part 94",
+        "pt": "O Temor a Deus Vindo de Deus: Uma Ponte para a Parte 94"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Seksen Dördüncü Bölüm yeni bir makama, takvaya (Allah'tan sakınma) giriyor; kısım burada tamamlanmıyor, bir sonraki kısmın (94, 'Hicab ve Örtü Takvası') zeminini hazırlayan bir açılışla kapanıyor: <em>\"Biz ise, bu kadarla yetindik ve perde ve örtü takvasına geçtik. Bunların hepsi 'Allah'tan takvadır' çünkü esas olanı budur\"</em> (s. 146). Bu, kısım 92'nin tövbe-mücahede zincirinden başlayıp kısım 93'ün halvet-uzlet-firar üçlüsünden geçen makamlar dizisinin, tek bir başlık altında ('Allah'tan takva') toparlanabileceğini öne süren bir kapanış cümlesi.",
+            "en": "The Eighty-Fourth Chapter enters a new station, godwariness (guarding oneself from God); the part does not close here, but ends with an opening that lays the ground for the next part (94, 'the Godwariness of the Veil and Covering'): <em>\"we have been content with this much, and have moved on to the godwariness of the veil and the covering. All of these are 'godwariness from God,' for this is what is essential\"</em> (p. 146). This is a closing sentence suggesting that the sequence of stations — beginning with Part 92's chain of repentance and struggle and passing through Part 93's triad of seclusion, withdrawal, and flight — can be gathered under a single heading: 'godwariness from God.'",
+            "pt": "O Octogésimo Quarto Capítulo entra numa nova estação, o temor a Deus (guardar-se de Deus); a parte não se encerra aqui, mas termina com uma abertura que prepara o terreno para a próxima parte (94, 'o Temor do Véu e da Cobertura'): <em>\"contentamo-nos com isso, e passamos ao temor do véu e da cobertura. Todos estes são 'temor a Deus vindo de Deus', pois isso é o essencial\"</em> (p. 146). Esta é uma frase de fechamento que sugere que a sequência de estações — começando com a cadeia de arrependimento e luta da Parte 92 e passando pela tríade de reclusão, retraimento e fuga da Parte 93 — pode ser reunida sob um único título: 'temor a Deus vindo de Deus.'"
+          }
+        }
+      ]
+    },
+    {
+      "id": "heba-nur-ve-insan-sureti",
+      "heading": {
+        "tr": "Heba ve Nur: İnsan Sureti Nasıl Ortaya Çıkar",
+        "en": "Dust and Light: How the Human Form Emerges",
+        "pt": "Pó e Luz: Como a Forma Humana Emerge"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Halvet bahsinin ontolojik zemininde, Dost âlemin kendisinin de bir tür ilksel 'boşluk'tan (heba) çıktığını ima ediyor; bu boşluk nur ile 'boyandığında' insan sureti ortaya çıkıyor — küçük insan (Âdem) ile büyük âlem arasındaki aynı ilişkinin (kısım 90'da da görülen) burada heba ve nur üzerinden yeniden karşımıza çıkışı: <em>\"Hakk, halvete giren için halvet evine benzer: Halvete giren aranır, fakat bulunamaz, çünkü ev onu perdeler\"</em> (s. 126) — evin (bedenin/heba'nın) içindeki sakinin (Hakk'ın tecellisinin) dışarıdan görünmez kaldığı bir imge. Bu, sitenin daha önce kısım 90'da işlediği 'küçük insan, büyük âlemin özeti' temasının, bu kez 'perde' ve 'ev' metaforlarıyla zenginleşmiş bir tekrarı.",
+            "en": "In the ontological ground of the discussion of seclusion, Dost implies that the world itself emerges from a kind of primordial 'void' (haba); when this void is 'colored' by light, the human form emerges — the same relation between the small human being (Adam) and the great world (also seen in Part 90) reappearing here through dust and light: <em>\"the Real resembles, for the one who enters seclusion, the house of seclusion itself: the one who enters seclusion is sought, yet cannot be found, for the house veils him\"</em> (p. 126) — an image in which the resident within the house (the theophany of the Real) remains invisible from without. This is a repetition, enriched here by the metaphors of 'veil' and 'house,' of the theme the site already took up in Part 90: 'the small human being, summary of the great world.'",
+            "pt": "No fundamento ontológico da discussão da reclusão, Dost sugere que o próprio mundo emerge de uma espécie de 'vazio' primordial (haba); quando esse vazio é 'colorido' pela luz, a forma humana emerge — a mesma relação entre o pequeno ser humano (Adão) e o grande mundo (também vista na Parte 90) reaparecendo aqui através do pó e da luz: <em>\"o Real se assemelha, para aquele que entra em reclusão, à própria casa da reclusão: aquele que entra em reclusão é procurado, mas não pode ser encontrado, pois a casa o vela\"</em> (p. 126) — uma imagem em que o residente dentro da casa (a teofania do Real) permanece invisível de fora. Esta é uma repetição, aqui enriquecida pelas metáforas de 'véu' e 'casa', do tema que o site já tratou na Parte 90: 'o pequeno ser humano, resumo do grande mundo.'"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCIII, s. 126.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCIII, p. 126.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCIII, p. 126."
+          },
+          "caption": {
+            "tr": "Ev (beden) sakini (Hakk'ın tecellisini) dışarıdan görünmez kılıyor.",
+            "en": "The house (the body) renders its resident (the theophany of the Real) invisible from without.",
+            "pt": "A casa (o corpo) torna seu residente (a teofania do Real) invisível de fora."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Heba",
+                "en": "Dust",
+                "pt": "Pó"
+              },
+              "note": {
+                "tr": "ilksel boşluk, ev/beden",
+                "en": "the primordial void, the house/body",
+                "pt": "o vazio primordial, a casa/corpo"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Nur",
+                "en": "Light",
+                "pt": "Luz"
+              },
+              "note": {
+                "tr": "boyayan, insan suretini oluşturan",
+                "en": "the coloring light, forming the human shape",
+                "pt": "a luz que colore, formando a forma humana"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCIII (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCIII (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCIII (trad. Ekrem Demirli)"
+      },
+      "pageRange": "123-146"
+    }
+  ]
+}

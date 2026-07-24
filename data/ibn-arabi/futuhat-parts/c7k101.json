@@ -1,0 +1,411 @@
+{
+  "id": "c7k101",
+  "cilt": 7,
+  "kisim": 101,
+  "status": "active",
+  "title": {
+    "tr": "Beş Makam ve Terki: Rızâdan Hayâya",
+    "en": "Five Stations and Their Abandonment: From Contentment with the Decree to Modesty",
+    "pt": "Cinco Estações e Seu Abandono: Da Satisfação com o Decreto à Modéstia"
+  },
+  "pageRange": {
+    "tr": "s. 302-335",
+    "en": "pp. 302-335",
+    "pt": "pp. 302-335"
+  },
+  "hero": {
+    "summary": {
+      "tr": "On bir bölümde beş makam-terk çifti (rızâ, ubûdet, istikamet, ihlas, doğruluk) ve tek başına kapanan hayâ işleniyor; rızâ bahsindeki 'rahmet her ikisine de eşlik eder' motifi, kısım 100'ün sabır bahsindeki 'cehennemde bile haz' ifadesinin bağımsız ama örtüşen bir yankısı gibi okunabilir.",
+      "en": "Across eleven chapters, five station-abandonment pairs (contentment with the decree, servitude, rectitude, sincerity, truthfulness) are taken up, closing with modesty standing alone; the motif in the chapter on contentment that 'mercy accompanies both places' can be read as an independent yet resonant echo of Part 100's 'pleasure even in hell' on patience.",
+      "pt": "Ao longo de onze capítulos, tratam-se cinco pares de estação-abandono (satisfação com o decreto, servidão, retidão, sinceridade, veracidade), encerrando com a modéstia isolada; o motivo do capítulo sobre a satisfação de que 'a misericórdia acompanha ambos os lugares' pode ser lido como um eco independente, mas ressonante, do 'prazer até no inferno' da Parte 100 sobre a paciência."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "101. Kısım, Yüz Yirmi Sekizinci'den Yüz Otuz Sekizinci Bölüme beş makamı, her birini kendi terkiyle eşleştirerek, hayâ ile kapatıyor.",
+      "en": "Part 101 gathers five stations from the Hundred-and-Twenty-Eighth to the Hundred-and-Thirty-Eighth Chapter, each paired with its own abandonment, closing with modesty.",
+      "pt": "A Parte 101 reúne cinco estações do Centésimo Vigésimo Oitavo ao Centésimo Trigésimo Oitavo Capítulo, cada uma emparelhada com seu próprio abandono, encerrando com a modéstia."
+    },
+    "tree": {
+      "id": "kisim-ci-tree",
+      "label": {
+        "tr": "Yüz Birinci Kısım: Beş Makam ve Terki",
+        "en": "Part One Hundred and One: Five Stations and Their Abandonment",
+        "pt": "Parte Cento e Um: Cinco Estações e Seu Abandono"
+      },
+      "note": {
+        "tr": "Rızâyla açılır, ubûdet-istikamet-ihlas-doğruluk ile devam eder, hayâ ile kapanır.",
+        "en": "Opens with contentment with the decree, continues through servitude, rectitude, sincerity, and truthfulness, and closes with modesty.",
+        "pt": "Abre-se com a satisfação com o decreto, continua pela servidão, retidão, sinceridade e veracidade, e se encerra com a modéstia."
+      },
+      "children": [
+        {
+          "id": "riza-dal",
+          "label": {
+            "tr": "Rızâ (Böl. 128-129)",
+            "en": "Contentment (Ch. 128-129)",
+            "pt": "Satisfação (Cap. 128-129)"
+          },
+          "note": {
+            "tr": "makam ve terki; rahmet her ikisine de eşlik eder",
+            "en": "the station and its abandonment; mercy accompanies both places",
+            "pt": "a estação e seu abandono; a misericórdia acompanha ambos os lugares"
+          }
+        },
+        {
+          "id": "ubudet-dal",
+          "label": {
+            "tr": "Ubûdet (Böl. 130-131)",
+            "en": "Servitude (Ch. 130-131)",
+            "pt": "Servidão (Cap. 130-131)"
+          },
+          "note": {
+            "tr": "makam ve terki; nispetsiz zillet",
+            "en": "the station and its abandonment; unrelated abjection",
+            "pt": "a estação e seu abandono; abjeção sem relação"
+          }
+        },
+        {
+          "id": "istikamet-dal",
+          "label": {
+            "tr": "İstikamet (Böl. 132-133)",
+            "en": "Rectitude (Ch. 132-133)",
+            "pt": "Retidão (Cap. 132-133)"
+          },
+          "note": {
+            "tr": "makam ve terki; sapmanın imkânsızlığı",
+            "en": "the station and its abandonment; the impossibility of deviation",
+            "pt": "a estação e seu abandono; a impossibilidade do desvio"
+          }
+        },
+        {
+          "id": "ihlas-dal",
+          "label": {
+            "tr": "İhlas (Böl. 134-135)",
+            "en": "Sincerity (Ch. 134-135)",
+            "pt": "Sinceridade (Cap. 134-135)"
+          },
+          "note": {
+            "tr": "makam ve terki; kendi ihlasını görmemek",
+            "en": "the station and its abandonment; not seeing one's own sincerity",
+            "pt": "a estação e seu abandono; não ver a própria sinceridade"
+          }
+        },
+        {
+          "id": "sidk-dal",
+          "label": {
+            "tr": "Doğruluk (Böl. 136-137)",
+            "en": "Truthfulness (Ch. 136-137)",
+            "pt": "Veracidade (Cap. 136-137)"
+          },
+          "note": {
+            "tr": "makam ve terki; hal mi, makam mı",
+            "en": "the station and its abandonment; state or station?",
+            "pt": "a estação e seu abandono; estado ou estação?"
+          }
+        },
+        {
+          "id": "haya-dal",
+          "label": {
+            "tr": "Hayâ (Böl. 138)",
+            "en": "Modesty (Ch. 138)",
+            "pt": "Modéstia (Cap. 138)"
+          },
+          "note": {
+            "tr": "tek başına kapanan bölüm",
+            "en": "the chapter that closes alone",
+            "pt": "o capítulo que se encerra sozinho"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "riza-ve-terki",
+      "heading": {
+        "tr": "Rızâ ve Terki: Rahmetin Her İki Yere Eşlik Etmesi",
+        "en": "Contentment and Its Abandonment: Mercy Accompanying Both Places",
+        "pt": "Satisfação e Seu Abandono: A Misericórdia Acompanhando Ambos os Lugares"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Yirmi Sekizinci Bölüm rızâyı (Allah'ın takdirinden hoşnutluğu) ele alıyor; İbn Arabî önce onun hal mi makam mı olduğunu tartışıyor: <em>\"Rıza, Allah ehli nezdinde görüş ayrılığı bulunan bir konudur... Hal sayanlar, rızayı mevhibelere katarken makam sayanlar kazanımlara katar. Öyleyse rıza bazı insanlar için hal, bazıları için makamdır\"</em> (s. 302-303) — ve Hızır'ın kuş misaliyle rızânın 'sana verilen az ile yetinme' olduğunu somutlaştırıyor: kuşun gagasıyla aldığı su, denizin tamamı yanında ne kadarsa, kulun bilgisi de Hakk'ın bilgisi yanında o kadardır (s. 303). Bölümün en çarpıcı anı ise şu: <em>\"İyi ya da kötü amelin karşılığı cennet ve cehennemliklerde bir sona erdiğinde, karşılıkları mutlularda ibadet, cehennemliklerde zorunlu kulluk karşılığı olarak kalır. Bu ise, hiçbir zaman kesilmeyen bir karşılıktır... [cehennem ehli] sahip oldukları ölçüsünde bedbahtlığa maruz kalmalarından sonra hepsi sonunda mutluluğa ulaşır... Rahmet de her ikisine eşlik ettiği gibi, burada da zorunlu kulluk herkese eşlik eder\"</em> (s. 303-304) — kısım 100'ün sabır bahsindeki 'cehennemde bile haz alacaksınız' ifadesiyle (s. 285) açıkça bağlanmayan ama aynı sezgiyi taşıyan bir yankı: rahmetin gazaba galebesi. İbn Arabî bu iki pasajı kendisi birbirine bağlamıyor — bu, bizim kendi biriktirdiğimiz bir okuma denemesi, kesin bir sonuç değil. Yüz Yirmi Dokuzuncu Bölüm ise rızânın terkini kısaca ele alıyor: rızâ bir kez sabitlenip makam haline geldiğinde, onu bir 'hal' gibi yeniden istemek, aslında ondan bir adım geri düşmektir.",
+            "en": "The Hundred-and-Twenty-Eighth Chapter takes up contentment (with what God has decreed); Dost first debates whether it is a state or a station: <em>\"contentment is a matter on which the people of God disagree... those who count it a state place it among gifts, while those who count it a station place it among acquisitions. So contentment is a state for some people, and a station for others\"</em> (pp. 302-303) — and makes it concrete through Khidr's bird analogy: contentment is being satisfied with the small share given to you, the water a bird's beak takes from the sea being to the whole sea what a servant's knowledge is to God's (p. 303). The chapter's most striking moment is this: <em>\"when the recompense of good or evil deeds reaches its end in paradise and hell, the recompense remains, for the blessed, as worship, and for the people of hell, as necessary servitude. This is a recompense that is never cut off... after suffering wretchedness according to what they possess, all of them ultimately reach happiness... just as mercy accompanies both places, necessary servitude accompanies everyone here too\"</em> (pp. 303-304) — an echo, not explicitly tied by Dost himself, of Part 100's statement on patience that 'you will take pleasure even in hell' (p. 285): mercy prevailing over wrath. Dost does not connect these two passages himself — this is our own gathered reading, not a settled conclusion. The Hundred-and-Twenty-Ninth Chapter briefly takes up the abandonment of contentment: once contentment settles as a station, wanting it again as a 'state' is, in fact, a step backward from it.",
+            "pt": "O Centésimo Vigésimo Oitavo Capítulo trata da satisfação (com o que Deus decretou); Dost primeiro debate se ela é um estado ou uma estação: <em>\"a satisfação é uma questão sobre a qual o povo de Deus discorda... os que a consideram um estado a colocam entre os dons, enquanto os que a consideram uma estação a colocam entre as aquisições. Assim, a satisfação é um estado para algumas pessoas, e uma estação para outras\"</em> (pp. 302-303) — e a torna concreta através da analogia do pássaro de Khidr: a satisfação é contentar-se com a pequena porção que lhe foi dada, a água que o bico de um pássaro tira do mar sendo, para todo o mar, o que o conhecimento de um servo é para o conhecimento de Deus (p. 303). O momento mais marcante do capítulo é este: <em>\"quando a recompensa das boas ou más ações chega ao seu fim no paraíso e no inferno, a recompensa permanece, para os bem-aventurados, como adoração, e para o povo do inferno, como servidão necessária. Esta é uma recompensa que nunca é cortada... após sofrerem a desventura conforme o que possuem, todos eles finalmente alcançam a felicidade... assim como a misericórdia acompanha ambos os lugares, a servidão necessária acompanha a todos aqui também\"</em> (pp. 303-304) — um eco, não ligado explicitamente pelo próprio Dost, à afirmação da Parte 100 sobre a paciência de que 'tirareis prazer até no inferno' (p. 285): a misericórdia prevalecendo sobre a ira. Dost não conecta essas duas passagens ele mesmo — esta é nossa própria leitura acumulada, não uma conclusão definitiva. O Centésimo Vigésimo Nono Capítulo trata brevemente do abandono da satisfação: uma vez que a satisfação se assenta como estação, querê-la novamente como um 'estado' é, de fato, um passo atrás dela."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım CI, s. 303-304.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part CI, pp. 303-304.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte CI, pp. 303-304."
+          },
+          "caption": {
+            "tr": "Rahmet, cennete ibadet cehenneme zorunlu kulluk olarak, her iki yere de kalıcı bir karşılık bırakır.",
+            "en": "Mercy leaves a lasting recompense in both places: worship in paradise, necessary servitude in hell.",
+            "pt": "A misericórdia deixa uma recompensa duradoura em ambos os lugares: adoração no paraíso, servidão necessária no inferno."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Cennet Ehli",
+                "en": "The People of Paradise",
+                "pt": "O Povo do Paraíso"
+              },
+              "note": {
+                "tr": "kalıcı karşılık: ibadet",
+                "en": "lasting recompense: worship",
+                "pt": "recompensa duradoura: adoração"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Rahmet",
+                "en": "Mercy",
+                "pt": "Misericórdia"
+              },
+              "note": {
+                "tr": "her ikisine eşlik eder",
+                "en": "accompanies both",
+                "pt": "acompanha ambos"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Cehennem Ehli",
+                "en": "The People of Hell",
+                "pt": "O Povo do Inferno"
+              },
+              "note": {
+                "tr": "kalıcı karşılık: zorunlu kulluk",
+                "en": "lasting recompense: necessary servitude",
+                "pt": "recompensa duradoura: servidão necessária"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ubudet-ve-terki",
+      "heading": {
+        "tr": "Ubûdet: Nispetsiz Zillet",
+        "en": "Servitude: Unrelated Abjection",
+        "pt": "Servidão: Abjeção Sem Relação"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Otuzuncu Bölüm 'ubûdet'i (zorunlu, saf kulluk) ele alıyor — bu, 'ubudiyet'ten (Allah'a nispetli, bağlı kulluk) ince bir dilbilgisel ayrımla ayrılıyor: ubudiyet nispet harfiyle gelirken, ubûdet hiçbir nispet taşımaz, sadece saf zillettir. Ebu Yezid el-Bistâmî'nin sorusu bunu somutlaştırıyor: <em>\"'Rabbim! Sana neyle ulaşabilirim ki?' Allah ise... şöyle der: 'Bana ait olmayan bir şey ile bana yaklaş!' Ebu Yezid, 'Sana ait olmayan şey de nedir ki' diye sorunca Allah 'Zillet ve yoksulluk' diye buyurmuştur\"</em> (s. 307) — ve Dost bunun ötesine geçmiyor: <em>\"Burada açıklanamayacak ve sadece Allah'ın öğrettiği kimsenin bilebildiği bir sır vardır\"</em> (s. 307). Yüz Otuz Birinci Bölüm (ubûdetin terki) bir gölge-lamba benzetmesiyle deviniyor: <em>\"Ubudiyetini yerine getirirken Hakkın karşısında kul, lambanın karşısında şahıs ile gölgesine benzer. Işığa yaklaştıkça gölge büyür... Işıktan uzaklaşıldığında gölge küçülür\"</em> (s. 308) — kulun Hakk'a yaklaştıkça kendi 'kulluk gölgesinin' küçülmek yerine büyümesi, sıradan beklentiyi tersine çeviren bir imge. Bölümün sonunda Dost, tarihli kişisel bir rüya da aktarıyor: Hz. Peygamber'i rüyada görüp sayı üzerine bir soru-cevap yaşadığını anlatıyor (s. 311) — Fütûhât'ta nadir görülen doğrudan bir rüya kaydı.",
+            "en": "The Hundred-and-Thirtieth Chapter takes up 'servitude proper' (necessary, pure servanthood) — distinguished from 'relational servanthood' (bound and related to God) by a fine grammatical distinction: relational servanthood comes with a relational suffix, while servitude proper carries no relation at all, being pure abjection. Abu Yazid al-Bistami's question makes this concrete: <em>\"'my Lord! With what can I reach You?' God then... says: 'draw near to Me with something that is not Mine!' When Abu Yazid asks, 'and what is it that is not Yours?', God commands, 'abjection and poverty'\"</em> (p. 307) — and Dost goes no further: <em>\"here there is a secret that cannot be explained, known only to the one whom God Himself has taught\"</em> (p. 307). The Hundred-and-Thirty-First Chapter (the abandonment of servitude) turns on a shadow-and-lamp analogy: <em>\"in fulfilling his servitude before the Real, the servant resembles a person and his shadow before a lamp. As one draws near the light, the shadow grows larger... as one moves away from the light, the shadow grows smaller\"</em> (p. 308) — an image reversing ordinary expectation, in which the servant's own 'shadow of servanthood' grows larger, not smaller, the closer he draws to the Real. At the chapter's end, Dost also relates a dated, personal dream: he recounts seeing the Prophet in a dream and exchanging a question and answer on number (p. 311) — a rare, directly recorded dream within the Futuhat.",
+            "pt": "O Centésimo Trigésimo Capítulo trata da 'servidão propriamente dita' (necessária, pura servidão) — distinguida da 'servidão relacional' (ligada e relacionada a Deus) por uma fina distinção gramatical: a servidão relacional vem com um sufixo relacional, enquanto a servidão propriamente dita não carrega relação alguma, sendo pura abjeção. A pergunta de Abu Yazid al-Bistami torna isso concreto: <em>\"'meu Senhor! Com que posso alcançar-Te?' Deus então... diz: 'aproxima-te de Mim com algo que não é Meu!' Quando Abu Yazid pergunta, 'e o que é aquilo que não é Teu?', Deus ordena: 'abjeção e pobreza'\"</em> (p. 307) — e Dost não vai além: <em>\"aqui há um segredo que não pode ser explicado, conhecido apenas por aquele a quem o próprio Deus ensinou\"</em> (p. 307). O Centésimo Trigésimo Primeiro Capítulo (o abandono da servidão) gira em torno de uma analogia da sombra e da lâmpada: <em>\"ao cumprir sua servidão diante do Real, o servo se assemelha a uma pessoa e sua sombra diante de uma lâmpada. À medida que alguém se aproxima da luz, a sombra cresce... à medida que alguém se afasta da luz, a sombra diminui\"</em> (p. 308) — uma imagem que inverte a expectativa comum, em que a própria 'sombra da servidão' do servo cresce, e não diminui, quanto mais ele se aproxima do Real. Ao final do capítulo, Dost também relata um sonho datado e pessoal: conta ter visto o Profeta em sonho e trocado uma pergunta e resposta sobre número (p. 311) — um raro registro onírico direto dentro do Futuhat."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım CI, s. 306-308.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part CI, pp. 306-308.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte CI, pp. 306-308."
+          },
+          "caption": {
+            "tr": "Ubudiyet nispetle gelir; ubûdet hiçbir nispet taşımaz.",
+            "en": "Relational servanthood comes with relation; servitude proper carries none.",
+            "pt": "A servidão relacional vem com relação; a servidão propriamente dita não carrega nenhuma."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Ubudiyet",
+                "en": "Relational Servanthood",
+                "pt": "Servidão Relacional"
+              },
+              "note": {
+                "tr": "Allah'a nispetli, bağlı kulluk",
+                "en": "servanthood bound and related to God",
+                "pt": "servidão ligada e relacionada a Deus"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Ubûdet",
+                "en": "Servitude Proper",
+                "pt": "Servidão Propriamente Dita"
+              },
+              "note": {
+                "tr": "nispetsiz, saf zillet",
+                "en": "unrelated, pure abjection",
+                "pt": "sem relação, pura abjeção"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "istikamet-ve-terki",
+      "heading": {
+        "tr": "İstikamet: Sapmanın İmkânsızlığı",
+        "en": "Rectitude: The Impossibility of Deviation",
+        "pt": "Retidão: A Impossibilidade do Desvio"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Otuz İkinci Bölüm (kısmın en uzunu) istikameti ele alıyor; tanım doğrudan Hakk'a bağlanıyor: <em>\"Allah, peygamberinin şöyle dediğini bize bildirir: 'Rabbim dosdoğru yol üzeredir.' Böylelikle Allah kendisini doğru yolda olmakla nitelemiş... Çünkü sadece Hakkın perçeminden tuttuğu kimse vardır ve kimse perçemini doğru yoldaki efendisinin elinden alamaz\"</em> (s. 316). İbn Arabî, istikameti evrensel bir ilke olarak genişletiyor — her varlık kendi tabiatına göre zaten 'dosdoğrudur': <em>\"Bitkiler hareketlerinin baş aşağı olmasıyla doğrudur. Hayvanın doğruluğu, hareketlerinin yatay olmasıyla gerçekleşir. Bu ikisinin hareketleri böyle olmasaydı, birbirlerine yarar veremezlerdi\"</em> (s. 318) — yani sapma, tabiatın kendisinde zaten imkânsızdır. Bu ilke, Âdem'in yasak ağaçtan yemesi örneğine kadar genişliyor: <em>\"Âdem'e... şecere (ağaç) yaklaşmayın denildi... Bu esnada o anla ilgili mutluluğu yitirmiş fakat 'teşâcür' ile ilgili doğruluğu yitirmemiştir. Çünkü Âdem, ilahi yasağa karşı gelerek, teşâcür eylemine de hakkını vermiştir\"</em> (s. 319) — yasağı çiğnemenin bile, kendi tabiatına sadık kalmanın bir biçimi olarak okunduğu, çarpıcı bir tersine çevirme. Yüz Otuz Üçüncü Bölüm ise istikametin terkini kısaca ele alıyor: istikameti bir başarı/övünç nesnesi olarak görmek, aslında ondan bir sapmadır — çünkü doğru yol zaten sana ait değil, Hakk'a aittir.",
+            "en": "The Hundred-and-Thirty-Second Chapter (the part's longest) takes up rectitude; the definition ties it directly to the Real: <em>\"God informs us that His Prophet said: 'my Lord is upon a straight path.' Thus God has qualified Himself with being upon the straight path... for only the one whose forelock the Real holds exists, and no one can take his forelock from the hand of his lord upon the straight path\"</em> (p. 316). Dost extends rectitude into a universal principle — every existent is already 'upright' according to its own nature: <em>\"plants are upright by their movements being downward; the animal's uprightness is realized by its movements being horizontal. Had the movements of these two not been thus, they could not have benefited one another\"</em> (p. 318) — that is, deviation is already impossible within nature itself. This principle extends as far as the example of Adam's eating from the forbidden tree: <em>\"Adam was told... do not approach the tree... in that moment he lost the happiness proper to it, but did not lose his rectitude regarding the act of 'contending'. For in opposing the divine prohibition, Adam gave the act of contending its own due\"</em> (p. 319) — a striking reversal in which even transgressing a prohibition is read as a form of remaining faithful to one's own nature. The Hundred-and-Thirty-Third Chapter briefly takes up the abandonment of rectitude: seeing rectitude as an achievement or a matter of pride is, in fact, a deviation from it — for the straight path does not belong to you, but to the Real.",
+            "pt": "O Centésimo Trigésimo Segundo Capítulo (o mais longo da parte) trata da retidão; a definição a liga diretamente ao Real: <em>\"Deus nos informa que Seu Profeta disse: 'meu Senhor está sobre um caminho reto.' Assim, Deus Se qualificou por estar sobre o caminho reto... pois só existe aquele cujo topete o Real segura, e ninguém pode tirar seu topete da mão de seu senhor sobre o caminho reto\"</em> (p. 316). Dost estende a retidão a um princípio universal — todo existente já é 'reto' de acordo com sua própria natureza: <em>\"as plantas são retas por seus movimentos serem para baixo; a retidão do animal se realiza por seus movimentos serem horizontais. Se os movimentos desses dois não fossem assim, não poderiam se beneficiar mutuamente\"</em> (p. 318) — ou seja, o desvio já é impossível dentro da própria natureza. Esse princípio se estende até o exemplo de Adão comer da árvore proibida: <em>\"a Adão foi dito... não te aproximes da árvore... naquele momento ele perdeu a felicidade própria daquele instante, mas não perdeu sua retidão quanto ao ato de 'contender'. Pois, ao se opor à proibição divina, Adão deu ao ato de contender o que lhe era devido\"</em> (p. 319) — uma reviravolta marcante em que até transgredir uma proibição é lido como uma forma de permanecer fiel à própria natureza. O Centésimo Trigésimo Terceiro Capítulo trata brevemente do abandono da retidão: ver a retidão como uma conquista ou motivo de orgulho é, de fato, um desvio dela — pois o caminho reto não pertence a você, mas ao Real."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ihlas-ve-terki",
+      "heading": {
+        "tr": "İhlasın Tuzağı: Kendi İhlasını Görmemek",
+        "en": "The Trap of Sincerity: Not Seeing One's Own Sincerity",
+        "pt": "A Armadilha da Sinceridade: Não Ver a Própria Sinceridade"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Otuz Dördüncü Bölüm ihlası ele alıyor ve herkesin, istese de istemese de, aslında Hakk'a ibadet ettiği fikrini bir ilaç örneğiyle somutlaştırıyor: <em>\"İnsan halife olarak diğer yaratıklardan üstün olsa bile, doğal olarak sevmediği bir ilacı içmeye nasıl muhtaç kalır!... Allah 'Göklerde ve yerdeki herkes, isteyerek ya da istemeden Allah'a ibadet eder' der\"</em> (s. 326-327) — ihlas, bu zorunlu ibadeti bilerek ve isteyerek üstlenmektir. Yüz Otuz Beşinci Bölüm (ihlasın terki) ise en çarpıcı tersine çevirmelerden birini yapıyor: kişinin kendi ihlasının farkında olması, ihlasın kendisini bozar — <em>\"amelde ihlasını görmen, tam bir mecusiliktir\"</em> (s. 328-329) diyerek, ihlaslı olduğunu düşünmenin bile bir çeşit şirk (gizli bir ikilik, kendini Hakk'ın yanına bir 'gören' olarak koymak) olduğunu ima ediyor — gerçek ihlas, kendi ihlasını görmemektir.",
+            "en": "The Hundred-and-Thirty-Fourth Chapter takes up sincerity and makes concrete, through an example of medicine, the idea that everyone — willing or not — in fact worships the Real: <em>\"even though the human being, as vicegerent, is superior to other creatures, how he still finds himself needing to drink a medicine he does not naturally like!... God says, 'everyone in the heavens and on the earth worships God, willingly or unwillingly'\"</em> (pp. 326-327) — sincerity is taking up this necessary worship knowingly and willingly. The Hundred-and-Thirty-Fifth Chapter (the abandonment of sincerity) performs one of the most striking reversals: a person's awareness of his own sincerity corrupts sincerity itself — <em>\"seeing your own sincerity in an act is sheer Magianism\"</em> (pp. 328-329), implying that even thinking oneself sincere is a kind of hidden association (a covert duality, positioning oneself as a 'seer' alongside the Real) — true sincerity is not seeing one's own sincerity at all.",
+            "pt": "O Centésimo Trigésimo Quarto Capítulo trata da sinceridade e torna concreta, através de um exemplo de remédio, a ideia de que todos — querendo ou não — de fato adoram o Real: <em>\"mesmo que o ser humano, como vice-regente, seja superior às outras criaturas, como ele ainda se encontra precisando beber um remédio que não gosta naturalmente!... Deus diz, 'todos nos céus e na terra adoram Deus, de bom grado ou não'\"</em> (pp. 326-327) — a sinceridade é assumir essa adoração necessária conscientemente e de bom grado. O Centésimo Trigésimo Quinto Capítulo (o abandono da sinceridade) realiza uma das reviravoltas mais marcantes: a consciência de uma pessoa sobre sua própria sinceridade corrompe a própria sinceridade — <em>\"ver sua própria sinceridade num ato é magismo puro\"</em> (pp. 328-329), sugerindo que até pensar-se sincero é uma espécie de associação oculta (uma dualidade encoberta, posicionar-se como um 'vidente' ao lado do Real) — a verdadeira sinceridade é não ver a própria sinceridade de jeito nenhum."
+          }
+        }
+      ]
+    },
+    {
+      "id": "sidk-ve-terki",
+      "heading": {
+        "tr": "Doğruluk: Hal mi, Makam mı? İki Örnek",
+        "en": "Truthfulness: State or Station? Two Examples",
+        "pt": "Veracidade: Estado ou Estação? Dois Exemplos"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Otuz Altıncı Bölüm doğruluğu (sıdk) ele alıyor; Ebu Yezid'e atfedilen bir soru-cevap, doğruluğun bütün ilahi isimlerin özü olduğunu ima ediyor: <em>\"'Allah'ın eşyayı edilgen yapan en büyük ismi nedir?' diye sorulunca, 'Siz bana küçük ismini gösterin, ben büyüğünü göstereyim' demiştir. Kastedilen, doğruluktan başkası değildir\"</em> (s. 330). Dost, hal ile makam arasındaki farkı soyut bırakmıyor, iki somut isimle örnekliyor: Abdülkadir (Geylânî) doğruluğun hâline sahipti — görünür, meşhur, tanınan bir sûfî; talebesi Ebu's-Suud ise doğruluğun makamına sahipti — gizli, tanınmayan, tam bir acizlik içinde. Bu karşılaştırma, hal'in daha görünür ama makamın daha üstün olduğu fikrini somutlaştırıyor. Yüz Otuz Yedinci Bölüm (doğruluğun terki) ise kısaca, doğruluğunu ilan etmenin veya ona bir isim/makam olarak sahip çıkmanın, doğruluğun kendisini bir dereceye kadar zedelediğini ima ediyor — ihlas bahsindeki aynı tuzağın bir tekrarı gibi.",
+            "en": "The Hundred-and-Thirty-Sixth Chapter takes up truthfulness; a question and answer attributed to Abu Yazid implies that truthfulness is the essence of all the divine names: <em>\"when asked, 'what is God's greatest name, which makes all things passive?', he said, 'show me your smallest name, and I will show you the greatest.' What is meant is nothing other than truthfulness\"</em> (p. 330). Dost does not leave the difference between state and station abstract, but exemplifies it with two concrete figures: Abdulqadir (al-Jilani) possessed the state of truthfulness — visible, renowned, a recognized Sufi; his student Abu'l-Su'ud possessed the station of truthfulness — hidden, unrecognized, in complete helplessness. This comparison makes concrete the idea that the state is more visible while the station is more excellent. The Hundred-and-Thirty-Seventh Chapter (the abandonment of truthfulness) briefly implies that declaring one's truthfulness, or claiming it as a name or station, damages truthfulness itself to some degree — a repetition of the same trap seen in the chapter on sincerity.",
+            "pt": "O Centésimo Trigésimo Sexto Capítulo trata da veracidade; uma pergunta e resposta atribuída a Abu Yazid sugere que a veracidade é a essência de todos os nomes divinos: <em>\"quando lhe perguntaram, 'qual é o maior nome de Deus, que torna todas as coisas passivas?', ele disse: 'mostre-me seu nome menor, e eu lhe mostrarei o maior.' O que se quer dizer não é outra coisa senão a veracidade\"</em> (p. 330). Dost não deixa a diferença entre estado e estação abstrata, mas a exemplifica com duas figuras concretas: Abdulqadir (al-Jilani) possuía o estado da veracidade — visível, renomado, um sufi reconhecido; seu discípulo Abu'l-Su'ud possuía a estação da veracidade — oculto, não reconhecido, em completa impotência. Essa comparação torna concreta a ideia de que o estado é mais visível, mas a estação é mais excelente. O Centésimo Trigésimo Sétimo Capítulo (o abandono da veracidade) sugere brevemente que declarar a própria veracidade, ou reivindicá-la como um nome ou estação, prejudica a própria veracidade em certa medida — uma repetição da mesma armadilha vista no capítulo sobre a sinceridade."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım CI, s. 329-332.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part CI, pp. 329-332.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte CI, pp. 329-332."
+          },
+          "caption": {
+            "tr": "Aynı doğruluk, birinde görünür bir hal, ötekinde gizli bir makam olarak zuhur eder.",
+            "en": "The same truthfulness manifests in one as a visible state, in the other as a hidden station.",
+            "pt": "A mesma veracidade se manifesta em um como estado visível, no outro como estação oculta."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Abdülkadir — Hal",
+                "en": "Abdulqadir — State",
+                "pt": "Abdulqadir — Estado"
+              },
+              "note": {
+                "tr": "görünür, meşhur, tanınan",
+                "en": "visible, renowned, recognized",
+                "pt": "visível, renomado, reconhecido"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Ebu's-Suud — Makam",
+                "en": "Abu'l-Su'ud — Station",
+                "pt": "Abu'l-Su'ud — Estação"
+              },
+              "note": {
+                "tr": "gizli, tanınmayan, tam acizlik",
+                "en": "hidden, unrecognized, complete helplessness",
+                "pt": "oculto, não reconhecido, impotência completa"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "haya",
+      "heading": {
+        "tr": "Hayâ: Hakk'ın Kulundan Utanması",
+        "en": "Modesty: The Real's Shyness Before His Servant",
+        "pt": "Modéstia: A Timidez do Real Diante de Seu Servo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Otuz Sekizinci Bölüm, kısmı hayâ ile — tek başına, bir 'terki' olmadan — kapatıyor. Hayâ, olumsuzlayıcı (selbî) bir nitelik olarak sunuluyor: bir şey yapmamak, aslın (yokluğun) üzerinde kalmak, ve bu yüzden 'bütünüyle iyilik' getirmek. Bölümün en çarpıcı anı, hayânın Hakk'a bile atfedildiği bir kıyamet günü rivayeti: <em>\"Kıyamet günü Allah bir yaşlıya, 'Kulum! Şunu şunu yaptın' diyerek yaptıklarını zikredecektir. Kul yaptığı halde 'Rabbim! Yapmadım' deyince Hak 'Alın onu, cennete götürün' diyecek... Allah 'Evet biliyorum, fakat o inkâr edince yaşlılığını yalanlamaktan hayâ ettim' diyecektir\"</em> (s. 334) — kulun inkârı karşısında Hakk'ın, onu doğrudan yalanlamaktan 'hayâ ettiği', ve bu hayânın kulu cennete taşıdığı bir sahne. Kısım, Yüz İkinci Kısmın konusu olacak Hayâ'nın (fasıl biçiminde devam eden) bir sonraki kısma geçişiyle kapanıyor.",
+            "en": "The Hundred-and-Thirty-Eighth Chapter closes the part with modesty — standing alone, without a paired 'abandonment.' Modesty is presented as a negating quality: not doing something, remaining upon the original state (non-existence), and thereby bringing 'wholly good.' The chapter's most striking moment is a Day-of-Resurrection report in which modesty is attributed even to the Real: <em>\"on the Day of Resurrection, God will recount to an elderly man, 'My servant! You did such-and-such,' listing his deeds. When the servant, though having done them, says, 'my Lord! I did not do them,' the Real will say, 'take him, carry him to paradise'... God will say, 'yes, I know, but when he denied it, I felt shy to give the lie to his old age'\"</em> (p. 334) — a scene in which the Real's own modesty before the servant's denial — His shyness at directly contradicting him — carries the servant into paradise. The part closes with the transition to Part 102, whose subject, modesty (continuing in the form of a section), will be taken up next.",
+            "pt": "O Centésimo Trigésimo Oitavo Capítulo encerra a parte com a modéstia — isolada, sem um 'abandono' emparelhado. A modéstia é apresentada como uma qualidade negativa: não fazer algo, permanecer sobre o estado original (a não-existência), e assim trazer 'o bem por inteiro'. O momento mais marcante do capítulo é um relato do Dia da Ressurreição em que a modéstia é atribuída até mesmo ao Real: <em>\"no Dia da Ressurreição, Deus relatará a um ancião, 'Meu servo! Fizeste tal e tal coisa,' enumerando seus atos. Quando o servo, mesmo tendo feito isso, disser, 'meu Senhor! Não o fiz,' o Real dirá, 'levai-o, levai-o ao paraíso'... Deus dirá, 'sim, Eu sei, mas quando ele negou, senti-me tímido em desmentir sua velhice'\"</em> (p. 334) — uma cena em que a própria modéstia do Real diante da negação do servo — Sua timidez em contradizê-lo diretamente — o carrega para o paraíso. A parte se encerra com a transição para a Parte 102, cujo assunto, a modéstia (continuando na forma de uma seção), será tratado a seguir."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım CI, s. 334.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part CI, p. 334.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte CI, p. 334."
+          },
+          "caption": {
+            "tr": "Kul inkâr eder; Hak onu yalanlamaktan hayâ eder.",
+            "en": "The servant denies; the Real feels shy to contradict him.",
+            "pt": "O servo nega; o Real sente-se tímido em contradizê-lo."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Kul: 'Yapmadım'",
+                "en": "The Servant: 'I Did Not Do It'",
+                "pt": "O Servo: 'Não o Fiz'"
+              },
+              "note": {
+                "tr": "yaptığı halde inkâr eder",
+                "en": "denies it though he did it",
+                "pt": "nega, embora o tenha feito"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Hak: Hayâ Eder",
+                "en": "The Real: Feels Shy",
+                "pt": "O Real: Sente-se Tímido"
+              },
+              "note": {
+                "tr": "yalanlamaktan hayâ edip cennete gönderir",
+                "en": "shy to contradict him, sends him to paradise",
+                "pt": "tímido em contradizê-lo, envia-o ao paraíso"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım CI (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part CI (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte CI (trad. Ekrem Demirli)"
+      },
+      "pageRange": "302-335"
+    }
+  ]
+}

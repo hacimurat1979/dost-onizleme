@@ -1,0 +1,406 @@
+{
+  "id": "c7k95",
+  "cilt": 7,
+  "kisim": 95,
+  "status": "active",
+  "title": {
+    "tr": "Nafileden Farza: Gölgeden Cisme",
+    "en": "From the Supererogatory to the Obligatory: From Shadow to Body",
+    "pt": "Do Supererrogatório ao Obrigatório: Da Sombra ao Corpo"
+  },
+  "pageRange": {
+    "tr": "s. 169-190",
+    "en": "pp. 169-190",
+    "pt": "pp. 169-190"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Bu kısım, kısım 90'da fragman halinde geçen ünlü nafile ibadetler hadisinin tam metnini veriyor: farz-nafile ilişkisinden (cisim-gölge), oruç ve nikâh nafilelerinin üstünlüğünden, farz ve sünnetin tanımlarından, Allah'ın her cinsten bir şeyi seçtiği uzun bir 'ilahî ıstıfa' kataloğuna uzanan bir yay.",
+      "en": "This part gives the full text of the celebrated hadith of supererogatory works that appeared only as a fragment in Part 90: an arc from the relation of the obligatory and the supererogatory (body-shadow), through the superiority of the fasting and marriage supererogatory acts, the definitions of the obligatory and the sunna, to a long catalogue of divine 'selection' in which God chooses one thing from every kind.",
+      "pt": "Esta parte fornece o texto completo do célebre hadith das obras supererrogatórias que apareceu apenas como fragmento na Parte 90: um arco desde a relação entre o obrigatório e o supererrogatório (corpo-sombra), passando pela superioridade dos atos supererrogatórios do jejum e do matrimônio, as definições do obrigatório e da sunna, até um longo catálogo da 'seleção' divina em que Deus escolhe uma coisa de cada espécie."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "95. Kısım, Seksen Dokuzuncu ve Doksanıncı Bölümü dört kümede topluyor.",
+      "en": "Part 95 gathers the Eighty-Ninth and Ninetieth Chapters into four clusters.",
+      "pt": "A Parte 95 reúne o Octogésimo Nono e o Nonagésimo Capítulo em quatro grupos."
+    },
+    "tree": {
+      "id": "kisim-xcv-tree",
+      "label": {
+        "tr": "Doksan Beşinci Kısım: Nafileden Farza",
+        "en": "Part Ninety-Five: From the Supererogatory to the Obligatory",
+        "pt": "Parte Noventa e Cinco: Do Supererrogatório ao Obrigatório"
+      },
+      "note": {
+        "tr": "Farz-nafile ilişkisiyle açılır, nafile hadisinin tam metninden geçip ilahî seçim kataloğuyla kapanır.",
+        "en": "Opens with the relation of the obligatory and supererogatory, passes through the full text of the hadith, and closes with the catalogue of divine selection.",
+        "pt": "Abre-se com a relação entre o obrigatório e o supererrogatório, passa pelo texto completo do hadith, e encerra-se com o catálogo da seleção divina."
+      },
+      "children": [
+        {
+          "id": "farz-nafile-dal",
+          "label": {
+            "tr": "Farz-Nafile İlişkisi (Bölüm 89)",
+            "en": "The Obligatory-Supererogatory Relation (Ch. 89)",
+            "pt": "A Relação Obrigatório-Supererrogatório (Cap. 89)"
+          },
+          "note": {
+            "tr": "cisim-gölge, binek-yol",
+            "en": "body-shadow, mount-path",
+            "pt": "corpo-sombra, montaria-caminho"
+          }
+        },
+        {
+          "id": "nafile-hadisi-dal",
+          "label": {
+            "tr": "Nafile Hadisinin Tam Metni",
+            "en": "The Full Text of the Hadith",
+            "pt": "O Texto Completo do Hadith"
+          },
+          "note": {
+            "tr": "göz-ayak eşitliği, kısım 90'ın fragmanının aslı",
+            "en": "the eye-foot equality, the source of Part 90's fragment",
+            "pt": "a igualdade olho-pé, a fonte do fragmento da Parte 90"
+          }
+        },
+        {
+          "id": "farz-sunnet-tanim-dal",
+          "label": {
+            "tr": "Farz ve Sünnetin Tanımları (Bölüm 90)",
+            "en": "The Definitions of the Obligatory and the Sunna (Ch. 90)",
+            "pt": "As Definições do Obrigatório e da Sunna (Cap. 90)"
+          },
+          "note": {
+            "tr": "farz-ı ayn/kifaye, nebevi sünnet/istihsan",
+            "en": "obligatory-of-the-person/of-sufficiency, prophetic sunna/istihsan",
+            "pt": "obrigatório-da-pessoa/de-suficiência, sunna profética/istihsan"
+          }
+        },
+        {
+          "id": "istifa-dal",
+          "label": {
+            "tr": "İlahî Seçim Kataloğu",
+            "en": "The Catalogue of Divine Selection",
+            "pt": "O Catálogo da Seleção Divina"
+          },
+          "note": {
+            "tr": "her cinsten bir şeyin seçilmesi",
+            "en": "the selection of one thing from every kind",
+            "pt": "a seleção de uma coisa de cada espécie"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "farz-nafile-iliskisi",
+      "heading": {
+        "tr": "Farz ve Nafile: Cisim ve Gölgesi",
+        "en": "The Obligatory and the Supererogatory: Body and Its Shadow",
+        "pt": "O Obrigatório e o Supererrogatório: Corpo e Sua Sombra"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Seksen Dokuzuncu Bölüm nafileleri genel olarak ele alıyor; farz ile nafile arasındaki ilişki bir ışık-gölge benzetmesiyle kuruluyor: <em>\"Nafileler bir ilkeye dayanır, onların dayanağı farz ibadetlerdir... Farz, bir ışıkla karşı karşıya geldiklerinde cisimler, ilave nafileler ise gölgeye benzer\"</em> (s. 169). Bu ilişki karşılıklı bir bağımlılığa dönüşüyor: <em>\"Biz Hak için nafile, O ise asıldır... bu dereceyle Hak bizden ayrıldığı gibi biz de O'ndan ayrılırız\"</em> (s. 170) — ve nafilenin özgürlükle, farzın zorunlulukla eşleştiği bir cümleyle netleşiyor: <em>\"Farzı yapan kimse zorunlu kul iken nafileyi yapan serbest ve özgür kuldur\"</em> (s. 171).",
+            "en": "The Eighty-Ninth Chapter takes up supererogatory acts in general; the relation between the obligatory and the supererogatory is established through a light-shadow analogy: <em>\"supererogatory acts rest upon a principle, and their support is the obligatory acts of worship... the obligatory, when facing a light, is like bodies, while additional supererogatory acts are like their shadow\"</em> (p. 169). This relation turns into a mutual dependency: <em>\"we are supererogatory for the Real, while He is the root... by this degree, just as the Real is distinguished from us, we too are distinguished from Him\"</em> (p. 170) — and becomes clear in a sentence pairing the supererogatory with freedom, the obligatory with necessity: <em>\"the one who performs the obligatory is a necessitated servant, while the one who performs the supererogatory is a free and liberated servant\"</em> (p. 171).",
+            "pt": "O Octogésimo Nono Capítulo trata dos atos supererrogatórios em geral; a relação entre o obrigatório e o supererrogatório se estabelece através de uma analogia luz-sombra: <em>\"os atos supererrogatórios repousam sobre um princípio, e seu apoio são os atos obrigatórios de adoração... o obrigatório, diante de uma luz, é como corpos, enquanto os atos supererrogatórios adicionais são como sua sombra\"</em> (p. 169). Essa relação se transforma numa dependência mútua: <em>\"somos supererrogatórios para o Real, enquanto Ele é a raiz... por esse grau, assim como o Real se distingue de nós, nós também nos distinguimos Dele\"</em> (p. 170) — e se esclarece numa frase que pareia o supererrogatório com a liberdade, o obrigatório com a necessidade: <em>\"aquele que realiza o obrigatório é um servo necessitado, enquanto aquele que realiza o supererrogatório é um servo livre e liberado\"</em> (p. 171)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCV, s. 169-171.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCV, pp. 169-171.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCV, pp. 169-171."
+          },
+          "caption": {
+            "tr": "Farz cisim gibidir, nafile onun gölgesi gibi.",
+            "en": "The obligatory is like a body, the supererogatory like its shadow.",
+            "pt": "O obrigatório é como um corpo, o supererrogatório como sua sombra."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Farz",
+                "en": "The Obligatory",
+                "pt": "O Obrigatório"
+              },
+              "note": {
+                "tr": "cisim, zorunlu kulluk",
+                "en": "the body, necessitated servanthood",
+                "pt": "o corpo, a servidão necessitada"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Nafile",
+                "en": "The Supererogatory",
+                "pt": "O Supererrogatório"
+              },
+              "note": {
+                "tr": "gölge, özgür kulluk",
+                "en": "the shadow, liberated servanthood",
+                "pt": "a sombra, a servidão liberada"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "oruc-ve-nikah-nafileleri",
+      "heading": {
+        "tr": "Oruç ve Nikâh: İki Üstün Nafile",
+        "en": "Fasting and Marriage: Two Superior Supererogatory Acts",
+        "pt": "Jejum e Matrimônio: Dois Atos Supererrogatórios Superiores"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölüm, tek tek nafile ibadetleri ele alıyor; oruç tenzih bağlamında en üstün nafile olarak sunuluyor: <em>\"Oruç, bütün ibadetlerin nafilelerinden üstündür\"</em> (s. 170) — ama hemen ardından nikâh nafilesi ona bir rakip çıkarıyor: <em>\"Bu durumda nikâhın nafilesi daha güçlüdür, çünkü onda oruç, namaz ve diğer ibadetleri iptal gücü vardır\"</em> (s. 170-171). Ebu Hanife'nin görüşü bu üstünlüğü destekliyor: <em>\"Ebu Hanife nikâh hakkında şöyle der: 'Nikâh en faziletli nafiledir.' Ebu Hanife haklıdır veya gerçeğe isabet etmiştir\"</em> (s. 171) — tenzihi temsil eden oruç ile üremenin/sevginin bedenselliğini temsil eden nikâhın, nafileler arasında bir üstünlük yarışına girdiği çarpıcı bir sahne.",
+            "en": "The chapter takes up supererogatory acts of worship one by one; fasting is presented as the superior supererogatory act in the context of transcendence: <em>\"fasting is superior to the supererogatory acts of all forms of worship\"</em> (p. 170) — yet immediately afterward, the supererogatory act of marriage rivals it: <em>\"in this respect, the supererogatory act of marriage is stronger, for it has the power to annul fasting, prayer, and other acts of worship\"</em> (pp. 170-171). Abu Hanifa's view supports this superiority: <em>\"Abu Hanifa says of marriage: 'marriage is the most excellent supererogatory act.' Abu Hanifa is right, or has hit upon the truth\"</em> (p. 171) — a striking scene in which fasting, representing transcendence, and marriage, representing the bodily nature of procreation/love, enter a contest of superiority among supererogatory acts.",
+            "pt": "O capítulo trata dos atos supererrogatórios de adoração um a um; o jejum é apresentado como o ato supererrogatório superior no contexto da transcendência: <em>\"o jejum é superior aos atos supererrogatórios de todas as formas de adoração\"</em> (p. 170) — mas logo depois, o ato supererrogatório do matrimônio rivaliza com ele: <em>\"nesse aspecto, o ato supererrogatório do matrimônio é mais forte, pois tem o poder de anular o jejum, a oração e outros atos de adoração\"</em> (pp. 170-171). A opinião de Abu Hanifa apoia essa superioridade: <em>\"Abu Hanifa diz do matrimônio: 'o matrimônio é o ato supererrogatório mais excelente.' Abu Hanifa está certo, ou acertou a verdade\"</em> (p. 171) — uma cena marcante em que o jejum, representando a transcendência, e o matrimônio, representando a natureza corporal da procriação/amor, entram numa disputa de superioridade entre os atos supererrogatórios."
+          }
+        }
+      ]
+    },
+    {
+      "id": "nafile-hadisinin-tam-metni",
+      "heading": {
+        "tr": "Nafile Hadisinin Tam Metni: Göz-Ayak Eşitliği",
+        "en": "The Full Text of the Hadith: The Eye-Foot Equality",
+        "pt": "O Texto Completo do Hadith: A Igualdade Olho-Pé"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu bölüm, kısım 90'da yalnızca bir fragman olarak geçen ünlü nafile ibadetler hadisinin tam metnini ve yorumunu veriyor: <em>\"Hakk'ın kendisiyle duyduğun kulağın, kendisiyle gördüğün gözün ve kendisiyle tuttuğun elin olduğu sevgidir bu... Hak ise kendini 'kendisiyle gördüğün gözün, kendisiyle yürüdüğün ayağın' konumuna indirdi... bu yorumda göz ayaktan daha üstün ve faziletli değildir\"</em> (s. 172) — organlar arasında bir hiyerarşi kurmayan, gözün de ayağın da eşit ölçüde Hakk'ın mazharı olabildiği bir okuma. Bu, kısım 90'daki 'kulu Rabbi sevdiğinde, Rabbi onun kendisiyle duyduğu kulağı, kendisiyle gördüğü gözü olur' cümlesinin kaynağına dönmemizi sağlıyor — orada fragman halinde gördüğümüz hadisin, burada tam bağlamıyla açıldığını görüyoruz.",
+            "en": "This chapter gives the full text and interpretation of the celebrated hadith of supererogatory works that appeared only as a fragment in Part 90: <em>\"this is the love in which the Real becomes the ear with which you hear, the eye with which you see, and the hand with which you hold... the Real, in turn, lowered Himself to the position of 'the eye with which you see, the foot with which you walk'... in this interpretation the eye is not superior or more excellent than the foot\"</em> (p. 172) — a reading that establishes no hierarchy among the organs, in which both the eye and the foot can equally be a locus of the Real's manifestation. This lets us return to the source of Part 90's sentence, 'when the Lord loves His servant, the Lord becomes the ear with which he hears, the eye with which he sees' — we see here, in full context, the hadith we glimpsed there only as a fragment.",
+            "pt": "Este capítulo fornece o texto completo e a interpretação do célebre hadith das obras supererrogatórias que apareceu apenas como fragmento na Parte 90: <em>\"este é o amor no qual o Real se torna o ouvido com que você ouve, o olho com que você vê, e a mão com que você segura... o Real, por sua vez, Se rebaixou à posição de 'o olho com que você vê, o pé com que você caminha'... nesta interpretação o olho não é superior nem mais excelente que o pé\"</em> (p. 172) — uma leitura que não estabelece hierarquia entre os órgãos, em que tanto o olho quanto o pé podem igualmente ser um lócus da manifestação do Real. Isso nos permite retornar à fonte da frase da Parte 90, 'quando o Senhor ama Seu servo, o Senhor se torna o ouvido com que ele ouve, o olho com que ele vê' — vemos aqui, em contexto completo, o hadith que vislumbramos ali apenas como fragmento."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCV, s. 172.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCV, p. 172.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCV, p. 172."
+          },
+          "caption": {
+            "tr": "Göz ve ayak, mazhariyette eşit — biri öbüründen üstün değil.",
+            "en": "The eye and the foot, equal in being a locus of manifestation — neither superior to the other.",
+            "pt": "O olho e o pé, iguais em ser um lócus de manifestação — nenhum superior ao outro."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Göz",
+                "en": "The Eye",
+                "pt": "O Olho"
+              },
+              "note": {
+                "tr": "kendisiyle gördüğün",
+                "en": "that with which you see",
+                "pt": "aquele com que você vê"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Ayak",
+                "en": "The Foot",
+                "pt": "O Pé"
+              },
+              "note": {
+                "tr": "kendisiyle yürüdüğün, eşit mazhar",
+                "en": "that with which you walk, an equal locus",
+                "pt": "aquele com que você caminha, um lócus igual"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "farz-ve-sunnetin-tanimlari",
+      "heading": {
+        "tr": "Farz ve Sünnetin Tanımları",
+        "en": "The Definitions of the Obligatory and the Sunna",
+        "pt": "As Definições do Obrigatório e da Sunna"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Doksanıncı Bölüm farz ve sünneti tanımlıyor; farz farz-ı ayn (herkese) ve farz-ı kifaye (bir kısmına) olarak ikiye ayrılırken, sünnet de iki kaynağa dayanıyor: Peygamber'in bizzat koyduğu sünnet, ve sonradan bir müçtehidin 'istihsan' (bid'at-i hasene) yoluyla eklediği. Şafiî'nin sözü bu ikinci türün meşruiyetini savunuyor: <em>\"Kim istihsanı kullanırsa, şeriat koymuş demektir... Halbuki o, anlaşılmayan meşru bir hakikati dile getirmişti\"</em> (s. 174-175). Hızır'ın (as.) tanıklığı, bu içtihat geleneğinin büyüklerini onaylıyor: <em>\"Ahmed b. Hanbel hakkında ne dersin? — Sıddîktır. Bişr Hafî için ne dersin? — Ondan sonra onun gibi biri gelmedi\"</em> (s. 174). Farzın kendine özgü sonucu ise kulun 'Hakk'ın dili' olmasında beliriyor: <em>\"Kul Hakk'ı zikrederse, Hak onun dili olur\"</em> (s. 176) — farzın, kısım 90'daki bakış/beraberlik temasına benzer bir karşılıklılık kurduğu bir tekrar.",
+            "en": "The Ninetieth Chapter defines the obligatory and the sunna; the obligatory divides into that incumbent upon every individual and that incumbent collectively upon the community, while the sunna also rests on two sources: the sunna the Prophet himself established, and what a later jurist adds through 'istihsan' (a fair innovation). A saying of al-Shafi'i defends the legitimacy of this second kind: <em>\"whoever uses istihsan has laid down a law... yet he had voiced a legitimate truth that was not understood\"</em> (pp. 174-175). Khidr's (peace be upon him) testimony affirms the great figures of this tradition of independent reasoning: <em>\"what do you say of Ahmad b. Hanbal? — he is a truthful one. What do you say of Bishr al-Hafi? — none like him has come after him\"</em> (p. 174). The obligatory's own particular result appears in the servant's becoming 'the Real's tongue': <em>\"if the servant remembers the Real, the Real becomes his tongue\"</em> (p. 176) — a repetition in which the obligatory establishes a reciprocity resembling Part 90's theme of gaze and companionship.",
+            "pt": "O Nonagésimo Capítulo define o obrigatório e a sunna; o obrigatório se divide entre o que incumbe a cada indivíduo e o que incumbe coletivamente à comunidade, enquanto a sunna também repousa em duas fontes: a sunna que o próprio Profeta estabeleceu, e o que um jurista posterior acrescenta através do 'istihsan' (uma inovação justa). Um dito de al-Shafi'i defende a legitimidade desse segundo tipo: <em>\"quem usa istihsan estabeleceu uma lei... mas ele havia expressado uma verdade legítima que não foi compreendida\"</em> (pp. 174-175). O testemunho de Khidr (a paz esteja com ele) afirma as grandes figuras dessa tradição de raciocínio independente: <em>\"o que você diz de Ahmad b. Hanbal? — ele é um veraz. O que você diz de Bishr al-Hafi? — ninguém como ele veio depois dele\"</em> (p. 174). O resultado particular do próprio obrigatório aparece no servo se tornar 'a língua do Real': <em>\"se o servo se lembra do Real, o Real se torna sua língua\"</em> (p. 176) — uma repetição em que o obrigatório estabelece uma reciprocidade semelhante ao tema do olhar e da companhia da Parte 90."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCV, s. 173-175.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCV, pp. 173-175.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCV, pp. 173-175."
+          },
+          "caption": {
+            "tr": "Sünnetin iki kaynağı, artı bir üçüncüsü: sonradan eklenen istihsan.",
+            "en": "The sunna's two sources, plus a third: istihsan added afterward.",
+            "pt": "As duas fontes da sunna, mais uma terceira: o istihsan acrescentado posteriormente."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Peygamber'in Emri",
+                "en": "The Prophet's Command",
+                "pt": "O Mandamento do Profeta"
+              },
+              "note": {
+                "tr": "doğrudan buyurduğu",
+                "en": "what he directly commanded",
+                "pt": "o que ele ordenou diretamente"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Peygamber'in Serbest Bıraktığı",
+                "en": "What the Prophet Left Free",
+                "pt": "O Que o Profeta Deixou Livre"
+              },
+              "note": {
+                "tr": "yapıp yasaklamadığı",
+                "en": "what he did without forbidding",
+                "pt": "o que ele fez sem proibir"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "İstihsan",
+                "en": "Istihsan",
+                "pt": "Istihsan"
+              },
+              "note": {
+                "tr": "sonradan eklenen bid'at-i hasene",
+                "en": "a fair innovation added afterward",
+                "pt": "uma inovação justa acrescentada posteriormente"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ilahi-istifa-katalogu",
+      "heading": {
+        "tr": "İlahî Seçim Kataloğu: Her Cinsten Bir Şey",
+        "en": "The Catalogue of Divine Selection: One Thing from Every Kind",
+        "pt": "O Catálogo da Seleção Divina: Uma Coisa de Cada Espécie"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölümün en hacimli kısmı, Allah'ın her cinsten bir şeyi nasıl seçtiğine dair uzun bir katalog sunuyor — isimlerden Allah, insanlardan peygamberler, ibadetlerden oruç, aylardan Ramazan, günlerden Cuma, gecelerden Kadir, kadınlardan Meryem ve Asiye, ağaçlardan Sidre, taşlardan Hacer-i Esved, surelerden İhlas ve Yasin, renklerden beyaz, insanda kalp, hallerden rıza gibi otuza yakın madde. Katalog, Allah isminin kendine özgü konumuyla kapanıyor: <em>\"Bu isim (Allah), nitelenen fakat başkasının nitelenmesinde kullanılmayan bir isimdir. Bütün ilahi isimler bu ismin niteliğiyken o bir nitelik olmaz\"</em> (s. 184) — bir tür 'ism-i azam' ilanı, kısım 90'daki ism-i azam bahsiyle örtüşen bir kapanış.",
+            "en": "The chapter's most extensive portion presents a long catalogue of how God selects one thing from every kind — Allah from among names, the prophets from among human beings, fasting from among acts of worship, Ramadan from among months, Friday from among days, the Night of Power from among nights, Mary and Asiya from among women, the Lote Tree from among trees, the Black Stone from among stones, al-Ikhlas and Ya-Sin from among suras, white from among colors, the heart within the human being, contentment from among states — nearly thirty items. The catalogue closes with the particular position of the name Allah: <em>\"this name (Allah) is qualified, yet not used to qualify another. While all divine names are qualities of this name, it itself does not become a quality\"</em> (p. 184) — a kind of declaration of the 'greatest name,' a closing that resonates with Part 90's discussion of the greatest name.",
+            "pt": "A parte mais extensa do capítulo apresenta um longo catálogo de como Deus seleciona uma coisa de cada espécie — Allah dentre os nomes, os profetas dentre os seres humanos, o jejum dentre os atos de adoração, o Ramadã dentre os meses, a sexta-feira dentre os dias, a Noite do Destino dentre as noites, Maria e Asiya dentre as mulheres, a Árvore do Lótus dentre as árvores, a Pedra Negra dentre as pedras, al-Ikhlas e Ya-Sin dentre as suratas, o branco dentre as cores, o coração dentro do ser humano, o contentamento dentre os estados — quase trinta itens. O catálogo se encerra com a posição particular do nome Allah: <em>\"este nome (Allah) é qualificado, mas não usado para qualificar outro. Enquanto todos os nomes divinos são qualidades deste nome, ele mesmo não se torna uma qualidade\"</em> (p. 184) — uma espécie de declaração do 'nome maior', um fechamento que ressoa com a discussão do nome maior da Parte 90."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCV, s. 176-184.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCV, pp. 176-184.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCV, pp. 176-184."
+          },
+          "caption": {
+            "tr": "Kataloğun otuza yakın maddesinden dört temsili çift: zaman temalı seçimler.",
+            "en": "Four representative pairs from the catalogue's nearly thirty items: time-themed selections.",
+            "pt": "Quatro pares representativos dos quase trinta itens do catálogo: seleções temáticas de tempo."
+          },
+          "tree": {
+            "id": "istifa-tree",
+            "label": {
+              "tr": "İlahî Seçim",
+              "en": "Divine Selection",
+              "pt": "Seleção Divina"
+            },
+            "note": {
+              "tr": "her cinsten bir şey seçilir",
+              "en": "one thing is selected from every kind",
+              "pt": "uma coisa é selecionada de cada espécie"
+            },
+            "children": [
+              {
+                "id": "istifa-ay",
+                "label": {
+                  "tr": "Aylardan: Ramazan",
+                  "en": "From Months: Ramadan",
+                  "pt": "Dentre os Meses: Ramadã"
+                }
+              },
+              {
+                "id": "istifa-gun",
+                "label": {
+                  "tr": "Günlerden: Cuma",
+                  "en": "From Days: Friday",
+                  "pt": "Dentre os Dias: Sexta-feira"
+                }
+              },
+              {
+                "id": "istifa-gece",
+                "label": {
+                  "tr": "Gecelerden: Kadir",
+                  "en": "From Nights: the Night of Power",
+                  "pt": "Dentre as Noites: a Noite do Destino"
+                }
+              },
+              {
+                "id": "istifa-ibadet",
+                "label": {
+                  "tr": "İbadetlerden: Oruç",
+                  "en": "From Acts of Worship: Fasting",
+                  "pt": "Dentre os Atos de Adoração: o Jejum"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "kapanis-teslimiyet",
+      "heading": {
+        "tr": "Kapanış: Farz, Sünnet ve Teslimiyet",
+        "en": "The Close: The Obligatory, the Sunna, and Submission",
+        "pt": "O Fechamento: O Obrigatório, a Sunna e a Submissão"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, farz-sünnet-akıl arasındaki ilişkiyi bir teslimiyet vurgusuyla kapatıyor — akıl ne kadar güçlü olursa olsun, nihai ölçünün farz ve sünnetin kendisinde kaldığı bir hatırlatma. Bu, kısım 94'ün Cüneyd-i Bağdadî alıntısındaki 'ilmimiz Kitap ve Sünnet ile kayıtlıdır' cümlesiyle doğrudan aynı çizgide duruyor — iki kısım arasında, şeriatın hem fıkhi hem tasavvufi düzlemde aynı temele bağlandığı bir süreklilik. Kısım, doksan altıncı kısma ('Vera') geçişle kapanıyor.",
+            "en": "The part closes the relation between the obligatory, the sunna, and reason with an emphasis on submission — a reminder that however powerful reason may be, the final measure remains within the obligatory and the sunna themselves. This stands directly in line with Part 94's quotation from al-Junayd al-Baghdadi, 'our knowledge is bound to the Book and the Sunna' — a continuity between the two parts in which the Law is anchored to the same foundation on both the legal and the Sufi plane. The part closes with the transition to Part 96 ('Scrupulousness').",
+            "pt": "A parte encerra a relação entre o obrigatório, a sunna e a razão com uma ênfase na submissão — um lembrete de que, por mais poderosa que seja a razão, a medida final permanece no próprio obrigatório e na sunna. Isso está diretamente alinhado com a citação de al-Junayd al-Baghdadi da Parte 94, 'nosso conhecimento está vinculado ao Livro e à Sunna' — uma continuidade entre as duas partes em que a Lei está ancorada no mesmo fundamento tanto no plano jurídico quanto no sufi. A parte se encerra com a transição para a Parte 96 ('Escrupulosidade')."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCV (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCV (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCV (trad. Ekrem Demirli)"
+      },
+      "pageRange": "169-190"
+    }
+  ]
+}

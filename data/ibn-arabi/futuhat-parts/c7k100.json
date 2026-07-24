@@ -1,0 +1,385 @@
+{
+  "id": "c7k100",
+  "cilt": 7,
+  "kisim": 100,
+  "status": "active",
+  "title": {
+    "tr": "Her Makamın Kendi Terki: Şükürden Murâkabeye",
+    "en": "Each Station's Own Abandonment: From Gratitude to Watchfulness",
+    "pt": "O Próprio Abandono de Cada Estação: Da Gratidão à Vigilância"
+  },
+  "pageRange": {
+    "tr": "s. 276-299",
+    "en": "pp. 276-299",
+    "pt": "pp. 276-299"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Kısım 99'un şükür kapanışından devam eden bu kısım, yedi bölümde şükrün, yakînin, sabrın ve murâkabenin her birinin kendi 'terki'yle nasıl eşleştiğini işliyor — her terk, makamın kendi mantığıyla kendini aşan, ne basitçe övgü ne basitçe eksiklik olan ikinci bir hareket.",
+      "en": "Continuing from Part 99's close on gratitude, this part's seven chapters take up how gratitude, certainty, patience, and watchfulness each pair with their own 'abandonment' — each abandonment a second movement that transcends the station by its own logic, neither simple praise nor simple deficiency.",
+      "pt": "Continuando a partir do fechamento da Parte 99 sobre a gratidão, os sete capítulos desta parte tratam de como a gratidão, a certeza, a paciência e a vigilância se emparelham cada uma com seu próprio 'abandono' — cada abandono um segundo movimento que transcende a estação por sua própria lógica, nem um simples elogio nem uma simples deficiência."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "100. Kısım, Yüz Yirmi Birinci'den Yüz Yirmi Yedinci Bölüme dört makamı, her birini kendi terkiyle eşleştirerek topluyor.",
+      "en": "Part 100 gathers four stations from the Hundred-and-Twenty-First to the Hundred-and-Twenty-Seventh Chapter, each paired with its own abandonment.",
+      "pt": "A Parte 100 reúne quatro estações do Centésimo Vigésimo Primeiro ao Centésimo Vigésimo Sétimo Capítulo, cada uma emparelhada com seu próprio abandono."
+    },
+    "tree": {
+      "id": "kisim-c-tree",
+      "label": {
+        "tr": "Yüzüncü Kısım: Makam ve Terki",
+        "en": "Part One Hundred: Station and Abandonment",
+        "pt": "Parte Cem: Estação e Abandono"
+      },
+      "note": {
+        "tr": "Şükürle açılır, yakîn-sabır-murâkabe üçlüsünün her biri kendi terkiyle devam eder.",
+        "en": "Opens with gratitude; the trio of certainty, patience, and watchfulness each continues with its own abandonment.",
+        "pt": "Abre-se com a gratidão; o trio certeza-paciência-vigilância continua cada um com seu próprio abandono."
+      },
+      "children": [
+        {
+          "id": "sukur-terki-dal",
+          "label": {
+            "tr": "Şükrün Terki (Bölüm 121)",
+            "en": "The Abandonment of Gratitude (Ch. 121)",
+            "pt": "O Abandono da Gratidão (Cap. 121)"
+          },
+          "note": {
+            "tr": "nimet mi, sebep mi",
+            "en": "the blessing or the means?",
+            "pt": "a bênção ou o meio?"
+          }
+        },
+        {
+          "id": "yakin-dal",
+          "label": {
+            "tr": "Yakîn ve Terki (Bölüm 122-123)",
+            "en": "Certainty and Its Abandonment (Ch. 122-123)",
+            "pt": "A Certeza e Seu Abandono (Cap. 122-123)"
+          },
+          "note": {
+            "tr": "perde kalksa da artmaz",
+            "en": "it would not increase even if the veil lifted",
+            "pt": "não aumentaria mesmo que o véu se erguesse"
+          }
+        },
+        {
+          "id": "sabir-dal",
+          "label": {
+            "tr": "Sabır ve Terki (Bölüm 124-125)",
+            "en": "Patience and Its Abandonment (Ch. 124-125)",
+            "pt": "A Paciência e Seu Abandono (Cap. 124-125)"
+          },
+          "note": {
+            "tr": "es-Sabûr'un sırrı",
+            "en": "the secret of al-Sabur",
+            "pt": "o segredo de al-Sabur"
+          }
+        },
+        {
+          "id": "murakabe-dal",
+          "label": {
+            "tr": "Murâkabe ve Terki (Bölüm 126-127)",
+            "en": "Watchfulness and Its Abandonment (Ch. 126-127)",
+            "pt": "A Vigilância e Seu Abandono (Cap. 126-127)"
+          },
+          "note": {
+            "tr": "dünya-ana ve gözetlenemez Hak",
+            "en": "the world-as-mother, and the Real who cannot be watched",
+            "pt": "o mundo-mãe, e o Real que não pode ser vigiado"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "sukrun-terki",
+      "heading": {
+        "tr": "Şükrün Terki: Nimete mi, Sebebe mi?",
+        "en": "The Abandonment of Gratitude: To the Blessing or the Means?",
+        "pt": "O Abandono da Gratidão: À Bênção ou ao Meio?"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Yirmi Birinci Bölüm, kısım 99'un şükür kapanışının hemen ardından, şükrün terkini ele alıyor — açılış beyti paradoksu baştan koyuyor: <em>\"Bu sözümle şükrün hükmü her bilenden gitmiştir / Şükrü terke şükredilmiştir\"</em> (s. 276). Dost, 'nimete şükür nimet verene perdedir' iddiasını reddederek başlıyor: <em>\"Allah sebebe şükretmeyi emrederek 'Bana ve anne babana şükret' diye buyurdu. Hz. Peygamber ise 'İnsanlara teşekkür etmeyen Allah'a şükretmemiştir' buyurur\"</em> (s. 277-278) — yani sebebe şükür, Hakk'a şükrün önünde bir perde değil, bizzat O'nun emri. Ama bölümün asıl güç meselesi burada başlıyor: kul, kendi fiilini yaratılmışlardan tamamen olumsuzlarsa, şükrederken şükrü de terk etmiş olur — <em>\"Şükrün terki, kapalı ve zor bir makamdır... Böyle biri, bir açıdan şükrün terk edeni iken bir açıdan şükür ile nitelenendir\"</em> (s. 278). Dost bunu tarihli, kişisel bir vâkıayla temellendiriyor (6 Receb 633 Cumartesi): kaşifte Hak ona sorar, <em>\"Burada şaşırma ve karıştırmayı gerektirecek bir durum var mı?\"</em>, Dost 'hayır' der, Hak devam eder — <em>\"Eşya, benim fiilimle var olur. İsa'da üflemeyi, kuşta ise oluşmayı yaratan Ben'im\"</em> (s. 278) — kesb/halk tartışmasının doğrudan bir ilahî diyalogla, sistematik bir çözüm iddiası olmadan, aşıldığı nadir bir an.",
+            "en": "The Hundred-and-Twenty-First Chapter, right after Part 99's close on gratitude, takes up the abandonment of gratitude — the opening verse sets the paradox at once: <em>\"By this saying of mine the ruling of gratitude has left every knower / Gratitude has been thanked for its own abandonment\"</em> (p. 276). Dost begins by rejecting the claim that gratitude to a blessing veils gratitude to its Giver: <em>\"God commanded gratitude to the means, saying, 'Give thanks to Me and to your parents'; and the Prophet said, 'whoever does not thank people has not thanked God'\"</em> (pp. 277-278) — so gratitude to the means is not a veil before gratitude to the Real, but His own command. Yet the chapter's real difficulty begins here: if the servant fully negates his own act as belonging to created things, then in giving thanks he abandons gratitude itself — <em>\"the abandonment of gratitude is a closed and difficult station... such a person is, from one angle, one who abandons gratitude, while from another angle, one characterized by gratitude\"</em> (p. 278). Dost grounds this in a dated, personal unveiling (Saturday, 6 Rajab 633): in the vision, the Real asks him, <em>\"is there anything here that should cause confusion or bewilderment?\"</em>, Dost answers 'no', and the Real continues — <em>\"things come to exist through My act. It is I who create the blowing in Jesus, and the coming-to-be in the bird\"</em> (p. 278) — a rare moment in which the kasb/creation debate is resolved directly through a divine dialogue, without claiming a systematic solution.",
+            "pt": "O Centésimo Vigésimo Primeiro Capítulo, logo após o fechamento da Parte 99 sobre a gratidão, trata do abandono da gratidão — o verso de abertura coloca o paradoxo de imediato: <em>\"Com esta minha palavra, o julgamento da gratidão partiu de todo conhecedor / A gratidão foi agradecida por seu próprio abandono\"</em> (p. 276). Dost começa rejeitando a afirmação de que a gratidão à bênção vela a gratidão a Quem a concede: <em>\"Deus ordenou a gratidão ao meio, dizendo: 'Agradeça-Me e a seus pais'; e o Profeta disse: 'quem não agradece às pessoas não agradeceu a Deus'\"</em> (pp. 277-278) — ou seja, a gratidão ao meio não é um véu diante da gratidão ao Real, mas Sua própria ordem. Mas a verdadeira dificuldade do capítulo começa aqui: se o servo nega completamente seu próprio ato como pertencente às coisas criadas, então, ao agradecer, ele abandona a própria gratidão — <em>\"o abandono da gratidão é uma estação fechada e difícil... tal pessoa é, de um ângulo, alguém que abandona a gratidão, enquanto de outro ângulo, alguém caracterizado pela gratidão\"</em> (p. 278). Dost fundamenta isso num desvelamento datado e pessoal (sábado, 6 de Rajab de 633): na visão, o Real lhe pergunta, <em>\"há aqui algo que deva causar confusão ou perplexidade?\"</em>, Dost responde 'não', e o Real continua — <em>\"as coisas vêm a existir por Meu ato. Sou Eu quem cria o sopro em Jesus, e o vir-a-ser no pássaro\"</em> (p. 278) — um raro momento em que o debate kasb/criação é superado diretamente por um diálogo divino, sem reivindicar uma solução sistemática."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım C, s. 276-278.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part C, pp. 276-278.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte C, pp. 276-278."
+          },
+          "caption": {
+            "tr": "Sebebe şükür emirdir; fiili Hak'tan bilmek ise şükrü de terk ettirir.",
+            "en": "Gratitude to the means is a command; knowing the deed as God's abandons gratitude too.",
+            "pt": "A gratidão ao meio é uma ordem; saber que o ato é de Deus também abandona a gratidão."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Sebebe Şükür",
+                "en": "Gratitude to the Means",
+                "pt": "Gratidão ao Meio"
+              },
+              "note": {
+                "tr": "Allah'ın emri: 'Bana ve anne babana şükret'",
+                "en": "God's command: 'Give thanks to Me and to your parents'",
+                "pt": "a ordem de Deus: 'Agradeça-Me e a seus pais'"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Şükrün Terki",
+                "en": "The Abandonment of Gratitude",
+                "pt": "O Abandono da Gratidão"
+              },
+              "note": {
+                "tr": "fiili Hak'tan bilip kendi şükrünü de terk etmek",
+                "en": "knowing the deed as God's, and thereby abandoning one's own gratitude",
+                "pt": "saber que o ato é de Deus e, com isso, abandonar a própria gratidão"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "yakin-ve-terki",
+      "heading": {
+        "tr": "Yakîn ve Terki: Perde Kalksa Ne Değişir?",
+        "en": "Certainty and Its Abandonment: What Would Change If the Veil Lifted?",
+        "pt": "A Certeza e Seu Abandono: O Que Mudaria Se o Véu se Erguesse?"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Yirmi İkinci Bölüm yakîni, Yüz Yirmi Üçüncü Bölüm ise onun terkini ele alıyor. Yakînin ne olduğuna dair meşhur bir söz aktarılıyor: <em>\"Perde kalksaydı yakinim artmazdı\"</em> (s. 279) — ama Dost bunun yaygın bir yorumunu (yakîn artınca havada yürünür iddiasını) doğrudan reddediyor: <em>\"Yakini artsaydı, havada yürürdü... Bu yorum, yerinde bir yorum değildir... Peygamber, yakinin gücü nedeniyle havada yürütülmemişti\"</em> (s. 280) — kendi külliyatındaki yaygın bir hadis-yorumunu bizzat düzelttiği nadir bir andır bu. Dost, konuya kişisel bir not da düşüyor: <em>\"Bizim yakin hakkında kıymetli bir risalemiz vardır. Onu Lut peygamberi ziyaret ederken Halil İbrahim mescidindeki Yakin Mescidinde yazmıştık\"</em> (s. 281). Yakînin terki ise, sabırla aynı gerekçeye dayanıyor: <em>\"Yakinde -tıpkı sabırda olduğu gibi- ilahi kahra karşı koyma kokusu bulunduğu için Allah ehli, onunla nitelenmeyi, onu öğrenmeyi ve Allah'tan istemeyi terk etmiştir\"</em> (s. 283) — yakîni bir sahiplenme nesnesi olarak istemenin, gizliden gizliye bir direniş taşıdığı bir okuma.",
+            "en": "The Hundred-and-Twenty-Second Chapter takes up certainty, and the Hundred-and-Twenty-Third its abandonment. A famous saying on the nature of certainty is cited: <em>\"had the veil lifted, my certainty would not have increased\"</em> (p. 279) — but Dost directly rejects a common reading of it (that increased certainty lets one walk on air): <em>\"had his certainty increased, he would have walked on air... this interpretation is not sound... the Prophet was not made to walk on air because of the strength of his certainty\"</em> (p. 280) — a rare moment in which he corrects a widespread hadith-reading within his own corpus. Dost also adds a personal note: <em>\"we have a valuable treatise on certainty; we wrote it while visiting the prophet Lot, in the Mosque of Certainty within the Mosque of Abraham the Friend\"</em> (p. 281). The abandonment of certainty rests on the same ground as that of patience: <em>\"because certainty — like patience — carries a scent of resisting the divine severity, the people of God have abandoned being characterized by it, learning it, and asking it of God\"</em> (p. 283) — a reading in which wanting certainty as a possession secretly carries a resistance.",
+            "pt": "O Centésimo Vigésimo Segundo Capítulo trata da certeza, e o Centésimo Vigésimo Terceiro de seu abandono. Um dito famoso sobre a natureza da certeza é citado: <em>\"se o véu se erguesse, minha certeza não aumentaria\"</em> (p. 279) — mas Dost rejeita diretamente uma leitura comum dele (a de que uma certeza aumentada permite andar sobre o ar): <em>\"se sua certeza tivesse aumentado, ele teria andado sobre o ar... essa interpretação não é correta... o Profeta não foi feito andar sobre o ar por causa da força de sua certeza\"</em> (p. 280) — um raro momento em que ele corrige uma leitura difundida de um hadith dentro de sua própria obra. Dost acrescenta também uma nota pessoal: <em>\"temos um tratado valioso sobre a certeza; escrevemo-lo enquanto visitávamos o profeta Ló, na Mesquita da Certeza dentro da Mesquita de Abraão, o Amigo\"</em> (p. 281). O abandono da certeza repousa sobre o mesmo fundamento que o da paciência: <em>\"porque a certeza — assim como a paciência — carrega um odor de resistência à severidade divina, o povo de Deus abandonou ser caracterizado por ela, aprendê-la e pedi-la a Deus\"</em> (p. 283) — uma leitura em que querer a certeza como uma posse carrega secretamente uma resistência."
+          }
+        }
+      ]
+    },
+    {
+      "id": "sabir-ve-sirri",
+      "heading": {
+        "tr": "Sabır: es-Sabûr'un Sırrı",
+        "en": "Patience: The Secret of al-Sabur",
+        "pt": "Paciência: O Segredo de al-Sabur"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Yirmi Dördüncü Bölüm sabrı ele alıyor. Allah'ın kendisini es-Sabûr diye adlandırması, eziyete katlanan bir Allah paradoksuna dayanıyor: <em>\"Allah kendini yaratıkların eziyetlerine karşı sabreden anlamında es-Sabur diye isimlendirdi... Bir rivayette Allah'tan daha çok eziyete sabreden olmadığı bildirilir\"</em> (s. 284-285). Sabrın en çarpıcı sonucu ise, cehennemin bile mizaca göre değişen bir tecrübe olacağı iddiasında: <em>\"Zorunlu olarak acı duyacağınız şeyden, rahmet sizi kuşattığında cehennemde bile haz alacaksınız. Nitekim yanan da ateşin sıcaklığından haz alır. Donan ise zemherinin soğukluğundan haz alır\"</em> (s. 285) — rahmetin gazaba galebe çaldığı, sitenin daha önce rızâ düğümünde bir özet olarak gördüğü ama kaynağını henüz doğrulamadığı bir motifin, aslında sabır bahsinde bu denli net biçimde belirdiğini gösteren bir bulgu; bu bağlantı kısım 101'de (Rızâ) yeniden ele alınmalı.",
+            "en": "The Hundred-and-Twenty-Fourth Chapter takes up patience. God naming Himself al-Sabur rests on the paradox of a God who endures injury: <em>\"God named Himself al-Sabur in the sense of one who is patient toward the injuries of His creatures... in one report it is said that none endures injury more than God\"</em> (pp. 284-285). Patience's most striking consequence is the claim that even hell will be an experience varying by temperament: <em>\"from that which you will necessarily suffer, once mercy encompasses you, you will take pleasure even in hell. For the one who burns takes pleasure in the fire's heat, and the one who freezes takes pleasure in the cold of the frost\"</em> (p. 285) — a finding that mercy prevailing over wrath, a motif the site had previously seen only as a summary in the certainty node on rida (contentment) without yet verifying its source, in fact appears this clearly already in the chapter on patience; this connection should be taken up again when Part 101 (Contentment with the Decree) is read.",
+            "pt": "O Centésimo Vigésimo Quarto Capítulo trata da paciência. Deus se nomear al-Sabur repousa no paradoxo de um Deus que suporta ofensa: <em>\"Deus Se nomeou al-Sabur no sentido de Quem é paciente com as ofensas de Suas criaturas... em um relato se diz que ninguém suporta mais ofensa do que Deus\"</em> (pp. 284-285). A consequência mais marcante da paciência está na afirmação de que até o inferno será uma experiência que varia conforme o temperamento: <em>\"daquilo que necessariamente sofrereis, uma vez que a misericórdia vos envolva, tirareis prazer até no inferno. Pois quem queima tira prazer do calor do fogo, e quem congela tira prazer do frio da geada\"</em> (p. 285) — um achado de que a misericórdia prevalece sobre a ira, um motivo que o site havia visto antes apenas como um resumo no nó da satisfação com o decreto (ridā) sem ainda verificar sua fonte, na verdade já aparece com essa clareza no capítulo sobre a paciência; essa conexão deve ser retomada quando a Parte 101 (Satisfação com o Decreto) for lida."
+          }
+        }
+      ]
+    },
+    {
+      "id": "sabrin-terki",
+      "heading": {
+        "tr": "Sabrın Terki: Sıradan Sabırdaki Saygısızlık",
+        "en": "The Abandonment of Patience: The Disrespect in Ordinary Patience",
+        "pt": "O Abandono da Paciência: A Desconsideração na Paciência Comum"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Yirmi Beşinci Bölüm sabrın terkini ele alıyor ve en radikal ters çevirmelerden birini yapıyor: sıradan sabrın bile bir tür saygısızlık taşıdığını söylüyor. Bir şiir bunu açıyor: <em>\"Ariflerde sabır olmaz, çünkü onlar / Dalgalı bir denizde zayıf gemi içindedir\"</em> (s. 288) — devamında ise açık ifade geliyor: <em>\"Sıradan insanların bildiği sabırda ilahi kahra karşı koymak ve Allah karşısında saygısızlık vardır\"</em> (s. 288). Gerçek 'sabrın terki' ise dayanmayı bir erdem saymak değil, aczi ve muhtaçlığı tam kabullenip düşünceyi doğrudan Allah'a bağlamaktır — bir örnek bunu somutlaştırıyor: <em>\"Acıktığı için ağlayan bir adam şöyle demiş: 'Ağlayayım diye beni acıktırdı.' Öyleyse bu kişi, O'nun için ve O'na karşı ağlanmıştır\"</em> (s. 289) — açlığın bile, dayanılacak bir şey değil, doğrudan Hak'la kurulan bir ilişkinin dili olarak okunduğu bir örnek.",
+            "en": "The Hundred-and-Twenty-Fifth Chapter takes up the abandonment of patience and performs one of its most radical reversals: it says that even ordinary patience carries a kind of disrespect. A poem opens this: <em>\"the knowers have no patience, for they are / in a weak ship upon a wave-tossed sea\"</em> (p. 288) — followed by the plain statement: <em>\"in the patience known to ordinary people there is resistance to the divine severity and disrespect before God\"</em> (p. 288). The true 'abandonment of patience' is not counting endurance a virtue, but fully accepting one's helplessness and neediness and directing one's thought straight to God — an example makes this concrete: <em>\"a man weeping from hunger said: 'He made me hungry so that I would weep.' So this person has been wept for Him and before Him\"</em> (p. 289) — an example in which even hunger is read not as something to be endured, but as the very language of a relation established directly with the Real.",
+            "pt": "O Centésimo Vigésimo Quinto Capítulo trata do abandono da paciência e realiza uma de suas reviravoltas mais radicais: diz que até a paciência comum carrega um tipo de desconsideração. Um poema abre isso: <em>\"os conhecedores não têm paciência, pois estão / num navio frágil sobre um mar agitado\"</em> (p. 288) — seguido pela afirmação clara: <em>\"na paciência conhecida pelas pessoas comuns há resistência à severidade divina e desconsideração diante de Deus\"</em> (p. 288). O verdadeiro 'abandono da paciência' não é considerar a resistência uma virtude, mas aceitar plenamente a própria impotência e carência e dirigir o pensamento diretamente a Deus — um exemplo torna isso concreto: <em>\"um homem chorando de fome disse: 'Ele me fez ter fome para que eu chorasse.' Assim, essa pessoa chorou por Ele e diante Dele\"</em> (p. 289) — um exemplo em que até a fome é lida não como algo a suportar, mas como a própria linguagem de uma relação estabelecida diretamente com o Real."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım C, s. 288-289.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part C, pp. 288-289.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte C, pp. 288-289."
+          },
+          "caption": {
+            "tr": "Sıradan sabır bir saygısızlık taşır; sabrın terki aczi doğrudan Hakk'a bağlar.",
+            "en": "Ordinary patience carries a disrespect; the abandonment of patience directs helplessness straight to God.",
+            "pt": "A paciência comum carrega uma desconsideração; o abandono da paciência dirige a impotência diretamente a Deus."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Sıradan Sabır",
+                "en": "Ordinary Patience",
+                "pt": "Paciência Comum"
+              },
+              "note": {
+                "tr": "dayanmak, direnmek",
+                "en": "enduring, resisting",
+                "pt": "suportar, resistir"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Sabrın Terki",
+                "en": "The Abandonment of Patience",
+                "pt": "O Abandono da Paciência"
+              },
+              "note": {
+                "tr": "aczi kabul, Hakk'a bağlanmak",
+                "en": "accepting helplessness, clinging to God",
+                "pt": "aceitar a impotência, apegar-se a Deus"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "murakabe-ve-dunya-ana",
+      "heading": {
+        "tr": "Murâkabe ve Dünya-Ana: Uyuyanın Annesi",
+        "en": "Watchfulness and the World-as-Mother: The Sleeper's Mother",
+        "pt": "A Vigilância e o Mundo-Mãe: A Mãe do Que Dorme"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Yirmi Altıncı Bölüm murâkabeyi ele alıyor ve uzun bir 'Vasıl' ekiyle (s. 291-297) dünya-anne temasına genişliyor. Katade'den aktarılan bir söz dünyanın tuhaf bir adaletini anlatıyor: <em>\"Dünya ne kadar da insaflıdır! Kendinde kötülük yapanın kötülüğüyle kınanmış, iyilik yapanın iyiliğiyle övülmemiştir\"</em> (s. 293). Bir hadis, cennet ve cehennemin bu dünya içinde, dünyanın bir duvarı üzerinde müşahede edildiğini aktarıyor: <em>\"Cenneti ve cehennemi duvarın üzerinde gördüm\"</em> (s. 296) — ve Dost, ihtiyatlı bir kayıtla ('kimseyi tezkiye etmem') radikal bir görüş de aktarıyor: <em>\"Hakkın dünyada insanda bulunuşu, ahirettekinden daha kâmildir\"</em> (s. 297) — dünya-anne motifinin, murâkabe bahsine sadece gevşek bir bağla ('murâkabe ehlinin başlama noktası, annelerinin -dünyanın- hallerini gözetmek olmalıdır') tutunduğu, ama kendi başına zengin bir malzeme taşıdığı bir bölüm.",
+            "en": "The Hundred-and-Twenty-Sixth Chapter takes up watchfulness, and widens into the world-as-mother theme through a long 'Continuation' appendix (pp. 291-297). A saying transmitted from Qatada describes a strange fairness in the world: <em>\"how fair the world is! It has been blamed for the evil of the one who does evil in it, but not praised for the good of the one who does good\"</em> (p. 293). A hadith relates that paradise and hell are witnessed within this world, upon a wall of it: <em>\"I saw paradise and hell upon the wall\"</em> (p. 296) — and Dost, with a cautious note ('I vouch for no one'), also transmits a radical view: <em>\"the Real's presence in the human being in this world is more complete than in the afterlife\"</em> (p. 297) — a chapter in which the world-as-mother motif is tied to the discussion of watchfulness only loosely ('the starting point for the people of watchfulness should be observing the states of their mother — the world'), yet carries rich material in its own right.",
+            "pt": "O Centésimo Vigésimo Sexto Capítulo trata da vigilância e se amplia, através de um longo apêndice de 'Continuação' (pp. 291-297), para o tema do mundo-mãe. Um dito transmitido por Qatada descreve uma estranha justiça do mundo: <em>\"quão justo é o mundo! Ele foi censurado pelo mal de quem nele faz o mal, mas não foi louvado pelo bem de quem nele faz o bem\"</em> (p. 293). Um hadith relata que o paraíso e o inferno são testemunhados dentro deste mundo, sobre um muro dele: <em>\"vi o paraíso e o inferno sobre o muro\"</em> (p. 296) — e Dost, com uma nota cautelosa ('não abono ninguém'), também transmite uma visão radical: <em>\"a presença do Real no ser humano neste mundo é mais completa do que na outra vida\"</em> (p. 297) — um capítulo em que o motivo do mundo-mãe se prende à discussão da vigilância apenas frouxamente ('o ponto de partida para o povo da vigilância deveria ser observar os estados de sua mãe — o mundo'), mas carrega, por si só, material rico."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım C, s. 289-291.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part C, pp. 289-291.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte C, pp. 289-291."
+          },
+          "caption": {
+            "tr": "Murâkabenin üç kısmı: geçersiz olan, hayâ ile olan, kalple olan.",
+            "en": "The three kinds of watchfulness: the invalid, the one through modesty, the one through the heart.",
+            "pt": "Os três tipos de vigilância: o inválido, o da modéstia, o do coração."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Rabbini Murâkabe",
+                "en": "Watching One's Lord",
+                "pt": "Vigiar o Próprio Senhor"
+              },
+              "note": {
+                "tr": "geçersiz: Hak nesne kılınamaz",
+                "en": "invalid: the Real cannot be made an object",
+                "pt": "inválido: o Real não pode ser tornado objeto"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Hayâ Murâkabesi",
+                "en": "Watchfulness through Modesty",
+                "pt": "Vigilância pela Modéstia"
+              },
+              "note": {
+                "tr": "Allah'ın seni gördüğünü bilmek",
+                "en": "knowing that God sees you",
+                "pt": "saber que Deus te vê"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Kalp Murâkabesi",
+                "en": "Watchfulness of the Heart",
+                "pt": "Vigilância do Coração"
+              },
+              "note": {
+                "tr": "eserleri ve halleri gözetmek",
+                "en": "watching the effects and states",
+                "pt": "vigiar os efeitos e estados"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "murakabenin-terki",
+      "heading": {
+        "tr": "Murâkabenin Terki: Gözetlenen Olamayan Hak",
+        "en": "The Abandonment of Watchfulness: The Real Who Cannot Be Watched",
+        "pt": "O Abandono da Vigilância: O Real Que Não Pode Ser Vigiado"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Yirmi Yedinci Bölüm murâkabenin terkini ele alıyor — kısmın en felsefi/apofatik anı. Hakk'ın hiçbir sınır veya nitelik altına girmemesi, O'nun 'gözetlenen bir nesne' olamayacağı bir argümana taşınıyor: bir şiir bunu keskinleştiriyor, <em>\"Murakabe yapma! Varlıkta Bir'den başkası yok / O varlığın ta kendisidir\"</em> (s. 298) ve Dost devam ediyor: <em>\"Allah gözetendir, gözetilen değil! Allah koruyandır (hafız), korunan değil!\"</em> (s. 298). Kısım, sitenin 'anlamaya çalışıyoruz, anlatmaya değil' duruşuyla çarpıcı biçimde örtüşen bir kapanışla bitiyor: <em>\"Hakikate (bir'e) ulaşmak istiyorsanız, O'nu her gözle görünüz! Çünkü Hak, tecellisi genel olandır. Her surette bir yüzü (vech) ve her alemde bir hali vardır. Artık ister murakabe et, ister etme\"</em> (s. 299) — iman, delil ve inkârı bile aynı kapsayıcı bakışa dahil eden bir çağrı. Kısım, Rızâ hakkındaki Yüz Yirmi Sekizinci Bölüm ile başlayacak yüz birinci kısmın duyurusuyla kapanıyor.",
+            "en": "The Hundred-and-Twenty-Seventh Chapter takes up the abandonment of watchfulness — the part's most philosophical and apophatic moment. That the Real submits to no limit or attribute is carried into an argument that He cannot be a 'watched object': a poem sharpens this, <em>\"do not practice watchfulness! In existence there is nothing but the One / He is existence itself\"</em> (p. 298), and Dost continues: <em>\"God is the Watcher, not the watched! God is the Guardian (Hafiz), not the guarded!\"</em> (p. 298). The part closes on a note striking in how it resonates with the site's own stance of trying to understand rather than to explain: <em>\"if you wish to reach the truth (the One), see Him with every eye! For the Real's self-disclosure is universal. In every form He has a face, and in every world He has a state. So watch, or do not watch\"</em> (p. 299) — a call that folds even faith, proof, and denial into the same all-encompassing gaze. The part closes with the announcement of Part 101, which will open with the Hundred-and-Twenty-Eighth Chapter on contentment with the Decree.",
+            "pt": "O Centésimo Vigésimo Sétimo Capítulo trata do abandono da vigilância — o momento mais filosófico e apofático da parte. O fato de o Real não se submeter a nenhum limite ou atributo é levado a um argumento de que Ele não pode ser um 'objeto vigiado': um poema aguça isso, <em>\"não pratiques a vigilância! Na existência não há nada além do Uno / Ele é a própria existência\"</em> (p. 298), e Dost continua: <em>\"Deus é o Vigilante, não o vigiado! Deus é o Guardião (Hafiz), não o guardado!\"</em> (p. 298). A parte se encerra numa nota que ressoa marcadamente com a própria postura do site de tentar compreender em vez de explicar: <em>\"se desejais alcançar a verdade (o Uno), vede-O com todo olho! Pois a autorrevelação do Real é universal. Em cada forma Ele tem um rosto, e em cada mundo Ele tem um estado. Então vigiai, ou não vigieis\"</em> (p. 299) — um chamado que dobra até a fé, a prova e a negação no mesmo olhar abrangente. A parte se encerra com o anúncio da Parte 101, que se abrirá com o Centésimo Vigésimo Oitavo Capítulo sobre a satisfação com o decreto."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım C, s. 298-299.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part C, pp. 298-299.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte C, pp. 298-299."
+          },
+          "caption": {
+            "tr": "Hak gözetleyendir, gözetlenen değil.",
+            "en": "The Real is the watcher, not the watched.",
+            "pt": "O Real é quem vigia, não quem é vigiado."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Hakk'ı Murâkabe Etmek",
+                "en": "Watching the Real",
+                "pt": "Vigiar o Real"
+              },
+              "note": {
+                "tr": "Hakk'ı bir nesne saymak",
+                "en": "treating the Real as an object",
+                "pt": "tratar o Real como um objeto"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Hak Gözetendir",
+                "en": "The Real Is the Watcher",
+                "pt": "O Real É Quem Vigia"
+              },
+              "note": {
+                "tr": "gözetlenen değil, bizzat gözeten",
+                "en": "not the watched, but the watcher itself",
+                "pt": "não o vigiado, mas o próprio vigilante"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım C (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part C (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte C (trad. Ekrem Demirli)"
+      },
+      "pageRange": "276-299"
+    }
+  ]
+}

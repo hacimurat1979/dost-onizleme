@@ -1,0 +1,426 @@
+{
+  "id": "c7k99",
+  "cilt": 7,
+  "kisim": 99,
+  "status": "active",
+  "title": {
+    "tr": "Gıybetten Şükre: Altı Makam",
+    "en": "From Backbiting to Gratitude: Six Stations",
+    "pt": "Da Maledicência à Gratidão: Seis Estações"
+  },
+  "pageRange": {
+    "tr": "s. 255-274",
+    "en": "pp. 255-274",
+    "pt": "pp. 255-274"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Kısım 98'in haset-gıpta kapanışından devam eden bu kısım, gıybetin kınanan ve övülen yüzlerinden kanaate, hırs-tamahın kalıcı bir makam oluşuna, tevekkül ve onun terkine (madum/varlık paradoksu), ve nihayet şükrün üç türüne uzanan altı makamı işliyor.",
+      "en": "Continuing from Part 98's close on envy and emulation, this part takes up six stations: from the blamed and praised faces of backbiting, through contentment, greed's status as a fixed station, to trust in God and its abandonment (the paradox of non-existence and existence), and finally the three kinds of gratitude.",
+      "pt": "Continuando a partir do fechamento da Parte 98 sobre a inveja e a emulação, esta parte trata de seis estações: das faces censuradas e louvadas da maledicência, passando pelo contentamento, a condição da ganância como uma estação fixa, até a confiança em Deus e seu abandono (o paradoxo da não-existência e da existência), e finalmente os três tipos de gratidão."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "99. Kısım, Yüz On Beşinci'den Yüz Yirminci Bölüme altı makamı altı kümede topluyor.",
+      "en": "Part 99 gathers six stations from the Hundred-and-Fifteenth to the Hundred-and-Twentieth Chapter into six clusters.",
+      "pt": "A Parte 99 reúne seis estações do Centésimo Décimo Quinto ao Centésimo Vigésimo Capítulo em seis grupos."
+    },
+    "tree": {
+      "id": "kisim-xcix-tree",
+      "label": {
+        "tr": "Doksan Dokuzuncu Kısım: Gıybetten Şükre",
+        "en": "Part Ninety-Nine: From Backbiting to Gratitude",
+        "pt": "Parte Noventa e Nove: Da Maledicência à Gratidão"
+      },
+      "note": {
+        "tr": "Gıybetle açılır, kanaat ve hırstan geçip tevekkül ve şükürle kapanır.",
+        "en": "Opens with backbiting, passes through contentment and greed, and closes with trust in God and gratitude.",
+        "pt": "Abre-se com a maledicência, passa pelo contentamento e a ganância, e encerra-se com a confiança em Deus e a gratidão."
+      },
+      "children": [
+        {
+          "id": "giybet-dal",
+          "label": {
+            "tr": "Gıybet (Bölüm 115)",
+            "en": "Backbiting (Ch. 115)",
+            "pt": "Maledicência (Cap. 115)"
+          },
+          "note": {
+            "tr": "kınanan ve övülen yüzleri",
+            "en": "its blamed and praised faces",
+            "pt": "suas faces censuradas e louvadas"
+          }
+        },
+        {
+          "id": "kanaat-dal",
+          "label": {
+            "tr": "Kanaat (Bölüm 116)",
+            "en": "Contentment (Ch. 116)",
+            "pt": "Contentamento (Cap. 116)"
+          },
+          "note": {
+            "tr": "Hz. Eyüb kıssası",
+            "en": "the story of Job",
+            "pt": "a história de Jó"
+          }
+        },
+        {
+          "id": "hirs-dal",
+          "label": {
+            "tr": "Hırs ve Tamah (Bölüm 117)",
+            "en": "Greed and Covetousness (Ch. 117)",
+            "pt": "Ganância e Cobiça (Cap. 117)"
+          },
+          "note": {
+            "tr": "bir makam, sabit ve kalıcı",
+            "en": "a station, fixed and lasting",
+            "pt": "uma estação, fixa e duradoura"
+          }
+        },
+        {
+          "id": "tevekkul-dal",
+          "label": {
+            "tr": "Tevekkül ve Terki (Bölüm 118-119)",
+            "en": "Trust in God and Its Abandonment (Ch. 118-119)",
+            "pt": "Confiança em Deus e Seu Abandono (Cap. 118-119)"
+          },
+          "note": {
+            "tr": "madum/varlık paradoksu",
+            "en": "the paradox of non-existence and existence",
+            "pt": "o paradoxo da não-existência e da existência"
+          }
+        },
+        {
+          "id": "sukur-dal",
+          "label": {
+            "tr": "Şükür (Bölüm 120)",
+            "en": "Gratitude (Ch. 120)",
+            "pt": "Gratidão (Cap. 120)"
+          },
+          "note": {
+            "tr": "lafzî, amelî, ilmî",
+            "en": "verbal, active, cognitive",
+            "pt": "verbal, ativa, cognitiva"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "giybetin-iki-yuzu",
+      "heading": {
+        "tr": "Gıybetin İki Yüzü: Mümin ve Fasık",
+        "en": "The Two Faces of Backbiting: The Believer and the Corrupt",
+        "pt": "As Duas Faces da Maledicência: O Crente e o Corrupto"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz On Beşinci Bölüm gıybeti (dedikodu) ele alıyor; tanım net: <em>\"Gıybet, duyduğunda üzüleceği şekilde üçüncü şahıs hakkında konuşmaktır ve müminlere haramdır. Hakkın ise gıybeti yapılamaz, çünkü O, 'duyan ve görendir'\"</em> (s. 256) — ama bu yasak, fasık (açıkça günahkâr) için geçerli değil: <em>\"Fâsığın gıybeti yoktur... Hz. Peygamber bir olumsuzlamadan değil yasaktan söz etmiştir\"</em> (s. 257) — mümin 'kalkanın ardında', gizli/gayb hâlde korunurken, fasığın bu korumadan mahrum kaldığı bir ayrım. Dost, gıybetin paradoksal bir faydasını da not ediyor: <em>\"Gıybet yapan kişi, gıybetten hoşlanmasa bile, gıybetini yaptığı insana bir iyilik yapmaktadır\"</em> (s. 259) — ve varlık-yokluk metafiziğine bağlıyor: <em>\"Hak 'varlık' olduğu gibi gıybet de 'varlıktır' (vardır), yokluk değildir\"</em> (s. 259) — kısım 98'in haset-gıpta kapanışıyla aynı ilkeyi (doğal bir niteliğin kullanım yerine göre değer kazanması) tekrarlayan bir okuma.",
+            "en": "The Hundred-and-Fifteenth Chapter takes up backbiting; the definition is clear: <em>\"backbiting is speaking of a third person in a way that would grieve him were he to hear it, and it is forbidden to believers. The Real, however, cannot be backbitten, for He is 'the Hearing, the Seeing'\"</em> (p. 256) — yet this prohibition does not hold for the corrupt (openly sinning) person: <em>\"there is no backbiting of the corrupt... the Prophet spoke not of a negation but of a prohibition\"</em> (p. 257) — a distinction in which the believer remains protected 'behind a shield,' hidden/unseen, while the corrupt is deprived of this protection. Dost also notes a paradoxical benefit of backbiting: <em>\"the one who backbites, even without enjoying it, does a good deed to the person he backbites\"</em> (p. 259) — and ties this to the metaphysics of existence and non-existence: <em>\"just as the Real is 'existence,' backbiting too 'is' (exists), it is not non-existence\"</em> (p. 259) — a reading that repeats the same principle as Part 98's close on envy and emulation, that a natural quality gains value according to its use.",
+            "pt": "O Centésimo Décimo Quinto Capítulo trata da maledicência; a definição é clara: <em>\"a maledicência é falar de um terceiro de um modo que o entristeceria se ele ouvisse, e é proibida aos crentes. O Real, porém, não pode ser objeto de maledicência, pois Ele é 'o Ouvinte, o Vidente'\"</em> (p. 256) — mas essa proibição não vale para o corrupto (aquele que peca abertamente): <em>\"não há maledicência do corrupto... o Profeta falou não de uma negação, mas de uma proibição\"</em> (p. 257) — uma distinção em que o crente permanece protegido 'atrás de um escudo', oculto/invisível, enquanto o corrupto é privado dessa proteção. Dost também nota um benefício paradoxal da maledicência: <em>\"aquele que faz maledicência, mesmo sem gostar disso, faz uma boa ação à pessoa de quem fala mal\"</em> (p. 259) — e liga isso à metafísica da existência e da não-existência: <em>\"assim como o Real é 'existência', a maledicência também 'é' (existe), não é não-existência\"</em> (p. 259) — uma leitura que repete o mesmo princípio do fechamento da Parte 98 sobre a inveja e a emulação, de que uma qualidade natural ganha valor conforme seu uso."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCIX, s. 256-259.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCIX, pp. 256-259.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCIX, pp. 256-259."
+          },
+          "caption": {
+            "tr": "Kalkanın ardındaki korunur, dışındaki korunmaz.",
+            "en": "The one behind the shield is protected; the one outside it is not.",
+            "pt": "Aquele atrás do escudo é protegido; aquele fora dele não é."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Mümin",
+                "en": "The Believer",
+                "pt": "O Crente"
+              },
+              "note": {
+                "tr": "kalkanın ardında, gayb",
+                "en": "behind the shield, unseen",
+                "pt": "atrás do escudo, invisível"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Fasık",
+                "en": "The Corrupt",
+                "pt": "O Corrupto"
+              },
+              "note": {
+                "tr": "korumadan mahrum, zâhir",
+                "en": "deprived of protection, exposed",
+                "pt": "privado de proteção, exposto"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "kanaat-ve-eyub-kissasi",
+      "heading": {
+        "tr": "Kanaat: Hz. Eyüb'ün Reddettiği Müstağnilik",
+        "en": "Contentment: The Self-Sufficiency Job Refused",
+        "pt": "Contentamento: A Autossuficiência Que Jó Recusou"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz On Altıncı Bölüm kanaati ele alıyor; kanaat, pasif bir yetinme değil aktif bir istek olarak tanımlanıyor: <em>\"Kâni, isteyen demektir... İstek ise, başkasından değil, Allah'tan yapılır\"</em> (s. 261). Hz. Eyüb'ün (as.) kıssası — kısım 96'da da gördüğümüz bir sahne — burada yeniden karşımıza çıkıyor: Allah onu zenginlikten müstağni kılınca Eyüb <em>\"Rabbim! Ben senin verdiğin iyilikten müstağni kalamam\"</em> diye cevap veriyor (s. 260) — kanaatin, nimeti reddetmek değil, nimeti Hak'tan bilerek istemeye devam etmek olduğu bir okuma.",
+            "en": "The Hundred-and-Sixteenth Chapter takes up contentment; contentment is defined not as passive sufficiency but as an active wish: <em>\"content (qani) means one who wishes... and the wish is made not of another, but of God\"</em> (p. 261). The story of Job (peace be upon him) — a scene we have already seen in Part 96 — reappears here: when God frees him from need for wealth, Job answers, <em>\"my Lord! I cannot be free of need for the good You have given\"</em> (p. 260) — a reading in which contentment is not rejecting the blessing, but continuing to wish for it while knowing it comes from the Real.",
+            "pt": "O Centésimo Décimo Sexto Capítulo trata do contentamento; o contentamento é definido não como suficiência passiva, mas como um desejo ativo: <em>\"contente (qani) significa aquele que deseja... e o desejo é feito não de outro, mas de Deus\"</em> (p. 261). A história de Jó (a paz esteja com ele) — uma cena que já vimos na Parte 96 — reaparece aqui: quando Deus o liberta da necessidade de riqueza, Jó responde, <em>\"meu Senhor! Não posso me livrar da necessidade do bem que Você me deu\"</em> (p. 260) — uma leitura em que o contentamento não é rejeitar a bênção, mas continuar a desejá-la sabendo que ela vem do Real."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hirs-ve-tamah",
+      "heading": {
+        "tr": "Hırs ve Tamah: Bir Makam, Bir Hal Değil",
+        "en": "Greed and Covetousness: A Station, Not a State",
+        "pt": "Ganância e Cobiça: Uma Estação, Não um Estado"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz On Yedinci Bölüm hırs ve tamahı ele alıyor — kısım 98'in kapanışındaki 'doğal nitelik, kullanım yerine göre değer kazanır' ilkesinin doğrudan devamı olarak. Hırs, geçici bir hal değil kalıcı bir makam olarak sunuluyor: <em>\"İnsan... bu iki nitelikte yaratılmıştır... hırs bir makamdır, hal değildir! Çünkü sabittir\"</em> (s. 262) — övülen ve kınanan hırs arasındaki ayrım, âriflerin bile belirli şartlarla 'tamahkâr' olabileceği bir okumaya açılıyor: hırsın yönü Hakk'a doğruysa övülüyor, dünyaya doğruysa kınanıyor.",
+            "en": "The Hundred-and-Seventeenth Chapter takes up greed and covetousness — as a direct continuation of Part 98's closing principle that a natural quality gains value according to its use. Greed is presented not as a passing state but as a lasting station: <em>\"the human being... was created with these two qualities... greed is a station, not a state! For it is fixed\"</em> (p. 262) — the distinction between praised and blamed greed opens onto a reading in which even the knowers can be 'covetous' under certain conditions: greed is praised when directed toward the Real, blamed when directed toward the world.",
+            "pt": "O Centésimo Décimo Sétimo Capítulo trata da ganância e da cobiça — como continuação direta do princípio de fechamento da Parte 98, de que uma qualidade natural ganha valor conforme seu uso. A ganância é apresentada não como um estado passageiro, mas como uma estação duradoura: <em>\"o ser humano... foi criado com essas duas qualidades... a ganância é uma estação, não um estado! Pois é fixa\"</em> (p. 262) — a distinção entre ganância louvada e censurada se abre para uma leitura em que até os conhecedores podem ser 'cobiçosos' sob certas condições: a ganância é louvada quando dirigida ao Real, censurada quando dirigida ao mundo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tevekkul-ve-uc-bakis",
+      "heading": {
+        "tr": "Tevekkül: Vekâlete Dair Üç Bakış",
+        "en": "Trust in God: Three Views on Vicegerency",
+        "pt": "Confiança em Deus: Três Visões sobre a Vice-Regência"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz On Sekizinci Bölüm tevekkülü ele alıyor; tanım şöyle: <em>\"Tevekkül, âlemde konulmuş olan... sebeplerin yoksunluğundan sıkıntı duymadan kalbin Allah'a itimat etmesi demektir\"</em> (s. 265). Bu, eşyanın kimin için yaratıldığına dair üç bakış açısıyla derinleşiyor: bir kutsî hadis eşyanın insan için, insanın da Hak için yaratıldığını söylerken (<em>\"Âdemoğlu! Eşyayı senin için, seni kendim için yarattım\"</em>, s. 266), üçüncü bir bakış bu ikisini birleştiriyor: <em>\"Bu bakış ise -latifliği nedeniyle- herkesçe farkına varılmayan ince bir berzah, önceki iki bakışı birleştiren ve iki hükmü sabit kılan şeydir\"</em> (s. 267) — sitenin kendi 'berzah' vurgusuyla da örtüşen üçlü bir sentez.",
+            "en": "The Hundred-and-Eighteenth Chapter takes up trust in God (tawakkul); the definition runs thus: <em>\"trust in God means the heart's reliance on God without distress over the absence of the causes established in the world\"</em> (p. 265). This deepens through three views on for whom things were created: while a sacred hadith says things were created for the human being, and the human being for the Real (<em>\"O son of Adam! I created things for you, and you for Myself\"</em>, p. 266), a third view unites these two: <em>\"this view, however, is — due to its subtlety — a fine barzakh not perceived by everyone, uniting the two previous views and establishing both judgments\"</em> (p. 267) — a threefold synthesis resonating with the site's own emphasis on the barzakh.",
+            "pt": "O Centésimo Décimo Oitavo Capítulo trata da confiança em Deus (tawakkul); a definição é a seguinte: <em>\"confiança em Deus significa a confiança do coração em Deus sem angústia pela ausência das causas estabelecidas no mundo\"</em> (p. 265). Isso se aprofunda através de três visões sobre para quem as coisas foram criadas: enquanto um hadith sagrado diz que as coisas foram criadas para o ser humano, e o ser humano para o Real (<em>\"ó filho de Adão! Criei as coisas para você, e você para Mim mesmo\"</em>, p. 266), uma terceira visão une essas duas: <em>\"essa visão, porém, é — devido à sua sutileza — um fino barzakh não percebido por todos, unindo as duas visões anteriores e estabelecendo ambos os julgamentos\"</em> (p. 267) — uma síntese tripla que ressoa com a própria ênfase do site no barzakh."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCIX, s. 266-267.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCIX, pp. 266-267.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCIX, pp. 266-267."
+          },
+          "caption": {
+            "tr": "Eşyanın yaratılışına dair üç bakış; üçüncüsü ilk ikisini birleştiren bir berzah.",
+            "en": "Three views on the creation of things; the third a barzakh uniting the first two.",
+            "pt": "Três visões sobre a criação das coisas; a terceira um barzakh que une as duas primeiras."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "İnsan İçin",
+                "en": "For the Human Being",
+                "pt": "Para o Ser Humano"
+              },
+              "note": {
+                "tr": "eşya insana hizmet eder",
+                "en": "things serve the human being",
+                "pt": "as coisas servem ao ser humano"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Berzah",
+                "en": "Barzakh",
+                "pt": "Barzakh"
+              },
+              "note": {
+                "tr": "ikisini birleştiren ince ara",
+                "en": "the fine interval uniting both",
+                "pt": "o fino intervalo que une ambas"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Allah İçin",
+                "en": "For God",
+                "pt": "Para Deus"
+              },
+              "note": {
+                "tr": "insan Hakk'a hizmet eder",
+                "en": "the human being serves the Real",
+                "pt": "o ser humano serve ao Real"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "tevekkulu-terk",
+      "heading": {
+        "tr": "Tevekkülü Terk: Madum ve Varlık Paradoksu",
+        "en": "The Abandonment of Trust in God: The Paradox of Non-Existence and Existence",
+        "pt": "O Abandono da Confiança em Deus: O Paradoxo da Não-Existência e da Existência"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz On Dokuzuncu Bölüm tevekkülün terkini ele alıyor; burada gıybet bahsindeki varlık-yokluk metafiziğinin tam tersi bir yönde işlediğini görüyoruz — orada varlık övülürken, burada gerçek tevekkül ancak 'madum'a (henüz var olmayana) ait olabiliyor: <em>\"Madum (var olmayan), var olana kadar tevekkülle nitelenmiştir. Var olduğunda ise, tevekkül ondan çıkar. 'Tevekkülün terki' denilen şey de budur\"</em> (s. 268) — bu, kısmın kendi içinde varlık kavramına iki farklı değer verdiği, dikkatle okunması gereken bir gerilim (kesin bir çözüm iddia etmeden not düşülüyor). Ebu Medyen'in tevekkül hâlinden sonradan ayrılıp ayrılmadığına dair bir anekdotta Dost'un kendisi bile emin değil: <em>\"Öldük, ama yine de tevekkül kokusu duymadık\"</em> (s. 267-268) — nadir bir açık belirsizlik anı.",
+            "en": "The Hundred-and-Nineteenth Chapter takes up the abandonment of trust in God; here we see the metaphysics of existence and non-existence from the chapter on backbiting operating in exactly the opposite direction — there existence was praised, while here true trust in God can belong only to the 'non-existent' (that which has not yet come to be): <em>\"the non-existent thing is qualified by trust in God until it comes to exist. Once it exists, trust in God departs from it. This is what is called 'the abandonment of trust in God'\"</em> (p. 268) — a tension, worth reading carefully, in which the part assigns two different values to the concept of existence within itself (noted here without claiming a definite resolution). In an anecdote about whether Abu Madyan later departed from his state of trust in God, even Dost himself is uncertain: <em>\"we died, yet still we caught no scent of trust in God\"</em> (pp. 267-268) — a rare moment of open uncertainty.",
+            "pt": "O Centésimo Décimo Nono Capítulo trata do abandono da confiança em Deus; aqui vemos a metafísica da existência e da não-existência do capítulo sobre a maledicência operando na direção exatamente oposta — ali a existência era louvada, enquanto aqui a verdadeira confiança em Deus só pode pertencer ao 'não-existente' (aquilo que ainda não veio a ser): <em>\"a coisa não-existente é qualificada pela confiança em Deus até que passe a existir. Uma vez que existe, a confiança em Deus a abandona. É isso que se chama 'o abandono da confiança em Deus'\"</em> (p. 268) — uma tensão, que merece ser lida com cuidado, em que a parte atribui dois valores diferentes ao conceito de existência dentro de si mesma (anotada aqui sem afirmar uma resolução definitiva). Numa anedota sobre se Abu Madyan mais tarde se afastou de seu estado de confiança em Deus, até o próprio Dost está incerto: <em>\"morremos, mas ainda assim não sentimos o aroma da confiança em Deus\"</em> (pp. 267-268) — um raro momento de incerteza aberta."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCIX, s. 268.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCIX, p. 268.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCIX, p. 268."
+          },
+          "caption": {
+            "tr": "Tevekkül madumun sıfatıdır; var olunca ondan çıkar.",
+            "en": "Trust in God is the non-existent thing's attribute; it departs once existence occurs.",
+            "pt": "A confiança em Deus é o atributo da coisa não-existente; ela a abandona quando a existência ocorre."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Tevekkül",
+                "en": "Trust in God",
+                "pt": "Confiança em Deus"
+              },
+              "note": {
+                "tr": "madumun (henüz var olmayanın) sıfatı",
+                "en": "the attribute of the non-existent",
+                "pt": "o atributo do não-existente"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Tevekkülün Terki",
+                "en": "The Abandonment of Trust",
+                "pt": "O Abandono da Confiança"
+              },
+              "note": {
+                "tr": "varlığa geçince ondan çıkar",
+                "en": "departs once existence occurs",
+                "pt": "a abandona quando a existência ocorre"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "sukur-ve-uc-tur",
+      "heading": {
+        "tr": "Şükür: Lafzî, Amelî, İlmî",
+        "en": "Gratitude: Verbal, Active, Cognitive",
+        "pt": "Gratidão: Verbal, Ativa, Cognitiva"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz Yirminci Bölüm şükrü ele alıyor; eş-Şekûr ve eş-Şakir isimleri üzerinden üç şükür türü ayrıştırılıyor: lafzî (dille), amelî (fiille) ve ilmî (bilgiyle) şükür. Hz. Musa'ya (as.) atfedilen bir hadis, en derin şükür türünün nimeti bizzat Hak'tan bilmek olduğunu gösteriyor: <em>\"Musa! Nimeti benden bilince bana hakkıyla şükretmişsin demektir\"</em> (s. 273) — şükrün, bir teşekkür ritüelinden çok, nimetin kaynağını doğru yerde görmekle ilgili bir bilgi/idrak meselesi olduğu bir okuma. Kısım, doksanıncı kısma ('Şükrün Terki') geçişe hazırlanarak kapanıyor.",
+            "en": "The Hundred-and-Twentieth Chapter takes up gratitude; through the names al-Shakur and al-Shakir, three kinds of gratitude are distinguished: verbal (through the tongue), active (through deeds), and cognitive (through knowledge). A hadith attributed to Moses (peace be upon him) shows that the deepest kind of gratitude is knowing the blessing to be from the Real Himself: <em>\"Moses! When you know the blessing to be from Me, you have thanked Me as is My due\"</em> (p. 273) — a reading in which gratitude is a matter of knowledge/perception, of seeing the blessing's source rightly, rather than a ritual of thanks. The part closes, preparing for the transition to Part 100 ('The Abandonment of Gratitude').",
+            "pt": "O Centésimo Vigésimo Capítulo trata da gratidão; através dos nomes al-Shakur e al-Shakir, três tipos de gratidão são distinguidos: verbal (pela língua), ativa (pelos atos), e cognitiva (pelo conhecimento). Um hadith atribuído a Moisés (a paz esteja com ele) mostra que o tipo mais profundo de gratidão é saber que a bênção vem do próprio Real: <em>\"Moisés! Quando você sabe que a bênção vem de Mim, você Me agradeceu como é devido\"</em> (p. 273) — uma leitura em que a gratidão é uma questão de conhecimento/percepção, de ver corretamente a fonte da bênção, mais do que um ritual de agradecimento. A parte se encerra, preparando a transição para a Parte 100 ('O Abandono da Gratidão')."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCIX, s. 271-273.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCIX, pp. 271-273.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCIX, pp. 271-273."
+          },
+          "caption": {
+            "tr": "Şükrün üç türü, giderek derinleşen bir idrake işaret ediyor.",
+            "en": "Three kinds of gratitude, pointing to an increasingly deep perception.",
+            "pt": "Três tipos de gratidão, apontando para uma percepção cada vez mais profunda."
+          },
+          "tree": {
+            "id": "sukur-tree",
+            "label": {
+              "tr": "Şükür",
+              "en": "Gratitude",
+              "pt": "Gratidão"
+            },
+            "note": {
+              "tr": "dilden bilgiye derinleşen üç tür",
+              "en": "three kinds deepening from the tongue to knowledge",
+              "pt": "três tipos que se aprofundam da língua ao conhecimento"
+            },
+            "children": [
+              {
+                "id": "sukur-lafzi",
+                "label": {
+                  "tr": "Lafzî",
+                  "en": "Verbal",
+                  "pt": "Verbal"
+                },
+                "note": {
+                  "tr": "dille teşekkür",
+                  "en": "thanks through the tongue",
+                  "pt": "agradecimento pela língua"
+                }
+              },
+              {
+                "id": "sukur-ameli",
+                "label": {
+                  "tr": "Amelî",
+                  "en": "Active",
+                  "pt": "Ativa"
+                },
+                "note": {
+                  "tr": "fiille teşekkür",
+                  "en": "thanks through deeds",
+                  "pt": "agradecimento pelos atos"
+                }
+              },
+              {
+                "id": "sukur-ilmi",
+                "label": {
+                  "tr": "İlmî",
+                  "en": "Cognitive",
+                  "pt": "Cognitiva"
+                },
+                "note": {
+                  "tr": "nimetin kaynağını bilme",
+                  "en": "knowing the blessing's source",
+                  "pt": "conhecer a fonte da bênção"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XCIX (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XCIX (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XCIX (trad. Ekrem Demirli)"
+      },
+      "pageRange": "255-274"
+    }
+  ]
+}

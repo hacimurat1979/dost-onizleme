@@ -1,0 +1,411 @@
+{
+  "id": "c7k90",
+  "cilt": 7,
+  "kisim": 90,
+  "status": "active",
+  "title": {
+    "tr": "Sevgi Şarabından Gizli İsme",
+    "en": "From the Wine of Love to the Hidden Name",
+    "pt": "Do Vinho do Amor ao Nome Oculto"
+  },
+  "pageRange": {
+    "tr": "s. 16-47",
+    "en": "pp. 16-47",
+    "pt": "pp. 16-47"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Cilt VII'nin ve Onüçüncü Sifr'in açılışı olan bu kısım, kısım 89'un sevgi/kenz-i mahfi temasından devam ederek yirmi dokuz sınama sorusunu (118-146) hızla kat ediyor: iki şarap, kabzanın itiraf edilen sırrı, Hakk'ın bakışı, ism-i azam ve Süleyman'ın arkadaşının gizli isminden, harflerin metafiziğine ve Âdem'in suretine uzanan geniş bir yay.",
+      "en": "Opening Volume VII and the Thirteenth Sifr, this part continues from Part 89's theme of love and the hidden treasure, moving rapidly through twenty-nine testing questions (118-146): a wide arc from two wines, the confessed mystery of contraction, the Real's gaze, the greatest name and the hidden name known to Solomon's companion, to the metaphysics of letters and the form of Adam.",
+      "pt": "Abrindo o Volume VII e o Décimo Terceiro Sifr, esta parte continua o tema do amor e do tesouro oculto da Parte 89, percorrendo rapidamente vinte e nove perguntas de prova (118-146): um amplo arco de dois vinhos, o mistério confessado da contração, o olhar do Real, o nome maior e o nome oculto conhecido pelo companheiro de Salomão, até a metafísica das letras e a forma de Adão."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "90. Kısım, Tirmizî'nin 118-146. sorularını (29 soru) altı kümede topluyor.",
+      "en": "Part 90 gathers al-Tirmidhi's questions 118 through 146 (29 questions) into six clusters.",
+      "pt": "A Parte 90 reúne as perguntas 118 a 146 de al-Tirmidhi (29 perguntas) em seis grupos."
+    },
+    "tree": {
+      "id": "kisim-xc-tree",
+      "label": {
+        "tr": "Doksanıncı Kısım: Sevgi Şarabından Gizli İsme",
+        "en": "Part Ninety: From the Wine of Love to the Hidden Name",
+        "pt": "Parte Noventa: Do Vinho do Amor ao Nome Oculto"
+      },
+      "note": {
+        "tr": "Sevginin devamıyla açılır, kabza, bakış, isimler ve harflerden geçip Âdem'in suretiyle kapanır.",
+        "en": "Opens with the continuation of love, passes through contraction, gaze, names and letters, and closes with the form of Adam.",
+        "pt": "Abre-se com a continuação do amor, passa pela contração, o olhar, os nomes e as letras, e encerra-se com a forma de Adão."
+      },
+      "children": [
+        {
+          "id": "sevgi-dal",
+          "label": {
+            "tr": "İki Şarap (Soru 118-119)",
+            "en": "Two Wines (Q118-119)",
+            "pt": "Dois Vinhos (P118-119)"
+          },
+          "note": {
+            "tr": "el-Cemîl, sarhoş eden/etmeyen şarap",
+            "en": "al-Jamil, the wine that intoxicates and the one that does not",
+            "pt": "al-Jamil, o vinho que embriaga e o que não embriaga"
+          }
+        },
+        {
+          "id": "kabz-dal",
+          "label": {
+            "tr": "Kabzanın Sırrı (Soru 120-122)",
+            "en": "The Mystery of Contraction (Q120-122)",
+            "pt": "O Mistério da Contração (P120-122)"
+          },
+          "note": {
+            "tr": "Dost'un itiraf ettiği bilmediği bir sır",
+            "en": "a mystery Dost admits he does not know",
+            "pt": "um mistério que Dost admite não conhecer"
+          }
+        },
+        {
+          "id": "bakis-dal",
+          "label": {
+            "tr": "Hakk'ın Bakışı, Beraberlik (Soru 123-129)",
+            "en": "The Real's Gaze, Companionship (Q123-129)",
+            "pt": "O Olhar do Real, a Companhia (P123-129)"
+          },
+          "note": {
+            "tr": "yirmi dört bin kere yöneliş, zikrin mahiyeti",
+            "en": "turning twenty-four thousand times, the nature of remembrance",
+            "pt": "voltar-se vinte e quatro mil vezes, a natureza da lembrança"
+          }
+        },
+        {
+          "id": "isim-dal",
+          "label": {
+            "tr": "İsimler ve İsm-i Azam (Soru 130-139)",
+            "en": "Names and the Greatest Name (Q130-139)",
+            "pt": "Os Nomes e o Nome Maior (P130-139)"
+          },
+          "note": {
+            "tr": "Süleyman'ın arkadaşının gizli ismi",
+            "en": "the hidden name known to Solomon's companion",
+            "pt": "o nome oculto conhecido pelo companheiro de Salomão"
+          }
+        },
+        {
+          "id": "harf-dal",
+          "label": {
+            "tr": "Harflerin Metafiziği (Soru 140-142)",
+            "en": "The Metaphysics of Letters (Q140-142)",
+            "pt": "A Metafísica das Letras (P140-142)"
+          },
+          "note": {
+            "tr": "Elif-Nun-Elif, yirmi sekiz harf",
+            "en": "Alif-Nun-Alif, twenty-eight letters",
+            "pt": "Alif-Nun-Alif, vinte e oito letras"
+          }
+        },
+        {
+          "id": "adem-dal",
+          "label": {
+            "tr": "Âdem'in Sureti, Ümmetin Önceliği (Soru 143-146)",
+            "en": "The Form of Adam, the Priority of the Community (Q143-146)",
+            "pt": "A Forma de Adão, a Prioridade da Comunidade (P143-146)"
+          },
+          "note": {
+            "tr": "küçük insan, büyük âlemin özeti",
+            "en": "the small human being, summary of the great world",
+            "pt": "o pequeno ser humano, resumo do grande mundo"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "sevginin-devami-ve-iki-sarap",
+      "heading": {
+        "tr": "Sevginin Devamı: İki Şarap",
+        "en": "The Continuation of Love: Two Wines",
+        "pt": "A Continuação do Amor: Dois Vinhos"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, Cilt VI'nın kısım 89'unun kapandığı yerden — kenz-i mahfi ve sevgi kâsesinden — doğrudan devam ediyor: yüz on sekizinci soru sevginin kaynağını sorguluyor, cevap onu el-Cemîl isminin bir tecellisi olarak sunuyor: <em>\"Sevginin kaynağı, Hakk'ın el-Cemîl ismindeki tecellisidir... Öyleyse bütün âlem, Allah'ı sever\"</em> (s. 16). Dost, seven ile ârif arasına keskin bir çizgi çekiyor: <em>\"seven, hiçbir zaman ârif olamazken ârif de hiçbir zaman seven olamaz. Buradan, seven âriften ayrıldığı gibi mârifet de muhabbetten ayrışır\"</em> (s. 18) — ve kulun sevgisinin bile aslında kendi fiili olmadığını hatırlatıyor: <em>\"Öyleyse sen, sevensin, (ama) seven değilsin. 'Atmadın, attığında, fakat Allah attı...'\"</em> (s. 19). Yüz on dokuzuncu soru bu sevgiyi iki 'şarab'a ayırıyor: İsra gecesinin sarhoş edici şarabı (yalnızca Peygamber'in içtiği, ümmetin taşkınlığa düşmemesi için ondan esirgenen) ve sarhoş etmeyen 'süt şarabı' (kulun Hakk'ı sevmesi, Peygamber'in fiilen içtiği).",
+            "en": "The part continues directly from where Part 89 of Volume VI closed — the hidden treasure and the cup of love: the hundred-and-eighteenth question inquires into the source of love, and the answer presents it as a theophany of the name al-Jamil: <em>\"the source of love is the Real's theophany in the name al-Jamil... thus the entire world loves God\"</em> (p. 16). Dost draws a sharp line between the lover and the knower: <em>\"the lover can never be a knower, while the knower can never be a lover. From this, just as the lover is distinguished from the knower, knowledge is distinguished from love\"</em> (p. 18) — reminding us that even the servant's love is not, in truth, his own act: <em>\"thus you are a lover, yet not a lover. 'You did not throw when you threw, but God threw...'\"</em> (p. 19). The hundred-and-nineteenth question divides this love into two 'wines': the intoxicating wine of the Night Journey (drunk only by the Prophet, withheld from the community lest it fall into excess) and the non-intoxicating 'milk wine' (the servant's love of the Real, actually drunk by the Prophet).",
+            "pt": "A parte continua diretamente de onde a Parte 89 do Volume VI se encerrou — o tesouro oculto e a taça do amor: a centésima décima oitava pergunta questiona a origem do amor, e a resposta a apresenta como uma teofania do nome al-Jamil: <em>\"a origem do amor é a teofania do Real no nome al-Jamil... assim, todo o mundo ama a Deus\"</em> (p. 16). Dost traça uma linha nítida entre o amante e o conhecedor: <em>\"o amante nunca pode ser um conhecedor, enquanto o conhecedor nunca pode ser um amante. A partir disso, assim como o amante se distingue do conhecedor, o conhecimento se distingue do amor\"</em> (p. 18) — lembrando que mesmo o amor do servo não é, em verdade, seu próprio ato: <em>\"assim, você é um amante, mas não é um amante. 'Você não lançou quando lançou, mas Deus lançou...'\"</em> (p. 19). A centésima décima nona pergunta divide esse amor em dois 'vinhos': o vinho inebriante da Viagem Noturna (bebido apenas pelo Profeta, retido da comunidade para que não caísse em excesso) e o 'vinho de leite' não inebriante (o amor do servo pelo Real, efetivamente bebido pelo Profeta)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XC, s. 18-20.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XC, pp. 18-20.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XC, pp. 18-20."
+          },
+          "caption": {
+            "tr": "İki şarap: biri sarhoş eder ve esirgenir, öbürü sarhoş etmez ve fiilen içilir.",
+            "en": "Two wines: one intoxicates and is withheld, the other does not intoxicate and is actually drunk.",
+            "pt": "Dois vinhos: um embriaga e é retido, o outro não embriaga e é efetivamente bebido."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "İsra Şarabı",
+                "en": "The Wine of the Night Journey",
+                "pt": "O Vinho da Viagem Noturna"
+              },
+              "note": {
+                "tr": "sarhoş eder, ümmetten esirgenir",
+                "en": "intoxicates, withheld from the community",
+                "pt": "embriaga, retido da comunidade"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Süt Şarabı",
+                "en": "The Milk Wine",
+                "pt": "O Vinho de Leite"
+              },
+              "note": {
+                "tr": "sarhoş etmez, fiilen içilir",
+                "en": "does not intoxicate, actually drunk",
+                "pt": "não embriaga, efetivamente bebido"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "kabzanin-itiraf-edilen-sirri",
+      "heading": {
+        "tr": "Kabzanın İtiraf Edilen Sırrı",
+        "en": "The Confessed Mystery of Contraction",
+        "pt": "O Mistério Confessado da Contração"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz yirmi - yüz yirmi ikinci sorular kabzayı (sıkışma/daralma hâli) sorguluyor; Dost burada nadir bir dürüstlükle kendi bilgisinin sınırını itiraf ediyor: <em>\"Bunun niçin böyle olduğunu bilmediğimiz gibi bilinebilir bir şey olup olmadığını da bilmiyoruz... Allah, bunu bilene merhamet etsin!\"</em> (s. 21) — kabzanın 'on dört fasıl, beş asıl' biçimindeki gizemli yapısı hakkında. Bu itiraf bir 'kuyu' imgesiyle pekişiyor: <em>\"Burada derin bir kuyu vardır ki ona kısmen şöyle işaret edebiliriz... Bu ise tasavvurdan uzak dipsiz bir kuyudur\"</em> (s. 23) — kısmın nadir 'açıkça bilmiyorum' dediği yerlerden biri, sitenin kendi kökensel duruşuyla ('biz de bilmiyoruz, ama anlamaya çalışmaktan vazgeçmiyoruz') çarpıcı bir yakınlık taşıyor. Kabz, esma.json'da kayıtlı el-Kābıd ismiyle doğrudan örtüşüyor; klasik tasavvufta kabzanın karşıtı olan bast (açılma/genişleme, el-Bâsıt) burada işlenmese de, ikilinin klasik eşleşmesi hatırda tutulmaya değer.",
+            "en": "The hundred-and-twentieth through hundred-and-twenty-second questions inquire into qabd (the state of contraction/constriction); here Dost confesses, with rare honesty, the limit of his own knowledge: <em>\"just as we do not know why this is so, we do not know whether it is even something that can be known... may God have mercy on whoever knows this!\"</em> (p. 21) — regarding contraction's mysterious structure of 'fourteen chapters, five roots.' This admission is reinforced by the image of a well: <em>\"here there is a deep well to which we can point only partially... this is a bottomless well beyond conception\"</em> (p. 23) — one of the part's rare places of openly saying 'we do not know,' bearing a striking closeness to the site's own foundational stance ('we too do not know, yet we do not give up trying to understand'). Contraction directly overlaps with the name al-Qabid recorded in esma.json; though its classical counterpart bast (expansion, al-Basit) is not treated here, the pair's classical coupling is worth keeping in mind.",
+            "pt": "A centésima vigésima até a centésima vigésima segunda perguntas questionam qabd (o estado de contração/constrição); aqui Dost confessa, com rara honestidade, o limite de seu próprio conhecimento: <em>\"assim como não sabemos por que isso é assim, também não sabemos se é sequer algo que pode ser conhecido... que Deus tenha misericórdia de quem sabe disso!\"</em> (p. 21) — a respeito da estrutura misteriosa da contração, de 'catorze capítulos, cinco raízes'. Essa confissão se reforça com a imagem de um poço: <em>\"aqui há um poço profundo ao qual só podemos apontar parcialmente... este é um poço sem fundo, além da concepção\"</em> (p. 23) — um dos raros lugares da parte em que se diz abertamente 'não sabemos', guardando uma proximidade impressionante com a própria postura fundacional do site ('nós também não sabemos, mas não desistimos de tentar compreender'). A contração se sobrepõe diretamente ao nome al-Qabid registrado em esma.json; embora seu contraparte clássico bast (expansão, al-Basit) não seja tratado aqui, o emparelhamento clássico da dupla merece ser lembrado."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XC, s. 21-23.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XC, pp. 21-23.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XC, pp. 21-23."
+          },
+          "caption": {
+            "tr": "Kabz burada işleniyor; bast klasik olarak onun karşıtıdır.",
+            "en": "Contraction is treated here; expansion is its classical counterpart.",
+            "pt": "A contração é tratada aqui; a expansão é seu contraparte clássico."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Kabz",
+                "en": "Contraction",
+                "pt": "Contração"
+              },
+              "note": {
+                "tr": "sıkışma, on dört fasıl — bir sır",
+                "en": "constriction, fourteen chapters — a mystery",
+                "pt": "constrição, catorze capítulos — um mistério"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Bast",
+                "en": "Expansion",
+                "pt": "Expansão"
+              },
+              "note": {
+                "tr": "açılma — klasik karşıtı",
+                "en": "expansion — its classical counterpart",
+                "pt": "expansão — seu contraparte clássico"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "hakkin-bakisi-ve-beraberlik",
+      "heading": {
+        "tr": "Hakk'ın Bakışı, Beraberlik ve Zikrin Mahiyeti",
+        "en": "The Real's Gaze, Companionship, and the Nature of Remembrance",
+        "pt": "O Olhar do Real, a Companhia e a Natureza da Lembrança"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz yirmi üç - yüz yirmi dokuzuncu sorular Hakk'ın kullarına bakışını, farklı toplulukların O'nunla beraberliğini ve zikrin mahiyetini ele alıyor. Sayısal bir hassasiyetle: <em>\"Hak her gün seçkinlerine yirmi dört bin kere yönelir\"</em> (s. 28) — ve bu bakışın sevgiyle nasıl bir karşılıklılık kurduğunu şu cümleyle özetliyor: <em>\"Kulu Rabbi sevdiğinde, Rabbi onun kendisiyle duyduğu kulağı, kendisiyle gördüğü gözü olur\"</em> (s. 29) — nafile ibadetler hadisinin burada yeniden, bakış ve zikir bağlamında karşımıza çıkışı.",
+            "en": "The hundred-and-twenty-third through hundred-and-twenty-ninth questions take up the Real's gaze upon His servants, the differing companionship of various groups with Him, and the nature of remembrance. With numerical precision: <em>\"the Real turns toward His elect twenty-four thousand times each day\"</em> (p. 28) — and it summarizes how this gaze forms a reciprocity with love: <em>\"when the Lord loves His servant, the Lord becomes the ear with which he hears and the eye with which he sees\"</em> (p. 29) — the hadith of supererogatory works reappearing here, now in the context of gaze and remembrance.",
+            "pt": "A centésima vigésima terceira até a centésima vigésima nona perguntas tratam do olhar do Real sobre Seus servos, da companhia diferente de vários grupos com Ele, e da natureza da lembrança. Com precisão numérica: <em>\"o Real se volta para Seus eleitos vinte e quatro mil vezes por dia\"</em> (p. 28) — e resume como esse olhar forma uma reciprocidade com o amor: <em>\"quando o Senhor ama Seu servo, o Senhor se torna o ouvido com que ele ouve e o olho com que ele vê\"</em> (p. 29) — o hadith das obras supererrogatórias reaparecendo aqui, agora no contexto do olhar e da lembrança."
+          }
+        }
+      ]
+    },
+    {
+      "id": "isimler-ve-ismi-azam",
+      "heading": {
+        "tr": "İsimler ve İsm-i Azam: Süleyman'ın Arkadaşının Gizli İsmi",
+        "en": "Names and the Greatest Name: The Hidden Name Known to Solomon's Companion",
+        "pt": "Nomes e o Nome Maior: O Nome Oculto do Companheiro de Salomão"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz otuz - yüz otuz dokuzuncu sorular — kısmın en hacimli bloğu — ismin mahiyetini ve ism-i azamı ele alıyor. Bütün isimleri doğuran 'baş isim' insan-ı kâmil olarak tanımlanıyor: <em>\"Hak'tan bütün isimlerin çıkmasını sağlayan baş isim, büyük insandır (insan-ı kebir). O ise, insan-ı kâmildir\"</em> (s. 36). Süleyman'ın (as.) yanındaki bir arkadaşının bildiği ama Süleyman'dan gizli kalan bir isim anlatılıyor; Dost bunun nedenini merakla değil edeple açıklıyor: <em>\"Süleyman'dan gizlenen şey söz konusu ismin bilgisi değil, makamını yüceltmek amacıyla o bilgiyi kullanmaktı\"</em> (s. 37) — ve Şiblî'nin tasarruftan kendi isteğiyle vazgeçişini aktarıyor: <em>\"Bana tasarruf izni verildi, zariflik olsun diye onu bıraktım\"</em> (s. 38). Bu ismin kendisi hiçbir yerde açıklanmıyor — Dost'un sırrı işaret edip açıklamama hareketinin yeni bir örneği.",
+            "en": "The hundred-and-thirtieth through hundred-and-thirty-ninth questions — the part's most extensive block — take up the nature of the name and the greatest name. The 'chief name' from which all names emerge is defined as the perfect human being: <em>\"the chief name that makes all names emerge from the Real is the great human being (al-insan al-kabir). He is the perfect human being\"</em> (p. 36). We are told of a name known to a companion of Solomon (peace be upon him) yet hidden from Solomon himself; Dost explains the reason not out of curiosity but out of propriety: <em>\"what was hidden from Solomon was not knowledge of that name, but the use of that knowledge to exalt one's own station\"</em> (p. 37) — and relates Shibli's voluntary renunciation of disposal over creation: <em>\"I was granted license to exercise disposal, and I left it for the sake of refinement\"</em> (p. 38). The name itself is never disclosed anywhere — a further instance of Dost's gesture of pointing to a secret without explaining it.",
+            "pt": "A centésima trigésima até a centésima trigésima nona perguntas — o bloco mais extenso da parte — tratam da natureza do nome e do nome maior. O 'nome-chefe' do qual todos os nomes emergem é definido como o ser humano perfeito: <em>\"o nome-chefe que faz todos os nomes emergirem do Real é o grande ser humano (al-insan al-kabir). Ele é o ser humano perfeito\"</em> (p. 36). Somos informados de um nome conhecido por um companheiro de Salomão (a paz esteja com ele) mas oculto do próprio Salomão; Dost explica a razão não por curiosidade, mas por decoro: <em>\"o que foi ocultado de Salomão não foi o conhecimento desse nome, mas o uso desse conhecimento para exaltar a própria categoria\"</em> (p. 37) — e relata a renúncia voluntária de Shibli à disposição sobre a criação: <em>\"foi-me concedida licença para exercer disposição, e eu a deixei por refinamento\"</em> (p. 38). O nome em si nunca é revelado em lugar algum — mais uma instância do gesto de Dost de apontar para um segredo sem explicá-lo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "harflerin-metafizigi",
+      "heading": {
+        "tr": "Harflerin Metafiziği: Elif-Nun-Elif",
+        "en": "The Metaphysics of Letters: Alif-Nun-Alif",
+        "pt": "A Metafísica das Letras: Alif-Nun-Alif"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz kırk - yüz kırk ikinci sorular huruf-ı mukattaayı ve harflerin mertebesini ele alıyor. Elif, kendi başına bir çift oluşturuyor: <em>\"Elif, kendi kendisinin mukabili olmuştur... Nun ise ikisinin arasında rabıta olmuştur. Bu, Rabbiyle ülfet eden kulun sırrının Elifidir\"</em> (s. 44) — soyut bir harf mistisizmi, iki aynalanan Elif'in arasında Nun'un bir bağ kurduğu bir imge; harflerin sayısının neden yirmi sekiz olduğu sorusu da bu mertebeler dizisine bağlanıyor.",
+            "en": "The hundred-and-fortieth through hundred-and-forty-second questions take up the mysterious letters and the rank of letters. Alif forms a pair with itself: <em>\"Alif has become its own counterpart... while Nun has become the bond between the two. This is the Alif of the secret of the servant who is intimate with his Lord\"</em> (p. 44) — an abstract letter mysticism, an image in which Nun forms a bond between two mirroring Alifs; the question of why the letters number twenty-eight is likewise tied to this sequence of ranks.",
+            "pt": "A centésima quadragésima até a centésima quadragésima segunda perguntas tratam das letras misteriosas e da categoria das letras. Alif forma um par consigo mesmo: <em>\"Alif se tornou seu próprio contraparte... enquanto Nun se tornou o vínculo entre os dois. Este é o Alif do segredo do servo que é íntimo com seu Senhor\"</em> (p. 44) — um misticismo abstrato das letras, uma imagem em que Nun forma um vínculo entre dois Alifs que se espelham; a questão de por que as letras somam vinte e oito também está ligada a essa sequência de categorias."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XC, s. 44.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XC, p. 44.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XC, p. 44."
+          },
+          "caption": {
+            "tr": "İki aynalanan Elif arasında Nun bir rabıta kuruyor.",
+            "en": "Between two mirroring Alifs, Nun forms a bond.",
+            "pt": "Entre dois Alifs que se espelham, Nun forma um vínculo."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Elif",
+                "en": "Alif",
+                "pt": "Alif"
+              },
+              "note": {
+                "tr": "kendi kendisinin mukabili",
+                "en": "its own counterpart",
+                "pt": "seu próprio contraparte"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Nun",
+                "en": "Nun",
+                "pt": "Nun"
+              },
+              "note": {
+                "tr": "rabıta, bağ",
+                "en": "the bond",
+                "pt": "o vínculo"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Elif",
+                "en": "Alif",
+                "pt": "Alif"
+              },
+              "note": {
+                "tr": "Rabbiyle ülfetin sırrı",
+                "en": "the secret of intimacy with the Lord",
+                "pt": "o segredo da intimidade com o Senhor"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ademin-sureti-ve-ummetin-onceligi",
+      "heading": {
+        "tr": "Âdem'in Sureti: Küçük İnsan, Büyük Âlemin Özeti",
+        "en": "The Form of Adam: The Small Human Being, Summary of the Great World",
+        "pt": "A Forma de Adão: O Pequeno Ser Humano, Resumo do Grande Mundo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Yüz kırk üç - yüz kırk altıncı sorular Âdem'in sureti hadisini ve Muhammed ümmetinin önceliğini ele alıyor. İnsan, âlemin küçültülmüş bir özeti olarak tanımlanıyor: <em>\"İnsan -ki Âdem'dir- âlemin toplamıdır. Çünkü o, küçük insandır ve büyük âlemin özetidir\"</em> (s. 46) — ve insan-ı kâmilin bu özetin en yoğun hâli olduğu bir cümleyle devam ediyor: <em>\"İnsan-ı kâmil Allah'ın gözüyle bakar... Allah'ın sevinmesiyle sevinir, gülmesiyle güler, öfkesiyle öfkelenir, unutmasıyla unutur\"</em> (s. 47). Kısım, Musa'nın (as.) 'beni Muhammed ümmetinden yap' duasıyla ve peygamberlerin gıpta ettiği nebi-olmayan kulların makamıyla, doksan birinci kısma (Bismillah'ın yorumu) geçişe hazırlanarak kapanıyor.",
+            "en": "The hundred-and-forty-third through hundred-and-forty-sixth questions take up the hadith of Adam's form and the priority of Muhammad's community. The human being is defined as a compressed summary of the world: <em>\"the human being — who is Adam — is the sum of the world. For he is the small human being and the summary of the great world\"</em> (p. 46) — continuing with a sentence in which the perfect human being is this summary at its most concentrated: <em>\"the perfect human being sees with God's eye... rejoices with His rejoicing, laughs with His laughing, grows angry with His anger, forgets with His forgetting\"</em> (p. 47). The part closes with Moses's (peace be upon him) prayer 'make me one of Muhammad's community' and the station of the non-prophet servants envied by the prophets, preparing to hand off to Part 91 (the interpretation of the Basmala).",
+            "pt": "A centésima quadragésima terceira até a centésima quadragésima sexta perguntas tratam do hadith da forma de Adão e da prioridade da comunidade de Muhammad. O ser humano é definido como um resumo comprimido do mundo: <em>\"o ser humano — que é Adão — é a soma do mundo. Pois ele é o pequeno ser humano e o resumo do grande mundo\"</em> (p. 46) — continuando com uma frase em que o ser humano perfeito é esse resumo em seu estado mais concentrado: <em>\"o ser humano perfeito vê com o olho de Deus... se alegra com Sua alegria, ri com Seu riso, se enfurece com Sua ira, esquece com Seu esquecimento\"</em> (p. 47). A parte se encerra com a oração de Moisés (a paz esteja com ele) 'faze-me um dos da comunidade de Muhammad' e a estação dos servos não-profetas invejada pelos profetas, preparando a transição para a Parte 91 (a interpretação da Basmala)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XC, s. 46-47.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XC, pp. 46-47.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XC, pp. 46-47."
+          },
+          "caption": {
+            "tr": "İnsan, büyük âlemi kendinde özetleyen küçük bir suret.",
+            "en": "The human being, a small form summarizing the great world within itself.",
+            "pt": "O ser humano, uma pequena forma que resume em si o grande mundo."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Küçük İnsan",
+                "en": "The Small Human Being",
+                "pt": "O Pequeno Ser Humano"
+              },
+              "note": {
+                "tr": "Âdem, özetleyen",
+                "en": "Adam, the one who summarizes",
+                "pt": "Adão, aquele que resume"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Büyük Âlem",
+                "en": "The Great World",
+                "pt": "O Grande Mundo"
+              },
+              "note": {
+                "tr": "özetlenen bütün",
+                "en": "the whole that is summarized",
+                "pt": "o todo que é resumido"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt VII, Kısım XC (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. VII, Part XC (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. VII, Parte XC (trad. Ekrem Demirli)"
+      },
+      "pageRange": "16-47"
+    }
+  ]
+}
