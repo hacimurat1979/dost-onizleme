@@ -34,8 +34,47 @@
   // tarayıcılarda (Chrome/Edge) seçim penceresini atlayıp doğrudan bu
   // sekmeyi paylaşır. Tek kare alınıp iz hemen durdurulur; paylaşım göstergesi
   // tarayıcıda kalıcı olarak asılı kalmaz.
+  //
+  // Bu API mobil/tablet tarayıcılarda (iPadOS Safari, Android Chrome) hiç
+  // desteklenmiyor -- masaüstü-tarayıcı-sekmesi paylaşma fikrine dayanıyor,
+  // dokunmatik bir arayüzde karşılığı yok. O yüzden ikinci bir yol da var:
+  // cihazın kendi ekran görüntüsü (OS'in kendi tuş/hareket kombinasyonu)
+  // alınıp galeriden/dosyalardan seçilerek yüklenebiliyor. İkisi de aynı
+  // buildScreenshotModal()'a, aynı kuyruğa çıkıyor.
   const SCREENSHOT_MIME = "image/jpeg";
   const SCREENSHOT_MAX_WIDTH = 1600;
+  const supportsCapture = !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia);
+  let fileInputEl = null;
+
+  function drawToCanvas(source, srcWidth, srcHeight) {
+    const scale = Math.min(1, SCREENSHOT_MAX_WIDTH / (srcWidth || SCREENSHOT_MAX_WIDTH));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(srcWidth * scale));
+    canvas.height = Math.max(1, Math.round(srcHeight * scale));
+    canvas.getContext("2d").drawImage(source, 0, 0, canvas.width, canvas.height);
+    return canvas.toDataURL(SCREENSHOT_MIME, 0.85);
+  }
+
+  function ensureFileInput() {
+    if (fileInputEl) return fileInputEl;
+    fileInputEl = document.createElement("input");
+    fileInputEl.type = "file";
+    fileInputEl.accept = "image/*";
+    fileInputEl.style.display = "none";
+    fileInputEl.addEventListener("change", async () => {
+      const file = fileInputEl.files && fileInputEl.files[0];
+      fileInputEl.value = "";
+      if (!file) return;
+      const bitmap = await createImageBitmap(file);
+      buildScreenshotModal(drawToCanvas(bitmap, bitmap.width, bitmap.height));
+    });
+    document.body.appendChild(fileInputEl);
+    return fileInputEl;
+  }
+
+  function pickImageFile() {
+    ensureFileInput().click();
+  }
 
   function recordScreenshot(dataUrl, note) {
     const queue = getQueue();
@@ -79,8 +118,8 @@
   }
 
   async function captureScreenshot() {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
-      alert("Bu tarayıcı ekran görüntüsü almayı desteklemiyor.");
+    if (!supportsCapture) {
+      pickImageFile(); // bu tarayıcıda buton zaten gizli ama yine de bir güvenlik ağı
       return;
     }
     let stream;
@@ -100,13 +139,7 @@
       // Karenin gerçekten çizildiğinden emin olmak için bir sonraki
       // animasyon karesine kadar bekle.
       await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-      const scale = Math.min(1, SCREENSHOT_MAX_WIDTH / (video.videoWidth || SCREENSHOT_MAX_WIDTH));
-      const canvas = document.createElement("canvas");
-      canvas.width = Math.max(1, Math.round(video.videoWidth * scale));
-      canvas.height = Math.max(1, Math.round(video.videoHeight * scale));
-      canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
-      const dataUrl = canvas.toDataURL(SCREENSHOT_MIME, 0.85);
-      buildScreenshotModal(dataUrl);
+      buildScreenshotModal(drawToCanvas(video, video.videoWidth, video.videoHeight));
     } finally {
       stream.getTracks().forEach((t) => t.stop());
     }
@@ -208,8 +241,12 @@
       '<span class="dost-edit-panel__count">' + getQueue().length + "</span>" +
       "</button>" +
       '<div class="dost-edit-panel__menu" hidden>' +
-      '<p class="dost-edit-panel__hint">Düzenleme modu açık — düz yazı metinlere tıklayıp değiştirebilir, ya da bir ekran görüntüsü alıp not düşebilirsin.</p>' +
-      '<button type="button" data-action="screenshot">📷 Ekran Görüntüsü Al</button>' +
+      '<p class="dost-edit-panel__hint">Düzenleme modu açık — düz yazı metinlere tıklayıp değiştirebilir, ya da bir ekran görüntüsü alıp/yükleyip not düşebilirsin.</p>' +
+      (supportsCapture ? '<button type="button" data-action="screenshot">📷 Ekran Görüntüsü Al</button>' : "") +
+      // Masaüstünde "Al" zaten canlı yakalıyor; mobil/tablette (Al gizli)
+      // bu tek seçenek oluyor -- kullanıcı OS'in kendi ekran görüntüsünü
+      // alıp buradan seçiyor. Masaüstünde de bir yedek olarak duruyor.
+      '<button type="button" data-action="upload">🖼️ Görüntü Yükle</button>' +
       '<button type="button" data-action="export">Dışa Aktar</button>' +
       '<button type="button" data-action="clear">Temizle</button>' +
       '<button type="button" data-action="exit">Düzenleme Modunu Kapat</button>' +
@@ -218,9 +255,16 @@
     const toggle = panel.querySelector(".dost-edit-panel__toggle");
     const menu = panel.querySelector(".dost-edit-panel__menu");
     toggle.addEventListener("click", () => { menu.hidden = !menu.hidden; });
-    panel.querySelector('[data-action="screenshot"]').addEventListener("click", () => {
+    const screenshotBtn = panel.querySelector('[data-action="screenshot"]');
+    if (screenshotBtn) {
+      screenshotBtn.addEventListener("click", () => {
+        menu.hidden = true;
+        captureScreenshot();
+      });
+    }
+    panel.querySelector('[data-action="upload"]').addEventListener("click", () => {
       menu.hidden = true;
-      captureScreenshot();
+      pickImageFile();
     });
     panel.querySelector('[data-action="export"]').addEventListener("click", exportQueue);
     panel.querySelector('[data-action="clear"]').addEventListener("click", clearQueue);
