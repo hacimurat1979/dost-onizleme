@@ -1392,7 +1392,7 @@ button.futuhat-part-chip:hover {
   position: relative;
   text-align: center;
   margin: 0 0 30px;
-  padding-bottom: 26px;
+  padding: 54px 0 26px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -1454,6 +1454,9 @@ button.futuhat-part-chip:hover {
 }
 
 @media (max-width: 560px) {
+  .futuhat-hero {
+    padding-top: 26px;
+  }
   .futuhat-toolbar {
     position: static;
     justify-content: center;
