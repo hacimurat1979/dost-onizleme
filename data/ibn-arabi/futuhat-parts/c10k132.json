@@ -1,0 +1,427 @@
+{
+  "id": "c10k132",
+  "cilt": 10,
+  "kisim": 132,
+  "status": "active",
+  "title": {
+    "tr": "Beden, Bir Terazi Sureti: Adalet ile İhsan Arasında",
+    "en": "The Body, a Figure of the Scale: Between Justice and Grace",
+    "pt": "O Corpo, uma Figura da Balança: Entre a Justiça e a Graça"
+  },
+  "pageRange": {
+    "tr": "s. 315-355",
+    "en": "pp. 315-355",
+    "pt": "pp. 315-355"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Dört bölüm, karanlık bir yolda şeriat nurunun kandili olmasından, hünsanın (erkek ve kadın suyunun aynı anda inmesiyle) oluşumuna, Dost'un kendi başından geçen bir vahiy anekdotundan, Cebrail'in emanet karşısında bayılmasına ve cehennemde organların değil nefsin acı çekmesine uzanıyor; kapanışta insan bedeninin bizzat bir terazi sureti olarak yaratıldığı, cehenneme adaletle cennete ise ihsanla girildiği kapsamlı bir mizan doktrini işleniyor.",
+      "en": "Four chapters move from the revelatory law's light as a lantern on a dark road, to the formation of the hermaphrodite (through the simultaneous descent of male and female water), to a revelatory anecdote from the author's own life, to Gabriel fainting before the weight of the Trust, and to the teaching that in hell it is the self, not the organs, that suffers; the close treats a comprehensive doctrine of the scale, in which the human body itself is created as a figure of balance, and one enters hell through justice, paradise through grace.",
+      "pt": "Quatro capítulos avançam da luz da lei revelada como uma lanterna numa estrada escura, à formação do hermafrodita (através do descenso simultâneo da água masculina e feminina), a uma anedota reveladora da própria vida do autor, ao desmaio de Gabriel diante do peso do Depósito, e ao ensinamento de que no inferno é o eu, não os órgãos, que sofre; o fechamento trata de uma doutrina abrangente da balança, na qual o próprio corpo humano é criado como uma figura de equilíbrio, e se entra no inferno pela justiça, no paraíso pela graça."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "132. Kısım, şeriat nurunun kandilinden hünsanın oluşumuna, emanetin ağırlığından bedenin terazi sureti oluşuna ilerliyor.",
+      "en": "Part 132 moves from the lantern of revealed law to the formation of the hermaphrodite, from the weight of the Trust to the body as a figure of the scale.",
+      "pt": "A Parte 132 avança da lanterna da lei revelada à formação do hermafrodita, do peso do Depósito ao corpo como figura da balança."
+    },
+    "tree": {
+      "id": "kisim-c10k132-tree",
+      "label": {
+        "tr": "Cilt X, 298-301. Bölümler: Beden, Bir Terazi Sureti",
+        "en": "Volume X, Chapters 298-301: The Body, a Figure of the Scale",
+        "pt": "Volume X, Capítulos 298-301: O Corpo, uma Figura da Balança"
+      },
+      "note": {
+        "tr": "Şeriat nurunun kandilinden, kısım 301'de bedenin terazi sureti oluşuna ulaşır.",
+        "en": "From the lantern of revealed law, the part arrives at the body as a figure of the scale in Chapter 301.",
+        "pt": "Da lanterna da lei revelada, a parte chega ao corpo como figura da balança no Capítulo 301."
+      },
+      "children": [
+        {
+          "id": "kandil-dal",
+          "label": {
+            "tr": "Kandil ve Karanlık Yol: Şeriat Nurunun Rehberliği",
+            "en": "The Lantern and the Dark Road: The Guidance of Revealed Law's Light",
+            "pt": "A Lanterna e a Estrada Escura: A Orientação da Luz da Lei Revelada"
+          },
+          "note": {
+            "tr": "şeriat nuru + hidayet nuru, karanlık yolda iki kandil",
+            "en": "the light of revealed law and the light of guidance, two lanterns on a dark road",
+            "pt": "a luz da lei revelada e a luz da orientação, duas lanternas numa estrada escura"
+          }
+        },
+        {
+          "id": "hunsa-dal",
+          "label": {
+            "tr": "Hünsa: İki Suyun Aynı Anda İnişi",
+            "en": "The Hermaphrodite: Two Waters Descending at Once",
+            "pt": "O Hermafrodita: Duas Águas Descendo ao Mesmo Tempo"
+          },
+          "note": {
+            "tr": "erkek suyu ile kadın suyu birbirini geçemeden karışır",
+            "en": "male and female water mix without either prevailing",
+            "pt": "água masculina e feminina se misturam sem que nenhuma prevaleça"
+          }
+        },
+        {
+          "id": "ruhun-cevheri-dal",
+          "label": {
+            "tr": "Ruhun Cevheri ve Kefaret: Bir Vahiy Anekdotu",
+            "en": "The Substance of the Spirit and Expiation: A Revelatory Anecdote",
+            "pt": "A Substância do Espírito e a Expiação: Uma Anedota Reveladora"
+          },
+          "note": {
+            "tr": "mü'minin sıkıntıları kefaret; Dost'un kendi keşif hikayesi",
+            "en": "the believer's afflictions as expiation; the author's own account of unveiling",
+            "pt": "as aflições do crente como expiação; o próprio relato do autor sobre o desvelamento"
+          }
+        },
+        {
+          "id": "cebrailin-baygini-dal",
+          "label": {
+            "tr": "Cebrail'in Bayılması: Emanetin Ağırlığı",
+            "en": "Gabriel's Fainting: The Weight of the Trust",
+            "pt": "O Desmaio de Gabriel: O Peso do Depósito"
+          },
+          "note": {
+            "tr": "yer-gök-dağ bilerek reddetti, insan bilmeden yüklendi",
+            "en": "heaven, earth, and mountain knowingly refused; man unknowingly bore it",
+            "pt": "céu, terra e montanha recusaram sabendo; o homem carregou sem saber"
+          }
+        },
+        {
+          "id": "beden-terazi-dal",
+          "label": {
+            "tr": "Beden, Bir Terazi Sureti: Adalet ile İhsan",
+            "en": "The Body, a Figure of the Scale: Justice and Grace",
+            "pt": "O Corpo, uma Figura da Balança: Justiça e Graça"
+          },
+          "note": {
+            "tr": "cehenneme adaletle, cennete ihsanla girilir",
+            "en": "one enters hell through justice, paradise through grace",
+            "pt": "entra-se no inferno pela justiça, no paraíso pela graça"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "kandil-karanlik-yol",
+      "heading": {
+        "tr": "Kandil ve Karanlık Yol: Şeriat Nurunun Rehberliği",
+        "en": "The Lantern and the Dark Road: The Guidance of Revealed Law's Light",
+        "pt": "A Lanterna e a Estrada Escura: A Orientação da Luz da Lei Revelada"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "<a href=\"#/futuhat/c10k131\">131. kısmın</a> üç sınıf insan sınıflamasından sonra, 298. Bölüm (Muhammedî, Ulvi Âlemden Zikir Menzili), Ebu Yezid'in kısa ama derin bir cevabıyla açılıyor: kendisine \"Ne istiyorsun?\" diye sorulduğunda, <em>\"Bir şey istememeyi istiyorum\"</em> cevabını veriyor; Dost bunu genişletiyor: <em>\"Allah'ım! Sen benim adıma ne istiyorsan, benim de onu istememi sağla\"</em> (s. 316-317). Bölüm, günlük hayattan doğrudan alınabilecek güçlü bir imgeyle devam ediyor: <em>\"aydınlatıcı kandilin bulunmadığı bir yolda geceleyin yürümek, büyük tehlikelere yol açar... Yoldaki yegane ışık ise şeriat nuru... Şeriat nuru ile hidayet nuru bir araya geldiğinde ise yol iki nurla (daha kolay geçilir)... Yolda yürüyen insan kandilini rüzgarlardan korumalıdır\"</em> (s. 317) — kuşkuların (rüzgar) alevi söndürmese de titretip yolu bulanıklaştırdığı fikri, doğal/zorlamalı hareket ve insanın değişmez fıtri nitelikleri tartışmasına zemin hazırlıyor.",
+            "en": "Following <a href=\"#/futuhat/c10k131\">Part 131</a>'s threefold classification of human beings, Chapter 298 (Muhammadan, the Station of Remembrance from the Sublime World) opens with a short but profound answer of Abu Yazid: asked \"what do you want?\", he answers, <em>\"I want to want nothing\"</em>; the author expands on this: <em>\"My God! Make me want, on my own behalf, whatever You want\"</em> (pp. 316-317). The chapter continues with a forceful image readily drawn from everyday life: <em>\"walking at night on a road without an illuminating lantern leads to great dangers... the only light on the road is the light of revealed law... when the light of revealed law joins the light of guidance, the road is traversed [more easily] by two lights... the one walking the road must shield his lantern from the winds\"</em> (p. 317) — the idea that doubts (the wind) may not extinguish the flame but flicker and blur the road, laying the ground for the discussion of natural versus compelled motion and the human being's unchanging innate qualities.",
+            "pt": "Seguindo a classificação tripla de seres humanos da <a href=\"#/futuhat/c10k131\">Parte 131</a>, o Capítulo 298 (Muhammadiano, a Estação da Lembrança do Mundo Sublime) se abre com uma resposta curta mas profunda de Abu Yazid: perguntado \"o que queres?\", ele responde, <em>\"quero não querer nada\"</em>; o autor expande isto: <em>\"Meu Deus! Faze-me querer, em meu próprio nome, o que quer que Tu queiras\"</em> (pp. 316-317). O capítulo continua com uma imagem contundente prontamente extraída da vida cotidiana: <em>\"caminhar à noite numa estrada sem uma lanterna iluminadora leva a grandes perigos... a única luz na estrada é a luz da lei revelada... quando a luz da lei revelada se junta à luz da orientação, a estrada é percorrida [mais facilmente] por duas luzes... quem caminha a estrada deve proteger sua lanterna dos ventos\"</em> (p. 317) — a ideia de que dúvidas (o vento) podem não apagar a chama mas fazê-la tremer e turvar a estrada, preparando o terreno para a discussão do movimento natural versus compelido e das qualidades inatas imutáveis do ser humano."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt X, 298-301. Bölümler (çev. Ekrem Demirli)",
+            "en": "Al-Futuhat al-Makkiyya, Vol. X, Chapters 298-301 (trans. Ekrem Demirli)",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. X, Capítulos 298-301 (trad. Ekrem Demirli)"
+          },
+          "caption": {
+            "tr": "Karanlık yolda iki kandil: şeriat nuru ile hidayet nuru bir araya geldiğinde yol daha güvenli geçilir.",
+            "en": "Two lanterns on a dark road: when the light of revealed law joins the light of guidance, the road is traversed more safely.",
+            "pt": "Duas lanternas numa estrada escura: quando a luz da lei revelada se junta à luz da orientação, a estrada é percorrida com mais segurança."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Şeriat Nuru",
+                "en": "The Light of Revealed Law",
+                "pt": "A Luz da Lei Revelada"
+              },
+              "note": {
+                "tr": "yoldaki ortak, herkese verilen ışık",
+                "en": "the shared light on the road, given to all",
+                "pt": "a luz compartilhada na estrada, dada a todos"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Hidayet Nuru",
+                "en": "The Light of Guidance",
+                "pt": "A Luz da Orientação"
+              },
+              "note": {
+                "tr": "kişiye özel, içeriden gelen ışık",
+                "en": "the light particular to the person, coming from within",
+                "pt": "a luz particular à pessoa, vinda de dentro"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "hunsa",
+      "heading": {
+        "tr": "Hünsa: İki Suyun Aynı Anda İnişi",
+        "en": "The Hermaphrodite: Two Waters Descending at Once",
+        "pt": "O Hermafrodita: Duas Águas Descendo ao Mesmo Tempo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "298. Bölüm, cevher-suret ayrımını (toprak-su-köpük soy zinciri, İsa'nın yaratılışı) işledikten sonra, hünsanın (interseks bedenin) oluşumuna dair ilginç bir gözlemle devam ediyor: erkek suyu ile kadın suyunun <em>\"birbirini geçemeyip aynı anda, karışacak şekilde\"</em> inmesinden bahsediliyor (s. 322-323). Burada \"cem-i ezdâd\" terimi geçmese de, yapısal olarak ona yakın bir örnek beliriyor: iki zıt unsurdan (erkeklik-dişilik) hiçbiri baskın çıkmıyor, ikisi birden tek bir bedende taşınıyor. <a href=\"#/futuhat/c10k130\">130. kısımdaki</a> \"iki zıddı birleştirme\" doruğundan, <a href=\"#/futuhat/c10k131\">131. kısımdaki</a> \"zıtların ayırt edici işlevi\"ne kayan motifin, burada üçüncü bir biçimde -somut, bedensel bir örnekte- yeniden belirdiğini düşündürüyor; bunu zorlamadan, sadece bir gözlem olarak not düşüyoruz.",
+            "en": "After treating the distinction between substance and form (the lineage of earth-water-foam, the creation of Jesus), Chapter 298 continues with an intriguing observation on the formation of the hermaphrodite (an intersex body): it speaks of male and female water descending <em>\"unable to overtake one another, so that they mix at once\"</em> (pp. 322-323). Though the term \"coincidence of opposites\" does not appear here, a structurally close example emerges: neither of two opposing elements (maleness-femaleness) prevails, both being borne together within a single body. This suggests the motif that peaked in <a href=\"#/futuhat/c10k130\">Part 130</a>'s \"uniting two opposites\" and shifted toward <a href=\"#/futuhat/c10k131\">Part 131</a>'s \"distinguishing function of opposites\" may here reappear in a third form — a concrete, bodily example; we note this without forcing the connection.",
+            "pt": "Depois de tratar da distinção entre substância e forma (a linhagem terra-água-espuma, a criação de Jesus), o Capítulo 298 continua com uma observação intrigante sobre a formação do hermafrodita (um corpo intersexo): fala da água masculina e feminina descendo <em>\"incapazes de ultrapassar uma à outra, de modo que se misturam ao mesmo tempo\"</em> (pp. 322-323). Embora o termo \"coincidência dos opostos\" não apareça aqui, um exemplo estruturalmente próximo emerge: nenhum dos dois elementos opostos (masculinidade-feminilidade) prevalece, ambos sendo carregados juntos dentro de um único corpo. Isto sugere que o motivo que atingiu seu ápice na \"união de dois opostos\" da <a href=\"#/futuhat/c10k130\">Parte 130</a> e mudou para a \"função distintiva dos opostos\" da <a href=\"#/futuhat/c10k131\">Parte 131</a> pode aqui reaparecer numa terceira forma — um exemplo concreto, corporal; notamos isto sem forçar a conexão."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt X, 298-301. Bölümler (çev. Ekrem Demirli)",
+            "en": "Al-Futuhat al-Makkiyya, Vol. X, Chapters 298-301 (trans. Ekrem Demirli)",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. X, Capítulos 298-301 (trad. Ekrem Demirli)"
+          },
+          "caption": {
+            "tr": "Hünsanın oluşumu: erkek suyu ile kadın suyu birbirini geçemeden aynı anda karışır.",
+            "en": "The formation of the hermaphrodite: male and female water mix at once, neither overtaking the other.",
+            "pt": "A formação do hermafrodita: água masculina e feminina se misturam ao mesmo tempo, sem que nenhuma ultrapasse a outra."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Erkek Suyu",
+                "en": "Male Water",
+                "pt": "Água Masculina"
+              },
+              "note": {
+                "tr": "kadın suyunu geçemez",
+                "en": "cannot overtake the female water",
+                "pt": "não consegue ultrapassar a água feminina"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Kadın Suyu",
+                "en": "Female Water",
+                "pt": "Água Feminina"
+              },
+              "note": {
+                "tr": "erkek suyunu geçemez — ikisi birden karışır",
+                "en": "cannot overtake the male water — the two mix together",
+                "pt": "não consegue ultrapassar a água masculina — as duas se misturam"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ruhun-cevheri-kefaret",
+      "heading": {
+        "tr": "Ruhun Cevheri ve Kefaret: Bir Vahiy Anekdotu",
+        "en": "The Substance of the Spirit and Expiation: A Revelatory Anecdote",
+        "pt": "A Substância do Espírito e a Expiação: Uma Anedota Reveladora"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "299. Bölüm (Muhammedî-Muradî — önceki kısımlarda görülmemiş, yeni bir terkip etiketi — Müminlerin Azabı Menzili), ruhun bileşik olmayan cevheri, yükümlülük yaşı ve çocukluk döneminde işlenen fiillerin dünyevi cezasını işliyor; mü'minin dünyadaki sıkıntılarının bir kefaret işlevi gördüğü öğretisi kuruluyor. Bölümün en canlı kısmı, Dost'un kendi başından geçen bir vahiy/keşif anlatısı: bir ayetin kendisine \"senden dolayı\" diye değiştirilerek indirildiğini, ve bunun üç yıl sonra gerçekleşen bir cinayetle doğrulandığını aktarıyor (s. 331-332) — sitenin \"parçaları biriktir\" ilkesine uygun biçimde, Dost'un kendi manevi deneyimini metne dokuduğu nadir doğrudan anlatılardan biri. Bölüm ayrıca el-Habir isminin tahlilini ve \"kâne\" fiilinin zaman-dışılığını (geçmiş zaman kalıbında olsa da ezeli/ebedi bir hâli anlatabilmesi) işliyor.",
+            "en": "Chapter 299 (Muhammadan-Muradi — a new compound label not seen in earlier parts — the Station of the Believers' Chastisement) treats the spirit's non-composite substance, the age of accountability, and the worldly punishment of deeds committed in childhood; it establishes the teaching that a believer's worldly afflictions serve as expiation. The chapter's most vivid passage is a revelatory account from the author's own life: he relates that a verse was revealed to him altered to read \"because of you,\" a claim confirmed three years later by an actual murder (pp. 331-332) — in keeping with the site's \"gather the fragments\" principle, one of the rare direct accounts in which the author weaves his own spiritual experience into the text. The chapter also treats the analysis of the divine name al-Khabir and the timelessness of the verb \"kana\" (able to describe an eternal state despite its past-tense form).",
+            "pt": "O Capítulo 299 (Muhammadiano-Muradi — um novo rótulo composto não visto em partes anteriores — a Estação do Castigo dos Crentes) trata da substância não-composta do espírito, da idade de responsabilidade, e da punição mundana dos atos cometidos na infância; estabelece o ensinamento de que as aflições mundanas de um crente servem como expiação. A passagem mais vívida do capítulo é um relato revelador da própria vida do autor: ele relata que um versículo lhe foi revelado alterado para dizer \"por tua causa\", uma afirmação confirmada três anos depois por um assassinato real (pp. 331-332) — em consonância com o princípio do site de \"reunir os fragmentos\", um dos raros relatos diretos em que o autor tece sua própria experiência espiritual no texto. O capítulo também trata da análise do nome divino al-Khabir e da atemporalidade do verbo \"kana\" (capaz de descrever um estado eterno apesar de sua forma no passado)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cebrailin-baygini",
+      "heading": {
+        "tr": "Cebrail'in Bayılması: Emanetin Ağırlığı",
+        "en": "Gabriel's Fainting: The Weight of the Trust",
+        "pt": "O Desmaio de Gabriel: O Peso do Depósito"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "300. Bölüm (Muhammedî, Ulvi Âlemin Bölünmesi Menzili), cansızların ve cinlerin bazı yönlerden insandan üstün olduğu iddiasıyla açılıyor, ardından emanet ayetinin tefsirine geçiyor. En çarpıcı pasaj, Cebrail'in miraçta bayılması: <em>\"Cebrail kendisini gördüğünde bayılmış düşmüş. Hz. Peygamber ise bayılmamış... 'Buradan Cebrail'in benden daha üstün olduğunu anladım. Çünkü o orada neyin bulunduğunu bilmiş ve bu nedenle bayılmış, ben ise bilememiştim'\"</em> (s. 335-336) — bilmenin bazen dayanma gücünü artırmak yerine azalttığı, tersine çevrilmiş bir üstünlük ölçüsü. Bölüm, gök-yer-dağın emaneti bilerek reddettiği, insanın ise bilmeden yüklendiği karşıtlığıyla devam ediyor; cinlerin Kur'an dinlerken verdiği örnek cevap da bu bölümde yer alıyor.",
+            "en": "Chapter 300 (Muhammadan, the Station of the Division of the Sublime World) opens with the claim that the inanimate and the jinn surpass the human being in certain respects, then turns to an exegesis of the verse of the Trust. The most striking passage is Gabriel fainting during the Ascension: <em>\"Gabriel fell fainting when he saw it. The Prophet did not faint... 'from this I understood that Gabriel is superior to me, for he knew what was there and so fainted, while I did not know'\"</em> (pp. 335-336) — an inverted measure of superiority, in which knowing sometimes diminishes rather than increases one's capacity to endure. The chapter continues with the contrast of the heavens, earth, and mountain knowingly refusing the Trust while the human being bears it unknowingly; the exemplary response of the jinn upon hearing the Qur'an recited is also found in this chapter.",
+            "pt": "O Capítulo 300 (Muhammadiano, a Estação da Divisão do Mundo Sublime) se abre com a afirmação de que o inanimado e os jinn superam o ser humano em certos aspectos, depois se volta para uma exegese do versículo do Depósito. A passagem mais marcante é o desmaio de Gabriel durante a Ascensão: <em>\"Gabriel caiu desmaiado ao vê-lo. O Profeta não desmaiou... 'a partir disso entendi que Gabriel é superior a mim, pois ele sabia o que havia ali e por isso desmaiou, enquanto eu não sabia'\"</em> (pp. 335-336) — uma medida invertida de superioridade, na qual saber às vezes diminui, em vez de aumentar, a capacidade de suportar. O capítulo continua com o contraste dos céus, da terra e da montanha recusando o Depósito sabendo, enquanto o ser humano o carrega sem saber; a resposta exemplar dos jinn ao ouvirem o Alcorão recitado também se encontra neste capítulo."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt X, 298-301. Bölümler (çev. Ekrem Demirli)",
+            "en": "Al-Futuhat al-Makkiyya, Vol. X, Chapters 298-301 (trans. Ekrem Demirli)",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. X, Capítulos 298-301 (trad. Ekrem Demirli)"
+          },
+          "caption": {
+            "tr": "Emanetin ağırlığı: yer-gök-dağ bilerek reddetti, insan bilmeden yüklendi.",
+            "en": "The weight of the Trust: heaven, earth, and mountain knowingly refused it; the human being bore it unknowingly.",
+            "pt": "O peso do Depósito: céu, terra e montanha o recusaram sabendo; o ser humano o carregou sem saber."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Yer, Gök, Dağ",
+                "en": "Heaven, Earth, Mountain",
+                "pt": "Céu, Terra, Montanha"
+              },
+              "note": {
+                "tr": "bilgelikleriyle emaneti reddetti",
+                "en": "refused the Trust through their wisdom",
+                "pt": "recusaram o Depósito através de sua sabedoria"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "İnsan",
+                "en": "The Human Being",
+                "pt": "O Ser Humano"
+              },
+              "note": {
+                "tr": "cehaletiyle emaneti yüklendi",
+                "en": "bore the Trust through his ignorance",
+                "pt": "carregou o Depósito através de sua ignorância"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ruyada-aci",
+      "heading": {
+        "tr": "Rüyada Acı Çekmek: Cehennemde Nefsin Istırabı",
+        "en": "Suffering in a Dream: The Self's Torment in Hell",
+        "pt": "Sofrer em um Sonho: O Tormento do Eu no Inferno"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "300. Bölüm, cehennemde acı çekenin organlar değil nefis olduğu öğretisiyle devam ediyor; bu soyut önerme iki güçlü günlük-hayat analojisiyle somutlaşıyor. Birincisi rüya benzetmesi: <em>\"Bu durum, bedeni döşeğinde ve yatağında en güzel bir halde iken, rüya görenin gördüğü rüya nedeniyle acı duymasına benzer\"</em> (s. 337) — beden rahat, ama ruh/nefis ıstırap içinde. İkincisi hükümdar-mülk benzetmesi: <em>\"Bu durum, malının telef olmasını, mülkünün yıkılmasını... gören bir insanın durumuna benzer. Hükümdar ise, mülkünün yıkılmasıyla acı çeker\"</em> (s. 337-338) — bedensel acı yok, ama \"kayıp\" acısı var. Bölüm, ilahi sema (duyma) ile başlayıp biten bir yaratılış döngüsü ve bulut içindeki melek inişiyle kapanıyor.",
+            "en": "Chapter 300 continues with the teaching that in hell it is the self, not the organs, that suffers; this abstract proposition is made concrete through two forceful everyday analogies. The first is the dream: <em>\"this is like the body lying in the finest state upon its bed and mattress, while the dreamer suffers on account of the dream he sees\"</em> (p. 337) — the body at ease, while the spirit/self is in torment. The second is the ruler and his realm: <em>\"this is like the state of a person who watches his wealth perish, his domain crumble... the ruler suffers through the ruin of his domain\"</em> (pp. 337-338) — no bodily pain, yet the pain of loss remains. The chapter closes with a cycle of creation beginning and ending in divine hearing, and an angel's descent within a cloud.",
+            "pt": "O Capítulo 300 continua com o ensinamento de que no inferno é o eu, não os órgãos, que sofre; esta proposição abstrata se torna concreta através de duas analogias cotidianas contundentes. A primeira é o sonho: <em>\"isto é como o corpo deitado no melhor estado sobre sua cama e colchão, enquanto quem sonha sofre por causa do sonho que vê\"</em> (p. 337) — o corpo à vontade, enquanto o espírito/eu está em tormento. A segunda é o governante e seu domínio: <em>\"isto é como o estado de uma pessoa que vê sua riqueza perecer, seu domínio ruir... o governante sofre através da ruína de seu domínio\"</em> (pp. 337-338) — sem dor corporal, mas ainda a dor da perda. O capítulo se encerra com um ciclo de criação que começa e termina na audição divina, e o descenso de um anjo dentro de uma nuvem."
+          }
+        }
+      ]
+    },
+    {
+      "id": "beden-terazi",
+      "heading": {
+        "tr": "Beden, Bir Terazi Sureti: Adalet ile İhsan",
+        "en": "The Body, a Figure of the Scale: Justice and Grace",
+        "pt": "O Corpo, uma Figura da Balança: Justiça e Graça"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "301. Bölüm (mertebe etiketi taşımayan, Nimet Ehli-Azap Ehli Arasında Taksim Edilmiş Kitabın Menzili), Rahman suresinin ilk dokuz ayeti üzerinden kapsamlı bir terazi/mizan doktrini kuruyor: mantık terazisi, nahiv terazisi, şer'i terazi, akli terazi ve amel terazisi. En çarpıcı pasaj, insan bedeninin bizzat bir terazi sureti olarak yaratılışı: <em>\"Allah insanın bedenini terazi suretinde yarattı ve onun kefelerini sağı ve solu yaptı. Dilini ise, terazinin zatının direği yaptı\"</em> (s. 344). Bölüm, adalet ile ihsan arasında keskin bir ayrım çiziyor: cehenneme adaletle, cennete ise ihsanla girilir. Altın-demir benzetmesi bu farkı somutlaştırıyor: <em>\"sen altını tartan demir madeni sayılırsın. Emsalsiz yakut, o demir parçasıyla tartılır. Miktar bakımından kendisiyle ortak olsan bile, değerde... O'nunla ortak olamazsın\"</em> (s. 350) — kuyumcu terazisinin karşı kefesine konan demir ağırlığın altınla \"aynı ağırlıkta\" olsa da hiçbir zaman özdeş olmaması gibi, insanın Allah'ın suretinde yaratılmış olması bir özdeşlik değil, bir ölçü ortaklığı anlamına geliyor.",
+            "en": "Chapter 301 (carrying no rank label, the Station of the Book Divided Between the People of Blessing and the People of Chastisement) builds a comprehensive doctrine of the scale upon the first nine verses of Surat al-Rahman: the scale of logic, of grammar, of revealed law, of reason, and of deeds. The most striking passage is the human body's own creation as a figure of the scale: <em>\"God created the human body in the form of a scale, making its two pans the right and the left. He made the tongue the pillar of the scale's own being\"</em> (p. 344). The chapter draws a sharp distinction between justice and grace: one enters hell through justice, paradise through grace. The analogy of gold and iron makes this difference concrete: <em>\"you are counted as the iron ore that weighs the gold. The peerless ruby is weighed with that piece of iron. Though you may share its measure in quantity, you can never share its worth\"</em> (p. 350) — just as the iron weight placed on a jeweler's opposite scale-pan may be \"equal in weight\" to the gold yet never identical to it, the human being's creation in God's form signifies not identity but a shared measure.",
+            "pt": "O Capítulo 301 (sem carregar rótulo de grau, a Estação do Livro Dividido Entre o Povo da Bênção e o Povo do Castigo) constrói uma doutrina abrangente da balança sobre os primeiros nove versículos da Surata al-Rahman: a balança da lógica, da gramática, da lei revelada, da razão, e dos atos. A passagem mais marcante é a própria criação do corpo humano como figura da balança: <em>\"Deus criou o corpo humano na forma de uma balança, fazendo de seus dois pratos o direito e o esquerdo. Ele fez da língua o pilar do próprio ser da balança\"</em> (p. 344). O capítulo traça uma distinção clara entre justiça e graça: entra-se no inferno pela justiça, no paraíso pela graça. A analogia do ouro e do ferro torna esta diferença concreta: <em>\"és contado como o minério de ferro que pesa o ouro. O rubi sem igual é pesado com aquele pedaço de ferro. Embora possas compartilhar sua medida em quantidade, jamais podes compartilhar seu valor\"</em> (p. 350) — assim como o peso de ferro colocado no prato oposto da balança de um joalheiro pode ser \"igual em peso\" ao ouro mas nunca idêntico a ele, a criação do ser humano à forma de Deus significa não identidade, mas uma medida compartilhada."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt X, 298-301. Bölümler (çev. Ekrem Demirli)",
+            "en": "Al-Futuhat al-Makkiyya, Vol. X, Chapters 298-301 (trans. Ekrem Demirli)",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. X, Capítulos 298-301 (trad. Ekrem Demirli)"
+          },
+          "caption": {
+            "tr": "Terazi doktrini: bedenin kendisinden başlayarak, farklı alanların her birinde bir mizan.",
+            "en": "The doctrine of the scale: starting from the body itself, a balance found within each of several domains.",
+            "pt": "A doutrina da balança: começando pelo próprio corpo, um equilíbrio encontrado em cada um de vários domínios."
+          },
+          "tree": {
+            "id": "kisim-c10k132-terazi-tree",
+            "label": {
+              "tr": "Beden — Terazi Sureti",
+              "en": "The Body — a Figure of the Scale",
+              "pt": "O Corpo — uma Figura da Balança"
+            },
+            "note": {
+              "tr": "sağ-sol kefeler, dil direği",
+              "en": "right-left pans, the tongue as pillar",
+              "pt": "pratos direito-esquerdo, a língua como pilar"
+            },
+            "children": [
+              {
+                "id": "mantik-terazi",
+                "label": {
+                  "tr": "Mantık Terazisi",
+                  "en": "The Scale of Logic",
+                  "pt": "A Balança da Lógica"
+                },
+                "note": {
+                  "tr": "doğru-yanlış akıl yürütmeyi tartar",
+                  "en": "weighs sound from unsound reasoning",
+                  "pt": "pesa o raciocínio são do insano"
+                }
+              },
+              {
+                "id": "nahiv-terazi",
+                "label": {
+                  "tr": "Nahiv Terazisi",
+                  "en": "The Scale of Grammar",
+                  "pt": "A Balança da Gramática"
+                },
+                "note": {
+                  "tr": "dil kurallarını tartar",
+                  "en": "weighs the rules of language",
+                  "pt": "pesa as regras da linguagem"
+                }
+              },
+              {
+                "id": "seri-terazi",
+                "label": {
+                  "tr": "Şer'î Terazi",
+                  "en": "The Scale of Revealed Law",
+                  "pt": "A Balança da Lei Revelada"
+                },
+                "note": {
+                  "tr": "helal-haram tartar",
+                  "en": "weighs the licit from the illicit",
+                  "pt": "pesa o lícito do ilícito"
+                }
+              },
+              {
+                "id": "amel-terazi",
+                "label": {
+                  "tr": "Amel Terazisi",
+                  "en": "The Scale of Deeds",
+                  "pt": "A Balança dos Atos"
+                },
+                "note": {
+                  "tr": "sevap-günahı tartar, ahirette",
+                  "en": "weighs merit from sin, in the hereafter",
+                  "pt": "pesa o mérito do pecado, no além"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt X, 298-301. Bölümler (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. X, Chapters 298-301 (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. X, Capítulos 298-301 (trad. Ekrem Demirli)"
+      },
+      "pageRange": "315-355"
+    }
+  ]
+}
