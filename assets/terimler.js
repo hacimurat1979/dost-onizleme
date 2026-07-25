@@ -392,6 +392,18 @@
       if (!byGroup.has(t.group)) byGroup.set(t.group, []);
       byGroup.get(t.group).push(t);
     });
+    const counts = (glossaryData.groups || []).map((g) => (byGroup.get(g.id) || []).length).filter(Boolean);
+    const minCount = Math.min(...counts);
+    const maxCount = Math.max(...counts);
+    // Rozet çapı grubun terim sayısına göre ölçekleniyor -- her grup aynı
+    // boyutta bir nokta değil, kendi "yörüngesindeki" terim yoğunluğunu
+    // taşıyan bir daire (bkz. "daire ve merkez" ilkesi). Alan-orantılı
+    // hissettirmesi için karekök ölçek kullanılıyor (bubble-chart yakınsaması).
+    function badgeSize(count) {
+      if (maxCount === minCount) return 34;
+      const t = Math.sqrt((count - minCount) / (maxCount - minCount));
+      return Math.round(26 + t * 20);
+    }
     grid.innerHTML = (glossaryData.groups || [])
       .map((g) => {
         const groupTerms = byGroup.get(g.id) || [];
@@ -407,9 +419,10 @@
             </button>`;
           })
           .join("");
+        const size = badgeSize(groupTerms.length);
         return `<section class="terimler-group">
           <header class="terimler-group__header">
-            <span class="terimler-group__badge" style="--tag-hue:${groupHue(g.id)}">${groupTerms.length}</span>
+            <span class="terimler-group__badge" style="--tag-hue:${groupHue(g.id)}; --badge-size:${size}px">${groupTerms.length}</span>
             <div>
               <h2 class="terimler-group__title">${tt(g.name)}</h2>
               <p class="terimler-group__desc">${tt(g.description)}</p>

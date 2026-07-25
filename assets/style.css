@@ -3542,9 +3542,9 @@ html:has(.detail-panel:not([hidden])) {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  min-width: 34px;
+  width: var(--badge-size, 34px);
+  height: var(--badge-size, 34px);
+  min-width: var(--badge-size, 34px);
   border-radius: 50%;
   background: hsl(var(--tag-hue) 34% 46% / 0.16);
   border: 1px solid hsl(var(--tag-hue) 34% 40% / 0.4);
