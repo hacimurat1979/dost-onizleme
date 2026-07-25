@@ -17,6 +17,31 @@ window.DostGraphUtils = (function () {
     return getComputedStyle(document.body).getPropertyValue(name).trim();
   }
 
+  // Bir görünümün requestAnimationFrame döngüsü, o görünüm ekranda DEĞİLKEN
+  // (başka bir sekmeye/görünüme geçilmişken) çalışmaya devam etmemeli.
+  // Hâller/Esmâ/Sorular'ın üçünde de döngü koşulu `!reduceMotion` idi -- yani
+  // hareket kısıtlaması açık olmayan normal kullanıcıda HER ZAMAN doğru:
+  // görünüm bir kez açıldıktan sonra, başka bölüme geçilse bile saniyede 60
+  // kez tam render sürüyordu ve birkaç grafik gezildiğinde bunlar üst üste
+  // binip bütün siteyi (metin kutularına yazmayı bile) yavaşlatıyordu.
+  // 2026-07-25'te kullanıcının "sayfa yavaşladı, harfler geç çıkıyor"
+  // bildirimiyle yakalandı.
+  function isViewActive(wrapEl) {
+    return !!wrapEl && !wrapEl.hidden && document.visibilityState !== "hidden";
+  }
+
+  // Sekme geri geldiğinde / görünüm yeniden açıldığında döngüyü uyandırmak
+  // isteyen modüller buraya abone olur.
+  const _wakeSubs = [];
+  function onViewWake(fn) {
+    _wakeSubs.push(fn);
+    if (_wakeSubs.length === 1) {
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") _wakeSubs.forEach((f) => { try { f(); } catch (e) {} });
+      });
+    }
+  }
+
   function moveTooltip(tooltip, wrapEl, event) {
     if (!tooltip || tooltip.hidden || !wrapEl) return;
     const rect = wrapEl.getBoundingClientRect();
@@ -169,5 +194,5 @@ window.DostGraphUtils = (function () {
     });
   }
 
-  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, fetchJson };
+  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, fetchJson, isViewActive, onViewWake };
 })();

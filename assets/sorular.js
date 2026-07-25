@@ -348,6 +348,11 @@
   function ensureFrame() { if (rafId == null) { lastTs = performance.now(); rafId = requestAnimationFrame(frame); } }
   function frame(ts) {
     rafId = null;
+    // Görünüm ekranda değilse (başka bölüme geçilmiş ya da sekme arkada)
+    // döngüyü tamamen durdur. Aksi hâlde bu tam-render döngüsü sonsuza kadar
+    // 60fps sürüyor ve sayfanın geri kalanını -- metin kutusuna yazmayı bile --
+    // yavaşlatıyordu (bkz. GU.isViewActive).
+    if (!GU.isViewActive(wrapEl)) return;
     const dt = Math.min(64, ts - lastTs); lastTs = ts;
     if (!reduceMotion) {
       bgParticles.forEach((p) => { p.a += p.sp * dt; });
@@ -643,6 +648,9 @@
   // sürükleme sırasında rAF sürsün
   svgNode.addEventListener("pointerdown", () => { dragging = true; ensureFrame(); });
   window.addEventListener("pointerup", () => { dragging = false; });
+
+  // Sekme arkaya alınıp geri gelindiğinde döngü yeniden uyansın.
+  GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });
 
   window.__sorularApp = {
     activate() {

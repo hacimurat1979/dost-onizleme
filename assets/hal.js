@@ -100,7 +100,7 @@
   let zoomLayer, bgLayer, ghostLayer, linkLayer, chordLayer, glowLayer, nodeLayer, defs;
   let zoomBehavior = null;
   let currentDetailNode = null, currentRelation = null, hoveredId = null, hoveredRel = null;
-  let rafId = null, startTs = 0, reveal = 1;
+  let rafId = null, startTs = 0, lastTs = 0, reveal = 1;
   let shimmer = [];
   let cx = 0, cy = 0, baseR = 200, riseH = 240;
 
@@ -322,10 +322,17 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Not: lastTs'i BURADA sıfırlamıyoruz. ensureFrame her karenin sonunda
+  // yeniden çağrıldığı için, burada sıfırlamak dt'yi kalıcı olarak 0 yapıp
+  // zamana bağlı her şeyi (sakin dönüş) dondurur. Sıfırlama, döngünün
+  // gerçekten durduğu tek yerde -- frame()'deki görünürlük çıkışında -- yapılır.
   function ensureFrame() { if (rafId == null) rafId = requestAnimationFrame(frame); }
   function frame(ts) {
     rafId = null;
+    // Görünüm ekranda değilse döngüyü tamamen durdur (bkz. GU.isViewActive).
+    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
     if (!startTs) startTs = ts;
+    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
     if (reveal < 1 && !reduceMotion) reveal = Math.min(1, (ts - startTs) / 2000);
     else if (reduceMotion) reveal = 1;
 
@@ -339,6 +346,12 @@
         if (p >= 1) tilt = tiltTarget; else active = true;
       }
     }
+    // Sakin, huzurlu dönüş: 3B'deyken sahne kendiliğinden çok yavaş dönüyor
+    // (bir tam tur ~2 dakika). Sürüklerken ve hareket kısıtlaması açıkken
+    // durur. Yükseklik ekseni etrafında döndüğü için sarmal ortada kalır,
+    // sığdırma bozulmaz.
+    if (tilt > 0.5 && !dragging && !reduceMotion) { yaw += dt * 0.00007; active = true; }
+
     render(ts);
     if (!reduceMotion || active) ensureFrame();
   }
@@ -716,6 +729,9 @@
     if (currentDetailNode) showDetail(currentDetailNode);
     else if (currentRelation) showRelationDetail(currentRelation);
   }
+
+  // Sekme arkaya alınıp geri gelindiğinde döngü yeniden uyansın.
+  GU.onViewWake(() => { if (built && !wrapEl.hidden) ensureFrame(); });
 
   window.__halApp = {
     activate() { fetchData().then((data) => { if (!data) return; if (!built) buildGraph(data); else ensureFrame(); }); },

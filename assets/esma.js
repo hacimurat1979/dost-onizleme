@@ -542,6 +542,8 @@
 
   function frame(ts) {
     rafId = null;
+    // Görünüm ekranda değilse döngüyü tamamen durdur (bkz. GU.isViewActive).
+    if (!GU.isViewActive(wrapEl)) return;
     const dt = Math.min(64, ts - lastTs); lastTs = ts;
     let active = false;
 
@@ -591,8 +593,10 @@
     render(ts);
 
     // Zât/Allah'ın nefes alan halosu sürekli hafifçe değişiyor -- reduceMotion
-    // kapalıyken kare döngüsü hep sürsün ki bu ambient nefes hiç durmasın
-    // (diğer graflardaki -- hal.js, sirlar-graph.js -- aynı desen).
+    // kapalıyken kare döngüsü sürsün ki bu ambient nefes hiç durmasın. AMA
+    // yalnızca görünüm ekrandayken: aşağıdaki isViewActive kontrolü olmadan
+    // bu döngü, başka bölüme geçildikten sonra bile sonsuza kadar sürüyor ve
+    // bütün siteyi yavaşlatıyordu (bkz. frame() başındaki erken çıkış).
     if (active || exploreOn || !reduceMotion) ensureFrame();
   }
 
@@ -1370,6 +1374,9 @@
     const et = document.querySelector("#esmaX-explore .esmaX-explore__txt");
     if (et) et.textContent = tt({ tr: "Keşfet", en: "Explore", pt: "Explorar" });
   }
+
+  // Sekme arkaya alınıp geri gelindiğinde döngü yeniden uyansın.
+  GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });
 
   window.__esmaApp = {
     activate() {
