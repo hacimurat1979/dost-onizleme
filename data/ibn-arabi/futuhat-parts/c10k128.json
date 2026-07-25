@@ -1,0 +1,359 @@
+{
+  "id": "c10k128",
+  "cilt": 10,
+  "kisim": 128,
+  "status": "active",
+  "title": {
+    "tr": "Donukların Yarısı: Cem-i Ezdâd Bölüm Sınıflandırmasında",
+    "en": "The Inanimate's Half: The Coincidence of Opposites Within the Chapter Classification Itself",
+    "pt": "A Metade do Inanimado: A Coincidência dos Opostos na Própria Classificação dos Capítulos"
+  },
+  "pageRange": {
+    "tr": "s. 136-173",
+    "en": "pp. 136-173",
+    "pt": "pp. 136-173"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Dört bölüm, tenzihin sınırını (ulûhiyet bilinebilir, zat bilinemez), Dost'un kendi miracını ve suret değişimini, kalpte konuşan sesin üç eşit-geçerli açıklamasını işliyor; son bölüm (285, Donukların Münacatı) hiç Musevî/Muhammedî etiketi taşımıyor, çünkü metin bunu açıkça 'her ikisinin yarısı' olarak tanımlıyor - cem-i ezdâd motifinin artık içerikte değil, bölüm sınıflandırmasının kendisinde tekrarı.",
+      "en": "Four chapters treat the limit of transcendent knowledge (divinity is knowable, essence is not), the author's own ascension and a transformation of form, and three equally valid explanations for the voice speaking within the heart; the final chapter (285, the Supplication of the Inanimate) carries no Mosaic/Muhammadan label at all, because the text explicitly defines it as 'half of each' — the coincidence-of-opposites motif now recurring not within content, but within the chapter classification itself.",
+      "pt": "Quatro capítulos tratam o limite do conhecimento transcendente (a divindade é cognoscível, a essência não), a própria ascensão do autor e uma transformação de forma, e três explicações igualmente válidas para a voz que fala dentro do coração; o capítulo final (285, a Súplica do Inanimado) não carrega rótulo Mosaico/Muhammadiano algum, porque o texto o define explicitamente como 'metade de cada' — o motivo da coincidência dos opostos agora recorrendo não dentro do conteúdo, mas na própria classificação dos capítulos."
+    }
+  },
+  "mainDiagram": {
+    "caption": {
+      "tr": "128. Kısım, tenzihin sınırından kalpteki sesin üç açıklamasına, son bölümde 'yarı Musevî yarı Muhammedî' bir sentezle kapanıyor.",
+      "en": "Part 128 moves from the limit of transcendence to three explanations of the heart's voice, closing with a 'half Mosaic, half Muhammadan' synthesis in the final chapter.",
+      "pt": "A Parte 128 avança do limite da transcendência a três explicações da voz do coração, encerrando com uma síntese 'metade Mosaica, metade Muhammadiana' no capítulo final."
+    },
+    "tree": {
+      "id": "kisim-c10k128-tree",
+      "label": {
+        "tr": "Cilt X, 282-285. Bölümler: Donukların Yarısı",
+        "en": "Volume X, Chapters 282-285: The Inanimate's Half",
+        "pt": "Volume X, Capítulos 282-285: A Metade do Inanimado"
+      },
+      "note": {
+        "tr": "Tenzihin sınırından, kısım 285'te iki mertebenin sentezine ulaşır.",
+        "en": "From the limit of transcendence, the part arrives at a synthesis of two ranks in Chapter 285.",
+        "pt": "Do limite da transcendência, a parte chega a uma síntese de dois graus no Capítulo 285."
+      },
+      "children": [
+        {
+          "id": "olumu-ziyaret-dal",
+          "label": {
+            "tr": "Ölümü Ziyaret: Tenzihin Sınırı",
+            "en": "Visiting Death: The Limit of Transcendence",
+            "pt": "Visitando a Morte: O Limite da Transcendência"
+          },
+          "note": {
+            "tr": "ulûhiyet bilinebilir, zat asla bilinemez",
+            "en": "divinity is knowable, essence never is",
+            "pt": "a divindade é cognoscível, a essência nunca é"
+          }
+        },
+        {
+          "id": "kavasim-dal",
+          "label": {
+            "tr": "Kavâsım: Miraç ve Suret Değişimi",
+            "en": "Qawasim: Ascension and the Transformation of Form",
+            "pt": "Qawasim: Ascensão e a Transformação da Forma"
+          },
+          "note": {
+            "tr": "Dost'un kendi miracı, illüzyon ile gerçek mesh arasındaki fark",
+            "en": "the author's own ascension, the difference between illusion and true transformation",
+            "pt": "a própria ascensão do autor, a diferença entre ilusão e verdadeira transformação"
+          }
+        },
+        {
+          "id": "kalpte-konusan-ses-dal",
+          "label": {
+            "tr": "Kalpte Konuşan Ses: Üç Görüş, Hepsi Doğru",
+            "en": "The Voice Speaking in the Heart: Three Views, All True",
+            "pt": "A Voz que Fala no Coração: Três Visões, Todas Verdadeiras"
+          },
+          "note": {
+            "tr": "kalp mi, melek mi, ruh mu — hepsi farklı mertebeler",
+            "en": "the heart, an angel, or a spirit — each a different rank",
+            "pt": "o coração, um anjo, ou um espírito — cada um um grau diferente"
+          }
+        },
+        {
+          "id": "donuklarin-yarisi-dal",
+          "label": {
+            "tr": "Donukların Yarısı: Sentez Bölüm Sınıflandırmasında",
+            "en": "The Inanimate's Half: Synthesis Within the Classification Itself",
+            "pt": "A Metade do Inanimado: Síntese na Própria Classificação"
+          },
+          "note": {
+            "tr": "'Muhammedî ve Musevî mertebenin yarısını elde etmiş'",
+            "en": "'has attained half of the Muhammadan and Mosaic ranks'",
+            "pt": "'atingiu metade dos graus Muhammadiano e Mosaico'"
+          }
+        },
+        {
+          "id": "hareket-taksonomisi-dal",
+          "label": {
+            "tr": "Hareket Taksonomisi ve Kapanış",
+            "en": "The Taxonomy of Motion and the Close",
+            "pt": "A Taxonomia do Movimento e o Fechamento"
+          },
+          "note": {
+            "tr": "doğal, arazî, zorlamalı — sevinç-üzüntünün aynı anda bulunması",
+            "en": "natural, accidental, compelled — joy and sorrow found at once",
+            "pt": "natural, acidental, compelido — alegria e tristeza encontradas ao mesmo tempo"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "olumu-ziyaret",
+      "heading": {
+        "tr": "Ölümü Ziyaret: Tenzihin Sınırı",
+        "en": "Visiting Death: The Limit of Transcendence",
+        "pt": "Visitando a Morte: O Limite da Transcendência"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "<a href=\"#/futuhat/c10k127\">127. kısmın</a> İsrafil örneğiyle Bir'in topluluğun yerini almasından sonra, 282. Bölüm (Musevî, Ölüleri Ziyaret Menzili) ölümün tanımıyla açılıyor: <em>\"nefsin ölümü, bilginin olmayışla gerçekleşir\"</em> (s. 137). Bölüm, önemli bir tenzih sınırı çiziyor: Allah'ın ULÛHİYETİNİN birliği bilinebilir, ama ZATININ birliği asla bilinemez - <em>\"zatın bilinmesi kesinlikle mümkün değildir\"</em> (s. 138-139). \"Ölüleri ziyaret\", bir mistik pratik olarak okunuyor: ölünün kendiliğinde hükmü yoktur, tasarruf edenin hükmüne bağlıdır - ziyaretçi de Hakk'a karşı tam bu teslimiyeti kuşanmalıdır. Bölüm, sitenin kökensel duruşuyla doğrudan örtüşen bir cümleyle zenginleşiyor: <em>\"Öyleyse bilginlerin en bilgilisi, neyi bildiğini bilen ve ne bilmediğini bilendir\"</em> (s. 141).",
+            "en": "Following <a href=\"#/futuhat/c10k127\">Part 127</a>'s treatment of the One taking the place of multiplicity through the example of Israfil, Chapter 282 (Mosaic, the Station of Visiting the Dead) opens with a definition of death: <em>\"the death of the self is realized through the absence of knowledge\"</em> (p. 137). The chapter draws an important boundary of transcendence: the oneness of God's DIVINITY (uluhiyya) is knowable, but the oneness of His ESSENCE (dhat) is never knowable at all — <em>\"knowledge of the essence is absolutely impossible\"</em> (pp. 138-139). \"Visiting the dead\" is read as a mystical practice: the dead have no ruling of their own, being subject to the ruling of the one who disposes of them — the visitor, too, must don this very same submission before the Real. The chapter is enriched by a sentence resonating directly with the site's own founding stance: <em>\"the most knowledgeable of scholars, then, is the one who knows what he knows and knows what he does not know\"</em> (p. 141).",
+            "pt": "Após o tratamento da <a href=\"#/futuhat/c10k127\">Parte 127</a> sobre o Uno tomando o lugar da multiplicidade através do exemplo de Israfil, o Capítulo 282 (Mosaico, a Estação de Visitar os Mortos) se abre com uma definição de morte: <em>\"a morte do eu se realiza através da ausência de conhecimento\"</em> (p. 137). O capítulo traça um limite importante de transcendência: a unicidade da DIVINDADE (uluhiyya) de Deus é cognoscível, mas a unicidade de Sua ESSÊNCIA (dhat) nunca é cognoscível — <em>\"o conhecimento da essência é absolutamente impossível\"</em> (pp. 138-139). \"Visitar os mortos\" é lido como uma prática mística: os mortos não têm julgamento próprio, estando sujeitos ao julgamento daquele que dispõe deles — o visitante, também, deve vestir esta mesma submissão diante do Real. O capítulo é enriquecido por uma frase que ressoa diretamente com a própria postura fundadora do site: <em>\"o mais sábio dos sábios, então, é aquele que sabe o que sabe e sabe o que não sabe\"</em> (p. 141)."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt X, 282-285. Bölümler (çev. Ekrem Demirli)",
+            "en": "Al-Futuhat al-Makkiyya, Vol. X, Chapters 282-285 (trans. Ekrem Demirli)",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. X, Capítulos 282-285 (trad. Ekrem Demirli)"
+          },
+          "caption": {
+            "tr": "Ulûhiyet ile zat: biri bilinebilir birlik, öbürü kesinlikle bilinemez.",
+            "en": "Divinity and essence: one a knowable oneness, the other absolutely unknowable.",
+            "pt": "Divindade e essência: uma uma unidade cognoscível, a outra absolutamente incognoscível."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "Ulûhiyet",
+                "en": "Divinity (Uluhiyya)",
+                "pt": "Divindade (Uluhiyya)"
+              },
+              "note": {
+                "tr": "birliği bilinebilir",
+                "en": "its oneness is knowable",
+                "pt": "sua unidade é cognoscível"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Zat",
+                "en": "Essence (Dhat)",
+                "pt": "Essência (Dhat)"
+              },
+              "note": {
+                "tr": "bilinmesi kesinlikle imkânsız",
+                "en": "knowledge of it is absolutely impossible",
+                "pt": "seu conhecimento é absolutamente impossível"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "kavasim",
+      "heading": {
+        "tr": "Kavâsım: Miraç ve Suret Değişimi",
+        "en": "Qawasim: Ascension and the Transformation of Form",
+        "pt": "Qawasim: Ascensão e a Transformação da Forma"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "283. Bölümde (Muhammedî, Kavâsım/Engelleme Menzili), Dost kendi miracını anlatıyor: bir melek eşliğinde bu menzile ulaştığını, kapının ardından <em>\"Allah'ın bildirmesinden başka bir şekilde bilinmeyen bu kapıyı çalan kim?\"</em> sorusunu duyduğunu aktarıyor (s. 144). Bölümün ağırlık merkezi suret değişimi (mesh) meselesi - Dost, iki farklı başkalaşma türü arasında bir ayrım kuruyor: izleyicinin gözüne etki eden bir İLLÜZYON mu, yoksa cevherin kalıp arazın gerçekten değiştiği bir GERÇEK MESH mi (s. 145-146)? Bu ayrım, donukların/bitkilerin/hayvanların konuşmasına dair bir alt-başlığa doğrudan köprü kuruyor (s. 144-145) - 285. bölümün konusuna hazırlık. Şeytan/cin ilhamının nasıl ayırt edileceği (alamet vs. açık kanıt) de uzun biçimde işleniyor; İbn Sayyâd-Duhân sûresi kıssası (s. 149-150) bu ayırt etmenin klasik bir örneği olarak sunuluyor.",
+            "en": "In Chapter 283 (Muhammadan, the Station of Qawasim/Barriers), the author recounts his own ascension: accompanied by an angel, he reaches this way-station, and reports hearing, from behind the door, the question <em>\"who knocks at this door, unknowable except through God's own disclosure?\"</em> (p. 144). The chapter's center of gravity is the question of transformation of form (mesh) — the author draws a distinction between two kinds of metamorphosis: an ILLUSION affecting the observer's eye, or a TRUE TRANSFORMATION in which the substance remains but the accident genuinely changes (pp. 145-146)? This distinction bridges directly into a subsection on the speech of the inanimate, plants, and animals (pp. 144-145) — a preparation for the subject of Chapter 285. How to distinguish satanic/jinn inspiration (through a sign versus clear proof) is likewise treated at length; the story of Ibn Sayyad and Surat al-Dukhan (pp. 149-150) is offered as a classical example of this discernment.",
+            "pt": "No Capítulo 283 (Muhammadiano, a Estação de Qawasim/Barreiras), o autor relata sua própria ascensão: acompanhado por um anjo, ele alcança esta pousada, e relata ouvir, de trás da porta, a pergunta <em>\"quem bate a esta porta, incognoscível exceto através da própria revelação de Deus?\"</em> (p. 144). O centro de gravidade do capítulo é a questão da transformação de forma (mesh) — o autor traça uma distinção entre dois tipos de metamorfose: uma ILUSÃO que afeta o olho do observador, ou uma VERDADEIRA TRANSFORMAÇÃO na qual a substância permanece mas o acidente genuinamente muda (pp. 145-146)? Esta distinção liga-se diretamente a uma subseção sobre a fala do inanimado, das plantas e dos animais (pp. 144-145) — uma preparação para o tema do Capítulo 285. Como distinguir a inspiração satânica/dos jinn (através de um sinal versus prova clara) também é tratado extensamente; a história de Ibn Sayyad e da Surat al-Dukhan (pp. 149-150) é oferecida como um exemplo clássico deste discernimento."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt X, 282-285. Bölümler (çev. Ekrem Demirli)",
+            "en": "Al-Futuhat al-Makkiyya, Vol. X, Chapters 282-285 (trans. Ekrem Demirli)",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. X, Capítulos 282-285 (trad. Ekrem Demirli)"
+          },
+          "caption": {
+            "tr": "İki başkalaşma türü: biri sadece izleyicinin gözünde, öbürü cevherin kendisinde gerçekleşir.",
+            "en": "Two kinds of metamorphosis: one occurring only in the observer's eye, the other within substance itself.",
+            "pt": "Dois tipos de metamorfose: uma ocorrendo apenas no olho do observador, a outra dentro da própria substância."
+          },
+          "pair": {
+            "left": {
+              "label": {
+                "tr": "İllüzyon",
+                "en": "Illusion",
+                "pt": "Ilusão"
+              },
+              "note": {
+                "tr": "izleyicinin gözüne etki eder — cevher değişmez",
+                "en": "affects the observer's eye — the substance does not change",
+                "pt": "afeta o olho do observador — a substância não muda"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Gerçek Mesh",
+                "en": "True Transformation (Mesh)",
+                "pt": "Verdadeira Transformação (Mesh)"
+              },
+              "note": {
+                "tr": "cevher kalır, araz gerçekten değişir",
+                "en": "the substance remains, the accident genuinely changes",
+                "pt": "a substância permanece, o acidente genuinamente muda"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "kalpte-konusan-ses",
+      "heading": {
+        "tr": "Kalpte Konuşan Ses: Üç Görüş, Hepsi Doğru",
+        "en": "The Voice Speaking in the Heart: Three Views, All True",
+        "pt": "A Voz que Fala no Coração: Três Visões, Todas Verdadeiras"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "284. Bölümde (Muhammedî, Değerli Komşuluk Menzili), zikir esnasında kalpte konuşan sesin ne olduğu tartışılıyor - kalbin kendisi mi, zikirden yaratılan bir melek mi, yoksa bir ruh mu? Dost, birbirini dışlar görünen bu üç görüşün HEPSİNİN doğru olduğunu söylüyor - sadece farklı bilgi mertebelerini yansıttıklarını (s. 155-156). Bu, <a href=\"#/futuhat/c10k126\">126. kısımdaki</a> \"kabın rengi içindekinin rengidir\" formülüyle (her ârifin Hak'tan sadece kendi mertebesine düşeni bilmesi) aynı epistemik çoğulculuk damarından geliyor. İşitme hiyerarşisi de kalpten bedene, oradan donuklara/bitkilere/hayvanlara doğru yükseliyor (s. 154-155) - 285. bölüme giden bir merdiven. Bölüm, ruhun mîsaktan cennete kadar geçirdiği ardışık suretler ve \"her nefes yeni bir surette haşredilme\" öğretisiyle kapanıyor (s. 161-163).",
+            "en": "In Chapter 284 (Muhammadan, the Station of Precious Neighborliness), the discussion turns to what the voice speaking within the heart during remembrance (dhikr) actually is — the heart itself, an angel created from the remembrance, or a spirit? The author states that these three seemingly mutually exclusive views are ALL true — merely reflecting different ranks of knowledge (pp. 155-156). This flows from the same vein of epistemic pluralism as <a href=\"#/futuhat/c10k126\">Part 126</a>'s formula, \"the color of the vessel is the color of what it contains\" (each gnostic knowing of the Real only what falls to his own rank). A hierarchy of hearing likewise rises from the heart to the body, and from there to the inanimate, plants, and animals (pp. 154-155) — a ladder leading toward Chapter 285. The chapter closes with the successive forms the spirit passes through from the primordial covenant to paradise, and the teaching that \"with every breath one is resurrected into a new form\" (pp. 161-163).",
+            "pt": "No Capítulo 284 (Muhammadiano, a Estação da Vizinhança Preciosa), a discussão se volta para o que é a voz que fala dentro do coração durante a lembrança (dhikr) — o próprio coração, um anjo criado a partir da lembrança, ou um espírito? O autor afirma que essas três visões aparentemente mutuamente exclusivas são TODAS verdadeiras — refletindo apenas graus diferentes de conhecimento (pp. 155-156). Isto flui da mesma veia de pluralismo epistêmico da fórmula da <a href=\"#/futuhat/c10k126\">Parte 126</a>, \"a cor do vaso é a cor do que ele contém\" (cada gnóstico conhecendo do Real apenas o que cabe ao seu próprio grau). Uma hierarquia de audição igualmente se eleva do coração ao corpo, e daí ao inanimado, às plantas e aos animais (pp. 154-155) — uma escada que leva ao Capítulo 285. O capítulo se encerra com as formas sucessivas pelas quais o espírito passa, do pacto primordial ao paraíso, e o ensinamento de que \"a cada respiração se é ressuscitado numa nova forma\" (pp. 161-163)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "donuklarin-yarisi",
+      "heading": {
+        "tr": "Donukların Yarısı: Sentez Bölüm Sınıflandırmasının Kendisinde",
+        "en": "The Inanimate's Half: Synthesis Within the Classification Itself",
+        "pt": "A Metade do Inanimado: Síntese na Própria Classificação"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "285. Bölüm (Donukların Münacatı Menzili) hiçbir Musevî ya da Muhammedî etiketi taşımıyor - önceki kısımlarda (125-127) gözlemlenen sıkı ikili ayrımdan farklı bir durum. Bölüm başlığının hemen altında, şiirden önce, bu boşluğun NEDENİNİ açıkça veren bir cümle geçiyor: <em>\"Bunu öğrenen kimse, Muhammedî ve Musevî mertebenin yarısını elde etmiş demektir\"</em> (s. 163). Bu, etiketsizliğin bir eksiklik değil, iki mertebeyi AYNI ANDA taşıyan bir sentez/cem hali olduğunu gösteriyor - <a href=\"#/futuhat/c10k127\">127. kısımda</a> ilk kez açıkça adlandırılan cem-i ezdâd motifinin, artık bir bölümün İÇERİĞİNDE değil, bizzat kitabın kendi BÖLÜM SINIFLANDIRMASINDA tekrarı gibi okunabilir. İki zıddın (Musevî/Muhammedî) bir menzilde birleşmesi, kısımlar boyunca süregelen M/Mu dalgalanma örüntüsüne (125: 2M-1Mu, 126: 1M-3Mu tersine, 127: 3M-1Mu tekrar tersine) yeni, sentezleyici bir üçüncü terim ekliyor.",
+            "en": "Chapter 285 (the Station of the Inanimate's Supplication) carries no Mosaic or Muhammadan label at all — a departure from the strict binary observed in the preceding parts (125-127). Directly beneath the chapter's title, before the poem, comes a sentence that explicitly gives the REASON for this absence: <em>\"whoever learns this has thereby attained half of the Muhammadan rank and half of the Mosaic rank\"</em> (p. 163). This shows the absence of a label is not a deficiency, but a state of synthesis/gathering carrying both ranks AT ONCE — the coincidence-of-opposites motif, named explicitly for the first time in <a href=\"#/futuhat/c10k127\">Part 127</a>, may now be read as recurring not within a chapter's CONTENT, but within the book's own CHAPTER CLASSIFICATION itself. The union of two opposites (Mosaic/Muhammadan) within a single way-station adds a new, synthesizing third term to the M/Mu oscillation pattern running through the parts (125: 2M-1Mo, 126: 1M-3Mo reversed, 127: 3M-1Mo reversed again).",
+            "pt": "O Capítulo 285 (a Estação da Súplica do Inanimado) não carrega rótulo Mosaico ou Muhammadiano algum — um afastamento da estrita binariedade observada nas partes precedentes (125-127). Diretamente abaixo do título do capítulo, antes do poema, vem uma frase que explicitamente dá a RAZÃO para esta ausência: <em>\"quem aprende isto atinge assim metade do grau Muhammadiano e metade do grau Mosaico\"</em> (p. 163). Isto mostra que a ausência de um rótulo não é uma deficiência, mas um estado de síntese/reunião que carrega ambos os graus AO MESMO TEMPO — o motivo da coincidência dos opostos, nomeado explicitamente pela primeira vez na <a href=\"#/futuhat/c10k127\">Parte 127</a>, pode agora ser lido como recorrendo não dentro do CONTEÚDO de um capítulo, mas dentro da própria CLASSIFICAÇÃO DOS CAPÍTULOS do livro. A união de dois opostos (Mosaico/Muhammadiano) dentro de uma única pousada adiciona um novo terceiro termo sintetizador ao padrão de oscilação M/Mu que percorre as partes (125: 2M-1Mo, 126: 1M-3Mo invertido, 127: 3M-1Mo invertido novamente)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "hareket-taksonomisi",
+      "heading": {
+        "tr": "Hareket Taksonomisi",
+        "en": "The Taxonomy of Motion",
+        "pt": "A Taxonomia do Movimento"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "285. Bölüm, hareketi üç türe ayıran bir taksonomi sunuyor (s. 166): doğal (kendiliğinden), arazî (ihtiyârî ya da gayrı ihtiyârî) ve zorlamalı (kastî) - donukların, bitkilerin ve hayvanların konuşması/münacatı meselesini, önce onların nasıl \"hareket ettiğini\" sınıflandırarak temellendiren bir giriş. Bu üçlü, <a href=\"#/futuhat/c10k127\">127. kısımdaki</a> ilahi isimler hiyerarşisi gibi (Hayy-Alîm-Mürîd-Kadîr) zincirleme bir sıralama değil, üç bağımsız KATEGORİ sunuyor - her hareket türü kendi başına geçerli, birbirini gerektirmiyor.",
+            "en": "Chapter 285 offers a taxonomy dividing motion into three kinds (p. 166): natural (spontaneous), accidental (voluntary or involuntary), and compelled (intentional) — an introduction grounding the matter of the inanimate, plants, and animals speaking/supplicating by first classifying how they \"move\" in the first place. Unlike <a href=\"#/futuhat/c10k127\">Part 127</a>'s chain-like hierarchy of divine names (Hayy-'Alim-Murid-Qadir), this triad offers three independent CATEGORIES — each kind of motion valid on its own, none requiring the others.",
+            "pt": "O Capítulo 285 oferece uma taxonomia que divide o movimento em três tipos (p. 166): natural (espontâneo), acidental (voluntário ou involuntário), e compelido (intencional) — uma introdução que fundamenta a questão do inanimado, das plantas e dos animais falando/suplicando, classificando primeiro como eles \"se movem\". Diferentemente da hierarquia em cadeia de nomes divinos da <a href=\"#/futuhat/c10k127\">Parte 127</a> (Hayy-'Alim-Murid-Qadir), esta tríade oferece três CATEGORIAS independentes — cada tipo de movimento válido por si só, nenhum exigindo os outros."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt X, 282-285. Bölümler (çev. Ekrem Demirli)",
+            "en": "Al-Futuhat al-Makkiyya, Vol. X, Chapters 282-285 (trans. Ekrem Demirli)",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. X, Capítulos 282-285 (trad. Ekrem Demirli)"
+          },
+          "caption": {
+            "tr": "Üç hareket türü: kendiliğinden doğaldan, iradeye bağlı arazîden, tam zorlamalı olana.",
+            "en": "Three kinds of motion: from spontaneous nature, through will-dependent accident, to fully compelled motion.",
+            "pt": "Três tipos de movimento: da natureza espontânea, através do acidente dependente da vontade, ao movimento totalmente compelido."
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "Doğal",
+                "en": "Natural",
+                "pt": "Natural"
+              },
+              "note": {
+                "tr": "kendiliğinden — hiçbir iradeye bağlı değil",
+                "en": "spontaneous — dependent on no will",
+                "pt": "espontâneo — não depende de nenhuma vontade"
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "Arazî",
+                "en": "Accidental",
+                "pt": "Acidental"
+              },
+              "note": {
+                "tr": "ihtiyârî ya da gayrı ihtiyârî — kısmen iradeye bağlı",
+                "en": "voluntary or involuntary — partly dependent on will",
+                "pt": "voluntário ou involuntário — parcialmente dependente da vontade"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "Zorlamalı",
+                "en": "Compelled",
+                "pt": "Compelido"
+              },
+              "note": {
+                "tr": "kastî — tam iradeyle, dışarıdan yönlendirilen",
+                "en": "intentional — fully willed, directed from without",
+                "pt": "intencional — plenamente voluntário, dirigido de fora"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "kapanis-sevinc-uzuntu",
+      "heading": {
+        "tr": "Kapanış: Sevinç ile Üzüntünün Aynı Anda Bulunması",
+        "en": "The Close: Joy and Sorrow Found at Once",
+        "pt": "O Fechamento: Alegria e Tristeza Encontradas ao Mesmo Tempo"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Kısım, cem-i ezdâd motifinin duygusal/nefsanî düzeyde somut bir örneğiyle kapanıyor: amellerin suretleri nefsin farklı kısımlarına aynı anda zıt etkiler verdiğinde, insan <em>\"aynı andaki iki ayrı kabulle, bir parçası sevindiği için dolaylı olarak sevinirken bir parçası üzüldüğü için dolaylı olarak üzülür... İnsan, cennete girene kadar, sevinen-üzülen, kazanan-kaybedendir\"</em> (s. 172-173). Bu, <a href=\"#/futuhat/c10k127\">127. kısımdaki</a> \"iki zıddı bir arada tutma\" bilgisinin, artık soyut bir ilke değil, doğrudan yaşanan bir duygu deneyimi olarak yeniden belirişi. Bölüm, iktidarsız bir insanın cinsel hazzı asla bilemeyeceği örneğiyle (s. 177) bir başka günlük-hayat analojisi sunuyor - Dost'un kendi kalemiyle kurduğu bu benzetme, mistik \"zevk\"in (tarif edilemeyen tat) ancak aynı duyuyu yaşayanlar arasında paylaşılabileceğini, dışarıdan hiçbir anlatımla aktarılamayacağını gösteriyor.",
+            "en": "The part closes with a concrete instance of the coincidence-of-opposites motif at the emotional/psychic level: when the forms of one's deeds produce opposite effects at once upon different parts of the self, a person <em>\"through two distinct receptions occurring at once, indirectly rejoices because one part of him rejoices, while indirectly grieving because another part grieves... until entering paradise, the human being is at once rejoicing and grieving, gaining and losing\"</em> (pp. 172-173). This marks a re-emergence of <a href=\"#/futuhat/c10k127\">Part 127</a>'s knowledge of \"holding two opposites together\" — no longer an abstract principle, but a directly lived emotional experience. The chapter offers a further everyday analogy through the example of a person incapable of ever knowing sexual pleasure (p. 177) — an analogy the author himself constructs, showing that mystical \"taste\" (an indescribable savor) can only be shared among those who have lived the same sense, never conveyed through any outside account.",
+            "pt": "A parte se encerra com uma instância concreta do motivo da coincidência dos opostos no nível emocional/psíquico: quando as formas dos próprios atos produzem efeitos opostos ao mesmo tempo em partes diferentes do eu, uma pessoa <em>\"através de duas recepções distintas ocorrendo ao mesmo tempo, indiretamente se alegra porque uma parte sua se alegra, enquanto indiretamente se entristece porque outra parte se entristece... até entrar no paraíso, o ser humano está ao mesmo tempo alegrando-se e entristecendo-se, ganhando e perdendo\"</em> (pp. 172-173). Isto marca um ressurgimento do conhecimento da <a href=\"#/futuhat/c10k127\">Parte 127</a> de \"manter dois opostos juntos\" — não mais um princípio abstrato, mas uma experiência emocional diretamente vivida. O capítulo oferece mais uma analogia cotidiana através do exemplo de uma pessoa incapaz de jamais conhecer o prazer sexual (p. 177) — uma analogia que o próprio autor constrói, mostrando que o \"gosto\" místico (um sabor indescritível) só pode ser compartilhado entre aqueles que viveram o mesmo sentido, jamais transmitido por nenhum relato externo."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": {
+        "tr": "Fütûhât-ı Mekkiyye, Cilt X, 282-285. Bölümler (çev. Ekrem Demirli)",
+        "en": "Al-Futuhat al-Makkiyya, Vol. X, Chapters 282-285 (trans. Ekrem Demirli)",
+        "pt": "Al-Futuhat al-Makkiyya, Vol. X, Capítulos 282-285 (trad. Ekrem Demirli)"
+      },
+      "pageRange": "136-173"
+    }
+  ]
+}
