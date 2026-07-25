@@ -264,6 +264,93 @@
     updateBadge();
   }
 
+  // --- Biriken notların listesi: görüntüle / düzenle / sil ---------------
+  // Önce yalnızca "kaydet ve unut" vardı; kullanıcı bir notu kaydettikten
+  // sonra ona bir daha ulaşamadığını bildirdi (2026-07-25). Artık panelden
+  // bütün kuyruk açılıp tek tek düzeltilebiliyor ya da silinebiliyor.
+  function escapeHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, (c) => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
+    ));
+  }
+
+  function entryTitle(e, i) {
+    const where = (e.url || "").replace(/^.*\/(?=[^/]*$)/, "") || "/";
+    if (e.type === "visual-note") return `${i + 1}. 🖌️ görsel not · ${escapeHtml(where)}`;
+    return `${i + 1}. ✎ metin · ${escapeHtml(e.heading || where)}`;
+  }
+
+  function deleteEntry(idx) {
+    const q = getQueue();
+    if (!q[idx]) return;
+    if (!confirm("Bu not silinsin mi? / Delete this note?")) return;
+    q.splice(idx, 1);
+    setQueue(q);
+    // Metin düzenlemeleri kuyruk indeksini eleman üzerinde tutuyor; bir kayıt
+    // silinince sonrakilerin indeksi kayar, o yüzden hepsini tazeliyoruz.
+    document.querySelectorAll("[data-dost-edit-idx]").forEach((el) => {
+      const v = Number(el.dataset.dostEditIdx);
+      if (v === idx) delete el.dataset.dostEditIdx;
+      else if (v > idx) el.dataset.dostEditIdx = String(v - 1);
+    });
+    renderNoteList();
+  }
+
+  function saveEntryText(idx, value) {
+    const q = getQueue();
+    if (!q[idx]) return;
+    if (q[idx].type === "visual-note") q[idx].note = value;
+    else q[idx].after = value;
+    q[idx].editedAt = new Date().toISOString();
+    setQueue(q);
+  }
+
+  let listModal = null;
+  function renderNoteList() {
+    if (!listModal) return;
+    const body = listModal.querySelector(".dost-notes__body");
+    const q = getQueue();
+    if (!q.length) {
+      body.innerHTML = '<p class="dost-notes__empty">Henüz kayıtlı not yok.</p>';
+      return;
+    }
+    body.innerHTML = q.map((e, i) => `
+      <div class="dost-notes__item" data-idx="${i}">
+        <div class="dost-notes__head">
+          <span class="dost-notes__title">${entryTitle(e, i)}</span>
+          <button type="button" class="dost-notes__del" data-del="${i}">Sil</button>
+        </div>
+        ${e.type !== "visual-note" && e.before ? `<p class="dost-notes__before">${escapeHtml(e.before)}</p>` : ""}
+        ${e.image ? `<img class="dost-notes__thumb" src="${e.image}" alt="">` : ""}
+        <textarea class="dost-notes__text" data-text="${i}" rows="3">${escapeHtml(e.type === "visual-note" ? e.note : e.after)}</textarea>
+      </div>`).join("");
+    body.querySelectorAll("[data-del]").forEach((b) => {
+      b.addEventListener("click", () => deleteEntry(Number(b.dataset.del)));
+    });
+    body.querySelectorAll("[data-text]").forEach((t) => {
+      t.addEventListener("input", () => saveEntryText(Number(t.dataset.text), t.value));
+    });
+  }
+
+  function openNoteList() {
+    listModal = document.createElement("div");
+    listModal.className = "dost-shot-modal dost-notes";
+    listModal.innerHTML =
+      '<div class="dost-shot-modal__backdrop"></div>' +
+      '<div class="dost-shot-modal__card dost-notes__card" role="dialog" aria-modal="true">' +
+      '<p class="dost-shot-modal__label">Kayıtlı notlar — düzenleyebilir ya da silebilirsin</p>' +
+      '<div class="dost-notes__body"></div>' +
+      '<div class="dost-shot-modal__actions">' +
+      '<button type="button" data-action="close" class="dost-shot-modal__save">Kapat</button>' +
+      "</div></div>";
+    document.body.appendChild(listModal);
+    const close = () => { listModal.remove(); listModal = null; };
+    listModal.querySelector(".dost-shot-modal__backdrop").addEventListener("click", close);
+    listModal.querySelector('[data-action="close"]').addEventListener("click", close);
+    listModal.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    renderNoteList();
+  }
+
   function buildPanel() {
     panel = document.createElement("div");
     panel.className = "dost-edit-panel";
@@ -275,6 +362,7 @@
       '<div class="dost-edit-panel__menu" hidden>' +
       '<p class="dost-edit-panel__hint">Düzenleme modu açık — düz yazı metinlere tıklayıp değiştirebilir, ya da bu sayfa için bir görsel not bırakabilirsin (ekran görüntüsüyle ya da görüntü olmadan).</p>' +
       '<button type="button" data-action="visual-note">🖌️ Bu Sayfa İçin Görsel Not</button>' +
+      '<button type="button" data-action="notes">📋 Kayıtlı Notlar</button>' +
       '<button type="button" data-action="export">Dışa Aktar</button>' +
       '<button type="button" data-action="clear">Temizle</button>' +
       '<button type="button" data-action="exit">Düzenleme Modunu Kapat</button>' +
@@ -286,6 +374,10 @@
     panel.querySelector('[data-action="visual-note"]').addEventListener("click", () => {
       menu.hidden = true;
       buildVisualNoteModal();
+    });
+    panel.querySelector('[data-action="notes"]').addEventListener("click", () => {
+      menu.hidden = true;
+      openNoteList();
     });
     panel.querySelector('[data-action="export"]').addEventListener("click", exportQueue);
     panel.querySelector('[data-action="clear"]').addEventListener("click", clearQueue);

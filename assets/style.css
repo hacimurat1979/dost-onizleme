@@ -3505,6 +3505,75 @@ html:has(.detail-panel:not([hidden])) {
   font-weight: 600;
 }
 
+/* Kayıtlı notlar listesi: kaydedilmiş her not burada düzeltilebilir/silinebilir. */
+.dost-notes__card { width: min(560px, 100%); }
+.dost-notes__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 58vh;
+  overflow-y: auto;
+}
+.dost-notes__empty { margin: 0; font-size: 0.86rem; color: var(--text-secondary); }
+.dost-notes__item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dost-notes__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.dost-notes__title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+.dost-notes__del {
+  font: inherit;
+  font-size: 0.74rem;
+  padding: 3px 9px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--page-plane);
+  color: var(--text-secondary);
+  cursor: pointer;
+  flex: none;
+}
+.dost-notes__del:hover,
+.dost-notes__del:focus-visible { border-color: var(--accent-interactive); color: var(--accent-interactive); }
+.dost-notes__before {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  opacity: 0.75;
+}
+.dost-notes__thumb {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+}
+.dost-notes__text {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 7px 9px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--page-plane);
+  color: var(--text-primary);
+  resize: vertical;
+}
+
 .search-panel {
   position: fixed;
   inset: 0;

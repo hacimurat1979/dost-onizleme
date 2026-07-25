@@ -100,7 +100,10 @@
   let sirlarData = null, sirlarDataPromise = null, built = false;
   let nodes = [], links = [], byId = new Map(), childrenOf = new Map();
   let sim = null, zoomBehavior = null, currentK = 1;
-  let zoomLayer, bgLayer, bubbleLayer, linkLayer, particleLayer, nodeLayer;
+  let zoomLayer, spinLayer, bgLayer, bubbleLayer, linkLayer, particleLayer, nodeLayer;
+  // Sakin, huzurlu dönüş: tam tur ~110 saniye.
+  let spin = 0;
+  const SPIN_RATE = 0.000057;
   let hoveredId = null, focusedTheme = null;
   let particles = [];
   let rafId = null, startTs = 0, lastTs = 0;
@@ -198,11 +201,14 @@
 
     zoomLayer = svg.append("g").attr("class", "sir-canvas");
     zoomLayer.attr("transform", `translate(${w / 2},${h / 2})`);
-    bgLayer = zoomLayer.append("g").attr("class", "sir-bg");
-    bubbleLayer = zoomLayer.append("g").attr("class", "sir-bubbles");
-    linkLayer = zoomLayer.append("g").attr("class", "sir-links");
-    particleLayer = zoomLayer.append("g").attr("class", "sir-particles");
-    nodeLayer = zoomLayer.append("g").attr("class", "sir-nodes");
+    // Sakin dönüş için tek bir ara grup: bütün sahne kökün (0,0) etrafında
+    // yavaşça dönerken etiketler ayrıca ters döndürülüp dik tutuluyor.
+    spinLayer = zoomLayer.append("g").attr("class", "sir-spin");
+    bgLayer = spinLayer.append("g").attr("class", "sir-bg");
+    bubbleLayer = spinLayer.append("g").attr("class", "sir-bubbles");
+    linkLayer = spinLayer.append("g").attr("class", "sir-links");
+    particleLayer = spinLayer.append("g").attr("class", "sir-particles");
+    nodeLayer = spinLayer.append("g").attr("class", "sir-nodes");
 
     zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.35, 3.2]);
     // başlangıç dönüşümü: sahneyi merkeze al (zoom handler zoomLayer'ı buna göre kurar)
@@ -267,8 +273,18 @@
 
   function frame(ts) {
     rafId = null;
+    // Görünüm ekranda değilse döngüyü tamamen durdur -- aşağıdaki `anim`
+    // koşulu (|| true) normal kullanıcıda hep doğru olduğu için, bu kapı
+    // olmadan döngü başka bölüme geçildikten sonra da sonsuza kadar
+    // sürüyordu (bkz. GU.isViewActive).
+    if (!GU.isViewActive(wrapEl)) return;
     if (!startTs) startTs = ts;
     const dt = Math.min(64, ts - lastTs); lastTs = ts;
+    // Sakin dönüş: bir temaya odaklanılmışken ve sürüklerken durur.
+    if (!reduceMotion && !dragging && !focusedTheme) {
+      spin += dt * SPIN_RATE;
+      if (spinLayer) spinLayer.attr("transform", `rotate(${(spin * 180 / Math.PI).toFixed(2)})`);
+    }
 
     // ilk açılış büyüme ilerlemesi (#7,#18)
     if (growth < 1 && !reduceMotion) { growth = Math.min(1, (ts - startTs) / 2000); }
@@ -452,8 +468,12 @@
       if (!showLabel) lbl.style("display", "none");
       else {
         const long = (d.kind === "entry" && currentK > 1.9);
+        const ly = r + (d.kind === "root" ? 20 : d.kind === "theme" ? 16 : 12);
         lbl.style("display", null)
-          .attr("y", r + (d.kind === "root" ? 20 : d.kind === "theme" ? 16 : 12))
+          .attr("y", ly)
+          // Sahne döndüğü için etiketi kendi noktası etrafında ters çevirip
+          // hem dik hem yerinde tut.
+          .attr("transform", `rotate(${(-spin * 180 / Math.PI).toFixed(2)},0,${ly.toFixed(1)})`)
           .classed("sir-label--root", d.kind === "root")
           .classed("sir-label--theme", d.kind === "theme")
           .classed("sir-label--strong", act && (d.id === act.anchor))
@@ -598,6 +618,8 @@
     ensureFrame();
     wireDragState();
   }
+
+  GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });
 
   window.__sirlarGraphApp = {
     activate() { fetchData().then((data) => { if (!data) return; if (!built) buildGraph(data); else ensureFrame(); }); },

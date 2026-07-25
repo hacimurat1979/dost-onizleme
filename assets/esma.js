@@ -433,11 +433,26 @@
   let panX = 0, panY = 0, panTargetX = 0, panTargetY = 0;
   const TILT_DUR = 1050;
 
+  // Sakin, huzurlu dönüş -- HEM 2B HEM 3B'de. Tek bir `spin` birikimi iki
+  // görünüme de hizmet ediyor: 2B'de (tilt=0) düzlem içinde, merkezin
+  // etrafında bir çark gibi döner (karşılama grafiğindeki gibi); 3B'de
+  // (tilt=1) yaw'a eklenerek dikey eksen etrafında döner. Aradaki geçişte
+  // ikisi (1-tilt)/tilt ağırlıklarıyla harmanlanır, böylece 2B<->3B geçişinde
+  // dönüş sıçramaz. Tam tur ~100 saniye.
+  let spin = 0;
+  const SPIN_RATE = 0.000063;   // rad/ms
+
   function project(n) {
-    const x0 = n.bx + n.offx;
-    const y0 = n.by + n.offy;
+    const x0r = n.bx + n.offx;
+    const y0r = n.by + n.offy;
+    // 2B düzlem-içi dönüş (tilt arttıkça payı azalır)
+    const sp = spin * (1 - tilt);
+    const cs = Math.cos(sp), sn = Math.sin(sp);
+    const x0 = x0r * cs - y0r * sn;
+    const y0 = x0r * sn + y0r * cs;
     const z0 = n.bz * tilt;
-    const yy = yaw * tilt, pp = pitch * tilt;
+    // 3B'de aynı dönüş yaw'a ekleniyor (yaw zaten tilt ile ölçekleniyor)
+    const yy = (yaw + spin) * tilt, pp = pitch * tilt;
     const cy = Math.cos(yy), sy = Math.sin(yy);
     const x1 = x0 * cy + z0 * sy;
     const z1 = -x0 * sy + z0 * cy;
@@ -587,8 +602,11 @@
     // altın akış
     if (flow) { active = true; if (ts - flow.start > flow.dur + 400) flow = null; }
 
-    // otomatik dönüş (3B'de, keşif kapalıysa, boştayken)
-    if (tilt > 0.5 && !dragging && !reduceMotion && idleRotate) { yaw += dt * 0.00006; active = true; }
+    // Sakin, huzurlu dönüş -- artık HEM 2B HEM 3B'de (bkz. project()'teki
+    // `spin`). Bir düğüm seçiliyken, keşif modunda, sürüklerken ve hareket
+    // kısıtlaması açıkken durur: kullanıcı bir şeye odaklanmışken sahne
+    // kıpırdamasın.
+    if (!dragging && !reduceMotion && idleRotate) { spin += dt * SPIN_RATE; active = true; }
 
     render(ts);
 
@@ -950,7 +968,7 @@
   function deselect() {
     selectedId = null;
     flow = null;
-    idleRotate = tilt > 0.5;
+    idleRotate = true;
     fitVisible();
     ensureFrame();
   }
@@ -1246,7 +1264,7 @@
   // ---- 2B ↔ 3B sinematik geçiş (mevcut #esma-3d-toggle yeniden bağlanır) ----
   function setTilt(target) {
     tiltFrom = tilt; tiltTarget = target; tiltAnimStart = performance.now();
-    idleRotate = target > 0.5;
+    idleRotate = true;
     if (target < 0.5) { yaw = 0; pitch = -0.42; }
     ensureFrame();
   }
