@@ -46,10 +46,15 @@
         "cilt": 9,
         "kisimStart": 120,
         "kisimEnd": 124
+      },
+      {
+        "cilt": 10,
+        "kisimStart": 125,
+        "kisimEnd": 133
       }
     ]
   },
-  "activePartId": "c9k124",
+  "activePartId": "c10k125",
   "parts": [
     {
       "id": "c1k3",
@@ -7455,6 +7460,61 @@
           "tr": "Kapanış: Üç Yakîn Mertebesi ve Cildin Sessiz Bırakışı",
           "en": "The Close: Three Degrees of Certainty and the Volume's Quiet Departure",
           "pt": "O Fechamento: Três Graus de Certeza e a Partida Silenciosa do Volume"
+        }
+      ]
+    },
+    {
+      "id": "c10k125",
+      "cilt": 10,
+      "kisim": 125,
+      "status": "active",
+      "title": {
+        "tr": "Muhammedî ve Musevî: Cilt X'un Açılışı",
+        "en": "Muhammadan and Mosaic: Volume X's Opening",
+        "pt": "Muhammadiano e Mosaico: A Abertura do Volume X"
+      },
+      "pageRange": {
+        "tr": "s. 14-52",
+        "en": "pp. 14-52",
+        "pt": "pp. 14-52"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Cilt X'ün açılışı, kaynak metnin artık 'Kısım' değil sadece Sifr/Bölüm başlıkları taşıdığı yeni bir düzene geçiyor; dört bölüm boyunca Muhammedî (kapsayıcı/kutbiyet) ile Musevî (fenâ/yok ediş) makamları arasında keskin bir karşıtlık kuruluyor, Kutub'un çokluk içindeki tekliği ve cinsel ilişkiye dair alışılmadık bir okuma işleniyor, ve kısım Dost'un kendi kaleminde nadir bir epistemik tereddütle kapanıyor.",
+          "en": "Volume X's opening moves into a new arrangement, where the source text no longer carries 'Part' headings, only Sifr/Chapter ones; across four chapters a sharp contrast is drawn between the Muhammadan station (encompassing, pole-hood) and the Mosaic station (annihilation, undoing), the Pole's oneness-within-multiplicity and an unusual reading of sexual union are treated, and the part closes with a rare moment of epistemic hesitation in the author's own hand.",
+          "pt": "A abertura do Volume X passa para um novo arranjo, onde o texto-fonte não carrega mais cabeçalhos de 'Parte', apenas de Sifr/Capítulo; ao longo de quatro capítulos é traçado um contraste marcante entre a estação Muhammadiana (abrangente, polaridade) e a estação Mosaica (aniquilação, desfazimento), a unidade-dentro-da-multiplicidade do Polo e uma leitura incomum da união sexual são tratadas, e a parte se encerra com um raro momento de hesitação epistêmica pela própria mão do autor."
+        }
+      },
+      "sectionHeadings": [
+        {
+          "tr": "Muhammedî ve Musevî: Yeni Bir Ayrım",
+          "en": "Muhammadan and Mosaic: A New Distinction",
+          "pt": "Muhammadiano e Mosaico: Uma Nova Distinção"
+        },
+        {
+          "tr": "Kutub'un Çokluk İçindeki Tekliği",
+          "en": "The Pole's Oneness Within Multiplicity",
+          "pt": "A Unidade do Polo Dentro da Multiplicidade"
+        },
+        {
+          "tr": "Kutub'un Cinsellik Yorumu ve Menzil-Münazele Ayrımı",
+          "en": "The Pole's Reading of Sexual Union, and the Menzil-Munazala Distinction",
+          "pt": "A Leitura do Polo sobre a União Sexual, e a Distinção Menzil-Munazala"
+        },
+        {
+          "tr": "Seher: Işık ile Karanlığın Karışımı",
+          "en": "Dawn: The Mixture of Light and Darkness",
+          "pt": "Alvorecer: A Mistura de Luz e Escuridão"
+        },
+        {
+          "tr": "Musevî Makam: Beş Ev, Beş Hazine",
+          "en": "The Mosaic Station: Five Houses, Five Treasures",
+          "pt": "A Estação Mosaica: Cinco Casas, Cinco Tesouros"
+        },
+        {
+          "tr": "Vâhid ve Ehad'da Bir Tereddüt",
+          "en": "A Hesitation Concerning Wahid and Ahad",
+          "pt": "Uma Hesitação Sobre Wahid e Ahad"
         }
       ]
     }
