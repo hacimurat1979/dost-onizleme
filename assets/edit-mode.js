@@ -29,18 +29,15 @@
     ".hakkinda-poem",
   ].join(", ");
 
-  // Ekran görüntüsü yakalama: Screen Capture API'nin kendisini kullanır (yeni
-  // bir kütüphane eklemeden) -- "preferCurrentTab" ipucu destekleyen
-  // tarayıcılarda (Chrome/Edge) seçim penceresini atlayıp doğrudan bu
-  // sekmeyi paylaşır. Tek kare alınıp iz hemen durdurulur; paylaşım göstergesi
-  // tarayıcıda kalıcı olarak asılı kalmaz.
-  //
-  // Bu API mobil/tablet tarayıcılarda (iPadOS Safari, Android Chrome) hiç
-  // desteklenmiyor -- masaüstü-tarayıcı-sekmesi paylaşma fikrine dayanıyor,
-  // dokunmatik bir arayüzde karşılığı yok. O yüzden ikinci bir yol da var:
-  // cihazın kendi ekran görüntüsü (OS'in kendi tuş/hareket kombinasyonu)
-  // alınıp galeriden/dosyalardan seçilerek yüklenebiliyor. İkisi de aynı
-  // buildScreenshotModal()'a, aynı kuyruğa çıkıyor.
+  // Görsel not: bu sayfa için bir metin notu ("burada şu değişmeli"),
+  // istenirse bir ekran görüntüsüyle birlikte. Görüntü ZORUNLU değil --
+  // sadece metinle de bir görsel revize isteği bırakılabilir. Görüntü
+  // eklemenin iki yolu var: Screen Capture API ile canlı yakalama (yeni bir
+  // kütüphane eklemeden; "preferCurrentTab" ipucu destekleyen tarayıcılarda
+  // seçim penceresini atlar) -- ki bu mobil/tablet tarayıcılarda (iPadOS
+  // Safari, Android Chrome) hiç desteklenmiyor -- ya da cihazın kendi ekran
+  // görüntüsünü (OS'in kendi tuş/hareket kombinasyonuyla alınmış) galeriden
+  // seçip yükleme. İkisi de aynı modaldeki aynı önizlemeye, aynı kuyruğa çıkıyor.
   const SCREENSHOT_MIME = "image/jpeg";
   const SCREENSHOT_MAX_WIDTH = 1600;
   const supportsCapture = !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia);
@@ -61,67 +58,30 @@
     fileInputEl.type = "file";
     fileInputEl.accept = "image/*";
     fileInputEl.style.display = "none";
-    fileInputEl.addEventListener("change", async () => {
-      const file = fileInputEl.files && fileInputEl.files[0];
-      fileInputEl.value = "";
-      if (!file) return;
-      const bitmap = await createImageBitmap(file);
-      buildScreenshotModal(drawToCanvas(bitmap, bitmap.width, bitmap.height));
-    });
     document.body.appendChild(fileInputEl);
     return fileInputEl;
   }
 
-  function pickImageFile() {
-    ensureFileInput().click();
-  }
-
-  function recordScreenshot(dataUrl, note) {
-    const queue = getQueue();
-    queue.push({
-      type: "screenshot",
-      url: location.pathname,
-      lang: (window.DostI18n && window.DostI18n.getLang()) || "tr",
-      note: note,
-      image: dataUrl,
-      timestamp: new Date().toISOString(),
-    });
-    setQueue(queue);
-  }
-
-  function buildScreenshotModal(dataUrl) {
-    const modal = document.createElement("div");
-    modal.className = "dost-shot-modal";
-    modal.innerHTML =
-      '<div class="dost-shot-modal__backdrop"></div>' +
-      '<div class="dost-shot-modal__card" role="dialog" aria-modal="true">' +
-      `<img class="dost-shot-modal__preview" src="${dataUrl}" alt="">` +
-      '<label class="dost-shot-modal__label" for="dost-shot-note">Bu görüntüde ne var, ne düzeltilmeli?</label>' +
-      '<textarea id="dost-shot-note" class="dost-shot-modal__note" rows="3" placeholder="Örn: bu kartın kenarı taşıyor / bu renk çok koyu…"></textarea>' +
-      '<div class="dost-shot-modal__actions">' +
-      '<button type="button" data-action="cancel">Vazgeç</button>' +
-      '<button type="button" data-action="save" class="dost-shot-modal__save">Kaydet</button>' +
-      "</div></div>";
-    document.body.appendChild(modal);
-    const textarea = modal.querySelector("textarea");
-    textarea.focus();
-    function close() { modal.remove(); }
-    modal.querySelector(".dost-shot-modal__backdrop").addEventListener("click", close);
-    modal.querySelector('[data-action="cancel"]').addEventListener("click", close);
-    modal.querySelector('[data-action="save"]').addEventListener("click", () => {
-      recordScreenshot(dataUrl, textarea.value.trim());
-      close();
-    });
-    modal.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") close();
+  // Dosya seçiciyi tıklatıp seçilen görüntüyü (varsa) sıkıştırılmış bir
+  // data URL olarak döndürür; vazgeçilirse null döner.
+  function pickImageFileToDataUrl() {
+    return new Promise((resolve) => {
+      const input = ensureFileInput();
+      input.onchange = async () => {
+        const file = input.files && input.files[0];
+        input.value = "";
+        if (!file) { resolve(null); return; }
+        const bitmap = await createImageBitmap(file);
+        resolve(drawToCanvas(bitmap, bitmap.width, bitmap.height));
+      };
+      input.click();
     });
   }
 
-  async function captureScreenshot() {
-    if (!supportsCapture) {
-      pickImageFile(); // bu tarayıcıda buton zaten gizli ama yine de bir güvenlik ağı
-      return;
-    }
+  // Tek karelik canlı ekran yakalama; desteklenmiyorsa ya da kullanıcı izni
+  // iptal ederse null döner (modal bunu sessizce görmezden gelir).
+  async function captureScreenshotToDataUrl() {
+    if (!supportsCapture) return null;
     let stream;
     try {
       stream = await navigator.mediaDevices.getDisplayMedia({
@@ -129,7 +89,7 @@
         preferCurrentTab: true,
       });
     } catch (e) {
-      return; // kullanıcı izni vermedi/iptal etti
+      return null; // kullanıcı izni vermedi/iptal etti
     }
     try {
       const video = document.createElement("video");
@@ -139,10 +99,82 @@
       // Karenin gerçekten çizildiğinden emin olmak için bir sonraki
       // animasyon karesine kadar bekle.
       await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-      buildScreenshotModal(drawToCanvas(video, video.videoWidth, video.videoHeight));
+      return drawToCanvas(video, video.videoWidth, video.videoHeight);
     } finally {
       stream.getTracks().forEach((t) => t.stop());
     }
+  }
+
+  function recordVisualNote(note, dataUrl) {
+    const queue = getQueue();
+    queue.push({
+      type: "visual-note",
+      url: location.pathname,
+      lang: (window.DostI18n && window.DostI18n.getLang()) || "tr",
+      note: note,
+      image: dataUrl || null,
+      timestamp: new Date().toISOString(),
+    });
+    setQueue(queue);
+  }
+
+  function buildVisualNoteModal() {
+    const modal = document.createElement("div");
+    modal.className = "dost-shot-modal";
+    modal.innerHTML =
+      '<div class="dost-shot-modal__backdrop"></div>' +
+      '<div class="dost-shot-modal__card" role="dialog" aria-modal="true">' +
+      '<div class="dost-shot-modal__attach">' +
+      (supportsCapture ? '<button type="button" data-action="capture">📷 Ekran Görüntüsü Al</button>' : "") +
+      '<button type="button" data-action="pick">🖼️ Galeriden Seç</button>' +
+      '<button type="button" data-action="remove-image" class="dost-shot-modal__remove" hidden>Görüntüyü kaldır</button>' +
+      "</div>" +
+      '<img class="dost-shot-modal__preview" alt="" hidden>' +
+      '<label class="dost-shot-modal__label" for="dost-shot-note">Bu sayfada ne değişmeli?</label>' +
+      '<textarea id="dost-shot-note" class="dost-shot-modal__note" rows="3" placeholder="İstersen yukarıdan bir ekran görüntüsü ekle, istersen sadece burada anlat…"></textarea>' +
+      '<div class="dost-shot-modal__actions">' +
+      '<button type="button" data-action="cancel">Vazgeç</button>' +
+      '<button type="button" data-action="save" class="dost-shot-modal__save">Kaydet</button>' +
+      "</div></div>";
+    document.body.appendChild(modal);
+
+    let currentImage = null;
+    const preview = modal.querySelector(".dost-shot-modal__preview");
+    const removeBtn = modal.querySelector('[data-action="remove-image"]');
+    const textarea = modal.querySelector("textarea");
+    textarea.focus();
+
+    function setImage(dataUrl) {
+      currentImage = dataUrl;
+      preview.src = dataUrl || "";
+      preview.hidden = !dataUrl;
+      removeBtn.hidden = !dataUrl;
+    }
+    function close() { modal.remove(); }
+
+    modal.querySelector(".dost-shot-modal__backdrop").addEventListener("click", close);
+    modal.querySelector('[data-action="cancel"]').addEventListener("click", close);
+    removeBtn.addEventListener("click", () => setImage(null));
+    const captureBtn = modal.querySelector('[data-action="capture"]');
+    if (captureBtn) {
+      captureBtn.addEventListener("click", async () => {
+        const dataUrl = await captureScreenshotToDataUrl();
+        if (dataUrl) setImage(dataUrl);
+      });
+    }
+    modal.querySelector('[data-action="pick"]').addEventListener("click", async () => {
+      const dataUrl = await pickImageFileToDataUrl();
+      if (dataUrl) setImage(dataUrl);
+    });
+    modal.querySelector('[data-action="save"]').addEventListener("click", () => {
+      const note = textarea.value.trim();
+      if (!note && !currentImage) { textarea.focus(); return; }
+      recordVisualNote(note, currentImage);
+      close();
+    });
+    modal.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
   }
 
   function getQueue() {
@@ -241,12 +273,8 @@
       '<span class="dost-edit-panel__count">' + getQueue().length + "</span>" +
       "</button>" +
       '<div class="dost-edit-panel__menu" hidden>' +
-      '<p class="dost-edit-panel__hint">Düzenleme modu açık — düz yazı metinlere tıklayıp değiştirebilir, ya da bir ekran görüntüsü alıp/yükleyip not düşebilirsin.</p>' +
-      (supportsCapture ? '<button type="button" data-action="screenshot">📷 Ekran Görüntüsü Al</button>' : "") +
-      // Masaüstünde "Al" zaten canlı yakalıyor; mobil/tablette (Al gizli)
-      // bu tek seçenek oluyor -- kullanıcı OS'in kendi ekran görüntüsünü
-      // alıp buradan seçiyor. Masaüstünde de bir yedek olarak duruyor.
-      '<button type="button" data-action="upload">🖼️ Görüntü Yükle</button>' +
+      '<p class="dost-edit-panel__hint">Düzenleme modu açık — düz yazı metinlere tıklayıp değiştirebilir, ya da bu sayfa için bir görsel not bırakabilirsin (ekran görüntüsüyle ya da görüntü olmadan).</p>' +
+      '<button type="button" data-action="visual-note">🖌️ Bu Sayfa İçin Görsel Not</button>' +
       '<button type="button" data-action="export">Dışa Aktar</button>' +
       '<button type="button" data-action="clear">Temizle</button>' +
       '<button type="button" data-action="exit">Düzenleme Modunu Kapat</button>' +
@@ -255,16 +283,9 @@
     const toggle = panel.querySelector(".dost-edit-panel__toggle");
     const menu = panel.querySelector(".dost-edit-panel__menu");
     toggle.addEventListener("click", () => { menu.hidden = !menu.hidden; });
-    const screenshotBtn = panel.querySelector('[data-action="screenshot"]');
-    if (screenshotBtn) {
-      screenshotBtn.addEventListener("click", () => {
-        menu.hidden = true;
-        captureScreenshot();
-      });
-    }
-    panel.querySelector('[data-action="upload"]').addEventListener("click", () => {
+    panel.querySelector('[data-action="visual-note"]').addEventListener("click", () => {
       menu.hidden = true;
-      pickImageFile();
+      buildVisualNoteModal();
     });
     panel.querySelector('[data-action="export"]').addEventListener("click", exportQueue);
     panel.querySelector('[data-action="clear"]').addEventListener("click", clearQueue);
