@@ -29,6 +29,89 @@
     ".hakkinda-poem",
   ].join(", ");
 
+  // Ekran görüntüsü yakalama: Screen Capture API'nin kendisini kullanır (yeni
+  // bir kütüphane eklemeden) -- "preferCurrentTab" ipucu destekleyen
+  // tarayıcılarda (Chrome/Edge) seçim penceresini atlayıp doğrudan bu
+  // sekmeyi paylaşır. Tek kare alınıp iz hemen durdurulur; paylaşım göstergesi
+  // tarayıcıda kalıcı olarak asılı kalmaz.
+  const SCREENSHOT_MIME = "image/jpeg";
+  const SCREENSHOT_MAX_WIDTH = 1600;
+
+  function recordScreenshot(dataUrl, note) {
+    const queue = getQueue();
+    queue.push({
+      type: "screenshot",
+      url: location.pathname,
+      lang: (window.DostI18n && window.DostI18n.getLang()) || "tr",
+      note: note,
+      image: dataUrl,
+      timestamp: new Date().toISOString(),
+    });
+    setQueue(queue);
+  }
+
+  function buildScreenshotModal(dataUrl) {
+    const modal = document.createElement("div");
+    modal.className = "dost-shot-modal";
+    modal.innerHTML =
+      '<div class="dost-shot-modal__backdrop"></div>' +
+      '<div class="dost-shot-modal__card" role="dialog" aria-modal="true">' +
+      `<img class="dost-shot-modal__preview" src="${dataUrl}" alt="">` +
+      '<label class="dost-shot-modal__label" for="dost-shot-note">Bu görüntüde ne var, ne düzeltilmeli?</label>' +
+      '<textarea id="dost-shot-note" class="dost-shot-modal__note" rows="3" placeholder="Örn: bu kartın kenarı taşıyor / bu renk çok koyu…"></textarea>' +
+      '<div class="dost-shot-modal__actions">' +
+      '<button type="button" data-action="cancel">Vazgeç</button>' +
+      '<button type="button" data-action="save" class="dost-shot-modal__save">Kaydet</button>' +
+      "</div></div>";
+    document.body.appendChild(modal);
+    const textarea = modal.querySelector("textarea");
+    textarea.focus();
+    function close() { modal.remove(); }
+    modal.querySelector(".dost-shot-modal__backdrop").addEventListener("click", close);
+    modal.querySelector('[data-action="cancel"]').addEventListener("click", close);
+    modal.querySelector('[data-action="save"]').addEventListener("click", () => {
+      recordScreenshot(dataUrl, textarea.value.trim());
+      close();
+    });
+    modal.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+  }
+
+  async function captureScreenshot() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+      alert("Bu tarayıcı ekran görüntüsü almayı desteklemiyor.");
+      return;
+    }
+    let stream;
+    try {
+      stream = await navigator.mediaDevices.getDisplayMedia({
+        video: { preferCurrentTab: true },
+        preferCurrentTab: true,
+      });
+    } catch (e) {
+      return; // kullanıcı izni vermedi/iptal etti
+    }
+    try {
+      const video = document.createElement("video");
+      video.srcObject = stream;
+      video.muted = true;
+      await video.play();
+      // Karenin gerçekten çizildiğinden emin olmak için bir sonraki
+      // animasyon karesine kadar bekle.
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const scale = Math.min(1, SCREENSHOT_MAX_WIDTH / (video.videoWidth || SCREENSHOT_MAX_WIDTH));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(video.videoWidth * scale));
+      canvas.height = Math.max(1, Math.round(video.videoHeight * scale));
+      canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+      const dataUrl = canvas.toDataURL(SCREENSHOT_MIME, 0.85);
+      buildScreenshotModal(dataUrl);
+    } finally {
+      stream.getTracks().forEach((t) => t.stop());
+    }
+  }
+
   function getQueue() {
     try { return JSON.parse(localStorage.getItem(QUEUE_KEY) || "[]"); }
     catch (e) { return []; }
@@ -125,7 +208,8 @@
       '<span class="dost-edit-panel__count">' + getQueue().length + "</span>" +
       "</button>" +
       '<div class="dost-edit-panel__menu" hidden>' +
-      '<p class="dost-edit-panel__hint">Düzenleme modu açık — düz yazı metinlere tıklayıp değiştirebilirsin.</p>' +
+      '<p class="dost-edit-panel__hint">Düzenleme modu açık — düz yazı metinlere tıklayıp değiştirebilir, ya da bir ekran görüntüsü alıp not düşebilirsin.</p>' +
+      '<button type="button" data-action="screenshot">📷 Ekran Görüntüsü Al</button>' +
       '<button type="button" data-action="export">Dışa Aktar</button>' +
       '<button type="button" data-action="clear">Temizle</button>' +
       '<button type="button" data-action="exit">Düzenleme Modunu Kapat</button>' +
@@ -134,6 +218,10 @@
     const toggle = panel.querySelector(".dost-edit-panel__toggle");
     const menu = panel.querySelector(".dost-edit-panel__menu");
     toggle.addEventListener("click", () => { menu.hidden = !menu.hidden; });
+    panel.querySelector('[data-action="screenshot"]').addEventListener("click", () => {
+      menu.hidden = true;
+      captureScreenshot();
+    });
     panel.querySelector('[data-action="export"]').addEventListener("click", exportQueue);
     panel.querySelector('[data-action="clear"]').addEventListener("click", clearQueue);
     panel.querySelector('[data-action="exit"]').addEventListener("click", disableEditMode);
