@@ -191,16 +191,40 @@
   window.DostGraphUtils.setupLegendToggles();
   window.DostGraphUtils.setupDetailPanelFocus();
 
+  // Düzen: iniş yayı + çıkış yayı (kavs-i nüzûl / kavs-i urûc), merkezde kalp.
+  //
+  // Önceki düzen yukarıdan aşağıya düz bir merdivendi: Zât en üstte (y=0.09),
+  // kalp en altta (y=0.90). 2026-07-25'te kullanıcının isteğiyle bu görünümü
+  // Hâller Haritası'nda kullandığımız ölçütle -- "grafiğin ŞEKLİ ne iddia
+  // ediyor ve verimiz bunu doğruluyor mu?" -- gözden geçirdik ve iki
+  // uyuşmazlık bulduk:
+  //
+  //  1) Verinin kendisi bunun bir DAİRE olduğunu söylüyor: insan-i-kamil ->
+  //     dhat kenarının notu "döngü buradan başladığı yere geri kapanır"
+  //     diyor. Ama şekil bir sütundu; kapanış oku, dibe inen listenin en
+  //     altından tepeye kadar geri uçmak zorundaydı. (Sitenin kurucu
+  //     ilkesi de bu: "O'ndan geldik, O'na gidiyoruz" -- bkz. CLAUDE.md.)
+  //  2) Daha ciddisi: kalp en ALTA, yani Zât'tan en UZAĞA çiziliyordu -- oysa
+  //     kalp->dhat kenarının kendi notu "hiçbir aracıya ihtiyaç duymadan
+  //     doğrudan Zât ile temas kurabilir... ağın en derin/en YAKIN noktası"
+  //     diyor. Şekil, metnin tam tersini söylüyordu: derinliği uzaklık gibi
+  //     gösteriyordu.
+  //
+  // Yeni düzen: Zât tepede; iniş yayı sağdan aşağı (Sıfat/Esmâ -> A'yân ->
+  // Tecellî -> üç âlem), en yoğun nokta dipte; çıkış yayı soldan yukarı
+  // (İnsan-ı Kâmil -> Zât). Kalp ise MERKEZDE: böylece Zât'a giden çizgisi
+  // diyagramdaki en kısa çizgi, yani bir yarıçap oluyor. Bu bizim okumamız:
+  // kalp merdivenin son basamağı değil, dairenin merkezi.
   const TARGET = {
-    "dhat": { x: 0.5, y: 0.09 },
-    "sifat-asma": { x: 0.5, y: 0.21 },
-    "ayan-sabite": { x: 0.5, y: 0.33 },
-    "tecelli": { x: 0.5, y: 0.45 },
-    "alem-ervah": { x: 0.10, y: 0.60 },
-    "alem-misal": { x: 0.5, y: 0.60 },
-    "alem-ecsam": { x: 0.90, y: 0.60 },
-    "insan-i-kamil": { x: 0.5, y: 0.75 },
-    "kalp": { x: 0.5, y: 0.90 },
+    "dhat":          { x: 0.500, y: 0.160 },  // tepe (0°)
+    "sifat-asma":    { x: 0.760, y: 0.289 },  // iniş yayı
+    "ayan-sabite":   { x: 0.839, y: 0.551 },
+    "tecelli":       { x: 0.740, y: 0.775 },
+    "alem-ervah":    { x: 0.559, y: 0.875 },  // en yoğun bölge (dip)
+    "alem-misal":    { x: 0.412, y: 0.868 },
+    "alem-ecsam":    { x: 0.281, y: 0.796 },
+    "insan-i-kamil": { x: 0.160, y: 0.520 },  // çıkış yayı
+    "kalp":          { x: 0.500, y: 0.520 },  // MERKEZ
   };
 
   function loadOntologyData() {
@@ -715,7 +739,10 @@
         .scale(scale);
     }
 
-    const linkGroup = zoomLayer.append("g").attr("class", "links");
+    // Sakin dönüş için ara grup: bütün sahne dairenin merkezi etrafında
+    // yavaşça döner; etiketler ayrıca ters çevrilip dik ve yerinde tutulur.
+    const spinGroup = zoomLayer.append("g").attr("class", "onto-spin");
+    const linkGroup = spinGroup.append("g").attr("class", "links");
 
     pathSel = linkGroup
       .selectAll("path")
@@ -728,7 +755,7 @@
       .on("mouseleave", () => highlight(null))
       .on("click", (event, d) => onEdgeClick(d));
 
-    const nodeGroup = zoomLayer.append("g").attr("class", "nodes");
+    const nodeGroup = spinGroup.append("g").attr("class", "nodes");
 
     nodeSel = nodeGroup
       .selectAll("g.node")
@@ -779,6 +806,42 @@
       pathSel.attr("d", (d) => edgePath(d));
       nodeSel.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
+
+    // ---- Sakin, huzurlu salınım ----
+    // Burada bilerek TAM DÖNÜŞ yapmıyoruz. Hâller ve Sırlar'da dönüş
+    // zararsız: Sırlar merkezden ışıyan bir demet (yukarısı-aşağısı yok),
+    // Hâller'de ise dönüş 3B'de dikey eksen etrafında olduğu için sarmal dik
+    // kalıyor. Ontolojide ise DİKEY EKSEN ANLAM TAŞIYOR: Zât en üstte, en
+    // yoğun mertebe (cisimler) en altta. Sahneyi tam döndürmek, bir dakika
+    // sonra cisimler âlemini Zât'ın üstüne çıkarır -- yani şekil, anlattığı
+    // metafiziğin tersini söylemeye başlar.
+    //
+    // Onun yerine çok yavaş, birkaç derecelik bir SALINIM: harita canlı ve
+    // nefes alıyor gibi durur, ama "yukarısı" hep yukarıda kalır. Bir düğümün
+    // detayı açıkken ve simülasyon hareketliyken (ilk yerleşme, sürükleme)
+    // durur.
+    const spinCenter = { x: 0.5 * width, y: 0.52 * height };
+    let swayT = 0, spinRaf = null, spinLast = 0;
+    const SWAY_PERIOD = 46000;   // bir gidiş-geliş ~46 sn
+    const SWAY_DEG = 2.6;        // genlik: ±2.6 derece
+    function spinFrame(ts) {
+      spinRaf = null;
+      if (!window.DostGraphUtils.isViewActive(ontologyWrap)) { spinLast = 0; return; }
+      const dt = spinLast ? Math.min(64, ts - spinLast) : 16; spinLast = ts;
+      const busy = !detailPanel.hidden || (simulation && simulation.alpha() > 0.05);
+      if (!reduceMotion && !busy) swayT += dt;
+      const deg = reduceMotion ? 0 : SWAY_DEG * Math.sin((swayT / SWAY_PERIOD) * Math.PI * 2);
+      spinGroup.attr("transform", `rotate(${deg.toFixed(3)},${spinCenter.x.toFixed(1)},${spinCenter.y.toFixed(1)})`);
+      labelSel.attr("transform", function (d) {
+        const ly = radiusFor(d) + 14;
+        return `rotate(${(-deg).toFixed(3)},0,${ly.toFixed(1)})`;
+      });
+      spinRaf = requestAnimationFrame(spinFrame);
+    }
+    function ensureSpin() { if (spinRaf == null) spinRaf = requestAnimationFrame(spinFrame); }
+    ensureSpin();
+    window.DostGraphUtils.onViewWake(ensureSpin);
+    window.__ontologyEnsureSpin = ensureSpin;
 
     svg.call(zoom.transform, computeFitTransform());
 
