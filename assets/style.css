@@ -1098,6 +1098,32 @@ html {
   gap: 8px;
   margin-top: 10px;
 }
+/* --- Sorular: kategori halkası (46 soru düğümü yerine 9 kategori) --- */
+.sorular-ring-path { pointer-events: none; }
+.sorular-spoke { pointer-events: none; }
+.sorular-cat { cursor: pointer; }
+.sorular-cat__glow { pointer-events: none; }
+.sorular-cat__sphere { stroke: var(--surface-1); stroke-width: 1.5; }
+.sorular-cat:hover .sorular-cat__sphere,
+.sorular-cat:focus-visible .sorular-cat__sphere { stroke: var(--accent-interactive); stroke-width: 2.2; }
+.sorular-cat__label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  fill: var(--text-primary);
+  paint-order: stroke;
+  stroke: var(--page-plane);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.sorular-cat__label--center { font-size: 0.86rem; }
+.sorular-cat__count {
+  font-size: 0.74rem;
+  font-weight: 700;
+  fill: var(--surface-1);
+  pointer-events: none;
+}
+
 .sorular-question-row {
   display: flex;
   align-items: center;
@@ -2097,15 +2123,6 @@ body[data-theme="dark"] #sirlar-legend {
 .legend__dot--sir-kader     { background: var(--series-sir-kader); }
 .legend__dot--sir-dil       { background: var(--series-sir-dil); }
 .legend__dot--sir-insan     { background: var(--series-sir-insan); }
-.legend__dot--sorular-en-temel { background: var(--series-sorular-en-temel); }
-.legend__dot--sorular-varlik    { background: var(--series-sorular-varlik); }
-.legend__dot--sorular-bilgi     { background: var(--series-sorular-bilgi); }
-.legend__dot--sorular-insan     { background: var(--series-sorular-insan); }
-.legend__dot--sorular-allah     { background: var(--series-sorular-allah); }
-.legend__dot--sorular-kozmos    { background: var(--series-sorular-kozmos); }
-.legend__dot--sorular-kuran     { background: var(--series-sorular-kuran); }
-.legend__dot--sorular-metot     { background: var(--series-sorular-metot); }
-.legend__dot--sorular-deneyim   { background: var(--series-sorular-deneyim); }
 .legend__line {
   width: 16px;
   height: 0;
