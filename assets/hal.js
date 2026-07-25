@@ -2,16 +2,29 @@
   "use strict";
 
   // ============================================================================
-  // Hâller Haritası — "manevi yükseliş yolculuğu"
+  // Hâller Haritası — "yolun gerçek tabiatı"
   //
-  // Nefs'ten Hayret'e uzanan bir seyahat; sonda aynı hâle ama bir üst turda
-  // dönülür (daire değil, yükselen bir spiral — bkz. CLAUDE.md daire/merkez
-  // ilkesi). Bu tasarımda düğümler düz daireler değil ışıyan küreler; yol düz
-  // çizgiler değil, Hayret'e doğru parlaklaşan akan bir eğri; renkler keyfî
-  // değil, arınma/yükseliş anlatan bir ilerleme (toprak kahvesi → bakır →
-  // gümüşi → mavi → mor → çivit → altın). Açılışta yol Nefs'ten Hayret'e doğru
-  // kendini çizer; her şey çok hafif nefes alır. Salt vanilla D3 (yeni
-  // bağımlılık yok).
+  // Bu görünüm önce basit bir halka olarak yazılmıştı: her hâl yalnızca bir
+  // öncekine ve bir sonrakine bağlı, düz bir zincir. 2026-07-25'te kullanıcının
+  // sorduğu soru ("okuduklarımız gerçekten böyle bir grafiği mi dikte ediyor?")
+  // bizi kendi metinlerimizi taramaya götürdü ve cevap hayır çıktı. Üç şeyi
+  // artık açıkça gösteriyoruz:
+  //
+  //  1) YÜKSELEN SARMAL. "Aynı hâl, bir üst turda" cümlesi sitede zaten
+  //     yazılıydı ama düz bir daire çiziliyordu. Artık halka 3B'ye eğilebiliyor
+  //     ve Hayret'ten sonraki dönüşün Nefs'in TAM ÜSTÜNE düştüğü görülüyor --
+  //     aynı açı, bir tur yukarısı. (bkz. CLAUDE.md daire/merkez ilkesi)
+  //  2) KİRİŞLER. hal.json'daki `relations`: ardışık OLMAYAN hâller arasında
+  //     kendi kaynaklı metinlerimizde bulduğumuz bağlar; dairenin içinden
+  //     geçen ince çizgiler. Biri (tevekkül→yakîn) sıralamayla açıkça çelişiyor
+  //     ve o yüzden ayrı bir türle (gerilim) çiziliyor.
+  //  3) TERK HALKASI. Fütûhât'ta dört makamın ("Zühd Makamı ve Terki" gibi)
+  //     ayrıca bir terk bölümü var: kazanılıp sonra bırakılan basamaklar.
+  //     Bunlar ikinci, kesik bir halkayla işaretleniyor.
+  //
+  // 3B motoru esma.js'teki elle yazılmış yaw/pitch/perspektif projeksiyonunun
+  // aynısı: Three.js/WebGL YOK, `tilt` 0→1 arasında yumuşatılıyor (0 = eski
+  // düz halka, 1 = sarmal). Salt vanilla D3.
   // ============================================================================
 
   const I18n = window.DostI18n;
@@ -30,8 +43,6 @@
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, view, id) : text;
   }
 
-  // --- Kilit taşları (milestone) daha büyük ve daha belirgin (#5). Hayret
-  //     hepsinin zirvesi, en büyüğü (#15). ---
   const LANDMARK = new Set(["nefs", "cemfark", "fenabeka", "tevhit", "hayret"]);
   function baseRadius(n) {
     if (n.stage === "hayret") return 26;
@@ -39,10 +50,6 @@
     return 12;
   }
 
-  // Renk sistemi (#4): manevi ilerlemeyi anlatan bir geçiş. Aşamaların çıpa
-  // renklerini (CSS değişkenleri) alıp düğüm sırasına göre yumuşakça
-  // interpolе ediyoruz; ara "mu'âmele" düğümleri bakırdan maviye doğru
-  // kademeli soğuyor (arınma).
   const STAGE_VAR = {
     nefs: "--series-hal-nefs",
     muameleler: "--series-hal-muameleler",
@@ -51,7 +58,7 @@
     tevhit: "--series-hal-tevhit",
     hayret: "--series-hal-hayret",
   };
-  let journeyColor = null; // d3 scale, index -> color
+  let journeyColor = null;
   function buildColorScale(n) {
     journeyColor = d3.scaleLinear()
       .domain([0, 1, n - 4, n - 3, n - 2, n - 1])
@@ -69,16 +76,43 @@
   function nodeColor(d) { return journeyColor ? journeyColor(d.__i) : getVar(STAGE_VAR[d.stage]); }
   function labelFor(n) { return I18n.pick3(n.name); }
 
+  // Kiriş türleri: renk + insan-okunur etiket.
+  const KIND_VAR = {
+    gerilim: "--series-hal-nefs",
+    dogurur: "--series-hal-hayret",
+    yanki: "--series-hal-cemfark",
+  };
+  const KIND_LABEL = {
+    gerilim: { tr: "Sırayla çelişen bağ", en: "Bond contradicting the sequence", pt: "Vínculo que contradiz a sequência" },
+    dogurur: { tr: "Biri ötekini doğuruyor", en: "One gives rise to the other", pt: "Um dá origem ao outro" },
+    yanki: { tr: "Aynı hamlenin yankısı", en: "Echo of the same move", pt: "Eco do mesmo gesto" },
+  };
+  const TERK_NOTE = {
+    tr: "Bu makamın Fütûhât'ta ayrıca bir \"terki\" bölümü var — kazanılıp sonra bırakılan bir basamak.",
+    en: "In the Futuhat this station also has a chapter on its \"abandonment\" — a step attained and then let go.",
+    pt: "No Futuhat esta estação também tem um capítulo sobre seu \"abandono\" — um degrau alcançado e depois solto.",
+  };
+
   // ---------------------------------------------------------------------------
   let halData = null, halDataPromise = null, built = false;
   let orderedNodes = [], nodeById = new Map();
-  let links = [], wrapCtrl = null;
-  let zoomLayer, bgLayer, linkLayer, glowLayer, nodeLayer, defs;
+  let relations = [];
+  let zoomLayer, bgLayer, ghostLayer, linkLayer, chordLayer, glowLayer, nodeLayer, defs;
   let zoomBehavior = null;
-  let currentDetailNode = null, hoveredId = null;
-  let rafId = null, startTs = 0, lastTs = 0, reveal = 1;
+  let currentDetailNode = null, currentRelation = null, hoveredId = null, hoveredRel = null;
+  let rafId = null, startTs = 0, reveal = 1;
   let shimmer = [];
-  let cx = 0, cy = 0;
+  let cx = 0, cy = 0, baseR = 200, riseH = 240;
+
+  // --- 3B durumu (esma.js ile aynı model) ---
+  // FOCAL esma'dakinden (900) belirgin biçimde uzun: 18 düğüm tek bir tura
+  // yayıldığı için güçlü perspektif, sarmalın UZAK yarısını ezip etiketleri
+  // üst üste bindiriyordu. Uzun odak = daha az bükülme, okunur etiketler.
+  const FOCAL = 1900;
+  const TILT_DUR = 1050;
+  let tilt = 0, tiltTarget = 0, tiltAnimStart = 0, tiltFrom = 0;
+  let yaw = 0, pitch = 0.62;
+  let dragging = false;
 
   function fetchData() {
     if (halDataPromise) return halDataPromise;
@@ -103,44 +137,82 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Sarmalın SÜREKLİ parametrik tanımı. t bir tam sayı olduğunda o sıradaki
+  // düğümün yerini verir; aradaki kesirli değerler yolu pürüzsüz çizmemizi ve
+  // t > n-1 ile "bir üst tur"u (hayalet iz) göstermemizi sağlar.
+  //
+  // tilt=0: halka düz (z=0, yükseklik yok) -- eskisinin birebir aynısı.
+  // tilt=1: halka yatay düzleme yatar (XZ), yükseklik Y ekseninde birikir.
+  // İkisi arasında doğrusal harman: tek formül iki görünümü de veriyor.
+  function helixPoint(t) {
+    const n = orderedNodes.length;
+    const a = -Math.PI / 2 + (t / n) * Math.PI * 2;
+    const r = baseR * (0.80 + 0.24 * (t / Math.max(1, n - 1)));
+    const flatY = r * Math.sin(a);
+    const hStep = riseH / Math.max(1, n - 1);
+    const riseY = -hStep * t + riseH / 2;
+    return {
+      x: r * Math.cos(a),
+      y: flatY * (1 - tilt) + riseY * tilt,
+      z: flatY * tilt,
+    };
+  }
+
+  // esma.js'teki projeksiyonun aynısı: yaw (Y ekseni) → pitch (X ekseni) →
+  // perspektif bölme. yaw/pitch yalnız tilt ile devreye girer, böylece 2B
+  // görünüm hiç bozulmaz.
+  function project(p) {
+    const yy = yaw * tilt, pp = pitch * tilt;
+    const cyw = Math.cos(yy), syw = Math.sin(yy);
+    const x1 = p.x * cyw + p.z * syw;
+    const z1 = -p.x * syw + p.z * cyw;
+    const cpt = Math.cos(pp), spt = Math.sin(pp);
+    const y2 = p.y * cpt - z1 * spt;
+    const z2 = p.y * spt + z1 * cpt;
+    const zc = Math.max(z2, -FOCAL * 0.85);
+    const depth = FOCAL / (FOCAL + zc);
+    return { x: cx + x1 * depth, y: cy + y2 * depth, depth: depth, z: z2 };
+  }
+
+  function projectT(t) { return project(helixPoint(t)); }
+
   function layout() {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 640;
     cx = w / 2; cy = h / 2;
-    const n = orderedNodes.length;
-    // Nazik spiral (#6): yarıçap yolculuk boyunca hafifçe genişliyor -- kapanan
-    // bir daire değil, başa "bir üst turda" dönen yükselen bir sarmal. Daire/
-    // merkez ilkesini korur ama ilerleme hissi verir.
-    const base = Math.max(140, Math.min(w, h) / 2 - 120);
-    const rOf = (i) => base * (0.80 + 0.24 * (i / (n - 1)));
+    baseR = Math.max(130, Math.min(w, h) / 2 - 120);
+    // Toplam yükseliş, elipsin dikey salınımını (≈2·baseR·sin(pitch)) AŞMALI;
+    // aksi hâlde halkanın kendi inip çıkışı yükselişi yutuyor ve yolun son
+    // düğümü (Hayret) bir öncekinden aşağıda kalıyordu -- sarmal görünmüyordu.
+    riseH = baseR * 2.0;
+  }
+
+  // Her karede düğümlerin ekran konumlarını tazeler (x/y/scale/depth).
+  function positionNodes() {
     orderedNodes.forEach((node, i) => {
-      const ang = -Math.PI / 2 + (i / n) * Math.PI * 2;
-      node.__i = i;
-      node.__ang = ang;
-      node.__r = rOf(i);
-      node.x = cx + node.__r * Math.cos(ang);
-      node.y = cy + node.__r * Math.sin(ang);
-      node.__phase = i * 0.7;
+      const p = projectT(i);
+      node.x = p.x; node.y = p.y; node.__depth = p.depth; node.__z = p.z;
     });
-    // Dönüş yayı: halkanın DIŞINDAN geçip başa bağlanan altın eğri.
-    const wrapMid = -Math.PI / 2 + ((n - 0.5) / n) * Math.PI * 2;
-    const wrapBow = rOf(n - 1) * 1.32;
-    wrapCtrl = { x: cx + wrapBow * Math.cos(wrapMid), y: cy + wrapBow * Math.sin(wrapMid) };
   }
 
-  // Ardışık iki hâl arasındaki akan eğri (#2): halkanın eğrisini izleyen,
-  // dışa doğru nazikçe kavisli bir bezier -- çokgen değil, sürekli bir yol.
-  function segPath(s, t) {
-    const mx = (s.x + t.x) / 2, my = (s.y + t.y) / 2;
-    const mang = Math.atan2(my - cy, mx - cx);
-    const mr = Math.hypot(mx - cx, my - cy);
-    const bow = Math.min(34, Math.hypot(t.x - s.x, t.y - s.y) * 0.14);
-    const ccx = cx + (mr + bow) * Math.cos(mang), ccy = cy + (mr + bow) * Math.sin(mang);
-    return `M${s.x.toFixed(1)},${s.y.toFixed(1)} Q${ccx.toFixed(1)},${ccy.toFixed(1)} ${t.x.toFixed(1)},${t.y.toFixed(1)}`;
+  // Sürekli sarmal üzerinde t0..t1 arasını örnekleyip ekran yolu üretir.
+  function samplePath(t0, t1, steps) {
+    let d = "";
+    for (let s = 0; s <= steps; s++) {
+      const p = projectT(t0 + (t1 - t0) * (s / steps));
+      d += (s === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1);
+    }
+    return d;
   }
 
-  function isMajor(l) {
-    // Büyük dönüşümler: bir kilit taşına (cemfark/fenabeka/tevhit/hayret) giriş.
-    return LANDMARK.has(l.target.stage) && l.target.stage !== "nefs";
+  // Kiriş: iki düğümü dairenin İÇİNDEN geçen bir yayla birleştirir. Kontrol
+  // noktası, iki ucun 3B orta noktasının eksene doğru çekilmiş hâli -- yani
+  // yay gerçekten gövdenin içinden geçiyor, etrafından dolanmıyor.
+  function chordPath(rel) {
+    const a = helixPoint(rel.__si), b = helixPoint(rel.__ti);
+    const p1 = project(a), p2 = project(b);
+    const mid = { x: (a.x + b.x) / 2 * 0.34, y: (a.y + b.y) / 2, z: (a.z + b.z) / 2 * 0.34 };
+    const pm = project(mid);
+    return `M${p1.x.toFixed(1)},${p1.y.toFixed(1)} Q${pm.x.toFixed(1)},${pm.y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
   }
 
   // ---------------------------------------------------------------------------
@@ -150,22 +222,21 @@
     svg.attr("viewBox", `0 0 ${w} ${h}`).attr("preserveAspectRatio", "xMidYMid meet");
 
     defs = svg.append("defs");
-    // dönüş oku
     defs.append("marker").attr("id", "hal-arrow-return").attr("viewBox", "0 -5 10 10")
       .attr("refX", 8).attr("refY", 0).attr("markerWidth", 6.5).attr("markerHeight", 6.5)
       .attr("orient", "auto").append("path").attr("d", "M0,-5L10,0L0,5")
       .attr("fill", getVar("--series-hal-hayret"));
-    // yumuşak parıltı filtresi (ambient, glossy değil)
     const glow = defs.append("filter").attr("id", "hal-glow").attr("x", "-80%").attr("y", "-80%").attr("width", "260%").attr("height", "260%");
     glow.append("feGaussianBlur").attr("stdDeviation", "3.4");
 
     zoomLayer = svg.append("g").attr("class", "hal-canvas");
     bgLayer = zoomLayer.append("g").attr("class", "hal-bg");
+    ghostLayer = zoomLayer.append("g").attr("class", "hal-ghosts");
+    chordLayer = zoomLayer.append("g").attr("class", "hal-chords");
     linkLayer = zoomLayer.append("g").attr("class", "hal-links");
     glowLayer = zoomLayer.append("g").attr("class", "hal-glows");
     nodeLayer = zoomLayer.append("g").attr("class", "hal-nodes");
 
-    // her düğüm için ışıyan küre gradyanı (#3)
     orderedNodes.forEach((d) => {
       const c = d3.color(nodeColor(d)) || d3.color("#888");
       const rg = defs.append("radialGradient").attr("id", "hal-sphere-" + d.id).attr("cx", "38%").attr("cy", "32%").attr("r", "72%");
@@ -174,51 +245,120 @@
       rg.append("stop").attr("offset", "100%").attr("stop-color", c.darker(0.9).formatHex());
     });
 
-    zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.4, 3]);
+    // 3B'de düz sürükleme sahneyi DÖNDÜRÜR (pan etmez); 2B'de eski davranış
+    // aynen sürer. Ctrl/⌘+tekerlek yakınlaştırma her iki durumda da çalışır.
+    zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.4, 3], () => tiltTarget < 0.5);
+    wireRotateDrag();
+    wireTiltToggle();
 
     const rc = document.getElementById("hal-recenter");
     if (rc && !rc.dataset.wiredHal) { rc.dataset.wiredHal = "1"; rc.addEventListener("click", () => { clearFocus(); fitView(true); }); }
-    svg.on("click", () => { if (currentDetailNode) clearFocus(); });
+    svg.on("click", () => { if (currentDetailNode || currentRelation) clearFocus(); });
     if (!document.body.dataset.wiredHalEsc) {
       document.body.dataset.wiredHalEsc = "1";
       document.addEventListener("keydown", (e) => {
         if (e.key !== "Escape") return;
         if (wrapEl.hidden) return;
-        if (currentDetailNode) clearFocus();
+        if (currentDetailNode || currentRelation) clearFocus();
       });
     }
+  }
+
+  // ---- 2B ↔ 3B sinematik geçiş ----
+  function setTilt(target) {
+    tiltFrom = tilt; tiltTarget = target; tiltAnimStart = performance.now();
+    // Kendiliğinden dönme YOK: sahne sürekli dönerse hem sığdırma (fitView)
+    // bayatlıyor hem etiketler okunmaz hâle geliyor. Döndürmek isteyen
+    // sürükleyerek döndürür.
+    if (target < 0.5) { yaw = 0; }
+    ensureFrame();
+    // Eğim bittikten sonra çerçeveyi yeniden sığdır (sarmal düz halkadan
+    // belirgin biçimde daha uzun; aksi hâlde üst/alt uçlar dışarı taşıyor).
+    setTimeout(() => { if (!wrapEl.hidden) fitView(true); }, reduceMotion ? 30 : TILT_DUR + 60);
+  }
+  function wireTiltToggle() {
+    const btn = document.getElementById("hal-3d-toggle");
+    if (!btn || btn.dataset.wiredHal3d) return;
+    btn.dataset.wiredHal3d = "1";
+    btn.setAttribute("aria-pressed", "false");
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const to = tiltTarget > 0.5 ? 0 : 1;
+      setTilt(to);
+      btn.classList.toggle("is-on", to > 0.5);
+      btn.setAttribute("aria-pressed", to > 0.5 ? "true" : "false");
+    });
+  }
+
+  // 3B'de sürükleyerek döndürme.
+  function wireRotateDrag() {
+    let lastX = 0, lastY = 0;
+    svgNode.addEventListener("pointerdown", (e) => {
+      if (tiltTarget < 0.5) return;
+      if (e.target.closest(".hal-node")) return;
+      dragging = true; lastX = e.clientX; lastY = e.clientY;
+      svgNode.setPointerCapture(e.pointerId);
+    });
+    svgNode.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      yaw += (e.clientX - lastX) * 0.006;
+      pitch = Math.max(-0.2, Math.min(1.25, pitch + (e.clientY - lastY) * 0.004));
+      lastX = e.clientX; lastY = e.clientY;
+      ensureFrame();
+    });
+    const stop = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      try { svgNode.releasePointerCapture(e.pointerId); } catch (_) {}
+    };
+    svgNode.addEventListener("pointerup", stop);
+    svgNode.addEventListener("pointercancel", stop);
   }
 
   function initShimmer() {
     shimmer = [];
     if (reduceMotion) return;
-    const hay = orderedNodes.find((d) => d.stage === "hayret");
-    if (!hay) return;
     for (let i = 0; i < 10; i++) shimmer.push({ a: Math.random() * 6.28, sp: 0.0004 + Math.random() * 0.0006, rr: 20 + Math.random() * 16, ph: Math.random() * 6.28 });
   }
 
   // ---------------------------------------------------------------------------
-  function ensureFrame() { if (rafId == null) { lastTs = performance.now(); rafId = requestAnimationFrame(frame); } }
+  function ensureFrame() { if (rafId == null) rafId = requestAnimationFrame(frame); }
   function frame(ts) {
     rafId = null;
     if (!startTs) startTs = ts;
     if (reveal < 1 && !reduceMotion) reveal = Math.min(1, (ts - startTs) / 2000);
     else if (reduceMotion) reveal = 1;
+
+    let active = false;
+    if (tilt !== tiltTarget) {
+      if (reduceMotion) tilt = tiltTarget;
+      else {
+        const p = Math.min(1, (ts - tiltAnimStart) / TILT_DUR);
+        const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        tilt = tiltFrom + (tiltTarget - tiltFrom) * e;
+        if (p >= 1) tilt = tiltTarget; else active = true;
+      }
+    }
     render(ts);
-    // nefes + shimmer sürekli; reveal biterse yine de hafif ambient sürsün
-    if (!reduceMotion) ensureFrame(); else rafId = null;
+    if (!reduceMotion || active) ensureFrame();
   }
 
   function focusSet() {
     const anchor = hoveredId || (currentDetailNode ? currentDetailNode.id : null);
     if (!anchor) return null;
-    const i = nodeById.get(anchor).__i;
+    const node = nodeById.get(anchor);
+    if (!node) return null;
+    const i = node.__i;
     const set = new Set([anchor]);
     if (i > 0) set.add(orderedNodes[i - 1].id);
     if (i < orderedNodes.length - 1) set.add(orderedNodes[i + 1].id);
-    // dönüş bağı: nefs<->hayret komşuluğu
     if (orderedNodes[i].stage === "hayret") set.add(orderedNodes[0].id);
     if (orderedNodes[i].stage === "nefs") set.add(orderedNodes[orderedNodes.length - 1].id);
+    // Odaklanınca o hâlin kirişleri de aydınlansın -- asıl mesele bu.
+    relations.forEach((r) => {
+      if (r.source === anchor) set.add(r.target);
+      if (r.target === anchor) set.add(r.source);
+    });
     return { anchor, set };
   }
 
@@ -226,7 +366,6 @@
     if (reduceMotion) return { s: 1, dx: 0, dy: 0 };
     const isHay = d.stage === "hayret";
     const s = 1 + (isHay ? 0.035 : 0.02) * Math.sin(ts / (isHay ? 5200 : 3000) + d.__phase);
-    // çok hafif salınım (1-2px) (#20)
     const dx = 1.4 * Math.sin(ts / 3400 + d.__phase);
     const dy = 1.4 * Math.cos(ts / 3900 + d.__phase * 1.3);
     return { s, dx, dy };
@@ -234,45 +373,89 @@
 
   function render(ts) {
     if (!nodeLayer) return;
+    positionNodes();
+    const n = orderedNodes.length;
     const foc = focusSet();
 
-    // --- yol segmentleri (#2, #7) : akan, Hayret'e doğru parlaklaşan eğri ---
-    const segData = links.filter((l) => !l.wrap);
-    const segSel = linkLayer.selectAll("path.hal-seg").data(segData, (l) => l.source.id + ">" + l.target.id);
+    // --- hayalet iz: sarmalın önünde ve arkasında devam ettiğini gösterir.
+    //     Yalnız 3B'de görünür (2B'de halkanın üstüne binerdi). ---
+    const ghosts = [
+      { id: "after", d: samplePath(n - 1, n + 9, 48) },
+      { id: "before", d: samplePath(-7, 0, 40) },
+    ];
+    const gh = ghostLayer.selectAll("path.hal-ghost").data(ghosts, (g) => g.id);
+    gh.enter().append("path").attr("class", "hal-ghost").merge(gh)
+      .attr("d", (g) => g.d)
+      .style("stroke", getVar("--series-hal-hayret"))
+      .style("stroke-width", 1.1)
+      .style("opacity", 0.22 * tilt * reveal);
+    gh.exit().remove();
+
+    // --- yol segmentleri: sarmal boyunca örneklenmiş pürüzsüz eğri ---
+    const segData = d3.range(n - 1);
+    const segSel = linkLayer.selectAll("path.hal-seg").data(segData, (i) => i);
     segSel.enter().append("path").attr("class", "hal-seg").attr("fill", "none").merge(segSel)
-      .each(function (l) {
-        const p = d3.select(this);
-        const major = isMajor(l);
-        // parlaklık yolculuk boyunca artar
-        const t = l.target.__i / (orderedNodes.length - 1);
-        let op = (0.32 + 0.5 * t);
-        let wdt = major ? 3.0 : 1.6;
-        if (foc) op = (foc.set.has(l.source.id) && foc.set.has(l.target.id)) ? 0.95 : 0.08;
-        // açılış: segment sırası geldiğinde belirir (#10)
-        const appear = Math.max(0, Math.min(1, (reveal * (orderedNodes.length + 1) - l.target.__i)));
-        p.attr("d", segPath(l.source, l.target))
-          .style("stroke", journeyColor(l.target.__i))
-          .style("stroke-width", wdt)
+      .each(function (i) {
+        const s = orderedNodes[i], t = orderedNodes[i + 1];
+        const major = LANDMARK.has(t.stage) && t.stage !== "nefs";
+        const prog = (i + 1) / (n - 1);
+        let op = 0.32 + 0.5 * prog;
+        if (foc) op = (foc.set.has(s.id) && foc.set.has(t.id)) ? 0.95 : 0.08;
+        const appear = Math.max(0, Math.min(1, (reveal * (n + 1) - (i + 1))));
+        d3.select(this)
+          .attr("d", samplePath(i, i + 1, 10))
+          .style("stroke", journeyColor(i + 1))
+          .style("stroke-width", major ? 3.0 : 1.6)
           .classed("hal-seg--major", major)
           .style("opacity", op * appear);
       });
     segSel.exit().remove();
 
-    // --- dönüş yayı (altın, ışıltılı) (#7) ---
-    const n = orderedNodes.length;
-    const wrapSel = linkLayer.selectAll("path.hal-return").data([links[links.length - 1]]);
-    wrapSel.enter().append("path").attr("class", "hal-return").attr("fill", "none").attr("marker-end", "url(#hal-arrow-return)").merge(wrapSel)
-      .attr("d", (l) => `M${l.source.x.toFixed(1)},${l.source.y.toFixed(1)} Q${wrapCtrl.x.toFixed(1)},${wrapCtrl.y.toFixed(1)} ${l.target.x.toFixed(1)},${l.target.y.toFixed(1)}`)
-      .style("opacity", (foc ? (foc.set.has(orderedNodes[0].id) && foc.set.has(orderedNodes[n - 1].id) ? 1 : 0.12) : 0.85) * (reveal >= 0.99 ? 1 : Math.max(0, reveal * 3 - 2)));
+    // --- dönüş yayı: Hayret'ten, Nefs'in AÇISINA ama bir tur yukarısına.
+    //     tilt=0'da helixPoint(n) tam olarak Nefs'in yerine düştüğü için bu
+    //     eğri 2B'de halkayı kapatır, 3B'de ise yükselir. Tek formül. ---
+    const wrapSel = linkLayer.selectAll("path.hal-return").data([0]);
+    wrapSel.enter().append("path").attr("class", "hal-return").attr("fill", "none")
+      .attr("marker-end", "url(#hal-arrow-return)").merge(wrapSel)
+      .attr("d", samplePath(n - 1, n, 14))
+      .style("opacity", (foc ? 0.12 : 0.85) * (reveal >= 0.99 ? 1 : Math.max(0, reveal * 3 - 2)));
 
-    // dönüş etiketi
-    const lblSel = linkLayer.selectAll("text.hal-return-label").data([wrapCtrl]);
+    const wrapMid = projectT(n - 0.5);
+    const lblSel = linkLayer.selectAll("text.hal-return-label").data([0]);
     lblSel.enter().append("text").attr("class", "hal-return-label").attr("text-anchor", "middle").merge(lblSel)
-      .attr("x", (d) => d.x).attr("y", (d) => d.y - 8)
+      .attr("x", wrapMid.x).attr("y", wrapMid.y - 10)
       .style("opacity", foc ? 0.25 : 0.85 * (reveal >= 0.99 ? 1 : 0))
       .text(tt({ tr: "→ aynı hâl, bir üst turda", en: "→ same state, a turn higher", pt: "→ mesmo estado, um giro acima" }));
 
-    // --- düğümler + parıltı ---
+    // --- kirişler: ardışık olmayan hâller arasındaki bağlar ---
+    const chSel = chordLayer.selectAll("g.hal-chord-g").data(relations, (r) => r.source + ">" + r.target);
+    const chEnter = chSel.enter().append("g").attr("class", "hal-chord-g");
+    chEnter.append("path").attr("class", "hal-chord-hit")
+      .on("pointerenter", (e, r) => { hoveredRel = r; showRelTooltip(r, e); ensureFrame(); })
+      .on("pointermove", (e) => moveTooltip(e))
+      .on("pointerleave", () => { hoveredRel = null; hideTooltip(); ensureFrame(); })
+      .on("click", (e, r) => { e.stopPropagation(); showRelationDetail(r); });
+    chEnter.append("path").attr("class", (r) => "hal-chord hal-chord--" + r.kind);
+    const chMerged = chEnter.merge(chSel);
+    chSel.exit().remove();
+    chMerged.each(function (r) {
+      const g = d3.select(this);
+      const dpath = chordPath(r);
+      const lit = foc && (foc.anchor === r.source || foc.anchor === r.target);
+      const dim = foc && !lit;
+      let op = lit ? 0.95 : (dim ? 0.05 : 0.34);
+      if (hoveredRel === r) op = 1;
+      if (currentRelation === r) op = 1;
+      op *= reveal >= 0.99 ? 1 : Math.max(0, reveal * 2 - 1);
+      g.select(".hal-chord-hit").attr("d", dpath);
+      g.select(".hal-chord")
+        .attr("d", dpath)
+        .style("stroke", getVar(KIND_VAR[r.kind] || "--series-hal-cemfark"))
+        .style("stroke-width", lit || hoveredRel === r || currentRelation === r ? 2.4 : 1.15)
+        .style("opacity", op);
+    });
+
+    // --- düğümler ---
     const gsel = nodeLayer.selectAll("g.hal-node").data(orderedNodes, (d) => d.id);
     const enter = gsel.enter().append("g")
       .attr("class", (d) => "node hal-node hal-node--" + d.stage)
@@ -286,17 +469,22 @@
       .on("blur", () => { setHover(null); hideTooltip(); });
     enter.append("circle").attr("class", "hal-glow");
     enter.append("circle").attr("class", "hal-halo");
+    enter.append("circle").attr("class", "hal-terk-ring");
     enter.append("circle").attr("class", "hal-sphere").attr("fill", (d) => `url(#hal-sphere-${d.id})`);
     enter.append("circle").attr("class", "hal-sheen");
     enter.append("text").attr("class", "hal-label").attr("text-anchor", "middle");
     const merged = enter.merge(gsel);
     gsel.exit().remove();
 
+    // Derinlik sırası: uzaktakiler önce çizilsin (3B'de doğru örtüşme).
+    if (tilt > 0.02) merged.sort((a, b) => b.__z - a.__z);
+
     merged.each(function (d) {
       const g = d3.select(this);
       const b = breath(d, ts);
-      const r = baseRadius(d) * b.s;
-      // açılış: düğümler sırayla belirir (#10)
+      // 3B'de perspektif ölçeği: uzaktaki düğüm küçülür.
+      const dscale = 1 + (d.__depth - 1) * tilt;
+      const r = baseRadius(d) * b.s * Math.max(0.55, dscale);
       let appear = 1;
       if (reveal < 1 && !reduceMotion) {
         const thr = d.__i / (orderedNodes.length + 1);
@@ -304,22 +492,25 @@
       }
       let op = appear;
       const isAnchor = foc && d.id === foc.anchor;
-      if (foc && !foc.set.has(d.id)) op *= 0.22; // focus mode (#19): ilgisiz düğümler soluk
+      if (foc && !foc.set.has(d.id)) op *= 0.22;
+      if (tilt > 0.02) op *= Math.max(0.62, Math.min(1, d.__depth * 1.02)); // atmosfer
       g.style("opacity", op).style("display", op < 0.02 ? "none" : null)
         .attr("transform", `translate(${(d.x + b.dx).toFixed(1)},${(d.y + b.dy).toFixed(1)})`);
       g.classed("hal-node--active", currentDetailNode && d.id === currentDetailNode.id);
       const col = nodeColor(d);
-      // dış parıltı (Hayret en güçlü) (#3,#15)
       const gstr = d.stage === "hayret" ? 1 : LANDMARK.has(d.stage) ? 0.62 : 0.4;
       const flick = reduceMotion ? 1 : (0.85 + 0.15 * Math.sin(ts / 2200 + d.__phase));
       g.select(".hal-glow").attr("r", r * 1.85).style("fill", col)
         .style("opacity", (d.stage === "hayret" ? 0.32 : 0.16) * gstr * flick * (isAnchor ? 1.5 : 1));
-      // aktif halo
       const halo = g.select(".hal-halo");
       if (isAnchor) {
         const puls = reduceMotion ? 1 : (1 + 0.12 * Math.sin(ts / 900));
         halo.attr("r", (r + 7) * puls).style("stroke", col).style("opacity", 0.5);
       } else halo.style("opacity", 0);
+      // "Makamı ve Terki" olan düğümlerin ikinci, kesik halkası.
+      const tr = g.select(".hal-terk-ring");
+      if (d.terk) tr.attr("r", r + 5.5).style("stroke", col).style("stroke-width", 1.1).style("opacity", 0.75);
+      else tr.style("opacity", 0);
       g.select(".hal-sphere").attr("r", r);
       g.select(".hal-sheen").attr("r", r);
       const lbl = g.select(".hal-label");
@@ -330,7 +521,7 @@
         .text(labelFor(d));
     });
 
-    // --- Hayret shimmer parçacıkları (#15) ---
+    // --- Hayret shimmer ---
     if (!reduceMotion && shimmer.length) {
       const hay = orderedNodes.find((x) => x.stage === "hayret");
       const b = breath(hay, ts);
@@ -347,14 +538,29 @@
 
   // ---------------------------------------------------------------------------
   function setHover(id) { if (hoveredId === id) return; hoveredId = id; ensureFrame(); }
-  function clearFocus() { currentDetailNode = null; hoveredId = null; detailPanel.hidden = true; ensureFrame(); }
+  function clearFocus() {
+    currentDetailNode = null; currentRelation = null; hoveredId = null;
+    detailPanel.hidden = true; ensureFrame();
+  }
 
   function fitView(animate) {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 640;
     let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
-    orderedNodes.forEach((d) => { x0 = Math.min(x0, d.x); x1 = Math.max(x1, d.x); y0 = Math.min(y0, d.y); y1 = Math.max(y1, d.y); });
-    if (wrapCtrl) { x0 = Math.min(x0, wrapCtrl.x); x1 = Math.max(x1, wrapCtrl.x); y0 = Math.min(y0, wrapCtrl.y); y1 = Math.max(y1, wrapCtrl.y); }
-    x0 -= 74; x1 += 74; y0 -= 64; y1 += 74;
+    const n = orderedNodes.length;
+    // Düğümlerin yanı sıra dönüş yayının tepe noktasını da kapsa.
+    const pts = orderedNodes.map((d) => ({ x: d.x, y: d.y })).concat([projectT(n - 0.5), projectT(n)]);
+    pts.forEach((p) => { x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x); y0 = Math.min(y0, p.y); y1 = Math.max(y1, p.y); });
+    // Lejant paneli grafiğin ÜSTÜNDE (sol altta) duruyor; sığdırma onu hesaba
+    // katmazsa soldaki düğümler panelin arkasında kalıyor. Panel açıkken sol
+    // kenara onun genişliği kadar pay bırakıyoruz.
+    let leftPad = 74;
+    const legendEl = document.getElementById("hal-legend");
+    if (legendEl && !legendEl.classList.contains("legend--collapsed")) {
+      const lr = legendEl.getBoundingClientRect();
+      const sr = svgNode.getBoundingClientRect();
+      if (lr.width && sr.width) leftPad = Math.max(leftPad, lr.width + 28);
+    }
+    x0 -= leftPad; x1 += 74; y0 -= 64; y1 += 74;
     const bw = Math.max(1, x1 - x0), bh = Math.max(1, y1 - y0);
     const [mn, mx] = zoomBehavior.scaleExtent();
     const k = Math.max(mn, Math.min(mx, Math.min(w / bw, h / bh)));
@@ -369,10 +575,19 @@
     tooltip.innerHTML = `<div class="node-hover-tip__title">${I18n.pick3(d.name)}</div>${short ? `<div class="node-hover-tip__short">${short}</div>` : ""}`;
     tooltip.hidden = false; moveTooltip(event);
   }
+  function showRelTooltip(r, event) {
+    if (!tooltip) return;
+    const s = nodeById.get(r.source), t = nodeById.get(r.target);
+    if (!s || !t) return;
+    tooltip.innerHTML =
+      `<div class="node-hover-tip__title">${I18n.pick3(s.name)} ↔ ${I18n.pick3(t.name)}</div>` +
+      `<div class="node-hover-tip__short">${tt(KIND_LABEL[r.kind] || {})}</div>`;
+    tooltip.hidden = false; moveTooltip(event);
+  }
   function moveTooltip(event) { GU.moveTooltip(tooltip, wrapEl, event); }
   function hideTooltip() { GU.hideTooltip(tooltip); }
 
-  // --- Editorial detay paneli (#12,#13) ---
+  // --- Detay paneli ---
   function insightsHtml(insights, excludeId) {
     if (!insights || !insights.length) return "";
     return `<div class="insight-group">${insights.map((ins, i) => `
@@ -394,12 +609,35 @@
       </div>`).join("");
     return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Basamak Sırası", en: "Sequence", pt: "Sequência" })}</p>${items}`;
   }
+  // Bir hâlin, sırayla komşu OLMAYAN hâllerle bağları -- bu görünümün asıl
+  // yeni bilgisi. Her biri kaynağıyla birlikte gösteriliyor.
+  function chordsHtml(d) {
+    const mine = relations.filter((r) => r.source === d.id || r.target === d.id);
+    if (!mine.length) return "";
+    const items = mine.map((r) => {
+      const otherId = r.source === d.id ? r.target : r.source;
+      const other = nodeById.get(otherId);
+      if (!other) return "";
+      return `
+      <div class="detail-block detail-block--edge">
+        <h3>↔ ${I18n.pick3(other.name)}</h3>
+        <p class="detail-eyebrow">${tt(KIND_LABEL[r.kind] || {})}</p>
+        <p>${linkify(tt(r.note), "hal", d.id)}</p>
+        <cite>${r.cite}</cite>
+      </div>`;
+    }).join("");
+    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Sıradan Taşan Bağlar", en: "Bonds beyond the sequence", pt: "Vínculos além da sequência" })}</p>${items}`;
+  }
+  function terkHtml(d) {
+    if (!d.terk) return "";
+    return `<div class="detail-analogy"><p class="detail-analogy__label">${tt({ tr: "Makamı ve terki", en: "The station and its abandonment", pt: "A estação e seu abandono" })}</p><p>${tt(TERK_NOTE)}</p></div>`;
+  }
   function analogyHtml(analogy) {
     if (!analogy) return "";
     return `<div class="detail-analogy"><p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p><p>${I18n.pick3(analogy)}</p></div>`;
   }
   function showDetail(d) {
-    currentDetailNode = d;
+    currentDetailNode = d; currentRelation = null;
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Hâller", en: "States", pt: "Estados" })}</p>
       <h2 class="detail-title">${I18n.pick3(d.name)}</h2>
@@ -408,8 +646,25 @@
         <p>${linkify(I18n.pick3(d.summary), "hal", d.id)}</p>
       </div>
       ${analogyHtml(d.analogy)}
+      ${terkHtml(d)}
       ${insightsHtml(d.insights, d.id)}
+      ${chordsHtml(d)}
       ${relatedStepsHtml(d)}`;
+    detailPanel.hidden = false;
+    ensureFrame();
+  }
+  function showRelationDetail(r) {
+    const s = nodeById.get(r.source), t = nodeById.get(r.target);
+    if (!s || !t) return;
+    currentRelation = r; currentDetailNode = null;
+    detailContent.innerHTML = `
+      <p class="detail-eyebrow">${tt({ tr: "Sıradan Taşan Bağ", en: "A bond beyond the sequence", pt: "Um vínculo além da sequência" })}</p>
+      <h2 class="detail-title">${I18n.pick3(s.name)} ↔ ${I18n.pick3(t.name)}</h2>
+      <div class="detail-block detail-block--ibnarabi">
+        <h3>${tt(KIND_LABEL[r.kind] || {})}</h3>
+        <p>${linkify(tt(r.note), "hal", null)}</p>
+        <cite>${r.cite}</cite>
+      </div>`;
     detailPanel.hidden = false;
     ensureFrame();
   }
@@ -423,12 +678,17 @@
   function buildGraph(data) {
     orderedNodes = buildOrderedChain(data.nodes);
     nodeById = new Map(orderedNodes.map((n) => [n.id, n]));
-    orderedNodes.forEach((n, i) => { n.__i = i; });
+    orderedNodes.forEach((n, i) => { n.__i = i; n.__phase = i * 0.7; });
+    // Kirişler: uçları gerçekten var olan ve ARDIŞIK OLMAYAN bağlar (ardışık
+    // olanlar zaten yol çizgisiyle görünüyor, ikinci kez çizmek gürültü olur).
+    relations = (data.relations || []).filter((r) => {
+      const s = nodeById.get(r.source), t = nodeById.get(r.target);
+      if (!s || !t) { console.warn("Hâller: kiriş ucu bulunamadı", r); return false; }
+      r.__si = s.__i; r.__ti = t.__i;
+      return Math.abs(r.__si - r.__ti) > 1;
+    });
     buildColorScale(orderedNodes.length);
     layout();
-    links = [];
-    for (let i = 0; i < orderedNodes.length - 1; i++) links.push({ source: orderedNodes[i], target: orderedNodes[i + 1], wrap: false });
-    links.push({ source: orderedNodes[orderedNodes.length - 1], target: orderedNodes[0], wrap: true });
     buildDom();
     initShimmer();
     built = true;
@@ -451,10 +711,10 @@
 
   function render_relabel() {
     if (!built) return;
-    // dil değişince renk skalası ve etiketler tazelensin
     buildColorScale(orderedNodes.length);
     render(performance.now());
     if (currentDetailNode) showDetail(currentDetailNode);
+    else if (currentRelation) showRelationDetail(currentRelation);
   }
 
   window.__halApp = {

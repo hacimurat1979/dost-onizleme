@@ -71,6 +71,7 @@
     },
     {
       "id": "zuhd",
+      "terk": true,
       "parent": "vera",
       "stage": "muameleler",
       "name": { "tr": "Zühd", "en": "Asceticism", "pt": "Ascetismo" },
@@ -103,6 +104,7 @@
     },
     {
       "id": "tevekkul",
+      "terk": true,
       "parent": "havf-reca",
       "stage": "muameleler",
       "name": { "tr": "Tevekkül", "en": "Reliance", "pt": "Confiança" },
@@ -140,6 +142,7 @@
     },
     {
       "id": "yakin",
+      "terk": true,
       "parent": "sukur",
       "stage": "muameleler",
       "name": { "tr": "Yakîn", "en": "Certainty", "pt": "Certeza" },
@@ -177,6 +180,7 @@
     },
     {
       "id": "murakabe",
+      "terk": true,
       "parent": "sabir",
       "stage": "muameleler",
       "name": { "tr": "Murâkabe", "en": "Vigilance", "pt": "Vigilância" },
@@ -327,6 +331,108 @@
           "cite": "Fütûhât-ı Mekkiyye, Cilt II, Kısım XXV — Elli Bölüm: Hayret ve Acizlik Adamlarının Bilinmesi, s. 325-327"
         }
       ]
+    }
+  ],
+
+  "relations": [
+    {
+      "source": "tovbe",
+      "target": "istikamet",
+      "kind": "yanki",
+      "note": {
+        "tr": "Dairenin neredeyse karşılıklı iki ucundaki bu iki makam, Âdem'in yasak ağaçtan yemesini aynı yönde okuyor: Tövbe'de günah onu 'seçilmiş' kılan şeydir, İstikamet'te ise ağacın gizli anlamının -ayrılığın- bizzat yerine getirilmesidir. İkisinin de aynı kıssaya aynı yerden bakması bize rastlantı gibi görünmüyor.",
+        "en": "Standing almost opposite each other on the circle, these two stations read Adam's eating from the forbidden tree in the same direction: in Repentance the sin is precisely what makes him 'chosen'; in Uprightness it is the very fulfilment of the tree's hidden meaning — separation. That both look at the same story from the same angle does not seem accidental to us.",
+        "pt": "Situadas quase em lados opostos do círculo, estas duas estações leem o ato de Adão comer da árvore proibida na mesma direção: no Arrependimento, o pecado é justamente o que o torna 'eleito'; na Retidão, é o próprio cumprimento do sentido oculto da árvore — a separação. Que ambas olhem para a mesma história do mesmo ângulo não nos parece acidental."
+      },
+      "cite": "Fütûhât-ı Mekkiyye, Cilt 7 (Ekrem Demirli çev.) — Yetmiş Dördüncü Bölüm (Tövbe) ve Yüz Otuz İkinci Bölüm (İstikamet)"
+    },
+    {
+      "source": "nefs",
+      "target": "mucahede",
+      "kind": "yanki",
+      "note": {
+        "tr": "Mücâhede kendi başına duran bir basamak gibi değil, baştan sona Nefs üzerine bir çalışma gibi tanımlanıyor: 'riyâzet, nefsin tabiatını yok etmek değil, onu Allah'ın kendisine verdiği sınırlar içinde tutmaktır.' Bu yüzden onu, aradaki Tövbe basamağını atlayarak yolun ilk düğümüne bağlı okuyoruz.",
+        "en": "Striving is defined not as a step standing on its own but as work upon the Soul from beginning to end: 'discipline is not annihilating the soul's nature, but holding it within the limits God has given it.' So we read it as bound to the journey's first node, skipping the intervening step of Repentance.",
+        "pt": "O Esforço não é definido como um degrau autônomo, mas como um trabalho sobre a Alma do início ao fim: 'a disciplina não é aniquilar a natureza da alma, mas mantê-la dentro dos limites que Deus lhe deu.' Por isso o lemos como ligado ao primeiro nó do caminho, saltando o degrau intermediário do Arrependimento."
+      },
+      "cite": "Fütûhât-ı Mekkiyye, Cilt 9 (Ekrem Demirli çev.) — İki Yüz Üçüncü Bölüm: Riyâzet"
+    },
+    {
+      "source": "zuhd",
+      "target": "kulluk",
+      "kind": "yanki",
+      "note": {
+        "tr": "İkisi de Bâyezîd Bistâmî'ye dayanıyor ve aynı sezgide buluşuyor: Zühd'de terkin sonuna varıldığında 'istenilen ben, isteyen sensin' denerek sâlik kendi isteğiyle baş başa bırakılıyor; Kullukta ise Allah'a ancak O'nun sahip olmadığı şeyle -- yoksullukla, acizlikle -- yaklaşılabileceği söyleniyor.",
+        "en": "Both rest on Bayazid Bistami and meet in the same intuition: in Asceticism, at the end of all renunciation, the seeker is left alone with his own wanting — 'the wanted is I, the wanter is you'; in Servanthood, one can draw near to God only through what God definitively does not have — poverty and helplessness.",
+        "pt": "Ambas se apoiam em Bayazid Bistami e se encontram na mesma intuição: no Ascetismo, ao fim de toda renúncia, o buscador é deixado a sós com seu próprio querer — 'o desejado sou eu, o desejante és tu'; na Servidão, só se pode aproximar de Deus por aquilo que Ele definitivamente não possui — a pobreza e a impotência."
+      },
+      "cite": "Fütûhât-ı Mekkiyye, Cilt 7 (Ekrem Demirli çev.) — Doksan Üçüncü Bölüm (Zühd) ve Yüz Otuzuncu Bölüm (Kulluk)"
+    },
+    {
+      "source": "tevekkul",
+      "target": "yakin",
+      "kind": "gerilim",
+      "note": {
+        "tr": "Bu bağ basamak sırasıyla açıkça çelişiyor ve bizim için en öğretici olanı bu: Tedbîrât'ta 'henüz yakîni yerleşmemiş biri kesbini bırakmasın' deniyor -- yani gerçek tevekkül, sıralamada kendisinden SONRA gelen Yakîn'i şart koşuyor. Yolun düz bir merdiven olmadığını en açık gösteren yer burası; sıralamayı bir kural değil, bir anlatım kolaylığı olarak görmemiz gerektiğini düşündürüyor.",
+        "en": "This bond openly contradicts the sequence, and that is what makes it most instructive for us: the Tedbîrât says 'let one whose certainty is not yet settled not abandon his earning' — that is, true reliance presupposes Certainty, which comes AFTER it in the ordering. This is the clearest place where the path shows it is not a straight ladder; it suggests we should treat the sequence as a convenience of telling, not a rule.",
+        "pt": "Este vínculo contradiz abertamente a sequência, e é isso que o torna mais instrutivo para nós: o Tedbîrât diz 'que aquele cuja certeza ainda não se firmou não abandone seu ganho' — ou seja, a verdadeira confiança pressupõe a Certeza, que vem DEPOIS dela na ordenação. Este é o ponto mais claro em que o caminho mostra não ser uma escada reta; sugere que devemos tratar a sequência como uma conveniência da narração, não como uma regra."
+      },
+      "cite": "et-Tedbîrâtü'l-İlâhiyye (Ahmed Avni Konuk tercüme ve şerhi) — Yirmiikinci Bâb, Üçüncü Fasıl: Kesb ve Tevekkül Hakkındadır"
+    },
+    {
+      "source": "sabir",
+      "target": "riza",
+      "kind": "yanki",
+      "note": {
+        "tr": "İki makam da aynı ufka varıyor: Sabır'da azabın cehennemde bile bir gün sona ereceği, Rızâ'da ise cehennem ehlinin azabının sonunda herkes için mutluluğa döneceği söyleniyor. İkisi de aynı iddiaya -- rahmetin sonunda gazabı geçtiğine -- dayanıyor; aradaki Murâkabe basamağı bu ortaklığı görmemizi engelliyor.",
+        "en": "Both stations arrive at the same horizon: in Patience, that punishment will one day end even in Hell; in Contentment, that the torment of Hell's people finally turns into happiness for everyone. Both rest on the same claim — that mercy at last outruns wrath; the intervening step of Vigilance hides this kinship from view.",
+        "pt": "Ambas as estações chegam ao mesmo horizonte: na Paciência, que o castigo um dia terminará mesmo no Inferno; na Contentação, que o tormento dos habitantes do Inferno afinal se converte em felicidade para todos. Ambas se apoiam na mesma afirmação — que a misericórdia por fim ultrapassa a ira; o degrau intermediário da Vigilância oculta esse parentesco."
+      },
+      "cite": "Fütûhât-ı Mekkiyye, Cilt 7 (Ekrem Demirli çev.) — Yüz Yirmi Dördüncü Bölüm (Sabır) ve Yüz Yirmi Sekizinci Bölüm (Rızâ)"
+    },
+    {
+      "source": "murakabe",
+      "target": "tevhit",
+      "kind": "yanki",
+      "note": {
+        "tr": "Aynı hamlenin iki örneği: Murâkabe'de 'Allah gözetendir, gözetilen değil' denerek makamı tanımlayan fiil tersine çevriliyor; Tevhit'te 'O'nu birleyen münkirdir' denerek makam kendi mantığıyla dağıtılıyor. İkisi de ulaşılan basamağı, tam ulaşıldığı anda elden bırakıyor.",
+        "en": "Two instances of the same move: in Vigilance, 'God is the watcher, not the watched' turns the station's own defining verb inside out; in Unification, 'whoever unifies Him denies Him' dissolves the station by its own logic. Both let go of the step exactly at the moment it is reached.",
+        "pt": "Dois exemplos do mesmo gesto: na Vigilância, 'Deus é o observador, não o observado' inverte o próprio verbo que define a estação; na Unificação, 'quem O unifica O nega' dissolve a estação por sua própria lógica. Ambas soltam o degrau exatamente no momento em que ele é alcançado."
+      },
+      "cite": "Fütûhât-ı Mekkiyye, Cilt 7 — Yüz Yirmi Altıncı Bölüm (Murâkabe); Cilt 8 — Yüz Yetmiş İkinci Bölüm (Tevhit)"
+    },
+    {
+      "source": "cemfark",
+      "target": "hayret",
+      "kind": "dogurur",
+      "note": {
+        "tr": "Cem ve Fark'ta sâlik tenzih ile teşbihten birini seçmekte serbest bırakılıyor; Hayret ise tam da artık seçilemediği, ikisinin aynı anda doğrulandığı yer. Bize göre Hayret, Cem ve Fark'ın bir üst basamağı değil, o seçimin kendisinin çözüldüğü hâl -- ikisi de İzutsu'nun aynı bölümünden okunuyor.",
+        "en": "In Union and Separation the seeker is left free to choose between transcendence and immanence; Bewilderment is precisely where the choice can no longer be made, where both are affirmed at once. To us Bewilderment is not a rung above Union and Separation but the state in which that very choice dissolves — and both are read from the same chapter of Izutsu.",
+        "pt": "Em União e Separação o buscador é deixado livre para escolher entre transcendência e imanência; o Assombro é justamente onde a escolha já não pode ser feita, onde ambas são afirmadas ao mesmo tempo. Para nós, o Assombro não é um degrau acima de União e Separação, mas o estado em que essa própria escolha se dissolve — e ambos são lidos no mesmo capítulo de Izutsu."
+      },
+      "cite": "İbn Arabî'nin Fusûsu'ndaki Anahtar-Kavramlar (Toshihiko İzutsu, çev. Ahmed Yüksel Özemre) — V. Bölüm: Metafizik Hayret"
+    },
+    {
+      "source": "fenabeka",
+      "target": "hayret",
+      "kind": "dogurur",
+      "note": {
+        "tr": "Kâşânî'den naklen: 'hem fenâ ve hem de bekâ bulmayı görmenin sebep olduğu hayretten daha büyük bir hayret makamı da olamaz.' Burada Fenâ ve Bekâ ile Hayret arasında, aradaki Tevhit basamağını atlayan doğrudan bir bağ kuruluyor.",
+        "en": "Reported from Kashani: 'there can be no station of bewilderment greater than the bewilderment caused by seeing that one finds both annihilation and subsistence.' Here a direct bond is drawn between Annihilation-and-Subsistence and Bewilderment, skipping the intervening step of Unification.",
+        "pt": "Relatado de Kashani: 'não pode haver estação de assombro maior do que o assombro causado por ver que se encontra tanto a aniquilação quanto a permanência.' Aqui se traça um vínculo direto entre Aniquilação-e-Permanência e Assombro, saltando o degrau intermediário da Unificação."
+      },
+      "cite": "İbn Arabî'nin Fusûsu'ndaki Anahtar-Kavramlar (Toshihiko İzutsu, çev. Ahmed Yüksel Özemre) — V. Bölüm: Metafizik Hayret, Kâşânî'den naklen"
+    },
+    {
+      "source": "nefs",
+      "target": "fenabeka",
+      "kind": "yanki",
+      "note": {
+        "tr": "Özün Özü'nde 'kendini bilmek' yedi basamaklı bir merdiven olarak yeniden anlatılıyor -- ve bu merdiven yine en baştan, konuşan nefsi tanımaktan başlıyor. Yolun ileri bir noktasında bütün yolun kendini yeniden anlatması, bu haritanın düz değil özyinelemeli olabileceğini düşündürüyor bize.",
+        "en": "In the Kernel of the Kernel, 'knowing oneself' is retold as a seven-runged ladder — and that ladder again begins at the very beginning, with recognising the speaking soul. That the whole path narrates itself once more at an advanced point of the path suggests to us that this map may be recursive rather than linear.",
+        "pt": "No Cerne do Cerne, 'conhecer-se a si mesmo' é recontado como uma escada de sete degraus — e essa escada recomeça do início, com o reconhecimento da alma falante. Que todo o caminho narre a si mesmo outra vez num ponto avançado do próprio caminho nos sugere que este mapa possa ser recursivo, e não linear."
+      },
+      "cite": "Özün Özü / Lübbü'l-Lübb ve Sırr'üs-Sır (İbn Arabî, çev. İsmail Hakkı Bursevî, sad. Abdülkadir Akçiçek) — Kendini Bilmek Bölümü"
     }
   ]
 }
