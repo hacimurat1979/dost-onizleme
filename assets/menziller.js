@@ -36,13 +36,27 @@
 
   let data = null, dataPromise = null;
   let nodes = [];
-  let zoomLayer, spinLayer, ringLayer, nodeLayer, centerLayer, defs;
+  let zoomLayer, ringLayer, nodeLayer, centerLayer, defs;
   let zoomBehavior = null;
-  let width = 900, height = 640, cx = 450, cy = 320, ringR = 240;
+  let width = 900, height = 640, cx = 450, cy = 320, ringR = 240, dropH = 420;
   let rafId = null, lastTs = 0, spin = 0, hoveredId = null, activeId = null;
 
   // Sakin, huzurlu dönüş -- öteki graflarla aynı hız ailesinden (~140 sn/tur).
   const SPIN_RATE = 0.000045;
+
+  // --- 3B durumu (hal.js'teki sarmal motorunun aynısı; referansımız o) ---
+  // Fark şu: Hâller'de yol YÜKSELİYOR (nefsten hayrete), burada İNİYOR --
+  // çünkü verimizin sırası bir iniş: İlk Akıl'dan toprağa, oradan madene,
+  // bitkiye, hayvana, insana. Sonuncusu (Reşâ) hiçbir şey var etmiyor,
+  // mertebeleri tayin ediyor; bu yüzden sarmalın dibinden tepeye bir kapanış
+  // kirişi çiziyoruz -- çember kendi kendine kapanıyor.
+  // FOCAL, Hâller'inkinden (1900) uzun: 28 düğüm tek bir tura yayıldığı için
+  // güçlü perspektif, sarmalın UZAK yarısını ezip etiketleri üst üste
+  // bindiriyordu. Uzun odak = daha az bükülme, okunur etiketler.
+  const FOCAL = 3200;
+  const TILT_DUR = 1050;
+  let tilt = 0, tiltTarget = 0, tiltAnimStart = 0, tiltFrom = 0;
+  let yaw = 0, pitch = 0.26, dragging = false;
 
   function fetchData() {
     if (dataPromise) return dataPromise;
@@ -77,12 +91,66 @@
     height = svgNode.clientHeight || 640;
     cx = width / 2; cy = height / 2;
     ringR = Math.max(120, Math.min(width, height) / 2 - (Math.min(width, height) < 620 ? 74 : 96));
+    // İniş yüksekliği kritik: yalnız TOPLAM iniş elipsin salınımını aşsın
+    // yetmiyor -- ADIM BAŞINA iniş de, elipsin o adımdaki dikey salınımını
+    // aşmalı. Aşmazsa sarmalın ilk yarısı yükselerek geri dönüyor ve mertebe
+    // farkı okunmaz oluyor (Hâller'de 18 düğümle fark edilmemişti; 28 düğümde
+    // görünür hâle geldi). Adım salınımı ≈ r·(2π/n)·sin(pitch), adım inişi
+    // ≈ dropH·cos(pitch)/(n-1). Oranı sadeleştirince kaldıracın EĞİM olduğu
+    // çıkıyor: salınım/iniş = 2π·tan(pitch)·r/dropH. Hâller'in eğimiyle (0.62)
+    // monotonluk için dropH > 4.5·r gerekiyordu ve sarmal ince uzun bir şeride
+    // dönüyordu. Eğimi 0.26'ya düzleştirince eşik 1.7·r'ye iniyor; 2.1 hem
+    // güvenli hem de sarmalın eni ile boyunu dengede tutuyor.
+    dropH = ringR * 2.1;
+    positionNodes();
+  }
+
+  // --- Sarmalın sürekli parametrik tanımı (hal.js ile aynı model) ---
+  // tilt=0: düz halka (z yok, yükseklik yok) -- eski görünümün birebir aynısı.
+  // tilt=1: halka yatay düzleme yatar, mertebe farkı Y ekseninde birikir.
+  // Sakin dönüş 2B'de halkayı kendi düzleminde döndürür (açıya eklenir),
+  // 3B'de ise sahneyi dikey eksen etrafında çevirir (yaw'a eklenir).
+  function helixPoint(t) {
+    const n = nodes.length;
+    const a = -Math.PI / 2 + (t / n) * Math.PI * 2 + spin * (1 - tilt);
+    // 3B'de halkayı genişletiyoruz: eğilince elips dikeyde zaten eziliyor,
+    // yarıçapı büyütmezsek sarmal ince uzun bir şerit gibi görünüyor.
+    const r = ringR * (0.86 + 0.18 * (t / Math.max(1, n - 1)) + 0.34 * (t / Math.max(1, n - 1)) * tilt) * (1 + 0.14 * tilt);
+    const flatY = r * Math.sin(a);
+    const hStep = dropH / Math.max(1, n - 1);
+    const dropY = -dropH / 2 + hStep * t;   // ilk menzil en üstte, son menzil en altta
+    return { x: r * Math.cos(a), y: flatY * (1 - tilt) + dropY * tilt, z: flatY * tilt };
+  }
+
+  function project(p) {
+    const yy = (yaw + spin) * tilt, pp = pitch * tilt;
+    const cyw = Math.cos(yy), syw = Math.sin(yy);
+    const x1 = p.x * cyw + p.z * syw;
+    const z1 = -p.x * syw + p.z * cyw;
+    const cpt = Math.cos(pp), spt = Math.sin(pp);
+    const y2 = p.y * cpt - z1 * spt;
+    const z2 = p.y * spt + z1 * cpt;
+    const zc = Math.max(z2, -FOCAL * 0.85);
+    const depth = FOCAL / (FOCAL + zc);
+    return { x: cx + x1 * depth, y: cy + y2 * depth, depth: depth, z: z2 };
+  }
+  function projectT(t) { return project(helixPoint(t)); }
+
+  function positionNodes() {
     nodes.forEach((n, i) => {
-      const a = -Math.PI / 2 + (i / nodes.length) * Math.PI * 2;
-      n.angle = a;
-      n.x = cx + ringR * Math.cos(a);
-      n.y = cy + ringR * Math.sin(a);
+      const p = projectT(i);
+      n.x = p.x; n.y = p.y; n.__depth = p.depth; n.__z = p.z;
     });
+  }
+
+  // Sürekli sarmal üzerinde t0..t1 arasını örnekleyip ekran yolu üretir.
+  function samplePath(t0, t1, steps) {
+    let d = "";
+    for (let s = 0; s <= steps; s++) {
+      const p = projectT(t0 + (t1 - t0) * (s / steps));
+      d += (s ? " L" : "M") + p.x.toFixed(1) + "," + p.y.toFixed(1);
+    }
+    return d;
   }
 
   function buildDom() {
@@ -100,16 +168,18 @@
 
     zoomLayer = svg.append("g").attr("class", "menziller-canvas");
     ringLayer = zoomLayer.append("g").attr("class", "menziller-ringlayer");
-    spinLayer = zoomLayer.append("g").attr("class", "menziller-spin");
-    nodeLayer = spinLayer.append("g").attr("class", "menziller-nodes");
+    nodeLayer = zoomLayer.append("g").attr("class", "menziller-nodes");
     centerLayer = zoomLayer.append("g").attr("class", "menziller-center");
 
-    ringLayer.append("circle").attr("class", "menziller-ring-path");
+    // 2B'de düz halka, 3B'de sarmalın kendisi: tek bir path ikisini de çiziyor.
+    ringLayer.append("path").attr("class", "menziller-ring-path").attr("fill", "none");
+    // Sonu başa bağlayan kapanış kirişi (yalnız 3B'de görünür).
+    ringLayer.append("path").attr("class", "menziller-close-chord").attr("fill", "none");
     centerLayer.append("circle").attr("class", "node-halo").attr("r", 46);
     centerLayer.append("text").attr("class", "menziller-center__label").attr("text-anchor", "middle").attr("y", -4);
     centerLayer.append("text").attr("class", "menziller-center__sub").attr("text-anchor", "middle").attr("y", 15);
 
-    zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.5, 3], (event) => !event.target.closest(".node"));
+    zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.5, 3], (event) => !event.target.closest(".node") && tiltTarget < 0.5);
 
     const rc = document.getElementById("menziller-recenter");
     if (rc && !rc.dataset.wiredMenziller) {
@@ -121,12 +191,22 @@
 
   function render(ts) {
     if (!nodeLayer) return;
-    const deg = spin * 180 / Math.PI;
+    positionNodes();
 
-    ringLayer.select("circle.menziller-ring-path")
-      .attr("cx", cx).attr("cy", cy).attr("r", ringR);
+    // Yol: 2B'de kapalı halka, 3B'de inen sarmal -- aynı parametrik eğri.
+    ringLayer.select("path.menziller-ring-path")
+      .attr("d", samplePath(0, nodes.length - 1 + (tilt < 0.5 ? 1 : 0), 240));
 
-    centerLayer.attr("transform", `translate(${cx},${cy})`);
+    // Kapanış kirişi: son menzil (mertebeleri tayin eden) ilk menzile (İlk
+    // Akıl) geri bağlanıyor. 2B'de halka zaten kapalı olduğu için gizli.
+    const a = projectT(nodes.length - 1), b = projectT(0);
+    ringLayer.select("path.menziller-close-chord")
+      .attr("d", `M${a.x.toFixed(1)},${a.y.toFixed(1)} L${b.x.toFixed(1)},${b.y.toFixed(1)}`)
+      .style("opacity", tilt * 0.5);
+
+    // Merkezdeki nefes işareti yalnız 2B'de anlamlı: 3B'de halka yatınca
+    // merkez sarmalın ortasına düşüyor ve düğümlerin arkasında kalıyor.
+    centerLayer.attr("transform", `translate(${cx},${cy})`).style("opacity", 1 - tilt);
     centerLayer.select(".menziller-center__label").text(tt(data.center.baslik));
     centerLayer.select(".menziller-center__sub").text("28");
 
@@ -135,6 +215,7 @@
       .attr("class", "node menzil-node")
       .attr("tabindex", 0).attr("role", "button")
       .attr("aria-label", (n) => `${n.sira}. ${n.menzil}`)
+      .attr("data-sira", (n) => n.sira)
       .on("click", (e, n) => { e.stopPropagation(); openMenzil(n); })
       .on("keydown", (e, n) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); openMenzil(n); } })
       .on("pointerenter", (e, n) => { hoveredId = n.sira; showTooltip(n, e); ensureFrame(); })
@@ -154,34 +235,100 @@
       const isActive = activeId === n.sira;
       const isHover = hoveredId === n.sira;
       const breath = reduceMotion ? 1 : 1 + 0.02 * Math.sin(ts / 3000 + n.sira);
-      const r = (isActive ? 17 : 13) * breath * (isHover ? 1.08 : 1);
+      // 3B'de uzaktaki düğümler küçülüp soluyor (perspektif derinliği).
+      const dep = 1 + (n.__depth - 1) * tilt;
+      const r = (isActive ? 17 : 13) * breath * (isHover ? 1.08 : 1) * dep;
+      const fade = tilt > 0 ? Math.max(0.35, Math.min(1, 0.35 + 0.9 * (dep - 0.55))) : 1;
       g.attr("transform", `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`)
-        .style("opacity", activeId && !isActive ? 0.42 : 1);
+        .style("opacity", (activeId && !isActive ? 0.42 : 1) * fade);
       g.select(".menzil-node__glow").attr("r", r * 1.9)
         .style("fill", hueFor(n.sira - 1))
         .style("opacity", (isActive ? 0.42 : 0.15) * (isHover ? 1.6 : 1));
       g.select(".menzil-node__sphere").attr("r", r);
       // Halka döndüğü için harf ve etiketi kendi noktaları etrafında ters
       // çevirip dik tutuyoruz.
-      g.select(".menzil-node__harf")
-        .attr("y", 4).attr("transform", `rotate(${(-deg).toFixed(2)},0,4)`)
+      // Etiketler artık grup döndürmesiyle değil, düğümün kendi ekran
+      // konumuyla yerleşiyor; hem 2B'de hem 3B'de kendiliğinden dik duruyorlar.
+      g.select(".menzil-node__harf").attr("y", 4 * dep)
+        .style("font-size", (0.72 * dep).toFixed(2) + "rem")
         .text(n.harfArapca);
-      g.select(".menzil-node__label")
-        .attr("y", r + 14).attr("transform", `rotate(${(-deg).toFixed(2)},0,${(r + 14).toFixed(1)})`)
+      g.select(".menzil-node__label").attr("y", r + 14)
         .classed("menzil-node__label--active", isActive)
         .text(n.menzil);
     });
 
-    spinLayer.attr("transform", `rotate(${deg.toFixed(2)},${cx.toFixed(1)},${cy.toFixed(1)})`);
+    // Yakındaki düğümler uzaktakilerin üstünde çizilsin (3B derinlik sırası).
+    if (tilt > 0.05) {
+      nodeLayer.selectAll("g.menzil-node").sort((p, q) => (p.__z || 0) - (q.__z || 0));
+    }
   }
 
+  // ---- 2B ↔ 3B sinematik geçiş (hal.js ile aynı) ----
+  function setTilt(target) {
+    tiltFrom = tilt; tiltTarget = target; tiltAnimStart = performance.now();
+    if (target < 0.5) { yaw = 0; pitch = 0.26; }
+    ensureFrame();
+    setTimeout(() => { if (!wrapEl.hidden) fitView(true); }, reduceMotion ? 30 : TILT_DUR + 60);
+  }
+
+  function wireTiltToggle() {
+    const btn = document.getElementById("menziller-3d-toggle");
+    if (!btn || btn.dataset.wiredMenziller3d) return;
+    btn.dataset.wiredMenziller3d = "1";
+    btn.setAttribute("aria-pressed", "false");
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const to = tiltTarget > 0.5 ? 0 : 1;
+      setTilt(to);
+      btn.classList.toggle("is-on", to > 0.5);
+      btn.setAttribute("aria-pressed", to > 0.5 ? "true" : "false");
+    });
+  }
+
+  // 3B'de sürükleyerek döndürme.
+  function wireRotateDrag() {
+    let lastX = 0, lastY = 0;
+    svgNode.addEventListener("pointerdown", (e) => {
+      if (tiltTarget < 0.5) return;
+      if (e.target.closest(".menzil-node")) return;
+      dragging = true; lastX = e.clientX; lastY = e.clientY;
+      svgNode.setPointerCapture(e.pointerId);
+    });
+    svgNode.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      yaw += (e.clientX - lastX) * 0.006;
+      pitch = Math.max(-0.2, Math.min(1.25, pitch + (e.clientY - lastY) * 0.004));
+      lastX = e.clientX; lastY = e.clientY;
+      ensureFrame();
+    });
+    const stop = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      try { svgNode.releasePointerCapture(e.pointerId); } catch (_) {}
+    };
+    svgNode.addEventListener("pointerup", stop);
+    svgNode.addEventListener("pointercancel", stop);
+  }
+
+  // Not: lastTs BURADA sıfırlanmıyor -- ensureFrame her karenin sonunda
+  // çağrıldığı için burada sıfırlamak dt'yi kalıcı 0 yapar ve dönüşü dondurur
+  // (hal.js'te bir kez bu hataya düşmüştük).
   function ensureFrame() { if (rafId == null) rafId = requestAnimationFrame(frame); }
   function frame(ts) {
     rafId = null;
     if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
     const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
-    // Bir menzil açıkken durur: okurken sahne kıpırdamasın.
-    if (!reduceMotion && !activeId) spin += dt * SPIN_RATE;
+    if (tilt !== tiltTarget) {
+      if (reduceMotion) tilt = tiltTarget;
+      else {
+        const pr = Math.min(1, (ts - tiltAnimStart) / TILT_DUR);
+        const e = pr < 0.5 ? 2 * pr * pr : 1 - Math.pow(-2 * pr + 2, 2) / 2;
+        tilt = tiltFrom + (tiltTarget - tiltFrom) * e;
+        if (pr >= 1) tilt = tiltTarget;
+      }
+    }
+    // Bir menzil açıkken ve sürüklerken durur: okurken sahne kıpırdamasın.
+    if (!reduceMotion && !activeId && !dragging) spin += dt * SPIN_RATE;
     render(ts);
     if (!reduceMotion) ensureFrame();
   }
@@ -202,27 +349,30 @@
   // adlar sadece ringR'e bakınca çerçevenin dışında kalıyordu. Her düğümün
   // kutusunun merkeze en uzak köşesini ölçtüğümüz için halka dönerken de
   // geçerli kalıyor.
-  function contentRadius() {
-    let maxR = ringR + 20;
-    if (!nodeLayer) return maxR;
+  // Sığdırma, düğümlerin ETİKETLERİYLE birlikte kapladığı gerçek kutuya
+  // bakıyor. 3B'de sarmal düz halkadan belirgin biçimde daha uzun olduğu için
+  // yarıçap temelli bir hesap yetmiyordu.
+  function contentBox() {
+    let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
     nodeLayer.selectAll("g.menzil-node").each(function (n) {
-      let b; try { b = this.getBBox(); } catch (e) { return; }
-      const corner = Math.max(
-        Math.hypot(b.x, b.y), Math.hypot(b.x + b.width, b.y),
-        Math.hypot(b.x, b.y + b.height), Math.hypot(b.x + b.width, b.y + b.height));
-      const d = Math.hypot(n.x - cx, n.y - cy) + corner;
-      if (d > maxR) maxR = d;
+      let b; try { b = this.getBBox(); } catch (e) { b = { x: -14, y: -14, width: 28, height: 34 }; }
+      x0 = Math.min(x0, n.x + b.x); x1 = Math.max(x1, n.x + b.x + b.width);
+      y0 = Math.min(y0, n.y + b.y); y1 = Math.max(y1, n.y + b.y + b.height);
     });
-    return maxR;
+    if (!isFinite(x0)) return { x0: cx - ringR, x1: cx + ringR, y0: cy - ringR, y1: cy + ringR };
+    return { x0, x1, y0, y1 };
   }
 
   function fitView(animate) {
-    if (!zoomBehavior) return;
-    const pad = 30;
+    if (!zoomBehavior || !nodeLayer) return;
+    const pad = 26;
     const vw = visibleWidth();
-    const need = contentRadius() * 2 + pad * 2;
-    const k = Math.max(0.5, Math.min(3, Math.min(vw / need, height / need)));
-    const t = d3.zoomIdentity.translate(vw / 2 - k * cx, height / 2 - k * cy).scale(k);
+    const b = contentBox();
+    const bw = Math.max(1, b.x1 - b.x0) + pad * 2;
+    const bh = Math.max(1, b.y1 - b.y0) + pad * 2;
+    const k = Math.max(0.5, Math.min(3, Math.min(vw / bw, height / bh)));
+    const mx = (b.x0 + b.x1) / 2, my = (b.y0 + b.y1) / 2;
+    const t = d3.zoomIdentity.translate(vw / 2 - k * mx, height / 2 - k * my).scale(k);
     const sel = (animate && !reduceMotion) ? svg.transition().duration(450).ease(d3.easeCubicInOut) : svg;
     sel.call(zoomBehavior.transform, t);
   }
@@ -232,13 +382,18 @@
     tooltip.innerHTML =
       `<div class="node-hover-tip__title">${n.sira}. ${n.menzil}</div>` +
       `<div class="node-hover-tip__short">${tt(n.zuhur)}</div>` +
-      `<div class="node-hover-tip__meta">${n.harf} ${n.harfArapca} · ${n.isim}</div>`;
+      `<div class="node-hover-tip__meta">${n.harf} ${n.harfArapca} · ${n.isim} · ${katmanAdi(n)}</div>`;
     tooltip.hidden = false; moveTooltip(event);
   }
   function moveTooltip(event) { GU.moveTooltip(tooltip, wrapEl, event); }
   function hideTooltip() { GU.hideTooltip(tooltip); }
 
   // --- Detay paneli ---
+  function katmanAdi(n) {
+    const k = (data.katmanlar || []).find((x) => x.id === n.katman);
+    return k ? tt(k.ad) : "";
+  }
+
   function rowHtml(label, value) {
     return `<div class="menzil-row"><span class="menzil-row__k">${label}</span><span class="menzil-row__v">${value}</span></div>`;
   }
@@ -250,6 +405,7 @@
       isim: tt({ tr: "İlahi isim", en: "Divine name", pt: "Nome divino" }),
       zuhur: tt({ tr: "Bu menzilden zuhur eden", en: "What appears from this mansion", pt: "O que aparece desta mansão" }),
       kaynak: tt({ tr: "Kaynak", en: "Source", pt: "Fonte" }),
+      katman: tt({ tr: "Mertebe katmanı", en: "Tier of ranks", pt: "Estrato dos graus" }),
     };
     const varyant = n.varyant
       ? `<p class="menzil-varyant">${tt({ tr: "Bir diğer adı", en: "Also called", pt: "Também chamada" })}: ${n.varyant}</p>` : "";
@@ -262,6 +418,7 @@
       <div class="menzil-rows">
         ${rowHtml(L.harf, `${n.harf} <span class="menzil-harf-ar">${n.harfArapca}</span>`)}
         ${rowHtml(L.isim, n.isim)}
+        ${rowHtml(L.katman, katmanAdi(n))}
       </div>
       <div class="detail-block detail-block--ibnarabi"><p class="menzil-zuhur__label">${L.zuhur}</p><p>${linkify(tt(n.zuhur), "menziller", String(n.sira))}</p></div>
       ${notu}
@@ -280,6 +437,7 @@
       <h2 class="detail-title">${tt({ tr: "Yirmi Sekiz Ay Menzili", en: "The Twenty-Eight Mansions of the Moon", pt: "As Vinte e Oito Mansões da Lua" })}</h2>
       <div class="detail-block detail-block--ibnarabi"><p>${tt(data.intro)}</p></div>
       <div class="detail-block detail-block--ibnarabi"><p>${tt(data.center.not)}</p></div>
+      <div class="detail-analogy"><p class="detail-analogy__label">${tt({ tr: "Sarmal ne gösteriyor", en: "What the spiral shows", pt: "O que a espiral mostra" })}</p><p>${tt(data.katmanNotu)}</p></div>
       <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Çekincelerimiz", en: "Our caveats", pt: "As nossas ressalvas" })}</p>
       <ul class="menzil-notlar">${notlar}</ul>
       <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Kaynak", en: "Sources", pt: "Fontes" })}</p>
@@ -292,6 +450,8 @@
     nodes = data.menziller.map((m) => Object.assign({}, m));
     layout();
     buildDom();
+    wireTiltToggle();
+    wireRotateDrag();
     render(performance.now());
     fitView(false);
     ensureFrame();

@@ -4706,6 +4706,14 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   stroke-width: 1;
   opacity: 0.55;
 }
+/* Sonu başa bağlayan kapanış kirişi: yalnız 3B'de görünür, kesik çizgi. */
+.menziller-close-chord {
+  pointer-events: none;
+  fill: none;
+  stroke: var(--series-theme);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 6;
+}
 .menziller-center { pointer-events: none; }
 .menziller-center__label {
   font-size: 0.82rem;
