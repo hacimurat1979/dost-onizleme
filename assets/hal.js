@@ -276,6 +276,14 @@
     // belirgin biçimde daha uzun; aksi hâlde üst/alt uçlar dışarı taşıyor).
     setTimeout(() => { if (!wrapEl.hidden) fitView(true); }, reduceMotion ? 30 : TILT_DUR + 60);
   }
+  // Açılışta doğrudan sarmala eğ: düğmenin durumunu da eşitler ki kullanıcı
+  // bir sonraki tıklamada 2B'ye dönsün.
+  function openIn3D() {
+    setTilt(1);
+    const btn = document.getElementById("hal-3d-toggle");
+    if (btn) { btn.classList.add("is-on"); btn.setAttribute("aria-pressed", "true"); }
+  }
+
   function wireTiltToggle() {
     const btn = document.getElementById("hal-3d-toggle");
     if (!btn || btn.dataset.wiredHal3d) return;
@@ -709,6 +717,10 @@
     startTs = 0;
     render(performance.now());
     fitView(false);
+    // Varsayılan görünüm 3B (kullanıcı kararı, 2026-07-26): bu haritanın asıl
+    // söylediği şey yolun YÜKSELMESİ; düz halka onu göstermiyor. Düğmeyle
+    // istendiğinde 2B'ye dönülebiliyor.
+    openIn3D();
     ensureFrame();
     window.addEventListener("resize", onResize);
   }

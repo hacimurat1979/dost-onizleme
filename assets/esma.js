@@ -440,7 +440,10 @@
   // ikisi (1-tilt)/tilt ağırlıklarıyla harmanlanır, böylece 2B<->3B geçişinde
   // dönüş sıçramaz. Tam tur ~100 saniye.
   let spin = 0;
-  const SPIN_RATE = 0.000063;   // rad/ms
+  // Kullanıcı isteğiyle (2026-07-26) biraz hızlandırıldı: ~100 sn/tur yerine
+  // ~62 sn/tur. Hâller/Menziller/Sırlar daha yavaş kalıyor -- oradaki sarmal ve
+  // halka okunurken sahnenin daha sakin durması gerekiyor.
+  const SPIN_RATE = 0.0001;     // rad/ms
 
   function project(n) {
     const x0r = n.bx + n.offx;
@@ -1187,16 +1190,13 @@
     const bar = document.createElement("div");
     bar.id = "esmaX-controls";
     bar.className = "esmaX-controls";
-    bar.innerHTML = `
-      <div class="esmaX-depth" id="esmaX-depth" role="group" aria-label="${tt({ tr: "Derinlik katmanı", en: "Depth layer", pt: "Camada de profundidade" })}">
-        <button class="esmaX-depth-btn" data-lv="0" type="button" title="${tt({ tr: "Merkez", en: "Center", pt: "Centro" })}"><span></span></button>
-        <button class="esmaX-depth-btn" data-lv="1" type="button" title="${tt({ tr: "İsimler", en: "The Names", pt: "Os Nomes" })}"><span></span></button>
-        <button class="esmaX-depth-btn" data-lv="2" type="button" title="${tt({ tr: "Türeyişler", en: "Derivations", pt: "Derivações" })}"><span></span></button>
-      </div>
-      <p class="esmaX-depth-hint" id="esmaX-depth-hint"></p>`;
+    // Dikey derinlik noktaları kaldırıldı (kullanıcı isteği, 2026-07-26):
+    // harita artık açılışta zaten tam açık geldiği için üç noktalı kademe
+    // göstergesi hem gereksizdi hem sağ kenarda gürültü yapıyordu. Kaydırarak
+    // katman değiştirme (wheel) duruyor; ipucu satırı da onu anlatıyor.
+    bar.innerHTML = `<p class="esmaX-depth-hint" id="esmaX-depth-hint"></p>`;
     wrapEl.appendChild(bar);
     revealDots = bar;
-    bar.querySelectorAll(".esmaX-depth-btn").forEach((b) => b.addEventListener("click", () => setRevealLevel(+b.dataset.lv)));
 
     // Keşfet düğmesi (recenter'ın yanına)
     exploreBtn = document.createElement("button");
@@ -1219,7 +1219,7 @@
   ];
   function updateRevealIndicator() {
     if (!revealDots) return;
-    revealDots.querySelectorAll(".esmaX-depth-btn").forEach((b) => b.classList.toggle("is-active", +b.dataset.lv === revealLevel));
+
     const hint = document.getElementById("esmaX-depth-hint");
     if (hint) hint.textContent = tt(DEPTH_HINT[revealLevel]);
   }
@@ -1268,6 +1268,14 @@
     if (target < 0.5) { yaw = 0; pitch = -0.42; }
     ensureFrame();
   }
+  // Açılışta doğrudan 3B'ye eğ; düğmenin durumunu da eşitle ki bir sonraki
+  // tıklama 2B'ye döndürsün.
+  function openIn3D() {
+    setTilt(1);
+    const btn = document.getElementById("esma-3d-toggle");
+    if (btn) { btn.classList.add("is-on"); btn.setAttribute("aria-pressed", "true"); }
+  }
+
   function wireTiltToggle() {
     const btn = document.getElementById("esma-3d-toggle");
     if (!btn || btn.dataset.wiredX) return;
@@ -1296,7 +1304,7 @@
       { t: { tr: "O'ndan geldik, O'na gidiyoruz", en: "From Him we came, to Him we go", pt: "D'Ele viemos, a Ele vamos" },
         b: { tr: "Bu harita merkezde Allah ismiyle başlar — bütün isimleri kendinde toplayan İsm-i Âzam — ve onun ötesine, her isimlendirmenin ötesindeki Zât'a işaret eder.", en: "This map begins at the center with the Name Allah — the Name that gathers every Name within itself — and points beyond it, to the Essence beyond all naming.", pt: "Este mapa começa no centro com o Nome Allah — o Nome que reúne todos os Nomes em si — e aponta para além dele, para a Essência além de toda nomeação." } },
       { t: { tr: "Katman katman inin", en: "Descend layer by layer", pt: "Desça camada por camada" },
-        b: { tr: "Kaydırarak (ya da yandaki noktalarla) derinliğe inin: önce üç kutup — Celâl, Cemâl, Kemâl — sonra isimler, sonra onlardan türeyenler belirir. Harita sizi hiçbir zaman bir anda boğmaz.", en: "Scroll (or use the dots on the side) to descend: first the three poles — Majesty, Beauty, Perfection — then the Names, then what derives from them. The map never overwhelms you all at once.", pt: "Role (ou use os pontos ao lado) para descer: primeiro os três polos — Majestade, Beleza, Perfeição — depois os Nomes, depois o que deriva deles. O mapa nunca o sobrecarrega de uma vez." } },
+        b: { tr: "Harita tam açık geliyor: üç kutup — Celâl, Cemâl, Kemâl — isimler ve onlardan türeyenler bir arada. Sadeleştirmek isterseniz kaydırarak katmanları geri toplayabilirsiniz.", en: "The map opens fully: the three poles — Majesty, Beauty, Perfection — the Names, and what derives from them, all at once. To simplify, scroll to gather the layers back in.", pt: "O mapa abre-se por inteiro: os três polos — Majestade, Beleza, Perfeição — os Nomes e o que deles deriva, tudo de uma vez. Para simplificar, role para recolher as camadas." } },
       { t: { tr: "Bir ismi seçin", en: "Select a Name", pt: "Selecione um Nome" },
         b: { tr: "Bir isme dokunun: Allah'tan ona doğru akan altın bir tecellî izleyin, ilişkili isimler yaklaşsın, ve anlamını, benzetmesini, kaynaklarını yandaki panelde okuyun. Dilerseniz 'Keşfet' sizi isimler arasında gezdirsin.", en: "Touch a Name: watch a golden self-disclosure flow to it from Allah, see related Names draw near, and read its meaning, analogy and sources in the side panel. Or let 'Explore' wander among the Names for you.", pt: "Toque num Nome: veja uma autorrevelação dourada fluir até ele desde Allah, os Nomes relacionados se aproximarem, e leia seu significado, analogia e fontes no painel lateral. Ou deixe 'Explorar' vagar entre os Nomes por você." } },
     ];
@@ -1360,10 +1368,14 @@
     wirePanelAwareControls();
     rebuildParticles();
     built = true;
-    setRevealLevel(0, { force: true });
+    // Açılışta TAM AÇIK ve 3B (kullanıcı kararı, 2026-07-26): haritanın asıl
+    // söylediği şey isimler arası derinlik; kademeli açılım onu ilk bakışta
+    // gizliyordu. Kaydırarak geri kademelendirmek hâlâ mümkün.
+    setRevealLevel(MAX_LEVEL, { force: true });
     fitAll();
     render();
     ensureFrame();
+    openIn3D();
     maybeShowOnboarding();
 
     // İlk açılış: merkez bir an sonra (Zât+Allah) yerleşsin, sonra kaydırma

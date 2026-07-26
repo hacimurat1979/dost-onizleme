@@ -271,6 +271,14 @@
     setTimeout(() => { if (!wrapEl.hidden) fitView(true); }, reduceMotion ? 30 : TILT_DUR + 60);
   }
 
+  // Açılışta doğrudan sarmala eğ (kullanıcı kararı, 2026-07-26): bu haritanın
+  // asıl söylediği şey mertebelerin İNİŞİ; düz halka onu göstermiyor.
+  function openIn3D() {
+    setTilt(1);
+    const btn = document.getElementById("menziller-3d-toggle");
+    if (btn) { btn.classList.add("is-on"); btn.setAttribute("aria-pressed", "true"); }
+  }
+
   function wireTiltToggle() {
     const btn = document.getElementById("menziller-3d-toggle");
     if (!btn || btn.dataset.wiredMenziller3d) return;
@@ -477,7 +485,7 @@
     activate() {
       fetchData().then((d) => {
         if (!d) return;
-        if (!nodes.length) { build(); showIntro(); fitView(false); }
+        if (!nodes.length) { build(); showIntro(); fitView(false); openIn3D(); }
         else ensureFrame();
       });
     },

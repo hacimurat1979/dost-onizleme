@@ -52,9 +52,16 @@
     }
   });
 
-  // Touch devices have no Escape key -- give tablet/mobile users the same
-  // "go back a level" gesture by making the header title tappable, mirroring
-  // the conventional click-the-logo-to-go-back pattern.
+  // Touch devices have no Escape key. The tappable title below is the quiet
+  // fallback, but it is invisible -- nothing tells you it can be tapped. The
+  // header's back circle is the discoverable version of the same move.
+  const headerBack = document.getElementById("header-back");
+  if (headerBack) {
+    headerBack.addEventListener("click", () => {
+      window.location.href = "compare.html";
+    });
+  }
+
   const headerTitle = document.querySelector(".app-header__title");
   if (headerTitle) {
     headerTitle.classList.add("app-header__title--clickable");
