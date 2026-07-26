@@ -278,8 +278,13 @@
   }
   // Açılışta doğrudan sarmala eğ: düğmenin durumunu da eşitler ki kullanıcı
   // bir sonraki tıklamada 2B'ye dönsün.
+  // Animasyonsuz: 3B varsayılan olduğu için eğim morfunu kimse bilerek
+  // izlemiyor, ama açılıştaki diğer işlerle (reveal, ilk sığdırma) yarışıp
+  // ilk saniyeyi takıyordu. Doğrudan orada başlıyoruz.
   function openIn3D() {
-    setTilt(1);
+    tilt = 1; tiltFrom = 1; tiltTarget = 1;
+    ensureFrame();
+    setTimeout(() => { if (!wrapEl.hidden) fitView(false); }, 60);
     const btn = document.getElementById("hal-3d-toggle");
     if (btn) { btn.classList.add("is-on"); btn.setAttribute("aria-pressed", "true"); }
   }

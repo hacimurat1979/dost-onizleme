@@ -382,6 +382,19 @@ html {
   height: auto;
   margin: 18px auto 4px;
 }
+.hakkinda-diagram--zoomable {
+  cursor: zoom-in;
+  border-radius: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hakkinda-diagram--zoomable:hover,
+.hakkinda-diagram--zoomable:focus-visible {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-interactive) 40%, transparent);
+}
+.cizim-lightbox__svg-wrap .hakkinda-diagram {
+  max-width: 720px;
+}
 .hakkinda-diagram__field {
   fill: var(--series-hal-tevhit, var(--accent-interactive));
   fill-opacity: 0.06;
@@ -3875,12 +3888,41 @@ html:has(.detail-panel:not([hidden])) {
    sayfa birebir eskisi gibi. Açıkken her kart, --heat (0..1) kadar ışır;
    renk skalası değil, hâle yarıçapı kullanılıyor: bir ısı haritasının
    ölçüsünü sitenin kendi görsel diliyle (ışıma) söylemek için. */
+/* Işıma kart kutusunun kendi gölgesiyle veriliyordu ve yoğunluk farkı
+   okunmuyordu. Şimdi kartın ARKASINA, kendi çapından taşan gerçek bir
+   hâle (::after) konuyor -- ve nefes alıyor: sitenin geri kalanındaki
+   düğüm nefesiyle (bkz. hal.js'teki breath) aynı fikir, sayfanın diline
+   uygun düşsün diye. Her kartın nefes fazı --heat'ten türetiliyor ki
+   hepsi aynı anda şişip sönmesin. */
 .terimler-list--heat .terim-card--heat {
-  box-shadow:
-    0 0 calc(2px + var(--heat, 0) * 26px)
-      color-mix(in srgb, var(--series-theme) calc(18% + var(--heat, 0) * 62%), transparent),
-    0 0 0 1px color-mix(in srgb, var(--series-theme) calc(10% + var(--heat, 0) * 45%), transparent);
-  border-color: color-mix(in srgb, var(--series-theme) calc(20% + var(--heat, 0) * 55%), var(--border));
+  position: relative;
+  isolation: isolate;
+  border-color: color-mix(in srgb, var(--series-theme) calc(24% + var(--heat, 0) * 60%), var(--border));
+  background: color-mix(in srgb, var(--series-theme) calc(var(--heat, 0) * 13%), var(--page-plane));
+}
+.terimler-list--heat .terim-card--heat::after {
+  content: "";
+  position: absolute;
+  inset: calc(-6px - var(--heat, 0) * 16px);
+  border-radius: inherit;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--series-theme) calc(22% + var(--heat, 0) * 58%), transparent),
+    transparent 72%
+  );
+  filter: blur(calc(3px + var(--heat, 0) * 9px));
+  opacity: calc(0.28 + var(--heat, 0) * 0.72);
+  animation: terim-heat-breath calc(4200ms + var(--heat, 0) * 2600ms) ease-in-out infinite;
+  animation-delay: calc(var(--heat, 0) * -3200ms);
+}
+@keyframes terim-heat-breath {
+  0%, 100% { transform: scale(0.94); }
+  50%      { transform: scale(1.07); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .terimler-list--heat .terim-card--heat::after { animation: none; }
 }
 .terimler-heat {
   grid-column: 1 / -1;
@@ -4530,7 +4572,6 @@ body.cizim-lightbox-open {
    radyal ağaç düzenini yeniden kullanıp derinliği gerçek bir Z eksenine
    taşıyan, elle yaw/pitch + perspektif projeksiyonlu bir SVG sahnesi
    (bkz. assets/esma-3d.js). */
-.esma-3d-toggle,
 /* Ontolojideki daire: sekiz kavramın üzerinde durduğu, Kalp'in tam
    merkezinde olduğu elips. Düzen zaten böyleydi ama daire çizilmiyordu --
    "dairenin noktası / dairenin çevresi" okumasından sonra görünür kılındı.
@@ -4543,6 +4584,7 @@ body.cizim-lightbox-open {
   pointer-events: none;
 }
 
+.esma-3d-toggle,
 .graph-3d-toggle {
   position: absolute;
   top: 12px;

@@ -250,6 +250,34 @@
     "kalp":          { x: 0.500, y: 0.520 },  // MERKEZ
   };
 
+  // /hakkinda'daki statik şemalar (şu an "Üç Sefer") de sitenin geri
+  // kalanındaki çizimler gibi tıklanıp büyütülebilsin: aynı paylaşılan
+  // lightbox, aynı ESC/odak-tuzağı davranışı.
+  function wireHakkindaDiagrams() {
+    if (!hakkindaWrap || !window.DostLightbox) return;
+    hakkindaWrap.querySelectorAll(".hakkinda-diagram").forEach((svg) => {
+      if (svg.dataset.wiredZoom) return;
+      svg.dataset.wiredZoom = "1";
+      svg.classList.add("hakkinda-diagram--zoomable");
+      svg.setAttribute("tabindex", "0");
+      svg.setAttribute("role", "button");
+      const openIt = () => {
+        const capEl = svg.parentElement && svg.parentElement.querySelector(".hakkinda-diagram__caption");
+        const head = svg.closest(".hakkinda-content__section");
+        window.DostLightbox.open({
+          closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+          svgHtml: svg.outerHTML,
+          name: head && head.querySelector("h3") ? head.querySelector("h3").textContent : "",
+          caption: capEl ? capEl.textContent : "",
+        });
+      };
+      svg.addEventListener("click", openIt);
+      svg.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openIt(); }
+      });
+    });
+  }
+
   function loadOntologyData() {
     if (window.DostViewStatus) window.DostViewStatus.showLoading("ontology-wrap");
     window.DostGraphUtils.fetchJson("data/ibn-arabi/ontology.json")
@@ -367,6 +395,7 @@
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
+    if (view === "hakkinda") wireHakkindaDiagrams();
     currentDetailNode = null;
     currentDetailEdge = null;
     detailPanel.hidden = true;
@@ -1089,6 +1118,23 @@
 
     paintPositions();
     svg.call(zoom.transform, computeFitTransform());
+
+    // Açılışta doğrudan mertebe eksenine eğ (2026-07-26, kullanıcı isteği).
+    // Not: bu görünümün 2B hâli daire-ve-merkez okumasını taşıyor ve
+    // varsayılan 3B onu ilk bakışta gizliyor -- ama iniş de en az onun
+    // kadar veride yazılı, ve tek tıkla 2B'ye dönülüyor.
+    // Animasyonsuz (bkz. hal.js/esma.js/menziller.js'teki aynı not): eğim
+    // morfu açılıştaki kuvvet yerleşmesiyle yarışıp ilk saniyeyi takıyor.
+    if (tiltBtn) {
+      tilt = 1; tiltFrom = 1; tiltTarget = 1;
+      paintPositions();
+      tiltBtn.classList.add("is-on");
+      tiltBtn.setAttribute("aria-pressed", "true");
+      setTimeout(() => {
+        if (!ontologyWrap.hidden) svg.call(zoom.transform, computeFitTransform());
+      }, 80);
+      ensureSpin();
+    }
 
     window.__ontologyApp = { nodes, links, nodeById, is3d: () => tiltTarget > 0.5 };
   }

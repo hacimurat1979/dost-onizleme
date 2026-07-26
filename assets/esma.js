@@ -443,7 +443,7 @@
   // Kullanıcı isteğiyle (2026-07-26) biraz hızlandırıldı: ~100 sn/tur yerine
   // ~62 sn/tur. Hâller/Menziller/Sırlar daha yavaş kalıyor -- oradaki sarmal ve
   // halka okunurken sahnenin daha sakin durması gerekiyor.
-  const SPIN_RATE = 0.0001;     // rad/ms
+  const SPIN_RATE = 0.00017;    // rad/ms -- bir tam tur ~37 sn
 
   function project(n) {
     const x0r = n.bx + n.offx;
@@ -561,8 +561,10 @@
   function frame(ts) {
     rafId = null;
     // Görünüm ekranda değilse döngüyü tamamen durdur (bkz. GU.isViewActive).
-    if (!GU.isViewActive(wrapEl)) return;
-    const dt = Math.min(64, ts - lastTs); lastTs = ts;
+    // lastTs SIFIRLANMALI: aksi hâlde başka bir bölümden geri dönüldüğünde
+    // ts - lastTs devasa olup 64'e kırpılıyor ve sahne tek karede zıplıyor.
+    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
+    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
     let active = false;
 
     // tilt animasyonu (zamanlı, 800-1200ms sinematik)
@@ -1270,8 +1272,17 @@
   }
   // Açılışta doğrudan 3B'ye eğ; düğmenin durumunu da eşitle ki bir sonraki
   // tıklama 2B'ye döndürsün.
+  //
+  // ANİDEN, animasyonsuz. Açılışta zaten üç ağır iş aynı anda başlıyordu:
+  // 104 düğümün görünürlük animasyonu, parçacıklar ve ilk sığdırma. Buna
+  // bir de 1050 ms'lik eğim morfu eklenince ilk saniye takılıyordu --
+  // kullanıcının gördüğü titreme buydu. 3B zaten VARSAYILAN olduğu için o
+  // morfu kimse bilerek izlemiyor; doğrudan orada başlamak hem daha
+  // pürüzsüz hem de daha dürüst.
   function openIn3D() {
-    setTilt(1);
+    tilt = 1; tiltFrom = 1; tiltTarget = 1;
+    idleRotate = true;
+    ensureFrame();
     const btn = document.getElementById("esma-3d-toggle");
     if (btn) { btn.classList.add("is-on"); btn.setAttribute("aria-pressed", "true"); }
   }

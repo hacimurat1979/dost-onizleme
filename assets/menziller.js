@@ -273,8 +273,12 @@
 
   // Açılışta doğrudan sarmala eğ (kullanıcı kararı, 2026-07-26): bu haritanın
   // asıl söylediği şey mertebelerin İNİŞİ; düz halka onu göstermiyor.
+  // Animasyonsuz (bkz. hal.js/esma.js'teki aynı not): 3B varsayılan olduğu
+  // için eğim morfu açılıştaki diğer işlerle yarışıp takılmaya yol açıyordu.
   function openIn3D() {
-    setTilt(1);
+    tilt = 1; tiltFrom = 1; tiltTarget = 1;
+    ensureFrame();
+    setTimeout(() => { if (!wrapEl.hidden) fitView(false); }, 60);
     const btn = document.getElementById("menziller-3d-toggle");
     if (btn) { btn.classList.add("is-on"); btn.setAttribute("aria-pressed", "true"); }
   }
