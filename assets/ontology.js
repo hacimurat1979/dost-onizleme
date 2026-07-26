@@ -142,6 +142,7 @@
     else if (currentMainView === "cizimler") window.__cizimlerApp && window.__cizimlerApp.onLangChange();
     else if (currentMainView === "sirlar") window.__sirlarGraphApp && window.__sirlarGraphApp.onLangChange();
     else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
+    else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
     updateHeaderHeightVar();
   });
@@ -296,6 +297,7 @@
   const cizimlerBtn = document.getElementById("cizimler-btn");
   const sirlarBtn = document.getElementById("sirlar-btn");
   const sorularBtn = document.getElementById("sorular-btn");
+  const menzillerBtn = document.getElementById("menziller-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
   const hakkindaBtn = document.getElementById("hakkinda-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
@@ -305,6 +307,7 @@
   const cizimlerWrap = document.getElementById("cizimler-wrap");
   const sirlarWrap = document.getElementById("sirlar-wrap");
   const sorularWrap = document.getElementById("sorular-wrap");
+  const menzillerWrap = document.getElementById("menziller-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
   const hakkindaWrap = document.getElementById("hakkinda-wrap");
 
@@ -329,6 +332,7 @@
     markActiveNavButton(cizimlerBtn, view === "cizimler");
     markActiveNavButton(sirlarBtn, view === "sirlar");
     markActiveNavButton(sorularBtn, view === "sorular");
+    markActiveNavButton(menzillerBtn, view === "menziller");
     markActiveNavButton(futuhatBtn, view === "futuhat");
     markActiveNavButton(hakkindaBtn, view === "hakkinda");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
@@ -338,6 +342,7 @@
     if (cizimlerWrap) cizimlerWrap.hidden = view !== "cizimler";
     if (sirlarWrap) sirlarWrap.hidden = view !== "sirlar";
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
+    if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
     currentDetailNode = null;
@@ -362,6 +367,9 @@
     } else if (view === "sorular") {
       currentDetailView = "sorular";
       window.__sorularApp && window.__sorularApp.activate();
+    } else if (view === "menziller") {
+      currentDetailView = "menziller";
+      window.__menzillerApp && window.__menzillerApp.activate();
     } else if (view === "futuhat") {
       currentDetailView = null;
       window.__futuhatApp && window.__futuhatApp.activate();
@@ -380,6 +388,7 @@
   if (terimlerBtn) terimlerBtn.addEventListener("click", () => { setMainView("terimler"); updateHash("terimler"); });
   if (cizimlerBtn) cizimlerBtn.addEventListener("click", () => { setMainView("cizimler"); updateHash("cizimler"); });
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
+  if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
   if (hakkindaBtn) hakkindaBtn.addEventListener("click", () => { setMainView("hakkinda"); updateHash("hakkinda"); });
 
@@ -450,6 +459,14 @@
         tr: "İbn Arabî'nin işaret edip açıklamadığı yerlerin külliyat boyunca izini süren bir derleme.",
         en: "A compilation tracing, across the corpus, the places Ibn Arabi points to but leaves unexplained.",
         pt: "Uma coletânea que rastreia, por toda a obra, os lugares que Ibn Arabi aponta mas deixa sem explicação.",
+      },
+    },
+    menziller: {
+      title: { tr: "Menziller", en: "Mansions", pt: "Mansões" },
+      desc: {
+        tr: "Fütûhât'ın 198. Bölümü'ndeki yirmi sekiz faslı tek bir halkada toplayan harita: her menzilin harfi, ilahi ismi ve o menzilden zuhur eden mertebe.",
+        en: "A map gathering the twenty-eight sections of Chapter 198 of the Futuhat into one ring: each mansion's letter, divine name, and the level that appears from it.",
+        pt: "Um mapa que reúne as vinte e oito secções do Capítulo 198 das Futuhat num só anel: a letra de cada mansão, o nome divino e o grau que dela aparece.",
       },
     },
     sorular: {
@@ -588,6 +605,13 @@
     showSirlarEntry(id);
   }
 
+  function goToMenziller(id) {
+    setMainView("menziller");
+    currentDetailNode = null;
+    currentDetailEdge = null;
+    window.__menzillerApp && window.__menzillerApp.goToNode(id);
+  }
+
   function goToSorular(id) {
     setMainView("sorular");
     window.__sorularApp && window.__sorularApp.goToNode(id);
@@ -604,7 +628,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|futuhat|hakkinda)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|futuhat|hakkinda)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -622,6 +646,7 @@
     else if (view === "terimler") goToTerimler(id);
     else if (view === "cizimler") goToCizimler();
     else if (view === "sorular") goToSorular(id);
+    else if (view === "menziller") goToMenziller(id);
     else if (view === "futuhat") goToFutuhat(id);
     else if (view === "hakkinda") goToHakkinda();
   }
@@ -654,6 +679,7 @@
       else if (view === "terimler") goToTerimler(id);
       else if (view === "cizimler") goToCizimler();
       else if (view === "sorular") goToSorular(id);
+      else if (view === "menziller") goToMenziller(id);
       else if (view === "futuhat") goToFutuhat(id);
       else if (view === "hakkinda") goToHakkinda();
       updateHash(view, id);

@@ -151,6 +151,7 @@
         <button class="btn-ghost" id="cizimler-btn" type="button" data-tr="Çizimler" data-en="Diagrams" data-pt="Diagramas">Çizimler</button>
         <button class="btn-ghost" id="sirlar-btn" type="button" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
         <button class="btn-ghost" id="sorular-btn" type="button" data-tr="Sorular" data-en="Questions" data-pt="Perguntas">Sorular</button>
+        <button class="btn-ghost" id="menziller-btn" type="button" data-tr="Menziller" data-en="Mansions" data-pt="Mansões">Menziller</button>
         <button class="btn-ghost" id="futuhat-btn" type="button" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
         <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
       </div>
@@ -356,6 +357,22 @@
       <!-- Lejant kaldırıldı: yeni kategori halkasında her küre kendi rengini ve
            tam adını zaten taşıyor; dokuz satırlık lejant hem tekrar ediyor hem
            de halkanın sol altını örtüyordu. -->
+    </section>
+
+    <section class="graph-wrap" id="menziller-wrap" hidden>
+      <svg id="menziller-graph"></svg>
+      <div class="view-status" id="menziller-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="menziller-tooltip" hidden></div>
+      <button class="graph-recenter" id="menziller-recenter" type="button" title="Görünümü ortala / Recenter view / Recentralizar vista" aria-label="Görünümü ortala / Recenter view / Recentralizar vista">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" title="Bir menzile tıklayın; boş alanı sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın / Click a mansion; drag empty space to pan, Ctrl (⌘) + scroll to zoom / Clique numa mansão; arraste o espaço vazio para navegar, Ctrl (⌘) + rolagem para ampliar" aria-label="Bir menzile tıklayın; boş alanı sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın / Click a mansion; drag empty space to pan, Ctrl (⌘) + scroll to zoom / Clique numa mansão; arraste o espaço vazio para navegar, Ctrl (⌘) + rolagem para ampliar">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
     </section>
 
     <section class="futuhat-wrap" id="futuhat-wrap" hidden>
@@ -632,6 +649,7 @@ essa é minha religião e minha fé."></blockquote>
   <script src="assets/cizimler.js"></script>
   <script src="assets/sirlar-graph.js"></script>
   <script src="assets/sorular.js"></script>
+  <script src="assets/menziller.js"></script>
   <script src="assets/futuhat.js"></script>
   <script src="assets/ontology.js"></script>
   <script src="assets/crosslink-preview.js"></script>

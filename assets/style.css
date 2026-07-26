@@ -4687,3 +4687,97 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   .esmaX-depth-btn span { transition: none; }
   .esmaX-onb, .esmaX-onb--out { animation: none; transition: none; }
 }
+
+/* --- Menziller: 28 ay menzilinin halkası ------------------------------- */
+#menziller-graph {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: pan-y;
+  cursor: grab;
+  background: radial-gradient(circle at 50% 50%,
+    color-mix(in srgb, var(--series-theme) 4%, transparent), transparent 62%);
+}
+#menziller-graph:active { cursor: grabbing; }
+.menziller-ring-path {
+  pointer-events: none;
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+.menziller-center { pointer-events: none; }
+.menziller-center__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  fill: var(--text-primary);
+}
+.menziller-center__sub {
+  font-size: 0.72rem;
+  fill: var(--text-muted);
+  letter-spacing: 0.14em;
+}
+.menzil-node { cursor: pointer; }
+.menzil-node__glow { pointer-events: none; }
+.menzil-node__sphere { stroke: var(--surface-1); stroke-width: 1.2; }
+.menzil-node:hover .menzil-node__sphere,
+.menzil-node:focus-visible .menzil-node__sphere {
+  stroke: var(--accent-interactive);
+  stroke-width: 2;
+}
+.menzil-node__harf {
+  font-size: 0.72rem;
+  font-weight: 600;
+  fill: var(--surface-1);
+  pointer-events: none;
+}
+.menzil-node__label {
+  font-size: 0.66rem;
+  fill: var(--text-secondary);
+  paint-order: stroke;
+  stroke: var(--page-plane);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.menzil-node__label--active { fill: var(--text-primary); font-weight: 600; }
+
+.menzil-rows { display: flex; flex-direction: column; gap: 6px; margin: 12px 0 4px; }
+.menzil-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.menzil-row__k { color: var(--text-muted); }
+.menzil-row__v { color: var(--text-primary); font-weight: 500; text-align: right; }
+.menzil-harf-ar { font-size: 1.05rem; margin-inline-start: 4px; }
+.menzil-varyant { color: var(--text-muted); font-size: 0.88rem; margin-top: -4px; }
+.menzil-zuhur__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.menzil-kaynak { font-size: 0.78rem; color: var(--text-muted); margin-top: 14px; }
+.menzil-notlar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 8px 0 0;
+  padding-inline-start: 18px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.menzil-back-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--accent-interactive);
+  font: inherit;
+}
