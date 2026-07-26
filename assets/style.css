@@ -1084,10 +1084,6 @@ html {
   filter: blur(4px);
   animation: node-halo-breathe-dark 6s ease-in-out infinite;
 }
-.sorular-center__core {
-  fill: var(--text-muted);
-  opacity: 0.5;
-}
 @media (prefers-reduced-motion: reduce) {
   .sorular-center .node-halo { animation: none; opacity: 0.2; }
 }
@@ -1098,30 +1094,20 @@ html {
   gap: 8px;
   margin-top: 10px;
 }
-/* --- Sorular: kategori halkası (46 soru düğümü yerine 9 kategori) --- */
-.sorular-ring-path { pointer-events: none; }
-.sorular-spoke { pointer-events: none; }
-.sorular-cat { cursor: pointer; }
-.sorular-cat__glow { pointer-events: none; }
-.sorular-cat__sphere { stroke: var(--surface-1); stroke-width: 1.5; }
-.sorular-cat:hover .sorular-cat__sphere,
-.sorular-cat:focus-visible .sorular-cat__sphere { stroke: var(--accent-interactive); stroke-width: 2.2; }
-.sorular-cat__label {
-  font-size: 0.78rem;
+/* --- Sorular: kategori halkası (sorular seçilen kategorinin dışına açılır) --- */
+.sorular-ring-path {
+  pointer-events: none;
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+/* Kategori düğümleri soru düğümleriyle aynı dili konuşur (küre + parıltı);
+   yalnız etiketi hep açık ve bir tık daha belirgin. */
+.sorular-label--cat {
+  font-size: 0.76rem;
   font-weight: 600;
   fill: var(--text-primary);
-  paint-order: stroke;
-  stroke: var(--page-plane);
-  stroke-width: 3px;
-  stroke-linejoin: round;
-  pointer-events: none;
-}
-.sorular-cat__label--center { font-size: 0.86rem; }
-.sorular-cat__count {
-  font-size: 0.74rem;
-  font-weight: 700;
-  fill: var(--surface-1);
-  pointer-events: none;
 }
 
 .sorular-question-row {
