@@ -404,7 +404,11 @@
   // diline yabancı düşerdi; onun yerine kartlar yerinde kalıyor ve her
   // biri kendi yoğunluğu kadar ışıyor -- renk değil, hâle. Kapalıyken
   // sayfa hiç değişmiyor.
-  let heatOn = false;
+  // Düğme kaldırıldı (2026-07-26): yoğunluk sekme açılışında zaten açık.
+  // Bir seçenek olarak sunulunca çoğu ziyaretçi hiç açmıyordu; oysa bu
+  // haritanın söylediği şey (nereye tekrar tekrar döndüğümüz) sayfanın
+  // kendi içeriğinin bir parçası, isteğe bağlı bir katman değil.
+  const heatOn = true;
   let heatByTerm = null;
 
   function computeHeat(terms) {
@@ -436,30 +440,26 @@
       const n = heatByTerm.norm.get(card.dataset.id);
       if (n == null) return;
       card.style.setProperty("--heat", n.toFixed(3));
-      card.classList.toggle("terim-card--heat", heatOn);
-      if (heatOn) {
-        card.title = tt({
-          tr: "Dönüş yoğunluğu: " + heatByTerm.raw.get(card.dataset.id),
-          en: "Return density: " + heatByTerm.raw.get(card.dataset.id),
-          pt: "Densidade de retorno: " + heatByTerm.raw.get(card.dataset.id),
-        });
-      } else {
-        card.removeAttribute("title");
-      }
+      card.classList.add("terim-card--heat");
+      card.title = tt({
+        tr: "Dönüş yoğunluğu: " + heatByTerm.raw.get(card.dataset.id),
+        en: "Return density: " + heatByTerm.raw.get(card.dataset.id),
+        pt: "Densidade de retorno: " + heatByTerm.raw.get(card.dataset.id),
+      });
     });
-    grid.classList.toggle("terimler-list--heat", heatOn);
+    grid.classList.add("terimler-list--heat");
   }
 
   function heatKeyHtml() {
     return `<div class="terimler-heat">
-      <button class="terimler-heat__toggle" id="terimler-heat-toggle" type="button" aria-pressed="${heatOn}">
+      <p class="terimler-heat__title">
         <span class="terimler-heat__dot" aria-hidden="true"></span>
         <span>${tt({ tr: "Dönüş yoğunluğu", en: "Return density", pt: "Densidade de retorno" })}</span>
-      </button>
+      </p>
       <p class="terimler-heat__note">${tt({
-        tr: "Açıldığında her terim, ona kaç kere geri döndüğümüz kadar ışır — kaydettiğimiz kaynak pasajları, başka terimlerin ona verdiği atıflar ve sitenin öbür bölümlerine kurduğumuz bağlar toplanarak. Bu, Dost'un neye ağırlık verdiğini değil, bizim okumamızın nerede yoğunlaştığını gösteriyor; yani bir ölçü değil, bir öz-portre.",
-        en: "When switched on, each term glows in proportion to how often we have had to come back to it — the source passages we recorded, the references other terms make to it, and the links we built to other parts of the site, added together. This shows not what Dost emphasised but where our own reading has thickened; a self-portrait rather than a measurement.",
-        pt: "Quando ativado, cada termo brilha na proporção de quantas vezes tivemos de voltar a ele — as passagens-fonte que registramos, as referências que outros termos lhe fazem e os vínculos que construímos com outras partes do site, somados. Isto mostra não o que Dost enfatizou, mas onde nossa própria leitura se adensou; um autorretrato, não uma medição.",
+        tr: "Her terim, ona kaç kere geri döndüğümüz kadar ışıyor — kaydettiğimiz kaynak pasajları, başka terimlerin ona verdiği atıflar ve sitenin öbür bölümlerine kurduğumuz bağlar toplanarak. Bu, Dost'un neye ağırlık verdiğini değil, bizim okumamızın nerede yoğunlaştığını gösteriyor; yani bir ölçü değil, bir öz-portre.",
+        en: "Each term glows in proportion to how often we have had to come back to it — the source passages we recorded, the references other terms make to it, and the links we built to other parts of the site, added together. This shows not what Dost emphasised but where our own reading has thickened; a self-portrait rather than a measurement.",
+        pt: "Cada termo brilha na proporção de quantas vezes tivemos de voltar a ele — as passagens-fonte que registamos, as referências que outros termos lhe fazem e os vínculos que construímos com outras partes do site, somados. Isto mostra não o que Dost enfatizou, mas onde a nossa própria leitura se adensou; um autorretrato, não uma medição.",
       })}</p>
     </div>`;
   }
@@ -515,16 +515,6 @@
     grid.querySelectorAll(".terim-card").forEach((card) => {
       card.addEventListener("click", () => showTermDetail(card.dataset.id));
     });
-    const heatBtn = document.getElementById("terimler-heat-toggle");
-    if (heatBtn) {
-      heatBtn.addEventListener("click", () => {
-        heatOn = !heatOn;
-        heatBtn.setAttribute("aria-pressed", String(heatOn));
-        heatBtn.classList.toggle("is-on", heatOn);
-        applyHeat();
-      });
-      heatBtn.classList.toggle("is-on", heatOn);
-    }
     applyHeat();
   }
 

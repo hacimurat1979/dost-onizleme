@@ -194,5 +194,122 @@ window.DostGraphUtils = (function () {
     });
   }
 
-  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, fetchJson, isViewActive, onViewWake };
+  // -------------------------------------------------------------------------
+  // Paylaşılan 2B↔3B eğim motoru (bkz. research/GRAFIK-FELSEFESI.md)
+  //
+  // Hâller, Menziller, Esmâ ve Ontoloji'de bu projeksiyon dört kez elle
+  // yazılmıştı. Sırlar ve Sorular'a da gelince beşinci ve altıncı kopyayı
+  // yazmak yerine motoru buraya taşıdık. Felsefe belgesindeki kural
+  // ("yeni bir kütüphane ekleme, bu motoru kullan") aynen geçerli --
+  // Three.js/WebGL YOK, elle yaw/pitch + perspektif bölme.
+  //
+  // Sözleşme: tilt=0'da project() gelen (x,y)'yi AYNEN geri verir; yani
+  // 2B görünüm matematiksel olarak hiç bozulmaz. tilt=1'de düzlem yatar,
+  // `vert` (katman yüksekliği) dikeyde görünür olur.
+  function createTilt(opts) {
+    const o = opts || {};
+    const FOCAL = o.focal || 2400;
+    const DUR = o.duration || 1050;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let tilt = 0, target = 0, from = 0, animStart = 0;
+    let yaw = 0, pitch = o.pitch == null ? 0.26 : o.pitch;
+    let dragging = false;
+
+    function set(t, instant) {
+      from = tilt; target = t; animStart = performance.now();
+      if (t < 0.5) yaw = 0;
+      // Varsayılan olarak 3B açılan görünümlerde morfu izleyen olmuyor ama
+      // açılıştaki öbür işlerle yarışıp takılmaya yol açıyor -- o yüzden
+      // "instant" seçeneği var (bkz. hal/esma/menziller/ontoloji openIn3D).
+      if (instant || reduce) { tilt = t; from = t; }
+    }
+    // Her karede çağrılır; eğim animasyonu ilerler, kendiliğinden dönüş
+    // uygulanır. Sahne hâlâ hareketliyse true döner.
+    function step(ts, dt, spinning) {
+      let active = false;
+      if (tilt !== target) {
+        if (reduce) tilt = target;
+        else {
+          const p = Math.min(1, (ts - animStart) / DUR);
+          const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+          tilt = from + (target - from) * e;
+          if (p >= 1) tilt = target; else active = true;
+        }
+      }
+      if (tilt > 0.5 && spinning !== false && !dragging && !reduce) {
+        yaw += dt * (o.spinRate == null ? 0.00006 : o.spinRate);
+        active = true;
+      }
+      return active;
+    }
+    // x,y: düz (2B) konum. vert: bu düğümün katman yüksekliği (0 = düzlem).
+    function project(x, y, vert) {
+      if (tilt < 0.001) return { x: x, y: y, depth: 1, z: 0 };
+      const py = y * (1 - tilt) + (vert || 0) * tilt;
+      const pz = y * tilt;
+      const yy = yaw * tilt, pp = pitch * tilt;
+      const cyw = Math.cos(yy), syw = Math.sin(yy);
+      const x1 = x * cyw + pz * syw;
+      const z1 = -x * syw + pz * cyw;
+      const cpt = Math.cos(pp), spt = Math.sin(pp);
+      const y2 = py * cpt - z1 * spt;
+      const z2 = py * spt + z1 * cpt;
+      const zc = Math.max(z2, -FOCAL * 0.85);
+      const depth = FOCAL / (FOCAL + zc);
+      return { x: x1 * depth, y: y2 * depth, depth: depth, z: z2 };
+    }
+    // 3B'de boş alanı sürükleyerek döndürme.
+    function wireDrag(el, onChange, skipSel) {
+      let lx = 0, ly = 0;
+      el.addEventListener("pointerdown", (e) => {
+        if (target < 0.5) return;
+        if (skipSel && e.target.closest && e.target.closest(skipSel)) return;
+        dragging = true; lx = e.clientX; ly = e.clientY;
+        try { el.setPointerCapture(e.pointerId); } catch (_) {}
+      });
+      el.addEventListener("pointermove", (e) => {
+        if (!dragging) return;
+        yaw += (e.clientX - lx) * 0.006;
+        pitch = Math.max(0.02, Math.min(1.1, pitch + (e.clientY - ly) * 0.004));
+        lx = e.clientX; ly = e.clientY;
+        if (onChange) onChange();
+      });
+      const stop = (e) => {
+        if (!dragging) return;
+        dragging = false;
+        try { el.releasePointerCapture(e.pointerId); } catch (_) {}
+      };
+      el.addEventListener("pointerup", stop);
+      el.addEventListener("pointercancel", stop);
+    }
+    function wireToggle(btnId, onChange) {
+      const btn = document.getElementById(btnId);
+      if (!btn || btn.dataset.wiredTilt) return btn;
+      btn.dataset.wiredTilt = "1";
+      btn.setAttribute("aria-pressed", String(target > 0.5));
+      btn.classList.toggle("is-on", target > 0.5);
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const to = target > 0.5 ? 0 : 1;
+        set(to);
+        btn.classList.toggle("is-on", to > 0.5);
+        btn.setAttribute("aria-pressed", to > 0.5 ? "true" : "false");
+        if (onChange) onChange(to);
+      });
+      return btn;
+    }
+    function markOn(btnId) {
+      const btn = document.getElementById(btnId);
+      if (btn) { btn.classList.add("is-on"); btn.setAttribute("aria-pressed", "true"); }
+    }
+    return {
+      set: set, step: step, project: project, wireDrag: wireDrag,
+      wireToggle: wireToggle, markOn: markOn,
+      get value() { return tilt; },
+      get on() { return target > 0.5; },
+      get dragging() { return dragging; },
+    };
+  }
+
+  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, fetchJson, isViewActive, onViewWake, createTilt };
 })();

@@ -436,14 +436,40 @@
 
   // Organik bezier bağlantı (#3): düğüm KENARINDAN çıkıp kenara giren,
   // hafifçe kavisli bir eğri.
+  // ---------------------------------------------------------------------------
+  // Derinlik (3B) — bkz. research/GRAFIK-FELSEFESI.md
+  //
+  // Sorular arasında bir mertebe sırası yok ve uydurmuyoruz. Ama verinin
+  // kendi üç katmanı var ve bu görünümün kademeli açılımı zaten onu
+  // izliyor: merkezdeki en temel soru, çevresindeki kategori halkası, ve
+  // bir kategori açılınca dışarı yelpazelenen sorular. Eğim açılınca bu
+  // üç katman derinliğe yayılıyor -- en temel soru öne, tek tek sorular
+  // arkaya. Derinlik bir rütbe değil, "hangi soru hangisinin içinden
+  // çıkıyor" ilişkisinin görünür hâli.
+  const TIER_DEPTH_Q = { center: 0, cat: 1, q: 2 };
+  let tilt3d = null, dropH3d = 0;
+  function tierOf(d) { return d.isCenterCat ? "center" : d.isCat ? "cat" : "q"; }
+  function tierVert(d) {
+    return -dropH3d / 2 + (dropH3d / 2) * TIER_DEPTH_Q[tierOf(d)];
+  }
+  function positionNodes() {
+    if (!tilt3d) return;
+    nodes.forEach((d) => {
+      const p = tilt3d.project(d.x - cx, d.y - cy, tierVert(d));
+      d.px = p.x + cx; d.py = p.y + cy; d.__depth = p.depth; d.__z = p.z;
+    });
+  }
+  function nx_(d) { return d.px == null ? d.x : d.px; }
+  function ny_(d) { return d.py == null ? d.y : d.py; }
+
   function linkPath(l) {
     const s = l.source, t = l.target;
-    const dx = t.x - s.x, dy = t.y - s.y;
+    const dx = nx_(t) - nx_(s), dy = ny_(t) - ny_(s);
     const len = Math.hypot(dx, dy) || 1;
     const ux = dx / len, uy = dy / len;
     const sr = radiusFor(s) + 2, tr = radiusFor(t) + 2;
-    const sx = s.x + ux * sr, sy = s.y + uy * sr;
-    const ex = t.x - ux * tr, ey = t.y - uy * tr;
+    const sx = nx_(s) + ux * sr, sy = ny_(s) + uy * sr;
+    const ex = nx_(t) - ux * tr, ey = ny_(t) - uy * tr;
     const mx = (sx + ex) / 2, my = (sy + ey) / 2;
     const nx = -uy, ny = ux;
     const bow = Math.min(30, len * 0.14);
@@ -451,11 +477,11 @@
   }
   function pointOnLink(l, u) {
     const s = l.source, t = l.target;
-    const dx = t.x - s.x, dy = t.y - s.y;
+    const dx = nx_(t) - nx_(s), dy = ny_(t) - ny_(s);
     const len = Math.hypot(dx, dy) || 1;
     const ux = dx / len, uy = dy / len;
     const sr = radiusFor(s) + 2, tr = radiusFor(t) + 2;
-    const sx = s.x + ux * sr, sy = s.y + uy * sr, ex = t.x - ux * tr, ey = t.y - uy * tr;
+    const sx = nx_(s) + ux * sr, sy = ny_(s) + uy * sr, ex = nx_(t) - ux * tr, ey = ny_(t) - uy * tr;
     const mx = (sx + ex) / 2, my = (sy + ey) / 2;
     const nx = -uy, ny = ux, bow = Math.min(30, len * 0.14);
     const cxp = mx + nx * bow, cyp = my + ny * bow, mu = 1 - u;
@@ -470,8 +496,9 @@
     // döngüyü tamamen durdur. Aksi hâlde bu tam-render döngüsü sonsuza kadar
     // 60fps sürüyor ve sayfanın geri kalanını -- metin kutusuna yazmayı bile --
     // yavaşlatıyordu (bkz. GU.isViewActive).
-    if (!GU.isViewActive(wrapEl)) return;
-    const dt = Math.min(64, ts - lastTs); lastTs = ts;
+    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
+    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
+    if (tilt3d) tilt3d.step(ts, dt, !expandedCatId);
     if (!reduceMotion) {
       bgParticles.forEach((p) => { p.a += p.sp * dt; });
       edgeParticles.forEach((p) => { p.t += p.sp * (dt / 1000); if (p.t > 1) p.t -= 1; });
@@ -497,6 +524,7 @@
 
   function render(ts) {
     if (!nodeLayer) return;
+    positionNodes();
     const act = activeSet();
 
     // --- atmosfer parçacıkları (#10) ---
@@ -565,6 +593,8 @@
       let scale = breath;
       if (isHover) scale *= 1.08;               // hover 1.08x (#2/#15)
       if (d.isCat && expandedCatId === d.category.id) scale *= 1.1;
+      // 3B perspektif ölçeği: uzaktaki düğüm küçülür.
+      if (tilt3d && tilt3d.value > 0.02) scale *= Math.max(0.55, 1 + ((d.__depth == null ? 1 : d.__depth) - 1) * tilt3d.value);
       const r = radiusFor(d) * scale;
       const dx = reduceMotion ? 0 : 1.2 * Math.sin(ts / 3300 + d.phase);
       const dy = reduceMotion ? 0 : 1.2 * Math.cos(ts / 3800 + d.phase);
@@ -573,8 +603,11 @@
       // dikkat açılan kolda toplanır.
       if (d.isCat && expandedCatId && expandedCatId !== d.category.id) op *= 0.42;
       if (act) { if (!act.set.has(d.id)) op *= 0.28; }  // focus/hover (#19)
+      // Atmosfer: 3B'de uzaktaki düğüm soluklaşır (Hâller'deki aynı ölçü).
+      const t3 = tilt3d ? tilt3d.value : 0;
+      if (t3 > 0.02) op *= Math.max(0.58, Math.min(1, (d.__depth == null ? 1 : d.__depth) * 1.02));
       g.style("opacity", op).style("display", op < 0.02 ? "none" : null)
-        .attr("transform", `translate(${(d.x + dx).toFixed(1)},${(d.y + dy).toFixed(1)})`);
+        .attr("transform", `translate(${(nx_(d) + dx).toFixed(1)},${(ny_(d) + dy).toFixed(1)})`);
       g.classed("sorular-node--active", currentDetailQuestion && d.id === currentDetailQuestion.id);
       const col = catColor(d);
       // flash (aramadan gelince kısa parlama) (#9)
@@ -629,7 +662,7 @@
     // açıldığında sorular henüz kategorinin üstünde duruyor; sadece o ana
     // bakarsak açılan yelpaze çerçevenin dışına taşıyor.
     const bound = (d) => {
-      const xs = [d.x], ys = [d.y];
+      const xs = [nx_(d)], ys = [ny_(d)];
       if (!d.isCat && d.tx != null) { xs.push(d.tx); ys.push(d.ty); }
       xs.forEach((v) => { x0 = Math.min(x0, v); x1 = Math.max(x1, v); });
       ys.forEach((v) => { y0 = Math.min(y0, v); y1 = Math.max(y1, v); });
@@ -843,6 +876,13 @@
     layoutSeed();
     buildSim();
     initAtmosphere();
+    dropH3d = ringR * 1.6;
+    tilt3d = GU.createTilt({ focal: 2600, pitch: 0.3, spinRate: 0.00005 });
+    tilt3d.wireToggle("sorular-3d-toggle", () => {
+      ensureFrame();
+      setTimeout(() => { if (!wrapEl.hidden) fitView(true); }, reduceMotion ? 30 : 1120);
+    });
+    tilt3d.wireDrag(svgNode, () => { render(performance.now()); ensureFrame(); }, ".sorular-node");
     render(performance.now());
     fitView(false);
     ensureFrame();

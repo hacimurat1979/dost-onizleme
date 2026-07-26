@@ -3884,42 +3884,44 @@ html:has(.detail-panel:not([hidden])) {
   animation: fade-up-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
-/* "Dönüş yoğunluğu" hâlesi. Kapalıyken hiçbir kural devreye girmiyor --
-   sayfa birebir eskisi gibi. Açıkken her kart, --heat (0..1) kadar ışır;
-   renk skalası değil, hâle yarıçapı kullanılıyor: bir ısı haritasının
-   ölçüsünü sitenin kendi görsel diliyle (ışıma) söylemek için. */
-/* Işıma kart kutusunun kendi gölgesiyle veriliyordu ve yoğunluk farkı
-   okunmuyordu. Şimdi kartın ARKASINA, kendi çapından taşan gerçek bir
-   hâle (::after) konuyor -- ve nefes alıyor: sitenin geri kalanındaki
-   düğüm nefesiyle (bkz. hal.js'teki breath) aynı fikir, sayfanın diline
-   uygun düşsün diye. Her kartın nefes fazı --heat'ten türetiliyor ki
-   hepsi aynı anda şişip sönmesin. */
+/* "Dönüş yoğunluğu" hâlesi -- sekme açılışında hep açık (düğme kaldırıldı).
+   İlk denemede ışıma kartın kendi box-shadow'undaydı ve hissedilmiyordu;
+   sonra karta bir ::after hâlesi eklendi ama o da yeterince okunmadı.
+   Şimdi İKİ katman var: geniş ve yumuşak bir dış hâle (::after) + kartın
+   kendi kenarında toplanan daha keskin bir iç ışıma (box-shadow). İkisi
+   birlikte nefes alıyor -- sitenin geri kalanındaki düğüm nefesiyle aynı
+   fikir. Nefes fazı --heat'ten türetiliyor ki hepsi aynı anda şişmesin. */
 .terimler-list--heat .terim-card--heat {
   position: relative;
   isolation: isolate;
-  border-color: color-mix(in srgb, var(--series-theme) calc(24% + var(--heat, 0) * 60%), var(--border));
-  background: color-mix(in srgb, var(--series-theme) calc(var(--heat, 0) * 13%), var(--page-plane));
+  border-color: color-mix(in srgb, var(--series-theme) calc(14% + var(--heat, 0) * 74%), var(--border));
+  background: color-mix(in srgb, var(--series-theme) calc(var(--heat, 0) * 17%), var(--page-plane));
+  box-shadow:
+    0 0 calc(3px + var(--heat, 0) * 18px)
+      color-mix(in srgb, var(--series-theme) calc(24% + var(--heat, 0) * 56%), transparent),
+    inset 0 0 calc(2px + var(--heat, 0) * 16px)
+      color-mix(in srgb, var(--series-theme) calc(6% + var(--heat, 0) * 30%), transparent);
 }
 .terimler-list--heat .terim-card--heat::after {
   content: "";
   position: absolute;
-  inset: calc(-6px - var(--heat, 0) * 16px);
+  inset: calc(-8px - var(--heat, 0) * 26px);
   border-radius: inherit;
   z-index: -1;
   pointer-events: none;
   background: radial-gradient(
     closest-side,
-    color-mix(in srgb, var(--series-theme) calc(22% + var(--heat, 0) * 58%), transparent),
-    transparent 72%
+    color-mix(in srgb, var(--series-theme) calc(34% + var(--heat, 0) * 56%), transparent),
+    transparent 70%
   );
-  filter: blur(calc(3px + var(--heat, 0) * 9px));
-  opacity: calc(0.28 + var(--heat, 0) * 0.72);
+  filter: blur(calc(4px + var(--heat, 0) * 14px));
+  opacity: calc(0.26 + var(--heat, 0) * 0.74);
   animation: terim-heat-breath calc(4200ms + var(--heat, 0) * 2600ms) ease-in-out infinite;
   animation-delay: calc(var(--heat, 0) * -3200ms);
 }
 @keyframes terim-heat-breath {
-  0%, 100% { transform: scale(0.94); }
-  50%      { transform: scale(1.07); }
+  0%, 100% { transform: scale(0.92); opacity: calc(0.32 + var(--heat, 0) * 0.5); }
+  50%      { transform: scale(1.09); opacity: calc(0.48 + var(--heat, 0) * 0.52); }
 }
 @media (prefers-reduced-motion: reduce) {
   .terimler-list--heat .terim-card--heat::after { animation: none; }
@@ -3929,42 +3931,25 @@ html:has(.detail-panel:not([hidden])) {
   max-width: 720px;
   margin: 0 0 6px;
 }
-.terimler-heat__toggle {
+.terimler-heat__title {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  padding: 7px 15px 7px 11px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface-1);
-  color: var(--text-secondary);
+  margin: 0;
   font-family: var(--font-body);
-  font-size: 0.86rem;
-  cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
 }
-.terimler-heat__toggle:hover,
-.terimler-heat__toggle:focus-visible {
-  color: var(--text-primary);
-  border-color: var(--accent-interactive);
-}
-.terimler-heat__toggle .terimler-heat__dot {
+.terimler-heat__dot {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--series-theme) 30%, transparent);
-  transition: box-shadow 0.25s ease, background 0.25s ease;
-}
-.terimler-heat__toggle.is-on {
-  color: var(--text-primary);
-  border-color: color-mix(in srgb, var(--series-theme) 55%, var(--border));
-}
-.terimler-heat__toggle.is-on .terimler-heat__dot {
   background: var(--series-theme);
-  box-shadow: 0 0 12px color-mix(in srgb, var(--series-theme) 70%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--series-theme) 75%, transparent);
+  animation: terim-heat-breath 5200ms ease-in-out infinite;
 }
 .terimler-heat__note {
-  margin: 9px 0 0;
+  margin: 8px 0 0;
   font-size: 0.8rem;
   line-height: 1.6;
   color: var(--text-muted);
@@ -4589,6 +4574,14 @@ body.cizim-lightbox-open {
   position: absolute;
   top: 12px;
   left: 116px;
+}
+/* Sorular'da 116px'i zaten "bütün sorulara dön" düğmesi (.graph-back)
+   tutuyor; eğim düğmesi onun yanına kayıyor. */
+#sorular-3d-toggle {
+  left: 168px;
+}
+.esma-3d-toggle,
+.graph-3d-toggle {
   width: 44px;
   height: 44px;
   border-radius: 50%;

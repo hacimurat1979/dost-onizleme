@@ -244,27 +244,59 @@
 
   // ---------------------------------------------------------------------------
   // Bezier kenar (#2): ebeveynden çocuğa dışa doğru nazikçe akan eğri.
+  // ---------------------------------------------------------------------------
+  // Perdelenme derinliği (3B) — bkz. research/GRAFIK-FELSEFESI.md
+  //
+  // Bu görünümde Hâller'deki gibi bir MERTEBE sırası yok; sırların
+  // birbirinden yüksek ya da alçak olduğunu söyleyen bir veri elimizde
+  // değil ve öyleymiş gibi bir eksen uydurmak istemedik (CLAUDE.md:
+  // "zorlama yapma"). Ama verinin kendi taşıdığı üç katmanlı bir yapı
+  // var ve o yapı tam da bu bölümün konusuna denk düşüyor: kök (işaret
+  // eden), temalar (işaretin yönü), girdiler (işaret edilen sır). Eğim
+  // açılınca bu üç katman derinliğe yayılıyor: işaret öne, sır arkaya
+  // ve atmosferle sönerek. Yani derinlik burada bir rütbe değil, bir
+  // PERDE ölçüsü -- sır uzaklaştıkça soluklaşıyor.
+  const TIER_DEPTH = { root: 0, theme: 1, entry: 2 };
+  let tilt3d = null, dropH = 0;
+  function tierVert(d) {
+    const t = TIER_DEPTH[d.kind] == null ? 1 : TIER_DEPTH[d.kind];
+    return -dropH / 2 + (dropH / 2) * t;
+  }
+  // Her karede ekran konumlarını tazeler. tilt=0'da px/py, x/y'nin ta
+  // kendisidir -- 2B görünüm birebir korunur.
+  function positionNodes() {
+    if (!tilt3d) return;
+    nodes.forEach((d) => {
+      const p = tilt3d.project(d.x, d.y, tierVert(d));
+      d.px = p.x; d.py = p.y; d.__depth = p.depth; d.__z = p.z;
+    });
+  }
+  function nx_(d) { return d.px == null ? d.x : d.px; }
+  function ny_(d) { return d.py == null ? d.y : d.py; }
+
   function linkPath(l) {
     const s = l.source, t = l.target;
-    const mx = (s.x + t.x) / 2, my = (s.y + t.y) / 2;
+    const sx = nx_(s), sy = ny_(s), tx = nx_(t), ty = ny_(t);
+    const mx = (sx + tx) / 2, my = (sy + ty) / 2;
     // kontrol noktasını, kök→düğüm doğrusuna dik yönde hafifçe kaydır (dallanma hissi)
-    const dx = t.x - s.x, dy = t.y - s.y;
+    const dx = tx - sx, dy = ty - sy;
     const len = Math.hypot(dx, dy) || 1;
     const nx = -dy / len, ny = dx / len;
     const bow = Math.min(46, len * 0.18) * (t._bowSign || 1);
     const cx = mx + nx * bow, cy = my + ny * bow;
-    return `M${s.x.toFixed(1)},${s.y.toFixed(1)} Q${cx.toFixed(1)},${cy.toFixed(1)} ${t.x.toFixed(1)},${t.y.toFixed(1)}`;
+    return `M${sx.toFixed(1)},${sy.toFixed(1)} Q${cx.toFixed(1)},${cy.toFixed(1)} ${tx.toFixed(1)},${ty.toFixed(1)}`;
   }
   function pointOnLink(l, u) {
     const s = l.source, t = l.target;
-    const mx = (s.x + t.x) / 2, my = (s.y + t.y) / 2;
-    const dx = t.x - s.x, dy = t.y - s.y;
+    const sx = nx_(s), sy = ny_(s), tx = nx_(t), ty = ny_(t);
+    const mx = (sx + tx) / 2, my = (sy + ty) / 2;
+    const dx = tx - sx, dy = ty - sy;
     const len = Math.hypot(dx, dy) || 1;
     const nx = -dy / len, ny = dx / len;
     const bow = Math.min(46, len * 0.18) * (t._bowSign || 1);
     const cx = mx + nx * bow, cy = my + ny * bow;
     const mu = 1 - u;
-    return [mu * mu * s.x + 2 * mu * u * cx + u * u * t.x, mu * mu * s.y + 2 * mu * u * cy + u * u * t.y];
+    return [mu * mu * sx + 2 * mu * u * cx + u * u * tx, mu * mu * sy + 2 * mu * u * cy + u * u * ty];
   }
 
   // ---------------------------------------------------------------------------
@@ -277,11 +309,15 @@
     // koşulu (|| true) normal kullanıcıda hep doğru olduğu için, bu kapı
     // olmadan döngü başka bölüme geçildikten sonra da sonsuza kadar
     // sürüyordu (bkz. GU.isViewActive).
-    if (!GU.isViewActive(wrapEl)) return;
+    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
     if (!startTs) startTs = ts;
-    const dt = Math.min(64, ts - lastTs); lastTs = ts;
-    // Sakin dönüş: bir temaya odaklanılmışken ve sürüklerken durur.
-    if (!reduceMotion && !dragging && !focusedTheme) {
+    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
+    // 3B'de düzlemsel dönüş yerini yaw'a bırakıyor: sahne dikey eksen
+    // etrafında dönerken katman sırası (işaret önde, sır arkada) bozulmasın.
+    if (tilt3d) tilt3d.step(ts, dt, !focusedTheme);
+    if (tilt3d && tilt3d.on) {
+      if (spinLayer) spinLayer.attr("transform", null);
+    } else if (!reduceMotion && !dragging && !focusedTheme) {
       spin += dt * SPIN_RATE;
       if (spinLayer) spinLayer.attr("transform", `rotate(${(spin * 180 / Math.PI).toFixed(2)})`);
     }
@@ -327,6 +363,7 @@
 
   function render(ts) {
     if (!nodeLayer) return;
+    positionNodes();
     const act = activeSets();
     const rr = ringRadius();
 
@@ -419,11 +456,16 @@
     if (GU.createDragBehavior) enter.call(GU.createDragBehavior(sim, (d) => d.kind === "root"));
     const merged = enter.merge(nodeSel);
     nodeSel.exit().remove();
+    // Derinlik sırası: uzaktakiler önce çizilsin ki örtüşme doğru olsun.
+    if (tilt3d && tilt3d.value > 0.02) merged.sort((a, b) => (b.__z || 0) - (a.__z || 0));
 
+    const t3 = tilt3d ? tilt3d.value : 0;
     merged.each(function (d) {
       const g = d3.select(this);
       const br = breath(d, ts);
-      let r = baseRadius(d) * br;
+      // 3B perspektif ölçeği: uzaktaki düğüm küçülür.
+      const dsc = 1 + ((d.__depth == null ? 1 : d.__depth) - 1) * t3;
+      let r = baseRadius(d) * br * Math.max(0.55, dsc);
       // hover boyut artışları (#3,#15)
       let scale = 1;
       if (act) {
@@ -444,9 +486,11 @@
         // LOD: uzakta yalnız kök+tema; yaprakları yaklaşınca göster (#8)
         if (d.kind === "entry" && currentK < 0.72) op *= 0.25;
       }
+      // Atmosfer: 3B'de uzaktaki düğüm soluklaşır -- perdelenmenin kendisi.
+      if (t3 > 0.02) op *= Math.max(0.55, Math.min(1, (d.__depth == null ? 1 : d.__depth) * 1.02));
       const col = nodeColor(d);
       g.style("opacity", op).style("display", op < 0.02 ? "none" : null)
-        .attr("transform", `translate(${d.x.toFixed(1)},${d.y.toFixed(1)})`);
+        .attr("transform", `translate(${nx_(d).toFixed(1)},${ny_(d).toFixed(1)})`);
       g.classed("is-anchor", act && d.id === act.anchor);
       // görünmez tıklama alanı: küçük yaprak düğümlerde (r=6) gerçek dokunma hedefi sağlar
       g.select(".sir-hit").attr("r", Math.max(14, r + 8));
@@ -473,7 +517,9 @@
           .attr("y", ly)
           // Sahne döndüğü için etiketi kendi noktası etrafında ters çevirip
           // hem dik hem yerinde tut.
-          .attr("transform", `rotate(${(-spin * 180 / Math.PI).toFixed(2)},0,${ly.toFixed(1)})`)
+          // 3B'de spinLayer hiç döndürülmüyor (yaw devrede), bu yüzden
+          // ters çevirme de yapılmamalı -- yoksa etiketler eğrilir.
+          .attr("transform", tilt3d && tilt3d.on ? null : `rotate(${(-spin * 180 / Math.PI).toFixed(2)},0,${ly.toFixed(1)})`)
           .classed("sir-label--root", d.kind === "root")
           .classed("sir-label--theme", d.kind === "theme")
           .classed("sir-label--strong", act && (d.id === act.anchor))
@@ -557,7 +603,8 @@
     if (!list.length) return;
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 620;
     let minx = 1e9, miny = 1e9, maxx = -1e9, maxy = -1e9;
-    list.forEach((d) => { const r = baseRadius(d) + 40; minx = Math.min(minx, d.x - r); maxx = Math.max(maxx, d.x + r); miny = Math.min(miny, d.y - r); maxy = Math.max(maxy, d.y + r); });
+    // 3B'de sahne düz halkadan daha uzun; sığdırma ekran konumuna bakmalı.
+    list.forEach((d) => { const r = baseRadius(d) + 40; const x = nx_(d), y = ny_(d); minx = Math.min(minx, x - r); maxx = Math.max(maxx, x + r); miny = Math.min(miny, y - r); maxy = Math.max(maxy, y + r); });
     const bw = Math.max(1, maxx - minx), bh = Math.max(1, maxy - miny);
     const k = Math.max(0.35, Math.min(2.4, Math.min(w / bw, h / bh) * 0.9));
     const cx = (minx + maxx) / 2, cy = (miny + maxy) / 2;
@@ -604,6 +651,12 @@
     seedPositions();
     buildSim();
     buildDom();
+    // Perdelenme derinliği. dropH, dış halkanın yarıçapına bağlı: katmanlar
+    // birbirinden ayrışsın ama sahne dikeyde taşmasın.
+    dropH = ringRadius().entry * 1.5;
+    tilt3d = GU.createTilt({ focal: 2400, pitch: 0.3, spinRate: 0.00005 });
+    tilt3d.wireToggle("sirlar-3d-toggle", () => { ensureFrame(); setTimeout(fitAll, reduceMotion ? 30 : 1120); });
+    tilt3d.wireDrag(svgNode, () => { render(performance.now()); ensureFrame(); }, ".sir-node");
     initBgParticles();
     initParticles();
     // sim tick sadece pozisyonu günceller; render'ı rAF yürütür
