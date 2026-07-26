@@ -3871,6 +3871,63 @@ html:has(.detail-panel:not([hidden])) {
   animation: fade-up-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
+/* "Dönüş yoğunluğu" hâlesi. Kapalıyken hiçbir kural devreye girmiyor --
+   sayfa birebir eskisi gibi. Açıkken her kart, --heat (0..1) kadar ışır;
+   renk skalası değil, hâle yarıçapı kullanılıyor: bir ısı haritasının
+   ölçüsünü sitenin kendi görsel diliyle (ışıma) söylemek için. */
+.terimler-list--heat .terim-card--heat {
+  box-shadow:
+    0 0 calc(2px + var(--heat, 0) * 26px)
+      color-mix(in srgb, var(--series-theme) calc(18% + var(--heat, 0) * 62%), transparent),
+    0 0 0 1px color-mix(in srgb, var(--series-theme) calc(10% + var(--heat, 0) * 45%), transparent);
+  border-color: color-mix(in srgb, var(--series-theme) calc(20% + var(--heat, 0) * 55%), var(--border));
+}
+.terimler-heat {
+  grid-column: 1 / -1;
+  max-width: 720px;
+  margin: 0 0 6px;
+}
+.terimler-heat__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px 7px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.terimler-heat__toggle:hover,
+.terimler-heat__toggle:focus-visible {
+  color: var(--text-primary);
+  border-color: var(--accent-interactive);
+}
+.terimler-heat__toggle .terimler-heat__dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--series-theme) 30%, transparent);
+  transition: box-shadow 0.25s ease, background 0.25s ease;
+}
+.terimler-heat__toggle.is-on {
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--series-theme) 55%, var(--border));
+}
+.terimler-heat__toggle.is-on .terimler-heat__dot {
+  background: var(--series-theme);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--series-theme) 70%, transparent);
+}
+.terimler-heat__note {
+  margin: 9px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
 /* Kavramlar aynı ağırlıkta değildir: üç katmanlı görsel hiyerarşi
    (bkz. CLAUDE.md -- temel/orta/açıklayıcı kavramlar farklı boyutta). */
 .terim-card--tier-1 {
@@ -4474,6 +4531,18 @@ body.cizim-lightbox-open {
    taşıyan, elle yaw/pitch + perspektif projeksiyonlu bir SVG sahnesi
    (bkz. assets/esma-3d.js). */
 .esma-3d-toggle,
+/* Ontolojideki daire: sekiz kavramın üzerinde durduğu, Kalp'in tam
+   merkezinde olduğu elips. Düzen zaten böyleydi ama daire çizilmiyordu --
+   "dairenin noktası / dairenin çevresi" okumasından sonra görünür kılındı.
+   Çok soluk: bir zemin işareti, bir kenar değil. */
+.onto-ring {
+  fill: none;
+  stroke: var(--gridline);
+  stroke-width: 1;
+  stroke-dasharray: 2 7;
+  pointer-events: none;
+}
+
 .graph-3d-toggle {
   position: absolute;
   top: 12px;

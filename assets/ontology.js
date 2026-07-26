@@ -71,6 +71,28 @@
         <text class="term-diagram-label--small" x="205" y="30" text-anchor="middle">${tt(d.rightLeaf)}</text>
       </svg>
     `,
+    // Nokta ve çevre. Cilt XIII'te (372. Bölüm) okuduğumuz cümlenin şekli:
+    // "Hak kulunun kalbinde kendisine nazar eder ve dairenin NOKTASI
+    // olduğunu görür... insan-ı kâmil dairenin ÇEVRESİ olduğunu görür."
+    // Yarıçaplar bilerek eşit uzunlukta: çevrenin her yeri merkeze aynı
+    // uzaklıkta, yani hiçbir nokta O'na daha yakın değil.
+    "point-circle": (d) => {
+      const cx = 150, cy = 96, R = 78;
+      const spokes = Array.from({ length: 12 }, (_, i) => {
+        const a = (i / 12) * Math.PI * 2 - Math.PI / 2;
+        return `<line class="term-diagram-tether" x1="${cx}" y1="${cy}" x2="${(cx + Math.cos(a) * R).toFixed(1)}" y2="${(cy + Math.sin(a) * R).toFixed(1)}"/>`;
+      }).join("");
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 300 226" role="img" aria-label="${tt(d.note)}">
+        ${spokes}
+        <circle class="term-diagram-node--venn" cx="${cx}" cy="${cy}" r="${R}"/>
+        <circle class="term-diagram-node--accent" cx="${cx}" cy="${cy}" r="13"/>
+        <text class="term-diagram-label--small" x="${cx}" y="${cy + 4}" text-anchor="middle">${tt(d.center)}</text>
+        <text class="term-diagram-label" x="${cx}" y="200" text-anchor="middle">${tt(d.rim)}</text>
+        <text class="term-diagram-note" x="${cx}" y="220" text-anchor="middle">${tt(d.equidistant)}</text>
+      </svg>
+    `;
+    },
     "cascade-seas": (d) => {
       const xs = [45, 145, 245, 345];
       const classes = ["term-diagram-node--accent", "term-diagram-node", "term-diagram-node", "term-diagram-node--faint"];
@@ -693,6 +715,20 @@
     const width = svg.node().clientWidth;
     const height = svg.node().clientHeight;
 
+    // --- 3B durumu (Hâller/Menziller ile aynı model) ---
+    // pitch 0.26: Menziller'de yerleşen değer. Sarmalın okunur (monoton)
+    // olması için gereken eşik dropH > 2π·tan(pitch)·r ≈ 1.67·r; aşağıda
+    // 2.2·r veriyoruz, rahat payla geçiyor. FOCAL uzun tutuldu: dokuz
+    // düğüm tek bir tura yayıldığı için güçlü perspektif etiketleri
+    // birbirine bindiriyordu.
+    const FOCAL3D = 2600;
+    const TILT_DUR_3D = 1050;
+    const cx3d = width / 2, cy3d = height * 0.52;
+    const ringR3d = Math.max(120, Math.min(width, height) / 2 - 110);
+    const dropH = ringR3d * 2.2;
+    let tilt = 0, tiltTarget = 0, tiltFrom = 0, tiltAnimStart = 0;
+    let yaw = 0, pitch = 0.26, rotating = false;
+
     const defs = svg.append("defs");
     ["descent", "return", "paradox"].forEach((kind) => {
       defs.append("marker")
@@ -719,7 +755,84 @@
       n.ty = t.y * height;
       n.x = n.tx;
       n.y = n.ty;
+      // Kalp dairenin NOKTASI: kuvvet simülasyonunun onu birkaç piksel
+      // kaydırması bile iddiayı yaklaşık hâle getiriyordu. Tam merkeze
+      // sabitliyoruz ki "her yeri merkeze aynı uzaklıkta" doğru olsun.
+      if (n.id === "kalp") { n.fx = n.tx; n.fy = n.ty; }
     });
+
+    // ------------------------------------------------------------------
+    // Mertebe ekseni (3B). Bu görünümün 2B hâli zaten "daire ve merkez"i
+    // söylüyor: sekiz kavram bir elipsin üzerinde, Kalp tam ortada -- Cilt
+    // XIII'te okuduğumuz "Hak kulunun kalbinde kendisine nazar eder ve
+    // dairenin noktası olduğunu görür" cümlesinin şekle dökülmüş hâli.
+    //
+    // Ama veride ikinci bir iddia daha var ve 2B onu göstermiyor: her
+    // düğümün bir `layer`ı (0-6) var, yani Zât'tan Kalp'e bir İNİŞ. 3B
+    // eğim tam olarak bunu açıyor -- katmanlar dikeyde ayrışıyor, halka
+    // her katmanda biraz dönerek alçalıyor, İnsan-ı Kâmil ve Kalp'ten
+    // Zât'a giden dönüş kenarları da dipten tepeye yükselen kirişler
+    // hâline geliyor. Yani 2B ve 3B aynı verinin iki okuması; ikisi de
+    // metinde var, ikisi de kaybolmasın diye eğim bir düğmeye bağlı ve
+    // varsayılan 2B (bu görünümün imzası daire-ve-merkez).
+    //
+    // Motor Hâller/Menziller ile birebir aynı (bkz. research/
+    // GRAFIK-FELSEFESI.md): elle yazılmış yaw/pitch/perspektif, Three.js
+    // yok. tilt=0'da konumlar force düzeninin BİREBİR aynısı kalır.
+    const layers = Array.from(new Set(nodes.map((n) => n.layer))).sort((a, b) => a - b);
+    const maxLayer = layers[layers.length - 1] || 1;
+    const perLayer = new Map();
+    layers.forEach((L) => perLayer.set(L, nodes.filter((n) => n.layer === L)));
+    nodes.forEach((n) => {
+      const peers = perLayer.get(n.layer);
+      n.__li = peers.indexOf(n);
+      n.__ln = peers.length;
+    });
+
+    // Bir katmandaki birden çok düğüm (4. katmanda üç âlem var) o katmanın
+    // açı diliminde yan yana açılır -- üst üste binmesinler diye.
+    const SPREAD = 0.62;
+    function helixPoint(n) {
+      const f = n.layer / maxLayer;                       // 0 (Zât) .. 1 (Kalp)
+      const off = n.__ln > 1 ? (n.__li - (n.__ln - 1) / 2) * SPREAD : 0;
+      const a = -Math.PI / 2 + f * Math.PI * 2 + off;
+      const r = ringR3d * (0.72 + 0.28 * f);
+      const flatY = r * Math.sin(a);
+      return { x: r * Math.cos(a), y: flatY, z: 0, drop: -dropH / 2 + dropH * f };
+    }
+    // Hâller'deki projeksiyonun aynısı: yaw (Y ekseni) → pitch (X ekseni) →
+    // perspektif bölme. Her ikisi de yalnız tilt ile devreye girer.
+    function project3d(p) {
+      const yy = yaw * tilt, pp = pitch * tilt;
+      const cyw = Math.cos(yy), syw = Math.sin(yy);
+      const x1 = p.x * cyw + p.z * syw;
+      const z1 = -p.x * syw + p.z * cyw;
+      const cpt = Math.cos(pp), spt = Math.sin(pp);
+      const y2 = p.y * cpt - z1 * spt;
+      const z2 = p.y * spt + z1 * cpt;
+      const zc = Math.max(z2, -FOCAL3D * 0.85);
+      const depth = FOCAL3D / (FOCAL3D + zc);
+      return { x: x1 * depth, y: y2 * depth, depth: depth, z: z2 };
+    }
+
+    // Her karede ekran konumlarını tazeler. tilt=0 iken px/py force
+    // simülasyonunun verdiği x/y'nin ta kendisidir -- 2B hiç bozulmaz.
+    function positionNodes() {
+      nodes.forEach((n) => {
+        if (tilt < 0.001) {
+          n.px = n.x; n.py = n.y; n.__depth = 1; n.__z = 0;
+          return;
+        }
+        const h = helixPoint(n);
+        // Katman yüksekliği dikeyde, halkanın kendi salınımı z'de: eğildikçe
+        // düzlem yatar ve yükseklik görünür olur (Hâller'deki harman).
+        const p = project3d({ x: h.x, y: h.y * (1 - tilt) + h.drop * tilt, z: h.y * tilt });
+        n.px = n.x * (1 - tilt) + (cx3d + p.x) * tilt;
+        n.py = n.y * (1 - tilt) + (cy3d + p.y) * tilt;
+        n.__depth = 1 + (p.depth - 1) * tilt;
+        n.__z = p.z * tilt;
+      });
+    }
 
     simulation = d3
       .forceSimulation(nodes)
@@ -747,10 +860,14 @@
       let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
       nodes.forEach((n) => {
         const r = radiusFor(n);
-        minX = Math.min(minX, n.tx - r);
-        maxX = Math.max(maxX, n.tx + r);
-        minY = Math.min(minY, n.ty - r);
-        maxY = Math.max(maxY, n.ty + r);
+        // 3B'de sarmal düz halkadan belirgin biçimde uzun; sığdırma o
+        // yüzden hedef (tx/ty) yerine güncel ekran konumuna bakmalı.
+        const bx = tiltTarget > 0.5 && n.px != null ? n.px : n.tx;
+        const by = tiltTarget > 0.5 && n.py != null ? n.py : n.ty;
+        minX = Math.min(minX, bx - r);
+        maxX = Math.max(maxX, bx + r);
+        minY = Math.min(minY, by - r);
+        maxY = Math.max(maxY, by + r);
       });
       const bboxW = Math.max(maxX - minX, 1);
       const bboxH = Math.max(maxY - minY, 1);
@@ -768,6 +885,21 @@
     // Sakin dönüş için ara grup: bütün sahne dairenin merkezi etrafında
     // yavaşça döner; etiketler ayrıca ters çevrilip dik ve yerinde tutulur.
     const spinGroup = zoomLayer.append("g").attr("class", "onto-spin");
+
+    // Dairenin kendisi. TARGET düzeni sekiz kavramı bir elipsin üzerine,
+    // Kalp'i tam merkezine koyuyordu -- ama daire yalnızca ima ediliyordu,
+    // çizilmiyordu. Cilt XIII'ün "dairenin noktası / dairenin çevresi"
+    // okumasından sonra onu görünür kılmamak eksiklik oldu. Yalnız 2B'de
+    // görünür: 3B'de düzlem yattığı için anlamını yitiriyor.
+    const ringLayer = spinGroup.append("g").attr("class", "onto-ring-layer");
+    const ringEl = ringLayer
+      .append("ellipse")
+      .attr("class", "onto-ring")
+      .attr("cx", 0.5 * width)
+      .attr("cy", 0.52 * height)
+      .attr("rx", 0.339 * width)
+      .attr("ry", 0.36 * height);
+
     const linkGroup = spinGroup.append("g").attr("class", "links");
 
     pathSel = linkGroup
@@ -828,10 +960,22 @@
       .attr("text-anchor", "middle")
       .text((d) => labelFor(d));
 
-    simulation.on("tick", () => {
+    function paintPositions() {
+      positionNodes();
       pathSel.attr("d", (d) => edgePath(d));
-      nodeSel.attr("transform", (d) => `translate(${d.x},${d.y})`);
-    });
+      // 3B'de uzaktakiler önce çizilsin ki örtüşme doğru olsun.
+      if (tilt > 0.02) nodeSel.sort((a, b) => (b.__z || 0) - (a.__z || 0));
+      nodeSel
+        .attr("transform", (d) => {
+          const s = 1 + (d.__depth - 1) * tilt;
+          return `translate(${d.px},${d.py}) scale(${Math.max(0.55, s).toFixed(3)})`;
+        })
+        // Atmosfer: uzaktaki düğüm soluklaşır (Hâller'deki aynı ölçü).
+        .style("opacity", (d) => (tilt > 0.02 ? Math.max(0.62, Math.min(1, d.__depth * 1.02)) : 1));
+      ringEl.style("opacity", 1 - tilt);
+    }
+
+    simulation.on("tick", paintPositions);
 
     // ---- Sakin, huzurlu salınım ----
     // Burada bilerek TAM DÖNÜŞ yapmıyoruz. Hâller ve Sırlar'da dönüş
@@ -854,6 +998,29 @@
       spinRaf = null;
       if (!window.DostGraphUtils.isViewActive(ontologyWrap)) { spinLast = 0; return; }
       const dt = spinLast ? Math.min(64, ts - spinLast) : 16; spinLast = ts;
+
+      // 2B ↔ 3B eğim animasyonu.
+      if (tilt !== tiltTarget) {
+        if (reduceMotion) tilt = tiltTarget;
+        else {
+          const p = Math.min(1, (ts - tiltAnimStart) / TILT_DUR_3D);
+          const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+          tilt = tiltFrom + (tiltTarget - tiltFrom) * e;
+          if (p >= 1) tilt = tiltTarget;
+        }
+        paintPositions();
+      }
+      // 3B'de sahne kendiliğinden çok yavaş döner. Dönüş DİKEY eksen
+      // etrafında olduğu için "yukarısı" hep yukarıda kalır -- yani mertebe
+      // iddiası bozulmaz (bu, aşağıdaki salınımın var oluş sebebiydi).
+      if (tilt > 0.5) {
+        if (!rotating && !reduceMotion && detailPanel.hidden) { yaw += dt * 0.00005; paintPositions(); }
+        spinGroup.attr("transform", null);
+        labelSel.attr("transform", null);
+        spinRaf = requestAnimationFrame(spinFrame);
+        return;
+      }
+
       const busy = !detailPanel.hidden || (simulation && simulation.alpha() > 0.05);
       if (!reduceMotion && !busy) swayT += dt;
       const deg = reduceMotion ? 0 : SWAY_DEG * Math.sin((swayT / SWAY_PERIOD) * Math.PI * 2);
@@ -869,9 +1036,61 @@
     window.DostGraphUtils.onViewWake(ensureSpin);
     window.__ontologyEnsureSpin = ensureSpin;
 
+    // ---- 2B ↔ 3B ----
+    function setTilt(target) {
+      tiltFrom = tilt; tiltTarget = target; tiltAnimStart = performance.now();
+      if (target < 0.5) yaw = 0;
+      // Eğim bitince çerçeveyi yeniden sığdır: sarmal düz elipsten uzun.
+      setTimeout(() => {
+        if (ontologyWrap.hidden) return;
+        const sel = reduceMotion ? svg : svg.transition().duration(400);
+        sel.call(zoom.transform, computeFitTransform());
+      }, reduceMotion ? 30 : TILT_DUR_3D + 60);
+      ensureSpin();
+    }
+    const tiltBtn = document.getElementById("ontology-3d-toggle");
+    if (tiltBtn && !tiltBtn.dataset.wiredOnto3d) {
+      tiltBtn.dataset.wiredOnto3d = "1";
+      tiltBtn.setAttribute("aria-pressed", "false");
+      tiltBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const to = tiltTarget > 0.5 ? 0 : 1;
+        setTilt(to);
+        tiltBtn.classList.toggle("is-on", to > 0.5);
+        tiltBtn.setAttribute("aria-pressed", to > 0.5 ? "true" : "false");
+      });
+    }
+
+    // 3B'de boş alanı sürükleyerek döndürme (2B'de pan/zoom'a dokunmaz).
+    (function wireRotateDrag() {
+      const el = svg.node();
+      let lastX = 0, lastY = 0;
+      el.addEventListener("pointerdown", (e) => {
+        if (tiltTarget < 0.5) return;
+        if (e.target.closest && e.target.closest(".node")) return;
+        rotating = true; lastX = e.clientX; lastY = e.clientY;
+        try { el.setPointerCapture(e.pointerId); } catch (_) {}
+      });
+      el.addEventListener("pointermove", (e) => {
+        if (!rotating) return;
+        yaw += (e.clientX - lastX) * 0.006;
+        pitch = Math.max(0.02, Math.min(1.1, pitch + (e.clientY - lastY) * 0.004));
+        lastX = e.clientX; lastY = e.clientY;
+        paintPositions();
+      });
+      const stop = (e) => {
+        if (!rotating) return;
+        rotating = false;
+        try { el.releasePointerCapture(e.pointerId); } catch (_) {}
+      };
+      el.addEventListener("pointerup", stop);
+      el.addEventListener("pointercancel", stop);
+    })();
+
+    paintPositions();
     svg.call(zoom.transform, computeFitTransform());
 
-    window.__ontologyApp = { nodes, links, nodeById };
+    window.__ontologyApp = { nodes, links, nodeById, is3d: () => tiltTarget > 0.5 };
   }
 
   function pullBack(fromX, fromY, toX, toY, dist) {
@@ -880,22 +1099,26 @@
     return { x: toX - (dx / len) * dist, y: toY - (dy / len) * dist };
   }
 
+  // Kenarlar düğümlerin EKRAN konumunu (px/py) kullanır; 2B'de bu zaten
+  // x/y'nin aynısıdır, 3B'de ise projeksiyondan gelir.
   function edgePath(d) {
     const s = d.source, t = d.target;
+    const sx = s.px != null ? s.px : s.x, sy = s.py != null ? s.py : s.y;
+    const txp = t.px != null ? t.px : t.x, typ = t.py != null ? t.py : t.y;
     const pad = radiusFor(t) + 2;
     if (d.kind === "descent" || d.kind === "gather") {
-      const e = pullBack(s.x, s.y, t.x, t.y, pad);
-      return `M${s.x},${s.y}L${e.x},${e.y}`;
+      const e = pullBack(sx, sy, txp, typ, pad);
+      return `M${sx},${sy}L${e.x},${e.y}`;
     }
     // curved bow for "return" (bow right) and "paradox" (bow left)
-    const dx = t.x - s.x, dy = t.y - s.y;
+    const dx = txp - sx, dy = typ - sy;
     const dist = Math.sqrt(dx * dx + dy * dy) || 1;
     const nx = -dy / dist, ny = dx / dist;
     const bow = d.kind === "return" ? 90 : -70;
-    const mx = (s.x + t.x) / 2 + nx * bow;
-    const my = (s.y + t.y) / 2 + ny * bow;
-    const e = pullBack(mx, my, t.x, t.y, pad);
-    return `M${s.x},${s.y}Q${mx},${my} ${e.x},${e.y}`;
+    const mx = (sx + txp) / 2 + nx * bow;
+    const my = (sy + typ) / 2 + ny * bow;
+    const e = pullBack(mx, my, txp, typ, pad);
+    return `M${sx},${sy}Q${mx},${my} ${e.x},${e.y}`;
   }
 
   function render() {
@@ -1365,8 +1588,13 @@
     const width = svgEl.clientWidth || 800;
     const height = svgEl.clientHeight || 600;
     const currentScale = d3.zoomTransform(svgEl).k;
+    // 3B'de düğüm hedef konumunda (tx/ty) değil, projeksiyonun verdiği
+    // ekran konumundadır -- oraya odaklan.
+    const in3d = window.__ontologyApp && window.__ontologyApp.is3d && window.__ontologyApp.is3d();
+    const fx = in3d && typeof d.px === "number" ? d.px : d.tx;
+    const fy = in3d && typeof d.py === "number" ? d.py : d.ty;
     const transform = d3.zoomIdentity
-      .translate(width / 2 - currentScale * d.tx, height / 2 - currentScale * d.ty)
+      .translate(width / 2 - currentScale * fx, height / 2 - currentScale * fy)
       .scale(currentScale);
     const sel = reduceMotion ? oz.svg : oz.svg.transition().duration(400);
     sel.call(oz.zoom.transform, transform);

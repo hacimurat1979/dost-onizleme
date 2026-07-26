@@ -1132,7 +1132,30 @@
         "Fusûsu'l-Hikem Tercüme ve Şerhi (Ahmed Avni Konuk) — Fass-ı Lût (Hikmet-i Melkiyye) — 'gılâf/gâfil' söz oyunu",
         "El-Fükük fi Esrâr-ı Müstenidât-ı Hikemi'l-Fusûs (Sadreddin Konevî, çev. Ekrem Demirli) — Fass-ı Ya'kûb (Hakk'ın kıskançlığı)",
         "Muhyiddîn İbnü'l-Arabî'nin Tasavvuf Felsefesi (A. E. Affifi, çev. Mehmet Dağ) — II. Bölüm: İbnu'l-Arabî'nin Kutup Nazariyesi"
-      ]
+      ],
+      "diagram": {
+        "type": "point-circle",
+        "center": {
+          "tr": "Kalp",
+          "en": "Heart",
+          "pt": "Coração"
+        },
+        "rim": {
+          "tr": "İnsan-ı Kâmil — dairenin çevresi",
+          "en": "The Perfect Human — the circumference",
+          "pt": "O Ser Humano Perfeito — a circunferência"
+        },
+        "equidistant": {
+          "tr": "çevrenin her yeri merkeze aynı uzaklıkta",
+          "en": "every point of the rim is equally far from the centre",
+          "pt": "cada ponto da borda está igualmente distante do centro"
+        },
+        "note": {
+          "tr": "Cilt XIII'te (372. Bölüm) şöyle bir cümleyle karşılaştık: “Hak kulunun kalbinde kendisine nazar eder ve dairenin noktası olduğunu görür… insan-ı kâmil dairenin çevresi olduğunu görür.” Bunu şöyle okuyoruz: kalp, dairenin dışında bir yerde değil, tam ortasında duruyor gibi görünüyor. Yarıçapları bilerek eşit çizdik — çevrenin hiçbir noktası merkeze daha yakın değil; bu da bize kimsenin bir başkasından daha “yakın” sayılamayacağını söylüyor olabilir.",
+          "en": "In volume XIII (chapter 372) we came upon this sentence: “The Real looks upon Himself in the heart of His servant and sees that He is the point of the circle… the Perfect Human sees that he is the circumference.” We read it this way: the heart does not seem to stand somewhere outside the circle but exactly at its centre. We drew the radii deliberately equal — no point of the rim is nearer the centre than another; which may be telling us that no one can be counted “closer” than anyone else.",
+          "pt": "No volume XIII (capítulo 372) encontramos esta frase: “O Real contempla a Si mesmo no coração de Seu servo e vê que é o ponto do círculo… o Ser Humano Perfeito vê que é a circunferência.” Lemos assim: o coração não parece estar em algum lugar fora do círculo, mas exatamente em seu centro. Desenhamos os raios deliberadamente iguais — nenhum ponto da borda está mais perto do centro do que outro; o que talvez nos diga que ninguém pode ser considerado “mais próximo” do que outro."
+        }
+      }
     }
   ],
   "edges": [

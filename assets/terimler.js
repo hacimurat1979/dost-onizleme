@@ -385,8 +385,88 @@
   // kendi rengiyle (GROUP_HUE) boyanmış küçük dairesel bir "küme" rozeti
   // eklendi -- ilişkiyi taramayı bozmadan görünür kılan, daha ölçülü bir
   // orta yol.
+  // ---------------------------------------------------------------------
+  // "Dönüş yoğunluğu" — ısı haritası yerine hâle
+  //
+  // Bir ısı haritası her zaman bir ŞEYİ ölçer, ve burada ölçebileceğimiz
+  // tek dürüst şey bir terimin "önemi" DEĞİL: onu ölçmeye kalkmak, kendi
+  // kararımızı sayıya çevirip veri gibi göstermek olurdu. Ölçebildiğimiz
+  // şey kendi okumamız: bu terime kaç kere geri dönmek zorunda kaldık?
+  //
+  //   yoğunluk = kaydettiğimiz kaynak pasajı sayısı
+  //            + başka terimlerin ona işaret etme sayısı (iç derece)
+  //            + sitenin başka bölümlerine kurulmuş bağlantı sayısı
+  //
+  // Yani bu harita İbn Arabî'nin neye ağırlık verdiğini değil, BİZİM
+  // neye tekrar tekrar döndüğümüzü gösteriyor. Sayfada da böyle yazılı.
+  //
+  // Biçim olarak dikdörtgen bir ısı ızgarası (treemap/matris) sitenin
+  // diline yabancı düşerdi; onun yerine kartlar yerinde kalıyor ve her
+  // biri kendi yoğunluğu kadar ışıyor -- renk değil, hâle. Kapalıyken
+  // sayfa hiç değişmiyor.
+  let heatOn = false;
+  let heatByTerm = null;
+
+  function computeHeat(terms) {
+    const scores = new Map();
+    const inDegree = new Map();
+    Object.values(terms).forEach((t) => {
+      (t.iliskili_kavramlar || []).forEach((r) => {
+        const id = typeof r === "string" ? r : r && r.id;
+        if (id) inDegree.set(id, (inDegree.get(id) || 0) + 1);
+      });
+    });
+    Object.values(terms).forEach((t) => {
+      const s =
+        (t.kaynaklar || []).length +
+        (inDegree.get(t.id) || 0) +
+        (t.site_baglantilari || []).length;
+      scores.set(t.id, s);
+    });
+    const vals = Array.from(scores.values());
+    const lo = Math.min(...vals), hi = Math.max(...vals);
+    const norm = new Map();
+    scores.forEach((v, k) => norm.set(k, hi === lo ? 0.5 : (v - lo) / (hi - lo)));
+    return { raw: scores, norm: norm, lo: lo, hi: hi };
+  }
+
+  function applyHeat() {
+    if (!heatByTerm) return;
+    grid.querySelectorAll(".terim-card").forEach((card) => {
+      const n = heatByTerm.norm.get(card.dataset.id);
+      if (n == null) return;
+      card.style.setProperty("--heat", n.toFixed(3));
+      card.classList.toggle("terim-card--heat", heatOn);
+      if (heatOn) {
+        card.title = tt({
+          tr: "Dönüş yoğunluğu: " + heatByTerm.raw.get(card.dataset.id),
+          en: "Return density: " + heatByTerm.raw.get(card.dataset.id),
+          pt: "Densidade de retorno: " + heatByTerm.raw.get(card.dataset.id),
+        });
+      } else {
+        card.removeAttribute("title");
+      }
+    });
+    grid.classList.toggle("terimler-list--heat", heatOn);
+  }
+
+  function heatKeyHtml() {
+    return `<div class="terimler-heat">
+      <button class="terimler-heat__toggle" id="terimler-heat-toggle" type="button" aria-pressed="${heatOn}">
+        <span class="terimler-heat__dot" aria-hidden="true"></span>
+        <span>${tt({ tr: "Dönüş yoğunluğu", en: "Return density", pt: "Densidade de retorno" })}</span>
+      </button>
+      <p class="terimler-heat__note">${tt({
+        tr: "Açıldığında her terim, ona kaç kere geri döndüğümüz kadar ışır — kaydettiğimiz kaynak pasajları, başka terimlerin ona verdiği atıflar ve sitenin öbür bölümlerine kurduğumuz bağlar toplanarak. Bu, Dost'un neye ağırlık verdiğini değil, bizim okumamızın nerede yoğunlaştığını gösteriyor; yani bir ölçü değil, bir öz-portre.",
+        en: "When switched on, each term glows in proportion to how often we have had to come back to it — the source passages we recorded, the references other terms make to it, and the links we built to other parts of the site, added together. This shows not what Dost emphasised but where our own reading has thickened; a self-portrait rather than a measurement.",
+        pt: "Quando ativado, cada termo brilha na proporção de quantas vezes tivemos de voltar a ele — as passagens-fonte que registramos, as referências que outros termos lhe fazem e os vínculos que construímos com outras partes do site, somados. Isto mostra não o que Dost enfatizou, mas onde nossa própria leitura se adensou; um autorretrato, não uma medição.",
+      })}</p>
+    </div>`;
+  }
+
   function renderList() {
     const terms = glossaryData.terms;
+    if (!heatByTerm) heatByTerm = computeHeat(terms);
     const byGroup = new Map();
     Object.values(terms).forEach((t) => {
       if (!byGroup.has(t.group)) byGroup.set(t.group, []);
@@ -404,7 +484,7 @@
       const t = Math.sqrt((count - minCount) / (maxCount - minCount));
       return Math.round(26 + t * 20);
     }
-    grid.innerHTML = (glossaryData.groups || [])
+    grid.innerHTML = heatKeyHtml() + (glossaryData.groups || [])
       .map((g) => {
         const groupTerms = byGroup.get(g.id) || [];
         if (!groupTerms.length) return "";
@@ -435,6 +515,17 @@
     grid.querySelectorAll(".terim-card").forEach((card) => {
       card.addEventListener("click", () => showTermDetail(card.dataset.id));
     });
+    const heatBtn = document.getElementById("terimler-heat-toggle");
+    if (heatBtn) {
+      heatBtn.addEventListener("click", () => {
+        heatOn = !heatOn;
+        heatBtn.setAttribute("aria-pressed", String(heatOn));
+        heatBtn.classList.toggle("is-on", heatOn);
+        applyHeat();
+      });
+      heatBtn.classList.toggle("is-on", heatOn);
+    }
+    applyHeat();
   }
 
   function render() {
