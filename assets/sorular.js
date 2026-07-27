@@ -8,15 +8,23 @@
   // veren, sakin ve derinlikli bir bilgi haritası. Işıyan küre düğümler, düşük
   // opaklıkta organik bezier bağlantılar, çok hafif bir atmosfer katmanı
   // (radyal ışık + yavaş süzülen parçacıklar), üstüne gelince açılan mini bilgi
-  // kartı, derinlik katmanı süzgeci (Yüzey/Derin/Çok Derin), odak modu ve sağ
-  // altta bir minimap. Salt vanilla D3 (yeni bağımlılık yok — bkz. CLAUDE.md).
+  // kartı, odak modu ve sağ altta bir minimap. Salt vanilla D3 (yeni
+  // bağımlılık yok — bkz. CLAUDE.md).
   //
-  // Kademeli açılım: 46 sorunun hepsi aynı anda ekrana dökülmüyor. Açılışta
-  // sekiz kategori bir HALKA üzerinde, "En Temel Soru" ise halkanın merkezinde
-  // duruyor (daire ve merkez ilkesi). Bir kategoriye dokununca o kategorinin
-  // soru düğümleri halkanın DIŞINA doğru açılıyor -- düğümler kayboldu değil,
-  // sırasını bekliyor. Soru düğümleri, bağlantıları, atmosfer, derinlik
-  // süzgeci ve minimap eskisiyle aynı dili konuşuyor.
+  // Düzen (2026-07-27'de değişti): dokuz kategori tek bir SARMALIN durakları.
+  // Önceden sekizi bir halka üzerinde, "En Temel Soru" ise halkanın
+  // merkezinde duruyordu; kullanıcı bu görünümün sayfanın geri kalanından
+  // ayrı düştüğünü söyleyince düzen Hâller/Menziller'deki sarmal yöntemine
+  // çevrildi (bkz. CLAUDE.md, "Dairenin üçüncü boyutu: sarmal"). Artık en
+  // temel soru merkez değil, sarmalın BAŞLANGICI: oradan başlayıp dönerek
+  // yükseliyor ve son durak başlangıcın üstüne geliyor -- dönüş var, tekrar
+  // yok. 2B'de kendi dışına açılan bir sarmal, 3B'ye eğilince yükselen bir
+  // helis; ikisi de aynı parametrik tanımdan (spiralPoint) çıkıyor.
+  //
+  // Kademeli açılım: soruların hepsi aynı anda ekrana dökülmüyor. Bir
+  // kategoriye dokununca o kategorinin soruları sarmalın DIŞINA doğru
+  // açılıyor -- düğümler kayboldu değil, sırasını bekliyor. (Üstteki
+  // Yüzey/Derin/Tam süzgeci aynı tarihte kaldırıldı; gerekçesi aşağıda.)
   // ============================================================================
 
   const I18n = window.DostI18n;
@@ -88,7 +96,8 @@
   }
   function catColor(d) { return muteColor(getVar(CATEGORY_COLOR_VAR[d.category.id] || "--series-theme")); }
 
-  // Halkanın merkezindeki kategori: tek sorusu olan "En Temel Soru".
+  // Sarmalın BAŞLANGICINDAKİ kategori: tek sorusu olan "En Temel Soru".
+  // (2026-07-27'ye kadar halkanın merkezindeydi.)
   const CENTER_CAT = "en-temel";
 
   // ---------------------------------------------------------------------------
@@ -104,9 +113,8 @@
   let width = 900, height = 640;
   let rafId = null, lastTs = 0, dragging = false;
   let bgParticles = [], edgeParticles = [];
-  let depthMax = 3; // 1 Yüzey, 2 Derin, 3 Çok Derin (hepsi)
   let flashId = null, flashStart = 0;
-  let controlEl = null, miniEl = null, miniSvg = null, miniViewport = null;
+  let miniEl = null, miniSvg = null, miniViewport = null;
 
   function fetchData() {
     if (dataPromise) return dataPromise;
@@ -166,14 +174,27 @@
     const third = Math.ceil(sorted.length / 3);
     sorted.forEach((n, i) => { n.depth = i < third ? 1 : i < 2 * third ? 2 : 3; });
 
-    // Kategori düğümleri: biri merkezde, kalanlar halka üzerinde.
-    const ringCats = cats.filter((c) => c.id !== CENTER_CAT);
+    // Kategori düğümleri sarmalın durakları. 2026-07-27'ye kadar "En Temel
+    // Soru" merkezde duruyor, kalan sekizi bir halka üzerinde diziliyordu.
+    // Kullanıcı isteğiyle düzen Hâller/Menziller'deki sarmal yöntemine
+    // çevrildi (bkz. CLAUDE.md, "Dairenin üçüncü boyutu: sarmal"): artık
+    // dokuz kategori de aynı sarmalın üzerinde ve en temel soru merkez
+    // değil, sarmalın BAŞLANGICI. Anlamı da bu: en temel sorudan başlanıp
+    // dönerek yükseliyor, ve son durak başlangıcın üstüne geliyor -- dönüş
+    // var ama tekrar yok.
+    const spiralOrder = cats.slice().sort((a, b) => {
+      if (a.id === CENTER_CAT) return -1;
+      if (b.id === CENTER_CAT) return 1;
+      return 0;
+    });
     const catItems = cats.map((cat) => {
-      const ri = ringCats.indexOf(cat);
+      const si = spiralOrder.indexOf(cat);
       return {
         id: "cat:" + cat.id, isCat: true, category: cat,
         isCenterCat: cat.id === CENTER_CAT,
-        ringAngle: ri < 0 ? 0 : -Math.PI / 2 + (ri / ringCats.length) * Math.PI * 2,
+        spiralIndex: si,
+        spiralT: si / cats.length,
+        ringAngle: -Math.PI / 2 + (si / cats.length) * Math.PI * 2,
         phase: Math.random() * 6.28,
         degree: cat.questions.length,
       };
@@ -240,7 +261,7 @@
     nodeLayer = zoomLayer.append("g").attr("class", "sorular-nodes");
 
     // kategorilerin üzerinde durduğu sessiz halka
-    ringLayer.append("circle").attr("class", "sorular-ring-path");
+    ringLayer.append("path").attr("class", "sorular-ring-path").attr("fill", "none");
 
     // merkezde nefes alan sessiz işaret (daire/merkez ilkesi)
     centerLayer.append("circle").attr("class", "node-halo").attr("r", 34);
@@ -257,31 +278,16 @@
       if (expandedCatId) collapseCategory(true);
     });
 
-    buildControls();
     buildMinimap();
   }
 
-  // Derinlik katmanı süzgeci (#6): Yüzey / Derin / Çok Derin.
-  function buildControls() {
-    if (controlEl) controlEl.remove();
-    controlEl = document.createElement("div");
-    controlEl.className = "sorular-depth";
-    const opts = [
-      { v: 1, tr: "Yüzey", en: "Surface", pt: "Superfície" },
-      { v: 2, tr: "Derin", en: "Deep", pt: "Profundo" },
-      { v: 3, tr: "Tam", en: "Full", pt: "Completo" },
-    ];
-    controlEl.innerHTML = `<span class="sorular-depth__label">${tt({ tr: "Derinlik", en: "Depth", pt: "Profundidade" })}</span>` +
-      opts.map((o) => `<button type="button" class="sorular-depth__btn${o.v === depthMax ? " is-active" : ""}" data-v="${o.v}">${tt(o)}</button>`).join("");
-    controlEl.querySelectorAll(".sorular-depth__btn").forEach((b) => {
-      b.addEventListener("click", () => {
-        depthMax = parseInt(b.dataset.v, 10);
-        controlEl.querySelectorAll(".sorular-depth__btn").forEach((x) => x.classList.toggle("is-active", parseInt(x.dataset.v, 10) === depthMax));
-        ensureFrame();
-      });
-    });
-    wrapEl.appendChild(controlEl);
-  }
+  // 2026-07-27: Yüzey/Derin/Tam süzgeci kullanıcı isteğiyle kaldırıldı.
+  // Gerekçe: sorular zaten kategori açılınca geliyordu; üstteki üç düğme
+  // hem sayfanın geri kalanında karşılığı olmayan bir kontroldü hem de
+  // "hangi soru daha yüzeysel" gibi, bizim veremeyeceğimiz bir hükmü
+  // arayüze yazıyordu. Skor hesabı (`surfaceScore`/`depth`) veride kaldı
+  // ama artık hiçbir şeyi gizlemiyor; yalnız mini haritadaki soluklukta
+  // kullanılıyordu, o da sabitlendi.
 
   function buildMinimap() {
     let mm = wrapEl.querySelector(".sorular-minimap");
@@ -326,7 +332,7 @@
     dots.enter().append("circle").attr("r", 1.5).merge(dots)
       .attr("cx", (d) => sx(d.x)).attr("cy", (d) => sy(d.y))
       .style("fill", (d) => catColor(d))
-      .style("opacity", (d) => (d.depth <= depthMax ? 0.8 : 0.2));
+      .style("opacity", 0.8);
     dots.exit().remove();
     // viewport dikdörtgeni
     const t = d3.zoomTransform(svgNode);
@@ -340,10 +346,14 @@
     cx = width / 2; cy = height / 2;
     // Halka: açılan sorulara dışarıda yer kalsın diye ekranın yarısı kadar.
     ringR = Math.max(96, Math.min(width, height) / 2 - (Math.min(width, height) < 620 ? 118 : 150));
+    // Dokuz kategori de sarmalın üzerinde; yarıçap ilerledikçe hafifçe
+    // açılıyor, böylece 2B'de bile "kendi dışına doğru dönen" bir sarmal
+    // okunuyor, 3B'ye eğilince de yükselen bir helis oluyor.
     catNodes.forEach((n) => {
-      if (n.isCenterCat) { n.x = cx; n.y = cy; }
-      else { n.x = cx + ringR * Math.cos(n.ringAngle); n.y = cy + ringR * Math.sin(n.ringAngle); }
-      n.fx = n.x; n.fy = n.y;   // halka sabit dursun (soru düğümleri serbest)
+      const rr = ringR * (0.72 + 0.34 * n.spiralT);
+      n.x = cx + rr * Math.cos(n.ringAngle);
+      n.y = cy + rr * Math.sin(n.ringAngle);
+      n.fx = n.x; n.fy = n.y;   // sarmal sabit dursun (soru düğümleri serbest)
     });
     centerLayer.attr("transform", `translate(${cx},${cy})`);
   }
@@ -358,20 +368,23 @@
     if (!cat) return;
     const isMobile = Math.min(width, height) < 620;
     const outward = isMobile ? 86 : 124;
-    const R = cat.isCenterCat ? Math.max(70, ringR * 0.44) : ringR + outward;
-    const baseA = cat.isCenterCat ? -Math.PI / 2 : cat.ringAngle;
+    // Sarmalda merkez yok: her kategori kendi durağının bulunduğu yarıçaptan
+    // dışa doğru açılıyor (eski "merkezdeki kategori içeri açılsın" istisnası
+    // 2026-07-27'de kalktı).
+    const catR = ringR * (0.72 + 0.34 * cat.spiralT);
+    const R = catR + outward;
+    const baseA = cat.ringAngle;
     // Dörtten fazla soru varsa tek bir geniş yay komşu kategorilerin üstüne
     // taşıyor; onun yerine iki sıraya (yakın/uzak) diziyoruz -- yelpaze dar
     // kalıyor, kendi kolunun içinde duruyor.
+    vis.forEach((n) => { n.__parentT = cat.spiralT; });
     const rows = vis.length > 4 ? 2 : 1;
     const rowGap = isMobile ? 56 : 76;
     const perRow = [[], []];
     vis.forEach((n, i) => perRow[rows === 2 ? i % 2 : 0].push(n));
     perRow.forEach((row, ri) => {
       const rowR = R + ri * rowGap;
-      const spread = cat.isCenterCat
-        ? Math.PI * 1.5
-        : Math.min(1.25, 0.36 * Math.max(1, row.length - 1) + 0.3);
+      const spread = Math.min(1.25, 0.36 * Math.max(1, row.length - 1) + 0.3);
       row.forEach((n, i) => {
         const t = row.length === 1 ? 0 : (i / (row.length - 1)) - 0.5;
         n.bloomAngle = baseA + t * spread;
@@ -446,12 +459,46 @@
   // üç katman derinliğe yayılıyor -- en temel soru öne, tek tek sorular
   // arkaya. Derinlik bir rütbe değil, "hangi soru hangisinin içinden
   // çıkıyor" ilişkisinin görünür hâli.
-  const TIER_DEPTH_Q = { center: 0, cat: 1, q: 2 };
   let tilt3d = null, dropH3d = 0;
-  function tierOf(d) { return d.isCenterCat ? "center" : d.isCat ? "cat" : "q"; }
-  function tierVert(d) {
-    return -dropH3d / 2 + (dropH3d / 2) * TIER_DEPTH_Q[tierOf(d)];
+  // Sarmalın dikey ekseni: kategori sırası boyunca YÜKSELİYOR (Hâller'deki
+  // gibi; Menziller'de tersine iniyordu). Sorular kendi kategorisinin
+  // yüksekliğinden bir tık yukarıda duruyor -- açıldıklarında sarmalın
+  // gövdesinden dışa doğru savruluyor gibi görünsünler diye.
+  function catVertOf(d) {
+    const t = d.isCat ? d.spiralT : (d.__parentT != null ? d.__parentT : 0.5);
+    return -dropH3d / 2 + dropH3d * t;
   }
+  function tierVert(d) {
+    return catVertOf(d) + (d.isCat ? 0 : dropH3d * 0.045);
+  }
+  // Sarmalın sürekli yolu: kategorilerin durduğu noktalardan geçen tek bir
+  // eğri. 2B'de kendi dışına doğru açılan bir sarmal, 3B'de yükselen bir
+  // helis olarak okunuyor -- iki durum da aynı parametrik tanımdan çıkıyor
+  // (Menziller'deki samplePath ile aynı yaklaşım).
+  function spiralPoint(t) {
+    const n = Math.max(1, catNodes.length);
+    const a = -Math.PI / 2 + t * Math.PI * 2;
+    const rr = ringR * (0.72 + 0.34 * t);
+    const x = cx + rr * Math.cos(a), y = cy + rr * Math.sin(a);
+    const vert = -dropH3d / 2 + dropH3d * t;
+    if (!tilt3d) return { x: x, y: y };
+    const p = tilt3d.project(x - cx, y - cy, vert);
+    return { x: p.x + cx, y: p.y + cy };
+  }
+  function spiralPath() {
+    if (!catNodes.length) return "";
+    // Son kategoriden bir adım ötesine kadar uzatıyoruz ki sarmal, başladığı
+    // noktanın bir üstüne gelerek kapansın (dönüş var, tekrar yok).
+    const tEnd = catNodes.length / Math.max(1, catNodes.length);
+    let d = "";
+    const steps = 160;
+    for (let i = 0; i <= steps; i++) {
+      const p = spiralPoint((i / steps) * tEnd);
+      d += (i ? " L" : "M") + p.x.toFixed(1) + "," + p.y.toFixed(1);
+    }
+    return d;
+  }
+
   function positionNodes() {
     if (!tilt3d) return;
     nodes.forEach((d) => {
@@ -520,8 +567,6 @@
     return { anchor, set };
   }
 
-  function depthVisible(d) { return !!d.isCat || d.depth <= depthMax; }
-
   function render(ts) {
     if (!nodeLayer) return;
     positionNodes();
@@ -538,14 +583,14 @@
     }
 
     // --- kategori halkası ---
-    ringLayer.select("circle.sorular-ring-path").attr("cx", cx).attr("cy", cy).attr("r", ringR);
+    ringLayer.select("path.sorular-ring-path").attr("d", spiralPath());
 
     // --- bağlantılar (bezier, düşük opaklık) (#3) ---
     const lk = linkLayer.selectAll("path.sorular-link").data(links, (l) => l.id);
     lk.enter().append("path").attr("class", "sorular-link").attr("fill", "none").merge(lk)
       .each(function (l) {
         const p = d3.select(this);
-        const dv = depthVisible(l.source) && depthVisible(l.target);
+        const dv = true;
         let op = 0.16;
         if (act) op = (act.set.has(l.source.id) && act.set.has(l.target.id)) ? 0.8 : 0.05;
         p.attr("d", linkPath(l))
@@ -602,7 +647,7 @@
       const r = radiusFor(d) * scale;
       const dx = reduceMotion ? 0 : 1.2 * Math.sin(ts / 3300 + d.phase);
       const dy = reduceMotion ? 0 : 1.2 * Math.cos(ts / 3800 + d.phase);
-      let op = depthVisible(d) ? 1 : 0.12;       // derinlik süzgeci (#6)
+      let op = 1;
       // Bir kategori açıkken diğerleri geri çekilir; halka görünür kalır ama
       // dikkat açılan kolda toplanır.
       if (d.isCat && expandedCatId && expandedCatId !== d.category.id) op *= 0.42;
@@ -692,8 +737,8 @@
     // (flu ve küçük) kalıyor. Öncesinde bütün sahneye sığdırıldığı için
     // açılan kol küçücük görünüyordu (kullanıcı notu 2026-07-27).
     const focusSet = expandedCatId
-      ? nodes.filter((d) => d.category.id === expandedCatId && (d.isCat || depthVisible(d)))
-      : nodes.filter((d) => depthVisible(d));
+      ? nodes.filter((d) => d.category.id === expandedCatId || d.isCat)
+      : nodes.slice();
     focusSet.forEach(bound);
     if (x0 === 1e9) nodes.forEach(bound);
     // Kategori etiketleri kürenin altına yazılıyor; kenardakiler için pay bırak.
