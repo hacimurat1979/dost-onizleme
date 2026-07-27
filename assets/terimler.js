@@ -692,6 +692,16 @@
     renderList();
   }
 
+  // Benzetmeler sitenin görünen yüzünden kaldırıldı; gizli anahtar
+  // kelimeyle geri açılıyor (bkz. assets/analogy-toggle.js).
+  function analogyHtml(t) {
+    if (!t.analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
+    return `<div class="detail-analogy">
+      <p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p>
+      <p>${linkify(tt(t.analogy), "terimler", t.id)}</p>
+    </div>`;
+  }
+
   function kaynaklarHtml(kaynaklar, id) {
     if (!kaynaklar || !kaynaklar.length) return "";
     return `<div class="insight-group">${kaynaklar
@@ -814,10 +824,7 @@
         <h3>${tt({ tr: "İbn Arabî'nin Yorumu", en: "Ibn Arabi's Interpretation", pt: "A Interpretação de Ibn Arabi" })}</h3>
         <p>${linkify(tt(t.ibn_arabi_yorumu), "terimler", t.id)}</p>
       </div>
-      <div class="detail-analogy">
-        <p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p>
-        <p>${linkify(tt(t.analogy), "terimler", t.id)}</p>
-      </div>
+      ${analogyHtml(t)}
       ${groupDiagramHtml(group)}
       ${kaynaklarHtml(t.kaynaklar, t.id)}
       ${celisenYorumlarHtml(t)}

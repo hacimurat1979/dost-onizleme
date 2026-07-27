@@ -119,7 +119,9 @@
     }).join("")}</div>`;
   }
   function analogyHtml(analogy) {
-    if (!analogy) return "";
+    // Benzetmeler sitenin görünen yüzünden kaldırıldı; gizli anahtar
+    // kelimeyle geri açılıyor (bkz. assets/analogy-toggle.js).
+    if (!analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
     return `<div class="detail-analogy">
       <p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p>
       <p>${tt(analogy)}</p>
@@ -1317,7 +1319,7 @@
       { t: { tr: "Katman katman inin", en: "Descend layer by layer", pt: "Desça camada por camada" },
         b: { tr: "Harita tam açık geliyor: üç kutup — Celâl, Cemâl, Kemâl — isimler ve onlardan türeyenler bir arada. Sadeleştirmek isterseniz kaydırarak katmanları geri toplayabilirsiniz.", en: "The map opens fully: the three poles — Majesty, Beauty, Perfection — the Names, and what derives from them, all at once. To simplify, scroll to gather the layers back in.", pt: "O mapa abre-se por inteiro: os três polos — Majestade, Beleza, Perfeição — os Nomes e o que deles deriva, tudo de uma vez. Para simplificar, role para recolher as camadas." } },
       { t: { tr: "Bir ismi seçin", en: "Select a Name", pt: "Selecione um Nome" },
-        b: { tr: "Bir isme dokunun: Allah'tan ona doğru akan altın bir tecellî izleyin, ilişkili isimler yaklaşsın, ve anlamını, benzetmesini, kaynaklarını yandaki panelde okuyun. Dilerseniz 'Keşfet' sizi isimler arasında gezdirsin.", en: "Touch a Name: watch a golden self-disclosure flow to it from Allah, see related Names draw near, and read its meaning, analogy and sources in the side panel. Or let 'Explore' wander among the Names for you.", pt: "Toque num Nome: veja uma autorrevelação dourada fluir até ele desde Allah, os Nomes relacionados se aproximarem, e leia seu significado, analogia e fontes no painel lateral. Ou deixe 'Explorar' vagar entre os Nomes por você." } },
+        b: { tr: "Bir isme dokunun: Allah'tan ona doğru akan altın bir tecellî izleyin, ilişkili isimler yaklaşsın, ve anlamını ve kaynaklarını yandaki panelde okuyun. Dilerseniz 'Keşfet' sizi isimler arasında gezdirsin.", en: "Touch a Name: watch a golden self-disclosure flow to it from Allah, see related Names draw near, and read its meaning and sources in the side panel. Or let 'Explore' wander among the Names for you.", pt: "Toque num Nome: veja uma autorrevelação dourada fluir até ele desde Allah, os Nomes relacionados se aproximarem, e leia seu significado e fontes no painel lateral. Ou deixe 'Explorar' vagar entre os Nomes por você." } },
     ];
     const ov = document.createElement("div");
     ov.className = "esmaX-onb";

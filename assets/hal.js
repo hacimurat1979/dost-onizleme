@@ -659,7 +659,9 @@
     return `<div class="detail-analogy"><p class="detail-analogy__label">${tt({ tr: "Makamı ve terki", en: "The station and its abandonment", pt: "A estação e seu abandono" })}</p><p>${tt(TERK_NOTE)}</p></div>`;
   }
   function analogyHtml(analogy) {
-    if (!analogy) return "";
+    // Benzetmeler sitenin görünen yüzünden kaldırıldı; gizli anahtar
+    // kelimeyle geri açılıyor (bkz. assets/analogy-toggle.js).
+    if (!analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
     return `<div class="detail-analogy"><p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p><p>${I18n.pick3(analogy)}</p></div>`;
   }
   function showDetail(d) {
