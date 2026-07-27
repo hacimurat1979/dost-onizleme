@@ -10,8 +10,15 @@
   // "gizli" olsa da güvenlik açığı değildir -- kimse siteyi doğrudan
   // değiştiremez. "revise" nadir bir kelime olduğu için (eski "uyan"ın
   // aksine) düz yazı içinde geçen sıradan kelimelerle çakışmıyor.
-  const CODE = "revise";
+  const CODE = "@revise";
   const QUEUE_KEY = "dost-edit-queue";
+  // Benzetmelerin görünürlüğü de bu moda bağlı (2026-07-27): ayrı bir
+  // "benzetme" kelimesi vardı, kullanıcı isteğiyle buraya katıldı --
+  // revize kipi zaten "yazıları gözden geçirdiğim kip" olduğu için
+  // gizlenmiş "Bir benzetmeyle" blokları da orada açılıyor. Bayrak
+  // localStorage'da: benzetmeler render sırasında okunuyor, o yüzden
+  // kipi açıp kapatmak sayfayı yeniden çizdiriyor (aşağıya bak).
+  const ANALOGY_KEY = "dost-analogy-visible";
   let buffer = "";
   let editModeOn = false;
   let panel = null;
@@ -386,6 +393,7 @@
 
   function enableEditMode() {
     editModeOn = true;
+    setAnalogyVisible(true);
     document.body.classList.add("dost-edit-mode");
     scanAndMakeEditable();
     observer = new MutationObserver(scanAndMakeEditable);
@@ -395,6 +403,7 @@
 
   function disableEditMode() {
     editModeOn = false;
+    setAnalogyVisible(false);
     document.body.classList.remove("dost-edit-mode");
     document.querySelectorAll('[data-dost-editable]').forEach((el) => {
       el.removeAttribute("contenteditable");
@@ -404,9 +413,49 @@
     if (panel) { panel.remove(); panel = null; }
   }
 
+  // Bayrak yalnız değiştiğinde sayfa yenileniyor: benzetme blokları
+  // render sırasında okunduğu için, açık bir detay panelinin kendiliğinden
+  // güncellenmesinin başka yolu yok. Yenilemeden sonra kip geri açılsın
+  // diye "editModeOn" da saklanıyor.
+  function setAnalogyVisible(on) {
+    let cur = false;
+    try { cur = localStorage.getItem(ANALOGY_KEY) === "1"; } catch (e) {}
+    if (cur === on) return;
+    try {
+      localStorage.setItem(ANALOGY_KEY, on ? "1" : "0");
+      localStorage.setItem(MODE_KEY, on ? "1" : "0");
+    } catch (e) {}
+    location.reload();
+  }
+  const MODE_KEY = "dost-edit-mode-on";
+
+  // Beş görünüm modülü (esma/hal/ontology/sorular/terimler) benzetme
+  // bloklarını çizmeden önce buna bakıyor. Eskiden ayrı bir dosyadaydı
+  // (assets/analogy-toggle.js); kip birleşince buraya taşındı.
+  window.DostAnalogy = {
+    visible: function () {
+      try { return localStorage.getItem(ANALOGY_KEY) === "1"; } catch (e) { return false; }
+    },
+  };
+
+  // Sayfa yenilendikten sonra kipi geri aç.
+  try {
+    if (localStorage.getItem(MODE_KEY) === "1") {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", enableEditMode);
+      } else enableEditMode();
+    }
+  } catch (e) {}
+
   window.addEventListener("keydown", (e) => {
     if (e.key.length !== 1) return;
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    // AltGr (Ctrl+Alt) Türkçe klavyede "@" üretiyor; bu bileşimi
+    // engellemiyoruz, yoksa kelime hiç yazılamaz. Tek başına Ctrl/Alt
+    // ya da Meta ise kısayoldur, geçilir.
+    if (e.metaKey) return;
+    if ((e.ctrlKey || e.altKey) && !(e.ctrlKey && e.altKey)) return;
+    const t = e.target;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA")) return;
     buffer = (buffer + e.key.toLowerCase()).slice(-CODE.length);
     if (buffer === CODE) {
       buffer = "";

@@ -3,32 +3,23 @@
 
   const I18n = window.DostI18n;
 
+  // Bu modül 2026-07-27'ye kadar kendi sayfasıydı (daphne-profil.html,
+  // "understand" yazınca açılıyordu). Artık compare.html'in bir sekmesi:
+  // sayfayı o yönetiyor, burası yalnız kendi grafiğini kuruyor. Bu yüzden
+  // ne dil seçiciyi çiziyor ne de sekmeleri bağlıyor -- ikisi de
+  // compare.js'te, yoksa iki modül birbirinin üstüne yazardı.
   const svg = d3.select("#profile-graph");
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
   const detailClose = document.getElementById("detail-close");
   const articlesList = document.getElementById("articles-list");
+  if (!svg.node()) return;
 
   function tt(dict) {
     return I18n.pick3(dict);
   }
 
-  I18n.applyStatic();
-  I18n.renderLangSwitcher(document.getElementById("lang-switch"), () => render());
   window.DostGraphUtils.setupDetailPanelFocus();
-
-  const tabButtons = document.querySelectorAll("#profile-tabs .bookmap-tab");
-  const tabPanels = document.querySelectorAll("[data-tab-panel]");
-  tabButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      tabButtons.forEach((b) => {
-        b.classList.toggle("bookmap-tab--active", b === btn);
-        b.setAttribute("aria-selected", String(b === btn));
-      });
-      tabPanels.forEach((p) => { p.hidden = p.dataset.tabPanel !== btn.dataset.tab; });
-      if (btn.dataset.tab !== "map") detailPanel.hidden = true;
-    });
-  });
 
   detailClose.addEventListener("click", () => {
     detailPanel.hidden = true;
@@ -90,7 +81,17 @@
         if (window.DostViewStatus) window.DostViewStatus.showError("profile-wrap", loadData);
       });
   }
-  loadData();
+  // loadData() artık açılışta çağrılmıyor: bölüm gizliyken svg genişliği
+  // 0 oluyor ve graf bozuk kuruluyor. Sekmesi ilk açıldığında çağrılıyor.
+  let started = false;
+  window.__dostDaphneProfileApp = {
+    activate: function () {
+      if (started) return;
+      started = true;
+      loadData();
+    },
+    render: function () { if (started) render(); },
+  };
 
   function radiusFor(d) {
     if (d.type === "hub") return 30;

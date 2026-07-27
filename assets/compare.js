@@ -13,9 +13,47 @@
   }
 
   I18n.applyStatic();
-  I18n.renderLangSwitcher(document.getElementById("lang-switch"), () => render());
+  // Dil değişince İKİ graf da yeniden çizilmeli: Daphne profili artık ayrı
+  // bir sayfa değil, bu sayfanın bir sekmesi (2026-07-27).
+  I18n.renderLangSwitcher(document.getElementById("lang-switch"), () => {
+    render();
+    if (window.__dostDaphneProfileApp) window.__dostDaphneProfileApp.render();
+  });
   window.DostGraphUtils.setupLegendToggles();
   window.DostGraphUtils.setupDetailPanelFocus();
+
+  // Sekmeler. "Daphne'nin Profili" ile "Taranan Yazılar" 2026-07-27'ye
+  // kadar ayrı bir sayfaydı (daphne-profil.html, "understand" yazınca
+  // açılıyordu); o sayfa silindi, içeriği buraya sekme olarak taşındı.
+  // Profil grafiği ilk kez sekmesi açıldığında kuruluyor -- bölüm
+  // gizliyken svg genişliği 0 olur ve graf bozuk çıkar.
+  (function wireTabs() {
+    const tabButtons = document.querySelectorAll("#compare-tabs .bookmap-tab");
+    if (!tabButtons.length) return;
+    const tabPanels = document.querySelectorAll("[data-tab-panel]");
+    const introThemes = document.getElementById("intro-text");
+    const introProfile = document.getElementById("intro-text-profile");
+    tabButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const tab = btn.dataset.tab;
+        tabButtons.forEach((b) => {
+          b.classList.toggle("bookmap-tab--active", b === btn);
+          b.setAttribute("aria-selected", String(b === btn));
+        });
+        tabPanels.forEach((p) => { p.hidden = p.dataset.tabPanel !== tab; });
+        if (introThemes) introThemes.hidden = tab !== "temalar";
+        if (introProfile) introProfile.hidden = tab !== "profil";
+        detailPanel.hidden = true;
+        if (tab === "profil" && window.__dostDaphneProfileApp) {
+          window.__dostDaphneProfileApp.activate();
+        }
+        // "Taranan Yazılar" listesi de profil verisinden geliyor.
+        if (tab === "yazilar" && window.__dostDaphneProfileApp) {
+          window.__dostDaphneProfileApp.activate();
+        }
+      });
+    });
+  })();
 
   detailClose.addEventListener("click", () => {
     detailPanel.hidden = true;

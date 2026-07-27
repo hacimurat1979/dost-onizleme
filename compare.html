@@ -52,7 +52,23 @@
       </p>
     </section>
 
-    <section class="graph-wrap" id="compare-wrap">
+    <section class="intro" id="intro-text-profile" hidden>
+      <p data-tr="Bu harita, Dost ile örtüşüp örtüşmediğine bakmaksızın, Daphne'nin (thelivingfractal) kendi yazılarında tekrar tekrar döndüğü eksenleri bir araya getirmeye çalışıyor. Merkezdeki düğüm Daphne, çevresindekiler ise onun kendi cümleleriyle -- mümkün olduğunca -- kurulmuş temel parametreler. Bu kapanmış bir profil değil; yeni bir yazı paylaşıldıkça güncellenen bir taslak. Bir düğüme tıklayın."
+         data-en="This map tries to gather, independent of any overlap with Dost, the axes Daphne's (thelivingfractal) own writing keeps returning to. The center node is Daphne; the surrounding ones are core parameters built, as much as possible, from her own words. This is not a closed profile -- it is a draft that updates as new pieces are shared. Click a node."
+         data-pt="Este mapa tenta reunir, independentemente de qualquer sobreposição com Dost, os eixos aos quais a própria escrita de Daphne (thelivingfractal) retorna repetidamente. O nó central é Daphne; os que a rodeiam são parâmetros centrais construídos, tanto quanto possível, a partir de suas próprias palavras. Este não é um perfil fechado -- é um rascunho que se atualiza à medida que novos textos são compartilhados. Clique num nó.">
+      </p>
+    </section>
+
+    <div class="bookmap-tabs" id="compare-tabs" role="tablist">
+      <button type="button" class="bookmap-tab bookmap-tab--active" data-tab="temalar" role="tab" aria-selected="true"
+        data-tr="Ortak Temalar" data-en="Shared Themes" data-pt="Temas Comuns"></button>
+      <button type="button" class="bookmap-tab" data-tab="profil" role="tab" aria-selected="false"
+        data-tr="Daphne'nin Profili" data-en="Daphne's Profile" data-pt="O Perfil de Daphne"></button>
+      <button type="button" class="bookmap-tab" data-tab="yazilar" role="tab" aria-selected="false"
+        data-tr="Taranan Yazılar" data-en="Articles Surveyed" data-pt="Textos Analisados"></button>
+    </div>
+
+    <section class="graph-wrap" id="compare-wrap" data-tab-panel="temalar">
       <svg id="graph"></svg>
       <div class="view-status" id="compare-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
@@ -70,6 +86,19 @@
           <div class="legend__item"><span class="legend__dot legend__dot--daphne"></span><span data-tr="Daphne'nin yazıları" data-en="Daphne's writings" data-pt="Escritos de Daphne">Daphne'nin yazıları</span></div>
         </div>
       </div>
+    </section>
+
+    <section class="graph-wrap" id="profile-wrap" data-tab-panel="profil" hidden>
+      <svg id="profile-graph"></svg>
+      <div class="view-status" id="profile-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+    </section>
+
+    <section class="daphne-profile-articles-wrap" id="articles-list-section" data-tab-panel="yazilar" hidden>
+      <div id="articles-list" class="daphne-profile-articles-grid"></div>
     </section>
 
     <aside class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" hidden>
@@ -93,8 +122,8 @@
   <script src="assets/font-scale.js"></script>
   <script src="assets/reading-mode.js"></script>
   <script src="assets/honorifics.js"></script>
+  <script src="assets/daphne-profil.js"></script>
   <script src="assets/compare.js"></script>
-  <script src="assets/daphne-profil-nav.js"></script>
   <script src="assets/edit-mode.js"></script>
 </body>
 </html>
