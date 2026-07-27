@@ -56,7 +56,7 @@
   const FOCAL = 3200;
   const TILT_DUR = 1050;
   let tilt = 0, tiltTarget = 0, tiltAnimStart = 0, tiltFrom = 0;
-  let yaw = 0, pitch = 0.26, dragging = false;
+  let yaw = 0, pitch = 0.18, dragging = false;
 
   function fetchData() {
     if (dataPromise) return dataPromise;
@@ -99,9 +99,33 @@
     // ≈ dropH·cos(pitch)/(n-1). Oranı sadeleştirince kaldıracın EĞİM olduğu
     // çıkıyor: salınım/iniş = 2π·tan(pitch)·r/dropH. Hâller'in eğimiyle (0.62)
     // monotonluk için dropH > 4.5·r gerekiyordu ve sarmal ince uzun bir şeride
-    // dönüyordu. Eğimi 0.26'ya düzleştirince eşik 1.7·r'ye iniyor; 2.1 hem
-    // güvenli hem de sarmalın eni ile boyunu dengede tutuyor.
-    dropH = ringR * 2.1;
+    // dönüyordu. Eğimi düzleştirince eşik düşüyor.
+    //
+    // 2026-07-27 (kullanıcı notu: "düğümler bu halleriyle anlaşılmıyorlar").
+    // Ölçtük: düğüm çapı ekranda ~25px, ve en yakın iki düğüm merkezi arası
+    // yalnız 3.7px. Yani asıl sorun boyut kadar ÇAKIŞMAYDI. Nedenini
+    // aradık ve şu çıktı: 28 düğüm TEK bir tura yayıldığı için, halkanın
+    // gözden UZAK yayında ardışık 4-6 düğüm hep bir küme yapıyor. Bunun
+    // bir yerleşim hatası değil, bu geometrinin kendi sonucu olduğunu
+    // dönüşün farklı anlarında ölçerek doğruladık: çakışan çiftler sabit
+    // değil, dönüşle birlikte GEZİYOR (9-13 -> 11-14 -> 13-16 -> 14-19).
+    //
+    // Denenip işe yaramayanlar (hepsi ölçüldü): eğimi açmak (0.34/0.42 ->
+    // çakışma aynı, en yakın mesafe daha da kötü), sarmalın yarıçap
+    // büyümesini artırmak (0.55/0.75 -> düğümler küçüldü, çakışma aynı).
+    // Turu ikiye çıkarmak kümeyi gerçekten yarıya indirirdi ama 28 menzil
+    // BİR ay döngüsü demek; iki tur veriyi yanlış anlatırdı, o yüzden
+    // yapmadık.
+    //
+    // Kalan gerçek kaldıraç eğim+iniş ikilisi. fitView yüksekliğe göre
+    // sığdırdığı için iniş arttıkça ölçek düşüyor, yani düğümler yine
+    // küçülüyor -- ikisi birbiriyle yarışıyor. Ölçülen denge:
+    //   eğim 0.18 + iniş 2.2·r -> yarıçap 16.3, çakışan çift 7
+    //   eğim 0.18 + iniş 2.4·r -> yarıçap 15.2, çakışan çift 5-11 (seçilen)
+    //   eğim 0.18 + iniş 2.6·r -> yarıçap 14.3, çakışan çift 5
+    // 2.4'te düğüm çapı 25.4px'ten 30.4px'e çıkıyor ve çakışma eski
+    // seviyesinde kalıyor; yani boyut kazanılırken kalabalık artmıyor.
+    dropH = ringR * 2.4;
     positionNodes();
   }
 
@@ -237,7 +261,7 @@
       const breath = reduceMotion ? 1 : 1 + 0.02 * Math.sin(ts / 3000 + n.sira);
       // 3B'de uzaktaki düğümler küçülüp soluyor (perspektif derinliği).
       const dep = 1 + (n.__depth - 1) * tilt;
-      const r = (isActive ? 17 : 13) * breath * (isHover ? 1.08 : 1) * dep;
+      const r = (isActive ? 24 : 18) * breath * (isHover ? 1.08 : 1) * dep;
       const fade = tilt > 0 ? Math.max(0.35, Math.min(1, 0.35 + 0.9 * (dep - 0.55))) : 1;
       g.attr("transform", `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`)
         .style("opacity", (activeId && !isActive ? 0.42 : 1) * fade);
@@ -266,7 +290,7 @@
   // ---- 2B ↔ 3B sinematik geçiş (hal.js ile aynı) ----
   function setTilt(target) {
     tiltFrom = tilt; tiltTarget = target; tiltAnimStart = performance.now();
-    if (target < 0.5) { yaw = 0; pitch = 0.26; }
+    if (target < 0.5) { yaw = 0; pitch = 0.18; }
     ensureFrame();
     setTimeout(() => { if (!wrapEl.hidden) fitView(true); }, reduceMotion ? 30 : TILT_DUR + 60);
   }

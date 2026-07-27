@@ -1185,6 +1185,7 @@
   function render() {
     if (currentDetailView === "sirlar") {
       if (currentDetailSirlarId) showSirlarEntry(currentDetailSirlarId);
+      else if (currentDetailSirlarMerkez) showSirlarMerkez();
       else showSirlarOverview();
     }
     if (!labelSel) return;
@@ -1517,6 +1518,7 @@
   function showSirlarOverview() {
     currentDetailView = "sirlar";
     currentDetailSirlarId = null;
+    currentDetailSirlarMerkez = false;
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "İşaret Edilen, Açıklanmayan", en: "Pointed To, Not Explained", pt: "Apontado, Não Explicado" })}</p>
       <h2 class="detail-title">${tt({ tr: "Sırlar", en: "Mysteries", pt: "Mistérios" })}</h2>
@@ -1545,12 +1547,35 @@
     return `<a class="cross-link" href="${href}" data-view="${entry.okuma.view}" data-id="${entry.okuma.id}">${label} →</a>`;
   }
 
+  // Sırlar grafiğinin merkezi artık bölümün adını değil, okumalarımızın
+  // bizi getirdiği "sırların sırrı" önerisini taşıyor. Panelde bilerek bir
+  // sonuç gibi değil, gerekçesi ve çekinceleriyle birlikte duruyor.
+  function showSirlarMerkez() {
+    if (!sirlarData || !sirlarData.merkez) return;
+    const m = sirlarData.merkez;
+    currentDetailView = "sirlar";
+    currentDetailSirlarId = null;
+    currentDetailSirlarMerkez = true;
+    detailContent.innerHTML = `
+      <p class="detail-eyebrow">${tt({ tr: "Sırların sırrı", en: "The secret of the secrets", pt: "O segredo dos segredos" })}</p>
+      <h2 class="detail-title">${I18n.pick3(m.topic)}</h2>
+      <div class="detail-block detail-block--sir">
+        <blockquote>${I18n.pick3(m.quote)}</blockquote>
+        <p>${linkify(I18n.pick3(m.note), null, null)}</p>
+        <cite>${m.source}</cite>
+      </div>
+    `;
+    detailPanel.hidden = false;
+  }
+  window.__sirlarShowMerkez = showSirlarMerkez;
+
   function showSirlarEntry(id) {
     if (!sirlarData) return;
     const entry = sirlarData.entries.find((e) => e.id === id);
     if (!entry) return;
     currentDetailView = "sirlar";
     currentDetailSirlarId = id;
+    currentDetailSirlarMerkez = false;
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt(SIRLAR_THEME_LABELS[entry.theme] || { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" })}</p>
       <h2 class="detail-title">${volumeLabel(entry.volume)} — ${I18n.pick3(entry.topic)}</h2>
@@ -1649,6 +1674,8 @@
   let currentDetailEdge = null;
   let currentDetailView = null;
   let currentDetailSirlarId = null;
+  // Merkez paneli açıkken dil değişirse yeniden çizilebilsin diye.
+  let currentDetailSirlarMerkez = false;
 
   // Esmâ/Hâller/Sorular/Sırlar'ın hepsi bir düğüme gidildiğinde ekranı
   // ona doğru yumuşakça kaydırıyor (reduceMotion'a duyarlı); Ontoloji --

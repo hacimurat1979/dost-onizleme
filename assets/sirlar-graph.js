@@ -39,7 +39,15 @@
     "dil-ve-kelime": "--series-sir-dil",
     "insan-i-kamil": "--series-sir-insan",
   };
+  // Merkez düğüm 2026-07-27'ye kadar yalnız bölümün adını ("Sırlar")
+  // taşıyordu, yani içi boş bir başlıktı. Kullanıcı isteğiyle yerini,
+  // okumalarımızın bizi getirdiği "sırların sırrı" önerisi aldı; metni
+  // veriden (`sirlar.json` -> `merkez`) geliyor. Veri gelmeden önceki tek
+  // karelik render için burada bir yedek etiket duruyor.
   const ROOT_LABEL = { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" };
+  function rootLabel() {
+    return (sirlarData && sirlarData.merkez && sirlarData.merkez.label) ? sirlarData.merkez.label : ROOT_LABEL;
+  }
 
   // --- Mat palet (#9): tema renklerini aynı görsel aileye çekmek için
   //     doygunluğu ~%38, parlaklığı temaya göre yumuşatılmış bir tona indir.
@@ -87,7 +95,7 @@
   function nodeColor(d) { return d.kind === "root" ? rootColor() : themeColor(d.theme); }
 
   function labelFor(d) {
-    if (d.kind === "root") return tt(ROOT_LABEL);
+    if (d.kind === "root") return tt(rootLabel());
     if (d.kind === "theme") return tt(THEME_LABELS[d.theme]);
     return tt(d.label);
   }
@@ -483,7 +491,16 @@
       g.select(".sir-hit").attr("r", Math.max(14, r + 8, 22 / Math.max(0.3, currentK)));
       // dış parıltı (rengiyle uyumlu, glossy değil)
       const glowStrength = d.kind === "root" ? 1 : d.kind === "theme" ? 0.7 : 0.4;
-      g.select(".sir-glow").attr("r", r * 1.7).style("fill", col).style("opacity", (d.kind === "root" ? 0.22 : 0.13) * glowStrength * (act && d.id === act.anchor ? 1.6 : 1));
+      // Merkez ("sırların sırrı") diğerlerinden ayrı bir parıltı taşıyor:
+      // daha geniş, daha güçlü ve yavaşça nefes alan. Bütün sayfanın oradan
+      // dallandığı izlenimi görsel olarak da verilsin diye (kullanıcı isteği,
+      // 2026-07-27). Nefes reduced-motion'da kapanıyor.
+      const isRoot = d.kind === "root";
+      const pulse = (isRoot && !reduceMotion) ? 1 + 0.22 * Math.sin((ts / 5200) * 2 * Math.PI) : 1;
+      g.select(".sir-glow")
+        .attr("r", r * (isRoot ? 2.6 : 1.7) * (isRoot ? (0.96 + 0.06 * pulse) : 1))
+        .style("fill", col)
+        .style("opacity", (isRoot ? 0.42 * pulse : 0.13) * glowStrength * (act && d.id === act.anchor ? 1.6 : 1));
       // hover halosu (#10): genişleyen, sönümlenen
       const halo = g.select(".sir-halo");
       if (haloNodeId === d.id) {
@@ -614,7 +631,11 @@
       if (focusedTheme && focusedTheme.id === d.id) exitReading();
       else enterReading(d);
     } else {
+      // Merkez artık bir başlık değil, kendi içeriği olan bir öneri:
+      // "sırların sırrı". Odak açıksa önce onu kapatıyoruz (eski davranış),
+      // değilse merkezin kendi panelini açıyoruz.
       if (focusedTheme) exitReading();
+      else if (sirlarData && sirlarData.merkez && window.__sirlarShowMerkez) window.__sirlarShowMerkez();
       else if (window.__sirlarShowOverview) window.__sirlarShowOverview();
     }
   }
