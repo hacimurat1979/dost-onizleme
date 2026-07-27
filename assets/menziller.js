@@ -410,6 +410,24 @@
     return `<div class="menzil-row"><span class="menzil-row__k">${label}</span><span class="menzil-row__v">${value}</span></div>`;
   }
 
+  // Panel şimdiye kadar dört satırlık kuru bir künye veriyordu (harf, isim,
+  // katman, zuhur) -- okuyucu bu satırların birbiriyle ne ilgisi olduğunu
+  // kendi çıkarmak zorundaydı (kullanıcı notu 2026-07-27). Bu paragraf
+  // şemanın kendisini bir kez anlatıyor ve o menzilin kendi değerlerini
+  // geri okuyor. İçerik uydurulmuyor: yalnız veride duran alanlar
+  // cümleye çevriliyor, ve karşılıkların gerekçesini bilmediğimizi
+  // söylüyoruz (bkz. sitenin kökensel duruşu).
+  function okumaNotuHtml(n) {
+    const katman = katmanAdi(n);
+    const zuhur = tt(n.zuhur);
+    const txt = I18n.pick3({
+      tr: `Dost'un burada kurduğu şema şu: ayın yirmi sekiz menzilinin her birine bir <em>harf</em> ve bir <em>ilâhî isim</em> düşüyor, ve o menzilden âlemde neyin göründüğü (<em>zuhur</em>) sayılıyor. ${n.sira}. menzil olan <em>${n.menzil}</em>'de harf <em>${n.harf}</em>, isim <em>${n.isim}</em>; halkadaki yeri <em>${katman}</em> katmanı. Zuhur satırında sayılanlar ise şunlar: ${zuhur}. Bu üçünün neden yan yana durduğunu biz de tam çıkarabilmiş değiliz — metin karşılıkları çoğu zaman gerekçelendirmeden veriyor. Olduğu gibi aktarıyoruz, aradaki bağı okuyucunun bizimle birlikte aramasını tercih ederek.`,
+      en: `The scheme Ibn Arabi sets up here is this: to each of the moon's twenty-eight mansions there falls a <em>letter</em> and a <em>divine name</em>, and what appears in the world from that mansion (<em>zuhur</em>) is enumerated. In mansion ${n.sira}, <em>${n.menzil}</em>, the letter is <em>${n.harf}</em> and the name <em>${n.isim}</em>; its place on the ring is the <em>${katman}</em> tier. What the zuhur line enumerates is: ${zuhur}. Why these three stand side by side we have not been able to work out either — the text mostly gives the correspondences without grounding them. We pass them on as they are, preferring that the reader look for the link along with us.`,
+      pt: `O esquema que Ibn Arabi monta aqui é este: a cada uma das vinte e oito mansões da lua cabe uma <em>letra</em> e um <em>nome divino</em>, e enumera-se o que dessa mansão aparece no mundo (<em>zuhur</em>). Na mansão ${n.sira}, <em>${n.menzil}</em>, a letra é <em>${n.harf}</em> e o nome <em>${n.isim}</em>; o seu lugar no anel é o estrato <em>${katman}</em>. O que a linha do zuhur enumera é: ${zuhur}. Porque é que estes três estão lado a lado, também nós não conseguimos apurar — o texto dá as correspondências, na maior parte das vezes, sem as fundamentar. Transmitimo-las tal como estão, preferindo que o leitor procure o elo connosco.`,
+    });
+    return `<div class="detail-block"><p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Bu satırlar ne diyor?", en: "What do these lines say?", pt: "O que dizem estas linhas?" })}</p><p>${linkify(txt, "menziller", String(n.sira))}</p></div>`;
+  }
+
   function openMenzil(n) {
     activeId = n.sira;
     const L = {
@@ -433,6 +451,7 @@
         ${rowHtml(L.katman, katmanAdi(n))}
       </div>
       <div class="detail-block detail-block--ibnarabi"><p class="menzil-zuhur__label">${L.zuhur}</p><p>${linkify(tt(n.zuhur), "menziller", String(n.sira))}</p></div>
+      ${okumaNotuHtml(n)}
       ${notu}
       <p class="menzil-kaynak">${L.kaynak}: ${n.kaynak}</p>`;
     detailContent.querySelector(".menzil-back-link").addEventListener("click", () => { activeId = null; showIntro(); ensureFrame(); });

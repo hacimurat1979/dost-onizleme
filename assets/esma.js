@@ -780,6 +780,10 @@
       .on("pointerleave", (e, d) => { if (hoverId === d.id) { hoverId = null; ensureFrame(); } })
       .on("focus", (e, d) => { hoverId = d.id; ensureFrame(); })
       .on("blur", (e, d) => { if (hoverId === d.id) { hoverId = null; ensureFrame(); } });
+    // Görünmez, büyütülmüş tıklama alanı. Öncesinde tıklanabilir yüzey
+    // tam da görünen noktanın kendisiydi; küçük isimlerde (r ~ 4-6)
+    // isabet ettirmek zordu (kullanıcı notu 2026-07-27).
+    enter.append("circle").attr("class", "esmaX-hit");
     enter.append("circle").attr("class", "esmaX-halo");
     enter.append("circle").attr("class", "esmaX-dot");
     enter.append("circle").attr("class", "node-sheen");
@@ -795,6 +799,7 @@
         .attr("transform", `translate(${n.px.toFixed(1)},${n.py.toFixed(1)})`);
       if (op < 0.01) return;
       const r = n.radius * n.pscale;
+      g.select(".esmaX-hit").attr("r", Math.max(r + 10, 21));
       const hs = haloStrength(n);
       const isActive = n.id === selectedId;
       g.classed("is-active", isActive);

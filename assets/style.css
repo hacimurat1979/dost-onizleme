@@ -334,6 +334,18 @@ html {
   border-top: 1px solid var(--border);
 }
 
+/* Sitenin niyetini birinci ağızdan söyleyen kısa paragraf. Çevresindeki
+   tanıtım metninden ayrılsın diye sola ince bir çizgi ve biraz daha
+   yavaş bir satır aralığı; süs değil, sesin değiştiğinin işareti. */
+.hakkinda-niyet {
+  margin-top: 18px;
+  padding-left: 16px;
+  border-left: 2px solid color-mix(in srgb, var(--series-theme) 45%, var(--border));
+  font-style: italic;
+  line-height: 1.85;
+  color: var(--text-secondary);
+}
+
 .hakkinda-content__section h3 {
   font-family: var(--font-display);
   font-size: 1.15rem;
@@ -4831,6 +4843,9 @@ body[data-theme="dark"] .esmaX-bg { opacity: 0.05; }
 
 /* Düğümler */
 .esmaX-node { cursor: pointer; outline: none; }
+/* Görünmez ama tıklanabilir hedef: küçük isimlerde nokta kendi başına
+   çok küçük kalıyordu (kullanıcı notu 2026-07-27). */
+.esmaX-hit { fill: transparent; stroke: none; }
 .esmaX-node:focus-visible .esmaX-dot { stroke: var(--series-theme); stroke-width: 2; }
 .esmaX-halo {
   fill: var(--series-theme);

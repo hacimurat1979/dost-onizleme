@@ -592,7 +592,11 @@
       const breath = reduceMotion ? 1 : (1 + 0.02 * Math.sin(ts / 2800 + d.phase));
       let scale = breath;
       if (isHover) scale *= 1.08;               // hover 1.08x (#2/#15)
-      if (d.isCat && expandedCatId === d.category.id) scale *= 1.1;
+      if (d.isCat && expandedCatId === d.category.id) scale *= 1.18;
+      // Bir kategori açıkken ötekiler arka plana çekiliyor (kullanıcı notu
+      // 2026-07-27): küçülüyor, soluyor ve bulanıklaşıyor -- odak açılan
+      // kolda kalsın.
+      else if (d.isCat && expandedCatId) scale *= 0.68;
       // 3B perspektif ölçeği: uzaktaki düğüm küçülür.
       if (tilt3d && tilt3d.value > 0.02) scale *= Math.max(0.55, 1 + ((d.__depth == null ? 1 : d.__depth) - 1) * tilt3d.value);
       const r = radiusFor(d) * scale;
@@ -606,15 +610,22 @@
       // Atmosfer: 3B'de uzaktaki düğüm soluklaşır (Hâller'deki aynı ölçü).
       const t3 = tilt3d ? tilt3d.value : 0;
       if (t3 > 0.02) op *= Math.max(0.58, Math.min(1, (d.__depth == null ? 1 : d.__depth) * 1.02));
+      const backgrounded = expandedCatId && d.category.id !== expandedCatId;
       g.style("opacity", op).style("display", op < 0.02 ? "none" : null)
+        .style("filter", backgrounded ? "blur(2.2px)" : null)
         .attr("transform", `translate(${(nx_(d) + dx).toFixed(1)},${(ny_(d) + dy).toFixed(1)})`);
       g.classed("sorular-node--active", currentDetailQuestion && d.id === currentDetailQuestion.id);
       const col = catColor(d);
       // flash (aramadan gelince kısa parlama) (#9)
       let flash = 0;
       if (flashId === d.id) { const p = (ts - flashStart) / 900; if (p >= 1) flashId = null; else flash = Math.sin(p * Math.PI); }
+      // Kategori kürelerinin arkasındaki büyük soluk daire 2026-07-27'de
+      // kullanıcı isteğiyle kaldırıldı ("arka taraftaki daha büyük daire
+      // gölgeleri"): sahneyi lekeliyordu. Etkileşim geri bildirimi kalsın
+      // diye üzerine gelince ve arama parlamasında hâlâ beliriyor.
+      const ambientGlow = d.isCat ? 0 : 0.12;
       g.select(".sorular-glow").attr("r", r * 1.8).style("fill", col)
-        .style("opacity", (0.12 + 0.5 * flash) * (isHover ? 1.6 : 1) * (d.degree >= 3 ? 1.3 : 1));
+        .style("opacity", (ambientGlow + 0.5 * flash + (isHover ? 0.16 : 0)) * (d.degree >= 3 ? 1.3 : 1));
       const halo = g.select(".sorular-halo");
       const isActive = currentDetailQuestion && d.id === currentDetailQuestion.id;
       if (isActive) {
@@ -663,11 +674,27 @@
     // bakarsak açılan yelpaze çerçevenin dışına taşıyor.
     const bound = (d) => {
       const xs = [nx_(d)], ys = [ny_(d)];
-      if (!d.isCat && d.tx != null) { xs.push(d.tx); ys.push(d.ty); }
+      // Hedef konum HAM (2B) koordinatta tutuluyor; sahne 3B'yken onu da
+      // izdüşürmek gerekiyor, yoksa iki ayrı koordinat sistemi karışıp
+      // çerçeve olduğundan çok daha geniş hesaplanıyor (açılan kol
+      // küçücük kalıyordu).
+      if (!d.isCat && d.tx != null) {
+        if (tilt3d && tilt3d.value > 0.02) {
+          const tp = tilt3d.project(d.tx - cx, d.ty - cy, tierVert(d));
+          xs.push(tp.x + cx); ys.push(tp.y + cy);
+        } else { xs.push(d.tx); ys.push(d.ty); }
+      }
       xs.forEach((v) => { x0 = Math.min(x0, v); x1 = Math.max(x1, v); });
       ys.forEach((v) => { y0 = Math.min(y0, v); y1 = Math.max(y1, v); });
     };
-    nodes.forEach((d) => { if (depthVisible(d)) bound(d); });
+    // Bir kategori açıkken çerçeve YALNIZ o kola göre kuruluyor: açılan
+    // soru yelpazesi ekrana ortalanıp büyüyor, öteki kategoriler kenarda
+    // (flu ve küçük) kalıyor. Öncesinde bütün sahneye sığdırıldığı için
+    // açılan kol küçücük görünüyordu (kullanıcı notu 2026-07-27).
+    const focusSet = expandedCatId
+      ? nodes.filter((d) => d.category.id === expandedCatId && (d.isCat || depthVisible(d)))
+      : nodes.filter((d) => depthVisible(d));
+    focusSet.forEach(bound);
     if (x0 === 1e9) nodes.forEach(bound);
     // Kategori etiketleri kürenin altına yazılıyor; kenardakiler için pay bırak.
     x0 -= 78; x1 += 78; y0 -= 56; y1 += 62;
@@ -879,12 +906,18 @@
     buildSim();
     initAtmosphere();
     dropH3d = ringR * 1.6;
-    tilt3d = GU.createTilt({ focal: 2600, pitch: 0.3, spinRate: 0.00005 });
+    // pitch 0.3 -> 0.42: sahnenin 3B olduğu ilk bakışta anlaşılmıyordu
+    // (kullanıcı notu 2026-07-27); daha açık bir eğim derinliği görünür
+    // kılıyor. spinRate zaten çok yavaş -- "huzurlu dönüş" istenen bu.
+    tilt3d = GU.createTilt({ focal: 2600, pitch: 0.42, spinRate: 0.00005 });
     tilt3d.wireToggle("sorular-3d-toggle", () => {
       ensureFrame();
       setTimeout(() => { if (!wrapEl.hidden) fitView(true); }, reduceMotion ? 30 : 1120);
     });
     tilt3d.wireDrag(svgNode, () => { render(performance.now()); ensureFrame(); }, ".sorular-node");
+    // Görünüm 3B açılıyor (kullanıcı notu 2026-07-27).
+    tilt3d.set(1, true);
+    tilt3d.markOn("sorular-3d-toggle");
     render(performance.now());
     fitView(false);
     ensureFrame();

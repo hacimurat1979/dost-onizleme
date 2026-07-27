@@ -82,7 +82,7 @@
 
   // --- Düğüm yarıçapları (#1): güçlü hiyerarşi. (root 70 / kategori 48 /
   //     leaf 10 px çap → yarıçap). Veride ara-kategori yok, üç kademe.
-  const R_ROOT = 34, R_THEME = 23, R_ENTRY = 6;
+  const R_ROOT = 34, R_THEME = 23, R_ENTRY = 7.5;
   function baseRadius(d) { return d.kind === "root" ? R_ROOT : d.kind === "theme" ? R_THEME : R_ENTRY; }
   function nodeColor(d) { return d.kind === "root" ? rootColor() : themeColor(d.theme); }
 
@@ -100,7 +100,7 @@
   let sirlarData = null, sirlarDataPromise = null, built = false;
   let nodes = [], links = [], byId = new Map(), childrenOf = new Map();
   let sim = null, zoomBehavior = null, currentK = 1;
-  let zoomLayer, spinLayer, bgLayer, bubbleLayer, linkLayer, particleLayer, nodeLayer;
+  let zoomLayer, spinLayer, bgLayer, linkLayer, particleLayer, nodeLayer;
   // Sakin, huzurlu dönüş: tam tur ~110 saniye.
   let spin = 0;
   const SPIN_RATE = 0.000057;
@@ -205,7 +205,6 @@
     // yavaşça dönerken etiketler ayrıca ters döndürülüp dik tutuluyor.
     spinLayer = zoomLayer.append("g").attr("class", "sir-spin");
     bgLayer = spinLayer.append("g").attr("class", "sir-bg");
-    bubbleLayer = spinLayer.append("g").attr("class", "sir-bubbles");
     linkLayer = spinLayer.append("g").attr("class", "sir-links");
     particleLayer = spinLayer.append("g").attr("class", "sir-particles");
     nodeLayer = spinLayer.append("g").attr("class", "sir-nodes");
@@ -378,26 +377,10 @@
       bgSel.exit().remove();
     }
 
-    // --- kategori baloncukları (#6): temanın sırlarını saran soluk daire
-    const bubbleData = THEME_ORDER.map((theme) => {
-      const kids = (childrenOf.get("theme-" + theme) || []).map((id) => byId.get(id));
-      const th = byId.get("theme-" + theme);
-      const pts = kids.concat([th]);
-      if (!pts.length) return null;
-      let cx = 0, cy = 0; pts.forEach((p) => { cx += p.x; cy += p.y; }); cx /= pts.length; cy /= pts.length;
-      let rad = 0; pts.forEach((p) => { rad = Math.max(rad, Math.hypot(p.x - cx, p.y - cy)); });
-      return { theme, cx, cy, r: rad + 26 };
-    }).filter(Boolean);
-    const bub = bubbleLayer.selectAll("circle.sir-bubble").data(bubbleData, (d) => d.theme);
-    bub.enter().append("circle").attr("class", "sir-bubble").merge(bub)
-      .attr("cx", (d) => d.cx).attr("cy", (d) => d.cy).attr("r", (d) => d.r * growth)
-      .style("fill", (d) => themeColor(d.theme))
-      .style("opacity", (d) => {
-        let o = 0.05;
-        if (act) o = act.set.has("theme-" + d.theme) ? 0.09 : 0.02;
-        return o * growth;
-      });
-    bub.exit().remove();
+    // Kategori baloncukları (temanın sırlarını saran soluk büyük daireler)
+    // 2026-07-27'de kullanıcı isteğiyle kaldırıldı: 3B'de arkada duran
+    // gölgemsi lekeler gibi görünüyor, sahneyi okunaksızlaştırıyordu.
+    // Tema aidiyeti zaten renkle ve kenarlarla belli.
 
     // --- kenarlar (bezier, #2) + büyüme (#7) ---
     const lk = linkLayer.selectAll("path.sir-link").data(links, (d) => d.target.id || d.target);
@@ -492,8 +475,12 @@
       g.style("opacity", op).style("display", op < 0.02 ? "none" : null)
         .attr("transform", `translate(${nx_(d).toFixed(1)},${ny_(d).toFixed(1)})`);
       g.classed("is-anchor", act && d.id === act.anchor);
-      // görünmez tıklama alanı: küçük yaprak düğümlerde (r=6) gerçek dokunma hedefi sağlar
-      g.select(".sir-hit").attr("r", Math.max(14, r + 8));
+      // Görünmez tıklama alanı. Sabit 14 birim yetmiyordu: sahne uzaklaşınca
+      // (currentK < 1) SVG birimi ekranda küçülüyor, en dipteki yapraklar
+      // tıklanamaz hâle geliyordu (kullanıcı notu 2026-07-27). Hedefi
+      // EKRAN ölçüsünde tutuyoruz -- yarıçap ~22 ekran pikselinin altına
+      // düşmüyor.
+      g.select(".sir-hit").attr("r", Math.max(14, r + 8, 22 / Math.max(0.3, currentK)));
       // dış parıltı (rengiyle uyumlu, glossy değil)
       const glowStrength = d.kind === "root" ? 1 : d.kind === "theme" ? 0.7 : 0.4;
       g.select(".sir-glow").attr("r", r * 1.7).style("fill", col).style("opacity", (d.kind === "root" ? 0.22 : 0.13) * glowStrength * (act && d.id === act.anchor ? 1.6 : 1));
@@ -527,6 +514,78 @@
           .text(long ? longLabelFor(d) : labelFor(d));
       }
     });
+
+    spreadThemeLabels(merged);
+  }
+
+  // Tema etiketleri uzun ("Dilde ve Kelimede Gizlenen Sırlar" gibi) ve 3B'de
+  // halka dikeyde sıkıştığı için yan yana gelen ikisi birbirinin üstüne
+  // biniyordu (kullanıcı notu 2026-07-27). Beş tema var; her karede ekran
+  // konumlarına bakıp yatayda örtüşenleri dikeyde ayırıyoruz. Genişlik
+  // ölçümü (getComputedTextLength) metin başına bir kez yapılıp
+  // önbelleğe alınıyor -- her karede layout zorlamamak için.
+  const labelWidthCache = new Map();
+  function measureLabel(textEl) {
+    const key = textEl.textContent + "|" + textEl.style.fontSize;
+    if (labelWidthCache.has(key)) return labelWidthCache.get(key);
+    let w = 0;
+    try { w = textEl.getComputedTextLength(); } catch (e) { w = key.length * 6; }
+    labelWidthCache.set(key, w);
+    return w;
+  }
+
+  function spreadThemeLabels(merged) {
+    const items = [];
+    const discs = [];
+    merged.each(function (d) {
+      if (d.kind !== "theme") return;
+      const g = this;
+      if (g.style.display === "none") return;
+      const dot = g.querySelector(".sir-dot");
+      discs.push({ id: d.id, x: nx_(d), y: ny_(d), r: parseFloat(dot && dot.getAttribute("r")) || R_THEME });
+      const lbl = g.querySelector(".sir-label");
+      if (!lbl || lbl.style.display === "none") return;
+      const baseY = parseFloat(lbl.getAttribute("y")) || 0;
+      lbl.__baseY = lbl.__baseY == null ? baseY : lbl.__baseY;
+      items.push({ id: d.id, el: lbl, x: nx_(d), y: ny_(d) + lbl.__baseY, w: measureLabel(lbl), baseY: lbl.__baseY });
+    });
+    if (items.length < 2) return;
+    items.sort((a, b) => a.y - b.y);
+    // Boşluk EKRAN ölçüsünde tutulmalı: satır yüksekliği ~15 ekran pikseli,
+    // ama burada SVG birimindeyiz ve sahne uzaklaşınca (currentK < 1) sabit
+    // bir SVG boşluğu ekranda yetersiz kalıyor.
+    const MIN_GAP = 17 / Math.max(0.35, currentK);
+    for (let i = 0; i < items.length; i++) {
+      const cur = items[i];
+      let shift = 0;
+      for (let j = 0; j < i; j++) {
+        const prev = items[j];
+        const overlapX = Math.abs(cur.x - prev.x) < (cur.w + prev.w) / 2 + 6;
+        if (!overlapX) continue;
+        const need = prev.y + shiftOf(prev) + MIN_GAP - cur.y;
+        if (need > shift) shift = need;
+      }
+      // Etiket, BAŞKA bir temanın dairesinin üstüne de binmemeli -- yoksa
+      // ilk harfleri düğümün arkasında kalıyor (kullanıcı notu 2026-07-27).
+      shift = Math.max(shift, clearOfDiscs(cur, shift));
+      cur.__shift = shift;
+      cur.el.setAttribute("y", (cur.baseY + shift).toFixed(1));
+    }
+
+    function clearOfDiscs(it, shift) {
+      let need = shift;
+      const half = it.w / 2;
+      discs.forEach((dc) => {
+        if (dc.id === it.id) return;
+        const y = it.y + shift;
+        const overlapX = dc.x + dc.r > it.x - half - 4 && dc.x - dc.r < it.x + half + 4;
+        if (!overlapX) return;
+        if (Math.abs(y - dc.y) > dc.r + 9) return;
+        need = Math.max(need, dc.y + dc.r + 11 - it.y);
+      });
+      return need;
+    }
+    function shiftOf(it) { return it.__shift || 0; }
   }
 
   function labelVisible(d, act) {
@@ -654,8 +713,16 @@
     // Perdelenme derinliği. dropH, dış halkanın yarıçapına bağlı: katmanlar
     // birbirinden ayrışsın ama sahne dikeyde taşmasın.
     dropH = ringRadius().entry * 1.5;
-    tilt3d = GU.createTilt({ focal: 2400, pitch: 0.3, spinRate: 0.00005 });
+    // pitch 0.3 -> 0.44: 3B'de halka dikeyde çok sıkışıyordu, tema
+    // etiketleri birbirine giriyordu (kullanıcı notu 2026-07-27). Daha açık
+    // bir eğim elipsi genişletiyor ve etiketlere dikeyde yer açıyor.
+    tilt3d = GU.createTilt({ focal: 2400, pitch: 0.44, spinRate: 0.00005 });
     tilt3d.wireToggle("sirlar-3d-toggle", () => { ensureFrame(); setTimeout(fitAll, reduceMotion ? 30 : 1120); });
+    // Görünüm 3B açılıyor (kullanıcı notu 2026-07-27): sahnenin derinliği
+    // olduğu ilk bakışta anlaşılsın diye. "instant" -- açılıştaki öbür
+    // işlerle yarışıp takılmasın (bkz. graph-utils createTilt.set).
+    tilt3d.set(1, true);
+    tilt3d.markOn("sirlar-3d-toggle");
     tilt3d.wireDrag(svgNode, () => { render(performance.now()); ensureFrame(); }, ".sir-node");
     initBgParticles();
     initParticles();
