@@ -32,6 +32,24 @@
     return tt(s);
   }
 
+  // Kısım düzeyindeki `pageRange` de iki şemayla yazıldı: ilk 67 kısımda
+  // düz metin ("73–126", önek yok), sonrakilerde üç dilli sözlük
+  // ("s. 361-369" / "pp. 361-369"). Alan yıllardır veride taşınıyordu ama
+  // hiçbir yerde render edilmiyordu; bu yüzden şema farkı da hiç yüzeye
+  // çıkmamıştı. Eski kayıtları toplu düzenlemek yerine (bkz. CLAUDE.md:
+  // veri dosyalarında toplu yeniden serileştirme yok) düz metin biçimine
+  // öneki burada, dile göre ekliyoruz.
+  function pageRangeLabel(pr) {
+    if (!pr) return "";
+    if (typeof pr === "string") {
+      const raw = pr.trim();
+      if (!raw) return "";
+      const prefix = I18n.pick3({ tr: "s. ", en: "pp. ", pt: "pp. " });
+      return /^(s\.|pp\.|p\.)/i.test(raw) ? raw : prefix + raw;
+    }
+    return tt(pr);
+  }
+
   function linkify(text) {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text;
   }
@@ -905,6 +923,7 @@
         </div>
         <p class="futuhat-hero__eyebrow">${tt({ tr: "Fütûhât-ı Mekkiyye", en: "al-Futuhat al-Makkiyya", pt: "al-Futuhat al-Makkiyya" })} · ${tt({ tr: "Cilt " + CILT_ROMAN[part.cilt], en: "Volume " + CILT_ROMAN[part.cilt], pt: "Volume " + CILT_ROMAN[part.cilt] })} · ${tt({ tr: "Kısım " + roman(part.kisim), en: "Part " + roman(part.kisim), pt: "Parte " + roman(part.kisim) })}</p>
         <h2 class="futuhat-hero__title">${tt(part.title)}</h2>
+        ${pageRangeLabel(part.pageRange) ? `<p class="futuhat-hero__pages">${pageRangeLabel(part.pageRange)}</p>` : ""}
         <p class="futuhat-hero__summary">${linkify(tt(part.hero.summary))}</p>
       </header>
 

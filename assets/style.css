@@ -1590,6 +1590,14 @@ button.futuhat-part-chip:hover {
   margin: 0 0 14px;
 }
 
+.futuhat-hero__pages {
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  margin: -6px 0 14px;
+  font-variant-numeric: tabular-nums;
+}
+
 .futuhat-hero__summary {
   font-family: var(--font-display);
   font-style: italic;
