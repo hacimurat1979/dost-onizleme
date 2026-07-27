@@ -534,9 +534,9 @@
             </button>`;
           })
           .join("");
-        return `<section class="terimler-group" id="terim-grup-${g.id}" data-group="${g.id}">
+        return `<section class="terimler-group" id="terim-grup-${g.id}" data-group="${g.id}" style="--tag-hue:${hue}">
           <header class="terimler-group__header">
-            <span class="terimler-group__badge" style="--tag-hue:${hue}">${groupIconSvg(g.id)}</span>
+            <span class="terimler-group__badge">${groupIconSvg(g.id)}</span>
             <div>
               <h2 class="terimler-group__title">${tt(g.name)}</h2>
               <p class="terimler-group__desc">${tt(g.description)}</p>
@@ -574,6 +574,7 @@
         if (!sec) return;
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         sec.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+        pulseGroup(sec, reduce);
       });
     });
     if (!("IntersectionObserver" in window)) return;
@@ -595,6 +596,32 @@
       { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
     );
     grid.querySelectorAll(".terimler-group").forEach((sec) => obs.observe(sec));
+  }
+
+  // Sırttan bir bölüme gidildiğinde, inilen yer kaydırma bitince de belli
+  // olsun diye kısa bir vurgu: Fütûhât'ta bir kaynağa gidildiğindeki
+  // hareketin aynısı (bkz. assets/futuhat.js -> navigateToSource) --
+  // rozet halkalanıyor, başlık satırı bir an grubun rengine bulanıyor.
+  let pulseTimers = [];
+  function pulseGroup(sec, reduce) {
+    pulseTimers.forEach(clearTimeout);
+    pulseTimers = [];
+    grid.querySelectorAll(".terimler-group.is-pulsing").forEach((el) => el.classList.remove("is-pulsing"));
+    grid.querySelectorAll(".terimler-group__badge.futuhat-pulse").forEach((el) => el.classList.remove("futuhat-pulse"));
+    const badge = sec.querySelector(".terimler-group__badge");
+    // kaydırma bitmeye yakın başlasın; yoksa vurgu daha yolda sönüyor
+    pulseTimers.push(
+      setTimeout(() => {
+        sec.classList.add("is-pulsing");
+        if (badge) badge.classList.add("futuhat-pulse");
+        pulseTimers.push(
+          setTimeout(() => {
+            sec.classList.remove("is-pulsing");
+            if (badge) badge.classList.remove("futuhat-pulse");
+          }, 1700)
+        );
+      }, reduce ? 0 : 350)
+    );
   }
 
   // İşaretli bölüm bağlantısı, sırtın kendi kaydırma penceresinin dışına

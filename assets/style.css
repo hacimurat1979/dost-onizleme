@@ -3968,7 +3968,23 @@ html:has(.detail-panel:not([hidden])) {
   display: flex;
   align-items: flex-start;
   gap: 13px;
-  margin-bottom: 14px;
+  /* negatif dış boşluk: vurgu zemininin nefes alacak payı olsun ama
+     düzen kaymasın (alt boşluk yine 14px'e denk geliyor). */
+  padding: 8px 10px;
+  margin: -8px -10px 6px;
+  border-radius: 12px;
+  transition: background 0.55s ease;
+}
+/* Sırttan bir bölüme gidildiğinde kısa bir vurgu -- Fütûhât'ta bir
+   kaynağa gidildiğindeki hareketin (futuhat-pulse) aynısı: rozet
+   halkalanırken başlık satırı da bir an grubun kendi rengine bulanıyor,
+   böylece hangi bölüme indiğimiz kaydırma bitince de belli oluyor. */
+.terimler-group.is-pulsing .terimler-group__header {
+  background: hsl(var(--tag-hue, 38) 34% 46% / 0.1);
+  transition: background 0.2s ease;
+}
+.viz-root[data-theme="dark"] .terimler-group.is-pulsing .terimler-group__header {
+  background: hsl(var(--tag-hue, 38) 32% 58% / 0.15);
 }
 /* Grubun kendi rengiyle boyanmış dairesel rozet -- artık sayı değil,
    grubun simgesini taşıyor: sayı sol sırtta zaten var, ve simge her
