@@ -434,32 +434,41 @@
     return { raw: scores, norm: norm, lo: lo, hi: hi };
   }
 
-  function applyHeat() {
-    if (!heatByTerm) return;
-    grid.querySelectorAll(".terim-card").forEach((card) => {
-      const n = heatByTerm.norm.get(card.dataset.id);
-      if (n == null) return;
-      card.style.setProperty("--heat", n.toFixed(3));
-      card.classList.add("terim-card--heat");
-      card.title = tt({
-        tr: "Dönüş yoğunluğu: " + heatByTerm.raw.get(card.dataset.id),
-        en: "Return density: " + heatByTerm.raw.get(card.dataset.id),
-        pt: "Densidade de retorno: " + heatByTerm.raw.get(card.dataset.id),
-      });
-    });
-    grid.classList.add("terimler-list--heat");
+  // Yoğunluk artık bir "ışıma" değil, bir ÖLÇEK. İlk tasarımda her kart
+  // kendi yoğunluğu kadar ışıyordu; koyu zeminde çalışıyordu ama açık
+  // zeminde hâle bir leke gibi okunuyordu (kullanıcı tespiti, 2026-07-27).
+  // Yerine her terimin yanında küçük bir HALKA var: çemberin ne kadarının
+  // çizildiği, o terime kaç kere geri döndüğümüz. İki zeminde de aynı
+  // netlikte okunuyor, ve bir atmosfer değil bir ölçü olduğunu -- yani
+  // iddiasının ne olduğunu -- biçimiyle söylüyor. Dairesel oluşu da
+  // sitenin kendi diline ait (bkz. CLAUDE.md, "daire ve merkez").
+  const GAUGE_R = 7.4;
+  const GAUGE_C = 2 * Math.PI * GAUGE_R;
+
+  function gaugeSvg(n, hue) {
+    const frac = Math.max(0.06, Math.min(1, n));
+    const off = GAUGE_C * (1 - frac);
+    return `<svg class="terim-entry__gauge" viewBox="0 0 20 20" aria-hidden="true" style="--tag-hue:${hue}">
+      <circle class="terim-entry__gauge-track" cx="10" cy="10" r="${GAUGE_R}"></circle>
+      <circle class="terim-entry__gauge-arc" cx="10" cy="10" r="${GAUGE_R}"
+        stroke-dasharray="${GAUGE_C.toFixed(2)}" stroke-dashoffset="${off.toFixed(2)}"></circle>
+    </svg>`;
   }
 
   function heatKeyHtml() {
     return `<div class="terimler-heat">
       <p class="terimler-heat__title">
-        <span class="terimler-heat__dot" aria-hidden="true"></span>
+        <svg class="terim-entry__gauge terimler-heat__gauge" viewBox="0 0 20 20" aria-hidden="true">
+          <circle class="terim-entry__gauge-track" cx="10" cy="10" r="${GAUGE_R}"></circle>
+          <circle class="terim-entry__gauge-arc" cx="10" cy="10" r="${GAUGE_R}"
+            stroke-dasharray="${GAUGE_C.toFixed(2)}" stroke-dashoffset="${(GAUGE_C * 0.32).toFixed(2)}"></circle>
+        </svg>
         <span>${tt({ tr: "Dönüş yoğunluğu", en: "Return density", pt: "Densidade de retorno" })}</span>
       </p>
       <p class="terimler-heat__note">${tt({
-        tr: "Her terim, ona kaç kere geri döndüğümüz kadar ışıyor — kaydettiğimiz kaynak pasajları, başka terimlerin ona verdiği atıflar ve sitenin öbür bölümlerine kurduğumuz bağlar toplanarak. Bu, Dost'un neye ağırlık verdiğini değil, bizim okumamızın nerede yoğunlaştığını gösteriyor; yani bir ölçü değil, bir öz-portre.",
-        en: "Each term glows in proportion to how often we have had to come back to it — the source passages we recorded, the references other terms make to it, and the links we built to other parts of the site, added together. This shows not what Dost emphasised but where our own reading has thickened; a self-portrait rather than a measurement.",
-        pt: "Cada termo brilha na proporção de quantas vezes tivemos de voltar a ele — as passagens-fonte que registamos, as referências que outros termos lhe fazem e os vínculos que construímos com outras partes do site, somados. Isto mostra não o que Dost enfatizou, mas onde a nossa própria leitura se adensou; um autorretrato, não uma medição.",
+        tr: "Her terimin yanındaki halka, ona kaç kere geri döndüğümüz kadar doluyor — kaydettiğimiz kaynak pasajları, başka terimlerin ona verdiği atıflar ve sitenin öbür bölümlerine kurduğumuz bağlar toplanarak. Bu, Dost'un neye ağırlık verdiğini değil, bizim okumamızın nerede yoğunlaştığını gösteriyor; yani bir ölçü değil, bir öz-portre.",
+        en: "The ring beside each term fills in proportion to how often we have had to come back to it — the source passages we recorded, the references other terms make to it, and the links we built to other parts of the site, added together. This shows not what Dost emphasised but where our own reading has thickened; a self-portrait rather than a measurement.",
+        pt: "O anel ao lado de cada termo preenche-se na proporção de quantas vezes tivemos de voltar a ele — as passagens-fonte que registámos, as referências que outros termos lhe fazem e os vínculos que construímos com outras partes do site, somados. Isto mostra não o que Dost enfatizou, mas onde a nossa própria leitura se adensou; um autorretrato, não uma medição.",
       })}</p>
     </div>`;
   }
@@ -472,50 +481,183 @@
       if (!byGroup.has(t.group)) byGroup.set(t.group, []);
       byGroup.get(t.group).push(t);
     });
-    const counts = (glossaryData.groups || []).map((g) => (byGroup.get(g.id) || []).length).filter(Boolean);
-    const minCount = Math.min(...counts);
-    const maxCount = Math.max(...counts);
-    // Rozet çapı grubun terim sayısına göre ölçekleniyor -- her grup aynı
-    // boyutta bir nokta değil, kendi "yörüngesindeki" terim yoğunluğunu
-    // taşıyan bir daire (bkz. "daire ve merkez" ilkesi). Alan-orantılı
-    // hissettirmesi için karekök ölçek kullanılıyor (bubble-chart yakınsaması).
-    function badgeSize(count) {
-      if (maxCount === minCount) return 34;
-      const t = Math.sqrt((count - minCount) / (maxCount - minCount));
-      return Math.round(26 + t * 20);
-    }
-    grid.innerHTML = heatKeyHtml() + (glossaryData.groups || [])
+    const groups = (glossaryData.groups || []).filter((g) => (byGroup.get(g.id) || []).length);
+
+    // Sol taraftaki "sırt": sözlüğün kendi omurgası. Grupları hem gezinti
+    // hem içindekiler olarak taşıyor; sayfanın solunu doldurup terimleri
+    // kalan bütün genişliğe yayıyor -- eski düzende terimler dar bir
+    // sütuna sıkışıp sağ yarı boş kalıyordu (kullanıcı tespiti).
+    const rail = `<nav class="terimler-rail" aria-label="${tt({ tr: "Sözlük bölümleri", en: "Glossary sections", pt: "Secções do glossário" })}">
+      <label class="terimler-filter">
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><line x1="15.8" y1="15.8" x2="20" y2="20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <input type="search" id="terimler-filter-input" autocomplete="off"
+          placeholder="${tt({ tr: "Terim ara…", en: "Search terms…", pt: "Procurar termos…" })}"
+          aria-label="${tt({ tr: "Terim ara", en: "Search terms", pt: "Procurar termos" })}">
+      </label>
+      <p class="terimler-rail__count" id="terimler-rail-count"></p>
+      <ol class="terimler-rail__list">${groups
+        .map((g) => {
+          const n = (byGroup.get(g.id) || []).length;
+          return `<li><a class="terimler-rail__item" href="#terim-grup-${g.id}" data-group="${g.id}" style="--tag-hue:${groupHue(g.id)}">
+            <span class="terimler-rail__dot" aria-hidden="true"></span>
+            <span class="terimler-rail__name">${tt(g.name)}</span>
+            <span class="terimler-rail__n">${n}</span>
+          </a></li>`;
+        })
+        .join("")}</ol>
+    </nav>`;
+
+    const body = groups
       .map((g) => {
         const groupTerms = byGroup.get(g.id) || [];
-        if (!groupTerms.length) return "";
-        const cards = groupTerms
+        const hue = groupHue(g.id);
+        const entries = groupTerms
           .map((t) => {
             const tier = t.tier || 2;
-            return `<button class="terim-card terim-card--tier-${tier}" data-id="${t.id}">
-              <span class="terim-card__icon">${groupIconSvg(t.group)}</span>
-              <span class="terim-card__title">${tt(t.title)}</span>
-              <span class="terim-card__ozet">${tt({ tr: t.ozet_tr, en: t.ozet_en, pt: t.ozet_pt })}</span>
-              ${relatedChipsInline(t)}
+            const n = heatByTerm.norm.get(t.id);
+            const raw = heatByTerm.raw.get(t.id);
+            const ozet = tt({ tr: t.ozet_tr, en: t.ozet_en, pt: t.ozet_pt });
+            const gaugeTitle = tt({
+              tr: "Dönüş yoğunluğu: " + raw,
+              en: "Return density: " + raw,
+              pt: "Densidade de retorno: " + raw,
+            });
+            return `<button class="terim-entry terim-entry--tier-${tier}" data-id="${t.id}"
+                data-search="${(tt(t.title) + " " + ozet).toLowerCase().replace(/"/g, "")}"
+                title="${gaugeTitle}">
+              ${gaugeSvg(n == null ? 0 : n, hue)}
+              <span class="terim-entry__text">
+                <span class="terim-entry__title">${tt(t.title)}</span>
+                <span class="terim-entry__ozet">${ozet}</span>
+                ${relatedChipsInline(t)}
+              </span>
             </button>`;
           })
           .join("");
-        const size = badgeSize(groupTerms.length);
-        return `<section class="terimler-group">
+        return `<section class="terimler-group" id="terim-grup-${g.id}" data-group="${g.id}">
           <header class="terimler-group__header">
-            <span class="terimler-group__badge" style="--tag-hue:${groupHue(g.id)}; --badge-size:${size}px">${groupTerms.length}</span>
+            <span class="terimler-group__badge" style="--tag-hue:${hue}">${groupIconSvg(g.id)}</span>
             <div>
               <h2 class="terimler-group__title">${tt(g.name)}</h2>
               <p class="terimler-group__desc">${tt(g.description)}</p>
             </div>
           </header>
-          <div class="terimler-group__cards">${cards}</div>
+          <div class="terimler-group__entries">${entries}</div>
+          <p class="terimler-group__empty" hidden>${tt({
+            tr: "Bu bölümde eşleşen terim yok.",
+            en: "No matching term in this section.",
+            pt: "Nenhum termo correspondente nesta secção.",
+          })}</p>
         </section>`;
       })
       .join("");
-    grid.querySelectorAll(".terim-card").forEach((card) => {
-      card.addEventListener("click", () => showTermDetail(card.dataset.id));
+
+    grid.innerHTML = `<div class="terimler-shell">${rail}<div class="terimler-body">${heatKeyHtml()}${body}</div></div>`;
+
+    grid.querySelectorAll(".terim-entry").forEach((el) => {
+      el.addEventListener("click", () => showTermDetail(el.dataset.id));
     });
-    applyHeat();
+    wireRail();
+    wireFilter();
+  }
+
+  // Sol sırttaki bağlantılar sayfayı gerçekten kaydırıyor; ayrıca hangi
+  // bölümde olduğumuzu işaretliyor. IntersectionObserver kullanılıyor ki
+  // kaydırma sırasında her karede hesap yapılmasın.
+  function wireRail() {
+    const items = Array.from(grid.querySelectorAll(".terimler-rail__item"));
+    if (!items.length) return;
+    items.forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const sec = grid.querySelector("#terim-grup-" + CSS.escape(a.dataset.group));
+        if (!sec) return;
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        sec.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      });
+    });
+    if (!("IntersectionObserver" in window)) return;
+    const seen = new Set();
+    const obs = new IntersectionObserver(
+      (recs) => {
+        recs.forEach((r) => {
+          const id = r.target.dataset.group;
+          if (r.isIntersecting) seen.add(id);
+          else seen.delete(id);
+        });
+        items.forEach((a) => a.classList.remove("is-current"));
+        const first = items.find((a) => seen.has(a.dataset.group));
+        if (first) {
+          first.classList.add("is-current");
+          keepRailVisible(first);
+        }
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+    );
+    grid.querySelectorAll(".terimler-group").forEach((sec) => obs.observe(sec));
+  }
+
+  // İşaretli bölüm bağlantısı, sırtın kendi kaydırma penceresinin dışına
+  // düşebiliyor (masaüstünde dikey liste, dar ekranda yatay şerit). Sayfayı
+  // değil SADECE sırtı kaydırıyoruz -- scrollIntoView burada sayfayı da
+  // oynatıp okuma yerini kaybettirirdi.
+  function keepRailVisible(item) {
+    const list = item.closest(".terimler-rail__list");
+    const rail = item.closest(".terimler-rail");
+    const horiz = list && list.scrollWidth - list.clientWidth > 1 ? list : null;
+    const vert = rail && rail.scrollHeight - rail.clientHeight > 1 ? rail : null;
+    if (horiz) {
+      const b = item.getBoundingClientRect();
+      const c = horiz.getBoundingClientRect();
+      if (b.left < c.left) horiz.scrollLeft += b.left - c.left - 8;
+      else if (b.right > c.right) horiz.scrollLeft += b.right - c.right + 8;
+    }
+    if (vert) {
+      const b = item.getBoundingClientRect();
+      const c = vert.getBoundingClientRect();
+      if (b.top < c.top) vert.scrollTop += b.top - c.top - 8;
+      else if (b.bottom > c.bottom) vert.scrollTop += b.bottom - c.bottom + 8;
+    }
+  }
+
+  function wireFilter() {
+    const input = grid.querySelector("#terimler-filter-input");
+    const countEl = grid.querySelector("#terimler-rail-count");
+    if (!input) return;
+    const entries = Array.from(grid.querySelectorAll(".terim-entry"));
+    const total = entries.length;
+    function setCount(n) {
+      if (!countEl) return;
+      countEl.textContent =
+        n === total
+          ? tt({ tr: total + " terim", en: total + " terms", pt: total + " termos" })
+          : tt({ tr: n + " / " + total + " terim", en: n + " / " + total + " terms", pt: n + " / " + total + " termos" });
+    }
+    function apply() {
+      const q = input.value.trim().toLowerCase();
+      let shown = 0;
+      entries.forEach((el) => {
+        const hit = !q || el.dataset.search.indexOf(q) !== -1;
+        el.hidden = !hit;
+        if (hit) shown++;
+      });
+      grid.querySelectorAll(".terimler-group").forEach((sec) => {
+        const any = sec.querySelector(".terim-entry:not([hidden])");
+        sec.classList.toggle("is-empty", !any);
+        const empty = sec.querySelector(".terimler-group__empty");
+        if (empty) empty.hidden = !!any;
+      });
+      setCount(shown);
+    }
+    input.addEventListener("input", apply);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && input.value) {
+        e.stopPropagation();
+        input.value = "";
+        apply();
+      }
+    });
+    setCount(total);
   }
 
   function render() {
