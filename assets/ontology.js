@@ -53,6 +53,21 @@
         <text class="term-diagram-label term-diagram-note--accent" x="160" y="93" text-anchor="middle">${tt(d.center)}</text>
       </svg>
     `,
+    // Perde = ardışık iki yaratılışın birbirine benzemesi (416). Üç
+    // neredeyse özdeş daire: aralarındaki fark o kadar küçük ki
+    // yenilenmeyi göremiyoruz -- görmediğimiz şeyin adı perde.
+    "veil-likeness": (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 320 190" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node--venn" cx="92" cy="88" r="52"/>
+        <circle class="term-diagram-node--venn" cx="160" cy="88" r="52"/>
+        <circle class="term-diagram-node--venn" cx="228" cy="88" r="52"/>
+        <text class="term-diagram-label" x="92" y="30" text-anchor="middle">${tt(d.first)}</text>
+        <text class="term-diagram-label" x="160" y="30" text-anchor="middle">${tt(d.second)}</text>
+        <text class="term-diagram-label" x="228" y="30" text-anchor="middle">${tt(d.third)}</text>
+        <text class="term-diagram-label term-diagram-note--accent" x="160" y="93" text-anchor="middle">${tt(d.overlap)}</text>
+        <text class="term-diagram-note" x="160" y="168" text-anchor="middle">${tt(d.foot)}</text>
+      </svg>
+    `,
     "seed-fork": (d) => `
       <svg class="term-diagram__svg" viewBox="0 0 260 240" role="img" aria-label="${tt(d.note)}">
         <line class="term-diagram-tether" x1="114" y1="167" x2="73" y2="197"/>
@@ -1516,6 +1531,20 @@
   // görünümlerle (Ontoloji/Esmâ/Hâller/Sorular) tutarlı şekilde tek, odaklı
   // bir kart gösterilir -- eski, bütün sırları tek accordion listesinde
   // döken görünüm yerine.
+  // Bir sır kaydı, kısım-kısım okuma turlarımızın birinden çıktıysa, o
+  // kısma geri götüren bir bağ veriyoruz -- kayıt böylece havada durmuyor,
+  // hangi okumada karşımıza çıktığı görülebiliyor.
+  function sirlarOkumaHtml(entry) {
+    if (!entry.okuma || !entry.okuma.view || !entry.okuma.id) return "";
+    const href = `${ROUTE_BASE}/${entry.okuma.view}/${entry.okuma.id}`;
+    const label = tt({
+      tr: "Bu satırları hangi okumada bulduk",
+      en: "The reading round where we found these lines",
+      pt: "A ronda de leitura em que encontrámos estas linhas",
+    });
+    return `<a class="cross-link" href="${href}" data-view="${entry.okuma.view}" data-id="${entry.okuma.id}">${label} →</a>`;
+  }
+
   function showSirlarEntry(id) {
     if (!sirlarData) return;
     const entry = sirlarData.entries.find((e) => e.id === id);
@@ -1530,6 +1559,7 @@
         <p>${linkify(I18n.pick3(entry.note), null, null)}</p>
         <cite>${entry.source}</cite>
       </div>
+      ${sirlarOkumaHtml(entry)}
     `;
     detailPanel.hidden = false;
   }

@@ -428,6 +428,22 @@
     return `<div class="detail-block"><p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Bu satırlar ne diyor?", en: "What do these lines say?", pt: "O que dizem estas linhas?" })}</p><p>${linkify(txt, "menziller", String(n.sira))}</p></div>`;
   }
 
+  // Bu halka 198. Bölümün yirmi sekiz faslından derlendi, ama Fütûhât'ı
+  // kısım kısım okuma turumuz o fasılların şu an yalnız ilk onuna ulaştı
+  // (Cilt IX, kısım CXXI ve CXXII). Ulaştıklarımızda o kısma geri götüren
+  // bir bağ veriyoruz; ulaşmadıklarımızda susuyoruz -- okumadığımız bir
+  // yeri okumuş gibi göstermemek için.
+  function okumaBagiHtml(n) {
+    if (!n.okuma) return "";
+    const base = window.__dostRouteBase || "";
+    const label = tt({
+      tr: "Bu faslı okuduğumuz kısım",
+      en: "The part where we read this section",
+      pt: "A parte onde lemos esta secção",
+    });
+    return `<a class="cross-link" href="${base}/futuhat/${n.okuma}" data-view="futuhat" data-id="${n.okuma}">${label} →</a>`;
+  }
+
   function openMenzil(n) {
     activeId = n.sira;
     const L = {
@@ -453,6 +469,7 @@
       <div class="detail-block detail-block--ibnarabi"><p class="menzil-zuhur__label">${L.zuhur}</p><p>${linkify(tt(n.zuhur), "menziller", String(n.sira))}</p></div>
       ${okumaNotuHtml(n)}
       ${notu}
+      ${okumaBagiHtml(n)}
       <p class="menzil-kaynak">${L.kaynak}: ${n.kaynak}</p>`;
     detailContent.querySelector(".menzil-back-link").addEventListener("click", () => { activeId = null; showIntro(); ensureFrame(); });
     detailPanel.hidden = false;
