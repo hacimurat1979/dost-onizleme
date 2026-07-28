@@ -5395,9 +5395,36 @@ body.share-stage-open { overflow: hidden; }
 }
 .sir-halka__figure {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  width: 100%;
   margin: 1.1rem 0 0.4rem;
+  padding: 0.35rem 0;
   overflow-x: auto;      /* dar ekranda gövde yatay kaymasın */
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: zoom-in;
+  font: inherit;
+  color: inherit;
+}
+.sir-halka__figure:hover,
+.sir-halka__figure:focus-visible {
+  border-color: color-mix(in srgb, var(--series-theme) 45%, transparent);
+}
+.sir-halka__figure:focus-visible {
+  outline: 2px solid var(--accent-interactive);
+  outline-offset: 2px;
+}
+.sir-halka__zoom-hint {
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+.sir-halka__figure:hover .sir-halka__zoom-hint,
+.sir-halka__figure:focus-visible .sir-halka__zoom-hint {
+  color: var(--accent-interactive);
 }
 .sir-halka__svg {
   width: 100%;
@@ -5482,4 +5509,80 @@ body.share-stage-open { overflow: hidden; }
   font-size: 0.88rem;
   line-height: 1.58;
   color: var(--text-secondary);
+}
+
+/* Halkanın lightbox sürümü: büyük şema + altında tam anahtar listesi.
+   Küçük sürümde düğümlerin yanında yalnız bölüm numarası var; burada
+   numaranın karşılığı ve alıntısı da okunuyor. */
+.sir-halka__svg--buyuk {
+  max-width: min(88vw, 560px);
+  margin: 0 auto;
+  display: block;
+}
+.sir-halka__key {
+  display: grid;
+  gap: 1.05rem;
+  margin-top: 1.15rem;
+  text-align: left;
+}
+@media (min-width: 760px) {
+  .sir-halka__key { grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+}
+.sir-halka__key-group h4 {
+  margin: 0 0 0.45rem;
+  font-size: 0.94rem;
+  color: var(--text-primary);
+  padding-left: 0.55rem;
+  border-left: 3px solid var(--gridline);
+}
+.sir-halka__key-group--r1 h4 { border-left-color: color-mix(in srgb, var(--series-theme) 55%, var(--gridline)); }
+.sir-halka__key-group--r2 h4 { border-left-color: var(--series-theme); }
+.sir-halka__key-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.sir-halka__key-group li {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.sir-halka__key-no {
+  display: inline-block;
+  min-width: 2.9em;
+  padding: 0.02rem 0.4rem;
+  margin-right: 0.35rem;
+  border-radius: 999px;
+  background: var(--gridline);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+.sir-halka__key-label {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.sir-halka__key-group li em {
+  display: block;
+  margin-top: 0.18rem;
+  color: var(--text-muted);
+  font-size: 0.83rem;
+}
+
+/* getDisplayMedia'sı olmayan cihazlarda (tablet/telefon) kayıt düğmesinin
+   yerinde duran soru işareti. Düğüm sessizce kaybolduğunda kullanıcı
+   "bozuk mu?" diye kalıyordu; artık sebebi tek dokunuşla okunuyor. */
+.share-stage__chrome [data-action="recyok"] {
+  min-width: 2.1em;
+  padding-left: 0;
+  padding-right: 0;
+  font-weight: 600;
+  opacity: 0.75;
+}
+.share-stage__chrome [data-action="recyok"]:hover,
+.share-stage__chrome [data-action="recyok"]:focus-visible {
+  opacity: 1;
 }

@@ -1607,23 +1607,31 @@
   // verdiği görüldü. Tek eksene dizilebilen yalnız "perde nedir" grubu.
   const HALKA_R = [148, 96, 46];   // dış / orta / merkez yarıçapları
   const HALKA_VB = 340;            // viewBox kenarı (kare)
+  const HALKA_BUYUK = 1.85;        // lightbox'taki büyütme katsayısı
 
-  function halkaSvg(halka) {
-    const c = HALKA_VB / 2;
+  // buyuk=true: lightbox sürümü. Yalnız ölçek değişiyor -- etiketler yine
+  // sadece bölüm numarası. Kayıt adlarını halkanın üstüne radyal olarak
+  // yazmayı denedik: TR/EN/PT'de uzunluklar çok farklı ve PT'de etiketler
+  // komşu halkanın çizgisini kesiyordu. Onun yerine büyük sürümün altına
+  // tam bir anahtar listesi konuyor (halkaLightbox).
+  function halkaSvg(halka, buyuk) {
+    const k = buyuk ? HALKA_BUYUK : 1;
+    const VB = HALKA_VB * k;
+    const c = VB / 2;
     const rings = halka.rings || [];
     let out = "";
 
     // Halkalar: dıştan içe, en dıştaki kesik çizgili (sınırı en belirsiz olan).
     rings.forEach((ring, ri) => {
       const cls = ri === 0 ? "sir-halka__ring sir-halka__ring--dashed" : "sir-halka__ring";
-      out += `<circle class="${cls}" cx="${c}" cy="${c}" r="${HALKA_R[ri]}"/>`;
+      out += `<circle class="${cls}" cx="${c}" cy="${c}" r="${(HALKA_R[ri] * k).toFixed(1)}"/>`;
     });
 
     // Merkez dolgusu -- Zât/kök ile aynı ailede dursun diye vurgulu.
-    out += `<circle class="sir-halka__core" cx="${c}" cy="${c}" r="${HALKA_R[2] - 6}"/>`;
+    out += `<circle class="sir-halka__core" cx="${c}" cy="${c}" r="${((HALKA_R[2] - 6) * k).toFixed(1)}"/>`;
 
     rings.forEach((ring, ri) => {
-      const r = HALKA_R[ri];
+      const r = HALKA_R[ri] * k;
       const n = ring.entries.length;
       ring.entries.forEach((e, i) => {
         // -90°'den başlayıp saat yönünde: okuma üstten başlasın.
@@ -1635,22 +1643,74 @@
         const title = `${bolumAdi} — ${label}\n${I18n.pick3(e.quote)}`;
         // Etiket, düğümün merkezden dışa doğru olan tarafına yazılır ki
         // iç halkaların etiketleri dış halkanın üstüne binmesin.
-        const lx = c + (r + (ri === 0 ? 20 : 17)) * Math.cos(a);
-        const ly = c + (r + (ri === 0 ? 20 : 17)) * Math.sin(a);
+        const off = (ri === 0 ? 20 : 17) * k;
+        const lx = c + (r + off) * Math.cos(a);
+        const ly = c + (r + off) * Math.sin(a);
         const anchor = Math.abs(Math.cos(a)) < 0.25 ? "middle" : (Math.cos(a) > 0 ? "start" : "end");
-        out += `<g class="sir-halka__node sir-halka__node--r${ri}" tabindex="0" role="listitem"
+        // Küçük sürüm bir <button> içinde duruyor; düğümleri de odaklanabilir
+        // yapmak butonun içine etkileşimli içerik koymak olurdu (geçersiz HTML
+        // ve klavyede tuzak). Orada odak butonun kendisinde, düğümler yalnız
+        // ipucu taşıyor; büyük sürümde ise tek tek gezilebiliyorlar.
+        out += `<g class="sir-halka__node sir-halka__node--r${ri}"${buyuk ? ' tabindex="0" role="listitem"' : ""}
                    aria-label="${escapeHtmlAttr(title.replace(/\n/g, " — "))}">
             <title>${escapeHtmlAttr(title)}</title>
-            <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${ri === 2 ? 9 : 7}"/>
-            <text x="${lx.toFixed(1)}" y="${(ly + 3.5).toFixed(1)}" text-anchor="${anchor}">${escapeHtmlAttr(e.bolum)}</text>
+            <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${((ri === 2 ? 9 : 7) * k).toFixed(1)}"/>
+            <text x="${lx.toFixed(1)}" y="${(ly + 3.5 * k).toFixed(1)}" text-anchor="${anchor}"
+                  style="font-size:${(10 * k).toFixed(1)}px">${escapeHtmlAttr(e.bolum)}</text>
           </g>`;
       });
     });
 
     const merkezLabel = rings[2] ? I18n.pick3(rings[2].label) : "";
-    return `<svg class="sir-halka__svg" viewBox="0 0 ${HALKA_VB} ${HALKA_VB}" role="list"
+    return `<svg class="sir-halka__svg${buyuk ? " sir-halka__svg--buyuk" : ""}" viewBox="0 0 ${VB} ${VB}" role="list"
                  aria-label="${escapeHtmlAttr(merkezLabel)}">${out}</svg>`;
   }
+
+  // Lightbox: büyük halka + altında tam anahtar listesi. Küçük sürümde
+  // düğümlerin yanında yalnız bölüm numarası var; burada her numaranın
+  // karşılığı ve alıntısı da okunabiliyor.
+  function halkaLightboxHtml(halka) {
+    const key = halka.rings.map((ring, ri) => `
+      <div class="sir-halka__key-group sir-halka__key-group--r${ri}">
+        <h4>${escapeHtmlAttr(I18n.pick3(ring.label))}
+          <span class="sir-halka__legend-count">${ring.entries.length}</span></h4>
+        <ul>${ring.entries.map((e) => `
+          <li><span class="sir-halka__key-no">${escapeHtmlAttr(e.bolum)}</span>
+            <span class="sir-halka__key-label">${escapeHtmlAttr(I18n.pick3(e.label))}</span>
+            <em>${escapeHtmlAttr(I18n.pick3(e.quote))}</em></li>`).join("")}</ul>
+      </div>`).join("");
+    return halkaSvg(halka, true) + `<div class="sir-halka__key">${key}</div>`;
+  }
+
+  function openHalkaLightbox() {
+    const halka = sirlarData && sirlarData.merkez && sirlarData.merkez.halka;
+    if (!halka || !window.DostLightbox) return;
+    window.dostTrack && window.dostTrack("sema_acildi", { type: "perde-halkasi" });
+    window.DostLightbox.open({
+      closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+      name: tt({ tr: "Perde nedir? — on altı kayıt", en: "What is the veil? — sixteen records", pt: "O que é o véu? — dezasseis registos" }),
+      svgHtml: halkaLightboxHtml(halka),
+      caption: tt({
+        tr: "Halkalar dıştan içe okunur. Sıra bir zaman sırası değil.",
+        en: "The rings are read from the outside in. The order is not chronological.",
+        pt: "Os anéis leem-se de fora para dentro. A ordem não é cronológica.",
+      }),
+    });
+  }
+
+  // Küçük halkaya tıklama/Enter: büyük sürümü aç. Düğümlerin kendi
+  // odaklanabilirliği korunuyor -- oradan Enter da lightbox'ı açıyor,
+  // çünkü asıl istenen şey büyük görüntü.
+  document.addEventListener("click", (e) => {
+    if (e.target.closest && e.target.closest(".sir-halka__figure")) openHalkaLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const fig = e.target.closest && e.target.closest(".sir-halka__figure");
+    if (!fig) return;
+    e.preventDefault();
+    openHalkaLightbox();
+  });
 
   function halkaHtml(halka) {
     if (!halka || !halka.rings || halka.rings.length !== 3) return "";
@@ -1664,7 +1724,11 @@
       <div class="detail-block sir-halka">
         <p class="detail-eyebrow">${tt({ tr: "Perde nedir? — on altı kaydın halkası", en: "What is the veil? — a ring of sixteen records", pt: "O que é o véu? — um anel de dezasseis registos" })}</p>
         <p class="sir-halka__caption">${linkify(I18n.pick3(halka.caption), null, null)}</p>
-        <div class="sir-halka__figure">${halkaSvg(halka)}</div>
+        <button type="button" class="sir-halka__figure"
+                aria-label="${escapeHtmlAttr(tt({ tr: "Halkayı büyüt", en: "Enlarge the ring", pt: "Ampliar o anel" }))}">
+          ${halkaSvg(halka)}
+          <span class="sir-halka__zoom-hint">${tt({ tr: "Büyütmek için dokun", en: "Tap to enlarge", pt: "Toque para ampliar" })}</span>
+        </button>
         <ul class="sir-halka__legend">${legend}</ul>
         <p class="sir-halka__cekince">${linkify(I18n.pick3(halka.cekince), null, null)}</p>
       </div>`;

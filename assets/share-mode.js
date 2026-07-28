@@ -36,6 +36,14 @@
       en: "In the dialog that opens, choose “This tab” — the rest is automatic.",
       pt: "Na janela que abrir, escolhe “Este separador” — o resto é automático.",
     },
+    // Tablet/telefonda getDisplayMedia yok; düğüm sessizce kaybolunca
+    // kullanıcı "bozuk mu?" diye kalıyordu (kullanıcı notu, 2026-07-28,
+    // tabletten gelen ekran görüntüsü). Sebebi ve alternatifi yazıyoruz.
+    recYok: {
+      tr: "Bu cihazda doğrudan indirme yok — sahne zaten temiz, cihazın kendi ekran kaydıyla çekebilirsin. Bilgisayarda burada bir “videoyu indir” düğmesi çıkar.",
+      en: "Direct download is not available on this device — the stage is already clean, so use your device's own screen recorder. On a computer a “download video” button appears here.",
+      pt: "Descarga direta não está disponível neste dispositivo — o palco já está limpo, usa o gravador de ecrã do próprio aparelho. Num computador aparece aqui um botão “descarregar vídeo”.",
+    },
     recWait: { tr: "Başlıyor…", en: "Starting…", pt: "A começar…" },
     recBusy: { tr: "Kaydediliyor", en: "Recording", pt: "A gravar" },
     recDone: { tr: "İndirildi", en: "Downloaded", pt: "Descarregado" },
@@ -384,7 +392,9 @@
       // içeri düşüyor; orada da zaten ekran kaydı kullanılıyor ve krom
       // 2,2 saniye sonra soluyor.)
       '<div class="share-stage__chrome">' +
-      (canRecord ? '<button type="button" data-action="rec">' + escapeHtml(tt(UI.rec)) + "</button>" : "") +
+      (canRecord
+        ? '<button type="button" data-action="rec">' + escapeHtml(tt(UI.rec)) + "</button>"
+        : '<button type="button" data-action="recyok" aria-label="' + escapeHtml(tt(UI.recYok)) + '">?</button>') +
       '<button type="button" data-action="guides">' + escapeHtml(tt(UI.guides)) + "</button>" +
       '<button type="button" data-action="close">✕</button>' +
       "</div>" +
@@ -566,6 +576,16 @@
     });
     const recBtn = stageEl.querySelector('[data-action="rec"]');
     if (recBtn) recBtn.addEventListener("click", recordToFile);
+    const recYokBtn = stageEl.querySelector('[data-action="recyok"]');
+    if (recYokBtn) {
+      recYokBtn.addEventListener("click", () => {
+        const line = stageEl.querySelector(".share-stage__rec");
+        line.hidden = false;
+        line.textContent = tt(UI.recYok);
+        stageEl.querySelector(".share-stage__chrome").classList.remove("is-dim");
+        clearTimeout(chromeTimer);
+      });
+    }
   }
 
   function closeStage() {
