@@ -86,11 +86,20 @@
     return out;
   }
   function themeColor(theme) { return mute(THEME_COLOR_VAR[theme] || "--series-theme"); }
-  function rootColor() { return GU.isDark() ? getVar("--text-secondary") : getVar("--text-secondary"); }
+  // Kök ("Örten de O, görünen de O") artık Ontoloji/Esmâ'daki Zât ile aynı
+  // gövde rengini taşıyor (GU.ZAT_FILL, beyaz) -- kullanıcı isteği
+  // 2026-07-28. Önceki --text-secondary gri, düğümü çevresindeki temalardan
+  // ayırmıyordu; merkez olduğu belli olmuyordu.
+  function rootColor() { return GU.ZAT_FILL; }
 
   // --- Düğüm yarıçapları (#1): güçlü hiyerarşi. (root 70 / kategori 48 /
   //     leaf 10 px çap → yarıçap). Veride ara-kategori yok, üç kademe.
-  const R_ROOT = 34, R_THEME = 23, R_ENTRY = 7.5;
+  // R_ENTRY 7.5 → 10.5: en dipteki sır kayıtları ekranda iğne başı kadar
+  // kalıyordu (kullanıcı notu 2026-07-28, "en dipteki sırlar düğümleri çok
+  // küçükler"). Çarpışma yarıçapı baseRadius()'ten türediği için düzen
+  // kendiliğinde de biraz açılıyor; halkanın taşmadığını Playwright ile
+  // ölçtük.
+  const R_ROOT = 34, R_THEME = 23, R_ENTRY = 10.5;
   function baseRadius(d) { return d.kind === "root" ? R_ROOT : d.kind === "theme" ? R_THEME : R_ENTRY; }
   function nodeColor(d) { return d.kind === "root" ? rootColor() : themeColor(d.theme); }
 
@@ -439,7 +448,15 @@
       .on("focus", (e, d) => { setHover(d.id); showTooltip(d, e); })
       .on("blur", () => { setHover(null); hideTooltip(); });
     enter.append("circle").attr("class", "sir-hit");                        // görünmez, büyütülmüş tıklama alanı
-    enter.append("circle").attr("class", "sir-glow");                       // dış parıltı (#5)
+    // Dış parıltı (#5). Kök düğüm ayrıca `node-halo` sınıfını da alıyor:
+    // böylece Ontoloji'deki Zât (.node--root .node-halo) ve Esmâ'daki Zât
+    // ile BİREBİR aynı ışımayı CSS'ten devralıyor (6sn node-halo-breathe,
+    // dark modda --accent-glow-dark + blur). Kullanıcı isteği 2026-07-28:
+    // "örten de o görünen de o düğümünü ontoloji ve esma grafiğindeki zat
+    // düğümü formatında gösterelim." Aşağıdaki render döngüsü kök için
+    // fill/opacity'ye DOKUNMUYOR -- yoksa CSS animasyonunu inline stil
+    // ezip nefesi öldürürdü.
+    enter.append("circle").attr("class", (d) => "sir-glow" + (d.kind === "root" ? " node-halo" : ""));
     enter.append("circle").attr("class", "sir-halo");                       // hover halosu (#10)
     enter.append("circle").attr("class", "sir-dot");                        // renk gövde
     enter.append("circle").attr("class", "sir-depth").attr("fill", "url(#sir-depth)"); // derinlik gradyanı (#5)
@@ -490,17 +507,21 @@
       // düşmüyor.
       g.select(".sir-hit").attr("r", Math.max(14, r + 8, 22 / Math.max(0.3, currentK)));
       // dış parıltı (rengiyle uyumlu, glossy değil)
-      const glowStrength = d.kind === "root" ? 1 : d.kind === "theme" ? 0.7 : 0.4;
-      // Merkez ("sırların sırrı") diğerlerinden ayrı bir parıltı taşıyor:
-      // daha geniş, daha güçlü ve yavaşça nefes alan. Bütün sayfanın oradan
-      // dallandığı izlenimi görsel olarak da verilsin diye (kullanıcı isteği,
-      // 2026-07-27). Nefes reduced-motion'da kapanıyor.
       const isRoot = d.kind === "root";
-      const pulse = (isRoot && !reduceMotion) ? 1 + 0.22 * Math.sin((ts / 5200) * 2 * Math.PI) : 1;
-      g.select(".sir-glow")
-        .attr("r", r * (isRoot ? 2.6 : 1.7) * (isRoot ? (0.96 + 0.06 * pulse) : 1))
-        .style("fill", col)
-        .style("opacity", (isRoot ? 0.42 * pulse : 0.13) * glowStrength * (act && d.id === act.anchor ? 1.6 : 1));
+      const glowStrength = isRoot ? 1 : d.kind === "theme" ? 0.7 : 0.4;
+      const glowSel = g.select(".sir-glow");
+      if (isRoot) {
+        // Zât formatı: yarıçapı burada veriyoruz, geri kalan her şeyi
+        // (renk, opaklık, nefes) .node--root .node-halo CSS'i yürütüyor.
+        // 2.0 katsayısı Ontoloji'deki Zât halosunun düğüme oranıyla aynı
+        // hissi veriyor; CSS'teki scale(1.4) tepe noktasını zaten ekliyor.
+        glowSel.attr("r", r * 2.0).style("fill", null).style("opacity", null);
+      } else {
+        glowSel
+          .attr("r", r * 1.7)
+          .style("fill", col)
+          .style("opacity", 0.13 * glowStrength * (act && d.id === act.anchor ? 1.6 : 1));
+      }
       // hover halosu (#10): genişleyen, sönümlenen
       const halo = g.select(".sir-halo");
       if (haloNodeId === d.id) {

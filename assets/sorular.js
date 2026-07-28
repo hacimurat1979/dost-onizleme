@@ -202,9 +202,15 @@
     return { catNodes: catItems, qNodes: items, links: relLinks };
   }
 
+  // 2026-07-28: düğümler sitenin geri kalanına göre iri kalıyordu (kullanıcı
+  // notu: "sorular grafiği düğümleri çok büyük, diğer sayfalardaki
+  // grafiklerle uyumlu hale getirelim"). Referans ölçüler: Ontoloji'de
+  // Zât 34, insan-ı kâmil 18, sıradan düğüm 13; Sırlar'da tema 23.
+  // Buradaki tavanlar 23/17.5 idi → 18/13.5'e çekildi; en-temel (spiralin
+  // başı) yine bir tık büyük kalıyor ki nereden başlandığı belli olsun.
   function radiusFor(d) {
-    if (d.isCat) return (d.isCenterCat ? 15 : 13) + Math.min(7, d.category.questions.length) * 1.15;
-    return 8.5 + Math.min(6, d.degree) * 1.5;
+    if (d.isCat) return (d.isCenterCat ? 11.5 : 10) + Math.min(7, d.category.questions.length) * 0.95;
+    return 6.5 + Math.min(6, d.degree) * 1.15;
   }
 
   // --- Kademeli açılım: hangi düğümler şu an sahnede? -------------------------
@@ -220,11 +226,36 @@
       id: "stem:" + n.id, kind: "stem", from: "cat:" + n.category.id, to: n.id,
       source: "cat:" + n.category.id, target: n.id,
     }));
-    // ilişki: yalnız iki ucu da sahnede olanlar (ötekiler detay panelinde
-    // "İlişkili Sorular" olarak duruyor, kaybolmuyorlar)
+    // ilişki: iki ucu da sahnede olanlar doğrudan çiziliyor.
     const rels = relLinks.filter((r) => vis.has(r.from) && vis.has(r.to))
       .map((r) => Object.assign({}, r, { id: "rel:" + r.from + ">" + r.to, kind: "rel", source: r.from, target: r.to }));
-    return stems.concat(rels);
+    // 2026-07-28 (kullanıcı isteği: "sorular arası ilişkiler açık olarak
+    // gelsin"): bir kol açıkken ötekiler kapalı olduğu için KATEGORİLER
+    // ARASI ilişkiler hiç görünmüyordu -- soru A açık koldayken, ilişkili
+    // olduğu soru B başka bir kategoride olduğu için kenar da hiç
+    // çizilmiyordu. Artık böyle bir ilişki, sorudan karşı KATEGORİYE giden
+    // bir kenar olarak çiziliyor: "bu sorunun cevabı şu tarafta da devam
+    // ediyor" işareti. Hiçbir kol açık değilken de kategoriler arası
+    // ilişkiler kategori-kategori kenarı olarak duruyor, böylece harita
+    // ilk açılışta da bir ağ gibi görünüyor, dağınık halkalar gibi değil.
+    const seenBridge = new Set();
+    const bridges = [];
+    const qById = new Map(qNodes.map((n) => [n.id, n]));
+    relLinks.forEach((r) => {
+      const a = qById.get(r.from), b = qById.get(r.to);
+      if (!a || !b) return;
+      if (a.category.id === b.category.id) return;      // aynı kol: yukarıda ele alındı
+      const aVis = vis.has(r.from), bVis = vis.has(r.to);
+      if (aVis && bVis) return;                          // ikisi de sahnede: yukarıda çizildi
+      const src = aVis ? r.from : "cat:" + a.category.id;
+      const tgt = bVis ? r.to : "cat:" + b.category.id;
+      if (src === tgt) return;
+      const key = [src, tgt].sort().join(">");
+      if (seenBridge.has(key)) return;                   // aynı iki uç arasında tek kenar yeter
+      seenBridge.add(key);
+      bridges.push({ id: "bridge:" + key, kind: "bridge", from: src, to: tgt, source: src, target: tgt });
+    });
+    return stems.concat(rels, bridges);
   }
 
   function relationsOf(id) { return (sorularData.relations || []).filter((r) => r.from === id || r.to === id); }
@@ -593,7 +624,12 @@
         const dv = true;
         let op = 0.16;
         if (act) op = (act.set.has(l.source.id) && act.set.has(l.target.id)) ? 0.8 : 0.05;
+        // Kategoriler arası "köprü" kenarı kesikli çiziliyor: doğrudan bir
+        // soru-soru ilişkisi değil, "bu ilişkinin öteki ucu şu kolda"
+        // işareti (bkz. activeLinks()'teki bridges).
+        if (l.kind === "bridge") op = act ? op : 0.13;
         p.attr("d", linkPath(l))
+          .classed("sorular-link--bridge", l.kind === "bridge")
           .classed("sorular-link--active", act && act.set.has(l.source.id) && act.set.has(l.target.id))
           .style("stroke", act && act.set.has(l.source.id) && act.set.has(l.target.id) ? catColor(l.source) : null)
           .style("opacity", op * (dv ? 1 : 0.25));

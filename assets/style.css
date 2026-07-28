@@ -1081,6 +1081,10 @@ html {
 .sorular-bg circle { pointer-events: none; fill: var(--text-muted); }
 .sorular-link { pointer-events: none; stroke: var(--gridline); stroke-width: 1px; transition: opacity 0.25s ease; }
 .sorular-link--active { stroke-width: 1.7px; }
+/* Kategoriler arası köprü: doğrudan bir soru-soru ilişkisi değil, ilişkinin
+   öteki ucunun başka bir kolda olduğunu söyleyen kesikli bir işaret
+   (bkz. assets/sorular.js activeLinks()). */
+.sorular-link--bridge { stroke-dasharray: 3 5; }
 .sorular-flow, .sorular-glow, .sorular-halo, .sorular-sheen { pointer-events: none; }
 .sorular-halo { fill: none; stroke-width: 1.5px; }
 .sorular-sphere { filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.26)); }
@@ -1357,6 +1361,13 @@ html {
   text-transform: none;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
+  /* Grup zaten margin-left:auto ile sağa yaslı; ama etiket genişliği
+     "8/9" ile "12/14" arasında değiştiği için halkanın x konumu satırdan
+     satıra kayıyordu (kullanıcı bunu "sarı göstergeler aynı hizada değil"
+     diye bildirdi). Sabit bir genişlik + sağa yaslama, etiketi sağ kenara
+     sabitleyip halkayı da sabit bir sütuna oturtuyor. */
+  min-width: 3.1em;
+  text-align: right;
 }
 
 .futuhat-part-chip {

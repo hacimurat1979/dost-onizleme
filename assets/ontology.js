@@ -1346,9 +1346,17 @@
   // distinctive technical name. Registered as-is, these would auto-link
   // every ordinary occurrence of that common word throughout running prose,
   // regardless of whether that occurrence has anything to do with the
-  // concept. Block just these known offenders from being registered as
-  // match variants -- the term/node itself is unaffected and still findable
-  // by browsing/search, it simply won't be auto-linked from prose.
+  // concept.
+  //
+  // 2026-07-28: bunlar önce TAMAMEN kayıt dışı bırakılıyordu; o da ters
+  // yönde bir kayıp üretiyordu -- Türkçede "Akıl"/"zât" çapraz-link olurken
+  // İngilizce sayfada aynı yerde hiç link olmuyordu (kullanıcı notu:
+  // "türkçede olan bir çapraz link ingilizce sayfada ... linki unutulmuş").
+  // Artık kayıttan düşürmek yerine `strict` işaretleniyor: EN/PT'de bu
+  // adlar YALNIZCA kayıtlı hâliyle birebir yazıldığında ("The Light")
+  // linklenir, cümle içinde sıradan kelime olarak geçtiğinde ("the light
+  // of faith") linklenmez. Böylece hem yanlış-pozitifler kalkıyor hem de
+  // metin gerçekten kavramı adlandırdığında link geri geliyor.
   const GENERIC_VARIANT_BLOCKLIST = new Set([
     "reason", "cause", "causa", "razão", "species", "espécie",
     "the one", "o um", "a um", "o único",
@@ -1361,7 +1369,36 @@
     "effect", "efeito",
     "the soul", "a alma",
     "the visible", "o visível",
+    "struggle", "esforço",
+    "majesty", "majestade",
+    // "The Outward (al-Zahir)" ailesi: burada parantez içi TERİMİN KENDİSİ
+    // (transliterasyon), çıplak hâli ise sıradan İngilizce/Portekizce. Yani
+    // aşağıdaki parantez kuralının tersi bir şekil; elle listelemek gerekti.
+    // Ölçülen zarar: "he stands in the outward of a good work" → al-Zahir.
+    "the outward", "o exterior",
+    "the inward", "o interior",
+    "the limit", "o limite",
+    "the rising-place", "o lugar do nascer",
   ]);
+
+  // Esmâ adlarının parantez içi açıklamaları ("er-Rahmân" → "Ar-Rahman (The
+  // All-Merciful)") ayrı bir eşleşme varyantı olarak kaydediliyor ve bunlar
+  // EN/PT'de artikelle başlayan sıradan ifadeler oluyor ("The Light",
+  // "O Senhor", "The Living"). Ölçtüğümüz somut zarar: bir kısımda EN
+  // cross-link'lerin TAMAMI bu türden yanlış-pozitifti -- "the light of
+  // faith" en-Nûr'a, "the great" el-Kebîr'e linkleniyordu.
+  //
+  // Kural bilerek DAR tutuldu: yalnız *parantez içinden gelen* ve artikelle
+  // başlayan varyantlar strict. Bütün artikelli adları strict yapmayı
+  // denedik ve fazla geniş çıktı -- "the veil"/"o véu" gibi bu külliyatta
+  // gerçekten kavramı adlandıran, istenen linkler de sustu (ölçüldü:
+  // beş kısımda EN link sayısı 3→0'a düştü).
+  const ARTICLE_PREFIX_RE = /^(the|os|as|um|uma|o|a) /i;
+  function isStrictVariant(lang, v, fromParen) {
+    if (lang === "tr") return false;
+    if (GENERIC_VARIANT_BLOCKLIST.has(v.toLowerCase())) return true;
+    return !!fromParen && ARTICLE_PREFIX_RE.test(v);
+  }
 
   // The >=4-char rule below exists to keep short, ordinary words from
   // becoming accidental links (see GENERIC_VARIANT_BLOCKLIST above for the
@@ -1381,6 +1418,7 @@
       const term = nameDict[lang];
       if (!term) return;
       const variants = new Set();
+      const parenVariants = new Set();   // hangi varyant parantez içinden geldi (bkz. isStrictVariant)
       if (term.length >= 4 || SHORT_TERM_ALLOWLIST.has(term.toLowerCase())) variants.add(term);
       // Many titles carry a parenthetical gloss ("Vâcib (Vâcibü'l-Vücûd)",
       // "Bedel (Ebdal)") or an Arabic article prefix ("el-Kâdir", "es-Semî'");
@@ -1393,12 +1431,12 @@
       if (noParen.length >= 4 || SHORT_TERM_ALLOWLIST.has(noParen.toLowerCase())) variants.add(noParen);
       if (parenMatch) {
         const parenContent = parenMatch[2].trim();
-        if (parenContent.length >= 4) variants.add(parenContent);
+        if (parenContent.length >= 4) { variants.add(parenContent); parenVariants.add(parenContent); }
       }
       const noPrefix = noParen.replace(/^(el|er|es)-/i, "").trim();
       if (noPrefix.length >= 4 || SHORT_TERM_ALLOWLIST.has(noPrefix.toLowerCase())) variants.add(noPrefix);
       variants.forEach((v) => {
-        if (GENERIC_VARIANT_BLOCKLIST.has(v.toLowerCase())) return;
+        const strict = isStrictVariant(lang, v, parenVariants.has(v));
         // The same concept sometimes exists as a near-identical entry in two
         // datasets (e.g. "Zât"/"The Essence" is both ontology.json's "dhat"
         // and esma.json's "zat"). Registering both under the same name
@@ -1409,7 +1447,7 @@
         const dedupeKey = lang + ":" + v.toLowerCase();
         if (registeredVariantKeys.has(dedupeKey)) return;
         registeredVariantKeys.add(dedupeKey);
-        crossLinkTermsByLang[lang].push({ term: v, view, id });
+        crossLinkTermsByLang[lang].push({ term: v, view, id, strict });
       });
     });
     if (summaryDict) crossLinkSummaries.set(view + ":" + id, summaryDict);
@@ -1467,6 +1505,14 @@
       const hit = cache.byFoldedLower.get(matchLower);
       if (!hit) continue;
       const original = text.slice(start, end);
+      // `strict` varyantlar (EN/PT'de artikelle başlayan ya da sıradan
+      // kelime olan adlar) yalnız birebir yazıldığında linklenir --
+      // "The Light" evet, "the light of faith" hayır. Bkz. isStrictVariant().
+      if (hit.strict && original !== hit.term) {
+        result += text.slice(lastIndex, start) + original;
+        lastIndex = end;
+        continue;
+      }
       // excludeView/excludeId used to be filtered out of the term list
       // before building the regex (a node never links to its own detail
       // page); the shared cache now matches against ALL terms and skips
