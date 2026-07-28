@@ -5295,6 +5295,15 @@ body.share-stage-open { overflow: hidden; }
   letter-spacing: 0.05em;
   color: rgba(244, 241, 234, 0.62);
 }
+/* Kayıt kipinin açılış/kapanış karartısı. Sahne döngüsünde saydam durur;
+   yalnız "Videoyu indir" ile başlayan çekimde 1'den 0'a ve sonda 0'dan 1'e
+   gider (bkz. assets/share-mode.js drawTake). */
+.share-stage__fade {
+  position: absolute;
+  inset: 0;
+  background: #05060a;
+  pointer-events: none;
+}
 /* TikTok'un kapattığı bölgeler — yalnız kadraj denetimi için. */
 .share-stage__guides { position: absolute; inset: 0; pointer-events: none; }
 .share-stage__guides::before,

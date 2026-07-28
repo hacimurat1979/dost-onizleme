@@ -215,6 +215,63 @@
   };
 
   function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+  function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+
+  // --- ÇEKİM planı (kayıt kipi) -----------------------------------------
+  // Sahne ekranda dönerken bir DÖNGÜ oynuyor: metin belirir, durur, söner,
+  // baştan başlar. Bu, sayfada bakarken doğru; ama kaydedilen video için
+  // yanlış -- kullanıcı notu (2026-07-28): "ekranda göründüğü haliyle değil,
+  // en başından sonuna kadar rahatça her şeyin izlenebileceği bir kayıt".
+  // Kayıtta bu yüzden ayrı bir zaman çizgisi kuruyoruz: karartıdan açılır,
+  // satırlar sırayla girer, metin RAHATÇA OKUNACAK kadar durur, sonra
+  // bütün kare karartıya kapanır. Süre metnin uzunluğundan hesaplanıyor --
+  // sabit bir süre kısa alıntıda boş, uzun alıntıda yetersiz kalıyordu.
+  const READ_WPS = 2.1;   // saniyede kelime; ekrandan rahat okuma hızı
+  function takePlan(s) {
+    const fadeIn = 0.7, fadeOut = 1.2, lineIn = 1.15;
+    const cues = [];
+    let t = fadeIn + 0.2;
+    s.lines.forEach(() => { cues.push(t); t += lineIn; });
+    const ruleAt = s.tpl === "ikili" ? t : null;
+    if (ruleAt != null) t += 0.9;
+    const words = s.lines.reduce((n, l) => n + l.text.trim().split(/\s+/).filter(Boolean).length, 0);
+    const read = Math.min(11, Math.max(3.2, words / READ_WPS));
+    return {
+      fadeIn: fadeIn, fadeOut: fadeOut, lineIn: lineIn, cues: cues, ruleAt: ruleAt,
+      sourceAt: t + read * 0.3,
+      // 8 sn'nin altı TikTok'ta göz kırpması gibi geçiyor, 22 sn'nin üstü
+      // tek bir cümle için uzun.
+      total: Math.min(22, Math.max(8, t + read + fadeOut)),
+    };
+  }
+
+  let takeMode = false, takeStart = 0, plan = null;
+
+  function drawTake(el, ts) {
+    const t = (ts - takeStart) / 1000;
+    const fade = el.querySelector(".share-stage__fade");
+    let fv = 0;
+    // t < 0: kayıt başlamadan önceki "siyahta bekleme" payı. getDisplayMedia
+    // akışı sayfadan birkaç kare geride olduğu için bu pay olmadan videonun
+    // ilk kareleri kararmayı hiç görmüyor, parlak başlıyordu (ölçüldü).
+    if (t < 0) fv = 1;
+    else if (t < plan.fadeIn) fv = 1 - ease(t / plan.fadeIn);
+    else if (t > plan.total - plan.fadeOut) fv = ease(clamp01((t - (plan.total - plan.fadeOut)) / plan.fadeOut));
+    fade.style.opacity = fv.toFixed(3);
+    el.querySelectorAll(".share-line").forEach((node, i) => {
+      const v = ease(clamp01((t - (plan.cues[i] != null ? plan.cues[i] : 0)) / plan.lineIn));
+      node.style.opacity = v.toFixed(3);
+      node.style.transform = "translateY(" + ((1 - v) * 16).toFixed(1) + "px)";
+    });
+    const rule = el.querySelector(".share-rule");
+    if (rule) {
+      const v = plan.ruleAt == null ? 0 : ease(clamp01((t - plan.ruleAt) / 0.9));
+      rule.style.opacity = (v * 0.55).toFixed(3);
+      rule.style.transform = "scaleX(" + v.toFixed(3) + ")";
+    }
+    const src = el.querySelector(".share-stage__source");
+    if (src) src.style.opacity = ease(clamp01((t - plan.sourceAt) / 0.9)).toFixed(3);
+  }
   // Bir vuruşun o andaki görünürlüğü: kısa bir belirme, uzun bir duruş,
   // kısa bir sönme. Döngü başa sardığında sert bir kesme olmasın diye.
   function beat(t, from, to) {
@@ -283,6 +340,8 @@
     if (tilt) tilt.step(ts, 16, true);
     drawAmbient(svg, w, h, ts);
 
+    if (takeMode) { drawTake(el, ts); rafId = requestAnimationFrame(frame); return; }
+
     const cfg = TIMING[scene.tpl] || TIMING.soz;
     const t = ((ts - startTs) % cfg.loop) / cfg.loop;
     el.querySelectorAll(".share-line").forEach((node, i) => {
@@ -316,6 +375,8 @@
       '<div class="share-stage__text">' + lines + "</div>" +
       '<p class="share-stage__source">' + escapeHtml(s.source) + "</p>" +
       '<div class="share-stage__guides" hidden></div>' +
+      // Kayıt kipinde açılış/kapanış karartısı. Sahne döngüsünde hep saydam.
+      '<div class="share-stage__fade" style="opacity:0"></div>' +
       "</div>" +
       // Krom ve kayıt göstergesi ÇERÇEVENİN DIŞINDA duruyor: masaüstünde
       // kayıt tam olarak çerçeveye kırpıldığı için, buradaki hiçbir şey
@@ -418,6 +479,12 @@
     rec.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
     rec.onstop = () => {
       drawing = false;
+      // Çekim bitti: sahne kendi döngüsüne dönsün ki kullanıcı bir sonraki
+      // kayıt için aynı yerden devam edebilsin.
+      takeMode = false;
+      startTs = 0;
+      const fadeEl = stageEl && stageEl.querySelector(".share-stage__fade");
+      if (fadeEl) fadeEl.style.opacity = "0";
       stream.getTracks().forEach((t) => t.stop());
       const ext = (mime || "video/webm").indexOf("mp4") !== -1 ? "mp4" : "webm";
       const blob = new Blob(chunks, { type: mime || "video/webm" });
@@ -433,16 +500,23 @@
       recStatus(tt(UI.recDone) + " · " + ext, false);
       setTimeout(() => recStatus("", false), 4000);
     };
-    // Döngünün başına gelmesini bekle ki video tam bir turdan oluşsun --
-    // TikTok videoyu kendisi tekrarladığı için dikiş yeri görünmesin.
-    const loop = (TIMING[scene.tpl] || TIMING.soz).loop;
-    const pos = ((performance.now() - startTs) % loop) / loop;
+    // Döngüyü kesip ÇEKİM kipine geç: video karartıdan açılıp baştan sona
+    // kendi başına izlenebilen bir parça oluyor (bkz. takePlan).
+    plan = takePlan(scene);
+    // LEAD: sahne siyaha kapanıp yakalama akışının onu görmesi için beklenen
+    // süre. REC_AT: kaydın bu payın neresinde başlayacağı -- videonun ilk
+    // ~0,25 sn'si siyah olsun, sonra açılış başlasın.
+    const LEAD = 550, REC_AT = 300;
+    takeMode = true;
+    takeStart = performance.now() + LEAD;
     setTimeout(() => {
       if (!recording) return;
       rec.start();
-      recStatus(tt(UI.recBusy) + " · " + Math.round(loop / 1000) + "s", true);
-      setTimeout(() => { if (rec.state !== "inactive") rec.stop(); }, loop + 120);
-    }, (1 - pos) * loop);
+      recStatus(tt(UI.recBusy) + " · " + plan.total.toFixed(1) + "s", true);
+      // Kapanış karartısı tamamlansın diye küçük bir pay.
+      setTimeout(() => { if (rec.state !== "inactive") rec.stop(); },
+        (LEAD - REC_AT) + plan.total * 1000 + 250);
+    }, REC_AT);
   }
   let recording = false;
 
