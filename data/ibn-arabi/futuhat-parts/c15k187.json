@@ -1,0 +1,389 @@
+{
+  "id": "c15k187",
+  "cilt": 15,
+  "kisim": 187,
+  "status": "active",
+  "title": {
+    "tr": "İki Düstur — ve Karar Vermeyenin İkisinden de Fazla Alması",
+    "en": "Two Maxims — and the One Who Does Not Decide Receiving More Than Either",
+    "pt": "Duas Máximas — e Quem Não Decide Receber Mais do Que Ambos"
+  },
+  "pageRange": {
+    "tr": "s. 246-259",
+    "en": "pp. 246-259",
+    "pt": "pp. 246-259"
+  },
+  "hero": {
+    "summary": {
+      "tr": "Bir önceki kısımda <em>“düstur şahsın değil, makamın”</em> diye okumuştuk. Bu iki bölüm o düsturlardan ikisini tek tek açıyor: <em>“Lâ ilâhe illallah”</em> ve <em>“Allahu ekber.”</em> Beklediğimiz şey bir zikir tarifiydi; karşımıza bir dilbilgisi dersi, bir sayı tartışması ve —bizim için en çarpıcısı— bir karar verme sorusu çıktı. <em>“Allahu ekber”</em> diyenler üçe ayrılıyor: mukayese kastedenler, mukayeseyi imkânsız görenler, ve ikisini de kastetmeyenler. Ve metin şöyle bitiriyor: <em>“her ikisinin bilgisi de üçüncü zikredenin bilgisi altındadır.”</em> Yani karar vermeyen, karar verenlerin ikisinin de aldığını alıyor.",
+      "en": "In the previous part we read that <em>“the maxim belongs not to the person but to the station.”</em> These two chapters open two of those maxims one by one: <em>“There is no god but God”</em> and <em>“God is greater.”</em> We expected a description of invocation; what we met was a grammar lesson, an argument about number, and — most striking for us — a question about deciding. Those who say <em>“God is greater”</em> fall into three: those who intend a comparison, those who hold comparison impossible, and those who intend neither. And the text concludes: <em>“the knowledge of both lies beneath the knowledge of the third.”</em> The one who does not decide receives what both deciders receive.",
+      "pt": "Na parte anterior lemos que <em>“a máxima não pertence à pessoa mas à estação.”</em> Estes dois capítulos abrem duas dessas máximas uma a uma: <em>“Não há deus senão Deus”</em> e <em>“Deus é maior.”</em> Esperávamos uma descrição da invocação; encontrámos uma lição de gramática, uma discussão sobre número e — o mais impressionante para nós — uma pergunta sobre decidir. Os que dizem <em>“Deus é maior”</em> dividem-se em três: os que pretendem uma comparação, os que a consideram impossível e os que não pretendem nenhuma das duas. E o texto conclui: <em>“o saber de ambos está sob o saber do terceiro.”</em> Quem não decide recebe o que ambos os que decidem recebem."
+    }
+  },
+  "mainDiagram": {
+    "type": "diagram",
+    "source": {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt XV, 464-465. Bölümler (s. 247, 251, 253)",
+      "en": "Al-Futuhat al-Makkiyya, Vol. XV, Chapters 464-465 (pp. 247, 251, 253)",
+      "pt": "Al-Futuhat al-Makkiyya, Vol. XV, Capítulos 464-465 (pp. 247, 251, 253)"
+    },
+    "caption": {
+      "tr": "İki bölümün birlikte kurduğu çerçeve. Şemayı biz kurduk; tanım da ölçüt de metnin kendi cümleleri — ve ölçüt, düsturu bir tercihten çok bir hâle çeviriyor.",
+      "en": "The frame the two chapters build together. We made the diagram; both the definition and the criterion are the text's own sentences — and the criterion turns the maxim from a preference into a state.",
+      "pt": "O quadro que os dois capítulos constroem juntos. Fizemos o esquema; tanto a definição como o critério são frases do próprio texto — e o critério transforma a máxima de preferência em estado."
+    },
+    "tree": {
+      "id": "kisim-c15k187-tree",
+      "label": {
+        "tr": "Düstur",
+        "en": "The maxim (dustur)",
+        "pt": "A máxima (dustur)"
+      },
+      "note": {
+        "tr": "<em>“Düstur, kulun kendisine bağlanmış olduğu herhangi bir zikir demektir. Her zikrin başkasında bulunmayan bir neticesi vardır.”</em>",
+        "en": "<em>“The maxim is any invocation to which the servant has bound himself. Every invocation has a result not found in another.”</em>",
+        "pt": "<em>“A máxima é qualquer invocação à qual o servo se ligou. Cada invocação tem um resultado que não se encontra noutra.”</em>"
+      },
+      "children": [
+        {
+          "id": "c15k187-t-olcut",
+          "label": {
+            "tr": "Ölçütü ağır",
+            "en": "Its criterion is severe",
+            "pt": "O seu critério é severo"
+          },
+          "note": {
+            "tr": "<em>“Her nefes zikri sürdürür ve uykuda veya uyanıkken alıp verdiği her nefeste zikri söyler. Bu hale sahip olmayan biri, düstur sahibi zâkir değildir.”</em> Yani düstur seçilen bir söz değil, artık nefesle birlikte giden bir hâl.",
+            "en": "<em>“Every breath carries the invocation on, and in every breath he takes, asleep or awake, he says it. One who does not have this state is not a servant with a maxim.”</em> The maxim is not a chosen phrase but a state that now travels with the breath.",
+            "pt": "<em>“Cada respiração prossegue a invocação, e em cada respiração que toma, adormecido ou desperto, ele di-la. Quem não tem este estado não é um servo com máxima.”</em> A máxima não é uma frase escolhida mas um estado que passa a viajar com a respiração."
+          }
+        },
+        {
+          "id": "c15k187-t-la",
+          "label": {
+            "tr": "“Lâ ilâhe illallah”",
+            "en": "“There is no god but God”",
+            "pt": "“Não há deus senão Deus”"
+          },
+          "note": {
+            "tr": "Nefy ve ispat — olumsuzlama ve olumlama. Bölüm bunu bir duygu olarak değil, bir dilbilgisi olarak açıyor: olumsuzlama belirsize (<em>ilâh</em>), olumlama bilinene (<em>Allah</em>) yöneliyor. Ve <em>“Onun otuz altı yönü vardır ki her biri öteki yönün vermediği bir bilgiyi verir.”</em>",
+            "en": "Negation and affirmation. The chapter opens this not as a feeling but as a grammar: the negation is aimed at the indefinite (<em>ilah</em>), the affirmation at the definite (<em>Allah</em>). And <em>“It has thirty-six aspects, each giving a knowledge the others do not.”</em>",
+            "pt": "Negação e afirmação. O capítulo abre isto não como sentimento mas como gramática: a negação visa o indefinido (<em>ilah</em>), a afirmação o definido (<em>Allah</em>). E <em>“Tem trinta e seis aspetos, cada um dando um saber que os outros não dão.”</em>"
+          }
+        },
+        {
+          "id": "c15k187-t-ekber",
+          "label": {
+            "tr": "“Allahu ekber”",
+            "en": "“God is greater”",
+            "pt": "“Deus é maior”"
+          },
+          "note": {
+            "tr": "Kip mukayese bildiriyor — ama neyle neyin mukayesesi? Bölüm üç ayrı cevabı yan yana yaşatıyor ve hiçbirini yanlış saymıyor; sonuncusuna ise <em>“her ikisinin bilgisi de üçüncü zikredenin bilgisi altındadır”</em> diyor.",
+            "en": "The form implies a comparison — but between what and what? The chapter keeps three answers alive side by side and calls none of them wrong; of the last it says <em>“the knowledge of both lies beneath the knowledge of the third.”</em>",
+            "pt": "A forma implica comparação — mas entre o quê e o quê? O capítulo mantém três respostas lado a lado e não chama errada a nenhuma; da última diz <em>“o saber de ambos está sob o saber do terceiro.”</em>"
+          }
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "c15k187-s1",
+      "heading": {
+        "tr": "Düstur Seçilen Bir Söz Değil",
+        "en": "A Maxim Is Not a Chosen Phrase",
+        "pt": "Uma Máxima Não É Uma Frase Escolhida"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bir önceki kısımda on iki kutbun tek bir düsturu olduğunu ve düsturun kişiye değil makama ait olduğunu okumuştuk. Bu iki bölüm o düsturlardan ikisini açıyor; ama önce düsturun kendisini tanımlıyor: <em>“düstur, kulun kendisine bağlanmış olduğu herhangi bir zikir demektir.”</em> Buraya kadar sade. Ardından gelen ölçüt sadelikten çıkıyor: <em>“Sonra bu zikirde fani olduğu için, her nefes zikri sürdürür ve uykuda veya uyanıkken alıp verdiği her nefeste zikri söyler. Bu hale sahip olmayan biri, düstur sahibi zâkir değildir.”</em>",
+            "en": "In the previous part we read that the twelve poles have a single maxim, and that the maxim belongs to the station rather than the person. These two chapters open two of those maxims; but first they define the maxim itself: <em>“the maxim is any invocation to which the servant has bound himself.”</em> So far, plain. The criterion that follows is not plain: <em>“Then, since he has passed away in this invocation, every breath carries it on, and in every breath he takes, asleep or awake, he says it. One who does not have this state is not a servant with a maxim.”</em>",
+            "pt": "Na parte anterior lemos que os doze polos têm uma só máxima, e que a máxima pertence à estação e não à pessoa. Estes dois capítulos abrem duas dessas máximas; mas primeiro definem a própria máxima: <em>“a máxima é qualquer invocação à qual o servo se ligou.”</em> Até aqui, simples. O critério que se segue não é simples: <em>“Depois, tendo-se extinguido nessa invocação, cada respiração prossegue-a, e em cada respiração que toma, adormecido ou desperto, ele di-la. Quem não tem este estado não é um servo com máxima.”</em>"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu ölçüt bize göre bölümün en sessiz ama en kesin cümlesi. Düstur burada seçilebilecek bir söz olmaktan çıkıp bir hâle dönüşüyor: uykuda bile sürüyorsa düsturdur, sürmüyorsa henüz değildir. Ve seçimin de kişiye ait olmadığı söyleniyor: <em>“İlahi zikirler insana arz edildiğinde onlardan ancak istidadının verdiğini kabul edebilir.”</em> Bir zikri kişi seçmiyor — istidadı kabul ediyor. Bu, bu ciltte tekrar tekrar gördüğümüz hareketin bir örneği daha: ölçü kişiden alınıp başka bir yere veriliyor.",
+            "en": "This criterion is, to us, the quietest and most decisive sentence in the chapter. The maxim ceases to be a phrase one may choose and becomes a state: if it continues even in sleep it is a maxim; if not, it is not one yet. And the choosing is said not to belong to the person either: <em>“When the divine invocations are offered to a person, he can accept only what his preparedness grants him.”</em> One does not choose an invocation — one's preparedness accepts it. This is one more instance of a movement we have seen repeatedly in this volume: the measure is taken from the person and given elsewhere.",
+            "pt": "Este critério é, para nós, a frase mais silenciosa e mais decisiva do capítulo. A máxima deixa de ser uma frase que se possa escolher e torna-se um estado: se continua mesmo no sono é máxima; se não, ainda não o é. E diz-se que também a escolha não pertence à pessoa: <em>“Quando as invocações divinas são oferecidas a alguém, só pode aceitar o que a sua preparação lhe concede.”</em> Não se escolhe uma invocação — a preparação aceita-a. É mais uma instância de um movimento que vimos repetidamente neste volume: a medida é retirada à pessoa e dada a outro lugar."
+          }
+        }
+      ]
+    },
+    {
+      "id": "c15k187-s2",
+      "heading": {
+        "tr": "Yaratma Birden Değil, Üçten",
+        "en": "Creation Comes Not from One but from Three",
+        "pt": "A Criação Vem Não de Um mas de Três"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölüm, tevhid kelimesini açarken beklemediğimiz bir yere gidiyor. Bilginin bilinenleri nispetlerden ibaret diyor, ve nispetin işlemesi için üç şey gerektiğini söylüyor: nispet, nispet eden, nispet edilen. <em>“Bu üçünden biri olup diğerleri olmazsa, ne eser ne hüküm ortaya çıkabilir.”</em> Sonra bunu doğrudan yaratmaya taşıyor — ve felsefe geleneğinin bir cümlesine açıkça karşı çıkıyor.",
+            "en": "While opening the word of oneness, the chapter goes somewhere we did not expect. It says the objects of this knowledge are relations, and that a relation needs three things to work: the relation, the one relating, and the one related to. <em>“If one of these three is present and the others are not, neither effect nor ruling can appear.”</em> It then carries this straight into creation — and openly contradicts a sentence of the philosophical tradition.",
+            "pt": "Ao abrir a palavra da unidade, o capítulo vai a um sítio que não esperávamos. Diz que os objetos deste saber são relações, e que uma relação precisa de três coisas para funcionar: a relação, o que relaciona e o relacionado. <em>“Se uma destas três existe e as outras não, nem efeito nem juízo pode aparecer.”</em> Leva então isto diretamente à criação — e contradiz abertamente uma frase da tradição filosófica."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt XV, 464. Bölüm (s. 247-248)",
+            "en": "Al-Futuhat al-Makkiyya, Vol. XV, Chapter 464 (pp. 247-248)",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. XV, Capítulo 464 (pp. 247-248)"
+          },
+          "caption": {
+            "tr": "Üçlüyü, ortada “Ol” sözü duracak şekilde dizdik: metne göre ilk iki şey (irade eden ve irade edilen) tek başına yetmiyor, üçüncüsü —söz— gelince sayı tekleşiyor. <em>“Üç ilk tek sayıdır.”</em>",
+            "en": "We arranged the three with the word “Be” in the middle: according to the text the first two (the willer and the willed) do not suffice alone; when the third — the word — arrives, the number becomes odd. <em>“Three is the first odd number.”</em>",
+            "pt": "Dispusemos os três com a palavra “Sê” ao meio: segundo o texto os dois primeiros (quem quer e o querido) não bastam sozinhos; quando chega o terceiro — a palavra — o número torna-se ímpar. <em>“Três é o primeiro número ímpar.”</em>"
+          },
+          "triad": {
+            "left": {
+              "label": {
+                "tr": "İrade eden",
+                "en": "The one who wills",
+                "pt": "Aquele que quer"
+              },
+              "note": {
+                "tr": "<em>“Bir şey irade ettiğinde…”</em> — bu bir.",
+                "en": "<em>“When He wills a thing…”</em> — that is one.",
+                "pt": "<em>“Quando quer uma coisa…”</em> — isso é um."
+              }
+            },
+            "middle": {
+              "label": {
+                "tr": "“Ol” sözü",
+                "en": "The word “Be”",
+                "pt": "A palavra “Sê”"
+              },
+              "note": {
+                "tr": "<em>“Ona ol der. Bu da üçüncüdür. Üç ilk tek sayıdır.”</em> Ve sonuç: <em>“yaratma mutlak birlikten değil, fertten meydana gelir.”</em>",
+                "en": "<em>“He says to it: Be. And that is the third. Three is the first odd number.”</em> And the conclusion: <em>“creation comes about not from absolute oneness but from the odd-triad.”</em>",
+                "pt": "<em>“Diz-lhe: Sê. E isso é o terceiro. Três é o primeiro número ímpar.”</em> E a conclusão: <em>“a criação não vem da unidade absoluta mas da tríade-ímpar.”</em>"
+              }
+            },
+            "right": {
+              "label": {
+                "tr": "İrade edilen",
+                "en": "The thing willed",
+                "pt": "A coisa querida"
+              },
+              "note": {
+                "tr": "<em>“…bir şey…”</em> — bu iki. <em>“Burada iki şey vardır.”</em>",
+                "en": "<em>“…a thing…”</em> — that is two. <em>“Here there are two things.”</em>",
+                "pt": "<em>“…uma coisa…”</em> — isso é dois. <em>“Aqui há duas coisas.”</em>"
+              }
+            }
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Cümle açık: <em>“yaratma, bir'den bir çıkar görüşünün aksine, ahadiyet, yani mutlak birlikle değil, (üç şeyin birliği demek olan) ferdiyetle gerçekleşir.”</em> Ve hemen ardından, karşı çıktığı görüşe bir pay bırakıyor: <em>“O görüş de doğru olsa bile, vakıa öyle değildir.”</em> Bu ince cümleyi atlamak istemiyoruz — burada bir görüş çürütülmüyor, yalnız gerçekleşenin başka olduğu söyleniyor. Bize göre bu, bu sitede sık sık karşılaştığımız bir tavır: bir okumayı yanlış ilan etmeden, onun yanına başka bir okuma koymak.",
+            "en": "The sentence is explicit: <em>“Contrary to the view that from one only one proceeds, creation comes about not through absolute oneness but through the odd-triad, which means the unity of three things.”</em> And immediately he leaves the contradicted view a share: <em>“Even if that view is sound, the fact is not so.”</em> We do not want to skip this fine sentence — a view is not refuted here, only said to differ from what happens. To us this is an attitude we meet often on this site: placing another reading beside one without declaring it false.",
+            "pt": "A frase é explícita: <em>“Contra a opinião de que de um só procede um, a criação não se dá pela unidade absoluta mas pela tríade-ímpar, que significa a unidade de três coisas.”</em> E de imediato deixa uma parte à opinião contrariada: <em>“Mesmo que essa opinião seja correta, o facto não é assim.”</em> Não queremos saltar esta frase fina — aqui não se refuta uma opinião, apenas se diz que o que acontece é outro. Para nós é uma atitude que encontramos com frequência neste site: colocar outra leitura ao lado de uma sem a declarar falsa."
+          }
+        }
+      ]
+    },
+    {
+      "id": "c15k187-s3",
+      "heading": {
+        "tr": "Olumsuzlama Belirsize, Olumlama Bilinene",
+        "en": "Negation to the Indefinite, Affirmation to the Definite",
+        "pt": "Negação ao Indefinido, Afirmação ao Definido"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölümün tevhid kelimesini açış biçimi bir dilbilgisi ayrımına dayanıyor. <em>“Bu ifadede olumsuzlama (yoktur ifadesi) belirsiz (nekre) olan ilaha yönelmişken olumlama marife, yani bilinene yönelmiştir ki o da Allah'tır.”</em> Ve neden belirsize yöneldiğini de söylüyor: <em>“çünkü onun altında her şey bulunur. Her şeyin ilahlıkta iddia ettiği bir payı vardır ve bu nedenle olumsuzlama ona yönelmiştir.”</em>",
+            "en": "The chapter's way of opening the word of oneness rests on a grammatical distinction. <em>“In this phrase the negation is directed at the indefinite 'god', while the affirmation is directed at the definite, which is God.”</em> And it says why the negation goes to the indefinite: <em>“because everything falls under it. Everything has some claimed share in godhood, and so the negation is directed there.”</em>",
+            "pt": "O modo como o capítulo abre a palavra da unidade assenta numa distinção gramatical. <em>“Nesta frase a negação dirige-se ao indefinido 'deus', enquanto a afirmação se dirige ao definido, que é Deus.”</em> E diz porque a negação vai ao indefinido: <em>“porque tudo cai sob ele. Tudo tem alguma parte reclamada na divindade, e por isso a negação dirige-se aí.”</em>"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ardından gelen adım bizi düşündürdü. İlâh, belirli bir payı olan değil, <em>“bütün payların kendisine ait olduğu”</em> olduğuna göre, her şeyin payı O'nun isimlerinden biri oluyor: <em>“O halde her şey O'nun isimleridir. Her isim hüviyete delil, hatta onun ta kendisidir.”</em> Ve bölüm bunu şu cümleyle bağlıyor: <em>“Binaenaleyh inkâr edilen tanınandan başka bir şey yoktur.”</em> Yani tevhid kelimesinin olumsuzladığı şey, dışarıda bir yerde duran sahte bir tanrı değil; olumsuzlanan da olumlanan da aynı yere bakıyor. Bunu bir sonuç gibi değil, bize açılan bir soru gibi kaydediyoruz.",
+            "en": "The step that follows made us think. Since a god is not one with a particular share but the one <em>“to whom all the shares belong,”</em> everything's share turns out to be one of His names: <em>“So everything is His names. Every name is a proof of the identity — indeed it is the identity itself.”</em> And the chapter ties this with: <em>“Therefore what is denied is nothing other than what is recognised.”</em> What the word of oneness negates is not a false god standing somewhere outside; the negated and the affirmed look toward the same place. We record this not as a conclusion but as a question opened to us.",
+            "pt": "O passo seguinte fez-nos pensar. Uma vez que um deus não é aquele que tem uma parte particular mas aquele <em>“a quem todas as partes pertencem,”</em> a parte de cada coisa revela-se ser um dos Seus nomes: <em>“Portanto tudo são os Seus nomes. Cada nome é prova da identidade — mais, é a própria identidade.”</em> E o capítulo remata: <em>“Portanto o que é negado não é senão o que é reconhecido.”</em> O que a palavra da unidade nega não é um falso deus algures fora; o negado e o afirmado olham para o mesmo lugar. Registamos isto não como conclusão mas como uma pergunta que se nos abre."
+          }
+        }
+      ]
+    },
+    {
+      "id": "c15k187-s4",
+      "heading": {
+        "tr": "Harfler Bir Ümmet — ve Söyleyeni Tesbih Ediyorlar",
+        "en": "The Letters Are a Community — and They Glorify the One Who Says Them",
+        "pt": "As Letras São Uma Comunidade — e Glorificam Quem as Diz"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bölümün ortasında, harflerin tek tek ne anlama geldiğini uzun uzun anlattıktan sonra, bir uyarı geliyor: <em>“Bilmelisin ki biz harfleri bir ihtimale açık olacak şekilde taksim etmedik.”</em> Yani bu taksim şairane bir benzetme değil. Gerekçesi ise bizi durduran cümle: <em>“harfler… bir ümmettir. Onların suretlerinin yönetici ruhları vardır. Binaenaleyh bize göre harfler, canlı, Allah'ın hamdini tespih eden, rablerine itaat eden varlıklardır.”</em>",
+            "en": "In the middle of the chapter, after explaining at length what each letter means, a warning comes: <em>“You should know that we did not divide the letters in a way open to conjecture.”</em> The division is not a poetic figure. And the reason is the sentence that stopped us: <em>“the letters… are a community. Their forms have governing spirits. So for us the letters are living beings, glorifying God's praise, obedient to their Lord.”</em>",
+            "pt": "A meio do capítulo, depois de explicar longamente o que cada letra significa, vem um aviso: <em>“Deves saber que não dividimos as letras de modo aberto a conjetura.”</em> A divisão não é uma figura poética. E a razão é a frase que nos deteve: <em>“as letras… são uma comunidade. As suas formas têm espíritos que as governam. Por isso, para nós, as letras são seres vivos, que glorificam o louvor de Deus, obedientes ao seu Senhor.”</em>"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bundan çıkardığı sonuç, zikri tümüyle başka bir yere koyuyor: <em>“Kul 'Lâ ilâhe illallah' dediğinde, bu kelimeleri yaratmış olur ve kelimeler de onları yaratan (kulu) tespih ederler.”</em> Söyleyen, söylediği şeyi var etmiş oluyor; ve var ettiği şey dönüp onu tesbih ediyor. Bölüm bunu <em>“Hak ise asıl itibarıyla münezzehtir, yoksa herhangi birinin tenzihi nedeniyle münezzeh değildir”</em> diyerek dengeliyor — yani zikir Hakk'a bir şey eklemiyor; eklenen, söyleyene ekleniyor.",
+            "en": "The conclusion he draws puts invocation somewhere else entirely: <em>“When the servant says 'There is no god but God', he has created these words, and the words glorify the one who created them.”</em> The speaker brings into being what he says; and what he brings into being turns back and glorifies him. The chapter balances this with <em>“God is transcendent in Himself, not transcendent because of anyone's declaring Him so”</em> — the invocation adds nothing to God; what is added is added to the one who speaks.",
+            "pt": "A conclusão que tira coloca a invocação num sítio inteiramente outro: <em>“Quando o servo diz 'Não há deus senão Deus', criou estas palavras, e as palavras glorificam quem as criou.”</em> Quem fala faz existir o que diz; e o que faz existir volta-se e glorifica-o. O capítulo equilibra isto com <em>“Deus é transcendente em Si, não transcendente por alguém O declarar assim”</em> — a invocação nada acrescenta a Deus; o que se acrescenta acrescenta-se a quem fala."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bir de küçük ama sıcak bir kayıt var burada: kendi şeyhini anıyor. <em>“Şeyhimiz Ebu'l-Abbas el-Ureybi'yi -ki Endülüs'ün Ulya şehrindendi- bu zikri söylediğini görmüştüm.”</em> Sonra Gazâlî'nin ve başkalarının <em>“Allah”</em> ismindeki <em>he</em> zamirine bağlandığını, onu <em>“seçkinlerin seçkinlerinin zikri”</em> saydıklarını aktarıyor. Farklı düsturları yan yana koyuyor, birini ötekine üstün tutmadan.",
+            "en": "There is also a small, warm record here: he mentions his own master. <em>“I had seen our master Abu'l-'Abbas al-'Uraybi — he was from the town of 'Ulya in Andalusia — saying this invocation.”</em> He then relates that al-Ghazali and others bound themselves to the pronoun <em>he</em> in the name <em>“Allah”</em>, counting it <em>“the invocation of the elect of the elect.”</em> He sets different maxims side by side without ranking one above another.",
+            "pt": "Há também um registo pequeno e caloroso: menciona o seu próprio mestre. <em>“Tinha visto o nosso mestre Abu'l-'Abbas al-'Uraybi — era da cidade de 'Ulya, na Andaluzia — dizer esta invocação.”</em> Relata depois que al-Ghazali e outros se ligaram ao pronome <em>he</em> no nome <em>“Allah”</em>, tendo-o por <em>“a invocação dos eleitos dos eleitos.”</em> Põe máximas diferentes lado a lado sem colocar uma acima da outra."
+          }
+        }
+      ]
+    },
+    {
+      "id": "c15k187-s5",
+      "heading": {
+        "tr": "“Allahu Ekber”: Üç Cevap, ve Karar Vermeyenin Payı",
+        "en": "“God Is Greater”: Three Answers, and the Share of the One Who Does Not Decide",
+        "pt": "“Deus É Maior”: Três Respostas, e a Parte de Quem Não Decide"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "İkinci bölüm bir soruyla açılıyor: <em>“ekber”</em> kipi dilde mukayese bildirir — peki burada neyin neyle mukayesesi var? Bölüm bunu bir tartışma olarak değil, üç ayrı zikir hâli olarak kuruyor; ve —bizim en çok dikkatimizi çeken kısım— hangisinin doğru olduğunu söylemiyor. Bunun yerine her birinin ne tür bir keşif getirdiğini anlatıyor: <em>“Allah katından olan keşfi niyetine göre gerçekleşir.”</em>",
+            "en": "The second chapter opens with a question: the form <em>“greater”</em> implies a comparison in the language — so what is being compared with what? The chapter sets this out not as a debate but as three distinct states of invocation; and — the part that most caught our attention — it does not say which is correct. Instead it describes what kind of unveiling each brings: <em>“the unveiling from God comes according to his intention.”</em>",
+            "pt": "O segundo capítulo abre com uma pergunta: a forma <em>“maior”</em> implica comparação na língua — então o que está a ser comparado com o quê? O capítulo expõe isto não como debate mas como três estados distintos de invocação; e — a parte que mais nos chamou a atenção — não diz qual é correto. Em vez disso descreve que tipo de desvelamento cada um traz: <em>“o desvelamento de Deus dá-se conforme a sua intenção.”</em>"
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt XV, 465. Bölüm (s. 253-254, 257)",
+            "en": "Al-Futuhat al-Makkiyya, Vol. XV, Chapter 465 (pp. 253-254, 257)",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. XV, Capítulo 465 (pp. 253-254, 257)"
+          },
+          "caption": {
+            "tr": "Üçünü aynı sözün üç ayrı hâli olarak, tek bir kökten dallanacak şekilde çizdik. Sıralama bir derecelendirme değil — ama metin sonuncusu için ayrı bir şey söylüyor: ikisinin de üstünde.",
+            "en": "We drew the three as three states of the same phrase, branching from a single root. The order is not a ranking — but the text does say something apart about the last one: it stands above both.",
+            "pt": "Desenhámos os três como três estados da mesma frase, ramificando de uma só raiz. A ordem não é uma classificação — mas o texto diz algo à parte sobre o último: está acima de ambos."
+          },
+          "tree": {
+            "id": "c15k187-tree-uc",
+            "label": {
+              "tr": "“Allahu ekber” diyenin niyeti",
+              "en": "The intention of the one who says “God is greater”",
+              "pt": "A intenção de quem diz “Deus é maior”"
+            },
+            "note": {
+              "tr": "<em>“Bu zikirle Rabbini zikreden kişi… Allah katından olan keşfi niyetine göre gerçekleşir.”</em>",
+              "en": "<em>“For the one who invokes his Lord with this… the unveiling from God comes according to his intention.”</em>",
+              "pt": "<em>“Para quem invoca o seu Senhor com isto… o desvelamento de Deus dá-se conforme a sua intenção.”</em>"
+            },
+            "children": [
+              {
+                "id": "c15k187-uc-var",
+                "label": {
+                  "tr": "Mukayese kastedenler",
+                  "en": "Those who intend a comparison",
+                  "pt": "Os que pretendem comparação"
+                },
+                "note": {
+                  "tr": "<em>“Böyle bir insan ancak karşılaştırma ve mukayese görür.”</em> Ve gördüğü mukayese hiç beklemediğimiz yerde çıkıyor — bkz. aşağıdaki son bölüm.",
+                  "en": "<em>“Such a person sees only comparison.”</em> And the comparison he sees turns out to be in a place we never expected — see the final section below.",
+                  "pt": "<em>“Tal pessoa vê apenas comparação.”</em> E a comparação que vê acaba por estar num lugar que nunca esperávamos — ver a secção final abaixo."
+                }
+              },
+              {
+                "id": "c15k187-uc-yok",
+                "label": {
+                  "tr": "Mukayeseyi imkânsız görenler",
+                  "en": "Those who hold comparison impossible",
+                  "pt": "Os que consideram a comparação impossível"
+                },
+                "note": {
+                  "tr": "İki gerekçeyle: ya <em>“Allah -zikreden olması bakımından- zikredenlerin aynıdır”</em> (ve <em>“hiçbir şey kendisiyle mukayese edilemez”</em>), ya da mukayese için gereken münasebet Allah ile yaratıkları arasında hiç yok.",
+                  "en": "For two reasons: either <em>“God, in that He is the invoker, is identical with the invokers”</em> (and <em>“nothing can be compared with itself”</em>), or the correspondence a comparison requires simply does not exist between God and creatures.",
+                  "pt": "Por duas razões: ou <em>“Deus, enquanto é o invocador, é idêntico aos invocadores”</em> (e <em>“nada pode ser comparado consigo mesmo”</em>), ou a correspondência que uma comparação exige simplesmente não existe entre Deus e as criaturas."
+                }
+              },
+              {
+                "id": "c15k187-uc-hic",
+                "label": {
+                  "tr": "İkisini de kastetmeyenler",
+                  "en": "Those who intend neither",
+                  "pt": "Os que não pretendem nenhuma"
+                },
+                "note": {
+                  "tr": "<em>“bu zikir kişiye -herhangi bir sınırlama olmaksızın- işin kendinde bulunduğu durumu bildirir. Böylece karşılaştırma niyeti taşıyanın elde ettikleri kadar karşılaştırma niyeti taşımayanın elde ettiği bilgileri elde eder.”</em> Ve hüküm: <em>“her ikisinin bilgisi de üçüncü zikredenin bilgisi altındadır.”</em>",
+                  "en": "<em>“this invocation informs the person — without any limitation — of the matter as it is in itself. Thus he obtains what the one intending comparison obtains, and also what the one not intending it obtains.”</em> And the verdict: <em>“the knowledge of both lies beneath the knowledge of the third.”</em>",
+                  "pt": "<em>“esta invocação informa a pessoa — sem qualquer limitação — do assunto tal como é em si. Assim obtém o que obtém quem pretende comparação, e também o que obtém quem não a pretende.”</em> E o veredito: <em>“o saber de ambos está sob o saber do terceiro.”</em>"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu üçüncüyü nasıl okuyacağımızı uzun düşündük. En kolay okuma şu olurdu: “karar vermemek daha iyidir.” Ama metin bunu söylemiyor — söylediği şey, üçüncünün <em>bir niyetle sınırlamamış</em> olması. İki niyet de bir çerçeve kuruyor ve keşif o çerçeveye göre geliyor; üçüncüsü çerçeve kurmadığı için <em>“işin kendinde bulunduğu durum”</em> geliyor. Kararsızlık değil, çerçeve kurmama. Bu ayrımı yapmak bize önemli göründü, çünkü ikisi kolayca birbirine karıştırılabilir — ve bu sitede yaptığımız şeyin de tam ortasından geçiyor.",
+            "en": "We thought for a long time about how to read this third one. The easiest reading would be: “it is better not to decide.” But the text does not say that — what it says is that the third has <em>not limited it with an intention</em>. Both intentions build a frame, and the unveiling comes according to that frame; the third, building no frame, receives <em>“the matter as it is in itself.”</em> Not indecision, but the not-building of a frame. Making that distinction seemed important to us, because the two are easily confused — and it runs straight through the middle of what we are doing on this site.",
+            "pt": "Pensámos muito sobre como ler este terceiro. A leitura mais fácil seria: “é melhor não decidir.” Mas o texto não diz isso — o que diz é que o terceiro <em>não a limitou com uma intenção</em>. Ambas as intenções constroem um quadro, e o desvelamento vem conforme esse quadro; o terceiro, não construindo quadro nenhum, recebe <em>“o assunto tal como é em si.”</em> Não indecisão, mas o não-construir de um quadro. Fazer essa distinção pareceu-nos importante, porque as duas confundem-se facilmente — e passa mesmo pelo meio do que fazemos neste site."
+          }
+        }
+      ]
+    },
+    {
+      "id": "c15k187-s6",
+      "heading": {
+        "tr": "Mukayese Kimin Arasında?",
+        "en": "Between Whom Is the Comparison?",
+        "pt": "Entre Quem Está a Comparação?"
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "text": {
+            "tr": "Mukayeseyi kabul eden gruba geldiğinde, bölüm mukayesenin nerede kurulduğunu söylüyor — ve orası bizim tahmin ettiğimiz yer değil. Kul ile Allah arasında değil; <em>Allah'ın kendini anması</em> ile <em>benim O'nu anmam</em> arasında: <em>“Senin kendini zikretmen, benim seni zikretmemden üstün ve daha büyüktür. Bununla birlikte ben seni senin vasıtanla zikrederim.”</em> Yani zikreden zaten O; mukayese O'nun iki hâli arasında.",
+            "en": "When he comes to the group that accepts the comparison, the chapter says where the comparison is set — and it is not where we had guessed. Not between servant and God, but between <em>God's remembering Himself</em> and <em>my remembering Him</em>: <em>“Your remembering of Yourself is higher and greater than my remembering of You. And yet I remember You by means of You.”</em> The one remembering is already He; the comparison is between two of His states.",
+            "pt": "Quando chega ao grupo que aceita a comparação, o capítulo diz onde a comparação se estabelece — e não é onde tínhamos suposto. Não entre servo e Deus, mas entre <em>Deus lembrar-Se de Si</em> e <em>eu lembrar-me d'Ele</em>: <em>“A Tua lembrança de Ti é mais alta e maior do que a minha lembrança de Ti. E contudo eu lembro-Te por meio de Ti.”</em> Quem recorda já é Ele; a comparação é entre dois estados d'Ele."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Ve bölüm bunu şu iki cümleyle kapatıyor: <em>“Allah'ı ancak kendisi zikredebilir. Allah'ın zikrini ancak O duyar.”</em> Sonra sûfîlerin sözünü aktarıyor: <em>“Allah'ı Allah zikreder”, “Allah'ı Allah görür.”</em> Son söz ise insana dönüyor: <em>“İnsan Rabbiyle zikredene kadar mezkûr, zikredilen olamaz. Bu durumda ise kendisi nedeniyle değil, rabbi nedeniyle mezkûr olur.”</em>",
+            "en": "And the chapter closes it with two sentences: <em>“Only He can remember God. Only He hears God's remembrance.”</em> Then it relays the Sufis' words: <em>“God remembers God”, “God sees God.”</em> The last word returns to the human: <em>“A person cannot be one remembered until he remembers by his Lord. And then he is remembered not because of himself but because of his Lord.”</em>",
+            "pt": "E o capítulo fecha-o com duas frases: <em>“Só Ele pode lembrar Deus. Só Ele ouve a lembrança de Deus.”</em> Depois transmite as palavras dos sufis: <em>“Deus lembra Deus”, “Deus vê Deus.”</em> A última palavra volta ao humano: <em>“Uma pessoa não pode ser lembrada até que lembre pelo seu Senhor. E então é lembrada não por causa de si mas por causa do seu Senhor.”</em>"
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu iki bölümü yan yana koyunca bize kalan şu: düstur bir söz seçmek değil, bir sözün içine yerleşmek; ve o söz içeriden bakıldığında söyleyeni de değiştiriyor — hatta söyleyenin kim olduğunu değiştiriyor. Bunu bir sonuç olarak değil, üzerinde durmaya devam edeceğimiz bir yer olarak bırakıyoruz. Bir de bir çekince: bölümün harflerle kurduğu ayrıntılı yapıyı (zâid elif, tabiî elif, kesreli hemze, vasıl elifi, lâm, hâ) burada aktarmadık — anladığımızı söyleyemeyeceğimiz için aktarmayı da doğru bulmadık.",
+            "en": "Setting the two chapters side by side, what remains with us is this: a maxim is not choosing a phrase but settling inside one; and seen from within, the phrase changes the one who says it — changes even who the sayer is. We leave this not as a conclusion but as a place we will keep standing on. And a reservation: we have not relayed here the detailed structure the chapter builds with the letters (the added alif, the natural alif, the kasra'd hamza, the alif of connection, lam, ha) — since we cannot say we understood it, we did not think it right to pass it on.",
+            "pt": "Postos os dois capítulos lado a lado, o que nos fica é isto: uma máxima não é escolher uma frase mas instalar-se dentro de uma; e vista por dentro, a frase muda quem a diz — muda até quem é o que diz. Deixamos isto não como conclusão mas como um lugar onde continuaremos. E uma reserva: não transmitimos aqui a estrutura detalhada que o capítulo constrói com as letras (o alif acrescentado, o alif natural, a hamza com kasra, o alif de ligação, lam, ha) — como não podemos dizer que a entendemos, não nos pareceu certo transmiti-la."
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "tr": "Fütûhât-ı Mekkiyye, Cilt XV, 464. Bölüm — “Düstûru 'Lâ ilâhe illallah' İfadesi Olan Kutbun Hâli” (s. 246-252) ve 465. Bölüm — “Menzili 'Allahu Ekber' Olan Kutbun Hâlinin Bilinmesi” (s. 253-259)",
+      "en": "Al-Futuhat al-Makkiyya, Vol. XV, Chapter 464 — “The State of the Pole Whose Maxim Is 'There Is No God But God'” (pp. 246-252) and Chapter 465 — “On Knowing the State of the Pole Whose Waystation Is 'God Is Greater'” (pp. 253-259)",
+      "pt": "Al-Futuhat al-Makkiyya, Vol. XV, Capítulo 464 — “O Estado do Polo Cuja Máxima É 'Não Há Deus Senão Deus'” (pp. 246-252) e Capítulo 465 — “Sobre o Conhecimento do Estado do Polo Cuja Estação É 'Deus É Maior'” (pp. 253-259)"
+    }
+  ]
+}
