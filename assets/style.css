@@ -5208,7 +5208,12 @@ body.share-stage-open { overflow: hidden; }
 .share-stage {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  /* Sahnenin üstünde HİÇBİR ŞEY kalmamalı. 200 iken önizleme reposundaki
+     sarı "ÖNİZLEME" şeridi (z-index:999, position:sticky) sahne kromunu
+     örtüyordu -- kullanıcı "video indirme düğmesini göremedim" dedi. Daha
+     kötüsü: telefonda çerçeve ekranı doldurduğu için o şerit kaydın İÇİNE
+     de girerdi. */
+  z-index: 1000;
   background: #05060a;
   display: flex;
   align-items: center;

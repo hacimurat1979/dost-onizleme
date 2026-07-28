@@ -467,15 +467,24 @@
     rafId = requestAnimationFrame(frame);
 
     const chrome = stageEl.querySelector(".share-stage__chrome");
-    // Kayıt sırasında arayüz görünmesin: iki saniye sonra soluyor, ekrana
-    // dokununca geri geliyor.
-    const fade = () => chrome.classList.add("is-dim");
-    chromeTimer = setTimeout(fade, 2200);
-    stageEl.addEventListener("pointerdown", () => {
-      chrome.classList.remove("is-dim");
-      clearTimeout(chromeTimer);
-      chromeTimer = setTimeout(fade, 2200);
-    });
+    // Krom yalnızca ÇERÇEVENİN İÇİNE düştüğünde (telefon: çerçeve ekranı
+    // dolduruyor) kendiliğinden soluyor -- orada ekran kaydı kullanılıyor ve
+    // düğmelerin kayda girmemesi gerekiyor. Masaüstünde krom çerçevenin
+    // dışında kalıyor, kayda zaten girmiyor; orada solmak sadece düğmeyi
+    // bulunmaz kılıyordu (kullanıcı notu: "video indirme seçeneğini
+    // göremedim"). O yüzden orada hep açık duruyor.
+    const fr = stageEl.querySelector(".share-stage__frame").getBoundingClientRect();
+    const cr = chrome.getBoundingClientRect();
+    const kromCerceveninIcinde = cr.left < fr.right - 1 && cr.right > fr.left + 1;
+    if (kromCerceveninIcinde) {
+      const fade = () => chrome.classList.add("is-dim");
+      chromeTimer = setTimeout(fade, 2600);
+      stageEl.addEventListener("pointerdown", () => {
+        chrome.classList.remove("is-dim");
+        clearTimeout(chromeTimer);
+        chromeTimer = setTimeout(fade, 2600);
+      });
+    }
     stageEl.querySelector('[data-action="close"]').addEventListener("click", closeStage);
     stageEl.querySelector('[data-action="guides"]').addEventListener("click", () => {
       const g = stageEl.querySelector(".share-stage__guides");
