@@ -1596,6 +1596,80 @@
   // Sırlar grafiğinin merkezi artık bölümün adını değil, okumalarımızın
   // bizi getirdiği "sırların sırrı" önerisini taşıyor. Panelde bilerek bir
   // sonuç gibi değil, gerekçesi ve çekinceleriyle birlikte duruyor.
+  // "Perde nedir?" halkası: merkez panelinin altında duran, üç iç içe
+  // halkadan oluşan bir şema. Kayıtlar dıştan içe doğru okunur -- dışta
+  // perde araya giren başka bir şey, ortada iki taraftan birinin kendisi,
+  // merkezde örten ile örtülen aynı. Sıra bir zaman sırası DEĞİL; bunu
+  // veri tarafındaki `caption`/`cekince` metinleri de açıkça söylüyor.
+  //
+  // Neden yalnız 16 kayıt: 2026-07-28 denetiminde (research/anlayis-evrimi/
+  // PERDE_DENETIM.md) sayfadaki 30 perde kaydının üç ayrı soruya cevap
+  // verdiği görüldü. Tek eksene dizilebilen yalnız "perde nedir" grubu.
+  const HALKA_R = [148, 96, 46];   // dış / orta / merkez yarıçapları
+  const HALKA_VB = 340;            // viewBox kenarı (kare)
+
+  function halkaSvg(halka) {
+    const c = HALKA_VB / 2;
+    const rings = halka.rings || [];
+    let out = "";
+
+    // Halkalar: dıştan içe, en dıştaki kesik çizgili (sınırı en belirsiz olan).
+    rings.forEach((ring, ri) => {
+      const cls = ri === 0 ? "sir-halka__ring sir-halka__ring--dashed" : "sir-halka__ring";
+      out += `<circle class="${cls}" cx="${c}" cy="${c}" r="${HALKA_R[ri]}"/>`;
+    });
+
+    // Merkez dolgusu -- Zât/kök ile aynı ailede dursun diye vurgulu.
+    out += `<circle class="sir-halka__core" cx="${c}" cy="${c}" r="${HALKA_R[2] - 6}"/>`;
+
+    rings.forEach((ring, ri) => {
+      const r = HALKA_R[ri];
+      const n = ring.entries.length;
+      ring.entries.forEach((e, i) => {
+        // -90°'den başlayıp saat yönünde: okuma üstten başlasın.
+        const a = (-Math.PI / 2) + (i * 2 * Math.PI) / n;
+        const x = c + r * Math.cos(a);
+        const y = c + r * Math.sin(a);
+        const label = I18n.pick3(e.label);
+        const bolumAdi = tt({ tr: `${e.bolum}. Bölüm`, en: `Chapter ${e.bolum}`, pt: `Capítulo ${e.bolum}` });
+        const title = `${bolumAdi} — ${label}\n${I18n.pick3(e.quote)}`;
+        // Etiket, düğümün merkezden dışa doğru olan tarafına yazılır ki
+        // iç halkaların etiketleri dış halkanın üstüne binmesin.
+        const lx = c + (r + (ri === 0 ? 20 : 17)) * Math.cos(a);
+        const ly = c + (r + (ri === 0 ? 20 : 17)) * Math.sin(a);
+        const anchor = Math.abs(Math.cos(a)) < 0.25 ? "middle" : (Math.cos(a) > 0 ? "start" : "end");
+        out += `<g class="sir-halka__node sir-halka__node--r${ri}" tabindex="0" role="listitem"
+                   aria-label="${escapeHtmlAttr(title.replace(/\n/g, " — "))}">
+            <title>${escapeHtmlAttr(title)}</title>
+            <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${ri === 2 ? 9 : 7}"/>
+            <text x="${lx.toFixed(1)}" y="${(ly + 3.5).toFixed(1)}" text-anchor="${anchor}">${escapeHtmlAttr(e.bolum)}</text>
+          </g>`;
+      });
+    });
+
+    const merkezLabel = rings[2] ? I18n.pick3(rings[2].label) : "";
+    return `<svg class="sir-halka__svg" viewBox="0 0 ${HALKA_VB} ${HALKA_VB}" role="list"
+                 aria-label="${escapeHtmlAttr(merkezLabel)}">${out}</svg>`;
+  }
+
+  function halkaHtml(halka) {
+    if (!halka || !halka.rings || halka.rings.length !== 3) return "";
+    const legend = halka.rings.map((ring, ri) => `
+      <li class="sir-halka__legend-item sir-halka__legend-item--r${ri}">
+        <strong>${I18n.pick3(ring.label)}</strong>
+        <span class="sir-halka__legend-count">${ring.entries.length}</span>
+        <p>${linkify(I18n.pick3(ring.note), null, null)}</p>
+      </li>`).join("");
+    return `
+      <div class="detail-block sir-halka">
+        <p class="detail-eyebrow">${tt({ tr: "Perde nedir? — on altı kaydın halkası", en: "What is the veil? — a ring of sixteen records", pt: "O que é o véu? — um anel de dezasseis registos" })}</p>
+        <p class="sir-halka__caption">${linkify(I18n.pick3(halka.caption), null, null)}</p>
+        <div class="sir-halka__figure">${halkaSvg(halka)}</div>
+        <ul class="sir-halka__legend">${legend}</ul>
+        <p class="sir-halka__cekince">${linkify(I18n.pick3(halka.cekince), null, null)}</p>
+      </div>`;
+  }
+
   function showSirlarMerkez() {
     if (!sirlarData || !sirlarData.merkez) return;
     const m = sirlarData.merkez;
@@ -1610,6 +1684,7 @@
         <p>${linkify(I18n.pick3(m.note), null, null)}</p>
         <cite>${m.source}</cite>
       </div>
+      ${halkaHtml(m.halka)}
     `;
     detailPanel.hidden = false;
   }

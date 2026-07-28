@@ -5369,3 +5369,117 @@ body.share-stage-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .share-line { transition: none; }
 }
+
+/* --- Sırlar merkezi: "Perde nedir?" halkası (2026-07-28) ---------------
+   Üç iç içe halka; kayıtlar dıştan içe okunur ve merkeze doğru koyulaşır.
+   Sıra bir ZAMAN sırası değil (veri tarafındaki caption/cekince bunu
+   açıkça söylüyor) -- halka biçimi de bunu taşıyor: bir ok ya da çizgi
+   yerine, başlangıcı belirsiz bir daire. Kayıt seçimi ve gerekçesi:
+   research/anlayis-evrimi/PERDE_DENETIM.md */
+.sir-halka {
+  border: 1px dashed var(--border);
+  border-left: 4px dashed var(--series-theme);
+}
+.sir-halka__caption,
+.sir-halka__cekince {
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: var(--text-secondary);
+}
+.sir-halka__cekince {
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+.sir-halka__figure {
+  display: flex;
+  justify-content: center;
+  margin: 1.1rem 0 0.4rem;
+  overflow-x: auto;      /* dar ekranda gövde yatay kaymasın */
+}
+.sir-halka__svg {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  flex: 0 0 auto;
+  overflow: visible;     /* dış halkanın etiketleri kırpılmasın */
+}
+
+.sir-halka__ring {
+  fill: none;
+  stroke: var(--gridline);
+  stroke-width: 1.2;
+}
+.sir-halka__ring--dashed {
+  stroke-dasharray: 4 6;
+}
+.sir-halka__core {
+  fill: color-mix(in srgb, var(--series-theme) 14%, transparent);
+  stroke: var(--series-theme);
+  stroke-width: 1.4;
+}
+
+.sir-halka__node circle {
+  fill: var(--surface-1);
+  stroke: var(--series-theme);
+  stroke-width: 1.6;
+  transition: r 140ms ease, fill 140ms ease;
+}
+.sir-halka__node--r1 circle { fill: color-mix(in srgb, var(--series-theme) 32%, var(--surface-1)); }
+.sir-halka__node--r2 circle { fill: var(--series-theme); }
+.sir-halka__node text {
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  fill: var(--text-muted);
+  pointer-events: none;
+}
+.sir-halka__node--r2 text { fill: var(--series-theme-text); font-weight: 600; }
+.sir-halka__node:hover circle,
+.sir-halka__node:focus-visible circle {
+  fill: var(--accent-interactive);
+  r: 10;
+}
+.sir-halka__node:focus-visible {
+  outline: 2px solid var(--accent-interactive);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sir-halka__node circle { transition: none; }
+}
+
+.sir-halka__legend {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.sir-halka__legend-item {
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--gridline);
+}
+.sir-halka__legend-item--r1 { border-left-color: color-mix(in srgb, var(--series-theme) 55%, var(--gridline)); }
+.sir-halka__legend-item--r2 { border-left-color: var(--series-theme); }
+.sir-halka__legend-item strong {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+.sir-halka__legend-count {
+  display: inline-block;
+  margin-left: 0.45rem;
+  padding: 0.05rem 0.42rem;
+  border-radius: 999px;
+  background: var(--gridline);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+}
+.sir-halka__legend-item p {
+  margin: 0.28rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.58;
+  color: var(--text-secondary);
+}
