@@ -5301,6 +5301,8 @@ body.share-stage-open { overflow: hidden; }
 }
 .share-stage__guides::before { left: 0; right: 0; bottom: 0; height: 20%; }
 .share-stage__guides::after { right: 0; top: 30%; bottom: 20%; width: 18%; }
+/* Krom ve kayıt göstergesi çerçevenin DEĞİL sahnenin çocuğu: masaüstünde
+   kayıt tam olarak çerçeveye kırpıldığı için ikisi de videoya girmiyor. */
 .share-stage__chrome {
   position: absolute;
   top: 14px;
@@ -5308,6 +5310,37 @@ body.share-stage-open { overflow: hidden; }
   display: flex;
   gap: 8px;
   transition: opacity 0.5s ease;
+  z-index: 2;
+}
+.share-stage.is-recording .share-stage__chrome { display: none; }
+.share-stage__rec {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  margin: 0;
+  z-index: 2;
+  max-width: min(280px, 26vw);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(244, 241, 234, 0.82);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(244, 241, 234, 0.22);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+.share-stage__rec.is-busy { border-color: #e0574f; color: #ffd9d6; }
+.share-stage__rec.is-busy::before {
+  content: "";
+  display: inline-block;
+  width: 8px; height: 8px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #e0574f;
+  animation: share-rec-pulse 1.1s ease-in-out infinite;
+}
+@keyframes share-rec-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) {
+  .share-stage__rec.is-busy::before { animation: none; }
 }
 .share-stage__chrome.is-dim { opacity: 0; }
 .share-stage__chrome button {

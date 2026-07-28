@@ -30,6 +30,20 @@
     open: { tr: "Sahneyi aç", en: "Open the stage", pt: "Abrir o palco" },
     close: { tr: "Kapat", en: "Close", pt: "Fechar" },
     guides: { tr: "Güvenli alan", en: "Safe area", pt: "Área segura" },
+    rec: { tr: "⏺ Videoyu indir", en: "⏺ Download video", pt: "⏺ Descarregar vídeo" },
+    recPick: {
+      tr: "Açılan pencerede “Bu sekme”yi seç — gerisi kendiliğinden.",
+      en: "In the dialog that opens, choose “This tab” — the rest is automatic.",
+      pt: "Na janela que abrir, escolhe “Este separador” — o resto é automático.",
+    },
+    recWait: { tr: "Başlıyor…", en: "Starting…", pt: "A começar…" },
+    recBusy: { tr: "Kaydediliyor", en: "Recording", pt: "A gravar" },
+    recDone: { tr: "İndirildi", en: "Downloaded", pt: "Descarregado" },
+    recFail: {
+      tr: "Kayıt başlamadı. Ekran paylaşımına izin verilmedi ya da tarayıcı desteklemiyor.",
+      en: "Recording did not start. Screen sharing was denied, or the browser does not support it.",
+      pt: "A gravação não começou. A partilha de ecrã foi negada ou o navegador não a suporta.",
+    },
     loading: { tr: "Aranıyor…", en: "Searching…", pt: "A procurar…" },
     none: {
       tr: "Bu şablona uygun bir kayıt bulunamadı — başkasını dene.",
@@ -302,12 +316,135 @@
       '<div class="share-stage__text">' + lines + "</div>" +
       '<p class="share-stage__source">' + escapeHtml(s.source) + "</p>" +
       '<div class="share-stage__guides" hidden></div>' +
+      "</div>" +
+      // Krom ve kayıt göstergesi ÇERÇEVENİN DIŞINDA duruyor: masaüstünde
+      // kayıt tam olarak çerçeveye kırpıldığı için, buradaki hiçbir şey
+      // videoya girmiyor. (Telefonda çerçeve ekranı doldurduğu için krom
+      // içeri düşüyor; orada da zaten ekran kaydı kullanılıyor ve krom
+      // 2,2 saniye sonra soluyor.)
       '<div class="share-stage__chrome">' +
+      (canRecord ? '<button type="button" data-action="rec">' + escapeHtml(tt(UI.rec)) + "</button>" : "") +
       '<button type="button" data-action="guides">' + escapeHtml(tt(UI.guides)) + "</button>" +
       '<button type="button" data-action="close">✕</button>' +
-      "</div></div>"
+      "</div>" +
+      '<p class="share-stage__rec" hidden></p>'
     );
   }
+
+  // --- masaüstünde doğrudan video indirme --------------------------------
+  // Telefonda ekran kaydı doğal yol; bilgisayarda değil (kullanıcı notu,
+  // 2026-07-28). Burada sekmeyi getDisplayMedia ile yakalayıp SADECE 9:16
+  // çerçeveyi bir tuvale kırpıyoruz, sonra MediaRecorder'a veriyoruz.
+  // Kırpma sayesinde çıktı tam 1080x1920 oluyor ve masaüstündeki siyah
+  // kenarlar ile arayüz düğmeleri videoya hiç girmiyor.
+  const canRecord = !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia &&
+    window.MediaRecorder && HTMLCanvasElement.prototype.captureStream);
+  // mp4 önce denenir: TikTok webm'i çoğu zaman reddediyor. Chrome 130+ ve
+  // Safari MediaRecorder'da mp4 üretebiliyor; üretemeyen tarayıcıda webm'e
+  // düşüyoruz (o dosya da yüklenebiliyor ama garantisi yok).
+  const MIMES = [
+    "video/mp4;codecs=avc1.42E01E",
+    "video/mp4",
+    "video/webm;codecs=vp9",
+    "video/webm",
+  ];
+  function pickMime() {
+    for (const m of MIMES) {
+      try { if (MediaRecorder.isTypeSupported(m)) return m; } catch (e) {}
+    }
+    return "";
+  }
+
+  function recStatus(text, busy) {
+    const el = stageEl && stageEl.querySelector(".share-stage__rec");
+    if (!el) return;
+    el.hidden = !text;
+    el.textContent = text || "";
+    el.classList.toggle("is-busy", !!busy);
+  }
+
+  async function recordToFile() {
+    if (!stageEl || recording) return;
+    const frameEl = stageEl.querySelector(".share-stage__frame");
+    recStatus(tt(UI.recPick), false);
+    let stream;
+    try {
+      stream = await navigator.mediaDevices.getDisplayMedia({
+        video: { frameRate: 30, preferCurrentTab: true },
+        preferCurrentTab: true,
+        audio: false,
+      });
+    } catch (e) {
+      recStatus(tt(UI.recFail), false);
+      setTimeout(() => recStatus("", false), 4000);
+      return;
+    }
+    recording = true;
+    stageEl.classList.add("is-recording");
+    recStatus(tt(UI.recWait), true);
+
+    const video = document.createElement("video");
+    video.srcObject = stream;
+    video.muted = true;
+    await video.play();
+
+    const canvas = document.createElement("canvas");
+    canvas.width = 1080;
+    canvas.height = 1920;
+    const ctx = canvas.getContext("2d");
+
+    // Yakalanan görüntü sekmenin görünen alanı; CSS pikselinden yakalama
+    // pikseline ölçek buradan çıkıyor. Kullanıcı "bu sekme" yerine bütün
+    // ekranı seçerse bu eşleme kayar -- düğmenin yanındaki metin bu yüzden
+    // açıkça "Bu sekme"yi söylüyor.
+    const sx = video.videoWidth / window.innerWidth;
+    const sy = video.videoHeight / window.innerHeight;
+    const r = frameEl.getBoundingClientRect();
+    const crop = {
+      x: Math.round(r.left * sx), y: Math.round(r.top * sy),
+      w: Math.round(r.width * sx), h: Math.round(r.height * sy),
+    };
+
+    let drawing = true;
+    (function drawLoop() {
+      if (!drawing) return;
+      ctx.drawImage(video, crop.x, crop.y, crop.w, crop.h, 0, 0, canvas.width, canvas.height);
+      requestAnimationFrame(drawLoop);
+    })();
+
+    const mime = pickMime();
+    const chunks = [];
+    const rec = new MediaRecorder(canvas.captureStream(30), mime ? { mimeType: mime } : undefined);
+    rec.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
+    rec.onstop = () => {
+      drawing = false;
+      stream.getTracks().forEach((t) => t.stop());
+      const ext = (mime || "video/webm").indexOf("mp4") !== -1 ? "mp4" : "webm";
+      const blob = new Blob(chunks, { type: mime || "video/webm" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "dost-" + scene.tpl + "-" + new Date().toISOString().slice(0, 10) + "." + ext;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      recording = false;
+      stageEl && stageEl.classList.remove("is-recording");
+      recStatus(tt(UI.recDone) + " · " + ext, false);
+      setTimeout(() => recStatus("", false), 4000);
+    };
+    // Döngünün başına gelmesini bekle ki video tam bir turdan oluşsun --
+    // TikTok videoyu kendisi tekrarladığı için dikiş yeri görünmesin.
+    const loop = (TIMING[scene.tpl] || TIMING.soz).loop;
+    const pos = ((performance.now() - startTs) % loop) / loop;
+    setTimeout(() => {
+      if (!recording) return;
+      rec.start();
+      recStatus(tt(UI.recBusy) + " · " + Math.round(loop / 1000) + "s", true);
+      setTimeout(() => { if (rec.state !== "inactive") rec.stop(); }, loop + 120);
+    }, (1 - pos) * loop);
+  }
+  let recording = false;
 
   function escapeHtml(s) {
     return String(s == null ? "" : s).replace(/[&<>"]/g, (c) => (
@@ -344,6 +481,8 @@
       const g = stageEl.querySelector(".share-stage__guides");
       g.hidden = !g.hidden;
     });
+    const recBtn = stageEl.querySelector('[data-action="rec"]');
+    if (recBtn) recBtn.addEventListener("click", recordToFile);
   }
 
   function closeStage() {
