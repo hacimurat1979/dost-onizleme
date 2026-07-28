@@ -5113,3 +5113,212 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   color: var(--accent-interactive);
   font: inherit;
 }
+
+/* --- Gizli paylaşım kipi (@share) — bkz. assets/share-mode.js -----------
+   Sitenin metinlerinden TikTok/Reels için 9:16 dikey bir sahne kurar.
+   Sahne canlı oynar; kullanıcı telefonun kendi ekran kaydıyla çeker, o
+   yüzden burada video/canvas yok. Arayüz kayıtta görünmesin diye sahne
+   kromu iki saniye sonra soluyor (.is-dim). */
+.share-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 90;
+  width: min(330px, calc(100vw - 32px));
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.22);
+  padding: 14px 14px 12px;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+.share-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.share-panel__head button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+.share-panel__hint {
+  margin: 0 0 10px;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+.share-panel__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.share-panel__chip {
+  border: 1px solid var(--border);
+  background: var(--surface-2, transparent);
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+.share-panel__chip.is-on {
+  border-color: var(--accent-interactive);
+  color: var(--accent-interactive);
+}
+.share-panel__status {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-height: 5.4em;
+  overflow: hidden;
+  font-style: italic;
+}
+.share-panel__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.share-panel__actions button {
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+.share-panel__go {
+  background: var(--text-primary);
+  color: var(--surface-1);
+  border-color: transparent;
+}
+.share-panel__go:disabled { opacity: 0.45; cursor: default; }
+
+body.share-stage-open { overflow: hidden; }
+.share-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #05060a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Masaüstünde tam 9:16 bir çerçeve ortada durur -- kadrajın TikTok'ta nasıl
+   görüneceği baştan belli olsun diye. Telefonda ise ekranı DOLDURUR: ekran
+   kaydı zaten bütün ekranı çektiği için, çerçeveyi 9:16'ya sabitlemek
+   kaydın üstüne siyah bant koymaktan başka işe yaramıyor (çoğu telefon
+   9:19.5 civarı). İlk yazımda yalnız `aspect-ratio` + `max-width` vardı;
+   dar ekranda max-width devreye girince oran sessizce bozuluyordu
+   (420x900'de ölçtük: 0.4667, olması gereken 0.5625). */
+.share-stage__frame {
+  position: relative;
+  width: min(100vw, calc(100dvh * 9 / 16));
+  height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 42%, #12161f 0%, #05060a 72%);
+}
+/* Ekranın kendisi 9:16'dan daha uzunsa (telefon), çerçeve ekranı doldursun. */
+@media (max-aspect-ratio: 9 / 16) {
+  .share-stage__frame { width: 100vw; height: 100dvh; }
+}
+.share-stage__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.share-spiral {
+  stroke: var(--series-theme, #eda100);
+  stroke-width: 1;
+  opacity: 0.22;
+}
+.share-dot { fill: var(--series-theme, #eda100); }
+.share-halo {
+  fill: var(--accent-glow-dark, #ffc44d);
+  filter: blur(18px);
+}
+/* Metin, TikTok arayüzünün kapatmadığı orta bandda kalıyor: altta ~%20,
+   sağda ~%18 butonlarla örtülüyor. */
+.share-stage__text {
+  position: absolute;
+  left: 8%;
+  right: 20%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.share-line {
+  margin: 0;
+  color: #f4f1ea;
+  font-family: var(--font-display, Georgia, serif);
+  line-height: 1.32;
+  text-wrap: balance;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.65);
+  will-change: opacity, transform;
+}
+.share-line--soz { font-size: clamp(1.5rem, 4.6vh, 2.6rem); }
+.share-line--soru {
+  font-size: clamp(1.6rem, 5.2vh, 2.9rem);
+  font-style: italic;
+}
+.share-line--sol, .share-line--sag {
+  font-size: clamp(1.3rem, 4vh, 2.2rem);
+}
+.share-line--sag { color: var(--accent-glow-dark, #ffc44d); }
+.share-rule {
+  display: block;
+  height: 1px;
+  background: rgba(244, 241, 234, 0.5);
+  transform-origin: left center;
+}
+.share-stage__source {
+  position: absolute;
+  left: 8%;
+  right: 20%;
+  bottom: 22%;
+  margin: 0;
+  font-size: clamp(0.7rem, 1.7vh, 0.86rem);
+  letter-spacing: 0.05em;
+  color: rgba(244, 241, 234, 0.62);
+}
+/* TikTok'un kapattığı bölgeler — yalnız kadraj denetimi için. */
+.share-stage__guides { position: absolute; inset: 0; pointer-events: none; }
+.share-stage__guides::before,
+.share-stage__guides::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 60, 60, 0.16);
+  outline: 1px dashed rgba(255, 60, 60, 0.5);
+}
+.share-stage__guides::before { left: 0; right: 0; bottom: 0; height: 20%; }
+.share-stage__guides::after { right: 0; top: 30%; bottom: 20%; width: 18%; }
+.share-stage__chrome {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  gap: 8px;
+  transition: opacity 0.5s ease;
+}
+.share-stage__chrome.is-dim { opacity: 0; }
+.share-stage__chrome button {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(244, 241, 234, 0.28);
+  color: #f4f1ea;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  .share-line { transition: none; }
+}

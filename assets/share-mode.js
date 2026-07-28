@@ -1,0 +1,432 @@
+(function () {
+  "use strict";
+
+  // Gizli paylaşım kipi: sayfada (metin kutusunda değilken) "@share" yazınca
+  // açılır. Amacı, sitenin kendi metinlerinden TikTok/Reels için 9:16 dikey
+  // bir "sahne" kurmak. Sahne canlı olarak oynar; kullanıcı telefonun kendi
+  // ekran kaydıyla çeker. Bilerek video/canvas üretmiyoruz: SVG'yi canvas'a
+  // aktarmak dış CSS'i düşürüyor, MediaRecorder'ın ürettiği webm'i de TikTok
+  // çoğu zaman kabul etmiyor. Ekran kaydı hem sıfır bağımlılık hem tam
+  // kalite.
+  //
+  // KURAL (2026-07-28, kullanıcıyla birlikte konuldu): Karttaki HER cümle
+  // sitede zaten o hâliyle yazılı olan bir cümledir. Kart için yeni "vurucu"
+  // metin YAZILMAZ. Bu, kısa-video biçiminin sitenin sesini geriye doğru
+  // yeniden yazmasını (bkz. CLAUDE.md, "anlamaya çalışıyoruz, anlatmaya
+  // değil") engelleyen tek koruma. Aşağıdaki bütün şablonlar bu yüzden
+  // yalnızca var olan veriyi seçip diziyor; hiçbir yerde metin üretmiyor.
+  const CODE = "@share";
+  const GU = window.DostGraphUtils;
+  const CILT_ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII"];
+
+  const UI = {
+    title: { tr: "Paylaşım sahnesi", en: "Share stage", pt: "Palco de partilha" },
+    hint: {
+      tr: "Bir şablon seç, sahneyi aç, telefonun kendi ekran kaydıyla çek. Sahne döngüde oynar.",
+      en: "Pick a template, open the stage, record with your phone's own screen recorder. The stage loops.",
+      pt: "Escolhe um modelo, abre o palco e grava com o gravador de ecrã do telemóvel. O palco repete.",
+    },
+    shuffle: { tr: "Başkasını getir", en: "Bring another", pt: "Trazer outro" },
+    open: { tr: "Sahneyi aç", en: "Open the stage", pt: "Abrir o palco" },
+    close: { tr: "Kapat", en: "Close", pt: "Fechar" },
+    guides: { tr: "Güvenli alan", en: "Safe area", pt: "Área segura" },
+    loading: { tr: "Aranıyor…", en: "Searching…", pt: "A procurar…" },
+    none: {
+      tr: "Bu şablona uygun bir kayıt bulunamadı — başkasını dene.",
+      en: "No record fits this template — try another.",
+      pt: "Nenhum registo serve para este modelo — tenta outro.",
+    },
+    tpl: {
+      soz: { tr: "Bir Cümle", en: "One Sentence", pt: "Uma Frase" },
+      ikili: { tr: "İki Kutu", en: "Two Boxes", pt: "Duas Caixas" },
+      soru: { tr: "Bir Soru", en: "A Question", pt: "Uma Pergunta" },
+    },
+  };
+
+  function tt(d) { return (window.DostI18n && window.DostI18n.pick3(d)) || d.tr; }
+  function lang() { return (window.DostI18n && window.DostI18n.getLang()) || "tr"; }
+
+  // --- veri ------------------------------------------------------------
+  let indexData = null;
+  const partCache = new Map();
+  let sorularData = null;
+
+  function loadIndex() {
+    if (indexData) return Promise.resolve(indexData);
+    return GU.fetchJson("data/ibn-arabi/futuhat-atlas-index.json").then((d) => (indexData = d));
+  }
+  function loadPart(id) {
+    if (partCache.has(id)) return Promise.resolve(partCache.get(id));
+    return GU.fetchJson("data/ibn-arabi/futuhat-parts/" + id + ".json").then((d) => {
+      partCache.set(id, d);
+      return d;
+    });
+  }
+  function loadSorular() {
+    if (sorularData) return Promise.resolve(sorularData);
+    return GU.fetchJson("data/ibn-arabi/sorular.json").then((d) => (sorularData = d));
+  }
+
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function partLabel(p) {
+    const c = CILT_ROMAN[p.cilt] || p.cilt;
+    return tt({
+      tr: "Fütûhât-ı Mekkiyye · Cilt " + c + " · Kısım " + p.kisim,
+      en: "Al-Futuhat al-Makkiyya · Vol. " + c + " · Part " + p.kisim,
+      pt: "Al-Futuhat al-Makkiyya · Vol. " + c + " · Parte " + p.kisim,
+    });
+  }
+
+  // Kısım metinlerindeki <em> alıntıları. Bunlar zaten Dost'un kendi
+  // cümleleri (biz onları vurgulamak için <em> ile sarıyoruz), o yüzden
+  // kart metni olarak doğrudan kullanılabiliyorlar.
+  function quotesFromPart(p) {
+    const out = [];
+    const L = lang();
+    const visit = (blocks) => {
+      (blocks || []).forEach((b) => {
+        if (b.type !== "p" || !b.text) return;
+        const html = b.text[L] || b.text.tr || "";
+        const re = /<em>([\s\S]*?)<\/em>/g;
+        let m;
+        while ((m = re.exec(html))) {
+          const s = m[1].replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+          if (s.length >= 40 && s.length <= 190) out.push(s);
+        }
+      });
+    };
+    (p.sections || []).forEach((s) => visit(s.blocks));
+    return out;
+  }
+
+  function pairsFromPart(p) {
+    const out = [];
+    const collect = (d) => {
+      if (d && d.pair && d.pair.left && d.pair.right) out.push(d.pair);
+    };
+    collect(p.mainDiagram);
+    (p.sections || []).forEach((s) => (s.blocks || []).forEach((b) => {
+      if (b.type === "diagram") collect(b);
+    }));
+    return out;
+  }
+
+  // Şu an açık olan Fütûhât kısmı varsa onu tercih et; yoksa rastgele.
+  function currentPartId() {
+    const m = location.pathname.match(/\/futuhat\/(c\d+k\d+)/);
+    return m ? m[1] : null;
+  }
+
+  function pickPart(needPair) {
+    return loadIndex().then((idx) => {
+      const all = idx.parts.filter((p) => p.status === "active");
+      const cur = currentPartId();
+      const order = cur ? [all.find((p) => p.id === cur)].filter(Boolean).concat(shuffled(all)) : shuffled(all);
+      // Uygun kayıt bulana kadar sırayla dene (en çok 25 kısım): bazı
+      // kısımlarda pair diyagramı ya da yeterince uzun alıntı olmayabilir.
+      let i = 0;
+      function step() {
+        if (i >= Math.min(order.length, 25)) return null;
+        const meta = order[i++];
+        return loadPart(meta.id).then((p) => {
+          const items = needPair ? pairsFromPart(p) : quotesFromPart(p);
+          if (!items.length) return step();
+          return { part: p, items: items };
+        });
+      }
+      return step();
+    });
+  }
+
+  function shuffled(a) {
+    const c = a.slice();
+    for (let i = c.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = c[i]; c[i] = c[j]; c[j] = t;
+    }
+    return c;
+  }
+
+  // --- sahne içeriği ---------------------------------------------------
+  // { lines: [{text, size}], source }  — sahnenin çizeceği tek biçim.
+  let scene = null;
+
+  function buildScene(tpl) {
+    if (tpl === "soru") {
+      return loadSorular().then((d) => {
+        const cats = d.categories || [];
+        const q = pick(pick(cats).questions);
+        return {
+          tpl: "soru",
+          lines: [{ text: tt(q.question), kind: "soru" }],
+          source: tt({ tr: "Sorular · dostarabi.com", en: "Questions · dostarabi.com", pt: "Perguntas · dostarabi.com" }),
+        };
+      });
+    }
+    if (tpl === "ikili") {
+      return pickPart(true).then((r) => {
+        if (!r) return null;
+        const pr = pick(r.items);
+        return {
+          tpl: "ikili",
+          lines: [
+            { text: tt(pr.left.label), kind: "sol" },
+            { text: tt(pr.right.label), kind: "sag" },
+          ],
+          source: partLabel(r.part) + " · dostarabi.com",
+        };
+      });
+    }
+    return pickPart(false).then((r) => {
+      if (!r) return null;
+      return {
+        tpl: "soz",
+        lines: [{ text: pick(r.items), kind: "soz" }],
+        source: partLabel(r.part) + " · dostarabi.com",
+      };
+    });
+  }
+
+  // --- sahne çizimi ----------------------------------------------------
+  let stageEl = null, rafId = 0, tilt = null, startTs = 0, chromeTimer = 0;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Şablon başına döngü uzunluğu (ms) ve metin vuruşları. Vuruşlar
+  // [giriş, çıkış] biçiminde, döngü içindeki oranlar.
+  const TIMING = {
+    soz:   { loop: 9000,  beats: [[0.09, 0.94]], source: [0.55, 0.97] },
+    ikili: { loop: 8500,  beats: [[0.09, 0.94], [0.22, 0.94]], source: [0.55, 0.97] },
+    soru:  { loop: 8500,  beats: [[0.09, 0.94]], source: [0.52, 0.97] },
+  };
+
+  function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+  // Bir vuruşun o andaki görünürlüğü: kısa bir belirme, uzun bir duruş,
+  // kısa bir sönme. Döngü başa sardığında sert bir kesme olmasın diye.
+  function beat(t, from, to) {
+    if (t < from || t > to) return 0;
+    const span = to - from, p = (t - from) / span;
+    const fade = Math.min(0.22, span * 0.35) / span;
+    if (p < fade) return ease(p / fade);
+    if (p > 1 - fade) return ease((1 - p) / fade);
+    return 1;
+  }
+
+  const NODE_COUNT = 30;
+  const nodes = [];
+  for (let i = 0; i < NODE_COUNT; i++) {
+    nodes.push({ t: i / (NODE_COUNT - 1), phase: Math.random() * 6.28 });
+  }
+
+  // Sarmal: hal.js/menziller ile aynı motor (GU.createTilt'in project'i).
+  // Kullanıcının isteği buydu -- sahne, sitenin kendi sakin dairesel
+  // dönüşünden beslensin (bkz. CLAUDE.md "Dairenin üçüncü boyutu: sarmal").
+  function drawAmbient(g, w, h, ts) {
+    const cx = w / 2, cy = h * 0.5;
+    const R = Math.min(w, h) * 0.30;
+    const H = R * 2.1;
+    let d = "";
+    const pts = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      const n = nodes[i];
+      const a = -Math.PI / 2 + n.t * Math.PI * 2;
+      const rr = R * (0.72 + 0.34 * n.t);
+      const px = rr * Math.cos(a), py = rr * Math.sin(a);
+      const vert = -H / 2 + H * n.t;
+      const p = tilt ? tilt.project(px, py, vert) : { x: px, y: py, depth: 1 };
+      const X = cx + p.x, Y = cy + p.y;
+      pts.push({ x: X, y: Y, depth: p.depth == null ? 1 : p.depth, phase: n.phase });
+      d += (i === 0 ? "M" : "L") + X.toFixed(1) + "," + Y.toFixed(1);
+    }
+    g.querySelector(".share-spiral").setAttribute("d", d);
+    const dots = g.querySelectorAll(".share-dot");
+    pts.forEach((p, i) => {
+      const c = dots[i];
+      if (!c) return;
+      const br = reduceMotion ? 1 : 1 + 0.14 * Math.sin(ts / 3400 + p.phase);
+      c.setAttribute("cx", p.x.toFixed(1));
+      c.setAttribute("cy", p.y.toFixed(1));
+      c.setAttribute("r", (3.4 * p.depth * br).toFixed(2));
+      c.style.opacity = (0.30 + 0.42 * p.depth).toFixed(2);
+    });
+    // Merkezdeki nefes alan halka: ontoloji/esmâ'daki Zât halosuyla aynı
+    // 6 saniyelik ritim.
+    const halo = g.querySelector(".share-halo");
+    const ph = reduceMotion ? 0.5 : (1 - Math.cos((ts / 6000) * 2 * Math.PI)) / 2;
+    halo.setAttribute("cx", cx); halo.setAttribute("cy", cy);
+    halo.setAttribute("r", (R * 0.30 * (1 + 0.4 * ph)).toFixed(1));
+    halo.style.opacity = (0.14 + 0.20 * ph).toFixed(3);
+  }
+
+  function frame(ts) {
+    if (!stageEl) return;
+    if (!startTs) startTs = ts;
+    const el = stageEl;
+    const box = el.querySelector(".share-stage__frame");
+    const svg = el.querySelector(".share-stage__svg");
+    const w = box.clientWidth, h = box.clientHeight;
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    if (tilt) tilt.step(ts, 16, true);
+    drawAmbient(svg, w, h, ts);
+
+    const cfg = TIMING[scene.tpl] || TIMING.soz;
+    const t = ((ts - startTs) % cfg.loop) / cfg.loop;
+    el.querySelectorAll(".share-line").forEach((node, i) => {
+      const b = cfg.beats[i] || cfg.beats[cfg.beats.length - 1];
+      const v = beat(t, b[0], b[1]);
+      node.style.opacity = v.toFixed(3);
+      node.style.transform = "translateY(" + ((1 - v) * 14).toFixed(1) + "px)";
+    });
+    const src = el.querySelector(".share-stage__source");
+    if (src) src.style.opacity = beat(t, cfg.source[0], cfg.source[1]).toFixed(3);
+    const rule = el.querySelector(".share-rule");
+    if (rule) {
+      const v = beat(t, 0.30, 0.94);
+      rule.style.opacity = (v * 0.55).toFixed(3);
+      rule.style.transform = "scaleX(" + v.toFixed(3) + ")";
+    }
+    rafId = requestAnimationFrame(frame);
+  }
+
+  function stageMarkup(s) {
+    const lines = s.lines.map((l) =>
+      '<p class="share-line share-line--' + l.kind + '">' + escapeHtml(l.text) + "</p>"
+    ).join(s.tpl === "ikili" ? '<span class="share-rule" aria-hidden="true"></span>' : "");
+    return (
+      '<div class="share-stage__frame share-stage__frame--' + s.tpl + '">' +
+      '<svg class="share-stage__svg" aria-hidden="true">' +
+      '<circle class="share-halo"></circle>' +
+      '<path class="share-spiral" fill="none"></path>' +
+      new Array(NODE_COUNT).fill('<circle class="share-dot"></circle>').join("") +
+      "</svg>" +
+      '<div class="share-stage__text">' + lines + "</div>" +
+      '<p class="share-stage__source">' + escapeHtml(s.source) + "</p>" +
+      '<div class="share-stage__guides" hidden></div>' +
+      '<div class="share-stage__chrome">' +
+      '<button type="button" data-action="guides">' + escapeHtml(tt(UI.guides)) + "</button>" +
+      '<button type="button" data-action="close">✕</button>' +
+      "</div></div>"
+    );
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, (c) => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
+    ));
+  }
+
+  function openStage(s) {
+    scene = s;
+    closeStage();
+    stageEl = document.createElement("div");
+    stageEl.className = "share-stage";
+    stageEl.innerHTML = stageMarkup(s);
+    document.body.appendChild(stageEl);
+    document.body.classList.add("share-stage-open");
+
+    tilt = GU.createTilt ? GU.createTilt({ pitch: 0.20, spinRate: 0.000035 }) : null;
+    if (tilt) tilt.set(1, true);
+    startTs = 0;
+    rafId = requestAnimationFrame(frame);
+
+    const chrome = stageEl.querySelector(".share-stage__chrome");
+    // Kayıt sırasında arayüz görünmesin: iki saniye sonra soluyor, ekrana
+    // dokununca geri geliyor.
+    const fade = () => chrome.classList.add("is-dim");
+    chromeTimer = setTimeout(fade, 2200);
+    stageEl.addEventListener("pointerdown", () => {
+      chrome.classList.remove("is-dim");
+      clearTimeout(chromeTimer);
+      chromeTimer = setTimeout(fade, 2200);
+    });
+    stageEl.querySelector('[data-action="close"]').addEventListener("click", closeStage);
+    stageEl.querySelector('[data-action="guides"]').addEventListener("click", () => {
+      const g = stageEl.querySelector(".share-stage__guides");
+      g.hidden = !g.hidden;
+    });
+  }
+
+  function closeStage() {
+    if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+    if (chromeTimer) { clearTimeout(chromeTimer); chromeTimer = 0; }
+    if (stageEl) { stageEl.remove(); stageEl = null; }
+    document.body.classList.remove("share-stage-open");
+  }
+
+  // --- panel -----------------------------------------------------------
+  let panel = null, currentTpl = "soz", pending = null;
+
+  function refresh() {
+    const status = panel.querySelector(".share-panel__status");
+    status.textContent = tt(UI.loading);
+    panel.querySelector('[data-action="open"]').disabled = true;
+    buildScene(currentTpl).then((s) => {
+      if (!panel) return;
+      pending = s;
+      if (!s) { status.textContent = tt(UI.none); return; }
+      status.textContent = s.lines.map((l) => l.text).join("  ·  ");
+      panel.querySelector('[data-action="open"]').disabled = false;
+    }).catch(() => {
+      if (panel) panel.querySelector(".share-panel__status").textContent = tt(UI.none);
+    });
+  }
+
+  function buildPanel() {
+    panel = document.createElement("div");
+    panel.className = "share-panel";
+    const chips = Object.keys(UI.tpl).map((k) =>
+      '<button type="button" class="share-panel__chip' + (k === currentTpl ? " is-on" : "") +
+      '" data-tpl="' + k + '">' + escapeHtml(tt(UI.tpl[k])) + "</button>"
+    ).join("");
+    panel.innerHTML =
+      '<div class="share-panel__head">' + escapeHtml(tt(UI.title)) +
+      '<button type="button" data-action="quit" aria-label="' + escapeHtml(tt(UI.close)) + '">✕</button></div>' +
+      '<p class="share-panel__hint">' + escapeHtml(tt(UI.hint)) + "</p>" +
+      '<div class="share-panel__chips">' + chips + "</div>" +
+      '<p class="share-panel__status"></p>' +
+      '<div class="share-panel__actions">' +
+      '<button type="button" data-action="shuffle">' + escapeHtml(tt(UI.shuffle)) + "</button>" +
+      '<button type="button" data-action="open" class="share-panel__go">' + escapeHtml(tt(UI.open)) + "</button>" +
+      "</div>";
+    document.body.appendChild(panel);
+    panel.querySelectorAll("[data-tpl]").forEach((b) => {
+      b.addEventListener("click", () => {
+        currentTpl = b.dataset.tpl;
+        panel.querySelectorAll("[data-tpl]").forEach((x) => x.classList.toggle("is-on", x === b));
+        refresh();
+      });
+    });
+    panel.querySelector('[data-action="shuffle"]').addEventListener("click", refresh);
+    panel.querySelector('[data-action="open"]').addEventListener("click", () => {
+      if (pending) openStage(pending);
+    });
+    panel.querySelector('[data-action="quit"]').addEventListener("click", closePanel);
+    refresh();
+  }
+
+  function closePanel() {
+    closeStage();
+    if (panel) { panel.remove(); panel = null; }
+  }
+
+  function toggle() {
+    if (panel) closePanel();
+    else buildPanel();
+  }
+
+  window.__dostShare = { open: buildPanel, close: closePanel, toggle: toggle };
+
+  // --- gizli kelime ----------------------------------------------------
+  let buffer = "";
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && stageEl) { closeStage(); return; }
+    if (e.key.length !== 1) return;
+    if (e.metaKey) return;
+    // AltGr (Ctrl+Alt) Türkçe klavyede "@" üretiyor -- bkz. edit-mode.js.
+    if ((e.ctrlKey || e.altKey) && !(e.ctrlKey && e.altKey)) return;
+    const t = e.target;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+    buffer = (buffer + e.key.toLowerCase()).slice(-CODE.length);
+    if (buffer === CODE) { buffer = ""; toggle(); }
+  });
+})();
