@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs7",
+  "activeFassId": "fs8",
   "fasses": [
     {
       "id": "fs1",
@@ -2934,7 +2934,7 @@
     {
       "id": "fs8",
       "no": 8,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "Ya'kûb",
         "en": "Jacob",
@@ -2944,7 +2944,417 @@
         "tr": "Hikmet-i Rûhiyye",
         "en": "Wisdom of Spirit",
         "pt": "Sabedoria do Espírito"
-      }
+      },
+      "title": {
+        "tr": "Din Senin Fiilin — Şerîat O'nun",
+        "en": "The Religion Is Your Act — the Law Is His",
+        "pt": "A Religião É o Teu Ato — a Lei É Dele"
+      },
+      "pageRange": {
+        "tr": "VIII. Fass, s. 523-575",
+        "en": "Bezel VIII, pp. 523-575",
+        "pt": "Engaste VIII, pp. 523-575"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Bu fass okuduklarımızın en uzunu ve merkezinde beklenmedik bir tersine çevirme var. <em>“Din”</em>in sözlük anlamı <em>inkıyâd</em>, yani boyun eğme. Ama boyun eğen kimdir? Fass şöyle diyor: kanunu (<em>nâmûs</em>) Hak koyar, ama <em>“inkıyâd senin fiilinin 'ayn'ıdır… din senin fiilindendir.”</em> Namazı O emreder, ama <em>ikâme eden</em> sensin. Ve iş burada kapanmıyor: bir hadîs-i kudsî ile karşılık da geliyor — <em>“Bana itâat edene mutî'im.”</em> Yani boyun eğme tek yönlü değil. Bunu kesin bir sonuç diye değil, fassın bizi getirdiği yer olarak okuyoruz.",
+          "en": "This is the longest bezel we have read, and at its centre lies an unexpected reversal. The word <em>“religion” (dīn)</em> means <em>yielding</em>. But who yields? The bezel says: the Law (<em>nāmūs</em>) is laid down by God, yet <em>“the yielding is the very substance of your act… the religion is from your act.”</em> He commands the prayer, but you are the one who <em>establishes</em> it. And it does not close there: a divine saying returns the movement — <em>“I obey whoever obeys Me.”</em> So the yielding does not run one way. We read this not as a settled conclusion but as where the bezel brings us.",
+          "pt": "Este é o engaste mais longo que lemos, e no seu centro há uma inversão inesperada. A palavra <em>“religião” (dīn)</em> significa <em>ceder</em>. Mas quem cede? O engaste diz: a Lei (<em>nāmūs</em>) é posta por Deus, mas <em>“o ceder é a própria substância do teu ato… a religião vem do teu ato.”</em> Ele ordena a oração, mas és tu quem a <em>estabelece</em>. E não fica por aí: um dito divino devolve o movimento — <em>“obedeço a quem Me obedece.”</em> Portanto o ceder não corre num só sentido. Lemos isto não como conclusão firmada mas como o ponto a que o engaste nos traz."
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, VIII. Fass (Konuk şerhi, s. 527-529)",
+          "en": "Fusus al-Hikam, Bezel VIII (Konuk's commentary, p. 527-529)",
+          "pt": "Fusus al-Hikam, Engaste VIII (comentário de Konuk, p. 527-529)"
+        },
+        "caption": {
+          "tr": "Dört basamağın hepsi metnin; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi son basamak: hareket Hak'tan başlayıp sende bitmiyor, sende dönüp Hakk'a geri gidiyor. <em>“Bana itâat edene mutî'im”</em> cümlesi devreyi kapatıyor — ama aynı noktaya değil, bir kat farkla, çünkü dönüşte artık iki tarafın da bir adı var.",
+          "en": "All four steps are the text's; the spiral and the closing are ours. Why a spiral is the last step: the movement does not start with God and end in you, it turns in you and goes back. The saying <em>“I obey whoever obeys Me”</em> closes the circuit — but not onto the same point; one turn on, because by the return both sides have a name.",
+          "pt": "Os quatro degraus são todos do texto; a espiral e o fecho são nossos. Porquê uma espiral está no último degrau: o movimento não começa em Deus e acaba em ti, volta-se em ti e regressa. O dito <em>“obedeço a quem Me obedece”</em> fecha o circuito — mas não sobre o mesmo ponto; uma volta adiante, porque no regresso ambos os lados têm um nome."
+        },
+        "helix": {
+          "id": "fs8-din",
+          "turns": 1.5,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs8-d1",
+              "label": {
+                "tr": "Nâmûs: şerîatı O koyar",
+                "en": "Nāmūs: He lays down the Law",
+                "pt": "Nāmūs: Ele põe a Lei"
+              },
+              "note": {
+                "tr": "<em>“'nâmûs', Allah Teâlâ'nın şer' eylediği şer'dir.”</em> Bu uç tartışmasız: koyan Hak.",
+                "en": "<em>“The nāmūs is the Law that God has laid down.”</em> This end is not in dispute: the one who lays it down is God.",
+                "pt": "<em>“O nāmūs é a Lei que Deus estabeleceu.”</em> Esta ponta não está em disputa: quem a estabelece é Deus."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs8-d2",
+              "label": {
+                "tr": "İnkıyâd: dini ikâme eden sensin",
+                "en": "Yielding: you are the one who establishes it",
+                "pt": "Ceder: és tu quem a estabelece"
+              },
+              "note": {
+                "tr": "<em>“din, senin inkıyâdından ibârettir… inkıyâd senin fiilinin 'ayn'ıdır. Demek ki din senin fiilindendir.”</em> Konuk'un örneği namaz: <em>“namaz ancak senin fiilindir; ve sen bu fiilin ile dini inşâ ettin.”</em>",
+                "en": "<em>“The religion consists of your yielding… the yielding is the very substance of your act. So the religion is from your act.”</em> Konuk's example is the prayer: <em>“the prayer is only your act; and by this act of yours you have built the religion.”</em>",
+                "pt": "<em>“A religião consiste no teu ceder… o ceder é a própria substância do teu ato. Logo a religião vem do teu ato.”</em> O exemplo de Konuk é a oração: <em>“a oração é só o teu ato; e por este teu ato construíste a religião.”</em>"
+              }
+            },
+            {
+              "id": "fs8-d3",
+              "label": {
+                "tr": "Ve iki taraf da bir isim alır",
+                "en": "And both sides take a name",
+                "pt": "E ambos os lados tomam um nome"
+              },
+              "note": {
+                "tr": "<em>“O, âsârı ile 'İlâh' tesmiye olundu; ve sen de âsârın ile 'said' tesmiye olundun.”</em> Simetri kasıtlı: isim, iki tarafta da <em>eserden</em> geliyor.",
+                "en": "<em>“He was named 'God' by His effects; and you were named 'fortunate' by your effects.”</em> The symmetry is deliberate: on both sides the name comes from the <em>effect</em>.",
+                "pt": "<em>“Ele foi chamado 'Deus' pelos Seus efeitos; e tu foste chamado 'feliz' pelos teus efeitos.”</em> A simetria é deliberada: em ambos os lados o nome vem do <em>efeito</em>."
+              }
+            },
+            {
+              "id": "fs8-d4",
+              "label": {
+                "tr": "Ve O da sana münkâd olur",
+                "en": "And He too yields to you",
+                "pt": "E também Ele cede a ti"
+              },
+              "note": {
+                "tr": "Hadîs-i kudsî: <em>“Beni zikredenin celîsi ve şükredenin enîsiyim; ve Bana itâat edene mutî'im.”</em> Konuk'un çıkardığı sonuç açık: <em>“sen dini inşâ etmekle münkâd olduğun gibi, Allah da taleb ettiğin şeyi vermekle sana münkâd olur.”</em>",
+                "en": "A divine saying: <em>“I am the companion of whoever remembers Me, the intimate of whoever thanks Me; and I obey whoever obeys Me.”</em> Konuk draws it out plainly: <em>“just as you yield by building the religion, God too yields to you by giving what you ask.”</em>",
+                "pt": "Um dito divino: <em>“Sou o companheiro de quem Me recorda, o íntimo de quem Me agradece; e obedeço a quem Me obedece.”</em> Konuk explicita-o: <em>“tal como tu cedes ao construir a religião, também Deus cede a ti ao dar o que pedes.”</em>"
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs8-s1",
+          "heading": {
+            "tr": "Adı Bile İki Türlü Okunuyor",
+            "en": "Even Its Name Has Two Readings",
+            "pt": "Até o Seu Nome Tem Duas Leituras"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu fassa girerken ilk karşılaştığımız şey bir karar değil, bir <em>ikilik</em>: fassın adı iki türlü harekelenebiliyor ve Konuk ikisini de veriyor, birini seçmiyor. <em>“Rûhiyye”</em> okunursa (râ'nın ötresiyle) fass rûhun ve dinin tedbîrine dair; <em>“revhıyye”</em> okunursa (râ'nın üstünüyle) rahatlık ve ferahlığa dair. Her ikisi için bir âyet gösteriliyor ve şu gerekçeyle ikisi de meşrû sayılıyor: <em>“her nebînin hikmetinde, Kur'ân-ı Kerim'de onun hakkında vârid olan şey zikrolunduğu cihetle, bu ma'nâ mülâhazasıyla bu vecih dahi câizdir.”</em>",
+                "en": "The first thing we met on entering this bezel is not a decision but a <em>doubleness</em>: its title can be vowelled two ways, and Konuk gives both without choosing. Read as <em>rūḥiyya</em> it concerns the governance of spirit and of religion; read as <em>rawḥiyya</em> it concerns relief and ease. A Qur'anic verse is given for each, and both are held legitimate on this ground: <em>“since in the wisdom of each prophet what the Qur'an says of him is what is recalled, on that consideration this reading too is permissible.”</em>",
+                "pt": "A primeira coisa que encontrámos ao entrar neste engaste não é uma decisão mas uma <em>duplicidade</em>: o seu título pode vocalizar-se de duas maneiras, e Konuk dá as duas sem escolher. Lido como <em>rūḥiyya</em>, trata do governo do espírito e da religião; lido como <em>rawḥiyya</em>, trata do alívio e do desafogo. Dá-se um versículo corânico para cada uma, e ambas são tidas por legítimas com este fundamento: <em>“visto que na sabedoria de cada profeta se recorda o que o Alcorão dele diz, nessa consideração também esta leitura é lícita.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, VIII. Fass (Konuk şerhi, s. 523-524)",
+                "en": "Fusus al-Hikam, Bezel VIII (Konuk's commentary, p. 523-524)",
+                "pt": "Fusus al-Hikam, Engaste VIII (comentário de Konuk, p. 523-524)"
+              },
+              "caption": {
+                "tr": "İki okuma da metnin, üçüncü basamak Konuk'un tavrı. Sarmal çizmemizin sebebi: bu iki okuma bir merdivenin basamakları değil — aynı kelimenin etrafında dönüp ona iki kere bakıyorlar, ve üçüncü basamak seçim yapmayı reddederek başa dönüyor.",
+                "en": "Both readings are the text's; the third step is Konuk's stance. Why a spiral: these two readings are not rungs of a ladder — they circle the same word and look at it twice, and the third step returns to the start by refusing to choose.",
+                "pt": "Ambas as leituras são do texto; o terceiro degrau é a postura de Konuk. Porquê uma espiral: estas duas leituras não são degraus de uma escada — giram em torno da mesma palavra e olham-na duas vezes, e o terceiro degrau regressa ao início ao recusar escolher."
+              },
+              "helix": {
+                "id": "fs8-ad",
+                "turns": 1.1,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs8-a1",
+                    "label": {
+                      "tr": "Rûhiyye — rûhun ve dinin tedbîri",
+                      "en": "Rūḥiyya — the governance of spirit and religion",
+                      "pt": "Rūḥiyya — o governo do espírito e da religião"
+                    },
+                    "note": {
+                      "tr": "Dayanağı Bakara 2/132: Ya'kûb oğullarına dini vasiyet ediyor. Konuk'a göre <em>“Ya'kûb (a.s.) üzerine emr-i dîn gâlib olup, dini evlâdına tavsiye etmişti”</em> — ve rûh ile din arasında bir tedbîr benzerliği kuruluyor: ikisi de yönetiyor.",
+                      "en": "Its support is Q 2:132: Jacob enjoins the religion on his sons. For Konuk, <em>“the matter of religion prevailed over Jacob, and he enjoined the religion upon his children”</em> — and a likeness of governance is drawn between spirit and religion: both govern.",
+                      "pt": "O seu apoio é Q 2:132: Jacó recomenda a religião aos filhos. Para Konuk, <em>“a questão da religião prevaleceu sobre Jacó, e ele recomendou a religião aos seus filhos”</em> — e traça-se uma semelhança de governo entre espírito e religião: ambos governam."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs8-a2",
+                    "label": {
+                      "tr": "Revhıyye — ferahlık ve rahat",
+                      "en": "Rawḥiyya — relief and ease",
+                      "pt": "Rawḥiyya — alívio e desafogo"
+                    },
+                    "note": {
+                      "tr": "Dayanağı Yûsuf 12/87: <em>“Allâh'ın revhından me'yûs olmayın.”</em> Ve bağ şöyle kuruluyor: <em>“'inkıyâd' ile râhat-ı hakîkiyye hâsıl ve revh-ı dâim nâzil olur.”</em> Yani boyun eğmenin karşılığı ferahlık.",
+                      "en": "Its support is Q 12:87: <em>“do not despair of God's relief.”</em> And the link is made thus: <em>“through yielding, true ease comes about and abiding relief descends.”</em> That is, the counterpart of yielding is relief.",
+                      "pt": "O seu apoio é Q 12:87: <em>“não desesperem do alívio de Deus.”</em> E a ligação faz-se assim: <em>“pelo ceder, o verdadeiro desafogo realiza-se e o alívio permanente desce.”</em> Isto é, o correspondente do ceder é o alívio."
+                    }
+                  },
+                  {
+                    "id": "fs8-a3",
+                    "label": {
+                      "tr": "Ve Konuk seçmiyor",
+                      "en": "And Konuk does not choose",
+                      "pt": "E Konuk não escolhe"
+                    },
+                    "note": {
+                      "tr": "İkisini de <em>“câiz”</em> sayıp bırakıyor. Bunu bir kararsızlık değil, bir yöntem olarak okuyoruz — VII. fassta iki <em>nazar</em>ın (hakîkat/şerîat) yan yana bırakılmasıyla aynı hareket, bu kez tek bir kelimenin harekesinde.",
+                      "en": "He calls both <em>permissible</em> and leaves it there. We read this not as indecision but as a method — the same move as leaving the two <em>standpoints</em> (reality/Law) side by side in Bezel VII, this time in the vowelling of a single word.",
+                      "pt": "Chama a ambas <em>lícitas</em> e deixa-as assim. Lemos isto não como indecisão mas como método — o mesmo gesto de deixar lado a lado os dois <em>pontos de vista</em> (realidade/Lei) no Engaste VII, desta vez na vocalização de uma única palavra."
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs8-s2",
+          "heading": {
+            "tr": "İki Din: Allah Katında ve İnsanlar Katında",
+            "en": "Two Religions: With God and With People",
+            "pt": "Duas Religiões: Junto de Deus e Junto dos Homens"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass dini ikiye ayırıyor: <em>“birisi Allâh'ın indinde… diğeri inde'l-halk olan dindir; ve Allah Teâlâ onu mu'teber kıldı.”</em> Bu ikinci kısım bizi durdurdu — çünkü burada Hak, <em>kendisinin emretmediği</em> bir şeyi geçerli sayıyor.",
+                "en": "The bezel divides religion in two: <em>“one is with God… the other is the religion that is with people; and God held it valid.”</em> This second part stopped us — because here God holds valid something <em>He did not command</em>.",
+                "pt": "O engaste divide a religião em duas: <em>“uma está junto de Deus… a outra é a religião que está junto dos homens; e Deus teve-a por válida.”</em> Esta segunda parte deteve-nos — porque aqui Deus tem por válido algo que <em>Ele não ordenou</em>."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, VIII. Fass (Konuk şerhi, s. 525-532)",
+                "en": "Fusus al-Hikam, Bezel VIII (Konuk's commentary, p. 525-532)",
+                "pt": "Fusus al-Hikam, Engaste VIII (comentário de Konuk, p. 525-532)"
+              },
+              "caption": {
+                "tr": "Üç basamak da metnin; sarmal ve sıralama bizim. Sarmal çizmemizin sebebi: bu üç din birbirinin yerine geçmiyor, aynı hedefin etrafında farklı yüksekliklerden dolanıyorlar — Konuk'un ifadesiyle üçünün de maksadı <em>“nüfûs-ı nâkısanın ikmâli.”</em> Kapatmadık, çünkü aralarında bir mertebe farkı var: metin <em>“indallah olan dinin mertebesi… âlîdir”</em> diyor.",
+                "en": "All three steps are the text's; the spiral and the ordering are ours. Why a spiral: these three do not replace one another, they circle the same target at different heights — in Konuk's words the aim of all three is <em>“the completing of deficient souls.”</em> We did not close it, because there is a difference of rank: the text says <em>“the rank of the religion that is with God is higher.”</em>",
+                "pt": "Os três degraus são do texto; a espiral e a ordenação são nossas. Porquê uma espiral: estes três não se substituem, giram em torno do mesmo alvo a alturas diferentes — nas palavras de Konuk, o fim dos três é <em>“completar as almas deficientes.”</em> Não a fechámos, porque há uma diferença de grau: o texto diz que <em>“o grau da religião que está junto de Deus é mais alto.”</em>"
+              },
+              "helix": {
+                "id": "fs8-iki-din",
+                "turns": 1.25,
+                "closing": false,
+                "nodes": [
+                  {
+                    "id": "fs8-n1",
+                    "label": {
+                      "tr": "İndallah: Hakk'ın bildirdiği",
+                      "en": "With God: what He made known",
+                      "pt": "Junto de Deus: o que Ele deu a conhecer"
+                    },
+                    "note": {
+                      "tr": "<em>“Hakk'ın bildirdiği kimsenin; ve Hakk'ın bildirdiği kimsenin bildirdiği kimse indinde olan dindir.”</em> Zincir üç halkalı: Hak → peygamber → ümmet.",
+                      "en": "<em>“The religion that is with the one God informed, and with the one whom the one God informed has informed.”</em> A chain of three links: God → prophet → community.",
+                      "pt": "<em>“A religião que está junto daquele a quem Deus informou, e junto daquele a quem esse informou.”</em> Uma cadeia de três elos: Deus → profeta → comunidade."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs8-n2",
+                    "label": {
+                      "tr": "İnde'l-halk (1): hükemânın kanunları",
+                      "en": "With people (1): the laws of the sages",
+                      "pt": "Junto dos homens (1): as leis dos sábios"
+                    },
+                    "note": {
+                      "tr": "<em>“fetret zamânında… vücûd-ı vâhid-i Hakk'ı idrâk eden ukalâ ve hükemâ taraflarından vaz'ına lüzûm görülen kavânîn-i mahmûde. Eflâtun ve Sokrat gibi hükemânın… kendi milletlerine irâe ettikleri tarîk gibi.”</em> İsimleri Konuk veriyor; biz eklemedik.",
+                      "en": "<em>“The praiseworthy laws seen fit to be laid down, in the interval between prophets, by the reasonable and the sages who grasped the single existence of the Real. Like the way that sages such as Plato and Socrates showed their own peoples.”</em> The names are Konuk's; we did not add them.",
+                      "pt": "<em>“As leis louváveis que, no intervalo entre profetas, os razoáveis e os sábios que apreenderam a existência única do Real julgaram dever estabelecer. Como o caminho que sábios como Platão e Sócrates mostraram aos seus povos.”</em> Os nomes são de Konuk; não fomos nós que os acrescentámos."
+                    }
+                  },
+                  {
+                    "id": "fs8-n3",
+                    "label": {
+                      "tr": "İnde'l-halk (2): riyâzet ve ruhbâniyet",
+                      "en": "With people (2): discipline and monasticism",
+                      "pt": "Junto dos homens (2): disciplina e monaquismo"
+                    },
+                    "note": {
+                      "tr": "Mutasavvifenin <em>“ahkâm-ı şer'iyye üzerine zâid, fakat maksad-ı şerîata muvâfık”</em> âdâbı; ve <em>“Şerîat-ı Muhammediyye'nin vaz'ından mukaddem, ulemâ-i Îseviyye tarafından mevzû' ruhbâniyet.”</em> Sınırı da konmuş: yeni bir şerîat gelince <em>“hükmü mensûh olup ind-i Hak'ta kadr ve kıymeti kalmaz.”</em>",
+                      "en": "The Sufis' rules, <em>“in excess of the rulings of the Law, yet in accord with the Law's purpose”</em>; and <em>“the monasticism instituted by the scholars of Jesus before the coming of the Muhammadan Law.”</em> A limit is set too: when a new Law comes, <em>“its ruling is abrogated and it has no weight with God.”</em>",
+                      "pt": "As regras dos sufis, <em>“em excesso sobre as prescrições da Lei, mas conformes ao propósito da Lei”</em>; e <em>“o monaquismo instituído pelos doutores de Jesus antes da vinda da Lei muhammadiana.”</em> Também se põe um limite: quando vem uma Lei nova, <em>“a sua prescrição é ab-rogada e não tem peso junto de Deus.”</em>"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ruhbâniyet üzerine söylenen şey bize en çarpıcı gelen yer oldu, çünkü kabul edilme <em>gerekçesi</em> veriliyor: <em>“Allah Teâlâ onları, onların üzerine farzetmediği hâlde, kendi tarafından şer'ettiği şeye i'tibâr buyurduğu gibi, i'tibâr etti.”</em> Neden? Çünkü hedefleri örtüştü — Konuk'un ifadesiyle <em>“şer'-i ilâhîden maksûd olan hükm-i ilâhî nüfûs-ı nâkısanın ikmâlidir”</em> ve o kanunların da maksadı aynıydı. Yani ölçü, kaynağın kendisi değil <strong>neye yöneldiği</strong>.",
+                "en": "What is said about monasticism struck us most, because a <em>ground</em> for its acceptance is given: <em>“God held them valid — though He had not made them obligatory upon them — just as He holds valid what He Himself laid down.”</em> Why? Because the aims coincided — in Konuk's words, <em>“the divine ruling intended by the divine Law is the completing of deficient souls,”</em> and those laws intended the same. So the measure is not the source itself but <strong>what it aims at</strong>.",
+                "pt": "O que se diz sobre o monaquismo foi o que mais nos impressionou, porque se dá um <em>fundamento</em> para a sua aceitação: <em>“Deus teve-os por válidos — ainda que não lhos tivesse tornado obrigatórios — tal como tem por válido o que Ele próprio estabeleceu.”</em> Porquê? Porque os fins coincidiram — nas palavras de Konuk, <em>“o juízo divino visado pela Lei divina é completar as almas deficientes,”</em> e aquelas leis visavam o mesmo. Assim, a medida não é a fonte em si mas <strong>aquilo a que se dirige</strong>."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs8-s3",
+          "heading": {
+            "tr": "Din Senin Fiilin",
+            "en": "The Religion Is Your Act",
+            "pt": "A Religião É o Teu Ato"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın kalbi burada ve argüman kısa. <em>“Din”</em> = <em>islâm</em> = <em>inkıyâd</em>. İnkıyâd bir <em>fiil</em>dir. Fiilin sahibi kimse, dinin sahibi de odur: <em>“inkıyâd senin fiilinin 'ayn'ıdır. Demek ki din senin fiilindendir. Binâenaleyh sen, ancak senden olan şeyle mes'ûd oldun.”</em>",
+                "en": "Here is the heart of the bezel, and the argument is short. <em>Religion</em> = <em>islām</em> = <em>yielding</em>. Yielding is an <em>act</em>. Whoever owns the act owns the religion: <em>“the yielding is the very substance of your act. So the religion is from your act. Therefore you were made happy only by what is from you.”</em>",
+                "pt": "Eis o coração do engaste, e o argumento é curto. <em>Religião</em> = <em>islām</em> = <em>ceder</em>. Ceder é um <em>ato</em>. Quem possui o ato possui a religião: <em>“o ceder é a própria substância do teu ato. Logo a religião vem do teu ato. Portanto foste feito feliz apenas por aquilo que vem de ti.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk buna bir simetri ekliyor ve simetri argümanın taşıyıcısı: <em>“senin saâdetini nasıl ki senin fiilin olan şey isbât etti ise, esmâ-i ilâhiyyeyi de ancak Allâh'ın ef'âli isbât eyledi… O, âsârı ile 'İlâh' tesmiye olundu; ve sen de âsârın ile 'said' tesmiye olundun.”</em> Yani her iki tarafta da isim, önce var olup sonra iş yapmıyor — <em>iş</em>ten doğuyor. Bâtında ne varsa, zâhirde bir fiile bürünmedikçe adı yok: <em>“bâtınında namaz kılmak dâiyesi hâsıl olsa, o ef'âl-i mahsûsa… senden zâhir olmadıkça, sana 'musallî' denilmez.”</em>",
+                "en": "Konuk adds a symmetry, and the symmetry carries the argument: <em>“just as what was your act established your happiness, so only God's acts established the divine names… He was named 'God' by His effects, and you were named 'fortunate' by your effects.”</em> On both sides the name does not exist first and then act — it is born <em>of</em> the act. Whatever is inward has no name until it takes the dress of a deed outwardly: <em>“should the impulse to pray arise within you, until those particular acts appear from you, you are not called 'one who prays'.”</em>",
+                "pt": "Konuk acrescenta uma simetria, e a simetria sustém o argumento: <em>“tal como o que foi o teu ato estabeleceu a tua felicidade, só os atos de Deus estabeleceram os nomes divinos… Ele foi chamado 'Deus' pelos Seus efeitos, e tu foste chamado 'feliz' pelos teus efeitos.”</em> De ambos os lados o nome não existe primeiro para depois agir — nasce <em>do</em> ato. O que está no interior não tem nome enquanto não tomar veste de obra no exterior: <em>“se em ti surgir o impulso de orar, enquanto esses atos particulares não aparecerem de ti, não és chamado 'orante'.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ve sonra fass kendi söylediğini geri alır gibi yapıp iki katmanı üst üste koyuyor: <em>“dinin hepsi Allâh'a mahsustur. Ve onun hepsi sendendir; Allah'dan değildir. Ancak bi-hükmi'l-asâle Allah'dandır.”</em> Konuk ayrımı isimlendiriyor: <em>asl</em>a (Zât'a) bakınca hepsi O'ndan, <em>fer'</em>e (senin izâfî vücûduna) bakınca hepsi senden. Bu, VII. fasstaki iki <em>nazar</em>ın burada başka adlarla tekrarı — ve bizim okumamızda bu kalıbın <strong>yedinci</strong> karşılaşması.",
+                "en": "And then the bezel seems to take back what it said, laying two layers over one another: <em>“the whole of the religion belongs to God. And the whole of it is from you, not from God — except by the ruling of the root.”</em> Konuk names the distinction: looked at from the <em>root</em> (the Essence) it is all His; looked at from the <em>branch</em> (your relative existence) it is all yours. This is Bezel VII's two <em>standpoints</em> again under other names — and in our reading the <strong>seventh</strong> meeting with this pattern.",
+                "pt": "E então o engaste parece retirar o que disse, sobrepondo duas camadas: <em>“toda a religião pertence a Deus. E toda ela vem de ti, não de Deus — exceto pelo juízo da raiz.”</em> Konuk nomeia a distinção: olhada da <em>raiz</em> (a Essência), é toda d'Ele; olhada do <em>ramo</em> (a tua existência relativa), é toda tua. Isto é de novo os dois <em>pontos de vista</em> do Engaste VII sob outros nomes — e, na nossa leitura, o <strong>sétimo</strong> encontro com este padrão."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs8-s4",
+          "heading": {
+            "tr": "Kar Sudur — ama Karla Abdest Alınmaz",
+            "en": "Snow Is Water — but You Cannot Wash with Snow",
+            "pt": "A Neve É Água — mas Não Te Podes Lavar com Neve"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın ilerisinde Konuk, Abdülkerîm el-Cîlî'den bir imge aktarıyor ve sonra onu kendisi genişletiyor. Cîlî'nin cümlesi şu: <em>“âlemin meseli kara benzer; ve Hak Sübhânehû ve Teâlâ, bu karın aslı olan su gibidir… ve kar, bizim tahkîkimizde suyun gayrı değildir. Ve hâlbuki şerâyi'in da'vet eylediği hükümde her ikisi de yekdiğerinin gayrıdır.”</em>",
+                "en": "Later in the bezel Konuk transmits an image from 'Abd al-Karim al-Jili and then extends it himself. Jili's sentence: <em>“the likeness of the world is snow; and God, glorified and exalted, is like the water that is the origin of that snow… and in our verification snow is not other than water. Yet in the ruling to which the Laws summon, each is other than the other.”</em>",
+                "pt": "Mais adiante no engaste, Konuk transmite uma imagem de 'Abd al-Karim al-Jili e depois amplia-a ele próprio. A frase de Jili: <em>“a semelhança do mundo é a neve; e Deus, glorificado e exaltado, é como a água que é a origem dessa neve… e na nossa verificação a neve não é outra coisa senão água. E contudo, no juízo a que as Leis chamam, cada uma é outra que a outra.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk buna kendi merdivenini ekliyor — buhâr, bulut, su, buz — ve bir cümleyle bizim en çok üstünde durduğumuz noktayı söylüyor: <em>“buzun hakikati su olmakla berâber, suyun vazîfesini göremez. Su ile tahâret mümkindir; fakat kar ve buz tahâret için isti'mâl edilemez. Meğer ki eriyip su ola.”</em> Bu, VII. fassta soyut olarak kurulan iki nazarın (hakîkat/şerîat) elle tutulur hâli: özdeşlik ile hüküm aynı düzlemde durmuyor.",
+                "en": "Konuk adds his own ladder — vapour, cloud, water, ice — and in one sentence says the thing we dwelt on most: <em>“although the reality of ice is water, it cannot do water's work. Purification is possible with water; but snow and ice cannot be used for purification, unless they melt into water.”</em> This is the tangible form of the two standpoints (reality / Law) set out abstractly in Bezel VII: identity and ruling do not lie on the same plane.",
+                "pt": "Konuk acrescenta a sua própria escada — vapor, nuvem, água, gelo — e numa frase diz aquilo em que mais nos detivemos: <em>“embora a realidade do gelo seja água, não pode fazer o trabalho da água. A purificação é possível com água; mas neve e gelo não podem usar-se para purificar, a não ser que derretam em água.”</em> Esta é a forma tangível dos dois pontos de vista (realidade / Lei) postos em abstrato no Engaste VII: identidade e juízo não estão no mesmo plano."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, VIII. Fass (Konuk şerhi, s. 540-541)",
+                "en": "Fusus al-Hikam, Bezel VIII (Konuk's commentary, p. 540-541)",
+                "pt": "Fusus al-Hikam, Engaste VIII (comentário de Konuk, p. 540-541)"
+              },
+              "caption": {
+                "tr": "Dört basamak da Konuk'un; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi Konuk'un kendi gerekçesi: bu iniş geri dönebiliyor. <em>“Buz eridiği vakit su; ve harâretin tesiriyle bulut… ve bulut dahi yine mertebe-i letâfete rücû' ile bilâ-tagayyür evvelki gibi buhâr”</em> oluyor — yani devre kapanıyor ve dönen şey zâtında hiç değişmemiş oluyor.",
+                "en": "All four steps are Konuk's; the spiral and the closing are ours. Why a spiral is Konuk's own reasoning: this descent can run back. <em>“When ice melts it is water; by heat, cloud… and the cloud in turn returns to the degree of subtlety and, without change, is vapour as before”</em> — the circuit closes, and what returns has not altered in its essence.",
+                "pt": "Os quatro degraus são de Konuk; a espiral e o fecho são nossos. Porquê uma espiral é o próprio raciocínio de Konuk: esta descida pode correr de volta. <em>“Quando o gelo derrete é água; pelo calor, nuvem… e a nuvem por sua vez regressa ao grau de subtileza e, sem mudança, é vapor como antes”</em> — o circuito fecha-se, e o que regressa não se alterou na sua essência."
+              },
+              "helix": {
+                "id": "fs8-buhar",
+                "turns": 1.4,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs8-b1",
+                    "label": {
+                      "tr": "Buhâr — duyulmaz",
+                      "en": "Vapour — imperceptible",
+                      "pt": "Vapor — impercetível"
+                    },
+                    "note": {
+                      "tr": "<em>“havâ-yı nesîmîde olan buhâr kemâl-i letâfetinden dolayı havâss-i hamse ile hissedilmez.”</em> Yokluk değil; duyunun yetişemediği bir incelik.",
+                      "en": "<em>“The vapour in the breeze is not perceived by the five senses, by reason of its utter subtlety.”</em> Not absence; a fineness the senses cannot reach.",
+                      "pt": "<em>“O vapor na brisa não é percebido pelos cinco sentidos, por causa da sua extrema subtileza.”</em> Não é ausência; é uma finura que os sentidos não alcançam."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs8-b2",
+                    "label": {
+                      "tr": "Bulut — görülür",
+                      "en": "Cloud — visible",
+                      "pt": "Nuvem — visível"
+                    },
+                    "note": {
+                      "tr": "<em>“Bir derece tenezzül edince kesîf bir bulut olur. Bu hâlde iken gözle görülür.”</em> İlk görünürlük basamağı.",
+                      "en": "<em>“Descending one degree it becomes a dense cloud. In this state it is seen with the eye.”</em> The first step of visibility.",
+                      "pt": "<em>“Descendo um grau torna-se nuvem densa. Neste estado é vista com o olho.”</em> O primeiro degrau de visibilidade."
+                    }
+                  },
+                  {
+                    "id": "fs8-b3",
+                    "label": {
+                      "tr": "Su — iş görür",
+                      "en": "Water — it does work",
+                      "pt": "Água — faz trabalho"
+                    },
+                    "note": {
+                      "tr": "Bir derece daha yoğunlaşıyor. Bu basamağın ayrıcalığı ilerideki hükümde ortaya çıkacak: temizlik ancak bununla oluyor.",
+                      "en": "One degree denser again. The privilege of this step appears in the ruling further on: purification happens only with this.",
+                      "pt": "Mais um grau de densidade. O privilégio deste degrau aparece no juízo mais adiante: a purificação só se faz com este."
+                    }
+                  },
+                  {
+                    "id": "fs8-b4",
+                    "label": {
+                      "tr": "Buz — en kesîf, ve hükmü başka",
+                      "en": "Ice — densest, and its ruling differs",
+                      "pt": "Gelo — o mais denso, e o seu juízo difere"
+                    },
+                    "note": {
+                      "tr": "<em>“merâtib-i sâbıkanın cümlesinden eksef olur.”</em> Ve fassın bize bıraktığı cümle: hakikati su, ama <em>“suyun vazîfesini göremez.”</em> Aynı şey olmak, aynı işi yapmaya yetmiyor.",
+                      "en": "<em>“It is denser than all the preceding degrees.”</em> And the sentence the bezel leaves us: its reality is water, yet <em>“it cannot do water's work.”</em> Being the same thing is not enough to do the same work.",
+                      "pt": "<em>“É mais denso do que todos os graus precedentes.”</em> E a frase que o engaste nos deixa: a sua realidade é água, e contudo <em>“não pode fazer o trabalho da água.”</em> Ser a mesma coisa não basta para fazer o mesmo trabalho."
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk imgeyi son bir adım daha götürüyor ve <em>“nefes-i Rahmânî olan 'esîr'den”</em> yıldızların ve âlemlerin yoğunlaşarak çıkışına bağlıyor, sonra da <em>“nefes-i Rahmânî hakkındaki tafsilât Fass-ı Îsevî'de gelecektir”</em> deyip konuyu kapatıyor. Yani burada da bir kapı gösterilip açılmadan bırakılıyor — bu fassın, hatta bütün kitabın alışkanlığı. Biz de o kapıyı zorlamıyoruz; Îsevî fassına geldiğimizde bakacağız.",
+                "en": "Konuk takes the image one step further, linking it to the condensation of stars and worlds out of <em>“the ether that is the Breath of the Merciful,”</em> and then closes the subject: <em>“the details concerning the Breath of the Merciful will come in the Bezel of Jesus.”</em> So here too a door is pointed at and left unopened — the habit of this bezel, and of the book. We are not forcing that door; we will look when we reach the Bezel of Jesus.",
+                "pt": "Konuk leva a imagem um passo mais longe, ligando-a à condensação das estrelas e dos mundos a partir <em>“do éter que é o Sopro do Misericordioso,”</em> e depois encerra o assunto: <em>“os pormenores sobre o Sopro do Misericordioso virão no Engaste de Jesus.”</em> Também aqui se aponta uma porta e se deixa por abrir — o hábito deste engaste, e do livro. Não forçamos essa porta; olharemos quando chegarmos ao Engaste de Jesus."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Füsûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk — Kelime-i Ya'kûbiyye'de Mündemic Hikmet-i Rûhiyye (I. cilt, s. 523-575)",
+          "en": "Fusus al-Hikam, Translation and Commentary, Ahmed Avni Konuk — The Wisdom of Spirit in the Word of Jacob (vol. I, pp. 523-575)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário, Ahmed Avni Konuk — A Sabedoria do Espírito na Palavra de Jacó (vol. I, pp. 523-575)"
+        },
+        {
+          "tr": "Abdülkerîm el-Cîlî, el-İnsânü'l-Kâmil (Konuk'un bu fassta aktardığı kar-su temsili)",
+          "en": "'Abd al-Karim al-Jili, al-Insan al-Kamil (the snow-and-water image Konuk transmits in this bezel)",
+          "pt": "'Abd al-Karim al-Jili, al-Insan al-Kamil (a imagem da neve e da água que Konuk transmite neste engaste)"
+        }
+      ]
     },
     {
       "id": "fs9",
