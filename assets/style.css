@@ -250,6 +250,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  flex-wrap: wrap;
   padding: 18px clamp(16px, 4vw, 48px);
   gap: 16px;
   position: sticky;
@@ -292,6 +293,17 @@ html {
   display: flex;
   align-items: center;
   gap: 10px;
+  /* Sarma VARSAYILAN, kesme noktasına bağlı değil (2026-07-28 denetimi).
+     Önceden `flex-wrap: wrap` yalnız `max-width: 640px` bloğundaydı; 641px
+     ile ~1110px arasında -- yani bütün tablet ve küçük dizüstü aralığında --
+     kontroller 1120px genişliğe kadar tek satırda kalıp gövdeyi yatay
+     kaydırıyordu (834px'te 143px kayma ölçüldü). Geniş ekranda sarılacak
+     bir şey olmadığı için bu kuralın orada bir maliyeti yok. */
+  flex-wrap: wrap;
+  row-gap: 10px;
+  justify-content: center;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .hakkinda-wrap {
@@ -480,6 +492,9 @@ html {
 .view-switch {
   display: inline-flex;
   gap: 6px;
+  /* bkz. .app-header__controls -- sarma varsayılan */
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* Shared 44x44 circular icon-button chrome (touch-target minimum) --
@@ -2141,6 +2156,10 @@ body[data-theme="dark"] #sirlar-legend {
   width: 100%;
   background: none;
   border: none;
+  /* Ölçülen yükseklik 17px idi; WCAG 2.2 SC 2.5.8'in 24px tabanının
+     altında ve lejantı açıp kapatan tek denetim bu (2026-07-28 denetimi).
+     Dikey dolgu yerine min-height: satır yüksekliği değişmesin diye. */
+  min-height: 24px;
   padding: 0;
   margin: 0;
   font: inherit;
@@ -2862,8 +2881,6 @@ html:has(.detail-panel:not([hidden])) {
   .detail-panel { width: 100vw; padding-top: calc(var(--app-header-height, 64px) + 12px); z-index: 60; }
   .detail-panel__close { top: 12px; z-index: 61; }
   .detail-panel__print { top: 12px; right: 64px; z-index: 61; }
-  .app-header__controls { flex-wrap: wrap; row-gap: 10px; }
-  .view-switch { flex-wrap: wrap; }
   .btn-ghost { padding: 8px 11px; font-size: 0.8rem; }
   .lang-btn { padding: 8px 12px; }
   .welcome-screen__stage { width: min(78vw, 300px); }
@@ -3889,6 +3906,9 @@ html:has(.detail-panel:not([hidden])) {
 .terimler-filter input {
   flex: 1;
   min-width: 0;
+  /* 22px ölçülmüştü -- arama alanı sayfanın ana denetimi, 24px tabanının
+     altında kalmamalı (2026-07-28 denetimi). */
+  min-height: 24px;
   border: 0;
   background: transparent;
   color: var(--text-primary);
@@ -4997,7 +5017,11 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
 .esmaX-onb__card h2 { font-size: 1.24rem; margin: 0 0 10px; color: var(--text-primary); }
 .esmaX-onb__card p { font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary); margin: 0 0 20px; }
 .esmaX-onb__actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.esmaX-onb__skip { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.85rem; }
+/* 37x17 ölçülmüştü; turu atlamanın tek yolu bu düğme (2026-07-28 denetimi). */
+.esmaX-onb__skip {
+  background: none; border: none; color: var(--text-muted); cursor: pointer;
+  font-size: 0.85rem; min-height: 24px; padding: 0 8px;
+}
 .esmaX-onb__skip:hover { color: var(--text-secondary); }
 .esmaX-onb__next {
   background: var(--series-theme); color: #1a1710; border: none; cursor: pointer;
@@ -5585,4 +5609,29 @@ body.share-stage-open { overflow: hidden; }
 .share-stage__chrome [data-action="recyok"]:hover,
 .share-stage__chrome [data-action="recyok"]:focus-visible {
   opacity: 1;
+}
+
+/* Terimler yan rayı, dar ekranda yatay kaydırılan bir şeride dönüşüyor
+   (bkz. @media max-width:900px). Ölçüldüğünde 20 gruptan 17'si ekranın
+   dışında kalıyordu ve orada olduklarına dair HİÇBİR işaret yoktu --
+   scrollbar da gizli (2026-07-28 denetimi).
+
+   Çözüm klasik "kaydırma gölgesi": iki katman `local` (içerikle birlikte
+   kayar, örtücü), iki katman `scroll` (kapsayıcıya sabit, gölge). Örtücü
+   katman şeridin başında/sonunda gölgenin üstünü kapatır; ortadayken
+   açılır. Böylece gölge YALNIZ o yönde gerçekten içerik varken görünür --
+   maske kullansaydık taşma olmayan dar listelerde de kenarları
+   soldururdu. JS gerektirmiyor. */
+@media (max-width: 900px) {
+  .terimler-rail__list {
+    background-image:
+      linear-gradient(to right, var(--surface-1), var(--surface-1)),
+      linear-gradient(to left, var(--surface-1), var(--surface-1)),
+      linear-gradient(to right, color-mix(in srgb, var(--text-primary) 16%, transparent), transparent),
+      linear-gradient(to left, color-mix(in srgb, var(--text-primary) 16%, transparent), transparent);
+    background-position: left center, right center, left center, right center;
+    background-repeat: no-repeat;
+    background-size: 22px 100%, 22px 100%, 14px 100%, 14px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
 }

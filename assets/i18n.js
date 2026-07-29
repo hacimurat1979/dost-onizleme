@@ -49,6 +49,13 @@ window.DostI18n = (function () {
       const v = el.dataset[lang] || el.dataset.en || el.dataset.tr;
       el.textContent = v;
     });
+    // Metin taşımayan ama ada ihtiyacı olan öğeler (ana graf svg'leri gibi)
+    // adlarını data-{dil}-aria-label ile veriyor -- textContent'e yazmak
+    // svg'nin içeriğini silerdi (2026-07-28 denetimi).
+    scope.querySelectorAll("[data-tr-aria-label]").forEach((el) => {
+      const v = el.dataset[lang + "AriaLabel"] || el.dataset.enAriaLabel || el.dataset.trAriaLabel;
+      if (v) el.setAttribute("aria-label", v);
+    });
     document.documentElement.lang = lang;
   }
 

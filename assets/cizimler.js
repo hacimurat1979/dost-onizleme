@@ -253,7 +253,7 @@
   };
 
   const CIZIM_DEFS = `
-    <svg width="0" height="0" style="position:absolute">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
       <defs>
         <marker id="cizimArrowEnd" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
           <path d="M0,0 L8,4 L0,8 Z" class="term-diagram-arrowhead"/>

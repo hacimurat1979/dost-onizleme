@@ -325,7 +325,10 @@
     if (mm) mm.remove();
     mm = document.createElement("div");
     mm.className = "sorular-minimap";
-    mm.innerHTML = `<svg viewBox="0 0 150 110" preserveAspectRatio="xMidYMid meet"><g class="sorular-minimap__dots"></g><rect class="sorular-minimap__vp" x="0" y="0" width="0" height="0"></rect></svg>`;
+    // aria-hidden: minimap ana grafın küçültülmüş bir kopyası; ekran
+    // okuyucuya aynı düğümleri ikinci kez, üstelik isimsiz olarak
+    // okutmanın anlamı yok (2026-07-28 denetimi).
+    mm.innerHTML = `<svg viewBox="0 0 150 110" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g class="sorular-minimap__dots"></g><rect class="sorular-minimap__vp" x="0" y="0" width="0" height="0"></rect></svg>`;
     wrapEl.appendChild(mm);
     miniEl = mm;
     miniSvg = d3.select(mm).select("svg");

@@ -654,8 +654,12 @@
     const circumference = 2 * Math.PI * r;
     const fillLen = (done / total) * circumference;
     const label = tt({ tr: `${done}/${total} kısım işlendi`, en: `${done}/${total} parts read`, pt: `${done}/${total} partes lidas` });
+    // svg aria-hidden: halka dekoratif -- okunacak bilgi hem sarmalayıcının
+    // aria-label'ında hem de yanındaki "12/14" etiketinde zaten var. Etiketsiz
+    // bırakıldığında ekran okuyucuya 15 adet isimsiz grafik düşüyordu
+    // (2026-07-28 denetimi).
     return `<span class="futuhat-parts__progress" title="${label}" aria-label="${label}">
-      <svg viewBox="0 0 22 22" width="18" height="18">
+      <svg viewBox="0 0 22 22" width="18" height="18" aria-hidden="true" focusable="false">
         <circle class="futuhat-parts__progress-track" cx="11" cy="11" r="${r}" fill="none" stroke-width="2.5"></circle>
         <circle class="futuhat-parts__progress-fill" cx="11" cy="11" r="${r}" fill="none" stroke-width="2.5"
           stroke-dasharray="${fillLen} ${circumference}" transform="rotate(-90 11 11)"></circle>
