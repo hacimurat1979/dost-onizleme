@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs2",
+  "activeFassId": "fs3",
   "fasses": [
     {
       "id": "fs1",
@@ -960,7 +960,7 @@
     {
       "id": "fs3",
       "no": 3,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "Nûh",
         "en": "Noah",
@@ -970,7 +970,419 @@
         "tr": "Hikmet-i Sübbûhiyye",
         "en": "Wisdom of Transcendence",
         "pt": "Sabedoria da Transcendência"
-      }
+      },
+      "title": {
+        "tr": "Tenzîhin Kendisi Bir Sınırlamadır — ve Yarısında Durmak Yalanlamaktır",
+        "en": "Declaring Transcendence Is Itself a Limitation — and Stopping Halfway Is Denial",
+        "pt": "Declarar a Transcendência É Já Uma Limitação — e Parar a Meio É Negar"
+      },
+      "pageRange": {
+        "tr": "III. Fass, s. 281-287",
+        "en": "Bezel III, pp. 281-287",
+        "pt": "Engaste III, pp. 281-287"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Nûh, azim sahibi resûllerin ilki; ve <em>“risâletin en birinci hükmü, resûlün ümmetini tevhîd-i Hakk'a da'veti ve şerîk ve nazîrden tenzîhidir.”</em> Yani bu fass, kitabın <strong>tenzîh</strong> fassı. Ama tam da burada Dost, tenzîhi savunmak yerine onu tersine çeviriyor: <em>“ehl-i hakâyık indinde Cenâb-ı İlâhî'de tenzîh, ayn-ı tahdîd ve takyîddir.”</em> Bir şeyi her şeyden ayırmak, onu bir sınırla çevirmektir. Ve tenzîhte durup teşbîhe geçmeyen kişi hakkında hüküm ağır: <em>“o ba'zısına îmân eden ve ba'zısına kâfir olan kimse gibidir.”</em>",
+          "en": "Noah is the first of the messengers of firm resolve; and <em>“the very first ruling of messengership is that the messenger calls his community to the oneness of the Real and declares Him free of partner and peer.”</em> This bezel, then, is the book's <strong>transcendence</strong> bezel. Yet precisely here Ibn Arabi does not defend transcendence but turns it around: <em>“among the people of the realities, declaring the Divine transcendent is itself delimitation and restriction.”</em> To set a thing apart from everything is to draw a boundary around it. And the ruling on one who stops at transcendence and never moves to likeness is severe: <em>“he is like one who believes in part and disbelieves in part.”</em>",
+          "pt": "Noé é o primeiro dos mensageiros de firme resolução; e <em>“o primeiro juízo da missão profética é que o mensageiro chame a sua comunidade à unidade do Real e O declare livre de sócio e de par.”</em> Este engaste é, então, o engaste da <strong>transcendência</strong> do livro. E contudo é precisamente aqui que Ibn Arabi não defende a transcendência mas a inverte: <em>“entre os conhecedores das realidades, declarar o Divino transcendente é já delimitação e restrição.”</em> Separar uma coisa de tudo é traçar-lhe uma fronteira. E o juízo sobre quem para na transcendência e nunca passa à semelhança é severo: <em>“é como quem crê numa parte e descrê noutra.”</em>"
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, III. Fass (Konuk şerhi, s. 283-284)",
+          "en": "Fusus al-Hikam, Bezel III (Konuk's commentary, p. 283-284)",
+          "pt": "Fusus al-Hikam, Engaste III (comentário de Konuk, p. 283-284)"
+        },
+        "caption": {
+          "tr": "Sarmalı biz kurduk; basamaklar Konuk'un cümleleri. Bu şema bir <em>çürütme</em> gibi görünebilir ama öyle okumamak gerekiyor: fass tenzîhi reddetmiyor, onu <em>durulacak yer</em> olmaktan çıkarıyor. Son basamağın ilkine dönmesi de bu yüzden — dönen kişi tenzîhi bırakmıyor, yanına ötekini alıyor.",
+          "en": "We built the spiral; the steps are Konuk's sentences. This diagram may look like a <em>refutation</em>, but it should not be read that way: the bezel does not reject transcendence, it stops it from being a <em>place to halt</em>. This is why the last step returns to the first — the one who returns does not drop transcendence; he takes the other alongside it.",
+          "pt": "Construímos a espiral; os degraus são frases de Konuk. Este esquema pode parecer uma <em>refutação</em>, mas não deve ler-se assim: o engaste não rejeita a transcendência, impede-a de ser um <em>lugar onde parar</em>. É por isso que o último degrau regressa ao primeiro — quem regressa não abandona a transcendência; toma a outra a seu lado."
+        },
+        "helix": {
+          "id": "fs3-tenzih",
+          "turns": 1.45,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs3-t1",
+              "label": {
+                "tr": "Tenzîh: O'nu her şeyden ayırmak",
+                "en": "Transcendence: setting Him apart from all",
+                "pt": "Transcendência: separá-Lo de tudo"
+              },
+              "note": {
+                "tr": "<em>“'tesbîh' Allâh'ı ahkâm-ı imkâniyyeden tenzîh etmektir”</em> — ve risâletin ilk işi bu. Fass bunu bir hata olarak açmıyor; <em>“risâlet isneyniyet üzerinedir”</em>, yani elçilik zaten iki-lik ister.",
+                "en": "<em>“‘Glorification’ is to declare God free of the rulings of contingency”</em> — and this is the first task of messengership. The bezel does not open this as an error; <em>“messengership rests upon two-ness,”</em> that is, sending a messenger already requires a twoness.",
+                "pt": "<em>“‘Glorificação’ é declarar Deus livre dos juízos da contingência”</em> — e esta é a primeira tarefa da missão profética. O engaste não abre isto como erro; <em>“a missão assenta na dualidade,”</em> isto é, enviar um mensageiro já exige uma dualidade."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs3-t2",
+              "label": {
+                "tr": "Ama ayırmak sınır çizmektir",
+                "en": "But setting apart draws a boundary",
+                "pt": "Mas separar traça uma fronteira"
+              },
+              "note": {
+                "tr": "<em>“O'nun sıfâtı bunların sıfâtından ayrıdır, demiş oluruz. Binâenaleyh Hak bir sıfat ile takyîd edilmiş olur”</em> — ve bir sınır da: <em>“Hakk'ın haddi bunların haddinden hâriçtir.”</em>",
+                "en": "<em>“We have said: His attributes are other than theirs. So the Real has been delimited by an attribute”</em> — and by a boundary too: <em>“the Real's limit lies outside their limit.”</em>",
+                "pt": "<em>“Dissemos: os Seus atributos são outros que os deles. Logo o Real foi delimitado por um atributo”</em> — e também por uma fronteira: <em>“o limite do Real está fora do limite deles.”</em>"
+              }
+            },
+            {
+              "id": "fs3-t3",
+              "label": {
+                "tr": "Mutlaklık da bir kayıttır",
+                "en": "Absoluteness too is a restriction",
+                "pt": "A absolutidade também é uma restrição"
+              },
+              "note": {
+                "tr": "Kaçış yolu kapanıyor: <em>“Hak bilcümle mukayyedâttan münezzehtir desek, kayd-ı ıtlâk ile takyîd etmiş oluruz.”</em> Sonuç: <em>“ehl-i hakâyık indinde Allah Teâlâ için ne ıtlâk ve ne de takyîd vardır.”</em>",
+                "en": "The escape route closes: <em>“if we say the Real is free of all delimited things, we have delimited Him by the restriction of absoluteness.”</em> The conclusion: <em>“among the people of the realities there is for God neither absoluteness nor delimitation.”</em>",
+                "pt": "A via de fuga fecha-se: <em>“se dissermos que o Real é livre de todas as coisas delimitadas, delimitámo-Lo pela restrição da absolutidade.”</em> A conclusão: <em>“entre os conhecedores das realidades não há para Deus nem absolutidade nem delimitação.”</em>"
+              }
+            },
+            {
+              "id": "fs3-t4",
+              "label": {
+                "tr": "Ahadiyette tenzîh şirktir",
+                "en": "At oneness, transcendence is association",
+                "pt": "Na unicidade, a transcendência é associação"
+              },
+              "note": {
+                "tr": "Ve bir mertebe ayrımı: <em>“Tenzîhin tahdîd ve takyîd oluşu mertebe-i ulûhiyyettedir. Mertebe-i ahadiyyette tenzîh ise, isbât-ı şirktir. Çünkü zât-ı ahadîyi tenzîh için ondan gayrı bir şey isbât etmek lâzım gelir.”</em> Yani orada tenzîh, kaçınmak istediği şeyi üretiyor.",
+                "en": "And a distinction of levels: <em>“Transcendence being delimitation and restriction holds at the level of divinity. At the level of oneness, transcendence is the affirming of association. For to declare the single Essence transcendent one must affirm something other than It.”</em> There, transcendence produces the very thing it wants to avoid.",
+                "pt": "E uma distinção de graus: <em>“A transcendência ser delimitação e restrição vale no grau da divindade. No grau da unicidade, a transcendência é a afirmação da associação. Pois para declarar transcendente a Essência única é preciso afirmar algo distinto d'Ela.”</em> Ali, a transcendência produz aquilo mesmo que quer evitar."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs3-t5",
+              "label": {
+                "tr": "Öyleyse tenzîh + teşbîh",
+                "en": "Therefore transcendence together with likeness",
+                "pt": "Portanto transcendência com semelhança"
+              },
+              "note": {
+                "tr": "Çıkış yolu tenzîhten vazgeçmek değil, yanına ötekini almak: kim tenzîhte durup <em>“makâm-ı teşbîhde, teşbîh edip âlemin kemâlâtını Hak hakkında isbât etmez ise, sû'-i edeb etmiş ve peygamberleri ve kütüb-i ilâhiyyeyi tekzîb eylemiş olur.”</em>",
+                "en": "The way out is not to give up transcendence but to take the other alongside it: whoever halts at transcendence and <em>“does not, at the station of likeness, affirm the perfections of the world of the Real, has been discourteous and has belied the prophets and the divine books.”</em>",
+                "pt": "A saída não é abandonar a transcendência mas tomar a outra a seu lado: quem para na transcendência e <em>“não afirma, na estação da semelhança, as perfeições do mundo a respeito do Real, foi descortês e desmentiu os profetas e os livros divinos.”</em>"
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs3-s1",
+          "heading": {
+            "tr": "Nûh'un Kavmi Neye Taptı?",
+            "en": "What Did Noah's People Worship?",
+            "pt": "O Que Adorou o Povo de Noé?"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk, fassa girmeden önce hikâyeyi kuruyor. Âdem bütün isimlerle tahakkuk etmişti; nesli çoğaldıkça <em>“her birerleri birer ismin mazharı olan sûret-i âdemiyyeye”</em> dağıldı. Şît ile Nûh arasında bir <em>fetret</em> düştü ve orada bir kayma oldu: <em>“Nûh'un kavmi, esmâ-i müteaddide-i muhtelifeyi birtakım ecsâmdan ibâret zannedip vehimlerinde peydâ olan sûretler üzerine Vedd, Suvâ' ve Yeğûs ve Yaûk isimleriyle putlar i'mâl ederek onlara taptılar.”</em> Yani putperestlik, isimlerin çokluğunu <em>cisimlerin</em> çokluğu sanmaktan doğuyor.",
+                "en": "Before entering the bezel Konuk sets up the story. Adam was realised through all the names; as his progeny multiplied, they spread out into <em>“human forms each of which is a locus of manifestation of one name.”</em> Between Seth and Noah a <em>gap</em> fell, and in it a slippage occurred: <em>“Noah's people supposed the many different names to be so many bodies, and out of the forms that arose in their imaginations they made idols named Wadd, Suwa', Yaghuth and Ya'uq, and worshipped them.”</em> Idolatry, then, is born of taking the multiplicity of the names for a multiplicity of <em>bodies</em>.",
+                "pt": "Antes de entrar no engaste, Konuk arma a história. Adão realizou-se por todos os nomes; à medida que a sua descendência se multiplicou, espalhou-se em <em>“formas humanas cada uma das quais é lugar de manifestação de um nome.”</em> Entre Set e Noé caiu um <em>intervalo</em>, e nele deu-se um deslize: <em>“o povo de Noé supôs que os muitos nomes diferentes fossem outros tantos corpos, e das formas que surgiram na sua imaginação fizeram ídolos chamados Wadd, Suwa', Yaghuth e Ya'uq, e adoraram-nos.”</em> A idolatria nasce, então, de tomar a multiplicidade dos nomes por multiplicidade de <em>corpos</em>."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ve Konuk soruyu kendisi soruyor — savuşturmadan: <em>“Kâffe-i eşyâ mezâhir-i esmâ-yı ilâhiyyedir… Binâenaleyh kavm-i Nûh'un taptıkları asnâm dahi, vücûd-ı mutlakın takayyüd ve taayyünü olduğundan kavm-i Nûh onlara tapmakla Hakk'ın gayrısına tapmış olmazlar.”</em> Sonra da cevabı bu fassa havale ediyor. Gülşen-i Râz'dan aktardığı beyitler soruyu daha da keskinleştiriyor: <em>“O, puttan ancak halk-ı zâhirî gördü. Bu sebeble şerîatta kâfir oldu. Eğer sen dahi, ondan Hakk-ı pinhânı görmez isen, şerîatta sana da müslüman demezler.”</em>",
+                "en": "And Konuk asks the question himself, without deflecting it: <em>“All things are loci of manifestation of the divine names… Hence the idols Noah's people worshipped are also the delimitation and determination of absolute existence, so in worshipping them Noah's people did not worship other than the Real.”</em> He then refers the answer to this bezel. The lines he quotes from the Gulshan-i Raz sharpen the question further: <em>“He saw in the idol only the outward creature. For this reason he became an unbeliever in the Law. And if you too do not see the hidden Real in it, in the Law they will not call you a Muslim either.”</em>",
+                "pt": "E Konuk faz ele mesmo a pergunta, sem a desviar: <em>“Todas as coisas são lugares de manifestação dos nomes divinos… Logo os ídolos que o povo de Noé adorou são também a delimitação e determinação da existência absoluta, e portanto, ao adorá-los, o povo de Noé não adorou outro que não o Real.”</em> Remete depois a resposta para este engaste. Os versos que cita do Gulshan-i Raz agudizam ainda mais a pergunta: <em>“Ele viu no ídolo apenas a criatura exterior. Por isso tornou-se descrente na Lei. E se tu também não vires nele o Real oculto, na Lei também não te chamarão muçulmano.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu beyitleri aktarırken tereddüt ettik ve tereddüdümüzü yazmamız gerekiyor: bunlar kolayca <em>“o hâlde puta tapmakta beis yok”</em> diye okunabilecek satırlar, ve öyle okunmadıklarını göstermek metnin kendi işi olmalı, bizim savunmamız değil. Metnin kendi ölçütü şu: kusur puta bakmakta değil, <em>yalnız</em> onu görmekte. Aynı ölçüt bir sonraki satırda tersine çevrilip okura dönüyor — ve bu, satırların bir izin değil bir <em>uyarı</em> olduğunun en açık işareti.",
+                "en": "We hesitated in carrying these lines over, and our hesitation should be written down: they can easily be read as <em>“so there is no harm in worshipping idols,”</em> and showing that they are not to be read that way must be the text's own work, not our defence. The text's own criterion is this: the fault lies not in looking at the idol but in seeing <em>only</em> it. The same criterion is turned around in the very next line and aimed at the reader — and that is the clearest sign that these lines are not a permission but a <em>warning</em>.",
+                "pt": "Hesitámos em transportar estes versos, e a nossa hesitação deve ficar escrita: podem facilmente ler-se como <em>“então não há mal em adorar ídolos,”</em> e mostrar que não devem ler-se assim tem de ser trabalho do próprio texto, não defesa nossa. O critério do próprio texto é este: a falta não está em olhar o ídolo mas em ver <em>apenas</em> ele. O mesmo critério é invertido logo no verso seguinte e apontado ao leitor — e esse é o sinal mais claro de que estes versos não são uma permissão mas um <em>aviso</em>."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs3-s2",
+          "heading": {
+            "tr": "Yarısında Durmanın Adı",
+            "en": "The Name for Stopping Halfway",
+            "pt": "O Nome de Parar a Meio"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass, yalnız tenzîh edeni ikiye ayırıyor: <em>“tenzîh eden kimse ya câhildir, veyâhud sû'-i edeb sâhibidir.”</em> Câhilse, bilmediği şey şu: <em>“kâffe-i mevcûdâtın kendi zâtları ve vücûdları ve kemâlâtları ile Hakk'ın mezâhiri olup, Hakk'ın onlarda zâhir ve onlara mütecellî bulunduğu.”</em> Biliyorsa, o zaman bilerek yapıyor demektir ve adı değişiyor.",
+                "en": "The bezel divides the one who declares transcendence alone in two: <em>“the one who declares transcendence is either ignorant or discourteous.”</em> If ignorant, what he does not know is this: <em>“that all existents, by their own essences and existences and perfections, are loci of manifestation of the Real, and that the Real is manifest in them and discloses Himself to them.”</em> If he does know, then he is doing it knowingly, and the name changes.",
+                "pt": "O engaste divide em dois quem declara apenas a transcendência: <em>“quem declara a transcendência ou é ignorante ou é descortês.”</em> Se ignorante, o que não sabe é isto: <em>“que todos os existentes, pelas suas próprias essências, existências e perfeições, são lugares de manifestação do Real, e que o Real é manifesto neles e a eles Se manifesta.”</em> Se sabe, então fá-lo conscientemente, e o nome muda."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, III. Fass (Konuk şerhi, s. 284-285)",
+                "en": "Fusus al-Hikam, Bezel III (Konuk's commentary, p. 284-285)",
+                "pt": "Fusus al-Hikam, Engaste III (comentário de Konuk, p. 284-285)"
+              },
+              "caption": {
+                "tr": "Bu sarmalı çizmekte zorlandık, çünkü çizilen şey bir <em>hüküm</em> ve hükmü veren biz değiliz. Basamakların hepsi metnin kendi cümleleri; bizim yaptığımız yalnız sırayı göstermek. Yine de bunu görünür bir şema yapmanın bir ağırlığı var ve onu üstlenmemiz gerekiyor: bu satırlar bir başkasını yargılamak için değil, kendi durduğumuz yeri sormak için burada.",
+                "en": "We found this spiral hard to draw, because what is drawn is a <em>ruling</em>, and we are not the ones issuing it. Every step is the text's own sentence; all we did was show the order. Still, making it a visible diagram carries a weight we must take on: these lines are here not to judge someone else but to ask where we ourselves are standing.",
+                "pt": "Achámos esta espiral difícil de desenhar, porque o que se desenha é um <em>juízo</em>, e não somos nós quem o emite. Cada degrau é frase do próprio texto; só mostrámos a ordem. Ainda assim, torná-lo um esquema visível carrega um peso que temos de assumir: estas linhas estão aqui não para julgar outrem mas para perguntar onde estamos nós."
+              },
+              "helix": {
+                "id": "fs3-durmak",
+                "turns": 1.3,
+                "closing": false,
+                "nodes": [
+                  {
+                    "id": "fs3-d1",
+                    "label": {
+                      "tr": "Bilmeyerek durmak: cehâlet",
+                      "en": "Halting unknowingly: ignorance",
+                      "pt": "Parar sem saber: ignorância"
+                    },
+                    "note": {
+                      "tr": "Bilmediği şey: <em>“bu sûretlerin kâffesiyle zâhir olan ancak Hak bulunduğu; ve bu sûretler bi'l-asâle Hakk'ın ve bi't-tebaiyye halkın idiği.”</em> Sonuç: <em>“Hak üzerine bu cehli ile hükmedip onu ba'zı merâtib ile mukayyed kılar.”</em>",
+                      "en": "What he does not know: <em>“that what appears through all these forms is only the Real; and that these forms belong to the Real by original right and to creation by dependence.”</em> The result: <em>“ruling upon the Real with this ignorance, he delimits Him by certain levels.”</em>",
+                      "pt": "O que não sabe: <em>“que o que aparece através de todas estas formas é apenas o Real; e que estas formas pertencem ao Real por direito originário e à criação por dependência.”</em> O resultado: <em>“julgando o Real com esta ignorância, delimita-O por certos graus.”</em>"
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs3-d2",
+                    "label": {
+                      "tr": "Bilerek durmak: sû'-i edeb",
+                      "en": "Halting knowingly: discourtesy",
+                      "pt": "Parar sabendo: descortesia"
+                    },
+                    "note": {
+                      "tr": "<em>“tenzîh eden kimse bu zikrolunan hakâyıkı âlimdir: Bu sûrette o kimse Allâh'a ve resûlüne karşı sû'-i edebde bulunmuş olur.”</em> Fassın burada seçtiği kelime bir suç değil, bir <em>edep</em> kelimesi.",
+                      "en": "<em>“The one who declares transcendence knows the realities just mentioned: in that case he has been discourteous toward God and His messenger.”</em> The word the bezel chooses here is not a word of crime but of <em>courtesy</em>.",
+                      "pt": "<em>“Quem declara a transcendência conhece as realidades acabadas de mencionar: nesse caso foi descortês para com Deus e o Seu mensageiro.”</em> A palavra que o engaste escolhe aqui não é de crime mas de <em>cortesia</em>."
+                    }
+                  },
+                  {
+                    "id": "fs3-d3",
+                    "label": {
+                      "tr": "Ve mü'minse: yarım yalanlama",
+                      "en": "And if a believer: a half denial",
+                      "pt": "E se crente: uma negação parcial"
+                    },
+                    "note": {
+                      "tr": "<em>“Zirâ kütüb-i ilâhiyyede, Hak kendisinin Semî' ve Basîr ve Hayy ve Kayyûm ve Mürîd olduğunu beyân buyurmuş.”</em> Yani tenzîhte durmak, bu isimleri örtmek olur. Ve fassın hükmü: <em>“o ba'zısına îmân eden ve ba'zısına kâfir olan kimse gibidir.”</em>",
+                      "en": "<em>“For in the divine books the Real has declared Himself to be Hearing, Seeing, Living, Self-subsisting, Willing.”</em> To halt at transcendence, then, is to cover these names. And the bezel's ruling: <em>“he is like one who believes in part and disbelieves in part.”</em>",
+                      "pt": "<em>“Pois nos livros divinos o Real declarou-Se Ouvinte, Vidente, Vivo, Subsistente, Volente.”</em> Parar na transcendência é, então, cobrir estes nomes. E o juízo do engaste: <em>“é como quem crê numa parte e descrê noutra.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs3-d4",
+                    "label": {
+                      "tr": "Ve farkında değil",
+                      "en": "And he does not notice",
+                      "pt": "E não se apercebe"
+                    },
+                    "note": {
+                      "tr": "<em>“Tenzîh eden kimseler ise, bu tekziblerinin farkına varmazlar; ve bu tekzîb ile kendilerinde ma'rifet hâsıl olduğunu ve mü'min ve muvahhid olduklarını zannederler.”</em> Bu son basamak bize en zor geleni oldu: hatanın kendini doğruluk gibi hissetmesi.",
+                      "en": "<em>“Those who declare transcendence do not notice this belying; and through this belying they suppose that gnosis has come to be in them and that they are believers and affirmers of oneness.”</em> This last step is the one we found hardest: the error feeling like correctness.",
+                      "pt": "<em>“Os que declaram a transcendência não se apercebem deste desmentir; e por este desmentir supõem que a gnose se deu neles e que são crentes e afirmadores da unidade.”</em> Este último degrau foi o que achámos mais difícil: o erro que se sente como acerto."
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs3-s3",
+          "heading": {
+            "tr": "Aynı Söz, Herkese Kendi Ölçüsünce",
+            "en": "The Same Words, to Each by His Own Measure",
+            "pt": "As Mesmas Palavras, a Cada Um Pela Sua Medida"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass buradan dile geçiyor ve bir gerilimi çözmeden yan yana koyuyor. Bir yanda: peygamber <em>“onu kavminin lisânı üzere söyler; ve öyle lafızlar ile söyler ki, kavminin kâffesi o elfâzı işittikleri vakit, vehle-i ûlâda zihinlerine mütebâdir olan ma'nâlarını bilâ-te'vîl zâhiri üzere alırlar. Zirâ Hakk'ın hitâbı umûmadır.”</em> Öte yanda: aynı sözlerin <em>“birçok vecihleri ve müteaddid ma'nâları vardır”</em> ve Hak onlarla, <em>“bilsinler bilmesinler”</em>, herkese kendi mertebesince tecellî eder.",
+                "en": "From here the bezel turns to language and sets a tension side by side without resolving it. On one hand: the prophet <em>“speaks it in his people's tongue, and with such words that when the whole community hears them they take them in their plain, first-arriving sense, without interpretation. For the Real's address is to all.”</em> On the other: those same words <em>“have many faces and many meanings,”</em> and through them the Real discloses Himself to each according to his level, <em>“whether they know it or not.”</em>",
+                "pt": "Daqui o engaste volta-se para a linguagem e põe lado a lado uma tensão sem a resolver. Por um lado: o profeta <em>“fala-a na língua do seu povo, e com palavras tais que, quando toda a comunidade as ouve, as toma no seu sentido simples e imediato, sem interpretação. Pois o discurso do Real é para todos.”</em> Por outro: essas mesmas palavras <em>“têm muitas faces e muitos sentidos,”</em> e através delas o Real manifesta-Se a cada um segundo o seu grau, <em>“saibam-no eles ou não.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dayanaklar da veriliyor: Ca'fer-i Sâdık'ın <em>“Hak Teâlâ ibâdına kendi kelâmında tecellî eyler, velâkin onlar bilmezler”</em> sözü ve iki hadis — <em>“Kur'ân'ın zahrı ve batnı ve haddi ve matla'ı vardır”</em> ve <em>“Kur'ân yedi batın üzere nâzil oldu.”</em>",
+                "en": "The grounds are given too: Ja'far al-Sadiq's saying, <em>“God discloses Himself to His servants in His own speech, but they do not know it,”</em> and two hadiths — <em>“The Qur'an has an outward, an inward, a limit and a place of ascent,”</em> and <em>“The Qur'an was sent down upon seven inward senses.”</em>",
+                "pt": "Os fundamentos também são dados: o dito de Ja'far al-Sadiq, <em>“Deus manifesta-Se aos Seus servos na Sua própria fala, mas eles não o sabem,”</em> e dois hadiths — <em>“O Alcorão tem um exterior, um interior, um limite e um lugar de ascensão,”</em> e <em>“O Alcorão foi descido sobre sete sentidos interiores.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, III. Fass (Konuk şerhi, s. 285)",
+                "en": "Fusus al-Hikam, Bezel III (Konuk's commentary, p. 285)",
+                "pt": "Fusus al-Hikam, Engaste III (comentário de Konuk, p. 285)"
+              },
+              "caption": {
+                "tr": "Üç basamağı biz ayırdık; üçü de fassın cümleleri. Bunu düz bir merdiven yerine sarmal çizmemizin sebebi şu: üçüncü basamak birinciyi geçersiz kılmıyor — <em>zâhirî mânâ yanlış değil</em>, herkese ait. Sarmal aynı sözün üstünde bir tur daha atıyor, onu geride bırakmıyor.",
+                "en": "We separated the three steps; all three are the bezel's sentences. Why we drew this as a spiral rather than a straight ladder: the third step does not invalidate the first — <em>the plain sense is not wrong</em>, it belongs to everyone. The spiral takes another turn above the same words; it does not leave them behind.",
+                "pt": "Separámos os três degraus; os três são frases do engaste. Porque o desenhámos como espiral e não como escada reta: o terceiro degrau não invalida o primeiro — <em>o sentido simples não está errado</em>, pertence a todos. A espiral dá mais uma volta acima das mesmas palavras; não as deixa para trás."
+              },
+              "helix": {
+                "id": "fs3-lisan",
+                "turns": 1.15,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs3-l1",
+                    "accent": true,
+                    "label": {
+                      "tr": "Herkese, ilk anlamıyla",
+                      "en": "To everyone, in its first sense",
+                      "pt": "A todos, no seu primeiro sentido"
+                    },
+                    "note": {
+                      "tr": "<em>“kavminin kâffesi o elfâzı işittikleri vakit, vehle-i ûlâda zihinlerine mütebâdir olan ma'nâlarını bilâ-te'vîl zâhiri üzere alırlar. Zirâ Hakk'ın hitâbı umûmadır.”</em>",
+                      "en": "<em>“When the whole community hears those words they take them in their plain, first-arriving sense, without interpretation. For the Real's address is to all.”</em>",
+                      "pt": "<em>“Quando toda a comunidade ouve essas palavras, toma-as no seu sentido simples e imediato, sem interpretação. Pois o discurso do Real é para todos.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs3-l2",
+                    "label": {
+                      "tr": "Aynı sözün birçok yüzü",
+                      "en": "Many faces of the same words",
+                      "pt": "Muitas faces das mesmas palavras"
+                    },
+                    "note": {
+                      "tr": "<em>“o elfâzın… muhakkikîn ve muvahhidîn ve ulemâ-i zâhireden her bir tâifeye nisbetle, husûsî mefhûmları, birçok vecihleri ve müteaddid ma'nâları vardır.”</em> Dayanak: <em>“Kur'ân'ın zahrı ve batnı ve haddi ve matla'ı vardır.”</em>",
+                      "en": "<em>“those words have particular concepts, many faces and multiple meanings, relative to each group — the verifiers, the affirmers of oneness, and the scholars of the outward.”</em> The ground: <em>“The Qur'an has an outward, an inward, a limit and a place of ascent.”</em>",
+                      "pt": "<em>“essas palavras têm conceitos particulares, muitas faces e múltiplos sentidos, relativamente a cada grupo — os verificadores, os afirmadores da unidade e os sábios do exterior.”</em> O fundamento: <em>“O Alcorão tem um exterior, um interior, um limite e um lugar de ascensão.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs3-l3",
+                    "accent": true,
+                    "label": {
+                      "tr": "Ve bilinmeden alınabiliyor",
+                      "en": "And it can be received unknowingly",
+                      "pt": "E pode ser recebido sem se saber"
+                    },
+                    "note": {
+                      "tr": "<em>“Hak onlara o elfâzda —bilsinler bilmesinler— o mefhûmât ve vücûh ve maânî ile tecellî buyurur.”</em> Ca'fer-i Sâdık: <em>“Hak Teâlâ ibâdına kendi kelâmında tecellî eyler, velâkin onlar bilmezler.”</em>",
+                      "en": "<em>“In those words the Real discloses Himself to them through those concepts, faces and meanings — whether they know it or not.”</em> Ja'far al-Sadiq: <em>“God discloses Himself to His servants in His own speech, but they do not know it.”</em>",
+                      "pt": "<em>“Nessas palavras o Real manifesta-Se-lhes através desses conceitos, faces e sentidos — saibam-no ou não.”</em> Ja'far al-Sadiq: <em>“Deus manifesta-Se aos Seus servos na Sua própria fala, mas eles não o sabem.”</em>"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu bizim için birkaç kısımdır biriken bir örüntünün dördüncü parçası oldu. Fütûhât'ın 472. Bölümü âyetleri muhataplarına göre ayırmayı emrediyordu; 473 aracıyı kendiliğinden tayin etmeyi kınıyordu; 475 sana dikilmemiş bir şiarı üstlenme diyordu. Şimdi Füsûs aynı yere dördüncü kez dokunuyor, ama <em>tersinden</em>: orada okurun kendi payını bilmesi isteniyordu, burada sözün herkese aynı anda ve farklı farklı ulaştığı söyleniyor. İkisi çelişmiyor gibi görünüyor — ama nasıl bir arada durduklarını da çözemedik. Dizi olarak kaydediyoruz, sonuç olarak değil.",
+                "en": "For us this became the fourth piece of a pattern that has been accumulating for several parts. Futuhat 472 commanded distinguishing the verses according to their addressees; 473 condemned appointing an intermediary of one's own accord; 475 said not to take on a sign that was not set up for you. Now the Fusus touches the same place a fourth time, but from the <em>opposite side</em>: there the reader was asked to know his own portion; here the word is said to reach everyone at once and differently. The two do not appear to contradict — but neither could we work out how they stand together. We record it as a series, not as a conclusion.",
+                "pt": "Para nós isto tornou-se a quarta peça de um padrão que se vem acumulando há várias partes. Futuhat 472 mandava distinguir os versículos segundo os seus destinatários; 473 condenava nomear um intermediário por iniciativa própria; 475 dizia para não assumir um sinal que não fora erguido para ti. Agora os Fusus tocam o mesmo lugar uma quarta vez, mas pelo <em>lado oposto</em>: ali pedia-se ao leitor que conhecesse a sua parte; aqui diz-se que a palavra chega a todos ao mesmo tempo e diferentemente. As duas não parecem contradizer-se — mas também não conseguimos perceber como se sustentam juntas. Registamo-lo como série, não como conclusão."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs3-s4",
+          "heading": {
+            "tr": "Yalnız Bir Kişinin Anlayışından Gizlenmez",
+            "en": "He Is Hidden from Every Understanding but One",
+            "pt": "Está Oculto a Todo o Entendimento Menos a Um"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın en ince cümlelerinden biri burada: <em>“Zirâ Hak için halkın hepsinde zuhûr vardır. Binâenaleyh mefhûmun cümlesinde zâhir olan O'dur. Her bir fehimden bâtın olan dahi O'dur. Ancak 'Muhakkak âlem O'nun sûreti ve hüviyetidir; ve o, ism-i Zâhir'dir' diyen kimsenin fehminden bâtın değildir.”</em>",
+                "en": "One of the bezel's subtlest sentences is here: <em>“For the Real has a manifestation in all of creation. So He is what appears in every concept. He is also what is hidden from every understanding — except from the understanding of one who says: ‘Truly the world is His form and His identity, and He is the name the Manifest.’”</em>",
+                "pt": "Uma das frases mais subtis do engaste está aqui: <em>“Pois o Real tem manifestação em toda a criação. Logo Ele é o que aparece em todo o conceito. É também o que está oculto a todo o entendimento — exceto ao entendimento de quem diz: ‘Verdadeiramente o mundo é a Sua forma e a Sua identidade, e Ele é o nome o Manifesto.’”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ve hemen ardından bir benzetme, bütün fassı toparlıyor: <em>“Hakk'ın, âlemin sûretlerinden zâhir olan şeye nisbeti, rûh-ı müdebbirin sûrete nisbeti gibidir.”</em> Bu bize ilk fassı hatırlattı — orada Âdem <em>“bu sûretin rûhu”</em> idi. Aynı ilişki şimdi Hak ile bütün âlem arasında kuruluyor. Bunun bir tekrar mı yoksa bir <em>genişleme</em> mi olduğunu söyleyemiyoruz; ama iki fass arasındaki bu yankıyı not ettik.",
+                "en": "And immediately after, a likeness gathers up the whole bezel: <em>“The Real's relation to what appears from the forms of the world is like the governing spirit's relation to a form.”</em> This reminded us of the first bezel — there Adam was <em>“the spirit of this form.”</em> The same relation is now set between the Real and the whole world. We cannot say whether this is a repetition or an <em>enlargement</em>; but we have noted the echo between the two bezels.",
+                "pt": "E logo depois uma comparação reúne todo o engaste: <em>“A relação do Real com o que aparece a partir das formas do mundo é como a relação do espírito governante com uma forma.”</em> Isto lembrou-nos o primeiro engaste — ali Adão era <em>“o espírito desta forma.”</em> A mesma relação estabelece-se agora entre o Real e o mundo inteiro. Não podemos dizer se isto é repetição ou <em>alargamento</em>; mas registámos o eco entre os dois engastes."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs3-s5",
+          "heading": {
+            "tr": "Bu Fass Sitenin Kendi Diline Dokunuyor",
+            "en": "This Bezel Touches the Site's Own Language",
+            "pt": "Este Engaste Toca a Própria Linguagem do Site"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fütûhât okumasında (472. Bölüm) şöyle bir ölçüt kaydetmiştik: <em>“Sözün en güzeli iki durumda birden iki şeyi ispat etmektir.”</em> O zaman bu okumaya bir çekince koymuştuk — sitenin kendi tavrına fazla yakın düştüğü için lehine değil <strong>aleyhine</strong> kanıt arayacaktık. Bu fass, o ölçütün en sert uygulaması: tenzîh ile teşbîhten birini seçip ötekini bırakmak burada açıkça <em>yarım îmân</em> sayılıyor.",
+                "en": "In the Futuhat reading (Chapter 472) we recorded a criterion: <em>“The most beautiful speech is to affirm two things at once, in both states.”</em> At the time we entered a reservation about that reading — because it falls too close to this site's own stance, we would look for evidence <strong>against</strong> it, not for it. This bezel is that criterion's sharpest application: choosing one of transcendence and likeness and dropping the other is here plainly counted as <em>half faith</em>.",
+                "pt": "Na leitura das Futuhat (Capítulo 472) registámos um critério: <em>“A fala mais bela é afirmar duas coisas ao mesmo tempo, em ambos os estados.”</em> Na altura pusemos uma reserva a essa leitura — por cair demasiado perto da postura deste site, procuraríamos provas <strong>contra</strong> ela, não a favor. Este engaste é a aplicação mais incisiva desse critério: escolher uma de entre transcendência e semelhança e largar a outra é aqui claramente contado como <em>meia fé</em>."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dürüst olmak gerekirse bu, aradığımızın tersi çıktı: aleyhte kanıt aramaya söz vermiştik, elimize dördüncü bir lehte tanık geçti — ve bu tanık ilk kez başka bir kitaptan geliyor. Şunu söyleyebiliriz: okuma güçlendi. Şunu söyleyemeyiz: doğrulandı. Çünkü hâlâ aleyhinde tek bir kayıt bulamamış olmamız, okumanın doğru olduğunu değil, <em>bizim aramayı yeterince iyi yapmadığımızı</em> da gösterebilir. Bu ayrımı burada bırakıyoruz; kalan yirmi dört fass boyunca bu soruyla okuyacağız.",
+                "en": "To be honest, this came out the opposite of what we sought: we had promised to look for counter-evidence, and what came to hand was a fourth witness in favour — and this witness comes, for the first time, from another book. We can say this: the reading has grown stronger. We cannot say this: it has been confirmed. Because still not having found a single record against it may show not that the reading is right but that <em>we have not searched well enough</em>. We leave this distinction standing here; we will read the remaining twenty-four bezels carrying the question.",
+                "pt": "Para ser honesto, isto saiu ao contrário do que procurávamos: tínhamos prometido procurar provas em contrário, e o que nos veio às mãos foi uma quarta testemunha a favor — e esta testemunha vem, pela primeira vez, de outro livro. Podemos dizer isto: a leitura ficou mais forte. Não podemos dizer isto: foi confirmada. Porque continuar a não encontrar um único registo contra ela pode mostrar não que a leitura está certa mas que <em>não procurámos suficientemente bem</em>. Deixamos esta distinção de pé aqui; leremos os restantes vinte e quatro engastes levando a pergunta."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs3-s6",
+          "heading": {
+            "tr": "Bu Fasstan Ne Anladık, Ne Anlamadık",
+            "en": "What We Understood in This Bezel, and What We Did Not",
+            "pt": "O Que Compreendemos Neste Engaste, e o Que Não"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Anladığımızı düşündüğümüz şey: tenzîh bir <em>varış</em> değil, bir <em>hareket</em>. Ve fassın bunu gösterme biçimi kanıtlamaktan çok gösterme: her kaçış yolunu tek tek kapatıyor — sıfatla ayırırsan sınırlarsın, mutlaklıkla ayırırsan yine sınırlarsın, ahadiyette ayırırsan ayıracak bir şey icat etmiş olursun.",
+                "en": "What we think we understood: transcendence is not an <em>arrival</em> but a <em>movement</em>. And the bezel's way of showing this is less proof than demonstration: it closes each escape route one by one — distinguish Him by an attribute and you delimit Him; distinguish Him by absoluteness and you delimit Him again; distinguish Him at the level of oneness and you have invented something to distinguish Him from.",
+                "pt": "O que pensamos ter compreendido: a transcendência não é uma <em>chegada</em> mas um <em>movimento</em>. E o modo como o engaste o mostra é menos prova do que demonstração: fecha cada via de fuga uma a uma — distingue-O por um atributo e delimita-Lo; distingue-O pela absolutidade e delimita-Lo de novo; distingue-O no grau da unicidade e inventaste algo de que O distinguir."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Anlamadığımız şey: eğer tenzîh de teşbîh de tek başına eksikse, ikisini <em>birlikte</em> tutmak nasıl bir şeydir? Fass bunun bir denge ya da orta yol olmadığını ima ediyor gibi, ama ne olduğunu söylemiyor. Bir de daha somut bir sorumuz kaldı: Nûh'un kavminin hatasının nerede olduğu bu fasstaki cümlelerle tam olarak nereye oturuyor — putlarda mı, <em>yalnız</em> putta durmakta mı, yoksa isimlerin çokluğunu cisimlerin çokluğu sanmakta mı? Üçü de metinde geçiyor ve aralarındaki ilişkiyi kuramadık.",
+                "en": "What we did not understand: if transcendence alone and likeness alone are both deficient, what is it to hold the two <em>together</em>? The bezel seems to imply that this is not a balance or a middle way, but it does not say what it is. And a more concrete question remains: where exactly does the fault of Noah's people sit, in the sentences of this bezel — in the idols, in halting at the idol <em>alone</em>, or in taking the multiplicity of the names for a multiplicity of bodies? All three appear in the text and we could not establish the relation between them.",
+                "pt": "O que não compreendemos: se a transcendência sozinha e a semelhança sozinha são ambas deficientes, o que é sustentar as duas <em>em conjunto</em>? O engaste parece dar a entender que isto não é um equilíbrio nem um meio-termo, mas não diz o que é. E resta uma pergunta mais concreta: onde se situa exatamente a falta do povo de Noé, nas frases deste engaste — nos ídolos, em parar <em>apenas</em> no ídolo, ou em tomar a multiplicidade dos nomes por multiplicidade de corpos? Os três aparecem no texto e não conseguimos estabelecer a relação entre eles."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fusûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk, III. Fass (Kelime-i Nûhiyye'de Mündemic Hikmet-i Sübbûhiyye)",
+          "en": "Fusus al-Hikam, Translation and Commentary by Ahmed Avni Konuk, Bezel III (The Wisdom of Transcendence in the Word of Noah)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário de Ahmed Avni Konuk, Engaste III (A Sabedoria da Transcendência no Verbo de Noé)"
+        }
+      ]
     },
     {
       "id": "fs4",
