@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs4",
+  "activeFassId": "fs5",
   "fasses": [
     {
       "id": "fs1",
@@ -1781,7 +1781,7 @@
     {
       "id": "fs5",
       "no": 5,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "İbrâhîm",
         "en": "Abraham",
@@ -1791,7 +1791,369 @@
         "tr": "Hikmet-i Müheyyemiyye",
         "en": "Wisdom of Rapture",
         "pt": "Sabedoria do Arrebatamento"
-      }
+      },
+      "title": {
+        "tr": "Rengin Toza İşlemesi Gibi — ve “Sûret” ile “Sûretin Varlığı” Arasındaki Fark",
+        "en": "As Colour Soaks into Dust — and the Difference Between a Form and a Form's Existence",
+        "pt": "Como a Cor Impregna o Pó — e a Diferença Entre Uma Forma e a Existência de Uma Forma"
+      },
+      "pageRange": {
+        "tr": "V. Fass, s. 387-392",
+        "en": "Bezel V, pp. 387-392",
+        "pt": "Engaste V, pp. 387-392"
+      },
+      "hero": {
+        "summary": {
+          "tr": "<em>Heyemân</em>, Konuk'un tarifiyle <em>“ifrât-ı aşk”</em> — aşkın aşırısı. İbrâhîm'in babasından yüz çevirmesi, oğlunu kurban etmeye kalkışması, malını bırakması: fass bunların hepsini tek bir sebebe bağlıyor, <em>“galebe-i heyemândan.”</em> Ve ona <strong>Halîl</strong> denmesinin sebebini açıyor: <em>“halîl”</em>, sevenin rûhuna <em>işleyen</em> sevgilidir. Ama fassın asıl inceliği burada değil, buradan kaçınılan yerde: bu işleme bir <em>karışma</em> değil, ve Dost bunu tek bir kelimeyle güvenceye alıyor — Hakk'ın işlediği şey <em>“İbrâhîm'in sûreti”</em> değil, <strong>“İbrâhîm'in sûretinin varlığı.”</strong>",
+          "en": "<em>Hayaman</em>, in Konuk's definition, is <em>“love in excess.”</em> Abraham turning from his father, moving to sacrifice his son, leaving his great wealth: the bezel traces all of it to one cause, <em>“the prevailing of rapture.”</em> And it opens why he is called <strong>Khalil</strong>: a <em>khalil</em> is the beloved who <em>permeates</em> the lover's spirit. Yet the bezel's real subtlety is not here but in what it avoids here: this permeation is not a <em>mixing</em>, and Ibn Arabi secures that with a single word — what the Real permeates is not <em>“Abraham's form”</em> but <strong>“the existence of Abraham's form.”</strong>",
+          "pt": "<em>Hayaman</em>, na definição de Konuk, é <em>“amor em excesso.”</em> Abraão afastando-se do pai, dispondo-se a sacrificar o filho, deixando a sua grande riqueza: o engaste remete tudo isso a uma só causa, <em>“o predomínio do arrebatamento.”</em> E abre por que lhe chamam <strong>Khalil</strong>: um <em>khalil</em> é o amado que <em>impregna</em> o espírito do amante. Mas a verdadeira subtileza do engaste não está aqui, e sim no que aqui se evita: esta impregnação não é uma <em>mistura</em>, e Ibn Arabi assegura-o com uma só palavra — o que o Real impregna não é <em>“a forma de Abraão”</em> mas <strong>“a existência da forma de Abraão.”</strong>"
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, V. Fass (Konuk şerhi, s. 387-388)",
+          "en": "Fusus al-Hikam, Bezel V (Konuk's commentary, p. 387-388)",
+          "pt": "Fusus al-Hikam, Engaste V (comentário de Konuk, p. 387-388)"
+        },
+        "caption": {
+          "tr": "Sarmalı biz kurduk; basamaklar Konuk'un cümleleri. Dikkat çeken bir sıra var: heyemân <em>önce insanda değil</em>, meleklerde görünüyor; İbrâhîm bu sıranın ikinci halkası. Ve son basamak ilkine dönüyor — çünkü fenâdan sonra kalan şey, başta onu harekete geçiren sevginin kendisi.",
+          "en": "We built the spiral; the steps are Konuk's sentences. There is a striking order: rapture appears <em>not first in a human being</em> but in the angels; Abraham is the second link in that chain. And the last step returns to the first — because what remains after passing away is the very love that set it in motion.",
+          "pt": "Construímos a espiral; os degraus são frases de Konuk. Há uma ordem notável: o arrebatamento aparece <em>não primeiro num ser humano</em> mas nos anjos; Abraão é o segundo elo dessa cadeia. E o último degrau regressa ao primeiro — porque o que resta depois do desaparecer é o próprio amor que o pôs em movimento."
+        },
+        "helix": {
+          "id": "fs5-heyeman",
+          "turns": 1.4,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs5-h1",
+              "label": {
+                "tr": "Önce meleklerde",
+                "en": "First in the angels",
+                "pt": "Primeiro nos anjos"
+              },
+              "note": {
+                "tr": "<em>“Bu sıfat-ı teheyyüm, evvelen ervâh-ı âliye-i müheyyemede zâhir oldu. Zirâ Hak, onlara cemâli celâlinden tecellî etti; ve onlar Hakk'ın envârında hâim olup nefislerinden gâib oldular.”</em> Sonucu tek cümlede: <em>“nefislerini ve mâsivâ-yı Hakk'ı bilmediler.”</em>",
+                "en": "<em>“This attribute of rapture appeared first in the high, rapt spirits. For the Real disclosed to them His beauty out of His majesty, and they became bewildered in the Real's lights and absent from themselves.”</em> The result in one sentence: <em>“they knew neither themselves nor anything other than the Real.”</em>",
+                "pt": "<em>“Este atributo de arrebatamento apareceu primeiro nos altos espíritos arrebatados. Pois o Real manifestou-lhes a Sua beleza a partir da Sua majestade, e ficaram perplexos nas luzes do Real e ausentes de si mesmos.”</em> O resultado numa frase: <em>“não conheciam nem a si mesmos nem nada além do Real.”</em>"
+              },
+              "accent": true
+            },
+            {
+              "id": "fs5-h2",
+              "label": {
+                "tr": "Sonra İbrâhîm'de",
+                "en": "Then in Abraham",
+                "pt": "Depois em Abraão"
+              },
+              "note": {
+                "tr": "<em>“Sâniyen kümmel-i enbiyâdan İbrâhîm (a.s.)da zâhir oldu. Çünkü Halîlü'r-Rahmân idi.”</em> Ve belirtileri: babasından ve kavminden yüz çevirmesi, oğlunu kurban etmeye kalkışması, çok malını bırakması — <em>“Bu hâllerin cümlesi galebe-i heyemândandır.”</em>",
+                "en": "<em>“Secondly it appeared in Abraham, among the perfect prophets. For he was the Friend of the All-Merciful.”</em> And its signs: turning from father and people, moving to sacrifice his son, leaving his great wealth — <em>“All these states are from the prevailing of rapture.”</em>",
+                "pt": "<em>“Em segundo lugar apareceu em Abraão, entre os profetas perfeitos. Pois era o Amigo do Clemente.”</em> E os seus sinais: afastar-se do pai e do povo, dispor-se a sacrificar o filho, deixar a sua grande riqueza — <em>“Todos estes estados vêm do predomínio do arrebatamento.”</em>"
+              }
+            },
+            {
+              "id": "fs5-h3",
+              "label": {
+                "tr": "Yıldızlarda arama",
+                "en": "Seeking Him in the stars",
+                "pt": "Procurá-Lo nas estrelas"
+              },
+              "note": {
+                "tr": "<em>“şiddet-i muhabbetinden Hakk'ı, nûriyetin zuhûru hasebiyle mezâhir-i kevâkibde taleb edip”</em> — ve âyet: <em>“Eğer Rabbim bana hidâyet etmezse… hayrete düşenlerden olurum.”</em> Bu bölümü aramanın yanlışı olarak değil, aşkın taşması olarak veriyor.",
+                "en": "<em>“Out of the intensity of his love he sought the Real in the loci of the stars, by reason of the appearing of luminosity”</em> — and the verse: <em>“If my Lord does not guide me, I shall be among the bewildered.”</em> The bezel gives this not as an error of seeking but as an overflow of love.",
+                "pt": "<em>“Pela intensidade do seu amor procurou o Real nos lugares das estrelas, em razão do aparecer da luminosidade”</em> — e o versículo: <em>“Se o meu Senhor não me guiar, estarei entre os perplexos.”</em> O engaste dá isto não como erro de busca mas como transbordar de amor."
+              }
+            },
+            {
+              "id": "fs5-h4",
+              "label": {
+                "tr": "Kendinden fânî, Hak'la bâkî",
+                "en": "Passed away from himself, subsisting by the Real",
+                "pt": "Desaparecido de si, subsistente pelo Real"
+              },
+              "note": {
+                "tr": "<em>“âkıbet kemâl-i heyemânı hasebiyle kendi nefsinden fânî ve Hak'la bâkî oldu; ve Hakk'ı semâvât ve arz ve ervâh ve ecsâm mezâhirinde idrâk eyledi.”</em> Yani arayış bitmiyor — <em>arayan</em> bitiyor, ve o zaman her yerde bulunuyor.",
+                "en": "<em>“At length, by the perfection of his rapture, he passed away from his own self and subsisted by the Real; and he perceived the Real in the loci of the heavens and the earth, of spirits and of bodies.”</em> The seeking does not end — the <em>seeker</em> does, and then He is found everywhere.",
+                "pt": "<em>“Por fim, pela perfeição do seu arrebatamento, desapareceu do seu próprio eu e subsistiu pelo Real; e percebeu o Real nos lugares dos céus e da terra, dos espíritos e dos corpos.”</em> A busca não acaba — acaba <em>quem busca</em>, e então Ele é encontrado em toda a parte."
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs5-s1",
+          "heading": {
+            "tr": "“Halîl” İki Yönlü Bir Ad",
+            "en": "“Khalil” Is a Name That Runs Both Ways",
+            "pt": "“Khalil” É Um Nome de Dois Sentidos"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk önce kelimeyi açıyor: <em>“'halîl' muhibbin rûhu meyânında 'tahallül' eden habîbdir; ve 'hullet' habîbde tahallül eden muhabbettir.”</em> Yani <em>tahallül</em> — araya girip yayılmak, işlemek. Ve ilişki tek yönlü değil: <em>“İbrâhîm vücûd-ı Hakk'a mütehallil ve vücûd-ı Hak dahi onda mütehallil.”</em>",
+                "en": "Konuk first opens the word: <em>“A khalil is the beloved who permeates the spirit of the lover; and khulla is the love that permeates the beloved.”</em> That is, <em>tahallul</em> — entering through and spreading, soaking in. And the relation does not run one way: <em>“Abraham permeated the existence of the Real, and the existence of the Real permeated him.”</em>",
+                "pt": "Konuk abre primeiro a palavra: <em>“Um khalil é o amado que impregna o espírito do amante; e khulla é o amor que impregna o amado.”</em> Isto é, <em>tahallul</em> — entrar e espalhar-se, impregnar. E a relação não corre num só sentido: <em>“Abraão impregnou a existência do Real, e a existência do Real impregnou-o a ele.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, V. Fass (Konuk şerhi, s. 388-389)",
+                "en": "Fusus al-Hikam, Bezel V (Konuk's commentary, p. 388-389)",
+                "pt": "Fusus al-Hikam, Engaste V (comentário de Konuk, p. 388-389)"
+              },
+              "caption": {
+                "tr": "Üç basamağı biz ayırdık; ikisi Konuk'un iki okuması, üçüncüsü onun ikisini bir arada tutan kuralı. Sarmal çizmemizin sebebi: üçüncü basamak birinciyi geçersiz kılmıyor, ikisini de <em>kendi yerinde</em> bırakıyor — ve bu, kitabın dört fasstır tekrarladığı hareket.",
+                "en": "We separated the three steps; two are Konuk's two readings, the third is his rule holding both together. Why a spiral: the third step does not invalidate the first, it leaves both <em>in their own place</em> — and this is the movement the book has been repeating for four bezels.",
+                "pt": "Separámos os três degraus; dois são as duas leituras de Konuk, o terceiro é a sua regra que sustenta ambas. Porquê uma espiral: o terceiro degrau não invalida o primeiro, deixa ambos <em>no seu lugar</em> — e este é o movimento que o livro repete há quatro engastes."
+              },
+              "helix": {
+                "id": "fs5-halil",
+                "turns": 1.15,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs5-l1",
+                    "label": {
+                      "tr": "Halîl fâil olarak",
+                      "en": "Khalil as the one who acts",
+                      "pt": "Khalil como quem age"
+                    },
+                    "note": {
+                      "tr": "<em>“İbrâhîm Halîl'in 'halîl' ile tesmiyesi, zât-ı ilâhiyyenin muttasıf olduğu cemî'-i sıfâta zât-ı Halîl'in duhûlü ve hasrı sebebiyledir.”</em> Yani işleyen İbrâhîm.",
+                      "en": "<em>“Abraham's being named ‘Khalil’ is because of the entry and encompassing of Khalil's essence into all the attributes with which the divine Essence is qualified.”</em> Here the one who permeates is Abraham.",
+                      "pt": "<em>“O ser Abraão chamado ‘Khalil’ deve-se à entrada e ao abarcar da essência de Khalil em todos os atributos com que a Essência divina é qualificada.”</em> Aqui quem impregna é Abraão."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs5-l2",
+                    "label": {
+                      "tr": "Halîl mef'ûl olarak",
+                      "en": "Khalil as the one acted upon",
+                      "pt": "Khalil como aquele sobre quem se age"
+                    },
+                    "note": {
+                      "tr": "<em>“Yâhud Halîl'e 'halîl' tesmiyesi, İbrâhîm'in sûretinin vücûduna Hakk'ın tahallülünden nâşidir.”</em> Bu kez işleyen Hak. Konuk ikisini de tanıyor: <em>“birinci itibâra göre 'Halîl' tesmiyesi 'fâil' ma'nâsına; ikinci itibâra göre de 'mef'ûl' ma'nâsına olur.”</em>",
+                      "en": "<em>“Or Khalil's being named ‘khalil’ is from the Real's permeating the existence of Abraham's form.”</em> Now the one who permeates is the Real. Konuk grants both: <em>“by the first consideration the name Khalil has an active sense; by the second, a passive one.”</em>",
+                      "pt": "<em>“Ou o ser Khalil chamado ‘khalil’ vem do impregnar do Real na existência da forma de Abraão.”</em> Agora quem impregna é o Real. Konuk admite ambos: <em>“pela primeira consideração o nome Khalil tem sentido ativo; pela segunda, passivo.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs5-l3",
+                    "label": {
+                      "tr": "İkisi de sahih — ama her biri kendi yerinde",
+                      "en": "Both are sound — each in its own station",
+                      "pt": "Ambos são válidos — cada um na sua estação"
+                    },
+                    "note": {
+                      "tr": "<em>“zikrolunan iki hükümden her birisi sahihdir. Zirâ her bir hüküm için bir mevtın ve makâm hâsıldır ki, o hüküm o mevtında zâhir olur; onu taaddî etmez.”</em> Yani ikisini birden kabul etmek, ikisini karıştırmak değil: her birinin bir <em>sınırı</em> var.",
+                      "en": "<em>“Each of the two rulings mentioned is sound. For each ruling has a locus and a station in which it appears, and it does not trespass beyond it.”</em> Accepting both, then, is not confusing them: each has a <em>bound</em>.",
+                      "pt": "<em>“Cada um dos dois juízos mencionados é válido. Pois cada juízo tem um lugar e uma estação em que aparece, e não os ultrapassa.”</em> Aceitar ambos não é, então, confundi-los: cada um tem um <em>limite</em>."
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs5-s2",
+          "heading": {
+            "tr": "Karışma Değil — Demir Yine Demirdir",
+            "en": "Not a Mixing — the Iron Is Still Iron",
+            "pt": "Não Uma Mistura — o Ferro Continua Ferro"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk burada bir kapı kapatıyor, ve bunu okumanın en dikkatli anlarından biri saydık: <em>“muhabbette 'tahallül'ün isti'mâli, teşbîh tarîkiyle vâki' olmuştur. Çünkü abdin cemî'-i sıfât-ı Hak'la ittisâfı… imtizâc tarîkiyle olan 'tahlîl' değildir. Belki 'tahlîl' burada… sıfât-ı ilâhiyyenin tecellîsi ile, sıfât-ı abdin mahvolması ve abdin sıfât-ı Hak ile kemâliyle kâim bulunmasıdır.”</em>",
+                "en": "Here Konuk closes a door, and we counted it one of the most careful moments of this reading: <em>“The use of ‘permeation’ in love occurs by way of likeness. For the servant's being qualified with all the attributes of the Real is not a ‘permeation’ by way of mixture. Rather ‘permeation’ here is… the effacing of the servant's attributes by the self-disclosure of the divine attributes, and the servant's subsisting perfectly by the attributes of the Real.”</em>",
+                "pt": "Aqui Konuk fecha uma porta, e contámo-lo como um dos momentos mais cuidadosos desta leitura: <em>“O uso de ‘impregnação’ no amor dá-se por via de semelhança. Pois o ser o servo qualificado com todos os atributos do Real não é uma ‘impregnação’ por via de mistura. Antes, ‘impregnação’ aqui é… o apagar-se dos atributos do servo pela manifestação dos atributos divinos, e o subsistir do servo perfeitamente pelos atributos do Real.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ve delili Mevlânâ'dan getiriyor: <em>“Hû” küpünün rengi Allâh'ın boyasıdır</em>; küpe düşen, çıkması söylendiğinde <em>“Küp benim!”</em> der. Konuk bunun <em>“Ene'l-Hak”</em> demek olduğunu açıkça yazıyor — ama hemen ardından ölçüyü koyuyor: <em>“ateş rengine giren demir, nihâyet yine demirdir. Fakat demirin rengi, ateşin rengi tarafından mahvedilmiştir.”</em> Demir demir kalıyor; kaybolan yalnız <em>rengi</em>.",
+                "en": "And he brings his evidence from Rumi: <em>the colour of the vat of “Hu” is God's dye</em>; one who has fallen into the vat, told to come out, says <em>“I am the vat!”</em> Konuk writes plainly that this means <em>“I am the Real”</em> — but immediately sets the measure: <em>“iron that has entered the colour of fire is in the end still iron. It is the iron's colour that has been effaced by the colour of the fire.”</em> The iron remains iron; what is lost is only its <em>colour</em>.",
+                "pt": "E traz a sua prova de Rumi: <em>a cor da cuba de “Hu” é a tinta de Deus</em>; quem caiu na cuba, mandado sair, diz <em>“Eu sou a cuba!”</em> Konuk escreve claramente que isto significa <em>“Eu sou o Real”</em> — mas põe logo a medida: <em>“o ferro que entrou na cor do fogo é, no fim, ainda ferro. É a cor do ferro que foi apagada pela cor do fogo.”</em> O ferro permanece ferro; o que se perde é apenas a sua <em>cor</em>."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs5-s3",
+          "heading": {
+            "tr": "Rengin Toza İşlemesi",
+            "en": "Colour Soaking into Dust",
+            "pt": "A Cor a Impregnar o Pó"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost'un kendi benzetmesi de aynı yerde duruyor: <em>“Nasıl ki renk, renkli bir şeyde mütehallil ve zâhir olur… O tahallül, mekân ve mütemekkin gibi değildir.”</em> Konuk bunu somutluyor: dövülmüş kireç tozu yeşil boyayla doyurulsa <em>“yeşil renk onun bilcümle zerrâtına tahallül eder… o tozun bir zerresinin içi ve dışı renkten hâlî kalmaz”</em> ve artık <em>“bu renktir, şu da tozdur diye hissen göstermek mümkin olmaz.”</em>",
+                "en": "Ibn Arabi's own likeness stands in the same place: <em>“As colour permeates and appears in a coloured thing… that permeation is not like place and what occupies a place.”</em> Konuk makes it concrete: if powdered lime is saturated with green dye, <em>“the green permeates every particle of it… neither the inside nor the outside of a single grain of that dust remains free of colour,”</em> and thereafter <em>“it is not possible to point and say, this is the colour and that is the dust.”</em>",
+                "pt": "A comparação do próprio Ibn Arabi está no mesmo lugar: <em>“Como a cor impregna e aparece numa coisa colorida… essa impregnação não é como o lugar e o que ocupa o lugar.”</em> Konuk torna-o concreto: se pó de cal for saturado com tinta verde, <em>“o verde impregna cada partícula dele… nem o interior nem o exterior de um só grão desse pó fica isento de cor,”</em> e depois <em>“não é possível apontar e dizer: isto é a cor e aquilo é o pó.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, V. Fass (Konuk şerhi, s. 390-391)",
+                "en": "Fusus al-Hikam, Bezel V (Konuk's commentary, p. 390-391)",
+                "pt": "Fusus al-Hikam, Engaste V (comentário de Konuk, p. 390-391)"
+              },
+              "caption": {
+                "tr": "Bu şemayı biz kurduk ve garip bir şey yapıyor: <strong>üç basamağı, ne olmadığını söylemek için</strong> harcıyor, ancak dördüncüde bir şey söylüyor. Ama fassın yaptığı tam olarak bu — benzetmenin nereye kadar geçerli olduğunu, yanlış anlaşılabileceği her yeri tek tek kapatarak çiziyor. Sarmal, kapanan her kapıdan sonra aynı meseleye biraz daha yaklaşıyor.",
+                "en": "We built this diagram, and it does something odd: it spends <strong>three steps saying what this is not</strong>, and only says something on the fourth. But this is exactly what the bezel does — it draws the reach of the likeness by closing, one by one, every place it could be misread. The spiral comes a little closer to the same matter after each door it shuts.",
+                "pt": "Construímos este esquema, e faz algo estranho: gasta <strong>três degraus a dizer o que isto não é</strong>, e só no quarto diz algo. Mas é exatamente isto que o engaste faz — desenha o alcance da comparação fechando, uma a uma, todas as vias em que poderia ser mal lida. A espiral aproxima-se um pouco mais da mesma matéria depois de cada porta que fecha."
+              },
+              "helix": {
+                "id": "fs5-renk",
+                "turns": 1.3,
+                "closing": false,
+                "nodes": [
+                  {
+                    "id": "fs5-r1",
+                    "label": {
+                      "tr": "Bir yere girmek gibi değil",
+                      "en": "Not like entering a place",
+                      "pt": "Não como entrar num lugar"
+                    },
+                    "note": {
+                      "tr": "<em>“Bu tahallül, bir mekân sâhibinin mekâna duhûlü gibi değildir.”</em> Gerekçe: <em>“mekîn ile mekânı bi't-tefrîk irâe etmek mümkindir”</em> — orada ikisi hâlâ ayrı gösterilebilir.",
+                      "en": "<em>“This permeation is not like the entry of an occupant into a place.”</em> The reason: <em>“the occupant and the place can be shown apart from each other”</em> — there the two can still be pointed out separately.",
+                      "pt": "<em>“Esta impregnação não é como a entrada de um ocupante num lugar.”</em> A razão: <em>“o ocupante e o lugar podem ser mostrados separadamente”</em> — ali os dois ainda podem apontar-se um sem o outro."
+                    }
+                  },
+                  {
+                    "id": "fs5-r2",
+                    "label": {
+                      "tr": "Kaba girmek gibi de değil",
+                      "en": "Nor like content in a container",
+                      "pt": "Nem como conteúdo num recipiente"
+                    },
+                    "note": {
+                      "tr": "<em>“Ve bir mazrûfun zarfa duhûlü gibi de değildir.”</em> Aynı gerekçe: kap ile içindeki hâlâ iki şey.",
+                      "en": "<em>“Nor is it like the entry of a content into a container.”</em> The same reason: the vessel and what is in it are still two things.",
+                      "pt": "<em>“Nem é como a entrada de um conteúdo num recipiente.”</em> A mesma razão: o vaso e o que está nele ainda são duas coisas."
+                    }
+                  },
+                  {
+                    "id": "fs5-r3",
+                    "label": {
+                      "tr": "Ve hulûl değil",
+                      "en": "And it is not indwelling",
+                      "pt": "E não é inabitação"
+                    },
+                    "note": {
+                      "tr": "<em>“ve hulûl dahi değildir.”</em> Konuk bu kelimeyi ayrıca ve açıkça reddediyor. Bu, fassın en çok yanlış anlaşılabilecek yerinde konulmuş bir sınır.",
+                      "en": "<em>“and it is not indwelling either.”</em> Konuk rejects this word separately and explicitly. It is a bound set at the bezel's most misreadable point.",
+                      "pt": "<em>“e também não é inabitação.”</em> Konuk rejeita esta palavra em separado e explicitamente. É um limite posto no ponto mais suscetível de má leitura do engaste."
+                    }
+                  },
+                  {
+                    "id": "fs5-r4",
+                    "label": {
+                      "tr": "Arazın cevhere sirâyeti gibi",
+                      "en": "Like an accident spreading through a substance",
+                      "pt": "Como um acidente a espalhar-se por uma substância"
+                    },
+                    "note": {
+                      "tr": "<em>“Belki arazın, cevherin cemî'-i eczâsına sereyânı gibidir.”</em> Yani ayrılabilir iki şey değil; ama biri de ötekinin yerine geçmiyor — boya toz olmuyor, toz boya olmuyor.",
+                      "en": "<em>“Rather it is like an accident spreading through all the parts of a substance.”</em> Not two separable things, then; yet neither takes the other's place — the dye does not become the dust, nor the dust the dye.",
+                      "pt": "<em>“Antes é como um acidente a espalhar-se por todas as partes de uma substância.”</em> Não duas coisas separáveis, então; e contudo nenhuma toma o lugar da outra — a tinta não se torna o pó, nem o pó a tinta."
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk bu benzetmenin niçin seçildiğini de söylüyor ve bu cümle bize kendi işimizi hatırlattı: <em>“Makûl, misâl ile mahsûs olacağından, Cenâb-ı Şeyh bu tahallülü tefhîm için, 'levn' ile 'mütelevvin' misâlini intihâb buyurmuştur.”</em> Ve devamı, bütün bir görselleştirme gerekçesi gibi okunuyor: <em>“bu âlemde mevcûd olan sûretlerin kâffesi, birer 'kelime' olup her biri bir 'ma'nâ' için vaz' olunmuştur.”</em> Bunu bir onay olarak almıyoruz — Konuk bizim şemalarımızdan bahsetmiyor — ama işaret ettiği yer, bu sitenin çizim ilkesinin durduğu yerle aynı görünüyor.",
+                "en": "Konuk also says why this likeness was chosen, and the sentence reminded us of our own work: <em>“Since the intelligible becomes sensible through an example, the Shaykh chose the example of ‘colour’ and ‘the coloured’ to make this permeation understood.”</em> And what follows reads like a whole rationale for visualisation: <em>“all the forms present in this world are so many ‘words,’ each set down for a ‘meaning.’”</em> We do not take this as an endorsement — Konuk is not talking about our diagrams — but the place he points to looks like the place this site's drawing principle stands.",
+                "pt": "Konuk diz também por que esta comparação foi escolhida, e a frase lembrou-nos o nosso próprio trabalho: <em>“Uma vez que o inteligível se torna sensível através de um exemplo, o Xeque escolheu o exemplo da ‘cor’ e do ‘colorido’ para fazer compreender esta impregnação.”</em> E o que se segue lê-se como toda uma justificação da visualização: <em>“todas as formas presentes neste mundo são outras tantas ‘palavras,’ cada uma posta para um ‘sentido.’”</em> Não tomamos isto como aval — Konuk não fala dos nossos esquemas — mas o lugar para que aponta parece o lugar onde assenta o princípio de desenho deste site."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs5-s4",
+          "heading": {
+            "tr": "Tek Kelimelik Güvence: “Sûret” Değil, “Sûretin Varlığı”",
+            "en": "A One-Word Safeguard: Not “the Form” but “the Form's Existence”",
+            "pt": "Uma Salvaguarda de Uma Palavra: Não “a Forma” mas “a Existência da Forma”"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın en ince yeri burası, ve fark tek bir kelimede: Dost <em>“İbrâhîm'in sûretine Hakk'ın tahallülü”</em> demiyor, <em>“İbrâhîm'in sûretinin <strong>vücûduna</strong> Hakk'ın tahallülü”</em> diyor. Konuk niçin böyle dediğini açıkça yazıyor: <em>“Şeyh (r.a.) eşhâsın sûretlerine 'Hak' dememek için… 'İbrâhîm'in sûretinin vücûduna Hakk'ın tahallülünden nâşidir' buyurdu.”</em>",
+                "en": "This is the bezel's finest point, and the difference lies in a single word: Ibn Arabi does not say <em>“the Real's permeating Abraham's form,”</em> he says <em>“the Real's permeating the <strong>existence</strong> of Abraham's form.”</em> Konuk writes plainly why: <em>“So as not to call the forms of individuals ‘the Real,’ the Shaykh said: it is from the Real's permeating the existence of Abraham's form.”</em>",
+                "pt": "Este é o ponto mais fino do engaste, e a diferença está numa só palavra: Ibn Arabi não diz <em>“o impregnar do Real na forma de Abraão,”</em> diz <em>“o impregnar do Real na <strong>existência</strong> da forma de Abraão.”</em> Konuk escreve claramente porquê: <em>“Para não chamar ‘o Real’ às formas dos indivíduos, o Xeque disse: vem do impregnar do Real na existência da forma de Abraão.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Gerekçe de veriliyor ve sağlam: <em>“cemî'-i merâtibde 'vücûd' birdir; o da Hakk'ın vücûdudur… ve cemî'-i taayyünâtın vücûdu bir olduğu hâlde yekdiğerinden suver-i muhtelife ile ayrılmıştır. Binâenaleyh sûretler bir değildir. Bir sûret diğerine benzemez. Böyle olunca, eşhâsın sûretlerine 'Hak' ıtlâkı câiz değildir. Fakat vücûd bir olduğu için, 'sûretin vücûduna' 'Hak' ıtlâk olunabilir.”</em>",
+                "en": "The reason is given, and it holds: <em>“In all the levels ‘existence’ is one, and it is the Real's existence… and while the existence of all determinations is one, they are distinguished from one another by different forms. Hence the forms are not one. One form does not resemble another. This being so, it is not permissible to apply ‘the Real’ to the forms of individuals. But since existence is one, ‘the Real’ may be applied to ‘the existence of the form.’”</em>",
+                "pt": "A razão é dada, e sustenta-se: <em>“Em todos os graus a ‘existência’ é uma, e é a existência do Real… e, sendo uma a existência de todas as determinações, distinguem-se umas das outras por formas diferentes. Logo as formas não são uma. Uma forma não se assemelha a outra. Sendo assim, não é lícito aplicar ‘o Real’ às formas dos indivíduos. Mas, sendo a existência uma, ‘o Real’ pode aplicar-se à ‘existência da forma.’”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu ayrımı burada uzun uzun aktarmamızın bir sebebi var. Füsûs, hakkında en çok tartışılan kitap; ve tartışmanın büyük kısmı tam olarak bu noktada — insanın Hak olduğunun söylenip söylenmediğinde — düğümleniyor. Burada gördüğümüz şey, metnin bu iddiadan kendini <em>bir kelimeyle</em> ayırması. Bunu bir tartışmayı kapatmak için yazmıyoruz; tartışmaya girecek durumda değiliz. Yazma sebebimiz daha küçük ve daha kesin: metin burada özensiz değil, tersine olağanüstü dikkatli, ve bu dikkat okunmadan hakkında konuşulamaz.",
+                "en": "There is a reason we relayed this distinction at length. The Fusus is the most disputed of the books, and much of the dispute is knotted at exactly this point — whether it is being said that the human being is the Real. What we see here is the text separating itself from that claim <em>by a single word</em>. We do not write this in order to close a dispute; we are in no position to enter one. Our reason is smaller and more exact: the text is not careless here but extraordinarily careful, and that care cannot be spoken about without being read.",
+                "pt": "Há uma razão para termos transmitido esta distinção com detalhe. Os Fusus são o mais disputado dos livros, e grande parte da disputa ata-se exatamente neste ponto — se se está a dizer que o ser humano é o Real. O que vemos aqui é o texto a separar-se dessa afirmação <em>por uma só palavra</em>. Não escrevemos isto para fechar uma disputa; não estamos em posição de entrar em nenhuma. A nossa razão é menor e mais exata: o texto não é aqui descuidado mas extraordinariamente cuidadoso, e esse cuidado não pode ser discutido sem ser lido."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs5-s5",
+          "heading": {
+            "tr": "Ne Anladık, Ne Anlamadık",
+            "en": "What We Understood, and What We Did Not",
+            "pt": "O Que Compreendemos, e o Que Não"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Anladığımızı düşündüğümüz şey: bu fass bir <em>aşk</em> fassı gibi başlayıp bir <em>dilbilgisi</em> fassı gibi bitiyor, ve ikisi aynı işi görüyor. Heyemân, ayrı duran iki şeyi birbirine geçiren şey; <em>“sûret”</em> ile <em>“sûretin vücûdu”</em> ayrımı ise o geçmenin nereye kadar söylenebileceğini belirleyen şey. Aşk sınırı kaldırıyor, dil sınırı geri koyuyor — ve fass ikisini de bırakmıyor.",
+                "en": "What we think we understood: this bezel begins like a bezel about <em>love</em> and ends like one about <em>grammar</em>, and both do the same work. Rapture is what passes two separate things into one another; the distinction between <em>“the form”</em> and <em>“the existence of the form”</em> is what fixes how far that passing may be stated. Love removes the bound, language puts it back — and the bezel lets go of neither.",
+                "pt": "O que pensamos ter compreendido: este engaste começa como um engaste sobre o <em>amor</em> e acaba como um sobre a <em>gramática</em>, e ambos fazem o mesmo trabalho. O arrebatamento é o que faz passar uma pela outra duas coisas separadas; a distinção entre <em>“a forma”</em> e <em>“a existência da forma”</em> é o que fixa até onde essa passagem pode ser enunciada. O amor tira o limite, a linguagem repõe-no — e o engaste não larga nenhum dos dois."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Anlamadığımız şey: eğer heyemân sonunda <em>“kendi nefsinden fânî”</em> olmakla bitiyorsa, ve fânî olan artık kendi sıfatlarıyla değil Hakk'ın sıfatlarıyla kâim ise — o hâlde <em>seven</em> kim kalıyor? Demir örneği bir cevap veriyor gibi (demir demir kalıyor), ama o örnekte kalan şey <em>rengini kaybetmiş</em> bir demir. Sevginin kendisi neye ait oluyor bu durumda, çözemedik. Bir sonraki fassa bu soruyla gidiyoruz.",
+                "en": "What we did not understand: if rapture ends in <em>“passing away from one's own self,”</em> and the one who has passed away subsists not by his own attributes but by the Real's — then who is left to <em>love</em>? The iron example seems to answer (the iron stays iron), but what remains in that example is an iron that has <em>lost its colour</em>. To whom the love itself then belongs, we could not work out. We go into the next bezel carrying the question.",
+                "pt": "O que não compreendemos: se o arrebatamento acaba em <em>“desaparecer do próprio eu,”</em> e quem desapareceu subsiste não pelos seus próprios atributos mas pelos do Real — quem resta então para <em>amar</em>? O exemplo do ferro parece responder (o ferro continua ferro), mas o que resta nesse exemplo é um ferro que <em>perdeu a sua cor</em>. A quem pertence então o próprio amor, não conseguimos perceber. Entramos no engaste seguinte levando a pergunta."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fusûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk, V. Fass (Kelime-i İbrâhîmiyye'de Mündemic Hikmet-i Müheyyemiyye)",
+          "en": "Fusus al-Hikam, Translation and Commentary by Ahmed Avni Konuk, Bezel V (The Wisdom of Rapture in the Word of Abraham)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário de Ahmed Avni Konuk, Engaste V (A Sabedoria do Arrebatamento no Verbo de Abraão)"
+        }
+      ]
     },
     {
       "id": "fs6",
