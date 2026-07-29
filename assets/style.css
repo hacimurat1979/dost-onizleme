@@ -5779,6 +5779,110 @@ body.share-stage-open { overflow: hidden; }
 }
 
 /* ===========================================================================
+   Duruş taraması (assets/durus-kontrol.js) — YALNIZ @revise kipinde görünür,
+   yalnız önizlemede yayınlanır. Sarı, çünkü bir hata değil bir uyarı:
+   "buraya bir bak" diyor, "burası yanlış" demiyor.
+   =========================================================================== */
+.durus-rozet-grup {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 0.35em;
+  vertical-align: baseline;
+  user-select: none;
+}
+.durus-rozet {
+  border: 0;
+  background: none;
+  padding: 0 1px;
+  font-size: 0.82em;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.85;
+}
+.durus-rozet:hover, .durus-rozet:focus-visible { opacity: 1; transform: scale(1.15); }
+.durus-rozet:focus-visible { outline: 2px solid var(--accent-interactive); outline-offset: 2px; }
+/* Kural seviyesi metnin kendisini de hafifçe boyuyor; gözden-geçir
+   seviyesi boyamıyor -- yanlış-pozitif payı yüksek olduğu için sayfayı
+   sarıya boğmasın. */
+.durus-isaretli--kural {
+  background: color-mix(in srgb, var(--helix-gold) 12%, transparent);
+  border-radius: 4px;
+  box-shadow: -4px 0 0 0 color-mix(in srgb, var(--helix-gold) 55%, transparent);
+}
+
+.durus-kutu {
+  position: absolute;
+  z-index: 1200;
+  width: min(340px, calc(100vw - 24px));
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--gridline);
+  border-left: 3px solid var(--helix-gold);
+  border-radius: 8px;
+  background: var(--surface-1);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.18);
+  text-align: left;
+}
+.durus-kutu p { margin: 0 0 0.45rem; }
+.durus-kutu__ad { font-weight: 600; color: var(--text-primary); font-size: 0.92rem; }
+.durus-kutu__sev {
+  margin-left: 0.35rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: var(--gridline);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+.durus-kutu__es span {
+  display: inline-block;
+  margin: 0 0.25rem 0.25rem 0;
+  padding: 0.05rem 0.4rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--helix-gold) 22%, transparent);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+}
+.durus-kutu__neden, .durus-kutu__yerine {
+  color: var(--text-secondary);
+  font-size: 0.83rem;
+  line-height: 1.55;
+}
+.durus-kutu__alt { display: flex; gap: 0.4rem; margin-top: 0.55rem; }
+.durus-kutu__alt button {
+  flex: 1;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--gridline);
+  border-radius: 6px;
+  background: var(--page-plane);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.durus-kutu__alt button:hover { border-color: var(--accent-interactive); color: var(--text-primary); }
+
+.durus-cip {
+  position: fixed;
+  /* Sol alt: düzenleme paneli sağ altta ve menüsü açılınca yukarı doğru
+     büyüyor; sayacı sağa koyduğumuzda menünün altında kalıyordu. */
+  left: 14px;
+  bottom: 18px;
+  z-index: 1100;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--gridline);
+  border-radius: 999px;
+  background: var(--surface-1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.durus-cip:hover { border-color: var(--accent-interactive); }
+.durus-cip__k { color: var(--text-primary); font-weight: 600; }
+
+/* ===========================================================================
    Taşıyanlar görünümü — Fütûhât 13 ve 476'yı yan yana koyan çift sarmal.
    Renkler bilerek Füsûs sahnelerinin (.helix-scene__*) tokenlarıyla aynı:
    düğüm --helix-gold, iplik --gridline, zemin --surface-1. Yeni bir renk
