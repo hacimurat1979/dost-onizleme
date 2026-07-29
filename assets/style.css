@@ -5697,11 +5697,16 @@ body.share-stage-open { overflow: hidden; }
 }
 .helix-scene__node circle {
   fill: var(--surface-1);
-  /* --series-theme DEĞİL: o token dekoratif ve açık zeminde 2.1:1'de
-     kalıyor (dosyanın kendi notu). Bu düğümler tıklanabilir, yani
-     WCAG'ın 3:1 arayüz-kontrast tabanı gerçekten geçerli. */
+  /* Canlı altın (--series-theme) dolgu + bir ton koyu kenarlık
+     (--accent-interactive). Bir ara kenarlığı da koyu kehribar yapmıştım;
+     kullanıcı 2026-07-29'da bunun kahverengiye kaçtığını, canlı sarının
+     çok daha hoş olduğunu söyledi ve dolgu sarıya döndürüldü. Kenarlık
+     koyu kaldı: açık zeminde düz altın tek başına 2.1:1'de kalıyor ve
+     dairenin kenarı kayboluyor; ince koyu rim şekli görünür tutuyor.
+     Düğümün taşıdığı bilgi zaten yanındaki yazıda ve not panelinde --
+     renk tek başına hiçbir şeyi anlatmıyor. */
   stroke: var(--accent-interactive);
-  stroke-width: 1.6;
+  stroke-width: 1.5;
   transition: fill 140ms ease, r 140ms ease;
 }
 .helix-scene__node text {
@@ -5715,11 +5720,11 @@ body.share-stage-open { overflow: hidden; }
   stroke-width: 3.2px;
   stroke-linejoin: round;
 }
-.helix-scene__node--accent circle { fill: var(--accent-interactive); }
+.helix-scene__node--accent circle { fill: var(--series-theme); }
 .helix-scene__node--accent text { fill: var(--text-primary); font-weight: 600; }
-.helix-scene__node.is-focus circle { fill: var(--accent-interactive); stroke-width: 2.6; }
+.helix-scene__node.is-focus circle { fill: var(--series-theme); stroke-width: 2.6; }
 .helix-scene__node.is-focus text { fill: var(--text-primary); font-weight: 600; }
-.helix-scene__node:hover circle { fill: var(--accent-interactive); }
+.helix-scene__node:hover circle { fill: var(--series-theme); }
 .helix-scene__node { cursor: pointer; }
 .helix-scene__node:focus-visible { outline: none; }
 .helix-scene__node:focus-visible circle {
