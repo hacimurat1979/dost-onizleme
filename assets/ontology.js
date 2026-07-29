@@ -1606,8 +1606,18 @@
   // PERDE_DENETIM.md) sayfadaki 30 perde kaydının üç ayrı soruya cevap
   // verdiği görüldü. Tek eksene dizilebilen yalnız "perde nedir" grubu.
   const HALKA_R = [148, 96, 46];   // dış / orta / merkez yarıçapları
-  const HALKA_VB = 340;            // viewBox kenarı (kare)
+  const HALKA_VB = 340;            // çizim alanının kenarı (kare)
   const HALKA_BUYUK = 1.85;        // lightbox'taki büyütme katsayısı
+  // Etiket payı (2026-07-29). Dış halkanın etiketi merkezden 168 birim
+  // uzağa yazılıyor; 340'lık kare viewBox'ta bu tam kenara denk geliyordu
+  // ve en sağdaki etiket (`text-anchor:start`) kutunun DIŞINA taşıyordu.
+  // Eskiden bu `overflow: visible` ile "çözülmüştü" -- yani etiket
+  // kırpılmıyordu ama lightbox'ta yanındaki anahtar listesinin üstüne
+  // biniyordu (kullanıcı bildirimi: 417 ile 418 iç içe girmiş görünüyor).
+  // Doğru çözümü viewBox'a pay eklemek: etiketler kutunun İÇİNDE kalıyor,
+  // hiçbir şeyin üstüne binemiyor.
+  const HALKA_PAD_X = 46;
+  const HALKA_PAD_Y = 12;
 
   // buyuk=true: lightbox sürümü. Yalnız ölçek değişiyor -- etiketler yine
   // sadece bölüm numarası. Kayıt adlarını halkanın üstüne radyal olarak
@@ -1616,19 +1626,21 @@
   // tam bir anahtar listesi konuyor (halkaLightbox).
   function halkaSvg(halka, buyuk) {
     const k = buyuk ? HALKA_BUYUK : 1;
-    const VB = HALKA_VB * k;
-    const c = VB / 2;
+    const VBW = (HALKA_VB + 2 * HALKA_PAD_X) * k;
+    const VBH = (HALKA_VB + 2 * HALKA_PAD_Y) * k;
+    const cx = VBW / 2;
+    const cy = VBH / 2;
     const rings = halka.rings || [];
     let out = "";
 
     // Halkalar: dıştan içe, en dıştaki kesik çizgili (sınırı en belirsiz olan).
     rings.forEach((ring, ri) => {
       const cls = ri === 0 ? "sir-halka__ring sir-halka__ring--dashed" : "sir-halka__ring";
-      out += `<circle class="${cls}" cx="${c}" cy="${c}" r="${(HALKA_R[ri] * k).toFixed(1)}"/>`;
+      out += `<circle class="${cls}" cx="${cx}" cy="${cy}" r="${(HALKA_R[ri] * k).toFixed(1)}"/>`;
     });
 
     // Merkez dolgusu -- Zât/kök ile aynı ailede dursun diye vurgulu.
-    out += `<circle class="sir-halka__core" cx="${c}" cy="${c}" r="${((HALKA_R[2] - 6) * k).toFixed(1)}"/>`;
+    out += `<circle class="sir-halka__core" cx="${cx}" cy="${cy}" r="${((HALKA_R[2] - 6) * k).toFixed(1)}"/>`;
 
     rings.forEach((ring, ri) => {
       const r = HALKA_R[ri] * k;
@@ -1636,16 +1648,16 @@
       ring.entries.forEach((e, i) => {
         // -90°'den başlayıp saat yönünde: okuma üstten başlasın.
         const a = (-Math.PI / 2) + (i * 2 * Math.PI) / n;
-        const x = c + r * Math.cos(a);
-        const y = c + r * Math.sin(a);
+        const x = cx + r * Math.cos(a);
+        const y = cy + r * Math.sin(a);
         const label = I18n.pick3(e.label);
         const bolumAdi = tt({ tr: `${e.bolum}. Bölüm`, en: `Chapter ${e.bolum}`, pt: `Capítulo ${e.bolum}` });
         const title = `${bolumAdi} — ${label}\n${I18n.pick3(e.quote)}`;
         // Etiket, düğümün merkezden dışa doğru olan tarafına yazılır ki
         // iç halkaların etiketleri dış halkanın üstüne binmesin.
         const off = (ri === 0 ? 20 : 17) * k;
-        const lx = c + (r + off) * Math.cos(a);
-        const ly = c + (r + off) * Math.sin(a);
+        const lx = cx + (r + off) * Math.cos(a);
+        const ly = cy + (r + off) * Math.sin(a);
         const anchor = Math.abs(Math.cos(a)) < 0.25 ? "middle" : (Math.cos(a) > 0 ? "start" : "end");
         // Küçük sürüm bir <button> içinde duruyor; düğümleri de odaklanabilir
         // yapmak butonun içine etkileşimli içerik koymak olurdu (geçersiz HTML
@@ -1662,7 +1674,7 @@
     });
 
     const merkezLabel = rings[2] ? I18n.pick3(rings[2].label) : "";
-    return `<svg class="sir-halka__svg${buyuk ? " sir-halka__svg--buyuk" : ""}" viewBox="0 0 ${VB} ${VB}" role="list"
+    return `<svg class="sir-halka__svg${buyuk ? " sir-halka__svg--buyuk" : ""}" viewBox="0 0 ${VBW} ${VBH}" role="list"
                  aria-label="${escapeHtmlAttr(merkezLabel)}">${out}</svg>`;
   }
 
@@ -1679,7 +1691,12 @@
             <span class="sir-halka__key-label">${escapeHtmlAttr(I18n.pick3(e.label))}</span>
             <em>${escapeHtmlAttr(I18n.pick3(e.quote))}</em></li>`).join("")}</ul>
       </div>`).join("");
-    return halkaSvg(halka, true) + `<div class="sir-halka__key">${key}</div>`;
+    // Kendi sarmalayıcısı şart: `.cizim-lightbox__svg-wrap` bir flex SATIRI
+    // ve iki kardeşi (svg + anahtar listesi) yan yana diziyordu -- tablet
+    // genişliğinde liste sıkışıp metni kırpılıyordu (2026-07-29). Bu
+    // sarmalayıcı onları tasarlandığı gibi alt alta koyuyor.
+    return `<div class="sir-halka__lightbox">${halkaSvg(halka, true)}
+        <div class="sir-halka__key">${key}</div></div>`;
   }
 
   function openHalkaLightbox() {

@@ -5452,10 +5452,15 @@ body.share-stage-open { overflow: hidden; }
 }
 .sir-halka__svg {
   width: 100%;
-  max-width: 340px;
+  /* 432 = 340 çizim alanı + 2×46 etiket payı (bkz. ontology.js
+     HALKA_PAD_X). Halkanın ekrandaki boyu eskisiyle aynı kalsın diye
+     max-width de aynı oranda büyütüldü. */
+  max-width: 432px;
   height: auto;
   flex: 0 0 auto;
-  overflow: visible;     /* dış halkanın etiketleri kırpılmasın */
+  /* overflow kasıtlı olarak varsayılan (hidden): etiketler artık
+     viewBox'ın içinde duruyor, dolayısıyla dışarı taşıp komşu
+     içeriğin -- lightbox'ta anahtar listesinin -- üstüne binemezler. */
 }
 
 .sir-halka__ring {
@@ -5538,8 +5543,15 @@ body.share-stage-open { overflow: hidden; }
 /* Halkanın lightbox sürümü: büyük şema + altında tam anahtar listesi.
    Küçük sürümde düğümlerin yanında yalnız bölüm numarası var; burada
    numaranın karşılığı ve alıntısı da okunuyor. */
+.sir-halka__lightbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
 .sir-halka__svg--buyuk {
-  max-width: min(88vw, 560px);
+  max-width: min(92vw, 700px);   /* 560 × (432/340) ≈ 711; halka aynı boyda kalsın */
   margin: 0 auto;
   display: block;
 }
@@ -5548,6 +5560,8 @@ body.share-stage-open { overflow: hidden; }
   gap: 1.05rem;
   margin-top: 1.15rem;
   text-align: left;
+  width: 100%;
+  min-width: 0;
 }
 @media (min-width: 760px) {
   .sir-halka__key { grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
