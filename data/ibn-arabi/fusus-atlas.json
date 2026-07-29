@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs11",
+  "activeFassId": "fs12",
   "fasses": [
     {
       "id": "fs1",
@@ -4481,7 +4481,7 @@
     {
       "id": "fs12",
       "no": 12,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "Şuayb",
         "en": "Shu'ayb",
@@ -4491,7 +4491,361 @@
         "tr": "Hikmet-i Kalbiyye",
         "en": "Wisdom of the Heart",
         "pt": "Sabedoria do Coração"
-      }
+      },
+      "title": {
+        "tr": "Kalbin Adı Dönmekten Geliyor",
+        "en": "The Heart Is Named for Its Turning",
+        "pt": "O Coração Tem o Nome do Seu Girar"
+      },
+      "pageRange": {
+        "tr": "XII. Fass, s. 727-783",
+        "en": "Bezel XII, pp. 727-783",
+        "pt": "Engaste XII, pp. 727-783"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Bu fassın merkezinde bir kelime kökü var ve kök her şeyi çeviriyor: <em>“kalbin hakîkati takallübdür”</em> — yani <strong>kalb, adını dönmekten alıyor.</strong> Sabit bir yer değil; her tecellîde başka bir sûrete dönen bir organ. Fass buradan iki büyük iddiaya gidiyor: kalb, rahmetten <em>daha geniştir</em> (çünkü <em>“Hakk'ı sığdırır”</em>), ve âlemin kendisi de her nefeste yeniden yaratılıyor — <em>“gelen, gidenin 'ayn'ı değildir, mislidir. Zirâ tecellîde tekrâr yoktur.”</em> Dönüş var, tekrar yok.",
+          "en": "At this bezel's centre is the root of a word, and the root turns everything: <em>“the reality of the heart is turning”</em> — the <strong>heart is named for its turning</strong>. It is not a fixed place but an organ that turns into another form with every self-disclosure. From here the bezel moves to two great claims: the heart is <em>wider than mercy</em> (because <em>“it contains the Real”</em>), and the world itself is created anew with every breath — <em>“what comes is not the same as what went, but its like. For there is no repetition in self-disclosure.”</em> There is turning, but no repetition.",
+          "pt": "No centro deste engaste está a raiz de uma palavra, e a raiz vira tudo: <em>“a realidade do coração é o girar”</em> — o <strong>coração tem o nome do seu girar</strong>. Não é um lugar fixo mas um órgão que se volta noutra forma a cada manifestação. Daqui o engaste vai a duas grandes afirmações: o coração é <em>mais largo que a misericórdia</em> (porque <em>“contém o Real”</em>), e o próprio mundo é criado de novo a cada alento — <em>“o que vem não é o mesmo que se foi, mas o seu semelhante. Pois não há repetição na manifestação.”</em> Há giro, mas não repetição."
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, XII. Fass (Konuk şerhi, s. 752-753)",
+          "en": "Fusus al-Hikam, Bezel XII (Konuk's commentary, p. 752-753)",
+          "pt": "Fusus al-Hikam, Engaste XII (comentário de Konuk, p. 752-753)"
+        },
+        "caption": {
+          "tr": "Dört basamağın hepsi metnin; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi doğrudan fassın kendi kelimesi: <em>takallüb</em>, dönmek. Kapanışı da metin veriyor ama bir kayıtla — dönen aynı yere gelmiyor, benzerine geliyor. Bu yüzden kapanış izini bilerek <em>tamamlanmamış</em> bıraktık.",
+          "en": "All four steps are the text's; the spiral and the closing are ours. Why a spiral is the bezel's own word: <em>taqallub</em>, turning. The text gives the closing too, but with a proviso — what turns does not come back to the same place, but to its like. That is why we left the closing trace deliberately <em>unfinished</em>.",
+          "pt": "Os quatro degraus são do texto; a espiral e o fecho são nossos. Porquê uma espiral é a própria palavra do engaste: <em>taqallub</em>, girar. O texto dá também o fecho, mas com uma ressalva — o que gira não regressa ao mesmo lugar, mas ao seu semelhante. Por isso deixámos o traço de fecho deliberadamente <em>inacabado</em>."
+        },
+        "helix": {
+          "id": "fs12-takallub",
+          "turns": 1.45,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs12-t1",
+              "label": {
+                "tr": "Kalb, adını dönmekten alıyor",
+                "en": "The heart is named for its turning",
+                "pt": "O coração tem o nome do seu girar"
+              },
+              "note": {
+                "tr": "<em>“kalbin hakîkati takallüb olduğundan, kalb, bütün sûretlerde takallübde mütenevvi' olur.”</em> Yani kararsızlık bir kusur değil, kalbin tanımı.",
+                "en": "<em>“Since the reality of the heart is turning, the heart varies in its turning through all forms.”</em> Instability is not a defect here; it is the heart's definition.",
+                "pt": "<em>“Como a realidade do coração é o girar, o coração varia no seu girar por todas as formas.”</em> A instabilidade não é aqui defeito; é a definição do coração."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs12-t2",
+              "label": {
+                "tr": "İki parmak arasında",
+                "en": "Between two fingers",
+                "pt": "Entre dois dedos"
+              },
+              "note": {
+                "tr": "Hadîs: <em>“mü'minin kalbi, Rahmân'ın parmaklarından iki parmak arasındadır. Onu istediği vech ile döndürür.”</em> Döndüren, dönenin dışında değil.",
+                "en": "The saying: <em>“the heart of the believer is between two of the fingers of the Merciful; He turns it however He wills.”</em> The one who turns is not outside the one turned.",
+                "pt": "O dito: <em>“o coração do crente está entre dois dos dedos do Misericordioso; Ele vira-o como quer.”</em> Quem vira não está fora de quem é virado."
+              }
+            },
+            {
+              "id": "fs12-t3",
+              "label": {
+                "tr": "Ârif kendi dönüşünde O'nun dönüşünü görür",
+                "en": "The knower sees His turning in his own",
+                "pt": "O conhecedor vê o girar d'Ele no seu próprio"
+              },
+              "note": {
+                "tr": "<em>“ârif, kendi kalbinin şekillerde takallübünü görünce, bütün sûretlerde Hakk'ın takallübünü bi'l-müşâhede, Hakk'ın nefsini tanıdı.”</em> Bilme yolu dışarıdan değil, kendi değişiminden geçiyor.",
+                "en": "<em>“When the knower sees his own heart turning through forms, by witnessing the Real's turning through all forms he came to know the Real's self.”</em> The way to knowing runs not from outside but through one's own changing.",
+                "pt": "<em>“Quando o conhecedor vê o seu próprio coração girar pelas formas, ao testemunhar o girar do Real por todas as formas veio a conhecer o si do Real.”</em> O caminho do conhecer não vem de fora mas passa pela própria mudança."
+              }
+            },
+            {
+              "id": "fs12-t4",
+              "label": {
+                "tr": "Ve dönen, aynı yere gelmiyor",
+                "en": "And what turns does not return to the same place",
+                "pt": "E o que gira não regressa ao mesmo lugar"
+              },
+              "note": {
+                "tr": "Fassın ilerisindeki cümle bu basamağı açıyor: <em>“gelen, gidenin 'ayn'ı değildir, mislidir. Zirâ tecellîde tekrâr yoktur.”</em> Devre kapanıyor ama bir kat kayarak — bu sayfadaki sarmalların hepsinin sebebi bu cümlede toplanıyor.",
+                "en": "A sentence further on opens this step: <em>“what comes is not the same as what went, but its like. For there is no repetition in self-disclosure.”</em> The circuit closes but slips by one turn — the reason for every spiral on this site gathers in that sentence.",
+                "pt": "Uma frase mais adiante abre este degrau: <em>“o que vem não é o mesmo que se foi, mas o seu semelhante. Pois não há repetição na manifestação.”</em> O circuito fecha-se mas desliza uma volta — a razão de todas as espirais deste sítio reúne-se nessa frase."
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs12-s1",
+          "heading": {
+            "tr": "Kalb Rahmetten Geniş",
+            "en": "The Heart Is Wider Than Mercy",
+            "pt": "O Coração É Mais Largo Que a Misericórdia"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass bir karşılaştırmayla açılıyor ve karşılaştırma cesur: <em>“kalb, ya'ni ârif-i billâhın kalbi, rahmet-i ilâhiyyedendir; ve ondan daha geniştir. Zirâ o, Hak hazretlerini sığdırır. Hâlbuki Hakk'ın rahmeti, Hakk'a vâsi' değildir.”</em> Rahmet bir <em>sıfat</em>; kalb ise bütün isimleri toplayan <em>“Allah”</em> isminin mazharı — bu yüzden sıfatın alamadığını alıyor.",
+                "en": "The bezel opens with a comparison, and the comparison is bold: <em>“the heart — that is, the heart of the knower of God — is from the divine mercy, and is wider than it. For it contains the Real, whereas God's mercy does not encompass God.”</em> Mercy is an <em>attribute</em>; the heart is the locus of the all-gathering name <em>“Allah”</em> — and so it holds what an attribute cannot.",
+                "pt": "O engaste abre com uma comparação, e a comparação é ousada: <em>“o coração — isto é, o coração do conhecedor de Deus — é da misericórdia divina, e é mais largo do que ela. Pois contém o Real, ao passo que a misericórdia de Deus não abarca Deus.”</em> A misericórdia é um <em>atributo</em>; o coração é lugar do nome que tudo reúne, <em>“Allah”</em> — e por isso contém o que um atributo não contém."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dayanağı bir hadîs-i kudsî: <em>“Ben arzıma ve semâma sığmadım, fakat takî ve nakî olan mü'min kulumun kalbine sığdım.”</em> Ve Konuk buradan sert bir sonuç çıkarıyor: bu tarif <em>her</em> kalbe uymuyor. <em>“Gayr-ı ârifin kalbine kalb denilmesi mecâzendir, hakîkaten değildir.”</em> Aktardığı beyit daha da sert — şeytanın evine kalb demeyi reddediyor.",
+                "en": "Its ground is a divine saying: <em>“I did not fit into My earth or My heaven, but I fitted into the heart of My believing servant, pure and clean.”</em> And Konuk draws a hard conclusion: this description does not fit <em>every</em> heart. <em>“To call the heart of one who does not know God a heart is metaphorical, not real.”</em> The verse he cites is harder still — it refuses to call the devil's house a heart.",
+                "pt": "O seu fundamento é um dito divino: <em>“Não coube na Minha terra nem no Meu céu, mas coube no coração do Meu servo crente, puro e limpo.”</em> E Konuk tira uma conclusão dura: esta descrição não serve a <em>todo</em> coração. <em>“Chamar coração ao coração de quem não conhece Deus é metafórico, não real.”</em> O verso que cita é ainda mais duro — recusa chamar coração à casa do diabo."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu ayrım bizi biraz zorladı, çünkü sitenin geri kalanında <em>kalp</em>i herkesin taşıdığı bir imkân gibi okuduk. Fass ise onu bir <em>mertebe</em> gibi kullanıyor: kalb, ancak ârifte kalbdir. İkisini uzlaştırmaya çalışmadık; farkı olduğu gibi kaydediyoruz — kendi okumamızın burada bir düzeltmeye ihtiyacı olabilir.",
+                "en": "This distinction gave us pause, because elsewhere on this site we have read <em>the heart</em> as a possibility everyone carries. The bezel uses it as a <em>rank</em>: the heart is a heart only in the knower. We did not try to reconcile the two; we record the difference as it stands — our own reading may need correcting here.",
+                "pt": "Esta distinção deu-nos que pensar, porque noutros pontos deste sítio lemos <em>o coração</em> como uma possibilidade que todos carregam. O engaste usa-o como um <em>grau</em>: o coração só é coração no conhecedor. Não tentámos conciliar os dois; registamos a diferença tal como está — a nossa própria leitura pode aqui precisar de correção."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs12-s2",
+          "heading": {
+            "tr": "İki Dil: Umûm ve Husûs",
+            "en": "Two Tongues: the Common and the Elect",
+            "pt": "Duas Línguas: a Comum e a dos Eleitos"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass hemen ardından kendi söylediğini iki dile ayırıyor: <em>“bu, işâret bâbından lisân-ı umûmdur; zirâ Hak, râhimdir, merhûm değildir… Lisân-ı husûstan işârete gelince: Allah Teâlâ nefsini 'nefes'le vasfeyledi.”</em> Yani <em>Hak merhûm olur mu?</em> sorusuna iki ayrı doğru cevap veriliyor ve ikisi de yürürlükte bırakılıyor.",
+                "en": "Immediately after, the bezel splits what it has said into two tongues: <em>“this is the common tongue, by way of allusion; for the Real is merciful, not shown mercy… As for the allusion from the tongue of the elect: God described Himself by a breath.”</em> To the question <em>can the Real be shown mercy?</em> two different true answers are given, and both are left in force.",
+                "pt": "Logo a seguir, o engaste divide o que disse em duas línguas: <em>“esta é a língua comum, por alusão; pois o Real é misericordioso, não objeto de misericórdia… Quanto à alusão pela língua dos eleitos: Deus descreveu-Se por um sopro.”</em> À pergunta <em>pode o Real ser objeto de misericórdia?</em> dão-se duas respostas verdadeiras diferentes, e ambas ficam em vigor."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, XII. Fass (Konuk şerhi, s. 729-730)",
+                "en": "Fusus al-Hikam, Bezel XII (Konuk's commentary, p. 729-730)",
+                "pt": "Fusus al-Hikam, Engaste XII (comentário de Konuk, p. 729-730)"
+              },
+              "caption": {
+                "tr": "Üç basamak da metnin; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi üçüncü basamak: iki dil birbirini çürütmüyor, üçüncü bir şeyde — <em>nefes</em>te — buluşuyor ve oradan birinciye dönüyor. Nefes zaten hem dışarı verilen hem içeri alınan şey; kapanan bir devre.",
+                "en": "All three steps are the text's; the spiral and the closing are ours. Why a spiral is the third step: the two tongues do not refute one another, they meet in a third thing — the <em>breath</em> — and from there return to the first. A breath is already both what is given out and what is taken in; a closing circuit.",
+                "pt": "Os três degraus são do texto; a espiral e o fecho são nossos. Porquê uma espiral é o terceiro degrau: as duas línguas não se refutam, encontram-se numa terceira coisa — o <em>sopro</em> — e daí regressam à primeira. Um sopro é já o que se dá para fora e o que se toma para dentro; um circuito que fecha."
+              },
+              "helix": {
+                "id": "fs12-iki-dil",
+                "turns": 1.15,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs12-d1",
+                    "label": {
+                      "tr": "Lisân-ı umûm: Hak râhimdir",
+                      "en": "The common tongue: the Real is merciful",
+                      "pt": "A língua comum: o Real é misericordioso"
+                    },
+                    "note": {
+                      "tr": "<em>“Hak, râhimdir, merhûm değildir. Böyle olunca onun hakkında rahmet için hüküm yoktur.”</em> Konuk bunu <em>“umûm halâyıkın ve ulemâ-i zâhirin lisânı”</em> diye niteliyor — yanlış değil, bir dil.",
+                      "en": "<em>“The Real is merciful, not shown mercy. So there is no ruling of mercy concerning Him.”</em> Konuk calls this <em>“the tongue of the generality and of the outward scholars”</em> — not false, but a language.",
+                      "pt": "<em>“O Real é misericordioso, não objeto de misericórdia. Logo não há juízo de misericórdia a Seu respeito.”</em> Konuk chama-lhe <em>“a língua da generalidade e dos sábios do exterior”</em> — não falsa, mas uma linguagem."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs12-d2",
+                    "label": {
+                      "tr": "Lisân-ı husûs: hem râhim hem merhûm",
+                      "en": "The elect tongue: both merciful and shown mercy",
+                      "pt": "A língua dos eleitos: misericordioso e objeto de misericórdia"
+                    },
+                    "note": {
+                      "tr": "<em>“Hak, hem 'râhim'dir, hem de 'merhûm'dur. Çünkü gayr yoktur”</em> — ve ayrım mertebeye bağlanıyor: <em>“makâm-ı cem'-i ahadiyyette râhimdir; makâm-ı tafsîlde ve kesrette ise merhûmdur.”</em>",
+                      "en": "<em>“The Real is both merciful and shown mercy, for there is no other”</em> — and the distinction is tied to a level: <em>“in the station of oneness He is merciful; in the station of differentiation and multiplicity He is shown mercy.”</em>",
+                      "pt": "<em>“O Real é misericordioso e objeto de misericórdia, pois não há outro”</em> — e a distinção liga-se a um grau: <em>“na estação da unicidade é misericordioso; na estação da diferenciação e da multiplicidade é objeto de misericórdia.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs12-d3",
+                    "label": {
+                      "tr": "Ve ikisi nefeste buluşur",
+                      "en": "And the two meet in the breath",
+                      "pt": "E as duas encontram-se no sopro"
+                    },
+                    "note": {
+                      "tr": "Konuk <em>tenfîs</em>i sözlükten alıyor: <em>“sıkıntıyı def'etmek için bâtındaki sıcak havayı hârice çıkarıp, soğuk havayı içeriye almasıdır.”</em> Ve bağlıyor: <em>“esmâyı, adem muzâyakasından, nefes-i Rahmânî ile ihrâc, rahmettir.”</em> Yani Hak, isimlerini sıkıntıdan çıkarırken kendi nefsine rahmet etmiş oluyor.",
+                      "en": "Konuk takes <em>tanfīs</em> from the lexicon: <em>“it is to expel the hot air within so as to relieve constriction, and to take cool air in.”</em> And he ties it: <em>“to bring the names out of the constriction of non-existence by the Breath of the Merciful is mercy.”</em> So in relieving His names the Real shows mercy to His own self.",
+                      "pt": "Konuk toma <em>tanfīs</em> do léxico: <em>“é expelir o ar quente de dentro para aliviar a constrição, e tomar ar fresco para dentro.”</em> E liga: <em>“fazer sair os nomes da constrição do não-ser pelo Sopro do Misericordioso é misericórdia.”</em> Assim, ao aliviar os Seus nomes, o Real mostra misericórdia ao Seu próprio si."
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu, okumamızda <strong>sekizinci</strong> kez karşımıza çıkan kalıp: aynı önerme, iki mertebede iki ayrı hüküm alıyor. Ama artık şunu görebiliyoruz: kalıp her seferinde <em>başka bir isim çiftiyle</em> geliyor. VII. fassta <em>hakîkat/şerîat</em>, VIII'de <em>irâdî/teklîfî emir</em> ve <em>asl/fer'</em>, burada <em>lisân-ı umûm/lisân-ı husûs</em>. Dördüncü çift. Bu tekrarın kendisi artık bir bulgu sayılabilir; grafta bir yer açtık.",
+                "en": "This is the <strong>eighth</strong> time this pattern has met us: one and the same proposition takes two different rulings at two levels. But now we can see something further: each time the pattern arrives with <em>a different pair of names</em>. In Bezel VII, <em>reality / Law</em>; in VIII, <em>volitional / prescriptive command</em> and <em>root / branch</em>; here, <em>the common tongue / the tongue of the elect</em>. A fourth pair. The recurrence itself can now count as a finding; we have opened a place for it in the graph.",
+                "pt": "É a <strong>oitava</strong> vez que este padrão nos aparece: uma e a mesma proposição recebe dois juízos diferentes em dois graus. Mas agora vemos algo mais: de cada vez o padrão chega com <em>um par de nomes diferente</em>. No Engaste VII, <em>realidade / Lei</em>; no VIII, <em>mandamento volitivo / prescritivo</em> e <em>raiz / ramo</em>; aqui, <em>a língua comum / a língua dos eleitos</em>. Um quarto par. A própria recorrência pode agora contar como achado; abrimos-lhe um lugar no grafo."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs12-s3",
+          "heading": {
+            "tr": "Her Nefeste Yeni",
+            "en": "New with Every Breath",
+            "pt": "Novo a Cada Alento"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kalbin dönmesi, âlemin dönmesine bağlanıyor. Konuk'un tarifi mekanik ve tam: âlemin kendi başına vücûdu yok, <em>“Hak dâimâ ve ebeden tecellî edegelir”</em>; ilk tecellî çekilince âlem yok oluyor, ikincisi gelince yeniden var oluyor — <em>“velâkin tecellî-i sânî o kadar sür'atle zuhûr eder ki… ikisinin arasını fark ve temyîz mümkin olamaz.”</em> Süreklilik bir yanılsama.",
+                "en": "The heart's turning is tied to the world's. Konuk's account is mechanical and complete: the world has no existence of its own; <em>“the Real discloses Himself always and endlessly”</em>; when the first disclosure withdraws the world becomes non-existent, and when the second comes it exists again — <em>“yet the second appears so swiftly that it is not possible to tell the two apart.”</em> Continuity is an illusion.",
+                "pt": "O girar do coração liga-se ao do mundo. A exposição de Konuk é mecânica e completa: o mundo não tem existência própria; <em>“o Real manifesta-Se sempre e sem fim”</em>; quando a primeira manifestação se retira o mundo torna-se inexistente, e quando vem a segunda existe de novo — <em>“mas a segunda aparece tão depressa que não é possível distingui-las.”</em> A continuidade é uma ilusão."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, XII. Fass (Konuk şerhi, s. 776-777)",
+                "en": "Fusus al-Hikam, Bezel XII (Konuk's commentary, p. 776-777)",
+                "pt": "Fusus al-Hikam, Engaste XII (comentário de Konuk, p. 776-777)"
+              },
+              "caption": {
+                "tr": "Dört basamak da metnin; sarmal ve <em>eksik bırakılan</em> kapanış bizim. Bu sarmal, sitedeki bütün sarmalların gerekçesini en açık taşıyan yer: devre kapanıyor ama son basamak ilkinin üstüne değil, <em>benzerinin</em> üstüne düşüyor. Metnin cümlesi zaten bu: <em>“gelen, gidenin 'ayn'ı değildir, mislidir.”</em>",
+                "en": "All four steps are the text's; the spiral and its <em>deliberately unfinished</em> closing are ours. This spiral carries the ground of every spiral on this site most plainly: the circuit closes, but the last step falls not onto the first but onto its <em>like</em>. That is the text's own sentence: <em>“what comes is not the same as what went, but its like.”</em>",
+                "pt": "Os quatro degraus são do texto; a espiral e o seu fecho <em>deliberadamente inacabado</em> são nossos. Esta espiral carrega do modo mais claro o fundamento de todas as espirais deste sítio: o circuito fecha-se, mas o último degrau cai não sobre o primeiro mas sobre o seu <em>semelhante</em>. É a própria frase do texto: <em>“o que vem não é o mesmo que se foi, mas o seu semelhante.”</em>"
+              },
+              "helix": {
+                "id": "fs12-teceddud",
+                "turns": 1.5,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs12-c1",
+                    "label": {
+                      "tr": "Her ân bir şe'nde",
+                      "en": "Every instant in a new affair",
+                      "pt": "A cada instante num novo assunto"
+                    },
+                    "note": {
+                      "tr": "Rahmân 55/29'a dayanıyor. Ve şart: <em>“bu esmâdan hiçbirisinin ta'tîli câiz değildir”</em> — yani bütün isimler her an iş başında.",
+                      "en": "Resting on Q 55:29. With a condition: <em>“none of these names may be left idle”</em> — every name is at work at every instant.",
+                      "pt": "Assente em Q 55:29. Com uma condição: <em>“nenhum destes nomes pode ficar inativo”</em> — todos os nomes estão em obra a cada instante."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs12-c2",
+                    "label": {
+                      "tr": "Rahmet verir, kahr alır",
+                      "en": "Mercy gives, overwhelming takes",
+                      "pt": "A misericórdia dá, o domínio tira"
+                    },
+                    "note": {
+                      "tr": "<em>“her bir ânda rahmet-i rahmâniyyesi îcâbınca eşyâya vücûd verir ve yine o ânda kahhâriyeti hükmüyle o eşyâyı libâs-ı vücûddan ârî kılar.”</em> İki isim aynı anda, aynı şey üzerinde.",
+                      "en": "<em>“At every instant, by what His all-merciful mercy requires, He gives existence to things; and at that same instant, by the ruling of His overwhelming, He strips them of the garment of existence.”</em> Two names at once, on the same thing.",
+                      "pt": "<em>“A cada instante, pelo que exige a Sua misericórdia, dá existência às coisas; e nesse mesmo instante, pelo juízo do Seu domínio, despe-as da veste da existência.”</em> Dois nomes ao mesmo tempo, sobre a mesma coisa."
+                    }
+                  },
+                  {
+                    "id": "fs12-c3",
+                    "label": {
+                      "tr": "Ve fark edilmez",
+                      "en": "And it goes unnoticed",
+                      "pt": "E passa despercebido"
+                    },
+                    "note": {
+                      "tr": "<em>“erbâb-ı hicâb, âlemin vücûdunu bir karâr üzere durur zannederler.”</em> Konuk bir de kendi çağına bakıyor: <em>“erbâb-ı fen bir dereceye kadar bu hakîkati idrâk edebilmişlerdir”</em> ama bir taş için bunu kabul etmiyorlar.",
+                      "en": "<em>“Those behind the veil suppose the world's existence stands still.”</em> Konuk also looks at his own age: <em>“the people of science have grasped this truth to a degree”</em> — but they do not accept it of a stone.",
+                      "pt": "<em>“Os que estão atrás do véu supõem que a existência do mundo está parada.”</em> Konuk olha também para o seu tempo: <em>“os homens de ciência apreenderam esta verdade até certo ponto”</em> — mas não a aceitam de uma pedra."
+                    }
+                  },
+                  {
+                    "id": "fs12-c4",
+                    "label": {
+                      "tr": "Gelen, gidenin misli — aynı değil",
+                      "en": "What comes is the like of what went — not the same",
+                      "pt": "O que vem é o semelhante do que se foi — não o mesmo"
+                    },
+                    "note": {
+                      "tr": "<em>“gelen, gidenin 'ayn'ı değildir, mislidir. Zirâ tecellîde tekrâr yoktur.”</em> Ve gerekçe: tekrar olsaydı <em>“hâsılı tahsîl lâzım gelir idi; ve bu da abesdir.”</em>",
+                      "en": "<em>“What comes is not the same as what went, but its like. For there is no repetition in self-disclosure.”</em> The ground: were there repetition, <em>“it would be the obtaining of what is already obtained — and that is futile.”</em>",
+                      "pt": "<em>“O que vem não é o mesmo que se foi, mas o seu semelhante. Pois não há repetição na manifestação.”</em> O fundamento: se houvesse repetição, <em>“seria obter o já obtido — e isso é vão.”</em>"
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Burada bir şeyi açıkça söylemek gerekiyor. Bu sitenin bütün görsel dili <em>sarmal</em> üzerine kurulu ve gerekçesini şöyle yazmıştık: “daire kapanırken aynı noktaya değil, bir üstüne geliyor — dönüş var ama tekrar yok.” O cümleyi bu fassı okumadan önce yazmıştık ve bir <em>tercih</em> olarak yazmıştık. Burada aynı cümlenin metindeki karşılığını bulduk. Bu bir onay değil — Dost bizim şemalarımızdan haberdar değil; ama tercihimizin dayanağını metnin kendisinde görmek, tercihi biraz daha az keyfî kılıyor.",
+                "en": "One thing should be said plainly here. The entire visual language of this site is built on the <em>spiral</em>, and we wrote its ground like this: “as the circle closes it comes not to the same point but one turn above — there is turning but no repetition.” We wrote that before reading this bezel, and we wrote it as a <em>preference</em>. Here we found the same sentence in the text. This is not an endorsement — Ibn Arabi knows nothing of our diagrams; but seeing the ground of our preference in the text itself makes the preference a little less arbitrary.",
+                "pt": "Uma coisa deve dizer-se claramente aqui. Toda a linguagem visual deste sítio assenta na <em>espiral</em>, e escrevemos assim o seu fundamento: “ao fechar-se, o círculo não chega ao mesmo ponto mas uma volta acima — há giro mas não repetição.” Escrevemo-lo antes de ler este engaste, e escrevemo-lo como uma <em>preferência</em>. Aqui encontrámos a mesma frase no texto. Isto não é uma chancela — Ibn Arabi nada sabe dos nossos diagramas; mas ver o fundamento da nossa preferência no próprio texto torna a preferência um pouco menos arbitrária."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs12-s4",
+          "heading": {
+            "tr": "Ve İnkâr Eden de",
+            "en": "And the One Who Denies, Too",
+            "pt": "E Também Quem Nega"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın en zor cümlesi burada ve yumuşatmadan aktarıyoruz: <em>“bu sûretlerde âlim ve ârif ve mukırr olan Hak'tır; ve bu sûret-i diğerde ârif ve âlim olmayan ve onu inkâr eden de Hak'tır.”</em> Yani tanıyan da tanımayan da aynı hüviyetin sûretleri.",
+                "en": "The bezel's hardest sentence is here, and we pass it on unsoftened: <em>“in these forms, the one who knows, recognises and affirms is the Real; and in that other form, the one who does not know or recognise and who denies Him is also the Real.”</em> The one who knows and the one who does not are forms of the same identity.",
+                "pt": "A frase mais dura do engaste está aqui, e transmitimo-la sem a suavizar: <em>“nestas formas, quem sabe, reconhece e afirma é o Real; e naquela outra forma, quem não sabe nem reconhece e O nega é também o Real.”</em> Quem conhece e quem não conhece são formas da mesma identidade."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk bunu bir hüküm değil, bir <em>haz</em> olarak çerçeveliyor: <em>“işte bu, tecellîden ve ayn-ı cem'de şühûddan Hakk'ı tanıyan kimsenin hazzıdır… ârifin gayrısında bu haz ve zevk mevcûd değildir.”</em> Yani bu cümle bir öğreti olarak değil, belirli bir bakış yerinden görülen bir şey olarak veriliyor. Fassın kendi diliyle: <em>lisân-ı husûs</em>.",
+                "en": "Konuk frames this not as a ruling but as a <em>delight</em>: <em>“this is the delight of one who knows the Real from self-disclosure and from witnessing in the very gathering… this delight is not present in anyone other than the knower.”</em> The sentence is given not as a doctrine but as something seen from a particular vantage. In the bezel's own words: <em>the tongue of the elect</em>.",
+                "pt": "Konuk enquadra isto não como juízo mas como um <em>deleite</em>: <em>“este é o deleite de quem conhece o Real pela manifestação e pelo testemunho na própria reunião… este deleite não está presente em ninguém que não seja o conhecedor.”</em> A frase é dada não como doutrina mas como algo visto de um ponto de vista particular. Nas palavras do engaste: <em>a língua dos eleitos</em>."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunu bir sonuç olarak taşımıyoruz. X. fassta öğrendiğimiz şeyi burada uygulamak gerekiyor: bir mertebeden söylenen doğru, başka bir mertebede hüküm yerine geçmiyor. Fassın kendisi de bunu iki dile ayırarak zaten söylemişti. Biz de aynı yerde duruyoruz — bu cümleyi anlamaya çalışıyoruz, onu bir yere taşımaya değil.",
+                "en": "We do not carry this as a conclusion. What we learned in Bezel X applies here: what is true from one level does not stand as a ruling at another. The bezel itself had already said as much by splitting into two tongues. We stand in the same place — trying to understand this sentence, not to carry it somewhere.",
+                "pt": "Não levamos isto como conclusão. O que aprendemos no Engaste X aplica-se aqui: o que é verdadeiro a partir de um grau não vale como juízo noutro. O próprio engaste já o dissera ao dividir-se em duas línguas. Ficamos no mesmo lugar — a tentar compreender esta frase, não a levá-la para algum lado."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Füsûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk — Kelime-i Şuaybiyye'de Mündemic Hikmet-i Kalbiyye (I. cilt, s. 727-783)",
+          "en": "Fusus al-Hikam, Translation and Commentary, Ahmed Avni Konuk — The Wisdom of the Heart in the Word of Shu'ayb (vol. I, pp. 727-783)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário, Ahmed Avni Konuk — A Sabedoria do Coração na Palavra de Chuaib (vol. I, pp. 727-783)"
+        }
+      ]
     },
     {
       "id": "fs13",
