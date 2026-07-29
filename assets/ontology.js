@@ -180,6 +180,7 @@
     else if (currentMainView === "sirlar") window.__sirlarGraphApp && window.__sirlarGraphApp.onLangChange();
     else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
     else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
+    else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
     else if (currentMainView === "fusus") window.__fususApp && window.__fususApp.onLangChange();
     updateHeaderHeightVar();
@@ -364,6 +365,7 @@
   const sirlarBtn = document.getElementById("sirlar-btn");
   const sorularBtn = document.getElementById("sorular-btn");
   const menzillerBtn = document.getElementById("menziller-btn");
+  const tasiyicilarBtn = document.getElementById("tasiyicilar-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
   const fususBtn = document.getElementById("fusus-btn");
   const hakkindaBtn = document.getElementById("hakkinda-btn");
@@ -375,6 +377,7 @@
   const sirlarWrap = document.getElementById("sirlar-wrap");
   const sorularWrap = document.getElementById("sorular-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
+  const tasiyicilarWrap = document.getElementById("tasiyicilar-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
   const fususWrap = document.getElementById("fusus-wrap");
   const hakkindaWrap = document.getElementById("hakkinda-wrap");
@@ -401,6 +404,7 @@
     markActiveNavButton(sirlarBtn, view === "sirlar");
     markActiveNavButton(sorularBtn, view === "sorular");
     markActiveNavButton(menzillerBtn, view === "menziller");
+    markActiveNavButton(tasiyicilarBtn, view === "tasiyicilar");
     markActiveNavButton(futuhatBtn, view === "futuhat");
     markActiveNavButton(fususBtn, view === "fusus");
     markActiveNavButton(hakkindaBtn, view === "hakkinda");
@@ -412,6 +416,7 @@
     if (sirlarWrap) sirlarWrap.hidden = view !== "sirlar";
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
+    if (tasiyicilarWrap) tasiyicilarWrap.hidden = view !== "tasiyicilar";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
     if (fususWrap) fususWrap.hidden = view !== "fusus";
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
@@ -441,6 +446,9 @@
     } else if (view === "menziller") {
       currentDetailView = "menziller";
       window.__menzillerApp && window.__menzillerApp.activate();
+    } else if (view === "tasiyicilar") {
+      currentDetailView = null;
+      window.__tasiyicilarApp && window.__tasiyicilarApp.activate();
     } else if (view === "futuhat") {
       currentDetailView = null;
       window.__futuhatApp && window.__futuhatApp.activate();
@@ -463,6 +471,7 @@
   if (cizimlerBtn) cizimlerBtn.addEventListener("click", () => { setMainView("cizimler"); updateHash("cizimler"); });
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
   if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
+  if (tasiyicilarBtn) tasiyicilarBtn.addEventListener("click", () => { setMainView("tasiyicilar"); updateHash("tasiyicilar"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
   if (fususBtn) fususBtn.addEventListener("click", () => { setMainView("fusus"); updateHash("fusus"); });
   if (hakkindaBtn) hakkindaBtn.addEventListener("click", () => { setMainView("hakkinda"); updateHash("hakkinda"); });
@@ -542,6 +551,14 @@
         tr: "Fütûhât'ın 198. Bölümü'ndeki yirmi sekiz faslı tek bir halkada toplayan harita: her menzilin harfi, ilahi ismi ve o menzilden zuhur eden mertebe.",
         en: "A map gathering the twenty-eight sections of Chapter 198 of the Futuhat into one ring: each mansion's letter, divine name, and the level that appears from it.",
         pt: "Um mapa que reúne as vinte e oito secções do Capítulo 198 das Futuhat num só anel: a letra de cada mansão, o nome divino e o grau que dela aparece.",
+      },
+    },
+    tasiyicilar: {
+      title: { tr: "Taşıyanlar", en: "The Bearers", pt: "Os Portadores" },
+      desc: {
+        tr: "Fütûhât'ın 13. ve 476. bölümlerini yan yana koyan bir şema: Arş'ı taşıyan dört esas ile kalbi taşıyan dört esas, iki iç içe sarmal olarak.",
+        en: "A diagram placing Chapters 13 and 476 of the Futuhat side by side: the four supports that bear the Throne and the four that bear the heart, as two nested spirals.",
+        pt: "Um diagrama que junta os Capítulos 13 e 476 das Futuhat: os quatro suportes que sustentam o Trono e os quatro que sustentam o coração, como duas espirais entrelaçadas.",
       },
     },
     sorular: {
@@ -700,6 +717,15 @@
     window.__sorularApp && window.__sorularApp.goToNode(id);
   }
 
+  // Taşıyanlar tek bir şemadan ibaret; derin bağlantı için ayrı bir id'si
+  // yok, o yüzden setMainView zaten sahneyi kuruyorsa ikinci kez
+  // activate() çağırmaya gerek yok -- ama başka bir görünümden gelindiğinde
+  // (setMainView erken dönerse) sahne kurulmamış olabiliyor.
+  function goToTasiyicilar() {
+    setMainView("tasiyicilar");
+    window.__tasiyicilarApp && window.__tasiyicilarApp.activate();
+  }
+
   function goToFutuhat(id) {
     setMainView("futuhat");
     window.__futuhatApp && window.__futuhatApp.activate(id);
@@ -716,7 +742,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|futuhat|fusus|hakkinda)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -735,6 +761,7 @@
     else if (view === "cizimler") goToCizimler();
     else if (view === "sorular") goToSorular(id);
     else if (view === "menziller") goToMenziller(id);
+    else if (view === "tasiyicilar") goToTasiyicilar();
     else if (view === "futuhat") goToFutuhat(id);
     else if (view === "fusus") goToFusus(id);
     else if (view === "hakkinda") goToHakkinda();
@@ -769,12 +796,19 @@
       else if (view === "cizimler") goToCizimler();
       else if (view === "sorular") goToSorular(id);
       else if (view === "menziller") goToMenziller(id);
+      else if (view === "tasiyicilar") goToTasiyicilar();
       else if (view === "futuhat") goToFutuhat(id);
       else if (view === "fusus") goToFusus(id);
       else if (view === "hakkinda") goToHakkinda();
       updateHash(view, id);
     },
     setHash: updateHash,
+    // Modüller kendi <a class="cross-link"> etiketlerini kurarken gerçek
+    // bir href'e ihtiyaç duyuyor (yeni sekmede aç / bağlantıyı kopyala
+    // çalışsın diye); ROUTE_BASE burada olduğu için helper da burada.
+    href(view, id) {
+      return ROUTE_BASE + "/" + view + (id ? "/" + id : "");
+    },
   };
 
   let simulation, nodeSel, pathSel, labelSel, nodeById;
