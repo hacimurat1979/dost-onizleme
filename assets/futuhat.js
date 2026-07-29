@@ -34,7 +34,7 @@
 
   // Kısım düzeyindeki `pageRange` de iki şemayla yazıldı: ilk 67 kısımda
   // düz metin ("73–126", önek yok), sonrakilerde üç dilli sözlük
-  // ("s. 361-369" / "pp. 361-369"). Alan yıllardır veride taşınıyordu ama
+  // ("s. 361-369" / "pp. 361-369"). Alan veride taşınıyordu ama
   // hiçbir yerde render edilmiyordu; bu yüzden şema farkı da hiç yüzeye
   // çıkmamıştı. Eski kayıtları toplu düzenlemek yerine (bkz. CLAUDE.md:
   // veri dosyalarında toplu yeniden serileştirme yok) düz metin biçimine
