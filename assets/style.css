@@ -75,6 +75,14 @@
   --series-ibnarabi-text: #1a5cb0; /* darker text-safe variant of the above, ~6.2:1 on this page-plane */
   --series-theme:     #eda100; /* yellow / gold */
   --series-theme-text: #8f6000; /* darker text-safe variant of the above, ~5.3:1 on this page-plane */
+  /* Sarmal sahnelerindeki düğüm altını. Bilerek TEK bir değer: kullanıcı
+     2026-07-29'da gündüz modundaki düğümlerin turuncuya kaçtığını,
+     karanlık moddaki sarının doğru renk olduğunu söyledi. O yüzden dolgu
+     iki temada da aynı: #ffc233. Kenarlık ise temaya göre değişiyor
+     (--helix-gold-rim), çünkü içi boş düğümlerde görünen tek şey o ince
+     halka -- açık zeminde düz #ffc233 bir halka kayboluyor. */
+  --helix-gold:     #ffc233;
+  --helix-gold-rim: #d99a12;
   --series-daphne:    #e87ba4; /* magenta */
   --series-ibnarabi-line: #9ec5f4;
   --series-daphne-line:   #f3c3d7;
@@ -129,6 +137,9 @@
   /* Brighter gold used only where the flat --series-theme reads too dim
      against a near-black plane (Zât's halo, the Esmâ boundary ring). */
   --accent-glow-dark: #ffc233;
+  /* Karanlıkta halkanın da parlak altın olması gerekiyor: yakın-siyah
+     zeminde daha koyu bir rim düğümün kenarını yutuyor. */
+  --helix-gold-rim: #ffc233;
   --series-daphne:    #d55181;
   --series-ibnarabi-line: #184f95;
   --series-daphne-line:   #6b3145;
@@ -5697,15 +5708,11 @@ body.share-stage-open { overflow: hidden; }
 }
 .helix-scene__node circle {
   fill: var(--surface-1);
-  /* Canlı altın (--series-theme) dolgu + bir ton koyu kenarlık
-     (--accent-interactive). Bir ara kenarlığı da koyu kehribar yapmıştım;
-     kullanıcı 2026-07-29'da bunun kahverengiye kaçtığını, canlı sarının
-     çok daha hoş olduğunu söyledi ve dolgu sarıya döndürüldü. Kenarlık
-     koyu kaldı: açık zeminde düz altın tek başına 2.1:1'de kalıyor ve
-     dairenin kenarı kayboluyor; ince koyu rim şekli görünür tutuyor.
-     Düğümün taşıdığı bilgi zaten yanındaki yazıda ve not panelinde --
-     renk tek başına hiçbir şeyi anlatmıyor. */
-  stroke: var(--accent-interactive);
+  /* Dolgu iki temada da aynı sarı (--helix-gold); kenarlık gündüz modunda
+     bir tık daha koyu altın, çünkü içi boş düğümlerde görünen tek şey o
+     ince halka. Düğümün taşıdığı bilgi zaten yanındaki yazıda ve not
+     panelinde -- renk tek başına hiçbir şeyi anlatmıyor. */
+  stroke: var(--helix-gold-rim);
   stroke-width: 1.5;
   transition: fill 140ms ease, r 140ms ease;
 }
@@ -5720,11 +5727,15 @@ body.share-stage-open { overflow: hidden; }
   stroke-width: 3.2px;
   stroke-linejoin: round;
 }
-.helix-scene__node--accent circle { fill: var(--series-theme); }
+.helix-scene__node--accent circle,
+.helix-scene__node.is-focus circle,
+.helix-scene__node:hover circle {
+  fill: var(--helix-gold);
+  stroke: var(--helix-gold);
+}
+.helix-scene__node.is-focus circle { stroke-width: 2.6; }
 .helix-scene__node--accent text { fill: var(--text-primary); font-weight: 600; }
-.helix-scene__node.is-focus circle { fill: var(--series-theme); stroke-width: 2.6; }
 .helix-scene__node.is-focus text { fill: var(--text-primary); font-weight: 600; }
-.helix-scene__node:hover circle { fill: var(--series-theme); }
 .helix-scene__node { cursor: pointer; }
 .helix-scene__node:focus-visible { outline: none; }
 .helix-scene__node:focus-visible circle {
@@ -5859,20 +5870,10 @@ body.share-stage-open { overflow: hidden; }
 .fusus-article__sources ul { margin: 0; padding-left: 1.1rem; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
 .helix-scene__marker path { fill: var(--gridline); }
 
-/* Karanlık modda düğümlerin görünmemesi (2026-07-29, kullanıcı bildirimi)
-   var olmayan --surface / --accent token'larından geliyordu: geçersiz
-   bildirim düşünce daireler varsayılan siyahla doluyor, siyah zeminde
-   kayboluyordu. Tokenlar düzeltildi; ayrıca karanlıkta altın konturun
-   daha parlak sürümü kullanılıyor -- düz --series-theme yakın-siyah
-   üzerinde sönük kalıyor (aynı gerekçe Zât halesinde de yazılı). */
-.viz-root[data-theme="dark"] .helix-scene__node circle {
-  stroke: var(--accent-glow-dark);
-}
-.viz-root[data-theme="dark"] .helix-scene__node--accent circle,
-.viz-root[data-theme="dark"] .helix-scene__node.is-focus circle,
-.viz-root[data-theme="dark"] .helix-scene__node:hover circle {
-  fill: var(--accent-glow-dark);
-}
+/* Düğüm rengi artık --helix-gold / --helix-gold-rim token'larından
+   geliyor (bkz. :root), o yüzden burada tema-özel bir renk kuralına
+   gerek kalmadı. Kalan tek fark çizgi rengi: sarmalın ipliği karanlıkta
+   ayrı bir gri tonuna ihtiyaç duyuyor. */
 .viz-root[data-theme="dark"] .helix-scene__path { stroke: #46453f; }
 .viz-root[data-theme="dark"] .helix-scene__marker path { fill: #46453f; }
 
