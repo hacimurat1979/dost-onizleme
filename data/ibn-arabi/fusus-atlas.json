@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs8",
+  "activeFassId": "fs9",
   "fasses": [
     {
       "id": "fs1",
@@ -3359,7 +3359,7 @@
     {
       "id": "fs9",
       "no": 9,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "Yûsuf",
         "en": "Joseph",
@@ -3369,7 +3369,366 @@
         "tr": "Hikmet-i Nûriyye",
         "en": "Wisdom of Light",
         "pt": "Sabedoria da Luz"
-      }
+      },
+      "title": {
+        "tr": "Işığı Göremezsin — Gölgesini Okursun",
+        "en": "You Cannot See the Light — You Read Its Shadow",
+        "pt": "Não Podes Ver a Luz — Lês a Sua Sombra"
+      },
+      "pageRange": {
+        "tr": "IX. Fass, s. 577-629",
+        "en": "Bezel IX, pp. 577-629",
+        "pt": "Engaste IX, pp. 577-629"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Bu fassın adı <em>nûr</em> ama ilk söylediği şey, nûrun görülemeyeceği: <em>“nûr-i hakîkî bir nûrdur ki, onun vâsıtasıyla eşyâ idrâk olunur, fakat kendisi idrâk olunmaz.”</em> Peygamber'e <em>“Rabb'ini gördün mü?”</em> diye sorulduğunda verdiği cevap da bu: <em>“Bir nûrdur, ben onu nasıl görürüm?”</em> Görülen şey nûr değil, nûr ile zulmetin karışımı olan <em>ziyâ</em>. Ve bu fassın peygamberi bir <strong>tâbirci</strong> — çünkü elimizde doğrudan ışık değil, okunacak sûretler var. VI. fassta İbrâhîm'in yanıldığı yer buydu; burası o meselenin sistemli hâli.",
+          "en": "This bezel is named for <em>light</em>, but the first thing it says is that light cannot be seen: <em>“the real light is a light by means of which things are perceived, but which is not itself perceived.”</em> When the Prophet was asked <em>“did you see your Lord?”</em> the answer was the same: <em>“It is a light — how should I see it?”</em> What is seen is not light but <em>radiance</em>, the mixture of light and darkness. And the prophet of this bezel is an <strong>interpreter</strong> — because what we hold is not the light itself but forms to be read. This was where Abraham went wrong in Bezel VI; here is the systematic form of that matter.",
+          "pt": "Este engaste tem o nome da <em>luz</em>, mas a primeira coisa que diz é que a luz não pode ser vista: <em>“a luz real é uma luz por meio da qual as coisas são percebidas, mas que não é ela própria percebida.”</em> Quando perguntaram ao Profeta <em>“viste o teu Senhor?”</em>, a resposta foi a mesma: <em>“É uma luz — como haveria eu de a ver?”</em> O que se vê não é luz mas <em>claridade</em>, a mistura de luz e escuridão. E o profeta deste engaste é um <strong>intérprete</strong> — porque o que temos não é a luz mas formas a ler. Foi aqui que Abraão errou no Engaste VI; aqui está a forma sistemática dessa questão."
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, IX. Fass (Konuk şerhi, s. 579-580)",
+          "en": "Fusus al-Hikam, Bezel IX (Konuk's commentary, p. 579-580)",
+          "pt": "Fusus al-Hikam, Engaste IX (comentário de Konuk, p. 579-580)"
+        },
+        "caption": {
+          "tr": "Beş hazret Konuk'un sıraladığı sırayla; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi Konuk'un kendi cümlesi: <em>“sen şimdi içinde bulunduğun hazarâtın esfeli olan hazret-i şehâdetten bi-tarîk-i kahkarî rücû' edersen…”</em> — yani bu iniş tek yönlü değil, en alt basamaktan geriye doğru okunabiliyor. Devre kapanıyor ama aynı yere değil: geri dönen, çıktığını artık <em>tanıyarak</em> dönüyor.",
+          "en": "The five presences in the order Konuk sets them out; the spiral and the closing are ours. Why a spiral is Konuk's own sentence: <em>“if from the presence of the senses — the lowest of the presences, the one you are now in — you go back the way you came…”</em> — this descent is not one-way; it can be read backwards from the lowest step. The circuit closes, but not on the same place: whoever returns returns <em>recognising</em> what they came from.",
+          "pt": "As cinco presenças na ordem em que Konuk as expõe; a espiral e o fecho são nossos. Porquê uma espiral é a própria frase de Konuk: <em>“se, a partir da presença dos sentidos — a mais baixa das presenças, aquela em que agora estás —, voltares pelo caminho por onde vieste…”</em> — esta descida não é de sentido único; pode ler-se de trás para a frente a partir do degrau mais baixo. O circuito fecha-se, mas não no mesmo lugar: quem regressa regressa <em>reconhecendo</em> aquilo de onde veio."
+        },
+        "helix": {
+          "id": "fs9-hazarat",
+          "turns": 1.7,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs9-h1",
+              "label": {
+                "tr": "Hazret-i Zât — gayb-ı mutlak",
+                "en": "The Presence of the Essence — the absolute unseen",
+                "pt": "A Presença da Essência — o oculto absoluto"
+              },
+              "note": {
+                "tr": "<em>“hiçbir kimse ondan hikâye edemez; ve oraya isim ve resim sığmaz.”</em> Bu basamak hakkında söylenebilecek tek şey, söylenemeyeceği.",
+                "en": "<em>“No one can give an account of it; neither name nor trace has room there.”</em> The only thing that can be said of this step is that it cannot be said.",
+                "pt": "<em>“Ninguém pode dar conta dela; nem nome nem traço aí cabem.”</em> A única coisa que se pode dizer deste degrau é que não se pode dizer."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs9-h2",
+              "label": {
+                "tr": "Hazret-i Esmâ — ulûhiyet",
+                "en": "The Presence of the Names — divinity",
+                "pt": "A Presença dos Nomes — divindade"
+              },
+              "note": {
+                "tr": "<em>“Hakk'ın onda bürûzu 'ulûhiyet' iledir.”</em> İsimlerin belirdiği ilk basamak — VII. fassta payımıza düşen tek ismin geldiği yer.",
+                "en": "<em>“His emergence in it is by divinity.”</em> The first step where names appear — the place the single name that falls to us came from, in Bezel VII.",
+                "pt": "<em>“A Sua emergência nela é pela divindade.”</em> O primeiro degrau onde os nomes aparecem — o lugar de onde veio o único nome que nos cabe, no Engaste VII."
+              }
+            },
+            {
+              "id": "fs9-h3",
+              "label": {
+                "tr": "Hazret-i Ef'âl — âlem-i ervâh",
+                "en": "The Presence of Acts — the world of spirits",
+                "pt": "A Presença dos Atos — o mundo dos espíritos"
+              },
+              "note": {
+                "tr": "<em>“Hakk'ın onda bürûzu 'rubûbiyet' iledir.”</em> İsimden fiile geçilen basamak.",
+                "en": "<em>“His emergence in it is by lordship.”</em> The step where name passes into act.",
+                "pt": "<em>“A Sua emergência nela é pelo senhorio.”</em> O degrau onde o nome passa a ato."
+              }
+            },
+            {
+              "id": "fs9-h4",
+              "label": {
+                "tr": "Hazret-i Misâl ve Hayâl — ortadaki",
+                "en": "The Presence of Images and Imagination — the middle one",
+                "pt": "A Presença das Imagens e da Imaginação — a do meio"
+              },
+              "note": {
+                "tr": "<em>“Hakk'ın suver-i muhtelife ile bürûzunun mahallidir.”</em> Ve Konuk'un asıl iddiası bu basamak hakkında: nûr ile zulmet burada karışıyor, o yüzden <em>ziyâ</em> onun zâtî sıfatı — görülebilen tek yer.",
+                "en": "<em>“It is the locus of His emergence in various forms.”</em> And Konuk's real claim concerns this step: light and darkness mix here, so <em>radiance</em> is its essential attribute — the only place that can be seen.",
+                "pt": "<em>“É o lugar da Sua emergência em formas várias.”</em> E a verdadeira afirmação de Konuk é sobre este degrau: luz e escuridão misturam-se aqui, por isso a <em>claridade</em> é o seu atributo essencial — o único lugar que pode ser visto."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs9-h5",
+              "label": {
+                "tr": "Hazret-i His ve Şehâdet — ve buradan geri okunur",
+                "en": "The Presence of the Senses — and it is read back from here",
+                "pt": "A Presença dos Sentidos — e daqui se lê de volta"
+              },
+              "note": {
+                "tr": "<em>“Hakk'ın suver-i müteayyine-i kevniyye ile bürûzunun mahallidir.”</em> Konuk'un çağrısı: buradan geri dön ve gör ki <em>“âlemde mahsûs olan her şey, âlem-i misâlde mevcûd olan her bir şeyin bir misâl ve sûretidir.”</em>",
+                "en": "<em>“It is the locus of His emergence in the determined forms of becoming.”</em> Konuk's invitation: go back from here and see that <em>“everything sensed in the world is an image and form of something present in the world of images.”</em>",
+                "pt": "<em>“É o lugar da Sua emergência nas formas determinadas do devir.”</em> O convite de Konuk: regressa daqui e vê que <em>“tudo o que se sente no mundo é imagem e forma de algo presente no mundo das imagens.”</em>"
+              }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs9-s1",
+          "heading": {
+            "tr": "Nûr Görülmez, Ziyâ Görülür",
+            "en": "Light Is Not Seen, Radiance Is",
+            "pt": "A Luz Não Se Vê, a Claridade Sim"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass üç terimi birbirinden ayırarak açılıyor ve ayrım keskin. <em>Nûr-i hakîkî</em> görülmez ama onunla görülür; <em>zulmet</em> ne görülür ne de onunla bir şey görülür; ve ikisinin arasındaki <em>ziyâ</em> hem görülür hem de onunla görülür. Yani gördüğümüz her şey, tam da <strong>karışım</strong> olduğu için görünüyor.",
+                "en": "The bezel opens by separating three terms, and the separation is sharp. <em>Real light</em> is not seen but by it things are seen; <em>darkness</em> is neither seen nor is anything seen by it; and <em>radiance</em>, between the two, is both seen and that by which things are seen. So everything we see is visible precisely because it is a <strong>mixture</strong>.",
+                "pt": "O engaste abre separando três termos, e a separação é nítida. A <em>luz real</em> não é vista mas por ela as coisas são vistas; a <em>escuridão</em> nem é vista nem por ela se vê algo; e a <em>claridade</em>, entre as duas, é vista e é aquilo pelo qual se vê. Logo, tudo o que vemos é visível precisamente por ser uma <strong>mistura</strong>."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, IX. Fass (Konuk şerhi, s. 577-578)",
+                "en": "Fusus al-Hikam, Bezel IX (Konuk's commentary, p. 577-578)",
+                "pt": "Fusus al-Hikam, Engaste IX (comentário de Konuk, p. 577-578)"
+              },
+              "caption": {
+                "tr": "Üç terim de metnin; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi Konuk'un gerekçesi: bu üçü bir merdiven kurmuyor, birbirine dönüyorlar — <em>“nûr-i hakîkî, zulmet ile idrâk olunur; çünkü onun zıddıdır; ve her şey zıddıyla inkişâf eder.”</em> Yani en alt basamak, en üsttekini görünür kılıyor.",
+                "en": "All three terms are the text's; the spiral and the closing are ours. Why a spiral is Konuk's ground: these three do not build a ladder, they turn into one another — <em>“the real light is grasped through darkness, for darkness is its opposite, and everything is disclosed by its opposite.”</em> So the lowest step is what makes the highest visible.",
+                "pt": "Os três termos são do texto; a espiral e o fecho são nossos. Porquê uma espiral é o fundamento de Konuk: estes três não constroem uma escada, voltam-se uns para os outros — <em>“a luz real é apreendida pela escuridão, pois a escuridão é o seu oposto, e tudo se revela pelo seu oposto.”</em> Assim, o degrau mais baixo é o que torna visível o mais alto."
+              },
+              "helix": {
+                "id": "fs9-nur",
+                "turns": 1.15,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs9-n1",
+                    "label": {
+                      "tr": "Nûr-i hakîkî — görülmez",
+                      "en": "Real light — not seen",
+                      "pt": "Luz real — não vista"
+                    },
+                    "note": {
+                      "tr": "<em>“onun vâsıtasıyla eşyâ idrâk olunur, fakat kendisi idrâk olunmaz.”</em> Sebebi: <em>“niseb ve izâfâttan tecerrüdü cihetinden… ayn-ı zâtıdır.”</em> Ve Peygamber'in cevabı: <em>“Bir nûrdur, ben onu nasıl görürüm?”</em>",
+                      "en": "<em>“By it things are perceived, but it is not itself perceived.”</em> The reason: <em>“in its freedom from all relations it is the very Essence.”</em> And the Prophet's answer: <em>“It is a light — how should I see it?”</em>",
+                      "pt": "<em>“Por ela as coisas são percebidas, mas ela não é percebida.”</em> A razão: <em>“na sua liberdade de todas as relações é a própria Essência.”</em> E a resposta do Profeta: <em>“É uma luz — como haveria eu de a ver?”</em>"
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs9-n2",
+                    "label": {
+                      "tr": "Zulmet — ne görülür ne gösterir",
+                      "en": "Darkness — neither seen nor showing",
+                      "pt": "Escuridão — nem vista nem mostra"
+                    },
+                    "note": {
+                      "tr": "<em>“kendi idrâk olunmadığı gibi, kendisiyle de bir şey idrâk olunmaz.”</em> Ama şerefsiz değil: <em>“zulmetin şerefi, nûr-i hakîkîye ittisâl iledir.”</em> Konuk bunu <em>adem</em>e bağlıyor — mümkinin karanlığı, yokluk tarafından geliyor.",
+                      "en": "<em>“Just as it is not perceived, nothing is perceived by it either.”</em> Yet it is not without dignity: <em>“the dignity of darkness lies in its joining to the real light.”</em> Konuk ties this to <em>non-existence</em> — the possible thing's darkness comes from its side of nothingness.",
+                      "pt": "<em>“Tal como não é percebida, também nada é percebido por ela.”</em> Mas não é sem dignidade: <em>“a dignidade da escuridão está na sua ligação à luz real.”</em> Konuk liga isto ao <em>não-ser</em> — a escuridão do possível vem do seu lado de nada."
+                    }
+                  },
+                  {
+                    "id": "fs9-n3",
+                    "label": {
+                      "tr": "Ziyâ — iki şerefi birden taşıyan",
+                      "en": "Radiance — bearing both dignities at once",
+                      "pt": "Claridade — trazendo as duas dignidades"
+                    },
+                    "note": {
+                      "tr": "<em>“hem kendisi idrâk olunur ve hem de onunla eşyâ idrâk olunur… ikisinin arasında olması ve nûr ile zulmetin mümtezic olmasından vücûda gelmekle iki şerefi hâiz bulunmasıdır.”</em> Ve Konuk sonunda şunu itiraf ediyor: fassın adı <em>nûriyye</em> ama <em>“hakikatte, nûriyyet-i mahza değil, ziyâiyyedir.”</em>",
+                      "en": "<em>“It is both perceived and that by which things are perceived… it lies between the two, and coming to be from the mingling of light and darkness it holds both dignities.”</em> And Konuk admits at the end: the bezel is called <em>of light</em>, yet <em>“in truth it is not pure light but radiance.”</em>",
+                      "pt": "<em>“É percebida e é aquilo pelo qual as coisas são percebidas… está entre as duas e, vindo a ser da mistura de luz e escuridão, detém ambas as dignidades.”</em> E Konuk admite no fim: o engaste chama-se <em>da luz</em>, mas <em>“na verdade não é luz pura mas claridade.”</em>"
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk fassın adının neden yine de <em>nûriyye</em> olduğunu açıklıyor ve gerekçe teknik: <em>“iki şey beyninde mutavassıt olan bir şeyin iki taraftan birisine nisbeti lâzım geldiği vakit, gâlib olan tarafın vasfolunduğu şeyle tavsifi iktizâ eder.”</em> Yani ad, şeyin kendisini değil, hangi tarafa daha yakın durduğunu söylüyor. Bunu not düştük, çünkü bu sitede biz de sürekli ad koyuyoruz.",
+                "en": "Konuk explains why the bezel is nonetheless called <em>of light</em>, and the reason is technical: <em>“when what lies between two things must be attributed to one of the two sides, it takes the description of the side that predominates.”</em> So the name states not what the thing is but which side it leans to. We noted this, because on this site we too are constantly naming things.",
+                "pt": "Konuk explica porque o engaste se chama ainda assim <em>da luz</em>, e a razão é técnica: <em>“quando o que está entre duas coisas tem de ser atribuído a um dos lados, toma a descrição do lado que predomina.”</em> O nome diz, então, não o que a coisa é mas para que lado pende. Anotámo-lo, porque neste sítio também nós nomeamos constantemente."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs9-s2",
+          "heading": {
+            "tr": "Ortadaki Hazret",
+            "en": "The Middle Presence",
+            "pt": "A Presença do Meio"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Beş hazretin sıralanışında hayâlin yeri tesadüf değil. Konuk açıkça bir <em>mutavassıt</em> gerekçesi kuruyor: vücûd-ı mahz ile adem birbirinden ayrı ayrı kavranamaz, <em>“bunları idrâk için aralarında bir mutavassıt lâzımdır”</em> — ve <em>“bunların arasında müteayyin olan şey, 'âlem-i misâl'in hakikatidir.”</em> Yani hayâl, iki uçtan biri değil; iki ucun birbirine değebildiği tek yer.",
+                "en": "In the ordering of the five presences, imagination's place is no accident. Konuk expressly builds an argument from <em>mediation</em>: pure existence and non-existence cannot be grasped apart from one another, <em>“to perceive them an intermediary between them is needed”</em> — and <em>“what is determined between them is the reality of the world of images.”</em> So imagination is not one of the two ends; it is the only place where the two ends can touch.",
+                "pt": "Na ordenação das cinco presenças, o lugar da imaginação não é acaso. Konuk constrói expressamente um argumento de <em>mediação</em>: a existência pura e o não-ser não podem apreender-se separadamente, <em>“para os perceber é precisa uma mediação entre eles”</em> — e <em>“o que se determina entre eles é a realidade do mundo das imagens.”</em> Logo, a imaginação não é uma das duas pontas; é o único lugar onde as duas pontas se podem tocar."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Hayâl de kendi içinde ikiye ayrılıyor: <em>“hayâl-i mutlak”</em> (âlem-i misâlin kendisi) ve <em>“hayâl-i mukayyed”</em> — insanın içindeki hayâl, ki Konuk onu <em>“onun cedveli hükmünde”</em>, yani ondan çekilmiş bir kanal gibi tarif ediyor. Bu ikinci hayâl VI. fassta gördüğümüz iki yönlü aynanın ta kendisi: <em>“bir tarafı âlem-i misâle ve bir tarafı da insanın kendi nefsine ve bedenine muttasıldır.”</em>",
+                "en": "Imagination itself divides in two: <em>absolute imagination</em> (the world of images itself) and <em>bounded imagination</em> — the imagination within a human being, which Konuk describes as <em>“standing to it as a channel,”</em> a conduit drawn off from it. This second imagination is exactly the two-facing mirror we saw in Bezel VI: <em>“one side of it joined to the world of images, the other to the person's own soul and body.”</em>",
+                "pt": "A própria imaginação divide-se em duas: <em>imaginação absoluta</em> (o próprio mundo das imagens) e <em>imaginação limitada</em> — a imaginação dentro do ser humano, que Konuk descreve como <em>“estando para ela como um canal,”</em> um sulco dela derivado. Esta segunda imaginação é exatamente o espelho de dupla face que vimos no Engaste VI: <em>“um lado ligado ao mundo das imagens, o outro à alma e ao corpo da própria pessoa.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ve bu noktada fass bir hadîsi ortaya koyup bütün duyulur dünyayı hayâlin içine katlıyor: <em>“Muhakkak nâs uykudadırlar, öldükleri vakit uyanırlar.”</em> Konuk'un okuması sert ve açık: <em>“hazret-i şehâdeti hazret-i hayâle… ilhâk”</em> ediyor. Yani şu anda uyanık sandığımız hâl, başka bir ölçekte uyku. Bunu bir sonuç olarak değil, fassın bizi bıraktığı yer olarak alıyoruz — çünkü bunun doğruluğunu buradan sınayacak bir yerimiz yok.",
+                "en": "At this point the bezel produces a saying and folds the whole sensible world into imagination: <em>“people are asleep; when they die they awake.”</em> Konuk's reading is blunt: it <em>“annexes the presence of the senses to the presence of imagination.”</em> That is, the state we now take for waking is, on another scale, sleep. We take this not as a conclusion but as where the bezel leaves us — because we have no place from here to test it.",
+                "pt": "Neste ponto o engaste apresenta um dito e dobra todo o mundo sensível dentro da imaginação: <em>“as pessoas estão a dormir; quando morrem, acordam.”</em> A leitura de Konuk é direta: <em>“anexa a presença dos sentidos à presença da imaginação.”</em> Isto é, o estado que agora tomamos por vigília é, noutra escala, sono. Tomamo-lo não como conclusão mas como o ponto onde o engaste nos deixa — porque daqui não temos onde o testar."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs9-s3",
+          "heading": {
+            "tr": "Hayâl İçinde Hayâl",
+            "en": "Imagination within Imagination",
+            "pt": "Imaginação dentro da Imaginação"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın en uç cümlesi burada ve doğrudan okuyucuya söyleniyor: <em>“bil ki, sen hayâlsin ve bütün idrâk edip hakkında 'sivâ', ya'ni 'gayr', 'ben değilim' dediğin hayâldir. İmdi vücûdun küllîsi, hayâl içinde hayâldir.”</em>",
+                "en": "The bezel's most extreme sentence is here, and it is addressed straight to the reader: <em>“know that you are imagination, and all that you perceive and call ‘other', ‘not I', is imagination. So the whole of existence is imagination within imagination.”</em>",
+                "pt": "A frase mais extrema do engaste está aqui, e é dirigida diretamente ao leitor: <em>“sabe que és imaginação, e tudo o que percebes e chamas ‘outro', ‘não eu', é imaginação. Assim, a totalidade da existência é imaginação dentro da imaginação.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, IX. Fass (Konuk şerhi, s. 612)",
+                "en": "Fusus al-Hikam, Bezel IX (Konuk's commentary, p. 612)",
+                "pt": "Fusus al-Hikam, Engaste IX (comentário de Konuk, p. 612)"
+              },
+              "caption": {
+                "tr": "Dört basamak da metnin; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi şu: bu bir <em>uzaklaşma</em> zinciri (gölgenin gölgesinin gölgesi) ama Konuk zincirin her halkasında aynı şeyi söylüyor — <em>“zıllın vücûd-ı müstakilli olmayıp zî-zıll ile kâim”</em>. Yani uzaklaşırken bağ kopmuyor; devre kapalı kalıyor.",
+                "en": "All four steps are the text's; the spiral and the closing are ours. Why a spiral: this is a chain of <em>receding</em> (the shadow of the shadow of the shadow), yet at every link Konuk says the same thing — <em>“a shadow has no independent existence; it subsists by the one who casts it.”</em> So the tie does not break as it recedes; the circuit stays closed.",
+                "pt": "Os quatro degraus são do texto; a espiral e o fecho são nossos. Porquê uma espiral: esta é uma cadeia de <em>afastamento</em> (a sombra da sombra da sombra), e contudo em cada elo Konuk diz o mesmo — <em>“a sombra não tem existência independente; subsiste por quem a projeta.”</em> Assim, o laço não se quebra ao afastar-se; o circuito permanece fechado."
+              },
+              "helix": {
+                "id": "fs9-golge",
+                "turns": 1.4,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs9-g1",
+                    "label": {
+                      "tr": "Esmâ — Hakk'ın 'ayn'ı",
+                      "en": "The Names — the very Real",
+                      "pt": "Os Nomes — o próprio Real"
+                    },
+                    "note": {
+                      "tr": "Zincirin başı: Konuk'un ifadesiyle esmâ, <em>“Hakk'ın 'ayn'ı”</em>. Buradan sonrası hep bir yansıma.",
+                      "en": "The head of the chain: in Konuk's phrase the names are <em>“the very Real.”</em> Everything after this is reflection.",
+                      "pt": "A cabeça da cadeia: na expressão de Konuk, os nomes são <em>“o próprio Real.”</em> Tudo o que vem depois é reflexo."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs9-g2",
+                    "label": {
+                      "tr": "A'yân-ı sâbite — esmânın gölgesi",
+                      "en": "The fixed entities — shadow of the names",
+                      "pt": "As entidades fixas — sombra dos nomes"
+                    },
+                    "note": {
+                      "tr": "<em>“a'yân-ı sâbite Hakk'ın 'ayn'ı olan esmâsının… zıllıdır.”</em> İlk gölge.",
+                      "en": "<em>“The fixed entities are the shadow of His names, which are the very Real.”</em> The first shadow.",
+                      "pt": "<em>“As entidades fixas são a sombra dos Seus nomes, que são o próprio Real.”</em> A primeira sombra."
+                    }
+                  },
+                  {
+                    "id": "fs9-g3",
+                    "label": {
+                      "tr": "A'yân-ı hâriciyye — gölgenin gölgesi",
+                      "en": "The outward entities — shadow of the shadow",
+                      "pt": "As entidades exteriores — sombra da sombra"
+                    },
+                    "note": {
+                      "tr": "<em>“a'yân-ı hâriciyye dahi a'yân-ı sâbitenin zıllıdır. Şu hâlde bizim vücûdumuz zıllın zıllıdır.”</em> Biz buradayız.",
+                      "en": "<em>“And the outward entities are the shadow of the fixed entities. So our existence is the shadow of a shadow.”</em> This is where we are.",
+                      "pt": "<em>“E as entidades exteriores são a sombra das entidades fixas. Logo, a nossa existência é a sombra de uma sombra.”</em> É aqui que estamos."
+                    }
+                  },
+                  {
+                    "id": "fs9-g4",
+                    "label": {
+                      "tr": "Ve aynadaki gölge",
+                      "en": "And the shadow in the mirror",
+                      "pt": "E a sombra no espelho"
+                    },
+                    "note": {
+                      "tr": "Konuk'un kendi örneği: gece insanın gölgesi duvara düşüyor, o duvar da odadaki aynada görünüyor. <em>“Binâenaleyh âyinedeki gölge hayâl içinde hayâl olur.”</em> Bir basamak daha uzak — ama hâlâ aynı kişinin gölgesi.",
+                      "en": "Konuk's own example: at night a person's shadow falls on the wall, and that wall appears in a mirror in the room. <em>“So the shadow in the mirror is imagination within imagination.”</em> One step further off — yet still that same person's shadow.",
+                      "pt": "O exemplo do próprio Konuk: à noite a sombra de alguém cai na parede, e essa parede aparece num espelho do quarto. <em>“Logo, a sombra no espelho é imaginação dentro da imaginação.”</em> Um passo mais longe — e contudo ainda a sombra dessa mesma pessoa."
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs9-s4",
+          "heading": {
+            "tr": "Ve Bu Fassın Peygamberi Bir Tâbircidir",
+            "en": "And the Prophet of This Bezel Is an Interpreter",
+            "pt": "E o Profeta Deste Engaste É um Intérprete"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın Yûsuf'a verilmesinin sebebi ta baştan söylenmişti ve şimdi yerine oturuyor: <em>“Yûsuf (a.s.)a, suver-i hayâliyye-i misâliyyenin keşfine müteallik olan saltanat-ı nûriyye-i ilmiyye zâhir oldu. O da alâ-vechi'l-ekmel 'ilm-i ta'bîr'dir.”</em> Yani bu fassın peygamberinin marifeti, ışığı görmek değil — <strong>sûretleri okumak</strong>.",
+                "en": "Why the bezel is assigned to Joseph was said at the outset, and it now falls into place: <em>“there appeared to Joseph the luminous sovereignty of knowledge that concerns the unveiling of imaginal forms. And that is, in its most complete form, the science of interpretation.”</em> The gift of this bezel's prophet is not seeing the light — it is <strong>reading forms</strong>.",
+                "pt": "A razão de o engaste ser atribuído a José foi dita logo no início, e agora assenta: <em>“apareceu a José a soberania luminosa do conhecimento que respeita ao desvelamento das formas imaginais. E isso é, na sua forma mais completa, a ciência da interpretação.”</em> O dom do profeta deste engaste não é ver a luz — é <strong>ler formas</strong>."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu bizi VI. fassa geri götürüyor. Orada İbrâhîm'in hatası görmede değil <em>sınıflandırmada</em>ydı: gördüğünü tâbire muhtaç olmayan türden saymıştı. Burada aynı ayrım fassın omurgası hâline geliyor — <em>“suver-i mahsûsâta mutâbakatı olan suver-i hayâliyye… te'vîle ve ta'bîre muhtâc değildir”</em> ve ötekiler muhtaçtır. İki fass yan yana konunca ortaya şu çıkıyor: <strong>tâbir bir yetenek değil, bir sorumluluk</strong>. Doğru gören de yanlış tâbir edebiliyor.",
+                "en": "This takes us back to Bezel VI. There, Abraham's error was not in seeing but in <em>classifying</em>: he took what he saw to be of the kind that needs no interpretation. Here the same distinction becomes the bezel's spine — <em>“imaginal forms that correspond to sensory forms… need no interpretation,”</em> and the others do. Set side by side, the two bezels yield this: <strong>interpretation is not a gift but a responsibility</strong>. One who sees truly can still read wrongly.",
+                "pt": "Isto leva-nos de volta ao Engaste VI. Ali, o erro de Abraão não estava em ver mas em <em>classificar</em>: tomou o que viu como sendo do tipo que não precisa de interpretação. Aqui a mesma distinção torna-se a espinha do engaste — <em>“as formas imaginais que correspondem a formas sensíveis… não precisam de interpretação,”</em> e as outras precisam. Postos lado a lado, os dois engastes dão isto: <strong>a interpretação não é um dom mas uma responsabilidade</strong>. Quem vê verdadeiramente pode ainda assim ler mal."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu sayfaları yazarken bunu kendi işimize dair bir uyarı olarak okuduğumuzu söylemek dürüstlük olur. Biz de sûretlerle çalışıyoruz — metinler, alıntılar, çizdiğimiz sarmallar. Fassın söylediği, sûretin yanlış olduğu değil; <em>okuyanın</em> yanılabileceği. Sitedeki her çizimin altına <em>“bu bizim”</em> ya da <em>“bu metnin”</em> diye not düşmemizin sebebi de bu.",
+                "en": "In writing these pages it is honest to say we read this as a warning about our own work. We too work with forms — texts, quotations, the spirals we draw. What the bezel says is not that the form is false; it is that the <em>reader</em> can err. That is why each drawing on this site carries a note saying <em>“this is ours”</em> or <em>“this is the text's.”</em>",
+                "pt": "Ao escrever estas páginas é honesto dizer que lemos isto como um aviso sobre o nosso próprio trabalho. Também nós trabalhamos com formas — textos, citações, as espirais que desenhamos. O que o engaste diz não é que a forma seja falsa; é que o <em>leitor</em> pode errar. É por isso que cada desenho neste sítio traz uma nota que diz <em>“isto é nosso”</em> ou <em>“isto é do texto.”</em>"
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Füsûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk — Kelime-i Yûsufiyye'de Mündemic Hikmet-i Nûriyye (I. cilt, s. 577-629)",
+          "en": "Fusus al-Hikam, Translation and Commentary, Ahmed Avni Konuk — The Wisdom of Light in the Word of Joseph (vol. I, pp. 577-629)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário, Ahmed Avni Konuk — A Sabedoria da Luz na Palavra de José (vol. I, pp. 577-629)"
+        }
+      ]
     },
     {
       "id": "fs10",
