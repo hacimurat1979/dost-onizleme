@@ -1688,7 +1688,7 @@
     window.dostTrack && window.dostTrack("sema_acildi", { type: "perde-halkasi" });
     window.DostLightbox.open({
       closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
-      name: tt({ tr: "Perde nedir? — on altı kayıt", en: "What is the veil? — sixteen records", pt: "O que é o véu? — dezasseis registos" }),
+      name: tt({ tr: "Perde nedir? — on yedi kayıt", en: "What is the veil? — seventeen records", pt: "O que é o véu? — dezassete registos" }),
       svgHtml: halkaLightboxHtml(halka),
       caption: tt({
         tr: "Halkalar dıştan içe okunur. Sıra bir zaman sırası değil.",
@@ -1722,7 +1722,7 @@
       </li>`).join("");
     return `
       <div class="detail-block sir-halka">
-        <p class="detail-eyebrow">${tt({ tr: "Perde nedir? — on altı kaydın halkası", en: "What is the veil? — a ring of sixteen records", pt: "O que é o véu? — um anel de dezasseis registos" })}</p>
+        <p class="detail-eyebrow">${tt({ tr: "Perde nedir? — on yedi kaydın halkası", en: "What is the veil? — a ring of seventeen records", pt: "O que é o véu? — um anel de dezassete registos" })}</p>
         <p class="sir-halka__caption">${linkify(I18n.pick3(halka.caption), null, null)}</p>
         <button type="button" class="sir-halka__figure"
                 aria-label="${escapeHtmlAttr(tt({ tr: "Halkayı büyüt", en: "Enlarge the ring", pt: "Ampliar o anel" }))}">
