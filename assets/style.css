@@ -5868,19 +5868,115 @@ body.share-stage-open { overflow: hidden; }
   bottom: 18px;
   z-index: 1100;
   display: flex;
-  gap: 0.5rem;
-  padding: 0.4rem 0.7rem;
+  align-items: stretch;
   border: 1px solid var(--gridline);
   border-radius: 999px;
   background: var(--surface-1);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+}
+.durus-cip button {
+  border: 0;
+  background: none;
+  padding: 0.42rem 0.8rem;
   color: var(--text-secondary);
+  font: inherit;
   font-size: 0.82rem;
   font-variant-numeric: tabular-nums;
   cursor: pointer;
 }
-.durus-cip:hover { border-color: var(--accent-interactive); }
+.durus-cip button:hover { background: color-mix(in srgb, var(--helix-gold) 14%, transparent); }
+.durus-cip__sayac { display: flex; gap: 0.5rem; }
+.durus-cip__site { border-left: 1px solid var(--gridline) !important; }
 .durus-cip__k { color: var(--text-primary); font-weight: 600; }
+.durus-cip__temiz { color: var(--text-muted); }
+
+/* --- site geneli tarama paneli --- */
+.durus-site { position: fixed; inset: 0; z-index: 1300; }
+.durus-site__backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.42); }
+.durus-site__card {
+  position: absolute;
+  inset: 4vh auto 4vh 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  width: min(760px, calc(100vw - 24px));
+  border: 1px solid var(--gridline);
+  border-radius: 14px;
+  background: var(--surface-1);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+}
+.durus-site__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--gridline);
+}
+.durus-site__title { margin: 0; font-weight: 600; color: var(--text-primary); }
+.durus-site__title span {
+  margin-left: 0.35rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: var(--gridline);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+.durus-site__close {
+  border: 0; background: none; cursor: pointer;
+  color: var(--text-secondary); font-size: 1.4rem; line-height: 1; padding: 0 0.2rem;
+}
+.durus-site__body { padding: 0.9rem 1rem 1.2rem; overflow-y: auto; }
+.durus-site__yukleniyor, .durus-site__temiz {
+  margin: 1.5rem 0; text-align: center; color: var(--text-secondary); font-size: 0.9rem;
+}
+.durus-site__ozet {
+  margin: 0 0 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--gridline);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+.durus-site__grup { margin-bottom: 1.4rem; }
+.durus-site__grup h3 {
+  margin: 0 0 0.2rem; font-size: 0.98rem; color: var(--text-primary);
+}
+.durus-site__grup h3 span {
+  margin-left: 0.35rem; padding: 0.05rem 0.45rem; border-radius: 999px;
+  background: var(--gridline); color: var(--text-secondary);
+  font-size: 0.74rem; font-weight: 500;
+}
+.durus-site__neden { margin: 0 0 0.7rem; color: var(--text-muted); font-size: 0.82rem; }
+.durus-site__satir {
+  margin-bottom: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  border-left: 2px solid var(--helix-gold);
+  border-radius: 0 8px 8px 0;
+  background: var(--page-plane);
+}
+.durus-site__nere {
+  margin: 0 0 0.25rem; color: var(--text-muted);
+  font-size: 0.76rem; letter-spacing: 0.02em;
+}
+.durus-site__git { margin-left: 0.4rem; color: var(--accent-interactive); }
+.durus-site__parca {
+  margin: 0 0 0.4rem; color: var(--text-secondary);
+  font-size: 0.86rem; line-height: 1.6;
+}
+.durus-site__parca mark {
+  background: color-mix(in srgb, var(--helix-gold) 40%, transparent);
+  color: var(--text-primary); border-radius: 3px; padding: 0 2px;
+}
+.durus-site__sustur {
+  border: 1px solid var(--gridline); border-radius: 6px;
+  background: var(--surface-1); color: var(--text-secondary);
+  font-size: 0.76rem; padding: 0.2rem 0.5rem; cursor: pointer;
+}
+.durus-site__sustur:hover { border-color: var(--accent-interactive); color: var(--text-primary); }
 
 /* ===========================================================================
    Taşıyanlar görünümü — Fütûhât 13 ve 476'yı yan yana koyan çift sarmal.
