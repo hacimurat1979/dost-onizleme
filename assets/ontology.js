@@ -1979,7 +1979,13 @@
   };
 
   function sourcesForInsight(ins, sources) {
-    if (ins.source) return [ins.source];
+    // ins.source iki biçimde geliyor: düz metin ya da {tr,en,pt}. İkincisi
+    // pick3'ten geçirilmezse kaynakça satırında "[object Object]" basıyordu
+    // (2026-07-29'da sifat-asma düğümünde görüldü). Kenar içgörülerinde
+    // `sources` dizisi hiç verilmediği için tek kaynak yolu burasıdır.
+    if (ins.source) {
+      return [typeof ins.source === "string" ? ins.source : I18n.pick3(ins.source)];
+    }
     if (!sources || !sources.length) return [];
     const v = ins.volume;
     if (typeof v === "number") {

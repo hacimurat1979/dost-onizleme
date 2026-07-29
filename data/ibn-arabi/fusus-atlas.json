@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs6",
+  "activeFassId": "fs7",
   "fasses": [
     {
       "id": "fs1",
@@ -2512,7 +2512,7 @@
     {
       "id": "fs7",
       "no": 7,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "İsmâîl",
         "en": "Ishmael",
@@ -2522,7 +2522,414 @@
         "tr": "Hikmet-i Aliyye",
         "en": "Wisdom of Loftiness",
         "pt": "Sabedoria da Elevação"
-      }
+      },
+      "title": {
+        "tr": "Herkesin Bir Rabb'i Var — ama Rızâ Mutlak Değil",
+        "en": "Everyone Has a Lord — but the Acceptance Is Not Absolute",
+        "pt": "Cada Um Tem um Senhor — mas a Aceitação Não É Absoluta"
+      },
+      "pageRange": {
+        "tr": "VII. Fass, s. 489-520",
+        "en": "Bezel VII, pp. 489-520",
+        "pt": "Engaste VII, pp. 489-520"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Bu fassın ilk yarısı bir teselli gibi okunuyor: <em>“hazret-i vücûdiyyede, Rabb'i indinde marzî olmayan kimse yoktur.”</em> Yani hiç kimse, kendisini terbiye eden isim açısından beğenilmemiş değil. Ama fass bu kapıyı kendi eliyle daraltıyor: <em>“bir isme nazaran said olan, diğer isme göre şakî olur.”</em> Rızâ var, ama <strong>mutlak değil</strong> — herkesin payına külden yalnız bir isim düşüyor ve o ismin makbûlü, başka bir ismin indinde makbûl olmayabiliyor. Biz bu fassı, kolay bir hoşgörü dersi çıkarmamaya çalışarak okumaya çalıştık; metnin kendisi o dersi vermiyor.",
+          "en": "The first half of this bezel reads like a consolation: <em>“in the presence of existence there is no one who is not accepted by his own Lord.”</em> That is, no one is unaccepted by the name that nurtures him. But the bezel narrows that door with its own hand: <em>“whoever is fortunate with respect to one name is unfortunate with respect to another.”</em> There is acceptance, but it is <strong>not absolute</strong> — each receives from the whole only a single name, and what that name accepts another name may not. We tried to read this bezel without drawing an easy lesson in tolerance from it; the text itself does not offer that lesson.",
+          "pt": "A primeira metade deste engaste lê-se como um consolo: <em>“na presença da existência não há ninguém que não seja aceite pelo seu próprio Senhor.”</em> Isto é, ninguém é rejeitado pelo nome que o educa. Mas o engaste estreita essa porta com a própria mão: <em>“quem é feliz segundo um nome é infeliz segundo outro.”</em> Há aceitação, mas <strong>não é absoluta</strong> — a cada um cabe do todo apenas um único nome, e o que esse nome aceita outro nome pode não aceitar. Tentámos ler este engaste sem dele tirar uma lição fácil de tolerância; o próprio texto não dá essa lição."
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, VII. Fass (Konuk şerhi, s. 489-494)",
+          "en": "Fusus al-Hikam, Bezel VII (Konuk's commentary, p. 489-494)",
+          "pt": "Fusus al-Hikam, Engaste VII (comentário de Konuk, p. 489-494)"
+        },
+        "caption": {
+          "tr": "Mertebeleri Konuk sıralıyor; sarmal ve son basamak bizim. Sarmal seçmemizin sebebi şu: bu bir <em>daralma</em> gibi başlıyor — bütünden sana yalnız bir isim düşüyor — ama son basamak ilkine geri dokunuyor. Çünkü Sehl et-Tüsterî'nin sözüne göre o tek isim, sensiz Rab olamıyor: iniş bir kayıp değil, kapanan bir devre.",
+          "en": "Konuk sets out the levels; the spiral and the last step are ours. Why a spiral: this begins as a <em>narrowing</em> — of the whole, only one name falls to you — yet the last step touches back on the first. For by Sahl al-Tustari's saying that single name cannot be a Lord without you: the descent is not a loss but a circuit that closes.",
+          "pt": "Konuk expõe os graus; a espiral e o último degrau são nossos. Porquê uma espiral: isto começa como um <em>estreitamento</em> — do todo, apenas um nome te cabe — e contudo o último degrau toca de novo o primeiro. Pois, segundo a palavra de Sahl al-Tustari, esse único nome não pode ser Senhor sem ti: a descida não é uma perda, mas um circuito que se fecha."
+        },
+        "helix": {
+          "id": "fs7-nasip",
+          "turns": 1.5,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs7-p1",
+              "label": {
+                "tr": "Ahadiyet — burada kimseye pay yok",
+                "en": "Oneness — no one has a foothold here",
+                "pt": "Unicidade — aqui ninguém tem pé"
+              },
+              "note": {
+                "tr": "<em>“ahadiyyet-i ilâhiyyede kimse için kadem yoktur… çünkü O teb'îz kabûl etmez.”</em> Bölünmediği için bir parçası birine, bir parçası ötekine denemiyor. Konuk buraya bir çekirdek benzetmesi koyuyor: dalı, yaprağı, meyvesi hepsi içinde ama <em>“henüz fiile çıkmamıştır.”</em>",
+                "en": "<em>“In the divine Oneness no one has a foothold… for It admits no partition.”</em> Being undivided, one cannot say a part of It is for this and a part for that. Konuk places a seed here: branch, leaf and fruit are all within it, yet <em>“it has not yet come out into act.”</em>",
+                "pt": "<em>“Na Unicidade divina ninguém tem pé… pois Ela não admite partição.”</em> Sendo indivisa, não se pode dizer que uma parte é para este e outra para aquele. Konuk coloca aqui uma semente: ramo, folha e fruto estão todos nela, mas <em>“ainda não saiu ao ato.”</em>"
+              },
+              "accent": true
+            },
+            {
+              "id": "fs7-p2",
+              "label": {
+                "tr": "Ulûhiyet — bütün isimlerin toplandığı yer",
+                "en": "Divinity — where all the names gather",
+                "pt": "Divindade — onde todos os nomes se reúnem"
+              },
+              "note": {
+                "tr": "<em>“müsemmâ-yı Allâh, zât ile ahadî, esmâ ile külldür.”</em> Ve bu mertebe rubûbiyeti gerektiriyor, çünkü <em>“me'lûh olmayınca 'ilâh' kimi terbiye edecektir.”</em>",
+                "en": "<em>“The One named Allah is one by essence and all by the names.”</em> And this level requires lordship, for <em>“if there is nothing to be a god to, whom would a god nurture?”</em>",
+                "pt": "<em>“Aquele que é chamado Allah é uno pela essência e todo pelos nomes.”</em> E este grau exige senhorio, pois <em>“se não há a quem ser deus, a quem haveria um deus de educar?”</em>"
+              }
+            },
+            {
+              "id": "fs7-p3",
+              "label": {
+                "tr": "Rabb-i hâss — külden sana düşen tek isim",
+                "en": "The particular Lord — the one name that falls to you",
+                "pt": "O Senhor particular — o único nome que te cabe"
+              },
+              "note": {
+                "tr": "<em>“her bir mevcûdun, 'ulûhiyet' mertebesinden aldığı hisse ve nasîb, ancak kendisinin Rabb-i hâssı olan bir 'isim'dir.”</em> Ve bu tek isim keyfî değil: <em>“ona küllden ancak ona münâsib olan şey müteayyen oldu”</em> — ölçü senin istidâdın.",
+                "en": "<em>“The share each existent takes from the level of divinity is only one name, which is its own particular Lord.”</em> And that single name is not arbitrary: <em>“from the whole, only what suits it is determined for it”</em> — the measure is your own preparedness.",
+                "pt": "<em>“A parte que cada existente recebe do grau da divindade é apenas um nome, que é o seu Senhor particular.”</em> E esse único nome não é arbitrário: <em>“do todo determina-se para ele apenas o que lhe convém”</em> — a medida é a tua própria predisposição."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs7-p4",
+              "label": {
+                "tr": "Ve o Rabb'in sırrı sensin",
+                "en": "And the secret of that Lord is you",
+                "pt": "E o segredo desse Senhor és tu"
+              },
+              "note": {
+                "tr": "Bu basamağı <strong>biz</strong> ekledik, ama sözü metnin: Sehl et-Tüsterî'den naklen <em>“muhakkak rubûbiyet için bir sır vardır; ve o sır dahi sensin… ve eğer o sır zâil olaydı rubûbiyet bâtıl olur idi.”</em> Yani daralma tek yönlü değil — pay alan, aynı zamanda payı mümkün kılan.",
+                "en": "This step is <strong>ours</strong>, but the words are the text's: from Sahl al-Tustari, <em>“lordship has a secret, and that secret is you… and were that secret to vanish, lordship would be void.”</em> So the narrowing runs both ways — the one who receives the share also makes the share possible.",
+                "pt": "Este degrau é <strong>nosso</strong>, mas as palavras são do texto: de Sahl al-Tustari, <em>“o senhorio tem um segredo, e esse segredo és tu… e se esse segredo desaparecesse, o senhorio seria nulo.”</em> O estreitamento corre nos dois sentidos — quem recebe a parte também torna a parte possível."
+              }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs7-s1",
+          "heading": {
+            "tr": "Külden Sana Düşen Tek İsim",
+            "en": "The One Name That Falls to You from the Whole",
+            "pt": "O Único Nome Que do Todo Te Cabe"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass bir kısıtla açılıyor. Her varlık Allah'ın mazharıdır, ama <em>hangi</em> anlamda: <em>“bu mazhariyet mevcûdâttan her birinin rubûbiyyet-i mutlakadan mazhar olduğu ism-i hâssın rubûbiyyet-i hâssası haysiyetiyledir; yoksa mertebe-i ulûhiyyetin mutazammın olduğu esmânın küllîsine mazhariyet her bir mevcûd için müstahîldir.”</em> Bütün isimlere birden mazhar olmak imkânsız — bu, Konuk'a göre yalnız insân-ı kâmile ait.",
+                "en": "The bezel opens with a restriction. Every being is a locus of God's manifestation — but in <em>which</em> sense: <em>“this manifestation is by way of the particular lordship of the particular name that each existent receives from absolute lordship; to be the locus of the whole of the names contained in the level of divinity is impossible for any existent.”</em> To manifest all the names at once is impossible — for Konuk this belongs to the perfect human alone.",
+                "pt": "O engaste abre com uma restrição. Todo o ser é lugar de manifestação de Deus — mas em <em>que</em> sentido: <em>“esta manifestação dá-se pelo senhorio particular do nome particular que cada existente recebe do senhorio absoluto; ser lugar da totalidade dos nomes contidos no grau da divindade é impossível para qualquer existente.”</em> Manifestar todos os nomes de uma vez é impossível — para Konuk isso pertence só ao humano perfeito."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk bunu kendi seçtiği bir örnekle açıyor — örnek onun, bizim değil. Mimarlığı, hattatlığı, ressamlığı ve marangozluğu olan bir kişi düşünün: bir resim levhası yaparsa, o levha yalnız <em>“ressâm”</em> isminin mazharı olur, <em>“o levha bu isimlerin mahall-i tecellîsi olmak isti'dâdını hâiz değildir.”</em> Ama aynı kişi bir câmi yapsa — mimarlığı yapıda, hattatlığı yazıda, ressamlığı nakışta, marangozluğu kürsüde görünür; o zaman câmi <em>“bir mazhar-ı kâmil olur.”</em>",
+                "en": "Konuk opens this with an example of his own choosing — his, not ours. Imagine someone who is architect, calligrapher, painter and carpenter. If he makes a painted panel, that panel manifests only the name <em>“painter”</em>; <em>“that panel does not have the preparedness to be a place of manifestation for those other names.”</em> But if the same person builds a mosque — his architecture shows in the structure, his calligraphy in the inscriptions, his painting in the ornament, his carpentry in the pulpit; then the mosque <em>“becomes a perfect locus.”</em>",
+                "pt": "Konuk abre isto com um exemplo da sua própria escolha — dele, não nosso. Imagine alguém que é arquiteto, calígrafo, pintor e carpinteiro. Se fizer um painel pintado, esse painel manifesta apenas o nome <em>“pintor”</em>; <em>“esse painel não tem a predisposição para ser lugar de manifestação daqueles outros nomes.”</em> Mas se a mesma pessoa construir uma mesquita — a sua arquitetura aparece na estrutura, a sua caligrafia nas inscrições, a sua pintura no ornamento, a sua carpintaria no púlpito; então a mesquita <em>“torna-se um lugar perfeito.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Buradan sonra fassın bütün mantığı kuruluyor: eğer herkesin payına bir isim düşüyorsa, herkesin ölçüsü de o isim oluyor. Bir sonraki bölümün hem tesellisi hem sertliği bu tek cümleden çıkıyor.",
+                "en": "From here the whole logic of the bezel is laid: if a single name falls to each, then each is measured by that name. Both the consolation and the harshness of the next section follow from this one sentence.",
+                "pt": "Daqui se estabelece toda a lógica do engaste: se a cada um cabe um único nome, então cada um é medido por esse nome. Tanto o consolo como a dureza da secção seguinte decorrem desta única frase."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs7-s2",
+          "heading": {
+            "tr": "Râzı — ama Hangi İsme Göre?",
+            "en": "Accepted — but by Which Name?",
+            "pt": "Aceite — mas por Qual Nome?"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın en çok alıntılanacak cümlesi burada: <em>“said, Rabb'i indinde marzî olan kimsedir. Hâlbuki hazret-i vücûdiyyede, Rabb'i indinde marzî olmayan kimse yoktur. Zirâ o Rab, onun üzerine rubûbiyetini ibkâ eder.”</em> Gerekçe basit ve mekanik: terbiye sürüyorsa, terbiye eden râzıdır — <em>“eğer merbûbdan râzı olmasa idi, onun üzerinde terbiyesini dâim ve kâim kılmaz idi.”</em>",
+                "en": "Here is the bezel's most quotable sentence: <em>“the fortunate one is he who is accepted by his Lord. Yet in the presence of existence there is no one who is not accepted by his Lord, for that Lord keeps his lordship over him.”</em> The reasoning is simple and mechanical: if the nurturing continues, the nurturer is content — <em>“had He not been content with the nurtured one, He would not have kept His nurture standing over him.”</em>",
+                "pt": "Eis a frase mais citável do engaste: <em>“o feliz é aquele que é aceite pelo seu Senhor. Contudo, na presença da existência não há ninguém que não seja aceite pelo seu Senhor, pois esse Senhor mantém sobre ele o seu senhorio.”</em> O raciocínio é simples e mecânico: se a educação continua, quem educa está satisfeito — <em>“se não estivesse satisfeito com o educado, não manteria sobre ele a sua educação.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, VII. Fass (Konuk şerhi, s. 493-497)",
+                "en": "Fusus al-Hikam, Bezel VII (Konuk's commentary, p. 493-497)",
+                "pt": "Fusus al-Hikam, Engaste VII (comentário de Konuk, p. 493-497)"
+              },
+              "caption": {
+                "tr": "Üç basamağın ilk ikisi metnin iki cümlesi, üçüncüsü onları bağlayan gerekçe. Sarmal çizmemizin sebebi: bu basamaklar birbirini <em>iptal etmiyor</em>, üst üste biniyor — aynı kişi hakkında iki hüküm birden geçerli kalıyor ve ikisini ayıran şey kişide değil, <em>hangi ismin indinde</em> sorulduğunda.",
+                "en": "The first two steps are two sentences of the text; the third is the ground that joins them. Why a spiral: these steps do not <em>cancel</em> one another, they overlap — two verdicts stay valid at once about the same person, and what separates them lies not in the person but in <em>before which name</em> the question is put.",
+                "pt": "Os dois primeiros degraus são duas frases do texto; o terceiro é o fundamento que os liga. Porquê uma espiral: estes degraus não se <em>anulam</em>, sobrepõem-se — dois juízos permanecem válidos ao mesmo tempo sobre a mesma pessoa, e o que os separa não está na pessoa mas em <em>perante que nome</em> se faz a pergunta."
+              },
+              "helix": {
+                "id": "fs7-riza",
+                "turns": 1.2,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs7-r1",
+                    "label": {
+                      "tr": "Kendi Rabb'i indinde: makbûl",
+                      "en": "Before his own Lord: accepted",
+                      "pt": "Perante o seu próprio Senhor: aceite"
+                    },
+                    "note": {
+                      "tr": "<em>“mevcûdâttan her birisi, böylece kendi Rab'leri olan esmâ-i hâssanın indinde marzîdirler.”</em> İstisnası yok — çünkü ölçüt fiil değil, terbiyenin sürüyor olması.",
+                      "en": "<em>“Each of the existents is thus accepted by the particular names that are their Lords.”</em> Without exception — because the criterion is not the deed but the continuing of the nurture.",
+                      "pt": "<em>“Cada um dos existentes é assim aceite pelos nomes particulares que são os seus Senhores.”</em> Sem exceção — porque o critério não é o ato mas a continuação da educação."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs7-r2",
+                    "label": {
+                      "tr": "Başka bir isme göre: şakî",
+                      "en": "By another name: unfortunate",
+                      "pt": "Segundo outro nome: infeliz"
+                    },
+                    "note": {
+                      "tr": "<em>“bir isme nazaran said olan, diğer isme göre şakî olur.”</em> Ve gerekçe verilmiş: <em>“birinin indinde marzî olan kimse diğerinin indinde marzî olmaz”</em> — Hâdî ile Mudill aynı fiile aynı hükmü vermiyor.",
+                      "en": "<em>“Whoever is fortunate with respect to one name is unfortunate with respect to another.”</em> With its ground: <em>“one who is accepted before one is not accepted before the other”</em> — the Guide and the Misleader do not pass the same verdict on the same act.",
+                      "pt": "<em>“Quem é feliz segundo um nome é infeliz segundo outro.”</em> Com o seu fundamento: <em>“quem é aceite perante um não é aceite perante o outro”</em> — o Guia e o Que Desvia não dão o mesmo juízo sobre o mesmo ato."
+                    }
+                  },
+                  {
+                    "id": "fs7-r3",
+                    "label": {
+                      "tr": "Çünkü payını küllden aldın, tek bir isimden değil",
+                      "en": "Because you took your share from the whole, not from one name",
+                      "pt": "Porque tomaste a tua parte do todo, não de um só nome"
+                    },
+                    "note": {
+                      "tr": "<em>“rubûbiyeti, ancak küllden aldı; vâhidden almadı.”</em> Konuk bunun karşıtını da söylüyor ve karşıtı aydınlatıcı: eğer herkes rubûbiyeti <em>tek bir muayyen isimden</em> alsaydı, <em>“hepsi müsâvî sûrette said olurdu.”</em> Yani eşitlik mümkündü ama olmadı; fark, isimlerin çokluğundan doğuyor.",
+                      "en": "<em>“He took lordship from the whole, not from one.”</em> Konuk also states the contrary case, and it is illuminating: if everyone drew lordship <em>from one determinate name</em>, then <em>“all would be fortunate in equal measure.”</em> Equality was possible and did not happen; the difference arises from the multiplicity of the names.",
+                      "pt": "<em>“Tomou o senhorio do todo, não de um só.”</em> Konuk enuncia também o caso contrário, e é esclarecedor: se todos tirassem o senhorio <em>de um só nome determinado</em>, então <em>“todos seriam felizes em igual medida.”</em> A igualdade era possível e não aconteceu; a diferença nasce da multiplicidade dos nomes."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk bu noktaya, kendi seçtiği tuhaf bir Sâdî beytiyle bir çentik atıyor: bir yahudi ile bir müslüman tartışırken, müslüman <em>“eğer bu hüccetim doğru değilse, ilâhî, cühûd olarak öleyim”</em> diye, yahudi de <em>“Tevrât'a yemin ediyorum, eğer hilâfım varsa, senin gibi müslüman olayım”</em> diye yemin ediyor. Her biri, kendi doğruluğuna öbürünün konumunu <em>ceza</em> olarak koyuyor. Konuk'un çıkardığı sonuç kuru ve sert: <em>“her bir ismin mazharı diğerini beğenmez.”</em>",
+                "en": "Konuk cuts a notch here with an odd verse of Sa'di, of his own choosing: a Jew and a Muslim are arguing; the Muslim swears <em>“if this proof of mine is not true, O God, let me die a Jew,”</em> and the Jew swears <em>“by the Torah, if I am in the wrong, let me become a Muslim like you.”</em> Each stakes his own truthfulness by making the other's position a <em>punishment</em>. Konuk's conclusion is dry and hard: <em>“the locus of each name does not approve of the other.”</em>",
+                "pt": "Konuk faz aqui um entalhe com um estranho verso de Sa'di, da sua própria escolha: um judeu e um muçulmano discutem; o muçulmano jura <em>“se esta minha prova não for verdadeira, ó Deus, que eu morra judeu,”</em> e o judeu jura <em>“pela Torá, se eu estiver errado, que me torne muçulmano como tu.”</em> Cada um garante a própria veracidade fazendo da posição do outro um <em>castigo</em>. A conclusão de Konuk é seca e dura: <em>“o lugar de cada nome não aprova o outro.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Buradan bir hoşgörü dersi çıkarmak kolay olurdu — “demek ki herkes kendince haklı”. Ama metin bunu söylemiyor: söylediği, herkesin bir isim tarafından <em>tutulduğu</em> ve o tutuluşun başka bir ismin gözünde geçerli olmadığı. Bu, bir uzlaşma değil; farkın nereden geldiğine dair bir açıklama. Aradaki mesafeyi korumaya çalışıyoruz.",
+                "en": "It would be easy to draw a lesson in tolerance here — “so everyone is right in their own way.” But the text does not say that: it says each is <em>held</em> by a name, and that holding does not carry weight in the eyes of another name. This is not a reconciliation; it is an account of where difference comes from. We are trying to keep that distance.",
+                "pt": "Seria fácil tirar daqui uma lição de tolerância — “então cada um tem razão à sua maneira”. Mas o texto não diz isso: diz que cada um é <em>sustido</em> por um nome, e que esse suster não tem peso aos olhos de outro nome. Não é uma reconciliação; é uma explicação de onde vem a diferença. Estamos a tentar manter essa distância."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs7-s3",
+          "heading": {
+            "tr": "Aynı Fiile İki Bakış",
+            "en": "Two Ways of Looking at the Same Act",
+            "pt": "Dois Olhares sobre o Mesmo Ato"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın bize en çok iş düşüren yeri burası. Konuk, aynı fiil hakkında iki ayrı hükmün <em>ikisini birden</em> yürürlükte bırakıyor ve bunu bir çelişki olarak değil, iki ayrı <em>nazar</em> olarak kuruyor: <em>“nazar-ı hakîkatle bakıldığı vakit, hiçbir ferdin ef'âline i'tirâz muvâfık olmaz. Fakat nazar-ı şerîatle bakıldığı vakit, ism-i Hâdî ism-i Mudill'in ef'âline i'tirâz eder.”</em>",
+                "en": "This is where the bezel puts the most work on us. Konuk leaves <em>both</em> of two verdicts on the same act in force, and frames this not as a contradiction but as two distinct <em>standpoints</em>: <em>“looked at from the standpoint of reality, objection to any individual's acts is out of place. But looked at from the standpoint of the Law, the name Guide objects to the acts of the name Misleader.”</em>",
+                "pt": "É aqui que o engaste mais trabalho nos dá. Konuk deixa em vigor <em>ambos</em> os juízos sobre o mesmo ato, e enquadra isto não como contradição mas como dois <em>pontos de vista</em> distintos: <em>“olhando do ponto de vista da realidade, objetar aos atos de qualquer indivíduo é despropositado. Mas olhando do ponto de vista da Lei, o nome Guia objeta aos atos do nome Que Desvia.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, VII. Fass (Konuk şerhi, s. 495-509)",
+                "en": "Fusus al-Hikam, Bezel VII (Konuk's commentary, p. 495-509)",
+                "pt": "Fusus al-Hikam, Engaste VII (comentário de Konuk, p. 495-509)"
+              },
+              "caption": {
+                "tr": "İki nazar metnin, üçüncü basamak da metnin — ama fassın çok ilerisinde, başka bir soruya cevap verirken kuruluyor. Onları yan yana koymak bizim işimiz. Sarmal çizmemizin sebebi: bu iki bakış bir merdiven değil; aynı olayın etrafında dönüp ona iki kere, iki ayrı yerden bakıyorlar.",
+                "en": "The two standpoints are the text's, and so is the third step — but it is set up much later in the bezel, while answering a different question. Placing them side by side is our doing. Why a spiral: these two ways of looking are not a ladder; they circle the same event and look at it twice, from two places.",
+                "pt": "Os dois pontos de vista são do texto, e o terceiro degrau também — mas é estabelecido muito mais adiante no engaste, ao responder a outra pergunta. Colocá-los lado a lado é obra nossa. Porquê uma espiral: estes dois olhares não são uma escada; giram em torno do mesmo acontecimento e olham-no duas vezes, de dois lugares."
+              },
+              "helix": {
+                "id": "fs7-nazar",
+                "turns": 1.15,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs7-z1",
+                    "label": {
+                      "tr": "Nazar-ı hakîkat: i'tirâz yersiz",
+                      "en": "The standpoint of reality: objection is out of place",
+                      "pt": "O ponto de vista da realidade: a objeção é despropositada"
+                    },
+                    "note": {
+                      "tr": "Gerekçe fiilin sahibinde: <em>“o 'ayn'da zâhir olan fiil, 'ayn'ın Rabb'i olan ism-i ilâhînindir.”</em> Fiil kişinin değilse, kişiye itiraz da tutmuyor.",
+                      "en": "The ground lies in whose act it is: <em>“the act that appears in an entity belongs to the divine name that is its Lord.”</em> If the act is not the person's, objection to the person does not hold.",
+                      "pt": "O fundamento está em de quem é o ato: <em>“o ato que aparece numa entidade pertence ao nome divino que é o seu Senhor.”</em> Se o ato não é da pessoa, a objeção à pessoa não se sustém."
+                    }
+                  },
+                  {
+                    "id": "fs7-z2",
+                    "label": {
+                      "tr": "Nazar-ı şerîat: i'tirâz yerinde",
+                      "en": "The standpoint of the Law: objection stands",
+                      "pt": "O ponto de vista da Lei: a objeção sustém-se"
+                    },
+                    "note": {
+                      "tr": "Ve bu itiraz kişiler arasında değil, <em>isimler</em> arasında kuruluyor: <em>“müteşerri' olan kimse ism-i Hâdî'nin; ve kâfir ve fâcir olan kimse dahi ism-i Mudill'in terbiyesi altındadır… birinin icâbâtı diğerinin icâbâtına zıddır.”</em>",
+                      "en": "And this objection is set not between persons but between <em>names</em>: <em>“one who follows the Law is under the nurture of the name Guide; one who denies and transgresses is under the name Misleader… what the one requires is contrary to what the other requires.”</em>",
+                      "pt": "E esta objeção estabelece-se não entre pessoas mas entre <em>nomes</em>: <em>“quem segue a Lei está sob a educação do nome Guia; quem nega e transgride está sob o nome Que Desvia… o que um exige é contrário ao que o outro exige.”</em>"
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs7-z3",
+                    "label": {
+                      "tr": "Ve aynı ayrım emirde de var",
+                      "en": "And the same split runs through the command",
+                      "pt": "E a mesma divisão percorre o mandamento"
+                    },
+                    "note": {
+                      "tr": "Fassın ilerisinde <em>“Hak Teâlâ ibâdının küfrüne râzı olmaz”</em> âyeti sorulduğunda cevap yine ikili: <em>“emr-i teklîfî”</em> cihetinden râzı değil, <em>“emr-i irâdî”</em> cihetinden râzı — <em>“çünkü onun fiili irâde-i ilâhiyye muvâfıktır.”</em> Aynı fiil, iki emir çeşidine göre iki ayrı hüküm alıyor.",
+                      "en": "Later in the bezel, when the verse <em>“God is not pleased with unbelief in His servants”</em> is raised, the answer is again twofold: not pleased by way of the <em>prescriptive command</em>, pleased by way of the <em>volitional command</em> — <em>“because his act accords with the divine will.”</em> The same act takes two verdicts under two kinds of command.",
+                      "pt": "Mais adiante no engaste, quando se levanta o versículo <em>“Deus não Se agrada da descrença nos Seus servos”</em>, a resposta é de novo dupla: não agradado pelo <em>mandamento prescritivo</em>, agradado pelo <em>mandamento volitivo</em> — <em>“porque o seu ato concorda com a vontade divina.”</em> O mesmo ato recebe dois juízos sob dois tipos de mandamento."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu, okumamızda <strong>altıncı</strong> kez karşımıza çıkan bir kalıp: “ikisi de sahih, her biri kendi yerinde.” Ama bu kez bir farkla — ilk defa iki okumanın <em>adları konuyor</em> (hakîkat / şerîat) ve fassın ilerisinde bir üçüncü çift daha veriliyor (irâdî / teklîfî emir). Önceki tanıklarda “ikisi de doğru” deniyordu ve <em>hangi yerden</em> doğru olduğu çoğu kez açık değildi; burada yer isimlendirilmiş. Bunu bir teyit değil, okumanın <em>keskinleşmesi</em> olarak not ediyoruz.",
+                "en": "This is the <strong>sixth</strong> time this pattern has met us in our reading: “both are sound, each in its own place.” But with a difference this time — for the first time the two readings are <em>named</em> (reality / Law), and later in the bezel a third pair is given (volitional / prescriptive command). In earlier witnesses it was said that “both are true,” and it was often unclear <em>from where</em> each was true; here the place has a name. We note this not as a confirmation but as a <em>sharpening</em> of the reading.",
+                "pt": "É a <strong>sexta</strong> vez que este padrão nos aparece na leitura: “ambos são válidos, cada um no seu lugar.” Mas desta vez com uma diferença — pela primeira vez as duas leituras são <em>nomeadas</em> (realidade / Lei), e mais adiante no engaste dá-se um terceiro par (mandamento volitivo / prescritivo). Nos testemunhos anteriores dizia-se que “ambos são verdadeiros”, e muitas vezes não era claro <em>de onde</em> cada um era verdadeiro; aqui o lugar tem nome. Registamos isto não como confirmação mas como um <em>afinar</em> da leitura."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs7-s4",
+          "heading": {
+            "tr": "Cennet Bir Örtüdür — ve O Örtü Sensin",
+            "en": "The Garden Is a Covering — and the Covering Is You",
+            "pt": "O Jardim É uma Cobertura — e a Cobertura És Tu"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass, kelimenin köküne inen bir hamleyle bitiyor. Konuk hatırlatıyor: <em>“cennet”</em>, <em>“setr”</em> mânâsına gelen <em>“cenn”</em>den türüyor — asıl anlamı, ağaçların gölgesiyle <em>örtülmüş</em> yer. Sonra <em>“cennetime gir”</em> (Fecr 89/30) âyetini bu kökle okuyor ve şu cümle geliyor: <em>“benim cennetim senden gayrı değildir; zirâ sen zâtınla beni setredersin.”</em>",
+                "en": "The bezel ends with a move down into the root of a word. Konuk reminds us that <em>“garden” (janna)</em> comes from <em>jann</em>, meaning <em>covering</em> — its root sense is a place <em>covered</em> by the shade of trees. He then reads the verse <em>“enter My garden”</em> (89:30) through that root, and this sentence follows: <em>“My garden is none other than you, for it is with your own essence that you cover Me.”</em>",
+                "pt": "O engaste termina com um movimento até à raiz de uma palavra. Konuk lembra que <em>“jardim” (janna)</em> vem de <em>jann</em>, que significa <em>cobrir</em> — o seu sentido de raiz é um lugar <em>coberto</em> pela sombra das árvores. Lê então o versículo <em>“entra no Meu jardim”</em> (89:30) através dessa raiz, e segue-se esta frase: <em>“o Meu jardim não é senão tu, pois é com a tua própria essência que Me cobres.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu, bizim bir süredir topladığımız <strong>örtme</strong> kayıtlarına düşüyor — ama yönü ters. Şimdiye kadar biriktirdiklerimizde örten ya perde, ya nankörlük, ya mağfiretti; örtülen de çoğunlukla hakikatti ve örtü <em>bizimle hakikat arasında</em> duruyordu. Burada örten <strong>kul</strong>, örtülen <strong>Hak</strong>, ve örtünün adı <em>cennet</em> — yani engel değil, mesken. Bunu bir sonuç olarak değil, dizinin dördüncü ve en aykırı kaydı olarak not ediyoruz.",
+                "en": "This falls in with the <strong>covering</strong> records we have been gathering — but its direction is reversed. In what we have collected so far, the coverer was the veil, or ingratitude, or forgiveness; what was covered was mostly the real, and the covering stood <em>between us and the real</em>. Here the coverer is the <strong>servant</strong>, the covered is the <strong>Real</strong>, and the covering is called a <em>garden</em> — not an obstacle but a dwelling. We note this not as a conclusion but as the series' fourth and most contrary record.",
+                "pt": "Isto junta-se aos registos de <strong>cobrir</strong> que temos vindo a reunir — mas com a direção invertida. No que recolhemos até agora, quem cobria era o véu, ou a ingratidão, ou o perdão; o coberto era sobretudo o real, e a cobertura estava <em>entre nós e o real</em>. Aqui quem cobre é o <strong>servo</strong>, o coberto é o <strong>Real</strong>, e a cobertura chama-se <em>jardim</em> — não um obstáculo mas uma morada. Registamo-lo não como conclusão mas como o quarto e mais contrário registo da série."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ve hemen ardından karşılıklılık geliyor: <em>“Ben bilinmem, illâ senin ile; nitekim tahkîkan sen mevcûd olmazsın, illâ Ben'im ile. Böyle olunca seni bilen kimse, Ben'i bildi. Hâlbuki Ben bilinmem, sen de bilinmezsin.”</em> Cümle iki kere veriyor, bir kere geri alıyor: bilme mümkün, ama künhüyle değil. Bu sayfayı yazanlar için tam yerinde bir uyarı.",
+                "en": "And immediately the reciprocity comes: <em>“I am not known except through you, just as truly you are not existent except through Me. So whoever knows you has known Me. And yet I am not known, and neither are you.”</em> The sentence gives twice and takes back once: knowing is possible, but not to the depths. For whoever writes this page, a well-placed warning.",
+                "pt": "E logo vem a reciprocidade: <em>“Não sou conhecido senão através de ti, tal como verdadeiramente tu não existes senão através de Mim. Assim, quem te conhece conheceu-Me. E contudo Eu não sou conhecido, nem tu o és.”</em> A frase dá duas vezes e retira uma: conhecer é possível, mas não até ao fundo. Para quem escreve esta página, um aviso bem colocado."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, VII. Fass (Konuk şerhi, s. 506-507)",
+                "en": "Fusus al-Hikam, Bezel VII (Konuk's commentary, p. 506-507)",
+                "pt": "Fusus al-Hikam, Engaste VII (comentário de Konuk, p. 506-507)"
+              },
+              "caption": {
+                "tr": "Üç basamak da metnin; sıra ve son basamağın vurgusu bizim. Sarmal çizmemizin sebebi bu bölümde en açık: ikinci ma'rifet birinciyi <em>iptal etmiyor</em>, aynı yere ikinci kez dönüyor — Konuk'un tarifiyle, önce nefsinden Rabb'ine, sonra Rabb'inden nefsine. Aynı nokta, bir kat yukarıdan.",
+                "en": "All three steps are the text's; the ordering and the emphasis of the last are ours. Why a spiral is clearest in this section: the second knowing does not <em>cancel</em> the first, it returns to the same place a second time — in Konuk's description, first from your soul to your Lord, then from your Lord to your soul. The same point, one turn higher.",
+                "pt": "Os três degraus são do texto; a ordenação e a ênfase do último são nossas. Porquê uma espiral é mais claro nesta secção: o segundo conhecer não <em>anula</em> o primeiro, regressa ao mesmo lugar uma segunda vez — na descrição de Konuk, primeiro da tua alma ao teu Senhor, depois do teu Senhor à tua alma. O mesmo ponto, uma volta acima."
+              },
+              "helix": {
+                "id": "fs7-iki-marifet",
+                "turns": 1.35,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs7-m1",
+                    "label": {
+                      "tr": "Birinci ma'rifet: nefsinden Rabb'ine",
+                      "en": "First knowing: from your soul to your Lord",
+                      "pt": "Primeiro conhecer: da tua alma ao teu Senhor"
+                    },
+                    "note": {
+                      "tr": "Konuk'un tarifi: <em>“kendinin âciz, fakir, menba'-ı nekâyis ve şürûr olup, sendeki kemâlâtın âriyet olduğunu; ve Rabb'inin Kâdir, Ganî… olduğunu anlamış idin.”</em> Eksikten tama bakan bir biliş.",
+                      "en": "Konuk's description: <em>“you had understood that you are incapable, poor, a source of defects, and that whatever perfection is in you is on loan; and that your Lord is Powerful, Rich…”</em> A knowing that looks from lack toward fullness.",
+                      "pt": "A descrição de Konuk: <em>“tinhas compreendido que és incapaz, pobre, fonte de defeitos, e que qualquer perfeição em ti é emprestada; e que o teu Senhor é Poderoso, Rico…”</em> Um conhecer que olha da falta para a plenitude."
+                    }
+                  },
+                  {
+                    "id": "fs7-m2",
+                    "label": {
+                      "tr": "İkinci ma'rifet: Rabb'inden nefsine",
+                      "en": "Second knowing: from your Lord to your soul",
+                      "pt": "Segundo conhecer: do teu Senhor à tua alma"
+                    },
+                    "note": {
+                      "tr": "<em>“bu def'a, nefsinin mezâhir-i Hak'tan bir mazhar olduğunu bilmiş olursun”</em> — ve Konuk bunu öncekinden ayırıyor: <em>“bu ma'rifet evvelkinden etemm ve ekmeldir.”</em> Aynı nefis, ama bu kez öbür uçtan görülüyor.",
+                      "en": "<em>“This time you come to know that your own soul is one of the loci of the Real”</em> — and Konuk marks it off from the first: <em>“this knowing is fuller and more complete than the earlier one.”</em> The same soul, but now seen from the other end.",
+                      "pt": "<em>“Desta vez chegas a saber que a tua própria alma é um dos lugares do Real”</em> — e Konuk distingue-o do primeiro: <em>“este conhecer é mais pleno e mais completo do que o anterior.”</em> A mesma alma, mas agora vista da outra ponta."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs7-m3",
+                    "label": {
+                      "tr": "Ve ikisi bir arada: sen abdsin ve sen Rab'sin",
+                      "en": "And both at once: you are servant and you are lord",
+                      "pt": "E ambos ao mesmo tempo: és servo e és senhor"
+                    },
+                    "note": {
+                      "tr": "Fassın kapanış beyti: <em>“sen abdsin ve sen Rab'sin; o kimse için ki, onun için onda sen abdsin.”</em> Konuk şerhinde iki yönlü: Rabb-i hâssın senin üzerinde hükmediyor, ama onun sana hükmü <em>“ancak lisân-ı isti'dâdın ile vâki' olan talebine müstenid”</em> — yani sen de onun üzerinde bir Rab'sin.",
+                      "en": "The bezel's closing verse: <em>“you are a servant and you are a lord — to the one for whom, in him, you are a servant.”</em> In Konuk's reading it runs both ways: your particular Lord rules over you, yet His ruling over you <em>“rests only on the request made through the tongue of your own preparedness”</em> — so you too are a lord over Him.",
+                      "pt": "O verso final do engaste: <em>“és servo e és senhor — para aquele para quem, nele, és servo.”</em> Na leitura de Konuk corre nos dois sentidos: o teu Senhor particular governa sobre ti, mas o Seu governar sobre ti <em>“assenta apenas no pedido feito pela língua da tua própria predisposição”</em> — logo, também tu és senhor sobre Ele."
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Füsûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk — Kelime-i İsmâîliyye'de Mündemic Hikmet-i Aliyye (I. cilt, s. 489-520)",
+          "en": "Fusus al-Hikam, Translation and Commentary, Ahmed Avni Konuk — The Wisdom of Loftiness in the Word of Ishmael (vol. I, pp. 489-520)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário, Ahmed Avni Konuk — A Sabedoria da Elevação na Palavra de Ismael (vol. I, pp. 489-520)"
+        }
+      ]
     },
     {
       "id": "fs8",
