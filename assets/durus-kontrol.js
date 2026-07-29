@@ -24,7 +24,7 @@
 (function () {
   "use strict";
 
-  var SURUM = "s3";
+  var SURUM = "s4";
   var DISMISS_KEY = "dost-durus-susturulan";
 
   // YALNIZ TÜRKÇE (s3, kullanıcı kararı). Gerekçe: kalıplar Türkçe için
@@ -443,29 +443,36 @@
   // Yalnız o dal taranıyor (s3). Hiçbir dil sözlüğünün altında olmayan
   // düz metinler de taranmıyor: onlar id/url/etiket gibi alanlar, revize
   // edilecek düzyazı değil.
-  function gez(o, alan, kayit, dilTr, cb) {
+  // `kok`: yoldaki EN DIŞTAKİ id'li kayıt -- gezinmenin hedefi bu olmalı.
+  // `kayit`: en yakın id'li kayıt -- başlık/etiket için. Fütûhât
+  // kısımlarında ikisi ayrışıyor: kök `c14k158` (kısmın kendisi, yani
+  // açılacak sayfa), yakın kayıt `c14k158-s1` (bölüm). Önce yalnız
+  // yakını taşıyorduk ve `goTo("futuhat","c14k158-s1")` diye gidiyorduk;
+  // kısım açılıyordu ama doğru kısım olduğu tesadüftü.
+  function gez(o, alan, kok, kayit, dilTr, cb) {
     if (o && typeof o === "object" && !Array.isArray(o)) {
-      var k = (typeof o.id === "string") ? o : kayit;
-      var ad = k && (k.id !== (kayit && kayit.id)) ? k : kayit;
+      var yakin = (typeof o.id === "string") ? o : kayit;
+      var yeniKok = kok || ((typeof o.id === "string") ? o : null);
       Object.keys(o).forEach(function (anahtar) {
-        gez(o[anahtar], DIL[anahtar] ? alan : anahtar, ad,
+        gez(o[anahtar], DIL[anahtar] ? alan : anahtar, yeniKok, yakin,
             DIL[anahtar] ? (anahtar === "tr") : dilTr, cb);
       });
     } else if (Array.isArray(o)) {
-      o.forEach(function (v) { gez(v, alan, kayit, dilTr, cb); });
+      o.forEach(function (v) { gez(v, alan, kok, kayit, dilTr, cb); });
     } else if (typeof o === "string") {
-      if (dilTr) cb(alan, o, kayit);
+      if (dilTr) cb(alan, o, kok, kayit);
     }
   }
 
   function dosyaTara(yol, view, etiket, bulgular) {
     return json(yol).then(function (d) {
-      gez(d, null, null, false, function (alan, s, kayit) {
+      gez(d, null, null, null, false, function (alan, s, kok, kayit) {
         if (MUAF_ALAN[alan] || s.length < 40) return;
         kurallariUygula(alintisizMetin(s), s).forEach(function (b) {
           bulgular.push({
             kural: b.kural, esler: b.esler, anahtar: b.anahtar,
-            etiket: etiket, view: view, id: kayit && kayit.id,
+            etiket: etiket, view: view,
+            id: (kok && kok.id) || (kayit && kayit.id),
             baslik: kayit && (kayit.title || kayit.name || kayit.topic || kayit.question || kayit.label),
             metin: s,
           });
@@ -474,6 +481,83 @@
     }).catch(function (e) {
       console.warn("Duruş taraması: " + yol + " okunamadı", e);
     });
+  }
+
+  // --- "buradayım": hedefe gidip ilgili paragrafı gösterme -------------
+  // Doğru sayfayı açmak yetmiyordu; kullanıcı paragrafı elle arıyordu.
+  // Gezindikten sonra metni DOM'da bulup ekrana getiriyor, paragrafı
+  // kısa süre vurguluyor ve eşleşen ifadeyi geçici bir <mark> ile
+  // işaretliyor. İçerik eşzamansız çizildiği için bir süre yokluyoruz.
+  function sadelestir(s) {
+    return String(s).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  }
+  function trKucuk(s) { return String(s).toLocaleLowerCase("tr"); }
+
+  var vurguZaman = null;
+  function vurguTemizle() {
+    document.querySelectorAll(".durus-vurgu").forEach(function (el) {
+      el.classList.remove("durus-vurgu");
+    });
+    document.querySelectorAll("mark.durus-vurgu-es").forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      while (m.firstChild) p.insertBefore(m.firstChild, m);
+      p.removeChild(m);
+      p.normalize();
+    });
+  }
+
+  // Eşleşen ifadeyi tek bir metin düğümü içinde bulup <mark>'a sarar.
+  // Düğüm sınırına denk gelirse (araya bir <em>/<a> girmişse) vazgeçer --
+  // paragraf vurgusu zaten yeterli bir "buradayım".
+  function esiIsaretle(el, es) {
+    var yuru = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var hedef = trKucuk(es);
+    var n;
+    while ((n = yuru.nextNode())) {
+      if (n.parentNode && n.parentNode.closest(".durus-rozet-grup")) continue;
+      var i = trKucuk(n.nodeValue).indexOf(hedef);
+      if (i < 0) continue;
+      var r = document.createRange();
+      r.setStart(n, i);
+      r.setEnd(n, i + es.length);
+      var m = document.createElement("mark");
+      m.className = "durus-vurgu-es";
+      try { r.surroundContents(m); return m; } catch (e) { return null; }
+    }
+    return null;
+  }
+
+  function vurgula(bulgu) {
+    vurguTemizle();
+    if (vurguZaman) { clearTimeout(vurguZaman); vurguZaman = null; }
+    var duz = sadelestir(bulgu.metin);
+    var es = bulgu.esler[0].es;
+    // İki kademeli arama: önce metnin başından uzunca bir dilim (kesin),
+    // bulunamazsa yalnız eşleşen ifade (honorifics gibi eklentiler metni
+    // değiştirmiş olabilir).
+    var uzun = trKucuk(duz.slice(0, 90));
+    var kisa = trKucuk(es);
+    var bitis = Date.now() + 8000;
+
+    (function dene() {
+      var adaylar = document.querySelectorAll(SECICI);
+      var el = null, yedek = null;
+      for (var i = 0; i < adaylar.length; i++) {
+        var t = trKucuk(sadelestir(adaylar[i].textContent));
+        if (t.indexOf(uzun) !== -1) { el = adaylar[i]; break; }
+        if (!yedek && t.indexOf(kisa) !== -1) yedek = adaylar[i];
+      }
+      el = el || yedek;
+      if (!el) {
+        if (Date.now() < bitis) setTimeout(dene, 220);
+        return;
+      }
+      esiIsaretle(el, es);
+      el.classList.add("durus-vurgu");
+      el.scrollIntoView({ block: "center", behavior: "smooth" });
+      vurguZaman = setTimeout(vurguTemizle, 6000);
+    })();
   }
 
   function siteTara() {
@@ -540,6 +624,7 @@
     bs.forEach(function (b) { (gruplar[b.kural.id] = gruplar[b.kural.id] || []).push(b); });
     var sirali = KURALLAR.filter(function (k) { return gruplar[k.id]; });
 
+    bs.forEach(function (b, i) { b.__i = i; });
     var kSay = bs.filter(function (b) { return b.kural.seviye === "kural"; }).length;
     body.innerHTML =
       '<p class="durus-site__ozet">🔸 ' + kSay + " kural · 🔹 " + (bs.length - kSay)
@@ -551,7 +636,7 @@
           + '<h3>' + (k.seviye === "kural" ? "🔸" : "🔹") + " " + esc(k.ad)
           + ' <span>' + g.length + "</span></h3>"
           + '<p class="durus-site__neden">' + esc(k.neden) + "</p>"
-          + g.map(function (b, i) { return siteSatir(b, k.id + "-" + i); }).join("")
+          + g.map(function (b) { return siteSatir(b); }).join("")
           + "</section>";
       }).join("");
 
@@ -565,13 +650,15 @@
     body.querySelectorAll("a.durus-site__git").forEach(function (a) {
       a.addEventListener("click", function (e) {
         e.preventDefault();
+        var b = bs[Number(a.dataset.i)];
         siteKapat();
         window.__dostNav.goTo(a.dataset.view, a.dataset.id || undefined);
+        if (b) vurgula(b);
       });
     });
   }
 
-  function siteSatir(b, key) {
+  function siteSatir(b) {
     var i = b.esler[0].i;
     var duz = alintisizMetin(b.metin);
     var bas = Math.max(0, i - 90);
@@ -582,7 +669,8 @@
     return '<div class="durus-site__satir">'
       + '<p class="durus-site__nere">' + nere
       + (b.view && b.id
-          ? ' <a class="durus-site__git" href="#" data-view="' + esc(b.view) + '" data-id="' + esc(b.id) + '">aç →</a>'
+          ? ' <a class="durus-site__git" href="#" data-i="' + b.__i + '" data-view="' + esc(b.view)
+            + '" data-id="' + esc(b.id) + '">aç →</a>'
           : "")
       + "</p>"
       + '<p class="durus-site__parca">' + parca + "</p>"
@@ -599,6 +687,33 @@
   // iki dosya bağımsız kalıyor ve kip kapanınca bütün işaretler siliniyor.
   var acik = false;
   var icerikGozcusu = null;
+  var taramaZaman = null;
+
+  // Bir mutasyon kaydı yalnızca BİZİM ürettiğimiz düğümlerden mi
+  // oluşuyor? (Yukarıdaki (a) korumasının ölçütü.)
+  var BIZIM_SINIFLAR = ["durus-rozet-grup", "durus-rozet", "durus-cip",
+                        "durus-kutu", "durus-site", "durus-vurgu-es"];
+  function bizimDugum(n) {
+    if (!n) return false;
+    if (n.nodeType === 3) {
+      // Kendi <mark>'ımızı sararken/çözerken metin düğümü taşınıyor.
+      return !!(n.parentNode && n.parentNode.closest
+                && n.parentNode.closest("mark.durus-vurgu-es, .durus-rozet-grup, .durus-site, .durus-kutu"));
+    }
+    if (n.nodeType !== 1) return true;
+    for (var i = 0; i < BIZIM_SINIFLAR.length; i++) {
+      if (n.classList && n.classList.contains(BIZIM_SINIFLAR[i])) return true;
+    }
+    return !!(n.closest && n.closest(".durus-site, .durus-kutu, .durus-rozet-grup"));
+  }
+  function bizimMi(k) {
+    var hepsi = [].slice.call(k.addedNodes).concat([].slice.call(k.removedNodes));
+    return hepsi.length > 0 && hepsi.every(bizimDugum);
+  }
+  function taramaGecikmeli() {
+    if (taramaZaman) clearTimeout(taramaZaman);
+    taramaZaman = setTimeout(function () { taramaZaman = null; tara(); }, 300);
+  }
 
   function kipDegisti() {
     var simdi = document.body.classList.contains("dost-edit-mode");
@@ -606,17 +721,28 @@
     acik = simdi;
     if (acik) {
       tara();
-      // Detay paneli / kısım metni sonradan çiziliyor; her değişimde
-      // yeniden tara. Kendi rozetlerimiz sonsuz döngü kurmasın diye
-      // gözcü tarama sırasında duraklatılıyor.
-      icerikGozcusu = new MutationObserver(function () {
-        icerikGozcusu.disconnect();
-        tara();
-        icerikGozcusu.observe(document.body, { childList: true, subtree: true });
+      // Detay paneli / kısım metni sonradan çiziliyor, o yüzden DOM'u
+      // izliyoruz. Ama bu iki koruma olmadan sayfa KİLİTLENİYOR:
+      //
+      // (a) Kendi ürettiğimiz düğümleri (rozet, sayaç, kutu, vurgu)
+      //     yok sayıyoruz. Yoksa şu zincir kuruluyor: biz rozet ekliyoruz
+      //     → sayfadaki başka bir gözcü (honorifics/çapraz-link gibi metne
+      //     dokunanlar) tetikleniyor ve DOM'u değiştiriyor → bizim gözcü
+      //     tetikleniyor → yeniden rozet ekliyoruz → …
+      // (b) Tarama bir zamanlayıcıya alınıyor. MutationObserver geri
+      //     çağrıları mikro-görev; uçtan uca bir zincir kurulduğunda
+      //     fetch/promise'lere hiç sıra gelmiyor ve sayfa yanıt vermiyor.
+      //     setTimeout bir makro-görev olduğu için olay döngüsü nefes
+      //     alıyor. (2026-07-29'da ölçüldü: @revise açıkken sayfadaki bir
+      //     fetch hiç tamamlanmıyordu.)
+      icerikGozcusu = new MutationObserver(function (kayitlar) {
+        if (kayitlar.every(bizimMi)) return;
+        taramaGecikmeli();
       });
       icerikGozcusu.observe(document.body, { childList: true, subtree: true });
     } else {
       if (icerikGozcusu) { icerikGozcusu.disconnect(); icerikGozcusu = null; }
+      if (taramaZaman) { clearTimeout(taramaZaman); taramaZaman = null; }
       temizle();
     }
   }
@@ -642,5 +768,12 @@
     tara: tara, bulgular: bulgular, kurallar: KURALLAR, surum: SURUM,
     siteTara: siteTara, siteAc: siteAc,
     metinTara: function (s) { return kurallariUygula(alintisizMetin(s), s); },
+    vurgula: vurgula, vurguTemizle: vurguTemizle,
+    // Tek dosya taraması: testler 209 dosyayı indirmeden hedef id'lerini
+    // doğrulayabilsin diye açık.
+    dosyaTara: function (yol, view, etiket) {
+      var bs = [];
+      return dosyaTara(yol, view, etiket, bs).then(function () { return bs; });
+    },
   };
 })();

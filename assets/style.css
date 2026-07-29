@@ -5978,6 +5978,40 @@ body.share-stage-open { overflow: hidden; }
 }
 .durus-site__sustur:hover { border-color: var(--accent-interactive); color: var(--text-primary); }
 
+/* --- "buradayım": panelden gelince ilgili paragrafı göster --- */
+/* Doğru sayfayı açmak yetmiyordu, paragraf elle aranıyordu. Vurgu kısa
+   süreli ve kendiliğinden sönüyor: kalıcı bir işaret değil, bir işaret
+   etme hareketi. */
+.durus-vurgu {
+  border-radius: 6px;
+  animation: durus-vurgu-sonme 6s ease-out forwards;
+}
+@keyframes durus-vurgu-sonme {
+  0%, 55% {
+    background: color-mix(in srgb, var(--helix-gold) 22%, transparent);
+    box-shadow: -6px 0 0 0 var(--helix-gold);
+  }
+  100% { background: transparent; box-shadow: -6px 0 0 0 transparent; }
+}
+mark.durus-vurgu-es {
+  background: color-mix(in srgb, var(--helix-gold) 62%, transparent);
+  color: var(--text-primary);
+  border-radius: 3px;
+  padding: 0 2px;
+  animation: durus-es-sonme 6s ease-out forwards;
+}
+@keyframes durus-es-sonme {
+  0%, 55% { background: color-mix(in srgb, var(--helix-gold) 62%, transparent); }
+  100% { background: color-mix(in srgb, var(--helix-gold) 22%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .durus-vurgu, mark.durus-vurgu-es { animation: none; }
+  .durus-vurgu {
+    background: color-mix(in srgb, var(--helix-gold) 18%, transparent);
+    box-shadow: -6px 0 0 0 var(--helix-gold);
+  }
+}
+
 /* ===========================================================================
    Taşıyanlar görünümü — Fütûhât 13 ve 476'yı yan yana koyan çift sarmal.
    Renkler bilerek Füsûs sahnelerinin (.helix-scene__*) tokenlarıyla aynı:
