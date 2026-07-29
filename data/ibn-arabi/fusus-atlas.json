@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs9",
+  "activeFassId": "fs10",
   "fasses": [
     {
       "id": "fs1",
@@ -3733,7 +3733,7 @@
     {
       "id": "fs10",
       "no": 10,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "Hûd",
         "en": "Hud",
@@ -3743,7 +3743,331 @@
         "tr": "Hikmet-i Ahadiyye",
         "en": "Wisdom of Oneness",
         "pt": "Sabedoria da Unicidade"
-      }
+      },
+      "title": {
+        "tr": "Herkes Kendi Yolunda Doğru Yürüyor — ve Yine de Bir Çağrı Var",
+        "en": "Everyone Walks Straight on His Own Path — and Still There Is a Call",
+        "pt": "Cada Um Anda Direito no Seu Caminho — e Ainda Assim Há um Chamamento"
+      },
+      "pageRange": {
+        "tr": "X. Fass, s. 631-697",
+        "en": "Bezel X, pp. 631-697",
+        "pt": "Engaste X, pp. 631-697"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Bu fass VII. fassın (İsmâîl) bıraktığı yerden devam ediyor ve onu en uç noktasına götürüyor. Orada herkesin bir Rabb-i hâssı olduğunu okumuştuk; burada o Rabbin bir de <em>yolu</em> olduğunu okuyoruz — ve herkes kendi yolunda <strong>doğru</strong> yürüyor: <em>“her yürüyen Rabb'in doğru yolu üzerinde yürür. Binâenaleyh bu vecihden onlar 'mağzûbun-aleyhim ve dâll' değildir.”</em> Burada durulsa bu, her şeyi eşitleyen kolay bir okuma olurdu. Ama fass durmuyor: hemen ardından bir itiraz koyuyor (<em>“şu hâlde davetten ne fâide hâsıl olur?”</em>) ve ona cevap veriyor. Bize en değerli gelen yer, o cevap.",
+          "en": "This bezel continues where Bezel VII (Ishmael) left off and carries it to its furthest point. There we read that each has a particular Lord; here we read that this Lord also has a <em>path</em> — and everyone walks <strong>straight</strong> on his own: <em>“every walker walks on the straight path of his Lord. So from this aspect they are not ‘those against whom there is anger, nor those who go astray'.”</em> Stopping here would make this an easy reading that levels everything. But the bezel does not stop: it immediately raises an objection (<em>“then what use is the call?”</em>) and answers it. The answer is what we found most valuable.",
+          "pt": "Este engaste continua onde o Engaste VII (Ismael) parou e leva-o ao seu ponto extremo. Ali lemos que cada um tem um Senhor particular; aqui lemos que esse Senhor tem também um <em>caminho</em> — e cada um anda <strong>direito</strong> no seu: <em>“todo aquele que anda, anda no caminho reto do seu Senhor. Portanto, sob este aspeto, não são ‘aqueles contra quem há ira, nem os que se extraviam'.”</em> Parar aqui faria disto uma leitura fácil que nivela tudo. Mas o engaste não para: levanta logo uma objeção (<em>“então de que serve o chamamento?”</em>) e responde-lhe. Foi a resposta que mais nos valeu."
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, X. Fass (Konuk şerhi, s. 632-633)",
+          "en": "Fusus al-Hikam, Bezel X (Konuk's commentary, p. 632-633)",
+          "pt": "Fusus al-Hikam, Engaste X (comentário de Konuk, p. 632-633)"
+        },
+        "caption": {
+          "tr": "Dört basamağın hepsi metnin; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi son basamak: yollar çoğalarak dağılıyor gibi görünüyor, ama <em>“cemî'-i esmânın yollarını câmi' olan sırât-ı müstakîm, 'Allah' ismiyle müsemmâ olan zât-ı ulûhiyyete mahsustur”</em> — yani dağılma bir dağılma değil, geri toplanan bir açılım.",
+          "en": "All four steps are the text's; the spiral and the closing are ours. Why a spiral is the last step: the paths seem to multiply and scatter, yet <em>“the straight path that gathers the paths of all the names belongs to the divine Essence named ‘Allah'”</em> — so the scattering is not a scattering but an opening that gathers back.",
+          "pt": "Os quatro degraus são do texto; a espiral e o fecho são nossos. Porquê uma espiral está no último degrau: os caminhos parecem multiplicar-se e dispersar-se, e contudo <em>“o caminho reto que reúne os caminhos de todos os nomes pertence à Essência divina chamada ‘Allah'”</em> — logo, a dispersão não é dispersão mas uma abertura que volta a reunir."
+        },
+        "helix": {
+          "id": "fs10-sirat",
+          "turns": 1.5,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs10-s1",
+              "label": {
+                "tr": "Her isim bir Rab'dir",
+                "en": "Every name is a Lord",
+                "pt": "Cada nome é um Senhor"
+              },
+              "note": {
+                "tr": "<em>“her bir mahlûku terbiye eden, onun tâbi' olduğu bir ism-i hâssıdır… Binâenaleyh her bir 'isim' bir Rab'dir.”</em> VII. fassta kurulan yapı, burada başlangıç noktası.",
+                "en": "<em>“What nurtures each creature is a particular name it follows… Therefore every ‘name' is a Lord.”</em> The structure built in Bezel VII is here the starting point.",
+                "pt": "<em>“O que educa cada criatura é um nome particular que ela segue… Portanto cada ‘nome' é um Senhor.”</em> A estrutura construída no Engaste VII é aqui o ponto de partida."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs10-s2",
+              "label": {
+                "tr": "Her Rabbin bir yolu var",
+                "en": "Every Lord has a path",
+                "pt": "Cada Senhor tem um caminho"
+              },
+              "note": {
+                "tr": "<em>“her bir mahlûk tâbi' olduğu ism-i mahsûsun muktezâsı üzerine hareket edip o ismin tarîkinde yürür. O tarîk dahi o 'ism'in… 'sırât-ı müstakîm'idir.”</em> Ve sayı: <em>“mahlûkâtın nefesleri sayısınca Hakk'a yol vardır.”</em>",
+                "en": "<em>“Each creature moves according to what its own name requires and walks on that name's road. And that road is that name's ‘straight path'.”</em> And the count: <em>“there are as many roads to the Real as the breaths of creatures.”</em>",
+                "pt": "<em>“Cada criatura move-se conforme o que o seu próprio nome exige e anda na estrada desse nome. E essa estrada é o ‘caminho reto' desse nome.”</em> E a conta: <em>“há tantos caminhos até ao Real quantos os alentos das criaturas.”</em>"
+              }
+            },
+            {
+              "id": "fs10-s3",
+              "label": {
+                "tr": "Ve yollar birbirine eğri görünür",
+                "en": "And the paths look crooked to one another",
+                "pt": "E os caminhos parecem tortos uns aos outros"
+              },
+              "note": {
+                "tr": "<em>“Dârr isminin tarîki, Nâfi' isminin tarîkine nisbeten müstakîm olmaz; ve mü'min kâfiri, kâfir dahi mü'mini eğri yolda görür.”</em> Konuk'un örnekleri şaşırtıcı derecede somut: zehir Dârr'ın, bal Nâfi'in mazharı.",
+                "en": "<em>“The road of the name Harmer is not straight in relation to the road of the name Benefiter; and the believer sees the denier on a crooked road, and the denier the believer.”</em> Konuk's examples are strikingly concrete: poison is the locus of the Harmer, honey of the Benefiter.",
+                "pt": "<em>“A estrada do nome Aquele que Prejudica não é reta em relação à do nome Aquele que Beneficia; e o crente vê o descrente numa estrada torta, e o descrente ao crente.”</em> Os exemplos de Konuk são notavelmente concretos: o veneno é lugar d'Aquele que Prejudica, o mel d'Aquele que Beneficia."
+              }
+            },
+            {
+              "id": "fs10-s4",
+              "label": {
+                "tr": "Ama hepsi tek bir yolda toplanır",
+                "en": "Yet all gather into one path",
+                "pt": "Mas todos se reúnem num só caminho"
+              },
+              "note": {
+                "tr": "<em>“ne kadar esmâ-i ilâhiyye varsa, müsemmânın ahadiyeti i'tibâriyle kâffesi müsemmâ-yı Allâh'a vâsıl olur.”</em> Ve o toplayıcı yolda yürüyen: <em>“mazhar-ı ulûhiyyet olan mazhar-ı Muhammedî”</em> ile bütün peygamberler ve kâmil velîler.",
+                "en": "<em>“However many the divine names, by the oneness of the Named they all arrive at the One named Allah.”</em> And who walks that gathering road: <em>“the Muhammadan locus, which is the locus of divinity,”</em> together with all the prophets and the perfected friends of God.",
+                "pt": "<em>“Por muitos que sejam os nomes divinos, pela unicidade d'Aquele que é nomeado todos chegam Àquele chamado Allah.”</em> E quem anda nessa estrada que reúne: <em>“o lugar muhammadiano, que é o lugar da divindade,”</em> com todos os profetas e os amigos perfeitos de Deus."
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs10-s1",
+          "heading": {
+            "tr": "Üç Ahadiyet",
+            "en": "Three Onenesses",
+            "pt": "Três Unicidades"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın adı <em>ahadiyye</em> ama Konuk hemen üç ayrı ahadiyet sayıyor ve Hûd'un hikmetinin hangisine dayandığını açıkça söylüyor. Bu ayrım olmadan fassın geri kalanı yanlış yerden okunuyor — çünkü buradaki birlik, Zât'ın birliği değil, <em>fiillerin</em> birliği.",
+                "en": "The bezel is named for <em>oneness</em>, but Konuk immediately counts three distinct onenesses and says plainly which one Hud's wisdom rests on. Without this distinction the rest of the bezel is read from the wrong place — for the unity here is not the unity of the Essence but of <em>acts</em>.",
+                "pt": "O engaste tem o nome de <em>unicidade</em>, mas Konuk conta de imediato três unicidades distintas e diz claramente em qual assenta a sabedoria de Hud. Sem esta distinção, o resto do engaste lê-se do lugar errado — pois a unidade aqui não é a da Essência mas a dos <em>atos</em>."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, X. Fass (Konuk şerhi, s. 631-632)",
+                "en": "Fusus al-Hikam, Bezel X (Konuk's commentary, p. 631-632)",
+                "pt": "Fusus al-Hikam, Engaste X (comentário de Konuk, p. 631-632)"
+              },
+              "caption": {
+                "tr": "Üç mertebe de metnin; sıra Konuk'un verdiği sıra. Bu sarmalı bilerek <strong>kapatmadık</strong>: aralarında gerçek bir mertebe farkı var ve Konuk üçüncüyü ilk ikisine geri bağlamıyor — <em>“Fass-ı Yûsufî'nin âhirinde 'ahadiyyet-i zâtiyye' ile 'ahadiyyet-i esmâiyye'yi zikretmiş olduğundan, şimdi de… 'ahadiyyet-i rubûbiyyet'i beyân buyurur.”</em> Yani bu üçü tek bir fassın içinde bile dağıtılmış.",
+                "en": "All three levels are the text's, in the order Konuk gives them. We deliberately did <strong>not</strong> close this spiral: there is a real difference of rank between them, and Konuk does not tie the third back to the first two — <em>“since at the end of the Bezel of Joseph he mentioned the oneness of the Essence and the oneness of the names, he now sets out the oneness of lordship.”</em> These three are spread even across bezels.",
+                "pt": "Os três graus são do texto, na ordem em que Konuk os dá. Deliberadamente <strong>não</strong> fechámos esta espiral: há entre eles uma real diferença de grau, e Konuk não liga o terceiro aos dois primeiros — <em>“visto que no fim do Engaste de José mencionou a unicidade da Essência e a dos nomes, expõe agora a unicidade do senhorio.”</em> Estes três estão repartidos mesmo entre engastes."
+              },
+              "helix": {
+                "id": "fs10-ahadiyet",
+                "turns": 1.2,
+                "closing": false,
+                "nodes": [
+                  {
+                    "id": "fs10-a1",
+                    "label": {
+                      "tr": "Ahadiyyet-i zâtiyye",
+                      "en": "Oneness of the Essence",
+                      "pt": "Unicidade da Essência"
+                    },
+                    "note": {
+                      "tr": "<em>“Bunda aslâ kesret i'tibârı yoktur… bu ahadiyet Vâhid'in 'ayn'ıdır.”</em> Dayanağı İhlâs 112/1. Buna <em>“tevhîd-i zât”</em> deniyor.",
+                      "en": "<em>“In it there is no consideration of multiplicity at all… this oneness is the very One.”</em> Its support is Q 112:1. This is called <em>the affirmation of the Essence's unity</em>.",
+                      "pt": "<em>“Nela não há qualquer consideração de multiplicidade… esta unicidade é o próprio Uno.”</em> O seu apoio é Q 112:1. Chama-se a isto <em>a afirmação da unidade da Essência</em>."
+                    }
+                  },
+                  {
+                    "id": "fs10-a2",
+                    "label": {
+                      "tr": "Ahadiyyet-i esmâ ve sıfât",
+                      "en": "Oneness of the names and attributes",
+                      "pt": "Unicidade dos nomes e atributos"
+                    },
+                    "note": {
+                      "tr": "<em>“Ne kadar esmâ ve sıfât-ı ilâhiyye varsa, kesret-i nâmütenâhiyesi ile, zât ile birdir.”</em> Ve bir uyarı: <em>“bu mertebede 'vahdet' Vâhid'in na'tıdır, zâtı değildir.”</em>",
+                      "en": "<em>“However many the divine names and attributes, with their endless multiplicity they are one with the Essence.”</em> With a caution: <em>“at this level ‘unity' is a description of the One, not His Essence.”</em>",
+                      "pt": "<em>“Por muitos que sejam os nomes e atributos divinos, com a sua multiplicidade sem fim são um com a Essência.”</em> Com uma cautela: <em>“neste grau a ‘unidade' é uma descrição do Uno, não a Sua Essência.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs10-a3",
+                    "label": {
+                      "tr": "Ahadiyyet-i ef'âl — ve fass buna dayanıyor",
+                      "en": "Oneness of acts — and the bezel rests on this",
+                      "pt": "Unicidade dos atos — e o engaste assenta nesta"
+                    },
+                    "note": {
+                      "tr": "<em>“zât-ı müteâliye cemî'-i ef'âlin masdarıdır; ve münfailâtın kâffesinde müessirdir. Ve bu ahadiyet 'ahadiyyet-i rubûbiyye'dir. İşte Hûd (a.s.)ın hikmeti bu… ahadiyyete müsteniddir.”</em>",
+                      "en": "<em>“The exalted Essence is the source of all acts and is what acts in every recipient. And this oneness is the oneness of lordship. It is on this oneness that Hud's wisdom rests.”</em>",
+                      "pt": "<em>“A Essência exaltada é a fonte de todos os atos e é o que age em todo o recipiente. E esta unicidade é a unicidade do senhorio. É nesta unicidade que assenta a sabedoria de Hud.”</em>"
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs10-s2",
+          "heading": {
+            "tr": "Nefesler Sayısınca Yol",
+            "en": "As Many Roads as There Are Breaths",
+            "pt": "Tantos Caminhos Quantos os Alentos"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın dayandığı âyet: <em>“Hiçbir zîhayât yoktur, illâ ki Hak onun nâsiyesini âhizdir. Benim Rabb'im muhakkak sırât-ı müstakîm üzeredir.”</em> (Hûd 11/56) Konuk buradaki <em>“dâbbe”</em>yi olabilecek en geniş anlamda alıyor — her mevcûd — ve gerekçesini başka bir âyete bağlıyor: <em>“Allâh'ı hamd ile tesbîh etmeyen hiçbir şey yoktur”</em> (İsrâ 17/44). Mantık şu: tesbîh hayat ister; öyleyse her şey diridir.",
+                "en": "The verse the bezel rests on: <em>“There is no living creature but He holds it by the forelock. Truly my Lord is upon a straight path.”</em> (Q 11:56) Konuk takes <em>“creature”</em> here in the widest possible sense — every existent — and grounds it in another verse: <em>“there is nothing that does not glorify Him with praise”</em> (Q 17:44). The logic: glorification requires life; therefore everything is alive.",
+                "pt": "O versículo em que o engaste assenta: <em>“Não há criatura viva que Ele não segure pela fronte. Verdadeiramente o meu Senhor está sobre um caminho reto.”</em> (Q 11:56) Konuk toma aqui <em>“criatura”</em> no sentido mais amplo possível — todo o existente — e fundamenta-o noutro versículo: <em>“não há nada que não O glorifique com louvor”</em> (Q 17:44). A lógica: glorificar exige vida; logo, tudo está vivo."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ama hayat düz bir şey değil, dereceli: <em>“hayât-ı nebâtât, hayât-ı cemâdâta; ve hayât-ı hayvânât, hayât-ı nebâtâta; ve hayât-ı insân hayât-ı hayvânâta kemâlen tekaddüm ve tafazzul eder.”</em> Ve kapanışı, bu bölümün bütün ağırlığını taşıyan cümle: <em>“cemî'-i eşyâ, ashâb-ı zevk ve şühûd indinde zîhayâttır; ve onun rûhu Rabb-i hâssı olan ism-i ilâhîdir.”</em> Yani her şeyin canlılığı ödünç bir mecaz değil — o şeyin rûhu, ona bakan isim.",
+                "en": "But life is not flat; it is graded: <em>“the life of plants precedes and surpasses that of minerals; that of animals, that of plants; and human life, that of animals.”</em> And the closing sentence carries the whole weight of this section: <em>“for the people of tasting and witnessing, all things are alive; and the spirit of a thing is the divine name that is its particular Lord.”</em> The aliveness of things is not a borrowed metaphor — a thing's spirit is the name that tends it.",
+                "pt": "Mas a vida não é plana; é graduada: <em>“a vida das plantas precede e supera a dos minerais; a dos animais, a das plantas; e a vida humana, a dos animais.”</em> E a frase final carrega todo o peso desta secção: <em>“para as pessoas de gosto e testemunho, todas as coisas estão vivas; e o espírito de uma coisa é o nome divino que é o seu Senhor particular.”</em> A vivacidade das coisas não é metáfora emprestada — o espírito de uma coisa é o nome que dela cuida."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bir soru da metnin kendisinden geliyor ve cevabı fassın yapısını açıklıyor: Hûd âyette <em>“benim Rabb'im”</em> diyor, herkesin bir Rabbi olduğunu söylemiyor. Konuk'un cevabı: Hûd <em>“'Allah' ism-i câmiinin mazharı olan insân-ı kâmil idi”</em> — yani onun Rabbi bütün isimleri toplayan isim; dolayısıyla <em>“Rabb'i kendi nefsine izâfe etmekle”</em> hem toplayıcı yolu açıkça hem de tek tek yolları örtük olarak söylemiş oluyor.",
+                "en": "A question comes from the text itself, and its answer explains the bezel's structure: in the verse Hud says <em>“my Lord,”</em> not that each has a Lord. Konuk's answer: Hud <em>“was a perfect human, the locus of the all-gathering name ‘Allah'”</em> — so his Lord is the name that gathers all names; hence <em>“by attributing the Lord to himself”</em> he states the gathering path explicitly and the several paths implicitly.",
+                "pt": "Uma pergunta vem do próprio texto, e a resposta explica a estrutura do engaste: no versículo Hud diz <em>“o meu Senhor,”</em> não que cada um tenha um Senhor. A resposta de Konuk: Hud <em>“era um humano perfeito, lugar do nome que tudo reúne, ‘Allah'”</em> — logo o seu Senhor é o nome que reúne todos os nomes; assim, <em>“ao atribuir o Senhor a si mesmo”</em> enuncia explicitamente o caminho que reúne e implicitamente os caminhos vários."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs10-s3",
+          "heading": {
+            "tr": "O Hâlde Kimse Sapkın Değil mi?",
+            "en": "Then Is No One Astray?",
+            "pt": "Então Ninguém Está Extraviado?"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass burada kendi söylediğinin en zor sonucunu önümüze koyuyor: <em>“her yürüyen Rabb'in doğru yolu üzerinde yürür. Binâenaleyh bu vecihden onlar 'mağzûbun-aleyhim ve dâll' değildir.”</em> Gerekçe de mekanik: <em>“muktezâ-yı tabiat üzere yürüyen kimseye gazab olunmak mutasavver değildir.”</em> Bir isim kendi mazharına kızmıyor, çünkü mazhar zaten o ismin gerektirdiğini yapıyor.",
+                "en": "Here the bezel puts the hardest consequence of its own claim in front of us: <em>“every walker walks on the straight path of his Lord. So from this aspect they are not ‘those against whom there is anger, nor those who go astray'.”</em> The reasoning is mechanical: <em>“anger against one who walks according to his own nature is not conceivable.”</em> A name is not angry with its own locus, because the locus is doing exactly what that name requires.",
+                "pt": "Aqui o engaste coloca diante de nós a consequência mais dura da sua própria afirmação: <em>“todo aquele que anda, anda no caminho reto do seu Senhor. Portanto, sob este aspeto, não são ‘aqueles contra quem há ira, nem os que se extraviam'.”</em> O raciocínio é mecânico: <em>“não é concebível ira contra quem anda segundo a sua própria natureza.”</em> Um nome não se irrita com o seu próprio lugar, porque o lugar faz exatamente o que esse nome exige."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, X. Fass (Konuk şerhi, s. 635-636)",
+                "en": "Fusus al-Hikam, Bezel X (Konuk's commentary, p. 635-636)",
+                "pt": "Fusus al-Hikam, Engaste X (comentário de Konuk, p. 635-636)"
+              },
+              "caption": {
+                "tr": "Üç basamak da metnin; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi şu: bu üçü bir zincir değil — üçüncü basamak birinciye geri dönüp onu <em>iptal etmeden sınırlıyor</em>. Fassın kendi koyduğu itiraz ve kendi verdiği cevap, aynı cümlenin etrafında dönen iki bakış.",
+                "en": "All three steps are the text's; the spiral and the closing are ours. Why a spiral: these three are not a chain — the third returns to the first and <em>bounds it without cancelling it</em>. The objection the bezel raises against itself and the answer it gives are two views circling one sentence.",
+                "pt": "Os três degraus são do texto; a espiral e o fecho são nossos. Porquê uma espiral: estes três não são uma cadeia — o terceiro regressa ao primeiro e <em>limita-o sem o anular</em>. A objeção que o engaste levanta contra si e a resposta que dá são dois olhares a girar em torno de uma frase."
+              },
+              "helix": {
+                "id": "fs10-cagri",
+                "turns": 1.2,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs10-c1",
+                    "label": {
+                      "tr": "Bu vecihden: kimse sapkın değil",
+                      "en": "From this aspect: no one is astray",
+                      "pt": "Sob este aspeto: ninguém está extraviado"
+                    },
+                    "note": {
+                      "tr": "<em>“her bir isim, kendi mazharından ve onun terbiyesi tahtında olan şeyden râzıdır; ona gazab etmez.”</em> Mutî' de âsî de kendi isminin gereğini yapıyor.",
+                      "en": "<em>“Every name is content with its own locus and with what is under its nurture; it is not angry with it.”</em> Obedient and disobedient alike are doing what their own name requires.",
+                      "pt": "<em>“Cada nome está satisfeito com o seu próprio lugar e com o que está sob a sua educação; não se irrita com ele.”</em> Obediente e desobediente fazem igualmente o que o seu nome exige."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs10-c2",
+                    "label": {
+                      "tr": "Ama başka bir isme nazaran: sapkın",
+                      "en": "But in relation to another name: astray",
+                      "pt": "Mas em relação a outro nome: extraviado"
+                    },
+                    "note": {
+                      "tr": "<em>“hükümde Rabb-i hâssına muhâlif olan diğer Rabb-i hâssa nazaran o mazhar, 'mağzûbun-aleyhim ve dâllîn' zümresindendir.”</em> Ve simetrik: <em>“ism-i Mudill… abd-i mü'mine gazab eder ve onu dalâlette görür.”</em> İki isim birbirini hükümde tanımıyor.",
+                      "en": "<em>“In relation to another particular Lord whose ruling opposes his own, that locus does fall among ‘those against whom there is anger and those who go astray'.”</em> And symmetrically: <em>“the name Misleader is angry with the believing servant and sees him as astray.”</em> The two names do not recognise one another in judgement.",
+                      "pt": "<em>“Em relação a outro Senhor particular cujo juízo se opõe ao seu, esse lugar cai entre ‘aqueles contra quem há ira e os que se extraviam'.”</em> E simetricamente: <em>“o nome Que Desvia irrita-se com o servo crente e vê-o como extraviado.”</em> Os dois nomes não se reconhecem no juízo."
+                    }
+                  },
+                  {
+                    "id": "fs10-c3",
+                    "label": {
+                      "tr": "Ve çağrı: noksandan kemâle",
+                      "en": "And the call: from the deficient to the complete",
+                      "pt": "E o chamamento: do deficiente ao completo"
+                    },
+                    "note": {
+                      "tr": "Fass itirazı kendisi soruyor — <em>“şu hâlde böyle sırât-ı müstakîm üzerinde davetten ne fâide hâsıl olur?”</em> — ve cevap veriyor: <em>“da'vet ism-i Mudill'den ism-i Hâdî'ye… ve turuk-ı müteferrikadan… kâffe-i turûku câmi' bulunan sırât-ı müstakîme”</em>dir. Konuk özetliyor: <em>“tarîk-i noksândan tarîk-i kemâle davet olunur.”</em>",
+                      "en": "The bezel raises the objection itself — <em>“then what use is a call upon such a straight path?”</em> — and answers: <em>“the call is from the name Misleader to the name Guide… and from the scattered roads to the straight path that gathers all roads.”</em> Konuk sums it up: <em>“one is called from the deficient road to the complete road.”</em>",
+                      "pt": "O engaste levanta ele próprio a objeção — <em>“então de que serve um chamamento sobre um tal caminho reto?”</em> — e responde: <em>“o chamamento é do nome Que Desvia para o nome Guia… e das estradas dispersas para o caminho reto que reúne todas as estradas.”</em> Konuk resume: <em>“chama-se da estrada deficiente para a estrada completa.”</em>"
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs10-s4",
+          "heading": {
+            "tr": "VII. Fassta Koyduğumuz Çekince, Burada Metnin Kendisinden Geliyor",
+            "en": "The Caution We Entered in Bezel VII Comes Here from the Text Itself",
+            "pt": "A Cautela Que Registámos no Engaste VII Vem Aqui do Próprio Texto"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "VII. fassı okurken bir çekince koymuştuk: oradaki <em>“herkes kendi Rabb'i indinde makbûldür”</em> okumasından kolay bir hoşgörü dersi çıkarmamak gerektiğini yazmıştık, çünkü metin onu söylemiyordu. O zaman bu bizim koyduğumuz bir sınırdı. Burada aynı sınırı <strong>fassın kendisi</strong> koyuyor — ve bizden daha net koyuyor.",
+                "en": "Reading Bezel VII we entered a caution: we wrote that no easy lesson in tolerance should be drawn from its reading that <em>“everyone is accepted by his own Lord,”</em> because the text did not say that. At the time that was a limit <em>we</em> set. Here <strong>the bezel itself</strong> sets the same limit — and sets it more sharply than we did.",
+                "pt": "Ao ler o Engaste VII registámos uma cautela: escrevemos que não se devia tirar uma lição fácil de tolerância da leitura de que <em>“cada um é aceite pelo seu próprio Senhor,”</em> porque o texto não dizia isso. Nessa altura era um limite que <em>nós</em> púnhamos. Aqui é <strong>o próprio engaste</strong> que põe o mesmo limite — e põe-no mais nitidamente do que nós."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sınırın kendisi şu: <em>“bu vecihden”</em> kaydı. Kimsenin sapkın olmaması <em>bir vecihten</em>, yani ahadiyyet-i rubûbiyye açısından. Başka bir vecihten — isimler birbiriyle karşılaştırıldığında — hüküm geri geliyor. Ve tam da bu yüzden çağrı boşa düşmüyor: yollar arasında bir <em>mertebe</em> farkı var, <em>“tarîk-i noksân”</em> ile <em>“tarîk-i kemâl”</em>. Metin eşitlemiyor; sıralıyor.",
+                "en": "The limit is the phrase <em>“from this aspect.”</em> No one is astray <em>from one aspect</em> — that of the oneness of lordship. From another aspect — when the names are set against one another — judgement returns. And precisely for this reason the call is not idle: there is a <em>difference of rank</em> between the roads, the <em>deficient road</em> and the <em>complete road</em>. The text does not level; it ranks.",
+                "pt": "O limite é a expressão <em>“sob este aspeto.”</em> Ninguém está extraviado <em>sob um aspeto</em> — o da unicidade do senhorio. Sob outro aspeto — quando os nomes se confrontam — o juízo regressa. E é precisamente por isso que o chamamento não é vão: há uma <em>diferença de grau</em> entre as estradas, a <em>estrada deficiente</em> e a <em>estrada completa</em>. O texto não nivela; ordena."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunu kendi okumamız açısından not ediyoruz, çünkü bir şey öğretti: VII. fassta koyduğumuz çekince doğru çıktı ama <em>eksikti</em>. Biz yalnızca “buradan hoşgörü dersi çıkarma” demiştik; fass ise bunun yerine <strong>ne</strong> konacağını da söylüyor — bir yön, bir çağrı, bir mertebe farkı. Anlamaya çalışırken bir sonraki bölümün önceki bölümü nasıl tamamladığının iyi bir örneği; ve bizim tek bir fassa bakarak verdiğimiz hükümlerin neden geçici olması gerektiğinin de.",
+                "en": "We note this for our own reading, because it taught us something: the caution we entered in Bezel VII proved right but <em>incomplete</em>. We had only said “do not draw a lesson in tolerance from this”; the bezel goes on to say <strong>what</strong> stands in its place — a direction, a call, a difference of rank. A good example of how a later chapter completes an earlier one in this attempt at understanding; and of why the judgements we make from a single bezel have to stay provisional.",
+                "pt": "Registamo-lo para a nossa própria leitura, porque nos ensinou algo: a cautela que pusemos no Engaste VII revelou-se certa mas <em>incompleta</em>. Tínhamos apenas dito “não tires daqui uma lição de tolerância”; o engaste diz ainda <strong>o que</strong> fica no seu lugar — uma direção, um chamamento, uma diferença de grau. Um bom exemplo de como um capítulo posterior completa um anterior nesta tentativa de compreender; e de porque os juízos que fazemos a partir de um só engaste têm de permanecer provisórios."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Füsûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk — Kelime-i Hûdiyye'de Mündemic Hikmet-i Ahadiyye (I. cilt, s. 631-697)",
+          "en": "Fusus al-Hikam, Translation and Commentary, Ahmed Avni Konuk — The Wisdom of Oneness in the Word of Hud (vol. I, pp. 631-697)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário, Ahmed Avni Konuk — A Sabedoria da Unicidade na Palavra de Hud (vol. I, pp. 631-697)"
+        }
+      ]
     },
     {
       "id": "fs11",
