@@ -58,6 +58,8 @@
       en: "No record fits this template — try another.",
       pt: "Nenhum registo serve para este modelo — tenta outro.",
     },
+    zemin: { tr: "Zemin", en: "Backdrop", pt: "Fundo" },
+    isik: { tr: "Açık zemin", en: "Light backdrop", pt: "Fundo claro" },
     tpl: {
       soz: { tr: "Bir Cümle", en: "One Sentence", pt: "Uma Frase" },
       ikili: { tr: "İki Kutu", en: "Two Boxes", pt: "Duas Caixas" },
@@ -291,41 +293,93 @@
     return 1;
   }
 
-  const NODE_COUNT = 30;
+  // --- zeminler ---------------------------------------------------------
+  // Paylaşım sahnesinin arka planı. Hepsi aynı biçimde: sakin dönen,
+  // üç boyutlu, dairesel/sarmal bir form (bkz. CLAUDE.md "Dairenin üçüncü
+  // boyutu: sarmal"). Tek motor, farklı ayarlar -- ayrı çizim kodları
+  // yazmak yerine tek bir sarmal üreteci parametreleniyor, böylece yeni
+  // bir zemin eklemek bir satırlık bir iş.
+  //
+  // `fusus` bilerek Füsûs bölümünün sol sütunundaki uzun sarmalın aynısı
+  // (kullanıcı isteği, 2026-07-29): çok düğüm, iki buçuk tur, yüksek
+  // yükseliş.
+  const ZEMIN = [
+    { id: "sarmal", ad: { tr: "Sarmal", en: "Spiral", pt: "Espiral" },
+      n: 30, tur: 1, yari: 0.30, yuk: 2.1, ac: 0.34, nokta: 3.4, hale: 0.30, halka: 0 },
+    { id: "fusus", ad: { tr: "Uzun sarmal", en: "Long coil", pt: "Espiral longa" },
+      n: 27, tur: 2.4, yari: 0.26, yuk: 3.0, ac: 0.30, nokta: 3.0, hale: 0.16, halka: 0 },
+    { id: "halka", ad: { tr: "İç içe halka", en: "Nested rings", pt: "Anéis concêntricos" },
+      n: 34, tur: 1, yari: 0.32, yuk: 0.5, ac: 0.02, nokta: 3.2, hale: 0.24, halka: 3 },
+    { id: "nefes", ad: { tr: "Nefes", en: "Breath", pt: "Sopro" },
+      n: 22, tur: 1, yari: 0.28, yuk: 1.2, ac: 0.10, nokta: 4.2, hale: 0.52, halka: 0, nefes: true },
+    { id: "sade", ad: { tr: "Sade", en: "Plain", pt: "Simples" },
+      n: 14, tur: 1, yari: 0.34, yuk: 1.6, ac: 0.20, nokta: 2.6, hale: 0.20, halka: 0, cizgisiz: true },
+  ];
+  const ZEMIN_ANAHTAR = "dost-share-zemin";
+  const ISIK_ANAHTAR = "dost-share-isik";
+  let zeminId = safeGet(ZEMIN_ANAHTAR) || "sarmal";
+  let acikMod = safeGet(ISIK_ANAHTAR) === "1";
+
+  function safeGet(k) {
+    // localStorage gizli kipte ya da üçüncü-taraf çerezleri kapalıyken
+    // erişimde hata fırlatabiliyor; zemin tercihi uğruna sahne açılmasın
+    // diye sarmalanıyor.
+    try { return localStorage.getItem(k); } catch (e) { return null; }
+  }
+  function safeSet(k, v) {
+    try { localStorage.setItem(k, v); } catch (e) { /* yoksay */ }
+  }
+  function zemin() {
+    return ZEMIN.find((z) => z.id === zeminId) || ZEMIN[0];
+  }
+
+  // En kalabalık zemin kadar düğüm önceden hazırlanıyor; zemin değişince
+  // yalnız kaçının çizileceği değişiyor, DOM yeniden kurulmuyor.
+  const NODE_COUNT = Math.max.apply(null, ZEMIN.map((z) => z.n));
   const nodes = [];
   for (let i = 0; i < NODE_COUNT; i++) {
-    nodes.push({ t: i / (NODE_COUNT - 1), phase: Math.random() * 6.28 });
+    nodes.push({ phase: Math.random() * 6.28 });
   }
 
   // Sarmal: hal.js/menziller ile aynı motor (GU.createTilt'in project'i).
   // Kullanıcının isteği buydu -- sahne, sitenin kendi sakin dairesel
   // dönüşünden beslensin (bkz. CLAUDE.md "Dairenin üçüncü boyutu: sarmal").
   function drawAmbient(g, w, h, ts) {
+    const z = zemin();
     const cx = w / 2, cy = h * 0.5;
-    const R = Math.min(w, h) * 0.30;
-    const H = R * 2.1;
+    const R = Math.min(w, h) * z.yari;
+    const H = R * z.yuk;
+    // "nefes" zemininde halkanın kendisi de açılıp kapanıyor: nefes-i
+    // Rahmânî'nin sitedeki karşılığı hep bu altı saniyelik ritim.
+    const nfs = z.nefes && !reduceMotion
+      ? 1 + 0.10 * Math.sin((ts / 6000) * 2 * Math.PI) : 1;
     let d = "";
     const pts = [];
-    for (let i = 0; i < NODE_COUNT; i++) {
+    for (let i = 0; i < z.n; i++) {
       const n = nodes[i];
-      const a = -Math.PI / 2 + n.t * Math.PI * 2;
-      const rr = R * (0.72 + 0.34 * n.t);
+      const t = i / Math.max(1, z.n - 1);
+      const a = -Math.PI / 2 + t * Math.PI * 2 * z.tur;
+      // `halka` zemininde yarıçap sürekli açılmıyor, basamak basamak
+      // sıçrıyor: iç içe duran ayrı halkalar çıkıyor (Sırlar'daki perde
+      // halkasının sahnedeki karşılığı).
+      const adim = z.halka ? Math.floor(t * z.halka) / Math.max(1, z.halka - 1) : t;
+      const rr = R * (0.72 + z.ac * adim) * nfs;
       const px = rr * Math.cos(a), py = rr * Math.sin(a);
-      const vert = -H / 2 + H * n.t;
+      const vert = -H / 2 + H * t;
       const p = tilt ? tilt.project(px, py, vert) : { x: px, y: py, depth: 1 };
       const X = cx + p.x, Y = cy + p.y;
       pts.push({ x: X, y: Y, depth: p.depth == null ? 1 : p.depth, phase: n.phase });
       d += (i === 0 ? "M" : "L") + X.toFixed(1) + "," + Y.toFixed(1);
     }
-    g.querySelector(".share-spiral").setAttribute("d", d);
+    g.querySelector(".share-spiral").setAttribute("d", z.cizgisiz ? "" : d);
     const dots = g.querySelectorAll(".share-dot");
-    pts.forEach((p, i) => {
-      const c = dots[i];
-      if (!c) return;
+    dots.forEach((c, i) => {
+      const p = pts[i];
+      if (!p) { c.style.opacity = "0"; return; }
       const br = reduceMotion ? 1 : 1 + 0.14 * Math.sin(ts / 3400 + p.phase);
       c.setAttribute("cx", p.x.toFixed(1));
       c.setAttribute("cy", p.y.toFixed(1));
-      c.setAttribute("r", (3.4 * p.depth * br).toFixed(2));
+      c.setAttribute("r", (z.nokta * p.depth * br).toFixed(2));
       c.style.opacity = (0.30 + 0.42 * p.depth).toFixed(2);
     });
     // Merkezdeki nefes alan halka: ontoloji/esmâ'daki Zât halosuyla aynı
@@ -333,7 +387,7 @@
     const halo = g.querySelector(".share-halo");
     const ph = reduceMotion ? 0.5 : (1 - Math.cos((ts / 6000) * 2 * Math.PI)) / 2;
     halo.setAttribute("cx", cx); halo.setAttribute("cy", cy);
-    halo.setAttribute("r", (R * 0.30 * (1 + 0.4 * ph)).toFixed(1));
+    halo.setAttribute("r", (R * z.hale * (1 + 0.4 * ph)).toFixed(1));
     halo.style.opacity = (0.14 + 0.20 * ph).toFixed(3);
   }
 
@@ -540,7 +594,7 @@
     scene = s;
     closeStage();
     stageEl = document.createElement("div");
-    stageEl.className = "share-stage";
+    stageEl.className = "share-stage" + (acikMod ? " share-stage--acik" : "");
     stageEl.innerHTML = stageMarkup(s);
     document.body.appendChild(stageEl);
     document.body.classList.add("share-stage-open");
@@ -620,11 +674,21 @@
       '<button type="button" class="share-panel__chip' + (k === currentTpl ? " is-on" : "") +
       '" data-tpl="' + k + '">' + escapeHtml(tt(UI.tpl[k])) + "</button>"
     ).join("");
+    const zeminChips = ZEMIN.map((z) =>
+      '<button type="button" class="share-panel__chip share-panel__chip--sm'
+      + (z.id === zeminId ? " is-on" : "") + '" data-zemin="' + z.id + '">'
+      + escapeHtml(tt(z.ad)) + "</button>"
+    ).join("");
     panel.innerHTML =
       '<div class="share-panel__head">' + escapeHtml(tt(UI.title)) +
       '<button type="button" data-action="quit" aria-label="' + escapeHtml(tt(UI.close)) + '">✕</button></div>' +
       '<p class="share-panel__hint">' + escapeHtml(tt(UI.hint)) + "</p>" +
       '<div class="share-panel__chips">' + chips + "</div>" +
+      '<p class="share-panel__label">' + escapeHtml(tt(UI.zemin)) + "</p>" +
+      '<div class="share-panel__chips share-panel__chips--zemin">' + zeminChips + "</div>" +
+      '<label class="share-panel__switch">'
+      + '<input type="checkbox" data-action="isik"' + (acikMod ? " checked" : "") + ">"
+      + "<span>" + escapeHtml(tt(UI.isik)) + "</span></label>" +
       '<p class="share-panel__status"></p>' +
       '<div class="share-panel__actions">' +
       '<button type="button" data-action="shuffle">' + escapeHtml(tt(UI.shuffle)) + "</button>" +
@@ -637,6 +701,19 @@
         panel.querySelectorAll("[data-tpl]").forEach((x) => x.classList.toggle("is-on", x === b));
         refresh();
       });
+    });
+    panel.querySelectorAll("[data-zemin]").forEach((b) => {
+      b.addEventListener("click", () => {
+        zeminId = b.dataset.zemin;
+        safeSet(ZEMIN_ANAHTAR, zeminId);
+        panel.querySelectorAll("[data-zemin]").forEach((x) => x.classList.toggle("is-on", x === b));
+      });
+    });
+    panel.querySelector('[data-action="isik"]').addEventListener("change", (e) => {
+      acikMod = e.target.checked;
+      safeSet(ISIK_ANAHTAR, acikMod ? "1" : "0");
+      // Sahne açıksa anında uygula; kapalıysa bir sonraki açılışta geçerli.
+      if (stageEl) stageEl.classList.toggle("share-stage--acik", acikMod);
     });
     panel.querySelector('[data-action="shuffle"]').addEventListener("click", refresh);
     panel.querySelector('[data-action="open"]').addEventListener("click", () => {

@@ -5255,8 +5255,29 @@ body.share-stage-open { overflow: hidden; }
   width: min(100vw, calc(100dvh * 9 / 16));
   height: 100dvh;
   overflow: hidden;
+  /* Sahnenin paleti yerel değişkenlerde: açık zemin (.share-stage--acik)
+     tek yerden dönüyor, çizim kodu renk bilmiyor (2026-07-29). */
+  --sahne-murekkep: var(--series-theme, #eda100);
+  --sahne-hale: var(--accent-glow-dark, #ffc44d);
+  --sahne-metin: #f4f1ea;
+  --sahne-vurgu: var(--accent-glow-dark, #ffc44d);
+  --sahne-golge: rgba(0, 0, 0, 0.65);
+  --sahne-perde: #05060a;
   background:
     radial-gradient(ellipse at 50% 42%, #12161f 0%, #05060a 72%);
+}
+.share-stage--acik .share-stage__frame {
+  /* Açık zeminde altın çok soluk kalıyor; koyu kehribara iniliyor
+     (--accent-interactive ile aynı gerekçe: dekoratif ton açık zeminde
+     3:1'in altına düşüyor). */
+  --sahne-murekkep: #8a6100;
+  --sahne-hale: #d99a12;
+  --sahne-metin: #1a1a19;
+  --sahne-vurgu: #8a6100;
+  --sahne-golge: rgba(255, 255, 255, 0.75);
+  --sahne-perde: #fbfaf6;
+  background:
+    radial-gradient(ellipse at 50% 42%, #fdfcf8 0%, #eae7dc 72%);
 }
 /* Ekranın kendisi 9:16'dan daha uzunsa (telefon), çerçeve ekranı doldursun. */
 @media (max-aspect-ratio: 9 / 16) {
@@ -5264,13 +5285,13 @@ body.share-stage-open { overflow: hidden; }
 }
 .share-stage__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .share-spiral {
-  stroke: var(--series-theme, #eda100);
+  stroke: var(--sahne-murekkep);
   stroke-width: 1;
   opacity: 0.22;
 }
-.share-dot { fill: var(--series-theme, #eda100); }
+.share-dot { fill: var(--sahne-murekkep); }
 .share-halo {
-  fill: var(--accent-glow-dark, #ffc44d);
+  fill: var(--sahne-hale);
   filter: blur(18px);
 }
 /* Metin, TikTok arayüzünün kapatmadığı orta bandda kalıyor: altta ~%20,
@@ -5287,11 +5308,11 @@ body.share-stage-open { overflow: hidden; }
 }
 .share-line {
   margin: 0;
-  color: #f4f1ea;
+  color: var(--sahne-metin);
   font-family: var(--font-display, Georgia, serif);
   line-height: 1.32;
   text-wrap: balance;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.65);
+  text-shadow: 0 2px 24px var(--sahne-golge);
   will-change: opacity, transform;
 }
 .share-line--soz { font-size: clamp(1.5rem, 4.6vh, 2.6rem); }
@@ -5302,11 +5323,11 @@ body.share-stage-open { overflow: hidden; }
 .share-line--sol, .share-line--sag {
   font-size: clamp(1.3rem, 4vh, 2.2rem);
 }
-.share-line--sag { color: var(--accent-glow-dark, #ffc44d); }
+.share-line--sag { color: var(--sahne-vurgu); }
 .share-rule {
   display: block;
   height: 1px;
-  background: rgba(244, 241, 234, 0.5);
+  background: color-mix(in srgb, var(--sahne-metin) 50%, transparent);
   transform-origin: left center;
 }
 .share-stage__source {
@@ -5317,7 +5338,7 @@ body.share-stage-open { overflow: hidden; }
   margin: 0;
   font-size: clamp(0.7rem, 1.7vh, 0.86rem);
   letter-spacing: 0.05em;
-  color: rgba(244, 241, 234, 0.62);
+  color: color-mix(in srgb, var(--sahne-metin) 62%, transparent);
 }
 /* Kayıt kipinin açılış/kapanış karartısı. Sahne döngüsünde saydam durur;
    yalnız "Videoyu indir" ile başlayan çekimde 1'den 0'a ve sonda 0'dan 1'e
@@ -5325,7 +5346,7 @@ body.share-stage-open { overflow: hidden; }
 .share-stage__fade {
   position: absolute;
   inset: 0;
-  background: #05060a;
+  background: var(--sahne-perde);
   pointer-events: none;
 }
 /* TikTok'un kapattığı bölgeler — yalnız kadraj denetimi için. */
@@ -5849,3 +5870,30 @@ body.share-stage-open { overflow: hidden; }
 }
 .viz-root[data-theme="dark"] .helix-scene__path { stroke: #46453f; }
 .viz-root[data-theme="dark"] .helix-scene__marker path { fill: #46453f; }
+
+/* Paylaşım panelindeki zemin seçimi ve açık/koyu anahtarı (2026-07-29). */
+.share-panel__label {
+  margin: 0.9rem 0 0.35rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.share-panel__chips--zemin { flex-wrap: wrap; }
+.share-panel__chip--sm { font-size: 0.76rem; padding: 0.2rem 0.55rem; }
+.share-panel__switch {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  /* WCAG 2.2 SC 2.5.8: etiketin tamamı tıklanabilir ve 24px'ten yüksek. */
+  min-height: 30px;
+  margin-top: 0.7rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.share-panel__switch input { width: 16px; height: 16px; accent-color: var(--accent-interactive); }
+/* Hale açık zeminde parlama değil leke gibi okunuyor (koyu zeminde ışık
+   saçıyor, açıkta metnin üstüne oturuyor); orada yumuşatılıyor. Satır içi
+   opaklığı JS yazdığı için filtre ile çarpılıyor. */
+.share-stage--acik .share-halo { filter: blur(26px) opacity(0.45); }
