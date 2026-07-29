@@ -24,15 +24,29 @@
 (function () {
   "use strict";
 
-  var SURUM = "s2";
+  var SURUM = "s3";
   var DISMISS_KEY = "dost-durus-susturulan";
+
+  // YALNIZ TÜRKÇE (s3, kullanıcı kararı). Gerekçe: kalıplar Türkçe için
+  // yazıldı ve Türkçede ölçüldü; üç dile birden nişan almak hem kuralları
+  // bulanıklaştırıyordu hem üç kat gürültü üretiyordu. İş akışı da buna
+  // uygun: bir metni Türkçesinden düzeltiyoruz, sonra İngilizce ve
+  // Portekizcesi ona göre yeniden yazılıyor (bkz. CLAUDE.md, "üç dilde
+  // birlikte revizyon" kuralı). Yani Türkçeyi taramak üçünü de taramak
+  // demek -- yeter ki o kural tutulsun.
+  function turkceMi() {
+    return !window.DostI18n || window.DostI18n.getLang() === "tr";
+  }
 
   // --- ortak koşullar ---------------------------------------------------
 
   // "Bu söz/bağ bizim" diyen işaretler. Birden çok kural buna bakıyor:
   // CLAUDE.md'nin künye kuralları yalnız KENDİMİZ hakkındaki cümleler için
   // geçerli, âlemin tarifi için değil.
-  var SAHIPLIK = /\b(biz|bizim|bizce|kuruyoruz|kurduğumuz|kurduk|okuyoruz|okumamız|okuma denemesi|yazdığımız|izlediğimiz|biriktirdiğimiz|taradığımız|ours|we |our |nossa|nosso|nós)\b/i;
+  // Not: \b burada da ASCII, ama bu kalıpların hepsi ASCII harfle
+  // başlıyor (b/k/o/y/i/t) -- sınır doğru kuruluyor. Yine de yeni bir
+  // kalıp eklerken dikkat: "şey" gibi bir sözcük eklenirse çalışmaz.
+  var SAHIPLIK = /\b(biz|bizim|bizce|kuruyoruz|kurduğumuz|kurduk|okuyoruz|okumamız|okuma denemesi|yazdığımız|izlediğimiz|biriktirdiğimiz|taradığımız)\b/i;
   function BIZIM(metin) { return SAHIPLIK.test(metin); }
   function BAGSIZ(metin) { return !SAHIPLIK.test(metin); }
 
@@ -64,13 +78,13 @@
   var KURALLAR = [
     {
       id: "sure-sisirme", seviye: "kural", ad: "Süre şişirme",
-      re: tamKelime("yıllar boyunca|yıllardır|yıllarca|aylar boyunca|aylardır|haftalardır|uzun süredir|uzun zamandır|nice zamandır|for years|for months|for a long time|há anos|há muito|ao longo dos anos"),
+      re: tamKelime("yıllar boyunca|yıllardır|yıllarca|aylar boyunca|aylardır|haftalardır|uzun süredir|uzun zamandır|nice zamandır"),
       neden: "Kendimiz hakkında süre iddiası. CLAUDE.md: “Okuma tarihimiz kısa; uzunmuş gibi yazmak yalandır.”",
       yerine: "Süre değil kapsam yaz: “bu ciltte”, “okuduğumuz bölümlerde”, “şimdiye kadar” — ya da sayı ver.",
     },
     {
       id: "emek-sisirme", seviye: "kural", ad: "Emek/ölçek şişirme",
-      re: basKelime("titizlikle tara|didik didik|sayısız|binlerce|yüzlerce|büyük bir çabayla|kapsamlı bir tarama|exhaustive|countless|meticulously|incontáveis"),
+      re: basKelime("titizlikle tara|didik didik|sayısız|binlerce|yüzlerce|büyük bir çabayla|kapsamlı bir tarama"),
       neden: "Ölçüsü doğrulanamayan bir emek/ölçek nitelemesi.",
       yerine: "Sayılabilir olanı say; sayamıyorsan niteleme.",
       // Yalnız BİZİM hakkımızdaki cümlelerde geçerli: "tek bir Vücûd'un
@@ -90,14 +104,14 @@
       // Olumsuzlanmış hâli isabet saymıyoruz: sitede bu kalıp çoğu zaman
       // TAM TERSİ için, bir çekince cümlesinde geçiyor ("…önceden görmüş
       // ya da kastetmiş DEĞİL").
-      re: new RegExp(ONEK + "(?:önceden görmüş|önceden bilmiş|öngörmüş|bilim bunu kanıtl|bilim doğrul|modern bilim göster|bilimsel olarak doğrulan|science confirms|science proves|anticipated modern)"
+      re: new RegExp(ONEK + "(?:önceden görmüş|önceden bilmiş|öngörmüş|bilim bunu kanıtl|bilim doğrul|modern bilim göster|bilimsel olarak doğrulan)"
         + "(?![^.!?]{0,70}(?:değil|değildir|olmuyor)" + SONEK + ")", "giu"),
       neden: "CLAUDE.md: “asla ‘İbn Arabî bunu önceden görmüştü’ ya da ‘bilim bunu kanıtlıyor’ gibi bir iddiaya dönüştürülmemeli.”",
       yerine: "“Bize … hatırlatıyor”, “bir çağrışım olarak”.",
     },
     {
       id: "kanit-dili", seviye: "kural", ad: "Kanıt dili",
-      re: new RegExp(ONEK + "(?:kanıtlıyor|kanıtlar ki|kanıtıdır|ispatlıyor|ispat ediyor|ispatıdır|kesin olarak göster|tartışmasız biçimde|şüpheye yer bırakmayacak|proves|demonstrates conclusively)"
+      re: new RegExp(ONEK + "(?:kanıtlıyor|kanıtlar ki|kanıtıdır|ispatlıyor|ispat ediyor|ispatıdır|kesin olarak göster|tartışmasız biçimde|şüpheye yer bırakmayacak)"
         + "(?![^.!?]{0,70}(?:değil|değildir)" + SONEK + ")", "giu"),
       neden: "CLAUDE.md: kapanmış, otoriter bir ses değil; arayan bir ses.",
       yerine: "“Şöyle okuyoruz”, “bu satırlar şuna işaret ediyor olabilir”.",
@@ -106,7 +120,7 @@
 
     {
       id: "kapali-ses", seviye: "gozden-gecir", ad: "Kapalı ses",
-      re: tamKelime("şüphesiz|kuşkusuz|elbette|besbelli|apaçık|hiç kuşku yok|açıkça görülüyor|undoubtedly|clearly shows|obviously"),
+      re: tamKelime("şüphesiz|kuşkusuz|elbette|besbelli|apaçık|hiç kuşku yok|açıkça görülüyor"),
       neden: "Kesinlik bildiren bir bağlaç. Kendi sesimizdeyse duruşumuza aykırı.",
       yerine: "Kesinliği kaldır ya da kimin kesinliği olduğunu söyle.",
       esKosul: NAKIL_DISI,
@@ -134,7 +148,7 @@
       // pekiştireçleri de yakalıyordu: 444 isabet, yani kullanılamaz.
       // Asıl kaygı bunlar değil, KÜLLİYATIN TAMAMI hakkında hüküm kurmak
       // -- okuduğumuz kısım sınırlı. Kalıplar ona indirildi.
-      re: basKelime("hiçbir yerde|hiçbir eserinde|hiçbir kitabında|bütün külliyat|tüm külliyat|bütün eserlerinde|tüm eserlerinde|her zaman ve her yerde|istisnasız|hiçbir yerinde|nowhere in|throughout his entire"),
+      re: basKelime("hiçbir yerde|hiçbir eserinde|hiçbir kitabında|bütün külliyat|tüm külliyat|bütün eserlerinde|tüm eserlerinde|her zaman ve her yerde|istisnasız|hiçbir yerinde"),
       neden: "Külliyatın tamamı hakkında bir hüküm. Okuduğumuz kısım sınırlı; bunu doğrulayamayız.",
       yerine: "Kapsamı söyle: “okuduğumuz bölümlerde”, “bu ciltte karşımıza çıkmadı”.",
       esKosul: NAKIL_DISI,
@@ -142,7 +156,7 @@
     {
       id: "sarih-hakemligi", seviye: "gozden-gecir", ad: "Şârihi hakem yapmak",
       re: new RegExp("(?:Konuk|İzutsu|Izutsu|Affifi|Chittick|Corbin)[^.!?]{0,70}?" + ONEK
-        + "(?:haklı olarak|doğru olarak|doğrusu|isabetle|doğru biçimde|yanılıyor|hatalı olarak|yanlış anlamış|correctly|rightly)" + SONEK, "giu"),
+        + "(?:haklı olarak|doğru olarak|doğrusu|isabetle|doğru biçimde|yanılıyor|hatalı olarak|yanlış anlamış)" + SONEK, "giu"),
       neden: "CLAUDE.md: şârihler “hakem değil” — onların yorumu da bir okuma.",
       yerine: "“… şöyle okuyor”, “bir yaklaşım olarak”.",
     },
@@ -158,7 +172,7 @@
       // "tıpkı" ve "benzer biçimde" bilerek YOK: sıradan benzetme
       // sözcükleri ("tıpkı evren gibi") ve kuralı kullanılamaz hâle
       // getiriyorlardı -- ölçtük, 297 isabetin çoğu onlardan geliyordu.
-      re: tamKelime("aynı hareketi|aynı deseni|aynı örüntü|aynı formülü|örtüşüyor|örtüşmesi|paralellik|birebir aynı|echoes|parallels"),
+      re: tamKelime("aynı hareketi|aynı deseni|aynı örüntü|aynı formülü|örtüşüyor|örtüşmesi|paralellik|birebir aynı"),
       neden: "İki kaynağı birbirine bağlayan bir cümle, ama bağın bize ait olduğu söylenmemiş.",
       yerine: "“Bağı biz kuruyoruz”, “iki metin birbirine atıf yapmıyor” gibi bir cümle ekle.",
       kosul: BAGSIZ,
@@ -282,7 +296,7 @@
   function muafMi(el) { return !!el.closest(".detail-analogy"); }
 
   function bulgular(el) {
-    if (muafMi(el)) return [];
+    if (!turkceMi() || muafMi(el)) return [];
     return kurallariUygula(alintisizDom(el), el.textContent || "");
   }
 
@@ -389,6 +403,13 @@
       cip.querySelector(".durus-cip__site").addEventListener("click", siteAc);
     }
     var s = cip.querySelector(".durus-cip__sayac");
+    if (!turkceMi()) {
+      // Sayaç yine de duruyor: "hiçbir şey görünmüyor" hâli bir kez
+      // kafa karıştırdı, bir daha karıştırmasın.
+      s.innerHTML = '<span class="durus-cip__temiz">🇹🇷 tarama yalnız Türkçede</span>';
+      s.title = "Duruş taraması " + SURUM + " — kalıplar Türkçe için yazıldı";
+      return;
+    }
     s.innerHTML = (kural || gg)
       ? (kural ? '<span class="durus-cip__k">🔸 ' + kural + "</span>" : "")
         + (gg ? '<span class="durus-cip__g">🔹 ' + gg + "</span>" : "")
@@ -418,23 +439,28 @@
   // JSON ağacında yürürken: en yakın "id"li ata kaydı ve alan adını
   // taşıyoruz, ki bulguyu bir kayda ve mümkünse bir bağlantıya
   // bağlayabilelim.
-  function gez(o, alan, kayit, cb) {
+  // `dilTr`: bu dal bir {tr,en,pt} sözlüğünün TÜRKÇE kolundan mı geliyor?
+  // Yalnız o dal taranıyor (s3). Hiçbir dil sözlüğünün altında olmayan
+  // düz metinler de taranmıyor: onlar id/url/etiket gibi alanlar, revize
+  // edilecek düzyazı değil.
+  function gez(o, alan, kayit, dilTr, cb) {
     if (o && typeof o === "object" && !Array.isArray(o)) {
       var k = (typeof o.id === "string") ? o : kayit;
       var ad = k && (k.id !== (kayit && kayit.id)) ? k : kayit;
       Object.keys(o).forEach(function (anahtar) {
-        gez(o[anahtar], DIL[anahtar] ? alan : anahtar, ad, cb);
+        gez(o[anahtar], DIL[anahtar] ? alan : anahtar, ad,
+            DIL[anahtar] ? (anahtar === "tr") : dilTr, cb);
       });
     } else if (Array.isArray(o)) {
-      o.forEach(function (v) { gez(v, alan, kayit, cb); });
+      o.forEach(function (v) { gez(v, alan, kayit, dilTr, cb); });
     } else if (typeof o === "string") {
-      cb(alan, o, kayit);
+      if (dilTr) cb(alan, o, kayit);
     }
   }
 
   function dosyaTara(yol, view, etiket, bulgular) {
     return json(yol).then(function (d) {
-      gez(d, null, null, function (alan, s, kayit) {
+      gez(d, null, null, false, function (alan, s, kayit) {
         if (MUAF_ALAN[alan] || s.length < 40) return;
         kurallariUygula(alintisizMetin(s), s).forEach(function (b) {
           bulgular.push({
