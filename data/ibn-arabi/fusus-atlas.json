@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs5",
+  "activeFassId": "fs6",
   "fasses": [
     {
       "id": "fs1",
@@ -2158,7 +2158,7 @@
     {
       "id": "fs6",
       "no": 6,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "İshak",
         "en": "Isaac",
@@ -2168,7 +2168,346 @@
         "tr": "Hikmet-i Hakkıyye",
         "en": "Wisdom of Reality",
         "pt": "Sabedoria da Realidade"
-      }
+      },
+      "title": {
+        "tr": "Rüyâ Doğruydu — Okunuşu Değil",
+        "en": "The Vision Was True — the Reading Was Not",
+        "pt": "A Visão Era Verdadeira — a Leitura Não"
+      },
+      "pageRange": {
+        "tr": "VI. Fass, s. 441-444",
+        "en": "Bezel VI, pp. 441-444",
+        "pt": "Engaste VI, pp. 441-444"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Bu fass bir kurban hikâyesi gibi duruyor ama aslında bir <strong>okuma</strong> meselesi. İbrâhîm rüyâsında oğlunu kurban ettiğini görüyor ve gördüğünü <em>olduğu gibi</em> alıp bıçağa davranıyor. Fass bunun bir yalan rüyâ olmadığını söylüyor — rüyâ doğruydu. Yanlış olan <em>okunuşuydu</em>: <em>“Hak Teâlâ… onun rü'yâsını… ona münâsebeti bulunan 'koç' sûretiyle bi't-te'vîl hak kıldı.”</em> Gören haklı, tâbir eden yanılmış — ve tâbir eden de görenin kendisi. Bu sayfayı yazanlar da tâbir edenler olduğu için, fass bu kez doğrudan bize bakıyor.",
+          "en": "This bezel looks like a story about sacrifice, but it is really a matter of <strong>reading</strong>. Abraham sees in a vision that he is sacrificing his son, takes what he saw <em>as it stands</em>, and reaches for the knife. The bezel does not say the vision was false — the vision was true. What was wrong was the <em>reading</em>: <em>“God made his vision true by interpretation, through the form of the ‘ram’ that bore a relation to it.”</em> The seer was right, the interpreter mistaken — and the interpreter was the seer himself. Since whoever writes this page is also an interpreter, this bezel looks straight at us.",
+          "pt": "Este engaste parece uma história sobre sacrifício, mas é na verdade uma questão de <strong>leitura</strong>. Abraão vê numa visão que sacrifica o filho, toma o que viu <em>tal como está</em> e pega na faca. O engaste não diz que a visão era falsa — a visão era verdadeira. O que estava errado era a <em>leitura</em>: <em>“Deus tornou verdadeira a sua visão por interpretação, através da forma do ‘carneiro’ que com ela tinha relação.”</em> Quem viu tinha razão, quem interpretou errou — e quem interpretou era o próprio que viu. Como quem escreve esta página é também um intérprete, este engaste olha diretamente para nós."
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, VI. Fass (Konuk şerhi, s. 441)",
+          "en": "Fusus al-Hikam, Bezel VI (Konuk's commentary, p. 441)",
+          "pt": "Fusus al-Hikam, Engaste VI (comentário de Konuk, p. 441)"
+        },
+        "caption": {
+          "tr": "Mânanın inişini Konuk sıralıyor; sarmal bizim. Sarmal seçmemizin sebebi şu: bu bir <em>iniş</em> ama son basamak ilkine geri değiyor — his âleminde görülen şey, en başta ümmü'l-kitâb'daki mânanın kendisi, yalnız bir kat daha yoğunlaşmış hâli. Aynı hareketi I. fassın altı mertebesinde de görmüştük.",
+          "en": "Konuk sets out the descent of meaning; the spiral is ours. Why a spiral: this is a <em>descent</em>, yet the last step touches back on the first — what is seen in the sensory world is the very meaning that was in the Mother of the Book, only one degree denser. We saw the same movement in the six levels of the first bezel.",
+          "pt": "Konuk expõe a descida do sentido; a espiral é nossa. Porquê uma espiral: isto é uma <em>descida</em>, e contudo o último degrau toca de novo o primeiro — o que se vê no mundo sensível é o próprio sentido que estava na Mãe do Livro, apenas um grau mais denso. Vimos o mesmo movimento nos seis graus do primeiro engaste."
+        },
+        "helix": {
+          "id": "fs6-inis",
+          "turns": 1.4,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs6-i1",
+              "label": {
+                "tr": "Ümmü'l-kitâb",
+                "en": "The Mother of the Book",
+                "pt": "A Mãe do Livro"
+              },
+              "note": {
+                "tr": "<em>“ma'nâ-yı ilmî-i küllî 'ümmü'l-kitâb'dan… nâzil olur.”</em> Bütün inişin başladığı yer.",
+                "en": "<em>“The universal knowledge-meaning descends from the Mother of the Book.”</em> Where the whole descent begins.",
+                "pt": "<em>“O sentido-conhecimento universal desce da Mãe do Livro.”</em> Onde toda a descida começa."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs6-i2",
+              "label": {
+                "tr": "Levh-i mahfûz — âlemin kalbi",
+                "en": "The Preserved Tablet — the heart of the world",
+                "pt": "A Tábua Preservada — o coração do mundo"
+              },
+              "note": {
+                "tr": "<em>“âlemin kalbi mesâbesinde olan 'levh-i mahfûz' âlemine nâzil olur.”</em> Konuk'un bu benzetmesi sitedeki Kalp düğümüyle aynı bölgeye düşüyor; bir bağ olabilir, ama metin böyle bir bağ kurmuyor.",
+                "en": "<em>“It descends to the world of the Preserved Tablet, which stands as the heart of the world.”</em> Konuk's likeness falls in the same region as the Heart node on this site; there may be a link, but the text draws none.",
+                "pt": "<em>“Desce ao mundo da Tábua Preservada, que está como o coração do mundo.”</em> A comparação de Konuk cai na mesma região que o nó Coração deste site; pode haver uma ligação, mas o texto não a estabelece."
+              }
+            },
+            {
+              "id": "fs6-i3",
+              "label": {
+                "tr": "Âlem-i misâl — dördüncü mertebe",
+                "en": "The world of images — the fourth level",
+                "pt": "O mundo das imagens — o quarto grau"
+              },
+              "note": {
+                "tr": "<em>“'Âlem-i misâl', âlem-i ulvîden âlem-i süflîye; ve bâtından zâhire; ve ilimden kevne nâzil olan vücûdun dördüncü mertebesidir.”</em> Ve bir hüküm: <em>“âlem-i misâl ilm-i Hakk'ın hizânesidir; onda hatâ mümkin değildir.”</em>",
+                "en": "<em>“The world of images is the fourth level of existence, descending from the high world to the low, from the inward to the outward, from knowledge to becoming.”</em> And a ruling: <em>“the world of images is the treasury of the Real's knowledge; error is not possible in it.”</em>",
+                "pt": "<em>“O mundo das imagens é o quarto grau da existência, descendo do mundo alto para o baixo, do interior para o exterior, do conhecimento para o devir.”</em> E um juízo: <em>“o mundo das imagens é a tesouraria do conhecimento do Real; nele o erro não é possível.”</em>"
+              },
+              "accent": true
+            },
+            {
+              "id": "fs6-i4",
+              "label": {
+                "tr": "Ve his âleminde cisimleşir",
+                "en": "And it takes body in the sensory world",
+                "pt": "E toma corpo no mundo sensível"
+              },
+              "note": {
+                "tr": "<em>“Ba'dehû âlem-i histe mütecessid olup çeşm-i hissî ile görülür.”</em> İniş burada bitiyor — ve hatânın nereye girebileceği sorusu tam burada başlıyor.",
+                "en": "<em>“Thereafter it takes body in the sensory world and is seen with the sensory eye.”</em> The descent ends here — and the question of where error can enter begins exactly here.",
+                "pt": "<em>“Depois toma corpo no mundo sensível e é vista com o olho sensível.”</em> A descida acaba aqui — e a pergunta de onde pode entrar o erro começa exatamente aqui."
+              }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs6-s1",
+          "heading": {
+            "tr": "Aynı Ayna, İki Yön",
+            "en": "The Same Mirror, Two Directions",
+            "pt": "O Mesmo Espelho, Duas Direções"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk insanın hayâlini iki yana bakan bir ayna gibi tarif ediyor: <em>“hayâl-i insânînin bir tarafı âlem-i misâle, bir tarafı da kendi nefsine ve cesedine muttasıldır.”</em> Ve bütün fark, bu aynaya <em>hangi taraftan</em> bir sûret düştüğünde: aynı organ, aynı uyku, ama iki ayrı hüküm.",
+                "en": "Konuk describes human imagination as a mirror facing two ways: <em>“one side of human imagination is joined to the world of images, and the other to his own soul and body.”</em> And the whole difference lies in <em>which side</em> a form falls onto this mirror from: the same faculty, the same sleep, but two different rulings.",
+                "pt": "Konuk descreve a imaginação humana como um espelho voltado para dois lados: <em>“um lado da imaginação humana está ligado ao mundo das imagens, e o outro à sua própria alma e ao seu corpo.”</em> E toda a diferença está em <em>de que lado</em> cai uma forma neste espelho: a mesma faculdade, o mesmo sono, mas dois juízos distintos."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, VI. Fass (Konuk şerhi, s. 441)",
+                "en": "Fusus al-Hikam, Bezel VI (Konuk's commentary, p. 441)",
+                "pt": "Fusus al-Hikam, Engaste VI (comentário de Konuk, p. 441)"
+              },
+              "caption": {
+                "tr": "Üç basamağı biz ayırdık; ikisi Konuk'un iki hükmü, üçüncüsü onları ayıran ölçüt. Sarmal çizmemizin sebebi: ölçüt <em>görülen şeyde</em> değil, <em>geldiği yönde</em> — yani basamaklar bir merdiven kurmuyor, aynı ana geri dönüp ona başka bir soru soruyor.",
+                "en": "We separated the three steps; two are Konuk's two rulings, the third is the criterion that divides them. Why a spiral: the criterion lies not in <em>what is seen</em> but in <em>the direction it came from</em> — so the steps do not build a ladder, they return to the same moment and put a different question to it.",
+                "pt": "Separámos os três degraus; dois são os dois juízos de Konuk, o terceiro é o critério que os divide. Porquê uma espiral: o critério não está <em>no que se vê</em> mas <em>na direção de onde veio</em> — os degraus não constroem uma escada, regressam ao mesmo momento e fazem-lhe outra pergunta."
+              },
+              "helix": {
+                "id": "fs6-yon",
+                "turns": 1.15,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs6-y1",
+                    "label": {
+                      "tr": "Aşağıdan gelen: hakikati yok",
+                      "en": "From below: it has no reality",
+                      "pt": "De baixo: não tem realidade"
+                    },
+                    "note": {
+                      "tr": "<em>“eğer insanın 'hayâl'ine cihet-i süflîden, ya'ni bu içinde bulunduğumuz âlem-i kevnden, bir sûret müntakış olursa, hakikati yoktur; adgâs u ahlâmdır.”</em> Sebebi: <em>“nukûş-i kevniyyeye olan alâkası sebebiyle… bir nevi' mel'abedir.”</em>",
+                      "en": "<em>“If a form is impressed upon a person's imagination from the lower side — that is, from this world of becoming we are in — it has no reality; it is confused dreams.”</em> The reason: <em>“because of his attachment to the impressions of becoming… it is a kind of play.”</em>",
+                      "pt": "<em>“Se uma forma se imprime na imaginação de alguém pelo lado inferior — isto é, deste mundo do devir em que estamos —, não tem realidade; são sonhos confusos.”</em> A razão: <em>“pela sua ligação às impressões do devir… é uma espécie de jogo.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs6-y2",
+                    "label": {
+                      "tr": "Yukarıdan gelen: hak ve sâbit",
+                      "en": "From above: true and established",
+                      "pt": "De cima: verdadeira e firme"
+                    },
+                    "note": {
+                      "tr": "<em>“cihet-i ulvîden, ya'ni âlem-i misâlden, nüzûl etmiş ise, gerek yakazada ve gerek uykuda olsun hak ve sâbittir.”</em> Ve gerekçe: <em>“âlem-i misâl ilm-i Hakk'ın hizânesidir; onda hatâ mümkin değildir.”</em>",
+                      "en": "<em>“If it has descended from the higher side, that is from the world of images, then whether in waking or in sleep it is true and established.”</em> And the ground: <em>“the world of images is the treasury of the Real's knowledge; error is not possible in it.”</em>",
+                      "pt": "<em>“Se desceu do lado superior, isto é, do mundo das imagens, então, quer em vigília quer em sono, é verdadeira e firme.”</em> E o fundamento: <em>“o mundo das imagens é a tesouraria do conhecimento do Real; nele o erro não é possível.”</em>"
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs6-y3",
+                    "label": {
+                      "tr": "Ama yönü kim bilecek?",
+                      "en": "But who is to know the direction?",
+                      "pt": "Mas quem há de saber a direção?"
+                    },
+                    "note": {
+                      "tr": "Bu basamak <strong>bizim sorumuz</strong>, metnin cümlesi değil — ve fass onu sormuyor. Ölçüt sağlam görünüyor, ama ölçütü uygulayacak olan yine hayâlin sahibi; ve bir sonraki bölümde göreceğimiz gibi, İbrâhîm tam burada yanılıyor.",
+                      "en": "This step is <strong>our question</strong>, not the text's sentence — and the bezel does not ask it. The criterion looks sound, but the one who must apply it is again the owner of that imagination; and as the next section shows, this is exactly where Abraham goes wrong.",
+                      "pt": "Este degrau é <strong>a nossa pergunta</strong>, não uma frase do texto — e o engaste não a faz. O critério parece sólido, mas quem tem de o aplicar é de novo o dono dessa imaginação; e, como mostra a secção seguinte, é exatamente aqui que Abraão erra."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, VI. Fass (Konuk şerhi, s. 441-442)",
+                "en": "Fusus al-Hikam, Bezel VI (Konuk's commentary, p. 441-442)",
+                "pt": "Fusus al-Hikam, Engaste VI (comentário de Konuk, p. 441-442)"
+              },
+              "caption": {
+                "tr": "Üç türü Konuk adlandırıyor; sırayı biz kurduk. Ortadaki basamak bu fassın bütün meselesi: <em>tâbire muhtaç olan</em> tür. İlk ve son basamak kolay — biri olduğu gibi doğru, öteki hiç doğru değil. Zor olan aradaki.",
+                "en": "Konuk names the three kinds; the ordering is ours. The middle step is this bezel's whole matter: the kind that <em>requires interpretation</em>. The first and last are easy — one is true as it stands, the other not true at all. The hard one is in between.",
+                "pt": "Konuk nomeia os três tipos; a ordenação é nossa. O degrau do meio é toda a matéria deste engaste: o tipo que <em>exige interpretação</em>. O primeiro e o último são fáceis — um é verdadeiro tal como está, o outro não é verdadeiro de todo. O difícil é o do meio."
+              },
+              "helix": {
+                "id": "fs6-turler",
+                "turns": 1.2,
+                "closing": false,
+                "nodes": [
+                  {
+                    "id": "fs6-t1",
+                    "label": {
+                      "tr": "Keşf-i mücerred",
+                      "en": "Unmediated unveiling",
+                      "pt": "Desvelamento imediato"
+                    },
+                    "note": {
+                      "tr": "<em>“âlem-i misâlden nâzil olan suver, eğer ta'bîre muhtâc olmayıp âlem-i histe aynıyla zuhûr ederse buna 'keşf-i mücerred' derler.”</em> Görülen, göründüğü gibi gerçekleşir.",
+                      "en": "<em>“If the forms descending from the world of images require no interpretation and appear in the sensory world just as they are, this is called unmediated unveiling.”</em> What is seen comes to pass as it was seen.",
+                      "pt": "<em>“Se as formas que descem do mundo das imagens não exigem interpretação e aparecem no mundo sensível tal como são, chama-se a isto desvelamento imediato.”</em> O que se vê acontece tal como foi visto."
+                    }
+                  },
+                  {
+                    "id": "fs6-t2",
+                    "label": {
+                      "tr": "Keşf-i muhayyel — tâbir ister",
+                      "en": "Imaginal unveiling — requires interpretation",
+                      "pt": "Desvelamento imaginal — exige interpretação"
+                    },
+                    "note": {
+                      "tr": "<em>“eğer görülen suver-i hayâliyye, kendisine münâsebeti olan suver-i hissiyye ile ta'bîre muhtaç olursa, buna da 'keşf-i muhayyel' derler.”</em> Doğru, ama <em>olduğu gibi</em> değil. Bu fassın kırılma noktası burası.",
+                      "en": "<em>“If the imaginal forms seen require interpretation through a sensory form related to them, this is called imaginal unveiling.”</em> True, but not <em>as it stands</em>. This is the bezel's breaking point.",
+                      "pt": "<em>“Se as formas imaginais vistas exigem interpretação através de uma forma sensível que se lhes relaciona, chama-se a isto desvelamento imaginal.”</em> Verdadeiro, mas não <em>tal como está</em>. É este o ponto de rutura do engaste."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs6-t3",
+                    "label": {
+                      "tr": "Hayâl-i mücerred",
+                      "en": "Bare imagining",
+                      "pt": "Imaginação simples"
+                    },
+                    "note": {
+                      "tr": "<em>“hayâl-i insâniye cihet-i süflîden mün'akis olan sûretlere de 'hayâl-i mücerred' denir.”</em> Aşağıdan gelen; hakikati yok.",
+                      "en": "<em>“The forms reflected onto human imagination from the lower side are called bare imagining.”</em> Coming from below; it has no reality.",
+                      "pt": "<em>“As formas refletidas na imaginação humana pelo lado inferior chamam-se imaginação simples.”</em> Vindas de baixo; não têm realidade."
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs6-s2",
+          "heading": {
+            "tr": "İbrâhîm Yanılmadı — Yanlış Okudu",
+            "en": "Abraham Was Not Deceived — He Read It Wrong",
+            "pt": "Abraão Não Foi Enganado — Leu Mal"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın merkezi tek bir cümlede: <em>“İbrâhîm (a.s.) oğlu İshâk (a.s.)ı rü'yâsında zebhetti ve onu 'keşf-i mücerred' nev'inden addedip âlem-i histe dahi, aynıyla Cenâb-ı İshâk'ı zebha teşebbüs buyurdu.”</em> Yani hatâ görmede değil, <strong>sınıflandırmada</strong>: tâbir isteyen bir sûreti, tâbir istemeyen sanıyor.",
+                "en": "The bezel's centre is in a single sentence: <em>“Abraham sacrificed his son Isaac in a vision, and counting it of the kind of unmediated unveiling, he moved to sacrifice Isaac himself in the sensory world as well.”</em> The error, then, is not in the seeing but in the <strong>classification</strong>: he takes a form that requires interpretation for one that does not.",
+                "pt": "O centro do engaste está numa só frase: <em>“Abraão sacrificou o seu filho Isaque numa visão e, contando-a do género do desvelamento imediato, dispôs-se a sacrificar o próprio Isaque também no mundo sensível.”</em> O erro não está, então, no ver mas na <strong>classificação</strong>: toma por uma forma que não exige interpretação uma que exige."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ve düzeltme, rüyâyı iptal ederek değil <em>tamamlayarak</em> geliyor: <em>“Hak Teâlâ hazretleri onun rü'yâsını, âlem-i misâlde gördüğü gulâm-ı halîmi olan Hz. İshâk'ın sûretini, ona münâsebeti bulunan 'koç' sûretiyle bi't-te'vîl hak kıldı.”</em> Fassın adının <em>hikmet-i hakkıyye</em> olmasının sebebi de bu: rüyâ <em>hak</em> kılınıyor — yani doğrulanıyor, yalanlanmıyor.",
+                "en": "And the correction comes not by cancelling the vision but by <em>completing</em> it: <em>“God made his vision true by interpretation: the form of the forbearing boy, Isaac, whom he had seen in the world of images, through the form of the ‘ram’ that bore a relation to it.”</em> This is why the bezel is called the wisdom of <em>reality</em>: the vision is <em>made true</em> — verified, not falsified.",
+                "pt": "E a correção vem não por cancelar a visão mas por a <em>completar</em>: <em>“Deus tornou verdadeira a sua visão por interpretação: a forma do rapaz paciente, Isaque, que vira no mundo das imagens, através da forma do ‘carneiro’ que com ela tinha relação.”</em> É por isso que o engaste se chama sabedoria da <em>realidade</em>: a visão é <em>tornada verdadeira</em> — verificada, não desmentida."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu, okuduğumuz altı fass içinde bize <strong>en doğrudan bakan</strong> yer oldu, ve bunu yazmamak sahtelik olurdu. Bu sitede yaptığımız iş tam olarak budur: bir metinden gelen sûretleri alıp neye karşılık geldiklerini söylemek. Fass, gördüğü şeyde haklı olan birinin, <em>onu ne olarak alacağında</em> yanılabileceğini gösteriyor — ve o kişi, bir peygamber. Buradan kendimize bir güvence çıkarmıyoruz; çıkarabileceğimiz tek şey, her şemanın altına <em>“bunu biz kurduk”</em> yazmayı sürdürmenin bir üslup tercihi değil, bu fassın anlattığı riskin ta kendisi olduğu.",
+                "en": "Of the six bezels we have read, this is the one that looks at us <strong>most directly</strong>, and it would be dishonest not to write that. What we do on this site is exactly this: take forms that come from a text and say what they correspond to. The bezel shows that someone who is right about what he saw can be wrong about <em>what to take it for</em> — and that someone is a prophet. We draw no reassurance from this; the only thing we can draw is that going on writing <em>“we built this”</em> beneath every diagram is not a matter of style but precisely the risk this bezel describes.",
+                "pt": "Dos seis engastes que lemos, este é o que olha para nós <strong>mais diretamente</strong>, e seria desonesto não o escrever. O que fazemos neste site é exatamente isto: tomar formas vindas de um texto e dizer a que correspondem. O engaste mostra que alguém que tem razão sobre o que viu pode errar sobre <em>o que tomá-lo por</em> — e esse alguém é um profeta. Daqui não tiramos nenhuma tranquilidade; a única coisa que podemos tirar é que continuar a escrever <em>“construímos isto”</em> sob cada esquema não é uma questão de estilo mas precisamente o risco que este engaste descreve."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs6-s3",
+          "heading": {
+            "tr": "Konuk Bir Tartışmada Tarafını Nasıl Seçiyor",
+            "en": "How Konuk Takes a Side in a Dispute",
+            "pt": "Como Konuk Toma Partido Numa Disputa"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu fassta bir de şerh yöntemine dair bir sahne var. Kurbanın İshak mı İsmâil mi olduğu tartışmalı; Konuk iki tarafın adlarını da uzun uzun sayıyor ve <em>“kavl-i meşhûr dahi İsmâil (a.s.) hakkındadır”</em> diye kendisi yazıyor. Dost ise İshak diyor. Konuk ayrıca Mevlânâ'nın bir yerde İshak, bir yerde İsmâil dediğini de aktarıyor — yani ihtilâfı örtmüyor.",
+                "en": "This bezel also contains a scene about the method of commentary. Whether the sacrificed son was Isaac or Ishmael is disputed; Konuk lists at length the names on both sides and himself writes that <em>“the well-known view too is for Ishmael.”</em> Ibn Arabi says Isaac. Konuk also relays that Rumi says Isaac in one place and Ishmael in another — so he does not cover the disagreement.",
+                "pt": "Este engaste contém também uma cena sobre o método do comentário. Se o filho sacrificado foi Isaque ou Ismael é disputado; Konuk enumera longamente os nomes de ambos os lados e escreve ele próprio que <em>“a opinião mais conhecida é também a de Ismael.”</em> Ibn Arabi diz Isaque. Konuk relata também que Rumi diz Isaque num lugar e Ismael noutro — não encobre, pois, o desacordo."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sonra Konuk delil de getiriyor: <em>“Ben iki zebîhin oğluyum”</em> hadisinin İsmâil lehine güçlü bir senet olmadığını, çünkü Kur'ân'da <em>“ceddin birâderine de 'eb' ta'bîr olunmuştur”</em> diye savunuyor; ve <em>“Kur'ân-ı Kerîm'de zebîhin hangisi olduğu tasrîh buyurulmamıştır”</em> diye kaydediyor. Buraya kadar bir tartışma yürüyor.",
+                "en": "Konuk then brings evidence as well: he argues that the hadith <em>“I am the son of two sacrificed ones”</em> is not a strong warrant for Ishmael, since in the Qur'an <em>“the brother of a grandfather is also called ‘father,’”</em> and he records that <em>“the Qur'an does not state explicitly which of them was the sacrificed one.”</em> Up to here an argument is running.",
+                "pt": "Konuk traz depois também provas: argumenta que o hadith <em>“Sou filho de dois sacrificados”</em> não é garantia forte para Ismael, já que no Alcorão <em>“ao irmão do avô também se chama ‘pai,’”</em> e regista que <em>“o Alcorão não declara explicitamente qual deles foi o sacrificado.”</em> Até aqui corre um argumento."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ama sonra tartışma bitiyor ve yerini başka bir şey alıyor: <em>“Hz. Şeyh (r.a.), kavl-i meşhûra muhâlif olan bu zehâbında ma'zûrdur. Çünkü… rü'yâ-yı sâdıka muktezâsınca, kalb-i şerîfine ilkâ olunan ma'nâyı beyâna me'mûrdur. Ona i'tirâz ise sû'-i edebden başka bir şey değildir.”</em> Yani son gerekçe delil değil, <em>yetki</em>.",
+                "en": "But then the argument stops and something else takes its place: <em>“The Shaykh is excused in this view of his, contrary to the well-known one. For… by the requirement of a true vision he is charged with declaring the meaning cast into his noble heart. To object to him is nothing but discourtesy.”</em> The final ground, then, is not evidence but <em>mandate</em>.",
+                "pt": "Mas depois o argumento para e outra coisa toma o seu lugar: <em>“O Xeque está desculpado nesta sua opinião, contrária à mais conhecida. Pois… pela exigência de uma visão verídica está incumbido de declarar o sentido lançado no seu nobre coração. Objetar-lhe não é senão descortesia.”</em> O fundamento final não é, então, prova mas <em>mandato</em>."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunu işaretlememiz gerekiyor, çünkü bu sitenin duruşuyla doğrudan ilgili. Söylediğimiz şu değil: Konuk yanılıyor. Söylediğimiz şu: bu son adım, önceki adımlardan <em>farklı türde</em> bir adım. Delillere bakan bir okur onları tartabilir; yetkiye dayanan bir gerekçeyi tartamaz, yalnız kabul edip etmemeyi seçebilir. Ve tam bu fass, gören birinin <em>okumasında</em> yanılabileceğini anlatıyor — o hâlde bir okumanın itiraza kapatılması bize bu fassın kendi dersiyle uyumlu görünmüyor. Bu bizim okumamız; Konuk'un ne demek istediğine dair kesin bir hüküm değil, çünkü onun mertebesinde değiliz ve bu tür bir edep kaydının bizim göremediğimiz bir gerekçesi olabilir.",
+                "en": "We must mark this, because it bears directly on this site's stance. What we are saying is not: Konuk is wrong. What we are saying is: this last step is a <em>different kind</em> of step from the ones before it. A reader looking at evidence can weigh it; a ground resting on mandate cannot be weighed, only accepted or not. And this very bezel says that one who sees can be wrong in his <em>reading</em> — so closing a reading to objection does not look to us consistent with the bezel's own lesson. This is our reading; it is not a settled judgment about what Konuk meant, because we are not at his rank and a caution of this kind may have a ground we cannot see.",
+                "pt": "Temos de assinalar isto, porque toca diretamente na postura deste site. O que dizemos não é: Konuk está errado. O que dizemos é: este último passo é um passo de <em>outra espécie</em> que os anteriores. Um leitor que olha para provas pode pesá-las; um fundamento assente em mandato não pode ser pesado, apenas aceite ou não. E é este mesmo engaste que diz que quem vê pode errar na sua <em>leitura</em> — pelo que fechar uma leitura à objeção não nos parece consistente com a própria lição do engaste. Esta é a nossa leitura; não é um juízo firmado sobre o que Konuk quis dizer, porque não estamos no seu grau e uma cautela destas pode ter um fundamento que não vemos."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs6-s4",
+          "heading": {
+            "tr": "Ne Anladık, Ne Anlamadık",
+            "en": "What We Understood, and What We Did Not",
+            "pt": "O Que Compreendemos, e o Que Não"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Anladığımızı düşündüğümüz şey: bu fass hatânın yerini değiştiriyor. Alışılmış soru <em>“rüyâ doğru muydu?”</em>dur; fass o soruyu bırakıp <em>“hangi türdendi?”</em> diye soruyor. Ve tür yanlış seçilince, doğru bir rüyâ bir bıçağa dönüşebiliyor.",
+                "en": "What we think we understood: this bezel moves the place of error. The usual question is <em>“was the vision true?”</em>; the bezel drops that and asks <em>“of which kind was it?”</em> And when the kind is chosen wrongly, a true vision can turn into a knife.",
+                "pt": "O que pensamos ter compreendido: este engaste desloca o lugar do erro. A pergunta habitual é <em>“a visão era verdadeira?”</em>; o engaste larga-a e pergunta <em>“de que género era?”</em> E quando o género é escolhido mal, uma visão verdadeira pode tornar-se uma faca."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Anlamadığımız şey — ve yukarıda çizim yaparken de sorduğumuz: eğer <em>“âlem-i misâlde hatâ mümkin değil”</em> ise ve hatâ yalnız tâbirde ise, tâbirin doğruluğunu ne güvenceye alıyor? Fass burada bir ölçüt vermiyor; verdiği tek şey, İbrâhîm örneğinde ölçütün <em>sonradan</em>, olay yerinde, Hak tarafından konulmuş olması. Bu bir yöntem değil; bir müdahale. Yedinci fassa bu soruyla gidiyoruz.",
+                "en": "What we did not understand — and what we asked while drawing above: if <em>“error is not possible in the world of images”</em> and error lies only in the interpretation, what secures the correctness of an interpretation? The bezel gives no criterion here; all it gives is that, in Abraham's case, the criterion was set <em>afterwards</em>, on the spot, by the Real. That is not a method; it is an intervention. We go into the seventh bezel carrying the question.",
+                "pt": "O que não compreendemos — e o que perguntámos ao desenhar acima: se <em>“o erro não é possível no mundo das imagens”</em> e o erro está apenas na interpretação, o que garante a correção de uma interpretação? O engaste não dá aqui critério algum; tudo o que dá é que, no caso de Abraão, o critério foi posto <em>depois</em>, no local, pelo Real. Isso não é um método; é uma intervenção. Entramos no sétimo engaste levando a pergunta."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fusûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk, VI. Fass (Kelime-i İshâkıyye'de Mündemic Hikmet-i Hakkıyye)",
+          "en": "Fusus al-Hikam, Translation and Commentary by Ahmed Avni Konuk, Bezel VI (The Wisdom of Reality in the Word of Isaac)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário de Ahmed Avni Konuk, Engaste VI (A Sabedoria da Realidade no Verbo de Isaque)"
+        }
+      ]
     },
     {
       "id": "fs7",
