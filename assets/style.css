@@ -5675,8 +5675,11 @@ body.share-stage-open { overflow: hidden; }
   opacity: 0.5;
 }
 .helix-scene__node circle {
-  fill: var(--surface);
-  stroke: var(--accent);
+  fill: var(--surface-1);
+  /* --series-theme DEĞİL: o token dekoratif ve açık zeminde 2.1:1'de
+     kalıyor (dosyanın kendi notu). Bu düğümler tıklanabilir, yani
+     WCAG'ın 3:1 arayüz-kontrast tabanı gerçekten geçerli. */
+  stroke: var(--accent-interactive);
   stroke-width: 1.6;
   transition: fill 140ms ease, r 140ms ease;
 }
@@ -5687,27 +5690,27 @@ body.share-stage-open { overflow: hidden; }
      doğal hedefi çoğu zaman yazının kendisi (2026-07-29 testi). */
   cursor: pointer;
   paint-order: stroke;
-  stroke: var(--surface);
+  stroke: var(--surface-1);
   stroke-width: 3.2px;
   stroke-linejoin: round;
 }
-.helix-scene__node--accent circle { fill: var(--accent); }
+.helix-scene__node--accent circle { fill: var(--accent-interactive); }
 .helix-scene__node--accent text { fill: var(--text-primary); font-weight: 600; }
-.helix-scene__node.is-focus circle { fill: var(--accent); stroke-width: 2.6; }
+.helix-scene__node.is-focus circle { fill: var(--accent-interactive); stroke-width: 2.6; }
 .helix-scene__node.is-focus text { fill: var(--text-primary); font-weight: 600; }
-.helix-scene__node:hover circle { fill: var(--accent); }
+.helix-scene__node:hover circle { fill: var(--accent-interactive); }
 .helix-scene__node { cursor: pointer; }
 .helix-scene__node:focus-visible { outline: none; }
 .helix-scene__node:focus-visible circle {
-  stroke: var(--focus-ring, var(--accent));
+  stroke: var(--accent-interactive);
   stroke-width: 3;
 }
 
 .helix-scene__note {
   margin-top: 0.7rem;
   padding: 0.75rem 0.9rem;
-  border-left: 3px solid var(--accent);
-  background: var(--surface-muted, rgba(127, 127, 127, 0.07));
+  border-left: 3px solid var(--accent-interactive);
+  background: color-mix(in srgb, var(--series-theme) 7%, var(--surface-1));
   border-radius: 0 8px 8px 0;
   text-align: left;
   /* Not paneli düğümden düğüme geçerken sayfa zıplamasın diye alt sınır. */
@@ -5769,13 +5772,13 @@ body.share-stage-open { overflow: hidden; }
   padding: 0.2rem 0.55rem;
   border: 1px solid var(--gridline);
   border-radius: 999px;
-  background: var(--surface);
+  background: var(--surface-1);
   color: var(--text-secondary);
   font-size: 0.8rem;
   cursor: pointer;
 }
-.fusus-chip:hover:not(.is-planned) { border-color: var(--accent); color: var(--text-primary); }
-.fusus-chip.is-active { background: var(--accent); border-color: var(--accent); color: var(--text-primary); font-weight: 600; }
+.fusus-chip:hover:not(.is-planned) { border-color: var(--accent-interactive); color: var(--text-primary); }
+.fusus-chip.is-active { background: var(--series-theme); border-color: var(--series-theme); color: var(--on-accent-text); font-weight: 600; }
 .fusus-chip.is-planned { opacity: 0.42; cursor: default; }
 .fusus-chip__no { font-variant-numeric: tabular-nums; opacity: 0.7; font-size: 0.72rem; }
 
@@ -5809,7 +5812,7 @@ body.share-stage-open { overflow: hidden; }
   padding: 1rem clamp(0.6rem, 2vw, 1.1rem) 1.1rem;
   border: 1px solid var(--gridline);
   border-radius: 12px;
-  background: var(--surface);
+  background: var(--surface-1);
 }
 .fusus-figure__scene { min-width: 0; }
 .fusus-figure__cap {
@@ -5829,3 +5832,20 @@ body.share-stage-open { overflow: hidden; }
 .fusus-article__sources h3 { margin: 0 0 0.5rem; font-size: 0.9rem; }
 .fusus-article__sources ul { margin: 0; padding-left: 1.1rem; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
 .helix-scene__marker path { fill: var(--gridline); }
+
+/* Karanlık modda düğümlerin görünmemesi (2026-07-29, kullanıcı bildirimi)
+   var olmayan --surface / --accent token'larından geliyordu: geçersiz
+   bildirim düşünce daireler varsayılan siyahla doluyor, siyah zeminde
+   kayboluyordu. Tokenlar düzeltildi; ayrıca karanlıkta altın konturun
+   daha parlak sürümü kullanılıyor -- düz --series-theme yakın-siyah
+   üzerinde sönük kalıyor (aynı gerekçe Zât halesinde de yazılı). */
+.viz-root[data-theme="dark"] .helix-scene__node circle {
+  stroke: var(--accent-glow-dark);
+}
+.viz-root[data-theme="dark"] .helix-scene__node--accent circle,
+.viz-root[data-theme="dark"] .helix-scene__node.is-focus circle,
+.viz-root[data-theme="dark"] .helix-scene__node:hover circle {
+  fill: var(--accent-glow-dark);
+}
+.viz-root[data-theme="dark"] .helix-scene__path { stroke: #46453f; }
+.viz-root[data-theme="dark"] .helix-scene__marker path { fill: #46453f; }

@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs1",
+  "activeFassId": "fs2",
   "fasses": [
     {
       "id": "fs1",
@@ -470,7 +470,7 @@
     {
       "id": "fs2",
       "no": 2,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "Şît",
         "en": "Seth",
@@ -480,7 +480,482 @@
         "tr": "Hikmet-i Nefsiyye",
         "en": "Wisdom of the Breath",
         "pt": "Sabedoria do Sopro"
-      }
+      },
+      "title": {
+        "tr": "İlk Armağan — ve İstemenin Üç Dili",
+        "en": "The First Gift — and the Three Tongues of Asking",
+        "pt": "O Primeiro Dom — e as Três Línguas do Pedir"
+      },
+      "pageRange": {
+        "tr": "II. Fass, s. 201-206",
+        "en": "Bezel II, pp. 201-206",
+        "pt": "Engaste II, pp. 201-206"
+      },
+      "hero": {
+        "summary": {
+          "tr": "İkinci fass bir kelime oyunuyla değil, bir <em>kelime akrabalığıyla</em> açılıyor: <em>“nefs”</em> üflemek demek, <em>“Şît”</em> ise İbrânîce <em>Atâullah</em> — Allah'ın armağanı. Âdem, Hâbil'den sonra Hak'tan bir armağan istemiş, ona Şît verilmiş. Konuk ikisini şöyle bağlıyor: Âdem <em>icmâl</em>di, yani bütün mertebeleri toplamış bir özet; Şît o özetin <strong>açılması</strong>, ve açan şey <em>nefes-i Rahmânî</em>. Fassın geri kalanı tek bir soruyu bölüyor: bir armağan tam olarak nasıl verilir, ve isteyen ne isteyebileceğini bilir mi? Cevabın en sert yeri şu: <em>“her zaman ferdde, bu zamanda şahsın istidâdına vukûf, ma'lûmâtın en gâmız olanındandır.”</em>",
+          "en": "The second bezel opens not with a play on words but with a <em>kinship of words</em>: <em>“nafs”</em> means to breathe out, and <em>“Seth”</em> in Hebrew is <em>Ata'ullah</em> — God's gift. After Abel, Adam asked the Real for a gift, and Seth was given to him. Konuk joins the two like this: Adam was <em>the summary</em>, a gathering of all the levels; Seth is that summary <strong>unfolded</strong>, and what unfolds it is the <em>Breath of the Merciful</em>. The rest of the bezel divides a single question: how exactly is a gift given, and does the one asking know what he can ask for? The hardest part of the answer is this: <em>“knowledge of a person's preparedness at a given moment is among the most obscure of all knowledge.”</em>",
+          "pt": "O segundo engaste abre não com um jogo de palavras mas com um <em>parentesco de palavras</em>: <em>“nafs”</em> significa soprar, e <em>“Set”</em> em hebraico é <em>Ata'ullah</em> — o dom de Deus. Depois de Abel, Adão pediu ao Real um dom, e Set foi-lhe dado. Konuk une os dois assim: Adão era <em>o resumo</em>, uma reunião de todos os graus; Set é esse resumo <strong>desdobrado</strong>, e o que o desdobra é o <em>Sopro do Misericordioso</em>. O resto do engaste divide uma única pergunta: como exatamente é dado um dom, e saberá quem pede o que pode pedir? A parte mais dura da resposta é esta: <em>“o conhecimento da preparação de uma pessoa num dado momento está entre os mais obscuros de todos os conhecimentos.”</em>"
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, II. Fass (Konuk şerhi, s. 202-203)",
+          "en": "Fusus al-Hikam, Bezel II (Konuk's commentary, p. 202-203)",
+          "pt": "Fusus al-Hikam, Engaste II (comentário de Konuk, p. 202-203)"
+        },
+        "caption": {
+          "tr": "Sarmalı biz kurduk; basamaklar Konuk'un cümleleri. Neden sarmal: bu bir <em>iniş</em> — her basamak bir öncekinin bir derece yoğunlaşması — ama son basamak ilk basamağın <em>vermeyişine</em> geri değiyor, çünkü verilen şey hep aynı Zât'ın açılmasıdır. Birinci fassın altı mertebesiyle aynı hareketin başka bir yüzü.",
+          "en": "We built the spiral; the steps are Konuk's sentences. Why a spiral: this is a <em>descent</em> — each step a degree of condensation of the one before — yet the last step touches back on the first step's <em>not-giving</em>, because what is given is always the unfolding of that same Essence. Another face of the same movement as the six levels of the first bezel.",
+          "pt": "Construímos a espiral; os degraus são frases de Konuk. Porquê uma espiral: isto é uma <em>descida</em> — cada degrau um grau de condensação do anterior — e contudo o último degrau toca de novo o <em>não-dar</em> do primeiro, porque o que é dado é sempre o desdobrar dessa mesma Essência. Outra face do mesmo movimento que os seis graus do primeiro engaste."
+        },
+        "helix": {
+          "id": "fs2-ata",
+          "turns": 1.45,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs2-a1",
+              "label": {
+                "tr": "Zât, olduğu hâliyle vermez",
+                "en": "The Essence, as such, does not give",
+                "pt": "A Essência, enquanto tal, não dá"
+              },
+              "note": {
+                "tr": "<em>“vücûd-ı mutlak-ı Hak zât-ı ahadiyyesi hasebiyle, atâ ve ihsân etmez. Zirâ atâ sıfât ve esmâ îcâbıdır.”</em> Bu bir cimrilik değil, bir mertebe hükmü: o mertebede <em>“Hak kâffe-i sıfât ve esmâ ile zuhûrdan ganîdir.”</em>",
+                "en": "<em>“The absolute existence of the Real, in respect of its oneness, does not give or bestow. For giving is a requirement of the attributes and names.”</em> This is not stinginess but the ruling of a level: at that level <em>“the Real is beyond need of appearing through any of the attributes and names.”</em>",
+                "pt": "<em>“A existência absoluta do Real, quanto à sua unicidade, não dá nem concede. Pois dar é uma exigência dos atributos e dos nomes.”</em> Isto não é avareza mas o juízo de um grau: nesse grau <em>“o Real está além da necessidade de aparecer por qualquer dos atributos e nomes.”</em>"
+              },
+              "accent": true
+            },
+            {
+              "id": "fs2-a2",
+              "label": {
+                "tr": "Sıfatlar zuhûr ister",
+                "en": "The attributes seek to appear",
+                "pt": "Os atributos procuram aparecer"
+              },
+              "note": {
+                "tr": "<em>“Vaktâki zâtında mahv ve müstehlek olan bu sıfât ve esmâ zuhûr isterler, Hak kendi zâtına, yine kendi zâtında tecellî etmekle, onların suver-i ilmiyyeleri Hakk'ın zâtında peydâ olur.”</em> Hareketi başlatan istek buradan geliyor.",
+                "en": "<em>“When these attributes and names, effaced and absorbed in His Essence, seek to appear, the Real discloses Himself to His own Essence within His own Essence, and their forms in knowledge come to be within the Essence of the Real.”</em> The wish that starts the movement comes from here.",
+                "pt": "<em>“Quando estes atributos e nomes, apagados e absorvidos na Sua Essência, procuram aparecer, o Real manifesta-Se à Sua própria Essência dentro da Sua própria Essência, e as suas formas no conhecimento vêm a ser dentro da Essência do Real.”</em> O desejo que inicia o movimento vem daqui."
+              }
+            },
+            {
+              "id": "fs2-a3",
+              "label": {
+                "tr": "Feyz-i akdes — bilgide sûretler",
+                "en": "The most holy effusion — forms in knowledge",
+                "pt": "A efusão santíssima — formas no conhecimento"
+              },
+              "note": {
+                "tr": "<em>“Buna 'feyz-i akdes' ta'bir ederler; ve Hakk'ın bu tecellîsi ile 'mertebe-i ilm'e tenezzülü mertebe-i esmâ ve sıfât, vahdet ve ulûhiyet mertebesidir.”</em> Birinci fasstaki ikinci mertebenin aynısı — a'yân-ı sâbitenin sâbit olduğu yer.",
+                "en": "<em>“This is called the most holy effusion; and by this self-disclosure the Real's descent to the level of knowledge is the level of the names and attributes, of unity and divinity.”</em> The same as the second level in the first bezel — where the fixed entities become fixed.",
+                "pt": "<em>“A isto chamam a efusão santíssima; e por esta manifestação a descida do Real ao grau do conhecimento é o grau dos nomes e atributos, da unidade e da divindade.”</em> O mesmo que o segundo grau do primeiro engaste — onde as entidades fixas se fixam."
+              }
+            },
+            {
+              "id": "fs2-a4",
+              "label": {
+                "tr": "Nefes-i Rahmânî — açılma",
+                "en": "The Breath of the Merciful — the unfolding",
+                "pt": "O Sopro do Misericordioso — o desdobrar"
+              },
+              "note": {
+                "tr": "<em>“zât-ı Hak, ilminde peydâ olan suver-i esmâiyyeye, nefes-i Rahmânîsiyle münbasit olmak, ya'ni mertebe-i letâfetten mertebe-i kesâfete tenezzül etmek sûretiyle vücûd verdi.”</em> Nefesin tarifi de veriliyor: <em>“vücûd-ı mutlakının a'yân-ı sâbite üzerine inbisâtı.”</em>",
+                "en": "<em>“The Essence of the Real gave existence to the forms of the names that came to be in His knowledge by spreading out with His Breath of the Merciful — that is, by descending from the level of subtlety to the level of density.”</em> The Breath is defined too: <em>“the spreading of His absolute existence over the fixed entities.”</em>",
+                "pt": "<em>“A Essência do Real deu existência às formas dos nomes que vieram a ser no Seu conhecimento ao expandir-se com o Seu Sopro do Misericordioso — isto é, ao descer do grau da subtileza ao grau da densidade.”</em> O Sopro também é definido: <em>“a expansão da Sua existência absoluta sobre as entidades fixas.”</em>"
+              }
+            },
+            {
+              "id": "fs2-a5",
+              "label": {
+                "tr": "Ve armağan istidâda göre",
+                "en": "And the gift is according to preparedness",
+                "pt": "E o dom é conforme a preparação"
+              },
+              "note": {
+                "tr": "<em>“onların istidâdları ve kâbiliyetleri neden ibâret ise, ona göre atâ ve ihsân etti.”</em> Yani armağanın ölçüsü verenin cömertliği değil, alanın kabıdır. Fassın geri kalanı bu tek cümlenin sonuçlarını açıyor.",
+                "en": "<em>“And He gave and bestowed according to what their preparednesses and capacities consisted of.”</em> The measure of the gift, then, is not the giver's generosity but the receiver's vessel. The rest of the bezel unfolds the consequences of this one sentence.",
+                "pt": "<em>“E deu e concedeu conforme aquilo em que consistiam as suas preparações e capacidades.”</em> A medida do dom não é, então, a generosidade de quem dá mas o recipiente de quem recebe. O resto do engaste desdobra as consequências desta única frase."
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs2-s1",
+          "heading": {
+            "tr": "İki Ad: Üflemek ve Armağan",
+            "en": "Two Names: Breathing Out, and Gift",
+            "pt": "Dois Nomes: Soprar, e Dom"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk fassa iki kelimeyi açarak giriyor. Birincisi <em>nefs</em>: <em>“'uh tuh' diyerek üflemek ma'nâsına gelir”</em> — ve örneği gündelik hayattan, üfürükçülerden veriyor; Kur'ân'daki <em>“düğümlere üfleyenlerin şerrinden”</em> ifadesi de aynı kökten. İkincisi <em>Şît</em>: <em>“İbrânî lugatında 'Atâullah' ma'nâsınadır”</em> — Allah'ın armağanı. Ve bir hikâye: <em>“Âdem, Hâbil'in vak'a-yı şehâdetinden sonra teskîn-i teessürü için Hak'tan bir mevhibe taleb etti. Ona Şît atâ olundu.”</em>",
+                "en": "Konuk enters the bezel by opening two words. The first is <em>nafs</em>: <em>“it means to breathe out, saying ‘uh tuh’”</em> — and his example is from everyday life, the blowers of charms; the Qur'anic phrase <em>“from the evil of those who blow on knots”</em> is from the same root. The second is <em>Seth</em>: <em>“in the Hebrew tongue it means Ata'ullah”</em> — God's gift. And a story: <em>“After the martyrdom of Abel, Adam asked the Real for a gift to quiet his grief. Seth was given to him.”</em>",
+                "pt": "Konuk entra no engaste abrindo duas palavras. A primeira é <em>nafs</em>: <em>“significa soprar, dizendo ‘uh tuh’”</em> — e o seu exemplo vem do quotidiano, os sopradores de amuletos; a expressão corânica <em>“do mal dos que sopram nos nós”</em> vem da mesma raiz. A segunda é <em>Set</em>: <em>“na língua hebraica significa Ata'ullah”</em> — o dom de Deus. E uma história: <em>“Depois do martírio de Abel, Adão pediu ao Real um dom para acalmar a sua dor. Set foi-lhe dado.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu iki kelimenin niçin aynı fassta olduğunu Konuk açıkça bağlıyor, ve bağ bir öncekiyle kuruluyor: <em>“Cenâb-ı Âdem taayyün-i evvel-i icmâlî olup, onun mertebesi kâffe-i merâtib-i âlemi müştemil idi. Hak Teâlâ hazretleri o icmâli… nefes-i Rahmânîsi ile tafsîl etmek murâd etti.”</em> Yani Âdem bir <em>özet</em>ti; Şît o özetin açılması. Ve açan şey bir nefes olduğu için, hikmetin adı <em>nefsiyye</em>; açılan şey bir armağan olduğu için, adı <em>Şît</em>.",
+                "en": "Konuk plainly ties the two words together, and the tie is made with the previous bezel: <em>“Adam was the first, summary determination, and his level comprised all the levels of the world. God willed to unfold that summary… with His Breath of the Merciful.”</em> Adam, then, was a <em>summary</em>; Seth is that summary unfolded. And because what unfolds it is a breath, the wisdom is called <em>of the breath</em>; because what is unfolded is a gift, its name is <em>Seth</em>.",
+                "pt": "Konuk liga claramente as duas palavras, e a ligação faz-se com o engaste anterior: <em>“Adão era a primeira determinação, resumida, e o seu grau compreendia todos os graus do mundo. Deus quis desdobrar esse resumo… com o Seu Sopro do Misericordioso.”</em> Adão era, então, um <em>resumo</em>; Set é esse resumo desdobrado. E porque o que o desdobra é um sopro, a sabedoria chama-se <em>do sopro</em>; porque o que é desdobrado é um dom, o seu nome é <em>Set</em>."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu bize kitabın yapısına dair bir beklenti verdi — ve bunu bir okuma olarak kaydediyoruz, kural olarak değil: fasslar birbirinden bağımsız yirmi yedi konu değil, birbirini <em>açan</em> bir dizi olabilir. Birinci fass toplamıştı, ikincisi açıyor. Bu doğruysa üçüncüde ne olacağını da önceden söyleyemeyiz; okudukça sınayacağız.",
+                "en": "This gave us an expectation about the book's structure — and we record it as a reading, not a rule: the bezels may not be twenty-seven independent topics but a series in which each <em>opens</em> the one before. The first gathered; the second unfolds. If that holds, we still cannot say in advance what the third will do; we will test it as we read.",
+                "pt": "Isto deu-nos uma expectativa sobre a estrutura do livro — e registamo-la como leitura, não como regra: os engastes podem não ser vinte e sete temas independentes mas uma série em que cada um <em>abre</em> o anterior. O primeiro reuniu; o segundo desdobra. Se isso se sustentar, ainda assim não podemos dizer de antemão o que fará o terceiro; iremos pô-lo à prova ao ler."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs2-s2",
+          "heading": {
+            "tr": "İstemenin Üç Dili",
+            "en": "The Three Tongues of Asking",
+            "pt": "As Três Línguas do Pedir"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass armağanları önce <em>verenin</em> tarafından ikiye ayırıyordu (zâtî ve esmâî). Şimdi <em>alanın</em> tarafından ayırıyor — Konuk bu farkı da adlandırıyor: <em>“evvelki taksim fâil cihetinden ve bu taksim ise kâbil cihetindendir.”</em> Ve burada beklenmedik bir genişlik var: istemek yalnız ağızla olmuyor. <em>“Zirâ suâl ya lisân-ı kâl veyâ hâl veyâhud istidâd ile olur. Suâl olmak husûsunda cümlesi birbirine müsâvîdir.”</em>",
+                "en": "The bezel first divided the gifts from the <em>giver's</em> side (essential and by-the-names). Now it divides them from the <em>receiver's</em> side — and Konuk names the difference: <em>“the first division is from the side of the agent, and this division from the side of the recipient.”</em> And here there is an unexpected breadth: asking is not done with the mouth alone. <em>“For the request is by the tongue of speech, or of state, or of preparedness. In respect of being a request, all of them are equal.”</em>",
+                "pt": "O engaste dividiu primeiro os dons do lado de <em>quem dá</em> (essenciais e pelos nomes). Agora divide-os do lado de <em>quem recebe</em> — e Konuk nomeia a diferença: <em>“a primeira divisão é do lado do agente, e esta divisão do lado do recipiente.”</em> E aqui há uma amplitude inesperada: pedir não se faz só com a boca. <em>“Pois o pedido é pela língua da fala, ou do estado, ou da preparação. Enquanto pedido, todos são iguais.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, II. Fass (Konuk şerhi, s. 204)",
+                "en": "Fusus al-Hikam, Bezel II (Konuk's commentary, p. 204)",
+                "pt": "Fusus al-Hikam, Engaste II (comentário de Konuk, p. 204)"
+              },
+              "caption": {
+                "tr": "Üç dili biz sarmala dizdik, ama örnekler Konuk'un kendi örnekleri — ve şaşırtıcı derecede somut, dilenciler üzerinden anlatılıyor. Sarmal olmalarının sebebi şu: üçü bir merdiven değil; her biri bir öncekinden daha <em>sessiz</em>, ve en sessiz olanı en çok işitilen. Üçüncü basamak birinciye geri değiyor, çünkü hiç konuşmayan da istemiş sayılıyor.",
+                "en": "We laid the three tongues on a spiral, but the examples are Konuk's own — and they are surprisingly concrete, told through beggars. The reason they form a spiral: the three are not a ladder; each is <em>quieter</em> than the last, and the quietest is the most heard. The third step touches back on the first, because one who never speaks is still counted as having asked.",
+                "pt": "Dispusemos as três línguas numa espiral, mas os exemplos são do próprio Konuk — e são surpreendentemente concretos, contados através de mendigos. A razão de formarem uma espiral: as três não são uma escada; cada uma é mais <em>silenciosa</em> que a anterior, e a mais silenciosa é a mais ouvida. O terceiro degrau toca de novo o primeiro, porque quem nunca fala conta-se ainda assim como tendo pedido."
+              },
+              "helix": {
+                "id": "fs2-diller",
+                "turns": 1.2,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs2-d1",
+                    "label": {
+                      "tr": "Lisân-ı kâl — sözle",
+                      "en": "The tongue of speech",
+                      "pt": "A língua da fala"
+                    },
+                    "note": {
+                      "tr": "<em>“Meselâ bir dilenci gelip 'On para ver!' der. Bu lisân-ı kâl ile suâldir.”</em> Ve bu da ikiye ayrılıyor: belirli bir şey istemek (<em>“Yâ Rab bana bunu ver!”</em>) ya da belirtmeden istemek.",
+                      "en": "<em>“For instance a beggar comes and says: ‘Give me ten coins!’ This is a request by the tongue of speech.”</em> And this divides in two as well: asking for something specified (<em>“My Lord, give me this!”</em>) or asking without specifying.",
+                      "pt": "<em>“Por exemplo, um mendigo chega e diz: ‘Dá-me dez moedas!’ Isto é um pedido pela língua da fala.”</em> E também esta se divide em duas: pedir algo especificado (<em>“Meu Senhor, dá-me isto!”</em>) ou pedir sem especificar."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs2-d2",
+                    "label": {
+                      "tr": "Lisân-ı hâl — hâliyle",
+                      "en": "The tongue of state",
+                      "pt": "A língua do estado"
+                    },
+                    "note": {
+                      "tr": "<em>“Bir diğer dilenci gelip boynunu bükerek el açıp durur, bu da lisân-ı hâl ile sadaka taleb ediyor.”</em> Ağız yok, istek var.",
+                      "en": "<em>“Another beggar comes, bows his head and stands with an open hand — this too is asking for alms, by the tongue of state.”</em> No mouth, and yet a request.",
+                      "pt": "<em>“Outro mendigo chega, baixa a cabeça e fica de mão aberta — também isto é pedir esmola, pela língua do estado.”</em> Sem boca, e contudo um pedido."
+                    }
+                  },
+                  {
+                    "id": "fs2-d3",
+                    "label": {
+                      "tr": "Lisân-ı istidâd — hiç istemeden",
+                      "en": "The tongue of preparedness — without asking at all",
+                      "pt": "A língua da preparação — sem pedir sequer"
+                    },
+                    "note": {
+                      "tr": "<em>“âile sâhibi olup akşama yiyeceği ve bir kesbi olmadığını bildiğiniz bir fakir ne lisân-ı kâl ile ve ne de lisân-ı hâl ile sizden sadaka istemediği hâlde, siz onun mahall-i sadaka olmak istidâdını hâiz olduğunu bildiğiniz için ona muâvenette bulunursunuz.”</em> Burada isteyen kişi değil, <em>durumu</em>.",
+                      "en": "<em>“A poor man with a family, who you know has nothing to eat this evening and no earnings, asks you for alms neither by the tongue of speech nor by that of state; yet because you know he holds the preparedness to be a place of alms, you come to his aid.”</em> Here what asks is not the person but his <em>condition</em>.",
+                      "pt": "<em>“Um pobre com família, de quem sabes que nada tem para comer esta noite e nenhum ganho, não te pede esmola nem pela língua da fala nem pela do estado; contudo, porque sabes que ele detém a preparação para ser lugar de esmola, vais em seu auxílio.”</em> Aqui quem pede não é a pessoa mas a sua <em>condição</em>."
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs2-s3",
+          "heading": {
+            "tr": "İki İsteyen: Acele Eden ve Bilen",
+            "en": "Two Kinds of Asker: the Hasty and the Knowing",
+            "pt": "Dois Tipos de Quem Pede: o Apressado e o Que Sabe"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sözle isteyenleri fass ikiye ayırıyor ve ayrımı bir kusura değil, bir <em>sebebe</em> bağlıyor: <em>“Bir sınıfı suâle isti'câl-i tabiî ba'setti. Zirâ insan acûlen mahlûktur.”</em> Bunlar <em>“vaktinin hulûlünden mukaddem kemâle vusûlü taleb eder”</em> — yani vakti gelmeden olgunluğu isterler. Konuk bunu bir cehâlet olarak niteliyor ama sertliği yumuşatmıyor da: bu sınıf, istediği şeyin ilâhî ilimde kendi hakkında hükmedilip hükmedilmediğini bilmez.",
+                "en": "The bezel divides those who ask with speech in two, and ties the division not to a fault but to a <em>cause</em>: <em>“One class was driven to ask by natural haste. For the human being was created hasty.”</em> These <em>“seek to reach maturity before its time has come.”</em> Konuk calls this an ignorance and does not soften it: this class does not know whether what it asks for has been decreed for it in the divine knowledge.",
+                "pt": "O engaste divide em dois os que pedem com a fala, e liga a divisão não a uma falta mas a uma <em>causa</em>: <em>“Uma classe foi levada a pedir pela pressa natural. Pois o ser humano foi criado apressado.”</em> Estes <em>“procuram chegar à maturidade antes do seu tempo.”</em> Konuk chama a isto uma ignorância e não a suaviza: esta classe não sabe se o que pede lhe foi decretado no conhecimento divino."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "İkinci sınıfın sebebi ise bilgi: <em>“bildi ki Allah indinde, ilim sebketmiş olan umûr vâki'dir. Ona ancak talebden sonra nâil olunur.”</em> Yani bazı armağanların zuhûru, ilâhî ilimde <em>istemeye bağlanmış</em>tır; istenmezse gelmez. Bu sınıf bunu bilir ve <em>ihtiyâten</em> ister: belki istediğim şey bu kabildendir, der. Ama bilmediği bir şey kalır — ve fassın en sert cümlesi orada.",
+                "en": "The cause of the second class is knowledge: <em>“he knew that with God there are matters concerning which knowledge has gone before. They are attained only after asking.”</em> The appearance of certain gifts is <em>conditioned upon asking</em> in the divine knowledge; unasked, they do not come. This class knows this and asks <em>as a precaution</em>: perhaps what I ask for is of that kind. But something remains that it does not know — and the bezel's hardest sentence is there.",
+                "pt": "A causa da segunda classe é o conhecimento: <em>“soube que junto de Deus há assuntos sobre os quais o conhecimento precedeu. Só se alcançam depois de pedir.”</em> O aparecimento de certos dons está <em>condicionado ao pedir</em> no conhecimento divino; se não forem pedidos, não vêm. Esta classe sabe isto e pede <em>por precaução</em>: talvez o que peço seja desse género. Mas resta algo que não sabe — e a frase mais dura do engaste está aí."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, II. Fass (Konuk şerhi, s. 205)",
+                "en": "Fusus al-Hikam, Bezel II (Konuk's commentary, p. 205)",
+                "pt": "Fusus al-Hikam, Engaste II (comentário de Konuk, p. 205)"
+              },
+              "caption": {
+                "tr": "Bu sarmalı kurarken tereddüt ettik, çünkü çizdiğimiz şey bir <em>çıkmaz</em>: dördüncü basamak üçüncüyü geçersiz kılmıyor, ama onu güvenilir olmaktan çıkarıyor. Yine de çizdik — bir önceki fassın <em>“ruhu olmayan sûret”</em> ölçütünü hatırlayarak: bu basamakları anlamadığımız için değil, tam da anladığımız kadarıyla rahatsız edici oldukları için burada duruyorlar.",
+                "en": "We hesitated in building this spiral, because what we are drawing is a <em>dead end</em>: the fourth step does not invalidate the third, but it strips it of reliability. We drew it anyway — remembering the previous bezel's criterion of the <em>“form with no spirit”</em>: these steps stand here not because we failed to understand them but precisely because, as far as we did understand, they are unsettling.",
+                "pt": "Hesitámos em construir esta espiral, porque o que desenhamos é um <em>impasse</em>: o quarto degrau não invalida o terceiro, mas retira-lhe fiabilidade. Desenhámo-la ainda assim — lembrando o critério do engaste anterior sobre a <em>“forma sem espírito”</em>: estes degraus estão aqui não por não os termos compreendido mas precisamente porque, no que compreendemos, são perturbadores."
+              },
+              "helix": {
+                "id": "fs2-sail",
+                "turns": 1.35,
+                "closing": false,
+                "nodes": [
+                  {
+                    "id": "fs2-s1n",
+                    "label": {
+                      "tr": "Acele eden",
+                      "en": "The hasty one",
+                      "pt": "O apressado"
+                    },
+                    "note": {
+                      "tr": "<em>“insan acûlen mahlûktur”</em> — ve <em>“vaktinin hulûlünden mukaddem kemâle vusûlü taleb eder.”</em> Bilmediği: istediği şeye şu an müstaid mi.",
+                      "en": "<em>“the human being was created hasty”</em> — and <em>“seeks to reach maturity before its time.”</em> What he does not know: whether he is prepared right now for what he asks.",
+                      "pt": "<em>“o ser humano foi criado apressado”</em> — e <em>“procura chegar à maturidade antes do seu tempo.”</em> O que não sabe: se está preparado agora para o que pede."
+                    }
+                  },
+                  {
+                    "id": "fs2-s2n",
+                    "label": {
+                      "tr": "Bilen",
+                      "en": "The knowing one",
+                      "pt": "O que sabe"
+                    },
+                    "note": {
+                      "tr": "<em>“birtakım atâyâ-yı ilâhiyye vardır ki, onların zuhûru, ilm-i ilâhîde talebe meşrût kılınmıştır. Binâenaleyh taleb olmadıkça zuhûr etmez.”</em>",
+                      "en": "<em>“There are divine gifts whose appearance has been made conditional upon asking in the divine knowledge. Hence they do not appear unless they are asked for.”</em>",
+                      "pt": "<em>“Há dons divinos cujo aparecimento foi tornado condicional ao pedir no conhecimento divino. Por isso não aparecem se não forem pedidos.”</em>"
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs2-s3n",
+                    "label": {
+                      "tr": "İhtiyâten istemek",
+                      "en": "Asking as a precaution",
+                      "pt": "Pedir por precaução"
+                    },
+                    "note": {
+                      "tr": "<em>“me'mûldür ki Hak'tan taleb ettiğimiz şey bu kabilden ola.”</em> Konuk bunu tam olarak böyle adlandırıyor: <em>“ihtiyâtdır.”</em> Yani bilerek değil, ihtimale karşı.",
+                      "en": "<em>“It is hoped that what we ask of the Real is of this kind.”</em> Konuk names it exactly so: <em>“it is a precaution.”</em> Not from knowledge, then, but against a possibility.",
+                      "pt": "<em>“Espera-se que o que pedimos ao Real seja deste género.”</em> Konuk nomeia-o exatamente assim: <em>“é uma precaução.”</em> Não por saber, então, mas contra uma possibilidade."
+                    }
+                  },
+                  {
+                    "id": "fs2-s4n",
+                    "label": {
+                      "tr": "Ve kendi istidâdını bilmiyor",
+                      "en": "And he does not know his own preparedness",
+                      "pt": "E não conhece a sua própria preparação"
+                    },
+                    "note": {
+                      "tr": "<em>“her zaman ferdde, bu zamanda şahsın istidâdına vukûf, ma'lûmâtın en gâmız olanındandır.”</em> Ve bir cümle daha, mantığı kapatan: <em>“eğer istidâd, suâli i'tâ etmeye idi, suâl etmezdi.”</em> — istemek, istidâdın kendisinin bir belirtisi. Sonuç: <em>“istediği şeylerin ba'zısı vâki' olur, ba'zısı vâki' olmaz.”</em>",
+                      "en": "<em>“Knowledge of a person's preparedness at a given moment is among the most obscure of all knowledge.”</em> And one more sentence closes the logic: <em>“if his preparedness had not yielded the asking, he would not have asked.”</em> — the asking is itself a sign of the preparedness. The upshot: <em>“some of what he asks for comes to pass, and some does not.”</em>",
+                      "pt": "<em>“O conhecimento da preparação de uma pessoa num dado momento está entre os mais obscuros de todos os conhecimentos.”</em> E mais uma frase fecha a lógica: <em>“se a sua preparação não tivesse produzido o pedido, ele não teria pedido.”</em> — o pedir é ele mesmo sinal da preparação. O resultado: <em>“parte do que pede acontece, e parte não.”</em>"
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs2-s4",
+          "heading": {
+            "tr": "Hükmeden, Hükmettiği Şeyde Hükümlüdür",
+            "en": "The Judge Is Judged in the Very Thing He Judges",
+            "pt": "Quem Julga É Julgado Naquilo Mesmo Que Julga"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ve fass, bu okumada karşılaştığımız en zor cümleye geliyor: <em>“a'yân-ı sâbite Hakk'a ne sûretle ilim vermişler ise, o sûretle Hakk'ın ma'lûmu olurlar; ve Hakk'a, bizim hakkımızda böyle hükmet diye, Hak aleyhinde ne vech ile hükmetmişler ise, Hakk'ın onlar hakkındaki hükmü dahi ona göredir. Zirâ hâkim hükmettiği şeyde mahkûmun-aleyhdir.”</em>",
+                "en": "And the bezel arrives at the hardest sentence we have met in this reading: <em>“In whatever way the fixed entities have given knowledge to the Real, in that way they become known to the Real; and in whatever way they have ruled against the Real — saying to the Real, rule thus concerning us — the Real's ruling concerning them is accordingly. For the judge is the one judged in the very thing he judges.”</em>",
+                "pt": "E o engaste chega à frase mais difícil que encontrámos nesta leitura: <em>“Do modo como as entidades fixas deram conhecimento ao Real, desse modo tornam-se conhecidas ao Real; e do modo como julgaram contra o Real — dizendo ao Real, julga assim a nosso respeito — o juízo do Real a seu respeito é conforme. Pois quem julga é o julgado naquilo mesmo que julga.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, II. Fass (Konuk şerhi, s. 205-206)",
+                "en": "Fusus al-Hikam, Bezel II (Konuk's commentary, p. 205-206)",
+                "pt": "Fusus al-Hikam, Engaste II (comentário de Konuk, p. 205-206)"
+              },
+              "caption": {
+                "tr": "Bu şemayı çizerken bir sınırı aştığımızı düşünüyoruz ve onu saklamıyoruz: cümle bir <em>döngü</em> tarif ediyor ve döngünün nereden başladığı belli değil. Biz bir yerden başlattık — a'yân-ı sâbiteden — ama metin bunu söylemiyor. Kapanış izinin çizili olması bu yüzden: sarmal kendi başlangıcına dönüyor ve bir sonraki turun nereden başlayacağı sorusu açık kalıyor.",
+                "en": "In drawing this diagram we think we have crossed a line, and we do not hide it: the sentence describes a <em>loop</em>, and where the loop begins is not stated. We began it somewhere — at the fixed entities — but the text does not say that. This is why the closing trace is drawn: the spiral returns to its own beginning, and the question of where the next turn starts is left open.",
+                "pt": "Ao desenhar este esquema pensamos ter ultrapassado um limite, e não o escondemos: a frase descreve um <em>ciclo</em>, e onde o ciclo começa não é dito. Começámo-lo algures — nas entidades fixas — mas o texto não o diz. É por isso que o traço de fecho está desenhado: a espiral regressa ao seu próprio começo, e a questão de onde começa a volta seguinte fica em aberto."
+              },
+              "helix": {
+                "id": "fs2-hukum",
+                "turns": 1.05,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs2-h1",
+                    "label": {
+                      "tr": "A'yân-ı sâbite Hakk'a bildirir",
+                      "en": "The fixed entities make known to the Real",
+                      "pt": "As entidades fixas dão a conhecer ao Real"
+                    },
+                    "note": {
+                      "tr": "<em>“a'yân-ı sâbite Hakk'a ne sûretle ilim vermişler ise…”</em> Dikkat: <em>vermek</em> fiili kullanılıyor, ve veren biz tarafız.",
+                      "en": "<em>“In whatever way the fixed entities have given knowledge to the Real…”</em> Note: the verb is <em>to give</em>, and the giver is our side.",
+                      "pt": "<em>“Do modo como as entidades fixas deram conhecimento ao Real…”</em> Repare-se: o verbo é <em>dar</em>, e quem dá é o nosso lado."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs2-h2",
+                    "label": {
+                      "tr": "Hak ona göre bilir",
+                      "en": "The Real knows accordingly",
+                      "pt": "O Real conhece em conformidade"
+                    },
+                    "note": {
+                      "tr": "<em>“…o sûretle Hakk'ın ma'lûmu olurlar.”</em> Bilgi yeni bir şey eklemiyor; olduğu gibi alıyor.",
+                      "en": "<em>“…in that way they become known to the Real.”</em> The knowing adds nothing new; it takes what is there.",
+                      "pt": "<em>“…desse modo tornam-se conhecidas ao Real.”</em> O conhecer nada acrescenta; toma o que está lá."
+                    }
+                  },
+                  {
+                    "id": "fs2-h3",
+                    "label": {
+                      "tr": "Hak ona göre hükmeder",
+                      "en": "The Real rules accordingly",
+                      "pt": "O Real julga em conformidade"
+                    },
+                    "note": {
+                      "tr": "<em>“Hakk'ın onlar hakkındaki hükmü dahi ona göredir.”</em> Ve gerekçe tek cümlede: <em>“Zirâ hâkim hükmettiği şeyde mahkûmun-aleyhdir.”</em>",
+                      "en": "<em>“the Real's ruling concerning them is accordingly.”</em> And the ground in one sentence: <em>“For the judge is the one judged in the very thing he judges.”</em>",
+                      "pt": "<em>“o juízo do Real a seu respeito é conforme.”</em> E o fundamento numa frase: <em>“Pois quem julga é o julgado naquilo mesmo que julga.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs2-h4",
+                    "label": {
+                      "tr": "Ve armağan yine istidâda göre",
+                      "en": "And the gift is again according to preparedness",
+                      "pt": "E o dom é de novo conforme a preparação"
+                    },
+                    "note": {
+                      "tr": "Böylece bu fassın açılışındaki cümleye dönüyoruz: <em>“istidâdları ve kâbiliyetleri neden ibâret ise, ona göre atâ ve ihsân etti.”</em> Halka kapanıyor — ama aynı noktaya değil: başlangıçta bu bir cömertlik tarifiydi, burada bir <em>sorumluluk</em> tarifi hâline geliyor.",
+                      "en": "So we return to the sentence at this bezel's opening: <em>“He gave and bestowed according to what their preparednesses and capacities consisted of.”</em> The circle closes — but not on the same point: at the start this was a description of generosity; here it becomes a description of <em>responsibility</em>.",
+                      "pt": "Assim voltamos à frase da abertura deste engaste: <em>“Deu e concedeu conforme aquilo em que consistiam as suas preparações e capacidades.”</em> O círculo fecha-se — mas não no mesmo ponto: no início isto era uma descrição de generosidade; aqui torna-se uma descrição de <em>responsabilidade</em>."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu cümle bizim için Füsûs okumasının Fütûhât okumasıyla kesiştiği en net yer oldu. Fütûhât'ın 463. Bölümü'nde <em>“ilâhî isimlerin mümkünlerin hakikatlerinde tesire olan ihtiyaçları, mümkünlerin ilâhî isimlere olan ihtiyacından daha fazladır”</em> diye bir cümle okumuş ve açık bir soru olarak kaydetmiştik; 473. Bölüm aynı soruyu <em>kendisi</em> sorup açık bırakmıştı. Şimdi Füsûs, aynı bölgeye üçüncü kez ve daha keskin bir ifadeyle dokunuyor. Üç tanık bir cevap etmiyor — ama sorunun bizim uydurduğumuz bir gerilim olmadığını, metnin kendi içinde tekrar tekrar döndüğü bir yer olduğunu gösteriyor. Soruyu açık tutmaya devam ediyoruz.",
+                "en": "For us this sentence is the clearest place where the Fusus reading meets the Futuhat reading. In Chapter 463 of the Futuhat we read <em>“the divine names' need for effect in the realities of the possibles is greater than the possibles' need for the divine names,”</em> and recorded it as an open question; Chapter 473 then asked the same question <em>itself</em> and left it open. Now the Fusus touches the same region a third time, and more sharply. Three witnesses do not make an answer — but they show that the question is not a tension we invented; it is a place the text itself keeps returning to. We keep the question open.",
+                "pt": "Para nós esta frase é o lugar mais claro onde a leitura dos Fusus encontra a leitura das Futuhat. No Capítulo 463 das Futuhat lemos <em>“a necessidade que os nomes divinos têm de efeito nas realidades dos possíveis é maior do que a necessidade que os possíveis têm dos nomes divinos,”</em> e registámo-lo como pergunta em aberto; o Capítulo 473 fez depois a mesma pergunta <em>ele próprio</em> e deixou-a em aberto. Agora os Fusus tocam a mesma região uma terceira vez, e de modo mais incisivo. Três testemunhos não fazem uma resposta — mas mostram que a pergunta não é uma tensão que inventámos; é um lugar a que o próprio texto regressa continuamente. Mantemos a pergunta em aberto."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs2-s5",
+          "heading": {
+            "tr": "Armağanı Kim Dağıtıyor",
+            "en": "Who Distributes the Gift",
+            "pt": "Quem Distribui o Dom"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın bir de dağıtımla ilgili yanı var, ve orada insân-ı kâmil bir <em>aracı</em> olarak beliriyor: <em>“insân-ı kâmil 'Allah' ism-i câmiinin mazharı olmak i'tibâriyle, âlem-i kevnde Hakk'ın tecellî-i zâtîsi hâssaten ona olur; ve o zât… kâffe-i mevcûdâtın a'yân-ı sâbiteleri iktizâsınca, kendilerine vârid olması îcâb eden atâyâyı… hilâfeti ve niyâbeti hasebiyle, onlara tevzî' eder.”</em>",
+                "en": "The bezel also has a side about distribution, and there the perfect human appears as an <em>intermediary</em>: <em>“In respect of being the locus of manifestation of the all-comprehending name ‘Allah,’ the Real's essential self-disclosure in the world of becoming belongs particularly to the perfect human; and he… distributes to all existents, by his vicegerency and deputyship, the gifts that must reach them according to what their fixed entities require.”</em>",
+                "pt": "O engaste tem também um lado sobre a distribuição, e aí o humano perfeito aparece como <em>intermediário</em>: <em>“Enquanto lugar de manifestação do nome que tudo abrange, ‘Allah,’ a manifestação essencial do Real no mundo do devir pertence particularmente ao humano perfeito; e ele… distribui a todos os existentes, pela sua vicegerência e delegação, os dons que lhes devem chegar segundo o que as suas entidades fixas exigem.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Burada durup bir şeyi işaretlemek istiyoruz. Fütûhât okumasında (473. Bölüm) müşriklerin cezasının gerekçesi tam olarak <strong>aracıyı kendiliklerinden tayin etmiş olmalarıydı</strong> — aracı fikrinin kendisi değil. Bu iki metin yan yana konunca ortaya bir ölçüt çıkıyor gibi görünüyor: aracı, <em>tayin edildiği</em> ölçüde meşrû; <em>seçildiği</em> ölçüde değil. Ama bunu birleştiren biziz, iki ayrı kitaptan iki cümleyi yan yana koyarak; metinlerin ikisi de böyle bir karşılaştırma kurmuyor. Bu yüzden bir sonuç olarak değil, sınanacak bir okuma olarak yazıyoruz.",
+                "en": "Here we want to stop and mark something. In the Futuhat reading (Chapter 473) the ground for the idolaters' punishment was precisely that they <strong>appointed the intermediary of their own accord</strong> — not the idea of an intermediary itself. Set side by side, these two texts seem to yield a criterion: an intermediary is legitimate to the degree that he is <em>appointed</em>, not to the degree that he is <em>chosen</em>. But it is we who join them, setting two sentences from two different books beside each other; neither text draws such a comparison. So we write it not as a conclusion but as a reading to be tested.",
+                "pt": "Aqui queremos parar e assinalar algo. Na leitura das Futuhat (Capítulo 473) o fundamento do castigo dos idólatras era precisamente terem <strong>nomeado o intermediário por sua própria iniciativa</strong> — não a ideia de intermediário em si. Postos lado a lado, estes dois textos parecem dar um critério: um intermediário é legítimo na medida em que é <em>nomeado</em>, não na medida em que é <em>escolhido</em>. Mas somos nós que os juntamos, pondo duas frases de dois livros diferentes lado a lado; nenhum dos textos faz tal comparação. Por isso escrevemo-lo não como conclusão mas como leitura a pôr à prova."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs2-s6",
+          "heading": {
+            "tr": "Bu Fasstan Ne Anladık, Ne Anlamadık",
+            "en": "What We Understood in This Bezel, and What We Did Not",
+            "pt": "O Que Compreendemos Neste Engaste, e o Que Não"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Anladığımızı düşündüğümüz şey şu: bu fass, cömertliği verenin bir <em>huyu</em> olmaktan çıkarıp alanın <em>kabına</em> bağlıyor, ve bunu bir kısıtlama gibi değil, bir düzen gibi anlatıyor. Üç dil ayrımı (söz, hâl, istidâd) bize özellikle açık geldi ve Konuk'un dilenci örnekleri onu tartışmasız hâle getiriyor.",
+                "en": "What we think we understood is this: this bezel takes generosity out of being a <em>disposition</em> of the giver and ties it to the <em>vessel</em> of the receiver, and it presents this not as a restriction but as an order. The distinction of the three tongues (speech, state, preparedness) seemed to us especially clear, and Konuk's beggar examples make it hard to dispute.",
+                "pt": "O que pensamos ter compreendido é isto: este engaste retira a generosidade de ser uma <em>disposição</em> de quem dá e liga-a ao <em>recipiente</em> de quem recebe, e apresenta-o não como restrição mas como ordem. A distinção das três línguas (fala, estado, preparação) pareceu-nos especialmente clara, e os exemplos de mendigos de Konuk tornam-na difícil de contestar."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Anlamadığımız şey ise şu: eğer istemek istidâdın bir belirtisiyse (<em>“eğer istidâd, suâli i'tâ etmeye idi, suâl etmezdi”</em>), ve eğer istidâda vukûf <em>“ma'lûmâtın en gâmız olanı”</em> ise, o hâlde bir insanın kendi isteğine bakarak kendi hakkında bir şey öğrenmesi mümkün mü, değil mi? Fass bu soruyu sormuyor; biz sorduk ve cevabı bulamadık. Bir sonraki fasslara bu soruyla gideceğiz.",
+                "en": "What we did not understand is this: if asking is a sign of preparedness (<em>“if his preparedness had not yielded the asking, he would not have asked”</em>), and if knowledge of preparedness is <em>“among the most obscure of all knowledge,”</em> then can a person learn anything about himself by looking at his own asking, or not? The bezel does not ask this question; we asked it and did not find the answer. We will go into the following bezels carrying it.",
+                "pt": "O que não compreendemos é isto: se pedir é sinal da preparação (<em>“se a sua preparação não tivesse produzido o pedido, ele não teria pedido”</em>), e se o conhecimento da preparação está <em>“entre os mais obscuros de todos os conhecimentos,”</em> poderá então uma pessoa aprender algo sobre si olhando o seu próprio pedir, ou não? O engaste não faz esta pergunta; fizemo-la nós e não encontrámos a resposta. Entraremos nos engastes seguintes levando-a connosco."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fusûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk, II. Fass (Kelime-i Şîsiyye'de Mündemic Hikmet-i Nefsiyye)",
+          "en": "Fusus al-Hikam, Translation and Commentary by Ahmed Avni Konuk, Bezel II (The Wisdom of the Breath in the Word of Seth)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário de Ahmed Avni Konuk, Engaste II (A Sabedoria do Sopro no Verbo de Set)"
+        }
+      ]
     },
     {
       "id": "fs3",
