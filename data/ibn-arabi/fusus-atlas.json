@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs3",
+  "activeFassId": "fs4",
   "fasses": [
     {
       "id": "fs1",
@@ -1387,7 +1387,7 @@
     {
       "id": "fs4",
       "no": 4,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "İdrîs",
         "en": "Enoch",
@@ -1397,7 +1397,386 @@
         "tr": "Hikmet-i Kuddûsiyye",
         "en": "Wisdom of Holiness",
         "pt": "Sabedoria da Santidade"
-      }
+      },
+      "title": {
+        "tr": "Tenzîhten de Münezzeh — ve Yüksekliğin Kendisine Ait Olmayışı",
+        "en": "Free Even of Transcendence — and a Height That Is Not His Own",
+        "pt": "Livre Mesmo da Transcendência — e Uma Altura Que Não É Sua"
+      },
+      "pageRange": {
+        "tr": "IV. Fass, s. 343-348",
+        "en": "Bezel IV, pp. 343-348",
+        "pt": "Engaste IV, pp. 343-348"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Üçüncü fass tenzîhin kendisinin bir sınırlama olduğunu söylemişti. Dördüncüsü aynı yerin bir tur üstünden geçiyor: <em>“'Hak tenzîh ve teşbîhden münezzehdir' denildiği vakit, tenzîh ve teşbîhden tenzîh edilmiş olur.”</em> Konuk buna bir ad da veriyor — <em>“fenâü'l-fenâ”nın “fenâ”dan eblağ olması gibi.</em> Ve fassın kapanışı, bütün bu yükselişi beklenmedik bir yere getiriyor: insân-ı kâmilin mevcûdâtın en yükseği olması <em>“a'ceb-i umûrdandır”</em> — çünkü o yükseklik <strong>onun kendisine ait değil</strong>: <em>“onun ulüvvü li-zâtihî olmadı.”</em>",
+          "en": "The third bezel said that transcendence is itself a limitation. The fourth passes over the same place one turn higher: <em>“When it is said ‘the Real is free of transcendence and likeness,’ He has been declared free of transcendence and likeness themselves.”</em> Konuk gives it a name too — <em>as “the passing away of passing away” is more emphatic than “passing away.”</em> And the bezel's close brings all this ascent to an unexpected place: that the perfect human is the highest of existents is <em>“among the most astonishing of matters”</em> — because that height <strong>is not his own</strong>: <em>“his height was not by his own essence.”</em>",
+          "pt": "O terceiro engaste disse que a transcendência é já uma limitação. O quarto passa pelo mesmo lugar uma volta acima: <em>“Quando se diz ‘o Real é livre de transcendência e de semelhança,’ foi declarado livre da própria transcendência e da própria semelhança.”</em> Konuk também lhe dá um nome — <em>como “o desaparecer do desaparecer” é mais enfático que “desaparecer.”</em> E o fecho do engaste leva toda esta subida a um lugar inesperado: que o humano perfeito seja o mais alto dos existentes é <em>“das coisas mais espantosas”</em> — porque essa altura <strong>não é sua</strong>: <em>“a sua altura não foi pela sua própria essência.”</em>"
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, IV. Fass (Konuk şerhi, s. 344-345)",
+          "en": "Fusus al-Hikam, Bezel IV (Konuk's commentary, p. 344-345)",
+          "pt": "Fusus al-Hikam, Engaste IV (comentário de Konuk, p. 344-345)"
+        },
+        "caption": {
+          "tr": "Bu sarmalı çizerken bir şey fark ettik ve fassın en önemli bulgusu bu oldu: <strong>kitabın kendisi sarmal ilerliyor.</strong> Dört basamak dört ayrı konu değil, aynı meselenin gitgide sertleşen dört turu. Ve dördüncü basamak birinciyi silmiyor — üstünden geçiyor. Kapanış izinin çizili olması bu yüzden.",
+          "en": "In drawing this spiral we noticed something, and it became the bezel's most important finding: <strong>the book itself proceeds as a spiral.</strong> The four steps are not four separate topics but four increasingly severe turns on the same matter. And the fourth step does not erase the first — it passes above it. This is why the closing trace is drawn.",
+          "pt": "Ao desenhar esta espiral notámos algo, e tornou-se o achado mais importante do engaste: <strong>o próprio livro avança em espiral.</strong> Os quatro degraus não são quatro temas distintos mas quatro voltas cada vez mais severas sobre a mesma matéria. E o quarto degrau não apaga o primeiro — passa por cima dele. É por isso que o traço de fecho está desenhado."
+        },
+        "helix": {
+          "id": "fs4-turlar",
+          "turns": 1.5,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs4-r1",
+              "label": {
+                "tr": "Teşbîh: âlemin kemâlâtı O'nun",
+                "en": "Likeness: the world's perfections are His",
+                "pt": "Semelhança: as perfeições do mundo são Suas"
+              },
+              "note": {
+                "tr": "Üçüncü fassın gerektirdiği taraf: ilâhî kitaplar O'nun Semî', Basîr, Hayy, Kayyûm, Mürîd olduğunu söylüyor ve bunu ispat etmeyen <em>“ba'zısına îmân eden ve ba'zısına kâfir olan kimse gibi”</em> sayılıyor.",
+                "en": "The side the third bezel required: the divine books say He is Hearing, Seeing, Living, Self-subsisting, Willing, and whoever does not affirm this is counted <em>“like one who believes in part and disbelieves in part.”</em>",
+                "pt": "O lado que o terceiro engaste exigia: os livros divinos dizem que Ele é Ouvinte, Vidente, Vivo, Subsistente, Volente, e quem não o afirma conta-se <em>“como quem crê numa parte e descrê noutra.”</em>"
+              }
+            },
+            {
+              "id": "fs4-r2",
+              "label": {
+                "tr": "Tenzîh (Sübbûh) — Nûh'un turu",
+                "en": "Transcendence (Subbuh) — Noah's turn",
+                "pt": "Transcendência (Subbuh) — a volta de Noé"
+              },
+              "note": {
+                "tr": "<em>“'tesbîh' Allâh'ı ahkâm-ı imkâniyyeden tenzîh etmektir.”</em> Ama üçüncü fass bunun kendisinin bir sınırlama olduğunu göstermişti: ayırmak, sınır çizmektir.",
+                "en": "<em>“‘Glorification’ is to declare God free of the rulings of contingency.”</em> But the third bezel showed that this is itself a limitation: to set apart is to draw a boundary.",
+                "pt": "<em>“‘Glorificação’ é declarar Deus livre dos juízos da contingência.”</em> Mas o terceiro engaste mostrou que isto é já uma limitação: separar é traçar uma fronteira."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs4-r3",
+              "label": {
+                "tr": "Takdîs (Kuddûs) — daha keskin",
+                "en": "Sanctification (Quddus) — sharper",
+                "pt": "Santificação (Quddus) — mais incisiva"
+              },
+              "note": {
+                "tr": "<em>“'Kuddûs', keyfiyet ve kemmiyet i'tibâriyle 'Sübbûh'dan ehasstır. Zirâ onda pek şiddet ve kesretle zâtı tenzîh ma'nâsı vardır.”</em> Ve kapsamı daha geniş: yalnız noksanlardan değil, <em>“kendinin gayrı bulunan mevcûdâta nisbeten kemâl addolunan kemâlâttan”</em> da tathîr.",
+                "en": "<em>“‘Quddus’ is more specific than ‘Subbuh’ in both quality and quantity. For in it the meaning of declaring the Essence transcendent is present with great intensity and multiplicity.”</em> And its scope is wider: purification not only from deficiencies but also from <em>“those perfections that count as perfections relative to existents other than Him.”</em>",
+                "pt": "<em>“‘Quddus’ é mais específico que ‘Subbuh’ em qualidade e em quantidade. Pois nele o sentido de declarar a Essência transcendente está presente com grande intensidade e multiplicidade.”</em> E o seu alcance é mais largo: purificação não só das deficiências mas também <em>“daquelas perfeições que contam como perfeições relativamente a existentes outros que Ele.”</em>"
+              }
+            },
+            {
+              "id": "fs4-r4",
+              "label": {
+                "tr": "Ve ikisinden de münezzeh",
+                "en": "And free of both",
+                "pt": "E livre de ambas"
+              },
+              "note": {
+                "tr": "<em>“'Hak tenzîh ve teşbîhden münezzehdir' denildiği vakit, tenzîh ve teşbîhden tenzîh edilmiş olur; ve tenzîhin bu nev'inde mübâlağa-i zâide vardır. 'Fenâü'l-fenâ'nın 'fenâ'dan eblağ olması gibi.”</em> Dikkat: bu, ikisini reddetmek değil — ikisini de <em>bir üst turdan</em> aşmak.",
+                "en": "<em>“When it is said ‘the Real is free of transcendence and likeness,’ He has been declared free of transcendence and likeness; and in this kind of declaring there is an added emphasis — as ‘the passing away of passing away’ is more emphatic than ‘passing away.’”</em> Note: this is not a rejection of the two — it is passing beyond both <em>from one turn higher</em>.",
+                "pt": "<em>“Quando se diz ‘o Real é livre de transcendência e de semelhança,’ foi declarado livre da transcendência e da semelhança; e neste modo de declarar há uma ênfase acrescida — como ‘o desaparecer do desaparecer’ é mais enfático que ‘desaparecer.’”</em> Nota: isto não é rejeitar as duas — é ultrapassar ambas <em>de uma volta acima</em>."
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs4-s1",
+          "heading": {
+            "tr": "On Altı Yıl — ve Filozofların Haklı Olduğu Yer",
+            "en": "Sixteen Years — and Where the Philosophers Are Right",
+            "pt": "Dezasseis Anos — e Onde os Filósofos Têm Razão"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk fassa İdrîs'i tarif ederek giriyor: <em>“riyâzât-ı şâkka ile nefsini sıfât-ı hayvâniyye ve küdûrât-ı tabiiyye ve nekâyis-i ârızadan tathîr etmiş; ve âkıbet rûhâniyeti hayvâniyeti üzerine galebe etmekle, kesîrü'l-insilâh ve sâhibü'l-mi'râc olmuş.”</em> Ve bir rivayet: <em>“on altı sene yiyip içmediği ve uyumadığı ve akl-ı mücerred hâline geldiği hikâye olunur.”</em>",
+                "en": "Konuk enters the bezel by describing Enoch: <em>“by severe ascetic discipline he purified his soul of animal attributes, natural turbidities and accidental deficiencies; and at length, his spirituality overcoming his animality, he became one who often shed the body and a possessor of ascent.”</em> And a report: <em>“it is related that for sixteen years he neither ate nor drank nor slept, and came to be pure intellect.”</em>",
+                "pt": "Konuk entra no engaste descrevendo Enoque: <em>“por severa disciplina ascética purificou a sua alma dos atributos animais, das turvações naturais e das deficiências acidentais; e por fim, vencendo a sua espiritualidade a sua animalidade, tornou-se alguém que amiúde deixava o corpo e possuidor de ascensão.”</em> E um relato: <em>“conta-se que durante dezasseis anos não comeu, não bebeu nem dormiu, e chegou a ser intelecto puro.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ardından Konuk filozoflara dönüyor ve verdiği cevap bize dikkat çekici geldi, çünkü onları <em>yanlış</em> bulmuyor: <em>“Vâkıâ bu hükümleri, vücûdlarında ahkâm-ı kesâfet hükümrân olan kimseler için doğrudur. Velâkin nefislerini, küdûrât-ı tabiiyyeden ve kesâfet-i cismâniyyeden kurtaran zevât hakkında aslâ doğru değildir.”</em> Yani <em>“insan yiyip içmese ve uyumasa ölür”</em> hükmü doğru — ama belli bir mertebe için.",
+                "en": "Konuk then turns to the philosophers, and his answer struck us, because he does not find them <em>wrong</em>: <em>“Indeed these rulings of theirs are true for those in whom the rulings of density hold sway. But they are not at all true concerning those who have freed their souls from natural turbidity and bodily density.”</em> That is, the ruling <em>“a human who does not eat, drink or sleep dies”</em> is true — but for a particular level.",
+                "pt": "Konuk volta-se então para os filósofos, e a sua resposta impressionou-nos, porque não os considera <em>errados</em>: <em>“Na verdade estes juízos deles são verdadeiros para aqueles em quem os juízos da densidade imperam. Mas não são de modo algum verdadeiros quanto aos que libertaram as suas almas da turvação natural e da densidade corporal.”</em> Isto é, o juízo <em>“um humano que não come, não bebe nem dorme morre”</em> é verdadeiro — mas para um dado grau."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu, Fütûhât okumasında karşılaştığımız bir hükmün birebir aynısı gibi duruyor: 474. Bölüm <em>“hüküm mertebeye aittir”</em> demiş ve uykuda görmeyi örnek vermişti. Burada aynı yapı bir bilim tartışmasına uygulanıyor. İki metnin gerçekten aynı şeyi mi söylediğini bilmiyoruz — birleştiren biziz — ama benzerlik yeterince yakın olduğu için kaydetmemiz gerekti. Ve Konuk'un sertliğine de bir çekince koyalım: filozofların akıllarının <em>“bir dâire-i mahdûde dâhilinde kuyûd-i mantıkıyye ve tabiiyye ile bağlı”</em> olduğunu söylemek, kendi dairemizin sınırını görmemek riskini de taşıyor. Bunu metnin bir zayıflığı olarak değil, okurken temkinli olmamız gereken bir yer olarak işaretliyoruz.",
+                "en": "This looks exactly like a ruling we met in the Futuhat reading: Chapter 474 said <em>“the ruling belongs to the level”</em> and gave seeing in sleep as its example. Here the same structure is applied to a scientific dispute. We do not know whether the two texts are really saying the same thing — it is we who join them — but the resemblance was close enough that we had to record it. And let us enter a reservation about Konuk's severity too: to say that the philosophers' reason is <em>“bound within a bounded circle by logical and natural restrictions”</em> also carries the risk of not seeing the bound of one's own circle. We mark this not as a weakness of the text but as a place where we must read carefully.",
+                "pt": "Isto parece exatamente um juízo que encontrámos na leitura das Futuhat: o Capítulo 474 disse <em>“o juízo pertence ao grau”</em> e deu como exemplo o ver em sonho. Aqui a mesma estrutura aplica-se a uma disputa científica. Não sabemos se os dois textos dizem realmente o mesmo — somos nós que os juntamos — mas a semelhança era próxima o bastante para termos de a registar. E ponhamos também uma reserva à severidade de Konuk: dizer que a razão dos filósofos está <em>“presa dentro de um círculo limitado por restrições lógicas e naturais”</em> traz também o risco de não ver o limite do próprio círculo. Assinalamo-lo não como fraqueza do texto mas como lugar onde temos de ler com cuidado."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs4-s2",
+          "heading": {
+            "tr": "Kitabın Sırası Zaman Sırası Değil",
+            "en": "The Book's Order Is Not Chronological",
+            "pt": "A Ordem do Livro Não É Cronológica"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu fassta, kitabın yapısına dair aradığımız cevabın bir kısmı geldi — ve beklemediğimiz bir yerden, bir sıralama notundan: <em>“Nûh (a.s.) her ne kadar bi-hasebi'z-zamân İdrîs (a.s.)dan sonra gelmiş ise de, eblağ olanın te'hîri evlâ olduğundan, onun hikmeti 'hikmet-i sübbûhiyye'den sonra irâd olundu.”</em> Yani fasslar <strong>zaman sırasına göre değil, şiddet sırasına göre</strong> diziliyor: daha keskin olan sonraya konuyor.",
+                "en": "In this bezel part of the answer we had been looking for about the book's structure arrived — and from an unexpected place, a note on ordering: <em>“Although Noah came after Enoch in time, since it is better to place the more emphatic later, his wisdom was set down after the wisdom of glorification.”</em> The bezels, then, are arranged <strong>not by chronology but by intensity</strong>: the sharper is placed later.",
+                "pt": "Neste engaste chegou parte da resposta que procurávamos sobre a estrutura do livro — e de um lugar inesperado, uma nota sobre a ordenação: <em>“Ainda que Noé tenha vindo depois de Enoque no tempo, uma vez que é melhor colocar o mais enfático depois, a sua sabedoria foi disposta depois da sabedoria da glorificação.”</em> Os engastes estão, então, dispostos <strong>não por cronologia mas por intensidade</strong>: o mais incisivo é colocado depois."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "İkinci fassta bir beklenti kaydetmiştik: fasslar bağımsız yirmi yedi konu değil, birbirini <em>açan</em> bir dizi olabilir. Bu not o beklentiyi hem destekliyor hem düzeltiyor. Destekliyor: sıra rastgele değil, bir mantığı var. Düzeltiyor: mantık <em>açma</em> değil <em>yoğunlaşma</em> — ve dizinin yönü, konuların değil, <em>aynı meselenin</em> gitgide sertleşmesi. Bu ikisi aynı şey olmayabilir; farkı kaydedip yirmi üç fass boyunca sınamaya devam edeceğiz.",
+                "en": "In the second bezel we recorded an expectation: the bezels may not be twenty-seven independent topics but a series in which each <em>opens</em> the one before. This note both supports and corrects that expectation. It supports it: the order is not arbitrary, it has a logic. It corrects it: the logic is not <em>opening</em> but <em>intensification</em> — and the direction of the series is the increasing severity of the <em>same</em> matter, not of topics. These two may not be the same thing; we record the difference and will keep testing it through the remaining twenty-three bezels.",
+                "pt": "No segundo engaste registámos uma expectativa: os engastes podem não ser vinte e sete temas independentes mas uma série em que cada um <em>abre</em> o anterior. Esta nota apoia e corrige essa expectativa. Apoia-a: a ordem não é arbitrária, tem uma lógica. Corrige-a: a lógica não é <em>abrir</em> mas <em>intensificar</em> — e a direção da série é a severidade crescente da <em>mesma</em> matéria, não de temas. Estas duas coisas podem não ser a mesma; registamos a diferença e continuaremos a pô-la à prova ao longo dos restantes vinte e três engastes."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bir ayrım daha veriliyor ve o da bu yoğunlaşmayı destekliyor: <em>“'tesbîh', yalnız makâm-ı cem'; ve 'takdîs' ise makâm-ı cem' ve tafsîl hasebiyledir”</em>; ve <em>“Nûh (a.s.)ın tenzîhi aklî ve İdrîs (a.s.)ın tenzîhi dahi hem aklî ve hem nefsîdir.”</em> Yani İdrîs'in tenzîhi yalnız düşünülen değil, <em>yaşanan</em> bir tenzîh — on altı yıl da buraya bağlanıyor.",
+                "en": "One further distinction is given, and it too supports this intensification: <em>“‘Glorification’ is by the station of gathering alone; ‘sanctification’ is by the stations of gathering and of differentiation”</em>; and <em>“Noah's transcendence is intellectual, while Enoch's is both intellectual and of the soul.”</em> Enoch's transcendence, then, is not merely thought but <em>lived</em> — and the sixteen years connect here.",
+                "pt": "Dá-se ainda outra distinção, e também ela apoia esta intensificação: <em>“A ‘glorificação’ é pela estação da reunião apenas; a ‘santificação’ é pelas estações da reunião e da diferenciação”</em>; e <em>“a transcendência de Noé é intelectual, e a de Enoque é intelectual e da alma.”</em> A transcendência de Enoque não é, então, apenas pensada mas <em>vivida</em> — e os dezasseis anos ligam-se aqui."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs4-s3",
+          "heading": {
+            "tr": "Yüksekliğin Dört Türü",
+            "en": "Four Kinds of Height",
+            "pt": "Quatro Tipos de Altura"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass, İdrîs hakkındaki <em>“Biz onu yüksek mekâna ref'ettik”</em> âyetinden yola çıkıp yüksekliği ayırıyor. Önce ikiye: <em>“Ulüvv, iki nisbettir. Ulüvv-i mekân ve ulüvv-i mekânettir.”</em> Sonra Konuk fassın sonuna işaret ederek dörde tamamlıyor: <em>“ulüvv dört nevidir: Ulüvv-i zâtî, ulüvv-i sıfâtî, ulüvv-i mekânet, ulüvv-i mekândır.”</em>",
+                "en": "Starting from the verse about Enoch, <em>“We raised him to a high place,”</em> the bezel divides height. First in two: <em>“Height is two relations: height of place and height of rank.”</em> Then Konuk, pointing to the end of the bezel, completes it to four: <em>“height is of four kinds: height of essence, height of attribute, height of rank, height of place.”</em>",
+                "pt": "Partindo do versículo sobre Enoque, <em>“Elevámo-lo a um lugar alto,”</em> o engaste divide a altura. Primeiro em duas: <em>“A altura são duas relações: altura de lugar e altura de posição.”</em> Depois Konuk, apontando para o fim do engaste, completa-a em quatro: <em>“a altura é de quatro tipos: altura de essência, altura de atributo, altura de posição, altura de lugar.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, IV. Fass (Konuk şerhi, s. 347)",
+                "en": "Fusus al-Hikam, Bezel IV (Konuk's commentary, p. 347)",
+                "pt": "Fusus al-Hikam, Engaste IV (comentário de Konuk, p. 347)"
+              },
+              "caption": {
+                "tr": "Dört türü biz sarmala dizdik; adları ve Güneş üzerinden verilen örnekleri Konuk'un. Sarmal olmalarının sebebi şu: bunlar dört ayrı yükseklik değil, aynı yüksekliğin dört <em>nispeti</em> — ve dördü tek bir yerde toplanabiliyor. Konuk'un cümlesi bunu açıkça söylüyor: <em>“Şems'ten gayrı bu dört nevi ulüvv ile muttasıf olan hiçbir mahal yoktur.”</em>",
+                "en": "We laid the four kinds on a spiral; the names and the examples drawn from the Sun are Konuk's. Why a spiral: these are not four separate heights but four <em>relations</em> of the same height — and all four can be gathered in one place. Konuk's sentence says so plainly: <em>“There is no locus other than the Sun qualified by all four kinds of height.”</em>",
+                "pt": "Dispusemos os quatro tipos numa espiral; os nomes e os exemplos tirados do Sol são de Konuk. Porquê uma espiral: não são quatro alturas separadas mas quatro <em>relações</em> da mesma altura — e as quatro podem reunir-se num só lugar. A frase de Konuk di-lo claramente: <em>“Não há lugar algum além do Sol qualificado pelos quatro tipos de altura.”</em>"
+              },
+              "helix": {
+                "id": "fs4-ulüvv",
+                "turns": 1.3,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs4-u1",
+                    "label": {
+                      "tr": "Ulüvv-i zâtî",
+                      "en": "Height of essence",
+                      "pt": "Altura de essência"
+                    },
+                    "note": {
+                      "tr": "<em>“Şems, kendi tevâbii olan seyyârâtın menşei olduğundan onlara nazaran 'ulüvv-i zât' sâhibidir.”</em> Kaynak olmaktan gelen yükseklik.",
+                      "en": "<em>“Since the Sun is the origin of the planets that follow it, it has ‘height of essence’ relative to them.”</em> The height that comes from being a source.",
+                      "pt": "<em>“Sendo o Sol a origem dos planetas que o seguem, tem ‘altura de essência’ em relação a eles.”</em> A altura que vem de ser origem."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs4-u2",
+                    "label": {
+                      "tr": "Ulüvv-i sıfâtî",
+                      "en": "Height of attribute",
+                      "pt": "Altura de atributo"
+                    },
+                    "note": {
+                      "tr": "<em>“bu tevâbi' onun ziyâ ve harâretine muhtâc bulunduklarından bu cihetle 'ulüvv-i sıfâtî' sâhibidir.”</em> Muhtaç olunan bir niteliğe sahip olmaktan gelen yükseklik.",
+                      "en": "<em>“Since those followers stand in need of its light and heat, in this respect it has ‘height of attribute.’”</em> The height that comes from possessing a quality others need.",
+                      "pt": "<em>“Como esses seguidores precisam da sua luz e do seu calor, nesse aspeto tem ‘altura de atributo.’”</em> A altura que vem de possuir uma qualidade de que outros precisam."
+                    }
+                  },
+                  {
+                    "id": "fs4-u3",
+                    "label": {
+                      "tr": "Ulüvv-i mekânet",
+                      "en": "Height of rank",
+                      "pt": "Altura de posição"
+                    },
+                    "note": {
+                      "tr": "<em>“câzibesiyle onların hâkimi ve müdebbiri olduğundan 'ulüvv-i mekânet'le muttasıftır.”</em> Bu, fassın asıl üstünde duracağı tür — ve az sonra <em>bize</em> nispet edilecek.",
+                      "en": "<em>“Since by its attraction it is their governor and orderer, it is qualified by ‘height of rank.’”</em> This is the kind the bezel will dwell on — and shortly it will be ascribed to <em>us</em>.",
+                      "pt": "<em>“Como pela sua atração é o seu governante e ordenador, é qualificado pela ‘altura de posição.’”</em> É o tipo em que o engaste se deterá — e em breve será atribuído a <em>nós</em>."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs4-u4",
+                    "label": {
+                      "tr": "Ulüvv-i mekân",
+                      "en": "Height of place",
+                      "pt": "Altura de lugar"
+                    },
+                    "note": {
+                      "tr": "<em>“her birisinden, kendisine kadar olan mesâfâtın cümlesinden eb'ad ve erfa olduğundan 'ulüvv-i mekân' sâhibidir.”</em> Ölçülebilen tek tür — ve fassın en az önemsediği.",
+                      "en": "<em>“Since it is farther and higher than all the distances from each of them to itself, it has ‘height of place.’”</em> The only measurable kind — and the one the bezel cares about least.",
+                      "pt": "<em>“Sendo mais distante e mais alto que todas as distâncias de cada um deles até si, tem ‘altura de lugar.’”</em> O único tipo mensurável — e aquele com que o engaste menos se importa."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Burada Konuk'un kendi çağını kullandığı bir yer var ve bunu belirtmemiz gerekiyor. Felekleri sayarken <em>“hey'et-i atîka mûcibince”</em> dediğini kendisi yazıyor; ama Güneş'e cisimle çıkışın imkânsızlığını anlatırken kendi döneminin fiziğine geçiyor: <em>“küre-i şems, küre-i arz gibi bir cism-i sulb-i bârid değil, mâyi' veyâ buhâr-ı nârî bir hâldedir.”</em> Yani şârih, eski gök düzenini aktardığını bilerek aktarıyor ve gerektiğinde kendi bilgisini araya koyuyor. Bunu bir kusur olarak değil, şerhin nasıl çalıştığına dair bir ipucu olarak not ettik — ve bize kendi çizimlerimizin de bir tarihi olduğunu hatırlattı.",
+                "en": "There is a place here where Konuk uses his own era, and we should mark it. He himself writes that he enumerates the spheres <em>“according to the ancient astronomy”</em>; yet when explaining the impossibility of bodily ascent to the Sun he switches to the physics of his own day: <em>“the sphere of the Sun is not a cold solid body like the sphere of the Earth, but is in a liquid or fiery-vapour state.”</em> The commentator, then, knowingly relays the old celestial order and inserts his own knowledge where needed. We noted this not as a fault but as a clue to how commentary works — and it reminded us that our own diagrams also have a date.",
+                "pt": "Há aqui um lugar onde Konuk usa a sua própria época, e devemos assinalá-lo. Ele próprio escreve que enumera as esferas <em>“segundo a astronomia antiga”</em>; contudo, ao explicar a impossibilidade da ascensão corporal ao Sol, passa à física do seu tempo: <em>“a esfera do Sol não é um corpo sólido e frio como a esfera da Terra, mas está num estado líquido ou de vapor ígneo.”</em> O comentador transmite, então, conscientemente a antiga ordem celeste e insere o seu próprio saber onde é preciso. Registámo-lo não como falha mas como pista de como funciona o comentário — e lembrou-nos que também os nossos esquemas têm uma data."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs4-s4",
+          "heading": {
+            "tr": "Amel Mekân İster, İlim Mekânet",
+            "en": "Action Seeks Place; Knowledge Seeks Rank",
+            "pt": "A Ação Busca Lugar; o Saber Busca Posição"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass buradan âyete geçiyor — <em>“Siz âlîlersiniz”</em> — ve ulüvv-i mekâneti bir topluluğa nispet ediyor: <em>“'ulüvv-i mekânet'e ve o bizim için, ya'ni Muhammedîler içindir.”</em> Ardından şaşırtıcı bir cümle: <em>“Allah bu ulüvvde 'sizinle berâberdir'; ve O, mekândan müteâlîdir, ve mekânetten müteâlî değildir.”</em> Yani Hak yer bakımından aşkın, ama <em>mertebe</em> bakımından aşkın değil — orada beraber.",
+                "en": "From here the bezel moves to the verse — <em>“You are the higher”</em> — and ascribes height of rank to a community: <em>“And height of rank: that is for us, that is, for the Muhammadans.”</em> Then a startling sentence: <em>“And God is ‘with you’ in this height; and He is beyond place, but He is not beyond rank.”</em> The Real is transcendent as regards place, but not as regards <em>rank</em> — there He is with.",
+                "pt": "Daqui o engaste passa ao versículo — <em>“Vós sois os mais altos”</em> — e atribui a altura de posição a uma comunidade: <em>“E a altura de posição: essa é para nós, isto é, para os muhammadianos.”</em> Depois uma frase surpreendente: <em>“E Deus está ‘convosco’ nesta altura; e Ele está além do lugar, mas não está além da posição.”</em> O Real é transcendente quanto ao lugar, mas não quanto à <em>posição</em> — aí está com."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, IV. Fass (Konuk şerhi, s. 348)",
+                "en": "Fusus al-Hikam, Bezel IV (Konuk's commentary, p. 348)",
+                "pt": "Fusus al-Hikam, Engaste IV (comentário de Konuk, p. 348)"
+              },
+              "caption": {
+                "tr": "Üç basamağı biz ayırdık; ayrımı fass kuruyor. Bu şemanın söylediği şey bir sıralama değil bir <em>eşleştirme</em>: iki yükseklik iki ayrı yoldan geliyor ve fassa göre ikisi birden bize veriliyor. Üçüncü basamaktaki temkin de metnin kendisine ait, bizim eklememiz değil.",
+                "en": "We separated the three steps; the distinction is the bezel's. What this diagram says is not a ranking but a <em>pairing</em>: two heights come by two different roads, and according to the bezel both are given to us together. The caution in the third step is also the text's own, not our addition.",
+                "pt": "Separámos os três degraus; a distinção é do engaste. O que este esquema diz não é uma hierarquia mas um <em>emparelhamento</em>: duas alturas vêm por dois caminhos diferentes, e segundo o engaste ambas nos são dadas em conjunto. A cautela do terceiro degrau é também do próprio texto, não acrescento nosso."
+              },
+              "helix": {
+                "id": "fs4-amel",
+                "turns": 1.15,
+                "closing": false,
+                "nodes": [
+                  {
+                    "id": "fs4-a1",
+                    "label": {
+                      "tr": "Amel → ulüvv-i mekân",
+                      "en": "Action → height of place",
+                      "pt": "Ação → altura de lugar"
+                    },
+                    "note": {
+                      "tr": "<em>“amel mekânı taleb eder.”</em> Fassın dayanağı âyetin devamı: <em>“Allah… a'mâl-i cismâniyyenizden ve onların ücûrundan bir şey noksan kılmaz.”</em>",
+                      "en": "<em>“Action seeks place.”</em> The bezel's ground is the rest of the verse: <em>“God will not diminish anything of your bodily deeds and their rewards.”</em>",
+                      "pt": "<em>“A ação busca lugar.”</em> O fundamento do engaste é o resto do versículo: <em>“Deus não diminuirá nada das vossas obras corporais nem das suas recompensas.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs4-a2",
+                    "label": {
+                      "tr": "İlim → ulüvv-i mekânet",
+                      "en": "Knowledge → height of rank",
+                      "pt": "Saber → altura de posição"
+                    },
+                    "note": {
+                      "tr": "<em>“İlim ise mekâneti taleb eyler.”</em> Ve sonuç: <em>“Hak Teâlâ bizim için iki rif'at beynini cem'eyledi ki, biri amel ile 'ulüvv-i mekân' ve diğeri ilim ile 'ulüvv-i mekânet'tir.”</em>",
+                      "en": "<em>“Knowledge seeks rank.”</em> And the conclusion: <em>“God gathered the two elevations for us: one, height of place through action; the other, height of rank through knowledge.”</em>",
+                      "pt": "<em>“O saber busca posição.”</em> E a conclusão: <em>“Deus reuniu para nós as duas elevações: uma, altura de lugar pela ação; a outra, altura de posição pelo saber.”</em>"
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs4-a3",
+                    "label": {
+                      "tr": "Ve hemen ardından bir temkin",
+                      "en": "And immediately a caution",
+                      "pt": "E logo a seguir uma cautela"
+                    },
+                    "note": {
+                      "tr": "<em>“Ba'dehû maiyyette tenzîh-i iştirâk için 'Sen Rabb-i a'lânı bu iştirâk-i ma'nevîden tesbîh et!' buyurdu.”</em> Yani <em>“sizinle berâberdir”</em> denir denmez, ortaklık anlaşılmasın diye bir tenzîh geliyor.",
+                      "en": "<em>“Then, to declare the withness free of any partnership, He said: ‘Glorify the name of your Lord, the Most High!’”</em> No sooner is <em>“He is with you”</em> said than a declaring-free follows, so that no partnership be understood.",
+                      "pt": "<em>“Depois, para declarar o estar-com livre de qualquer parceria, disse: ‘Glorifica o nome do teu Senhor, o Altíssimo!’”</em> Mal se diz <em>“Ele está convosco”</em>, segue-se um declarar-livre, para que nenhuma parceria seja entendida."
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs4-s5",
+          "heading": {
+            "tr": "Ve Yükseklik Onun Değil",
+            "en": "And the Height Is Not His",
+            "pt": "E a Altura Não É Sua"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass, bunca yükseliş anlatısından sonra bir tersine dönüşle kapanıyor: <em>“insanın, ya'ni insân-ı kâmilin, a'lâ-yı mevcûdât olması a'ceb-i umûrdandır. Hâlbuki ister 'mekân'a veyâ ister menziletten ibâret olan 'mekânet'e olsun, ulüvv, ancak ona tebaiyet ile nisbet olundu. Böyle olunca onun ulüvvü li-zâtihî olmadı… Şu hâlde ulüvv, onlar içindir.”</em>",
+                "en": "After all this narrative of ascent, the bezel closes with a reversal: <em>“That the human being — that is, the perfect human — is the highest of existents is among the most astonishing of matters. Yet height, whether of place or of rank, was ascribed to him only by dependence. So his height was not by his own essence… Height, then, belongs to them.”</em>",
+                "pt": "Depois de toda esta narrativa de subida, o engaste fecha com uma inversão: <em>“Que o ser humano — isto é, o humano perfeito — seja o mais alto dos existentes é das coisas mais espantosas. Contudo, a altura, seja de lugar seja de posição, foi-lhe atribuída apenas por dependência. Assim, a sua altura não foi pela sua própria essência… A altura, portanto, pertence a elas.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu cümle bize fassın omurgasını geriye doğru okuttu. Baştan beri anlatılan İdrîs'in yükselişiydi: on altı yıl, insilâh, felek-i Şems. Sonda ise o yükselişin <em>sahibinin</em> kim olduğu soruluyor ve cevap “o değil” çıkıyor. Yani kuddûsiyye yalnız Hakk'ı temizlemekle ilgili değilmiş; kişinin kendi yüksekliğini de kendinden temizlemesiyle ilgiliymiş. En azından biz böyle okuduk; fass bunu bu kelimelerle söylemiyor.",
+                "en": "This sentence made us read the bezel's spine backwards. Throughout, what was recounted was Enoch's ascent: sixteen years, shedding the body, the solar sphere. At the end, the question is who <em>owns</em> that ascent, and the answer comes back: not he. Sanctification, then, was not only about purifying the Real; it was also about a person purifying his own height from himself. At least that is how we read it; the bezel does not say it in these words.",
+                "pt": "Esta frase fez-nos ler a espinha do engaste ao contrário. Ao longo dele contou-se a subida de Enoque: dezasseis anos, deixar o corpo, a esfera solar. No fim pergunta-se de quem é essa subida, e a resposta volta: não é dele. A santificação não era, então, apenas purificar o Real; era também alguém purificar de si a sua própria altura. Ao menos foi assim que lemos; o engaste não o diz com estas palavras."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Anlamadığımız yer de burada: eğer ulüvv-i mekânet <em>“hâssaten bizim için”</em> ise ve Hak orada <em>“bizimle berâber”</em> ise, ama aynı zamanda o yükseklik <em>“li-zâtihî”</em> bizim değilse — bu üçü nasıl aynı anda duruyor? Fass bunu bir çelişki olarak sunmuyor, yani bir çözümü olmalı; biz göremedik. Bir sonraki fassa bu soruyla gidiyoruz.",
+                "en": "And here is the place we did not understand: if height of rank is <em>“particularly for us”</em> and the Real is <em>“with us”</em> there, but at the same time that height is not ours <em>“by our own essence”</em> — how do these three stand at once? The bezel does not present this as a contradiction, so there must be a resolution; we could not see it. We go into the next bezel carrying the question.",
+                "pt": "E eis o lugar que não compreendemos: se a altura de posição é <em>“particularmente para nós”</em> e o Real está <em>“connosco”</em> aí, mas ao mesmo tempo essa altura não é nossa <em>“pela nossa própria essência”</em> — como se sustentam as três ao mesmo tempo? O engaste não apresenta isto como contradição, logo deve haver uma resolução; não a conseguimos ver. Entramos no engaste seguinte levando a pergunta."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fusûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk, IV. Fass (Kelime-i İdrîsiyye'de Mündemic Hikmet-i Kuddûsiyye)",
+          "en": "Fusus al-Hikam, Translation and Commentary by Ahmed Avni Konuk, Bezel IV (The Wisdom of Holiness in the Word of Enoch)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário de Ahmed Avni Konuk, Engaste IV (A Sabedoria da Santidade no Verbo de Enoque)"
+        }
+      ]
     },
     {
       "id": "fs5",
