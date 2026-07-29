@@ -1,0 +1,861 @@
+{
+  "book": {
+    "title": {
+      "tr": "Füsûsu'l-Hikem",
+      "en": "Fusus al-Hikam",
+      "pt": "Fusus al-Hikam"
+    },
+    "subtitle": {
+      "tr": "Hikmet Yüzüklerinin Taşları",
+      "en": "The Bezels of Wisdom",
+      "pt": "Os Engastes da Sabedoria"
+    },
+    "note": {
+      "tr": "İbn Arabî'nin en çok okunan ve en çok tartışılan kitabı. Yirmi yedi peygamberde toplanmış yirmi yedi hikmeti dolaşıyor. Burada Ahmed Avni Konuk'un iki ciltlik tercüme ve şerhini okuyoruz — Konuk'un yorumları da bizim için kesin doğru değil, kendi mertebesinden anlamaya çalışan birinin okuması. Fass fass ilerliyoruz; sarmallar bizim, cümleler kitabın.",
+      "en": "Ibn Arabi's most read and most disputed book. It travels through twenty-seven wisdoms gathered in twenty-seven prophets. Here we read Ahmed Avni Konuk's two-volume translation and commentary — Konuk's readings are not certainties for us either, but the reading of someone trying to understand from his own level. We proceed bezel by bezel; the spirals are ours, the sentences are the book's.",
+      "pt": "O livro mais lido e mais disputado de Ibn Arabi. Percorre vinte e sete sabedorias reunidas em vinte e sete profetas. Aqui lemos a tradução e o comentário em dois volumes de Ahmed Avni Konuk — as leituras de Konuk também não são certezas para nós, mas a leitura de alguém que tenta compreender a partir do seu próprio grau. Avançamos engaste a engaste; as espirais são nossas, as frases são do livro."
+    },
+    "source": {
+      "tr": "Fusûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk (Türkiye Yazma Eserler Kurumu Başkanlığı), 2 cilt",
+      "en": "Fusus al-Hikam, Translation and Commentary by Ahmed Avni Konuk (Turkish Manuscript Institution), 2 volumes",
+      "pt": "Fusus al-Hikam, Tradução e Comentário de Ahmed Avni Konuk (Instituição Turca de Manuscritos), 2 volumes"
+    },
+    "fassCount": 27
+  },
+  "activeFassId": "fs1",
+  "fasses": [
+    {
+      "id": "fs1",
+      "no": 1,
+      "status": "active",
+      "prophet": {
+        "tr": "Âdem",
+        "en": "Adam",
+        "pt": "Adão"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i İlâhiyye",
+        "en": "Divine Wisdom",
+        "pt": "Sabedoria Divina"
+      },
+      "title": {
+        "tr": "Ayna Cilâlandı — ve Âdem O Cilânın Kendisi",
+        "en": "The Mirror Was Polished — and Adam Is That Polishing Itself",
+        "pt": "O Espelho Foi Polido — e Adão É Esse Próprio Polimento"
+      },
+      "pageRange": {
+        "tr": "I. Fass, s. 20-31",
+        "en": "Bezel I, pp. 20-31",
+        "pt": "Engaste I, pp. 20-31"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Füsûs'un ilk fassı, kitabın en çok alıntılanan cümlesiyle açılıyor ve bir <em>istek</em>ten söz ediyor: <em>“Vaktâki Hak… sayılamayan güzel isimlerinin 'ayn'larını görmek diledi.”</em> Ardından ince bir ayrım geliyor — bir şeyin kendini kendisiyle görmesi, kendini <strong>bir başka şeyde</strong>, meselâ bir aynada görmesi gibi değildir. Âlem işte bu ayna; ama önce <em>“cilâlanmamış bir ayna gibi”</em> yaratılmış. Ve fass, cilânın ne olduğunu tek cümlede söylüyor: <em>“Âdem, bu âyinenin ayn-ı cilâsı ve bu sûretin rûhu oldu.”</em> Yani insan aynayı parlatan bir alet değil — <em>parlaklığın kendisi</em>.",
+          "en": "The first bezel of the Fusus opens with the book's most quoted sentence, and it speaks of a <em>wish</em>: <em>“When the Real willed to see the entities of His most beautiful names, which cannot be counted…”</em> A fine distinction follows — a thing's seeing itself by itself is not like its seeing itself in <strong>something else</strong>, in a mirror, say. The world is that mirror; but it was first created <em>“like an unpolished mirror.”</em> And the bezel says in one sentence what the polishing is: <em>“Adam became the very polish of this mirror and the spirit of this form.”</em> The human being, then, is not an instrument that polishes the mirror — the human being is <em>the brightness itself</em>.",
+          "pt": "O primeiro engaste dos Fusus abre com a frase mais citada do livro, e fala de um <em>querer</em>: <em>“Quando o Real quis ver as entidades dos Seus mais belos nomes, que não podem ser contados…”</em> Segue-se uma distinção subtil — o ver-se de uma coisa por si mesma não é como ver-se em <strong>outra coisa</strong>, num espelho, por exemplo. O mundo é esse espelho; mas foi primeiro criado <em>“como um espelho não polido.”</em> E o engaste diz numa só frase o que é o polimento: <em>“Adão tornou-se o próprio polimento deste espelho e o espírito desta forma.”</em> O ser humano, então, não é um instrumento que pole o espelho — é <em>o próprio brilho</em>."
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, I. Fass (Konuk şerhi, s. 20-21)",
+          "en": "Fusus al-Hikam, Bezel I (Konuk's commentary, pp. 20-21)",
+          "pt": "Fusus al-Hikam, Engaste I (comentário de Konuk, pp. 20-21)"
+        },
+        "caption": {
+          "tr": "Sarmalı biz çizdik; basamaklar fassın kendi cümleleri. Neden sarmal: fass bir dizi olay anlatmıyor, <em>tek bir hareketin</em> aşamalarını anlatıyor ve son basamak ilk basamağın isteğine geri değiyor — ama bir üstünden. Düğümlere dokunarak (ya da ok tuşlarıyla) tek tek okuyabilirsiniz.",
+          "en": "We drew the spiral; the steps are the bezel's own sentences. Why a spiral: the bezel is not narrating a sequence of events but the stages of <em>a single movement</em>, and the last step touches back on the first step's wish — from one turn higher. Touch the nodes (or use the arrow keys) to read them one by one.",
+          "pt": "Desenhámos a espiral; os degraus são frases do próprio engaste. Porquê uma espiral: o engaste não narra uma sequência de acontecimentos mas as etapas de <em>um único movimento</em>, e o último degrau toca de novo o desejo do primeiro — mas uma volta acima. Toque nos nós (ou use as setas) para os ler um a um."
+        },
+        "helix": {
+          "id": "fs1-cila",
+          "turns": 1.4,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs1-c1",
+              "label": {
+                "tr": "Görmek dileği",
+                "en": "The wish to see",
+                "pt": "O desejo de ver"
+              },
+              "note": {
+                "tr": "<em>“Vaktâki Hak Sübhânehû ve Teâlâ… esmâ-i hüsnâsı haysiyetinden onların 'ayn'larını görmek diledi.”</em> Ve bir seçenek daha bırakıyor: <em>“eğer diler isen… emri hasreden kevn-i câmi'de kendi 'ayn'ını görmekliği… diledi dersin.”</em>",
+                "en": "<em>“When the Real willed to see the entities of His most beautiful names…”</em> And it leaves another option open: <em>“if you wish, you may say He willed to see His own entity in a comprehensive being that gathers the whole affair.”</em>",
+                "pt": "<em>“Quando o Real quis ver as entidades dos Seus mais belos nomes…”</em> E deixa aberta outra opção: <em>“se quiseres, podes dizer que quis ver a Sua própria entidade num ser abrangente que reúne todo o assunto.”</em>"
+              },
+              "accent": true
+            },
+            {
+              "id": "fs1-c2",
+              "label": {
+                "tr": "Rûhsuz bir ceset olarak âlem",
+                "en": "The world as a body without spirit",
+                "pt": "O mundo como corpo sem espírito"
+              },
+              "note": {
+                "tr": "<em>“Hak Teâlâ âlemin küllîsini, kendisinde rûh olmayan tâmmü'l-hilka vücûd-ı ceset olarak halketmiş idi. Binâenaleyh gayr-ı mücellâ bir âyine gibi idi.”</em> Yani eksik değil — <em>tamamlanmış</em> ama henüz parlamayan.",
+                "en": "<em>“The Real created the whole of the world as a complete bodily existence with no spirit in it. So it was like an unpolished mirror.”</em> Not defective, then — <em>complete</em>, but not yet shining.",
+                "pt": "<em>“O Real criou a totalidade do mundo como uma existência corpórea completa sem espírito nela. Era, pois, como um espelho não polido.”</em> Não defeituoso, então — <em>completo</em>, mas ainda sem brilho."
+              }
+            },
+            {
+              "id": "fs1-c3",
+              "label": {
+                "tr": "Tesviye — kabûle hazırlanma",
+                "en": "Levelling — being made ready to receive",
+                "pt": "Nivelamento — ser preparado para receber"
+              },
+              "note": {
+                "tr": "<em>“hükm-i ilâhînin şânındandır ki, muhakkak o, bir mahalli ancak 'nefh-i ilâhî' ta'bir olunan rûh-ı ilâhîyi kabûl etmesi lâbüd olarak tesviye etti.”</em>",
+                "en": "<em>“It belongs to the way of the divine ruling that it levels a locus only such that it must receive the divine spirit, which is called the divine in-breathing.”</em>",
+                "pt": "<em>“Pertence ao modo do juízo divino nivelar um lugar apenas de tal modo que ele tenha de receber o espírito divino, que se chama o sopro divino.”</em>"
+              }
+            },
+            {
+              "id": "fs1-c4",
+              "label": {
+                "tr": "İstidâd ve feyz-i akdes",
+                "en": "Preparedness and the most holy effusion",
+                "pt": "Preparação e a efusão santíssima"
+              },
+              "note": {
+                "tr": "<em>“O da ancak… tecellî-i dâim feyzini kabûl etmek için tesviye olunan bu sûretten istidâdın husûlüdür; ve ancak kâbil kaldı; ve kâbil ise, ancak onun feyz-i akdesinden vâki' olur.”</em> Kabûl edenin kendisi de veriliyor — hazırlık bile bizden değil.",
+                "en": "<em>“And that is the coming-to-be of preparedness from this levelled form, so as to receive the effusion of unceasing self-disclosure; and only the receiver remained; and the receiver occurs only from His most holy effusion.”</em> Even the receiver is given — the readiness is not ours either.",
+                "pt": "<em>“E isso é o advir da preparação a partir desta forma nivelada, para receber a efusão da manifestação incessante; e só restou o receptor; e o receptor ocorre apenas da Sua efusão santíssima.”</em> Até o receptor é dado — nem a prontidão é nossa."
+              }
+            },
+            {
+              "id": "fs1-c5",
+              "label": {
+                "tr": "Âdem: aynanın cilâsının kendisi",
+                "en": "Adam: the very polish of the mirror",
+                "pt": "Adão: o próprio polimento do espelho"
+              },
+              "note": {
+                "tr": "<em>“İmdi emr, mir'ât-ı âlemin cilâsını iktizâ etti. Binâenaleyh Âdem, bu âyinenin ayn-ı cilâsı ve bu sûretin rûhu oldu.”</em> Dikkat: <em>ayn-ı cilâ</em> deniyor, “cilâlayan” değil. Bu ayrımın ne kadarını anladığımızdan emin değiliz, ama kelimenin bu olduğunu belirtmek gerekiyordu.",
+                "en": "<em>“So the affair required the polishing of the mirror of the world. And Adam became the very polish of this mirror and the spirit of this form.”</em> Note: it says <em>the very polish</em>, not “the polisher.” We are not sure how much of that distinction we have grasped, but the word had to be marked.",
+                "pt": "<em>“Assim o assunto exigiu o polimento do espelho do mundo. E Adão tornou-se o próprio polimento deste espelho e o espírito desta forma.”</em> Repare-se: diz <em>o próprio polimento</em>, não “o polidor.” Não temos a certeza de quanto dessa distinção apreendemos, mas a palavra tinha de ser assinalada."
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs1-s1",
+          "heading": {
+            "tr": "Kitabın Adı Bir Yüzük Taşı",
+            "en": "The Book's Name Is a Signet Stone",
+            "pt": "O Nome do Livro É Uma Pedra de Anel"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk şerhi işe kitabın adını açarak başlıyor, ve bu açıklama bize okuma boyunca yön verecek gibi göründü: <em>“'Fass', bir şeyin hulâsası ve zübdesi ma'nâsınadır; ve hâtemin fassı hâtemi tezyin eden şeydir, ya'ni yüzüğün taşıdır ki, onun üzerine sâhibinin ismi yazılır.”</em>",
+                "en": "Konuk's commentary begins by opening up the book's title, and this explanation seemed to us to set the direction for the whole reading: <em>“‘Fass’ means the essence and cream of a thing; and the fass of a signet ring is what adorns the ring — that is, the stone of the ring, upon which its owner's name is engraved.”</em>",
+                "pt": "O comentário de Konuk começa por abrir o título do livro, e esta explicação pareceu-nos dar a direção de toda a leitura: <em>“‘Fass’ significa a essência e a nata de uma coisa; e o fass de um anel-sinete é o que adorna o anel — isto é, a pedra do anel, na qual está gravado o nome do seu dono.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Yani her fass bir peygamberin adının kazındığı taş; ve taşın üstündeki yazı o peygamberde <em>toplanmış</em> olan hikmet. Buradan bir okuma çıkarıyoruz — kesin değil, bir beklenti: bu kitap peygamberlerin hayatını anlatmayacak, her birinde <em>hangi hikmetin mühürlendiğini</em> soracak. Yirmi yedi fass da aynı şeyin yirmi yedi ayrı yüksekliğinden bakış olabilir. Bunu okudukça sınayacağız.",
+                "en": "Each bezel, then, is the stone on which a prophet's name is engraved; and the writing on the stone is the wisdom <em>gathered</em> in that prophet. From this we draw a reading — not a certainty, an expectation: this book will not narrate the lives of prophets but ask which wisdom is <em>sealed</em> in each. And the twenty-seven bezels may be twenty-seven views of the same thing from twenty-seven different heights. We will test this as we read.",
+                "pt": "Cada engaste é, então, a pedra em que está gravado o nome de um profeta; e o que está escrito na pedra é a sabedoria <em>reunida</em> nesse profeta. Daqui tiramos uma leitura — não uma certeza, uma expectativa: este livro não narrará a vida dos profetas mas perguntará que sabedoria está <em>selada</em> em cada um. E os vinte e sete engastes podem ser vinte e sete vistas da mesma coisa de vinte e sete alturas diferentes. Iremos pô-lo à prova ao ler."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs1-s2",
+          "heading": {
+            "tr": "Kendini Kendinde Görmek Başka, Aynada Görmek Başka",
+            "en": "Seeing Yourself in Yourself Is One Thing; in a Mirror, Another",
+            "pt": "Ver-se em Si É Uma Coisa; Num Espelho, Outra"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın bütün binası tek bir ayrımın üstünde duruyor: <em>“Zirâ bir şeyin kendi nefsine kendi nefsi ile rü'yeti, o şeye mir'ât gibi emr-i âharda kendi nefsine rü'yeti gibi değildir. Çünkü ona kendi nefsi manzûrun-fîh olan mahallin verdiği bir sûrette zâhir olur.”</em> Yani aynada gördüğün, aynanın <em>verdiği</em> bir sûrettedir — ve bu bir kusur değil, görmenin şartı: <em>“bu mahallin vücûdu olmaksızın ve onun ona tecellîsi bulunmaksızın, ona sûret zâhir olmaz idi.”</em>",
+                "en": "The whole building of the bezel stands on a single distinction: <em>“For a thing's seeing itself by itself is not like its seeing itself in another affair, as in a mirror. Because there it appears to itself in a form given by the locus in which it is beheld.”</em> What you see in the mirror is in a form <em>given</em> by the mirror — and this is not a defect but the condition of seeing at all: <em>“without the existence of that locus, and without its disclosure to it, no form would appear to it.”</em>",
+                "pt": "Todo o edifício do engaste assenta numa só distinção: <em>“Pois o ver-se de uma coisa por si mesma não é como ver-se noutro assunto, como num espelho. Porque ali aparece a si mesma numa forma dada pelo lugar em que é contemplada.”</em> O que vês no espelho está numa forma <em>dada</em> pelo espelho — e isto não é defeito mas a condição de ver: <em>“sem a existência desse lugar, e sem a sua manifestação a ele, nenhuma forma lhe apareceria.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, I. Fass (Konuk şerhi, s. 20)",
+                "en": "Fusus al-Hikam, Bezel I (Konuk's commentary, p. 20)",
+                "pt": "Fusus al-Hikam, Engaste I (comentário de Konuk, p. 20)"
+              },
+              "caption": {
+                "tr": "Üç basamağı biz ayırdık; üçü de fassın cümleleri. Bu üçlüyü düz bir çizgi yerine sarmal çizmemizin sebebi var: üçüncü basamak birinciye <em>geri dönüyor</em> — görülen yine odur — ama artık bir mahallin verdiği sûrette. Aynı nokta değil, bir üstü.",
+                "en": "We separated the three steps; all three are the bezel's sentences. There is a reason we drew this triad as a spiral rather than a straight line: the third step <em>returns</em> to the first — what is seen is still the same — but now in a form given by a locus. Not the same point: one turn above it.",
+                "pt": "Separámos os três degraus; os três são frases do engaste. Há uma razão para termos desenhado esta tríade como espiral e não como linha reta: o terceiro degrau <em>regressa</em> ao primeiro — o que é visto continua a ser o mesmo — mas agora numa forma dada por um lugar. Não o mesmo ponto: uma volta acima."
+              },
+              "helix": {
+                "id": "fs1-ruyet",
+                "turns": 1.15,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs1-r1",
+                    "label": {
+                      "tr": "Kendini kendisiyle görmek",
+                      "en": "Seeing itself by itself",
+                      "pt": "Ver-se por si mesmo"
+                    },
+                    "note": {
+                      "tr": "Aracısız görüş. Fass bunu inkâr etmiyor, sadece <em>ötekinden farklı</em> olduğunu söylüyor.",
+                      "en": "Unmediated seeing. The bezel does not deny this; it only says it is <em>different from the other</em>.",
+                      "pt": "Ver sem mediação. O engaste não o nega; apenas diz que é <em>diferente do outro</em>."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs1-r2",
+                    "label": {
+                      "tr": "Bir başka emirde görmek",
+                      "en": "Seeing itself in another affair",
+                      "pt": "Ver-se noutro assunto"
+                    },
+                    "note": {
+                      "tr": "<em>“o şeye mir'ât gibi emr-i âharda kendi nefsine rü'yeti.”</em> Ayna burada bir örnek değil, meselenin kendisi: âlem o başka emir.",
+                      "en": "<em>“its seeing itself in another affair, as in a mirror.”</em> The mirror here is not an example but the matter itself: the world is that other affair.",
+                      "pt": "<em>“o seu ver-se noutro assunto, como num espelho.”</em> O espelho aqui não é um exemplo mas a própria questão: o mundo é esse outro assunto."
+                    }
+                  },
+                  {
+                    "id": "fs1-r3",
+                    "label": {
+                      "tr": "Mahallin verdiği sûrette zâhir olmak",
+                      "en": "Appearing in a form the locus gives",
+                      "pt": "Aparecer numa forma que o lugar dá"
+                    },
+                    "note": {
+                      "tr": "<em>“kendi nefsi manzûrun-fîh olan mahallin verdiği bir sûrette zâhir olur.”</em> Bu cümle bize Fütûhât'ta okuduğumuz bir hükmü hatırlattı: orada da Hak insana ancak insanın kendi sûretinde görünüyordu ve hüküm mertebeye aitti. İki kitap aynı yere mi bakıyor, yoksa biz mi benzetiyoruz — bunu şimdilik soru olarak tutuyoruz.",
+                      "en": "<em>“it appears to itself in a form given by the locus in which it is beheld.”</em> This sentence reminded us of a ruling we read in the Futuhat: there too the Real appeared to a person only in that person's own form, and the ruling belonged to the level. Whether the two books are looking at the same place, or we are the ones drawing the likeness, we keep as a question for now.",
+                      "pt": "<em>“aparece a si mesma numa forma dada pelo lugar em que é contemplada.”</em> Esta frase lembrou-nos um juízo que lemos nas Futuhat: também ali o Real aparecia a uma pessoa apenas na forma dessa pessoa, e o juízo pertencia ao grau. Se os dois livros olham para o mesmo lugar, ou se somos nós que traçamos a semelhança, guardamos por agora como pergunta."
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs1-s3",
+          "heading": {
+            "tr": "Altı Mertebe — ve Altıncısı Hepsini Toplayan",
+            "en": "Six Levels — and the Sixth Gathers Them All",
+            "pt": "Seis Graus — e o Sexto Reúne-os a Todos"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk, fassı şerhetmeden önce bir iskele kuruyor: <em>“Ma'lûm olsun ki, zât-ı ahadiyyenin külliyât itibâriyle altı mertebesi vardır; ve cüz'iyât itibâriyle merâtibine nihâyet yoktur.”</em> Bu altı basamak, sitedeki Ontoloji haritasının da omurgasını oluşturan mertebeler; ama burada ilk kez tek bir yerde, sırayla ve gerekçeleriyle duruyorlar.",
+                "en": "Before commenting on the bezel, Konuk builds a scaffold: <em>“Know that the Essence in its oneness has six levels considered as universals; considered in particulars, its levels have no end.”</em> These six steps are the levels that form the spine of the Ontology map on this site too; but here, for the first time, they stand in one place, in order, with their reasons.",
+                "pt": "Antes de comentar o engaste, Konuk levanta um andaime: <em>“Sabe que a Essência na sua unicidade tem seis graus considerados como universais; considerados nos particulares, os seus graus não têm fim.”</em> Estes seis degraus são os graus que formam a espinha do mapa de Ontologia deste site; mas aqui, pela primeira vez, estão num só lugar, por ordem e com as suas razões."
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, I. Fass — Konuk'un mukaddime şerhi (s. 21-25)",
+                "en": "Fusus al-Hikam, Bezel I — Konuk's introductory commentary (pp. 21-25)",
+                "pt": "Fusus al-Hikam, Engaste I — comentário introdutório de Konuk (pp. 21-25)"
+              },
+              "caption": {
+                "tr": "Altı mertebe Konuk'un sıralaması; sarmal bizim. Neden sarmal: bu bir <em>iniş</em> (her basamak bir öncekinin bir derece “tekâsüf”ü, yoğunlaşması) ama altıncı basamak birinciye geri değiyor — insan, hepsini birden toplayan mertebe. Konuk'un kendi benzetmesi de dairesel: buhar → bulut → su → buz, ve <em>“her bir mertebede buhâr zâtiyeti üzere kâimdir.”</em>",
+                "en": "The six levels are Konuk's ordering; the spiral is ours. Why a spiral: this is a <em>descent</em> (each step a degree of condensation of the one before) yet the sixth step touches back on the first — the human being, the level that gathers them all at once. Konuk's own likeness is circular too: vapour → cloud → water → ice, and <em>“at every level the vapour stands upon its own essence.”</em>",
+                "pt": "Os seis graus são a ordenação de Konuk; a espiral é nossa. Porquê uma espiral: isto é uma <em>descida</em> (cada degrau um grau de condensação do anterior) e contudo o sexto degrau toca de novo o primeiro — o ser humano, o grau que os reúne a todos de uma vez. A própria comparação de Konuk é circular: vapor → nuvem → água → gelo, e <em>“em cada grau o vapor mantém-se na sua própria essência.”</em>"
+              },
+              "helix": {
+                "id": "fs1-meratib",
+                "turns": 1.7,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs1-m1",
+                    "label": {
+                      "tr": "1 · Lâ-taayyün",
+                      "en": "1 · Non-determination",
+                      "pt": "1 · Não-determinação"
+                    },
+                    "note": {
+                      "tr": "<em>“'Lâ-taayyün', 'ıtlâk' ve 'zât-ı baht' mertebesidir… Onun fevkinde hiçbir mertebe yoktur.”</em> Ve bir uyarı: bu adlar bile geçici — <em>“O mertebenin bu isimler ile tevsimi tâliblere tefhîm-i merâm içindir.”</em>",
+                      "en": "<em>“It is the level of non-determination, absoluteness, the sheer Essence… There is no level above it.”</em> And a caution: even these names are provisional — <em>“naming that level with these names is only to make the meaning intelligible to seekers.”</em>",
+                      "pt": "<em>“É o grau da não-determinação, da absolutidade, da Essência pura… Não há grau acima dele.”</em> E uma cautela: até estes nomes são provisórios — <em>“nomear esse grau com estes nomes é apenas para tornar o sentido inteligível aos que buscam.”</em>"
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs1-m2",
+                    "label": {
+                      "tr": "2 · Vâhidiyet",
+                      "en": "2 · Unity-in-multiplicity",
+                      "pt": "2 · Unidade-na-multiplicidade"
+                    },
+                    "note": {
+                      "tr": "A'yân-ı sâbite burada sâbit oluyor: <em>“İlim mertebesinde müteayyin olan bu sûretlere, 'a'yân-ı sâbite' derler.”</em> Bu mertebenin adı <em>“Allah”</em>tır, ve buraya getiren tecellîye <em>feyz-i akdes</em> deniyor. Sebep de veriliyor: sıfatların <em>“lisân-ı isti'dâd ile zuhûr takâzâsında bulunmaları.”</em>",
+                      "en": "The fixed entities become fixed here: <em>“these forms determined at the level of knowledge are called the fixed entities.”</em> The name of this level is <em>“Allah,”</em> and the self-disclosure that brings it about is called the <em>most holy effusion</em>. The reason is given too: the attributes <em>“demanding manifestation with the tongue of their preparedness.”</em>",
+                      "pt": "As entidades fixas fixam-se aqui: <em>“estas formas determinadas no grau do conhecimento chamam-se entidades fixas.”</em> O nome deste grau é <em>“Allah,”</em> e a manifestação que o traz chama-se <em>efusão santíssima</em>. A razão também é dada: os atributos <em>“exigindo manifestação com a língua da sua preparação.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs1-m3",
+                    "label": {
+                      "tr": "3 · Mertebe-i ervâh",
+                      "en": "3 · The level of spirits",
+                      "pt": "3 · O grau dos espíritos"
+                    },
+                    "note": {
+                      "tr": "<em>“mertebe-i ilimde sâbit olan her bir sûret-i ilmiyye, bir cevher-i basit olarak bu mertebede zâhir olur.”</em> Şekil, renk, zaman ve mekândan soyut. Ve bir tarif: <em>“Bu mertebede her bir rûh kendisini ve kendi mislini ve kendi mebdei olan Hakk'ı müdriktir.”</em>",
+                      "en": "<em>“Each form of knowledge fixed at the level of knowledge appears at this level as a simple substance.”</em> Free of shape, colour, time and place. And a description: <em>“At this level every spirit apprehends itself, its like, and the Real who is its own origin.”</em>",
+                      "pt": "<em>“Cada forma de conhecimento fixada no grau do conhecimento aparece neste grau como substância simples.”</em> Livre de forma, cor, tempo e lugar. E uma descrição: <em>“Neste grau todo o espírito apreende a si mesmo, o seu semelhante, e o Real que é a sua própria origem.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs1-m4",
+                    "label": {
+                      "tr": "4 · Âlem-i misâl (berzah)",
+                      "en": "4 · The world of images (isthmus)",
+                      "pt": "4 · O mundo das imagens (istmo)"
+                    },
+                    "note": {
+                      "tr": "İki âlemin arasında duran ve ikisinin de hükmünü taşıyan mertebe: <em>“ervâh ve ecsâm arasında berzahdır; ve berzahiyeti hasebiyle her iki âlemin ahkâmını câmi'dir.”</em> Ölçülebilir ve görülebilir ama kesilemez: <em>“Rü'yâda görülen suver bu âlemdendir.”</em>",
+                      "en": "The level standing between two worlds and carrying the rulings of both: <em>“it is the isthmus between spirits and bodies; and by its isthmus-nature it gathers the rulings of both worlds.”</em> Measurable and visible yet uncuttable: <em>“The forms seen in dreams are from this world.”</em>",
+                      "pt": "O grau que está entre dois mundos e carrega os juízos de ambos: <em>“é o istmo entre espíritos e corpos; e pela sua natureza de istmo reúne os juízos de ambos os mundos.”</em> Mensurável e visível mas incortável: <em>“As formas vistas em sonhos são deste mundo.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs1-m5",
+                    "label": {
+                      "tr": "5 · Mertebe-i şehâdet",
+                      "en": "5 · The level of witnessing",
+                      "pt": "5 · O grau do testemunho"
+                    },
+                    "note": {
+                      "tr": "Cisimler âlemi — <em>“âlem-i kevn ve fesâd”</em>. Ve burada dikkat çeken bir hüküm var: <em>“âlem-i ecsâmda gerek cemâd, gerek nebât ve gerek hayvan olsun, rûhu olmayan bir sûret yoktur. Zirâ her bir sûret bir ismin mazharıdır; ve onu müdebbir olan rûh o isimdir.”</em>",
+                      "en": "The world of bodies — <em>“the world of coming-to-be and passing-away.”</em> And here a ruling that stands out: <em>“In the world of bodies there is no form without a spirit, be it mineral, plant or animal. For every form is a locus of manifestation of a name; and the spirit that governs it is that name.”</em>",
+                      "pt": "O mundo dos corpos — <em>“o mundo do vir-a-ser e do perecer.”</em> E aqui um juízo que se destaca: <em>“No mundo dos corpos não há forma sem espírito, seja mineral, planta ou animal. Pois toda a forma é lugar de manifestação de um nome; e o espírito que a governa é esse nome.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs1-m6",
+                    "label": {
+                      "tr": "6 · Mertebe-i câmi'a: insân",
+                      "en": "6 · The gathering level: the human being",
+                      "pt": "6 · O grau que reúne: o ser humano"
+                    },
+                    "note": {
+                      "tr": "<em>“bu mertebe kâffe-i merâtib-i cismâniyye ve nûrâniyyeyi ve vahdeti ve vâhidiyeti câmi' olan bir tecellî ve bir libâs-ı âhirdir.”</em> Ve dönüş burada: insân-ı kâmil <em>“tarîk-i tasfiye ile mebdee rücû' ettikleri ve kendi mevhûm olan varlıklarından fânî oldukları cihetle”</em> ayrılıyor. Yani altıncı basamak yeni bir yer değil — birinciye, bir tur üstünden dönüş.",
+                      "en": "<em>“This level is a self-disclosure and a final garment that gathers all the corporeal and luminous levels, and oneness and unity-in-multiplicity.”</em> And the return is here: the perfect human is distinguished <em>“in that they return to the origin by the path of purification and pass away from their own supposed existence.”</em> The sixth step, then, is not a new place — it is a return to the first, one turn above.",
+                      "pt": "<em>“Este grau é uma manifestação e uma veste final que reúne todos os graus corpóreos e luminosos, e a unicidade e a unidade-na-multiplicidade.”</em> E o regresso está aqui: o humano perfeito distingue-se <em>“por regressarem à origem pelo caminho da purificação e passarem da sua própria existência suposta.”</em> O sexto degrau não é, então, um lugar novo — é um regresso ao primeiro, uma volta acima."
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu altı basamağı okurken bir şeyi not etmek gerekiyor: Konuk her mertebeyi bir <em>yoğunlaşma</em> (tekâsüf) olarak anlatıyor ve sonra bunun bir değişim <strong>olmadığını</strong> vurguluyor: <em>“bu merâtibde görülen istihâlât ve tagayyürât zât-ı mutlakın değildir. Her bir mertebede zât-ı mutlak, zâtiyeti üzere kâimdir.”</em> Benzetme buhar: buhar → bulut → su → buz; her basamakta buhar hâlâ buhardır. Ve sınırı da koyuyor — şaraba tuz konsa sirke olur, <em>“zâtı bozulduğundan, artık şarâb olamaz”</em>; yani mertebeler arası geçiş bozulma değil.",
+                "en": "One thing must be noted while reading these six steps: Konuk describes each level as a <em>condensation</em>, and then stresses that this is <strong>not</strong> a change: <em>“the alterations and changes seen in these levels do not belong to the Absolute Essence. At every level the Absolute Essence stands upon its own essence.”</em> The likeness is vapour: vapour → cloud → water → ice; at every step the vapour is still vapour. And he sets the limit too — put salt into wine and it becomes vinegar, <em>“its essence being corrupted, it can no longer be wine”</em>; so passing between levels is not corruption.",
+                "pt": "Uma coisa deve notar-se ao ler estes seis degraus: Konuk descreve cada grau como uma <em>condensação</em>, e depois sublinha que isto <strong>não</strong> é uma mudança: <em>“as alterações e mudanças vistas nestes graus não pertencem à Essência Absoluta. Em cada grau a Essência Absoluta mantém-se na sua própria essência.”</em> A comparação é o vapor: vapor → nuvem → água → gelo; em cada degrau o vapor continua a ser vapor. E põe também o limite — deita-se sal no vinho e torna-se vinagre, <em>“corrompida a sua essência, já não pode ser vinho”</em>; passar entre graus não é, pois, corrupção."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs1-s4",
+          "heading": {
+            "tr": "Zât Tecellîden Müstağnî — Peki Neden Tecellî Var?",
+            "en": "The Essence Has No Need of Self-Disclosure — So Why Is There Any?",
+            "pt": "A Essência Não Precisa de Manifestação — Então Porque Há Alguma?"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın açılışındaki <em>“görmek diledi”</em> ifadesi bir soru bırakıyor: dilemek bir eksiklik midir? Konuk bunu doğrudan karşılıyor ve iki cümleyi yan yana koyuyor. Önce: <em>“zât, zâtiyeti cihetinden âlemlerden ganî olduğundan tecellîden müstağnîdir.”</em> Sonra: <em>“Onun tecellîsini iktizâ eden şey, zâtında muhtefî ve kâmin olan niseb ve şuûnâtıdır. Eğer kendisinde bu niseb ve şuûnât olmasa idi, zât ebediyyen mütecellî olmaz idi.”</em>",
+                "en": "The <em>“willed to see”</em> of the bezel's opening leaves a question: is willing a lack? Konuk meets this directly and sets two sentences side by side. First: <em>“the Essence, in respect of its essentiality, is beyond need of the worlds, and so has no need of self-disclosure.”</em> Then: <em>“What requires its self-disclosure are the relations and states hidden and latent within it. Had these relations and states not been in it, the Essence would never disclose itself at all.”</em>",
+                "pt": "O <em>“quis ver”</em> da abertura do engaste deixa uma pergunta: querer é uma falta? Konuk enfrenta isto diretamente e põe duas frases lado a lado. Primeiro: <em>“a Essência, quanto à sua essencialidade, está além da necessidade dos mundos e, portanto, não precisa de manifestação.”</em> Depois: <em>“O que exige a sua manifestação são as relações e os estados ocultos e latentes nela. Se estas relações e estados não estivessem nela, a Essência nunca se manifestaria.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu cevabı anladığımızı söyleyemeyiz. Söyleyebileceğimiz şu: cevap eksikliği Zât'a değil, <em>nisbetlere</em> veriyor — ve nisbetlerin kendisi de Zât'ın aynı sayılıyor (<em>“onlar bu mertebede zât-ı bahtın 'ayn'ıdır”</em>). Yani soru çözülmüyor, bir kat daha içeri taşınıyor. Meşiyyet (dileme) için de aynısı söyleniyor: <em>“Hak, mertebe-i ahadiyyette meşiyyeti değildir; ve meşiyyet denilen nisbet ise zâtın 'ayn'ıdır.”</em> Bunu bir cevap değil, açık bir soru olarak taşıyoruz.",
+                "en": "We cannot say we have understood this answer. What we can say is: the answer assigns the lack not to the Essence but to the <em>relations</em> — and the relations themselves are counted as identical with the Essence (<em>“at this level they are the very entity of the sheer Essence”</em>). The question is not solved, then; it is carried one layer further in. The same is said of will: <em>“At the level of oneness the Real is not qualified by will; and the relation called will is the very entity of the Essence.”</em> We carry this not as an answer but as an open question.",
+                "pt": "Não podemos dizer que compreendemos esta resposta. O que podemos dizer é: a resposta atribui a falta não à Essência mas às <em>relações</em> — e as próprias relações são tidas por idênticas à Essência (<em>“neste grau são a própria entidade da Essência pura”</em>). A pergunta não se resolve, então; é levada uma camada mais para dentro. O mesmo se diz do querer: <em>“No grau da unicidade o Real não é qualificado pelo querer; e a relação chamada querer é a própria entidade da Essência.”</em> Levamos isto não como resposta mas como pergunta em aberto."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs1-s5",
+          "heading": {
+            "tr": "“O'ndan Başlar, O'na Döner” — Bu Sitenin Kendi Cümlesi",
+            "en": "“It Begins from Him and Returns to Him” — This Site's Own Sentence",
+            "pt": "“Começa d'Ele e Regressa a Ele” — a Própria Frase Deste Site"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın ortasında, cilâ anlatısının hemen öncesinde şu duruyor: <em>“Böyle olunca emrin küllîsi, ibtidâsı ve intihâsı O'ndandır; ve emrin kâffesi O'ndan ibtidâ eylediği gibi, O'na râci' olur.”</em> Dayanak Hûd sûresinin 123. âyeti.",
+                "en": "In the middle of the bezel, just before the account of the polishing, stands this: <em>“So the whole affair, its beginning and its end, is from Him; and just as the whole affair begins from Him, so it returns to Him.”</em> Its ground is verse 123 of Sura Hud.",
+                "pt": "No meio do engaste, mesmo antes do relato do polimento, está isto: <em>“Assim todo o assunto, o seu começo e o seu fim, é d'Ele; e tal como todo o assunto começa d'Ele, também a Ele regressa.”</em> O seu fundamento é o versículo 123 da Sura Hud."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu cümleyi ayrı bir başlık altına almamızın kişisel bir sebebi var ve onu saklamak doğru olmazdı: bu sitenin bütün tasarım dili — dairesel düzenler, merkeze dönen kompozisyonlar, ve şimdi Füsûs bölümündeki sarmallar — <strong>tam olarak bu cümleye</strong> dayanıyor. Yıllardır “O'ndan geldik, O'na gidiyoruz” diye yazdığımız ilkenin kaynağını, ilk fassın ortasında, kendi bağlamında görmek bizim için bir doğrulama değil, bir <em>hesap verme</em> anı oldu: cümleyi doğru yerden mi almışız? Bağlamı şu — cümle burada bir teselli ya da bir slogan olarak değil, aynanın cilâlanması gerektiğinin <em>gerekçesi</em> olarak duruyor. Yani dönüş, bir vaat değil, işin yapısı. Sitedeki kullanımımızın bundan daha yumuşak olduğunu kabul ediyoruz.",
+                "en": "There is a personal reason for putting this sentence under a heading of its own, and it would not be right to hide it: this site's whole design language — circular layouts, compositions that return to a centre, and now the spirals in this Fusus section — rests on <strong>exactly this sentence</strong>. To see, in the middle of the first bezel and in its own context, the source of the principle we have been writing for years as “from Him we came, to Him we go” was for us not a confirmation but a moment of <em>accounting</em>: did we take the sentence from the right place? The context is this: here the sentence stands not as a consolation or a slogan but as the <em>reason</em> why the mirror must be polished. The return, then, is not a promise but the structure of the affair. We admit that our use of it on the site has been softer than that.",
+                "pt": "Há uma razão pessoal para pôr esta frase sob um título próprio, e não seria correto escondê-la: toda a linguagem de design deste site — disposições circulares, composições que regressam a um centro, e agora as espirais desta secção dos Fusus — assenta <strong>exatamente nesta frase</strong>. Ver, a meio do primeiro engaste e no seu próprio contexto, a origem do princípio que há anos escrevemos como “d'Ele viemos, a Ele vamos” foi para nós não uma confirmação mas um momento de <em>prestação de contas</em>: teremos tomado a frase do lugar certo? O contexto é este: aqui a frase não está como consolo nem como lema, mas como a <em>razão</em> por que o espelho tem de ser polido. O regresso não é, então, uma promessa mas a estrutura do assunto. Admitimos que o nosso uso dela no site tem sido mais brando do que isso."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs1-s6",
+          "heading": {
+            "tr": "Ve İlk Fass Bir Yasakla Kapanıyor",
+            "en": "And the First Bezel Closes with a Prohibition",
+            "pt": "E o Primeiro Engaste Fecha Com Uma Proibição"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Birinci mertebeyi (lâ-taayyün) anlatan paragraf şöyle bitiyor: <em>“bu mertebe eltaf-ı eltaf-ı latîf olduğundan ve… insanın fikri bu mertebeye nazaran eksef bulunduğundan, fikir ile zât-ı sırfın idrâki mümkin değildir. Onun için hadîs-i şerîfte 'Allâh'ın zâtı hakkında tefekkür etmeyiniz!' buyurulmuştur.”</em>",
+                "en": "The paragraph describing the first level (non-determination) ends thus: <em>“since this level is the subtlest of the subtle, and since human thought, compared to this level, is the densest, apprehending the sheer Essence by thought is impossible. This is why the noble hadith says: ‘Do not reflect upon the Essence of God!’”</em>",
+                "pt": "O parágrafo que descreve o primeiro grau (não-determinação) acaba assim: <em>“sendo este grau o mais subtil dos subtis, e sendo o pensamento humano, comparado a este grau, o mais denso, é impossível apreender a Essência pura pelo pensamento. É por isso que o nobre hadith diz: ‘Não reflitais sobre a Essência de Deus!’”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu yasağı Fütûhât okumasında da görmüştük — 473. Bölüm aynı hadîsle açılıyor ve yasağı çiğneyenleri adıyla sayıyordu. İki kitap arasında ilk somut bağlantı bu oldu ve bir ayrım da beraberinde geldi: Fütûhât'ta yasak bir <em>eleştiri</em> bağlamında anılıyor (yasağı çiğneyenler var), Füsûs şerhinde ise bir <em>gerekçe</em> olarak (aletin ölçüsü tutmuyor). İkisi çelişmiyor ama vurguları farklı; hangisinin daha temel olduğunu bilmiyoruz.",
+                "en": "We had seen this prohibition in the Futuhat reading too — Chapter 473 opens with the same hadith and names those who broke it. This was the first concrete link between the two books, and a distinction came with it: in the Futuhat the prohibition is invoked in the context of a <em>criticism</em> (there are those who broke it), while in the Fusus commentary it appears as a <em>reason</em> (the instrument is not to scale). The two do not contradict each other, but their emphases differ; which is the more fundamental we do not know.",
+                "pt": "Tínhamos visto esta proibição também na leitura das Futuhat — o Capítulo 473 abre com o mesmo hadith e nomeia os que o quebraram. Esta foi a primeira ligação concreta entre os dois livros, e com ela veio uma distinção: nas Futuhat a proibição é invocada no contexto de uma <em>crítica</em> (há quem a tenha quebrado), enquanto no comentário aos Fusus aparece como uma <em>razão</em> (o instrumento não está à escala). As duas não se contradizem, mas as ênfases diferem; qual é a mais fundamental, não sabemos."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bir de kendi işimize dair bir soru bıraktı bu paragraf. Bu sayfada altı mertebeyi bir sarmala dizdik ve birincisine <em>“Lâ-taayyün”</em> yazdık — yani hakkında düşünülmemesi söylenen mertebeye bir etiket koyduk. Konuk'un kendisi de bunu yapıyor ve neden yaptığını söylüyor: <em>“O mertebenin bu isimler ile tevsîmi tâliblere tefhîm-i merâm içindir.”</em> Biz de aynı gerekçeyle yaptık; ama etiketin, altındaki şeyin yerine geçmemesi için burada belirtmek gerekiyordu.",
+                "en": "This paragraph also left us a question about our own work. On this page we laid the six levels out on a spiral and wrote <em>“Non-determination”</em> on the first — that is, we put a label on the level about which we are told not to reflect. Konuk himself does this and says why: <em>“naming that level with these names is only to make the meaning intelligible to seekers.”</em> We did it for the same reason; but so that the label does not take the place of what lies beneath it, it had to be said here.",
+                "pt": "Este parágrafo deixou-nos também uma pergunta sobre o nosso próprio trabalho. Nesta página dispusemos os seis graus numa espiral e escrevemos <em>“Não-determinação”</em> no primeiro — isto é, pusemos um rótulo no grau sobre o qual nos é dito para não refletirmos. O próprio Konuk faz isto e diz porquê: <em>“nomear esse grau com estes nomes é apenas para tornar o sentido inteligível aos que buscam.”</em> Fizemo-lo pela mesma razão; mas, para que o rótulo não tome o lugar daquilo que está por baixo, tinha de ser dito aqui."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Fusûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk, I. Fass (Kelime-i Âdemiyye'de Mündemic Hikmet-i İlâhiyye)",
+          "en": "Fusus al-Hikam, Translation and Commentary by Ahmed Avni Konuk, Bezel I (The Divine Wisdom in the Word of Adam)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário de Ahmed Avni Konuk, Engaste I (A Sabedoria Divina no Verbo de Adão)"
+        }
+      ]
+    },
+    {
+      "id": "fs2",
+      "no": 2,
+      "status": "planned",
+      "prophet": {
+        "tr": "Şît",
+        "en": "Seth",
+        "pt": "Set"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Nefsiyye",
+        "en": "Wisdom of the Breath",
+        "pt": "Sabedoria do Sopro"
+      }
+    },
+    {
+      "id": "fs3",
+      "no": 3,
+      "status": "planned",
+      "prophet": {
+        "tr": "Nûh",
+        "en": "Noah",
+        "pt": "Noé"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Sübbûhiyye",
+        "en": "Wisdom of Transcendence",
+        "pt": "Sabedoria da Transcendência"
+      }
+    },
+    {
+      "id": "fs4",
+      "no": 4,
+      "status": "planned",
+      "prophet": {
+        "tr": "İdrîs",
+        "en": "Enoch",
+        "pt": "Enoque"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Kuddûsiyye",
+        "en": "Wisdom of Holiness",
+        "pt": "Sabedoria da Santidade"
+      }
+    },
+    {
+      "id": "fs5",
+      "no": 5,
+      "status": "planned",
+      "prophet": {
+        "tr": "İbrâhîm",
+        "en": "Abraham",
+        "pt": "Abraão"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Müheyyemiyye",
+        "en": "Wisdom of Rapture",
+        "pt": "Sabedoria do Arrebatamento"
+      }
+    },
+    {
+      "id": "fs6",
+      "no": 6,
+      "status": "planned",
+      "prophet": {
+        "tr": "İshak",
+        "en": "Isaac",
+        "pt": "Isaque"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Hakkıyye",
+        "en": "Wisdom of Reality",
+        "pt": "Sabedoria da Realidade"
+      }
+    },
+    {
+      "id": "fs7",
+      "no": 7,
+      "status": "planned",
+      "prophet": {
+        "tr": "İsmâîl",
+        "en": "Ishmael",
+        "pt": "Ismael"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Aliyye",
+        "en": "Wisdom of Loftiness",
+        "pt": "Sabedoria da Elevação"
+      }
+    },
+    {
+      "id": "fs8",
+      "no": 8,
+      "status": "planned",
+      "prophet": {
+        "tr": "Ya'kûb",
+        "en": "Jacob",
+        "pt": "Jacó"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Rûhiyye",
+        "en": "Wisdom of Spirit",
+        "pt": "Sabedoria do Espírito"
+      }
+    },
+    {
+      "id": "fs9",
+      "no": 9,
+      "status": "planned",
+      "prophet": {
+        "tr": "Yûsuf",
+        "en": "Joseph",
+        "pt": "José"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Nûriyye",
+        "en": "Wisdom of Light",
+        "pt": "Sabedoria da Luz"
+      }
+    },
+    {
+      "id": "fs10",
+      "no": 10,
+      "status": "planned",
+      "prophet": {
+        "tr": "Hûd",
+        "en": "Hud",
+        "pt": "Hud"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Ahadiyye",
+        "en": "Wisdom of Oneness",
+        "pt": "Sabedoria da Unicidade"
+      }
+    },
+    {
+      "id": "fs11",
+      "no": 11,
+      "status": "planned",
+      "prophet": {
+        "tr": "Sâlih",
+        "en": "Salih",
+        "pt": "Salih"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Fütûhiyye",
+        "en": "Wisdom of Opening",
+        "pt": "Sabedoria da Abertura"
+      }
+    },
+    {
+      "id": "fs12",
+      "no": 12,
+      "status": "planned",
+      "prophet": {
+        "tr": "Şuayb",
+        "en": "Shu'ayb",
+        "pt": "Chuaib"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Kalbiyye",
+        "en": "Wisdom of the Heart",
+        "pt": "Sabedoria do Coração"
+      }
+    },
+    {
+      "id": "fs13",
+      "no": 13,
+      "status": "planned",
+      "prophet": {
+        "tr": "Lût",
+        "en": "Lot",
+        "pt": "Ló"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Melkiyye",
+        "en": "Wisdom of Sovereignty",
+        "pt": "Sabedoria da Soberania"
+      }
+    },
+    {
+      "id": "fs14",
+      "no": 14,
+      "status": "planned",
+      "prophet": {
+        "tr": "Üzeyr",
+        "en": "Ezra",
+        "pt": "Esdras"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Kaderiyye",
+        "en": "Wisdom of Destiny",
+        "pt": "Sabedoria do Destino"
+      }
+    },
+    {
+      "id": "fs15",
+      "no": 15,
+      "status": "planned",
+      "prophet": {
+        "tr": "Îsâ",
+        "en": "Jesus",
+        "pt": "Jesus"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Nebeviyye",
+        "en": "Wisdom of Prophecy",
+        "pt": "Sabedoria da Profecia"
+      }
+    },
+    {
+      "id": "fs16",
+      "no": 16,
+      "status": "planned",
+      "prophet": {
+        "tr": "Süleymân",
+        "en": "Solomon",
+        "pt": "Salomão"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Rahmâniyye",
+        "en": "Wisdom of Mercy",
+        "pt": "Sabedoria da Misericórdia"
+      }
+    },
+    {
+      "id": "fs17",
+      "no": 17,
+      "status": "planned",
+      "prophet": {
+        "tr": "Dâvûd",
+        "en": "David",
+        "pt": "Davi"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Vücûdiyye",
+        "en": "Wisdom of Existence",
+        "pt": "Sabedoria da Existência"
+      }
+    },
+    {
+      "id": "fs18",
+      "no": 18,
+      "status": "planned",
+      "prophet": {
+        "tr": "Yûnus",
+        "en": "Jonah",
+        "pt": "Jonas"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Nefesiyye",
+        "en": "Wisdom of the Breath of Life",
+        "pt": "Sabedoria do Alento"
+      }
+    },
+    {
+      "id": "fs19",
+      "no": 19,
+      "status": "planned",
+      "prophet": {
+        "tr": "Eyyûb",
+        "en": "Job",
+        "pt": "Jó"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Gaybiyye",
+        "en": "Wisdom of the Unseen",
+        "pt": "Sabedoria do Oculto"
+      }
+    },
+    {
+      "id": "fs20",
+      "no": 20,
+      "status": "planned",
+      "prophet": {
+        "tr": "Yahyâ",
+        "en": "John",
+        "pt": "João"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Celâliyye",
+        "en": "Wisdom of Majesty",
+        "pt": "Sabedoria da Majestade"
+      }
+    },
+    {
+      "id": "fs21",
+      "no": 21,
+      "status": "planned",
+      "prophet": {
+        "tr": "Zekeriyyâ",
+        "en": "Zachariah",
+        "pt": "Zacarias"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Mâlikiyye",
+        "en": "Wisdom of Dominion",
+        "pt": "Sabedoria do Domínio"
+      }
+    },
+    {
+      "id": "fs22",
+      "no": 22,
+      "status": "planned",
+      "prophet": {
+        "tr": "İlyâs",
+        "en": "Elias",
+        "pt": "Elias"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i İnâsiyye",
+        "en": "Wisdom of Intimacy",
+        "pt": "Sabedoria da Intimidade"
+      }
+    },
+    {
+      "id": "fs23",
+      "no": 23,
+      "status": "planned",
+      "prophet": {
+        "tr": "Lokmân",
+        "en": "Luqman",
+        "pt": "Luqman"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i İhsâniyye",
+        "en": "Wisdom of Beneficence",
+        "pt": "Sabedoria da Beneficência"
+      }
+    },
+    {
+      "id": "fs24",
+      "no": 24,
+      "status": "planned",
+      "prophet": {
+        "tr": "Hârûn",
+        "en": "Aaron",
+        "pt": "Aarão"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i İmâmiyye",
+        "en": "Wisdom of Leadership",
+        "pt": "Sabedoria da Liderança"
+      }
+    },
+    {
+      "id": "fs25",
+      "no": 25,
+      "status": "planned",
+      "prophet": {
+        "tr": "Mûsâ",
+        "en": "Moses",
+        "pt": "Moisés"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Ulviyye",
+        "en": "Wisdom of Sublimity",
+        "pt": "Sabedoria da Sublimidade"
+      }
+    },
+    {
+      "id": "fs26",
+      "no": 26,
+      "status": "planned",
+      "prophet": {
+        "tr": "Hâlid",
+        "en": "Khalid",
+        "pt": "Khalid"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Samediyye",
+        "en": "Wisdom of the Eternal Refuge",
+        "pt": "Sabedoria do Refúgio Eterno"
+      }
+    },
+    {
+      "id": "fs27",
+      "no": 27,
+      "status": "planned",
+      "prophet": {
+        "tr": "Muhammed",
+        "en": "Muhammad",
+        "pt": "Maomé"
+      },
+      "hikmet": {
+        "tr": "Hikmet-i Ferdiyye",
+        "en": "Wisdom of Singularity",
+        "pt": "Sabedoria da Singularidade"
+      }
+    }
+  ]
+}

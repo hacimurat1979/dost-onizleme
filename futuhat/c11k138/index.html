@@ -153,6 +153,7 @@
         <button class="btn-ghost" id="sorular-btn" type="button" data-tr="Sorular" data-en="Questions" data-pt="Perguntas">Sorular</button>
         <button class="btn-ghost" id="menziller-btn" type="button" data-tr="Menziller" data-en="Mansions" data-pt="Mansões">Menziller</button>
         <button class="btn-ghost" id="futuhat-btn" type="button" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
+        <button class="btn-ghost" id="fusus-btn" type="button" data-tr="Füsûs" data-en="Fusus" data-pt="Fusus">Füsûs</button>
         <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
       </div>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
@@ -418,6 +419,21 @@
           </div>
           <div class="futuhat-popup__list" id="futuhat-popup-list"></div>
         </div>
+      </div>
+    </section>
+
+    <section class="fusus-wrap" id="fusus-wrap" hidden>
+      <div class="view-status" id="fusus-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="fusus-shell">
+        <div class="fusus-sidebar">
+          <div class="fusus-map" id="fusus-map"></div>
+          <div class="fusus-list" id="fusus-list"></div>
+        </div>
+        <article class="fusus-article" id="fusus-article"></article>
       </div>
     </section>
 
@@ -772,6 +788,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/i18n.js"></script>
   <script src="assets/view-status.js"></script>
   <script src="assets/graph-utils.js"></script>
+  <script src="assets/helix.js"></script>
   <script src="assets/graph-hint.js"></script>
   <script src="assets/lightbox.js"></script>
   <script src="assets/search.js"></script>
@@ -787,6 +804,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/sorular.js"></script>
   <script src="assets/menziller.js"></script>
   <script src="assets/futuhat.js"></script>
+  <script src="assets/fusus.js"></script>
   <script src="assets/ontology.js"></script>
   <script src="assets/crosslink-preview.js"></script>
   <script src="assets/start-hint.js"></script>

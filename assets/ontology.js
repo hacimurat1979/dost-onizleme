@@ -181,6 +181,7 @@
     else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
     else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
+    else if (currentMainView === "fusus") window.__fususApp && window.__fususApp.onLangChange();
     updateHeaderHeightVar();
   });
 
@@ -364,6 +365,7 @@
   const sorularBtn = document.getElementById("sorular-btn");
   const menzillerBtn = document.getElementById("menziller-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
+  const fususBtn = document.getElementById("fusus-btn");
   const hakkindaBtn = document.getElementById("hakkinda-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
@@ -374,6 +376,7 @@
   const sorularWrap = document.getElementById("sorular-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
+  const fususWrap = document.getElementById("fusus-wrap");
   const hakkindaWrap = document.getElementById("hakkinda-wrap");
 
   // Görsel olarak aktif sekmeyi işaretlemek (.btn-ghost--active) ekran
@@ -399,6 +402,7 @@
     markActiveNavButton(sorularBtn, view === "sorular");
     markActiveNavButton(menzillerBtn, view === "menziller");
     markActiveNavButton(futuhatBtn, view === "futuhat");
+    markActiveNavButton(fususBtn, view === "fusus");
     markActiveNavButton(hakkindaBtn, view === "hakkinda");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
@@ -409,6 +413,7 @@
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
+    if (fususWrap) fususWrap.hidden = view !== "fusus";
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
     if (view === "hakkinda") wireHakkindaDiagrams();
     currentDetailNode = null;
@@ -439,6 +444,9 @@
     } else if (view === "futuhat") {
       currentDetailView = null;
       window.__futuhatApp && window.__futuhatApp.activate();
+    } else if (view === "fusus") {
+      currentDetailView = null;
+      window.__fususApp && window.__fususApp.activate();
     } else {
       currentDetailView = null;
     }
@@ -456,6 +464,7 @@
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
   if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
+  if (fususBtn) fususBtn.addEventListener("click", () => { setMainView("fusus"); updateHash("fusus"); });
   if (hakkindaBtn) hakkindaBtn.addEventListener("click", () => { setMainView("hakkinda"); updateHash("hakkinda"); });
 
   // --- Deep linking & cross-view navigation ---
@@ -549,6 +558,14 @@
         tr: "Fütûhât-ı Mekkiyye'nin cilt cilt, kısım kısım okunup anlaşılmaya çalışıldığı bölüm.",
         en: "A section reading Futuhat al-Makkiyya volume by volume, part by part.",
         pt: "Uma seção que lê o Futuhat al-Makkiyya volume a volume, parte a parte.",
+      },
+    },
+    fusus: {
+      title: { tr: "Füsûsu'l-Hikem", en: "Fusus al-Hikam", pt: "Fusus al-Hikam" },
+      desc: {
+        tr: "İbn Arabî'nin Füsûsu'l-Hikem'ini (Ahmed Avni Konuk şerhi) fass fass okuma denemesi; her fassın kendi sarmal şemalarıyla.",
+        en: "An attempt to read Ibn Arabi's Fusus al-Hikam (with Ahmed Avni Konuk's commentary) bezel by bezel, each with its own spiral diagrams.",
+        pt: "Uma tentativa de ler os Fusus al-Hikam de Ibn Arabi (com o comentário de Ahmed Avni Konuk) engaste a engaste, cada um com os seus próprios esquemas em espiral.",
       },
     },
     hakkinda: {
@@ -688,13 +705,18 @@
     window.__futuhatApp && window.__futuhatApp.activate(id);
   }
 
+  function goToFusus(id) {
+    setMainView("fusus");
+    window.__fususApp && window.__fususApp.activate(id);
+  }
+
   function goToHakkinda() {
     setMainView("hakkinda");
   }
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|futuhat|hakkinda)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|futuhat|fusus|hakkinda)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -714,6 +736,7 @@
     else if (view === "sorular") goToSorular(id);
     else if (view === "menziller") goToMenziller(id);
     else if (view === "futuhat") goToFutuhat(id);
+    else if (view === "fusus") goToFusus(id);
     else if (view === "hakkinda") goToHakkinda();
   }
 
@@ -747,6 +770,7 @@
       else if (view === "sorular") goToSorular(id);
       else if (view === "menziller") goToMenziller(id);
       else if (view === "futuhat") goToFutuhat(id);
+      else if (view === "fusus") goToFusus(id);
       else if (view === "hakkinda") goToHakkinda();
       updateHash(view, id);
     },
