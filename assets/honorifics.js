@@ -26,12 +26,12 @@
   ];
   const ALLAH_PATTERNS = ["\\bAllah\\b"];
 
-  function buildRegex(patterns) {
-    return new RegExp("(?:" + patterns.join("|") + ")", "g");
-  }
-
-  const prophetRe = buildRegex(PROPHET_PATTERNS);
-  const allahRe = buildRegex(ALLAH_PATTERNS);
+  // Tek geçiş: hangi grubun eşleştiğine bakarak mührü seçiyoruz. (Önce iki
+  // ayrı geçiş vardı -- peygamber, sonra Allah; alternasyonda peygamber
+  // kalıpları başta durduğu için sıra aynı kalıyor, ama artık her metin
+  // düğümü bir kez taranıyor ve her eşleşmenin sonu tek bir yerde biliniyor.)
+  const HONORIFIC_RE = new RegExp(
+    "(" + PROPHET_PATTERNS.join("|") + ")|(" + ALLAH_PATTERNS.join("|") + ")", "g");
 
   function makeHonorific(glyph) {
     const el = document.createElement("bdi");
@@ -41,24 +41,33 @@
     return el;
   }
 
-  // Splits a single text node into [text, <bdi honorific>, text, ...] pieces
-  // wherever `re` matches; returns null if there was no match (caller keeps
-  // the original node untouched).
-  function splitOnMatches(text, re, glyph) {
-    re.lastIndex = 0;
-    let m = re.exec(text);
-    if (!m) return null;
-    const pieces = [];
-    let lastIndex = 0;
-    while (m) {
-      const end = m.index + m[0].length;
-      pieces.push(document.createTextNode(text.slice(lastIndex, end)));
-      pieces.push(makeHonorific(glyph));
-      lastIndex = end;
-      m = re.exec(text);
+  function isHonorific(node) {
+    return !!node && node.nodeType === Node.ELEMENT_NODE &&
+      node.classList && node.classList.contains("honorific");
+  }
+
+  // Bir metin düğümünün SONUNDAKI eşleşmenin mührü, düğümün içinde değil bir
+  // sonraki kardeşinde durur -- yani metin hâlâ "...Allah" ile bittiği için
+  // yeniden tarandığında yine eşleşir. Mühür orada mı diye bakmazsak her
+  // tarama bir mühür daha ekler; bu yüzden bir sonraki (boş metin düğümlerini
+  // atlayan) kardeşe bakıyoruz.
+  function nextMeaningful(node) {
+    let n = node.nextSibling;
+    while (n && n.nodeType === Node.TEXT_NODE && n.nodeValue === "") n = n.nextSibling;
+    return n;
+  }
+
+  function trailingGlyph(node) {
+    let n = nextMeaningful(node);
+    // Metin düğümü bir sarmalayıcının (çapraz-bağlantı <a>'sı, geçici bir
+    // <mark>...) son çocuğuysa mühür o sarmalayıcının DIŞINDA kalır; bu
+    // yüzden kardeş bulunamadıkça body'ye kadar yukarı tırmanıyoruz.
+    let el = node;
+    while (!n && el.parentNode && el.parentNode !== document.body) {
+      el = el.parentNode;
+      n = nextMeaningful(el);
     }
-    pieces.push(document.createTextNode(text.slice(lastIndex)));
-    return pieces;
+    return isHonorific(n) ? n.textContent : null;
   }
 
   function annotateTextNode(node) {
@@ -70,21 +79,33 @@
         text.indexOf("Muhammed") === -1)) {
       return;
     }
-    const prophetPieces = splitOnMatches(text, prophetRe, SALLALLAHU);
-    const afterProphet = prophetPieces || [document.createTextNode(text)];
-    const finalPieces = [];
-    afterProphet.forEach((piece) => {
-      if (piece.nodeType !== Node.TEXT_NODE) {
-        finalPieces.push(piece);
-        return;
+    HONORIFIC_RE.lastIndex = 0;
+    let m = HONORIFIC_RE.exec(text);
+    if (!m) return;
+    const kuyruk = trailingGlyph(node);
+    const pieces = [];
+    let lastIndex = 0;
+    let degisti = false;
+    while (m) {
+      const end = m.index + m[0].length;
+      const glyph = m[1] ? SALLALLAHU : JALLA_JALALUHU;
+      pieces.push(document.createTextNode(text.slice(lastIndex, end)));
+      if (end === text.length && kuyruk === glyph) {
+        // Bu eşleşme zaten mühürlü -- ikincisini eklemiyoruz.
+      } else {
+        pieces.push(makeHonorific(glyph));
+        degisti = true;
       }
-      const allahPieces = splitOnMatches(piece.nodeValue, allahRe, JALLA_JALALUHU);
-      if (allahPieces) finalPieces.push(...allahPieces);
-      else finalPieces.push(piece);
-    });
-    if (prophetPieces || finalPieces.length !== 1) {
-      node.replaceWith(...finalPieces);
+      lastIndex = end;
+      m = HONORIFIC_RE.exec(text);
     }
+    // Hiçbir mühür eklenmediyse DOM'a HİÇ dokunmuyoruz: dokunsaydık kendi
+    // gözcümüzü (ve sayfadaki öteki gözcüleri) boşuna tetiklerdik.
+    if (!degisti) return;
+    // Sondaki artık metin boşsa düğüm eklemiyoruz; eklersek mührü bir sonraki
+    // taramada "kardeş" olarak bulamaz, kuyruk kontrolü boşa çıkardı.
+    if (lastIndex < text.length) pieces.push(document.createTextNode(text.slice(lastIndex)));
+    node.replaceWith(...pieces);
   }
 
   function annotate(root) {
