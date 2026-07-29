@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs10",
+  "activeFassId": "fs11",
   "fasses": [
     {
       "id": "fs1",
@@ -4072,7 +4072,7 @@
     {
       "id": "fs11",
       "no": 11,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "Sâlih",
         "en": "Salih",
@@ -4082,7 +4082,401 @@
         "tr": "Hikmet-i Fütûhiyye",
         "en": "Wisdom of Opening",
         "pt": "Sabedoria da Abertura"
-      }
+      },
+      "title": {
+        "tr": "Var Olmak İçin Üç Gerek — ve Karşıda da Üç Var",
+        "en": "Bringing-to-Be Takes Three — and There Are Three on the Other Side",
+        "pt": "Trazer à Existência Exige Três — e Há Três do Outro Lado"
+      },
+      "pageRange": {
+        "tr": "XI. Fass, s. 699-726",
+        "en": "Bezel XI, pp. 699-726",
+        "pt": "Engaste XI, pp. 699-726"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Bu fass bir sayıyla açılıyor: <em>“muhakkak emir, nefsinde 'ferdiyet' üzerine mebnîdir… ve 'üç', efrâdın evvelidir.”</em> Bir şeyin var olması için Hak tarafında üç şey gerekiyor — <em>zât</em>, <em>irâde</em>, <em>kavl</em> — ama fassın asıl sürprizi burada değil: karşı tarafta da üç var. Şeyin kendi tarafında <em>şey'iyet</em>, <em>işitme</em> ve <em>emre imtisâl</em>. Konuk özetliyor: <em>“tekvînin aslı teslîs üzere, ya'ni Hak tarafından ve halk tarafından olarak iki taraftan 'üç'ten kâim oldu… bunlardan birisi noksan olsa 'tekvîn' kâim olmaz.”</em> Var etmek tek taraflı bir iş değil.",
+          "en": "This bezel opens with a number: <em>“the matter is built upon oddness in itself… and three is the first of the odd numbers.”</em> For a thing to come to be, three are needed on God's side — <em>essence</em>, <em>will</em>, <em>word</em> — but the bezel's real surprise is not there: there are three on the other side too. On the thing's own side: <em>thingness</em>, <em>hearing</em>, and <em>compliance with the command</em>. Konuk sums it up: <em>“the root of bringing-to-be stands on threefoldness from two sides, God's and the creature's… if one of these is lacking, bringing-to-be does not stand.”</em> Creating is not a one-sided act.",
+          "pt": "Este engaste abre com um número: <em>“a questão assenta em si mesma sobre a imparidade… e três é o primeiro dos ímpares.”</em> Para que algo venha a ser, são precisos três do lado de Deus — <em>essência</em>, <em>vontade</em>, <em>palavra</em> — mas a verdadeira surpresa do engaste não está aí: há três também do outro lado. Do lado da própria coisa: <em>coisidade</em>, <em>escuta</em> e <em>obediência à ordem</em>. Konuk resume: <em>“a raiz do trazer-a-ser assenta na trindade a partir de dois lados, o de Deus e o da criatura… se um destes faltar, o trazer-a-ser não se sustém.”</em> Criar não é um ato unilateral."
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, XI. Fass (Konuk şerhi, s. 702-706)",
+          "en": "Fusus al-Hikam, Bezel XI (Konuk's commentary, p. 702-706)",
+          "pt": "Fusus al-Hikam, Engaste XI (comentário de Konuk, p. 702-706)"
+        },
+        "caption": {
+          "tr": "Altı basamağın hepsi metnin; sarmalın <em>ölçüsü</em> bizim ve bu kez ölçünün kendisi bir iddia taşıyor. Dönüş sayısını (1,667) bilerek öyle seçtik ki <strong>dördüncü düğüm birinciyle tam aynı hizaya, bir tur yukarıya düşsün</strong> (aynı şekilde beşinci ikinciyle, altıncı üçüncüyle). Ölçüldü: üç çiftin üçü de 120 derecelik adımlarla aynı yöne geliyor — çünkü Konuk'un söylediği tam olarak bu: <em>“üç, üçe mukâbil oldu.”</em> Karşılıklılık burada bir benzetme değil, sarmalın geometrisi.",
+          "en": "All six steps are the text's; the spiral's <em>measure</em> is ours, and this time the measure itself carries a claim. We chose the number of turns (1.667) precisely so that <strong>the fourth node comes to exactly the same bearing as the first, one turn higher</strong> (and likewise the fifth with the second, the sixth with the third). Measured: all three pairs land on the same bearing in 120-degree steps — because this is exactly what Konuk says: <em>“three came opposite three.”</em> Here the correspondence is not a simile but the spiral's geometry.",
+          "pt": "Os seis degraus são do texto; a <em>medida</em> da espiral é nossa, e desta vez a medida carrega ela própria uma afirmação. Escolhemos o número de voltas (1,667) precisamente para que <strong>o quarto nó venha exatamente à mesma direção do primeiro, uma volta acima</strong> (e do mesmo modo o quinto com o segundo, o sexto com o terceiro). Medido: os três pares caem na mesma direção em passos de 120 graus — porque é exatamente isto que Konuk diz: <em>“três ficou frente a três.”</em> Aqui a correspondência não é comparação mas geometria da espiral."
+        },
+        "helix": {
+          "id": "fs11-ferdiyet",
+          "turns": 1.667,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs11-f1",
+              "label": {
+                "tr": "1. Zât — var eden",
+                "en": "1. Essence — the one who brings to be",
+                "pt": "1. Essência — quem traz a ser"
+              },
+              "note": {
+                "tr": "<em>“bu 'zât', 'irâde' ve 'kavl' sâhibidir.”</em> Ve bir kayıt: icâd ahadiyet mertebesinde olmuyor, <em>“mertebe-i ulûhiyyette olur”</em> — çünkü orada zât sıfatlarıyla belirmiş oluyor.",
+                "en": "<em>“This essence possesses will and word.”</em> With a stipulation: bringing-to-be does not happen at the level of oneness, <em>“it happens at the level of divinity”</em> — because there the essence has become determined by its attributes.",
+                "pt": "<em>“Esta essência possui vontade e palavra.”</em> Com uma ressalva: o trazer-a-ser não acontece no grau da unicidade, <em>“acontece no grau da divindade”</em> — porque aí a essência já se determinou pelos seus atributos."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs11-f2",
+              "label": {
+                "tr": "2. İrâde — bu şeye yönelmek",
+                "en": "2. Will — turning toward this thing",
+                "pt": "2. Vontade — voltar-se para esta coisa"
+              },
+              "note": {
+                "tr": "Konuk irâdeyi çok dar tanımlıyor: <em>“bir emrin tekvîninin tahsîsine nisbet-i teveccühünden ibâret”</em> — yani genel bir isteme değil, <em>şu</em> şeye dönme.",
+                "en": "Konuk defines will very narrowly: <em>“the relation of His turning toward the specification of some thing's bringing-to-be”</em> — not a general wanting but a turning toward <em>this</em> thing.",
+                "pt": "Konuk define a vontade de forma muito estreita: <em>“a relação do Seu voltar-se para a especificação do trazer-a-ser de algo”</em> — não um querer geral mas um voltar-se para <em>esta</em> coisa."
+              }
+            },
+            {
+              "id": "fs11-f3",
+              "label": {
+                "tr": "3. Kavl — “Ol!”",
+                "en": "3. Word — “Be!”",
+                "pt": "3. Palavra — “Sê!”"
+              },
+              "note": {
+                "tr": "Nahl 16/40'a dayanıyor: <em>“bizim bir şeye kavlimiz, onu irâde ettiğimiz vakitte, ona 'Ol!' demekliğimizdir; o da olur.”</em> Üçlünün son halkası.",
+                "en": "Resting on Q 16:40: <em>“Our word to a thing, when We will it, is that We say to it ‘Be!' — and it is.”</em> The last link of the triad.",
+                "pt": "Assente em Q 16:40: <em>“a Nossa palavra a uma coisa, quando a queremos, é dizer-lhe ‘Sê!' — e ela é.”</em> O último elo da tríade."
+              }
+            },
+            {
+              "id": "fs11-f4",
+              "label": {
+                "tr": "4. Şey'iyet — ve karşı taraf başlıyor",
+                "en": "4. Thingness — and the other side begins",
+                "pt": "4. Coisidade — e começa o outro lado"
+              },
+              "note": {
+                "tr": "<em>“'şey'in ferdiyeti dahi, evvelen onun ilm-i ilâhîde sâbit olan 'şey'iyet'idir.”</em> Yani şey, çağrılmadan önce Hakk'ın ilminde zaten bir <em>şey</em>. Bu düğüm birinciyle aynı hizada, bir tur yukarıda duruyor, çünkü Konuk'un dediği: <em>“ademi hâlinde sâbit olan 'zât'ı, Mücid'inin Zât'ı muvâzenesindedir.”</em>",
+                "en": "<em>“The thing's oddness is, first, its thingness established in the divine knowledge.”</em> That is, before being called the thing is already a <em>thing</em> in God's knowledge. This node stands on the same bearing as the first, one turn higher, for Konuk says: <em>“its essence, established while it is non-existent, is in balance with the Essence of the one who brings it to be.”</em>",
+                "pt": "<em>“A imparidade da coisa é, primeiro, a sua coisidade estabelecida no conhecimento divino.”</em> Isto é, antes de ser chamada a coisa já é uma <em>coisa</em> no conhecimento de Deus. Este nó fica na mesma direção do primeiro, uma volta acima, pois Konuk diz: <em>“a sua essência, estabelecida enquanto inexistente, está em balança com a Essência de quem a traz a ser.”</em>"
+              },
+              "accent": true
+            },
+            {
+              "id": "fs11-f5",
+              "label": {
+                "tr": "5. İşitme — irâdenin karşısında",
+                "en": "5. Hearing — opposite the will",
+                "pt": "5. Escuta — em frente à vontade"
+              },
+              "note": {
+                "tr": "<em>“sâniyen 'Kün!' kavl-i ilâhîsini 'işitme'sidir”</em> ve <em>“'işitme'si Mücid'inin 'irâde'si muvâzenesindedir.”</em> Yönelmenin karşılığı, duyulmak.",
+                "en": "<em>“Second, its hearing of the divine word ‘Be!'”</em> and <em>“its hearing is in balance with the will of the one who brings it to be.”</em> What answers a turning-toward is a being-heard.",
+                "pt": "<em>“Segundo, a sua escuta da palavra divina ‘Sê!'”</em> e <em>“a sua escuta está em balança com a vontade de quem a traz a ser.”</em> O que responde a um voltar-se é um ser-ouvido."
+              }
+            },
+            {
+              "id": "fs11-f6",
+              "label": {
+                "tr": "6. İmtisâl — ve “Ol!”un karşısında",
+                "en": "6. Compliance — and opposite “Be!”",
+                "pt": "6. Obediência — e em frente a “Sê!”"
+              },
+              "note": {
+                "tr": "<em>“sâlisen kendi vücûdunun icâdında Mükevvin'i tarafından vâki' olan 'emre imtisâl' etmesidir.”</em> Ve Konuk'un buradan çıkardığı sonuç şaşırtıcı: <em>“Hak Teâlâ bir şeye 'Kün!' kavliyle emrettikde, o şey kendi nefsini mevcûd kılar.”</em>",
+                "en": "<em>“Third, its compliance with the command that comes from its Bringer-to-be in the bringing-to-be of its own existence.”</em> And Konuk's conclusion from this is startling: <em>“when God commands a thing with ‘Be!', the thing brings its own self into existence.”</em>",
+                "pt": "<em>“Terceiro, a sua obediência à ordem que vem d'Aquele que a faz ser, no trazer-a-ser da sua própria existência.”</em> E a conclusão que Konuk daqui tira é surpreendente: <em>“quando Deus ordena a uma coisa ‘Sê!', a coisa traz o seu próprio si à existência.”</em>"
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs11-s1",
+          "heading": {
+            "tr": "Neden Üç?",
+            "en": "Why Three?",
+            "pt": "Porquê Três?"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sayının gerekçesi verilmiş ve şaşırtıcı derecede kuru: <em>“teklik dahi adedin iki müsâvî kısma taksîm olunamaması hâlidir.”</em> Sonra sayılar tek tek eleniyor. <em>Bir</em> aded değil, <em>“cemî'-i a'dâdın menşe'idir.”</em> <em>İki</em> çift. Geriye <em>üç</em> kalıyor: <em>“'üç' adedi tek adedlerin birincisidir.”</em>",
+                "en": "The ground for the number is given, and it is strikingly dry: <em>“oddness is the state of a number not being divisible into two equal parts.”</em> Then the numbers are eliminated one by one. <em>One</em> is not a number; it is <em>“the source of all numbers.”</em> <em>Two</em> is even. That leaves <em>three</em>: <em>“the number three is the first of the odd numbers.”</em>",
+                "pt": "O fundamento do número é dado, e é notavelmente seco: <em>“a imparidade é o estado de um número não ser divisível em duas partes iguais.”</em> Depois os números são eliminados um a um. <em>Um</em> não é número; é <em>“a fonte de todos os números.”</em> <em>Dois</em> é par. Resta <em>três</em>: <em>“o número três é o primeiro dos ímpares.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ama asıl argüman aritmetikte değil, ondan sonra geliyor ve bir benzetmeye dayanıyor — Konuk'un kendi benzetmesi: <em>“vâhid, vâhid olarak durdukça, ondan hiçbir aded çıkmayacağı gibi, zât-ı vâhide dahi zât-ı vâhide olarak kaldıkça bir şey zuhûra gelmez. Fakat vâhidin zâtında mündemic olan nisbetler zâhir olunca, meselâ 1/2, 1/3, 1/4… zuhûr edince, adedler peydâ olur.”</em> Yani çokluk, bire dışarıdan bir şey eklenerek değil; birin <em>kendi içindeki oranlar</em> belirerek doğuyor.",
+                "en": "But the real argument comes after the arithmetic and rests on a likeness — Konuk's own: <em>“just as no number issues from the one while it stands as one, so nothing appears from the single essence while it remains a single essence. But when the relations folded within the one appear — a half, a third, a quarter — numbers arise.”</em> Multiplicity is not born by adding something to the one from outside; it is born as the <em>ratios within the one</em> come out.",
+                "pt": "Mas o verdadeiro argumento vem depois da aritmética e assenta numa semelhança — a do próprio Konuk: <em>“tal como do um não sai número enquanto ele permanece um, também da essência única nada aparece enquanto permanece essência única. Mas quando as relações contidas no um aparecem — uma metade, um terço, um quarto — surgem os números.”</em> A multiplicidade não nasce por se acrescentar algo ao um de fora; nasce ao virem à luz as <em>razões dentro do um</em>."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu bize IX. fassta okuduğumuz gölge zincirini hatırlattı, ama tersinden: orada çokluk bir <em>uzaklaşma</em> olarak anlatılmıştı (gölgenin gölgesi); burada bir <em>açılım</em> olarak. İkisinin aynı şeyin iki tarifi olup olmadığını şimdilik bilmiyoruz; not düşüp bırakıyoruz.",
+                "en": "This reminded us of the chain of shadows in Bezel IX, but inverted: there multiplicity was told as a <em>receding</em> (the shadow of a shadow); here as an <em>unfolding</em>. Whether these are two descriptions of one thing we do not yet know; we note it and leave it.",
+                "pt": "Isto lembrou-nos a cadeia de sombras do Engaste IX, mas invertida: ali a multiplicidade era contada como um <em>afastamento</em> (a sombra da sombra); aqui como um <em>desdobramento</em>. Se são duas descrições da mesma coisa, ainda não sabemos; registamo-lo e deixamo-lo."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs11-s2",
+          "heading": {
+            "tr": "Üç, Üçe Mukâbil Oldu",
+            "en": "Three Came Opposite Three",
+            "pt": "Três Ficou Frente a Três"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın bize en çarpıcı gelen hamlesi bu. Var etmenin Hak tarafındaki üçlüsü kurulduktan sonra Konuk soruyor: peki karşı tarafta ne var? Cevap, simetrinin zorunluluğuna dayanıyor: <em>“eğer zât-ı mücidenin ferdiyyet-i selâsiyyesine mukâbil, onun da ferdiyyet-i selâsiyyesi olmasaydı, ferdiyyet-i ilâhiyyenin te'sîri olmazdı. Zirâ 'müessir'in mukâbilinde bir 'müteessir' olmayınca hiçbir eser zâhir olmaz.”</em>",
+                "en": "This is the bezel's most striking move to us. Once the triad on God's side is set out, Konuk asks: and what stands on the other side? The answer rests on the necessity of symmetry: <em>“had there been no threefoldness in the thing opposite the threefoldness of the one who brings it to be, the divine oddness would have had no effect. For where there is nothing acted upon opposite the actor, no effect appears.”</em>",
+                "pt": "Este é, para nós, o movimento mais impressionante do engaste. Estabelecida a tríade do lado de Deus, Konuk pergunta: e o que está do outro lado? A resposta assenta na necessidade da simetria: <em>“se não houvesse na coisa uma trindade frente à trindade de quem a traz a ser, a imparidade divina não teria efeito. Pois onde não há nada sobre que agir frente ao agente, nenhum efeito aparece.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Karşılık tek tek eşleniyor: şeyin ademindeki <em>zât</em>ı Mücid'in Zât'ına, <em>işitme</em>si O'nun <em>irâde</em>sine, <em>imtisâl</em>i O'nun <em>“Kün!”</em>üne. Ve sonuç cümlesi: <em>“tekvînin aslı teslîs üzere, ya'ni Hak tarafından ve halk tarafından olarak iki taraftan 'üç'ten kâim oldu… bunlardan birisi noksan olsa 'tekvîn' kâim olmaz.”</em>",
+                "en": "The correspondence is matched one by one: the thing's <em>essence</em> in its non-existence to the Essence of the Bringer, its <em>hearing</em> to His <em>will</em>, its <em>compliance</em> to His <em>“Be!”</em> And the closing sentence: <em>“the root of bringing-to-be stands on threefoldness from two sides, God's and the creature's… if one of these is lacking, bringing-to-be does not stand.”</em>",
+                "pt": "A correspondência é emparelhada um a um: a <em>essência</em> da coisa no seu não-ser com a Essência de Quem a traz, a sua <em>escuta</em> com a Sua <em>vontade</em>, a sua <em>obediência</em> com o Seu <em>“Sê!”</em> E a frase final: <em>“a raiz do trazer-a-ser assenta na trindade a partir de dois lados, o de Deus e o da criatura… se um destes faltar, o trazer-a-ser não se sustém.”</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Buradan çıkan bir cümle var ki üstünde durmak gerekiyor: <em>“Hak Teâlâ bir şeye 'Kün!' kavliyle emrettikde, o şey kendi nefsini mevcûd kılar.”</em> Emri veren Hak, ama var olma işini <em>şeyin kendisi</em> yapıyor. Bu, VIII. fassta okuduğumuz yapının aynısı — orada da kanunu Hak koyuyordu, dini ikâme eden kuldu. Aynı kalıbın ikinci kez, hem de çok daha temel bir yerde (varlığa geliş) karşımıza çıkması dikkate değer; ama iki fassın bunu birbirine bağladığını söylemiyoruz — bağı biz kuruyoruz.",
+                "en": "One sentence here deserves dwelling on: <em>“when God commands a thing with ‘Be!', the thing brings its own self into existence.”</em> God gives the command, but the coming-to-be is done by <em>the thing itself</em>. This is the same structure we read in Bezel VIII — there too God laid down the Law and the servant established the religion. That the same pattern recurs, and at a far more basic place (coming into existence), is worth noting; but we do not claim the two bezels link themselves — the link is ours.",
+                "pt": "Uma frase aqui merece demora: <em>“quando Deus ordena a uma coisa ‘Sê!', a coisa traz o seu próprio si à existência.”</em> Deus dá a ordem, mas o vir-a-ser é feito pela <em>própria coisa</em>. É a mesma estrutura que lemos no Engaste VIII — também ali Deus punha a Lei e o servo estabelecia a religião. Que o mesmo padrão se repita, e num lugar muito mais básico (o vir à existência), merece nota; mas não afirmamos que os dois engastes se liguem por si — a ligação é nossa."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs11-s3",
+          "heading": {
+            "tr": "Aynı Üç, Bir Çıkarımın da İçinde",
+            "en": "The Same Three, Inside an Inference Too",
+            "pt": "Os Mesmos Três, Também Dentro de uma Inferência"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass burada beklenmedik bir yere gidiyor: <em>“ba'dehû bu teslîs, edille ile îcâd-ı maânîde sârî oldu.”</em> Yani üçlü yapı yalnız şeyleri var etmekte değil, <em>bir anlamı</em> var etmekte — bir kıyasta — de işliyor. Ve iddia titiz: <em>“delîlde üçten mürekkeb olan 'nizâm-ı mahsûs' ve 'şart-ı mahsûs' üzere olmak lâbüddür.”</em>",
+                "en": "Here the bezel goes somewhere unexpected: <em>“thereafter this threefoldness ran through the bringing-to-be of meanings by proofs.”</em> The threefold structure works not only in bringing things to be but in bringing <em>a meaning</em> to be — in a syllogism. And the claim is precise: <em>“a proof must be upon a particular order and a particular condition, composed of three.”</em>",
+                "pt": "Aqui o engaste vai a um lugar inesperado: <em>“depois esta trindade correu pelo trazer-a-ser dos sentidos por meio de provas.”</em> A estrutura tripla funciona não só ao trazer coisas a ser mas ao trazer <em>um sentido</em> a ser — num silogismo. E a afirmação é precisa: <em>“uma prova tem de estar sobre uma ordem particular e uma condição particular, composta de três.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, XI. Fass (Konuk şerhi, s. 707-708)",
+                "en": "Fusus al-Hikam, Bezel XI (Konuk's commentary, p. 707-708)",
+                "pt": "Fusus al-Hikam, Engaste XI (comentário de Konuk, p. 707-708)"
+              },
+              "caption": {
+                "tr": "Dört basamak da metnin; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi son basamak: dörtten üçe <em>inen</em> bir sayım gibi görünüyor, ama inişin sebebi bir <strong>geri dönüş</strong> — orta terim iki öncülde tekrarlanıyor, yani zincir kendi üstüne kapanıyor. Konuk'un benzetmesi bunu açıkça söylüyor: o tekrarlanan terim <em>nikâh</em> gibi ikisini birbirine bağlıyor.",
+                "en": "All four steps are the text's; the spiral and the closing are ours. Why a spiral is the last step: it looks like a count <em>descending</em> from four to three, but the descent happens through a <strong>return</strong> — the middle term recurs in both premises, so the chain closes on itself. Konuk's likeness says it outright: that repeated term binds the two like a <em>marriage</em>.",
+                "pt": "Os quatro degraus são do texto; a espiral e o fecho são nossos. Porquê uma espiral está no último degrau: parece uma contagem que <em>desce</em> de quatro para três, mas a descida dá-se por um <strong>regresso</strong> — o termo médio repete-se em ambas as premissas, e a cadeia fecha-se sobre si. A comparação de Konuk di-lo abertamente: esse termo repetido liga os dois como um <em>casamento</em>."
+              },
+              "helix": {
+                "id": "fs11-kiyas",
+                "turns": 1.3,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs11-k1",
+                    "label": {
+                      "tr": "İki mukaddeme",
+                      "en": "Two premises",
+                      "pt": "Duas premissas"
+                    },
+                    "note": {
+                      "tr": "<em>“nâzırın delîlini iki 'mukaddeme'den terkîbidir.”</em> Konuk'un örneği: <em>“Âlem mütegayyirdir; her mütegayyir hâdistir.”</em>",
+                      "en": "<em>“The one who considers composes his proof of two premises.”</em> Konuk's example: <em>“the world changes; everything that changes is originated.”</em>",
+                      "pt": "<em>“Quem considera compõe a sua prova de duas premissas.”</em> O exemplo de Konuk: <em>“o mundo muda; tudo o que muda é originado.”</em>"
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs11-k2",
+                    "label": {
+                      "tr": "Dört müfred",
+                      "en": "Four terms",
+                      "pt": "Quatro termos"
+                    },
+                    "note": {
+                      "tr": "<em>“her bir mukaddeme iki 'müfred'i hâvidir. Böyle olunca dört olur.”</em> Sayım burada zirvede.",
+                      "en": "<em>“Each premise contains two terms. So they are four.”</em> The count is at its peak here.",
+                      "pt": "<em>“Cada premissa contém dois termos. Logo são quatro.”</em> A contagem está aqui no seu pico."
+                    }
+                  },
+                  {
+                    "id": "fs11-k3",
+                    "label": {
+                      "tr": "Biri tekrarlanır — “nikâh gibi”",
+                      "en": "One recurs — “like a marriage”",
+                      "pt": "Um repete-se — “como um casamento”"
+                    },
+                    "note": {
+                      "tr": "<em>“bu dörtten biri mukaddemeteynde, nikâh gibi, biri diğerine murtabıt olmak için tekerrür eder.”</em> Konuk'un benzetmesi: <em>“zevc ile zevce beynini rabteden nikâh gibi.”</em> Bağlayan şey, iki kere geçen terim.",
+                      "en": "<em>“One of these four recurs in the two premises, like a marriage, so that one may be bound to the other.”</em> Konuk's likeness: <em>“like the marriage that binds husband and wife.”</em> What binds is the term that occurs twice.",
+                      "pt": "<em>“Um destes quatro repete-se nas duas premissas, como um casamento, para que uma se ligue à outra.”</em> A comparação de Konuk: <em>“como o casamento que liga marido e mulher.”</em> O que liga é o termo que ocorre duas vezes."
+                    }
+                  },
+                  {
+                    "id": "fs11-k4",
+                    "label": {
+                      "tr": "Geriye üç kalır — ve netice doğar",
+                      "en": "Three remain — and the conclusion is born",
+                      "pt": "Restam três — e nasce a conclusão"
+                    },
+                    "note": {
+                      "tr": "<em>“Binâenaleyh 'müfred' üç olur; ondan gayrı olmaz.”</em> Ve <em>“bu tertîb, 'vech-i mahsûs' üzere vâki' olduğu vakit matlûb hâsıl olur.”</em> Yani bir sonuç, tıpkı bir şey gibi, ancak üç ile doğuyor.",
+                      "en": "<em>“So the terms are three; there cannot be otherwise.”</em> And <em>“when this arrangement occurs in the particular way, what is sought comes about.”</em> A conclusion, like a thing, is born only by three.",
+                      "pt": "<em>“Assim os termos são três; não pode ser de outro modo.”</em> E <em>“quando este arranjo ocorre do modo particular, obtém-se o que se busca.”</em> Uma conclusão, como uma coisa, só nasce por três."
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu adımı temkinle aktarıyoruz. Fass burada mantığın biçimiyle varlığın biçimi arasında bir örtüşme kuruyor; ama bu, bir <em>kanıt</em> değil, bir örüntü tespiti. Konuk da öyle sunuyor: teslîsin <em>“sârî oldu”</em>ğunu söylüyor, ispat edildiğini değil. Biz de aynı mesafeyi koruyoruz.",
+                "en": "We pass this step on with caution. Here the bezel draws a correspondence between the form of logic and the form of existence; but this is not a <em>proof</em>, it is the noticing of a pattern. Konuk presents it that way too: he says the threefoldness <em>“ran through”</em> them, not that it was demonstrated. We keep the same distance.",
+                "pt": "Transmitimos este passo com cautela. Aqui o engaste traça uma correspondência entre a forma da lógica e a forma da existência; mas isto não é uma <em>prova</em>, é a observação de um padrão. Konuk apresenta-o assim também: diz que a trindade <em>“correu”</em> por elas, não que foi demonstrada. Guardamos a mesma distância."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs11-s4",
+          "heading": {
+            "tr": "Her Nebînin Bir Bineği Var",
+            "en": "Every Prophet Has a Mount",
+            "pt": "Cada Profeta Tem uma Montaria"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın açılış beyti bir binekten söz ediyor: <em>“merkûb olan şeyler âyâtı, âyâttandır.”</em> Sâlih'in dağdan çıkan devesi, Muhammed'in Burâk'ı. Konuk gerekçeyi X. fassın diliyle kuruyor: her nebî bütün isimlerin mazharı olsa da <em>“onun üzerine gâlib olan bir ism-i hâs vardır”</em> — ve bineği o ismin sûretiyle beliriyor. Sâlih'e Fettâh gâlip olduğu için bineği bir <em>açılma</em> ile çıkıyor: dağ yarılıyor.",
+                "en": "The bezel's opening verse speaks of a mount: <em>“the signs of the things ridden are among the signs.”</em> Salih's she-camel that came out of the rock; Muhammad's Buraq. Konuk grounds it in the language of Bezel X: though every prophet is a locus of all the names, <em>“there is one particular name that predominates over him”</em> — and his mount appears in the form of that name. Because the Opener predominates over Salih, his mount comes out by an <em>opening</em>: the mountain splits.",
+                "pt": "O verso inicial do engaste fala de uma montaria: <em>“os sinais das coisas montadas estão entre os sinais.”</em> A camela de Salih que saiu da rocha; o Buraq de Maomé. Konuk fundamenta-o na linguagem do Engaste X: embora cada profeta seja lugar de todos os nomes, <em>“há um nome particular que predomina sobre ele”</em> — e a sua montaria aparece na forma desse nome. Como sobre Salih predomina Aquele que Abre, a sua montaria vem por uma <em>abertura</em>: a montanha fende-se."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sonra beklenmedik bir genişletme: bu yalnız peygamberlere ait değil. <em>“Belki Benî Âdem'in her biri için de merkeb vardır”</em> — ve o binek, kişinin kendi bedeni. Konuk zinciri kuruyor: her ayn-ı insâniyyenin bir rûhu var, o rûh bir ismin mazharı, ve o rûhun âlem-i cismânîde bir sûreti var. Yani beden, rûhun bineği. Sonuç: <em>“bu rûhun sâhibi olan şahsın seyri ve terakkîsi, ancak o ism-i gâlibin hazînesinde olan şeyin kuvveden fiile ihrâcı içindir.”</em>",
+                "en": "Then an unexpected widening: this does not belong to prophets alone. <em>“Rather, each of the children of Adam has a mount”</em> — and that mount is one's own body. Konuk sets out the chain: every human entity has a spirit, that spirit is a locus of a name, and that spirit has a form in the corporeal world. The body is the spirit's mount. The conclusion: <em>“the journey and ascent of the one who owns this spirit is only for the bringing out from potency into act of what lies in the treasury of that predominant name.”</em>",
+                "pt": "Depois um alargamento inesperado: isto não pertence só aos profetas. <em>“Antes, cada um dos filhos de Adão tem uma montaria”</em> — e essa montaria é o próprio corpo. Konuk expõe a cadeia: cada entidade humana tem um espírito, esse espírito é lugar de um nome, e esse espírito tem uma forma no mundo corporal. O corpo é a montaria do espírito. A conclusão: <em>“a viagem e a subida de quem possui este espírito é só para trazer da potência ao ato o que está na tesouraria desse nome predominante.”</em>"
+              }
+            },
+            {
+              "type": "helix",
+              "source": {
+                "tr": "Füsûsu'l-Hikem, XI. Fass (Konuk şerhi, s. 700-702)",
+                "en": "Fusus al-Hikam, Bezel XI (Konuk's commentary, p. 700-702)",
+                "pt": "Fusus al-Hikam, Engaste XI (comentário de Konuk, p. 700-702)"
+              },
+              "caption": {
+                "tr": "Dört basamak da metnin; sarmal ve kapanış bizim. Sarmal çizmemizin sebebi son basamak: iki grup birbirinden uzaklaşıyor gibi görünüyor, ama Konuk ikisini aynı yere bağlıyor — her ikisinin de açılışı kendi istidâdının hazînesinden geliyor. Ayrılık, kaynakta değil karşılamada.",
+                "en": "All four steps are the text's; the spiral and the closing are ours. Why a spiral is the last step: the two groups seem to move apart, yet Konuk ties them to the same place — the opening of each comes out of the treasury of its own preparedness. The difference is not in the source but in the reception.",
+                "pt": "Os quatro degraus são do texto; a espiral e o fecho são nossos. Porquê uma espiral está no último degrau: os dois grupos parecem afastar-se, mas Konuk liga-os ao mesmo lugar — a abertura de cada um vem da tesouraria da sua própria predisposição. A diferença não está na fonte mas na receção."
+              },
+              "helix": {
+                "id": "fs11-merkeb",
+                "turns": 1.35,
+                "closing": true,
+                "nodes": [
+                  {
+                    "id": "fs11-m1",
+                    "label": {
+                      "tr": "Binek bir âyettir",
+                      "en": "The mount is a sign",
+                      "pt": "A montaria é um sinal"
+                    },
+                    "note": {
+                      "tr": "<em>“merkûb olan şeylerin alâmâtı, her bir nebîye muhtass olarak zâhir olan alâmât-ı ilâhiyyenin cümlesindendir.”</em> Ve herkes için: rûhun bineği, beden.",
+                      "en": "<em>“The marks of the things ridden are among the divine marks that appear particular to each prophet.”</em> And for everyone: the spirit's mount is the body.",
+                      "pt": "<em>“As marcas das coisas montadas estão entre as marcas divinas que aparecem próprias de cada profeta.”</em> E para todos: a montaria do espírito é o corpo."
+                    },
+                    "accent": true
+                  },
+                  {
+                    "id": "fs11-m2",
+                    "label": {
+                      "tr": "Kimileri onunla ayakta durur",
+                      "en": "Some stand rightly with it",
+                      "pt": "Alguns mantêm-se de pé com ela"
+                    },
+                    "note": {
+                      "tr": "<em>“ba'zısı o âyât ile hakkıyla kâimdirler.”</em> Konuk'un tarifi: kesrete aldanmadan vahdeti görenler; <em>“onların seyrleri, Allâh'ın seyri olur.”</em> Ve bir hüküm: <em>“bunlar şecere-i kevnin semeresidir.”</em>",
+                      "en": "<em>“Some of them stand rightly by those signs.”</em> Konuk's description: those who see unity without being deceived by multiplicity; <em>“their journey becomes God's journey.”</em> And a judgement: <em>“these are the fruit of the tree of becoming.”</em>",
+                      "pt": "<em>“Alguns deles mantêm-se retamente por esses sinais.”</em> A descrição de Konuk: os que veem a unidade sem se deixarem enganar pela multiplicidade; <em>“a sua viagem torna-se a viagem de Deus.”</em> E um juízo: <em>“estes são o fruto da árvore do devir.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs11-m3",
+                    "label": {
+                      "tr": "Kimileri onunla çölleri aşar",
+                      "en": "Some cross deserts with it",
+                      "pt": "Alguns atravessam desertos com ela"
+                    },
+                    "note": {
+                      "tr": "<em>“ba'zıları da o âyât ile sahrâları kat'edicilerdir”</em> — ve <em>“bir türlü onun hâricine çıkamazlar.”</em> Konuk sert bir benzetme kuruyor: bunlar meyve değil, <em>“ağacın yaprakları ve sâkının kabuğu”</em> gibi.",
+                      "en": "<em>“And some are crossers of deserts by those signs”</em> — and <em>“they cannot get outside it at all.”</em> Konuk draws a harsh likeness: these are not the fruit but like <em>“the leaves of the tree and the bark of the trunk.”</em>",
+                      "pt": "<em>“E alguns são atravessadores de desertos por esses sinais”</em> — e <em>“não conseguem de modo algum sair dele.”</em> Konuk faz uma comparação dura: estes não são o fruto mas como <em>“as folhas da árvore e a casca do tronco.”</em>"
+                    }
+                  },
+                  {
+                    "id": "fs11-m4",
+                    "label": {
+                      "tr": "Ama açılış ikisine de gelir",
+                      "en": "Yet the opening comes to both",
+                      "pt": "Mas a abertura vem a ambos"
+                    },
+                    "note": {
+                      "tr": "<em>“her birine ondan, onun guyûbunun fütûhu, her cânibden gelir”</em> — ve kaynak ikisinde de aynı: kendi <em>istidâdının</em> hazînesi. Fark yalnız şurada: <em>“birinci sınıfın 'fütûh'u onların tab'ına mülâyim ve ikinci sınıfın 'fütûh'u ise tabiatlarına gayr-ı mülâyimdir.”</em>",
+                      "en": "<em>“To each of them, from Him, the openings of his unseen come from every side”</em> — and the source is the same for both: the treasury of one's own <em>preparedness</em>. The only difference: <em>“the openings of the first group agree with their nature, and those of the second do not.”</em>",
+                      "pt": "<em>“A cada um deles, d'Ele, vêm de todos os lados as aberturas do seu invisível”</em> — e a fonte é a mesma para ambos: a tesouraria da sua própria <em>predisposição</em>. A única diferença: <em>“as aberturas do primeiro grupo concordam com a sua natureza, e as do segundo não.”</em>"
+                    },
+                    "accent": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Füsûsu'l-Hikem Tercüme ve Şerhi, Ahmed Avni Konuk — Kelime-i Sâlihiyye'de Mündemic Hikmet-i Fütûhiyye (I. cilt, s. 699-726)",
+          "en": "Fusus al-Hikam, Translation and Commentary, Ahmed Avni Konuk — The Wisdom of Opening in the Word of Salih (vol. I, pp. 699-726)",
+          "pt": "Fusus al-Hikam, Tradução e Comentário, Ahmed Avni Konuk — A Sabedoria da Abertura na Palavra de Salih (vol. I, pp. 699-726)"
+        }
+      ]
     },
     {
       "id": "fs12",
