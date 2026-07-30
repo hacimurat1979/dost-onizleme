@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Ayna Metaforu — Dost Arabi görselleştirme -->
+<title>Ayna Metaforu — Dost Arabi</title>
+<style>
+:root{--bg:#090B12;--surface:#10121C;--border:#242840;--text:#E4E0D4;--muted:#666880;--gold:#E8C060;--blue:#5888C8;--liminal:#8868A0;--panel:#12141E}
+@media(prefers-color-scheme:light){:root{--bg:#F2F4F8;--surface:#E8EAF0;--border:#C0C4D8;--text:#181820;--muted:#606888;--panel:#E0E4EE;--gold:#8C6800;--blue:#2848A0;--liminal:#5840A0}}
+:root[data-theme=dark]{--bg:#090B12;--surface:#10121C;--border:#242840;--text:#E4E0D4;--muted:#666880;--panel:#12141E;--gold:#E8C060;--blue:#5888C8;--liminal:#8868A0}
+:root[data-theme=light]{--bg:#F2F4F8;--surface:#E8EAF0;--border:#C0C4D8;--text:#181820;--muted:#606888;--panel:#E0E4EE;--gold:#8C6800;--blue:#2848A0;--liminal:#5840A0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:2rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1.2rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:var(--gold);margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65;max-width:480px}
+.btns{display:flex;gap:.4rem;margin-bottom:1.3rem;align-items:center}
+.btn{background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:.3rem .9rem;border-radius:2rem;cursor:pointer;font:inherit;font-size:.82rem;transition:.2s}
+.btn.on,.btn:hover{background:var(--liminal);color:#fff;border-color:var(--liminal)}
+.btn.lang{padding:.3rem .7rem}
+.sep{color:var(--border);font-size:.85rem}
+.vis-wrap{position:relative;width:min(580px,96vw);margin-bottom:1.4rem}
+.main-svg{width:100%;display:block}
+#cv{display:none;width:100%;border-radius:8px}
+.m3d .main-svg{display:none}
+.m3d #cv{display:block}
+.pairs{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;width:100%;max-width:700px;margin-bottom:1rem}
+.pair{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:.85rem .95rem;min-width:148px;flex:1;cursor:pointer;transition:border-color .2s,background .2s}
+.pair:hover,.pair.on{border-color:var(--liminal);background:var(--surface)}
+.pair-top{display:flex;align-items:center;gap:.35rem;margin-bottom:.45rem;font-size:.78rem}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dg{background:var(--gold)}
+.db{background:var(--blue)}
+.dl{background:var(--liminal);box-shadow:0 0 6px var(--liminal)}
+.arr{color:var(--muted);font-size:.75rem}
+.pair-label{font-size:.82rem;color:var(--text);line-height:1.5}
+.pair-note{font-size:.74rem;color:var(--muted);font-style:italic;margin-top:.3rem;line-height:1.5}
+.qbox{width:100%;max-width:700px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1rem 1.15rem;margin-bottom:.8rem;min-height:80px}
+.qbox blockquote{font-size:.9rem;font-style:italic;line-height:1.8;border-left:2px solid var(--liminal);padding-left:.8rem}
+.qbox .src{font-size:.73rem;color:var(--muted);margin-top:.4rem}
+.qbox .hint{font-size:.82rem;color:var(--muted);font-style:italic}
+.paradox{width:100%;max-width:700px;text-align:center;font-size:.8rem;color:var(--muted);font-style:italic;line-height:1.7;margin-bottom:.7rem;white-space:pre-line}
+.footer-hint{font-size:.76rem;color:var(--muted);font-style:italic;text-align:center}
+@keyframes shimmer{0%,100%{opacity:.35}50%{opacity:.72}}
+.shimmer{animation:shimmer 2.6s ease-in-out infinite}
+@keyframes float-s{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.float-s{animation:float-s 3.2s ease-in-out infinite}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="hTitle">Ayna Metaforu</h1>
+  <p class="sub" id="hSub">Sûret ne bakandır ne ondan başka — ayna olmasaydı görüntü olmazdı, bakan olmasaydı ayna boş kalırdı</p>
+</header>
+
+<div class="btns">
+  <button class="btn lang on" id="btr" onclick="setLang('tr')">TR</button>
+  <button class="btn lang" id="ben" onclick="setLang('en')">EN</button>
+  <button class="btn lang" id="bpt" onclick="setLang('pt')">PT</button>
+  <span class="sep">·</span>
+  <button class="btn on" id="b2d" onclick="setMode('2d')">2B</button>
+  <button class="btn" id="b3d" onclick="setMode('3d')">3B</button>
+</div>
+
+<div class="vis-wrap" id="vw">
+<!-- 2D SVG -->
+<svg class="main-svg" id="svg2d" viewBox="0 0 580 240" role="img" aria-label="Ayna metaforu">
+  <defs>
+    <radialGradient id="gBakan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF0A0"/>
+      <stop offset="70%" stop-color="#E8C060"/>
+      <stop offset="100%" stop-color="#A07820" stop-opacity=".4"/>
+    </radialGradient>
+    <radialGradient id="gAyna" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#A0C8FF"/>
+      <stop offset="70%" stop-color="#5888C8"/>
+      <stop offset="100%" stop-color="#2040A0" stop-opacity=".4"/>
+    </radialGradient>
+    <radialGradient id="gSuret" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D0A0E0" stop-opacity=".9"/>
+      <stop offset="60%" stop-color="#8868A0" stop-opacity=".7"/>
+      <stop offset="100%" stop-color="#4040A0" stop-opacity=".2"/>
+    </radialGradient>
+    <filter id="glow-g" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="12" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-b" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-l" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="14" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="gMirror" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8888CC" stop-opacity=".06"/>
+      <stop offset="50%" stop-color="#8888CC" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="#8888CC" stop-opacity=".06"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="580" height="240" fill="none"/>
+  <text id="s1" x="102" y="22" text-anchor="middle" fill="#907040" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">BAKAN</text>
+  <text id="s2" x="102" y="35" text-anchor="middle" fill="#604820" font-size="8" font-style="italic" font-family="Georgia,serif">Hak / Görüntüleyen</text>
+  <text id="s3" x="290" y="22" text-anchor="middle" fill="#8060A0" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">SÛRET</text>
+  <text id="s4" x="290" y="35" text-anchor="middle" fill="#604880" font-size="8" font-style="italic" font-family="Georgia,serif">Ne bakan · ne ondan başka</text>
+  <text id="s5" x="478" y="22" text-anchor="middle" fill="#3868A8" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">AYNA</text>
+  <text id="s6" x="478" y="35" text-anchor="middle" fill="#2050A0" font-size="8" font-style="italic" font-family="Georgia,serif">Mahal / Âlem</text>
+  <rect x="258" y="45" width="64" height="160" rx="4" fill="url(#gMirror)" stroke="#6868B0" stroke-width=".7" stroke-opacity=".4"/>
+  <line x1="266" y1="55" x2="266" y2="195" stroke="#9090D0" stroke-width=".4" opacity=".3"/>
+  <line x1="274" y1="50" x2="274" y2="200" stroke="#9090D0" stroke-width=".4" opacity=".2"/>
+  <line x1="306" y1="55" x2="306" y2="195" stroke="#9090D0" stroke-width=".4" opacity=".3"/>
+  <line x1="314" y1="50" x2="314" y2="200" stroke="#9090D0" stroke-width=".4" opacity=".2"/>
+  <circle cx="116" cy="130" r="62" fill="url(#gBakan)" filter="url(#glow-g)" opacity=".85"/>
+  <circle cx="464" cy="130" r="62" fill="url(#gAyna)" filter="url(#glow-b)" opacity=".7"/>
+  <circle class="float-s" cx="290" cy="125" r="38" fill="url(#gSuret)" filter="url(#glow-l)" opacity=".8"/>
+  <g class="shimmer">
+    <line x1="178" y1="125" x2="250" y2="125" stroke="#C09840" stroke-width="1.3" stroke-dasharray="5,4"/>
+    <polygon points="255,125 247,121 247,129" fill="#C09840"/>
+  </g>
+  <g class="shimmer" style="animation-delay:.6s">
+    <line x1="330" y1="118" x2="400" y2="118" stroke="#6088B8" stroke-width="1.3" stroke-dasharray="5,4"/>
+    <polygon points="405,118 397,114 397,122" fill="#6088B8"/>
+  </g>
+  <g class="shimmer" style="animation-delay:1.2s">
+    <line x1="400" y1="134" x2="330" y2="134" stroke="#6088B8" stroke-width="1.2" stroke-dasharray="5,4"/>
+    <polygon points="325,134 333,130 333,138" fill="#6088B8"/>
+  </g>
+  <g class="shimmer" style="animation-delay:1.8s">
+    <line x1="178" y1="140" x2="100" y2="140" stroke="#C09840" stroke-width="1" stroke-dasharray="4,4" opacity=".6"/>
+    <polygon points="95,140 103,136 103,144" fill="#C09840" opacity=".6"/>
+  </g>
+  <text id="s7" x="214" y="115" text-anchor="middle" fill="#908050" font-size="7.5" font-style="italic" font-family="Georgia,serif">tecellî</text>
+  <text id="s8" x="365" y="110" text-anchor="middle" fill="#5878A8" font-size="7.5" font-style="italic" font-family="Georgia,serif">zuhur</text>
+  <text id="s9" x="365" y="148" text-anchor="middle" fill="#5878A8" font-size="7.5" font-style="italic" font-family="Georgia,serif">iade</text>
+  <text id="s10" x="138" y="155" text-anchor="middle" fill="#908050" font-size="7.5" font-style="italic" font-family="Georgia,serif">ma'rifet</text>
+  <text id="s11" x="116" y="124" text-anchor="middle" fill="#2A1600" font-size="11" font-family="Georgia,serif" font-weight="bold">Bakan</text>
+  <text id="s12" x="116" y="140" text-anchor="middle" fill="#5A3800" font-size="7.5" font-style="italic" font-family="Georgia,serif">Hâlık</text>
+  <text id="s13" x="290" y="122" text-anchor="middle" fill="#F0E0FF" font-size="10" font-family="Georgia,serif">Sûret</text>
+  <text id="s14" x="290" y="137" text-anchor="middle" fill="#C0A0D8" font-size="7" font-style="italic" font-family="Georgia,serif">berzahî</text>
+  <text id="s15" x="464" y="124" text-anchor="middle" fill="#0A1830" font-size="11" font-family="Georgia,serif" font-weight="bold">Ayna</text>
+  <text id="s16" x="464" y="140" text-anchor="middle" fill="#1A3870" font-size="7.5" font-style="italic" font-family="Georgia,serif">Hâlık</text>
+</svg>
+<!-- 3D Canvas: perspective tabletop mirror scene -->
+<canvas id="cv" width="580" height="295"></canvas>
+</div>
+
+<div class="pairs" id="pairs"></div>
+<div class="qbox" id="qbox"><span class="hint" id="qhint">Bir ayna çiftine dokunarak o ilişkiye ait söylemi gör.</span></div>
+<p class="paradox" id="paradox"></p>
+<p class="footer-hint" id="footer"></p>
+
+<script>
+const LA={
+  tr:{
+    title:'Ayna Metaforu',
+    sub:'Sûret ne bakandır ne ondan başka — ayna olmasaydı görüntü olmazdı, bakan olmasaydı ayna boş kalırdı',
+    s1:'BAKAN',s2:'Hak / Görüntüleyen',s3:'SÛRET',s4:'Ne bakan · ne ondan başka',
+    s5:'AYNA',s6:'Mahal / Âlem',s7:'tecellî',s8:'zuhur',s9:'iade',s10:"ma'rifet",
+    s11:'Bakan',s12:'Hâlık',s13:'Sûret',s14:'berzahî',s15:'Ayna',s16:'Hâlık',
+    hint:'Bir ayna çiftine dokunarak o ilişkiye ait söylemi gör.',
+    pairs:[
+      {id:'p1',d1:'g',t1:'Zât',d2:'b',t2:'İnsan-ı Kâmil',label:'İlk Ayna',note:"Hakk kendini ancak câmi' bir aynada görebilir"},
+      {id:'p2',d1:'g',t1:'Hak',d2:'b',t2:'Âlem',label:'Ters Ayna',note:'"Hak âlemin aynasıdır" — yön çift taraflı'},
+      {id:'p3',d1:'l',t1:'Kalp',d2:'g',t2:'Tecellî',label:'Derinleşen Ayna',note:'Kalp cilâlandıkça tecellî artar, tecellî arttıkça kalp açılır'},
+      {id:'p4',d1:'g',t1:'Varlık',d2:'b',t2:'Yokluk',label:'Ontolojik Ayna',note:'Mutlak yokluk mutlak varlığın aynasıdır — mümkün burada görünür'},
+    ],
+    paradox:'"Aynaya bakan olmasa aynadaki görüntü ortaya çıkmaz.\nAyna olmasa yine görüntü ortaya çıkmaz.\nBu sûret ancak sende seninle sana gitmektedir." — Fütûhât',
+    footer:'Çiftlere dokunarak ayrıntı gör · 3B düğmesiyle bakış açısını değiştir',
+    d3bakan:'Bakan',d3suret:'Sûret',d3ayna:'Ayna',d3tec:'tecellî',
+  },
+  en:{
+    title:'Mirror Metaphor',
+    sub:'The Form is neither the observer nor apart from it — without a mirror no image appears, without an observer the mirror stays empty',
+    s1:'OBSERVER',s2:'The Real / The Looker',s3:'FORM',s4:'Neither seer · nor other than seer',
+    s5:'MIRROR',s6:'Locus / World',s7:'manifestation',s8:'appearance',s9:'return',s10:'gnosis',
+    s11:'Observer',s12:'Hâlık',s13:'Form',s14:'barzakhī',s15:'Mirror',s16:'Hâlık',
+    hint:'Touch a mirror pair to see its related discourse.',
+    pairs:[
+      {id:'p1',d1:'g',t1:'Essence',d2:'b',t2:'Perfect Man',label:'First Mirror',note:'The Real can only see Itself in an all-encompassing mirror'},
+      {id:'p2',d1:'g',t1:'The Real',d2:'b',t2:'World',label:'Inverted Mirror',note:'"The Real is the mirror of the world" — the direction is bilateral'},
+      {id:'p3',d1:'l',t1:'Heart',d2:'g',t2:'Manifestation',label:'Deepening Mirror',note:'As the heart is polished manifestation increases, and vice versa'},
+      {id:'p4',d1:'g',t1:'Existence',d2:'b',t2:'Non-existence',label:'Ontological Mirror',note:'Absolute non-existence mirrors absolute existence — the contingent appears here'},
+    ],
+    paradox:'"Were there no observer at the mirror, no image would appear in it.\nWere there no mirror, again no image would appear.\nThis Form goes to you in you from you." — Futûhât',
+    footer:'Touch pairs for detail · Toggle 3D view',
+    d3bakan:'Observer',d3suret:'Form',d3ayna:'Mirror',d3tec:'manifestation',
+  },
+  pt:{
+    title:'Metáfora do Espelho',
+    sub:'A Forma não é o observador nem está além dele — sem espelho não há imagem, sem observador o espelho fica vazio',
+    s1:'OBSERVADOR',s2:'O Real / O Olhante',s3:'FORMA',s4:'Nem vidente · nem outro que ele',
+    s5:'ESPELHO',s6:'Lugar / Mundo',s7:'tecelí',s8:'manifestação',s9:'retorno',s10:'gnose',
+    s11:'Observador',s12:'Hâlık',s13:'Forma',s14:'barzakhī',s15:'Espelho',s16:'Hâlık',
+    hint:'Toque num par espelhado para ver o discurso relacionado.',
+    pairs:[
+      {id:'p1',d1:'g',t1:'Essência',d2:'b',t2:'Homem Perfeito',label:'Primeiro Espelho',note:'O Real só pode ver-Se num espelho que tudo abrange'},
+      {id:'p2',d1:'g',t1:'O Real',d2:'b',t2:'Mundo',label:'Espelho Invertido',note:'"O Real é o espelho do mundo" — a direção é bilateral'},
+      {id:'p3',d1:'l',t1:'Coração',d2:'g',t2:'Manifestação',label:'Espelho Aprofundante',note:'À medida que o coração é polido a manifestação aumenta, e vice-versa'},
+      {id:'p4',d1:'g',t1:'Existência',d2:'b',t2:'Não-existência',label:'Espelho Ontológico',note:'A não-existência absoluta espelha a existência absoluta — o contingente aparece aqui'},
+    ],
+    paradox:'"Se não houvesse observador diante do espelho, nenhuma imagem apareceria nele.\nSem espelho, também não apareceria imagem alguma.\nEsta Forma vai a ti em ti de ti." — Futûhât',
+    footer:'Toque nos pares para detalhes · Alternar visualização 3D',
+    d3bakan:'Observador',d3suret:'Forma',d3ayna:'Espelho',d3tec:'tecelí',
+  }
+};
+
+const PD={
+  p1:{
+    tr:{q:'"Zât, bilinme arzusuyla şehâdet âlemini yarattı, ama bu âlem tam cilâlı bir ayna olmadığından Âdem\'in yaratılışı bu aynanın \'cilâsı\' oldu. Yalnız câmi\' (her şeyi toplayan) ayna, kendisine tecellî edeni tanıyabilir."',src:"Füsûsü'l-Hikem — Konuk şerhi (insan-i-kamil)"},
+    en:{q:'"The Essence created the manifest world from a desire to be known, but this world was not a perfectly polished mirror, so the creation of Adam became the \'polishing\' of that mirror. Only the all-comprehensive mirror can recognize the one who manifests within it."',src:'Fusûs al-Hikam — Konuk commentary (insan-i-kamil)'},
+    pt:{q:'"A Essência criou o mundo manifesto pelo desejo de ser conhecida, mas este mundo não era um espelho perfeitamente polido, então a criação de Adão tornou-se o \'polimento\' daquele espelho. Somente o espelho que tudo abrange pode reconhecer Aquele que nele se manifesta."',src:'Fusûs al-Hikam — comentário de Konuk (insan-i-kamil)'},
+  },
+  p2:{
+    tr:{q:'"Hak âlemin aynasıdır. O aynada âlemin sûretleri ortaya çıkmış, mümkünler kendilerini varlığı zorunlu Hakkın aynasında görmüşlerdir. Mümkünler var olmada Allah\'a bağlı oldukları gibi O da kendisini bilmede mümkünler hakkındaki bilgiye dayanmıştır."',src:"Fütûhât — 415. Bölüm (c15k169): \"Ayna Ters Çevriliyor\""},
+    en:{q:'"The Real is the mirror of the world. In that mirror the forms of the world appeared, and contingent beings saw themselves in the mirror of the Necessarily Existent. Just as contingent beings depend on God for their existence, He relies on His knowledge of contingent beings to know Himself."',src:'Futûhât — Chapter 415 (c15k169): "The Mirror Inverted"'},
+    pt:{q:'"O Real é o espelho do mundo. Naquele espelho as formas do mundo apareceram, e os seres contingentes se viram no espelho do Necessariamente Existente. Assim como os seres contingentes dependem de Allah para existir, Ele também se apoia no conhecimento dos contingentes para conhecer a Si mesmo."',src:'Futûhât — Capítulo 415 (c15k169): "O Espelho Invertido"'},
+  },
+  p3:{
+    tr:{q:'"Hak en kâmil, mutedil ve güzel tarzda Muhammed aynasında zuhur eder. Kalbim her sûreti kabul eder hâle geldi." Kalp sürekli tekallüb eden (hâlden hâle giren) ve Hakk\'ın her tecellisini yeniden yansıtabilen bir aynadır.',src:"Fütûhât (c12k146) · concepts.json — kalp"},
+    en:{q:'"The Real manifests in the most perfect, balanced, and beautiful manner in the mirror of Muhammad. My heart has become capable of receiving every form." The heart is a mirror in perpetual oscillation — passing from state to state — capable of reflecting each new manifestation of the Real.',src:'Futûhât (c12k146) · concepts.json — heart'},
+    pt:{q:'"O Real manifesta-se da maneira mais perfeita, equilibrada e bela no espelho de Muhammad. Meu coração tornou-se capaz de receber toda forma." O coração é um espelho em perpétua oscilação — passando de estado em estado — capaz de refletir cada nova manifestação do Real.',src:'Futûhât (c12k146) · concepts.json — coração'},
+  },
+  p4:{
+    tr:{q:'"Mutlak yokluk mutlak varlığın karşısında bir aynadır. Varlık aynada kendi sûretini görür. Bu durumda o sûret mümkünün kendisidir… Ne görendir ne ondan başkadır!"',src:"Fütûhât — 312. Bölüm (c11k135): \"Berzah: Varlık ile Yokluk Arasında Ayna\""},
+    en:{q:'"Absolute non-existence is a mirror opposite absolute existence. Existence sees its own form in that mirror. In this case, that form is the contingent being itself… It is neither the seer nor other than the seer!"',src:'Futûhât — Chapter 312 (c11k135): "Barzakh: Mirror Between Existence and Non-existence"'},
+    pt:{q:'"A não-existência absoluta é um espelho diante da existência absoluta. A existência vê sua própria forma naquele espelho. Neste caso, aquela forma é o próprio ser contingente… Não é o vidente nem algo além dele!"',src:'Futûhât — Capítulo 312 (c11k135): "Barzakh: Espelho Entre Existência e Não-existência"'},
+  }
+};
+
+// Canvas scene constants
+const CW=580,CH=295;
+const Bx=290,By=83,Br=48;                   // Bakan sphere
+const FL=[100,260],FR=[480,260];             // mirror front edge
+const BL=[202,172],BR=[378,172];             // mirror back edge
+const Mx=290,My=(260+172)/2;                 // mirror center ≈ 216
+
+let curLang='tr',curMode='2d',curPair=null;
+let animId=null,t3d=0;
+
+function dc(d){return d==='g'?'gold':d==='b'?'blue':'liminal';}
+
+function setLang(l){
+  curLang=l;
+  ['btr','ben','bpt'].forEach(id=>document.getElementById(id).classList.remove('on'));
+  document.getElementById('b'+l).classList.add('on');
+  const d=LA[l];
+  document.getElementById('hTitle').textContent=d.title;
+  document.getElementById('hSub').textContent=d.sub;
+  for(let i=1;i<=16;i++){
+    const el=document.getElementById('s'+i);
+    if(el&&d['s'+i]!==undefined) el.textContent=d['s'+i];
+  }
+  renderPairs(l);
+  const qh=document.getElementById('qhint');
+  if(qh) qh.textContent=d.hint;
+  if(curPair) showQuote(curPair);
+  document.getElementById('paradox').textContent=d.paradox;
+  document.getElementById('footer').textContent=d.footer;
+  if(curMode==='3d') draw3d();
+}
+
+function renderPairs(l){
+  const d=LA[l];
+  document.getElementById('pairs').innerHTML=d.pairs.map(p=>`
+    <div class="pair" id="${p.id}" onclick="selectPair('${p.id}')">
+      <div class="pair-top">
+        <span class="dot d${p.d1}"></span>
+        <span style="font-size:.72rem;color:var(--${dc(p.d1)})">${p.t1}</span>
+        <span class="arr">⇔</span>
+        <span class="dot d${p.d2}"></span>
+        <span style="font-size:.72rem;color:var(--${dc(p.d2)})">${p.t2}</span>
+      </div>
+      <div class="pair-label">${p.label}</div>
+      <div class="pair-note">${p.note}</div>
+    </div>`).join('');
+  if(curPair) document.getElementById(curPair)?.classList.add('on');
+}
+
+function showQuote(id){
+  const pd=PD[id][curLang];
+  document.getElementById('qbox').innerHTML=
+    `<blockquote>${pd.q}</blockquote><div class="src">${pd.src}</div>`;
+}
+
+function selectPair(id){
+  if(curPair===id){
+    curPair=null;
+    document.querySelectorAll('.pair').forEach(p=>p.classList.remove('on'));
+    document.getElementById('qbox').innerHTML=
+      `<span class="hint" id="qhint">${LA[curLang].hint}</span>`;
+    if(curMode==='3d') draw3d();
+    return;
+  }
+  curPair=id;
+  document.querySelectorAll('.pair').forEach(p=>p.classList.toggle('on',p.id===id));
+  showQuote(id);
+  if(curMode==='3d') draw3d();
+}
+
+function setMode(m){
+  curMode=m;
+  const vw=document.getElementById('vw');
+  if(m==='3d'){
+    vw.classList.add('m3d');
+    document.getElementById('b3d').classList.add('on');
+    document.getElementById('b2d').classList.remove('on');
+    startAnim();
+  } else {
+    vw.classList.remove('m3d');
+    document.getElementById('b2d').classList.add('on');
+    document.getElementById('b3d').classList.remove('on');
+    stopAnim();
+  }
+}
+
+function startAnim(){
+  if(animId) return;
+  (function loop(){ t3d+=0.009; draw3d(); animId=requestAnimationFrame(loop); })();
+}
+function stopAnim(){
+  if(animId){cancelAnimationFrame(animId);animId=null;}
+}
+
+// ── 3D canvas ─────────────────────────────────────────────────────────────────
+function draw3d(){
+  const cv=document.getElementById('cv');
+  if(!cv.getContext) return;
+  const ctx=cv.getContext('2d');
+  ctx.clearRect(0,0,CW,CH);
+  const lang=LA[curLang];
+  const pulse=0.5+0.5*Math.sin(t3d*0.85);
+  const flt=Math.sin(t3d*1.1)*2.8;          // Sûret vertical float
+  const suretY=My+flt;
+  const footY=My+flt*0.15;                   // shadow barely moves
+
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0,0,CW,CH); ctx.clip();
+
+  // ── 1. Mirror surface (foreshortened trapezoid) ──
+  ctx.beginPath();
+  ctx.moveTo(FL[0],FL[1]); ctx.lineTo(FR[0],FR[1]);
+  ctx.lineTo(BR[0],BR[1]); ctx.lineTo(BL[0],BL[1]);
+  ctx.closePath();
+  const ma=0.28+0.07*pulse;
+  const mg=ctx.createLinearGradient(Mx,BL[1],Mx,FL[1]);
+  mg.addColorStop(0,`rgba(70,90,160,${ma})`);
+  mg.addColorStop(0.45,`rgba(110,135,215,${ma+0.16})`);
+  mg.addColorStop(1,`rgba(55,75,145,${ma-0.04})`);
+  ctx.fillStyle=mg; ctx.fill();
+  ctx.strokeStyle='rgba(140,165,255,0.32)'; ctx.lineWidth=1.2; ctx.stroke();
+
+  // Perspective lines (foreshortening guides)
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(FL[0],FL[1]); ctx.lineTo(FR[0],FR[1]);
+  ctx.lineTo(BR[0],BR[1]); ctx.lineTo(BL[0],BL[1]);
+  ctx.closePath(); ctx.clip();
+  for(let i=1;i<5;i++){
+    const t_=i/5;
+    const x1=FL[0]+(BL[0]-FL[0])*t_, y1=FL[1]+(BL[1]-FL[1])*t_;
+    const x2=FR[0]+(BR[0]-FR[0])*t_, y2=FR[1]+(BR[1]-FR[1])*t_;
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2);
+    ctx.strokeStyle='rgba(170,190,255,0.1)'; ctx.lineWidth=0.7; ctx.stroke();
+  }
+  // Vertical center line
+  ctx.beginPath(); ctx.moveTo(Mx,FL[1]); ctx.lineTo(Mx,BL[1]);
+  ctx.strokeStyle='rgba(200,210,255,0.08)'; ctx.lineWidth=0.5; ctx.stroke();
+  ctx.restore();
+
+  // ── 2. Mirror wall (near face showing thickness) ──
+  const WH=11;
+  ctx.beginPath();
+  ctx.moveTo(FL[0],FL[1]); ctx.lineTo(FR[0],FR[1]);
+  ctx.lineTo(FR[0],FL[1]+WH); ctx.lineTo(FL[0],FL[1]+WH);
+  ctx.closePath();
+  const wg=ctx.createLinearGradient(0,FL[1],0,FL[1]+WH);
+  wg.addColorStop(0,'rgba(115,135,215,0.52)');
+  wg.addColorStop(1,'rgba(50,68,140,0.12)');
+  ctx.fillStyle=wg; ctx.fill();
+  ctx.strokeStyle='rgba(130,155,255,0.18)'; ctx.lineWidth=0.7; ctx.stroke();
+
+  // ── 3. Ayna label on mirror surface ──
+  ctx.save();
+  ctx.font=`italic 12.5px Georgia,serif`;
+  ctx.fillStyle=`rgba(165,185,255,${0.42+0.1*pulse})`;
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(lang.d3ayna, Mx, My+16);
+  ctx.restore();
+
+  // ── 4. Shadow ellipse at Sûret foot ──
+  ctx.beginPath(); ctx.ellipse(Bx,footY,22,6.5,0,0,Math.PI*2);
+  ctx.fillStyle='rgba(0,0,0,0.18)'; ctx.fill();
+
+  // ── 5. Sûret glow (liminal, on mirror) ──
+  const sAct=curPair==='p3', sR=sAct?52:42;
+  const sg=ctx.createRadialGradient(Bx,suretY,0,Bx,suretY,sR);
+  sg.addColorStop(0,sAct?'rgba(225,170,255,0.92)':'rgba(205,155,255,0.78)');
+  sg.addColorStop(0.48,'rgba(140,90,215,0.52)');
+  sg.addColorStop(1,'rgba(75,48,150,0)');
+  ctx.beginPath(); ctx.arc(Bx,suretY,sR,0,Math.PI*2);
+  ctx.fillStyle=sg; ctx.fill();
+  if(sAct){
+    ctx.beginPath(); ctx.arc(Bx,suretY,sR+5,0,Math.PI*2);
+    ctx.strokeStyle='rgba(200,148,255,0.28)'; ctx.lineWidth=2.5; ctx.stroke();
+  }
+  // Inner core shimmer
+  const si=ctx.createRadialGradient(Bx,suretY,0,Bx,suretY,17);
+  si.addColorStop(0,'rgba(245,215,255,0.72)');
+  si.addColorStop(1,'rgba(200,155,255,0)');
+  ctx.beginPath(); ctx.arc(Bx,suretY,17,0,Math.PI*2); ctx.fillStyle=si; ctx.fill();
+
+  // Sûret label
+  ctx.save();
+  ctx.font='11px Georgia,serif';
+  ctx.fillStyle='rgba(235,205,255,0.88)';
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(lang.d3suret, Bx, suretY+1.5);
+  ctx.restore();
+
+  // ── 6. Dashed elevation line (Bakan ↓ Sûret) ──
+  const lineTop=By+Br+3, lineBot=suretY-20;
+  if(lineBot>lineTop+12){
+    ctx.save();
+    ctx.setLineDash([5,4]);
+    ctx.beginPath(); ctx.moveTo(Bx,lineTop); ctx.lineTo(Bx,lineBot);
+    ctx.strokeStyle='rgba(220,185,80,0.32)'; ctx.lineWidth=1.1; ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.font='italic 9px Georgia,serif';
+    ctx.fillStyle='rgba(200,162,65,0.58)';
+    ctx.textAlign='left'; ctx.textBaseline='middle';
+    ctx.fillText(lang.d3tec, Bx+6, (lineTop+lineBot)/2);
+    ctx.restore();
+  }
+
+  // ── 7. Bakan sphere ──
+  const bAct=curPair==='p1';
+  const glowR=Br*(bAct?2.9:2.2+0.28*pulse);
+  const bglow=ctx.createRadialGradient(Bx,By,Br*0.45,Bx,By,glowR);
+  bglow.addColorStop(0,'rgba(242,200,75,0.17)');
+  bglow.addColorStop(1,'rgba(242,200,75,0)');
+  ctx.beginPath(); ctx.arc(Bx,By,glowR,0,Math.PI*2); ctx.fillStyle=bglow; ctx.fill();
+
+  const bg=ctx.createRadialGradient(Bx-13,By-15,4,Bx,By,Br);
+  bg.addColorStop(0,'#FFFBD2');
+  bg.addColorStop(0.52,'#ECC850');
+  bg.addColorStop(0.87,'#C28E28');
+  bg.addColorStop(1,'rgba(95,60,12,0.3)');
+  ctx.beginPath(); ctx.arc(Bx,By,Br,0,Math.PI*2); ctx.fillStyle=bg; ctx.fill();
+  ctx.strokeStyle=bAct?'rgba(255,220,95,0.48)':'rgba(255,208,72,0.18)';
+  ctx.lineWidth=bAct?2:1.2; ctx.stroke();
+  // specular highlight
+  ctx.beginPath(); ctx.arc(Bx-14,By-16,11,0,Math.PI*2);
+  ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill();
+
+  // ── 8. Bakan label above sphere ──
+  ctx.save();
+  ctx.font='bold 12.5px Georgia,serif';
+  ctx.fillStyle='rgba(242,200,85,0.92)';
+  ctx.textAlign='center'; ctx.textBaseline='bottom';
+  ctx.fillText(lang.d3bakan, Bx, By-Br-9);
+  ctx.restore();
+
+  // ── 9. Mirror highlight when p2 active ──
+  if(curPair==='p2'){
+    ctx.beginPath();
+    ctx.moveTo(FL[0],FL[1]); ctx.lineTo(FR[0],FR[1]);
+    ctx.lineTo(BR[0],BR[1]); ctx.lineTo(BL[0],BL[1]);
+    ctx.closePath();
+    ctx.strokeStyle='rgba(155,185,255,0.48)'; ctx.lineWidth=2.2; ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+// ── Canvas interaction ──
+const cvEl=document.getElementById('cv');
+cvEl.addEventListener('mousemove',function(e){
+  if(curMode!=='3d') return;
+  const r=cvEl.getBoundingClientRect();
+  const mx=(e.clientX-r.left)*(CW/r.width), my=(e.clientY-r.top)*(CH/r.height);
+  cvEl.style.cursor=(Math.hypot(mx-Bx,my-By)<Br+10||Math.hypot(mx-Bx,my-My)<46||inMirror(mx,my))?'pointer':'default';
+});
+cvEl.addEventListener('click',function(e){
+  if(curMode!=='3d') return;
+  const r=cvEl.getBoundingClientRect();
+  const mx=(e.clientX-r.left)*(CW/r.width), my=(e.clientY-r.top)*(CH/r.height);
+  if(Math.hypot(mx-Bx,my-By)<Br+10) selectPair('p1');
+  else if(Math.hypot(mx-Bx,my-My)<46) selectPair('p3');
+  else if(inMirror(mx,my)) selectPair('p2');
+});
+function inMirror(mx,my){
+  if(my<BL[1]||my>FL[1]+12) return false;
+  const t_=(my-FL[1])/(BL[1]-FL[1]);
+  return mx>=FL[0]+(BL[0]-FL[0])*t_ && mx<=FR[0]+(BR[0]-FR[0])*t_;
+}
+
+// ── Init ──
+setLang('tr');
+
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Perde Zinciri — Dost Arabi -->
+<title>Perde Zinciri — Dost Arabi</title>
+<style>
+:root{--bg:#09080F;--su:#12101A;--bo:#2A2438;--tx:#E8E2D0;--mu:#6E6558;--go:#FFC94D;--am:#B8832A;--pa:#14101E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--su:#EDE8DC;--bo:#C8BEA0;--tx:#221810;--mu:#7A6C50;--pa:#E8E2D4}}
+:root[data-theme=dark]{--bg:#09080F;--su:#12101A;--bo:#2A2438;--tx:#E8E2D0;--mu:#6E6558;--pa:#14101E}
+:root[data-theme=light]{--bg:#F5F2EA;--su:#EDE8DC;--bo:#C8BEA0;--tx:#221810;--mu:#7A6C50;--pa:#E8E2D4}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:2rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1.5rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:var(--go);margin-bottom:.45rem}
+.sub{color:var(--mu);font-size:.88rem;font-style:italic;line-height:1.65;max-width:420px}
+.btns{display:flex;gap:.4rem;margin-bottom:1.4rem;flex-wrap:wrap;justify-content:center;align-items:center}
+.btn{background:var(--su);border:1px solid var(--bo);color:var(--mu);padding:.3rem 1rem;border-radius:2rem;cursor:pointer;font:inherit;font-size:.82rem;transition:.2s}
+.btn.on,.btn:hover{background:var(--am);color:var(--bg);border-color:var(--am)}
+.sep{width:1px;height:1.1rem;background:var(--bo)}
+.layout{display:flex;gap:1.8rem;align-items:flex-start;flex-wrap:wrap;justify-content:center;width:100%;max-width:880px}
+.sw{flex-shrink:0;position:relative}
+#svg2d{width:460px;height:460px;max-width:92vw;overflow:visible;display:block}
+#cv{display:none;cursor:pointer;max-width:92vw}
+.m3d #svg2d{display:none}
+.m3d #cv{display:block}
+.rg{cursor:pointer}
+.rg .rs{transition:opacity .22s}
+.rg:hover .rs,.rg.on .rs{opacity:.72}
+.rg.dim .rs{opacity:.18}
+@keyframes zh{0%,100%{r:28;opacity:.18}50%{r:58;opacity:.07}}
+.zh{animation:zh 3.2s ease-in-out infinite}
+@keyframes ab{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(3px);opacity:.85}}
+.pa{animation:ab 2.4s ease-in-out infinite}
+.qp{flex:1;min-width:210px;max-width:310px;background:var(--pa);border:1px solid var(--bo);border-radius:12px;padding:1.3rem 1.1rem;min-height:230px}
+.ql{font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:var(--mu);margin-bottom:.5rem}
+.qt{font-size:1.2rem;margin-bottom:.85rem;transition:.3s}
+.qb{border-left:2px solid var(--am);padding-left:.85rem;margin-bottom:.7rem;display:none}
+blockquote{font-size:.88rem;font-style:italic;line-height:1.8}
+.qs{font-size:.72rem;color:var(--mu);margin-top:.35rem}
+.qn{font-size:.82rem;color:var(--mu);line-height:1.6;font-style:italic}
+.hint{font-size:.76rem;color:var(--mu);font-style:italic;text-align:center;margin-top:1.1rem}
+@media(prefers-reduced-motion:reduce){.zh,.pa{animation:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="i-title">Perde Zinciri</h1>
+  <p class="sub" id="i-sub">Sıfatlar Zât'ı perdeler · Fiiller Sıfatları perdeler · Eserler Fiilleri perdeler</p>
+</header>
+
+<div class="btns">
+  <button class="btn on" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="btn" data-l="en" onclick="setLang('en')">EN</button>
+  <button class="btn" data-l="pt" onclick="setLang('pt')">PT</button>
+  <div class="sep"></div>
+  <button class="btn on" id="b2d">2D</button>
+  <button class="btn" id="b3d">3D</button>
+</div>
+
+<div class="layout">
+  <div class="sw" id="sw">
+    <svg id="svg2d" viewBox="0 0 460 460" role="img">
+      <defs>
+        <mask id="mE"><circle cx="230" cy="230" r="222" fill="white"/><circle cx="230" cy="230" r="170" fill="black"/></mask>
+        <mask id="mF"><circle cx="230" cy="230" r="170" fill="white"/><circle cx="230" cy="230" r="115" fill="black"/></mask>
+        <mask id="mS"><circle cx="230" cy="230" r="115" fill="white"/><circle cx="230" cy="230" r="60" fill="black"/></mask>
+        <radialGradient id="gZ" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFF5B0"/>
+          <stop offset="60%" stop-color="#FFC94D"/>
+          <stop offset="100%" stop-color="#C8821A" stop-opacity=".7"/>
+        </radialGradient>
+        <filter id="gl" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="14" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <g class="rg" id="rE" tabindex="0" role="button">
+        <circle class="rs" cx="230" cy="230" r="222" fill="#251808" mask="url(#mE)"/>
+        <text id="t0" x="230" y="36" text-anchor="middle" fill="#5C3E18" font-size="10.5" letter-spacing="3" font-family="Georgia,serif">ESERLER</text>
+        <text id="t1" x="230" y="51" text-anchor="middle" fill="#3E2810" font-size="8.5" font-style="italic" font-family="Georgia,serif">Görünen Âlem</text>
+      </g>
+      <g class="rg" id="rF" tabindex="0" role="button">
+        <circle class="rs" cx="230" cy="230" r="170" fill="#362010" mask="url(#mF)"/>
+        <text id="t2" x="230" y="80" text-anchor="middle" fill="#907028" font-size="10.5" letter-spacing="2.5" font-family="Georgia,serif">FİİLLER</text>
+        <text id="t3" x="230" y="95" text-anchor="middle" fill="#6A5018" font-size="8.5" font-style="italic" font-family="Georgia,serif">İlâhî Eylemler</text>
+      </g>
+      <g class="rg" id="rS" tabindex="0" role="button">
+        <circle class="rs" cx="230" cy="230" r="115" fill="#543810" mask="url(#mS)"/>
+        <text id="t4" x="230" y="131" text-anchor="middle" fill="#C08820" font-size="10.5" letter-spacing="2" font-family="Georgia,serif">SIFATLAR</text>
+        <text id="t5" x="230" y="146" text-anchor="middle" fill="#907028" font-size="8.5" font-style="italic" font-family="Georgia,serif">İsimler ve Nitelikler</text>
+      </g>
+      <g class="rg" id="rZ" tabindex="0" role="button">
+        <circle class="zh" cx="230" cy="230" r="28" fill="#FFC94D"/>
+        <circle cx="230" cy="230" r="60" fill="url(#gZ)" filter="url(#gl)"/>
+        <text id="t6" x="230" y="225" text-anchor="middle" fill="#2A1600" font-size="12.5" letter-spacing="2" font-family="Georgia,serif" font-weight="bold">ZÂT</text>
+        <text id="t7" x="230" y="242" text-anchor="middle" fill="#5A3800" font-size="8" font-style="italic" font-family="Georgia,serif">Mutlak Gaib</text>
+      </g>
+      <g class="pa" transform="translate(230,100)" style="animation-delay:0s">
+        <line x1="0" y1="-9" x2="0" y2="4" stroke="#C08820" stroke-width="1.2"/>
+        <polygon points="0,9 -3.5,2 3.5,2" fill="#C08820"/>
+        <text id="tp1" x="10" y="4" fill="#C08820" font-size="8" font-style="italic" font-family="Georgia,serif">perdeler</text>
+      </g>
+      <g class="pa" transform="translate(230,148)" style="animation-delay:.9s">
+        <line x1="0" y1="-9" x2="0" y2="4" stroke="#C08820" stroke-width="1.2"/>
+        <polygon points="0,9 -3.5,2 3.5,2" fill="#C08820"/>
+        <text id="tp2" x="10" y="4" fill="#C08820" font-size="8" font-style="italic" font-family="Georgia,serif">perdeler</text>
+      </g>
+      <g class="pa" transform="translate(230,192)" style="animation-delay:1.8s">
+        <line x1="0" y1="-9" x2="0" y2="4" stroke="#C08820" stroke-width="1.2"/>
+        <polygon points="0,9 -3.5,2 3.5,2" fill="#C08820"/>
+        <text id="tp3" x="10" y="4" fill="#C08820" font-size="8" font-style="italic" font-family="Georgia,serif">perdeler</text>
+      </g>
+    </svg>
+    <canvas id="cv" width="460" height="400"></canvas>
+  </div>
+
+  <div class="qp">
+    <div class="ql" id="i-ql">HAKİKAT MERTEBELERİ</div>
+    <div class="qt" id="qt" style="color:var(--am)">Perde Zinciri</div>
+    <div class="qb" id="qb">
+      <blockquote id="qx"></blockquote>
+      <div class="qs" id="qs"></div>
+    </div>
+    <p class="qn" id="qn">Bir halkaya dokunarak o mertebeye ait söylemi gör.</p>
+  </div>
+</div>
+
+<p class="hint" id="i-hint">Halkaya dokunarak ayrıntı gör · 3D düğmesiyle bakış açısını değiştir</p>
+
+<script>
+const L={
+  tr:{title:'Perde Zinciri',sub:'Sıfatlar Zât\'ı perdeler · Fiiller Sıfatları perdeler · Eserler Fiilleri perdeler',ql:'HAKİKAT MERTEBELERİ',dqt:'Perde Zinciri',dqn:'Bir halkaya dokunarak o mertebeye ait söylemi gör.',hint:'Halkaya dokunarak ayrıntı gör · 3D düğmesiyle bakış açısını değiştir',rings:['ESERLER','FİİLLER','SIFATLAR','ZÂT'],subs:['Görünen Âlem','İlâhî Eylemler','İsimler ve Nitelikler','Mutlak Gaib'],veil:'perdeler'},
+  en:{title:'Chain of Veiling',sub:'Attributes veil the Essence · Actions veil Attributes · Effects veil Actions',ql:'DEGREES OF REALITY',dqt:'Chain of Veiling',dqn:'Touch a ring to see its testimony.',hint:'Touch a ring for detail · toggle 3D with the button',rings:['EFFECTS','ACTIONS','ATTRIBUTES','ESSENCE'],subs:['Manifest World','Divine Actions','Names & Qualities','Absolute Unknown'],veil:'veils'},
+  pt:{title:'Cadeia do Véu',sub:'Os Atributos velam a Essência · as Ações velam os Atributos · as Obras velam as Ações',ql:'GRAUS DE REALIDADE',dqt:'Cadeia do Véu',dqn:'Toque num anel para ver o seu testemunho.',hint:'Toque num anel para detalhes · alterne 3D com o botão',rings:['OBRAS','AÇÕES','ATRIBUTOS','ESSÊNCIA'],subs:['Mundo Manifesto','Ações Divinas','Nomes e Qualidades','Incognoscível'],veil:'vela'}
+};
+
+const D={
+  rE:{title:{tr:'Eserler',en:'Effects',pt:'Obras'},color:'#7A5A28',
+    q:{tr:'"Hakkın örtüsü senden başkası değildir. Hak seninle giyinir, sen O\'nun sûretisin."',en:'"Nothing veils the Real save yourself. The Real is clothed through you; you are Its image."',pt:'"Nada vela o Real senão tu mesmo. O Real Se veste através de ti; tu és a Sua imagem."'},
+    src:'Esmâ-i Hüsnâ — el-Kebîr',
+    n:{tr:'Eserler hem perde hem mazhar: Hakk\'ı gizlerler, ama aynı zamanda O\'nun tecellî ettiği yerdir. Perde ile ayna burada aynı şeydir.',en:'Effects are both veil and locus of manifestation: they conceal the Real and yet are where It appears. Veil and mirror here are the same thing.',pt:'As obras são ao mesmo tempo véu e lugar de manifestação: ocultam o Real e são simultaneamente onde Ele aparece. Véu e espelho aqui são a mesma coisa.'}},
+  rF:{title:{tr:'Fiiller',en:'Actions',pt:'Ações'},color:'#9A7820',
+    q:{tr:'"Kün emrinin anlamını ve kudretin kendisine yöneldiği şeye nasıl iliştiğini öğrendiğin müşahede mertebesidir."',en:'"It is the station of witnessing in which you learn the meaning of the command \'Be!\' and how power attaches to that toward which it is directed."',pt:'"É a estação de contemplação na qual aprendes o significado do comando \'Sê!\' e como o poder se liga àquilo para o qual é dirigido."'},
+    src:'Fütûhât — 1. Bölüm (c1k3)',
+    n:{tr:'Sıfatların işe dönüşmesi. Fiil perdesiyle Sıfat görünür olmaya başlar — ama eserde izini görmek, Sıfatın kendisini görmek değildir.',en:'The transformation of Attributes into action. Through the veil of Actions, Attribute begins to become visible — but seeing its trace in effects is not seeing the Attribute itself.',pt:'A transformação dos Atributos em ação. Através do véu das Ações, o Atributo começa a tornar-se visível — mas ver o seu rastro nas obras não é ver o próprio Atributo.'}},
+  rS:{title:{tr:'Sıfatlar',en:'Attributes',pt:'Atributos'},color:'#C08820',
+    q:{tr:'"Sizi sıfatlarım vasıtasıyla zâtımdan perdelemem gerekir. Sıfatlar hem örten hem görünen — saklananın görünürken taşıdığı biçim."',en:'"I must veil you from My Essence through My Attributes. Attributes both conceal and appear — they are the form the hidden takes when becoming visible."',pt:'"Devo velar-vos da Minha Essência através dos Meus Atributos. Os Atributos tanto ocultam quanto aparecem — são a forma que o oculto assume ao tornar-se visível."'},
+    src:'Fütûhât — c1k10 · c16k213',
+    n:{tr:'En güçlü perde budur. Sıfatı gördüğümüzde Zât\'ı gördüğümüzü sanırız — oysa tam da bu yüzden Sıfat en büyük perdedir.',en:'This is the most powerful veil. When we see an Attribute, we think we see the Essence — yet for that very reason, Attribute is the greatest veil.',pt:'Este é o véu mais poderoso. Quando vemos um Atributo, pensamos que estamos a ver a Essência — mas é exatamente por isso que o Atributo é o maior véu.'}},
+  rZ:{title:{tr:'Zât',en:'Essence',pt:'Essência'},color:'#FFC94D',
+    q:{tr:'"Zâtî hakikatler: hiçbir şeye benzetilemeyen, nitelenemeyen, dile getirilip işaretle gösterilemeyen bir müşahede mahalli."',en:'"Essential realities: a station of witnessing that cannot be likened to anything, cannot be qualified, cannot be expressed or pointed to."',pt:'"Realidades Essenciais: uma estação de testemunho que não pode ser comparada a nada, não pode ser qualificada, não pode ser expressa nem indicada."'},
+    src:'Fütûhât — 1. Bölüm (c1k3)',
+    n:{tr:'"\'izzet perdesi\' üzerinde ebediyen kalır." (Esmâ — Ahad) Zât\'ın en gizli sıfatı zaten gizliliktir.',en:'"It remains for ever under the \'veil of majesty\'." (Names — Aḥad) The Essence\'s most hidden quality is hiddenness itself.',pt:'"Permanece para sempre sob o \'véu da majestade\'." (Nomes — Aḥad) A qualidade mais oculta da Essência é a própria ocultação.'}}
+};
+
+let lang='tr', cur=null, is3d=false;
+const IDS=['rE','rF','rS','rZ'];
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('[data-l]').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  const ld=L[l];
+  document.getElementById('i-title').textContent=ld.title;
+  document.getElementById('i-sub').textContent=ld.sub;
+  document.getElementById('i-ql').textContent=ld.ql;
+  document.getElementById('i-hint').textContent=ld.hint;
+  [['t0',ld.rings[0]],['t1',ld.subs[0]],['t2',ld.rings[1]],['t3',ld.subs[1]],
+   ['t4',ld.rings[2]],['t5',ld.subs[2]],['t6',ld.rings[3]],['t7',ld.subs[3]],
+   ['tp1',ld.veil],['tp2',ld.veil],['tp3',ld.veil]
+  ].forEach(([id,txt])=>{const el=document.getElementById(id);if(el)el.textContent=txt;});
+  if(cur) show(cur); else clr();
+  if(is3d) draw3d(cur);
+}
+
+function show(id){
+  cur=id; const d=D[id];
+  document.getElementById('qt').textContent=d.title[lang];
+  document.getElementById('qt').style.color=d.color;
+  document.getElementById('qx').textContent=d.q[lang];
+  document.getElementById('qs').textContent=d.src;
+  document.getElementById('qn').textContent=d.n[lang];
+  document.getElementById('qb').style.display='block';
+  IDS.forEach(k=>{const el=document.getElementById(k);el.classList.toggle('on',k===id);el.classList.toggle('dim',k!==id);});
+}
+
+function clr(){
+  cur=null; const ld=L[lang];
+  document.getElementById('qt').textContent=ld.dqt;
+  document.getElementById('qt').style.color='var(--am)';
+  document.getElementById('qb').style.display='none';
+  document.getElementById('qn').textContent=ld.dqn;
+  IDS.forEach(k=>{const el=document.getElementById(k);el.classList.remove('on','dim');});
+}
+
+IDS.forEach(id=>{
+  const el=document.getElementById(id);
+  el.addEventListener('mouseenter',()=>show(id));
+  el.addEventListener('mouseleave',clr);
+  el.addEventListener('focus',()=>show(id));
+  el.addEventListener('blur',clr);
+  el.addEventListener('click',()=>cur===id?clr():show(id));
+  el.addEventListener('keydown',e=>e.key==='Enter'&&(cur===id?clr():show(id)));
+});
+
+/* ── 3D Canvas ── */
+const cv=document.getElementById('cv');
+const cx2=cv.getContext('2d');
+const CW=460,CH=400,CX=230,CY=195,SY=0.34,WH=24;
+
+const R3=[
+  {id:'rE',r1:170,r2:222,top:'rgba(48,26,6,.88)',lit:'rgba(70,42,12,.78)',wall:'rgba(20,10,2,.96)',sk:'rgba(155,90,28,.38)'},
+  {id:'rF',r1:115,r2:170,top:'rgba(65,40,12,.88)',lit:'rgba(95,60,20,.78)',wall:'rgba(38,20,5,.96)',sk:'rgba(182,118,42,.42)'},
+  {id:'rS',r1:60, r2:115,top:'rgba(86,54,16,.88)',lit:'rgba(125,80,26,.78)',wall:'rgba(56,32,8,.96)',sk:'rgba(210,142,54,.46)'},
+];
+
+function wall(r,col){
+  cx2.beginPath();
+  cx2.moveTo(CX+r,CY);
+  cx2.ellipse(CX,CY,r,r*SY,0,0,Math.PI,false);
+  cx2.lineTo(CX-r,CY+WH);
+  cx2.ellipse(CX,CY+WH,r,r*SY,0,Math.PI,0,true);
+  cx2.closePath();
+  cx2.fillStyle=col; cx2.fill();
+}
+
+function ring(r1,r2,col){
+  cx2.beginPath();
+  cx2.ellipse(CX,CY,r2,r2*SY,0,0,Math.PI*2,false);
+  cx2.ellipse(CX,CY,r1,r1*SY,0,0,Math.PI*2,true);
+  cx2.fillStyle=col; cx2.fill('evenodd');
+}
+
+function draw3d(activeId){
+  cx2.clearRect(0,0,CW,CH);
+  for(const r of R3){
+    const hi=r.id===activeId;
+    wall(r.r2,hi?r.wall.replace('.96','.99'):r.wall);
+    const g=cx2.createLinearGradient(CX,CY-r.r2*SY,CX,CY+r.r2*SY);
+    g.addColorStop(0,hi?r.lit.replace('.78','.94'):r.lit);
+    g.addColorStop(1,hi?r.top.replace('.88','1.0'):r.top);
+    ring(r.r1,r.r2,g);
+    cx2.beginPath();cx2.ellipse(CX,CY,r.r2,r.r2*SY,0,0,Math.PI*2);
+    cx2.strokeStyle=hi?r.sk.replace(/[\d.]+\)$/,'.65)'):r.sk;cx2.lineWidth=hi?2:1.5;cx2.stroke();
+    cx2.beginPath();cx2.ellipse(CX,CY,r.r1,r.r1*SY,0,0,Math.PI*2);
+    cx2.strokeStyle=r.sk.replace(/[\d.]+\)$/,'.22)');cx2.lineWidth=1;cx2.stroke();
+  }
+  wall(60,'rgba(98,56,8,.96)');
+  const gw=cx2.createRadialGradient(CX,CY,0,CX,CY,88);
+  gw.addColorStop(0,'rgba(255,198,52,.32)');gw.addColorStop(1,'rgba(255,198,52,0)');
+  cx2.beginPath();cx2.ellipse(CX,CY,88,88*SY,0,0,Math.PI*2);cx2.fillStyle=gw;cx2.fill();
+  const zg=cx2.createRadialGradient(CX-12,CY-6,0,CX,CY,60);
+  zg.addColorStop(0,'#FFF8C0');zg.addColorStop(.5,'#FFC94D');zg.addColorStop(1,'#8A4C10');
+  cx2.beginPath();cx2.ellipse(CX,CY,60,60*SY,0,0,Math.PI*2);
+  cx2.fillStyle=zg;cx2.fill();
+  cx2.strokeStyle='rgba(240,175,45,.68)';cx2.lineWidth=1.5;cx2.stroke();
+  // Labels
+  const ld=L[lang];
+  cx2.textAlign='center';cx2.textBaseline='middle';
+  [[170,222,0,'rgba(118,76,26,.9)'],[115,170,1,'rgba(162,110,36,.9)'],[60,115,2,'rgba(200,138,50,.9)']].forEach(([r1,r2,i,tc])=>{
+    const rm=(r1+r2)/2,y=CY-rm*SY-1;
+    cx2.font='10px Georgia,serif';cx2.fillStyle=tc;cx2.fillText(ld.rings[i],CX,y);
+    cx2.font='7.5px Georgia,serif';cx2.fillStyle=tc.replace('.9)','.5)');cx2.fillText(ld.subs[i],CX,y+12);
+  });
+  cx2.font='bold 12px Georgia,serif';cx2.fillStyle='#2A1600';cx2.fillText(ld.rings[3],CX,CY-3);
+  cx2.font='8px Georgia,serif';cx2.fillStyle='#5A3800';cx2.fillText(ld.subs[3],CX,CY+9);
+}
+
+function ringAt(e){
+  const rc=cv.getBoundingClientRect();
+  const mx=(e.clientX-rc.left)*(CW/rc.width),my=(e.clientY-rc.top)*(CH/rc.height);
+  const dx=mx-CX;
+  const r=(my>=CY&&my<=CY+WH+6)?Math.abs(dx):Math.sqrt(dx*dx+((my-CY)/SY)**2);
+  if(r<60) return 'rZ';
+  if(r<115) return 'rS';
+  if(r<170) return 'rF';
+  if(r<222) return 'rE';
+  return null;
+}
+
+let hov=null;
+cv.addEventListener('mousemove',e=>{const id=ringAt(e);if(id!==hov){hov=id;draw3d(cur||hov);}});
+cv.addEventListener('mouseleave',()=>{hov=null;draw3d(cur);});
+cv.addEventListener('click',e=>{
+  const id=ringAt(e);
+  if(id===cur){cur=null;clr();}else{cur=id;if(id)show(id);}
+  draw3d(cur||hov);
+});
+
+document.getElementById('b2d').addEventListener('click',()=>{
+  is3d=false;
+  document.getElementById('sw').classList.remove('m3d');
+  document.getElementById('b2d').classList.add('on');
+  document.getElementById('b3d').classList.remove('on');
+});
+document.getElementById('b3d').addEventListener('click',()=>{
+  is3d=true;
+  document.getElementById('sw').classList.add('m3d');
+  document.getElementById('b3d').classList.add('on');
+  document.getElementById('b2d').classList.remove('on');
+  draw3d(cur||hov);
+});
+
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+});
+</script>
+</body>
+</html>

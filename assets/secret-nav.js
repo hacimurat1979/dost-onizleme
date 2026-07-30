@@ -1,25 +1,33 @@
 (function () {
   "use strict";
-  // Gizli görünüm: ana navigasyonda yeri yok, sayfada "@daphne" yazınca
-  // açılıyor. Kelime 2026-07-27'de "daphne"den "@daphne"ye çevrildi --
-  // baştaki "@" düz yazı içinde tesadüfen oluşmasını imkânsız kılıyor
+  // Gizli görünümler: ana navigasyonda yeri yok.
+  // "@daphne" yazınca compare.html açılıyor.
+  // "@ayna"   yazınca meditasyon.html açılıyor.
+  // Baştaki "@" düz yazı içinde tesadüfen oluşmasını imkânsız kılıyor
   // (aynı ölçü düzenleme kipinin "@revise"i için de geçerli).
-  const CODE = "@daphne";
+  const CODES = {
+    "@daphne": "compare.html",
+    "@ayna":   "meditasyon.html",
+  };
+  const MAX_LEN = Math.max(...Object.keys(CODES).map(k => k.length));
   let buffer = "";
 
   window.addEventListener("keydown", (e) => {
     if (e.key.length !== 1) return;
     // AltGr (Ctrl+Alt) Türkçe klavyede "@" üretiyor; bu bileşimi
-    // engellemiyoruz, yoksa kelime hiç yazılamaz. Tek başına Ctrl/Alt
+    // engellemiyoruz, yoksa kelimeler hiç yazılamaz. Tek başına Ctrl/Alt
     // ya da Meta ise kısayoldur, geçilir.
     if (e.metaKey) return;
     if ((e.ctrlKey || e.altKey) && !(e.ctrlKey && e.altKey)) return;
     const t = e.target;
     if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
-    buffer = (buffer + e.key.toLowerCase()).slice(-CODE.length);
-    if (buffer === CODE) {
-      buffer = "";
-      window.location.href = "compare.html";
+    buffer = (buffer + e.key.toLowerCase()).slice(-MAX_LEN);
+    for (const [code, dest] of Object.entries(CODES)) {
+      if (buffer.endsWith(code)) {
+        buffer = "";
+        window.location.href = dest;
+        return;
+      }
     }
   });
 })();
