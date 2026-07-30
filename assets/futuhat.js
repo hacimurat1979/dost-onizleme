@@ -244,7 +244,7 @@
   // --- Stats: walk the part's diagrams and count concepts / relations ---
   function collectTreeStats(node, acc) {
     acc.concepts += 1;
-    (node.children || []).forEach((c) => {
+    (node.children || node.nodes || []).forEach((c) => {
       acc.relations += 1;
       collectTreeStats(c, acc);
     });
@@ -279,11 +279,11 @@
   // --- Flat lists for the "in this part" popups ---
   function walkConcepts(node, diagramId, out) {
     out.push({ diagramId, nodeId: node.id, label: node.label, note: node.note });
-    (node.children || []).forEach((c) => walkConcepts(c, diagramId, out));
+    (node.children || node.nodes || []).forEach((c) => walkConcepts(c, diagramId, out));
   }
 
   function walkRelations(node, diagramId, out) {
-    (node.children || []).forEach((c) => {
+    (node.children || node.nodes || []).forEach((c) => {
       out.push({ diagramId, nodeId: c.id, parentLabel: node.label, childLabel: c.label, note: c.note });
       walkRelations(c, diagramId, out);
     });
@@ -341,7 +341,7 @@
   function renderRadialTree(mount, treeData, opts) {
     const radius = opts.radius || 190;
 
-    const root = d3.hierarchy(treeData, (d) => d.children);
+    const root = d3.hierarchy(treeData, (d) => d.children || d.nodes);
     const sweep = Math.PI * 2 * 0.94;
     const layout = d3
       .tree()
