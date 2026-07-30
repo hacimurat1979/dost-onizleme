@@ -64,8 +64,20 @@
     tpl: {
       soz: { tr: "Bir Cümle", en: "One Sentence", pt: "Uma Frase" },
       ikili: { tr: "İki Kutu", en: "Two Boxes", pt: "Duas Caixas" },
-      soru: { tr: "Bir Soru", en: "A Question", pt: "Uma Pergunta" },
+      soru:     { tr: "Bir Soru", en: "A Question",   pt: "Uma Pergunta" },
+      ontoloji: { tr: "Ontoloji", en: "Ontology",     pt: "Ontologia" },
+      esma:     { tr: "Esmâ",     en: "Divine Name",  pt: "Nome Divino" },
     },
+    filter:      { tr: "Filtre",             en: "Filter",               pt: "Filtro" },
+    filterAll:   { tr: "Tümü",              en: "All",                  pt: "Tudo" },
+    filterCilt:  { tr: "Bu cilt",           en: "This volume",          pt: "Este volume" },
+    filterKisim: { tr: "Bu kısım",          en: "This part",            pt: "Esta parte" },
+    openThis:    { tr: "Aç",               en: "Open",                 pt: "Abrir" },
+    favAdd:      { tr: "★",               en: "★",                    pt: "★" },
+    favRemove:   { tr: "✕",               en: "✕",                    pt: "✕" },
+    favList:     { tr: "Favoriler",         en: "Favourites",           pt: "Favoritos" },
+    favEmpty:    { tr: "Henüz favori yok.", en: "No favourites yet.",   pt: "Sem favoritos ainda." },
+    histList:    { tr: "Son kullanılanlar", en: "Recent",               pt: "Recentes" },
   };
 
   // Sahnenin dili sitenin genel diline BAĞLI DEĞİL: kullanıcı Türkçe
@@ -101,6 +113,16 @@
   function loadSorular() {
     if (sorularData) return Promise.resolve(sorularData);
     return GU.fetchJson("data/ibn-arabi/sorular.json").then((d) => (sorularData = d));
+  }
+
+  let ontolojiData = null, esmaData = null;
+  function loadOntoloji() {
+    if (ontolojiData) return Promise.resolve(ontolojiData);
+    return GU.fetchJson("data/ibn-arabi/ontology.json").then((d) => (ontolojiData = d));
+  }
+  function loadEsma() {
+    if (esmaData) return Promise.resolve(esmaData);
+    return GU.fetchJson("data/ibn-arabi/esma.json").then((d) => (esmaData = d));
   }
 
   function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
@@ -153,12 +175,27 @@
     const m = location.pathname.match(/\/futuhat\/(c\d+k\d+)/);
     return m ? m[1] : null;
   }
+  function currentCilt() {
+    const m = location.pathname.match(/\/futuhat\/c(\d+)k\d+/);
+    return m ? parseInt(m[1]) : null;
+  }
 
   function pickPart(needPair) {
     return loadIndex().then((idx) => {
-      const all = idx.parts.filter((p) => p.status === "active");
+      let all = idx.parts.filter((p) => p.status === "active");
+      if (kaynakId.startsWith("cilt:")) {
+        const c = parseInt(kaynakId.slice(5));
+        const f = all.filter((p) => p.cilt === c);
+        if (f.length) all = f;
+      } else if (kaynakId.startsWith("kisim:")) {
+        const id = kaynakId.slice(6);
+        const f = all.filter((p) => p.id === id);
+        if (f.length) all = f;
+      }
       const cur = currentPartId();
-      const order = cur ? [all.find((p) => p.id === cur)].filter(Boolean).concat(shuffled(all)) : shuffled(all);
+      const order = cur && kaynakId === "all"
+        ? [all.find((p) => p.id === cur)].filter(Boolean).concat(shuffled(all))
+        : shuffled(all);
       // Uygun kayıt bulana kadar sırayla dene (en çok 25 kısım): bazı
       // kısımlarda pair diyagramı ya da yeterince uzun alıntı olmayabilir.
       let i = 0;
@@ -214,6 +251,44 @@
         };
       });
     }
+    if (tpl === "ontoloji") {
+      return loadOntoloji().then((d) => {
+        const nodes = (d.nodes || []).filter((n) => n.insights && n.insights.length);
+        if (!nodes.length) return null;
+        const node = pick(nodes);
+        const ins = pick(node.insights);
+        const raw = ins && (typeof ins === "string" ? ins : tt(ins.text || {}));
+        if (!raw || raw.length < 30) return null;
+        const text = raw.length > 310 ? raw.slice(0, raw.lastIndexOf(" ", 310)) + "…" : raw;
+        return {
+          tpl: "ontoloji",
+          lines: [
+            { text: tt(node.name || {}), kind: "baslik" },
+            { text: text, kind: "soz" },
+          ],
+          source: tt({ tr: "Ontoloji · dostarabi.com", en: "Ontology · dostarabi.com", pt: "Ontologia · dostarabi.com" }),
+        };
+      });
+    }
+    if (tpl === "esma") {
+      return loadEsma().then((d) => {
+        const nodes = (d.nodes || []).filter((n) => n.insights && n.insights.length);
+        if (!nodes.length) return null;
+        const node = pick(nodes);
+        const ins = pick(node.insights);
+        const raw = ins && (typeof ins === "string" ? ins : tt(ins.text || {}));
+        if (!raw || raw.length < 20) return null;
+        const text = raw.length > 310 ? raw.slice(0, raw.lastIndexOf(" ", 310)) + "…" : raw;
+        return {
+          tpl: "esma",
+          lines: [
+            { text: tt(node.name || {}), kind: "baslik" },
+            { text: text, kind: "soz" },
+          ],
+          source: tt({ tr: "Esmâ · dostarabi.com", en: "Divine Names · dostarabi.com", pt: "Nomes Divinos · dostarabi.com" }),
+        };
+      });
+    }
     return pickPart(false).then((r) => {
       if (!r) return null;
       return {
@@ -231,9 +306,11 @@
   // Şablon başına döngü uzunluğu (ms) ve metin vuruşları. Vuruşlar
   // [giriş, çıkış] biçiminde, döngü içindeki oranlar.
   const TIMING = {
-    soz:   { loop: 9000,  beats: [[0.09, 0.94]], source: [0.55, 0.97] },
-    ikili: { loop: 8500,  beats: [[0.09, 0.94], [0.22, 0.94]], source: [0.55, 0.97] },
-    soru:  { loop: 8500,  beats: [[0.09, 0.94]], source: [0.52, 0.97] },
+    soz:      { loop: 9000,  beats: [[0.09, 0.94]], source: [0.55, 0.97] },
+    ikili:    { loop: 8500,  beats: [[0.09, 0.94], [0.22, 0.94]], source: [0.55, 0.97] },
+    soru:     { loop: 8500,  beats: [[0.09, 0.94]], source: [0.52, 0.97] },
+    ontoloji: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]], source: [0.60, 0.97] },
+    esma:     { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]], source: [0.60, 0.97] },
   };
 
   function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
@@ -369,10 +446,15 @@
     const bl = Math.round(A[2] + (B[2] - A[2]) * t);
     return "rgb(" + r + "," + g + "," + bl + ")";
   }
-  const ZEMIN_ANAHTAR = "dost-share-zemin";
-  const ISIK_ANAHTAR = "dost-share-isik";
-  let zeminId = safeGet(ZEMIN_ANAHTAR) || "sarmal";
-  let acikMod = safeGet(ISIK_ANAHTAR) === "1";
+  const ZEMIN_ANAHTAR  = "dost-share-zemin";
+  const ISIK_ANAHTAR   = "dost-share-isik";
+  const FAV_ANAHTAR    = "dost-share-fav";
+  const KAYNAK_ANAHTAR = "dost-share-kaynak";
+  const TARIH_ANAHTAR  = "dost-share-tarih";
+  const MAX_FAV = 20, MAX_TARIH = 5;
+  let zeminId  = safeGet(ZEMIN_ANAHTAR) || "sarmal";
+  let acikMod  = safeGet(ISIK_ANAHTAR) === "1";
+  let kaynakId = safeGet(KAYNAK_ANAHTAR) || "all";
 
   function safeGet(k) {
     // localStorage gizli kipte ya da üçüncü-taraf çerezleri kapalıyken
@@ -516,6 +598,7 @@
       "</svg>" +
       '<div class="share-stage__text">' + lines + "</div>" +
       '<p class="share-stage__source">' + escapeHtml(s.source) + "</p>" +
+      '<div class="share-stage__qr" aria-hidden="true">' + qrSvg() + "</div>" +
       '<div class="share-stage__guides" hidden></div>' +
       // Kayıt kipinde açılış/kapanış karartısı. Sahne döngüsünde hep saydam.
       '<div class="share-stage__fade" style="opacity:0"></div>' +
@@ -672,6 +755,7 @@
 
   function openStage(s) {
     scene = s;
+    tarihEkle(s);
     closeStage();
     stageEl = document.createElement("div");
     stageEl.className = "share-stage" + (acikMod ? " share-stage--acik" : "");
@@ -729,100 +813,304 @@
     document.body.classList.remove("share-stage-open");
   }
 
+  // --- QR kodu (dostarabi.com için önceden hesaplanmış, harici kütüphane yok) ---
+  // Matris: version 2, ECC L, 25×25, encode("https://dostarabi.com")
+  function qrSvg() {
+    const M = ["1111111010011010101111111","1000001011101110101000001","1011101000111111101011101","1011101000100111001011101","1011101011110110001011101","1000001010010100001000001","1111111010101010101111111","0000000010111011000000000","1110011011100001111110011","0001100001100101101101011","0110101000010001000111101","0100110001000010011101000","1000101011011001101100001","0110010100001101111100011","1101011010001101111001101","0001100100011011011111000","1100111011100111111110010","0000000011100101100010001","1111111001110000101010001","1000001011100101100010010","1011101001011101111110001","1011101001101001010010110","1011101010001111100111011","1000001010011010110110000","1111111010000110111001001"];
+    const cell = 4, dim = 25 * cell;
+    let rects = "";
+    M.forEach(function (row, y) {
+      row.split("").forEach(function (b, x) {
+        if (b === "1") rects += '<rect x="' + (x * cell) + '" y="' + (y * cell) + '" width="' + cell + '" height="' + cell + '"/>';
+      });
+    });
+    return '<svg class="share-qr" viewBox="0 0 ' + dim + " " + dim + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="dostarabi.com"><rect width="' + dim + '" height="' + dim + '" fill="white"/><g fill="black">' + rects + "</g></svg>";
+  }
+
+  // --- favori ve geçmiş yardımcıları ---
+  function favLoad() {
+    try { return JSON.parse(localStorage.getItem(FAV_ANAHTAR) || "[]"); } catch (e) { return []; }
+  }
+  function favSave(list) { safeSet(FAV_ANAHTAR, JSON.stringify(list)); }
+  function favAdd(scene) {
+    const list = favLoad();
+    // Aynı metni iki kez ekleme (ilk satır karşılaştırması).
+    const key = scene.lines[0].text;
+    if (list.some(function (s) { return s.lines[0].text === key; })) return;
+    list.unshift(scene);
+    if (list.length > MAX_FAV) list.length = MAX_FAV;
+    favSave(list);
+  }
+  function favRemove(idx) {
+    const list = favLoad();
+    list.splice(idx, 1);
+    favSave(list);
+  }
+  function tarihLoad() {
+    try { return JSON.parse(localStorage.getItem(TARIH_ANAHTAR) || "[]"); } catch (e) { return []; }
+  }
+  function tarihEkle(scene) {
+    const list = tarihLoad();
+    const key = scene.lines[0].text;
+    const i = list.findIndex(function (s) { return s.lines[0].text === key; });
+    if (i !== -1) list.splice(i, 1);
+    list.unshift(scene);
+    if (list.length > MAX_TARIH) list.length = MAX_TARIH;
+    safeSet(TARIH_ANAHTAR, JSON.stringify(list));
+  }
+
   // --- panel -----------------------------------------------------------
-  let panel = null, currentTpl = "soz", pending = null;
+  let panel = null, currentTpl = "soz", candidates = [];
+
+  function candidateSnippet(s) {
+    const first = s.lines[0].text;
+    const second = s.lines.length > 1 ? s.lines[1].text : "";
+    const full = second ? first + "  ·  " + second : first;
+    return full.length > 100 ? full.slice(0, full.lastIndexOf(" ", 100)) + "…" : full;
+  }
+
+  function renderCandidateList() {
+    if (!panel) return;
+    const box = panel.querySelector(".share-panel__candidates");
+    if (!box) return;
+    if (!candidates.length) {
+      box.innerHTML = '<p class="share-panel__cand-empty">' + escapeHtml(tt(UI.loading)) + "</p>";
+      return;
+    }
+    box.innerHTML = candidates.map(function (s, i) {
+      return (
+        '<div class="share-panel__cand">' +
+        '<span class="share-panel__cand-text">' + escapeHtml(candidateSnippet(s)) + "</span>" +
+        '<div class="share-panel__cand-btns">' +
+        '<button type="button" class="share-panel__cand-fav" data-action="fav-add" data-ci="' + i + '" title="' + escapeHtml(tt(UI.favAdd)) + '">' + escapeHtml(tt(UI.favAdd)) + "</button>" +
+        '<button type="button" class="share-panel__go share-panel__cand-open" data-action="open-cand" data-ci="' + i + '">' + escapeHtml(tt(UI.openThis)) + "</button>" +
+        "</div>" +
+        "</div>"
+      );
+    }).join("");
+    box.querySelectorAll("[data-action='fav-add']").forEach(function (b) {
+      b.addEventListener("click", function () {
+        const i = parseInt(b.dataset.ci);
+        if (candidates[i]) { favAdd(candidates[i]); renderSavedLists(); }
+      });
+    });
+    box.querySelectorAll("[data-action='open-cand']").forEach(function (b) {
+      b.addEventListener("click", function () {
+        const i = parseInt(b.dataset.ci);
+        if (candidates[i]) openStage(candidates[i]);
+      });
+    });
+  }
+
+  function renderSavedLists() {
+    if (!panel) return;
+    // Favoriler
+    const favBox = panel.querySelector(".share-panel__favlist");
+    if (favBox) {
+      const list = favLoad();
+      if (!list.length) {
+        favBox.innerHTML = '<p class="share-panel__cand-empty">' + escapeHtml(tt(UI.favEmpty)) + "</p>";
+      } else {
+        favBox.innerHTML = list.map(function (s, i) {
+          return (
+            '<div class="share-panel__cand">' +
+            '<span class="share-panel__cand-text">' + escapeHtml(candidateSnippet(s)) + "</span>" +
+            '<div class="share-panel__cand-btns">' +
+            '<button type="button" class="share-panel__cand-fav" data-action="fav-rm" data-fi="' + i + '" title="' + escapeHtml(tt(UI.favRemove)) + '">' + escapeHtml(tt(UI.favRemove)) + "</button>" +
+            '<button type="button" class="share-panel__go share-panel__cand-open" data-action="open-fav" data-fi="' + i + '">' + escapeHtml(tt(UI.openThis)) + "</button>" +
+            "</div>" +
+            "</div>"
+          );
+        }).join("");
+        favBox.querySelectorAll("[data-action='fav-rm']").forEach(function (b) {
+          b.addEventListener("click", function () {
+            favRemove(parseInt(b.dataset.fi));
+            renderSavedLists();
+          });
+        });
+        favBox.querySelectorAll("[data-action='open-fav']").forEach(function (b) {
+          b.addEventListener("click", function () {
+            const s = favLoad()[parseInt(b.dataset.fi)];
+            if (s) openStage(s);
+          });
+        });
+      }
+    }
+    // Tarih
+    const histBox = panel.querySelector(".share-panel__histlist");
+    if (histBox) {
+      const list = tarihLoad();
+      if (!list.length) {
+        histBox.innerHTML = "";
+      } else {
+        histBox.innerHTML = list.map(function (s, i) {
+          return (
+            '<div class="share-panel__cand">' +
+            '<span class="share-panel__cand-text">' + escapeHtml(candidateSnippet(s)) + "</span>" +
+            '<button type="button" class="share-panel__go share-panel__cand-open" data-action="open-hist" data-hi="' + i + '">' + escapeHtml(tt(UI.openThis)) + "</button>" +
+            "</div>"
+          );
+        }).join("");
+        histBox.querySelectorAll("[data-action='open-hist']").forEach(function (b) {
+          b.addEventListener("click", function () {
+            const s = tarihLoad()[parseInt(b.dataset.hi)];
+            if (s) openStage(s);
+          });
+        });
+      }
+    }
+  }
 
   function refresh() {
-    const status = panel.querySelector(".share-panel__status");
-    status.textContent = tt(UI.loading);
-    panel.querySelector('[data-action="open"]').disabled = true;
-    buildScene(currentTpl).then((s) => {
+    candidates = [];
+    renderCandidateList();
+    const N = 3;
+    const tasks = [];
+    for (let i = 0; i < N; i++) tasks.push(buildScene(currentTpl).catch(function () { return null; }));
+    Promise.all(tasks).then(function (results) {
       if (!panel) return;
-      pending = s;
-      if (!s) { status.textContent = tt(UI.none); return; }
-      status.textContent = s.lines.map((l) => l.text).join("  ·  ");
-      panel.querySelector('[data-action="open"]').disabled = false;
-    }).catch(() => {
-      if (panel) panel.querySelector(".share-panel__status").textContent = tt(UI.none);
+      candidates = results.filter(Boolean);
+      if (!candidates.length) {
+        const box = panel.querySelector(".share-panel__candidates");
+        if (box) box.innerHTML = '<p class="share-panel__cand-empty">' + escapeHtml(tt(UI.none)) + "</p>";
+        return;
+      }
+      renderCandidateList();
     });
   }
 
   function buildPanel() {
     panel = document.createElement("div");
     panel.className = "share-panel";
-    const chips = Object.keys(UI.tpl).map((k) =>
-      '<button type="button" class="share-panel__chip' + (k === currentTpl ? " is-on" : "") +
-      '" data-tpl="' + k + '">' + escapeHtml(tt(UI.tpl[k])) + "</button>"
-    ).join("");
-    const zeminChips = ZEMIN.map((z) =>
-      '<button type="button" class="share-panel__chip share-panel__chip--sm'
-      + (z.id === zeminId ? " is-on" : "") + '" data-zemin="' + z.id + '">'
-      + escapeHtml(tt(z.ad)) + "</button>"
-    ).join("");
-    const dilChips = DIL_LANGS.map((l) =>
-      '<button type="button" class="share-panel__chip share-panel__chip--sm'
-      + (l === shareLangId ? " is-on" : "") + '" data-dil="' + l + '">'
-      + escapeHtml(DIL_ETIKET[l] || l.toUpperCase()) + "</button>"
-    ).join("");
+
+    const chips = Object.keys(UI.tpl).map(function (k) {
+      return '<button type="button" class="share-panel__chip' + (k === currentTpl ? " is-on" : "") +
+        '" data-tpl="' + k + '">' + escapeHtml(tt(UI.tpl[k])) + "</button>";
+    }).join("");
+
+    const dilChips = DIL_LANGS.map(function (l) {
+      return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
+        (l === shareLangId ? " is-on" : "") + '" data-dil="' + l + '">' +
+        escapeHtml(DIL_ETIKET[l] || l.toUpperCase()) + "</button>";
+    }).join("");
+
+    const zeminChips = ZEMIN.map(function (z) {
+      return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
+        (z.id === zeminId ? " is-on" : "") + '" data-zemin="' + z.id + '">' +
+        escapeHtml(tt(z.ad)) + "</button>";
+    }).join("");
+
+    // Filtre satırı yalnız Fütûhât kısmındayken gösterilir.
+    const cilt = currentCilt(), kisimId = currentPartId();
+    let kaynak_chips = "";
+    if (cilt && kisimId) {
+      const opts = [
+        { id: "all",         label: tt(UI.filterAll) },
+        { id: "cilt:" + cilt, label: tt(UI.filterCilt) },
+        { id: "kisim:" + kisimId, label: tt(UI.filterKisim) },
+      ];
+      kaynak_chips = opts.map(function (o) {
+        return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
+          (o.id === kaynakId ? " is-on" : "") + '" data-kaynak="' + o.id + '">' +
+          escapeHtml(o.label) + "</button>";
+      }).join("");
+    }
+
+    const favs = favLoad();
+    const tarih = tarihLoad();
+
     panel.innerHTML =
       '<div class="share-panel__head">' + escapeHtml(tt(UI.title)) +
       '<button type="button" data-action="quit" aria-label="' + escapeHtml(tt(UI.close)) + '">✕</button></div>' +
       '<p class="share-panel__hint">' + escapeHtml(tt(UI.hint)) + "</p>" +
+      // Şablon seçici
       '<div class="share-panel__chips">' + chips + "</div>" +
+      // Dil seçici
       '<p class="share-panel__label">' + escapeHtml(tt(UI.dil)) + "</p>" +
       '<div class="share-panel__chips share-panel__chips--zemin">' + dilChips + "</div>" +
+      // Zemin seçici
       '<p class="share-panel__label">' + escapeHtml(tt(UI.zemin)) + "</p>" +
       '<div class="share-panel__chips share-panel__chips--zemin">' + zeminChips + "</div>" +
-      '<label class="share-panel__switch">'
-      + '<input type="checkbox" data-action="isik"' + (acikMod ? " checked" : "") + ">"
-      + "<span>" + escapeHtml(tt(UI.isik)) + "</span></label>" +
-      '<p class="share-panel__status"></p>' +
+      // Açık zemin
+      '<label class="share-panel__switch">' +
+      '<input type="checkbox" data-action="isik"' + (acikMod ? " checked" : "") + ">" +
+      "<span>" + escapeHtml(tt(UI.isik)) + "</span></label>" +
+      // Filtre (koşullu)
+      (kaynak_chips
+        ? '<p class="share-panel__label">' + escapeHtml(tt(UI.filter)) + "</p>" +
+          '<div class="share-panel__chips share-panel__chips--zemin" id="share-kaynak-chips">' + kaynak_chips + "</div>"
+        : "") +
+      // Çoklu önizleme
+      '<div class="share-panel__candidates"></div>' +
+      // Başkasını getir
       '<div class="share-panel__actions">' +
       '<button type="button" data-action="shuffle">' + escapeHtml(tt(UI.shuffle)) + "</button>" +
-      '<button type="button" data-action="open" class="share-panel__go">' + escapeHtml(tt(UI.open)) + "</button>" +
-      "</div>";
+      "</div>" +
+      // Favoriler
+      '<details class="share-panel__details"' + (favs.length ? " open" : "") + ">" +
+      '<summary>' + escapeHtml(tt(UI.favList)) + (favs.length ? " (" + favs.length + ")" : "") + "</summary>" +
+      '<div class="share-panel__favlist"></div>' +
+      "</details>" +
+      // Son kullanılanlar
+      (tarih.length
+        ? '<details class="share-panel__details"><summary>' + escapeHtml(tt(UI.histList)) + "</summary>" +
+          '<div class="share-panel__histlist"></div></details>'
+        : "");
+
     document.body.appendChild(panel);
-    panel.querySelectorAll("[data-tpl]").forEach((b) => {
-      b.addEventListener("click", () => {
+
+    panel.querySelectorAll("[data-tpl]").forEach(function (b) {
+      b.addEventListener("click", function () {
         currentTpl = b.dataset.tpl;
-        panel.querySelectorAll("[data-tpl]").forEach((x) => x.classList.toggle("is-on", x === b));
+        panel.querySelectorAll("[data-tpl]").forEach(function (x) { x.classList.toggle("is-on", x === b); });
         refresh();
       });
     });
-    panel.querySelectorAll("[data-dil]").forEach((b) => {
-      b.addEventListener("click", () => {
+
+    panel.querySelectorAll("[data-dil]").forEach(function (b) {
+      b.addEventListener("click", function () {
         if (b.dataset.dil === shareLangId) return;
         shareLangId = b.dataset.dil;
         safeSet(DIL_ANAHTAR, shareLangId);
-        // Yalnız kartın içeriği değil, panelin kendi metni (başlık, ipucu,
-        // düğme adları) de seçilen dile geçsin -- ikisi ayrı görünürse
-        // "İngilizce kayıt" seçmenin ne işe yaradığı belirsizleşirdi.
-        // buildPanel() modül düzeyindeki `panel` değişkenini YENİ bir
-        // düğümle değiştiriyor; eskisini biz kaldırmazsak DOM'da iki
-        // panel üst üste kalırdı.
+        // Yalnız kartın içeriği değil, panelin kendi metni de seçilen dile geçsin.
+        // buildPanel() modül düzeyindeki `panel` değişkenini YENİ bir düğümle
+        // değiştiriyor; eskisini biz kaldırmazsak DOM'da iki panel üst üste kalırdı.
         const old = panel;
         buildPanel();
         if (old) old.remove();
       });
     });
-    panel.querySelectorAll("[data-zemin]").forEach((b) => {
-      b.addEventListener("click", () => {
+
+    panel.querySelectorAll("[data-zemin]").forEach(function (b) {
+      b.addEventListener("click", function () {
         zeminId = b.dataset.zemin;
         safeSet(ZEMIN_ANAHTAR, zeminId);
-        panel.querySelectorAll("[data-zemin]").forEach((x) => x.classList.toggle("is-on", x === b));
+        panel.querySelectorAll("[data-zemin]").forEach(function (x) { x.classList.toggle("is-on", x === b); });
       });
     });
-    panel.querySelector('[data-action="isik"]').addEventListener("change", (e) => {
+
+    const kaynakBox = panel.querySelector("#share-kaynak-chips");
+    if (kaynakBox) {
+      kaynakBox.querySelectorAll("[data-kaynak]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          kaynakId = b.dataset.kaynak;
+          safeSet(KAYNAK_ANAHTAR, kaynakId);
+          kaynakBox.querySelectorAll("[data-kaynak]").forEach(function (x) { x.classList.toggle("is-on", x === b); });
+          refresh();
+        });
+      });
+    }
+
+    panel.querySelector('[data-action="isik"]').addEventListener("change", function (e) {
       acikMod = e.target.checked;
       safeSet(ISIK_ANAHTAR, acikMod ? "1" : "0");
-      // Sahne açıksa anında uygula; kapalıysa bir sonraki açılışta geçerli.
       if (stageEl) stageEl.classList.toggle("share-stage--acik", acikMod);
     });
+
     panel.querySelector('[data-action="shuffle"]').addEventListener("click", refresh);
-    panel.querySelector('[data-action="open"]').addEventListener("click", () => {
-      if (pending) openStage(pending);
-    });
     panel.querySelector('[data-action="quit"]').addEventListener("click", closePanel);
+
+    renderSavedLists();
     refresh();
   }
 

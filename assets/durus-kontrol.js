@@ -24,7 +24,7 @@
 (function () {
   "use strict";
 
-  var SURUM = "s4";
+  var SURUM = "s5";
   var DISMISS_KEY = "dost-durus-susturulan";
 
   // YALNIZ TÜRKÇE (s3, kullanıcı kararı). Gerekçe: kalıplar Türkçe için
@@ -176,6 +176,23 @@
       neden: "İki kaynağı birbirine bağlayan bir cümle, ama bağın bize ait olduğu söylenmemiş.",
       yerine: "“Bağı biz kuruyoruz”, “iki metin birbirine atıf yapmıyor” gibi bir cümle ekle.",
       kosul: BAGSIZ,
+    },
+    {
+      id: "niyeti-bilmek", seviye: "gozden-gecir", ad: "Dost'un niyetini bilmek",
+      // Kalıp kasıtlı dar: "Dost'un kastı ne?" biçimindeki retorik soru
+      // ya da "kastı şu:" biçimindeki net beyan yakalanıyor; olasılık
+      // bildiren "kastını anlamaya çalışıyoruz" yakalanmıyor.
+      re: new RegExp(ONEK + "(?:(?:Dost'un|İbn Arabî'nin|onun)\\s+(?:kastı|muradı)|(?:kastı|muradı)\\s+şu(?:dur)?)" + SONEK, "giu"),
+      neden: "Bir müellifin niyetini ya da kastını doğrudan bilmek iddialı. Kökensel duruş: anlama çabasındayız, hakem değiliz.",
+      yerine: "“Bu satırları şöyle okuyoruz”, “bize kastı şunu çağrıştırıyor”, “şöyle yorumlanabilir”.",
+      esKosul: NAKIL_DISI,
+    },
+    {
+      id: "dogmatik-ozet", seviye: "gozden-gecir", ad: "Dogmatik özet",
+      re: basKelime("buradaki (?:temel )?mesaj|öğretinin özü|bir cümleyle özetl|kısacası şunu söyl|özetle şunu söyl|özetle diyebilir"),
+      neden: "Bir pasajı veya öğretiyi tek bir mesaja/öze indirgemek, okumayı kapanmış bir sonuç gibi sunar.",
+      yerine: "“Bu satırlar bize şunu düşündürüyor”, “bu bölümden çıkardığımız bir şey şu”.",
+      esKosul: NAKIL_DISI,
     },
   ];
 

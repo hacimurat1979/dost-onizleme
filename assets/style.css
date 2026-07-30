@@ -6335,6 +6335,57 @@ mark.durus-vurgu-es {
   cursor: pointer;
 }
 .share-panel__switch input { width: 16px; height: 16px; accent-color: var(--accent-interactive); }
+
+/* Çoklu önizleme kartları */
+.share-panel__candidates { margin: 10px 0 4px; display: flex; flex-direction: column; gap: 6px; }
+.share-panel__cand {
+  display: flex; align-items: flex-start; gap: 6px;
+  padding: 7px 8px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface-2, transparent);
+}
+.share-panel__cand-text {
+  flex: 1; font-size: 0.76rem; line-height: 1.4; color: var(--text-secondary);
+  word-break: break-word;
+}
+.share-panel__cand-btns { display: flex; gap: 5px; flex-shrink: 0; }
+.share-panel__cand-fav {
+  border: 1px solid var(--border); background: none; border-radius: 4px;
+  padding: 2px 6px; font-size: 0.82rem; cursor: pointer; color: var(--text-muted);
+}
+.share-panel__cand-fav:hover { color: var(--accent-interactive); border-color: var(--accent-interactive); }
+.share-panel__cand-open { padding: 3px 9px; font-size: 0.76rem; border-radius: 4px; }
+.share-panel__cand-empty { margin: 4px 0; font-size: 0.76rem; color: var(--text-muted); font-style: italic; }
+
+/* Favoriler ve Son kullanılanlar */
+.share-panel__details {
+  margin-top: 10px; border: 1px solid var(--border); border-radius: 6px;
+  padding: 0;
+}
+.share-panel__details summary {
+  padding: 6px 10px; font-size: 0.76rem; font-weight: 600; cursor: pointer;
+  color: var(--text-secondary); user-select: none; list-style: none;
+}
+.share-panel__details summary::-webkit-details-marker { display: none; }
+.share-panel__details summary::before { content: "▸ "; font-size: 0.7rem; }
+.share-panel__details[open] summary::before { content: "▾ "; }
+.share-panel__favlist, .share-panel__histlist {
+  padding: 4px 8px 8px; display: flex; flex-direction: column; gap: 5px;
+}
+
+/* Sahne içi QR kodu */
+.share-stage__qr {
+  position: absolute; bottom: 14px; right: 14px;
+  width: 52px; height: 52px; border-radius: 4px; overflow: hidden;
+  opacity: 0.75;
+}
+.share-qr { display: block; width: 100%; height: 100%; }
+
+/* Başlık satırı (Ontoloji/Esmâ şablonları) */
+.share-line--baslik {
+  font-size: clamp(0.82rem, 2.8vw, 1.05rem);
+  font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase;
+  opacity: 0.65;
+}
 /* Hale açık zeminde parlama değil leke gibi okunuyor (koyu zeminde ışık
    saçıyor, açıkta metnin üstüne oturuyor); orada yumuşatılıyor. Satır içi
    opaklığı JS yazdığı için filtre ile çarpılıyor. */
