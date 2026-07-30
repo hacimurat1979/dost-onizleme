@@ -86,10 +86,15 @@
         "cilt": 17,
         "kisimStart": 223,
         "kisimEnd": 224
+      },
+      {
+        "cilt": 18,
+        "kisimStart": 225,
+        "kisimEnd": 226
       }
     ]
   },
-  "activePartId": "c17k224",
+  "activePartId": "c18k226",
   "parts": [
     {
       "id": "c1k3",
@@ -99502,6 +99507,331 @@
             "tr": "\"Çeşitli Menzillerden Hakikatlerin ve Sırların Bilinmesi\" başlıklı 559. Bölüm; iki yüz elli üçü aşkın alt-bölümlü tek bölüm, Cilt XVII'yi kapatıyor",
             "en": "The 559th Chapter, titled 'The Knowledge of Truths and Secrets from Various Stations'; a single chapter with more than 253 sub-sections that closes Volume XVII",
             "pt": "O 559º Capítulo, intitulado 'O Conhecimento das Verdades e Segredos de Várias Estações'; um único capítulo com mais de 253 sub-seções que encerra o Volume XVII"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c18k225",
+      "cilt": 18,
+      "kisim": 225,
+      "status": "active",
+      "title": {
+        "tr": "Sifr 35 — Açık Şirkten Büyük Hastalığa",
+        "en": "Sifr 35 — From Open Shirk to the Greatest Disease",
+        "pt": "Sifr 35 — Do Shirk Aberto à Grande Doença"
+      },
+      "pageRange": {
+        "tr": "Cilt XVIII, Otuz Beşinci Sifr, ss. 14–175",
+        "en": "Vol. XVIII, Thirty-Fifth Sifr, pp. 14–175",
+        "pt": "Vol. XVIII, Trigésimo Quinto Sifr, pp. 14–175"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Fütûhât'ın on sekizinci cildi, Otuz Beşinci Sifr ile açılıyor. Dost burada açık ve gizli şirki karşılaştırıyor: açık şirk Allah'a eş koşmakken, gizli şirk bir işi yapmak için alete ve araca güvenmektir — ve bu anlamda 'herkes müşriktir, çünkü herkes bilgi sahibidir; şirki ancak bilgi üretir.' Nimetlere dalmak körlük getirir; amanetin üstesinden gelemeyen kalbin perdeleri artar; en büyük hastalıksa yüz çevirmektir — Allah'ın âleme yerleştirdiği ayetlerden gözünü kapamak.",
+          "en": "Volume XVIII of the Fütûhât opens with the Thirty-Fifth Sifr. Here Ibn Arabî compares open and hidden shirk: explicit shirk is associating partners with God, while hidden shirk is trusting in tools and means for accomplishing a task — and in this sense 'everyone is a mushrik, for everyone possesses knowledge; only knowledge produces shirk.' Being immersed in blessings brings blindness; the veils of a heart that cannot bear its trust multiply; and the greatest disease of all is turning away — closing one's eyes to the signs God has placed in the universe.",
+          "pt": "O décimo oitavo volume do Fütûhât abre com o Trigésimo Quinto Sifr. Aqui Ibn Arabî compara o shirk aberto e o oculto: o shirk explícito é associar parceiros a Deus, enquanto o shirk oculto é confiar em ferramentas e meios para realizar uma tarefa — e nesse sentido 'todos são mushrik, pois todos possuem conhecimento; apenas o conhecimento produz shirk.' Mergulhar nas bênçãos traz cegueira; os véus de um coração que não suporta sua confiança multiplicam-se; e a maior doença de todas é se afastar — fechar os olhos aos sinais que Deus colocou no universo."
+        }
+      },
+      "mainDiagram": {
+        "type": "diagram",
+        "source": "tree",
+        "caption": {
+          "tr": "Otuz Beşinci Sifr'in dört ana teması",
+          "en": "The four main themes of the Thirty-Fifth Sifr",
+          "pt": "Os quatro temas principais do Trigésimo Quinto Sifr"
+        },
+        "tree": {
+          "id": "c18k225-root",
+          "label": {
+            "tr": "Sifr 35: Şirk, Körlük, Emanet, Yüz Çevirme",
+            "en": "Sifr 35: Shirk, Blindness, Trust, Turning Away",
+            "pt": "Sifr 35: Shirk, Cegueira, Confiança, Afastamento"
+          },
+          "children": [
+            {
+              "id": "c18k225-shirk",
+              "label": {
+                "tr": "Açık ve Gizli Şirk",
+                "en": "Open and Hidden Shirk",
+                "pt": "Shirk Aberto e Oculto"
+              }
+            },
+            {
+              "id": "c18k225-nimet",
+              "label": {
+                "tr": "Nimetlere Dalmak Körlüktür",
+                "en": "Immersion in Blessings Is Blindness",
+                "pt": "Mergulhar nas Bênçãos É Cegueira"
+              }
+            },
+            {
+              "id": "c18k225-telef",
+              "label": {
+                "tr": "Bazen Telef Halefte Olabilir",
+                "en": "Sometimes Destruction Is in the Successor",
+                "pt": "Às Vezes a Destruição Está no Sucessor"
+              }
+            },
+            {
+              "id": "c18k225-hastalik",
+              "label": {
+                "tr": "En Büyük Hastalık: Yüz Çevirmek",
+                "en": "The Greatest Disease: Turning Away",
+                "pt": "A Maior Doença: O Afastamento"
+              }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "c18k225-s1",
+          "heading": {
+            "tr": "Açık ve Gizli Şirk",
+            "en": "Open and Hidden Shirk",
+            "pt": "Shirk Aberto e Oculto"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bu sifri şirkin iki biçimini birbirinden ayırarak açıyor. Açık şirk (şirk-i celî), insanın fiilini bir araçla gerçekleştirmesidir; gizli şirk ise (şirk-i hafî) o araçla yapılabilecek bir şeyde araca ve sebeplere güvenmektir. Oradan şaşırtıcı bir sonuca varıyor: \"Herkes müşriktir; çünkü herkes bilgi sahibidir ve şirki ancak bilgi üretir, bilgiyi ise Hak talep eder.\" Bu cümleyi okuyunca bir süre duraksıyoruz: şirk bilginin kaçınılmaz gölgesi mi? Dost bunu mahkum etmek için söylemiyor gibi — \"içinde bulundukları şirke dair bilgileri olmadığı için Allah onları şirke nispet etmemiştir\" diyor. Yani bu bir tuzak değil, gizli bir ilahi düzene işaret: Hak, bilginin kendisini talep ettiği için şirk kaçınılmaz hale gelmiş, ama bu farkındalığın olmadığı yerde mazeret de mevcut.",
+                "en": "Ibn Arabî opens this sifr by distinguishing between two forms of shirk. Open shirk (shirk-i jalī) is when a person's act is accomplished through a means; hidden shirk (shirk-i khafī) is trusting in that means and in causes for something that could be done with it. From there he arrives at a startling conclusion: 'Everyone is a mushrik; for everyone possesses knowledge, and only knowledge produces shirk, while God demands knowledge.' When we read this sentence we pause for a moment: is shirk the unavoidable shadow of knowledge? He does not seem to say this to condemn — 'because they have no knowledge of the shirk they are in, God has not attributed shirk to them.' That is: this is not a trap, but a pointer to a hidden divine order: since God demands knowledge itself, shirk becomes unavoidable, yet where there is no awareness of this, an excuse also exists.",
+                "pt": "Ibn Arabî abre este sifr distinguindo duas formas de shirk. O shirk aberto (shirk-i jalī) é quando o ato de uma pessoa é realizado por meio de um instrumento; o shirk oculto (shirk-i khafī) é confiar nesse instrumento e nas causas para algo que poderia ser feito com ele. Daí chega a uma conclusão surpreendente: 'Todos são mushrik; pois todos possuem conhecimento, e apenas o conhecimento produz shirk, enquanto Deus demanda conhecimento.' Quando lemos esta frase, pausamos por um momento: o shirk é a sombra inevitável do conhecimento? Ele não parece dizer isso para condenar — 'porque não têm conhecimento do shirk em que estão, Deus não lhes atribuiu shirk.' Ou seja: isso não é uma armadilha, mas um apontador para uma ordem divina oculta: como Deus demanda o próprio conhecimento, o shirk torna-se inevitável, mas onde não há consciência disso, uma desculpa também existe."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c18k225-s2",
+          "heading": {
+            "tr": "Nimetlere Dalmak Körlüktür",
+            "en": "Immersion in Blessings Is Blindness",
+            "pt": "Mergulhar nas Bênçãos É Cegueira"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sifrin ikinci büyük teması nimete dalmaktır. Dost, Hz. Süleyman'ın \"Bana benden sonra kimseye yaraşmayan bir mülk ver\" duasını referans gösteriyor ve o duanın aslında \"bütünü\" istemek olduğunu söylüyor. Ardından ilginç bir gerilim açılıyor: nimete sahip olmak, asıl olan fakirlikten uzaklaşmaktır. \"Ciddiyet sahiplerinin hapsedilmiş oldukları söylenir\" — çünkü asılları olan fakirlik ve yoksulluktan çıkmışlardır. Buradaki fakirlik (fakr), maddî yoksunluk değil, Hakk'a olan yapısal muhtaçlıktır. Nimetin kendisi körlük değil; nimetin içinde o muhtaçlığı unutmak körlüktür.",
+                "en": "The second great theme of the sifr is immersion in blessings. Ibn Arabī references the prayer of Solomon — 'Give me a kingdom that befits no one after me' — and says that prayer was in truth a request for totality. Then an interesting tension opens up: possessing blessings is to drift from one's original state of poverty. 'The people of earnestness are said to be imprisoned' — for they have departed from their original poverty and indigence. The poverty (faqr) here is not material lack but structural neediness toward the Real. Blessings themselves are not blindness; forgetting that neediness while inside blessings is blindness.",
+                "pt": "O segundo grande tema do sifr é o mergulho nas bênçãos. Ibn Arabī faz referência à oração de Salomão — 'Dá-me um reino que não caiba a ninguém depois de mim' — e diz que essa oração era, na verdade, um pedido de totalidade. Então uma tensão interessante se abre: possuir bênçãos é se afastar do estado original de pobreza. 'Diz-se que as pessoas de seriedade estão aprisionadas' — pois se afastaram de sua pobreza e indigência originais. A pobreza (faqr) aqui não é carência material, mas necessidade estrutural em relação ao Real. As bênçãos em si não são cegueira; esquecer essa necessidade enquanto se está dentro das bênçãos é cegueira."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c18k225-s3",
+          "heading": {
+            "tr": "Bazen Telef Halefte Olabilir",
+            "en": "Sometimes Destruction Is in the Successor",
+            "pt": "Às Vezes a Destruição Está no Sucessor"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost bu başlık altında emanet ve ihanet meselesini ele alıyor. Bir emanete sahip çıkıp onu koruyamamak, perdelerin kalınlaşmasına yol açar. Ama daha ilginç olan şu: \"bazen telef halefte olabilir\" — yani bir şeyin yok olması onu devralacak kişide gizlidir. Bu bizi miras, iktidar, bilgi aktarımı ve mülkiyet üzerine düşünmeye davet ediyor. Dost şöyle söylüyor: fazlasını isteyen, sahip olduklarına muhtaç olduğu için Allah'tan başkasıyla perdelenmiştir. Elindekinden tatmin olmayan kişi, aslında muhtaçlığın kaynağından uzaklaşmış demektir. \"Muhtaçlıktan sakınmalısın\" — ama burada muhtaçlık, Hakk'a olan muhtaçlığa değil, sahip olduklarına duyulan ihtiyaca işaret ediyor.",
+                "en": "Under this heading Ibn Arabī addresses the issue of trust and betrayal. Failing to protect a trust one has received causes the veils to thicken. But something more interesting is here: 'sometimes destruction is in the successor' — that is, the obliteration of a thing is hidden in the person who will inherit it. This invites us to reflect on inheritance, power, the transmission of knowledge, and ownership. Ibn Arabī says: the one who wants more has been veiled from God because they have become needful of what they possess. The one not satisfied with what they have has in effect distanced themselves from the source of neediness itself. 'You must guard against neediness' — but here neediness refers not to neediness toward the Real, but to the neediness felt toward one's possessions.",
+                "pt": "Sob este título Ibn Arabī aborda a questão da confiança e da traição. Não proteger uma confiança que recebeu faz com que os véus se espessem. Mas há algo mais interessante aqui: 'às vezes a destruição está no sucessor' — ou seja, o apagamento de uma coisa está oculto na pessoa que a herdará. Isso nos convida a refletir sobre herança, poder, transmissão de conhecimento e propriedade. Ibn Arabī diz: quem quer mais foi velado de Deus porque se tornou necessitado do que possui. Quem não está satisfeito com o que tem se distanciou, na prática, da própria fonte da necessidade. 'Você deve se guardar da necessidade' — mas aqui necessidade não se refere à necessidade em relação ao Real, mas à necessidade sentida em relação às próprias posses."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c18k225-s4",
+          "heading": {
+            "tr": "En Büyük Hastalık: Yüz Çevirmek",
+            "en": "The Greatest Disease: Turning Away",
+            "pt": "A Maior Doença: O Afastamento"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Sifrin kapanış teması kalplerin en çetin hastalığıdır: yüz çevirmek. Dost önce mutlak anlamda yüz çevirmenin mümkün olmadığını söylüyor — her yüz çevirme bir yöne yöneliştir. Ama özel bir yüz çevirme var: Allah'ın âleme delil olarak koyduğu ayetlerden, yüzünü çevirmek. Bu hastalık kökleştiğinde artık ilaç fayda vermez. Ve bunu takip eden bir şiirde Dost'un kalbinde duyduğumuz sesin sifirin sonuna doğru farklı bir renge büründüğü hissediliyor: \"Hah beni hasta eder yüz çevirince / Kimdir beni böyle hasta etmiş keşke bilseydim.\" Bu, önceki ciltte (c17k223-s3'te) de geçen \"hasta oldum\" pasajıyla doğrudan bağlanıyor. Yüz çevirmenin verdiği hastalık, hasretten ayrışan bir acı — ayrılığın değil, görmezden gelinmenin acısı.",
+                "en": "The closing theme of the sifr is the most severe disease of hearts: turning away. Ibn Arabī first says that turning away in an absolute sense is impossible — every turning away is an orientation toward something. But there is a specific turning away: turning one's face from the signs God has placed in the universe as His evidence. When this disease takes root, medicine no longer helps. And in a poem that follows, the voice we hear in Ibn Arabī's heart takes on a different hue toward the end of the sifr: 'When He turns His face I fall ill / Would that I knew who has made me ill like this.' This connects directly with the 'hasta oldum' passage from the previous volume (c17k223-s3). The illness that turning away brings is a pain distinct from longing — not the pain of separation but of being ignored.",
+                "pt": "O tema de encerramento do sifr é a mais severa doença dos corações: o afastamento. Ibn Arabī diz primeiro que o afastamento em sentido absoluto é impossível — todo afastamento é uma orientação em direção a algo. Mas há um afastamento específico: virar o rosto para longe dos sinais que Deus colocou no universo como Sua evidência. Quando essa doença se enraíza, a medicina não ajuda mais. E em um poema que segue, a voz que ouvimos no coração de Ibn Arabī assume uma tonalidade diferente perto do fim do sifr: 'Quando Ele vira o rosto fico doente / Quem me fez adoecer assim, eu gostaria de saber.' Isso se conecta diretamente com a passagem 'hasta oldum' do volume anterior (c17k223-s3). A doença que o afastamento traz é uma dor distinta do anseio — não a dor da separação, mas da indiferença."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "cite": "Fütûhât-ı Mekkiyye, Cilt XVIII, Otuz Beşinci Sifr (ss. 14–175)",
+          "note": {
+            "tr": "Dört ana başlık: Açık ve Gizli Şirk / Nimetlere Dalmak Körlüktür / Bazen Telef Halefte Olabilir / En Büyük Hastalık Yüz Çevirmektir",
+            "en": "Four main headings: Open and Hidden Shirk / Immersion in Blessings Is Blindness / Sometimes Destruction Is in the Successor / The Greatest Disease Is Turning Away",
+            "pt": "Quatro títulos principais: Shirk Aberto e Oculto / Mergulhar nas Bênçãos É Cegueira / Às Vezes a Destruição Está no Sucessor / A Maior Doença É o Afastamento"
+          }
+        }
+      ]
+    }
+    ,
+    {
+      "id": "c18k226",
+      "cilt": 18,
+      "kisim": 226,
+      "status": "active",
+      "title": {
+        "tr": "Sifr 36 / 560. Bölüm — Seyr-ü Sülük Edene Tavsiyeler",
+        "en": "Sifr 36 / Chapter 560 — Counsels for the Spiritual Wayfarer",
+        "pt": "Sifr 36 / Capítulo 560 — Conselhos para o Viajante Espiritual"
+      },
+      "pageRange": {
+        "tr": "Cilt XVIII, Otuz Altıncı Sifr / 560. Bölüm, ss. 180–319",
+        "en": "Vol. XVIII, Thirty-Sixth Sifr / Chapter 560, pp. 180–319",
+        "pt": "Vol. XVIII, Trigésimo Sexto Sifr / Capítulo 560, pp. 180–319"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Fütûhât-ı Mekkiyye'nin son büyük bölümü: Seyr-ü sülük eden müride ve kemale ermiş kimselere Allah'ın izniyle fayda verecek hikmetli tavsiyeler. Dost bu ciltte birbiri ardınca sıraladığı tavsiyeler arasında cemaat ve birliği, hüsnüzan ile Kelime-i Tevhid'i, günah sonrası ibadet ve nafile namazı, ve merhameti bütün varlığa yaymayı öne çıkarıyor. Aralarında en çarpıcı olanı belki şudur: La ilahe illallah tartıya girmez — o kelimeyi hiçbir şeyle tartamazsınız, çünkü terazi de dahil her şeyi o kelime var etmiştir.",
+          "en": "The last major chapter of the Fütûhât-ı Mekkiyye: Wise counsels that, with God's permission, will benefit the spiritual wayfarer and those who have attained perfection. Among the counsels Ibn Arabī lines up one after another in this volume, he foregrounds community and unity, good opinion and the Word of Witnessing, worship after sin and supererogatory prayer, and the spreading of mercy to all of existence. Perhaps the most striking among them is this: 'La ilahe illallah' does not go on the scale — you cannot weigh that word against anything, for even the scale itself has been brought into existence by that word.",
+          "pt": "O último grande capítulo do Fütûhât-ı Mekkiyye: Sábios conselhos que, com a permissão de Deus, beneficiarão o viajante espiritual e aqueles que atingiram a perfeição. Entre os conselhos que Ibn Arabī enumera um após outro neste volume, ele destaca a comunidade e a unidade, a boa opinião e a Palavra do Testemunho, a adoração após o pecado e a oração supererogatória, e o espalhamento da misericórdia por toda a existência. Talvez o mais impressionante entre eles seja este: 'La ilahe illallah' não vai à balança — você não pode pesar essa palavra contra nada, pois até a própria balança foi trazida à existência por essa palavra."
+        }
+      },
+      "mainDiagram": {
+        "type": "diagram",
+        "source": "tree",
+        "caption": {
+          "tr": "560. Bölüm'ün dört ana tavsiye eksenini",
+          "en": "The four main counsel axes of Chapter 560",
+          "pt": "Os quatro eixos principais de conselho do Capítulo 560"
+        },
+        "tree": {
+          "id": "c18k226-root",
+          "label": {
+            "tr": "560. Bölüm: Birlik, Tevhid, İbadet, Merhamet",
+            "en": "Ch. 560: Unity, Witnessing, Worship, Mercy",
+            "pt": "Cap. 560: Unidade, Testemunho, Adoração, Misericórdia"
+          },
+          "children": [
+            {
+              "id": "c18k226-cemaat",
+              "label": {
+                "tr": "Birlik ve Cemaat (İki Sopa)",
+                "en": "Unity and Community (Two Sticks)",
+                "pt": "Unidade e Comunidade (Dois Bastões)"
+              }
+            },
+            {
+              "id": "c18k226-tevhid",
+              "label": {
+                "tr": "Hüsnüzan ve Kelime-i Tevhid",
+                "en": "Good Opinion and Word of Witnessing",
+                "pt": "Boa Opinião e Palavra do Testemunho"
+              }
+            },
+            {
+              "id": "c18k226-ibadet",
+              "label": {
+                "tr": "Günah Sonrası İbadet ve Nafile",
+                "en": "Worship After Sin and Supererogation",
+                "pt": "Adoração Após o Pecado e Supererogação"
+              }
+            },
+            {
+              "id": "c18k226-merhamet",
+              "label": {
+                "tr": "Merhameti Bütün Varlığa Yaymak",
+                "en": "Extending Mercy to All of Existence",
+                "pt": "Espalhando Misericórdia por Toda a Existência"
+              }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "c18k226-s1",
+          "heading": {
+            "tr": "Birlik ve Cemaat: İki Sopa",
+            "en": "Unity and Community: The Two Sticks",
+            "pt": "Unidade e Comunidade: Os Dois Bastões"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "560. Bölüm'ün ilk tavsiyesi birlik ve cemaatle başlıyor. Dost, \"Allah'ın eli cemaatle beraberdir ve kurt ancak sürüden ayrılan koyunu yer\" diyor. Bunu açıklarken ilginç bir ontolojik bağlantı kuruyor: Allah esmâ-i hüsnâsı bakımından bilinir; sırf zatında esmâdan mücerret iken 'ilah' olarak bilinemez. Bu yüzden Allah zatı ve isimleriyle birlikte ilahtır — cemaat, bu çoklukla var olan birliğin yansımasıdır. Ve ardından basit ama kalıcı bir hikâye: bir baba ölüm döşeğinde evlatlarına iki sopa getirmelerini istiyor. Toplu haldeyken kıramıyorlar; ayrı ayrı kırdıklarında kolay. \"Bir ikenasla yenilmezsiniz; parçalanırsanız düşmanlarınız sizi yok eder.\" Bu metafor hem toplumsal birliği hem de insanın kendi içindeki güçlerini bir arada tutmasını anlatıyor.",
+                "en": "The first counsel of Chapter 560 begins with unity and community. Ibn Arabī says: 'God's hand is with the community, and the wolf only eats the sheep that has strayed from the flock.' In explaining this he draws an interesting ontological connection: God is known through His Beautiful Names; in His pure essence, abstracted from the names, He cannot be known as 'God.' This is why God is God with His essence and His names together — the community is a reflection of this unity that exists through multiplicity. And then comes a simple but enduring story: a father on his deathbed asks his children to bring two sticks. When bundled together, they cannot break them; when separated, they break them easily. 'When together, you will never be defeated; when fragmented, your enemies will destroy you.' This metaphor describes both social unity and the keeping together of one's own inner forces.",
+                "pt": "O primeiro conselho do Capítulo 560 começa com unidade e comunidade. Ibn Arabī diz: 'A mão de Deus está com a comunidade, e o lobo só come a ovelha que se desviou do rebanho.' Ao explicar isso, ele faz uma interessante conexão ontológica: Deus é conhecido através de Seus Belos Nomes; em Sua essência pura, abstraída dos nomes, Ele não pode ser conhecido como 'Deus.' É por isso que Deus é Deus com Sua essência e Seus nomes juntos — a comunidade é um reflexo dessa unidade que existe através da multiplicidade. E então vem uma história simples mas duradoura: um pai no leito de morte pede que seus filhos tragam dois bastões. Quando juntos, eles não conseguem quebrá-los; quando separados, os quebram facilmente. 'Quando unidos, jamais serão derrotados; quando fragmentados, seus inimigos os destruirão.' Esta metáfora descreve tanto a unidade social quanto o manter unidas as próprias forças interiores."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c18k226-s2",
+          "heading": {
+            "tr": "Hüsnüzan ve Kelime-i Tevhid",
+            "en": "Good Opinion and the Word of Witnessing",
+            "pt": "Boa Opinião e a Palavra do Testemunho"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost, her nefesi son nefes gibi yaşamayı ve Allah'a hüsnüzan üzere kavuşmayı tavsiye ediyor — \"belki Allah verdiğin bir nefeste canını alır.\" Ardından Kelime-i Tevhid meselesine geçiyor ve şaşırtıcı bir çözümleme yapıyor: 'La ilahe' diyerek bir şeyi olumsuzlayan kişi, 'illallah' diyerek olumsuzladığının varlığını olumlar. Ama bu olumlama bilgi bakımından değil, hüküm bakımındandır. Hakkın varlığı ise hem hüküm hem de bilgi bakımından zorunludur. Bu çözümleme bize bir şey söylüyor: La ilahe illallah kelimesinin içinde hem negatif hem pozitif bir hareket var; ve bu iki hareket bir arada tutulunca kelime \"tartıya girmez\" — zira terazi de dahil her şeyi var eden odur. Bu kelimeyi sürekli söylemenin önerisi de oradan geliyor: onu tüketmenin imkânı yok, çünkü söylenecek derinlik tükenmez.",
+                "en": "Ibn Arabī counsels living each breath as if it were the last breath, and meeting God with good opinion — 'perhaps God will take your soul in a breath you give.' Then he turns to the Word of Witnessing and offers a remarkable analysis: the one who says 'La ilahe' — negating something — affirms the existence of what they negated by saying 'illallah.' But this affirmation is not by way of knowledge, but by way of judgment. The existence of the Real, however, is necessary both by way of judgment and by way of knowledge. This analysis tells us something: inside the word 'La ilahe illallah' there is both a negative and a positive movement; and when these two movements are held together, the word 'does not go on the scale' — for it is the one that has brought into existence everything including the scale. The counsel to say this word continuously also comes from there: there is no possibility of exhausting it, because the depth to be said is inexhaustible.",
+                "pt": "Ibn Arabī aconselha viver cada respiração como se fosse a última, e encontrar Deus com boa opinião — 'talvez Deus tome sua alma em uma respiração que você dá.' Então ele se volta para a Palavra do Testemunho e oferece uma análise notável: aquele que diz 'La ilahe' — negando algo — afirma a existência do que negou ao dizer 'illallah.' Mas essa afirmação não é por meio do conhecimento, mas por meio do julgamento. A existência do Real, no entanto, é necessária tanto pelo julgamento quanto pelo conhecimento. Esta análise nos diz algo: dentro da palavra 'La ilahe illallah' há um movimento tanto negativo quanto positivo; e quando esses dois movimentos são mantidos juntos, a palavra 'não vai à balança' — pois é ela que trouxe à existência tudo, incluindo a balança. O conselho de dizer esta palavra continuamente também vem daí: não há possibilidade de esgotá-la, porque a profundidade a ser dita é inesgotável."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c18k226-s3",
+          "heading": {
+            "tr": "Günah Sonrası İbadet ve Cemaatle Namaz",
+            "en": "Worship After Sin and Prayer in Congregation",
+            "pt": "Adoração Após o Pecado e Oração em Congregação"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Dost burada hem pratik hem de derin bir tavsiye veriyor: bir yerde günah işlediysen, oradan ayrılmadan önce orada ibadet et — böylece o mekân aleyhine değil lehine de şahitlik eder. Aynı şey giydiğin elbise için de geçerli. Bunu anlatırken kendi yaşadığı bir anıyı paylaşıyor: hamama gittiğinde arkadaşı Necmeddin'i saçını tıraş ettirirken buluyor ve ona seslendiği anda Necmeddin hemen \"ne diyeceğini anladığını\" söylüyor — saç ayrılırken abdestli ve zikir halinde olmak. Bu farkındalık, Dost'u hayranlıkla dolduruyor. Devamında cemaatle namaza dair çok sayıda tavsiye var: sabah ve yatsı namazını cemaatle kılan sanki geceyi tamamen ibadetle geçirmiş gibidir. Namazlar farizadır; nafileler ise \"fazlalık\" ve \"hâdis varlık\" — varoluşun kendi sunduğu ekstra, zorunlunun ötesi.",
+                "en": "Ibn Arabī gives here both a practical and a deep counsel: if you have sinned in a place, before leaving that place perform an act of worship there — so that the place will bear witness both for and against you. The same applies to the clothes you are wearing. In telling this he shares a personal memory: when he went to the bathhouse, he found his companion Necmeddin having his hair shaved, and the moment he called out to him, Necmeddin immediately said he 'knew what he was going to say' — to be in a state of ablution and remembrance while the hair was being separated. This awareness fills Ibn Arabī with wonder. What follows are numerous counsels about congregational prayer: the one who prays morning and night prayer in congregation is as if they have spent the entire night in worship. The prayers are obligatory; supererogatory acts are 'surplus' and 'contingent existence' — the extra that existence itself offers, beyond the necessary.",
+                "pt": "Ibn Arabī dá aqui um conselho tanto prático quanto profundo: se você pecou em um lugar, antes de sair desse lugar realize um ato de adoração lá — para que o lugar testemunhe tanto a favor quanto contra você. O mesmo se aplica às roupas que está usando. Ao contar isso, ele compartilha uma memória pessoal: quando foi ao banho público, encontrou seu companheiro Necmeddin se barbeando, e no momento em que o chamou, Necmeddin imediatamente disse que 'sabia o que ele ia dizer' — estar em estado de ablução e lembrança enquanto o cabelo era separado. Esta consciência enche Ibn Arabī de admiração. O que se segue são numerosos conselhos sobre a oração congregacional: quem ora a oração da manhã e da noite em congregação é como se tivesse passado a noite inteira em adoração. As orações são obrigatórias; os atos supererogatórios são 'excedente' e 'existência contingente' — o extra que a própria existência oferece, além do necessário."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c18k226-s4",
+          "heading": {
+            "tr": "Merhameti Bütün Varlığa Yaymak",
+            "en": "Extending Mercy to All of Existence",
+            "pt": "Espalhando Misericórdia por Toda a Existência"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "560. Bölüm'ün — ve Fütûhât'ın bu son büyük bölümünün — kapanışına doğru Dost, merhameti bütün varlığa yayma tavsiyesiyle bitiyor. \"Şu bitkidir, bu cansızdır, haberleri yoktur\" deme — onların senden haberleri vardır, senin onlardan haberin olmasa bile. Ardından La ilahe illallah söyleyenlere düşmanlık beslememe tavsiyesi geliyor: onlar Allah'ın dostlarıdır, hata yapsalar bile. \"Kimin Allah ile dostluğu sabit ise onunla savaşmak haramdır.\" Ama bu merhameti sınırsız savunmak değil: Allah'ın açıkça düşmanı olduğu belli olanın kendisinden yüz çevrilmeli, ama fiilininden değil. Şefkat, fiilin kerihliğini görmezden gelmez; insanın kendisini değil fiilini reddeder. Bu, Fütûhât boyunca ördüğümüz kavramların son düğümlerinden biri gibi görünüyor bize — merhamet, ayrım gücünü yitirmeden var olabilir.",
+                "en": "Approaching the close of Chapter 560 — and of this last great section of the Fütûhât — Ibn Arabī ends with the counsel to extend mercy to all of existence. 'Don't say: it's a plant, it's inanimate, it has no awareness' — they are aware of you, even if you are not aware of them. Then comes the counsel not to harbor enmity toward those who say La ilahe illallah: they are God's friends, even if they err. 'Whoever has confirmed friendship with God — fighting them is forbidden.' But this is not advocacy of unlimited mercy: from one who is clearly God's open enemy, one must turn away — but from the person's deeds, not the person themselves. Compassion does not ignore the reprehensibility of a deed; it rejects the deed, not the person. This seems to us one of the last knots of the concepts we have woven throughout the Fütûhât — mercy can exist without losing the power of discernment.",
+                "pt": "Aproximando-se do fechamento do Capítulo 560 — e desta última grande seção do Fütûhât — Ibn Arabī termina com o conselho de estender a misericórdia a toda a existência. 'Não diga: é uma planta, é inanimado, não tem consciência' — eles estão conscientes de você, mesmo que você não esteja consciente deles. Então vem o conselho de não nutrir hostilidade em relação àqueles que dizem La ilahe illallah: eles são amigos de Deus, mesmo que errem. 'Quem tiver confirmado amizade com Deus — lutar contra eles é proibido.' Mas isso não é defesa de misericórdia ilimitada: daquele que é claramente inimigo aberto de Deus, deve-se se afastar — mas dos atos da pessoa, não da pessoa em si. A compaixão não ignora a reprovabilidade de um ato; rejeita o ato, não a pessoa. Isso nos parece um dos últimos nós dos conceitos que tecemos ao longo do Fütûhât — a misericórdia pode existir sem perder o poder de discernimento."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fütûhât-ı Mekkiyye'nin 560. Bölümü — ve dolayısıyla Otuz Altıncı Sifri, yani bu cildin ve 18 ciltlik Fütûhât'ın son büyük bölümü — burada kapanıyor. Dost'un \"Bölümün sonu\" notu ve ardından indeksin ve son notların geldiği bu kapanış, bizim için de bir kapanış. 18 cildi takip ederek buraya geldik; ne kadar anladığımızı bilmiyoruz, ama anlamaya çalıştığımızı biliyoruz. Bu arayış sürecektir.",
+                "en": "The 560th Chapter of the Fütûhât-ı Mekkiyye — and thus the Thirty-Sixth Sifr, that is, the last great chapter of this volume and of the 18-volume Fütûhât — closes here. Ibn Arabī's note 'The end of the chapter,' followed by the index and final notes, marks a closure for us as well. We have followed 18 volumes to arrive here; we do not know how much we have understood, but we know we have been trying to understand. This search will continue.",
+                "pt": "O 560º Capítulo do Fütûhât-ı Mekkiyye — e assim o Trigésimo Sexto Sifr, ou seja, o último grande capítulo deste volume e dos 18 volumes do Fütûhât — fecha aqui. A nota de Ibn Arabī 'O fim do capítulo,' seguida pelo índice e notas finais, marca também um fechamento para nós. Seguimos 18 volumes para chegar aqui; não sabemos quanto compreendemos, mas sabemos que tentamos compreender. Esta busca continuará."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "cite": "Fütûhât-ı Mekkiyye, Cilt XVIII, Otuz Altıncı Sifr / 560. Bölüm (ss. 180–319)",
+          "note": {
+            "tr": "\"Seyr-ü sülük eden müride ve kemale ermiş kimselere Allah'ın izniyle fayda verecek hikmetli tavsiyeler\" başlıklı bölüm; çok sayıda tavsiyeyi içeriyor, ardından Otuz Yedinci Sifr başlıyor (bitişik cilt öncesi kapanış)",
+            "en": "The chapter titled 'Wise counsels that will benefit, with God's permission, the spiritual wayfarer and those who have attained perfection'; contains numerous counsels, followed by the Thirty-Seventh Sifr (closing before the next contiguous volume)",
+            "pt": "O capítulo intitulado 'Sábios conselhos que, com a permissão de Deus, beneficiarão o viajante espiritual e aqueles que atingiram a perfeição'; contém numerosos conselhos, seguido pelo Trigésimo Sétimo Sifr (fechamento antes do próximo volume contíguo)"
           }
         }
       ]
