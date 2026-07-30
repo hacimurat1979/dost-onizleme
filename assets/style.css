@@ -2704,6 +2704,208 @@ html:has(.detail-panel:not([hidden])) {
   }
 }
 
+/* ── Hakkında alt-sekmeleri (Hakkında / Şiirleri) ──────────────────────── */
+.hakkinda-subtabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin: 0 0 28px;
+}
+.hakkinda-subtab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 16px 10px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: -1px;
+}
+.hakkinda-subtab:hover { color: var(--text-primary); }
+.hakkinda-subtab--active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-interactive);
+  font-weight: 600;
+}
+.hakkinda-subtab:focus-visible {
+  outline: 2px solid var(--accent-interactive);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Şiir tarayıcısı ────────────────────────────────────────────────────── */
+#siirler-panel {
+  padding-bottom: 40px;
+}
+.siirler-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+.siirler-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.siirler-filters__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.siirler-filters__label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-family: var(--font-body);
+  white-space: nowrap;
+  min-width: 46px;
+}
+.siirler-chip {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding: 3px 11px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.siirler-chip:hover {
+  border-color: color-mix(in srgb, var(--accent-interactive) 60%, transparent);
+  color: var(--text-primary);
+}
+.siirler-chip--active {
+  background: color-mix(in srgb, var(--accent-interactive) 12%, transparent);
+  border-color: var(--accent-interactive);
+  color: var(--accent-interactive);
+  font-weight: 600;
+}
+.siirler-chip:focus-visible {
+  outline: 2px solid var(--accent-interactive);
+  outline-offset: 2px;
+}
+.siirler-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+}
+.siirler-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.siirler-empty {
+  color: var(--text-secondary);
+  font-style: italic;
+  padding: 20px 0;
+}
+
+/* ── Şiir kartı ─────────────────────────────────────────────────────────── */
+.siir-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px 16px;
+  background: var(--surface-1);
+}
+.siir-card__header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.siir-card__kaynak {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--accent-interactive);
+  font-family: var(--font-body);
+}
+.siir-card__ref {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+.siir-card__temalar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+.siir-card__tema {
+  font-size: 0.72rem;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--series-theme) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--series-theme) 30%, transparent);
+  color: var(--series-theme-text);
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.siir-card__metin {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--text-primary);
+  margin: 0 0 14px;
+  padding: 0 0 0 14px;
+  border-left: 2px solid var(--gridline);
+  white-space: pre-line;
+}
+br.siir-stanza-break {
+  content: "";
+  display: block;
+  margin-top: 0.5em;
+}
+.siir-card__not-wrap {
+  margin-bottom: 10px;
+}
+.siir-card__not-toggle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  letter-spacing: 0.01em;
+  user-select: none;
+  list-style: none;
+}
+.siir-card__not-toggle::marker,
+.siir-card__not-toggle::-webkit-details-marker { display: none; }
+.siir-card__not-toggle::before {
+  content: "▸ ";
+  font-size: 0.65em;
+  opacity: 0.7;
+}
+details[open] .siir-card__not-toggle::before { content: "▾ "; }
+.siir-card__not-toggle:hover { color: var(--text-primary); }
+.siir-card__not {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 8px 0 0 14px;
+  font-style: italic;
+}
+.siir-card__bilgi {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 10px 0 0;
+  font-family: var(--font-body);
+  font-style: normal;
+}
+
 .detail-analogy {
   border-radius: 8px;
   padding: 12px 18px;

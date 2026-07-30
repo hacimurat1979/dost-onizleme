@@ -454,6 +454,15 @@
 
 
     <section class="hakkinda-wrap" id="hakkinda-wrap" hidden>
+      <div class="hakkinda-subtabs" role="tablist">
+        <button class="hakkinda-subtab hakkinda-subtab--active" id="hakkinda-subtab-hakkinda"
+                type="button" role="tab" aria-selected="true" aria-controls="hakkinda-content-panel"
+                data-tr="Hakkında" data-en="About" data-pt="Sobre">Hakkında</button>
+        <button class="hakkinda-subtab" id="hakkinda-subtab-siirler"
+                type="button" role="tab" aria-selected="false" aria-controls="siirler-panel"
+                data-tr="Şiirleri" data-en="Poems" data-pt="Poemas">Şiirleri</button>
+      </div>
+      <div id="hakkinda-content-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-hakkinda">
       <div class="hakkinda-content">
         <h2 class="hakkinda-content__title">Dost</h2>
         <p class="hakkinda-content__subtitle" data-tr="Muhyiddîn İbnü'l-Arabî (1165–1240), tasavvuf tarihinin en etkili düşünürlerinden biridir. Bu site onu, Dostu anlamaya çalışan mütevazı bir haritadır."
@@ -748,6 +757,8 @@ mesmo antes que o assombro exista."></blockquote>
           </div>
         </div>
       </div>
+      </div>
+      <div id="siirler-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-siirler" hidden></div>
     </section>
 
     <aside class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" hidden>
@@ -824,6 +835,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/ontology.js"></script>
   <script src="assets/crosslink-preview.js"></script>
   <script src="assets/start-hint.js"></script>
+  <script src="assets/siirler.js"></script>
   <script src="assets/secret-nav.js"></script>
   <script src="assets/edit-mode.js"></script>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in

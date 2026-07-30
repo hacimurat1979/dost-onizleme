@@ -183,6 +183,7 @@
     else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
     else if (currentMainView === "fusus") window.__fususApp && window.__fususApp.onLangChange();
+    else if (currentMainView === "hakkinda") window.__siirlerApp && window.__siirlerApp.onLangChange();
     updateHeaderHeightVar();
   });
 
@@ -420,7 +421,10 @@
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
     if (fususWrap) fususWrap.hidden = view !== "fusus";
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
-    if (view === "hakkinda") wireHakkindaDiagrams();
+    if (view === "hakkinda") {
+      wireHakkindaDiagrams();
+      window.__siirlerApp && window.__siirlerApp.wireTabs();
+    }
     currentDetailNode = null;
     currentDetailEdge = null;
     detailPanel.hidden = true;

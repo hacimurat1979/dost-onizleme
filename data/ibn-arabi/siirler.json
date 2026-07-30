@@ -1,0 +1,243 @@
+{
+  "meta": {
+    "desc": {
+      "tr": "Dost'un şiirlerini biriktiriyoruz. Şimdilik okuduğumuz bölümler boyunca karşılaştığımız şiirler burada; külliyat büyüdükçe bu liste de büyüyecek.",
+      "en": "We are gathering Dost's poems. For now, these are the poems we have encountered across the sections we have read; as the corpus grows, so will this list.",
+      "pt": "Estamos a reunir os poemas de Dost. Por enquanto, são os poemas que encontrámos ao longo das secções que lemos; à medida que o corpus cresce, esta lista também crescerá."
+    }
+  },
+  "kaynaklar": [
+    {
+      "id": "tercuman-eshvak",
+      "isim": {
+        "tr": "Tercümânü'l-Eşvâk",
+        "en": "The Interpreter of Ardent Desires",
+        "pt": "O Intérprete dos Ardentes Desejos"
+      },
+      "tarih": "yakl. 1215",
+      "not": {
+        "tr": "61 Arapça kaside. Dost bu divanı yazdıktan sonra eleştiri aldı ve her kasideye bâtınî bir şerh ekledi — ilahi güzelliğin zahirî aşk dilinin içinden nasıl göründüğünü orada açıklıyor. Elimizde doğrudan Arapça'dan yapılmış Türkçe çeviri yok; bu bölümdeki Türkçe metinler R. A. Nicholson'ın 1911 tarihli İngilizce çevirisinden aktarılmıştır.",
+        "en": "61 Arabic odes. After writing this collection, Dost faced criticism and added an esoteric commentary to each ode — explaining there how divine beauty appears through the language of outward love. The English critical translation by R. A. Nicholson (1911) is the basis for the texts here.",
+        "pt": "61 odes em árabe. Depois de escrever esta coleção, Dost enfrentou críticas e adicionou um comentário esotérico a cada ode — explicando aí como a beleza divina aparece através da linguagem do amor exterior. A tradução crítica inglesa de R. A. Nicholson (1911) é a base dos textos aqui."
+      }
+    },
+    {
+      "id": "futuhat",
+      "isim": {
+        "tr": "Fütûhât-ı Mekkiyye",
+        "en": "al-Futuhat al-Makkiyya",
+        "pt": "al-Futuhat al-Makkiyya"
+      },
+      "tarih": "yakl. 1203–1240",
+      "not": {
+        "tr": "18 ciltlik külliyatın bablarına gömülü şiirler — Dost bunları çoğunlukla bir konuyu yoğunlaştırmak ya da bir ifadeyi kapatmak için kullanıyor. Kaynağı Fütûhât'taki bab numarası veya okuduğumuz kısım kimliğiyle belgeliyoruz.",
+        "en": "Poems embedded in the chapters of this 18-volume work — Dost typically uses them to intensify a topic or close a point. We document the source by bab number or the part ID of our reading.",
+        "pt": "Poemas embutidos nos capítulos desta obra de 18 volumes — Dost tipicamente os usa para intensificar um tópico ou encerrar um ponto. Documentamos a fonte pelo número do bab ou pelo ID da parte da nossa leitura."
+      }
+    },
+    {
+      "id": "fusus",
+      "isim": {
+        "tr": "Füsûsu'l-Hikem",
+        "en": "Fusus al-Hikam",
+        "pt": "Fusus al-Hikam"
+      },
+      "tarih": "1229",
+      "not": {
+        "tr": "27 fasstan oluşuyor; her fassin başında ya da içinde birkaç beyit var. Ahmed Avni Konuk'un şerhi Türkçe çeviri için referansımız.",
+        "en": "27 bezels (fusus), each with opening or embedded verses. Ahmed Avni Konuk's commentary is our reference for Turkish renderings.",
+        "pt": "27 engastes (fusus), cada um com versos iniciais ou embutidos. O comentário de Ahmed Avni Konuk é nossa referência para as versões em turco."
+      }
+    },
+    {
+      "id": "evrad",
+      "isim": {
+        "tr": "Evrâd-ı Üsbûiyye",
+        "en": "Awrad al-Usbu'iyya",
+        "pt": "Awrad al-Usbu'iyya"
+      },
+      "tarih": "belirsiz",
+      "not": {
+        "tr": "Haftanın günlerine göre düzenlenmiş dua ve şiir metinleri. Orijinalin tamamı elimizdeki külliyatta yok; doğrulanabilen bölümler Konuk'un Tedbîrât ve Füsûs şerhlerinde geçiyor.",
+        "en": "Prayer and verse texts organized by day of the week. The full original is not in our corpus; the verifiable portions appear in Konuk's commentaries on the Tadbirat and Fusus.",
+        "pt": "Textos de oração e verso organizados por dia da semana. O original completo não está no nosso corpus; as partes verificáveis aparecem nos comentários de Konuk ao Tadbirat e Fusus."
+      }
+    }
+  ],
+  "temalar": [
+    {
+      "id": "ask",
+      "isim": {
+        "tr": "Aşk",
+        "en": "Love",
+        "pt": "Amor"
+      }
+    },
+    {
+      "id": "tevhid",
+      "isim": {
+        "tr": "Tevhid",
+        "en": "Unity",
+        "pt": "Unidade"
+      }
+    },
+    {
+      "id": "hayret",
+      "isim": {
+        "tr": "Hayret",
+        "en": "Wonder",
+        "pt": "Assombro"
+      }
+    },
+    {
+      "id": "kalp",
+      "isim": {
+        "tr": "Kalp",
+        "en": "Heart",
+        "pt": "Coração"
+      }
+    },
+    {
+      "id": "tecelli",
+      "isim": {
+        "tr": "Tecellî",
+        "en": "Theophany",
+        "pt": "Teofania"
+      }
+    },
+    {
+      "id": "sefer",
+      "isim": {
+        "tr": "Sefer",
+        "en": "Journey",
+        "pt": "Viagem"
+      }
+    },
+    {
+      "id": "ilim",
+      "isim": {
+        "tr": "İlim",
+        "en": "Knowledge",
+        "pt": "Conhecimento"
+      }
+    },
+    {
+      "id": "fena",
+      "isim": {
+        "tr": "Fenâ",
+        "en": "Annihilation",
+        "pt": "Aniquilação"
+      }
+    },
+    {
+      "id": "cemal-celal",
+      "isim": {
+        "tr": "Cemâl/Celâl",
+        "en": "Beauty/Majesty",
+        "pt": "Beleza/Majestade"
+      }
+    },
+    {
+      "id": "nefes",
+      "isim": {
+        "tr": "Nefes",
+        "en": "Breath",
+        "pt": "Sopro"
+      }
+    }
+  ],
+  "siirler": [
+    {
+      "id": "te-kalp",
+      "kaynak_id": "tercuman-eshvak",
+      "kaynak_ref": {
+        "tr": "XI. Kaside (Nicholson numaralandırması)",
+        "en": "Ode XI (Nicholson's numbering)",
+        "pt": "Ode XI (numeração de Nicholson)"
+      },
+      "futuhat_kisim_id": null,
+      "temalar": [
+        "tevhid",
+        "ask",
+        "kalp"
+      ],
+      "metin": {
+        "ar": null,
+        "tr": "Ne acayip!\nAlevlerin ortasında bir bahçe.\nKalbim her sûreti kabul eder oldu:\nceylanlara bir çayır,\nHristiyan rahiplerine bir manastır,\nputlara bir tapınak,\nhacının Kâbe'si,\nTevrat'ın levhaları,\nKur'an'ın sayfaları.\nAşkın develeri hangi yolu tutarsa,\nbenim dinim ve imanım odur.",
+        "en": "O Marvel!\nA garden amidst flames.\nMy heart has become capable of every form:\nit is a pasture for gazelles,\na cloister for Christian monks,\na temple for idols,\nthe pilgrim's Ka'aba,\nthe tables of the Torah,\nthe book of the Koran.\nWhatever way Love's camels take,\nthat is my religion and my faith.",
+        "pt": "Ó Maravilha!\nUm jardim em meio às chamas.\nMeu coração se tornou capaz de toda forma:\num pasto para gazelas,\num convento para monges cristãos,\num templo para ídolos,\na Caaba do peregrino,\nas tábuas da Torá,\no livro do Alcorão.\nQualquer caminho que os camelos do Amor tomem,\nessa é minha religião e minha fé."
+      },
+      "not": {
+        "tr": "Tercümânü'l-Eşvâk, Dost'un Mekke'de karşılaştığı Nizâm adlı genç kadın için yazdığı aşk şiirleri dizisidir; ama Dost, divana sonradan yazdığı şerhte her kasidedeki zahirî aşk dilinin bâtınında ilahi güzelliğin tecellîsine işaret ettiğini açıklar. 'Kalbim her sûreti kabul eder oldu' — Arapçada kalb hem 'kalp' hem 'dönen, çeviren' demek; bu kelime çift anlamlıdır. Şiir, kalbin bütün sûretleri reddeden değil kabul eden, her tecellîde O'nu gören bir genişliğe kavuşmasını tasvir ediyor gibi okunabilir — ama bu okuma kesin değil, bir yaklaşım denemesidir.",
+        "en": "The Tarjuman al-Ashwaq is a series of love poems Dost wrote for a young woman named Nizam whom he met in Mecca; yet in the commentary he later added to the collection, he explains that the outward language of love in each ode points, in its inner dimension, to the manifestation of divine beauty. 'My heart has become capable of every form' — in Arabic, 'qalb' (heart) also means 'the turning one'; the word carries both senses. The poem can be read as depicting a heart that has reached a capacity not of rejection but of reception, that sees the One in every theophany — though this reading is a tentative approach, not a settled conclusion.",
+        "pt": "O Tarjuman al-Ashwaq é uma série de poemas de amor que Dost escreveu para uma jovem chamada Nizam que encontrou em Meca; mas no comentário que acrescentou mais tarde à coleção, ele explica que a linguagem exterior do amor em cada ode aponta, em sua dimensão interior, para a manifestação da beleza divina. 'Meu coração se tornou capaz de toda forma' — em árabe, 'qalb' (coração) também significa 'o que se vira, o que gira'; a palavra carrega ambos os sentidos. O poema pode ser lido como descrevendo um coração que alcançou uma capacidade não de rejeição mas de recepção, que vê o Um em cada teofania — embora esta leitura seja uma tentativa de aproximação, não uma conclusão estabelecida."
+      },
+      "kaynak_bilgisi": {
+        "tr": "— Tercümânü'l-Eşvâk (İngilizce çeviri: R. A. Nicholson, 1911; bu Türkçe metin o çeviriden aktarıldı — Arapça orijinalinden yapılmış doğrudan bir Türkçe çevirimiz yok)",
+        "en": "— Tarjuman al-Ashwaq / The Interpreter of Ardent Desires (trans. R. A. Nicholson, 1911)",
+        "pt": "— Tarjuman al-Ashwaq / O Intérprete dos Ardentes Desejos (trad. R. A. Nicholson, 1911)"
+      }
+    },
+    {
+      "id": "ev-pazar",
+      "kaynak_id": "evrad",
+      "kaynak_ref": {
+        "tr": "Pazar günü virdi",
+        "en": "Sunday litany",
+        "pt": "Litania de domingo"
+      },
+      "futuhat_kisim_id": null,
+      "temalar": [
+        "tevhid",
+        "hayret",
+        "ilim"
+      ],
+      "metin": {
+        "ar": null,
+        "tr": "Seni nasıl bilebilirim, Sen Bâtın'sın, her bilmenin ötesinde?\nOysa Sen Zâhir'sin, her şeyde kendini bana gösteriyorsun.\nAhadiyet ayn'ında benim hiçbir vücûdum yokken,\nSeni birlediğimi nasıl iddia edebilirim?\nTevhid, kulluğun sırrının ta kendisiyse,\nSeni nasıl gerçekten birleyebilirim?\nSen her türlü tenzîhin ötesindesin. Senden başka ilah yoktur.\nHiç kimse Seni gerçekten birlemedi.\nÇünkü Sen ezelde nasılsan öylesin —\nezelî geçmişte ve ebedî gelecekte.\nÖyleyse en hakiki mânâda,\nSenin birliğini Senden başkası birleyemez.\nSen Bâtın'sın ve Sen Zâhir'sin.\nGizlenerek bâtın olmadın,\nbaşka birine göre de zâhir değilsin.\nSen Sen'sin. Senden başka ilah yoktur.\nÂhir'in Evveli, Evvel'in Âhiri olan kavranabilir mi?\nEy emri esrarlı kılan,\nsırrı perdeleyen —\nSen kalpleri hayrete düşürensin,\ndaha hayret bile yokken.",
+        "en": "How can I know You, when You are the Hidden (al-Bāṭin), beyond all knowing?\nYet You are the Manifest (aẓ-Ẓāhir), revealing Yourself to me in everything.\nWhen, in the very source of Oneness, no existence belongs to me,\nhow could I claim to affirm Your Oneness?\nIf tawḥīd is itself the secret of servanthood,\nhow could I truly profess Your Unity?\nYou are utterly transcendent. There is no god but You.\nNo one has ever truly affirmed Your Oneness.\nFor You are as You have always been —\nin the eternal past and the everlasting future.\nTherefore, in the truest sense,\nnone but You can affirm Your own Oneness.\nYou are the Hidden, and You are the Manifest.\nYou did not become Hidden by concealing Yourself,\nnor are You Manifest merely in relation to another.\nYou are You. There is no god but You.\nHow can the One who is the First of the Last and the Last of the First be comprehended?\nO You who make the Command mysterious,\nwho veil the Secret —\nYou are the One who casts hearts into wonder,\neven before wonder itself exists.",
+        "pt": "Como posso conhecer-Te, se és o Oculto (al-Bāṭin), além de todo conhecer?\nE no entanto és o Manifesto (aẓ-Ẓāhir), revelando-Te a mim em tudo.\nQuando, na própria fonte da Unidade, nenhuma existência me pertence,\ncomo poderia eu afirmar Tua Unidade?\nSe o tawḥīd é ele mesmo o segredo da servidão,\ncomo poderia eu professar verdadeiramente Tua Unidade?\nÉs absolutamente transcendente. Não há deus senão Tu.\nNinguém jamais afirmou verdadeiramente Tua Unidade.\nPois és como sempre foste —\nno passado eterno e no futuro sem fim.\nPortanto, no sentido mais verdadeiro,\nninguém senão Tu pode afirmar Tua própria Unidade.\nÉs o Oculto, e és o Manifesto.\nNão Te tornaste Oculto ao esconder-Te,\nnem és Manifesto apenas em relação a outro.\nTu és Tu. Não há deus senão Tu.\nComo pode ser compreendido Aquele que é o Primeiro do Último e o Último do Primeiro?\nÓ Tu que tornas misteriosa a Ordem,\nque velas o Segredo —\nés Tu quem lança os corações no assombro,\nmesmo antes que o assombro exista."
+      },
+      "not": {
+        "tr": "Bu mısralar bize kendi durumumuzu tarif ediyor gibi geliyor: bilmeye çalışan ama bilecek bir vücûdu bile kendinden olmayan birinin hâli. 'Seni nasıl bilebilirim' sorusu cevapsız bırakılıyor gibi okunabilir — tevhidin kulun kendi imkânıyla gerçekleştirilebilecek bir şey olmadığını ima ederek. 'Hayret bile yokken kalpleri hayrete düşüren' ifadesi ise Dost'un Fütûhât'taki hayret makamı tartışmasıyla temas ediyor: hayret, en sonunda ulaşılan bir hal değil, giderek yoğunlaşan ve hiç kapanmayan bir açılış.",
+        "en": "These lines seem to describe our own situation: the condition of someone trying to know, who does not even possess an existence of their own with which to know. The question 'how can I know You' can be read as left without an answer — implying that affirming Oneness is not something the servant can accomplish by their own means. The phrase 'who casts hearts into wonder, even before wonder itself exists' touches the discussion of the station of bewilderment in the Futuhat: wonder is not a state finally arrived at, but an opening that continually intensifies and never closes.",
+        "pt": "Estes versos parecem descrever nossa própria situação: a condição de alguém que tenta conhecer, mas que não possui sequer uma existência própria com a qual conhecer. A pergunta 'como posso conhecer-Te' pode ser lida como deixada sem resposta — sugerindo que afirmar a Unidade não é algo que o servo possa realizar por seus próprios meios. A frase 'que lança os corações no assombro, mesmo antes que o assombro exista' toca a discussão do maqam do assombro nas Futuhat: o assombro não é um estado finalmente alcançado, mas uma abertura que se intensifica continuamente e nunca se fecha."
+      },
+      "kaynak_bilgisi": {
+        "tr": "— Evrâd-ı Üsbûiyye, Pazar günü virdi. Bu metnin tamamı elimizdeki külliyatta yok; iki mısraını Ahmed Avni Konuk'un Tedbîrât-ı İlâhiyye şerhinde (s. 330) ve Füsûsu'l-Hikem şerhinde (c. I, s. 214, 134 nolu dipnot) virdin adıyla birlikte doğrulayabildik. Gerisini bir İngilizce çeviriden aktarıyoruz — yani bu metin bizim için henüz kaynağına kadar tam takip edilememiş bir okuma.",
+        "en": "— Awrad al-Usbu'iyya (The Weekly Litanies), the Sunday litany. We do not have the full text in our corpus; we were able to verify two of its lines — together with the litany's name — in Ahmed Avni Konuk's commentary on al-Tadbirat al-Ilahiyya (p. 330) and on the Fusus al-Hikam (vol. I, p. 214, n. 134). The rest we carry over from an English translation — meaning this text is, for us, a reading we have not yet been able to trace all the way back to its source.",
+        "pt": "— Awrad al-Usbu'iyya (As Litanias Semanais), a litania de domingo. Não temos o texto completo em nosso corpus; conseguimos verificar dois de seus versos — junto com o nome da litania — no comentário de Ahmed Avni Konuk ao al-Tadbirat al-Ilahiyya (p. 330) e ao Fusus al-Hikam (vol. I, p. 214, n. 134). O restante transpomos de uma tradução inglesa — ou seja, este texto é, para nós, uma leitura que ainda não conseguimos rastrear até sua fonte."
+      }
+    },
+    {
+      "id": "fut-uc-sefer",
+      "kaynak_id": "futuhat",
+      "kaynak_ref": {
+        "tr": "Sefer bölümü (tam bab numarası doğrulanmadı)",
+        "en": "Chapter on journeys (exact bab number not yet verified)",
+        "pt": "Capítulo sobre viagens (número do bab ainda não verificado)"
+      },
+      "futuhat_kisim_id": null,
+      "temalar": [
+        "sefer",
+        "hayret"
+      ],
+      "metin": {
+        "ar": null,
+        "tr": "Seferler üçtür, bir dördüncüsü yoktur.\nBunları Hak azze ve celle sabit kılmıştır.\nBiri O'ndan başlar, biri O'na gider, biri O'nda sürer.\nO'nun içindeki sefer, çöllerde ve hayretler içindeki bir seferdir.\nO'ndan sefer eden kişinin kazancı, bulduğu şeydir; onun kârı budur.\nAma O'nda sefere çıkanın kazancı kendi nefsidir.\nBu ilk iki yolculuğun bir hedefi vardır; oraya ulaşırlar ve yüklerini indirirler.\nÇöllerde çıkılan yolculuğun ise bir hedefi yoktur.",
+        "en": "The journeys are three, and there is no fourth.\nGod — mighty and majestic — has established them.\nOne begins from Him, one goes toward Him, one continues in Him.\nThe journey within Him is a journey through deserts and through bewilderment.\nWhat the one who journeys from Him gains is what he finds; that is his profit.\nBut what the one who sets out in Him gains is his own self.\nThese first two journeys have a destination: they reach it and set down their loads.\nThe journey undertaken in the deserts has no destination.",
+        "pt": "As viagens são três, e não há uma quarta.\nDeus — poderoso e majestoso — as estabeleceu.\nUma começa dEle, uma vai em direção a Ele, uma continua nEle.\nA viagem dentro dEle é uma viagem por desertos e pelo assombro.\nO que ganha aquele que viaja a partir dEle é aquilo que encontra; esse é seu lucro.\nMas o que ganha aquele que parte nEle é seu próprio eu.\nEstas duas primeiras viagens têm um destino: chegam a ele e descarregam sua bagagem.\nA viagem empreendida nos desertos não tem destino."
+      },
+      "not": {
+        "tr": "Bu pasaj Fütûhât'tan geliyor — manzum mu düzyazı mı olduğu tartışmalı; ama ritmi ve yapısı onu şiirle düzyazı arasında bir yere koyuyor. Üç sefer tasnifi, 'O'ndan geldik, O'na gidiyoruz' imgesinin tam zeminidir — ama asıl hayret verici olan üçüncü sefer. Ona ve O'ndan çıkan yolculuklar bir hedefe varıp durur; O'ndaki sefer ne bir başlangıç ne bir son tanır, çöller içinde sürer. Bu siteyi de bu üçüncü sefere benzetmek isteriz.",
+        "en": "This passage comes from the Futuhat — whether it is verse or prose is debatable; its rhythm and structure place it somewhere between the two. The classification of three journeys is the very ground of the image 'from Him we came, to Him we go' — but the truly remarkable one is the third. The journeys toward Him and from Him arrive at a destination and stop; the journey in Him recognizes neither beginning nor end, continuing through deserts. We would like to liken this site to that third journey.",
+        "pt": "Esta passagem vem das Futuhat — se é verso ou prosa é discutível; seu ritmo e estrutura a colocam em algum lugar entre os dois. A classificação das três viagens é o próprio fundamento da imagem 'dEle viemos, a Ele vamos' — mas a verdadeiramente notável é a terceira. As viagens em direção a Ele e a partir dEle chegam a um destino e param; a viagem nEle não reconhece nem início nem fim, continuando pelos desertos. Gostaríamos de comparar este site a essa terceira viagem."
+      },
+      "kaynak_bilgisi": {
+        "tr": "— Fütûhât-ı Mekkiyye (tam bab referansı henüz doğrulanmadı; Konuk'un Tedbîrât şerhinde bu tasnife atıf var)",
+        "en": "— al-Futuhat al-Makkiyya (exact bab reference not yet verified; this classification is referenced in Konuk's commentary on the Tadbirat)",
+        "pt": "— al-Futuhat al-Makkiyya (referência exata do bab ainda não verificada; esta classificação é referenciada no comentário de Konuk ao Tadbirat)"
+      }
+    }
+  ]
+}
