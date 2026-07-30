@@ -60,6 +60,7 @@
     },
     zemin: { tr: "Zemin", en: "Backdrop", pt: "Fundo" },
     isik: { tr: "Açık zemin", en: "Light backdrop", pt: "Fundo claro" },
+    dil: { tr: "Dil", en: "Language", pt: "Idioma" },
     tpl: {
       soz: { tr: "Bir Cümle", en: "One Sentence", pt: "Uma Frase" },
       ikili: { tr: "İki Kutu", en: "Two Boxes", pt: "Duas Caixas" },
@@ -67,8 +68,19 @@
     },
   };
 
-  function tt(d) { return (window.DostI18n && window.DostI18n.pick3(d)) || d.tr; }
-  function lang() { return (window.DostI18n && window.DostI18n.getLang()) || "tr"; }
+  // Sahnenin dili sitenin genel diline BAĞLI DEĞİL: kullanıcı Türkçe
+  // gezinirken İngilizce ya da Portekizce bir kayıt çekebilsin diye ayrı,
+  // yalnız bu panele özel bir seçim (kullanıcı isteği, 2026-07-30). Site
+  // genelini değiştirmeden yalnız kartın/sahnenin metin dilini değiştirir.
+  const DIL_ANAHTAR = "dost-share-lang";
+  const DIL_LANGS = (window.DostI18n && window.DostI18n.LANGS) || ["tr", "en", "pt"];
+  const DIL_ETIKET = { tr: "TR", en: "EN", pt: "PT" };
+  function siteLang() { return (window.DostI18n && window.DostI18n.getLang()) || "tr"; }
+  let shareLangId = safeGet(DIL_ANAHTAR);
+  if (!DIL_LANGS.includes(shareLangId)) shareLangId = siteLang();
+
+  function tt(d) { return d[shareLangId] || d.en || d.tr || ""; }
+  function lang() { return shareLangId; }
 
   // --- veri ------------------------------------------------------------
   let indexData = null;
@@ -314,7 +326,40 @@
       n: 22, tur: 1, yari: 0.28, yuk: 1.2, ac: 0.10, nokta: 4.2, hale: 0.52, halka: 0, nefes: true },
     { id: "sade", ad: { tr: "Sade", en: "Plain", pt: "Simples" },
       n: 14, tur: 1, yari: 0.34, yuk: 1.6, ac: 0.20, nokta: 2.6, hale: 0.20, halka: 0, cizgisiz: true },
+    // İki yeni zemin (kullanıcı isteği, 2026-07-30): "daha fazla arka plan
+    // seçeneği, metafizik anlamı kuvvetli, düğümler farklı/canlı renklerle."
+    // Süsleyici bir renk çarkı seçmek yerine ikisi de sitenin zaten
+    // taşıdığı iki gerçek ikiliyi kodluyor:
+    //  - "celalcemal": esmâ'nın celâl/cemâl ayrımı (bkz. assets/esma.js
+    //    grupları; CLAUDE.md'de #114 not "Celal/Cemal/Kemal donut" fikriyle
+    //    aynı ikiliğin buradaki hâli) -- düğümler dönüşümlü iki renkte.
+    //  - "esik": bu oturumun kendi araştırma bulgusu (RESEARCH_LOG,
+    //    2026-07-30, OPEN_QUESTIONS #128): Dost mertebeleri sıralamak
+    //    yerine iki uç koyup arasına bir eşik/berzah açıyor gibi görünüyor.
+    //    Sarmal boyunca renk bir uçtan ötekine kademeli geçiyor -- ayrık
+    //    değil, sürekli bir geçiş.
+    { id: "celalcemal", ad: { tr: "Celâl-Cemâl", en: "Majesty-Beauty", pt: "Majestade-Beleza" },
+      n: 28, tur: 1.6, yari: 0.30, yuk: 2.4, ac: 0.30, nokta: 3.6, hale: 0.28, halka: 0, renk: "cift" },
+    { id: "esik", ad: { tr: "Eşik", en: "Threshold", pt: "Limiar" },
+      n: 24, tur: 1.2, yari: 0.30, yuk: 2.0, ac: 0.26, nokta: 3.6, hale: 0.30, halka: 0, renk: "gecis" },
   ];
+  // "renk: cift" için iki sabit ton (celâl/cemâl); "renk: gecis" için
+  // sarmal boyunca aralarında kayan iki uç. İkisi de hem koyu hem açık
+  // zeminde okunaklı kalacak şekilde seçildi (dekoratif öğeler oldukları
+  // için metin kontrastı ölçütü uygulanmıyor, ama yine de göz önünde
+  // tutuldu).
+  const RENK = { celal: "#e2632b", cemal: "#7c5cff", esikA: "#eda100", esikB: "#4b3f8f" };
+  function hexRgb(h) {
+    const n = parseInt(h.slice(1), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  function renkGecis(a, b, t) {
+    const A = hexRgb(a), B = hexRgb(b);
+    const r = Math.round(A[0] + (B[0] - A[0]) * t);
+    const g = Math.round(A[1] + (B[1] - A[1]) * t);
+    const bl = Math.round(A[2] + (B[2] - A[2]) * t);
+    return "rgb(" + r + "," + g + "," + bl + ")";
+  }
   const ZEMIN_ANAHTAR = "dost-share-zemin";
   const ISIK_ANAHTAR = "dost-share-isik";
   let zeminId = safeGet(ZEMIN_ANAHTAR) || "sarmal";
@@ -381,10 +426,19 @@
       c.setAttribute("cy", p.y.toFixed(1));
       c.setAttribute("r", (z.nokta * p.depth * br).toFixed(2));
       c.style.opacity = (0.30 + 0.42 * p.depth).toFixed(2);
+      // Renkli zeminler: düğüm rengi CSS'teki tek tonun (--sahne-murekkep)
+      // yerine geçiyor; öteki zeminlerde her karede boşaltılıyor ki
+      // önceki bir renkli zeminden kalan satır-içi renk yapışık kalmasın.
+      if (z.renk === "cift") c.style.fill = i % 2 === 0 ? RENK.celal : RENK.cemal;
+      else if (z.renk === "gecis") c.style.fill = renkGecis(RENK.esikA, RENK.esikB, i / Math.max(1, z.n - 1));
+      else c.style.fill = "";
     });
     // Merkezdeki nefes alan halka: ontoloji/esmâ'daki Zât halosuyla aynı
     // 6 saniyelik ritim.
     const halo = g.querySelector(".share-halo");
+    if (z.renk === "cift") halo.style.fill = renkGecis(RENK.celal, RENK.cemal, 0.5);
+    else if (z.renk === "gecis") halo.style.fill = renkGecis(RENK.esikA, RENK.esikB, 0.5);
+    else halo.style.fill = "";
     const ph = reduceMotion ? 0.5 : (1 - Math.cos((ts / 6000) * 2 * Math.PI)) / 2;
     halo.setAttribute("cx", cx); halo.setAttribute("cy", cy);
     halo.setAttribute("r", (R * z.hale * (1 + 0.4 * ph)).toFixed(1));
@@ -679,11 +733,18 @@
       + (z.id === zeminId ? " is-on" : "") + '" data-zemin="' + z.id + '">'
       + escapeHtml(tt(z.ad)) + "</button>"
     ).join("");
+    const dilChips = DIL_LANGS.map((l) =>
+      '<button type="button" class="share-panel__chip share-panel__chip--sm'
+      + (l === shareLangId ? " is-on" : "") + '" data-dil="' + l + '">'
+      + escapeHtml(DIL_ETIKET[l] || l.toUpperCase()) + "</button>"
+    ).join("");
     panel.innerHTML =
       '<div class="share-panel__head">' + escapeHtml(tt(UI.title)) +
       '<button type="button" data-action="quit" aria-label="' + escapeHtml(tt(UI.close)) + '">✕</button></div>' +
       '<p class="share-panel__hint">' + escapeHtml(tt(UI.hint)) + "</p>" +
       '<div class="share-panel__chips">' + chips + "</div>" +
+      '<p class="share-panel__label">' + escapeHtml(tt(UI.dil)) + "</p>" +
+      '<div class="share-panel__chips share-panel__chips--zemin">' + dilChips + "</div>" +
       '<p class="share-panel__label">' + escapeHtml(tt(UI.zemin)) + "</p>" +
       '<div class="share-panel__chips share-panel__chips--zemin">' + zeminChips + "</div>" +
       '<label class="share-panel__switch">'
@@ -700,6 +761,22 @@
         currentTpl = b.dataset.tpl;
         panel.querySelectorAll("[data-tpl]").forEach((x) => x.classList.toggle("is-on", x === b));
         refresh();
+      });
+    });
+    panel.querySelectorAll("[data-dil]").forEach((b) => {
+      b.addEventListener("click", () => {
+        if (b.dataset.dil === shareLangId) return;
+        shareLangId = b.dataset.dil;
+        safeSet(DIL_ANAHTAR, shareLangId);
+        // Yalnız kartın içeriği değil, panelin kendi metni (başlık, ipucu,
+        // düğme adları) de seçilen dile geçsin -- ikisi ayrı görünürse
+        // "İngilizce kayıt" seçmenin ne işe yaradığı belirsizleşirdi.
+        // buildPanel() modül düzeyindeki `panel` değişkenini YENİ bir
+        // düğümle değiştiriyor; eskisini biz kaldırmazsak DOM'da iki
+        // panel üst üste kalırdı.
+        const old = panel;
+        buildPanel();
+        if (old) old.remove();
       });
     });
     panel.querySelectorAll("[data-zemin]").forEach((b) => {

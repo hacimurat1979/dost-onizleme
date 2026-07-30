@@ -6,6 +6,7 @@ window.DostLightbox = (function () {
 
   let el = null;
   let lastFocused = null;
+  let onCloseCb = null;
 
   function focusableChildren(panel) {
     return Array.from(panel.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])'))
@@ -52,12 +53,17 @@ window.DostLightbox = (function () {
     return el;
   }
 
-  function open({ closeLabel, svgHtml, caption, ref, name }) {
+  function open({ closeLabel, svgHtml, caption, ref, name, onClose }) {
     const node = ensure(closeLabel);
     node.querySelector(".cizim-lightbox__svg-wrap").innerHTML = svgHtml || "";
+    onCloseCb = onClose || null;
 
     const capEl = node.querySelector(".cizim-lightbox__caption");
-    capEl.textContent = caption || "";
+    // innerHTML: caption'lar sitenin kendi metinleri, <em> gibi vurgu
+    // etiketleri taşıyabiliyor (ör. Fütûhât/Füsûs diyagram altyazıları).
+    // textContent kullanılsaydı bu etiketler işlenmeden düz metin olarak
+    // görünürdü (2026-07-30 denetimi).
+    capEl.innerHTML = caption || "";
     capEl.hidden = !caption;
 
     const refEl = node.querySelector(".cizim-lightbox__ref");
@@ -85,6 +91,10 @@ window.DostLightbox = (function () {
       lastFocused.focus();
     }
     lastFocused = null;
+    // İçeriği kendi başına canlı olan çağıranlar (ör. Füsûs'ün lightbox
+    // içine yeniden monte ettiği sarmal sahnesi) burada temizlensin --
+    // yoksa requestAnimationFrame döngüsü görünmez DOM'da sonsuza dek sürer.
+    if (onCloseCb) { const cb = onCloseCb; onCloseCb = null; cb(); }
   }
 
   return { open, close };

@@ -4625,6 +4625,15 @@ html:has(.detail-panel:not([hidden])) {
   max-width: 1000px;
 }
 
+/* Füsûs'ün sarmal sahnesi (assets/helix.js), lightbox içinde yeniden
+   monte edildiğinde -- ağaç/üçlü şemalardan daha dik bir en-boy oranı
+   taşıdığı için (hRatio ~0.78) tam panel genişliği (1000px) aşırı büyük
+   kalıyordu. */
+.cizim-lightbox__svg-wrap .fusus-figure__scene--lightbox {
+  width: 100%;
+  max-width: 640px;
+}
+
 .cizim-lightbox__caption {
   margin: 14px 0 0;
   text-align: center;
@@ -6247,6 +6256,7 @@ mark.durus-vurgu-es {
 .fusus-section p, .fusus-article__summary p { line-height: 1.72; }
 
 .fusus-figure {
+  position: relative;
   margin: 1.5rem 0;
   padding: 1rem clamp(0.6rem, 2vw, 1.1rem) 1.1rem;
   border: 1px solid var(--gridline);
@@ -6254,6 +6264,30 @@ mark.durus-vurgu-es {
   background: var(--surface-1);
 }
 .fusus-figure__scene { min-width: 0; }
+/* Büyüt düğmesi: sahnenin kendi düğümleri zaten tıklamayı not panelini
+   değiştirmek için kullanıyor (helix.js) -- ayrı bir düğme olmadan aynı
+   tıklama hem notu hem popup'ı tetikleyip çakışırdı. */
+.fusus-figure__expand {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid var(--gridline);
+  background: color-mix(in srgb, var(--surface-1) 85%, transparent);
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: zoom-in;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.fusus-figure__expand:hover,
+.fusus-figure__expand:focus-visible {
+  background: var(--accent-interactive);
+  color: #fff;
+  outline: none;
+}
 .fusus-figure__cap {
   margin-top: 0.85rem;
   color: var(--text-secondary);

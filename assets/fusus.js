@@ -140,24 +140,78 @@
   function helixBlockHtml(block, key) {
     return '<figure class="fusus-figure">'
       + '<div class="fusus-figure__scene" data-helix="' + esc(key) + '"></div>'
+      + '<button type="button" class="fusus-figure__expand" data-expand="' + esc(key) + '" aria-label="'
+      + esc(t({ tr: "Çizimi büyüt", en: "Enlarge diagram", pt: "Ampliar diagrama" })) + '">⤢</button>'
       + '<figcaption class="fusus-figure__cap">'
       + (block.caption ? linkify(t(block.caption)) : "")
       + (block.source ? '<cite>' + esc(t(block.source)) + "</cite>" : "")
       + "</figcaption></figure>";
   }
 
-  function mountHelixBlocks(scope, blocks) {
+  // Lightbox açıkken içeride ayrıca kurulan (daha büyük) sarmal sahnesi --
+  // Fütûhât'taki gibi statik SVG kopyalamıyoruz, çünkü sarmalın kendi
+  // dönüşü ve tıklanınca değişen not paneli D3 gibi canlı bir mekanizma;
+  // kopyalanan innerHTML bu davranışı taşımazdı. Onun yerine aynı `spec`
+  // ile DostHelix.mount()'u lightbox'ın içinde bir daha çağırıyoruz.
+  var lightboxScene = null;
+
+  function openHelixLightbox(spec, captionHtml) {
+    if (!window.DostLightbox || !window.DostHelix) return;
+    window.DostLightbox.open({
+      closeLabel: t({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+      svgHtml: "",
+      caption: captionHtml || "",
+      onClose: function () {
+        if (lightboxScene) { lightboxScene.destroy(); lightboxScene = null; }
+      },
+    });
+    var wrap = document.querySelector(".cizim-lightbox__svg-wrap");
+    if (!wrap) return;
+    // `.cizim-lightbox__svg-wrap` sitedeki HER lightbox kullanımının
+    // paylaştığı tek (kalıcı) düğüm -- kendi sınıf listesine dokunmak
+    // (DostHelix.mount()'un ekleyip hiç kaldırmadığı "helix-scene" gibi)
+    // sonraki, Füsûs'le ilgisiz bir lightbox açılışına da yapışık kalırdı.
+    // Bunun yerine kendi alt kabımızı açıyoruz; `open()` zaten her
+    // çağrıda wrap'ın içeriğini temizliyor, o yüzden ayrıca silmemiz
+    // gerekmiyor.
+    var host = document.createElement("div");
+    host.className = "fusus-figure__scene fusus-figure__scene--lightbox";
+    wrap.appendChild(host);
+    lightboxScene = window.DostHelix.mount(host, Object.assign({}, spec, { maxH: 620 }));
+  }
+
+  function mountHelixBlocks(scope, blocks, captions) {
     Object.keys(blocks).forEach(function (key) {
       var host = scope.querySelector('[data-helix="' + key + '"]');
       if (!host || !window.DostHelix) return;
-      var s = window.DostHelix.mount(host, blocks[key]);
+      var spec = blocks[key];
+      var s = window.DostHelix.mount(host, spec);
       if (s) sectionScenes.push(s);
+      // Büyüt düğmesi ayrı bir öğe -- sahnenin kendi düğümleri zaten
+      // tıklamayı not panelini değiştirmek için kullanıyor (bkz. helix.js);
+      // aynı tıklamayı hem nota hem popup'a bağlamak ikisini çakıştırırdı.
+      var btn = scope.querySelector('[data-expand="' + key + '"]');
+      if (btn) {
+        var captionHtml = (captions && captions[key]) || "";
+        btn.addEventListener("click", function () { openHelixLightbox(spec, captionHtml); });
+      }
     });
+  }
+
+  function lightboxCaptionText(block) {
+    // Fütûhât'ın diyagram büyütme kalıbıyla aynı kural (assets/futuhat.js):
+    // büyütülmüş görünümde caption VEYA source gösterilir, ikisi birden
+    // değil, ve çapraz-link eklenmez (kapanmayan bir bağlantı modalin
+    // içinde kafa karıştırırdı).
+    if (block.caption) return t(block.caption);
+    if (block.source) return t(block.source);
+    return "";
   }
 
   function renderArticle(f) {
     clearSectionScenes();
     var helixes = {};
+    var captions = {};
     var idx = 0;
 
     var html = '<header class="fusus-article__head">'
@@ -172,6 +226,7 @@
     if (f.mainHelix) {
       var mk = "m" + (idx++);
       helixes[mk] = Object.assign({}, f.mainHelix.helix, { title: f.title });
+      captions[mk] = lightboxCaptionText(f.mainHelix);
       html += helixBlockHtml(f.mainHelix, mk);
     }
 
@@ -184,6 +239,7 @@
         } else if (b.type === "helix") {
           var k = "s" + (idx++);
           helixes[k] = Object.assign({}, b.helix, { title: sec.heading });
+          captions[k] = lightboxCaptionText(b);
           html += helixBlockHtml(b, k);
         }
       });
@@ -198,7 +254,7 @@
     }
 
     articleEl.innerHTML = html;
-    mountHelixBlocks(articleEl, helixes);
+    mountHelixBlocks(articleEl, helixes, captions);
   }
 
   function activate(id) {
