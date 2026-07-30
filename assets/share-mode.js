@@ -326,29 +326,38 @@
       n: 22, tur: 1, yari: 0.28, yuk: 1.2, ac: 0.10, nokta: 4.2, hale: 0.52, halka: 0, nefes: true },
     { id: "sade", ad: { tr: "Sade", en: "Plain", pt: "Simples" },
       n: 14, tur: 1, yari: 0.34, yuk: 1.6, ac: 0.20, nokta: 2.6, hale: 0.20, halka: 0, cizgisiz: true },
-    // İki yeni zemin (kullanıcı isteği, 2026-07-30): "daha fazla arka plan
-    // seçeneği, metafizik anlamı kuvvetli, düğümler farklı/canlı renklerle."
-    // Süsleyici bir renk çarkı seçmek yerine ikisi de sitenin zaten
-    // taşıdığı iki gerçek ikiliyi kodluyor:
-    //  - "celalcemal": esmâ'nın celâl/cemâl ayrımı (bkz. assets/esma.js
-    //    grupları; CLAUDE.md'de #114 not "Celal/Cemal/Kemal donut" fikriyle
-    //    aynı ikiliğin buradaki hâli) -- düğümler dönüşümlü iki renkte.
-    //  - "esik": bu oturumun kendi araştırma bulgusu (RESEARCH_LOG,
-    //    2026-07-30, OPEN_QUESTIONS #128): Dost mertebeleri sıralamak
-    //    yerine iki uç koyup arasına bir eşik/berzah açıyor gibi görünüyor.
-    //    Sarmal boyunca renk bir uçtan ötekine kademeli geçiyor -- ayrık
-    //    değil, sürekli bir geçiş.
+    // Dört yeni zemin (kullanıcı isteği, 2026-07-30): "daha fazla arka plan
+    // seçeneği, metafizik anlamı kuvvetli, düğümler farklı/canlı renklerle;
+    // video gibi canlı hissi de olsun."  Süsleyici renk çarkı yerine hepsi
+    // sitenin gerçek kavramlarını kodluyor:
+    //  - "celalcemal": esmâ'nın celâl/cemâl ayrımı -- düğümler dönüşümlü.
+    //  - "esik": iki uç arasındaki berzah/eşik -- renk sürekli kayıyor.
+    //  - "feyz": nefes-i Rahmânî'nin feyz/taşması -- bir dalga sarmalı
+    //    boyunca aşağı akar; "video-benzeri" canlı his tam burada.
+    //  - "esma": yedi Ümmehât-ı Esmâ'nın yedi rengi -- Hayy/Alîm/Mürîd/
+    //    Kadîr/Semî'/Basîr/Mütekellim, her düğüm kendi isminin renginde.
     { id: "celalcemal", ad: { tr: "Celâl-Cemâl", en: "Majesty-Beauty", pt: "Majestade-Beleza" },
       n: 28, tur: 1.6, yari: 0.30, yuk: 2.4, ac: 0.30, nokta: 3.6, hale: 0.28, halka: 0, renk: "cift" },
     { id: "esik", ad: { tr: "Eşik", en: "Threshold", pt: "Limiar" },
       n: 24, tur: 1.2, yari: 0.30, yuk: 2.0, ac: 0.26, nokta: 3.6, hale: 0.30, halka: 0, renk: "gecis" },
+    { id: "feyz", ad: { tr: "Feyz", en: "Emanation", pt: "Emanação" },
+      n: 36, tur: 1.8, yari: 0.29, yuk: 2.8, ac: 0.28, nokta: 3.0, hale: 0.36, halka: 0, renk: "feyz" },
+    { id: "esma", ad: { tr: "Esmâ", en: "Divine Names", pt: "Nomes Divinos" },
+      n: 35, tur: 2.0, yari: 0.28, yuk: 2.6, ac: 0.26, nokta: 3.2, hale: 0.22, halka: 0, renk: "esma" },
   ];
   // "renk: cift" için iki sabit ton (celâl/cemâl); "renk: gecis" için
   // sarmal boyunca aralarında kayan iki uç. İkisi de hem koyu hem açık
   // zeminde okunaklı kalacak şekilde seçildi (dekoratif öğeler oldukları
   // için metin kontrastı ölçütü uygulanmıyor, ama yine de göz önünde
   // tutuldu).
-  const RENK = { celal: "#e2632b", cemal: "#7c5cff", esikA: "#eda100", esikB: "#4b3f8f" };
+  const RENK = {
+    celal: "#e2632b", cemal: "#7c5cff",
+    esikA: "#eda100", esikB: "#4b3f8f",
+    // Feyz: sıcak altın (tepe) → derin turuncu (dip); hem koyu hem açık zeminde okunabilir.
+    feyzA: "#fdb347", feyzB: "#c04a0f",
+    // Yedi Ümmehât: Hayy·Alîm·Mürîd·Kadîr·Semî'·Basîr·Mütekellim sırasıyla.
+    esma: ["#3fb87a", "#4a9eff", "#a855f7", "#e2632b", "#06b6d4", "#eab308", "#ec4899"],
+  };
   function hexRgb(h) {
     const n = parseInt(h.slice(1), 16);
     return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
@@ -429,15 +438,32 @@
       // Renkli zeminler: düğüm rengi CSS'teki tek tonun (--sahne-murekkep)
       // yerine geçiyor; öteki zeminlerde her karede boşaltılıyor ki
       // önceki bir renkli zeminden kalan satır-içi renk yapışık kalmasın.
-      if (z.renk === "cift") c.style.fill = i % 2 === 0 ? RENK.celal : RENK.cemal;
-      else if (z.renk === "gecis") c.style.fill = renkGecis(RENK.esikA, RENK.esikB, i / Math.max(1, z.n - 1));
-      else c.style.fill = "";
+      if (z.renk === "cift") {
+        c.style.fill = i % 2 === 0 ? RENK.celal : RENK.cemal;
+      } else if (z.renk === "gecis") {
+        c.style.fill = renkGecis(RENK.esikA, RENK.esikB, i / Math.max(1, z.n - 1));
+      } else if (z.renk === "feyz") {
+        // Altın dalga sarmal boyunca aşağı akar -- feyz/taşma hareketi.
+        const fPos = i / Math.max(1, z.n - 1);
+        c.style.fill = renkGecis(RENK.feyzA, RENK.feyzB, fPos);
+        if (!reduceMotion) {
+          const wave = (1 - Math.cos(ts / 1200 - fPos * Math.PI * 4)) / 2;
+          c.style.opacity = (0.05 + 0.88 * wave).toFixed(2);
+        }
+      } else if (z.renk === "esma") {
+        // Her düğüm bir Ümmehât isminin rengi; 7'nin katı düğümde renk döner.
+        c.style.fill = RENK.esma[i % RENK.esma.length];
+      } else {
+        c.style.fill = "";
+      }
     });
     // Merkezdeki nefes alan halka: ontoloji/esmâ'daki Zât halosuyla aynı
     // 6 saniyelik ritim.
     const halo = g.querySelector(".share-halo");
     if (z.renk === "cift") halo.style.fill = renkGecis(RENK.celal, RENK.cemal, 0.5);
     else if (z.renk === "gecis") halo.style.fill = renkGecis(RENK.esikA, RENK.esikB, 0.5);
+    else if (z.renk === "feyz") halo.style.fill = RENK.feyzA;
+    else if (z.renk === "esma") halo.style.fill = RENK.esma[3]; // Kadîr -- merkezde
     else halo.style.fill = "";
     const ph = reduceMotion ? 0.5 : (1 - Math.cos((ts / 6000) * 2 * Math.PI)) / 2;
     halo.setAttribute("cx", cx); halo.setAttribute("cy", cy);
