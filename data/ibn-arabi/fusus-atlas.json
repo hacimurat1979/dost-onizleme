@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs13",
+  "activeFassId": "fs14",
   "fasses": [
     {
       "id": "fs1",
@@ -5068,7 +5068,7 @@
     {
       "id": "fs14",
       "no": 14,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "Üzeyr",
         "en": "Ezra",
@@ -5078,7 +5078,236 @@
         "tr": "Hikmet-i Kaderiyye",
         "en": "Wisdom of Destiny",
         "pt": "Sabedoria do Destino"
-      }
+      },
+      "title": {
+        "tr": "Kader — Ezelde Kendin Hakkında Söylediğin",
+        "en": "Fate — What You Said About Yourself in Eternity",
+        "pt": "O Destino — O Que Disseste de Ti Próprio na Eternidade"
+      },
+      "pageRange": {
+        "tr": "XIV. Fass, s. 820-843 (Cilt I)",
+        "en": "Bezel XIV, pp. 820-843 (Vol. I)",
+        "pt": "Engaste XIV, pp. 820-843 (Vol. I)"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Bu fass kazâ ile kaderin ayrımından başlıyor: kazâ Allah'ın eşyâda ezelî hükmü, kader ise o hükmün belirli vakitlerde sahneye koyulması. Ama asıl çarpıcı olan şu: bu hüküm Allah'ın dışarıdan dayattığı bir karar değil — <strong>a'yân-ı sâbiteden, yani varlıkların kendi ezelî özlerinden kaynaklanıyor.</strong> Allah eşyâyı bildiği şekilde hükmediyor; eşyâyı ise onların kendi istidâdları oranında biliyor. Kimsenin kapasitesi Allah tarafından yaratılmamış: <em>\"istidâd-ı gayr-ı mec'ül.\"</em> Bu fasstan çıkan büyük paradoks şudur: sırr-ı kaderi gerçekten bilen kişi, aynı anda hem huzur hem azap bulur — çünkü başına gelen her şeyin kaynağının kendi ezelî özü olduğunu görür.",
+          "en": "This bezel opens with the distinction between kazā and qadar: kazā is God's eternal ruling over things, qadar is the deployment of that ruling at appointed times. But the truly striking point is this: that ruling is not a decision God imposes from outside — <strong>it originates in the fixed essences (a'yān-i sābita), in the things' own eternal cores.</strong> God rules over things as He knows them; He knows them according to their own capacities. No one's capacity was created by God: <em>\"istiʿdād ghayr maʿjūl.\"</em> The great paradox that emerges from this bezel is that the person who truly knows the secret of fate finds both rest and suffering at once — for they see that the source of everything that befell them is their own eternal essence.",
+          "pt": "Este engaste abre com a distinção entre kazā e qadar: kazā é o juízo eterno de Deus sobre as coisas, qadar é o desdobramento desse juízo em momentos específicos. Mas o ponto verdadeiramente impressionante é este: esse juízo não é uma decisão que Deus impõe de fora — <strong>origina-se nas essências fixas (a'yān-i sābita), nos núcleos eternos das próprias coisas.</strong> Deus julga as coisas como as conhece; conhece-as segundo as suas próprias capacidades. A capacidade de ninguém foi criada por Deus: <em>\"istiʿdād ghayr maʿjūl.\"</em> O grande paradoxo que emerge deste engaste é que a pessoa que verdadeiramente conhece o segredo do destino encontra simultaneamente repouso e sofrimento — pois vê que a fonte de tudo o que lhe aconteceu é a sua própria essência eterna."
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem, XIV. Fass (Konuk şerhi, s. 820-843)",
+          "en": "Fusus al-Hikam, Bezel XIV (Konuk's commentary, pp. 820-843)",
+          "pt": "Fusus al-Hikam, Engaste XIV (comentário de Konuk, pp. 820-843)"
+        },
+        "caption": {
+          "tr": "Dört basamağın hepsi metnin; sarmalın kapanış biçimi bizim. Kazâ ezelîdir — ama ezelîliği bir dışsal zorlamadan gelmiyor, a'yânın kendi özünden. Kader onu sahneye koyar. Hüccet-i bâliğa kapıyı kapatır: \"bu senden geldi.\" Sırr ise o kapının ardında: istirahât ve azap, aynı anda, aynı noktada.",
+          "en": "All four steps are the text's; the spiral's closing is ours. Kazā is eternal — but its eternality does not come from external imposition, it comes from the thing's own essence. Qadar brings it onto the stage. Hujja bāligha closes the door: 'this came from you.' The secret is behind that door: rest and suffering, simultaneously, at the same point.",
+          "pt": "Os quatro degraus são do texto; o fecho da espiral é nosso. Kazā é eterno — mas a sua eternidade não vem de uma imposição externa, vem da própria essência da coisa. Qadar traz-a para o palco. Hujja bāligha fecha a porta: 'isto veio de ti.' O segredo está atrás dessa porta: repouso e sofrimento, simultaneamente, no mesmo ponto."
+        },
+        "helix": {
+          "id": "fs14-kader",
+          "turns": 1.3,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs14-k1",
+              "label": {
+                "tr": "Kazâ: Ezelî hüküm",
+                "en": "Kazā: eternal ruling",
+                "pt": "Kazā: juízo eterno"
+              },
+              "note": {
+                "tr": "<em>\"Kazâ, Allâh'ın eşyâda hükmüdür... ilim malûma tabidir.\"</em> Hüküm ezelîdir ama dışarıdan değil, a'yânın kendi özünden kaynaklanır — Hakk onları oldukları gibi biliyor ve bildiği gibi hükmediyor.",
+                "en": "<em>\"Kazā is God's ruling over things... knowledge follows the known.\"</em> The ruling is eternal but not from outside — it originates in the things' own essences. God knows them as they are and rules as He knows.",
+                "pt": "<em>\"Kazā é o juízo de Deus sobre as coisas... o conhecimento segue o conhecido.\"</em> O juízo é eterno mas não vem de fora — origina-se nas essências das próprias coisas. Deus conhece-as como são e julga como conhece."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs14-k2",
+              "label": {
+                "tr": "Kader: Vakitlere dağılım",
+                "en": "Qadar: deployment in time",
+                "pt": "Qadar: desdobramento no tempo"
+              },
+              "note": {
+                "tr": "<em>\"Her şeyin mükadder bir vakti vardır\"</em> — kazâda ezelî olan hüküm, kaderde zamânî sahneye koyuluyor. İkisi aynı gerçeğin iki yüzü: biri bilgi planında, diğeri zuhur planında.",
+                "en": "<em>\"Everything has an appointed time\"</em> — the ruling that is eternal in kazā is deployed in time in qadar. The two are two faces of the same reality: one in the plane of knowledge, the other in the plane of manifestation.",
+                "pt": "<em>\"Tudo tem um tempo determinado\"</em> — o juízo que é eterno no kazā é desdobrado no tempo no qadar. Os dois são duas faces da mesma realidade: um no plano do conhecimento, o outro no plano da manifestação."
+              }
+            },
+            {
+              "id": "fs14-k3",
+              "label": {
+                "tr": "Hüccet-i bâliğa: Bu senden geldi",
+                "en": "Hujja bāligha: this came from you",
+                "pt": "Hujja bāligha: isto veio de ti"
+              },
+              "note": {
+                "tr": "<em>\"Hüccet-i bâliğa\"</em> (En'âm 6/149): \"Neden ben böyleyim?\" sorusunun tam cevabı. Çünkü kişinin a'yân-ı sâbitesi bu istidâdla ortaya çıktı ve Allah onu bu istidâda göre bildi, bu bilgiye göre hükmetti. <em>Hâkim mahkûmun esiridir.</em>",
+                "en": "<em>\"Hujja bāligha\"</em> (An'ām 6:149): the complete answer to \"why am I this way?\" Because the person's fixed essence appeared with this capacity, and God knew it according to this capacity, and ruled according to this knowledge. <em>The ruler is the prisoner of the ruled.</em>",
+                "pt": "<em>\"Hujja bāligha\"</em> (An'ām 6:149): a resposta completa a \"por que sou assim?\" Porque a essência fixa da pessoa apareceu com esta capacidade, e Deus conheceu-a segundo esta capacidade, e julgou segundo este conhecimento. <em>O governante é o prisioneiro do governado.</em>"
+              }
+            },
+            {
+              "id": "fs14-k4",
+              "label": {
+                "tr": "Sırr-ı kader: İstirahât ve azap",
+                "en": "Secret of fate: rest and suffering",
+                "pt": "Segredo do destino: repouso e sofrimento"
+              },
+              "note": {
+                "tr": "Sırrı gerçekten bilen hem istirahât hem azap bulur — aynı anda. Huzur: başıma gelenlerin kaynağı benim özüm, bir başkası değil. Azap: o özün bu şekilde belirlemiş olması. Üzeyr bunu kelimeli cevap olarak değil, hakka'l-yakin ile aldı: yüz yıl ölüm ve diriliş.",
+                "en": "One who truly knows the secret finds both rest and suffering — simultaneously. Rest: the source of what befell me is my own essence, not an external other. Suffering: that essence having determined itself this way. Ezra received this not as a verbal answer but as ḥaqq al-yaqīn: a hundred years of death and resurrection.",
+                "pt": "Quem verdadeiramente conhece o segredo encontra simultaneamente repouso e sofrimento. Repouso: a fonte do que me aconteceu é a minha própria essência, não um outro externo. Sofrimento: essa essência ter-se determinado assim. Esdras recebeu isto não como resposta verbal mas como ḥaqq al-yaqīn: cem anos de morte e ressurreição."
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs14-s1",
+          "heading": {
+            "tr": "Kazâ ve Kader: Ezelî Hüküm, Vakitli Zuhur",
+            "en": "Kazā and Qadar: Eternal Ruling, Timed Manifestation",
+            "pt": "Kazā e Qadar: Juízo Eterno, Manifestação em Tempo"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass iki kavramın ayrımından açılıyor. <em>Kazâ</em>, Allah'ın eşyâdaki ezelî hükmüdür — bu hüküm Hakk'ın ilminde sabit olan şeyden ibarettir; zamân boyutu yoktur. <em>Kader</em> ise o ezelî hükmün belirlenmiş vakitlerde, belirlenen şekillerle vücûda gelmesidir. İki kavram aynı gerçeği iki ayrı perspektiften görür: kazâ bilgi planında (ezelî), kader zuhur planında (zamânî). Aralarında bir gecikmeden ya da bir eklemeden söz edilemez — kazâda ne varsa kader onu sahneye koyar, ne eksik ne fazla.",
+                "en": "The bezel opens with the distinction between two concepts. <em>Kazā</em> is God's eternal ruling over things — this ruling consists of what is fixed in God's knowledge; it has no temporal dimension. <em>Qadar</em> is the coming into being of that eternal ruling at appointed times and in appointed forms. Both concepts see the same reality from two different perspectives: kazā in the plane of knowledge (eternal), qadar in the plane of manifestation (temporal). Between them there is no delay, no addition — what is in kazā is what qadar brings to the stage, nothing more, nothing less.",
+                "pt": "O engaste abre com a distinção entre dois conceitos. <em>Kazā</em> é o juízo eterno de Deus sobre as coisas — este juízo consiste no que está fixo no conhecimento de Deus; não tem dimensão temporal. <em>Qadar</em> é o vir-a-ser desse juízo eterno em momentos determinados e sob formas determinadas. Ambos os conceitos veem a mesma realidade de duas perspetivas diferentes: kazā no plano do conhecimento (eterno), qadar no plano da manifestação (temporal). Entre eles não há atraso, não há adição — o que está no kazā é o que o qadar traz para o palco, nem mais nem menos."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın asıl iddiası şu an ortaya çıkıyor: <em>\"Allâh'ın eşyâda olan ilmi dahi, ma'lümât nefislerinde ne hâl üzere sâbit idiyselerse, o ma'lümâtın Hakk'a i'tâ ettikleri şeyin haddi üzeredir.\"</em> Yani Allah'ın bilgisi eşyâya dışarıdan biçtiği bir kalıp değil — eşyânın kendi ezelî özünün Hakk'a verdiği şeydir. Kazâ, Allah'ın kararı değil; a'yân-ı sâbitenin, kendi istidâdları aracılığıyla, Allah'tan aldırdığı şeydir. Bu ayrım fassın her şeyini değiştiriyor.",
+                "en": "The bezel's central claim now emerges: <em>\"God's knowledge of things is bounded by what the known-things themselves, fixed in their own essences, give to God.\"</em> So God's knowledge is not a mold He imposes from outside — it is what things' own eternal essences give to God. Kazā is not God's decision; it is what the fixed essences, through their own capacities, cause God to receive. This distinction changes everything in the bezel.",
+                "pt": "A afirmação central do engaste emerge agora: <em>\"O conhecimento de Deus sobre as coisas é limitado pelo que as próprias coisas conhecidas, fixas nas suas próprias essências, dão a Deus.\"</em> Assim, o conhecimento de Deus não é um molde que Ele impõe de fora — é o que as essências eternas das coisas dão a Deus. Kazā não é a decisão de Deus; é o que as essências fixas, através das suas próprias capacidades, fazem Deus receber. Esta distinção muda tudo no engaste."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs14-s2",
+          "heading": {
+            "tr": "İstidâd-ı Gayr-ı Mec'ül: Yaratılmamış Kapasite",
+            "en": "Istiʿdād ghayr maʿjūl: Non-Created Capacity",
+            "pt": "Istiʿdād ghayr maʿjūl: Capacidade Não Criada"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın teknik kalbi bu kavramda: <em>istidâd-ı gayr-ı mec'ül</em> — yaratılmamış kapasite. Allah varlıkların özelliklerini ve kapasitelerini belirleyip, sonra onlara göre bir hüküm yazmıyor. Kapasiteler a'yân-ı sâbitede, ilm-i ilâhîde, ezelî olarak sabittir; Allah onları bu hâlleriyle biliyor. Bu yüzden İbn Arabî'ye atfedilen bir söz var: <em>\"Hâkim mahkûmun esiridir\"</em> — hükmeden, hüküm verilenin elindedir. Yani Allah, a'yânın kendi istidâdlarına tabi olarak hükmeder; ama bu tabiiyet özgür bir tabiiyet değil, ezelî bilginin zorunlu sonucudur.",
+                "en": "The technical core of the bezel lies here: <em>istiʿdād ghayr maʿjūl</em> — non-created capacity. God does not determine the characteristics and capacities of things and then write a ruling according to them. The capacities are eternally fixed in the fixed essences (a'yān-i sābita), in divine knowledge; God knows them as they are. Hence a saying attributed to Ibn ʿArabī: <em>\"The ruler is the prisoner of the ruled\"</em> — the one who rules is in the hands of the one ruled. That is, God rules subject to the things' own capacities; but this subjection is not a voluntary one — it is the necessary consequence of eternal knowledge.",
+                "pt": "O núcleo técnico do engaste está aqui: <em>istiʿdād ghayr maʿjūl</em> — capacidade não criada. Deus não determina as características e capacidades das coisas e depois escreve um juízo segundo elas. As capacidades estão eternamente fixas nas essências fixas (a'yān-i sābita), no conhecimento divino; Deus conhece-as como são. Daí um dito atribuído a Ibn ʿArabī: <em>\"O governante é o prisioneiro do governado\"</em> — o que governa está nas mãos do governado. Ou seja, Deus governa sujeito às capacidades das próprias coisas; mas esta sujeição não é voluntária — é a consequência necessária do conhecimento eterno."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk bu noktada Kur'ân'ın <em>\"hüccet-i bâliğa\"</em> (En'âm 6/149) ifadesini açıyor: Allah'ın hücceti kâmildir, tamamdır — karşı çıkılamaz. Ve bu kâmillik şundan geliyor: Allah kişiyi kendi istidâdına muhalif bir şeyle sorumlu tutmuyor; herkes tam olarak kendi özünün gerektirdiği şeyi yapıyor ve onun sonucunu alıyor. \"Neden ben böyleyim?\" sorusuna tam cevap: çünkü senin a'yân-ı sâbitenin, senin ezelî özünün, kendi istidâdı bu. Allah seni bildiği gibi hükmetti; seni ise <em>sen</em> olduğun gibi biliyor.",
+                "en": "Konuk here opens up the Quranic phrase <em>\"hujja bāligha\"</em> (An'ām 6:149): God's proof is complete, perfect — it cannot be refuted. And this completeness comes from this: God does not hold a person responsible for something contrary to their own capacity; everyone does exactly what their own essence requires and receives its consequence. The complete answer to \"why am I this way?\": because this is the capacity of your fixed essence, your eternal core. God ruled over you as He knew you; and He knew you as <em>you</em> are.",
+                "pt": "Konuk aqui abre a expressão corânica <em>\"hujja bāligha\"</em> (An'ām 6:149): a prova de Deus é completa, perfeita — não pode ser refutada. E esta completude vem disto: Deus não responsabiliza a pessoa por algo contrário à sua própria capacidade; todos fazem exatamente o que a sua própria essência requer e recebem a sua consequência. A resposta completa a \"por que sou assim?\": porque esta é a capacidade da tua essência fixa, do teu núcleo eterno. Deus julgou-te como te conhecia; e conhecia-te como <em>tu</em> és."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs14-s3",
+          "heading": {
+            "tr": "Sırr-ı Kaderin Paradoksu: Hem Huzur Hem Azap",
+            "en": "The Paradox of Fate's Secret: Both Rest and Suffering",
+            "pt": "O Paradoxo do Segredo do Destino: Repouso e Sofrimento"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın en yoğun bölümü bu: sırr-ı kaderi bilen kişiye ne olur? Konuk çok net bir ifade kullanıyor: <em>\"Bu sırra tam ıttılâ' hâsıl olan kimseye, hem istirahât hem azap tahakkuk eder.\"</em> İki duygu aynı anda, aynı bilgiden doğar. İstirahât şundan: başıma gelen her şey benim özümden geliyor — dışımda beni ezen bir güç yok, bir haksızlık yok; her şey benim a'yânımın istidâdının gerektirdiği. Azap ise tam bu sebepten: o özün bu şekilde belirlemiş olduğunu görmek, kaçışın imkânsız olduğunu anlamak.",
+                "en": "The most intense section of the bezel: what happens to the one who knows the secret of fate? Konuk uses a very clear formulation: <em>\"To the one who truly attains awareness of this secret, both rest and suffering are realized.\"</em> Two feelings arise simultaneously from the same knowledge. Rest from this: everything that happened to me comes from my own essence — there is no power outside crushing me, no injustice; everything is what my a'yān's capacity requires. Suffering from precisely this: seeing that the essence determined itself this way, realizing that escape is impossible.",
+                "pt": "A secção mais intensa do engaste: o que acontece àquele que conhece o segredo do destino? Konuk usa uma formulação muito clara: <em>\"Àquele que verdadeiramente alcança a consciência deste segredo, realizam-se simultaneamente o repouso e o sofrimento.\"</em> Dois sentimentos surgem simultaneamente do mesmo conhecimento. Repouso por isto: tudo o que me aconteceu vem da minha própria essência — não há poder exterior a esmagar-me, não há injustiça; tudo é o que a capacidade das minhas a'yān requer. Sofrimento precisamente por isto: ver que a essência se determinou assim, perceber que a fuga é impossível."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu, kaderin sırrına sözle ulaşmanın neden mümkün olmadığını da açıklıyor. Sözle anlatılan bilgi ilme'l-yakindır — habere dayanır. Onu yaşayarak edinmek ayne'l-yakindır. Ama bu paradoksun <em>içinden</em> yaşanması, hakka'l-yakindir — kelimelerin taşıyamayacağı, doğrudan tanıklığın getirdiği. Üzeyr peygamberin hikâyesi tam burada anlam kazanıyor: Allah ona sırr-ı kaderi söylemedi — onu yüz yıl öldürüp tekrar diriltmek suretiyle <em>yaşattı.</em>",
+                "en": "This also explains why it is impossible to arrive at the secret of fate through words. Knowledge received through words is ʿilm al-yaqīn — based on report. Acquiring it through experience is ʿayn al-yaqīn. But living <em>through</em> this paradox is ḥaqq al-yaqīn — what direct witnessing brings, what words cannot carry. The story of the prophet Ezra gains its meaning precisely here: God did not tell him the secret of fate — He <em>made him live it</em> by causing him to die for a hundred years and then bringing him back to life.",
+                "pt": "Isto também explica por que é impossível chegar ao segredo do destino através de palavras. O conhecimento recebido através de palavras é ʿilm al-yaqīn — baseado em relato. Adquiri-lo através da experiência é ʿayn al-yaqīn. Mas viver <em>através</em> deste paradoxo é ḥaqq al-yaqīn — o que a testemunha direta traz, o que as palavras não podem transportar. A história do profeta Esdras ganha o seu significado precisamente aqui: Deus não lhe contou o segredo do destino — <em>fê-lo vivê-lo</em> causando a sua morte por cem anos e trazendo-o de volta à vida."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs14-s4",
+          "heading": {
+            "tr": "Üzeyr'in Sorusu ve Üç Yakin Mertebesi",
+            "en": "Ezra's Question and the Three Levels of Certainty",
+            "pt": "A Pergunta de Esdras e os Três Níveis de Certeza"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kur'ân, Bakara 2/259'da Üzeyr'in (a.s.) — ya da başka bir mümin kulun — yıkılmış bir şehirden geçerken <em>\"Allah bu şehri ölümünün ardından nasıl diriltecek?\"</em> diye sorduğunu anlatır. Konuk bu soruyu farklı bir zemine çekiyor: buradaki asıl soru kader sırrı hakkında. Üzeyr yüz yıl öldürüldü — merkebinin kemikleri bile çürüdü. Sonra diriltildi ve Allah sordu: <em>\"Ne kadar kaldın?\"</em> Üzeyr <em>\"Bir gün ya da bir günün bir parçası\"</em> dedi. Allah buyurdu: <em>\"Bilakis yüz yıl kaldın.\"</em>",
+                "en": "The Quran, at Baqara 2:259, narrates that Ezra — or another believing servant — passing through a ruined city asked: <em>\"How will God bring this city back to life after its death?\"</em> Konuk moves this question onto different ground: the real question here is about the secret of fate. Ezra was made to die for a hundred years — even the bones of his donkey decomposed. Then he was revived and God asked: <em>\"How long did you remain?\"</em> Ezra said: <em>\"A day or part of a day.\"</em> God said: <em>\"No, you remained a hundred years.\"</em>",
+                "pt": "O Alcorão, em Baqara 2:259, narra que Esdras — ou outro servo crente — passando por uma cidade arruinada perguntou: <em>\"Como Deus revitalizará esta cidade após a sua morte?\"</em> Konuk move esta questão para outro terreno: a verdadeira questão aqui é sobre o segredo do destino. Esdras foi feito morrer por cem anos — até os ossos do seu burro se decompuseram. Depois foi revivido e Deus perguntou: <em>\"Quanto tempo ficaste?\"</em> Esdras disse: <em>\"Um dia ou parte de um dia.\"</em> Deus disse: <em>\"Não, ficaste cem anos.\"</em>"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass burada üç yakin mertebesini öne çıkarıyor. <em>İlme'l-yakin</em>: bir şeyi haberden öğrenmek. <em>Ayne'l-yakin</em>: onu gözlemlemek, görmek. <em>Hakka'l-yakin</em>: o şeyin bizzat içinde olmak. Üzeyr sırr-ı kaderi ilme'l-yakin olarak sormuştu; cevap olarak hakka'l-yakin aldı — ölüp dirilmek suretiyle. Konuk'un yorumuna göre Allah, Üzeyr'in sorusunu sözle değil, <em>hâlin diliyle</em> cevapladı: ölümü ve dirilişi bizzat yaşamak, \"Allah nasıl diriltir?\" sorusunu kelimelerin ötesinde anlamaktı.",
+                "en": "The bezel here foregrounds the three levels of certainty. <em>ʿIlm al-yaqīn</em>: learning something from report. <em>ʿAyn al-yaqīn</em>: observing it, seeing it. <em>Ḥaqq al-yaqīn</em>: being inside it oneself. Ezra had asked about the secret of fate at the level of ʿilm al-yaqīn; he received ḥaqq al-yaqīn as the answer — by dying and being revived. According to Konuk's reading, God did not answer Ezra's question in words but in <em>the language of state</em>: living through death and resurrection was to understand beyond words the question \"how does God revive?\"",
+                "pt": "O engaste aqui evidencia os três níveis de certeza. <em>ʿIlm al-yaqīn</em>: aprender algo por relato. <em>ʿAyn al-yaqīn</em>: observá-lo, vê-lo. <em>Ḥaqq al-yaqīn</em>: estar dentro dele pessoalmente. Esdras tinha perguntado sobre o segredo do destino ao nível de ʿilm al-yaqīn; recebeu ḥaqq al-yaqīn como resposta — morrendo e sendo revivido. Segundo a leitura de Konuk, Deus não respondeu à pergunta de Esdras em palavras mas na <em>linguagem do estado</em>: viver através da morte e ressurreição era compreender para além das palavras a questão \"como Deus revitaliza?\"."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs14-s5",
+          "heading": {
+            "tr": "Peygamberin Üç Ciheti ve Mefâtîh-i Gayb",
+            "en": "The Prophet's Three Aspects and the Keys of the Unseen",
+            "pt": "Os Três Aspetos do Profeta e as Chaves do Oculto"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fassın sonuna doğru İbn Arabî bir peygamberin üç farklı cihetiyle nasıl bilgiye sahip olduğunu anlatıyor. Birinci cihet: <em>nübüvvet sıfatıyla</em> — vahiy aldığı kadar bilir, duyduğu şeyi tebliğ eder. İkinci cihet: <em>velâyet sıfatıyla</em> — kendi a'yân-ı sâbitesinin istidâdı oranında bilir; bu bilgi vahiyle sınırlı değildir, keşfe ve müşâhedeye açıktır. Üçüncü cihet: <em>rabb-i hassın sıfatıyla</em> — her varlığın özel rabbi olan esmâ-i ilâhiyyenin mazharı olarak bilir. Bu üçüncü cihet en derin olanıdır ve dile en zor gelendir.",
+                "en": "Toward the end of the bezel, Ibn ʿArabī describes how a prophet possesses knowledge from three different aspects. First aspect: <em>as prophet</em> — he knows to the extent of what he received through revelation, he transmits what he heard. Second aspect: <em>as walī</em> — he knows to the extent of his fixed essence's own capacity; this knowledge is not limited to revelation, it is open to unveiling and witnessing. Third aspect: <em>as his particular Lord</em> — he knows as the manifestation of the divine name that is the special Lord of each being. This third aspect is the deepest and the most difficult to put into words.",
+                "pt": "Perto do fim do engaste, Ibn ʿArabī descreve como um profeta possui conhecimento a partir de três aspetos diferentes. Primeiro aspeto: <em>como profeta</em> — sabe na medida do que recebeu através da revelação, transmite o que ouviu. Segundo aspeto: <em>como walī</em> — sabe na medida da capacidade da sua própria essência fixa; este conhecimento não está limitado à revelação, está aberto ao desvelamento e à testemunha. Terceiro aspeto: <em>como o seu Senhor particular</em> — sabe como manifestação do nome divino que é o Senhor especial de cada ser. Este terceiro aspeto é o mais profundo e o mais difícil de colocar em palavras."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Fass <em>mefâtîh-i gayb</em> kavramıyla kapanıyor: <em>\"Gaybın anahtarları Allah'ın katındadır; onları O'ndan başkası bilmez\"</em> (En'âm 6/59). Konuk bu anahtarların a'yân-ı sâbite olduğunu söylüyor — varlıkların ezelî özleri, onların potansiyellerini belirleyen ve dolayısıyla ne olacakları üzerinde kesin bir söz hakkı olan şey. Bu anahtarlar sadece Allah'ın ilmindedir — çünkü a'yânı bilen yalnızca Allah'tır; a'yânlar kendilerini bile bilmezler, sadece Hakk'ın ilminde sâbittirler. Böylece fass başladığı yere dönüyor: kazâ a'yânın istidâdından geliyor; ve o istidâd, gayb'ın kilitli anahtarlarında saklı.",
+                "en": "The bezel closes with the concept of <em>mafātīḥ al-ghayb</em>: <em>\"The keys of the unseen are with God; none knows them except He\"</em> (An'ām 6:59). Konuk says these keys are the fixed essences (a'yān-i sābita) — the eternal cores of beings, which determine their potentials and therefore have the decisive say in what they will be. These keys are only in God's knowledge — because only God knows the a'yān; the a'yān do not even know themselves, they are only fixed in God's knowledge. Thus the bezel returns to where it began: kazā originates in the capacity of the a'yān; and that capacity is hidden in the locked keys of the unseen.",
+                "pt": "O engaste fecha-se com o conceito de <em>mafātīḥ al-ghayb</em>: <em>\"As chaves do oculto estão com Deus; ninguém as conhece exceto Ele\"</em> (An'ām 6:59). Konuk diz que estas chaves são as essências fixas (a'yān-i sābita) — os núcleos eternos dos seres, que determinam os seus potenciais e portanto têm a palavra decisiva sobre o que serão. Estas chaves estão apenas no conhecimento de Deus — porque só Deus conhece as a'yān; as a'yān nem a si mesmas se conhecem, estão apenas fixas no conhecimento de Deus. Assim o engaste regressa a onde começou: o kazā origina-se na capacidade das a'yān; e essa capacidade está escondida nas chaves trancadas do oculto."
+              }
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Füsûsu'l-Hikem Tercüme ve Şerhi (A.A. Konuk), Cilt I, XIV. Fass, s. 820-843",
+          "en": "Fusus al-Hikam: Translation and Commentary (A.A. Konuk), Vol. I, Bezel XIV, pp. 820-843",
+          "pt": "Fusus al-Hikam: Tradução e Comentário (A.A. Konuk), Vol. I, Engaste XIV, pp. 820-843"
+        }
+      ]
     },
     {
       "id": "fs15",
