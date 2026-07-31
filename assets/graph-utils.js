@@ -311,5 +311,74 @@ window.DostGraphUtils = (function () {
     };
   }
 
-  return { getVar, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, fetchJson, isViewActive, onViewWake, createTilt };
+  // --- Etiket çakışması ------------------------------------------------------
+  // Önce sorular.js'te çözüldü, sonra buraya taşındı: 2026-07-31 taraması
+  // /hal/ görünümünde aynı kusurun hiç düzeltilmemiş olduğunu ölçtü
+  // (masaüstü 5, mobil 12 çakışma; /sorular/ ikisinde de 0).
+  //
+  // İKİ DENEME TUTMADI, tekrar denenmesin diye kayıtta:
+  //   1. genişliği "karakter sayısı × punto × 0,52" ile tahmin etmek
+  //      (masaüstü 2 / mobil 5 çakışma bıraktı),
+  //   2. aynı tahmini zoom katsayısına bölmek (masaüstü 4 / mobil 1).
+  // Tutan şey tahmin değil ÖLÇÜM: getBBox() metnin kendi yerel biriminde
+  // döner, yani düğüm koordinatlarıyla aynı uzayda — zoom dönüşümü işin
+  // içine girmiyor. Ölçüm pahalı olduğu için dize başına bir kez yapılır.
+  //
+  // Ayrıca ölçüldü: yalnız puntoyu büyütmek çözüm DEĞİL. /hal/'de 10,5px'ten
+  // 12px'e çıkarmak mobil çakışmayı 12'den 14'e taşıdı. Yer açan şey kaydırma.
+  function createLabelDeconflictor() {
+    const box = new Map();            // metin -> {w,h}
+    function measure(node, txt) {
+      let m = box.get(txt);
+      if (!m) {
+        try { const b = node.getBBox(); m = { w: b.width, h: b.height }; }
+        catch (e) { m = { w: txt.length * 5.6, h: 12 }; }
+        if (m.w > 0) box.set(txt, m);
+      }
+      return m;
+    }
+    // items: {lbl (d3 seçimi), txt, x, y, baseY, priority?}
+    // priority yüksek olan önce yerleşir (kategoriler, dönüm noktaları).
+    return function deconflict(items) {
+      if (!items.length) return;
+      for (const it of items) {
+        const m = measure(it.lbl.node(), it.txt);
+        it.half = m.w / 2;
+        it.h = m.h || 12;
+      }
+      items.sort((a, b) => ((b.priority || 0) - (a.priority || 0)) || (a.y - b.y));
+      const placed = [];
+      for (const it of items) {
+        let y = it.y, guard = 0, clash = true;
+        while (clash && guard++ < 24) {
+          clash = false;
+          for (const p of placed) {
+            const dyGap = (it.h + p.h) / 2 + 2;
+            if (Math.abs(y - p.y) < dyGap && Math.abs(it.x - p.x) < it.half + p.half + 5) {
+              y = p.y + dyGap;        // aşağı doğru kaydır
+              clash = true;
+              break;
+            }
+          }
+        }
+        placed.push({ x: it.x, y, half: it.half, h: it.h });
+        if (y !== it.y) it.lbl.attr("y", it.baseY + (y - it.y));
+      }
+    };
+  }
+
+  // "Bir benzetmeyle" bloğu. Dört görünümde (esma/hal/ontology/sorular)
+  // gövdesiyle birlikte kopyalanmıştı; 2026-07-31 taraması yakaladı.
+  // Benzetmeler şu an görünen yüzden kaldırıldı ve gizli düzenleme kipiyle
+  // geri açılıyor (bkz. assets/edit-mode.js) — görünürlük koşulu tek yerde
+  // dursun ki kip değişirse dört dosyayı ayrı ayrı düzeltmek gerekmesin.
+  function analogyHtml(analogy) {
+    if (!analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
+    const I18n = window.DostI18n;
+    const etiket = I18n.pick3({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" });
+    return `<div class="detail-analogy"><p class="detail-analogy__label">${etiket}</p>`
+         + `<p>${I18n.pick3(analogy)}</p></div>`;
+  }
+
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor };
 })();

@@ -118,15 +118,8 @@
       </details>`;
     }).join("")}</div>`;
   }
-  function analogyHtml(analogy) {
-    // Benzetmeler sitenin görünen yüzünden kaldırıldı; gizli anahtar
-    // kelimeyle geri açılıyor (bkz. assets/analogy-toggle.js).
-    if (!analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
-    return `<div class="detail-analogy">
-      <p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p>
-      <p>${tt(analogy)}</p>
-    </div>`;
-  }
+  // Ortak: graph-utils.js (dört görünümde kopyalanmıştı).
+  const analogyHtml = (a) => GU.analogyHtml(a);
 
   // ---------------------------------------------------------------------------
   // 2) Veri + sahne kurulumu
@@ -143,6 +136,15 @@
   const rawById = new Map();   // id -> ham JSON düğümü
   let edges = [];              // { from, to } çizilen kenarlar (ebeveyn-çocuk + kümeler)
   let relations = [];          // 6 çapraz ilişki (ham)
+  // Türetilmiş kenarlar: scripts/kenar-turet.py'nin ko-okurans -> PPMI ->
+  // disparity filter zincirinden çıkan bağlar. BUNLAR BİZİM ÖLÇÜMÜMÜZ,
+  // Dost'un iddiası DEĞİL — o yüzden ayrı bir dizide, ayrı bir katmanda,
+  // kesikli ve sönük çiziliyor ve varsayılan olarak KAPALI. Ölçülen
+  // gerekçe: esma.json 101 düğüm / 6 elle yazılmış kenar taşıyor, yani
+  // düğüm başına 0,12 (ontolojide 3,00) — graf değil, radyal bir liste.
+  let derivedRelations = [];
+  let derivedOn = false;
+  let derivedPromise = null;
   const POLES = ["celal", "cemal", "kemal"];
   const CLUSTER_POLE_OF = { celal: "celal", cemal: "cemal", kemal: "kemal", neutral: "kemal" };
 
@@ -198,6 +200,14 @@
         if (window.DostViewStatus) window.DostViewStatus.showError("esma-wrap", () => window.__esmaApp.activate());
       });
     return esmaDataPromise;
+  }
+
+  function fetchDerived() {
+    if (derivedPromise) return derivedPromise;
+    derivedPromise = GU.fetchJson("data/ibn-arabi/turetilmis-kenarlar.json")
+      .then((d) => { derivedRelations = (d && d.kenarlar) || []; return derivedRelations; })
+      .catch((e) => { console.warn("Türetilmiş kenarlar yüklenemedi", e); derivedPromise = null; return []; });
+    return derivedPromise;
   }
 
   function trueChildren(id) {
@@ -863,8 +873,56 @@
         .style("opacity", (selectedId ? (rel ? 0.9 : 0.06) : 0.5) * Math.min(a.vis, b.vis));
     });
 
+    // Türetilmiş kenarlar: elle yazılmışlarla AYNI görünmemeli. Kesikli,
+    // daha sönük, ayrı sınıf. Yalnız anahtar açıkken çiziliyor.
+    const visDer = derivedOn
+      ? derivedRelations.filter((r) => byId.get(r.from) && byId.get(r.to)
+          && byId.get(r.from).vis > 0.05 && byId.get(r.to).vis > 0.05)
+      : [];
+    const ds = relLayer.selectAll("line.esmaX-derived").data(visDer, (r) => r.from + "~" + r.to);
+    ds.exit().remove();
+    const de = ds.enter().append("line").attr("class", "esmaX-derived")
+      .attr("tabindex", 0).attr("role", "button")
+      .on("click", (e, r) => { e.stopPropagation(); showDerivedDetail(r); })
+      .on("keydown", (e, r) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showDerivedDetail(r); } });
+    de.merge(ds).each(function (r) {
+      const a = byId.get(r.from), b = byId.get(r.to);
+      d3.select(this).attr("x1", a.px).attr("y1", a.py).attr("x2", b.px).attr("y2", b.py)
+        .style("opacity", 0.42 * Math.min(a.vis, b.vis));
+    });
+
     renderParticles();
     renderFlow();
+  }
+
+  // Türetilmiş bir kenara tıklanınca: ne olduğunu SÖYLEYEN bir panel.
+  // Buradaki metin veri dosyasından geliyor (üç dilli) ve tek işi bu bağın
+  // bizim sayımımız olduğunu açıkça söylemek.
+  function showDerivedDetail(r) {
+    const a = byId.get(r.from), b = byId.get(r.to);
+    if (!a || !b) return;
+    const ad = (n) => tt(n.raw ? n.raw.name : n.name) || n.id;
+    detailContent.innerHTML = `
+      <span class="detail-kicker detail-kicker--derived">${tt({
+        tr: "Saydığımız bir bağ", en: "A link we counted", pt: "Um vínculo que contamos" })}</span>
+      <h3>${ad(a)} · ${ad(b)}</h3>
+      <p>${tt(r.aciklama)}</p>
+      <p class="detail-meta">${tt({
+        tr: "Birlikte geçtiği bölüm sayısı", en: "Chapters where they occur together",
+        pt: "Capítulos em que ocorrem juntos" })}: <strong>${r.birlikte_belge}</strong></p>
+      <p class="detail-meta">${tt({
+        tr: "Yöntem: aynı bölümde birlikte geçme sayımı, ardından PPMI ve disparity filter (Serrano ve ark. 2009). Elle yazılmış bağlar kesiksiz çizilir; bu kesikli.",
+        en: "Method: counting co-occurrence within the same chapter, then PPMI and the disparity filter (Serrano et al. 2009). Hand-written links are drawn solid; this one is dashed.",
+        pt: "Método: contagem de coocorrência no mesmo capítulo, depois PPMI e o filtro de disparidade (Serrano et al. 2009). Vínculos escritos à mão são sólidos; este é tracejado." })}</p>`;
+    detailPanel.hidden = false;
+  }
+
+  function setDerived(on) {
+    derivedOn = !!on;
+    const btn = document.getElementById("esma-derived-toggle");
+    if (btn) { btn.classList.toggle("is-on", derivedOn); btn.setAttribute("aria-pressed", derivedOn ? "true" : "false"); }
+    if (derivedOn) fetchDerived().then(() => { if (derivedOn) ensureFrame(); });
+    else ensureFrame();
   }
 
   // ---- parçacıklar: yavaş ilerleyen ışık noktaları (#7) ----
@@ -1294,6 +1352,13 @@
     if (btn) { btn.classList.add("is-on"); btn.setAttribute("aria-pressed", "true"); }
   }
 
+  function wireDerivedToggle() {
+    const btn = document.getElementById("esma-derived-toggle");
+    if (!btn || btn.dataset.wiredX) return;
+    btn.dataset.wiredX = "1";
+    btn.addEventListener("click", () => setDerived(!derivedOn));
+  }
+
   function wireTiltToggle() {
     const btn = document.getElementById("esma-3d-toggle");
     if (!btn || btn.dataset.wiredX) return;
@@ -1383,6 +1448,7 @@
     buildControls();
     wireInteractions();
     wireTiltToggle();
+    wireDerivedToggle();
     wirePanelAwareControls();
     rebuildParticles();
     built = true;

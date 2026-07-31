@@ -305,7 +305,38 @@
   function activateResult(btn) {
     window.dostTrack && window.dostTrack("arama_sonucu_tiklandi", { view: btn.dataset.view, id: btn.dataset.id });
     closePanel();
+    if (btn.dataset.href) { location.href = btn.dataset.href; return; }
     window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id);
+  }
+
+  // ── Metin içi arama (pagefind) ──────────────────────────────────────────────
+  // Yukarıdaki arama yalnız BAŞLIK/etiket düzeyinde çalışıyor. Kısımların
+  // gövde metni (1,5 milyon karakter) orada yok; bir okuyucu "berzah" arayınca
+  // 223 kısmın içinden geçen yerleri bulamıyordu. pagefind indeksi derleme
+  // zamanında üretiliyor (scripts/build-search-corpus.py + npm run index) ve
+  // yalnız aranınca, tembel olarak yükleniyor -- açılışa maliyeti yok.
+  let pfPromise = null;
+  function loadPagefind() {
+    if (pfPromise) return pfPromise;
+    const base = window.__dostRouteBase || "";
+    pfPromise = import(base + "/pagefind/pagefind.js")
+      .then((pf) => pf.init().then(() => pf))
+      .catch(() => null);   // indeks üretilmemişse arama sessizce eski hâlinde kalır
+    return pfPromise;
+  }
+
+  const FULLTEXT_MAX = 6;
+  let fullTextToken = 0;
+  function runFullText(query) {
+    const token = ++fullTextToken;
+    const q = query.trim();
+    if (q.length < 3) { renderFullText([], token); return; }
+    loadPagefind().then((pf) => {
+      if (!pf || token !== fullTextToken) return;
+      return pf.search(q).then((r) =>
+        Promise.all(r.results.slice(0, FULLTEXT_MAX).map((x) => x.data()))
+      ).then((rows) => renderFullText(rows, token));
+    }).catch(() => {});
   }
 
   function renderResults(items) {
@@ -347,6 +378,49 @@
       btn.addEventListener("click", () => activateResult(btn));
       btn.addEventListener("pointerenter", () => setActive(resultButtons.indexOf(btn)));
     });
+    rewireResultButtons();
+  }
+
+  // Metin içi sonuçlar ayrı bir grupta, başlık sonuçlarının ALTINDA durur:
+  // başlık eşleşmesi daha kesin bir cevaptır, gövde eşleşmesi bir izdir.
+  function renderFullText(rows, token) {
+    if (token !== fullTextToken) return;
+    const old = results.querySelector(".search-panel__group--fulltext");
+    if (old) old.remove();
+    if (!rows || !rows.length) { rewireResultButtons(); return; }
+    const label = tt({ tr: "Metin içinde", en: "In the text", pt: "No texto" });
+    const html = rows.map((r) => {
+      const href = (r.meta && r.meta.url) || r.url || "";
+      const title = (r.meta && r.meta.title) || "";
+      return `<button class="search-result" role="option" data-href="${escapeAttr(href)}">
+          <span class="search-result__label">${escapeHtml(title)}</span>
+          <span class="search-result__sub search-result__excerpt">${r.excerpt || ""}</span>
+        </button>`;
+    }).join("");
+    const div = document.createElement("div");
+    div.className = "search-panel__group search-panel__group--fulltext";
+    div.innerHTML = `<div class="search-panel__group-label">${label}</div>${html}`;
+    results.appendChild(div);
+    rewireResultButtons();
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  }
+  const escapeAttr = escapeHtml;
+
+  // Ok tuşu gezinmesi tek bir listede yürüsün: metin içi sonuçlar sonradan
+  // (asenkron) geldiği için buton listesini yeniden kuruyoruz.
+  function rewireResultButtons() {
+    const all = Array.from(results.querySelectorAll(".search-result"));
+    all.forEach((btn, i) => {
+      if (!btn.id) btn.id = "search-result-ft-" + i;
+      if (btn.dataset.wired) return;
+      btn.dataset.wired = "1";
+      btn.addEventListener("click", () => activateResult(btn));
+      btn.addEventListener("pointerenter", () => setActive(resultButtons.indexOf(btn)));
+    });
+    resultButtons = all;
   }
 
   input.setAttribute("role", "combobox");
@@ -372,8 +446,11 @@
   });
 
   let searchTrackTimer = null;
+  let fullTextTimer = null;
   input.addEventListener("input", () => {
     renderResults(search(input.value));
+    clearTimeout(fullTextTimer);
+    fullTextTimer = setTimeout(() => runFullText(input.value), 220);
     const q = input.value.trim();
     if (q.length >= 2) {
       clearTimeout(searchTrackTimer);

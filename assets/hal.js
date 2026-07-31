@@ -29,6 +29,8 @@
 
   const I18n = window.DostI18n;
   const GU = window.DostGraphUtils;
+  // Etiket çakışması ölçümle çözülüyor; ortak motor graph-utils.js'te.
+  const deconflictLabels = GU.createLabelDeconflictor();
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const svg = d3.select("#hal-graph");
   const svgNode = svg.node();
@@ -505,6 +507,7 @@
     // Derinlik sırası: uzaktakiler önce çizilsin (3B'de doğru örtüşme).
     if (tilt > 0.02) merged.sort((a, b) => b.__z - a.__z);
 
+    const pendingLabels = [];
     merged.each(function (d) {
       const g = d3.select(this);
       const b = breath(d, ts);
@@ -540,12 +543,24 @@
       g.select(".hal-sphere").attr("r", r);
       g.select(".hal-sheen").attr("r", r);
       const lbl = g.select(".hal-label");
-      lbl.attr("y", r + (d.stage === "hayret" ? 20 : LANDMARK.has(d.stage) ? 16 : 13))
+      const baseY = r + (d.stage === "hayret" ? 20 : LANDMARK.has(d.stage) ? 16 : 13);
+      const txt = labelFor(d);
+      lbl.attr("y", baseY)
         .classed("hal-label--landmark", LANDMARK.has(d.stage))
         .classed("hal-label--peak", d.stage === "hayret")
         .classed("hal-label--strong", isAnchor)
-        .text(labelFor(d));
+        .text(txt);
+      // Yolun dönüm noktaları önce yerleşsin: haritanın okunur kalmasını
+      // onlar sağlıyor (Hayret en önce).
+      if (op >= 0.35) {
+        pendingLabels.push({
+          lbl, txt,
+          x: d.x + b.dx, y: d.y + b.dy + baseY, baseY,
+          priority: d.stage === "hayret" ? 2 : LANDMARK.has(d.stage) ? 1 : 0,
+        });
+      }
     });
+    deconflictLabels(pendingLabels);
 
     // --- Hayret shimmer ---
     if (!reduceMotion && shimmer.length) {
@@ -658,12 +673,8 @@
     if (!d.terk) return "";
     return `<div class="detail-analogy"><p class="detail-analogy__label">${tt({ tr: "Makamı ve terki", en: "The station and its abandonment", pt: "A estação e seu abandono" })}</p><p>${tt(TERK_NOTE)}</p></div>`;
   }
-  function analogyHtml(analogy) {
-    // Benzetmeler sitenin görünen yüzünden kaldırıldı; gizli anahtar
-    // kelimeyle geri açılıyor (bkz. assets/analogy-toggle.js).
-    if (!analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
-    return `<div class="detail-analogy"><p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p><p>${I18n.pick3(analogy)}</p></div>`;
-  }
+  // Ortak: graph-utils.js (dört görünümde kopyalanmıştı).
+  const analogyHtml = (a) => GU.analogyHtml(a);
   function showDetail(d) {
     currentDetailNode = d; currentRelation = null;
     detailContent.innerHTML = `

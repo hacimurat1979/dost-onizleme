@@ -629,9 +629,6 @@ html {
   transition: opacity 0.6s ease;
   z-index: 2;
 }
-.esma-forming-hint--visible {
-  opacity: 1;
-}
 .esma-forming-hint__dot {
   width: 6px;
   height: 6px;
@@ -884,14 +881,6 @@ html {
 }
 #sorular-graph:active { cursor: grabbing; }
 
-.esma-expand-badge {
-  fill: var(--surface-1);
-  font-size: 13px;
-  font-weight: 700;
-  pointer-events: none;
-  text-anchor: middle;
-}
-
 /* Clicking a hub node (a group heading, or a name that opens onto a chain
    of others) dims everything outside its own cluster and zooms in --
    mirrors sirlar-graph.js's theme-focus. */
@@ -899,50 +888,10 @@ html {
   opacity: 0.12;
   transition: opacity 0.3s ease;
 }
-.esma-node--focused circle:first-of-type {
-  stroke: var(--text-primary);
-  stroke-width: 2px;
-}
-
-.esma-rings circle.esma-ring {
-  fill: none;
-  stroke: var(--gridline);
-  stroke-width: 1px;
-  stroke-dasharray: 1 5;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-/* Zât's frame -- encloses the whole map from outside the ring system,
-   deliberately static (no breathing animation, unlike Zât's own marker):
-   a quiet boundary, not another animated focal point. */
-.esma-boundary {
-  fill: none;
-  stroke: var(--series-theme);
-  stroke-width: 2px;
-  stroke-dasharray: 2 7;
-  opacity: 0.62;
-  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--series-theme) 65%, transparent));
-  pointer-events: none;
-}
 .viz-root[data-theme="dark"] .esma-boundary {
   stroke: var(--accent-glow-dark);
   opacity: 0.7;
   filter: drop-shadow(0 0 9px color-mix(in srgb, var(--accent-glow-dark) 70%, transparent));
-}
-
-.esma-link {
-  fill: none;
-  stroke: var(--gridline);
-  stroke-width: 1.5px;
-  transition: opacity 0.3s ease;
-}
-.esma-link--highlight {
-  stroke: var(--series-ibnarabi);
-  stroke-width: 2.5px;
-}
-.esma-link--dimmed {
-  opacity: 0.12;
 }
 /* hayy->alim->murid->mutekellim->kadir zincirinde, Kısım XVI'daki Dua
    Menzili pasajından öğrendiğimiz kapsama ilişkisini soy-kütüğü çizgisinden
@@ -968,76 +917,11 @@ html {
   cursor: pointer;
   pointer-events: stroke;
 }
-.esma-relation:hover {
-  opacity: 1;
-  stroke-width: 3px;
-}
-.esma-relation--tecelli {
-  stroke: var(--series-theme);
-  stroke-dasharray: none;
-  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--series-theme) 65%, transparent));
-}
-.esma-relation--ayni-sinif {
-  stroke: var(--series-esma-neutral);
-  stroke-width: 1.6px;
-  stroke-dasharray: 4 3;
-}
-.esma-relation--zid {
-  stroke: var(--series-daphne);
-  stroke-dasharray: 4 3;
-}
-.esma-relation--sebep {
-  stroke: var(--series-ibnarabi);
-  stroke-dasharray: none;
-}
-.esma-relation--parca {
-  stroke: var(--series-esma-neutral);
-  stroke-width: 1.4px;
-  stroke-dasharray: 1 3;
-  stroke-linecap: round;
-  opacity: 0.7;
-}
-.esma-relation--ayni {
-  stroke: var(--series-theme);
-  stroke-width: 3px;
-  stroke-dasharray: none;
-}
-.esma-relation--temsil {
-  stroke: var(--series-ibnarabi);
-  stroke-width: 1.6px;
-  stroke-dasharray: 1 3;
-  stroke-linecap: round;
-}
-.esma-relation--mertebe {
-  stroke: var(--series-daphne);
-  stroke-dasharray: 3 2;
-}
-.esma-relation--kapsar {
-  stroke: var(--series-kemal);
-  stroke-width: 2.6px;
-  stroke-dasharray: none;
-}
-.esma-arrowhead {
-  stroke: none;
-}
-.esma-arrowhead--tecelli { fill: var(--series-theme); }
-.esma-arrowhead--sebep   { fill: var(--series-ibnarabi); }
-.esma-arrowhead--mertebe { fill: var(--series-daphne); }
-.esma-arrowhead--kapsar  { fill: var(--series-kemal); }
 
 .pole-badge--relation {
   color: #fff;
   text-shadow: 0 1px 1px rgba(20,15,8,0.35);
 }
-.pole-badge--relation-tecelli,
-.pole-badge--relation-ayni { background: color-mix(in srgb, var(--series-theme) 78%, black); }
-.pole-badge--relation-ayni-sinif,
-.pole-badge--relation-parca { background: color-mix(in srgb, var(--series-esma-neutral) 78%, black); }
-.pole-badge--relation-sebep,
-.pole-badge--relation-temsil { background: color-mix(in srgb, var(--series-ibnarabi) 78%, black); }
-.pole-badge--relation-zid,
-.pole-badge--relation-mertebe { background: color-mix(in srgb, var(--series-daphne) 78%, black); }
-.pole-badge--relation-kapsar { background: color-mix(in srgb, var(--series-kemal) 78%, black); }
 
 /* ============================================================================
    Hâller Haritası — "manevi yükseliş yolculuğu" (assets/hal.js)
@@ -1061,7 +945,7 @@ html {
   filter: drop-shadow(0 1px 4px color-mix(in srgb, var(--series-hal-hayret, #e0b545) 50%, transparent));
 }
 .hal-return-label {
-  font-size: 10.5px;
+  font-size: 12px;
   font-style: italic;
   fill: var(--series-hal-hayret-text, #8a690e);
   pointer-events: none;
@@ -1077,7 +961,10 @@ html {
 .hal-node:focus-visible .hal-sphere { stroke: var(--text-primary); stroke-width: 1.6px; }
 .hal-label {
   fill: var(--text-secondary);
-  font-size: 11px;
+  /* 12px: impeccable'ın okunabilirlik tabanı. Puntoyu tek başına büyütmek
+     çakışmayı ARTIRIYORDU (ölçüldü: mobil 12 -> 14); önce etiket çakışma
+     çözücüsü devreye girdi, sonra punto büyütüldü. Sıra önemli. */
+  font-size: 12px;
   paint-order: stroke;
   stroke: var(--page-plane);
   stroke-width: 3px;
@@ -1137,44 +1024,6 @@ html {
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-
-/* Derinlik süzgeci (#6) — yüzen cam segmentli denetim */
-.sorular-depth {
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 6px;
-  background: color-mix(in srgb, var(--surface-1) 60%, transparent);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
-  border-radius: 999px;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.1);
-}
-.sorular-depth__label {
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  padding: 0 6px 0 4px;
-}
-.sorular-depth__btn {
-  font: inherit;
-  font-size: 0.78rem;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  padding: 3px 11px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-.sorular-depth__btn:hover { color: var(--text-primary); }
 .sorular-depth__btn.is-active {
   background: color-mix(in srgb, var(--series-theme) 22%, transparent);
   color: var(--text-primary);
@@ -1205,7 +1054,6 @@ html {
 }
 @media (max-width: 620px) {
   .sorular-minimap { width: 108px; height: 80px; }
-  .sorular-depth { top: 8px; }
 }
 /* Merkezdeki nefes alan işaret -- daire/merkez ilkesi (bkz. CLAUDE.md):
    tıklanamaz, sadece hâlâ açık kalan sorunun kendisini sezdiren dekoratif
@@ -1245,8 +1093,8 @@ html {
 }
 /* Kategori düğümleri soru düğümleriyle aynı dili konuşur (küre + parıltı);
    yalnız etiketi hep açık ve bir tık daha belirgin. */
-.sorular-label--cat {
-  font-size: 0.76rem;
+text.sorular-label--cat {
+  font-size: 0.85rem;
   font-weight: 600;
   fill: var(--text-primary);
 }
@@ -1702,15 +1550,6 @@ button.futuhat-part-chip:hover {
   fill: var(--page-plane);
   stroke: var(--text-secondary);
   stroke-width: 1.3px;
-}
-
-.futuhat-tree__node--depth-0 circle:first-of-type {
-  fill: var(--series-theme);
-  stroke: var(--series-theme);
-}
-
-.futuhat-tree__node--depth-1 circle:first-of-type {
-  stroke: var(--series-theme);
 }
 
 .futuhat-tree__node {
@@ -2307,7 +2146,12 @@ body[data-theme="dark"] #sirlar-legend {
 }
 
 .node-label {
-  font-size: 11px;
+  /* 12px: impeccable okunabilirlik tabanı (2026-07-31 taraması). Bu kural
+     dosyada .sorular-label--cat'ten SONRA geldiği ve özgüllüğü eşit olduğu
+     için onu eziyordu; kategori etiketi 0.85rem yazdığı hâlde 11px
+     çiziliyordu. Taban buraya çekildi, kategori aşağıda element+sınıfla
+     yeniden kazanıyor. */
+  font-size: 12px;
   fill: var(--text-secondary);
   pointer-events: none;
   paint-order: stroke;
@@ -2333,28 +2177,10 @@ body[data-theme="dark"] #sirlar-legend {
   stroke-opacity: 0.9;
   stroke-width: 2.5px;
 }
-.link--descent, .link--gather {
-  stroke: var(--series-ibnarabi-line);
-}
-.link--return {
-  stroke: url(#ascent-gradient-theme);
-  stroke-width: 2px;
-  stroke-linecap: round;
-  filter: drop-shadow(0 1px 2px color-mix(in srgb, var(--series-theme) 40%, transparent));
-}
-.link--paradox {
-  stroke: var(--series-daphne);
-  stroke-dasharray: 1 5;
-  stroke-width: 2px;
-}
 
 .ontology-node text.node-label {
   font-size: 12px;
 }
-
-.arrowhead--descent { fill: var(--series-ibnarabi-line); }
-.arrowhead--return   { fill: var(--series-theme); }
-.arrowhead--paradox  { fill: var(--series-daphne); }
 
 .detail-block--edge {
   border-left: 4px solid var(--gridline);
@@ -4956,6 +4782,7 @@ body.cizim-lightbox-open {
   left: 168px;
 }
 .esma-3d-toggle,
+.esma-derived-toggle,
 .graph-3d-toggle {
   width: 44px;
   height: 44px;
@@ -4972,6 +4799,8 @@ body.cizim-lightbox-open {
 }
 .esma-3d-toggle:hover,
 .esma-3d-toggle:focus-visible,
+.esma-derived-toggle:hover,
+.esma-derived-toggle:focus-visible,
 .graph-3d-toggle:hover,
 .graph-3d-toggle:focus-visible {
   color: var(--accent-interactive);
@@ -5005,15 +4834,6 @@ body.cizim-lightbox-open {
   height: 100%;
   display: block;
 }
-.esma3d-link {
-  stroke: var(--series-esma-neutral);
-  stroke-width: 1;
-  fill: none;
-}
-.esma3d-node__dot {
-  stroke: var(--border);
-  stroke-width: 1;
-}
 /* Etiketler renkli birer rozet olarak açılıyor (düğümün rengi, koyulaştırılmış
    arka plan -- bkz. esma-3d.js'in colorFor()+color-mix() kullanımı, .pole-badge
    ile aynı dil) -- düz metin + ince kontur, dönen bir sahnenin üzerinde
@@ -5021,16 +4841,6 @@ body.cizim-lightbox-open {
 .esma3d-node__badge {
   pointer-events: none;
 }
-.esma3d-node__label {
-  fill: #fff;
-  font-weight: 600;
-  text-anchor: middle;
-  pointer-events: none;
-}
-.esma3d-node {
-  cursor: pointer;
-}
-.esma3d-settling { transition: none; }
 .esma3d__caption {
   max-width: 520px;
   margin: 0 auto 8px;
@@ -5166,16 +4976,6 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   .esmaX-controls, .esmaX-explore { transition: none; }
 }
 .esmaX-depth { display: flex; flex-direction: column; gap: 10px; pointer-events: auto; }
-.esmaX-depth-btn {
-  width: 26px; height: 26px; border-radius: 50%; border: none; background: none;
-  display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;
-}
-.esmaX-depth-btn span {
-  width: 11px; height: 11px; border-radius: 50%;
-  border: 1.6px solid var(--text-muted); background: transparent;
-  transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
-}
-.esmaX-depth-btn:hover span { border-color: var(--series-theme); }
 .esmaX-depth-btn.is-active span { background: var(--series-theme); border-color: var(--series-theme); transform: scale(1.25); }
 .esmaX-depth-hint {
   pointer-events: none; max-width: 190px; text-align: right; margin: 0;
@@ -5206,9 +5006,6 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
    gerilim = sırayla çelişen bağ (kesikli), doğurur = biri ötekini açan,
    yankı = aynı hamlenin iki ayrı yerde tekrarı. */
 .hal-chord { fill: none; stroke-linecap: round; pointer-events: stroke; cursor: pointer; }
-.hal-chord--gerilim { stroke-dasharray: 5 4; }
-.hal-chord--dogurur { stroke-dasharray: none; }
-.hal-chord--yanki { stroke-dasharray: 2 5; }
 .hal-chord-hit { fill: none; stroke: transparent; stroke-width: 14; pointer-events: stroke; cursor: pointer; }
 
 /* "Makamı ve Terki": Fütûhât'ta ayrıca bir terk bölümü olan makamların
@@ -5256,7 +5053,6 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
 .esmaX-onb--nomo, .esmaX-onb--nomo * { animation: none !important; transition: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
-  .esmaX-depth-btn span { transition: none; }
   .esmaX-onb, .esmaX-onb--out { animation: none; transition: none; }
 }
 
@@ -5422,15 +5218,6 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   border-color: var(--accent-interactive);
   color: var(--accent-interactive);
 }
-.share-panel__status {
-  margin: 0 0 12px;
-  font-size: 0.78rem;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  max-height: 5.4em;
-  overflow: hidden;
-  font-style: italic;
-}
 .share-panel__actions {
   display: flex;
   gap: 8px;
@@ -5539,15 +5326,6 @@ body.share-stage-open { overflow: hidden; }
   text-shadow: 0 2px 24px var(--sahne-golge);
   will-change: opacity, transform;
 }
-.share-line--soz { font-size: clamp(1.5rem, 4.6vh, 2.6rem); }
-.share-line--soru {
-  font-size: clamp(1.6rem, 5.2vh, 2.9rem);
-  font-style: italic;
-}
-.share-line--sol, .share-line--sag {
-  font-size: clamp(1.3rem, 4vh, 2.2rem);
-}
-.share-line--sag { color: var(--sahne-vurgu); }
 .share-rule {
   display: block;
   height: 1px;
@@ -5728,15 +5506,12 @@ body.share-stage-open { overflow: hidden; }
   stroke-width: 1.6;
   transition: r 140ms ease, fill 140ms ease;
 }
-.sir-halka__node--r1 circle { fill: color-mix(in srgb, var(--series-theme) 32%, var(--surface-1)); }
-.sir-halka__node--r2 circle { fill: var(--series-theme); }
 .sir-halka__node text {
   font-size: 10px;
   font-variant-numeric: tabular-nums;
   fill: var(--text-muted);
   pointer-events: none;
 }
-.sir-halka__node--r2 text { fill: var(--series-theme-text); font-weight: 600; }
 .sir-halka__node:hover circle,
 .sir-halka__node:focus-visible circle {
   fill: var(--accent-interactive);
@@ -5762,8 +5537,6 @@ body.share-stage-open { overflow: hidden; }
   padding-left: 0.7rem;
   border-left: 3px solid var(--gridline);
 }
-.sir-halka__legend-item--r1 { border-left-color: color-mix(in srgb, var(--series-theme) 55%, var(--gridline)); }
-.sir-halka__legend-item--r2 { border-left-color: var(--series-theme); }
 .sir-halka__legend-item strong {
   color: var(--text-primary);
   font-size: 0.95rem;
@@ -5818,8 +5591,6 @@ body.share-stage-open { overflow: hidden; }
   padding-left: 0.55rem;
   border-left: 3px solid var(--gridline);
 }
-.sir-halka__key-group--r1 h4 { border-left-color: color-mix(in srgb, var(--series-theme) 55%, var(--gridline)); }
-.sir-halka__key-group--r2 h4 { border-left-color: var(--series-theme); }
 .sir-halka__key-group ul {
   list-style: none;
   margin: 0;
@@ -6281,7 +6052,6 @@ mark.durus-vurgu-es {
    olmadığını göstermek için. */
 .tasiyici-strand--melek { stroke-dasharray: 3 6; opacity: 0.62; }
 /* İçteki Arş sarmalı biraz daha ince: "kalbin bir köşesinde" duruyor. */
-.tasiyici-strand--ars { stroke-width: 1.1; }
 .tasiyici-rung {
   stroke: var(--gridline);
   stroke-width: 1;
@@ -6583,14 +6353,108 @@ mark.durus-vurgu-es {
   opacity: 0.75;
 }
 .share-qr { display: block; width: 100%; height: 100%; }
-
-/* Başlık satırı (Ontoloji/Esmâ şablonları) */
-.share-line--baslik {
-  font-size: clamp(0.82rem, 2.8vw, 1.05rem);
-  font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase;
-  opacity: 0.65;
-}
 /* Hale açık zeminde parlama değil leke gibi okunuyor (koyu zeminde ışık
    saçıyor, açıkta metnin üstüne oturuyor); orada yumuşatılıyor. Satır içi
    opaklığı JS yazdığı için filtre ile çarpılıyor. */
 .share-stage--acik .share-halo { filter: blur(26px) opacity(0.45); }
+
+/* Metin içi arama sonuçları (pagefind). Başlık sonuçlarından ayrılsın diye
+   alıntı satırı daha sönük ve iki satırda kesiliyor. */
+.search-panel__group--fulltext { border-top: 1px solid var(--gridline); padding-top: 8px; }
+.search-result__excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.45;
+}
+.search-result__excerpt mark {
+  background: none;
+  color: var(--accent-interactive);
+  font-weight: 600;
+}
+
+/* Âyet künyesi: alıntının hemen ardında, sönük ve küçük. <em> içinde
+   kalabildiği için italiği açıkça geri alıyoruz. */
+.ayet-ref {
+  font-style: normal;
+  font-size: 0.82em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding-inline-start: 0.15em;
+}
+.ayet-ref::before { content: "· "; opacity: 0.6; }
+/* Künye artık etkileşimli: üzerine gelince/odaklanınca âyetin aslı ve meali
+   çıkıyor (assets/ayet-onizleme.js). Tıklanabilir olduğunu göstermesi gerek,
+   ama metnin akışını bölmemeli — o yüzden altı noktalı ve sönük. */
+.ayet-ref {
+  cursor: help;
+  border-bottom: 1px dotted color-mix(in srgb, var(--text-muted) 55%, transparent);
+}
+.ayet-ref:hover,
+.ayet-ref:focus-visible {
+  color: var(--text-secondary);
+  border-bottom-color: var(--text-secondary);
+}
+.ayet-ref:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+
+/* Âyet kutusu. İçinde YALNIZ Kur'ân metni ve meali var — bizim yorumumuz
+   değil; o yüzden hiçbir açıklama satırı taşımıyor. */
+.ayet-tip {
+  max-width: min(360px, calc(100vw - 24px));
+  text-align: start;
+}
+.ayet-tip__ar {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin: 0 0 0.5em;
+  color: var(--text-primary);
+}
+.ayet-tip__meal {
+  margin: 0 0 0.4em;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.ayet-tip__kaynak {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* --- Türetilmiş kenarlar (Esmâ) -------------------------------------------
+   scripts/kenar-turet.py'nin saydığı bağlar. Elle yazılmış kenarlarla AYNI
+   görünmemeleri bir tasarım tercihi değil, sitenin duruşunun gereği: bunlar
+   bizim ölçümümüz, Dost'un iddiası değil. O yüzden kesikli ve daha sönük,
+   ve varsayılan olarak kapalı bir anahtarın arkasında. */
+.esmaX-derived {
+  stroke: var(--text-muted);
+  stroke-width: 1.1px;
+  /* NOKTALI, kesikli değil. Elle yazılmış kenar (.esmaX-rel) zaten kesikli
+     (3 5); ilk denemede türetilmişi de kesikli yaptım (3 4) ve ikisi ayırt
+     edilemedi — yani "görsel olarak ayrı göster" şartı kâğıtta kalmıştı.
+     Nokta dizisi bir SAYIM izlenimi verir: ayrı ayrı gözlemler, sürekli bir
+     beyan değil. Ayrım kozmetik değil, iki kenarın epistemik statüsü farklı. */
+  stroke-dasharray: 0.5 5;
+  stroke-linecap: round;
+  cursor: pointer;
+  pointer-events: stroke;
+}
+.esmaX-derived:hover,
+.esmaX-derived:focus-visible {
+  stroke: var(--text-secondary);
+  stroke-width: 1.8px;
+  outline: none;
+}
+/* 3B anahtarının hemen sağında (o 116px'te, bu 168px'te). */
+.esma-derived-toggle {
+  position: absolute;
+  top: 12px;
+  left: 168px;
+}
+.esma-derived-toggle.is-on {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+.detail-kicker--derived {
+  border-style: dashed;
+}

@@ -693,7 +693,7 @@
   }
 
   // Benzetmeler sitenin görünen yüzünden kaldırıldı; gizli anahtar
-  // kelimeyle geri açılıyor (bkz. assets/analogy-toggle.js).
+  // kelimeyle geri açılıyor (bkz. assets/edit-mode.js).
   function analogyHtml(t) {
     if (!t.analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
     return `<div class="detail-analogy">

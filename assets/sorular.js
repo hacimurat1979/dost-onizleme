@@ -733,7 +733,7 @@
         .classed("sorular-label--cat", !!d.isCat)
         .text(txt);
       if (showLabel && op >= 0.35) {
-        pending.push({ lbl, txt, isCat: !!d.isCat,
+        pending.push({ lbl, txt, priority: d.isCat ? 1 : 0,
                        x: nx_(d) + dx, y: ny_(d) + dy + labelY, baseY: labelY });
       }
     });
@@ -741,50 +741,10 @@
   }
 
   // Etiket çakışması: 3B eğimde ve bir kol açıkken düğümler ekranda birbirine
-  // yaklaşıyor, etiketler üst üste biniyordu (impeccable taramasının A1
-  // bulgusu). Konumları değil, yalnız etiketin dikey kaymasını düzeltiyoruz;
-  // düğüm yerinde kalır, yazı yer açar.
-  // Genişliği tahmin etmek iki denemede de tutmadı (karakter sayısı × font
-  // oranı, sonra aynısının zoom'a bölünmüş hâli). Bunun yerine gerçek kutuyu
-  // ölçüyoruz: getBBox() metnin KENDİ yerel biriminde döner, yani düğüm
-  // koordinatlarıyla aynı uzayda — zoom dönüşümü işin içine girmiyor.
-  const lblBox = new Map();   // metin -> {w,h}; ölçüm pahalı, string başına bir kez
-  function measure(node, txt) {
-    let m = lblBox.get(txt);
-    if (!m) {
-      try { const b = node.getBBox(); m = { w: b.width, h: b.height }; }
-      catch (e) { m = { w: txt.length * 5.6, h: 12 }; }
-      if (m.w > 0) lblBox.set(txt, m);
-    }
-    return m;
-  }
-  function deconflictLabels(items) {
-    if (!items.length) return;
-    for (const it of items) {
-      const m = measure(it.lbl.node(), it.txt);
-      it.half = m.w / 2;
-      it.h = m.h || 12;
-    }
-    // Kategoriler önce yerleşsin: haritanın okunur kalmasını onlar sağlıyor.
-    items.sort((a, b) => (b.isCat - a.isCat) || (a.y - b.y));
-    const placed = [];
-    for (const it of items) {
-      let y = it.y, guard = 0, clash = true;
-      while (clash && guard++ < 24) {
-        clash = false;
-        for (const p of placed) {
-          const dyGap = (it.h + p.h) / 2 + 2;
-          if (Math.abs(y - p.y) < dyGap && Math.abs(it.x - p.x) < it.half + p.half + 5) {
-            y = p.y + dyGap;   // aşağı doğru kaydır
-            clash = true;
-            break;
-          }
-        }
-      }
-      placed.push({ x: it.x, y, half: it.half, h: it.h });
-      if (y !== it.y) it.lbl.attr("y", it.baseY + (y - it.y));
-    }
-  }
+  // yaklaşıyor, etiketler üst üste biniyordu. Motor artık graph-utils.js'te
+  // ortak (2026-07-31: /hal/ de aynı kusuru taşıyordu, ikisi tek yerden
+  // besleniyor). Denenip tutmayan iki tahmin yöntemi orada kayıtlı.
+  const deconflictLabels = GU.createLabelDeconflictor();
 
   // ---------------------------------------------------------------------------
   function setHover(id) { if (hoveredId === id) return; hoveredId = id; ensureFrame(); }
@@ -889,12 +849,8 @@
   function hideTooltip() { GU.hideTooltip(tooltip); }
 
   // --- Editorial detay paneli (kitap hissi) ---
-  function analogyHtml(analogy) {
-    // Benzetmeler sitenin görünen yüzünden kaldırıldı; gizli anahtar
-    // kelimeyle geri açılıyor (bkz. assets/analogy-toggle.js).
-    if (!analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
-    return `<div class="detail-analogy"><p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p><p>${I18n.pick3(analogy)}</p></div>`;
-  }
+  // Ortak: graph-utils.js (dört görünümde kopyalanmıştı).
+  const analogyHtml = (a) => GU.analogyHtml(a);
   function crossLinkHtml(q) {
     if (!q.link) return "";
     const view = q.link.view, id = q.link.id;

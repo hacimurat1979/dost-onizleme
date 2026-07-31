@@ -229,6 +229,8 @@
   // tablet ekranlarda kısa viewport yüksekliğinde grafiğin üstüne düşüp
   // düğümleri kapatabiliyor -- varsayılan olarak kısık/dokunmatik
   // ekranlarda katlanmış başlasın, kullanıcı isterse açsın.
+  // Etiket çakışması çözücüsü; ölçüm tabanlı, motor graph-utils.js'te.
+  const deconflictLabels = window.DostGraphUtils.createLabelDeconflictor();
   window.DostGraphUtils.setupLegendToggles();
   window.DostGraphUtils.setupDetailPanelFocus();
 
@@ -1062,7 +1064,7 @@
     labelSel = nodeSel
       .append("text")
       .attr("class", "node-label")
-      .attr("dy", (d) => radiusFor(d) + 14)
+      .attr("y", (d) => radiusFor(d) + 14)
       .attr("text-anchor", "middle")
       .text((d) => labelFor(d));
 
@@ -1079,6 +1081,20 @@
         // Atmosfer: uzaktaki düğüm soluklaşır (Hâller'deki aynı ölçü).
         .style("opacity", (d) => (tilt > 0.02 ? Math.max(0.62, Math.min(1, d.__depth * 1.02)) : 1));
       ringEl.style("opacity", 1 - tilt);
+      // Etiket çakışması: kuvvet düzeni düğümleri yaklaştırdığında yazılar
+      // üst üste biniyordu (ölçüldü 2026-07-31: masaüstü 2, mobil 8).
+      // Düğüm yerinde kalır, yalnız yazı dikeyde yer açar; motor
+      // graph-utils.js'te ortak (aynısı /hal/ ve /sorular/'da da çalışıyor).
+      const pend = [];
+      labelSel.each(function (d) {
+        const baseY = radiusFor(d) + 14;
+        pend.push({
+          lbl: d3.select(this), txt: labelFor(d),
+          x: d.px, y: d.py + baseY, baseY,
+          priority: d.id === "dhat" ? 2 : (d.kind === "hub" ? 1 : 0),
+        });
+      });
+      deconflictLabels(pend);
     }
 
     simulation.on("tick", paintPositions);
@@ -2050,15 +2066,8 @@
     }).join("")}</div>`;
   }
 
-  function analogyHtml(analogy) {
-    // Benzetmeler sitenin görünen yüzünden kaldırıldı; gizli anahtar
-    // kelimeyle geri açılıyor (bkz. assets/analogy-toggle.js).
-    if (!analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
-    return `<div class="detail-analogy">
-      <p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p>
-      <p>${I18n.pick3(analogy)}</p>
-    </div>`;
-  }
+  // Ortak: graph-utils.js (dört görünümde kopyalanmıştı).
+  const analogyHtml = (a) => window.DostGraphUtils.analogyHtml(a);
 
   function showNodeDetail(d) {
     const metadataHtml = window.__graphEnhancement

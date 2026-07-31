@@ -1,0 +1,175 @@
+{
+ "not": "BU KENARLAR BİZİM ÖLÇÜMÜMÜZDÜR, Dost'un iddiası değildir. scripts/kenar-turet.py ile üretildi: ko-okurans -> PPMI -> disparity filter. Sitede elle yazılmış kenarlardan görsel olarak ayrı gösterilir.",
+ "uretim": "scripts/kenar-turet.py --site",
+ "yontem": "ko-okurans -> PPMI -> disparity filter (alpha=0.2)",
+ "kenarlar": [
+  {
+   "from": "alim",
+   "to": "hayy",
+   "ppmi": 3.531,
+   "birlikte_belge": 4,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 4 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 4 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 4 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "hayy",
+   "to": "murid",
+   "ppmi": 3.397,
+   "birlikte_belge": 4,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 4 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 4 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 4 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "alim",
+   "to": "murid",
+   "ppmi": 3.243,
+   "birlikte_belge": 6,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 6 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 6 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 6 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "alim",
+   "to": "kadir",
+   "ppmi": 3.194,
+   "birlikte_belge": 5,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 5 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 5 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 5 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "murid",
+   "to": "rab",
+   "ppmi": 2.704,
+   "birlikte_belge": 3,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 3 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 3 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 3 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "rahim",
+   "to": "rahman",
+   "ppmi": 2.691,
+   "birlikte_belge": 5,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 5 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 5 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 5 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "alim",
+   "to": "rahman",
+   "ppmi": 2.432,
+   "birlikte_belge": 3,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 3 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 3 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 3 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "murid",
+   "to": "rahim",
+   "ppmi": 2.298,
+   "birlikte_belge": 3,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 3 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 3 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 3 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "murid",
+   "to": "rahman",
+   "ppmi": 2.298,
+   "birlikte_belge": 3,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 3 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 3 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 3 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "ahir",
+   "to": "evvel",
+   "ppmi": 2.26,
+   "birlikte_belge": 15,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 15 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 15 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 15 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "ahir",
+   "to": "zahir",
+   "ppmi": 1.881,
+   "birlikte_belge": 7,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 7 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 7 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 7 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "ahir",
+   "to": "batin",
+   "ppmi": 1.727,
+   "birlikte_belge": 6,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 6 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 6 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 6 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "evvel",
+   "to": "zahir",
+   "ppmi": 1.469,
+   "birlikte_belge": 6,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 6 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 6 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 6 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  },
+  {
+   "from": "batin",
+   "to": "evvel",
+   "ppmi": 1.287,
+   "birlikte_belge": 5,
+   "kaynak": "turetilmis",
+   "aciklama": {
+    "tr": "Bu bağı biz saydık: bu iki isim okuduğumuz bölümlerin 5 tanesinde birlikte geçiyor. Dost'un bunları birbirine bağladığı anlamına gelmez — yalnız aynı yerlerde birlikte bulunduklarını gösterir.",
+    "en": "We counted this link: these two names occur together in 5 of the chapters we have read. It does not mean Ibn Arabi connects them — only that they keep company in the same places.",
+    "pt": "Nós contamos este vínculo: estes dois nomes ocorrem juntos em 5 dos capítulos que lemos. Não significa que Ibn Arabi os conecte — apenas que aparecem nos mesmos lugares."
+   }
+  }
+ ]
+}
