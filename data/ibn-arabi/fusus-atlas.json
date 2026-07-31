@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs14",
+  "activeFassId": "fs15",
   "fasses": [
     {
       "id": "fs1",
@@ -5312,17 +5312,240 @@
     {
       "id": "fs15",
       "no": 15,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "Îsâ",
         "en": "Jesus",
         "pt": "Jesus"
       },
       "hikmet": {
-        "tr": "Hikmet-i Nebeviyye",
-        "en": "Wisdom of Prophecy",
+        "tr": "Hikmet-i Nebviyye",
+        "en": "Wisdom of Prophethood",
         "pt": "Sabedoria da Profecia"
-      }
+      },
+      "title": {
+        "tr": "Rühullah — İlâhî Nefesin Doğurduğu",
+        "en": "Rühullah — Born of the Divine Breath",
+        "pt": "Rühullah — Nascido do Sopro Divino"
+      },
+      "pageRange": {
+        "tr": "XV. Fass, s. 870-966 (Cilt II)",
+        "en": "Fass XV, pp. 870-966 (Vol. II)",
+        "pt": "Fass XV, pp. 870-966 (Vol. II)"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Bu fass, Rühullah olan Îsâ'nın nasıl doğduğunu sorar — ve cevap hem metafizik hem paradoksal: Cebrail'in nefhiyle, yani Nefes-i Rahmânî'nin bir sureti olarak. Îsâ ne yalnız beşer ne yalnız ruhtur; lâhût ile nâsûtu, tahkik ile tevehhümü, ihyâ ile teslimiyet'i aynı anda taşır. Şeyh bu fassta 'Hak ol ve halk ol!' diyerek insân-ı kâmilin berzah konumunu ortaya koyar.",
+          "en": "This fass asks how Jesus — Rühullah — came to be, and the answer is both metaphysical and paradoxical: through the breath of Gabriel, as an embodied form of the Breath of the Compassionate. Jesus is neither merely human nor merely spirit; he holds lâhût and nâsût, tahkik and tevehhüm, life-giving and submission simultaneously. The Shaykh closes by summoning the perfect human: 'Be Real and be creation — and you shall be Rahmân.'",
+          "pt": "Este fass pergunta como Jesus — Rühullah — veio a ser, e a resposta é ao mesmo tempo metafísica e paradoxal: pelo sopro de Gabriel, como forma encarnada do Sopro do Compassivo. Jesus não é apenas humano nem apenas espírito; carrega lâhût e nâsût, tahkik e tevehhüm, a dádiva da vida e a submissão ao mesmo tempo. O Shaykh encerra convocando o humano perfeito: 'Sê Real e sê criação — e serás o Rahmân.'"
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsu'l-Hikem (Konuk), Cilt II, XV. Fass, s. 870-966",
+          "en": "Füsûsu'l-Hikem (Konuk), Vol. II, Fass XV, pp. 870-966",
+          "pt": "Füsûsu'l-Hikem (Konuk), Vol. II, Fass XV, pp. 870-966"
+        },
+        "caption": {
+          "tr": "Nefh'ten İnsân-ı Kâmile: Îsâ'nın Varoluş Sarmalı",
+          "en": "From the Breath to the Perfect Human: The Helix of Jesus's Existence",
+          "pt": "Do Sopro ao Humano Perfeito: A Hélice da Existência de Jesus"
+        },
+        "helix": {
+          "turns": 1.5,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "fs15-k1",
+              "label": {
+                "tr": "Nefes-i Rahmânî",
+                "en": "Breath of the Compassionate",
+                "pt": "Sopro do Compassivo"
+              },
+              "note": {
+                "tr": "Cebrail beşer suretinde Meryem'e göründü ve nefhetti — bu nefh hem Meryem'in gerçek suyu (mâ-i muhakkak) hem Cebrail'in tevehhüm suyu (mâ-i mütevehhemm) ile Îsâ'yı var etti. Rühullah'ın özü budur: ilâhî nefes, insanî surete büründü.",
+                "en": "Gabriel appeared to Mary as a human form and breathed — this breath, combining Mary's real water (mâ-i muhakkak) and Gabriel's imaginal water (mâ-i mütevehhemm), brought Jesus into being. This is the essence of Rühullah: the divine breath clothed in human form.",
+                "pt": "Gabriel apareceu a Maria em forma humana e soprou — este sopro, combinando a água real de Maria (mâ-i muhakkak) e a água imaginal de Gabriel (mâ-i mütevehhemm), trouxe Jesus à existência. Esta é a essência de Rühullah: o sopro divino vestido de forma humana."
+              },
+              "accent": true
+            },
+            {
+              "id": "fs15-k2",
+              "label": {
+                "tr": "Lâhût ve Nâsût",
+                "en": "Divine and Human",
+                "pt": "Divino e Humano"
+              },
+              "note": {
+                "tr": "Suver-i eşyâya sirâyet eden hayâtın miktarına 'lâhût', bu rühun kâim olduğu mahalle 'nâsût' denir. Îsâ'da nâsût zâhirde rüh suretinde; lâhût ise o nâsûtun hakikatidir. Bu yüzden Hristiyanlar şaşırdı: hem beşer hem ilâhî — ikisini birbirinden ayıramayanlar hulûle düştü.",
+                "en": "The degree of life flowing through the forms of things is called 'lâhût'; the place where this spirit dwells is called 'nâsût'. In Jesus, nâsût appears in the form of spirit outwardly; lâhût is the reality of that nâsût. This is why Christians were confused: both human and divine — those who could not distinguish the two fell into the error of hulûl (indwelling).",
+                "pt": "O grau de vida que flui através das formas das coisas é chamado 'lâhût'; o lugar onde este espírito habita é chamado 'nâsût'. Em Jesus, nâsût aparece na forma de espírito exteriormente; lâhût é a realidade desse nâsût. É por isso que os cristãos ficaram confusos: tanto humano quanto divino — aqueles que não conseguiam distinguir os dois caíram no erro do hulûl."
+              },
+              "accent": false
+            },
+            {
+              "id": "fs15-k3",
+              "label": {
+                "tr": "İhyâ: Tahkik mi Tevehhüm mü?",
+                "en": "Resurrection: Real or Imaginal?",
+                "pt": "Ressurreição: Real ou Imaginal?"
+              },
+              "note": {
+                "tr": "Îsâ'nın ölüleri diriltmesi 'tahkik' yönünden gerçek bir ihyâdır — zira o, rûh-i ilâhîdir. Ama 'tevehhüm' yönünden ise aslında Allah'tan gelir, Îsâ vesiledir. İki vecih beraberce taşınır: 'İhyâ ona min-vechin tarik-i tahkik ile ve min-vechin tarik-i tevehhüm ile nisbet olunur.' Paradoks, Îsâ'nın çift kökeninden doğar: mâ-i muhakkak + mâ-i mütevehhemm.",
+                "en": "Jesus's resurrection of the dead is real (tahkik) in one sense — for he is the divine spirit. But in another sense (tevehhüm) it comes from God, with Jesus as the vessel. Both aspects are held together: 'Resurrection is attributed to him in one respect through the path of tahkik and in another through the path of tevehhüm.' The paradox arises from Jesus's dual origin: real water + imaginal water.",
+                "pt": "A ressurreição dos mortos por Jesus é real (tahkik) em um sentido — pois ele é o espírito divino. Mas em outro sentido (tevehhüm) vem de Deus, com Jesus como instrumento. Ambos os aspectos são sustentados juntos: 'A ressurreição é atribuída a ele em um sentido pelo caminho do tahkik e em outro pelo caminho do tevehhüm.' O paradoxo surge da dupla origem de Jesus: água real + água imaginal."
+              },
+              "accent": false
+            },
+            {
+              "id": "fs15-k4",
+              "label": {
+                "tr": "Berzah-ı Kübrâ",
+                "en": "The Great Isthmus",
+                "pt": "O Grande Istmo"
+              },
+              "note": {
+                "tr": "'Hak ol ve halk ol! Allah ile Rahmân olursun.' İnsân-ı kâmil, vücûb denizi ile imkân denizi arasındaki berzahtır — iki deniz birbirine karışmaz ama birbirini besler. Hakikatinle Hak olan sen, zâhirinle halk olan sen: bu iki yüz aynı anda taşınabildiğinde insan, tüm varoluşa rahmet olur.",
+                "en": "'Be Real and be creation — and you shall be Rahmân through Allah.' The perfect human is the isthmus between the sea of necessity and the sea of contingency — two seas that do not merge but sustain each other. You who are Real in your truth and creation in your form: when both faces can be held at once, the human becomes mercy for all existence.",
+                "pt": "'Sê Real e sê criação — e serás o Rahmân através de Allah.' O humano perfeito é o istmo entre o mar da necessidade e o mar da contingência — dois mares que não se fundem mas que se sustentam mutuamente. Tu que és Real na tua verdade e criação na tua forma: quando ambas as faces podem ser sustentadas ao mesmo tempo, o humano torna-se misericórdia para toda a existência."
+              },
+              "accent": true
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "id": "fs15-s1",
+          "heading": {
+            "tr": "Hikmet-i Nebviyye: İki Anlam, Bir Sır",
+            "en": "The Wisdom of Prophethood: Two Meanings, One Mystery",
+            "pt": "A Sabedoria da Profecia: Dois Significados, Um Mistério"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu fassın adı olan 'hikmet-i nebviyye,' iki okumaya açıktır. Birincisi: 'nebî' kelimesinin hemzeli hâli olan 'nebe' kökünden, yani 'ihbâr/haber vermek' anlamından gelir. Bu hikmet bildirim hikmeti olur. Ama Konuk, Sadreddin Konevî'ye dayanarak ikinci okumayı müreccah tutar: 'nebî', hemzesiz 'nebve/nebeâ' kökünden, yani 'yükseklik, rif'at' anlamındandır. Zira Allah Teâlâ Kur'ân'da Îsâ için 'ref'eyledi' der — onu kendine doğru yükseltti. Dolayısıyla bu 'hikmet-i ref'iyye'dir, yükseklik hikmetidir. Ve âhir zamanda nüzûl ederek velâyet-i âmmeyi hatmeden de odur.",
+                "en": "The name of this fass, 'hikmet-i nebviyye,' opens to two readings. The first: from the root 'nebe' with hamza — meaning 'informing/news,' making this the wisdom of proclamation. But Konuk, relying on Sadreddin Konevi, prefers the second reading: 'nebi' without hamza, from 'nebve/neba' — meaning 'elevation, height.' For God says in the Quran about Jesus 'refa'eyledi' — He elevated him toward Himself. So this is 'hikmet-i ref'iyye,' the wisdom of elevation. And it is Jesus who descends at the end of times to seal the general sainthood (velâyet-i âmme).",
+                "pt": "O nome deste fass, 'hikmet-i nebviyye,' abre-se a duas leituras. A primeira: da raiz 'nebe' com hamza — significando 'informar/notícia,' tornando esta a sabedoria da proclamação. Mas Konuk, apoiando-se em Sadreddin Konevi, prefere a segunda leitura: 'nebi' sem hamza, de 'nebve/neba' — significando 'elevação, altura.' Pois Deus diz no Alcorão sobre Jesus 'refa'eyledi' — Ele o elevou em direção a Si mesmo. Então esta é 'hikmet-i ref'iyye,' a sabedoria da elevação. E é Jesus quem desce no fim dos tempos para selar a santidade geral (velâyet-i âmme)."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Peki neden yükseklik? Konuk şunu söyler: Îsâ'nın bedeni, hükm-i tabiattan mutahhar olarak oluştu. Diğer enbiyâ ulûhiyetin zâhiri olan tabiatten münbaistir; Îsâ ise ulûhiyetin bâtınından, ism-i Bâtın'ın tahtından zuhur etti. Bu yüzden mevt-i tabii ile vefat etmedi, maddi ölümün kuralları ona tam anlamıyla işlemedi — ve Fususu'l-Hikem yazıldığı 627. hicrî yılına dek (milattan 1000 yılı aşkın bir süre) o süret-i ilâhiyyede kalmaya devam etti.",
+                "en": "Why elevation? Konuk says: Jesus's body came into being purified from the rule of nature. Other prophets arise from the outward side of divinity (nature as the manifest of divinity); Jesus emerged from the inner side of divinity, from under the authority of the Name of the Hidden (ism-i Bâtın). For this reason natural death did not fully apply to him — and as of the year 627 AH when Fusus was written (over 1000 years since the birth of Christ), he continued to dwell in that divine form.",
+                "pt": "Por que elevação? Konuk diz: o corpo de Jesus veio à existência purificado da regra da natureza. Outros profetas surgem do lado exterior da divindade (a natureza como manifestação da divindade); Jesus emergiu do lado interior da divindade, sob a autoridade do Nome do Oculto (ism-i Bâtın). Por esta razão a morte natural não se aplicou plenamente a ele — e no ano 627 AH, quando o Fusus foi escrito (mais de 1000 anos após o nascimento de Cristo), ele continuava a habitar naquela forma divina."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs15-s2",
+          "heading": {
+            "tr": "Nefes-i Rahmânî ve Îsâ'nın İkili Tekevvünü",
+            "en": "The Breath of the Compassionate and Jesus's Dual Coming-to-Be",
+            "pt": "O Sopro do Compassivo e o Duplo Vir-a-Ser de Jesus"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Cebrail, Hz. Meryem'e güzel bir beşer suretinde göründü. Meryem onu gerçek bir erkek sanıp istiâzeye başladı — tüm kuvvelerini Allah'a yöneltti. Bu toplama hâli (cem'iyyet-i kuvâ), kendisine Allah ile huzûr-ı tâm hasıl etti ki Konuk bunu 'rüh-ı mânevi' diye adlandırır: manevî bir ruh hâli. Meryem tam bu mütmain ânda genişledi (inbisât); Cebrail de tam o anda nefhetti. Eğer önceki hâl-i inkıbâzda nefhetseydi, denir ki, Îsâ öyle bir şena'at-i hilkat ile çıkardı ki hiç kimse onunla sohbet edemezdi.",
+                "en": "Gabriel appeared to Mary as a beautiful human form. Mary, thinking him a real man, sought refuge — gathering all her faculties toward God. This gathering of her powers (cem'iyyet-i kuvâ) produced in her a complete presence with God, which Konuk calls 'rüh-ı mânevi': a spiritual state of composure. It was precisely in this tranquil moment that Mary expanded (inbisât); and Gabriel breathed at exactly that moment. Had he breathed during the earlier state of contraction (inkıbâz), it is said that Jesus would have emerged with such an ugly disposition that no one could endure his company.",
+                "pt": "Gabriel apareceu a Maria em forma de belo ser humano. Maria, pensando ser um homem real, buscou refúgio — reunindo todas as suas faculdades em direção a Deus. Esta reunião de seus poderes (cem'iyyet-i kuvâ) produziu nela uma presença completa com Deus, que Konuk chama de 'rüh-ı mânevi': um estado espiritual de serenidade. Foi precisamente neste momento tranquilo que Maria se expandiu (inbisât); e Gabriel soprou exatamente naquele momento. Se tivesse soprado durante o estado anterior de contração (inkıbâz), diz-se que Jesus teria emergido com uma disposição tão horrível que ninguém conseguiria suportar sua companhia."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bunun teknik boyutuna gelinince: ervâhın hasâisinden biri, temas ettikleri şeye hayâtı sirâyet ettirmeleridir — zira rüh nefes-i Rahmânîdir ve hayât, rühun sıfat-ı zâtiyyesidir. Cebrail'in nefhi hem Meryem'de 'mâ-i muhakkak' (hakiki su — bedeninden akan) hem kendi nefhinden 'mâ-i mütevehhemm' (tevehhümî su — beşer suretindeki Cebrail'in nefesinden gelen nem/madde) var etti. Îsâ bu ikisinden oluştu: bir yönüyle muhakkak, bir yönüyle mütevehhemm. Konuk bu ikili kökü Îsâ'nın bütün paradoksal özelliklerinin kaynağı olarak görür.",
+                "en": "As for the technical dimension: one of the properties of spirits is that they impart life to whatever they touch — for the spirit is the Breath of the Compassionate (nefes-i Rahmânî), and life is the essential attribute of the spirit. Gabriel's breath produced both 'mâ-i muhakkak' in Mary (real water — flowing from her body) and 'mâ-i mütevehhemm' from the breath itself (imaginal water — the moisture/matter coming from Gabriel who appeared in human form). Jesus was constituted from both: in one respect real (muhakkak), in another respect imaginal (mütevehhemm). Konuk sees this dual origin as the source of all Jesus's paradoxical qualities.",
+                "pt": "Quanto à dimensão técnica: uma das propriedades dos espíritos é que eles transmitem vida a tudo que tocam — pois o espírito é o Sopro do Compassivo (nefes-i Rahmânî), e a vida é o atributo essencial do espírito. O sopro de Gabriel produziu em Maria tanto 'mâ-i muhakkak' (água real — fluindo de seu corpo) quanto 'mâ-i mütevehhemm' do próprio sopro (água imaginal — a umidade/matéria proveniente de Gabriel que apareceu em forma humana). Jesus foi constituído de ambos: em um aspecto real (muhakkak), em outro aspecto imaginal (mütevehhemm). Konuk vê esta dupla origem como a fonte de todas as qualidades paradoxais de Jesus."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs15-s3",
+          "heading": {
+            "tr": "Lâhût, Nâsût ve Hristiyanların Yanılgısı",
+            "en": "Lâhût, Nâsût and the Christian Error",
+            "pt": "Lâhût, Nâsût e o Erro Cristão"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk, Îsâ'yı üç yönden inceler: (1) Süret-i insâniyye-i beşeriyye — bu yönden 'İbn-i Meryem' ve Allah'ın kulu ve resülüdür. Müslümanların kavli budur. (2) Süret-i mütemessile-i beşeriyye — bu yönden 'Cibril'e benzer,' zira beşer suretindeki Cibril'in nefhinin neticesiydi. (3) İhyâ-yı mevtâ yönünden 'Rühullah'tır. Her üç kavil de doğrudur — hangisinin gâlib olduğuna bakan kişinin nazarı göre hüküm değişir.",
+                "en": "Konuk examines Jesus from three aspects: (1) The human-bodily form — from this aspect he is 'Son of Mary' and servant and messenger of God. This is the Muslim position. (2) The form-in-imitation-of-human — from this aspect he resembles Gabriel, being the fruit of Gabriel's breath in human form. (3) From the aspect of resurrection, he is 'Rühullah.' All three statements are correct — the judgment depends on which aspect dominates the observer's perspective.",
+                "pt": "Konuk examina Jesus de três aspectos: (1) A forma humana-corporal — deste aspecto ele é 'Filho de Maria' e servo e mensageiro de Deus. Esta é a posição muçulmana. (2) A forma em imitação do humano — deste aspecto ele se assemelha a Gabriel, sendo o fruto do sopro de Gabriel em forma humana. (3) Do aspecto da ressurreição, ele é 'Rühullah.' Todas as três afirmações são corretas — o julgamento depende de qual aspecto domina a perspectiva do observador."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Hristiyanların yanılgısı şuydu: ölüyü diriltmek gibi hasâis-i ilâhiyyeyi gören bazıları 'O Allah'tır' dediler — bu, küfürdür çünkü Allah'ı o tek suretle setrettiler. Ama asıl yanılgı 'Allah, Meryem'in oğlu Mesih'tir' cümlesinin hey'et-i mecmuasındadır: ayrı ayrı her parça doğruyken, birleşince ulühiyeti tek bir taayyüne hasreder — bu hem hata hem küfürdür. Hulül yoktur. Vücûd-ı mutlak bir taayyüne sığmaz. Tecelli gerçektir, ama hulül ve ittihâd yoktur.",
+                "en": "The Christian error was this: some who witnessed divine qualities like raising the dead said 'He is God' — this is kufr (covering the truth) because they covered God with that single form. But the real error is in the totality of the sentence 'God is Christ the Son of Mary': each part separately may be correct, but together they confine divinity to a single determination — this is both error and kufr. There is no indwelling (hulûl). The absolute Being cannot be confined to one determination. Manifestation (tecelli) is real, but indwelling and union are not.",
+                "pt": "O erro cristão foi este: alguns que testemunharam qualidades divinas como ressuscitar os mortos disseram 'Ele é Deus' — isto é kufr (cobertura da verdade) porque cobriram Deus com aquela única forma. Mas o erro real está na totalidade da frase 'Deus é Cristo o Filho de Maria': cada parte separadamente pode estar correta, mas juntas confinam a divindade a uma única determinação — isto é tanto erro quanto kufr. Não há habitação (hulûl). O Ser absoluto não pode ser confinado a uma determinação. A manifestação (tecelli) é real, mas habitação e união não existem."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs15-s4",
+          "heading": {
+            "tr": "İhyâ Paradoksu: Rüh, Hayât ve 'Kün!' Emri",
+            "en": "The Resurrection Paradox: Spirit, Life, and the Command 'Be!'",
+            "pt": "O Paradoxo da Ressurreição: Espírito, Vida e o Comando 'Sê!'"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk bu fassta iki tür ihyâdan söz eder. Birincisi 'ihyâ-yı hissî': ölü bir bedeni diriltmek. Bu, Îsâ'ya özgü mûcize değildir aslında — Bâyezid-i Bistâmî öldürdüğü bir karıncayı nefhiyle diriltti, Abdülkâdir-i Geylânî kedi Lü'lü'yü diriltti. Fark şudur: hayvan ihyâsı şaşırtan ama kerâmete hamledilebilen bir hâldir; 'nutk ile ihyâ' yani 'sözle bir insanı diriltmek' ise hasâis-i ilâhiyyedendir — buna bakan akıl hayrette kalır, çünkü beşer suretini ilâhî bir eserin giysisi içinde görür.",
+                "en": "Konuk discusses two types of resurrection in this fass. The first is 'ihyâ-yı hissî' (sensory resurrection): reviving a dead body. This is actually not unique to Jesus — Bâyezid-i Bistâmî revived an ant he had killed with his breath, Abdülqâdir-i Gîlânî revived his cat Lü'lü'. The difference is this: reviving an animal is astonishing but can be attributed to saintly miracle (kerâmet); 'reviving a human with speech' (nutk ile ihyâ) is of divine properties — the mind that witnesses this is left in wonder because it sees the human form clothed in a divine act.",
+                "pt": "Konuk discute dois tipos de ressurreição neste fass. O primeiro é 'ihyâ-yı hissî' (ressurreição sensorial): reviver um corpo morto. Isto na verdade não é único a Jesus — Bâyezid-i Bistâmî reviveu uma formiga que havia matado com seu sopro, Abdülqâdir-i Gîlânî reviveu seu gato Lü'lü'. A diferença é esta: reviver um animal é surpreendente mas pode ser atribuído a milagre de santidade (kerâmet); 'reviver um humano com discurso' (nutk ile ihyâ) é das propriedades divinas — a mente que testemunha isso fica em admiração porque vê a forma humana vestida de um ato divino."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "İkincisi 'ihyâ-yı mânevi': ilim ile ölü bir nefsi diriltmek. Bu, ihyâ-yı hissîden daha yücedir — zira ölümlü bedenle değil, bâki ruhla ilgilidir. Bu hayât 'hayât-ı ilâhiyye-i zâtiyye-i ilmiyye-i nüriyye'dir: ilâhî, zâtî, ilmî ve nurânî. 'Ölü mü idi ki biz onu ilimle dirilttik ve onun için bir nûr kıldık ki onunla nâs arasında yürür' (En'âm, 6/122). Fususu'l-Hikem'in kendisi de bu ihyânın bir örneği olarak sunulur: bu kitap sayesinde binlerce mürde-nefis, mânevî hayâta kavuşmuştur.",
+                "en": "The second is 'ihyâ-yı mânevi' (spiritual resurrection): reviving a dead soul through knowledge. This is superior to sensory resurrection — for it concerns the immortal spirit, not the perishable body. This life is 'hayât-ı ilâhiyye-i zâtiyye-i ilmiyye-i nüriyye': divine, essential, of knowledge, and of light. 'Was he dead that We gave him life and made for him a light by which he walks among people?' (An'âm, 6:122). The Fusûsu'l-Hikem itself is presented as an example of this resurrection: through this book, thousands of dead souls have attained spiritual life.",
+                "pt": "O segundo é 'ihyâ-yı mânevi' (ressurreição espiritual): reviver uma alma morta através do conhecimento. Este é superior à ressurreição sensorial — pois diz respeito ao espírito imortal, não ao corpo perecível. Esta vida é 'hayât-ı ilâhiyye-i zâtiyye-i ilmiyye-i nüriyye': divina, essencial, do conhecimento e da luz. 'Estava ele morto para que lhe déssemos vida e fizéssemos para ele uma luz pela qual caminha entre as pessoas?' (An'âm, 6:122). O próprio Fusûsu'l-Hikem é apresentado como exemplo desta ressurreição: através deste livro, milhares de almas mortas alcançaram a vida espiritual."
+              }
+            }
+          ]
+        },
+        {
+          "id": "fs15-s5",
+          "heading": {
+            "tr": "İnsân-ı Kâmil: Berzah, Hak, Halk — ve Rahmân Olmak",
+            "en": "The Perfect Human: Isthmus, Real, Creation — and Becoming Rahmân",
+            "pt": "O Humano Perfeito: Istmo, Real, Criação — e Tornar-se Rahmân"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu fassın son bölümü, Îsâ'nın ontolojik konumunu genel insân-ı kâmil öğretisine bağlar. Konuk şöyle özetler: Her insan, esmâ-i ilâhiyyeden bir ismin mazharıdır; o isim onun Rabb-i hâssıdır. İnsân-ı kâmil ise 'Allah' ism-i câmiinin mazharıdır — tüm esmâyı kapsayan. Zirâ 'Allah Teâlâ Âdem'i kendi sureti üzerine halketti.' Bu nedenle insân-ı kâmil, zâhir ile bâtın arasındaki berzah-ı kübrâdır: vücûb denizi ile imkân denizi arasında durur, ikisi birbirine karışmaz ama o her ikisini de taşır.",
+                "en": "The final section of this fass connects Jesus's ontological position to the general teaching of the perfect human (insân-ı kâmil). Konuk summarizes: Every human being is a locus of manifestation (mazhar) for one of the divine names; that name is their particular Lord (Rabb-i hâss). But the perfect human is the mazhar of the all-comprehensive Name 'Allah' — encompassing all names. For 'God created Adam in His own form (sura).' For this reason, the perfect human is the great isthmus (berzah-ı kübrâ) between manifest and hidden: standing between the sea of necessity and the sea of contingency, the two do not merge but the perfect human carries both.",
+                "pt": "A seção final deste fass conecta a posição ontológica de Jesus ao ensinamento geral do humano perfeito (insân-ı kâmil). Konuk resume: Cada ser humano é um lócus de manifestação (mazhar) para um dos nomes divinos; esse nome é o seu Senhor particular (Rabb-i hâss). Mas o humano perfeito é o mazhar do Nome todo-abrangente 'Allah' — englobando todos os nomes. Pois 'Deus criou Adão na Sua própria forma (sura).' Por esta razão, o humano perfeito é o grande istmo (berzah-ı kübrâ) entre manifesto e oculto: situando-se entre o mar da necessidade e o mar da contingência, os dois não se fundem mas o humano perfeito carrega ambos."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "'Hak ol ve halk ol! Allah ile Rahmân olursun.' Bu satır, fassın belki de en yoğun cümlesidir. 'Hakikatinle Hak ol' — yani a'yân-ı sâbitendeki hakikatinle, ism-i ilâhîyle zuhur et. 'Zâhirinle halk ol' — yani süret-i müteayyinen içinde yaşamaya devam et. İkisi birden taşınabildiğinde, kişi kendi Rabb-i hâssının dâire-i dıygından çıkıp 'Allah' ism-i vesîinin geniş dairesine girer; ve 'Biz seni ancak âlemlere rahmet olarak gönderdik' (Enbiyâ, 21/107) hükmünce halk için revh, râhat ve reyhân olur. Îsâ bu konumun bir örneğidir — ama Konuk açıkça belirtir: tüm esmânın i'tidâl üzere zuhuru yalnızca Hâtem-i Enbiyâ'ya mahsustur.",
+                "en": "'Be Real and be creation — and you shall be Rahmân through Allah.' This line is perhaps the most concentrated sentence of the fass. 'Be Real in your truth' — that is, manifest through your reality in the divine names, through your essential archetype (a'yân-ı sâbite). 'Be creation in your outward form' — that is, continue to live within your determined form. When both can be held simultaneously, the person exits the narrow circle of their particular Lord (Rabb-i hâss) and enters the vast circle of the Name 'Allah'; and according to 'We sent you only as a mercy to the worlds' (Anbiya, 21:107), they become comfort, ease, and fragrance for all creation. Jesus exemplifies this position — but Konuk clearly states: the balanced manifestation of all names is exclusive to the Seal of the Prophets.",
+                "pt": "'Sê Real e sê criação — e serás o Rahmân através de Allah.' Esta linha é talvez a frase mais concentrada do fass. 'Sê Real na tua verdade' — isto é, manifesta-te através da tua realidade nos nomes divinos, através do teu arquétipo essencial (a'yân-ı sâbite). 'Sê criação na tua forma exterior' — isto é, continua a viver dentro da tua forma determinada. Quando ambos podem ser sustentados simultaneamente, a pessoa sai do círculo estreito do seu Senhor particular (Rabb-i hâss) e entra no vasto círculo do Nome 'Allah'; e segundo 'Nós te enviamos apenas como misericórdia para os mundos' (Anbiya, 21:107), torna-se conforto, sossego e fragrância para toda a criação. Jesus exemplifica esta posição — mas Konuk afirma claramente: a manifestação equilibrada de todos os nomes é exclusiva do Selo dos Profetas."
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "fs16",
