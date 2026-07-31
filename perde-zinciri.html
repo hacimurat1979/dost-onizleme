@@ -28,8 +28,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 .m3d #cv{display:block}
 .rg{cursor:pointer}
 .rg .rs{transition:opacity .22s}
-.rg:hover .rs,.rg.on .rs{opacity:.72}
-.rg.dim .rs{opacity:.18}
+.rg.dim .rs{opacity:.15}
 .qp{flex:1;min-width:210px;max-width:310px;background:var(--pa);border:1px solid var(--bo);border-radius:12px;padding:1.3rem 1.1rem;min-height:230px}
 .ql{font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:var(--mu);margin-bottom:.5rem}
 .qt{font-size:1.2rem;margin-bottom:.85rem;transition:.3s}
@@ -58,84 +57,86 @@ blockquote{font-size:.88rem;font-style:italic;line-height:1.8}
         <mask id="mE"><circle cx="230" cy="230" r="222" fill="white"/><circle cx="230" cy="230" r="170" fill="black"/></mask>
         <mask id="mF"><circle cx="230" cy="230" r="170" fill="white"/><circle cx="230" cy="230" r="115" fill="black"/></mask>
         <mask id="mS"><circle cx="230" cy="230" r="115" fill="white"/><circle cx="230" cy="230" r="60" fill="black"/></mask>
-        <!-- Ring gradients: inner edge lit by Zât, outer edge dark -->
+        <!-- the field this happens in: dark at the middle, with no rim to mark where it ends -->
+        <radialGradient id="gField" cx="230" cy="230" r="228" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#08060E" stop-opacity=".97"/>
+          <stop offset="88%" stop-color="#08060E" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#08060E" stop-opacity="0"/>
+        </radialGradient>
+        <!-- one ray, repeated around the centre: light leaving, thinning as it goes -->
+        <path id="ray" d="M228.6 166 L231.4 166 L235 6 L225 6 Z"/>
+        <radialGradient id="gRay" cx="230" cy="230" r="228" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#FFE79A" stop-opacity=".55"/>
+          <stop offset="34%" stop-color="#FFC94D" stop-opacity=".3"/>
+          <stop offset="100%" stop-color="#C89040" stop-opacity="0"/>
+        </radialGradient>
+        <!-- the veils: gauze, not walls. Each holds a little light and lets the rest through -->
         <radialGradient id="grS" cx="230" cy="230" r="115" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#FFC94D" stop-opacity="0"/>
-          <stop offset="52%" stop-color="#C88820" stop-opacity=".85"/>
-          <stop offset="100%" stop-color="#381E08"/>
+          <stop offset="50%" stop-color="#FFD26A" stop-opacity=".3"/>
+          <stop offset="100%" stop-color="#8A5818" stop-opacity=".22"/>
         </radialGradient>
         <radialGradient id="grF" cx="230" cy="230" r="170" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#FFC94D" stop-opacity="0"/>
-          <stop offset="68%" stop-color="#6A3C14" stop-opacity=".9"/>
-          <stop offset="100%" stop-color="#1E0E06"/>
+          <stop offset="66%" stop-color="#D8A048" stop-opacity=".2"/>
+          <stop offset="100%" stop-color="#6A4014" stop-opacity=".15"/>
         </radialGradient>
         <radialGradient id="grE" cx="230" cy="230" r="222" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#FFC94D" stop-opacity="0"/>
-          <stop offset="77%" stop-color="#2C1508" stop-opacity=".92"/>
-          <stop offset="100%" stop-color="#0B0402"/>
+          <stop offset="76%" stop-color="#B8863C" stop-opacity=".13"/>
+          <stop offset="100%" stop-color="#4A2E12" stop-opacity=".1"/>
         </radialGradient>
-        <!-- Zât: ambient outer halo -->
-        <radialGradient id="gZbg" cx="230" cy="230" r="120" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#FFC94D" stop-opacity=".22"/>
-          <stop offset="55%" stop-color="#FFC94D" stop-opacity=".05"/>
+        <!-- the centre: not a lamp. Light is greatest just outside it and dies as it approaches -->
+        <radialGradient id="gZ" cx="230" cy="230" r="74" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#05040A"/>
+          <stop offset="40%" stop-color="#0A0710" stop-opacity=".97"/>
+          <stop offset="72%" stop-color="#8A5818" stop-opacity=".55"/>
+          <stop offset="88%" stop-color="#FFD26A" stop-opacity=".38"/>
           <stop offset="100%" stop-color="#FFC94D" stop-opacity="0"/>
         </radialGradient>
-        <!-- Zât: main disc gradient -->
-        <radialGradient id="gZ" cx="230" cy="230" r="60" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#FFFCE8"/>
-          <stop offset="28%" stop-color="#FFE890"/>
-          <stop offset="62%" stop-color="#FFC94D"/>
-          <stop offset="100%" stop-color="#C8821A" stop-opacity=".9"/>
-        </radialGradient>
-        <!-- Filters -->
-        <filter id="gl" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur stdDeviation="20"/>
-        </filter>
-        <filter id="gls" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="10" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="gb" x="-60%" y="-60%" width="220%" height="220%">
-          <feGaussianBlur stdDeviation="3"/>
-        </filter>
+        <!-- blur grows inward: the nearer the Real, the less anything resolves -->
+        <filter id="fbS" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>
+        <filter id="fbF" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
+        <filter id="fbE" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.2"/></filter>
+        <filter id="fbZ" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="7"/></filter>
       </defs>
-      <!-- Eserler ring -->
+      <circle cx="230" cy="230" r="228" fill="url(#gField)" pointer-events="none"/>
+      <!-- light leaving the centre in every direction, drawn beneath the veils so they dim it -->
+      <g pointer-events="none" fill="url(#gRay)" opacity=".5">
+        <use href="#ray"/><use href="#ray" transform="rotate(22.5 230 230)"/>
+        <use href="#ray" transform="rotate(45 230 230)"/><use href="#ray" transform="rotate(67.5 230 230)"/>
+        <use href="#ray" transform="rotate(90 230 230)"/><use href="#ray" transform="rotate(112.5 230 230)"/>
+        <use href="#ray" transform="rotate(135 230 230)"/><use href="#ray" transform="rotate(157.5 230 230)"/>
+        <use href="#ray" transform="rotate(180 230 230)"/><use href="#ray" transform="rotate(202.5 230 230)"/>
+        <use href="#ray" transform="rotate(225 230 230)"/><use href="#ray" transform="rotate(247.5 230 230)"/>
+        <use href="#ray" transform="rotate(270 230 230)"/><use href="#ray" transform="rotate(292.5 230 230)"/>
+        <use href="#ray" transform="rotate(315 230 230)"/><use href="#ray" transform="rotate(337.5 230 230)"/>
+      </g>
+      <!-- Eserler: the outermost veil — the one we see most sharply -->
       <g class="rg" id="rE" tabindex="0" role="button">
-        <circle class="rs" cx="230" cy="230" r="222" fill="url(#grE)" mask="url(#mE)"/>
-        <text id="t0" x="230" y="36" text-anchor="middle" fill="#5C3E18" font-size="10.5" letter-spacing="3" font-family="Georgia,serif">ESERLER</text>
-        <text id="t1" x="230" y="51" text-anchor="middle" fill="#3E2810" font-size="8.5" font-style="italic" font-family="Georgia,serif">Görünen Âlem</text>
+        <circle class="rs" cx="230" cy="230" r="222" fill="url(#grE)" mask="url(#mE)" filter="url(#fbE)"/>
+        <text id="t0" x="230" y="36" text-anchor="middle" fill="#A98042" font-size="10.5" letter-spacing="3" font-family="Georgia,serif">ESERLER</text>
+        <text id="t1" x="230" y="51" text-anchor="middle" fill="#7A5C30" font-size="8.5" font-style="italic" font-family="Georgia,serif">Görünen Âlem</text>
       </g>
-      <!-- Fiiller ring -->
+      <!-- Fiiller -->
       <g class="rg" id="rF" tabindex="0" role="button">
-        <circle class="rs" cx="230" cy="230" r="170" fill="url(#grF)" mask="url(#mF)"/>
-        <text id="t2" x="230" y="80" text-anchor="middle" fill="#907028" font-size="10.5" letter-spacing="2.5" font-family="Georgia,serif">FİİLLER</text>
-        <text id="t3" x="230" y="95" text-anchor="middle" fill="#6A5018" font-size="8.5" font-style="italic" font-family="Georgia,serif">İlâhî Eylemler</text>
+        <circle class="rs" cx="230" cy="230" r="170" fill="url(#grF)" mask="url(#mF)" filter="url(#fbF)"/>
+        <text id="t2" x="230" y="86" text-anchor="middle" fill="#B08838" font-size="10.5" letter-spacing="2.5" font-family="Georgia,serif" opacity=".85">FİİLLER</text>
+        <text id="t3" x="230" y="101" text-anchor="middle" fill="#836428" font-size="8.5" font-style="italic" font-family="Georgia,serif" opacity=".85">İlâhî Eylemler</text>
       </g>
-      <!-- Sıfatlar ring -->
+      <!-- Sıfatlar: the densest veil, and the blurriest — we mistake it for what it hides -->
       <g class="rg" id="rS" tabindex="0" role="button">
-        <circle class="rs" cx="230" cy="230" r="115" fill="url(#grS)" mask="url(#mS)"/>
-        <text id="t4" x="230" y="131" text-anchor="middle" fill="#C08820" font-size="10.5" letter-spacing="2" font-family="Georgia,serif">SIFATLAR</text>
-        <text id="t5" x="230" y="146" text-anchor="middle" fill="#907028" font-size="8.5" font-style="italic" font-family="Georgia,serif">İsimler ve Nitelikler</text>
+        <circle class="rs" cx="230" cy="230" r="115" fill="url(#grS)" mask="url(#mS)" filter="url(#fbS)"/>
+        <text id="t4" x="230" y="141" text-anchor="middle" fill="#D8A448" font-size="10.5" letter-spacing="2" font-family="Georgia,serif" opacity=".7">SIFATLAR</text>
+        <text id="t5" x="230" y="156" text-anchor="middle" fill="#A87C2C" font-size="8.5" font-style="italic" font-family="Georgia,serif" opacity=".7">İsimler ve Nitelikler</text>
       </g>
-      <!-- Ring boundary glows -->
-      <circle cx="230" cy="230" r="170" fill="none" stroke="#3A2010" stroke-width="1.2" filter="url(#gb)" pointer-events="none"/>
-      <circle cx="230" cy="230" r="115" fill="none" stroke="#8A5818" stroke-width="1.5" filter="url(#gb)" pointer-events="none"/>
-      <circle cx="230" cy="230" r="60" fill="none" stroke="#C88820" stroke-width="2" filter="url(#gb)" pointer-events="none"/>
-      <!-- Zât group -->
+      <!-- Zât: the light is brightest around it and goes out as it reaches it. There is nothing to look at -->
       <g class="rg" id="rZ" tabindex="0" role="button">
-        <circle cx="230" cy="230" r="120" fill="url(#gZbg)" filter="url(#gl)" pointer-events="none"/>
-        <circle cx="230" cy="230" r="60" fill="url(#gZ)" filter="url(#gls)"/>
-        <circle cx="230" cy="230" r="18" fill="#FFFCE8" opacity=".65"/>
-        <text id="t6" x="230" y="226" text-anchor="middle" fill="#1C0C00" font-size="12.5" letter-spacing="2" font-family="Georgia,serif" font-weight="bold">ZÂT</text>
-        <text id="t7" x="230" y="243" text-anchor="middle" fill="#4A2C00" font-size="8" font-style="italic" font-family="Georgia,serif">Mutlak Gaib</text>
+        <circle class="rs" cx="230" cy="230" r="74" fill="url(#gZ)" filter="url(#fbZ)"/>
+        <text id="t6" x="230" y="228" text-anchor="middle" fill="#C89A50" font-size="11" letter-spacing="6" font-family="Georgia,serif" opacity=".42">ZÂT</text>
+        <text id="t7" x="230" y="245" text-anchor="middle" fill="#8A6B34" font-size="8" font-style="italic" font-family="Georgia,serif" opacity=".38">Mutlak Gaib</text>
       </g>
-      <!-- Perdeler: static arrows (pointing inward toward Zât) + labels -->
-      <polygon points="230,65 224,55 236,55" fill="#3A2010" opacity=".75" pointer-events="none"/>
-      <text id="tp1" x="242" y="64" fill="#3A2010" font-size="7.5" font-style="italic" font-family="Georgia,serif">perdeler</text>
-      <polygon points="230,113 224,103 236,103" fill="#7A4C16" opacity=".82" pointer-events="none"/>
-      <text id="tp2" x="242" y="112" fill="#7A4C16" font-size="7.5" font-style="italic" font-family="Georgia,serif">perdeler</text>
-      <polygon points="230,168 224,158 236,158" fill="#C08020" opacity=".88" pointer-events="none"/>
-      <text id="tp3" x="242" y="167" fill="#C08020" font-size="7.5" font-style="italic" font-family="Georgia,serif">perdeler</text>
+      <!-- where each veil stands, the light crossing it loses a little more of itself -->
+      <text id="tp3" x="309" y="267" text-anchor="middle" fill="#D8A448" font-size="7.5" font-style="italic" font-family="Georgia,serif" opacity=".62">perdeler</text>
+      <text id="tp2" x="359" y="290" text-anchor="middle" fill="#B08838" font-size="7.5" font-style="italic" font-family="Georgia,serif" opacity=".5">perdeler</text>
+      <text id="tp1" x="408" y="313" text-anchor="middle" fill="#A98042" font-size="7.5" font-style="italic" font-family="Georgia,serif" opacity=".4">perdeler</text>
     </svg>
     <canvas id="cv" width="460" height="400"></canvas>
   </div>

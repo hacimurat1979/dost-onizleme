@@ -379,20 +379,22 @@
     const toggle = panel.querySelector(".dost-edit-panel__toggle");
     const menu = panel.querySelector(".dost-edit-panel__menu");
     // Drag-or-click on toggle: drag moves panel, click without movement toggles menu
-    let dragStartX = 0, dragStartY = 0, panelStartL = 0, panelStartT = 0, hasDragged = false;
+    let dragStartX = 0, dragStartY = 0, panelStartL = 0, panelStartB = 0, hasDragged = false;
     toggle.addEventListener("mousedown", (e) => {
       dragStartX = e.clientX; dragStartY = e.clientY; hasDragged = false;
       const r = panel.getBoundingClientRect();
-      panelStartL = r.left; panelStartT = r.top;
-      // Switch from right/bottom anchoring to left/top so we can position freely
-      panel.style.right = "auto"; panel.style.bottom = "auto";
-      panel.style.left = r.left + "px"; panel.style.top = r.top + "px";
+      panelStartL = r.left; panelStartB = window.innerHeight - r.bottom;
       const onMove = (me) => {
         const dx = me.clientX - dragStartX, dy = me.clientY - dragStartY;
         if (!hasDragged && Math.abs(dx) < 3 && Math.abs(dy) < 3) return;
-        hasDragged = true;
-        panel.style.left = Math.max(0, Math.min(window.innerWidth - r.width, panelStartL + dx)) + "px";
-        panel.style.top  = Math.max(0, Math.min(window.innerHeight - r.height, panelStartT + dy)) + "px";
+        if (!hasDragged) {
+          hasDragged = true;
+          // Keep bottom anchoring: the menu opens upward from the toggle,
+          // so pinning `top` would push it off the bottom of the viewport.
+          panel.style.right = "auto"; panel.style.top = "auto";
+        }
+        panel.style.left   = Math.max(0, Math.min(window.innerWidth - r.width, panelStartL + dx)) + "px";
+        panel.style.bottom = Math.max(0, Math.min(window.innerHeight - r.height, panelStartB - dy)) + "px";
       };
       const onUp = () => {
         document.removeEventListener("mousemove", onMove);

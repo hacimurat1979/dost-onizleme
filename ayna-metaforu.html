@@ -64,109 +64,105 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
 <!-- 2D SVG -->
 <svg class="main-svg" id="svg2d" viewBox="0 0 580 240" role="img" aria-label="Ayna metaforu">
   <defs>
-    <!-- Bakan: luminous source -->
-    <radialGradient id="gBakan" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFFDE8"/>
-      <stop offset="22%" stop-color="#FFE070"/>
-      <stop offset="58%" stop-color="#C89040"/>
-      <stop offset="100%" stop-color="#7A4C10" stop-opacity=".2"/>
+    <!-- Bakan: a field of light with no visible boundary — it enters from beyond the frame -->
+    <radialGradient id="gSrc" cx="16" cy="72" r="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF8DC" stop-opacity=".92"/>
+      <stop offset="13%" stop-color="#FFDE84" stop-opacity=".5"/>
+      <stop offset="36%" stop-color="#C89040" stop-opacity=".19"/>
+      <stop offset="100%" stop-color="#C89040" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="gBakanHalo" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFC94D" stop-opacity=".17"/>
-      <stop offset="100%" stop-color="#FFC94D" stop-opacity="0"/>
-    </radialGradient>
-    <!-- Mirror interior: Bakan's light enters from left, depth on right -->
-    <linearGradient id="gMirrorFill" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#C89040" stop-opacity=".22"/>
-      <stop offset="38%" stop-color="#1A0C04" stop-opacity=".92"/>
-      <stop offset="100%" stop-color="#070402"/>
+    <!-- tecellî: light thins as it travels away from where it came from -->
+    <linearGradient id="gOut" x1="0" y1="0" x2="430" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFE79A" stop-opacity=".40"/>
+      <stop offset="100%" stop-color="#C89040" stop-opacity=".12"/>
     </linearGradient>
-    <!-- Ayna: receives reflected light from mirror (warm on left, dark on right) -->
-    <linearGradient id="gAynaFill" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#C89040" stop-opacity=".38"/>
-      <stop offset="32%" stop-color="#3A1E06" stop-opacity=".88"/>
-      <stop offset="100%" stop-color="#0C0604"/>
+    <!-- iade: the return keeps fading all the way back to its origin -->
+    <linearGradient id="gRet" x1="430" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D8A44C" stop-opacity=".24"/>
+      <stop offset="100%" stop-color="#C89040" stop-opacity=".02"/>
     </linearGradient>
-    <!-- Sûret: berzah translucence -->
-    <radialGradient id="gSuret" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFE8A0" stop-opacity=".92"/>
-      <stop offset="52%" stop-color="#C89040" stop-opacity=".62"/>
-      <stop offset="100%" stop-color="#7A4810" stop-opacity=".1"/>
+    <!-- the mirror is not a surface but a depth that keeps going -->
+    <linearGradient id="gDepth" x1="430" y1="0" x2="580" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3A2410" stop-opacity=".45"/>
+      <stop offset="55%" stop-color="#0C0710" stop-opacity=".82"/>
+      <stop offset="100%" stop-color="#05040A"/>
+    </linearGradient>
+    <!-- the mirror plane: brightest where the light strikes, dissolving at both ends -->
+    <linearGradient id="gPlane" x1="0" y1="14" x2="0" y2="226" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C89040" stop-opacity="0"/>
+      <stop offset="52%" stop-color="#FFD976" stop-opacity=".8"/>
+      <stop offset="100%" stop-color="#C89040" stop-opacity="0"/>
+    </linearGradient>
+    <!-- the Form: lit on the side facing the light, sunk into depth on the other -->
+    <linearGradient id="gForm" x1="390" y1="0" x2="470" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF4CC" stop-opacity=".88"/>
+      <stop offset="48%" stop-color="#FFD268" stop-opacity=".82"/>
+      <stop offset="52%" stop-color="#8A5A18" stop-opacity=".5"/>
+      <stop offset="100%" stop-color="#2A1806" stop-opacity=".22"/>
+    </linearGradient>
+    <radialGradient id="gFormHalo" cx="430" cy="124" r="78" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFD268" stop-opacity=".28"/>
+      <stop offset="100%" stop-color="#FFD268" stop-opacity="0"/>
     </radialGradient>
-    <!-- Filters -->
-    <filter id="glow-g" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="12" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <!-- nothing in this scene gets a hard edge; it dissolves rather than stops -->
+    <linearGradient id="gFadeV" x1="0" y1="0" x2="0" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="8%" stop-color="#fff"/>
+      <stop offset="92%" stop-color="#fff"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gFadeH" x1="0" y1="0" x2="580" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".6"/>
+      <stop offset="9%" stop-color="#fff"/>
+      <stop offset="92%" stop-color="#fff"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity=".2"/>
+    </linearGradient>
+    <mask id="mV"><rect x="0" y="0" width="580" height="240" fill="url(#gFadeV)"/></mask>
+    <mask id="mH"><rect x="0" y="0" width="580" height="240" fill="url(#gFadeH)"/></mask>
+    <!-- the night this happens in — so the scene reads the same in either theme -->
+    <radialGradient id="gGround" cx="290" cy="120" r="330" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#08060E" stop-opacity=".97"/>
+      <stop offset="70%" stop-color="#08060E" stop-opacity=".92"/>
+      <stop offset="100%" stop-color="#08060E" stop-opacity=".7"/>
+    </radialGradient>
+    <filter id="soft" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="11"/>
     </filter>
-    <filter id="glow-halo" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="22"/>
-    </filter>
-    <filter id="glow-a" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="7" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="glow-l" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="14" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="arrow-glow" x="-100%" y="-80%" width="300%" height="260%">
-      <feGaussianBlur stdDeviation="2" result="b"/>
+    <filter id="edge" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="2.4" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <rect x="0" y="0" width="580" height="240" fill="none"/>
-  <!-- Section labels -->
-  <text id="s1" x="102" y="22" text-anchor="middle" fill="#907040" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">BAKAN</text>
-  <text id="s2" x="102" y="35" text-anchor="middle" fill="#604820" font-size="8" font-style="italic" font-family="Georgia,serif">Hak / Görüntüleyen</text>
-  <text id="s3" x="290" y="22" text-anchor="middle" fill="#A07818" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">SÛRET</text>
-  <text id="s4" x="290" y="35" text-anchor="middle" fill="#7A5810" font-size="8" font-style="italic" font-family="Georgia,serif">Ne bakan · ne ondan başka</text>
-  <text id="s5" x="478" y="22" text-anchor="middle" fill="#7A4C14" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">AYNA</text>
-  <text id="s6" x="478" y="35" text-anchor="middle" fill="#5C3A10" font-size="8" font-style="italic" font-family="Georgia,serif">Mahal / Âlem</text>
-  <!-- Mirror frame (prominent, gold-bordered) -->
-  <rect x="254" y="39" width="72" height="170" rx="7" fill="url(#gMirrorFill)" stroke="#C89040" stroke-width="1.3"/>
-  <line x1="262" y1="50" x2="318" y2="50" stroke="#C89040" stroke-width=".45" opacity=".3"/>
-  <line x1="262" y1="201" x2="318" y2="201" stroke="#C89040" stroke-width=".45" opacity=".3"/>
-  <line x1="263" y1="52" x2="263" y2="200" stroke="#C89040" stroke-width=".3" opacity=".2"/>
-  <line x1="317" y1="52" x2="317" y2="200" stroke="#C89040" stroke-width=".3" opacity=".2"/>
-  <!-- Bakan ambient halo -->
-  <circle cx="116" cy="130" r="92" fill="url(#gBakanHalo)" filter="url(#glow-halo)"/>
-  <!-- Bakan main disc -->
-  <circle cx="116" cy="130" r="62" fill="url(#gBakan)" filter="url(#glow-g)" opacity=".92"/>
-  <!-- Bakan hard center -->
-  <circle cx="116" cy="130" r="15" fill="#FFFDE8" opacity=".5"/>
-  <!-- Ayna circle (receives reflected light, warm on mirror-facing side) -->
-  <circle cx="464" cy="130" r="62" fill="url(#gAynaFill)" filter="url(#glow-a)" opacity=".82"/>
-  <!-- Sûret (berzah form inside mirror zone) -->
-  <circle class="float-s" cx="290" cy="125" r="38" fill="url(#gSuret)" filter="url(#glow-l)" opacity=".84"/>
-  <!-- Arrows with subtle glow -->
-  <g class="shimmer" filter="url(#arrow-glow)">
-    <line x1="178" y1="125" x2="249" y2="125" stroke="#C09840" stroke-width="1.4" stroke-dasharray="5,4"/>
-    <polygon points="254,125 246,121 246,129" fill="#C09840"/>
-  </g>
-  <g class="shimmer" style="animation-delay:.6s" filter="url(#arrow-glow)">
-    <line x1="331" y1="118" x2="400" y2="118" stroke="#907030" stroke-width="1.4" stroke-dasharray="5,4"/>
-    <polygon points="405,118 397,114 397,122" fill="#907030"/>
-  </g>
-  <g class="shimmer" style="animation-delay:1.2s" filter="url(#arrow-glow)">
-    <line x1="400" y1="134" x2="331" y2="134" stroke="#907030" stroke-width="1.2" stroke-dasharray="5,4"/>
-    <polygon points="326,134 334,130 334,138" fill="#907030"/>
-  </g>
-  <g class="shimmer" style="animation-delay:1.8s" filter="url(#arrow-glow)">
-    <line x1="178" y1="140" x2="100" y2="140" stroke="#C09840" stroke-width="1.1" stroke-dasharray="4,4" opacity=".65"/>
-    <polygon points="95,140 103,136 103,144" fill="#C09840" opacity=".65"/>
-  </g>
-  <!-- Arrow labels -->
-  <text id="s7" x="214" y="115" text-anchor="middle" fill="#908050" font-size="7.5" font-style="italic" font-family="Georgia,serif">tecellî</text>
-  <text id="s8" x="365" y="110" text-anchor="middle" fill="#907030" font-size="7.5" font-style="italic" font-family="Georgia,serif">zuhur</text>
-  <text id="s9" x="365" y="148" text-anchor="middle" fill="#907030" font-size="7.5" font-style="italic" font-family="Georgia,serif">iade</text>
-  <text id="s10" x="138" y="155" text-anchor="middle" fill="#908050" font-size="7.5" font-style="italic" font-family="Georgia,serif">ma'rifet</text>
-  <!-- Inner labels -->
-  <text id="s11" x="116" y="124" text-anchor="middle" fill="#2A1600" font-size="11" font-family="Georgia,serif" font-weight="bold">Bakan</text>
-  <text id="s12" x="116" y="140" text-anchor="middle" fill="#5A3800" font-size="7.5" font-style="italic" font-family="Georgia,serif">Hâlık</text>
-  <text id="s13" x="290" y="122" text-anchor="middle" fill="#F0E0C0" font-size="10" font-family="Georgia,serif">Sûret</text>
-  <text id="s14" x="290" y="137" text-anchor="middle" fill="#D0A840" font-size="7" font-style="italic" font-family="Georgia,serif">berzahî</text>
-  <text id="s15" x="464" y="124" text-anchor="middle" fill="#F0D480" font-size="11" font-family="Georgia,serif" font-weight="bold">Ayna</text>
-  <text id="s16" x="464" y="140" text-anchor="middle" fill="#C89040" font-size="7.5" font-style="italic" font-family="Georgia,serif">Hâlık</text>
+  <g mask="url(#mV)"><g mask="url(#mH)">
+    <rect x="0" y="0" width="580" height="240" fill="url(#gGround)"/>
+    <!-- the depth behind the mirror surface: it does not end, it only gets darker -->
+    <rect x="430" y="0" width="150" height="240" fill="url(#gDepth)"/>
+    <!-- Bakan: the light itself, entering from outside the frame; it has no edge to point at -->
+    <circle cx="16" cy="72" r="190" fill="url(#gSrc)"/>
+    <!-- tecellî: the going-out -->
+    <path class="shimmer" d="M0 58 L430 110 L430 138 L0 86 Z" fill="url(#gOut)"/>
+    <!-- iade: the coming-back, thinner and dimmer than what went out -->
+    <path class="shimmer" style="animation-delay:1.3s" d="M430 110 L0 158 L0 182 L430 138 Z" fill="url(#gRet)"/>
+  </g></g>
+  <!-- the mirror surface: a plane, brightest exactly where it is struck, dissolving at both ends -->
+  <line x1="430" y1="14" x2="430" y2="226" stroke="url(#gPlane)" stroke-width="9" opacity=".3" filter="url(#soft)"/>
+  <line x1="430" y1="14" x2="430" y2="226" stroke="url(#gPlane)" stroke-width="1.4"/>
+  <!-- the Form: it sits astride the surface — half in the light, half in the depth -->
+  <ellipse cx="430" cy="124" rx="78" ry="70" fill="url(#gFormHalo)" filter="url(#soft)"/>
+  <ellipse class="float-s" cx="430" cy="124" rx="40" ry="32" fill="url(#gForm)" filter="url(#edge)"/>
+  <!-- the surface cuts straight through the Form: it belongs to neither side -->
+  <line x1="430" y1="93" x2="430" y2="155" stroke="#FFF0C0" stroke-width=".8" opacity=".55"/>
+  <!-- Labels -->
+  <text id="s1" x="150" y="30" text-anchor="middle" fill="#E0BC72" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">BAKAN</text>
+  <text id="s2" x="150" y="43" text-anchor="middle" fill="#B09660" font-size="8" font-style="italic" font-family="Georgia,serif">Hak / Görüntüleyen</text>
+  <text id="s3" x="430" y="30" text-anchor="middle" fill="#E8B84C" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">SÛRET</text>
+  <text id="s4" x="430" y="43" text-anchor="middle" fill="#C09A58" font-size="8" font-style="italic" font-family="Georgia,serif">Ne bakan · ne ondan başka</text>
+  <text id="s5" x="520" y="212" text-anchor="middle" fill="#C09A58" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">AYNA</text>
+  <text id="s6" x="520" y="225" text-anchor="middle" fill="#96784A" font-size="8" font-style="italic" font-family="Georgia,serif">Mahal / Âlem</text>
+  <text id="s7" x="205" y="86" text-anchor="middle" fill="#D8BA78" font-size="7.5" font-style="italic" font-family="Georgia,serif">tecellî</text>
+  <text id="s8" x="430" y="176" text-anchor="middle" fill="#C89C50" font-size="7.5" font-style="italic" font-family="Georgia,serif">zuhur</text>
+  <text id="s9" x="205" y="180" text-anchor="middle" fill="#AE8C50" font-size="7.5" font-style="italic" font-family="Georgia,serif">iade</text>
+  <text id="s10" x="70" y="200" text-anchor="middle" fill="#96784A" font-size="7.5" font-style="italic" font-family="Georgia,serif">ma'rifet</text>
 </svg>
 <!-- 3D Canvas: perspective tabletop mirror scene -->
 <canvas id="cv" width="580" height="295"></canvas>
@@ -184,7 +180,6 @@ const LA={
     sub:'Sûret ne bakandır ne ondan başka — ayna olmasaydı görüntü olmazdı, bakan olmasaydı ayna boş kalırdı',
     s1:'BAKAN',s2:'Hak / Görüntüleyen',s3:'SÛRET',s4:'Ne bakan · ne ondan başka',
     s5:'AYNA',s6:'Mahal / Âlem',s7:'tecellî',s8:'zuhur',s9:'iade',s10:"ma'rifet",
-    s11:'Bakan',s12:'Hâlık',s13:'Sûret',s14:'berzahî',s15:'Ayna',s16:'Hâlık',
     hint:'Bir ayna çiftine dokunarak o ilişkiye ait söylemi gör.',
     pairs:[
       {id:'p1',d1:'g',t1:'Zât',d2:'b',t2:'İnsan-ı Kâmil',label:'İlk Ayna',note:"Hakk kendini ancak câmi' bir aynada görebilir"},
@@ -201,7 +196,6 @@ const LA={
     sub:'The Form is neither the observer nor apart from it — without a mirror no image appears, without an observer the mirror stays empty',
     s1:'OBSERVER',s2:'The Real / The Looker',s3:'FORM',s4:'Neither seer · nor other than seer',
     s5:'MIRROR',s6:'Locus / World',s7:'manifestation',s8:'appearance',s9:'return',s10:'gnosis',
-    s11:'Observer',s12:'Hâlık',s13:'Form',s14:'barzakhī',s15:'Mirror',s16:'Hâlık',
     hint:'Touch a mirror pair to see its related discourse.',
     pairs:[
       {id:'p1',d1:'g',t1:'Essence',d2:'b',t2:'Perfect Man',label:'First Mirror',note:'The Real can only see Itself in an all-encompassing mirror'},
@@ -218,7 +212,6 @@ const LA={
     sub:'A Forma não é o observador nem está além dele — sem espelho não há imagem, sem observador o espelho fica vazio',
     s1:'OBSERVADOR',s2:'O Real / O Olhante',s3:'FORMA',s4:'Nem vidente · nem outro que ele',
     s5:'ESPELHO',s6:'Lugar / Mundo',s7:'tecelí',s8:'manifestação',s9:'retorno',s10:'gnose',
-    s11:'Observador',s12:'Hâlık',s13:'Forma',s14:'barzakhī',s15:'Espelho',s16:'Hâlık',
     hint:'Toque num par espelhado para ver o discurso relacionado.',
     pairs:[
       {id:'p1',d1:'g',t1:'Essência',d2:'b',t2:'Homem Perfeito',label:'Primeiro Espelho',note:'O Real só pode ver-Se num espelho que tudo abrange'},
