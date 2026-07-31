@@ -12,20 +12,21 @@
 :root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--blue:#8A5018;--liminal:#C89040}
 :root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#7A6C50;--panel:#E8E2D4;--gold:#8C6000;--blue:#6E3A08;--liminal:#9A6C20}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:2rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
-header{text-align:center;margin-bottom:1.2rem}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:.9rem}
 h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:var(--gold);margin-bottom:.4rem}
 .sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65;max-width:480px}
-.btns{display:flex;gap:.4rem;margin-bottom:1.3rem;align-items:center}
-.btn{background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:.3rem .9rem;border-radius:2rem;cursor:pointer;font:inherit;font-size:.82rem;transition:.2s}
-.btn.on,.btn:hover{background:var(--liminal);color:#fff;border-color:var(--liminal)}
-.btn.lang{padding:.3rem .7rem}
-.sep{color:var(--border);font-size:.85rem}
-.vis-wrap{position:relative;width:min(580px,96vw);margin-bottom:1.4rem}
-.main-svg{width:100%;display:block}
-#cv{display:none;width:100%;border-radius:8px}
-.m3d .main-svg{display:none}
-.m3d #cv{display:block}
+.vis-wrap{position:relative;width:min(580px,96vw);margin-bottom:.5rem}
+.main-svg{width:100%;display:block;touch-action:none;cursor:grab}
+.main-svg:active{cursor:grabbing}
+.main-svg:focus-visible{outline:2px solid var(--liminal);outline-offset:3px;border-radius:6px}
+.stage{width:100%;max-width:700px;text-align:center;margin-bottom:.7rem;min-height:4.4rem}
+.state{font-size:.92rem;line-height:1.6;color:var(--muted);transition:color .3s}
+.state.on{color:var(--gold)}
+.aha{font-size:.86rem;font-style:italic;line-height:1.7;color:var(--liminal);margin-top:.5rem;white-space:pre-line;opacity:0;transform:translateY(6px);transition:opacity .9s ease,transform .9s ease}
+.aha.show{opacity:1;transform:none}
+.grab-hint{font-size:.78rem;color:var(--muted);font-style:italic;margin-bottom:1.1rem;transition:opacity .5s}
+.grab-hint.gone{opacity:.28}
 .pairs{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;width:100%;max-width:700px;margin-bottom:1rem}
 .pair{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:.85rem .95rem;min-width:148px;flex:1;cursor:pointer;transition:border-color .2s,background .2s}
 .pair:hover,.pair.on{border-color:var(--liminal);background:var(--surface)}
@@ -41,12 +42,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
 .qbox blockquote{font-size:.9rem;font-style:italic;line-height:1.8;border-left:2px solid var(--liminal);padding-left:.8rem}
 .qbox .src{font-size:.73rem;color:var(--muted);margin-top:.4rem}
 .qbox .hint{font-size:.82rem;color:var(--muted);font-style:italic}
-.paradox{width:100%;max-width:700px;text-align:center;font-size:.8rem;color:var(--muted);font-style:italic;line-height:1.7;margin-bottom:.7rem;white-space:pre-line}
-.footer-hint{font-size:.76rem;color:var(--muted);font-style:italic;text-align:center}
-@keyframes shimmer{0%,100%{opacity:.35}50%{opacity:.72}}
-.shimmer{animation:shimmer 2.6s ease-in-out infinite}
-@keyframes float-s{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-.float-s{animation:float-s 3.2s ease-in-out infinite}
+.paradox{width:100%;max-width:700px;text-align:center;font-size:.8rem;color:var(--muted);font-style:italic;line-height:1.7;white-space:pre-line}
 </style>
 </head>
 <body>
@@ -55,131 +51,102 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
   <p class="sub" id="hSub">Sûret ne bakandır ne ondan başka — ayna olmasaydı görüntü olmazdı, bakan olmasaydı ayna boş kalırdı</p>
 </header>
 
-<div class="btns">
-  <button class="btn on" id="b2d" onclick="setMode('2d')">2B</button>
-  <button class="btn" id="b3d" onclick="setMode('3d')">3B</button>
-</div>
-
-<div class="vis-wrap" id="vw">
-<!-- 2D SVG -->
-<svg class="main-svg" id="svg2d" viewBox="0 0 580 240" role="img" aria-label="Ayna metaforu">
+<div class="vis-wrap">
+<svg class="main-svg" id="scene" viewBox="0 0 580 300" tabindex="0" role="application"
+     aria-label="Aynayı çevirerek görüntünün doğuşunu dene / Rotate the mirror to see the image appear">
   <defs>
-    <!-- Bakan: a field of light with no visible boundary — it enters from beyond the frame -->
-    <radialGradient id="gSrc" cx="16" cy="72" r="190" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFF8DC" stop-opacity=".92"/>
-      <stop offset="13%" stop-color="#FFDE84" stop-opacity=".5"/>
-      <stop offset="36%" stop-color="#C89040" stop-opacity=".19"/>
+    <radialGradient id="gSrc" cx="110" cy="150" r="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF8DC" stop-opacity=".95"/>
+      <stop offset="14%" stop-color="#FFDE84" stop-opacity=".5"/>
+      <stop offset="40%" stop-color="#C89040" stop-opacity=".16"/>
       <stop offset="100%" stop-color="#C89040" stop-opacity="0"/>
     </radialGradient>
-    <!-- tecellî: light thins as it travels away from where it came from -->
-    <linearGradient id="gOut" x1="0" y1="0" x2="430" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFE79A" stop-opacity=".40"/>
-      <stop offset="100%" stop-color="#C89040" stop-opacity=".12"/>
-    </linearGradient>
-    <!-- iade: the return keeps fading all the way back to its origin -->
-    <linearGradient id="gRet" x1="430" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#D8A44C" stop-opacity=".24"/>
-      <stop offset="100%" stop-color="#C89040" stop-opacity=".02"/>
-    </linearGradient>
-    <!-- the mirror is not a surface but a depth that keeps going -->
-    <linearGradient id="gDepth" x1="430" y1="0" x2="580" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3A2410" stop-opacity=".45"/>
-      <stop offset="55%" stop-color="#0C0710" stop-opacity=".82"/>
-      <stop offset="100%" stop-color="#05040A"/>
-    </linearGradient>
-    <!-- the mirror plane: brightest where the light strikes, dissolving at both ends -->
-    <linearGradient id="gPlane" x1="0" y1="14" x2="0" y2="226" gradientUnits="userSpaceOnUse">
+    <radialGradient id="gGround" cx="290" cy="150" r="330" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#08060E" stop-opacity=".97"/>
+      <stop offset="72%" stop-color="#08060E" stop-opacity=".93"/>
+      <stop offset="100%" stop-color="#08060E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gPlane" x1="0" y1="-105" x2="0" y2="105" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#C89040" stop-opacity="0"/>
-      <stop offset="52%" stop-color="#FFD976" stop-opacity=".8"/>
+      <stop offset="50%" stop-color="#FFD976" stop-opacity=".85"/>
       <stop offset="100%" stop-color="#C89040" stop-opacity="0"/>
     </linearGradient>
-    <!-- the Form: lit on the side facing the light, sunk into depth on the other -->
-    <linearGradient id="gForm" x1="390" y1="0" x2="470" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFF4CC" stop-opacity=".88"/>
-      <stop offset="48%" stop-color="#FFD268" stop-opacity=".82"/>
-      <stop offset="52%" stop-color="#8A5A18" stop-opacity=".5"/>
-      <stop offset="100%" stop-color="#2A1806" stop-opacity=".22"/>
-    </linearGradient>
-    <radialGradient id="gFormHalo" cx="430" cy="124" r="78" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFD268" stop-opacity=".28"/>
-      <stop offset="100%" stop-color="#FFD268" stop-opacity="0"/>
+    <radialGradient id="gImg" cx="0" cy="0" r="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF6D6"/>
+      <stop offset="45%" stop-color="#FFD268"/>
+      <stop offset="100%" stop-color="#8A5A18" stop-opacity="0"/>
     </radialGradient>
-    <!-- nothing in this scene gets a hard edge; it dissolves rather than stops -->
-    <linearGradient id="gFadeV" x1="0" y1="0" x2="0" y2="240" gradientUnits="userSpaceOnUse">
+    <!-- the night this happens in dissolves at every edge instead of stopping -->
+    <linearGradient id="gFadeV" x1="0" y1="0" x2="0" y2="300" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
-      <stop offset="8%" stop-color="#fff"/>
-      <stop offset="92%" stop-color="#fff"/>
+      <stop offset="11%" stop-color="#fff"/>
+      <stop offset="89%" stop-color="#fff"/>
       <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
     </linearGradient>
     <linearGradient id="gFadeH" x1="0" y1="0" x2="580" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#fff" stop-opacity=".6"/>
+      <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
       <stop offset="9%" stop-color="#fff"/>
-      <stop offset="92%" stop-color="#fff"/>
-      <stop offset="100%" stop-color="#fff" stop-opacity=".2"/>
+      <stop offset="91%" stop-color="#fff"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
     </linearGradient>
-    <mask id="mV"><rect x="0" y="0" width="580" height="240" fill="url(#gFadeV)"/></mask>
-    <mask id="mH"><rect x="0" y="0" width="580" height="240" fill="url(#gFadeH)"/></mask>
-    <!-- the night this happens in — so the scene reads the same in either theme -->
-    <radialGradient id="gGround" cx="290" cy="120" r="330" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#08060E" stop-opacity=".97"/>
-      <stop offset="70%" stop-color="#08060E" stop-opacity=".92"/>
-      <stop offset="100%" stop-color="#08060E" stop-opacity=".7"/>
-    </radialGradient>
-    <filter id="soft" x="-70%" y="-70%" width="240%" height="240%">
-      <feGaussianBlur stdDeviation="11"/>
-    </filter>
-    <filter id="edge" x="-70%" y="-70%" width="240%" height="240%">
-      <feGaussianBlur stdDeviation="2.4" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <mask id="mV"><rect x="0" y="0" width="580" height="300" fill="url(#gFadeV)"/></mask>
+    <mask id="mH"><rect x="0" y="0" width="580" height="300" fill="url(#gFadeH)"/></mask>
+    <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="imgBlur" x="-90%" y="-90%" width="280%" height="280%">
+      <feGaussianBlur id="imgBlurNode" stdDeviation="14"/>
     </filter>
   </defs>
+
   <g mask="url(#mV)"><g mask="url(#mH)">
-    <rect x="0" y="0" width="580" height="240" fill="url(#gGround)"/>
-    <!-- the depth behind the mirror surface: it does not end, it only gets darker -->
-    <rect x="430" y="0" width="150" height="240" fill="url(#gDepth)"/>
-    <!-- Bakan: the light itself, entering from outside the frame; it has no edge to point at -->
-    <circle cx="16" cy="72" r="190" fill="url(#gSrc)"/>
-    <!-- tecellî: the going-out -->
-    <path class="shimmer" d="M0 58 L430 110 L430 138 L0 86 Z" fill="url(#gOut)"/>
-    <!-- iade: the coming-back, thinner and dimmer than what went out -->
-    <path class="shimmer" style="animation-delay:1.3s" d="M430 110 L0 158 L0 182 L430 138 Z" fill="url(#gRet)"/>
+    <rect x="0" y="0" width="580" height="300" fill="url(#gGround)"/>
   </g></g>
-  <!-- the mirror surface: a plane, brightest exactly where it is struck, dissolving at both ends -->
-  <line x1="430" y1="14" x2="430" y2="226" stroke="url(#gPlane)" stroke-width="9" opacity=".3" filter="url(#soft)"/>
-  <line x1="430" y1="14" x2="430" y2="226" stroke="url(#gPlane)" stroke-width="1.4"/>
-  <!-- the Form: it sits astride the surface — half in the light, half in the depth -->
-  <ellipse cx="430" cy="124" rx="78" ry="70" fill="url(#gFormHalo)" filter="url(#soft)"/>
-  <ellipse class="float-s" cx="430" cy="124" rx="40" ry="32" fill="url(#gForm)" filter="url(#edge)"/>
-  <!-- the surface cuts straight through the Form: it belongs to neither side -->
-  <line x1="430" y1="93" x2="430" y2="155" stroke="#FFF0C0" stroke-width=".8" opacity=".55"/>
-  <!-- Labels -->
-  <text id="s1" x="150" y="30" text-anchor="middle" fill="#E0BC72" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">BAKAN</text>
-  <text id="s2" x="150" y="43" text-anchor="middle" fill="#B09660" font-size="8" font-style="italic" font-family="Georgia,serif">Hak / Görüntüleyen</text>
-  <text id="s3" x="430" y="30" text-anchor="middle" fill="#E8B84C" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">SÛRET</text>
-  <text id="s4" x="430" y="43" text-anchor="middle" fill="#C09A58" font-size="8" font-style="italic" font-family="Georgia,serif">Ne bakan · ne ondan başka</text>
-  <text id="s5" x="520" y="212" text-anchor="middle" fill="#C09A58" font-size="9.5" letter-spacing="2.5" font-family="Georgia,serif">AYNA</text>
-  <text id="s6" x="520" y="225" text-anchor="middle" fill="#96784A" font-size="8" font-style="italic" font-family="Georgia,serif">Mahal / Âlem</text>
-  <text id="s7" x="205" y="86" text-anchor="middle" fill="#D8BA78" font-size="7.5" font-style="italic" font-family="Georgia,serif">tecellî</text>
-  <text id="s8" x="430" y="176" text-anchor="middle" fill="#C89C50" font-size="7.5" font-style="italic" font-family="Georgia,serif">zuhur</text>
-  <text id="s9" x="205" y="180" text-anchor="middle" fill="#AE8C50" font-size="7.5" font-style="italic" font-family="Georgia,serif">iade</text>
-  <text id="s10" x="70" y="200" text-anchor="middle" fill="#96784A" font-size="7.5" font-style="italic" font-family="Georgia,serif">ma'rifet</text>
+
+  <!-- tecellî: the going-out. It never stops, whatever the mirror does -->
+  <line id="rayIn" x1="110" y1="150" x2="390" y2="150" stroke="#FFE79A" stroke-width="2.4" opacity=".5"/>
+  <!-- where the light goes after the surface — this is what the hand changes -->
+  <line id="rayOut" x1="390" y1="150" x2="110" y2="150" stroke="#D8A44C" stroke-width="2" opacity=".45"/>
+
+  <!-- the image: drawn behind the surface, and only while the light returns -->
+  <g id="imgG" opacity="0">
+    <circle cx="0" cy="0" r="46" fill="url(#gImg)" filter="url(#imgBlur)"/>
+    <text id="imgLabel" x="0" y="4" text-anchor="middle" fill="#3A2400" font-size="10" font-family="Georgia,serif">Sûret</text>
+  </g>
+
+  <!-- the mirror: a surface, and the thing the hand touches -->
+  <g id="mirrorG">
+    <line x1="0" y1="-105" x2="0" y2="105" stroke="url(#gPlane)" stroke-width="11" opacity=".3" filter="url(#soft)"/>
+    <line x1="0" y1="-105" x2="0" y2="105" stroke="url(#gPlane)" stroke-width="1.6"/>
+  </g>
+
+  <!-- Bakan: a field of light entering from beyond the frame -->
+  <circle id="srcHalo" cx="110" cy="150" r="150" fill="url(#gSrc)"/>
+
+  <text id="lbObs" x="110" y="44" text-anchor="middle" fill="#E0BC72" font-size="10" letter-spacing="2.5" font-family="Georgia,serif">BAKAN</text>
+  <text id="lbMir" x="390" y="284" text-anchor="middle" fill="#C09A58" font-size="10" letter-spacing="2.5" font-family="Georgia,serif">AYNA</text>
 </svg>
-<!-- 3D Canvas: perspective tabletop mirror scene -->
-<canvas id="cv" width="580" height="295"></canvas>
 </div>
+
+<div class="stage">
+  <p class="state" id="state"></p>
+  <p class="aha" id="aha"></p>
+</div>
+<p class="grab-hint" id="grabHint"></p>
 
 <div class="pairs" id="pairs"></div>
 <div class="qbox" id="qbox"><span class="hint" id="qhint">Bir ayna çiftine dokunarak o ilişkiye ait söylemi gör.</span></div>
 <p class="paradox" id="paradox"></p>
-<p class="footer-hint" id="footer"></p>
 
 <script>
 const LA={
   tr:{
     title:'Ayna Metaforu',
     sub:'Sûret ne bakandır ne ondan başka — ayna olmasaydı görüntü olmazdı, bakan olmasaydı ayna boş kalırdı',
-    s1:'BAKAN',s2:'Hak / Görüntüleyen',s3:'SÛRET',s4:'Ne bakan · ne ondan başka',
-    s5:'AYNA',s6:'Mahal / Âlem',s7:'tecellî',s8:'zuhur',s9:'iade',s10:"ma'rifet",
+    obs:'BAKAN', mir:'AYNA', img:'Sûret',
+    grab:'Aynayı sürükleyerek çevir (ok tuşları da çalışır)',
+    st0:'Işık gidiyor. Ama dönmüyor — ortada görüntü yok.',
+    st1:'Bir şey belirmeye başladı…',
+    st2:'Görüntü doğdu.',
+    aha:'Ne aynayı değiştirdin ne bakanı — yalnız aralarındaki açıyı.\nDemek görüntü ikisinin de değilmiş; aralarındaki ilişkinin.',
     hint:'Bir ayna çiftine dokunarak o ilişkiye ait söylemi gör.',
     pairs:[
       {id:'p1',d1:'g',t1:'Zât',d2:'b',t2:'İnsan-ı Kâmil',label:'İlk Ayna',note:"Hakk kendini ancak câmi' bir aynada görebilir"},
@@ -188,14 +155,16 @@ const LA={
       {id:'p4',d1:'g',t1:'Varlık',d2:'b',t2:'Yokluk',label:'Ontolojik Ayna',note:'Mutlak yokluk mutlak varlığın aynasıdır — mümkün burada görünür'},
     ],
     paradox:'"Aynaya bakan olmasa aynadaki görüntü ortaya çıkmaz.\nAyna olmasa yine görüntü ortaya çıkmaz.\nBu sûret ancak sende seninle sana gitmektedir." — Fütûhât',
-    footer:'Çiftlere dokunarak ayrıntı gör · 3B düğmesiyle bakış açısını değiştir',
-    d3bakan:'Bakan',d3suret:'Sûret',d3ayna:'Ayna',d3tec:'tecellî',
   },
   en:{
     title:'Mirror Metaphor',
     sub:'The Form is neither the observer nor apart from it — without a mirror no image appears, without an observer the mirror stays empty',
-    s1:'OBSERVER',s2:'The Real / The Looker',s3:'FORM',s4:'Neither seer · nor other than seer',
-    s5:'MIRROR',s6:'Locus / World',s7:'manifestation',s8:'appearance',s9:'return',s10:'gnosis',
+    obs:'OBSERVER', mir:'MIRROR', img:'Form',
+    grab:'Drag to turn the mirror (arrow keys work too)',
+    st0:'The light goes out. But it does not come back — there is no image.',
+    st1:'Something is beginning to appear…',
+    st2:'The image is born.',
+    aha:'You changed neither the mirror nor the observer — only the angle between them.\nSo the image belonged to neither; it belonged to their relation.',
     hint:'Touch a mirror pair to see its related discourse.',
     pairs:[
       {id:'p1',d1:'g',t1:'Essence',d2:'b',t2:'Perfect Man',label:'First Mirror',note:'The Real can only see Itself in an all-encompassing mirror'},
@@ -204,14 +173,16 @@ const LA={
       {id:'p4',d1:'g',t1:'Existence',d2:'b',t2:'Non-existence',label:'Ontological Mirror',note:'Absolute non-existence mirrors absolute existence — the contingent appears here'},
     ],
     paradox:'"Were there no observer at the mirror, no image would appear in it.\nWere there no mirror, again no image would appear.\nThis Form goes to you in you from you." — Futûhât',
-    footer:'Touch pairs for detail · Toggle 3D view',
-    d3bakan:'Observer',d3suret:'Form',d3ayna:'Mirror',d3tec:'manifestation',
   },
   pt:{
     title:'Metáfora do Espelho',
     sub:'A Forma não é o observador nem está além dele — sem espelho não há imagem, sem observador o espelho fica vazio',
-    s1:'OBSERVADOR',s2:'O Real / O Olhante',s3:'FORMA',s4:'Nem vidente · nem outro que ele',
-    s5:'ESPELHO',s6:'Lugar / Mundo',s7:'tecelí',s8:'manifestação',s9:'retorno',s10:'gnose',
+    obs:'OBSERVADOR', mir:'ESPELHO', img:'Forma',
+    grab:'Arraste para girar o espelho (as setas também funcionam)',
+    st0:'A luz sai. Mas não volta — não há imagem alguma.',
+    st1:'Algo começa a aparecer…',
+    st2:'A imagem nasceu.',
+    aha:'Não mudaste nem o espelho nem o observador — apenas o ângulo entre eles.\nEntão a imagem não era de nenhum dos dois; era da relação entre eles.',
     hint:'Toque num par espelhado para ver o discurso relacionado.',
     pairs:[
       {id:'p1',d1:'g',t1:'Essência',d2:'b',t2:'Homem Perfeito',label:'Primeiro Espelho',note:'O Real só pode ver-Se num espelho que tudo abrange'},
@@ -220,8 +191,6 @@ const LA={
       {id:'p4',d1:'g',t1:'Existência',d2:'b',t2:'Não-existência',label:'Espelho Ontológico',note:'A não-existência absoluta espelha a existência absoluta — o contingente aparece aqui'},
     ],
     paradox:'"Se não houvesse observador diante do espelho, nenhuma imagem apareceria nele.\nSem espelho, também não apareceria imagem alguma.\nEsta Forma vai a ti em ti de ti." — Futûhât',
-    footer:'Toque nos pares para detalhes · Alternar visualização 3D',
-    d3bakan:'Observador',d3suret:'Forma',d3ayna:'Espelho',d3tec:'tecelí',
   }
 };
 
@@ -248,43 +217,100 @@ const PD={
   }
 };
 
-// Canvas scene constants — new layout: Bakan LEFT, standing mirror RIGHT
-const CW=580,CH=295;
-const BkX=110,BkY=147,BkR=52;              // Bakan (observer) — left
-const SrX=248,SrY=147,SrR=27;              // Sûret / berzah — middle
-const MFX=352,MFY=12,MFW=128,MFH=264;     // mirror outer frame
-const MFB=13;                               // frame border width
-const GX=MFX+MFB,GY=MFY+MFB;             // glass origin
-const GW=MFW-2*MFB,GH=MFH-2*MFB;         // glass dims
-const MCX=GX+GW/2,MCY=GY+GH/2;           // glass centre
-const RefR=36;                             // reflection radius
+// ── Sahne ────────────────────────────────────────────────────────────────────
+const CX=390, CY=150;   // aynanın merkezi
+const MAXA=52;          // aynanın çevrilebildiği açı
 
-let curLang='tr',curMode='2d',curPair=null;
-let animId=null,t3d=0;
+let curLang='tr', curPair=null;
+let angle=28;           // hizasız başlıyor: ilk görülen şey "görüntü yok" olmalı
+let sawImage=false, sawLoss=false, touched=false;
 
+const $=id=>document.getElementById(id);
+
+function render(){
+  const th=angle*Math.PI/180;
+  // yansıyan yön: r = -(cos2θ, sin2θ) — ayna kadar değil, iki katı hızla sapar
+  const rx=-Math.cos(2*th), ry=-Math.sin(2*th);
+  // ışık bakana ancak θ≈0'da döner; gerisinde karanlığa gider
+  const v=Math.pow(Math.max(0,Math.cos(2*th)),6);
+
+  $('mirrorG').setAttribute('transform','translate('+CX+','+CY+') rotate('+angle.toFixed(2)+')');
+  $('rayOut').setAttribute('x2',(CX+rx*300).toFixed(1));
+  $('rayOut').setAttribute('y2',(CY+ry*300).toFixed(1));
+  $('rayOut').setAttribute('opacity',(.30+.45*v).toFixed(3));
+  $('rayIn').setAttribute('opacity',(.42+.30*v).toFixed(3));
+
+  // sûret yüzeyin ARKASINDA, aynanın normali boyunca durur
+  const nx=Math.cos(th), ny=Math.sin(th);
+  $('imgG').setAttribute('transform','translate('+(CX+nx*74).toFixed(1)+','+(CY+ny*74).toFixed(1)+')');
+  $('imgG').setAttribute('opacity',v.toFixed(3));
+  // ışık döndükçe görüntü netleşir: bulanıklık süs değil, sonuç
+  $('imgBlurNode').setAttribute('stdDeviation',(14-13.2*v).toFixed(2));
+  $('imgLabel').setAttribute('opacity',Math.max(0,(v-.45)/.55).toFixed(3));
+  // giden geri döndüğünde bakanın kendisi de parlar
+  $('srcHalo').setAttribute('opacity',(.8+.2*v).toFixed(3));
+
+  const d=LA[curLang];
+  const st=$('state');
+  st.textContent = v<0.06 ? d.st0 : (v<0.5 ? d.st1 : d.st2);
+  st.classList.toggle('on', v>=0.5);
+
+  if(v>0.6) sawImage=true;
+  if(sawImage && v<0.06) sawLoss=true;
+  if(sawImage && sawLoss) $('aha').classList.add('show');
+}
+
+function setAngle(a){
+  angle=Math.max(-MAXA,Math.min(MAXA,a));
+  render();
+}
+
+const scene=$('scene');
+let dragging=false, lastX=0, lastY=0;
+function markTouched(){ if(!touched){touched=true;$('grabHint').classList.add('gone');} }
+scene.addEventListener('pointerdown',e=>{
+  dragging=true; lastX=e.clientX; lastY=e.clientY;
+  try{scene.setPointerCapture(e.pointerId);}catch(_){}
+  markTouched(); e.preventDefault();
+});
+scene.addEventListener('pointermove',e=>{
+  if(!dragging) return;
+  const r=scene.getBoundingClientRect();
+  const k=150/Math.max(1,r.height);
+  setAngle(angle + ((e.clientY-lastY)+(e.clientX-lastX)*0.35)*k);
+  lastX=e.clientX; lastY=e.clientY;
+});
+['pointerup','pointercancel','pointerleave'].forEach(t=>scene.addEventListener(t,()=>{dragging=false;}));
+scene.addEventListener('keydown',e=>{
+  const k={ArrowUp:-3,ArrowDown:3,ArrowLeft:-3,ArrowRight:3}[e.key];
+  if(k===undefined) return;
+  markTouched(); setAngle(angle+k); e.preventDefault();
+});
+
+// ── i18n + içerik ────────────────────────────────────────────────────────────
 function dc(d){return d==='g'?'gold':d==='b'?'blue':'liminal';}
 
 function setLang(l){
   curLang=l;
   const d=LA[l];
-  document.getElementById('hTitle').textContent=d.title;
-  document.getElementById('hSub').textContent=d.sub;
-  for(let i=1;i<=16;i++){
-    const el=document.getElementById('s'+i);
-    if(el&&d['s'+i]!==undefined) el.textContent=d['s'+i];
-  }
+  $('hTitle').textContent=d.title;
+  $('hSub').textContent=d.sub;
+  $('lbObs').textContent=d.obs;
+  $('lbMir').textContent=d.mir;
+  $('imgLabel').textContent=d.img;
+  $('grabHint').textContent=d.grab;
+  $('aha').textContent=d.aha;
+  $('paradox').textContent=d.paradox;
   renderPairs(l);
-  const qh=document.getElementById('qhint');
+  const qh=$('qhint');
   if(qh) qh.textContent=d.hint;
   if(curPair) showQuote(curPair);
-  document.getElementById('paradox').textContent=d.paradox;
-  document.getElementById('footer').textContent=d.footer;
-  if(curMode==='3d') draw3d();
+  render();
 }
 
 function renderPairs(l){
   const d=LA[l];
-  document.getElementById('pairs').innerHTML=d.pairs.map(p=>`
+  $('pairs').innerHTML=d.pairs.map(p=>`
     <div class="pair" id="${p.id}" onclick="selectPair('${p.id}')">
       <div class="pair-top">
         <span class="dot d${p.d1}"></span>
@@ -301,264 +327,21 @@ function renderPairs(l){
 
 function showQuote(id){
   const pd=PD[id][curLang];
-  document.getElementById('qbox').innerHTML=
-    `<blockquote>${pd.q}</blockquote><div class="src">${pd.src}</div>`;
+  $('qbox').innerHTML=`<blockquote>${pd.q}</blockquote><div class="src">${pd.src}</div>`;
 }
 
 function selectPair(id){
   if(curPair===id){
     curPair=null;
     document.querySelectorAll('.pair').forEach(p=>p.classList.remove('on'));
-    document.getElementById('qbox').innerHTML=
-      `<span class="hint" id="qhint">${LA[curLang].hint}</span>`;
-    if(curMode==='3d') draw3d();
+    $('qbox').innerHTML=`<span class="hint" id="qhint">${LA[curLang].hint}</span>`;
     return;
   }
   curPair=id;
   document.querySelectorAll('.pair').forEach(p=>p.classList.toggle('on',p.id===id));
   showQuote(id);
-  if(curMode==='3d') draw3d();
 }
 
-function setMode(m){
-  curMode=m;
-  const vw=document.getElementById('vw');
-  if(m==='3d'){
-    vw.classList.add('m3d');
-    document.getElementById('b3d').classList.add('on');
-    document.getElementById('b2d').classList.remove('on');
-    startAnim();
-  } else {
-    vw.classList.remove('m3d');
-    document.getElementById('b2d').classList.add('on');
-    document.getElementById('b3d').classList.remove('on');
-    stopAnim();
-  }
-}
-
-function startAnim(){
-  if(animId) return;
-  (function loop(){ t3d+=0.009; draw3d(); animId=requestAnimationFrame(loop); })();
-}
-function stopAnim(){
-  if(animId){cancelAnimationFrame(animId);animId=null;}
-}
-
-// ── 3D canvas ─────────────────────────────────────────────────────────────────
-function draw3d(){
-  const cv=document.getElementById('cv');
-  if(!cv.getContext) return;
-  const ctx=cv.getContext('2d');
-  ctx.clearRect(0,0,CW,CH);
-  const lang=LA[curLang];
-  const pulse=0.5+0.5*Math.sin(t3d*0.85);
-  const flt=Math.sin(t3d*0.9)*2.8;
-  const bakY=BkY+flt*0.6;   // Bakan floats gently
-  const suretY=SrY+flt;     // Sûret floats more
-  const rflt=flt*0.65;      // reflection mirrors Bakan's float
-
-  ctx.save();
-  ctx.beginPath(); ctx.rect(0,0,CW,CH); ctx.clip();
-
-  // ── 0. Mirror floor shadow ──
-  const floorY=MFY+MFH+18;
-  const shad=ctx.createRadialGradient(MCX,floorY,0,MCX,floorY,58);
-  shad.addColorStop(0,'rgba(0,0,0,0.20)');
-  shad.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.beginPath(); ctx.ellipse(MCX,floorY,52,9,0,0,Math.PI*2);
-  ctx.fillStyle=shad; ctx.fill();
-
-  // ── 1. Mirror stand ──
-  ctx.save();
-  ctx.lineCap='round'; ctx.lineWidth=5;
-  ctx.strokeStyle='rgba(110,88,44,0.82)';
-  ctx.beginPath(); ctx.moveTo(MCX,MFY+MFH); ctx.lineTo(MCX-28,floorY-2); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(MCX,MFY+MFH); ctx.lineTo(MCX+28,floorY-2); ctx.stroke();
-  ctx.restore();
-
-  // ── 2. Mirror glass (clipped) ──
-  ctx.save();
-  ctx.beginPath(); ctx.rect(GX,GY,GW,GH); ctx.clip();
-
-  const glass=ctx.createLinearGradient(GX,0,GX+GW,0);
-  glass.addColorStop(0,'rgba(90,48,8,0.22)');
-  glass.addColorStop(0.28,'rgba(148,90,26,0.38)');
-  glass.addColorStop(0.50,'rgba(200,144,64,0.48)');
-  glass.addColorStop(0.72,'rgba(148,90,26,0.38)');
-  glass.addColorStop(1,'rgba(90,48,8,0.22)');
-  ctx.fillStyle=glass; ctx.fillRect(GX,GY,GW,GH);
-
-  // Reflection halo
-  const refActive=curPair==='p1';
-  const rHaloR=RefR*(refActive?2.5:2.1+0.2*pulse);
-  const rHalo=ctx.createRadialGradient(MCX,MCY+rflt,0,MCX,MCY+rflt,rHaloR);
-  rHalo.addColorStop(0,'rgba(225,183,55,0.20)'); rHalo.addColorStop(1,'rgba(225,183,55,0)');
-  ctx.beginPath(); ctx.arc(MCX,MCY+rflt,rHaloR,0,Math.PI*2); ctx.fillStyle=rHalo; ctx.fill();
-
-  // Reflection sphere (dimmer, slight blue tint)
-  const rfg=ctx.createRadialGradient(MCX-9,MCY+rflt-11,4,MCX,MCY+rflt,RefR);
-  rfg.addColorStop(0,'rgba(255,240,180,0.74)');
-  rfg.addColorStop(0.5,'rgba(200,152,60,0.56)');
-  rfg.addColorStop(0.84,'rgba(140,88,24,0.28)');
-  rfg.addColorStop(1,'rgba(80,44,8,0)');
-  ctx.beginPath(); ctx.arc(MCX,MCY+rflt,RefR,0,Math.PI*2); ctx.fillStyle=rfg; ctx.fill();
-  if(refActive){ ctx.strokeStyle='rgba(238,192,70,0.38)'; ctx.lineWidth=1.8; ctx.stroke(); }
-  ctx.beginPath(); ctx.arc(MCX-10,MCY+rflt-13,7,0,Math.PI*2);
-  ctx.fillStyle='rgba(255,255,255,0.10)'; ctx.fill();
-
-  // Reflection label (Bakan name, dimmed)
-  ctx.save();
-  ctx.font='9.5px Georgia,serif'; ctx.fillStyle='rgba(215,190,140,0.68)';
-  ctx.textAlign='center'; ctx.textBaseline='middle';
-  ctx.fillText(lang.d3bakan, MCX, MCY+rflt+RefR+13);
-  ctx.restore();
-
-  // Glass highlight streaks
-  ctx.beginPath(); ctx.moveTo(GX+8,GY); ctx.lineTo(GX+8,GY+GH);
-  ctx.strokeStyle='rgba(218,230,255,0.09)'; ctx.lineWidth=5; ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(GX+17,GY); ctx.lineTo(GX+17,GY+GH);
-  ctx.strokeStyle='rgba(218,230,255,0.05)'; ctx.lineWidth=2; ctx.stroke();
-
-  // Ayna label
-  ctx.save();
-  ctx.font=`italic 10.5px Georgia,serif`;
-  ctx.fillStyle=`rgba(200,144,64,${0.36+0.1*pulse})`;
-  ctx.textAlign='center'; ctx.textBaseline='middle';
-  ctx.fillText(lang.d3ayna, MCX, GY+GH-15);
-  ctx.restore();
-
-  ctx.restore(); // end glass clip
-
-  // ── 3. Mirror frame ──
-  ctx.fillStyle='rgba(118,95,50,0.90)';
-  ctx.fillRect(MFX,MFY,MFW,MFB);           // top bar
-  ctx.fillRect(MFX,MFY+MFH-MFB,MFW,MFB);  // bottom bar
-  ctx.fillRect(MFX,MFY,MFB,MFH);           // left bar
-  ctx.fillRect(MFX+MFW-MFB,MFY,MFB,MFH);  // right bar
-  ctx.strokeStyle='rgba(192,162,92,0.48)'; ctx.lineWidth=1.5; ctx.strokeRect(GX,GY,GW,GH);
-  ctx.strokeStyle='rgba(58,42,16,0.55)'; ctx.lineWidth=1; ctx.strokeRect(MFX,MFY,MFW,MFH);
-
-  // ── 4. Depth shadow (left side → 3D standing feel) ──
-  const dep=ctx.createLinearGradient(MFX-12,0,MFX+5,0);
-  dep.addColorStop(0,'rgba(0,0,0,0)'); dep.addColorStop(1,'rgba(0,0,0,0.22)');
-  ctx.fillStyle=dep; ctx.fillRect(MFX-12,MFY,18,MFH);
-
-  if(curPair==='p2'){
-    ctx.strokeStyle='rgba(148,182,255,0.46)'; ctx.lineWidth=2.2; ctx.strokeRect(MFX,MFY,MFW,MFH);
-  }
-
-  // ── 5. Sûret (berzah, liminal) ──
-  const sAct=curPair==='p3', sR=sAct?35:SrR;
-  const sg=ctx.createRadialGradient(SrX,suretY,0,SrX,suretY,sR);
-  sg.addColorStop(0,sAct?'rgba(255,228,140,0.92)':'rgba(240,196,100,0.82)');
-  sg.addColorStop(0.5,'rgba(180,122,42,0.52)');
-  sg.addColorStop(1,'rgba(100,58,12,0)');
-  ctx.beginPath(); ctx.arc(SrX,suretY,sR,0,Math.PI*2); ctx.fillStyle=sg; ctx.fill();
-  if(sAct){
-    ctx.beginPath(); ctx.arc(SrX,suretY,sR+5,0,Math.PI*2);
-    ctx.strokeStyle='rgba(210,162,62,0.28)'; ctx.lineWidth=2.5; ctx.stroke();
-  }
-  const si=ctx.createRadialGradient(SrX,suretY,0,SrX,suretY,12);
-  si.addColorStop(0,'rgba(255,240,180,0.72)'); si.addColorStop(1,'rgba(212,162,62,0)');
-  ctx.beginPath(); ctx.arc(SrX,suretY,12,0,Math.PI*2); ctx.fillStyle=si; ctx.fill();
-  ctx.save();
-  ctx.font='10.5px Georgia,serif'; ctx.fillStyle='rgba(240,210,120,0.88)';
-  ctx.textAlign='center'; ctx.textBaseline='middle';
-  ctx.fillText(lang.d3suret, SrX, suretY+1);
-  ctx.restore();
-
-  // ── 6. Flow arrows ──
-  // tecellî: Bakan → Sûret
-  const aY1=BkY-16, aXs1=BkX+BkR+8, aXe1=SrX-sR-8;
-  if(aXe1>aXs1+12){
-    ctx.save();
-    ctx.setLineDash([5,4]);
-    ctx.beginPath(); ctx.moveTo(aXs1,aY1); ctx.lineTo(aXe1,aY1);
-    ctx.strokeStyle='rgba(212,178,62,0.58)'; ctx.lineWidth=1.2; ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.beginPath(); ctx.moveTo(aXe1,aY1); ctx.lineTo(aXe1-7,aY1-4); ctx.lineTo(aXe1-7,aY1+4); ctx.closePath();
-    ctx.fillStyle='rgba(212,178,62,0.58)'; ctx.fill();
-    ctx.font='italic 8.5px Georgia,serif'; ctx.fillStyle='rgba(192,162,52,0.64)';
-    ctx.textAlign='center'; ctx.textBaseline='bottom';
-    ctx.fillText(lang.d3tec, (aXs1+aXe1)/2, aY1-3);
-    ctx.restore();
-  }
-
-  // zuhur: Sûret → mirror
-  const aY2=BkY+2, aXs2=SrX+sR+8, aXe2=MFX-5;
-  if(aXe2>aXs2+12){
-    ctx.save();
-    ctx.setLineDash([5,4]);
-    ctx.beginPath(); ctx.moveTo(aXs2,aY2); ctx.lineTo(aXe2,aY2);
-    ctx.strokeStyle='rgba(160,112,40,0.52)'; ctx.lineWidth=1.1; ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.beginPath(); ctx.moveTo(aXe2,aY2); ctx.lineTo(aXe2-7,aY2-4); ctx.lineTo(aXe2-7,aY2+4); ctx.closePath();
-    ctx.fillStyle='rgba(160,112,40,0.52)'; ctx.fill();
-    ctx.restore();
-  }
-
-  // iade: mirror → Bakan
-  const aY3=BkY+24, aXs3=MFX-5, aXe3=BkX+BkR+8;
-  if(aXs3>aXe3+12){
-    ctx.save();
-    ctx.setLineDash([4,4]);
-    ctx.beginPath(); ctx.moveTo(aXs3,aY3); ctx.lineTo(aXe3,aY3);
-    ctx.strokeStyle='rgba(160,112,40,0.42)'; ctx.lineWidth=1; ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.beginPath(); ctx.moveTo(aXe3,aY3); ctx.lineTo(aXe3+7,aY3-4); ctx.lineTo(aXe3+7,aY3+4); ctx.closePath();
-    ctx.fillStyle='rgba(160,112,40,0.42)'; ctx.fill();
-    ctx.restore();
-  }
-
-  // ── 7. Bakan sphere ──
-  const bAct=curPair==='p1';
-  const glowR=BkR*(bAct?2.9:2.2+0.28*pulse);
-  const bglow=ctx.createRadialGradient(BkX,bakY,BkR*0.45,BkX,bakY,glowR);
-  bglow.addColorStop(0,'rgba(242,200,75,0.20)'); bglow.addColorStop(1,'rgba(242,200,75,0)');
-  ctx.beginPath(); ctx.arc(BkX,bakY,glowR,0,Math.PI*2); ctx.fillStyle=bglow; ctx.fill();
-
-  const bg=ctx.createRadialGradient(BkX-15,bakY-18,5,BkX,bakY,BkR);
-  bg.addColorStop(0,'#FFFBD2'); bg.addColorStop(0.52,'#ECC850');
-  bg.addColorStop(0.87,'#C28E28'); bg.addColorStop(1,'rgba(95,60,12,0.3)');
-  ctx.beginPath(); ctx.arc(BkX,bakY,BkR,0,Math.PI*2); ctx.fillStyle=bg; ctx.fill();
-  ctx.strokeStyle=bAct?'rgba(255,220,95,0.48)':'rgba(255,208,72,0.18)';
-  ctx.lineWidth=bAct?2:1.2; ctx.stroke();
-  ctx.beginPath(); ctx.arc(BkX-16,bakY-19,13,0,Math.PI*2);
-  ctx.fillStyle='rgba(255,255,255,0.18)'; ctx.fill();
-
-  ctx.save();
-  ctx.font='bold 12.5px Georgia,serif'; ctx.fillStyle='rgba(242,200,85,0.92)';
-  ctx.textAlign='center'; ctx.textBaseline='bottom';
-  ctx.fillText(lang.d3bakan, BkX, bakY-BkR-9);
-  ctx.restore();
-
-  ctx.restore();
-}
-
-// ── Canvas interaction ──
-const cvEl=document.getElementById('cv');
-cvEl.addEventListener('mousemove',function(e){
-  if(curMode!=='3d') return;
-  const r=cvEl.getBoundingClientRect();
-  const mx=(e.clientX-r.left)*(CW/r.width), my=(e.clientY-r.top)*(CH/r.height);
-  const over=(Math.hypot(mx-BkX,my-BkY)<BkR+12)||
-             (Math.hypot(mx-SrX,my-SrY)<SrR+12)||
-             (mx>=MFX&&mx<=MFX+MFW&&my>=MFY&&my<=MFY+MFH);
-  cvEl.style.cursor=over?'pointer':'default';
-});
-cvEl.addEventListener('click',function(e){
-  if(curMode!=='3d') return;
-  const r=cvEl.getBoundingClientRect();
-  const mx=(e.clientX-r.left)*(CW/r.width), my=(e.clientY-r.top)*(CH/r.height);
-  if(Math.hypot(mx-BkX,my-BkY)<BkR+12) selectPair('p1');
-  else if(Math.hypot(mx-SrX,my-SrY)<SrR+12) selectPair('p3');
-  else if(mx>=MFX&&mx<=MFX+MFW&&my>=MFY&&my<=MFY+MFH) selectPair('p2');
-});
-function inMirror(mx,my){
-  return mx>=MFX&&mx<=MFX+MFW&&my>=MFY&&my<=MFY+MFH;
-}
-
-// ── Init ──
 setLang('tr');
 
 window.addEventListener('message',function(e){
