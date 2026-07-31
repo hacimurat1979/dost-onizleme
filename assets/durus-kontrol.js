@@ -684,7 +684,7 @@
         var b = bs[Number(a.dataset.i)];
         siteKapat();
         window.__dostNav.goTo(a.dataset.view, a.dataset.id || undefined);
-        if (b) vurgula(b);
+        if (b) setTimeout(function() { vurgula(b); }, 350);
       });
     });
   }

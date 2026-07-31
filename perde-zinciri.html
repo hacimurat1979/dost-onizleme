@@ -30,10 +30,6 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 .rg .rs{transition:opacity .22s}
 .rg:hover .rs,.rg.on .rs{opacity:.72}
 .rg.dim .rs{opacity:.18}
-@keyframes zh{0%,100%{r:28;opacity:.18}50%{r:58;opacity:.07}}
-.zh{animation:zh 3.2s ease-in-out infinite}
-@keyframes ab{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(3px);opacity:.85}}
-.pa{animation:ab 2.4s ease-in-out infinite}
 .qp{flex:1;min-width:210px;max-width:310px;background:var(--pa);border:1px solid var(--bo);border-radius:12px;padding:1.3rem 1.1rem;min-height:230px}
 .ql{font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:var(--mu);margin-bottom:.5rem}
 .qt{font-size:1.2rem;margin-bottom:.85rem;transition:.3s}
@@ -42,7 +38,6 @@ blockquote{font-size:.88rem;font-style:italic;line-height:1.8}
 .qs{font-size:.72rem;color:var(--mu);margin-top:.35rem}
 .qn{font-size:.82rem;color:var(--mu);line-height:1.6;font-style:italic}
 .hint{font-size:.76rem;color:var(--mu);font-style:italic;text-align:center;margin-top:1.1rem}
-@media(prefers-reduced-motion:reduce){.zh,.pa{animation:none}}
 </style>
 </head>
 <body>
@@ -63,52 +58,84 @@ blockquote{font-size:.88rem;font-style:italic;line-height:1.8}
         <mask id="mE"><circle cx="230" cy="230" r="222" fill="white"/><circle cx="230" cy="230" r="170" fill="black"/></mask>
         <mask id="mF"><circle cx="230" cy="230" r="170" fill="white"/><circle cx="230" cy="230" r="115" fill="black"/></mask>
         <mask id="mS"><circle cx="230" cy="230" r="115" fill="white"/><circle cx="230" cy="230" r="60" fill="black"/></mask>
-        <radialGradient id="gZ" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#FFF5B0"/>
-          <stop offset="60%" stop-color="#FFC94D"/>
-          <stop offset="100%" stop-color="#C8821A" stop-opacity=".7"/>
+        <!-- Ring gradients: inner edge lit by Zât, outer edge dark -->
+        <radialGradient id="grS" cx="230" cy="230" r="115" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#FFC94D" stop-opacity="0"/>
+          <stop offset="52%" stop-color="#C88820" stop-opacity=".85"/>
+          <stop offset="100%" stop-color="#381E08"/>
         </radialGradient>
-        <filter id="gl" x="-60%" y="-60%" width="220%" height="220%">
-          <feGaussianBlur stdDeviation="14" result="b"/>
+        <radialGradient id="grF" cx="230" cy="230" r="170" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#FFC94D" stop-opacity="0"/>
+          <stop offset="68%" stop-color="#6A3C14" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#1E0E06"/>
+        </radialGradient>
+        <radialGradient id="grE" cx="230" cy="230" r="222" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#FFC94D" stop-opacity="0"/>
+          <stop offset="77%" stop-color="#2C1508" stop-opacity=".92"/>
+          <stop offset="100%" stop-color="#0B0402"/>
+        </radialGradient>
+        <!-- Zât: ambient outer halo -->
+        <radialGradient id="gZbg" cx="230" cy="230" r="120" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#FFC94D" stop-opacity=".22"/>
+          <stop offset="55%" stop-color="#FFC94D" stop-opacity=".05"/>
+          <stop offset="100%" stop-color="#FFC94D" stop-opacity="0"/>
+        </radialGradient>
+        <!-- Zât: main disc gradient -->
+        <radialGradient id="gZ" cx="230" cy="230" r="60" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#FFFCE8"/>
+          <stop offset="28%" stop-color="#FFE890"/>
+          <stop offset="62%" stop-color="#FFC94D"/>
+          <stop offset="100%" stop-color="#C8821A" stop-opacity=".9"/>
+        </radialGradient>
+        <!-- Filters -->
+        <filter id="gl" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="20"/>
+        </filter>
+        <filter id="gls" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="10" result="b"/>
           <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
+        <filter id="gb" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="3"/>
+        </filter>
       </defs>
+      <!-- Eserler ring -->
       <g class="rg" id="rE" tabindex="0" role="button">
-        <circle class="rs" cx="230" cy="230" r="222" fill="#251808" mask="url(#mE)"/>
+        <circle class="rs" cx="230" cy="230" r="222" fill="url(#grE)" mask="url(#mE)"/>
         <text id="t0" x="230" y="36" text-anchor="middle" fill="#5C3E18" font-size="10.5" letter-spacing="3" font-family="Georgia,serif">ESERLER</text>
         <text id="t1" x="230" y="51" text-anchor="middle" fill="#3E2810" font-size="8.5" font-style="italic" font-family="Georgia,serif">Görünen Âlem</text>
       </g>
+      <!-- Fiiller ring -->
       <g class="rg" id="rF" tabindex="0" role="button">
-        <circle class="rs" cx="230" cy="230" r="170" fill="#362010" mask="url(#mF)"/>
+        <circle class="rs" cx="230" cy="230" r="170" fill="url(#grF)" mask="url(#mF)"/>
         <text id="t2" x="230" y="80" text-anchor="middle" fill="#907028" font-size="10.5" letter-spacing="2.5" font-family="Georgia,serif">FİİLLER</text>
         <text id="t3" x="230" y="95" text-anchor="middle" fill="#6A5018" font-size="8.5" font-style="italic" font-family="Georgia,serif">İlâhî Eylemler</text>
       </g>
+      <!-- Sıfatlar ring -->
       <g class="rg" id="rS" tabindex="0" role="button">
-        <circle class="rs" cx="230" cy="230" r="115" fill="#543810" mask="url(#mS)"/>
+        <circle class="rs" cx="230" cy="230" r="115" fill="url(#grS)" mask="url(#mS)"/>
         <text id="t4" x="230" y="131" text-anchor="middle" fill="#C08820" font-size="10.5" letter-spacing="2" font-family="Georgia,serif">SIFATLAR</text>
         <text id="t5" x="230" y="146" text-anchor="middle" fill="#907028" font-size="8.5" font-style="italic" font-family="Georgia,serif">İsimler ve Nitelikler</text>
       </g>
+      <!-- Ring boundary glows -->
+      <circle cx="230" cy="230" r="170" fill="none" stroke="#3A2010" stroke-width="1.2" filter="url(#gb)" pointer-events="none"/>
+      <circle cx="230" cy="230" r="115" fill="none" stroke="#8A5818" stroke-width="1.5" filter="url(#gb)" pointer-events="none"/>
+      <circle cx="230" cy="230" r="60" fill="none" stroke="#C88820" stroke-width="2" filter="url(#gb)" pointer-events="none"/>
+      <!-- Zât group -->
       <g class="rg" id="rZ" tabindex="0" role="button">
-        <circle class="zh" cx="230" cy="230" r="28" fill="#FFC94D"/>
-        <circle cx="230" cy="230" r="60" fill="url(#gZ)" filter="url(#gl)"/>
-        <text id="t6" x="230" y="225" text-anchor="middle" fill="#2A1600" font-size="12.5" letter-spacing="2" font-family="Georgia,serif" font-weight="bold">ZÂT</text>
-        <text id="t7" x="230" y="242" text-anchor="middle" fill="#5A3800" font-size="8" font-style="italic" font-family="Georgia,serif">Mutlak Gaib</text>
+        <circle cx="230" cy="230" r="120" fill="url(#gZbg)" filter="url(#gl)" pointer-events="none"/>
+        <circle cx="230" cy="230" r="60" fill="url(#gZ)" filter="url(#gls)"/>
+        <circle cx="230" cy="230" r="18" fill="#FFFCE8" opacity=".65"/>
+        <text id="t6" x="230" y="226" text-anchor="middle" fill="#1C0C00" font-size="12.5" letter-spacing="2" font-family="Georgia,serif" font-weight="bold">ZÂT</text>
+        <text id="t7" x="230" y="243" text-anchor="middle" fill="#4A2C00" font-size="8" font-style="italic" font-family="Georgia,serif">Mutlak Gaib</text>
       </g>
-      <g class="pa" transform="translate(230,100)" style="animation-delay:0s">
-        <line x1="0" y1="-9" x2="0" y2="4" stroke="#C08820" stroke-width="1.2"/>
-        <polygon points="0,9 -3.5,2 3.5,2" fill="#C08820"/>
-        <text id="tp1" x="10" y="4" fill="#C08820" font-size="8" font-style="italic" font-family="Georgia,serif">perdeler</text>
-      </g>
-      <g class="pa" transform="translate(230,148)" style="animation-delay:.9s">
-        <line x1="0" y1="-9" x2="0" y2="4" stroke="#C08820" stroke-width="1.2"/>
-        <polygon points="0,9 -3.5,2 3.5,2" fill="#C08820"/>
-        <text id="tp2" x="10" y="4" fill="#C08820" font-size="8" font-style="italic" font-family="Georgia,serif">perdeler</text>
-      </g>
-      <g class="pa" transform="translate(230,192)" style="animation-delay:1.8s">
-        <line x1="0" y1="-9" x2="0" y2="4" stroke="#C08820" stroke-width="1.2"/>
-        <polygon points="0,9 -3.5,2 3.5,2" fill="#C08820"/>
-        <text id="tp3" x="10" y="4" fill="#C08820" font-size="8" font-style="italic" font-family="Georgia,serif">perdeler</text>
-      </g>
+      <!-- Perdeler: static arrows (pointing inward toward Zât) + labels -->
+      <polygon points="230,65 224,55 236,55" fill="#3A2010" opacity=".75" pointer-events="none"/>
+      <text id="tp1" x="242" y="64" fill="#3A2010" font-size="7.5" font-style="italic" font-family="Georgia,serif">perdeler</text>
+      <polygon points="230,113 224,103 236,103" fill="#7A4C16" opacity=".82" pointer-events="none"/>
+      <text id="tp2" x="242" y="112" fill="#7A4C16" font-size="7.5" font-style="italic" font-family="Georgia,serif">perdeler</text>
+      <polygon points="230,168 224,158 236,158" fill="#C08020" opacity=".88" pointer-events="none"/>
+      <text id="tp3" x="242" y="167" fill="#C08020" font-size="7.5" font-style="italic" font-family="Georgia,serif">perdeler</text>
     </svg>
     <canvas id="cv" width="460" height="400"></canvas>
   </div>

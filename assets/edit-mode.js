@@ -378,7 +378,30 @@
     document.body.appendChild(panel);
     const toggle = panel.querySelector(".dost-edit-panel__toggle");
     const menu = panel.querySelector(".dost-edit-panel__menu");
-    toggle.addEventListener("click", () => { menu.hidden = !menu.hidden; });
+    // Drag-or-click on toggle: drag moves panel, click without movement toggles menu
+    let dragStartX = 0, dragStartY = 0, panelStartL = 0, panelStartT = 0, hasDragged = false;
+    toggle.addEventListener("mousedown", (e) => {
+      dragStartX = e.clientX; dragStartY = e.clientY; hasDragged = false;
+      const r = panel.getBoundingClientRect();
+      panelStartL = r.left; panelStartT = r.top;
+      // Switch from right/bottom anchoring to left/top so we can position freely
+      panel.style.right = "auto"; panel.style.bottom = "auto";
+      panel.style.left = r.left + "px"; panel.style.top = r.top + "px";
+      const onMove = (me) => {
+        const dx = me.clientX - dragStartX, dy = me.clientY - dragStartY;
+        if (!hasDragged && Math.abs(dx) < 3 && Math.abs(dy) < 3) return;
+        hasDragged = true;
+        panel.style.left = Math.max(0, Math.min(window.innerWidth - r.width, panelStartL + dx)) + "px";
+        panel.style.top  = Math.max(0, Math.min(window.innerHeight - r.height, panelStartT + dy)) + "px";
+      };
+      const onUp = () => {
+        document.removeEventListener("mousemove", onMove);
+        document.removeEventListener("mouseup", onUp);
+        if (!hasDragged) menu.hidden = !menu.hidden;
+      };
+      document.addEventListener("mousemove", onMove);
+      document.addEventListener("mouseup", onUp);
+    });
     panel.querySelector('[data-action="visual-note"]').addEventListener("click", () => {
       menu.hidden = true;
       buildVisualNoteModal();
