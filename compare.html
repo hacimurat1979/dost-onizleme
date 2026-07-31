@@ -10,8 +10,6 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/style.css">
 <style>
-.embed-wrap{margin:0;padding:0;}
-.embed-wrap iframe{display:block;width:100%;height:82vh;border:none;}
 </style>
 </head>
 <body class="viz-root">
@@ -70,10 +68,6 @@
         data-tr="Daphne'nin Profili" data-en="Daphne's Profile" data-pt="O Perfil de Daphne"></button>
       <button type="button" class="bookmap-tab" data-tab="yazilar" role="tab" aria-selected="false"
         data-tr="Taranan Yazılar" data-en="Articles Surveyed" data-pt="Textos Analisados"></button>
-      <button type="button" class="bookmap-tab" data-tab="perde" role="tab" aria-selected="false"
-        data-tr="Perde Zinciri" data-en="Chain of Veils" data-pt="Cadeia de Véus"></button>
-      <button type="button" class="bookmap-tab" data-tab="ayna" role="tab" aria-selected="false"
-        data-tr="Ayna Metaforu" data-en="Mirror Metaphor" data-pt="Metáfora do Espelho"></button>
     </div>
 
     <section class="graph-wrap" id="compare-wrap" data-tab-panel="temalar">
@@ -107,14 +101,6 @@
 
     <section class="daphne-profile-articles-wrap" id="articles-list-section" data-tab-panel="yazilar" hidden>
       <div id="articles-list" class="daphne-profile-articles-grid"></div>
-    </section>
-
-    <section class="embed-wrap" data-tab-panel="perde" hidden>
-      <iframe id="iframe-perde" src="perde-zinciri.html" title="Perde Zinciri" referrerpolicy="same-origin"></iframe>
-    </section>
-
-    <section class="embed-wrap" data-tab-panel="ayna" hidden>
-      <iframe id="iframe-ayna" src="ayna-metaforu.html" title="Ayna Metaforu" referrerpolicy="same-origin"></iframe>
     </section>
 
     <aside class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" hidden>

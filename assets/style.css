@@ -1349,7 +1349,7 @@ html {
 .futuhat-parts__cilt {
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   margin: 0 0 6px;
   display: flex;
@@ -1382,7 +1382,7 @@ html {
   transition: stroke-dasharray 0.4s ease;
 }
 .futuhat-parts__progress-label {
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   letter-spacing: 0;
   text-transform: none;
   color: var(--text-muted);
@@ -1447,7 +1447,7 @@ button.futuhat-part-chip:hover {
 }
 .futuhat-map__label {
   margin: 0 0 6px;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
@@ -1828,7 +1828,7 @@ button.futuhat-part-chip:hover {
 }
 
 .futuhat-triad__note {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   fill: var(--text-secondary);
 }
 
@@ -1860,7 +1860,7 @@ button.futuhat-part-chip:hover {
 .futuhat-stats__heading {
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   margin: 0 0 12px;
 }
@@ -2182,7 +2182,7 @@ body[data-theme="dark"] #sirlar-legend {
   cursor: pointer;
 }
 .legend__toggle-icon {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   transition: transform 0.2s ease;
 }
 .legend--collapsed .legend__toggle-icon {
@@ -3097,7 +3097,7 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   .btn-ghost { padding: 8px 11px; font-size: 0.8rem; }
   .lang-btn { padding: 8px 12px; }
   .welcome-screen__stage { width: min(78vw, 300px); }
-  .welcome-screen__skip { bottom: 18px; font-size: 0.68rem; }
+  .welcome-screen__skip { bottom: 18px; font-size: 0.72rem; }
 }
 
 /* ---------------------------------------------------------------- */
@@ -3234,7 +3234,7 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
 
 .welcome-screen__line--tagline {
   font-family: var(--font-body);
-  font-size: clamp(0.68rem, 1.8vw, 0.8rem);
+  font-size: clamp(0.72rem, 1.8vw, 0.8rem);
   letter-spacing: 0.02em;
   color: rgba(245,234,208,0.55);
   margin-top: 16px;
@@ -4672,13 +4672,15 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
 .cizimler-wrap {
   max-width: 760px;
   margin: 0 auto;
-  padding: 8px 0 40px;
+  /* impeccable A4: yatay dolgu yoktu, mobilde metin ekran kenarına yapışıyordu */
+  padding: 8px 18px 40px;
 }
 
 .cizimler-intro {
   color: var(--text-secondary);
   line-height: 1.6;
   margin: 0 0 24px;
+  max-width: 70ch;
 }
 
 .cizim-card {
@@ -5310,7 +5312,7 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   pointer-events: none;
 }
 .menzil-node__label {
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   fill: var(--text-secondary);
   paint-order: stroke;
   stroke: var(--page-plane);
@@ -6365,7 +6367,7 @@ mark.durus-vurgu-es {
   border-radius: 12px;
   background: var(--surface-1);
 }
-.tasiyici-sira h3 {
+.tasiyici-sira h2 {
   margin: 0 0 0.4rem;
   font-size: 0.95rem;
   color: var(--text-primary);

@@ -268,7 +268,7 @@
     return `
       <article class="cizim-card">
         <p class="cizim-card__ref">${item.source_ref}</p>
-        <h3 class="cizim-card__name">${tt(item.name)}</h3>
+        <h2 class="cizim-card__name">${tt(item.name)}</h2>
         <div class="cizim-card__svg-wrap" data-cizim-id="${item.id}" role="button" tabindex="0"
              aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${svg}</div>
         <p class="cizim-card__desc">${linkify(tt(item.description), item.id)}</p>

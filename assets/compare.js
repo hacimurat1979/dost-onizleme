@@ -18,11 +18,6 @@
   I18n.renderLangSwitcher(document.getElementById("lang-switch"), () => {
     render();
     if (window.__dostDaphneProfileApp) window.__dostDaphneProfileApp.render();
-    const lang = I18n.getLang();
-    const ip = document.getElementById("iframe-perde");
-    const ia = document.getElementById("iframe-ayna");
-    if (ip) { try { ip.contentWindow.postMessage({ type: "setLang", lang }, "*"); } catch(e) {} }
-    if (ia) { try { ia.contentWindow.postMessage({ type: "setLang", lang }, "*"); } catch(e) {} }
   });
   window.DostGraphUtils.setupLegendToggles();
   window.DostGraphUtils.setupDetailPanelFocus();
@@ -54,11 +49,6 @@
           requestAnimationFrame(() => requestAnimationFrame(() => {
             window.__dostDaphneProfileApp.activate();
           }));
-        }
-        if (tab === "perde" || tab === "ayna") {
-          const lang = I18n.getLang();
-          const ifrEl = document.getElementById(tab === "perde" ? "iframe-perde" : "iframe-ayna");
-          if (ifrEl) { try { ifrEl.contentWindow.postMessage({ type: "setLang", lang }, "*"); } catch(e) {} }
         }
       });
     });

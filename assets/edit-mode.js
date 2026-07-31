@@ -136,7 +136,10 @@
       '<button type="button" data-action="pick">🖼️ Galeriden Seç</button>' +
       '<button type="button" data-action="remove-image" class="dost-shot-modal__remove" hidden>Görüntüyü kaldır</button>' +
       "</div>" +
-      '<img class="dost-shot-modal__preview" alt="" hidden>' +
+      '<img class="dost-shot-modal__preview" alt="" hidden ' +
+      // src\'siz <img> kırık görsel kutusu olarak yüklenir; görüntü seçilene
+      // kadar şeffaf 1x1 piksel tutuyoruz (impeccable A9)
+      'src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">' +
       '<label class="dost-shot-modal__label" for="dost-shot-note">Bu sayfada ne değişmeli?</label>' +
       '<textarea id="dost-shot-note" class="dost-shot-modal__note" rows="3" placeholder="İstersen yukarıdan bir ekran görüntüsü ekle, istersen sadece burada anlat…"></textarea>' +
       '<div class="dost-shot-modal__actions">' +

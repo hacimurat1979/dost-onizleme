@@ -670,6 +670,7 @@
     const merged = enter.merge(gsel);
     gsel.exit().remove();
 
+    const pending = [];   // görünür etiketler; çakışma çözümü döngüden sonra
     merged.each(function (d) {
       const g = d3.select(this);
       const isHover = act && d.id === act.anchor;
@@ -726,11 +727,63 @@
       // Açılan koldaki soruların etiketi merkezden DIŞARI bakan tarafa yazılır;
       // yoksa iki sıralı yelpazede dış sıranın etiketi iç sıranın üstüne düşüyor.
       const labelY = inOpenArm && (d.y - cy) < 0 ? -(r + 7) : r + 13;
+      const txt = d.isCat ? I18n.pick3(d.category.name) : labelFor(d.question, inOpenArm ? 20 : 30);
       lbl.attr("y", labelY).style("display", showLabel ? null : "none")
         .classed("sorular-label--strong", isHover || isActive)
         .classed("sorular-label--cat", !!d.isCat)
-        .text(d.isCat ? I18n.pick3(d.category.name) : labelFor(d.question, inOpenArm ? 20 : 30));
+        .text(txt);
+      if (showLabel && op >= 0.35) {
+        pending.push({ lbl, txt, isCat: !!d.isCat,
+                       x: nx_(d) + dx, y: ny_(d) + dy + labelY, baseY: labelY });
+      }
     });
+    deconflictLabels(pending);
+  }
+
+  // Etiket çakışması: 3B eğimde ve bir kol açıkken düğümler ekranda birbirine
+  // yaklaşıyor, etiketler üst üste biniyordu (impeccable taramasının A1
+  // bulgusu). Konumları değil, yalnız etiketin dikey kaymasını düzeltiyoruz;
+  // düğüm yerinde kalır, yazı yer açar.
+  // Genişliği tahmin etmek iki denemede de tutmadı (karakter sayısı × font
+  // oranı, sonra aynısının zoom'a bölünmüş hâli). Bunun yerine gerçek kutuyu
+  // ölçüyoruz: getBBox() metnin KENDİ yerel biriminde döner, yani düğüm
+  // koordinatlarıyla aynı uzayda — zoom dönüşümü işin içine girmiyor.
+  const lblBox = new Map();   // metin -> {w,h}; ölçüm pahalı, string başına bir kez
+  function measure(node, txt) {
+    let m = lblBox.get(txt);
+    if (!m) {
+      try { const b = node.getBBox(); m = { w: b.width, h: b.height }; }
+      catch (e) { m = { w: txt.length * 5.6, h: 12 }; }
+      if (m.w > 0) lblBox.set(txt, m);
+    }
+    return m;
+  }
+  function deconflictLabels(items) {
+    if (!items.length) return;
+    for (const it of items) {
+      const m = measure(it.lbl.node(), it.txt);
+      it.half = m.w / 2;
+      it.h = m.h || 12;
+    }
+    // Kategoriler önce yerleşsin: haritanın okunur kalmasını onlar sağlıyor.
+    items.sort((a, b) => (b.isCat - a.isCat) || (a.y - b.y));
+    const placed = [];
+    for (const it of items) {
+      let y = it.y, guard = 0, clash = true;
+      while (clash && guard++ < 24) {
+        clash = false;
+        for (const p of placed) {
+          const dyGap = (it.h + p.h) / 2 + 2;
+          if (Math.abs(y - p.y) < dyGap && Math.abs(it.x - p.x) < it.half + p.half + 5) {
+            y = p.y + dyGap;   // aşağı doğru kaydır
+            clash = true;
+            break;
+          }
+        }
+      }
+      placed.push({ x: it.x, y, half: it.half, h: it.h });
+      if (y !== it.y) it.lbl.attr("y", it.baseY + (y - it.y));
+    }
   }
 
   // ---------------------------------------------------------------------------

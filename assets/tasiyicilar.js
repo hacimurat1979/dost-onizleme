@@ -399,7 +399,7 @@
     introEl.innerHTML = '<p class="tasiyici-intro__p">' + linkify(t(data.intro)) + "</p>"
       + '<p class="tasiyici-intro__p tasiyici-intro__p--cizim">' + linkify(t(data.cizimNotu)) + "</p>";
     var sira = data.sistemler.map(function (s) {
-      return '<div class="tasiyici-sira"><h3>' + esc(t(s.label)) + "</h3>"
+      return '<div class="tasiyici-sira"><h2>' + esc(t(s.label)) + "</h2>"
         + "<p>" + linkify(t(s.note)) + "</p>"
         + '<p class="tasiyici-sira__not">' + linkify(t(s.siraNotu)) + "</p></div>";
     }).join("");
