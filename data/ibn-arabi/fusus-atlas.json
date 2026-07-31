@@ -22,7 +22,7 @@
     },
     "fassCount": 27
   },
-  "activeFassId": "fs15",
+  "activeFassId": "fs16",
   "fasses": [
     {
       "id": "fs1",
@@ -5550,7 +5550,7 @@
     {
       "id": "fs16",
       "no": 16,
-      "status": "planned",
+      "status": "active",
       "prophet": {
         "tr": "Süleymân",
         "en": "Solomon",
@@ -5558,9 +5558,231 @@
       },
       "hikmet": {
         "tr": "Hikmet-i Rahmâniyye",
-        "en": "Wisdom of Mercy",
-        "pt": "Sabedoria da Misericórdia"
-      }
+        "en": "Wisdom of the Compassionate",
+        "pt": "Sabedoria do Compassivo"
+      },
+      "title": {
+        "tr": "Kelime-i Süleymâniyye",
+        "en": "The Word of Solomon",
+        "pt": "A Palavra de Salomão"
+      },
+      "pageRange": {
+        "tr": "Konuk Şerhi, Cilt II, s. 967-1024",
+        "en": "Konuk Commentary, Vol. II, pp. 967-1024",
+        "pt": "Comentário Konuk, Vol. II, pp. 967-1024"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Bu fass, Süleymân peygamberin yüzünde Rahmet sırrını arıyor. Bismillah'ı önce yazması ve Belkıs'ın mutlak inkıyâdı, bizim için şunu soruyor: Rahmân'ın rahmetinin 'öncülüğü' ne anlama geliyor, ve bu rahmetin kucağında inkıyâd etmek nasıl bir şeydir?",
+          "en": "This fass seeks the mystery of Mercy in the face of Solomon. His writing of Bismillah first and Belkis's absolute submission pose a question for us: what does it mean that the Compassionate's mercy 'precedes' all else, and what is it to surrender within that mercy's embrace?",
+          "pt": "Este fass busca o mistério da Misericórdia no rosto de Salomão. Sua escrita do Bismillah em primeiro lugar e a submissão absoluta de Belkis levantam uma questão para nós: o que significa que a misericórdia do Compassivo 'precede' tudo, e como é se render no abraço dessa misericórdia?"
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Füsûsü'l-Hikem, Fass XVI (Süleymâniyye); Ahmed Avni Konuk Şerhi, Cilt II, s. 967-1024",
+          "en": "Fusus al-Hikam, Fass XVI (Solomonic); Konuk Commentary, Vol. II, pp. 967-1024",
+          "pt": "Fusus al-Hikam, Fass XVI (Salomônica); Comentário Konuk, Vol. II, pp. 967-1024"
+        },
+        "caption": {
+          "tr": "Süleymâniyye sarmalı: Rahmân'ın genişliği (imtinân, karşılıksız) ile Rahîm'in derinliği (vücûb, kazanılmış) arasındaki gerilim; ve Belkıs'ın o gerilimin içinde bulduğu mutlak inkıyâd.",
+          "en": "The Solomonic helix: the tension between the breadth of the Compassionate (imtinan, gratuitous) and the depth of the Merciful (wujub, earned); and the absolute submission that Belkis finds within that tension.",
+          "pt": "A espiral salomônica: a tensão entre a amplitude do Compassivo (imtinan, gratuito) e a profundidade do Misericordioso (wujub, conquistado); e a submissão absoluta que Belkis encontra dentro dessa tensão."
+        },
+        "helix": {
+          "turns": 1.5,
+          "closing": "Her inkıyâd Rabbü'l-âlemin'e döner.",
+          "nodes": [
+            {
+              "id": "rahmet-imtinan-vucub",
+              "label": {
+                "tr": "Rahmet-i İmtinân / Vücûb",
+                "en": "Gratuitous / Merited Mercy",
+                "pt": "Misericórdia Gratuita / Merecida"
+              },
+              "theta": 0.0,
+              "r": 1.0,
+              "insight": {
+                "tr": "Rahmân ismi 'rahmet-i imtinân'ı taşır: mü'min-kâfir, insan-hayvan ayrımı yapmaksızın bütün varlığa yayılan, karşılık beklemeyen bir ihsan. Rahîm ise 'rahmet-i vücûb'u taşır: iman ve amelin kazandırdığı, sonunda hak edilmiş rahmet. İbn Arabî'ye göre bu iki rahmet birbirini iptal etmez; birincisi varlığın zeminini döşer, ikincisi o zeminde açılan kapıları gösterir.",
+                "en": "The name Rahman carries 'rahmat al-imtinan' (gratuitous mercy): a beneficence spread over all existence without distinction of believer or disbeliever, human or animal, expecting nothing in return. Rahim carries 'rahmat al-wujub' (merited mercy): the mercy earned through faith and action. According to Ibn 'Arabi, these two mercies do not cancel each other; the first lays the ground of existence, the second reveals the doors that open within that ground.",
+                "pt": "O nome Rahman carrega 'rahmat al-imtinan' (misericórdia gratuita): uma benevolência estendida a toda existência sem distinção de crente ou descrente, humano ou animal, sem esperar nada em troca. Rahim carrega 'rahmat al-wujub' (misericórdia merecida): a misericórdia conquistada pela fé e ação. Segundo Ibn 'Arabi, essas duas misericórdias não se cancelam; a primeira prepara o solo da existência, a segunda revela as portas que se abrem nesse solo."
+              }
+            },
+            {
+              "id": "nefes-rahmani-esma-fs16",
+              "label": {
+                "tr": "Nefes-i Rahmânî ve Esmânın Zuhuru",
+                "en": "The Breath of the Compassionate and the Manifestation of the Names",
+                "pt": "O Sopro do Compassivo e a Manifestação dos Nomes"
+              },
+              "theta": 1.5,
+              "r": 1.0,
+              "insight": {
+                "tr": "Bu fasta İbn Arabî, 'Nefes-i Rahmânî' kavramını esmânın kaynağına yakın konumlandırıyor gibi görünüyor. İlâhî isimler, henüz zuhur etmemişken 'yokluğun darlığında' sıkışmış hâldedir; Rahmân nefes verince bu isimlerin her biri kendi latâif ve hakâyıkıyla belirginleşir. Bu okumada Hikmet-i Rahmâniyye, isimlerin serbest kalmasının ta kendisidir — ve Süleymân bu açılışın peygamberidir.",
+                "en": "In this fass, Ibn 'Arabi seems to position the 'Breath of the Compassionate' close to the source of the Names. The divine names, before their manifestation, are compressed in the 'narrowness of non-existence'; when the Compassionate exhales, each name becomes distinct with its subtleties and realities. In this reading, the Wisdom of the Compassionate is the very liberation of the names — and Solomon is the prophet of this opening.",
+                "pt": "Neste fass, Ibn 'Arabi parece posicionar o 'Sopro do Compassivo' próximo à fonte dos Nomes. Os nomes divinos, antes de sua manifestação, estão comprimidos na 'estreiteza da não-existência'; quando o Compassivo expira, cada nome torna-se distinto com suas sutilezas e realidades. Nesta leitura, a Sabedoria do Compassivo é a própria libertação dos nomes — e Salomão é o profeta dessa abertura."
+              }
+            },
+            {
+              "id": "teshir-bil-emr",
+              "label": {
+                "tr": "Teshîr bi'l-Emr",
+                "en": "Subjugation by Command",
+                "pt": "Subjugação por Comando"
+              },
+              "theta": 3.0,
+              "r": 1.0,
+              "insight": {
+                "tr": "Süleymân'a verilen 'mülk-i hâss', yalnızca bir söz söyleyerek her şeyi boyun eğdirme gücüdür. Hadis-i İfrit'te Hz. Peygamber aynı gücü taşıdığını ima eder fakat kullanmaz — Rabbin lütfunu 'şahit olmak' için saklar. İbn Arabî bu karşılaştırmadan şunu okutturuyor gibidir: kudret aynı, fakat niyetteki fark — şahit olmak ile tasarruf etmek — iki peygamberin yolunu ayırır. Hangisinin daha 'derin' bir makam olduğunu ise kesinleştirmiyoruz.",
+                "en": "The 'mulk al-khass' (special kingdom) given to Solomon is the power to subjugate everything by a mere command. In the Hadith of the Ifrit, the Prophet implies he possessed the same power but did not use it — preferring to bear witness to God's grace. Ibn 'Arabi seems to lead us to read: the power is the same, but the difference in intent — bearing witness versus exercising sovereignty — distinguishes the two prophets' paths. Which represents the 'deeper' station we do not settle.",
+                "pt": "O 'mulk al-khass' (reino especial) dado a Salomão é o poder de subjugar tudo por um mero comando. No Hadith do Ifrit, o Profeta implica que possuía o mesmo poder, mas não o usou — preferindo testemunhar a graça de Deus. Ibn 'Arabi parece nos levar a ler: o poder é o mesmo, mas a diferença de intenção — testemunhar versus exercer soberania — distingue os caminhos dos dois profetas. Qual representa a estação 'mais profunda' não determinamos."
+              }
+            },
+            {
+              "id": "belkis-mutlak-inkiyad",
+              "label": {
+                "tr": "Belkıs: Mutlak İnkıyâd",
+                "en": "Belkis: Absolute Submission",
+                "pt": "Belkis: Submissão Absoluta"
+              },
+              "theta": 4.5,
+              "r": 1.0,
+              "insight": {
+                "tr": "Belkıs'ın kristal saray karşısındaki şaşkınlığı ve ardından 'Rabbü'l-âlemin'e inkıyâd etmesi, İbn Arabî için birkaç anlam katmanını bir arada taşıyor. Kristal saray, a'yân-ı sâbite ile vücûd arasındaki ayrımı imgeleştiriyor: sûret aynı, vücûd farklı. 'Rabbü'l-âlemin' ise Firavun'un 'Musa'nın Rabb'i' gibi sınırlı bir adres değil, evrensel bir adrestir. Bu geniş inkıyâd, Süleymâniyye hikmetinin son halkası gibi duruyor.",
+                "en": "Belkis's bewilderment before the crystal palace and her subsequent submission to the 'Lord of the Worlds' carries several layers of meaning for Ibn 'Arabi. The crystal palace images the distinction between fixed essences and existence: same form, different existence. 'Lord of the Worlds' is not a limited address like Pharaoh's 'Lord of Moses and Aaron,' but a universal one. This expansive submission appears to be the final link of the Solomonic wisdom.",
+                "pt": "O espanto de Belkis diante do palácio de cristal e sua subsequente submissão ao 'Senhor dos Mundos' carrega várias camadas de significado para Ibn 'Arabi. O palácio de cristal simboliza a distinção entre essências fixas e existência: mesma forma, existência diferente. 'Senhor dos Mundos' não é um endereço limitado como o 'Senhor de Moisés e Arão' do Faraó, mas um universal. Esta submissão expansiva parece ser o elo final da sabedoria salomônica."
+              }
+            }
+          ]
+        }
+      },
+      "sections": [
+        {
+          "heading": {
+            "tr": "Bismillah'ın Önce Yazılması: Hikmet-i Rahmâniyye'nin İşareti",
+            "en": "Writing Bismillah First: A Sign of the Solomonic Wisdom",
+            "pt": "Escrever o Bismillah Primeiro: Um Sinal da Sabedoria Salomônica"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "İbn Arabî, Süleymân'ın Belkıs'a gönderdiği mektubu 'Bismillahirrahmanirrahim' ile başlatmasını ve kendi adını sonraya bırakmasını derin bir hikmet işareti olarak okuyor. Bize göre bu okuyuş şunu soruyor: Kişi 'ben'i öne değil Rahmân'ı öne koyabiliyorsa, bu ne tür bir bilginin eseridir?",
+                "en": "Ibn 'Arabi reads Solomon's choice to begin his letter to Belkis with 'Bismillah al-Rahman al-Rahim' — placing God's name before his own — as a sign of deep wisdom. In our reading, this raises a question: if a person can put the Compassionate before the 'I,' what kind of knowledge does this reflect?",
+                "pt": "Ibn 'Arabi lê a escolha de Salomão de começar sua carta a Belkis com 'Bismillah al-Rahman al-Rahim' — colocando o nome de Deus antes do seu próprio — como um sinal de sabedoria profunda. Em nossa leitura, isso levanta uma questão: se uma pessoa pode colocar o Compassivo antes do 'eu', que tipo de conhecimento isso reflete?"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Konuk şerhi bu noktada şunu ekliyor: 'Bismi'nin bâsı, zuhur etmemiş olan her şeyi içinde barındıran bir başlangıç noktasıdır.' Bu ifadeyi kesin bir iddia olarak değil, mektubun açılış satırlarında gizli olan bir ihtimali bize gösteren bir okuma olarak tutuyoruz. Ve bu ihtimal, Rahmâniyye hikmetinin kendisiyle örtüşüyor: her şeyi başlatmadan önce, onu başlatan ismi öne sürmek.",
+                "en": "Konuk's commentary adds: 'The ba' of Bismi is a point of beginning that contains within it everything not yet manifested.' We hold this not as a definitive claim, but as a reading that shows us a possibility hidden in the opening lines of the letter. And this possibility aligns with the wisdom of the Compassionate itself: before beginning all things, placing first the name that initiates them.",
+                "pt": "O comentário de Konuk acrescenta: 'O ba' de Bismi é um ponto de início que contém em si tudo que ainda não se manifestou.' Guardamos isso não como uma afirmação definitiva, mas como uma leitura que nos mostra uma possibilidade escondida nas linhas de abertura da carta. E essa possibilidade se alinha com a própria sabedoria do Compassivo: antes de iniciar todas as coisas, colocar primeiro o nome que as inicia."
+              }
+            }
+          ]
+        },
+        {
+          "heading": {
+            "tr": "Dört Rahmet Türü: Âmme-Hâssa ve Zâtiyye-Sıfâtiyye",
+            "en": "Four Types of Mercy: Universal-Particular and Essential-Attributive",
+            "pt": "Quatro Tipos de Misericórdia: Universal-Particular e Essencial-Atributiva"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu fassın anlamaya çalıştığımız en çarpıcı taraflarından biri, rahmetin bir değil iki eksen boyunca dört türe ayrılmasıdır. (1) Rahmet-i âmme-zâtiyye: 'Rahmetim her şeyi kuşatmıştır' (A'râf, 156) âyetindeki gibi, varlığın tümünü saran zâtî rahmet. (2) Rahmet-i âmme-sıfâtiyye: 'Rahmetim gazabımı geçti' hadisindeki gibi, Rahmân isminin bütün isimlere ve sıfatlara yayılması. (3) Rahmet-i hâssa-zâtiyye: Allah'ın mü'minlere has kıldığı, kulun özüne dokunulan rahmet. (4) Rahmet-i hâssa-sıfâtiyye: Rahîm isminin âhirette mü'minlere has olacak kısmı.",
+                "en": "One of the most striking aspects of this fass we are trying to understand is that mercy is divided not into two but into four types along two axes. (1) Universal-essential mercy: as in the verse 'My mercy encompasses all things' (A'raf, 156), the essential mercy pervading all existence. (2) Universal-attributive mercy: as in the hadith 'My mercy preceded my wrath,' the spread of the Compassionate Name across all names and attributes. (3) Particular-essential mercy: the mercy God has designated for believers, touching the very essence of the servant. (4) Particular-attributive mercy: the portion of the Merciful Name that will be specific to believers in the afterlife.",
+                "pt": "Um dos aspectos mais marcantes deste fass que tentamos entender é que a misericórdia se divide não em dois, mas em quatro tipos ao longo de dois eixos. (1) Misericórdia universal-essencial: como no versículo 'Minha misericórdia abrange todas as coisas' (A'raf, 156), a misericórdia essencial que permeia toda existência. (2) Misericórdia universal-atributiva: como no hadith 'Minha misericórdia precedeu minha ira', a expansão do Nome Compassivo por todos os nomes e atributos. (3) Misericórdia particular-essencial: a misericórdia que Deus designou para os crentes, tocando a essência do servo. (4) Misericórdia particular-atributiva: a porção do Nome Misericordioso que será específica para os crentes na vida após a morte."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu dörtlü ayrım ilk bakışta öğretici bir sınıflandırma gibi durabilir; ancak İbn Arabî'nin kastettiği muhtemelen bu değil. Bize göre bu tablo, 'rahmetin ontolojik katmanlarını' işaret ediyor: bazı rahmetler varlıktan önce gelir, bazıları varlığın içinde açılır, bazıları kişinin kendi seçimleriyle kazanılır. Yani bu tablo bir şeyi sınıflandırmıyor, bir sürecin katmanlarını gösteriyor olabilir.",
+                "en": "This fourfold distinction might at first glance appear to be a pedagogical classification; but this is probably not what Ibn 'Arabi intends. In our reading, this table points to the 'ontological layers of mercy': some mercies come before existence, some unfold within existence, some are earned through the person's own choices. That is, this table may not be classifying something but showing the layers of a process.",
+                "pt": "Esta distinção quádrupla pode à primeira vista parecer uma classificação pedagógica; mas provavelmente não é isso que Ibn 'Arabi pretende. Em nossa leitura, esta tabela aponta para as 'camadas ontológicas da misericórdia': algumas misericórdias vêm antes da existência, algumas se desdobram dentro da existência, algumas são conquistadas pelas próprias escolhas da pessoa. Ou seja, esta tabela pode não estar classificando algo, mas mostrando as camadas de um processo."
+              }
+            }
+          ]
+        },
+        {
+          "heading": {
+            "tr": "'Halk Hakk'ın Hüviyetidir': Süleymân'ın Mülkünün Sırrı",
+            "en": "'Creation Is the Identity of the Real': The Secret of Solomon's Kingdom",
+            "pt": "'A Criação É a Identidade do Real': O Segredo do Reino de Salomão"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Bu fassın en yoğun pasajlarından birinde İbn Arabî 'Halk Hakk'ın hüviyetidir' cümlesini kuruyor. Bunu anlayabilmek için Evvel-Âhir-Zâhir-Bâtın dörtlüsüne bakıyoruz: Zâhir yaratılmışlardır, Bâtın Hak'tır; ama bu ikisi ayrı iki şey değil, aynı hakikatin iki görünüşüdür. Süleymân'ın mülk-i hâssının sırrı da buradadır: yaratılmışlar üzerindeki tasarrufu, aslında Hakk'ın kendi hüviyeti içinde bir tasarruftur.",
+                "en": "In one of the densest passages of this fass, Ibn 'Arabi formulates: 'Creation is the identity of the Real.' To begin to understand this, we look at the quartet Evvel-Ahir-Zahir-Batin: the Zahir (Manifest) is the created, the Batin (Hidden) is the Real; but these two are not two separate things, but two faces of the same reality. The secret of Solomon's special kingdom is here too: his sovereignty over creation is, in reality, an act within the Real's own identity.",
+                "pt": "Em uma das passagens mais densas deste fass, Ibn 'Arabi formula: 'A Criação é a identidade do Real.' Para começar a entender isso, olhamos para o quarteto Evvel-Ahir-Zahir-Batin: o Zahir (Manifesto) é o criado, o Batin (Oculto) é o Real; mas esses dois não são duas coisas separadas, mas dois aspectos da mesma realidade. O segredo do reino especial de Salomão também está aqui: sua soberania sobre a criação é, na realidade, um ato dentro da própria identidade do Real."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Hadis-i İfrit bahsinde Hz. Peygamber'in aynı gücü kullanmama kararı bu çerçevede daha anlamlı görünüyor: o gücü kullanmak yerine 'şahit olmak' — yani müdahale etmek yerine Hakk'ın kendi içindeki tasarrufu seyretmek — belki daha derin bir konumun işaretidir. Ama bunu kesinleştirmek yerine, bu iki tercihin birbiriyle nasıl ilişkilendiğini anlamaya çalışmayı sürdürüyoruz.",
+                "en": "In the Hadith of the Ifrit passage, the Prophet's decision not to use the same power seems more meaningful within this framework: choosing to 'bear witness' rather than exercise the power — that is, watching the act within the Real's own identity rather than intervening — may be the mark of a deeper position. But rather than declaring this definitively, we continue trying to understand how these two choices relate to each other.",
+                "pt": "Na passagem do Hadith do Ifrit, a decisão do Profeta de não usar o mesmo poder parece mais significativa dentro desta estrutura: escolher 'testemunhar' ao invés de exercer o poder — ou seja, observar o ato dentro da própria identidade do Real ao invés de intervir — pode ser a marca de uma posição mais profunda. Mas em vez de declarar isso definitivamente, continuamos tentando entender como essas duas escolhas se relacionam entre si."
+              }
+            }
+          ]
+        },
+        {
+          "heading": {
+            "tr": "Dâvûd ile Süleymân Arasındaki Hüküm Farkı",
+            "en": "The Difference in Judgment Between David and Solomon",
+            "pt": "A Diferença no Julgamento Entre Davi e Salomão"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "İbn Arabî, Kur'ân'daki ekin-koyun meselesini (Enbiyâ, 78-79) bu fasta ele alıyor: iki peygamber aynı davayı dinliyor ama farklı hüküm veriyor. Konuk şerhine göre Dâvûd'un hükmü 'bi'l-vâsıta' — yani içtihadî bir usul takip ederek, vasıtalı olarak verilen bir hükümdür. Süleymân'ın hükmü ise 'bilâ-vâsıta' — vasıtasız, doğrudan ilâhî ilham yoluyla verilen bir hükümdür. Bu fark bize, iki tür peygamberî bilginin arasındaki mesafeyi gösteriyor gibi.",
+                "en": "Ibn 'Arabi takes up in this fass the case of the field and the sheep from the Quran (Anbiya, 78-79): two prophets hear the same case but render different judgments. According to Konuk's commentary, David's judgment is 'bi'l-wasita' (mediated) — rendered through a process of juridical reasoning, through intermediaries. Solomon's is 'bila wasita' (unmediated) — given directly through divine inspiration. This difference seems to show us the distance between two types of prophetic knowledge.",
+                "pt": "Ibn 'Arabi aborda neste fass o caso do campo e das ovelhas do Alcorão (Anbiya, 78-79): dois profetas ouvem o mesmo caso, mas pronunciam julgamentos diferentes. Segundo o comentário de Konuk, o julgamento de Davi é 'bi'l-wasita' (mediado) — emitido através de um processo de raciocínio jurídico, por meio de intermediários. O de Salomão é 'bila wasita' (não mediado) — dado diretamente através da inspiração divina. Essa diferença parece nos mostrar a distância entre dois tipos de conhecimento profético."
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Ama İbn Arabî'nin nüansı şurada: her iki hüküm de Allah'tan gelmiştir; fark, bir kanalın genişliğinde ya da aracıların sayısındadır. 'İkisine de hüküm ve ilim verdik' (Enbiyâ, 79) âyeti, Dâvûd'un hükmünü yanlış saymıyor; sadece bilginin Süleymân'a daha doğrudan aktığını söylüyor. Bu bize şunu düşündürüyor: ilâhî bilginin 'akış biçimleri' farklı olabilir; ve bu farklılık 'üstün-aşağı' bir sıralama değil, farklı makamlar arasındaki gerçek bir ayrım olabilir.",
+                "en": "But Ibn 'Arabi's nuance is here: both judgments come from God; the difference lies in the breadth of a channel or the number of intermediaries. The verse 'We gave both judgment and knowledge' (Anbiya, 79) does not declare David's judgment wrong; it only says that knowledge flowed more directly to Solomon. This makes us think: the 'modes of flow' of divine knowledge may differ; and this difference may not be a 'higher-lower' ranking but a real distinction between different stations.",
+                "pt": "Mas a nuance de Ibn 'Arabi está aqui: ambos os julgamentos vêm de Deus; a diferença está na largura de um canal ou no número de intermediários. O versículo 'Demos a ambos julgamento e conhecimento' (Anbiya, 79) não declara o julgamento de Davi errado; apenas diz que o conhecimento fluiu mais diretamente para Salomão. Isso nos leva a pensar: os 'modos de fluxo' do conhecimento divino podem diferir; e essa diferença pode não ser uma classificação 'superior-inferior', mas uma distinção real entre estações diferentes."
+              }
+            }
+          ]
+        },
+        {
+          "heading": {
+            "tr": "Belkıs ve Kristal Saray: Sûret, Vücûd ve Mutlak İnkıyâd",
+            "en": "Belkis and the Crystal Palace: Form, Existence, and Absolute Submission",
+            "pt": "Belkis e o Palácio de Cristal: Forma, Existência e Submissão Absoluta"
+          },
+          "blocks": [
+            {
+              "type": "p",
+              "text": {
+                "tr": "Kristal saray sahnesi (Neml, 44), İbn Arabî'ye göre a'yân-ı sâbite ile vücûd arasındaki ilişkiyi somut bir imge üzerinden gösteriyor. Belkıs kristal zemini su zannediyor; zemin suyun sûretini taşıyor ama suyun vücûdu değil. Bize göre bu sahne şunu soruyor: 'Aynı sûret, farklı vücûd' dediğimizde bunun ne anlama geldiğini gerçekten anlayabilir miyiz? Yoksa bilgi burada da perdemizin ötesinde mi kalıyor?",
+                "en": "The crystal palace scene (Naml, 44) shows, according to Ibn 'Arabi, through a concrete image the relationship between fixed essences and existence. Belkis mistakes the crystal floor for water; the floor bears the form of water but is not water's existence. In our reading, this scene asks: when we say 'same form, different existence,' can we truly understand what this means? Or does the knowledge here too remain beyond our veil?",
+                "pt": "A cena do palácio de cristal (Naml, 44) mostra, segundo Ibn 'Arabi, através de uma imagem concreta a relação entre essências fixas e existência. Belkis confunde o piso de cristal com água; o piso carrega a forma da água, mas não é a existência da água. Em nossa leitura, esta cena pergunta: quando dizemos 'mesma forma, existência diferente', podemos realmente entender o que isso significa? Ou o conhecimento aqui também permanece além do nosso véu?"
+              }
+            },
+            {
+              "type": "p",
+              "text": {
+                "tr": "Belkıs'ın 'Rabbü'l-âlemin'e inkıyâdı ise fassin son halkası gibi duruyor. Firavun 'Musa ve Harun'un Rabb'i'ne' inkıyâd etmişti — bu, sınırlı, belirli bir Rabb. Belkıs ise 'Âlemlerin Rabb'i'ne inkıyâd ediyor — hiçbir sınır çizilmemiş, evrensel bir adres. İbn Arabî bu farkı küçük görmüyor. Anladığımız kadarıyla bu iki inkıyâd, 'kime teslim olunduğunun' bilinip bilinmemesi arasındaki derin bir mesafeyi gösteriyor; ve Süleymâniyye hikmetinin nihayetinde ulaştığı nokta bu genişliktir.",
+                "en": "Belkis's submission to the 'Lord of the Worlds' appears to be the final link of the fass. Pharaoh had submitted to the 'Lord of Moses and Aaron' — a limited, specific Lord. Belkis submits to the 'Lord of the Worlds' — a universal address with no limitation drawn. Ibn 'Arabi does not minimize this difference. As best we understand it, these two submissions show a deep distance between knowing and not knowing 'to whom one is submitting'; and the point the Solomonic wisdom ultimately reaches is this breadth.",
+                "pt": "A submissão de Belkis ao 'Senhor dos Mundos' parece ser o elo final do fass. O Faraó havia se submetido ao 'Senhor de Moisés e Arão' — um Senhor limitado e específico. Belkis se submete ao 'Senhor dos Mundos' — um endereço universal sem limitação estabelecida. Ibn 'Arabi não minimiza essa diferença. Pelo melhor que entendemos, essas duas submissões mostram uma profunda distância entre saber e não saber 'a quem se está submetendo'; e o ponto que a sabedoria salomônica finalmente alcança é essa amplitude."
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "fs17",
