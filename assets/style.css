@@ -3459,6 +3459,27 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   border-color: hsl(var(--tag-hue) 32% 58% / 0.7);
 }
 
+/* A3: Terimler'deki türetilmiş (sayılmış) bağlar -- elle yazılmış
+   `.bookmap-concept-tag--group`dan kesikli çerçeveyle ayrılır, aynı
+   epistemik ayrımın (esmaX-derived'ın kesikli çizgisi) çip karşılığı. */
+.bookmap-concept-tag--derived {
+  border-style: dashed;
+  border-color: var(--text-muted);
+  background: transparent;
+}
+.bookmap-concept-tag--derived:hover,
+.bookmap-concept-tag--derived:focus-visible {
+  border-color: var(--text-secondary);
+  background: var(--page-plane);
+  color: var(--text-primary);
+}
+.detail-derived-note {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin: -4px 0 8px;
+}
+
 @media (max-width: 768px) {
   .bookmap-tabs { flex-direction: column; border-bottom: none; }
   .bookmap-tab { border-bottom: 1px solid var(--border); border-left: 3px solid transparent; }
@@ -6403,6 +6424,10 @@ mark.durus-vurgu-es {
 .ayet-tip {
   max-width: min(360px, calc(100vw - 24px));
   text-align: start;
+  /* Taban .node-hover-tip pointer-events:none taşıyor (sadece bilgi amaçlı
+     bir ipucu olduğu için) -- bu kutu artık tıklanabilir bağlantı taşıyor
+     (A1: "burada da geçiyor"), o yüzden override ediyoruz. */
+  pointer-events: auto;
 }
 .ayet-tip__ar {
   font-size: 1.15rem;
@@ -6419,6 +6444,52 @@ mark.durus-vurgu-es {
   margin: 0;
   font-size: 0.78rem;
   color: var(--text-muted);
+}
+.ayet-tip__digerleri-baslik {
+  margin: 0.6em 0 0.3em;
+  padding-top: 0.5em;
+  border-top: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.ayet-tip__digeri {
+  display: block;
+  font-size: 0.82rem;
+  padding: 2px 0;
+  color: var(--accent-interactive);
+  text-decoration: none;
+}
+.ayet-tip__digeri:hover,
+.ayet-tip__digeri:focus-visible {
+  text-decoration: underline;
+}
+
+/* Hadis işareti (A2): âyet künyesinden BİLEREK daha az iddialı -- Arapça
+   asıl yok, "sahihtir" iddiası yok, yalnız "bu ifade burada da geçiyor"
+   diyor. O yüzden görsel olarak da daha sönük: metin etiketi değil,
+   tek bir küçük dairesel işaret (⟳ değil, düz nokta -- döngü/tekrar
+   motifiyle tutarlı, bkz. CLAUDE.md daire ilkesi). */
+.hadis-ref {
+  cursor: help;
+  display: inline-block;
+  width: 0.5em;
+}
+.hadis-ref::after {
+  content: "○";
+  font-size: 0.7em;
+  vertical-align: super;
+  color: var(--text-muted);
+  margin-inline-start: 0.1em;
+}
+.hadis-ref:hover::after,
+.hadis-ref:focus-visible::after {
+  color: var(--text-secondary);
+}
+.hadis-ref:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 1px; }
+.hadis-tip__baslik {
+  margin: 0 0 0.4em;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
 }
 
 /* --- Türetilmiş kenarlar (Esmâ) -------------------------------------------
@@ -6454,6 +6525,30 @@ mark.durus-vurgu-es {
 .esma-derived-toggle.is-on {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
+}
+/* İlk-görüş noktası: düğme dört benzer dairesel ikonun arasında kayboluyordu
+   (2026-07-31'de kullanıcı "göremedim, ya da işlevsiz" dedi — buton aslında
+   çalışıyordu, sadece fark edilmiyordu). Bir kez dokunulunca kalıcı olarak
+   kayboluyor (localStorage — sekmeler arası, sessionStorage değil). */
+.esma-derived-toggle__dot {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-interactive);
+  box-shadow: 0 0 0 2px var(--surface-1);
+}
+.esma-derived-toggle__dot[hidden] { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .esma-derived-toggle__dot {
+    animation: esma-derived-pulse 2.2s ease-in-out infinite;
+  }
+}
+@keyframes esma-derived-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.8); }
 }
 .detail-kicker--derived {
   border-style: dashed;

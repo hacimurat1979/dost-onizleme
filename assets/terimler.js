@@ -9,6 +9,8 @@
 
   let glossaryData = null;
   let fetchPromise = null;
+  let derivedTermRelations = [];
+  let derivedTermPromise = null;
 
   function tt(dict) {
     return I18n.pick3(dict);
@@ -59,11 +61,23 @@
     return fetchPromise;
   }
 
+  // A3: Esmâ'daki türetilmiş-kenar fikrinin Terimler karşılığı (bkz.
+  // scripts/kenar-turet.py --site-terim). Bu bağlar `iliskili_kavramlar`
+  // gibi elle yazılmadı — ko-okurans/PPMI ile SAYILDI; bu yüzden ayrı bir
+  // dosyada, ayrı bir stille ve açık bir "biz saydık" notuyla gösterilir.
+  function fetchDerivedTerms() {
+    if (derivedTermPromise) return derivedTermPromise;
+    derivedTermPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/turetilmis-kenarlar-terimler.json")
+      .then((d) => { derivedTermRelations = (d && d.kenarlar) || []; return derivedTermRelations; })
+      .catch((e) => { console.warn("Türetilmiş terim kenarları yüklenemedi", e); derivedTermPromise = null; return []; });
+    return derivedTermPromise;
+  }
+
   // Diğer görünümlerdeki metinler (örn. Fütûhât Atlası) terimlere bağlantı
   // verebilsin diye, kullanıcı Terimler sekmesini hiç açmasa da veriyi
   // erkenden (ana iş parçacığı boştayken) çekip kaydediyoruz.
   const deferFetch = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
-  deferFetch(() => { fetchData(); });
+  deferFetch(() => { fetchData(); fetchDerivedTerms(); });
 
   function groupById(id) {
     return glossaryData.groups.find((g) => g.id === id);
@@ -758,6 +772,34 @@
       <div class="bookmap-concept-tags">${chips}</div>`;
   }
 
+  // A3: türetilmiş (sayılmış) bağlar -- yukarıdaki elle yazılmış
+  // `iliskili_kavramlar`dan görsel olarak (kesikli çerçeve, ayrı başlık,
+  // her çipte "biz saydık" açıklaması) ayrı tutulur. Veri henüz yüklenmediyse
+  // (kullanıcı sekmeyi açar açmaz detay panelini açtıysa) sessizce boş döner
+  // -- fetchDerivedTerms() zaten arka planda çalışıyor, bir sonraki
+  // showTermDetail çağrısında (örn. ilişkili bir terime tıklanınca) dolu gelir.
+  function derivedTermsHtml(t) {
+    const rows = derivedTermRelations.filter((r) => r.from === t.id || r.to === t.id);
+    if (!rows.length) return "";
+    const chips = rows
+      .map((r) => {
+        const otherId = r.from === t.id ? r.to : r.from;
+        const other = glossaryData.terms[otherId];
+        if (!other) return "";
+        return `<button class="bookmap-concept-tag bookmap-concept-tag--derived" data-term="${other.id}" title="${tt(r.aciklama).replace(/"/g, "&quot;")}">${tt(other.title)}</button>`;
+      })
+      .filter(Boolean)
+      .join("");
+    if (!chips) return "";
+    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Türetilmiş Bağlar", en: "Derived Links", pt: "Vínculos Derivados" })}</p>
+      <p class="detail-derived-note">${tt({
+        tr: "Bu bağları biz saydık (aynı bölümlerde birlikte geçme sıklığından) — Dost'un bunları bağladığı anlamına gelmez.",
+        en: "We counted these links (from how often the terms occur together in the same chapters) — it does not mean Ibn Arabi connects them.",
+        pt: "Nós contamos estes vínculos (pela frequência com que os termos ocorrem juntos nos mesmos capítulos) — não significa que Ibn Arabi os conecte.",
+      })}</p>
+      <div class="bookmap-concept-tags">${chips}</div>`;
+  }
+
   function celisenYorumlarHtml(t) {
     const views = t.celisen_yorumlar || [];
     if (!views.length) return "";
@@ -812,6 +854,7 @@
     if (!t) return;
     window.dostTrack && window.dostTrack("kavram_sayfasi_goruntulendi", { id: t.id });
     const group = groupById(t.group);
+    detailPanel.dataset.currentTerm = id;
 
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt(group.name)}</p>
@@ -829,6 +872,7 @@
       ${kaynaklarHtml(t.kaynaklar, t.id)}
       ${celisenYorumlarHtml(t)}
       ${relatedTermsHtml(t)}
+      ${derivedTermsHtml(t)}
       ${siteLinksHtml(t)}
     `;
 
@@ -854,6 +898,15 @@
     });
 
     detailPanel.hidden = false;
+
+    // Türetilmiş bağlar dosyası küçük ama ayrı bir fetch; panel bu terimi
+    // veri gelmeden önce açtıysa (nadir -- idle callback genelde önden
+    // biter), veri gelince aynı terim hâlâ açıksa paneli sessizce tazele.
+    if (!derivedTermRelations.length) {
+      fetchDerivedTerms().then(() => {
+        if (detailPanel.dataset.currentTerm === id) showTermDetail(id);
+      });
+    }
   }
 
   window.__terimlerApp = {

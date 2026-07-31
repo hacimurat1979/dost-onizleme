@@ -1352,11 +1352,24 @@
     if (btn) { btn.classList.add("is-on"); btn.setAttribute("aria-pressed", "true"); }
   }
 
+  // Düğme dört benzer dairesel ikonun arasında kayboluyordu (2026-07-31:
+  // kullanıcı "göremedim, ya da işlevsiz" dedi — işlevseldi, fark
+  // edilmiyordu). İkon belirginleştirildi (dolu noktalar, kalın kesikli
+  // çizgi); ayrıca bir kez dokunulana kadar duran bir nokta eklendi.
+  const DERIVED_SEEN_KEY = "dost-esma-derived-seen";
   function wireDerivedToggle() {
     const btn = document.getElementById("esma-derived-toggle");
     if (!btn || btn.dataset.wiredX) return;
     btn.dataset.wiredX = "1";
-    btn.addEventListener("click", () => setDerived(!derivedOn));
+    const dot = btn.querySelector(".esma-derived-toggle__dot");
+    try { if (dot && localStorage.getItem(DERIVED_SEEN_KEY)) dot.hidden = true; } catch (_) {}
+    btn.addEventListener("click", () => {
+      if (dot && !dot.hidden) {
+        dot.hidden = true;
+        try { localStorage.setItem(DERIVED_SEEN_KEY, "1"); } catch (_) {}
+      }
+      setDerived(!derivedOn);
+    });
   }
 
   function wireTiltToggle() {

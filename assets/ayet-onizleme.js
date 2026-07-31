@@ -18,23 +18,83 @@
 // İngilizce meal gösterilip bu açıkça söyleniyor — sessizce başka bir dile
 // kaydırmak, "yaptığımız işi olduğundan farklı göstermemek" kuralına aykırı
 // olurdu.
+//
+// A1 (2026-07-31): künye artık TERS yönde de çalışıyor — aynı âyetin başka
+// hangi kısımlarda geçtiğini gösteriyor (data/ibn-arabi/ayet-dizini.json,
+// bkz. scripts/ayet-dizini-uret.py). Bu, kutuya ilk tıklanabilir içeriği
+// getirdi; bu yüzden eski "fareyi künyeden ayırınca hemen kapat" davranışı
+// artık yanlış -- kullanıcı fareyi kutuya taşırken künyeden ayrılmak
+// ZORUNDA, ve o an tetiklenen mouseout kutuyu o kişi linke ulaşamadan
+// kapatıyordu. gizlemeyiErtele() bunu kısa bir gecikmeyle çözüyor.
+//
+// A2 (2026-07-31): aynı kutu artık tekrarlayan kutsî hadisler için de
+// çalışıyor (<span class="hadis-ref" data-hadis="kalb">), ama BİLEREK
+// daha az iddia ediyor -- kuran.json gibi doğrulanmış bir kaynağımız
+// hadis için yok, bu hadisin senedi de hadis usulünde tartışmalıdır.
+// Kutu yalnız "bu ifade sitede şu kısımlarda da geçiyor" diyor; Arapça
+// asıl ya da sahihlik iddiası YOK. Bkz. data/ibn-arabi/hadis-dizini.json.
 (function () {
   "use strict";
 
   const I18n = window.DostI18n;
-  let veri = null, sozu = null, tip = null, acikRef = null;
+  let veri = null, sozu = null, tip = null, acikRef = null, acikTur = null;
+  let dizin = null, dizinSozu = null;
+  let hadisDizin = null, hadisDizinSozu = null;
 
   function base() { return window.__dostRouteBase || ""; }
+  const fetcher = (window.DostGraphUtils && window.DostGraphUtils.fetchJson)
+    || ((u) => fetch(u).then((r) => r.json()));
 
   function yukle() {
     if (sozu) return sozu;
-    const url = base() + "/data/ibn-arabi/kuran.json";
-    const fetcher = (window.DostGraphUtils && window.DostGraphUtils.fetchJson)
-      || ((u) => fetch(u).then((r) => r.json()));
-    sozu = fetcher(url)
+    sozu = fetcher(base() + "/data/ibn-arabi/kuran.json")
       .then((d) => { veri = d; return d; })
       .catch((e) => { console.warn("Âyet verisi yüklenemedi", e); sozu = null; return null; });
     return sozu;
+  }
+
+  // Ters dizin (A1, 2026-07-31): aynı âyetin başka hangi kısımlarda
+  // geçtiğini gösteriyor. Dost'un yöntemi tam olarak bu -- aynı âyeti
+  // farklı bölümlerde farklı mertebeden yeniden okumak (bkz. CLAUDE.md
+  // üçüncü ilke). Ayrı dosya, ayrı tembel yükleme: künyelerin çoğu (51'in
+  // 48'i) tek yerde geçiyor ve bu durumda dizine hiç ihtiyaç yok.
+  function yukleDizin() {
+    if (dizinSozu) return dizinSozu;
+    dizinSozu = fetcher(base() + "/data/ibn-arabi/ayet-dizini.json")
+      .then((d) => { dizin = (d && d.dizin) || {}; return dizin; })
+      .catch((e) => { console.warn("Âyet dizini yüklenemedi", e); dizinSozu = null; return {}; });
+    return dizinSozu;
+  }
+
+  function yukleHadisDizin() {
+    if (hadisDizinSozu) return hadisDizinSozu;
+    hadisDizinSozu = fetcher(base() + "/data/ibn-arabi/hadis-dizini.json")
+      .then((d) => { hadisDizin = (d && d.dizin) || {}; return hadisDizin; })
+      .catch((e) => { console.warn("Hadis dizini yüklenemedi", e); hadisDizinSozu = null; return {}; });
+    return hadisDizinSozu;
+  }
+
+  // Şu an açık künyenin hangi kısımda olduğunu URL'den çıkarır (örn.
+  // "futuhat/c1k9"), kendi kısmına bağlantı vermemek için.
+  function currentPartKey() {
+    const b = base();
+    let path = location.pathname;
+    if (b && path.startsWith(b)) path = path.slice(b.length);
+    return path.replace(/^\/+|\/+$/g, "");
+  }
+
+  function digerYerlerHtml(liste, baslikDict) {
+    const burada = currentPartKey();
+    const diger = (liste || []).filter((e) => `${e.view}/${e.id}` !== burada);
+    if (!diger.length) return "";
+    const lang = I18n ? I18n.getLang() : "tr";
+    const baslik = I18n.pick3(baslikDict);
+    const linkler = diger.map((e) => {
+      const ad = (e.title && (e.title[lang] || e.title.tr)) || e.id;
+      const href = window.__dostNav ? window.__dostNav.href(e.view, e.id) : (base() + e.route);
+      return `<a class="cross-link ayet-tip__digeri" href="${esc(href)}" data-view="${esc(e.view)}" data-id="${esc(e.id)}">${esc(ad)}</a>`;
+    }).join("");
+    return `<p class="ayet-tip__digerleri-baslik">${esc(baslik)}</p>${linkler}`;
   }
 
   function ensureTip() {
@@ -92,45 +152,101 @@
     return `
       <p class="ayet-tip__ar" dir="rtl" lang="ar">${esc(a.ar || "")}</p>
       <p class="ayet-tip__meal">${esc(govde)}</p>
-      <p class="ayet-tip__kaynak">${esc(ad)} ${esc(ref)}${not ? " " + esc(not) : ""}</p>`;
+      <p class="ayet-tip__kaynak">${esc(ad)} ${esc(ref)}${not ? " " + esc(not) : ""}</p>
+      ${digerYerlerHtml((dizin && dizin[ref]) || [], {
+        tr: "Bu âyet burada da geçiyor", en: "This verse also appears here", pt: "Este versículo também aparece aqui",
+      })}`;
+  }
+
+  // Hadis kutusu âyet kutusundan BİLEREK daha az söylüyor: Arapça asıl
+  // yok, sahihlik iddiası yok -- yalnız tekrar eden yerleri gösteriyor.
+  function hadisIcerik(anahtar) {
+    const liste = (hadisDizin && hadisDizin[anahtar]) || [];
+    if (!liste.length) return null;
+    const baslik = I18n.pick3({
+      tr: "Tekrarlayan bir kutsî hadis", en: "A recurring sacred saying", pt: "Um dito sagrado recorrente",
+    });
+    const digerHtml = digerYerlerHtml(liste, {
+      tr: "Bu ifade sitede şurada da geçiyor", en: "This wording also appears here", pt: "Esta formulação também aparece aqui",
+    });
+    if (!digerHtml) return null;   // yalnız kendi kısmındaysa gösterecek bir şey yok
+    return `<p class="hadis-tip__baslik">${esc(baslik)}</p>${digerHtml}`;
   }
 
   function goster(el) {
     const ref = el.getAttribute("data-ayet");
-    if (!ref) return;
-    acikRef = ref;
-    yukle().then(() => {
-      if (acikRef !== ref) return;      // bu arada başka bir künyeye geçildi
-      const html = icerik(ref);
-      if (!html) return;
-      const t = ensureTip();
-      t.innerHTML = html;
-      t.hidden = false;
-      konumla(el);
-    });
+    const hadis = el.getAttribute("data-hadis");
+    if (ref) {
+      acikRef = ref; acikTur = "ayet";
+      Promise.all([yukle(), yukleDizin()]).then(() => {
+        if (acikRef !== ref || acikTur !== "ayet") return;   // bu arada başka bir künyeye geçildi
+        const html = icerik(ref);
+        if (!html) return;
+        const t = ensureTip();
+        t.innerHTML = html;
+        t.hidden = false;
+        konumla(el);
+      });
+    } else if (hadis) {
+      acikRef = hadis; acikTur = "hadis";
+      yukleHadisDizin().then(() => {
+        if (acikRef !== hadis || acikTur !== "hadis") return;
+        const html = hadisIcerik(hadis);
+        if (!html) return;
+        const t = ensureTip();
+        t.innerHTML = html;
+        t.hidden = false;
+        konumla(el);
+      });
+    }
   }
 
-  function gizle() { acikRef = null; if (tip) tip.hidden = true; }
+  function isaretEl(target) {
+    return target.closest && (target.closest(".ayet-ref") || target.closest(".hadis-ref"));
+  }
+  function isaretAnahtari(el) {
+    return el.getAttribute("data-ayet") || el.getAttribute("data-hadis");
+  }
 
-  // Fare + klavye + dokunma. Künyeler metin akışının içinde olduğu için
-  // delegasyonla bağlanıyor: yeni bir kısım render edildiğinde tekrar
-  // bağlanmaya gerek kalmıyor.
+  let gizleZamanlayici = null;
+  function gizle() {
+    if (gizleZamanlayici) { clearTimeout(gizleZamanlayici); gizleZamanlayici = null; }
+    acikRef = null; acikTur = null;
+    if (tip) tip.hidden = true;
+  }
+  // Kutu artık tıklanabilir bağlantı taşıyabiliyor (A1: "burada da geçiyor").
+  // Fareyi künyeden kutuya doğru hareket ettirirken önce künyeden AYRILMAK
+  // gerekiyor -- anında gizle() çağıran eski davranış kutuyu kullanıcı daha
+  // ulaşamadan kapatıyordu. Kısa bir gecikmeyle erteleniyor; kutunun
+  // kendisine girilirse iptal ediliyor.
+  function gizlemeyiErtele() {
+    if (gizleZamanlayici) clearTimeout(gizleZamanlayici);
+    gizleZamanlayici = setTimeout(gizle, 220);
+  }
+
+  // Fare + klavye + dokunma. Künyeler/işaretler metin akışının içinde
+  // olduğu için delegasyonla bağlanıyor: yeni bir kısım render edildiğinde
+  // tekrar bağlanmaya gerek kalmıyor.
   document.addEventListener("mouseover", (e) => {
-    const el = e.target.closest && e.target.closest(".ayet-ref");
-    if (el) goster(el);
+    const el = isaretEl(e.target);
+    if (el) { if (gizleZamanlayici) { clearTimeout(gizleZamanlayici); gizleZamanlayici = null; } goster(el); }
+    else if (tip && e.target.closest && e.target.closest(".ayet-tip")) {
+      if (gizleZamanlayici) { clearTimeout(gizleZamanlayici); gizleZamanlayici = null; }
+    }
   });
   document.addEventListener("mouseout", (e) => {
-    const el = e.target.closest && e.target.closest(".ayet-ref");
-    if (el) gizle();
+    const el = isaretEl(e.target);
+    const kutu = e.target.closest && e.target.closest(".ayet-tip");
+    if (el || kutu) gizlemeyiErtele();
   });
   document.addEventListener("click", (e) => {
-    const el = e.target.closest && e.target.closest(".ayet-ref");
-    if (el) { e.preventDefault(); acikRef === el.getAttribute("data-ayet") ? gizle() : goster(el); }
+    const el = isaretEl(e.target);
+    if (el) { e.preventDefault(); acikRef === isaretAnahtari(el) ? gizle() : goster(el); }
     else gizle();
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") gizle(); });
   document.addEventListener("focusin", (e) => {
-    const el = e.target.closest && e.target.closest(".ayet-ref");
+    const el = isaretEl(e.target);
     if (el) goster(el); else gizle();
   });
   window.addEventListener("scroll", gizle, { passive: true });
