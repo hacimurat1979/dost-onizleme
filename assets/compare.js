@@ -18,6 +18,11 @@
   I18n.renderLangSwitcher(document.getElementById("lang-switch"), () => {
     render();
     if (window.__dostDaphneProfileApp) window.__dostDaphneProfileApp.render();
+    const lang = I18n.getLang();
+    const ip = document.getElementById("iframe-perde");
+    const ia = document.getElementById("iframe-ayna");
+    if (ip) { try { ip.contentWindow.postMessage({ type: "setLang", lang }, "*"); } catch(e) {} }
+    if (ia) { try { ia.contentWindow.postMessage({ type: "setLang", lang }, "*"); } catch(e) {} }
   });
   window.DostGraphUtils.setupLegendToggles();
   window.DostGraphUtils.setupDetailPanelFocus();
@@ -44,12 +49,16 @@
         if (introThemes) introThemes.hidden = tab !== "temalar";
         if (introProfile) introProfile.hidden = tab !== "profil";
         detailPanel.hidden = true;
-        if (tab === "profil" && window.__dostDaphneProfileApp) {
-          window.__dostDaphneProfileApp.activate();
+        if ((tab === "profil" || tab === "yazilar") && window.__dostDaphneProfileApp) {
+          // double-RAF ensures panel has reflowed (clientWidth > 0) before buildGraph reads it
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            window.__dostDaphneProfileApp.activate();
+          }));
         }
-        // "Taranan Yazılar" listesi de profil verisinden geliyor.
-        if (tab === "yazilar" && window.__dostDaphneProfileApp) {
-          window.__dostDaphneProfileApp.activate();
+        if (tab === "perde" || tab === "ayna") {
+          const lang = I18n.getLang();
+          const ifrEl = document.getElementById(tab === "perde" ? "iframe-perde" : "iframe-ayna");
+          if (ifrEl) { try { ifrEl.contentWindow.postMessage({ type: "setLang", lang }, "*"); } catch(e) {} }
         }
       });
     });

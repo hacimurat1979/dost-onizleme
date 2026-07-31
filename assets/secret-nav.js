@@ -1,13 +1,11 @@
 (function () {
   "use strict";
   // Gizli görünümler: ana navigasyonda yeri yok.
-  // "@daphne" yazınca compare.html açılıyor.
-  // "@ayna"   yazınca meditasyon.html açılıyor.
+  // "@daphne" yazınca compare.html açılıyor (Perde ve Ayna sekmeleri dahil).
   // Baştaki "@" düz yazı içinde tesadüfen oluşmasını imkânsız kılıyor
   // (aynı ölçü düzenleme kipinin "@revise"i için de geçerli).
   const CODES = {
     "@daphne": "compare.html",
-    "@ayna":   "meditasyon.html",
   };
   const MAX_LEN = Math.max(...Object.keys(CODES).map(k => k.length));
   let buffer = "";

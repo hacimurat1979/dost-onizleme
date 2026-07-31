@@ -230,12 +230,16 @@ const PD={
   }
 };
 
-// Canvas scene constants
+// Canvas scene constants — new layout: Bakan LEFT, standing mirror RIGHT
 const CW=580,CH=295;
-const Bx=290,By=83,Br=48;                   // Bakan sphere
-const FL=[100,260],FR=[480,260];             // mirror front edge
-const BL=[202,172],BR=[378,172];             // mirror back edge
-const Mx=290,My=(260+172)/2;                 // mirror center ≈ 216
+const BkX=110,BkY=147,BkR=52;              // Bakan (observer) — left
+const SrX=248,SrY=147,SrR=27;              // Sûret / berzah — middle
+const MFX=352,MFY=12,MFW=128,MFH=264;     // mirror outer frame
+const MFB=13;                               // frame border width
+const GX=MFX+MFB,GY=MFY+MFB;             // glass origin
+const GW=MFW-2*MFB,GH=MFH-2*MFB;         // glass dims
+const MCX=GX+GW/2,MCY=GY+GH/2;           // glass centre
+const RefR=36;                             // reflection radius
 
 let curLang='tr',curMode='2d',curPair=null;
 let animId=null,t3d=0;
@@ -332,145 +336,185 @@ function draw3d(){
   ctx.clearRect(0,0,CW,CH);
   const lang=LA[curLang];
   const pulse=0.5+0.5*Math.sin(t3d*0.85);
-  const flt=Math.sin(t3d*1.1)*2.8;          // Sûret vertical float
-  const suretY=My+flt;
-  const footY=My+flt*0.15;                   // shadow barely moves
+  const flt=Math.sin(t3d*0.9)*2.8;
+  const bakY=BkY+flt*0.6;   // Bakan floats gently
+  const suretY=SrY+flt;     // Sûret floats more
+  const rflt=flt*0.65;      // reflection mirrors Bakan's float
 
   ctx.save();
   ctx.beginPath(); ctx.rect(0,0,CW,CH); ctx.clip();
 
-  // ── 1. Mirror surface (foreshortened trapezoid) ──
-  ctx.beginPath();
-  ctx.moveTo(FL[0],FL[1]); ctx.lineTo(FR[0],FR[1]);
-  ctx.lineTo(BR[0],BR[1]); ctx.lineTo(BL[0],BL[1]);
-  ctx.closePath();
-  const ma=0.28+0.07*pulse;
-  const mg=ctx.createLinearGradient(Mx,BL[1],Mx,FL[1]);
-  mg.addColorStop(0,`rgba(70,90,160,${ma})`);
-  mg.addColorStop(0.45,`rgba(110,135,215,${ma+0.16})`);
-  mg.addColorStop(1,`rgba(55,75,145,${ma-0.04})`);
-  ctx.fillStyle=mg; ctx.fill();
-  ctx.strokeStyle='rgba(140,165,255,0.32)'; ctx.lineWidth=1.2; ctx.stroke();
+  // ── 0. Mirror floor shadow ──
+  const floorY=MFY+MFH+18;
+  const shad=ctx.createRadialGradient(MCX,floorY,0,MCX,floorY,58);
+  shad.addColorStop(0,'rgba(0,0,0,0.20)');
+  shad.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.beginPath(); ctx.ellipse(MCX,floorY,52,9,0,0,Math.PI*2);
+  ctx.fillStyle=shad; ctx.fill();
 
-  // Perspective lines (foreshortening guides)
+  // ── 1. Mirror stand ──
   ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(FL[0],FL[1]); ctx.lineTo(FR[0],FR[1]);
-  ctx.lineTo(BR[0],BR[1]); ctx.lineTo(BL[0],BL[1]);
-  ctx.closePath(); ctx.clip();
-  for(let i=1;i<5;i++){
-    const t_=i/5;
-    const x1=FL[0]+(BL[0]-FL[0])*t_, y1=FL[1]+(BL[1]-FL[1])*t_;
-    const x2=FR[0]+(BR[0]-FR[0])*t_, y2=FR[1]+(BR[1]-FR[1])*t_;
-    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2);
-    ctx.strokeStyle='rgba(170,190,255,0.1)'; ctx.lineWidth=0.7; ctx.stroke();
-  }
-  // Vertical center line
-  ctx.beginPath(); ctx.moveTo(Mx,FL[1]); ctx.lineTo(Mx,BL[1]);
-  ctx.strokeStyle='rgba(200,210,255,0.08)'; ctx.lineWidth=0.5; ctx.stroke();
+  ctx.lineCap='round'; ctx.lineWidth=5;
+  ctx.strokeStyle='rgba(110,88,44,0.82)';
+  ctx.beginPath(); ctx.moveTo(MCX,MFY+MFH); ctx.lineTo(MCX-28,floorY-2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(MCX,MFY+MFH); ctx.lineTo(MCX+28,floorY-2); ctx.stroke();
   ctx.restore();
 
-  // ── 2. Mirror wall (near face showing thickness) ──
-  const WH=11;
-  ctx.beginPath();
-  ctx.moveTo(FL[0],FL[1]); ctx.lineTo(FR[0],FR[1]);
-  ctx.lineTo(FR[0],FL[1]+WH); ctx.lineTo(FL[0],FL[1]+WH);
-  ctx.closePath();
-  const wg=ctx.createLinearGradient(0,FL[1],0,FL[1]+WH);
-  wg.addColorStop(0,'rgba(115,135,215,0.52)');
-  wg.addColorStop(1,'rgba(50,68,140,0.12)');
-  ctx.fillStyle=wg; ctx.fill();
-  ctx.strokeStyle='rgba(130,155,255,0.18)'; ctx.lineWidth=0.7; ctx.stroke();
-
-  // ── 3. Ayna label on mirror surface ──
+  // ── 2. Mirror glass (clipped) ──
   ctx.save();
-  ctx.font=`italic 12.5px Georgia,serif`;
-  ctx.fillStyle=`rgba(165,185,255,${0.42+0.1*pulse})`;
+  ctx.beginPath(); ctx.rect(GX,GY,GW,GH); ctx.clip();
+
+  const glass=ctx.createLinearGradient(GX,0,GX+GW,0);
+  glass.addColorStop(0,'rgba(50,70,135,0.20)');
+  glass.addColorStop(0.28,'rgba(90,122,208,0.40)');
+  glass.addColorStop(0.50,'rgba(138,172,248,0.52)');
+  glass.addColorStop(0.72,'rgba(90,122,208,0.40)');
+  glass.addColorStop(1,'rgba(50,70,135,0.20)');
+  ctx.fillStyle=glass; ctx.fillRect(GX,GY,GW,GH);
+
+  // Reflection halo
+  const refActive=curPair==='p1';
+  const rHaloR=RefR*(refActive?2.5:2.1+0.2*pulse);
+  const rHalo=ctx.createRadialGradient(MCX,MCY+rflt,0,MCX,MCY+rflt,rHaloR);
+  rHalo.addColorStop(0,'rgba(225,183,55,0.20)'); rHalo.addColorStop(1,'rgba(225,183,55,0)');
+  ctx.beginPath(); ctx.arc(MCX,MCY+rflt,rHaloR,0,Math.PI*2); ctx.fillStyle=rHalo; ctx.fill();
+
+  // Reflection sphere (dimmer, slight blue tint)
+  const rfg=ctx.createRadialGradient(MCX-9,MCY+rflt-11,4,MCX,MCY+rflt,RefR);
+  rfg.addColorStop(0,'rgba(238,224,172,0.74)');
+  rfg.addColorStop(0.5,'rgba(182,148,50,0.56)');
+  rfg.addColorStop(0.84,'rgba(88,102,175,0.32)');
+  rfg.addColorStop(1,'rgba(38,52,135,0)');
+  ctx.beginPath(); ctx.arc(MCX,MCY+rflt,RefR,0,Math.PI*2); ctx.fillStyle=rfg; ctx.fill();
+  if(refActive){ ctx.strokeStyle='rgba(238,192,70,0.38)'; ctx.lineWidth=1.8; ctx.stroke(); }
+  ctx.beginPath(); ctx.arc(MCX-10,MCY+rflt-13,7,0,Math.PI*2);
+  ctx.fillStyle='rgba(255,255,255,0.10)'; ctx.fill();
+
+  // Reflection label (Bakan name, dimmed)
+  ctx.save();
+  ctx.font='9.5px Georgia,serif'; ctx.fillStyle='rgba(215,190,140,0.68)';
   ctx.textAlign='center'; ctx.textBaseline='middle';
-  ctx.fillText(lang.d3ayna, Mx, My+16);
+  ctx.fillText(lang.d3bakan, MCX, MCY+rflt+RefR+13);
   ctx.restore();
 
-  // ── 4. Shadow ellipse at Sûret foot ──
-  ctx.beginPath(); ctx.ellipse(Bx,footY,22,6.5,0,0,Math.PI*2);
-  ctx.fillStyle='rgba(0,0,0,0.18)'; ctx.fill();
+  // Glass highlight streaks
+  ctx.beginPath(); ctx.moveTo(GX+8,GY); ctx.lineTo(GX+8,GY+GH);
+  ctx.strokeStyle='rgba(218,230,255,0.09)'; ctx.lineWidth=5; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(GX+17,GY); ctx.lineTo(GX+17,GY+GH);
+  ctx.strokeStyle='rgba(218,230,255,0.05)'; ctx.lineWidth=2; ctx.stroke();
 
-  // ── 5. Sûret glow (liminal, on mirror) ──
-  const sAct=curPair==='p3', sR=sAct?52:42;
-  const sg=ctx.createRadialGradient(Bx,suretY,0,Bx,suretY,sR);
-  sg.addColorStop(0,sAct?'rgba(225,170,255,0.92)':'rgba(205,155,255,0.78)');
-  sg.addColorStop(0.48,'rgba(140,90,215,0.52)');
-  sg.addColorStop(1,'rgba(75,48,150,0)');
-  ctx.beginPath(); ctx.arc(Bx,suretY,sR,0,Math.PI*2);
-  ctx.fillStyle=sg; ctx.fill();
+  // Ayna label
+  ctx.save();
+  ctx.font=`italic 10.5px Georgia,serif`;
+  ctx.fillStyle=`rgba(148,178,245,${0.36+0.1*pulse})`;
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(lang.d3ayna, MCX, GY+GH-15);
+  ctx.restore();
+
+  ctx.restore(); // end glass clip
+
+  // ── 3. Mirror frame ──
+  ctx.fillStyle='rgba(118,95,50,0.90)';
+  ctx.fillRect(MFX,MFY,MFW,MFB);           // top bar
+  ctx.fillRect(MFX,MFY+MFH-MFB,MFW,MFB);  // bottom bar
+  ctx.fillRect(MFX,MFY,MFB,MFH);           // left bar
+  ctx.fillRect(MFX+MFW-MFB,MFY,MFB,MFH);  // right bar
+  ctx.strokeStyle='rgba(192,162,92,0.48)'; ctx.lineWidth=1.5; ctx.strokeRect(GX,GY,GW,GH);
+  ctx.strokeStyle='rgba(58,42,16,0.55)'; ctx.lineWidth=1; ctx.strokeRect(MFX,MFY,MFW,MFH);
+
+  // ── 4. Depth shadow (left side → 3D standing feel) ──
+  const dep=ctx.createLinearGradient(MFX-12,0,MFX+5,0);
+  dep.addColorStop(0,'rgba(0,0,0,0)'); dep.addColorStop(1,'rgba(0,0,0,0.22)');
+  ctx.fillStyle=dep; ctx.fillRect(MFX-12,MFY,18,MFH);
+
+  if(curPair==='p2'){
+    ctx.strokeStyle='rgba(148,182,255,0.46)'; ctx.lineWidth=2.2; ctx.strokeRect(MFX,MFY,MFW,MFH);
+  }
+
+  // ── 5. Sûret (berzah, liminal) ──
+  const sAct=curPair==='p3', sR=sAct?35:SrR;
+  const sg=ctx.createRadialGradient(SrX,suretY,0,SrX,suretY,sR);
+  sg.addColorStop(0,sAct?'rgba(222,168,255,0.92)':'rgba(208,152,255,0.82)');
+  sg.addColorStop(0.5,'rgba(142,88,218,0.52)');
+  sg.addColorStop(1,'rgba(70,42,148,0)');
+  ctx.beginPath(); ctx.arc(SrX,suretY,sR,0,Math.PI*2); ctx.fillStyle=sg; ctx.fill();
   if(sAct){
-    ctx.beginPath(); ctx.arc(Bx,suretY,sR+5,0,Math.PI*2);
-    ctx.strokeStyle='rgba(200,148,255,0.28)'; ctx.lineWidth=2.5; ctx.stroke();
+    ctx.beginPath(); ctx.arc(SrX,suretY,sR+5,0,Math.PI*2);
+    ctx.strokeStyle='rgba(198,142,255,0.28)'; ctx.lineWidth=2.5; ctx.stroke();
   }
-  // Inner core shimmer
-  const si=ctx.createRadialGradient(Bx,suretY,0,Bx,suretY,17);
-  si.addColorStop(0,'rgba(245,215,255,0.72)');
-  si.addColorStop(1,'rgba(200,155,255,0)');
-  ctx.beginPath(); ctx.arc(Bx,suretY,17,0,Math.PI*2); ctx.fillStyle=si; ctx.fill();
-
-  // Sûret label
+  const si=ctx.createRadialGradient(SrX,suretY,0,SrX,suretY,12);
+  si.addColorStop(0,'rgba(244,212,255,0.72)'); si.addColorStop(1,'rgba(198,152,255,0)');
+  ctx.beginPath(); ctx.arc(SrX,suretY,12,0,Math.PI*2); ctx.fillStyle=si; ctx.fill();
   ctx.save();
-  ctx.font='11px Georgia,serif';
-  ctx.fillStyle='rgba(235,205,255,0.88)';
+  ctx.font='10.5px Georgia,serif'; ctx.fillStyle='rgba(230,200,255,0.88)';
   ctx.textAlign='center'; ctx.textBaseline='middle';
-  ctx.fillText(lang.d3suret, Bx, suretY+1.5);
+  ctx.fillText(lang.d3suret, SrX, suretY+1);
   ctx.restore();
 
-  // ── 6. Dashed elevation line (Bakan ↓ Sûret) ──
-  const lineTop=By+Br+3, lineBot=suretY-20;
-  if(lineBot>lineTop+12){
+  // ── 6. Flow arrows ──
+  // tecellî: Bakan → Sûret
+  const aY1=BkY-16, aXs1=BkX+BkR+8, aXe1=SrX-sR-8;
+  if(aXe1>aXs1+12){
     ctx.save();
     ctx.setLineDash([5,4]);
-    ctx.beginPath(); ctx.moveTo(Bx,lineTop); ctx.lineTo(Bx,lineBot);
-    ctx.strokeStyle='rgba(220,185,80,0.32)'; ctx.lineWidth=1.1; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(aXs1,aY1); ctx.lineTo(aXe1,aY1);
+    ctx.strokeStyle='rgba(212,178,62,0.58)'; ctx.lineWidth=1.2; ctx.stroke();
     ctx.setLineDash([]);
-    ctx.font='italic 9px Georgia,serif';
-    ctx.fillStyle='rgba(200,162,65,0.58)';
-    ctx.textAlign='left'; ctx.textBaseline='middle';
-    ctx.fillText(lang.d3tec, Bx+6, (lineTop+lineBot)/2);
+    ctx.beginPath(); ctx.moveTo(aXe1,aY1); ctx.lineTo(aXe1-7,aY1-4); ctx.lineTo(aXe1-7,aY1+4); ctx.closePath();
+    ctx.fillStyle='rgba(212,178,62,0.58)'; ctx.fill();
+    ctx.font='italic 8.5px Georgia,serif'; ctx.fillStyle='rgba(192,162,52,0.64)';
+    ctx.textAlign='center'; ctx.textBaseline='bottom';
+    ctx.fillText(lang.d3tec, (aXs1+aXe1)/2, aY1-3);
+    ctx.restore();
+  }
+
+  // zuhur: Sûret → mirror
+  const aY2=BkY+2, aXs2=SrX+sR+8, aXe2=MFX-5;
+  if(aXe2>aXs2+12){
+    ctx.save();
+    ctx.setLineDash([5,4]);
+    ctx.beginPath(); ctx.moveTo(aXs2,aY2); ctx.lineTo(aXe2,aY2);
+    ctx.strokeStyle='rgba(92,146,228,0.52)'; ctx.lineWidth=1.1; ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(aXe2,aY2); ctx.lineTo(aXe2-7,aY2-4); ctx.lineTo(aXe2-7,aY2+4); ctx.closePath();
+    ctx.fillStyle='rgba(92,146,228,0.52)'; ctx.fill();
+    ctx.restore();
+  }
+
+  // iade: mirror → Bakan
+  const aY3=BkY+24, aXs3=MFX-5, aXe3=BkX+BkR+8;
+  if(aXs3>aXe3+12){
+    ctx.save();
+    ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(aXs3,aY3); ctx.lineTo(aXe3,aY3);
+    ctx.strokeStyle='rgba(92,146,228,0.42)'; ctx.lineWidth=1; ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(aXe3,aY3); ctx.lineTo(aXe3+7,aY3-4); ctx.lineTo(aXe3+7,aY3+4); ctx.closePath();
+    ctx.fillStyle='rgba(92,146,228,0.42)'; ctx.fill();
     ctx.restore();
   }
 
   // ── 7. Bakan sphere ──
   const bAct=curPair==='p1';
-  const glowR=Br*(bAct?2.9:2.2+0.28*pulse);
-  const bglow=ctx.createRadialGradient(Bx,By,Br*0.45,Bx,By,glowR);
-  bglow.addColorStop(0,'rgba(242,200,75,0.17)');
-  bglow.addColorStop(1,'rgba(242,200,75,0)');
-  ctx.beginPath(); ctx.arc(Bx,By,glowR,0,Math.PI*2); ctx.fillStyle=bglow; ctx.fill();
+  const glowR=BkR*(bAct?2.9:2.2+0.28*pulse);
+  const bglow=ctx.createRadialGradient(BkX,bakY,BkR*0.45,BkX,bakY,glowR);
+  bglow.addColorStop(0,'rgba(242,200,75,0.20)'); bglow.addColorStop(1,'rgba(242,200,75,0)');
+  ctx.beginPath(); ctx.arc(BkX,bakY,glowR,0,Math.PI*2); ctx.fillStyle=bglow; ctx.fill();
 
-  const bg=ctx.createRadialGradient(Bx-13,By-15,4,Bx,By,Br);
-  bg.addColorStop(0,'#FFFBD2');
-  bg.addColorStop(0.52,'#ECC850');
-  bg.addColorStop(0.87,'#C28E28');
-  bg.addColorStop(1,'rgba(95,60,12,0.3)');
-  ctx.beginPath(); ctx.arc(Bx,By,Br,0,Math.PI*2); ctx.fillStyle=bg; ctx.fill();
+  const bg=ctx.createRadialGradient(BkX-15,bakY-18,5,BkX,bakY,BkR);
+  bg.addColorStop(0,'#FFFBD2'); bg.addColorStop(0.52,'#ECC850');
+  bg.addColorStop(0.87,'#C28E28'); bg.addColorStop(1,'rgba(95,60,12,0.3)');
+  ctx.beginPath(); ctx.arc(BkX,bakY,BkR,0,Math.PI*2); ctx.fillStyle=bg; ctx.fill();
   ctx.strokeStyle=bAct?'rgba(255,220,95,0.48)':'rgba(255,208,72,0.18)';
   ctx.lineWidth=bAct?2:1.2; ctx.stroke();
-  // specular highlight
-  ctx.beginPath(); ctx.arc(Bx-14,By-16,11,0,Math.PI*2);
-  ctx.fillStyle='rgba(255,255,255,0.16)'; ctx.fill();
+  ctx.beginPath(); ctx.arc(BkX-16,bakY-19,13,0,Math.PI*2);
+  ctx.fillStyle='rgba(255,255,255,0.18)'; ctx.fill();
 
-  // ── 8. Bakan label above sphere ──
   ctx.save();
-  ctx.font='bold 12.5px Georgia,serif';
-  ctx.fillStyle='rgba(242,200,85,0.92)';
+  ctx.font='bold 12.5px Georgia,serif'; ctx.fillStyle='rgba(242,200,85,0.92)';
   ctx.textAlign='center'; ctx.textBaseline='bottom';
-  ctx.fillText(lang.d3bakan, Bx, By-Br-9);
+  ctx.fillText(lang.d3bakan, BkX, bakY-BkR-9);
   ctx.restore();
-
-  // ── 9. Mirror highlight when p2 active ──
-  if(curPair==='p2'){
-    ctx.beginPath();
-    ctx.moveTo(FL[0],FL[1]); ctx.lineTo(FR[0],FR[1]);
-    ctx.lineTo(BR[0],BR[1]); ctx.lineTo(BL[0],BL[1]);
-    ctx.closePath();
-    ctx.strokeStyle='rgba(155,185,255,0.48)'; ctx.lineWidth=2.2; ctx.stroke();
-  }
 
   ctx.restore();
 }
@@ -481,20 +525,21 @@ cvEl.addEventListener('mousemove',function(e){
   if(curMode!=='3d') return;
   const r=cvEl.getBoundingClientRect();
   const mx=(e.clientX-r.left)*(CW/r.width), my=(e.clientY-r.top)*(CH/r.height);
-  cvEl.style.cursor=(Math.hypot(mx-Bx,my-By)<Br+10||Math.hypot(mx-Bx,my-My)<46||inMirror(mx,my))?'pointer':'default';
+  const over=(Math.hypot(mx-BkX,my-BkY)<BkR+12)||
+             (Math.hypot(mx-SrX,my-SrY)<SrR+12)||
+             (mx>=MFX&&mx<=MFX+MFW&&my>=MFY&&my<=MFY+MFH);
+  cvEl.style.cursor=over?'pointer':'default';
 });
 cvEl.addEventListener('click',function(e){
   if(curMode!=='3d') return;
   const r=cvEl.getBoundingClientRect();
   const mx=(e.clientX-r.left)*(CW/r.width), my=(e.clientY-r.top)*(CH/r.height);
-  if(Math.hypot(mx-Bx,my-By)<Br+10) selectPair('p1');
-  else if(Math.hypot(mx-Bx,my-My)<46) selectPair('p3');
-  else if(inMirror(mx,my)) selectPair('p2');
+  if(Math.hypot(mx-BkX,my-BkY)<BkR+12) selectPair('p1');
+  else if(Math.hypot(mx-SrX,my-SrY)<SrR+12) selectPair('p3');
+  else if(mx>=MFX&&mx<=MFX+MFW&&my>=MFY&&my<=MFY+MFH) selectPair('p2');
 });
 function inMirror(mx,my){
-  if(my<BL[1]||my>FL[1]+12) return false;
-  const t_=(my-FL[1])/(BL[1]-FL[1]);
-  return mx>=FL[0]+(BL[0]-FL[0])*t_ && mx<=FR[0]+(BR[0]-FR[0])*t_;
+  return mx>=MFX&&mx<=MFX+MFW&&my>=MFY&&my<=MFY+MFH;
 }
 
 // ── Init ──
