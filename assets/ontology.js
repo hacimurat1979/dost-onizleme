@@ -39,6 +39,37 @@
     return I18n.pick3(dict);
   }
 
+  // B1: "ne kadar eminiz" katmanı. Etiketler research/anlayis-evrimi/
+  // CONFIDENCE_MAP.md'nin sözlüğünden (Yüksek/Orta/Hipotez/Gelecekte-
+  // doğrulanmalı/...); ontology.json'daki her kenarın kendi `nature`/
+  // `insights` metninde YAZILI temkin diline göre atandı, elle ayrı bir
+  // değerlendirme değil.
+  const CONFIDENCE_LABEL = {
+    "Yüksek": { tr: "Yüksek", en: "High", pt: "Alta" },
+    "Orta": { tr: "Orta", en: "Medium", pt: "Média" },
+    "Düşük": { tr: "Düşük", en: "Low", pt: "Baixa" },
+    "Hipotez": { tr: "Hipotez", en: "Hypothesis", pt: "Hipótese" },
+    "Bilinmiyor": { tr: "Bilinmiyor", en: "Unknown", pt: "Desconhecida" },
+    "Gelecekte-doğrulanmalı": { tr: "Gelecekte doğrulanmalı", en: "To be confirmed later", pt: "A confirmar mais tarde" },
+  };
+  function confSlug(c) {
+    return c === "Orta" ? "orta"
+      : c === "Düşük" ? "dusuk"
+      : c === "Hipotez" ? "hipotez"
+      : c === "Bilinmiyor" ? "bilinmiyor"
+      : c === "Gelecekte-doğrulanmalı" ? "gelecek"
+      : "yuksek";
+  }
+  function confidenceNoteHtml(c) {
+    if (!c || c === "Yüksek") return "";
+    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
+    return `<p class="detail-confidence detail-confidence--${confSlug(c)}">${tt({
+      tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " })}<strong>${tt(label)}</strong> — ${tt({
+      tr: "kenarın kendi metni bu okumayı henüz kesinleşmiş saymıyor.",
+      en: "the edge's own text does not yet treat this reading as settled.",
+      pt: "o próprio texto da aresta ainda não trata esta leitura como definitiva." })}</p>`;
+  }
+
   // İki kavram/ilişkinin salt metinle anlatıldığında soyut kalan bağını
   // tek bakışta gösteren küçük SVG şemalar (bkz. CLAUDE.md ikinci ilke).
   const entityDiagramRenderers = {
@@ -1014,7 +1045,7 @@
       .selectAll("path")
       .data(links)
       .join("path")
-      .attr("class", (d) => "link link--" + d.kind)
+      .attr("class", (d) => "link link--" + d.kind + " link--conf-" + confSlug(d.confidence))
       .attr("marker-end", (d) => "url(#arrow-" + (d.kind === "gather" ? "descent" : d.kind) + ")")
       .attr("fill", "none")
       .on("mouseenter", (event, d) => highlightEdge(d))
@@ -1180,6 +1211,19 @@
         setTilt(to);
         tiltBtn.classList.toggle("is-on", to > 0.5);
         tiltBtn.setAttribute("aria-pressed", to > 0.5 ? "true" : "false");
+      });
+    }
+
+    const confidenceBtn = document.getElementById("ontology-confidence-toggle");
+    if (confidenceBtn && !confidenceBtn.dataset.wiredOntoConf) {
+      confidenceBtn.dataset.wiredOntoConf = "1";
+      confidenceBtn.setAttribute("aria-pressed", "false");
+      confidenceBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const on = !ontologyWrap.classList.contains("confidence-on");
+        ontologyWrap.classList.toggle("confidence-on", on);
+        confidenceBtn.classList.toggle("is-on", on);
+        confidenceBtn.setAttribute("aria-pressed", on ? "true" : "false");
       });
     }
 
@@ -2108,6 +2152,7 @@
       const arrow = dir === "out" ? "→" : "←";
       return `<div class="detail-block detail-block--edge">
         <h3>${arrow} ${I18n.pick3(other.name)} — <em>${I18n.pick3(l.relation)}</em></h3>
+        ${confidenceNoteHtml(l.confidence)}
         <p>${linkify(I18n.pick3(l.nature), null, null)}</p>
         ${insightsHtml(l.insights, null, null, null)}
       </div>`;
@@ -2119,6 +2164,7 @@
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${I18n.pick3(l.relation)}</p>
       <h2 class="detail-title">${I18n.pick3(l.source.name)} → ${I18n.pick3(l.target.name)}</h2>
+      ${confidenceNoteHtml(l.confidence)}
       ${entityDiagramHtml(l)}
       <div class="detail-block detail-block--ibnarabi">
         <p>${linkify(I18n.pick3(l.nature), null, null)}</p>

@@ -969,7 +969,21 @@
       secEl.className = "futuhat-section";
       secEl.innerHTML = `<h3 class="futuhat-section__heading">${tt(section.heading)}</h3>`;
       section.blocks.forEach((block, bi) => {
-        if (block.type === "p") {
+        if (block.type === "p" && block.tag === "bilmiyoruz") {
+          // B2: "neyi bulamadık" kutusu. Bu içerik başka bir yerden
+          // (research/anlayis-evrimi'nden) çekilmiyor -- yazının kendisi
+          // zaten paragraf olarak vardı, burada yalnız görsel olarak
+          // ayrıştırılıyor (bkz. CLAUDE.md kökensel duruş: bulduğumuz
+          // kadar bulamadığımızı da göstermek).
+          const box = document.createElement("div");
+          box.className = "futuhat-bilmiyoruz-box";
+          box.innerHTML = `<p class="futuhat-bilmiyoruz-box__eyebrow">${tt({
+            tr: "Bu kesitte bulamadığımız",
+            en: "What we did not find in this section",
+            pt: "O que não encontrámos nesta secção",
+          })}</p><p class="futuhat-bilmiyoruz-box__text">${linkify(tt(block.text))}</p>`;
+          secEl.appendChild(box);
+        } else if (block.type === "p") {
           const p = document.createElement("p");
           p.className = "futuhat-section__p";
           p.innerHTML = linkify(tt(block.text));
@@ -1022,6 +1036,91 @@
 
     renderStats(part);
     setupToolbar(part);
+    renderMeasurementPanel(part);
+  }
+
+  // D1: ölçüm panosu. Yalnız @revise kipinde görünür -- okuyucuya değil,
+  // bize (kısmı denetlerken) hitap ediyor. Bu turda bilerek dar tutuldu:
+  // araçların kendisi (dil-denetimi.py, ayet-dizini.json, hadis-dizini.json)
+  // henüz istikrar kazanmıştı, üstlerine yeni bir ölçüm eklemek erken
+  // olurdu. Üç satır: âyet/hadis künyesi (ve başka kaç kısımda daha
+  // geçtikleri, zaten var olan ters dizinlerden), ve üç dildeki <em>
+  // sayısının hizalı olup olmadığı (D3'ün elle kapattığı VURGU_DUSMUS
+  // kontrolünün canlı, tek-kısımlık karşılığı).
+  let ayetDizinPromise = null;
+  let hadisDizinPromise = null;
+  function fetchAyetDizin() {
+    if (!ayetDizinPromise) {
+      ayetDizinPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/ayet-dizini.json").catch(() => null);
+    }
+    return ayetDizinPromise;
+  }
+  function fetchHadisDizin() {
+    if (!hadisDizinPromise) {
+      hadisDizinPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/hadis-dizini.json").catch(() => null);
+    }
+    return hadisDizinPromise;
+  }
+
+  function emUyumu(part) {
+    const toplam = { tr: 0, en: 0, pt: 0 };
+    let uyumsuzBlok = 0;
+    (part.sections || []).forEach((s) => {
+      (s.blocks || []).forEach((b) => {
+        if (b.type !== "p" || !b.text) return;
+        const sayim = {};
+        ["tr", "en", "pt"].forEach((l) => {
+          sayim[l] = ((b.text[l] || "").match(/<em>/g) || []).length;
+          toplam[l] += sayim[l];
+        });
+        const dolu = ["tr", "en", "pt"].filter((l) => (b.text[l] || "").trim());
+        const emli = dolu.filter((l) => sayim[l] > 0);
+        if (dolu.length > 1 && emli.length > 0 && emli.length < dolu.length) uyumsuzBlok++;
+      });
+    });
+    return { toplam, uyumsuzBlok };
+  }
+
+  function renderMeasurementPanel(part) {
+    const eski = document.getElementById("futuhat-olcum-panosu");
+    if (eski) eski.remove();
+    if (!document.body.classList.contains("dost-edit-mode")) return;
+
+    const panel = document.createElement("section");
+    panel.className = "futuhat-olcum-panosu";
+    panel.id = "futuhat-olcum-panosu";
+    panel.innerHTML = `<p class="futuhat-olcum-panosu__baslik">${tt({
+      tr: "Ölçüm panosu", en: "Measurement panel", pt: "Painel de medição" })}
+      <span class="futuhat-olcum-panosu__not">${tt({
+        tr: "yalnız @revise kipinde görünür", en: "visible only in @revise mode", pt: "visível apenas no modo @revise" })}</span></p>
+      <ul class="futuhat-olcum-panosu__list"><li>${tt({ tr: "yükleniyor…", en: "loading…", pt: "carregando…" })}</li></ul>`;
+    articleEl.appendChild(panel);
+
+    const ayetRefs = Array.from(new Set(
+      Array.from(articleEl.querySelectorAll("[data-ayet]")).map((el) => el.dataset.ayet)
+    ));
+    const hadisRefs = Array.from(new Set(
+      Array.from(articleEl.querySelectorAll("[data-hadis]")).map((el) => el.dataset.hadis)
+    ));
+    const { toplam, uyumsuzBlok } = emUyumu(part);
+
+    Promise.all([fetchAyetDizin(), fetchHadisDizin()]).then(([ayetD, hadisD]) => {
+      const digerYerSayisi = (dizin, ref) =>
+        ((dizin && dizin.dizin && dizin.dizin[ref]) || []).filter((y) => y.id !== part.id).length;
+      const refListesi = (refs, dizin) =>
+        refs.map((r) => {
+          const n = digerYerSayisi(dizin, r);
+          return n ? `${r} (+${n})` : r;
+        }).join(", ");
+
+      const list = document.querySelector("#futuhat-olcum-panosu .futuhat-olcum-panosu__list");
+      if (!list) return;
+      list.innerHTML = `
+        <li>${tt({ tr: "Âyet künyesi", en: "Verse citations", pt: "Citações de versículo" })}: <strong>${ayetRefs.length}</strong>${ayetRefs.length ? ` — ${refListesi(ayetRefs, ayetD)}` : ""}</li>
+        <li>${tt({ tr: "Hadis künyesi", en: "Hadith citations", pt: "Citações de hadith" })}: <strong>${hadisRefs.length}</strong>${hadisRefs.length ? ` — ${refListesi(hadisRefs, hadisD)}` : ""}</li>
+        <li>${tt({ tr: "Dil vurgusu (em)", en: "Language emphasis (em)", pt: "Ênfase de idioma (em)" })}: tr=${toplam.tr} en=${toplam.en} pt=${toplam.pt}${uyumsuzBlok ? ` — <strong>${uyumsuzBlok}</strong> ${tt({ tr: "blokta dil uyuşmazlığı", en: "block(s) with a language mismatch", pt: "bloco(s) com incompatibilidade de idioma" })}` : ` — ${tt({ tr: "uyumlu", en: "aligned", pt: "alinhado" })}`}</li>
+      `;
+    });
   }
 
   // --- Toolbar: font size, print, share ---

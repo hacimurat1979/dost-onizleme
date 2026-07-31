@@ -1622,6 +1622,43 @@ button.futuhat-part-chip:hover {
   color: #fff6e6;
 }
 
+/* B2: "bulamadığımız" kutusu -- kesikli çerçeve, sitenin öbür yerlerindeki
+   (türetilmiş kenar, güven rozeti) "bu bizim ölçümümüz/itirafımız" görsel
+   diliyle aynı aile. İçerik başka yerden çekilmiyor, var olan paragraf
+   yalnız görsel olarak ayrıştırılıyor. */
+.futuhat-bilmiyoruz-box {
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 0 0 20px;
+  background: color-mix(in srgb, var(--surface-1) 60%, transparent);
+}
+.futuhat-bilmiyoruz-box__eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.futuhat-bilmiyoruz-box__text {
+  margin: 0;
+  line-height: calc(1.75 * var(--detail-font-scale, 1));
+  font-size: calc(1rem * var(--detail-font-scale, 1));
+  color: var(--text-primary);
+}
+.futuhat-bilmiyoruz-box__text em {
+  font-style: italic;
+  background: color-mix(in srgb, var(--series-theme) 18%, transparent);
+  padding: 0.05em 0.35em;
+  border-radius: 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.viz-root[data-theme="dark"] .futuhat-bilmiyoruz-box__text em {
+  background: color-mix(in srgb, var(--series-theme) 42%, transparent);
+  color: #fff6e6;
+}
+
 .futuhat-inline-diagram {
   background: var(--page-plane);
   border: 1px solid var(--border);
@@ -1694,6 +1731,42 @@ button.futuhat-part-chip:hover {
   border-radius: 14px;
   padding: 16px 18px;
   background: var(--surface-1);
+}
+
+/* D1: ölçüm panosu -- yalnız @revise kipinde eklenen bir <section>,
+   okuyucuya değil bize hitap ediyor. Diğer içerikten kasıtlı olarak
+   sade/teknik: monospace rakamlar, sarı-turuncu bir dikkat çizgisi
+   (uyarı değil, "bu bizim aracımız" işareti). */
+.futuhat-olcum-panosu {
+  max-width: 660px;
+  margin: 24px auto 0;
+  padding: 14px 18px;
+  border: 1px dashed color-mix(in srgb, var(--accent-interactive) 55%, var(--border));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent-interactive) 6%, var(--surface-1));
+  font-size: 0.82rem;
+}
+.futuhat-olcum-panosu__baslik {
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+.futuhat-olcum-panosu__not {
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+.futuhat-olcum-panosu__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.futuhat-olcum-panosu__list strong {
+  color: var(--text-primary);
 }
 
 .futuhat-stats__heading {
@@ -2528,6 +2601,51 @@ html:has(.detail-panel:not([hidden])) {
   .anlayis-timeline__stages {
     grid-template-columns: 1fr;
   }
+}
+
+/* B3: "Kendi İzleme Serilerimiz" -- anlayis-timeline'ın kardeşi ama ters
+   hareketi anlatıyor: orada tek bir anlayış kendini düzeltiyor, burada
+   görünüşte tek bir kelime, denetlenince kabul ettiğimiz bir çokluğa
+   ayrışıyor. Aynı kart dili, farklı bir sayaç rozeti. */
+.izleme-serileri__intro {
+  margin: 0 0 20px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+.izleme-serileri__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.izleme-serisi {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  background: var(--surface-1);
+}
+.izleme-serisi__title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 8px;
+  font-size: 0.98rem;
+}
+.izleme-serisi__count {
+  font-size: 0.76rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.izleme-serisi p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-primary);
 }
 
 /* ── Hakkında alt-sekmeleri (Hakkında / Şiirleri) ──────────────────────── */
@@ -4802,9 +4920,16 @@ body.cizim-lightbox-open {
 #sorular-3d-toggle {
   left: 168px;
 }
+/* B1: "ne kadar eminiz" düğmesi, eğim düğmesinin hemen sağında. */
+.graph-confidence-toggle {
+  position: absolute;
+  top: 12px;
+  left: 168px;
+}
 .esma-3d-toggle,
 .esma-derived-toggle,
-.graph-3d-toggle {
+.graph-3d-toggle,
+.graph-confidence-toggle {
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -4823,9 +4948,48 @@ body.cizim-lightbox-open {
 .esma-derived-toggle:hover,
 .esma-derived-toggle:focus-visible,
 .graph-3d-toggle:hover,
-.graph-3d-toggle:focus-visible {
+.graph-3d-toggle:focus-visible,
+.graph-confidence-toggle:hover,
+.graph-confidence-toggle:focus-visible {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
+}
+.graph-confidence-toggle.is-on {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+
+/* B1 kenar soluklaştırma: yalnız #ontology-wrap.confidence-on iken devrede
+   -- varsayılan (kapalı) durumda bütün kenarlar eşit görünür, tıpkı
+   türetilmiş-kenar ilkesindeki gibi "önce sessiz, tıklayınca konuşan"
+   katman. */
+#ontology-wrap.confidence-on .link--conf-orta,
+#ontology-wrap.confidence-on .link--conf-dusuk,
+#ontology-wrap.confidence-on .link--conf-hipotez,
+#ontology-wrap.confidence-on .link--conf-bilinmiyor,
+#ontology-wrap.confidence-on .link--conf-gelecek {
+  opacity: 0.32;
+  stroke-dasharray: 2 5;
+}
+#ontology-wrap.confidence-on .link--conf-yuksek {
+  opacity: 1;
+}
+
+.detail-confidence {
+  font-size: 0.82rem;
+  border-left: 2px solid var(--border);
+  padding-left: 10px;
+  margin: -6px 0 14px;
+  color: var(--text-secondary);
+}
+.detail-confidence--orta,
+.detail-confidence--dusuk {
+  border-left-color: hsl(40 60% 50%);
+}
+.detail-confidence--hipotez,
+.detail-confidence--bilinmiyor,
+.detail-confidence--gelecek {
+  border-left-color: hsl(350 55% 55%);
 }
 
 .esma3d {
