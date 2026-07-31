@@ -372,6 +372,7 @@
       '<button type="button" data-action="notes">📋 Kayıtlı Notlar</button>' +
       '<button type="button" data-action="export">Dışa Aktar</button>' +
       '<button type="button" data-action="clear">Temizle</button>' +
+      '<button type="button" data-action="minimize">Küçült ↑</button>' +
       '<button type="button" data-action="exit">Düzenleme Modunu Kapat</button>' +
       "</div>";
     document.body.appendChild(panel);
@@ -388,6 +389,7 @@
     });
     panel.querySelector('[data-action="export"]').addEventListener("click", exportQueue);
     panel.querySelector('[data-action="clear"]').addEventListener("click", clearQueue);
+    panel.querySelector('[data-action="minimize"]').addEventListener("click", () => { menu.hidden = true; });
     panel.querySelector('[data-action="exit"]').addEventListener("click", disableEditMode);
   }
 

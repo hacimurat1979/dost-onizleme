@@ -85,8 +85,14 @@
   // 0 oluyor ve graf bozuk kuruluyor. Sekmesi ilk açıldığında çağrılıyor.
   let started = false;
   window.__dostDaphneProfileApp = {
-    activate: function () {
+    activate: function (retries) {
       if (started) return;
+      // SVG genişliği henüz 0'sa (layout reflow bitmemiş) bir kare daha bekle.
+      const s = svg.node();
+      if (s && s.clientWidth === 0 && (retries || 0) < 12) {
+        requestAnimationFrame(() => window.__dostDaphneProfileApp.activate((retries || 0) + 1));
+        return;
+      }
       started = true;
       loadData();
     },

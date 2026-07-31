@@ -508,6 +508,10 @@
   function sadelestir(s) {
     return String(s).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
   }
+  // HTML etiketlerini boşluk bırakmadan siler — DOM textContent ile karşılaştırma için
+  function etiketSil(s) {
+    return String(s).replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+  }
   function trKucuk(s) { return String(s).toLocaleLowerCase("tr"); }
 
   var vurguZaman = null;
@@ -548,12 +552,13 @@
   function vurgula(bulgu) {
     vurguTemizle();
     if (vurguZaman) { clearTimeout(vurguZaman); vurguZaman = null; }
-    var duz = sadelestir(bulgu.metin);
     var es = bulgu.esler[0].es;
     // İki kademeli arama: önce metnin başından uzunca bir dilim (kesin),
     // bulunamazsa yalnız eşleşen ifade (honorifics gibi eklentiler metni
     // değiştirmiş olabilir).
-    var uzun = trKucuk(duz.slice(0, 90));
+    // etiketSil: DOM textContent ile örtüşmesi için <em> gibi etiketleri
+    // boşluk yerine silerek kaldırır (sadelestir " " bırakır → uyuşmazlık).
+    var uzun = trKucuk(etiketSil(bulgu.metin).slice(0, 90));
     var kisa = trKucuk(es);
     var bitis = Date.now() + 8000;
 
@@ -572,7 +577,16 @@
       }
       esiIsaretle(el, es);
       el.classList.add("durus-vurgu");
-      el.scrollIntoView({ block: "center", behavior: "smooth" });
+      // detail-panel position:fixed içindeyse scrollIntoView ana sayfayı
+      // kaydırır, panelin içini değil — panelin scrollTop'unu elle ayarla.
+      var panelEl = document.getElementById("detail-panel");
+      if (panelEl && !panelEl.hidden && panelEl.contains(el)) {
+        var elRect = el.getBoundingClientRect();
+        var pRect = panelEl.getBoundingClientRect();
+        panelEl.scrollTop += elRect.top - pRect.top - panelEl.clientHeight / 2 + elRect.height / 2;
+      } else {
+        el.scrollIntoView({ block: "center", behavior: "smooth" });
+      }
       vurguZaman = setTimeout(vurguTemizle, 6000);
     })();
   }
