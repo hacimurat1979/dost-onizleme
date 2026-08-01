@@ -968,7 +968,13 @@ mesmo antes que o assombro exista."></blockquote>
     // doğru mutlak URL'e (site kökündeki sw.js'e) kaydolsun.
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register(new URL("sw.js", document.baseURI).href).catch(() => {});
+        // updateViaCache:"none" olmadan tarayıcı sw.js'in kendisini de HTTP
+        // önbelleğinden (max-age=600) okuyabilir -- yeni bir sw.js push edilse
+        // bile fark sessizce gecikir. Bu, sw.js her ziyarette ağdan bayt bayt
+        // karşılaştırılsın diye eklendi.
+        navigator.serviceWorker
+          .register(new URL("sw.js", document.baseURI).href, { updateViaCache: "none" })
+          .catch(() => {});
       });
     }
   </script>

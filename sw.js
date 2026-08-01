@@ -11,7 +11,7 @@
  */
 "use strict";
 
-const CACHE_VERSION = "dost-sw-v1";
+const CACHE_VERSION = "dost-sw-v2";
 const SHELL_URLS = ["./", "./index.html", "./assets/style.css", "./assets/vendor/d3.min.js"];
 
 self.addEventListener("install", (event) => {
@@ -56,8 +56,13 @@ self.addEventListener("fetch", (event) => {
   }
 
   // Sayfalar + JS/CSS: önce ağ, yalnız çevrimdışıyken önbelleğe düş.
+  // "cache: reload" şart -- yoksa fetch() tarayıcının kendi HTTP önbelleğinden
+  // (GitHub Pages'in verdiği Cache-Control: max-age=600 sebebiyle) 10 dakikaya
+  // kadar eski bir kopya döndürebilir ve "önce ağ" niyeti sessizce bozulur --
+  // sayfayı ctrl+shift+r ile zorlamadan yeni sürümün görünmemesinin sebebi buydu.
+  const isNavOrAsset = req.destination === "script" || req.destination === "style" || req.mode === "navigate";
   event.respondWith(
-    fetch(req)
+    fetch(isNavOrAsset ? new Request(req, { cache: "reload" }) : req)
       .then((resp) => {
         if (resp.ok && (req.destination === "script" || req.destination === "style" || req.mode === "navigate")) {
           caches.open(CACHE_VERSION).then((cache) => cache.put(req, resp.clone()));
