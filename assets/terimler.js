@@ -469,6 +469,14 @@
     </svg>`;
   }
 
+  function introHtml() {
+    return `<p class="terimler-intro">${tt({
+      tr: "Bu bir sözlük değil; aynı kelimenin İbn Arabî'nin farklı yerlerinde nasıl karşımıza çıktığını izleme çabası. Bir terime tıklayın, kaynağına ve ilişkili terimlere oradan ulaşın.",
+      en: "This isn't a dictionary; it's an attempt to follow how the same word keeps turning up in different places in Ibn Arabi's work. Click a term to reach its sources and related terms from there.",
+      pt: "Isto não é um dicionário; é uma tentativa de seguir como a mesma palavra volta a aparecer em lugares diferentes na obra de Ibn Arabi. Clique num termo para chegar às suas fontes e termos relacionados a partir dali.",
+    })}</p>`;
+  }
+
   function heatKeyHtml() {
     return `<div class="terimler-heat">
       <p class="terimler-heat__title">
@@ -566,7 +574,7 @@
       })
       .join("");
 
-    grid.innerHTML = `<div class="terimler-shell">${rail}<div class="terimler-body">${heatKeyHtml()}${body}</div></div>`;
+    grid.innerHTML = `<div class="terimler-shell">${rail}<div class="terimler-body">${introHtml()}${heatKeyHtml()}${body}</div></div>`;
 
     grid.querySelectorAll(".terim-entry").forEach((el) => {
       el.addEventListener("click", () => showTermDetail(el.dataset.id));

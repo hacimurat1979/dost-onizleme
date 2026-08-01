@@ -195,6 +195,17 @@
   let dataPromise = null;
   let activePartId = null;
 
+  // B2 "Kaldığın yer": deep-link olmadan girişte (menüden tıklama, açılış
+  // ekranından "devam et" gibi) atlas'ın varsayılan activePartId'si yerine
+  // okuyucunun son bıraktığı kısmı öneririz -- açık bir id her zaman kazanır.
+  const LAST_PART_KEY = "dost-futuhat-last-part";
+  function saveLastPart(id) {
+    try { localStorage.setItem(LAST_PART_KEY, id); } catch (_) {}
+  }
+  function loadLastPart() {
+    try { return localStorage.getItem(LAST_PART_KEY); } catch (_) { return null; }
+  }
+
   // Atlas artık ikiye bölünmüş yükleniyor (bkz. scripts/build-static-routes.py
   // -> write_futuhat_split): önce hafif indeks (kısım listesi + arama için,
   // ~240KB), sonra açılan her kısmın tam içeriği talep üzerine (~100KB).
@@ -938,6 +949,8 @@
 
       <div class="futuhat-sections" id="futuhat-sections"></div>
 
+      <div id="futuhat-anlamsal"></div>
+
       <section class="futuhat-sources">
         <p class="detail-eyebrow">${tt({ tr: "Kaynaklar", en: "Sources", pt: "Fontes" })}</p>
         <ul>
@@ -1037,6 +1050,48 @@
     renderStats(part);
     setupToolbar(part);
     renderMeasurementPanel(part);
+    renderAnlamsalBaglantilar(part);
+  }
+
+  // Embedding altyapısı: iki metin gömme (embedding) yakınlığıyla bulunmuş,
+  // elle gözden geçirilip onaylanmış kısım çiftleri (research/anlamsal-
+  // komsuluk-tr.json, 48 adaydan 14 onay). B4(a) şartı: bu Dost'un kendi
+  // çapraz-referansı DEĞİL, bizim ölçümümüz -- o yüzden .futuhat-bilmiyoruz-box
+  // ile aynı kesikli-çerçeve ailesinde ama ayrı bir eyebrow'la gösteriliyor.
+  let anlamsalPromise = null;
+  function fetchAnlamsalBaglantilar() {
+    if (!anlamsalPromise) {
+      anlamsalPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/anlamsal-baglantilar.json").catch(() => null);
+    }
+    return anlamsalPromise;
+  }
+  function renderAnlamsalBaglantilar(part) {
+    const mount = document.getElementById("futuhat-anlamsal");
+    if (!mount) return;
+    fetchAnlamsalBaglantilar().then((data) => {
+      const liste = data && data.dizin && data.dizin[part.id];
+      if (!mount.isConnected || !liste || !liste.length) return;
+      const box = document.createElement("div");
+      box.className = "futuhat-anlamsal-box";
+      box.innerHTML = `<p class="futuhat-anlamsal-box__eyebrow">${tt({
+        tr: "Bu konuyu başka nerelerde görüyoruz?",
+        en: "Where else do we see this?",
+        pt: "Onde mais vemos isto?",
+      })}</p>`;
+      liste.forEach((baglanti) => {
+        const item = document.createElement("a");
+        item.className = "futuhat-anlamsal-box__item";
+        item.href = window.__dostNav.href(baglanti.view, baglanti.id);
+        item.innerHTML = `<span class="futuhat-anlamsal-box__title">${tt(baglanti.title)}</span><span class="futuhat-anlamsal-box__sebep">${tt(baglanti.sebep)}</span>`;
+        item.addEventListener("click", (e) => {
+          if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          e.preventDefault();
+          window.__dostNav.goTo(baglanti.view, baglanti.id);
+        });
+        box.appendChild(item);
+      });
+      mount.appendChild(box);
+    });
   }
 
   // D1: ölçüm panosu. Yalnız @revise kipinde görünür -- okuyucuya değil,
@@ -1173,6 +1228,7 @@
     const meta = partById(id);
     if (!meta) return;
     activePartId = id;
+    saveLastPart(id);
     if (partsEl) {
       partsEl.querySelectorAll(".futuhat-part-chip").forEach((chip) => {
         chip.classList.toggle("futuhat-part-chip--current", chip.dataset.id === id);
@@ -1253,7 +1309,12 @@
       }
       fetchData().then((data) => {
         if (!data) return;
-        if (id && data.parts.some((p) => p.id === id)) activePartId = id;
+        if (id && data.parts.some((p) => p.id === id)) {
+          activePartId = id;
+        } else {
+          const last = loadLastPart();
+          if (last && data.parts.some((p) => p.id === last)) activePartId = last;
+        }
         render();
       });
     },

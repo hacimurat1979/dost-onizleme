@@ -345,7 +345,7 @@
     input.removeAttribute("aria-activedescendant");
     if (!items.length) {
       results.innerHTML = input.value
-        ? `<div class="search-panel__empty" data-tr="Sonuç bulunamadı" data-en="No results" data-pt="Nenhum resultado">...</div>`
+        ? `<div class="search-panel__empty" data-tr="Bu terimi haritada henüz bulamadık" data-en="We haven't found this term on the map yet" data-pt="Ainda não encontramos este termo no mapa">...</div>`
         : "";
       if (input.value) I18n.applyStatic(results);
       return;

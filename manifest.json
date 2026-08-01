@@ -1,0 +1,17 @@
+{
+  "name": "Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası",
+  "short_name": "Dost Arabî",
+  "description": "Dost'u (Muhyiddîn İbnü'l-Arabî) anlamaya çalışan bir harita — Fütûhât, Füsûs, Esmâ, Hâller ve daha fazlası.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#f9f9f7",
+  "theme_color": "#8a6100",
+  "lang": "tr",
+  "dir": "ltr",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

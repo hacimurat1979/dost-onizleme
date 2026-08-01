@@ -99,7 +99,7 @@
   let halData = null, halDataPromise = null, built = false;
   let orderedNodes = [], nodeById = new Map();
   let relations = [];
-  let zoomLayer, bgLayer, ghostLayer, linkLayer, chordLayer, glowLayer, nodeLayer, defs;
+  let zoomLayer, bgLayer, ghostLayer, linkLayer, chordLayer, glowLayer, nodeLayer, walkLayer, defs;
   let zoomBehavior = null;
   let currentDetailNode = null, currentRelation = null, hoveredId = null, hoveredRel = null;
   let rafId = null, startTs = 0, lastTs = 0, reveal = 1;
@@ -115,6 +115,15 @@
   let tilt = 0, tiltTarget = 0, tiltAnimStart = 0, tiltFrom = 0;
   let yaw = 0, pitch = 0.62;
   let dragging = false;
+
+  // ---- C3: "yolu yürü" -- Nefs'ten Hayret'e, sonra dönüş yayının ucuna
+  // (aynı açı, bir üst tur) ilerleyen tek bir nokta. walkT null iken devre
+  // dışı; 0..n arası ilerlerken n = orderedNodes.length, yani tam olarak
+  // dönüş yayının bittiği yer (Nefs'in TAM ÜSTÜ, tilt>0 iken görünür).
+  const WALK_DUR = 6000;
+  const WALK_HOLD = 2600;
+  const WALK_FADE = 900;
+  let walkT = null, walkStart = 0, walkDone = false;
 
   function fetchData() {
     if (halDataPromise) return halDataPromise;
@@ -238,6 +247,7 @@
     linkLayer = zoomLayer.append("g").attr("class", "hal-links");
     glowLayer = zoomLayer.append("g").attr("class", "hal-glows");
     nodeLayer = zoomLayer.append("g").attr("class", "hal-nodes");
+    walkLayer = zoomLayer.append("g").attr("class", "hal-walk-layer");
 
     orderedNodes.forEach((d) => {
       const c = d3.color(nodeColor(d)) || d3.color("#888");
@@ -252,6 +262,7 @@
     zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.4, 3], () => tiltTarget < 0.5);
     wireRotateDrag();
     wireTiltToggle();
+    wireWalkButton();
 
     const rc = document.getElementById("hal-recenter");
     if (rc && !rc.dataset.wiredHal) { rc.dataset.wiredHal = "1"; rc.addEventListener("click", () => { clearFocus(); fitView(true); }); }
@@ -330,6 +341,20 @@
     svgNode.addEventListener("pointercancel", stop);
   }
 
+  // "Yolu yürü": Nefs'ten başlayıp dönüş yayının ucuna (bir üst turdaki
+  // Nefs'in yerine) tek bir noktayla ilerler. Tekrar tıklamak baştan başlatır.
+  function wireWalkButton() {
+    const btn = document.getElementById("hal-walk-btn");
+    if (!btn || btn.dataset.wiredHalWalk) return;
+    btn.dataset.wiredHalWalk = "1";
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      walkT = 0; walkStart = performance.now(); walkDone = false;
+      btn.classList.add("is-walking");
+      ensureFrame();
+    });
+  }
+
   function initShimmer() {
     shimmer = [];
     if (reduceMotion) return;
@@ -366,6 +391,20 @@
     // durur. Yükseklik ekseni etrafında döndüğü için sarmal ortada kalır,
     // sığdırma bozulmaz.
     if (tilt > 0.5 && !dragging && !reduceMotion) { yaw += dt * 0.00007; active = true; }
+
+    if (walkT !== null) {
+      const n = orderedNodes.length;
+      const elapsed = ts - walkStart;
+      const total = WALK_DUR + WALK_HOLD + WALK_FADE;
+      if (elapsed >= total) {
+        walkT = null; walkDone = true;
+        const btn = document.getElementById("hal-walk-btn");
+        if (btn) btn.classList.remove("is-walking");
+      } else {
+        walkT = Math.min(n, (elapsed / WALK_DUR) * n);
+      }
+      active = true;
+    }
 
     render(ts);
     if (!reduceMotion || active) ensureFrame();
@@ -454,6 +493,31 @@
       .attr("x", wrapMid.x).attr("y", wrapMid.y - 10)
       .style("opacity", foc ? 0.25 : 0.85 * (reveal >= 0.99 ? 1 : 0))
       .text(tt({ tr: "→ aynı hâl, bir üst turda", en: "→ same state, a turn higher", pt: "→ mesmo estado, um giro acima" }));
+
+    // --- C3: "yolu yürü" -- Nefs'ten dönüş yayının ucuna ilerleyen nokta ---
+    if (walkT !== null) {
+      const elapsed = ts - walkStart;
+      let op = 1;
+      if (elapsed > WALK_DUR + WALK_HOLD) op = Math.max(0, 1 - (elapsed - WALK_DUR - WALK_HOLD) / WALK_FADE);
+      const p = projectT(walkT);
+      const trailSel = walkLayer.selectAll("path.hal-walk-trail").data([0]);
+      trailSel.enter().append("path").attr("class", "hal-walk-trail").attr("fill", "none").merge(trailSel)
+        .attr("d", samplePath(0, walkT, Math.max(2, Math.round(walkT * 6))))
+        .style("opacity", op * 0.6);
+      const dotSel = walkLayer.selectAll("circle.hal-walk-dot").data([0]);
+      dotSel.enter().append("circle").attr("class", "hal-walk-dot").attr("r", 7).merge(dotSel)
+        .attr("cx", p.x).attr("cy", p.y)
+        .style("opacity", op);
+      const n = orderedNodes.length;
+      const nefsEchoOp = walkT >= n - 0.02 ? op * 0.9 : 0;
+      const nefsP = projectT(n);
+      const echoSel = walkLayer.selectAll("circle.hal-walk-nefs-echo").data([0]);
+      echoSel.enter().append("circle").attr("class", "hal-walk-nefs-echo").attr("fill", "none").attr("r", 16).merge(echoSel)
+        .attr("cx", nefsP.x).attr("cy", nefsP.y)
+        .style("opacity", nefsEchoOp);
+    } else {
+      walkLayer.selectAll("path.hal-walk-trail, circle.hal-walk-dot, circle.hal-walk-nefs-echo").remove();
+    }
 
     // --- kirişler: ardışık olmayan hâller arasındaki bağlar ---
     const chSel = chordLayer.selectAll("g.hal-chord-g").data(relations, (r) => r.source + ">" + r.target);

@@ -34,6 +34,15 @@
   var sectionScenes = [];
   var crossLinkSubscribed = false;
 
+  // B2 "Kaldığın yer": bkz. futuhat.js'teki aynı isimli mantık.
+  var LAST_FASS_KEY = "dost-fusus-last-fass";
+  function saveLastFass(id) {
+    try { localStorage.setItem(LAST_FASS_KEY, id); } catch (_) {}
+  }
+  function loadLastFass() {
+    try { return localStorage.getItem(LAST_FASS_KEY); } catch (_) { return null; }
+  }
+
   function t(d) { return d ? I18n.pick3(d) : ""; }
   function esc(s) {
     return String(s == null ? "" : s)
@@ -215,6 +224,9 @@
     var idx = 0;
 
     var html = '<header class="fusus-article__head">'
+      + '<button type="button" class="fusus-print-btn" title="' + esc(t({ tr: "Yazdır", en: "Print", pt: "Imprimir" })) + ' / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">'
+      + '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="6" y="3" width="12" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="9" width="16" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>'
+      + "</button>"
       + '<p class="fusus-article__eyebrow">'
       + esc(t({ tr: "Fass " + f.no, en: "Bezel " + f.no, pt: "Engaste " + f.no })) + " · "
       + esc(t(f.hikmet)) + "</p>"
@@ -246,6 +258,8 @@
       html += "</section>";
     });
 
+    html += '<div id="fusus-anlamsal"></div>';
+
     if (f.sources && f.sources.length) {
       html += '<footer class="fusus-article__sources"><h3>'
         + esc(t({ tr: "Kaynak", en: "Source", pt: "Fonte" })) + "</h3><ul>"
@@ -255,14 +269,54 @@
 
     articleEl.innerHTML = html;
     mountHelixBlocks(articleEl, helixes, captions);
+    renderAnlamsalBaglantilar(f);
+    var printBtn = articleEl.querySelector(".fusus-print-btn");
+    if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
+  }
+
+  // Embedding altyapısı: bkz. assets/futuhat.js'teki aynı adlı fonksiyon --
+  // burada Füsûs tarafı. Aynı veri dosyası (data/ibn-arabi/anlamsal-
+  // baglantilar.json), aynı görsel aile (kesikli çerçeve = bizim ölçümümüz).
+  var anlamsalPromise = null;
+  function fetchAnlamsalBaglantilar() {
+    if (!anlamsalPromise) {
+      anlamsalPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/anlamsal-baglantilar.json").catch(function () { return null; });
+    }
+    return anlamsalPromise;
+  }
+  function renderAnlamsalBaglantilar(f) {
+    var mount = document.getElementById("fusus-anlamsal");
+    if (!mount) return;
+    fetchAnlamsalBaglantilar().then(function (baglantiData) {
+      var liste = baglantiData && baglantiData.dizin && baglantiData.dizin[f.id];
+      if (!mount.isConnected || !liste || !liste.length) return;
+      var html = '<div class="futuhat-anlamsal-box"><p class="futuhat-anlamsal-box__eyebrow">'
+        + esc(t({ tr: "Bu konuyu başka nerelerde görüyoruz?", en: "Where else do we see this?", pt: "Onde mais vemos isto?" }))
+        + "</p>";
+      liste.forEach(function (baglanti) {
+        html += '<a class="futuhat-anlamsal-box__item" href="' + esc(window.__dostNav.href(baglanti.view, baglanti.id)) + '" data-view="' + esc(baglanti.view) + '" data-id="' + esc(baglanti.id) + '">'
+          + '<span class="futuhat-anlamsal-box__title">' + esc(t(baglanti.title)) + "</span>"
+          + '<span class="futuhat-anlamsal-box__sebep">' + esc(t(baglanti.sebep)) + "</span></a>";
+      });
+      html += "</div>";
+      mount.innerHTML = html;
+      mount.querySelectorAll(".futuhat-anlamsal-box__item").forEach(function (item) {
+        item.addEventListener("click", function (e) {
+          if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          e.preventDefault();
+          window.__dostNav.goTo(item.dataset.view, item.dataset.id);
+        });
+      });
+    });
   }
 
   function activate(id) {
     load().then(function () {
       if (!data) return;
-      var f = fassById(id) || fassById(data.activeFassId) || data.fasses[0];
+      var f = fassById(id) || (!id ? fassById(loadLastFass()) : null) || fassById(data.activeFassId) || data.fasses[0];
       if (!f) return;
       activeId = f.id;
+      saveLastFass(f.id);
       renderMap();
       renderList();
       renderArticle(f);

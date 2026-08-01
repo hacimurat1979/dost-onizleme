@@ -517,7 +517,10 @@ html {
 .search-toggle,
 .surprise-toggle,
 .typography-btn,
-.futuhat-toolbar__btn {
+.futuhat-toolbar__btn,
+.sessiz-mod-toggle,
+.defter-toggle,
+.hal-walk-btn {
   width: 44px;
   height: 44px;
   flex-shrink: 0;
@@ -548,6 +551,159 @@ html {
 .theme-toggle__icon { display: none; }
 [data-theme="light"] .theme-toggle__icon--moon { display: block; }
 [data-theme="dark"] .theme-toggle__icon--sun { display: block; }
+
+/* Sessiz Mod: sabit, dairesel bir anahtar -- açıkken üst menüyü kaldırır.
+   Aynı düğme aynı yerde kalır (geri dönmek de tek tıkla, ya da Esc). */
+.sessiz-mod-toggle {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+  background: var(--page-plane);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+.sessiz-mod-toggle__ring { transition: opacity 0.25s ease; }
+.sessiz-mod-toggle__dot { transition: r 0.25s ease; }
+.sessiz-mod-toggle[aria-pressed="true"] {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+.sessiz-mod-toggle[aria-pressed="true"] .sessiz-mod-toggle__ring { opacity: 0.35; }
+.sessiz-mod-toggle[aria-pressed="true"] .sessiz-mod-toggle__dot { r: 5.5; }
+
+body.sessiz-mod-on .app-header {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sessiz-mod-toggle__ring,
+  .sessiz-mod-toggle__dot {
+    transition: none;
+  }
+}
+
+/* Kişisel Kavram Defteri: sol üstte sabit dairesel anahtar + çekmece. */
+.defter-toggle {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 60;
+  background: var(--page-plane);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+.defter-toggle[aria-expanded="true"] {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+
+.defter-panel {
+  position: fixed;
+  left: 18px;
+  bottom: 74px;
+  z-index: 61;
+  width: min(320px, calc(100vw - 36px));
+  max-height: min(60vh, 480px);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+.defter-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 14px 16px 6px;
+}
+.defter-panel__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.defter-panel__close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+.defter-panel__close:hover,
+.defter-panel__close:focus-visible {
+  color: var(--accent-interactive);
+}
+.defter-panel__note {
+  margin: 0 16px 10px;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.defter-panel__list {
+  overflow-y: auto;
+  padding: 0 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.defter-panel__empty {
+  margin: 0 8px 12px;
+  padding: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.defter-panel__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px;
+  padding: 2px;
+}
+.defter-panel__item:hover {
+  background: color-mix(in srgb, var(--series-theme) 10%, transparent);
+}
+.defter-panel__item-link {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 8px;
+  text-decoration: none;
+  min-width: 0;
+}
+.defter-panel__item-eyebrow {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+.defter-panel__item-title {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.defter-panel__item-remove {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.defter-panel__item-remove:hover,
+.defter-panel__item-remove:focus-visible {
+  color: var(--accent-interactive);
+}
 
 .lang-switch {
   display: inline-flex;
@@ -950,6 +1106,23 @@ html {
   fill: var(--series-hal-hayret-text, #8a690e);
   pointer-events: none;
   transition: opacity 0.25s ease;
+}
+/* C3: "yolu yürü" -- yürüyen nokta, izi, ve Nefs'in dönüş anındaki yankısı. */
+.hal-walk-trail {
+  stroke: var(--series-hal-hayret, #e0b545);
+  stroke-width: 3.2px;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+.hal-walk-dot {
+  fill: var(--series-hal-hayret, #e0b545);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.hal-walk-nefs-echo {
+  stroke: var(--series-hal-hayret, #e0b545);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 .hal-node { cursor: pointer; outline: none; }
 .hal-glow, .hal-halo, .hal-shimmer { pointer-events: none; }
@@ -1659,6 +1832,52 @@ button.futuhat-part-chip:hover {
   color: #fff6e6;
 }
 
+/* Embedding altyapısı: "Bu konuyu başka nerelerde görüyoruz?" kutusu.
+   .futuhat-bilmiyoruz-box ile aynı kesikli-çerçeve aile (bizim ölçümümüz,
+   Dost'un iddiası değil), ama tıklanabilir öğeler taşıdığı için ayrı sınıf. */
+.futuhat-anlamsal-box {
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 0 0 20px;
+  background: color-mix(in srgb, var(--surface-1) 60%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.futuhat-anlamsal-box__eyebrow {
+  margin: 0;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.futuhat-anlamsal-box__item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-decoration: none;
+  padding: 6px 8px;
+  margin: 0 -8px;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+.futuhat-anlamsal-box__item:hover,
+.futuhat-anlamsal-box__item:focus-visible {
+  background: color-mix(in srgb, var(--series-theme) 12%, transparent);
+  outline: none;
+}
+.futuhat-anlamsal-box__title {
+  font-size: calc(0.98rem * var(--detail-font-scale, 1));
+  font-weight: 600;
+  color: var(--series-theme);
+}
+.futuhat-anlamsal-box__sebep {
+  font-size: calc(0.9rem * var(--detail-font-scale, 1));
+  line-height: 1.55;
+  color: var(--text-primary);
+}
+
 .futuhat-inline-diagram {
   background: var(--page-plane);
   border: 1px solid var(--border);
@@ -2142,6 +2361,36 @@ body[data-theme="dark"] #sirlar-legend {
   line-height: 1.45;
   color: var(--text-secondary);
 }
+/* C114: Celâl/Cemâl/Kemâl donut -- lejandaki nokta-anahtarı renkleri
+   söylüyordu, oranı söylemiyordu; bu halka 101 ismin üç kutup arasındaki
+   dağılımını tek bakışta verir. */
+.esma-pole-donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.esma-pole-donut {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.esma-pole-donut__seg {
+  stroke: var(--surface-1);
+  stroke-width: 0.6;
+  transition: opacity 0.2s ease;
+}
+.esma-pole-donut__seg:hover {
+  opacity: 0.8;
+}
+.esma-pole-donut__caption {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
 .legend__item { display: flex; align-items: center; gap: 8px; }
 .legend__dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
 .legend__dot--ibnarabi { background: var(--series-ibnarabi); }
@@ -2483,6 +2732,39 @@ html:has(.detail-panel:not([hidden])) {
 }
 #detail-panel:not([hidden]) ~ .detail-panel__print {
   display: flex;
+}
+
+.detail-panel__notebook {
+  display: none;
+  position: fixed;
+  top: calc(var(--app-header-height, 96px) + 12px);
+  right: 120px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  z-index: 56;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.detail-panel__notebook:hover,
+.detail-panel__notebook:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+#detail-panel:not([hidden]) ~ .detail-panel__notebook {
+  display: flex;
+}
+.detail-panel__notebook[aria-pressed="true"] {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+.detail-panel__notebook[aria-pressed="true"] .detail-panel__notebook-star {
+  fill: currentColor;
 }
 
 .detail-title {
@@ -3182,6 +3464,17 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   letter-spacing: 0.02em;
   color: rgba(245,234,208,0.55);
   margin-top: 16px;
+}
+
+/* B4 "Bugünün parçası" -- tagline'ın altında, ondan da soluk, tek satırlık
+   ve alıntı olduğunu belli eden italik bir iz. */
+.welcome-screen__line--gunun {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(0.68rem, 1.6vw, 0.76rem);
+  letter-spacing: 0.01em;
+  color: rgba(245,234,208,0.4);
+  margin-top: 8px;
 }
 
 .welcome-screen__skip {
@@ -4159,6 +4452,13 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   min-width: 0;
 }
 
+.terimler-intro {
+  max-width: 68ch;
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
 .terimler-heat {
   max-width: 78ch;
   margin: 0;
@@ -4842,8 +5142,18 @@ body.cizim-lightbox-open {
   .futuhat-stats,
   .node-hover-tip,
   .futuhat-popup,
-  .futuhat-toast {
+  .futuhat-toast,
+  .fusus-sidebar,
+  .fusus-print-btn,
+  .sessiz-mod-toggle,
+  .defter-toggle,
+  .defter-panel,
+  .detail-panel__notebook,
+  .fusus-figure__expand {
     display: none !important;
+  }
+  @page {
+    margin: 1.8cm;
   }
   html, body {
     background: #fff;
@@ -4890,6 +5200,34 @@ body.cizim-lightbox-open {
   .futuhat-section__p, .futuhat-inline-diagram__caption, .futuhat-hero__summary {
     color: #000;
   }
+  .futuhat-section__heading, .futuhat-hero__eyebrow, .futuhat-hero__title, .futuhat-hero__pages {
+    color: #000;
+  }
+  .futuhat-bilmiyoruz-box, .futuhat-anlamsal-box {
+    border-color: #000;
+    background: none;
+    break-inside: avoid;
+  }
+  .futuhat-bilmiyoruz-box__eyebrow, .futuhat-bilmiyoruz-box__text,
+  .futuhat-anlamsal-box__eyebrow, .futuhat-anlamsal-box__title, .futuhat-anlamsal-box__sebep {
+    color: #000;
+  }
+  /* Füsûs: Fütûhât'ta zaten olan yazdırma desteğinin eşleniği -- sidebar
+     (harita + fass listesi) gizlenir, yalnız açık fassın makalesi kalır. */
+  .fusus-shell {
+    display: block;
+  }
+  .fusus-wrap {
+    max-width: 100%;
+  }
+  .fusus-article__title, .fusus-article__eyebrow, .fusus-article__range,
+  .fusus-article__summary, .fusus-section p, .fusus-section h3,
+  .fusus-figure__cap {
+    color: #000;
+  }
+  .fusus-figure__scene {
+    break-inside: avoid;
+  }
 }
 
 /* Esmâ'nın mertebe/kapsayıcılık ilişkisini üç boyutta gösteren görünüm --
@@ -4925,6 +5263,18 @@ body.cizim-lightbox-open {
   position: absolute;
   top: 12px;
   left: 168px;
+}
+/* C3: "yolu yürü" düğmesi, Hâller'in eğim düğmesinin hemen sağında (Ontoloji
+   burada "ne kadar eminiz" düğmesini kullanıyor, Hâller'de o düğme yok). */
+.hal-walk-btn {
+  position: absolute;
+  top: 12px;
+  left: 168px;
+  background: color-mix(in srgb, var(--surface-1) 90%, transparent);
+}
+.hal-walk-btn.is-walking {
+  color: var(--series-theme-text, var(--accent-interactive));
+  border-color: var(--series-theme, var(--accent-interactive));
 }
 .esma-3d-toggle,
 .esma-derived-toggle,
@@ -4990,72 +5340,6 @@ body.cizim-lightbox-open {
 .detail-confidence--bilinmiyor,
 .detail-confidence--gelecek {
   border-left-color: hsl(350 55% 55%);
-}
-
-.esma3d {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  background: var(--surface-1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.esma3d[hidden] { display: none; }
-.esma3d__viewport {
-  width: 100%;
-  flex: 1 1 auto;
-  min-height: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: grab;
-  touch-action: none;
-}
-.esma3d__viewport:active { cursor: grabbing; }
-.esma3d__svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-/* Etiketler renkli birer rozet olarak açılıyor (düğümün rengi, koyulaştırılmış
-   arka plan -- bkz. esma-3d.js'in colorFor()+color-mix() kullanımı, .pole-badge
-   ile aynı dil) -- düz metin + ince kontur, dönen bir sahnenin üzerinde
-   yeterince net kalmıyordu. */
-.esma3d-node__badge {
-  pointer-events: none;
-}
-.esma3d__caption {
-  max-width: 520px;
-  margin: 0 auto 8px;
-  padding: 0 24px;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  text-align: center;
-}
-.esma3d__exit {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 2;
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--surface-1) 90%, transparent);
-  color: var(--text-secondary);
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-.esma3d__exit:hover,
-.esma3d__exit:focus-visible {
-  color: var(--accent-interactive);
-  border-color: var(--accent-interactive);
-}
-@media (max-width: 640px) {
-  .esma3d__caption { font-size: 0.76rem; }
 }
 
 /* .graph-hint'e tıklanınca beliren baloncuk (bkz. assets/graph-hint.js) --
@@ -6390,6 +6674,28 @@ mark.durus-vurgu-es {
 .fusus-chip__no { font-variant-numeric: tabular-nums; opacity: 0.7; font-size: 0.72rem; }
 
 .fusus-article { min-width: 0; }
+.fusus-article__head { position: relative; }
+.fusus-print-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.fusus-print-btn:hover,
+.fusus-print-btn:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
 .fusus-article__eyebrow {
   margin: 0 0 0.3rem;
   font-size: 0.78rem;

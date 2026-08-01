@@ -28,9 +28,9 @@ window.DostViewStatus = (function () {
     const text = el.querySelector(".view-status__text");
     if (text) {
       text.textContent = pick3({
-        tr: "Veri yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.",
-        en: "Couldn't load the data. Check your connection and try again.",
-        pt: "Não foi possível carregar os dados. Verifique sua conexão e tente novamente.",
+        tr: "Bu sayfa şu an açılamadı; bağlantını kontrol edip bir daha dener misin?",
+        en: "This page couldn't open right now; check your connection and try again?",
+        pt: "Esta página não pôde abrir agora; verifique sua conexão e tente de novo?",
       });
     }
     const retry = el.querySelector(".view-status__retry");

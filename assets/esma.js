@@ -1384,8 +1384,6 @@
       btn.classList.toggle("is-on", to > 0.5);
       btn.setAttribute("aria-pressed", to > 0.5 ? "true" : "false");
     });
-    // Eski 3B overlay'i kalıcı gizle (bu motor onun yerine geçti).
-    const old = document.getElementById("esma3d"); if (old) old.hidden = true;
   }
 
   // ---- 3 adımlı onboarding (#9) ----
@@ -1455,6 +1453,46 @@
     new MutationObserver(sync).observe(detailPanel, { attributes: true, attributeFilter: ["hidden"] });
   }
 
+  // C114: Celâl/Cemâl/Kemâl donut -- lejandaki nokta anahtarı hangi kutbun
+  // hangi renk olduğunu söylüyordu ama oranı vermiyordu; bu küçük halka
+  // 101 ismin üç kutup arasında nasıl dağıldığını tek bakışta gösterir.
+  function renderPoleDonut(data) {
+    const svg = document.getElementById("esma-pole-donut");
+    if (!svg) return;
+    const counts = { celal: 0, cemal: 0, kemal: 0 };
+    (data.nodes || []).forEach((n) => { if (counts[n.pole] !== undefined) counts[n.pole]++; });
+    const total = counts.celal + counts.cemal + counts.kemal;
+    if (!total) return;
+    const cx = 32, cy = 32, r = 26, rInner = 15;
+    const colorVar = { celal: "--series-celal", cemal: "--series-cemal", kemal: "--series-kemal" };
+    let angle = -Math.PI / 2;
+    let html = "";
+    ["celal", "cemal", "kemal"].forEach((pole) => {
+      const frac = counts[pole] / total;
+      if (!frac) return;
+      const a0 = angle;
+      const a1 = angle + frac * Math.PI * 2;
+      angle = a1;
+      const large = (a1 - a0) > Math.PI ? 1 : 0;
+      const x0 = cx + r * Math.cos(a0), y0 = cy + r * Math.sin(a0);
+      const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+      const xi0 = cx + rInner * Math.cos(a1), yi0 = cy + rInner * Math.sin(a1);
+      const xi1 = cx + rInner * Math.cos(a0), yi1 = cy + rInner * Math.sin(a0);
+      const d = `M${x0.toFixed(2)},${y0.toFixed(2)} A${r},${r} 0 ${large} 1 ${x1.toFixed(2)},${y1.toFixed(2)} L${xi0.toFixed(2)},${yi0.toFixed(2)} A${rInner},${rInner} 0 ${large} 0 ${xi1.toFixed(2)},${yi1.toFixed(2)} Z`;
+      const label = tt(POLE_LABEL[pole]);
+      html += `<path d="${d}" fill="${getVar(colorVar[pole])}" class="esma-pole-donut__seg"><title>${label} — ${counts[pole]}</title></path>`;
+    });
+    svg.innerHTML = html;
+    const capt = document.getElementById("esma-pole-donut-caption");
+    if (capt) {
+      capt.textContent = tt({
+        tr: `${counts.celal} Celâl · ${counts.cemal} Cemâl · ${counts.kemal} Kemâl (${total} isim arasında)`,
+        en: `${counts.celal} Jalal · ${counts.cemal} Jamal · ${counts.kemal} Kamal (out of ${total} Names)`,
+        pt: `${counts.celal} Jalal · ${counts.cemal} Jamal · ${counts.kemal} Kamal (entre ${total} Nomes)`,
+      });
+    }
+  }
+
   function buildAll(data) {
     prepareScene(data);
     buildDom();
@@ -1464,6 +1502,7 @@
     wireDerivedToggle();
     wirePanelAwareControls();
     rebuildParticles();
+    renderPoleDonut(data);
     built = true;
     // Açılışta TAM AÇIK ve 3B (kullanıcı kararı, 2026-07-26): haritanın asıl
     // söylediği şey isimler arası derinlik; kademeli açılım onu ilk bakışta
@@ -1513,6 +1552,7 @@
     onLangChange() {
       if (!built) return;
       relangControls();
+      if (esmaData) renderPoleDonut(esmaData);
       if (onboardRedraw) onboardRedraw();
       // açık panel içeriğini yeniden çiz
       if (currentDetailNode) { const n = byId.get(currentDetailNode); if (n) showNameDetail(n); }

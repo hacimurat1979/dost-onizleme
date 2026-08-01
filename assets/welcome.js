@@ -18,6 +18,32 @@
   const glow = document.getElementById("welcome-glow");
   const skipBtn = document.getElementById("welcome-skip");
 
+  // B4 "Bugünün parçası": Sırlar'ın zaten kürasyonlu 86 kaydından, güne göre
+  // sabit (herkes için aynı gün aynı kayıt) tek bir başlık seçip karşılama
+  // ekranına ekliyor. Yeni bir içerik üretmiyor -- var olan, zaten üç dilli
+  // ve kaynaklı bir kaydı gösteriyor. window.__dostRouteBase/DostI18n bu
+  // script'in kendi script etiketinden SONRA yüklendiği için DOMContentLoaded'a
+  // erteleniyor (o ana kadar ikisi de hazır olur).
+  document.addEventListener("DOMContentLoaded", function () {
+    const gununEl = document.getElementById("welcome-gunun");
+    if (!gununEl) return;
+    const base = window.__dostRouteBase || "";
+    fetch(base + "/data/ibn-arabi/sirlar.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!d || !Array.isArray(d.entries) || !d.entries.length) return;
+        const dayIndex = Math.floor(Date.now() / 86400000);
+        const entry = d.entries[dayIndex % d.entries.length];
+        const I18n = window.DostI18n;
+        const topic = entry.topic || {};
+        const text3 = (I18n ? I18n.pick3(topic) : null) || topic.tr || topic.en || "";
+        if (!text3) return;
+        gununEl.textContent = text3;
+        gununEl.hidden = false;
+      })
+      .catch(() => {});
+  });
+
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const cx = 150;
