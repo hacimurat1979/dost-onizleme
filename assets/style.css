@@ -610,6 +610,9 @@ body.sessiz-mod-on .app-header {
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
   overflow: hidden;
 }
+.defter-panel[hidden] {
+  display: none;
+}
 .defter-panel__head {
   display: flex;
   align-items: center;
@@ -3631,14 +3634,17 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   display: flex;
   gap: 8px;
   justify-content: flex-end;
-  /* The panel's own print/close buttons are position:fixed at the same
-     top offset with a higher z-index (see .detail-panel__print/__close),
-     reserving roughly the rightmost 96px of the viewport -- without this
-     padding these A-/A+ buttons render directly underneath them, fully
-     hidden (only a sliver of their border visible past the panel's own
-     24px padding). Push them clear of that reserved zone instead of
-     letting them sit underneath it. */
-  padding: 0 104px 12px 0;
+  /* The panel's own close/print/notebook buttons are position:fixed at the
+     same top offset with a higher z-index (see .detail-panel__close/
+     __print/__notebook), reserving roughly the rightmost 164px of the
+     viewport (notebook sits furthest left, at right:120px + 44px wide) --
+     without this padding these A-/A+ buttons render directly underneath
+     them, fully hidden. This was 104px (covering only close+print) until
+     the notebook star button was added further left and started silently
+     hiding the A+ button under it (2026-08-01 kullanıcı notu). Push them
+     clear of the full reserved zone instead of letting them sit underneath
+     it. */
+  padding: 0 164px 12px 0;
   border-bottom: 1px solid var(--gridline);
   position: sticky;
   top: 0;
@@ -3994,6 +4000,9 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   border: 1px solid var(--border);
   background: var(--surface-1);
   box-shadow: 0 8px 24px rgba(20, 15, 8, 0.18);
+}
+.dost-edit-panel__menu[hidden] {
+  display: none;
 }
 .viz-root[data-theme="dark"] .dost-edit-panel__menu {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
@@ -7004,6 +7013,32 @@ mark.durus-vurgu-es {
   position: absolute;
   top: 12px;
   left: 168px;
+}
+/* Sayılan bağlar sayıca az (bkz. turetilmis-kenarlar.json) ve genelde
+   henüz açılmamış (kademeli açılım) düğümler arasında -- düğmeye
+   dokunulduğunda mevcut görünümde HİÇBİR çizgi değişmeyebilir, bu da
+   düğmenin "işlevsiz" sanılmasına yol açıyordu (2026-08-01 kullanıcı
+   notu). Bu geçici altyazı, çizgiler görünüme girmese bile eylemin
+   gerçekten olduğunu doğruluyor. */
+.esma-derived-feedback {
+  position: absolute;
+  top: 62px;
+  left: 116px;
+  max-width: 220px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface-1) 88%, transparent);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+.esma-derived-feedback.is-visible {
+  opacity: 1;
 }
 .esma-derived-toggle.is-on {
   color: var(--accent-interactive);

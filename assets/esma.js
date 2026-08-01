@@ -917,12 +917,30 @@
     detailPanel.hidden = false;
   }
 
+  let derivedFeedbackEl = null, derivedFeedbackTimer = null;
+  function showDerivedFeedback(on, count) {
+    if (!wrapEl) return;
+    if (!derivedFeedbackEl) {
+      derivedFeedbackEl = document.createElement("p");
+      derivedFeedbackEl.className = "esma-derived-feedback";
+      wrapEl.appendChild(derivedFeedbackEl);
+    }
+    derivedFeedbackEl.textContent = tt(on
+      ? { tr: `${count} sayılan bağ gösteriliyor (kesikli çizgiler) — bazıları henüz açılmamış katmanlarda olabilir.`,
+          en: `Showing ${count} counted links (dashed lines) — some may be in layers not yet opened.`,
+          pt: `Mostrando ${count} vínculos contados (linhas tracejadas) — alguns podem estar em camadas ainda não abertas.` }
+      : { tr: "Sayılan bağlar gizlendi.", en: "Counted links hidden.", pt: "Vínculos contados ocultados." });
+    derivedFeedbackEl.classList.add("is-visible");
+    if (derivedFeedbackTimer) clearTimeout(derivedFeedbackTimer);
+    derivedFeedbackTimer = setTimeout(() => { derivedFeedbackEl.classList.remove("is-visible"); }, 4200);
+  }
+
   function setDerived(on) {
     derivedOn = !!on;
     const btn = document.getElementById("esma-derived-toggle");
     if (btn) { btn.classList.toggle("is-on", derivedOn); btn.setAttribute("aria-pressed", derivedOn ? "true" : "false"); }
-    if (derivedOn) fetchDerived().then(() => { if (derivedOn) ensureFrame(); });
-    else ensureFrame();
+    if (derivedOn) fetchDerived().then((rel) => { if (derivedOn) { ensureFrame(); showDerivedFeedback(true, rel.length); } });
+    else { ensureFrame(); showDerivedFeedback(false, 0); }
   }
 
   // ---- parçacıklar: yavaş ilerleyen ışık noktaları (#7) ----
