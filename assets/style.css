@@ -5817,6 +5817,14 @@ body.share-stage-open { overflow: hidden; }
   text-shadow: 0 2px 24px var(--sahne-golge);
   will-change: opacity, transform;
 }
+/* Kapanış sorusu bir "kanca": --sahne-vurgu daha önce tanımlı ama hiçbir
+   yerde kullanılmıyordu -- "Bir Soru" ve "Hikâye" şablonlarının soru
+   satırını burada renklendirip biraz büyütüyor, düz alıntıdan ayrışsın. */
+.share-line--soru {
+  color: var(--sahne-vurgu);
+  font-weight: 600;
+  font-size: clamp(1.05rem, 3vh, 1.3rem);
+}
 .share-rule {
   display: block;
   height: 1px;

@@ -65,6 +65,7 @@
       soz: { tr: "Bir Cümle", en: "One Sentence", pt: "Uma Frase" },
       ikili: { tr: "İki Kutu", en: "Two Boxes", pt: "Duas Caixas" },
       soru:     { tr: "Bir Soru", en: "A Question",   pt: "Uma Pergunta" },
+      hikaye:   { tr: "Hikâye",   en: "Story",        pt: "História" },
       ontoloji: { tr: "Ontoloji", en: "Ontology",     pt: "Ontologia" },
       esma:     { tr: "Esmâ",     en: "Divine Name",  pt: "Nome Divino" },
     },
@@ -158,6 +159,22 @@
     return out;
   }
 
+  // Bir metni cümlelere ayırır (HTML etiketleri temizlenmiş, kısa parçalar
+  // elenmiş). "Hikâye" şablonu Sorular'ın kendi cevabını tek parça değil,
+  // cümle cümle sahneye taşımak için bunu kullanıyor -- yeni metin YAZMIYOR,
+  // var olan cevabı yeniden hızlandırıyor (bkz. dosya başındaki KURAL).
+  function splitSentences(raw) {
+    const text = String(raw || "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+    const out = [];
+    const re = /[^.!?]+[.!?]+(?:["'”’)]*)?/g;
+    let m;
+    while ((m = re.exec(text))) {
+      const s = m[0].trim();
+      if (s) out.push(s);
+    }
+    return out;
+  }
+
   function pairsFromPart(p) {
     const out = [];
     const collect = (d) => {
@@ -237,6 +254,32 @@
         };
       });
     }
+    if (tpl === "hikaye") {
+      // Daha uzun, TikTok'ta bir "hikâye" gibi izlenebilecek bir sahne:
+      // Sorular'ın kendi cevabından iki cümle (kuruluş) + sonda sitenin
+      // zaten sorduğu soru (kanca). Yeni cümle YAZILMIYOR -- KURAL gereği
+      // yalnız var olan cevap ikiye bölünüp yeniden hızlandırılıyor.
+      return loadSorular().then((d) => {
+        const all = [];
+        (d.categories || []).forEach((c) => (c.questions || []).forEach((q) => all.push(q)));
+        const usable = all.filter((q) => {
+          const s = splitSentences(tt(q.answer)).filter((x) => x.length >= 24 && x.length <= 200);
+          return s.length >= 2;
+        });
+        if (!usable.length) return null;
+        const q = pick(usable);
+        const sents = splitSentences(tt(q.answer)).filter((x) => x.length >= 24 && x.length <= 200);
+        return {
+          tpl: "hikaye",
+          lines: [
+            { text: sents[0], kind: "soz" },
+            { text: sents[1], kind: "soz" },
+            { text: tt(q.question), kind: "soru" },
+          ],
+          source: tt({ tr: "Sorular · dostarabi.com", en: "Questions · dostarabi.com", pt: "Perguntas · dostarabi.com" }),
+        };
+      });
+    }
     if (tpl === "ikili") {
       return pickPart(true).then((r) => {
         if (!r) return null;
@@ -309,6 +352,9 @@
     soz:      { loop: 9000,  beats: [[0.09, 0.94]], source: [0.55, 0.97] },
     ikili:    { loop: 8500,  beats: [[0.09, 0.94], [0.22, 0.94]], source: [0.55, 0.97] },
     soru:     { loop: 8500,  beats: [[0.09, 0.94]], source: [0.52, 0.97] },
+    // Üç vuruşlu, daha uzun bir döngü: iki kuruluş cümlesi sırayla girip
+    // kalıyor, soru en sonda en uzun süre asılı kalıyor -- "kanca" burada.
+    hikaye:   { loop: 15000, beats: [[0.04, 0.97], [0.24, 0.97], [0.52, 0.97]], source: [0.80, 0.99] },
     ontoloji: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]], source: [0.60, 0.97] },
     esma:     { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]], source: [0.60, 0.97] },
   };
@@ -326,6 +372,11 @@
   // bütün kare karartıya kapanır. Süre metnin uzunluğundan hesaplanıyor --
   // sabit bir süre kısa alıntıda boş, uzun alıntıda yetersiz kalıyordu.
   const READ_WPS = 2.1;   // saniyede kelime; ekrandan rahat okuma hızı
+  // "Hikâye" iki kuruluş cümlesi + bir soru taşıdığı için tek cümlelik
+  // şablonlardan (soz/soru/ikili/ontoloji/esma) fazla kelime biriktiriyor;
+  // onlara uygulanan 11 sn okuma / 22 sn toplam tavanı burada erken keserdi.
+  const READ_CAP = { hikaye: 24 };
+  const TOTAL_CAP = { hikaye: 40 };
   function takePlan(s) {
     const fadeIn = 0.7, fadeOut = 1.2, lineIn = 1.15;
     const cues = [];
@@ -334,13 +385,13 @@
     const ruleAt = s.tpl === "ikili" ? t : null;
     if (ruleAt != null) t += 0.9;
     const words = s.lines.reduce((n, l) => n + l.text.trim().split(/\s+/).filter(Boolean).length, 0);
-    const read = Math.min(11, Math.max(3.2, words / READ_WPS));
+    const read = Math.min(READ_CAP[s.tpl] || 11, Math.max(3.2, words / READ_WPS));
     return {
       fadeIn: fadeIn, fadeOut: fadeOut, lineIn: lineIn, cues: cues, ruleAt: ruleAt,
       sourceAt: t + read * 0.3,
-      // 8 sn'nin altı TikTok'ta göz kırpması gibi geçiyor, 22 sn'nin üstü
-      // tek bir cümle için uzun.
-      total: Math.min(22, Math.max(8, t + read + fadeOut)),
+      // 8 sn'nin altı TikTok'ta göz kırpması gibi geçiyor, tavanın üstü
+      // (şablona göre 22 ya da 40 sn) tek bir sahne için uzun.
+      total: Math.min(TOTAL_CAP[s.tpl] || 22, Math.max(8, t + read + fadeOut)),
     };
   }
 
@@ -864,8 +915,11 @@
 
   function candidateSnippet(s) {
     const first = s.lines[0].text;
-    const second = s.lines.length > 1 ? s.lines[1].text : "";
-    const full = second ? first + "  ·  " + second : first;
+    // "Hikâye"de kuruluşu değil, kuruluş→soru YAYINI göstermek daha
+    // faydalı: panelde tıklamadan önce nereye vardığı görülsün.
+    const second = s.tpl === "hikaye" ? s.lines[s.lines.length - 1].text : (s.lines.length > 1 ? s.lines[1].text : "");
+    const sep = s.tpl === "hikaye" ? "  →  " : "  ·  ";
+    const full = second ? first + sep + second : first;
     return full.length > 100 ? full.slice(0, full.lastIndexOf(" ", 100)) + "…" : full;
   }
 
