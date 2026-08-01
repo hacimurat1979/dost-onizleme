@@ -413,12 +413,28 @@
     sel.call(zoomBehavior.transform, t);
   }
 
+  // Künye satırının üç alanı (harf/isim/katman) etiketsiz, üstelik nokta ile
+  // ayrılmış tek bir satırda üst üste biniyordu -- kullanıcı notu (2026-08-01):
+  // "hover'da çıkan açıklama anlaşılır değil". Tıklanınca açılan panel
+  // (openMenzil) zaten aynı üç alanı etiketli veriyordu; tooltip artık aynı
+  // sözlüğü (menzilLabels) kısaca kullanıyor, tek kaynak iki yerde de geçerli.
+  function menzilLabels() {
+    return {
+      harf: tt({ tr: "Harf", en: "Letter", pt: "Letra" }),
+      isim: tt({ tr: "İlahi isim", en: "Divine name", pt: "Nome divino" }),
+      zuhur: tt({ tr: "Bu menzilden zuhur eden", en: "What appears from this mansion", pt: "O que aparece desta mansão" }),
+      kaynak: tt({ tr: "Kaynak", en: "Source", pt: "Fonte" }),
+      katman: tt({ tr: "Mertebe katmanı", en: "Tier of ranks", pt: "Estrato dos graus" }),
+    };
+  }
+
   function showTooltip(n, event) {
     if (!tooltip) return;
+    const L = menzilLabels();
     tooltip.innerHTML =
       `<div class="node-hover-tip__title">${n.sira}. ${n.menzil}</div>` +
       `<div class="node-hover-tip__short">${tt(n.zuhur)}</div>` +
-      `<div class="node-hover-tip__meta">${n.harf} ${n.harfArapca} · ${n.isim} · ${katmanAdi(n)}</div>`;
+      `<div class="node-hover-tip__meta">${L.harf}: ${n.harf} ${n.harfArapca} · ${L.isim}: ${n.isim} · ${L.katman}: ${katmanAdi(n)}</div>`;
     tooltip.hidden = false; moveTooltip(event);
   }
   function moveTooltip(event) { GU.moveTooltip(tooltip, wrapEl, event); }
@@ -470,13 +486,7 @@
 
   function openMenzil(n) {
     activeId = n.sira;
-    const L = {
-      harf: tt({ tr: "Harf", en: "Letter", pt: "Letra" }),
-      isim: tt({ tr: "İlahi isim", en: "Divine name", pt: "Nome divino" }),
-      zuhur: tt({ tr: "Bu menzilden zuhur eden", en: "What appears from this mansion", pt: "O que aparece desta mansão" }),
-      kaynak: tt({ tr: "Kaynak", en: "Source", pt: "Fonte" }),
-      katman: tt({ tr: "Mertebe katmanı", en: "Tier of ranks", pt: "Estrato dos graus" }),
-    };
+    const L = menzilLabels();
     const varyant = n.varyant
       ? `<p class="menzil-varyant">${tt({ tr: "Bir diğer adı", en: "Also called", pt: "Também chamada" })}: ${n.varyant}</p>` : "";
     const notu = n.not

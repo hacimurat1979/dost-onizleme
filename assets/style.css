@@ -91,12 +91,16 @@
   --series-kemal:     #a6821f; /* gold / names combining celal and cemal */
   --series-esma-neutral: #9b998f; /* grey / group headers, beyond the polarity */
 
-  --series-hal-nefs:      #8a8478; /* muted grey-brown / unrefined soul */
-  --series-hal-muameleler: #a6572e; /* rust / sustained practice */
-  --series-hal-cemfark:   #3d6d94; /* steel blue / unity and differentiation */
-  --series-hal-fenabeka:  #6a4b93; /* violet / annihilation and subsistence */
-  --series-hal-tevhit:    #2f3a6b; /* indigo / divine unity */
-  --series-hal-hayret:    #c9971a; /* gold / bewilderment */
+  /* 2026-08-01: kullanıcı bu altısının Ontoloji/Esmâ'ya göre soluk kaldığını
+     belirtti (özellikle nefs neredeyse griydi, %7 doygunluk); aynı renk
+     ailesi korunarak doygunluk Ontoloji/Esmâ'nın bulunduğu ~50-80% aralığına
+     çekildi. */
+  --series-hal-nefs:      #a38343; /* bronz-kahve / unrefined soul */
+  --series-hal-muameleler: #b45422; /* rust / sustained practice */
+  --series-hal-cemfark:   #276da5; /* steel blue / unity and differentiation */
+  --series-hal-fenabeka:  #622da9; /* violet / annihilation and subsistence */
+  --series-hal-tevhit:    #223481; /* indigo / divine unity */
+  --series-hal-hayret:    #ca9716; /* gold / bewilderment */
   --series-hal-hayret-text: #8a690e; /* darker text-safe variant, ~5.0:1 on this page-plane */
 
   --series-sir-suskunluk: #5c6b78; /* slate / silence and veiling */
@@ -148,12 +152,12 @@
   --series-kemal:     #d9b555;
   --series-esma-neutral: #7c7a70;
 
-  --series-hal-nefs:      #a8a296;
-  --series-hal-muameleler: #d98a52;
-  --series-hal-cemfark:   #5b93c2;
-  --series-hal-fenabeka:  #9070c2;
-  --series-hal-tevhit:    #6b7fc2;
-  --series-hal-hayret:    #e0b545;
+  --series-hal-nefs:      #bfac88;
+  --series-hal-muameleler: #e08d52;
+  --series-hal-cemfark:   #5699d2;
+  --series-hal-fenabeka:  #9269d3;
+  --series-hal-tevhit:    #6981d3;
+  --series-hal-hayret:    #e3b745;
   --series-hal-hayret-text: #e0b545; /* already passes AA on this dark page-plane (~10:1), so just an alias */
 
   --series-sir-suskunluk: #8a99a6;
@@ -1205,32 +1209,6 @@ body.sessiz-mod-on .app-header {
   color: var(--text-primary);
 }
 
-/* Minimap (#8) — sağ alt köşe */
-.sorular-minimap {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  z-index: 3;
-  width: 150px;
-  height: 110px;
-  background: color-mix(in srgb, var(--surface-1) 62%, transparent);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
-  border-radius: 12px;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.12);
-  overflow: hidden;
-}
-.sorular-minimap svg { width: 100%; height: 100%; display: block; cursor: pointer; }
-.sorular-minimap__vp {
-  fill: color-mix(in srgb, var(--series-theme) 12%, transparent);
-  stroke: var(--series-theme);
-  stroke-width: 1;
-  opacity: 0.8;
-}
-@media (max-width: 620px) {
-  .sorular-minimap { width: 108px; height: 80px; }
-}
 /* Merkezdeki nefes alan işaret -- daire/merkez ilkesi (bkz. CLAUDE.md):
    tıklanamaz, sadece hâlâ açık kalan sorunun kendisini sezdiren dekoratif
    bir nokta. Ontoloji'deki Zât düğümünün .node-halo soluma deseniyle
@@ -7027,8 +7005,10 @@ mark.durus-vurgu-es {
    dokunulduğunda mevcut görünümde HİÇBİR çizgi değişmeyebilir, bu da
    düğmenin "işlevsiz" sanılmasına yol açıyordu (2026-08-01 kullanıcı
    notu). Bu geçici altyazı, çizgiler görünüme girmese bile eylemin
-   gerçekten olduğunu doğruluyor. */
-.esma-derived-feedback {
+   gerçekten olduğunu doğruluyor. Ontoloji'nin "ne kadar eminiz?" düğmesi
+   de aynı belirsizliği taşıyordu (2026-08-01, ayrı bir kullanıcı notu) --
+   sınıf bu yüzden görünüme özel değil, paylaşılan bir toast: `.graph-toast`. */
+.graph-toast {
   position: absolute;
   top: 62px;
   left: 116px;
@@ -7045,7 +7025,7 @@ mark.durus-vurgu-es {
   transition: opacity 0.4s ease;
   z-index: 2;
 }
-.esma-derived-feedback.is-visible {
+.graph-toast.is-visible {
   opacity: 1;
 }
 .esma-derived-toggle.is-on {

@@ -56,6 +56,14 @@ window.DostI18n = (function () {
       const v = el.dataset[lang + "AriaLabel"] || el.dataset.enAriaLabel || el.dataset.trAriaLabel;
       if (v) el.setAttribute("aria-label", v);
     });
+    // Graf köşe düğmelerinin title/aria-label'ı önceden üç dili tek metinde
+    // birleştiriyordu ("A / B / C") -- fare imleci üstünde duran yerel
+    // balon üçünü birden gösterip okunaksızlaşıyordu. Artık dile göre TEK
+    // dil gösteriliyor (2026-08-01, kullanıcı geri bildirimi).
+    scope.querySelectorAll("[data-tr-title]").forEach((el) => {
+      const v = el.dataset[lang + "Title"] || el.dataset.enTitle || el.dataset.trTitle;
+      if (v) { el.setAttribute("title", v); el.setAttribute("aria-label", v); }
+    });
     document.documentElement.lang = lang;
   }
 

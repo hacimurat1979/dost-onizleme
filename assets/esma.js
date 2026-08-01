@@ -922,7 +922,7 @@
     if (!wrapEl) return;
     if (!derivedFeedbackEl) {
       derivedFeedbackEl = document.createElement("p");
-      derivedFeedbackEl.className = "esma-derived-feedback";
+      derivedFeedbackEl.className = "graph-toast";
       wrapEl.appendChild(derivedFeedbackEl);
     }
     derivedFeedbackEl.textContent = tt(on

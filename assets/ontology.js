@@ -70,6 +70,30 @@
       pt: "o próprio texto da aresta ainda não trata esta leitura como definitiva." })}</p>`;
   }
 
+  // "Ne kadar eminiz?" düğmesi yalnız kenarları soluklaştırıp kesikli
+  // yapıyordu -- ne olduğunu açıklayan bir not yoktu (kullanıcı notu,
+  // 2026-08-01: "görünen ilişki çok net anlaşılmıyor"). Esmâ'nın "saydığımız
+  // bağlar" düğmesinde denenmiş aynı geçici altyazı deseni (.graph-toast)
+  // burada da kullanılıyor; sayı somut olduğu için "birkaç bağlantı" değil
+  // gerçek adet gösteriliyor.
+  let confidenceFeedbackEl = null, confidenceFeedbackTimer = null;
+  function showConfidenceFeedback(on, dimmedCount, totalCount) {
+    if (!ontologyWrap) return;
+    if (!confidenceFeedbackEl) {
+      confidenceFeedbackEl = document.createElement("p");
+      confidenceFeedbackEl.className = "graph-toast";
+      ontologyWrap.appendChild(confidenceFeedbackEl);
+    }
+    confidenceFeedbackEl.textContent = tt(on
+      ? { tr: `${dimmedCount}/${totalCount} bağlantı soluklaştırıldı — yalnız "Yüksek" güvenli olanlar tam görünür kalıyor.`,
+          en: `${dimmedCount}/${totalCount} links faded — only "High"-confidence ones stay fully visible.`,
+          pt: `${dimmedCount}/${totalCount} vínculos esmaecidos — apenas os de confiança "Alta" permanecem totalmente visíveis.` }
+      : { tr: "Bütün bağlantılar tekrar tam görünür.", en: "All links are fully visible again.", pt: "Todos os vínculos estão totalmente visíveis novamente." });
+    confidenceFeedbackEl.classList.add("is-visible");
+    if (confidenceFeedbackTimer) clearTimeout(confidenceFeedbackTimer);
+    confidenceFeedbackTimer = setTimeout(() => { confidenceFeedbackEl.classList.remove("is-visible"); }, 4200);
+  }
+
   // İki kavram/ilişkinin salt metinle anlatıldığında soyut kalan bağını
   // tek bakışta gösteren küçük SVG şemalar (bkz. CLAUDE.md ikinci ilke).
   const entityDiagramRenderers = {
@@ -1221,6 +1245,8 @@
         ontologyWrap.classList.toggle("confidence-on", on);
         confidenceBtn.classList.toggle("is-on", on);
         confidenceBtn.setAttribute("aria-pressed", on ? "true" : "false");
+        const dimmed = links.filter((l) => l.confidence && l.confidence !== "Yüksek").length;
+        showConfidenceFeedback(on, dimmed, links.length);
       });
     }
 

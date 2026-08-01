@@ -8,8 +8,7 @@
   // veren, sakin ve derinlikli bir bilgi haritası. Işıyan küre düğümler, düşük
   // opaklıkta organik bezier bağlantılar, çok hafif bir atmosfer katmanı
   // (radyal ışık + yavaş süzülen parçacıklar), üstüne gelince açılan mini bilgi
-  // kartı, odak modu ve sağ altta bir minimap. Salt vanilla D3 (yeni
-  // bağımlılık yok — bkz. CLAUDE.md).
+  // kartı, odak modu. Salt vanilla D3 (yeni bağımlılık yok — bkz. CLAUDE.md).
   //
   // Düzen (2026-07-27'de değişti): dokuz kategori tek bir SARMALIN durakları.
   // Önceden sekizi bir halka üzerinde, "En Temel Soru" ise halkanın
@@ -114,7 +113,6 @@
   let rafId = null, lastTs = 0, dragging = false;
   let bgParticles = [], edgeParticles = [];
   let flashId = null, flashStart = 0;
-  let miniEl = null, miniSvg = null, miniViewport = null;
 
   function fetchData() {
     if (dataPromise) return dataPromise;
@@ -309,7 +307,6 @@
       if (expandedCatId) collapseCategory(true);
     });
 
-    buildMinimap();
   }
 
   // 2026-07-27: Yüzey/Derin/Tam süzgeci kullanıcı isteğiyle kaldırıldı.
@@ -317,63 +314,12 @@
   // hem sayfanın geri kalanında karşılığı olmayan bir kontroldü hem de
   // "hangi soru daha yüzeysel" gibi, bizim veremeyeceğimiz bir hükmü
   // arayüze yazıyordu. Skor hesabı (`surfaceScore`/`depth`) veride kaldı
-  // ama artık hiçbir şeyi gizlemiyor; yalnız mini haritadaki soluklukta
-  // kullanılıyordu, o da sabitlendi.
-
-  function buildMinimap() {
-    let mm = wrapEl.querySelector(".sorular-minimap");
-    if (mm) mm.remove();
-    mm = document.createElement("div");
-    mm.className = "sorular-minimap";
-    // aria-hidden: minimap ana grafın küçültülmüş bir kopyası; ekran
-    // okuyucuya aynı düğümleri ikinci kez, üstelik isimsiz olarak
-    // okutmanın anlamı yok (2026-07-28 denetimi).
-    mm.innerHTML = `<svg viewBox="0 0 150 110" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g class="sorular-minimap__dots"></g><rect class="sorular-minimap__vp" x="0" y="0" width="0" height="0"></rect></svg>`;
-    wrapEl.appendChild(mm);
-    miniEl = mm;
-    miniSvg = d3.select(mm).select("svg");
-    miniViewport = miniSvg.select(".sorular-minimap__vp");
-    miniSvg.on("click", (event) => {
-      const box = mmBounds();
-      if (!box) return;
-      const pt = d3.pointer(event, miniSvg.node());
-      // minimap koordinatını dünya koordinatına çevir
-      const wx = box.x0 + (pt[0] / 150) * box.w, wy = box.y0 + (pt[1] / 110) * box.h;
-      const k = Math.max(currentK, 1);
-      svg.transition().duration(400).call(zoomBehavior.transform, d3.zoomIdentity.translate(width / 2 - k * wx, height / 2 - k * wy).scale(k));
-      currentK = k;
-    });
-  }
-
-  function mmBounds() {
-    if (!nodes.length) return null;
-    let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
-    nodes.forEach((d) => { x0 = Math.min(x0, d.x); x1 = Math.max(x1, d.x); y0 = Math.min(y0, d.y); y1 = Math.max(y1, d.y); });
-    const pad = 40; x0 -= pad; x1 += pad; y0 -= pad; y1 += pad;
-    return { x0, y0, w: Math.max(1, x1 - x0), h: Math.max(1, y1 - y0) };
-  }
-
-  function updateMinimap() {
-    if (!miniSvg) return;
-    // Detay paneli (kitap) açıkken sağ tarafı kapladığından minimap gizlenir;
-    // kullanıcı paneli kapatıp grafiği keşfetmeye başlayınca görünür.
-    if (miniEl) miniEl.style.display = (detailPanel && !detailPanel.hidden) ? "none" : "";
-    if (detailPanel && !detailPanel.hidden) return;
-    const box = mmBounds(); if (!box) return;
-    const sx = (x) => ((x - box.x0) / box.w) * 150;
-    const sy = (y) => ((y - box.y0) / box.h) * 110;
-    const dots = miniSvg.select(".sorular-minimap__dots").selectAll("circle").data(nodes, (d) => d.id);
-    dots.enter().append("circle").attr("r", 1.5).merge(dots)
-      .attr("cx", (d) => sx(d.x)).attr("cy", (d) => sy(d.y))
-      .style("fill", (d) => catColor(d))
-      .style("opacity", 0.8);
-    dots.exit().remove();
-    // viewport dikdörtgeni
-    const t = d3.zoomTransform(svgNode);
-    const vx0 = (-t.x) / t.k, vy0 = (-t.y) / t.k, vx1 = (width - t.x) / t.k, vy1 = (height - t.y) / t.k;
-    miniViewport.attr("x", sx(vx0)).attr("y", sy(vy0))
-      .attr("width", Math.max(2, sx(vx1) - sx(vx0))).attr("height", Math.max(2, sy(vy1) - sy(vy0)));
-  }
+  // ama artık hiçbir şeyi gizlemiyor.
+  //
+  // 2026-08-01: sağ alttaki minimap de kaldırıldı (kullanıcı notu: "grafiğin
+  // sağ alt kısmındaki gezinme karesini kaldıralım") -- buildMinimap/
+  // mmBounds/updateMinimap ve .sorular-minimap CSS'i bununla birlikte
+  // silindi.
 
   // ---------------------------------------------------------------------------
   function layoutSeed() {
@@ -585,7 +531,6 @@
       edgeParticles.forEach((p) => { p.t += p.sp * (dt / 1000); if (p.t > 1) p.t -= 1; });
     }
     render(ts);
-    updateMinimap();
     const simActive = simulation && simulation.alpha() > 0.006;
     if (!reduceMotion || simActive || dragging) ensureFrame(); else rafId = null;
   }
@@ -682,8 +627,10 @@
       // 2026-07-27): küçülüyor, soluyor ve bulanıklaşıyor -- odak açılan
       // kolda kalsın.
       else if (d.isCat && expandedCatId) scale *= 0.68;
-      // 3B perspektif ölçeği: uzaktaki düğüm küçülür.
-      if (tilt3d && tilt3d.value > 0.02) scale *= Math.max(0.55, 1 + ((d.__depth == null ? 1 : d.__depth) - 1) * tilt3d.value);
+      // 3B perspektif ölçeği: uzaktaki düğüm küçülür, öndeki büyür. 0.7
+      // çarpanı olmadan öndeki düğümler aşırı şişiyordu (kullanıcı notu
+      // 2026-08-01: "çok büyük, sanki çok önde gibi").
+      if (tilt3d && tilt3d.value > 0.02) scale *= Math.max(0.6, 1 + ((d.__depth == null ? 1 : d.__depth) - 1) * tilt3d.value * 0.7);
       const r = radiusFor(d) * scale;
       const dx = reduceMotion ? 0 : 1.2 * Math.sin(ts / 3300 + d.phase);
       const dy = reduceMotion ? 0 : 1.2 * Math.cos(ts / 3800 + d.phase);
@@ -1002,7 +949,11 @@
     // pitch 0.3 -> 0.42: sahnenin 3B olduğu ilk bakışta anlaşılmıyordu
     // (kullanıcı notu 2026-07-27); daha açık bir eğim derinliği görünür
     // kılıyor. spinRate zaten çok yavaş -- "huzurlu dönüş" istenen bu.
-    tilt3d = GU.createTilt({ focal: 2600, pitch: 0.42, spinRate: 0.00005 });
+    // 0.42 -> 0.34: bu sefer ters yönde bir not geldi (2026-08-01: "çok
+    // büyük geliyor, sanki çok önde gibi") -- derinlik hâlâ diğer
+    // görünümlerin (0.26) üstünde ve fark ediliyor, ama öndeki düğümler
+    // artık bu kadar şişmiyor (bkz. aşağıdaki 0.7 çarpanı, paintPositions).
+    tilt3d = GU.createTilt({ focal: 2600, pitch: 0.34, spinRate: 0.00005 });
     tilt3d.wireToggle("sorular-3d-toggle", () => {
       ensureFrame();
       setTimeout(() => { if (!wrapEl.hidden) fitView(true); }, reduceMotion ? 30 : 1120);
