@@ -3131,6 +3131,19 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   font-family: var(--font-body);
   font-style: normal;
 }
+.siir-card__kisim-link {
+  display: inline-block;
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-style: normal;
+  color: var(--accent-interactive);
+  text-decoration: none;
+}
+.siir-card__kisim-link:hover,
+.siir-card__kisim-link:focus-visible {
+  text-decoration: underline;
+}
 
 .detail-analogy {
   border-radius: 8px;

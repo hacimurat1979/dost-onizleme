@@ -67,6 +67,7 @@
       not_label:         { tr: "Okuma notu", en: "Reading note", pt: "Nota de leitura" },
       empty:             { tr: "Bu filtre için şiir bulunamadı.", en: "No poems found for this filter.", pt: "Nenhum poema encontrado para este filtro." },
       count:             { tr: `${poems.length} şiir`, en: `${poems.length} poem${poems.length !== 1 ? "s" : ""}`, pt: `${poems.length} poema${poems.length !== 1 ? "s" : ""}` },
+      kisma_git:         { tr: "→ Okuduğumuz kısma git", en: "→ Go to the part we read this in", pt: "→ Ir para a parte em que lemos isto" },
     };
     const L = (key) => LABELS[key][lang] || LABELS[key].tr;
 
@@ -150,6 +151,10 @@
           html += `<p class="siir-card__bilgi">${escHtml(kaynakBilgi)}</p>`;
         }
 
+        if (p.futuhat_kisim_id) {
+          html += `<a class="siir-card__kisim-link" href="${escHtml(window.__dostNav.href("futuhat", p.futuhat_kisim_id))}" data-kisim-id="${escHtml(p.futuhat_kisim_id)}">${escHtml(L("kisma_git"))}</a>`;
+        }
+
         html += `</article>`;
       });
     }
@@ -169,6 +174,15 @@
           activeTema = activeTema === id ? null : id;
         }
         render(data);
+      });
+    });
+
+    // Wire "kısma git" links (SPA navigation instead of full reload)
+    panel.querySelectorAll(".siir-card__kisim-link").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        window.__dostNav.goTo("futuhat", a.dataset.kisimId);
       });
     });
   }
