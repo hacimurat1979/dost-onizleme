@@ -462,9 +462,15 @@
   // Beş görünüm modülü (esma/hal/ontology/sorular/terimler) benzetme
   // bloklarını çizmeden önce buna bakıyor. Eskiden ayrı bir dosyadaydı
   // (assets/analogy-toggle.js); kip birleşince buraya taşındı.
+  //
+  // 2026-08-02: CLAUDE.md'nin ASKIYA ALINDI şartı (2026-07-27) karşılandı --
+  // Fütûhât (223/226) ve Füsûs (27/27) okuması, artı üç şerh kitabı (Konevî,
+  // Izutsu, Affifi) tamamlandı. Bu yüzden varsayılan artık GÖRÜNÜR: eskiden
+  // yalnız "1" iken görünen bayrak, şimdi yalnız kullanıcı elle "0" yazarsa
+  // (ör. yeni bir revizyon turunda geçici gizleme) gizleniyor.
   window.DostAnalogy = {
     visible: function () {
-      try { return localStorage.getItem(ANALOGY_KEY) === "1"; } catch (e) { return false; }
+      try { return localStorage.getItem(ANALOGY_KEY) !== "0"; } catch (e) { return true; }
     },
   };
 

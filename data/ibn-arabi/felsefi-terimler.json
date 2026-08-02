@@ -1189,6 +1189,42 @@
           }
         }
       ]
+    },
+    {
+      "id": "idrak-sureci",
+      "name": {
+        "tr": "İdrak Süreci",
+        "en": "The Process of Perception",
+        "pt": "O Processo de Percepção"
+      },
+      "description": {
+        "tr": "A.E. Affifi'nin aktardığına göre İbn Arabî, dış dünyadan bir izlenimin nasıl bilgiye dönüştüğünü beş kademeli bir zincirle anlatır -- ve bu zincirin her adımında, kalpteki Nur (idrak eden özün kendisi) faaliyettedir.",
+        "en": "According to A.E. Affifi's account, Ibn Arabi describes how an impression from the outer world turns into knowledge through a five-stage chain -- and at every step of that chain, the Light (Nur) in the heart, the perceiving reality itself, is at work.",
+        "pt": "Segundo o relato de A.E. Affifi, Ibn Arabi descreve como uma impressão do mundo exterior se transforma em conhecimento através de uma cadeia de cinco estágios -- e em cada etapa dessa cadeia, a Luz (Nur) no coração, a própria realidade percipiente, está em atividade."
+      },
+      "diagram": [
+        {
+          "type": "cascade",
+          "termId": "idrak-bes-kademe",
+          "steps": [
+            { "tr": "Duyu", "en": "Sense", "pt": "Sentido" },
+            { "tr": "Akıl", "en": "Reason", "pt": "Razão" },
+            { "tr": "Hayalgücü", "en": "Imagination", "pt": "Imaginação" },
+            { "tr": "Müfekkire", "en": "Analytic Faculty", "pt": "Faculdade Analítica" },
+            { "tr": "Hâfıza", "en": "Memory", "pt": "Memória" }
+          ],
+          "relationLabel": {
+            "tr": "her adımda kalpteki Nur faaliyette",
+            "en": "at every step, the heart's Light is at work",
+            "pt": "em cada etapa, a Luz do coração está em atividade"
+          },
+          "note": {
+            "tr": "Duyular dış dünyadan izlenim toplar, kalbe iletir; kalp bunları akla gönderir; akıl onları duyum-idrakleri olarak belirleyip hayalgücüne aktarır; hayalgücü, tahlil/ayırdetme görevi olan müfekkireye iletir; zihni ilgilendiren idraklerden bazıları en sonunda hâfızada tutulur.",
+            "en": "The senses gather impressions from the outer world and relay them to the heart; the heart sends them on to reason; reason marks them as sense-perceptions and passes them to the imagination; the imagination relays them to the analytic faculty, whose task is analysis and discernment; some of the perceptions that interest the mind are finally retained in memory.",
+            "pt": "Os sentidos recolhem impressões do mundo exterior e transmitem-nas ao coração; o coração envia-as à razão; a razão marca-as como perceções sensoriais e transmite-as à imaginação; a imaginação transmite-as à faculdade analítica, cuja tarefa é a análise e o discernimento; algumas das perceções que interessam à mente são por fim retidas na memória."
+          }
+        }
+      ]
     }
   ],
   "terms": {
@@ -4672,6 +4708,48 @@
       ],
       "iliskili_kavramlar": [
         "ayn-i-sabite"
+      ]
+    },
+    "idrak-bes-kademe": {
+      "id": "idrak-bes-kademe",
+      "tier": 2,
+      "group": "idrak-sureci",
+      "title": {
+        "tr": "Beş Kademeli İdrak Zinciri",
+        "en": "The Five-Stage Chain of Perception",
+        "pt": "A Cadeia de Cinco Estágios da Percepção"
+      },
+      "arabic": "الإدراك",
+      "ozet_tr": "duyumdan hâfızaya, her adımda kalpteki Nur'un eşliğinde",
+      "ozet_en": "from sensation to memory, accompanied at every step by the heart's Light",
+      "ozet_pt": "da sensação à memória, acompanhada em cada etapa pela Luz do coração",
+      "felsefi_tanim": {
+        "tr": "A.E. Affifi'nin İbn Arabî'nin Mâhiyyetü'l-Kalb adlı eserinden aktardığı bilgi edinme süreci: dış dünyadan duyularla toplanan izlenimler kalbe gider; kalp bunları akla iletir; beyindeki akıl bu izlenimleri duyum-idrakleri olarak belirleyip hayalgücüne gönderir; hayalgücü onları, tahlil ve ayırdetme görevi olan müfekkireye iletir; temessül (birleştirme) ve temyiz (ayırdetme) süreci bitince, zihni ilgilendiren idraklerden bazıları hâfıza tarafından alıkonur.",
+        "en": "A process of knowledge-acquisition A.E. Affifi relates from Ibn Arabi's work Mahiyyat al-Qalb: impressions gathered by the senses from the outer world go to the heart; the heart relays them to reason; reason, in the brain, marks these impressions as sense-perceptions and sends them to the imagination; the imagination relays them to the analytic faculty (mufakkira), whose task is analysis and discernment; once the process of synthesis (tamaththul) and discrimination (tamyiz) is complete, some of the perceptions of interest to the mind are retained by memory.",
+        "pt": "Um processo de aquisição de conhecimento que A.E. Affifi relata da obra de Ibn Arabi Mahiyyat al-Qalb: as impressões recolhidas pelos sentidos do mundo exterior vão ao coração; o coração transmite-as à razão; a razão, no cérebro, marca essas impressões como perceções sensoriais e envia-as à imaginação; a imaginação transmite-as à faculdade analítica (mufakkira), cuja tarefa é a análise e o discernimento; uma vez concluído o processo de síntese (tamaththul) e discriminação (tamyiz), algumas das perceções de interesse para a mente são retidas pela memória."
+      },
+      "ibn_arabi_yorumu": {
+        "tr": "Affifi bir dipnotta bu görüşü, Nur'un 'her şeyi idrak eden cevher' olduğu fikrinin İşrâkî düşüncenin etkisinde olabileceğini not düşerek aktarıyor -- kesin bir kaynaklık iddiası değil, kendi okumasının bir gözlemi olarak. Bize göre çarpıcı olan, sürecin doğrusal bir aktarım zinciri olması: her kademe bir öncekinden veri alıp bir sonrakine devrediyor, ama bütün bu aktarım boyunca kalpteki Nur -- yani idrak eden özün kendisi -- hiç durmadan faaliyette.",
+        "en": "In a footnote, Affifi relates this view while noting that the idea of the Light as 'the substance that perceives everything' may be under the influence of Illuminationist (Ishraqi) thought -- not a claim of direct sourcing, but an observation from his own reading. What strikes us is that the process is a linear chain of transmission: each stage takes in data from the one before and hands it to the one after, yet throughout this whole transmission the Light in the heart -- the perceiving reality itself -- is at work without pause.",
+        "pt": "Numa nota de rodapé, Affifi relata esta visão observando que a ideia da Luz como 'a substância que percebe tudo' pode estar sob a influência do pensamento iluminacionista (Ishraqi) -- não uma alegação de fonte direta, mas uma observação da sua própria leitura. O que nos impressiona é que o processo é uma cadeia linear de transmissão: cada etapa recebe dados da anterior e entrega-os à seguinte, mas ao longo de toda essa transmissão a Luz no coração -- a própria realidade percipiente -- está em atividade sem pausa."
+      },
+      "kaynaklar": [
+        {
+          "cilt": "affifi-tasavvuf",
+          "satir": "6073-6084",
+          "alinti_tr": "İdrak, İbnu'l-Arabî'ye göre, şu yolu izler: Duyumlar... Dış dünyadan duyumlarla toplanan izlenimler, hemen onları akla ileten kalbe giderler. Beyinde bulunan akıl, bu izlenimleri duyum-idraklaeri olarak belirler ve hayalgücüne gönderir... zihin için ilgi çekici görünen bu idraklerden bazıları... hâfıza tarafından alıkonur.",
+          "not_tr": "Affifi bunu İbn Arabî'nin Mâhiyyetü'l-Kalb adlı eserinden (varak 35-36) aktarıyor."
+        }
+      ],
+      "iliskili_kavramlar": [
+        "akil-vezir",
+        "nefs-i-natika"
+      ],
+      "site_baglantilari": [
+        {
+          "view": "ontoloji",
+          "id": "kalp"
+        }
       ]
     }
   }

@@ -265,6 +265,16 @@
       sec.blocks.forEach(function (b) {
         if (b.type === "p") {
           html += "<p>" + linkify(t(b.text)) + "</p>";
+        } else if (b.type === "serh") {
+          html += '<div class="fusus-serh">'
+            + '<div class="fusus-serh__col fusus-serh__col--konuk">'
+            + '<span class="fusus-serh__eyebrow">' + esc(t({ tr: "Konuk'un okuduğu", en: "What Konuk reads", pt: "O que Konuk lê" })) + "</span>"
+            + "<p>" + linkify(t(b.konuk)) + "</p></div>"
+            + '<div class="fusus-serh__col fusus-serh__col--konevi">'
+            + '<span class="fusus-serh__eyebrow">' + esc(t({ tr: "Konevî'nin eklediği", en: "What Qunawi adds", pt: "O que Qunawi acrescenta" })) + "</span>"
+            + "<p>" + linkify(t(b.konevi)) + "</p>"
+            + '<cite class="fusus-serh__kaynak">' + esc(t(b.kaynak)) + "</cite>"
+            + "</div></div>";
         } else if (b.type === "helix") {
           var k = "s" + (idx++);
           helixes[k] = Object.assign({}, b.helix, { title: sec.heading });

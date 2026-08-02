@@ -1414,6 +1414,65 @@
     });
   }
 
+  // FCA (Formal Concept Analysis) kavram kafesi (2026-08-02). scripts/
+  // fca-esma.py'nin ürettiği kafesten elle seçilmiş, 3-12 nesnelik
+  // "anlamlı küme" bandı -- research/fca-esma.json'daki 46 kavramın 0 ve
+  // 101 uçlarını (aşırı genel/aşırı özel) dışarıda bırakıyor. Bu bir
+  // eşleşme değil bir LİSTE olarak sunuluyor (tam bir Hasse diyagramı
+  // yerine) -- kapsam bilinçli daraltıldı, bkz. proje notları.
+  let fcaData = null;
+  function fetchFcaData() {
+    if (!fcaData) {
+      fcaData = window.DostGraphUtils.fetchJson("data/ibn-arabi/esma-fca.json").catch(() => null);
+    }
+    return fcaData;
+  }
+  function fcaClusterHtml(kume) {
+    const nitelikler = kume.nitelikler.map((n) => tt(n.label)).join(", ");
+    const isimler = kume.esma.map((id) => {
+      const node = byId.get(id);
+      const label = node ? tt(node.raw.name) : id;
+      return `<a class="cross-link" href="${window.__dostNav.href("esma", id)}" data-view="esma" data-id="${id}">${label}</a>`;
+    }).join(", ");
+    return `<div class="esma-fca-cluster">
+      <p class="esma-fca-cluster__nitelik">${nitelikler}</p>
+      <p class="esma-fca-cluster__isimler">${isimler}</p>
+    </div>`;
+  }
+  function openFcaLightbox() {
+    fetchFcaData().then((data) => {
+      if (!data || !window.DostLightbox) return;
+      window.dostTrack && window.dostTrack("sema_acildi", { type: "esma-fca" });
+      const clusters = data.kumeler.map(fcaClusterHtml).join("");
+      window.DostLightbox.open({
+        closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+        name: tt({ tr: "Makine Kümelemesi (FCA)", en: "Machine Clustering (FCA)", pt: "Agrupamento por Máquina (FCA)" }),
+        svgHtml: `<div class="esma-fca-lightbox">
+          <p class="esma-fca-lightbox__not">${tt(data.not)}</p>
+          <div class="esma-fca-lightbox__list">${clusters}</div>
+        </div>`,
+        caption: "",
+      });
+      // Bir isme tıklayınca önce lightbox kapanmalı -- kapatılmazsa,
+      // navigasyon arkadaki görünümü değiştirirken bu kutu üstte asılı
+      // kalır. Hedef elemente eklenen dinleyici, document'teki delege
+      // edilmiş navigasyon dinleyicisinden (ontology.js) önce çalışır
+      // (hedef, kabarcıklanmada her zaman atalarından önce gelir).
+      const wrap = document.querySelector(".cizim-lightbox__svg-wrap");
+      if (wrap) {
+        wrap.querySelectorAll(".cross-link").forEach((a) => {
+          a.addEventListener("click", () => { window.DostLightbox.close(); });
+        });
+      }
+    });
+  }
+  function wireFcaButton() {
+    const btn = document.getElementById("esma-fca-btn");
+    if (!btn || btn.dataset.wiredX) return;
+    btn.dataset.wiredX = "1";
+    btn.addEventListener("click", openFcaLightbox);
+  }
+
   function wireTiltToggle() {
     const btn = document.getElementById("esma-3d-toggle");
     if (!btn || btn.dataset.wiredX) return;
@@ -1542,6 +1601,7 @@
     wireInteractions();
     wireTiltToggle();
     wireDerivedToggle();
+    wireFcaButton();
     wirePanelAwareControls();
     rebuildParticles();
     renderPoleDonut(data);

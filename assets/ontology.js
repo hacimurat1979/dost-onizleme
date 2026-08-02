@@ -1897,6 +1897,33 @@
     return `<a class="cross-link" href="${href}" data-view="${entry.okuma.view}" data-id="${entry.okuma.id}">${label} →</a>`;
   }
 
+  // "Bağımsız kaynak" rozeti (2026-08-02). `iliskiliKayitlar`, aynı motifin
+  // başka kitaplarda bağımsız olarak tekrar ettiğini gösteren sirlar
+  // kayıtlarının id'lerini taşır -- ilke 3'ün ("parçaları biriktir, bütüne
+  // dair fikir üret") somut bir eşiği: iddia değil, SAYI (kaç bağımsız
+  // kaynakta göründüğü). "Kanıtlandı" demiyoruz, yalnız kaç kez bağımsız
+  // olarak karşımıza çıktığını gösteriyoruz.
+  function bagimsizKaynakBadgeHtml(entry) {
+    const ids = entry.iliskiliKayitlar;
+    if (!ids || !ids.length || !sirlarData) return "";
+    const siblings = ids.map((id) => sirlarData.entries.find((e) => e.id === id)).filter(Boolean);
+    if (!siblings.length) return "";
+    const total = siblings.length + 1;
+    const title = tt({
+      tr: `Bu motifi ${total} bağımsız kaynakta bağımsız olarak buluyoruz`,
+      en: `We find this motif independently in ${total} independent sources`,
+      pt: `Encontramos este motivo de forma independente em ${total} fontes independentes`,
+    });
+    const links = siblings.map((s) => {
+      const href = `${ROUTE_BASE}/sirlar/${s.id}`;
+      return `<a class="cross-link cross-link--kucuk" href="${href}" data-view="sirlar" data-id="${s.id}">${volumeLabel(s.volume)}</a>`;
+    }).join("");
+    return `<div class="detail-block detail-block--bagimsiz-kaynak">
+      <p class="detail-eyebrow">${title}</p>
+      <div class="bagimsiz-kaynak__list">${links}</div>
+    </div>`;
+  }
+
   // Sırlar grafiğinin merkezi artık bölümün adını değil, okumalarımızın
   // bizi getirdiği "sırların sırrı" önerisini taşıyor. Panelde bilerek bir
   // sonuç gibi değil, gerekçesi ve çekinceleriyle birlikte duruyor.
@@ -2090,6 +2117,7 @@
         <p>${linkify(I18n.pick3(entry.note), null, null)}</p>
         <cite>${entry.source}</cite>
       </div>
+      ${bagimsizKaynakBadgeHtml(entry)}
       ${sirlarOkumaHtml(entry)}
     `;
     detailPanel.hidden = false;

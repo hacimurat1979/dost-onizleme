@@ -128,6 +128,7 @@
     "kutbiyet-hiyerarsisi": "steps",
     "ahval-makamat": "wave",
     "kurani-kozmoloji": "rays",
+    "idrak-sureci": "eye",
   };
   function groupIconSvg(groupId) {
     const key = GROUP_ICON[groupId] || "dot-circle";
@@ -763,6 +764,7 @@
     "kutbiyet-hiyerarsisi": 165,
     "ahval-makamat": 70,
     "kurani-kozmoloji": 235,
+    "idrak-sureci": 150,
   };
   function groupHue(groupId) {
     return GROUP_HUE[groupId] !== undefined ? GROUP_HUE[groupId] : 40;

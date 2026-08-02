@@ -1,0 +1,549 @@
+{
+  "uretim": "scripts/fca-esma.py -> research/fca-esma.json (elle seçilmiş 3-12 nesnelik kümeler)",
+  "not": {
+    "tr": "Bu kümeler İbn Arabî'nin kendi sınıflandırması değildir -- pole/grup/mertebe/ilişki-tipi nitelikleriyle kurduğumuz bir Formal Concept Analysis (biçimsel kavram analizi) kafesinin matematiksel sonucudur. Bir isim burada başka bir isimle aynı kümede görünüyorsa, bu bizim seçtiğimiz dört boyutta ortak nitelik taşıdıkları anlamına gelir -- İbn Arabî'nin onları birlikte andığı anlamına gelmez.",
+    "en": "These clusters are not Ibn Arabi's own classification -- they are the mathematical result of a Formal Concept Analysis lattice we built from the pole/group/rank/relation-type attributes. If a name appears here in the same cluster as another, it means they share attributes along the four dimensions we chose -- not that Ibn Arabi mentioned them together.",
+    "pt": "Estes agrupamentos não são a classificação do próprio Ibn Arabi -- são o resultado matemático de uma rede de Análise Formal de Conceitos que construímos a partir dos atributos polo/grupo/grau/tipo-de-relação. Se um nome aparece aqui no mesmo agrupamento que outro, significa que partilham atributos ao longo das quatro dimensões que escolhemos -- não que Ibn Arabi os tenha mencionado juntos."
+  },
+  "kumeler": [
+    {
+      "id": 17,
+      "nitelikler": [
+        {
+          "kod": "grup:rab",
+          "label": {
+            "tr": "Rab grubu",
+            "en": "The Lord group",
+            "pt": "O grupo do Senhor"
+          }
+        },
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        },
+        {
+          "kod": "pole:celal",
+          "label": {
+            "tr": "Celâl kutbu",
+            "en": "the Majesty pole",
+            "pt": "o polo da Majestade"
+          }
+        }
+      ],
+      "esma": [
+        "muddebir",
+        "mufassil",
+        "celal"
+      ]
+    },
+    {
+      "id": 18,
+      "nitelikler": [
+        {
+          "kod": "iliski:ayni-sinif",
+          "label": {
+            "tr": "aynı sınıftan",
+            "en": "of the same class",
+            "pt": "da mesma classe"
+          }
+        },
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        },
+        {
+          "kod": "pole:kemal",
+          "label": {
+            "tr": "Kemâl kutbu",
+            "en": "the Perfection pole",
+            "pt": "o polo da Perfeição"
+          }
+        }
+      ],
+      "esma": [
+        "hayy",
+        "alim",
+        "murid"
+      ]
+    },
+    {
+      "id": 19,
+      "nitelikler": [
+        {
+          "kod": "grup:altisim",
+          "label": {
+            "tr": "Altı ana isim",
+            "en": "The six root names",
+            "pt": "Os seis nomes-raiz"
+          }
+        },
+        {
+          "kod": "iliski:ayni-sinif",
+          "label": {
+            "tr": "aynı sınıftan",
+            "en": "of the same class",
+            "pt": "da mesma classe"
+          }
+        },
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        }
+      ],
+      "esma": [
+        "alim",
+        "murid",
+        "kadir"
+      ]
+    },
+    {
+      "id": 20,
+      "nitelikler": [
+        {
+          "kod": "grup:allah",
+          "label": {
+            "tr": "Allah grubu",
+            "en": "The 'Allah' group",
+            "pt": "O grupo 'Allah'"
+          }
+        },
+        {
+          "kod": "mertebe:birincil",
+          "label": {
+            "tr": "birincil mertebe",
+            "en": "primary rank",
+            "pt": "grau primário"
+          }
+        },
+        {
+          "kod": "pole:neutral",
+          "label": {
+            "tr": "kutupsuz",
+            "en": "poleless",
+            "pt": "sem polo"
+          }
+        }
+      ],
+      "esma": [
+        "zati-grup",
+        "nisbi-grup",
+        "fiili-grup"
+      ]
+    },
+    {
+      "id": 21,
+      "nitelikler": [
+        {
+          "kod": "mertebe:birincil",
+          "label": {
+            "tr": "birincil mertebe",
+            "en": "primary rank",
+            "pt": "grau primário"
+          }
+        },
+        {
+          "kod": "pole:neutral",
+          "label": {
+            "tr": "kutupsuz",
+            "en": "poleless",
+            "pt": "sem polo"
+          }
+        }
+      ],
+      "esma": [
+        "zat",
+        "zati-grup",
+        "nisbi-grup",
+        "fiili-grup"
+      ]
+    },
+    {
+      "id": 22,
+      "nitelikler": [
+        {
+          "kod": "iliski:ayni-sinif",
+          "label": {
+            "tr": "aynı sınıftan",
+            "en": "of the same class",
+            "pt": "da mesma classe"
+          }
+        },
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        }
+      ],
+      "esma": [
+        "hayy",
+        "alim",
+        "murid",
+        "kadir"
+      ]
+    },
+    {
+      "id": 23,
+      "nitelikler": [
+        {
+          "kod": "grup:altisim",
+          "label": {
+            "tr": "Altı ana isim",
+            "en": "The six root names",
+            "pt": "Os seis nomes-raiz"
+          }
+        },
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        },
+        {
+          "kod": "pole:kemal",
+          "label": {
+            "tr": "Kemâl kutbu",
+            "en": "the Perfection pole",
+            "pt": "o polo da Perfeição"
+          }
+        }
+      ],
+      "esma": [
+        "alim",
+        "murid",
+        "mutekellim",
+        "muksit"
+      ]
+    },
+    {
+      "id": 24,
+      "nitelikler": [
+        {
+          "kod": "grup:zati-grup",
+          "label": {
+            "tr": "Zâtî isimler grubu",
+            "en": "The essential-names group",
+            "pt": "O grupo dos nomes essenciais"
+          }
+        },
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        }
+      ],
+      "esma": [
+        "semi",
+        "basir",
+        "mucib",
+        "sekur"
+      ]
+    },
+    {
+      "id": 25,
+      "nitelikler": [
+        {
+          "kod": "grup:nisbi-grup",
+          "label": {
+            "tr": "Nisbî isimler grubu",
+            "en": "The relational-names group",
+            "pt": "O grupo dos nomes relacionais"
+          }
+        },
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        },
+        {
+          "kod": "pole:kemal",
+          "label": {
+            "tr": "Kemâl kutbu",
+            "en": "the Perfection pole",
+            "pt": "o polo da Perfeição"
+          }
+        }
+      ],
+      "esma": [
+        "evvel",
+        "ahir",
+        "zahir",
+        "batin"
+      ]
+    },
+    {
+      "id": 26,
+      "nitelikler": [
+        {
+          "kod": "grup:fiili-grup",
+          "label": {
+            "tr": "Fiilî isimler grubu",
+            "en": "The active-names group",
+            "pt": "O grupo dos nomes ativos"
+          }
+        },
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        }
+      ],
+      "esma": [
+        "halik",
+        "rezzak",
+        "bari",
+        "musavvir"
+      ]
+    },
+    {
+      "id": 27,
+      "nitelikler": [
+        {
+          "kod": "grup:altisim",
+          "label": {
+            "tr": "Altı ana isim",
+            "en": "The six root names",
+            "pt": "Os seis nomes-raiz"
+          }
+        },
+        {
+          "kod": "pole:kemal",
+          "label": {
+            "tr": "Kemâl kutbu",
+            "en": "the Perfection pole",
+            "pt": "o polo da Perfeição"
+          }
+        }
+      ],
+      "esma": [
+        "allah",
+        "alim",
+        "murid",
+        "mutekellim",
+        "muksit"
+      ]
+    },
+    {
+      "id": 28,
+      "nitelikler": [
+        {
+          "kod": "grup:rab",
+          "label": {
+            "tr": "Rab grubu",
+            "en": "The Lord group",
+            "pt": "O grupo do Senhor"
+          }
+        },
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        }
+      ],
+      "esma": [
+        "muddebir",
+        "mufassil",
+        "hayy",
+        "celal",
+        "cemal"
+      ]
+    },
+    {
+      "id": 29,
+      "nitelikler": [
+        {
+          "kod": "iliski:ayni-sinif",
+          "label": {
+            "tr": "aynı sınıftan",
+            "en": "of the same class",
+            "pt": "da mesma classe"
+          }
+        }
+      ],
+      "esma": [
+        "hayy",
+        "alim",
+        "murid",
+        "kadir",
+        "zati-grup"
+      ]
+    },
+    {
+      "id": 30,
+      "nitelikler": [
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        },
+        {
+          "kod": "pole:celal",
+          "label": {
+            "tr": "Celâl kutbu",
+            "en": "the Majesty pole",
+            "pt": "o polo da Majestade"
+          }
+        }
+      ],
+      "esma": [
+        "muddebir",
+        "mufassil",
+        "kadir",
+        "celal",
+        "celil",
+        "halik"
+      ]
+    },
+    {
+      "id": 31,
+      "nitelikler": [
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        },
+        {
+          "kod": "pole:cemal",
+          "label": {
+            "tr": "Cemâl kutbu",
+            "en": "the Beauty pole",
+            "pt": "o polo da Beleza"
+          }
+        }
+      ],
+      "esma": [
+        "cevad",
+        "cemal",
+        "cemil",
+        "mucib",
+        "sekur",
+        "rezzak",
+        "musavvir"
+      ]
+    },
+    {
+      "id": 32,
+      "nitelikler": [
+        {
+          "kod": "grup:altisim",
+          "label": {
+            "tr": "Altı ana isim",
+            "en": "The six root names",
+            "pt": "Os seis nomes-raiz"
+          }
+        },
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        }
+      ],
+      "esma": [
+        "alim",
+        "murid",
+        "mutekellim",
+        "kadir",
+        "cevad",
+        "muksit",
+        "celil",
+        "cemil"
+      ]
+    },
+    {
+      "id": 33,
+      "nitelikler": [
+        {
+          "kod": "grup:altisim",
+          "label": {
+            "tr": "Altı ana isim",
+            "en": "The six root names",
+            "pt": "Os seis nomes-raiz"
+          }
+        }
+      ],
+      "esma": [
+        "allah",
+        "alim",
+        "murid",
+        "mutekellim",
+        "kadir",
+        "cevad",
+        "muksit",
+        "celil",
+        "cemil"
+      ]
+    },
+    {
+      "id": 34,
+      "nitelikler": [
+        {
+          "kod": "mertebe:tali",
+          "label": {
+            "tr": "tâli (ikincil) mertebe",
+            "en": "secondary rank",
+            "pt": "grau secundário"
+          }
+        },
+        {
+          "kod": "pole:kemal",
+          "label": {
+            "tr": "Kemâl kutbu",
+            "en": "the Perfection pole",
+            "pt": "o polo da Perfeição"
+          }
+        }
+      ],
+      "esma": [
+        "hayy",
+        "alim",
+        "murid",
+        "mutekellim",
+        "muksit",
+        "semi",
+        "basir",
+        "evvel",
+        "ahir",
+        "zahir",
+        "batin",
+        "bari"
+      ]
+    }
+  ]
+}
