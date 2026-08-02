@@ -1,13 +1,14 @@
 /**
  * SUDÛR / TENEZZÜLÂT -- mertebelerden iniş, basamak basamak değil sürekli
- * bir akış olarak. Keskin iç içe çemberler YASAK (görsel dil kuralı); bu
- * yüzden katmanlar ayrı halkalar değil, derinlik ekseninde yoğunlaşan bir
- * gürültü/akış alanı ve o alanda süzülen parçacıklar olarak kodlandı.
- * Katman GEÇİŞİ yok, katman İMASI var -- renk ve doku birbirine karışıyor.
+ * bir akış olarak. Keskin iç içe çemberler YASAK (görsel dil kuralı);
+ * katmanlar ayrı halkalar değil, derinlik ekseninde renk değiştiren tek bir
+ * parçacık sütunu olarak kodlandı -- katman GEÇİŞİ yok, katman İMASI var.
  *
- * Kullanıcı notu (2026-08-02): şerit/parçacık opaklıkları çok düşüktü --
- * akış gözle zor seçiliyordu ("çok sade"). Değerler yükseltildi; davranış
- * (katman geçişsiz akış) aynı kaldı, yalnız okunurluk arttı.
+ * Kullanıcı kararı (2026-08-02, "hepsini 3B'ye taşı"): akış artık düz bir
+ * 2B canvas değil, gerçek bir 3B hacim -- kamera bu sütunun içinde/üstünde,
+ * parçacıklar yakınlaştıkça (kameraya yaklaştıkça) doğal perspektifle
+ * büyüyüp parlıyor (three.js'in sizeAttenuation'ı, elle hesaplanan bir
+ * "derinlik" formülü değil).
  *
  * API: mount(el, opts) -> { destroy() }.
  */
@@ -15,109 +16,151 @@ window.DostKozmikSahne = window.DostKozmikSahne || {};
 window.DostKozmikSahne.sudur = (function () {
   "use strict";
 
-  // Ucuz, bağımlılıksız "gürültü": birkaç sinüsün üst üste binmesi.
-  // Gerçek Perlin/simplex değil ama organik, sürekli bir doku için yeterli.
-  function noise2(x, y, t) {
-    return (
-      Math.sin(x * 1.3 + t * 0.6) * 0.4 +
-      Math.sin(y * 2.1 - t * 0.4 + x * 0.7) * 0.35 +
-      Math.sin((x + y) * 0.9 + t * 0.25) * 0.25
-    );
+  // Üstten (Hak'a yakın, "hafif") alta (âleme yakın, "yoğun") renk yolu --
+  // eski 2B sahnenin aynı paleti.
+  const PALETTE = [
+    [235, 214, 168],
+    [201, 161, 74],
+    [124, 108, 96],
+    [70, 66, 74],
+  ];
+  function colorAt(depth) {
+    const n = PALETTE.length - 1;
+    const f = Math.max(0, Math.min(1, depth)) * n;
+    const i = Math.min(n - 1, Math.floor(f));
+    const t = f - i;
+    const a = PALETTE[i], b = PALETTE[i + 1];
+    return [
+      (a[0] + (b[0] - a[0]) * t) / 255,
+      (a[1] + (b[1] - a[1]) * t) / 255,
+      (a[2] + (b[2] - a[2]) * t) / 255,
+    ];
   }
+
+  const HEIGHT = 3.2, COL_R = 1.1;
 
   function mount(el, opts) {
     opts = opts || {};
-    const canvas = document.createElement("canvas");
-    el.appendChild(canvas);
-    const ctx = canvas.getContext("2d");
-    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const KU = window.DostKozmikUtils;
+    let destroyed = false, rafId = null, spin = 0;
+    let three3d = null;
 
-    function resize() {
+    const N = Math.round(220 * (opts.particleScale != null ? opts.particleScale : 1));
+
+    window.DostKozmikLoader.loadThree().then(function (THREE) {
+      if (destroyed) return;
+      const canvas = document.createElement("canvas");
+      el.appendChild(canvas);
       const r = el.getBoundingClientRect();
-      w = r.width; h = r.height;
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
-      canvas.style.width = w + "px";
-      canvas.style.height = h + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(el);
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(r.width, r.height, false);
 
-    const N = Math.round(160 * (opts.particleScale != null ? opts.particleScale : 1));
-    const particles = [];
-    for (let i = 0; i < N; i++) {
-      particles.push({ x: Math.random(), y: Math.random(), speed: 0.05 + Math.random() * 0.09, phase: Math.random() * 10 });
-    }
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(55, r.width / Math.max(1, r.height), 0.05, 20);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
 
-    // Üstten (Hak'a yakın, "hafif") alta (âleme yakın, "yoğun") renk yolu.
-    const PALETTE = [
-      [235, 214, 168],
-      [201, 161, 74],
-      [124, 108, 96],
-      [70, 66, 74],
-    ];
-    function colorAt(depth) {
-      const n = PALETTE.length - 1;
-      const f = Math.max(0, Math.min(1, depth)) * n;
-      const i = Math.min(n - 1, Math.floor(f));
-      const t = f - i;
-      const a = PALETTE[i], b = PALETTE[i + 1];
-      return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
-    }
-
-    let destroyed = false;
-    let rafId = null;
-    let t = 0;
-    const speedMul = opts.reducedMotion ? 0 : 1;
-
-    function frame() {
-      t += 0.01 * speedMul;
-      ctx.clearRect(0, 0, w, h);
-
-      // Arka plan dokusu: gürültüyle örneklenmiş yatay şeritler, derinlikle
-      // renk değiştiriyor -- ayrık halkalar/sınırlar yok.
-      const rows = 48;
-      for (let i = 0; i < rows; i++) {
-        const depth = i / (rows - 1);
-        const y = depth * h;
-        const n = noise2(depth * 3, 0, t) * 0.06;
-        const [r, g, b] = colorAt(depth + n);
-        ctx.fillStyle = "rgba(" + r.toFixed(0) + "," + g.toFixed(0) + "," + b.toFixed(0) + "," + (0.1 + depth * 0.09) + ")";
-        ctx.fillRect(0, y, w, h / rows + 1);
+      const positions = new Float32Array(N * 3);
+      const colors = new Float32Array(N * 3);
+      const sizes = new Float32Array(N);
+      const state = [];
+      for (let i = 0; i < N; i++) {
+        const y0 = Math.random();
+        const ang = Math.random() * Math.PI * 2;
+        const rad = Math.sqrt(Math.random()) * COL_R;
+        state.push({ y: y0, angle: ang, rad: rad, speed: 0.05 + Math.random() * 0.09, phase: Math.random() * 10 });
       }
+      function writeAttrs() {
+        state.forEach(function (p, i) {
+          const x = Math.cos(p.angle) * p.rad;
+          const z = Math.sin(p.angle) * p.rad;
+          const y = HEIGHT / 2 - p.y * HEIGHT;
+          positions[i * 3] = x; positions[i * 3 + 1] = y; positions[i * 3 + 2] = z;
+          const c = colorAt(p.y);
+          colors[i * 3] = c[0]; colors[i * 3 + 1] = c[1]; colors[i * 3 + 2] = c[2];
+          sizes[i] = 0.03 + p.y * 0.05;
+        });
+      }
+      writeAttrs();
 
-      particles.forEach((p) => {
-        p.y += p.speed * 0.0035 * speedMul;
-        if (p.y > 1) { p.y = 0; p.x = Math.random(); }
-        const drift = noise2(p.x * 4, p.y * 4, t + p.phase) * 0.01;
-        const x = (p.x + drift) * w;
-        const y = p.y * h;
-        const [r, g, b] = colorAt(p.y);
-        const size = 1 + p.y * 2.6;
-        ctx.beginPath();
-        ctx.fillStyle = "rgba(" + r.toFixed(0) + "," + g.toFixed(0) + "," + b.toFixed(0) + "," + (0.55 + p.y * 0.4) + ")";
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fill();
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+      geo.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
+      const glowTex = KU.makeGlowTexture(THREE, 64);
+      const mat = new THREE.PointsMaterial({
+        size: 0.055,
+        map: glowTex,
+        vertexColors: true,
+        transparent: true,
+        depthWrite: false,
+        sizeAttenuation: true,
+        blending: THREE.AdditiveBlending,
       });
+      const points = new THREE.Points(geo, mat);
+      scene.add(points);
 
-      rafId = requestAnimationFrame(frame);
-    }
-    frame();
+      three3d = { renderer: renderer, scene: scene, camera: camera, geo: geo, mat: mat, glowTex: glowTex };
 
-    let stopVisibility = window.DostKozmikUtils.watchVisibility(
-      function () { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } },
-      function () { if (!rafId && !destroyed) frame(); }
-    );
+      function placeCamera() {
+        // Sütunun biraz üstünde/dışında, aşağı bakan bir kamera -- "inişi"
+        // yandan/yukarıdan izliyoruz, tam tepeden değil (düz tepeden bakış
+        // parçacıkları bir halka gibi göstererek "iç içe çember" yasağına
+        // yaklaşırdı).
+        const camAngle = spin;
+        camera.position.set(Math.cos(camAngle) * 1.7, HEIGHT * 0.32, Math.sin(camAngle) * 1.7);
+        camera.lookAt(0, -HEIGHT * 0.15, 0);
+      }
+      placeCamera();
+      renderer.render(scene, camera);
+
+      const ro = new ResizeObserver(function () {
+        const rr = el.getBoundingClientRect();
+        renderer.setSize(rr.width, rr.height, false);
+        camera.aspect = rr.width / Math.max(1, rr.height);
+        camera.updateProjectionMatrix();
+      });
+      ro.observe(el);
+      three3d.ro = ro;
+
+      if (opts.reducedMotion) return;
+
+      function frame() {
+        if (destroyed) return;
+        spin += 0.0009;
+        state.forEach(function (p) {
+          p.y += p.speed * 0.0035;
+          if (p.y > 1) { p.y = 0; p.angle = Math.random() * Math.PI * 2; p.rad = Math.sqrt(Math.random()) * COL_R; }
+        });
+        writeAttrs();
+        geo.attributes.position.needsUpdate = true;
+        geo.attributes.color.needsUpdate = true;
+        placeCamera();
+        renderer.render(scene, camera);
+        rafId = requestAnimationFrame(frame);
+      }
+      frame();
+
+      const stopVisibility = KU.watchVisibility(
+        function () { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } },
+        function () { if (!rafId && !destroyed) frame(); }
+      );
+      three3d.cleanupExtra = stopVisibility;
+    });
 
     return {
       destroy() {
         destroyed = true;
         if (rafId) cancelAnimationFrame(rafId);
-        stopVisibility();
-        ro.disconnect();
-        if (canvas.parentNode) el.removeChild(canvas);
+        if (three3d) {
+          if (three3d.cleanupExtra) three3d.cleanupExtra();
+          if (three3d.ro) three3d.ro.disconnect();
+          three3d.geo.dispose();
+          three3d.mat.dispose();
+          three3d.glowTex.dispose();
+          three3d.renderer.dispose();
+        }
+        el.innerHTML = "";
       },
     };
   }

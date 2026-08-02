@@ -252,7 +252,7 @@ window.__atlasApp = (function () {
         const p = helixPoint(i, n, NODE_R);
         const hue = hueFor(i);
         const color = new THREE.Color("hsl(" + hue + ",62%,62%)");
-        const geo = new THREE.SphereGeometry(0.16, 20, 16);
+        const geo = new THREE.SphereGeometry(0.055, 20, 16);
         const mat = new THREE.MeshStandardMaterial({ color: color, emissive: color, emissiveIntensity: 0.5, roughness: 0.4 });
         const mesh = new THREE.Mesh(geo, mat);
         mesh.position.set(p.x, p.y, p.z);
@@ -292,7 +292,11 @@ window.__atlasApp = (function () {
     const y = HELIX_HEIGHT / 2 - t * HELIX_HEIGHT;
     const angle = t * HELIX_TURNS * Math.PI * 2 + groupSpin;
     three3d.camera.position.set(Math.cos(angle) * CAM_R, y, Math.sin(angle) * CAM_R);
-    const lookAngle = angle + 0.5;
+    // Bakış açısı odaklanılan katmandan çok ileriye kaymasın diye ufak
+    // tutuluyor -- büyük bir kayma, tam o an odakta olan düğümü kadrajın
+    // kenarına/köşesine itip orada kırpılmış görünmesine yol açıyordu
+    // (elle test edilip yakalandı).
+    const lookAngle = angle + 0.15;
     three3d.camera.lookAt(Math.cos(lookAngle) * CAM_R * 0.4, y - 0.7, Math.sin(lookAngle) * CAM_R * 0.4);
     three3d.nodes.forEach(function (nd) {
       if (!nd) return;
@@ -305,7 +309,14 @@ window.__atlasApp = (function () {
       const dist = Math.abs(nd.layerIdx - focus);
       const closeness = Math.max(0, 1 - dist * 0.55);
       nd.mat.emissiveIntensity = 0.35 + closeness * 1.1;
-      const glowScale = 0.6 + closeness * 0.9;
+      // Kamera odaklanılan düğüme çok yaklaşıyor (~1.3 birim) -- glow'un
+      // DÜNYA boyutunu mesafeyle birlikte büyütmek, zaten perspektifin
+      // kendiliğinden büyüttüğü bir nesneyi katlayarak kadrajı dolduran
+      // devasa bir lekeye dönüştürüyordu (elle test edilip yakalandı).
+      // Bu yüzden "yakınlık" artık ölçekte değil, neredeyse SABİT küçük bir
+      // ölçekte yalnız PARLAKLIK/OPAKLIKTA taşınıyor -- büyümeyi tamamen
+      // perspektife bırakıyoruz.
+      const glowScale = 0.09 + closeness * 0.05;
       nd.glow.scale.set(glowScale, glowScale, 1);
       nd.glowMat.opacity = 0.25 + closeness * 0.55;
     });

@@ -1,163 +1,209 @@
 /**
  * TECELLÎ -- bir olay, bir cisim değil. Kaynak (Zât) hiçbir noktada
- * çizilmiyor; yalnız bir "kabiliyet" (soft, sabit bir alan) üzerinde bir
- * ışımanın doğuşu ve sönüşü görünür. "lâ tekrâre fi't-tecellî" ilkesi
- * kodun içinde somut: her döngü, o döngüye özel taze bir tohumla (freshSeed)
- * farklı bir doğuş eğrisi (açı, süre, büyüklük) hesaplıyor. Sahne sonsuz
- * akmıyor -- bir dinlenme anına geliyor, sonra yeniden başlıyor.
+ * çizilmiyor; yalnız bir "kabiliyet" alanı (3B bir toz bulutu) üzerinde bir
+ * ışımanın doğuşu ve sönüşü görünür. "lâ tekrâre fi't-tecellî" ilkesi kodun
+ * içinde somut: her döngü, o döngüye özel taze bir tohumla (freshSeed)
+ * farklı bir konum/büyüklük/süre hesaplıyor.
  *
- * Kullanıcı notu (2026-08-02): sahne saf otomatikti -- kullanıcının hiçbir
- * eli yoktu, ve alan çok soluktu ("çok sade, anlamı anlaşılmıyor"). Şimdi
- * dokunulan/tıklanan nokta bir sonraki tecellînin merkezi oluyor -- ama
- * eğrisi (büyüklük/süre) hâlâ rastgele: kullanıcı DİKKATİNİ yöneltebiliyor,
- * tecellînin KENDİSİNİ değil. Bu, "kaynağı kontrol edemezsin, yalnız
- * kabiliyetini oraya çevirebilirsin" fikrini bedenle taşıyor.
+ * Kullanıcı kararı (2026-08-02, "hepsini 3B'ye taşı"): kabiliyet artık düz
+ * bir 2B gradyan değil, gerçek bir 3B toz alanı (THREE.Points) -- tecellî
+ * bu alanın İÇİNDE bir noktada doğuyor, yakınındaki tozu (mesafeyle
+ * orantılı) aydınlatıyor. Tıklanan/dokunulan nokta bir sonraki tecellînin
+ * merkezi oluyor (raycast ile 3B'ye çevrilerek) -- kullanıcı DİKKATİNİ
+ * yöneltir, tecellînin eğrisini (büyüklük/süre) değil; bu, önceki 2B
+ * sürümdeki aynı ilkenin üç boyuttaki karşılığı.
  *
  * API: mount(el, opts) -> { destroy() }. opts: { reducedMotion, particleScale, seed }.
  */
 window.DostKozmikSahne = window.DostKozmikSahne || {};
 window.DostKozmikSahne.tecelli = (function () {
   "use strict";
-  const KU = window.DostKozmikUtils;
+
+  const FIELD_R = 1.5;
 
   function mount(el, opts) {
     opts = opts || {};
-    const canvas = document.createElement("canvas");
-    el.appendChild(canvas);
-    const ctx = canvas.getContext("2d");
-    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    function resize() {
-      const r = el.getBoundingClientRect();
-      w = r.width; h = r.height;
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
-      canvas.style.width = w + "px";
-      canvas.style.height = h + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(el);
-
-    // Kabiliyet: sabit, nötr bir zemin -- bu asla değişmez, tecellî bunun
-    // ÜZERİNDE olur. Kaynağın kendisi (Zât) hiçbir yerde temsil edilmiyor.
-    function drawReceptivity() {
-      ctx.clearRect(0, 0, w, h);
-      const g = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.6);
-      g.addColorStop(0, "rgba(120,110,90,0.09)");
-      g.addColorStop(0.6, "rgba(120,110,90,0.03)");
-      g.addColorStop(1, "rgba(120,110,90,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
-    }
-
-    const dust = [];
-    const dustCount = Math.round(40 * (opts.particleScale != null ? opts.particleScale : 1));
-    for (let i = 0; i < dustCount; i++) {
-      dust.push({ x: Math.random(), y: Math.random(), r: 0.4 + Math.random() * 1.1, a: 0.08 + Math.random() * 0.12 });
-    }
-    function drawDust() {
-      dust.forEach((d) => {
-        ctx.beginPath();
-        ctx.fillStyle = "rgba(150,140,120," + d.a + ")";
-        ctx.arc(d.x * w, d.y * h, d.r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-    }
-
-    let destroyed = false;
+    const KU = window.DostKozmikUtils;
+    let destroyed = false, rafId = null, spin = 0;
+    let three3d = null;
+    let bloom = null; // { x, y, z, r, opacity }
     let tl = null;
-    let rafId = null;
-    let bloom = null; // { x, y, r, opacity }
 
-    function renderFrame() {
-      drawReceptivity();
-      drawDust();
-      if (bloom && bloom.opacity > 0.001) {
-        const g = ctx.createRadialGradient(bloom.x, bloom.y, 0, bloom.x, bloom.y, bloom.r);
-        g.addColorStop(0, "rgba(255,238,196," + (0.85 * bloom.opacity) + ")");
-        g.addColorStop(0.28, "rgba(230,184,90," + (0.5 * bloom.opacity) + ")");
-        g.addColorStop(0.62, "rgba(201,161,74," + (0.24 * bloom.opacity) + ")");
-        g.addColorStop(1, "rgba(201,161,74,0)");
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(bloom.x, bloom.y, bloom.r, 0, Math.PI * 2);
-        ctx.fill();
-        // Çekirdek: en parlak nokta, yarıçapın küçük bir kesri -- ışığın
-        // "kaynağı" değil (o hiç çizilmiyor), yalnız izin en yoğun anı.
-        const coreR = bloom.r * 0.12;
-        if (coreR > 0.5) {
-          const cg = ctx.createRadialGradient(bloom.x, bloom.y, 0, bloom.x, bloom.y, coreR);
-          cg.addColorStop(0, "rgba(255,252,238," + (0.9 * bloom.opacity) + ")");
-          cg.addColorStop(1, "rgba(255,252,238,0)");
-          ctx.fillStyle = cg;
-          ctx.beginPath();
-          ctx.arc(bloom.x, bloom.y, coreR, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-      rafId = requestAnimationFrame(renderFrame);
-    }
+    const N = Math.round(70 * (opts.particleScale != null ? opts.particleScale : 1));
 
-    if (opts.reducedMotion) {
-      // Durağan alternatif: TEK, sabit bir tecellî anı -- ne doğuyor ne
-      // sönüyor, yalnız var. Döngü/rastgelelik yok.
-      bloom = { x: w / 2, y: h / 2, r: Math.min(w, h) * 0.28, opacity: 0.7 };
-      renderFrame();
-      return {
-        destroy() {
-          destroyed = true;
-          if (rafId) cancelAnimationFrame(rafId);
-          ro.disconnect();
-          el.removeChild(canvas);
-        },
-      };
-    }
-
-    renderFrame();
-
-    let stopVisibility = function () {};
-    let onPointerDown = null;
-    window.DostKozmikLoader.loadGsap().then(function (gsap) {
+    window.DostKozmikLoader.loadThree().then(function (THREE) {
       if (destroyed) return;
-      function cycle(forcedCenter) {
-        if (destroyed) return;
-        if (tl) tl.kill();
-        const seed = KU.freshSeed();
-        const rand = KU.mulberry32(seed);
-        const angle = rand() * Math.PI * 2;
-        const dist = rand() * Math.min(w, h) * 0.22;
-        // Dokunulan nokta varsa merkez odur -- ama büyüklüğü/süresi hâlâ
-        // rastgele: kullanıcı DİKKATİNİ yöneltir, tecellînin eğrisini değil.
-        const cx = forcedCenter ? forcedCenter.x : w / 2 + Math.cos(angle) * dist;
-        const cy = forcedCenter ? forcedCenter.y : h / 2 + Math.sin(angle) * dist;
-        const maxR = Math.min(w, h) * (0.18 + rand() * 0.16);
-        const riseTime = 1.6 + rand() * 1.4;
-        const fallTime = 1.4 + rand() * 1.6;
-        const restTime = 1.2 + rand() * 1.6;
+      const canvas = document.createElement("canvas");
+      el.appendChild(canvas);
+      const r0 = el.getBoundingClientRect();
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(r0.width, r0.height, false);
 
-        bloom = { x: cx, y: cy, r: 0, opacity: 0 };
-        tl = gsap.timeline({
-          onComplete: function () {
-            if (!destroyed) gsap.delayedCall(restTime, cycle);
-          },
-        });
-        tl.to(bloom, { r: maxR, opacity: 1, duration: riseTime, ease: "sine.out" })
-          .to(bloom, { opacity: 0, duration: fallTime, ease: "sine.in" }, ">-0.1");
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(50, r0.width / Math.max(1, r0.height), 0.05, 20);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+
+      // Kabiliyet: sabit, nötr bir toz bulutu -- bu asla değişmez, tecellî
+      // bunun ÜZERİNDE olur. Kaynağın kendisi (Zât) hiçbir yerde temsil
+      // edilmiyor.
+      const basePositions = [];
+      const positions = new Float32Array(N * 3);
+      const colors = new Float32Array(N * 3);
+      for (let i = 0; i < N; i++) {
+        const p = new THREE.Vector3(
+          (Math.random() * 2 - 1) * FIELD_R,
+          (Math.random() * 2 - 1) * FIELD_R * 0.7,
+          (Math.random() * 2 - 1) * FIELD_R * 0.6
+        );
+        basePositions.push(p);
+        positions[i * 3] = p.x; positions[i * 3 + 1] = p.y; positions[i * 3 + 2] = p.z;
+        colors[i * 3] = 0.42; colors[i * 3 + 1] = 0.4; colors[i * 3 + 2] = 0.35;
       }
-      cycle();
-      stopVisibility = KU.watchVisibility(
-        function () { if (tl) tl.pause(); },
-        function () { if (tl) tl.resume(); }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+      const glowTex = KU.makeGlowTexture(THREE, 64);
+      const dustMat = new THREE.PointsMaterial({
+        size: 0.045, map: glowTex, vertexColors: true, transparent: true,
+        depthWrite: false, sizeAttenuation: true, opacity: 0.5,
+      });
+      const dust = new THREE.Points(geo, dustMat);
+      scene.add(dust);
+
+      // Aktif tecellînin çekirdeği -- toz bulutundan ayrı, çünkü her kare
+      // güçlü şekilde değişiyor (renk/boyut/opaklık).
+      const coreMat = new THREE.SpriteMaterial({
+        map: glowTex, color: new THREE.Color(0xffdca0), transparent: true,
+        depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0,
+      });
+      const core = new THREE.Sprite(coreMat);
+      core.scale.set(0.01, 0.01, 1);
+      scene.add(core);
+
+      // Tıklama/dokunma için görünmez bir düzlem -- ekran noktasını 3B'ye
+      // çeviriyor (raycast), tecellî oraya "davet ediliyor".
+      const plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(FIELD_R * 6, FIELD_R * 6),
+        new THREE.MeshBasicMaterial({ visible: false })
+      );
+      scene.add(plane);
+      const raycaster = new THREE.Raycaster();
+      const pointer = new THREE.Vector2();
+
+      three3d = { renderer: renderer, scene: scene, camera: camera, geo: geo, dustMat: dustMat, coreMat: coreMat, glowTex: glowTex, plane: plane };
+
+      function placeCamera() {
+        const angle = spin;
+        camera.position.set(Math.cos(angle) * 2.6, 0.3, Math.sin(angle) * 2.6);
+        camera.lookAt(0, 0, 0);
+        plane.lookAt(camera.position);
+      }
+      placeCamera();
+
+      function renderFrame() {
+        // Tozu bloom'a göre aydınlat: yakın olan tozlar mesafeyle orantılı
+        // parlar -- ısı haritası değil, doğrudan mesafe.
+        const posAttr = geo.attributes.position;
+        const colAttr = geo.attributes.color;
+        for (let i = 0; i < N; i++) {
+          const bp = basePositions[i];
+          let cr = 0.42, cg = 0.4, cb = 0.35;
+          if (bloom && bloom.opacity > 0.01) {
+            const dx = bp.x - bloom.x, dy = bp.y - bloom.y, dz = bp.z - bloom.z;
+            const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            const falloff = Math.max(0, 1 - d / bloom.r);
+            const glow = falloff * falloff * bloom.opacity;
+            cr = 0.42 + glow * 0.58; cg = 0.4 + glow * 0.5; cb = 0.35 + glow * 0.25;
+          }
+          colAttr.setXYZ(i, cr, cg, cb);
+          posAttr.setXYZ(i, bp.x, bp.y, bp.z);
+        }
+        colAttr.needsUpdate = true;
+        if (bloom && bloom.opacity > 0.01) {
+          core.visible = true;
+          core.position.set(bloom.x, bloom.y, bloom.z);
+          const s = bloom.r * 0.5;
+          core.scale.set(s, s, 1);
+          coreMat.opacity = bloom.opacity * 0.9;
+        } else {
+          core.visible = false;
+        }
+        placeCamera();
+        renderer.render(scene, camera);
+      }
+      renderFrame();
+
+      const ro = new ResizeObserver(function () {
+        const rr = el.getBoundingClientRect();
+        renderer.setSize(rr.width, rr.height, false);
+        camera.aspect = rr.width / Math.max(1, rr.height);
+        camera.updateProjectionMatrix();
+        placeCamera();
+      });
+      ro.observe(el);
+      three3d.ro = ro;
+
+      if (opts.reducedMotion) {
+        bloom = { x: 0, y: 0, z: 0, r: FIELD_R * 0.9, opacity: 0.7 };
+        renderFrame();
+        return;
+      }
+
+      function ambientLoop() {
+        if (destroyed) return;
+        spin += 0.0007;
+        renderFrame();
+        rafId = requestAnimationFrame(ambientLoop);
+      }
+      ambientLoop();
+
+      const stopVisibility = KU.watchVisibility(
+        function () { if (tl) tl.pause(); if (rafId) { cancelAnimationFrame(rafId); rafId = null; } },
+        function () { if (tl) tl.resume(); if (!rafId && !destroyed) ambientLoop(); }
       );
 
-      onPointerDown = function (e) {
-        const r = canvas.getBoundingClientRect();
-        cycle({ x: e.clientX - r.left, y: e.clientY - r.top });
-      };
-      canvas.style.cursor = "pointer";
-      canvas.addEventListener("pointerdown", onPointerDown);
+      window.DostKozmikLoader.loadGsap().then(function (gsap) {
+        if (destroyed) return;
+        function cycle(forcedCenter) {
+          if (destroyed) return;
+          if (tl) tl.kill();
+          const seed = KU.freshSeed();
+          const rand = KU.mulberry32(seed);
+          const center = forcedCenter || new THREE.Vector3(
+            (rand() * 2 - 1) * FIELD_R * 0.7,
+            (rand() * 2 - 1) * FIELD_R * 0.5,
+            (rand() * 2 - 1) * FIELD_R * 0.4
+          );
+          const maxR = FIELD_R * (0.55 + rand() * 0.45);
+          const riseTime = 1.6 + rand() * 1.4;
+          const fallTime = 1.4 + rand() * 1.6;
+          const restTime = 1.2 + rand() * 1.6;
+
+          bloom = { x: center.x, y: center.y, z: center.z, r: 0.01, opacity: 0 };
+          tl = gsap.timeline({
+            onComplete: function () { if (!destroyed) gsap.delayedCall(restTime, cycle); },
+          });
+          tl.to(bloom, { r: maxR, opacity: 1, duration: riseTime, ease: "sine.out" })
+            .to(bloom, { opacity: 0, duration: fallTime, ease: "sine.in" }, ">-0.1");
+        }
+        cycle();
+
+        function onPointerDown(e) {
+          const rect = canvas.getBoundingClientRect();
+          pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+          raycaster.setFromCamera(pointer, camera);
+          const hits = raycaster.intersectObject(plane);
+          if (hits.length) cycle(hits[0].point);
+        }
+        canvas.style.cursor = "pointer";
+        canvas.addEventListener("pointerdown", onPointerDown);
+        three3d.cleanupExtra = function () {
+          stopVisibility();
+          canvas.removeEventListener("pointerdown", onPointerDown);
+        };
+      });
     });
 
     return {
@@ -165,10 +211,18 @@ window.DostKozmikSahne.tecelli = (function () {
         destroyed = true;
         if (tl) tl.kill();
         if (rafId) cancelAnimationFrame(rafId);
-        stopVisibility();
-        if (onPointerDown) canvas.removeEventListener("pointerdown", onPointerDown);
-        ro.disconnect();
-        if (canvas.parentNode) el.removeChild(canvas);
+        if (three3d) {
+          if (three3d.cleanupExtra) three3d.cleanupExtra();
+          if (three3d.ro) three3d.ro.disconnect();
+          three3d.geo.dispose();
+          three3d.dustMat.dispose();
+          three3d.coreMat.dispose();
+          three3d.glowTex.dispose();
+          three3d.plane.geometry.dispose();
+          three3d.plane.material.dispose();
+          three3d.renderer.dispose();
+        }
+        el.innerHTML = "";
       },
     };
   }

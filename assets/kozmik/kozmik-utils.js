@@ -56,5 +56,24 @@ window.DostKozmikUtils = (function () {
     };
   }
 
-  return { mulberry32, freshSeed, prefersReducedMotion, particleScale, watchVisibility };
+  // Paylaşılan yumuşak-parlama dokusu (three.js Sprite'lar için) -- 5
+  // sahnenin 3B'ye taşınmasıyla (2026-08-02 kullanıcı kararı) her biri
+  // kendi glow sprite'ını aynı dokuyla, kendi rengiyle tint ederek üretiyor.
+  function makeGlowTexture(THREE, size) {
+    size = size || 128;
+    const c = document.createElement("canvas");
+    c.width = c.height = size;
+    const cx = c.getContext("2d");
+    const g = cx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    g.addColorStop(0, "rgba(255,255,255,0.9)");
+    g.addColorStop(0.4, "rgba(255,255,255,0.35)");
+    g.addColorStop(1, "rgba(255,255,255,0)");
+    cx.fillStyle = g;
+    cx.fillRect(0, 0, size, size);
+    const tex = new THREE.CanvasTexture(c);
+    tex.needsUpdate = true;
+    return tex;
+  }
+
+  return { mulberry32, freshSeed, prefersReducedMotion, particleScale, watchVisibility, makeGlowTexture };
 })();

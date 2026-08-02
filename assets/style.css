@@ -7690,6 +7690,24 @@ mark.durus-vurgu-es {
   width: 100%;
   height: 100%;
 }
+/* Mertebeler sahnesi (3B, 2026-08-02): hangi hazrete yakın olunduğunu
+   gösteren küçük, sabit bir etiket -- kimlik artık küreye gömülü metinle
+   değil (3B'de okunaksız olurdu), bu kaplamayla taşınıyor. */
+.kozmik-mertebeler-label {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-1) 78%, transparent);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  pointer-events: none;
+  z-index: 5;
+}
 .kozmik-hint {
   text-align: center;
   font-size: 0.8rem;
