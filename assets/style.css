@@ -6191,16 +6191,6 @@ body.share-stage-open { overflow: hidden; }
   background: color-mix(in srgb, var(--sahne-metin) 50%, transparent);
   transform-origin: left center;
 }
-.share-stage__source {
-  position: absolute;
-  left: 8%;
-  right: 20%;
-  bottom: 22%;
-  margin: 0;
-  font-size: clamp(0.7rem, 1.7vh, 0.86rem);
-  letter-spacing: 0.05em;
-  color: color-mix(in srgb, var(--sahne-metin) 62%, transparent);
-}
 /* Kayıt kipinin açılış/kapanış karartısı. Sahne döngüsünde saydam durur;
    yalnız "Videoyu indir" ile başlayan çekimde 1'den 0'a ve sonda 0'dan 1'e
    gider (bkz. assets/share-mode.js drawTake). */

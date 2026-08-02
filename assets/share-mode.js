@@ -256,7 +256,6 @@
         return {
           tpl: "soru",
           lines: [{ text: tt(q.question), kind: "soru" }],
-          source: tt({ tr: "Sorular · dostarabi.com", en: "Questions · dostarabi.com", pt: "Perguntas · dostarabi.com" }),
         };
       });
     }
@@ -284,7 +283,6 @@
             { text: sents[0], kind: "soz" },
             { text: sents[1], kind: "soz" },
           ],
-          source: tt({ tr: "Sorular · dostarabi.com", en: "Questions · dostarabi.com", pt: "Perguntas · dostarabi.com" }),
         };
       });
     }
@@ -303,7 +301,6 @@
         return {
           tpl: "gunun",
           lines: [{ text: text, kind: "soz" }],
-          source: tt({ tr: "Sırlar · dostarabi.com", en: "Mysteries · dostarabi.com", pt: "Mistérios · dostarabi.com" }),
         };
       });
     }
@@ -317,7 +314,6 @@
             { text: tt(pr.left.label), kind: "sol" },
             { text: tt(pr.right.label), kind: "sag" },
           ],
-          source: partLabel(r.part) + " · dostarabi.com",
         };
       });
     }
@@ -336,7 +332,6 @@
             { text: tt(node.name || {}), kind: "baslik" },
             { text: text, kind: "soz" },
           ],
-          source: tt({ tr: "Ontoloji · dostarabi.com", en: "Ontology · dostarabi.com", pt: "Ontologia · dostarabi.com" }),
         };
       });
     }
@@ -355,7 +350,6 @@
             { text: tt(node.name || {}), kind: "baslik" },
             { text: text, kind: "soz" },
           ],
-          source: tt({ tr: "Esmâ · dostarabi.com", en: "Divine Names · dostarabi.com", pt: "Nomes Divinos · dostarabi.com" }),
         };
       });
     }
@@ -364,7 +358,6 @@
       return {
         tpl: "soz",
         lines: [{ text: pick(r.items), kind: "soz" }],
-        source: partLabel(r.part) + " · dostarabi.com",
       };
     });
   }
@@ -376,19 +369,19 @@
   // Şablon başına döngü uzunluğu (ms) ve metin vuruşları. Vuruşlar
   // [giriş, çıkış] biçiminde, döngü içindeki oranlar.
   const TIMING = {
-    soz:      { loop: 9000,  beats: [[0.09, 0.94]], source: [0.55, 0.97] },
-    gunun:    { loop: 9000,  beats: [[0.09, 0.94]], source: [0.55, 0.97] },
-    ikili:    { loop: 8500,  beats: [[0.09, 0.94], [0.22, 0.94]], source: [0.55, 0.97] },
-    soru:     { loop: 8500,  beats: [[0.09, 0.94]], source: [0.52, 0.97] },
+    soz:      { loop: 9000,  beats: [[0.09, 0.94]] },
+    gunun:    { loop: 9000,  beats: [[0.09, 0.94]] },
+    ikili:    { loop: 8500,  beats: [[0.09, 0.94], [0.22, 0.94]] },
+    soru:     { loop: 8500,  beats: [[0.09, 0.94]] },
     // Üç vuruşlu, daha uzun bir döngü: soru en başta girip ekranda kalıyor
     // ("kanca" burada), iki cevap cümlesi ardından sırayla altına ekleniyor.
     // 15000 -> 20000 (2026-08-02 kullanıcı bildirimi): metin derin anlamlar
     // taşıyor ve okuyucu tam hazmetmeye başlarken kayboluyordu -- vuruş
     // ORANLARI aynı kaldı (sadece döngü uzadı), yani her satırın giriş/çıkış
     // sırası aynı hissi veriyor, sadece hepsi orantılı olarak yavaşladı.
-    hikaye:   { loop: 20000, beats: [[0.04, 0.97], [0.24, 0.97], [0.52, 0.97]], source: [0.80, 0.99] },
-    ontoloji: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]], source: [0.60, 0.97] },
-    esma:     { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]], source: [0.60, 0.97] },
+    hikaye:   { loop: 20000, beats: [[0.04, 0.97], [0.24, 0.97], [0.52, 0.97]] },
+    ontoloji: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
+    esma:     { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
   };
 
   function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
@@ -423,7 +416,6 @@
     const read = Math.min(READ_CAP[s.tpl] || 11, Math.max(3.2, words / READ_WPS));
     return {
       fadeIn: fadeIn, fadeOut: fadeOut, lineIn: lineIn, cues: cues, ruleAt: ruleAt,
-      sourceAt: t + read * 0.3,
       // 8 sn'nin altı TikTok'ta göz kırpması gibi geçiyor, tavanın üstü
       // (şablona göre 22 ya da 40 sn) tek bir sahne için uzun.
       total: Math.min(TOTAL_CAP[s.tpl] || 22, Math.max(8, t + read + fadeOut)),
@@ -454,8 +446,6 @@
       rule.style.opacity = (v * 0.55).toFixed(3);
       rule.style.transform = "scaleX(" + v.toFixed(3) + ")";
     }
-    const src = el.querySelector(".share-stage__source");
-    if (src) src.style.opacity = ease(clamp01((t - plan.sourceAt) / 0.9)).toFixed(3);
   }
   // Bir vuruşun o andaki görünürlüğü: kısa bir belirme, uzun bir duruş,
   // kısa bir sönme. Döngü başa sardığında sert bir kesme olmasın diye.
@@ -660,8 +650,6 @@
       node.style.opacity = v.toFixed(3);
       node.style.transform = "translateY(" + ((1 - v) * 14).toFixed(1) + "px)";
     });
-    const src = el.querySelector(".share-stage__source");
-    if (src) src.style.opacity = beat(t, cfg.source[0], cfg.source[1]).toFixed(3);
     const rule = el.querySelector(".share-rule");
     if (rule) {
       const v = beat(t, 0.30, 0.94);
@@ -683,7 +671,6 @@
       new Array(NODE_COUNT).fill('<circle class="share-dot"></circle>').join("") +
       "</svg>" +
       '<div class="share-stage__text">' + lines + "</div>" +
-      '<p class="share-stage__source">' + escapeHtml(s.source) + "</p>" +
       '<div class="share-stage__qr" aria-hidden="true">' + qrSvg() + "</div>" +
       '<div class="share-stage__guides" hidden></div>' +
       // Kayıt kipinde açılış/kapanış karartısı. Sahne döngüsünde hep saydam.
