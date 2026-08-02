@@ -6,6 +6,13 @@
  * farklı bir doğuş eğrisi (açı, süre, büyüklük) hesaplıyor. Sahne sonsuz
  * akmıyor -- bir dinlenme anına geliyor, sonra yeniden başlıyor.
  *
+ * Kullanıcı notu (2026-08-02): sahne saf otomatikti -- kullanıcının hiçbir
+ * eli yoktu, ve alan çok soluktu ("çok sade, anlamı anlaşılmıyor"). Şimdi
+ * dokunulan/tıklanan nokta bir sonraki tecellînin merkezi oluyor -- ama
+ * eğrisi (büyüklük/süre) hâlâ rastgele: kullanıcı DİKKATİNİ yöneltebiliyor,
+ * tecellînin KENDİSİNİ değil. Bu, "kaynağı kontrol edemezsin, yalnız
+ * kabiliyetini oraya çevirebilirsin" fikrini bedenle taşıyor.
+ *
  * API: mount(el, opts) -> { destroy() }. opts: { reducedMotion, particleScale, seed }.
  */
 window.DostKozmikSahne = window.DostKozmikSahne || {};
@@ -38,7 +45,8 @@ window.DostKozmikSahne.tecelli = (function () {
     function drawReceptivity() {
       ctx.clearRect(0, 0, w, h);
       const g = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.6);
-      g.addColorStop(0, "rgba(120,110,90,0.05)");
+      g.addColorStop(0, "rgba(120,110,90,0.09)");
+      g.addColorStop(0.6, "rgba(120,110,90,0.03)");
       g.addColorStop(1, "rgba(120,110,90,0)");
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
@@ -68,13 +76,26 @@ window.DostKozmikSahne.tecelli = (function () {
       drawDust();
       if (bloom && bloom.opacity > 0.001) {
         const g = ctx.createRadialGradient(bloom.x, bloom.y, 0, bloom.x, bloom.y, bloom.r);
-        g.addColorStop(0, "rgba(201,161,74," + (0.5 * bloom.opacity) + ")");
-        g.addColorStop(0.5, "rgba(201,161,74," + (0.22 * bloom.opacity) + ")");
+        g.addColorStop(0, "rgba(255,238,196," + (0.85 * bloom.opacity) + ")");
+        g.addColorStop(0.28, "rgba(230,184,90," + (0.5 * bloom.opacity) + ")");
+        g.addColorStop(0.62, "rgba(201,161,74," + (0.24 * bloom.opacity) + ")");
         g.addColorStop(1, "rgba(201,161,74,0)");
         ctx.fillStyle = g;
         ctx.beginPath();
         ctx.arc(bloom.x, bloom.y, bloom.r, 0, Math.PI * 2);
         ctx.fill();
+        // Çekirdek: en parlak nokta, yarıçapın küçük bir kesri -- ışığın
+        // "kaynağı" değil (o hiç çizilmiyor), yalnız izin en yoğun anı.
+        const coreR = bloom.r * 0.12;
+        if (coreR > 0.5) {
+          const cg = ctx.createRadialGradient(bloom.x, bloom.y, 0, bloom.x, bloom.y, coreR);
+          cg.addColorStop(0, "rgba(255,252,238," + (0.9 * bloom.opacity) + ")");
+          cg.addColorStop(1, "rgba(255,252,238,0)");
+          ctx.fillStyle = cg;
+          ctx.beginPath();
+          ctx.arc(bloom.x, bloom.y, coreR, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
       rafId = requestAnimationFrame(renderFrame);
     }
@@ -97,16 +118,20 @@ window.DostKozmikSahne.tecelli = (function () {
     renderFrame();
 
     let stopVisibility = function () {};
+    let onPointerDown = null;
     window.DostKozmikLoader.loadGsap().then(function (gsap) {
       if (destroyed) return;
-      function cycle() {
+      function cycle(forcedCenter) {
         if (destroyed) return;
+        if (tl) tl.kill();
         const seed = KU.freshSeed();
         const rand = KU.mulberry32(seed);
         const angle = rand() * Math.PI * 2;
         const dist = rand() * Math.min(w, h) * 0.22;
-        const cx = w / 2 + Math.cos(angle) * dist;
-        const cy = h / 2 + Math.sin(angle) * dist;
+        // Dokunulan nokta varsa merkez odur -- ama büyüklüğü/süresi hâlâ
+        // rastgele: kullanıcı DİKKATİNİ yöneltir, tecellînin eğrisini değil.
+        const cx = forcedCenter ? forcedCenter.x : w / 2 + Math.cos(angle) * dist;
+        const cy = forcedCenter ? forcedCenter.y : h / 2 + Math.sin(angle) * dist;
         const maxR = Math.min(w, h) * (0.18 + rand() * 0.16);
         const riseTime = 1.6 + rand() * 1.4;
         const fallTime = 1.4 + rand() * 1.6;
@@ -126,6 +151,13 @@ window.DostKozmikSahne.tecelli = (function () {
         function () { if (tl) tl.pause(); },
         function () { if (tl) tl.resume(); }
       );
+
+      onPointerDown = function (e) {
+        const r = canvas.getBoundingClientRect();
+        cycle({ x: e.clientX - r.left, y: e.clientY - r.top });
+      };
+      canvas.style.cursor = "pointer";
+      canvas.addEventListener("pointerdown", onPointerDown);
     });
 
     return {
@@ -134,6 +166,7 @@ window.DostKozmikSahne.tecelli = (function () {
         if (tl) tl.kill();
         if (rafId) cancelAnimationFrame(rafId);
         stopVisibility();
+        if (onPointerDown) canvas.removeEventListener("pointerdown", onPointerDown);
         ro.disconnect();
         if (canvas.parentNode) el.removeChild(canvas);
       },

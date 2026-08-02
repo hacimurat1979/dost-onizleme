@@ -44,6 +44,14 @@ window.__kavramApp = (function () {
   // ilkesi gereği ("davranışı resmet, kavramı değil"): kenar kalınlığı/
   // opaklığı ve düğüm büyüklüğü doğrudan ortakBolum sayısının bir
   // fonksiyonu -- dekoratif değil, ölçülen ilişkiyi taşıyor.
+  //
+  // 2026-08-02 (kullanıcı bildirimi): tek bir donuk tonun yalnız opaklıkla
+  // değişmesi "sade ama sönük" duruyordu. Her uydu düğüm artık küçük,
+  // canlı bir pastel paletten kendi rengini alıyor (sırayla döngüsel) --
+  // GORSEL_DIL.md'nin davranışı-resmet ilkesi bozulmuyor: hangi ismin ne
+  // kadar sık birlikte geçtiği hâlâ SADECE boyut/opaklıkla taşınıyor, renk
+  // yalnız düğümleri birbirinden ayırt etmeye yarıyor.
+  const MINIGRAF_PALET = [350, 28, 52, 150, 195, 268]; // pembe/şeftali/sarı/nane/gökyüzü/leylak
   function birlikteEsmaSvg(k) {
     const items = k.birlikteEsma;
     if (!items.length) return "";
@@ -64,11 +72,11 @@ window.__kavramApp = (function () {
       parts.push(
         `<line class="kavram-minigraf__edge" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke-width="${w.toFixed(2)}" style="opacity:${op.toFixed(2)}"></line>`
       );
-      nodes.push({ x, y, r, e, strength });
+      nodes.push({ x, y, r, e, strength, nodeHue: MINIGRAF_PALET[i % MINIGRAF_PALET.length] });
     });
-    nodes.forEach(({ x, y, r, e, strength }) => {
+    nodes.forEach(({ x, y, r, e, strength, nodeHue }) => {
       parts.push(
-        `<circle class="kavram-minigraf__node" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" style="fill:hsl(${VIEW_HUE.esma} 55% 50% / ${(0.55 + strength * 0.35).toFixed(2)})"></circle>` +
+        `<circle class="kavram-minigraf__node" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" style="fill:hsl(${nodeHue} 75% 68% / ${(0.75 + strength * 0.25).toFixed(2)})"></circle>` +
           `<text class="kavram-minigraf__label" x="${x.toFixed(1)}" y="${(y + r + 13).toFixed(1)}" text-anchor="middle">${escapeHtmlKavram(tt(e.isim))}</text>`
       );
     });

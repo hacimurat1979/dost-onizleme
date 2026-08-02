@@ -26,6 +26,31 @@
   let activeId = null;
   let activeHandle = null; // { destroy() } dönen sahne örneği
 
+  // Her sahnenin kendi elle-yapılan etkileşimi var; ipucu olmadan kullanıcı
+  // bunu keşfetmeyebiliyordu (bkz. 2026-08-02 geri bildirimi).
+  const SCENE_HINTS = {
+    nefes: {
+      tr: "Basılı tut: sahne senin nefesinle genişler.",
+      en: "Press and hold: the scene expands with your breath.",
+      pt: "Pressione e segure: a cena se expande com sua respiração.",
+    },
+    tecelli: {
+      tr: "Bir noktaya dokun: tecellîyi oraya davet et.",
+      en: "Touch a point: invite the manifestation there.",
+      pt: "Toque um ponto: convide a manifestação para lá.",
+    },
+    donus: {
+      tr: "Sürükle: sarmalı kendi açından döndür.",
+      en: "Drag: turn the spiral to your own angle.",
+      pt: "Arraste: gire a espiral para seu próprio ângulo.",
+    },
+    mertebeler: {
+      tr: "Kaydır/yakınlaştır: mertebeler arasında geziniyorsun.",
+      en: "Scroll/pinch to zoom: you're moving between the levels.",
+      pt: "Role/belisque para ampliar: você se move entre os níveis.",
+    },
+  };
+
   function fetchData() {
     if (dataPromise) return dataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("kozmik-wrap");
@@ -112,13 +137,7 @@
           en: "Respecting your reduced-motion preference: showing the still alternative.",
           pt: "Respeitando sua preferência de movimento reduzido: mostrando a alternativa estática.",
         })
-      : id === "nefes"
-        ? tt({
-            tr: "Basılı tut: sahne senin nefesinle genişler.",
-            en: "Press and hold: the scene expands with your breath.",
-            pt: "Pressione e segure: a cena se expande com sua respiração.",
-          })
-        : "";
+      : tt(SCENE_HINTS[id] || {});
     try {
       activeHandle = mod.mount(stageEl, {
         reducedMotion: reducedMotion,

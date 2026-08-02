@@ -490,6 +490,13 @@
   let bgLayer, edgeLayer, relLayer, flowLayer, particleLayer, nodeLayer;
   let particles = [];
   let flow = null;   // { chain:[ids], start, dur }
+  let flowRepeatTimer = null;
+  // 2026-08-02 kullanıcı bildirimi: Zât'tan seçilen isme uzanan "comet"
+  // vurgusu yalnız bir kez oynuyordu, seçim değişmeden ekranda kalınca
+  // fark edilmez oluyordu. Şimdi aynı düğüm seçili kaldığı sürece bu
+  // aralıkla kendini tekrarlıyor -- çok sık olmasın diye birkaç saniyede
+  // bir (kullanıcının kendi ifadesiyle).
+  const FLOW_REPEAT_MS = 5200;
   let rafId = null;
   let lastTs = 0;
 
@@ -1005,6 +1012,16 @@
     if (chain.length < 2) { flow = null; return; }
     flow = { chain, start: performance.now(), dur: reduceMotion ? 0 : Math.max(700, chain.length * 260) };
     ensureFrame();
+    scheduleFlowRepeat(id);
+  }
+  function scheduleFlowRepeat(id) {
+    if (flowRepeatTimer) clearTimeout(flowRepeatTimer);
+    if (reduceMotion) return;
+    flowRepeatTimer = setTimeout(() => {
+      // Sadece bu düğüm hâlâ seçiliyse tekrarla; başka bir düğüme
+      // geçildiyse (ya da seçim tamamen kalktıysa) burada kendiliğinden durur.
+      if (selectedId === id) startFlow(id);
+    }, FLOW_REPEAT_MS);
   }
   function renderFlow() {
     flowLayer.selectAll("*").remove();
@@ -1079,6 +1096,7 @@
 
   function deselect() {
     selectedId = null;
+    if (flowRepeatTimer) { clearTimeout(flowRepeatTimer); flowRepeatTimer = null; }
     flow = null;
     idleRotate = true;
     fitVisible();

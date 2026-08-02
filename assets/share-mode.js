@@ -382,7 +382,11 @@
     soru:     { loop: 8500,  beats: [[0.09, 0.94]], source: [0.52, 0.97] },
     // Üç vuruşlu, daha uzun bir döngü: soru en başta girip ekranda kalıyor
     // ("kanca" burada), iki cevap cümlesi ardından sırayla altına ekleniyor.
-    hikaye:   { loop: 15000, beats: [[0.04, 0.97], [0.24, 0.97], [0.52, 0.97]], source: [0.80, 0.99] },
+    // 15000 -> 20000 (2026-08-02 kullanıcı bildirimi): metin derin anlamlar
+    // taşıyor ve okuyucu tam hazmetmeye başlarken kayboluyordu -- vuruş
+    // ORANLARI aynı kaldı (sadece döngü uzadı), yani her satırın giriş/çıkış
+    // sırası aynı hissi veriyor, sadece hepsi orantılı olarak yavaşladı.
+    hikaye:   { loop: 20000, beats: [[0.04, 0.97], [0.24, 0.97], [0.52, 0.97]], source: [0.80, 0.99] },
     ontoloji: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]], source: [0.60, 0.97] },
     esma:     { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]], source: [0.60, 0.97] },
   };
@@ -403,8 +407,11 @@
   // "Hikâye" iki kuruluş cümlesi + bir soru taşıdığı için tek cümlelik
   // şablonlardan (soz/soru/ikili/ontoloji/esma) fazla kelime biriktiriyor;
   // onlara uygulanan 11 sn okuma / 22 sn toplam tavanı burada erken keserdi.
-  const READ_CAP = { hikaye: 24 };
-  const TOTAL_CAP = { hikaye: 40 };
+  // Ekrandaki döngü 15000 -> 20000ms'ye uzatıldığı için (2026-08-02),
+  // kayıt tavanları da aynı oranda büyütüldü -- indirilen video ekranda
+  // görülenden daha aceleci hissetmesin diye.
+  const READ_CAP = { hikaye: 28 };
+  const TOTAL_CAP = { hikaye: 46 };
   function takePlan(s) {
     const fadeIn = 0.7, fadeOut = 1.2, lineIn = 1.15;
     const cues = [];

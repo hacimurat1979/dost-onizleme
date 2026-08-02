@@ -6,6 +6,13 @@
  * çünkü "aynı düzlemde olmayan bir dönüş" sahte-3B projeksiyonla (bu
  * projenin başka yerlerindeki helix.js gibi) ikna edici anlatılamazdı.
  *
+ * Kullanıcı notu (2026-08-02): sahne yalnız kendi kendine dönüyordu --
+ * izleyici hiçbir şey yapmıyordu. Şimdi sürükleyerek sarmalı kendi eliyle
+ * çevirebiliyor (yatay: etrafında dön, dikey: yukarıdan/aşağıdan bak) --
+ * GORSEL_DIL.md'nin "kullanıcı bir değeri değil, kendi bakış açısını
+ * değiştirsin" ilkesi: sarmal değişmiyor, yalnız ona nereden baktığın
+ * değişiyor, tıpkı ayna-metaforu.html'de olduğu gibi.
+ *
  * API: mount(el, opts) -> { destroy() }.
  */
 window.DostKozmikSahne = window.DostKozmikSahne || {};
@@ -117,25 +124,71 @@ window.DostKozmikSahne.donus = (function () {
         renderer.dispose();
       }
 
+      // Sürükle: yatay hareket sarmalın etrafında döndürür, dikey hareket
+      // yukarıdan/aşağıdan bakışa geçirir -- ne sarmal ne bakan "değişiyor",
+      // yalnız aradaki açı (bkz. ayna-metaforu.html'in aynı ilkesi).
+      let angle = 0.6;
+      let pitch = 0;
+      let dragging = false;
+      let lastX = 0, lastY = 0;
+
+      function applyView() {
+        group.rotation.y = angle;
+        camera.position.y = 1.4 + pitch;
+        camera.lookAt(0, 0, 0);
+      }
+      function onPointerDown(e) {
+        dragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        canvas.style.cursor = "grabbing";
+        if (canvas.setPointerCapture) {
+          try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+        }
+      }
+      function onPointerMove(e) {
+        if (!dragging) return;
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        lastX = e.clientX; lastY = e.clientY;
+        angle += dx * 0.006;
+        pitch = Math.max(-2.2, Math.min(3.0, pitch - dy * 0.01));
+        applyView();
+        if (!rafId) renderer.render(scene, camera);
+      }
+      function onPointerUp() {
+        dragging = false;
+        canvas.style.cursor = "grab";
+      }
+      canvas.style.cursor = "grab";
+      canvas.addEventListener("pointerdown", onPointerDown);
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerup", onPointerUp);
+      function removeDragListeners() {
+        canvas.removeEventListener("pointerdown", onPointerDown);
+        window.removeEventListener("pointermove", onPointerMove);
+        window.removeEventListener("pointerup", onPointerUp);
+      }
+
       if (opts.reducedMotion) {
-        group.rotation.y = 0.6;
+        applyView();
         renderer.render(scene, camera);
         window.addEventListener("resize", onResize);
         ro = new ResizeObserver(onResize);
         ro.observe(el);
         handleObj.destroy = function () {
           cleanup();
+          removeDragListeners();
           if (ro) ro.disconnect();
           disposeThree();
         };
         return;
       }
 
-      let angle = 0;
       function frame() {
         if (destroyed) return;
-        angle += 0.0022;
-        group.rotation.y = angle;
+        if (!dragging) angle += 0.0022;
+        applyView();
         renderer.render(scene, camera);
         rafId = requestAnimationFrame(frame);
       }
@@ -151,6 +204,7 @@ window.DostKozmikSahne.donus = (function () {
       handleObj.destroy = function () {
         cleanup();
         stopVisibility();
+        removeDragListeners();
         if (ro) ro.disconnect();
         disposeThree();
       };

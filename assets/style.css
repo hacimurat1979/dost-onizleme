@@ -118,6 +118,12 @@
   --series-sorular-kuran:    #b1512f; /* terracotta / questions on reading the Quran */
   --series-sorular-metot:    #38759f; /* slate / questions on method */
   --series-sorular-deneyim:  #a92d59; /* plum / questions on experience */
+
+  /* Türetilmiş (makine-ölçümlü) kenarlar/rozetler -- elle yazılmış
+     kenarlardan (--series-theme, altın) BİLEREK farklı bir renk ailesi:
+     mavi-yeşil, "ölçüm" hissi veriyor. 2026-08-02: eski --text-muted gri
+     grafikte fark edilmiyordu (kullanıcı bildirimi), bu daha belirgin. */
+  --series-turetilmis: #2f8fa3;
 }
 
 .viz-root[data-theme="dark"] {
@@ -175,6 +181,8 @@
   --series-sorular-kuran:    #d87c5a;
   --series-sorular-metot:    #7c98ac;
   --series-sorular-deneyim:  #ce6e91;
+
+  --series-turetilmis: #5bc4dc;
 }
 
 
@@ -1027,6 +1035,62 @@ body.sessiz-mod-on .app-header {
 .graph-hint:focus-visible {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
+}
+
+/* Grafik kontrol düğmelerinin hover ipucu (2026-08-02, kullanıcı bildirimi:
+   "3B'ye eğ", "ne kadar eminiz", "sayılan bağlar" gibi düğmelerin ne işe
+   yaradığı anlaşılmıyordu). Her düğme zaten bir `title` taşıyor
+   (erişilebilirlik için); burada aynı metni `attr(title)` ile okuyup daha
+   hızlı beliren, sitenin kendi görsel diline uygun bir kutuya çeviriyoruz --
+   tarayıcının kendi (gecikmeli, düz) ipucunun YANINDA, onu değiştirmeden.
+   Tek bir kural bütün ikon-düğme ailesini kapsıyor -- yeni bir düğme
+   eklendiğinde bu listeye eklenmesi yeterli, tekrar tekrar yazmaya gerek yok. */
+.graph-recenter, .graph-hint, .graph-back, .graph-3d-toggle, .graph-confidence-toggle,
+.esma-3d-toggle, .esma-derived-toggle, .esma-fca-btn, .hal-walk-btn {
+  position: absolute;
+}
+.graph-recenter::after, .graph-hint::after, .graph-back::after, .graph-3d-toggle::after,
+.graph-confidence-toggle::after, .esma-3d-toggle::after, .esma-derived-toggle::after,
+.esma-fca-btn::after, .hal-walk-btn::after {
+  content: attr(title);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  width: max-content;
+  max-width: 200px;
+  transform: translateX(-50%) translateY(-4px);
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface-1) 95%, transparent);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+.graph-recenter:hover::after, .graph-recenter:focus-visible::after,
+.graph-hint:hover::after, .graph-hint:focus-visible::after,
+.graph-back:hover::after, .graph-back:focus-visible::after,
+.graph-3d-toggle:hover::after, .graph-3d-toggle:focus-visible::after,
+.graph-confidence-toggle:hover::after, .graph-confidence-toggle:focus-visible::after,
+.esma-3d-toggle:hover::after, .esma-3d-toggle:focus-visible::after,
+.esma-derived-toggle:hover::after, .esma-derived-toggle:focus-visible::after,
+.esma-fca-btn:hover::after, .esma-fca-btn:focus-visible::after,
+.hal-walk-btn:hover::after, .hal-walk-btn:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .graph-recenter::after, .graph-hint::after, .graph-back::after, .graph-3d-toggle::after,
+  .graph-confidence-toggle::after, .esma-3d-toggle::after, .esma-derived-toggle::after,
+  .esma-fca-btn::after, .hal-walk-btn::after {
+    transition: opacity 0.15s ease;
+  }
 }
 .graph-back {
   position: absolute;
@@ -5497,16 +5561,26 @@ body.cizim-lightbox-open {
    -- varsayılan (kapalı) durumda bütün kenarlar eşit görünür, tıpkı
    türetilmiş-kenar ilkesindeki gibi "önce sessiz, tıklayınca konuşan"
    katman. */
+/* 2026-08-02 (kullanıcı bildirimi): yalnız opaklık farkı grafikte pek
+   fark edilmiyordu -- şimdi düşük güvenli kenarlar RENK olarak da
+   değişiyor (soluk mavi-gri + hafif blur, GORSEL_DIL.md'nin
+   "bulanıklık=bilgisizlik" kuralı), yüksek güvenliler de kendi
+   rengiyle (altın) öne çıkıyor -- iki grup artık sadece saydamlıkla
+   değil, hem renk hem netlikle ayrışıyor. */
 #ontology-wrap.confidence-on .link--conf-orta,
 #ontology-wrap.confidence-on .link--conf-dusuk,
 #ontology-wrap.confidence-on .link--conf-hipotez,
 #ontology-wrap.confidence-on .link--conf-bilinmiyor,
 #ontology-wrap.confidence-on .link--conf-gelecek {
   opacity: 0.32;
+  stroke: var(--text-muted);
   stroke-dasharray: 2 5;
+  filter: blur(0.4px);
 }
 #ontology-wrap.confidence-on .link--conf-yuksek {
   opacity: 1;
+  stroke: var(--accent-interactive);
+  filter: none;
 }
 
 .detail-confidence {
@@ -7169,6 +7243,11 @@ mark.durus-vurgu-es {
 /* "Âyet & Hadis İndeksi" görünümü (assets/ayet-hadis.js) -- ayet-tip'in
    kutu içeriğiyle aynı görsel dile sahip, ama sayfa akışında, tek tek
    künyeler yerine tüm dizini gezilebilir kılıyor. */
+.ayethadis-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px clamp(16px, 4vw, 48px) 60px;
+}
 .ayethadis-intro {
   max-width: 62ch;
   margin: 0 0 24px;
@@ -7178,7 +7257,6 @@ mark.durus-vurgu-es {
 .ayethadis-list {
   display: grid;
   gap: 14px;
-  max-width: 720px;
 }
 .ayethadis-item {
   border: 1px solid var(--border);
@@ -7268,8 +7346,13 @@ mark.durus-vurgu-es {
    bizim ölçümümüz, Dost'un iddiası değil. O yüzden kesikli ve daha sönük,
    ve varsayılan olarak kapalı bir anahtarın arkasında. */
 .esmaX-derived {
-  stroke: var(--text-muted);
-  stroke-width: 1.1px;
+  /* 2026-08-02: gri (--text-muted) grafikte fark edilmiyordu -- toggle'ın
+     etkisi belirsiz kalıyordu (kullanıcı bildirimi). Kendi rengi
+     (--series-turetilmis, mavi-yeşil) hem elle yazılmış kenarlardan
+     (altın, .esmaX-rel) hem de gri arka plandan ayrışıyor; nokta deseni
+     ve blur (aşağıda) epistemik "tentative" hissi zaten koruyor. */
+  stroke: var(--series-turetilmis);
+  stroke-width: 1.3px;
   /* NOKTALI, kesikli değil. Elle yazılmış kenar (.esmaX-rel) zaten kesikli
      (3 5); ilk denemede türetilmişi de kesikli yaptım (3 4) ve ikisi ayırt
      edilemedi — yani "görsel olarak ayrı göster" şartı kâğıtta kalmıştı.
@@ -7288,7 +7371,7 @@ mark.durus-vurgu-es {
 }
 .esmaX-derived:hover,
 .esmaX-derived:focus-visible {
-  stroke: var(--text-secondary);
+  stroke: var(--series-turetilmis);
   stroke-width: 1.8px;
   filter: none;
   outline: none;
@@ -7622,6 +7705,57 @@ mark.durus-vurgu-es {
 .atlas-isim-node circle:hover ~ text {
   opacity: 1;
 }
+.atlas-spine {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  overflow: visible;
+}
+.atlas-spine__path {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+.atlas-spine__dot {
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+.atlas-spine__dot circle {
+  fill: var(--surface-1);
+  stroke: var(--series-theme);
+  stroke-width: 1.6;
+  transition: fill 0.25s ease, stroke 0.25s ease;
+}
+.atlas-spine__dot:hover circle,
+.atlas-spine__dot:focus-visible circle {
+  stroke: var(--accent-interactive);
+}
+.atlas-spine__dot--active circle {
+  fill: var(--series-theme);
+}
+.atlas-spine__dot:focus-visible {
+  outline: none;
+}
+.atlas-spine__dot:focus-visible circle {
+  filter: drop-shadow(0 0 0 2px var(--accent-interactive));
+}
+.atlas-spine__end-label {
+  font-size: 11px;
+  fill: var(--text-muted);
+  font-weight: 600;
+}
+.atlas-spine__marker {
+  fill: color-mix(in srgb, var(--accent-interactive) 55%, transparent);
+  stroke: var(--accent-interactive);
+  stroke-width: 1.5;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .atlas-spine__marker {
+    transition: cx 0.12s linear, cy 0.12s linear;
+  }
+}
 .atlas-nav {
   display: flex;
   align-items: center;
@@ -7844,7 +7978,7 @@ mark.durus-vurgu-es {
   margin: 0 auto 14px;
 }
 .kavram-minigraf__edge { stroke: var(--text-secondary); }
-.kavram-minigraf__node { stroke: var(--surface-1); stroke-width: 1.5; }
+.kavram-minigraf__node { stroke: var(--border); stroke-width: 1.5; }
 .kavram-minigraf__center { stroke: var(--surface-1); stroke-width: 2; }
 .kavram-minigraf__label {
   font-size: 8.5px;

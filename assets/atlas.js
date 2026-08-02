@@ -22,6 +22,18 @@
  * Erişilebilirlik: fare tekerleği/kıstırma sürekli yakınlaşmayı sürüyor, ama
  * prefers-reduced-motion'da devre dışı -- yukarı/aşağı düğmeleri (ve ok
  * tuşları) HER İKİ modda da çalışan, durağan/anlık bir alternatif sağlıyor.
+ *
+ * Kullanıcı notu (2026-08-02): saf yakınlaşma sahnesi "anlamı yeterince iyi
+ * vermiyor" bulundu -- kullanıcı yalnız bir katmanı görüyor, 11 katmanlık
+ * ZİNCİRİN TAMAMINI hiçbir zaman göremiyordu (bir "atlas" adını taşıyan bir
+ * görünümün tam da vermesi gereken genel bakış eksikti). Bunu gidermek için
+ * `.atlas-spine`: sahnenin altında sabit duran, hafif kavisli (daire ilkesine
+ * bir göz kırpma -- düz bir çizgi değil) tek bir yay üzerinde 11 katmanın
+ * hepsi küçük noktalar olarak HER ZAMAN görünür; üzerinde kayan bir işaret
+ * `focus` ile aynı anda, kesiksiz kayar (sahnenin kendisi gibi zıplamaz).
+ * Uçlardaki iki isim (Zât / Nokta) hep okunur -- hangi iki kutup arasında
+ * gezindiğini ilk bakışta anlat. Noktalara tıklamak/Enter ile de doğrudan o
+ * katmana atlanabiliyor.
  */
 window.__atlasApp = (function () {
   "use strict";
@@ -35,8 +47,22 @@ window.__atlasApp = (function () {
   const upBtn = document.getElementById("atlas-up");
   const downBtn = document.getElementById("atlas-down");
   const navLabelEl = document.getElementById("atlas-nav-label");
+  const spineEl = document.getElementById("atlas-spine");
 
   const SCALE_STEP = 2; // katman başına ölçek ikiye katlanır (k = 2^derinlik)
+
+  // Yayın üç kontrol noktası -- hafif kavisli tek bir eğri (bkz. dosya başı
+  // yorumu). Sabit; hem düğümlerin hem kayan işaretin konumu bundan türer.
+  const SPINE_P0 = { x: 34, y: 86 };
+  const SPINE_C = { x: 320, y: 12 };
+  const SPINE_P1 = { x: 606, y: 86 };
+  function spineArcPoint(t) {
+    const mt = 1 - t;
+    return {
+      x: mt * mt * SPINE_P0.x + 2 * mt * t * SPINE_C.x + t * t * SPINE_P1.x,
+      y: mt * mt * SPINE_P0.y + 2 * mt * t * SPINE_C.y + t * t * SPINE_P1.y,
+    };
+  }
 
   function tt(dict) {
     return I18n ? I18n.pick3(dict || {}) : (dict && (dict.tr || dict.en || dict.pt)) || "";
@@ -54,6 +80,8 @@ window.__atlasApp = (function () {
   let zoomSel = null;
   let reducedMotion = false;
   let lastAnnounced = -1;
+  let spineDots = [];
+  let spineMarker = null;
 
   function fetchData() {
     if (dataPromise) return dataPromise;
@@ -176,6 +204,106 @@ window.__atlasApp = (function () {
     return d;
   }
 
+  // Sahnenin altında sabit duran genel bakış: 11 katmanın hepsi her zaman
+  // görünür, üzerinde kayan bir işaret `focus`u kesiksiz izler -- sahnenin
+  // kendisi tek bir katmana odaklanırken bu şerit zincirin TAMAMINI gösterir.
+  function buildSpine() {
+    if (!spineEl) return;
+    const svgNS = "http://www.w3.org/2000/svg";
+    spineEl.innerHTML = "";
+    const n = layers.length;
+
+    const path = document.createElementNS(svgNS, "path");
+    path.setAttribute("class", "atlas-spine__path");
+    path.setAttribute(
+      "d",
+      "M " + SPINE_P0.x + " " + SPINE_P0.y + " Q " + SPINE_C.x + " " + SPINE_C.y + " " + SPINE_P1.x + " " + SPINE_P1.y
+    );
+    spineEl.appendChild(path);
+
+    spineDots = layers.map((layer, i) => {
+      const t = n > 1 ? i / (n - 1) : 0;
+      const pt = spineArcPoint(t);
+      const g = document.createElementNS(svgNS, "g");
+      g.setAttribute("class", "atlas-spine__dot");
+      g.setAttribute("tabindex", "0");
+      g.setAttribute("role", "button");
+      const label = tt(layer.isim);
+      g.setAttribute("aria-label", label);
+      const title = document.createElementNS(svgNS, "title");
+      title.textContent = label;
+      g.appendChild(title);
+      const circle = document.createElementNS(svgNS, "circle");
+      circle.setAttribute("r", "5.5");
+      g.appendChild(circle);
+      function go() {
+        setTargetLayer(i);
+      }
+      g.addEventListener("click", go);
+      g.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          go();
+        }
+      });
+      spineEl.appendChild(g);
+      return { el: g, pt };
+    });
+
+    // Uçlardaki iki isim (Zât / Nokta) hep okunur -- hangi iki kutup
+    // arasında gezindiğini ilk bakışta anlat.
+    [
+      { pt: SPINE_P0, layer: layers[0], anchor: "start" },
+      { pt: SPINE_P1, layer: layers[n - 1], anchor: "end" },
+    ].forEach(({ pt, layer, anchor }) => {
+      const t = document.createElementNS(svgNS, "text");
+      t.setAttribute("class", "atlas-spine__end-label");
+      t.setAttribute("x", pt.x);
+      t.setAttribute("y", pt.y + 24);
+      t.setAttribute("text-anchor", anchor === "start" ? "start" : "end");
+      t.textContent = tt(layer.isim);
+      spineEl.appendChild(t);
+    });
+
+    spineMarker = document.createElementNS(svgNS, "circle");
+    spineMarker.setAttribute("class", "atlas-spine__marker");
+    spineMarker.setAttribute("r", "7.5");
+    spineEl.appendChild(spineMarker);
+  }
+
+  function updateSpine() {
+    if (!spineDots.length) return;
+    spineDots.forEach((d, i) => {
+      const dist = Math.abs(i - focus);
+      const s = Math.max(0.6, 1 - dist * 0.16);
+      const op = Math.max(0.4, 1 - dist * 0.22);
+      d.el.setAttribute(
+        "transform",
+        "translate(" + d.pt.x.toFixed(1) + "," + d.pt.y.toFixed(1) + ") scale(" + s.toFixed(2) + ")"
+      );
+      d.el.style.opacity = op.toFixed(2);
+      d.el.classList.toggle("atlas-spine__dot--active", dist < 0.5);
+    });
+    if (spineMarker) {
+      const n = layers.length;
+      const t = n > 1 ? Math.max(0, Math.min(1, focus / (n - 1))) : 0;
+      const pt = spineArcPoint(t);
+      spineMarker.setAttribute("cx", pt.x.toFixed(1));
+      spineMarker.setAttribute("cy", pt.y.toFixed(1));
+    }
+  }
+
+  function setTargetLayer(idx) {
+    target = idx;
+    if (zoomBehavior && zoomSel) zoomSel.call(zoomBehavior.scaleTo, Math.pow(SCALE_STEP, idx));
+    if (reducedMotion) {
+      focus = idx;
+      render();
+    } else {
+      ensureFrame();
+    }
+  }
+
   function build() {
     stageEl.innerHTML = "";
     layerEls = layers.map((layer, i) => {
@@ -183,6 +311,7 @@ window.__atlasApp = (function () {
       stageEl.appendChild(el);
       return el;
     });
+    buildSpine();
     reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     hintEl.textContent = reducedMotion
       ? tt({
@@ -245,14 +374,7 @@ window.__atlasApp = (function () {
     // birbirini yemeden art arda bir sonraki katmana ilerler.
     const cur = Math.round(target);
     const next = Math.max(0, Math.min(layers.length - 1, cur + delta));
-    target = next;
-    if (zoomBehavior && zoomSel) zoomSel.call(zoomBehavior.scaleTo, Math.pow(SCALE_STEP, next));
-    if (reducedMotion) {
-      focus = next;
-      render();
-    } else {
-      ensureFrame();
-    }
+    setTargetLayer(next);
   }
 
   function ensureFrame() {
@@ -294,6 +416,7 @@ window.__atlasApp = (function () {
       const ring = el.querySelector(".atlas-isim-ring");
       if (ring && ring.__setInteractive) ring.__setInteractive(interactive);
     });
+    updateSpine();
     updateNoteAndNav();
   }
 
@@ -341,6 +464,7 @@ window.__atlasApp = (function () {
       layerEls[idx].replaceWith(fresh);
       layerEls[idx] = fresh;
     }
+    buildSpine();
     lastAnnounced = -1;
     render();
   }
@@ -360,14 +484,7 @@ window.__atlasApp = (function () {
         if (!built) build();
         const idx = layers.findIndex((l) => l.id === id);
         if (idx < 0) return;
-        target = idx;
-        if (zoomBehavior && zoomSel) zoomSel.call(zoomBehavior.scaleTo, Math.pow(SCALE_STEP, idx));
-        if (reducedMotion) {
-          focus = idx;
-          render();
-        } else {
-          ensureFrame();
-        }
+        setTargetLayer(idx);
       });
     },
     onLangChange() {

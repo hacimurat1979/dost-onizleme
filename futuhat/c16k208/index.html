@@ -486,6 +486,7 @@
     <section class="atlas-wrap" id="atlas-wrap" hidden>
       <p class="atlas-hint" id="atlas-hint"></p>
       <div class="atlas-stage" id="atlas-stage" tabindex="0" role="group" aria-label="Zoom'lanabilir atlas" data-tr-aria-label="Zoom'lanabilir atlas" data-en-aria-label="Zoomable atlas" data-pt-aria-label="Atlas com zoom"></div>
+      <svg class="atlas-spine" id="atlas-spine" viewBox="0 0 640 110" aria-hidden="true"></svg>
       <div class="atlas-nav">
         <button class="atlas-nav__btn" id="atlas-up" type="button" aria-label="Bir üst katman" data-tr-aria-label="Bir üst katman" data-en-aria-label="One layer up" data-pt-aria-label="Uma camada acima">▲</button>
         <div class="atlas-nav__label" id="atlas-nav-label" aria-live="polite"></div>
@@ -1053,7 +1054,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/font-scale.js" integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
   <script src="assets/reading-mode.js" integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
   <script src="assets/honorifics.js" integrity="sha384-IwA4Fe1Lz4RekuTCKaeamOx5H2VogRQH66+kK99tc5SRCQL7ezB4EK8jbMw/uOhm"></script>
-  <script src="assets/esma.js" integrity="sha384-lUd0+lPjxS8IiOZHQD2De8zN2Q3pfse7dE1xrUNOC9OzmD0a2G9uHd8TITn+BDG0"></script>
+  <script src="assets/esma.js" integrity="sha384-tgAeIHrpzMp+/cPu99c3WijcBdJ0UVU3vWSpAmqSJS7CcKKiTyZ5jaFHWmWgRCEn"></script>
   <script src="assets/hal.js" integrity="sha384-KCNrMz7l1Fs3XNst6fsadqgXNO9OeL0pH/8O+nh6VosPW1+tZS7lG9ZBvV2xSEez"></script>
   <script src="assets/terimler.js" integrity="sha384-S3rxAv5o4FRv5hxyBjomiJl+WcqjFKKT7jUF1g5M9S9VF04jQEMpwwhyKn6KaEVI"></script>
   <script src="assets/cizimler.js" integrity="sha384-ApePyK753G9arEk136d72OKvIaTHT2ibCK1TIUD3zLgn8Nfzq4u+KtBmPZCusbRa"></script>
@@ -1063,21 +1064,21 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/tasiyicilar.js" integrity="sha384-lNVugceLvCvCJVmiaeondeMkZidLr/xkMU7e3FIfHyE0tYhzXcLpm8x7Ztni2FxQ"></script>
   <script src="assets/kozmik/kozmik-utils.js" integrity="sha384-I+49GhulWIOq5SsSY11XqFxsJ+C1iGW1IiL/BzJkp7qm0uHnfLP1b9j31T5hn0Y/"></script>
   <script src="assets/kozmik/kozmik-loader.js" integrity="sha384-NOMhMOZBIawVMeKeobgH5ChaNnk+mYaNc3V7qzEwZ1AJ4BloqdnqOjIXK1VujdVS"></script>
-  <script src="assets/kozmik/tecelli.js" integrity="sha384-Wi/6bb5zkyrbDWroDZooMxBYwyzMVN7EjTCTAwpKAFwDZbh9vwSOSL7FnUGS59ze"></script>
+  <script src="assets/kozmik/tecelli.js" integrity="sha384-Flcb4UPaq/kdsrJ/KeQ0RNhaPpLWgANa0tpKP2B91P8sCRzCmNefNjtF5GuYb9qD"></script>
   <script src="assets/kozmik/nefes.js" integrity="sha384-ItA6Q0Pv8RUfUhaxLWdUw8L7+GuRZ/BtbqsV5g/qVSGyo0kcsjLJLz9DrL4i50HS"></script>
-  <script src="assets/kozmik/sudur.js" integrity="sha384-g8lyWuyKrCoVgIueTk+uaP4ulkr78WBxAHKPj3OFEv6UEVxW10E4ivfVqBjFOEwV"></script>
+  <script src="assets/kozmik/sudur.js" integrity="sha384-H/xzxhAZyno7M8KzoF6MclfMwffV1E3ZatYOv18kCySTfrMLwazrU1gUrYzQyoB7"></script>
   <script src="assets/kozmik/mertebeler.js" integrity="sha384-uktm6uZ7cwLW1KyG+1CaIXSDn3ku3UCCiYfhZfKw79MOjSJbRxdObPekQbnSOXd5"></script>
-  <script src="assets/kozmik/donus.js" integrity="sha384-9k5WA1c7tfORY66QMD0hOLg5QfIKk7ocmZseUZHtFJdhZbuqVtbogSDAfqR7MbSD"></script>
-  <script src="assets/kozmik.js" integrity="sha384-Ekmn7gFs0gvARlbjEZoN2r/CVXQDc+pGAMyHfN9eL54ySivl9EG4Fpw8MSsRp+M5"></script>
-  <script src="assets/atlas.js" integrity="sha384-4eR4FMSabfZZhz/s9Y3SpzXuuOYjYfiTKN3ta7q8OX/Y4Rhmrvs1JGKbOxalZeg+"></script>
-  <script src="assets/kavram.js" integrity="sha384-1iROCtjK6yDs05oFEMUDG4fMngXfkXiyLh9/hrnDILOMtzeWUdwfbMZ6FfDL58cq"></script>
+  <script src="assets/kozmik/donus.js" integrity="sha384-63O72O5mQg+yZqBdjKrgXxnjEO3k4msPYFzWNw0V/jajbiSMq+GDD9vtsYKwiBnr"></script>
+  <script src="assets/kozmik.js" integrity="sha384-NGvqePiBd1sU7mPGDM+JRFfYiNc5hlgsY2IWaZ/48qYhXlouDtmIY9A149p4iqhg"></script>
+  <script src="assets/atlas.js" integrity="sha384-JDNk9lcuksW5iYajj/gooZMMtYrPkSIQW5H1PmId/rbYTqBYFtnzPX46LkFWJTii"></script>
+  <script src="assets/kavram.js" integrity="sha384-tXoYt04kxssUhsnT4Bvd55NDb/5Bb88c5375+TH+sNmXFCRzwKBlLkzDK8oWRqz+"></script>
   <script src="assets/ayet-hadis.js" integrity="sha384-NqjeB685KS7IBcItAvAwOeWxt/vF6SrgMn3SvwFR5aON3x+23Cpcv81QwL2B+Sp8"></script>
   <script src="assets/anlamsal-yakin.js" integrity="sha384-RF49Q32g0d6y3SRc2V3pOK6w72vIbpcudDUq0MMIuqs8JinkwA0MuRNfuzwYpWU0"></script>
   <script src="assets/futuhat.js" integrity="sha384-yJWC240f2U3Hy8gRILItRJx0UkveKkWW0N7go6Zg8ooEiZLYHDSknspY2fY2+VA1"></script>
   <script src="assets/fusus.js" integrity="sha384-LysUYN1mzDZB3kcyYXKoE5EmK1VSdmCE6+E/CG2yM+6fq2cNlu7cNJvvVNoSIdXA"></script>
   <script src="assets/ontology.js" integrity="sha384-/wNynzqgaiwvQMSriykbfBbK8PfFD/9TUD/1Ag4Gok8kIpMr+bisGsgWKYpCn0pq"></script>
   <script src="assets/crosslink-preview.js" integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
-  <script src="assets/ayet-onizleme.js" integrity="sha384-4OQQuc8N+xLgOtxLOwK1aiD7gVv+teW1tex+hba6Y3p6w7O+WXis9R/AUIziyRNr"></script>
+  <script src="assets/ayet-onizleme.js" integrity="sha384-pUGs2ZLA6M1Uv5y5m6q8SzOrNwoimvexeWXg1MwnVMdlNPg4urvUdMtthr/qlAE1"></script>
   <script src="assets/start-hint.js" integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>
   <script src="assets/siirler.js" integrity="sha384-JY+3hVD01Dqkhf0rZcbqDDs3a0l3PYO7nN2cxKrCm4lpQDIw4NM2m1ZIgYRx4HEm"></script>
   <script src="assets/secret-nav.js" integrity="sha384-bxSN300rzY5eTjVk6TAWQVedjEJKuWieA2pZLzqq8xZNFBtlkjahenZSN2Jhiuut"></script>
@@ -1086,7 +1087,7 @@ mesmo antes que o assombro exista."></blockquote>
        bayrağına bakar), kip kapalıyken hiçbir şey çizmez. 2026-07-29'a
        kadar önizlemeye özeldi; kullanıcı kararıyla canlıda da yayınlanıyor. -->
   <script src="assets/durus-kontrol.js" integrity="sha384-mOaPr1KcLaieLM7Dsc9IJR5DoayUHvlAQVVAb5qWHg3W/JIfbZX6DPdOHZ5zqO3J"></script>
-  <script src="assets/share-mode.js" integrity="sha384-yqb8X2SUT1Wg4W4ItY1eSSUsovm8WKpFuM2HrJLk4x+UehoI9ZqlJKZFJjIUgMfY"></script>
+  <script src="assets/share-mode.js" integrity="sha384-dHdryf8a7lbwQ+3Nb9kV76U4qAsEgnNpbB4x0Han0W2hBWfQK2qJ44yAuK/ezL9h"></script>
   <script src="assets/sessiz-mod.js" integrity="sha384-/6AkH3wfyX9LT4F/rsTAL9gzqHgY6pSMhtdkYjOcci0mkc+9ED8V4/3lOHHBNQdM"></script>
   <script src="assets/kavram-defteri.js" integrity="sha384-SEHFK/8YrjhNTF34/mS1FCXdHVORstWfUN3HMMJLT2GqxTBd7Ng60K1Xim6/prYG"></script>
   <script>

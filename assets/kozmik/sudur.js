@@ -5,6 +5,10 @@
  * gürültü/akış alanı ve o alanda süzülen parçacıklar olarak kodlandı.
  * Katman GEÇİŞİ yok, katman İMASI var -- renk ve doku birbirine karışıyor.
  *
+ * Kullanıcı notu (2026-08-02): şerit/parçacık opaklıkları çok düşüktü --
+ * akış gözle zor seçiliyordu ("çok sade"). Değerler yükseltildi; davranış
+ * (katman geçişsiz akış) aynı kaldı, yalnız okunurluk arttı.
+ *
  * API: mount(el, opts) -> { destroy() }.
  */
 window.DostKozmikSahne = window.DostKozmikSahne || {};
@@ -80,7 +84,7 @@ window.DostKozmikSahne.sudur = (function () {
         const y = depth * h;
         const n = noise2(depth * 3, 0, t) * 0.06;
         const [r, g, b] = colorAt(depth + n);
-        ctx.fillStyle = "rgba(" + r.toFixed(0) + "," + g.toFixed(0) + "," + b.toFixed(0) + "," + (0.05 + depth * 0.05) + ")";
+        ctx.fillStyle = "rgba(" + r.toFixed(0) + "," + g.toFixed(0) + "," + b.toFixed(0) + "," + (0.1 + depth * 0.09) + ")";
         ctx.fillRect(0, y, w, h / rows + 1);
       }
 
@@ -91,9 +95,9 @@ window.DostKozmikSahne.sudur = (function () {
         const x = (p.x + drift) * w;
         const y = p.y * h;
         const [r, g, b] = colorAt(p.y);
-        const size = 0.8 + p.y * 2.2;
+        const size = 1 + p.y * 2.6;
         ctx.beginPath();
-        ctx.fillStyle = "rgba(" + r.toFixed(0) + "," + g.toFixed(0) + "," + b.toFixed(0) + "," + (0.35 + p.y * 0.35) + ")";
+        ctx.fillStyle = "rgba(" + r.toFixed(0) + "," + g.toFixed(0) + "," + b.toFixed(0) + "," + (0.55 + p.y * 0.4) + ")";
         ctx.arc(x, y, size, 0, Math.PI * 2);
         ctx.fill();
       });

@@ -110,10 +110,16 @@
     if (!tip || tip.hidden) return;
     const r = el.getBoundingClientRect();
     const k = tip.getBoundingClientRect();
-    // Künyenin ÜSTÜNE koyuyoruz; üstte yer yoksa altına düşüyor.
+    // Künyenin ÜSTÜNE koyuyoruz; üstte yer yoksa altına düşüyor. İkisi de
+    // dikeyde ekran dışına taşabiliyordu (2026-08-02 kullanıcı bildirimi:
+    // özellikle çok künyeli sayfalarda -- /ayethadis, kavram sayfaları --
+    // künye ekranın alt kenarına yakınken alta düşen kutu taşıyordu) --
+    // şimdi hem üst hem alt kenara clamp uygulanıyor, yatay ile aynı mantık.
     let x = Math.min(Math.max(8, r.left + r.width / 2 - k.width / 2), window.innerWidth - k.width - 8);
     let y = r.top - k.height - 8;
     if (y < 8) y = r.bottom + 8;
+    y = Math.min(y, window.innerHeight - k.height - 8);
+    y = Math.max(y, 8);
     tip.style.left = x + "px";
     tip.style.top = y + "px";
   }
