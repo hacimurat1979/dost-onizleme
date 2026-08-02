@@ -7959,11 +7959,75 @@ mark.durus-vurgu-es {
   color: var(--text-muted);
   margin: 0 0 10px;
 }
-.kavram-list__chips,
 .kavram-related__chips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+.kavram-list__intro--gauge {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: -10px;
+}
+/* Liste kartları: düz isim yığını yerine, her adın yanında o kavram için
+   biriken malzemeyi (kısım sayısı + birlikte-esmâ + ilişkili sır/çizim/
+   âyet/hadis) gösteren bir halka -- terim sayfasındaki "dönüş yoğunluğu"
+   ile aynı görsel dil (bkz. zenginlikSkoru/kavramGaugeSvg). */
+.kavram-list__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+.kavram-tile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+}
+.kavram-tile:hover,
+.kavram-tile:focus-visible {
+  border-color: hsl(var(--tag-hue, 38) 55% 50%);
+  background: hsl(var(--tag-hue, 38) 55% 50% / 0.08);
+  transform: translateY(-1px);
+}
+.kavram-tile__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.kavram-tile__gauge {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+.kavram-tile__gauge-track {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1.8;
+}
+.kavram-tile__gauge-arc {
+  fill: none;
+  stroke: hsl(var(--tag-hue, 38) 42% 44%);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.viz-root[data-theme="dark"] .kavram-tile__gauge-arc {
+  stroke: hsl(var(--tag-hue, 38) 48% 62%);
+}
+@media (max-width: 480px) {
+  .kavram-list__grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
 }
 .kavram-chip {
   padding: 7px 14px;

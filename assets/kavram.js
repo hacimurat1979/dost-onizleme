@@ -144,6 +144,40 @@ window.__kavramApp = (function () {
     window.__dostNav && window.__dostNav.goTo(view, id);
   }
 
+  // Kullanıcı notu (2026-08-02): liste sayfası düz bir isim yığınıydı --
+  // "çok basit". GORSEL_DIL.md'nin ilkesi gereği ("davranışı resmet,
+  // kavramı değil") süs eklemek yerine zaten elimizdeki veriyi görünür
+  // kıldık: her kavramın etrafında ne kadar malzeme biriktiğini (kaç
+  // kısımda geçtiği + kaç esmâyla birlikte anıldığı + kaç sır/çizim/âyet/
+  // hadisle ilişkilendiği) terimler.js'teki "dönüş yoğunluğu" halkasıyla
+  // AYNI görsel dilde (dolan bir daire, ısı haritası değil) gösteren bir
+  // ölçü -- bu da bir iddia değil, taramanın kendi izini gösteren bir
+  // öz-portre.
+  function zenginlikSkoru(k) {
+    if (k.otomatikEslesmeYok) return 0;
+    return (
+      (k.futuhat ? k.futuhat.toplamKisim : 0) +
+      (k.fusus ? k.fusus.toplamKisim : 0) +
+      k.birlikteEsma.length +
+      k.ilgiliSirlar.length +
+      k.ilgiliCizimler.length +
+      k.ilgiliAyet.length +
+      k.ilgiliHadis.length
+    );
+  }
+
+  const KAVRAM_GAUGE_R = 8;
+  const KAVRAM_GAUGE_C = 2 * Math.PI * KAVRAM_GAUGE_R;
+  function kavramGaugeSvg(frac, hue) {
+    const f = Math.max(0.05, Math.min(1, frac));
+    const off = KAVRAM_GAUGE_C * (1 - f);
+    return `<svg class="kavram-tile__gauge" viewBox="0 0 22 22" aria-hidden="true" style="--tag-hue:${hue}">
+      <circle class="kavram-tile__gauge-track" cx="11" cy="11" r="${KAVRAM_GAUGE_R}"></circle>
+      <circle class="kavram-tile__gauge-arc" cx="11" cy="11" r="${KAVRAM_GAUGE_R}"
+        stroke-dasharray="${KAVRAM_GAUGE_C.toFixed(2)}" stroke-dashoffset="${off.toFixed(2)}"></circle>
+    </svg>`;
+  }
+
   function renderList() {
     detailEl.hidden = true;
     listEl.hidden = false;
@@ -155,19 +189,38 @@ window.__kavramApp = (function () {
       en: "A data-derived summary of where each concept first appears across the Meccan Revelations and the Bezels of Wisdom, where it appears most densely, and which mystery/diagram/verse/hadith it's recorded alongside. Not a claim -- a scanning attempt; method noted at the page's foot.",
       pt: "Um resumo derivado de dados de onde cada conceito aparece pela primeira vez nas Revelações de Meca e nos Engastes da Sabedoria, onde aparece com mais densidade, e com qual mistério/diagrama/versículo/hadith é registrado junto. Não uma afirmação -- uma tentativa de varredura; o método está ao pé da página.",
     });
+    const gaugeNote = tt({
+      tr: "Her adın yanındaki halka, o kavram için ne kadar malzeme biriktiğini gösterir -- kısım/fass sayısı, birlikte anıldığı esmâ, ilişkili sır/çizim/âyet/hadis toplanarak (kendi grubu içinde ölçeklenmiş).",
+      en: "The ring beside each name shows how much material has accumulated for that concept -- part/chapter count, co-occurring Names, and related mysteries/diagrams/verses/hadiths added together (scaled within its own group).",
+      pt: "O anel ao lado de cada nome mostra quanto material se acumulou para aquele conceito -- número de partes/capítulos, Nomes coocorrentes, e mistérios/diagramas/versículos/hadiths relacionados somados (escalado dentro do próprio grupo).",
+    });
     listEl.innerHTML =
       `<p class="kavram-list__intro">${intro}</p>` +
+      `<p class="kavram-list__intro kavram-list__intro--gauge">${gaugeNote}</p>` +
       Object.keys(groups)
-        .map(
-          (v) =>
-            `<div class="kavram-list__group"><h2>${tt(VIEW_LABEL[v])}</h2><div class="kavram-list__chips">` +
-            groups[v]
-              .map((k) => `<button type="button" class="kavram-chip" data-view="${k.view}" data-id="${k.id}">${tt(k.isim)}</button>`)
+        .map((v) => {
+          const items = groups[v];
+          const scores = items.map(zenginlikSkoru);
+          const lo = Math.min.apply(null, scores), hi = Math.max.apply(null, scores);
+          const hue = VIEW_HUE[v] != null ? VIEW_HUE[v] : 0;
+          return (
+            `<div class="kavram-list__group"><h2>${tt(VIEW_LABEL[v])}</h2><div class="kavram-list__grid">` +
+            items
+              .map((k, i) => {
+                const frac = hi === lo ? 0.5 : (scores[i] - lo) / (hi - lo);
+                return (
+                  `<button type="button" class="kavram-tile" data-view="${k.view}" data-id="${k.id}" title="${escapeHtmlKavram(tt(k.isim))}">` +
+                  kavramGaugeSvg(frac, hue) +
+                  `<span class="kavram-tile__label">${tt(k.isim)}</span>` +
+                  `</button>`
+                );
+              })
               .join("") +
             `</div></div>`
-        )
+          );
+        })
         .join("");
-    listEl.querySelectorAll(".kavram-chip").forEach((btn) => {
+    listEl.querySelectorAll(".kavram-tile").forEach((btn) => {
       btn.addEventListener("click", () => nav("kavram", btn.dataset.view + "/" + btn.dataset.id));
     });
   }
