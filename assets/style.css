@@ -6142,6 +6142,15 @@ body.share-stage-open { overflow: hidden; }
 @media (max-aspect-ratio: 9 / 16) {
   .share-stage__frame { width: 100vw; height: 100dvh; }
 }
+/* Kare (1:1) format (kullanıcı isteği, 2026-08-02): feed paylaşımı için --
+   9:16'nın aksine ekran boyutuna bakılmaksızın sabit bir kare, kısa kenara
+   göre sınırlanmış. Kayıt/kart yakalaması zaten frameEl'in GERÇEK render
+   kutusunu kırptığı için (bkz. recordToFile/captureCardToFile) burada
+   yalnız CSS boyutunu değiştirmek yetiyor -- ayrı bir kırpma kodu gerekmez. */
+.share-stage--kare .share-stage__frame {
+  width: min(100vw, 100dvh);
+  height: min(100vw, 100dvh);
+}
 .share-stage__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .share-spiral {
   stroke: var(--sahne-murekkep);
@@ -6184,6 +6193,14 @@ body.share-stage-open { overflow: hidden; }
   color: var(--sahne-vurgu);
   font-weight: 600;
   font-size: clamp(1.3rem, 4.1vh, 1.9rem);
+}
+/* Kullanıcı isteği (2026-08-02): pasajın ait olduğu kavram/terim (esma/
+   ontoloji/benzetme şablonlarının "baslik" satırı) altın rengiyle vurgulu --
+   sitenin kendi çapraz-bağlantı terimi tam da bu isim, o yüzden vurgu
+   pasajın kendi gövde metninde rastgele bir kelime değil bu satır. */
+.share-line--baslik {
+  color: var(--sahne-vurgu);
+  font-weight: 700;
 }
 .share-rule {
   display: block;
