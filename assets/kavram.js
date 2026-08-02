@@ -94,6 +94,20 @@ window.__kavramApp = (function () {
     return `<svg class="kavram-minigraf" viewBox="0 0 220 236" role="img" aria-label="${label}">` + parts.join("") + `</svg>`;
   }
 
+  function openMinigrafLightbox(k) {
+    if (!window.DostLightbox || !k.birlikteEsma.length) return;
+    window.dostTrack && window.dostTrack("kavram_minigraf_buyutuldu", { view: k.view, id: k.id });
+    window.DostLightbox.open({
+      closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+      svgHtml: birlikteEsmaSvg(k),
+      caption: tt({
+        tr: "Birlikte en çok geçtiği isimlerle ilişki şeması",
+        en: "Diagram of relation to most co-occurring Names",
+        pt: "Diagrama de relação com os Nomes mais coocorrentes",
+      }),
+    });
+  }
+
   let dataPromise = null;
   let kavramlar = [];
   let byKey = new Map();
@@ -275,7 +289,9 @@ window.__kavramApp = (function () {
         `<div class="kavram-related kavram-related--birlikte"><h3>${tt({
           tr: "Birlikte en çok geçtiği esmâ", en: "Most co-occurring Names", pt: "Nomes mais coocorrentes",
         })}</h3>` +
-          birlikteEsmaSvg(k) +
+          `<div class="kavram-minigraf-wrap" role="button" tabindex="0" aria-label="${tt({
+            tr: "Büyüt", en: "Enlarge", pt: "Ampliar",
+          })}">${birlikteEsmaSvg(k)}</div>` +
           `<div class="kavram-related__chips">` +
           k.birlikteEsma
             .map(
@@ -336,6 +352,16 @@ window.__kavramApp = (function () {
     detailEl.querySelectorAll("[data-view]").forEach((btn) => {
       btn.addEventListener("click", () => nav(btn.dataset.view, btn.dataset.id || undefined));
     });
+    const minigrafWrap = detailEl.querySelector(".kavram-minigraf-wrap");
+    if (minigrafWrap) {
+      minigrafWrap.addEventListener("click", () => openMinigrafLightbox(k));
+      minigrafWrap.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openMinigrafLightbox(k);
+        }
+      });
+    }
   }
 
   let currentId; // "view/id" ya da undefined (liste hâli) -- dil değişince yeniden çizmek için

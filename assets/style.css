@@ -7329,6 +7329,15 @@ mark.durus-vurgu-es {
      bir ipucu olduğu için) -- bu kutu artık tıklanabilir bağlantı taşıyor
      (A1: "burada da geçiyor"), o yüzden override ediyoruz. */
   pointer-events: auto;
+  /* Taban .node-hover-tip'in transform:translate(-50%, calc(-100% - 14px))'ü
+     "top/left'i bir çapa noktası say, kendini o noktanın üstünde ortala"
+     anlamına geliyor -- ama ayet-onizleme.js'in konumla() fonksiyonu zaten
+     KENDİ merkezleme/ekran-içi-tutma hesabını yapıp gerçek sol-üst köşe
+     koordinatını yazıyor. İkisi üst üste binince (2026-08-02 kullanıcı
+     bildirimi: uzun künye listeli sayfalarda kutu ekranın çok dışına,
+     hesaplanandan ~280px yukarı/sola kayarak taşıyordu) konum tamamen
+     bozuluyordu. Bu kutu için taban transform'u iptal ediyoruz. */
+  transform: none;
 }
 .ayet-tip__ar {
   font-size: 1.15rem;
@@ -8092,11 +8101,30 @@ mark.durus-vurgu-es {
    GORSEL_DIL.md'nin "davranışı resmet" ilkesi. */
 .kavram-related--birlikte { text-align: center; }
 .kavram-related--birlikte h3 { text-align: left; }
+.kavram-minigraf-wrap {
+  display: block;
+  cursor: zoom-in;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+.kavram-minigraf-wrap:hover,
+.kavram-minigraf-wrap:focus-visible {
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
+  outline: none;
+}
 .kavram-minigraf {
   display: block;
   width: 100%;
   max-width: 260px;
   margin: 0 auto 14px;
+}
+/* Lightbox içinde küçük mini-graf de diğer diyagramlar gibi büyütülüyor --
+   viewBox neredeyse kare (220x236) olduğundan tam panel genişliği (1000px)
+   çizgileri/etiketleri aşırı kalınlaştırırdı; ölçülü bir üst sınır seçildi. */
+.cizim-lightbox__svg-wrap .kavram-minigraf {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
 }
 .kavram-minigraf__edge { stroke: var(--text-secondary); }
 .kavram-minigraf__node { stroke: var(--border); stroke-width: 1.5; }
