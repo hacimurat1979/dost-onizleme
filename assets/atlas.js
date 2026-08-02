@@ -75,13 +75,33 @@ window.__atlasApp = (function () {
   let focus = 0;
   let target = 0;
   let rafId = null;
-  let layerEls = [];
   let zoomBehavior = null;
   let zoomSel = null;
   let reducedMotion = false;
   let lastAnnounced = -1;
   let spineDots = [];
   let spineMarker = null;
+
+  // --- 3B sarmal iniş (kullanıcı kararı, 2026-08-02: "gerçek 3B sarmal
+  // iniş", donus.js'teki motorun aynısı) --------------------------------
+  // Kamera merkez eksene yakın, alçalan bir çizgide iniyor; 11 katman
+  // kendi sarmal konumlarında (kameradan biraz uzakta) dönerek geçiyor --
+  // bir sarmal merdivenin ortasından aşağı bakmak gibi. Zât ve İsim
+  // katmanları 3B nesne DEĞİL (bkz. buildEsmaRing/`.atlas-haze`): ikisi de
+  // zaten kanıtlanmış, erişilebilirliği elle doğrulanmış 2B kaplamalar --
+  // Zât'ı "parlak bir cisim" olarak çizmeme yasağı ve İsim halkasının 100
+  // düğümlük klavye/işaretçi erişilebilirliği üç boyutlu ışın-izleme
+  // (raycasting) ile yeniden inşa edilseydi bu turun kapsamını aşardı.
+  const HELIX_TURNS = 2.6, HELIX_HEIGHT = 6.4, NODE_R = 2.15, CAM_R = 0.85;
+  function helixPoint(i, n, radius) {
+    const t = n > 1 ? i / (n - 1) : 0;
+    const angle = t * HELIX_TURNS * Math.PI * 2;
+    const y = HELIX_HEIGHT / 2 - t * HELIX_HEIGHT;
+    return { x: Math.cos(angle) * radius, y: y, z: Math.sin(angle) * radius, angle: angle, t: t };
+  }
+  let three3d = null; // { renderer, scene, camera, canvas, nodes:[{mesh,glow,layerIdx}] }
+  let groupSpin = 0; // yavaş, sürekli dönüş -- sahneye ambiyans katan tek serbest değişken
+  let zatOverlayEl = null, isimOverlayEl = null;
 
   function fetchData() {
     if (dataPromise) return dataPromise;
@@ -176,33 +196,137 @@ window.__atlasApp = (function () {
     return holder;
   }
 
-  function buildLayerEl(layer, i) {
-    const d = document.createElement("div");
-    d.className = "atlas-layer";
-    d.dataset.id = layer.id;
-
-    if (layer.id === "zat") {
-      // Kasıtlı: hiçbir etiket, hiçbir keskin şekil -- bkz. dosya başlığı.
-      const haze = document.createElement("div");
-      haze.className = "atlas-haze";
-      haze.setAttribute("aria-hidden", "true");
-      d.appendChild(haze);
-    } else if (layer.id === "isim") {
-      d.appendChild(buildEsmaRing());
-    } else {
-      const hue = hueFor(i);
-      const core = document.createElement("div");
-      core.className = "atlas-core";
-      core.style.background =
-        "radial-gradient(circle at 42% 38%, hsla(" + hue + ",60%,74%,0.9), hsla(" + hue + ",50%,40%,0.12) 72%)";
-      const label = document.createElement("span");
-      label.className = "atlas-core__label";
-      label.textContent = tt(layer.isim);
-      core.appendChild(label);
-      d.appendChild(core);
-    }
-    return d;
+  // Paylaşılan tek bir yumuşak-parlama dokusu -- her düğümün glow sprite'ı
+  // bunu kendi rengiyle tint ediyor (Sprite material color çarpımı), ayrı
+  // ayrı canvas üretmeye gerek yok.
+  let glowTexture = null;
+  function makeGlowTexture(THREE) {
+    const size = 128;
+    const c = document.createElement("canvas");
+    c.width = c.height = size;
+    const cx = c.getContext("2d");
+    const g = cx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    g.addColorStop(0, "rgba(255,255,255,0.9)");
+    g.addColorStop(0.4, "rgba(255,255,255,0.35)");
+    g.addColorStop(1, "rgba(255,255,255,0)");
+    cx.fillStyle = g;
+    cx.fillRect(0, 0, size, size);
+    const tex = new THREE.CanvasTexture(c);
+    tex.needsUpdate = true;
+    return tex;
   }
+
+  // 3B sahneyi kurar: Zât ve İsim kendi 2B kaplamalarını korur (bkz. dosya
+  // başlığı), geri kalan 9 katman sarmal üzerinde bir çekirdek+parlama
+  // çifti olarak yer alır. build() sayfa ömrü boyunca yalnız BİR kez
+  // çağrılıyor (activate() bunu `built` ile koruyor), o yüzden burada ekstra
+  // bir yarış-koşulu koruması gerekmiyor.
+  function setup3D() {
+    window.DostKozmikLoader.loadThree().then(function (THREE) {
+      const canvas = document.createElement("canvas");
+      canvas.className = "atlas-canvas";
+      stageEl.insertBefore(canvas, stageEl.firstChild);
+      const r = stageEl.getBoundingClientRect();
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(r.width, r.height, false);
+
+      // donus.js'teki gibi arka plan BİLEREK sabitlenmiyor -- şeffaf canvas,
+      // .atlas-stage'in kendi tema-duyarlı gradyanının üzerinde duruyor
+      // (koyu/açık modda otomatik uyum). "Yaklaştıkça netleşme" hissi burada
+      // sise değil (tema rengiyle çakışırdı), doğrudan düğüm materyaline
+      // (emissiveIntensity/glow) bağlı -- bkz. updateCamera().
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(52, r.width / Math.max(1, r.height), 0.05, 30);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+      const dl = new THREE.DirectionalLight(0xfff3d8, 0.7);
+      dl.position.set(2, 3, 2);
+      scene.add(dl);
+
+      glowTexture = makeGlowTexture(THREE);
+
+      const n = layers.length;
+      const nodes = layers.map(function (layer, i) {
+        if (layer.id === "zat" || layer.id === "isim") return null;
+        const p = helixPoint(i, n, NODE_R);
+        const hue = hueFor(i);
+        const color = new THREE.Color("hsl(" + hue + ",62%,62%)");
+        const geo = new THREE.SphereGeometry(0.16, 20, 16);
+        const mat = new THREE.MeshStandardMaterial({ color: color, emissive: color, emissiveIntensity: 0.5, roughness: 0.4 });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.position.set(p.x, p.y, p.z);
+        scene.add(mesh);
+        const glowMat = new THREE.SpriteMaterial({ map: glowTexture, color: color, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+        const glow = new THREE.Sprite(glowMat);
+        glow.scale.set(0.85, 0.85, 1);
+        glow.position.copy(mesh.position);
+        scene.add(glow);
+        return { mesh: mesh, glow: glow, mat: mat, glowMat: glowMat, layerIdx: i, basePos: p };
+      });
+
+      three3d = { renderer: renderer, scene: scene, camera: camera, canvas: canvas, nodes: nodes };
+
+      const ro = new ResizeObserver(function () {
+        if (!three3d) return;
+        const rr = stageEl.getBoundingClientRect();
+        renderer.setSize(rr.width, rr.height, false);
+        camera.aspect = rr.width / Math.max(1, rr.height);
+        camera.updateProjectionMatrix();
+      });
+      ro.observe(stageEl);
+      three3d.ro = ro;
+
+      renderThree();
+      if (!reducedMotion) startLoop();
+    });
+  }
+
+  // Kamera merkez eksene yakın bir düşey çizgide iner (kavs-i nüzûl gibi),
+  // `groupSpin` ile yavaşça dönerek -- katmanlar sarmal üzerinde geçip
+  // gidiyor, "sarmal merdivenin ortasından aşağı bakmak" hissi.
+  function updateCamera() {
+    if (!three3d) return;
+    const n = layers.length;
+    const t = n > 1 ? Math.max(0, Math.min(1, focus / (n - 1))) : 0;
+    const y = HELIX_HEIGHT / 2 - t * HELIX_HEIGHT;
+    const angle = t * HELIX_TURNS * Math.PI * 2 + groupSpin;
+    three3d.camera.position.set(Math.cos(angle) * CAM_R, y, Math.sin(angle) * CAM_R);
+    const lookAngle = angle + 0.5;
+    three3d.camera.lookAt(Math.cos(lookAngle) * CAM_R * 0.4, y - 0.7, Math.sin(lookAngle) * CAM_R * 0.4);
+    three3d.nodes.forEach(function (nd) {
+      if (!nd) return;
+      const p = helixPoint(nd.layerIdx, n, NODE_R);
+      const a = p.angle + groupSpin;
+      const rr = Math.sqrt(p.x * p.x + p.z * p.z);
+      const x = Math.cos(a) * rr, z = Math.sin(a) * rr;
+      nd.mesh.position.set(x, p.y, z);
+      nd.glow.position.set(x, p.y, z);
+      const dist = Math.abs(nd.layerIdx - focus);
+      const closeness = Math.max(0, 1 - dist * 0.55);
+      nd.mat.emissiveIntensity = 0.35 + closeness * 1.1;
+      const glowScale = 0.6 + closeness * 0.9;
+      nd.glow.scale.set(glowScale, glowScale, 1);
+      nd.glowMat.opacity = 0.25 + closeness * 0.55;
+    });
+  }
+
+  function startLoop() {
+    if (rafId != null) return;
+    function tick() {
+      rafId = null;
+      if (!GU.isViewActive(wrapEl) || !three3d) return;
+      focus += (target - focus) * 0.09;
+      groupSpin += 0.0009;
+      renderThree();
+      render();
+      rafId = requestAnimationFrame(tick);
+    }
+    tick();
+  }
+  GU.onViewWake(function () {
+    if (built && !wrapEl.hidden && !reducedMotion && rafId == null) startLoop();
+  });
 
   // Sahnenin altında sabit duran genel bakış: 11 katmanın hepsi her zaman
   // görünür, üzerinde kayan bir işaret `focus`u kesiksiz izler -- sahnenin
@@ -298,19 +422,32 @@ window.__atlasApp = (function () {
     if (zoomBehavior && zoomSel) zoomSel.call(zoomBehavior.scaleTo, Math.pow(SCALE_STEP, idx));
     if (reducedMotion) {
       focus = idx;
+      renderThree();
       render();
-    } else {
-      ensureFrame();
     }
+    // Normal kipte döngü (startLoop) zaten sürekli çalışıyor -- yeni hedefe
+    // kendiliğinden yakınsar, burada ayrıca tetiklemeye gerek yok.
   }
+
+  let isimIdx = -1;
 
   function build() {
     stageEl.innerHTML = "";
-    layerEls = layers.map((layer, i) => {
-      const el = buildLayerEl(layer, i);
-      stageEl.appendChild(el);
-      return el;
-    });
+    isimIdx = layers.findIndex((l) => l.id === "isim");
+
+    zatOverlayEl = document.createElement("div");
+    zatOverlayEl.className = "atlas-overlay atlas-overlay--zat";
+    const haze = document.createElement("div");
+    haze.className = "atlas-haze";
+    haze.setAttribute("aria-hidden", "true");
+    zatOverlayEl.appendChild(haze);
+    stageEl.appendChild(zatOverlayEl);
+
+    isimOverlayEl = document.createElement("div");
+    isimOverlayEl.className = "atlas-overlay atlas-overlay--isim";
+    isimOverlayEl.appendChild(buildEsmaRing());
+    stageEl.appendChild(isimOverlayEl);
+
     buildSpine();
     reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     hintEl.textContent = reducedMotion
@@ -340,7 +477,8 @@ window.__atlasApp = (function () {
       .on("zoom", (event) => {
         const depth = Math.log(event.transform.k) / Math.log(SCALE_STEP);
         target = Math.max(0, Math.min(layers.length - 1, depth));
-        if (!reducedMotion) ensureFrame();
+        // Normal kipte startLoop() döngüsü zaten sürekli çalışıyor, yeni
+        // hedefi kendiliğinden yakalar.
       })
       // Bir tekerlek/kıstırma hareketi bittiğinde en yakın tam katmana
       // "yapış" -- aksi hâlde tekerleğin bıraktığı kesirli hedef, hemen
@@ -363,6 +501,8 @@ window.__atlasApp = (function () {
       }
     });
 
+    setup3D();
+    renderThree();
     render();
     built = true;
   }
@@ -377,45 +517,37 @@ window.__atlasApp = (function () {
     setTargetLayer(next);
   }
 
-  function ensureFrame() {
-    if (rafId == null) rafId = requestAnimationFrame(frame);
+  function renderThree() {
+    updateCamera();
+    if (three3d) three3d.renderer.render(three3d.scene, three3d.camera);
   }
 
-  function frame() {
-    rafId = null;
-    if (!GU.isViewActive(wrapEl)) return;
-    focus += (target - focus) * 0.09;
-    render();
-    if (Math.abs(target - focus) > 0.002) ensureFrame();
-  }
-
-  // Sekme arkaya alınıp geri gelindiğinde döngü (yalnız hâlâ yakınsamamışsa) uyansın.
-  GU.onViewWake(() => {
-    if (built && !wrapEl.hidden && !reducedMotion && Math.abs(target - focus) > 0.002) ensureFrame();
-  });
-
-  function render() {
-    layerEls.forEach((el, i) => {
-      const layer = layers[i];
-      const dist = Math.abs(i - focus);
-      let blur, opacity;
-      if (layer.id === "zat") {
-        blur = Math.min(70, 10 + focus * 6);
-        opacity = Math.max(0.05, 0.55 - focus * 0.045);
-      } else {
-        blur = Math.min(20, dist * dist * 6);
-        opacity = Math.max(0.04, 1 - dist * 0.55);
-      }
+  // Zât ve İsim'in 2B kaplamaları: davranışları 3B'ye geçmeden ÖNCEKİ
+  // haliyle birebir aynı -- Zât'ın "asla tam netleşmeyen, asla tam
+  // kaybolmayan" kuralı `focus`un mutlak değerine bağlı (simetrik uzaklığa
+  // değil), İsim'inki diğer katmanlarla aynı simetrik uzaklık formülü.
+  function updateOverlays() {
+    if (zatOverlayEl) {
+      const blur = Math.min(70, 10 + focus * 6);
+      const opacity = Math.max(0.05, 0.55 - focus * 0.045);
+      zatOverlayEl.style.filter = "blur(" + blur.toFixed(1) + "px)";
+      zatOverlayEl.style.opacity = opacity.toFixed(3);
+    }
+    if (isimOverlayEl && isimIdx >= 0) {
+      const dist = Math.abs(isimIdx - focus);
+      const opacity = Math.max(0.04, 1 - dist * 0.55);
       const scale = Math.max(0.4, 1 - dist * 0.1);
       const interactive = dist < 0.55;
-      el.style.filter = "blur(" + blur.toFixed(1) + "px)";
-      el.style.opacity = opacity.toFixed(3);
-      el.style.transform = "scale(" + scale.toFixed(3) + ")";
-      el.style.zIndex = String(100 - Math.round(dist * 10));
-      el.classList.toggle("atlas-layer--interactive", interactive);
-      const ring = el.querySelector(".atlas-isim-ring");
+      isimOverlayEl.style.opacity = opacity.toFixed(3);
+      isimOverlayEl.style.transform = "scale(" + scale.toFixed(3) + ")";
+      isimOverlayEl.classList.toggle("atlas-overlay--interactive", interactive);
+      const ring = isimOverlayEl.querySelector(".atlas-isim-ring");
       if (ring && ring.__setInteractive) ring.__setInteractive(interactive);
-    });
+    }
+  }
+
+  function render() {
+    updateOverlays();
     updateSpine();
     updateNoteAndNav();
   }
@@ -451,18 +583,14 @@ window.__atlasApp = (function () {
   }
 
   // Dil değişince İsim halkasının ~100 etiketini tek tek güncellemek yerine
-  // (pahalı ve deconfliction'ı bozar) o katmanı yeniden inşa ediyoruz.
+  // (pahalı ve deconfliction'ı bozar) o kaplamayı yeniden inşa ediyoruz.
+  // 3B katmanların sahne içinde metni yok (bkz. dosya başlığı: kimlik nav
+  // etiketi/not panelinden okunuyor), o yüzden onlar için hiçbir şey
+  // yapmaya gerek yok.
   function rerenderLabels() {
-    layers.forEach((layer, i) => {
-      if (layer.id === "isim" || layer.id === "zat") return;
-      const label = layerEls[i] && layerEls[i].querySelector(".atlas-core__label");
-      if (label) label.textContent = tt(layer.isim);
-    });
-    const idx = layers.findIndex((l) => l.id === "isim");
-    if (idx >= 0 && layerEls[idx]) {
-      const fresh = buildLayerEl(layers[idx], idx);
-      layerEls[idx].replaceWith(fresh);
-      layerEls[idx] = fresh;
+    if (isimOverlayEl) {
+      isimOverlayEl.innerHTML = "";
+      isimOverlayEl.appendChild(buildEsmaRing());
     }
     buildSpine();
     lastAnnounced = -1;
@@ -474,7 +602,7 @@ window.__atlasApp = (function () {
       fetchData().then((ok) => {
         if (!ok) return;
         if (!built) build();
-        else if (!reducedMotion) ensureFrame();
+        else if (!reducedMotion && rafId == null) startLoop();
         else render();
       });
     },

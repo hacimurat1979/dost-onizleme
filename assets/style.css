@@ -7755,7 +7755,19 @@ mark.durus-vurgu-es {
   outline: 2px solid var(--accent-interactive);
   outline-offset: -2px;
 }
-.atlas-layer {
+/* 3B sarmal iniş (kullanıcı kararı, 2026-08-02): canvas'ın altında/üstünde
+   Zât (.atlas-haze) ve İsim (.atlas-isim-ring) için 2B kaplamalar duruyor --
+   bkz. atlas.js dosya başlığı, ikisi de üç boyutlu ışın-izlemeyle yeniden
+   inşa edilmedi (Zât'ı cisimleştirmeme yasağı + İsim'in 100 düğümlük
+   erişilebilirliği). */
+.atlas-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.atlas-overlay {
   position: absolute;
   inset: 0;
   display: flex;
@@ -7764,8 +7776,8 @@ mark.durus-vurgu-es {
   pointer-events: none;
   will-change: filter, opacity, transform;
 }
-.atlas-layer--interactive,
-.atlas-layer--interactive * {
+.atlas-overlay--interactive,
+.atlas-overlay--interactive * {
   pointer-events: auto;
 }
 .atlas-haze {
@@ -7773,21 +7785,6 @@ mark.durus-vurgu-es {
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--text-primary) 16%, transparent) 0%, transparent 72%);
-}
-.atlas-core {
-  width: 46%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 12px;
-}
-.atlas-core__label {
-  font-size: 0.98rem;
-  font-weight: 600;
-  color: color-mix(in srgb, var(--text-primary) 78%, transparent);
 }
 .atlas-isim-ring {
   position: relative;
