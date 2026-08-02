@@ -200,32 +200,35 @@
   }
 
   // ── sub-tab wiring ───────────────────────────────────────────────────────
-  // Wire the Hakkında / Şiirleri tab buttons inside hakkinda-wrap.
+  // Wire the Hakkında / Şiirleri / Eleştiriler tab buttons inside hakkinda-wrap.
   // Called once from ontology.js when the hakkında view is first activated,
   // and again on each subsequent activation (idempotent: button listener
-  // is added only once via a guard flag on the element).
+  // is added only once via a guard flag on the element). Kept here (rather
+  // than split per-tab) because it already owned the DOM wiring before the
+  // third tab existed -- three tabs still doesn't justify a dedicated module.
   function wireTabs() {
-    const tabHakkinda = document.getElementById("hakkinda-subtab-hakkinda");
-    const tabSiirler  = document.getElementById("hakkinda-subtab-siirler");
-    const panelHakkinda = document.getElementById("hakkinda-content-panel");
-    const panelSiirler  = document.getElementById("siirler-panel");
-    if (!tabHakkinda || !tabSiirler || !panelHakkinda || !panelSiirler) return;
+    const tabs = {
+      hakkinda: { btn: document.getElementById("hakkinda-subtab-hakkinda"), panel: document.getElementById("hakkinda-content-panel") },
+      siirler: { btn: document.getElementById("hakkinda-subtab-siirler"), panel: document.getElementById("siirler-panel") },
+      vahdet: { btn: document.getElementById("hakkinda-subtab-vahdet"), panel: document.getElementById("vahdet-panel") },
+    };
+    const keys = Object.keys(tabs);
+    if (keys.some((k) => !tabs[k].btn || !tabs[k].panel)) return;
 
     function switchTo(which) {
-      const toHakkinda = which === "hakkinda";
-      tabHakkinda.classList.toggle("hakkinda-subtab--active", toHakkinda);
-      tabSiirler.classList.toggle("hakkinda-subtab--active", !toHakkinda);
-      tabHakkinda.setAttribute("aria-selected", String(toHakkinda));
-      tabSiirler.setAttribute("aria-selected", String(!toHakkinda));
-      panelHakkinda.hidden = !toHakkinda;
-      panelSiirler.hidden = toHakkinda;
-      if (!toHakkinda && !initialized) activate();
+      keys.forEach((k) => {
+        const active = k === which;
+        tabs[k].btn.classList.toggle("hakkinda-subtab--active", active);
+        tabs[k].btn.setAttribute("aria-selected", String(active));
+        tabs[k].panel.hidden = !active;
+      });
+      if (which === "siirler" && !initialized) activate();
+      if (which === "vahdet") window.__vahdetApp && window.__vahdetApp.activate();
     }
 
-    if (!tabHakkinda.dataset.wired) {
-      tabHakkinda.addEventListener("click", () => switchTo("hakkinda"));
-      tabSiirler.addEventListener("click", () => switchTo("siirler"));
-      tabHakkinda.dataset.wired = "1";
+    if (!tabs.hakkinda.btn.dataset.wired) {
+      keys.forEach((k) => tabs[k].btn.addEventListener("click", () => switchTo(k)));
+      tabs.hakkinda.btn.dataset.wired = "1";
     }
   }
 

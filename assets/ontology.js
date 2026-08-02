@@ -235,7 +235,10 @@
     else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
     else if (currentMainView === "fusus") window.__fususApp && window.__fususApp.onLangChange();
-    else if (currentMainView === "hakkinda") window.__siirlerApp && window.__siirlerApp.onLangChange();
+    else if (currentMainView === "hakkinda") {
+      window.__siirlerApp && window.__siirlerApp.onLangChange();
+      window.__vahdetApp && window.__vahdetApp.onLangChange();
+    }
     else if (currentMainView === "kozmik") window.__kozmikApp && window.__kozmikApp.onLangChange();
     else if (currentMainView === "atlas") window.__atlasApp && window.__atlasApp.onLangChange();
     else if (currentMainView === "kavram") window.__kavramApp && window.__kavramApp.onLangChange();
