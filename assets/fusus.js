@@ -43,6 +43,10 @@
     try { return localStorage.getItem(LAST_FASS_KEY); } catch (_) { return null; }
   }
 
+  // B1 "başlangıç güzergâhı": bkz. futuhat.js'teki aynı isimli mantık --
+  // activeFassId (fs27) de okumanın en son ulaştığı fass, fs1 değil.
+  var isDefaultLanding = false;
+
   function t(d) { return d ? I18n.pick3(d) : ""; }
   function esc(s) {
     return String(s == null ? "" : s)
@@ -223,7 +227,20 @@
     var captions = {};
     var idx = 0;
 
-    var html = '<header class="fusus-article__head">'
+    var html = "";
+    if (isDefaultLanding && data.fasses[0] && data.fasses[0].id !== f.id) {
+      html += '<div class="futuhat-start-hint fusus-start-hint">'
+        + "<p>" + esc(t({
+          tr: "Bu, okumanın en son ulaştığı yer. Yeni geliyorsan, baştan başlamak isteyebilirsin.",
+          en: "This is where the reading currently stands. If you're new here, you may want to start from the beginning.",
+          pt: "É aqui que a leitura chegou. Se você é novo aqui, talvez queira começar do início.",
+        })) + "</p>"
+        + '<button type="button" class="futuhat-start-hint__btn" data-start-fass="' + esc(data.fasses[0].id) + '">'
+        + esc(t({ tr: "Baştan başla", en: "Start from the beginning", pt: "Começar do início" })) + "</button>"
+        + '<button type="button" class="futuhat-start-hint__close" aria-label="' + esc(t({ tr: "Kapat", en: "Close", pt: "Fechar" })) + '">×</button>'
+        + "</div>";
+    }
+    html += '<header class="fusus-article__head">'
       + '<button type="button" class="fusus-print-btn" title="' + esc(t({ tr: "Yazdır", en: "Print", pt: "Imprimir" })) + ' / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">'
       + '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="6" y="3" width="12" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="9" width="16" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>'
       + "</button>"
@@ -274,6 +291,20 @@
     renderYakinPasajlar(f);
     var printBtn = articleEl.querySelector(".fusus-print-btn");
     if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
+    var startBtn = articleEl.querySelector("[data-start-fass]");
+    var startClose = articleEl.querySelector(".fusus-start-hint .futuhat-start-hint__close");
+    if (startBtn) {
+      startBtn.addEventListener("click", function () {
+        isDefaultLanding = false;
+        activate(startBtn.getAttribute("data-start-fass"));
+      });
+    }
+    if (startClose) {
+      startClose.addEventListener("click", function () {
+        var hint = articleEl.querySelector(".fusus-start-hint");
+        if (hint) hint.remove();
+      });
+    }
   }
 
   // Embedding altyapısı: bkz. assets/futuhat.js'teki aynı adlı fonksiyon --
@@ -366,6 +397,7 @@
       if (!data) return;
       var f = fassById(id) || (!id ? fassById(loadLastFass()) : null) || fassById(data.activeFassId) || data.fasses[0];
       if (!f) return;
+      isDefaultLanding = !id && !loadLastFass();
       activeId = f.id;
       saveLastFass(f.id);
       renderMap();

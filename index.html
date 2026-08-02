@@ -138,11 +138,12 @@
         <p class="welcome-screen__line welcome-screen__line--pt">D'Ele para Ele</p>
         <p class="welcome-screen__line welcome-screen__line--tagline" data-tr="Dost'u anlamaya bir çaba" data-en="An effort to understand Dost" data-pt="Um esforço para compreender Dost">Dost'u anlamaya bir çaba</p>
         <p class="welcome-screen__line welcome-screen__line--gunun" id="welcome-gunun" hidden></p>
+        <p class="welcome-screen__line welcome-neredeyiz" id="welcome-neredeyiz" hidden></p>
       </div>
     </div>
     <button class="welcome-screen__skip" id="welcome-skip" type="button" aria-label="Geç / Skip / Pular">Geç · Skip · Pular</button>
   </div>
-  <script src="assets/welcome.js" integrity="sha384-D0n/13c1zVg68fk8bLjciGDn/X654WifbYq8l/s5HvjI3lyXGqm/Mov0sT4CTr9s"></script>
+  <script src="assets/welcome.js" integrity="sha384-XpbM67ETuLJVWfPPr/v4yHFG2kZhkDjSeDbwJ4/o+qzbJTlP574NZBUq7E21Gh2G"></script>
   <header class="app-header">
     <div class="app-header__controls">
       <div class="view-switch" id="view-switch">
@@ -157,9 +158,10 @@
         <button class="btn-ghost" id="tasiyicilar-btn" type="button" title="Arşı taşıyan melekler — The angels who bear the Throne — Os anjos que carregam o Trono" data-tr="Taşıyanlar" data-en="The Bearers" data-pt="Os Portadores">Taşıyanlar</button>
         <button class="btn-ghost" id="futuhat-btn" type="button" title="Fütûhât-ı Mekkiyye, kısım kısım — The Meccan Revelations, part by part — As Revelações de Meca, parte por parte" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
         <button class="btn-ghost" id="fusus-btn" type="button" title="Füsûsu'l-Hikem, fass fass — The Bezels of Wisdom, chapter by chapter — Os Engastes da Sabedoria, capítulo por capítulo" data-tr="Füsûs" data-en="Fusus" data-pt="Fusus">Füsûs</button>
-        <button class="btn-ghost" id="kozmik-btn" type="button" title="Devinimi durağan bir resim yerine devinimin kendisiyle anlatan beş sahne — Five scenes that show motion through motion itself, not a still picture — Cinco cenas que mostram o movimento através do próprio movimento, não uma imagem estática" data-tr="Kozmik" data-en="Cosmic" data-pt="Cósmico">Kozmik</button>
-        <button class="btn-ghost" id="atlas-btn" type="button" title="Zât'tan Nokta'ya, tek bir sürekli yakınlaşmayla gezilen on bir katman — From the Essence to the Point, eleven layers explored through one continuous zoom — Da Essência ao Ponto, onze camadas percorridas por um único zoom contínuo" data-tr="Atlas" data-en="Atlas" data-pt="Atlas">Atlas</button>
-        <button class="btn-ghost" id="kavram-btn" type="button" title="Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti — A data-derived life summary tracing each concept through the Futuhat and Fusus — Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus" data-tr="Kavramlar" data-en="Concepts" data-pt="Conceitos">Kavramlar</button>
+        <button class="btn-ghost btn-ghost--yeni" id="kozmik-btn" type="button" title="Devinimi durağan bir resim yerine devinimin kendisiyle anlatan beş sahne — Five scenes that show motion through motion itself, not a still picture — Cinco cenas que mostram o movimento através do próprio movimento, não uma imagem estática" data-tr="Kozmik" data-en="Cosmic" data-pt="Cósmico">Kozmik</button>
+        <button class="btn-ghost btn-ghost--yeni" id="atlas-btn" type="button" title="Zât'tan Nokta'ya, tek bir sürekli yakınlaşmayla gezilen on bir katman — From the Essence to the Point, eleven layers explored through one continuous zoom — Da Essência ao Ponto, onze camadas percorridas por um único zoom contínuo" data-tr="Atlas" data-en="Atlas" data-pt="Atlas">Atlas</button>
+        <button class="btn-ghost btn-ghost--yeni" id="kavram-btn" type="button" title="Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti — A data-derived life summary tracing each concept through the Futuhat and Fusus — Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus" data-tr="Kavramlar" data-en="Concepts" data-pt="Conceitos">Kavramlar</button>
+        <button class="btn-ghost btn-ghost--yeni" id="ayethadis-btn" type="button" title="Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin — An index of quoted verses and hadiths, ordered by how often each recurs — Um índice de versículos e ditos citados, ordenados por quantas vezes cada um recorre" data-tr="Âyet &amp; Hadis" data-en="Verses &amp; Hadith" data-pt="Versículos e Hadith">Âyet &amp; Hadis</button>
         <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
       </div>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
@@ -502,6 +504,15 @@
       </div>
     </section>
 
+    <section class="ayethadis-wrap" id="ayethadis-wrap" hidden>
+      <div id="ayethadis-list"></div>
+      <div class="view-status" id="ayethadis-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+    </section>
+
     <section class="hakkinda-wrap" id="hakkinda-wrap" hidden>
       <div class="hakkinda-subtabs" role="tablist">
         <button class="hakkinda-subtab hakkinda-subtab--active" id="hakkinda-subtab-hakkinda"
@@ -513,6 +524,12 @@
       </div>
       <div id="hakkinda-content-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-hakkinda">
       <div class="hakkinda-content">
+        <div class="hakkinda-nefes" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <circle class="hakkinda-nefes__halo" cx="60" cy="60" r="30"></circle>
+            <circle class="hakkinda-nefes__cekirdek" cx="60" cy="60" r="5"></circle>
+          </svg>
+        </div>
         <h2 class="hakkinda-content__title">Dost</h2>
         <p class="hakkinda-content__subtitle" data-tr="Muhyiddîn İbnü'l-Arabî (1165–1240), tasavvuf tarihinin en etkili düşünürlerinden biridir. Bu site onu, Dostu anlamaya çalışan mütevazı bir haritadır."
            data-en="Muhyiddin Ibn Arabi (1165–1240) is one of the most influential thinkers in the history of Islamic mysticism. This site is a humble map of an attempt to understand him — the Friend."
@@ -977,7 +994,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/font-scale.js" integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
   <script src="assets/reading-mode.js" integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
   <script src="assets/honorifics.js" integrity="sha384-IwA4Fe1Lz4RekuTCKaeamOx5H2VogRQH66+kK99tc5SRCQL7ezB4EK8jbMw/uOhm"></script>
-  <script src="assets/esma.js" integrity="sha384-FtQjjzC3nRu93cCGLwZVO6o96YE1MzBX5XPXe3WjPt7xE/GJdOK5LrcXkpzlSiWw"></script>
+  <script src="assets/esma.js" integrity="sha384-C750N96qE8b/5OQTIYN/bVt01mrjFGJJocvVD9WnRfa5VpgdJ9U7LQRyj0D0aCP9"></script>
   <script src="assets/hal.js" integrity="sha384-KCNrMz7l1Fs3XNst6fsadqgXNO9OeL0pH/8O+nh6VosPW1+tZS7lG9ZBvV2xSEez"></script>
   <script src="assets/terimler.js" integrity="sha384-7Sy0u4XpG6ogLSeW0vK3hKgxfMqMJYNn2UtLlthak5h81O8/1kanwP6nq7hoMfPQ"></script>
   <script src="assets/cizimler.js" integrity="sha384-ApePyK753G9arEk136d72OKvIaTHT2ibCK1TIUD3zLgn8Nfzq4u+KtBmPZCusbRa"></script>
@@ -992,13 +1009,14 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/kozmik/sudur.js" integrity="sha384-g8lyWuyKrCoVgIueTk+uaP4ulkr78WBxAHKPj3OFEv6UEVxW10E4ivfVqBjFOEwV"></script>
   <script src="assets/kozmik/mertebeler.js" integrity="sha384-uktm6uZ7cwLW1KyG+1CaIXSDn3ku3UCCiYfhZfKw79MOjSJbRxdObPekQbnSOXd5"></script>
   <script src="assets/kozmik/donus.js" integrity="sha384-9k5WA1c7tfORY66QMD0hOLg5QfIKk7ocmZseUZHtFJdhZbuqVtbogSDAfqR7MbSD"></script>
-  <script src="assets/kozmik.js" integrity="sha384-bpJf0BlVdtIDshLgi5KeE/AwR1YKZ92cOQy/iEaDqUhH9HyrGbNXn9ymzm5vO8/F"></script>
+  <script src="assets/kozmik.js" integrity="sha384-Ekmn7gFs0gvARlbjEZoN2r/CVXQDc+pGAMyHfN9eL54ySivl9EG4Fpw8MSsRp+M5"></script>
   <script src="assets/atlas.js" integrity="sha384-4eR4FMSabfZZhz/s9Y3SpzXuuOYjYfiTKN3ta7q8OX/Y4Rhmrvs1JGKbOxalZeg+"></script>
-  <script src="assets/kavram.js" integrity="sha384-G/0EYzwHcyjG2sqp+u5Ukuq7A6hWRoBLPl21NlTRTtrYefUcVJyRP8UQNLvgUIly"></script>
+  <script src="assets/kavram.js" integrity="sha384-1iROCtjK6yDs05oFEMUDG4fMngXfkXiyLh9/hrnDILOMtzeWUdwfbMZ6FfDL58cq"></script>
+  <script src="assets/ayet-hadis.js" integrity="sha384-NqjeB685KS7IBcItAvAwOeWxt/vF6SrgMn3SvwFR5aON3x+23Cpcv81QwL2B+Sp8"></script>
   <script src="assets/anlamsal-yakin.js" integrity="sha384-RF49Q32g0d6y3SRc2V3pOK6w72vIbpcudDUq0MMIuqs8JinkwA0MuRNfuzwYpWU0"></script>
-  <script src="assets/futuhat.js" integrity="sha384-85BK4/Q/hUR0TY04u1/O/Jc88h9WFB69b/ZcB89NismZREszvs1BtPSLoak51Dc+"></script>
-  <script src="assets/fusus.js" integrity="sha384-XrU2zWMktf9wKJ0SBqMt8fdZ1l99lV8NqBOnoIgViHnpSaon7C0yQWu014ZmsMtD"></script>
-  <script src="assets/ontology.js" integrity="sha384-h+e7IRp1VeX+OA4bkwv4AgD7mMklI0j6kPePcJsZJc+HjNI+D3kYFxsX9WMNNU0q"></script>
+  <script src="assets/futuhat.js" integrity="sha384-yJWC240f2U3Hy8gRILItRJx0UkveKkWW0N7go6Zg8ooEiZLYHDSknspY2fY2+VA1"></script>
+  <script src="assets/fusus.js" integrity="sha384-cTvoN4oo8t/f8KdgwoDFd1nyBdUpncSw9YYJUie6X6O5vUbXVwgc6dU4ea0y4I1L"></script>
+  <script src="assets/ontology.js" integrity="sha384-tuxzq1Xx4l0H6iyPBWGjiHFavLBHj1htcjikvzoSe9GaBVKH8nZze7dPMf2jDwL3"></script>
   <script src="assets/crosslink-preview.js" integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" integrity="sha384-4OQQuc8N+xLgOtxLOwK1aiD7gVv+teW1tex+hba6Y3p6w7O+WXis9R/AUIziyRNr"></script>
   <script src="assets/start-hint.js" integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>
@@ -1009,7 +1027,7 @@ mesmo antes que o assombro exista."></blockquote>
        bayrağına bakar), kip kapalıyken hiçbir şey çizmez. 2026-07-29'a
        kadar önizlemeye özeldi; kullanıcı kararıyla canlıda da yayınlanıyor. -->
   <script src="assets/durus-kontrol.js" integrity="sha384-mOaPr1KcLaieLM7Dsc9IJR5DoayUHvlAQVVAb5qWHg3W/JIfbZX6DPdOHZ5zqO3J"></script>
-  <script src="assets/share-mode.js" integrity="sha384-V6bdG3NoVljmseb/bK8PnMF4dAA/RkNwnc+bYmgwA8dnC2s95wPy719Y2P1X3jK5"></script>
+  <script src="assets/share-mode.js" integrity="sha384-yqb8X2SUT1Wg4W4ItY1eSSUsovm8WKpFuM2HrJLk4x+UehoI9ZqlJKZFJjIUgMfY"></script>
   <script src="assets/sessiz-mod.js" integrity="sha384-/6AkH3wfyX9LT4F/rsTAL9gzqHgY6pSMhtdkYjOcci0mkc+9ED8V4/3lOHHBNQdM"></script>
   <script src="assets/kavram-defteri.js" integrity="sha384-SEHFK/8YrjhNTF34/mS1FCXdHVORstWfUN3HMMJLT2GqxTBd7Ng60K1Xim6/prYG"></script>
   <script>

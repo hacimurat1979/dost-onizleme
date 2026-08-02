@@ -647,13 +647,30 @@
     return `color-mix(in srgb, ${base} ${100 - amt}%, ${target} ${amt}%)`;
   }
 
-  function colorForNode(n) {
+  // 2026-08 kod taraması: colorForNode/haloColor render()'ın 60fps
+  // requestAnimationFrame döngüsünde HER düğüm için çağrılıyordu, her
+  // çağrı da getComputedStyle() ile bir stil yeniden-hesabı tetikliyordu
+  // (~200 düğüm × 5 renk = saniyede on binlerce zorunlu reflow). Bu 6 CSS
+  // özel özelliği tema değişmedikçe sabit kaldığından, render() başına BİR
+  // kez okunup palette olarak geçiriliyor -- düğüm başına değil.
+  function renderPalette() {
+    return {
+      theme: getVar("--series-theme"),
+      celal: getVar("--series-celal"),
+      cemal: getVar("--series-cemal"),
+      kemal: getVar("--series-kemal"),
+      neutral: getVar("--series-esma-neutral"),
+      accentGlowDark: isDark() ? getVar("--accent-glow-dark") : null,
+    };
+  }
+
+  function colorForNode(n, pal) {
     if (n.kind === "zat") return GU.ZAT_FILL;
-    if (n.kind === "allah") return getVar("--series-theme");
-    if (n.pole === "celal") return getVar("--series-celal");
-    if (n.pole === "cemal") return getVar("--series-cemal");
-    if (n.pole === "kemal") return getVar("--series-kemal");
-    return getVar("--series-esma-neutral");
+    if (n.kind === "allah") return pal.theme;
+    if (n.pole === "celal") return pal.celal;
+    if (n.pole === "cemal") return pal.cemal;
+    if (n.pole === "kemal") return pal.kemal;
+    return pal.neutral;
   }
 
   // Allah'a yakınlığa göre hale gücü (#6): yakın düğümler daha güçlü, yumuşak
@@ -671,9 +688,9 @@
   // color-mix burada bir "iyileştirme" sanılmıştı ama aslında Zât'ı sönük/
   // içi boş bir halkaya çeviriyordu -- iki grafikte de aynı Zât'ın aynı
   // ışımayla görünmesi için buradan da doğrudan tema rengi kullanılıyor.
-  function haloColor(n) {
-    if (n.kind === "zat") return isDark() ? getVar("--accent-glow-dark") : getVar("--series-theme");
-    return warmthColor(colorForNode(n), n.depthA);
+  function haloColor(n, pal) {
+    if (n.kind === "zat") return isDark() ? pal.accentGlowDark : pal.theme;
+    return warmthColor(colorForNode(n, pal), n.depthA);
   }
 
   // Nefes alan halo: Ontoloji'deki .node--root .node-halo keyframe'iyle
@@ -709,6 +726,7 @@
     if (!nodeLayer) return;
     ts = ts || performance.now();
     nodes.forEach(project);
+    const pal = renderPalette();
 
     const relSet = selectedId ? relationSets(selectedId) : null;
     const flowSet = new Set(flow ? flow.chain : []);
@@ -828,9 +846,9 @@
       }
       g.select(".esmaX-halo")
         .attr("r", haloR)
-        .style("fill", haloColor(n))
+        .style("fill", haloColor(n, pal))
         .style("opacity", haloOp);
-      g.select(".esmaX-dot").attr("r", r).style("fill", warmthColor(colorForNode(n), n.depthA));
+      g.select(".esmaX-dot").attr("r", r).style("fill", warmthColor(colorForNode(n, pal), n.depthA));
       g.select(".node-sheen").attr("r", r);
       const mode = labelPlan.get(n.id) || "none";
       const label = g.select(".esmaX-label");

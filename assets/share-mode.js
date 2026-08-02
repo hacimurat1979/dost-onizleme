@@ -68,6 +68,7 @@
       hikaye:   { tr: "Hikâye",   en: "Story",        pt: "História" },
       ontoloji: { tr: "Ontoloji", en: "Ontology",     pt: "Ontologia" },
       esma:     { tr: "Esmâ",     en: "Divine Name",  pt: "Nome Divino" },
+      gunun:    { tr: "Günün Sözü", en: "Word of the Day", pt: "Palavra do Dia" },
     },
     filter:      { tr: "Filtre",             en: "Filter",               pt: "Filtro" },
     filterAll:   { tr: "Tümü",              en: "All",                  pt: "Tudo" },
@@ -116,6 +117,12 @@
     return GU.fetchJson("data/ibn-arabi/sorular.json").then((d) => (sorularData = d));
   }
 
+  let sirlarData = null;
+  function loadSirlar() {
+    if (sirlarData) return Promise.resolve(sirlarData);
+    return GU.fetchJson("data/ibn-arabi/sirlar.json").then((d) => (sirlarData = d));
+  }
+
   let ontolojiData = null, esmaData = null;
   function loadOntoloji() {
     if (ontolojiData) return Promise.resolve(ontolojiData);
@@ -142,11 +149,10 @@
   // kart metni olarak doğrudan kullanılabiliyorlar.
   function quotesFromPart(p) {
     const out = [];
-    const L = lang();
     const visit = (blocks) => {
       (blocks || []).forEach((b) => {
         if (b.type !== "p" || !b.text) return;
-        const html = b.text[L] || b.text.tr || "";
+        const html = tt(b.text);
         const re = /<em>([\s\S]*?)<\/em>/g;
         let m;
         while ((m = re.exec(html))) {
@@ -271,12 +277,33 @@
         const sents = splitSentences(tt(q.answer)).filter((x) => x.length >= 24 && x.length <= 200);
         return {
           tpl: "hikaye",
+          // Kullanıcı notu (2026-08-02): "hikâye" şablonlarında önce soru
+          // verilsin, ardından cevap cümleleri -- kancayı başa çekiyoruz.
           lines: [
+            { text: tt(q.question), kind: "soru" },
             { text: sents[0], kind: "soz" },
             { text: sents[1], kind: "soz" },
-            { text: tt(q.question), kind: "soru" },
           ],
           source: tt({ tr: "Sorular · dostarabi.com", en: "Questions · dostarabi.com", pt: "Perguntas · dostarabi.com" }),
+        };
+      });
+    }
+    if (tpl === "gunun") {
+      // "Bugünün parçası" (welcome.js) ile AYNI gün-endeksi formülü: gün
+      // boyunca herkese aynı kayıt gösteriliyor -- rastgele değil, ortak
+      // bir günlük ritim. Kaynak sirlar.json'un zaten kürasyonlu kayıtları.
+      return loadSirlar().then((d) => {
+        const entries = (d && d.entries) || [];
+        if (!entries.length) return null;
+        const dayIndex = Math.floor(Date.now() / 86400000);
+        const entry = entries[dayIndex % entries.length];
+        const raw = tt(entry.quote || {});
+        if (!raw) return null;
+        const text = raw.length > 310 ? raw.slice(0, raw.lastIndexOf(" ", 310)) + "…" : raw;
+        return {
+          tpl: "gunun",
+          lines: [{ text: text, kind: "soz" }],
+          source: tt({ tr: "Sırlar · dostarabi.com", en: "Mysteries · dostarabi.com", pt: "Mistérios · dostarabi.com" }),
         };
       });
     }
@@ -350,10 +377,11 @@
   // [giriş, çıkış] biçiminde, döngü içindeki oranlar.
   const TIMING = {
     soz:      { loop: 9000,  beats: [[0.09, 0.94]], source: [0.55, 0.97] },
+    gunun:    { loop: 9000,  beats: [[0.09, 0.94]], source: [0.55, 0.97] },
     ikili:    { loop: 8500,  beats: [[0.09, 0.94], [0.22, 0.94]], source: [0.55, 0.97] },
     soru:     { loop: 8500,  beats: [[0.09, 0.94]], source: [0.52, 0.97] },
-    // Üç vuruşlu, daha uzun bir döngü: iki kuruluş cümlesi sırayla girip
-    // kalıyor, soru en sonda en uzun süre asılı kalıyor -- "kanca" burada.
+    // Üç vuruşlu, daha uzun bir döngü: soru en başta girip ekranda kalıyor
+    // ("kanca" burada), iki cevap cümlesi ardından sırayla altına ekleniyor.
     hikaye:   { loop: 15000, beats: [[0.04, 0.97], [0.24, 0.97], [0.52, 0.97]], source: [0.80, 0.99] },
     ontoloji: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]], source: [0.60, 0.97] },
     esma:     { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]], source: [0.60, 0.97] },
@@ -915,8 +943,8 @@
 
   function candidateSnippet(s) {
     const first = s.lines[0].text;
-    // "Hikâye"de kuruluşu değil, kuruluş→soru YAYINI göstermek daha
-    // faydalı: panelde tıklamadan önce nereye vardığı görülsün.
+    // "Hikâye"de artık soru başta (lines[0]); panelde soru→son cevap
+    // cümlesi YAYINI gösteriyoruz ki tıklamadan önce nereye vardığı görülsün.
     const second = s.tpl === "hikaye" ? s.lines[s.lines.length - 1].text : (s.lines.length > 1 ? s.lines[1].text : "");
     const sep = s.tpl === "hikaye" ? "  →  " : "  ·  ";
     const full = second ? first + sep + second : first;

@@ -31,9 +31,73 @@ window.__kavramApp = (function () {
     terimler: { tr: "Terimler", en: "Terms", pt: "Termos" },
   };
 
+  // terimler.js'teki VIEW_HUE ile aynı ton sözleşmesi -- görünümler arası
+  // renk tutarlılığı için (bkz. GORSEL_DIL.md).
+  const VIEW_HUE = { ontoloji: 40, esma: 200, terimler: 15 };
+
+  function escapeHtmlKavram(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  // Kullanıcı notu (2026-08-02): "birlikte en çok geçtiği esma" listesi düz
+  // metin çipleriydi -- ilişkinin GÜCÜNÜ göstermiyordu. GORSEL_DIL.md'nin
+  // ilkesi gereği ("davranışı resmet, kavramı değil"): kenar kalınlığı/
+  // opaklığı ve düğüm büyüklüğü doğrudan ortakBolum sayısının bir
+  // fonksiyonu -- dekoratif değil, ölçülen ilişkiyi taşıyor.
+  function birlikteEsmaSvg(k) {
+    const items = k.birlikteEsma;
+    if (!items.length) return "";
+    const cx = 110, cy = 110, R = 78;
+    const maxN = Math.max.apply(null, items.map((e) => e.ortakBolum));
+    const hue = VIEW_HUE[k.view] != null ? VIEW_HUE[k.view] : 0;
+    const n = items.length;
+    const parts = [];
+    const nodes = [];
+    items.forEach((e, i) => {
+      const angle = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+      const x = cx + R * Math.cos(angle);
+      const y = cy + R * Math.sin(angle);
+      const strength = maxN > 0 ? e.ortakBolum / maxN : 0;
+      const w = 1 + strength * 3.5;
+      const op = 0.28 + strength * 0.6;
+      const r = 8 + strength * 8;
+      parts.push(
+        `<line class="kavram-minigraf__edge" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke-width="${w.toFixed(2)}" style="opacity:${op.toFixed(2)}"></line>`
+      );
+      nodes.push({ x, y, r, e, strength });
+    });
+    nodes.forEach(({ x, y, r, e, strength }) => {
+      parts.push(
+        `<circle class="kavram-minigraf__node" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" style="fill:hsl(${VIEW_HUE.esma} 55% 50% / ${(0.55 + strength * 0.35).toFixed(2)})"></circle>` +
+          `<text class="kavram-minigraf__label" x="${x.toFixed(1)}" y="${(y + r + 13).toFixed(1)}" text-anchor="middle">${escapeHtmlKavram(tt(e.isim))}</text>`
+      );
+    });
+    parts.push(
+      `<circle class="kavram-minigraf__center" cx="${cx}" cy="${cy}" r="20" style="fill:hsl(${hue} 55% 45%)"></circle>` +
+        `<text class="kavram-minigraf__center-label" x="${cx}" y="${cy + 4}" text-anchor="middle">${escapeHtmlKavram(tt(k.isim)).slice(0, 10)}</text>`
+    );
+    const label = escapeHtmlKavram(
+      tt({
+        tr: "Birlikte en çok geçtiği isimlerle ilişki şeması",
+        en: "Diagram of relation to most co-occurring Names",
+        pt: "Diagrama de relação com os Nomes mais coocorrentes",
+      })
+    );
+    return `<svg class="kavram-minigraf" viewBox="0 0 220 236" role="img" aria-label="${label}">` + parts.join("") + `</svg>`;
+  }
+
   let dataPromise = null;
   let kavramlar = [];
   let byKey = new Map();
+
+  // B3 "mini zaman çizelgesi": ilk/en yoğun/son geçiş noktalarını kitabın
+  // TÜM açıklığı (kısım/fass sayısı) içinde konumlamak için toplam sayı
+  // gerekiyor -- futuhat-atlas-index.json (1MB) bunun için ağır olurdu,
+  // aynı küçük özet (okuma-durumu.json, Neredeyiz halkasıyla paylaşılan
+  // kaynak) burada da kullanılıyor. Yüklenemezse zaman çizelgesi sessizce
+  // atlanır (bookBlock zaten çizelgesiz de anlamlı).
+  let okumaDurumu = null;
+  GU.fetchJson("data/ibn-arabi/okuma-durumu.json").then((d) => { okumaDurumu = d; }).catch(() => {});
 
   function fetchData() {
     if (dataPromise) return dataPromise;
@@ -86,6 +150,50 @@ window.__kavramApp = (function () {
     });
   }
 
+  function parseKisimNo(id) {
+    const m = /k(\d+)$/.exec(id);
+    return m ? parseInt(m[1], 10) : null;
+  }
+  function parseFassNo(id) {
+    const m = /^fs(\d+)$/.exec(id);
+    return m ? parseInt(m[1], 10) : null;
+  }
+
+  function miniTimelineHtml(label, book) {
+    if (!okumaDurumu) return "";
+    const parseNo = label === "futuhat" ? parseKisimNo : parseFassNo;
+    const total = label === "futuhat" ? okumaDurumu.futuhat.total : okumaDurumu.fusus.total;
+    const points = [
+      { key: "ilk", ref: book.ilk, cls: "ilk" },
+      { key: "enYogun", ref: book.enYogun, cls: "yogun" },
+      { key: "son", ref: book.son, cls: "son" },
+    ]
+      .map((p) => ({ ...p, no: parseNo(p.ref.id) }))
+      .filter((p) => p.no != null);
+    if (points.length < 2) return "";
+    const w = 260, pad = 10;
+    const x = (no) => pad + ((no - 1) / (total - 1)) * (w - 2 * pad);
+    const seen = new Set();
+    const dots = points
+      .filter((p) => { if (seen.has(p.no)) return false; seen.add(p.no); return true; })
+      .map((p) => {
+        const label3 = tt({
+          ilk: { tr: "İlk", en: "First", pt: "Primeira" },
+          yogun: { tr: "En yoğun", en: "Densest", pt: "Mais densa" },
+          son: { tr: "Son", en: "Last", pt: "Última" },
+        }[p.cls]);
+        const r = p.cls === "yogun" ? 5 : 3.5;
+        return `<circle class="kavram-timeline__dot kavram-timeline__dot--${p.cls}" cx="${x(p.no).toFixed(1)}" cy="14" r="${r}"><title>${label3}: ${p.no}</title></circle>`;
+      })
+      .join("");
+    return `<svg class="kavram-timeline" viewBox="0 0 ${w} 28" role="img" aria-label="${escapeHtmlKavram(
+      tt({ tr: "Kitap boyunca ilk, en yoğun ve son geçtiği yer", en: "First, densest, and last appearance across the book", pt: "Primeira, mais densa e última aparição ao longo do livro" })
+    )}">` +
+      `<line class="kavram-timeline__track" x1="${pad}" y1="14" x2="${w - pad}" y2="14"></line>` +
+      dots +
+      `</svg>`;
+  }
+
   function bookBlock(label, book) {
     if (!book) return "";
     const rows = [
@@ -102,10 +210,11 @@ window.__kavramApp = (function () {
         ? tt({ tr: "kısımda", en: "parts", pt: "partes" })
         : tt({ tr: "fassta", en: "chapters", pt: "capítulos" })
       })</h3>` +
+      miniTimelineHtml(label, book) +
       rows
         .map(
-          ([l, ref]) =>
-            `<button type="button" class="kavram-bookref" data-view="${view}" data-id="${ref.id}">` +
+          ([l, ref], i) =>
+            `<button type="button" class="kavram-bookref${i === 2 ? " kavram-bookref--yogun" : ""}" data-view="${view}" data-id="${ref.id}">` +
             `<span class="kavram-bookref__label">${l}</span>` +
             `<span class="kavram-bookref__title">${tt(ref.title)}</span>` +
             (ref.oran != null ? `<span class="kavram-bookref__oran">${ref.oran}‰</span>` : "") +
@@ -153,14 +262,17 @@ window.__kavramApp = (function () {
     }
 
     if (k.birlikteEsma.length) {
+      const maxOrtak = Math.max.apply(null, k.birlikteEsma.map((e) => e.ortakBolum));
       parts.push(
-        `<div class="kavram-related"><h3>${tt({
+        `<div class="kavram-related kavram-related--birlikte"><h3>${tt({
           tr: "Birlikte en çok geçtiği esmâ", en: "Most co-occurring Names", pt: "Nomes mais coocorrentes",
-        })}</h3><div class="kavram-related__chips">` +
+        })}</h3>` +
+          birlikteEsmaSvg(k) +
+          `<div class="kavram-related__chips">` +
           k.birlikteEsma
             .map(
               (e) =>
-                `<button type="button" class="kavram-chip" data-view="esma" data-id="${e.id}">${tt(e.isim)} <span class="kavram-chip__n">${e.ortakBolum}</span></button>`
+                `<button type="button" class="kavram-chip${e.ortakBolum === maxOrtak ? " kavram-chip--guclu" : ""}" data-view="esma" data-id="${e.id}">${tt(e.isim)} <span class="kavram-chip__n">${e.ortakBolum}</span></button>`
             )
             .join("") +
           `</div></div>`
@@ -181,9 +293,13 @@ window.__kavramApp = (function () {
       );
     }
     if (k.ilgiliAyet.length || k.ilgiliHadis.length) {
+      // Kullanıcı notu (2026-08-02): künyeler düz metindi, hover ile âyeti/
+      // hadisi görme imkânı yoktu -- sitede zaten var olan ayet-onizleme.js
+      // tooltip sistemine (.ayet-ref/data-ayet, .hadis-ref/data-hadis)
+      // bağlanıyoruz, yeni bir JS mekanizması gerekmiyor.
       const chips = [
-        ...k.ilgiliAyet.map((r) => `<span class="kavram-chip kavram-chip--static">${r}</span>`),
-        ...k.ilgiliHadis.map((r) => `<span class="kavram-chip kavram-chip--static">${r}</span>`),
+        ...k.ilgiliAyet.map((r) => `<span class="kavram-chip kavram-chip--static ayet-ref" data-ayet="${r}" tabindex="0">${r}</span>`),
+        ...k.ilgiliHadis.map((r) => `<span class="kavram-chip kavram-chip--static hadis-ref" data-hadis="${r}" tabindex="0">${r}</span>`),
       ].join("");
       parts.push(
         `<div class="kavram-related"><h3>${tt({ tr: "Birlikte anılan âyet/hadis", en: "Verses/hadiths cited alongside", pt: "Versículos/hadiths citados junto" })}</h3><div class="kavram-related__chips">${chips}</div></div>`

@@ -239,6 +239,7 @@
     else if (currentMainView === "kozmik") window.__kozmikApp && window.__kozmikApp.onLangChange();
     else if (currentMainView === "atlas") window.__atlasApp && window.__atlasApp.onLangChange();
     else if (currentMainView === "kavram") window.__kavramApp && window.__kavramApp.onLangChange();
+    else if (currentMainView === "ayethadis") window.__ayetHadisApp && window.__ayetHadisApp.onLangChange();
     updateHeaderHeightVar();
   });
 
@@ -430,6 +431,7 @@
   const kozmikBtn = document.getElementById("kozmik-btn");
   const atlasBtn = document.getElementById("atlas-btn");
   const kavramBtn = document.getElementById("kavram-btn");
+  const ayethadisBtn = document.getElementById("ayethadis-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
   const halWrap = document.getElementById("hal-wrap");
@@ -445,6 +447,7 @@
   const kozmikWrap = document.getElementById("kozmik-wrap");
   const atlasWrap = document.getElementById("atlas-wrap");
   const kavramWrap = document.getElementById("kavram-wrap");
+  const ayethadisWrap = document.getElementById("ayethadis-wrap");
 
   // Görsel olarak aktif sekmeyi işaretlemek (.btn-ghost--active) ekran
   // okuyucuya hiçbir şey söylemiyordu -- dil seçicideki aria-pressed'in
@@ -457,8 +460,33 @@
     else btn.removeAttribute("aria-current");
   }
 
+  // Yeni eklenen bölümlere (Kozmik/Atlas/Kavramlar) nav'da küçük bir
+  // rozet koyup, kullanıcı o bölümü bir kere ziyaret edince kaldırıyoruz
+  // -- "kaldığın yer" özelliğindeki localStorage deseninin aynısı.
+  const NAV_YENI_KEY = "dost-nav-yeni-gorulmus";
+  function markNavYeniSeen(view) {
+    const btn = { kozmik: kozmikBtn, atlas: atlasBtn, kavram: kavramBtn, ayethadis: ayethadisBtn }[view];
+    if (!btn || !btn.classList.contains("btn-ghost--yeni")) return;
+    btn.classList.remove("btn-ghost--yeni");
+    try {
+      const seen = JSON.parse(localStorage.getItem(NAV_YENI_KEY) || "[]");
+      if (!seen.includes(view)) {
+        seen.push(view);
+        localStorage.setItem(NAV_YENI_KEY, JSON.stringify(seen));
+      }
+    } catch (e) { /* localStorage kapalıysa sessizce geç */ }
+  }
+  try {
+    const seenAtLoad = JSON.parse(localStorage.getItem(NAV_YENI_KEY) || "[]");
+    seenAtLoad.forEach((v) => {
+      const btn = { kozmik: kozmikBtn, atlas: atlasBtn, kavram: kavramBtn, ayethadis: ayethadisBtn }[v];
+      if (btn) btn.classList.remove("btn-ghost--yeni");
+    });
+  } catch (e) { /* yoksay */ }
+
   function setMainView(view) {
     if (currentMainView === view) return;
+    if (view === "kozmik" || view === "atlas" || view === "kavram" || view === "ayethadis") markNavYeniSeen(view);
     currentMainView = view;
     markActiveNavButton(ontologyBtn, view === "ontology");
     markActiveNavButton(esmaBtn, view === "esma");
@@ -475,6 +503,7 @@
     markActiveNavButton(kozmikBtn, view === "kozmik");
     markActiveNavButton(atlasBtn, view === "atlas");
     markActiveNavButton(kavramBtn, view === "kavram");
+    markActiveNavButton(ayethadisBtn, view === "ayethadis");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
@@ -490,6 +519,7 @@
     if (kozmikWrap) kozmikWrap.hidden = view !== "kozmik";
     if (atlasWrap) atlasWrap.hidden = view !== "atlas";
     if (kavramWrap) kavramWrap.hidden = view !== "kavram";
+    if (ayethadisWrap) ayethadisWrap.hidden = view !== "ayethadis";
     if (view === "hakkinda") {
       wireHakkindaDiagrams();
       window.__siirlerApp && window.__siirlerApp.wireTabs();
@@ -537,6 +567,9 @@
     } else if (view === "kavram") {
       currentDetailView = "kavram";
       window.__kavramApp && window.__kavramApp.activate();
+    } else if (view === "ayethadis") {
+      currentDetailView = null;
+      window.__ayetHadisApp && window.__ayetHadisApp.activate();
     } else {
       currentDetailView = null;
     }
@@ -560,6 +593,7 @@
   if (kozmikBtn) kozmikBtn.addEventListener("click", () => { setMainView("kozmik"); updateHash("kozmik"); });
   if (atlasBtn) atlasBtn.addEventListener("click", () => { setMainView("atlas"); updateHash("atlas"); });
   if (kavramBtn) kavramBtn.addEventListener("click", () => { setMainView("kavram"); updateHash("kavram"); });
+  if (ayethadisBtn) ayethadisBtn.addEventListener("click", () => { setMainView("ayethadis"); updateHash("ayethadis"); });
 
   // --- Deep linking & cross-view navigation ---
   let pendingSirlarId = null;
@@ -702,6 +736,14 @@
         pt: "Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus.",
       },
     },
+    ayethadis: {
+      title: { tr: "Âyet & Hadis İndeksi", en: "Verse & Hadith Index", pt: "Índice de Versículos e Hadith" },
+      desc: {
+        tr: "Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin.",
+        en: "An index of the verses and hadiths quoted across the site, ordered by how often each recurs.",
+        pt: "Um índice dos versículos e hadiths citados no site, ordenados por quantas vezes cada um recorre.",
+      },
+    },
   };
 
   function updateMeta(view) {
@@ -837,12 +879,20 @@
 
   function goToFutuhat(id) {
     setMainView("futuhat");
-    window.__futuhatApp && window.__futuhatApp.activate(id);
+    // 2026-08 kod taraması: id yokken burada da activate() çağırmak,
+    // setMainView'in kendi iç dalının (view değişince tetiklenen)
+    // activate()'iyle art arda iki kez çalışıyordu -- ikinci çağrı,
+    // BİRİNCİ çağrının render()->activatePart() içinde henüz yazdığı
+    // "kaldığın yer" localStorage değerini geri okuyup ilk kez gelen bir
+    // okuyucuyu yanlışlıkla "zaten bir yeri var" sanıyordu (bkz.
+    // isDefaultLanding / futuhat-start-hint). Kozmik/Atlas/Kavram'daki
+    // gibi yalnız id doluyken tekrar çağırıyoruz.
+    if (id) window.__futuhatApp && window.__futuhatApp.activate(id);
   }
 
   function goToFusus(id) {
     setMainView("fusus");
-    window.__fususApp && window.__fususApp.activate(id);
+    if (id) window.__fususApp && window.__fususApp.activate(id);
   }
 
   function goToHakkinda() {
@@ -864,9 +914,13 @@
     if (id) window.__kavramApp && window.__kavramApp.goToNode(id);
   }
 
+  function goToAyetHadis() {
+    setMainView("ayethadis");
+  }
+
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda|kozmik|atlas|kavram)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda|kozmik|atlas|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -892,6 +946,7 @@
     else if (view === "kozmik") goToKozmik(id);
     else if (view === "atlas") goToAtlas(id);
     else if (view === "kavram") goToKavram(id);
+    else if (view === "ayethadis") goToAyetHadis();
   }
 
   window.addEventListener("popstate", parseHashAndGo);
@@ -930,6 +985,7 @@
       else if (view === "kozmik") goToKozmik(id);
       else if (view === "atlas") goToAtlas(id);
       else if (view === "kavram") goToKavram(id);
+    else if (view === "ayethadis") goToAyetHadis();
       updateHash(view, id);
     },
     setHash: updateHash,
@@ -1145,6 +1201,25 @@
       .on("mouseleave", () => highlight(null))
       .on("click", (event, d) => onEdgeClick(d));
 
+    // Ok tuşuyla gezinme: verilen yön vektörüne (dx,dy) en çok hizalı VE en
+    // yakın düğümü bulur -- yalnız açının 90°'den dar olduğu (aynı yarım
+    // düzlemdeki) adaylar arasından, açı+mesafe birleşik bir skorla seçiyor
+    // ki hem "sağdaki en yakın" hem "gerçekten sağda olan" tutarlı olsun.
+    function nearestNodeInDirection(current, dx, dy) {
+      let best = null, bestScore = Infinity;
+      nodes.forEach((n) => {
+        if (n.id === current.id) return;
+        const vx = n.x - current.x, vy = n.y - current.y;
+        const dist = Math.hypot(vx, vy);
+        if (dist < 1) return;
+        const dot = (vx * dx + vy * dy) / dist;
+        if (dot <= 0.3) return; // ~72°'den geniş sapmaları ele
+        const score = dist / dot;
+        if (score < bestScore) { bestScore = score; best = n; }
+      });
+      return best;
+    }
+
     const nodeGroup = spinGroup.append("g").attr("class", "nodes");
 
     nodeSel = nodeGroup
@@ -1162,6 +1237,18 @@
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
           onNodeClick(d);
+        } else if (event.key.startsWith("Arrow")) {
+          // B2 "klavye-only graf gezintisi": bir düğüme Tab ile gelindikten
+          // sonra ok tuşlarıyla en yakın komşu düğüme geçilebilir -- fare
+          // olmadan da grafın gezilebilmesi için.
+          const dir = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
+          if (!dir) return;
+          const next = nearestNodeInDirection(d, dir[0], dir[1]);
+          if (next) {
+            event.preventDefault();
+            const el = nodeSel.filter((n) => n.id === next.id).node();
+            if (el) el.focus();
+          }
         }
       })
       .on("mouseenter", (event, d) => { highlight(d); showTooltip(d, event); })

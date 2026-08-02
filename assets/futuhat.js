@@ -200,6 +200,13 @@
   let futuhatData = null;
   let dataPromise = null;
   let activePartId = null;
+  // B1 "başlangıç güzergâhı": açık bir id yoksa VE okuyucunun kaydedilmiş
+  // bir "kaldığın yer"i yoksa, activePartId atlas'ın kendi varsayılanına
+  // (en son yazılan kısım -- şu an Cilt XVIII, neredeyse sonda) düşüyor.
+  // Yani ilk kez gelen bir okuyucu, 223 kısımlık okumanın BAŞINA değil,
+  // en son bırakılan yere iniyor -- hiçbir orantı hissi olmadan. Bu bayrak
+  // true olduğunda renderPart() ilk parçaya bir bağlantı gösteriyor.
+  let isDefaultLanding = false;
 
   // B2 "Kaldığın yer": deep-link olmadan girişte (menüden tıklama, açılış
   // ekranından "devam et" gibi) atlas'ın varsayılan activePartId'si yerine
@@ -929,8 +936,30 @@
     if (descEl) descEl.setAttribute("content", tt(part.hero.summary));
   }
 
+  function firstPart() {
+    return futuhatData && futuhatData.parts.length ? futuhatData.parts[0] : null;
+  }
+
+  function startHintHtml(part) {
+    const first = firstPart();
+    if (!isDefaultLanding || !first || first.id === part.id) return "";
+    return `
+      <div class="futuhat-start-hint">
+        <p>${tt({
+          tr: "Bu, okumanın en son ulaştığı yer -- 18 ciltlik bir okumanın neredeyse sonu. Yeni geliyorsan, baştan başlamak isteyebilirsin.",
+          en: "This is where the reading currently stands -- near the end of an 18-volume reading. If you're new here, you may want to start from the beginning.",
+          pt: "É aqui que a leitura chegou -- perto do fim de uma leitura de 18 volumes. Se você é novo aqui, talvez queira começar do início.",
+        })}</p>
+        <button type="button" class="futuhat-start-hint__btn" data-start-id="${first.id}">${tt({
+          tr: "Baştan başla", en: "Start from the beginning", pt: "Começar do início",
+        })}</button>
+        <button type="button" class="futuhat-start-hint__close" aria-label="${tt({ tr: "Kapat", en: "Close", pt: "Fechar" })}">×</button>
+      </div>`;
+  }
+
   function renderPart(part) {
     articleEl.innerHTML = `
+      ${startHintHtml(part)}
       <header class="futuhat-hero">
         <div class="futuhat-toolbar">
           <button class="futuhat-toolbar__btn" id="futuhat-font-decrease" type="button" title="Yazı boyutunu küçült / Decrease font size / Diminuir tamanho da fonte" aria-label="A− / A- / A-">A−</button>
@@ -1057,6 +1086,7 @@
 
     renderStats(part);
     setupToolbar(part);
+    setupStartHint();
     renderMeasurementPanel(part);
     renderAnlamsalBaglantilar(part);
     renderYakinPasajlar(part);
@@ -1239,6 +1269,21 @@
     });
   }
 
+  function setupStartHint() {
+    const hint = articleEl && articleEl.querySelector(".futuhat-start-hint");
+    if (!hint) return;
+    const startBtn = hint.querySelector("[data-start-id]");
+    const closeBtn = hint.querySelector(".futuhat-start-hint__close");
+    if (startBtn) {
+      startBtn.addEventListener("click", () => {
+        window.dostTrack && window.dostTrack("futuhat_bastan_basla");
+        isDefaultLanding = false;
+        activatePart(startBtn.dataset.startId);
+      });
+    }
+    if (closeBtn) closeBtn.addEventListener("click", () => hint.remove());
+  }
+
   // --- Toolbar: font size, print, share ---
   function setupToolbar(part) {
     const printBtn = document.getElementById("futuhat-print");
@@ -1372,9 +1417,15 @@
         if (!data) return;
         if (id && data.parts.some((p) => p.id === id)) {
           activePartId = id;
+          isDefaultLanding = false;
         } else {
           const last = loadLastPart();
-          if (last && data.parts.some((p) => p.id === last)) activePartId = last;
+          if (last && data.parts.some((p) => p.id === last)) {
+            activePartId = last;
+            isDefaultLanding = false;
+          } else {
+            isDefaultLanding = true;
+          }
         }
         render();
       });

@@ -153,7 +153,7 @@
   window.__kozmikApp = {
     activate() {
       fetchData().then((data) => {
-        if (!data) return;
+        if (!data || !scenes.length) return;
         if (!pickerEl.children.length) renderPicker();
         if (!activeHandle) selectScene(activeId || scenes[0].id);
       });

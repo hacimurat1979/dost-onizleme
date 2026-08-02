@@ -42,6 +42,37 @@
         gununEl.hidden = false;
       })
       .catch(() => {});
+
+    // B3 "Neredeyiz" halkası: Fütûhât/Füsûs okumasının SAYISAL durumu --
+    // yorum değil, sayım (bkz. CLAUDE.md: "yaptığımız işi olduğundan
+    // farklı göstermeme"). futuhat-atlas-index.json/fusus-atlas.json
+    // karşılama ekranında ağır kalırdı (1MB/900KB); bu yüzden ayrı, küçük
+    // bir özet dosyası (data/ibn-arabi/okuma-durumu.json) okunuyor.
+    const neredeyizEl = document.getElementById("welcome-neredeyiz");
+    if (!neredeyizEl) return;
+    fetch(base + "/data/ibn-arabi/okuma-durumu.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!d || !d.futuhat || !d.fusus) return;
+        const I18n = window.DostI18n;
+        const t = (dict) => (I18n ? I18n.pick3(dict) : dict.tr);
+        const ring = (label, done, total) => {
+          const r = 8, c = 2 * Math.PI * r, fill = (done / total) * c;
+          return `<span class="welcome-neredeyiz__item" title="${label}: ${done}/${total}">
+            <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">
+              <circle class="welcome-neredeyiz__track" cx="10" cy="10" r="${r}" fill="none" stroke-width="2.2"></circle>
+              <circle class="welcome-neredeyiz__fill" cx="10" cy="10" r="${r}" fill="none" stroke-width="2.2"
+                stroke-dasharray="${fill} ${c}" transform="rotate(-90 10 10)"></circle>
+            </svg>
+            <span class="welcome-neredeyiz__label">${label} ${done}/${total}</span>
+          </span>`;
+        };
+        neredeyizEl.innerHTML =
+          ring(t({ tr: "Fütûhât", en: "Futuhat", pt: "Futuhat" }), d.futuhat.done, d.futuhat.total) +
+          ring(t({ tr: "Füsûs", en: "Fusus", pt: "Fusus" }), d.fusus.done, d.fusus.total);
+        neredeyizEl.hidden = false;
+      })
+      .catch(() => {});
   });
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

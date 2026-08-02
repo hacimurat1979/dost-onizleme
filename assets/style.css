@@ -347,6 +347,38 @@ html {
   letter-spacing: 0.01em;
 }
 
+/* Kullanıcı notu (2026-08-02): sayfada uygun bir yere animasyon eklendi mi
+   diye soruldu -- Hakkında sayfası tamamen durağandı. "Nefes-i Rahmânî"
+   motifini (bkz. Kozmik) burada küçük, sade bir nefes alan daireyle
+   yankılıyoruz: O'ndan geldik, O'na gidiyoruz -- daire kendi merkezinde
+   genişleyip daralıyor, tıpkı bir nefes gibi. Salt dekoratif, aria-hidden. */
+.hakkinda-nefes {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 4px;
+}
+.hakkinda-nefes svg { width: 100%; height: 100%; }
+.hakkinda-nefes__halo {
+  fill: none;
+  stroke: var(--accent, #b5804a);
+  stroke-width: 1.4;
+  opacity: 0.35;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hakkinda-nefes-al 6s ease-in-out infinite;
+}
+.hakkinda-nefes__cekirdek {
+  fill: var(--accent, #b5804a);
+  opacity: 0.75;
+}
+@keyframes hakkinda-nefes-al {
+  0%, 100% { opacity: 0.18; transform: scale(0.72); }
+  50%      { opacity: 0.42; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hakkinda-nefes__halo { animation: none; opacity: 0.3; }
+}
+
 .hakkinda-content__subtitle {
   margin: 10px 0 0;
   color: var(--text-secondary);
@@ -488,6 +520,7 @@ html {
 }
 
 .btn-ghost {
+  position: relative;
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text-primary);
@@ -503,6 +536,22 @@ html {
   border-color: var(--text-primary);
 }
 .btn-ghost--active:hover { background: var(--text-primary); }
+/* Yeni eklenmiş bölümleri (Kozmik/Atlas/Kavramlar) fark edilir kılan
+   küçük nokta rozeti -- kullanıcı o bölümü bir kez ziyaret edince
+   ontology.js tarafından kaldırılıyor (localStorage'da hatırlanıyor).
+   [data-tr] üzerine çocuk düğüm eklenemiyor (applyStatic textContent'i
+   eziyor), o yüzden ::after ile dekore ediyoruz. */
+.btn-ghost--yeni::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent, #b5804a);
+  box-shadow: 0 0 0 2px var(--surface-1);
+}
 
 .view-switch {
   display: inline-flex;
@@ -1548,6 +1597,56 @@ button.futuhat-part-chip:hover {
 
 .futuhat-article {
   min-width: 0;
+}
+
+/* B1 "başlangıç güzergâhı": ilk kez gelen, kaydedilmiş bir konumu olmayan
+   okuyucu atlas'ın varsayılanına (en son yazılan kısım) düşer -- bu şerit
+   ona nerede olduğunu ve baştan başlama seçeneğini gösterir. */
+.futuhat-start-hint {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 24px;
+  padding: 12px 12px 12px 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent, #b5804a) 8%, var(--surface-1));
+}
+.futuhat-start-hint p {
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.futuhat-start-hint__btn {
+  flex: 0 0 auto;
+  background: var(--text-primary);
+  color: var(--surface-1);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.futuhat-start-hint__btn:hover, .futuhat-start-hint__btn:focus-visible {
+  background: var(--accent-interactive);
+}
+.futuhat-start-hint__close {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.futuhat-start-hint__close:hover, .futuhat-start-hint__close:focus-visible { color: var(--text-primary); }
+@media (max-width: 640px) {
+  .futuhat-start-hint { flex-direction: column; align-items: stretch; text-align: center; }
 }
 
 .futuhat-hero {
@@ -3507,6 +3606,29 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   letter-spacing: 0.01em;
   color: rgba(245,234,208,0.4);
   margin-top: 8px;
+}
+
+/* B3 "Neredeyiz" -- Fütûhât/Füsûs okumasının sayısal durumu, iki küçük
+   halka olarak. Yorum taşımıyor, yalnız sayım (kaynak: okuma-durumu.json). */
+.welcome-neredeyiz {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 10px;
+}
+.welcome-neredeyiz__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.welcome-neredeyiz__track { stroke: rgba(245,234,208,0.18); }
+.welcome-neredeyiz__fill { stroke: rgba(245,234,208,0.75); }
+.welcome-neredeyiz__label {
+  font-family: var(--font-body);
+  font-size: clamp(0.64rem, 1.5vw, 0.72rem);
+  letter-spacing: 0.01em;
+  color: rgba(245,234,208,0.55);
+  font-variant-numeric: tabular-nums;
 }
 
 .welcome-screen__skip {
@@ -5832,6 +5954,9 @@ body.share-stage-open { overflow: hidden; }
   text-wrap: balance;
   text-shadow: 0 2px 24px var(--sahne-golge);
   will-change: opacity, transform;
+  /* Kullanıcı notu (2026-08-02): TikTok paylaşım şablonlarında video
+     metni küçük kalıyordu -- tabandan itibaren büyütüldü. */
+  font-size: clamp(1.05rem, 3.4vh, 1.55rem);
 }
 /* Kapanış sorusu bir "kanca": --sahne-vurgu daha önce tanımlı ama hiçbir
    yerde kullanılmıyordu -- "Bir Soru" ve "Hikâye" şablonlarının soru
@@ -5839,7 +5964,7 @@ body.share-stage-open { overflow: hidden; }
 .share-line--soru {
   color: var(--sahne-vurgu);
   font-weight: 600;
-  font-size: clamp(1.05rem, 3vh, 1.3rem);
+  font-size: clamp(1.3rem, 4.1vh, 1.9rem);
 }
 .share-rule {
   display: block;
@@ -6978,6 +7103,70 @@ mark.durus-vurgu-es {
   color: var(--accent-interactive);
   text-decoration: none;
 }
+
+/* "Âyet & Hadis İndeksi" görünümü (assets/ayet-hadis.js) -- ayet-tip'in
+   kutu içeriğiyle aynı görsel dile sahip, ama sayfa akışında, tek tek
+   künyeler yerine tüm dizini gezilebilir kılıyor. */
+.ayethadis-intro {
+  max-width: 62ch;
+  margin: 0 0 24px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.ayethadis-list {
+  display: grid;
+  gap: 14px;
+  max-width: 720px;
+}
+.ayethadis-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: var(--surface-1);
+}
+.ayethadis-item__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.ayethadis-item__ref {
+  font-weight: 600;
+  cursor: pointer;
+}
+.ayethadis-item__n {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 1px 8px;
+  flex: 0 0 auto;
+}
+.ayethadis-item__ar {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin: 0 0 0.4em;
+  color: var(--text-primary);
+}
+.ayethadis-item__meal {
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.ayethadis-item__locs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+.ayethadis-item__loc {
+  font-size: 0.78rem;
+  color: var(--accent-interactive);
+  text-decoration: none;
+}
+.ayethadis-item__loc:hover, .ayethadis-item__loc:focus-visible { text-decoration: underline; }
 .ayet-tip__digeri:hover,
 .ayet-tip__digeri:focus-visible {
   text-decoration: underline;
@@ -7419,6 +7608,19 @@ mark.durus-vurgu-es {
   color: var(--text-secondary);
 }
 .kavram-chip--static:hover { border-color: var(--border); background: var(--surface-1); }
+/* Kullanıcı notu (2026-08-02): "önemli nesneleri renkli yapıp daha
+   farkedilir hale getirelim" -- en güçlü birlikte-geçen esmâ ve en yoğun
+   geçtiği kaynak satırı, düz metinden ayrışan bir vurguyla işaretleniyor. */
+.kavram-chip--guclu {
+  border-color: var(--accent, #b5804a);
+  background: color-mix(in srgb, var(--accent, #b5804a) 12%, var(--surface-1));
+  font-weight: 600;
+}
+.kavram-bookref--yogun {
+  border-color: var(--accent, #b5804a);
+  background: color-mix(in srgb, var(--accent, #b5804a) 8%, transparent);
+}
+.kavram-bookref--yogun .kavram-bookref__label { color: var(--accent, #b5804a); }
 .kavram-chip__n {
   opacity: 0.6;
   font-variant-numeric: tabular-nums;
@@ -7456,6 +7658,18 @@ mark.durus-vurgu-es {
   margin: 0 0 10px;
   color: var(--text-primary);
 }
+/* B3 "mini zaman çizelgesi": kitabın açıklığı boyunca ilk/en yoğun/son
+   geçiş noktalarını tek bir çizgi üzerinde gösteren küçük bir şerit. */
+.kavram-timeline {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: 24px;
+  margin: 0 0 10px;
+}
+.kavram-timeline__track { stroke: var(--border); stroke-width: 1.5; }
+.kavram-timeline__dot { stroke: var(--surface-1); stroke-width: 1.2; fill: var(--text-muted); }
+.kavram-timeline__dot--yogun { fill: var(--accent, #b5804a); }
 .kavram-bookref {
   display: flex;
   align-items: baseline;
@@ -7494,6 +7708,35 @@ mark.durus-vurgu-es {
   letter-spacing: 0.05em;
   color: var(--text-muted);
   margin: 0 0 10px;
+}
+/* Mini-graf (bkz. assets/kavram.js birlikteEsmaSvg): kenar kalınlığı ve
+   düğüm büyüklüğü doğrudan birlikte-geçme sayısının bir fonksiyonu --
+   GORSEL_DIL.md'nin "davranışı resmet" ilkesi. */
+.kavram-related--birlikte { text-align: center; }
+.kavram-related--birlikte h3 { text-align: left; }
+.kavram-minigraf {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto 14px;
+}
+.kavram-minigraf__edge { stroke: var(--text-secondary); }
+.kavram-minigraf__node { stroke: var(--surface-1); stroke-width: 1.5; }
+.kavram-minigraf__center { stroke: var(--surface-1); stroke-width: 2; }
+.kavram-minigraf__label {
+  font-size: 8.5px;
+  fill: var(--text-secondary);
+  paint-order: stroke;
+  stroke: var(--surface-1);
+  stroke-width: 3px;
+}
+.kavram-minigraf__center-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  fill: #fff;
+  paint-order: stroke;
+  stroke: rgba(0, 0, 0, 0.35);
+  stroke-width: 2px;
 }
 .kavram-yontem {
   margin-top: 28px;
