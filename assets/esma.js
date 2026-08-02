@@ -883,6 +883,12 @@
     ds.exit().remove();
     const de = ds.enter().append("line").attr("class", "esmaX-derived")
       .attr("tabindex", 0).attr("role", "button")
+      .attr("aria-label", (r) => {
+        const a = byId.get(r.from), b = byId.get(r.to);
+        const nm = (n) => (tt(n.raw ? n.raw.name : n.name) || n.id);
+        return tt({ tr: "Saydığımız bir bağ", en: "A link we counted", pt: "Um vínculo que contamos" })
+          + ": " + nm(a) + " – " + nm(b);
+      })
       .on("click", (e, r) => { e.stopPropagation(); showDerivedDetail(r); })
       .on("keydown", (e, r) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showDerivedDetail(r); } });
     de.merge(ds).each(function (r) {
@@ -1526,6 +1532,12 @@
     // söylediği şey isimler arası derinlik; kademeli açılım onu ilk bakışta
     // gizliyordu. Kaydırarak geri kademelendirmek hâlâ mümkün.
     setRevealLevel(MAX_LEVEL, { force: true });
+    // Türetilmiş kenarlar de açılışta AÇIK (kullanıcı kararı, 2026-08-01,
+    // FAZ 6): önceki varsayılan (kapalı + belirgin bir düğme) 101 düğüm/6
+    // kenarlık seyrek bir görünümle başlıyordu. Anahtar hâlâ kapatılabilir
+    // -- yalnız başlangıç durumu değişti, ayırt edici stil (nokta deseni +
+    // blur) aynı kaldı.
+    setDerived(true);
     fitAll();
     render();
     ensureFrame();

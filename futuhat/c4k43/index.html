@@ -144,7 +144,7 @@
     </div>
     <button class="welcome-screen__skip" id="welcome-skip" type="button" aria-label="Geç / Skip / Pular">Geç · Skip · Pular</button>
   </div>
-  <script src="assets/welcome.js"></script>
+  <script src="assets/welcome.js" integrity="sha384-D0n/13c1zVg68fk8bLjciGDn/X654WifbYq8l/s5HvjI3lyXGqm/Mov0sT4CTr9s"></script>
   <header class="app-header">
     <div class="app-header__controls">
       <div class="view-switch" id="view-switch">
@@ -159,6 +159,9 @@
         <button class="btn-ghost" id="tasiyicilar-btn" type="button" title="Arşı taşıyan melekler — The angels who bear the Throne — Os anjos que carregam o Trono" data-tr="Taşıyanlar" data-en="The Bearers" data-pt="Os Portadores">Taşıyanlar</button>
         <button class="btn-ghost" id="futuhat-btn" type="button" title="Fütûhât-ı Mekkiyye, kısım kısım — The Meccan Revelations, part by part — As Revelações de Meca, parte por parte" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
         <button class="btn-ghost" id="fusus-btn" type="button" title="Füsûsu'l-Hikem, fass fass — The Bezels of Wisdom, chapter by chapter — Os Engastes da Sabedoria, capítulo por capítulo" data-tr="Füsûs" data-en="Fusus" data-pt="Fusus">Füsûs</button>
+        <button class="btn-ghost" id="kozmik-btn" type="button" title="Devinimi durağan bir resim yerine devinimin kendisiyle anlatan beş sahne — Five scenes that show motion through motion itself, not a still picture — Cinco cenas que mostram o movimento através do próprio movimento, não uma imagem estática" data-tr="Kozmik" data-en="Cosmic" data-pt="Cósmico">Kozmik</button>
+        <button class="btn-ghost" id="atlas-btn" type="button" title="Zât'tan Nokta'ya, tek bir sürekli yakınlaşmayla gezilen on bir katman — From the Essence to the Point, eleven layers explored through one continuous zoom — Da Essência ao Ponto, onze camadas percorridas por um único zoom contínuo" data-tr="Atlas" data-en="Atlas" data-pt="Atlas">Atlas</button>
+        <button class="btn-ghost" id="kavram-btn" type="button" title="Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti — A data-derived life summary tracing each concept through the Futuhat and Fusus — Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus" data-tr="Kavramlar" data-en="Concepts" data-pt="Conceitos">Kavramlar</button>
         <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
       </div>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
@@ -172,7 +175,7 @@
   <main id="main-content">
 
     <section class="graph-wrap" id="ontology-wrap">
-      <svg id="graph" role="img" aria-label="Ontoloji haritası"
+      <svg id="graph" role="group" aria-label="Ontoloji haritası"
            data-tr-aria-label="Ontoloji haritası" data-en-aria-label="Ontology map" data-pt-aria-label="Mapa de ontologia"></svg>
       <div class="view-status" id="ontology-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
@@ -204,7 +207,7 @@
           <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
           <span class="legend__toggle-icon" aria-hidden="true">▾</span>
         </button>
-        <div class="legend__body">
+        <div class="legend__body" tabindex="0">
           <div class="legend__item"><span class="legend__dot legend__dot--descent"></span><span data-tr="Tenezzül (iniş / tecellî)" data-en="Descent (self-disclosure)" data-pt="Descida (autorrevelação)">Tenezzül</span></div>
           <div class="legend__item"><span class="legend__dot legend__dot--return"></span><span data-tr="Rücû (dönüş)" data-en="Return" data-pt="Retorno">Rücû</span></div>
           <div class="legend__item"><span class="legend__dot legend__dot--paradox"></span><span data-tr="Tenzîh-Teşbîh" data-en="Tanzih-Tashbih" data-pt="Tanzih-Tashbih">Tenzîh-Teşbîh</span></div>
@@ -213,7 +216,7 @@
     </section>
 
     <section class="graph-wrap" id="esma-wrap" hidden>
-      <svg id="esma-graph" role="img" aria-label="Esmâü'l-Hüsnâ haritası"
+      <svg id="esma-graph" role="group" aria-label="Esmâü'l-Hüsnâ haritası"
            data-tr-aria-label="Esmâü'l-Hüsnâ haritası" data-en-aria-label="Map of the Beautiful Names" data-pt-aria-label="Mapa dos Belos Nomes"></svg>
       <div class="view-status" id="esma-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
@@ -243,7 +246,7 @@
           <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
           <span class="legend__toggle-icon" aria-hidden="true">▾</span>
         </button>
-        <div class="legend__body">
+        <div class="legend__body" tabindex="0">
           <p class="legend__note" data-tr="Merkezde Allah — bütün isimleri kendinde toplayan İsm-i Âzam; onun üstünde, her isimlendirmenin ötesindeki Zât. Harita tam açık geliyor: üç kutup (Celâl, Cemâl, Kemâl), isimler ve onlardan türeyenler bir arada. Sadeleştirmek isterseniz kaydırarak katmanları geri toplayabilirsiniz; bir isme dokununca Allah'tan ona akan tecellîyi izleyin." data-en="Allah at the center — the Name that gathers every Name within itself; above it, the Essence (Zât) beyond all naming. The map opens fully: the three poles (Majesty, Beauty, Perfection), the Names, and what derives from them, all at once. To simplify, scroll to gather the layers back in; touch a Name to watch the self-disclosure flow to it from Allah." data-pt="Allah no centro — o Nome que reúne todos os Nomes em si; acima dele, a Essência (Zât) além de toda nomeação. O mapa abre-se por inteiro: os três polos (Majestade, Beleza, Perfeição), os Nomes e o que deles deriva, tudo de uma vez. Para simplificar, role para recolher as camadas; toque num Nome para ver a autorrevelação fluir até ele desde Allah.">Merkezde Allah — bütün isimleri kendinde toplayan İsm-i Âzam; onun üstünde, her isimlendirmenin ötesindeki Zât. Harita tam açık geliyor: üç kutup (Celâl, Cemâl, Kemâl), isimler ve onlardan türeyenler bir arada. Sadeleştirmek isterseniz kaydırarak katmanları geri toplayabilirsiniz; bir isme dokununca Allah'tan ona akan tecellîyi izleyin.</p>
           <div class="esma-pole-donut-wrap">
             <svg class="esma-pole-donut" id="esma-pole-donut" viewBox="0 0 64 64" role="img" aria-label="Celâl, Cemâl, Kemâl isimlerinin dağılımı" data-tr-aria-label="Celâl, Cemâl, Kemâl isimlerinin dağılımı" data-en-aria-label="Distribution of Jalal, Jamal, Kamal Names" data-pt-aria-label="Distribuição dos Nomes Jalal, Jamal, Kamal"></svg>
@@ -267,7 +270,7 @@
     </section>
 
     <section class="graph-wrap" id="hal-wrap" hidden>
-      <svg id="hal-graph" role="img" aria-label="Hâller haritası"
+      <svg id="hal-graph" role="group" aria-label="Hâller haritası"
            data-tr-aria-label="Hâller haritası" data-en-aria-label="Map of states" data-pt-aria-label="Mapa dos estados"></svg>
       <div class="view-status" id="hal-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
@@ -292,7 +295,7 @@
           <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
           <span class="legend__toggle-icon" aria-hidden="true">▾</span>
         </button>
-        <div class="legend__body">
+        <div class="legend__body" tabindex="0">
           <div class="legend__item"><span class="legend__dot legend__dot--hal-nefs"></span><span data-tr="Nefs" data-en="The Soul" data-pt="A Alma">Nefs</span></div>
           <div class="legend__item"><span class="legend__dot legend__dot--hal-muameleler"></span><span data-tr="Mu'âmeleler (Tövbeden İstikamete)" data-en="Practices (Repentance to Rectitude)" data-pt="Práticas (do Arrependimento à Retidão)">Mu'âmeleler</span></div>
           <div class="legend__item"><span class="legend__dot legend__dot--hal-cemfark"></span><span data-tr="Cem ve Fark" data-en="Unity and Differentiation" data-pt="Unidade e Diferenciação">Cem / Fark</span></div>
@@ -327,7 +330,7 @@
     </section>
 
     <section class="graph-wrap" id="sirlar-wrap" hidden>
-      <svg id="sirlar-graph" role="img" aria-label="Sırlar haritası"
+      <svg id="sirlar-graph" role="group" aria-label="Sırlar haritası"
            data-tr-aria-label="Sırlar haritası" data-en-aria-label="Map of secrets" data-pt-aria-label="Mapa dos segredos"></svg>
       <div class="view-status" id="sirlar-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
@@ -349,7 +352,7 @@
           <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
           <span class="legend__toggle-icon" aria-hidden="true">▾</span>
         </button>
-        <div class="legend__body">
+        <div class="legend__body" tabindex="0">
           <div class="legend__item"><span class="legend__dot legend__dot--sir-suskunluk"></span><span data-tr="Suskunluk ve Perdeleme" data-en="Silence and Veiling" data-pt="Silêncio e Velamento">Suskunluk ve Perdeleme</span></div>
           <div class="legend__item"><span class="legend__dot legend__dot--sir-peygamber"></span><span data-tr="Peygamber Kıssalarındaki Sırlar" data-en="Secrets in the Prophets' Stories" data-pt="Segredos nas Histórias dos Profetas">Peygamber Kıssaları</span></div>
           <div class="legend__item"><span class="legend__dot legend__dot--sir-kader"></span><span data-tr="Kader, Tevhid, Tenzih-Teşbih" data-en="Destiny, Divine Unity, Tanzih-Tashbih" data-pt="Destino, Unidade Divina, Tanzih-Tashbih">Kader, Tevhid</span></div>
@@ -360,7 +363,7 @@
     </section>
 
     <section class="graph-wrap" id="sorular-wrap" hidden>
-      <svg id="sorular-graph" role="img" aria-label="Sorular haritası"
+      <svg id="sorular-graph" role="group" aria-label="Sorular haritası"
            data-tr-aria-label="Sorular haritası" data-en-aria-label="Map of questions" data-pt-aria-label="Mapa das perguntas"></svg>
       <div class="view-status" id="sorular-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
@@ -386,7 +389,7 @@
     </section>
 
     <section class="graph-wrap" id="menziller-wrap" hidden>
-      <svg id="menziller-graph" role="img" aria-label="Menziller haritası"
+      <svg id="menziller-graph" role="group" aria-label="Menziller haritası"
            data-tr-aria-label="Menziller haritası" data-en-aria-label="Map of waystations" data-pt-aria-label="Mapa das estações"></svg>
       <div class="view-status" id="menziller-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
@@ -463,6 +466,43 @@
       </div>
     </section>
 
+    <section class="kozmik-wrap" id="kozmik-wrap" hidden>
+      <div class="kozmik-picker" id="kozmik-picker" role="tablist" aria-label="Kozmik animasyon seçici" data-tr-aria-label="Kozmik animasyon seçici" data-en-aria-label="Cosmic animation picker" data-pt-aria-label="Seletor de animação cósmica"></div>
+      <div class="kozmik-stage" id="kozmik-stage"></div>
+      <p class="kozmik-hint" id="kozmik-hint"></p>
+      <div class="kozmik-note" id="kozmik-note"></div>
+      <div class="view-status" id="kozmik-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+    </section>
+
+    <section class="atlas-wrap" id="atlas-wrap" hidden>
+      <p class="atlas-hint" id="atlas-hint"></p>
+      <div class="atlas-stage" id="atlas-stage" tabindex="0" role="group" aria-label="Zoom'lanabilir atlas" data-tr-aria-label="Zoom'lanabilir atlas" data-en-aria-label="Zoomable atlas" data-pt-aria-label="Atlas com zoom"></div>
+      <div class="atlas-nav">
+        <button class="atlas-nav__btn" id="atlas-up" type="button" aria-label="Bir üst katman" data-tr-aria-label="Bir üst katman" data-en-aria-label="One layer up" data-pt-aria-label="Uma camada acima">▲</button>
+        <div class="atlas-nav__label" id="atlas-nav-label" aria-live="polite"></div>
+        <button class="atlas-nav__btn" id="atlas-down" type="button" aria-label="Bir alt katman" data-tr-aria-label="Bir alt katman" data-en-aria-label="One layer down" data-pt-aria-label="Uma camada abaixo">▼</button>
+      </div>
+      <div class="atlas-note" id="atlas-note"></div>
+      <div class="view-status" id="atlas-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+    </section>
+
+    <section class="kavram-wrap" id="kavram-wrap" hidden>
+      <div class="kavram-list" id="kavram-list"></div>
+      <article class="kavram-detail" id="kavram-detail" hidden></article>
+      <div class="view-status" id="kavram-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+    </section>
 
     <section class="hakkinda-wrap" id="hakkinda-wrap" hidden>
       <div class="hakkinda-subtabs" role="tablist">
@@ -875,7 +915,7 @@ mesmo antes que o assombro exista."></blockquote>
       <div id="siirler-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-siirler" hidden></div>
     </section>
 
-    <aside class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" hidden>
+    <aside class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detail-content" hidden>
       <div class="detail-breadcrumb" id="detail-breadcrumb" hidden></div>
       <div id="detail-content"></div>
     </aside>
@@ -926,43 +966,54 @@ mesmo antes que o assombro exista."></blockquote>
       setTimeout(showFallback, 8000);
     })();
   </script>
-  <script src="assets/theme.js"></script>
-  <script src="assets/vendor/d3.min.js"></script>
-  <script src="assets/i18n.js"></script>
-  <script src="assets/view-status.js"></script>
-  <script src="assets/graph-utils.js"></script>
-  <script src="assets/helix.js"></script>
-  <script src="assets/graph-hint.js"></script>
-  <script src="assets/lightbox.js"></script>
-  <script src="assets/search.js"></script>
-  <script src="assets/graph-enhancement.js"></script>
-  <script src="assets/font-scale.js"></script>
-  <script src="assets/reading-mode.js"></script>
-  <script src="assets/honorifics.js"></script>
-  <script src="assets/esma.js"></script>
-  <script src="assets/hal.js"></script>
-  <script src="assets/terimler.js"></script>
-  <script src="assets/cizimler.js"></script>
-  <script src="assets/sirlar-graph.js"></script>
-  <script src="assets/sorular.js"></script>
-  <script src="assets/menziller.js"></script>
-  <script src="assets/tasiyicilar.js"></script>
-  <script src="assets/futuhat.js"></script>
-  <script src="assets/fusus.js"></script>
-  <script src="assets/ontology.js"></script>
-  <script src="assets/crosslink-preview.js"></script>
-  <script src="assets/ayet-onizleme.js"></script>
-  <script src="assets/start-hint.js"></script>
-  <script src="assets/siirler.js"></script>
-  <script src="assets/secret-nav.js"></script>
-  <script src="assets/edit-mode.js"></script>
+  <script src="assets/theme.js" integrity="sha384-NegwurN40eZr0Cwp0FE3fFU6d1ptUcUoeGVSaX+M74KAJDTn8QVt2hP+z+Pf29Kf"></script>
+  <script src="assets/vendor/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i"></script>
+  <script src="assets/i18n.js" integrity="sha384-bqPgHDorfYKkI+ErvFXEAGead8E3pDVsel6p3S9LkyxoY1QRWrMrTUpeiooWejvL"></script>
+  <script src="assets/view-status.js" integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
+  <script src="assets/graph-utils.js" integrity="sha384-aq3L/0GXCohq40GtPpQAm6QCAu7Z8GqP73/ATFArgRdAvzKII4I2YqcFSpzpza4m"></script>
+  <script src="assets/helix.js" integrity="sha384-E8EbHlaxdxmbTDV0fHX9TRsinxgFb8wncd3YVIHMYZR9PzkecqpXbznF24E7iqWI"></script>
+  <script src="assets/graph-hint.js" integrity="sha384-3PjCLUJoOIi1t7duvbSRNLvzJiTCNzmtDW5/KrVH5D+G8MiuYcF/UfJyv19FG578"></script>
+  <script src="assets/lightbox.js" integrity="sha384-txI/emOUsh4ASe/MSV1vzHmFXEUC7CTDF4tcxuVHmGyhnCmaU24buPLUrKF3BbG7"></script>
+  <script src="assets/search.js" integrity="sha384-ShAOj9h/nfOYtGYm8YISdBnyEd9q5zla44BDTGCqImAFArfFDceqMzbkNlqrsfoD"></script>
+  <script src="assets/graph-enhancement.js" integrity="sha384-hNAPzflfBDqRj8om8hmAV7ziYfsXLPIlZQ0YYH0Y6ZKqCKlLhX/giLkNaVyzoTn4"></script>
+  <script src="assets/font-scale.js" integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
+  <script src="assets/reading-mode.js" integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
+  <script src="assets/honorifics.js" integrity="sha384-IwA4Fe1Lz4RekuTCKaeamOx5H2VogRQH66+kK99tc5SRCQL7ezB4EK8jbMw/uOhm"></script>
+  <script src="assets/esma.js" integrity="sha384-FtQjjzC3nRu93cCGLwZVO6o96YE1MzBX5XPXe3WjPt7xE/GJdOK5LrcXkpzlSiWw"></script>
+  <script src="assets/hal.js" integrity="sha384-KCNrMz7l1Fs3XNst6fsadqgXNO9OeL0pH/8O+nh6VosPW1+tZS7lG9ZBvV2xSEez"></script>
+  <script src="assets/terimler.js" integrity="sha384-7Sy0u4XpG6ogLSeW0vK3hKgxfMqMJYNn2UtLlthak5h81O8/1kanwP6nq7hoMfPQ"></script>
+  <script src="assets/cizimler.js" integrity="sha384-ApePyK753G9arEk136d72OKvIaTHT2ibCK1TIUD3zLgn8Nfzq4u+KtBmPZCusbRa"></script>
+  <script src="assets/sirlar-graph.js" integrity="sha384-LrCXz1/l2cBf5uJX/8p0I9RZhWrsyQcZh9V7wUt82YSKQmDxOJSo+GuiXJEZ/lg9"></script>
+  <script src="assets/sorular.js" integrity="sha384-30lSjkA9EBPILo98iXt59DAMFQoe6UO6jhV+Owu7pS3HvimV2tVDLsfKAgo2s3jt"></script>
+  <script src="assets/menziller.js" integrity="sha384-AZSs2yck+T9I3JxaCXtKWTveEqzAnkV6EjGD+Dg74RX4FoXjCHn5qa7T98G4zLBe"></script>
+  <script src="assets/tasiyicilar.js" integrity="sha384-lNVugceLvCvCJVmiaeondeMkZidLr/xkMU7e3FIfHyE0tYhzXcLpm8x7Ztni2FxQ"></script>
+  <script src="assets/kozmik/kozmik-utils.js" integrity="sha384-I+49GhulWIOq5SsSY11XqFxsJ+C1iGW1IiL/BzJkp7qm0uHnfLP1b9j31T5hn0Y/"></script>
+  <script src="assets/kozmik/kozmik-loader.js" integrity="sha384-NOMhMOZBIawVMeKeobgH5ChaNnk+mYaNc3V7qzEwZ1AJ4BloqdnqOjIXK1VujdVS"></script>
+  <script src="assets/kozmik/tecelli.js" integrity="sha384-Wi/6bb5zkyrbDWroDZooMxBYwyzMVN7EjTCTAwpKAFwDZbh9vwSOSL7FnUGS59ze"></script>
+  <script src="assets/kozmik/nefes.js" integrity="sha384-ItA6Q0Pv8RUfUhaxLWdUw8L7+GuRZ/BtbqsV5g/qVSGyo0kcsjLJLz9DrL4i50HS"></script>
+  <script src="assets/kozmik/sudur.js" integrity="sha384-g8lyWuyKrCoVgIueTk+uaP4ulkr78WBxAHKPj3OFEv6UEVxW10E4ivfVqBjFOEwV"></script>
+  <script src="assets/kozmik/mertebeler.js" integrity="sha384-uktm6uZ7cwLW1KyG+1CaIXSDn3ku3UCCiYfhZfKw79MOjSJbRxdObPekQbnSOXd5"></script>
+  <script src="assets/kozmik/donus.js" integrity="sha384-9k5WA1c7tfORY66QMD0hOLg5QfIKk7ocmZseUZHtFJdhZbuqVtbogSDAfqR7MbSD"></script>
+  <script src="assets/kozmik.js" integrity="sha384-bpJf0BlVdtIDshLgi5KeE/AwR1YKZ92cOQy/iEaDqUhH9HyrGbNXn9ymzm5vO8/F"></script>
+  <script src="assets/atlas.js" integrity="sha384-4eR4FMSabfZZhz/s9Y3SpzXuuOYjYfiTKN3ta7q8OX/Y4Rhmrvs1JGKbOxalZeg+"></script>
+  <script src="assets/kavram.js" integrity="sha384-G/0EYzwHcyjG2sqp+u5Ukuq7A6hWRoBLPl21NlTRTtrYefUcVJyRP8UQNLvgUIly"></script>
+  <script src="assets/anlamsal-yakin.js" integrity="sha384-RF49Q32g0d6y3SRc2V3pOK6w72vIbpcudDUq0MMIuqs8JinkwA0MuRNfuzwYpWU0"></script>
+  <script src="assets/futuhat.js" integrity="sha384-85BK4/Q/hUR0TY04u1/O/Jc88h9WFB69b/ZcB89NismZREszvs1BtPSLoak51Dc+"></script>
+  <script src="assets/fusus.js" integrity="sha384-XrU2zWMktf9wKJ0SBqMt8fdZ1l99lV8NqBOnoIgViHnpSaon7C0yQWu014ZmsMtD"></script>
+  <script src="assets/ontology.js" integrity="sha384-h+e7IRp1VeX+OA4bkwv4AgD7mMklI0j6kPePcJsZJc+HjNI+D3kYFxsX9WMNNU0q"></script>
+  <script src="assets/crosslink-preview.js" integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
+  <script src="assets/ayet-onizleme.js" integrity="sha384-4OQQuc8N+xLgOtxLOwK1aiD7gVv+teW1tex+hba6Y3p6w7O+WXis9R/AUIziyRNr"></script>
+  <script src="assets/start-hint.js" integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>
+  <script src="assets/siirler.js" integrity="sha384-JY+3hVD01Dqkhf0rZcbqDDs3a0l3PYO7nN2cxKrCm4lpQDIw4NM2m1ZIgYRx4HEm"></script>
+  <script src="assets/secret-nav.js" integrity="sha384-bxSN300rzY5eTjVk6TAWQVedjEJKuWieA2pZLzqq8xZNFBtlkjahenZSN2Jhiuut"></script>
+  <script src="assets/edit-mode.js" integrity="sha384-Gd3uVSlQMLgZ047XTIwFUWsS7alKPi6WZSonrZvvvxbw7jhH+3yMeVuc0WqOaSGC"></script>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in
        bayrağına bakar), kip kapalıyken hiçbir şey çizmez. 2026-07-29'a
        kadar önizlemeye özeldi; kullanıcı kararıyla canlıda da yayınlanıyor. -->
-  <script src="assets/durus-kontrol.js"></script>
-  <script src="assets/share-mode.js"></script>
-  <script src="assets/sessiz-mod.js"></script>
-  <script src="assets/kavram-defteri.js"></script>
+  <script src="assets/durus-kontrol.js" integrity="sha384-mOaPr1KcLaieLM7Dsc9IJR5DoayUHvlAQVVAb5qWHg3W/JIfbZX6DPdOHZ5zqO3J"></script>
+  <script src="assets/share-mode.js" integrity="sha384-V6bdG3NoVljmseb/bK8PnMF4dAA/RkNwnc+bYmgwA8dnC2s95wPy719Y2P1X3jK5"></script>
+  <script src="assets/sessiz-mod.js" integrity="sha384-/6AkH3wfyX9LT4F/rsTAL9gzqHgY6pSMhtdkYjOcci0mkc+9ED8V4/3lOHHBNQdM"></script>
+  <script src="assets/kavram-defteri.js" integrity="sha384-SEHFK/8YrjhNTF34/mS1FCXdHVORstWfUN3HMMJLT2GqxTBd7Ng60K1Xim6/prYG"></script>
   <script>
     // B1: çevrimdışı destek. document.baseURI'ye göre çözülüyor ki bu script
     // hangi rota kopyasından (futuhat/c1kN/index.html dahil) çalışırsa

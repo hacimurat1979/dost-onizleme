@@ -54,6 +54,12 @@
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text;
   }
 
+  function escapeHtml(s) {
+    const d = document.createElement("div");
+    d.textContent = s == null ? "" : s;
+    return d.innerHTML;
+  }
+
   // --- Popup (used by the "in this part" stats panel) ---
   function openPopup(title, items, renderRow, onItemClick) {
     if (!popupEl) return;
@@ -951,6 +957,8 @@
 
       <div id="futuhat-anlamsal"></div>
 
+      <div id="futuhat-yakin-pasaj"></div>
+
       <section class="futuhat-sources">
         <p class="detail-eyebrow">${tt({ tr: "Kaynaklar", en: "Sources", pt: "Fontes" })}</p>
         <ul>
@@ -1051,6 +1059,7 @@
     setupToolbar(part);
     renderMeasurementPanel(part);
     renderAnlamsalBaglantilar(part);
+    renderYakinPasajlar(part);
   }
 
   // Embedding altyapısı: iki metin gömme (embedding) yakınlığıyla bulunmuş,
@@ -1091,6 +1100,58 @@
         box.appendChild(item);
       });
       mount.appendChild(box);
+    });
+  }
+
+  // FAZ 5: canlı, tarayıcıda hesaplanan anlamsal yakınlık -- yukarıdaki
+  // anlamsal-baglantilar.json'un aksine bu sonuçlar HİÇ insan gözden
+  // geçirmesinden geçmedi (elle onaylanmış 14 çiftle karıştırılmamalı).
+  // Bu yüzden: (a) ayrı bir kutu, açıkça "deneysel" etiketli; (b) tembel
+  // -- yalnız "Göster"e basılınca data/ibn-arabi/pasaj-vektorleri-<dil>
+  // .bin (birkaç MB) iniyor, sayfa açılışına hiçbir maliyeti yok.
+  function renderYakinPasajlar(part) {
+    const mount = document.getElementById("futuhat-yakin-pasaj");
+    if (!mount) return;
+    mount.innerHTML = "";
+    const box = document.createElement("div");
+    box.className = "futuhat-anlamsal-box futuhat-anlamsal-box--deneysel";
+    box.innerHTML =
+      `<p class="futuhat-anlamsal-box__eyebrow">${tt({
+        tr: "Anlamca yakın olabilecek pasajlar (deneysel)",
+        en: "Passages that may be semantically close (experimental)",
+        pt: "Passagens que podem ser semanticamente próximas (experimental)",
+      })}</p>` +
+      `<p class="futuhat-anlamsal-box__not">${tt({
+        tr: "Bu bizim ölçümümüzdür, Dost'un çapraz-referansı değildir; embedding benzerliğine göre hesaplanmıştır ve hiçbir insan gözden geçirmesinden geçmemiştir.",
+        en: "This is our own measurement, not Dost's cross-reference; computed from embedding similarity, and has not passed any human review.",
+        pt: "Esta é a nossa própria medição, não uma referência cruzada de Dost; calculada por similaridade de embedding, e não passou por nenhuma revisão humana.",
+      })}</p>` +
+      `<button type="button" class="futuhat-anlamsal-box__gosterBtn">${tt({ tr: "Göster", en: "Show", pt: "Mostrar" })}</button>`;
+    mount.appendChild(box);
+    const btn = box.querySelector(".futuhat-anlamsal-box__gosterBtn");
+    btn.addEventListener("click", () => {
+      btn.disabled = true;
+      btn.textContent = tt({ tr: "Yükleniyor…", en: "Loading…", pt: "Carregando…" });
+      const lang = I18n.getLang();
+      window.DostAnlamsalYakin.bul(part.id, lang, 5).then((sonuclar) => {
+        btn.remove();
+        if (!sonuclar.length) {
+          const bos = document.createElement("p");
+          bos.className = "futuhat-anlamsal-box__not";
+          bos.textContent = tt({ tr: "Bu kısım için yakın bir pasaj bulunamadı.", en: "No close passage found for this part.", pt: "Nenhuma passagem próxima encontrada para esta parte." });
+          box.appendChild(bos);
+          return;
+        }
+        sonuclar.forEach((s) => {
+          const item = document.createElement("a");
+          item.className = "futuhat-anlamsal-box__item";
+          item.href = s.route;
+          item.innerHTML = `<span class="futuhat-anlamsal-box__title">${escapeHtml(s.baslik)}</span><span class="futuhat-anlamsal-box__sebep">${escapeHtml(s.ozet)}</span>`;
+          box.appendChild(item);
+        });
+      }).catch(() => {
+        btn.textContent = tt({ tr: "Şu an kullanılamıyor", en: "Unavailable right now", pt: "Indisponível no momento" });
+      });
     });
   }
 

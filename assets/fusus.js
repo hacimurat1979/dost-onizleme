@@ -259,6 +259,7 @@
     });
 
     html += '<div id="fusus-anlamsal"></div>';
+    html += '<div id="fusus-yakin-pasaj"></div>';
 
     if (f.sources && f.sources.length) {
       html += '<footer class="fusus-article__sources"><h3>'
@@ -270,6 +271,7 @@
     articleEl.innerHTML = html;
     mountHelixBlocks(articleEl, helixes, captions);
     renderAnlamsalBaglantilar(f);
+    renderYakinPasajlar(f);
     var printBtn = articleEl.querySelector(".fusus-print-btn");
     if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
   }
@@ -306,6 +308,55 @@
           e.preventDefault();
           window.__dostNav.goTo(item.dataset.view, item.dataset.id);
         });
+      });
+    });
+  }
+
+  // FAZ 5: bkz. assets/futuhat.js'teki aynı adlı fonksiyon -- burada Füsûs
+  // tarafı. Bu sonuçlar HİÇ insan gözden geçirmesinden geçmedi (yukarıdaki
+  // elle onaylanmış anlamsal-baglantilar.json'dan farklı); yalnız
+  // "Göster"e basılınca data/ibn-arabi/pasaj-vektorleri-<dil>.bin iniyor.
+  function renderYakinPasajlar(f) {
+    var mount = document.getElementById("fusus-yakin-pasaj");
+    if (!mount || !window.DostAnlamsalYakin) return;
+    var html = '<div class="futuhat-anlamsal-box futuhat-anlamsal-box--deneysel">'
+      + '<p class="futuhat-anlamsal-box__eyebrow">' + esc(t({
+        tr: "Anlamca yakın olabilecek pasajlar (deneysel)",
+        en: "Passages that may be semantically close (experimental)",
+        pt: "Passagens que podem ser semanticamente próximas (experimental)",
+      })) + "</p>"
+      + '<p class="futuhat-anlamsal-box__not">' + esc(t({
+        tr: "Bu bizim ölçümümüzdür, Dost'un çapraz-referansı değildir; embedding benzerliğine göre hesaplanmıştır ve hiçbir insan gözden geçirmesinden geçmemiştir.",
+        en: "This is our own measurement, not Dost's cross-reference; computed from embedding similarity, and has not passed any human review.",
+        pt: "Esta é a nossa própria medição, não uma referência cruzada de Dost; calculada por similaridade de embedding, e não passou por nenhuma revisão humana.",
+      })) + "</p>"
+      + '<button type="button" class="futuhat-anlamsal-box__gosterBtn">' + esc(t({ tr: "Göster", en: "Show", pt: "Mostrar" })) + "</button>"
+      + "</div>";
+    mount.innerHTML = html;
+    var box = mount.querySelector(".futuhat-anlamsal-box");
+    var btn = box.querySelector(".futuhat-anlamsal-box__gosterBtn");
+    btn.addEventListener("click", function () {
+      btn.disabled = true;
+      btn.textContent = t({ tr: "Yükleniyor…", en: "Loading…", pt: "Carregando…" });
+      window.DostAnlamsalYakin.bul(f.id, I18n.getLang(), 5).then(function (sonuclar) {
+        btn.remove();
+        if (!sonuclar.length) {
+          var bos = document.createElement("p");
+          bos.className = "futuhat-anlamsal-box__not";
+          bos.textContent = t({ tr: "Bu fass için yakın bir pasaj bulunamadı.", en: "No close passage found for this bezel.", pt: "Nenhuma passagem próxima encontrada para este engaste." });
+          box.appendChild(bos);
+          return;
+        }
+        sonuclar.forEach(function (s) {
+          var item = document.createElement("a");
+          item.className = "futuhat-anlamsal-box__item";
+          item.href = s.route;
+          item.innerHTML = '<span class="futuhat-anlamsal-box__title">' + esc(s.baslik) + "</span>"
+            + '<span class="futuhat-anlamsal-box__sebep">' + esc(s.ozet) + "</span>";
+          box.appendChild(item);
+        });
+      }).catch(function () {
+        btn.textContent = t({ tr: "Şu an kullanılamıyor", en: "Unavailable right now", pt: "Indisponível no momento" });
       });
     });
   }

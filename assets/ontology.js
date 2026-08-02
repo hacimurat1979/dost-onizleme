@@ -236,6 +236,9 @@
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
     else if (currentMainView === "fusus") window.__fususApp && window.__fususApp.onLangChange();
     else if (currentMainView === "hakkinda") window.__siirlerApp && window.__siirlerApp.onLangChange();
+    else if (currentMainView === "kozmik") window.__kozmikApp && window.__kozmikApp.onLangChange();
+    else if (currentMainView === "atlas") window.__atlasApp && window.__atlasApp.onLangChange();
+    else if (currentMainView === "kavram") window.__kavramApp && window.__kavramApp.onLangChange();
     updateHeaderHeightVar();
   });
 
@@ -424,6 +427,9 @@
   const futuhatBtn = document.getElementById("futuhat-btn");
   const fususBtn = document.getElementById("fusus-btn");
   const hakkindaBtn = document.getElementById("hakkinda-btn");
+  const kozmikBtn = document.getElementById("kozmik-btn");
+  const atlasBtn = document.getElementById("atlas-btn");
+  const kavramBtn = document.getElementById("kavram-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
   const halWrap = document.getElementById("hal-wrap");
@@ -436,6 +442,9 @@
   const futuhatWrap = document.getElementById("futuhat-wrap");
   const fususWrap = document.getElementById("fusus-wrap");
   const hakkindaWrap = document.getElementById("hakkinda-wrap");
+  const kozmikWrap = document.getElementById("kozmik-wrap");
+  const atlasWrap = document.getElementById("atlas-wrap");
+  const kavramWrap = document.getElementById("kavram-wrap");
 
   // Görsel olarak aktif sekmeyi işaretlemek (.btn-ghost--active) ekran
   // okuyucuya hiçbir şey söylemiyordu -- dil seçicideki aria-pressed'in
@@ -463,6 +472,9 @@
     markActiveNavButton(futuhatBtn, view === "futuhat");
     markActiveNavButton(fususBtn, view === "fusus");
     markActiveNavButton(hakkindaBtn, view === "hakkinda");
+    markActiveNavButton(kozmikBtn, view === "kozmik");
+    markActiveNavButton(atlasBtn, view === "atlas");
+    markActiveNavButton(kavramBtn, view === "kavram");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
@@ -475,6 +487,9 @@
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
     if (fususWrap) fususWrap.hidden = view !== "fusus";
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
+    if (kozmikWrap) kozmikWrap.hidden = view !== "kozmik";
+    if (atlasWrap) atlasWrap.hidden = view !== "atlas";
+    if (kavramWrap) kavramWrap.hidden = view !== "kavram";
     if (view === "hakkinda") {
       wireHakkindaDiagrams();
       window.__siirlerApp && window.__siirlerApp.wireTabs();
@@ -513,6 +528,15 @@
     } else if (view === "fusus") {
       currentDetailView = null;
       window.__fususApp && window.__fususApp.activate();
+    } else if (view === "kozmik") {
+      currentDetailView = "kozmik";
+      window.__kozmikApp && window.__kozmikApp.activate();
+    } else if (view === "atlas") {
+      currentDetailView = "atlas";
+      window.__atlasApp && window.__atlasApp.activate();
+    } else if (view === "kavram") {
+      currentDetailView = "kavram";
+      window.__kavramApp && window.__kavramApp.activate();
     } else {
       currentDetailView = null;
     }
@@ -533,6 +557,9 @@
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
   if (fususBtn) fususBtn.addEventListener("click", () => { setMainView("fusus"); updateHash("fusus"); });
   if (hakkindaBtn) hakkindaBtn.addEventListener("click", () => { setMainView("hakkinda"); updateHash("hakkinda"); });
+  if (kozmikBtn) kozmikBtn.addEventListener("click", () => { setMainView("kozmik"); updateHash("kozmik"); });
+  if (atlasBtn) atlasBtn.addEventListener("click", () => { setMainView("atlas"); updateHash("atlas"); });
+  if (kavramBtn) kavramBtn.addEventListener("click", () => { setMainView("kavram"); updateHash("kavram"); });
 
   // --- Deep linking & cross-view navigation ---
   let pendingSirlarId = null;
@@ -649,6 +676,30 @@
         tr: "Dost Arabî projesinin ve Muhyiddîn İbnü'l-Arabî'nin kısaca tanıtıldığı sayfa.",
         en: "A page briefly introducing the Dost Arabi project and Muhyiddin Ibn Arabi.",
         pt: "Uma página que apresenta brevemente o projeto Dost Arabi e Muhyiddin Ibn Arabi.",
+      },
+    },
+    kozmik: {
+      title: { tr: "Kozmik Animasyonlar", en: "Cosmic Animations", pt: "Animações Cósmicas" },
+      desc: {
+        tr: "İbn Arabî hareket anlatıyor; bunu durağan bir resim değil, beş kısa canlandırmayla göstermeye çalışan bir bölüm.",
+        en: "Ibn Arabi speaks of motion; a section trying to show this through five short animations rather than a still picture.",
+        pt: "Ibn Arabi fala de movimento; uma seção que tenta mostrar isso através de cinco animações curtas, não de uma imagem estática.",
+      },
+    },
+    atlas: {
+      title: { tr: "Atlas", en: "Atlas", pt: "Atlas" },
+      desc: {
+        tr: "Zât'tan Nokta'ya on bir katmanın, ayrı sayfalar yerine tek bir sürekli yakınlaşmayla gezildiği bölüm.",
+        en: "A section where eleven layers, from the Essence to the Point, are explored through one continuous zoom instead of separate pages.",
+        pt: "Uma seção em que onze camadas, da Essência ao Ponto, são percorridas por um único zoom contínuo em vez de páginas separadas.",
+      },
+    },
+    kavram: {
+      title: { tr: "Kavramlar", en: "Concepts", pt: "Conceitos" },
+      desc: {
+        tr: "Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti.",
+        en: "A data-derived life summary tracing each concept through the Futuhat and the Fusus.",
+        pt: "Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus.",
       },
     },
   };
@@ -798,9 +849,24 @@
     setMainView("hakkinda");
   }
 
+  function goToKozmik(id) {
+    setMainView("kozmik");
+    if (id) window.__kozmikApp && window.__kozmikApp.goToNode(id);
+  }
+
+  function goToAtlas(id) {
+    setMainView("atlas");
+    if (id) window.__atlasApp && window.__atlasApp.goToNode(id);
+  }
+
+  function goToKavram(id) {
+    setMainView("kavram");
+    if (id) window.__kavramApp && window.__kavramApp.goToNode(id);
+  }
+
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda|kozmik|atlas|kavram)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -823,6 +889,9 @@
     else if (view === "futuhat") goToFutuhat(id);
     else if (view === "fusus") goToFusus(id);
     else if (view === "hakkinda") goToHakkinda();
+    else if (view === "kozmik") goToKozmik(id);
+    else if (view === "atlas") goToAtlas(id);
+    else if (view === "kavram") goToKavram(id);
   }
 
   window.addEventListener("popstate", parseHashAndGo);
@@ -858,6 +927,9 @@
       else if (view === "futuhat") goToFutuhat(id);
       else if (view === "fusus") goToFusus(id);
       else if (view === "hakkinda") goToHakkinda();
+      else if (view === "kozmik") goToKozmik(id);
+      else if (view === "atlas") goToAtlas(id);
+      else if (view === "kavram") goToKavram(id);
       updateHash(view, id);
     },
     setHash: updateHash,

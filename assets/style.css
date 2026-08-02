@@ -1859,6 +1859,41 @@ button.futuhat-part-chip:hover {
   color: var(--text-primary);
 }
 
+/* FAZ 5: canlı/deneysel anlamsal yakınlık kutusu -- .futuhat-anlamsal-box'ın
+   aynı aile üyesi, ama hiç insan gözden geçirmesinden geçmediği için biraz
+   daha sönük/bulanık (GORSEL_DIL.md: bulanıklık=bilgisizlik). */
+.futuhat-anlamsal-box--deneysel {
+  opacity: 0.88;
+}
+.futuhat-anlamsal-box__not {
+  margin: 0;
+  font-size: calc(0.86rem * var(--detail-font-scale, 1));
+  line-height: 1.5;
+  color: var(--text-muted);
+  font-style: italic;
+}
+.futuhat-anlamsal-box__gosterBtn {
+  align-self: flex-start;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.futuhat-anlamsal-box__gosterBtn:hover,
+.futuhat-anlamsal-box__gosterBtn:focus-visible {
+  border-color: var(--accent-interactive);
+  color: var(--accent-interactive);
+  outline: none;
+}
+.futuhat-anlamsal-box__gosterBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
 .futuhat-inline-diagram {
   background: var(--page-plane);
   border: 1px solid var(--border);
@@ -2390,7 +2425,10 @@ body[data-theme="dark"] #sirlar-legend {
 
 .pole-badge {
   display: inline-block;
-  font-size: 0.6rem;
+  /* 0.6rem (9.6px) idi -- 11px altı metin bırakmama kuralına göre (FAZ 8)
+     yükseltildi. Rozet inline-block olduğu için sabit koordinatlı bir
+     düzeni bozmuyor. */
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -6679,7 +6717,10 @@ mark.durus-vurgu-es {
 .fusus-chip:hover:not(.is-planned) { border-color: var(--accent-interactive); color: var(--text-primary); }
 .fusus-chip.is-active { background: var(--series-theme); border-color: var(--series-theme); color: var(--on-accent-text); font-weight: 600; }
 .fusus-chip.is-planned { opacity: 0.42; cursor: default; }
-.fusus-chip__no { font-variant-numeric: tabular-nums; opacity: 0.7; font-size: 0.72rem; }
+/* opacity kaldırıldı: 0.7 idi, --text-secondary'yi WCAG AA'nın (4.5:1)
+   altına düşürüyordu (ölçülen: ~3:1, bkz. FAZ 8 erişilebilirlik denetimi).
+   Küçük font-size (0.72rem) zaten .fusus-chip__name'den ayrıştırıyor. */
+.fusus-chip__no { font-variant-numeric: tabular-nums; font-size: 0.72rem; }
 
 .fusus-article { min-width: 0; }
 .fusus-article__head { position: relative; }
@@ -6982,7 +7023,13 @@ mark.durus-vurgu-es {
      (3 5); ilk denemede türetilmişi de kesikli yaptım (3 4) ve ikisi ayırt
      edilemedi — yani "görsel olarak ayrı göster" şartı kâğıtta kalmıştı.
      Nokta dizisi bir SAYIM izlenimi verir: ayrı ayrı gözlemler, sürekli bir
-     beyan değil. Ayrım kozmetik değil, iki kenarın epistemik statüsü farklı. */
+     beyan değil. Ayrım kozmetik değil, iki kenarın epistemik statüsü farklı.
+     FAZ 6 (2026-08-01): GORSEL_DIL.md'nin "bulanıklık=bilgisizlik" kuralına
+     göre gerçek bir blur eklendi -- öncekinden (nokta+sönük renk) bir adım
+     daha, çünkü plan metni doğrudan "önerilen = bulanık" diyor. Hover'da
+     blur kalkıyor: kullanıcı bir kenarla etkileşime girdiğinde onu net
+     görmesi gerekiyor, epistemik etiket (nokta deseni, ayrı renk) değişmiyor. */
+  filter: blur(0.55px);
   stroke-dasharray: 0.5 5;
   stroke-linecap: round;
   cursor: pointer;
@@ -6992,6 +7039,7 @@ mark.durus-vurgu-es {
 .esmaX-derived:focus-visible {
   stroke: var(--text-secondary);
   stroke-width: 1.8px;
+  filter: none;
   outline: none;
 }
 /* 3B anahtarının hemen sağında (o 116px'te, bu 168px'te). */
@@ -7058,4 +7106,404 @@ mark.durus-vurgu-es {
 }
 .detail-kicker--derived {
   border-style: dashed;
+}
+
+/* ============================================================================
+   Kozmik (FAZ A) -- beş sahnelik animasyon galerisi (assets/kozmik.js,
+   assets/kozmik/*.js). Daire ve merkez ilkesi: seçici dairesel rozetler,
+   sahne kare değil yuvarlak köşeli bir "pencere" olarak çerçevelenir.
+   ============================================================================ */
+.kozmik-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+.kozmik-picker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.kozmik-picker__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.kozmik-picker__btn:hover,
+.kozmik-picker__btn:focus-visible {
+  color: var(--text-primary);
+  border-color: var(--accent-interactive);
+}
+.kozmik-picker__btn[aria-selected="true"] {
+  background: var(--text-primary);
+  color: var(--surface-1);
+  border-color: var(--text-primary);
+  font-weight: 600;
+}
+.kozmik-picker__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+.kozmik-picker__btn[aria-selected="true"] .kozmik-picker__dot { opacity: 1; }
+.kozmik-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 66vh;
+  border-radius: 24px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--series-theme) 6%, var(--surface-1)) 0%, var(--surface-1) 72%);
+  border: 1px solid var(--border);
+  touch-action: none;
+}
+.kozmik-stage canvas,
+.kozmik-stage svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.kozmik-hint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 10px 0 0;
+}
+.kozmik-note {
+  margin-top: 22px;
+  display: grid;
+  gap: 14px;
+}
+.kozmik-note__block {
+  border-left: 3px solid var(--gridline);
+  padding-left: 14px;
+}
+.kozmik-note__label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.kozmik-note__text {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.62;
+}
+@media (max-width: 640px) {
+  .kozmik-wrap { padding: 16px 12px 48px; }
+  .kozmik-stage { aspect-ratio: 3 / 4; max-height: 58vh; }
+}
+
+/* ============================================================================
+   Atlas (FAZ B) -- Zât'tan Nokta'ya 11 katman, TEK bir sürekli zoom ekseninde
+   (assets/atlas.js). Katmanlar aynı noktada üst üste durur; hangisinin
+   göründüğü yalnız bulanıklık/saydamlık/ölçekle belirlenir (kesme yok).
+   ============================================================================ */
+.atlas-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+.atlas-hint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+.atlas-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 66vh;
+  border-radius: 24px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--series-theme) 6%, var(--surface-1)) 0%, var(--surface-1) 72%);
+  border: 1px solid var(--border);
+  touch-action: none;
+  cursor: grab;
+}
+.atlas-stage:focus-visible {
+  outline: 2px solid var(--accent-interactive);
+  outline-offset: -2px;
+}
+.atlas-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  will-change: filter, opacity, transform;
+}
+.atlas-layer--interactive,
+.atlas-layer--interactive * {
+  pointer-events: auto;
+}
+.atlas-haze {
+  width: 58%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--text-primary) 16%, transparent) 0%, transparent 72%);
+}
+.atlas-core {
+  width: 46%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+}
+.atlas-core__label {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--text-primary) 78%, transparent);
+}
+.atlas-isim-ring {
+  position: relative;
+  width: 82%;
+  aspect-ratio: 1;
+}
+.atlas-isim-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.atlas-isim-node circle {
+  fill: var(--series-theme);
+  opacity: 0.82;
+}
+.atlas-isim-node text {
+  font-size: 8.5px;
+  fill: var(--text-secondary);
+  dominant-baseline: middle;
+  pointer-events: none;
+  /* Yüz düğümün etiketini aynı anda göstermek okunaksız bir yığın üretiyordu
+     (bkz. atlas.js'in buildEsmaRing yorumu) -- esma.js'in kendi grafiğindeki
+     çözümü izleyerek varsayılan gizli, yalnız üstüne gelinen/odaklanılan
+     düğümünki görünür. <title> her zaman native bir ipucu sağlıyor. */
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+.atlas-isim-node:focus-visible circle,
+.atlas-isim-node circle:hover {
+  opacity: 1;
+  fill: var(--accent-interactive);
+}
+.atlas-isim-node:focus-visible text,
+.atlas-isim-node circle:hover ~ text {
+  opacity: 1;
+}
+.atlas-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+.atlas-nav__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.atlas-nav__btn:hover:not(:disabled),
+.atlas-nav__btn:focus-visible {
+  border-color: var(--accent-interactive);
+}
+.atlas-nav__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.atlas-nav__label {
+  min-width: 12em;
+  text-align: center;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+}
+.atlas-note {
+  margin-top: 20px;
+}
+.atlas-note__ozet {
+  margin: 0 0 12px;
+  color: var(--text-secondary);
+  line-height: 1.62;
+}
+.atlas-crosslink {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.atlas-crosslink:hover,
+.atlas-crosslink:focus-visible {
+  border-color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 10%, var(--surface-1));
+}
+@media (max-width: 640px) {
+  .atlas-wrap { padding: 16px 12px 48px; }
+  .atlas-stage { aspect-ratio: 3 / 4; max-height: 58vh; }
+  .atlas-isim-node text { font-size: 7px; }
+}
+
+/* ============================================================================
+   Kavramlar (FAZ C) -- "Bir Kavramın Bütün Hayatı" (assets/kavram.js).
+   Sade bir liste + kart düzeni; asıl içerik chip'lerin metni ve bağlantılar.
+   ============================================================================ */
+.kavram-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+.kavram-list__intro {
+  color: var(--text-secondary);
+  line-height: 1.62;
+  margin: 0 0 22px;
+}
+.kavram-list__group { margin-bottom: 22px; }
+.kavram-list__group h2 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+.kavram-list__chips,
+.kavram-related__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.kavram-chip {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.kavram-chip:hover,
+.kavram-chip:focus-visible {
+  border-color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 10%, var(--surface-1));
+}
+.kavram-chip--static {
+  cursor: default;
+  color: var(--text-secondary);
+}
+.kavram-chip--static:hover { border-color: var(--border); background: var(--surface-1); }
+.kavram-chip__n {
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+  margin-left: 2px;
+}
+.kavram-detail__back { margin: 0 0 14px; }
+.kavram-back-link {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0;
+}
+.kavram-back-link:hover, .kavram-back-link:focus-visible { color: var(--accent-interactive); }
+.kavram-detail__title { margin: 0 0 6px; }
+.kavram-detail__source { color: var(--text-muted); font-size: 0.86rem; margin: 0 0 20px; }
+.kavram-source-link {
+  background: none;
+  border: none;
+  color: var(--accent-interactive);
+  font-size: 0.86rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+.kavram-note {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+.kavram-book { margin-bottom: 20px; }
+.kavram-book h3 {
+  font-size: 0.88rem;
+  margin: 0 0 10px;
+  color: var(--text-primary);
+}
+.kavram-bookref {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+}
+.kavram-bookref:hover, .kavram-bookref:focus-visible {
+  border-color: var(--border);
+  background: var(--surface-1);
+}
+.kavram-bookref__label {
+  flex: 0 0 auto;
+  min-width: 8.5em;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
+.kavram-bookref__title { flex: 1 1 auto; color: var(--text-primary); }
+.kavram-bookref__oran {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
+.kavram-related { margin-bottom: 20px; }
+.kavram-related h3 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+.kavram-yontem {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gridline);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+@media (max-width: 640px) {
+  .kavram-wrap { padding: 16px 12px 48px; }
+  .kavram-bookref__label { min-width: 100%; }
 }

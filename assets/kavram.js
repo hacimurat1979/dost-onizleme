@@ -1,0 +1,248 @@
+/**
+ * FAZ C -- "Bir Kavramın Bütün Hayatı": ontology.json/esma.json/felsefi-
+ * terimler.json'daki her kavram için TÜRETİLMİŞ bir hayat özeti (ilk/son/
+ * en yoğun geçtiği kısım, birlikte geçtiği esmâ, ilişkili sır/çizim/âyet/
+ * hadis). Veri: data/ibn-arabi/kavram-hayati.json (scripts/kavram-hayati-
+ * uret.py tarafından üretilir, ELLE DÜZENLENMEZ).
+ *
+ * Bu görünümün id'si BİLEŞİK: "<view>/<id>" (örn. "esma/zahir") -- çünkü
+ * aynı id üç kaynakta da (ontoloji/esma/terimler) tekrarlanabiliyor
+ * (bkz. "zahir", "batin", "vahid", "tecelli" -- üretim betiğinde
+ * doğrulandı). URL: /kavram/<view>/<id>/. Diğer görünümlerin "edge/..."
+ * bileşik id'lerinde olduğu gibi, ontology.js'in restRaw ayrıştırması
+ * içindeki slash'ı zaten koruyor -- ek bir routing değişikliği gerekmedi.
+ */
+window.__kavramApp = (function () {
+  "use strict";
+  const I18n = window.DostI18n;
+  const GU = window.DostGraphUtils;
+
+  const wrapEl = document.getElementById("kavram-wrap");
+  const listEl = document.getElementById("kavram-list");
+  const detailEl = document.getElementById("kavram-detail");
+
+  function tt(dict) {
+    return I18n ? I18n.pick3(dict || {}) : (dict && (dict.tr || dict.en || dict.pt)) || "";
+  }
+
+  const VIEW_LABEL = {
+    ontoloji: { tr: "Ontoloji", en: "Ontology", pt: "Ontologia" },
+    esma: { tr: "Esmâü'l-Hüsnâ", en: "The Beautiful Names", pt: "Os Belos Nomes" },
+    terimler: { tr: "Terimler", en: "Terms", pt: "Termos" },
+  };
+
+  let dataPromise = null;
+  let kavramlar = [];
+  let byKey = new Map();
+
+  function fetchData() {
+    if (dataPromise) return dataPromise;
+    if (window.DostViewStatus) window.DostViewStatus.showLoading("kavram-wrap");
+    dataPromise = GU.fetchJson("data/ibn-arabi/kavram-hayati.json")
+      .then((d) => {
+        kavramlar = d.kavramlar || [];
+        byKey = new Map(kavramlar.map((k) => [k.view + "/" + k.id, k]));
+        if (window.DostViewStatus) window.DostViewStatus.hide("kavram-wrap");
+        return true;
+      })
+      .catch((err) => {
+        console.error("kavram-hayati.json yüklenemedi", err);
+        dataPromise = null;
+        if (window.DostViewStatus) window.DostViewStatus.showError("kavram-wrap", () => window.__kavramApp.activate());
+        return false;
+      });
+    return dataPromise;
+  }
+
+  function nav(view, id) {
+    window.__dostNav && window.__dostNav.goTo(view, id);
+  }
+
+  function renderList() {
+    detailEl.hidden = true;
+    listEl.hidden = false;
+    const groups = { ontoloji: [], esma: [], terimler: [] };
+    kavramlar.forEach((k) => groups[k.view].push(k));
+    Object.keys(groups).forEach((v) => groups[v].sort((a, b) => tt(a.isim).localeCompare(tt(b.isim), "tr")));
+    const intro = tt({
+      tr: "Her kavramın, Fütûhât-ı Mekkiyye ve Füsûsu'l-Hikem boyunca nerede ilk geçtiği, nerede en yoğun göründüğü ve hangi sır/çizim/âyet/hadisle birlikte anıldığına dair, veriden türetilmiş bir özet. Bu bir iddia değil, bir tarama denemesi -- yöntem sayfanın altında.",
+      en: "A data-derived summary of where each concept first appears across the Meccan Revelations and the Bezels of Wisdom, where it appears most densely, and which mystery/diagram/verse/hadith it's recorded alongside. Not a claim -- a scanning attempt; method noted at the page's foot.",
+      pt: "Um resumo derivado de dados de onde cada conceito aparece pela primeira vez nas Revelações de Meca e nos Engastes da Sabedoria, onde aparece com mais densidade, e com qual mistério/diagrama/versículo/hadith é registrado junto. Não uma afirmação -- uma tentativa de varredura; o método está ao pé da página.",
+    });
+    listEl.innerHTML =
+      `<p class="kavram-list__intro">${intro}</p>` +
+      Object.keys(groups)
+        .map(
+          (v) =>
+            `<div class="kavram-list__group"><h2>${tt(VIEW_LABEL[v])}</h2><div class="kavram-list__chips">` +
+            groups[v]
+              .map((k) => `<button type="button" class="kavram-chip" data-view="${k.view}" data-id="${k.id}">${tt(k.isim)}</button>`)
+              .join("") +
+            `</div></div>`
+        )
+        .join("");
+    listEl.querySelectorAll(".kavram-chip").forEach((btn) => {
+      btn.addEventListener("click", () => nav("kavram", btn.dataset.view + "/" + btn.dataset.id));
+    });
+  }
+
+  function bookBlock(label, book) {
+    if (!book) return "";
+    const rows = [
+      [tt({ tr: "İlk geçtiği yer", en: "First appears", pt: "Primeira aparição" }), book.ilk],
+      [tt({ tr: "Son geçtiği yer", en: "Last appears", pt: "Última aparição" }), book.son],
+      [tt({ tr: "En yoğun geçtiği yer", en: "Densest appearance", pt: "Aparição mais densa" }), book.enYogun],
+    ];
+    const view = label === "futuhat" ? "futuhat" : "fusus";
+    return (
+      `<div class="kavram-book"><h3>${label === "futuhat"
+        ? tt({ tr: "Fütûhât-ı Mekkiyye'de", en: "In the Meccan Revelations", pt: "Nas Revelações de Meca" })
+        : tt({ tr: "Füsûsu'l-Hikem'de", en: "In the Bezels of Wisdom", pt: "Nos Engastes da Sabedoria" })
+      } (${book.toplamKisim} ${label === "futuhat"
+        ? tt({ tr: "kısımda", en: "parts", pt: "partes" })
+        : tt({ tr: "fassta", en: "chapters", pt: "capítulos" })
+      })</h3>` +
+      rows
+        .map(
+          ([l, ref]) =>
+            `<button type="button" class="kavram-bookref" data-view="${view}" data-id="${ref.id}">` +
+            `<span class="kavram-bookref__label">${l}</span>` +
+            `<span class="kavram-bookref__title">${tt(ref.title)}</span>` +
+            (ref.oran != null ? `<span class="kavram-bookref__oran">${ref.oran}‰</span>` : "") +
+            `</button>`
+        )
+        .join("") +
+      `</div>`
+    );
+  }
+
+  function renderDetail(k) {
+    listEl.hidden = true;
+    detailEl.hidden = false;
+    const parts = [];
+    parts.push(`<p class="kavram-detail__back"><button type="button" class="kavram-back-link">${tt({
+      tr: "← Tüm kavramlar", en: "← All concepts", pt: "← Todos os conceitos",
+    })}</button></p>`);
+    parts.push(`<h2 class="kavram-detail__title">${tt(k.isim)}</h2>`);
+    parts.push(
+      `<p class="kavram-detail__source">${tt({
+        tr: "Kaynak görünüm", en: "Source view", pt: "Visão de origem",
+      })}: <button type="button" class="kavram-source-link" data-view="${k.view}" data-id="${k.id}">${tt(VIEW_LABEL[k.view])}</button></p>`
+    );
+
+    if (k.otomatikEslesmeYok) {
+      parts.push(
+        `<p class="kavram-note">${tt({
+          tr: "Bu kavramın adı, yanlış-pozitif riskini azaltmak için uygulanan dört-harf eşiğinin altında kaldığından, otomatik konum taraması yapılmadı.",
+          en: "This concept's name fell below the four-letter threshold used to reduce false positives, so no automatic location scan was run.",
+          pt: "O nome deste conceito ficou abaixo do limite de quatro letras usado para reduzir falsos positivos, então nenhuma varredura automática de localização foi feita.",
+        })}</p>`
+      );
+    } else {
+      if (!k.futuhat && !k.fusus) {
+        parts.push(
+          `<p class="kavram-note">${tt({
+            tr: `"${k.eslesenTerim}" adı, taranan Fütûhât/Füsûs metinlerinde bulunamadı.`,
+            en: `The name "${k.eslesenTerim}" was not found in the scanned Futuhat/Fusus text.`,
+            pt: `O nome "${k.eslesenTerim}" não foi encontrado no texto de Futuhat/Fusus rastreado.`,
+          })}</p>`
+        );
+      }
+      parts.push(bookBlock("futuhat", k.futuhat));
+      parts.push(bookBlock("fusus", k.fusus));
+    }
+
+    if (k.birlikteEsma.length) {
+      parts.push(
+        `<div class="kavram-related"><h3>${tt({
+          tr: "Birlikte en çok geçtiği esmâ", en: "Most co-occurring Names", pt: "Nomes mais coocorrentes",
+        })}</h3><div class="kavram-related__chips">` +
+          k.birlikteEsma
+            .map(
+              (e) =>
+                `<button type="button" class="kavram-chip" data-view="esma" data-id="${e.id}">${tt(e.isim)} <span class="kavram-chip__n">${e.ortakBolum}</span></button>`
+            )
+            .join("") +
+          `</div></div>`
+      );
+    }
+    if (k.ilgiliSirlar.length) {
+      parts.push(
+        `<div class="kavram-related"><h3>${tt({ tr: "İlişkili sırlar", en: "Related mysteries", pt: "Mistérios relacionados" })}</h3><div class="kavram-related__chips">` +
+          k.ilgiliSirlar.map((s) => `<button type="button" class="kavram-chip" data-view="sirlar" data-id="${s.id}">${tt(s.topic)}</button>`).join("") +
+          `</div></div>`
+      );
+    }
+    if (k.ilgiliCizimler.length) {
+      parts.push(
+        `<div class="kavram-related"><h3>${tt({ tr: "İlişkili çizimler", en: "Related diagrams", pt: "Diagramas relacionados" })}</h3><div class="kavram-related__chips">` +
+          k.ilgiliCizimler.map((c) => `<button type="button" class="kavram-chip" data-view="cizimler" data-id="${c.id}">${tt(c.name)}</button>`).join("") +
+          `</div></div>`
+      );
+    }
+    if (k.ilgiliAyet.length || k.ilgiliHadis.length) {
+      const chips = [
+        ...k.ilgiliAyet.map((r) => `<span class="kavram-chip kavram-chip--static">${r}</span>`),
+        ...k.ilgiliHadis.map((r) => `<span class="kavram-chip kavram-chip--static">${r}</span>`),
+      ].join("");
+      parts.push(
+        `<div class="kavram-related"><h3>${tt({ tr: "Birlikte anılan âyet/hadis", en: "Verses/hadiths cited alongside", pt: "Versículos/hadiths citados junto" })}</h3><div class="kavram-related__chips">${chips}</div></div>`
+      );
+    }
+
+    parts.push(
+      `<p class="kavram-yontem">${tt({
+        tr: "Yöntem: kavramın adı, kısım/fass metinlerinde kelime-sınırlı bir taramayla arandı; yoğunluk, ham sayı değil \"binde kaç kelimede bir\" oranıdır (uzun bölümler otomatik \"en yoğun\" çıkmasın diye). Bu YAKLAŞIK bir tarama, kesin bir dizin değil.",
+        en: "Method: the concept's name was searched with a word-boundary scan across part/chapter text; density is a per-thousand-word rate, not a raw count (so long parts aren't automatically \"densest\"). This is an APPROXIMATE scan, not an exact index.",
+        pt: "Método: o nome do conceito foi buscado com uma varredura de limite de palavra no texto das partes/capítulos; a densidade é uma taxa por mil palavras, não uma contagem bruta (para que partes longas não sejam automaticamente \"mais densas\"). Esta é uma varredura APROXIMADA, não um índice exato.",
+      })}</p>`
+    );
+
+    detailEl.innerHTML = parts.join("");
+    // window.__dostNav.goTo("kavram", undefined) burada İŞE YARAMAZ:
+    // setMainView zaten "kavram" görünümündeyken (bkz. currentMainView ===
+    // view erken çıkışı) hiçbir şey tetiklemiyor -- liste hâline dönmek
+    // için modülün kendi showId()'sini doğrudan çağırıp URL'i ayrıca
+    // güncelliyoruz (elle test edilip yakalandı: "Tüm kavramlar" linki
+    // tıklamaya tepki vermiyordu).
+    detailEl.querySelector(".kavram-back-link").addEventListener("click", () => {
+      showId(undefined);
+      window.__dostNav && window.__dostNav.setHash("kavram");
+    });
+    detailEl.querySelectorAll("[data-view]").forEach((btn) => {
+      btn.addEventListener("click", () => nav(btn.dataset.view, btn.dataset.id || undefined));
+    });
+  }
+
+  let currentId; // "view/id" ya da undefined (liste hâli) -- dil değişince yeniden çizmek için
+
+  function showId(id) {
+    currentId = id;
+    const k = id && byKey.get(id);
+    if (k) renderDetail(k);
+    else renderList();
+  }
+
+  let pendingId;
+  return {
+    activate() {
+      fetchData().then((ok) => {
+        if (!ok) return;
+        showId(pendingId);
+        pendingId = undefined;
+      });
+    },
+    goToNode(id) {
+      pendingId = id;
+      fetchData().then((ok) => {
+        if (!ok) return;
+        showId(id);
+        pendingId = undefined;
+      });
+    },
+    onLangChange() {
+      if (!kavramlar.length) return;
+      showId(currentId);
+    },
+  };
+})();
