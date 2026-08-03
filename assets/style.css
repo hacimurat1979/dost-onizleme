@@ -2742,9 +2742,22 @@ body[data-theme="dark"] #sirlar-legend {
      aynı görünürlüğü varsayılan (confidence kapalı) duruma da taşıyoruz --
      karanlık modda ontoloji ilişki çizgilerinin seçilememesi bu yüzdendi.
      --text-muted her iki temada da metin için okunur kalacak şekilde
-     kalibre edilmiş, bu yüzden bir çizgi için de güvenli. */
-  stroke: var(--text-muted);
-  stroke-width: 1.5px;
+     kalibre edilmiş, bu yüzden bir çizgi için de güvenli.
+
+     2026-08-03: kullanıcı isteğiyle ALTIN'a çevrildi (--series-kemal).
+     Gerekçe ölçüldü -- gerçek zemine karşı kontrast oranı:
+       --text-muted (eski): açık 4.92:1, koyu 5.41:1
+       --series-kemal      : açık 3.41:1, koyu 9.89:1
+     Yani koyu modda belirgin bir iyileşme, açık modda WCAG'in metin-dışı
+     grafik eşiğinin (3:1) üstünde. --series-theme de "altın" ama açık
+     temada 2.05:1'de kalıyordu, o yüzden seçilmedi.
+     Kenarın TÜRÜ zaten ok başlarıyla taşınıyor (.arrowhead--descent /
+     --return / --paradox, lejant onlara bakıyor), çizgi rengiyle değil --
+     bu yüzden hepsini tek renge almak bir ayrımı silmiyor. Ayrıca
+     tecellî ışığı (.onto-kivilcim) da aynı altın: ışık kendi yolunun
+     renginde akıyor. */
+  stroke: var(--series-kemal);
+  stroke-width: 1.6px;
   fill: none;
   cursor: pointer;
   pointer-events: stroke;
@@ -3588,6 +3601,54 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   /* JS zaten hiç başlatmıyor; bu yalnız emniyet. */
   .node--teceddud, .onto-perdeli { animation: none; }
   .onto-kivilcim { display: none; }
+}
+
+/* SIRLAR ↔ SORULAR köprüsü (2026-08-03). Sitenin iki "kapanmamış" defteri
+   artık birbirini görüyor. Bağın kendisi kadar GEREKÇESİ de görünür olmalı:
+   bunlar bizim okumamız, bir ölçüm değil — o yüzden her satırda neden öyle
+   okuduğumuz yazıyor ve blok başında bunu söyleyen bir not duruyor. */
+.sorular-sirlar {
+  margin: 18px 0 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--series-kemal) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--series-kemal) 26%, transparent);
+}
+.sorular-sirlar__not {
+  margin: 0 0 12px;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.sorular-sir {
+  display: block;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.sorular-sir:last-child { margin-bottom: 0; }
+.sorular-sir:hover,
+.sorular-sir:focus-visible {
+  border-color: color-mix(in srgb, var(--series-kemal) 55%, transparent);
+  background: var(--surface-1);
+}
+.sorular-sir__baslik {
+  display: block;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.sorular-sir__neden {
+  display: block;
+  font-size: 0.79rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
 }
 
 /* KAPI (FAZ 2b) — bir düğümün kendi haritasına açılan, adı konmuş geçiş.
@@ -5316,9 +5377,25 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
 
 /* Odakla gelindiğinde kenarın kendisi de görünür olmalı: klavye kullanıcısı
    hangi çizgide olduğunu ipucundan değil sahneden okuyabilsin. */
-.link:focus-visible {
+/* İsabet şeridi (2026-08-03): görünmez ve kalın. 1,6px'lik bir çizgiye
+   fareyle değmek zordu; artık asıl hedef bu 20px'lik saydam şerit.
+   `pointer-events: stroke` sayesinde yalnız şeridin kendisi yakalıyor,
+   içinde kalan boşluk değil -- yani komşu çizgilerin tıklamasını
+   çalmıyor. Görünen çizginin pointer-events'i JS'te kapatıldı. */
+.link-hit {
+  stroke: transparent;
+  stroke-width: 20px;
+  fill: none;
+  cursor: pointer;
+  pointer-events: stroke;
+}
+/* Odaklanan şerit görünmez olduğu için odak halkası da görünmez olurdu;
+   klavye kullanıcısı nerede olduğunu sahneden okuyabilsin diye görünen
+   çizgi JS'ten .link--highlight alıyor (highlightEdge), ayrıca burada
+   şeridin kendisi de belirgin bir iz bırakıyor. */
+.link-hit:focus-visible {
   outline: none;
-  stroke-width: 4;
+  stroke: color-mix(in srgb, var(--accent-interactive) 35%, transparent);
 }
 
 /* Terimler Sözlüğü — kavramlar arası ilişki çizimleri (artık sağdaki

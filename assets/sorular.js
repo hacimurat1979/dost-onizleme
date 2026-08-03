@@ -812,6 +812,49 @@
     return `<a class="cross-link sorular-readmore" href="${href}">${label} →</a>`;
   }
   function sourceHtml(q) { return q.source ? `<cite class="sorular-source">${q.source}</cite>` : ""; }
+
+  // SIRLAR KÖPRÜSÜ (2026-08-03). Sırlar ve Sorular sitenin iki "kapanmamış"
+  // defteri ama hiçbir yerde bağlı değillerdi. Bağlar ELLE kuruldu
+  // (data/ibn-arabi/sirlar-sorular.json) ve her birinin yanında NEDEN öyle
+  // okuduğumuz yazılı -- bir ölçüm ya da kelime eşleşmesi değil.
+  // Bir bağ "bu sır şu soruyu cevaplıyor" demek DEĞİL; çoğu zaman tam
+  // tersine, sorunun neden kapanmadığını gösteriyor.
+  let koprü = null, sirBaslik = new Map();
+  function koprüYukle() {
+    if (koprü) return Promise.resolve(koprü);
+    return Promise.all([
+      GU.fetchJson("data/ibn-arabi/sirlar-sorular.json"),
+      GU.fetchJson("data/ibn-arabi/sirlar.json"),
+    ]).then(([k, sir]) => {
+      koprü = k;
+      (sir.entries || []).forEach((e) => sirBaslik.set(e.id, e.topic));
+      return k;
+    }).catch(() => null);
+  }
+  function sirlarHtml(q) {
+    if (!koprü) return "";
+    const bag = (koprü.baglar || []).filter((b) => b.soru === q.id);
+    if (!bag.length) return "";
+    const base = window.__dostRouteBase || "";
+    const satir = bag.map((b) => {
+      const baslik = sirBaslik.get(b.sir);
+      if (!baslik) return "";
+      return `<a class="sorular-sir" href="${base}/sirlar/${b.sir}" data-view="sirlar" data-id="${b.sir}">
+        <span class="sorular-sir__baslik">${I18n.pick3(baslik)}</span>
+        <span class="sorular-sir__neden">${I18n.pick3(b.neden)}</span></a>`;
+    }).join("");
+    if (!satir) return "";
+    return `<div class="sorular-sirlar">
+      <p class="detail-eyebrow detail-eyebrow--section">${tt({
+        tr: "Bu soruya dokunan sırlar",
+        en: "Mysteries that touch this question",
+        pt: "Mistérios que tocam esta pergunta" })}</p>
+      <p class="sorular-sirlar__not">${tt({
+        tr: "Bu bağları biz kurduk; cevap değil, sorunun neden kapanmadığına dair birer işaret olarak okuyoruz.",
+        en: "We made these links ourselves; we read them not as answers but as signs of why the question does not close.",
+        pt: "Fizemos estes vínculos nós mesmos; lemo-los não como respostas, mas como sinais de por que a pergunta não se fecha." })}</p>
+      ${satir}</div>`;
+  }
   function relationNote(r) { return r && r.note ? I18n.pick3(r.note) : ""; }
   function relatedQuestionsHtml(q) {
     const rel = relationsOf(q.id);
@@ -933,8 +976,13 @@
       <h2 class="detail-title">${I18n.pick3(q.question)}</h2>
       <p class="sorular-category-tag">${cat ? I18n.pick3(cat.name) : ""}</p>
       <div class="detail-block detail-block--ibnarabi"><p>${linkify(I18n.pick3(q.answer), "sorular", q.id)}</p>${sourceHtml(q)}</div>
-      ${analogyHtml(q.analogy)}${crossLinkHtml(q)}${relatedQuestionsHtml(q)}`;
+      ${analogyHtml(q.analogy)}${crossLinkHtml(q)}${sirlarHtml(q)}${relatedQuestionsHtml(q)}`;
     detailContent.querySelector(".sorular-back-link").addEventListener("click", () => showAllQuestionsList());
+    // Köprü verisi geç gelirse paneli tazele -- ilk açılışta bağlar
+    // görünmeden kalmasın.
+    if (!koprü) koprüYukle().then((k) => {
+      if (k && currentDetailQuestion === q) showQuestionDetail(q);
+    });
     wireQuestionRows();
     detailPanel.hidden = false;
     window.__dostNav && window.__dostNav.setHash("sorular", q.id);

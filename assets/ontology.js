@@ -962,7 +962,7 @@
     },
   };
 
-  let simulation, nodeSel, pathSel, labelSel, nodeById;
+  let simulation, nodeSel, pathSel, hitSel, labelSel, nodeById;
   // FAZ 1 (grafik-önce, 2026-08-03): buildGraph doğuş animasyonunu bu
   // değişkene bırakır; loadOntologyData rota çözüldükten sonra (yalnız
   // gerçekten ontoloji ana ekranındaysak) çağırır. Bkz. runBirth.
@@ -1171,16 +1171,29 @@
 
     const linkGroup = spinGroup.append("g").attr("class", "links");
 
+    // GÖRÜNEN çizgi: yalnız çizim. 1,6px'lik bir çizgiyi fareyle tutturmak
+    // zordu (kullanıcı notu 2026-08-03) -- etkileşim bu yüzden ayrı,
+    // GÖRÜNMEZ ve kalın bir "isabet şeridine" taşındı (aşağıda). Şerit
+    // çizginin altında duruyor ki okları/çizgiyi örtmesin; saydam olduğu
+    // için görünüşe hiç karışmıyor.
     pathSel = linkGroup
-      .selectAll("path")
+      .selectAll("path.link")
       .data(links)
       .join("path")
       .attr("class", (d) => "link link--" + d.kind + " link--conf-" + confSlug(d.confidence))
       .attr("marker-end", (d) => "url(#arrow-" + (d.kind === "gather" ? "descent" : d.kind) + ")")
       .attr("fill", "none")
-      // "Değinmek": çizgiye gelince NEDEN bağlı olduğu görünüyor (#10).
-      // Klavye karşılığı da var -- kenarlar odaklanabilir, aksi hâlde
-      // özellik yalnız fare kullananlara ait olurdu (bkz. ETKILESIM_DILI.md).
+      .attr("pointer-events", "none");
+
+    // İsabet şeridi: "değinmek" fiilinin gerçekten mümkün olması için
+    // (#10 + ETKILESIM_DILI.md'nin dördüncü fiili). Klavye karşılığı da
+    // burada -- odaklanabilir olan bu şerit, çünkü tıklanabilir olan da o.
+    hitSel = linkGroup
+      .selectAll("path.link-hit")
+      .data(links)
+      .join("path")
+      .attr("class", "link-hit")
+      .attr("fill", "none")
       .attr("tabindex", 0)
       .attr("role", "button")
       .attr("aria-label", (d) => edgeAriaLabel(d))
@@ -1273,6 +1286,9 @@
     function paintPositions() {
       positionNodes();
       pathSel.attr("d", (d) => edgePath(d));
+      // İsabet şeridi görünen çizgiyle AYNI yolu izlemeli, yoksa
+      // kullanıcı gördüğü çizgiye değil başka bir yere değinir.
+      if (hitSel) hitSel.attr("d", (d) => edgePath(d));
       // 3B'de uzaktakiler önce çizilsin ki örtüşme doğru olsun.
       if (tilt > 0.02) nodeSel.sort((a, b) => (b.__z || 0) - (a.__z || 0));
       nodeSel
@@ -2166,9 +2182,57 @@
         <cite>${entry.source}</cite>
       </div>
       ${bagimsizKaynakBadgeHtml(entry)}
+      ${sirlarSorularHtml(entry)}
       ${sirlarOkumaHtml(entry)}
     `;
     detailPanel.hidden = false;
+    // Köprü verisi geç gelirse paneli tazele.
+    if (!sirlarSorularVeri) sirlarSorularYukle().then((k) => {
+      if (k && currentDetailSirlarId === id) showSirlarEntry(id);
+    });
+  }
+
+  // SIRLAR -> SORULAR köprüsü (2026-08-03). sorular.js'teki aynı bağların
+  // ters yönü: bir sır kaydının hangi açık soruya dokunduğu. Bağlar ELLE
+  // kuruldu ve gerekçesiyle birlikte duruyor -- bkz.
+  // data/ibn-arabi/sirlar-sorular.json'un `not` alanı.
+  let sirlarSorularVeri = null;
+  const soruBaslik = new Map();
+  function sirlarSorularYukle() {
+    if (sirlarSorularVeri) return Promise.resolve(sirlarSorularVeri);
+    return Promise.all([
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar-sorular.json"),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/sorular.json"),
+    ]).then(([k, sor]) => {
+      sirlarSorularVeri = k;
+      (sor.categories || []).forEach((c) =>
+        (c.questions || []).forEach((q) => soruBaslik.set(q.id, q.question)));
+      return k;
+    }).catch(() => null);
+  }
+  function sirlarSorularHtml(entry) {
+    if (!sirlarSorularVeri) return "";
+    const bag = (sirlarSorularVeri.baglar || []).filter((b) => b.sir === entry.id);
+    if (!bag.length) return "";
+    const base = window.__dostRouteBase || "";
+    const satir = bag.map((b) => {
+      const q = soruBaslik.get(b.soru);
+      if (!q) return "";
+      return `<a class="sorular-sir" href="${base}/sorular/${b.soru}" data-view="sorular" data-id="${b.soru}">
+        <span class="sorular-sir__baslik">${I18n.pick3(q)}</span>
+        <span class="sorular-sir__neden">${I18n.pick3(b.neden)}</span></a>`;
+    }).join("");
+    if (!satir) return "";
+    return `<div class="sorular-sirlar">
+      <p class="detail-eyebrow detail-eyebrow--section">${tt({
+        tr: "Bu sırrın dokunduğu açık sorular",
+        en: "Open questions this mystery touches",
+        pt: "Perguntas abertas que este mistério toca" })}</p>
+      <p class="sorular-sirlar__not">${tt({
+        tr: "Bu bağları biz kurduk; sır soruyu cevaplamıyor, çoğu zaman onun neden açık kaldığını gösteriyor.",
+        en: "We made these links ourselves; the mystery does not answer the question — more often it shows why it stays open.",
+        pt: "Fizemos estes vínculos nós mesmos; o mistério não responde à pergunta — mais frequentemente mostra por que ela permanece aberta." })}</p>
+      ${satir}</div>`;
   }
 
   const RADIUS_BY_ID = {
