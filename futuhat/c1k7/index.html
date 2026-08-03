@@ -442,6 +442,36 @@
       </button>
     </section>
 
+    <!-- TENEZZÜL — sürekli-zoom pilotu (FAZ 3). Ana gezinmede BİLEREK yok:
+         planın kendi ilkesi "önce dar bir prototip, sonra genişletme kararı"
+         diyor. /tenezzul/ adresinden açılıyor. -->
+    <section class="graph-wrap" id="tenezzul-wrap" hidden>
+      <svg id="tenezzul-graph" role="group" tabindex="0" aria-label="Tenezzül ekseni — Zât'tan bir ismin metnine"
+           data-tr-aria-label="Tenezzül ekseni — Zât'tan bir ismin metnine" data-en-aria-label="The axis of descent — from the Essence to a Name's own text" data-pt-aria-label="O eixo da descida — da Essência ao texto de um Nome"></svg>
+      <div class="view-status" id="tenezzul-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="tnz-metin" id="tenezzul-metin" hidden></div>
+      <div class="tnz-axis">
+        <button class="tnz-axis__btn" id="tenezzul-up" type="button" data-tr-title="Bir üst mertebeye çık" data-en-title="Rise one level" data-pt-title="Suba um nível" title="Bir üst mertebeye çık" aria-label="Bir üst mertebeye çık">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="tnz-axis__dots" id="tenezzul-stations" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        <button class="tnz-axis__btn" id="tenezzul-down" type="button" data-tr-title="Bir mertebe derine in" data-en-title="Descend one level" data-pt-title="Desça um nível" title="Bir mertebe derine in" aria-label="Bir mertebe derine in">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="tnz-axis__label" id="tenezzul-station-label"></span>
+      </div>
+      <button class="graph-recenter" id="tenezzul-recenter" type="button" data-tr-title="Yönü ortala" data-en-title="Recenter the heading" data-pt-title="Recentralizar a direção" title="Yönü ortala" aria-label="Yönü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Kaydırarak derine inin (burada yalın tekerlek yakınlaştırır); sürükleyerek hangi isme ineceğinizi seçin; ok tuşları da çalışır" data-en-title="Scroll to descend (here a plain wheel does zoom); drag to choose which Name you descend into; arrow keys work too" data-pt-title="Role para descer (aqui a roda simples amplia); arraste para escolher em qual Nome descer; as setas também funcionam" title="Kaydırarak derine inin (burada yalın tekerlek yakınlaştırır); sürükleyerek hangi isme ineceğinizi seçin; ok tuşları da çalışır" aria-label="Kaydırarak derine inin (burada yalın tekerlek yakınlaştırır); sürükleyerek hangi isme ineceğinizi seçin; ok tuşları da çalışır">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+    </section>
+
     <section class="tasiyicilar-wrap" id="tasiyicilar-wrap" hidden>
       <div class="view-status" id="tasiyicilar-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
@@ -1055,7 +1085,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/theme.js" defer integrity="sha384-NegwurN40eZr0Cwp0FE3fFU6d1ptUcUoeGVSaX+M74KAJDTn8QVt2hP+z+Pf29Kf"></script>
   <script src="assets/vendor/d3.min.js" defer integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i"></script>
   <script src="assets/i18n.js" defer integrity="sha384-bqPgHDorfYKkI+ErvFXEAGead8E3pDVsel6p3S9LkyxoY1QRWrMrTUpeiooWejvL"></script>
-  <script src="assets/nav-drawer.js" defer integrity="sha384-w6OCnJNlTrR9buON6EjEnkfdzV6RodSt/ciBYIUSfj9bqSK84efk3mmLbgweQaD2"></script>
+  <script src="assets/nav-drawer.js" defer integrity="sha384-81hiVHJpQ6TwWqUDi8uk6reZyT5sSvZJbYiY/p4DXQ5FNSah7dpIXiZ9uzmfA6ub"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
   <script src="assets/graph-utils.js" defer integrity="sha384-qgkPF981omQPHFjUupAV+ofxoBi9CTn3ObWNE+VAPZl6KdtPwgE/a8SUej2YW05f"></script>
   <script src="assets/helix.js" defer integrity="sha384-+aEXNIbO2q7MLWaAl0OFtAYEF/52nQoLUKK1W4mhHc0P2DJdQNRlebKKaIh4TSF7"></script>
@@ -1072,12 +1102,13 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/cizimler.js" defer integrity="sha384-ApePyK753G9arEk136d72OKvIaTHT2ibCK1TIUD3zLgn8Nfzq4u+KtBmPZCusbRa"></script>
   <script src="assets/sorular.js" defer integrity="sha384-zSk//43AnGXAUWpSu1FDON0SPYRETM2Jk2tV0eHHuE8DTXSkhXV6p+F0ctXnZYv7"></script>
   <script src="assets/menziller.js" defer integrity="sha384-dBmrevBI2OVjNpuXzrdQS37acSxDILHFVsXO24M2o/+kb2BjH1Z+/KPcpOlGSupV"></script>
+  <script src="assets/tenezzul.js" defer integrity="sha384-QG/ScNxvBeCU5kuogfoshiTtdvivPZW7uWQE5e4qZ9z92sZaa/CpSGvlYXpVme6U"></script>
   <script src="assets/tasiyicilar.js" defer integrity="sha384-lNVugceLvCvCJVmiaeondeMkZidLr/xkMU7e3FIfHyE0tYhzXcLpm8x7Ztni2FxQ"></script>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-RF49Q32g0d6y3SRc2V3pOK6w72vIbpcudDUq0MMIuqs8JinkwA0MuRNfuzwYpWU0"></script>
   <script src="assets/futuhat.js" defer integrity="sha384-yJWC240f2U3Hy8gRILItRJx0UkveKkWW0N7go6Zg8ooEiZLYHDSknspY2fY2+VA1"></script>
   <script src="assets/fusus.js" defer integrity="sha384-LysUYN1mzDZB3kcyYXKoE5EmK1VSdmCE6+E/CG2yM+6fq2cNlu7cNJvvVNoSIdXA"></script>
   <script src="assets/view-loader.js" defer integrity="sha384-R49MMj36ojgSCVGT2EHeaLpz5kZVVch25W8y92XdKRERjzgRWWfwSz7lPRwyflD9"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-pflQm1EoMiblAMOQvxP5H29YF8w9uqjfWcZ1ZrmMcRHqf0HSXQpdtr7/fbvZjCcj"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-oVFSMhj/n5sZAIM5YnWDjFEOUfSr0fQy5HljqvlEmT0HLt7RckeYMFwfLCCRM618"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-pUGs2ZLA6M1Uv5y5m6q8SzOrNwoimvexeWXg1MwnVMdlNPg4urvUdMtthr/qlAE1"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>

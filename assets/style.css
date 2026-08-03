@@ -3544,6 +3544,157 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   color: var(--text-secondary);
 }
 
+/* ============ TENEZZÜL — sürekli-zoom pilotu (FAZ 3, 2026-08-03) ============
+   Ayrı bir deneme; ana gezinmede yok. Görsel gramer GORSEL_DIL.md'den:
+   ışık = zuhûr, bulanıklık = bilgisizlik, netlik = adlanma. */
+
+#tenezzul-graph {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  /* Sisin rengi currentColor üzerinden geliyor (bkz. radialGradient). */
+  color: var(--text-primary);
+}
+#tenezzul-graph:active { cursor: grabbing; }
+#tenezzul-graph:focus-visible { outline: 2px solid var(--accent-interactive); outline-offset: -3px; }
+
+/* Zât: etiketi, kenarı, biçimi yok — yalnız bir sis. */
+.tnz-allah__disc {
+  fill: var(--surface-1);
+  stroke: color-mix(in srgb, var(--accent-interactive) 55%, transparent);
+  stroke-width: 1.5;
+}
+.tnz-allah__label {
+  fill: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.tnz-name__dot { stroke: var(--surface-1); stroke-width: 1; }
+/* Kutup renkleri sitenin kendi serisinden (esma.js de aynılarını
+   kullanıyor: --series-celal/cemal/kemal) — pilot yeni bir renk dili
+   icat etmiyor. */
+.tnz-name__dot--cemal { fill: var(--series-cemal); }
+.tnz-name__dot--celal { fill: var(--series-celal); }
+.tnz-name__dot--kemal { fill: var(--series-kemal); }
+.tnz-name__dot--neutral { fill: var(--text-secondary); }
+.tnz-name.is-chosen .tnz-name__dot { r: 7; stroke-width: 2; }
+
+/* Adlanmış isim düz bir levha değil, kendi ışığını taşıyan bir yüzey:
+   GORSEL_DIL.md'de ışık = zuhûr. */
+.tnz-isim__disc {
+  fill: color-mix(in srgb, var(--accent-interactive) 12%, var(--surface-1));
+  stroke: color-mix(in srgb, var(--accent-interactive) 60%, transparent);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 22px color-mix(in srgb, var(--accent-interactive) 30%, transparent));
+}
+.tnz-isim__disc--celal { stroke: color-mix(in srgb, var(--series-celal) 70%, transparent); }
+.tnz-isim__disc--cemal { stroke: color-mix(in srgb, var(--series-cemal) 70%, transparent); }
+.tnz-isim__disc--kemal { stroke: color-mix(in srgb, var(--series-kemal) 70%, transparent); }
+.tnz-isim__name { fill: var(--text-primary); font-weight: 700; }
+.tnz-isim__short { fill: var(--text-secondary); }
+
+/* Eksenin sonu bir başlık değil, okunacak bir şey: pilotun bütün bahsi. */
+.tnz-metin {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  max-width: min(380px, 42vw);
+  max-height: 62%;
+  overflow-y: auto;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface-1) 92%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 28px rgba(20, 15, 8, 0.14);
+  z-index: 12;
+}
+.viz-root[data-theme="dark"] .tnz-metin { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5); }
+.tnz-metin__eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--accent-interactive);
+  font-weight: 600;
+}
+.tnz-metin__body { margin: 0 0 10px; font-size: 0.84rem; line-height: 1.5; color: var(--text-primary); }
+.tnz-metin__quote {
+  margin: 0 0 10px;
+  padding-left: 12px;
+  border-left: 3px solid color-mix(in srgb, var(--accent-interactive) 45%, transparent);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.tnz-metin__source { margin: 0 0 8px; font-size: 0.7rem; color: var(--text-secondary); }
+.tnz-metin__more { margin: 0; font-size: 0.78rem; }
+
+/* Eksen göstergesi: dikey, çünkü hareket iniş. Noktalar mertebe değil ÖLÇÜ —
+   aralarındaki her yer de geçerli bir konum. */
+.tnz-axis {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 12;
+}
+.tnz-axis__btn {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-1) 88%, transparent);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.tnz-axis__btn:disabled { opacity: 0.32; cursor: default; }
+.tnz-axis__btn:not(:disabled):hover { border-color: var(--accent-interactive); color: var(--accent-interactive); }
+.tnz-axis__dots { display: flex; flex-direction: column; gap: 7px; padding: 4px 0; }
+.tnz-axis__dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.tnz-axis__dots span.is-active { background: var(--accent-interactive); transform: scale(1.5); }
+.tnz-axis__label {
+  writing-mode: vertical-rl;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  max-height: 140px;
+  overflow: hidden;
+}
+
+@media (max-width: 720px) {
+  /* Dar ekranda metin ALTA oturuyor; eksen düğmeleri ortada kalırsa panelin
+     altında kayboluyordu (375px ekran görüntüsünde görüldü). Ekseni üste
+     alıp yatay yerleştiriyoruz -- hareket hâlâ "aşağı in", yalnız kumanda
+     yer değiştiriyor. */
+  .tnz-metin { right: 10px; left: 10px; bottom: 10px; max-width: none; max-height: 46%; }
+  .tnz-axis {
+    left: 50%;
+    top: 12px;
+    transform: translateX(-50%);
+    flex-direction: row;
+  }
+  .tnz-axis__dots { flex-direction: row; }
+  .tnz-axis__label { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tnz-axis__dots span { transition: none; }
+}
+
 /* KAPI (FAZ 2b) — bir düğümün kendi haritasına açılan, adı konmuş geçiş.
    Daire biçimli bir düğme: geçişin kendisi de dairesel (bkz. CLAUDE.md'nin
    "daire ve merkez" ilkesi), düz bir "sonraki sayfa" oku değil. */
