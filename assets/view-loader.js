@@ -1,0 +1,82 @@
+// FAZ (JS lazy-load): 5 görünüm-özel script'i (sirlar-graph/kavram/ayet-hadis/
+// siirler/vahdet, ~82 KB) sayfa ilk yüklendiğinde değil, o görünüm ilk kez
+// açıldığında indirilsin diye eklendi (bkz. teknik analiz raporu, 2026-08).
+//
+// NEDEN SADECE BU 5'İ (14 DEĞİL): geri kalan 9 görünüm dosyası (esma, hal,
+// terimler, cizimler, sorular, menziller, tasiyicilar, futuhat, fusus) kendi
+// üst-seviye kodunda registerCrossLinkTerm() çağırıyor -- yani başka bir
+// sayfadaki bir kelimenin üzerine gelindiğinde anında önizleme göstermesi,
+// o dosyanın SAYFA AÇILIŞINDA çalışmış olmasına bağlı. Onları da tembel
+// yüklersek, o görünüm hiç ziyaret edilmeden önce çapraz-bağlantı önizlemesi
+// sessizce kaybolurdu -- bu ölçülüp bilerek dışarıda bırakıldı. Aşağıdaki 5
+// dosya cross-link kaydı YAPMIYOR (doğrulandı), bu yüzden güvenli.
+//
+// Yöntem: her görünüm dosyası kendi window.__xApp'ini KOŞULSUZ, TEK bir
+// atamayla kurar (doğrulandı -- hiçbiri bir guard'ın arkasında değil). Bu
+// script, gerçek dosya yüklenmeden ÖNCE aynı isme bir "vekil" (stub) nesne
+// koyar; ontology.js'teki mevcut çağrı noktaları (`window.__sirlarGraphApp
+// && window.__sirlarGraphApp.activate()`, `.isFocused()`, `.onLangChange()`,
+// siirler.js'in kendi içindeki `.wireTabs()`/`.activate()` zinciri) HİÇBİRİ
+// değişmeden çalışmaya devam eder -- vekil, çağrılan her metodu (Proxy ile,
+// isim sabit kodlanmadan) yakalayıp script yüklenene kadar kuyruğa alır,
+// yüklenince gerçek nesneye iletir.
+//
+// SRI: aşağıdaki INTEGRITY haritası scripts/sri-guncelle.py tarafından
+// otomatik tazelenir (bkz. o dosyadaki guncelle_view_loader()) -- elle
+// girilmez, kozmik-loader.js'teki (artık kaldırılmış) aynı desenin devamı.
+(function () {
+  "use strict";
+
+  var VIEWS = {
+    __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-LrCXz1/l2cBf5uJX/8p0I9RZhWrsyQcZh9V7wUt82YSKQmDxOJSo+GuiXJEZ/lg9" },
+    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-3aXX2zmgZnm46ARuTAKtVyXLIhGaekJC5dyyf3nBdXTSRPIxfAGJFvp/h9lvzdP4" },
+    __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-NqjeB685KS7IBcItAvAwOeWxt/vF6SrgMn3SvwFR5aON3x+23Cpcv81QwL2B+Sp8" },
+    __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-9LylDZ5mjiEKs/Bo/Wc+qYTUdeFt56xQCT71VdhE2weqN6MLMuhvgporkSM4qwXW" },
+    __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-u8Hu4zkYTCJHkdw63jhcfroxHJYcXgoeD0jTqrqgwkjmS5fyW/RYFqdqS2kEhxQm" },
+  };
+
+  var loadingPromises = {};
+
+  function loadScript(globalName) {
+    if (loadingPromises[globalName]) return loadingPromises[globalName];
+    var cfg = VIEWS[globalName];
+    loadingPromises[globalName] = new Promise(function (resolve, reject) {
+      var el = document.createElement("script");
+      el.src = new URL(cfg.src, document.baseURI).href;
+      el.integrity = cfg.integrity;
+      el.onload = function () { resolve(); };
+      el.onerror = function () {
+        delete loadingPromises[globalName];
+        reject(new Error("view-loader: " + cfg.src + " yüklenemedi"));
+      };
+      document.body.appendChild(el);
+    });
+    return loadingPromises[globalName];
+  }
+
+  // Proxy yoksa (çok eski bir tarayıcı) vekil kurulmuyor -- o durumda mevcut
+  // `window.__xApp && ...` guard'ları zaten no-op olarak sessizce atlar,
+  // görünüm hiç açılmaz. Bu yeni bir risk değil: aynı guard, bugün de dosya
+  // yüklenemediğinde (ağ hatası) aynı şekilde sessizce atlıyordu.
+  if (typeof Proxy === "undefined") return;
+
+  Object.keys(VIEWS).forEach(function (globalName) {
+    window[globalName] = new Proxy(
+      {},
+      {
+        get: function (_target, prop) {
+          if (typeof prop !== "string") return undefined;
+          return function () {
+            var args = arguments;
+            return loadScript(globalName).then(function () {
+              var real = window[globalName];
+              if (real && typeof real[prop] === "function") {
+                return real[prop].apply(real, args);
+              }
+            });
+          };
+        },
+      }
+    );
+  });
+})();

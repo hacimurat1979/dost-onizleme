@@ -1225,6 +1225,44 @@
           }
         }
       ]
+    },
+    {
+      "id": "kader-tevhid",
+      "name": {
+        "tr": "Kader, Tevhid, Tenzih-Teşbih",
+        "en": "Destiny, Divine Unity, Tanzih-Tashbih",
+        "pt": "Destino, Unidade Divina, Tanzih-Tashbih"
+      },
+      "description": {
+        "tr": "Her zaman gerçekleşen ezelî irade ile gerçekleşmeyebilen dinî emir arasındaki fark -- ve bu farkın günahı nasıl bir paradoksa taşıdığı.",
+        "en": "The difference between the eternal will, which always comes to pass, and the religious command, which may or may not be obeyed -- and how this difference turns sin into a paradox.",
+        "pt": "A diferença entre a vontade eterna, que sempre se realiza, e a ordem religiosa, que pode ou não ser obedecida -- e como essa diferença transforma o pecado num paradoxo."
+      },
+      "diagram": [
+        {
+          "type": "spectrum",
+          "termId": "mesia-irade-ayrimi",
+          "leftLabel": { "tr": "Dinî Emir", "en": "Religious Command", "pt": "Ordem Religiosa" },
+          "leftNote": { "tr": "tutulmayabilir", "en": "may not be obeyed", "pt": "pode não ser obedecida" },
+          "rightLabel": { "tr": "Ezelî Meşîa", "en": "Eternal Mashi'a", "pt": "Mashi'a Eterna" },
+          "rightNote": { "tr": "her zaman gerçekleşir", "en": "always comes to pass", "pt": "sempre se realiza" },
+          "leftMarker": {
+            "tr": "kulun tâat/isyanına bağlı",
+            "en": "depends on the servant's obedience or defiance",
+            "pt": "depende da obediência ou desobediência do servo"
+          },
+          "rightMarker": {
+            "tr": "kulun seçiminden önce ezelde belirlenmiş",
+            "en": "determined in pre-eternity, prior to the servant's choice",
+            "pt": "determinada na pré-eternidade, antes da escolha do servo"
+          },
+          "note": {
+            "tr": "Bu iki tür 'isteme' aynı şey değildir: dinî emir insanın tutabileceği ya da tutmayabileceği bir tekliftir, ezelî meşîa ise -- isyan bile olsa -- her zaman fiile çıkar. Günahı paradoksa taşıyan tam da bu ayrımdır.",
+            "en": "These two kinds of 'willing' are not the same: the religious command is an offer the person may or may not keep, while the eternal mashi'a -- even when it takes the form of defiance -- always comes to pass. It is exactly this distinction that turns sin into a paradox.",
+            "pt": "Esses dois tipos de 'querer' não são a mesma coisa: a ordem religiosa é uma proposta que a pessoa pode ou não cumprir, enquanto a mashi'a eterna -- mesmo quando toma a forma de desobediência -- sempre se realiza. É exatamente essa distinção que transforma o pecado num paradoxo."
+          }
+        }
+      ]
     }
   ],
   "terms": {

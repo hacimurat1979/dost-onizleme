@@ -129,6 +129,7 @@
     "ahval-makamat": "wave",
     "kurani-kozmoloji": "rays",
     "idrak-sureci": "eye",
+    "kader-tevhid": "rays",
   };
   function groupIconSvg(groupId) {
     const key = GROUP_ICON[groupId] || "dot-circle";
@@ -765,6 +766,7 @@
     "ahval-makamat": 70,
     "kurani-kozmoloji": 235,
     "idrak-sureci": 150,
+    "kader-tevhid": 120,
   };
   function groupHue(groupId) {
     return GROUP_HUE[groupId] !== undefined ? GROUP_HUE[groupId] : 40;
@@ -867,7 +869,7 @@
     detailPanel.dataset.currentTerm = id;
 
     detailContent.innerHTML = `
-      <p class="detail-eyebrow">${tt(group.name)}</p>
+      <p class="detail-eyebrow">${tt((group && group.name) || {})}</p>
       <h2 class="detail-title">${tt(t.title)}${t.arabic ? ` <span class="detail-title__arabic">${t.arabic}</span>` : ""}</h2>
       <div class="detail-block detail-block--ibnarabi">
         <h3>${tt({ tr: "Felsefi Tanım", en: "Philosophical Definition", pt: "Definição Filosófica" })}</h3>
