@@ -261,7 +261,7 @@
       closing: !!spec.closing,
       caption: spec.caption || null,
       yaw: -0.55,
-      focus: 0,
+      focus: spec.initialFocus != null ? spec.initialFocus : 0,
       hover: false,
       visible: true,
       last: 0,

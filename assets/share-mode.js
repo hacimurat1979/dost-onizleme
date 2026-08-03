@@ -72,6 +72,7 @@
       esma:     { tr: "Esmâ",     en: "Divine Name",  pt: "Nome Divino" },
       gunun:    { tr: "Günün Sözü", en: "Word of the Day", pt: "Palavra do Dia" },
       benzetme: { tr: "Bir Benzetmeyle", en: "Through an Analogy", pt: "Através de uma Analogia" },
+      fusus:    { tr: "Füsûs Halkası", en: "Fusus Ring", pt: "Anel dos Fusus" },
     },
     filter:      { tr: "Filtre",             en: "Filter",               pt: "Filtro" },
     filterAll:   { tr: "Tümü",              en: "All",                  pt: "Tudo" },
@@ -144,6 +145,12 @@
     return GU.fetchJson("data/ibn-arabi/vahdet-elestiri.json")
       .then((d) => (vahdetData = d))
       .catch(() => (vahdetData = { maddeler: [] }));
+  }
+
+  let fususData = null;
+  function loadFususAtlas() {
+    if (fususData) return Promise.resolve(fususData);
+    return GU.fetchJson("data/ibn-arabi/fusus-atlas.json").then((d) => (fususData = d));
   }
 
   function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
@@ -420,6 +427,36 @@
         };
       });
     }
+    if (tpl === "fusus") {
+      // Füsûs bölümünün kendi 27-fass halkasını (kullanıcının paylaştığı
+      // ekran görüntüsü) doğrudan ödünç alıyoruz -- yeni bir grafik yazmak
+      // yerine, zaten sitede kanıtlanmış aynı DostHelix sahnesi (bkz.
+      // assets/fusus.js renderMap). `accent` gerçek `status` alanından
+      // geliyor ki sparse etiket modu sitedekiyle aynı görünsün.
+      return loadFususAtlas().then((d) => {
+        const all = d.fasses || [];
+        const active = all.filter((f) => f.status === "active");
+        if (!active.length) return null;
+        const f = pick(active);
+        const idx = all.findIndex((x) => x.id === f.id);
+        const nameOf = (x) => ({
+          tr: x.no + ". " + x.prophet.tr,
+          en: x.no + ". " + x.prophet.en,
+          pt: x.no + ". " + x.prophet.pt,
+        });
+        return {
+          tpl: "fusus",
+          helix: {
+            nodes: all.map((x) => ({ id: x.id, label: nameOf(x), accent: x.status === "active" })),
+            initialFocus: idx < 0 ? 0 : idx,
+          },
+          lines: [
+            { text: tt(nameOf(f)), kind: "baslik" },
+            { text: capText(tt(f.title)), kind: "soz" },
+          ],
+        };
+      });
+    }
     return pickPart(false).then((r) => {
       if (!r) return null;
       return {
@@ -430,7 +467,7 @@
   }
 
   // --- sahne çizimi ----------------------------------------------------
-  let stageEl = null, rafId = 0, tilt = null, startTs = 0, chromeTimer = 0;
+  let stageEl = null, rafId = 0, tilt = null, startTs = 0, chromeTimer = 0, helixHandle = null;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Şablon başına döngü uzunluğu (ms) ve metin vuruşları. Vuruşlar
@@ -450,7 +487,27 @@
     ontoloji: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
     esma:     { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
     benzetme: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
+    fusus:    { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
   };
+
+  // Bazı kayıtların cümlesi uzun olduğunda TIMING'deki sabit döngü kısa
+  // kalıyor -- kullanıcı bildirimi (2026-08-03): "son cümlenin de görünür
+  // olmasından sonra ekranda kalma süresi biraz kısa". Kelime sayısına göre
+  // bir "ek tutma" payı hesaplayıp yalnız EKRANDA KALMA (sönmeye başlama)
+  // anını öteliyoruz; belirme (fade-in) zamanlaması mutlak ms cinsinden
+  // aynı kalıyor ki uzun metinde sahnenin girişi de yavaşlamış hissettirmesin.
+  const HOLD_BASE_WORDS = 16;
+  const HOLD_MS_PER_WORD = 140;
+  const HOLD_MAX_MS = 7000;
+  function computeTiming(s) {
+    const base = TIMING[s.tpl] || TIMING.soz;
+    const words = s.lines.reduce((n, l) => n + l.text.trim().split(/\s+/).filter(Boolean).length, 0);
+    const extra = Math.min(HOLD_MAX_MS, Math.max(0, words - HOLD_BASE_WORDS) * HOLD_MS_PER_WORD);
+    if (!extra) return base;
+    const loop = base.loop + extra;
+    const beats = base.beats.map((b) => [(b[0] * base.loop) / loop, (b[1] * base.loop + extra) / loop]);
+    return { loop: loop, beats: beats };
+  }
 
   function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
   function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
@@ -491,6 +548,9 @@
   }
 
   let takeMode = false, takeStart = 0, plan = null;
+  // Kart (PNG) yakalanırken frame()'in satır opaklığını üzerine yazmasını
+  // durduran bayrak -- bkz. captureCardToFile.
+  let cardCapturing = false;
 
   function drawTake(el, ts) {
     const t = (ts - takeStart) / 1000;
@@ -713,8 +773,9 @@
     drawAmbient(svg, w, h, ts);
 
     if (takeMode) { drawTake(el, ts); rafId = requestAnimationFrame(frame); return; }
+    if (cardCapturing) { rafId = requestAnimationFrame(frame); return; }
 
-    const cfg = TIMING[scene.tpl] || TIMING.soz;
+    const cfg = scene._timing || TIMING[scene.tpl] || TIMING.soz;
     const t = ((ts - startTs) % cfg.loop) / cfg.loop;
     el.querySelectorAll(".share-line").forEach((node, i) => {
       const b = cfg.beats[i] || cfg.beats[cfg.beats.length - 1];
@@ -735,6 +796,9 @@
     const lines = s.lines.map((l) =>
       '<p class="share-line share-line--' + l.kind + '">' + escapeHtml(l.text) + "</p>"
     ).join(s.tpl === "ikili" ? '<span class="share-rule" aria-hidden="true"></span>' : "");
+    // "Füsûs Halkası" şablonu, ambient sarmal yerine Füsûs bölümünün kendi
+    // 27-fass halkasını (DostHelix) taşıyor -- bkz. openStage/closeStage.
+    const helixMarkup = s.tpl === "fusus" ? '<div class="share-stage__helix" aria-hidden="true"></div>' : "";
     return (
       '<div class="share-stage__frame share-stage__frame--' + s.tpl + '">' +
       '<svg class="share-stage__svg" aria-hidden="true">' +
@@ -742,6 +806,7 @@
       '<path class="share-spiral" fill="none"></path>' +
       new Array(NODE_COUNT).fill('<circle class="share-dot"></circle>').join("") +
       "</svg>" +
+      helixMarkup +
       '<div class="share-stage__text">' + lines + "</div>" +
       '<div class="share-stage__qr" aria-hidden="true">' + qrSvg() + "</div>" +
       '<div class="share-stage__guides" hidden></div>' +
@@ -921,14 +986,33 @@
     stageEl.classList.add("is-recording");
     recStatus(tt(UI.recWait), true);
 
+    // Kart, tıklandığı an döngünün neresinde olursa olsun HER ZAMAN tüm
+    // cümleler açılmış hâlde inmeli (kullanıcı isteği, 2026-08-03) -- önceden
+    // ekrandaki o anki (bazen yarı sönük) kareyi yakalıyordu. Satırları
+    // zorla tam görünür kılıp `cardCapturing` ile frame()'in bunun üstüne
+    // yazmasını durduruyoruz; eski satır-içi stiller yakalama biter bitmez
+    // (başarılı ya da başarısız her yoldan) geri yükleniyor.
+    const lineEls = Array.from(frameEl.querySelectorAll(".share-line"));
+    const ruleEl = frameEl.querySelector(".share-rule");
+    const prevLineStyles = lineEls.map((n) => ({ opacity: n.style.opacity, transform: n.style.transform }));
+    const prevRuleStyle = ruleEl ? { opacity: ruleEl.style.opacity, transform: ruleEl.style.transform } : null;
+    cardCapturing = true;
+    lineEls.forEach((n) => { n.style.opacity = "1"; n.style.transform = "translateY(0px)"; });
+    if (ruleEl) { ruleEl.style.opacity = "0.55"; ruleEl.style.transform = "scaleX(1)"; }
+    function restoreLines() {
+      cardCapturing = false;
+      lineEls.forEach((n, i) => { n.style.opacity = prevLineStyles[i].opacity; n.style.transform = prevLineStyles[i].transform; });
+      if (ruleEl && prevRuleStyle) { ruleEl.style.opacity = prevRuleStyle.opacity; ruleEl.style.transform = prevRuleStyle.transform; }
+    }
+
     const video = document.createElement("video");
     video.srcObject = stream;
     video.muted = true;
     await video.play();
-    // Akışın ilk karesi bazen bir önceki sekmenin görüntüsünü taşıyor --
-    // küçük bir bekleme, yakalanan karenin gerçekten sahneye ait olmasını
-    // garantiliyor (recordToFile'da bu sorun olmuyor çünkü orada zaten
-    // saniyelerce çiziliyor).
+    // Akışın ilk karesi bazen bir önceki sekmenin görüntüsünü taşıyor, ve
+    // yukarıdaki tam-görünür stil de bir kareyi boyanmayı bekliyor -- küçük
+    // bir bekleme, yakalanan karenin gerçekten (tam açılmış) sahneye ait
+    // olmasını garantiliyor.
     await new Promise((resolve) => setTimeout(resolve, 250));
 
     const sx = video.videoWidth / window.innerWidth;
@@ -945,6 +1029,7 @@
     const ctx = canvas.getContext("2d");
     ctx.drawImage(video, crop.x, crop.y, crop.w, crop.h, 0, 0, canvas.width, canvas.height);
     stream.getTracks().forEach((t) => t.stop());
+    restoreLines();
 
     canvas.toBlob((blob) => {
       recording = false;
@@ -974,6 +1059,7 @@
 
   function openStage(s) {
     scene = s;
+    scene._timing = computeTiming(s);
     tarihEkle(s);
     closeStage();
     stageEl = document.createElement("div");
@@ -986,6 +1072,27 @@
     if (tilt) tilt.set(1, true);
     startTs = 0;
     rafId = requestAnimationFrame(frame);
+
+    if (s.tpl === "fusus" && s.helix && window.DostHelix) {
+      const helixEl = stageEl.querySelector(".share-stage__helix");
+      if (helixEl) {
+        helixHandle = window.DostHelix.mount(helixEl, {
+          id: "share-fusus",
+          nodes: s.helix.nodes,
+          turns: 2.4,
+          closing: false,
+          hRatio: 1.05,
+          maxH: 620,
+          numbered: false,
+          labelMode: "sparse",
+          initialFocus: s.helix.initialFocus,
+          // Sahne yalnız dekoratif -- düğüme tıklamanın site sayfasındaki
+          // gibi bir not paneli açmasını istemiyoruz (kayıt/kart yakalama
+          // akışını bozmasın diye).
+          onActivate: function () {},
+        });
+      }
+    }
 
     const chrome = stageEl.querySelector(".share-stage__chrome");
     // Krom yalnızca ÇERÇEVENİN İÇİNE düştüğünde (telefon: çerçeve ekranı
@@ -1030,6 +1137,7 @@
   function closeStage() {
     if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
     if (chromeTimer) { clearTimeout(chromeTimer); chromeTimer = 0; }
+    if (helixHandle) { helixHandle.destroy(); helixHandle = null; }
     if (stageEl) { stageEl.remove(); stageEl = null; }
     document.body.classList.remove("share-stage-open");
   }
