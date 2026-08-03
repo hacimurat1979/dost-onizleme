@@ -231,6 +231,7 @@
     else if (currentMainView === "cizimler") window.__cizimlerApp && window.__cizimlerApp.onLangChange();
     else if (currentMainView === "sirlar") window.__sirlarGraphApp && window.__sirlarGraphApp.onLangChange();
     else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
+    else if (currentMainView === "aciksorular") window.__acikSorularApp && window.__acikSorularApp.onLangChange();
     else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
     else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
@@ -382,40 +383,52 @@
   }
   loadOntologyData();
 
-  // Bu üç veri seti yalnızca cross-link kaydı için gerekli; kritik olan
-  // ontoloji haritasının ilk boyanmasıyla bant genişliği için yarışmasınlar
-  // diye ana iş parçacığı boşta kalınca (veya en geç kısa bir gecikmeyle)
-  // çekiliyor.
   const deferFetch = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
 
-  let sirlarData = null;
+  // ÇAPRAZ-BAĞLANTI İNDEKSİ (2026-08-03). Buraya kadar esma.json (415KB),
+  // hal.json (93KB) ve (terimler.js'te) felsefi-terimler.json (409KB)
+  // AÇILIŞTA iniyordu -- yalnızca her kavramın ADINI ve KISA ÖZETİNİ almak
+  // için. Yani 917KB indirip ~115KB'lık bir sözlük kuruyorduk, üstelik
+  // sitenin HER sayfasında. Artık o sözlük derleme zamanında üretiliyor
+  // (scripts/capraz-indeks-uret.py) ve tam dosyalar ancak o görünüm
+  // gerçekten açıldığında geliyor.
   deferFetch(() => {
-    window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar.json")
+    window.DostGraphUtils.fetchJson("data/ibn-arabi/capraz-baglanti-indeksi.json")
+      .then((data) => {
+        (data.kayitlar || []).forEach((k) => {
+          // Ontoloji kayıtları zaten ontology.json'dan kaydedildi; indeksten
+          // tekrar kaydetmek zararsız ama gereksiz iş.
+          if (k.view === "ontoloji") return;
+          registerCrossLinkTerm(k.name, k.view, k.id, k.short);
+        });
+        notifyCrossLinkReady();
+        render();
+      })
+      .catch((err) => console.error("Çapraz-bağlantı indeksi yüklenemedi / Failed to load cross-link index", err));
+  });
+
+  // Sırlar verisi (345KB) da açılışta iniyordu, oysa YALNIZ Sırlar görünümü
+  // açıldığında gerekiyor (goToSirlar, showSirlarEntry, merkez paneli).
+  // Artık talep üzerine; ortak fetchJson önbelleği sayesinde sirlar-graph.js
+  // ile aynı indirmeyi paylaşıyor.
+  let sirlarData = null;
+  let sirlarPromise = null;
+  function ensureSirlarData() {
+    if (sirlarData) return Promise.resolve(sirlarData);
+    if (sirlarPromise) return sirlarPromise;
+    sirlarPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar.json")
       .then((data) => {
         sirlarData = data;
-        if (pendingSirlarId) goToSirlar(pendingSirlarId);
         render();
+        return data;
       })
-      .catch((err) => console.error("Sırlar verisi yüklenemedi / Failed to load mysteries data", err));
-  });
-
-  deferFetch(() => {
-    window.DostGraphUtils.fetchJson("data/ibn-arabi/esma.json")
-      .then((data) => {
-        registerEsmaCrossLinks(data);
-        render();
-      })
-      .catch((err) => console.error("Esmâ verisi yüklenemedi / Failed to load Esma data", err));
-  });
-
-  deferFetch(() => {
-    window.DostGraphUtils.fetchJson("data/ibn-arabi/hal.json")
-      .then((data) => {
-        registerHalCrossLinks(data);
-        render();
-      })
-      .catch((err) => console.error("Hâller verisi yüklenemedi / Failed to load States data", err));
-  });
+      .catch((err) => {
+        sirlarPromise = null;
+        console.error("Sırlar verisi yüklenemedi / Failed to load mysteries data", err);
+        return null;
+      });
+    return sirlarPromise;
+  }
 
   deferFetch(() => {
     window.DostGraphUtils.fetchJson("data/ibn-arabi/sozluk-ipuclari.json")
@@ -434,6 +447,7 @@
   const cizimlerBtn = document.getElementById("cizimler-btn");
   const sirlarBtn = document.getElementById("sirlar-btn");
   const sorularBtn = document.getElementById("sorular-btn");
+  const acikSorularBtn = document.getElementById("acik-sorular-btn");
   const menzillerBtn = document.getElementById("menziller-btn");
   const tasiyicilarBtn = document.getElementById("tasiyicilar-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
@@ -448,6 +462,7 @@
   const cizimlerWrap = document.getElementById("cizimler-wrap");
   const sirlarWrap = document.getElementById("sirlar-wrap");
   const sorularWrap = document.getElementById("sorular-wrap");
+  const acikSorularWrap = document.getElementById("acik-sorular-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
   const tasiyicilarWrap = document.getElementById("tasiyicilar-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
@@ -502,6 +517,7 @@
     markActiveNavButton(cizimlerBtn, view === "cizimler");
     markActiveNavButton(sirlarBtn, view === "sirlar");
     markActiveNavButton(sorularBtn, view === "sorular");
+    markActiveNavButton(acikSorularBtn, view === "aciksorular");
     markActiveNavButton(menzillerBtn, view === "menziller");
     markActiveNavButton(tasiyicilarBtn, view === "tasiyicilar");
     markActiveNavButton(futuhatBtn, view === "futuhat");
@@ -516,6 +532,7 @@
     if (cizimlerWrap) cizimlerWrap.hidden = view !== "cizimler";
     if (sirlarWrap) sirlarWrap.hidden = view !== "sirlar";
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
+    if (acikSorularWrap) acikSorularWrap.hidden = view !== "aciksorular";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (tasiyicilarWrap) tasiyicilarWrap.hidden = view !== "tasiyicilar";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
@@ -549,6 +566,9 @@
     } else if (view === "sorular") {
       currentDetailView = "sorular";
       window.__sorularApp && window.__sorularApp.activate();
+    } else if (view === "aciksorular") {
+      currentDetailView = null;
+      window.__acikSorularApp && window.__acikSorularApp.activate();
     } else if (view === "menziller") {
       currentDetailView = "menziller";
       window.__menzillerApp && window.__menzillerApp.activate();
@@ -582,6 +602,7 @@
   if (terimlerBtn) terimlerBtn.addEventListener("click", () => { setMainView("terimler"); updateHash("terimler"); });
   if (cizimlerBtn) cizimlerBtn.addEventListener("click", () => { setMainView("cizimler"); updateHash("cizimler"); });
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
+  if (acikSorularBtn) acikSorularBtn.addEventListener("click", () => { setMainView("aciksorular"); updateHash("acik-sorular"); });
   if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
   if (tasiyicilarBtn) tasiyicilarBtn.addEventListener("click", () => { setMainView("tasiyicilar"); updateHash("tasiyicilar"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
@@ -673,6 +694,14 @@
         tr: "Fütûhât'ın 13. ve 476. bölümlerini yan yana koyan bir şema: Arş'ı taşıyan dört esas ile kalbi taşıyan dört esas, iki iç içe sarmal olarak.",
         en: "A diagram placing Chapters 13 and 476 of the Futuhat side by side: the four supports that bear the Throne and the four that bear the heart, as two nested spirals.",
         pt: "Um diagrama que junta os Capítulos 13 e 476 das Futuhat: os quatro suportes que sustentam o Trono e os quatro que sustentam o coração, como duas espirais entrelaçadas.",
+      },
+    },
+    "acik-sorular": {
+      title: { tr: "Açık Sorular", en: "Open Questions", pt: "Perguntas em Aberto" },
+      desc: {
+        tr: "Okurken bize kalan, kapanmamış sorular — ve her biri için okuma kaydımızda ne bulduğumuz, ne bulamadığımız.",
+        en: "Questions left with us while reading, still unclosed — and, for each, what we found and what we did not find in our reading record.",
+        pt: "Perguntas que ficaram connosco ao ler, ainda por fechar — e, para cada uma, o que encontrámos e o que não encontrámos no nosso registo de leitura.",
       },
     },
     sorular: {
@@ -827,7 +856,17 @@
     currentDetailNode = null;
     currentDetailEdge = null;
     if (!sirlarData) {
+      // Veri artık talep üzerine geliyor; istenen kaydı bekletip veri
+      // gelince açıyoruz (eskiden veri açılışta indiği için burada
+      // yalnızca beklemek yetiyordu).
       pendingSirlarId = id || null;
+      ensureSirlarData().then((d) => {
+        if (!d || currentMainView !== "sirlar") return;
+        const bekleyen = pendingSirlarId;
+        pendingSirlarId = null;
+        if (bekleyen) showSirlarEntry(bekleyen);
+        else showSirlarOverview();
+      });
       return;
     }
     pendingSirlarId = null;
@@ -845,6 +884,11 @@
   function goToSorular(id) {
     setMainView("sorular");
     window.__sorularApp && window.__sorularApp.goToNode(id);
+  }
+
+  function goToAcikSorular(id) {
+    setMainView("aciksorular");
+    if (id) window.__acikSorularApp && window.__acikSorularApp.goToNode(id);
   }
 
   // Taşıyanlar tek bir şemadan ibaret; derin bağlantı için ayrı bir id'si
@@ -889,7 +933,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -907,6 +951,7 @@
     else if (view === "terimler") goToTerimler(id);
     else if (view === "cizimler") goToCizimler();
     else if (view === "sorular") goToSorular(id);
+    else if (view === "acik-sorular") goToAcikSorular(id);
     else if (view === "menziller") goToMenziller(id);
     else if (view === "tasiyicilar") goToTasiyicilar();
     else if (view === "futuhat") goToFutuhat(id);
@@ -944,6 +989,7 @@
       else if (view === "terimler") goToTerimler(id);
       else if (view === "cizimler") goToCizimler();
       else if (view === "sorular") goToSorular(id);
+    else if (view === "acik-sorular") goToAcikSorular(id);
       else if (view === "menziller") goToMenziller(id);
       else if (view === "tasiyicilar") goToTasiyicilar();
       else if (view === "futuhat") goToFutuhat(id);

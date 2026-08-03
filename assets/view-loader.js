@@ -33,6 +33,7 @@
     __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-NqjeB685KS7IBcItAvAwOeWxt/vF6SrgMn3SvwFR5aON3x+23Cpcv81QwL2B+Sp8" },
     __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-9LylDZ5mjiEKs/Bo/Wc+qYTUdeFt56xQCT71VdhE2weqN6MLMuhvgporkSM4qwXW" },
     __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-u8Hu4zkYTCJHkdw63jhcfroxHJYcXgoeD0jTqrqgwkjmS5fyW/RYFqdqS2kEhxQm" },
+    __acikSorularApp: { src: "assets/acik-sorular.js", integrity: "sha384-DaP5VlgsP7Es5dvGttDQqu1MhxA4MRMrhFdzmHe+w6zsmk1hlyiM3wYR5PlZ8ZdS" },
   };
 
   var loadingPromises = {};

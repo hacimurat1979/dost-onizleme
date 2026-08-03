@@ -34,13 +34,18 @@
     // ikinci kez iniyordu (2026-08-03 denetiminde ölçüldü).
     const GU = window.DostGraphUtils;
     const base = window.__dostRouteBase || "";
-    const url = base ? base + "/data/ibn-arabi/sirlar.json" : "data/ibn-arabi/sirlar.json";
+    // 2026-08-03: burada sirlar.json'un TAMAMI (345KB) iniyordu, oysa
+    // kullanılan tek şey bir kaydın başlığı. Artık derleme zamanında
+    // üretilen minik başlık listesi (33KB) okunuyor; tam dosya yalnız
+    // Sırlar görünümü açıldığında geliyor.
+    const url = base ? base + "/data/ibn-arabi/sirlar-basliklar.json" : "data/ibn-arabi/sirlar-basliklar.json";
     (GU ? GU.fetchJson(url).catch(() => null)
         : fetch(url).then((r) => (r.ok ? r.json() : null)))
       .then((d) => {
-        if (!d || !Array.isArray(d.entries) || !d.entries.length) return;
+        const liste = d && d.basliklar;
+        if (!Array.isArray(liste) || !liste.length) return;
         const dayIndex = Math.floor(Date.now() / 86400000);
-        const entry = d.entries[dayIndex % d.entries.length];
+        const entry = liste[dayIndex % liste.length];
         const I18n = window.DostI18n;
         const topic = entry.topic || {};
         const text3 = (I18n ? I18n.pick3(topic) : null) || topic.tr || topic.en || "";

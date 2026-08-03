@@ -2893,12 +2893,22 @@ body[data-theme="dark"] #sirlar-legend {
   border: 1px solid var(--border);
   border-radius: 10px;
   text-decoration: none;
-  transition: border-color 0.15s, transform 0.15s;
+  transition: border-color 0.15s;
 }
+/* Kart artık bir <a> değil (içinde başka bağlantılar var); vurgu yalnız
+   başlık bağlantısında. Eski `transform: translateY` kaldırıldı: kart
+   uzayınca sayfa titriyordu. */
 .daphne-profile-card:hover,
-.daphne-profile-card:focus-visible {
+.daphne-profile-card:focus-within {
   border-color: var(--series-daphne);
-  transform: translateY(-1px);
+}
+.daphne-profile-card__link { text-decoration: none; }
+.daphne-profile-card__tarih {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
 }
 .daphne-profile-card__title {
   display: block;
@@ -2924,6 +2934,72 @@ body[data-theme="dark"] #sirlar-legend {
   color: var(--text-muted);
   background: color-mix(in srgb, var(--text-muted) 14%, transparent);
 }
+/* Bir yazının hangi ekseni beslediği ve Dost'un hangi kavramına dokunduğu.
+   Türü (örtüşme / fark / açık soru) renkle de ayrılıyor -- bir FARKI
+   örtüşme gibi göstermek, sitenin bütün titizliğini geçersiz kılardı. */
+.daphne-baglar {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.daphne-baglar__baslik {
+  margin: 0 0 8px;
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--series-daphne);
+  font-weight: 600;
+}
+.daphne-baglar__not {
+  margin: 0 0 10px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.daphne-bag-liste { list-style: none; margin: 0; padding: 0; }
+.daphne-bag {
+  padding: 8px 0 8px 12px;
+  border-left: 2px solid color-mix(in srgb, var(--series-daphne) 40%, transparent);
+  margin-bottom: 8px;
+}
+.daphne-bag:last-child { margin-bottom: 0; }
+.daphne-bag__ad {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+a.daphne-bag__ad { color: var(--accent-interactive); }
+.daphne-bag__tur {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 1px 7px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--text-muted) 13%, transparent);
+}
+.daphne-bag--fark { border-left-color: var(--series-celal); }
+.daphne-bag--fark .daphne-bag__tur {
+  color: var(--series-celal);
+  background: color-mix(in srgb, var(--series-celal) 14%, transparent);
+}
+.daphne-bag--soru { border-left-color: var(--series-kemal); }
+.daphne-bag--soru .daphne-bag__tur {
+  color: var(--series-kemal);
+  background: color-mix(in srgb, var(--series-kemal) 16%, transparent);
+}
+.daphne-bag__neden {
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
 .daphne-profile-card__note {
   margin: 8px 0 0;
   font-size: 0.85rem;
@@ -8293,3 +8369,122 @@ mark.durus-vurgu-es {
   .kavram-bookref { flex-wrap: wrap; }
   .kavram-bookref__label { min-width: 100%; }
 }
+
+/* --- Açık Sorular halkası (2026-08-03) ------------------------------------
+   Her soru KAPANMAMIŞ bir yay. Boşluk = sorunun ne kadar açık olduğu;
+   yay üzerindeki çentikler = okuma kaydımızda bulduğumuz izler. Çentikler
+   ilk bakışta sönük duruyor, değinince (hover/focus) tek tek beliriyor --
+   ETKILESIM_DILI.md: her etkileşimin görünür bir sonucu olmalı. */
+.acik-soru { cursor: pointer; }
+.acik-soru:focus { outline: none; }
+.acik-soru__yay {
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  opacity: 0.78;
+  transition: opacity 0.18s ease, stroke-width 0.18s ease;
+}
+.acik-soru__yay--kaynak_tukendi { stroke-dasharray: 3 4; }
+.acik-soru__centik {
+  opacity: 0.22;
+  transition: opacity 0.22s ease, r 0.22s ease;
+}
+.acik-soru__no {
+  font-size: 0.72rem;
+  font-weight: 600;
+  fill: var(--text-secondary);
+  pointer-events: none;
+}
+.acik-soru__etiket {
+  font-size: 0.72rem;
+  fill: var(--text-secondary);
+  pointer-events: none;
+}
+.acik-soru--deginiliyor .acik-soru__yay { opacity: 1; stroke-width: 3.1; }
+.acik-soru--deginiliyor .acik-soru__centik { opacity: 1; r: 2.6; }
+.acik-soru--deginiliyor .acik-soru__etiket { fill: var(--text-primary); }
+.acik-soru:focus-visible .acik-soru__yay { opacity: 1; stroke-width: 3.1; }
+
+.acik-sorular-merkez__halka {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-dasharray: 2 6;
+}
+.acik-sorular-merkez__sayi {
+  font-size: 1.6rem;
+  font-weight: 600;
+  fill: var(--text-primary);
+}
+.acik-sorular-merkez__etiket {
+  font-size: 0.7rem;
+  fill: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.acik-soru__durum {
+  display: inline-block;
+  margin-inline-start: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+.acik-soru__durum--acik { border-color: color-mix(in srgb, var(--series-kemal) 55%, var(--border)); }
+.acik-soru__durum--kismen { border-color: color-mix(in srgb, var(--series-theme) 55%, var(--border)); }
+
+.acik-soru__kaynak { color: var(--text-secondary); font-size: 0.86rem; margin: 2px 0 12px; }
+.acik-soru__olcum {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--surface-1);
+  margin-bottom: 6px;
+}
+.acik-soru__olcum-baslik { font-size: 0.78rem; color: var(--text-secondary); margin: 0 0 6px; letter-spacing: 0.03em; }
+.acik-soru__olcum-sorgu { margin: 0 0 4px; }
+.acik-soru__olcum-sorgu code { font-size: 0.86rem; }
+.acik-soru__olcum-sonuc { margin: 0; font-size: 0.9rem; }
+.acik-soru__dayanak { margin: 6px 0 0; font-size: 0.78rem; color: var(--text-secondary); }
+.acik-soru__baglar { display: flex; flex-wrap: wrap; gap: 6px; }
+.acik-soru__bag {
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+.acik-soru__bag:hover { border-color: var(--accent-interactive); }
+
+.acik-soru-liste { display: flex; flex-direction: column; gap: 6px; }
+.acik-soru-satir {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.acik-soru-satir:hover,
+.acik-soru-satir:focus-visible {
+  border-color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
+}
+.acik-soru-satir__no { color: var(--text-secondary); flex-shrink: 0; font-size: 0.8rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .acik-soru__yay,
+  .acik-soru__centik,
+  .acik-soru__etiket { transition: none !important; }
+}
+.acik-soru__vurus { pointer-events: all; }

@@ -143,7 +143,7 @@
     </div>
     <button class="welcome-screen__skip" id="welcome-skip" type="button" aria-label="Geç / Skip / Pular">Geç · Skip · Pular</button>
   </div>
-  <script src="assets/welcome.js" integrity="sha384-xQGqi4891WuZ3eFFCxXUiesXTWiAz4Wxn+DAbN8wIwMxVJnZ/48LViMaiMFCrNMT"></script>
+  <script src="assets/welcome.js" integrity="sha384-NzwSe9BFhxzqBb82NI3kdjBJO70Gg6LaSc2lHEBpZ5e2DcZdN5bq4L2xZWRKSx4R"></script>
   <header class="app-header">
     <div class="app-header__controls">
       <!-- FAZ 1 (grafik-önce arayüz, 2026-08-03): 14 eşit ağırlıklı sekme
@@ -182,6 +182,7 @@
           <div class="nav-drawer__items">
             <button class="btn-ghost" id="terimler-btn" type="button" title="İbn Arabî'nin terimleri, tek tek — Ibn Arabi's terms, one by one — Os termos de Ibn Arabi, um a um" data-tr="Terimler" data-en="Terms" data-pt="Termos">Terimler</button>
             <button class="btn-ghost" id="sorular-btn" type="button" title="Sık sorulan sorular, kısa cevaplarla — Frequently asked questions, briefly answered — Perguntas frequentes, respondidas brevemente" data-tr="Sorular" data-en="Questions" data-pt="Perguntas">Sorular</button>
+            <button class="btn-ghost btn-ghost--yeni" id="acik-sorular-btn" type="button" title="Okurken bize kalan, henüz kapanmamış sorular — ve araştırmamızın verdiği olası yanıtlar — Questions left with us while reading, not yet closed — and the possible answers our research gives — Perguntas que ficaram connosco ao ler, ainda em aberto — e as respostas possíveis que a nossa pesquisa dá" data-tr="Açık Sorular" data-en="Open Questions" data-pt="Perguntas em Aberto">Açık Sorular</button>
             <button class="btn-ghost" id="sirlar-btn" type="button" title="İşaret edilen ama açıklanmayan konular — Matters pointed to but never explained — Assuntos apontados mas nunca explicados" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
             <button class="btn-ghost" id="cizimler-btn" type="button" title="Kavramlar arası ilişkileri gösteren şemalar — Diagrams showing relationships between concepts — Diagramas mostrando relações entre conceitos" data-tr="Çizimler" data-en="Diagrams" data-pt="Diagramas">Çizimler</button>
             <button class="btn-ghost btn-ghost--yeni" id="ayethadis-btn" type="button" title="Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin — An index of quoted verses and hadiths, ordered by how often each recurs — Um índice de versículos e ditos citados, ordenados por quantas vezes cada um recorre" data-tr="Âyet &amp; Hadis" data-en="Verses &amp; Hadith" data-pt="Versículos e Hadith">Âyet &amp; Hadis</button>
@@ -392,6 +393,23 @@
           <div class="legend__item"><span class="legend__dot legend__dot--sir-insan"></span><span data-tr="İnsan-ı Kâmil ve Velâyet" data-en="The Perfect Human and Sainthood" data-pt="O Ser Humano Perfeito e a Santidade">İnsan-ı Kâmil</span></div>
         </div>
       </div>
+    </section>
+
+    <section class="graph-wrap" id="acik-sorular-wrap" hidden>
+      <svg id="acik-sorular-graph" role="group" aria-label="Açık sorular halkası"
+           data-tr-aria-label="Açık sorular halkası" data-en-aria-label="Ring of open questions" data-pt-aria-label="Anel de perguntas em aberto"></svg>
+      <div class="view-status" id="acik-sorular-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="acik-sorular-tooltip" hidden></div>
+      <button class="graph-recenter" id="acik-sorular-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Her yay bir soru; çizilmeyen boşluk sorunun ne kadar açık olduğu, yay üzerindeki çentikler okuma kaydımızda bulduğumuz izler. Bir yaya tıklayın." data-en-title="Each arc is a question; the undrawn gap is how open it still is, and the ticks along the arc are the traces we found in our reading record. Click an arc." data-pt-title="Cada arco é uma pergunta; a lacuna não desenhada é o quanto continua em aberto, e as marcas ao longo do arco são os vestígios que encontrámos no nosso registo. Clique num arco." title="Her yay bir soru; çizilmeyen boşluk sorunun ne kadar açık olduğu, yay üzerindeki çentikler okuma kaydımızda bulduğumuz izler. Bir yaya tıklayın." aria-label="Her yay bir soru; çizilmeyen boşluk sorunun ne kadar açık olduğu, yay üzerindeki çentikler okuma kaydımızda bulduğumuz izler. Bir yaya tıklayın.">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
     </section>
 
     <section class="graph-wrap" id="sorular-wrap" hidden>
@@ -1066,7 +1084,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/honorifics.js" defer integrity="sha384-IwA4Fe1Lz4RekuTCKaeamOx5H2VogRQH66+kK99tc5SRCQL7ezB4EK8jbMw/uOhm"></script>
   <script src="assets/esma.js" defer integrity="sha384-+A0COwrll+/HQ759NQMtBlGcGECNOMQDj68vbVrl1AGnSbbyu28VidqO/sfo9fbj"></script>
   <script src="assets/hal.js" defer integrity="sha384-mQ1k9e97UaEhWHsUyVW/jMDIPqpu8qQHxxQ/HihxSzNlBFLsrCQ+WqkYZxOKAsr2"></script>
-  <script src="assets/terimler.js" defer integrity="sha384-8mm5Ec0kaoxO9tKF/rungOHafSXTdvVGlm+e6FdqyIY4Zkcr4E05a/gv5BOCVrVc"></script>
+  <script src="assets/terimler.js" defer integrity="sha384-RuaIw7S2nau5GYUPYZgdvGe8gRAK5qjYLGS+S2Csf3QhvdugUq2kvqbFzTj9+oxv"></script>
   <script src="assets/cizimler.js" defer integrity="sha384-ApePyK753G9arEk136d72OKvIaTHT2ibCK1TIUD3zLgn8Nfzq4u+KtBmPZCusbRa"></script>
   <script src="assets/sorular.js" defer integrity="sha384-qcd/y683gOnUk1+ahHo2+m9uAzwO+zgIQ6Ujq7eEzgLP3KvjwHXFEJeHGZpPVdR2"></script>
   <script src="assets/menziller.js" defer integrity="sha384-dBmrevBI2OVjNpuXzrdQS37acSxDILHFVsXO24M2o/+kb2BjH1Z+/KPcpOlGSupV"></script>
@@ -1074,8 +1092,8 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-RF49Q32g0d6y3SRc2V3pOK6w72vIbpcudDUq0MMIuqs8JinkwA0MuRNfuzwYpWU0"></script>
   <script src="assets/futuhat.js" defer integrity="sha384-yJWC240f2U3Hy8gRILItRJx0UkveKkWW0N7go6Zg8ooEiZLYHDSknspY2fY2+VA1"></script>
   <script src="assets/fusus.js" defer integrity="sha384-LysUYN1mzDZB3kcyYXKoE5EmK1VSdmCE6+E/CG2yM+6fq2cNlu7cNJvvVNoSIdXA"></script>
-  <script src="assets/view-loader.js" defer integrity="sha384-R49MMj36ojgSCVGT2EHeaLpz5kZVVch25W8y92XdKRERjzgRWWfwSz7lPRwyflD9"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-9cLBvSI2+h1DXR66EBwz9ZniBozzrVh/Ewa6BItbF0LYfvL9Q9nKBQ6RKqiyYdQ9"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-RN+rqHhVlJIo2jioz1pkR8sy+lJIJAZ9WFNDrJwrMK4Nw0v79e5B+9+hnQU/sEFs"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-N86q0rEa8V1Iymvk9gwcw/nd7vBQXkZpi08SRiUDUlKGDfjJHigxDPBVjNZ4e8rv"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-pUGs2ZLA6M1Uv5y5m6q8SzOrNwoimvexeWXg1MwnVMdlNPg4urvUdMtthr/qlAE1"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>

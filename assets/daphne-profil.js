@@ -276,19 +276,87 @@
     detailPanel.hidden = false;
   }
 
+  // Bir yazının hangi ekseni neden beslediği + Dost'un hangi kavramına
+  // dokunduğu (2026-08-03). Eskiden bir yazı ya "işlendi" ya "işlenmedi"
+  // rozetiyle duruyordu ve İLİŞKİ hiçbir yerde görünmüyordu -- oysa bu
+  // sayfanın bütün amacı o ilişki. Bağlar ELLE kuruldu ve her birinin
+  // yanında gerekçesi var; türü de yazılı, çünkü bir örtüşme ile bir FARK
+  // aynı şey değildir ve farkı örtüşme gibi göstermek yanlış olurdu.
+  const BAG_TURU = {
+    ortusme: { tr: "örtüşme", en: "overlap", pt: "sobreposição" },
+    fark: { tr: "fark", en: "difference", pt: "diferença" },
+    soru: { tr: "açık soru", en: "open question", pt: "pergunta aberta" },
+  };
+  const DOST_GORUNUM = {
+    ontoloji: { tr: "Ontoloji", en: "Ontology", pt: "Ontologia" },
+    terimler: { tr: "Terimler", en: "Terms", pt: "Termos" },
+    esma: { tr: "Esmâ", en: "The Names", pt: "Os Nomes" },
+    hal: { tr: "Hâller", en: "States", pt: "Estados" },
+    sirlar: { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" },
+    sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
+  };
+
+  function eksenlerHtml(a, data) {
+    if (!a.eksenler || !a.eksenler.length) return "";
+    const adi = (id) => {
+      const p = (data.core_parameters || []).find((x) => x.id === id);
+      return p ? tt(p.label) : id;
+    };
+    const rows = a.eksenler.map((e) => `<li class="daphne-bag">
+      <span class="daphne-bag__ad">${adi(e.id)}</span>
+      <span class="daphne-bag__neden">${tt(e.neden)}</span></li>`).join("");
+    return `<div class="daphne-baglar">
+      <p class="daphne-baglar__baslik">${tt({
+        tr: "Bu yazı hangi ekseni besliyor", en: "Which axes this essay feeds",
+        pt: "Quais eixos este ensaio alimenta" })}</p>
+      <ul class="daphne-bag-liste">${rows}</ul></div>`;
+  }
+
+  function dostHtml(a) {
+    if (!a.dost || !a.dost.length) return "";
+    const base = window.__dostRouteBase || "";
+    const rows = a.dost.map((b) => {
+      const gorunum = DOST_GORUNUM[b.view] ? tt(DOST_GORUNUM[b.view]) : b.view;
+      const tur = BAG_TURU[b.tur] ? tt(BAG_TURU[b.tur]) : "";
+      return `<li class="daphne-bag daphne-bag--dost daphne-bag--${b.tur || "ortusme"}">
+        <a class="daphne-bag__ad" href="${base}/${b.view}/${b.id}">${gorunum} › ${b.id}</a>
+        ${tur ? `<span class="daphne-bag__tur">${tur}</span>` : ""}
+        <span class="daphne-bag__neden">${tt(b.neden)}</span></li>`;
+    }).join("");
+    return `<div class="daphne-baglar daphne-baglar--dost">
+      <p class="daphne-baglar__baslik">${tt({
+        tr: "Dost'un hangi kavramına dokunuyor",
+        en: "Which of the Friend's concepts it touches",
+        pt: "Quais conceitos do Amigo ele toca" })}</p>
+      <p class="daphne-baglar__not">${tt({
+        tr: "Bu bağları biz kurduk. Bir örtüşme ile bir fark aynı şey değil; farkı örtüşme gibi göstermemek için türünü de yazıyoruz.",
+        en: "We made these links ourselves. An overlap and a difference are not the same thing; we name the kind so a difference is not shown as agreement.",
+        pt: "Fizemos estes vínculos nós mesmos. Uma sobreposição e uma diferença não são a mesma coisa; nomeamos o tipo para que uma diferença não seja mostrada como concordância." })}</p>
+      <ul class="daphne-bag-liste">${rows}</ul></div>`;
+  }
+
   function renderArticles(data) {
     if (!articlesList) return;
     articlesList.innerHTML = data.articles
+      .slice()
+      .sort((a, b) => (b.date || "").localeCompare(a.date || ""))
       .map((a) => {
-        const status = a.note_tr
+        const islendi = !a.note_tr;
+        const status = !islendi
           ? `<span class="daphne-profile-card__status daphne-profile-card__status--pending">${tt({ tr: "Henüz işlenmedi", en: "Not yet processed", pt: "Ainda não processado" })}</span>`
           : `<span class="daphne-profile-card__status daphne-profile-card__status--done">${tt({ tr: "Profile işlendi", en: "Worked into profile", pt: "Incorporado ao perfil" })}</span>`;
         const note = a.note_tr ? `<p class="daphne-profile-card__note">${tt({ tr: a.note_tr, en: a.note_en, pt: a.note_pt })}</p>` : "";
-        return `<a class="daphne-profile-card" href="${a.url}" target="_blank" rel="noopener">
-          <span class="daphne-profile-card__title">${a.title}</span>
-          ${status}
-          ${note}
-        </a>`;
+        const ozet = a.ozet ? `<p class="daphne-profile-card__note">${tt(a.ozet)}</p>` : "";
+        const tarih = a.date ? `<span class="daphne-profile-card__tarih">${a.date}</span>` : "";
+        // Kart artık bir <a> değil: içinde başka bağlantılar var (eksenler,
+        // Dost kavramları) ve iç içe bağlantı hem geçersiz HTML hem
+        // erişilebilirlik hatasıdır.
+        return `<article class="daphne-profile-card">
+          <a class="daphne-profile-card__link" href="${a.url}" target="_blank" rel="noopener">
+            <span class="daphne-profile-card__title">${a.title}</span></a>
+          ${tarih}${status}${note}${ozet}
+          ${eksenlerHtml(a, data)}${dostHtml(a)}
+        </article>`;
       })
       .join("");
   }
