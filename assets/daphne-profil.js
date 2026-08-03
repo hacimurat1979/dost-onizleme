@@ -113,47 +113,78 @@
     return window.DostGraphUtils.getVar(name);
   }
 
+  // "Daphne" Türkçede defne ağacı demek (laurel/bay). Kullanıcının fikri
+  // (2026-08-03): grafiklerden birinde bir defne ağacı gösterelim, dalları
+  // ya da meyveleri Daphne'nin düşüncelerine dönüşmüş olsun. Bunu süs
+  // olarak değil, GRAFİĞİN KENDİSİ olarak kuruyoruz -- eskiden tam çember
+  // üzerinde duran on bir parametre düğümü, şimdi bir gövdeden yukarı
+  // açılan on bir dal/yaprak. Hiçbir veri/etkileşim değişmedi (aynı force
+  // simülasyonu, aynı tıklama/hover/klavye/sürükleme), yalnız düzen tam
+  // daire yerine yukarı açılan bir yelpaze, çizgiler düz tel yerine dal
+  // gibi hafifçe kavisli, yaprak düğümleri daire yerine defne yaprağı
+  // biçiminde.
+  const CANOPY_START = (-172 * Math.PI) / 180;
+  const CANOPY_END = (-8 * Math.PI) / 180;
+
   function buildGraph(data) {
     const width = svg.node().clientWidth;
     const height = svg.node().clientHeight;
     const cx = width / 2;
-    const cy = height / 2;
-    const orbit = Math.min(width, height) * 0.34;
+    // Gövde tabanı aşağıda, taç yukarıda açılsın diye kök düğüm merkezde
+    // değil altta duruyor.
+    const trunkBaseY = height - 18;
+    const hubY = height * 0.86;
+    const orbit = Math.min(width * 0.46, height * 0.62);
 
     const params = data.core_parameters;
     const nodes = [{ id: "hub", type: "hub" }];
     const links = [];
 
     params.forEach((param, i) => {
-      const angle = (2 * Math.PI * i) / params.length - Math.PI / 2;
+      const t = params.length > 1 ? i / (params.length - 1) : 0.5;
+      const angle = CANOPY_START + (CANOPY_END - CANOPY_START) * t;
       nodes.push({
         id: "param-" + param.id,
         type: "param",
         param: param,
+        angle: angle,
         tx: cx + orbit * Math.cos(angle),
-        ty: cy + orbit * Math.sin(angle),
+        ty: hubY + orbit * Math.sin(angle),
       });
       links.push({ source: "hub", target: "param-" + param.id });
     });
 
     nodes[0].fx = cx;
-    nodes[0].fy = cy;
+    nodes[0].fy = hubY;
 
     const simulation = d3
       .forceSimulation(nodes)
       .force("link", d3.forceLink(links).id((d) => d.id).distance(orbit).strength(0.5))
       .force("charge", d3.forceManyBody().strength(-90))
       .force("x", d3.forceX((d) => (d.type === "param" ? d.tx : cx)).strength(0.25))
-      .force("y", d3.forceY((d) => (d.type === "param" ? d.ty : cy)).strength(0.25))
-      .force("collide", d3.forceCollide().radius((d) => radiusFor(d) + 28));
+      .force("y", d3.forceY((d) => (d.type === "param" ? d.ty : hubY)).strength(0.25))
+      .force("collide", d3.forceCollide().radius((d) => radiusFor(d) + 22));
+
+    // Gövde: sabit (hub fx/fy ile kilitli), tek seferlik çiziliyor.
+    // Dalların/kökün altına düşsün diye ilk eklenen katman bu.
+    const trunkHalfWidth = 15;
+    svg
+      .append("path")
+      .attr("class", "daphne-trunk")
+      .attr(
+        "d",
+        `M ${cx - trunkHalfWidth} ${trunkBaseY} ` +
+          `C ${cx - trunkHalfWidth} ${hubY + 34}, ${cx - 5} ${hubY + 8}, ${cx} ${hubY} ` +
+          `C ${cx + 5} ${hubY + 8}, ${cx + trunkHalfWidth} ${hubY + 34}, ${cx + trunkHalfWidth} ${trunkBaseY} Z`
+      );
 
     linkSel = svg
       .append("g")
       .attr("class", "links")
-      .selectAll("line")
+      .selectAll("path")
       .data(links)
-      .join("line")
-      .attr("class", "link");
+      .join("path")
+      .attr("class", "link daphne-branch");
 
     const nodeGroup = svg.append("g").attr("class", "nodes");
 
@@ -161,7 +192,7 @@
       .selectAll("g.node")
       .data(nodes)
       .join("g")
-      .attr("class", (d) => "node" + (d.type === "hub" ? " node--root" : ""))
+      .attr("class", (d) => "node" + (d.type === "hub" ? " node--root" : " daphne-leaf-node"))
       .attr("tabindex", "0")
       .attr("role", "button")
       .attr("aria-label", (d) => labelFor(d))
@@ -181,8 +212,20 @@
     nodeSel.filter((d) => d.type === "hub").append("circle").attr("class", "node-halo").attr("r", radiusFor(nodes[0]) * 1.4);
 
     nodeSel
+      .filter((d) => d.type === "hub")
       .append("circle")
       .attr("r", (d) => radiusFor(d))
+      .attr("fill", (d) => colorFor(d));
+
+    // Parametre düğümleri: daire değil, dalın ucunda duran defne yaprağı.
+    // Ağırlık (weight) hâlâ aynı yeri taşıyor -- radiusFor() değişmedi,
+    // yalnız o yarıçap artık bir yaprağın boyu oluyor.
+    nodeSel
+      .filter((d) => d.type === "param")
+      .append("path")
+      .attr("class", "daphne-leaf")
+      .attr("d", (d) => leafPath(radiusFor(d)))
+      .attr("transform", (d) => `rotate(${(d.angle * 180) / Math.PI + 90})`)
       .attr("fill", (d) => colorFor(d));
 
     labelSel = nodeSel
@@ -193,15 +236,30 @@
       .text((d) => labelFor(d));
 
     simulation.on("tick", () => {
-      linkSel
-        .attr("x1", (d) => d.source.x)
-        .attr("y1", (d) => d.source.y)
-        .attr("x2", (d) => d.target.x)
-        .attr("y2", (d) => d.target.y);
+      linkSel.attr("d", (d) => branchPath(d.source, d.target));
       nodeSel.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
 
     window.__daphneProfileApp = { nodes, links, data };
+  }
+
+  // Defne yaprağı: sivri uçlu, simetrik bir oval -- yerel eksende yukarı
+  // bakar (rotate ile dalın açısına döndürülür). Uzunluk `len` = radiusFor
+  // (ağırlık burada da aynı anlamı taşımaya devam ediyor).
+  function leafPath(len) {
+    const w = len * 0.62;
+    return (
+      `M 0 ${-len} C ${w} ${-len * 0.55} ${w} ${len * 0.55} 0 ${len} ` +
+      `C ${-w} ${len * 0.55} ${-w} ${-len * 0.55} 0 ${-len} Z`
+    );
+  }
+
+  // Dal: düz tel değil, gövdeden yukarı doğru hafifçe kavisli bir eğri --
+  // kontrol noktası, iki uç arasındaki yatay mesafeye göre yukarı kayar.
+  function branchPath(a, b) {
+    const mx = (a.x + b.x) / 2;
+    const my = (a.y + b.y) / 2 - Math.abs(b.x - a.x) * 0.22;
+    return `M ${a.x} ${a.y} Q ${mx} ${my} ${b.x} ${b.y}`;
   }
 
   function labelFor(d) {

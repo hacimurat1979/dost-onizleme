@@ -86,6 +86,7 @@
   --series-daphne:    #e87ba4; /* magenta */
   --series-ibnarabi-line: #9ec5f4;
   --series-daphne-line:   #f3c3d7;
+  --daphne-trunk:     #8a5a3c; /* defne ağacının gövdesi */
   --series-celal:     #a83246; /* garnet / majesty */
   --series-cemal:     #2f8f7a; /* jade / beauty */
   --series-kemal:     #a6821f; /* gold / names combining celal and cemal */
@@ -153,6 +154,7 @@
   --series-daphne:    #d55181;
   --series-ibnarabi-line: #184f95;
   --series-daphne-line:   #6b3145;
+  --daphne-trunk:     #a97748; /* defne ağacının gövdesi, koyu zeminde açık tutuldu */
   --series-celal:     #d5677a;
   --series-cemal:     #4bb69d;
   --series-kemal:     #d9b555;
@@ -2835,6 +2837,40 @@ body[data-theme="dark"] #sirlar-legend {
 }
 @media (prefers-reduced-motion: reduce) {
   .node--active circle { filter: none; }
+}
+
+/* Daphne profili: defne ağacı (2026-08-03). "Daphne" Türkçede defne
+   demek -- grafiği bir çember değil bir ağaç olarak kuruyoruz: gövde,
+   yukarı açılan kavisli dallar, uçlarında defne yaprağı biçiminde
+   parametre düğümleri. `.node circle`in sağladığı hover/focus/gölge
+   davranışını `path.daphne-leaf` için birebir tekrarlıyoruz, çünkü
+   yaprak artık <circle> değil <path>. */
+.daphne-trunk {
+  fill: var(--daphne-trunk);
+  opacity: 0.85;
+  pointer-events: none;
+}
+.link.daphne-branch {
+  stroke: var(--daphne-trunk);
+  stroke-width: 1.8px;
+  opacity: 0.55;
+}
+.link.daphne-branch.link--highlight {
+  stroke: var(--series-daphne-line);
+  opacity: 0.95;
+}
+.daphne-leaf {
+  stroke: var(--surface-1);
+  stroke-width: 1.4px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.28));
+}
+.viz-root[data-theme="dark"] .daphne-leaf {
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+}
+.daphne-leaf-node:hover .daphne-leaf { stroke: var(--text-primary); }
+.daphne-leaf-node:focus-visible .daphne-leaf {
+  stroke: var(--accent-interactive, #e0b545);
+  stroke-width: 2.6px;
 }
 
 /* Zât/Essence root node: a slow, quiet breathing glow -
