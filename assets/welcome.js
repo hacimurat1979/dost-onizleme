@@ -27,9 +27,16 @@
   document.addEventListener("DOMContentLoaded", function () {
     const gununEl = document.getElementById("welcome-gunun");
     if (!gununEl) return;
+    // Ortak fetchJson kullanılıyor (graph-utils): aynı dosyayı isteyen öteki
+    // modüllerle TEK indirmeyi paylaşsın diye. Eskiden burada ham bir fetch
+    // vardı ve üstelik URL'i farklı kuruyordu (baştaki "/"), o yüzden
+    // tarayıcı önbelleği bile devreye girmiyordu -- sirlar.json her sayfada
+    // ikinci kez iniyordu (2026-08-03 denetiminde ölçüldü).
+    const GU = window.DostGraphUtils;
     const base = window.__dostRouteBase || "";
-    fetch(base + "/data/ibn-arabi/sirlar.json")
-      .then((r) => (r.ok ? r.json() : null))
+    const url = base ? base + "/data/ibn-arabi/sirlar.json" : "data/ibn-arabi/sirlar.json";
+    (GU ? GU.fetchJson(url).catch(() => null)
+        : fetch(url).then((r) => (r.ok ? r.json() : null)))
       .then((d) => {
         if (!d || !Array.isArray(d.entries) || !d.entries.length) return;
         const dayIndex = Math.floor(Date.now() / 86400000);
@@ -50,8 +57,10 @@
     // bir özet dosyası (data/ibn-arabi/okuma-durumu.json) okunuyor.
     const neredeyizEl = document.getElementById("welcome-neredeyiz");
     if (!neredeyizEl) return;
-    fetch(base + "/data/ibn-arabi/okuma-durumu.json")
-      .then((r) => (r.ok ? r.json() : null))
+    // Aynı gerekçe: ortak fetchJson, tek indirmeyi kavram.js ile paylaşsın.
+    const durumUrl = base ? base + "/data/ibn-arabi/okuma-durumu.json" : "data/ibn-arabi/okuma-durumu.json";
+    (GU ? GU.fetchJson(durumUrl).catch(() => null)
+        : fetch(durumUrl).then((r) => (r.ok ? r.json() : null)))
       .then((d) => {
         if (!d || !d.futuhat || !d.fusus) return;
         const I18n = window.DostI18n;

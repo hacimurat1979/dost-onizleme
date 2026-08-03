@@ -1,8 +1,8 @@
 {
  "uretim": "scripts/kavram-hayati-uret.py",
  "not": "TÜRETİLMİŞ veri: her kavramın Fütûhât/Füsûs'taki geçtiği yerler, adının kısım/fass metinlerinde kelime-sınırlı, büyük/küçük harf duyarsız bir regex taramasıyla bulunmasına dayanır -- sitenin kendi çapraz-link (linkify) eşleştirmesinin basitleştirilmiş bir yansımasıdır, birebir aynı değildir. 4 harften kısa adlar (otomatikEslesmeYok:true) taranmadı. Yoğunluk = binde kaç kelimede bir geçtiği (mutlak sayı değil, kısmın uzunluğuna göre normalize). Kavramlar değiştiğinde ya da atlas metni düzenlendiğinde yeniden üretilmeli (elle tetiklenir).",
- "toplamKavram": 200,
- "eslesenKavram": 195,
+ "toplamKavram": 201,
+ "eslesenKavram": 196,
  "kavramlar": [
   {
    "view": "ontoloji",
@@ -17434,6 +17434,24 @@
    },
    "otomatikEslesmeYok": false,
    "eslesenTerim": "Dört Varlık Mertebesi: 'Masa' Örneği",
+   "futuhat": null,
+   "fusus": null,
+   "ilgiliAyet": [],
+   "ilgiliHadis": [],
+   "ilgiliSirlar": [],
+   "ilgiliCizimler": [],
+   "birlikteEsma": []
+  },
+  {
+   "view": "terimler",
+   "id": "idrak-bes-kademe",
+   "isim": {
+    "tr": "Beş Kademeli İdrak Zinciri",
+    "en": "The Five-Stage Chain of Perception",
+    "pt": "A Cadeia de Cinco Estágios da Percepção"
+   },
+   "otomatikEslesmeYok": false,
+   "eslesenTerim": "Beş Kademeli İdrak Zinciri",
    "futuhat": null,
    "fusus": null,
    "ilgiliAyet": [],

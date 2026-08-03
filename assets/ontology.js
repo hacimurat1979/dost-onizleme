@@ -240,7 +240,6 @@
       window.__vahdetApp && window.__vahdetApp.onLangChange();
     }
     else if (currentMainView === "kavram") window.__kavramApp && window.__kavramApp.onLangChange();
-    else if (currentMainView === "tenezzul") window.__tenezzulApp && window.__tenezzulApp.onLangChange();
     else if (currentMainView === "ayethadis") window.__ayetHadisApp && window.__ayetHadisApp.onLangChange();
     updateHeaderHeightVar();
   });
@@ -456,8 +455,6 @@
   const hakkindaWrap = document.getElementById("hakkinda-wrap");
   const kavramWrap = document.getElementById("kavram-wrap");
   const ayethadisWrap = document.getElementById("ayethadis-wrap");
-  // Tenezzül pilotu (FAZ 3): nav düğmesi YOK (bilerek), yalnız rota.
-  const tenezzulWrap = document.getElementById("tenezzul-wrap");
 
   // Görsel olarak aktif sekmeyi işaretlemek (.btn-ghost--active) ekran
   // okuyucuya hiçbir şey söylemiyordu -- dil seçicideki aria-pressed'in
@@ -526,7 +523,6 @@
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
     if (kavramWrap) kavramWrap.hidden = view !== "kavram";
     if (ayethadisWrap) ayethadisWrap.hidden = view !== "ayethadis";
-    if (tenezzulWrap) tenezzulWrap.hidden = view !== "tenezzul";
     if (view === "hakkinda") {
       wireHakkindaDiagrams();
       window.__siirlerApp && window.__siirlerApp.wireTabs();
@@ -565,9 +561,6 @@
     } else if (view === "fusus") {
       currentDetailView = null;
       window.__fususApp && window.__fususApp.activate();
-    } else if (view === "tenezzul") {
-      currentDetailView = "tenezzul";
-      window.__tenezzulApp && window.__tenezzulApp.activate();
     } else if (view === "kavram") {
       currentDetailView = "kavram";
       window.__kavramApp && window.__kavramApp.activate();
@@ -720,14 +713,6 @@
         tr: "Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti.",
         en: "A data-derived life summary tracing each concept through the Futuhat and the Fusus.",
         pt: "Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus.",
-      },
-    },
-    tenezzul: {
-      title: { tr: "Tenezzül", en: "Descent", pt: "Descida" },
-      desc: {
-        tr: "Bir deneme: Zât'tan bir ismin kendi metnine kadar tek bir eksende, kesintisiz yaklaşarak inmek.",
-        en: "An experiment: descending a single axis without cuts, from the Essence to a Name's own text.",
-        pt: "Um experimento: descer um único eixo sem cortes, da Essência ao texto de um Nome.",
       },
     },
     ayethadis: {
@@ -902,14 +887,9 @@
     setMainView("ayethadis");
   }
 
-  // Tenezzül pilotu (FAZ 3): nav düğmesi yok, yalnız rotadan açılıyor.
-  function goToTenezzul() {
-    setMainView("tenezzul");
-  }
-
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis|tenezzul)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -934,7 +914,6 @@
     else if (view === "hakkinda") goToHakkinda();
     else if (view === "kavram") goToKavram(id);
     else if (view === "ayethadis") goToAyetHadis();
-    else if (view === "tenezzul") goToTenezzul();
   }
 
   window.addEventListener("popstate", parseHashAndGo);
@@ -971,8 +950,7 @@
       else if (view === "fusus") goToFusus(id);
       else if (view === "hakkinda") goToHakkinda();
       else if (view === "kavram") goToKavram(id);
-      else if (view === "tenezzul") goToTenezzul();
-    else if (view === "ayethadis") goToAyetHadis();
+      else if (view === "ayethadis") goToAyetHadis();
       updateHash(view, id);
     },
     setHash: updateHash,

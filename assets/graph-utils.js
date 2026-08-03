@@ -6,11 +6,25 @@ window.DostGraphUtils = (function () {
   // deploy, renamed file) surfaced as an opaque "Unexpected token '<'"
   // JSON-parse error instead of a clear failure. One shared helper for all
   // ~24 call sites across the site's view modules.
+  // ÖNBELLEK (2026-08-03, denetimde ölçüldü). Aynı JSON'u birden çok modül
+  // istiyor ve her biri ayrı bir indirme başlatıyordu: ana sayfada
+  // sirlar.json (345KB) İKİ kez, /sirlar/'da ÜÇ kez, /esma/'da esma.json
+  // (415KB) iki kez iniyordu -- yani her sayfa yüklemesinde 350-760KB saf
+  // israf. Tarayıcının HTTP önbelleği bunu kurtarmıyordu çünkü istekler
+  // eşzamanlı başlıyor (biri bitmeden öteki çıkıyor).
+  //
+  // Söz (promise) düzeyinde önbellek: aynı URL için ikinci çağrı YENİ bir
+  // istek açmıyor, ilkinin sözünü paylaşıyor. Hata durumunda kayıt
+  // siliniyor ki geçici bir ağ hatası kalıcı bir başarısızlığa dönüşmesin.
+  const jsonCache = new Map();
   function fetchJson(url) {
-    return fetch(url).then((r) => {
+    if (jsonCache.has(url)) return jsonCache.get(url);
+    const p = fetch(url).then((r) => {
       if (!r.ok) throw new Error(`fetchJson: ${url} -> HTTP ${r.status}`);
       return r.json();
-    });
+    }).catch((e) => { jsonCache.delete(url); throw e; });
+    jsonCache.set(url, p);
+    return p;
   }
 
   function getVar(name) {

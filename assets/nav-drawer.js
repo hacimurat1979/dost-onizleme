@@ -16,34 +16,17 @@
   // (btn-ghost--active); biz yalnız izliyoruz. MutationObserver hem sınıf
   // değişimini (görünüm değişti) hem metin değişimini (dil değişti,
   // applyStatic textContent'i yeniden yazar) yakalar.
-  // Çekmecede karşılığı OLMAYAN görünümler de var (bugün: Tenezzül pilotu,
-  // FAZ 3 -- ana gezinmede bilerek yok). Onlarda hiçbir düğme aktif olmaz ve
-  // etiket bir önceki bölümün adında ASILI KALIRDI: kullanıcıya nerede
-  // olduğu hakkında yanlış bilgi veren bir etiket, hiç etiket olmamasından
-  // kötüdür. Görünen sarmalayıcının kendi adını okuyoruz.
-  const WRAP_LABEL = {
-    "tenezzul-wrap": { tr: "Tenezzül", en: "Descent", pt: "Descida" },
-  };
-
+  // NOT (2026-08-03): burada bir süre, çekmecede karşılığı OLMAYAN görünümler
+  // için ("hangi sarmalayıcı görünürse onun adını yaz") ek bir katman vardı.
+  // Tek tüketicisi kaldırılan Tenezzül pilotuydu; tüketicisiz kalınca
+  // silindi. Yeniden böyle bir görünüm eklenirse (nav'da olmayan bir bölüm)
+  // aynı katman gerekecek: aksi hâlde ☰ etiketi bir ÖNCEKİ bölümün adında
+  // asılı kalır ve kullanıcıya nerede olduğu hakkında yanlış bilgi verir --
+  // yanlış etiket, hiç etiket olmamasından kötüdür.
   function updateLabel() {
     if (!label) return;
-    const I18n = window.DostI18n;
-    for (const id in WRAP_LABEL) {
-      const el = document.getElementById(id);
-      if (el && !el.hidden) {
-        label.textContent = I18n ? I18n.pick3(WRAP_LABEL[id]) : WRAP_LABEL[id].tr;
-        return;
-      }
-    }
     const active = drawer.querySelector(".btn-ghost--active");
     if (active) label.textContent = active.textContent.trim();
-  }
-  // Çekmece dışı görünümlerin gösterilip gizlenmesi çekmecede bir sınıf
-  // değişimi yaratmayabiliyor (o an zaten hiçbir düğme aktif değilse);
-  // o yüzden onların kendi `hidden` niteliğini de izliyoruz.
-  for (const id in WRAP_LABEL) {
-    const el = document.getElementById(id);
-    if (el) new MutationObserver(updateLabel).observe(el, { attributes: true, attributeFilter: ["hidden"] });
   }
   new MutationObserver(updateLabel).observe(drawer, {
     subtree: true,
