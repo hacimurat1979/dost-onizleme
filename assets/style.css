@@ -2671,7 +2671,16 @@ body[data-theme="dark"] #sirlar-legend {
 }
 
 .link {
-  stroke: var(--gridline);
+  /* --gridline bilerek arka planla neredeyse aynı tona boyanmış bir bölücü
+     rengi (açıkta çok soluk bej, koyuda #2c2c2a -- neredeyse siyah zemin
+     üzerinde neredeyse siyah çizgi) -- kenarlıklar için doğru, ama İLİŞKİ
+     çizgisi görünür KALMALI. confidence-on kipindeki üstteki kural zaten
+     --text-muted kullanıyordu (bkz. aşağıdaki .link--conf-* kuralları);
+     aynı görünürlüğü varsayılan (confidence kapalı) duruma da taşıyoruz --
+     karanlık modda ontoloji ilişki çizgilerinin seçilememesi bu yüzdendi.
+     --text-muted her iki temada da metin için okunur kalacak şekilde
+     kalibre edilmiş, bu yüzden bir çizgi için de güvenli. */
+  stroke: var(--text-muted);
   stroke-width: 1.5px;
   fill: none;
   cursor: pointer;

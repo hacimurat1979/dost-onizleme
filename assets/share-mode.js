@@ -134,57 +134,42 @@
   }
 
   // --- veri ------------------------------------------------------------
-  let indexData = null;
   const partCache = new Map();
-  let sorularData = null;
 
-  function loadIndex() {
-    if (indexData) return Promise.resolve(indexData);
-    return GU.fetchJson("data/ibn-arabi/futuhat-atlas-index.json").then((d) => (indexData = d));
+  // Hem çözülmüş veriyi HEM DE devam eden isteği (in-flight promise) ayrı
+  // önbelleklerde tutar. Önceki hâl yalnız çözülmüş veriyi önbelleğe
+  // alıyordu -- refresh() panelin ilk açılışında (veri henüz hiç
+  // çekilmemişken) her zaman 3 aday üretmek için buildScene()'i 3 kez
+  // paralel çağırıyor; bu üçü de AYNI JSON'u ayrı ayrı indiriyordu (bkz.
+  // teknik inceleme, bulgu #9). Tek bir istek artık üçü arasında paylaşılır.
+  const dataCache = {};
+  const dataPromises = {};
+  function cachedFetch(key, url) {
+    if (Object.prototype.hasOwnProperty.call(dataCache, key)) return Promise.resolve(dataCache[key]);
+    if (dataPromises[key]) return dataPromises[key];
+    const p = GU.fetchJson(url).then((d) => { dataCache[key] = d; delete dataPromises[key]; return d; },
+      (e) => { delete dataPromises[key]; throw e; });
+    dataPromises[key] = p;
+    return p;
   }
+
+  function loadIndex() { return cachedFetch("futuhat-index", "data/ibn-arabi/futuhat-atlas-index.json"); }
   function loadPart(id) {
     if (partCache.has(id)) return Promise.resolve(partCache.get(id));
-    return GU.fetchJson("data/ibn-arabi/futuhat-parts/" + id + ".json").then((d) => {
+    return cachedFetch("futuhat-part:" + id, "data/ibn-arabi/futuhat-parts/" + id + ".json").then((d) => {
       partCache.set(id, d);
       return d;
     });
   }
-  function loadSorular() {
-    if (sorularData) return Promise.resolve(sorularData);
-    return GU.fetchJson("data/ibn-arabi/sorular.json").then((d) => (sorularData = d));
-  }
-
-  let sirlarData = null;
-  function loadSirlar() {
-    if (sirlarData) return Promise.resolve(sirlarData);
-    return GU.fetchJson("data/ibn-arabi/sirlar.json").then((d) => (sirlarData = d));
-  }
-
-  let ontolojiData = null, esmaData = null, felsefiData = null, vahdetData = null;
-  function loadOntoloji() {
-    if (ontolojiData) return Promise.resolve(ontolojiData);
-    return GU.fetchJson("data/ibn-arabi/ontology.json").then((d) => (ontolojiData = d));
-  }
-  function loadEsma() {
-    if (esmaData) return Promise.resolve(esmaData);
-    return GU.fetchJson("data/ibn-arabi/esma.json").then((d) => (esmaData = d));
-  }
-  function loadFelsefiTerimler() {
-    if (felsefiData) return Promise.resolve(felsefiData);
-    return GU.fetchJson("data/ibn-arabi/felsefi-terimler.json").then((d) => (felsefiData = d));
-  }
+  function loadSorular() { return cachedFetch("sorular", "data/ibn-arabi/sorular.json"); }
+  function loadSirlar() { return cachedFetch("sirlar", "data/ibn-arabi/sirlar.json"); }
+  function loadOntoloji() { return cachedFetch("ontoloji", "data/ibn-arabi/ontology.json"); }
+  function loadEsma() { return cachedFetch("esma", "data/ibn-arabi/esma.json"); }
+  function loadFelsefiTerimler() { return cachedFetch("felsefi-terimler", "data/ibn-arabi/felsefi-terimler.json"); }
   function loadVahdet() {
-    if (vahdetData) return Promise.resolve(vahdetData);
-    return GU.fetchJson("data/ibn-arabi/vahdet-elestiri.json")
-      .then((d) => (vahdetData = d))
-      .catch(() => (vahdetData = { maddeler: [] }));
+    return cachedFetch("vahdet", "data/ibn-arabi/vahdet-elestiri.json").catch(() => ({ maddeler: [] }));
   }
-
-  let fususData = null;
-  function loadFususAtlas() {
-    if (fususData) return Promise.resolve(fususData);
-    return GU.fetchJson("data/ibn-arabi/fusus-atlas.json").then((d) => (fususData = d));
-  }
+  function loadFususAtlas() { return cachedFetch("fusus-atlas", "data/ibn-arabi/fusus-atlas.json"); }
 
   // "Karşılaştır" şablonu (kullanıcı önerisi, 2026-08-03): esma+ontoloji
   // havuzunu (benzetme şablonuyla aynı kaynak) düz bir listeye çeviriyor ki
@@ -210,7 +195,21 @@
   function capText(raw, max) {
     raw = String(raw || "");
     max = max || 310;
-    return raw.length > max ? raw.slice(0, raw.lastIndexOf(" ", max)) + "…" : raw;
+    if (raw.length <= max) return raw;
+    const cut = raw.lastIndexOf(" ", max);
+    // Tek bir "kelime" max'tan uzunsa (hiç boşluk yoksa) lastIndexOf -1
+    // döner -- slice(0,-1) o zaman TÜM metnin son harfini atıp geri kalanını
+    // olduğu gibi bırakırdı, max'ı hiç uygulamamış olurdu.
+    return cut > 0 ? raw.slice(0, cut) + "…" : raw.slice(0, max) + "…";
+  }
+
+  // Şablonlardan gelen metin bazen kaynak veride <em>/<strong> gibi
+  // vurgu etiketleri taşıyor (ör. Fütûhât alıntıları, ontology.json
+  // insight'ları) -- kart HTML'i bunu render ETMEZ, escapeHtml öncesi
+  // düz metne indirgiyoruz ki "&lt;strong&gt;..." gibi literal etiket
+  // hiçbir şablonda görünmesin (tespit: ontoloji/karşılaştır şablonları).
+  function plainText(raw) {
+    return String(raw || "").replace(/<[^>]*>/g, "");
   }
 
   // ontoloji.json/esma.json/felsefi-terimler'deki "insights" bir dizi olup
@@ -371,8 +370,13 @@
           tpl: "hikaye",
           // Kullanıcı notu (2026-08-02): "hikâye" şablonlarında önce soru
           // verilsin, ardından cevap cümleleri -- kancayı başa çekiyoruz.
+          // İki dillilik yalnız soru satırında güvenli: cevap cümleleri
+          // splitSentences() ile TEK bir dilin metninden bölünüyor, ikinci
+          // dilde aynı sınırların düşeceği garanti değil (bkz. "dizi"
+          // şablonundaki aynı çekince) -- yanlış hizalanmış bir çeviri
+          // göstermektense hiç göstermiyoruz.
           lines: [
-            { text: tt(q.question), kind: "soru" },
+            mkBilingualLine(q.question, "soru"),
             { text: sents[0], kind: "soz" },
             { text: sents[1], kind: "soz" },
           ],
@@ -408,8 +412,8 @@
           return {
             tpl: "ikili",
             lines: [
-              { text: capText(tt(m.elestiri.ozet)), kind: "sol" },
-              { text: capText(tt(m.dostunDedigi.ozet)), kind: "sag" },
+              mkBilingualLine(m.elestiri.ozet, "sol", 310),
+              mkBilingualLine(m.dostunDedigi.ozet, "sag", 310),
             ],
           };
         }
@@ -423,8 +427,8 @@
             return {
               tpl: "ikili",
               lines: [
-                { text: tt(pr.left.label), kind: "sol" },
-                { text: tt(pr.right.label), kind: "sag" },
+                mkBilingualLine(pr.left.label, "sol"),
+                mkBilingualLine(pr.right.label, "sag"),
               ],
             };
           }
@@ -590,6 +594,11 @@
         };
       });
     }
+    // "Bir Cümle" (varsayılan/soz şablonu): quotesFromPart() bir kısmın
+    // <em> alıntılarını TEK bir dilin HTML'inden regex ile kesiyor -- ikinci
+    // dilin metninde aynı cümle sınırlarının aynı yerde düşeceği garanti
+    // değil ("dizi" şablonundaki aynı çekince), bu yüzden bilinçli olarak
+    // tek dilli kalıyor.
     return pickPart(false).then((r) => {
       if (!r) return null;
       return {
@@ -627,6 +636,11 @@
 
   // --- sahne çizimi ----------------------------------------------------
   let stageEl = null, rafId = 0, tilt = null, startTs = 0, chromeTimer = 0, helixHandle = null;
+  // frame()/drawAmbient() saniyede 60 kez çalışıyor -- her karede aynı
+  // düğümleri querySelector(All) ile yeniden aramak yerine, sahne AÇILIRKEN
+  // (bir kez) önbelleğe alınıyor. DOM stageMarkup() tarafından yalnız
+  // openStage()'de kuruluyor, döngü boyunca değişmiyor -- bu yüzden güvenli.
+  let cacheFrame = null, cacheSvg = null, cacheSpiral = null, cacheHalo = null, cacheDots = null, cacheLines = null, cacheRule = null;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Şablon başına döngü uzunluğu (ms) ve metin vuruşları. Vuruşlar
@@ -675,14 +689,23 @@
   const HOLD_MS_PER_WORD = 140;
   const HOLD_MAX_MS = 7000;
   function wordCount(text) { return text.trim().split(/\s+/).filter(Boolean).length; }
+  // "ikili"/"karsilastir" şablonlarındaki bölme çizgisinin (.share-rule)
+  // sabit vuruşu -- frame()'in RULE_BEAT_DEFAULT'u kullanabilmesi için, ve
+  // aşağıda extra süre eklendiğinde SATIRLARLA AYNI ORANDA rescale edilsin
+  // diye burada tanımlı.
+  const RULE_BEAT_DEFAULT = [0.30, 0.94];
   function computeTiming(s) {
     const base = s.tpl === "dizi" ? diziBase(s.lines.length) : (TIMING[s.tpl] || TIMING.soz);
     const words = s.lines.reduce((n, l) => n + wordCount(l.text) + (l.text2 ? wordCount(l.text2) : 0), 0);
     const extra = Math.min(HOLD_MAX_MS, Math.max(0, words - HOLD_BASE_WORDS) * HOLD_MS_PER_WORD);
-    if (!extra) return base;
+    if (!extra) return Object.assign({ ruleBeat: RULE_BEAT_DEFAULT }, base);
     const loop = base.loop + extra;
     const beats = base.beats.map((b) => [(b[0] * base.loop) / loop, (b[1] * base.loop + extra) / loop]);
-    return { loop: loop, beats: beats };
+    // Çizgi de satırlarla aynı rescale'i alıyor -- aksi hâlde döngü uzarken
+    // sabit 0.30 oranı çizgiyi ikinci satırdan giderek geç göstermeye
+    // başlıyordu (bkz. teknik inceleme, bulgu #4).
+    const ruleBeat = [(RULE_BEAT_DEFAULT[0] * base.loop) / loop, (RULE_BEAT_DEFAULT[1] * base.loop + extra) / loop];
+    return { loop: loop, beats: beats, ruleBeat: ruleBeat };
   }
 
   function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
@@ -892,7 +915,7 @@
   // Sarmal: hal.js/menziller ile aynı motor (GU.createTilt'in project'i).
   // Kullanıcının isteği buydu -- sahne, sitenin kendi sakin dairesel
   // dönüşünden beslensin (bkz. CLAUDE.md "Dairenin üçüncü boyutu: sarmal").
-  function drawAmbient(g, w, h, ts) {
+  function drawAmbient(w, h, ts) {
     const z = zemin();
     const cx = w / 2, cy = h * 0.5;
     const R = Math.min(w, h) * z.yari;
@@ -919,9 +942,8 @@
       pts.push({ x: X, y: Y, depth: p.depth == null ? 1 : p.depth, phase: n.phase });
       d += (i === 0 ? "M" : "L") + X.toFixed(1) + "," + Y.toFixed(1);
     }
-    g.querySelector(".share-spiral").setAttribute("d", z.cizgisiz ? "" : d);
-    const dots = g.querySelectorAll(".share-dot");
-    dots.forEach((c, i) => {
+    cacheSpiral.setAttribute("d", z.cizgisiz ? "" : d);
+    cacheDots.forEach((c, i) => {
       const p = pts[i];
       if (!p) { c.style.opacity = "0"; return; }
       const br = reduceMotion ? 1 : 1 + 0.14 * Math.sin(ts / 3400 + p.phase);
@@ -968,7 +990,7 @@
     });
     // Merkezdeki nefes alan halka: ontoloji/esmâ'daki Zât halosuyla aynı
     // 6 saniyelik ritim.
-    const halo = g.querySelector(".share-halo");
+    const halo = cacheHalo;
     if (z.renk === "cift") halo.style.fill = renkGecis(RENK.celal, RENK.cemal, 0.5);
     else if (z.renk === "gecis") halo.style.fill = renkGecis(RENK.esikA, RENK.esikB, 0.5);
     else if (z.renk === "feyz") halo.style.fill = RENK.feyzA;
@@ -988,19 +1010,18 @@
     if (!stageEl) return;
     if (!startTs) startTs = ts;
     const el = stageEl;
-    const box = el.querySelector(".share-stage__frame");
-    const svg = el.querySelector(".share-stage__svg");
+    const box = cacheFrame, svg = cacheSvg;
     const w = box.clientWidth, h = box.clientHeight;
     svg.setAttribute("viewBox", "0 0 " + w + " " + h);
     if (tilt) tilt.step(ts, 16, true);
-    drawAmbient(svg, w, h, ts);
+    drawAmbient(w, h, ts);
 
     if (takeMode) { drawTake(el, ts); rafId = requestAnimationFrame(frame); return; }
     if (cardCapturing) { rafId = requestAnimationFrame(frame); return; }
 
     const cfg = scene._timing || TIMING[scene.tpl] || TIMING.soz;
     const t = ((ts - startTs) % cfg.loop) / cfg.loop;
-    el.querySelectorAll(".share-line").forEach((node) => {
+    cacheLines.forEach((node) => {
       // bkz. drawTake'teki aynı not: data-li, iki dilli bir satırın iki
       // .share-line'ının da AYNI vuruşu paylaşmasını sağlıyor.
       const li = parseInt(node.dataset.li, 10) || 0;
@@ -1009,9 +1030,10 @@
       node.style.opacity = v.toFixed(3);
       node.style.transform = "translateY(" + ((1 - v) * 14).toFixed(1) + "px)";
     });
-    const rule = el.querySelector(".share-rule");
+    const rule = cacheRule;
     if (rule) {
-      const v = beat(t, 0.30, 0.94);
+      const rb = cfg.ruleBeat || RULE_BEAT_DEFAULT;
+      const v = beat(t, rb[0], rb[1]);
       rule.style.opacity = (v * 0.55).toFixed(3);
       rule.style.transform = "scaleX(" + v.toFixed(3) + ")";
     }
@@ -1020,9 +1042,9 @@
 
   function stageMarkup(s) {
     const lines = s.lines.map((l, li) => {
-      const primary = '<p class="share-line share-line--' + l.kind + '" data-li="' + li + '">' + escapeHtml(l.text) + "</p>";
+      const primary = '<p class="share-line share-line--' + l.kind + '" data-li="' + li + '">' + escapeHtml(plainText(l.text)) + "</p>";
       const secondary = l.text2
-        ? '<p class="share-line share-line--' + l.kind + ' share-line--secondary" data-li="' + li + '">' + escapeHtml(l.text2) + "</p>"
+        ? '<p class="share-line share-line--' + l.kind + ' share-line--secondary" data-li="' + li + '">' + escapeHtml(plainText(l.text2)) + "</p>"
         : "";
       // İki dilli kartta bir mantıksal satırın çevirisi hemen altında
       // duruyor -- flex gap'i mantıksal satırlar arasında (grup), çeviri
@@ -1095,6 +1117,19 @@
     el.classList.toggle("is-busy", !!busy);
   }
 
+  // `preferCurrentTab` yalnız tarayıcının kendi seçim ekranında "Bu sekme"yi
+  // ÖN SEÇİLİ getirir -- kullanıcı yine de "Bütün ekran" ya da başka bir
+  // pencere seçebilir. O durumda aşağıdaki sabit kırpma matematiği (sx/sy,
+  // frameEl.getBoundingClientRect()) yanlış bölgeyi keser ve sessizce
+  // bozuk bir görüntü/video iner. displaySurface "browser" değilse akışı
+  // hemen durdurup recFail göstererek bu sessiz hatayı önlüyoruz.
+  function yanlisYuzeySecildi(stream) {
+    const track = stream.getVideoTracks()[0];
+    const settings = track && track.getSettings && track.getSettings();
+    const surface = settings && settings.displaySurface;
+    return !!surface && surface !== "browser";
+  }
+
   async function recordToFile() {
     if (!stageEl || recording) return;
     const frameEl = stageEl.querySelector(".share-stage__frame");
@@ -1107,6 +1142,12 @@
         audio: false,
       });
     } catch (e) {
+      recStatus(tt(UI.recFail), false);
+      setTimeout(() => recStatus("", false), 4000);
+      return;
+    }
+    if (yanlisYuzeySecildi(stream)) {
+      stream.getTracks().forEach((t) => t.stop());
       recStatus(tt(UI.recFail), false);
       setTimeout(() => recStatus("", false), 4000);
       return;
@@ -1215,6 +1256,12 @@
       setTimeout(() => recStatus("", false), 4000);
       return;
     }
+    if (yanlisYuzeySecildi(stream)) {
+      stream.getTracks().forEach((t) => t.stop());
+      recStatus(tt(UI.recFail), false);
+      setTimeout(() => recStatus("", false), 4000);
+      return;
+    }
     recording = true;
     stageEl.classList.add("is-recording");
     recStatus(tt(UI.recWait), true);
@@ -1297,9 +1344,19 @@
     closeStage();
     stageEl = document.createElement("div");
     stageEl.className = "share-stage" + (acikMod ? " share-stage--acik" : "") + (kareMod ? " share-stage--kare" : "");
+    stageEl.setAttribute("role", "dialog");
+    stageEl.setAttribute("aria-modal", "true");
+    stageEl.setAttribute("aria-label", tt(UI.title));
     stageEl.innerHTML = stageMarkup(s);
     document.body.appendChild(stageEl);
     document.body.classList.add("share-stage-open");
+    cacheFrame = stageEl.querySelector(".share-stage__frame");
+    cacheSvg = stageEl.querySelector(".share-stage__svg");
+    cacheSpiral = cacheSvg.querySelector(".share-spiral");
+    cacheHalo = cacheSvg.querySelector(".share-halo");
+    cacheDots = cacheSvg.querySelectorAll(".share-dot");
+    cacheLines = stageEl.querySelectorAll(".share-line");
+    cacheRule = stageEl.querySelector(".share-rule");
 
     tilt = GU.createTilt ? GU.createTilt({ pitch: 0.20, spinRate: 0.000035 }) : null;
     if (tilt) tilt.set(1, true);
@@ -1346,7 +1403,12 @@
         chromeTimer = setTimeout(fade, 2600);
       });
     }
-    stageEl.querySelector('[data-action="close"]').addEventListener("click", closeStage);
+    // role="dialog" bir yere odaklanmayı gerektirir -- kapat düğmesi hem en
+    // güvenli hem de en beklenen ilk durak (klavye/ekran okuyucu kullanıcısı
+    // için).
+    const stageCloseBtn = stageEl.querySelector('[data-action="close"]');
+    stageCloseBtn.addEventListener("click", closeStage);
+    stageCloseBtn.focus();
     stageEl.querySelector('[data-action="guides"]').addEventListener("click", () => {
       const g = stageEl.querySelector(".share-stage__guides");
       g.hidden = !g.hidden;
@@ -1372,6 +1434,7 @@
     if (chromeTimer) { clearTimeout(chromeTimer); chromeTimer = 0; }
     if (helixHandle) { helixHandle.destroy(); helixHandle = null; }
     if (stageEl) { stageEl.remove(); stageEl = null; }
+    cacheFrame = cacheSvg = cacheSpiral = cacheHalo = cacheDots = cacheLines = cacheRule = null;
     document.body.classList.remove("share-stage-open");
   }
 
@@ -1526,14 +1589,22 @@
     }
   }
 
+  // Panel açılışında, dil/şablon/filtre değişiminde her seferinde çağrılır --
+  // önceki çağrının 3 aday üretme isteği henüz bitmeden yenisi başlarsa
+  // (hızlı tıklama, ya da ilk açılışta veri hâlâ çekiliyorken şablon
+  // değişimi), eski isteğin sonucu YANLIŞ şablonun/dilin altına sızabiliyordu
+  // -- her çağrıya bir sıra numarası veriyoruz, yalnız hâlâ EN SON çağrı
+  // olan sonucu uyguluyoruz.
+  let refreshSeq = 0;
   function refresh() {
     candidates = [];
     renderCandidateList();
+    const seq = ++refreshSeq;
     const N = 3;
     const tasks = [];
     for (let i = 0; i < N; i++) tasks.push(buildScene(currentTpl).catch(function () { return null; }));
     Promise.all(tasks).then(function (results) {
-      if (!panel) return;
+      if (!panel || seq !== refreshSeq) return;
       candidates = results.filter(Boolean);
       if (!candidates.length) {
         const box = panel.querySelector(".share-panel__candidates");
@@ -1547,27 +1618,30 @@
   function buildPanel() {
     panel = document.createElement("div");
     panel.className = "share-panel";
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-modal", "true");
+    panel.setAttribute("aria-label", tt(UI.title));
 
     const chips = Object.keys(UI.tpl).map(function (k) {
       return '<button type="button" class="share-panel__chip' + (k === currentTpl ? " is-on" : "") +
-        '" data-tpl="' + k + '">' + escapeHtml(tt(UI.tpl[k])) + "</button>";
+        '" data-tpl="' + k + '" aria-pressed="' + (k === currentTpl) + '">' + escapeHtml(tt(UI.tpl[k])) + "</button>";
     }).join("");
 
     const dilChips = DIL_LANGS.map(function (l) {
       return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
-        (l === shareLangId ? " is-on" : "") + '" data-dil="' + l + '">' +
+        (l === shareLangId ? " is-on" : "") + '" data-dil="' + l + '" aria-pressed="' + (l === shareLangId) + '">' +
         escapeHtml(DIL_ETIKET[l] || l.toUpperCase()) + "</button>";
     }).join("");
 
     const ikinciDilChips = DIL_LANGS.map(function (l) {
       return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
-        (l === ikinciDilId ? " is-on" : "") + '" data-ikincidil="' + l + '">' +
+        (l === ikinciDilId ? " is-on" : "") + '" data-ikincidil="' + l + '" aria-pressed="' + (l === ikinciDilId) + '">' +
         escapeHtml(DIL_ETIKET[l] || l.toUpperCase()) + "</button>";
     }).join("");
 
     const zeminChips = ZEMIN.map(function (z) {
       return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
-        (z.id === zeminId ? " is-on" : "") + '" data-zemin="' + z.id + '">' +
+        (z.id === zeminId ? " is-on" : "") + '" data-zemin="' + z.id + '" aria-pressed="' + (z.id === zeminId) + '">' +
         escapeHtml(tt(z.ad)) + "</button>";
     }).join("");
 
@@ -1582,7 +1656,7 @@
       ];
       kaynak_chips = opts.map(function (o) {
         return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
-          (o.id === kaynakId ? " is-on" : "") + '" data-kaynak="' + o.id + '">' +
+          (o.id === kaynakId ? " is-on" : "") + '" data-kaynak="' + o.id + '" aria-pressed="' + (o.id === kaynakId) + '">' +
           escapeHtml(o.label) + "</button>";
       }).join("");
     }
@@ -1702,7 +1776,10 @@
         if (b.dataset.ikincidil === ikinciDilId) return;
         ikinciDilId = b.dataset.ikincidil;
         safeSet(IKINCIDIL_ANAHTAR, ikinciDilId);
-        panel.querySelectorAll("[data-ikincidil]").forEach(function (x) { x.classList.toggle("is-on", x === b); });
+        panel.querySelectorAll("[data-ikincidil]").forEach(function (x) {
+          x.classList.toggle("is-on", x === b);
+          x.setAttribute("aria-pressed", String(x === b));
+        });
         refresh();
       });
     });
@@ -1719,7 +1796,7 @@
         solSel.innerHTML = optsHtml;
         sagSel.innerHTML = optsHtml;
         if (d.list.length > 1) sagSel.selectedIndex = 1;
-      });
+      }).catch(function () {});
       const acBtn = karsilastirBox.querySelector('[data-action="karsilastir-ac"]');
       if (acBtn) {
         acBtn.addEventListener("click", function () {
@@ -1728,7 +1805,7 @@
           if (!solSel || !sagSel || !solSel.value || !sagSel.value) return;
           buildScene("karsilastir", { leftKey: solSel.value, rightKey: sagSel.value }).then(function (s) {
             if (s) openStage(s);
-          });
+          }).catch(function () {});
         });
       }
     }
@@ -1737,7 +1814,10 @@
       b.addEventListener("click", function () {
         zeminId = b.dataset.zemin;
         safeSet(ZEMIN_ANAHTAR, zeminId);
-        panel.querySelectorAll("[data-zemin]").forEach(function (x) { x.classList.toggle("is-on", x === b); });
+        panel.querySelectorAll("[data-zemin]").forEach(function (x) {
+          x.classList.toggle("is-on", x === b);
+          x.setAttribute("aria-pressed", String(x === b));
+        });
       });
     });
 
@@ -1747,7 +1827,10 @@
         b.addEventListener("click", function () {
           kaynakId = b.dataset.kaynak;
           safeSet(KAYNAK_ANAHTAR, kaynakId);
-          kaynakBox.querySelectorAll("[data-kaynak]").forEach(function (x) { x.classList.toggle("is-on", x === b); });
+          kaynakBox.querySelectorAll("[data-kaynak]").forEach(function (x) {
+            x.classList.toggle("is-on", x === b);
+            x.setAttribute("aria-pressed", String(x === b));
+          });
           refresh();
         });
       });
@@ -1766,7 +1849,11 @@
     });
 
     panel.querySelector('[data-action="shuffle"]').addEventListener("click", refresh);
-    panel.querySelector('[data-action="quit"]').addEventListener("click", closePanel);
+    const panelCloseBtn = panel.querySelector('[data-action="quit"]');
+    panelCloseBtn.addEventListener("click", closePanel);
+    // bkz. openStage'deki aynı not -- role="dialog" açıldığında odağı
+    // içeri taşımak gerekir, en güvenli ilk durak kapat düğmesi.
+    panelCloseBtn.focus();
 
     renderSavedLists();
     refresh();
@@ -1787,7 +1874,15 @@
   // --- gizli kelime ----------------------------------------------------
   let buffer = "";
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && stageEl) { closeStage(); return; }
+    if (e.key === "Escape" && (stageEl || panel)) {
+      // Sahne panelin ÜSTÜNDE açılıyor (openStage panel'i kapatmıyor) --
+      // Escape her zaman en üstteki katmanı kapatmalı: sahne açıksa önce o,
+      // yoksa (yalnız ayar paneli açıksa) panel. Eskiden yalnız stageEl
+      // kontrol ediliyordu, panel tek başına açıkken Escape hiçbir şey
+      // yapmıyordu (bkz. teknik inceleme, bulgu #6).
+      if (stageEl) closeStage(); else closePanel();
+      return;
+    }
     if (e.key.length !== 1) return;
     if (e.metaKey) return;
     // AltGr (Ctrl+Alt) Türkçe klavyede "@" üretiyor -- bkz. edit-mode.js.
