@@ -14,8 +14,6 @@
     cizimler: { tr: "Çizimler", en: "Diagrams", pt: "Diagramas" },
     sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
     futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
-    kozmik: { tr: "Kozmik Animasyonlar", en: "Cosmic Animations", pt: "Animações Cósmicas" },
-    atlas: { tr: "Atlas", en: "Atlas", pt: "Atlas" },
     kavram: { tr: "Kavramlar", en: "Concepts", pt: "Conceitos" },
   };
 
@@ -31,8 +29,6 @@
     cizimler: "--series-theme",
     sorular: "--series-sorular-en-temel",
     futuhat: "--series-hal-muameleler",
-    kozmik: "--series-theme",
-    atlas: "--series-theme",
     kavram: "--series-theme",
   };
 
@@ -103,16 +99,6 @@
             sub: p.hero && p.hero.summary,
             searchText: allLangText(p.title) + " " + allLangText(p.hero && p.hero.summary) + " " + sectionHeadings,
           });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/kozmik.json").then((d) => {
-        (d.sahneler || []).forEach((s) => {
-          index.push({ view: "kozmik", id: s.id, label: s.baslik, sub: s.aciklama, searchText: allLangText(s.baslik) + " " + allLangText(s.aciklama) });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/atlas-mertebeleri.json").then((d) => {
-        (d.katmanlar || []).forEach((k) => {
-          index.push({ view: "atlas", id: k.id, label: k.isim, sub: k.ozet, searchText: allLangText(k.isim) + " " + allLangText(k.ozet) });
         });
       }),
       window.DostGraphUtils.fetchJson("data/ibn-arabi/kavram-hayati.json").then((d) => {
