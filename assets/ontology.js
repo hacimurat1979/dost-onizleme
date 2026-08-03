@@ -364,6 +364,24 @@
         parseHashAndGo();
         window.__dostAppReady = true;
         if (window.DostViewStatus) window.DostViewStatus.hide("ontology-wrap");
+        // Doğuş (FAZ 1): yalnız gerçekten ana ekrandaysak — bir deep-link
+        // başka görünüme ya da bir düğüme götürdüyse araya girmeyiz.
+        // Karşılama ekranı hâlâ görünüyorsa onun sönüşünü bekler (welcome.js
+        // sönüş başlarken "dost:welcome-left" yayar); daha önce görülmüşse
+        // (aynı oturumda ikinci sayfa yüklemesi) kısa bir nefesle başlar.
+        function maybeBirth() {
+          if (!birthFn) return;
+          if (currentMainView !== "ontology" || currentDetailNode || currentDetailEdge) { birthFn = null; return; }
+          const f = birthFn;
+          birthFn = null;
+          f();
+        }
+        const welcomeEl = document.getElementById("welcome-screen");
+        if (welcomeEl && !welcomeEl.hidden) {
+          document.addEventListener("dost:welcome-left", maybeBirth, { once: true });
+        } else {
+          setTimeout(maybeBirth, 150);
+        }
       })
       .catch((err) => {
         console.error("Ontoloji verisi yüklenemedi / Failed to load ontology data", err);
@@ -953,6 +971,10 @@
   };
 
   let simulation, nodeSel, pathSel, labelSel, nodeById;
+  // FAZ 1 (grafik-önce, 2026-08-03): buildGraph doğuş animasyonunu bu
+  // değişkene bırakır; loadOntologyData rota çözüldükten sonra (yalnız
+  // gerçekten ontoloji ana ekranındaysak) çağırır. Bkz. runBirth.
+  let birthFn = null;
 
   function buildGraph(data) {
     const width = svg.node().clientWidth;
@@ -1135,6 +1157,9 @@
     // okumasından sonra onu görünür kılmamak eksiklik oldu. Yalnız 2B'de
     // görünür: 3B'de düzlem yattığı için anlamını yitiriyor.
     const ringLayer = spinGroup.append("g").attr("class", "onto-ring-layer");
+    // Doğuş animasyonu (runBirth) halkayı da kademeli belirtir; animasyon
+    // dışında hep 1 (paintPositions her karede kullanıyor).
+    let birthRing = 1;
     const ringEl = ringLayer
       .append("ellipse")
       .attr("class", "onto-ring")
@@ -1245,8 +1270,13 @@
           return `translate(${d.px},${d.py}) scale(${Math.max(0.55, s).toFixed(3)})`;
         })
         // Atmosfer: uzaktaki düğüm soluklaşır (Hâller'deki aynı ölçü).
-        .style("opacity", (d) => (tilt > 0.02 ? Math.max(0.62, Math.min(1, d.__depth * 1.02)) : 1));
-      ringEl.style("opacity", 1 - tilt);
+        // __birth: doğuş animasyonu sırasında katman katman belirme çarpanı
+        // (runBirth); animasyon bitince alan siliniyor, çarpan 1'e düşüyor.
+        .style("opacity", (d) => {
+          const base = tilt > 0.02 ? Math.max(0.62, Math.min(1, d.__depth * 1.02)) : 1;
+          return d.__birth == null ? base : base * d.__birth;
+        });
+      ringEl.style("opacity", (1 - tilt) * birthRing);
       // Etiket çakışması: kuvvet düzeni düğümleri yaklaştırdığında yazılar
       // üst üste biniyordu (ölçüldü 2026-07-31: masaüstü 2, mobil 8).
       // Düğüm yerinde kalır, yalnız yazı dikeyde yer açar; motor
@@ -1264,6 +1294,58 @@
     }
 
     simulation.on("tick", paintPositions);
+
+    // ------------------------------------------------------------------
+    // Doğuş (FAZ 1, 2026-08-03). "O'ndan geldik"in grafiğe çevrilmiş hâli:
+    // sahne Zât'ın noktasına kapalı başlar, oradan bütün haritaya açılır;
+    // düğümler katman sırasına göre (tenezzül sırası: önce Zât, sonra
+    // isimler, sonra âlemler...) belirir; halka ve kenarlar en sonda
+    // bağlanır. Karşılama ekranının halkası sönerken tetiklenir (bkz.
+    // welcome.js "dost:welcome-left"), reduced-motion'da hiç çalışmaz.
+    birthFn = function runBirth() {
+      if (reduceMotion) return;
+      const dhat = nodeById.get("dhat");
+      if (!dhat) return;
+      // Görünüm açılışta 3B eğimli başlıyor (aşağıdaki "Açılışta doğrudan
+      // mertebe eksenine eğ" bloğu) — Zât'ın gerçek EKRAN konumu bu yüzden
+      // tx/ty değil, projeksiyondan gelen px/py. Bitişte de zoomIdentity
+      // değil, sarmalı çerçeveye sığdıran dönüşüme oturuyoruz (2B/3B her
+      // iki durumda da doğru olan tek hedef bu).
+      const bx = dhat.px != null ? dhat.px : dhat.tx;
+      const by = dhat.py != null ? dhat.py : dhat.ty;
+      const startScale = 2.6;
+      svg.call(zoom.transform, d3.zoomIdentity
+        .translate(width / 2 - startScale * bx, height / 2 - startScale * by)
+        .scale(startScale));
+      svg.transition().duration(2600).ease(d3.easeCubicInOut).call(zoom.transform, computeFitTransform());
+
+      nodes.forEach((n) => { n.__birth = 0; });
+      birthRing = 0;
+      const linksG = svg.select("g.links").attr("opacity", 0);
+      linksG.transition().delay(1400).duration(900).attr("opacity", 1);
+
+      const STAG = 300, DUR = 700, start = performance.now();
+      function step(now) {
+        const t = now - start;
+        let done = true;
+        nodes.forEach((n) => {
+          const v = Math.max(0, Math.min(1, (t - n.layer * STAG) / DUR));
+          n.__birth = v * v * (3 - 2 * v);
+          if (v < 1) done = false;
+        });
+        birthRing = Math.max(0, Math.min(1, (t - 900) / 900));
+        if (birthRing < 1) done = false;
+        paintPositions();
+        if (!done) {
+          requestAnimationFrame(step);
+        } else {
+          nodes.forEach((n) => { delete n.__birth; });
+          birthRing = 1;
+          paintPositions();
+        }
+      }
+      requestAnimationFrame(step);
+    };
 
     // ---- Sakin, huzurlu salınım ----
     // Burada bilerek TAM DÖNÜŞ yapmıyoruz. Hâller ve Sırlar'da dönüş

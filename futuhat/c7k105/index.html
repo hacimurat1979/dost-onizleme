@@ -145,25 +145,56 @@
     </div>
     <button class="welcome-screen__skip" id="welcome-skip" type="button" aria-label="Geç / Skip / Pular">Geç · Skip · Pular</button>
   </div>
-  <script src="assets/welcome.js" integrity="sha384-XpbM67ETuLJVWfPPr/v4yHFG2kZhkDjSeDbwJ4/o+qzbJTlP574NZBUq7E21Gh2G"></script>
+  <script src="assets/welcome.js" integrity="sha384-PMKwr/F/S21Mv9Ib2EUXwHLmM76aY8CjL7q9zGVfhHG/BSWfluullnp/wTnnzrUn"></script>
   <header class="app-header">
     <div class="app-header__controls">
-      <div class="view-switch" id="view-switch">
-        <button class="btn-ghost btn-ghost--active" id="ontology-btn" type="button" aria-current="page" title="Varlık mertebelerinin haritası — Map of the ranks of being — Mapa dos graus do ser" data-tr="Ontoloji" data-en="Ontology" data-pt="Ontologia">Ontoloji</button>
-        <button class="btn-ghost" id="esma-btn" type="button" title="Allah'ın güzel isimleri — The Beautiful Names of Allah — Os Belos Nomes de Allah" data-tr="Esmâü'l-Hüsnâ" data-en="The Beautiful Names" data-pt="Os Belos Nomes">Esmâü'l-Hüsnâ</button>
-        <button class="btn-ghost" id="hal-btn" type="button" title="Manevi yolculuğun basamakları — The stages of the spiritual journey — As etapas da jornada espiritual" data-tr="Hâller" data-en="States" data-pt="Estados">Hâller</button>
-        <button class="btn-ghost" id="terimler-btn" type="button" title="İbn Arabî'nin terimleri, tek tek — Ibn Arabi's terms, one by one — Os termos de Ibn Arabi, um a um" data-tr="Terimler" data-en="Terms" data-pt="Termos">Terimler</button>
-        <button class="btn-ghost" id="cizimler-btn" type="button" title="Kavramlar arası ilişkileri gösteren şemalar — Diagrams showing relationships between concepts — Diagramas mostrando relações entre conceitos" data-tr="Çizimler" data-en="Diagrams" data-pt="Diagramas">Çizimler</button>
-        <button class="btn-ghost" id="sirlar-btn" type="button" title="İşaret edilen ama açıklanmayan konular — Matters pointed to but never explained — Assuntos apontados mas nunca explicados" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
-        <button class="btn-ghost" id="sorular-btn" type="button" title="Sık sorulan sorular, kısa cevaplarla — Frequently asked questions, briefly answered — Perguntas frequentes, respondidas brevemente" data-tr="Sorular" data-en="Questions" data-pt="Perguntas">Sorular</button>
-        <button class="btn-ghost" id="menziller-btn" type="button" title="Ayın yirmi sekiz konağı — The Moon's twenty-eight mansions — As vinte e oito mansões da Lua" data-tr="Menziller" data-en="Mansions" data-pt="Mansões">Menziller</button>
-        <button class="btn-ghost" id="tasiyicilar-btn" type="button" title="Arşı taşıyan melekler — The angels who bear the Throne — Os anjos que carregam o Trono" data-tr="Taşıyanlar" data-en="The Bearers" data-pt="Os Portadores">Taşıyanlar</button>
-        <button class="btn-ghost" id="futuhat-btn" type="button" title="Fütûhât-ı Mekkiyye, kısım kısım — The Meccan Revelations, part by part — As Revelações de Meca, parte por parte" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
-        <button class="btn-ghost" id="fusus-btn" type="button" title="Füsûsu'l-Hikem, fass fass — The Bezels of Wisdom, chapter by chapter — Os Engastes da Sabedoria, capítulo por capítulo" data-tr="Füsûs" data-en="Fusus" data-pt="Fusus">Füsûs</button>
-        <button class="btn-ghost btn-ghost--yeni" id="kavram-btn" type="button" title="Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti — A data-derived life summary tracing each concept through the Futuhat and Fusus — Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus" data-tr="Kavramlar" data-en="Concepts" data-pt="Conceitos">Kavramlar</button>
-        <button class="btn-ghost btn-ghost--yeni" id="ayethadis-btn" type="button" title="Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin — An index of quoted verses and hadiths, ordered by how often each recurs — Um índice de versículos e ditos citados, ordenados por quantas vezes cada um recorre" data-tr="Âyet &amp; Hadis" data-en="Verses &amp; Hadith" data-pt="Versículos e Hadith">Âyet &amp; Hadis</button>
-        <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
-      </div>
+      <!-- FAZ 1 (grafik-önce arayüz, 2026-08-03): 14 eşit ağırlıklı sekme
+           karar yorgunluğu üretiyordu; hepsi ☰ çekmecesine taşındı, üst
+           çubukta yalnız ☰ + arama + şaşırt + tema + dil kaldı. Düğme
+           id'leri ve işaretlemeleri AYNEN korunuyor (ontology.js
+           markActiveNavButton / markNavYeniSeen bunlara bağlı) — yalnız
+           yerleri değişti. Çekmece davranışı: assets/nav-drawer.js. -->
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer"
+              data-tr-title="Bölümler" data-en-title="Sections" data-pt-title="Seções" title="Bölümler" aria-label="Bölümler">
+        <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><g stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></g></svg>
+        <span class="nav-toggle__label" id="nav-toggle-label" aria-hidden="true">Ontoloji</span>
+      </button>
+      <nav class="nav-drawer" id="nav-drawer" hidden
+           data-tr-aria-label="Bölümler" data-en-aria-label="Sections" data-pt-aria-label="Seções" aria-label="Bölümler">
+        <div class="nav-drawer__group">
+          <p class="nav-drawer__heading" data-tr="Harita" data-en="The Map" data-pt="O Mapa">Harita</p>
+          <div class="nav-drawer__items">
+            <button class="btn-ghost btn-ghost--active" id="ontology-btn" type="button" aria-current="page" title="Varlık mertebelerinin haritası — Map of the ranks of being — Mapa dos graus do ser" data-tr="Ontoloji" data-en="Ontology" data-pt="Ontologia">Ontoloji</button>
+            <button class="btn-ghost" id="esma-btn" type="button" title="Allah'ın güzel isimleri — The Beautiful Names of Allah — Os Belos Nomes de Allah" data-tr="Esmâü'l-Hüsnâ" data-en="The Beautiful Names" data-pt="Os Belos Nomes">Esmâü'l-Hüsnâ</button>
+            <button class="btn-ghost" id="hal-btn" type="button" title="Manevi yolculuğun basamakları — The stages of the spiritual journey — As etapas da jornada espiritual" data-tr="Hâller" data-en="States" data-pt="Estados">Hâller</button>
+            <button class="btn-ghost" id="menziller-btn" type="button" title="Ayın yirmi sekiz konağı — The Moon's twenty-eight mansions — As vinte e oito mansões da Lua" data-tr="Menziller" data-en="Mansions" data-pt="Mansões">Menziller</button>
+            <button class="btn-ghost" id="tasiyicilar-btn" type="button" title="Arşı taşıyan melekler — The angels who bear the Throne — Os anjos que carregam o Trono" data-tr="Taşıyanlar" data-en="The Bearers" data-pt="Os Portadores">Taşıyanlar</button>
+          </div>
+        </div>
+        <div class="nav-drawer__group">
+          <p class="nav-drawer__heading" data-tr="Külliyat" data-en="The Works" data-pt="A Obra">Külliyat</p>
+          <div class="nav-drawer__items">
+            <button class="btn-ghost" id="futuhat-btn" type="button" title="Fütûhât-ı Mekkiyye, kısım kısım — The Meccan Revelations, part by part — As Revelações de Meca, parte por parte" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
+            <button class="btn-ghost" id="fusus-btn" type="button" title="Füsûsu'l-Hikem, fass fass — The Bezels of Wisdom, chapter by chapter — Os Engastes da Sabedoria, capítulo por capítulo" data-tr="Füsûs" data-en="Fusus" data-pt="Fusus">Füsûs</button>
+            <button class="btn-ghost btn-ghost--yeni" id="kavram-btn" type="button" title="Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti — A data-derived life summary tracing each concept through the Futuhat and Fusus — Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus" data-tr="Kavramlar" data-en="Concepts" data-pt="Conceitos">Kavramlar</button>
+          </div>
+        </div>
+        <div class="nav-drawer__group">
+          <p class="nav-drawer__heading" data-tr="Sözlük ve Sorular" data-en="Lexicon &amp; Questions" data-pt="Léxico e Perguntas">Sözlük ve Sorular</p>
+          <div class="nav-drawer__items">
+            <button class="btn-ghost" id="terimler-btn" type="button" title="İbn Arabî'nin terimleri, tek tek — Ibn Arabi's terms, one by one — Os termos de Ibn Arabi, um a um" data-tr="Terimler" data-en="Terms" data-pt="Termos">Terimler</button>
+            <button class="btn-ghost" id="sorular-btn" type="button" title="Sık sorulan sorular, kısa cevaplarla — Frequently asked questions, briefly answered — Perguntas frequentes, respondidas brevemente" data-tr="Sorular" data-en="Questions" data-pt="Perguntas">Sorular</button>
+            <button class="btn-ghost" id="sirlar-btn" type="button" title="İşaret edilen ama açıklanmayan konular — Matters pointed to but never explained — Assuntos apontados mas nunca explicados" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
+            <button class="btn-ghost" id="cizimler-btn" type="button" title="Kavramlar arası ilişkileri gösteren şemalar — Diagrams showing relationships between concepts — Diagramas mostrando relações entre conceitos" data-tr="Çizimler" data-en="Diagrams" data-pt="Diagramas">Çizimler</button>
+            <button class="btn-ghost btn-ghost--yeni" id="ayethadis-btn" type="button" title="Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin — An index of quoted verses and hadiths, ordered by how often each recurs — Um índice de versículos e ditos citados, ordenados por quantas vezes cada um recorre" data-tr="Âyet &amp; Hadis" data-en="Verses &amp; Hadith" data-pt="Versículos e Hadith">Âyet &amp; Hadis</button>
+          </div>
+        </div>
+        <div class="nav-drawer__group">
+          <div class="nav-drawer__items">
+            <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
+          </div>
+        </div>
+      </nav>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro" aria-label="Aydınlık / Karanlık mod — Light / Dark mode — Modo claro / escuro">
         <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.2"/><line x1="12" y1="19.8" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.2" y2="12"/><line x1="19.8" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.6" y2="4.4"/></g></svg>
         <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
@@ -1024,6 +1055,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/theme.js" defer integrity="sha384-NegwurN40eZr0Cwp0FE3fFU6d1ptUcUoeGVSaX+M74KAJDTn8QVt2hP+z+Pf29Kf"></script>
   <script src="assets/vendor/d3.min.js" defer integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i"></script>
   <script src="assets/i18n.js" defer integrity="sha384-bqPgHDorfYKkI+ErvFXEAGead8E3pDVsel6p3S9LkyxoY1QRWrMrTUpeiooWejvL"></script>
+  <script src="assets/nav-drawer.js" defer integrity="sha384-w6OCnJNlTrR9buON6EjEnkfdzV6RodSt/ciBYIUSfj9bqSK84efk3mmLbgweQaD2"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
   <script src="assets/graph-utils.js" defer integrity="sha384-aq3L/0GXCohq40GtPpQAm6QCAu7Z8GqP73/ATFArgRdAvzKII4I2YqcFSpzpza4m"></script>
   <script src="assets/helix.js" defer integrity="sha384-+aEXNIbO2q7MLWaAl0OFtAYEF/52nQoLUKK1W4mhHc0P2DJdQNRlebKKaIh4TSF7"></script>
@@ -1045,7 +1077,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/futuhat.js" defer integrity="sha384-yJWC240f2U3Hy8gRILItRJx0UkveKkWW0N7go6Zg8ooEiZLYHDSknspY2fY2+VA1"></script>
   <script src="assets/fusus.js" defer integrity="sha384-LysUYN1mzDZB3kcyYXKoE5EmK1VSdmCE6+E/CG2yM+6fq2cNlu7cNJvvVNoSIdXA"></script>
   <script src="assets/view-loader.js" defer integrity="sha384-GXTCr4tQgdBIEEdmd4MkHd793aQGPW/ieqloIo3VSzelUgihsEn3H0yMIv2aVGS6"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-dWtB2CVBiX7CSh4O52dsa5izD5UsuEHLh9SYzWMkeJUlBwDKB87pu05Ukw5cFMTc"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-V/YFM9dyQ48Xt6px2WVZmEgBSYu3lDoXX50RyMjUR1O2DzRYgMgdnUURefOJg7R9"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-pUGs2ZLA6M1Uv5y5m6q8SzOrNwoimvexeWXg1MwnVMdlNPg4urvUdMtthr/qlAE1"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>

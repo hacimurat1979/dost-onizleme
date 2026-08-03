@@ -561,12 +561,69 @@ html {
   box-shadow: 0 0 0 2px var(--surface-1);
 }
 
-.view-switch {
+/* FAZ 1 (grafik-önce arayüz, 2026-08-03): eski .view-switch (14 sekmelik
+   düz sıra) kaldırıldı; bölümler artık ☰ ile açılan .nav-drawer içinde,
+   dört küme hâlinde. Düğmelerin kendisi aynı .btn-ghost dilini kullanmaya
+   devam ediyor — "aynı hakikate başka pencere" ilkesi: yeni bir görsel
+   metafor icat edilmedi, var olan çip dili yeni yerinde yaşıyor. */
+.nav-toggle {
+  height: 44px;
   display: inline-flex;
-  gap: 6px;
-  /* bkz. .app-header__controls -- sarma varsayılan */
+  align-items: center;
+  gap: 9px;
+  padding: 0 16px 0 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.nav-toggle:hover,
+.nav-toggle:focus-visible,
+.nav-toggle[aria-expanded="true"] {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+.nav-toggle__label {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  max-width: 44vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav-drawer {
+  position: fixed;
+  top: calc(var(--app-header-height, 80px) + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 70;
+  width: min(92vw, 640px);
+  max-height: calc(100vh - var(--app-header-height, 80px) - 24px);
+  overflow-y: auto;
+  padding: 18px 20px 20px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--page-plane);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.18);
+}
+.nav-drawer__group + .nav-drawer__group {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--gridline);
+}
+.nav-drawer__heading {
+  margin: 0 0 8px;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.nav-drawer__items {
+  display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  gap: 6px;
 }
 
 /* Shared 44x44 circular icon-button chrome (touch-target minimum) --
@@ -794,7 +851,13 @@ body.sessiz-mod-on .app-header {
 .graph-wrap {
   position: relative;
   width: 100%;
-  height: min(80vh, 820px);
+  /* FAZ 1 (grafik-önce, 2026-08-03): grafik artık sayfanın içindeki bir
+     öğe değil, görünür alanın kendisi — üst çubuk (ölçülen yükseklik
+     --app-header-height) ve küçük bir nefes payı dışında ekranın tamamı.
+     svh: mobil tarayıcıların kaybolan adres çubuğuyla 100vh'nin taşması
+     bilinen sorun; destekleyen tarayıcıda svh kazanır. */
+  height: max(480px, calc(100vh - var(--app-header-height, 80px) - 40px));
+  height: max(480px, calc(100svh - var(--app-header-height, 80px) - 40px));
   background: var(--surface-1);
   border: 1px solid var(--border);
   border-radius: 12px;

@@ -100,6 +100,11 @@
     if (root.classList.contains("welcome-screen--leaving") || root.hidden) return;
     root.classList.add("welcome-screen--leaving");
     try { sessionStorage.setItem(SEEN_KEY, "1"); } catch (e) {}
+    // FAZ 1 (grafik-önce, 2026-08-03): karşılama halkası sönmeye BAŞLARKEN
+    // haber veriyoruz ki altındaki ontoloji grafiği doğuş animasyonuna
+    // (ontology.js runBirth) tam bu esnada başlasın — halka kaybolurken
+    // Zât belirir, iki hareket tek bir devir gibi okunur.
+    document.dispatchEvent(new CustomEvent("dost:welcome-left"));
     setTimeout(() => {
       root.hidden = true;
     }, 950);
