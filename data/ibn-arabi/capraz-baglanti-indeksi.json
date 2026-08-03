@@ -170,6 +170,48 @@
    }
   },
   {
+   "view": "ontoloji",
+   "id": "veli",
+   "name": {
+    "tr": "Velî (Allah Dostu)",
+    "en": "The Friend (Wali)",
+    "pt": "O Amigo (Wali)"
+   },
+   "short": {
+    "tr": "Hâli değişmeyen, yardım eden ama yardım görmeyen",
+    "en": "The one whose state does not change, who helps but is not helped",
+    "pt": "Aquele cujo estado não muda, que ajuda mas não é ajudado"
+   }
+  },
+  {
+   "view": "ontoloji",
+   "id": "halife",
+   "name": {
+    "tr": "Halîfe (Vekil)",
+    "en": "The Vicegerent (Khalifa)",
+    "pt": "O Vigário (Khalifa)"
+   },
+   "short": {
+    "tr": "Hâli değişen, hem yardım eden hem görülen, itham edilebilen",
+    "en": "The one whose state changes, who both helps and is helped, who may be accused",
+    "pt": "Aquele cujo estado muda, que ajuda e é ajudado, que pode ser acusado"
+   }
+  },
+  {
+   "view": "ontoloji",
+   "id": "bilinen-bilinmeyen",
+   "name": {
+    "tr": "Allah Katında Bilinen, Âlemde Bilinmeyen",
+    "en": "Known to God, Unknown in the World",
+    "pt": "Conhecido junto de Deus, Desconhecido no Mundo"
+   },
+   "short": {
+    "tr": "Velâyetin en yüksek makamları, dünyada tanınmamakla ölçülür",
+    "en": "The highest stations of friendship with God are measured by being unrecognised in the world",
+    "pt": "As estações mais altas da amizade com Deus medem-se por não serem reconhecidas no mundo"
+   }
+  },
+  {
    "view": "esma",
    "id": "zat",
    "name": {
