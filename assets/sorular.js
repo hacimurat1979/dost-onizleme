@@ -298,8 +298,13 @@
     zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.4, 3], (event) => !event.target.closest(".node"));
     svgNode.addEventListener("wheel", () => { setTimeout(() => { currentK = d3.zoomTransform(svgNode).k; }, 0); }, { passive: true });
 
-    const rc = document.getElementById("sorular-recenter");
-    if (rc) rc.onclick = () => { showAllQuestionsList(); };
+    // 2026-08-03'e kadar bu düğme showAllQuestionsList() çağırıyordu -- yani
+    // ESC ile BİREBİR aynı işi yapıyordu (açık kategoriyi kapat, paneli
+    // listeye döndür). O zaman "geri çekilmek" fiilinin Sorular'da kendine
+    // ait bir anlamı kalmıyordu. Sözleşmeye göre (ETKILESIM_DILI.md) burada
+    // yalnız BAKIŞ sıfırlanır: açık kategori ve açık panel kullanıcının
+    // seçimidir, korunur; çerçeve o seçime göre yeniden kurulur.
+    GU.wireRecenter("sorular-recenter", () => fitView(true));
     if (backBtn) { backBtn.hidden = !currentDetailQuestion && !expandedCatId; backBtn.onclick = () => showAllQuestionsList(); }
     // Boşluğa tıklamak: önce odağı bırakır, sonra açık kategoriyi kapatır.
     svg.on("click", () => {
@@ -989,11 +994,12 @@
     else if (detailPanel && !detailPanel.hidden) showAllQuestionsList(true);
   }
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key !== "Escape") return;
-    if (wrapEl.hidden) return;
-    if (!currentDetailQuestion && !expandedCatId) return;
+  // Bir adım geri: açık soru ya da açık kategori varsa bütün-liste hâline
+  // dön. (Recenter'dan 2026-08-03'te ayrıştı: o yalnız çerçeveyi kuruyor.)
+  GU.registerStepBack("sorular-wrap", () => {
+    if (!currentDetailQuestion && !expandedCatId) return false;
     showAllQuestionsList();
+    return true;
   });
 
   // sürükleme sırasında rAF sürsün

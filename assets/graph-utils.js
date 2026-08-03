@@ -367,6 +367,159 @@ window.DostGraphUtils = (function () {
     };
   }
 
+  // KAPI — bkz. ETKILESIM_DILI.md: "geçiş dekor değil, dönüşümdür."
+  //
+  // İki bölüm arasındaki ilişki metafizik olarak "içinde" ise (Esmâ, Zât'ın
+  // ilk belirişinin İÇİDİR), geçiş de "içine girme" gibi görünmeli — yan
+  // yana iki sekme gibi değil. Bu yüzden kapıdan geçerken sahne kesilmiyor:
+  // kapı olan düğüm BÜYÜYEREK gidilen haritanın merkezine oturuyor, yeni
+  // sahne onun içinden açılıyor.
+  //
+  // Ucuz tutuldu (planın kendi ölçüsü: "tek canvas hissinin ~%80'i,
+  // maliyetinin ~%20'siyle"): iki grafiği tek bir canvas'a taşımıyoruz;
+  // yalnız kapı düğümünün ekrandaki dairesini alıp hedefin merkezine doğru
+  // büyütüyoruz. Gerçek grafikler altında sessizce yer değiştiriyor.
+  //
+  // reduced-motion'da hiç çalışmaz — atlanır, taklit edilmez. Doğrudan bir
+  // adrese gelindiğinde de çağrılmaz (çağıran taraf karar verir):
+  // gelinmemiş bir yerden çıkış animasyonu yalan olurdu.
+  function gateTransition(opts, onSwitch) {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const kaynak = opts.fromRect;
+    if (reduce || !kaynak || !kaynak.width) { onSwitch(); return; }
+
+    // Hedef merkez, GÖRÜNÜR olan sahne alanından ölçülür. Gidilecek görünümün
+    // sarmalayıcısı o an `hidden` olduğu için ölçüsü 0x0'dır -- ilk yazımda
+    // hedef olarak o alınmıştı ve daire ekranın sol üst köşesine (0,0) doğru
+    // açılıyordu. İki graf görünümü aynı alanı paylaştığı için görünür olanı
+    // ölçmek hem doğru hem sağlam.
+    let hedefEl = document.querySelector(".graph-wrap:not([hidden])");
+    if (opts.targetEl && opts.targetEl.getBoundingClientRect().width > 0) hedefEl = opts.targetEl;
+    const hedef = hedefEl && hedefEl.getBoundingClientRect().width > 0
+      ? hedefEl.getBoundingClientRect()
+      : { left: 0, top: 0, width: window.innerWidth, height: window.innerHeight };
+    const hx = hedef.left + hedef.width / 2;
+    const hy = hedef.top + hedef.height / 2;
+
+    const daire = document.createElement("div");
+    daire.className = "gate-orb";
+    daire.setAttribute("aria-hidden", "true");
+    const r0 = Math.max(6, Math.min(kaynak.width, kaynak.height) / 2);
+    daire.style.left = (kaynak.left + kaynak.width / 2) + "px";
+    daire.style.top = (kaynak.top + kaynak.height / 2) + "px";
+    daire.style.width = daire.style.height = (r0 * 2) + "px";
+    // Yalnız DÜZ bir renk kabul ediliyor. SVG'de bir düğümün `fill`i
+    // gradyan olabiliyor (`url(#...)`) ve bu CSS'te geçerli bir
+    // background-image olarak ayrıştığı için sınıfın rengini eziyor,
+    // daire de görünmez kalıyordu (ilk yazımda öyle oldu, ölçülüp
+    // düzeltildi: computed background "rgba(0,0,0,0) none" çıkıyordu).
+    if (opts.color && /^(rgb|#|hsl)/i.test(opts.color.trim())) {
+      daire.style.background = `radial-gradient(circle at 50% 50%, ${opts.color} 0%, ${opts.color} 45%, transparent 72%)`;
+    }
+    document.body.appendChild(daire);
+
+    // İki hareket, tek devir: önce kapı merkeze doğru büyür (sahne onun
+    // içine çekilir), sonra yeni sahne onun içinden açılırken daire söner.
+    const buyume = daire.animate(
+      [
+        { transform: "translate(-50%, -50%) scale(1)", opacity: 0.85 },
+        { transform: `translate(-50%, -50%) translate(${hx - (kaynak.left + kaynak.width / 2)}px, ${hy - (kaynak.top + kaynak.height / 2)}px) scale(${Math.max(6, hedef.height / (r0 * 2))})`, opacity: 0.5 },
+      ],
+      { duration: 620, easing: "cubic-bezier(.5,0,.3,1)", fill: "forwards" }
+    );
+
+    buyume.onfinish = () => {
+      onSwitch();
+      const sonme = daire.animate([{ opacity: 0.5 }, { opacity: 0 }],
+        { duration: 420, easing: "ease-out", fill: "forwards" });
+      sonme.onfinish = () => daire.remove();
+      // Animasyon API'si bir sebeple sessiz kalırsa daire ekranda asılı
+      // kalmasın: her hâlükârda temizleyen bir emniyet.
+      setTimeout(() => daire.remove(), 900);
+    };
+    setTimeout(() => { if (daire.isConnected && buyume.playState !== "finished") { buyume.cancel(); onSwitch(); daire.remove(); } }, 1600);
+  }
+
+  // "Değinmek" — bkz. ETKILESIM_DILI.md'nin dördüncü fiili: hover'ın
+  // gösterdiği şey, tıklamanın göstereceğinin KÜÇÜLTÜLMÜŞ hâli olmalı.
+  //
+  // Kenarlarda bu tutmuyordu: Ontoloji'de bir çizgiye değinmek yalnız onu
+  // vurguluyordu (hiç metin yok), Hâller'de ise ilişkinin TÜRÜNÜ yazıyordu
+  // ("yankı") ama GEREKÇESİNİ değil. Yani "bu ikisi neden bağlı" sorusunun
+  // cevabı ancak tıklayınca görünüyordu. Bir çizgi çizip gerekçesini
+  // saklamak, sitenin "biz bunu böyle okuyoruz" duruşunun tersidir.
+  //
+  // İlk cümle(ler)i alır: kısa bir gerekçe tek cümlede biterse ikinciyi de
+  // ekler. Cümle sınırı ancak noktalamadan SONRA büyük harf geliyorsa
+  // kabul ediliyor -- "s.58", "bkz.", "c.14", "vb." gibi kısaltmalar
+  // yüzünden cümle ortasından kesilmesin diye.
+  const CUMLE_SINIRI = /(?<=[.!?…])\s+(?=[A-ZÂÎÛÖÜÇĞİŞ"'«])/;
+  function ilkCumleler(metin, hedef) {
+    if (!metin) return "";
+    const parcalar = String(metin).split(CUMLE_SINIRI);
+    let out = parcalar[0] || "";
+    for (let i = 1; i < parcalar.length && out.length < (hedef || 110); i++) out += " " + parcalar[i];
+    if (out.length > 260) out = out.slice(0, 257).replace(/\s+\S*$/, "") + "…";
+    return out;
+  }
+
+  // Kenar önizlemesi: başlık (iki uç ya da ilişkinin adı), varsa tür etiketi,
+  // ve gerekçenin ilk cümlesi. `guven` verilirse bizim okuma güvenimizi de
+  // yazar -- sitede zaten panelde gösterilen etiketin aynısı.
+  function edgeReasonHtml(opts) {
+    const parts = ['<div class="node-hover-tip__title">' + opts.title + "</div>"];
+    if (opts.kindLabel) parts.push('<div class="node-hover-tip__eyebrow">' + opts.kindLabel + "</div>");
+    const gerekce = ilkCumleler(opts.reason);
+    if (gerekce) parts.push('<div class="node-hover-tip__short">' + gerekce + "</div>");
+    if (opts.confidence) parts.push('<div class="node-hover-tip__conf">' + opts.confidence + "</div>");
+    return parts.join("");
+  }
+
+  // "Bir adım geri" (Esc) — bkz. ETKILESIM_DILI.md'nin üçüncü fiili.
+  //
+  // 2026-08-03'e kadar ESC beş dosyada beş ayrı `keydown` dinleyicisiyle
+  // yazılmıştı; daha kötüsü, SIRLAR'ın geri davranışı kendi dosyasında
+  // değil ontology.js'in içinde özel bir dal olarak yaşıyordu
+  // (`window.__sirlarGraphApp.isFocused() -> unfocusTheme()`). Bir
+  // görünümün davranışının başka bir dosyada durması, sözleşmenin
+  // olmadığının en açık işaretiydi.
+  //
+  // Sözleşme: ortak katman NE ZAMAN sorusunu bilir (hangi görünüm açık,
+  // sıra kimde), görünüm NE YAPILACAĞINI bilir. Görünümün geri-adım
+  // fonksiyonu bir adım aldıysa `true` döner ve zincir orada durur;
+  // `false` dönerse genel geri adım (açık paneli kapat) devreye girer.
+  const stepBacks = [];
+  function registerStepBack(wrapId, fn) {
+    stepBacks.push({ wrapId: wrapId, fn: fn });
+  }
+  window.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    for (let i = 0; i < stepBacks.length; i++) {
+      const wrap = document.getElementById(stepBacks[i].wrapId);
+      if (!wrap || wrap.hidden) continue;
+      if (stepBacks[i].fn() === true) return;
+    }
+    const panel = document.getElementById("detail-panel");
+    if (panel && !panel.hidden) panel.hidden = true;
+  });
+
+  // Recenter ("geri çekilmek") — bkz. ETKILESIM_DILI.md'nin ikinci fiili.
+  // Altı graf görünümünün altısında da bir `.graph-recenter` düğmesi var ve
+  // her biri kendi bağlama satırını, kendi tekrar-bağlama koruyucusunu
+  // (dataset.wiredHal / dataset.wiredSir / hiç) ayrı yazmıştı -- Esmâ'nınki
+  // ise HİÇ yazılmamıştı: düğme duruyor, hiçbir dinleyicisi yok, tıklayınca
+  // sahne başlangıca dönmüyordu (2026-08-03'te ölçülüp Playwright ile
+  // doğrulandı). "Bağlanmamış düğme" o yüzden bu tur yasak oldu ve bağlama
+  // işi tek bir yere alındı: bir görünüm reset'in NE OLDUĞUNU bilir, bağlama
+  // disiplinini burası bilir.
+  function wireRecenter(buttonId, reset) {
+    const btn = document.getElementById(buttonId);
+    if (!btn || btn.dataset.wiredRecenter) return null;
+    btn.dataset.wiredRecenter = "1";
+    btn.addEventListener("click", () => reset());
+    return btn;
+  }
+
   // "Bir benzetmeyle" bloğu. Dört görünümde (esma/hal/ontology/sorular)
   // gövdesiyle birlikte kopyalanmıştı; 2026-07-31 taraması yakaladı.
   // Benzetmeler şu an görünen yüzden kaldırıldı ve gizli düzenleme kipiyle
@@ -380,5 +533,5 @@ window.DostGraphUtils = (function () {
          + `<p>${I18n.pick3(analogy)}</p></div>`;
   }
 
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor };
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor };
 })();

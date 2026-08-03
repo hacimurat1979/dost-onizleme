@@ -268,19 +268,11 @@
     });
   }
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key !== "Escape") return;
-    // Bir adım geri: önce açık detay panelini kapat; panel zaten kapalıysa
-    // ve Sırlar grafiğinde bir tema odaklanmışsa (bkz. sirlar-graph.js
-    // focusOnTheme), o odağı geri al -- "mevcut durumdan bir önceki duruma."
-    if (!detailPanel.hidden) {
-      detailPanel.hidden = true;
-      return;
-    }
-    if (window.__sirlarGraphApp && window.__sirlarGraphApp.isFocused && window.__sirlarGraphApp.isFocused()) {
-      window.__sirlarGraphApp.unfocusTheme();
-    }
-  });
+  // ESC ("bir adım geri") artık burada değil: ortak zincir graph-utils.js'te
+  // (registerStepBack), açık panelin kapanması da onun genel son adımı.
+  // Sırlar'ın tema odağını geri alan dal buradan KALDIRILDI ve kendi
+  // dosyasına taşındı -- bir görünümün davranışı başka bir dosyada
+  // yaşamamalı (bkz. ETKILESIM_DILI.md'nin son yasağı).
 
   // Lejant kutuları (Ontoloji/Esmâ/Hâller/Sırlar), özellikle dokunmatik/
   // tablet ekranlarda kısa viewport yüksekliğinde grafiğin üstüne düşüp
@@ -1112,13 +1104,12 @@
     const zoom = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.5, 4], (event) => !event.target.closest(".node"));
     window.__ontologyZoom = { svg, zoom };
 
-    const recenterBtn = document.getElementById("ontology-recenter");
-    if (recenterBtn) {
-      recenterBtn.addEventListener("click", () => {
-        const sel = reduceMotion ? svg : svg.transition().duration(400);
-        sel.call(zoom.transform, computeFitTransform());
-      });
-    }
+    window.DostGraphUtils.wireRecenter("ontology-recenter", () => {
+      // Seçim burada kamerayı taşımıyor (düğüme tıklamak yalnız paneli
+      // açıyor), o yüzden yalnız çerçeve sıfırlanıyor -- seçili düğüm kalır.
+      const sel = reduceMotion ? svg : svg.transition().duration(400);
+      sel.call(zoom.transform, computeFitTransform());
+    });
 
     function computeFitTransform() {
       const pad = 48;
@@ -1177,8 +1168,18 @@
       .attr("class", (d) => "link link--" + d.kind + " link--conf-" + confSlug(d.confidence))
       .attr("marker-end", (d) => "url(#arrow-" + (d.kind === "gather" ? "descent" : d.kind) + ")")
       .attr("fill", "none")
-      .on("mouseenter", (event, d) => highlightEdge(d))
-      .on("mouseleave", () => highlight(null))
+      // "Değinmek": çizgiye gelince NEDEN bağlı olduğu görünüyor (#10).
+      // Klavye karşılığı da var -- kenarlar odaklanabilir, aksi hâlde
+      // özellik yalnız fare kullananlara ait olurdu (bkz. ETKILESIM_DILI.md).
+      .attr("tabindex", 0)
+      .attr("role", "button")
+      .attr("aria-label", (d) => edgeAriaLabel(d))
+      .on("mouseenter", (event, d) => { highlightEdge(d); showEdgeTooltip(d, event); })
+      .on("mousemove", (event) => moveTooltip(event))
+      .on("mouseleave", () => { highlight(null); hideTooltip(); })
+      .on("focus", (event, d) => { highlightEdge(d); showEdgeTooltip(d, event); })
+      .on("blur", () => { highlight(null); hideTooltip(); })
+      .on("keydown", (event, d) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onEdgeClick(d); } })
       .on("click", (event, d) => onEdgeClick(d));
 
     // Ok tuşuyla gezinme: verilen yön vektörüne (dx,dy) en çok hizalı VE en
@@ -2233,6 +2234,42 @@
     moveTooltip(event);
   }
 
+  // Kenar önizlemesi (#10): tıklamayla açılan kenar panelinin küçültülmüş
+  // hâli -- ilişkinin adı, iki ucu, gerekçesinin ilk cümlesi ve (kesin
+  // saymadığımız yerlerde) güven etiketimiz. Odakla da açılıyor.
+  function edgeConfidenceText(c) {
+    if (!c || c === "Yüksek") return "";
+    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
+    return tt({ tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " }) + tt(label);
+  }
+
+  function showEdgeTooltip(l, event) {
+    if (!tooltip) return;
+    tooltip.innerHTML = window.DostGraphUtils.edgeReasonHtml({
+      title: I18n.pick3(l.source.name) + " → " + I18n.pick3(l.target.name),
+      kindLabel: I18n.pick3(l.relation),
+      reason: I18n.pick3(l.nature),
+      confidence: edgeConfidenceText(l.confidence),
+    });
+    tooltip.hidden = false;
+    if (event && typeof event.clientX === "number") moveTooltip(event);
+    else positionTooltipOnEdge(l);
+  }
+
+  // Klavyeyle gelindiğinde imleç konumu yok; ipucu kenarın orta noktasına
+  // konuyor (SVG koordinatı -> ekran koordinatı, zoom/eğim dahil).
+  function positionTooltipOnEdge(l) {
+    const pathNode = pathSel && pathSel.nodes().find((n) => d3.select(n).datum() === l);
+    if (!pathNode) return;
+    const box = pathNode.getBoundingClientRect();
+    moveTooltip({ clientX: box.left + box.width / 2, clientY: box.top + box.height / 2 });
+  }
+
+  function edgeAriaLabel(l) {
+    return I18n.pick3(l.source.name) + " → " + I18n.pick3(l.target.name)
+      + " — " + I18n.pick3(l.relation);
+  }
+
   function moveTooltip(event) {
     window.DostGraphUtils.moveTooltip(tooltip, wrapEl, event);
   }
@@ -2383,10 +2420,66 @@
       ${analogyHtml(d.analogy)}
       ${entityDiagramHtml(d)}
       ${insightsHtml(d.insights, d.sources, "ontoloji", d.id)}
+      ${gateHtml(d)}
       ${relatedEdgesHtml(d)}
     `;
     detailPanel.hidden = false;
+    wireGate(d);
     if (nodeSel) nodeSel.classed("node--active", (n) => n.id === d.id);
+  }
+
+  // KAPILAR (FAZ 2b) — bkz. ETKILESIM_DILI.md: "geçiş dekor değil,
+  // dönüşümdür." Ontoloji'nin bazı düğümlerinin sitede kendi haritası var;
+  // "Esmâ-i Hüsnâ ve Sıfat" düğümü ile Esmâ görünümü aynı şeyin iki
+  // çözünürlüğü. Tıklama sözleşme gereği yalnız paneli açıyor (habersiz
+  // gezinme yok); geçiş buradaki ADI KONMUŞ kapıdan oluyor.
+  const GATES = {
+    "sifat-asma": {
+      view: "esma",
+      label: {
+        tr: "Yüz bir ismin haritasına gir",
+        en: "Enter the map of the hundred and one Names",
+        pt: "Entre no mapa dos cento e um Nomes",
+      },
+      note: {
+        tr: "Bu düğüm bir liste değil, bir kapı: aynı beliriş, orada tek tek isimler olarak açılıyor.",
+        en: "This node is not a list but a door: the same self-determination opens there as the Names one by one.",
+        pt: "Este nó não é uma lista, mas uma porta: a mesma autodeterminação se abre ali como os Nomes, um a um.",
+      },
+    },
+  };
+
+  function gateHtml(d) {
+    const g = GATES[d.id];
+    if (!g) return "";
+    return `<div class="detail-gate">
+      <p class="detail-gate__note">${tt(g.note)}</p>
+      <button class="detail-gate__btn" type="button" data-gate="${d.id}">${tt(g.label)}
+        <span class="detail-gate__arrow" aria-hidden="true">→</span></button>
+    </div>`;
+  }
+
+  function wireGate(d) {
+    const btn = detailContent.querySelector(".detail-gate__btn");
+    if (!btn) return;
+    const g = GATES[btn.dataset.gate];
+    if (!g) return;
+    btn.addEventListener("click", () => {
+      // Kapı düğümünün ekrandaki dairesi: dönüşüm oradan başlıyor.
+      let rect = null, renk = null;
+      if (nodeSel) {
+        const el = nodeSel.nodes().find((n) => d3.select(n).datum().id === d.id);
+        const circle = el && el.querySelector("circle");
+        if (circle) {
+          rect = circle.getBoundingClientRect();
+          renk = getComputedStyle(circle).fill;
+        }
+      }
+      window.DostGraphUtils.gateTransition(
+        { fromRect: rect, color: renk, targetEl: document.getElementById(g.view + "-wrap") },
+        () => { setMainView(g.view); updateHash(g.view); }
+      );
+    });
   }
 
   function relatedEdgesHtml(d) {

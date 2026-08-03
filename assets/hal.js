@@ -264,15 +264,19 @@
     wireTiltToggle();
     wireWalkButton();
 
-    const rc = document.getElementById("hal-recenter");
-    if (rc && !rc.dataset.wiredHal) { rc.dataset.wiredHal = "1"; rc.addEventListener("click", () => { clearFocus(); fitView(true); }); }
+    // Odak burada kamerayı taşıyor (fitView bir odağa göre çerçeveliyor), o
+    // yüzden geri çekilirken odak da bırakılıyor -- bkz. ETKILESIM_DILI.md:
+    // "kaydıysa geri alınır, seçtiysen korunur".
+    GU.wireRecenter("hal-recenter", () => { clearFocus(); fitView(true); });
     svg.on("click", () => { if (currentDetailNode || currentRelation) clearFocus(); });
+    // Hâller'de odak ile açık panel TEK durumdur (clearFocus ikisini birden
+    // bırakıyor), o yüzden bir adım geri = odağı bırak.
     if (!document.body.dataset.wiredHalEsc) {
       document.body.dataset.wiredHalEsc = "1";
-      document.addEventListener("keydown", (e) => {
-        if (e.key !== "Escape") return;
-        if (wrapEl.hidden) return;
-        if (currentDetailNode || currentRelation) clearFocus();
+      GU.registerStepBack("hal-wrap", () => {
+        if (!currentDetailNode && !currentRelation) return false;
+        clearFocus();
+        return true;
       });
     }
   }
@@ -684,9 +688,13 @@
     if (!tooltip) return;
     const s = nodeById.get(r.source), t = nodeById.get(r.target);
     if (!s || !t) return;
-    tooltip.innerHTML =
-      `<div class="node-hover-tip__title">${I18n.pick3(s.name)} ↔ ${I18n.pick3(t.name)}</div>` +
-      `<div class="node-hover-tip__short">${tt(KIND_LABEL[r.kind] || {})}</div>`;
+    // 2026-08-03'e kadar burada yalnız ilişkinin TÜRÜ yazıyordu ("yankı",
+    // "karşıtlık"…) -- yani ne olduğu, neden öyle okuduğumuz değil (#10).
+    tooltip.innerHTML = GU.edgeReasonHtml({
+      title: `${I18n.pick3(s.name)} ↔ ${I18n.pick3(t.name)}`,
+      kindLabel: tt(KIND_LABEL[r.kind] || {}),
+      reason: I18n.pick3(r.note),
+    });
     tooltip.hidden = false; moveTooltip(event);
   }
   function moveTooltip(event) { GU.moveTooltip(tooltip, wrapEl, event); }

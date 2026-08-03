@@ -1113,6 +1113,24 @@
 
   function fitAll() { fitVisible(); }
 
+  // "Geri çekilmek" (bkz. ETKILESIM_DILI.md, ikinci fiil). Sıfırlanan şey
+  // yalnız KAYMIŞ bakış: serbest döndürme (yaw/pitch) ve kaydırma/
+  // yakınlaştırma. Kullanıcının bir düğmeye basarak SEÇTİĞİ kipler --
+  // 2B/3B eğimi (tilt), kademe (revealLevel) ve seçili isim -- korunur;
+  // ayrım "seçtin mi, kaydın mı" sorusuyla veriliyor.
+  //
+  // Bu fonksiyon 2026-08-03'e kadar YOKTU: #esma-recenter düğmesi altı
+  // görünüm arasında tek bağlanmamış düğmeydi (grep: assets/*.js içinde tek
+  // referans yok; Playwright ile de doğrulandı -- sürükledikten sonra
+  // tıklayınca sahne dönmüyordu).
+  function recenterView() {
+    yaw = 0;
+    pitch = -0.42;          // ilk kurulumdaki değer (bkz. yukarıdaki tanım)
+    idleRotate = true;
+    fitVisible();           // seçili düğüm varken bile: kamera geri çekilir,
+    ensureFrame();          // seçim korunur
+  }
+
   // Kaydırma: düz tekerlek = semantik derinlik (katman aç/kapa). Ctrl/⌘ +
   // tekerlek = klasik yakınlaştırma (etiket ayrıntı düzeyini de sürer).
   let wheelAccum = 0, wheelLock = false;
@@ -1139,6 +1157,8 @@
     svgNode.dataset.wiredX = "1";
 
     svgNode.addEventListener("wheel", onWheel, { passive: false });
+
+    GU.wireRecenter("esma-recenter", recenterView);
 
     const DRAG_THRESHOLD = 5;
     svgNode.addEventListener("pointerdown", (e) => {
@@ -1176,12 +1196,14 @@
       if (e.target === svgNode || e.target.classList.contains("esmaX-bg-rect")) { if (selectedId) deselect(); }
     });
 
-    // Escape: seçim/geçmiş
-    document.addEventListener("keydown", (e) => {
-      if (e.key !== "Escape") return;
-      if (wrapEl.hidden) return;
-      if (!detailPanel.hidden && (currentDetailNode || currentDetailIsZat || currentDetailRelation)) { goBackInHistory(); }
-      else if (selectedId) deselect();
+    // "Bir adım geri": Esmâ'da bir adım, panel açıkken GEÇMİŞTE bir adımdır
+    // (ismden ilişkiye, ilişkiden bir öncekine) -- paneli kapatmak değil.
+    // Ortak zincir graph-utils.js'te; hangi görünümün açık olduğunu o
+    // biliyor, adımın ne olduğunu burası.
+    GU.registerStepBack("esma-wrap", () => {
+      if (!detailPanel.hidden && (currentDetailNode || currentDetailIsZat || currentDetailRelation)) { goBackInHistory(); return true; }
+      if (selectedId) { deselect(); return true; }
+      return false;
     });
 
     window.addEventListener("resize", () => { if (built && !wrapEl.hidden) { onResize(); } });

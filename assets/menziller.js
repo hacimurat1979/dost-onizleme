@@ -205,11 +205,9 @@
 
     zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.5, 3], (event) => !event.target.closest(".node") && tiltTarget < 0.5);
 
-    const rc = document.getElementById("menziller-recenter");
-    if (rc && !rc.dataset.wiredMenziller) {
-      rc.dataset.wiredMenziller = "1";
-      rc.addEventListener("click", () => { activeId = null; showIntro(); fitView(true); });
-    }
+    // activeId burada kamerayı taşıyor (bir menzil seçilince sahne ona
+    // yaklaşıyor), o yüzden geri çekilirken o da bırakılıyor.
+    GU.wireRecenter("menziller-recenter", () => { activeId = null; showIntro(); fitView(true); });
     svg.on("click", () => { if (activeId) { activeId = null; showIntro(); ensureFrame(); } });
   }
 
@@ -548,9 +546,11 @@
     fitView(false);
   }
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key !== "Escape" || wrapEl.hidden || !activeId) return;
+  // Bir adım geri: açık bir menzil varsa girişe dön.
+  GU.registerStepBack("menziller-wrap", () => {
+    if (!activeId) return false;
     activeId = null; showIntro(); ensureFrame();
+    return true;
   });
 
   GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });

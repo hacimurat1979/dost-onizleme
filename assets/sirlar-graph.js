@@ -233,8 +233,20 @@
     svgNode.addEventListener("wheel", () => { setTimeout(readZoom, 0); }, { passive: true });
     svg.on("click", () => { if (focusedTheme) exitReading(); });
 
-    const rc = document.getElementById("sirlar-recenter");
-    if (rc && !rc.dataset.wiredSir) { rc.dataset.wiredSir = "1"; rc.addEventListener("click", () => { exitReading(); fitAll(); }); }
+    // exitReading burada da bir KAMERA geri alma: focusOnTheme sahneyi
+    // temaya yaklaştırıyor (bkz. ETKILESIM_DILI.md, ikinci fiil).
+    GU.wireRecenter("sirlar-recenter", () => { exitReading(); fitAll(); });
+
+    // "Bir adım geri": açık panel varsa sıra ortak katmanın (false dönüyoruz,
+    // o kapatıyor); panel kapalıyken odaklı bir tema varsa odağı bırakıyoruz.
+    // Bu dal 2026-08-03'e kadar ontology.js'in içinde duruyordu.
+    GU.registerStepBack("sirlar-wrap", () => {
+      const panel = document.getElementById("detail-panel");
+      if (panel && !panel.hidden) return false;
+      if (!focusedTheme) return false;
+      exitReading();
+      return true;
+    });
   }
 
   function readZoom() {

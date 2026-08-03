@@ -3544,6 +3544,73 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   color: var(--text-secondary);
 }
 
+/* KAPI (FAZ 2b) — bir düğümün kendi haritasına açılan, adı konmuş geçiş.
+   Daire biçimli bir düğme: geçişin kendisi de dairesel (bkz. CLAUDE.md'nin
+   "daire ve merkez" ilkesi), düz bir "sonraki sayfa" oku değil. */
+.detail-gate {
+  margin: 18px 0 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent-interactive) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-interactive) 28%, transparent);
+}
+.detail-gate__note {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0 0 10px;
+}
+.detail-gate__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-interactive);
+  background: transparent;
+  color: var(--accent-interactive);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.detail-gate__btn:hover,
+.detail-gate__btn:focus-visible {
+  background: var(--accent-interactive);
+  color: var(--surface-1);
+}
+.detail-gate__arrow {
+  transition: transform 0.18s ease;
+}
+.detail-gate__btn:hover .detail-gate__arrow {
+  transform: translateX(3px);
+}
+
+/* Kapıdan geçerken büyüyen daire: kapı düğümünün kendisi, gidilen haritanın
+   merkezine doğru açılıyor. Grafiklerin üstünde ama detay panelinin
+   (z-index 40) da üstünde durmalı — geçiş her şeyi kapsıyor. */
+.gate-orb {
+  position: fixed;
+  z-index: 60;
+  border-radius: 50%;
+  /* Keskin bir disk değil, kenarı dağılan bir ışık: GORSEL_DIL.md'nin
+     "ışık = zuhûr" grameri. Düğümün kendi rengi varsa JS bunu onunla
+     değiştiriyor; yoksa bu taban kullanılıyor. */
+  background: radial-gradient(circle at 50% 50%,
+    var(--accent-interactive) 0%,
+    var(--accent-interactive) 45%,
+    transparent 72%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Geçiş JS tarafında zaten hiç başlatılmıyor; bu yalnız emniyet. */
+  .gate-orb { display: none; }
+  .detail-gate__arrow { transition: none; }
+}
+
 .detail-analogy {
   border-radius: 8px;
   padding: 12px 18px;
@@ -5176,6 +5243,36 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   font-size: 0.8rem;
   color: var(--text-secondary);
   line-height: 1.35;
+}
+
+/* Kenar önizlemesi (#10, 2026-08-03): bir çizgiye değinince "neden bağlı"
+   görünüyor. İlişkinin adı üstte küçük bir üst-etiket, gerekçesi altında
+   normal metin, güvenimiz (kesin saymadığımız yerlerde) en altta. */
+.node-hover-tip__eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+.node-hover-tip__conf {
+  margin-top: 6px;
+  padding-top: 5px;
+  border-top: 1px solid var(--border);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+/* Kenar gerekçesi düğüm özetinden uzun; bu ipucuna biraz daha yer ver. */
+.node-hover-tip:has(.node-hover-tip__eyebrow) {
+  max-width: 340px;
+}
+
+/* Odakla gelindiğinde kenarın kendisi de görünür olmalı: klavye kullanıcısı
+   hangi çizgide olduğunu ipucundan değil sahneden okuyabilsin. */
+.link:focus-visible {
+  outline: none;
+  stroke-width: 4;
 }
 
 /* Terimler Sözlüğü — kavramlar arası ilişki çizimleri (artık sağdaki
