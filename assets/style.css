@@ -3544,6 +3544,52 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   color: var(--text-secondary);
 }
 
+/* ===== ANLAM TAŞIYAN ANİMASYON (#2, 2026-08-03) =====
+   Bir düğüme tıklamak artık her yerde aynı şeyi yapmıyor: her düğüm KENDİ
+   davranışını gösteriyor (bkz. assets/ontology.js'teki DUGUM_DAVRANISI ve
+   GORSEL_DIL.md'nin "davranışı resmet" ilkesi). */
+
+/* Kenar boyunca giden ışık: tecellînin/rücûun kendisi. */
+.onto-kivilcim {
+  fill: var(--series-kemal);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--series-kemal) 80%, transparent));
+  pointer-events: none;
+}
+
+/* Işık düğüme vardığında: kısa bir zuhûr. */
+.node--isik circle {
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--series-kemal) 85%, transparent));
+  transition: filter 0.25s ease;
+}
+
+/* Teceddüd: aynı düğüm, yeni bir yaratılışta. Sönüp yeniden yanıyor —
+   yerinden oynamıyor, çünkü değişen konum değil VARLIK. */
+.node--teceddud {
+  animation: onto-teceddud 0.62s ease-in-out;
+}
+@keyframes onto-teceddud {
+  0%   { opacity: 1; }
+  42%  { opacity: 0.06; }
+  100% { opacity: 1; }
+}
+
+/* Perdelenme: sahne bir an bulanıyor ve açılıyor. Perde bir halka değil,
+   bir süreçtir. */
+.onto-perdeli {
+  animation: onto-perde 1.15s ease-in-out;
+}
+@keyframes onto-perde {
+  0%   { filter: none; }
+  38%  { filter: blur(5px) saturate(0.45); }
+  100% { filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* JS zaten hiç başlatmıyor; bu yalnız emniyet. */
+  .node--teceddud, .onto-perdeli { animation: none; }
+  .onto-kivilcim { display: none; }
+}
+
 /* ============ TENEZZÜL — sürekli-zoom pilotu (FAZ 3, 2026-08-03) ============
    Ayrı bir deneme; ana gezinmede yok. Görsel gramer GORSEL_DIL.md'den:
    ışık = zuhûr, bulanıklık = bilgisizlik, netlik = adlanma. */
@@ -3632,6 +3678,69 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
 .tnz-metin__source { margin: 0 0 8px; font-size: 0.7rem; color: var(--text-secondary); }
 .tnz-metin__more { margin: 0; font-size: 0.78rem; }
 
+/* Alt isimler: ana ismin çevresinde açılan çocuk düğümler. */
+.tnz-alt-name__label {
+  fill: var(--text-secondary);
+  font-size: 0.7rem;
+  pointer-events: none;
+}
+.tnz-name__dot.is-chosen { stroke-width: 2; }
+/* "Bu ismin altında da isimler var" — inişin devam ettiği yerler. */
+.tnz-name__halka {
+  fill: none;
+  stroke: color-mix(in srgb, var(--text-secondary) 55%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 2.5 3;
+}
+
+/* Mertebeler ekseni: her basamak bir öncekinden çıkan, daha kalabalık ve
+   daha net bir halka. Bulanıklık JS'te mertebeye göre veriliyor. */
+.tnz-mert__dot {
+  fill: var(--accent-interactive);
+  opacity: 0.75;
+}
+.tnz-donus__yay {
+  stroke: color-mix(in srgb, var(--series-kemal) 70%, transparent);
+  stroke-width: 1.6;
+  stroke-dasharray: 5 7;
+}
+.tnz-donus__etiket {
+  fill: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Hangi iniş: iki adı konmuş kapı. Eksen seçimi sürüklemeye değil açık bir
+   düğmeye bağlı — "hangi eksen" ile "hangi isim" aynı harekete binmesin. */
+.tnz-axis-pick {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-1) 88%, transparent);
+  border: 1px solid var(--border);
+  z-index: 12;
+}
+.tnz-axis__chip {
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+.tnz-axis__chip.is-on {
+  background: var(--accent-interactive);
+  color: var(--surface-1);
+  font-weight: 600;
+}
+.tnz-axis__chip:not(.is-on):hover { color: var(--accent-interactive); }
+
 /* Eksen göstergesi: dikey, çünkü hareket iniş. Noktalar mertebe değil ÖLÇÜ —
    aralarındaki her yer de geçerli bir konum. */
 .tnz-axis {
@@ -3667,13 +3776,18 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   transition: background 0.2s ease, transform 0.2s ease;
 }
 .tnz-axis__dots span.is-active { background: var(--accent-interactive); transform: scale(1.5); }
+/* Dikey istasyon adı. Mertebe adları uzun olabiliyor ("Tecellî ve
+   Nefesü'r-Rahmân"); sarmasına izin verilirse ikinci bir sütun açıp eksen
+   noktalarının üstüne biniyordu (ölçüldü). Tek satır + kırpma. */
 .tnz-axis__label {
   writing-mode: vertical-rl;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   color: var(--text-secondary);
-  max-height: 140px;
+  max-height: 170px;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 720px) {
@@ -3682,9 +3796,10 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
      alıp yatay yerleştiriyoruz -- hareket hâlâ "aşağı in", yalnız kumanda
      yer değiştiriyor. */
   .tnz-metin { right: 10px; left: 10px; bottom: 10px; max-width: none; max-height: 46%; }
+  .tnz-axis-pick { top: 8px; }
   .tnz-axis {
     left: 50%;
-    top: 12px;
+    top: 52px;              /* eksen seçicinin altına */
     transform: translateX(-50%);
     flex-direction: row;
   }

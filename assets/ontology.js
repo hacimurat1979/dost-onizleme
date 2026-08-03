@@ -1124,7 +1124,17 @@
     const zoomLayer = svg.append("g").attr("class", "zoom-layer");
 
     const zoom = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.5, 4], (event) => !event.target.closest(".node"));
-    window.__ontologyZoom = { svg, zoom };
+    // `fit`: bütün haritayı çerçeveye sığdırır. Yayılma davranışları (#2)
+    // buna ihtiyaç duyuyor -- ışığın Zât'tan bütün mertebelere gitmesi,
+    // ancak bütün mertebeler ekrandayken görülebilir. Tıklamanın olağan
+    // panToNode'u o sahneyi ekran dışında bırakıyordu (ölçüldü).
+    window.__ontologyZoom = {
+      svg, zoom,
+      fit(animate) {
+        const sel = (animate && !reduceMotion) ? svg.transition().duration(520) : svg;
+        sel.call(zoom.transform, computeFitTransform());
+      },
+    };
 
     window.DostGraphUtils.wireRecenter("ontology-recenter", () => {
       // Seçim burada kamerayı taşımıyor (düğüme tıklamak yalnız paneli
@@ -2341,6 +2351,156 @@
     showNodeDetail(d);
     updateHash("ontoloji", d.id);
     panToNode(d);
+    dugumDavranisi(d);
+  }
+
+  // ---------------------------------------------------------------------
+  // ANLAM TAŞIYAN ANİMASYON (#2, 2026-08-03)
+  //
+  // GORSEL_DIL.md: "kavramı resmetme, onun davranışını resmet." Bu ilke
+  // bugüne kadar tek tek sahnelerde (ayna, perde, iki mertebe) uygulanmıştı;
+  // ana grafiğin KENDİ etkileşiminde uygulanmamıştı: her düğüme tıklamak
+  // aynı şeyi yapıyordu (panel açılır, kamera kayar), oysa bu düğümlerin
+  // hepsi FARKLI şeyler yapan kavramlar.
+  //
+  // Aşağıdaki beş davranışın hiçbiri süs değil; her biri o düğümün kendi
+  // tanımından çıkıyor ve sitede zaten yazılı olan bir kenar/ilişki türünü
+  // hareket olarak gösteriyor:
+  //   dhat          -> tecellî: ışık Zât'tan bütün mertebelere yayılıyor
+  //                   (descent kenarları, tenezzül sırasıyla)
+  //   kalp          -> rücû: aynı yol TERS yönde, kalpten Zât'a
+  //                   (ontology.json'daki `return` kenarı: kalp -> dhat)
+  //   insan-i-kamil -> cem': üç âlemin ışığı onda toplanıyor
+  //                   (üç `gather` kenarı)
+  //   teceddud      -> halk-ı cedîd: bütün düğümler bir an sönüp yeniden
+  //                   yanıyor -- âlem her an yeniden yaratılıyor
+  //   perde         -> perdelenme: sahne bir an bulanıp açılıyor
+  //
+  // reduced-motion'da HİÇBİRİ çalışmaz (taklit de edilmez).
+  const DUGUM_DAVRANISI = {
+    dhat: "yayil",
+    kalp: "rucu",
+    "insan-i-kamil": "topla",
+    teceddud: "teceddud",
+    perde: "perde",
+  };
+  let davranisTimer = null;
+
+  function dugumDavranisi(d) {
+    if (reduceMotion || !pathSel || !nodeSel) return;
+    const tur = DUGUM_DAVRANISI[d.id];
+    if (!tur) return;
+    if (davranisTimer) { clearTimeout(davranisTimer); davranisTimer = null; }
+    if (tur === "teceddud") return teceddudEt();
+    if (tur === "perde") return perdelen();
+    // Yayılmanın görülebilmesi için bütün harita ekranda olmalı; tıklamanın
+    // olağan yakınlaşması (panToNode) sahneyi ekran dışında bırakıyordu.
+    // Kamera oturduktan SONRA ışık yola çıkıyor.
+    if (window.__ontologyZoom && window.__ontologyZoom.fit) window.__ontologyZoom.fit(true);
+    davranisTimer = setTimeout(() => yayilimEt(d.id, tur), reduceMotion ? 0 : 540);
+  }
+
+  // Kenar boyunca ilerleyen bir ışık. Yolun kendi geometrisini
+  // (getPointAtLength) izliyor -- düz bir çizgi değil, kenarın gerçek yayı.
+  function kivilcim(pathNode, gecikme, sure, ters) {
+    const uzunluk = pathNode.getTotalLength ? pathNode.getTotalLength() : 0;
+    if (!uzunluk) return;
+    const parent = pathNode.parentNode;
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute("class", "onto-kivilcim");
+    c.setAttribute("r", "4.5");
+    c.setAttribute("opacity", "0");
+    parent.appendChild(c);
+    const bas = performance.now() + gecikme;
+    function adim(t) {
+      const p = (t - bas) / sure;
+      if (p < 0) { requestAnimationFrame(adim); return; }
+      if (p >= 1) { c.remove(); return; }
+      const nokta = pathNode.getPointAtLength((ters ? 1 - p : p) * uzunluk);
+      c.setAttribute("cx", nokta.x);
+      c.setAttribute("cy", nokta.y);
+      // Uçlarda sönük, ortada parlak: bir geçiş, bir varış değil.
+      c.setAttribute("opacity", Math.sin(p * Math.PI).toFixed(3));
+      requestAnimationFrame(adim);
+    }
+    requestAnimationFrame(adim);
+  }
+
+  function komsuluk() {
+    const ileri = new Map(), geri = new Map();
+    (window.__ontologyApp.links || []).forEach((l) => {
+      const s = l.source.id, t = l.target.id;
+      if (!ileri.has(s)) ileri.set(s, []);
+      if (!geri.has(t)) geri.set(t, []);
+      ileri.get(s).push(l);
+      geri.get(t).push(l);
+    });
+    return { ileri, geri };
+  }
+
+  function pathFor(l) {
+    return pathSel.nodes().find((n) => d3.select(n).datum() === l);
+  }
+
+  // Kaynaktan dalga dalga yayılma. `tur`:
+  //   yayil -> kenarların kendi yönünde (tenezzül)
+  //   rucu  -> ters yönde, kaynağa doğru (dönüş)
+  //   topla -> kaynağa GİREN kenarlar boyunca içeri (cem')
+  function yayilimEt(kaynakId, tur) {
+    const { ileri, geri } = komsuluk();
+    const ADIM = 320, SURE = 620;
+    const gorulen = new Set([kaynakId]);
+    let kat = [kaynakId], derinlik = 0;
+    while (kat.length && derinlik < 8) {
+      const sonraki = [];
+      kat.forEach((id) => {
+        const kenarlar = (tur === "yayil" ? (ileri.get(id) || []) : (geri.get(id) || []));
+        kenarlar.forEach((l) => {
+          const p = pathFor(l);
+          if (p) kivilcim(p, derinlik * ADIM, SURE, tur !== "yayil");
+          const oteki = tur === "yayil" ? l.target.id : l.source.id;
+          if (!gorulen.has(oteki)) { gorulen.add(oteki); sonraki.push(oteki); }
+        });
+      });
+      // "topla" tek adımlık: üç âlemin ışığı doğrudan İnsân-ı Kâmil'e girer,
+      // zincirleme bir yayılma değil.
+      if (tur === "topla") break;
+      kat = sonraki;
+      derinlik++;
+    }
+    // Işık geçerken düğümler sırayla parlıyor -- yalnız çizgi değil, varış
+    // da görünsün.
+    let i = 0;
+    gorulen.forEach((id) => {
+      const el = nodeSel.nodes().find((n) => d3.select(n).datum().id === id);
+      if (!el) return;
+      const gecikme = i * 90;
+      i++;
+      setTimeout(() => {
+        el.classList.add("node--isik");
+        setTimeout(() => el.classList.remove("node--isik"), 700);
+      }, gecikme);
+    });
+  }
+
+  // Halk-ı cedîd: âlem her an yeniden yaratılıyor. Bütün düğümler kısa bir
+  // an sönüp yeniden yanıyor -- aynı düğümler, yeni bir yaratılışta.
+  function teceddudEt() {
+    nodeSel.nodes().forEach((el, i) => {
+      setTimeout(() => {
+        el.classList.add("node--teceddud");
+        setTimeout(() => el.classList.remove("node--teceddud"), 620);
+      }, (i % 6) * 70);
+    });
+  }
+
+  // Perdelenme: sahne bir an bulanıp açılıyor. Perde bir halka değil, bir
+  // süreçtir (GORSEL_DIL.md).
+  function perdelen() {
+    const kat = document.querySelector("#graph g.zoom-layer");
+    if (!kat) return;
+    kat.classList.add("onto-perdeli");
+    davranisTimer = setTimeout(() => kat.classList.remove("onto-perdeli"), 1150);
   }
 
   function onEdgeClick(l) {
