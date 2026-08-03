@@ -73,6 +73,9 @@
       gunun:    { tr: "Günün Sözü", en: "Word of the Day", pt: "Palavra do Dia" },
       benzetme: { tr: "Bir Benzetmeyle", en: "Through an Analogy", pt: "Através de uma Analogia" },
       fusus:    { tr: "Füsûs Halkası", en: "Fusus Ring", pt: "Anel dos Fusus" },
+      dizi:     { tr: "Dizi", en: "Series", pt: "Série" },
+      karsilastir: { tr: "Karşılaştır", en: "Compare", pt: "Comparar" },
+      ozelgun:  { tr: "Özel Gün", en: "Special Day", pt: "Dia Especial" },
     },
     filter:      { tr: "Filtre",             en: "Filter",               pt: "Filtro" },
     filterAll:   { tr: "Tümü",              en: "All",                  pt: "Tudo" },
@@ -84,6 +87,11 @@
     favList:     { tr: "Favoriler",         en: "Favourites",           pt: "Favoritos" },
     favEmpty:    { tr: "Henüz favori yok.", en: "No favourites yet.",   pt: "Sem favoritos ainda." },
     histList:    { tr: "Son kullanılanlar", en: "Recent",               pt: "Recentes" },
+    ikiDilli:    { tr: "İki dilli kart", en: "Bilingual card", pt: "Cartão bilíngue" },
+    ikinciDil:   { tr: "İkinci dil", en: "Second language", pt: "Segundo idioma" },
+    karsilastirSol: { tr: "Sol", en: "Left", pt: "Esquerda" },
+    karsilastirSag: { tr: "Sağ", en: "Right", pt: "Direita" },
+    karsilastirAc:  { tr: "Bu ikisini aç", en: "Open these two", pt: "Abrir estes dois" },
   };
 
   // Sahnenin dili sitenin genel diline BAĞLI DEĞİL: kullanıcı Türkçe
@@ -97,8 +105,33 @@
   let shareLangId = safeGet(DIL_ANAHTAR);
   if (!DIL_LANGS.includes(shareLangId)) shareLangId = siteLang();
 
-  function tt(d) { return d[shareLangId] || d.en || d.tr || ""; }
+  function tt(d, l) { l = l || shareLangId; return d[l] || d.en || d.tr || ""; }
   function lang() { return shareLangId; }
+
+  // "İki dilli kart" (kullanıcı önerisi, 2026-08-03): kartın aynı satırını
+  // iki dilde ÜST ÜSTE göstermek -- uluslararası bir takipçisi olan biri
+  // tek paylaşımda iki dile ulaşabilsin diye. Ayrı bir "ikinci dil" seçimi;
+  // birincisiyle (shareLangId) çakışırsa mkBilingualLine ikinci satırı
+  // sessizce atlıyor (aynı şeyi iki kez göstermek anlamsız olurdu).
+  const IKIDILLI_ANAHTAR = "dost-share-ikidilli";
+  const IKINCIDIL_ANAHTAR = "dost-share-ikincidil";
+  let ikiDilliMod = safeGet(IKIDILLI_ANAHTAR) === "1";
+  let ikinciDilId = safeGet(IKINCIDIL_ANAHTAR);
+  if (!DIL_LANGS.includes(ikinciDilId)) ikinciDilId = DIL_LANGS.find((l) => l !== shareLangId) || DIL_LANGS[0];
+
+  // Var olan bir çeviri sözlüğünden, isteğe bağlı ikinci bir satır üreten
+  // ortak yardımcı -- kartın PRIMARY diliyle aynı kaynaktan, YENİ metin
+  // yazmadan (bkz. dosya başındaki KURAL). capLen verilirse capText de
+  // uygulanır.
+  function mkBilingualLine(dict, kind, capLen) {
+    const primary = capLen ? capText(tt(dict), capLen) : tt(dict);
+    const line = { text: primary, kind: kind };
+    if (ikiDilliMod && ikinciDilId !== shareLangId) {
+      const secondary = capLen ? capText(tt(dict, ikinciDilId), capLen) : tt(dict, ikinciDilId);
+      if (secondary && secondary !== primary) line.text2 = secondary;
+    }
+    return line;
+  }
 
   // --- veri ------------------------------------------------------------
   let indexData = null;
@@ -153,6 +186,22 @@
     return GU.fetchJson("data/ibn-arabi/fusus-atlas.json").then((d) => (fususData = d));
   }
 
+  // "Karşılaştır" şablonu (kullanıcı önerisi, 2026-08-03): esma+ontoloji
+  // havuzunu (benzetme şablonuyla aynı kaynak) düz bir listeye çeviriyor ki
+  // panel iki <select> ile kullanıcının SEÇTİĞİ iki kavramı yan yana
+  // koyabilsin -- rastgele eşleştirmenin aksine.
+  let compareData = null;
+  function loadCompareData() {
+    if (compareData) return Promise.resolve(compareData);
+    return Promise.all([loadEsma(), loadOntoloji()]).then(([esma, onto]) => {
+      const list = [];
+      (esma.nodes || []).forEach((n) => { if (n.insights && n.insights.length) list.push({ key: "esma:" + n.id, name: n.name, insights: n.insights }); });
+      (onto.nodes || []).forEach((n) => { if (n.insights && n.insights.length) list.push({ key: "onto:" + n.id, name: n.name, insights: n.insights }); });
+      compareData = { list: list };
+      return compareData;
+    });
+  }
+
   function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
   // Var olan bir metni, sahnenin taşıyabileceği uzunlukta kesip "…" ekler --
@@ -162,6 +211,19 @@
     raw = String(raw || "");
     max = max || 310;
     return raw.length > max ? raw.slice(0, raw.lastIndexOf(" ", max)) + "…" : raw;
+  }
+
+  // ontoloji.json/esma.json/felsefi-terimler'deki "insights" bir dizi olup
+  // her öge ya düz bir dize ya da {text:{tr,en,pt}} biçiminde olabiliyor --
+  // esma/ontoloji/karşılaştır şablonlarının üçü de aynı seçim+çözümleme
+  // mantığını tekrarlıyordu, tek yerde topluyoruz. `dict` alanı (varsa)
+  // mkBilingualLine'ın ikinci dili çözebilmesi için ham sözlüğü taşır.
+  function pickInsight(node) {
+    if (!node.insights || !node.insights.length) return null;
+    const ins = pick(node.insights);
+    if (typeof ins === "string") return { text: ins, dict: null };
+    const dict = ins && ins.text;
+    return { text: tt(dict || {}), dict: dict || null };
   }
 
   function partLabel(p) {
@@ -232,7 +294,8 @@
     return m ? parseInt(m[1]) : null;
   }
 
-  function pickPart(needPair) {
+  function pickPart(needPair, minCount) {
+    minCount = minCount || 1;
     return loadIndex().then((idx) => {
       let all = idx.parts.filter((p) => p.status === "active");
       if (kaynakId.startsWith("cilt:")) {
@@ -256,7 +319,7 @@
         const meta = order[i++];
         return loadPart(meta.id).then((p) => {
           const items = needPair ? pairsFromPart(p) : quotesFromPart(p);
-          if (!items.length) return step();
+          if (items.length < minCount) return step();
           return { part: p, items: items };
         });
       }
@@ -277,14 +340,15 @@
   // { lines: [{text, size}], source }  — sahnenin çizeceği tek biçim.
   let scene = null;
 
-  function buildScene(tpl) {
+  function buildScene(tpl, opts) {
+    opts = opts || {};
     if (tpl === "soru") {
       return loadSorular().then((d) => {
         const cats = d.categories || [];
         const q = pick(pick(cats).questions);
         return {
           tpl: "soru",
-          lines: [{ text: tt(q.question), kind: "soru" }],
+          lines: [mkBilingualLine(q.question, "soru")],
         };
       });
     }
@@ -324,12 +388,10 @@
         if (!entries.length) return null;
         const dayIndex = Math.floor(Date.now() / 86400000);
         const entry = entries[dayIndex % entries.length];
-        const raw = tt(entry.quote || {});
-        if (!raw) return null;
-        const text = raw.length > 310 ? raw.slice(0, raw.lastIndexOf(" ", 310)) + "…" : raw;
+        if (!tt(entry.quote || {})) return null;
         return {
           tpl: "gunun",
-          lines: [{ text: text, kind: "soz" }],
+          lines: [mkBilingualLine(entry.quote || {}, "soz", 310)],
         };
       });
     }
@@ -385,8 +447,8 @@
         return {
           tpl: "benzetme",
           lines: [
-            { text: tt(item.name), kind: "baslik" },
-            { text: capText(tt(item.analogy)), kind: "soz" },
+            mkBilingualLine(item.name, "baslik"),
+            mkBilingualLine(item.analogy, "soz", 310),
           ],
         };
       });
@@ -396,15 +458,13 @@
         const nodes = (d.nodes || []).filter((n) => n.insights && n.insights.length);
         if (!nodes.length) return null;
         const node = pick(nodes);
-        const ins = pick(node.insights);
-        const raw = ins && (typeof ins === "string" ? ins : tt(ins.text || {}));
-        if (!raw || raw.length < 30) return null;
-        const text = raw.length > 310 ? raw.slice(0, raw.lastIndexOf(" ", 310)) + "…" : raw;
+        const picked = pickInsight(node);
+        if (!picked || !picked.text || picked.text.length < 30) return null;
         return {
           tpl: "ontoloji",
           lines: [
-            { text: tt(node.name || {}), kind: "baslik" },
-            { text: text, kind: "soz" },
+            mkBilingualLine(node.name || {}, "baslik"),
+            picked.dict ? mkBilingualLine(picked.dict, "soz", 310) : { text: capText(picked.text, 310), kind: "soz" },
           ],
         };
       });
@@ -414,15 +474,13 @@
         const nodes = (d.nodes || []).filter((n) => n.insights && n.insights.length);
         if (!nodes.length) return null;
         const node = pick(nodes);
-        const ins = pick(node.insights);
-        const raw = ins && (typeof ins === "string" ? ins : tt(ins.text || {}));
-        if (!raw || raw.length < 20) return null;
-        const text = raw.length > 310 ? raw.slice(0, raw.lastIndexOf(" ", 310)) + "…" : raw;
+        const picked = pickInsight(node);
+        if (!picked || !picked.text || picked.text.length < 20) return null;
         return {
           tpl: "esma",
           lines: [
-            { text: tt(node.name || {}), kind: "baslik" },
-            { text: text, kind: "soz" },
+            mkBilingualLine(node.name || {}, "baslik"),
+            picked.dict ? mkBilingualLine(picked.dict, "soz", 310) : { text: capText(picked.text, 310), kind: "soz" },
           ],
         };
       });
@@ -451,8 +509,83 @@
             initialFocus: idx < 0 ? 0 : idx,
           },
           lines: [
-            { text: tt(nameOf(f)), kind: "baslik" },
-            { text: capText(tt(f.title)), kind: "soz" },
+            mkBilingualLine(nameOf(f), "baslik"),
+            mkBilingualLine(f.title, "soz", 310),
+          ],
+        };
+      });
+    }
+    if (tpl === "dizi") {
+      // "Dizi" (kullanıcı önerisi, 2026-08-03): bir Fütûhât kısmının 3-4
+      // alıntısını sırayla, tek bir kaynak başlığı altında gösteren daha
+      // uzun bir sahne -- TikTok'ta bir "thread" gibi izlenebilsin diye.
+      // Alıntılar tek bir dilde (o an seçili dilde) çıkarıldığı için
+      // (bkz. quotesFromPart), iki dilli kart bu şablonda desteklenmiyor --
+      // cümle sınırları diller arasında birebir eşleşmeyebilir.
+      return pickPart(false, 3).then((r) => {
+        if (!r) return null;
+        const items = shuffled(r.items).slice(0, Math.min(4, r.items.length));
+        const lines = [{ text: partLabel(r.part), kind: "baslik" }];
+        items.forEach((t) => lines.push({ text: capText(t, 200), kind: "soz" }));
+        return { tpl: "dizi", lines: lines };
+      });
+    }
+    if (tpl === "karsilastir") {
+      // "Karşılaştır" (kullanıcı önerisi, 2026-08-03): "İki Kutu"nun
+      // rastgele eşleştirmesinin aksine, kullanıcının panelde SEÇTİĞİ iki
+      // kavramı (esma+ontoloji havuzundan) yan yana koyar. opts.leftKey/
+      // rightKey verilmezse (ilk önizleme, ya da "Başkasını getir")
+      // rastgele iki farklı kavram seçilir.
+      return loadCompareData().then((d) => {
+        const list = d.list;
+        if (list.length < 2) return null;
+        const left = (opts.leftKey && list.find((x) => x.key === opts.leftKey)) || pick(list);
+        const rightPool = list.filter((x) => x !== left);
+        const right = (opts.rightKey && list.find((x) => x.key === opts.rightKey && x !== left)) || pick(rightPool.length ? rightPool : list);
+        const leftPicked = pickInsight(left);
+        const rightPicked = pickInsight(right);
+        if (!leftPicked || !rightPicked) return null;
+        function combine(nameDict, insightDict, insightText, l) {
+          const name = tt(nameDict, l);
+          const body = insightDict ? capText(tt(insightDict, l), 140) : capText(insightText, 140);
+          return name + " — " + body;
+        }
+        const leftLine = { text: combine(left.name, leftPicked.dict, leftPicked.text, shareLangId), kind: "sol" };
+        const rightLine = { text: combine(right.name, rightPicked.dict, rightPicked.text, shareLangId), kind: "sag" };
+        if (ikiDilliMod && ikinciDilId !== shareLangId) {
+          leftLine.text2 = combine(left.name, leftPicked.dict, leftPicked.text, ikinciDilId);
+          rightLine.text2 = combine(right.name, rightPicked.dict, rightPicked.text, ikinciDilId);
+        }
+        return { tpl: "karsilastir", lines: [leftLine, rightLine] };
+      });
+    }
+    if (tpl === "ozelgun") {
+      // "Özel Gün" (kullanıcı önerisi, 2026-08-03): Hicri takvimle
+      // bağlantılı günlerde (Miraç, Kurban Bayramı...) sitede GERÇEKTEN o
+      // güne dair bulduğumuz bir kaydı öne çıkarır. Yalnız gerçekten
+      // ilgili bir kayıt bulduğumuz iki gün destekleniyor -- geri kalan
+      // kandiller için (Berat, Kadir, Mevlid...) sitede henüz doğrudan
+      // ilgili bir kayıt yok; onlar için zayıf/rastgele bir eşleştirme
+      // göstermek yerine bu şablon o günlerde hiç aday üretmiyor (bkz.
+      // dosya başındaki KURAL -- yaptığımız işi olduğundan farklı
+      // göstermeyiz). Tarih, tarayıcının Intl "islamic-umalqura"
+      // takvimiyle (tablosal hesap) belirleniyor -- gerçek hilal
+      // gözlemiyle 1-2 gün fark edebilir, kesin bir dinî tarih iddiası
+      // değil, yaklaşık bir işarettir.
+      const key = hicriBugun();
+      const gun = key && OZEL_GUN[key];
+      if (!gun) return Promise.resolve(null);
+      return loadSirlar().then((d) => {
+        const entries = (d && d.entries) || [];
+        const pool = entries.filter((e) => gun.entryIds.includes(e.id));
+        if (!pool.length) return null;
+        const entry = pick(pool);
+        if (!tt(entry.quote || {})) return null;
+        return {
+          tpl: "ozelgun",
+          lines: [
+            mkBilingualLine(gun.ad, "baslik"),
+            mkBilingualLine(entry.quote || {}, "soz", 310),
           ],
         };
       });
@@ -465,6 +598,32 @@
       };
     });
   }
+
+  // Hicri (Kameri) takvimde bugünün ay/gün'ünü "ay-gün" biçiminde döndürür
+  // (örn. "7-27" = 7. ay 27. gün) -- tarayıcının ICU "islamic-umalqura"
+  // takvimiyle, tablosal/hesaplanmış bir tarih (gerçek hilal gözlemi
+  // değil). Desteklenmeyen bir tarayıcıda sessizce null döner.
+  function hicriBugun() {
+    try {
+      const parts = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { day: "numeric", month: "numeric" }).formatToParts(new Date());
+      const day = parts.find((p) => p.type === "day");
+      const month = parts.find((p) => p.type === "month");
+      if (!day || !month) return null;
+      return month.value + "-" + day.value;
+    } catch (e) {
+      return null;
+    }
+  }
+  const OZEL_GUN = {
+    "7-27": {
+      ad: { tr: "Miraç Kandili", en: "Night of the Ascension (Mi'raj)", pt: "Noite da Ascensão (Miraj)" },
+      entryIds: ["mirac-in-en-yakin-aninda-ne", "sarabi-icmedim-sirri-aciklamaktan-korktum"],
+    },
+    "12-10": {
+      ad: { tr: "Kurban Bayramı", en: "Feast of Sacrifice (Eid al-Adha)", pt: "Festa do Sacrifício (Eid al-Adha)" },
+      entryIds: ["yaratani-yaratilmis-yaratilmisi-yaratan-gormek-ibrahim"],
+    },
+  };
 
   // --- sahne çizimi ----------------------------------------------------
   let stageEl = null, rafId = 0, tilt = null, startTs = 0, chromeTimer = 0, helixHandle = null;
@@ -488,7 +647,23 @@
     esma:     { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
     benzetme: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
     fusus:    { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
+    karsilastir: { loop: 8500, beats: [[0.09, 0.94], [0.22, 0.94]] },
+    ozelgun:  { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
   };
+
+  // "Dizi" satır sayısı 4-5 arasında değişebildiği için (1 kaynak başlığı +
+  // 3-4 alıntı) TIMING'deki sabit vuruş dizileri yetmiyor -- satır sayısına
+  // göre kendi vuruşlarını üreten bir taban hesaplıyoruz: giriş zamanları
+  // eşit aralıklarla yayılır, hepsi sona doğru birlikte söner.
+  function diziBase(n) {
+    const loop = 10600 + Math.max(0, n - 1) * 4700;
+    const beats = [];
+    for (let i = 0; i < n; i++) {
+      const from = n > 1 ? 0.04 + i * (0.50 / (n - 1)) : 0.04;
+      beats.push([from, 0.94]);
+    }
+    return { loop: loop, beats: beats };
+  }
 
   // Bazı kayıtların cümlesi uzun olduğunda TIMING'deki sabit döngü kısa
   // kalıyor -- kullanıcı bildirimi (2026-08-03): "son cümlenin de görünür
@@ -499,9 +674,10 @@
   const HOLD_BASE_WORDS = 16;
   const HOLD_MS_PER_WORD = 140;
   const HOLD_MAX_MS = 7000;
+  function wordCount(text) { return text.trim().split(/\s+/).filter(Boolean).length; }
   function computeTiming(s) {
-    const base = TIMING[s.tpl] || TIMING.soz;
-    const words = s.lines.reduce((n, l) => n + l.text.trim().split(/\s+/).filter(Boolean).length, 0);
+    const base = s.tpl === "dizi" ? diziBase(s.lines.length) : (TIMING[s.tpl] || TIMING.soz);
+    const words = s.lines.reduce((n, l) => n + wordCount(l.text) + (l.text2 ? wordCount(l.text2) : 0), 0);
     const extra = Math.min(HOLD_MAX_MS, Math.max(0, words - HOLD_BASE_WORDS) * HOLD_MS_PER_WORD);
     if (!extra) return base;
     const loop = base.loop + extra;
@@ -528,16 +704,16 @@
   // Ekrandaki döngü 15000 -> 20000ms'ye uzatıldığı için (2026-08-02),
   // kayıt tavanları da aynı oranda büyütüldü -- indirilen video ekranda
   // görülenden daha aceleci hissetmesin diye.
-  const READ_CAP = { hikaye: 28 };
-  const TOTAL_CAP = { hikaye: 46 };
+  const READ_CAP = { hikaye: 28, dizi: 34 };
+  const TOTAL_CAP = { hikaye: 46, dizi: 52 };
   function takePlan(s) {
     const fadeIn = 0.7, fadeOut = 1.2, lineIn = 1.15;
     const cues = [];
     let t = fadeIn + 0.2;
     s.lines.forEach(() => { cues.push(t); t += lineIn; });
-    const ruleAt = s.tpl === "ikili" ? t : null;
+    const ruleAt = s.tpl === "ikili" || s.tpl === "karsilastir" ? t : null;
     if (ruleAt != null) t += 0.9;
-    const words = s.lines.reduce((n, l) => n + l.text.trim().split(/\s+/).filter(Boolean).length, 0);
+    const words = s.lines.reduce((n, l) => n + wordCount(l.text) + (l.text2 ? wordCount(l.text2) : 0), 0);
     const read = Math.min(READ_CAP[s.tpl] || 11, Math.max(3.2, words / READ_WPS));
     return {
       fadeIn: fadeIn, fadeOut: fadeOut, lineIn: lineIn, cues: cues, ruleAt: ruleAt,
@@ -563,8 +739,12 @@
     else if (t < plan.fadeIn) fv = 1 - ease(t / plan.fadeIn);
     else if (t > plan.total - plan.fadeOut) fv = ease(clamp01((t - (plan.total - plan.fadeOut)) / plan.fadeOut));
     fade.style.opacity = fv.toFixed(3);
-    el.querySelectorAll(".share-line").forEach((node, i) => {
-      const v = ease(clamp01((t - (plan.cues[i] != null ? plan.cues[i] : 0)) / plan.lineIn));
+    el.querySelectorAll(".share-line").forEach((node) => {
+      // İki dilli kartta bir logic satır İKİ .share-line üretebiliyor
+      // (primary+secondary) -- data-li, ikisinin de AYNI vuruşu paylaşmasını
+      // sağlıyor (DOM sırasına göre indekslemek ikinci dilde kayardı).
+      const li = parseInt(node.dataset.li, 10) || 0;
+      const v = ease(clamp01((t - (plan.cues[li] != null ? plan.cues[li] : 0)) / plan.lineIn));
       node.style.opacity = v.toFixed(3);
       node.style.transform = "translateY(" + ((1 - v) * 16).toFixed(1) + "px)";
     });
@@ -625,6 +805,25 @@
       n: 36, tur: 1.8, yari: 0.29, yuk: 2.8, ac: 0.28, nokta: 3.0, hale: 0.36, halka: 0, renk: "feyz" },
     { id: "esma", ad: { tr: "Esmâ", en: "Divine Names", pt: "Nomes Divinos" },
       n: 35, tur: 2.0, yari: 0.28, yuk: 2.6, ac: 0.26, nokta: 3.2, hale: 0.22, halka: 0, renk: "esma" },
+    // Dört yeni pastel zemin (kullanıcı isteği, 2026-08-03): "değişik pastel
+    // renkli canlı tasavvufi manevi havası olan arka plan seçenekleri" --
+    // yine sitenin kendi imgelerine bağlı, süsleyici değil:
+    //  - "seher": seherin/teheccüdün sakin uyanışı -- lavanta'dan şeftaliye
+    //    yumuşak bir geçiş, sarmal boyunca kayan.
+    //  - "gul": gül bahçesi -- pembe/yeşil dönüşümlü (celâl-cemâl'in
+    //    "cift" mekaniğiyle aynı, farklı bir imge/renk üzerinden).
+    //  - "deniz": vahdet-i vücûd'un sık kullanılan okyanus metaforu --
+    //    "feyz"le aynı dalga mekaniği, turkuaz-lacivert.
+    //  - "ney": ney'in inlemesi -- sıcak bakır tek ton, az düğüm (ney'in
+    //    az sayıdaki deliği gibi), sade ve durağan bir sıcaklık.
+    { id: "seher", ad: { tr: "Seherin İlk Işığı", en: "First Light of Dawn", pt: "Primeira Luz da Alva" },
+      n: 26, tur: 1.3, yari: 0.29, yuk: 1.8, ac: 0.24, nokta: 3.2, hale: 0.34, halka: 0, renk: "seher" },
+    { id: "gul", ad: { tr: "Gül Bahçesi", en: "Rose Garden", pt: "Jardim de Rosas" },
+      n: 24, tur: 1.4, yari: 0.30, yuk: 2.0, ac: 0.26, nokta: 3.6, hale: 0.26, halka: 0, renk: "gul" },
+    { id: "deniz", ad: { tr: "Deniz-i Muhît", en: "Encompassing Ocean", pt: "Oceano Circundante" },
+      n: 32, tur: 1.6, yari: 0.30, yuk: 2.2, ac: 0.28, nokta: 3.4, hale: 0.30, halka: 0, renk: "deniz" },
+    { id: "ney", ad: { tr: "Ney İnlemesi", en: "The Reed's Lament", pt: "O Lamento do Ney" },
+      n: 18, tur: 1, yari: 0.32, yuk: 1.4, ac: 0.18, nokta: 3.8, hale: 0.30, halka: 0, renk: "ney" },
   ];
   // "renk: cift" için iki sabit ton (celâl/cemâl); "renk: gecis" için
   // sarmal boyunca aralarında kayan iki uç. İkisi de hem koyu hem açık
@@ -638,6 +837,11 @@
     feyzA: "#fdb347", feyzB: "#c04a0f",
     // Yedi Ümmehât: Hayy·Alîm·Mürîd·Kadîr·Semî'·Basîr·Mütekellim sırasıyla.
     esma: ["#3fb87a", "#4a9eff", "#a855f7", "#e2632b", "#06b6d4", "#eab308", "#ec4899"],
+    // Dört yeni pastel zemin (2026-08-03).
+    seherA: "#d9c9ff", seherB: "#ffd2b3",
+    gulPembe: "#f2a6c4", gulYesil: "#8fbf7f",
+    denizA: "#3fd6c8", denizB: "#1a3f6b",
+    ney: "#cf9a5c",
   };
   function hexRgb(h) {
     const n = parseInt(h.slice(1), 16);
@@ -743,6 +947,21 @@
       } else if (z.renk === "esma") {
         // Her düğüm bir Ümmehât isminin rengi; 7'nin katı düğümde renk döner.
         c.style.fill = RENK.esma[i % RENK.esma.length];
+      } else if (z.renk === "seher") {
+        c.style.fill = renkGecis(RENK.seherA, RENK.seherB, i / Math.max(1, z.n - 1));
+      } else if (z.renk === "gul") {
+        c.style.fill = i % 2 === 0 ? RENK.gulPembe : RENK.gulYesil;
+      } else if (z.renk === "deniz") {
+        // Deniz-i Muhît: turkuazdan lacivert dibe, feyz'le aynı dalga
+        // mekaniği ama okyanus imgesiyle.
+        const dPos = i / Math.max(1, z.n - 1);
+        c.style.fill = renkGecis(RENK.denizA, RENK.denizB, dPos);
+        if (!reduceMotion) {
+          const wave = (1 - Math.cos(ts / 1500 - dPos * Math.PI * 4)) / 2;
+          c.style.opacity = (0.15 + 0.75 * wave).toFixed(2);
+        }
+      } else if (z.renk === "ney") {
+        c.style.fill = RENK.ney;
       } else {
         c.style.fill = "";
       }
@@ -754,6 +973,10 @@
     else if (z.renk === "gecis") halo.style.fill = renkGecis(RENK.esikA, RENK.esikB, 0.5);
     else if (z.renk === "feyz") halo.style.fill = RENK.feyzA;
     else if (z.renk === "esma") halo.style.fill = RENK.esma[3]; // Kadîr -- merkezde
+    else if (z.renk === "seher") halo.style.fill = renkGecis(RENK.seherA, RENK.seherB, 0.5);
+    else if (z.renk === "gul") halo.style.fill = RENK.gulPembe;
+    else if (z.renk === "deniz") halo.style.fill = RENK.denizA;
+    else if (z.renk === "ney") halo.style.fill = RENK.ney;
     else halo.style.fill = "";
     const ph = reduceMotion ? 0.5 : (1 - Math.cos((ts / 6000) * 2 * Math.PI)) / 2;
     halo.setAttribute("cx", cx); halo.setAttribute("cy", cy);
@@ -777,8 +1000,11 @@
 
     const cfg = scene._timing || TIMING[scene.tpl] || TIMING.soz;
     const t = ((ts - startTs) % cfg.loop) / cfg.loop;
-    el.querySelectorAll(".share-line").forEach((node, i) => {
-      const b = cfg.beats[i] || cfg.beats[cfg.beats.length - 1];
+    el.querySelectorAll(".share-line").forEach((node) => {
+      // bkz. drawTake'teki aynı not: data-li, iki dilli bir satırın iki
+      // .share-line'ının da AYNI vuruşu paylaşmasını sağlıyor.
+      const li = parseInt(node.dataset.li, 10) || 0;
+      const b = cfg.beats[li] || cfg.beats[cfg.beats.length - 1];
       const v = beat(t, b[0], b[1]);
       node.style.opacity = v.toFixed(3);
       node.style.transform = "translateY(" + ((1 - v) * 14).toFixed(1) + "px)";
@@ -793,9 +1019,16 @@
   }
 
   function stageMarkup(s) {
-    const lines = s.lines.map((l) =>
-      '<p class="share-line share-line--' + l.kind + '">' + escapeHtml(l.text) + "</p>"
-    ).join(s.tpl === "ikili" ? '<span class="share-rule" aria-hidden="true"></span>' : "");
+    const lines = s.lines.map((l, li) => {
+      const primary = '<p class="share-line share-line--' + l.kind + '" data-li="' + li + '">' + escapeHtml(l.text) + "</p>";
+      const secondary = l.text2
+        ? '<p class="share-line share-line--' + l.kind + ' share-line--secondary" data-li="' + li + '">' + escapeHtml(l.text2) + "</p>"
+        : "";
+      // İki dilli kartta bir mantıksal satırın çevirisi hemen altında
+      // duruyor -- flex gap'i mantıksal satırlar arasında (grup), çeviri
+      // çifti arasında (grup içi, CSS'te daha dar) ayrı tutmak için sarma.
+      return '<div class="share-line-group">' + primary + secondary + "</div>";
+    }).join(s.tpl === "ikili" || s.tpl === "karsilastir" ? '<span class="share-rule" aria-hidden="true"></span>' : "");
     // "Füsûs Halkası" şablonu, ambient sarmal yerine Füsûs bölümünün kendi
     // 27-fass halkasını (DostHelix) taşıyor -- bkz. openStage/closeStage.
     const helixMarkup = s.tpl === "fusus" ? '<div class="share-stage__helix" aria-hidden="true"></div>' : "";
@@ -1326,6 +1559,12 @@
         escapeHtml(DIL_ETIKET[l] || l.toUpperCase()) + "</button>";
     }).join("");
 
+    const ikinciDilChips = DIL_LANGS.map(function (l) {
+      return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
+        (l === ikinciDilId ? " is-on" : "") + '" data-ikincidil="' + l + '">' +
+        escapeHtml(DIL_ETIKET[l] || l.toUpperCase()) + "</button>";
+    }).join("");
+
     const zeminChips = ZEMIN.map(function (z) {
       return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
         (z.id === zeminId ? " is-on" : "") + '" data-zemin="' + z.id + '">' +
@@ -1371,10 +1610,28 @@
       '<label class="share-panel__switch">' +
       '<input type="checkbox" data-action="kare"' + (kareMod ? " checked" : "") + ">" +
       "<span>" + escapeHtml(tt(UI.kare)) + "</span></label>" +
+      // İki dilli kart (kullanıcı önerisi, 2026-08-03)
+      '<label class="share-panel__switch">' +
+      '<input type="checkbox" data-action="ikidilli"' + (ikiDilliMod ? " checked" : "") + ">" +
+      "<span>" + escapeHtml(tt(UI.ikiDilli)) + "</span></label>" +
+      (ikiDilliMod
+        ? '<p class="share-panel__label">' + escapeHtml(tt(UI.ikinciDil)) + "</p>" +
+          '<div class="share-panel__chips share-panel__chips--zemin">' + ikinciDilChips + "</div>"
+        : "") +
       // Filtre (koşullu)
       (kaynak_chips
         ? '<p class="share-panel__label">' + escapeHtml(tt(UI.filter)) + "</p>" +
           '<div class="share-panel__chips share-panel__chips--zemin" id="share-kaynak-chips">' + kaynak_chips + "</div>"
+        : "") +
+      // "Karşılaştır" şablonu için özel seçici (kullanıcının kendi seçtiği
+      // iki kavram, rastgele eşleştirmenin yanında/yerine).
+      (currentTpl === "karsilastir"
+        ? '<p class="share-panel__label">' + escapeHtml(tt(UI.karsilastirSol)) + '/' + escapeHtml(tt(UI.karsilastirSag)) + "</p>" +
+          '<div class="share-panel__karsilastir" id="share-karsilastir-picker">' +
+          '<select id="share-karsilastir-sol" aria-label="' + escapeHtml(tt(UI.karsilastirSol)) + '"></select>' +
+          '<select id="share-karsilastir-sag" aria-label="' + escapeHtml(tt(UI.karsilastirSag)) + '"></select>' +
+          '<button type="button" class="share-panel__go" data-action="karsilastir-ac">' + escapeHtml(tt(UI.karsilastirAc)) + "</button>" +
+          "</div>"
         : "") +
       // Çoklu önizleme
       '<div class="share-panel__candidates"></div>' +
@@ -1397,9 +1654,14 @@
 
     panel.querySelectorAll("[data-tpl]").forEach(function (b) {
       b.addEventListener("click", function () {
+        if (b.dataset.tpl === currentTpl) return;
         currentTpl = b.dataset.tpl;
-        panel.querySelectorAll("[data-tpl]").forEach(function (x) { x.classList.toggle("is-on", x === b); });
-        refresh();
+        // "Karşılaştır" kendi seçici bloğunu gösterip candidates/shuffle
+        // düzenini değiştiriyor -- panel gövdesi diğer şablonlardan farklı,
+        // o yüzden dil değişimindeki gibi TAM YENİDEN kuruyoruz.
+        const old = panel;
+        buildPanel();
+        if (old) old.remove();
       });
     });
 
@@ -1408,6 +1670,13 @@
         if (b.dataset.dil === shareLangId) return;
         shareLangId = b.dataset.dil;
         safeSet(DIL_ANAHTAR, shareLangId);
+        // İkinci dil birinciyle çakışırsa (kullanıcı ikinci dili birinci
+        // yapmışsa) sessizce başka bir dile ötele -- iki dilli kart aynı
+        // şeyi iki kez göstermesin diye.
+        if (ikinciDilId === shareLangId) {
+          ikinciDilId = DIL_LANGS.find((l) => l !== shareLangId) || ikinciDilId;
+          safeSet(IKINCIDIL_ANAHTAR, ikinciDilId);
+        }
         // Yalnız kartın içeriği değil, panelin kendi metni de seçilen dile geçsin.
         // buildPanel() modül düzeyindeki `panel` değişkenini YENİ bir düğümle
         // değiştiriyor; eskisini biz kaldırmazsak DOM'da iki panel üst üste kalırdı.
@@ -1416,6 +1685,53 @@
         if (old) old.remove();
       });
     });
+
+    const ikidilliBox = panel.querySelector('[data-action="ikidilli"]');
+    if (ikidilliBox) {
+      ikidilliBox.addEventListener("change", function (e) {
+        ikiDilliMod = e.target.checked;
+        safeSet(IKIDILLI_ANAHTAR, ikiDilliMod ? "1" : "0");
+        const old = panel;
+        buildPanel();
+        if (old) old.remove();
+      });
+    }
+
+    panel.querySelectorAll("[data-ikincidil]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (b.dataset.ikincidil === ikinciDilId) return;
+        ikinciDilId = b.dataset.ikincidil;
+        safeSet(IKINCIDIL_ANAHTAR, ikinciDilId);
+        panel.querySelectorAll("[data-ikincidil]").forEach(function (x) { x.classList.toggle("is-on", x === b); });
+        refresh();
+      });
+    });
+
+    const karsilastirBox = panel.querySelector("#share-karsilastir-picker");
+    if (karsilastirBox) {
+      loadCompareData().then(function (d) {
+        const solSel = karsilastirBox.querySelector("#share-karsilastir-sol");
+        const sagSel = karsilastirBox.querySelector("#share-karsilastir-sag");
+        if (!solSel || !sagSel) return;
+        const optsHtml = d.list.map(function (item) {
+          return '<option value="' + escapeHtml(item.key) + '">' + escapeHtml(tt(item.name)) + "</option>";
+        }).join("");
+        solSel.innerHTML = optsHtml;
+        sagSel.innerHTML = optsHtml;
+        if (d.list.length > 1) sagSel.selectedIndex = 1;
+      });
+      const acBtn = karsilastirBox.querySelector('[data-action="karsilastir-ac"]');
+      if (acBtn) {
+        acBtn.addEventListener("click", function () {
+          const solSel = karsilastirBox.querySelector("#share-karsilastir-sol");
+          const sagSel = karsilastirBox.querySelector("#share-karsilastir-sag");
+          if (!solSel || !sagSel || !solSel.value || !sagSel.value) return;
+          buildScene("karsilastir", { leftKey: solSel.value, rightKey: sagSel.value }).then(function (s) {
+            if (s) openStage(s);
+          });
+        });
+      }
+    }
 
     panel.querySelectorAll("[data-zemin]").forEach(function (b) {
       b.addEventListener("click", function () {

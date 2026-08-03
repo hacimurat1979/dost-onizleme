@@ -6017,6 +6017,12 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   bottom: 16px;
   z-index: 90;
   width: min(330px, calc(100vw - 32px));
+  /* Panel içeriği (karşılaştır seçici, iki dilli ikinci-dil satırı, favoriler,
+     geçmiş...) toplamda görünen alandan uzun olabiliyor -- taşan kısmı
+     kesmek yerine panelin kendi içinde kaydırılabilir yapıyoruz, aksi
+     hâlde en üstteki şablon çipleri erişilemez hâle gelebiliyor. */
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
   background: var(--surface-1);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -6174,6 +6180,10 @@ body.share-stage-open { overflow: hidden; }
   flex-direction: column;
   gap: 22px;
 }
+/* İki dilli kart (2026-08-03): bir mantıksal satır artık (primary +
+   isteğe bağlı çeviri) bu grup içinde duruyor -- gruplar arasında
+   `.share-stage__text`'in 22px'i, grup İÇİNDE daha dar bir boşluk. */
+.share-line-group { display: flex; flex-direction: column; gap: 6px; }
 .share-line {
   margin: 0;
   color: var(--sahne-metin);
@@ -6201,6 +6211,16 @@ body.share-stage-open { overflow: hidden; }
 .share-line--baslik {
   color: var(--sahne-vurgu);
   font-weight: 700;
+}
+/* İki dilli kartın çeviri satırı -- kind ne olursa olsun (baslik/soru/soz)
+   tek başına bir çift-sınıf seçici olarak (0,2,0) özgüllüğüyle rengi/
+   ağırlığı geçersiz kılıyor: çeviri her zaman aynı, sakin/soluk görünüme
+   sahip olmalı, kaynağın vurgu rengini tekrar etmemeli. */
+.share-line.share-line--secondary {
+  font-size: 0.8em;
+  font-weight: 400;
+  font-style: italic;
+  color: color-mix(in srgb, var(--sahne-metin) 78%, transparent);
 }
 .share-rule {
   display: block;
@@ -7275,6 +7295,31 @@ mark.durus-vurgu-es {
   cursor: pointer;
 }
 .share-panel__switch input { width: 16px; height: 16px; accent-color: var(--accent-interactive); }
+
+/* "Karşılaştır" şablonu: kullanıcının kendi seçtiği iki kavramı (rastgele
+   eşleştirmenin yanında) seçen iki <select> + tek bir "aç" düğmesi. */
+.share-panel__karsilastir {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 4px 0 10px;
+}
+.share-panel__karsilastir select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+.share-panel__karsilastir .share-panel__go {
+  align-self: flex-end;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
 
 /* Çoklu önizleme kartları */
 .share-panel__candidates { margin: 10px 0 4px; display: flex; flex-direction: column; gap: 6px; }
