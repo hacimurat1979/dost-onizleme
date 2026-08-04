@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- 371. Bab — Dost Arabi görselleştirme (docs/icerik-yol-haritasi.md D1) -->
+<title>371. Bab: Dokuz Harita — Dost Arabi</title>
+<style>
+:root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}}
+:root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040}
+:root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:.9rem;max-width:640px}
+h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color:var(--gold);margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.85rem;font-style:italic;line-height:1.65}
+.honesty{color:var(--muted);font-size:.72rem;line-height:1.6;max-width:520px;margin:.6rem auto 0;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+
+#stage{width:min(380px,86vw);height:min(380px,86vw);display:block;margin:1rem auto .6rem;transition:transform .5s ease}
+#stage.pull-back{transform:scale(0.72)}
+
+.nav-row{display:flex;align-items:center;justify-content:center;gap:.9rem;margin-bottom:.4rem}
+.step-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:999px;width:38px;height:38px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.step-btn:hover:not(:disabled),.step-btn:focus-visible{border-color:var(--liminal)}
+.step-btn:disabled{opacity:.3;cursor:default}
+.dots{display:flex;gap:.34rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;padding:0;cursor:pointer}
+.dot.on{background:var(--gold)}
+.dot:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+
+.card{width:min(520px,94vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin:.7rem 0}
+.card-no{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--liminal);margin-bottom:.4rem}
+.card-label{font-size:1.02rem;margin-bottom:.5rem}
+.card-gloss{font-size:.87rem;line-height:1.7;font-style:italic;margin-bottom:.5rem}
+.card-cite{font-size:.72rem;color:var(--muted)}
+.card-group{font-size:.7rem;color:var(--muted);margin-top:.4rem}
+
+.eyes-wrap{display:none;width:min(520px,94vw);flex-direction:column;align-items:center;margin-top:.4rem}
+.eyes-wrap.show{display:flex}
+#eyesStage{width:min(420px,90vw);height:180px;display:block}
+.aha{width:min(520px,94vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.8;color:var(--liminal);margin-top:.7rem;white-space:pre-line}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="hTitle">371. Bab: Dokuz Harita</h1>
+  <p class="sub" id="hSub">İbn Arabî'nin, Fütûhât'ın ikinci telifine kendi eliyle çizdiği dokuz harita — "tek bir kompozisyon" olarak görülmesini istediği bir dizi.</p>
+  <p class="honesty" id="hHonesty">Bu sahne, manüskriptin bir kopyası değil — Karjoo-Ravary'nin "Mapping the Unseen" (Journal of Sufi Studies 12, 2023) makalesinde anlatılan sırayı ve içeriği izleyen, bizim kendi sadeleştirilmiş okumamız. Gerçek çizimler Konya nüshasında (TİEM 1845+, 26. cilt) duruyor.</p>
+</header>
+
+<div class="nav-row">
+  <button class="step-btn" id="prevBtn" type="button" aria-label="Önceki">‹</button>
+  <div class="dots" id="dots" role="group" aria-label="Harita adımları"></div>
+  <button class="step-btn" id="nextBtn" type="button" aria-label="Sonraki">›</button>
+</div>
+
+<svg id="stage" viewBox="0 0 380 380" role="img" aria-label="İç içe dairelerle kozmosun mertebeleri"></svg>
+
+<div class="card">
+  <p class="card-no" id="cardNo"></p>
+  <p class="card-label" id="cardLabel"></p>
+  <p class="card-gloss" id="cardGloss"></p>
+  <p class="card-group" id="cardGroup"></p>
+  <p class="card-cite" id="cardCite"></p>
+</div>
+
+<div class="eyes-wrap" id="eyesWrap">
+  <svg id="eyesStage" viewBox="0 0 420 180" role="img" aria-label="İki daire, iki göz"></svg>
+  <p class="aha" id="aha"></p>
+</div>
+
+<script>
+const NS='http://www.w3.org/2000/svg';
+const LA={
+  tr:{
+    title:'371. Bab: Dokuz Harita',
+    sub:'İbn Arabî\'nin, Fütûhât\'ın ikinci telifine kendi eliyle çizdiği dokuz harita — "tek bir kompozisyon" olarak görülmesini istediği bir dizi.',
+    honesty:'Bu sahne, manüskriptin bir kopyası değil — Karjoo-Ravary\'nin "Mapping the Unseen" (Journal of Sufi Studies 12, 2023) makalesinde anlatılan sırayı ve içeriği izleyen, bizim kendi sadeleştirilmiş okumamız. Gerçek çizimler Konya nüshasında (TİEM 1845+, 26. cilt) duruyor.',
+    group3:'Aynı yer, üç ayrı zamanda gösteriliyor — bu üçü bir tek adım gibi okunabilir.',
+    aha:'Dokuzuncu haritanın sağında cennetin açılışı, solunda kozmosun tamamı duruyor.\nİkisi birlikte, bölümün başındaki "iki göz" imgesine dönüyor — biri farkı, biri benzerliği görüyor.\nKitabı kapattığında, sana bakan kendi iki gözündür.',
+  },
+  en:{
+    title:'Chapter 371: Nine Maps',
+    sub:"Nine maps Ibn al-'Arabi drew with his own hand into the second recension of the Futuhat — meant, in his words, to be seen as a single composition.",
+    honesty:'This scene is not a copy of the manuscript — it follows the sequence and content described in Karjoo-Ravary\'s "Mapping the Unseen" (Journal of Sufi Studies 12, 2023), in our own simplified reading. The real drawings are in the Konya manuscript (TİEM 1845+, vol. 26).',
+    group3:'The same place is shown at three different moments — these three can be read as a single step.',
+    aha:"To the right of the ninth map stands the unveiling of paradise; to its left, the whole of the cosmos.\nTogether they return to the image of \"two eyes\" from the start of the chapter — one seeing difference, one seeing likeness.\nWhen you close the book, it is your own two eyes looking back.",
+  },
+  pt:{
+    title:'Capítulo 371: Nove Mapas',
+    sub:'Nove mapas que Ibn al-\'Arabi desenhou com a própria mão na segunda recensão das Futuhat — pensados, nas suas palavras, para serem vistos como uma única composição.',
+    honesty:'Esta cena não é uma cópia do manuscrito — segue a sequência e o conteúdo descritos em "Mapping the Unseen" de Karjoo-Ravary (Journal of Sufi Studies 12, 2023), na nossa própria leitura simplificada. Os desenhos reais estão no manuscrito de Konya (TİEM 1845+, vol. 26).',
+    group3:'O mesmo lugar é mostrado em três momentos diferentes — estes três podem ser lidos como um único passo.',
+    aha:'À direita do nono mapa está o desvelar do paraíso; à sua esquerda, a totalidade do cosmos.\nJuntos, regressam à imagem dos "dois olhos" do início do capítulo — um vendo a diferença, outro a semelhança.\nQuando fechas o livro, são os teus próprios dois olhos que olham de volta.',
+  },
+};
+
+// Kaynak: Ali Karjoo-Ravary, "Mapping the Unseen: Ibn al-ʿArabī's Maps in
+// Chapter 371 of al-Futūḥāt al-Makkiyya," Journal of Sufi Studies 12 (2023):
+// 1-64. Etiketler makalenin kendi çevirisinden (Şeyh'in başlıkları), gloss
+// cümleleri makalenin metninin sadeleştirilmiş paraphrase'i -- yeni bir
+// iddia üretilmedi.
+const STEPS=[
+  { id:'ama', r:172,
+    label:{tr:'Bulut (Amâ)', en:'The Cloud (al-ʿamāʾ)', pt:'A Nuvem (al-ʿamāʾ)'},
+    gloss:{
+      tr:'"Zât\'tan, Arş-ı İstivâ\'ya kadar olanın sûreti." Dizinin başlangıcı — hiçbir sınırın, hiçbir ölçünün henüz geçerli olmadığı yer.',
+      en:'"The form of the Cloud and what it contains until the Throne of Sitting." The start of the sequence — where no limit or measure yet applies.',
+      pt:'"A forma da Nuvem e do que contém até ao Trono de Assento." O início da sequência — onde ainda não se aplica nenhum limite ou medida.',
+    },
+    cite:'Fütûhât, 9.319 (Karjoo-Ravary 2023, s.15-16)' },
+  { id:'ars-kursi', r:142,
+    label:{tr:'Arş-ı İstivâ, Kürsî, İki Ayak, Su, Hava, Karanlık', en:'The Throne of Sitting, Footstool, Two Feet, Water, Air, Darkness', pt:'O Trono de Assento, Escabelo, Dois Pés, Água, Ar, Escuridão'},
+    gloss:{
+      tr:'Bir önceki haritanın en iç dairesine iniliyor. Rahmân\'ın Arş üzerine "istivâ"sı, cismi teşbihe düşürmeden anlatılıyor.',
+      en:'Descends into the innermost circle of the previous map. The Merciful\'s "sitting" upon the Throne is described without lapsing into anthropomorphism.',
+      pt:'Desce para o círculo mais interior do mapa anterior. O "assentar-se" do Misericordioso sobre o Trono é descrito sem cair no antropomorfismo.',
+    },
+    cite:'Fütûhât, 9.331-334 (Karjoo-Ravary 2023, s.25-28)' },
+  { id:'atlas', r:112,
+    label:{tr:'Atlas Feleği, Cennetler, Sabit Yıldızlar Küresi, Tûbâ Ağacı', en:'The Sphere of Atlas, the Gardens, the Root of the Starry Sphere, the Tree of Ṭūbā', pt:'A Esfera de Atlas, os Jardins, a Raiz da Esfera Estelar, a Árvore de Ṭūbā'},
+    gloss:{
+      tr:'İniş sürüyor — gök cisimlerinin ve cennetin bir arada bulunduğu katman.',
+      en:'The descent continues — the layer where the celestial spheres and paradise coexist.',
+      pt:'A descida continua — a camada onde as esferas celestes e o paraíso coexistem.',
+    },
+    cite:'Fütûhât, 9.334 civarı (Karjoo-Ravary 2023, s.25)' },
+  { id:'dunya-simdi', r:78, group:3,
+    label:{tr:'Yer ve yedi kat gök — şimdiki hâliyle', en:'The earth and seven heavens — as they are now', pt:'A terra e os sete céus — como são agora'},
+    gloss:{
+      tr:'Aynı yer, ardışık üç haritada üç ayrı zamandan gösteriliyor: bu, birincisi.',
+      en:'The same place, shown across three consecutive maps from three different moments: this is the first.',
+      pt:'O mesmo lugar, mostrado em três mapas consecutivos a partir de três momentos diferentes: este é o primeiro.',
+    },
+    cite:'Karjoo-Ravary 2023, s.16 (Figür 8-12 tartışması)' },
+  { id:'dunya-kiyamet', r:78, group:3,
+    label:{tr:'Aynı yer — kıyamet dönüşümünde', en:'The same place — in its transformation on the Day of Judgment', pt:'O mesmo lugar — na sua transformação no Dia do Juízo'},
+    gloss:{
+      tr:'İkinci an: aynı yerin kıyamette aldığı hâl.',
+      en:'The second moment: the same place\'s state at the Resurrection.',
+      pt:'O segundo momento: o estado do mesmo lugar na Ressurreição.',
+    },
+    cite:'Karjoo-Ravary 2023, s.16' },
+  { id:'dunya-cehennem', r:78, group:3,
+    label:{tr:'Aynı yer — cehenneme son dönüşümünde', en:'The same place — in its final transformation into hell', pt:'O mesmo lugar — na sua transformação final no inferno'},
+    gloss:{
+      tr:'Üçüncü an: aynı yerin nihai dönüşümü.',
+      en:'The third moment: the same place\'s final transformation.',
+      pt:'O terceiro momento: a transformação final do mesmo lugar.',
+    },
+    cite:'Karjoo-Ravary 2023, s.16' },
+  { id:'oncelik-sonralik', r:128,
+    label:{tr:'Öncelik ve sonralık — başlangıçtan dönüşe', en:'Priority and posteriority — from origin to return', pt:'Prioridade e posterioridade — da origem ao retorno'},
+    gloss:{
+      tr:'Kamera yeniden geri çekiliyor: bu kez zamanın kendisi, başlangıçtan (mebde\') dönüşe (meâd) doğru.',
+      en:'The view pulls back again: this time, time itself, from origin (mabdaʾ) to return (maʿād).',
+      pt:'A vista recua de novo: desta vez, o próprio tempo, da origem (mabdaʾ) ao retorno (maʿād).',
+    },
+    cite:'Karjoo-Ravary 2023, s.53-55 (Figür 12 sol)' },
+  { id:'ruyet', r:96,
+    label:{tr:'Rü\'yet Kum Tepesi — Allah\'ın yüzünün açıldığı an', en:'The Dune of Vision — the moment God\'s face is unveiled', pt:'A Duna da Visão — o momento em que o rosto de Deus se revela'},
+    gloss:{
+      tr:'Cennette, halkın Allah\'ın yüzünü gördüğü belirli bir an ve yer — "beyaz misktendir."',
+      en:'A specific moment and place in paradise where the people see God\'s face — "made of white musk."',
+      pt:'Um momento e lugar específicos no paraíso onde o povo vê o rosto de Deus — "feito de almíscar branco."',
+    },
+    cite:'Fütûhât, 9.358-360 (Karjoo-Ravary 2023, s.55-58)' },
+  { id:'kozmos', r:172, full:true,
+    label:{tr:'Kozmosun tamamı — yirmi iki iç içe daire ve bir merkez', en:'The entirety of the cosmos — twenty-two nested circles and one center', pt:'A totalidade do cosmos — vinte e dois círculos aninhados e um centro'},
+    gloss:{
+      tr:'Son ve en geniş bakış: yirmi üçüncü (merkez) daire, dört bölmeyle geri kalanından ayrılıyor. Şeyh bu haritayı ayrıntılı açıklamıyor — birden çok okumaya açık bırakıyor.',
+      en:'The final and broadest view: the twenty-third (center) circle is set apart from the rest by four divisions. Ibn al-ʿArabī does not explain this image in detail — he leaves it open to multiple readings.',
+      pt:'A visão final e mais ampla: o vigésimo terceiro (central) círculo separa-se do resto por quatro divisões. Ibn al-ʿArabī não explica este mapa em detalhe — deixa-o aberto a múltiplas leituras.',
+    },
+    cite:'Fütûhât, 9.361 (Karjoo-Ravary 2023, s.59-60)' },
+];
+
+let curLang='tr', idx=0;
+const $=id=>document.getElementById(id);
+
+function renderStage(){
+  const svg=$('stage');
+  svg.innerHTML='';
+  const cx=190, cy=190;
+  const s=STEPS[idx];
+  if(s.full){
+    // Kozmosun tamamı: bugüne kadar kurulan bütün dairelerin bir arada
+    // görünmesi -- son harita "hepsini içeriyor" fikrini, önceki
+    // yarıçapları aynı anda göstererek taşıyor (23'ün tam alt bölünmesini
+    // icat etmiyoruz, makalede geometrisi verilmiyor).
+    const radii=[172,142,112,96,78,60,44,30,18];
+    radii.forEach((r,i)=>{
+      const c=document.createElementNS(NS,'circle');
+      c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r',r);
+      c.setAttribute('fill','none');
+      c.setAttribute('stroke','var(--gold)');
+      c.setAttribute('stroke-width','1');
+      c.setAttribute('opacity',(0.15+0.06*i).toFixed(2));
+      svg.appendChild(c);
+    });
+    const center=document.createElementNS(NS,'circle');
+    center.setAttribute('cx',cx); center.setAttribute('cy',cy); center.setAttribute('r',10);
+    center.setAttribute('fill','var(--gold)');
+    svg.appendChild(center);
+    return;
+  }
+  // Önceki bütün dairelerin soluk izleri (kaç adım geçildiğini göstermek
+  // için), üstünde şu anki adımın dairesi belirgin.
+  for(let i=0;i<idx;i++){
+    const prev=STEPS[i];
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r',prev.r);
+    c.setAttribute('fill','none');
+    c.setAttribute('stroke','var(--border)');
+    c.setAttribute('stroke-width','1');
+    svg.appendChild(c);
+  }
+  const cur=document.createElementNS(NS,'circle');
+  cur.setAttribute('cx',cx); cur.setAttribute('cy',cy); cur.setAttribute('r',s.r);
+  cur.setAttribute('fill','none');
+  cur.setAttribute('stroke','var(--gold)');
+  cur.setAttribute('stroke-width','2.2');
+  svg.appendChild(cur);
+}
+
+function renderDots(){
+  $('dots').innerHTML=STEPS.map((s,i)=>`<button class="dot${i===idx?' on':''}" data-i="${i}" aria-label="${i+1}"></button>`).join('');
+  $('dots').querySelectorAll('.dot').forEach(b=>b.addEventListener('click',()=>{ idx=parseInt(b.dataset.i,10); update(); }));
+}
+
+function renderEyes(){
+  const svg=$('eyesStage');
+  svg.innerHTML='';
+  const specs=[{cx:130,cy:90,label:STEPS[7].label},{cx:290,cy:90,label:STEPS[8].label}];
+  specs.forEach(sp=>{
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',sp.cx); c.setAttribute('cy',sp.cy); c.setAttribute('r',52);
+    c.setAttribute('fill','none');
+    c.setAttribute('stroke','var(--gold)');
+    c.setAttribute('stroke-width','2');
+    svg.appendChild(c);
+    const dot=document.createElementNS(NS,'circle');
+    dot.setAttribute('cx',sp.cx); dot.setAttribute('cy',sp.cy); dot.setAttribute('r',6);
+    dot.setAttribute('fill','var(--gold)');
+    svg.appendChild(dot);
+  });
+  const line=document.createElementNS(NS,'line');
+  line.setAttribute('x1',182); line.setAttribute('y1',90);
+  line.setAttribute('x2',238); line.setAttribute('y2',90);
+  line.setAttribute('stroke','var(--border)');
+  line.setAttribute('stroke-width','1');
+  line.setAttribute('stroke-dasharray','2 4');
+  svg.appendChild(line);
+}
+
+function update(){
+  const d=LA[curLang];
+  const s=STEPS[idx];
+  renderStage();
+  renderDots();
+  $('prevBtn').disabled=idx===0;
+  $('nextBtn').disabled=idx===STEPS.length-1;
+  $('cardNo').textContent=(idx+1)+' / '+STEPS.length;
+  $('cardLabel').textContent=s.label[curLang];
+  $('cardGloss').textContent=s.gloss[curLang];
+  $('cardGroup').textContent=s.group ? d.group3 : '';
+  $('cardCite').textContent=s.cite;
+  $('stage').classList.remove('pull-back');
+  const eyesWrap=$('eyesWrap');
+  if(idx===STEPS.length-1){
+    $('stage').classList.add('pull-back');
+    eyesWrap.classList.add('show');
+    renderEyes();
+    $('aha').textContent=d.aha;
+  } else {
+    eyesWrap.classList.remove('show');
+  }
+}
+
+function renderAll(){
+  const d=LA[curLang];
+  $('hTitle').textContent=d.title;
+  $('hSub').textContent=d.sub;
+  $('hHonesty').textContent=d.honesty;
+  update();
+}
+function setLang(l){ curLang=l; renderAll(); }
+
+$('prevBtn').addEventListener('click',()=>{ if(idx>0){ idx--; update(); } });
+$('nextBtn').addEventListener('click',()=>{ if(idx<STEPS.length-1){ idx++; update(); } });
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft' && idx>0){ idx--; update(); }
+  if(e.key==='ArrowRight' && idx<STEPS.length-1){ idx++; update(); }
+});
+
+renderAll();
+
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+});
+</script>
+</body>
+</html>
