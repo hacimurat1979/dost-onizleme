@@ -9236,3 +9236,80 @@ mark.durus-vurgu-es {
   .eser-agi-eser__sekil,
   .eser-agi-kenar { transition: none !important; }
 }
+
+/* --- Seyahat Atlası (docs/icerik-yol-haritasi.md D8, 2026-08-04) ----------
+   Statik site kısıtıyla uyumlu: harita tile servisi yok, kendi çizdiğimiz
+   şematik kara lekeleri var -- "dönemin coğrafya tasavvuruna yakın, modern
+   sınırlar yok" (roadmap'in kendi isteği). Zaman kaydırıcısı davranışı
+   resmediyor: seçilen yıldan sonraki duraklar/rota parçaları sönükleşiyor. */
+.seyahat-kara path {
+  fill: var(--series-theme);
+  opacity: 0.1;
+  stroke: none;
+}
+.seyahat-rota-parca {
+  stroke: var(--series-theme);
+  stroke-width: 1.6px;
+  stroke-dasharray: 2 4;
+  opacity: 0.7;
+  fill: none;
+  transition: opacity 0.3s ease;
+}
+.seyahat-rota-parca--gelecek { opacity: 0.12; }
+
+.seyahat-durak { cursor: pointer; }
+.seyahat-durak:focus { outline: none; }
+.seyahat-durak__nokta {
+  fill: var(--series-ibnarabi);
+  stroke: var(--surface-1);
+  stroke-width: 1.4;
+  transition: transform 0.15s ease, opacity 0.3s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.seyahat-durak__etiket {
+  font-size: 0.72rem;
+  fill: var(--text-secondary);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.seyahat-durak--deginiliyor .seyahat-durak__nokta { transform: scale(1.4); }
+.seyahat-durak--deginiliyor .seyahat-durak__etiket { fill: var(--text-primary); }
+.seyahat-durak--gelecek .seyahat-durak__nokta,
+.seyahat-durak--gelecek .seyahat-durak__etiket { opacity: 0.15; }
+
+.seyahat-atlasi-zaman {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: color-mix(in srgb, var(--surface-1) 85%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.seyahat-atlasi-zaman input[type="range"] { flex: 1; }
+#seyahat-atlasi-slider-etiket { min-width: 3em; text-align: right; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+
+.seyahat-eser-listesi { display: flex; flex-direction: column; gap: 6px; }
+.seyahat-eser-bag {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.86rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  background: var(--surface-1);
+}
+.seyahat-eser-bag:hover { border-color: var(--accent-interactive); }
+
+@media (prefers-reduced-motion: reduce) {
+  .seyahat-durak__nokta,
+  .seyahat-rota-parca { transition: none !important; }
+}
