@@ -1179,6 +1179,28 @@
     return !!surface && surface !== "browser";
   }
 
+  // getDisplayMedia'nın video()'su play() çözüldüğünde bazen HENÜZ
+  // videoWidth/videoHeight=0 (ilk kare kararmamış) ya da bir önceki
+  // sekmenin karesini taşıyor olabiliyor -- captureCardToFile bunun için
+  // sabit bir 250ms bekleme ekliyordu (2026-08-03 notu, "akışın ilk
+  // karesi bazen bir önceki sekmenin görüntüsünü taşıyor"), ama
+  // recordToFile aynı riski taşıdığı hâlde HİÇ beklemiyordu -- crop
+  // koordinatları (sx/sy/crop.w/crop.h) videoWidth henüz 0 iken
+  // hesaplanınca crop.w/h de 0 çıkıyor, bu da bozuk/siyah bir video
+  // indirmesine yol açıyordu (kullanıcı bildirimi, 2026-08-04: "video
+  // kayıtta sorun var"). Boyut gerçekten hazır olana kadar bekleyip
+  // ardından aynı 250ms'lik "önceki kare" payını her iki fonksiyonda da
+  // ortaklaştırıyoruz.
+  function videoHazirBekle(video) {
+    return new Promise((resolve) => {
+      function check() {
+        if (video.videoWidth && video.videoHeight) resolve();
+        else requestAnimationFrame(check);
+      }
+      check();
+    }).then(() => new Promise((resolve) => setTimeout(resolve, 250)));
+  }
+
   async function recordToFile() {
     if (!stageEl || recording) return;
     const frameEl = stageEl.querySelector(".share-stage__frame");
@@ -1209,6 +1231,9 @@
     video.srcObject = stream;
     video.muted = true;
     await video.play();
+    // bkz. videoHazirBekle -- crop hesabı videoWidth henüz 0 iken ya da
+    // önceki sekmenin karesiyle yapılırsa bozuk bir video iner.
+    await videoHazirBekle(video);
 
     const canvas = document.createElement("canvas");
     canvas.width = 1080;
@@ -1338,11 +1363,9 @@
     video.srcObject = stream;
     video.muted = true;
     await video.play();
-    // Akışın ilk karesi bazen bir önceki sekmenin görüntüsünü taşıyor, ve
-    // yukarıdaki tam-görünür stil de bir kareyi boyanmayı bekliyor -- küçük
-    // bir bekleme, yakalanan karenin gerçekten (tam açılmış) sahneye ait
-    // olmasını garantiliyor.
-    await new Promise((resolve) => setTimeout(resolve, 250));
+    // bkz. videoHazirBekle -- ayrıca yukarıdaki tam-görünür stil de bir
+    // karenin boyanmasını bekliyor, bu bekleme onu da garantiliyor.
+    await videoHazirBekle(video);
 
     const sx = video.videoWidth / window.innerWidth;
     const sy = video.videoHeight / window.innerHeight;

@@ -2356,6 +2356,44 @@ button.futuhat-part-chip:hover {
   fill: var(--text-secondary);
 }
 
+.futuhat-nobet__svg {
+  width: 100%;
+  max-width: 340px;
+  display: block;
+  margin: 0 auto;
+}
+.futuhat-nobet__arc {
+  fill: none;
+  stroke: var(--gridline);
+  stroke-width: 3px;
+  stroke-linecap: round;
+}
+/* Nokta hangi yarım turdaysa o yay aydınlanıyor -- iki yay da AYNI 12s
+   döngüde, birbirinin tam yarım fazında (bkz. renderNobet'in JS'te
+   verdiği 6s animation-delay). Sıra sabit bir tarafa ait değil. */
+.futuhat-nobet__arc--glow {
+  animation: futuhat-nobet-glow 12s ease-in-out infinite;
+}
+@keyframes futuhat-nobet-glow {
+  0%, 45%  { stroke: var(--series-theme); stroke-width: 5px; }
+  50%, 95% { stroke: var(--gridline); stroke-width: 3px; }
+  100%     { stroke: var(--series-theme); stroke-width: 5px; }
+}
+.futuhat-nobet__arc--static-a {
+  stroke: var(--series-theme);
+  stroke-width: 5px;
+}
+.futuhat-nobet__marker {
+  fill: var(--series-theme);
+  stroke: var(--page-plane);
+  stroke-width: 1.5px;
+}
+.futuhat-nobet__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  fill: var(--text-primary);
+}
+
 .futuhat-sources {
   max-width: 660px;
   margin: 40px auto 0;
@@ -2945,6 +2983,12 @@ body[data-theme="dark"] #sirlar-legend {
      renginde akıyor. */
   stroke: var(--series-kemal);
   stroke-width: 1.6px;
+  /* 2026-08-04 kullanıcı bildirimi: ilişki okları "çok ön planda" duruyordu.
+     Tam opak (1) bir çizgi + (aşağıdaki .arrowhead kuralı gelmeden önce)
+     ok başlarının SVG varsayılanı SİYAH dolgusu birleşince kalın, keskin
+     bir görünüm çıkıyordu -- kenar TÜRÜ zaten ok başı şekliyle taşınıyor
+     (yukarıdaki yorum), rengin/opaklığın tam kontrast olması gerekmiyor. */
+  stroke-opacity: 0.55;
   fill: none;
   cursor: pointer;
   pointer-events: stroke;
@@ -2952,6 +2996,18 @@ body[data-theme="dark"] #sirlar-legend {
 .link--highlight {
   stroke-opacity: 0.9;
   stroke-width: 2.5px;
+}
+
+.arrowhead {
+  /* Ok başları için hiç kural yoktu -- SVG varsayılanı fill:black'e
+     düşüyorlardı, bu yüzden soluk altın çizginin ucunda birer koyu, keskin
+     üçgen duruyordu. Çizgiyle aynı renk/opaklık ailesine alındı. (Tek bir
+     <marker> tanımı TÜM o türdeki kenarlarca paylaşıldığı için -- <defs>
+     içinde, kenar çizgileriyle DOM'da komşu değil -- hover'daki tek bir
+     kenara özel bir ok-başı vurgusu buradan kurulamıyor; .link--highlight
+     zaten çizginin kendi kalınlığı/opaklığıyla yeterince öne çıkıyor.) */
+  fill: var(--series-kemal);
+  opacity: 0.6;
 }
 
 .ontology-node text.node-label {
@@ -6055,6 +6111,10 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   width: 100%;
   max-width: 640px;
 }
+.cizim-lightbox__svg-wrap .futuhat-nobet__svg {
+  width: 100%;
+  max-width: 420px;
+}
 
 /* Füsûs'ün sarmal sahnesi (assets/helix.js), lightbox içinde yeniden
    monte edildiğinde -- ağaç/üçlü şemalardan daha dik bir en-boy oranı
@@ -6786,8 +6846,13 @@ body.share-stage-open { overflow: hidden; }
 .share-stage__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .share-spiral {
   stroke: var(--sahne-murekkep);
-  stroke-width: 1;
-  opacity: 0.22;
+  /* Zât düğümü artık ontoloji ile birebir (2.6x yarıçap + ayrı hâle) --
+     ince (1px) bir çizgiyle o düğüm orantısız/kopuk dururdu; kullanıcının
+     kendi verdiği ikinci seçenekle ("spirali daha kalın göstermek uygun
+     olur dersen yap") hafifçe kalınlaştırıldı, sarmalın geri kalanı da
+     Zât kadar olmasa da biraz daha KENDİNİ göstersin diye. */
+  stroke-width: 1.5;
+  opacity: 0.26;
 }
 .share-dot { fill: var(--sahne-murekkep); }
 .share-halo {
@@ -6798,20 +6863,39 @@ body.share-stage-open { overflow: hidden; }
    .node--root .node-halo ile AYNI nefes ritmi (2026-08-04, kullanıcı
    isteği: "zat düğümü sitede her nerede geçiyorsa daima birebir aynı
    olmalı"). Işık kaynağı statik bir parıltı filtresi değil, altı
-   saniyelik nefes alan bir hâle -- oradaki gibi burada da. */
+   saniyelik nefes alan bir hâle -- oradaki gibi burada da.
+   İlk yazım yalnız .node--root .node-halo'nun AÇIK tema değerlerini
+   (0.14->0.34, blur yok) kopyalamıştı -- ama o kuralın kendi yorumu
+   açıkça uyarıyor: "düz --series-theme altını yakın-siyah bir zeminde
+   bu opaklıklarda çok soluk kalıyor," ve kendisi tam bunun için AYRI bir
+   koyu-tema takviyesi taşıyor (blur(4px) + 0.3->0.65). Sahnenin zemini
+   ("koyu" seçeneğinde) --sahne-perde: #05060a ile tam o senaryo -- bu
+   yüzden varsayılan burada da o takviyeli hâl; yalnız .share-stage--acik
+   (açık zemin) seçiliyken ontoloji'nin AÇIK tema değerlerine dönüyor
+   (kullanıcı bildirimi, 2026-08-04: "zat düğümü glow belli değil"). */
 .share-zat-halo {
   fill: var(--sahne-vurgu);
+  filter: blur(4px);
   transform-box: fill-box;
   transform-origin: center;
-  animation: share-zat-halo-breathe 6s ease-in-out infinite;
+  animation: share-zat-halo-breathe-dark 6s ease-in-out infinite;
   pointer-events: none;
+}
+@keyframes share-zat-halo-breathe-dark {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%      { opacity: 0.65; transform: scale(1.45); }
+}
+.share-stage--acik .share-zat-halo {
+  filter: none;
+  animation-name: share-zat-halo-breathe;
 }
 @keyframes share-zat-halo-breathe {
   0%, 100% { opacity: 0.14; transform: scale(1); }
   50%      { opacity: 0.34; transform: scale(1.4); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .share-zat-halo { animation: none; opacity: 0.2; }
+  .share-zat-halo { animation: none; opacity: 0.45; }
+  .share-stage--acik .share-zat-halo { opacity: 0.2; }
 }
 /* Metin, TikTok arayüzünün kapatmadığı orta bandda kalıyor: altta ~%20,
    sağda ~%18 butonlarla örtülüyor. */

@@ -698,6 +698,77 @@
       .call(wrapSvgText, 24);
   }
 
+  // --- Nöbet halkası: "Fâtiha'nın nöbeti" (c14k163, 2026-08-04) --
+  // yukarıdaki .pair diyagramının (kisim-c14k163-pair-nobet) alıntılarını
+  // TAŞIYAN ayrı bir bilgi bloğu değil, aynı içeriğin DAİRESEL bir okuma
+  // eşlik eder -- iki yarım tur, aynı iki nöbet etiketi (VISUALIZATION_
+  // IDEAS.md #29: "aynı şema DAİRESEL olarak da kurulabilir... sitenin
+  // daire ilkesine pair'den daha iyi oturur"). GORSEL_DIL.md'nin
+  // "kavramı resmetme, davranışını resmet" kuralı burada da geçerli: bir
+  // nokta halka boyunca durmadan dönüyor (nöbetin KENDİSİ hiç bitmiyor),
+  // ve nokta hangi yarımın üstündeyse o yarım aydınlanıp öbürü soluyor --
+  // metnin kendi cümlesi böyle (14256-68): sıra değişince zâhir/bâtın da
+  // yer değiştiriyor, sabit bir taraf yok.
+  function renderNobet(mount, nobet) {
+    // İlk yazımda halka (r=78), 220 genişlik dar bir viewBox'ta kenara
+    // neredeyse dayanıyordu -- yan etiketler sarılınca kart kenarından
+    // taşıp kırpılıyordu (Puppeteer'la ölçüldü). pair/triad'ın kendi
+    // marjı (~80-90px, wrap 24 karakter) örnek alınarak viewBox
+    // genişletildi, halka küçültüldü, sarma daha dar tutuldu.
+    const width = 320, height = 220, cx = 160, cy = 110, r = 66;
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-nobet__svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", tt(nobet.a) + " / " + tt(nobet.b));
+
+    function arcPath(a0, a1) {
+      const p0 = [cx + r * Math.cos(a0), cy + r * Math.sin(a0)];
+      const p1 = [cx + r * Math.cos(a1), cy + r * Math.sin(a1)];
+      return `M${p0[0].toFixed(1)},${p0[1].toFixed(1)} A${r},${r} 0 0 1 ${p1[0].toFixed(1)},${p1[1].toFixed(1)}`;
+    }
+    const TOP = -Math.PI / 2, BOTTOM = Math.PI / 2;
+
+    const arcA = svg.append("path").attr("class", "futuhat-nobet__arc futuhat-nobet__arc--a").attr("d", arcPath(TOP, BOTTOM));
+    const arcB = svg.append("path").attr("class", "futuhat-nobet__arc futuhat-nobet__arc--b").attr("d", arcPath(BOTTOM, TOP + Math.PI * 2));
+
+    svg.append("text").attr("class", "futuhat-nobet__label futuhat-nobet__label--a")
+      .attr("x", cx - r - 8).attr("y", cy).attr("text-anchor", "end")
+      .text(tt(nobet.a)).call(wrapSvgText, 13);
+    svg.append("text").attr("class", "futuhat-nobet__label futuhat-nobet__label--b")
+      .attr("x", cx + r + 8).attr("y", cy).attr("text-anchor", "start")
+      .text(tt(nobet.b)).call(wrapSvgText, 13);
+
+    // Dönen nokta: bir devir ne "a" ne "b"de durur, ikisinin arasında
+    // sürekli geçiyor -- bkz. yukarıdaki yorum.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const orbit = svg.append("g").attr("class", "futuhat-nobet__orbit-anchor");
+    const marker = orbit.append("circle").attr("class", "futuhat-nobet__marker").attr("r", 6).attr("cx", cx).attr("cy", cy - r);
+    if (!reduceMotion) {
+      const anim = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+      anim.setAttribute("attributeName", "transform");
+      anim.setAttribute("type", "rotate");
+      anim.setAttribute("from", `0 ${cx} ${cy}`);
+      anim.setAttribute("to", `360 ${cx} ${cy}`);
+      anim.setAttribute("dur", "12s");
+      anim.setAttribute("repeatCount", "indefinite");
+      orbit.node().appendChild(anim);
+      // Nokta hangi yarımdaysa o yay aydınlanıyor -- iki yayı da eşit
+      // sürede (6s) dönüşümlü olarak vurgulayan bir CSS animasyonu,
+      // yukarıdaki SMIL dönüşle AYNI 12s'lik döngüye kilitli (bkz. style.css
+      // futuhat-nobet__arc--glow keyframes).
+      arcA.classed("futuhat-nobet__arc--glow", true);
+      arcB.classed("futuhat-nobet__arc--glow", true).style("animation-delay", "6s");
+    } else {
+      // Hareket kısıtlıyken dönüş taklit edilmiyor (GORSEL_DIL.md) --
+      // nokta "a" yarımında sabit durup o yayı durağan aydınlık gösteriyor.
+      arcA.classed("futuhat-nobet__arc--static-a", true);
+    }
+  }
+
   // --- Karşılıklı akış (münâcât) diyagramı: kul-satırı/Hak-cevabı iki
   // sütun (c3k37 "İkiye böldüm" hadisi, 2026-08-04). Önceki hâli tek yönlü
   // bir ağaçtı (fatiha-munacat-tree) -- ama kaynak metin kul ile Hakkın
@@ -1296,6 +1367,8 @@
             renderTriad(mount, block.triad);
           } else if (block.pair) {
             renderPair(mount, block.pair);
+          } else if (block.nobet) {
+            renderNobet(mount, block.nobet);
           } else if (block.akis) {
             renderAkis(mount, block.akis);
           } else if (block.radyal) {
