@@ -399,7 +399,16 @@
       .slice()
       .sort((a, b) => (b.date || "").localeCompare(a.date || ""))
       .map((a) => {
-        const islendi = !a.note_tr;
+        // "İşlendi" rozeti not_tr'nin VARLIĞINA değil, kartta gerçekten
+        // gösterilecek bir şey olup olmadığına bakmalı (2026-08-04 kullanıcı
+        // bildirimi: "profile işlendi" görünen bazı yazıların detayı yoktu).
+        // Eski mantık (`!a.note_tr`) tam tersini yapıyordu: not_tr'si OLMAYAN
+        // -- yani eksen/Dost bağı da özeti de olmayan, tamamen boş -- on beş
+        // kayıt "İşlendi" görünüyordu; not_tr'sinde açıkça "henüz işlenmedi"
+        // yazan sekiz kayıt ise (metne erişilemedi ya da örtüşme bulunamadı)
+        // zaten doğru rozeti alıyordu, bu yüzden karışıklık asıl boş
+        // kayıtlardaydı.
+        const islendi = !!(a.ozet || (a.eksenler && a.eksenler.length) || (a.dost && a.dost.length));
         const status = !islendi
           ? `<span class="daphne-profile-card__status daphne-profile-card__status--pending">${tt({ tr: "Henüz işlenmedi", en: "Not yet processed", pt: "Ainda não processado" })}</span>`
           : `<span class="daphne-profile-card__status daphne-profile-card__status--done">${tt({ tr: "Profile işlendi", en: "Worked into profile", pt: "Incorporado ao perfil" })}</span>`;
