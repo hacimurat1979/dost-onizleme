@@ -9421,6 +9421,37 @@ button.kuran-dokusu-satir:focus-visible {
   .kuran-dokusu-kenar { transition: none !important; }
 }
 
+/* --- Fütûhât'ın Mimarisi (docs/icerik-yol-haritasi.md D11, 2026-08-04) ----
+   CLAUDE.md'nin daire/merkez ilkesi: altı fasıl tek bir halkada, her
+   dilimin yayı kendi bab sayısıyla orantılı -- büyüklük süs değil, ölçünün
+   kendisi (GORSEL_DIL.md: davranışı resmet). */
+.futuhat-mimarisi-dilim {
+  fill: var(--series-ibnarabi);
+  stroke: var(--surface-1);
+  stroke-width: 1.5;
+  cursor: pointer;
+  opacity: 0.82;
+  transition: opacity 0.15s ease;
+}
+.futuhat-mimarisi-dilim:nth-child(2n) { fill: var(--series-theme); }
+.futuhat-mimarisi-dilim--deginiliyor,
+.futuhat-mimarisi-dilim:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+.futuhat-mimarisi-etiket {
+  font-size: 0.78rem;
+  fill: var(--text-secondary);
+  pointer-events: none;
+}
+.futuhat-mimarisi-kapanis {
+  fill: var(--helix-gold-rim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .futuhat-mimarisi-dilim { transition: none !important; }
+}
+
 /* --- Seyahat Atlası (docs/icerik-yol-haritasi.md D8, 2026-08-04) ----------
    Statik site kısıtıyla uyumlu: harita tile servisi yok, kendi çizdiğimiz
    şematik kara lekeleri var -- "dönemin coğrafya tasavvuruna yakın, modern

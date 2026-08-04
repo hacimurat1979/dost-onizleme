@@ -189,6 +189,7 @@
             <button class="btn-ghost" id="cizimler-btn" type="button" title="Kavramlar arası ilişkileri gösteren şemalar — Diagrams showing relationships between concepts — Diagramas mostrando relações entre conceitos" data-tr="Çizimler" data-en="Diagrams" data-pt="Diagramas">Çizimler</button>
             <button class="btn-ghost btn-ghost--yeni" id="ayethadis-btn" type="button" title="Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin — An index of quoted verses and hadiths, ordered by how often each recurs — Um índice de versículos e ditos citados, ordenados por quantas vezes cada um recorre" data-tr="Âyet &amp; Hadis" data-en="Verses &amp; Hadith" data-pt="Versículos e Hadith">Âyet &amp; Hadis</button>
             <button class="btn-ghost btn-ghost--yeni" id="kuran-dokusu-btn" type="button" title="Fütûhât ve Füsûs özetlerimizde işaretlediğimiz âyet atıflarının sûre↔bap grafı — kısmi bir iz, tam bir tarama değil — A sûrah↔chapter graph of the verse citations we've marked in our Futûhât and Fusûs summaries — a partial trace, not a full scan — Um grafo surata↔capítulo das citações de versículos que marcámos nos nossos resumos das Futûhât e Fusûs — um traço parcial, não uma varredura completa" data-tr="Kur'ân Dokusu" data-en="The Qur'ânic Weave" data-pt="A Trama Alcorânica">Kur'ân Dokusu</button>
+            <button class="btn-ghost btn-ghost--yeni" id="futuhat-mimarisi-btn" type="button" title="Kitabın 560 babının altı büyük fasıla bölünüşü — bir sözlük değil, bir seyir planı — The book's 560 chapters divided into six major sections — not a dictionary, a journey's plan — Os 560 capítulos do livro divididos em seis grandes seções — não um dicionário, um plano de jornada" data-tr="Fütûhât'ın Mimarisi" data-en="The Futûhât's Architecture" data-pt="A Arquitetura das Futûhât">Fütûhât'ın Mimarisi</button>
           </div>
         </div>
         <div class="nav-drawer__group">
@@ -509,6 +510,23 @@
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
       </button>
       <button class="graph-hint" type="button" data-tr-title="Dış halka sûreler, iç halka bablar; kenar kalınlığı atıf sayısı. Bir sûreye ya da baba tıklayın." data-en-title="The outer ring is sûrahs, the inner ring is chapters; edge thickness is citation count. Click a sûrah or a chapter." data-pt-title="O anel externo são as suratas, o anel interno são os capítulos; a espessura da aresta é o número de citações. Clique numa surata ou num capítulo." title="Dış halka sûreler, iç halka bablar; kenar kalınlığı atıf sayısı. Bir sûreye ya da baba tıklayın." aria-label="Dış halka sûreler, iç halka bablar; kenar kalınlığı atıf sayısı. Bir sûreye ya da baba tıklayın.">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+    </section>
+
+    <section class="graph-wrap" id="futuhat-mimarisi-wrap" hidden>
+      <svg id="futuhat-mimarisi-graph" role="group" aria-label="Fütûhât'ın altı fasla bölünüşü"
+           data-tr-aria-label="Fütûhât'ın altı fasla bölünüşü" data-en-aria-label="The Futûhât's division into six sections" data-pt-aria-label="A divisão das Futûhât em seis seções"></svg>
+      <div class="view-status" id="futuhat-mimarisi-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="futuhat-mimarisi-tooltip" hidden></div>
+      <button class="graph-recenter" id="futuhat-mimarisi-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Halkadaki her dilim bir fasıl, büyüklüğü bab sayısıyla orantılı. Bir dilime tıklayın." data-en-title="Each slice of the ring is a section, its size proportional to its chapter count. Click a slice." data-pt-title="Cada fatia do anel é uma seção, seu tamanho proporcional ao número de capítulos. Clique numa fatia." title="Halkadaki her dilim bir fasıl, büyüklüğü bab sayısıyla orantılı. Bir dilime tıklayın." aria-label="Halkadaki her dilim bir fasıl, büyüklüğü bab sayısıyla orantılı. Bir dilime tıklayın.">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
       </button>
     </section>
@@ -1219,8 +1237,8 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-RF49Q32g0d6y3SRc2V3pOK6w72vIbpcudDUq0MMIuqs8JinkwA0MuRNfuzwYpWU0"></script>
   <script src="assets/futuhat.js" defer integrity="sha384-8J52eSlPJXuUJcLh31GPXcuWRsZSmcJW5GRlLRON7lRNgCxixdcq5qfIZbyvshZ9"></script>
   <script src="assets/fusus.js" defer integrity="sha384-YmInK0sH7H7NZq0MMQSKNolaKcz2lLgTdMnExCwhWWs7/BPGxdq7FP9RJUlAA+/L"></script>
-  <script src="assets/view-loader.js" defer integrity="sha384-0HFJoU3GlXjjFX8giXX+XbZ0EXzNlF5i++GMtLUDZsWqODP21wyCL9Za/oqA9P2m"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-YD5HLehBsWjqchowLH0pS37Y47+9RgU4ctSIHZiv9SrFwfZHZgNYGMzMOaYDyxnu"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-6cB+P56MCec2X13UTyAAf0xVEbQ+klDKVfBNmMeDqVqZ3xX8T781UhAmGRYdxCX9"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-dQTQPPpHzeqPwqq26h15IXFPCLuT/x16KB242mKzob8VgH3PjiNpX1hZCd6R8TRC"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-pUGs2ZLA6M1Uv5y5m6q8SzOrNwoimvexeWXg1MwnVMdlNPg4urvUdMtthr/qlAE1"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>

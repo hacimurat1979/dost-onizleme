@@ -266,6 +266,7 @@
     else if (currentMainView === "eserAgi") window.__eserAgiApp && window.__eserAgiApp.onLangChange();
     else if (currentMainView === "seyahatAtlasi") window.__seyahatAtlasiApp && window.__seyahatAtlasiApp.onLangChange();
     else if (currentMainView === "kuranDokusu") window.__kuranDokusuApp && window.__kuranDokusuApp.onLangChange();
+    else if (currentMainView === "futuhatMimarisi") window.__futuhatMimarisiApp && window.__futuhatMimarisiApp.onLangChange();
     else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
     else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
@@ -489,6 +490,7 @@
   const eserAgiBtn = document.getElementById("eser-agi-btn");
   const seyahatAtlasiBtn = document.getElementById("seyahat-atlasi-btn");
   const kuranDokusuBtn = document.getElementById("kuran-dokusu-btn");
+  const futuhatMimarisiBtn = document.getElementById("futuhat-mimarisi-btn");
   const menzillerBtn = document.getElementById("menziller-btn");
   const tasiyicilarBtn = document.getElementById("tasiyicilar-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
@@ -511,6 +513,7 @@
   const eserAgiWrap = document.getElementById("eser-agi-wrap");
   const seyahatAtlasiWrap = document.getElementById("seyahat-atlasi-wrap");
   const kuranDokusuWrap = document.getElementById("kuran-dokusu-wrap");
+  const futuhatMimarisiWrap = document.getElementById("futuhat-mimarisi-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
   const tasiyicilarWrap = document.getElementById("tasiyicilar-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
@@ -535,7 +538,7 @@
   // -- "kaldığın yer" özelliğindeki localStorage deseninin aynısı.
   const NAV_YENI_KEY = "dost-nav-yeni-gorulmus";
   function markNavYeniSeen(view) {
-    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn, hocalar: hocalarBtn, eserAgi: eserAgiBtn, seyahatAtlasi: seyahatAtlasiBtn, kuranDokusu: kuranDokusuBtn }[view];
+    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn, hocalar: hocalarBtn, eserAgi: eserAgiBtn, seyahatAtlasi: seyahatAtlasiBtn, kuranDokusu: kuranDokusuBtn, futuhatMimarisi: futuhatMimarisiBtn }[view];
     if (!btn || !btn.classList.contains("btn-ghost--yeni")) return;
     btn.classList.remove("btn-ghost--yeni");
     try {
@@ -549,14 +552,14 @@
   try {
     const seenAtLoad = JSON.parse(localStorage.getItem(NAV_YENI_KEY) || "[]");
     seenAtLoad.forEach((v) => {
-      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn, hocalar: hocalarBtn, eserAgi: eserAgiBtn, seyahatAtlasi: seyahatAtlasiBtn, kuranDokusu: kuranDokusuBtn }[v];
+      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn, hocalar: hocalarBtn, eserAgi: eserAgiBtn, seyahatAtlasi: seyahatAtlasiBtn, kuranDokusu: kuranDokusuBtn, futuhatMimarisi: futuhatMimarisiBtn }[v];
       if (btn) btn.classList.remove("btn-ghost--yeni");
     });
   } catch (e) { /* yoksay */ }
 
   function setMainView(view) {
     if (currentMainView === view) return;
-    if (view === "kavram" || view === "ayethadis" || view === "bilmiyoruz" || view === "kuantum" || view === "elestiriArkeolojisi" || view === "hocalar" || view === "eserAgi" || view === "seyahatAtlasi" || view === "kuranDokusu") markNavYeniSeen(view);
+    if (view === "kavram" || view === "ayethadis" || view === "bilmiyoruz" || view === "kuantum" || view === "elestiriArkeolojisi" || view === "hocalar" || view === "eserAgi" || view === "seyahatAtlasi" || view === "kuranDokusu" || view === "futuhatMimarisi") markNavYeniSeen(view);
     currentMainView = view;
     markActiveNavButton(ontologyBtn, view === "ontology");
     markActiveNavButton(esmaBtn, view === "esma");
@@ -573,6 +576,7 @@
     markActiveNavButton(eserAgiBtn, view === "eserAgi");
     markActiveNavButton(seyahatAtlasiBtn, view === "seyahatAtlasi");
     markActiveNavButton(kuranDokusuBtn, view === "kuranDokusu");
+    markActiveNavButton(futuhatMimarisiBtn, view === "futuhatMimarisi");
     markActiveNavButton(menzillerBtn, view === "menziller");
     markActiveNavButton(tasiyicilarBtn, view === "tasiyicilar");
     markActiveNavButton(futuhatBtn, view === "futuhat");
@@ -595,6 +599,7 @@
     if (eserAgiWrap) eserAgiWrap.hidden = view !== "eserAgi";
     if (seyahatAtlasiWrap) seyahatAtlasiWrap.hidden = view !== "seyahatAtlasi";
     if (kuranDokusuWrap) kuranDokusuWrap.hidden = view !== "kuranDokusu";
+    if (futuhatMimarisiWrap) futuhatMimarisiWrap.hidden = view !== "futuhatMimarisi";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (tasiyicilarWrap) tasiyicilarWrap.hidden = view !== "tasiyicilar";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
@@ -652,6 +657,9 @@
     } else if (view === "kuranDokusu") {
       currentDetailView = null;
       window.__kuranDokusuApp && window.__kuranDokusuApp.activate();
+    } else if (view === "futuhatMimarisi") {
+      currentDetailView = null;
+      window.__futuhatMimarisiApp && window.__futuhatMimarisiApp.activate();
     } else if (view === "menziller") {
       currentDetailView = "menziller";
       window.__menzillerApp && window.__menzillerApp.activate();
@@ -693,6 +701,7 @@
   if (eserAgiBtn) eserAgiBtn.addEventListener("click", () => { setMainView("eserAgi"); updateHash("eser-agi"); });
   if (seyahatAtlasiBtn) seyahatAtlasiBtn.addEventListener("click", () => { setMainView("seyahatAtlasi"); updateHash("seyahat-atlasi"); });
   if (kuranDokusuBtn) kuranDokusuBtn.addEventListener("click", () => { setMainView("kuranDokusu"); updateHash("kuran-dokusu"); });
+  if (futuhatMimarisiBtn) futuhatMimarisiBtn.addEventListener("click", () => { setMainView("futuhatMimarisi"); updateHash("futuhat-mimarisi"); });
   if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
   if (tasiyicilarBtn) tasiyicilarBtn.addEventListener("click", () => { setMainView("tasiyicilar"); updateHash("tasiyicilar"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
@@ -848,6 +857,14 @@
         tr: "Fütûhât ve Füsûs özetlerimizde işaretlediğimiz âyet atıflarının sûre↔bap grafı — kısmi bir iz, tam bir tarama değil.",
         en: "A sûrah↔chapter graph of the verse citations we've marked in our Futûhât and Fusûs summaries — a partial trace, not a full scan.",
         pt: "Um grafo surata↔capítulo das citações de versículos que marcámos nos nossos resumos das Futûhât e Fusûs — um traço parcial, não uma varredura completa.",
+      },
+    },
+    "futuhat-mimarisi": {
+      title: { tr: "Fütûhât'ın Mimarisi", en: "The Futûhât's Architecture", pt: "A Arquitetura das Futûhât" },
+      desc: {
+        tr: "Kitabın 560 babının altı büyük fasıla bölünüşü — bir sözlük değil, bir seyir planı.",
+        en: "The book's 560 chapters divided into six major sections — not a dictionary, a journey's plan.",
+        pt: "Os 560 capítulos do livro divididos em seis grandes seções — não um dicionário, um plano de jornada.",
       },
     },
     sorular: {
@@ -1072,6 +1089,11 @@
     if (id) window.__kuranDokusuApp && window.__kuranDokusuApp.goToNode(id);
   }
 
+  function goToFutuhatMimarisi(id) {
+    setMainView("futuhatMimarisi");
+    if (id) window.__futuhatMimarisiApp && window.__futuhatMimarisiApp.goToNode(id);
+  }
+
   // Taşıyanlar tek bir şemadan ibaret; derin bağlantı için ayrı bir id'si
   // yok, o yüzden setMainView zaten sahneyi kuruyorsa ikinci kez
   // activate() çağırmaya gerek yok -- ama başka bir görünümden gelindiğinde
@@ -1114,7 +1136,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|kuantum|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|kuran-dokusu|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|kuantum|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|kuran-dokusu|futuhat-mimarisi|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -1140,6 +1162,7 @@
     else if (view === "eser-agi") goToEserAgi(id);
     else if (view === "seyahat-atlasi") goToSeyahatAtlasi(id);
     else if (view === "kuran-dokusu") goToKuranDokusu(id);
+    else if (view === "futuhat-mimarisi") goToFutuhatMimarisi(id);
     else if (view === "menziller") goToMenziller(id);
     else if (view === "tasiyicilar") goToTasiyicilar();
     else if (view === "futuhat") goToFutuhat(id);
@@ -1185,6 +1208,7 @@
       else if (view === "eser-agi") goToEserAgi(id);
       else if (view === "seyahat-atlasi") goToSeyahatAtlasi(id);
       else if (view === "kuran-dokusu") goToKuranDokusu(id);
+      else if (view === "futuhat-mimarisi") goToFutuhatMimarisi(id);
       else if (view === "menziller") goToMenziller(id);
       else if (view === "tasiyicilar") goToTasiyicilar();
       else if (view === "futuhat") goToFutuhat(id);
