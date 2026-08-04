@@ -36,6 +36,7 @@
     __acikSorularApp: { src: "assets/acik-sorular.js", integrity: "sha384-DaP5VlgsP7Es5dvGttDQqu1MhxA4MRMrhFdzmHe+w6zsmk1hlyiM3wYR5PlZ8ZdS" },
     __bilmiyoruzApp: { src: "assets/bilmiyoruz.js", integrity: "sha384-lwJhdx6cYpw+87L1srGDOoxU2udEgxpdGwSrjP6S/xKOCka/DMctO8m3XKUlhren" },
     __kuantumApp: { src: "assets/kuantum.js", integrity: "sha384-181Vy3ByxGVSeIRWv7J3ntc1LO6zbZgE5zvvmIzZdb734apMq6xZJdO122tM7qIc" },
+    __elestiriArkeolojisiApp: { src: "assets/elestiri-arkeolojisi.js", integrity: "sha384-D1/41ywKzbxcqAaDBdVA0/ILbc3HEXKZUurasI9Vlwt9mSL4yGH5sS7+Oz7nK9+P" },
   };
 
   var loadingPromises = {};

@@ -261,6 +261,7 @@
     else if (currentMainView === "aciksorular") window.__acikSorularApp && window.__acikSorularApp.onLangChange();
     else if (currentMainView === "bilmiyoruz") window.__bilmiyoruzApp && window.__bilmiyoruzApp.onLangChange();
     else if (currentMainView === "kuantum") window.__kuantumApp && window.__kuantumApp.onLangChange();
+    else if (currentMainView === "elestiriArkeolojisi") window.__elestiriArkeolojisiApp && window.__elestiriArkeolojisiApp.onLangChange();
     else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
     else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
@@ -479,6 +480,7 @@
   const acikSorularBtn = document.getElementById("acik-sorular-btn");
   const bilmiyoruzBtn = document.getElementById("bilmiyoruz-btn");
   const kuantumBtn = document.getElementById("kuantum-btn");
+  const elestiriArkeolojisiBtn = document.getElementById("elestiri-arkeolojisi-btn");
   const menzillerBtn = document.getElementById("menziller-btn");
   const tasiyicilarBtn = document.getElementById("tasiyicilar-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
@@ -496,6 +498,7 @@
   const acikSorularWrap = document.getElementById("acik-sorular-wrap");
   const bilmiyoruzWrap = document.getElementById("bilmiyoruz-wrap");
   const kuantumWrap = document.getElementById("kuantum-wrap");
+  const elestiriArkeolojisiWrap = document.getElementById("elestiri-arkeolojisi-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
   const tasiyicilarWrap = document.getElementById("tasiyicilar-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
@@ -520,7 +523,7 @@
   // -- "kaldığın yer" özelliğindeki localStorage deseninin aynısı.
   const NAV_YENI_KEY = "dost-nav-yeni-gorulmus";
   function markNavYeniSeen(view) {
-    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn }[view];
+    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn }[view];
     if (!btn || !btn.classList.contains("btn-ghost--yeni")) return;
     btn.classList.remove("btn-ghost--yeni");
     try {
@@ -534,14 +537,14 @@
   try {
     const seenAtLoad = JSON.parse(localStorage.getItem(NAV_YENI_KEY) || "[]");
     seenAtLoad.forEach((v) => {
-      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn }[v];
+      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn }[v];
       if (btn) btn.classList.remove("btn-ghost--yeni");
     });
   } catch (e) { /* yoksay */ }
 
   function setMainView(view) {
     if (currentMainView === view) return;
-    if (view === "kavram" || view === "ayethadis" || view === "bilmiyoruz" || view === "kuantum") markNavYeniSeen(view);
+    if (view === "kavram" || view === "ayethadis" || view === "bilmiyoruz" || view === "kuantum" || view === "elestiriArkeolojisi") markNavYeniSeen(view);
     currentMainView = view;
     markActiveNavButton(ontologyBtn, view === "ontology");
     markActiveNavButton(esmaBtn, view === "esma");
@@ -553,6 +556,7 @@
     markActiveNavButton(acikSorularBtn, view === "aciksorular");
     markActiveNavButton(bilmiyoruzBtn, view === "bilmiyoruz");
     markActiveNavButton(kuantumBtn, view === "kuantum");
+    markActiveNavButton(elestiriArkeolojisiBtn, view === "elestiriArkeolojisi");
     markActiveNavButton(menzillerBtn, view === "menziller");
     markActiveNavButton(tasiyicilarBtn, view === "tasiyicilar");
     markActiveNavButton(futuhatBtn, view === "futuhat");
@@ -570,6 +574,7 @@
     if (acikSorularWrap) acikSorularWrap.hidden = view !== "aciksorular";
     if (bilmiyoruzWrap) bilmiyoruzWrap.hidden = view !== "bilmiyoruz";
     if (kuantumWrap) kuantumWrap.hidden = view !== "kuantum";
+    if (elestiriArkeolojisiWrap) elestiriArkeolojisiWrap.hidden = view !== "elestiriArkeolojisi";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (tasiyicilarWrap) tasiyicilarWrap.hidden = view !== "tasiyicilar";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
@@ -612,6 +617,9 @@
     } else if (view === "kuantum") {
       currentDetailView = null;
       window.__kuantumApp && window.__kuantumApp.activate();
+    } else if (view === "elestiriArkeolojisi") {
+      currentDetailView = null;
+      window.__elestiriArkeolojisiApp && window.__elestiriArkeolojisiApp.activate();
     } else if (view === "menziller") {
       currentDetailView = "menziller";
       window.__menzillerApp && window.__menzillerApp.activate();
@@ -648,6 +656,7 @@
   if (acikSorularBtn) acikSorularBtn.addEventListener("click", () => { setMainView("aciksorular"); updateHash("acik-sorular"); });
   if (bilmiyoruzBtn) bilmiyoruzBtn.addEventListener("click", () => { setMainView("bilmiyoruz"); updateHash("bilmiyoruz"); });
   if (kuantumBtn) kuantumBtn.addEventListener("click", () => { setMainView("kuantum"); updateHash("kuantum"); });
+  if (elestiriArkeolojisiBtn) elestiriArkeolojisiBtn.addEventListener("click", () => { setMainView("elestiriArkeolojisi"); updateHash("elestiri-arkeolojisi"); });
   if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
   if (tasiyicilarBtn) tasiyicilarBtn.addEventListener("click", () => { setMainView("tasiyicilar"); updateHash("tasiyicilar"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
@@ -763,6 +772,14 @@
         tr: "İbn Arabî ile kuantum fiziği benzetmelerinin üç sütunlu, dürüst bir değerlendirmesi: iddia, ne kadar dayandığı, ve kimin ne dediği.",
         en: "A three-column, honest assessment of analogies drawn between Ibn al-'Arabi and quantum physics: the claim, how much it holds up, and who says what.",
         pt: "Uma avaliação honesta, em três colunas, das analogias entre Ibn al-'Arabi e a física quântica: a afirmação, o quanto se sustenta, e quem diz o quê.",
+      },
+    },
+    "elestiri-arkeolojisi": {
+      title: { tr: "Eleştiri Arkeolojisi", en: "Archaeology of Criticism", pt: "Arqueologia da Crítica" },
+      desc: {
+        tr: "Dost'a yöneltilen eleştiri ve savunmaları cevaplamadan önce haritalıyoruz: kim, ne zaman, hangi şehirde, kimin himayesinde, neyi okuyarak yazdı.",
+        en: "We map the criticisms and defenses aimed at Dost before answering them: who wrote what, when, in which city, under whose patronage, reading what.",
+        pt: "Mapeamos as críticas e defesas dirigidas a Dost antes de lhes responder: quem escreveu o quê, quando, em que cidade, sob que patrocínio, lendo o quê.",
       },
     },
     sorular: {
@@ -962,6 +979,11 @@
     if (id) window.__kuantumApp && window.__kuantumApp.goToNode(id);
   }
 
+  function goToElestiriArkeolojisi(id) {
+    setMainView("elestiriArkeolojisi");
+    if (id) window.__elestiriArkeolojisiApp && window.__elestiriArkeolojisiApp.goToNode(id);
+  }
+
   // Taşıyanlar tek bir şemadan ibaret; derin bağlantı için ayrı bir id'si
   // yok, o yüzden setMainView zaten sahneyi kuruyorsa ikinci kez
   // activate() çağırmaya gerek yok -- ama başka bir görünümden gelindiğinde
@@ -1004,7 +1026,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|kuantum|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|kuantum|elestiri-arkeolojisi|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -1025,6 +1047,7 @@
     else if (view === "acik-sorular") goToAcikSorular(id);
     else if (view === "bilmiyoruz") goToBilmiyoruz(id);
     else if (view === "kuantum") goToKuantum(id);
+    else if (view === "elestiri-arkeolojisi") goToElestiriArkeolojisi(id);
     else if (view === "menziller") goToMenziller(id);
     else if (view === "tasiyicilar") goToTasiyicilar();
     else if (view === "futuhat") goToFutuhat(id);
@@ -1065,6 +1088,7 @@
     else if (view === "acik-sorular") goToAcikSorular(id);
       else if (view === "bilmiyoruz") goToBilmiyoruz(id);
       else if (view === "kuantum") goToKuantum(id);
+      else if (view === "elestiri-arkeolojisi") goToElestiriArkeolojisi(id);
       else if (view === "menziller") goToMenziller(id);
       else if (view === "tasiyicilar") goToTasiyicilar();
       else if (view === "futuhat") goToFutuhat(id);

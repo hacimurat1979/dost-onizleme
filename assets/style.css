@@ -8993,3 +8993,113 @@ mark.durus-vurgu-es {
   color: var(--text-secondary);
 }
 .kuantum-satir__iddia { font-size: 0.9rem; }
+
+/* --- Eleştiri Arkeolojisi (docs/icerik-yol-haritasi.md D4, 2026-08-04) ----
+   Diğer yeni görünümlerden farkı: bir yay-halka ya da liste değil, gerçek
+   bir zaman çizelgesi + ağ. Düğümün YERİ (x = ölüm yılı, y = bölge bandı)
+   kaynaktan geliyor -- rastgele bir graf-düzeni değil. */
+.elestiri-bant-cizgi {
+  stroke: var(--border);
+  stroke-dasharray: 1 5;
+  stroke-width: 1;
+}
+.elestiri-bant-etiket {
+  font-size: 0.7rem;
+  fill: var(--text-secondary);
+  letter-spacing: 0.03em;
+}
+.elestiri-eksen-cizgi {
+  stroke: var(--border);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+.elestiri-eksen-etiket {
+  font-size: 0.68rem;
+  fill: var(--text-secondary);
+}
+
+.elestiri-kenar {
+  stroke: var(--text-secondary);
+  stroke-width: 1.3px;
+  stroke-opacity: 0.4;
+  cursor: pointer;
+  pointer-events: stroke;
+  transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease;
+}
+.elestiri-kenar:focus-visible,
+.elestiri-kenar--deginiliyor {
+  stroke-opacity: 0.9;
+  stroke-width: 2.2px;
+  stroke: var(--accent-interactive);
+}
+
+.elestiri-kisi { cursor: pointer; }
+.elestiri-kisi:focus { outline: none; }
+.elestiri-kisi__sekil {
+  stroke: var(--surface-1);
+  stroke-width: 1.4;
+  transition: transform 0.15s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.elestiri-kisi__etiket {
+  font-size: 0.68rem;
+  fill: var(--text-secondary);
+  pointer-events: none;
+}
+.elestiri-kisi--deginiliyor .elestiri-kisi__sekil,
+.elestiri-kisi:focus-visible .elestiri-kisi__sekil {
+  transform: scale(1.3);
+}
+.elestiri-kisi--deginiliyor .elestiri-kisi__etiket,
+.elestiri-kisi:focus-visible .elestiri-kisi__etiket {
+  fill: var(--text-primary);
+}
+
+.elestiri-rol-rozet {
+  display: inline-block;
+  margin-inline-start: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+.elestiri-rol-rozet--elestirmen,
+.elestiri-rol-rozet--kurban { border-color: color-mix(in srgb, var(--series-celal) 55%, var(--border)); }
+.elestiri-rol-rozet--savunmaci { border-color: color-mix(in srgb, var(--series-cemal) 55%, var(--border)); }
+.elestiri-rol-rozet--hukumdar { border-color: color-mix(in srgb, var(--series-theme) 55%, var(--border)); }
+.elestiri-rol-rozet--kaynak-tarihci { border-color: color-mix(in srgb, var(--series-ibnarabi) 55%, var(--border)); }
+
+.elestiri-kimlik { color: var(--text-secondary); font-size: 0.86rem; margin: 2px 0 12px; }
+.elestiri-kaynak-satiri { color: var(--text-secondary); font-size: 0.82rem; margin: 8px 0 0; }
+.elestiri-kaynak-satiri--omurga { margin-top: 16px; }
+
+.elestiri-bag-listesi { display: flex; flex-direction: column; gap: 6px; }
+.elestiri-bag-satiri {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.elestiri-bag-satiri:hover,
+.elestiri-bag-satiri:focus-visible {
+  border-color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
+}
+.elestiri-bag-satiri__tur { color: var(--text-secondary); flex-shrink: 0; font-size: 0.78rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .elestiri-kisi__sekil,
+  .elestiri-kenar { transition: none !important; }
+}
