@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Berzah ve hayal — Dost Arabi görselleştirme (docs/icerik-yol-haritasi.md D13) -->
+<title>Berzah — Dost Arabi</title>
+<style>
+:root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}}
+:root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040}
+:root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1rem;max-width:640px}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
+
+#stage{width:min(420px,92vw);height:min(420px,92vw);display:block;margin:.4rem auto 1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.mertebe-ad{font-size:13px;fill:var(--text);text-anchor:middle;letter-spacing:.06em}
+.mertebe-not{font-size:10.5px;fill:var(--muted);text-anchor:middle;font-style:italic}
+
+.track-wrap{width:min(420px,90vw);margin:0 auto 1.3rem;text-align:center}
+.track{position:relative;height:34px;margin:0 auto}
+.track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
+.track-end{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:var(--border);transform:translate(-50%,-50%)}
+.track-end.left{left:0}
+.track-end.mid{left:50%}
+.track-end.right{left:100%}
+.track-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal);transform:translate(-50%,-50%);cursor:grab;touch-action:none}
+.track-handle:active{cursor:grabbing}
+.track:focus-visible{outline:2px solid var(--liminal);outline-offset:6px;border-radius:4px}
+.track-labels{display:flex;justify-content:space-between;margin-top:.55rem;font-size:.76rem;color:var(--muted);gap:1rem}
+.track-labels span{max-width:160px;line-height:1.4}
+.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
+.grab-hint.gone{opacity:.28}
+
+.quote-box{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem}
+.quote-text{font-size:.88rem;line-height:1.75;font-style:italic}
+.quote-src{font-size:.72rem;color:var(--muted);margin-top:.55rem}
+
+.aha{width:min(560px,96vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.75;color:var(--liminal);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;white-space:pre-line}
+.aha.show{opacity:1;transform:none}
+
+.kardes{width:min(560px,96vw);text-align:center;margin-top:1.1rem;font-size:.75rem;line-height:1.6}
+.kardes a{color:var(--liminal);text-decoration:none;border-bottom:1px solid var(--border)}
+.kardes a:hover,.kardes a:focus-visible{border-bottom-color:var(--liminal)}
+
+.yontem{width:min(560px,96vw);margin-top:1.4rem;font-size:.74rem;line-height:1.7;color:var(--muted);text-align:center}
+.yontem a{color:var(--liminal)}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="hTitle">Berzah</h1>
+  <p class="sub" id="hSub"></p>
+</header>
+
+<svg id="stage" viewBox="0 0 420 420" role="img" aria-label="Üç uyanıklık mertebesi: durulan mertebe netleşir, ötekiler bulanıklaşır"></svg>
+
+<div class="track-wrap">
+  <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Durduğun uyanıklık mertebesini sürükle" aria-valuetext="Dünya">
+    <div class="track-line"></div>
+    <div class="track-end left"></div>
+    <div class="track-end mid"></div>
+    <div class="track-end right"></div>
+    <div class="track-handle" id="handle"></div>
+  </div>
+  <div class="track-labels">
+    <span id="labelLeft"></span>
+    <span id="labelRight"></span>
+  </div>
+  <p class="grab-hint" id="grabHint"></p>
+</div>
+
+<div class="quote-box">
+  <p class="quote-text" id="quoteText"></p>
+  <p class="quote-src" id="quoteSrc"></p>
+</div>
+
+<p class="aha" id="aha"></p>
+
+<p class="kardes"><a id="kardesLink" href="perde-zinciri.html"></a></p>
+
+<p class="yontem" id="yontem"></p>
+
+<script>
+const LA={
+  tr:{
+    title:'Berzah',
+    sub:'Dost, dünya ile âhiret arasına üçüncü bir mertebe koyuyor: berzah. Dünya bir uykudur; berzah ondan uyanmış olma hâli; âhiret ise hiç uyku içermeyen uyanıklık. Sürükleyerek durduğun yeri değiştir.',
+    labelLeft:'Dünya',
+    labelRight:'Âhiret',
+    grab:'Sürükle (ok tuşları da çalışır)',
+    aha:'Dünyaya geri döndüğünde, dünya yeniden netleşti.\nUyanmadan önce, uykuda olduğunu gösterecek hiçbir şey yoktu — bulanıklığı ancak bir üst mertebeden görebiliyoruz.',
+    kardes:'Kardeş sahne: Perde Zinciri — bütün perdeler aralanır, merkez yine de netleşmez →',
+    yontem:'Üçlü sıralama (dünya–berzah–âhiret) Dost’un kendi cümlesi. “Yalnız durduğun yer netleşir” ise bizim okumamız — sahneye onu biz ekledik; metin bunu böyle söylemiyor.',
+    mertebeler:[
+      { ad:'Dünya',  not:'uyku içinde uyku' },
+      { ad:'Berzah', not:'uyanmışlık — ama âhirete göre yine uyku' },
+      { ad:'Âhiret', not:'hiç uyku içermeyen gerçek uyanıklık' },
+    ],
+    quotes:[
+      { text:'"Öyleyse dünya berzaha göre uyku içinde uykudur. Çünkü berzah gerçek duruma daha yakındır."', src:'Fütûhât-ı Mekkiyye, Cilt II, Kısım XXVIII — Altmış Dördüncü Bölüm, s. 447' },
+      { text:'"İnsanlar uykudadır, öldüklerinde uyanırlar."', src:'Hz. Peygamber’e nispet edilen söz — Dost bu üçlü kademelenmeyi onun üzerine kuruyor (a.g.e., s. 447)' },
+      { text:'"Aynadaki suret, berzahî (ara bölgeye ait) bir bedendir."', src:'Fütûhât-ı Mekkiyye, Cilt I, s. 290' },
+    ],
+  },
+  en:{
+    title:'The Barzakh',
+    sub:'Dost places a third degree between this world and the afterlife: the barzakh. This world is a sleep; the barzakh is being awake from it; the afterlife is a wakefulness containing no sleep at all. Drag to change where you stand.',
+    labelLeft:'This World',
+    labelRight:'The Afterlife',
+    grab:'Drag (arrow keys work too)',
+    aha:'When you returned to this world, it became clear again.\nBefore you woke, nothing showed you were asleep — we can only see the blur from one degree further out.',
+    kardes:'Sibling scene: Chain of Veiling — every veil parts, and the centre still does not resolve →',
+    yontem:'The triad (world–barzakh–afterlife) is Dost’s own sentence. “Only where you stand resolves” is our reading — we added it to the scene; the text does not put it this way.',
+    mertebeler:[
+      { ad:'This World',    not:'sleep within sleep' },
+      { ad:'The Barzakh',   not:'wakefulness — yet still sleep relative to the afterlife' },
+      { ad:'The Afterlife', not:'true wakefulness containing no sleep at all' },
+    ],
+    quotes:[
+      { text:'"So this world, relative to the barzakh, is sleep within sleep. For the barzakh is nearer to the real situation."', src:'al-Futuhat al-Makkiyya, Vol. II, Part XXVIII — Chapter Sixty-Four, p. 447' },
+      { text:'"People are asleep; when they die, they awaken."', src:'A saying attributed to the Prophet — Dost builds this three-part hierarchy upon it (ibid., p. 447)' },
+      { text:'"The image in the mirror is a barzakhi body."', src:'al-Futuhat al-Makkiyya, Vol. I, p. 290' },
+    ],
+  },
+  pt:{
+    title:'O Barzakh',
+    sub:'Dost coloca um terceiro grau entre este mundo e a vida futura: o barzakh. Este mundo é um sono; o barzakh é estar desperto dele; a vida futura é uma vigília que não contém sono algum. Arraste para mudar onde você está.',
+    labelLeft:'Este Mundo',
+    labelRight:'A Vida Futura',
+    grab:'Arraste (as setas também funcionam)',
+    aha:'Ao voltar a este mundo, ele ficou nítido outra vez.\nAntes de despertar, nada mostrava que você dormia — só enxergamos o embaçamento de um grau mais acima.',
+    kardes:'Cena irmã: Cadeia de Véus — todos os véus se afastam, e o centro ainda não se resolve →',
+    yontem:'A tríade (mundo–barzakh–vida futura) é a própria frase de Dost. “Só o lugar onde você está fica nítido” é a nossa leitura — nós a acrescentamos à cena; o texto não diz isso assim.',
+    mertebeler:[
+      { ad:'Este Mundo',     not:'sono dentro do sono' },
+      { ad:'O Barzakh',      not:'vigília — mas ainda sono em relação à vida futura' },
+      { ad:'A Vida Futura',  not:'a verdadeira vigília que não contém sono algum' },
+    ],
+    quotes:[
+      { text:'"Portanto este mundo, em relação ao barzakh, é sono dentro do sono. Pois o barzakh está mais próximo da situação real."', src:'al-Futuhat al-Makkiyya, Vol. II, Parte XXVIII — Capítulo Sexagésimo Quarto, p. 447' },
+      { text:'"As pessoas estão dormindo; quando morrem, despertam."', src:'Dito atribuído ao Profeta — Dost constrói esta hierarquia tripla sobre ele (ibid., p. 447)' },
+      { text:'"A imagem no espelho é um corpo barzakhi."', src:'al-Futuhat al-Makkiyya, Vol. I, p. 290' },
+    ],
+  },
+};
+
+let curLang='tr', pos=0, touched=false, quoteIdx=0;
+const $=id=>document.getElementById(id);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ── Sahne ────────────────────────────────────────────────────────────────────
+// GORSEL_DIL.md: kavramı resmetme, davranışını resmet.
+//
+// Üç mertebe üç ayrı NESNE değil, aynı sûretin üç mertebedeki hâli: hepsi aynı
+// daire+nokta (sitenin kendi kelimesi), aynı büyüklükte. Sahte 3B yok --
+// derinlik yalnız atmosferik puslanmayla kuruluyor (GORSEL_DIL: "uzak olan
+// daha az çözünür").
+//
+// Tek kural, sahnenin tek iddiası: BULANIKLIK, KULLANICININ DURDUĞU YERE OLAN
+// UZAKLIKTIR -- iki yönde de. Durduğun mertebe nettir; ötekiler, ister altında
+// ister üstünde olsun, bulanıktır. Henüz uyanmadığın mertebe ayrıca soluktur:
+// oraya bakamıyorsun, çünkü oradan bakmıyorsun.
+//
+// Buradan kendiliğinden çıkan şey, sahnenin öğrettiği şeydir: dünyaya geri
+// döndüğünde dünya YENİDEN netleşir. Uykunu içeriden göremiyorsun.
+const NS='http://www.w3.org/2000/svg';
+const svg=$('stage');
+const MERTEBE_Y=[325,210,95];      // 0 dünya (altta) → 2 âhiret (üstte)
+const MERTEBE_S=[0,0.5,1];         // izdeki konumları
+const CX=210, R=38;
+
+svg.innerHTML=`
+<defs>
+  <radialGradient id="gSuret" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="var(--gold)"    stop-opacity=".55"/>
+    <stop offset="62%"  stop-color="var(--liminal)" stop-opacity=".22"/>
+    <stop offset="100%" stop-color="var(--liminal)" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="sis" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.021" numOctaves="4" seed="17" result="n"/>
+    <feColorMatrix in="n" type="matrix"
+      values="0 0 0 0 0.07  0 0 0 0 0.055  0 0 0 0 0.04  0 0 0 1.55 -0.40"/>
+  </filter>
+  <filter id="b0" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur id="b0n" stdDeviation="0"/></filter>
+  <filter id="b1" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur id="b1n" stdDeviation="0"/></filter>
+  <filter id="b2" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur id="b2n" stdDeviation="0"/></filter>
+  <clipPath id="cl"><rect x="0" y="0" width="420" height="420" rx="12"/></clipPath>
+</defs>
+<g clip-path="url(#cl)">
+  <g id="g0"></g><g id="g1"></g><g id="g2"></g>
+  <rect id="sisKat" x="-40" y="-40" width="500" height="500" fill="#000" filter="url(#sis)" opacity=".5"/>
+</g>`;
+
+// Sis katmanı sûretlerin ÜSTÜNDE duruyor: perde karanlıktır, arkasındakini
+// örter (perde-zinciri.html'de aynı hata bir kez yapılıp düzeltilmişti --
+// açık renkli sis çizilince perde kalkarken ekran kararıyordu).
+const gruplar=MERTEBE_Y.map((y,i)=>{
+  const g=$('g'+i);
+  g.setAttribute('filter','url(#b'+i+')');
+  const halka=document.createElementNS(NS,'circle');
+  halka.setAttribute('cx',CX); halka.setAttribute('cy',y); halka.setAttribute('r',R);
+  halka.setAttribute('fill','url(#gSuret)');
+  g.appendChild(halka);
+  const nokta=document.createElementNS(NS,'circle');
+  nokta.setAttribute('cx',CX); nokta.setAttribute('cy',y); nokta.setAttribute('r','3.2');
+  nokta.setAttribute('fill','var(--gold)');
+  g.appendChild(nokta);
+  const ad=document.createElementNS(NS,'text');
+  ad.setAttribute('class','mertebe-ad'); ad.setAttribute('x',CX); ad.setAttribute('y',y+R+20);
+  g.appendChild(ad);
+  const not=document.createElementNS(NS,'text');
+  not.setAttribute('class','mertebe-not'); not.setAttribute('x',CX); not.setAttribute('y',y+R+35);
+  g.appendChild(not);
+  return { g, ad, not, blur:$('b'+i+'n') };
+});
+
+function clamp01(x){ return Math.max(0,Math.min(1,x)); }
+
+function paint(p){
+  gruplar.forEach((m,i)=>{
+    const d = p - MERTEBE_S[i];       // >0 : altında kaldı (uyandın)
+    const uzaklik = Math.abs(d);
+    // Bulanıklık = durduğun yere uzaklık. Sahnenin tek kuralı bu.
+    m.blur.setAttribute('stdDeviation', (uzaklik*17).toFixed(2));
+    // Henüz uyanmadığın mertebe ayrıca soluk: oradan bakmıyorsun.
+    const soluk = d < 0 ? clamp01(1 + d*2.1) : 1;
+    m.g.setAttribute('opacity', (0.30 + 0.70*soluk).toFixed(3));
+  });
+  // Sis, durduğun yere göre değil sahnenin kendi havası -- sabit kalır.
+}
+
+function renderAll(){
+  const t=LA[curLang];
+  $('hTitle').textContent=t.title;
+  $('hSub').textContent=t.sub;
+  $('labelLeft').textContent=t.labelLeft;
+  $('labelRight').textContent=t.labelRight;
+  $('grabHint').textContent=t.grab;
+  $('aha').textContent=t.aha;
+  $('yontem').textContent=t.yontem;
+  $('kardesLink').textContent=t.kardes;
+  gruplar.forEach((m,i)=>{
+    m.ad.textContent=t.mertebeler[i].ad;
+    m.not.textContent=t.mertebeler[i].not;
+  });
+  const q=t.quotes[quoteIdx];
+  $('quoteText').textContent=q.text;
+  $('quoteSrc').textContent=q.src;
+  applyPosition();
+}
+function setLang(l){ if(LA[l]){ curLang=l; document.documentElement.lang=l; renderAll(); } }
+
+setInterval(()=>{
+  const qs=LA[curLang].quotes;
+  quoteIdx=(quoteIdx+1)%qs.length;
+  $('quoteText').textContent=qs[quoteIdx].text;
+  $('quoteSrc').textContent=qs[quoteIdx].src;
+}, 9000);
+
+// ── Sürükleme ────────────────────────────────────────────────────────────────
+const track=$('track');
+function markTouched(){ if(!touched){ touched=true; $('grabHint').classList.add('gone'); } }
+
+let gorulen={ ustMertebe:false, geriDonus:false };
+function applyPosition(){
+  $('handle').style.left=(pos*100)+'%';
+  track.setAttribute('aria-valuenow',Math.round(pos*100));
+  // Ekran okuyucu için: sayı değil, durulan mertebenin adı.
+  const yakin = pos<0.25 ? 0 : (pos<0.75 ? 1 : 2);
+  track.setAttribute('aria-valuetext', LA[curLang].mertebeler[yakin].ad);
+  paint(pos);
+  // Hayret önce, anlama sonra: aha ancak kullanıcı bir üst mertebeye çıkıp
+  // dünyaya GERİ döndükten sonra -- yani aynı sûreti net, sonra bulanık,
+  // sonra yine net gördükten sonra belirir.
+  if(pos>=0.45) gorulen.ustMertebe=true;
+  if(gorulen.ustMertebe && pos<=0.12) gorulen.geriDonus=true;
+  if(gorulen.geriDonus) $('aha').classList.add('show');
+}
+function setPosFromClientX(clientX){
+  const r=track.getBoundingClientRect();
+  pos=clamp01((clientX-r.left)/r.width);
+  applyPosition();
+}
+let dragging=false;
+track.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{track.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
+track.addEventListener('pointermove',e=>{ if(dragging) setPosFromClientX(e.clientX); });
+['pointerup','pointercancel'].forEach(t=>track.addEventListener(t,()=>{dragging=false;}));
+track.addEventListener('keydown',e=>{
+  const k={ArrowLeft:-0.05,ArrowRight:0.05,ArrowDown:-0.05,ArrowUp:0.05,Home:-1,End:1}[e.key];
+  if(k===undefined) return;
+  markTouched();
+  pos = (e.key==='Home') ? 0 : (e.key==='End') ? 1 : clamp01(pos+k);
+  applyPosition(); e.preventDefault();
+});
+
+// prefers-reduced-motion: sahne yine tam çalışır (her şey kullanıcının kendi
+// hareketine bağlı, kendiliğinden oynayan bir animasyon yok); yalnız açılış
+// berzahta durur ki üç mertebe de ilk bakışta görünsün.
+if(reduceMotion) pos=0.5;
+
+renderAll();
+
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+});
+</script>
+</body>
+</html>

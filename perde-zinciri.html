@@ -27,6 +27,9 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 .grab-hint.gone{opacity:.28}
 .aha{font-size:.85rem;font-style:italic;line-height:1.75;color:var(--am);margin-top:.7rem;white-space:pre-line;opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease}
 .aha.show{opacity:1;transform:none}
+.kardes{margin-top:1rem;font-size:.75rem;line-height:1.6}
+.kardes a{color:var(--am);text-decoration:none;border-bottom:1px solid var(--bo)}
+.kardes a:hover,.kardes a:focus-visible{border-bottom-color:var(--am)}
 .qp{flex:1;min-width:210px;max-width:310px;background:var(--pa);border:1px solid var(--bo);border-radius:12px;padding:1.3rem 1.1rem;min-height:250px}
 .ql{font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:var(--mu);margin-bottom:.7rem}
 .chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.9rem}
@@ -133,6 +136,7 @@ blockquote{font-size:.87rem;font-style:italic;line-height:1.8}
       <div class="qs" id="qs"></div>
     </div>
     <p class="qn" id="qn">Bir mertebeye dokunarak ona ait söylemi gör.</p>
+    <p class="kardes"><a id="kardesLink" href="berzah.html"></a></p>
   </div>
 </div>
 
@@ -146,7 +150,8 @@ const L={
         'Eserler inceldi. Ardında bir kıpırtı var — ama hâlâ bir şey duruyor.',
         'Fiiller de çekildi. Işık arttı; yine de bakılacak bir şey belirmedi.',
         'Sıfatlar inceliyor. Her şey aydınlandı — merkez hariç.'],
-    aha:'Perdelerin hepsini araladın. Işık arttı, ama merkez bir adım bile netleşmedi.\nDemek Zât\'ı perdeler gizlemiyordu; gizlilik O\'nun kendi sıfatıymış.'},
+    aha:'Perdelerin hepsini araladın. Işık arttı, ama merkez bir adım bile netleşmedi.\nDemek Zât\'ı perdeler gizlemiyordu; gizlilik O\'nun kendi sıfatıymış.',
+    kardes:'Kardeş sahne: Berzah — nerede durursan yalnız orası netleşir →'},
   en:{title:'Chain of Veiling',sub:'Attributes veil the Essence · Actions veil Attributes · Effects veil Actions',
     ql:'DEGREES OF REALITY',dqt:'Chain of Veiling',dqn:'Touch a degree to see its testimony.',
     grab:'Drag to part the veils (arrow keys work too)',
@@ -155,7 +160,8 @@ const L={
         'Effects have thinned. Something stirs behind them — yet something still stands.',
         'Actions have withdrawn too. The light has grown; still nothing has appeared to look at.',
         'Attributes are thinning. Everything has brightened — except the centre.'],
-    aha:'You parted every veil. The light grew, but the centre did not clarify by a single step.\nSo it was not the veils that hid the Essence; hiddenness is Its own quality.'},
+    aha:'You parted every veil. The light grew, but the centre did not clarify by a single step.\nSo it was not the veils that hid the Essence; hiddenness is Its own quality.',
+    kardes:'Sibling scene: The Barzakh — only where you stand comes into focus →'},
   pt:{title:'Cadeia do Véu',sub:'Os Atributos velam a Essência · as Ações velam os Atributos · as Obras velam as Ações',
     ql:'GRAUS DE REALIDADE',dqt:'Cadeia do Véu',dqn:'Toque num grau para ver o seu testemunho.',
     grab:'Arraste para afastar os véus (as setas também funcionam)',
@@ -164,7 +170,8 @@ const L={
         'As Obras afinaram. Algo se move por trás — mas algo ainda permanece.',
         'As Ações também recuaram. A luz cresceu; ainda assim nada apareceu para ser visto.',
         'Os Atributos afinam. Tudo se iluminou — exceto o centro.'],
-    aha:'Afastaste todos os véus. A luz cresceu, mas o centro não clareou um único passo.\nEntão não eram os véus que ocultavam a Essência; a ocultação é a Sua própria qualidade.'}
+    aha:'Afastaste todos os véus. A luz cresceu, mas o centro não clareou um único passo.\nEntão não eram os véus que ocultavam a Essência; a ocultação é a Sua própria qualidade.',
+    kardes:'Cena irmã: O Barzakh — só o lugar onde você está fica nítido →'}
 };
 
 const D={
@@ -276,6 +283,7 @@ function setLang(l){
   $('i-ql').textContent=d.ql;
   $('grabHint').textContent=d.grab;
   $('aha').textContent=d.aha;
+  $('kardesLink').textContent=d.kardes;
   $('tE').textContent=d.rings[0];
   $('tF').textContent=d.rings[1];
   $('tS').textContent=d.rings[2];
