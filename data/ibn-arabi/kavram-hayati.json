@@ -1,8 +1,8 @@
 {
  "uretim": "scripts/kavram-hayati-uret.py",
  "not": "TÜRETİLMİŞ veri: her kavramın Fütûhât/Füsûs'taki geçtiği yerler, adının kısım/fass metinlerinde kelime-sınırlı, büyük/küçük harf duyarsız bir regex taramasıyla bulunmasına dayanır -- sitenin kendi çapraz-link (linkify) eşleştirmesinin basitleştirilmiş bir yansımasıdır, birebir aynı değildir. 4 harften kısa adlar (otomatikEslesmeYok:true) taranmadı. Yoğunluk = binde kaç kelimede bir geçtiği (mutlak sayı değil, kısmın uzunluğuna göre normalize). Kavramlar değiştiğinde ya da atlas metni düzenlendiğinde yeniden üretilmeli (elle tetiklenir).",
- "toplamKavram": 204,
- "eslesenKavram": 199,
+ "toplamKavram": 206,
+ "eslesenKavram": 201,
  "kavramlar": [
   {
    "view": "ontoloji",
@@ -13216,6 +13216,158 @@
   },
   {
    "view": "terimler",
+   "id": "vahiy",
+   "isim": {
+    "tr": "Vahiy",
+    "en": "Revelation (Wahy)",
+    "pt": "Revelação (Wahy)"
+   },
+   "otomatikEslesmeYok": false,
+   "eslesenTerim": "Vahiy",
+   "futuhat": {
+    "ilk": {
+     "id": "c1k7",
+     "route": "/futuhat/c1k7/",
+     "title": {
+      "tr": "Harflerin Velâyet Mertebeleri",
+      "en": "The Sainthood Ranks of the Letters",
+      "pt": "As Hierarquias de Santidade das Letras"
+     }
+    },
+    "son": {
+     "id": "c16k212",
+     "route": "/futuhat/c16k212/",
+     "title": {
+      "tr": "Hüviyet: Tecellî Ederken Gayb Kalan Yön",
+      "en": "Identity: the Side That Stays Unseen While He Discloses Himself",
+      "pt": "Identidade: o Lado Que Permanece Invisível Enquanto Ele Se Manifesta"
+     }
+    },
+    "enYogun": {
+     "id": "c6k85",
+     "route": "/futuhat/c6k85/",
+     "title": {
+      "tr": "Göz Açıp Kapayıncaya Kadar: Sezgiden Vakfe'ye",
+      "en": "In the Blink of an Eye: From Intuition to the Standing",
+      "pt": "Num Piscar de Olhos: Da Intuição à Espera"
+     },
+     "oran": 6.08
+    },
+    "toplamKisim": 22
+   },
+   "fusus": {
+    "ilk": {
+     "id": "fs14",
+     "route": "/fusus/fs14/",
+     "title": {
+      "tr": "Kader — Ezelde Kendin Hakkında Söylediğin",
+      "en": "Fate — What You Said About Yourself in Eternity",
+      "pt": "O Destino — O Que Disseste de Ti Próprio na Eternidade"
+     }
+    },
+    "son": {
+     "id": "fs14",
+     "route": "/fusus/fs14/",
+     "title": {
+      "tr": "Kader — Ezelde Kendin Hakkında Söylediğin",
+      "en": "Fate — What You Said About Yourself in Eternity",
+      "pt": "O Destino — O Que Disseste de Ti Próprio na Eternidade"
+     }
+    },
+    "enYogun": {
+     "id": "fs14",
+     "route": "/fusus/fs14/",
+     "title": {
+      "tr": "Kader — Ezelde Kendin Hakkında Söylediğin",
+      "en": "Fate — What You Said About Yourself in Eternity",
+      "pt": "O Destino — O Que Disseste de Ti Próprio na Eternidade"
+     },
+     "oran": 1.05
+    },
+    "toplamKisim": 1
+   },
+   "ilgiliAyet": [
+    "10:10",
+    "12:108",
+    "22:2",
+    "26:75",
+    "2:149",
+    "5:109",
+    "6:1",
+    "7:143",
+    "8:20"
+   ],
+   "ilgiliHadis": [],
+   "ilgiliSirlar": [
+    {
+     "id": "veraset-i-nebeviyye-anlatilamayan-sirri",
+     "topic": {
+      "tr": "Velilerin nebevî varisliği: bir sayfaya sığmayan ince sır",
+      "en": "The saints' inheritance from the prophets: a subtle secret too vast for these pages",
+      "pt": "A herança dos santos vinda dos profetas: um segredo sutil vasto demais para estas páginas"
+     }
+    }
+   ],
+   "ilgiliCizimler": [],
+   "birlikteEsma": [
+    {
+     "id": "allah",
+     "isim": {
+      "tr": "Allah",
+      "en": "Allah",
+      "pt": "Allah"
+     },
+     "ortakBolum": 22
+    },
+    {
+     "id": "batin",
+     "isim": {
+      "tr": "el-Bâtın",
+      "en": "Al-Batin (The Hidden)",
+      "pt": "Al-Batin (O Oculto)"
+     },
+     "ortakBolum": 5
+    },
+    {
+     "id": "nisbi-grup",
+     "isim": {
+      "tr": "Nispet ve İzafet İsimleri",
+      "en": "Names of Relation",
+      "pt": "Nomes de Relação"
+     },
+     "ortakBolum": 4
+    },
+    {
+     "id": "evvel",
+     "isim": {
+      "tr": "el-Evvel",
+      "en": "Al-Awwal (The First)",
+      "pt": "Al-Awwal (O Primeiro)"
+     },
+     "ortakBolum": 3
+    },
+    {
+     "id": "varis",
+     "isim": {
+      "tr": "el-Vâris",
+      "en": "Al-Warith (The Inheritor)",
+      "pt": "Al-Warith (O Herdeiro)"
+     },
+     "ortakBolum": 3
+    },
+    {
+     "id": "muddebir",
+     "isim": {
+      "tr": "el-Müdebbir",
+      "en": "Al-Mudabbir (The Regulator)",
+      "pt": "Al-Mudabbir (O Regulador)"
+     },
+     "ortakBolum": 2
+    }
+   ]
+  },
+  {
+   "view": "terimler",
    "id": "vahyin-uc-menzili",
    "isim": {
     "tr": "Vahyin Üç Menzili",
@@ -14240,6 +14392,24 @@
      "ortakBolum": 2
     }
    ]
+  },
+  {
+   "view": "terimler",
+   "id": "makam-sutunu",
+   "isim": {
+    "tr": "Makâmın Dış Sütunu",
+    "en": "The Station's Outer Pillar",
+    "pt": "O Pilar Externo da Estação"
+   },
+   "otomatikEslesmeYok": false,
+   "eslesenTerim": "Makâmın Dış Sütunu",
+   "futuhat": null,
+   "fusus": null,
+   "ilgiliAyet": [],
+   "ilgiliHadis": [],
+   "ilgiliSirlar": [],
+   "ilgiliCizimler": [],
+   "birlikteEsma": []
   },
   {
    "view": "terimler",

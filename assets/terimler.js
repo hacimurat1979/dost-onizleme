@@ -305,6 +305,16 @@
       </svg>
     `;
     },
+    "tinted-glass": (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 340 130" role="img" aria-label="${tt(d.note)}">
+        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="20" y1="65" x2="150" y2="65"/>
+        <rect class="term-diagram-node--dashed" x="150" y="25" width="24" height="80" fill="none"/>
+        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="174" y1="65" x2="315" y2="65" marker-end="url(#tdArrowEnd)"/>
+        <text class="term-diagram-label--small" x="162" y="18" text-anchor="middle">${tt(d.glassLabel)}</text>
+        <text class="term-diagram-note" x="85" y="45" text-anchor="middle">${tt(d.reasonReading)}</text>
+        <text class="term-diagram-note--accent" x="245" y="45" text-anchor="middle">${tt(d.senseReading)}</text>
+      </svg>
+    `,
     "heart-visitors": (d) => {
       const cx = 170, cy = 170, hostR = 34, satR = 26, orbit = 112;
       const n = d.visitors.length;
