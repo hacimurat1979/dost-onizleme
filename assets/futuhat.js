@@ -781,6 +781,64 @@
       .text(tt(radyal.merkez));
   }
 
+  // --- "Perde nerede?" (c14k162, 2026-08-04): kaynak kesintisiz ışık
+  // yayıyor, ışınlar perdeye kadar sönmeden gidiyor -- perde kaynakta değil
+  // gözün önünde. GORSEL_DIL.md'nin ışık=zuhûr/matlık=perdelenme grameri
+  // burada birebir: kaynak dolu-parlak, perde yarı saydam+bulanık (keskin
+  // konturlu bir halka değil), göz perdenin ARKASINDA soluk kalıyor.
+  let perdeBlurSeq = 0;
+  function renderPerdeGoz(mount, pg) {
+    const width = 360, height = 150, cy = 75;
+    const kaynakX = 55, perdeX = 248, gozX = 312;
+    const blurId = "futuhat-perde-blur-" + ++perdeBlurSeq;
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-perdegoz__svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", tt(pg.kaynakEtiket) + " / " + tt(pg.gozEtiket));
+
+    const defs = svg.append("defs");
+    const blur = defs.append("filter").attr("id", blurId).attr("x", "-60%").attr("y", "-60%").attr("width", "220%").attr("height", "220%");
+    blur.append("feGaussianBlur").attr("stdDeviation", "4.2");
+
+    // Işınlar: kaynaktan perdeye kadar SÖNMEDEN giden birkaç ince çizgi --
+    // perdede aniden duruyorlar, giderek soluklaşmıyorlar (metin: ışık
+    // zayıflamıyor, perde onu durduruyor).
+    const rayYs = [cy - 10, cy - 3, cy + 4, cy + 11];
+    svg.selectAll("line.futuhat-perdegoz__ray")
+      .data(rayYs)
+      .join("line")
+      .attr("class", "futuhat-perdegoz__ray")
+      .attr("x1", kaynakX + 30).attr("y1", (d) => d)
+      .attr("x2", perdeX - 4).attr("y2", (d) => d);
+
+    svg.append("circle").attr("class", "futuhat-perdegoz__kaynak-hale").attr("cx", kaynakX).attr("cy", cy).attr("r", 34);
+    svg.append("circle").attr("class", "futuhat-perdegoz__kaynak").attr("cx", kaynakX).attr("cy", cy).attr("r", 24);
+
+    svg.append("rect")
+      .attr("class", "futuhat-perdegoz__perde")
+      .attr("x", perdeX).attr("y", 8).attr("width", 26).attr("height", height - 16)
+      .attr("filter", `url(#${blurId})`);
+
+    svg.append("circle").attr("class", "futuhat-perdegoz__goz").attr("cx", gozX).attr("cy", cy).attr("r", 20);
+
+    svg.append("text").attr("class", "futuhat-perdegoz__label").attr("x", kaynakX).attr("y", cy + 48).attr("text-anchor", "middle")
+      .text(tt(pg.kaynakEtiket)).call(wrapSvgText, 16);
+    svg.append("text").attr("class", "futuhat-perdegoz__note").attr("x", kaynakX).attr("y", cy - 42).attr("text-anchor", "middle")
+      .text(tt(pg.kaynakNot)).call(wrapSvgText, 16);
+
+    svg.append("text").attr("class", "futuhat-perdegoz__label").attr("x", perdeX + 13).attr("y", cy + 48).attr("text-anchor", "middle")
+      .text(tt(pg.perdeEtiket)).call(wrapSvgText, 12);
+
+    svg.append("text").attr("class", "futuhat-perdegoz__label").attr("x", gozX).attr("y", cy + 48).attr("text-anchor", "middle")
+      .text(tt(pg.gozEtiket)).call(wrapSvgText, 14);
+    svg.append("text").attr("class", "futuhat-perdegoz__note").attr("x", gozX).attr("y", cy - 42).attr("text-anchor", "middle")
+      .text(tt(pg.gozNot)).call(wrapSvgText, 16);
+  }
+
   // --- Nested-circles diagram (c13k150, "sonsuz iç içe daireler") ---
   // GORSEL_DIL.md keskin konturlu iç içe halka çizmeyi yasaklıyor ("Perde
   // çizilecekse yarı saydam perde çizilir... keskin konturlu bir halka bir
@@ -1222,6 +1280,8 @@
             renderAkis(mount, block.akis);
           } else if (block.radyal) {
             renderRadyal(mount, block.radyal);
+          } else if (block.perdeGoz) {
+            renderPerdeGoz(mount, block.perdeGoz);
           } else if (block.nested) {
             renderNested(mount);
           } else if (block.useMainDiagram) {

@@ -2280,6 +2280,49 @@ button.futuhat-part-chip:hover {
   fill: var(--on-accent-text);
 }
 
+.futuhat-perdegoz__svg {
+  width: 100%;
+  max-width: 360px;
+  display: block;
+  margin: 0 auto;
+}
+.futuhat-perdegoz__ray {
+  stroke: var(--series-theme);
+  stroke-width: 1.6px;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+.futuhat-perdegoz__kaynak {
+  fill: var(--series-theme);
+  stroke: var(--series-theme);
+}
+.futuhat-perdegoz__kaynak-hale {
+  fill: var(--series-theme);
+  opacity: 0.16;
+}
+.futuhat-perdegoz__perde {
+  /* Matlık = perdelenme (GORSEL_DIL.md); keskin konturlu bir halka/dikdörtgen
+     değil, bulanıklaştırma filtresiyle yumuşatılmış, yarı saydam bir bant. */
+  fill: var(--text-muted);
+  opacity: 0.5;
+}
+.futuhat-perdegoz__goz {
+  /* Perdenin arkasında -- ışık ona ulaşmıyor değil, o ışığı görmüyor. */
+  fill: var(--page-plane);
+  stroke: var(--text-muted);
+  stroke-width: 1.3px;
+  opacity: 0.55;
+}
+.futuhat-perdegoz__label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  fill: var(--text-primary);
+}
+.futuhat-perdegoz__note {
+  font-size: 0.6rem;
+  fill: var(--text-secondary);
+}
+
 .futuhat-sources {
   max-width: 660px;
   margin: 40px auto 0;
@@ -5965,6 +6008,10 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 .cizim-lightbox__svg-wrap .futuhat-radyal__svg {
   width: 100%;
   max-width: 460px;
+}
+.cizim-lightbox__svg-wrap .futuhat-perdegoz__svg {
+  width: 100%;
+  max-width: 640px;
 }
 
 /* Füsûs'ün sarmal sahnesi (assets/helix.js), lightbox içinde yeniden
