@@ -187,6 +187,27 @@
 
   function projectT(t) { return project(helixPoint(t)); }
 
+  // ---- Ortak oryantasyon-halkası pilotu (VISUALIZATION_IDEAS.md) ----
+  // Düğme değil, yalnız bir gösterge: işaretin AÇISI yaw'ı (hangi yöne
+  // dönmüşüz), merkeze UZAKLIĞI pitch'i (ne kadar yukarıdan/yandan
+  // bakıyoruz) taşıyor. tilt=0'da (düz halka) yaw/pitch'in görsel bir
+  // karşılığı yok, o yüzden halka tamamen soluk; sarmala eğilince belirir.
+  let orientRingEl = null, orientMarkerEl = null;
+  function updateOrientRing() {
+    if (orientRingEl === null) {
+      orientRingEl = document.getElementById("hal-orient-ring");
+      orientMarkerEl = orientRingEl ? orientRingEl.querySelector(".graph-orient-ring__marker") : null;
+    }
+    if (!orientRingEl || !orientMarkerEl) return;
+    orientRingEl.style.opacity = String(0.85 * tilt);
+    const a = yaw % (Math.PI * 2);
+    const pClamped = Math.max(-1.3, Math.min(1.3, pitch));
+    const radiusFrac = Math.max(0.18, Math.cos(pClamped));
+    const R = 7.5;
+    orientMarkerEl.setAttribute("cx", String(Math.sin(a) * R * radiusFrac));
+    orientMarkerEl.setAttribute("cy", String(-Math.cos(a) * R * radiusFrac));
+  }
+
   function layout() {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 640;
     cx = w / 2; cy = h / 2;
@@ -444,6 +465,7 @@
 
   function render(ts) {
     if (!nodeLayer) return;
+    updateOrientRing();
     positionNodes();
     const n = orderedNodes.length;
     const foc = focusSet();

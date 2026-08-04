@@ -2171,6 +2171,33 @@ button.futuhat-part-chip:hover {
   fill: var(--text-secondary);
 }
 
+.futuhat-nested__svg {
+  width: 100%;
+  max-width: 260px;
+  display: block;
+  margin: 0 auto;
+}
+
+.futuhat-nested__stop {
+  stop-color: var(--series-theme);
+}
+
+.futuhat-nested__field {
+  stroke: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: futuhat-nested-breathe 9s ease-in-out infinite;
+}
+
+@keyframes futuhat-nested-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.045); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .futuhat-nested__field { animation: none; }
+}
+
 .futuhat-sources {
   max-width: 660px;
   margin: 40px auto 0;
@@ -6048,6 +6075,39 @@ body.cizim-lightbox-open {
 .hal-walk-btn.is-walking {
   color: var(--series-theme-text, var(--accent-interactive));
   border-color: var(--series-theme, var(--accent-interactive));
+}
+/* Ortak oryantasyon-halkası pilotu (Hâller). Düğme değil -- tıklanmaz,
+   odak almaz; yalnız hal.js'in canlı yaw/pitch durumunu yansıtır. Düz
+   (2B) haldeyken yaw/pitch'in bir anlamı yok, bu yüzden tilt=0'da tamamen
+   soluk; sarmala eğilince (tilt→1) belirir. */
+.graph-orient-ring {
+  position: absolute;
+  top: 12px;
+  left: 220px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface-1) 90%, transparent);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.graph-orient-ring__track {
+  stroke: var(--border);
+  stroke-width: 1px;
+}
+.graph-orient-ring__marker {
+  fill: var(--accent-interactive);
+  transition: cx 0.05s linear, cy 0.05s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .graph-orient-ring { transition: none; }
+  .graph-orient-ring__marker { transition: none; }
 }
 .esma-3d-toggle,
 .esma-derived-toggle,

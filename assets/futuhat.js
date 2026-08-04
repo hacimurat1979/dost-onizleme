@@ -670,6 +670,52 @@
       .call(wrapSvgText, 24);
   }
 
+  // --- Nested-circles diagram (c13k150, "sonsuz iç içe daireler") ---
+  // GORSEL_DIL.md keskin konturlu iç içe halka çizmeyi yasaklıyor ("Perde
+  // çizilecekse yarı saydam perde çizilir... keskin konturlu bir halka bir
+  // sınır verir"). İlk denemede beş ayrı, aynı renkte, üst üste dolgulu
+  // daire kullanılmıştı -- ama SVG'de üst üste binen yarı saydam aynı renk
+  // dolgular TOPLANIR: merkezde en çok katman üst üste bindiği için merkez
+  // en KOYU çıktı, dış kenar en soluk -- yani anlam tam TERSİNE dönmüştü
+  // (metin "merkez gizli/soluk, dış ortaya çıkan/net" diyor). Tek bir radyal
+  // gradyan bu sorunu ortadan kaldırıyor: kompozisyon tek bir katman, merkez
+  // gerçekten en soluk, dış kenar gerçekten en dolu -- hem doğru yönde hem
+  // GORSEL_DIL.md'nin istediği yarı saydam/kademeli katman, sert kontur değil.
+  let nestedGradSeq = 0;
+  function renderNested(mount) {
+    const width = 240, height = 200, cx = 120, cy = 100, r = 84;
+    const gradId = "futuhat-nested-grad-" + ++nestedGradSeq;
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-nested__svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr(
+        "aria-label",
+        tt({
+          tr: "Sonsuz sayıda iç içe daire; dış kenar ortaya çıkan daire, merkeze doğru giderek soluklaşan derinlik kendinden önceki daireleri gizli taşıyor",
+          en: "Endless circles nested within one another; the outer edge is the circle that appears, the depth fading toward the centre hides the ones that generated it",
+          pt: "Círculos infinitos aninhados uns nos outros; a borda externa é o círculo que aparece, a profundidade que se dissolve para o centro oculta os que o geraram",
+        })
+      );
+
+    const grad = svg.append("defs").append("radialGradient").attr("id", gradId).attr("class", "futuhat-nested__grad");
+    grad.append("stop").attr("offset", "0%").attr("class", "futuhat-nested__stop").style("stop-opacity", 0.02);
+    grad.append("stop").attr("offset", "38%").attr("class", "futuhat-nested__stop").style("stop-opacity", 0.14);
+    grad.append("stop").attr("offset", "68%").attr("class", "futuhat-nested__stop").style("stop-opacity", 0.42);
+    grad.append("stop").attr("offset", "100%").attr("class", "futuhat-nested__stop").style("stop-opacity", 0.88);
+
+    svg
+      .append("circle")
+      .attr("class", "futuhat-nested__field")
+      .attr("cx", cx)
+      .attr("cy", cy)
+      .attr("r", r)
+      .attr("fill", `url(#${gradId})`);
+  }
+
   // --- Article rendering ---
   const CILT_ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII"];
 
@@ -1061,6 +1107,8 @@
             renderTriad(mount, block.triad);
           } else if (block.pair) {
             renderPair(mount, block.pair);
+          } else if (block.nested) {
+            renderNested(mount);
           } else if (block.useMainDiagram) {
             renderRadialTree(mount, part.mainDiagram.tree, { radius: 160, ariaLabel: part.title });
           } else if (block.tree) {
