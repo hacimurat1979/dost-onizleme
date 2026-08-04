@@ -263,6 +263,7 @@
     else if (currentMainView === "kuantum") window.__kuantumApp && window.__kuantumApp.onLangChange();
     else if (currentMainView === "elestiriArkeolojisi") window.__elestiriArkeolojisiApp && window.__elestiriArkeolojisiApp.onLangChange();
     else if (currentMainView === "hocalar") window.__hocalarApp && window.__hocalarApp.onLangChange();
+    else if (currentMainView === "eserAgi") window.__eserAgiApp && window.__eserAgiApp.onLangChange();
     else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
     else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
@@ -483,6 +484,7 @@
   const kuantumBtn = document.getElementById("kuantum-btn");
   const elestiriArkeolojisiBtn = document.getElementById("elestiri-arkeolojisi-btn");
   const hocalarBtn = document.getElementById("hocalar-btn");
+  const eserAgiBtn = document.getElementById("eser-agi-btn");
   const menzillerBtn = document.getElementById("menziller-btn");
   const tasiyicilarBtn = document.getElementById("tasiyicilar-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
@@ -502,6 +504,7 @@
   const kuantumWrap = document.getElementById("kuantum-wrap");
   const elestiriArkeolojisiWrap = document.getElementById("elestiri-arkeolojisi-wrap");
   const hocalarWrap = document.getElementById("hocalar-wrap");
+  const eserAgiWrap = document.getElementById("eser-agi-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
   const tasiyicilarWrap = document.getElementById("tasiyicilar-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
@@ -526,7 +529,7 @@
   // -- "kaldığın yer" özelliğindeki localStorage deseninin aynısı.
   const NAV_YENI_KEY = "dost-nav-yeni-gorulmus";
   function markNavYeniSeen(view) {
-    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn, hocalar: hocalarBtn }[view];
+    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn, hocalar: hocalarBtn, eserAgi: eserAgiBtn }[view];
     if (!btn || !btn.classList.contains("btn-ghost--yeni")) return;
     btn.classList.remove("btn-ghost--yeni");
     try {
@@ -540,14 +543,14 @@
   try {
     const seenAtLoad = JSON.parse(localStorage.getItem(NAV_YENI_KEY) || "[]");
     seenAtLoad.forEach((v) => {
-      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn, hocalar: hocalarBtn }[v];
+      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn, hocalar: hocalarBtn, eserAgi: eserAgiBtn }[v];
       if (btn) btn.classList.remove("btn-ghost--yeni");
     });
   } catch (e) { /* yoksay */ }
 
   function setMainView(view) {
     if (currentMainView === view) return;
-    if (view === "kavram" || view === "ayethadis" || view === "bilmiyoruz" || view === "kuantum" || view === "elestiriArkeolojisi" || view === "hocalar") markNavYeniSeen(view);
+    if (view === "kavram" || view === "ayethadis" || view === "bilmiyoruz" || view === "kuantum" || view === "elestiriArkeolojisi" || view === "hocalar" || view === "eserAgi") markNavYeniSeen(view);
     currentMainView = view;
     markActiveNavButton(ontologyBtn, view === "ontology");
     markActiveNavButton(esmaBtn, view === "esma");
@@ -561,6 +564,7 @@
     markActiveNavButton(kuantumBtn, view === "kuantum");
     markActiveNavButton(elestiriArkeolojisiBtn, view === "elestiriArkeolojisi");
     markActiveNavButton(hocalarBtn, view === "hocalar");
+    markActiveNavButton(eserAgiBtn, view === "eserAgi");
     markActiveNavButton(menzillerBtn, view === "menziller");
     markActiveNavButton(tasiyicilarBtn, view === "tasiyicilar");
     markActiveNavButton(futuhatBtn, view === "futuhat");
@@ -580,6 +584,7 @@
     if (kuantumWrap) kuantumWrap.hidden = view !== "kuantum";
     if (elestiriArkeolojisiWrap) elestiriArkeolojisiWrap.hidden = view !== "elestiriArkeolojisi";
     if (hocalarWrap) hocalarWrap.hidden = view !== "hocalar";
+    if (eserAgiWrap) eserAgiWrap.hidden = view !== "eserAgi";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (tasiyicilarWrap) tasiyicilarWrap.hidden = view !== "tasiyicilar";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
@@ -628,6 +633,9 @@
     } else if (view === "hocalar") {
       currentDetailView = null;
       window.__hocalarApp && window.__hocalarApp.activate();
+    } else if (view === "eserAgi") {
+      currentDetailView = null;
+      window.__eserAgiApp && window.__eserAgiApp.activate();
     } else if (view === "menziller") {
       currentDetailView = "menziller";
       window.__menzillerApp && window.__menzillerApp.activate();
@@ -666,6 +674,7 @@
   if (kuantumBtn) kuantumBtn.addEventListener("click", () => { setMainView("kuantum"); updateHash("kuantum"); });
   if (elestiriArkeolojisiBtn) elestiriArkeolojisiBtn.addEventListener("click", () => { setMainView("elestiriArkeolojisi"); updateHash("elestiri-arkeolojisi"); });
   if (hocalarBtn) hocalarBtn.addEventListener("click", () => { setMainView("hocalar"); updateHash("hocalar"); });
+  if (eserAgiBtn) eserAgiBtn.addEventListener("click", () => { setMainView("eserAgi"); updateHash("eser-agi"); });
   if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
   if (tasiyicilarBtn) tasiyicilarBtn.addEventListener("click", () => { setMainView("tasiyicilar"); updateHash("tasiyicilar"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
@@ -797,6 +806,14 @@
         tr: "Rûhu'l-kuds'ta andığı 55 hocadan son ikisi, ikisi de kadın — kendi ağzından iki portre.",
         en: "The last two of the 55 teachers named in the Ruh al-quds, both women — two portraits in his own words.",
         pt: "Os dois últimos dos 55 mestres nomeados no Ruh al-quds, ambas mulheres — dois retratos nas suas próprias palavras.",
+      },
+    },
+    "eser-agi": {
+      title: { tr: "Eser Ağı", en: "The Works Spiral", pt: "A Espiral das Obras" },
+      desc: {
+        tr: "Eserlerinin kronolojik sarmalı — merkezde ilk eser, dışa doğru zaman; kenarlar aynı şehirde art arda yazılan eserleri bağlıyor.",
+        en: "A chronological spiral of his works — the earliest at the center, time unwinding outward; connections link works written in the same city back to back.",
+        pt: "Uma espiral cronológica das suas obras — a mais antiga no centro, o tempo desenrolando-se para fora; as ligações unem obras escritas na mesma cidade em sequência.",
       },
     },
     sorular: {
@@ -1006,6 +1023,11 @@
     if (id) window.__hocalarApp && window.__hocalarApp.goToNode(id);
   }
 
+  function goToEserAgi(id) {
+    setMainView("eserAgi");
+    if (id) window.__eserAgiApp && window.__eserAgiApp.goToNode(id);
+  }
+
   // Taşıyanlar tek bir şemadan ibaret; derin bağlantı için ayrı bir id'si
   // yok, o yüzden setMainView zaten sahneyi kuruyorsa ikinci kez
   // activate() çağırmaya gerek yok -- ama başka bir görünümden gelindiğinde
@@ -1048,7 +1070,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|kuantum|elestiri-arkeolojisi|hocalar|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|kuantum|elestiri-arkeolojisi|hocalar|eser-agi|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -1071,6 +1093,7 @@
     else if (view === "kuantum") goToKuantum(id);
     else if (view === "elestiri-arkeolojisi") goToElestiriArkeolojisi(id);
     else if (view === "hocalar") goToHocalar(id);
+    else if (view === "eser-agi") goToEserAgi(id);
     else if (view === "menziller") goToMenziller(id);
     else if (view === "tasiyicilar") goToTasiyicilar();
     else if (view === "futuhat") goToFutuhat(id);
@@ -1113,6 +1136,7 @@
       else if (view === "kuantum") goToKuantum(id);
       else if (view === "elestiri-arkeolojisi") goToElestiriArkeolojisi(id);
       else if (view === "hocalar") goToHocalar(id);
+      else if (view === "eser-agi") goToEserAgi(id);
       else if (view === "menziller") goToMenziller(id);
       else if (view === "tasiyicilar") goToTasiyicilar();
       else if (view === "futuhat") goToFutuhat(id);

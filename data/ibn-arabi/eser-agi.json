@@ -1,0 +1,630 @@
+{
+  "not": {
+    "tr": "Dost'un eserlerini kronolojik bir sarmalda topluyoruz -- merkezde en erken eser, dışa doğru zaman. Veri, Jane Clark ve Stephen Hirtenstein'ın Muhyiddin Ibn Arabi Society için hazırladığı 'Selected Major Works' listesinden (kendisi Osman Yahia'nın 1964 tasnifine dayanır). Roadmap'in işaret ettiği belge -- Dost'un 632/1234'te Şam'da bir Eyyûbî hükümdarına yazdığı, ~290 eserini ve 71 hocasını sayan İcâzet -- listede kendisi de bir eser olarak yer alıyor (aşağıda 'katalog' işaretli). Ama o icâzetin TAM metnini henüz okumadık; o yüzden hocalarının 71'ini burada bir ağ olarak KURAMIYORUZ -- kenarlarımız yalnız MIAS listesinin kendi verdiği şehir bilgisinden, aynı şehirde art arda yazılan eserleri birbirine bağlıyor. MIAS'ın listesindeki 30 eserden ikisinin (Kitâbü'l-İsfâr, Evrâdü'l-üsbû) ne yılı ne şehri belli; sarmalın bir yıl ekseni olduğu için ikisini de dışarıda bıraktık.",
+    "en": "We gather Dost's works into a chronological spiral -- the earliest work at the center, time unwinding outward. The data comes from Jane Clark and Stephen Hirtenstein's 'Selected Major Works' list for the Muhyiddin Ibn Arabi Society (itself based on Osman Yahia's 1964 classification). The document the roadmap points to -- the Ijaza Dost wrote in Damascus in 632/1234 to an Ayyubid ruler, listing some 290 works and 71 teachers -- appears in the list itself as one work (marked 'catalogue' below). But we have not yet read the FULL text of that ijaza, so we cannot build a network out of its 71 teachers here -- our edges come only from the city information the MIAS list itself gives, linking works written in the same city back to back. Two of the 30 works in MIAS's list (Kitab al-Isfar, Awrad al-usbu) have neither a known year nor city; since the spiral needs a year axis, we left both out.",
+    "pt": "Reunimos as obras de Dost numa espiral cronológica -- a obra mais antiga no centro, o tempo desenrolando-se para fora. Os dados vêm da lista 'Selected Major Works' de Jane Clark e Stephen Hirtenstein para a Muhyiddin Ibn Arabi Society (baseada na classificação de Osman Yahia de 1964). O documento que o roteiro aponta -- a Ijaza que Dost escreveu em Damasco em 632/1234 para um governante aiúbida, listando cerca de 290 obras e 71 mestres -- aparece na própria lista como uma obra (marcada 'catálogo' abaixo). Mas ainda não lemos o texto COMPLETO dessa ijaza, por isso não podemos aqui construir uma rede a partir dos seus 71 mestres -- as nossas ligações vêm apenas da informação de cidade que a própria lista da MIAS fornece, ligando obras escritas na mesma cidade em sequência. Duas das 30 obras na lista da MIAS (Kitab al-Isfar, Awrad al-usbu) não têm ano nem cidade conhecidos; como a espiral precisa de um eixo de ano, deixámos ambas de fora."
+  },
+  "kaynak": {
+    "yazar": "Jane Clark & Stephen Hirtenstein",
+    "eser": "Selected Major Works of Ibn Arabi",
+    "url": "https://ibnarabisociety.org/selected-major-works-of-ibn-arabi-stephen-hirtenstein/"
+  },
+  "eserler": [
+    {
+      "id": "mesahid",
+      "eser": "Meşâhidü'l-esrâri'l-kudsiyye",
+      "sehir": {
+        "tr": "Endülüs / Tunus",
+        "en": "Andalusia / Tunis",
+        "pt": "Andaluzia / Tunes"
+      },
+      "aciklama": {
+        "tr": "Erken bir keşif eseri; Dost'un yayımlanmış ilk büyük eserlerinden.",
+        "en": "An early visionary work; among Dost's first major published works.",
+        "pt": "Uma obra visionária inicial; entre as primeiras grandes obras publicadas de Dost."
+      },
+      "yil": {
+        "hicri": 590,
+        "miladi": 1194,
+        "kesin": true
+      }
+    },
+    {
+      "id": "tedbirat",
+      "eser": "et-Tedbîrâtü'l-ilâhiyye",
+      "sehir": {
+        "tr": "Mevrûr (Morón), Endülüs",
+        "en": "Morón, Andalusia",
+        "pt": "Morón, Andaluzia"
+      },
+      "aciklama": {
+        "tr": "MIAS'ın kendi listesine göre Meşâhid'den önce yazılıp sonra yeniden işlendi; kesin tarihi belirsiz.",
+        "en": "According to MIAS's own list, written before Mashahid and reworked later; its exact date is uncertain.",
+        "pt": "Segundo a própria lista da MIAS, escrita antes do Mashahid e retrabalhada depois; a sua data exata é incerta."
+      },
+      "yil": {
+        "hicri": null,
+        "miladi": 1193,
+        "kesin": false
+      }
+    },
+    {
+      "id": "isra",
+      "eser": "Kitâbü'l-İsrâ",
+      "sehir": {
+        "tr": "Fas",
+        "en": "Fez",
+        "pt": "Fez"
+      },
+      "aciklama": {
+        "tr": "Fas'ta gördüğü bir mirac rüyetinin ardından, 594/1198'den sonra yazıldı.",
+        "en": "Written after 594/1198, following a night-journey vision he had in Fez.",
+        "pt": "Escrita depois de 594/1198, na sequência de uma visão da viagem noturna que teve em Fez."
+      },
+      "yil": {
+        "hicri": 594,
+        "miladi": 1198,
+        "kesin": false
+      }
+    },
+    {
+      "id": "mevakiu-n-nucum",
+      "eser": "Mevâki'u'n-nücûm",
+      "sehir": {
+        "tr": "Meriye (Almería)",
+        "en": "Almeria",
+        "pt": "Almeria"
+      },
+      "aciklama": {
+        "tr": "595/1199 Temmuz'unda Meriye'de tamamlandı.",
+        "en": "Completed in Almeria in July 595/1199.",
+        "pt": "Concluída em Almeria em julho de 595/1199."
+      },
+      "yil": {
+        "hicri": 595,
+        "miladi": 1199,
+        "kesin": true
+      }
+    },
+    {
+      "id": "anka-mugrib",
+      "eser": "Ankâ Mugrib",
+      "sehir": {
+        "tr": "İspanya (Endülüs)",
+        "en": "Spain",
+        "pt": "Espanha"
+      },
+      "aciklama": {
+        "tr": "Mehdî ve hâtemü'l-evliyâ meselelerini işleyen erken bir risale.",
+        "en": "An early treatise addressing the Mahdi and the Seal of the Saints.",
+        "pt": "Um tratado inicial sobre o Mahdi e o Selo dos Santos."
+      },
+      "yil": {
+        "hicri": 595,
+        "miladi": 1199,
+        "kesin": false
+      }
+    },
+    {
+      "id": "insau-d-devair",
+      "eser": "İnşâü'd-devâir",
+      "sehir": {
+        "tr": "Tunus",
+        "en": "Tunis",
+        "pt": "Tunes"
+      },
+      "aciklama": {
+        "tr": "Kozmolojik daireleri konu alan bir risale, 598/1201'de Tunus'ta.",
+        "en": "A treatise on cosmological circles, written in Tunis in 598/1201.",
+        "pt": "Um tratado sobre círculos cosmológicos, escrito em Tunes em 598/1201."
+      },
+      "yil": {
+        "hicri": 598,
+        "miladi": 1201,
+        "kesin": true
+      }
+    },
+    {
+      "id": "miskatul-envar",
+      "eser": "Mişkâtü'l-envâr",
+      "sehir": {
+        "tr": "Mekke",
+        "en": "Mecca",
+        "pt": "Meca"
+      },
+      "aciklama": {
+        "tr": "Kırk kutsî hadisin bir derlemesi.",
+        "en": "A collection of forty sacred hadith (hadith qudsi).",
+        "pt": "Uma coletânea de quarenta hadith sagrados (hadith qudsi)."
+      },
+      "yil": {
+        "hicri": 599,
+        "miladi": 1202,
+        "kesin": false
+      }
+    },
+    {
+      "id": "hilyetul-ebdal",
+      "eser": "Hilyetü'l-ebdâl",
+      "sehir": {
+        "tr": "Tâif",
+        "en": "Ta'if",
+        "pt": "Ta'if"
+      },
+      "aciklama": {
+        "tr": "Ricâlü'l-gayb'dan 'ebdâl' makamındaki velîleri konu alan kısa bir eser.",
+        "en": "A short work on the awliya of the 'abdal' rank among the hidden men.",
+        "pt": "Uma obra curta sobre os awliya do grau 'abdal' entre os homens ocultos."
+      },
+      "yil": {
+        "hicri": 599,
+        "miladi": 1203,
+        "kesin": true
+      }
+    },
+    {
+      "id": "ruhul-kuds",
+      "eser": "Rûhu'l-kuds",
+      "sehir": {
+        "tr": "Mekke",
+        "en": "Mecca",
+        "pt": "Meca"
+      },
+      "aciklama": {
+        "tr": "Endülüs'te tanıdığı hocaların portreleri -- son ikisi 'Hocalar' sayfamızın kaynağı.",
+        "en": "Portraits of the teachers he knew in Andalusia -- the last two are the source of our 'Teachers' page.",
+        "pt": "Retratos dos mestres que conheceu na Andaluzia -- os dois últimos são a fonte da nossa página 'Mestres'."
+      },
+      "yil": {
+        "hicri": 600,
+        "miladi": 1203,
+        "kesin": true
+      }
+    },
+    {
+      "id": "tacur-resail",
+      "eser": "Tâcü'r-resâil",
+      "sehir": {
+        "tr": "Mekke",
+        "en": "Mecca",
+        "pt": "Meca"
+      },
+      "aciklama": {
+        "tr": "Mekke'de aynı dönemde yazılan kısa bir risale.",
+        "en": "A short treatise written in the same period in Mecca.",
+        "pt": "Um breve tratado escrito no mesmo período em Meca."
+      },
+      "yil": {
+        "hicri": 600,
+        "miladi": 1203,
+        "kesin": true
+      }
+    },
+    {
+      "id": "elif-ba-ya",
+      "eser": "Kitâbü'l-Elif, Bâ, Yâ dizisi",
+      "sehir": {
+        "tr": "Kudüs",
+        "en": "Jerusalem",
+        "pt": "Jerusalém"
+      },
+      "aciklama": {
+        "tr": "Arap harflerinin sırlarını konu alan bir dizi risale, 601/1204'ten itibaren.",
+        "en": "A series of treatises on the mysteries of the Arabic letters, from 601/1204 onward.",
+        "pt": "Uma série de tratados sobre os mistérios das letras árabes, a partir de 601/1204."
+      },
+      "yil": {
+        "hicri": 601,
+        "miladi": 1204,
+        "kesin": false
+      }
+    },
+    {
+      "id": "tenezzulat-mevsiliyye",
+      "eser": "Tenezzülâtü'l-Mevsiliyye",
+      "sehir": {
+        "tr": "Musul",
+        "en": "Mosul",
+        "pt": "Mosul"
+      },
+      "aciklama": {
+        "tr": "601/1205 Nisan'ında Musul'da yazıldı.",
+        "en": "Written in Mosul in Rabi' 601/April 1205.",
+        "pt": "Escrita em Mosul em Rabi' 601/abril de 1205."
+      },
+      "yil": {
+        "hicri": 601,
+        "miladi": 1205,
+        "kesin": true
+      }
+    },
+    {
+      "id": "celal-cemal",
+      "eser": "Kitâbü'l-Celâl ve'l-Cemâl",
+      "sehir": {
+        "tr": "Musul",
+        "en": "Mosul",
+        "pt": "Mosul"
+      },
+      "aciklama": {
+        "tr": "Aynı Musul ziyareti sırasında, Nisan-Mayıs 1205'te.",
+        "en": "From the same Mosul visit, April-May 1205.",
+        "pt": "Da mesma visita a Mosul, abril-maio de 1205."
+      },
+      "yil": {
+        "hicri": 601,
+        "miladi": 1205,
+        "kesin": true
+      }
+    },
+    {
+      "id": "kunh-ma-la-budde",
+      "eser": "Kitâbü Künhi mâ lâ büdde minh",
+      "sehir": {
+        "tr": "Musul",
+        "en": "Mosul",
+        "pt": "Mosul"
+      },
+      "aciklama": {
+        "tr": "Musul'daki üç eserden üçüncüsü, yine Nisan-Mayıs 1205'te.",
+        "en": "The third of three works from Mosul, also April-May 1205.",
+        "pt": "A terceira de três obras de Mosul, também de abril-maio de 1205."
+      },
+      "yil": {
+        "hicri": 601,
+        "miladi": 1205,
+        "kesin": true
+      }
+    },
+    {
+      "id": "risaletul-envar",
+      "eser": "Risâletü'l-Envâr",
+      "sehir": {
+        "tr": "Konya",
+        "en": "Konya",
+        "pt": "Konya"
+      },
+      "aciklama": {
+        "tr": "Konya'da yazılan, seyr u sülûku konu alan bir risale.",
+        "en": "A treatise on spiritual wayfaring, written in Konya.",
+        "pt": "Um tratado sobre a via espiritual, escrito em Konya."
+      },
+      "yil": {
+        "hicri": 602,
+        "miladi": 1205,
+        "kesin": true
+      }
+    },
+    {
+      "id": "isaratul-kuran",
+      "eser": "İşârâtü'l-Kur'ân fî âlemi'l-insân",
+      "sehir": {
+        "tr": "Kudüs",
+        "en": "Jerusalem",
+        "pt": "Jerusalém"
+      },
+      "aciklama": {
+        "tr": "İnsanın kendisinde Kur'ân'ın işaretlerini okuyan bir eser.",
+        "en": "A work reading the Qur'an's signs within the human being.",
+        "pt": "Uma obra que lê os sinais do Alcorão dentro do ser humano."
+      },
+      "yil": {
+        "hicri": 602,
+        "miladi": 1206,
+        "kesin": true
+      }
+    },
+    {
+      "id": "eyyamus-san",
+      "eser": "Kitâbü Eyyâmi'ş-şe'n",
+      "sehir": {
+        "tr": "Belirtilmemiş",
+        "en": "Unspecified",
+        "pt": "Não especificada"
+      },
+      "aciklama": {
+        "tr": "MIAS'ın listesinde yazıldığı şehir belirtilmiyor; yılı da yaklaşık.",
+        "en": "MIAS's list does not specify where it was written; its year is also approximate.",
+        "pt": "A lista da MIAS não especifica onde foi escrita; o seu ano também é aproximado."
+      },
+      "yil": {
+        "hicri": 603,
+        "miladi": 1207,
+        "kesin": false
+      }
+    },
+    {
+      "id": "tecelliyat",
+      "eser": "Kitâbü't-Tecelliyât",
+      "sehir": {
+        "tr": "Halep",
+        "en": "Aleppo",
+        "pt": "Alepo"
+      },
+      "aciklama": {
+        "tr": "606/1209'dan önce, Halep'te yazıldığı düşünülüyor.",
+        "en": "Thought to have been written in Aleppo before 606/1209.",
+        "pt": "Pensa-se que foi escrita em Alepo antes de 606/1209."
+      },
+      "yil": {
+        "hicri": 606,
+        "miladi": 1209,
+        "kesin": false
+      }
+    },
+    {
+      "id": "fena-musahede",
+      "eser": "Kitâbü'l-Fenâ fi'l-müşâhede",
+      "sehir": {
+        "tr": "Bağdat",
+        "en": "Baghdad",
+        "pt": "Bagdade"
+      },
+      "aciklama": {
+        "tr": "Fenâ hâlini konu alan kısa bir risale, ~608/1212'de Bağdat'ta.",
+        "en": "A short treatise on the state of fana (annihilation), in Baghdad around 608/1212.",
+        "pt": "Um breve tratado sobre o estado de fana (aniquilação), em Bagdade por volta de 608/1212."
+      },
+      "yil": {
+        "hicri": 608,
+        "miladi": 1212,
+        "kesin": false
+      }
+    },
+    {
+      "id": "tercumanul-esvak",
+      "eser": "Tercümânü'l-eşvâk",
+      "sehir": {
+        "tr": "Mekke / Halep",
+        "en": "Mecca / Aleppo",
+        "pt": "Meca / Alepo"
+      },
+      "aciklama": {
+        "tr": "Aşk şiirleri divanı -- roadmap'in D15'te ayrıca ele almak istediği, Dost'un kendi şiirini savunmak zorunda kaldığı eser.",
+        "en": "A divan of love poetry -- the work the roadmap's D15 wants to treat separately, the one whose poems Dost had to defend as his own.",
+        "pt": "Um divã de poesia de amor -- a obra que o D15 do roteiro quer tratar separadamente, cujos poemas Dost teve de defender como seus."
+      },
+      "yil": {
+        "hicri": 611,
+        "miladi": 1215,
+        "kesin": true
+      }
+    },
+    {
+      "id": "istilahatus-sufiyye",
+      "eser": "Istılâhâtü's-sûfiyye",
+      "sehir": {
+        "tr": "Malatya",
+        "en": "Malatya",
+        "pt": "Malatya"
+      },
+      "aciklama": {
+        "tr": "Sûfî ıstılahlarının kısa bir sözlüğü, Malatya'da.",
+        "en": "A short glossary of Sufi technical terms, written in Malatya.",
+        "pt": "Um breve glossário de termos técnicos sufis, escrito em Malatya."
+      },
+      "yil": {
+        "hicri": 615,
+        "miladi": 1218,
+        "kesin": true
+      }
+    },
+    {
+      "id": "abadile",
+      "eser": "Kitâbü'l-Abâdile",
+      "sehir": {
+        "tr": "Şam",
+        "en": "Damascus",
+        "pt": "Damasco"
+      },
+      "aciklama": {
+        "tr": "626/1229'dan önce, Şam'daki üretken döneminin başlarında.",
+        "en": "Before 626/1229, from the early part of his productive Damascus period.",
+        "pt": "Antes de 626/1229, do início do seu período produtivo em Damasco."
+      },
+      "yil": {
+        "hicri": 626,
+        "miladi": 1229,
+        "kesin": false
+      }
+    },
+    {
+      "id": "fususul-hikem",
+      "eser": "Füsûsu'l-Hikem",
+      "sehir": {
+        "tr": "Şam",
+        "en": "Damascus",
+        "pt": "Damasco"
+      },
+      "aciklama": {
+        "tr": "627/1229'dan sonra, Şam'da -- Dost'un rüyada Hz. Peygamber'den aldığını söylediği eser; sitenin kendi bölümü (Füsûs) burada işleniyor.",
+        "en": "After 627/1229, in Damascus -- the work Dost said he received in a dream from the Prophet; the site's own Fusus section works through it.",
+        "pt": "Depois de 627/1229, em Damasco -- a obra que Dost disse ter recebido em sonho do Profeta; a secção Fusus do próprio site trabalha-a."
+      },
+      "yil": {
+        "hicri": 627,
+        "miladi": 1229,
+        "kesin": false
+      }
+    },
+    {
+      "id": "fihrist",
+      "eser": "Fihristü'l-müellefât",
+      "ozel": "katalog",
+      "sehir": {
+        "tr": "Şam",
+        "en": "Damascus",
+        "pt": "Damasco"
+      },
+      "aciklama": {
+        "tr": "627/1229-1230'da, Şam'da, öğrencisi Sadreddin Konevî için hazırladığı öz kataloğu -- o tarihe kadar yazdığı 248 eseri sayıyor.",
+        "en": "In 627/1229-1230, in Damascus, his own catalogue prepared for his student Sadr al-Din al-Qunawi -- listing the 248 works he had written by that date.",
+        "pt": "Em 627/1229-1230, em Damasco, o seu próprio catálogo preparado para o seu aluno Sadr al-Din al-Qunawi -- listando as 248 obras que tinha escrito até essa data."
+      },
+      "yil": {
+        "hicri": 627,
+        "miladi": 1229,
+        "kesin": false
+      }
+    },
+    {
+      "id": "icazet-muzaffer",
+      "eser": "İcâzet li'l-Melikü'l-Muzaffer",
+      "ozel": "katalog",
+      "sehir": {
+        "tr": "Şam",
+        "en": "Damascus",
+        "pt": "Damasco"
+      },
+      "aciklama": {
+        "tr": "632/1234 Ekim'inde Şam'da, bir Eyyûbî hükümdarına (el-Melikü'l-Muzaffer) yazılan, ~290 eserini ve 71 hocasını sayan icâzet. Roadmap'in D7 için işaret ettiği belge tam olarak bu -- ama roadmap onu yanlışlıkla 'el-Melikü'l-Eşref'e' diye anıyor; akademik kaynaklar 'el-Melikü'l-Muzaffer' diyor, hatta MIAS'ın kendi sayfası ikisini bir arada anarak ('King Ashraf al-Muzaffar') bu belirsizliği kendi içinde taşıyor -- tam olarak hangi 'Muzaffer'in (Meyyâfârikīn'in mi, Hama'nın mı) kastedildiği bile tarihçiler arasında kesinleşmiş değil.",
+        "en": "Written in Damascus in Muharram 632/October 1234 to an Ayyubid ruler (al-Malik al-Muzaffar), listing roughly 290 works and 71 teachers. This is exactly the document the roadmap points to for D7 -- but the roadmap mistakenly calls him 'al-Malik al-Ashraf'; academic sources say 'al-Malik al-Muzaffar,' and even MIAS's own page carries this ambiguity by naming both together ('King Ashraf al-Muzaffar') -- which exact 'Muzaffar' is meant (the one of Mayyafariqin, or the one of Hama) is not settled among historians either.",
+        "pt": "Escrita em Damasco em Muharram 632/outubro de 1234 para um governante aiúbida (al-Malik al-Muzaffar), listando cerca de 290 obras e 71 mestres. Este é exatamente o documento que o roteiro aponta para o D7 -- mas o roteiro chama-lhe erradamente 'al-Malik al-Ashraf'; as fontes académicas dizem 'al-Malik al-Muzaffar,' e até a própria página da MIAS carrega esta ambiguidade ao nomear os dois juntos ('King Ashraf al-Muzaffar') -- qual exatamente o 'Muzaffar' pretendido (o de Mayyafariqin, ou o de Hama) também não está definido entre os historiadores."
+      },
+      "yil": {
+        "hicri": 632,
+        "miladi": 1234,
+        "kesin": true
+      }
+    },
+    {
+      "id": "neseb-hirka",
+      "eser": "Kitâbü Nesebi'l-hırka",
+      "sehir": {
+        "tr": "Şam",
+        "en": "Damascus",
+        "pt": "Damasco"
+      },
+      "aciklama": {
+        "tr": "~633/1236, Şam'da -- Sûfî hırkasının aktarım zincirini konu alan bir risale.",
+        "en": "Around 633/1236, in Damascus -- a treatise on the Sufi robe's chain of transmission.",
+        "pt": "Por volta de 633/1236, em Damasco -- um tratado sobre a cadeia de transmissão do manto sufi."
+      },
+      "yil": {
+        "hicri": 633,
+        "miladi": 1236,
+        "kesin": false
+      }
+    },
+    {
+      "id": "divanul-kebir",
+      "eser": "ed-Dîvânü'l-kebîr",
+      "sehir": {
+        "tr": "Şam",
+        "en": "Damascus",
+        "pt": "Damasco"
+      },
+      "aciklama": {
+        "tr": "634/1237'de Şam'da tamamlanan büyük şiir divanı.",
+        "en": "The great poetry divan, completed in Damascus in 634/1237.",
+        "pt": "O grande divã de poesia, concluído em Damasco em 634/1237."
+      },
+      "yil": {
+        "hicri": 634,
+        "miladi": 1237,
+        "kesin": true
+      }
+    },
+    {
+      "id": "futuhatul-mekkiyye",
+      "eser": "el-Fütûhâtü'l-Mekkiyye",
+      "sehir": {
+        "tr": "Mekke → Şam",
+        "en": "Mecca → Damascus",
+        "pt": "Meca → Damasco"
+      },
+      "aciklama": {
+        "tr": "629-636/1202-1238 boyunca, Mekke'de başlayıp Şam'da tamamlanan başyapıtı -- sitenin kendi Fütûhât bölümü burada, cilt cilt işleniyor.",
+        "en": "Written over 629-636/1202-1238, begun in Mecca and completed in Damascus -- the magnum opus the site's own Futuhat section works through, volume by volume.",
+        "pt": "Escrita ao longo de 629-636/1202-1238, começada em Meca e concluída em Damasco -- a obra magna que a própria secção Futuhat do site trabalha, volume a volume."
+      },
+      "yil": {
+        "hicri": 636,
+        "miladi": 1238,
+        "kesin": true
+      }
+    }
+  ],
+  "baglar": [
+    {
+      "kaynak_id": "ruhul-kuds",
+      "hedef_id": "tacur-resail",
+      "tur": "ayni-sehir",
+      "neden": {
+        "tr": "İkisi de Mekke yazıldı, kronolojik olarak art arda.",
+        "en": "Both were written in Mecca, back to back chronologically.",
+        "pt": "Ambas foram escritas em Meca, uma a seguir à outra cronologicamente."
+      }
+    },
+    {
+      "kaynak_id": "tenezzulat-mevsiliyye",
+      "hedef_id": "celal-cemal",
+      "tur": "ayni-sehir",
+      "neden": {
+        "tr": "İkisi de Musul yazıldı, kronolojik olarak art arda.",
+        "en": "Both were written in Mosul, back to back chronologically.",
+        "pt": "Ambas foram escritas em Mosul, uma a seguir à outra cronologicamente."
+      }
+    },
+    {
+      "kaynak_id": "celal-cemal",
+      "hedef_id": "kunh-ma-la-budde",
+      "tur": "ayni-sehir",
+      "neden": {
+        "tr": "İkisi de Musul yazıldı, kronolojik olarak art arda.",
+        "en": "Both were written in Mosul, back to back chronologically.",
+        "pt": "Ambas foram escritas em Mosul, uma a seguir à outra cronologicamente."
+      }
+    },
+    {
+      "kaynak_id": "abadile",
+      "hedef_id": "fususul-hikem",
+      "tur": "ayni-sehir",
+      "neden": {
+        "tr": "İkisi de Şam yazıldı, kronolojik olarak art arda.",
+        "en": "Both were written in Damascus, back to back chronologically.",
+        "pt": "Ambas foram escritas em Damasco, uma a seguir à outra cronologicamente."
+      }
+    },
+    {
+      "kaynak_id": "fususul-hikem",
+      "hedef_id": "fihrist",
+      "tur": "ayni-sehir",
+      "neden": {
+        "tr": "İkisi de Şam yazıldı, kronolojik olarak art arda.",
+        "en": "Both were written in Damascus, back to back chronologically.",
+        "pt": "Ambas foram escritas em Damasco, uma a seguir à outra cronologicamente."
+      }
+    },
+    {
+      "kaynak_id": "fihrist",
+      "hedef_id": "icazet-muzaffer",
+      "tur": "ayni-sehir",
+      "neden": {
+        "tr": "İkisi de Şam yazıldı, kronolojik olarak art arda.",
+        "en": "Both were written in Damascus, back to back chronologically.",
+        "pt": "Ambas foram escritas em Damasco, uma a seguir à outra cronologicamente."
+      }
+    },
+    {
+      "kaynak_id": "icazet-muzaffer",
+      "hedef_id": "neseb-hirka",
+      "tur": "ayni-sehir",
+      "neden": {
+        "tr": "İkisi de Şam yazıldı, kronolojik olarak art arda.",
+        "en": "Both were written in Damascus, back to back chronologically.",
+        "pt": "Ambas foram escritas em Damasco, uma a seguir à outra cronologicamente."
+      }
+    },
+    {
+      "kaynak_id": "neseb-hirka",
+      "hedef_id": "divanul-kebir",
+      "tur": "ayni-sehir",
+      "neden": {
+        "tr": "İkisi de Şam yazıldı, kronolojik olarak art arda.",
+        "en": "Both were written in Damascus, back to back chronologically.",
+        "pt": "Ambas foram escritas em Damasco, uma a seguir à outra cronologicamente."
+      }
+    }
+  ]
+}

@@ -9171,3 +9171,68 @@ mark.durus-vurgu-es {
 .hoca-alinti__metin { margin: 0; font-style: italic; }
 .hoca-alinti__baglam { margin: 8px 0 0; font-size: 0.82rem; color: var(--text-secondary); font-style: normal; }
 .hoca-alinti__kaynak { display: block; margin-top: 8px; font-size: 0.78rem; color: var(--text-secondary); font-style: normal; }
+
+/* --- Eser Ağı (docs/icerik-yol-haritasi.md D7, 2026-08-04) ----------------
+   CLAUDE.md'nin daire/merkez ilkesi + roadmap'in kendi isteği: merkezde
+   ilk eser, dışa doğru zaman. Yarıçap = yıl, açı = sıra -- sarmalın kendi
+   çizgisi süs değil, kronolojinin görünür izi. */
+.eser-agi-sarmal {
+  stroke: var(--border);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+.eser-agi-kenar {
+  stroke: var(--series-ibnarabi);
+  stroke-width: 1.4px;
+  stroke-opacity: 0.45;
+  cursor: pointer;
+  pointer-events: stroke;
+  transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease;
+}
+.eser-agi-kenar:focus-visible,
+.eser-agi-kenar--deginiliyor {
+  stroke-opacity: 0.9;
+  stroke-width: 2.2px;
+  stroke: var(--accent-interactive);
+}
+
+.eser-agi-eser { cursor: pointer; }
+.eser-agi-eser:focus { outline: none; }
+.eser-agi-eser__sekil {
+  fill: var(--series-ibnarabi);
+  stroke: var(--surface-1);
+  stroke-width: 1.2;
+  transition: transform 0.15s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.eser-agi-eser--katalog .eser-agi-eser__sekil { fill: var(--series-theme); }
+.eser-agi-eser__etiket {
+  font-size: 0.66rem;
+  fill: var(--text-secondary);
+  pointer-events: none;
+}
+.eser-agi-eser--deginiliyor .eser-agi-eser__sekil,
+.eser-agi-eser:focus-visible .eser-agi-eser__sekil {
+  transform: scale(1.35);
+}
+.eser-agi-eser--deginiliyor .eser-agi-eser__etiket,
+.eser-agi-eser:focus-visible .eser-agi-eser__etiket {
+  fill: var(--text-primary);
+}
+
+.eser-agi-rozet {
+  display: inline-block;
+  margin-inline-start: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+.eser-agi-kimlik { color: var(--text-secondary); font-size: 0.86rem; margin: 2px 0 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .eser-agi-eser__sekil,
+  .eser-agi-kenar { transition: none !important; }
+}
