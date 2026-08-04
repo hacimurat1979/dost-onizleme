@@ -51,6 +51,13 @@
 .viz-root {
   --font-display: "Fraunces Dost", Georgia, "Times New Roman", serif;
   --font-body: "Source Sans Dost", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Sitede gömülü bir Arapça yazı tipi yok (Fraunces/Source Sans yalnız
+     Latin) -- Arapça ayet/hadis metni bu yüzden gövde fontunun rastgele
+     sistem yedeğine düşüyordu (2026-08-04 kullanıcı bildirimi: "daha kolay
+     okunabilir başka bir formatta verelim"). Bir dosya eklemeden, sistemde
+     kurulu olması muhtemel iyi nesih/Kur'an fontlarını adıyla sırayla
+     deniyoruz -- bulunanı kullanır, yoksa genel serif'e düşer. */
+  --font-arabic: "Amiri Quran", "Scheherazade New", "Noto Naskh Arabic", "Traditional Arabic", "Times New Roman", serif;
 
   --surface-1:      #fcfcfb;
   --page-plane:     #f9f9f7;
@@ -7884,8 +7891,10 @@ mark.durus-vurgu-es {
   transform: none;
 }
 .ayet-tip__ar {
-  font-size: 1.15rem;
-  line-height: 1.9;
+  font-family: var(--font-arabic);
+  font-size: 1.25rem;
+  line-height: 2;
+  letter-spacing: 0.01em;
   margin: 0 0 0.5em;
   color: var(--text-primary);
 }
@@ -7959,9 +7968,11 @@ mark.durus-vurgu-es {
   flex: 0 0 auto;
 }
 .ayethadis-item__ar {
-  font-size: 1.05rem;
-  line-height: 1.85;
-  margin: 0 0 0.4em;
+  font-family: var(--font-arabic);
+  font-size: 1.3rem;
+  line-height: 2.1;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.5em;
   color: var(--text-primary);
 }
 .ayethadis-item__meal {
