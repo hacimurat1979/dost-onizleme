@@ -4175,54 +4175,11 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   font-size: 0.7em;
 }
 
-.welcome-screen__line--en,
-.welcome-screen__line--pt {
+.welcome-screen__line--en {
   font-size: clamp(0.85rem, 2.6vw, 1.05rem);
   font-style: italic;
   color: rgba(245,234,208,0.72);
   margin-top: 7px;
-}
-
-.welcome-screen__line--tagline {
-  font-family: var(--font-body);
-  font-size: clamp(0.72rem, 1.8vw, 0.8rem);
-  letter-spacing: 0.02em;
-  color: rgba(245,234,208,0.55);
-  margin-top: 16px;
-}
-
-/* B4 "Bugünün parçası" -- tagline'ın altında, ondan da soluk, tek satırlık
-   ve alıntı olduğunu belli eden italik bir iz. */
-.welcome-screen__line--gunun {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: clamp(0.68rem, 1.6vw, 0.76rem);
-  letter-spacing: 0.01em;
-  color: rgba(245,234,208,0.4);
-  margin-top: 8px;
-}
-
-/* B3 "Neredeyiz" -- Fütûhât/Füsûs okumasının sayısal durumu, iki küçük
-   halka olarak. Yorum taşımıyor, yalnız sayım (kaynak: okuma-durumu.json). */
-.welcome-neredeyiz {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 10px;
-}
-.welcome-neredeyiz__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-.welcome-neredeyiz__track { stroke: rgba(245,234,208,0.18); }
-.welcome-neredeyiz__fill { stroke: rgba(245,234,208,0.75); }
-.welcome-neredeyiz__label {
-  font-family: var(--font-body);
-  font-size: clamp(0.64rem, 1.5vw, 0.72rem);
-  letter-spacing: 0.01em;
-  color: rgba(245,234,208,0.55);
-  font-variant-numeric: tabular-nums;
 }
 
 .welcome-screen__skip {
