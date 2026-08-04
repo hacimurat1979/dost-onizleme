@@ -8112,6 +8112,23 @@ mark.durus-vurgu-es {
   max-height: 70vh;
   overflow-y: auto;
   text-align: left;
+  /* .legend__body'deki ince altın çizgiyle aynı desen -- tarayıcının çıplak
+     varsayılan çubuğu yerine sitenin kendi paletine uyan bir iz. */
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--series-theme) 32%, transparent) transparent;
+}
+.esma-fca-lightbox::-webkit-scrollbar {
+  width: 3px;
+}
+.esma-fca-lightbox::-webkit-scrollbar-track {
+  background: transparent;
+}
+.esma-fca-lightbox::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--series-theme) 32%, transparent);
+  border-radius: 999px;
+}
+.esma-fca-lightbox::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--series-theme) 55%, transparent);
 }
 .esma-fca-lightbox__not {
   margin: 0 0 1rem;
