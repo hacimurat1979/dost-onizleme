@@ -82,8 +82,11 @@
     let out = hex;
     if (/^#/.test(hex)) {
       const [h, , l0] = rgbToHsl.apply(null, hexToRgb(hex));
-      const s = 0.55;
-      const l = GU.isDark() ? Math.min(0.7, Math.max(0.56, l0)) : Math.min(0.6, Math.max(0.46, l0));
+      // Sırlar grafiğindeki mute()'la aynı doygunluk/açıklık bandı (2026-08-04
+      // kullanıcı bildirimi: Sorular sitenin genel duruşundan "farklı
+      // renklerde" duruyordu -- ölçülen fark: burada 0.55, Sırlar'da 0.38).
+      const s = 0.38;
+      const l = GU.isDark() ? Math.min(0.68, Math.max(0.55, l0)) : Math.min(0.6, Math.max(0.45, l0));
       // d3.color() (v7) only parses the legacy comma-separated hsl() syntax,
       // not CSS Color 4's space-separated form -- the latter silently fails
       // to parse and falls back to gray, which is why every sphere/particle
