@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Nefes-i Rahmânî — Dost Arabi görselleştirme (docs/icerik-yol-haritasi.md D12) -->
+<title>Nefes-i Rahmânî — Dost Arabi</title>
+<style>
+:root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}}
+:root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040}
+:root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1rem;max-width:640px}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
+
+#stage{width:min(420px,92vw);height:min(420px,92vw);display:block;margin:.4rem auto 1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.harf{font-size:34px;fill:var(--gold);text-anchor:middle;dominant-baseline:middle}
+.hareke{fill:var(--liminal)}
+.kelime{font-size:44px;fill:var(--gold);text-anchor:middle;dominant-baseline:middle}
+.nefes-noktasi{fill:var(--liminal)}
+
+.track-wrap{width:min(420px,90vw);margin:0 auto 1.3rem;text-align:center}
+.track{position:relative;height:34px;margin:0 auto}
+.track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
+.track-end{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:var(--border);transform:translate(-50%,-50%)}
+.track-end.left{left:0}
+.track-end.right{left:100%}
+.track-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal);transform:translate(-50%,-50%);cursor:grab;touch-action:none}
+.track-handle:active{cursor:grabbing}
+.track-handle:focus-visible{outline:2px solid var(--liminal);outline-offset:3px}
+.track-labels{display:flex;justify-content:space-between;margin-top:.55rem;font-size:.76rem;color:var(--muted);gap:1rem}
+.track-labels span{max-width:150px;line-height:1.4}
+.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
+.grab-hint.gone{opacity:.28}
+
+.quote-box{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem}
+.quote-text{font-size:.88rem;line-height:1.75;font-style:italic}
+.quote-src{font-size:.72rem;color:var(--muted);margin-top:.55rem}
+
+.aha{width:min(560px,96vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.75;color:var(--liminal);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;white-space:pre-line}
+.aha.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="hTitle">Nefes-i Rahmânî</h1>
+  <p class="sub" id="hSub">İlahî isimler göğüste birikir, dayanılmaz sınırda bir nefesle dışarı fışkırır — ve o tek nefes, harflere, harfler kelimeye ayrılır. Sürükleyerek geri aldığında, hepsi yeniden tek nefese döner.</p>
+</header>
+
+<svg id="stage" viewBox="0 0 420 420" role="img" aria-label="Bir nefesin harflere ve bir kelimeye ayrılması"></svg>
+
+<div class="track-wrap">
+  <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Nefesin ayrışma derecesini sürükle">
+    <div class="track-line"></div>
+    <div class="track-end left"></div>
+    <div class="track-end right"></div>
+    <div class="track-handle" id="handle"></div>
+  </div>
+  <div class="track-labels">
+    <span id="labelLeft"></span>
+    <span id="labelRight"></span>
+  </div>
+  <p class="grab-hint" id="grabHint">Sürükle (ok tuşları da çalışır)</p>
+</div>
+
+<div class="quote-box">
+  <p class="quote-text" id="quoteText"></p>
+  <p class="quote-src" id="quoteSrc"></p>
+</div>
+
+<p class="aha" id="aha"></p>
+
+<script>
+const LA={
+  tr:{
+    title:'Nefes-i Rahmânî',
+    sub:'İlahî isimler göğüste birikir, dayanılmaz sınırda bir nefesle dışarı fışkırır — ve o tek nefes, harflere, harfler kelimeye ayrılır. Sürükleyerek geri aldığında, hepsi yeniden tek nefese döner.',
+    labelLeft:'tek nefes',
+    labelRight:'kelime, "er-Rahmân"',
+    grab:'Sürükle (ok tuşları da çalışır)',
+    aha:'Harfler yeni eklenmedi.\nOnlar zaten nefesin kendisiydi — sen yalnız ayrışmayı yavaşça izledin.',
+    quotes:[
+      { text:'"Harekeleri küçük harfler olarak tanımlıyoruz... tıpkı insanın cisim ve ruh üflenmesinden var olması gibi, kelime de harf ve hareke bileşiminden bambaşka bir yaratılış olarak ortaya çıkar."', src:'Fütûhât-ı Mekkiyye, Kısım VIII (Harekeler: Kelimelerin Ruhu)' },
+      { text:'İlahî isimler Hakk\'ın sinesinde basınç altında birikir (kerb); dayanılmaz son sınıra gelindiğinde bir nefes verişle (teneffüs) dışarı fışkırır — bu fışkırma âlemin varlık kazanmasıdır.', src:'felsefi-terimler.json, "nefes-i-rahmani" (Izutsu\'nun aktarımına dayanır)' },
+    ],
+  },
+  en:{
+    title:'The Breath of the All-Merciful',
+    sub:'The divine names accumulate in the breast under pressure, then burst out in a single breath at the unbearable limit — and that one breath separates into letters, the letters into a word. Drag it back, and it all returns to a single breath.',
+    labelLeft:'one breath',
+    labelRight:'a word, "Ar-Rahman"',
+    grab:'Drag (arrow keys work too)',
+    aha:"The letters were not added.\nThey were the breath itself all along — you only watched the separation slowly.",
+    quotes:[
+      { text:'"We define the vowel-marks as small letters... just as a human comes into being from body plus the breathing-in of spirit, a word too emerges as an entirely different kind of creation from the combination of letter plus vowel-mark."', src:'Al-Futuhat al-Makkiyya, Part VIII (Vowel-Marks: The Spirit of Words)' },
+      { text:'The Divine Names accumulate under pressure in the Real\'s breast (karb); upon reaching an unbearable limit, they burst forth through an exhalation (tanaffus) — this bursting-forth is the world\'s coming into existence.', src:'felsefi-terimler.json, "nefes-i-rahmani" (as related by Izutsu)' },
+    ],
+  },
+  pt:{
+    title:'O Sopro do Misericordioso',
+    sub:'Os nomes divinos se acumulam no peito sob pressão, e irrompem num único sopro no limite insuportável — e esse sopro se separa em letras, as letras numa palavra. Arraste de volta, e tudo retorna a um único sopro.',
+    labelLeft:'um sopro',
+    labelRight:'uma palavra, "Ar-Rahman"',
+    grab:'Arraste (as setas também funcionam)',
+    aha:'As letras não foram adicionadas.\nElas já eram o próprio sopro — você apenas observou a separação lentamente.',
+    quotes:[
+      { text:'"Definimos as vogais como pequenas letras... assim como um humano vem à existência a partir do corpo mais o sopro do espírito, uma palavra também surge como um tipo inteiramente diferente de criação a partir da combinação de letra mais vogal."', src:'Al-Futuhat al-Makkiyya, Parte VIII (Vogais: O Espírito das Palavras)' },
+      { text:'Os Nomes Divinos se acumulam sob pressão no peito do Real (karb); ao atingir um limite insuportável, irrompem através de uma exalação (tanaffus) — esse irromper é o vir-a-existir do mundo.', src:'felsefi-terimler.json, "nefes-i-rahmani" (conforme relatado por Izutsu)' },
+    ],
+  },
+};
+
+let curLang='tr', pos=0, touched=false;
+const $=id=>document.getElementById(id);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function renderAll(){
+  const d=LA[curLang];
+  $('hTitle').textContent=d.title;
+  $('hSub').textContent=d.sub;
+  $('labelLeft').textContent=d.labelLeft;
+  $('labelRight').textContent=d.labelRight;
+  $('grabHint').textContent=d.grab;
+  $('aha').textContent=d.aha;
+  const q=d.quotes[quoteIdx];
+  $('quoteText').textContent=q.text;
+  $('quoteSrc').textContent=q.src;
+}
+function setLang(l){ curLang=l; renderAll(); }
+
+let quoteIdx=0;
+setInterval(()=>{ quoteIdx=(quoteIdx+1)%LA[curLang].quotes.length; const q=LA[curLang].quotes[quoteIdx]; $('quoteText').textContent=q.text; $('quoteSrc').textContent=q.src; }, 9000);
+
+// ── Sahne: nefesin harflere ve bir kelimeye ayrışması ──────────────────────
+// GORSEL_DIL.md: kavramı resmetme, davranışını resmet. Harfler yeni bir
+// süs olarak BELİRMİYOR -- pos=0'da zaten nefes noktasının İÇİNDELER
+// (opacity 0, merkeze bindirilmiş), pos arttıkça hem uzaklaşıyor hem
+// görünür oluyorlar. "الرحمن"ın altı harfi (ا ل ر ح م ن) seçildi çünkü bu,
+// Nefes-i RAHMÂNÎ'nin kendi ismi -- rastgele bir örnek değil.
+const svg=document.getElementById('stage');
+const NS='http://www.w3.org/2000/svg';
+const cx=210, cy=210;
+const HARFLER=['ا','ل','ر','ح','م','ن']; // sağdan sola okunuş sırasıyla
+const N=HARFLER.length;
+
+const nefesNoktasi=document.createElementNS(NS,'circle');
+nefesNoktasi.setAttribute('class','nefes-noktasi');
+nefesNoktasi.setAttribute('cx',cx); nefesNoktasi.setAttribute('cy',cy);
+svg.appendChild(nefesNoktasi);
+
+const harfEls=HARFLER.map((h,i)=>{
+  const t=document.createElementNS(NS,'text');
+  t.setAttribute('class','harf');
+  t.textContent=h;
+  svg.appendChild(t);
+  const hareke=document.createElementNS(NS,'circle');
+  hareke.setAttribute('class','hareke');
+  hareke.setAttribute('r','2.4');
+  svg.appendChild(hareke);
+  return { t, hareke, angle: -Math.PI/2 + (i/N)*2*Math.PI };
+});
+
+const kelimeEl=document.createElementNS(NS,'text');
+kelimeEl.setAttribute('class','kelime');
+kelimeEl.setAttribute('x',cx); kelimeEl.setAttribute('y',cy);
+kelimeEl.textContent='الرحمن';
+svg.appendChild(kelimeEl);
+
+// Kelimede her harfin (sağdan sola) yaklaşık x konumu -- gerçek Arapça
+// bitişik yazımı tek <text> düğümü taşıyor (kelimeEl); dağınık harfler o
+// düğümün üstüne, aynı hizaya yakın konumlanarak "eriyor".
+const KELIME_GENISLIK=190;
+function wordX(i){ return cx + KELIME_GENISLIK/2 - (i/(N-1))*KELIME_GENISLIK; }
+
+const R_SCATTER=130;
+
+function clamp01(x){ return Math.max(0,Math.min(1,x)); }
+function lerp(a,b,t){ return a+(b-a)*t; }
+
+function paint(p){
+  // Nefes noktası: pos arttıkça küçülüp soluklaşır (kendini harflere verir).
+  const nR = lerp(16, 3, p);
+  nefesNoktasi.setAttribute('r', nR.toFixed(1));
+  nefesNoktasi.style.opacity = lerp(1, 0.15, clamp01(p/0.3)).toFixed(2);
+
+  // Harfler: [0, .5] merkezden harfler âlemine (dağınık halka) saçılır;
+  // [.5, .85] halkadan kelimenin kendi satırına toplanır; [.85, 1] tek tek
+  // harfler soluklaşırken bitişik kelime belirir.
+  harfEls.forEach((h, i)=>{
+    const scatterX = cx + R_SCATTER*Math.cos(h.angle)*clamp01(p/0.5);
+    const scatterY = cy + R_SCATTER*Math.sin(h.angle)*clamp01(p/0.5);
+    const toWord = clamp01((p-0.5)/0.35);
+    const x = lerp(scatterX, wordX(i), toWord);
+    const y = lerp(scatterY, cy, toWord);
+    h.t.setAttribute('x', x.toFixed(1));
+    h.t.setAttribute('y', y.toFixed(1));
+    const beliriyor = clamp01(p/0.12);
+    const soluyor = 1 - clamp01((p-0.85)/0.15);
+    h.t.style.opacity = (beliriyor*soluyor).toFixed(2);
+
+    // Hareke: yalnız harf+kelime birleşimi başladıktan sonra beliriyor --
+    // c1k8'in "harekeler kelimenin ruhu" fikri.
+    h.hareke.setAttribute('cx', x.toFixed(1));
+    h.hareke.setAttribute('cy', (y+16).toFixed(1));
+    h.hareke.style.opacity = (clamp01((p-0.55)/0.25)*soluyor).toFixed(2);
+  });
+
+  kelimeEl.style.opacity = clamp01((p-0.82)/0.18).toFixed(2);
+}
+
+if(reduceMotion){
+  paint(0.5);
+} else {
+  paint(0);
+}
+
+// ── Sürükleme ──────────────────────────────────────────────────────────────
+const track=$('track');
+function markTouched(){ if(!touched){ touched=true; $('grabHint').classList.add('gone'); } }
+function applyPosition(){
+  $('handle').style.left=(pos*100)+'%';
+  $('track').setAttribute('aria-valuenow',Math.round(pos*100));
+  paint(pos);
+  if(pos>0.85 && !applyPosition._sawFull) applyPosition._sawFull=true;
+  if(pos<0.1 && applyPosition._sawFull && !applyPosition._sawEmpty) applyPosition._sawEmpty=true;
+  if(applyPosition._sawFull && applyPosition._sawEmpty) $('aha').classList.add('show');
+}
+applyPosition._sawFull=false; applyPosition._sawEmpty=false;
+function setPosFromClientX(clientX){
+  const r=track.getBoundingClientRect();
+  pos=Math.max(0,Math.min(1,(clientX-r.left)/r.width));
+  applyPosition();
+}
+let dragging=false;
+track.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{track.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
+track.addEventListener('pointermove',e=>{ if(dragging) setPosFromClientX(e.clientX); });
+['pointerup','pointercancel','pointerleave'].forEach(t=>track.addEventListener(t,()=>{dragging=false;}));
+track.addEventListener('keydown',e=>{
+  const k={ArrowLeft:-0.05,ArrowRight:0.05,ArrowDown:-0.05,ArrowUp:0.05}[e.key];
+  if(k===undefined) return;
+  markTouched(); pos=Math.max(0,Math.min(1,pos+k)); applyPosition(); e.preventDefault();
+});
+
+renderAll();
+applyPosition();
+
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+});
+</script>
+</body>
+</html>

@@ -101,11 +101,34 @@ window.__vahdetApp = (function () {
     );
   }
 
+  // D5'in kendi konusu -- "vahdet-i vücûd" TERİMİNİN Şeyh'e nasıl yapıştığı
+  // (bir zaman çizelgesi: İbn Teymiyye -> Câmî -> Sirhindî) -- burada
+  // listelenen "yedi bağlam" (cem-i ezdâd) maddesinden AYRI bir şey; kendi
+  // bağımsız sahnesi var (vahdet-i-vucud-omru.html) ama hiçbir yerden
+  // linklenmiyordu (2026-08-04 taramasında ölçüldü). En doğru yer burası --
+  // aynı terimin aynı sekmede iki farklı yüzü.
+  function omurSahneHtml() {
+    const base = window.__dostRouteBase || "";
+    return `<div class="detail-gate detail-gate--sahne vahdet-omur-sahne">
+      <p class="detail-gate__note">${esc(tt({
+        tr: "Yukarıdaki maddeler terimin İbn Arabî'nin kendi metnindeki izini sürüyor. Ayrı bir sahne, terimin Şeyh'ten SONRA nasıl bir ömür sürdüğünü -- İbn Teymiyye'den Sirhindî'ye -- bir çizelgede topluyor.",
+        en: "The items above trace the term within Ibn Arabi's own text. A separate scene gathers, on a timeline, the life the term went on to have AFTER him -- from Ibn Taymiyya to Sirhindi.",
+        pt: "Os itens acima rastreiam o termo dentro do próprio texto de Ibn Arabi. Uma cena separada reúne, numa linha do tempo, a vida que o termo teve DEPOIS dele -- de Ibn Taymiyya a Sirhindi.",
+      }))}</p>
+      <a class="detail-gate__btn" href="${base}/vahdet-i-vucud-omru.html">${esc(tt({
+        tr: "Sahneyi aç: Vahdet-i Vücûd'un Ömrü",
+        en: "Open the scene: The Life of Wahdat al-Wujud",
+        pt: "Abrir a cena: A Vida do Wahdat al-Wujud",
+      }))}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
+    </div>`;
+  }
+
   function render() {
     if (!contentEl || !data) return;
     const intro =
       `<p class="vahdet-intro">${esc(tt(data.description))}</p>` +
-      (data.not ? `<p class="vahdet-not">${esc(tt(data.not))}</p>` : "");
+      (data.not ? `<p class="vahdet-not">${esc(tt(data.not))}</p>` : "") +
+      omurSahneHtml();
     contentEl.innerHTML = intro + data.maddeler.map(maddeHtml).join("");
     contentEl.querySelectorAll(".vahdet-alinti__site").forEach((btn) => {
       btn.addEventListener("click", () => {

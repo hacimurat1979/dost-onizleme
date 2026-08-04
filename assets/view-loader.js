@@ -29,10 +29,10 @@
 
   var VIEWS = {
     __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-K4sFr2bJxo4Mb74GC9YPUlwENeQ2/cvhFW7lpQj/jqSxwAkgKEgRL9Q4ZBZBW8ql" },
-    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-MRe3mYuMCvAmuBCyoWX1+Epq7DdUVabCvJteD/ZGC7B0V7E8KSLVZ0C7wNwF9fZy" },
+    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-IsJ+71YqChlJzvG/MHDANRxJv68t3Dc/6RlD8wlWORRbSMdAABnOah+eskTB6WJf" },
     __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-NqjeB685KS7IBcItAvAwOeWxt/vF6SrgMn3SvwFR5aON3x+23Cpcv81QwL2B+Sp8" },
     __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-9LylDZ5mjiEKs/Bo/Wc+qYTUdeFt56xQCT71VdhE2weqN6MLMuhvgporkSM4qwXW" },
-    __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-u8Hu4zkYTCJHkdw63jhcfroxHJYcXgoeD0jTqrqgwkjmS5fyW/RYFqdqS2kEhxQm" },
+    __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-Bd2DP5owmohIzW55tUtUc5O0Du1sdXSFHqxjYGHKP7f8s71gSwZWy3K8DUTtTagQ" },
     __acikSorularApp: { src: "assets/acik-sorular.js", integrity: "sha384-DaP5VlgsP7Es5dvGttDQqu1MhxA4MRMrhFdzmHe+w6zsmk1hlyiM3wYR5PlZ8ZdS" },
     __bilmiyoruzApp: { src: "assets/bilmiyoruz.js", integrity: "sha384-lwJhdx6cYpw+87L1srGDOoxU2udEgxpdGwSrjP6S/xKOCka/DMctO8m3XKUlhren" },
     __kuantumApp: { src: "assets/kuantum.js", integrity: "sha384-181Vy3ByxGVSeIRWv7J3ntc1LO6zbZgE5zvvmIzZdb734apMq6xZJdO122tM7qIc" },
@@ -40,7 +40,7 @@
     __hocalarApp: { src: "assets/hocalar.js", integrity: "sha384-r7ryWMDxHo1XBsChUULP+77NgCthVzMEsSfNS25xVsmPrBozA8uqO+FM6BbYbYQ5" },
     __eserAgiApp: { src: "assets/eser-agi.js", integrity: "sha384-RWUvvHECDxAY7e8upQH3WS/o+OwGTKGrsoEmiwqG39NeHN812Ok1ULKNKMdsy7yh" },
     __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-drPehrWIZySW7vet9CC4fhCMr/sWLVPyabzjqeXMkTgU3uqmSedDS4p6szuKcZhS" },
-    __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-Ii8zjLNXQ3sxkQNFj0zUqI8hmVI6mrUFZqRHGOmZrTemYljk8jd4jFPH2CVtRhmV" },
+    __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-LgKYm18SgQugem+gN6GyFt7polX8JIi91LUcGEM7AFtv2jnDHT+hPxf0fULy2x+z" },
     __futuhatMimarisiApp: { src: "assets/futuhat-mimarisi.js", integrity: "sha384-MgAKv2mVFduBJ2MMDzOJbjtdof5GHLk782VifX6ANCAF/wjGctprCaVSs/jPTOmM" },
   };
 

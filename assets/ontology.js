@@ -2910,6 +2910,7 @@
       ${entityDiagramHtml(d)}
       ${insightsHtml(d.insights, d.sources, "ontoloji", d.id)}
       ${gateHtml(d)}
+      ${sahneHtml(d)}
       ${relatedEdgesHtml(d)}
     `;
     detailPanel.hidden = false;
@@ -2946,6 +2947,41 @@
       <p class="detail-gate__note">${tt(g.note)}</p>
       <button class="detail-gate__btn" type="button" data-gate="${d.id}">${tt(g.label)}
         <span class="detail-gate__arrow" aria-hidden="true">→</span></button>
+    </div>`;
+  }
+
+  // Bazı düğümlerin, SPA rotalamasının DIŞINDA duran (docs/icerik-yol-
+  // haritasi.md D1/D2/D5 gibi) bağımsız bir "sahne" sayfası var --
+  // halk-i-cedid.html teceddüd'ün ta kendisi. 2026-08-04 taramasında bu tür
+  // sayfaların hiçbirinin siteden gerçekten LİNKLENMEDİĞİ (yetim olduğu)
+  // ölçüldü; burası düğümün kendi davranışıyla (teceddudEt()) zaten aynı
+  // fikri taşıdığı için en doğru bağlama noktası. GATES'ten farklı: bu bir
+  // SPA-içi dönüşüm değil, ayrı bir sayfaya düz bir bağlantı -- bu yüzden
+  // aynı görsel dili (.detail-gate) taşıyan ama <a href> kullanan ayrı bir
+  // fonksiyon.
+  const SAHNELER = {
+    teceddud: {
+      href: "halk-i-cedid.html",
+      label: {
+        tr: "Sahneyi aç: Halk-ı Cedîd",
+        en: "Open the scene: Perpetual Renewal",
+        pt: "Abrir a cena: Renovação Perpétua",
+      },
+      note: {
+        tr: "Bu düğümün tıklanınca yaptığı şey (bütün düğümlerin bir an sönüp yeniden yanması) burada tek başına, yavaşça sürüklenebilen bir sahneye açılıyor.",
+        en: "What this node does when clicked (every node flickering out and relighting) opens here on its own, as a scene you can slowly drag through.",
+        pt: "O que este nó faz ao ser clicado (todos os nós apagando e reacendendo por um instante) se abre aqui sozinho, como uma cena que você pode arrastar lentamente.",
+      },
+    },
+  };
+  function sahneHtml(d) {
+    const s = SAHNELER[d.id];
+    if (!s) return "";
+    const base = window.__dostRouteBase || "";
+    return `<div class="detail-gate detail-gate--sahne">
+      <p class="detail-gate__note">${tt(s.note)}</p>
+      <a class="detail-gate__btn" href="${base}/${s.href}">${tt(s.label)}
+        <span class="detail-gate__arrow" aria-hidden="true">→</span></a>
     </div>`;
   }
 

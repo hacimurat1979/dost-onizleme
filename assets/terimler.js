@@ -877,6 +877,27 @@
       <div class="bookmap-concept-tags">${chips}</div>`;
   }
 
+  // "Nefes-i Rahmânî" teriminin ayrı, sürüklenebilir bir sahnesi var
+  // (nefes-i-rahmani.html, docs/icerik-yol-haritasi.md D12) -- terimin
+  // kendi "ibn_arabi_yorumu" alanı zaten bunu bir animasyon olarak
+  // öneriyordu. Bu terimden daha doğru bir bağlama noktası yok.
+  function nefesSahneHtml(id) {
+    if (id !== "nefes-i-rahmani") return "";
+    const base = window.__dostRouteBase || "";
+    return `<div class="detail-gate detail-gate--sahne terim-nefes-sahne">
+      <p class="detail-gate__note">${tt({
+        tr: "Ayrı bir sahne, bu terimin kendi yorumunun önerdiği fikri -- basınç biriken tek bir nefesin harflere, harflerin bir kelimeye ayrışması -- sürüklenerek keşfedilebilir hale getiriyor.",
+        en: "A separate scene turns the idea this term's own interpretation suggests -- a single breath under pressure separating into letters, the letters into a word -- into something you can explore by dragging.",
+        pt: "Uma cena separada transforma a ideia que a própria interpretação deste termo sugere -- um único sopro sob pressão se separando em letras, as letras numa palavra -- em algo que se pode explorar arrastando.",
+      })}</p>
+      <a class="detail-gate__btn" href="${base}/nefes-i-rahmani.html">${tt({
+        tr: "Sahneyi aç: Nefes-i Rahmânî",
+        en: "Open the scene: The Breath of the All-Merciful",
+        pt: "Abrir a cena: O Sopro do Misericordioso",
+      })}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
+    </div>`;
+  }
+
   function showTermDetail(id) {
     const t = glossaryData.terms[id];
     if (!t) return;
@@ -895,6 +916,7 @@
         <h3>${tt({ tr: "İbn Arabî'nin Yorumu", en: "Ibn Arabi's Interpretation", pt: "A Interpretação de Ibn Arabi" })}</h3>
         <p>${linkify(tt(t.ibn_arabi_yorumu), "terimler", t.id)}</p>
       </div>
+      ${nefesSahneHtml(t.id)}
       ${analogyHtml(t)}
       ${groupDiagramHtml(group)}
       ${kaynaklarHtml(t.kaynaklar, t.id)}
