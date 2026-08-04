@@ -816,6 +816,37 @@
   }
   function sourceHtml(q) { return q.source ? `<cite class="sorular-source">${q.source}</cite>` : ""; }
 
+  // Bir sorunun ayrı, oynanabilir bir sahnesi olabilir (terimler.js'deki
+  // TERIM_SAHNELERI ile aynı sözleşme: detail-gate--sahne). İlk örnek
+  // "hakikat neden herkese aynı görünmez?" -- ilâh-ı mu'tekad sahnesi,
+  // docs/icerik-yol-haritasi.md D14. Sorunun kendi cevabı zaten "herkes
+  // kendi kabının rengini görür" diyor; sahne onu oynatılabilir kılıyor.
+  const SORU_SAHNELERI = {
+    "hakikat-neden-farkli-gorunur": {
+      dosya: "ilah-i-mutekad.html",
+      not: {
+        tr: "Ayrı bir sahne, bu sorunun kendi cevabını -- herkesin kendi kabının rengini görmesi -- beş soruyla oynanabilir hâle getiriyor: cevapların bir sûret çiziyor.",
+        en: "A separate scene turns this question's own answer -- that each sees the colour of their own vessel -- into something you can play through in five questions: your answers draw a form.",
+        pt: "Uma cena separada transforma a própria resposta desta pergunta -- que cada um vê a cor do seu próprio vaso -- em algo jogável em cinco perguntas: suas respostas desenham uma forma.",
+      },
+      dugme: {
+        tr: "Sahneyi aç: İnandığın Tanrı",
+        en: "Open the scene: The God You Believe In",
+        pt: "Abrir a cena: O Deus em Que Você Crê",
+      },
+    },
+  };
+
+  function soruSahneHtml(id) {
+    const s = SORU_SAHNELERI[id];
+    if (!s) return "";
+    const base = window.__dostRouteBase || "";
+    return `<div class="detail-gate detail-gate--sahne">
+      <p class="detail-gate__note">${I18n.pick3(s.not)}</p>
+      <a class="detail-gate__btn" href="${base}/${s.dosya}">${I18n.pick3(s.dugme)}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
+    </div>`;
+  }
+
   // SIRLAR KÖPRÜSÜ (2026-08-03). Sırlar ve Sorular sitenin iki "kapanmamış"
   // defteri ama hiçbir yerde bağlı değillerdi. Bağlar ELLE kuruldu
   // (data/ibn-arabi/sirlar-sorular.json) ve her birinin yanında NEDEN öyle
@@ -979,7 +1010,7 @@
       <h2 class="detail-title">${I18n.pick3(q.question)}</h2>
       <p class="sorular-category-tag">${cat ? I18n.pick3(cat.name) : ""}</p>
       <div class="detail-block detail-block--ibnarabi"><p>${linkify(I18n.pick3(q.answer), "sorular", q.id)}</p>${sourceHtml(q)}</div>
-      ${analogyHtml(q.analogy)}${crossLinkHtml(q)}${sirlarHtml(q)}${relatedQuestionsHtml(q)}`;
+      ${analogyHtml(q.analogy)}${soruSahneHtml(q.id)}${crossLinkHtml(q)}${sirlarHtml(q)}${relatedQuestionsHtml(q)}`;
     detailContent.querySelector(".sorular-back-link").addEventListener("click", () => showAllQuestionsList());
     // Köprü verisi geç gelirse paneli tazele -- ilk açılışta bağlar
     // görünmeden kalmasın.
