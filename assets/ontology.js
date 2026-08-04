@@ -259,6 +259,7 @@
     else if (currentMainView === "sirlar") window.__sirlarGraphApp && window.__sirlarGraphApp.onLangChange();
     else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
     else if (currentMainView === "aciksorular") window.__acikSorularApp && window.__acikSorularApp.onLangChange();
+    else if (currentMainView === "bilmiyoruz") window.__bilmiyoruzApp && window.__bilmiyoruzApp.onLangChange();
     else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
     else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
@@ -475,6 +476,7 @@
   const sirlarBtn = document.getElementById("sirlar-btn");
   const sorularBtn = document.getElementById("sorular-btn");
   const acikSorularBtn = document.getElementById("acik-sorular-btn");
+  const bilmiyoruzBtn = document.getElementById("bilmiyoruz-btn");
   const menzillerBtn = document.getElementById("menziller-btn");
   const tasiyicilarBtn = document.getElementById("tasiyicilar-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
@@ -490,6 +492,7 @@
   const sirlarWrap = document.getElementById("sirlar-wrap");
   const sorularWrap = document.getElementById("sorular-wrap");
   const acikSorularWrap = document.getElementById("acik-sorular-wrap");
+  const bilmiyoruzWrap = document.getElementById("bilmiyoruz-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
   const tasiyicilarWrap = document.getElementById("tasiyicilar-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
@@ -514,7 +517,7 @@
   // -- "kaldığın yer" özelliğindeki localStorage deseninin aynısı.
   const NAV_YENI_KEY = "dost-nav-yeni-gorulmus";
   function markNavYeniSeen(view) {
-    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn }[view];
+    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn }[view];
     if (!btn || !btn.classList.contains("btn-ghost--yeni")) return;
     btn.classList.remove("btn-ghost--yeni");
     try {
@@ -528,14 +531,14 @@
   try {
     const seenAtLoad = JSON.parse(localStorage.getItem(NAV_YENI_KEY) || "[]");
     seenAtLoad.forEach((v) => {
-      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn }[v];
+      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn }[v];
       if (btn) btn.classList.remove("btn-ghost--yeni");
     });
   } catch (e) { /* yoksay */ }
 
   function setMainView(view) {
     if (currentMainView === view) return;
-    if (view === "kavram" || view === "ayethadis") markNavYeniSeen(view);
+    if (view === "kavram" || view === "ayethadis" || view === "bilmiyoruz") markNavYeniSeen(view);
     currentMainView = view;
     markActiveNavButton(ontologyBtn, view === "ontology");
     markActiveNavButton(esmaBtn, view === "esma");
@@ -545,6 +548,7 @@
     markActiveNavButton(sirlarBtn, view === "sirlar");
     markActiveNavButton(sorularBtn, view === "sorular");
     markActiveNavButton(acikSorularBtn, view === "aciksorular");
+    markActiveNavButton(bilmiyoruzBtn, view === "bilmiyoruz");
     markActiveNavButton(menzillerBtn, view === "menziller");
     markActiveNavButton(tasiyicilarBtn, view === "tasiyicilar");
     markActiveNavButton(futuhatBtn, view === "futuhat");
@@ -560,6 +564,7 @@
     if (sirlarWrap) sirlarWrap.hidden = view !== "sirlar";
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
     if (acikSorularWrap) acikSorularWrap.hidden = view !== "aciksorular";
+    if (bilmiyoruzWrap) bilmiyoruzWrap.hidden = view !== "bilmiyoruz";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (tasiyicilarWrap) tasiyicilarWrap.hidden = view !== "tasiyicilar";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
@@ -596,6 +601,9 @@
     } else if (view === "aciksorular") {
       currentDetailView = null;
       window.__acikSorularApp && window.__acikSorularApp.activate();
+    } else if (view === "bilmiyoruz") {
+      currentDetailView = null;
+      window.__bilmiyoruzApp && window.__bilmiyoruzApp.activate();
     } else if (view === "menziller") {
       currentDetailView = "menziller";
       window.__menzillerApp && window.__menzillerApp.activate();
@@ -630,6 +638,7 @@
   if (cizimlerBtn) cizimlerBtn.addEventListener("click", () => { setMainView("cizimler"); updateHash("cizimler"); });
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
   if (acikSorularBtn) acikSorularBtn.addEventListener("click", () => { setMainView("aciksorular"); updateHash("acik-sorular"); });
+  if (bilmiyoruzBtn) bilmiyoruzBtn.addEventListener("click", () => { setMainView("bilmiyoruz"); updateHash("bilmiyoruz"); });
   if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
   if (tasiyicilarBtn) tasiyicilarBtn.addEventListener("click", () => { setMainView("tasiyicilar"); updateHash("tasiyicilar"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
@@ -729,6 +738,14 @@
         tr: "Okurken bize kalan, kapanmamış sorular — ve her biri için okuma kaydımızda ne bulduğumuz, ne bulamadığımız.",
         en: "Questions left with us while reading, still unclosed — and, for each, what we found and what we did not find in our reading record.",
         pt: "Perguntas que ficaram connosco ao ler, ainda por fechar — e, para cada uma, o que encontrámos e o que não encontrámos no nosso registo de leitura.",
+      },
+    },
+    bilmiyoruz: {
+      title: { tr: "Bilmiyoruz", en: "We Don't Know", pt: "Não Sabemos" },
+      desc: {
+        tr: "Sitenin açıkça bilmediğini ya da tartışmalı olduğunu ilan ettiği maddeler — nüsha tarihinden yorum mirasına, eser tasnifinden modern benzetmelere.",
+        en: "Items the site openly declares unknown or contested — from manuscript history to a reading's inheritance, from classification of works to modern analogies.",
+        pt: "Itens que o site declara abertamente desconhecidos ou contestados — da história do manuscrito à herança de uma leitura, da classificação das obras às analogias modernas.",
       },
     },
     sorular: {
@@ -918,6 +935,11 @@
     if (id) window.__acikSorularApp && window.__acikSorularApp.goToNode(id);
   }
 
+  function goToBilmiyoruz(id) {
+    setMainView("bilmiyoruz");
+    if (id) window.__bilmiyoruzApp && window.__bilmiyoruzApp.goToNode(id);
+  }
+
   // Taşıyanlar tek bir şemadan ibaret; derin bağlantı için ayrı bir id'si
   // yok, o yüzden setMainView zaten sahneyi kuruyorsa ikinci kez
   // activate() çağırmaya gerek yok -- ama başka bir görünümden gelindiğinde
@@ -960,7 +982,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -979,6 +1001,7 @@
     else if (view === "cizimler") goToCizimler();
     else if (view === "sorular") goToSorular(id);
     else if (view === "acik-sorular") goToAcikSorular(id);
+    else if (view === "bilmiyoruz") goToBilmiyoruz(id);
     else if (view === "menziller") goToMenziller(id);
     else if (view === "tasiyicilar") goToTasiyicilar();
     else if (view === "futuhat") goToFutuhat(id);
@@ -1017,6 +1040,7 @@
       else if (view === "cizimler") goToCizimler();
       else if (view === "sorular") goToSorular(id);
     else if (view === "acik-sorular") goToAcikSorular(id);
+      else if (view === "bilmiyoruz") goToBilmiyoruz(id);
       else if (view === "menziller") goToMenziller(id);
       else if (view === "tasiyicilar") goToTasiyicilar();
       else if (view === "futuhat") goToFutuhat(id);

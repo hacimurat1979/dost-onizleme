@@ -8872,3 +8872,73 @@ mark.durus-vurgu-es {
   .acik-soru__etiket { transition: none !important; }
 }
 .acik-soru__vurus { pointer-events: all; }
+
+/* --- Bilmiyoruz halkası (docs/icerik-yol-haritasi.md D20, 2026-08-04) -----
+   acik-soru'nun aynı yay-boşluk idiomu (bkz. yukarısı) ama farklı bir
+   davranış taşıyor: boşluk kanıt biriktikçe daralmıyor, maddenin `durum`una
+   göre SABİT -- tartışmalı en geniş, bizim sınırımız en dar. Çentik yok,
+   çünkü burada ölçülen bir "kaç kayıtta iz bulduk" değil. */
+.bilmiyoruz-madde { cursor: pointer; }
+.bilmiyoruz-madde:focus { outline: none; }
+.bilmiyoruz-madde__yay {
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  opacity: 0.78;
+  transition: opacity 0.18s ease, stroke-width 0.18s ease;
+}
+.bilmiyoruz-madde__yay--bizim_sinirimiz { stroke-dasharray: 3 4; }
+.bilmiyoruz-madde__ikon {
+  font-size: 0.82rem;
+  font-weight: 700;
+  fill: var(--text-secondary);
+  pointer-events: none;
+}
+.bilmiyoruz-madde__etiket {
+  font-size: 0.72rem;
+  fill: var(--text-secondary);
+  pointer-events: none;
+}
+.bilmiyoruz-madde--deginiliyor .bilmiyoruz-madde__yay { opacity: 1; stroke-width: 3.1; }
+.bilmiyoruz-madde--deginiliyor .bilmiyoruz-madde__etiket { fill: var(--text-primary); }
+.bilmiyoruz-madde:focus-visible .bilmiyoruz-madde__yay { opacity: 1; stroke-width: 3.1; }
+.bilmiyoruz-madde__vurus { pointer-events: all; }
+
+.bilmiyoruz-merkez__halka {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-dasharray: 2 6;
+}
+.bilmiyoruz-merkez__sayi {
+  font-size: 1.6rem;
+  font-weight: 600;
+  fill: var(--text-primary);
+}
+.bilmiyoruz-merkez__etiket {
+  font-size: 0.7rem;
+  fill: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.bilmiyoruz-madde__durum {
+  display: inline-block;
+  margin-inline-start: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+.bilmiyoruz-madde__durum--tartismali { border-color: color-mix(in srgb, var(--series-kemal) 55%, var(--border)); }
+.bilmiyoruz-madde__durum--belirsiz { border-color: color-mix(in srgb, var(--series-theme) 55%, var(--border)); }
+
+.bilmiyoruz-madde__kaynaklar { margin: 0; padding-left: 18px; }
+.bilmiyoruz-madde__kaynak { font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 4px; }
+.bilmiyoruz-madde__kaynak em { color: var(--text-primary); font-style: italic; }
+.bilmiyoruz-madde__kaynak-not { color: var(--text-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bilmiyoruz-madde__yay,
+  .bilmiyoruz-madde__etiket { transition: none !important; }
+}

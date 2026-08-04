@@ -1,0 +1,101 @@
+{
+  "not": {
+    "tr": "Bu sayfa cevap toplamıyor, sınır işaretliyor. Dördü de kendi türünde: biri metnin fiziksel tarihine (hangi nüsha, kimin eliyle), biri bir okuma geleneğinin kendisine (o okuma Şeyh'e mi ait yoksa okuyana mı), biri akademik bir tasnife (hangi eser gerçekten kime ait), biri de günümüzde sık kurulan bir benzetme türüne (metinle modern bilim arasında) dair. Bazılarında alanın kendisi anlaşamıyor; bazılarında bizim şu ana kadar doğrulayabildiğimiz burada bitiyor — ikisini birbirine karıştırmamak için her maddenin durumu ayrı etiketlendi.",
+    "en": "This page does not collect answers, it marks limits. Each of the four belongs to a different kind: one to the text's physical history (which manuscript, whose hand), one to a reading tradition itself (whether that reading belongs to the Shaykh or to the reader), one to a scholarly classification (which work truly belongs to whom), one to a comparison often drawn today (between the text and modern science). In some, the field itself has not agreed; in others, what we have been able to verify so far simply ends here — each item's status is labelled separately so the two are not confused.",
+    "pt": "Esta página não reúne respostas, marca limites. Cada um dos quatro pertence a um tipo diferente: um à história física do texto (qual manuscrito, de que mão), um a uma tradição de leitura em si (se essa leitura pertence ao Xeique ou a quem lê), um a uma classificação académica (que obra pertence verdadeiramente a quem), um a uma comparação hoje frequente (entre o texto e a ciência moderna). Em alguns, o próprio campo não chegou a acordo; noutros, o que conseguimos verificar até agora termina simplesmente aqui — o estado de cada item está etiquetado separadamente para não confundir os dois."
+  },
+  "kategoriler": {
+    "nusha": { "tr": "Nüsha ve metin", "en": "Manuscript & text", "pt": "Manuscrito e texto" },
+    "yorum": { "tr": "Bir okumanın mülkiyeti", "en": "Whose reading is it", "pt": "De quem é a leitura" },
+    "tasnif": { "tr": "Eser tasnifi", "en": "Classification of works", "pt": "Classificação das obras" },
+    "benzetme": { "tr": "Modern benzetmeler", "en": "Modern analogies", "pt": "Analogias modernas" }
+  },
+  "durumlar": {
+    "tartismali": { "tr": "araştırmacılar arasında tartışmalı", "en": "contested among researchers", "pt": "contestado entre investigadores" },
+    "belirsiz": { "tr": "sınırları henüz net değil", "en": "its boundaries are not yet clear", "pt": "os seus limites ainda não são claros" },
+    "bizim_sinirimiz": { "tr": "bizim doğrulayabildiğimizin sınırı burada bitiyor", "en": "the limit of what we could verify ends here", "pt": "o limite do que conseguimos verificar termina aqui" }
+  },
+  "maddeler": [
+    {
+      "id": "konya-nushasi-dokuzuncu-cilt",
+      "kategori": "nusha",
+      "durum": "belirsiz",
+      "baslik": {
+        "tr": "Konya nüshasının dokuzuncu cildi başka bir elle yazılmış",
+        "en": "The ninth volume of the Konya manuscript was copied by another hand",
+        "pt": "O nono volume do manuscrito de Konya foi copiado por outra mão"
+      },
+      "aciklama": {
+        "tr": "Fütûhât'ın Şeyh'in kendi eliyle yazdığı ikinci telifi Konya'da (Türk ve İslam Eserleri Müzesi, Evkaf 1845+) duruyor, ama cildin tamamı aynı elden çıkmadı — dokuzuncu cilt sonradan başka bir hattatın eliyle tamamlanmış. Bu, kritik neşrin nerede Şeyh'in kendi metnine, nerede sonraki bir aktarıma dayandığını her cilt için ayrı ayrı sormayı gerektiriyor; biz bu ayrımı henüz cilt cilt işlemedik.",
+        "en": "The second, autograph recension of the Futuhat in Ibn Arabi's own hand is held in Konya (Turkish and Islamic Arts Museum, Evkaf 1845+), but not the whole volume set is in the same hand — the ninth volume was completed later by another copyist's hand. This means asking, volume by volume, where a critical edition rests on the Shaykh's own text and where on a later transmission; we have not yet worked through that distinction volume by volume.",
+        "pt": "A segunda recensão autógrafa das Futuhat, da própria mão de Ibn Arabi, encontra-se em Konya (Museu de Arte Turca e Islâmica, Evkaf 1845+), mas nem todo o conjunto de volumes está na mesma mão — o nono volume foi completado mais tarde por outra mão copista. Isto exige perguntar, volume a volume, onde uma edição crítica assenta no próprio texto do Xeique e onde numa transmissão posterior; ainda não trabalhámos essa distinção volume a volume."
+      },
+      "kaynaklar": [
+        { "yazar": "Claude Addas", "eser": "Quest for the Red Sulphur: The Life of Ibn 'Arabī", "yil": 1993, "not": "MIAS'ın baskı karşılaştırması" },
+        { "yazar": "Ibn al-Arabi Foundation", "eser": "Yeni Fütûhât tahkiki (ed. Abd al-Aziz Sultan al-Mansub)", "not": "Konya holografını esas alan yeni tahkik" },
+        { "yazar": "Osman Yahia", "eser": "Fütûhât'ın kısmî neşri", "not": "Neşrin kendi aparatı, nüsha farklarını kaydeder" }
+      ]
+    },
+    {
+      "id": "corbinin-okumasi-kime-ait",
+      "kategori": "yorum",
+      "durum": "tartismali",
+      "baslik": {
+        "tr": "Corbin'in 'hayal âlemi' okuması ne kadar Şeyh'in, ne kadar Corbin'in",
+        "en": "How much of Corbin's reading of the 'imaginal world' is the Shaykh's, how much Corbin's",
+        "pt": "Quanto da leitura de Corbin do 'mundo imaginal' é do Xeique, quanto é de Corbin"
+      },
+      "aciklama": {
+        "tr": "Henry Corbin'in İbnü'l-Arabî'deki hayal âlemini yirminci yüzyıl fenomenolojisinden gelen bir çerçeveyle okuması, alanın en etkili ama en çok tartışılan okumalarından biri. Corbin'in kendisi de akademik eleştiri konusu — okumasının ne kadarı Şeyh'in metnine sadık kalıyor, ne kadarı İranî-fenomenolojik bir çerçeveyi metne geri okuyor, uzmanlar arasında kapanmış bir mesele değil.",
+        "en": "Henry Corbin's reading of Ibn Arabi's imaginal world through a framework drawn from twentieth-century phenomenology is one of the field's most influential and most contested readings. Corbin himself is a subject of academic critique — how much of his reading stays faithful to the Shaykh's text, and how much reads an Iranian-phenomenological framework back into it, is not a settled matter among specialists.",
+        "pt": "A leitura que Henry Corbin faz do mundo imaginal de Ibn Arabi, através de um enquadramento vindo da fenomenologia do século XX, é uma das leituras mais influentes e mais contestadas do campo. O próprio Corbin é objeto de crítica académica — quanto da sua leitura permanece fiel ao texto do Xeique, e quanto relê nele um enquadramento fenomenológico-iraniano, não é uma questão resolvida entre especialistas."
+      },
+      "kaynaklar": [
+        { "yazar": "Henry Corbin", "eser": "Creative Imagination in the Sufism of Ibn 'Arabi (Alone with the Alone)", "not": "Tartışmanın kendi nesnesi olan çalışma" },
+        { "yazar": "William C. Chittick", "eser": "Imaginal Worlds: Ibn al-'Arabī and the Problem of Religious Diversity", "yil": 1994 },
+        { "yazar": "James W. Morris", "eser": "The Reflective Heart: Discovering Spiritual Intelligence in Ibn 'Arabī's Meccan Illuminations", "yil": 2005 }
+      ],
+      "baglar": [{ "view": "kavram", "id": "alem-misal" }]
+    },
+    {
+      "id": "osman-yahianin-tasnifindeki-atiflar",
+      "kategori": "tasnif",
+      "durum": "bizim_sinirimiz",
+      "baslik": {
+        "tr": "Osman Yahia'nın eser tasnifindeki bazı atıflar tartışmalı",
+        "en": "Some attributions in Osman Yahia's classification of works are contested",
+        "pt": "Algumas atribuições na classificação das obras de Osman Yahia são contestadas"
+      },
+      "aciklama": {
+        "tr": "Osman Yahia'nın Histoire et classification de l'œuvre d'Ibn 'Arabī'si (1964) hâlâ alanın eser-tasnifi için temel referansı, ama kendi eleştirilerine rağmen — bazı eserlerin Şeyh'e atfının tartışmalı olduğu literatürde not ediliyor. Biz bu tartışmanın hangi eserleri, hangi gerekçelerle kapsadığını henüz tek tek doğrulayabilmiş değiliz; bu yüzden burada genel bir uyarının ötesine geçmiyoruz.",
+        "en": "Osman Yahia's Histoire et classification de l'œuvre d'Ibn 'Arabī (1964) remains the field's basic reference for classifying the works, despite its own criticisms — the literature notes that some attributions to the Shaykh are contested. We have not yet verified, work by work, which titles this dispute covers and on what grounds; so here we go no further than a general flag.",
+        "pt": "A Histoire et classification de l'œuvre d'Ibn 'Arabī de Osman Yahia (1964) continua a ser a referência básica do campo para a classificação das obras, apesar das suas próprias críticas — a literatura assinala que algumas atribuições ao Xeique são contestadas. Ainda não verificámos, obra a obra, que títulos esta disputa abrange e com que fundamentos; por isso aqui não vamos além de um aviso geral."
+      },
+      "kaynaklar": [
+        { "yazar": "Osman Yahia", "eser": "Histoire et classification de l'œuvre d'Ibn 'Arabī", "yil": 1964 },
+        { "yazar": "Ibn Arabi Society", "eser": "Çevrimiçi eser veritabanı", "not": "ibnarabisociety.org, güncellenen bir referans" }
+      ]
+    },
+    {
+      "id": "kuantum-benzetmelerinin-durumu",
+      "kategori": "benzetme",
+      "durum": "tartismali",
+      "baslik": {
+        "tr": "İbn Arabî ile kuantum fiziği benzetmelerinin bilimsel/ilahiyat statüsü",
+        "en": "The scientific/theological status of Ibn Arabi–quantum physics analogies",
+        "pt": "O estatuto científico/teológico das analogias entre Ibn Arabi e a física quântica"
+      },
+      "aciklama": {
+        "tr": "Kutsal ya da klasik bir metinden çağdaş bilimsel bir sonuç 'çıkarmak' — akademide i'câz-ı ilmî ya da Bucaillecilik adıyla bilinen bir literatür türü — hem kötü bilim hem kötü ilahiyat olarak eleştiriliyor: bilimsel model değiştiğinde metafizik iddia da çöküyor. Bu, benzetmenin tamamen değersiz olduğu anlamına gelmiyor; bazı akademisyenler (örn. Altaie) daha temkinli, yapısal bir karşılaştırmayı savunuyor. Ama 'İbn Arabî 800 yıl önce şunu söylemişti' kalıbı, bu eleştirinin tam hedefinde. Biz bu tartışmayı kapatmıyoruz — sadece hangi cümlenin hangi tarafta durduğunu ayırt etmeye çalışıyoruz.",
+        "en": "'Deriving' a contemporary scientific conclusion from a sacred or classical text — a literary genre known in academia as i'jaz 'ilmi or Bucailleism — is criticized as both bad science and bad theology: when the scientific model changes, the metaphysical claim collapses with it. This does not mean the analogy is worthless; some scholars (e.g. Altaie) argue for a more cautious, structural comparison. But the pattern 'Ibn Arabi said this 800 years ago' sits squarely in that critique's crosshairs. We are not closing this debate here — only trying to tell which sentence stands on which side of it.",
+        "pt": "'Extrair' uma conclusão científica contemporânea de um texto sagrado ou clássico — um género literário conhecido na academia como i'jaz 'ilmi ou Bucailleísmo — é criticado como má ciência e má teologia ao mesmo tempo: quando o modelo científico muda, a afirmação metafísica desmorona com ele. Isto não significa que a analogia seja inútil; alguns académicos (por exemplo, Altaie) defendem uma comparação mais cautelosa e estrutural. Mas o padrão 'Ibn Arabi disse isto há 800 anos' está exatamente na mira dessa crítica. Não fechamos aqui este debate — tentamos apenas distinguir que frase está de que lado dele."
+      },
+      "kaynaklar": [
+        { "yazar": "Stefano Bigliardi", "eser": "The 'Scientific Miracle of the Qur'ān,' Pseudoscience, and Conspiracism", "yil": 2017, "not": "Zygon 52/1, 146-171" },
+        { "yazar": "Nidhal Guessoum", "eser": "Islam's Quantum Question: Reconciling Muslim Tradition and Modern Science", "yil": 2011 },
+        { "yazar": "Guessoum & Bigliardi", "eser": "Islam and Science: Past, Present, and Future Debates", "yil": 2023, "not": "Cambridge University Press (Elements)" },
+        { "yazar": "Mohammed Basil Altaie", "eser": "Re-creation: A Possible Interpretation of Quantum Indeterminism", "not": "arXiv:0907.3419, temkinli/yapısal karşılaştırma tarafı" }
+      ]
+    }
+  ]
+}
