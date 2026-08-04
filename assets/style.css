@@ -3983,13 +3983,31 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   color: var(--text-muted);
   font-style: normal;
 }
-.cross-link {
+.cross-link,
+/* Fütûhât/Füsûs atlaslarındaki gibi metnin içine elle yazılmış iç
+   bağlantılar (örn. "bkz. 149. kısım") linkify()'ın ürettiği .cross-link
+   sınıfını taşımıyordu -- otomatik terim linkleri altın/noktalı çizgiyle
+   belirgin görünürken bu elle yazılmış linkler sınıfsız kaldığı için
+   tarayıcının varsayılan mavi/düz stiline düşüyordu (kullanıcı bildirimi,
+   2026-08-04: "standardı var mı kontrol edelim, sitenin her yerinde aynı
+   olmalı"). Dış linkler (target dolu) ve mailto: bilerek dışarıda
+   bırakıldı, onlar zaten farklı bir sözleşmeye (yeni sekmede açılma) tabi. */
+a[href]:not([class]):not([target]):not([href^="mailto:"]) {
   color: var(--accent-interactive);
   text-decoration: none;
   border-bottom: 1px dotted var(--accent-interactive);
 }
-.cross-link:hover { border-bottom-style: solid; }
-.cross-link:focus-visible {
+/* Gündüz modunda çapraz linkler soluk kalıyordu (kullanıcı bildirimi,
+   2026-08-04) -- karanlık modun kendi rengi (#c98500) zaten daha canlı,
+   bu yüzden yalnız gündüz için çizgiyi belirginleştiriyoruz. */
+.viz-root:not([data-theme="dark"]) .cross-link,
+.viz-root:not([data-theme="dark"]) a[href]:not([class]):not([target]):not([href^="mailto:"]) {
+  border-bottom-width: 2px;
+}
+.cross-link:hover,
+a[href]:not([class]):not([target]):not([href^="mailto:"]):hover { border-bottom-style: solid; }
+.cross-link:focus-visible,
+a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   outline: 2px solid var(--accent-interactive);
   outline-offset: 2px;
   border-radius: 2px;
