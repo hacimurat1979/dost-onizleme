@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Vahdet-i Vücûd'un Ömrü — Dost Arabi görselleştirme (docs/icerik-yol-haritasi.md D5) -->
+<title>Vahdet-i Vücûd'un Ömrü — Dost Arabi</title>
+<style>
+:root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E;--harsh:#B85C3E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410;--harsh:#8A3D26}}
+:root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040;--harsh:#B85C3E}
+:root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410;--harsh:#8A3D26}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:.9rem;max-width:620px}
+h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color:var(--gold);margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.85rem;font-style:italic;line-height:1.65}
+.honesty{color:var(--muted);font-size:.72rem;line-height:1.6;max-width:520px;margin:.6rem auto 0;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+
+.term-stage{width:min(560px,94vw);height:150px;display:flex;align-items:center;justify-content:center;margin:1.1rem 0 .3rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.term-word{font-size:clamp(1.6rem,7vw,2.6rem);letter-spacing:.02em;transition:filter .5s ease,opacity .5s ease,color .5s ease,transform .5s ease}
+
+.nav-row{display:flex;align-items:center;justify-content:center;gap:.9rem;margin:.6rem 0}
+.step-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:999px;width:38px;height:38px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.step-btn:hover:not(:disabled),.step-btn:focus-visible{border-color:var(--liminal)}
+.step-btn:disabled{opacity:.3;cursor:default}
+.dots{display:flex;gap:.34rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;padding:0;cursor:pointer}
+.dot.on{background:var(--gold)}
+.dot:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+
+.card{width:min(560px,94vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin:.5rem 0}
+.card-no{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--liminal);margin-bottom:.4rem}
+.card-year{font-size:.78rem;color:var(--muted);margin-bottom:.3rem}
+.card-label{font-size:1.02rem;margin-bottom:.5rem}
+.card-gloss{font-size:.87rem;line-height:1.75;margin-bottom:.5rem}
+.card-cite{font-size:.72rem;color:var(--muted)}
+
+.aha{width:min(560px,94vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.8;color:var(--liminal);margin-top:.8rem;white-space:pre-line;opacity:0;transition:opacity 1s ease}
+.aha.show{opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="hTitle">Vahdet-i Vücûd'un Ömrü</h1>
+  <p class="sub" id="hSub">Şeyh'in hiç kullanmadığı bir terim, ona nasıl yapıştı?</p>
+  <p class="honesty" id="hHonesty">Kronoloji, Aladdin Bakri'nin "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, açık erişim) makalesinden ve William Chittick'in "Rūmī and Waḥdat al-wujūd" çalışmasından alındı.</p>
+</header>
+
+<div class="term-stage">
+  <p class="term-word" id="termWord">وحدة الوجود</p>
+</div>
+
+<div class="nav-row">
+  <button class="step-btn" id="prevBtn" type="button" aria-label="Önceki">‹</button>
+  <div class="dots" id="dots" role="group" aria-label="Zaman adımları"></div>
+  <button class="step-btn" id="nextBtn" type="button" aria-label="Sonraki">›</button>
+</div>
+
+<div class="card">
+  <p class="card-no" id="cardNo"></p>
+  <p class="card-year" id="cardYear"></p>
+  <p class="card-label" id="cardLabel"></p>
+  <p class="card-gloss" id="cardGloss"></p>
+  <p class="card-cite" id="cardCite"></p>
+</div>
+
+<p class="aha" id="aha"></p>
+
+<script>
+const LA={
+  tr:{
+    title:'Vahdet-i Vücûd\'un Ömrü',
+    sub:'Şeyh\'in hiç kullanmadığı bir terim, ona nasıl yapıştı?',
+    honesty:'Kronoloji, Aladdin Bakri\'nin "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, açık erişim) makalesinden ve William Chittick\'in "Rūmī and Waḥdat al-wujūd" çalışmasından alındı.',
+    aha:'Terim, kaynağında yoktu.\nEn keskin hâlini, ondan en uzak duran elde aldı — bir suçlama olarak.',
+  },
+  en:{
+    title:'The Life of Waḥdat al-Wujūd',
+    sub:'How did a term the Shaykh never used come to stick to him?',
+    honesty:'Chronology drawn from Aladdin Bakri, "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, open access) and William Chittick, "Rūmī and Waḥdat al-wujūd."',
+    aha:"The term was not present at its source.\nIt took its sharpest form in the hand furthest from him — as an accusation.",
+  },
+  pt:{
+    title:'A Vida de Waḥdat al-Wujūd',
+    sub:'Como um termo que o Xeique nunca usou passou a colar-se a ele?',
+    honesty:'Cronologia de Aladdin Bakri, "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, acesso aberto) e William Chittick, "Rūmī and Waḥdat al-wujūd."',
+    aha:'O termo não estava presente na sua fonte.\nTomou a sua forma mais nítida na mão mais distante dele — como uma acusação.',
+  },
+};
+
+// Kaynak: Aladdin Bakri, "Oneness of Being (waḥdat al-wujūd) -- The Term
+// and the Doctrine," Muhyiddin Ibn Arabi Society (açık erişim); Chittick,
+// "Rūmī and Waḥdat al-wujūd" (1994). blur/opacity/renk her adımda terimin
+// KENDİ o andaki durumunu resmediyor -- GORSEL_DIL.md: davranışı resmet.
+const STEPS=[
+  { year:'ö. 638/1240', blur:9, opacity:0.28, color:'var(--muted)', scale:0.94,
+    label:{tr:'İbn Arabî\'nin vefatı', en:"Ibn al-'Arabi's death", pt:"Morte de Ibn al-'Arabi"},
+    gloss:{
+      tr:'Uzmanlar arasında geniş bir mutabakat var: İbn Arabî bu terimi kendi eserlerinde hiçbir yerde kullanmıyor. Terim, kaynağında yok — bu yüzden burada bulanık.',
+      en:'There is broad agreement among specialists: Ibn al-\'Arabi never uses this term anywhere in his own writings. The term is absent at its source — which is why it is blurred here.',
+      pt:'Há um amplo consenso entre os especialistas: Ibn al-\'Arabi nunca usa este termo em nenhum lugar dos seus próprios escritos. O termo está ausente na sua fonte — por isso aparece desfocado aqui.',
+    },
+    cite:'Bakri, "Oneness of Being"' },
+  { year:'ö. 673/1274', blur:5, opacity:0.5, color:'var(--liminal)', scale:0.98,
+    label:{tr:'Sadreddin Konevî, Miftâhu\'l-Gayb', en:"Sadr al-Din al-Qunawi, Miftāḥ al-ghayb", pt:"Sadr al-Din al-Qunawi, Miftāḥ al-ghayb"},
+    gloss:{
+      tr:'Şeyh\'in üvey oğlu ve en yakın öğrencisi Konevî, terimi İslam literatüründeki en erken kullanımlardan birinde geçiriyor — ama sonradan kazanacağı teknik/doktriner anlamların hiçbirinde.',
+      en:'The Shaykh\'s stepson and closest student, al-Qunawi, uses the term in one of its earliest appearances in Islamic literature — but not yet in any of the technical/doctrinal senses it would later acquire.',
+      pt:'O enteado e discípulo mais próximo do Xeique, al-Qunawi, usa o termo numa das suas aparições mais antigas na literatura islâmica — mas ainda não em nenhum dos sentidos técnicos/doutrinais que viria a adquirir.',
+    },
+    cite:'Bakri, "Oneness of Being"; Chittick 1994' },
+  { year: 'ö. 728/1328', blur:0, opacity:1, color:'var(--harsh)', scale:1.08,
+    label:{tr:'İbn Teymiyye', en:'Ibn Taymiyya', pt:'Ibn Taymiyya'},
+    gloss:{
+      tr:'Terimi olumsuz, suçlayıcı bir etiket olarak İLK KEZ kullanan kişi — İbn Arabî\'nin vefatından onlarca yıl sonra. Doktrini "Allah\'ı ve âlemi birleştiren" bir görüş olarak tanımlıyor ve takipçilerini "kâfir" ilan ediyor. Terim burada en KESKİN, en SABİT hâlini alıyor — ama bu keskinlik, kaynağından en uzak noktada.',
+      en:'The FIRST to use the term negatively, as an accusation — decades after Ibn al-\'Arabi\'s death. He defines the doctrine as one that "unifies God and the world" and declares its adherents unbelievers. Here the term takes its sharpest, most fixed form — but that sharpness appears at the point furthest from its source.',
+      pt:'O PRIMEIRO a usar o termo negativamente, como acusação — décadas após a morte de Ibn al-\'Arabi. Define a doutrina como algo que "unifica Deus e o mundo" e declara os seus seguidores incrédulos. Aqui o termo assume a sua forma mais nítida e fixa — mas essa nitidez surge no ponto mais distante da sua fonte.',
+    },
+    cite:'Bakri, "Oneness of Being"' },
+  { year:'ö. 841/1438', blur:1, opacity:0.92, color:'var(--harsh)', scale:1.02,
+    label:{tr:'Alâeddin el-Buhârî', en:'Alaʾ al-din al-Bukhari', pt:'Alaʾ al-din al-Bukhari'},
+    gloss:{
+      tr:'İbn Teymiyye\'nin eleştirisini sürdürüyor — etiket artık bir gelenek hâline gelmiş.',
+      en:'Carries Ibn Taymiyya\'s critique forward — the label has now become a tradition of its own.',
+      pt:'Dá continuidade à crítica de Ibn Taymiyya — o rótulo tornou-se agora numa tradição própria.',
+    },
+    cite:'Bakri, "Oneness of Being"' },
+  { year:'ö. 1034/1624', blur:3, opacity:0.7, color:'var(--liminal)', scale:0.96,
+    label:{tr:'Ahmed Sirhindî, vahdet-i şühûd', en:'Ahmad Sirhindi, waḥdat al-shuhūd', pt:'Ahmad Sirhindi, waḥdat al-shuhūd'},
+    gloss:{
+      tr:'Tartışmayı kapatmak yerine ona bir alternatif öneriyor: "vahdet-i şühûd" (şuhûdun birliği). Terim burada yeniden bulanıklaşıyor — artık tek bir sabit anlamı yok, bir tartışmanın içinde.',
+      en:'Rather than settling the debate, he offers an alternative to it: "waḥdat al-shuhūd" (the oneness of witnessing). Here the term blurs again — it no longer has one fixed meaning, it sits inside a debate.',
+      pt:'Em vez de resolver o debate, oferece-lhe uma alternativa: "waḥdat al-shuhūd" (a unicidade do testemunho). Aqui o termo volta a desfocar-se — já não tem um significado fixo, está dentro de um debate.',
+    },
+    cite:'Bakri, "Oneness of Being"' },
+];
+
+let curLang='tr', idx=0;
+const $=id=>document.getElementById(id);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function applyTermVisual(){
+  const s=STEPS[idx];
+  const w=$('termWord');
+  w.style.filter = reduceMotion ? 'none' : 'blur('+s.blur+'px)';
+  w.style.opacity = s.opacity;
+  w.style.color = s.color;
+  w.style.transform = reduceMotion ? 'none' : 'scale('+s.scale+')';
+}
+
+function renderDots(){
+  $('dots').innerHTML=STEPS.map((s,i)=>`<button class="dot${i===idx?' on':''}" data-i="${i}" aria-label="${i+1}"></button>`).join('');
+  $('dots').querySelectorAll('.dot').forEach(b=>b.addEventListener('click',()=>{ idx=parseInt(b.dataset.i,10); update(); }));
+}
+
+function update(){
+  const s=STEPS[idx];
+  applyTermVisual();
+  renderDots();
+  $('prevBtn').disabled=idx===0;
+  $('nextBtn').disabled=idx===STEPS.length-1;
+  $('cardNo').textContent=(idx+1)+' / '+STEPS.length;
+  $('cardYear').textContent=s.year;
+  $('cardLabel').textContent=s.label[curLang];
+  $('cardGloss').textContent=s.gloss[curLang];
+  $('cardCite').textContent=s.cite;
+  $('aha').classList.toggle('show', idx===STEPS.length-1);
+}
+
+function renderAll(){
+  const d=LA[curLang];
+  $('hTitle').textContent=d.title;
+  $('hSub').textContent=d.sub;
+  $('hHonesty').textContent=d.honesty;
+  $('aha').textContent=d.aha;
+  update();
+}
+function setLang(l){ curLang=l; renderAll(); }
+
+$('prevBtn').addEventListener('click',()=>{ if(idx>0){ idx--; update(); } });
+$('nextBtn').addEventListener('click',()=>{ if(idx<STEPS.length-1){ idx++; update(); } });
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft' && idx>0){ idx--; update(); }
+  if(e.key==='ArrowRight' && idx<STEPS.length-1){ idx++; update(); }
+});
+
+renderAll();
+
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+});
+</script>
+</body>
+</html>
