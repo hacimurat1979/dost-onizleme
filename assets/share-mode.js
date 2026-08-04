@@ -917,6 +917,23 @@
   // dönüşünden beslensin (bkz. CLAUDE.md "Dairenin üçüncü boyutu: sarmal").
   function drawAmbient(w, h, ts) {
     const z = zemin();
+    // "Füsûs Halkası" İÇERİK şablonu (scene.tpl === "fusus" -- bu, aşağıdaki
+    // BACKDROP seçeneklerinden biri olan "Uzun sarmal" zemininden [z.id ===
+    // "fusus"] AYRI bir kimlik, ikisi de "fusus" adını taşıdığı için
+    // karışıyor) bu genel prosedürel sarmal yerine kendi gerçek DostHelix
+    // sahnesini taşıyor (bkz. .share-stage__frame--fusus CSS'i, share-spiral/
+    // dot/halo'yu opacity:0 yapar) -- ama bu fonksiyon her karede KOŞULSUZ
+    // çalışıp aynı elemanlara satır-içi style.opacity yazıyordu, ki satır-içi
+    // stil her zaman sınıf kuralını eziyor. Sonuç: CSS'in gizlemeye çalıştığı
+    // eski sarmal, gerçek Füsûs sarmalının arkasında sönük sönük nefes
+    // alırken görünüyordu (2026-08-04 kullanıcı bildirimi). Bu şablonda hiç
+    // çizmeden erken çıkıyoruz.
+    if (scene && scene.tpl === "fusus") {
+      if (cacheSpiral) cacheSpiral.setAttribute("d", "");
+      if (cacheHalo) cacheHalo.style.opacity = "0";
+      if (cacheDots) cacheDots.forEach((c) => { c.style.opacity = "0"; });
+      return;
+    }
     const cx = w / 2, cy = h * 0.5;
     const R = Math.min(w, h) * z.yari;
     const H = R * z.yuk;
@@ -986,6 +1003,20 @@
         c.style.fill = RENK.ney;
       } else {
         c.style.fill = "";
+      }
+      // Sarmalın en tepesi: "O'ndan geldik, O'na gidiyoruz" (CLAUDE.md) --
+      // dönüş her zaman bu düğüme doğru yükseliyordu (vert = -H/2 + H*t,
+      // i = n-1 en yüksek nokta), ama düğümün kendisi öbürlerinden hiç
+      // ayrışmıyordu. Sitenin başka yerlerindeki Zât düğümüyle (GU.ZAT_FILL,
+      // bembeyaz) aynı beyazı ve --sahne-vurgu'nun altın parıltısını
+      // veriyoruz ki sarmalın yönü de hedefi de aynı anda okunsun.
+      if (i === z.n - 1) {
+        c.style.fill = "#ffffff";
+        c.style.filter = "drop-shadow(0 0 " + (z.nokta * 2.4).toFixed(1) + "px var(--sahne-vurgu)) drop-shadow(0 0 " + (z.nokta * 0.9).toFixed(1) + "px var(--sahne-vurgu))";
+        c.setAttribute("r", (z.nokta * p.depth * br * 1.55).toFixed(2));
+        c.style.opacity = "1";
+      } else {
+        c.style.filter = "";
       }
     });
     // Merkezdeki nefes alan halka: ontoloji/esmâ'daki Zât halosuyla aynı
