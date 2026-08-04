@@ -1,0 +1,1534 @@
+{
+ "uretim": "scripts/kuran-dokusu-uret.py",
+ "not": {
+  "tr": "Bu graf, Fütûhât/Füsûs'un orijinal Arapça metninin tam bir taramasından değil, sitenin kendi özet metinlerinde (atlas içeriği) şimdiye kadar işaretlediğimiz âyet atıflarından üretildi. Chodkiewicz'in \"Fütûhât'ın yapısı Kur'ân'a göre kurulmuş\" tezinin bir kanıtı değil -- bizim okuma/özetleme sürecimizin küçük, kısmi bir izidir. Kapsam büyüdükçe bu graf da büyüyecek.",
+  "en": "This graph was not built from a full scan of the Futûhât/Fusûs's original Arabic text, but from the verse citations we have marked so far in the site's own summaries (the atlas content). It is not proof of Chodkiewicz's thesis that \"the Futûhât's structure is built on the Qur'ân\" -- it is a small, partial trace of our own reading/summarizing process. This graph will grow as our coverage does.",
+  "pt": "Este grafo não foi construído a partir de uma varredura completa do texto árabe original das Futûhât/Fusûs, mas das citações de versículos que marcamos até agora nos próprios resumos do site (o conteúdo do atlas). Não é prova da tese de Chodkiewicz de que \"a estrutura das Futûhât é construída sobre o Alcorão\" -- é um traço pequeno e parcial do nosso próprio processo de leitura/resumo. Este grafo crescerá à medida que nossa cobertura crescer."
+ },
+ "sureler": [
+  {
+   "no": 1,
+   "ad": {
+    "tr": "Fâtiha",
+    "en": "The Opener",
+    "pt": "A Abertura"
+   },
+   "atifSayisi": 4
+  },
+  {
+   "no": 2,
+   "ad": {
+    "tr": "Bakara",
+    "en": "The Cow",
+    "pt": "A Vaca"
+   },
+   "atifSayisi": 7
+  },
+  {
+   "no": 3,
+   "ad": {
+    "tr": "Âl-i İmrân",
+    "en": "Family of Imran",
+    "pt": "A Família de Imran"
+   },
+   "atifSayisi": 4
+  },
+  {
+   "no": 4,
+   "ad": {
+    "tr": "Nisâ",
+    "en": "The Women",
+    "pt": "As Mulheres"
+   },
+   "atifSayisi": 4
+  },
+  {
+   "no": 5,
+   "ad": {
+    "tr": "Mâide",
+    "en": "The Table Spread",
+    "pt": "A Mesa Servida"
+   },
+   "atifSayisi": 3
+  },
+  {
+   "no": 6,
+   "ad": {
+    "tr": "En'âm",
+    "en": "The Cattle",
+    "pt": "O Gado"
+   },
+   "atifSayisi": 3
+  },
+  {
+   "no": 7,
+   "ad": {
+    "tr": "A'râf",
+    "en": "The Heights",
+    "pt": "Os Cimos"
+   },
+   "atifSayisi": 7
+  },
+  {
+   "no": 8,
+   "ad": {
+    "tr": "Enfâl",
+    "en": "The Spoils of War",
+    "pt": "Os Espólios de Guerra"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 9,
+   "ad": {
+    "tr": "Tevbe",
+    "en": "The Repentance",
+    "pt": "O Arrependimento"
+   },
+   "atifSayisi": 4
+  },
+  {
+   "no": 10,
+   "ad": {
+    "tr": "Yûnus",
+    "en": "Jonah",
+    "pt": "Jonas"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 11,
+   "ad": {
+    "tr": "Hûd",
+    "en": "Hud",
+    "pt": "Hud"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "no": 12,
+   "ad": {
+    "tr": "Yûsuf",
+    "en": "Joseph",
+    "pt": "José"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 14,
+   "ad": {
+    "tr": "İbrâhîm",
+    "en": "Abraham",
+    "pt": "Abraão"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 16,
+   "ad": {
+    "tr": "Nahl",
+    "en": "The Bee",
+    "pt": "As Abelhas"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 17,
+   "ad": {
+    "tr": "İsrâ",
+    "en": "The Night Journey",
+    "pt": "A Viagem Noturna"
+   },
+   "atifSayisi": 3
+  },
+  {
+   "no": 19,
+   "ad": {
+    "tr": "Meryem",
+    "en": "Mary",
+    "pt": "Maria"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 21,
+   "ad": {
+    "tr": "Enbiyâ",
+    "en": "The Prophets",
+    "pt": "Os Profetas"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 22,
+   "ad": {
+    "tr": "Hac",
+    "en": "The Pilgrimage",
+    "pt": "A Peregrinação"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 24,
+   "ad": {
+    "tr": "Nûr",
+    "en": "The Light",
+    "pt": "A Luz"
+   },
+   "atifSayisi": 3
+  },
+  {
+   "no": 25,
+   "ad": {
+    "tr": "Furkân",
+    "en": "The Criterion",
+    "pt": "O Critério"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 26,
+   "ad": {
+    "tr": "Şuarâ",
+    "en": "The Poets",
+    "pt": "Os Poetas"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 27,
+   "ad": {
+    "tr": "Neml",
+    "en": "The Ant",
+    "pt": "As Formigas"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "no": 28,
+   "ad": {
+    "tr": "Kasas",
+    "en": "The Stories",
+    "pt": "A História"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 30,
+   "ad": {
+    "tr": "Rûm",
+    "en": "The Romans",
+    "pt": "Os Romanos"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 33,
+   "ad": {
+    "tr": "Ahzâb",
+    "en": "The Combined Forces",
+    "pt": "Os Confederados"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 37,
+   "ad": {
+    "tr": "Sâffât",
+    "en": "Those who set the Ranks",
+    "pt": "Os Enfileirados"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 39,
+   "ad": {
+    "tr": "Zümer",
+    "en": "The Troops",
+    "pt": "Os Grupos"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 41,
+   "ad": {
+    "tr": "Fussilet",
+    "en": "Explained in Detail",
+    "pt": "Explicados em Detalhe"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "no": 42,
+   "ad": {
+    "tr": "Şûrâ",
+    "en": "The Consultation",
+    "pt": "A Consulta"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 45,
+   "ad": {
+    "tr": "Câsiye",
+    "en": "The Crouching",
+    "pt": "A Ajoelhada"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 49,
+   "ad": {
+    "tr": "Hucurât",
+    "en": "The Rooms",
+    "pt": "Os Aposentos"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 50,
+   "ad": {
+    "tr": "Kâf",
+    "en": "The Letter \"Qaf\"",
+    "pt": "Qaf"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 53,
+   "ad": {
+    "tr": "Necm",
+    "en": "The Star",
+    "pt": "A Estrela"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 57,
+   "ad": {
+    "tr": "Hadîd",
+    "en": "The Iron",
+    "pt": "O Ferro"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "no": 70,
+   "ad": {
+    "tr": "Meâric",
+    "en": "The Ascending Stairways",
+    "pt": "As Vias de Ascensão"
+   },
+   "atifSayisi": 1
+  }
+ ],
+ "bablar": [
+  {
+   "view": "fusus",
+   "id": "fs10",
+   "route": "/fusus/fs10/",
+   "title": {
+    "tr": "Herkes Kendi Yolunda Doğru Yürüyor — ve Yine de Bir Çağrı Var",
+    "en": "Everyone Walks Straight on His Own Path — and Still There Is a Call",
+    "pt": "Cada Um Anda Direito no Seu Caminho — e Ainda Assim Há um Chamamento"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c14k157",
+   "route": "/futuhat/c14k157/",
+   "title": {
+    "tr": "Ben Neredeyim, Sen Neredesin: Yakınlığın ve Büyüklüğün Mahalli",
+    "en": "Where Am I, Where Are You: The Place of Nearness and of Greatness",
+    "pt": "Onde Estou Eu, Onde Estás Tu: O Lugar da Proximidade e da Grandeza"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c14k160",
+   "route": "/futuhat/c14k160/",
+   "title": {
+    "tr": "Gazabın Bir Süresi Var, Rahmetin Yok — ve Durmak Öldürür",
+    "en": "Wrath Has a Duration, Mercy Has None — and Standing Still Kills",
+    "pt": "A Ira Tem Duração, a Misericórdia Não — e Parar Mata"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c14k162",
+   "route": "/futuhat/c14k162/",
+   "title": {
+    "tr": "Her Sureti Kabul Eden — ve Gözdeki Perde",
+    "en": "The One Who Accepts Every Form — and the Veil in the Eye",
+    "pt": "Aquele Que Aceita Toda Forma — e o Véu no Olho"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c14k163",
+   "route": "/futuhat/c14k163/",
+   "title": {
+    "tr": "Ne Başkasıyım Ne de Aynınız — ve İçi Rahmet Olan Sûr",
+    "en": "Neither Other Nor Your Very Self — and the Wall Whose Inside Is Mercy",
+    "pt": "Nem Outro Nem o Vosso Próprio Eu — e o Muro Cujo Interior É Misericórdia"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c14k164",
+   "route": "/futuhat/c14k164/",
+   "title": {
+    "tr": "Kim Görüyor, Kim Galip, Kimde Delil",
+    "en": "Who Sees, Who Prevails, Who Holds the Proof",
+    "pt": "Quem Vê, Quem Vence, Quem Tem a Prova"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c14k165",
+   "route": "/futuhat/c14k165/",
+   "title": {
+    "tr": "Rahmetten Geniş Olan Ev",
+    "en": "A House Wider Than Mercy",
+    "pt": "Uma Casa Mais Ampla Que a Misericórdia"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c15k168",
+   "route": "/futuhat/c15k168/",
+   "title": {
+    "tr": "Kitaptan Korkun, Benden Değil — Ama Kitap Senin Sûretinden Yazıldı",
+    "en": "Fear the Book, Not Me — But the Book Was Written From Your Own Form",
+    "pt": "Temei o Livro, Não a Mim — Mas o Livro Foi Escrito a Partir da Vossa Própria Forma"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c15k173",
+   "route": "/futuhat/c15k173/",
+   "title": {
+    "tr": "Nur Kendisiyle Perdelenmiştir — ve Nokta Çevreyle Birleşir",
+    "en": "Light Is Veiled by Itself — and the Point Merges with the Circumference",
+    "pt": "A Luz Está Velada por Si Mesma — e o Ponto Funde-se com a Circunferência"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c15k184",
+   "route": "/futuhat/c15k184/",
+   "title": {
+    "tr": "“Perdemi Çektiğim Kişi Kendini de Bilmez” — Münâzeleler Kapanıyor",
+    "en": "“The One I Have Veiled Does Not Even Know Himself” — the Munazalat Close",
+    "pt": "“Aquele Que Velei Nem a Si Mesmo Conhece” — Encerram-se as Munazalat"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c15k189",
+   "route": "/futuhat/c15k189/",
+   "title": {
+    "tr": "Sıkıntıda İsim Verilmiyor — Hamdin İki Hâli",
+    "en": "In Distress No Name Is Given — the Two States of Praise",
+    "pt": "Na Aflição Não Se Dá Nome — Os Dois Estados do Louvor"
+   },
+   "atifSayisi": 3
+  },
+  {
+   "view": "futuhat",
+   "id": "c15k192",
+   "route": "/futuhat/c15k192/",
+   "title": {
+    "tr": "İki Sevginin Arasında — Dost'un Kendi Çizdiği Şekil",
+    "en": "Between Two Loves — a Figure Ibn Arabi Drew Himself",
+    "pt": "Entre Dois Amores — Uma Figura Que Ibn Arabi Desenhou"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c15k196",
+   "route": "/futuhat/c15k196/",
+   "title": {
+    "tr": "Sen Kendinin Şiarısın — ve İnkâr, Henüz Gelmemiş Bir Sûrete Bakmaktır",
+    "en": "You Are Your Own Sign — and Denial Is Looking at a Form That Has Not Yet Arrived",
+    "pt": "Tu És o Teu Próprio Sinal — e a Negação É Olhar Para Uma Forma Que Ainda Não Chegou"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c15k199",
+   "route": "/futuhat/c15k199/",
+   "title": {
+    "tr": "Rızkı Rezzâk Getirir — ve Âlem O'nun Haremi",
+    "en": "The Provider Brings Provision — and the World Is His Sanctuary",
+    "pt": "O Provedor Traz o Sustento — e o Mundo É o Seu Santuário"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c15k200",
+   "route": "/futuhat/c15k200/",
+   "title": {
+    "tr": "Beşikte Verilen Hüküm — ve Amelin Gerçek Faili",
+    "en": "The Judgment Given in the Cradle — and the Real Doer of the Deed",
+    "pt": "O Juízo Dado no Berço — e o Verdadeiro Agente da Obra"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c15k202",
+   "route": "/futuhat/c15k202/",
+   "title": {
+    "tr": "İtaatte Birleşiyor, İsyanda Ayrılıyor",
+    "en": "United in Obedience, Parted in Disobedience",
+    "pt": "Unidos na Obediência, Separados na Desobediência"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c16k208",
+   "route": "/futuhat/c16k208/",
+   "title": {
+    "tr": "Benzerler Perdeliyor — ve Emaneti Kim Yüklendi",
+    "en": "Likenesses Veil — and Who Took Up the Trust",
+    "pt": "As Semelhanças Velam — e Quem Assumiu o Depósito"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c16k210",
+   "route": "/futuhat/c16k210/",
+   "title": {
+    "tr": "İsim Mertebeyi Gösterir, Hüviyet Yalnız Zâtı",
+    "en": "The Name Shows the Degree, the Identity Only the Essence",
+    "pt": "O Nome Mostra o Grau, a Identidade Apenas a Essência"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c16k212",
+   "route": "/futuhat/c16k212/",
+   "title": {
+    "tr": "Hüviyet: Tecellî Ederken Gayb Kalan Yön",
+    "en": "Identity: the Side That Stays Unseen While He Discloses Himself",
+    "pt": "Identidade: o Lado Que Permanece Invisível Enquanto Ele Se Manifesta"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c16k216",
+   "route": "/futuhat/c16k216/",
+   "title": {
+    "tr": "Dua'dan Ahiret Ekinine: Yakınlık, Ahlak ve Cennetin Tekvin Gücü",
+    "en": "From Prayer to the Harvest of Eternity: Nearness, Character, and Paradise's Power of Creation",
+    "pt": "Da Oração à Colheita da Eternidade: Proximidade, Caráter e o Poder Criador do Paraíso"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c16k217",
+   "route": "/futuhat/c16k217/",
+   "title": {
+    "tr": "Hüküm ve Kaçış: İstikamet, Kader Sırrı ve Hz. Peygamber'in Yanına Çıkışı",
+    "en": "Command and Flight: Steadfastness, the Secret of Destiny, and the Prophet's Arrival",
+    "pt": "Comando e Fuga: Retidão, o Segredo do Destino e a Chegada do Profeta"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c16k220",
+   "route": "/futuhat/c16k220/",
+   "title": {
+    "tr": "Tecelli, Görme ve İstiğfar: Kutub'un Sınav Mertebeleri",
+    "en": "Theophany, Seeing, and Seeking Forgiveness: The Pole's Levels of Trial",
+    "pt": "Teofania, Visão e Arrependimento: Os Níveis de Provação do Polo"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c1k12",
+   "route": "/futuhat/c1k12/",
+   "title": {
+    "tr": "Etkin Babalar, Edilgen Analar: Hebâ'nın Doğduğu Yer",
+    "en": "Active Fathers, Receptive Mothers: Where Haba Was Born",
+    "pt": "Pais Ativos, Mães Receptivas: Onde Haba Nasceu"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c1k5",
+   "route": "/futuhat/c1k5/",
+   "title": {
+    "tr": "Harflerin Âlemleri ve Kalbe İnen Bilgi",
+    "en": "The Worlds of the Letters and the Knowledge Descending to the Heart",
+    "pt": "Os Mundos das Letras e o Conhecimento que Desce ao Coração"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c1k9",
+   "route": "/futuhat/c1k9/",
+   "title": {
+    "tr": "Perdelenen Akıl, Yorumlanan Söz",
+    "en": "The Veiled Intellect, The Interpreted Word",
+    "pt": "O Intelecto Velado, a Palavra Interpretada"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c2k17",
+   "route": "/futuhat/c2k17/",
+   "title": {
+    "tr": "Kutupların Dört Sınıfı ve Hızır'la Üç Karşılaşma",
+    "en": "The Four Classes of Poles and Three Encounters with Khidr",
+    "pt": "As Quatro Classes de Polos e Três Encontros com Khidr"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c2k23",
+   "route": "/futuhat/c2k23/",
+   "title": {
+    "tr": "Delilik, Dönüşün Üç Adımı, ve Bilginin Tekliği",
+    "en": "Madness, the Three Steps of Return, and the Oneness of Knowledge",
+    "pt": "A Loucura, os Três Passos do Retorno, e a Unicidade do Conhecimento"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c2k24",
+   "route": "/futuhat/c2k24/",
+   "title": {
+    "tr": "Dairenin Dönüşü, Namazın Nuru, ve Nedenin Sınırı",
+    "en": "The Circle's Return, the Light of Prayer, and the Limit of Causation",
+    "pt": "O Retorno do Círculo, a Luz da Oração, e o Limite da Causação"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c2k25",
+   "route": "/futuhat/c2k25/",
+   "title": {
+    "tr": "Yemen Yönünden Gelen Nefes, Hayretin İki Yolu, ve Kandille Odunun Sırrı",
+    "en": "The Breath Coming from Yemen, Bewilderment's Two Paths, and the Secret of the Candle and the Wood",
+    "pt": "O Sopro que Vem do Iêmen, os Dois Caminhos do Espanto, e o Segredo da Vela e da Lenha"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c2k26",
+   "route": "/futuhat/c2k26/",
+   "title": {
+    "tr": "İşaretin Kastı, Şeytanın Ateşi, ve Zamanın Vehmi",
+    "en": "The Intent Behind the Sign, the Fire of Satan, and the Illusion of Time",
+    "pt": "A Intenção do Sinal, o Fogo de Satanás, e a Ilusão do Tempo"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c3k29",
+   "route": "/futuhat/c3k29/",
+   "title": {
+    "tr": "Cennetin Rü'yeti, Şeriatın Sırrı, ve Kelime-i Şehadetin Altı Mertebesi",
+    "en": "The Vision of Paradise, the Secret of the Law, and the Six Ranks of the Testimony of Faith",
+    "pt": "A Visão do Paraíso, o Segredo da Lei, e as Seis Hierarquias do Testemunho de Fé"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c3k31",
+   "route": "/futuhat/c3k31/",
+   "title": {
+    "tr": "Mest Üzerine Mesh, Sular ve Abdesti Bozan Şeyler: Tenzihin Beş Kaynağı",
+    "en": "Wiping Over Footwear, Waters, and What Breaks Ablution: The Five Sources of Transcendence",
+    "pt": "O Gesto de Esfregar Sobre o Calçado, as Águas, e o Que Invalida a Ablução: As Cinco Fontes da Transcendência"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c3k34",
+   "route": "/futuhat/c3k34/",
+   "title": {
+    "tr": "Ölüm, Beden ve Taş: Necasetin Bâtını ve Beşinci Sifr'in Kapanışı",
+    "en": "Death, Body, and Stone: The Hidden Meaning of Impurity, and the Closing of the Fifth Sifr",
+    "pt": "Morte, Corpo e Pedra: O Sentido Oculto da Impureza, e o Encerramento do Quinto Sifr"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c3k35",
+   "route": "/futuhat/c3k35/",
+   "title": {
+    "tr": "Namazın Sırları: Dairesel Vakit ve Namazda Üç Âlem",
+    "en": "The Secrets of Prayer: Circular Time and the Three Worlds in Prayer",
+    "pt": "Os Segredos da Oração: O Tempo Circular e os Três Mundos na Oração"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c3k36",
+   "route": "/futuhat/c3k36/",
+   "title": {
+    "tr": "Vakitler, Ezan, Kıble: Namazın Görünen ve Görünmeyen Şartları",
+    "en": "Times, the Call to Prayer, and the Qibla: Prayer's Seen and Unseen Conditions",
+    "pt": "Horários, o Chamado à Oração e a Qibla: As Condições Visíveis e Invisíveis da Oração"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c3k37",
+   "route": "/futuhat/c3k37/",
+   "title": {
+    "tr": "Namazdaki Konuşma: Tekbir, Tevcih ve Fâtiha'nın Yorumu",
+    "en": "The Speech Inside Prayer: The Takbir, the Turning of the Face, and the Reading of the Fatiha",
+    "pt": "A Fala Dentro da Oração: O Takbir, o Voltar-se do Rosto e a Leitura da Fatiha"
+   },
+   "atifSayisi": 4
+  },
+  {
+   "view": "futuhat",
+   "id": "c4k41",
+   "route": "/futuhat/c4k41/",
+   "title": {
+    "tr": "Cuma'nın Fasılları: Tek Kişiyle Kılınamayan Namaz, Çokluğun Bilgisi",
+    "en": "The Chapters of Friday Prayer: The Prayer That Cannot Be Prayed Alone, the Knowledge of Multiplicity",
+    "pt": "Os Capítulos da Oração de Sexta-Feira: A Oração Que Não Pode Ser Rezada Sozinho, o Conhecimento da Multiplicidade"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c4k46",
+   "route": "/futuhat/c4k46/",
+   "title": {
+    "tr": "On Beş Secde Ayeti: Zahirî Fiil ile Bâtınî Bilginin Ayrımı",
+    "en": "Fifteen Verses of Prostration: The Divide Between Outward Act and Inward Knowledge",
+    "pt": "Quinze Versículos de Prostração: A Divisão Entre o Ato Exterior e o Conhecimento Interior"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c4k50",
+   "route": "/futuhat/c4k50/",
+   "title": {
+    "tr": "Zekâtın Sırları: Maldan Nefse, Nefisten Hikmete",
+    "en": "The Secrets of Zakat: From Wealth to the Self, From the Self to Wisdom",
+    "pt": "Os Segredos do Zakat: Da Riqueza ao Ego, do Ego à Sabedoria"
+   },
+   "atifSayisi": 2
+  },
+  {
+   "view": "futuhat",
+   "id": "c5k55",
+   "route": "/futuhat/c5k55/",
+   "title": {
+    "tr": "Orucun Sırrı: \"Oruç Bana Aittir\"",
+    "en": "The Secret of Fasting: \"Fasting Is Mine\"",
+    "pt": "O Segredo do Jejum: \"O Jejum É Meu\""
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c5k57",
+   "route": "/futuhat/c5k57/",
+   "title": {
+    "tr": "İftar, Sahur ve İsimler Mahkemesi",
+    "en": "Breaking the Fast, the Pre-Dawn Meal, and the Court of Names",
+    "pt": "O Fim do Jejum, a Refeição Pré-Alvorecer e o Tribunal dos Nomes"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c6k72",
+   "route": "/futuhat/c6k72/",
+   "title": {
+    "tr": "Perdesiz Yüz, Yükselen Ses: Kıskançlıktan Çağrıya",
+    "en": "Unveiled Face, Raised Voice: From Jealousy to the Call",
+    "pt": "Rosto Desvelado, Voz Elevada: Do Ciúme ao Chamado"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c6k84",
+   "route": "/futuhat/c6k84/",
+   "title": {
+    "tr": "Fıtrat, Beşer ve Hazineler Zinciri",
+    "en": "Fitra, the Human, and the Chain of Treasuries",
+    "pt": "Fitra, o Humano e a Cadeia de Tesouros"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c6k85",
+   "route": "/futuhat/c6k85/",
+   "title": {
+    "tr": "Göz Açıp Kapayıncaya Kadar: Sezgiden Vakfe'ye",
+    "en": "In the Blink of an Eye: From Intuition to the Standing",
+    "pt": "Num Piscar de Olhos: Da Intuição à Espera"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c7k102",
+   "route": "/futuhat/c7k102/",
+   "title": {
+    "tr": "Hayâdan Tefekküre: Üç Makam ve Terki",
+    "en": "From Modesty to Reflection: Three Stations and Their Abandonment",
+    "pt": "Da Modéstia à Reflexão: Três Estações e Seu Abandono"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c7k92",
+   "route": "/futuhat/c7k92/",
+   "title": {
+    "tr": "Tövbeden Mücahedeye: Dönüşün İki Yüzü",
+    "en": "From Repentance to Struggle: Two Faces of Return",
+    "pt": "Do Arrependimento à Luta: Duas Faces do Retorno"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c8k107",
+   "route": "/futuhat/c8k107/",
+   "title": {
+    "tr": "Fakirlik, Zenginlik, Ahlâk, Tahkik, Hikmet: Cilt VIII'in ve Onbeşinci Sifr'in Açılışı",
+    "en": "Poverty, Wealth, Character, Verification, Wisdom: The Opening of Volume VIII and the Fifteenth Sifr",
+    "pt": "Pobreza, Riqueza, Caráter, Verificação, Sabedoria: A Abertura do Volume VIII e do Décimo Quinto Sifr"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c8k109",
+   "route": "/futuhat/c8k109/",
+   "title": {
+    "tr": "Makam ve Terki: Edep, Sohbet, Tevhit-Şirk, Sefer, Ölüm Halleri",
+    "en": "A Station and Its Relinquishment: Adab, Companionship, Unity-Association, Journeying, the States of Death",
+    "pt": "Uma Estação e Sua Renúncia: Adab, Companhia, Unidade-Associação, Viagem, os Estados da Morte"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c8k110",
+   "route": "/futuhat/c8k110/",
+   "title": {
+    "tr": "Mârifet Makamı: Bilgiyle Mârifet Arasındaki Fark",
+    "en": "The Station of Gnosis: The Difference Between Knowledge and Gnosis",
+    "pt": "A Estação da Gnose: A Diferença Entre Conhecimento e Gnose"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c8k113",
+   "route": "/futuhat/c8k113/",
+   "title": {
+    "tr": "Ruhani ve Doğal Sevgi: Onbeşinci Sifr'in Kapanışı",
+    "en": "Spiritual and Natural Love: The Close of the Fifteenth Sifr",
+    "pt": "Amor Espiritual e Natural: O Fechamento do Décimo Quinto Sifr"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c8k117",
+   "route": "/futuhat/c8k117/",
+   "title": {
+    "tr": "Sahih Rüyalar: Nebiliğin Kırk Altıda Biri",
+    "en": "Veridical Dreams: One Forty-Sixth of Prophecy",
+    "pt": "Sonhos Verídicos: Um Quarenta e Seis Avos da Profecia"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c8k118",
+   "route": "/futuhat/c8k118/",
+   "title": {
+    "tr": "Hallerin Bölümleri: Sülükten Nefese On Bölüm",
+    "en": "The Chapters of States: Ten Chapters from Wayfaring to Breath",
+    "pt": "Os Capítulos dos Estados: Dez Capítulos do Caminhar ao Sopro"
+   },
+   "atifSayisi": 1
+  },
+  {
+   "view": "futuhat",
+   "id": "c8k119",
+   "route": "/futuhat/c8k119/",
+   "title": {
+    "tr": "Nefesü'r-Rahman: Cilt VIII'in Sessiz Kapanışı",
+    "en": "The Breath of the All-Merciful: Volume VIII's Quiet Close",
+    "pt": "O Sopro do Misericordioso: O Fechamento Silencioso do Volume VIII"
+   },
+   "atifSayisi": 1
+  }
+ ],
+ "kenarlar": [
+  {
+   "sureNo": 1,
+   "view": "futuhat",
+   "id": "c14k165",
+   "agirlik": 1,
+   "ayetler": [
+    "1:2"
+   ]
+  },
+  {
+   "sureNo": 1,
+   "view": "futuhat",
+   "id": "c1k5",
+   "agirlik": 1,
+   "ayetler": [
+    "1:2"
+   ]
+  },
+  {
+   "sureNo": 1,
+   "view": "futuhat",
+   "id": "c3k37",
+   "agirlik": 2,
+   "ayetler": [
+    "1:1",
+    "1:5"
+   ]
+  },
+  {
+   "sureNo": 2,
+   "view": "futuhat",
+   "id": "c14k163",
+   "agirlik": 1,
+   "ayetler": [
+    "2:30"
+   ]
+  },
+  {
+   "sureNo": 2,
+   "view": "futuhat",
+   "id": "c15k199",
+   "agirlik": 1,
+   "ayetler": [
+    "2:280"
+   ]
+  },
+  {
+   "sureNo": 2,
+   "view": "futuhat",
+   "id": "c3k31",
+   "agirlik": 1,
+   "ayetler": [
+    "2:85"
+   ]
+  },
+  {
+   "sureNo": 2,
+   "view": "futuhat",
+   "id": "c3k36",
+   "agirlik": 1,
+   "ayetler": [
+    "2:149"
+   ]
+  },
+  {
+   "sureNo": 2,
+   "view": "futuhat",
+   "id": "c5k57",
+   "agirlik": 1,
+   "ayetler": [
+    "2:186"
+   ]
+  },
+  {
+   "sureNo": 2,
+   "view": "futuhat",
+   "id": "c7k92",
+   "agirlik": 1,
+   "ayetler": [
+    "2:154"
+   ]
+  },
+  {
+   "sureNo": 2,
+   "view": "futuhat",
+   "id": "c8k107",
+   "agirlik": 1,
+   "ayetler": [
+    "2:269"
+   ]
+  },
+  {
+   "sureNo": 3,
+   "view": "futuhat",
+   "id": "c15k192",
+   "agirlik": 1,
+   "ayetler": [
+    "3:31"
+   ]
+  },
+  {
+   "sureNo": 3,
+   "view": "futuhat",
+   "id": "c3k29",
+   "agirlik": 1,
+   "ayetler": [
+    "3:18"
+   ]
+  },
+  {
+   "sureNo": 3,
+   "view": "futuhat",
+   "id": "c3k35",
+   "agirlik": 1,
+   "ayetler": [
+    "3:27"
+   ]
+  },
+  {
+   "sureNo": 3,
+   "view": "futuhat",
+   "id": "c7k102",
+   "agirlik": 1,
+   "ayetler": [
+    "3:191"
+   ]
+  },
+  {
+   "sureNo": 4,
+   "view": "futuhat",
+   "id": "c15k184",
+   "agirlik": 1,
+   "ayetler": [
+    "4:171"
+   ]
+  },
+  {
+   "sureNo": 4,
+   "view": "futuhat",
+   "id": "c15k202",
+   "agirlik": 1,
+   "ayetler": [
+    "4:80"
+   ]
+  },
+  {
+   "sureNo": 4,
+   "view": "futuhat",
+   "id": "c16k216",
+   "agirlik": 1,
+   "ayetler": [
+    "4:34"
+   ]
+  },
+  {
+   "sureNo": 4,
+   "view": "futuhat",
+   "id": "c2k24",
+   "agirlik": 1,
+   "ayetler": [
+    "4:59"
+   ]
+  },
+  {
+   "sureNo": 5,
+   "view": "futuhat",
+   "id": "c14k163",
+   "agirlik": 1,
+   "ayetler": [
+    "5:28"
+   ]
+  },
+  {
+   "sureNo": 5,
+   "view": "futuhat",
+   "id": "c4k50",
+   "agirlik": 1,
+   "ayetler": [
+    "5:116"
+   ]
+  },
+  {
+   "sureNo": 5,
+   "view": "futuhat",
+   "id": "c6k85",
+   "agirlik": 1,
+   "ayetler": [
+    "5:109"
+   ]
+  },
+  {
+   "sureNo": 6,
+   "view": "futuhat",
+   "id": "c14k164",
+   "agirlik": 1,
+   "ayetler": [
+    "6:149"
+   ]
+  },
+  {
+   "sureNo": 6,
+   "view": "futuhat",
+   "id": "c15k189",
+   "agirlik": 1,
+   "ayetler": [
+    "6:1"
+   ]
+  },
+  {
+   "sureNo": 6,
+   "view": "futuhat",
+   "id": "c3k37",
+   "agirlik": 1,
+   "ayetler": [
+    "6:163"
+   ]
+  },
+  {
+   "sureNo": 7,
+   "view": "futuhat",
+   "id": "c15k196",
+   "agirlik": 1,
+   "ayetler": [
+    "7:143"
+   ]
+  },
+  {
+   "sureNo": 7,
+   "view": "futuhat",
+   "id": "c16k210",
+   "agirlik": 1,
+   "ayetler": [
+    "7:146"
+   ]
+  },
+  {
+   "sureNo": 7,
+   "view": "futuhat",
+   "id": "c16k220",
+   "agirlik": 1,
+   "ayetler": [
+    "7:143"
+   ]
+  },
+  {
+   "sureNo": 7,
+   "view": "futuhat",
+   "id": "c1k12",
+   "agirlik": 1,
+   "ayetler": [
+    "7:12"
+   ]
+  },
+  {
+   "sureNo": 7,
+   "view": "futuhat",
+   "id": "c2k23",
+   "agirlik": 1,
+   "ayetler": [
+    "7:143"
+   ]
+  },
+  {
+   "sureNo": 7,
+   "view": "futuhat",
+   "id": "c3k34",
+   "agirlik": 1,
+   "ayetler": [
+    "7:172"
+   ]
+  },
+  {
+   "sureNo": 7,
+   "view": "futuhat",
+   "id": "c6k72",
+   "agirlik": 1,
+   "ayetler": [
+    "7:172"
+   ]
+  },
+  {
+   "sureNo": 8,
+   "view": "futuhat",
+   "id": "c16k212",
+   "agirlik": 1,
+   "ayetler": [
+    "8:20"
+   ]
+  },
+  {
+   "sureNo": 9,
+   "view": "futuhat",
+   "id": "c14k160",
+   "agirlik": 1,
+   "ayetler": [
+    "9:67"
+   ]
+  },
+  {
+   "sureNo": 9,
+   "view": "futuhat",
+   "id": "c15k200",
+   "agirlik": 1,
+   "ayetler": [
+    "9:120"
+   ]
+  },
+  {
+   "sureNo": 9,
+   "view": "futuhat",
+   "id": "c16k220",
+   "agirlik": 1,
+   "ayetler": [
+    "9:105"
+   ]
+  },
+  {
+   "sureNo": 9,
+   "view": "futuhat",
+   "id": "c4k50",
+   "agirlik": 1,
+   "ayetler": [
+    "9:34"
+   ]
+  },
+  {
+   "sureNo": 10,
+   "view": "futuhat",
+   "id": "c15k189",
+   "agirlik": 1,
+   "ayetler": [
+    "10:10"
+   ]
+  },
+  {
+   "sureNo": 11,
+   "view": "fusus",
+   "id": "fs10",
+   "agirlik": 1,
+   "ayetler": [
+    "11:56"
+   ]
+  },
+  {
+   "sureNo": 11,
+   "view": "futuhat",
+   "id": "c15k168",
+   "agirlik": 1,
+   "ayetler": [
+    "11:101"
+   ]
+  },
+  {
+   "sureNo": 12,
+   "view": "futuhat",
+   "id": "c8k117",
+   "agirlik": 1,
+   "ayetler": [
+    "12:108"
+   ]
+  },
+  {
+   "sureNo": 14,
+   "view": "futuhat",
+   "id": "c14k162",
+   "agirlik": 1,
+   "ayetler": [
+    "14:5"
+   ]
+  },
+  {
+   "sureNo": 16,
+   "view": "futuhat",
+   "id": "c3k37",
+   "agirlik": 1,
+   "ayetler": [
+    "16:98"
+   ]
+  },
+  {
+   "sureNo": 17,
+   "view": "fusus",
+   "id": "fs10",
+   "agirlik": 1,
+   "ayetler": [
+    "17:44"
+   ]
+  },
+  {
+   "sureNo": 17,
+   "view": "futuhat",
+   "id": "c3k29",
+   "agirlik": 1,
+   "ayetler": [
+    "17:95"
+   ]
+  },
+  {
+   "sureNo": 17,
+   "view": "futuhat",
+   "id": "c8k109",
+   "agirlik": 1,
+   "ayetler": [
+    "17:110"
+   ]
+  },
+  {
+   "sureNo": 19,
+   "view": "futuhat",
+   "id": "c15k200",
+   "agirlik": 1,
+   "ayetler": [
+    "19:30"
+   ]
+  },
+  {
+   "sureNo": 21,
+   "view": "futuhat",
+   "id": "c8k119",
+   "agirlik": 1,
+   "ayetler": [
+    "21:107"
+   ]
+  },
+  {
+   "sureNo": 22,
+   "view": "futuhat",
+   "id": "c2k23",
+   "agirlik": 1,
+   "ayetler": [
+    "22:2"
+   ]
+  },
+  {
+   "sureNo": 24,
+   "view": "futuhat",
+   "id": "c15k173",
+   "agirlik": 1,
+   "ayetler": [
+    "24:35"
+   ]
+  },
+  {
+   "sureNo": 24,
+   "view": "futuhat",
+   "id": "c3k35",
+   "agirlik": 1,
+   "ayetler": [
+    "24:35"
+   ]
+  },
+  {
+   "sureNo": 24,
+   "view": "futuhat",
+   "id": "c8k113",
+   "agirlik": 1,
+   "ayetler": [
+    "24:39"
+   ]
+  },
+  {
+   "sureNo": 25,
+   "view": "futuhat",
+   "id": "c4k41",
+   "agirlik": 1,
+   "ayetler": [
+    "25:45"
+   ]
+  },
+  {
+   "sureNo": 26,
+   "view": "futuhat",
+   "id": "c15k189",
+   "agirlik": 1,
+   "ayetler": [
+    "26:75"
+   ]
+  },
+  {
+   "sureNo": 27,
+   "view": "futuhat",
+   "id": "c4k46",
+   "agirlik": 1,
+   "ayetler": [
+    "27:59"
+   ]
+  },
+  {
+   "sureNo": 27,
+   "view": "futuhat",
+   "id": "c8k118",
+   "agirlik": 1,
+   "ayetler": [
+    "27:88"
+   ]
+  },
+  {
+   "sureNo": 28,
+   "view": "futuhat",
+   "id": "c3k34",
+   "agirlik": 1,
+   "ayetler": [
+    "28:68"
+   ]
+  },
+  {
+   "sureNo": 30,
+   "view": "futuhat",
+   "id": "c2k25",
+   "agirlik": 1,
+   "ayetler": [
+    "30:54"
+   ]
+  },
+  {
+   "sureNo": 33,
+   "view": "futuhat",
+   "id": "c16k208",
+   "agirlik": 1,
+   "ayetler": [
+    "33:72"
+   ]
+  },
+  {
+   "sureNo": 37,
+   "view": "futuhat",
+   "id": "c2k17",
+   "agirlik": 1,
+   "ayetler": [
+    "37:182"
+   ]
+  },
+  {
+   "sureNo": 39,
+   "view": "futuhat",
+   "id": "c1k9",
+   "agirlik": 1,
+   "ayetler": [
+    "39:67"
+   ]
+  },
+  {
+   "sureNo": 41,
+   "view": "futuhat",
+   "id": "c6k84",
+   "agirlik": 1,
+   "ayetler": [
+    "41:21"
+   ]
+  },
+  {
+   "sureNo": 41,
+   "view": "futuhat",
+   "id": "c8k110",
+   "agirlik": 1,
+   "ayetler": [
+    "41:53"
+   ]
+  },
+  {
+   "sureNo": 42,
+   "view": "futuhat",
+   "id": "c5k55",
+   "agirlik": 1,
+   "ayetler": [
+    "42:11"
+   ]
+  },
+  {
+   "sureNo": 45,
+   "view": "futuhat",
+   "id": "c14k157",
+   "agirlik": 1,
+   "ayetler": [
+    "45:37"
+   ]
+  },
+  {
+   "sureNo": 49,
+   "view": "futuhat",
+   "id": "c16k217",
+   "agirlik": 1,
+   "ayetler": [
+    "49:5"
+   ]
+  },
+  {
+   "sureNo": 50,
+   "view": "futuhat",
+   "id": "c15k168",
+   "agirlik": 1,
+   "ayetler": [
+    "50:28"
+   ]
+  },
+  {
+   "sureNo": 53,
+   "view": "futuhat",
+   "id": "c15k173",
+   "agirlik": 1,
+   "ayetler": [
+    "53:9"
+   ]
+  },
+  {
+   "sureNo": 57,
+   "view": "futuhat",
+   "id": "c16k216",
+   "agirlik": 1,
+   "ayetler": [
+    "57:4"
+   ]
+  },
+  {
+   "sureNo": 70,
+   "view": "futuhat",
+   "id": "c2k26",
+   "agirlik": 1,
+   "ayetler": [
+    "70:4"
+   ]
+  }
+ ]
+}

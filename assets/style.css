@@ -9302,6 +9302,125 @@ mark.durus-vurgu-es {
   .eser-agi-kenar { transition: none !important; }
 }
 
+/* --- Kur'ân Dokusu (docs/icerik-yol-haritasi.md D10, 2026-08-04) ----------
+   CLAUDE.md'nin daire/merkez ilkesi + roadmap'in isteği: dış halka sûreler,
+   iç halka bablar, kenarlar merkeze doğru eğiliyor -- "her şey merkeze
+   bakıyor". Sûreler KUR'ÂN SIRASINDAKİ açılarında duruyor (114'ün yalnız
+   35'i şu an atıflı) -- boşluklar bilerek görünür, kapsamın kısmiliğini
+   süslemeden gösteriyor. */
+.kuran-dokusu-halka {
+  stroke: var(--border);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+.kuran-dokusu-kenar {
+  stroke: var(--series-ibnarabi);
+  stroke-opacity: 0.4;
+  cursor: pointer;
+  pointer-events: stroke;
+  transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease;
+}
+.kuran-dokusu-kenar--deginiliyor {
+  stroke-opacity: 0.9;
+  stroke: var(--accent-interactive);
+}
+.kuran-dokusu-sure { cursor: pointer; }
+.kuran-dokusu-sure:focus { outline: none; }
+.kuran-dokusu-sure__nokta {
+  fill: var(--series-ibnarabi);
+  stroke: var(--surface-1);
+  stroke-width: 1.2;
+  transition: transform 0.15s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.kuran-dokusu-sure__etiket {
+  font-size: 0.66rem;
+  fill: var(--text-secondary);
+  pointer-events: none;
+}
+.kuran-dokusu-sure--deginiliyor .kuran-dokusu-sure__nokta,
+.kuran-dokusu-sure:focus-visible .kuran-dokusu-sure__nokta {
+  transform: scale(1.35);
+}
+.kuran-dokusu-sure--deginiliyor .kuran-dokusu-sure__etiket,
+.kuran-dokusu-sure:focus-visible .kuran-dokusu-sure__etiket {
+  fill: var(--text-primary);
+}
+.kuran-dokusu-bab { cursor: pointer; }
+.kuran-dokusu-bab:focus { outline: none; }
+.kuran-dokusu-bab__nokta {
+  fill: var(--series-theme);
+  stroke: var(--surface-1);
+  stroke-width: 1;
+  transition: transform 0.15s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.kuran-dokusu-bab--deginiliyor .kuran-dokusu-bab__nokta,
+.kuran-dokusu-bab:focus-visible .kuran-dokusu-bab__nokta {
+  transform: scale(1.5);
+}
+
+.kuran-dokusu-satirlar {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 10px 0;
+}
+.kuran-dokusu-satir {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  font: inherit;
+  padding: 8px 10px;
+  margin: 0 -10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+button.kuran-dokusu-satir:hover,
+button.kuran-dokusu-satir:focus-visible {
+  background: color-mix(in srgb, var(--series-theme) 12%, transparent);
+  outline: none;
+}
+.kuran-dokusu-satir--statik { cursor: default; }
+.kuran-dokusu-satir__baslik {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+}
+.kuran-dokusu-satir__ayet {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+.kuran-dokusu-git {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  margin-top: 6px;
+}
+.kuran-dokusu-git:hover,
+.kuran-dokusu-git:focus-visible {
+  border-color: var(--accent-interactive);
+  color: var(--accent-interactive);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kuran-dokusu-sure__nokta,
+  .kuran-dokusu-bab__nokta,
+  .kuran-dokusu-kenar { transition: none !important; }
+}
+
 /* --- Seyahat Atlası (docs/icerik-yol-haritasi.md D8, 2026-08-04) ----------
    Statik site kısıtıyla uyumlu: harita tile servisi yok, kendi çizdiğimiz
    şematik kara lekeleri var -- "dönemin coğrafya tasavvuruna yakın, modern

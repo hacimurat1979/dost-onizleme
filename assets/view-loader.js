@@ -40,6 +40,7 @@
     __hocalarApp: { src: "assets/hocalar.js", integrity: "sha384-r7ryWMDxHo1XBsChUULP+77NgCthVzMEsSfNS25xVsmPrBozA8uqO+FM6BbYbYQ5" },
     __eserAgiApp: { src: "assets/eser-agi.js", integrity: "sha384-RWUvvHECDxAY7e8upQH3WS/o+OwGTKGrsoEmiwqG39NeHN812Ok1ULKNKMdsy7yh" },
     __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-drPehrWIZySW7vet9CC4fhCMr/sWLVPyabzjqeXMkTgU3uqmSedDS4p6szuKcZhS" },
+    __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-Ii8zjLNXQ3sxkQNFj0zUqI8hmVI6mrUFZqRHGOmZrTemYljk8jd4jFPH2CVtRhmV" },
   };
 
   var loadingPromises = {};
