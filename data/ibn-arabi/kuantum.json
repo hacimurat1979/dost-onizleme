@@ -1,0 +1,67 @@
+{
+  "not": {
+    "tr": "İbn Arabî ile kuantum fiziği arasında kurulan benzetmeler, sitenin en güçlü ama en tehlikeli konularından biri — çünkü bu tür eşleştirmeler akademide adı konmuş bir eleştiri altında: i'câz-ı ilmî / Bucaillecilik. Burada tek bir 'doğru cevap' vermiyoruz; üç farklı pozisyon türünü, her birinin ne kadar dayandığını ve kimin ne dediğini yan yana koyuyoruz.",
+    "en": "The analogies drawn between Ibn al-'Arabi and quantum physics are one of the site's most powerful yet most dangerous topics — because this kind of pairing falls under a named critique in academia: i'jaz al-'ilmi / Bucailleism. We are not giving a single 'right answer' here; we lay out three types of position side by side, how much each holds up, and who says what.",
+    "pt": "As analogias traçadas entre Ibn al-'Arabi e a física quântica são um dos temas mais poderosos e, ao mesmo tempo, mais perigosos do site — porque este tipo de emparelhamento cai sob uma crítica com nome próprio na academia: i'jaz al-'ilmi / Bucailleísmo. Não damos aqui uma única 'resposta certa'; colocamos lado a lado três tipos de posição, o quanto cada uma se sustenta, e quem diz o quê."
+  },
+  "durumlar": {
+    "zayif": { "tr": "zayıf / reddedilir", "en": "weak / rejected", "pt": "fraco / rejeitado" },
+    "temkinli": { "tr": "temkinli-savunulabilir", "en": "cautious-defensible", "pt": "cauteloso-defensável" },
+    "yerlesik": { "tr": "yerleşik eleştiri", "en": "established critique", "pt": "crítica estabelecida" }
+  },
+  "satirlar": [
+    {
+      "id": "800-yil-once-biliyordu",
+      "durum": "zayif",
+      "iddia": {
+        "tr": "\"İbn Arabî 800 yıl önce kuantum mekaniğini/görelilik teorisini/çoklu evren fikrini önceden söylemişti.\"",
+        "en": "\"Ibn al-'Arabi predicted quantum mechanics / relativity / the multiverse 800 years ago.\"",
+        "pt": "\"Ibn al-'Arabi previu a mecânica quântica / a relatividade / o multiverso há 800 anos.\""
+      },
+      "dayanak": {
+        "tr": "Kutsal ya da klasik bir metinden çağdaş bilimsel bir sonuç \"çıkarmak\" hem kötü bilim hem kötü ilahiyat olarak eleştiriliyor: bilimsel model değiştiğinde metafizik iddia da çöküyor, ve metin bilimin doğrulama beklediği bir şeye indirgeniyor. Bu, sitenin kendi editoryal kuralında da açıkça yasak bir cümle kalıbı.",
+        "en": "\"Deriving\" a contemporary scientific conclusion from a sacred or classical text is criticized as both bad science and bad theology: when the scientific model changes, the metaphysical claim collapses with it, and the text is reduced to something awaiting scientific validation. This is explicitly a forbidden sentence pattern in the site's own editorial rule.",
+        "pt": "\"Extrair\" uma conclusão científica contemporânea de um texto sagrado ou clássico é criticado como má ciência e má teologia: quando o modelo científico muda, a afirmação metafísica desmorona com ele, e o texto é reduzido a algo que aguarda validação científica. Este é explicitamente um padrão de frase proibido na própria regra editorial do site."
+      },
+      "kimNeDiyor": [
+        { "yazar": "Stefano Bigliardi", "eser": "The 'Scientific Miracle of the Qur'ān,' Pseudoscience, and Conspiracism", "yil": 2017, "not": "Zygon 52/1, 146-171" },
+        { "yazar": "Nidhal Guessoum", "eser": "Islam's Quantum Question: Reconciling Muslim Tradition and Modern Science", "yil": 2011 }
+      ]
+    },
+    {
+      "id": "kelam-sureki-yaratilis",
+      "durum": "temkinli",
+      "iddia": {
+        "tr": "Eş'arî kelâmındaki \"araz iki zamanda bâki kalmaz\" ilkesi (sürekli yeniden-yaratılış), kuantum belirsizliğiyle yapısal olarak karşılaştırılabilir bir çerçeve sunar.",
+        "en": "The Ash'arite kalam principle that \"an accident does not persist through two moments\" (continuous re-creation) offers a framework structurally comparable to quantum indeterminism.",
+        "pt": "O princípio do kalām ash'arita de que \"um acidente não persiste por dois momentos\" (recriação contínua) oferece um enquadramento estruturalmente comparável ao indeterminismo quântico."
+      },
+      "dayanak": {
+        "tr": "Bu, gerçek bir akademik pozisyon: Altaie, mikroskobik sistemlerin fiziksel özelliklerinin sürekli yeniden yaratıldığını, bu yeniden yaratılışın sıklığının sistemdeki toplam enerjiyle orantılı olduğunu öne sürüyor. Ama kendisi de nötr değil — Hristiyan bağlamlardaki \"kuantum ilahi eylem\" modelleriyle karşılaştırmalı-eleştirel bir incelemeye konu oldu.",
+        "en": "This is a real academic position: Altaie proposes that the physical properties of microscopic systems are continuously re-created, with the frequency of re-creation proportional to the system's total energy. But it is not beyond critique either — it has been the subject of a comparative-critical study alongside \"quantum divine action\" models from Christian contexts.",
+        "pt": "Esta é uma posição académica real: Altaie propõe que as propriedades físicas dos sistemas microscópicos são continuamente recriadas, sendo a frequência da recriação proporcional à energia total do sistema. Mas também não está isenta de crítica — foi objeto de um estudo comparativo-crítico ao lado de modelos de \"ação divina quântica\" de contextos cristãos."
+      },
+      "kimNeDiyor": [
+        { "yazar": "Mohammed Basil Altaie", "eser": "Re-creation: A Possible Interpretation of Quantum Indeterminism", "not": "arXiv:0907.3419" },
+        { "yazar": "Hakan Turan", "eser": "The Kalām-based Continuous Re-creation Approach of Basil Altaie Compared to Quantum Divine Action Models from Christian Contexts", "yil": 2024, "not": "Kader 22/2, DergiPark, açık erişim" }
+      ]
+    },
+    {
+      "id": "bilim-modeli-degisirse",
+      "durum": "yerlesik",
+      "iddia": {
+        "tr": "Bilimsel model değiştiğinde, ona dayandırılan metafizik/dinî iddia da birlikte çöker — bu yüzden metni bilimin o anki durumuna sabitlemek riskli bir stratejidir.",
+        "en": "When a scientific model changes, the metaphysical/religious claim anchored to it collapses along with it — which makes tying a text to science's current state a risky strategy.",
+        "pt": "Quando um modelo científico muda, a afirmação metafísica/religiosa a ele ancorada desmorona junto — o que torna arriscado atar um texto ao estado atual da ciência."
+      },
+      "dayanak": {
+        "tr": "Bu, i'câz-ı ilmî literatürünün üzerinde büyük ölçüde birleştiği, güncel ve haritalanmış bir eleştiri.",
+        "en": "This is a well-established, mapped critique on which the i'jaz al-'ilmi literature largely converges.",
+        "pt": "Esta é uma crítica bem estabelecida e mapeada, sobre a qual a literatura do i'jaz al-'ilmi converge em grande medida."
+      },
+      "kimNeDiyor": [
+        { "yazar": "Guessoum & Bigliardi", "eser": "Islam and Science: Past, Present, and Future Debates", "yil": 2023, "not": "Cambridge University Press (Elements) — literatürün güncel haritası" }
+      ]
+    }
+  ]
+}

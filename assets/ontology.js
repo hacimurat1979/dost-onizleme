@@ -260,6 +260,7 @@
     else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
     else if (currentMainView === "aciksorular") window.__acikSorularApp && window.__acikSorularApp.onLangChange();
     else if (currentMainView === "bilmiyoruz") window.__bilmiyoruzApp && window.__bilmiyoruzApp.onLangChange();
+    else if (currentMainView === "kuantum") window.__kuantumApp && window.__kuantumApp.onLangChange();
     else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
     else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
@@ -477,6 +478,7 @@
   const sorularBtn = document.getElementById("sorular-btn");
   const acikSorularBtn = document.getElementById("acik-sorular-btn");
   const bilmiyoruzBtn = document.getElementById("bilmiyoruz-btn");
+  const kuantumBtn = document.getElementById("kuantum-btn");
   const menzillerBtn = document.getElementById("menziller-btn");
   const tasiyicilarBtn = document.getElementById("tasiyicilar-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
@@ -493,6 +495,7 @@
   const sorularWrap = document.getElementById("sorular-wrap");
   const acikSorularWrap = document.getElementById("acik-sorular-wrap");
   const bilmiyoruzWrap = document.getElementById("bilmiyoruz-wrap");
+  const kuantumWrap = document.getElementById("kuantum-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
   const tasiyicilarWrap = document.getElementById("tasiyicilar-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
@@ -517,7 +520,7 @@
   // -- "kaldığın yer" özelliğindeki localStorage deseninin aynısı.
   const NAV_YENI_KEY = "dost-nav-yeni-gorulmus";
   function markNavYeniSeen(view) {
-    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn }[view];
+    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn }[view];
     if (!btn || !btn.classList.contains("btn-ghost--yeni")) return;
     btn.classList.remove("btn-ghost--yeni");
     try {
@@ -531,14 +534,14 @@
   try {
     const seenAtLoad = JSON.parse(localStorage.getItem(NAV_YENI_KEY) || "[]");
     seenAtLoad.forEach((v) => {
-      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn }[v];
+      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn }[v];
       if (btn) btn.classList.remove("btn-ghost--yeni");
     });
   } catch (e) { /* yoksay */ }
 
   function setMainView(view) {
     if (currentMainView === view) return;
-    if (view === "kavram" || view === "ayethadis" || view === "bilmiyoruz") markNavYeniSeen(view);
+    if (view === "kavram" || view === "ayethadis" || view === "bilmiyoruz" || view === "kuantum") markNavYeniSeen(view);
     currentMainView = view;
     markActiveNavButton(ontologyBtn, view === "ontology");
     markActiveNavButton(esmaBtn, view === "esma");
@@ -549,6 +552,7 @@
     markActiveNavButton(sorularBtn, view === "sorular");
     markActiveNavButton(acikSorularBtn, view === "aciksorular");
     markActiveNavButton(bilmiyoruzBtn, view === "bilmiyoruz");
+    markActiveNavButton(kuantumBtn, view === "kuantum");
     markActiveNavButton(menzillerBtn, view === "menziller");
     markActiveNavButton(tasiyicilarBtn, view === "tasiyicilar");
     markActiveNavButton(futuhatBtn, view === "futuhat");
@@ -565,6 +569,7 @@
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
     if (acikSorularWrap) acikSorularWrap.hidden = view !== "aciksorular";
     if (bilmiyoruzWrap) bilmiyoruzWrap.hidden = view !== "bilmiyoruz";
+    if (kuantumWrap) kuantumWrap.hidden = view !== "kuantum";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (tasiyicilarWrap) tasiyicilarWrap.hidden = view !== "tasiyicilar";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
@@ -604,6 +609,9 @@
     } else if (view === "bilmiyoruz") {
       currentDetailView = null;
       window.__bilmiyoruzApp && window.__bilmiyoruzApp.activate();
+    } else if (view === "kuantum") {
+      currentDetailView = null;
+      window.__kuantumApp && window.__kuantumApp.activate();
     } else if (view === "menziller") {
       currentDetailView = "menziller";
       window.__menzillerApp && window.__menzillerApp.activate();
@@ -639,6 +647,7 @@
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
   if (acikSorularBtn) acikSorularBtn.addEventListener("click", () => { setMainView("aciksorular"); updateHash("acik-sorular"); });
   if (bilmiyoruzBtn) bilmiyoruzBtn.addEventListener("click", () => { setMainView("bilmiyoruz"); updateHash("bilmiyoruz"); });
+  if (kuantumBtn) kuantumBtn.addEventListener("click", () => { setMainView("kuantum"); updateHash("kuantum"); });
   if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
   if (tasiyicilarBtn) tasiyicilarBtn.addEventListener("click", () => { setMainView("tasiyicilar"); updateHash("tasiyicilar"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
@@ -746,6 +755,14 @@
         tr: "Sitenin açıkça bilmediğini ya da tartışmalı olduğunu ilan ettiği maddeler — nüsha tarihinden yorum mirasına, eser tasnifinden modern benzetmelere.",
         en: "Items the site openly declares unknown or contested — from manuscript history to a reading's inheritance, from classification of works to modern analogies.",
         pt: "Itens que o site declara abertamente desconhecidos ou contestados — da história do manuscrito à herança de uma leitura, da classificação das obras às analogias modernas.",
+      },
+    },
+    kuantum: {
+      title: { tr: "Kuantum Meselesi", en: "The Quantum Question", pt: "A Questão Quântica" },
+      desc: {
+        tr: "İbn Arabî ile kuantum fiziği benzetmelerinin üç sütunlu, dürüst bir değerlendirmesi: iddia, ne kadar dayandığı, ve kimin ne dediği.",
+        en: "A three-column, honest assessment of analogies drawn between Ibn al-'Arabi and quantum physics: the claim, how much it holds up, and who says what.",
+        pt: "Uma avaliação honesta, em três colunas, das analogias entre Ibn al-'Arabi e a física quântica: a afirmação, o quanto se sustenta, e quem diz o quê.",
       },
     },
     sorular: {
@@ -940,6 +957,11 @@
     if (id) window.__bilmiyoruzApp && window.__bilmiyoruzApp.goToNode(id);
   }
 
+  function goToKuantum(id) {
+    setMainView("kuantum");
+    if (id) window.__kuantumApp && window.__kuantumApp.goToNode(id);
+  }
+
   // Taşıyanlar tek bir şemadan ibaret; derin bağlantı için ayrı bir id'si
   // yok, o yüzden setMainView zaten sahneyi kuruyorsa ikinci kez
   // activate() çağırmaya gerek yok -- ama başka bir görünümden gelindiğinde
@@ -982,7 +1004,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|kuantum|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -1002,6 +1024,7 @@
     else if (view === "sorular") goToSorular(id);
     else if (view === "acik-sorular") goToAcikSorular(id);
     else if (view === "bilmiyoruz") goToBilmiyoruz(id);
+    else if (view === "kuantum") goToKuantum(id);
     else if (view === "menziller") goToMenziller(id);
     else if (view === "tasiyicilar") goToTasiyicilar();
     else if (view === "futuhat") goToFutuhat(id);
@@ -1041,6 +1064,7 @@
       else if (view === "sorular") goToSorular(id);
     else if (view === "acik-sorular") goToAcikSorular(id);
       else if (view === "bilmiyoruz") goToBilmiyoruz(id);
+      else if (view === "kuantum") goToKuantum(id);
       else if (view === "menziller") goToMenziller(id);
       else if (view === "tasiyicilar") goToTasiyicilar();
       else if (view === "futuhat") goToFutuhat(id);

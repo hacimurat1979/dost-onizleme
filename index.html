@@ -181,6 +181,7 @@
             <button class="btn-ghost btn-ghost--yeni" id="acik-sorular-btn" type="button" title="Okurken bize kalan, henüz kapanmamış sorular — ve araştırmamızın verdiği olası yanıtlar — Questions left with us while reading, not yet closed — and the possible answers our research gives — Perguntas que ficaram connosco ao ler, ainda em aberto — e as respostas possíveis que a nossa pesquisa dá" data-tr="Açık Sorular" data-en="Open Questions" data-pt="Perguntas em Aberto">Açık Sorular</button>
             <button class="btn-ghost" id="sirlar-btn" type="button" title="İşaret edilen ama açıklanmayan konular — Matters pointed to but never explained — Assuntos apontados mas nunca explicados" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
             <button class="btn-ghost btn-ghost--yeni" id="bilmiyoruz-btn" type="button" title="Sitenin açıkça bilmediğini ya da tartışmalı olduğunu ilan ettiği maddeler — Items the site openly declares unknown or contested — Itens que o site declara abertamente desconhecidos ou contestados" data-tr="Bilmiyoruz" data-en="We Don't Know" data-pt="Não Sabemos">Bilmiyoruz</button>
+            <button class="btn-ghost btn-ghost--yeni" id="kuantum-btn" type="button" title="İbn Arabî ile kuantum fiziği benzetmelerinin üç sütunlu, dürüst bir değerlendirmesi — A three-column, honest assessment of analogies drawn between Ibn al-Arabi and quantum physics — Uma avaliação honesta, em três colunas, das analogias entre Ibn al-Arabi e a física quântica" data-tr="Kuantum Meselesi" data-en="The Quantum Question" data-pt="A Questão Quântica">Kuantum Meselesi</button>
             <button class="btn-ghost" id="cizimler-btn" type="button" title="Kavramlar arası ilişkileri gösteren şemalar — Diagrams showing relationships between concepts — Diagramas mostrando relações entre conceitos" data-tr="Çizimler" data-en="Diagrams" data-pt="Diagramas">Çizimler</button>
             <button class="btn-ghost btn-ghost--yeni" id="ayethadis-btn" type="button" title="Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin — An index of quoted verses and hadiths, ordered by how often each recurs — Um índice de versículos e ditos citados, ordenados por quantas vezes cada um recorre" data-tr="Âyet &amp; Hadis" data-en="Verses &amp; Hadith" data-pt="Versículos e Hadith">Âyet &amp; Hadis</button>
           </div>
@@ -436,6 +437,15 @@
       <button class="graph-hint" type="button" data-tr-title="Her yay sitenin açıkça bilmediğini ya da tartışmalı bulduğunu ilan ettiği bir madde; boşluk maddenin durumuna göre değişir. Bir yaya tıklayın." data-en-title="Each arc is an item the site openly declares unknown or contested; the gap varies by the item's status. Click an arc." data-pt-title="Cada arco é um item que o site declara abertamente desconhecido ou contestado; a lacuna varia consoante o estado do item. Clique num arco." title="Her yay sitenin açıkça bilmediğini ya da tartışmalı bulduğunu ilan ettiği bir madde; boşluk maddenin durumuna göre değişir. Bir yaya tıklayın." aria-label="Her yay sitenin açıkça bilmediğini ya da tartışmalı bulduğunu ilan ettiği bir madde; boşluk maddenin durumuna göre değişir. Bir yaya tıklayın.">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
       </button>
+    </section>
+
+    <section class="graph-wrap" id="kuantum-wrap" hidden>
+      <div class="kuantum-list" id="kuantum-list" role="group" aria-label="Kuantum benzetmeleri değerlendirmesi"></div>
+      <div class="view-status" id="kuantum-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
     </section>
 
     <section class="graph-wrap" id="sorular-wrap" hidden>
@@ -1122,8 +1132,8 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-RF49Q32g0d6y3SRc2V3pOK6w72vIbpcudDUq0MMIuqs8JinkwA0MuRNfuzwYpWU0"></script>
   <script src="assets/futuhat.js" defer integrity="sha384-8J52eSlPJXuUJcLh31GPXcuWRsZSmcJW5GRlLRON7lRNgCxixdcq5qfIZbyvshZ9"></script>
   <script src="assets/fusus.js" defer integrity="sha384-YmInK0sH7H7NZq0MMQSKNolaKcz2lLgTdMnExCwhWWs7/BPGxdq7FP9RJUlAA+/L"></script>
-  <script src="assets/view-loader.js" defer integrity="sha384-58gePkNWts1IAJras8sR7e+PYtzgNUiyJSOjY5Fc+VddhTeSnWiNJvlJUpZ2fKwk"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-WaXeRdH92Qi0B9VqDveIhappgQ4TRKQ61xpvMwzFSh2y54FQOF72GBm0mRu2ftae"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-ZMsNhrH/EWqEOQ0Y/C090Bc8pz8X4C64DwTWZkpEUkXDQYPG/HvwRLPppCILD6c4"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-IJxVj1jDc7hz0vl+OBx/4bwk5Wz+GD/VVwnP/qZXYzY5SJsqPm2sfD21/Vu0NN5p"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-pUGs2ZLA6M1Uv5y5m6q8SzOrNwoimvexeWXg1MwnVMdlNPg4urvUdMtthr/qlAE1"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>

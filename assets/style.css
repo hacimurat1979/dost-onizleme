@@ -8942,3 +8942,54 @@ mark.durus-vurgu-es {
   .bilmiyoruz-madde__yay,
   .bilmiyoruz-madde__etiket { transition: none !important; }
 }
+
+/* --- Kuantum (docs/icerik-yol-haritasi.md D3, 2026-08-04) -----------------
+   Bilmiyoruz'un yay-halkasından FARKLI bir biçim bilinçli: burada ölçülen
+   "ne kadar açık" değil, üç ayrı TÜRDE pozisyonun (zayıf/temkinli/yerleşik)
+   yan yana durması -- bu bir karşılaştırma listesi, bir halka değil. Sol
+   kenar rengi, panelde açılan durum rozetiyle aynı üç renge dayanıyor
+   (zayıf->kemal, temkinli->theme, yerleşik->nötr sınır). */
+.kuantum-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  max-width: 640px;
+  margin: 0 auto;
+  overflow-y: auto;
+  height: 100%;
+}
+.kuantum-satir {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-radius: 8px;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.kuantum-satir:hover,
+.kuantum-satir:focus-visible {
+  border-color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
+}
+.kuantum-satir--zayif { border-left-color: color-mix(in srgb, var(--series-kemal) 55%, var(--border)); }
+.kuantum-satir--temkinli { border-left-color: color-mix(in srgb, var(--series-theme) 55%, var(--border)); }
+.kuantum-satir--yerlesik { border-left-color: var(--border); }
+.kuantum-satir__durum {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+.kuantum-satir__iddia { font-size: 0.9rem; }
