@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Tercümânü'l-Eşvâk — Dost Arabi görselleştirme (docs/icerik-yol-haritasi.md D15) -->
+<title>Kendi Şiirini Savunmak — Dost Arabi</title>
+<style>
+:root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}}
+:root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040}
+:root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1.1rem;max-width:660px}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
+
+.siir-kutu{width:min(560px,96vw);background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.6rem;margin-bottom:1.1rem}
+.siir{font-size:.98rem;line-height:2.0;white-space:pre-wrap}
+.siir .satir{display:block;transition:color .5s ease}
+.siir .satir--suret{color:var(--text)}
+.siir-kaynak{font-size:.71rem;color:var(--muted);margin-top:1rem;line-height:1.55}
+
+/* Sağ uçtaki kol left:100% + translate(-50%) ile duruyor, yani izin
+   sağından ~11px taşıyor. İzi 12px içeri alıyoruz ki kol en sağdayken
+   bile sayfa yatay kaymasın (375px'te ölçüldü: 5px taşıyordu). */
+.track-wrap{width:min(560px,94vw);margin:0 auto 1.1rem;text-align:center;padding:0 12px}
+.track{position:relative;height:34px;margin:0 auto}
+.track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
+.track-end{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:var(--border);transform:translate(-50%,-50%)}
+.track-end.left{left:0}
+.track-end.right{left:100%}
+.track-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal);transform:translate(-50%,-50%);cursor:grab;touch-action:none}
+.track-handle:active{cursor:grabbing}
+.track:focus-visible{outline:2px solid var(--liminal);outline-offset:6px;border-radius:4px}
+.track-labels{display:flex;justify-content:space-between;margin-top:.55rem;font-size:.78rem;color:var(--muted);gap:1rem}
+.track-labels span{max-width:190px;line-height:1.4}
+.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
+.grab-hint.gone{opacity:.28}
+
+.okuma{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;min-height:7.2rem}
+.okuma-kim{font-size:.71rem;text-transform:uppercase;letter-spacing:.12em;color:var(--liminal);margin-bottom:.5rem}
+.okuma-metin{font-size:.87rem;line-height:1.75}
+
+.sayac{width:min(560px,96vw);text-align:center;font-size:.78rem;color:var(--muted);margin-top:.9rem;letter-spacing:.03em}
+.sayac b{color:var(--gold);font-weight:400}
+
+.aha{width:min(560px,96vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.75;color:var(--liminal);margin-top:1rem;opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;white-space:pre-line}
+.aha.show{opacity:1;transform:none}
+
+.kardes{width:min(560px,96vw);text-align:center;margin-top:1.1rem;font-size:.75rem;line-height:1.6}
+.kardes a{color:var(--liminal);text-decoration:none;border-bottom:1px solid var(--border)}
+.kardes a:hover,.kardes a:focus-visible{border-bottom-color:var(--liminal)}
+
+.yontem{width:min(560px,96vw);margin-top:1.4rem;font-size:.74rem;line-height:1.7;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="hTitle">Kendi Şiirini Savunmak</h1>
+  <p class="sub" id="hSub"></p>
+</header>
+
+<div class="siir-kutu">
+  <div class="siir" id="siir"></div>
+  <p class="siir-kaynak" id="siirKaynak"></p>
+</div>
+
+<div class="track-wrap">
+  <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="İki okuma arasında sürükle">
+    <div class="track-line"></div>
+    <div class="track-end left"></div>
+    <div class="track-end right"></div>
+    <div class="track-handle" id="handle"></div>
+  </div>
+  <div class="track-labels">
+    <span id="labelLeft"></span>
+    <span id="labelRight"></span>
+  </div>
+  <p class="grab-hint" id="grabHint"></p>
+</div>
+
+<div class="okuma">
+  <p class="okuma-kim" id="okumaKim"></p>
+  <p class="okuma-metin" id="okumaMetin"></p>
+</div>
+
+<p class="sayac" id="sayac"></p>
+
+<p class="aha" id="aha"></p>
+
+<p class="kardes"><a id="kardesLink" href="ilah-i-mutekad.html"></a></p>
+
+<p class="yontem" id="yontem"></p>
+
+<script>
+// ── Metin ────────────────────────────────────────────────────────────────────
+// ÖNEMLİ: Dost'un kendi şerhi (Zehâirü'l-a'lâk) elimizde YOK. Aşağıdaki iki
+// "okuma", tarihsel olarak belgelenmiş iki POZİSYONUN bizim özetimizdir --
+// şerhten alıntı DEĞİLDİR. Bu ayrım sayfanın .yontem notunda da yazılı.
+// (.claude/skills/siir-okuma/SKILL.md: şiiri şerh etmek bu sitenin kapsamı
+// dışında; burada yapılan şerh değil, bir tartışmanın iki tarafını aktarmak.)
+const LA={
+  tr:{
+    title:'Kendi Şiirini Savunmak',
+    sub:'Dost Mekke’de Nizâm adlı genç kadın için bir aşk şiirleri divanı yazdı. “Bu ilahî değil, dünyevî aşk” dendi. O da kendi şiirine kendi şerhini yazdı. Aşağıdaki kaside o divandan. Sürükleyerek iki okuma arasında gezin — ve şiire bak.',
+    labelLeft:'Eleştirinin okuması',
+    labelRight:'Dost’un savunması',
+    grab:'Sürükle (ok tuşları da çalışır)',
+    kimSol:'Eleştiri',
+    kimSag:'Dost’un cevabı',
+    okumaSol:'Bu satırlar bir kadına yazılmış dünyevî bir aşk şiiridir: ceylan, çayır, manastır, develer — hepsi klasik Arap aşk şiirinin kendi sözlüğü. Bir sûfîden beklenen dil bu değildir; şairin “dinim aşkın gittiği yoldur” demesi de bu yüzden fazla ileri gider.',
+    okumaSag:'Dost, divana sonradan eklediği şerhte bu dilin zahirî olduğunu, her imgenin bâtınında ilahi güzelliğin bir tecellîsine işaret ettiğini söyler: kalbin “her sûreti kabul eder” hâle gelmesi, sûretlerin hepsini reddetmek değil, her birinde O’nu görebilmektir.',
+    sayac:(n)=>`Sürüklerken şiirde değişen harf sayısı: <b>${n}</b>`,
+    aha:'İki taraf da tam olarak aynı kelimeleri gösterdi.\nŞiirde tek bir harf değişmedi — değişen, ona bakan oldu.',
+    kardes:'Kardeş sahne: İnandığın Tanrı — cevapların bir sûret çizer →',
+    yontem:'Şiir, sitenin şiir kataloğundan geliyor (Nicholson’ın 1911 İngilizce çevirisinden aktarıldı; Arapça’dan doğrudan Türkçe çevirimiz yok). Dost’un kendi şerhinin metni elimizde YOK: yukarıdaki iki okuma, belgelenmiş iki pozisyonun bizim özetimizdir, şerhten alıntı değildir. Divanın 61 kasidesinden yalnız bu biri kataloğumuzda.',
+  },
+  en:{
+    title:'Defending His Own Poem',
+    sub:'In Mecca, Dost wrote a collection of love poems for a young woman named Nizam. “This is worldly love, not divine,” it was said. So he wrote his own commentary on his own poem. The ode below is from that collection. Drag between the two readings — and watch the poem.',
+    labelLeft:'The critics’ reading',
+    labelRight:'Dost’s defence',
+    grab:'Drag (arrow keys work too)',
+    kimSol:'The criticism',
+    kimSag:'Dost’s reply',
+    okumaSol:'These lines are a worldly love poem written for a woman: gazelles, pasture, cloister, camels — all the standard vocabulary of classical Arabic love poetry. This is not the language expected of a Sufi; and the poet’s “my religion is whatever way Love takes” goes further still.',
+    okumaSag:'In the commentary he later added, Dost says this language is the outward face, and that each image points inwardly to a self-disclosure of divine beauty: a heart becoming “capable of every form” is not the rejection of all forms but the capacity to see the One in each of them.',
+    sayac:(n)=>`Letters changed in the poem while dragging: <b>${n}</b>`,
+    aha:'Both sides pointed at exactly the same words.\nNot one letter of the poem changed — what changed was the one looking at it.',
+    kardes:'Sibling scene: The God You Believe In — your answers draw a form →',
+    yontem:'The poem comes from the site’s poem catalogue (rendered from R. A. Nicholson’s 1911 English translation). We do NOT have the text of Dost’s own commentary: the two readings above are our summaries of two documented positions, not quotations from it. Of the collection’s 61 odes, only this one is in our catalogue.',
+  },
+  pt:{
+    title:'Defender o Próprio Poema',
+    sub:'Em Meca, Dost escreveu uma coleção de poemas de amor para uma jovem chamada Nizam. “Isto é amor mundano, não divino”, disseram. Então ele escreveu o seu próprio comentário ao seu próprio poema. A ode abaixo é dessa coleção. Arraste entre as duas leituras — e olhe para o poema.',
+    labelLeft:'A leitura dos críticos',
+    labelRight:'A defesa de Dost',
+    grab:'Arraste (as setas também funcionam)',
+    kimSol:'A crítica',
+    kimSag:'A resposta de Dost',
+    okumaSol:'Estes versos são um poema de amor mundano escrito para uma mulher: gazelas, pasto, convento, camelos — todo o vocabulário da poesia amorosa árabe clássica. Não é a linguagem que se espera de um sufi; e o “minha religião é o caminho que o Amor tomar” vai ainda mais longe.',
+    okumaSag:'No comentário que acrescentou depois, Dost diz que esta linguagem é a face exterior, e que cada imagem aponta interiormente para uma autorrevelação da beleza divina: um coração que se torna “capaz de toda forma” não rejeita as formas, mas ganha a capacidade de ver o Uno em cada uma delas.',
+    sayac:(n)=>`Letras alteradas no poema ao arrastar: <b>${n}</b>`,
+    aha:'Ambos os lados apontaram exatamente para as mesmas palavras.\nNem uma letra do poema mudou — o que mudou foi quem olhava.',
+    kardes:'Cena irmã: O Deus em Que Você Crê — suas respostas desenham uma forma →',
+    yontem:'O poema vem do catálogo de poemas do site (a partir da tradução inglesa de R. A. Nicholson, 1911). NÃO temos o texto do comentário do próprio Dost: as duas leituras acima são os nossos resumos de duas posições documentadas, não citações dele. Das 61 odes da coleção, apenas esta está no nosso catálogo.',
+  },
+};
+
+// Kasidede "sûret" sayılan satırlar: kalbin kabul ettiği biçimlerin
+// sayıldığı altı satır. Tartışmanın döndüğü yer tam olarak bunlar --
+// bu yüzden vurgulanan onlar. (Üç dilde de aynı satır sıraları.)
+const SURET_SATIRLARI=[3,4,5,6,7,8];
+
+let curLang='tr', pos=0, touched=false, siirVeri=null, referansMetin=null;
+const $=id=>document.getElementById(id);
+const clamp01=x=>Math.max(0,Math.min(1,x));
+
+// Şiir metni siteyle tek kaynaktan gelsin diye kataloğun kendisinden
+// okunuyor (gömülü bir kopya zamanla veriden ayrı düşerdi).
+fetch('data/ibn-arabi/siirler.json')
+  .then(r=>r.json())
+  .then(d=>{
+    siirVeri=(d.siirler||[]).find(s=>s.id==='te-kalp')||null;
+    render();
+  })
+  .catch(()=>{ $('siir').textContent='—'; render(); });
+
+function siirCiz(){
+  if(!siirVeri) return;
+  const satirlar=(siirVeri.metin[curLang]||siirVeri.metin.tr||'').split('\n');
+  $('siir').innerHTML=satirlar.map((s,i)=>
+    `<span class="satir${SURET_SATIRLARI.includes(i)?' satir--suret':''}" data-i="${i}">${s}</span>`
+  ).join('');
+  $('siirKaynak').textContent=(siirVeri.kaynak_bilgisi||{})[curLang]||'';
+  // Referans: şiirin o anki düz metni. Sürükledikçe bununla karşılaştırıp
+  // "kaç harf değişti" sayısını GERÇEKTEN ölçüyoruz -- iddiayı yazmıyoruz,
+  // sahnenin kendisi kanıtlıyor.
+  referansMetin=$('siir').textContent;
+}
+
+function boya(p){
+  // Tek değişen şey: hangi okumanın merceğinden bakıldığı. Sûret satırları
+  // iki uçta da görünür kalıyor; ortada -- yani hiçbir tarafı seçmemişken --
+  // en sönük hâlde. Metnin KENDİSİ hiç değişmiyor.
+  const uc=Math.abs(p-0.5)*2;                    // 0 ortada, 1 uçlarda
+  document.querySelectorAll('.satir--suret').forEach(el=>{
+    el.style.color = `color-mix(in srgb, var(--gold) ${(28+52*uc).toFixed(0)}%, var(--text))`;
+  });
+  const t=LA[curLang];
+  $('okumaKim').textContent = p<0.5 ? t.kimSol : t.kimSag;
+  $('okumaMetin').textContent = p<0.5 ? t.okumaSol : t.okumaSag;
+  $('okumaMetin').style.opacity = (0.55+0.45*uc).toFixed(2);
+  // Ölçüm: şiirin düz metni referanstan kaç karakter farklı?
+  const simdi=$('siir').textContent;
+  let fark=0;
+  if(referansMetin!==null){
+    const n=Math.max(simdi.length, referansMetin.length);
+    for(let i=0;i<n;i++) if(simdi[i]!==referansMetin[i]) fark++;
+  }
+  $('sayac').innerHTML=t.sayac(fark);
+}
+
+function render(){
+  const t=LA[curLang];
+  $('hTitle').textContent=t.title;
+  $('hSub').textContent=t.sub;
+  $('labelLeft').textContent=t.labelLeft;
+  $('labelRight').textContent=t.labelRight;
+  $('grabHint').textContent=t.grab;
+  $('aha').textContent=t.aha;
+  $('kardesLink').textContent=t.kardes;
+  $('yontem').textContent=t.yontem;
+  siirCiz();
+  uygula();
+}
+function setLang(l){ if(LA[l]){ curLang=l; document.documentElement.lang=l; render(); } }
+
+const track=$('track');
+function markTouched(){ if(!touched){ touched=true; $('grabHint').classList.add('gone'); } }
+let gordu={sol:false, sag:false};
+function uygula(){
+  $('handle').style.left=(pos*100)+'%';
+  track.setAttribute('aria-valuenow',Math.round(pos*100));
+  track.setAttribute('aria-valuetext', pos<0.5 ? LA[curLang].kimSol : LA[curLang].kimSag);
+  boya(pos);
+  // Hayret önce: aha ancak kullanıcı İKİ ucu da gördükten sonra.
+  if(pos<=0.08) gordu.sol=true;
+  if(pos>=0.92) gordu.sag=true;
+  if(gordu.sol && gordu.sag) $('aha').classList.add('show');
+}
+function posFromX(x){ const r=track.getBoundingClientRect(); pos=clamp01((x-r.left)/r.width); uygula(); }
+let dragging=false;
+track.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{track.setPointerCapture(e.pointerId);}catch(_){} posFromX(e.clientX); e.preventDefault(); });
+track.addEventListener('pointermove',e=>{ if(dragging) posFromX(e.clientX); });
+['pointerup','pointercancel'].forEach(t=>track.addEventListener(t,()=>{dragging=false;}));
+track.addEventListener('keydown',e=>{
+  const k={ArrowLeft:-0.05,ArrowRight:0.05,ArrowDown:-0.05,ArrowUp:0.05,Home:-1,End:1}[e.key];
+  if(k===undefined) return;
+  markTouched();
+  pos = e.key==='Home' ? 0 : e.key==='End' ? 1 : clamp01(pos+k);
+  uygula(); e.preventDefault();
+});
+
+render();
+
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+});
+</script>
+</body>
+</html>

@@ -16,6 +16,19 @@
     "evrad": "☽",
   };
 
+  // Ayrı sahnesi olan şiirler (bkz. terimler.js TERIM_SAHNELERI,
+  // sorular.js SORU_SAHNELERI -- aynı sözleşmenin üçüncü yeri).
+  const SIIR_SAHNELERI = {
+    "te-kalp": {
+      dosya: "tercuman-esvak.html",
+      dugme: {
+        tr: "Sahneyi aç: Kendi şiirini savunmak",
+        en: "Open the scene: Defending his own poem",
+        pt: "Abrir a cena: Defender o próprio poema",
+      },
+    },
+  };
+
   function tt(dict) {
     return I18n.pick3(dict);
   }
@@ -153,6 +166,16 @@
 
         if (p.futuhat_kisim_id) {
           html += `<a class="siir-card__kisim-link" href="${escHtml(window.__dostNav.href("futuhat", p.futuhat_kisim_id))}" data-kisim-id="${escHtml(p.futuhat_kisim_id)}">${escHtml(L("kisma_git"))}</a>`;
+        }
+
+        // Bazı şiirlerin ayrı, oynanabilir bir sahnesi var (terimler.js
+        // TERIM_SAHNELERI / sorular.js SORU_SAHNELERI ile aynı sözleşme).
+        // İlk örnek te-kalp: Tercümânü'l-Eşvâk'ın eleştirilmesi ve Dost'un
+        // kendi şerhini yazması -- docs/icerik-yol-haritasi.md D15.
+        const sahne = SIIR_SAHNELERI[p.id];
+        if (sahne) {
+          const base = window.__dostRouteBase || "";
+          html += `<a class="siir-card__sahne-link" href="${escHtml(base + "/" + sahne.dosya)}">${escHtml(tt(sahne.dugme))} →</a>`;
         }
 
         html += `</article>`;
