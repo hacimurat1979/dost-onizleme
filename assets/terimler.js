@@ -73,6 +73,64 @@
     return derivedTermPromise;
   }
 
+  // ÇEVİRİNİN KAYBETTİĞİ ŞEY (docs/icerik-yol-haritasi.md D17). Üç dilli
+  // olmanın yan ürünü: aynı terimi üç kez seçmek zorunda kaldık ve her
+  // seferinde bir şey düştü. Ayrı dosyada tutuluyor -- felsefi-terimler.json
+  // terimin KENDİ tanımıdır; bu ise bizim çeviri kararlarımız üzerine bir
+  // not, yani ayrı bir iddia sınıfı (türetilmiş kenarlarla aynı gerekçe).
+  let ceviriKaybi = null, ceviriKaybiPromise = null;
+  function fetchCeviriKaybi() {
+    if (ceviriKaybiPromise) return ceviriKaybiPromise;
+    ceviriKaybiPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/ceviri-kaybi.json")
+      .then((d) => { ceviriKaybi = d || null; return ceviriKaybi; })
+      .catch((e) => { console.warn("Çeviri kaybı verisi yüklenemedi", e); ceviriKaybiPromise = null; return null; });
+    return ceviriKaybiPromise;
+  }
+
+  const CEVIRI_DIL_ADI = {
+    tr: { tr: "Türkçe", en: "Turkish", pt: "Turco" },
+    en: { tr: "İngilizce", en: "English", pt: "Inglês" },
+    pt: { tr: "Portekizce", en: "Portuguese", pt: "Português" },
+  };
+
+  function ceviriKaybiHtml(id) {
+    const kayit = ceviriKaybi && ceviriKaybi.terimler && ceviriKaybi.terimler[id];
+    if (!kayit) return "";
+    // diller bir LİSTE: {dil, kelime, kayip}. Dil koduyla anahtarlanmış bir
+    // sözlük olamaz -- scripts/dil-denetimi.py {tr,en,pt} anahtarlı HER
+    // sözlüğü "üç dilli metin" sayıp içindekileri string bekliyor, ve bu
+    // yapı onu çökertiyordu (2026-08-04'te ölçüldü).
+    const secenekler = kayit.diller.map((d, i) =>
+      `<button class="ceviri-kaybi__dil${i === 0 ? " on" : ""}" type="button" data-dil="${d.dil}">${tt(CEVIRI_DIL_ADI[d.dil])}: ${d.kelime}</button>`
+    ).join("");
+    return `<div class="ceviri-kaybi">
+      <p class="detail-eyebrow detail-eyebrow--section">${tt({
+        tr: "Çevrilirken ne düştü", en: "What fell away in translation", pt: "O que se perdeu na tradução" })}</p>
+      <p class="ceviri-kaybi__kok"><span class="ceviri-kaybi__harf" dir="rtl" lang="ar">${kayit.kok.harf}</span>
+        <span class="ceviri-kaybi__translit">${kayit.kok.translit}</span></p>
+      <p class="ceviri-kaybi__kok-anlam">${tt(kayit.kok.anlam)}</p>
+      <div class="ceviri-kaybi__diller">${secenekler}</div>
+      <p class="ceviri-kaybi__kayip" id="ceviri-kaybi-kayip">${tt(kayit.diller[0].kayip)}</p>
+      <p class="ceviri-kaybi__not">${tt(ceviriKaybi.meta.not)}</p>
+    </div>`;
+  }
+
+  function ceviriKaybiBagla(id) {
+    const kayit = ceviriKaybi && ceviriKaybi.terimler && ceviriKaybi.terimler[id];
+    if (!kayit) return;
+    const kutu = detailContent.querySelector(".ceviri-kaybi");
+    if (!kutu) return;
+    kutu.querySelectorAll(".ceviri-kaybi__dil").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        kutu.querySelectorAll(".ceviri-kaybi__dil").forEach((b) => b.classList.remove("on"));
+        btn.classList.add("on");
+        const secili = kayit.diller.find((d) => d.dil === btn.dataset.dil);
+        const hedef = kutu.querySelector("#ceviri-kaybi-kayip");
+        if (hedef && secili) hedef.textContent = tt(secili.kayip);
+      });
+    });
+  }
+
   // 2026-08-03'e kadar burada `deferFetch(() => { fetchData(); ... })`
   // vardı: kullanıcı Terimler sekmesini hiç açmasa da felsefi-terimler.json
   // (409KB) HER sayfada iniyordu -- tek sebebi çapraz-bağlantı önizlemesinin
@@ -939,6 +997,7 @@
         <p>${linkify(tt(t.ibn_arabi_yorumu), "terimler", t.id)}</p>
       </div>
       ${terimSahneHtml(t.id)}
+      ${ceviriKaybiHtml(t.id)}
       ${analogyHtml(t)}
       ${groupDiagramHtml(group)}
       ${kaynaklarHtml(t.kaynaklar, t.id)}
@@ -977,6 +1036,14 @@
     if (!derivedTermRelations.length) {
       fetchDerivedTerms().then(() => {
         if (detailPanel.dataset.currentTerm === id) showTermDetail(id);
+      });
+    }
+
+    // Çeviri kaybı katmanı da ayrı bir fetch: aynı sessiz tazeleme.
+    ceviriKaybiBagla(id);
+    if (!ceviriKaybi) {
+      fetchCeviriKaybi().then((d) => {
+        if (d && detailPanel.dataset.currentTerm === id) showTermDetail(id);
       });
     }
   }

@@ -9528,3 +9528,76 @@ button.kuran-dokusu-satir:focus-visible {
   .seyahat-durak__nokta,
   .seyahat-rota-parca { transition: none !important; }
 }
+
+/* ── Çevirinin kaybettiği şey (D17) ─────────────────────────────────────────
+   Terim panelinde ayrı bir katman: terimin Arapça kökü ve her dilde ne
+   düştüğü. felsefi-terimler.json terimin KENDİ tanımı; bu ise bizim çeviri
+   kararlarımız üzerine bir not -- o yüzden ayrı bir kutu, ayrı bir ses. */
+.ceviri-kaybi {
+  margin: 18px 0 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--text-secondary) 6%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--text-secondary) 34%, transparent);
+}
+.ceviri-kaybi__kok {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 6px;
+}
+.ceviri-kaybi__harf {
+  font-size: 1.35rem;
+  letter-spacing: 0.18em;
+  color: var(--accent-interactive);
+}
+.ceviri-kaybi__translit {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  text-transform: lowercase;
+}
+.ceviri-kaybi__kok-anlam {
+  font-size: 0.84rem;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+.ceviri-kaybi__diller {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 11px;
+}
+.ceviri-kaybi__dil {
+  border: 1px solid var(--border-subtle, color-mix(in srgb, var(--text-secondary) 30%, transparent));
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 5px 13px;
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.ceviri-kaybi__dil:hover,
+.ceviri-kaybi__dil:focus-visible {
+  border-color: var(--accent-interactive);
+  color: var(--text-primary);
+}
+.ceviri-kaybi__dil.on {
+  border-color: var(--accent-interactive);
+  color: var(--accent-interactive);
+}
+.ceviri-kaybi__kayip {
+  font-size: 0.86rem;
+  line-height: 1.68;
+  margin: 0 0 10px;
+  min-height: 3.4em;
+}
+.ceviri-kaybi__not {
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin: 0;
+}

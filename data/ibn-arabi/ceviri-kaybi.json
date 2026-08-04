@@ -1,0 +1,344 @@
+{
+  "meta": {
+    "desc": {
+      "tr": "Üç dilli olmanın bir yan ürünü: aynı terimi üç kez seçmek zorunda kaldık ve her seferinde bir şey düştü. Bu dosya, sözlükteki terimlerin Arapça kökünü ve her dilde ne kaybettiğini kaydeder. Kök anlamları standart sözlük bilgisidir; 'ne düştü' kısmı bizim okumamızdır — kesin bir hüküm değil, bir dikkat çağrısı.",
+      "en": "A by-product of being trilingual: we had to choose each term three times, and each time something fell away. This file records the Arabic root of glossary terms and what each language loses. The root meanings are standard lexicography; the 'what fell away' part is our reading — not a verdict, but an invitation to notice.",
+      "pt": "Um subproduto de ser trilingue: tivemos de escolher cada termo três vezes, e de cada vez algo se perdeu. Este ficheiro regista a raiz árabe dos termos do glossário e o que cada língua perde. Os significados da raiz são lexicografia padrão; a parte do 'que se perdeu' é a nossa leitura — não um veredito, mas um convite a reparar."
+    },
+    "not": {
+      "tr": "Kayıp her dilde aynı değil. Bazı terimlerde Türkçe Arapça kelimeyi olduğu gibi aldığı için bir yankıyı koruyor, İngilizce ve Portekizce kaybediyor; bazılarında ise Türkçenin kendi gündelik anlamı terimi çarpıtıyor. Bu yüzden üç dil ayrı ayrı yazıldı.",
+      "en": "The loss is not the same in every language. For some terms Turkish keeps an echo because it borrowed the Arabic word outright, while English and Portuguese lose it; for others, Turkish's own everyday meaning distorts the term. That is why all three languages are written out separately.",
+      "pt": "A perda não é igual em todas as línguas. Para alguns termos o turco mantém um eco por ter tomado a palavra árabe tal e qual, enquanto o inglês e o português a perdem; noutros, o sentido quotidiano do próprio turco distorce o termo. Por isso as três línguas são escritas em separado."
+    }
+  },
+  "terimler": {
+    "vacib": {
+      "odak": "vücûd",
+      "kok": {
+        "harf": "و ج د",
+        "translit": "w-j-d",
+        "anlam": {
+          "tr": "bulmak. Aynı kökten: vecd (coşku, kendinden geçme) ve vicdân (iç duyuş). Arapçada 'varlık' (vücûd) kelimesi, kökünde bir bulma olayı taşır.",
+          "en": "to find. From the same root: wajd (ecstasy) and wijdan (inner awareness). In Arabic the word for 'existence' (wujud) carries an event of finding in its root.",
+          "pt": "encontrar. Da mesma raiz: wajd (êxtase) e wijdan (consciência interior). Em árabe a palavra para 'existência' (wujud) traz um acontecimento de encontrar na sua raiz."
+        }
+      },
+      "diller": [
+        {
+          "dil": "tr",
+          "kelime": "varlık",
+          "kayip": {
+            "tr": "'Var olmak'tan türüyor — bir durum bildiriyor, bir bulma olayı değil. Vecd ve vicdân ile akrabalık tamamen kopuyor; Türkçe okur 'varlık' derken hiçbir coşku duymuyor.",
+            "en": "Derived from 'var olmak' (to be extant) — it reports a state, not an event of finding. The kinship with wajd and wijdan is severed entirely.",
+            "pt": "Deriva de 'var olmak' (existir) — relata um estado, não um acontecimento de encontrar. O parentesco com wajd e wijdan perde-se por completo."
+          }
+        },
+        {
+          "dil": "en",
+          "kelime": "Being / Existence",
+          "kayip": {
+            "tr": "'Being' bir hâl bildirir; 'bulmak' fiili hiç yok. Vecd ile bağ da yok — İngilizce okur için vücûd ile ecstasy arasında hiçbir ses ortaklığı kalmıyor.",
+            "en": "'Being' reports a condition; the verb 'to find' is absent. The link to ecstasy is gone too — for an English reader there is no shared sound between wujud and wajd.",
+            "pt": "'Being' relata uma condição; o verbo 'encontrar' está ausente. A ligação ao êxtase também desaparece."
+          }
+        },
+        {
+          "dil": "pt",
+          "kelime": "Ser / Existência",
+          "kayip": {
+            "tr": "İngilizceyle aynı kayıp: 'Ser' bir hâl bildirir, bulma olayını taşımaz.",
+            "en": "The same loss as English: 'Ser' reports a condition and carries no event of finding.",
+            "pt": "A mesma perda do inglês: 'Ser' relata uma condição e não carrega o acontecimento de encontrar."
+          }
+        }
+      ]
+    },
+    "tecelli": {
+      "odak": "tecellî",
+      "kok": {
+        "harf": "ج ل و",
+        "translit": "j-l-w",
+        "anlam": {
+          "tr": "cilalamak, parlatmak, açığa çıkarmak. 'Cilâ' kelimesi aynı kökten. Yani tecellî, bir şeyin görünmesi kadar, görüneceği yüzeyin parlatılmış olmasıyla da ilgili.",
+          "en": "to polish, to burnish, to make clear. The word 'cila' (polish) is from the same root. So tajalli concerns not only a thing appearing but the surface it appears on having been polished.",
+          "pt": "polir, lustrar, tornar claro. A palavra 'cila' (polimento) vem da mesma raiz. Assim, tajalli diz respeito não só a algo aparecer mas à superfície onde aparece ter sido polida."
+        }
+      },
+      "diller": [
+        {
+          "dil": "tr",
+          "kelime": "Tecellî",
+          "kayip": {
+            "tr": "Arapça kelime olduğu gibi alınmış, yani kök teknik olarak duruyor — ama gündelik Türkçede 'tecellî' neredeyse yalnız 'görünme, zuhur' demek. Cilâ/parlatma yankısı çoğu okur için sönük; ayna sahnesindeki 'kalbin cilâlanması' fikriyle bağ kendiliğinden kurulmuyor.",
+            "en": "The Arabic word was borrowed intact, so the root technically survives — but in everyday Turkish 'tecelli' means little more than 'appearing'. The polish echo is faint for most readers.",
+            "pt": "A palavra árabe foi tomada intacta, pelo que a raiz sobrevive tecnicamente — mas no turco quotidiano 'tecelli' significa pouco mais do que 'aparecer'. O eco do polimento é ténue."
+          }
+        },
+        {
+          "dil": "en",
+          "kelime": "Theophany",
+          "kayip": {
+            "tr": "Yunanca theos + phainein: 'tanrı-görünmesi'. Başka bir geleneğin çerçevesini getiriyor ve cilalama fiilini tamamen düşürüyor. Kayıp yalnız bir kelime değil bir fikir: tecellînin alıcının hazırlığına bağlı oluşu İngilizce kelimede hiç duyulmuyor.",
+            "en": "Greek theos + phainein: 'god-appearing'. It imports another tradition's frame and drops the verb of polishing entirely. What is lost is not just a word but an idea: that tajalli depends on the receiver's preparedness is inaudible in the English term.",
+            "pt": "Grego theos + phainein: 'deus-aparecer'. Importa o enquadramento de outra tradição e elimina o verbo polir. Perde-se não só uma palavra mas uma ideia: que o tajalli depende da preparação de quem recebe."
+          }
+        },
+        {
+          "dil": "pt",
+          "kelime": "Teofania",
+          "kayip": {
+            "tr": "İngilizceyle aynı: Yunanca kök, cilalama fiili yok.",
+            "en": "Same as English: a Greek root, with no verb of polishing.",
+            "pt": "Igual ao inglês: raiz grega, sem o verbo polir."
+          }
+        }
+      ]
+    },
+    "ama": {
+      "odak": "amâ",
+      "kok": {
+        "harf": "ع م ي",
+        "translit": "'-m-y",
+        "anlam": {
+          "tr": "körlük, görmezlik. 'Amâ' hem ince bir bulut hem de görememe hâli demek — kelime aynı anda hem örten şeyi hem de görmeyen gözü söylüyor.",
+          "en": "blindness, not-seeing. ''Ama' means both a thin cloud and the state of not seeing — the word names at once the thing that veils and the eye that does not see.",
+          "pt": "cegueira, não-ver. ''Ama' significa tanto uma nuvem ténue como o estado de não ver — a palavra nomeia ao mesmo tempo o que vela e o olho que não vê."
+        }
+      },
+      "diller": [
+        {
+          "dil": "tr",
+          "kelime": "Amâ (Bulut)",
+          "kayip": {
+            "tr": "Burada Türkçe şanslı: 'âmâ' Türkçede zaten 'kör' demek, yani körlük yankısını duyan tek dil bu. Kayıp, bizim parantez içinde 'Bulut' diye sabitlememizden geliyor — okuru tek anlama yönlendiriyoruz.",
+            "en": "Here Turkish is fortunate: 'ama' already means 'blind' in Turkish, so it is the one language that still hears the blindness. The loss comes from our own parenthetical gloss 'Cloud', which steers the reader to a single sense.",
+            "pt": "Aqui o turco tem sorte: 'ama' já significa 'cego' em turco, sendo a única língua que ainda ouve a cegueira. A perda vem da nossa glosa 'Nuvem', que orienta o leitor para um só sentido."
+          }
+        },
+        {
+          "dil": "en",
+          "kelime": "The Cloud",
+          "kayip": {
+            "tr": "Körlük tamamen düşüyor. İngilizce okur bir hava olayı görüyor; oysa kelime aynı anda 'görülemeyen' demek. Bu, sözlükteki en büyük tek kayıplardan biri.",
+            "en": "The blindness drops out completely. An English reader sees a weather phenomenon, whereas the word simultaneously says 'that which is not seen'. This is one of the largest single losses in the glossary.",
+            "pt": "A cegueira desaparece por completo. Um leitor inglês vê um fenómeno meteorológico, quando a palavra diz ao mesmo tempo 'aquilo que não se vê'."
+          }
+        },
+        {
+          "dil": "pt",
+          "kelime": "A Nuvem",
+          "kayip": {
+            "tr": "İngilizceyle aynı: yalnız bulut kalıyor, körlük gidiyor.",
+            "en": "Same as English: only the cloud remains, the blindness is gone.",
+            "pt": "Igual ao inglês: fica só a nuvem, a cegueira desaparece."
+          }
+        }
+      ]
+    },
+    "fena": {
+      "odak": "fenâ",
+      "kok": {
+        "harf": "ف ن ي",
+        "translit": "f-n-y",
+        "anlam": {
+          "tr": "geçip gitmek, tükenmek, yok olmak. Fiil geçişsiz: bir şey geçip gider; birisi bir şeyi yok etmez.",
+          "en": "to pass away, to be spent, to cease. The verb is intransitive: something passes away; nobody annihilates anything.",
+          "pt": "passar, esgotar-se, cessar. O verbo é intransitivo: algo passa; ninguém aniquila nada."
+        }
+      },
+      "diller": [
+        {
+          "dil": "tr",
+          "kelime": "Fenâ",
+          "kayip": {
+            "tr": "Arapça kelime korunmuş ama modern Türkçede 'fena' = 'kötü'. Sahte dost: terimi ilk gören Türkçe okur, geçip gitmeyi değil kötülüğü duyuyor. Şapkalı yazım (fenâ) bunu ancak kısmen ayırıyor.",
+            "en": "The Arabic word is preserved, but in modern Turkish 'fena' means 'bad'. A false friend: a Turkish reader meeting the term hears badness, not passing-away.",
+            "pt": "A palavra árabe preserva-se, mas em turco moderno 'fena' significa 'mau'. Um falso amigo: o leitor turco ouve maldade, não o passar."
+          }
+        },
+        {
+          "dil": "en",
+          "kelime": "Self-Effacement / Annihilation",
+          "kayip": {
+            "tr": "İki karşılık da Arapçada olmayan bir şey ekliyor: 'self' bir nesne koyuyor, 'annihilation' ise bir fâil ima ediyor. Arapça fiil geçişsizdi — geçip giden bir şey vardı, yok edilen bir 'benlik' değil.",
+            "en": "Both renderings add something the Arabic lacks: 'self' supplies an object, and 'annihilation' implies an agent. The Arabic verb was intransitive — something passes away; no 'self' is destroyed.",
+            "pt": "Ambas acrescentam algo que o árabe não tem: 'self' fornece um objecto e 'aniquilação' implica um agente. O verbo árabe era intransitivo."
+          }
+        },
+        {
+          "dil": "pt",
+          "kelime": "Extinção / Auto-anulação",
+          "kayip": {
+            "tr": "İngilizceyle aynı: 'auto-' bir benlik, 'anulação' bir fâil ekliyor.",
+            "en": "Same as English: 'auto-' supplies a self and 'anulação' an agent.",
+            "pt": "Igual ao inglês: 'auto-' acrescenta um si-mesmo e 'anulação' um agente."
+          }
+        }
+      ]
+    },
+    "beka": {
+      "odak": "bekâ",
+      "kok": {
+        "harf": "ب ق ي",
+        "translit": "b-q-y",
+        "anlam": {
+          "tr": "kalmak, geriye kalmak. Fenâ'nın tam karşısında duran sade bir fiil: geçip gitmeyen, kalan.",
+          "en": "to remain, to be left over. A plain verb standing opposite fana: that which does not pass, which remains.",
+          "pt": "permanecer, restar. Um verbo simples oposto a fana: aquilo que não passa, que permanece."
+        }
+      },
+      "diller": [
+        {
+          "dil": "tr",
+          "kelime": "Bekâ",
+          "kayip": {
+            "tr": "Kelime korunmuş ama son yıllarda Türkçede 'beka' neredeyse yalnız siyasi bir bağlamda ('devletin bekası') duyuluyor. Terimi bu çağrışımdan ayırmak okurdan ekstra bir çaba istiyor.",
+            "en": "The word is preserved, but in recent Turkish 'beka' is heard almost only in a political register ('the survival of the state'). Separating the term from that association costs the reader extra effort.",
+            "pt": "A palavra preserva-se, mas em turco recente 'beka' ouve-se quase só num registo político ('a sobrevivência do Estado')."
+          }
+        },
+        {
+          "dil": "en",
+          "kelime": "Subsistence",
+          "kayip": {
+            "tr": "Skolastik Latinceden gelen teknik bir kelime; 'kalmak' fiilinin sadeliği kayboluyor. Ayrıca fenâ ile kurduğu ikili, İngilizcede 'annihilation/subsistence' olarak iki farklı sicile düşüyor — Arapçada ikisi de gündelik fiillerdi.",
+            "en": "A technical term from scholastic Latin; the plainness of 'to remain' is lost. The pair it forms with fana also falls into two different registers in English, whereas in Arabic both were ordinary verbs.",
+            "pt": "Um termo técnico do latim escolástico; perde-se a simplicidade de 'permanecer'."
+          }
+        },
+        {
+          "dil": "pt",
+          "kelime": "Subsistência",
+          "kayip": {
+            "tr": "İngilizceyle aynı: teknik sicil, gündelik fiilin sadeliği yok.",
+            "en": "Same as English: a technical register, without the plainness of the everyday verb.",
+            "pt": "Igual ao inglês: registo técnico, sem a simplicidade do verbo quotidiano."
+          }
+        }
+      ]
+    },
+    "himmet": {
+      "odak": "himmet",
+      "kok": {
+        "harf": "ه م م",
+        "translit": "h-m-m",
+        "anlam": {
+          "tr": "kastetmek, azmetmek, bir şeye yönelmek. Himme, dağılmamış, tek noktaya toplanmış bir yönelme — ve bu gelenekte etkili olan, gerçekten bir şey yapan bir güç.",
+          "en": "to intend, to resolve, to direct oneself at something. Himma is an undispersed, single-pointed directing — and in this tradition an effective power, one that actually does something.",
+          "pt": "tencionar, resolver, dirigir-se a algo. Himma é um direccionar não disperso, num só ponto — e nesta tradição um poder efectivo."
+        }
+      },
+      "diller": [
+        {
+          "dil": "tr",
+          "kelime": "Himmet",
+          "kayip": {
+            "tr": "Kelime korunmuş ama halk dilinde 'himmet' çoğu zaman 'yardım, bereket, el uzatma' anlamına kayıyor — yani birinden gelen bir lütuf. Kökteki 'kendi azmini tek noktaya toplamak' anlamı geri plana düşüyor.",
+            "en": "The word is preserved, but in common Turkish 'himmet' drifts toward 'help, blessing' — a favour received from someone. The root sense of gathering one's own resolve to a single point recedes.",
+            "pt": "A palavra preserva-se, mas no turco comum 'himmet' desliza para 'ajuda, bênção' — um favor recebido de alguém."
+          }
+        },
+        {
+          "dil": "en",
+          "kelime": "Aspiration",
+          "kayip": {
+            "tr": "'Aspiration' bir dilek, bir özlem gibi duyuluyor — etkisiz bir iç hâl. Oysa himme bu gelenekte bir şeyi gerçekten var edebilen bir güç. Kaybolan, kelimenin etkinliği.",
+            "en": "'Aspiration' sounds like a wish or a longing — an inert inner state. But himma here is a power that can actually bring something about. What is lost is the word's efficacy.",
+            "pt": "'Aspiração' soa a desejo ou anseio — um estado interior inerte. Mas himma aqui é um poder que pode realmente realizar algo."
+          }
+        },
+        {
+          "dil": "pt",
+          "kelime": "Aspiração",
+          "kayip": {
+            "tr": "İngilizceyle aynı: dilek gibi duyuluyor, etkin gücü düşüyor.",
+            "en": "Same as English: it sounds like a wish, and the effective power drops away.",
+            "pt": "Igual ao inglês: soa a desejo e o poder efectivo desaparece."
+          }
+        }
+      ]
+    },
+    "futuvvet": {
+      "odak": "fütüvvet",
+      "kok": {
+        "harf": "ف ت ي",
+        "translit": "f-t-y",
+        "anlam": {
+          "tr": "fetâ: genç adam, delikanlı. Fütüvvet doğrudan 'gençlik'ten türer — Kur'ân'da Ashâb-ı Kehf için ve Fütûhât'ın kendi sahnelerinde (Kâbe'de karşılaşılan 'genç') aynı kelime geçer.",
+          "en": "fata: a young man. Futuwwa derives directly from 'youth' — the same word appears in the Qur'an for the Companions of the Cave and in the Futuhat's own scenes (the 'youth' met at the Ka'ba).",
+          "pt": "fata: um jovem. Futuwwa deriva directamente de 'juventude' — a mesma palavra aparece no Alcorão para os Companheiros da Caverna."
+        }
+      },
+      "diller": [
+        {
+          "dil": "tr",
+          "kelime": "Fütüvvet (Gençlik/Yiğitlik)",
+          "kayip": {
+            "tr": "Türkçe burada kökü koruyor: parantezdeki 'Gençlik' fetâ'yı doğrudan söylüyor. Kayıp küçük — 'yiğitlik' bir ahlak vurgusu ekliyor, kelime kendi başına yaş bildiriyordu.",
+            "en": "Turkish keeps the root here: the gloss 'Gençlik' (youth) says fata directly. The loss is small — 'yiğitlik' (valour) adds a moral emphasis to a word that named an age.",
+            "pt": "O turco mantém aqui a raiz: a glosa 'Gençlik' (juventude) diz fata directamente. A perda é pequena."
+          }
+        },
+        {
+          "dil": "en",
+          "kelime": "Chivalry / Futuwwa",
+          "kayip": {
+            "tr": "'Chivalry' Avrupa şövalyeliğini, atı ve feodal yemini getiriyor — hiçbiri kelimede yok. Asıl kaybolan 'genç' anlamı: Fütûhât'ın Kâbe sahnesindeki 'fetâ' ile bu terim arasındaki ses ortaklığı İngilizcede tamamen kopuyor.",
+            "en": "'Chivalry' imports European knighthood, the horse, the feudal oath — none of which is in the word. What is really lost is 'youth': the shared sound between the 'fata' of the Futuhat's Ka'ba scene and this term is severed in English.",
+            "pt": "'Cavalaria' importa a cavalaria europeia, o cavalo, o juramento feudal — nada disso está na palavra. O que se perde é 'juventude'."
+          }
+        },
+        {
+          "dil": "pt",
+          "kelime": "Cavalaria / Futuwwa",
+          "kayip": {
+            "tr": "İngilizceyle aynı: şövalyelik çağrışımı gelir, 'genç' gider.",
+            "en": "Same as English: the knightly association arrives, 'youth' departs.",
+            "pt": "Igual ao inglês: chega a associação cavaleiresca, parte a 'juventude'."
+          }
+        }
+      ]
+    },
+    "mazhar": {
+      "odak": "mazhar",
+      "kok": {
+        "harf": "ظ ه ر",
+        "translit": "z-h-r",
+        "anlam": {
+          "tr": "dışa çıkmak, görünmek. Zâhir (dış/görünen) ile aynı kök; mazhar kelimesi kalıp olarak 'bir şeyin dışa çıktığı yer' demek. Arapça okur, mazhar'ı duyduğunda zâhir'i de duyar.",
+          "en": "to come out, to appear. The same root as zahir (the outward); the form mazhar means 'the place where a thing comes out'. An Arabic reader hearing mazhar also hears zahir.",
+          "pt": "sair, aparecer. A mesma raiz de zahir (o exterior); a forma mazhar significa 'o lugar onde algo se manifesta'."
+        }
+      },
+      "diller": [
+        {
+          "dil": "tr",
+          "kelime": "Mazhar",
+          "kayip": {
+            "tr": "Kelime korunmuş, ve sözlükte zâhir de bir terim olarak var — yani bağ Arapça kökü bilen okur için duruluyor. Bilmeyen için ise iki terim birbirinden bağımsız iki kelime gibi görünüyor.",
+            "en": "The word is preserved, and zahir is also a glossary term — so the link stands for a reader who knows the root. For one who does not, they look like two unrelated words.",
+            "pt": "A palavra preserva-se, e zahir também é um termo do glossário — a ligação mantém-se para quem conhece a raiz."
+          }
+        },
+        {
+          "dil": "en",
+          "kelime": "Locus of Manifestation",
+          "kayip": {
+            "tr": "Teknik olarak doğru ama 'zâhir' ile görünür bağ tamamen kopuyor: İngilizce okur 'the Outward' ile 'Locus of Manifestation' arasında hiçbir ses ortaklığı görmüyor. Arapçada bunlar aynı kökün iki kalıbıydı.",
+            "en": "Technically accurate, but the visible tie to 'zahir' is severed: an English reader sees no shared sound between 'the Outward' and 'Locus of Manifestation'. In Arabic these were two patterns of one root.",
+            "pt": "Tecnicamente correcto, mas o laço visível com 'zahir' rompe-se: nenhum som partilhado entre 'the Outward' e 'Lócus de Manifestação'."
+          }
+        },
+        {
+          "dil": "pt",
+          "kelime": "Lócus de Manifestação",
+          "kayip": {
+            "tr": "İngilizceyle aynı: kök ortaklığı görünmez oluyor.",
+            "en": "Same as English: the shared root becomes invisible.",
+            "pt": "Igual ao inglês: a raiz partilhada torna-se invisível."
+          }
+        }
+      ]
+    }
+  }
+}
