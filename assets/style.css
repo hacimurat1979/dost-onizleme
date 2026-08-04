@@ -3231,17 +3231,21 @@ a.daphne-bag__ad { color: var(--accent-interactive); }
 
 .detail-panel {
   position: fixed;
-  /* top/height (not padding-top alone) reserve the header's space -- with
-     overflow-y:auto and only padding-top doing the offsetting, scrolling
-     could slide content up INTO that padding (revealing it, since padding
-     is part of the scrollable box) and the panel's own z-index (55, higher
-     than the app header) then painted that content OVER the header instead
-     of it staying safely hidden behind. The sticky title/A-/A+ bar (in
-     front of the panel's OWN content) wasn't actually the thing failing --
-     the panel's box itself reached too far up (kullanıcı bildirimi,
-     2026-08-04: "kayan yazı köprünün üst kısmında yeniden görünür
-     oluyor"). Starting the box below the header removes that space from
-     the scrollable area entirely, so there's nothing to scroll into. */
+  /* Starting the box below the app header (not padding-top alone) removes
+     that space from the scrollable area entirely -- but a SECOND, smaller
+     leak remained even after that fix: the panel's own padding-top (12px)
+     sits ABOVE the sticky .typography-controls bar, and since padding is
+     part of the scrollport that overflow-y:auto clips (not part of the
+     scrollport that's covered by an opaque background), scrolled content
+     was still visible through that 12px strip -- content peeking out
+     above the sticky bar's stuck position instead of staying hidden
+     behind it (kullanıcı bildirimi, 2026-08-04: "kayan yazı köprünün üst
+     kısmında yeniden görünür oluyor", ikinci tur: "düzeltme işe yaramadı
+     halen aynı görüntü var"). Fix: give the panel NO top padding, and let
+     the sticky bar reserve that same 12px as its OWN padding-top instead
+     -- its opaque background then covers the strip that used to be a
+     peephole, because the sticky element now starts flush with the
+     panel's true (padding-free) top edge. See .typography-controls. */
   top: var(--app-header-height, 96px);
   right: 0;
   height: calc(100% - var(--app-header-height, 96px));
@@ -3249,7 +3253,7 @@ a.daphne-bag__ad { color: var(--accent-interactive); }
   background: var(--surface-1);
   border-left: 1px solid var(--border);
   box-shadow: -8px 0 24px rgba(20,15,8,0.15);
-  padding: 12px 24px 24px;
+  padding: 0 24px 24px;
   overflow-y: auto;
   z-index: 55;
   animation: detail-panel-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -4229,7 +4233,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 
 @media (max-width: 640px) {
   .app-header { flex-direction: column; }
-  .detail-panel { width: 100vw; top: var(--app-header-height, 64px); height: calc(100% - var(--app-header-height, 64px)); padding-top: 12px; z-index: 60; }
+  .detail-panel { width: 100vw; top: var(--app-header-height, 64px); height: calc(100% - var(--app-header-height, 64px)); z-index: 60; }
   .detail-panel__close { top: 12px; z-index: 61; }
   .detail-panel__print { top: 12px; right: 64px; z-index: 61; }
   .btn-ghost { padding: 8px 11px; font-size: 0.8rem; }
@@ -4519,8 +4523,13 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
      the notebook star button was added further left and started silently
      hiding the A+ button under it (2026-08-01 kullanıcı notu). Push them
      clear of the full reserved zone instead of letting them sit underneath
-     it. */
-  padding: 0 164px 12px 0;
+     it.
+     padding-top:12px (moved here from .detail-panel's own padding, see
+     that rule's comment) is what keeps this bar off the panel's very top
+     edge -- kept here instead so the bar's own opaque background covers
+     that space too, closing the scroll-peephole that padding on the
+     scrolling ancestor left open. */
+  padding: 12px 164px 12px 0;
   border-bottom: 1px solid var(--gridline);
   position: sticky;
   top: 0;
@@ -6784,6 +6793,25 @@ body.share-stage-open { overflow: hidden; }
 .share-halo {
   fill: var(--sahne-hale);
   filter: blur(18px);
+}
+/* Sarmalın tepesindeki Zât düğümünün hâlesi -- ontoloji/esmâ'daki
+   .node--root .node-halo ile AYNI nefes ritmi (2026-08-04, kullanıcı
+   isteği: "zat düğümü sitede her nerede geçiyorsa daima birebir aynı
+   olmalı"). Işık kaynağı statik bir parıltı filtresi değil, altı
+   saniyelik nefes alan bir hâle -- oradaki gibi burada da. */
+.share-zat-halo {
+  fill: var(--sahne-vurgu);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: share-zat-halo-breathe 6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes share-zat-halo-breathe {
+  0%, 100% { opacity: 0.14; transform: scale(1); }
+  50%      { opacity: 0.34; transform: scale(1.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .share-zat-halo { animation: none; opacity: 0.2; }
 }
 /* Metin, TikTok arayüzünün kapatmadığı orta bandda kalıyor: altta ~%20,
    sağda ~%18 butonlarla örtülüyor. */

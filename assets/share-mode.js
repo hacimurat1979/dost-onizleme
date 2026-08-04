@@ -640,7 +640,7 @@
   // düğümleri querySelector(All) ile yeniden aramak yerine, sahne AÇILIRKEN
   // (bir kez) önbelleğe alınıyor. DOM stageMarkup() tarafından yalnız
   // openStage()'de kuruluyor, döngü boyunca değişmiyor -- bu yüzden güvenli.
-  let cacheFrame = null, cacheSvg = null, cacheSpiral = null, cacheHalo = null, cacheDots = null, cacheLines = null, cacheRule = null;
+  let cacheFrame = null, cacheSvg = null, cacheSpiral = null, cacheHalo = null, cacheZatHalo = null, cacheDots = null, cacheLines = null, cacheRule = null;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Şablon başına döngü uzunluğu (ms) ve metin vuruşları. Vuruşlar
@@ -931,6 +931,11 @@
     if (scene && scene.tpl === "fusus") {
       if (cacheSpiral) cacheSpiral.setAttribute("d", "");
       if (cacheHalo) cacheHalo.style.opacity = "0";
+      // display:none, opacity değil -- .share-zat-halo'nun CSS nefes
+      // animasyonu opacity'yi her karede kendi yazıyor, satır-içi
+      // opacity:0 onu geçici olarak eziyor ama animasyon devam ettiği
+      // için bir sonraki karede yeniden görünür oluyordu.
+      if (cacheZatHalo) cacheZatHalo.style.display = "none";
       if (cacheDots) cacheDots.forEach((c) => { c.style.opacity = "0"; });
       return;
     }
@@ -960,6 +965,7 @@
       d += (i === 0 ? "M" : "L") + X.toFixed(1) + "," + Y.toFixed(1);
     }
     cacheSpiral.setAttribute("d", z.cizgisiz ? "" : d);
+    let zatPt = null;
     cacheDots.forEach((c, i) => {
       const p = pts[i];
       if (!p) { c.style.opacity = "0"; return; }
@@ -1004,21 +1010,32 @@
       } else {
         c.style.fill = "";
       }
-      // Sarmalın en tepesi: "O'ndan geldik, O'na gidiyoruz" (CLAUDE.md) --
-      // dönüş her zaman bu düğüme doğru yükseliyordu (vert = -H/2 + H*t,
-      // i = n-1 en yüksek nokta), ama düğümün kendisi öbürlerinden hiç
-      // ayrışmıyordu. Sitenin başka yerlerindeki Zât düğümüyle (GU.ZAT_FILL,
-      // bembeyaz) aynı beyazı ve --sahne-vurgu'nun altın parıltısını
-      // veriyoruz ki sarmalın yönü de hedefi de aynı anda okunsun.
-      if (i === z.n - 1) {
+      // Sarmalın tepesi: "O'ndan geldik, O'na gidiyoruz" (CLAUDE.md).
+      // ÖLÇÜLEN DÜZELTME (2026-08-04, kullanıcı bildirimi): önce i = n-1'i
+      // "tepe" sandık, ama tilt.project()'in gerçek izdüşüm matematiğini
+      // (yaw tam turda ekran-Y'yi vert ile aynı yönde taşımıyor) sayısal
+      // olarak sınayınca i = n-1'in EKRANDA ALTA, i = 0'ın ÜSTE düştüğü
+      // ortaya çıktı -- kullanıcının "düğüm altta" gözlemiyle birebir
+      // örtüşüyor. Düğümün görünümü de artık ontoloji/esmâ'daki Zât
+      // düğümünün BİREBİR AYNISI: bembeyaz gövde + altın, 6 saniyelik
+      // nefes alan bir hâle (statik bir parıltı filtresi değil) -- bkz.
+      // .node--root .node-halo (style.css), oran (34/13 ≈ 2.6) da oradan.
+      if (i === 0) {
         c.style.fill = "#ffffff";
-        c.style.filter = "drop-shadow(0 0 " + (z.nokta * 2.4).toFixed(1) + "px var(--sahne-vurgu)) drop-shadow(0 0 " + (z.nokta * 0.9).toFixed(1) + "px var(--sahne-vurgu))";
-        c.setAttribute("r", (z.nokta * p.depth * br * 1.55).toFixed(2));
+        c.style.filter = "";
+        c.setAttribute("r", (z.nokta * p.depth * br * 2.6).toFixed(2));
         c.style.opacity = "1";
+        zatPt = p;
       } else {
         c.style.filter = "";
       }
     });
+    if (zatPt && cacheZatHalo) {
+      cacheZatHalo.style.display = "";
+      cacheZatHalo.setAttribute("cx", zatPt.x.toFixed(1));
+      cacheZatHalo.setAttribute("cy", zatPt.y.toFixed(1));
+      cacheZatHalo.setAttribute("r", (z.nokta * zatPt.depth * 2.6 * 1.4).toFixed(2));
+    }
     // Merkezdeki nefes alan halka: ontoloji/esmâ'daki Zât halosuyla aynı
     // 6 saniyelik ritim.
     const halo = cacheHalo;
@@ -1090,6 +1107,7 @@
       '<svg class="share-stage__svg" aria-hidden="true">' +
       '<circle class="share-halo"></circle>' +
       '<path class="share-spiral" fill="none"></path>' +
+      '<circle class="share-zat-halo"></circle>' +
       new Array(NODE_COUNT).fill('<circle class="share-dot"></circle>').join("") +
       "</svg>" +
       helixMarkup +
@@ -1385,6 +1403,7 @@
     cacheSvg = stageEl.querySelector(".share-stage__svg");
     cacheSpiral = cacheSvg.querySelector(".share-spiral");
     cacheHalo = cacheSvg.querySelector(".share-halo");
+    cacheZatHalo = cacheSvg.querySelector(".share-zat-halo");
     cacheDots = cacheSvg.querySelectorAll(".share-dot");
     cacheLines = stageEl.querySelectorAll(".share-line");
     cacheRule = stageEl.querySelector(".share-rule");
@@ -1465,7 +1484,7 @@
     if (chromeTimer) { clearTimeout(chromeTimer); chromeTimer = 0; }
     if (helixHandle) { helixHandle.destroy(); helixHandle = null; }
     if (stageEl) { stageEl.remove(); stageEl = null; }
-    cacheFrame = cacheSvg = cacheSpiral = cacheHalo = cacheDots = cacheLines = cacheRule = null;
+    cacheFrame = cacheSvg = cacheSpiral = cacheHalo = cacheZatHalo = cacheDots = cacheLines = cacheRule = null;
     document.body.classList.remove("share-stage-open");
   }
 
