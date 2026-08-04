@@ -1895,11 +1895,43 @@ button.futuhat-part-chip:hover {
 }
 
 .futuhat-maindiagram {
+  position: relative;
   background: var(--page-plane);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px 12px 16px;
   margin-bottom: 34px;
+}
+
+/* Büyütme düğmesi artık diyagramı SARMALAYAN bir role="button" değil, onun
+   YANINDA duran gerçek bir <button> (2026-08-04, pa11y-ci/axe "Interactive
+   controls must not be nested" bulgusu). Eskiden diyagramın tamamı
+   tabindex+role="button" taşıyordu; ağaç düğümlerine de aynı özellikleri
+   verdiğimizde (aria-label düzeltmesiyle) bu, bir düğmenin İÇİNDE başka
+   düğmeler olması gibi görünüyordu -- axe'in haklı olarak reddettiği bir
+   yapı. Artık dış kapsayıcı sade bir div (fare tıklaması hâlâ çalışıyor,
+   yalnız ARIA rolü yok), klavye/okuyucu erişimi bu ayrı düğmeden geliyor. */
+.futuhat-diagram-enlarge-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--page-plane) 85%, transparent);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.futuhat-diagram-enlarge-btn:hover,
+.futuhat-diagram-enlarge-btn:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
 }
 
 .futuhat-tree {
@@ -2130,6 +2162,7 @@ button.futuhat-part-chip:hover {
 }
 
 .futuhat-inline-diagram {
+  position: relative;
   background: var(--page-plane);
   border: 1px solid var(--border);
   border-radius: 14px;

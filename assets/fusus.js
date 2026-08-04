@@ -391,7 +391,11 @@
         sonuclar.forEach(function (s) {
           var item = document.createElement("a");
           item.className = "futuhat-anlamsal-box__item";
-          item.href = s.route;
+          // pasaj-vektorleri-*.json'daki route kök-göreli ("/futuhat/...") --
+          // canlıda (base="/") sorun çıkarmıyordu ama önizlemede (base=
+          // "/dost-onizleme/") kökten çözüldüğü için 404 veriyordu (2026-08-04
+          // kullanıcı bildirimi, futuhat.js'teki ikizinde bulundu).
+          item.href = s.route.replace(/^\//, "");
           item.innerHTML = '<span class="futuhat-anlamsal-box__title">' + esc(s.baslik) + "</span>"
             + '<span class="futuhat-anlamsal-box__sebep">' + esc(s.ozet) + "</span>";
           box.appendChild(item);

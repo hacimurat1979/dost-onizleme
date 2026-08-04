@@ -92,6 +92,26 @@
     if (activeTipNodeId) hideTip();
   });
 
+  // Diyagramı büyüten AYRI bir <button> -- diyagramın kendisini
+  // sarmalayan bir role="button" değil, çünkü ağaç tipi diyagramların
+  // içindeki düğümler de kendi başlarına klavyeyle odaklanabilir/
+  // etkileşimli (bkz. renderRadialTree); bir düğmenin içinde başka
+  // düğmeler olması axe'in "Interactive controls must not be nested"
+  // kuralını ihlal ediyordu (2026-08-04, pa11y-ci'yi kontrol.py'ye
+  // bağlarken bulundu). container SIBLING olarak eklenir, mount'u SARMALAMAZ.
+  function addEnlargeButton(container, mount, captionText) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "futuhat-diagram-enlarge-btn";
+    btn.setAttribute("aria-label", tt({ tr: "Çizimi büyüt", en: "Enlarge diagram", pt: "Ampliar diagrama" }));
+    btn.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="14.6" y1="14.6" x2="20" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openDiagramLightbox(mount, captionText);
+    });
+    container.appendChild(btn);
+  }
+
   // --- Diagram lightbox (click a diagram to see it enlarged) ---
   function openDiagramLightbox(mount, captionText) {
     window.DostLightbox.open({
@@ -395,7 +415,14 @@
       .append("svg")
       .attr("class", "futuhat-tree__svg")
       .attr("viewBox", `${x0} ${y0} ${x1 - x0} ${y1 - y0}`)
-      .attr("role", "img")
+      // role="img" (diğer diyagram tiplerinde olduğu gibi statik/tek parça)
+      // burada YANLIŞ: bu SVG'nin içinde tek tek klavyeyle odaklanabilen,
+      // role="button" taşıyan gerçek düğümler var (aşağıda). "img" rolü
+      // ARIA'da "içeriği tek bir bütün olarak sun, altındakileri gizle"
+      // demek -- axe bunu haklı olarak "düğmenin içinde düğme" gibi
+      // işaretliyordu (nested-interactive, 2026-08-04). "group" bir
+      // kapsayıcıdır, etkileşimli torunları gizlemez.
+      .attr("role", "group")
       .attr("aria-label", tt(opts.ariaLabel || { tr: "Kavram haritası", en: "Concept map", pt: "Mapa de conceitos" }));
 
     const linkGen = d3.linkRadial().angle((d) => d.x).radius((d) => d.y);
@@ -425,6 +452,7 @@
       .attr("data-note-en", (d) => (d.data.note ? d.data.note.en : ""))
       .attr("data-note-pt", (d) => (d.data.note ? d.data.note.pt : ""))
       .attr("tabindex", "0")
+      .attr("role", "button")
       .attr("aria-label", (d) => tt(d.data.label))
       .on("mouseenter", (event, d) => showTip(d, event))
       .on("mousemove", (event) => moveTip(event))
@@ -1216,17 +1244,9 @@
       ariaLabel: part.title,
     });
     mainTreeEl.classList.add("futuhat-tree--clickable");
-    mainTreeEl.tabIndex = 0;
-    mainTreeEl.setAttribute("role", "button");
-    mainTreeEl.setAttribute("aria-label", tt({ tr: "Çizimi büyüt", en: "Enlarge diagram", pt: "Ampliar diagrama" }));
     const mainCaption = tt(part.mainDiagram.caption);
     mainTreeEl.addEventListener("click", () => openDiagramLightbox(mainTreeEl, mainCaption));
-    mainTreeEl.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openDiagramLightbox(mainTreeEl, mainCaption);
-      }
-    });
+    addEnlargeButton(mainTreeEl.parentElement, mainTreeEl, mainCaption);
 
     const sectionsEl = document.getElementById("futuhat-sections");
     part.sections.forEach((section, si) => {
@@ -1291,17 +1311,9 @@
           }
 
           mount.classList.add("futuhat-tree--clickable");
-          mount.tabIndex = 0;
-          mount.setAttribute("role", "button");
-          mount.setAttribute("aria-label", tt({ tr: "Çizimi büyüt", en: "Enlarge diagram", pt: "Ampliar diagrama" }));
           const lightboxCaption = block.caption ? tt(block.caption) : tt(block.source);
           mount.addEventListener("click", () => openDiagramLightbox(mount, lightboxCaption));
-          mount.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              openDiagramLightbox(mount, lightboxCaption);
-            }
-          });
+          addEnlargeButton(dCard, mount, lightboxCaption);
         }
       });
       sectionsEl.appendChild(secEl);
@@ -1398,7 +1410,12 @@
         sonuclar.forEach((s) => {
           const item = document.createElement("a");
           item.className = "futuhat-anlamsal-box__item";
-          item.href = s.route;
+          // pasaj-vektorleri-*.json'daki route kök-göreli üretildi ("/futuhat/...")
+          // -- canlıda (base="/") sorun çıkarmıyordu ama önizlemede (base=
+          // "/dost-onizleme/") kökten çözüldüğü için 404 veriyordu (2026-08-04
+          // kullanıcı bildirimi). Baştaki "/" atılınca <base> etiketine göre
+          // doğru çözülüyor -- sitede zaten kurulu olan aynı düzeltme.
+          item.href = s.route.replace(/^\//, "");
           item.innerHTML = `<span class="futuhat-anlamsal-box__title">${escapeHtml(s.baslik)}</span><span class="futuhat-anlamsal-box__sebep">${escapeHtml(s.ozet)}</span>`;
           box.appendChild(item);
         });
