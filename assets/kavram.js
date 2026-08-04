@@ -168,10 +168,14 @@ window.__kavramApp = (function () {
 
   const KAVRAM_GAUGE_R = 8;
   const KAVRAM_GAUGE_C = 2 * Math.PI * KAVRAM_GAUGE_R;
-  function kavramGaugeSvg(frac, hue) {
+  // Halkanın rengi ONCE görünüme göre değişiyordu (ontoloji/esma/terimler ayrı
+  // ton) -- kullanıcı 2026-08-04'te bunun "yoğunluk" göstergesi olarak site
+  // genelinde tek renge (Füsûs sarmalının düğüm rengi, --helix-gold-rim)
+  // getirilmesini istedi.
+  function kavramGaugeSvg(frac) {
     const f = Math.max(0.05, Math.min(1, frac));
     const off = KAVRAM_GAUGE_C * (1 - f);
-    return `<svg class="kavram-tile__gauge" viewBox="0 0 22 22" aria-hidden="true" style="--tag-hue:${hue}">
+    return `<svg class="kavram-tile__gauge" viewBox="0 0 22 22" aria-hidden="true">
       <circle class="kavram-tile__gauge-track" cx="11" cy="11" r="${KAVRAM_GAUGE_R}"></circle>
       <circle class="kavram-tile__gauge-arc" cx="11" cy="11" r="${KAVRAM_GAUGE_R}"
         stroke-dasharray="${KAVRAM_GAUGE_C.toFixed(2)}" stroke-dashoffset="${off.toFixed(2)}"></circle>
@@ -202,7 +206,6 @@ window.__kavramApp = (function () {
           const items = groups[v];
           const scores = items.map(zenginlikSkoru);
           const lo = Math.min.apply(null, scores), hi = Math.max.apply(null, scores);
-          const hue = VIEW_HUE[v] != null ? VIEW_HUE[v] : 0;
           return (
             `<div class="kavram-list__group"><h2>${tt(VIEW_LABEL[v])}</h2><div class="kavram-list__grid">` +
             items
@@ -210,7 +213,7 @@ window.__kavramApp = (function () {
                 const frac = hi === lo ? 0.5 : (scores[i] - lo) / (hi - lo);
                 return (
                   `<button type="button" class="kavram-tile" data-view="${k.view}" data-id="${k.id}" title="${escapeHtmlKavram(tt(k.isim))}">` +
-                  kavramGaugeSvg(frac, hue) +
+                  kavramGaugeSvg(frac) +
                   `<span class="kavram-tile__label">${tt(k.isim)}</span>` +
                   `</button>`
                 );

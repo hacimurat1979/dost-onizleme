@@ -29,7 +29,7 @@
 
   var VIEWS = {
     __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-K4sFr2bJxo4Mb74GC9YPUlwENeQ2/cvhFW7lpQj/jqSxwAkgKEgRL9Q4ZBZBW8ql" },
-    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-3aXX2zmgZnm46ARuTAKtVyXLIhGaekJC5dyyf3nBdXTSRPIxfAGJFvp/h9lvzdP4" },
+    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-O3adaeJf3nGp7ixKz2xEgI2d7eaCq4rgrBVVdyfkhckwFoCh9jgGKW4ZeL616gFH" },
     __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-NqjeB685KS7IBcItAvAwOeWxt/vF6SrgMn3SvwFR5aON3x+23Cpcv81QwL2B+Sp8" },
     __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-9LylDZ5mjiEKs/Bo/Wc+qYTUdeFt56xQCT71VdhE2weqN6MLMuhvgporkSM4qwXW" },
     __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-u8Hu4zkYTCJHkdw63jhcfroxHJYcXgoeD0jTqrqgwkjmS5fyW/RYFqdqS2kEhxQm" },

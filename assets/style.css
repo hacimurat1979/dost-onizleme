@@ -8224,13 +8224,10 @@ mark.durus-vurgu-es {
 }
 .kavram-tile__gauge-arc {
   fill: none;
-  stroke: hsl(var(--tag-hue, 38) 42% 44%);
+  stroke: var(--helix-gold-rim);
   stroke-width: 2.4;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.viz-root[data-theme="dark"] .kavram-tile__gauge-arc {
-  stroke: hsl(var(--tag-hue, 38) 48% 62%);
 }
 @media (max-width: 480px) {
   .kavram-list__grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }

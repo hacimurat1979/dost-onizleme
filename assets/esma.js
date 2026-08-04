@@ -60,9 +60,34 @@
     const renderer = r.diagram && relationDiagramRenderers[r.diagram.type];
     if (!renderer) return "";
     return `<div class="term-diagram-row"><div class="term-diagram-card">
-      ${renderer(r.diagram)}
+      <div class="term-diagram-svg-wrap" data-relation-diagram="1" role="button" tabindex="0"
+           aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${renderer(r.diagram)}</div>
       <p class="term-diagram-caption">${tt(r.diagram.note)}</p>
     </div></div>`;
+  }
+
+  // terimler.js'nin aynı .term-diagram-card görselini büyütme (lightbox)
+  // ile bağlayan karşılığı burada eksikti -- düğme görünüyor, tıklama hiçbir
+  // şey yapmıyordu (bkz. ontology.js'teki aynı kusur, kullanıcı bildirimi
+  // 2026-08-04). showRelationDetail'in openPanel'inden hemen sonra çağrılır.
+  function wireRelationDiagram(r) {
+    if (!r.diagram || !window.DostLightbox) return;
+    const renderer = relationDiagramRenderers[r.diagram.type];
+    if (!renderer) return;
+    const wrap = detailContent.querySelector('[data-relation-diagram="1"]');
+    if (!wrap) return;
+    const open = () => {
+      window.dostTrack && window.dostTrack("sema_acildi", { type: r.diagram.type });
+      window.DostLightbox.open({
+        closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+        svgHtml: renderer(r.diagram),
+        caption: tt(r.diagram.note),
+      });
+    };
+    wrap.addEventListener("click", open);
+    wrap.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
   }
 
   const RELATION_TYPE_META = {
@@ -1327,6 +1352,7 @@
       <div class="detail-block detail-block--ibnarabi"><p>${tt(r.label)}</p></div>
     `);
     detailPanel.hidden = false;
+    wireRelationDiagram(r);
   }
 
   // ---------------------------------------------------------------------------

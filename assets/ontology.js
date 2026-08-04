@@ -197,9 +197,36 @@
     if (!renderer) return "";
     return `<div class="term-diagram-row"><div class="term-diagram-card">
       ${ODD_DIAGRAM_DEFS}
-      ${renderer(obj.diagram)}
+      <div class="term-diagram-svg-wrap" data-entity-diagram="1" role="button" tabindex="0"
+           aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${renderer(obj.diagram)}</div>
       <p class="term-diagram-caption">${tt(obj.diagram.note)}</p>
     </div></div>`;
+  }
+
+  // terimler.js'nin aynı adı taşıyan çizimleri (groupDiagramHtml) tıklayınca
+  // büyüyor (DostLightbox); bu görünümdeki karşılığı (ör. perde düğümünün
+  // "veil-likeness" şeması) aynı .term-diagram-card görselini paylaşıyor ama
+  // hiçbir yerde büyütme bağlanmamıştı -- düğme görünüyor, tutmuyordu
+  // (kullanıcı bildirimi, 2026-08-04). showNodeDetail/showEdgeDetail
+  // innerHTML'i yazdıktan hemen sonra çağrılmalı.
+  function wireEntityDiagram(obj) {
+    if (!obj.diagram || !window.DostLightbox) return;
+    const renderer = entityDiagramRenderers[obj.diagram.type];
+    if (!renderer) return;
+    const wrap = detailContent.querySelector('[data-entity-diagram="1"]');
+    if (!wrap) return;
+    const open = () => {
+      window.dostTrack && window.dostTrack("sema_acildi", { type: obj.diagram.type });
+      window.DostLightbox.open({
+        closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+        svgHtml: ODD_DIAGRAM_DEFS + renderer(obj.diagram),
+        caption: tt(obj.diagram.note),
+      });
+    };
+    wrap.addEventListener("click", open);
+    wrap.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
   }
 
   function sirlarGestureDiagramHtml() {
@@ -2695,6 +2722,7 @@
     `;
     detailPanel.hidden = false;
     wireGate(d);
+    wireEntityDiagram(d);
     if (nodeSel) nodeSel.classed("node--active", (n) => n.id === d.id);
   }
 
@@ -2782,6 +2810,7 @@
       </div>
     `;
     detailPanel.hidden = false;
+    wireEntityDiagram(l);
     if (nodeSel) nodeSel.classed("node--active", false);
   }
 
