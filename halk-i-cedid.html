@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Halk-ı Cedîd — Dost Arabi görselleştirme (docs/icerik-yol-haritasi.md D2) -->
+<title>Halk-ı Cedîd — Dost Arabi</title>
+<style>
+:root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}}
+:root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040}
+:root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1rem;max-width:640px}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
+
+#stage{width:min(420px,92vw);height:min(420px,92vw);display:block;margin:.4rem auto 1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+
+.track-wrap{width:min(420px,90vw);margin:0 auto 1.3rem;text-align:center}
+.track{position:relative;height:34px;margin:0 auto}
+.track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
+.track-end{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:var(--border);transform:translate(-50%,-50%)}
+.track-end.left{left:0}
+.track-end.right{left:100%}
+.track-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal);transform:translate(-50%,-50%);cursor:grab;touch-action:none}
+.track-handle:active{cursor:grabbing}
+.track-handle:focus-visible{outline:2px solid var(--liminal);outline-offset:3px}
+.track-labels{display:flex;justify-content:space-between;margin-top:.55rem;font-size:.76rem;color:var(--muted);gap:1rem}
+.track-labels span{max-width:150px;line-height:1.4}
+.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
+.grab-hint.gone{opacity:.28}
+
+.quote-box{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem}
+.quote-text{font-size:.88rem;line-height:1.75;font-style:italic}
+.quote-src{font-size:.72rem;color:var(--muted);margin-top:.55rem}
+
+.aha{width:min(560px,96vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.75;color:var(--liminal);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;white-space:pre-line}
+.aha.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="hTitle">Halk-ı Cedîd</h1>
+  <p class="sub" id="hSub">Âlem bir kez yaratılıp bırakılmış değil — her nefeste yeniden yaratılıyor. Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor.</p>
+</header>
+
+<svg id="stage" viewBox="0 0 420 420" role="img" aria-label="Bir noktanın her an yeniden belirişi"></svg>
+
+<div class="track-wrap">
+  <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Bakışının çözünürlüğünü sürükle">
+    <div class="track-line"></div>
+    <div class="track-end left"></div>
+    <div class="track-end right"></div>
+    <div class="track-handle" id="handle"></div>
+  </div>
+  <div class="track-labels">
+    <span id="labelLeft"></span>
+    <span id="labelRight"></span>
+  </div>
+  <p class="grab-hint" id="grabHint">Sürükle (ok tuşları da çalışır)</p>
+</div>
+
+<div class="quote-box">
+  <p class="quote-text" id="quoteText"></p>
+  <p class="quote-src" id="quoteSrc"></p>
+</div>
+
+<p class="aha" id="aha"></p>
+
+<script>
+const LA={
+  tr:{
+    title:'Halk-ı Cedîd',
+    sub:'Âlem bir kez yaratılıp bırakılmış değil — her nefeste yeniden yaratılıyor. Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor.',
+    labelLeft:'fark etmediğin hâliyle',
+    labelRight:'yavaşça baktığında',
+    grab:'Sürükle (ok tuşları da çalışır)',
+    aha:'Nokta hiç durmadı.\nSen daha yavaş bakmaya başladın — ve aradaki karanlık göründü.',
+    quotes:[
+      { text:'"Bu makam sahibi her nefes yeni bir bilgi içindedir. O sürekli bir yaratılıştayken başkaları o yaratılıştan perdelenmiştir."', src:'Fütûhât-ı Mekkiyye, Cilt XV, 416. Bölüm' },
+      { text:'"Cömertlik ve nefesler vesilesiyle oluşmakta; yaratılış daimi / Bir gayede sona ermez."', src:'Fütûhât-ı Mekkiyye, Cilt XIV, 408. Bölüm (açılış şiiri)' },
+    ],
+  },
+  en:{
+    title:'Perpetual Renewal',
+    sub:'The world is not something created once and left — it is recreated at every breath. We do not notice, because two successive creations resemble each other so closely.',
+    labelLeft:'as you never notice it',
+    labelRight:'once you look slowly',
+    grab:'Drag (arrow keys work too)',
+    aha:"The point never stopped.\nYou began looking more slowly — and the darkness between became visible.",
+    quotes:[
+      { text:'"The holder of this station is in a new knowledge with every breath. He is in a perpetual creation while others are veiled from that creation."', src:'Al-Futuhat al-Makkiyya, Vol. XV, Chapter 416' },
+      { text:'"Coming-to-be through generosity and breaths; creation is perpetual / It does not end at any goal."', src:'Al-Futuhat al-Makkiyya, Vol. XIV, Chapter 408 (opening poem)' },
+    ],
+  },
+  pt:{
+    title:'Renovação Perpétua',
+    sub:'O mundo não é algo criado uma vez e deixado — é recriado a cada alento. Não damos por isso, porque duas criações sucessivas se assemelham muito.',
+    labelLeft:'como nunca reparas',
+    labelRight:'quando olhas devagar',
+    grab:'Arraste (as setas também funcionam)',
+    aha:'O ponto nunca parou.\nComeçaste a olhar mais devagar — e a escuridão entre eles tornou-se visível.',
+    quotes:[
+      { text:'"Quem detém esta estação está num conhecimento novo a cada alento. Está numa criação perpétua enquanto outros estão velados dessa criação."', src:'Al-Futuhat al-Makkiyya, Vol. XV, Capítulo 416' },
+      { text:'"Vir-a-ser pela generosidade e pelos alentos; a criação é perpétua / Não termina em nenhuma meta."', src:'Al-Futuhat al-Makkiyya, Vol. XIV, Capítulo 408 (poema de abertura)' },
+    ],
+  },
+};
+
+let curLang='tr', pos=0, touched=false;
+const $=id=>document.getElementById(id);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function renderAll(){
+  const d=LA[curLang];
+  $('hTitle').textContent=d.title;
+  $('hSub').textContent=d.sub;
+  $('labelLeft').textContent=d.labelLeft;
+  $('labelRight').textContent=d.labelRight;
+  $('grabHint').textContent=d.grab;
+  $('aha').textContent=d.aha;
+  const q=d.quotes[quoteIdx];
+  $('quoteText').textContent=q.text;
+  $('quoteSrc').textContent=q.src;
+}
+function setLang(l){ curLang=l; renderAll(); }
+
+let quoteIdx=0;
+setInterval(()=>{ quoteIdx=(quoteIdx+1)%LA[curLang].quotes.length; const q=LA[curLang].quotes[quoteIdx]; $('quoteText').textContent=q.text; $('quoteSrc').textContent=q.src; }, 9000);
+
+// ── Sahne: bir noktanın her an yeniden belirişi ────────────────────────────
+// GORSEL_DIL.md: kavramı resmetme, davranışını resmet. Nokta hiçbir zaman
+// "kayarak" hareket etmiyor -- her tık'ta ekran bir an KARARIYOR (yokluk
+// aralığı), sonra nokta yeni bir açıda YENİDEN BELİRİYOR. Çözünürlük
+// yüksekken (tık aralığı ~16ms) bu karartı gözle görülmeyecek kadar kısa --
+// göz onu "sürekli dönen bir nokta" diye okur (416: "başkaları o
+// yaratılıştan perdelenmiştir"). Kullanıcı sürükledikçe DÜNYA yavaşlamıyor
+// -- tık aralığı büyüdükçe aynı açısal hızda çok daha fazla mesafe atlanmış
+// oluyor, bu yüzden ardışık iki beliriş birbirine daha az benziyor: önce
+// karartı görünür oluyor, sonra sıçramalar öngörülemez hale gelip nokta bir
+// "dönen şey" olmaktan çıkıp dağınık parıltılara dönüşüyor -- form,
+// form olmaktan çıkıyor.
+const svg=document.getElementById('stage');
+const NS='http://www.w3.org/2000/svg';
+const cx=210, cy=210, R=140;
+const orbit=document.createElementNS(NS,'circle');
+orbit.setAttribute('cx',cx); orbit.setAttribute('cy',cy); orbit.setAttribute('r',R);
+orbit.setAttribute('fill','none');
+orbit.setAttribute('stroke','var(--border)');
+orbit.setAttribute('stroke-width','1');
+orbit.setAttribute('stroke-dasharray','1 5');
+svg.appendChild(orbit);
+const dot=document.createElementNS(NS,'circle');
+dot.setAttribute('r','7');
+dot.setAttribute('fill','var(--gold)');
+svg.appendChild(dot);
+
+const PERIOD_MS=3200; // bir tam tur -- "gerçek" açısal hız, hiç değişmiyor
+let rafId=0;
+
+function tickIntervalFromPos(p){
+  // 16ms (60fps, sürekli görünür) -> 1400ms (sıçramalar öngörülemez)
+  return 16*Math.pow(1400/16, p);
+}
+function voidRatioFromPos(p){
+  // Karartının o tık aralığı içindeki payı -- düşük çözünürlükte belirgin.
+  return Math.min(0.55, 0.05+0.5*p);
+}
+
+function paintDot(a){
+  const x=cx+R*Math.cos(a), y=cy+R*Math.sin(a);
+  dot.setAttribute('cx',x.toFixed(1));
+  dot.setAttribute('cy',y.toFixed(1));
+}
+
+// requestAnimationFrame ~16.67ms'lik tanelerle geliyor -- interval küçükken
+// (hızlı uçta 16ms) "şu an belirme penceresindeyiz" durumunu bir kareden
+// diğerine ARA VERMEDEN yakalamaya çalışmak, o dar pencereyi çoğu zaman
+// atlıyordu (ölçüldü: nokta hiç boyanmıyordu). Bunun yerine her karede,
+// SADECE ts'ten, o an hangi tık'ın içinde ve o tık'ın hangi evresinde
+// olduğumuzu MODULO ile baştan hesaplıyoruz -- önceki kareye bağlı bir
+// durum yok, bu yüzden kaçırılacak bir pencere de yok.
+function frame(ts){
+  const interval=tickIntervalFromPos(pos);
+  const voidMs=interval*voidRatioFromPos(pos);
+  const tickStart=ts-(ts%interval);
+  const withinTick=ts-tickStart;
+  if(withinTick<voidMs){
+    dot.style.opacity='0';
+  } else {
+    // Açı tık BAŞLANGICINDAN türetiliyor, ts'ten değil -- konum bir tık
+    // boyunca sabit kalıyor (yeniden belirdiği ândaki hâliyle), akıp
+    // gitmiyor; bu da "her an yeniden yaratılış" iddiasına tam uyuyor.
+    paintDot((tickStart/PERIOD_MS)*2*Math.PI);
+    dot.style.opacity='1';
+  }
+  rafId=requestAnimationFrame(frame);
+}
+
+if(reduceMotion){
+  // Hareket taklit edilmiyor -- sabit bir kare + iki durumu (sürekli/kesikli)
+  // metinle anlatan durağan bir görünüm.
+  paintDot(0.3);
+  dot.style.opacity='1';
+} else {
+  rafId=requestAnimationFrame(frame);
+}
+
+// ── Sürükleme ──────────────────────────────────────────────────────────────
+const track=$('track');
+function markTouched(){ if(!touched){ touched=true; $('grabHint').classList.add('gone'); } }
+function applyPosition(){
+  $('handle').style.left=(pos*100)+'%';
+  $('track').setAttribute('aria-valuenow',Math.round(pos*100));
+  if(pos>0.55 && !applyPosition._sawSlow) applyPosition._sawSlow=true;
+  if(pos<0.1 && applyPosition._sawSlow && !applyPosition._sawFast) applyPosition._sawFast=true;
+  if(applyPosition._sawSlow && applyPosition._sawFast) $('aha').classList.add('show');
+}
+applyPosition._sawSlow=false; applyPosition._sawFast=false;
+function setPosFromClientX(clientX){
+  const r=track.getBoundingClientRect();
+  pos=Math.max(0,Math.min(1,(clientX-r.left)/r.width));
+  applyPosition();
+}
+let dragging=false;
+track.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{track.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
+track.addEventListener('pointermove',e=>{ if(dragging) setPosFromClientX(e.clientX); });
+['pointerup','pointercancel','pointerleave'].forEach(t=>track.addEventListener(t,()=>{dragging=false;}));
+track.addEventListener('keydown',e=>{
+  const k={ArrowLeft:-0.05,ArrowRight:0.05,ArrowDown:-0.05,ArrowUp:0.05}[e.key];
+  if(k===undefined) return;
+  markTouched(); pos=Math.max(0,Math.min(1,pos+k)); applyPosition(); e.preventDefault();
+});
+
+renderAll();
+applyPosition();
+
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+});
+</script>
+</body>
+</html>
