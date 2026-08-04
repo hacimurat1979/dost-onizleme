@@ -3073,14 +3073,25 @@ a.daphne-bag__ad { color: var(--accent-interactive); }
 
 .detail-panel {
   position: fixed;
-  top: 0;
+  /* top/height (not padding-top alone) reserve the header's space -- with
+     overflow-y:auto and only padding-top doing the offsetting, scrolling
+     could slide content up INTO that padding (revealing it, since padding
+     is part of the scrollable box) and the panel's own z-index (55, higher
+     than the app header) then painted that content OVER the header instead
+     of it staying safely hidden behind. The sticky title/A-/A+ bar (in
+     front of the panel's OWN content) wasn't actually the thing failing --
+     the panel's box itself reached too far up (kullanıcı bildirimi,
+     2026-08-04: "kayan yazı köprünün üst kısmında yeniden görünür
+     oluyor"). Starting the box below the header removes that space from
+     the scrollable area entirely, so there's nothing to scroll into. */
+  top: var(--app-header-height, 96px);
   right: 0;
-  height: 100%;
+  height: calc(100% - var(--app-header-height, 96px));
   width: min(420px, 92vw);
   background: var(--surface-1);
   border-left: 1px solid var(--border);
   box-shadow: -8px 0 24px rgba(20,15,8,0.15);
-  padding: calc(var(--app-header-height, 96px) + 12px) 24px 24px;
+  padding: 12px 24px 24px;
   overflow-y: auto;
   z-index: 55;
   animation: detail-panel-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -4060,7 +4071,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 
 @media (max-width: 640px) {
   .app-header { flex-direction: column; }
-  .detail-panel { width: 100vw; padding-top: calc(var(--app-header-height, 64px) + 12px); z-index: 60; }
+  .detail-panel { width: 100vw; top: var(--app-header-height, 64px); height: calc(100% - var(--app-header-height, 64px)); padding-top: 12px; z-index: 60; }
   .detail-panel__close { top: 12px; z-index: 61; }
   .detail-panel__print { top: 12px; right: 64px; z-index: 61; }
   .btn-ghost { padding: 8px 11px; font-size: 0.8rem; }
