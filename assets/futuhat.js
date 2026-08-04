@@ -670,6 +670,63 @@
       .call(wrapSvgText, 24);
   }
 
+  // --- Karşılıklı akış (münâcât) diyagramı: kul-satırı/Hak-cevabı iki
+  // sütun (c3k37 "İkiye böldüm" hadisi, 2026-08-04). Önceki hâli tek yönlü
+  // bir ağaçtı (fatiha-munacat-tree) -- ama kaynak metin kul ile Hakkın
+  // karşılıklı konuştuğu bir münâcât anlatıyor, tek kökten dallanan bir
+  // hiyerarşi değil. Sol ve sağ sütunu birleştiren çizgi soyut bir ok değil
+  // (GORSEL_DIL.md bunu yasaklıyor) -- .futuhat-triad__axis'in aynısı,
+  // kaynaktaki gerçek eşleşmeyi (bu ayete bu cevap) gösteriyor.
+  function renderAkis(mount, akis) {
+    const rowH = 92, padTop = 34, colKul = 150, colHak = 210, width = 420;
+    const n = akis.adimlar.length;
+    const height = padTop + n * rowH + 14;
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-akis__svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", tt(akis.label));
+
+    svg.append("text")
+      .attr("class", "futuhat-akis__col-head")
+      .attr("x", colKul).attr("y", 16).attr("text-anchor", "end")
+      .text(tt(akis.kulBasligi));
+    svg.append("text")
+      .attr("class", "futuhat-akis__col-head")
+      .attr("x", colHak).attr("y", 16).attr("text-anchor", "start")
+      .text(tt(akis.hakBasligi));
+
+    const rows = svg
+      .selectAll("g.futuhat-akis__row")
+      .data(akis.adimlar)
+      .join("g")
+      .attr("class", "futuhat-akis__row")
+      .attr("data-node-id", (d) => d.id)
+      .attr("transform", (d, i) => `translate(0,${padTop + i * rowH + rowH / 2})`);
+
+    rows.append("line")
+      .attr("class", "futuhat-akis__link")
+      .attr("x1", colKul + 6).attr("x2", colHak - 6);
+
+    rows.append("circle").attr("class", "futuhat-akis__dot futuhat-akis__dot--kul").attr("cx", colKul + 6).attr("r", 4);
+    rows.append("circle").attr("class", "futuhat-akis__dot futuhat-akis__dot--hak").attr("cx", colHak - 6).attr("r", 4);
+
+    rows.append("text")
+      .attr("class", "futuhat-akis__kul")
+      .attr("x", colKul).attr("y", 4).attr("text-anchor", "end")
+      .text((d) => tt(d.kul))
+      .call(wrapSvgText, 20);
+
+    rows.append("text")
+      .attr("class", "futuhat-akis__hak")
+      .attr("x", colHak).attr("y", -8).attr("text-anchor", "start")
+      .text((d) => tt(d.hak))
+      .call(wrapSvgText, 26);
+  }
+
   // --- Nested-circles diagram (c13k150, "sonsuz iç içe daireler") ---
   // GORSEL_DIL.md keskin konturlu iç içe halka çizmeyi yasaklıyor ("Perde
   // çizilecekse yarı saydam perde çizilir... keskin konturlu bir halka bir
@@ -1107,6 +1164,8 @@
             renderTriad(mount, block.triad);
           } else if (block.pair) {
             renderPair(mount, block.pair);
+          } else if (block.akis) {
+            renderAkis(mount, block.akis);
           } else if (block.nested) {
             renderNested(mount);
           } else if (block.useMainDiagram) {

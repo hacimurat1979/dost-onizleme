@@ -998,27 +998,37 @@
             "en": "The response given by the Real to each of the Fatiha's verses, as it appears in the holy hadith.",
             "pt": "A resposta dada pelo Real a cada um dos versículos da Fatiha, como aparece no hadith sagrado."
           },
-          "tree": {
-            "id": "fatiha-munacat-tree",
+          "akis": {
+            "id": "fatiha-munacat-akis",
             "label": {
               "tr": "Fâtiha: Kulun Sözü ve Hakkın Cevabı",
               "en": "The Fatiha: The Servant's Word and the Real's Response",
               "pt": "A Fatiha: A Palavra do Servo e a Resposta do Real"
             },
             "note": {
-              "tr": "\"Namazı kulumla aramda ikiye böldüm\" hadisinin ayet ayet açılımı.",
-              "en": "The verse-by-verse unfolding of the hadith \"I have divided the prayer between Myself and My servant.\"",
-              "pt": "O desdobramento versículo a versículo do hadith \"Dividi a oração entre Mim e Meu servo.\""
+              "tr": "\"Namazı kulumla aramda ikiye böldüm\" hadisinin ayet ayet açılımı -- münâcât karakteri gereği kul-satırı/Hak-cevabı iki sütunlu karşılıklı akış olarak gösteriliyor.",
+              "en": "The verse-by-verse unfolding of the hadith \"I have divided the prayer between Myself and My servant\" -- shown as a two-column back-and-forth flow (the servant's line / the Real's response) to carry the munajat character of the exchange.",
+              "pt": "O desdobramento versículo a versículo do hadith \"Dividi a oração entre Mim e Meu servo\" -- mostrado como um fluxo de mão dupla em duas colunas (a linha do servo / a resposta do Real) para carregar o caráter de munajat da troca."
             },
-            "children": [
+            "kulBasligi": {
+              "tr": "Kul",
+              "en": "The Servant",
+              "pt": "O Servo"
+            },
+            "hakBasligi": {
+              "tr": "Hak",
+              "en": "The Real",
+              "pt": "O Real"
+            },
+            "adimlar": [
               {
                 "id": "elhamdulillah-node",
-                "label": {
+                "kul": {
                   "tr": "Elhamdülillah",
                   "en": "Al-hamdu lillah",
                   "pt": "Al-hamdu lillah"
                 },
-                "note": {
+                "hak": {
                   "tr": "\"Kulum beni övdü.\"",
                   "en": "\"My servant has praised Me.\"",
                   "pt": "\"Meu servo Me louvou.\""
@@ -1026,12 +1036,12 @@
               },
               {
                 "id": "rahman-rahim-node",
-                "label": {
+                "kul": {
                   "tr": "Er-Rahmân, Er-Rahîm",
                   "en": "Ar-Rahman, Ar-Rahim",
                   "pt": "Ar-Rahman, Ar-Rahim"
                 },
-                "note": {
+                "hak": {
                   "tr": "\"Kulum beni övdü\" -- bu kez rahmet niteliğiyle.",
                   "en": "\"My servant has praised Me\" -- this time through the quality of mercy.",
                   "pt": "\"Meu servo Me louvou\" -- desta vez através da qualidade da misericórdia."
@@ -1039,12 +1049,12 @@
               },
               {
                 "id": "maliki-yevmiddin-node",
-                "label": {
+                "kul": {
                   "tr": "Mâliki Yevmiddîn",
                   "en": "Maliki Yawm ad-Din",
                   "pt": "Maliki Yawm ad-Din"
                 },
-                "note": {
+                "hak": {
                   "tr": "\"Kulum beni yüceltti\" / \"kulum bana sığındı.\"",
                   "en": "\"My servant has exalted Me\" / \"My servant has taken refuge in Me.\"",
                   "pt": "\"Meu servo Me exaltou\" / \"Meu servo buscou refúgio em Mim.\""
@@ -1052,12 +1062,12 @@
               },
               {
                 "id": "iyyake-nabudu-node",
-                "label": {
+                "kul": {
                   "tr": "İyyâke Na'budu",
                   "en": "Iyyaka Na'budu",
                   "pt": "Iyyaka Na'budu"
                 },
-                "note": {
+                "hak": {
                   "tr": "\"Bu, kulumla benim aramdadır\" -- berzah/ortak ayet.",
                   "en": "\"This is between Myself and My servant\" -- the shared, barzakh verse.",
                   "pt": "\"Isto é entre Mim e Meu servo\" -- o versículo compartilhado, barzakh."
@@ -1065,12 +1075,12 @@
               },
               {
                 "id": "ihdinassirat-node",
-                "label": {
+                "kul": {
                   "tr": "İhdinâs Sırât",
                   "en": "Ihdina 's-Sirat",
                   "pt": "Ihdina 's-Sirat"
                 },
-                "note": {
+                "hak": {
                   "tr": "\"Bunlar kulum içindir, kuluma istediği verilecek.\"",
                   "en": "\"These are for My servant; My servant shall have what he asked.\"",
                   "pt": "\"Estas são para Meu servo; Meu servo terá o que pediu.\""

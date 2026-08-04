@@ -2205,6 +2205,43 @@ button.futuhat-part-chip:hover {
   .futuhat-nested__field { animation: none; }
 }
 
+.futuhat-akis__svg {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  margin: 0 auto;
+}
+.futuhat-akis__col-head {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--text-muted);
+}
+.futuhat-akis__link {
+  stroke: var(--gridline);
+  stroke-width: 1.1px;
+  stroke-dasharray: 1.4 3.4;
+}
+.futuhat-akis__dot {
+  fill: var(--page-plane);
+  stroke: var(--text-secondary);
+  stroke-width: 1.2px;
+}
+.futuhat-akis__dot--hak {
+  fill: var(--series-theme);
+  stroke: var(--series-theme);
+}
+.futuhat-akis__kul {
+  font-size: 0.78rem;
+  font-weight: 600;
+  fill: var(--text-primary);
+}
+.futuhat-akis__hak {
+  font-size: 0.72rem;
+  fill: var(--text-secondary);
+}
+
 .futuhat-sources {
   max-width: 660px;
   margin: 40px auto 0;
@@ -5882,7 +5919,8 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 .cizim-lightbox__svg-wrap .cizim-card__svg,
 .cizim-lightbox__svg-wrap .term-diagram__svg,
 .cizim-lightbox__svg-wrap .futuhat-tree__svg,
-.cizim-lightbox__svg-wrap .futuhat-triad__svg {
+.cizim-lightbox__svg-wrap .futuhat-triad__svg,
+.cizim-lightbox__svg-wrap .futuhat-akis__svg {
   width: 100%;
   max-width: 1000px;
 }
