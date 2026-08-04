@@ -9103,3 +9103,71 @@ mark.durus-vurgu-es {
   .elestiri-kisi__sekil,
   .elestiri-kenar { transition: none !important; }
 }
+
+/* --- Hocalar (docs/icerik-yol-haritasi.md D6, 2026-08-04) -----------------
+   Kuantum'un liste-panel iskeleti, ama panel bir "durum" değil bir "anlatı"
+   taşıyor -- birden fazla doğrudan alıntı, her biri kendi bağlamıyla. */
+.hocalar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  max-width: 640px;
+  margin: 0 auto;
+  overflow-y: auto;
+  height: 100%;
+}
+.hoca-satir {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.hoca-satir:hover,
+.hoca-satir:focus-visible {
+  border-color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
+}
+.hoca-satir__sira {
+  flex-shrink: 0;
+  width: 2.4em;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  border-right: 1px solid var(--border);
+  padding-right: 12px;
+}
+.hoca-satir__govde { display: flex; flex-direction: column; gap: 2px; }
+.hoca-satir__ad { font-size: 1rem; font-weight: 600; }
+.hoca-satir__konum { font-size: 0.82rem; color: var(--text-secondary); }
+
+.hoca-sira-rozet {
+  display: inline-block;
+  margin-inline-start: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+.hoca-kimlik { color: var(--text-secondary); font-size: 0.86rem; margin: 2px 0 12px; }
+
+.hoca-alinti {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--series-cemal);
+  border-radius: 0 8px 8px 0;
+  background: var(--surface-1);
+}
+.hoca-alinti__metin { margin: 0; font-style: italic; }
+.hoca-alinti__baglam { margin: 8px 0 0; font-size: 0.82rem; color: var(--text-secondary); font-style: normal; }
+.hoca-alinti__kaynak { display: block; margin-top: 8px; font-size: 0.78rem; color: var(--text-secondary); font-style: normal; }
