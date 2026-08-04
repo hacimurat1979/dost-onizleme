@@ -7546,7 +7546,12 @@ mark.durus-vurgu-es {
   align-items: start;
 }
 @media (min-width: 1000px) {
-  .fusus-shell { grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); }
+  /* Sarmalın odaktaki düğüm etiketi (.helix-scene__svg'nin overflow:visible
+     olması yüzünden) bazen sidebar sınırını aşıp sağdaki metne giriyordu
+     (2026-08-04 kullanıcı bildirimi, /fusus/fs27). Etiketin taşabileceği
+     kadar boşluk bırakmak için sütun aralığını dar viewport'ların (18-34px)
+     üstünde, geniş viewport'ta belirgin biçimde açıyoruz. */
+  .fusus-shell { grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); gap: clamp(48px, 7vw, 88px); }
   .fusus-sidebar { position: sticky; top: 84px; }
 }
 .fusus-sidebar { min-width: 0; }
