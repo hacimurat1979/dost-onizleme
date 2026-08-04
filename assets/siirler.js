@@ -27,6 +27,16 @@
         pt: "Abrir a cena: Defender o próprio poema",
       },
     },
+    // Bu şiir zaten tavaf sahnesinin İÇİNDEN geliyor (Kısım IV); sahne de
+    // o karşılaşmayı yürütüyor -- docs/icerik-yol-haritasi.md D19.
+    "fut-tavaf-genc": {
+      dosya: "futuhat-dogusu.html",
+      dugme: {
+        tr: "Sahneyi aç: Tavafta bir karşılaşma",
+        en: "Open the scene: An encounter during the circling",
+        pt: "Abrir a cena: Um encontro na circum-ambulação",
+      },
+    },
   };
 
   function tt(dict) {

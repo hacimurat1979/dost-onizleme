@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Fütûhât'ın doğuşu — Dost Arabi görselleştirme (docs/icerik-yol-haritasi.md D19) -->
+<title>Tavafta Bir Karşılaşma — Dost Arabi</title>
+<style>
+:root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}}
+:root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040}
+:root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1rem;max-width:650px}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
+
+#stage{width:min(430px,92vw);height:min(430px,92vw);display:block;margin:.4rem auto .9rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+
+.savt{width:min(560px,96vw);text-align:center;font-size:.78rem;color:var(--muted);letter-spacing:.06em;margin-bottom:.7rem}
+.savt b{color:var(--gold);font-weight:400}
+
+.track-wrap{width:min(560px,94vw);margin:0 auto 1.1rem;text-align:center;padding:0 12px}
+.track{position:relative;height:34px;margin:0 auto}
+.track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
+.track-end{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:var(--border);transform:translate(-50%,-50%)}
+.track-end.left{left:0}
+.track-end.right{left:100%}
+.track-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal);transform:translate(-50%,-50%);cursor:grab;touch-action:none}
+.track-handle:active{cursor:grabbing}
+.track:focus-visible{outline:2px solid var(--liminal);outline-offset:6px;border-radius:4px}
+.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
+.grab-hint.gone{opacity:.28}
+
+.konusma{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;min-height:9.5rem}
+.konusma ol{list-style:none;counter-reset:savt}
+.konusma li{counter-increment:savt;font-size:.86rem;line-height:1.72;margin-bottom:.6rem;opacity:0;transform:translateY(4px);transition:opacity .8s ease,transform .8s ease;display:flex;gap:.7rem}
+.konusma li.show{opacity:1;transform:none}
+.konusma li::before{content:counter(savt);color:var(--liminal);font-size:.72rem;flex-shrink:0;padding-top:.25rem;min-width:1rem}
+.konusma li.remiz{font-style:italic;color:var(--liminal)}
+
+.aha{width:min(560px,96vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.75;color:var(--liminal);margin-top:1rem;opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;white-space:pre-line}
+.aha.show{opacity:1;transform:none}
+
+.quote-box{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-top:1.1rem}
+.quote-text{font-size:.87rem;line-height:1.75;font-style:italic}
+.quote-src{font-size:.72rem;color:var(--muted);margin-top:.55rem}
+
+.kardes{width:min(560px,96vw);text-align:center;margin-top:1.1rem;font-size:.75rem;line-height:1.6}
+.kardes a{color:var(--liminal);text-decoration:none;border-bottom:1px solid var(--border)}
+.kardes a:hover,.kardes a:focus-visible{border-bottom-color:var(--liminal)}
+
+.yontem{width:min(560px,96vw);margin-top:1.4rem;font-size:.74rem;line-height:1.7;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="hTitle">Tavafta Bir Karşılaşma</h1>
+  <p class="sub" id="hSub"></p>
+</header>
+
+<svg id="stage" viewBox="0 0 430 430" role="img" aria-label="Kâbe'nin çevresinde yedi şavtlık bir tavaf"></svg>
+
+<p class="savt" id="savt"></p>
+
+<div class="track-wrap">
+  <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" aria-label="Tavafı yürüt">
+    <div class="track-line"></div>
+    <div class="track-end left"></div>
+    <div class="track-end right"></div>
+    <div class="track-handle" id="handle"></div>
+  </div>
+  <p class="grab-hint" id="grabHint"></p>
+</div>
+
+<div class="konusma"><ol id="konusma"></ol></div>
+
+<p class="aha" id="aha"></p>
+
+<div class="quote-box">
+  <p class="quote-text" id="quoteText"></p>
+  <p class="quote-src" id="quoteSrc"></p>
+</div>
+
+<p class="kardes"><a id="kardesLink" href="berzah.html"></a></p>
+
+<p class="yontem" id="yontem"></p>
+
+<script>
+// ── Metin ────────────────────────────────────────────────────────────────────
+// Yedi satır, Fütûhât Kısım IV'ün (c1k4) açılış sahnesinden: Dost'un Kâbe'yi
+// tavaf ederken karşılaştığı "genç". Satırlar sahnenin kendi sırasını izliyor
+// ve tavafın yedi şavtına dağıtıldı -- karşılaşma bir anda değil, dönerken
+// açılıyor.
+const LA={
+  tr:{
+    title:'Tavafta Bir Karşılaşma',
+    sub:'Dost, Kâbe’yi tavaf ederken biriyle karşılaşır ve kitabının oradan doğduğunu söyler. Yedi şavtı yürüt; karşılaşma dönerken açılsın.',
+    grab:'Sürükle (ok tuşları da çalışır)',
+    savt:(n)=>`<b>${n}</b> / 7 şavt`,
+    satirlar:[
+      { t:'Tavaf ederken biriyle karşılaştım: geçkin-genç, susan-konuşan.' },
+      { t:'Ne ölü ne diri, ne bileşik ne yalın, ne kuşatan ne kuşatılan.' },
+      { t:'Onun Kâbe’yi tavaf edişi, dirinin ölüyü tavaf etmesi gibiydi.' },
+      { t:'“Seninle ancak remiz diliyle konuşurum,” dedi — işaretle; ve o söz, en belâgatli insanların sözünden daha açıktı.', remiz:true },
+      { t:'Ondan istedim: kitabıma yazacağımı, kendi yaratılışının ayrıntısından ver.' },
+      { t:'O benden istedi: tavafta sana gösterilen, herkesin görmediği sırları bana bildir.' },
+      { t:'“Ben, ne konuşan ne konuşturanım… zâtım isimlerimden başka değil,” dedi.', remiz:true },
+    ],
+    aha:'Sen ondan kitabına yazacağını istedin; o senden tavafta gösterileni istedi.\nDost bu ilişkiyi “gören ve görülen” diye adlandırıyor — ikiniz de hem soran hem sorulansınız.\nOrtadaki taş ise yedi şavt boyunca ne duydu ne gördü.',
+    kardes:'Kardeş sahne: Berzah — ne o ne bu olanın mertebesi →',
+    yontem:'Sahne Fütûhât Kısım IV’ün (c1k4) açılışına dayanıyor; yedi satır o kısmın kendi anlatım sırasından. Gencin kim ya da ne olduğunu metin söylemiyor, biz de bilmiyoruz. Ayrıca: yol haritası “yokluğun yokluğu” cümlesini kitabın AÇILIŞ cümlesi diye anıyor; bizim okuduğumuz külliyat Kısım III’ten başlıyor, yani kitabın gerçek ilk cümlesi elimizde yok — aşağıdaki alıntıyı bu yüzden geçtiği yerden (Kısım XXIX) veriyoruz, açılış cümlesi olarak değil.',
+    quotes:[
+      { text:'“Olumsuzun olumsuzlanması, olumlama demektir… yokluğun yokluğu varlıktır.”', src:'Fütûhât-ı Mekkiyye, Kısım XXIX, s. 44 (kelime-i tevhidin mantığı bahsi)' },
+      { text:'“Bu ev, duyumsamayan ve görmeyen bir cansızdır, ne aklı var ne işitmesi… fakat kalbin gözü için onda bir benzer bulunur, gözde hastalık ve pas bulunmadığında.”', src:'Fütûhât-ı Mekkiyye, Birinci Bölüm — Kâbe tavafı sahnesindeki şiirden (Kısım IV)' },
+    ],
+  },
+  en:{
+    title:'An Encounter During the Circling',
+    sub:'While circling the Ka‘ba, Dost meets someone — and says his book was born there. Walk the seven circuits; let the encounter open as you go round.',
+    grab:'Drag (arrow keys work too)',
+    savt:(n)=>`<b>${n}</b> / 7 circuits`,
+    satirlar:[
+      { t:'While circling, I met someone: aged-yet-young, silent-yet-speaking.' },
+      { t:'Neither dead nor alive, neither composite nor simple, neither container nor contained.' },
+      { t:'His circling of the Ka‘ba was as the living circling the dead.' },
+      { t:'“I will speak with you only in the language of remiz,” he said — in sign; and that speech was clearer than the speech of the most eloquent.', remiz:true },
+      { t:'I asked of him: give me what I shall write in my book, out of the detail of your own creation.' },
+      { t:'He asked of me: tell me the secrets shown to you in the circling, which others do not see.' },
+      { t:'“I am neither the speaker nor the one who makes speak… my essence is nothing other than my names,” he said.', remiz:true },
+    ],
+    aha:'You asked him for what you would write in your book; he asked you for what was shown in the circling.\nDost calls this relation “the seer and the seen” — each of you is both the asker and the asked.\nThe stone at the centre, through all seven circuits, neither heard nor saw.',
+    kardes:'Sibling scene: The Barzakh — the degree of what is neither this nor that →',
+    yontem:'The scene rests on the opening of Futuhat Part IV (c1k4); the seven lines follow that part’s own order of telling. The text does not say who or what the youth is, and neither do we. Also: the roadmap calls the “non-being of non-being” line the book’s OPENING sentence; the corpus we have begins at Part III, so we do not hold the book’s actual first sentence — the quotation below is therefore given from where it does appear (Part XXIX), not as the opening.',
+    quotes:[
+      { text:'“The negation of the negative means affirmation… the non-being of non-being is being.”', src:'al-Futuhat al-Makkiyya, Part XXIX, p. 44 (on the logic of the testimony of oneness)' },
+      { text:'“This House is an inanimate thing that neither senses nor sees, having neither intellect nor hearing… yet for the eye of the heart a likeness is found in it, when the eye is without sickness or rust.”', src:'al-Futuhat al-Makkiyya, Chapter 1 — from the poem in the Ka‘ba circling scene (Part IV)' },
+    ],
+  },
+  pt:{
+    title:'Um Encontro na Circum-ambulação',
+    sub:'Ao circundar a Caaba, Dost encontra alguém — e diz que o seu livro nasceu ali. Percorra as sete voltas; deixe o encontro abrir-se enquanto anda.',
+    grab:'Arraste (as setas também funcionam)',
+    savt:(n)=>`<b>${n}</b> / 7 voltas`,
+    satirlar:[
+      { t:'Enquanto circundava, encontrei alguém: velho-e-jovem, calado-e-falante.' },
+      { t:'Nem morto nem vivo, nem composto nem simples, nem continente nem conteúdo.' },
+      { t:'O seu circundar da Caaba era como o vivo a circundar o morto.' },
+      { t:'“Falarei contigo apenas na língua do remiz,” disse — por sinal; e essa fala era mais clara que a dos mais eloquentes.', remiz:true },
+      { t:'Pedi-lhe: dá-me o que hei-de escrever no meu livro, a partir do detalhe da tua própria criação.' },
+      { t:'Ele pediu-me: diz-me os segredos que te foram mostrados na circum-ambulação, que os outros não veem.' },
+      { t:'“Não sou o que fala nem o que faz falar… a minha essência não é outra senão os meus nomes,” disse.', remiz:true },
+    ],
+    aha:'Pediste-lhe o que irias escrever no teu livro; ele pediu-te o que te foi mostrado na circum-ambulação.\nDost chama a esta relação “o que vê e o que é visto” — ambos são o que pergunta e o perguntado.\nA pedra no centro, ao longo das sete voltas, nem ouviu nem viu.',
+    kardes:'Cena irmã: O Barzakh — o grau daquilo que não é nem isto nem aquilo →',
+    yontem:'A cena assenta na abertura da Parte IV do Futuhat (c1k4); as sete linhas seguem a ordem da própria narração. O texto não diz quem ou o que é o jovem, e nós também não sabemos. Além disso: o roteiro chama à frase do “não-ser do não-ser” a frase de ABERTURA do livro; o corpus que temos começa na Parte III, pelo que não possuímos a verdadeira primeira frase — a citação é dada de onde de facto aparece (Parte XXIX).',
+    quotes:[
+      { text:'“A negação do negativo significa afirmação… o não-ser do não-ser é ser.”', src:'al-Futuhat al-Makkiyya, Parte XXIX, p. 44 (sobre a lógica do testemunho da unicidade)' },
+      { text:'“Esta Casa é algo inanimado que nem sente nem vê, sem intelecto nem audição… mas para o olho do coração encontra-se nela uma semelhança, quando o olho está sem doença nem ferrugem.”', src:'al-Futuhat al-Makkiyya, Capítulo 1 — do poema na cena da circum-ambulação (Parte IV)' },
+    ],
+  },
+};
+
+const SAVT=7;
+let curLang='tr', pos=0, touched=false, quoteIdx=0;
+const $=id=>document.getElementById(id);
+const clamp01=x=>Math.max(0,Math.min(1,x));
+
+// ── Sahne ────────────────────────────────────────────────────────────────────
+// GORSEL_DIL.md: Zât'ı ya da Ev'i parlak bir cisim gibi ÇİZME. Ortadaki taş
+// KARANLIK ve sessiz; hiç değişmiyor, hiçbir etkileşime tepki vermiyor --
+// şiirin kendi ifadesiyle "duyumsamayan ve görmeyen bir cansız". Sahnedeki
+// bütün hareket çevrededir.
+//
+// Genç, tavaf halkası üzerinde SABİT bir noktada duruyor ve bulanıklığı hiç
+// değişmiyor: "ne ölü ne diri" olanın çözünürlüğü de yok. Sen dönerken o
+// netleşmiyor; yalnız yanından her geçişte bir söz daha söyleniyor.
+const NS='http://www.w3.org/2000/svg';
+const svg=$('stage');
+const CX=215, CY=215, R=138;
+const GENC_ACI=-Math.PI/2;                 // tepede
+
+svg.innerHTML=`
+<defs>
+  <filter id="sis" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.019" numOctaves="4" seed="23" result="n"/>
+    <feColorMatrix in="n" type="matrix"
+      values="0 0 0 0 0.06  0 0 0 0 0.05  0 0 0 0 0.04  0 0 0 1.5 -0.44"/>
+  </filter>
+  <filter id="gencBlur" x="-120%" y="-120%" width="340%" height="340%">
+    <feGaussianBlur stdDeviation="5.5"/>
+  </filter>
+  <clipPath id="cl"><rect x="0" y="0" width="430" height="430" rx="12"/></clipPath>
+</defs>
+<g clip-path="url(#cl)">
+  <circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="var(--border)" stroke-width="1"/>
+  <rect x="${CX-31}" y="${CY-31}" width="62" height="62" rx="2" fill="#05040A"
+        stroke="var(--border)" stroke-width="1"/>
+  <g id="izGrup"></g>
+  <circle id="genc" r="7" fill="var(--liminal)" filter="url(#gencBlur)"
+          cx="${CX+R*Math.cos(GENC_ACI)}" cy="${CY+R*Math.sin(GENC_ACI)}"/>
+  <circle id="yuruyen" r="4.5" fill="var(--gold)" cx="${CX+R*Math.cos(GENC_ACI)}" cy="${CY+R*Math.sin(GENC_ACI)}"/>
+  <rect x="-40" y="-40" width="510" height="510" fill="#000" filter="url(#sis)" opacity=".4" pointer-events="none"/>
+</g>`;
+
+// Tamamlanan her şavt, halkanın üstünde kalıcı bir iz bırakıyor: kaç kez
+// döndüğün görülebilir olsun (yalnız sayı değişmesin -- GORSEL_DIL: hiçbir
+// şey yalnız sayısal değişmemeli).
+const izGrup=$('izGrup');
+function izleriCiz(tam){
+  izGrup.innerHTML='';
+  for(let i=1;i<=tam;i++){
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',CX); c.setAttribute('cy',CY);
+    c.setAttribute('r',(R-i*3.4).toFixed(1));
+    c.setAttribute('fill','none');
+    c.setAttribute('stroke','var(--liminal)');
+    c.setAttribute('stroke-width','0.9');
+    c.setAttribute('opacity',(0.20+0.06*i).toFixed(2));
+    izGrup.appendChild(c);
+  }
+}
+
+function paint(p){
+  // Tavaf saat yönünün TERSİNE: açı azalarak ilerliyor.
+  const aci = GENC_ACI - p*SAVT*2*Math.PI;
+  $('yuruyen').setAttribute('cx',(CX+R*Math.cos(aci)).toFixed(1));
+  $('yuruyen').setAttribute('cy',(CY+R*Math.sin(aci)).toFixed(1));
+  izleriCiz(Math.floor(p*SAVT+1e-9));
+}
+
+function konusmaCiz(){
+  const t=LA[curLang];
+  $('konusma').innerHTML=t.satirlar.map((s,i)=>
+    `<li class="${s.remiz?'remiz':''}" data-i="${i}"><span>${s.t}</span></li>`
+  ).join('');
+}
+
+function render(){
+  const t=LA[curLang];
+  $('hTitle').textContent=t.title;
+  $('hSub').textContent=t.sub;
+  $('grabHint').textContent=t.grab;
+  $('aha').textContent=t.aha;
+  $('kardesLink').textContent=t.kardes;
+  $('yontem').textContent=t.yontem;
+  const q=t.quotes[quoteIdx];
+  $('quoteText').textContent=q.text;
+  $('quoteSrc').textContent=q.src;
+  konusmaCiz();
+  uygula();
+}
+function setLang(l){ if(LA[l]){ curLang=l; document.documentElement.lang=l; render(); } }
+
+setInterval(()=>{
+  const qs=LA[curLang].quotes;
+  quoteIdx=(quoteIdx+1)%qs.length;
+  $('quoteText').textContent=qs[quoteIdx].text;
+  $('quoteSrc').textContent=qs[quoteIdx].src;
+}, 10000);
+
+const track=$('track');
+function markTouched(){ if(!touched){ touched=true; $('grabHint').classList.add('gone'); } }
+function uygula(){
+  const tam=Math.floor(pos*SAVT+1e-9);
+  $('handle').style.left=(pos*100)+'%';
+  track.setAttribute('aria-valuenow',tam);
+  track.setAttribute('aria-valuetext', LA[curLang].savt(tam).replace(/<[^>]+>/g,''));
+  $('savt').innerHTML=LA[curLang].savt(tam);
+  paint(pos);
+  // Her tamamlanan şavt bir satır açıyor: karşılaşma dönerken açılıyor.
+  document.querySelectorAll('#konusma li').forEach((li,i)=>{
+    li.classList.toggle('show', i < tam);
+  });
+  // Hayret önce, anlama sonra: yedi şavt tamamlanmadan aha yok.
+  $('aha').classList.toggle('show', tam >= SAVT);
+}
+function posFromX(x){ const r=track.getBoundingClientRect(); pos=clamp01((x-r.left)/r.width); uygula(); }
+let dragging=false;
+track.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{track.setPointerCapture(e.pointerId);}catch(_){} posFromX(e.clientX); e.preventDefault(); });
+track.addEventListener('pointermove',e=>{ if(dragging) posFromX(e.clientX); });
+['pointerup','pointercancel'].forEach(t=>track.addEventListener(t,()=>{dragging=false;}));
+track.addEventListener('keydown',e=>{
+  const adim=1/SAVT;
+  const k={ArrowLeft:-adim,ArrowRight:adim,ArrowDown:-adim,ArrowUp:adim,Home:-1,End:1}[e.key];
+  if(k===undefined) return;
+  markTouched();
+  pos = e.key==='Home' ? 0 : e.key==='End' ? 1 : clamp01(pos+k);
+  uygula(); e.preventDefault();
+});
+
+render();
+
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+});
+</script>
+</body>
+</html>
