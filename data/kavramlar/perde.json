@@ -1,0 +1,865 @@
+{
+  "uretim": "scripts/kavram-vektoru-uret.mjs",
+  "view": "ontoloji",
+  "id": "perde",
+  "isim": {
+    "tr": "Perde (Hicâb)",
+    "en": "The Veil",
+    "pt": "O Véu"
+  },
+  "skorDili": "tr",
+  "esik": 0.4,
+  "top": 40,
+  "model": "Xenova/LaBSE (pasaj-vektorleri-*.bin'den yeniden kullanıldı)",
+  "not": {
+    "tr": "ADAY listesidir. Çekirdek pasajlar elle seçildi (aşağıda gerekçeleriyle); sonuclar[] listesindeki her satır verified:false ile başlar -- bir editör okuyup onayladıkça true'ya (ve bir gerekce alanıyla) çevrilir. Sitenin kendisi yalnız verified:true olanları \"bağlantı\", kalanını \"aday\" olarak ayrı gösterir. Skor Türkçe pasaj vektörleri üzerinden hesaplanır; başlık/özet üç dilde de aynı kısmın (kisim) metnidir.",
+    "en": "This is a CANDIDATE list. Seed passages were chosen by hand (with reasons below); every row in sonuclar[] starts as verified:false -- an editor turns it to true (with a gerekce field) after reading it. The site itself shows only verified:true entries as \"connections\", the rest as \"candidates\" in a separate tab. Scores are computed over the Turkish passage vectors; title/summary are the same kısım's text in all three languages.",
+    "pt": "Esta é uma lista de CANDIDATOS. Os trechos-semente foram escolhidos manualmente (com razões abaixo); cada linha em sonuclar[] começa como verified:false -- um editor a torna true (com um campo gerekce) depois de lê-la. O próprio site mostra apenas as entradas verified:true como \"conexões\", o resto como \"candidatos\" numa aba separada. As pontuações são calculadas sobre os vetores de trechos em turco; título/resumo são o texto do mesmo kısım nos três idiomas."
+  },
+  "cekirdek": [
+    {
+      "kisim": "c1k4",
+      "route": "/futuhat/c1k4/",
+      "baslik": {
+        "tr": "Ruhun Yaratılışından Alınan Sırlar",
+        "en": "Secrets Drawn from the Spirit's Creation",
+        "pt": "Segredos Extraídos da Criação do Espírito"
+      },
+      "ozet": {
+        "tr": "Dördüncü Kısım, Dost'un Kâbe'yi tavaf ederken yaşadığını aktardığı görsel bir sahneyle açılıyor. Tavaf ederken 'geçkin-genç, susan-konuşan' birisiyle karşılaşır — 'ne ölü ne diri, ne bileşik ne yalın, ne kuşatan ne kuşat",
+        "en": "Dost closes the Fourth Part with a brief prayer: 'May Allah bring us and you to righteous deeds pleasing to Him! The Fourth Part is complete, praise be to Allah.' We close our reading of Part IV here as well. The Fifth P",
+        "pt": "Dost encerra a Quarta Parte com uma breve prece: 'Que Allah nos conduza, a nós e a vós, a ações justas que Lhe agradem! A Quarta Parte está completa, louvado seja Allah.' Encerramos aqui também nossa leitura da Parte IV."
+      },
+      "gerekce": {
+        "tr": "Fütûhât'ta perdenin ilk geçtiği yer (kavram-hayati.json'un \"ilk\"i).",
+        "en": "The first place the veil appears in the Futûhât (kavram-hayati.json's \"first\").",
+        "pt": "O primeiro lugar em que o véu aparece nas Futûhât (\"primeiro\" de kavram-hayati.json)."
+      }
+    },
+    {
+      "kisim": "c7k94",
+      "route": "/futuhat/c7k94/",
+      "baslik": {
+        "tr": "Perde Zorunludur: Hicabtan Şeriatın Sırrına",
+        "en": "The Veil Is Necessary: From the Hijab to the Secret of the Law",
+        "pt": "O Véu É Necessário: Do Hijab ao Segredo da Lei"
+      },
+      "ozet": {
+        "tr": "Seksen Beşinci Bölüm hicabı (perde) ele alıyor; Kur'an'ın 'Hayır! Onlar rablerinden perdelidir' ayeti ve 'Allah'ın karanlık ve nurdan yetmiş perdesi vardır, onları açsaydı yüzünün tecellileri gözün gördüğü her şeyi yakar",
+        "en": "This part's discussion of the veil carries an echo of another part the site has previously taken up in the Secrets section (through a quote from al-Bulgha): the idea that 'the veil was not the sought, but the seeker' rea",
+        "pt": "A discussão do véu nesta parte carrega um eco de outra parte que o site já tratou na seção de Segredos (através de uma citação de al-Bulgha): a ideia de que 'o véu não era o buscado, mas o buscador' reaparece aqui atravé"
+      },
+      "gerekce": {
+        "tr": "85. Bölüm doğrudan hicabı ele alıyor -- \"yetmiş perde\" hadisiyle birlikte, kavramın en dogmatik/klasik yüzü.",
+        "en": "Chapter 85 addresses the veil directly -- together with the \"seventy veils\" hadith, the concept's most classical/doctrinal face.",
+        "pt": "O Capítulo 85 trata diretamente do véu -- junto ao hadith dos \"setenta véus\", a face mais clássica/doutrinária do conceito."
+      }
+    },
+    {
+      "kisim": "c14k164",
+      "route": "/futuhat/c14k164/",
+      "baslik": {
+        "tr": "Kim Görüyor, Kim Galip, Kimde Delil",
+        "en": "Who Sees, Who Prevails, Who Holds the Proof",
+        "pt": "Quem Vê, Quem Vence, Quem Tem a Prova"
+      },
+      "ozet": {
+        "tr": "401'in ortasında, çok kısa bir cümle dizisi bizi durdurdu. Perdenin nefsimiz olduğunu söyledikten hemen sonra Dost akla gelen ilk çözümü de kapatıyor: “Buna mukabil kendimiz ortadan kalksak, yine O'nu göremezdik, çünkü O",
+        "en": "We have been following the word veil in this volume for several parts now, and in each chapter we see it land somewhere else. In 396 the Real placed it: “I veil from Myself the one who gathers knowledge and the sciences.",
+        "pt": "Seguimos a palavra véu neste volume há várias partes, e em cada capítulo vemo-la ir parar a outro sítio. No 396 era o Real que o punha: “Velo de Mim aquele que reúne os conhecimentos e as ciências.” No 398 o lugar do véu"
+      },
+      "gerekce": {
+        "tr": "Hakk'ın kendi ağzından: \"Bilgileri ve ilimleri toplayanı kendimden perdelerim\" -- perdenin Hak tarafından konulduğu fikri.",
+        "en": "From the Real's own mouth: \"I veil from Myself the one who gathers information and sciences\" -- the idea that the veil is set by the Real.",
+        "pt": "Da própria boca do Real: \"Velo de Mim mesmo quem acumula informações e ciências\" -- a ideia de que o véu é posto pelo Real."
+      }
+    },
+    {
+      "kisim": "c15k174",
+      "route": "/futuhat/c15k174/",
+      "baslik": {
+        "tr": "Hayrete Ermek Ulaşmanın Kendisi — ve Senin Varlığın Perdedir",
+        "en": "To Arrive at Bewilderment Is the Arrival Itself — and Your Existence Is the Veil",
+        "pt": "Chegar ao Espanto É a Própria Chegada — e a Tua Existência É o Véu"
+      },
+      "ozet": {
+        "tr": "429'un ortasında, bir önceki kısımda uzun uzun durduğumuz karşı-hatta doğrudan bağlanan bir yer var — ve bu kez Dost, o hattı söylemenin bedelini yazıyor. Bedir günü Hz. Peygamber'in duasını aktarıyor: “Bu topluluğu yok ",
+        "en": "Before 431 closes, Ibn Arabi tells a story from his own time, and its resolution reads like a practical instance of 430's four classes. Abu'l-Badr goes back and forth between two gnostics: the one in Mayyafariqin speaks ",
+        "pt": "Antes de 431 fechar, Ibn Arabi conta uma história do seu tempo, e a sua resolução lê-se como um caso prático das quatro classes de 430. Abu'l-Badr vai e vem entre dois gnósticos: o de Mayyafariqin fala do de Bagdade como"
+      },
+      "gerekce": {
+        "tr": "\"Senin varlığın perdedir\" -- perdenin dışarıda değil, kişinin kendi varlığında olduğu fikri; kavramın en ters-yüz yüzü.",
+        "en": "\"Your own existence is the veil\" -- the veil is not outside but in one's own existence; the concept's most inverted face.",
+        "pt": "\"Sua própria existência é o véu\" -- o véu não está fora, mas na própria existência da pessoa; a face mais invertida do conceito."
+      }
+    },
+    {
+      "kisim": "c15k198",
+      "route": "/futuhat/c15k198/",
+      "baslik": {
+        "tr": "Delili Küçümseyen Medlûlü de Küçümser",
+        "en": "Whoever Devalues the Proof Devalues What It Proves",
+        "pt": "Quem Menospreza a Prova Menospreza o Provado"
+      },
+      "ozet": {
+        "tr": "Bölüm bir kutubun hâlini anlatmakla başlıyor, ama birkaç satır sonra elimizde bambaşka bir şey var: Dost'un kendi çevresindeki bir dindarlık biçimine açık itirazı. Tarifi dikkatli — kimseyi adlandırmıyor, ama hareketin n",
+        "en": "One caution. Reading this chapter we had to watch our own inclination: Dost's critique of asceticism sounds all too familiar to a modern ear, and we could easily modernise it into “the world-affirming Ibn Arabi.” But the",
+        "pt": "Uma ressalva. Ao ler este capítulo tivemos de vigiar a nossa própria inclinação: a crítica de Dost ao ascetismo soa demasiado familiar a um ouvido moderno, e poderíamos facilmente modernizá-la para “o Ibn Arabi que afirm"
+      },
+      "gerekce": {
+        "tr": "kavram-hayati.json'un \"enYogun\" (en yoğun) bölümü -- perde artık şeyin değil kişinin.",
+        "en": "kavram-hayati.json's \"densest\" chapter -- the veil now belongs to the person, not the thing.",
+        "pt": "O capítulo \"mais denso\" de kavram-hayati.json -- o véu já não é da coisa, mas da pessoa."
+      }
+    },
+    {
+      "kisim": "c16k213",
+      "route": "/futuhat/c16k213/",
+      "baslik": {
+        "tr": "Sıfatlar Zâtın Perdesi — ve Perdenin Ta Kendisi",
+        "en": "The Attributes Are the Veil of the Essence — and the Veil Itself",
+        "pt": "Os Atributos São o Véu da Essência — e o Próprio Véu"
+      },
+      "ozet": {
+        "tr": "521, “Azıklanın, azığın en hayırlısı takvâdır” âyetiyle açılıyor ve takvâyı iki şey olarak okuyor: yolun azığı ve bedenin elbisesi . Elbise tanımı ilginç — kıyafete ilâve olan kısım, yani aslın üstüne gelen bir fazlalık.",
+        "en": "The absences hold too: in these four chapters throne, footstool, haba, hyle, the Cloud, universal intellect, universal soul, the spheres, accident, the imaginal world and light do not occur; the word unseen is absent; ba",
+        "pt": "As ausências também se mantêm: nestes quatro capítulos não ocorrem trono, escabelo, haba, hyle, a Nuvem, intelecto universal, alma universal, esferas, acidente, mundo imaginal nem luz; a palavra invisível está ausente; b"
+      },
+      "gerekce": {
+        "tr": "\"Sıfatlar Zâtın perdesi, perdenin ta kendisi\" -- perde ile perdelenenin aynı şey olması paradoksu.",
+        "en": "\"The Attributes are the veil of the Essence, the very veil itself\" -- the paradox that the veil and the veiled are the same thing.",
+        "pt": "\"Os Atributos são o véu da Essência, o próprio véu\" -- o paradoxo de o véu e o velado serem a mesma coisa."
+      }
+    },
+    {
+      "kisim": "c15k169",
+      "route": "/futuhat/c15k169/",
+      "baslik": {
+        "tr": "Ancak Perdeyle Görülür — ve Gören Göz O'nun",
+        "en": "He Is Seen Only Through a Veil — and the Eye That Sees Is His",
+        "pt": "Só É Visto Através de um Véu — e o Olho Que Vê É o Seu"
+      },
+      "ozet": {
+        "tr": "414 açılış şiirinde bir tersyüz etmeyle başlıyor: “Kim Hakkı açık ve aleni görür / Perde ardından görmüş O'nu demektir.” Yani açıkça görmekle perde ardından görmek karşıt değil, aynı şey. Metin bunu bir kayıpla değil, bi",
+        "en": "Chapter 416 names the organ that sees: “What sees in existence is the eye of the heart.” And what it sees is not a fixed scene but continual renewal: “The holder of this station is in a new knowledge with every breath.” ",
+        "pt": "O capítulo 416 nomeia o órgão que vê: “O que vê na existência é o olho do coração.” E o que ele vê não é uma cena fixa mas renovação contínua: “Quem detém esta estação está num conhecimento novo a cada alento.” A meio do"
+      },
+      "gerekce": {
+        "tr": "\"Perde ardından görmek\" ile \"açıkça görmek\"in aynı şey olması -- perdenin epistemik/görme yüzü.",
+        "en": "\"Seeing from behind the veil\" being the same as \"seeing openly\" -- the veil's epistemic/seeing face.",
+        "pt": "\"Ver por trás do véu\" ser o mesmo que \"ver abertamente\" -- a face epistêmica/da visão do véu."
+      }
+    },
+    {
+      "kisim": "c16k214",
+      "route": "/futuhat/c16k214/",
+      "baslik": {
+        "tr": "Haddi Aşmak, Organın Yükümlülüğü, Vecih ve Affın Mantığı",
+        "en": "Transgressing the Limit, the Organ's Obligation, the Face, and the Logic of Forgiveness",
+        "pt": "Transgredir o Limite, a Obrigação do Órgão, o Rosto e a Lógica do Perdão"
+      },
+      "ozet": {
+        "tr": "525. bölüm, \"Allah'ın sınırlarını aşan kimse kendine zulmetmiştir, bilemezsin belki Allah bundan sonra bir iş yapar\" âyeti üzerine kuruluyor ve bir paradoksla başlıyor: ilahi bir sınırı (haddi) aşmak, aynı anda başka bir",
+        "en": "Open questions continue: #128 (ladder or threshold — in the previous part we saw chapter 524 refuse the third rung) and #129 (is hiddenness essential or relational). In this part the principle of beautiful names in chapt",
+        "pt": "As questões abertas continuam: #128 (escada ou limiar — na parte anterior vimos o capítulo 524 recusar o terceiro degrau) e #129 (a ocultação é essencial ou relacional). Nesta parte o princípio dos belos nomes no capítul"
+      },
+      "gerekce": {
+        "tr": "Fütûhât'ta perdenin son geçtiği yer (kavram-hayati.json'un \"son\"u).",
+        "en": "The last place the veil appears in the Futûhât (kavram-hayati.json's \"last\").",
+        "pt": "O último lugar em que o véu aparece nas Futûhât (\"último\" de kavram-hayati.json)."
+      }
+    }
+  ],
+  "sonuclar": [
+    {
+      "kisim": "c14k155",
+      "route": "/futuhat/c14k155/",
+      "baslik": {
+        "tr": "Ayıran Şey Birleştiriyor: Cem', Berzah ve \"Bitti\" Diyememek",
+        "en": "What Separates Is What Joins: Gathering, the Isthmus, and Never Saying \"Finished\"",
+        "pt": "O Que Separa É o Que Une: Reunião, Istmo e Nunca Dizer \"Acabou\""
+      },
+      "ozet": {
+        "tr": "383, on dörtlük gayb düzenini kurduktan sonra hazineler bahsine geçiyor ve orada bize doğrudan sesleniyor gibi: Arş'ın altındaki hazineler aslında bizim varlığımızda saklı; bir hazineyi infak etmek onu söylemek ; ve bir ",
+        "en": "After setting up its unseen order of fourteen, 383 turns to the treasuries, and there it seems to address us directly: the treasuries beneath the Throne are in fact hidden within our own existence; to spend a treasury is",
+        "pt": "Depois de estabelecer a sua ordem invisível de catorze, o 383 passa aos tesouros, e aí parece dirigir-se-nos diretamente: os tesouros sob o Trono estão de facto escondidos na nossa própria existência; gastar um tesouro é"
+      },
+      "skor": 0.9181,
+      "verified": true,
+      "gerekce": {
+        "tr": "Berzah -- ayıran ile birleştirenin aynı şey olması -- çekirdek pasaj c15k174'ün \"senin varlığın perdedir\" fikriyle aynı örgüde: perde de tam olarak hem ayıran hem birleştiren bir sınır.",
+        "en": "The isthmus (berzah) -- separator and uniter being the same thing -- is woven from the same thread as seed passage c15k174's \"your own existence is the veil\": the veil too is exactly a boundary that both separates and unites.",
+        "pt": "O istmo (berzah) -- separador e unificador sendo a mesma coisa -- está tecido do mesmo fio que o trecho-semente c15k174, \"sua própria existência é o véu\": o véu também é exatamente uma fronteira que separa e une ao mesmo tempo."
+      }
+    },
+    {
+      "kisim": "c3k36",
+      "route": "/futuhat/c3k36/",
+      "baslik": {
+        "tr": "Vakitler, Ezan, Kıble: Namazın Görünen ve Görünmeyen Şartları",
+        "en": "Times, the Call to Prayer, and the Qibla: Prayer's Seen and Unseen Conditions",
+        "pt": "Horários, o Chamado à Oração e a Qibla: As Condições Visíveis e Invisíveis da Oração"
+      },
+      "ozet": {
+        "tr": "Kâfirin bâtıni yorumu ise kısmın en yoğun anlarından biriyle bitiyor: kâfir burada 'perdeli insan' olarak okunuyor, ve 'başka' diye bir şeyin bulunmadığını öğrenen kul, kıskanılacak, kıskanılan ya da kıskanan bir 'başkas",
+        "en": "The part closes with a FASIL on intention. The hidden reading says that while the servant may intend to address his Lord, sometimes this state comes upon him suddenly, without his being aware of intending it -- Moses is ",
+        "pt": "A parte se encerra com um FASIL sobre a intenção. A leitura oculta diz que, embora o servo possa ter a intenção de se dirigir a seu Senhor, às vezes esse estado vem a ele repentinamente, sem que esteja ciente de tê-lo pr"
+      },
+      "skor": 0.9129,
+      "verified": true,
+      "gerekce": {
+        "tr": "\"Perdeli insan\" ifadesi burada doğrudan geçiyor -- kâfirin bâtıni okuması kelimenin kendisiyle, kavram-hayati.json'un kelime-eşleşmesi yönteminin bile bulabileceği bir yer, ama farklı bir bağlamda (namaz/kıble şartları) olduğu için oraya düşmemiş.",
+        "en": "The phrase \"veiled person\" appears here directly -- the esoteric reading of the unbeliever, with the very word, a place even kavram-hayati.json's keyword-matching method could have found, but it fell outside that list because the context (the conditions of prayer/qibla) is unrelated.",
+        "pt": "A expressão \"pessoa velada\" aparece aqui diretamente -- a leitura esotérica do descrente, com a própria palavra, um lugar que até o método de correspondência por palavra-chave de kavram-hayati.json poderia ter encontrado, mas ficou fora dessa lista porque o contexto (as condições da oração/qibla) não tem relação."
+      }
+    },
+    {
+      "kisim": "c14k158",
+      "route": "/futuhat/c14k158/",
+      "baslik": {
+        "tr": "Daireyi Bölen Çizgi: Bilinmeyen Bir Buluşma, İzi Kalan Bir Ayrılık",
+        "en": "The Line That Divides the Circle: An Unknown Meeting, a Parting That Leaves Its Mark",
+        "pt": "A Linha Que Divide o Círculo: Um Encontro Desconhecido, uma Separação Que Deixa Marca"
+      },
+      "ozet": {
+        "tr": "Bu kelimeyi çevresinden tarif ediyorduk; 388'de Dost'un kendi cümlesini bulduk: \"İnsan ibadetinde yükselirken Hakkın kendisine inişini müşahede eder. Nitekim Allah kendisini inmek özelliğiyle nitelemiştir. Bu durumda bir",
+        "en": "Before it closes, 389 leaves two sentences, and both touch this site's own stance. The first is a couplet: \"Whomever My Essence revives, it casts into bewilderment / whoever is not bewildered, it kills him.\" Bewilderment",
+        "pt": "Antes de se fechar, o 389 deixa duas frases, e ambas tocam a postura deste site. A primeira é um dístico: \"Aquele que a Minha Essência revive, lança-o no assombro / quem não se assombra, ela o mata\" . O assombro aqui não"
+      },
+      "skor": 0.9105,
+      "verified": false
+    },
+    {
+      "kisim": "c16k220",
+      "route": "/futuhat/c16k220/",
+      "baslik": {
+        "tr": "Tecelli, Görme ve İstiğfar: Kutub'un Sınav Mertebeleri",
+        "en": "Theophany, Seeing, and Seeking Forgiveness: The Pole's Levels of Trial",
+        "pt": "Teofania, Visão e Arrependimento: Os Níveis de Provação do Polo"
+      },
+      "ozet": {
+        "tr": "Bu bölümde Dost nadir bir kişisel tanıklık yapıyor: 'Bir kez nefsime zulmetmiş olarak Hz. Peygamber'in kabrine geldiğimde, işin söylediğim gibi olduğunu gördüm. Allah ihtiyacımı yerine getirdi. Hadise 601 yılında gerçekl",
+        "en": "In this chapter the Author makes a rare personal testimony: 'Once, having wronged myself, I came to the tomb of the Prophet, and I saw that the matter was as I said. God fulfilled my need. This occurred in the year 601.'",
+        "pt": "Neste capítulo o Autor faz um raro testemunho pessoal: 'Uma vez, tendo me prejudicado, fui ao túmulo do Profeta, e vi que a questão era como eu disse. Deus atendeu minha necessidade. Isso ocorreu no ano 601.' O que nos c"
+      },
+      "skor": 0.91,
+      "verified": false
+    },
+    {
+      "kisim": "c14k166",
+      "route": "/futuhat/c14k166/",
+      "baslik": {
+        "tr": "Bizden Başka Olan Yoktur — Peki Zuhur Nerede?",
+        "en": "There Is No Other Than Us — So Where Is Manifestation?",
+        "pt": "Não Há Outro Além de Nós — Então Onde Está a Manifestação?"
+      },
+      "ozet": {
+        "tr": "407'nin sonlarında A'râf ehli anlatılıyor — cennetle cehennem arasındaki surun üzerindekiler. Dost onları eksik kalmış kimseler olarak değil, tam tersine sunuyor: “menzilleri itibarıyla adamların en büyükleridir, çünkü o",
+        "en": "Toward the end of 407 the people of the Heights are described — those upon the wall between the Garden and the Fire. Ibn Arabi presents them not as people who fell short but as the opposite: “in respect of their waystati",
+        "pt": "Perto do fim do 407 descrevem-se as gentes das Alturas — os que estão sobre o muro entre o Jardim e o Fogo. Ibn Arabi apresenta-os não como pessoas que ficaram aquém mas como o contrário: “quanto às suas estações são os "
+      },
+      "skor": 0.9096,
+      "verified": true,
+      "gerekce": {
+        "tr": "A'râf ehli -- cennetle cehennem arasındaki sur üzerindekiler -- kelimesi geçmeden perdenin kendi imgesini taşıyor: iki mertebe arasında duran, ikisini de gören bir sınır konumu.",
+        "en": "The People of A'râf -- those upon the wall between paradise and hell -- carry the veil's own image without the word appearing: a boundary position standing between two ranks, seeing both.",
+        "pt": "O povo de A'râf -- os que estão sobre o muro entre o paraíso e o inferno -- carregam a própria imagem do véu sem que a palavra apareça: uma posição-fronteira entre duas categorias, vendo ambas."
+      }
+    },
+    {
+      "kisim": "c16k211",
+      "route": "/futuhat/c16k211/",
+      "baslik": {
+        "tr": "“Sen Ortadan Kalkmayan Bir Sınırsın”",
+        "en": "“You Are a Boundary That Does Not Fall Away”",
+        "pt": "“És um Limite Que Não Se Desfaz”"
+      },
+      "ozet": {
+        "tr": "Bölümün ikinci yarısı bilgiye dönüyor ve orada tedirgin edici bir yere varıyor. Allah kul üzerinde “senin verdiğin bilgiye göre” hüküm veriyor; “Allah ancak kulunun O'nun hakkındaki zannındadır” ; ve “zan olmasaydı hiçbi",
+        "en": "What did not pass is again worth noting: in these four chapters there is no cosmology . Throne, footstool, haba, hyle, universal intellect, universal soul, the elements, the spheres, substance, accident — none of them oc",
+        "pt": "O que não passou é igualmente digno de nota: nestes quatro capítulos não há cosmologia . Trono, escabelo, haba, hyle, intelecto universal, alma universal, os elementos, as esferas, substância, acidente — nenhum ocorre; a"
+      },
+      "skor": 0.9081,
+      "verified": false
+    },
+    {
+      "kisim": "c15k177",
+      "route": "/futuhat/c15k177/",
+      "baslik": {
+        "tr": "Kelâmı Okuyan Perdeyi Görür — ve Evin Dört Rüknünden Biri Sensin",
+        "en": "Whoever Reads My Speech Sees My Veil — and One of the House's Four Pillars Is You",
+        "pt": "Quem Lê a Minha Palavra Vê o Meu Véu — e Um dos Quatro Pilares da Casa És Tu"
+      },
+      "ozet": {
+        "tr": "Bu cilt boyunca perde kelimesinin nerelerde durduğunu tek tek not ediyoruz; 438 onu şimdiye kadarki en beklenmedik yere koyuyor gibi görünüyor. Münâzelenin başlığı şöyle: “Benim kelâmımı okuyan benim perdemi görür, melek",
+        "en": "The chapter's last move unseats the reader: “You are not intended for the sake of your own essence… God has laboured for Himself — not for you.” In the previous part (437) he explained the gnostic's giving away of everyt",
+        "pt": "O último gesto do capítulo desloca o leitor: “Não és pretendido por causa da tua própria essência… Deus trabalhou para Si — não para ti.” Na parte anterior (437) explicava o dar tudo do gnóstico com “veem que a mão que r"
+      },
+      "skor": 0.9063,
+      "verified": true,
+      "gerekce": {
+        "tr": "Doğrudan perde üzerine bir münâzele -- \"benim kelâmımı okuyan benim perdemi görür\" -- kelimenin kendisi geçtiği hâlde kavram-hayati.json'un ilk/son/en-yoğun üçlüsüne girmemiş bir yoğunluk noktası.",
+        "en": "A münâzele directly about the veil -- \"whoever reads my speech sees my veil\" -- a point of density where the word itself appears, yet it fell outside kavram-hayati.json's first/last/densest triad.",
+        "pt": "Uma münâzele diretamente sobre o véu -- \"quem lê minha fala vê meu véu\" -- um ponto de densidade onde a própria palavra aparece, mas que ficou fora da tríade primeiro/último/mais-denso de kavram-hayati.json."
+      }
+    },
+    {
+      "kisim": "c2k28",
+      "route": "/futuhat/c2k28/",
+      "baslik": {
+        "tr": "Kıyametin Elli Durağından Büyük Şefaate: Ölümün Kurban Edildiği Gün",
+        "en": "From the Fifty Stations of the Resurrection to the Greatest Intercession: The Day Death Itself Is Sacrificed",
+        "pt": "Das Cinquenta Estações da Ressurreição à Grande Intercessão: O Dia em Que a Própria Morte É Sacrificada"
+      },
+      "ozet": {
+        "tr": "Köprüdeki \"dikenler, kancalar ve çengeller\"in kaynağı da açıklanıyor: bunlar \"Âdemoğullarının amellerinin suretlerinden\" meydana geliyor -- yani insanı yolda tutan şey, dışarıdan gelen bir ceza değil, kendi amellerinin b",
+        "en": "The part closes with the seventh place, the banquet: the food of the people of Paradise is \"what remains of the liver of the whale\" -- the liver, \"the house of blood,\" the source of vitality; the food of the people of He",
+        "pt": "A parte se encerra com o sétimo lugar, o banquete: o alimento do povo do Paraíso é \"o que resta do fígado da baleia\" -- o fígado, \"a casa do sangue,\" a fonte da vitalidade; o alimento do povo do Inferno é \"o baço extraíd"
+      },
+      "skor": 0.9046,
+      "verified": false
+    },
+    {
+      "kisim": "c5k60",
+      "route": "/futuhat/c5k60/",
+      "baslik": {
+        "tr": "Allah Karşısında Durmak: Kadir Gecesi ve İtikâf",
+        "en": "Standing Before God: The Night of Power and Spiritual Retreat",
+        "pt": "Diante de Deus: A Noite do Destino e o Retiro Espiritual"
+      },
+      "ozet": {
+        "tr": "Kısım, çarpıcı bir tersine çevirmeyle açılır: \"Kulun zâhirinin el-Bâtın, bâtınının ise ez-Zâhir ismine münâcaat ettiğini söyledik.\" (s.212) -- yani kulun dışa görünen hâli Hakk'ın gizli ismine, kulun içteki hâli ise Hakk",
+        "en": "The section moves through concrete legal questions -- whether one in retreat may be visited, whether a menstruating woman may enter retreat in the mosque -- but its final sentence opens once more onto a wide horizon: \"Ju",
+        "pt": "A seção avança por questões jurídicas concretas -- se quem está em retiro pode ser visitado, se uma mulher menstruada pode entrar em retiro na mesquita -- mas sua frase final se abre mais uma vez para um horizonte amplo:"
+      },
+      "skor": 0.9045,
+      "verified": false
+    },
+    {
+      "kisim": "c14k155",
+      "route": "/futuhat/c14k155/",
+      "baslik": {
+        "tr": "Ayıran Şey Birleştiriyor: Cem', Berzah ve \"Bitti\" Diyememek",
+        "en": "What Separates Is What Joins: Gathering, the Isthmus, and Never Saying \"Finished\"",
+        "pt": "O Que Separa É o Que Une: Reunião, Istmo e Nunca Dizer \"Acabou\""
+      },
+      "ozet": {
+        "tr": "381. Bölüm'ün adı \"Tevhit ve Cem' Menzili\" ama gövdesi neredeyse tamamen hayal üzerine; sonundaki uzun liste ise baştan sona bir fark listesi: kesple iktisabın farkı, sohbetle musâhabenin farkı, \"iki zıt ile kim niteleni",
+        "en": "After setting up its unseen order of fourteen, 383 turns to the treasuries, and there it seems to address us directly: the treasuries beneath the Throne are in fact hidden within our own existence; to spend a treasury is",
+        "pt": "Depois de estabelecer a sua ordem invisível de catorze, o 383 passa aos tesouros, e aí parece dirigir-se-nos diretamente: os tesouros sob o Trono estão de facto escondidos na nossa própria existência; gastar um tesouro é"
+      },
+      "skor": 0.9035,
+      "verified": false
+    },
+    {
+      "kisim": "c14k166",
+      "route": "/futuhat/c14k166/",
+      "baslik": {
+        "tr": "Bizden Başka Olan Yoktur — Peki Zuhur Nerede?",
+        "en": "There Is No Other Than Us — So Where Is Manifestation?",
+        "pt": "Não Há Outro Além de Nós — Então Onde Está a Manifestação?"
+      },
+      "ozet": {
+        "tr": "407 tam tersi bir bölüm: 406 soyutluyorsa, 407 anlatıyor. Bir anıyla açılıyor — Gırnata'da Ebû Muhammed Abdullah eş-Şekkâz'ın huzuruna girmesi. Şeyhin tezi şu: “Adamlar (ricâl) dört kişidir” — resul, nebi, veli, mümin. D",
+        "en": "Toward the end of 407 the people of the Heights are described — those upon the wall between the Garden and the Fire. Ibn Arabi presents them not as people who fell short but as the opposite: “in respect of their waystati",
+        "pt": "Perto do fim do 407 descrevem-se as gentes das Alturas — os que estão sobre o muro entre o Jardim e o Fogo. Ibn Arabi apresenta-os não como pessoas que ficaram aquém mas como o contrário: “quanto às suas estações são os "
+      },
+      "skor": 0.9034,
+      "verified": false
+    },
+    {
+      "kisim": "c14k159",
+      "route": "/futuhat/c14k159/",
+      "baslik": {
+        "tr": "Var Saydığımız Nokta: Zaman Bir Nispet, Yol Kaygan",
+        "en": "The Point We Assume: Time Is a Relation, the Path Is Slippery",
+        "pt": "O Ponto Que Supomos: O Tempo É uma Relação, o Caminho É Escorregadio"
+      },
+      "ozet": {
+        "tr": "390, beklemediğimiz bir hamleyle açılıyor. Kur'ân, inkâr edenlerin sözünü naklediyor: \"Bizi ancak dehr (zaman) yok eder.\" Dost bu söz için \"doğru söylemişler\" diyor. Lafzı değiştirmiyor, tek bir kelimeye dokunmuyor; yaln",
+        "en": "Looking at the pieces accumulated at the end of this round, something caught our attention — but first let us say: this is a connection we are making; Ibn Arabi never sets these three places side by side. In three consec",
+        "pt": "Olhando as peças acumuladas no fim desta ronda, algo nos chamou a atenção — mas primeiro digamos: esta é uma ligação que nós fazemos; Ibn Arabi nunca põe estes três lugares lado a lado. Em três capítulos consecutivos rep"
+      },
+      "skor": 0.9017,
+      "verified": false
+    },
+    {
+      "kisim": "c5k63",
+      "route": "/futuhat/c5k63/",
+      "baslik": {
+        "tr": "Kavisin Doğruluğu: İhramda Beden, İsim ve Sınır",
+        "en": "The Rightness of the Curve: Body, Name, and Limit in the Pilgrim's Garb",
+        "pt": "A Retidão do Arco: Corpo, Nome e Limite no Traje do Peregrino"
+      },
+      "ozet": {
+        "tr": "Kısım, ihramdan sonra yıkanma bahsiyle kapanır. Dost, cenabetlik hâlini bir 'vatanına dönüş' çağrısı gibi okur ve bunu bir şiirle derinleştirir: \"Sen bir hükümdarsın ve bir kulsun. Sen 'sen' içinde ödünçsün. Hakikatten b",
+        "en": "The section closes with the matter of washing after the state of consecration. Dost reads the state of ritual impurity as a kind of call to 'return to one's homeland,' and deepens this with a poem: \"You are a sovereign, ",
+        "pt": "A seção se encerra com a questão do banho após o estado de consagração. Dost lê o estado de impureza ritual como uma espécie de chamado para 'retornar à própria pátria', e aprofunda isso com um poema: \"Tu és um soberano,"
+      },
+      "skor": 0.9014,
+      "verified": false
+    },
+    {
+      "kisim": "c16k211",
+      "route": "/futuhat/c16k211/",
+      "baslik": {
+        "tr": "“Sen Ortadan Kalkmayan Bir Sınırsın”",
+        "en": "“You Are a Boundary That Does Not Fall Away”",
+        "pt": "“És um Limite Que Não Se Desfaz”"
+      },
+      "ozet": {
+        "tr": "514, tevekkül âyetiyle açılıyor ama bu kısımda bizi en çok durduran sayfa burası. Önce perdenin yeri tayin ediliyor: “Demek ki perde denilen şey seninle O'nun arasındadır, yoksa O'nun ardında değildir.” Sonra perdenin ne",
+        "en": "What did not pass is again worth noting: in these four chapters there is no cosmology . Throne, footstool, haba, hyle, universal intellect, universal soul, the elements, the spheres, substance, accident — none of them oc",
+        "pt": "O que não passou é igualmente digno de nota: nestes quatro capítulos não há cosmologia . Trono, escabelo, haba, hyle, intelecto universal, alma universal, os elementos, as esferas, substância, acidente — nenhum ocorre; a"
+      },
+      "skor": 0.9006,
+      "verified": true,
+      "gerekce": {
+        "tr": "Perdenin yerini doğrudan tayin ediyor -- \"perde denilen şey seninle O'nun arasındadır, O'nun ardında değildir\" -- çekirdek pasaj c15k174'ün aynı fikrini (perde dışarıda değil) ayrı bir bölümden doğruluyor.",
+        "en": "Directly locates the veil -- \"what is called the veil is between you and Him, not behind Him\" -- confirming from a separate chapter the same idea as seed passage c15k174 (the veil is not outside).",
+        "pt": "Localiza diretamente o véu -- \"o que se chama véu está entre você e Ele, não atrás d'Ele\" -- confirmando, a partir de um capítulo separado, a mesma ideia do trecho-semente c15k174 (o véu não está fora)."
+      }
+    },
+    {
+      "kisim": "c8k112",
+      "route": "/futuhat/c8k112/",
+      "baslik": {
+        "tr": "Muhabbet Makamı: Bilinemeyen ama İnkâr Edilemeyen",
+        "en": "The Station of Love: Unknowable, Yet Undeniable",
+        "pt": "A Estação do Amor: Incognoscível, Mas Inegável"
+      },
+      "ozet": {
+        "tr": "Kısım, 111. kısımdaki mârifet-ilim tartışmasını kapatan kısa bir notla açılıyor: Allah, nefs-i nâtıkaya doğal şehvete karşı koysun diye 'akıl' adlı bir güç yerleştirmiş, ama bu gücün kendi sınırının farkında olması gerek",
+        "en": "To us, the most striking feature of this part is that the gift/earning and gnosis/knowledge thread accumulated across Parts 107 - 111 carries over into love without a single break. Abu 'l-Abbas's definition — \"love canno",
+        "pt": "Para nós, o traço mais marcante desta parte é que o fio de dom/conquista e gnose/conhecimento acumulado ao longo das Partes 107 - 111 se transporta para o amor sem uma única quebra. A definição de Abu 'l-Abbas — \"o amor "
+      },
+      "skor": 0.9001,
+      "verified": false
+    },
+    {
+      "kisim": "c2k26",
+      "route": "/futuhat/c2k26/",
+      "baslik": {
+        "tr": "İşaretin Kastı, Şeytanın Ateşi, ve Zamanın Vehmi",
+        "en": "The Intent Behind the Sign, the Fire of Satan, and the Illusion of Time",
+        "pt": "A Intenção do Sinal, o Fogo de Satanás, e a Ilusão do Tempo"
+      },
+      "ozet": {
+        "tr": "Elli Dördüncü Bölüm bir şiirle açılıyor: \"Işaret ilmi yakınlaştırma ve uzaklaştırmadır / Onun sendeki seyri ise aslına döndürmek ve istinattır\" (s. 347). Dost, konuya Mehâsinü'l-Mecâlis 'ten aktardığı bir şeyhin tanımıyl",
+        "en": "Having noted that the word 'time' is used differently among philosophers, theologians, and the Arabs, Dost states his own preference: the Arabs mean by time the day and the night, and this is what he wants to take up in ",
+        "pt": "Tendo notado que a palavra 'tempo' é usada de formas diferentes entre filósofos, teólogos e os árabes, Dost declara sua própria preferência: os árabes entendem por tempo o dia e a noite, e é isso que ele quer tratar nest"
+      },
+      "skor": 0.9001,
+      "verified": false
+    },
+    {
+      "kisim": "c14k162",
+      "route": "/futuhat/c14k162/",
+      "baslik": {
+        "tr": "Her Sureti Kabul Eden — ve Gözdeki Perde",
+        "en": "The One Who Accepts Every Form — and the Veil in the Eye",
+        "pt": "Aquele Que Aceita Toda Forma — e o Véu no Olho"
+      },
+      "ozet": {
+        "tr": "398'in sonuna doğru, yardımlaşma üzerine bir fasılda, bu ciltte okuduğumuz en cüretkâr karşılıklılık ifadesi geliyor. Fâtiha hadisi aktarılıyor — “Bu sûre benimle kulum arasında ikiye bölünmüştür” — ve Dost şu sonucu çık",
+        "en": "Toward the end of 398, in a section on mutual assistance, comes the most daring statement of reciprocity we have read in this volume. The hadith of the Fatiha is cited — “This sura is divided in two between Me and My ser",
+        "pt": "Perto do fim do 398, numa secção sobre a ajuda mútua, chega a mais ousada afirmação de reciprocidade que lemos neste volume. Cita-se o hadith da Fatiha — “Esta sura está dividida em duas entre Mim e o Meu servo” — e Ibn "
+      },
+      "skor": 0.8997,
+      "verified": true,
+      "gerekce": {
+        "tr": "Başlıkta \"gözdeki perde\" -- kelimenin kendisi geçiyor, kavram-hayati.json'un üçlüsüne (ilk/son/en-yoğun) girmemiş bir başka geçiş.",
+        "en": "The title has \"the veil in the eye\" -- the word itself appears, another occurrence that fell outside kavram-hayati.json's triad (first/last/densest).",
+        "pt": "O título traz \"o véu no olho\" -- a própria palavra aparece, outra ocorrência que ficou fora da tríade de kavram-hayati.json (primeiro/último/mais-denso)."
+      }
+    },
+    {
+      "kisim": "c2k25",
+      "route": "/futuhat/c2k25/",
+      "baslik": {
+        "tr": "Yemen Yönünden Gelen Nefes, Hayretin İki Yolu, ve Kandille Odunun Sırrı",
+        "en": "The Breath Coming from Yemen, Bewilderment's Two Paths, and the Secret of the Candle and the Wood",
+        "pt": "O Sopro que Vem do Iêmen, os Dois Caminhos do Espanto, e o Segredo da Vela e da Lenha"
+      },
+      "ozet": {
+        "tr": "Bölüm, 'perçem' imgesiyle devam ediyor: 'Hiçbir canlı yoktur ki, Allah onun perçemini tutmuş olmasın' ayeti hatırlatılıyor, ve Dost, kulun kendi perçeminin 'eldeki perçemlerden biri' olduğunu görmesine rağmen büyüklenmes",
+        "en": "The five inward deeds close with a similar testimony -- this time a woman's dream: 'As for the five inward deeds, a righteous woman, Maryam bint Muhammad b. Abdun b. Abd al-Rahman al-Bija'i, told me: In my dream I saw a ",
+        "pt": "Os cinco atos internos se encerram com um testemunho semelhante -- desta vez o sonho de uma mulher: 'Quanto aos cinco atos internos, uma mulher justa, Maryam bint Muhammad b. Abdun b. Abd al-Rahman al-Bija'i, me contou: "
+      },
+      "skor": 0.8997,
+      "verified": false
+    },
+    {
+      "kisim": "c10k130",
+      "route": "/futuhat/c10k130/",
+      "baslik": {
+        "tr": "İki Kumanın Bir Araya Gelmesi: Zıtları Birleştirmeyle Allah'ı Bilmek",
+        "en": "The Meeting of Two Fistfuls of Sand: Knowing God Through the Union of Opposites",
+        "pt": "O Encontro de Duas Mãos Cheias de Areia: Conhecer Deus pela União dos Opostos"
+      },
+      "ozet": {
+        "tr": "292. Bölüm (Musevî, Gayb Âlemi ile Şehadet Âleminin Ortaklık Menzili), cem-i ezdâd motifinin belki de en açık ifadesini taşıyor. Önce dolaylı bir örnekle başlıyor: \"Bu tecelliden başka, kendisinden meydana gelen şeyde ac",
+        "en": "Chapter 293 closes the relation between the source of perception and the perceived object with two forceful everyday analogies. The first is the chameleon: \"the chameleon's color has no reality either in itself or in the",
+        "pt": "O Capítulo 293 encerra a relação entre a fonte da percepção e o objeto percebido com duas analogias cotidianas contundentes. A primeira é o camaleão: \"a cor do camaleão não tem realidade nem em si mesma nem no corpo que "
+      },
+      "skor": 0.8992,
+      "verified": false
+    },
+    {
+      "kisim": "c5k67",
+      "route": "/futuhat/c5k67/",
+      "baslik": {
+        "tr": "Sa'y: Safa'dan Merve'ye, Allah'tan Allah'a Koşmak",
+        "en": "Sa'y: From Safa to Marwah, Running from God to God",
+        "pt": "Sa'y: De Safa a Marwah, Correndo de Deus para Deus"
+      },
+      "ozet": {
+        "tr": "Kısmın en özgün anı, bir toprak parçasının bir ayetle aynı nesne olarak görüldüğü bir rüya-vakıa anlatısıdır -- Hz. Peygamber rüyada şöyle der: \"Kuran bana da böyle indirildi. Sen de onu zevk yoluyla al.\" (s.387-388) Bun",
+        "en": "The section's most distinctive moment is a dream-vision narrative in which a piece of earth is seen as the very same object as a verse -- the Prophet says in the dream: \"The Qur'an was sent down to me in this way too. Ta",
+        "pt": "O momento mais distintivo da seção é uma narrativa de sonho-visão em que um pedaço de terra é visto como o mesmíssimo objeto que um versículo -- o Profeta diz no sonho: \"O Alcorão também me foi enviado desta forma. Toma-"
+      },
+      "skor": 0.8979,
+      "verified": false
+    },
+    {
+      "kisim": "c3k34",
+      "route": "/futuhat/c3k34/",
+      "baslik": {
+        "tr": "Ölüm, Beden ve Taş: Necasetin Bâtını ve Beşinci Sifr'in Kapanışı",
+        "en": "Death, Body, and Stone: The Hidden Meaning of Impurity, and the Closing of the Fifth Sifr",
+        "pt": "Morte, Corpo e Pedra: O Sentido Oculto da Impureza, e o Encerramento do Quinto Sifr"
+      },
+      "ozet": {
+        "tr": "Ardından gelen VASIL (s. 205-206), fıkhî sonuçtan çok bir yorum ilkesi ortaya koyuyor: zahiri lafzı, bir teşbihe (mecaza) zorlamadan ve gösterdiği hükümden sapmadan olduğu gibi benimseyen kimseye bir engel yoktur -- 'hat",
+        "en": "Looking back at the Fifth Sifr as a whole (Parts XXIX-XXXIV, six parts), a line seems, to us, to emerge: Part XXIX opens with the vision of Paradise and the secret of the Law, and the remaining five parts -- Parts XXX th",
+        "pt": "Olhando para o Quinto Sifr como um todo (Partes XXIX-XXXIV, seis partes), uma linha parece, para nós, emergir: a Parte XXIX se abre com o vislumbre do Paraíso e o segredo da Lei, e as cinco partes restantes -- Partes XXX"
+      },
+      "skor": 0.8972,
+      "verified": false
+    },
+    {
+      "kisim": "c14k163",
+      "route": "/futuhat/c14k163/",
+      "baslik": {
+        "tr": "Ne Başkasıyım Ne de Aynınız — ve İçi Rahmet Olan Sûr",
+        "en": "Neither Other Nor Your Very Self — and the Wall Whose Inside Is Mercy",
+        "pt": "Nem Outro Nem o Vosso Próprio Eu — e o Muro Cujo Interior É Misericórdia"
+      },
+      "ozet": {
+        "tr": "Bölüm başlığındaki imge sert: “İçeri girenin boynu vurulur, içeri girmeyen de yoktur.” Dost bunu sona saklıyor ve çözerken bir önceki kısımda okuduğumuz hadise dönüyor — Fâtiha'nın ikiye bölünmesi. Yanılgıyı tarif ediyor",
+        "en": "The second half of 400 changes the subject abruptly: God set limits, and the servants overstepped them. The angels said “will You create one who will work corruption on the earth?” Bakara 2:30 ; Iblis refused to prostrat",
+        "pt": "A segunda metade do 400 muda de assunto abruptamente: Deus estabeleceu limites e os servos ultrapassaram-nos. Os anjos disseram “criarás quem semeie corrupção na terra?” Bakara 2:30 ; Iblis recusou prostrar-se. Mas Ibn A"
+      },
+      "skor": 0.8967,
+      "verified": false
+    },
+    {
+      "kisim": "c15k173",
+      "route": "/futuhat/c15k173/",
+      "baslik": {
+        "tr": "Nur Kendisiyle Perdelenmiştir — ve Nokta Çevreyle Birleşir",
+        "en": "Light Is Veiled by Itself — and the Point Merges with the Circumference",
+        "pt": "A Luz Está Velada por Si Mesma — e o Ponto Funde-se com a Circunferência"
+      },
+      "ozet": {
+        "tr": "427 kapanırken, menziller arasında bu münâzeleye mahsus bir şey olduğunu söylüyor: “Menziller içerisinde bu münâzelenin dışında noktanın çevreyle birleşmesini gerektiren başka bir menzil yoktur. Çevre noktayla birleştiği",
+        "en": "Recording this part forced us back to our own notes. Finishing Volume XIV we had written: the line voicing mutual dependence (expressions such as “there is only God and us!” in 400, 407, 410) is never withdrawn across th",
+        "pt": "Registar esta parte obrigou-nos a voltar às nossas próprias notas. Ao terminar o Volume XIV escrevêramos: a linha que enuncia a dependência mútua (expressões como “só há Deus e nós!” em 400, 407, 410) nunca é retirada ao"
+      },
+      "skor": 0.8965,
+      "verified": true,
+      "gerekce": {
+        "tr": "Başlıkta doğrudan \"nur kendisiyle perdelenmiştir\" -- nurun/tecellînin kendi fazlalığıyla perdelenmesi, çekirdek pasaj c16k213'ün \"perde ile perdelenenin aynı şey olması\" paradoksuyla aynı örgüde.",
+        "en": "The title directly reads \"light is veiled by itself\" -- the light/tajallî veiled by its own excess, woven from the same thread as seed passage c16k213's paradox that the veil and the veiled are the same thing.",
+        "pt": "O título traz diretamente \"a luz é velada por si mesma\" -- a luz/tajallî velada por seu próprio excesso, tecida do mesmo fio do paradoxo do trecho-semente c16k213: o véu e o velado são a mesma coisa."
+      }
+    },
+    {
+      "kisim": "c15k172",
+      "route": "/futuhat/c15k172/",
+      "baslik": {
+        "tr": "Zikreden Sen Değilsin — ve Bilginin Kendisi Perde",
+        "en": "It Is Not You Who Remembers — and Knowledge Itself Is a Veil",
+        "pt": "Não És Tu Quem Recorda — e o Próprio Conhecimento É um Véu"
+      },
+      "ozet": {
+        "tr": "425'in içinde, tek bir cümlede, perde dizimize on sekizinci konum ekleniyor — ve bu konum bize en rahatsız edici olanı gibi geldi: “Buradan hareketle Allah ehlinden bazıları, bilginin perde olduğunu söylemiş ve bunu söyl",
+        "en": "Before closing, 425 lists in four ranks who sees where, and we leave that list here as it stands — because the text gives it as a flat statement, without opening it to discussion. To some servants God “grants the blessin",
+        "pt": "Antes de fechar, 425 enumera em quatro graus quem vê onde, e deixamos essa lista tal como está — porque o texto a dá como constatação simples, sem a abrir à discussão. A alguns servos Deus “concede a bênção de O ver nest"
+      },
+      "skor": 0.8964,
+      "verified": true,
+      "gerekce": {
+        "tr": "\"Bilginin perde olduğu\" iddiası -- perdenin bir cehalet değil, bilginin kendisi olabileceği fikri; çekirdek pasaj c15k169'un epistemik/görme yüzüyle aynı damar.",
+        "en": "The claim that \"knowledge itself is a veil\" -- the idea that the veil can be knowledge itself rather than ignorance; the same vein as seed passage c15k169's epistemic/seeing face.",
+        "pt": "A afirmação de que \"o próprio conhecimento é um véu\" -- a ideia de que o véu pode ser o próprio conhecimento, e não a ignorância; a mesma veia da face epistêmica/da visão do trecho-semente c15k169."
+      }
+    },
+    {
+      "kisim": "c14k153",
+      "route": "/futuhat/c14k153/",
+      "baslik": {
+        "tr": "Bölünmeden Bilinmiyor: Pay, Terazi ve Hayvanların Hayreti",
+        "en": "Not Known Without Being Divided: The Share, the Scales, and the Bewilderment of Animals",
+        "pt": "Não Se Conhece Sem Dividir-se: A Parte, a Balança e o Espanto dos Animais"
+      },
+      "ozet": {
+        "tr": "378. Bölüm bir isim itirazıyla başlıyor. İnsanlar hayvanlara \"behâim\", yani işi müphem olanlar demiş; Dost bunu kabul etmiyor: \"bize göre gerçek öyle değildir, çünkü hayvanların durumu her şeyden daha açık ve barizdir. K",
+        "en": "The long list of Chapter 378 closes with a single definition, and that definition looked to us like the key to the whole part: \"Darkness is learned from this waypoint; darkness means blindness and error, which is bewilde",
+        "pt": "A longa lista do Capítulo 378 fecha-se com uma única definição, e essa definição pareceu-nos a chave de toda a parte: \"A escuridão aprende-se nesta estação; escuridão significa cegueira e erro, que é o espanto\" . Que o v"
+      },
+      "skor": 0.8962,
+      "verified": false
+    },
+    {
+      "kisim": "c15k175",
+      "route": "/futuhat/c15k175/",
+      "baslik": {
+        "tr": "“Ben Sadece Seninle Perdelendim” — ve “Öğren Ama İfşa Etme”",
+        "en": "“I Am Veiled Only by You” — and “Learn It, but Do Not Divulge It”",
+        "pt": "“Estou Velado Apenas por Ti” — e “Aprende-o, mas Não o Divulgues”"
+      },
+      "ozet": {
+        "tr": "433 kısa bir bölüm ama içinde çok pratik bir uyarı taşıyor, ve uyarı bize bu ciltte okuduğumuz bütün fenâ övgülerinin yanında durması gereken bir kayıt gibi geldi. Bölümün adı doğrudan söylüyor: “Hangi tecellînin seni yo",
+        "en": "The short poem inside 434 shows another face of the counter-line accumulating in this volume — and this time the tone is less a claim than a reminder of precedence : “‘Be' made me owner of Chosroes' kingdom when it took ",
+        "pt": "O breve poema dentro de 434 mostra outra face da contra-linha que se acumula neste volume — e desta vez o tom é menos uma afirmação do que um lembrete de precedência : “‘Sê' fez-me dono do reino de Cosroes quando tomou p"
+      },
+      "skor": 0.896,
+      "verified": true,
+      "gerekce": {
+        "tr": "Başlıkta doğrudan \"ben sadece seninle perdelendim\" -- perdenin kul ile Hak arasında değil, kulun kendi tecellîsiyle kurulduğu fikri, çekirdek pasaj c15k174 ile aynı damar.",
+        "en": "The title directly reads \"I am veiled only by you\" -- the idea that the veil is not between servant and Real but constituted by the servant's own theophany, the same vein as seed passage c15k174.",
+        "pt": "O título traz diretamente \"sou velado apenas por você\" -- a ideia de que o véu não está entre o servo e o Real, mas é constituído pela própria teofania do servo, a mesma veia do trecho-semente c15k174."
+      }
+    },
+    {
+      "kisim": "c10k126",
+      "route": "/futuhat/c10k126/",
+      "baslik": {
+        "tr": "Havuz'un Etrafında: Musevî Ağırlıklı Dört Bölüm",
+        "en": "Around the Pool: Four Chapters Weighted Toward the Mosaic",
+        "pt": "Ao Redor do Tanque: Quatro Capítulos Voltados ao Mosaico"
+      },
+      "ozet": {
+        "tr": "275. Bölüm, putperestliği alışılmadık ölçüde geniş bir çerçevede tanımlıyor: \"Âlem ancak Allah karşısında yoksul ve hor olabilir... Muhtaç olunan ise put diye isimlendirilirken, muhtaç olan onu ilah diye adlandırır. Putl",
+        "en": "Chapter 277 — and the part as a whole — closes with a hierarchy accepting fakr (poverty) in four distinct ways (pp. 89-90): the people of the path live it as a STATE; the majority accept it as a PACT (a contractual agree",
+        "pt": "O Capítulo 277 — e a parte como um todo — se encerra com uma hierarquia que aceita o fakr (pobreza) de quatro modos distintos (pp. 89-90): o povo do caminho a vive como um ESTADO; a maioria a aceita como um PACTO (um aco"
+      },
+      "skor": 0.8958,
+      "verified": false
+    },
+    {
+      "kisim": "c6k89",
+      "route": "/futuhat/c6k89/",
+      "baslik": {
+        "tr": "Perdeden Sevgiye: Cilt VI'nın Kapanışı",
+        "en": "From the Veil to Love: The Closing of Volume VI",
+        "pt": "Do Véu ao Amor: O Fechamento do Volume VI"
+      },
+      "ozet": {
+        "tr": "Yüz on üçüncü soru el-Melikü'l-Kuddûs isminin niteliklerini, yüz on dördüncü soru ise kutsiyetin ne demek olduğunu sorguluyor. Dost burada dikkatli bir temkin cümlesiyle konuşuyor: \"Ben bu makamı (kimin ulaştığıyla ilgil",
+        "en": "Parts 71 through 89 of Volume VI divide into two Sifrs, and each appears to repeat the same movement of 'from Him we came, to Him we go' in a different direction — this is not a claim to a settled conclusion, but a readi",
+        "pt": "As partes 71 a 89 do Volume VI se dividem em dois Sifrs, e cada um parece repetir o mesmo movimento de 'd'Ele viemos, a Ele vamos' numa direção diferente — isso não é uma afirmação de conclusão definitiva, mas uma leitur"
+      },
+      "skor": 0.8953,
+      "verified": false
+    },
+    {
+      "kisim": "c2k23",
+      "route": "/futuhat/c2k23/",
+      "baslik": {
+        "tr": "Delilik, Dönüşün Üç Adımı, ve Bilginin Tekliği",
+        "en": "Madness, the Three Steps of Return, and the Oneness of Knowledge",
+        "pt": "A Loucura, os Três Passos do Retorno, e a Unicidade do Conhecimento"
+      },
+      "ozet": {
+        "tr": "Kırk Dördüncü Bölüm, bir şiirle açılıyor: 'Behlüller (deliler) gibi ol, hallerinde / Vaktin hükmüne göre akıllı gibi yürürler.' (s. 259) Bölümün doktrinel çekirdeği ise bir ayet okumasında: Allah'ın 'İnsanları sarhoş gib",
+        "en": "The chapter's second half draws a clear line between two kinds of knowledge: 'We know that there is a knowledge we obtain through our reflection and our senses. And there is also a further knowledge, which we do not obta",
+        "pt": "A segunda metade do capítulo traça uma linha clara entre dois tipos de conhecimento: 'Sabemos que há um conhecimento que obtemos por meio de nossa reflexão e de nossos sentidos. E há também um outro conhecimento, que não"
+      },
+      "skor": 0.8953,
+      "verified": false
+    },
+    {
+      "kisim": "c15k175",
+      "route": "/futuhat/c15k175/",
+      "baslik": {
+        "tr": "“Ben Sadece Seninle Perdelendim” — ve “Öğren Ama İfşa Etme”",
+        "en": "“I Am Veiled Only by You” — and “Learn It, but Do Not Divulge It”",
+        "pt": "“Estou Velado Apenas por Ti” — e “Aprende-o, mas Não o Divulgues”"
+      },
+      "ozet": {
+        "tr": "434'ün ortasında, bir önceki kısımda kaydettiğimiz bulguya doğrudan bağlanan bir yer var. 429'da Dost, âriflerin bu türden ifadeleri söylemesi hâlinde “mümin onları tekfir ederken delil sahibi akılcı onları cahil diye su",
+        "en": "The short poem inside 434 shows another face of the counter-line accumulating in this volume — and this time the tone is less a claim than a reminder of precedence : “‘Be' made me owner of Chosroes' kingdom when it took ",
+        "pt": "O breve poema dentro de 434 mostra outra face da contra-linha que se acumula neste volume — e desta vez o tom é menos uma afirmação do que um lembrete de precedência : “‘Sê' fez-me dono do reino de Cosroes quando tomou p"
+      },
+      "skor": 0.8952,
+      "verified": false
+    },
+    {
+      "kisim": "c6k73",
+      "route": "/futuhat/c6k73/",
+      "baslik": {
+        "tr": "Kâbe'nin Sağ Eli: Tavaf, Hacer-i Esved ve Kurbanın Sırrı",
+        "en": "The Kaʿba's Right Hand: Circumambulation, the Black Stone, and the Secret of Sacrifice",
+        "pt": "A Mão Direita da Kaʿba: Circum-ambulação, a Pedra Negra e o Segredo do Sacrifício"
+      },
+      "ozet": {
+        "tr": "Otuz dokuz-kırk birinci hadisler ve kapanış faslı, elleri kaldırmayı, tıraşı, veda tavafını ve temettu kefaretindeki fıkhî görüş ayrılıklarını ele alıyor. Dost, dua ederken elleri kaldırmayı mülkiyet iddiasından vazgeçiş",
+        "en": "The thirty-ninth through forty-first hadiths, and the closing section, take up raising the hands, shaving, the farewell circuit, and the legal disagreements over the atonement for tamattuʿ. Dost ties raising the hands in",
+        "pt": "O trigésimo nono ao quadragésimo primeiro hadiths, e a seção final, tratam de erguer as mãos, cortar o cabelo, a última volta, e as divergências legais sobre a expiação do tamattuʿ. Dost liga erguer as mãos na oração a a"
+      },
+      "skor": 0.8951,
+      "verified": false
+    },
+    {
+      "kisim": "c16k219",
+      "route": "/futuhat/c16k219/",
+      "baslik": {
+        "tr": "Sücud, Fena ve Zikir: Yakınlığın Dört Perdesi",
+        "en": "Prostration, Annihilation, and Remembrance: Four Veils of Nearness",
+        "pt": "Prostração, Aniquilação e Lembrança: Quatro Véus da Proximidade"
+      },
+      "ozet": {
+        "tr": "'Zikrimizden yüz çevirenden sen de yüz çevir' ayetini sıradan bir okuma kınama olarak görür. Dost ise işari bir katman açıyor gibi görünüyor bize: Allah kula 'şah damarından daha yakın'dır. Bu denli yakın olan bir Rabb'i",
+        "en": "**Graph update this section:** None. Themes of maiyet and mutual dhikr already present in existing ontology nodes (especially the God-cosmos relationship edges); these four chapters will be processed as additional insigh",
+        "pt": "**Atualização do grafo nesta seção:** Nenhuma. Temas de maiyet e dhikr mútuo já presentes nos nós de ontologia existentes (especialmente nas arestas da relação Deus-cosmos); estes quatro capítulos serão processados como "
+      },
+      "skor": 0.8949,
+      "verified": true,
+      "gerekce": {
+        "tr": "Başlıkta doğrudan \"yakınlığın dört perdesi\" -- Allah'ın kula \"şah damarından daha yakın\" olmasına rağmen perdenin varlığını sürdürmesi, çekirdek pasaj c14k164'ün paradoksuyla aynı damar.",
+        "en": "The title directly reads \"the four veils of nearness\" -- the veil persisting even though God is \"nearer than the jugular vein\" to the servant, the same vein as seed passage c14k164's paradox.",
+        "pt": "O título traz diretamente \"os quatro véus da proximidade\" -- o véu persistindo mesmo Deus estando \"mais próximo que a veia jugular\" do servo, a mesma veia do paradoxo do trecho-semente c14k164."
+      }
+    },
+    {
+      "kisim": "c5k66",
+      "route": "/futuhat/c5k66/",
+      "baslik": {
+        "tr": "Kâbe'nin Öfkesi ve Barışı: Bir Tavafın Tamamlanışı",
+        "en": "The Kaaba's Anger and Its Peace: A Circumambulation Completed",
+        "pt": "A Ira da Caaba e Sua Paz: Uma Circum-ambulação Concluída"
+      },
+      "ozet": {
+        "tr": "Barış sahnesinin ardından Dost, Hacer-i Esved'i Allah'ın 'sağ eli' olarak andığı bir şiire döner: \"O mübarek sağ el sendedir, Hatalarımın siyah bir elbise giydirdiği el.\" (s.352) Bunu genel bir zuhur/mazhar ilkesine bağl",
+        "en": "The section closes by classifying the three kinds of circumambulation: the arrival circumambulation (qudum), the main pilgrimage circumambulation (ifadah), and the farewell circumambulation. Between them comes a brief bu",
+        "pt": "A seção se encerra classificando os três tipos de circum-ambulação: a circum-ambulação de chegada (qudum), a circum-ambulação principal da peregrinação (ifadah), e a circum-ambulação de despedida. Entre elas vem uma disc"
+      },
+      "skor": 0.8947,
+      "verified": false
+    },
+    {
+      "kisim": "c14k167",
+      "route": "/futuhat/c14k167/",
+      "baslik": {
+        "tr": "İş Dairevidir — ve Varış Sırtladır",
+        "en": "The Matter Is Circular — and the Arrival Is by the Back",
+        "pt": "A Questão É Circular — e a Chegada É Pelas Costas"
+      },
+      "ozet": {
+        "tr": "408'in başlığı ilk okuyuşta karşılıklı bir kopuş ilan ediyor gibi: “Cumartesi günü beline bağladığın ciddiyet kemerini çözer, ben âlemden âlem benden fâriğ kaldı.” Bu ciltte on bölümdür karşılıklılığın kurulup kurulup bi",
+        "en": "The second half of 410 takes the image of the wall we read in 400 and 407 in the previous part and sets it in place — and one sentence changed our whole reading: “The wall is a veil between two places, not between two qu",
+        "pt": "A segunda metade do 410 pega na imagem do muro que lemos no 400 e no 407 na parte anterior e põe-na no lugar — e uma frase mudou toda a nossa leitura: “O muro é um véu entre dois lugares, não entre duas qualidades! Pois "
+      },
+      "skor": 0.8946,
+      "verified": false
+    },
+    {
+      "kisim": "c5k63",
+      "route": "/futuhat/c5k63/",
+      "baslik": {
+        "tr": "Kavisin Doğruluğu: İhramda Beden, İsim ve Sınır",
+        "en": "The Rightness of the Curve: Body, Name, and Limit in the Pilgrim's Garb",
+        "pt": "A Retidão do Arco: Corpo, Nome e Limite no Traje do Peregrino"
+      },
+      "ozet": {
+        "tr": "Kısmın en uzun ve en yoğun bahsi, hac sırasında eşle ilişkinin hükümlerini ele alır. Dost burada -- bizim ayrıntısına girmeyeceğimiz fıkhî tartışmanın ötesinde -- ilginç bir teori kurar: tek bir nefiste birden fazla ilâh",
+        "en": "The section closes with the matter of washing after the state of consecration. Dost reads the state of ritual impurity as a kind of call to 'return to one's homeland,' and deepens this with a poem: \"You are a sovereign, ",
+        "pt": "A seção se encerra com a questão do banho após o estado de consagração. Dost lê o estado de impureza ritual como uma espécie de chamado para 'retornar à própria pátria', e aprofunda isso com um poema: \"Tu és um soberano,"
+      },
+      "skor": 0.8944,
+      "verified": false
+    },
+    {
+      "kisim": "c8k109",
+      "route": "/futuhat/c8k109/",
+      "baslik": {
+        "tr": "Makam ve Terki: Edep, Sohbet, Tevhit-Şirk, Sefer, Ölüm Halleri",
+        "en": "A Station and Its Relinquishment: Adab, Companionship, Unity-Association, Journeying, the States of Death",
+        "pt": "Uma Estação e Sua Renúncia: Adab, Companhia, Unidade-Associação, Viagem, os Estados da Morte"
+      },
+      "ozet": {
+        "tr": "Kısmın en uzun bölümü olan Yüz Yetmiş İkinci Bölüm, tevhide iki yoldan yaklaşıyor: kelamcıların akıl yürütmeyle ispat ettiği tevhit (İbrahim'in yıldız-ay-güneş kıssası, \"ikisinde Allah'tan başka ilahlar olsaydı ikisi de ",
+        "en": "To us, the single thread that turns these eight chapters from a chance sequence into a gathered whole is the distinction between gift (given without condition) and earning (won through effort): the adab of reality is 'li",
+        "pt": "Para nós, o único fio que transforma esses oito capítulos de uma sequência casual num conjunto reunido é a distinção entre dom (dado sem condição) e conquista (obtida por esforço): o adab da realidade é 'como um dom' (Ca"
+      },
+      "skor": 0.8941,
+      "verified": false
+    },
+    {
+      "kisim": "c7k96",
+      "route": "/futuhat/c7k96/",
+      "baslik": {
+        "tr": "Veradan Uykusuzluğa: Sekiz Makam",
+        "en": "From Scrupulousness to Wakefulness: Eight Stations",
+        "pt": "Da Escrupulosidade à Vigília: Oito Estações"
+      },
+      "ozet": {
+        "tr": "Doksan İkinci Bölüm veranın terkini ele alıyor; bu makamın kendisi de bilinemez hâle geliyor: \"Vera sahibi de bilinmez. Çünkü vera, sakınmak ve terk etmek demektir... Vera sahibi, sakınmasını gerektiren şeyi söylerse ver",
+        "en": "The Ninety-Eighth Chapter — the part's final chapter — takes up the station of wakefulness; as another pillar of the substitutes, a lasting state of vigilance is portrayed: \"just as the servant guards his outward existen",
+        "pt": "O Nonagésimo Oitavo Capítulo — o capítulo final da parte — trata da estação da vigília; como outro pilar dos substitutos, retrata-se um estado duradouro de vigilância: \"assim como o servo guarda sua existência exterior a"
+      },
+      "skor": 0.8941,
+      "verified": false
+    },
+    {
+      "kisim": "c8k110",
+      "route": "/futuhat/c8k110/",
+      "baslik": {
+        "tr": "Mârifet Makamı: Bilgiyle Mârifet Arasındaki Fark",
+        "en": "The Station of Gnosis: The Difference Between Knowledge and Gnosis",
+        "pt": "A Estação da Gnose: A Diferença Entre Conhecimento e Gnose"
+      },
+      "ozet": {
+        "tr": "Dördüncü ve bu kısımda ele alınan son tür, varlıktaki kemal ile eksikliği bilmeye ayrılıyor. Dost bir paradoksla açıyor: varlığın kemalinin bir yönü, tam da eksikliğin var olmasıdır (s. 86-87) — insan, âlemin hakikatleri",
+        "en": "The fourth and final kind taken up in this part is devoted to knowing perfection and deficiency within existence. Dost opens with a paradox: one face of existence's perfection is precisely that deficiency exists (pp. 86-",
+        "pt": "O quarto e último tipo tratado nesta parte é dedicado a conhecer a perfeição e a deficiência dentro da existência. Dost abre com um paradoxo: uma face da perfeição da existência é precisamente que a deficiência existe (p"
+      },
+      "skor": 0.8931,
+      "verified": false
+    },
+    {
+      "kisim": "c5k55",
+      "route": "/futuhat/c5k55/",
+      "baslik": {
+        "tr": "Orucun Sırrı: \"Oruç Bana Aittir\"",
+        "en": "The Secret of Fasting: \"Fasting Is Mine\"",
+        "pt": "O Segredo do Jejum: \"O Jejum É Meu\""
+      },
+      "ozet": {
+        "tr": "Dost, bu selbî (olumsuz) yapıyı \"O'nun benzeri hiçbir şey yoktur\" Şûrâ 42:11 ayetiyle örtüştürüyor -- bu ayet de Allah'ı OLUMSUZ bir tanımla (benzeri yoktur) niteliyor, olumlu bir tanımla değil. Bize göre buradaki tez şu",
+        "en": "Two new autobiographical testimonies also appear in this part. The first: in a dream in Mecca, in the Haram, Dost sees a muezzin (Musa b. Muhammad al-Kabbab) eating foul-smelling food and rebukes him for it, whereupon th",
+        "pt": "Dois novos testemunhos autobiográficos também aparecem nesta parte. O primeiro: em um sonho em Meca, no Haram, Dost vê um muezim (Musa b. Muhammad al-Kabbab) comendo comida de cheiro desagradável e o repreende por isso, "
+      },
+      "skor": 0.8929,
+      "verified": false
+    },
+    {
+      "kisim": "c8k108",
+      "route": "/futuhat/c8k108/",
+      "baslik": {
+        "tr": "Kimya-yı Saadet: Fakirlikten Sonra, Bilgi ve İmanın Terazisi",
+        "en": "The Alchemy of Felicity: After Poverty, the Balance of Knowledge and Faith",
+        "pt": "A Alquimia da Felicidade: Depois da Pobreza, a Balança do Conhecimento e da Fé"
+      },
+      "ozet": {
+        "tr": "Bölüm, bunun bir 'sır' olduğunu söyleyip kişisel bir anekdotla kapanıyor: Dost'un bu sözünü duyan bir filozof önce içinden imkânsız saymış ya da onun aklını hafif görmüş; sonra Allah bunu ona kuşkusuz şekilde göstermiş, ",
+        "en": "The chapter calls this a 'secret' and closes with a personal anecdote: a philosopher who heard Dost say this at first deemed it impossible, or thought little of Dost's judgment on the matter; then God showed it to him be",
+        "pt": "O capítulo chama isso de um 'segredo' e se encerra com uma anedota pessoal: um filósofo que ouviu Dost dizer isso primeiro julgou impossível, ou considerou leviano o juízo de Dost sobre o assunto; então Deus lhe mostrou "
+      },
+      "skor": 0.8928,
+      "verified": false
+    }
+  ]
+}

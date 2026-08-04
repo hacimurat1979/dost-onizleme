@@ -112,6 +112,88 @@ window.__kavramApp = (function () {
   let kavramlar = [];
   let byKey = new Map();
 
+  // D9 "Bir kavramın bütün ömrü (anlamsal)" -- kavram-hayati.json'un KELİME
+  // eşleşmesinin (ilk/son/en-yoğun) kaçırdığı, aynı kavramı FARKLI
+  // kelimelerle konuşan pasajları embedding benzerliğiyle bulan ayrı bir
+  // veri seti (data/kavramlar/<id>.json, scripts/kavram-vektoru-uret.mjs +
+  // scripts/kavram-vektoru-onay.mjs). Şimdilik yalnız bir pilot kavram için
+  // üretildi -- kayıt burada elle tutuluyor, her kısım için 404 denemek
+  // yerine.
+  const KAVRAM_VEKTORU_IDS = new Set(["perde"]);
+  const vektoruCache = new Map(); // id -> Promise<data|null>
+  function fetchKavramVektoru(id) {
+    if (vektoruCache.has(id)) return vektoruCache.get(id);
+    const p = GU.fetchJson("data/kavramlar/" + id + ".json").catch(() => null);
+    vektoruCache.set(id, p);
+    return p;
+  }
+
+  function anlamsalOmurItemHtml(item, gosterSkor) {
+    const skorBar = gosterSkor
+      ? `<span class="kavram-anlamsal__skor" style="--skor:${Math.max(0, item.skor).toFixed(3)}" title="${(item.skor * 100).toFixed(1)}%"></span>`
+      : "";
+    const gerekce = item.gerekce
+      ? `<span class="futuhat-anlamsal-box__sebep">${tt(item.gerekce)}</span>`
+      : `<span class="futuhat-anlamsal-box__sebep">${tt(item.ozet)}</span>`;
+    return `<a class="futuhat-anlamsal-box__item kavram-anlamsal__item" href="${item.route.replace(/^\//, "")}" data-nav-route="${item.route}">` +
+      skorBar +
+      `<span class="futuhat-anlamsal-box__title">${tt(item.baslik)}</span>` +
+      gerekce +
+      `</a>`;
+  }
+
+  function renderAnlamsalOmur(k, mount) {
+    if (!KAVRAM_VEKTORU_IDS.has(k.id)) { mount.innerHTML = ""; return; }
+    mount.innerHTML = `<div class="futuhat-anlamsal-box futuhat-anlamsal-box--deneysel kavram-anlamsal">
+      <p class="futuhat-anlamsal-box__eyebrow">${tt({
+        tr: "Bir kavramın bütün ömrü — anlamsal (deneysel)",
+        en: "The whole life of a concept — semantic (experimental)",
+        pt: "Toda a vida de um conceito — semântica (experimental)",
+      })}</p>
+      <p class="futuhat-anlamsal-box__not">${tt({
+        tr: "Yukarıdaki ilk/son/en-yoğun taraması kelimenin KENDİSİNİ arıyor. Burada, aynı kavramı FARKLI kelimelerle konuşan pasajları embedding benzerliğiyle arıyoruz.",
+        en: "The first/last/densest scan above searches for the word ITSELF. Here we search for passages that speak of the same concept in DIFFERENT words, by embedding similarity.",
+        pt: "A varredura primeira/última/mais-densa acima busca a própria palavra. Aqui buscamos passagens que falam do mesmo conceito com OUTRAS palavras, por similaridade de embedding.",
+      })}</p>
+      <p class="kavram-anlamsal__yukleniyor">${tt({ tr: "Yükleniyor…", en: "Loading…", pt: "Carregando…" })}</p>
+    </div>`;
+    fetchKavramVektoru(k.id).then((d) => {
+      if (!d) { mount.innerHTML = ""; return; }
+      const bagli = [...d.cekirdek, ...d.sonuclar.filter((s) => s.verified)];
+      const adaylar = d.sonuclar.filter((s) => !s.verified);
+      const box = mount.querySelector(".kavram-anlamsal");
+      const yukleniyor = mount.querySelector(".kavram-anlamsal__yukleniyor");
+      if (yukleniyor) yukleniyor.remove();
+      const tabsHtml = `<div class="kavram-anlamsal__tabs" role="tablist">
+          <button type="button" class="kavram-anlamsal__tab kavram-anlamsal__tab--active" data-tab="bagli" role="tab" aria-selected="true">${tt({ tr: "Bağlantılar", en: "Connections", pt: "Conexões" })} (${bagli.length})</button>
+          <button type="button" class="kavram-anlamsal__tab" data-tab="aday" role="tab" aria-selected="false">${tt({ tr: "Adaylar", en: "Candidates", pt: "Candidatos" })} (${adaylar.length})</button>
+        </div>
+        <div class="kavram-anlamsal__panel" data-panel="bagli">${bagli.map((it) => anlamsalOmurItemHtml(it, false)).join("") || `<p class="futuhat-anlamsal-box__not">${tt({ tr: "Henüz onaylanmış bağlantı yok.", en: "No confirmed connections yet.", pt: "Ainda sem conexões confirmadas." })}</p>`}</div>
+        <div class="kavram-anlamsal__panel" data-panel="aday" hidden>${adaylar.map((it) => anlamsalOmurItemHtml(it, true)).join("")}</div>`;
+      box.insertAdjacentHTML("beforeend", tabsHtml);
+      box.querySelectorAll(".kavram-anlamsal__tab").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          box.querySelectorAll(".kavram-anlamsal__tab").forEach((b) => {
+            b.classList.toggle("kavram-anlamsal__tab--active", b === btn);
+            b.setAttribute("aria-selected", b === btn ? "true" : "false");
+          });
+          box.querySelectorAll(".kavram-anlamsal__panel").forEach((p) => {
+            p.hidden = p.dataset.panel !== btn.dataset.tab;
+          });
+        });
+      });
+      box.querySelectorAll(".kavram-anlamsal__item").forEach((a) => {
+        a.addEventListener("click", (e) => {
+          if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          e.preventDefault();
+          const route = a.dataset.navRoute || "";
+          const m = /^\/futuhat\/([a-z0-9]+)\/?$/.exec(route);
+          if (m) nav("futuhat", m[1]);
+        });
+      });
+    });
+  }
+
   // B3 "mini zaman çizelgesi": ilk/en yoğun/son geçiş noktalarını kitabın
   // TÜM açıklığı (kısım/fass sayısı) içinde konumlamak için toplam sayı
   // gerekiyor -- futuhat-atlas-index.json (1MB) bunun için ağır olurdu,
@@ -393,8 +475,10 @@ window.__kavramApp = (function () {
         pt: "Método: o nome do conceito foi buscado com uma varredura de limite de palavra no texto das partes/capítulos; a densidade é uma taxa por mil palavras, não uma contagem bruta (para que partes longas não sejam automaticamente \"mais densas\"). Esta é uma varredura APROXIMADA, não um índice exato.",
       })}</p>`
     );
+    parts.push(`<div class="kavram-anlamsal-mount"></div>`);
 
     detailEl.innerHTML = parts.join("");
+    renderAnlamsalOmur(k, detailEl.querySelector(".kavram-anlamsal-mount"));
     // window.__dostNav.goTo("kavram", undefined) burada İŞE YARAMAZ:
     // setMainView zaten "kavram" görünümündeyken (bkz. currentMainView ===
     // view erken çıkışı) hiçbir şey tetiklemiyor -- liste hâline dönmek

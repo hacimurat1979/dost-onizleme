@@ -8745,6 +8745,71 @@ mark.durus-vurgu-es {
   font-size: 0.78rem;
   line-height: 1.55;
 }
+
+/* D9 "Bir kavramın bütün ömrü (anlamsal)" -- .futuhat-anlamsal-box'ın
+   içine iki sekme (bağlantı/aday) ekliyor. Sekmeler ETKILESIM_DILI.md'nin
+   "seçmek" fiiliyle -- iki liste arasında geçiş, dekor değil. */
+.kavram-anlamsal__yukleniyor {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+.kavram-anlamsal__tabs {
+  display: flex;
+  gap: 8px;
+  margin: 2px 0 4px;
+}
+.kavram-anlamsal__tab {
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.kavram-anlamsal__tab:hover,
+.kavram-anlamsal__tab:focus-visible {
+  border-color: var(--accent-interactive);
+  color: var(--accent-interactive);
+  outline: none;
+}
+.kavram-anlamsal__tab--active {
+  border-color: var(--series-theme);
+  background: color-mix(in srgb, var(--series-theme) 14%, transparent);
+  color: var(--series-theme);
+  font-weight: 600;
+}
+.kavram-anlamsal__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.kavram-anlamsal__panel[hidden] {
+  display: none;
+}
+/* Skor bir dolgu barı olarak görünür -- GORSEL_DIL.md'nin "davranışı
+   resmet" ilkesi: sayı değil, ölçülen yakınlığın kendisi. */
+.kavram-anlamsal__skor {
+  display: block;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--gridline);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+.kavram-anlamsal__skor::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: calc(var(--skor, 0) * 100%);
+  background: var(--series-theme);
+  border-radius: inherit;
+}
 @media (max-width: 640px) {
   .kavram-wrap { padding: 16px 12px 48px; }
   /* Etiket tam satır kaplıyor; satırın SARMASI gerekiyor, yoksa etiket +
