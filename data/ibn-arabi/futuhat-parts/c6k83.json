@@ -136,6 +136,89 @@
               }
             }
           }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu kısımdaki Amâ, geriye dönük bir taramada (2026-07-24) Fütûhât boyunca en az dört bağımsız kısımda dört farklı çerçevede belirdiği görülen bir kavram. Burada (Kısım 83-84) fıtratın karşıtı, tanımlanamaz bir karanlık; Cilt VIII'de ise üç kez daha, her seferinde nötr ya da olumlu bir ilahi mekân olarak: <a class=\"cross-link\" data-view=\"futuhat\" data-id=\"c8k110\" href=\"futuhat/c8k110\">Kısım 110-111</a>'de mârifet/hayal-nefes kozmolojisinin bir parçası, <a class=\"cross-link\" data-view=\"futuhat\" data-id=\"c8k112\" href=\"futuhat/c8k112\">Kısım 112</a>'de kenz-i mahfî hadisiyle sevgi/yaratma bağlamında, <a class=\"cross-link\" data-view=\"futuhat\" data-id=\"c8k118\" href=\"futuhat/c8k118\">Kısım 118-119</a>'da ise Rahmân'ın nefesi kozmolojisinin merkezinde. Bu dördü aynı kavramın farklı yüzleri mi, yoksa gerçekten gerilimli iki ayrı kullanım mı -- burada karar vermiyoruz (bkz. sitenin çelişki protokolü); aşağıdaki şema bu kararsızlığı, sağlam değil kesikli çizgilerle taşıyor.",
+            "en": "The Cloud in this part turned out, in a retrospective sweep (2026-07-24), to appear in at least four independent parts of the Futuhat, each in a different frame. Here (Part 83-84) it is an indefinable darkness opposed to fitra; in Volume VIII it recurs three more times, each time as a neutral or positive divine place: in <a class=\"cross-link\" data-view=\"futuhat\" data-id=\"c8k110\" href=\"futuhat/c8k110\">Part 110-111</a> as part of the imaginal-breath cosmology of gnosis, in <a class=\"cross-link\" data-view=\"futuhat\" data-id=\"c8k112\" href=\"futuhat/c8k112\">Part 112</a> in the context of love/creation through the hidden-treasure hadith, and in <a class=\"cross-link\" data-view=\"futuhat\" data-id=\"c8k118\" href=\"futuhat/c8k118\">Part 118-119</a> at the center of the cosmology of the All-Merciful's breath. Whether these four are faces of one concept or genuinely two conflicting uses, we do not decide here (see the site's contradiction protocol); the diagram below carries that undecidedness in a dashed, not a solid, line.",
+            "pt": "A Nuvem nesta parte revelou-se, numa varredura retrospectiva (2026-07-24), presente em pelo menos quatro partes independentes do Futuhat, cada uma numa moldura diferente. Aqui (Parte 83-84) é uma escuridão indefinível oposta à fitra; no Volume VIII recorre mais três vezes, sempre como um lugar divino neutro ou positivo: na <a class=\"cross-link\" data-view=\"futuhat\" data-id=\"c8k110\" href=\"futuhat/c8k110\">Parte 110-111</a> como parte da cosmologia imaginal-sopro da gnose, na <a class=\"cross-link\" data-view=\"futuhat\" data-id=\"c8k112\" href=\"futuhat/c8k112\">Parte 112</a> no contexto do amor/criação através do hadith do tesouro oculto, e na <a class=\"cross-link\" data-view=\"futuhat\" data-id=\"c8k118\" href=\"futuhat/c8k118\">Parte 118-119</a> no centro da cosmologia do sopro do Todo-Misericordioso. Se essas quatro são faces de um mesmo conceito ou usos genuinamente conflitantes, não decidimos aqui (ver o protocolo de contradição do site); o diagrama abaixo carrega essa indecisão numa linha tracejada, não sólida."
+          }
+        },
+        {
+          "type": "diagram",
+          "source": {
+            "tr": "Fütûhât-ı Mekkiyye, Cilt VI Kısım LXXXIII-LXXXIV ve Cilt VIII Kısım CX-CXIX arası, geriye dönük tema taraması.",
+            "en": "Al-Futuhat al-Makkiyya, Vol. VI Part LXXXIII-LXXXIV and Vol. VIII Part CX-CXIX, retrospective thematic sweep.",
+            "pt": "Al-Futuhat al-Makkiyya, Vol. VI Parte LXXXIII-LXXXIV e Vol. VIII Parte CX-CXIX, varredura temática retrospectiva."
+          },
+          "caption": {
+            "tr": "Amâ'nın Fütûhât boyunca dört farklı bağlamda belirişi -- aralarındaki ilişki henüz çözülmedi (OPEN_QUESTIONS #37).",
+            "en": "The Cloud's appearance across the Futuhat in four different contexts -- the relation between them is not yet resolved (OPEN_QUESTIONS #37).",
+            "pt": "O aparecimento da Nuvem ao longo do Futuhat em quatro contextos diferentes -- a relação entre eles ainda não foi resolvida (OPEN_QUESTIONS #37)."
+          },
+          "radyal": {
+            "id": "ama-dort-baglam-radyal",
+            "merkez": {
+              "tr": "Amâ",
+              "en": "The Cloud",
+              "pt": "A Nuvem"
+            },
+            "kollar": [
+              {
+                "id": "karanlik-kol",
+                "label": {
+                  "tr": "Karanlık",
+                  "en": "Darkness",
+                  "pt": "Escuridão"
+                },
+                "not": {
+                  "tr": "fıtratın karşıtı (bu kısım)",
+                  "en": "opposite of fitra (this part)",
+                  "pt": "oposto da fitra (esta parte)"
+                }
+              },
+              {
+                "id": "marifet-kol",
+                "label": {
+                  "tr": "Mârifet",
+                  "en": "Gnosis",
+                  "pt": "Gnose"
+                },
+                "not": {
+                  "tr": "hayal-nefes kozmolojisi",
+                  "en": "the imaginal-breath cosmology",
+                  "pt": "a cosmologia imaginal-sopro"
+                }
+              },
+              {
+                "id": "sevgi-kol",
+                "label": {
+                  "tr": "Sevgi",
+                  "en": "Love",
+                  "pt": "Amor"
+                },
+                "not": {
+                  "tr": "kenz-i mahfî hadisi",
+                  "en": "the hidden-treasure hadith",
+                  "pt": "o hadith do tesouro oculto"
+                }
+              },
+              {
+                "id": "nefes-kol",
+                "label": {
+                  "tr": "Nefes",
+                  "en": "Breath",
+                  "pt": "Sopro"
+                },
+                "not": {
+                  "tr": "Rahmân'ın nefesi",
+                  "en": "the Breath of the All-Merciful",
+                  "pt": "o Sopro do Todo-Misericordioso"
+                }
+              }
+            ]
+          }
         }
       ]
     },

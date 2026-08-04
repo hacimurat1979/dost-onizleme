@@ -2242,6 +2242,44 @@ button.futuhat-part-chip:hover {
   fill: var(--text-secondary);
 }
 
+.futuhat-radyal__svg {
+  width: 100%;
+  max-width: 320px;
+  display: block;
+  margin: 0 auto;
+}
+.futuhat-radyal__tether {
+  stroke: var(--gridline);
+  stroke-width: 1.2px;
+  /* Kesikli: dört bağlamın tek bir kavramın yüzleri mi yoksa gerilimli iki
+     ayrı kullanım mı olduğu ÇÖZÜLMEDİ (OPEN_QUESTIONS #37) -- sağlam bir
+     çizgi vereceği kesinliği burada bilerek vermiyoruz. */
+  stroke-dasharray: 2 4;
+}
+.futuhat-radyal__dot {
+  fill: var(--page-plane);
+  stroke: var(--text-secondary);
+  stroke-width: 1.3px;
+}
+.futuhat-radyal__merkez-dot {
+  fill: var(--series-theme);
+  stroke: var(--series-theme);
+}
+.futuhat-radyal__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  fill: var(--text-primary);
+}
+.futuhat-radyal__not {
+  font-size: 0.6rem;
+  fill: var(--text-secondary);
+}
+.futuhat-radyal__merkez-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  fill: var(--on-accent-text);
+}
+
 .futuhat-sources {
   max-width: 660px;
   margin: 40px auto 0;
@@ -5923,6 +5961,10 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 .cizim-lightbox__svg-wrap .futuhat-akis__svg {
   width: 100%;
   max-width: 1000px;
+}
+.cizim-lightbox__svg-wrap .futuhat-radyal__svg {
+  width: 100%;
+  max-width: 460px;
 }
 
 /* Füsûs'ün sarmal sahnesi (assets/helix.js), lightbox içinde yeniden

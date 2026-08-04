@@ -727,6 +727,60 @@
       .call(wrapSvgText, 26);
   }
 
+  // --- Radyal (merkez + kollar) diyagramı: Amâ'nın dört bağlamı (c6k83,
+  // 2026-08-04). Kollar KESİKLİ çizgiyle bağlanıyor -- kaynak metin dört
+  // bağlamın aynı kavramın farklı yüzleri mi yoksa gerilimli iki ayrı
+  // kullanım mı olduğunu ÇÖZMÜYOR (OPEN_QUESTIONS #37); kesikli çizgi bu
+  // kararsızlığı, sağlam bir çizgi verirdiği kesinliği vermeden taşıyor.
+  function renderRadyal(mount, radyal) {
+    const cx = 150, cy = 150, hostR = 34, satR = 26, orbit = 100;
+    const n = radyal.kollar.length;
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-radyal__svg")
+      .attr("viewBox", "0 0 300 300")
+      .attr("role", "img")
+      .attr("aria-label", tt(radyal.merkez));
+
+    const kollar = svg
+      .selectAll("g.futuhat-radyal__kol")
+      .data(radyal.kollar)
+      .join("g")
+      .attr("class", "futuhat-radyal__kol")
+      .attr("data-node-id", (d) => d.id);
+
+    kollar.each(function (d, i) {
+      const deg = -90 + (360 / n) * i;
+      const rad = (deg * Math.PI) / 180;
+      const sx = cx + orbit * Math.cos(rad), sy = cy + orbit * Math.sin(rad);
+      const g = d3.select(this);
+      g.append("line")
+        .attr("class", "futuhat-radyal__tether")
+        .attr("x1", cx).attr("y1", cy).attr("x2", sx).attr("y2", sy);
+      g.append("circle")
+        .attr("class", "futuhat-radyal__dot")
+        .attr("cx", sx).attr("cy", sy).attr("r", satR);
+      g.append("text")
+        .attr("class", "futuhat-radyal__label")
+        .attr("x", sx).attr("y", sy - 2).attr("text-anchor", "middle")
+        .text(tt(d.label))
+        .call(wrapSvgText, 15);
+      g.append("text")
+        .attr("class", "futuhat-radyal__not")
+        .attr("x", sx).attr("y", sy + orbit * 0.34).attr("text-anchor", "middle")
+        .text(tt(d.not))
+        .call(wrapSvgText, 20);
+    });
+
+    svg.append("circle").attr("class", "futuhat-radyal__merkez-dot").attr("cx", cx).attr("cy", cy).attr("r", hostR);
+    svg.append("text")
+      .attr("class", "futuhat-radyal__merkez-label")
+      .attr("x", cx).attr("y", cy + 5).attr("text-anchor", "middle")
+      .text(tt(radyal.merkez));
+  }
+
   // --- Nested-circles diagram (c13k150, "sonsuz iç içe daireler") ---
   // GORSEL_DIL.md keskin konturlu iç içe halka çizmeyi yasaklıyor ("Perde
   // çizilecekse yarı saydam perde çizilir... keskin konturlu bir halka bir
@@ -1166,6 +1220,8 @@
             renderPair(mount, block.pair);
           } else if (block.akis) {
             renderAkis(mount, block.akis);
+          } else if (block.radyal) {
+            renderRadyal(mount, block.radyal);
           } else if (block.nested) {
             renderNested(mount);
           } else if (block.useMainDiagram) {
