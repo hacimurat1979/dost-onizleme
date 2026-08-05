@@ -171,6 +171,8 @@
           <p class="nav-drawer__heading" data-tr="Külliyat" data-en="The Works" data-pt="A Obra">Külliyat</p>
           <div class="nav-drawer__items">
             <button class="btn-ghost" id="futuhat-btn" type="button" title="Fütûhât-ı Mekkiyye, kısım kısım — The Meccan Revelations, part by part — As Revelações de Meca, parte por parte" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
+            <button class="btn-ghost btn-ghost--sub" id="kuran-dokusu-btn" type="button" title="Fütûhât ve Füsûs özetlerimizde işaretlediğimiz âyet atıflarının sûre↔bap grafı — kısmi bir iz, tam bir tarama değil — A sûrah↔chapter graph of the verse citations we've marked in our Futûhât and Fusûs summaries — a partial trace, not a full scan — Um grafo surata↔capítulo das citações de versículos que marcámos nos nossos resumos das Futûhât e Fusûs — um traço parcial, não uma varredura completa" data-tr="↳ Kur'ân Dokusu" data-en="↳ The Qur'ânic Weave" data-pt="↳ A Trama Alcorânica">↳ Kur'ân Dokusu</button>
+            <button class="btn-ghost btn-ghost--sub" id="futuhat-mimarisi-btn" type="button" title="Kitabın 560 babının altı büyük fasıla bölünüşü — bir sözlük değil, bir seyir planı — The book's 560 chapters divided into six major sections — not a dictionary, a journey's plan — Os 560 capítulos do livro divididos em seis grandes seções — não um dicionário, um plano de jornada" data-tr="↳ Mimarisi" data-en="↳ Architecture" data-pt="↳ Arquitetura">↳ Mimarisi</button>
             <button class="btn-ghost" id="fusus-btn" type="button" title="Füsûsu'l-Hikem, fass fass — The Bezels of Wisdom, chapter by chapter — Os Engastes da Sabedoria, capítulo por capítulo" data-tr="Füsûs" data-en="Fusus" data-pt="Fusus">Füsûs</button>
             <button class="btn-ghost btn-ghost--yeni" id="kavram-btn" type="button" title="Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti — A data-derived life summary tracing each concept through the Futuhat and Fusus — Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus" data-tr="Kavramlar" data-en="Concepts" data-pt="Conceitos">Kavramlar</button>
           </div>
@@ -190,8 +192,6 @@
             <button class="btn-ghost btn-ghost--yeni" id="seyahat-atlasi-btn" type="button" title="Mürsiye'den Şam'a, her durakta yazdığı eserlerle birlikte — From Murcia to Damascus, together with the works he wrote at each stop — De Múrcia a Damasco, juntamente com as obras que escreveu em cada paragem" data-tr="Seyahat Atlası" data-en="Travel Atlas" data-pt="Atlas de Viagem">Seyahat Atlası</button>
             <button class="btn-ghost" id="cizimler-btn" type="button" title="Kavramlar arası ilişkileri gösteren şemalar — Diagrams showing relationships between concepts — Diagramas mostrando relações entre conceitos" data-tr="Çizimler" data-en="Diagrams" data-pt="Diagramas">Çizimler</button>
             <button class="btn-ghost btn-ghost--yeni" id="ayethadis-btn" type="button" title="Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin — An index of quoted verses and hadiths, ordered by how often each recurs — Um índice de versículos e ditos citados, ordenados por quantas vezes cada um recorre" data-tr="Âyet &amp; Hadis" data-en="Verses &amp; Hadith" data-pt="Versículos e Hadith">Âyet &amp; Hadis</button>
-            <button class="btn-ghost btn-ghost--yeni" id="kuran-dokusu-btn" type="button" title="Fütûhât ve Füsûs özetlerimizde işaretlediğimiz âyet atıflarının sûre↔bap grafı — kısmi bir iz, tam bir tarama değil — A sûrah↔chapter graph of the verse citations we've marked in our Futûhât and Fusûs summaries — a partial trace, not a full scan — Um grafo surata↔capítulo das citações de versículos que marcámos nos nossos resumos das Futûhât e Fusûs — um traço parcial, não uma varredura completa" data-tr="Kur'ân Dokusu" data-en="The Qur'ânic Weave" data-pt="A Trama Alcorânica">Kur'ân Dokusu</button>
-            <button class="btn-ghost btn-ghost--yeni" id="futuhat-mimarisi-btn" type="button" title="Kitabın 560 babının altı büyük fasıla bölünüşü — bir sözlük değil, bir seyir planı — The book's 560 chapters divided into six major sections — not a dictionary, a journey's plan — Os 560 capítulos do livro divididos em seis grandes seções — não um dicionário, um plano de jornada" data-tr="Fütûhât'ın Mimarisi" data-en="The Futûhât's Architecture" data-pt="A Arquitetura das Futûhât">Fütûhât'ın Mimarisi</button>
           </div>
         </div>
         <div class="nav-drawer__group">
@@ -209,6 +209,23 @@
   </header>
 
   <main id="main-content">
+
+    <!-- Akraba sekmeler (bkz. assets/graph-utils.js wireRelatedTabs). Hiçbiri
+         yeni bir rota İCAT ETMİYOR -- yalnız var olan üç nav düğmesini
+         (futuhat-btn/kuran-dokusu-btn/futuhat-mimarisi-btn) tetikliyor; her
+         sayfa kendi URL'ini, kendi meta etiketini ve .pa11yci.json'daki kendi
+         denetim satırını korur. Bar kendi kendine görünür/gizlenir -- yalnız
+         bu üç görünümden biri açıkken görünür. -->
+    <div class="related-tabs" id="futuhat-related-tabs" role="tablist" hidden
+         data-tr-aria-label="Fütûhât'a bağlı görünümler" data-en-aria-label="Views related to the Futûhât" data-pt-aria-label="Vistas relacionadas com as Futûhât"
+         aria-label="Fütûhât'a bağlı görünümler">
+      <button class="related-tab" type="button" role="tab" data-goto-btn="futuhat-btn"
+              data-tr="Okuma" data-en="Reading" data-pt="Leitura">Okuma</button>
+      <button class="related-tab" type="button" role="tab" data-goto-btn="kuran-dokusu-btn"
+              data-tr="Kur'ân Dokusu" data-en="Qur'ânic Weave" data-pt="Trama Alcorânica">Kur'ân Dokusu</button>
+      <button class="related-tab" type="button" role="tab" data-goto-btn="futuhat-mimarisi-btn"
+              data-tr="Mimarisi" data-en="Architecture" data-pt="Arquitetura">Mimarisi</button>
+    </div>
 
     <section class="graph-wrap" id="ontology-wrap">
       <svg id="graph" role="group" aria-label="Ontoloji haritası"
@@ -1220,7 +1237,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/i18n.js" defer integrity="sha384-bqPgHDorfYKkI+ErvFXEAGead8E3pDVsel6p3S9LkyxoY1QRWrMrTUpeiooWejvL"></script>
   <script src="assets/nav-drawer.js" defer integrity="sha384-+uWE/MTAds1I1//2VMAMWVaAz28GUZiIOFUAD+0Lo+Fo4kLD48zHYoFaN/s9Ai0R"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
-  <script src="assets/graph-utils.js" defer integrity="sha384-GvXwipbzWS80TFH0+HZo2em3fCGwxJ9Y7Vfc3eKzeKhgUT/GJjDiMpTMXtTEp0sc"></script>
+  <script src="assets/graph-utils.js" defer integrity="sha384-AD/bn4QyibhN2fiwYG9vSfNChoNrNWZZUpUKmOjL236K5Uzg/8+TJaBIBprXZabG"></script>
   <script src="assets/helix.js" defer integrity="sha384-+aEXNIbO2q7MLWaAl0OFtAYEF/52nQoLUKK1W4mhHc0P2DJdQNRlebKKaIh4TSF7"></script>
   <script src="assets/graph-hint.js" defer integrity="sha384-3PjCLUJoOIi1t7duvbSRNLvzJiTCNzmtDW5/KrVH5D+G8MiuYcF/UfJyv19FG578"></script>
   <script src="assets/lightbox.js" defer integrity="sha384-txI/emOUsh4ASe/MSV1vzHmFXEUC7CTDF4tcxuVHmGyhnCmaU24buPLUrKF3BbG7"></script>
@@ -1240,7 +1257,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/futuhat.js" defer integrity="sha384-8J52eSlPJXuUJcLh31GPXcuWRsZSmcJW5GRlLRON7lRNgCxixdcq5qfIZbyvshZ9"></script>
   <script src="assets/fusus.js" defer integrity="sha384-YmInK0sH7H7NZq0MMQSKNolaKcz2lLgTdMnExCwhWWs7/BPGxdq7FP9RJUlAA+/L"></script>
   <script src="assets/view-loader.js" defer integrity="sha384-aAwAkJvldXMnvaSi6wMfuzZxSP9JoBWiSHGmz5nFMpimg0uU1uKWcn8NgbCTn48i"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-H2b+cjQsPKI9SKcyGmsZPqGtdUm+N3eQ3ZFhoHYupsZvHY1sIpMWZK72LCBtiuqt"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-fSQbPpy/oMqb1DBOGQMs1k/wcA9wOC+n8kK/40jp00CerOmz0ihBNJThJdfONTdK"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-pUGs2ZLA6M1Uv5y5m6q8SzOrNwoimvexeWXg1MwnVMdlNPg4urvUdMtthr/qlAE1"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>
