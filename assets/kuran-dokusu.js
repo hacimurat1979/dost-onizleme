@@ -7,10 +7,28 @@
 // kanıtı değil, okuma sürecimizin küçük bir izi.
 //
 // YERLEŞIM. CLAUDE.md'nin daire/merkez ilkesi + roadmap'in kendi isteği
-// ("sûreler dış halka, bablar iç halka, kenarlar merkeze doğru"): sûre
-// düğümleri KUR'ÂN SIRASINDAKİ açılarında duruyor (114 sûrelik tam daire
-// üzerinde, no'ya göre) -- bu bilerek BOŞLUKLARI da görünür kılıyor, çünkü
-// 114'ün yalnız 35'i şu an atıflı; boşluğun kendisi de bir dürüstlük.
+// ("sûreler dış halka, bablar iç halka, kenarlar merkeze doğru").
+//
+// Sûre düğümleri KUR'ÂN SIRASINDA ama EŞİT ARALIKLA diziliyor. Önceki iki
+// deneme de başarısızdı ve ikisi de aynı nedenden:
+//   1) Düğümler gerçek Kur'ân açılarındaydı (no/114). Atıflar ilk yarıdaki
+//      uzun sûrelerde toplandığı için 12 sûre çemberin tepesinde ~38
+//      dereceye sıkışıyor, ETİKETLERİ birbirinin üstüne biniyordu:
+//      "Fâtiha / …i İmrân / …âm / A'râf / fâl / Tevbe" okunmuyordu.
+//   2) Buna 114 konumun tamamını soluk iz olarak çizerek cevap vermiştim.
+//      Halka doldu ama asıl şikâyet -- okunmayan etiketler -- olduğu gibi
+//      kaldı. Yanlış problemi çözmüştüm.
+// Şimdi açı sıradan geliyor, aralık sabit. Kazanılan: 35 etiket de okunuyor.
+// KAYBEDİLEN, açıkça söylenmeli: aralık artık bilgi taşımıyor. İki komşu
+// düğüm arasındaki mesafe "aralarında kaç sûre var" demiyor; sıra doğru,
+// ölçek değil. Bu yüzden 114 konumun soluk izleri de kaldırıldı -- düğüm
+// kendi izinin üstünde durmadığı için o halka artık yanıltıcı olurdu.
+// Kapsam (114'ün 35'i) grafiğin ipucu metninde yazıyor; bir sayı olarak
+// söylemek, aralıktan göz kararı okutmaktan zaten daha dürüst.
+//
+// Etiketler yarıçap yönünde, düğümün açısına döndürülerek yazılıyor. Eşit
+// aralıkla birlikte çakışmayı bitiren şey bu: teğet yönde ~70 piksel yer
+// varken satır yüksekliği ~12 piksel.
 window.__kuranDokusuApp = (function () {
   "use strict";
 
@@ -29,11 +47,8 @@ window.__kuranDokusuApp = (function () {
 
   function tt(dict) { return I18n.pick3(dict || {}); }
 
-  const SURE_TOTAL = 114;
-
   let data = null;
   let sureler = [];
-  let atifsizSureler = [];   // atıf bulunmayan sûrelerin halka üzerindeki izleri
   let bablar = [];
   let kenarlar = [];
   let sureByNo = new Map();
@@ -48,38 +63,54 @@ window.__kuranDokusuApp = (function () {
     return { w: Math.max(360, r.width), h: Math.max(360, r.height) };
   }
 
+  // Etiketler yarıçap yönünde uzadığı için halkanın yarıçapı tek başına
+  // ekrana sığmaya yetmiyor: en uzun sûre adı dışarı taşıyor. İlk denemede
+  // eski sabit 0.44 oranını bıraktım ve "The Night Journey" gibi uzun
+  // adlar tepede/dipte kırpıldı. Onun yerine en uzun etiketi ÖLÇÜP halkayı
+  // ona göre daraltıyoruz -- dil değişince de doğru kalsın diye (İngilizce
+  // sûre adları Türkçelerden belirgin uzun).
+  function enUzunEtiketGenisligi() {
+    const olcu = svg.append("text")
+      .attr("class", "kuran-dokusu-sure__etiket")
+      .attr("visibility", "hidden");
+    let en = 0;
+    sureler.forEach((s) => {
+      olcu.text(tt(s.ad));
+      en = Math.max(en, olcu.node().getComputedTextLength() || 0);
+    });
+    olcu.remove();
+    // Görünüm henüz gizliyken ölçüm 0 dönebiliyor; o durumda karakter
+    // başına kaba bir tahmine düşüyoruz. Kırpılmaktansa fazladan daralsın.
+    if (!en) en = sureler.reduce((a, s) => Math.max(a, tt(s.ad).length), 0) * 6;
+    return en;
+  }
+
+  // Etikete kalan yatay yer (piksel). Dar ekranda halkayı sonsuza kadar
+  // küçültemeyiz -- 0.22 tabanı var -- ve o tabanda uzun bir İngilizce ad
+  // ekranı taşırıyor (390 pikselde "Those who set the Ranks" ölçüldü).
+  // Taşmaktansa kısaltıyoruz; tam ad `aria-label`de ve ipucunda duruyor.
+  let etiketAlani = Infinity;
+
   function yerlestir() {
     const { w, h } = boyut();
-    const R_OUTER = Math.min(w, h) * 0.44;
-    const R_INNER = Math.min(w, h) * 0.24;
+    const kucuk = Math.min(w, h);
+    // pay = etiket genişliği + en büyük düğüm yarıçapı + etiket boşluğu + nefes
+    const pay = enUzunEtiketGenisligi() + 12 + 7 + 10;
+    const R_OUTER = Math.max(kucuk * 0.22, Math.min(kucuk * 0.44, kucuk / 2 - pay));
+    const R_INNER = R_OUTER * 0.545;
+    etiketAlani = kucuk / 2 - R_OUTER - 12 - 7 - 6;
 
+    // Kur'ân sırasına göre, eşit aralıkla. Sıra veriden geldiği gibi
+    // varsayılmıyor: dizilim yanlışsa graf sessizce yanlış olur.
+    const sirali = sureler.slice().sort((a, b) => a.no - b.no);
     const maxSureAtif = Math.max(...sureler.map((s) => s.atifSayisi));
-    sureler.forEach((s) => {
-      const a = -Math.PI / 2 + ((s.no - 1) / SURE_TOTAL) * 2 * Math.PI;
+    sirali.forEach((s, i) => {
+      const a = -Math.PI / 2 + (i / sirali.length) * 2 * Math.PI;
+      s.aci = a;
       s.x = Math.cos(a) * R_OUTER;
       s.y = Math.sin(a) * R_OUTER;
       s.r = 4 + (s.atifSayisi / maxSureAtif) * 8;
     });
-
-    // ATIFSIZ SÛRELER (2026-08-05 bildirimi: "mavi düğümler çemberin sadece
-    // belirli kısımlarına kümelenmiş"). Ölçüldü: 35 düğüm ve aralarında tek
-    // bir 145 DERECELİK boşluk -- çemberin neredeyse yarısı bomboştu.
-    // Sebep gerçek: atıflar Kur'ân'ın ilk yarısındaki uzun sûrelerde
-    // yoğunlaşıyor, son yarıdaki kısa sûrelerde neredeyse hiç yok.
-    //
-    // Düğümleri eşit aralıkla dağıtmak bu bilgiyi SİLERDİ: sûrenin açısı
-    // Kur'ân sırasını taşıyor ve boşluk "burada atıf bulamadık" demek
-    // (dosyanın başındaki yerleşim notu). Onun yerine 114 konumun TAMAMI
-    // çiziliyor -- atıflı 35'i normal düğüm, atıfsız 79'u soluk birer iz.
-    // Halka artık dolu görünüyor AMA eksiklik kaybolmuyor; görünmez bir
-    // boşluk olmaktan çıkıp görünür bir ize dönüşüyor.
-    const atifliNolar = new Set(sureler.map((s) => s.no));
-    atifsizSureler = [];
-    for (let no = 1; no <= SURE_TOTAL; no++) {
-      if (atifliNolar.has(no)) continue;
-      const a = -Math.PI / 2 + ((no - 1) / SURE_TOTAL) * 2 * Math.PI;
-      atifsizSureler.push({ no: no, x: Math.cos(a) * R_OUTER, y: Math.sin(a) * R_OUTER });
-    }
 
     const maxBabAtif = Math.max(...bablar.map((b) => b.atifSayisi));
     bablar.forEach((b, i) => {
@@ -124,16 +155,6 @@ window.__kuranDokusuApp = (function () {
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
       .on("mouseleave", function () { vurgula(null, null, false); GU.hideTooltip(tooltip); });
 
-    // Atıfsız sûre izleri: sûre düğümlerinden ÖNCE çiziliyor ki gerçek
-    // düğümler üstte kalsın. Etkileşimsiz ve ekran okuyucuya görünmez --
-    // burada yeni bir bilgi yok, yalnız halkanın Kur'ân'ın tamamı olduğu
-    // ve bu konumlarda atıf bulunmadığı görünür duruyor.
-    kok.append("g").attr("class", "kuran-dokusu-atifsizlar")
-      .attr("aria-hidden", "true")
-      .selectAll("circle").data(atifsizSureler, (d) => d.no).join("circle")
-      .attr("class", "kuran-dokusu-atifsiz")
-      .attr("cx", (d) => d.x).attr("cy", (d) => d.y).attr("r", 1.6);
-
     // Sûre düğümleri (dış halka)
     const sureG = kok.append("g").attr("class", "kuran-dokusu-sureler");
     const sureSel = sureG.selectAll("g.kuran-dokusu-sure").data(sureler, (d) => d.no).join("g")
@@ -144,11 +165,38 @@ window.__kuranDokusuApp = (function () {
       .attr("aria-label", (d) => tt(d.ad));
     sureSel.append("circle").attr("class", "kuran-dokusu-sure__vurus").attr("r", 14).attr("fill", "transparent");
     sureSel.append("circle").attr("class", "kuran-dokusu-sure__nokta").attr("r", (d) => d.r);
+    // Tek bir gizli ölçüm düğümü: 35 etiketi tek tek düğüm yaratmadan
+    // ölçüyoruz. getComputedTextLength görünmeyen bir SVG'de 0 döner --
+    // o durumda kısaltma da yapmıyoruz (yanlış kısaltmaktansa kısaltmamak).
+    const olcu = svg.append("text")
+      .attr("class", "kuran-dokusu-sure__etiket").attr("visibility", "hidden");
+    const genislik = (s) => { olcu.text(s); return olcu.node().getComputedTextLength() || 0; };
+    function sigdir(metin) {
+      const tam = genislik(metin);
+      if (!tam || tam <= etiketAlani) return metin;
+      let alt = 1, ust = metin.length;
+      while (alt < ust) {
+        const orta = Math.ceil((alt + ust) / 2);
+        if (genislik(metin.slice(0, orta) + "…") <= etiketAlani) alt = orta; else ust = orta - 1;
+      }
+      return metin.slice(0, alt).trim() + "…";
+    }
+
+    // Etiket yarıçap yönünde. Sol yarıda metin ters duracağı için 180
+    // derece çevirip sağa değil sola doğru yazıyoruz ("end" hizası) --
+    // döndürmenin işareti değişiyor, etiketin dışa doğru gitmesi değişmiyor.
     sureSel.append("text").attr("class", "kuran-dokusu-sure__etiket")
-      .attr("text-anchor", (d) => (d.x > 8 ? "start" : d.x < -8 ? "end" : "middle"))
-      .attr("x", (d) => (d.x > 8 ? d.r + 6 : d.x < -8 ? -(d.r + 6) : 0))
-      .attr("y", (d) => (Math.abs(d.x) > 8 ? 4 : (d.y >= 0 ? d.r + 13 : -(d.r + 7))))
-      .text((d) => tt(d.ad));
+      .attr("transform", (d) => {
+        const derece = (d.aci * 180) / Math.PI;
+        const uzaklik = d.r + 7;
+        return Math.cos(d.aci) < 0
+          ? `rotate(${derece + 180}) translate(${-uzaklik},0)`
+          : `rotate(${derece}) translate(${uzaklik},0)`;
+      })
+      .attr("text-anchor", (d) => (Math.cos(d.aci) < 0 ? "end" : "start"))
+      .attr("dy", "0.32em")
+      .text((d) => sigdir(tt(d.ad)));
+    olcu.remove();
 
     sureSel.on("mouseenter", function (ev, d) { vurgula(d.no, null, true); sureIpucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
