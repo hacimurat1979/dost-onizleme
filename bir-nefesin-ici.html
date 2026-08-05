@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Bir Nefesin İçi — Dost Arabi görselleştirme.
+     ÜÇ DURAKLI PROTOTİP (nefes, harf, kelime) -- kullanıcı isteğiyle
+     dokuz duraklı tam sürümden ÖNCE, yalnız geçiş mekaniğini sınamak için.
+     Merdiven değil halka: son durak ilk durağa aynen dönüyor, kesme yok.
+     GSAP değil -- site zaten hiçbir sahnede üçüncü taraf animasyon
+     kütüphanesi kullanmıyor (bkz. nefes-i-rahmani.html, ayna-metaforu.html);
+     aynı elle-yazılmış requestAnimationFrame deseni burada da kullanıldı,
+     prod'a yeni bir runtime bağımlılığı eklenmedi. -->
+<title>Bir Nefesin İçi — Dost Arabi</title>
+<style>
+:root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}}
+:root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040}
+:root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1rem;max-width:640px}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
+
+#stageWrap{position:relative;width:min(460px,92vw);height:min(460px,92vw);margin:.4rem auto 1rem}
+#stage{width:100%;height:100%;display:block;background:var(--panel);border:1px solid var(--border);border-radius:12px;touch-action:none;cursor:grab}
+#stage:active{cursor:grabbing}
+#stage:focus-visible{outline:2px solid var(--liminal);outline-offset:3px}
+.durak-glow{fill:var(--gold)}
+.durak-harf{font-size:120px;fill:var(--gold);text-anchor:middle;dominant-baseline:middle}
+.durak-kelime{font-size:64px;fill:var(--gold);text-anchor:middle;dominant-baseline:middle}
+
+.derinlik-cubugu{position:absolute;left:10px;right:10px;bottom:10px;height:3px;background:var(--border);border-radius:2px;overflow:hidden;pointer-events:none}
+.derinlik-cubugu__dolu{height:100%;background:var(--liminal);width:0%;transition:width .05s linear}
+
+.nav-row{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-bottom:1.1rem;flex-wrap:wrap}
+.nav-btn{font-family:inherit;font-size:.82rem;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.5rem 1.1rem;cursor:pointer;min-height:38px}
+.nav-btn:hover{border-color:var(--liminal)}
+.nav-btn:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+.an-sayaci{font-size:.76rem;color:var(--muted);font-style:italic}
+
+.durak-panel{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:.7rem}
+.durak-panel__baslik{font-size:1rem;color:var(--gold);margin-bottom:.4rem}
+.durak-panel__ozet{font-size:.9rem;line-height:1.7}
+.kademe-btnler{display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
+.kademe-btn{font-family:inherit;font-size:.74rem;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:999px;padding:.3rem .8rem;cursor:pointer;min-height:30px}
+.kademe-btn[aria-pressed="true"]{color:var(--liminal);border-color:var(--liminal)}
+.kademe-btn:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+.durak-panel__govde,.durak-panel__dayanak{font-size:.85rem;line-height:1.7;margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--border)}
+.durak-panel__dayanak{color:var(--muted);font-size:.76rem;font-style:italic}
+.durak-panel__govde[hidden],.durak-panel__dayanak[hidden]{display:none}
+
+/* prefers-reduced-motion: sürekli yakınlaşma yerine kademeli, statik
+   üç kartlık görünüm -- hepsi aynı anda DOM'da, JS'siz de okunabilir. */
+.adim-liste{display:none}
+@media(prefers-reduced-motion:reduce){
+  #stageWrap,.nav-row,#durakPanel{display:none}
+  .adim-liste{display:block;width:min(560px,96vw)}
+  .adim-liste .durak-panel{margin-bottom:.9rem}
+}
+.js-devre-disi #stageWrap,.js-devre-disi .nav-row,.js-devre-disi #durakPanel{display:none}
+.js-devre-disi .adim-liste{display:block;width:min(560px,96vw)}
+</style>
+</head>
+<body class="js-devre-disi">
+<header>
+  <h1 id="hTitle">Bir Nefesin İçi</h1>
+  <p class="sub" id="hSub">Merdiven değil, halka: her durak bir öncekinin içinden çıkar, kesme yok. Üçüncü duraktan (kelime) derine inince birinci durağa (nefes) dönersin -- bu bir tasarım hilesi değil, doktrinin kendisi.</p>
+</header>
+
+<div id="stageWrap">
+  <svg id="stage" viewBox="0 0 460 460" role="slider" tabindex="0"
+       aria-valuemin="0" aria-valuemax="299" aria-valuenow="0"
+       aria-label="Derinlik -- kaydır, sürükle ya da ok tuşlarıyla ilerle"></svg>
+  <div class="derinlik-cubugu" aria-hidden="true"><div class="derinlik-cubugu__dolu" id="derinlikDolu"></div></div>
+</div>
+
+<div class="nav-row">
+  <button class="nav-btn" id="btnGeri" type="button">Geri</button>
+  <span class="an-sayaci" id="anSayaci">Tamamlanan an: 0</span>
+  <button class="nav-btn" id="btnIleri" type="button">Derine in</button>
+</div>
+
+<div class="durak-panel" id="durakPanel">
+  <p class="durak-panel__baslik" id="dpBaslik"></p>
+  <p class="durak-panel__ozet" id="dpOzet"></p>
+  <div class="kademe-btnler">
+    <button class="kademe-btn" id="btnGiris" type="button" aria-pressed="false"></button>
+    <button class="kademe-btn" id="btnGovde" type="button" aria-pressed="false"></button>
+    <button class="kademe-btn" id="btnDayanak" type="button" aria-pressed="false"></button>
+  </div>
+  <p class="durak-panel__govde" id="dpGovde" hidden></p>
+  <p class="durak-panel__dayanak" id="dpDayanak" hidden></p>
+</div>
+
+<!-- Azaltılmış hareket / JS'siz alternatif: üç durak da tam metniyle burada.
+     STATİK -- JS'siz de okunsun diye baştan HTML'de yazılı (Türkçe); JS
+     varsa renderAdimListe() aynı içeriği (ve dil değişince başka dili)
+     üstüne yazar, ama JS hiç çalışmasa bile bu metin zaten okunabilir. -->
+<div class="adim-liste" id="adimListe">
+  <div class="durak-panel">
+    <p class="durak-panel__baslik">Nefes</p>
+    <p class="durak-panel__ozet">Henüz hiçbir şekle ayrılmamış, tek bir soluk.</p>
+    <p class="durak-panel__govde" style="display:block">İlahî isimler, dayanılmaz bir sınırda, tek bir nefesle dışarı fışkırır. Bu fışkırma âlemin var oluşudur -- ama bu nefes henüz hiçbir harfe, hiçbir kelimeye ayrılmamıştır. Fütûhât'ta bu, kerb (sıkışma) ve teneffüs (soluk verme) ikilisiyle anlatılır: ilahî isimler Hakk'ın sinesinde birikir, dayanılmaz son sınıra ulaşınca bir nefesle dışarı çıkar. İzutsu'nun okumasına göre bu, tasavvufun "yaratılış" dediği şeyin kendisidir -- ex nihilo bir üretim değil, birikmiş bir basıncın açığa çıkışı.</p>
+    <p class="durak-panel__dayanak" style="display:block">felsefi-terimler.json, "nefes-i-rahmani" maddesi (Izutsu'nun aktarımına dayanır); aynı doktrini farklı bir etkileşimle işleyen nefes-i-rahmani.html sahnesine de bakın.</p>
+  </div>
+  <div class="durak-panel">
+    <p class="durak-panel__baslik">Harf</p>
+    <p class="durak-panel__ozet">O tek nefes harflere ayrılıyor -- ama her harf hâlâ nefesin ta kendisi.</p>
+    <p class="durak-panel__govde" style="display:block">Nefes tek başına kalmaz: ayrışır, ve ilk ayrışma harflerdir. İbnü'l-Arabî'ye göre harfler yeni bir yaratılış değil, nefesin kendi hâlidir -- yalnızca ayrışmış. İlmü'l-hurûf (harfler ilmi) Fütûhât'ta geniş bir yer tutar: her harfin kendi mertebesi, kendi ontolojik konumu vardır. Harekeleri (harfin üstündeki/altındaki işaretler) Şeyh "küçük harfler" diye tanımlar -- tıpkı insanın beden ve ruh üflenmesinden var olması gibi, kelime de harf ve harekenin birleşiminden bambaşka bir yaratılış olarak çıkar.</p>
+    <p class="durak-panel__dayanak" style="display:block">Fütûhât-ı Mekkiyye, Kısım VIII (Harekeler: Kelimelerin Ruhu). Ayrıca bkz. Denis Gril'in Chodkiewicz (ed.), Les Illuminations de la Mecque / The Meccan Illuminations (Sindbad, 1988) içindeki ilmü'l-hurûf üzerine giriş ve şerhi -- bu bölümün kendi metnine doğrudan erişemedik, taramaya dayanıyoruz.</p>
+  </div>
+  <div class="durak-panel">
+    <p class="durak-panel__baslik">Kelime</p>
+    <p class="durak-panel__ozet">Harfler birleşip bir kelime oluyor -- ve derinleştikçe o kelime yeniden nefese dönüyor.</p>
+    <p class="durak-panel__govde" style="display:block">Harfler bir araya gelip bir kelime kurar: "er-Rahmân". Ama bu kelime son durak değil -- ona daha derin bakarsan, kendisini yeniden nefese açtığını görürsün. Halka kapanıyor. Bu döngü bir tasarım hilesi değil: Şeyh'e göre mertebelerin bir "üstü" yoktur, her mertebe aynı tecellînin başka bir kabul edişidir. Kelime, harf ve nefesten ayrı bir şey değil -- aynı şeyin üç görünüşü. Derine indikçe döngünün kapandığını görmek, bu üç görünüşün aslında bir olduğunu gösteriyor -- sitenin geri kalan altı durağı da (ayn, tecellî, varlık, insan, kalp) bu tek döngünün başka kıvrımları olacak.</p>
+    <p class="durak-panel__dayanak" style="display:block">Aynı doktrinin genişletilmiş anlatımı için nefes-i-rahmani.html sahnesine bakın. Dokuz duraklı tam sürüm henüz üretilmedi -- bu yalnızca geçiş mekaniğini sınayan üç duraklı bir prototip.</p>
+  </div>
+</div>
+
+<script>
+const DURAKLAR = [
+  {
+    id: 'nefes',
+    tr: {
+      baslik: 'Nefes',
+      ozet: 'Henüz hiçbir şekle ayrılmamış, tek bir soluk.',
+      giris: 'İlahî isimler, dayanılmaz bir sınırda, tek bir nefesle dışarı fışkırır. Bu fışkırma âlemin var oluşudur -- ama bu nefes henüz hiçbir harfe, hiçbir kelimeye ayrılmamıştır.',
+      govde: 'Fütûhât\'ta bu, kerb (sıkışma) ve teneffüs (soluk verme) ikilisiyle anlatılır: ilahî isimler Hakk\'ın sinesinde birikir, dayanılmaz son sınıra ulaşınca bir nefesle dışarı çıkar. İzutsu\'nun okumasına göre bu, tasavvufun "yaratılış" dediği şeyin kendisidir -- ex nihilo bir üretim değil, birikmiş bir basıncın açığa çıkışı.',
+      dayanak: 'felsefi-terimler.json, "nefes-i-rahmani" maddesi (Izutsu\'nun aktarımına dayanır); aynı doktrini farklı bir etkileşimle işleyen nefes-i-rahmani.html sahnesine de bakın.',
+    },
+    en: {
+      baslik: 'Breath',
+      ozet: 'Not yet separated into any shape, a single breath.',
+      giris: 'The divine names burst out in a single breath at an unbearable limit. That bursting-forth is the world\'s coming into existence -- but this breath has not yet separated into any letter, any word.',
+      govde: 'The Futuhat narrates this through the pair karb (pressure) and tanaffus (exhaling): the divine names accumulate in the Real\'s breast, and upon reaching an unbearable limit they burst forth in a breath. On Izutsu\'s reading, this is what Sufism calls "creation" itself -- not a production ex nihilo, but the release of an accumulated pressure.',
+      dayanak: 'felsefi-terimler.json, entry "nefes-i-rahmani" (as related by Izutsu); see also the nefes-i-rahmani.html scene, which treats the same doctrine through a different interaction.',
+    },
+    pt: {
+      baslik: 'Sopro',
+      ozet: 'Ainda não separado em nenhuma forma, um único sopro.',
+      giris: 'Os nomes divinos irrompem num único sopro no limite insuportável. Esse irromper é o vir-a-existir do mundo -- mas este sopro ainda não se separou em nenhuma letra, nenhuma palavra.',
+      govde: 'O Futuhat narra isto através do par karb (pressão) e tanaffus (exalar): os nomes divinos se acumulam no peito do Real, e ao atingir um limite insuportável irrompem num sopro. Na leitura de Izutsu, isto é o que o sufismo chama de "criação" -- não uma produção ex nihilo, mas a libertação de uma pressão acumulada.',
+      dayanak: 'felsefi-terimler.json, verbete "nefes-i-rahmani" (conforme relatado por Izutsu); veja também a cena nefes-i-rahmani.html, que trata da mesma doutrina através de outra interação.',
+    },
+  },
+  {
+    id: 'harf',
+    tr: {
+      baslik: 'Harf',
+      ozet: 'O tek nefes harflere ayrılıyor -- ama her harf hâlâ nefesin ta kendisi.',
+      giris: 'Nefes tek başına kalmaz: ayrışır, ve ilk ayrışma harflerdir. İbnü\'l-Arabî\'ye göre harfler yeni bir yaratılış değil, nefesin kendi hâlidir -- yalnızca ayrışmış.',
+      govde: 'İlmü\'l-hurûf (harfler ilmi) Fütûhât\'ta geniş bir yer tutar: her harfin kendi mertebesi, kendi ontolojik konumu vardır. Harekeleri (harfin üstündeki/altındaki işaretler) Şeyh "küçük harfler" diye tanımlar -- tıpkı insanın beden ve ruh üflenmesinden var olması gibi, kelime de harf ve harekenin birleşiminden bambaşka bir yaratılış olarak çıkar.',
+      dayanak: 'Fütûhât-ı Mekkiyye, Kısım VIII (Harekeler: Kelimelerin Ruhu). Ayrıca bkz. Denis Gril\'in Chodkiewicz (ed.), Les Illuminations de la Mecque / The Meccan Illuminations (Sindbad, 1988) içindeki ilmü\'l-hurûf üzerine giriş ve şerhi -- bu bölümün kendi metnine doğrudan erişemedik, taramaya dayanıyoruz.',
+    },
+    en: {
+      baslik: 'Letter',
+      ozet: 'That single breath separates into letters -- but each letter is still the breath itself.',
+      giris: 'Breath does not stay alone: it separates, and the first separation is letters. For Ibn al-\'Arabi, letters are not a new creation but the breath\'s own state -- only separated.',
+      govde: 'The science of letters (\'ilm al-huruf) occupies a large place in the Futuhat: every letter has its own rank, its own ontological position. The Shaykh defines the vowel-marks (the signs above/below a letter) as "small letters" -- just as a human comes into being from body plus the breathing-in of spirit, a word too emerges as an entirely different kind of creation from the combination of letter plus vowel-mark.',
+      dayanak: 'Al-Futuhat al-Makkiyya, Part VIII (Vowel-Marks: The Spirit of Words). See also Denis Gril\'s introduction and commentary on the science of letters in Chodkiewicz (ed.), Les Illuminations de la Mecque / The Meccan Illuminations (Sindbad, 1988) -- we could not access that section\'s own text directly, this rests on a search-based scan.',
+    },
+    pt: {
+      baslik: 'Letra',
+      ozet: 'Aquele único sopro se separa em letras -- mas cada letra ainda é o próprio sopro.',
+      giris: 'O sopro não fica sozinho: separa-se, e a primeira separação são as letras. Para Ibn al-\'Arabi, as letras não são uma nova criação, mas o próprio estado do sopro -- apenas separado.',
+      govde: 'A ciência das letras (\'ilm al-huruf) ocupa um lugar amplo no Futuhat: cada letra tem o seu próprio grau, a sua própria posição ontológica. O Xeique define as vogais (os sinais acima/abaixo de uma letra) como "pequenas letras" -- assim como um humano vem à existência a partir do corpo mais o sopro do espírito, uma palavra também surge como um tipo inteiramente diferente de criação a partir da combinação de letra mais vogal.',
+      dayanak: 'Al-Futuhat al-Makkiyya, Parte VIII (Vogais: O Espírito das Palavras). Veja também a introdução e comentário de Denis Gril sobre a ciência das letras em Chodkiewicz (ed.), Les Illuminations de la Mecque / The Meccan Illuminations (Sindbad, 1988) -- não pudemos aceder diretamente ao texto dessa secção, isto assenta numa pesquisa.',
+    },
+  },
+  {
+    id: 'kelime',
+    tr: {
+      baslik: 'Kelime',
+      ozet: 'Harfler birleşip bir kelime oluyor -- ve derinleştikçe o kelime yeniden nefese dönüyor.',
+      giris: 'Harfler bir araya gelip bir kelime kurar: "er-Rahmân". Ama bu kelime son durak değil -- ona daha derin bakarsan, kendisini yeniden nefese açtığını görürsün. Halka kapanıyor.',
+      govde: 'Bu döngü bir tasarım hilesi değil: Şeyh\'e göre mertebelerin bir "üstü" yoktur, her mertebe aynı tecellînin başka bir kabul edişidir. Kelime, harf ve nefesten ayrı bir şey değil -- aynı şeyin üç görünüşü. Derine indikçe döngünün kapandığını görmek, bu üç görünüşün aslında bir olduğunu gösteriyor -- sitenin geri kalan altı durağı da (ayn, tecellî, varlık, insan, kalp) bu tek döngünün başka kıvrımları olacak.',
+      dayanak: 'Aynı doktrinin genişletilmiş anlatımı için nefes-i-rahmani.html sahnesine bakın. Dokuz duraklı tam sürüm henüz üretilmedi -- bu yalnızca geçiş mekaniğini sınayan üç duraklı bir prototip.',
+    },
+    en: {
+      baslik: 'Word',
+      ozet: 'The letters join into a word -- and going deeper, that word opens back into breath.',
+      giris: 'The letters come together to form a word: "Ar-Rahman". But this word is not the final stop -- look deeper into it, and you\'ll see it opening back into breath. The ring closes.',
+      govde: 'This loop is not a design trick: for the Shaykh, the ranks have no "above" -- each rank is just another way of receiving the same self-disclosure. The word is not something apart from the letter and the breath -- they are three appearances of the same thing. Watching the loop close as you go deeper shows that these three appearances are, in fact, one -- and the site\'s remaining six stops (the point, self-disclosure, being, the human, the heart) will be further folds of this same single loop.',
+      dayanak: 'For an extended telling of the same doctrine, see the nefes-i-rahmani.html scene. The full nine-stop version has not yet been produced -- this is only a three-stop prototype testing the transition mechanic.',
+    },
+    pt: {
+      baslik: 'Palavra',
+      ozet: 'As letras se juntam numa palavra -- e, aprofundando, essa palavra reabre-se em sopro.',
+      giris: 'As letras juntam-se para formar uma palavra: "Ar-Rahman". Mas esta palavra não é a última paragem -- olhe mais fundo, e verá que ela se reabre em sopro. O anel fecha-se.',
+      govde: 'Este ciclo não é um truque de design: para o Xeique, os graus não têm um "acima" -- cada grau é apenas outra forma de receber a mesma auto-revelação. A palavra não é algo à parte da letra e do sopro -- são três aparições da mesma coisa. Ver o ciclo fechar-se ao aprofundar mostra que essas três aparições são, de facto, uma só -- e as seis paragens restantes do site (o ponto, a auto-revelação, o ser, o humano, o coração) serão outras dobras deste mesmo ciclo único.',
+      dayanak: 'Para um relato mais extenso da mesma doutrina, veja a cena nefes-i-rahmani.html. A versão completa de nove paragens ainda não foi produzida -- isto é apenas um protótipo de três paragens que testa o mecanismo de transição.',
+    },
+  },
+];
+
+const UI = {
+  tr: { back: 'Geri', deeper: 'Derine in', moments: n => `Tamamlanan an: ${n}`, giris: 'Giriş', govde: 'Tam metin', dayanak: 'Dayanak', slider: 'Derinlik -- kaydır, sürükle ya da ok tuşlarıyla ilerle' },
+  en: { back: 'Back', deeper: 'Go deeper', moments: n => `Completed moments: ${n}`, giris: 'Intro', govde: 'Full text', dayanak: 'Grounds', slider: 'Depth -- scroll, drag, or use arrow keys' },
+  pt: { back: 'Voltar', deeper: 'Aprofundar', moments: n => `Momentos completados: ${n}`, giris: 'Introdução', govde: 'Texto completo', dayanak: 'Fundamentos', slider: 'Profundidade -- deslize, arraste ou use as setas' },
+};
+
+let curLang = 'tr';
+const $ = id => document.getElementById(id);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const N = DURAKLAR.length;
+const UNIT = 100;
+const TOTAL = N * UNIT;
+
+// ── JS var: canlı sahne göster; azaltılmış hareket/no-JS: adım listesini
+// göster (CSS zaten .js-devre-disi sınıfıyla sahneyi gizliyor). ──────────
+document.body.classList.remove('js-devre-disi');
+
+function renderAdimListe() {
+  $('adimListe').innerHTML = DURAKLAR.map(d => {
+    const t = d[curLang];
+    return `<div class="durak-panel">
+      <p class="durak-panel__baslik">${t.baslik}</p>
+      <p class="durak-panel__ozet">${t.ozet}</p>
+      <p class="durak-panel__govde" style="display:block">${t.giris} ${t.govde}</p>
+      <p class="durak-panel__dayanak" style="display:block">${t.dayanak}</p>
+    </div>`;
+  }).join('');
+}
+renderAdimListe();
+
+if (reduceMotion) {
+  // Sahne hiç kurulmuyor -- azaltılmış harekette JS'in geri kalanına gerek yok.
+} else {
+  setupScene();
+}
+
+function setupScene() {
+  const svg = $('stage');
+  const NS = 'http://www.w3.org/2000/svg';
+  const cx = 230, cy = 230;
+
+  // Her durak için bir <g> katmanı; içerik türüne göre farklı çizim.
+  const layers = DURAKLAR.map((d, i) => {
+    const g = document.createElementNS(NS, 'g');
+    g.style.transformOrigin = `${cx}px ${cy}px`;
+    if (d.id === 'nefes') {
+      const c = document.createElementNS(NS, 'circle');
+      c.setAttribute('class', 'durak-glow');
+      c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', 46);
+      g.appendChild(c);
+    } else if (d.id === 'harf') {
+      const t = document.createElementNS(NS, 'text');
+      t.setAttribute('class', 'durak-harf');
+      t.setAttribute('x', cx); t.setAttribute('y', cy);
+      t.textContent = 'ا';
+      g.appendChild(t);
+    } else {
+      const t = document.createElementNS(NS, 'text');
+      t.setAttribute('class', 'durak-kelime');
+      t.setAttribute('x', cx); t.setAttribute('y', cy);
+      t.textContent = 'الرحمن';
+      g.appendChild(t);
+    }
+    svg.appendChild(g);
+    return g;
+  });
+
+  function smooth01(a, b, x) {
+    const t = Math.max(0, Math.min(1, (x - a) / (b - a)));
+    return t * t * (3 - 2 * t);
+  }
+
+  let depth = 0; // 0..TOTAL, sonra sarar
+  let moments = 0;
+
+  function paint() {
+    const wrapped = ((depth % TOTAL) + TOTAL) % TOTAL;
+    const stopIndex = Math.floor(wrapped / UNIT) % N;
+    const nextIndex = (stopIndex + 1) % N;
+    const localT = (wrapped % UNIT) / UNIT;
+
+    layers.forEach((g, i) => {
+      if (i === stopIndex) {
+        const scale = 1 + 1.6 * localT;
+        const opacity = 1 - smooth01(0.55, 1, localT);
+        g.style.transform = `scale(${scale.toFixed(3)})`;
+        g.style.opacity = opacity.toFixed(3);
+      } else if (i === nextIndex) {
+        const scale = 0.12 + 0.88 * smooth01(0.15, 1, localT);
+        const opacity = smooth01(0.15, 0.75, localT);
+        g.style.transform = `scale(${scale.toFixed(3)})`;
+        g.style.opacity = opacity.toFixed(3);
+      } else {
+        g.style.opacity = '0';
+      }
+    });
+
+    $('derinlikDolu').style.width = (localT * 100).toFixed(1) + '%';
+    svg.setAttribute('aria-valuenow', Math.round(wrapped));
+    renderDurakPanel(stopIndex);
+  }
+
+  function renderDurakPanel(stopIndex) {
+    const t = DURAKLAR[stopIndex][curLang];
+    if ($('dpBaslik').textContent === t.baslik) return; // aynı durak, yeniden yazma
+    $('dpBaslik').textContent = t.baslik;
+    $('dpOzet').textContent = t.ozet;
+    $('dpGovde').textContent = t.giris + ' ' + t.govde;
+    $('dpDayanak').textContent = t.dayanak;
+    $('dpGovde').hidden = true;
+    $('dpDayanak').hidden = true;
+    $('btnGiris').setAttribute('aria-pressed', 'false');
+    $('btnDayanak').setAttribute('aria-pressed', 'false');
+  }
+
+  function setDepth(next, animate) {
+    const prevWraps = Math.floor(depth / TOTAL);
+    if (!animate) {
+      depth = next;
+      const nowWraps = Math.floor(depth / TOTAL);
+      if (nowWraps > prevWraps) { moments += (nowWraps - prevWraps); $('anSayaci').textContent = UI[curLang].moments(moments); }
+      paint();
+      return;
+    }
+    const start = depth, delta = next - start, dur = 420, t0 = performance.now();
+    function tick(now) {
+      const t = Math.min(1, (now - t0) / dur);
+      const eased = t * t * (3 - 2 * t);
+      depth = start + delta * eased;
+      const nowWraps = Math.floor(depth / TOTAL);
+      if (nowWraps > Math.floor((depth - delta * eased + delta) / TOTAL) - 1 && nowWraps > prevWraps && t >= 0.999) {
+        moments += (nowWraps - prevWraps);
+        $('anSayaci').textContent = UI[curLang].moments(moments);
+      }
+      paint();
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ── Kaydırma (wheel) ────────────────────────────────────────────────
+  svg.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    setDepth(depth + (e.deltaY > 0 ? 14 : -14), false);
+  }, { passive: false });
+
+  // ── Sürükleme (fare/dokunma) ────────────────────────────────────────
+  let dragging = false, lastY = 0;
+  svg.addEventListener('pointerdown', (e) => { dragging = true; lastY = e.clientY; svg.focus(); try { svg.setPointerCapture(e.pointerId); } catch (_) {} });
+  svg.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dy = e.clientY - lastY; lastY = e.clientY;
+    setDepth(depth + dy * 0.6, false);
+  });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => svg.addEventListener(ev, () => { dragging = false; }));
+
+  // ── Pinch (iki parmak) ──────────────────────────────────────────────
+  let pinchStartDist = null, pinchStartDepth = 0;
+  svg.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      const [a, b] = e.touches;
+      pinchStartDist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      pinchStartDepth = depth;
+    }
+  }, { passive: true });
+  svg.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2 && pinchStartDist != null) {
+      e.preventDefault();
+      const [a, b] = e.touches;
+      const dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      setDepth(pinchStartDepth + (pinchStartDist - dist) * 0.9, false);
+    }
+  }, { passive: false });
+  svg.addEventListener('touchend', () => { pinchStartDist = null; });
+
+  // ── Klavye ──────────────────────────────────────────────────────────
+  svg.addEventListener('keydown', (e) => {
+    if (['ArrowDown', 'ArrowRight', 'PageDown'].includes(e.key)) { setDepth(depth + UNIT, true); e.preventDefault(); }
+    else if (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key)) { setDepth(depth - UNIT, true); e.preventDefault(); }
+  });
+
+  // ── Düğmeler ────────────────────────────────────────────────────────
+  $('btnIleri').addEventListener('click', () => setDepth(depth + UNIT, true));
+  $('btnGeri').addEventListener('click', () => setDepth(depth - UNIT, true));
+
+  $('btnGiris').addEventListener('click', () => {
+    const on = $('dpGovde').hidden;
+    $('dpGovde').hidden = !on;
+    $('btnGiris').setAttribute('aria-pressed', String(on));
+  });
+  $('btnGovde').addEventListener('click', () => {
+    const on = $('dpGovde').hidden;
+    $('dpGovde').hidden = !on;
+    $('btnGiris').setAttribute('aria-pressed', String(on));
+  });
+  $('btnDayanak').addEventListener('click', () => {
+    const on = $('dpDayanak').hidden;
+    $('dpDayanak').hidden = !on;
+    $('btnDayanak').setAttribute('aria-pressed', String(on));
+  });
+
+  paint();
+  window.__bnIciRepaint = () => { $('dpBaslik').textContent = ''; paint(); };
+}
+
+function renderUiText() {
+  const t = UI[curLang];
+  $('btnGeri').textContent = t.back;
+  $('btnIleri').textContent = t.deeper;
+  $('btnGiris').textContent = t.giris;
+  $('btnGovde').textContent = t.govde;
+  $('btnDayanak').textContent = t.dayanak;
+  const stage = $('stage');
+  if (stage) stage.setAttribute('aria-label', t.slider);
+}
+renderUiText();
+
+window.addEventListener('message', function (e) {
+  if (e.data && e.data.type === 'setLang' && UI[e.data.lang]) {
+    curLang = e.data.lang;
+    renderUiText();
+    renderAdimListe();
+    if (window.__bnIciRepaint) window.__bnIciRepaint();
+  }
+});
+</script>
+</body>
+</html>
