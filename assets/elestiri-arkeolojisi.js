@@ -264,9 +264,18 @@ window.__elestiriArkeolojisiApp = (function () {
     GU.moveTooltip(tooltip, wrapEl, ev);
   }
 
+  // İki ayrı kaynak biçimi var: (a) omurga -- {sayfa} -- Knysh'in kendi
+  // kitabına bir sayfa referansı; (b) ikinci araştırma turu -- {eser, not} --
+  // Knysh DIŞI bir kaynak, kendi atfıyla ve dürüstlük notuyla birlikte. İlkini
+  // her zaman Knysh'e bağlamak (sayfa yoksa "s. undefined" yazdırarak) yanlış
+  // atıf olurdu -- bu ayrım olmadan öyle oluyordu.
   function kaynakSatiri(kaynakRef) {
     if (!kaynakRef) return "";
-    return `<p class="elestiri-kaynak-satiri">${data.kaynak.yazar}, <em>${data.kaynak.eser}</em> (${data.kaynak.yil}), s. ${kaynakRef.sayfa}</p>`;
+    if (kaynakRef.sayfa !== undefined) {
+      return `<p class="elestiri-kaynak-satiri">${data.kaynak.yazar}, <em>${data.kaynak.eser}</em> (${data.kaynak.yil}), s. ${kaynakRef.sayfa}</p>`;
+    }
+    const not = kaynakRef.not ? ` <span class="elestiri-kaynak-satiri__not">— ${kaynakRef.not}</span>` : "";
+    return `<p class="elestiri-kaynak-satiri">${kaynakRef.eser}${not}</p>`;
   }
 
   function iliskiliBaglarHtml(kisiId) {
