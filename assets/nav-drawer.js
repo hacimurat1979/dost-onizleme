@@ -37,6 +37,54 @@
   });
   updateLabel();
 
+  // GRUP COLLAPSE (2026-08-05). Nav konsolidasyonu drawer'ı 22 girdiden
+  // ~16'ya indirdi ve altı gruba topladı -- mobilde bu hâlâ, çekmecenin
+  // kendi max-height:auto kutusunda uzun bir kaydırma demek. Küçük/kaba
+  // işaretçili ekranlarda gruplar varsayılan KAPALI başlıyor, kullanıcının
+  // ŞU AN İÇİNDE olduğu grup hariç -- deep-link'le doğrudan örn.
+  // /hocalar/'a gelen biri kendi bölümünü kapalı bulmasın diye.
+  //
+  // Başlık gerçek bir <button> DEĞİL (<p role="button">): drawer'ın
+  // "bir düğmeye tıklayınca kapan" dinleyicisi (aşağıda) closest("button")
+  // arıyor; gerçek buton olsaydı grup her açılışta çekmeceyi de kapatırdı.
+  function wireGroupCollapse() {
+    const gruplar = [...drawer.querySelectorAll(".nav-drawer__group")]
+      .map((g) => ({ g, baslik: g.querySelector('.nav-drawer__heading[role="button"]') }))
+      .filter((x) => x.baslik);
+    if (!gruplar.length) return;
+
+    const collapseByDefault = window.matchMedia("(max-height: 700px)").matches
+      || window.matchMedia("(pointer: coarse)").matches;
+
+    function ayarla(entry, kapali) {
+      entry.g.classList.toggle("nav-drawer__group--collapsed", kapali);
+      entry.baslik.setAttribute("aria-expanded", String(!kapali));
+    }
+    function ac(entry) { ayarla(entry, false); }
+    function kapat(entry) { ayarla(entry, true); }
+    function ters(entry) { ayarla(entry, entry.g.classList.contains("nav-drawer__group--collapsed") ? false : true); }
+
+    gruplar.forEach((entry) => {
+      const icindeAktifVar = !!entry.g.querySelector(".btn-ghost--active");
+      ayarla(entry, collapseByDefault && !icindeAktifVar);
+      entry.baslik.addEventListener("click", () => ters(entry));
+      entry.baslik.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ters(entry); }
+      });
+    });
+
+    // Görünüm değişince (ör. akraba-sekme pill'inden ya da drawer'ın
+    // kendisinden), o an aktif düğmeyi taşıyan grup varsa açılsın --
+    // kullanıcı gezinirken kendi bulunduğu bölümün katlanmış kalması
+    // kafa karıştırırdı.
+    new MutationObserver(() => {
+      gruplar.forEach((entry) => {
+        if (entry.g.querySelector(".btn-ghost--active")) ac(entry);
+      });
+    }).observe(drawer, { subtree: true, attributes: true, attributeFilter: ["class"] });
+  }
+  wireGroupCollapse();
+
   function open() {
     drawer.hidden = false;
     toggle.setAttribute("aria-expanded", "true");

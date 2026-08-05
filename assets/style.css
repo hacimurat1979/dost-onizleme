@@ -638,6 +638,34 @@ html {
   text-transform: uppercase;
   color: var(--text-muted);
 }
+/* Grup collapse (bkz. assets/nav-drawer.js wireGroupCollapse). Gerçek bir
+   <button> DEĞİL -- <p role="button"> -- çünkü drawer'ın kendi "bir
+   düğmeye tıklayınca çekmeceyi kapat" dinleyicisi `closest("button")`
+   arıyor; gerçek bir buton olsaydı grup açılırken çekmece de kapanırdı.
+   Ok işareti ::after ile: [data-tr] üzerindeki her dil değişiminde
+   textContent yeniden yazılıyor (bkz. .btn-ghost--yeni::after'ın aynı
+   notu), bir DOM çocuğu hayatta kalamazdı. */
+.nav-drawer__heading[role="button"] {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.nav-drawer__heading[role="button"]:hover { color: var(--text-secondary); }
+.nav-drawer__heading[role="button"]:focus-visible {
+  outline: 2px solid var(--accent-interactive);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.nav-drawer__heading[role="button"]::after {
+  content: "▾";
+  font-size: 0.85em;
+  transition: transform 0.15s ease;
+}
+.nav-drawer__heading[aria-expanded="false"]::after { transform: rotate(-90deg); }
+.nav-drawer__group--collapsed .nav-drawer__items { display: none; }
 .nav-drawer__items {
   display: flex;
   flex-wrap: wrap;

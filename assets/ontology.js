@@ -536,9 +536,20 @@
   // Yeni eklenen bölümlere (Kavramlar/Âyet-Hadis) nav'da küçük bir
   // rozet koyup, kullanıcı o bölümü bir kere ziyaret edince kaldırıyoruz
   // -- "kaldığın yer" özelliğindeki localStorage deseninin aynısı.
+  //
+  // 2026-08-05'te temizlendi: harita bir zamanlar on bir görünüm
+  // taşıyordu (kuantum, elestiriArkeolojisi, hocalar, eserAgi,
+  // seyahatAtlasi, kuranDokusu, futuhatMimarisi de dahil) -- yani
+  // drawer'daki 22 girdinin YARISI "yeni" rozeti taşıyordu, ki bu
+  // ayırt ediciliği sıfırlıyordu (11/22'nin hepsi "yeni" olamaz).
+  // Nav konsolidasyonu (Fütûhât/Hayat/Bilinmeyenler akraba-sekmeleri)
+  // o yedisini zaten gruplarken rozetsiz bıraktı; kuantum ayrıca
+  // gerçekten eski bir dalgaydı (Dalga 2, D3) ve rozeti bilerek
+  // kaldırıldı. Harita şimdi yalnız gerçekten güncel iki girdiyi
+  // (Dalga 3'ün kendi dalgası: Kavramlar/D9, Âyet-Hadis) izliyor.
   const NAV_YENI_KEY = "dost-nav-yeni-gorulmus";
   function markNavYeniSeen(view) {
-    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn, hocalar: hocalarBtn, eserAgi: eserAgiBtn, seyahatAtlasi: seyahatAtlasiBtn, kuranDokusu: kuranDokusuBtn, futuhatMimarisi: futuhatMimarisiBtn }[view];
+    const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn }[view];
     if (!btn || !btn.classList.contains("btn-ghost--yeni")) return;
     btn.classList.remove("btn-ghost--yeni");
     try {
@@ -552,14 +563,14 @@
   try {
     const seenAtLoad = JSON.parse(localStorage.getItem(NAV_YENI_KEY) || "[]");
     seenAtLoad.forEach((v) => {
-      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, bilmiyoruz: bilmiyoruzBtn, kuantum: kuantumBtn, elestiriArkeolojisi: elestiriArkeolojisiBtn, hocalar: hocalarBtn, eserAgi: eserAgiBtn, seyahatAtlasi: seyahatAtlasiBtn, kuranDokusu: kuranDokusuBtn, futuhatMimarisi: futuhatMimarisiBtn }[v];
+      const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn }[v];
       if (btn) btn.classList.remove("btn-ghost--yeni");
     });
   } catch (e) { /* yoksay */ }
 
   function setMainView(view) {
     if (currentMainView === view) return;
-    if (view === "kavram" || view === "ayethadis" || view === "bilmiyoruz" || view === "kuantum" || view === "elestiriArkeolojisi" || view === "hocalar" || view === "eserAgi" || view === "seyahatAtlasi" || view === "kuranDokusu" || view === "futuhatMimarisi") markNavYeniSeen(view);
+    if (view === "kavram" || view === "ayethadis") markNavYeniSeen(view);
     currentMainView = view;
     markActiveNavButton(ontologyBtn, view === "ontology");
     markActiveNavButton(esmaBtn, view === "esma");
