@@ -31,26 +31,24 @@
 (function () {
   "use strict";
 
-  var SURUM = "t1";
+  var SURUM = "t2";
 
-  // durus-kontrol.js ile AYNI dosya listesi. Bilerek kopyalandı, oradan
-  // ithal edilmedi: iki tarama birbirinden bağımsız yaşamalı, birinin
-  // listesi değişince öteki sessizce değişmemeli.
-  var VERI = [
-    ["data/ibn-arabi/ontology.json", "Ontoloji"],
-    ["data/ibn-arabi/esma.json", "Esmâ"],
-    ["data/ibn-arabi/hal.json", "Hâller"],
-    ["data/ibn-arabi/felsefi-terimler.json", "Terimler"],
-    ["data/ibn-arabi/sirlar.json", "Sırlar"],
-    ["data/ibn-arabi/sorular.json", "Sorular"],
-    ["data/ibn-arabi/menziller.json", "Menziller"],
-    ["data/ibn-arabi/tasiyicilar.json", "Taşıyanlar"],
-    ["data/ibn-arabi/fusus-atlas.json", "Füsûs"],
-    ["data/ibn-arabi/bilmiyoruz.json", "Bilmiyoruz"],
-    ["data/ibn-arabi/kuantum.json", "Kuantum"],
-    ["data/ibn-arabi/elestiri-arkeolojisi.json", "Eleştiri Arkeolojisi"],
-    ["data/ibn-arabi/acik-sorular.json", "Açık Sorular"]
-  ];
+  // Dosya listesi artık burada DEĞİL: data/ibn-arabi/tarama-kapsami.json.
+  //
+  // Önceki hâlinde liste burada duruyordu ve başındaki yorum onun
+  // durus-kontrol.js'teki listeyle "AYNI" olduğunu, bilerek kopyalandığını
+  // söylüyordu. Söylediği doğru değildi. Altı dosya ayrışmıştı ve daha
+  // önemlisi: bu tarama 223 Fütûhât kısım dosyasına hiç bakmıyordu, oysa
+  // sitenin en uzun düzyazısı orada -- yani M5 (yoğunluk) tam da en çok
+  // işe yarayacağı yeri atlıyordu. "Site taraması" düğmesi sitenin üçte
+  // birini tarayıp bütününü taramış gibi görünüyordu.
+  //
+  // Kopyayı ayrı tutma gerekçesi ("iki tarama bağımsız yaşasın") kâğıt
+  // üzerinde makuldü; pratikte ürettiği şey bağımsızlık değil, kimsenin
+  // fark etmediği bir kayma oldu. Liste tek dosyaya taşındı,
+  // scripts/tarama-kapsami-kontrol.py da yeni bir veri dosyası ne
+  // kapsamda ne gerekçeli dışarıda ise derlemeyi durduruyor.
+  var KAPSAM = "data/ibn-arabi/tarama-kapsami.json";
 
   // M5 eşikleri -- protokolün kendi önerdiği sayılar. Kural değil,
   // dikkat çağrısı: yoğun bir metin yanlış değildir, yoğun olduğunu
@@ -99,6 +97,22 @@
     try { localStorage.setItem(DISMISS_KEY, JSON.stringify(s)); } catch (e) {}
   }
 
+  // Metinlerin %19,5'i HTML etiketi taşıyor (<em> alıntı, <strong> sayı).
+  // Etiketleri ölçmeden önce atmak şart, iki ayrı nedenle:
+  //   1) <strong>478</strong> tek bir "kelime" sayılıyordu -- küçük bir
+  //      şişme (172 -> 171 bulgu, önemsiz).
+  //   2) ASIL MESELE: cümle sonu `iş."</em> <strong>482</strong>` gibi
+  //      yerlerde noktadan sonra boşluk değil `<` geliyor, bölücü sınırı
+  //      göremiyor ve arka arkaya beş cümleyi "111 kelimelik tek cümle"
+  //      diye bildiriyordu. Ölçüldü: 70+ kelimelik cümle bulgusu 54'ten
+  //      11'e iniyor. Yani bu türün beşte dördü uydurmaydı.
+  // Aynı hatanın kapanış tırnağı yüzünden olan biçimini daha önce bölücüyü
+  // düzelterek kapatmıştık; bu, o hatanın etiketlerden gelen ikizi.
+  var ETIKET = /<[^>]*>/g;
+  function duzMetin(s) {
+    return String(s || "").replace(ETIKET, " ").replace(/\s+/g, " ").trim();
+  }
+
   function kelimeSay(s) {
     var t = String(s || "").trim();
     return t ? t.split(/\s+/).length : 0;
@@ -115,7 +129,10 @@
   // --- mercekler --------------------------------------------------------
 
   function m7(triple, yol, etiket, bulgular) {
-    var tr = String(triple.tr || ""), en = String(triple.en || ""), pt = String(triple.pt || "");
+    // Etiketsiz ölçüyoruz: bir dilde <em>/<strong> kullanılıp ötekinde
+    // kullanılmaması karakter uzunluğunu kaydırıyor ve olmayan bir
+    // "belirgin kısa" üretebiliyor. Okuyucunun gördüğü metni ölçmek doğrusu.
+    var tr = duzMetin(triple.tr), en = duzMetin(triple.en), pt = duzMetin(triple.pt);
     var enUzun = Math.max(tr.length, en.length, pt.length);
     if (enUzun < EN_AZ_UZUNLUK) return;
 
@@ -148,7 +165,7 @@
   }
 
   function m5(triple, yol, etiket, bulgular) {
-    var tr = String(triple.tr || "");
+    var tr = duzMetin(triple.tr);
     if (!tr) return;
     var kelime = kelimeSay(tr);
     if (kelime > COK_UZUN_METIN) {
@@ -208,13 +225,30 @@
     }
   }
 
+  function dosyaTara(yol, etiket, bulgular) {
+    return json(yol).then(function (d) { gez(d, yol, etiket, bulgular, 0); })
+      .catch(function () { /* dosya yoksa sessizce atla */ });
+  }
+
   function siteTara() {
     var bulgular = [];
-    var isler = VERI.map(function (v) {
-      return json(v[0]).then(function (d) { gez(d, v[0], v[1], bulgular, 0); })
-        .catch(function () { /* dosya yoksa sessizce atla */ });
-    });
-    return Promise.all(isler).then(function () {
+    return json(KAPSAM).then(function (kapsam) {
+      var isler = kapsam.dosyalar.map(function (d) {
+        return dosyaTara(d.yol, d.etiket, bulgular);
+      });
+      // Fütûhât kısımları ayrı dosyalarda; listeyi indeksten alıyoruz.
+      // Kısım listesi okunamazsa tarama yine sonuç veriyor ama EKSİK
+      // veriyor -- sessiz kalmasın diye konsola yazıyoruz.
+      isler.push(json(kapsam.futuhat.indeks).then(function (idx) {
+        return Promise.all((idx.parts || []).map(function (p) {
+          return dosyaTara(kapsam.futuhat.parcaKlasoru + p.id + ".json",
+                           "Fütûhât " + p.id, bulgular);
+        }));
+      }).catch(function (e) {
+        console.warn("Tahkik taraması: Fütûhât kısım listesi okunamadı", e);
+      }));
+      return Promise.all(isler);
+    }).then(function () {
       var gorulen = {}, sus = susturulan();
       return bulgular.filter(function (b) {
         if (sus[b.anahtar]) return false;
@@ -249,24 +283,59 @@
     "uzun-cumle": "çok uzun cümle"
   };
 
+  // Fütûhât'ın 223 kısmı ayrı ayrı etiketleniyor ("Fütûhât c10k125");
+  // süzgeçte hepsi tek başlık altında toplanıyor, yoksa 223 düğme çıkar.
+  function kaynak(b) {
+    return /^Fütûhât /.test(b.etiket) ? "Fütûhât" : b.etiket;
+  }
+
+  var suzgec = null;
+
   function ciz() {
     var govde = panel.querySelector(".durus-site__body");
-    var bs = sonBulgular;
-    if (!bs.length) {
+    var hepsi = sonBulgular;
+    if (!hepsi.length) {
       govde.innerHTML = '<p class="durus-site__yukleniyor">Mekanik merceklerde bulgu yok.</p>';
       return;
     }
+
+    // Kaynak süzgeci. Kapsam birleştirilince bulgu sayısı 27'den birkaç
+    // yüze çıktı -- eşikler değişmediği için değil, tarama nihayet bütün
+    // siteye baktığı için (Fütûhât kısımları tek başına metnin dörtte
+    // üçü). Tek uzun liste okunmaz; dosya dosya çalışılabilsin diye
+    // süzgeç var. Hiçbir bulgu gizlenmiyor, yalnız gruplanıyor.
+    var kaynakSayisi = {};
+    hepsi.forEach(function (b) {
+      var k = kaynak(b);
+      kaynakSayisi[k] = (kaynakSayisi[k] || 0) + 1;
+    });
+    var kaynaklar = Object.keys(kaynakSayisi).sort(function (a, b) {
+      return kaynakSayisi[b] - kaynakSayisi[a] || a.localeCompare(b, "tr");
+    });
+    if (suzgec && !kaynakSayisi[suzgec]) suzgec = null;
+
+    var bs = suzgec ? hepsi.filter(function (b) { return kaynak(b) === suzgec; }) : hepsi;
+
     var gruplar = {};
     bs.forEach(function (b) { (gruplar[b.mercek] = gruplar[b.mercek] || []).push(b); });
 
-    var html = '<p class="durus-site__ozet">' + bs.length + " bulgu — "
+    var html = '<p class="durus-site__ozet">' + hepsi.length + " bulgu"
+      + (suzgec ? " (gösterilen: " + bs.length + ")" : "") + " — "
       + Object.keys(gruplar).sort().map(function (m) {
           return esc(MERCEK_ADI[m] || m) + ": " + gruplar[m].length;
         }).join(" · ")
       + '</p>'
       + '<p class="durus-site__not">Bunlar ölçüm, hüküm değil. Yargı mercekleri (M1-M4, M8) burada '
       + 'YOK: protokolün kendi kuralı, yargının tek tek ve dikkatle yapılmasını istiyor — '
-      + 'onlar sayfa başına <code>/tahkik</code> ile.</p>';
+      + 'onlar sayfa başına <code>/tahkik</code> ile.</p>'
+      + '<p class="durus-site__suzgec">'
+      + '<button type="button" data-kaynak="" aria-pressed="' + (suzgec ? "false" : "true") + '">'
+      + "Hepsi (" + hepsi.length + ")</button>"
+      + kaynaklar.map(function (k) {
+          return '<button type="button" data-kaynak="' + esc(k) + '" aria-pressed="'
+            + (suzgec === k ? "true" : "false") + '">' + esc(k) + " (" + kaynakSayisi[k] + ")</button>";
+        }).join("")
+      + "</p>";
 
     Object.keys(gruplar).sort().forEach(function (m) {
       html += '<p class="detail-eyebrow detail-eyebrow--section">' + esc(MERCEK_ADI[m] || m) + "</p>";
@@ -280,6 +349,13 @@
       });
     });
     govde.innerHTML = html;
+    govde.querySelectorAll("[data-kaynak]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        suzgec = btn.getAttribute("data-kaynak") || null;
+        ciz();
+        govde.scrollTop = 0;
+      });
+    });
     govde.querySelectorAll("[data-sustur]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         sustur(btn.getAttribute("data-sustur"));
