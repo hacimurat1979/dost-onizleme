@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Kart eşleme aracı — Dost Arabi kullanıcı araştırması
+     (docs/arayuz-kesif-yol-haritasi.md Faz B / G14).
+
+     ARAŞTIRMA ARACIDIR, SİTE İÇERİĞİ DEĞİLDİR. Katılımcı 50 içerik
+     başlığını kendi kurduğu gruplara yerleştirir; sonuç JSON olarak
+     İNDİRİLİR, hiçbir sunucuya gönderilmez (ağ isteği yok, çerez yok).
+
+     Kartların hepsi sitenin GERÇEK içeriğinden çekildi (her kartın
+     kaynak dosyası ve id'si `kaynak`/`kaynakId` alanlarında duruyor,
+     dışa aktarılan JSON'a da giriyor -- sonuçlar denetlenebilsin diye).
+     Kartın hangi TÜRDEN olduğu (terim/sır/esmâ/hâl/kavram/fasıl)
+     katılımcıya BİLEREK gösterilmiyor: gösterilseydi soru kendi
+     cevabını vermiş olurdu. Ölçülmek istenen tam olarak bu ayrımın
+     okuyucuya kendiliğinden görünüp görünmediği.
+
+     Kart kümesi bilerek SABİT: çalışma ortasında yeniden üretilirse
+     katılımcılar arası karşılaştırma bozulur. Değiştirmek gerekirse
+     çalışma bitmeden değiştirmeyin.
+
+     Tek dosya, kütüphane yok, dış varlık yok -- bu yüzden <base> etiketi
+     de yok (önizleme kopyası base href'i yamalamıyor; sayfanın hiçbir
+     bağıl yol çözümüne ihtiyacı olmamalı).
+-->
+<title>Kart eşleme — Dost Arabi araştırma</title>
+<style>
+:root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}}
+:root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040}
+:root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.4rem 1rem 4rem;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto}
+header{margin-bottom:1.4rem}
+h1{font-size:clamp(1.35rem,3.6vw,1.85rem);font-weight:400;letter-spacing:.04em;color:var(--gold);margin-bottom:.5rem}
+.aciklama{color:var(--text);font-size:.95rem;max-width:60ch;margin-bottom:.5rem}
+.aciklama strong{color:var(--gold);font-weight:400}
+.gizlilik{color:var(--muted);font-size:.85rem;font-style:italic;max-width:60ch}
+
+.dil-satiri{display:flex;gap:.4rem;margin-bottom:1rem;flex-wrap:wrap}
+button{font-family:inherit;font-size:.9rem;color:var(--text);background:transparent;border:1px solid var(--border);border-radius:999px;padding:0 1rem;min-height:44px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.4rem}
+button:hover{border-color:var(--liminal)}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button[aria-pressed=true]{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:disabled:hover{border-color:var(--border)}
+
+.arac-cubugu{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.sayac{color:var(--muted);font-size:.85rem;margin-inline-start:auto}
+.birincil{border-color:var(--gold);color:var(--gold)}
+
+.secim-serit{position:sticky;top:0;z-index:20;background:var(--surface);border:1px solid var(--liminal);border-radius:10px;padding:.7rem 1rem;margin-bottom:1rem;font-size:.88rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.secim-serit[hidden]{display:none}
+.secim-serit b{color:var(--gold);font-weight:400}
+
+.alanlar{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.alan{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.9rem}
+.alan--havuz{grid-column:1/-1;background:var(--panel)}
+.alan--hedef{border-style:dashed}
+.alan__bas{display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;flex-wrap:wrap}
+.alan__ad{font-size:1rem;color:var(--gold);background:transparent;border:none;border-bottom:1px dotted var(--border);font-family:inherit;padding:.25rem .1rem;min-width:8ch;flex:1;min-height:44px}
+.alan__ad:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.alan__baslik{font-size:1rem;color:var(--gold);font-weight:400;flex:1}
+.alan__adet{color:var(--muted);font-size:.8rem;white-space:nowrap}
+.alan__sil{min-height:36px;padding:0 .7rem;font-size:.8rem;color:var(--muted)}
+.tasi-btn{min-height:36px;padding:0 .8rem;font-size:.82rem;width:100%;margin-bottom:.6rem;border-style:dashed;color:var(--liminal);border-color:var(--liminal)}
+.tasi-btn[hidden]{display:none}
+.kartlar{display:flex;flex-wrap:wrap;gap:.45rem;min-height:46px;align-content:flex-start}
+.bos-not{color:var(--muted);font-size:.82rem;font-style:italic;padding:.5rem .2rem}
+
+.kart{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.5rem .8rem;font-size:.88rem;text-align:start;min-height:44px;touch-action:none;-webkit-user-select:none;user-select:none;line-height:1.35;max-width:100%}
+.alan--havuz .kart{background:var(--surface)}
+.kart[aria-pressed=true]{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.kart--suzuluyor{opacity:.35}
+.surukleyen{position:fixed;z-index:99;pointer-events:none;opacity:.92;box-shadow:0 8px 26px rgba(0,0,0,.4)}
+.alan--uzerinde{border-color:var(--gold);background:var(--surface)}
+
+.notlar-alani{margin-top:1.6rem}
+.notlar-alani label{display:block;font-size:.9rem;color:var(--gold);margin-bottom:.5rem}
+textarea{width:100%;min-height:110px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:.9rem;padding:.8rem;line-height:1.6;resize:vertical}
+textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.kapanis{margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.88rem;color:var(--muted);max-width:60ch}
+.kapanis a{color:var(--liminal)}
+.gorunmez{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1 id="hBaslik">Kart eşleme</h1>
+  <p class="aciklama" id="hAciklama"></p>
+  <p class="gizlilik" id="hGizlilik"></p>
+</header>
+
+<div class="dil-satiri" role="group" aria-label="Dil / Language / Idioma">
+  <button type="button" data-dil="tr" aria-pressed="true">Türkçe</button>
+  <button type="button" data-dil="en" aria-pressed="false">English</button>
+  <button type="button" data-dil="pt" aria-pressed="false">Português</button>
+</div>
+
+<div class="arac-cubugu">
+  <button type="button" id="btnGrupEkle" class="birincil"></button>
+  <button type="button" id="btnIndir"></button>
+  <button type="button" id="btnSifirla"></button>
+  <span class="sayac" id="sayac"></span>
+</div>
+
+<div class="secim-serit" id="secimSerit" hidden aria-live="polite">
+  <span id="secimMetin"></span>
+  <button type="button" id="btnSecimBirak"></button>
+</div>
+
+<main class="alanlar" id="alanlar"></main>
+
+<div class="notlar-alani">
+  <label for="notlar" id="notlarEtiket"></label>
+  <textarea id="notlar"></textarea>
+</div>
+
+<p class="kapanis" id="kapanis"></p>
+
+<p class="gorunmez" aria-live="polite" id="duyuru"></p>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const KARTLAR = [
+  {
+    "id": "terim:cevher",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "cevher",
+    "tr": "Cevher",
+    "en": "Substance",
+    "pt": "Substância"
+  },
+  {
+    "id": "terim:cins",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "cins",
+    "tr": "Cins",
+    "en": "Genus",
+    "pt": "Gênero"
+  },
+  {
+    "id": "terim:illet",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "illet",
+    "tr": "İllet",
+    "en": "Cause",
+    "pt": "Causa"
+  },
+  {
+    "id": "terim:mumkun",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "mumkun",
+    "tr": "Mümkün",
+    "en": "The Contingent",
+    "pt": "O Contingente"
+  },
+  {
+    "id": "terim:hazerat-i-hamse",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "hazerat-i-hamse",
+    "tr": "Hazerât-ı Hamse (Beş İlâhî Hazret)",
+    "en": "The Five Divine Presences",
+    "pt": "As Cinco Presenças Divinas"
+  },
+  {
+    "id": "terim:mazhar",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "mazhar",
+    "tr": "Mazhar",
+    "en": "Locus of Manifestation",
+    "pt": "Lugar de Manifestação"
+  },
+  {
+    "id": "terim:akil-vezir",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "akil-vezir",
+    "tr": "Akıl (Vezir)",
+    "en": "Reason (the Vizier)",
+    "pt": "Razão (o Vizir)"
+  },
+  {
+    "id": "terim:ahad",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "ahad",
+    "tr": "Ahad (Tek)",
+    "en": "Ahad (The One)",
+    "pt": "Ahad (O Uno)"
+  },
+  {
+    "id": "terim:halife",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "halife",
+    "tr": "Halife (Hilâfet)",
+    "en": "Vicegerent (Caliphate)",
+    "pt": "Vice-regente (Califado)"
+  },
+  {
+    "id": "terim:sahv",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "sahv",
+    "tr": "Sahv (Ayıklık)",
+    "en": "Sobriety",
+    "pt": "Sobriedade"
+  },
+  {
+    "id": "terim:bes-menzil-dirilis",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "bes-menzil-dirilis",
+    "tr": "Beş Menzil Diriliş",
+    "en": "Resurrection in Five Stations",
+    "pt": "Ressurreição em Cinco Estações"
+  },
+  {
+    "id": "terim:vahiy",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "vahiy",
+    "tr": "Vahiy",
+    "en": "Revelation",
+    "pt": "Revelação"
+  },
+  {
+    "id": "terim:serrin-mahiyeti",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "serrin-mahiyeti",
+    "tr": "Şerrin Mahiyeti",
+    "en": "The Nature of Evil",
+    "pt": "A Natureza do Mal"
+  },
+  {
+    "id": "terim:kalbin-misafirleri",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "kalbin-misafirleri",
+    "tr": "Kalbin Misafirleri",
+    "en": "The Heart's Visitors",
+    "pt": "Os Visitantes do Coração"
+  },
+  {
+    "id": "terim:firaset",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "firaset",
+    "tr": "Firâset",
+    "en": "Discernment",
+    "pt": "Discernimento"
+  },
+  {
+    "id": "terim:bedel",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "bedel",
+    "tr": "Bedel (Ebdal)",
+    "en": "Substitute (Abdal)",
+    "pt": "Substituto (Abdal)"
+  },
+  {
+    "id": "terim:beka",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "beka",
+    "tr": "Bekâ",
+    "en": "Subsistence",
+    "pt": "Subsistência"
+  },
+  {
+    "id": "terim:nefes-i-rahmani",
+    "kaynak": "felsefi-terimler.json",
+    "kaynakId": "nefes-i-rahmani",
+    "tr": "Nefes-i Rahmânî (Rahmân'ın Nefesi)",
+    "en": "The Breath of the All-Merciful",
+    "pt": "O Sopro do Misericordioso"
+  },
+  {
+    "id": "sir:sir-ilmi-yalniz-masum-un-dilinden",
+    "kaynak": "sirlar.json",
+    "kaynakId": "sir-ilmi-yalniz-masum-un-dilinden",
+    "tr": "Masum'un dili",
+    "en": "The Impeccable's tongue",
+    "pt": "A língua do Impecável"
+  },
+  {
+    "id": "sir:okuyucuyu-dogrudan-durduran-bir-uyari",
+    "kaynak": "sirlar.json",
+    "kaynakId": "okuyucuyu-dogrudan-durduran-bir-uyari",
+    "tr": "Dur işareti",
+    "en": "Stop sign",
+    "pt": "Sinal de parada"
+  },
+  {
+    "id": "sir:isaret-edilen-ama-soylenmeyen",
+    "kaynak": "sirlar.json",
+    "kaynakId": "isaret-edilen-ama-soylenmeyen",
+    "tr": "İşaret, ifade değil",
+    "en": "A pointing, not a statement",
+    "pt": "Um apontar, não uma afirmação"
+  },
+  {
+    "id": "sir:tek-eylem",
+    "kaynak": "sirlar.json",
+    "kaynakId": "tek-eylem",
+    "tr": "Tek eylem",
+    "en": "A single act",
+    "pt": "Um único ato"
+  },
+  {
+    "id": "sir:kaderin-sirri-neden-aciklanmaz",
+    "kaynak": "sirlar.json",
+    "kaynakId": "kaderin-sirri-neden-aciklanmaz",
+    "tr": "Kaderin sırrı",
+    "en": "The secret of destiny",
+    "pt": "O segredo do destino"
+  },
+  {
+    "id": "sir:ilim-maluma-tabidir",
+    "kaynak": "sirlar.json",
+    "kaynakId": "ilim-maluma-tabidir",
+    "tr": "İlim, bilinene tâbi",
+    "en": "Knowledge follows the known",
+    "pt": "O conhecimento segue o conhecido"
+  },
+  {
+    "id": "sir:sabir-sirri",
+    "kaynak": "sirlar.json",
+    "kaynakId": "sabir-sirri",
+    "tr": "Sabır sırrı",
+    "en": "The secret of patience",
+    "pt": "O segredo da paciência"
+  },
+  {
+    "id": "sir:kamil-insan-ayna",
+    "kaynak": "sirlar.json",
+    "kaynakId": "kamil-insan-ayna",
+    "tr": "Cilâlı ayna",
+    "en": "The polished mirror",
+    "pt": "O espelho polido"
+  },
+  {
+    "id": "sir:soylenmeyen-sayi",
+    "kaynak": "sirlar.json",
+    "kaynakId": "soylenmeyen-sayi",
+    "tr": "Söylenmeyen sayı",
+    "en": "The unspoken number",
+    "pt": "O número não dito"
+  },
+  {
+    "id": "sir:harflerin-sirri",
+    "kaynak": "sirlar.json",
+    "kaynakId": "harflerin-sirri",
+    "tr": "Harflerin sırrı",
+    "en": "The secret of the letters",
+    "pt": "O segredo das letras"
+  },
+  {
+    "id": "sir:miracin-sirri",
+    "kaynak": "sirlar.json",
+    "kaynakId": "miracin-sirri",
+    "tr": "Mi'râc'ın sırrı",
+    "en": "The secret of the Ascent",
+    "pt": "O segredo da Ascensão"
+  },
+  {
+    "id": "sir:hizir-ile-musa",
+    "kaynak": "sirlar.json",
+    "kaynakId": "hizir-ile-musa",
+    "tr": "Hızır ile Mûsâ",
+    "en": "Khidr and Moses",
+    "pt": "Khidr e Moisés"
+  },
+  {
+    "id": "esma:er-rahman",
+    "kaynak": "esma.json",
+    "kaynakId": "er-rahman",
+    "tr": "er-Rahmân",
+    "en": "Ar-Rahman",
+    "pt": "Ar-Rahman"
+  },
+  {
+    "id": "esma:el-latif",
+    "kaynak": "esma.json",
+    "kaynakId": "el-latif",
+    "tr": "el-Latîf",
+    "en": "Al-Latif",
+    "pt": "Al-Latif"
+  },
+  {
+    "id": "esma:el-kahhar",
+    "kaynak": "esma.json",
+    "kaynakId": "el-kahhar",
+    "tr": "el-Kahhâr",
+    "en": "Al-Qahhar",
+    "pt": "Al-Qahhar"
+  },
+  {
+    "id": "esma:el-cebbar",
+    "kaynak": "esma.json",
+    "kaynakId": "el-cebbar",
+    "tr": "el-Cebbâr",
+    "en": "Al-Jabbar",
+    "pt": "Al-Jabbar"
+  },
+  {
+    "id": "esma:el-alim",
+    "kaynak": "esma.json",
+    "kaynakId": "el-alim",
+    "tr": "el-Alîm",
+    "en": "Al-Alim",
+    "pt": "Al-Alim"
+  },
+  {
+    "id": "esma:el-hakim",
+    "kaynak": "esma.json",
+    "kaynakId": "el-hakim",
+    "tr": "el-Hakîm",
+    "en": "Al-Hakim",
+    "pt": "Al-Hakim"
+  },
+  {
+    "id": "hal:tovbe",
+    "kaynak": "hal.json",
+    "kaynakId": "tovbe",
+    "tr": "Tövbe",
+    "en": "Repentance",
+    "pt": "Arrependimento"
+  },
+  {
+    "id": "hal:sabir",
+    "kaynak": "hal.json",
+    "kaynakId": "sabir",
+    "tr": "Sabır",
+    "en": "Patience",
+    "pt": "Paciência"
+  },
+  {
+    "id": "hal:fenabeka",
+    "kaynak": "hal.json",
+    "kaynakId": "fenabeka",
+    "tr": "Fenâ ve Bekâ",
+    "en": "Annihilation and Subsistence",
+    "pt": "Aniquilação e Subsistência"
+  },
+  {
+    "id": "hal:hayret",
+    "kaynak": "hal.json",
+    "kaynakId": "hayret",
+    "tr": "Hayret",
+    "en": "Bewilderment",
+    "pt": "Perplexidade"
+  },
+  {
+    "id": "kavram:ayan-sabite",
+    "kaynak": "ontology.json",
+    "kaynakId": "ayan-sabite",
+    "tr": "A'yân-ı Sâbite",
+    "en": "The Immutable Entities",
+    "pt": "As Entidades Imutáveis"
+  },
+  {
+    "id": "kavram:tecelli",
+    "kaynak": "ontology.json",
+    "kaynakId": "tecelli",
+    "tr": "Tecellî ve Nefesü'r-Rahmân",
+    "en": "Self-Disclosure and the Breath",
+    "pt": "Automanifestação e o Sopro"
+  },
+  {
+    "id": "kavram:alem-misal",
+    "kaynak": "ontology.json",
+    "kaynakId": "alem-misal",
+    "tr": "Âlem-i Misâl (Hayal)",
+    "en": "The Imaginal World",
+    "pt": "O Mundo Imaginal"
+  },
+  {
+    "id": "kavram:perde",
+    "kaynak": "ontology.json",
+    "kaynakId": "perde",
+    "tr": "Perde (Hicâb)",
+    "en": "The Veil",
+    "pt": "O Véu"
+  },
+  {
+    "id": "kavram:teceddud",
+    "kaynak": "ontology.json",
+    "kaynakId": "teceddud",
+    "tr": "Teceddüd (Sürekli Yenilenme)",
+    "en": "Perpetual Renewal",
+    "pt": "Renovação Perpétua"
+  },
+  {
+    "id": "fass:fs1",
+    "kaynak": "fusus-atlas.json",
+    "kaynakId": "fs1",
+    "tr": "Âdem — Hikmet-i İlâhiyye",
+    "en": "Adam — Divine Wisdom",
+    "pt": "Adão — Sabedoria Divina"
+  },
+  {
+    "id": "fass:fs5",
+    "kaynak": "fusus-atlas.json",
+    "kaynakId": "fs5",
+    "tr": "İbrâhîm — Hikmet-i Müheyyemiyye",
+    "en": "Abraham — Wisdom of Rapture",
+    "pt": "Abraão — Sabedoria do Arrebatamento"
+  },
+  {
+    "id": "fass:fs12",
+    "kaynak": "fusus-atlas.json",
+    "kaynakId": "fs12",
+    "tr": "Şuayb — Hikmet-i Kalbiyye",
+    "en": "Shu'ayb — Wisdom of the Heart",
+    "pt": "Chuaib — Sabedoria do Coração"
+  },
+  {
+    "id": "fass:fs20",
+    "kaynak": "fusus-atlas.json",
+    "kaynakId": "fs20",
+    "tr": "Yahyâ — Hikmet-i Celâliyye",
+    "en": "John — Wisdom of Majesty",
+    "pt": "João — Sabedoria da Majestade"
+  },
+  {
+    "id": "fass:fs27",
+    "kaynak": "fusus-atlas.json",
+    "kaynakId": "fs27",
+    "tr": "Muhammed — Hikmet-i Ferdiyye",
+    "en": "Muhammad — Wisdom of Singularity",
+    "pt": "Muhammad — Sabedoria da Singularidade"
+  }
+];
+
+  const UI = {
+    tr: {
+      baslik: "Kart eşleme",
+      aciklama: "Aşağıda Dost Arabi sitesinden <strong>50 başlık</strong> var. Sizce birbirine ait olanları bir araya koyun — istediğiniz kadar grup kurun, gruplara kendi istediğiniz adı verin. <strong>Doğru cevap yok</strong>; aradığımız şey sizin nasıl düşündüğünüz.",
+      gizlilik: "Hiçbir şey sunucuya gönderilmez. Bitirince “JSON indir”e basın ve dosyayı bana e-postayla yollayın. İşiniz tarayıcınızda kendiliğinden saklanır; sayfayı kapatıp sonra devam edebilirsiniz.",
+      grupEkle: "+ Yeni grup",
+      indir: "JSON indir",
+      sifirla: "Baştan başla",
+      havuz: "Henüz yerleştirilmemiş",
+      havuzBos: "Hepsini yerleştirdiniz.",
+      grupBos: "Buraya kart taşıyın.",
+      yeniGrupAdi: "Adsız grup",
+      grupAdiEtiket: "Grup adı",
+      grupSil: "Grubu sil",
+      tasiBuraya: "Seçili kartı buraya taşı",
+      havuzaGeri: "Seçili kartı buraya geri al",
+      secildi: "Seçili:",
+      secimIptal: "Seçimi bırak",
+      sayac: (a, b) => `${a} / ${b} yerleştirildi · ${b - a} kaldı`,
+      notlarEtiket: "Eklemek istediğiniz bir şey var mı? (isteğe bağlı)",
+      notlarIpucu: "Örneğin: zorlandığınız kartlar, emin olamadığınız gruplar, aklınıza takılanlar.",
+      kapanis: "Bu bir araştırma sayfasıdır, sitenin bir bölümü değildir. Sorularınız için: ",
+      sifirlaOnay: "Bütün gruplar ve yerleştirmeler silinecek. Emin misiniz?",
+      grupSilOnay: (ad, n) => `“${ad}” grubu silinecek, içindeki ${n} kart havuza geri dönecek. Emin misiniz?`,
+      duyuruTasindi: (kart, grup) => `${kart}, ${grup} grubuna taşındı.`,
+      duyuruSecildi: (kart) => `${kart} seçildi. Şimdi bir grup seçin.`,
+      duyuruGrupEklendi: "Yeni grup eklendi.",
+      indirilemedi: "Dosya indirilemedi. Tarayıcınız izin vermiyor olabilir."
+    },
+    en: {
+      baslik: "Card sorting",
+      aciklama: "Below are <strong>50 titles</strong> from the Dost Arabi site. Put the ones you feel belong together into the same group — make as many groups as you like and name them however you like. <strong>There is no right answer</strong>; we want to see how you think.",
+      gizlilik: "Nothing is sent to any server. When you are done, press “Download JSON” and email me the file. Your work is saved in your own browser, so you can close the page and come back.",
+      grupEkle: "+ New group",
+      indir: "Download JSON",
+      sifirla: "Start over",
+      havuz: "Not yet placed",
+      havuzBos: "You have placed them all.",
+      grupBos: "Move cards here.",
+      yeniGrupAdi: "Untitled group",
+      grupAdiEtiket: "Group name",
+      grupSil: "Delete group",
+      tasiBuraya: "Move selected card here",
+      havuzaGeri: "Return selected card here",
+      secildi: "Selected:",
+      secimIptal: "Cancel selection",
+      sayac: (a, b) => `${a} / ${b} placed · ${b - a} left`,
+      notlarEtiket: "Anything you want to add? (optional)",
+      notlarIpucu: "For example: cards you found hard, groups you were unsure about, anything that struck you.",
+      kapanis: "This is a research page, not a section of the site. Questions: ",
+      sifirlaOnay: "All groups and placements will be deleted. Are you sure?",
+      grupSilOnay: (ad, n) => `Group “${ad}” will be deleted and its ${n} card(s) returned to the pool. Are you sure?`,
+      duyuruTasindi: (kart, grup) => `${kart} moved to ${grup}.`,
+      duyuruSecildi: (kart) => `${kart} selected. Now choose a group.`,
+      duyuruGrupEklendi: "New group added.",
+      indirilemedi: "Could not download the file. Your browser may be blocking it."
+    },
+    pt: {
+      baslik: "Agrupamento de cartões",
+      aciklama: "Abaixo estão <strong>50 títulos</strong> do site Dost Arabi. Coloque juntos os que você sente que pertencem ao mesmo lugar — crie quantos grupos quiser e dê a eles os nomes que quiser. <strong>Não há resposta certa</strong>; queremos ver como você pensa.",
+      gizlilik: "Nada é enviado a nenhum servidor. Ao terminar, clique em “Baixar JSON” e envie-me o arquivo por e-mail. Seu trabalho fica salvo no seu próprio navegador, então você pode fechar a página e voltar depois.",
+      grupEkle: "+ Novo grupo",
+      indir: "Baixar JSON",
+      sifirla: "Recomeçar",
+      havuz: "Ainda não colocados",
+      havuzBos: "Você colocou todos.",
+      grupBos: "Mova cartões para cá.",
+      yeniGrupAdi: "Grupo sem nome",
+      grupAdiEtiket: "Nome do grupo",
+      grupSil: "Excluir grupo",
+      tasiBuraya: "Mover o cartão selecionado para cá",
+      havuzaGeri: "Devolver o cartão selecionado para cá",
+      secildi: "Selecionado:",
+      secimIptal: "Cancelar seleção",
+      sayac: (a, b) => `${a} / ${b} colocados · faltam ${b - a}`,
+      notlarEtiket: "Quer acrescentar algo? (opcional)",
+      notlarIpucu: "Por exemplo: cartões difíceis, grupos incertos, qualquer coisa que tenha chamado sua atenção.",
+      kapanis: "Esta é uma página de pesquisa, não uma seção do site. Dúvidas: ",
+      sifirlaOnay: "Todos os grupos e colocações serão excluídos. Tem certeza?",
+      grupSilOnay: (ad, n) => `O grupo “${ad}” será excluído e seus ${n} cartão(ões) voltarão ao conjunto. Tem certeza?`,
+      duyuruTasindi: (kart, grup) => `${kart} movido para ${grup}.`,
+      duyuruSecildi: (kart) => `${kart} selecionado. Agora escolha um grupo.`,
+      duyuruGrupEklendi: "Novo grupo adicionado.",
+      indirilemedi: "Não foi possível baixar o arquivo. Seu navegador pode estar bloqueando."
+    }
+  };
+
+  const EPOSTA = "hacimurat.karaman@gmail.com";
+  const DEPO_ANAHTARI = "dost-kart-eslesme-v1";
+
+  // --- durum -------------------------------------------------------------
+  // yerlesim: kartId -> grupId ("havuz" = henüz yerleştirilmemiş)
+  let dil = "tr";
+  let durum = null;   // {sira, yerlesim, gruplar:[{id,ad}], notlar, baslangic}
+  let secili = null;  // seçili kart id'si
+
+  const $ = (id) => document.getElementById(id);
+  const T = () => UI[dil];
+  const kartBul = (id) => KARTLAR.find((k) => k.id === id);
+
+  function varsayilanDurum() {
+    // Kart sırası katılımcıya özel karıştırılır (sunum sırası, gruplamayı
+    // etkilemesin diye) ama bir kez üretilip saklanır -- sayfa yenilenince
+    // yeniden karışsaydı katılımcı kendi işini tanıyamazdı.
+    const sira = KARTLAR.map((k) => k.id);
+    for (let i = sira.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [sira[i], sira[j]] = [sira[j], sira[i]];
+    }
+    const yerlesim = {};
+    sira.forEach((id) => { yerlesim[id] = "havuz"; });
+    return { sira, yerlesim, gruplar: [], notlar: "", baslangic: new Date().toISOString(), sonrakiGrupNo: 1 };
+  }
+
+  function yukle() {
+    let ham = null;
+    try { ham = window.localStorage.getItem(DEPO_ANAHTARI); } catch (e) { ham = null; }
+    if (!ham) return varsayilanDurum();
+    try {
+      const d = JSON.parse(ham);
+      // Kart kümesi değişmiş olabilir (araç güncellenirse): bilinmeyen
+      // kartları at, yeni kartları havuza ekle. Sessizce bozulmasın.
+      const gecerli = new Set(KARTLAR.map((k) => k.id));
+      d.sira = (d.sira || []).filter((id) => gecerli.has(id));
+      KARTLAR.forEach((k) => { if (!d.sira.includes(k.id)) d.sira.push(k.id); });
+      d.yerlesim = d.yerlesim || {};
+      const grupIdleri = new Set((d.gruplar || []).map((g) => g.id));
+      d.sira.forEach((id) => {
+        if (!d.yerlesim[id] || (d.yerlesim[id] !== "havuz" && !grupIdleri.has(d.yerlesim[id]))) {
+          d.yerlesim[id] = "havuz";
+        }
+      });
+      d.gruplar = d.gruplar || [];
+      d.notlar = d.notlar || "";
+      d.baslangic = d.baslangic || new Date().toISOString();
+      d.sonrakiGrupNo = d.sonrakiGrupNo || (d.gruplar.length + 1);
+      return d;
+    } catch (e) {
+      return varsayilanDurum();
+    }
+  }
+
+  function kaydet() {
+    try { window.localStorage.setItem(DEPO_ANAHTARI, JSON.stringify(durum)); } catch (e) { /* kota dolu olabilir */ }
+  }
+
+  function duyur(metin) { $("duyuru").textContent = metin; }
+
+  // --- çizim -------------------------------------------------------------
+  function kartElemani(kartId) {
+    const k = kartBul(kartId);
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "kart";
+    b.dataset.kartId = kartId;
+    b.textContent = k[dil];
+    b.setAttribute("aria-pressed", secili === kartId ? "true" : "false");
+    return b;
+  }
+
+  function alanElemani(grupId, baslikMetni, kartIdleri, secenekler) {
+    const sec = secenekler || {};
+    const bolum = document.createElement("section");
+    bolum.className = "alan" + (sec.havuz ? " alan--havuz" : " alan--hedef");
+    bolum.dataset.birak = grupId;
+
+    const bas = document.createElement("div");
+    bas.className = "alan__bas";
+
+    if (sec.havuz) {
+      const h = document.createElement("h2");
+      h.className = "alan__baslik";
+      h.textContent = baslikMetni;
+      bas.appendChild(h);
+    } else {
+      const inp = document.createElement("input");
+      inp.type = "text";
+      inp.className = "alan__ad";
+      inp.value = baslikMetni;
+      inp.setAttribute("aria-label", T().grupAdiEtiket);
+      inp.addEventListener("input", () => {
+        const g = durum.gruplar.find((x) => x.id === grupId);
+        if (g) { g.ad = inp.value; kaydet(); }
+      });
+      bas.appendChild(inp);
+    }
+
+    const adet = document.createElement("span");
+    adet.className = "alan__adet";
+    adet.textContent = String(kartIdleri.length);
+    bas.appendChild(adet);
+
+    if (!sec.havuz) {
+      const sil = document.createElement("button");
+      sil.type = "button";
+      sil.className = "alan__sil";
+      sil.textContent = "×";
+      sil.setAttribute("aria-label", T().grupSil + ": " + baslikMetni);
+      sil.addEventListener("click", () => grupSil(grupId));
+      bas.appendChild(sil);
+    }
+    bolum.appendChild(bas);
+
+    const tasi = document.createElement("button");
+    tasi.type = "button";
+    tasi.className = "tasi-btn";
+    tasi.textContent = sec.havuz ? T().havuzaGeri : T().tasiBuraya;
+    tasi.hidden = !secili || durum.yerlesim[secili] === grupId;
+    tasi.addEventListener("click", () => { if (secili) tasi_(secili, grupId); });
+    bolum.appendChild(tasi);
+
+    const liste = document.createElement("div");
+    liste.className = "kartlar";
+    if (kartIdleri.length === 0) {
+      const bos = document.createElement("p");
+      bos.className = "bos-not";
+      bos.textContent = sec.havuz ? T().havuzBos : T().grupBos;
+      liste.appendChild(bos);
+    } else {
+      kartIdleri.forEach((id) => liste.appendChild(kartElemani(id)));
+    }
+    bolum.appendChild(liste);
+    return bolum;
+  }
+
+  function ciz() {
+    const kok = $("alanlar");
+    kok.textContent = "";
+
+    const havuzKartlari = durum.sira.filter((id) => durum.yerlesim[id] === "havuz");
+    kok.appendChild(alanElemani("havuz", T().havuz, havuzKartlari, { havuz: true }));
+
+    durum.gruplar.forEach((g) => {
+      const icindekiler = durum.sira.filter((id) => durum.yerlesim[id] === g.id);
+      kok.appendChild(alanElemani(g.id, g.ad, icindekiler));
+    });
+
+    const yerlesen = durum.sira.length - havuzKartlari.length;
+    $("sayac").textContent = T().sayac(yerlesen, durum.sira.length);
+
+    const serit = $("secimSerit");
+    if (secili) {
+      serit.hidden = false;
+      $("secimMetin").textContent = T().secildi + " " + kartBul(secili)[dil];
+    } else {
+      serit.hidden = true;
+    }
+  }
+
+  function tasi_(kartId, hedefId) {
+    durum.yerlesim[kartId] = hedefId;
+    const ad = hedefId === "havuz" ? T().havuz : (durum.gruplar.find((g) => g.id === hedefId) || {}).ad;
+    duyur(T().duyuruTasindi(kartBul(kartId)[dil], ad));
+    secili = null;
+    kaydet();
+    ciz();
+  }
+
+  function grupSil(grupId) {
+    const g = durum.gruplar.find((x) => x.id === grupId);
+    if (!g) return;
+    const icindekiler = durum.sira.filter((id) => durum.yerlesim[id] === grupId);
+    if (icindekiler.length && !window.confirm(T().grupSilOnay(g.ad, icindekiler.length))) return;
+    icindekiler.forEach((id) => { durum.yerlesim[id] = "havuz"; });
+    durum.gruplar = durum.gruplar.filter((x) => x.id !== grupId);
+    kaydet();
+    ciz();
+  }
+
+  // --- olaylar -----------------------------------------------------------
+  $("alanlar").addEventListener("click", (e) => {
+    const kart = e.target.closest(".kart");
+    if (!kart || kart.dataset.suruklendi === "1") return;
+    const id = kart.dataset.kartId;
+    secili = (secili === id) ? null : id;
+    if (secili) duyur(T().duyuruSecildi(kartBul(secili)[dil]));
+    ciz();
+  });
+
+  $("btnSecimBirak").addEventListener("click", () => { secili = null; ciz(); });
+
+  $("btnGrupEkle").addEventListener("click", () => {
+    const no = durum.sonrakiGrupNo++;
+    durum.gruplar.push({ id: "g" + no, ad: T().yeniGrupAdi + " " + no });
+    duyur(T().duyuruGrupEklendi);
+    kaydet();
+    ciz();
+    const sonAlan = $("alanlar").lastElementChild;
+    const inp = sonAlan && sonAlan.querySelector(".alan__ad");
+    if (inp) { inp.focus(); inp.select(); }
+  });
+
+  $("btnSifirla").addEventListener("click", () => {
+    if (!window.confirm(T().sifirlaOnay)) return;
+    durum = varsayilanDurum();
+    secili = null;
+    $("notlar").value = "";
+    kaydet();
+    ciz();
+  });
+
+  $("notlar").addEventListener("input", (e) => { durum.notlar = e.target.value; kaydet(); });
+
+  $("btnIndir").addEventListener("click", () => {
+    const cikti = {
+      arac: "dost-arabi-kart-eslesme",
+      surum: 1,
+      dil: dil,
+      baslangic: durum.baslangic,
+      bitis: new Date().toISOString(),
+      sureDakika: Math.round((Date.now() - new Date(durum.baslangic).getTime()) / 60000),
+      toplamKart: durum.sira.length,
+      gruplar: durum.gruplar.map((g) => ({
+        ad: g.ad,
+        kartlar: durum.sira.filter((id) => durum.yerlesim[id] === g.id).map((id) => {
+          const k = kartBul(id);
+          return { id: k.id, baslik: k[dil], kaynak: k.kaynak, kaynakId: k.kaynakId };
+        })
+      })),
+      yerlestirilmeyen: durum.sira.filter((id) => durum.yerlesim[id] === "havuz").map((id) => {
+        const k = kartBul(id);
+        return { id: k.id, baslik: k[dil], kaynak: k.kaynak, kaynakId: k.kaynakId };
+      }),
+      notlar: durum.notlar
+    };
+    try {
+      const blob = new Blob([JSON.stringify(cikti, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "kart-eslesme-" + new Date().toISOString().slice(0, 10) + ".json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (e) {
+      window.alert(T().indirilemedi);
+    }
+  });
+
+  // --- işaretçiyle sürükleme (fare + dokunmatik tek yol) -----------------
+  // Klavye/tıklama yolu (seç → "buraya taşı") her koşulda çalışır; bu
+  // yalnız onun üstüne binen bir kolaylık. Pointer Events kullanılıyor:
+  // fare ve dokunmatik için AYRI kod yolu yok.
+  let surukle = null;
+
+  $("alanlar").addEventListener("pointerdown", (e) => {
+    const kart = e.target.closest(".kart");
+    if (!kart || e.button !== 0) return;
+    surukle = {
+      kartId: kart.dataset.kartId, el: kart, x0: e.clientX, y0: e.clientY,
+      klon: null, aktif: false, pointerId: e.pointerId
+    };
+    kart.dataset.suruklendi = "0";
+  });
+
+  window.addEventListener("pointermove", (e) => {
+    if (!surukle || e.pointerId !== surukle.pointerId) return;
+    const dx = e.clientX - surukle.x0;
+    const dy = e.clientY - surukle.y0;
+    if (!surukle.aktif) {
+      if (Math.hypot(dx, dy) < 7) return;   // eşik: tıklama mı sürükleme mi
+      surukle.aktif = true;
+      surukle.el.dataset.suruklendi = "1";
+      const r = surukle.el.getBoundingClientRect();
+      const klon = surukle.el.cloneNode(true);
+      klon.classList.add("surukleyen");
+      klon.style.width = r.width + "px";
+      klon.style.left = r.left + "px";
+      klon.style.top = r.top + "px";
+      klon.setAttribute("aria-hidden", "true");
+      document.body.appendChild(klon);
+      surukle.klon = klon;
+      surukle.kx = r.left - surukle.x0;
+      surukle.ky = r.top - surukle.y0;
+      surukle.el.classList.add("kart--suzuluyor");
+    }
+    surukle.klon.style.left = (e.clientX + surukle.kx) + "px";
+    surukle.klon.style.top = (e.clientY + surukle.ky) + "px";
+    surukle.klon.style.display = "none";
+    const alt = document.elementFromPoint(e.clientX, e.clientY);
+    surukle.klon.style.display = "";
+    const hedef = alt && alt.closest("[data-birak]");
+    document.querySelectorAll(".alan--uzerinde").forEach((x) => x.classList.remove("alan--uzerinde"));
+    if (hedef) hedef.classList.add("alan--uzerinde");
+    surukle.hedef = hedef ? hedef.dataset.birak : null;
+  });
+
+  function suruklemeBitir(e) {
+    if (!surukle || (e && e.pointerId !== surukle.pointerId)) return;
+    const s = surukle;
+    surukle = null;
+    document.querySelectorAll(".alan--uzerinde").forEach((x) => x.classList.remove("alan--uzerinde"));
+    if (s.klon) s.klon.remove();
+    if (s.el) s.el.classList.remove("kart--suzuluyor");
+    if (s.aktif && s.hedef && durum.yerlesim[s.kartId] !== s.hedef) {
+      secili = null;
+      tasi_(s.kartId, s.hedef);
+    } else if (s.aktif) {
+      ciz();
+    }
+    // "suruklendi" bayrağı click dinleyicisinin sürükleme sonunu tıklama
+    // sanmasını engelliyor; bir sonraki tur için temizlensin.
+    if (s.el) setTimeout(() => { if (s.el) delete s.el.dataset.suruklendi; }, 0);
+  }
+  window.addEventListener("pointerup", suruklemeBitir);
+  window.addEventListener("pointercancel", suruklemeBitir);
+
+  // --- dil ---------------------------------------------------------------
+  function dilUygula() {
+    const t = T();
+    document.documentElement.lang = dil;
+    document.title = t.baslik + " — Dost Arabi";
+    $("hBaslik").textContent = t.baslik;
+    $("hAciklama").innerHTML = t.aciklama;
+    $("hGizlilik").textContent = t.gizlilik;
+    $("btnGrupEkle").textContent = t.grupEkle;
+    $("btnIndir").textContent = t.indir;
+    $("btnSifirla").textContent = t.sifirla;
+    $("btnSecimBirak").textContent = t.secimIptal;
+    $("notlarEtiket").textContent = t.notlarEtiket;
+    $("notlar").placeholder = t.notlarIpucu;
+    const kap = $("kapanis");
+    kap.textContent = t.kapanis;
+    const a = document.createElement("a");
+    a.href = "mailto:" + EPOSTA;
+    a.textContent = EPOSTA;
+    kap.appendChild(a);
+    document.querySelectorAll("[data-dil]").forEach((b) => {
+      b.setAttribute("aria-pressed", b.dataset.dil === dil ? "true" : "false");
+    });
+    ciz();
+  }
+
+  document.querySelectorAll("[data-dil]").forEach((b) => {
+    b.addEventListener("click", () => { dil = b.dataset.dil; dilUygula(); });
+  });
+
+  // --- başlat ------------------------------------------------------------
+  durum = yukle();
+  $("notlar").value = durum.notlar;
+  dilUygula();
+})();
+</script>
+</body>
+</html>
