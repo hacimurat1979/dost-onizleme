@@ -335,13 +335,13 @@
         <circle class="term-diagram-node term-diagram-node--accent" cx="85" cy="48" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="85" y="53" text-anchor="middle">${tt(d.sunLabel)}</text>
         <circle class="term-diagram-node term-diagram-node--dashed" cx="85" cy="112" r="18"/>
-        <text class="term-diagram-label--small" x="85" y="116" text-anchor="middle" style="font-size:8px">${tt(d.moonLabel)}</text>
+        <text class="term-diagram-label--small" x="85" y="116" text-anchor="middle">${tt(d.moonLabel)}</text>
         <text class="term-diagram-note" x="85" y="145" text-anchor="middle">${tt(d.presentCaption)}</text>
 
         <circle class="term-diagram-node term-diagram-node--faint" cx="255" cy="48" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="255" y="53" text-anchor="middle">${tt(d.sunLabel)}</text>
         <circle class="term-diagram-node term-diagram-node--accent" cx="255" cy="112" r="18"/>
-        <text class="term-diagram-label--small" x="255" y="116" text-anchor="middle" style="font-size:8px">${tt(d.moonLabel)}</text>
+        <text class="term-diagram-label--small" x="255" y="116" text-anchor="middle">${tt(d.moonLabel)}</text>
         <text class="term-diagram-note" x="255" y="145" text-anchor="middle">${tt(d.absentCaption)}</text>
       </svg>
     `,
@@ -354,7 +354,7 @@
         return `
           <circle class="term-diagram-node ${nodeClass}" cx="${x}" cy="50" r="21"/>
           <text class="term-diagram-label" x="${x}" y="55" text-anchor="middle">${tt(it.harf)}</text>
-          <text class="term-diagram-label--small" x="${x}" y="93" text-anchor="middle" style="font-size:8px">${tt(it.anlam)}</text>
+          <text class="term-diagram-label--small" x="${x}" y="93" text-anchor="middle">${tt(it.anlam)}</text>
         `;
       }).join("");
       return `

@@ -790,7 +790,7 @@
     // Zât/Allah/kutup/seçili/hover her zaman kazanır (öncelik sonsuz).
     function estimateLabelBox(n, mode) {
       const eff = n.pscale;
-      const fontSize = Math.max(10, Math.min(17, 11 + n.importance * 8));
+      const fontSize = Math.max(14, Math.min(21, 15 + n.importance * 8));
       const text = mode === "full" ? fullName(n.raw) : shortName(n.raw);
       const w = Math.max(20, text.length * fontSize * 0.56);
       const h = fontSize * 1.25;
@@ -888,7 +888,7 @@
       else {
         label.style("display", null)
           .attr("y", -r - 7)
-          .style("font-size", Math.max(10, Math.min(17, 11 + n.importance * 8)) + "px")
+          .style("font-size", Math.max(14, Math.min(21, 15 + n.importance * 8)) + "px")
           .classed("esmaX-label--strong", n.kind !== "name" || isActive || n.id === hoverId)
           .text(mode === "full" ? fullName(n.raw) : shortName(n.raw));
       }

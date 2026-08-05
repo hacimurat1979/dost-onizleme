@@ -560,7 +560,7 @@
           .classed("sir-label--root", d.kind === "root")
           .classed("sir-label--theme", d.kind === "theme")
           .classed("sir-label--strong", act && (d.id === act.anchor))
-          .style("font-size", (d.kind === "root" ? 16 : d.kind === "theme" ? 13 : 11) + "px")
+          .style("font-size", (d.kind === "root" ? 24 : d.kind === "theme" ? 20 : 18) + "px")
           .text(long ? longLabelFor(d) : labelFor(d));
       }
     });

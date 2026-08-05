@@ -547,6 +547,18 @@ html {
   padding: 6px 14px;
   font-size: 0.85rem;
   cursor: pointer;
+  /* WCAG 2.5.5 (AAA) dokunma hedefi: en az 44x44px. Genişlik zaten
+     ~84px'le rahatça geçiyor; eksik olan yükseklikti (~29px). Yüksekliği
+     padding aritmetiğiyle değil min-height + inline-flex ile garanti
+     ediyoruz (.nav-toggle'daki aynı desen) -- yazı tipi/line-height
+     değişse de 44px sabit kalsın. Yatay padding'e dokunmadık: drawer
+     zaten kaydırmalı, satır başına düğüm sayısını daraltmak (=daha çok
+     satır) arayuz-kesif-yol-haritasi.md'nin "boğulma" karşıtı hedefiyle
+     gereksiz yere gerilir. */
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .btn-ghost:hover { background: var(--gridline); }
 /* Fütûhât'ın kendi kardeş görünümleri (Kur'ân Dokusu / Mimarisi) --
@@ -1332,7 +1344,7 @@ body.sessiz-mod-on .app-header {
   filter: drop-shadow(0 1px 4px color-mix(in srgb, var(--series-hal-hayret, #e0b545) 50%, transparent));
 }
 .hal-return-label {
-  font-size: 12px;
+  font-size: 14.5px;
   font-style: italic;
   fill: var(--series-hal-hayret-text, #8a690e);
   pointer-events: none;
@@ -1368,7 +1380,7 @@ body.sessiz-mod-on .app-header {
   /* 12px: impeccable'ın okunabilirlik tabanı. Puntoyu tek başına büyütmek
      çakışmayı ARTIRIYORDU (ölçüldü: mobil 12 -> 14); önce etiket çakışma
      çözücüsü devreye girdi, sonra punto büyütüldü. Sıra önemli. */
-  font-size: 12px;
+  font-size: 14.5px;
   paint-order: stroke;
   stroke: var(--page-plane);
   stroke-width: 3px;
@@ -1376,7 +1388,7 @@ body.sessiz-mod-on .app-header {
   pointer-events: none;
   transition: opacity 0.25s ease;
 }
-.hal-label--landmark { fill: var(--text-primary); font-weight: 600; font-size: 12.5px; }
+.hal-label--landmark { fill: var(--text-primary); font-weight: 600; font-size: 15.5px; }
 .hal-label--peak { fill: var(--series-hal-hayret-text, #8a690e); font-weight: 700; font-size: 14px; letter-spacing: 0.01em; }
 .viz-root[data-theme="dark"] .hal-label--peak { fill: var(--series-hal-hayret, #e0b545); }
 .hal-label--strong { fill: var(--text-primary); }
@@ -2240,13 +2252,13 @@ button.futuhat-part-chip:hover {
 }
 
 .futuhat-triad__label {
-  font-size: 0.78rem;
+  font-size: 0.97rem;
   font-weight: 600;
   fill: var(--text-primary);
 }
 
 .futuhat-triad__note {
-  font-size: 0.72rem;
+  font-size: 1rem;
   fill: var(--text-secondary);
 }
 
@@ -2338,16 +2350,16 @@ button.futuhat-part-chip:hover {
   stroke: var(--series-theme);
 }
 .futuhat-radyal__label {
-  font-size: 0.7rem;
+  font-size: 0.97rem;
   font-weight: 600;
   fill: var(--text-primary);
 }
 .futuhat-radyal__not {
-  font-size: 0.6rem;
+  font-size: 0.97rem;
   fill: var(--text-secondary);
 }
 .futuhat-radyal__merkez-label {
-  font-size: 0.82rem;
+  font-size: 0.97rem;
   font-weight: 700;
   fill: var(--on-accent-text);
 }
@@ -2386,12 +2398,12 @@ button.futuhat-part-chip:hover {
   opacity: 0.55;
 }
 .futuhat-perdegoz__label {
-  font-size: 0.68rem;
+  font-size: 1.03rem;
   font-weight: 600;
   fill: var(--text-primary);
 }
 .futuhat-perdegoz__note {
-  font-size: 0.6rem;
+  font-size: 0.94rem;
   fill: var(--text-secondary);
 }
 
@@ -2428,7 +2440,7 @@ button.futuhat-part-chip:hover {
   stroke-width: 1.5px;
 }
 .futuhat-nobet__label {
-  font-size: 0.7rem;
+  font-size: 0.97rem;
   font-weight: 600;
   fill: var(--text-primary);
 }
@@ -2981,8 +2993,10 @@ body[data-theme="dark"] #sirlar-legend {
      dosyada .sorular-label--cat'ten SONRA geldiği ve özgüllüğü eşit olduğu
      için onu eziyordu; kategori etiketi 0.85rem yazdığı hâlde 11px
      çiziliyordu. Taban buraya çekildi, kategori aşağıda element+sınıfla
-     yeniden kazanıyor. */
-  font-size: 12px;
+     yeniden kazanıyor. 2026-08-05: 14.5px'e çıkarıldı (G13 SVG etiket
+     turu, Playwright getScreenCTM ölçümüyle doğrulandı) -- 12px bazı
+     bağlamlarda ekranda 12px'in altına düşüyordu. */
+  font-size: 14.5px;
   fill: var(--text-secondary);
   pointer-events: none;
   paint-order: stroke;
@@ -3050,7 +3064,7 @@ body[data-theme="dark"] #sirlar-legend {
 }
 
 .ontology-node text.node-label {
-  font-size: 12px;
+  font-size: 14.5px;
 }
 
 .detail-block--edge {
@@ -5935,7 +5949,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 
 .term-diagram-label {
   fill: var(--text-primary);
-  font-size: 11px;
+  font-size: 14.5px;
   font-weight: 600;
   paint-order: stroke;
   stroke: var(--surface-1);
@@ -5945,7 +5959,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 
 .term-diagram-label--small {
   fill: var(--text-primary);
-  font-size: 9.5px;
+  font-size: 14.5px;
   font-weight: 600;
   paint-order: stroke;
   stroke: var(--surface-1);
@@ -5954,12 +5968,12 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 }
 
 .term-diagram-label--host {
-  font-size: 12px;
+  font-size: 14.5px;
 }
 
 .term-diagram-note {
   fill: var(--text-secondary);
-  font-size: 10px;
+  font-size: 14.5px;
   font-style: italic;
 }
 
@@ -6695,12 +6709,12 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
 }
 .menziller-center { pointer-events: none; }
 .menziller-center__label {
-  font-size: 0.82rem;
+  font-size: 1.25rem;
   font-weight: 600;
   fill: var(--text-primary);
 }
 .menziller-center__sub {
-  font-size: 0.72rem;
+  font-size: 1.25rem;
   fill: var(--text-muted);
   letter-spacing: 0.14em;
 }
@@ -6713,13 +6727,13 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   stroke-width: 2;
 }
 .menzil-node__harf {
-  font-size: 0.72rem;
+  font-size: 1.1rem;
   font-weight: 600;
   fill: var(--surface-1);
   pointer-events: none;
 }
 .menzil-node__label {
-  font-size: 0.72rem;
+  font-size: 1.175rem;
   fill: var(--text-secondary);
   paint-order: stroke;
   stroke: var(--page-plane);
@@ -8800,14 +8814,14 @@ mark.durus-vurgu-es {
 .kavram-minigraf__node { stroke: var(--border); stroke-width: 1.5; }
 .kavram-minigraf__center { stroke: var(--surface-1); stroke-width: 2; }
 .kavram-minigraf__label {
-  font-size: 8.5px;
+  font-size: 13.2px;
   fill: var(--text-secondary);
   paint-order: stroke;
   stroke: var(--surface-1);
   stroke-width: 3px;
 }
 .kavram-minigraf__center-label {
-  font-size: 9.5px;
+  font-size: 14px;
   font-weight: 600;
   fill: #fff;
   paint-order: stroke;
@@ -9352,6 +9366,13 @@ mark.durus-vurgu-es {
 }
 .eser-agi-eser--katalog .eser-agi-eser__sekil { fill: var(--series-theme); }
 .eser-agi-eser__etiket {
+  /* 2026-08-05 G13 SVG etiket turu: 0.66rem -> 0.98rem denendi, Playwright
+     ekran görüntüsüyle YOĞUN kümede gerçek metin çakışması GÖRÜLDÜ --
+     büyütülmüş ama üst üste binen metin, küçük ama okunaklı metinden
+     daha kötü. Geri alındı. Buraya körlemesine 14px basmadan önce
+     hal-label'ın kullandığı türden bir etiket-çakışma-çözücü (greedy
+     yerleştirme + düşük öncelikliyi gizle) kurulmalı; bkz. esma.js'teki
+     mevcut örnek. Tek başına punto büyütmek bu diyagramda ÇALIŞMIYOR. */
   font-size: 0.66rem;
   fill: var(--text-secondary);
   pointer-events: none;
@@ -9414,6 +9435,9 @@ mark.durus-vurgu-es {
   transform-origin: center;
 }
 .kuran-dokusu-sure__etiket {
+  /* 2026-08-05: eser-agi-eser__etiket'teki aynı gerekçeyle geri alındı --
+     yoğun kümede (sûre başları) gerçek çakışma görüldü. Bkz. o kuralın
+     üstündeki not. */
   font-size: 0.66rem;
   fill: var(--text-secondary);
   pointer-events: none;
@@ -9519,7 +9543,7 @@ button.kuran-dokusu-satir:focus-visible {
   outline: none;
 }
 .futuhat-mimarisi-etiket {
-  font-size: 0.78rem;
+  font-size: 1.03rem;
   fill: var(--text-secondary);
   pointer-events: none;
 }

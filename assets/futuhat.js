@@ -410,6 +410,21 @@
     });
     x0 -= 220; x1 += 220; y0 -= 36; y1 += 36;
 
+    // Etiket punto boyu SABİT bir CSS değeriyle (.futuhat-tree__label,
+    // eskiden 0.74rem) VERİLEMEZ: viewBox her ağacın kendi düğüm
+    // sınırlarına göre otomatik boyutlanıyor (yukarıda), yani aynı SVG
+    // kullanıcı-alanı punto boyu, dallı bir ağaçta (geniş viewBox) daha
+    // KÜÇÜK render ediyor. Ölçüldü (2026-08-05, Playwright): 0.74rem'lik
+    // sabit değer bazı bölümlerde ekranda 11px'e kadar düşüyordu (G13
+    // hedefi: 14px taban). Bunun yerine viewBox genişliğini SVG'nin CSS
+    // max-width'ine (inline diyagram: 480px, ana diyagram: 560px --
+    // .futuhat-tree__svg / .futuhat-tree--inline kuralları) oranlayıp
+    // punto boyunu tersine ölçekliyoruz; ekranda GERÇEKTEN kaç piksel
+    // göründüğü, ağacın dallılığından bağımsız olarak sabit kalır.
+    const referansGenislik = mount.classList.contains("futuhat-tree--inline") ? 480 : 560;
+    const viewBoxGenislik = x1 - x0;
+    const etiketPunto = (14 * viewBoxGenislik) / referansGenislik;
+
     const svg = d3
       .select(mount)
       .append("svg")
@@ -497,6 +512,7 @@
         return a > Math.PI ? -(r + 6) : r + 6;
       })
       .attr("dy", (d) => (d.depth === 0 ? -22 : "0.32em"))
+      .style("font-size", etiketPunto.toFixed(2) + "px")
       .text((d) => tt(d.data.label));
   }
 

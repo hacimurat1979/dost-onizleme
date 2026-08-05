@@ -272,7 +272,7 @@
       // Etiketler artık grup döndürmesiyle değil, düğümün kendi ekran
       // konumuyla yerleşiyor; hem 2B'de hem 3B'de kendiliğinden dik duruyorlar.
       g.select(".menzil-node__harf").attr("y", 4 * dep)
-        .style("font-size", (0.72 * dep).toFixed(2) + "rem")
+        .style("font-size", (1.3 * dep).toFixed(2) + "rem")
         .text(n.harfArapca);
       g.select(".menzil-node__label").attr("y", r + 14)
         .classed("menzil-node__label--active", isActive)
