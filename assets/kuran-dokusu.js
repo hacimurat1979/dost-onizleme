@@ -33,6 +33,7 @@ window.__kuranDokusuApp = (function () {
 
   let data = null;
   let sureler = [];
+  let atifsizSureler = [];   // atıf bulunmayan sûrelerin halka üzerindeki izleri
   let bablar = [];
   let kenarlar = [];
   let sureByNo = new Map();
@@ -59,6 +60,26 @@ window.__kuranDokusuApp = (function () {
       s.y = Math.sin(a) * R_OUTER;
       s.r = 4 + (s.atifSayisi / maxSureAtif) * 8;
     });
+
+    // ATIFSIZ SÛRELER (2026-08-05 bildirimi: "mavi düğümler çemberin sadece
+    // belirli kısımlarına kümelenmiş"). Ölçüldü: 35 düğüm ve aralarında tek
+    // bir 145 DERECELİK boşluk -- çemberin neredeyse yarısı bomboştu.
+    // Sebep gerçek: atıflar Kur'ân'ın ilk yarısındaki uzun sûrelerde
+    // yoğunlaşıyor, son yarıdaki kısa sûrelerde neredeyse hiç yok.
+    //
+    // Düğümleri eşit aralıkla dağıtmak bu bilgiyi SİLERDİ: sûrenin açısı
+    // Kur'ân sırasını taşıyor ve boşluk "burada atıf bulamadık" demek
+    // (dosyanın başındaki yerleşim notu). Onun yerine 114 konumun TAMAMI
+    // çiziliyor -- atıflı 35'i normal düğüm, atıfsız 79'u soluk birer iz.
+    // Halka artık dolu görünüyor AMA eksiklik kaybolmuyor; görünmez bir
+    // boşluk olmaktan çıkıp görünür bir ize dönüşüyor.
+    const atifliNolar = new Set(sureler.map((s) => s.no));
+    atifsizSureler = [];
+    for (let no = 1; no <= SURE_TOTAL; no++) {
+      if (atifliNolar.has(no)) continue;
+      const a = -Math.PI / 2 + ((no - 1) / SURE_TOTAL) * 2 * Math.PI;
+      atifsizSureler.push({ no: no, x: Math.cos(a) * R_OUTER, y: Math.sin(a) * R_OUTER });
+    }
 
     const maxBabAtif = Math.max(...bablar.map((b) => b.atifSayisi));
     bablar.forEach((b, i) => {
@@ -102,6 +123,16 @@ window.__kuranDokusuApp = (function () {
     kenarSel.on("mouseenter", function (ev, d) { vurgula(d.sureNo, d.view + "/" + d.id, true); kenarIpucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
       .on("mouseleave", function () { vurgula(null, null, false); GU.hideTooltip(tooltip); });
+
+    // Atıfsız sûre izleri: sûre düğümlerinden ÖNCE çiziliyor ki gerçek
+    // düğümler üstte kalsın. Etkileşimsiz ve ekran okuyucuya görünmez --
+    // burada yeni bir bilgi yok, yalnız halkanın Kur'ân'ın tamamı olduğu
+    // ve bu konumlarda atıf bulunmadığı görünür duruyor.
+    kok.append("g").attr("class", "kuran-dokusu-atifsizlar")
+      .attr("aria-hidden", "true")
+      .selectAll("circle").data(atifsizSureler, (d) => d.no).join("circle")
+      .attr("class", "kuran-dokusu-atifsiz")
+      .attr("cx", (d) => d.x).attr("cy", (d) => d.y).attr("r", 1.6);
 
     // Sûre düğümleri (dış halka)
     const sureG = kok.append("g").attr("class", "kuran-dokusu-sureler");

@@ -3051,6 +3051,35 @@ body[data-theme="dark"] #sirlar-legend {
   stroke-width: 2.5px;
 }
 
+/* compare.html'in "Ortak Temalar" grafiği (#compare-wrap) -- ontoloji
+   haritasıyla AYNI .link sınıfını paylaşıyor, o yüzden burada kapsamlı
+   bir override; genel kuralı değiştirmek index.html'deki ana haritayı da
+   soldururdu.
+   Neden ayrı: yukarıdaki 0.55 zaten 2026-08-04 12:30'da bir kullanıcı
+   bildirimiyle indirilmişti; kullanıcı aynı gün 17:07'de, YANİ O
+   DÜZELTMEDEN SONRA, bu grafiği hâlâ "çok koyu" buldu. Sebebi tekil
+   çizginin koyuluğundan çok YOĞUNLUK: burada iki merkez (İbn Arabî ve
+   Daphne) ile onlarca tema arasında kesişen çok sayıda kenar var, ontoloji
+   haritasında ise kenarlar daha seyrek. Aynı opaklık, sık kesişen bir
+   dokuda çok daha koyu bir kütle olarak görünüyor.
+   Dinginlikte soluk, etkileşimde net: .link--highlight (0.9) olduğu gibi
+   duruyor, yani ilişkiyi görmek isteyen düğüme dokununca tam kontrastı
+   alıyor -- bilgi kaybolmuyor, yalnız dinlenme hâli sakinleşiyor. */
+#compare-wrap .link {
+  stroke-opacity: 0.3;
+  stroke-width: 1.2px;
+}
+/* Vurgu kuralı da kapsamlı yazılmak ZORUNDA: yukarıdaki seçici id+sınıf
+   (1,1,0), .link--highlight ise yalnız sınıf (0,1,0) -- yani özgüllük
+   yarışını dinlenme hâli kazanıyordu ve üzerine gelince çizgi hiç
+   belirginleşmiyordu. Playwright ölçümü yakaladı: vurguluyken de 0.3
+   okunuyordu. Dinginlikte soluk / etkileşimde net dengesi tam olarak
+   buna bağlı. */
+#compare-wrap .link--highlight {
+  stroke-opacity: 0.85;
+  stroke-width: 2.2px;
+}
+
 .arrowhead {
   /* Ok başları için hiç kural yoktu -- SVG varsayılanı fill:black'e
      düşüyorlardı, bu yüzden soluk altın çizginin ucunda birer koyu, keskin
@@ -9423,6 +9452,15 @@ mark.durus-vurgu-es {
   stroke: var(--border);
   stroke-width: 1;
   opacity: 0.5;
+}
+/* Atıf bulunmayan sûrelerin halka üzerindeki izi. Halkanın Kur'ân'ın
+   TAMAMI olduğunu ve o konumlarda atıf bulunmadığını gösteriyor -- bir
+   düğüm değil, bir yokluk işareti. Bu yüzden düğümlerden belirgin biçimde
+   soluk: yanlışlıkla "küçük bir sûre düğümü" sanılmamalı. */
+.kuran-dokusu-atifsiz {
+  fill: var(--text-muted);
+  opacity: 0.28;
+  pointer-events: none;
 }
 .kuran-dokusu-kenar {
   stroke: var(--series-ibnarabi);
