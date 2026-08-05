@@ -97,6 +97,7 @@
   --series-celal:     #a83246; /* garnet / majesty */
   --series-cemal:     #2f8f7a; /* jade / beauty */
   --series-kemal:     #a6821f; /* gold / names combining celal and cemal */
+  --series-kemal-text: #8c6d1a; /* darker text-safe variant, ~4.61:1 on this page-plane (bkz. G13 erişilebilirlik taraması, 2026-08-05 -- düz --series-kemal metin olarak yalnız 3.41:1) */
   --series-esma-neutral: #9b998f; /* grey / group headers, beyond the polarity */
 
   /* 2026-08-01: kullanıcı bu altısının Ontoloji/Esmâ'ya göre soluk kaldığını
@@ -165,6 +166,7 @@
   --series-celal:     #d5677a;
   --series-cemal:     #4bb69d;
   --series-kemal:     #d9b555;
+  --series-kemal-text: #d9b555; /* zaten ~9.89:1, ayrı bir varyant gerekmiyor */
   --series-esma-neutral: #7c7a70;
 
   --series-hal-nefs:      #bfac88;
@@ -633,7 +635,7 @@ html {
 }
 .nav-drawer__heading {
   margin: 0 0 8px;
-  font-size: 0.68rem;
+  font-size: 0.875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -843,7 +845,7 @@ body.sessiz-mod-on .app-header {
   min-width: 0;
 }
 .defter-panel__item-eyebrow {
-  font-size: 0.68rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--text-muted);
@@ -1585,7 +1587,7 @@ text.sorular-label--cat {
 .futuhat-parts__cilt::-webkit-details-marker { display: none; }
 .futuhat-parts__cilt::before {
   content: "▸";
-  font-size: 0.6rem;
+  font-size: 0.875rem;
   transition: transform 0.2s ease;
   flex-shrink: 0;
 }
@@ -3289,7 +3291,7 @@ a.daphne-bag__ad { color: var(--accent-interactive); }
 .daphne-bag__tur {
   display: inline-block;
   margin-bottom: 4px;
-  font-size: 0.66rem;
+  font-size: 0.875rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 1px 7px;
@@ -3304,7 +3306,7 @@ a.daphne-bag__ad { color: var(--accent-interactive); }
 }
 .daphne-bag--soru { border-left-color: var(--series-kemal); }
 .daphne-bag--soru .daphne-bag__tur {
-  color: var(--series-kemal);
+  color: var(--series-kemal-text);
   background: color-mix(in srgb, var(--series-kemal) 16%, transparent);
 }
 .daphne-bag__neden {
@@ -5779,7 +5781,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
    görünüyor. İlişkinin adı üstte küçük bir üst-etiket, gerekçesi altında
    normal metin, güvenimiz (kesin saymadığımız yerlerde) en altta. */
 .node-hover-tip__eyebrow {
-  font-size: 0.68rem;
+  font-size: 0.875rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -9210,6 +9212,7 @@ mark.durus-vurgu-es {
 .elestiri-rol-rozet--savunmaci { border-color: color-mix(in srgb, var(--series-cemal) 55%, var(--border)); }
 .elestiri-rol-rozet--hukumdar { border-color: color-mix(in srgb, var(--series-theme) 55%, var(--border)); }
 .elestiri-rol-rozet--kaynak-tarihci { border-color: color-mix(in srgb, var(--series-ibnarabi) 55%, var(--border)); }
+.elestiri-rol-rozet--benimseyen-elestirmen { border-color: color-mix(in srgb, var(--series-kemal) 55%, var(--border)); }
 
 .elestiri-kimlik { color: var(--text-secondary); font-size: 0.86rem; margin: 2px 0 12px; }
 .elestiri-kaynak-satiri { color: var(--text-secondary); font-size: 0.82rem; margin: 8px 0 0; }
@@ -9550,6 +9553,14 @@ button.kuran-dokusu-satir:focus-visible {
 
 .seyahat-durak { cursor: pointer; }
 .seyahat-durak:focus { outline: none; }
+/* Kardeş düğüm sınıflarının (eser-agi-eser, kuran-dokusu-sure, ...) hepsinde
+   :focus-visible bir vurgu var; burada eksikti -- klavyeyle gezinen biri
+   hangi durakta olduğunu hiç göremiyordu (bkz. G13 erişilebilirlik
+   taraması, 2026-08-05). */
+.seyahat-durak:focus-visible .seyahat-durak__nokta {
+  stroke: var(--text-primary);
+  stroke-width: 2.4;
+}
 .seyahat-durak__nokta {
   fill: var(--series-ibnarabi);
   stroke: var(--surface-1);

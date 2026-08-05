@@ -40,6 +40,11 @@ window.__elestiriArkeolojisiApp = (function () {
     "kaynak-tarihci": "--series-ibnarabi",
     kurban: "--series-celal",
     hukumdar: "--series-theme",
+    // Celâl (eleştirmen) ve cemâl (savunmacı) rengini bilerek karıştırmıyoruz --
+    // --series-kemal zaten "ikisini birleştiren isimler" için ayrılmış bir
+    // renk (bkz. style.css tanımı); "benimseyen eleştirmen" tam o karışımın
+    // kişi karşılığı.
+    "benimseyen-elestirmen": "--series-kemal",
   };
   const BOLGE_SIRA = ["sam-kahire", "horasan-maveraunnehir", "endulus-magrib", "yemen"];
   const MIN_YEAR_GAP_PX = 46;
