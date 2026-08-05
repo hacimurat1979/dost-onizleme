@@ -9609,6 +9609,54 @@ button.kuran-dokusu-satir:focus-visible {
   fill: var(--helix-gold-rim);
 }
 
+/* İç halka: 560 babın her biri için bir çentik. Kur'ân Dokusu'ndaki kararın
+   aynısı -- okunmayan bab silinmiyor, soluk duruyor; halka tam okunuyor ve
+   boşluk onun içinde görünür kalıyor. Dolu çentik tıklanabilir, o babı
+   işleyen okuma birimine götürüyor. */
+.futuhat-mimarisi-bab {
+  stroke-width: 1.1px;
+  stroke-linecap: butt;
+}
+.futuhat-mimarisi-bab--bos {
+  stroke: var(--text-muted);
+  opacity: 0.22;
+  pointer-events: none;
+}
+.futuhat-mimarisi-bab--dolu {
+  stroke: var(--series-ibnarabi);
+  opacity: 0.85;
+  pointer-events: none;   /* etkileşim avcı halkasında */
+}
+/* Vurgu bab'a değil KISMA veriliyor: tıklayınca gidilen yer okuma birimi,
+   o yüzden aynı kısmın bütün çentikleri birlikte parlıyor. */
+.futuhat-mimarisi-bab--deginiliyor {
+  stroke: var(--helix-gold-rim);
+  stroke-width: 2.6px;
+  opacity: 1;
+}
+/* Tek saydam halka bütün imleç olaylarını yakalıyor; bab açıdan hesaplanıyor.
+   560 çentiğe tek tek vuruş alanı vermek komşuların üstüne biniyordu. */
+.futuhat-mimarisi-bab-avci {
+  fill: transparent;
+  cursor: pointer;
+}
+/* Klavye durakları: görünmez, yalnız odaklanınca beliriyor. */
+.futuhat-mimarisi-kisim-odak {
+  stroke: transparent;
+  stroke-width: 2px;
+  pointer-events: none;
+}
+.futuhat-mimarisi-kisim-odak:focus-visible {
+  stroke: var(--helix-gold-rim);
+  stroke-width: 3px;
+  outline: none;
+}
+.futuhat-mimarisi-kapsam {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-top: 0.4rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .futuhat-mimarisi-dilim { transition: none !important; }
 }
