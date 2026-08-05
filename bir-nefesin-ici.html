@@ -81,7 +81,42 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 }
 .js-devre-disi #stageWrap,.js-devre-disi .nav-row,.js-devre-disi #durakPanel,.js-devre-disi .istidad-row{display:none}
 .js-devre-disi .adim-liste{display:block;width:min(560px,96vw)}
+
+/* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
+   ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
+   da var. Renkler zincirleme var() yedekleriyle: sahnelerin değişken adları
+   tek tip değil (--border/--bo, --text/--tx ...). */
+.sahne-geri{position:fixed;top:12px;left:12px;z-index:60;display:inline-flex;align-items:center;
+  gap:.35rem;min-height:44px;padding:0 .9rem;border-radius:999px;font-size:.82rem;
+  font-family:inherit;text-decoration:none;opacity:.72;
+  border:1px solid var(--border,var(--bo,currentColor));
+  background:var(--surface,var(--su,transparent));
+  color:var(--muted,var(--mu,inherit));
+  transition:opacity .2s ease,color .2s ease,border-color .2s ease}
+.sahne-geri:hover,.sahne-geri:focus-visible{opacity:1;
+  color:var(--text,var(--tx,inherit));
+  border-color:var(--gold,var(--go,currentColor))}
+.sahne-geri:focus-visible{outline:2px solid var(--gold,var(--go,currentColor));outline-offset:2px}
+@media(max-width:520px){.sahne-geri{top:8px;left:8px;padding:0 .7rem}}
 </style>
+<script>
+// Sitenin tema seçimini miras al. Bu sayfaların CSS'inde ":root[data-theme=
+// light/dark]" kuralları en baştan vardı ama data-theme'i KİMSE yazmıyordu --
+// yani o kurallar ölü kod, sahne yalnız işletim sisteminin
+// prefers-color-scheme'ini izliyordu. Sonuç: kullanıcı siteyi ☰'den gündüz
+// moduna alsa bile, cihazı gece modundaysa sahne gece modunda açılıyordu
+// (2026-08-05 tablette bildirildi).
+//
+// Depoda bir şey YOKSA öznitelik bilerek yazılmaz: o zaman
+// @media(prefers-color-scheme) devreye girer -- doğru varsayılan odur.
+// <head> içinde ve senkron: ilk boyamadan önce çalışsın, tema sıçraması olmasın.
+(function () {
+  try {
+    var s = localStorage.getItem("dost-theme");
+    if (s === "light" || s === "dark") document.documentElement.setAttribute("data-theme", s);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body class="js-devre-disi">
 <header>
@@ -701,6 +736,46 @@ window.addEventListener('message', function (e) {
     if (window.__bnIciRepaint) window.__bnIciRepaint();
   }
 });
+</script>
+
+<script>
+// Sahneden çıkış: ESC + görünür bağlantı (2026-08-05 geri bildirimi).
+(function () {
+  var ETIKET = { tr: "Sahneler", en: "Scenes", pt: "Cenas" };
+  var dil = "tr";
+  try { var d = localStorage.getItem("dost-lang"); if (ETIKET[d]) dil = d; } catch (e) {}
+
+  var a = document.createElement("a");
+  a.className = "sahne-geri";
+  a.href = "sahneler/";          // sahneler kökte, önizlemede de doğru çözülür
+  a.textContent = "\u2190 " + ETIKET[dil];
+  a.setAttribute("aria-label", ETIKET[dil]);
+  document.body.appendChild(a);
+
+  function geriGit() {
+    // Aynı siteden geldiysek geçmiş doğru olan: bir önceki SAHNEYE döner.
+    // Doğrudan bu adrese gelindiyse (referrer yok / dış site / yeni sekme)
+    // galeriye gider -- history.back() orada ya hiçbir şey yapmaz ya da
+    // kullanıcıyı siteden ATAR.
+    try {
+      if (document.referrer && history.length > 1 &&
+          new URL(document.referrer).origin === location.origin) {
+        history.back();
+        return;
+      }
+    } catch (e) {}
+    location.href = "sahneler/";
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    var el = document.activeElement;
+    // Metin/kaydırıcı odaktayken ESC'i çalma -- orada kendi anlamı var.
+    if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
+    e.preventDefault();
+    geriGit();
+  });
+})();
 </script>
 </body>
 </html>

@@ -224,56 +224,6 @@
 
   <main id="main-content">
 
-    <!-- Akraba sekmeler (bkz. assets/graph-utils.js wireRelatedTabs). Hiçbiri
-         yeni bir rota İCAT ETMİYOR -- yalnız var olan üç nav düğmesini
-         (futuhat-btn/kuran-dokusu-btn/futuhat-mimarisi-btn) tetikliyor; her
-         sayfa kendi URL'ini, kendi meta etiketini ve .pa11yci.json'daki kendi
-         denetim satırını korur. Bar kendi kendine görünür/gizlenir -- yalnız
-         bu üç görünümden biri açıkken görünür. -->
-    <div class="related-tabs" id="futuhat-related-tabs" role="tablist" hidden
-         data-tr-aria-label="Fütûhât'a bağlı görünümler" data-en-aria-label="Views related to the Futûhât" data-pt-aria-label="Vistas relacionadas com as Futûhât"
-         aria-label="Fütûhât'a bağlı görünümler">
-      <button class="related-tab" type="button" role="tab" data-goto-btn="futuhat-btn"
-              data-tr="Okuma" data-en="Reading" data-pt="Leitura">Okuma</button>
-      <button class="related-tab" type="button" role="tab" data-goto-btn="kuran-dokusu-btn"
-              data-tr="Kur'ân Dokusu" data-en="Qur'ânic Weave" data-pt="Trama Alcorânica">Kur'ân Dokusu</button>
-      <button class="related-tab" type="button" role="tab" data-goto-btn="futuhat-mimarisi-btn"
-              data-tr="Mimarisi" data-en="Architecture" data-pt="Arquitetura">Mimarisi</button>
-    </div>
-
-    <!-- "Dost'un Hayatı" akraba-sekmeleri: dördü de aynı biyografik hikâyenin
-         farklı kesitleri (kim öğretti, ne yazdı, nerede yaşadı, kim
-         eleştirdi). Aynı sözleşme: rota İCAT ETMİYOR. -->
-    <div class="related-tabs" id="hayat-related-tabs" role="tablist" hidden
-         data-tr-aria-label="Dost'un hayatına bağlı görünümler" data-en-aria-label="Views related to Dost's life" data-pt-aria-label="Vistas relacionadas com a vida de Dost"
-         aria-label="Dost'un hayatına bağlı görünümler">
-      <button class="related-tab" type="button" role="tab" data-goto-btn="hocalar-btn"
-              data-tr="Hocalar" data-en="Teachers" data-pt="Mestres">Hocalar</button>
-      <button class="related-tab" type="button" role="tab" data-goto-btn="eser-agi-btn"
-              data-tr="Eser Ağı" data-en="Works Spiral" data-pt="Espiral das Obras">Eser Ağı</button>
-      <button class="related-tab" type="button" role="tab" data-goto-btn="seyahat-atlasi-btn"
-              data-tr="Seyahat Atlası" data-en="Travel Atlas" data-pt="Atlas de Viagem">Seyahat Atlası</button>
-      <button class="related-tab" type="button" role="tab" data-goto-btn="elestiri-arkeolojisi-btn"
-              data-tr="Eleştiri Arkeolojisi" data-en="Criticism" data-pt="Crítica">Eleştiri Arkeolojisi</button>
-    </div>
-
-    <!-- "Bilinmeyenler" akraba-sekmeleri: sitenin epistemik duruşunun aynı
-         ailesi -- işaret edilip açıklanmayan (Sırlar), henüz kapanmamış
-         (Açık Sorular), açıkça bilinmediği ilan edilen (Bilmiyoruz). Sırlar
-         ve Sorular arasında zaten elle kurulmuş bir köprü var
-         (data/ibn-arabi/sirlar-sorular.json) -- sistem bunları zaten akraba
-         sayıyor. -->
-    <div class="related-tabs" id="bilinmeyenler-related-tabs" role="tablist" hidden
-         data-tr-aria-label="Bilinmeyenlere bağlı görünümler" data-en-aria-label="Views related to the unknowns" data-pt-aria-label="Vistas relacionadas com os desconhecidos"
-         aria-label="Bilinmeyenlere bağlı görünümler">
-      <button class="related-tab" type="button" role="tab" data-goto-btn="sirlar-btn"
-              data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
-      <button class="related-tab" type="button" role="tab" data-goto-btn="acik-sorular-btn"
-              data-tr="Açık Sorular" data-en="Open Questions" data-pt="Perguntas em Aberto">Açık Sorular</button>
-      <button class="related-tab" type="button" role="tab" data-goto-btn="bilmiyoruz-btn"
-              data-tr="Bilmiyoruz" data-en="We Don't Know" data-pt="Não Sabemos">Bilmiyoruz</button>
-    </div>
-
     <section class="graph-wrap" id="ontology-wrap">
       <svg id="graph" role="group" aria-label="Ontoloji haritası"
            data-tr-aria-label="Ontoloji haritası" data-en-aria-label="Ontology map" data-pt-aria-label="Mapa de ontologia"></svg>
@@ -1375,7 +1325,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/i18n.js" defer integrity="sha384-bqPgHDorfYKkI+ErvFXEAGead8E3pDVsel6p3S9LkyxoY1QRWrMrTUpeiooWejvL"></script>
   <script src="assets/nav-drawer.js" defer integrity="sha384-zb4slVlgCynHQ3L4+XgvRT9Bk6gzEirnKFzeuCIi2AJ+v0zimfJiBYCiup0bpqa0"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
-  <script src="assets/graph-utils.js" defer integrity="sha384-AD/bn4QyibhN2fiwYG9vSfNChoNrNWZZUpUKmOjL236K5Uzg/8+TJaBIBprXZabG"></script>
+  <script src="assets/graph-utils.js" defer integrity="sha384-GvXwipbzWS80TFH0+HZo2em3fCGwxJ9Y7Vfc3eKzeKhgUT/GJjDiMpTMXtTEp0sc"></script>
   <script src="assets/helix.js" defer integrity="sha384-+aEXNIbO2q7MLWaAl0OFtAYEF/52nQoLUKK1W4mhHc0P2DJdQNRlebKKaIh4TSF7"></script>
   <script src="assets/graph-hint.js" defer integrity="sha384-3PjCLUJoOIi1t7duvbSRNLvzJiTCNzmtDW5/KrVH5D+G8MiuYcF/UfJyv19FG578"></script>
   <script src="assets/lightbox.js" defer integrity="sha384-txI/emOUsh4ASe/MSV1vzHmFXEUC7CTDF4tcxuVHmGyhnCmaU24buPLUrKF3BbG7"></script>
@@ -1399,7 +1349,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/futuhat.js" defer integrity="sha384-ZBe67m/DvUt3rbOmRESGukfxliwXA/RkhthVshl6aybyFMfrkBs3TCsKc41cyM9/"></script>
   <script src="assets/fusus.js" defer integrity="sha384-YmInK0sH7H7NZq0MMQSKNolaKcz2lLgTdMnExCwhWWs7/BPGxdq7FP9RJUlAA+/L"></script>
   <script src="assets/view-loader.js" defer integrity="sha384-ITri0/LrsNw+de9P0MX7s5JX6NxEiUIjgIs3V2GD1yX71hd2FIXXM9sz6qm/rqD2"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-SxXkj/2PrMPWR1dc3zIznc5tRYdmeRnGsw23trFR0GKSwD7JGM8IaxrsqjvDz32j"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-dzjfqjvkDmu75L98NYisfpvQuW1L5dNkyzJ4ANqJVLULbsOjNh9Ef53/4UwwIGEU"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-pUGs2ZLA6M1Uv5y5m6q8SzOrNwoimvexeWXg1MwnVMdlNPg4urvUdMtthr/qlAE1"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>

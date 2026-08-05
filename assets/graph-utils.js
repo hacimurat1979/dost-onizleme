@@ -534,70 +534,6 @@ window.DostGraphUtils = (function () {
     return btn;
   }
 
-  // AKRABA SEKMELER — ETKILESIM_DILI.md'nin kapı kuralının tam tersi
-  // durumu için: "yan yana iki sekme gibi değil" cümlesi yalnız metafizik
-  // olarak İÇİNDE olan ilişkiler içindi (Esmâ, Zât'ın içi). Fütûhât'ın
-  // kendi okuması ile Kur'ân Dokusu / Fütûhât'ın Mimarisi arasında öyle
-  // bir ilişki yok -- üçü de aynı külliyatın kardeş kesitleri, hiçbiri
-  // ötekinin içi değil. Bu yüzden burada düz bir sekme geçişi doğru olan
-  // (Hakkında'nın alt-sekmeleriyle aynı görsel dil).
-  //
-  // Sekmeler YENİ bir görünüm/route İCAT ETMİYOR: her biri var olan bir
-  // üst-menü düğmesini (data-goto-btn) tıklıyor, o düğmenin kendi
-  // setMainView/updateHash/meta zincirini olduğu gibi çalıştırıyor. Bunun
-  // nedeni, bu üç sayfanın da .pa11yci.json'un kendi erişilebilirlik CI
-  // listesinde ayrı ayrı denetlenen, kendi URL'i olan gerçek rotalar
-  // olması -- bir sekme sistemi onları BİRLEŞTİRSEYDİ o rotalar kırılır,
-  // yer imleri ve dışarıdan gelen bağlantılar 404 olurdu.
-  function wireRelatedTabs() {
-    const barlar = document.querySelectorAll(".related-tabs");
-    if (!barlar.length) return;
-    const hedefIdler = new Set();
-    barlar.forEach((bar) => {
-      bar.querySelectorAll("[data-goto-btn]").forEach((pill) => {
-        if (pill.dataset.wiredRelatedTab) return;
-        pill.dataset.wiredRelatedTab = "1";
-        const hedefId = pill.dataset.gotoBtn;
-        hedefIdler.add(hedefId);
-        pill.addEventListener("click", () => {
-          const hedef = document.getElementById(hedefId);
-          if (hedef) hedef.click();
-        });
-      });
-    });
-    // Aktiflik: hangi pill'in "buradasın" göstereceği, gerçek nav
-    // düğmesindeki .btn-ghost--active sınıfından okunuyor -- setMainView'a
-    // dokunmadan, bir MutationObserver ile. Böylece geri/ileri tuşu,
-    // doğrudan bağlantıyla gelme, ya da drawer'dan tıklama -- hepsi aynı
-    // yoldan senkronlanıyor.
-    //
-    // Bar `<main>`'in İÇİNDE ama HERHANGİ bir `.graph-wrap`'ın dışında
-    // duruyor (üç sekilebilir görünümün hiçbirinin sabit-yükseklik/
-    // overflow:hidden SVG kutusuna normal-akış içerik eklemek, o
-    // görünümlerin kendi getBoundingClientRect() ölçümlerini bozardı).
-    // Bu yüzden görünürlüğü kendi kendine karar veriyor: kendi pill'lerinden
-    // BİRİ bile aktif değilse (kullanıcı ailenin dışına çıktıysa) bar
-    // tamamen gizleniyor.
-    function sync() {
-      barlar.forEach((bar) => {
-        let birAktif = false;
-        bar.querySelectorAll("[data-goto-btn]").forEach((pill) => {
-          const hedef = document.getElementById(pill.dataset.gotoBtn);
-          const aktif = !!(hedef && hedef.classList.contains("btn-ghost--active"));
-          pill.classList.toggle("related-tab--active", aktif);
-          pill.setAttribute("aria-selected", String(aktif));
-          if (aktif) birAktif = true;
-        });
-        bar.hidden = !birAktif;
-      });
-    }
-    hedefIdler.forEach((id) => {
-      const hedef = document.getElementById(id);
-      if (hedef) new MutationObserver(sync).observe(hedef, { attributes: true, attributeFilter: ["class"] });
-    });
-    sync();
-  }
-
   // "Bir benzetmeyle" bloğu. Dört görünümde (esma/hal/ontology/sorular)
   // gövdesiyle birlikte kopyalanmıştı; 2026-07-31 taraması yakaladı.
   // Benzetmeler şu an görünen yüzden kaldırıldı ve gizli düzenleme kipiyle
@@ -611,5 +547,5 @@ window.DostGraphUtils = (function () {
          + `<p>${I18n.pick3(analogy)}</p></div>`;
   }
 
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, wireRelatedTabs, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor };
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor };
 })();

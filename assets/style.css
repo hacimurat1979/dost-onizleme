@@ -3724,44 +3724,6 @@ html:has(.detail-panel:not([hidden])) {
   border-radius: 4px;
 }
 
-/* ── Akraba sekmeler (bkz. graph-utils.js wireRelatedTabs) ───────────────
-   Hakkında'nın alt-sekmeleriyle AYNI görsel dil (ETKILESIM_DILI.md: bir
-   hareketin/desenin anlamı görünümde değil sözleşmede tanımlı). .graph-wrap
-   kutularının içine değil, <main>'in normal akışına oturuyor -- absolute
-   konumlu recenter/hint düğmeleriyle çakışmasın ve sabit yükseklikli SVG
-   kutularının kendi ölçümlerini bozmasın diye. */
-.related-tabs {
-  display: flex;
-  gap: 0;
-  border-bottom: 1px solid var(--border);
-  margin: 0 clamp(16px, 4vw, 48px) 14px;
-}
-.related-tab {
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid transparent;
-  color: var(--text-secondary);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding: 7px 14px 9px;
-  cursor: pointer;
-  letter-spacing: 0.01em;
-  transition: color 0.15s, border-color 0.15s;
-  margin-bottom: -1px;
-}
-.related-tab:hover { color: var(--text-primary); }
-.related-tab--active {
-  color: var(--text-primary);
-  border-bottom-color: var(--accent-interactive);
-  font-weight: 600;
-}
-.related-tab:focus-visible {
-  outline: 2px solid var(--accent-interactive);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
 /* ── Şiir tarayıcısı ────────────────────────────────────────────────────── */
 #siirler-panel {
   padding-bottom: 40px;

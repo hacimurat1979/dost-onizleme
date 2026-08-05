@@ -727,12 +727,6 @@
   if (ayethadisBtn) ayethadisBtn.addEventListener("click", () => { setMainView("ayethadis"); updateHash("ayethadis"); });
   if (sahnelerBtn) sahnelerBtn.addEventListener("click", () => { setMainView("sahneler"); updateHash("sahneler"); });
 
-  // Akraba-sekme pill'leri (bkz. graph-utils.js wireRelatedTabs) -- her
-  // sayfa kendi rotasını korur, pill'ler yalnız yukarıdaki mevcut nav
-  // düğmelerini tetikliyor. HTML'de sayfa yüklenirken hazır duruyorlar,
-  // lazily bir görünüm açıldığında değil -- o yüzden burada, koşulsuz.
-  window.DostGraphUtils.wireRelatedTabs();
-
   // --- Deep linking & cross-view navigation ---
   let pendingSirlarId = null;
 
