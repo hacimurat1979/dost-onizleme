@@ -7655,6 +7655,15 @@ body.share-stage-open { overflow: hidden; }
 .durus-cip button:hover { background: color-mix(in srgb, var(--helix-gold) 14%, transparent); }
 .durus-cip__sayac { display: flex; gap: 0.5rem; }
 .durus-cip__site { border-left: 1px solid var(--gridline) !important; }
+/* Mekanik tahkik düğmesi -- duruş taramasının kardeşi, aynı çipte. */
+.durus-cip__tahkik { border-left: 1px solid var(--gridline) !important; }
+.durus-site__ozet { margin: 0 0 .4rem; font-size: .88rem; color: var(--text-primary); }
+.durus-site__not { margin: 0 0 1rem; font-size: .8rem; color: var(--text-muted); line-height: 1.55; }
+.durus-site__not code { font-size: .95em; }
+.durus-site__ornek {
+  margin: .3rem 0 .5rem; font-size: .8rem; color: var(--text-secondary);
+  font-style: italic; line-height: 1.5;
+}
 .durus-cip__k { color: var(--text-primary); font-weight: 600; }
 .durus-cip__temiz { color: var(--text-muted); }
 

@@ -414,10 +414,19 @@
       cip.className = "durus-cip";
       cip.innerHTML =
         '<button type="button" class="durus-cip__sayac"></button>'
-        + '<button type="button" class="durus-cip__site" title="Bütün veri dosyalarını tara">Siteyi tara</button>';
+        + '<button type="button" class="durus-cip__site" title="Bütün veri dosyalarını tara">Siteyi tara</button>'
+        // Mekanik tahkik (assets/tahkik-tarama.js) aynı çipten açılıyor:
+        // ikisi de @revise kipinin "metne bakma" araçları ve aynı veri
+        // dosyalarını okuyorlar. Ayrı düğme, çünkü ayrı soru soruyorlar --
+        // duruş: "bu cümle duruşumuza uyuyor mu"; tahkik: "bu metin
+        // ölçülebilir biçimde yoğun mu, bir dili eksik mi".
+        + '<button type="button" class="durus-cip__tahkik" title="Mekanik tahkik: M5 yoğunluk + M7 üç dil kayması">Tahkik</button>';
       document.body.appendChild(cip);
       cip.querySelector(".durus-cip__sayac").addEventListener("click", sonrakineGit);
       cip.querySelector(".durus-cip__site").addEventListener("click", siteAc);
+      cip.querySelector(".durus-cip__tahkik").addEventListener("click", function () {
+        if (window.__dostTahkik) window.__dostTahkik.ac();
+      });
     }
     var s = cip.querySelector(".durus-cip__sayac");
     if (!turkceMi()) {
