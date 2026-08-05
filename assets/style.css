@@ -9688,3 +9688,51 @@ button.kuran-dokusu-satir:focus-visible {
   font-style: italic;
   margin: 0;
 }
+
+/* Sahneler galerisi (2026-08-05, bkz. index.html'deki sahneler-wrap yorumu). */
+.sahneler-intro {
+  margin: 0 clamp(16px, 4vw, 48px) 20px;
+  max-width: 62ch;
+}
+.sahneler-intro h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  margin: 0 0 8px;
+  color: var(--text-primary);
+}
+.sahneler-intro p {
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+.sahneler-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 0 clamp(16px, 4vw, 48px) 32px;
+}
+.sahneler-kart {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: inherit;
+  background: var(--surface-1);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.sahneler-kart:hover { background: var(--gridline); }
+.sahneler-kart:focus-visible { border-radius: 12px; }
+.sahneler-kart__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.sahneler-kart__ozet {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}

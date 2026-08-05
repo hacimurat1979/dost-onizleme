@@ -498,6 +498,7 @@
   const hakkindaBtn = document.getElementById("hakkinda-btn");
   const kavramBtn = document.getElementById("kavram-btn");
   const ayethadisBtn = document.getElementById("ayethadis-btn");
+  const sahnelerBtn = document.getElementById("sahneler-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
   const halWrap = document.getElementById("hal-wrap");
@@ -521,6 +522,7 @@
   const hakkindaWrap = document.getElementById("hakkinda-wrap");
   const kavramWrap = document.getElementById("kavram-wrap");
   const ayethadisWrap = document.getElementById("ayethadis-wrap");
+  const sahnelerWrap = document.getElementById("sahneler-wrap");
 
   // Görsel olarak aktif sekmeyi işaretlemek (.btn-ghost--active) ekran
   // okuyucuya hiçbir şey söylemiyordu -- dil seçicideki aria-pressed'in
@@ -595,6 +597,7 @@
     markActiveNavButton(hakkindaBtn, view === "hakkinda");
     markActiveNavButton(kavramBtn, view === "kavram");
     markActiveNavButton(ayethadisBtn, view === "ayethadis");
+    markActiveNavButton(sahnelerBtn, view === "sahneler");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
@@ -618,6 +621,8 @@
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
     if (kavramWrap) kavramWrap.hidden = view !== "kavram";
     if (ayethadisWrap) ayethadisWrap.hidden = view !== "ayethadis";
+    if (sahnelerWrap) sahnelerWrap.hidden = view !== "sahneler";
+    if (view === "sahneler") wireSahnelerKartHref();
     if (view === "hakkinda") {
       wireHakkindaDiagrams();
       window.__siirlerApp && window.__siirlerApp.wireTabs();
@@ -720,6 +725,7 @@
   if (hakkindaBtn) hakkindaBtn.addEventListener("click", () => { setMainView("hakkinda"); updateHash("hakkinda"); });
   if (kavramBtn) kavramBtn.addEventListener("click", () => { setMainView("kavram"); updateHash("kavram"); });
   if (ayethadisBtn) ayethadisBtn.addEventListener("click", () => { setMainView("ayethadis"); updateHash("ayethadis"); });
+  if (sahnelerBtn) sahnelerBtn.addEventListener("click", () => { setMainView("sahneler"); updateHash("sahneler"); });
 
   // Akraba-sekme pill'leri (bkz. graph-utils.js wireRelatedTabs) -- her
   // sayfa kendi rotasını korur, pill'ler yalnız yukarıdaki mevcut nav
@@ -932,6 +938,14 @@
         pt: "Um índice dos versículos e hadiths citados no site, ordenados por quantas vezes cada um recorre.",
       },
     },
+    sahneler: {
+      title: { tr: "Sahneler", en: "Scenes", pt: "Cenas" },
+      desc: {
+        tr: "Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin galerisi.",
+        en: "A gallery of the site's standalone, drag-or-scroll scenes.",
+        pt: "Uma galeria das cenas independentes e exploráveis do site.",
+      },
+    },
   };
 
   function updateMeta(view) {
@@ -1142,6 +1156,22 @@
     setMainView("hakkinda");
   }
 
+  // Sahneler galerisi (2026-08-05): kartların href'i statik HTML'de YAZILMIYOR
+  // -- kavram.js'teki perdeSahneHtml'in ${base}/meditasyon.html deseniyle
+  // aynı sebepten (bkz. index.html'deki sahneler-wrap yorumu). setMainView
+  // her "sahneler" görünümüne geçişte çağırıyor; a.href'i tekrar tekrar
+  // atamak zararsız, o yüzden "bir kez bağla" bayrağı yok.
+  function wireSahnelerKartHref() {
+    if (!sahnelerWrap) return;
+    sahnelerWrap.querySelectorAll(".sahneler-kart[data-scene-href]").forEach((a) => {
+      a.href = ROUTE_BASE + "/" + a.dataset.sceneHref;
+    });
+  }
+
+  function goToSahneler() {
+    setMainView("sahneler");
+  }
+
   function goToKavram(id) {
     setMainView("kavram");
     if (id) window.__kavramApp && window.__kavramApp.goToNode(id);
@@ -1153,7 +1183,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|kuantum|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|kuran-dokusu|futuhat-mimarisi|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|kuantum|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|kuran-dokusu|futuhat-mimarisi|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis|sahneler)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -1187,6 +1217,7 @@
     else if (view === "hakkinda") goToHakkinda();
     else if (view === "kavram") goToKavram(id);
     else if (view === "ayethadis") goToAyetHadis();
+    else if (view === "sahneler") goToSahneler();
   }
 
   window.addEventListener("popstate", parseHashAndGo);
@@ -1233,6 +1264,7 @@
       else if (view === "hakkinda") goToHakkinda();
       else if (view === "kavram") goToKavram(id);
       else if (view === "ayethadis") goToAyetHadis();
+      else if (view === "sahneler") goToSahneler();
       updateHash(view, id);
     },
     setHash: updateHash,
