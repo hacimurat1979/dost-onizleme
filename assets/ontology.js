@@ -2496,13 +2496,54 @@
         <cite>${entry.source}</cite>
       </div>
       ${bagimsizKaynakBadgeHtml(entry)}
+      <div id="sir-derin-icerik"></div>
       ${sirlarSorularHtml(entry)}
       ${sirlarOkumaHtml(entry)}
     `;
     detailPanel.hidden = false;
+    derinIcerikCiz(id);
     // Köprü verisi geç gelirse paneli tazele.
     if (!sirlarSorularVeri) sirlarSorularYukle().then((k) => {
       if (k && currentDetailSirlarId === id) showSirlarEntry(id);
+    });
+  }
+
+  // KADEMELİ AÇILIM (G15). data/icerik/<id>.json bir sır kaydının DERİN
+  // katmanı: aynı sırrın üç yoğunlukta yazılmış hâli (ozet/giris/govde).
+  // Her sır için yok -- şu an yalnız üçünde var, gerisi elle yazılacak.
+  //
+  // Önce _index.json okunuyor: onsuz tek seçenek her sır tıklamasında bir
+  // fetch deneyip 404 yutmak olurdu (99 kayıt, konsol dolusu 404).
+  let derinIndeks = null;
+  let derinIndeksSozu = null;
+  const derinOnbellek = new Map();
+
+  function derinIndeksYukle() {
+    if (derinIndeks) return Promise.resolve(derinIndeks);
+    if (!derinIndeksSozu) {
+      derinIndeksSozu = window.DostGraphUtils.fetchJson("data/icerik/_index.json")
+        .then((d) => { derinIndeks = new Set((d && d.idler) || []); return derinIndeks; })
+        .catch(() => { derinIndeks = new Set(); return derinIndeks; });
+    }
+    return derinIndeksSozu;
+  }
+
+  function derinIcerikCiz(id) {
+    derinIndeksYukle().then((indeks) => {
+      if (!indeks.has(id) || currentDetailSirlarId !== id) return;
+      const yerlestir = (kayit) => {
+        // Panel bu arada başka bir kayda geçmiş olabilir.
+        if (!kayit || currentDetailSirlarId !== id) return;
+        const kap = document.getElementById("sir-derin-icerik");
+        if (!kap || !window.__dostKademe) return;
+        kap.innerHTML = `<p class="detail-eyebrow detail-eyebrow--section">${tt({
+          tr: "Daha yakından", en: "A closer look", pt: "Mais de perto" })}</p>`;
+        window.__dostKademe.kur(kap, { ozet: kayit.ozet, giris: kayit.giris, govde: kayit.govde });
+      };
+      if (derinOnbellek.has(id)) { yerlestir(derinOnbellek.get(id)); return; }
+      window.DostGraphUtils.fetchJson(`data/icerik/${id}.json`)
+        .then((kayit) => { derinOnbellek.set(id, kayit); yerlestir(kayit); })
+        .catch(() => { /* kayıt okunamadıysa panel eskisi gibi kalsın */ });
     });
   }
 

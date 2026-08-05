@@ -3498,6 +3498,55 @@ html:has(.detail-panel:not([hidden])) {
   margin-top: 18px;
 }
 
+/* Kademeli açılım (G15, assets/kademe.js). Okuyucu metnin ne kadarını
+   istediğini seçer; seçim localStorage'da site geneli hatırlanır.
+   Düğmeler .btn-ghost'un çip dilini izliyor ama daha küçük -- bunlar bir
+   gezinme değil, okunan metnin üstündeki bir ayar. Yine de 44px dokunma
+   hedefinin altına düşmüyorlar (bkz. #6, WCAG 2.5.5). */
+.kademe {
+  margin: 10px 0 4px;
+}
+.kademe__serit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.kademe__btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 6px 14px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.82rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+.kademe__btn:hover { border-color: var(--accent-interactive); color: var(--text-primary); }
+.kademe__btn:focus-visible {
+  outline: 2px solid var(--accent-interactive);
+  outline-offset: 2px;
+}
+.kademe__btn[aria-pressed="true"] {
+  background: var(--text-primary);
+  color: var(--surface-1);
+  border-color: var(--text-primary);
+}
+.kademe__metin {
+  margin: 0;
+  line-height: 1.75;
+  max-width: 68ch;
+}
+/* Özet tek cümledir: biraz daha büyük ve soluk değil -- okuyucunun
+   sayfadan alıp gidebileceği tek şey oysa, kısılmış görünmemeli. */
+.kademe[data-kademe="ozet"] .kademe__metin {
+  font-size: 1.02rem;
+  color: var(--text-primary);
+}
+
 .detail-block {
   border-radius: 10px;
   padding: 14px 16px;
