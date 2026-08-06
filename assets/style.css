@@ -9615,10 +9615,26 @@ button.kuran-dokusu-satir:focus-visible {
   opacity: 1;
   outline: none;
 }
+/* Odaklanılan fasılın dış halkasında boşluk kalan bab aralığı -- bab
+   halkasındaki --bos ile aynı dil: silinmiyor, çok soluk duruyor,
+   tıklanmıyor. */
+.futuhat-mimarisi-dilim--bos {
+  opacity: 0.14;
+  pointer-events: none;
+  cursor: default;
+}
 .futuhat-mimarisi-etiket {
   font-size: 1.03rem;
   fill: var(--text-secondary);
-  pointer-events: none;
+  /* 2026-08-06: isme hover etmek de bilgi versin diye artık tıklanabilir
+     (assets/futuhat-mimarisi.js, dilimEtkilesimBagla). tabindex yalnız
+     çizgide kalıyor -- aynı fasıl için iki ayrı Tab durağı olmasın. */
+  pointer-events: auto;
+  cursor: pointer;
+  transition: fill 0.15s ease;
+}
+.futuhat-mimarisi-etiket--deginiliyor {
+  fill: var(--text-primary);
 }
 .futuhat-mimarisi-kapanis {
   fill: var(--helix-gold-rim);
@@ -9673,7 +9689,8 @@ button.kuran-dokusu-satir:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .futuhat-mimarisi-dilim { transition: none !important; }
+  .futuhat-mimarisi-dilim,
+  .futuhat-mimarisi-etiket { transition: none !important; }
 }
 
 /* --- Seyahat Atlası (docs/icerik-yol-haritasi.md D8, 2026-08-04) ----------
