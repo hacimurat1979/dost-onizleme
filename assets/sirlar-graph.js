@@ -578,10 +578,16 @@
   function measureLabel(textEl) {
     const key = textEl.textContent + "|" + textEl.style.fontSize;
     if (labelWidthCache.has(key)) return labelWidthCache.get(key);
-    let w = 0;
-    try { w = textEl.getComputedTextLength(); } catch (e) { w = key.length * 6; }
-    labelWidthCache.set(key, w);
-    return w;
+    let m = { w: 0, h: 14 };
+    try { m.w = textEl.getComputedTextLength(); } catch (e) { m.w = key.length * 6; }
+    // Yükseklik de ÖLÇÜLMELİ, tahmin edilmemeli (bkz. graph-utils.js'teki
+    // aynı ilke) -- sabit 17px boşluk, 20px punto tema etiketlerinin GERÇEK
+    // satır yüksekliğinden (~24px) dardı, bu yüzden dikeyde bile üst üste
+    // biniyorlardı (2026-08-06, "Secrets Hidden.../The Perfect Human..." ile
+    // ölçüldü).
+    try { m.h = textEl.getBBox().height || m.h; } catch (e) {}
+    labelWidthCache.set(key, m);
+    return m;
   }
 
   function spreadThemeLabels(merged) {
@@ -597,14 +603,15 @@
       if (!lbl || lbl.style.display === "none") return;
       const baseY = parseFloat(lbl.getAttribute("y")) || 0;
       lbl.__baseY = lbl.__baseY == null ? baseY : lbl.__baseY;
-      items.push({ id: d.id, el: lbl, x: nx_(d), y: ny_(d) + lbl.__baseY, w: measureLabel(lbl), baseY: lbl.__baseY });
+      const m = measureLabel(lbl);
+      items.push({ id: d.id, el: lbl, x: nx_(d), y: ny_(d) + lbl.__baseY, w: m.w, h: m.h, baseY: lbl.__baseY });
     });
     if (items.length < 2) return;
     items.sort((a, b) => a.y - b.y);
-    // Boşluk EKRAN ölçüsünde tutulmalı: satır yüksekliği ~15 ekran pikseli,
-    // ama burada SVG birimindeyiz ve sahne uzaklaşınca (currentK < 1) sabit
-    // bir SVG boşluğu ekranda yetersiz kalıyor.
-    const MIN_GAP = 17 / Math.max(0.35, currentK);
+    // Ekstra boşluk (yazı-yazı arası nefes payı), yalnız ekranda küçük
+    // sahnelerde (currentK < 1) yetersiz kalmasın diye ölçeklenir -- asıl
+    // boşluğu artık ölçülen satır yüksekliği (cur.h/prev.h) belirliyor.
+    const PAD = 4 / Math.max(0.35, currentK);
     for (let i = 0; i < items.length; i++) {
       const cur = items[i];
       let shift = 0;
@@ -612,7 +619,8 @@
         const prev = items[j];
         const overlapX = Math.abs(cur.x - prev.x) < (cur.w + prev.w) / 2 + 6;
         if (!overlapX) continue;
-        const need = prev.y + shiftOf(prev) + MIN_GAP - cur.y;
+        const minGap = (prev.h + cur.h) / 2 + PAD;
+        const need = prev.y + shiftOf(prev) + minGap - cur.y;
         if (need > shift) shift = need;
       }
       // Etiket, BAŞKA bir temanın dairesinin üstüne de binmemeli -- yoksa

@@ -28,7 +28,7 @@
   "use strict";
 
   var VIEWS = {
-    __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-uDEe64zd16F3hoXFWxbEx7YUR+T3auJlC0v5fF4y43jZMJ3O+1rRmwBVmDEX+D43" },
+    __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-WF7Fq16r5msMRA63TuC7PMMYbpSJWGLdqoKQuYPgg7CNcOhCUs+vBcqy17iQexk2" },
     __kavramApp: { src: "assets/kavram.js", integrity: "sha384-IsJ+71YqChlJzvG/MHDANRxJv68t3Dc/6RlD8wlWORRbSMdAABnOah+eskTB6WJf" },
     __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-NqjeB685KS7IBcItAvAwOeWxt/vF6SrgMn3SvwFR5aON3x+23Cpcv81QwL2B+Sp8" },
     __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-n3ZtG5q4Qjm7toMQjIQGsmrlbtoAUgB3toTImWSkOXFPLEa/iLc8UCNPnpvQZLcR" },

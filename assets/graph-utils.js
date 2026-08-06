@@ -358,24 +358,45 @@ window.DostGraphUtils = (function () {
       }
       return m;
     }
-    // items: {lbl (d3 seçimi), txt, x, y, baseY, priority?}
+    // items: {lbl (d3 seçimi), txt, x, y, baseY, priority?, scale?}
     // priority yüksek olan önce yerleşir (kategoriler, dönüm noktaları).
-    return function deconflict(items) {
+    // scale (ops., varsayılan 1): etiketin kendi düğüm grubuna uygulanan
+    // ek transform.scale(s) çarpanı (Ontoloji'nin 3B derinlik eğiminde
+    // her düğüm farklı s alıyor). x/y/half/h bu uzayda GÖRSEL ölçekle
+    // karşılaştırılmalı, yoksa derinlikçe küçülen bir düğümün etiketi
+    // "yeterince uzak" sayılıp komşusuyla ekranda üst üste biniyordu
+    // (2026-08-06, "Decree and Destiny" / "The Divine Names and
+    // Attributes" ile ölçüldü, varsayılan açılış görünümü 3B eğimli).
+    // obstacles (ops.): {x, y, half, h} -- sabit, kendisi kaymayan engeller
+    // (düğüm daireleri gibi). Önceden başka bir ETİKETLE çakışmıyor diye
+    // güvenli sayılan bir yazı, komşu bir düğümün DAİRESİNİN tam üstüne
+    // denk gelebiliyordu (2026-08-06, Ontoloji ana sayfasında ölçüldü) --
+    // motor yalnız yazı-yazı çakışmasına bakıyordu, yazı-daire'ye değil.
+    // pad (ops.): {x, y} -- ek güvenlik payı. Ontoloji sahnesi çok yavaş
+    // salınıyor (±2.6°, bkz. ontology.js SWAY_DEG); yerleşim bu salınımın
+    // TAM ORTASINDA (0°) hesaplanıyor ama gerçek çizim her an biraz
+    // dönmüş oluyor -- sınırda kalan çiftler salınımın ucunda yeniden
+    // çakışabiliyordu (2026-08-06 ölçüldü). Varsayılan pay küçük tutuluyor
+    // (salınımı olmayan /hal/ ve /sorular/ için yeterli).
+    return function deconflict(items, obstacles, pad) {
       if (!items.length) return;
+      const padY = (pad && pad.y) || 2;
+      const padX = (pad && pad.x) || 5;
       for (const it of items) {
         const m = measure(it.lbl.node(), it.txt);
-        it.half = m.w / 2;
-        it.h = m.h || 12;
+        const sc = it.scale || 1;
+        it.half = (m.w / 2) * sc;
+        it.h = (m.h || 12) * sc;
       }
       items.sort((a, b) => ((b.priority || 0) - (a.priority || 0)) || (a.y - b.y));
-      const placed = [];
+      const placed = (obstacles || []).map((o) => ({ x: o.x, y: o.y, half: o.half, h: o.h }));
       for (const it of items) {
         let y = it.y, guard = 0, clash = true;
         while (clash && guard++ < 24) {
           clash = false;
           for (const p of placed) {
-            const dyGap = (it.h + p.h) / 2 + 2;
-            if (Math.abs(y - p.y) < dyGap && Math.abs(it.x - p.x) < it.half + p.half + 5) {
+            const dyGap = (it.h + p.h) / 2 + padY;
+            if (Math.abs(y - p.y) < dyGap && Math.abs(it.x - p.x) < it.half + p.half + padX) {
               y = p.y + dyGap;        // aşağı doğru kaydır
               clash = true;
               break;
@@ -383,7 +404,10 @@ window.DostGraphUtils = (function () {
           }
         }
         placed.push({ x: it.x, y, half: it.half, h: it.h });
-        if (y !== it.y) it.lbl.attr("y", it.baseY + (y - it.y));
+        // Uygulanan y ATTR, düğümün kendi transform.scale(s)'ine tekrar
+        // tabi olacak (label o grubun çocuğu) -- görsel kaydırma miktarını
+        // geri yerel birime çevirmek için s'e bölünüyor.
+        if (y !== it.y) it.lbl.attr("y", it.baseY + (y - it.y) / (it.scale || 1));
       }
     };
   }

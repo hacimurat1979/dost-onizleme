@@ -1292,6 +1292,18 @@
     const ringR3d = Math.max(120, Math.min(width, height) / 2 - 110);
     const dropH = ringR3d * 2.2;
     let tilt = 0, tiltTarget = 0, tiltFrom = 0, tiltAnimStart = 0;
+    // Sahnenin yavaş salınımı (bkz. aşağıdaki spinFrame/SWAY_DEG) burada da
+    // biliniyor olmalı: yerleşim hep salınımın ortasında (0°) hesaplanırsa,
+    // ucunda sınırdaki etiket çiftleri yeniden çakışıyordu (2026-08-06
+    // ölçüldü). cx3d/cy3d, spinFrame'in döndürdüğü aynı merkez (0.5·width,
+    // 0.52·height) -- iki ayrı sabit tutmaya gerek yok.
+    let swayRad = 0;
+    function swayRotate(x, y) {
+      if (!swayRad) return { x, y };
+      const dx = x - cx3d, dy = y - cy3d;
+      const c = Math.cos(swayRad), sn = Math.sin(swayRad);
+      return { x: cx3d + dx * c - dy * sn, y: cy3d + dx * sn + dy * c };
+    }
     let yaw = 0, pitch = 0.26, rotating = false;
 
     const defs = svg.append("defs");
@@ -1429,6 +1441,23 @@
       sel.call(zoom.transform, computeFitTransform());
     });
 
+    // Etiket genişlikleri metne göre değişir (bkz. labelFor); ölçüm ucuz
+    // olsun diye metin başına önbelleğe alınır.
+    const fitLabelWidthCache = new Map();
+    function labelHalfWidth(d) {
+      const txt = labelFor(d);
+      let w = fitLabelWidthCache.get(txt);
+      if (w == null) {
+        w = 0;
+        if (labelSel) {
+          const el = labelSel.filter((n) => n.id === d.id).node();
+          if (el) { try { w = el.getComputedTextLength(); } catch (e) {} }
+        }
+        if (!w) w = txt.length * 6.4;
+        fitLabelWidthCache.set(txt, w);
+      }
+      return w / 2;
+    }
     function computeFitTransform() {
       const pad = 48;
       let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
@@ -1438,16 +1467,24 @@
         // yüzden hedef (tx/ty) yerine güncel ekran konumuna bakmalı.
         const bx = tiltTarget > 0.5 && n.px != null ? n.px : n.tx;
         const by = tiltTarget > 0.5 && n.py != null ? n.py : n.ty;
-        minX = Math.min(minX, bx - r);
-        maxX = Math.max(maxX, bx + r);
+        // Sığdırma yalnız düğüm DAİRESİNE bakıyordu, altındaki yazıya değil
+        // -- uzun etiketler (ör. "Self-Disclosure and the Breath of the
+        // All-Merciful") dairenin çok dışına taşıyor, dar (mobil) ekranda
+        // iki kenardan birden kırpılıyordu (2026-08-06 ölçüldü). Yazı
+        // düğümün altında ORTALANMIŞ ve YATAYDA yarı genişliği kadar
+        // dışarı taşıyor; dikeyde de düğümün altına (baseY + satır
+        // yüksekliği kadar) sarkıyor.
+        const half = Math.max(r, labelHalfWidth(n));
+        minX = Math.min(minX, bx - half);
+        maxX = Math.max(maxX, bx + half);
         minY = Math.min(minY, by - r);
-        maxY = Math.max(maxY, by + r);
+        maxY = Math.max(maxY, by + r + 14 + 16);
       });
       const bboxW = Math.max(maxX - minX, 1);
       const bboxH = Math.max(maxY - minY, 1);
       const scale = Math.min(
         4,
-        Math.max(0.5, Math.min((width - pad * 2) / bboxW, (height - pad * 2) / bboxH))
+        Math.max(0.22, Math.min((width - pad * 2) / bboxW, (height - pad * 2) / bboxH))
       );
       const cx = (minX + maxX) / 2;
       const cy = (minY + maxY) / 2;
@@ -1591,6 +1628,13 @@
       .attr("text-anchor", "middle")
       .text((d) => labelFor(d));
 
+    // 3B derinlik eğiminde her düğüm kendi grubuna translate+scale(s)
+    // alıyor -- s, düğümün dairesini VE altındaki etiketi birlikte
+    // küçültüp büyütüyor. Hem çizim hem çakışma-önleme AYNI s'i kullanmalı.
+    function nodeScale(d) {
+      return Math.max(0.55, 1 + (d.__depth - 1) * tilt);
+    }
+
     function paintPositions() {
       positionNodes();
       pathSel.attr("d", (d) => edgePath(d));
@@ -1600,10 +1644,7 @@
       // 3B'de uzaktakiler önce çizilsin ki örtüşme doğru olsun.
       if (tilt > 0.02) nodeSel.sort((a, b) => (b.__z || 0) - (a.__z || 0));
       nodeSel
-        .attr("transform", (d) => {
-          const s = 1 + (d.__depth - 1) * tilt;
-          return `translate(${d.px},${d.py}) scale(${Math.max(0.55, s).toFixed(3)})`;
-        })
+        .attr("transform", (d) => `translate(${d.px},${d.py}) scale(${nodeScale(d).toFixed(3)})`)
         // Atmosfer: uzaktaki düğüm soluklaşır (Hâller'deki aynı ölçü).
         // __birth: doğuş animasyonu sırasında katman katman belirme çarpanı
         // (runBirth); animasyon bitince alan siliniyor, çarpan 1'e düşüyor.
@@ -1619,13 +1660,33 @@
       const pend = [];
       labelSel.each(function (d) {
         const baseY = radiusFor(d) + 14;
+        const s = nodeScale(d);
+        // Etiket kendi grubu içinde ters döndürülüp dik tutuluyor (bkz.
+        // spinFrame), yani salınımdan yalnız ANKRAJ noktası (px,py) etkileniyor
+        // -- dikey ofset (baseY) hep ekranda düz aşağı iniyor.
+        const anchor = swayRotate(d.px, d.py);
         pend.push({
           lbl: d3.select(this), txt: labelFor(d),
-          x: d.px, y: d.py + baseY, baseY,
+          x: anchor.x, y: anchor.y + baseY * s, baseY, scale: s,
           priority: d.id === "dhat" ? 2 : (d.kind === "hub" ? 1 : 0),
         });
       });
-      deconflictLabels(pend);
+      // Etiketler yalnız birbirini değil, komşu düğümlerin DAİRELERİNİ de
+      // engel saymalı -- bkz. graph-utils.js'teki not. Daireler de kendi
+      // düğümünün s'iyle küçülüp büyüyor; dairenin kendisi dönse de
+      // biçimi (çember) değişmediği için ankraj noktasını döndürmek yeter.
+      const nodeObstacles = nodes.map((d) => {
+        const s = nodeScale(d);
+        const anchor = swayRotate(d.px, d.py);
+        return { x: anchor.x, y: anchor.y, half: radiusFor(d) * s, h: radiusFor(d) * 2 * s };
+      });
+      // Ekstra pay: bu sahne yavaşça yaw ile dönüyor (varsayılan 3B eğim),
+      // yani her karede biraz farklı bir projeksiyon -- tam sınırda kalan
+      // çiftler bir sonraki karede yeniden çakışabiliyordu (2026-08-06
+      // ölçüldü). Küçük bir tampon bunu azaltıyor (garanti değil, çünkü
+      // sürekli dönen bir 3B sahnede HER açıda çakışmasızlık matematiksel
+      // olarak garanti edilemez -- bkz. graph-utils.js'teki not).
+      deconflictLabels(pend, nodeObstacles, { y: 10, x: 10 });
     }
 
     simulation.on("tick", paintPositions);
@@ -1695,7 +1756,7 @@
     // nefes alıyor gibi durur, ama "yukarısı" hep yukarıda kalır. Bir düğümün
     // detayı açıkken ve simülasyon hareketliyken (ilk yerleşme, sürükleme)
     // durur.
-    const spinCenter = { x: 0.5 * width, y: 0.52 * height };
+    const spinCenter = { x: cx3d, y: cy3d };
     let swayT = 0, spinRaf = null, spinLast = 0;
     const SWAY_PERIOD = 46000;   // bir gidiş-geliş ~46 sn
     const SWAY_DEG = 2.6;        // genlik: ±2.6 derece
@@ -1734,6 +1795,13 @@
         const ly = radiusFor(d) + 14;
         return `rotate(${(-deg).toFixed(3)},0,${ly.toFixed(1)})`;
       });
+      // Etiket çakışma-önleme salınımın ORTASINDA (0°) hesaplanıyordu --
+      // yerleşim ucunda sınırdaki çiftler yeniden çakışıyordu (2026-08-06
+      // ölçüldü). swayRad'ı güncel açıya taşıyıp yerleşimi tazeliyoruz.
+      if (deg !== swayRad * 180 / Math.PI) {
+        swayRad = deg * Math.PI / 180;
+        paintPositions();
+      }
       spinRaf = requestAnimationFrame(spinFrame);
     }
     function ensureSpin() { if (spinRaf == null) spinRaf = requestAnimationFrame(spinFrame); }

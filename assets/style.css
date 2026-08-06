@@ -2917,6 +2917,10 @@ body[data-theme="dark"] #sirlar-legend {
 .legend__dot--descent  { background: var(--series-ibnarabi-line); }
 .legend__dot--return   { background: var(--series-theme); }
 .legend__dot--paradox  { background: var(--series-daphne); }
+/* Merkez düğüm (Zât) grafikte içi boş, yalnız altın bir halkayla çiziliyor
+   (bkz. --helix-gold-rim tanımı) -- lejanttaki nokta de aynı görünümü
+   taşısın diye dolgu değil, kenarlık kullanıyoruz. */
+.legend__dot--zat { background: var(--surface-1); border: 2px solid var(--helix-gold-rim); box-sizing: border-box; }
 .legend__dot--hal-gerilim { background: var(--series-hal-nefs); }
 .legend__dot--hal-dogurur { background: var(--series-hal-hayret); }
 .legend__dot--hal-yanki   { background: var(--series-hal-cemfark); }
