@@ -175,6 +175,13 @@ window.DostGraphUtils = (function () {
   function setupDetailPanelFocus() {
     const panel = document.getElementById("detail-panel");
     if (!panel) return;
+    // Bir kez bağla: bu fonksiyonu ontology.js + on küsur görünüm modülü
+    // ayrı ayrı çağırıyor ve hepsinde panel AYNI #detail-panel. Bekçisiz
+    // hâli her çağrıda yeni bir MutationObserver + keydown tuzağı
+    // biriktiriyordu; sonraki observer'lar lastFocused olarak kapatma
+    // düğmesini kaydedip kapanışta odağı yanlış yere taşıyabiliyordu.
+    if (panel.dataset.focusWired) return;
+    panel.dataset.focusWired = "1";
     let lastFocused = null;
     const observer = new MutationObserver(() => {
       if (panel.hidden) {

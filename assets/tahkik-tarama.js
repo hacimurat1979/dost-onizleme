@@ -383,6 +383,13 @@
     (sonBulgular ? Promise.resolve(sonBulgular) : siteTara()).then(function (bs) {
       sonBulgular = bs;
       if (panel) ciz();
+    }).catch(function (e) {
+      // Kapsam dosyası okunamazsa panel sonsuza dek "taranıyor…" demesin
+      // (durus-kontrol.js'teki aynı bekçi).
+      var govde = panel && panel.querySelector(".durus-site__body");
+      if (govde) govde.innerHTML = '<p class="durus-site__yukleniyor">Tarama başlatılamadı: '
+        + 'kapsam listesi (tarama-kapsami.json) okunamadı. Konsola bakın.</p>';
+      console.error("Tahkik taraması başlatılamadı", e);
     });
   }
 

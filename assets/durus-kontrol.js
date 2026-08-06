@@ -18,8 +18,10 @@
  * <em> ile işaretleniyor; Dost'un/Konuk'un/Daphne'nin kendi kesinliği ya
  * da kendi süre ifadesi bizim iddiamız değil (CLAUDE.md "Kapsam DIŞI").
  *
- * Yalnızca önizlemede yayınlanır: sync-to-live.py hem bu dosyayı hem de
- * script etiketini çıkarır ve çıkardığını doğrular.
+ * Canlıda da yayındadır (kullanıcı kararı, 2026-07-29): sync-to-live.py
+ * artık dosyanın canlıda VAR olduğunu doğrular. Bu başlık uzun süre
+ * tersini söyledi ("yalnızca önizlemede"); karar değişince yorum
+ * unutulmuştu, 2026-08-05 çapraz denetiminde yakalandı.
  */
 (function () {
   "use strict";
@@ -640,6 +642,15 @@
     yukle.then(function (bs) {
       siteBulgulari = bs;
       siteCiz();
+    }).catch(function (e) {
+      // Kapsam dosyası (tarama-kapsami.json) okunamazsa panel sonsuza
+      // dek "taranıyor…" diyordu + yakalanmamış bir rejection kalıyordu.
+      // Tek tek veri dosyaları zaten sessizce atlanıyor; buraya yalnız
+      // kapsamın kendisi düşer -- o da susturulacak bir şey değil.
+      var govde = sitePanel && sitePanel.querySelector(".durus-site__body");
+      if (govde) govde.innerHTML = '<p class="durus-site__yukleniyor">Tarama başlatılamadı: '
+        + 'kapsam listesi (tarama-kapsami.json) okunamadı. Konsola bakın.</p>';
+      console.error("Duruş taraması başlatılamadı", e);
     });
   }
 

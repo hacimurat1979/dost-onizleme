@@ -1414,6 +1414,12 @@
     exploreList = order;
   }
   function exploreStep() {
+    // Görünümden ayrılınca tur KENDİLİĞİNDEN durmalı: görünümler yalnız
+    // gizleniyor, hiçbir deactivate kancası yok. Bu bekçi yokken tur arka
+    // planda dönmeye devam ediyor, 9 saniyede bir paylaşılan
+    // #detail-panel'i Esmâ içeriğiyle yeniden açıyor ve adres çubuğunu
+    // başka görünümdeyken /esma/...'ya yazıyordu.
+    if (!GU.isViewActive(wrapEl)) { stopExplore(); return; }
     if (!exploreList.length) buildExploreList();
     exploreIdx = (exploreIdx + 1) % exploreList.length;
     const id = exploreList[exploreIdx];

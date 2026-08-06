@@ -385,11 +385,11 @@
       })
       .join("");
 
-    resultButtons = Array.from(results.querySelectorAll(".search-result"));
-    resultButtons.forEach((btn) => {
-      btn.addEventListener("click", () => activateResult(btn));
-      btn.addEventListener("pointerenter", () => setActive(resultButtons.indexOf(btn)));
-    });
+    // Bağlama işini TEK kapı yapar: rewireResultButtons (data-wired
+    // bekçili). Eskiden burada bir kez doğrudan bağlanıp sonra rewire
+    // çağrılıyordu; data-wired henüz atanmadığı için rewire aynı
+    // düğmelere İKİNCİ dinleyiciyi ekliyor, tek tıklama activateResult'ı
+    // iki kez çalıştırıyordu.
     rewireResultButtons();
   }
 

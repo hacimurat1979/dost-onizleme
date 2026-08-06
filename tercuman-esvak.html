@@ -72,6 +72,20 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   border-color:var(--gold,var(--go,currentColor))}
 .sahne-geri:focus-visible{outline:2px solid var(--gold,var(--go,currentColor));outline-offset:2px}
 @media(max-width:520px){.sahne-geri{top:8px;left:8px;padding:0 .7rem}}
+
+/* ETKILESIM_DILI.md: hareket "atlanır, taklit edilmez". Kardeş sahneler
+   (berzah, nefes-i-rahmani...) bu kuralı baştan taşıyordu; bu sayfada
+   unutulmuştu -- 2026-08-05 çapraz denetiminde yedi sayfada birden
+   yakalandı. Süreleri sıfırlamak animasyonun SON karesini gösterir:
+   içerik kaybolmaz, yalnız hareket kalkar. */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
 </style>
 <script>
 // Sitenin tema seçimini miras al. Bu sayfaların CSS'inde ":root[data-theme=

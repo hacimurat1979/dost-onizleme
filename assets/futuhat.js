@@ -1740,10 +1740,22 @@
         // terms as their own data arrives, which can be after our first
         // render; re-render once more terms are available so links appear
         // without the reader needing to do anything.
-        window.__dostCrossLink.onReady(() => { if (futuhatData) render(); });
+        // Görünürlük bekçisi şart: bu abonelik BAŞKA görünümlerin verisi
+        // hazır olduğunda da tetikleniyor (Terimler ilk kez açılınca
+        // notifyReady buraya da düşer). Bekçisiz hâli, Fütûhât görünmezken
+        // tam re-render yapıp URL'yi /terimler'den /futuhat/<id>'ye,
+        // title/canonical'ı da kısım metasına geri yazıyordu. Kullanıcı
+        // Fütûhât'a dönünce activate() zaten render() çağırıyor.
+        window.__dostCrossLink.onReady(() => {
+          if (futuhatData && window.DostGraphUtils.isViewActive(wrapEl)) render();
+        });
       }
       fetchData().then((data) => {
         if (!data) return;
+        // Yavaş ağ bekçisi: veri gelene kadar kullanıcı başka görünüme
+        // geçmiş olabilir. Geç gelen .then bekçisiz render+setHash yapıp
+        // URL'yi ve başlığı artık bakılmayan görünüme yazıyordu.
+        if (!window.DostGraphUtils.isViewActive(wrapEl)) return;
         if (id && data.parts.some((p) => p.id === id)) {
           activePartId = id;
           isDefaultLanding = false;

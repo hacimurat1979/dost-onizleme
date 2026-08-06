@@ -1877,19 +1877,10 @@
     notifyCrossLinkReady();
   }
 
-  function registerEsmaCrossLinks(data) {
-    data.nodes.forEach((n) => {
-      registerCrossLinkTerm(n.name, "esma", n.id, n.short);
-    });
-    notifyCrossLinkReady();
-  }
-
-  function registerHalCrossLinks(data) {
-    data.nodes.forEach((n) => {
-      registerCrossLinkTerm(n.name, "hal", n.id, n.short);
-    });
-    notifyCrossLinkReady();
-  }
+  // registerEsmaCrossLinks / registerHalCrossLinks kaldırıldı (2026-08-05):
+  // hiçbir yerden çağrılmıyorlardı -- cross-link kaydı artık tümüyle
+  // capraz-baglanti-indeksi.json'dan geliyor. Ölü hâlleri, kaydın hâlâ
+  // görünüm verilerinden beslendiği izlenimini veriyordu.
 
   // --- Cross-linking between insights ---
   const crossLinkTermsByLang = { tr: [], en: [], pt: [] };
