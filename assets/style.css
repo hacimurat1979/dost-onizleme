@@ -9693,6 +9693,106 @@ button.kuran-dokusu-satir:focus-visible {
   .futuhat-mimarisi-etiket { transition: none !important; }
 }
 
+/* Fasıllar / İçindekiler görünüm anahtarı -- iki metin düğmeli bir hap,
+   diğer ikon düğmelerin (recenter/hint, sol üstte) karşısında sağ üstte. */
+.futuhat-mimarisi-mod {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  border-radius: 999px;
+  padding: 3px;
+  background: color-mix(in srgb, var(--surface-1) 90%, transparent);
+  border: 1px solid var(--border);
+}
+.futuhat-mimarisi-mod-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-family: inherit;
+  padding: 0 14px;
+  min-height: 44px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.futuhat-mimarisi-mod-btn.is-on {
+  background: var(--series-ibnarabi);
+  color: #fff;
+}
+.futuhat-mimarisi-mod-btn:not(.is-on):hover,
+.futuhat-mimarisi-mod-btn:not(.is-on):focus-visible {
+  color: var(--text-primary);
+}
+.futuhat-mimarisi-mod-btn:focus-visible {
+  outline: 2px solid var(--accent-interactive);
+  outline-offset: 1px;
+}
+@media (max-width: 480px) {
+  /* İkon düğmeleri (recenter/hint) sol üstte, ~108px genişlik kaplıyor;
+     hap sağ üstte kalmaya devam ediyor, yalnız en dar ekranlarda metni
+     küçültüp çakışma payını artırıyoruz. Tam genişliğe YAYMIYORUZ --
+     önceki deneme (top:64, sol+sağ 12) hapı grafiğin İLK satırının
+     (cilt) üzerine bindiriyordu; ayrı köşe daha güvenli (Playwright,
+     2026-08-06, ic-9-mobil.png).  */
+  .futuhat-mimarisi-mod-btn { padding: 0 10px; font-size: 0.76rem; }
+}
+
+/* --- İçindekiler: cilt → sifr/belirsiz → kısım → konu, yakınlaştırılabilir
+   dört şeritli "icicle". Her şerit bir DERİNLİK; genişlik değere (yaprak/konu
+   sayısına) oranlı. Tıklanan düğüm tam genişliğe yayılır, atalar üstte ince
+   bir şeride sıkışır, kardeş dallar kaybolur (assets/futuhat-mimarisi.js,
+   İÇİNDEKİLER bloğu). */
+.futuhat-icindekiler-rect {
+  /* İnce çizgi: kısım satırında 223 dilim dar ekranlarda ~1,6px'e düşüyor
+     -- 1,5px'lik bir kenarlık o genişlikte dolgudan geniş kalıp şeridi
+     arka plan rengine boyuyordu (Playwright, 2026-08-06, mobil 390px'te
+     ölçüldü). 0,4px kenarlık komşuları hâlâ ayırıyor ama dolguyu ezmiyor. */
+  stroke: var(--surface-1);
+  stroke-width: 0.4;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.futuhat-icindekiler-dugum--cilt .futuhat-icindekiler-rect { fill: var(--series-esma-neutral); opacity: 0.55; }
+.futuhat-icindekiler-dugum--sifr .futuhat-icindekiler-rect { fill: var(--series-ibnarabi); opacity: 0.72; }
+.futuhat-icindekiler-dugum--kisim .futuhat-icindekiler-rect { fill: var(--series-theme); opacity: 0.72; }
+.futuhat-icindekiler-dugum--konu .futuhat-icindekiler-rect { fill: var(--series-daphne); opacity: 0.62; }
+/* Komşu düğümleri ayırt etmek için çift/tek hafif kontrast -- dilimlerdeki
+   nth-child(2n) alternasyonunun düz şerit karşılığı. */
+.futuhat-icindekiler-dugum:nth-child(odd) .futuhat-icindekiler-rect { filter: brightness(1.08); }
+/* Sınırı metinde hiç anılmayan aralıklar: dolu renk yerine çizgili doku --
+   fasıl/bab halkasındaki "soluk = okunmamış" dilinin aynısı, burada
+   "çizgili = sınırı bilinmiyor". Gizlenmiyor, ayırt edilebilir kalıyor. */
+.futuhat-icindekiler-dugum--belirsiz .futuhat-icindekiler-rect {
+  fill: var(--text-muted);
+  opacity: 0.28;
+}
+.futuhat-icindekiler-dugum--deginiliyor .futuhat-icindekiler-rect,
+.futuhat-icindekiler-rect:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+.futuhat-icindekiler-dugum--odak .futuhat-icindekiler-rect {
+  stroke: var(--helix-gold-rim);
+  stroke-width: 2px;
+}
+.futuhat-icindekiler-metin {
+  font-size: 0.78rem;
+  fill: var(--text-on-series, #fff);
+  pointer-events: none;
+  dominant-baseline: middle;
+}
+.futuhat-icindekiler-dugum--cilt .futuhat-icindekiler-metin,
+.futuhat-icindekiler-dugum--belirsiz .futuhat-icindekiler-metin {
+  fill: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .futuhat-icindekiler-rect { transition: none !important; }
+}
+
 /* --- Seyahat Atlası (docs/icerik-yol-haritasi.md D8, 2026-08-04) ----------
    Statik site kısıtıyla uyumlu: harita tile servisi yok, kendi çizdiğimiz
    şematik kara lekeleri var -- "dönemin coğrafya tasavvuruna yakın, modern

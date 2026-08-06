@@ -70,12 +70,20 @@ window.__futuhatMimarisiApp = (function () {
   let sonAcilanPanel = "giris"; // "giris" | "fasil" | "bab"
   let lastBabNo = null;
 
+  // gorunumModu: "fasil" (yukarıdaki altı-fasıl/560-bab halkası, Chodkiewicz'in
+  // dış çerçevesi) ya da "icindekiler" (aşağıdaki cilt→sifr→kısım→konu
+  // dörtlü kademe -- kitabın KENDİ iç bölümlemesi + sitenin gerçek okuma
+  // kapsamı). İkisi ayrı veri, ayrı çizim, ayrı durum; yalnız svg/tooltip/
+  // detail-panel paylaşılıyor. Bkz. dosya sonundaki İÇİNDEKİLER bloğu.
+  let gorunumModu = "fasil";
+
   function boyut() {
     const r = wrapEl.getBoundingClientRect();
     return { w: Math.max(360, r.width), h: Math.max(360, r.height) };
   }
 
   function ciz() {
+    if (gorunumModu === "icindekiler") { icindekilerCiz(); return; }
     const { w, h } = boyut();
     const R_OUT = Math.min(w, h) * 0.4;
     const R_IN = R_OUT * 0.6;
@@ -497,7 +505,306 @@ window.__futuhatMimarisiApp = (function () {
     detailPanel.hidden = false;
   }
 
+  // =========================================================================
+  // İÇİNDEKİLER (2026-08-06) — Cilt → Sifr → Kısım → Konu, dört kademeli
+  // yakınlaştırılabilir bir "flame chart" (icicle). Kullanıcının istediği
+  // ikinci görünüm: "sifr" Chodkiewicz'in dışarıdan getirdiği altı fasıl
+  // değil, Fütûhât'ın KENDİ metninde defalarca anılan iç bölümlemesi
+  // ("Beşinci Sifr'in açılışı", "...ile kırk yedinci kısım sona erdi").
+  // Kaynak: data/ibn-arabi/futuhat-sifir-eslesme.json (kanıt cümleleri ve
+  // yöntem notu orada). 223 kısmın 154'ü kesin bir sifre bağlanabiliyor;
+  // 69'u metinde hiç anılmayan aralıklara düştüğü için "sifrBelirsiz" --
+  // tahminle doldurulmadı, grafikte de gizlenmiyor (bkz. CSS
+  // --belirsiz sınıfı): fasıl/bab halkasındaki "soluk = okunmamış" dilinin
+  // aynısı, burada "soluk = sınırı bilinmiyor".
+  //
+  // NEDEN DONUT DEĞİL. Dört kademe + yaprak düzeyinde ~1520 konu başlığı,
+  // gerçek metinle (başlık okunabilir olmalı) taşınacak kadar dar bir
+  // radyal dilime sığmıyor -- Kur'ân Dokusu'nda otuz beş sûre adı için
+  // bulunan "eşit aralık" çözümü bile burada işe yaramaz (bkz.
+  // futuhat-mimarisi.js'in odakHalkaCiz notu, aynı sorunun 560 bab
+  // versiyonu). Yatay şeritler (icicle) başlıkları YATAY yazdırabiliyor --
+  // okunabilirlik radyalin kaybettiği şey. Tıklanan şerit tam genişliğe
+  // yayılır, atalar üstte ince bir "neredeyim" şeridine daralır, kardeş
+  // dallar kaybolur -- ETKILESIM_DILI.md'nin "grafiğin içine inme" fiili,
+  // burada dördüncü kademeye kadar.
+  const ICINDEKILER_SATIR = 4; // cilt / sifr·belirsiz / kısım / konu
+
+  let sifirVeri = null;
+  let icindekilerKok = null;        // d3.hierarchy kökü (depth 0, görünmez)
+  let icindekilerYuklendi = false;
+  let icindekilerOdak = null;       // şu an tam genişliğe yayılan düğüm
+
+  function romen(n) {
+    const TABLO = [[1000, "M"], [900, "CM"], [500, "D"], [400, "CD"], [100, "C"], [90, "XC"],
+      [50, "L"], [40, "XL"], [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]];
+    let s = "", r = n;
+    for (let i = 0; i < TABLO.length; i++) { while (r >= TABLO[i][0]) { s += TABLO[i][1]; r -= TABLO[i][0]; } }
+    return s;
+  }
+
+  // Kısım listesini (üç dilde, kısım no'ya göre sıralı) cilt→sifr/belirsiz
+  // →kısım→konu ağacına toplar. Aynı (cilt, sifr) art arda geldiği sürece
+  // TEK gruba birleşir -- bir sifr bir cilt sınırını aşarsa (örn. 16-18
+  // belirsizliği cilt 8'den 9'a taşıyor) bu, cilt değişince otomatik
+  // olarak yeni bir grup açar; kasıtlı, çünkü üst kademe zaten cilt.
+  function icindekilerHiyerarsiKur(v) {
+    const ciltMap = new Map();
+    let mevcutGrup = null;
+    v.kisimlar.forEach((k) => {
+      let ciltDugum = ciltMap.get(k.cilt);
+      if (!ciltDugum) {
+        ciltDugum = { tur: "cilt", no: k.cilt, id: "cilt-" + k.cilt, children: [] };
+        ciltMap.set(k.cilt, ciltDugum);
+      }
+      const anahtar = k.cilt + "|" + (k.sifr != null ? ("s" + k.sifr) : ("b" + k.sifrBelirsiz.join("-")));
+      if (!mevcutGrup || mevcutGrup.anahtar !== anahtar) {
+        mevcutGrup = {
+          tur: k.sifr != null ? "sifr" : "belirsiz",
+          sifr: k.sifr, adaylar: k.sifrBelirsiz, cilt: k.cilt,
+          id: "grup-" + anahtar, anahtar: anahtar, children: [],
+        };
+        ciltDugum.children.push(mevcutGrup);
+      }
+      const konular = (k.konular || []).map((kn, i) => ({
+        tur: "konu", ad: kn, kisimId: k.id, kisimBaslik: k.baslik, index: i,
+        id: k.id + "-konu-" + i, value: 1,
+      }));
+      mevcutGrup.children.push({
+        tur: "kisim", id: k.id, cilt: k.cilt, kisim: k.kisim,
+        baslik: k.baslik, pageRange: k.pageRange,
+        children: konular.length ? konular : undefined,
+        value: konular.length ? undefined : 1,
+      });
+    });
+    const ciltler = Array.from(ciltMap.values()).sort((a, b) => a.no - b.no);
+    const kok = d3.hierarchy({ tur: "kok", id: "kok", children: ciltler }, (d) => d.children)
+      .sum((d) => d.value || 0);
+    genislikAta(kok, 0, 1);
+    return kok;
+  }
+
+  // x0/x1: [0,1] aralığında değer-oranlı yatay konum (piksele ciz() çevirir).
+  function genislikAta(node, x0, x1) {
+    node.x0 = x0; node.x1 = x1;
+    if (!node.children) return;
+    let acc = x0;
+    node.children.forEach((c) => {
+      const pay = node.value > 0 ? (c.value / node.value) * (x1 - x0) : 0;
+      genislikAta(c, acc, acc + pay);
+      acc += pay;
+    });
+  }
+
+  let icindekilerYukleSozu = null;
+  function icindekilerYukle() {
+    if (icindekilerYuklendi) return Promise.resolve();
+    if (icindekilerYukleSozu) return icindekilerYukleSozu;
+    const base = window.__dostRouteBase || "";
+    const p = (ad) => (base ? base + "/" : "") + "data/ibn-arabi/" + ad;
+    icindekilerYukleSozu = GU.fetchJson(p("futuhat-sifir-eslesme.json")).then((v) => {
+      sifirVeri = v;
+      icindekilerKok = icindekilerHiyerarsiKur(v);
+      icindekilerOdak = icindekilerKok;
+      icindekilerYuklendi = true;
+    });
+    return icindekilerYukleSozu;
+  }
+
+  function icindekilerCiz() {
+    const { w, h } = boyut();
+    svg.selectAll("*").remove();
+    svg.attr("viewBox", `0 0 ${w} ${h}`);
+    g = svg.append("g").attr("class", "futuhat-icindekiler-scene");
+    if (!icindekilerKok) return; // henüz yüklenmedi (ilk moda-geçiş anı)
+
+    // Konu (4. satır) yalnız bir KISMA odaklanılınca çiziliyor. Kökte 1520
+    // konu, ~0,8px'lik dilimlere düşüyor -- kenarlık (stroke) dolgudan geniş
+    // kalıp şeridi arka plan rengine boyuyor, ölçülüp doğrulandı (Playwright,
+    // 2026-08-06). Fasıl/bab halkasının "soluk ama görünür" ilkesi burada
+    // farklı bir çözüm istiyor: 560 çentik gibi TEK halkada sıkışmıyor,
+    // kendi satırı var, o yüzden satırı TAMAMEN saklamak (yalnız odak
+    // derinliği ≥3 kısımdayken göstermek) -- gizlemek değil, henüz alaka
+    // düzeyi yok: kısma inmeden hangi konunun nerede olduğu zaten sorulmuyor.
+    const satirSayisi = icindekilerOdak.depth >= 3 ? ICINDEKILER_SATIR : ICINDEKILER_SATIR - 1;
+    const satirYuksekligi = h / satirSayisi;
+    const olcek = icindekilerOdak.x1 > icindekilerOdak.x0 ? 1 / (icindekilerOdak.x1 - icindekilerOdak.x0) : 1;
+    const SATIR_TUR = ["", "cilt", "sifr", "kisim", "konu"]; // depth->tür; depth 0 kök, çizilmiyor
+
+    const gorunur = icindekilerKok.descendants().filter((n) => {
+      if (n.depth < 1 || n.depth > satirSayisi) return false;
+      n._gx0 = Math.max(0, Math.min(1, (n.x0 - icindekilerOdak.x0) * olcek)) * w;
+      n._gx1 = Math.max(0, Math.min(1, (n.x1 - icindekilerOdak.x0) * olcek)) * w;
+      return n._gx1 > n._gx0;
+    });
+
+    const dugumG = g.selectAll("g.futuhat-icindekiler-dugum").data(gorunur, (d) => d.data.id).join("g")
+      .attr("class", (d) => "futuhat-icindekiler-dugum futuhat-icindekiler-dugum--" + SATIR_TUR[d.depth]
+        + (d.data.tur === "belirsiz" ? " futuhat-icindekiler-dugum--belirsiz" : "")
+        + (d === icindekilerOdak ? " futuhat-icindekiler-dugum--odak" : ""));
+
+    dugumG.append("rect").attr("class", "futuhat-icindekiler-rect")
+      .attr("x", (d) => d._gx0)
+      .attr("y", (d) => (d.depth - 1) * satirYuksekligi)
+      .attr("width", (d) => Math.max(0, d._gx1 - d._gx0))
+      .attr("height", satirYuksekligi)
+      .attr("tabindex", 0)
+      .attr("role", "button")
+      .attr("aria-label", (d) => icindekilerEtiket(d));
+
+    // Metin yalnız yeterince geniş hücrelerde -- ölçüm değil eşik: bir
+    // clipPath her hücreyi kendi sınırına kesiyor, komşuya taşmıyor.
+    const ESIK = 34;
+    dugumG.filter((d) => (d._gx1 - d._gx0) > ESIK).each(function (d) {
+      const gEl = d3.select(this);
+      const y0 = (d.depth - 1) * satirYuksekligi;
+      const clipId = "ic-clip-" + d.data.id.replace(/[^a-zA-Z0-9_-]/g, "");
+      gEl.append("clipPath").attr("id", clipId).append("rect")
+        .attr("x", d._gx0 + 3).attr("y", y0 + 2)
+        .attr("width", Math.max(0, d._gx1 - d._gx0 - 6)).attr("height", Math.max(0, satirYuksekligi - 4));
+      gEl.append("text").attr("class", "futuhat-icindekiler-metin")
+        .attr("clip-path", `url(#${clipId})`)
+        .attr("x", d._gx0 + 7).attr("y", y0 + satirYuksekligi / 2 + 4)
+        .text(icindekilerBaslikMetni(d));
+    });
+
+    icindekilerEtkilesimBagla(dugumG);
+  }
+
+  function icindekilerBaslikMetni(d) {
+    if (d.data.tur === "cilt") return tt({ tr: "Cilt", en: "Volume", pt: "Volume" }) + " " + romen(d.data.no);
+    if (d.data.tur === "sifr") return d.data.sifr + ". " + tt({ tr: "Sifr", en: "Sifr", pt: "Sifr" });
+    if (d.data.tur === "belirsiz") return tt({ tr: "sifr belirsiz", en: "sifr uncertain", pt: "sifr incerto" });
+    if (d.data.tur === "kisim") return tt(d.data.baslik);
+    if (d.data.tur === "konu") return tt(d.data.ad);
+    return "";
+  }
+
+  function icindekilerEtiket(d) {
+    const ana = icindekilerBaslikMetni(d);
+    if (d.data.tur === "kisim") return ana + " — " + d.data.id;
+    if (d.data.tur === "sifr" || d.data.tur === "belirsiz") {
+      const ar = kisimAraligi(d);
+      return ana + (ar ? " — " + tt({ tr: "kısım", en: "parts", pt: "partes" }) + " " + ar : "");
+    }
+    return ana;
+  }
+
+  function kisimAraligi(d) {
+    const kisimlar = d.descendants().filter((n) => n.data.tur === "kisim").map((n) => n.data.kisim);
+    if (!kisimlar.length) return null;
+    const min = Math.min.apply(null, kisimlar), max = Math.max.apply(null, kisimlar);
+    return min === max ? String(min) : min + "–" + max;
+  }
+
+  function icindekilerEtkilesimBagla(sel) {
+    sel.on("mouseenter", function (ev, d) { icindekilerVurgula(d, true); icindekilerIpucu(ev, d); })
+      .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
+      .on("mouseleave", function () { icindekilerVurgula(null, false); GU.hideTooltip(tooltip); })
+      .on("focus", function (ev, d) { icindekilerVurgula(d, true); })
+      .on("blur", function () { icindekilerVurgula(null, false); })
+      .on("click", (ev, d) => icindekilerTikla(d))
+      .on("keydown", function (ev, d) {
+        if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); icindekilerTikla(d); }
+      });
+  }
+
+  function icindekilerVurgula(d, on) {
+    if (!g) return;
+    g.selectAll("g.futuhat-icindekiler-dugum").classed("futuhat-icindekiler-dugum--deginiliyor",
+      (o) => !!on && !!d && o.data.id === d.data.id);
+  }
+
+  function icindekilerIpucu(ev, d) {
+    let alt = "";
+    if (d.data.tur === "kisim" && d.data.pageRange) alt = tt({ tr: "s.", en: "p.", pt: "p." }) + " " + d.data.pageRange;
+    else if (d.data.tur === "konu") alt = tt(d.data.kisimBaslik);
+    else if (d.data.tur === "belirsiz") alt = tt({ tr: "aday: ", en: "candidates: ", pt: "candidatos: " }) + d.data.adaylar.join(", ");
+    tooltip.innerHTML = `<strong>${icindekilerBaslikMetni(d)}</strong>` + (alt ? `<span class="node-hover-tip__meta">${alt}</span>` : "");
+    tooltip.hidden = false;
+    GU.moveTooltip(tooltip, wrapEl, ev);
+  }
+
+  // Dallanan düğüme (cilt/sifr/belirsiz/konusu-olan-kısım) tıklamak hem
+  // panel açar hem grafiği onun içine indirir -- fasıl/bab halkasındaki
+  // faslPaneli ile AYNI birleşik hareket. Yaprağa (konu, ya da istisnaen
+  // konusuz bir kısım) tıklamak yalnız panel açar: veri burada bitiyor.
+  function icindekilerTikla(d) {
+    if (d.children && d.children.length) icindekilerOdaklan(d);
+    else icindekilerPanelGoster(d);
+  }
+
+  function icindekilerOdaklan(d) {
+    icindekilerOdak = d;
+    ciz();
+    icindekilerPanelGoster(d);
+  }
+
+  function icindekilerPanelGoster(d) {
+    const en = d.data;
+    let ic = "";
+    if (en.tur === "kok") {
+      ic = `
+        <p class="detail-eyebrow">${tt({ tr: "Fütûhât'ın İçindekileri", en: "The Futûhât's Table of Contents", pt: "O Índice das Futûhât" })}</p>
+        <h2 class="detail-title">${tt({ tr: "18 cilt, 36 sifr, 223 kısım", en: "18 volumes, 36 sifrs, 223 parts", pt: "18 volumes, 36 sifrs, 223 partes" })}</h2>
+        <div class="detail-block detail-block--soru"><p>${tt(sifirVeri.not)}</p></div>
+        <p class="futuhat-mimarisi-kapsam">${sifirVeri.kisimSifreAtanan}/${sifirVeri.toplamKisim} `
+          + tt({ tr: "kısım bir sifre bağlı — bir cilde tıklayın, içine inin", en: "parts tied to a sifr — click a volume to descend into it", pt: "partes ligadas a um sifr — clique num volume para entrar nele" }) + "</p>";
+    } else if (en.tur === "cilt") {
+      const kisimSayisi = d.descendants().filter((n) => n.data.tur === "kisim").length;
+      ic = `
+        <p class="detail-eyebrow">${tt({ tr: "Cilt", en: "Volume", pt: "Volume" })} ${romen(en.no)}/XVIII</p>
+        <h2 class="detail-title">${tt({ tr: "Cilt " + romen(en.no), en: "Volume " + romen(en.no), pt: "Volume " + romen(en.no) })}</h2>
+        <p class="eser-agi-kimlik">${kisimSayisi} ${tt({ tr: "kısım", en: "parts", pt: "partes" })} — ${tt({ tr: "kısım", en: "parts", pt: "partes" })} ${kisimAraligi(d)}</p>
+        <p class="futuhat-mimarisi-kapsam">${tt({ tr: "Halka artık bu cildin sifr kademesini gösteriyor — birine tıklayın.", en: "The chart now shows this volume's sifr tier — click one.", pt: "O gráfico agora mostra o nível sifr deste volume — clique num." })}</p>`;
+    } else if (en.tur === "sifr") {
+      const kisimSayisi = d.descendants().filter((n) => n.data.tur === "kisim").length;
+      ic = `
+        <p class="detail-eyebrow">${tt({ tr: "Cilt", en: "Volume", pt: "Volume" })} ${romen(en.cilt)} · ${tt({ tr: "Sifr", en: "Sifr", pt: "Sifr" })} ${en.sifr}/36</p>
+        <h2 class="detail-title">${en.sifr}. ${tt({ tr: "Sifr", en: "Sifr", pt: "Sifr" })}</h2>
+        <p class="eser-agi-kimlik">${kisimSayisi} ${tt({ tr: "kısım", en: "parts", pt: "partes" })} — ${tt({ tr: "kısım", en: "parts", pt: "partes" })} ${kisimAraligi(d)}</p>
+        <div class="detail-block detail-block--soru"><p>${tt({
+          tr: "Fütûhât'ın kendi metninde açıkça anılan bir iç bölüm — modern cilt/kısım sayımından ayrı bir eksen (bkz. giriş paneli).",
+          en: "An inner division the Futûhât's own text explicitly names — an axis distinct from the modern volume/part numbering (see the intro panel).",
+          pt: "Uma divisão interna que o próprio texto das Futûhât nomeia explicitamente — um eixo distinto da numeração moderna de volume/parte (ver o painel de introdução)."
+        })}</p></div>
+        <p class="futuhat-mimarisi-kapsam">${tt({ tr: "Halka artık bu sifrin kısımlarını gösteriyor — birine tıklayın.", en: "The chart now shows this sifr's parts — click one.", pt: "O gráfico agora mostra as partes deste sifr — clique numa." })}</p>`;
+    } else if (en.tur === "belirsiz") {
+      const kisimSayisi = d.descendants().filter((n) => n.data.tur === "kisim").length;
+      ic = `
+        <p class="detail-eyebrow">${tt({ tr: "Cilt", en: "Volume", pt: "Volume" })} ${romen(en.cilt)} · ${tt({ tr: "sifr belirsiz", en: "sifr uncertain", pt: "sifr incerto" })}</p>
+        <h2 class="detail-title">${tt({ tr: "Sifr belirsiz", en: "Sifr uncertain", pt: "Sifr incerto" })}</h2>
+        <p class="eser-agi-kimlik">${kisimSayisi} ${tt({ tr: "kısım", en: "parts", pt: "partes" })} — ${tt({ tr: "kısım", en: "parts", pt: "partes" })} ${kisimAraligi(d)}</p>
+        <div class="detail-block detail-block--soru"><p>${tt({
+          tr: `Bu aralıkta kısım metinleri hiç sifr numarası anmıyor. ${en.adaylar.join(" ya da ")}. sifre ait olabilir -- kesin sınır metinde işaretlenmediği için tahminle doldurulmadı.`,
+          en: `Across this stretch, the part texts never name a sifr number. It may belong to Sifr ${en.adaylar.join(" or ")} -- since the text marks no firm boundary, the gap was not filled by guesswork.`,
+          pt: `Nesse trecho, os textos das partes nunca nomeiam um número de sifr. Pode pertencer ao Sifr ${en.adaylar.join(" ou ")} -- como o texto não marca uma fronteira firme, a lacuna não foi preenchida por suposição.`
+        })}</p></div>
+        <p class="futuhat-mimarisi-kapsam">${tt({ tr: "Halka artık bu aralığın kısımlarını gösteriyor — birine tıklayın.", en: "The chart now shows this stretch's parts — click one.", pt: "O gráfico agora mostra as partes deste trecho — clique numa." })}</p>`;
+    } else if (en.tur === "kisim") {
+      const base = window.__dostRouteBase || "";
+      const yol = (base ? base + "/" : "") + "futuhat/" + en.id;
+      const konuSayisi = (d.children || []).length;
+      ic = `
+        <p class="detail-eyebrow">${tt({ tr: "Cilt", en: "Volume", pt: "Volume" })} ${romen(en.cilt)} · ${tt({ tr: "Kısım", en: "Part", pt: "Parte" })} ${en.kisim}${en.pageRange ? " · s. " + en.pageRange : ""}</p>
+        <h2 class="detail-title">${tt(en.baslik)}</h2>
+        <p class="eser-agi-kimlik">${konuSayisi} ${tt({ tr: "konu", en: "topics", pt: "tópicos" })}</p>
+        <p><a class="btn-ghost" href="${yol}">${tt({ tr: "Bu kısmı oku", en: "Read this part", pt: "Ler esta parte" })}</a></p>
+        ${konuSayisi ? `<p class="futuhat-mimarisi-kapsam">${tt({ tr: "Halka artık bu kısmın konularını gösteriyor.", en: "The chart now shows this part's topics.", pt: "O gráfico agora mostra os tópicos desta parte." })}</p>` : ""}`;
+    } else if (en.tur === "konu") {
+      const base = window.__dostRouteBase || "";
+      const yol = (base ? base + "/" : "") + "futuhat/" + en.kisimId;
+      ic = `
+        <p class="detail-eyebrow">${tt(en.kisimBaslik)}</p>
+        <h2 class="detail-title">${tt(en.ad)}</h2>
+        <p><a class="btn-ghost" href="${yol}">${tt({ tr: "Bu kısmı oku", en: "Read this part", pt: "Ler esta parte" })}</a></p>`;
+    }
+    detailContent.innerHTML = ic;
+    detailPanel.hidden = false;
+  }
+
   function ortala(animate) {
+    if (gorunumModu === "icindekiler") { icindekilerOdaklan(icindekilerKok); return; }
     if (!zoom) return;
     const hedef = animate && !reduceMotion ? svg.transition().duration(420) : svg;
     hedef.call(zoom.transform, d3.zoomIdentity);
@@ -527,18 +834,54 @@ window.__futuhatMimarisiApp = (function () {
     });
   }
 
+  // İki mod arası geçiş: "Fasıllar" (Chodkiewicz, mevcut) / "İçindekiler"
+  // (cilt→sifr→kısım→konu, yeni). Tek düğme çifti, tek svg -- ciz()'in
+  // kendisi zaten gorunumModu'na göre dallanıyor (dosya başı).
+  function modaGec(yeniMod) {
+    if (gorunumModu === yeniMod) return;
+    gorunumModu = yeniMod;
+    document.querySelectorAll(".futuhat-mimarisi-mod-btn").forEach((b) => {
+      const on = b.dataset.mod === yeniMod;
+      b.classList.toggle("is-on", on);
+      b.setAttribute("aria-pressed", String(on));
+    });
+    if (yeniMod === "icindekiler") {
+      icindekilerYukle().then(() => { ciz(); icindekilerPanelGoster(icindekilerOdak); }).catch(() => {
+        const st = document.getElementById("futuhat-mimarisi-wrap-status");
+        if (st) {
+          st.hidden = false;
+          st.querySelector(".view-status__text").textContent =
+            tt({ tr: "İçindekiler yüklenemedi.", en: "The table of contents could not be loaded.", pt: "O índice não pôde ser carregado." });
+        }
+      });
+    } else {
+      ciz();
+      if (sonAcilanPanel === "bab" && lastBabNo != null && babKisim.has(lastBabNo)) babPaneli(lastBabNo);
+      else if (sonAcilanPanel === "fasil" && odakFasilId) { const f = faslById.get(odakFasilId); if (f) faslPaneli(f); else girisPaneli(); }
+      else girisPaneli();
+    }
+  }
+
   let baglandi = false;
   function baglaBirKez() {
     if (baglandi) return;
     baglandi = true;
     GU.wireRecenter("futuhat-mimarisi-recenter", () => ortala(true));
     if (GU.setupDetailPanelFocus) GU.setupDetailPanelFocus();
-    // "Bir adım geri": açık bir bab paneli varsa önce fasılın kendi
+    document.querySelectorAll(".futuhat-mimarisi-mod-btn").forEach((b) => {
+      b.addEventListener("click", () => modaGec(b.dataset.mod));
+    });
+    // "Bir adım geri": İçindekiler modunda tek kural -- odak varsa üst
+    // düğümüne çık; kökteysek geri adım yok, ortak katman panelı kapatır.
+    // Fasıllar modunda: açık bir bab paneli varsa önce fasılın kendi
     // paneline (grafik odaklı kalır); o da değilse ve odaklıysak girişe
     // (grafik köke döner); zaten kökteysek ortak katman panelı kapatır.
-    // kuran-dokusu.js'in izlediği tek-fonksiyonlu desenin aynısı, bir
-    // adım daha derin: burada iki seviye var, orada bir.
+    // kuran-dokusu.js'in izlediği tek-fonksiyonlu desenin aynısı.
     GU.registerStepBack("futuhat-mimarisi-wrap", () => {
+      if (gorunumModu === "icindekiler") {
+        if (icindekilerOdak && icindekilerOdak.parent) { icindekilerOdaklan(icindekilerOdak.parent); return true; }
+        return false;
+      }
       if (sonAcilanPanel === "bab") {
         const f = odakFasilId ? faslById.get(odakFasilId) : null;
         if (f) faslPaneli(f); else girisPaneli();
@@ -548,14 +891,26 @@ window.__futuhatMimarisiApp = (function () {
       return false;
     });
     window.addEventListener("resize", () => {
-      if (!yuklendi || wrapEl.hidden) return;
-      ciz();
+      if (wrapEl.hidden) return;
+      if (gorunumModu === "icindekiler" && icindekilerYuklendi) ciz();
+      else if (gorunumModu === "fasil" && yuklendi) ciz();
     });
   }
 
   return {
     activate() {
       baglaBirKez();
+      if (gorunumModu === "icindekiler") {
+        icindekilerYukle().then(() => { icindekilerOdak = icindekilerKok; ciz(); icindekilerPanelGoster(icindekilerKok); }).catch(() => {
+          const st = document.getElementById("futuhat-mimarisi-wrap-status");
+          if (st) {
+            st.hidden = false;
+            st.querySelector(".view-status__text").textContent =
+              tt({ tr: "İçindekiler yüklenemedi.", en: "The table of contents could not be loaded.", pt: "O índice não pôde ser carregado." });
+          }
+        });
+        return;
+      }
       yukle().then(() => { ciz(); girisPaneli(); }).catch(() => {
         const st = document.getElementById("futuhat-mimarisi-wrap-status");
         if (st) {
@@ -566,6 +921,15 @@ window.__futuhatMimarisiApp = (function () {
       });
     },
     onLangChange() {
+      if (gorunumModu === "icindekiler") {
+        // Ağacın kendisi (x0/x1, yapı) dile bağlı değil -- yalnız tt()
+        // ile okunan başlıklar değişiyor, o yüzden yeniden kurmaya gerek
+        // yok, aynı odakta yeniden çizmek yeterli.
+        if (!icindekilerYuklendi) return;
+        ciz();
+        icindekilerPanelGoster(icindekilerOdak);
+        return;
+      }
       if (!yuklendi) return;
       ciz();
       if (sonAcilanPanel === "bab" && lastBabNo != null && babKisim.has(lastBabNo)) {
@@ -578,6 +942,9 @@ window.__futuhatMimarisiApp = (function () {
       }
     },
     goToNode(id) {
+      // Dışarıdan gelen derin bağlantılar (ör. arama) hep fasıl id'si
+      // taşıyor -- İçindekiler modundaysak önce Fasıllar'a dönülür.
+      if (gorunumModu !== "fasil") modaGec("fasil");
       this.activate();
       yukle().then(() => {
         const d = faslById.get(id);

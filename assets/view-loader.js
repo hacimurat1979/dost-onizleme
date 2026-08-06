@@ -41,7 +41,7 @@
     __eserAgiApp: { src: "assets/eser-agi.js", integrity: "sha384-RWUvvHECDxAY7e8upQH3WS/o+OwGTKGrsoEmiwqG39NeHN812Ok1ULKNKMdsy7yh" },
     __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-drPehrWIZySW7vet9CC4fhCMr/sWLVPyabzjqeXMkTgU3uqmSedDS4p6szuKcZhS" },
     __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-UDvWTx3jRXltwpESBt8H680fxOqwKNSGUtHdv3ZuRf9ln3SWntY35sn3lkhqtNG7" },
-    __futuhatMimarisiApp: { src: "assets/futuhat-mimarisi.js", integrity: "sha384-xZRkplvhC+fXTRIG7eG9y6IelN9MeuqEbIh2oKB7No4x3ZHRpw0UhkcJlUZQIUJt" },
+    __futuhatMimarisiApp: { src: "assets/futuhat-mimarisi.js", integrity: "sha384-uPTYtyn/QEx9fYhlrMymblld4tsoZ3eKDlpm108yERdCn+DYsLYZ5NUoC/oFOTfP" },
   };
 
   var loadingPromises = {};
