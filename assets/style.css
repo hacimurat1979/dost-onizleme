@@ -6508,20 +6508,28 @@ body.cizim-lightbox-open {
    değişiyor (soluk mavi-gri + hafif blur, GORSEL_DIL.md'nin
    "bulanıklık=bilgisizlik" kuralı), yüksek güvenliler de kendi
    rengiyle (altın) öne çıkıyor -- iki grup artık sadece saydamlıkla
-   değil, hem renk hem netlikle ayrışıyor. */
+   değil, hem renk hem netlikle ayrışıyor.
+   2026-08-06 (kullanıcı bildirimi, canlıda etki görünmüyordu): kök neden
+   `opacity` kullanmışız -- ama .link'in KENDİSİ zaten `stroke-opacity:
+   0.55` taşıyor (yukarıda), ikisi çarpımsal birleşince (0.32×0.55≈0.18)
+   kesikli deseni fark edilmez kılıyordu. `stroke-opacity`'ye geçip aynı
+   birimde kalıyoruz; kesikli desen de (2 5 -> 5 4) ve kalınlık farkı da
+   (düşük ince / yüksek kalın) belirginliği artırıyor. */
 #ontology-wrap.confidence-on .link--conf-orta,
 #ontology-wrap.confidence-on .link--conf-dusuk,
 #ontology-wrap.confidence-on .link--conf-hipotez,
 #ontology-wrap.confidence-on .link--conf-bilinmiyor,
 #ontology-wrap.confidence-on .link--conf-gelecek {
-  opacity: 0.32;
+  stroke-opacity: 0.4;
   stroke: var(--text-muted);
-  stroke-dasharray: 2 5;
+  stroke-width: 1.2px;
+  stroke-dasharray: 5 4;
   filter: blur(0.4px);
 }
 #ontology-wrap.confidence-on .link--conf-yuksek {
-  opacity: 1;
+  stroke-opacity: 0.95;
   stroke: var(--accent-interactive);
+  stroke-width: 2px;
   filter: none;
 }
 
