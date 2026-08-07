@@ -698,7 +698,8 @@ html {
 .futuhat-toolbar__btn,
 .sessiz-mod-toggle,
 .defter-toggle,
-.hal-walk-btn {
+.hal-walk-btn,
+.scroll-top-btn {
   width: 44px;
   height: 44px;
   flex-shrink: 0;
@@ -718,7 +719,9 @@ html {
 .typography-btn:hover,
 .typography-btn:focus-visible,
 .futuhat-toolbar__btn:hover,
-.futuhat-toolbar__btn:focus-visible {
+.futuhat-toolbar__btn:focus-visible,
+.scroll-top-btn:hover,
+.scroll-top-btn:focus-visible {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
 }
@@ -757,6 +760,32 @@ body.sessiz-mod-on .app-header {
   .sessiz-mod-toggle__dot {
     transition: none;
   }
+}
+
+/* Sayfa başına dönme kısayolu (2026-08-06 kullanıcı bulgusu: uzun
+   sayfalarda başa dönmek için çokça scroll gerekiyordu). Sessiz Mod
+   düğmesiyle aynı köşede, üstüne yığılı -- CLAUDE.md'nin daire/merkez
+   ilkesine uygun dairesel bir düğme, yalnız sayfa yeterince kaydırıldığında
+   beliriyor (görünüm-özel JS, bkz. ontology.js wireHakkindaScrollTop). */
+.scroll-top-btn {
+  position: fixed;
+  right: 18px;
+  bottom: 74px;
+  z-index: 60;
+  background: var(--page-plane);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.scroll-top-btn.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-top-btn { transition: opacity 0.01ms; }
 }
 
 /* Kişisel Kavram Defteri: sol üstte sabit dairesel anahtar + çekmece. */
@@ -1280,43 +1309,6 @@ body.sessiz-mod-on .app-header {
 }
 #sorular-graph:active { cursor: grabbing; }
 
-/* Clicking a hub node (a group heading, or a name that opens onto a chain
-   of others) dims everything outside its own cluster and zooms in --
-   mirrors sirlar-graph.js's theme-focus. */
-.esma-node--dimmed {
-  opacity: 0.12;
-  transition: opacity 0.3s ease;
-}
-.viz-root[data-theme="dark"] .esma-boundary {
-  stroke: var(--accent-glow-dark);
-  opacity: 0.7;
-  filter: drop-shadow(0 0 9px color-mix(in srgb, var(--accent-glow-dark) 70%, transparent));
-}
-/* hayy->alim->murid->mutekellim->kadir zincirinde, Kısım XVI'daki Dua
-   Menzili pasajından öğrendiğimiz kapsama ilişkisini soy-kütüğü çizgisinden
-   ayırt eder -- bkz. assets/esma.js linkEmphasis mantığı. */
-.esma-link--kapsar {
-  stroke: var(--series-kemal);
-  stroke-width: 2.4px;
-}
-/* İlişki-tipi taksonomisi: sekiz tip, dört "aile" halinde (bkz.
-   RELATION_TYPE_META, assets/esma.js). Her aile bir rengi paylaşır --
-   gold: kimlik/özdeşlik (tecelli parıltılı+oklu, ayni kalın çizgisiz);
-   gri: yapısal/sınıflandırıcı (ayni-sinif kesikli, parça noktalı+soluk);
-   mavi: nedensel/temsili (sebep dolu+oklu, temsil noktalı);
-   macenta: karşıtlık/mertebe (zid kesikli, mertebe kesikli+oklu). Aile
-   içindeki ayrım ok ucu ve çizgi dolgusuyla kuruluyor, yeni bir renk
-   icat etmeden. */
-.esma-relation {
-  fill: none;
-  stroke: var(--series-theme);
-  stroke-width: 2.2px;
-  stroke-dasharray: 4 3;
-  opacity: 0.9;
-  cursor: pointer;
-  pointer-events: stroke;
-}
-
 .pole-badge--relation {
   color: #fff;
   text-shadow: 0 1px 1px rgba(20,15,8,0.35);
@@ -1440,11 +1432,6 @@ body.sessiz-mod-on .app-header {
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-.sorular-depth__btn.is-active {
-  background: color-mix(in srgb, var(--series-theme) 22%, transparent);
-  color: var(--text-primary);
-}
-
 /* Merkezdeki nefes alan işaret -- daire/merkez ilkesi (bkz. CLAUDE.md):
    tıklanamaz, sadece hâlâ açık kalan sorunun kendisini sezdiren dekoratif
    bir nokta. Ontoloji'deki Zât düğümünün .node-halo soluma deseniyle
@@ -2722,7 +2709,7 @@ li.futuhat-pulse,
 .sir-node .sir-depth,
 .sir-node .sir-label { transition: opacity 0.25s ease; }
 .sir-node:focus-visible .sir-dot { stroke: var(--text-primary); stroke-width: 1.6px; }
-.sir-glow, .sir-depth, .sir-bubble, .sir-particle, .sir-link { pointer-events: none; }
+.sir-glow, .sir-depth, .sir-particle, .sir-link { pointer-events: none; }
 .sir-hit { fill: transparent; stroke: none; pointer-events: all; }
 .sir-halo { fill: none; stroke-width: 1.4px; pointer-events: none; }
 .sir-bg circle { pointer-events: none; fill: var(--text-muted); }
@@ -3026,19 +3013,12 @@ body[data-theme="dark"] #sirlar-legend {
      --text-muted her iki temada da metin için okunur kalacak şekilde
      kalibre edilmiş, bu yüzden bir çizgi için de güvenli.
 
-     2026-08-03: kullanıcı isteğiyle ALTIN'a çevrildi (--series-kemal).
-     Gerekçe ölçüldü -- gerçek zemine karşı kontrast oranı:
-       --text-muted (eski): açık 4.92:1, koyu 5.41:1
-       --series-kemal      : açık 3.41:1, koyu 9.89:1
-     Yani koyu modda belirgin bir iyileşme, açık modda WCAG'in metin-dışı
-     grafik eşiğinin (3:1) üstünde. --series-theme de "altın" ama açık
-     temada 2.05:1'de kalıyordu, o yüzden seçilmedi.
-     Kenarın TÜRÜ zaten ok başlarıyla taşınıyor (.arrowhead--descent /
-     --return / --paradox, lejant onlara bakıyor), çizgi rengiyle değil --
-     bu yüzden hepsini tek renge almak bir ayrımı silmiyor. Ayrıca
-     tecellî ışığı (.onto-kivilcim) da aynı altın: ışık kendi yolunun
-     renginde akıyor. */
-  stroke: var(--series-kemal);
+     2026-08-03: kullanıcı isteğiyle ALTIN'a çevrilmişti (--series-kemal);
+     2026-08-06'da kullanıcı kararıyla ESKİ renge (--text-muted) geri
+     döndürüldü ("göze batmayan soluk renklerdi"). Kenarın TÜRÜ zaten ok
+     başlarıyla taşınıyor (.arrowhead--descent / --return / --paradox,
+     lejant onlara bakıyor), çizgi rengiyle değil. */
+  stroke: var(--text-muted);
   stroke-width: 1.6px;
   /* 2026-08-04 kullanıcı bildirimi: ilişki okları "çok ön planda" duruyordu.
      Tam opak (1) bir çizgi + (aşağıdaki .arrowhead kuralı gelmeden önce)
@@ -3091,8 +3071,10 @@ body[data-theme="dark"] #sirlar-legend {
      <marker> tanımı TÜM o türdeki kenarlarca paylaşıldığı için -- <defs>
      içinde, kenar çizgileriyle DOM'da komşu değil -- hover'daki tek bir
      kenara özel bir ok-başı vurgusu buradan kurulamıyor; .link--highlight
-     zaten çizginin kendi kalınlığı/opaklığıyla yeterince öne çıkıyor.) */
-  fill: var(--series-kemal);
+     zaten çizginin kendi kalınlığı/opaklığıyla yeterince öne çıkıyor.)
+     2026-08-06: çizgi rengi --text-muted'a döndü, ok başı da eşleşsin
+     diye aynı değişikliği izliyor. */
+  fill: var(--text-muted);
   opacity: 0.6;
 }
 
@@ -3102,6 +3084,26 @@ body[data-theme="dark"] #sirlar-legend {
 
 .detail-block--edge {
   border-left: 4px solid var(--gridline);
+}
+/* 2026-08-06 kullanıcı bulgusu: esma.js'in "İlişkiler ve tamamlayıcılar"
+   kartları tıklanamıyordu. Artık id varsa <a class="cross-link"> olarak
+   render ediliyor (bkz. esma.js edgeRow) -- ama .cross-link'in kendi
+   temel kuralı (satır-içi metin linki için: renk + noktalı alt çizgi)
+   burada bir KART'a uygulanmamalı, o yüzden bu kombinasyon override
+   ediyor: block düzeyi, düz renk, sade hover/focus vurgusu. */
+.detail-block--edge.cross-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.detail-block--edge.cross-link:hover,
+.detail-block--edge.cross-link:focus-visible {
+  border-color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 6%, transparent);
+  outline: none;
 }
 
 .detail-block--sir {
@@ -4057,6 +4059,50 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   margin: 0;
   font-size: 0.86rem;
   line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Eleştiri Arkeolojisi köprüsü (2026-08-06) -- .sorular-sirlar ile aynı
+   görsel dil (bkz. o kuralın yanındaki yorum), yalnız <button> öğeleri
+   üzerinde (bu dosyada zaten .vahdet-alinti__site de <button>). */
+.vahdet-ea-baglar {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--series-theme) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--series-theme) 26%, transparent);
+}
+.vahdet-ea-baglar__satir {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  margin-top: 8px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.vahdet-ea-baglar__satir:first-of-type { margin-top: 0; }
+.vahdet-ea-baglar__satir:hover,
+.vahdet-ea-baglar__satir:focus-visible {
+  border-color: color-mix(in srgb, var(--series-theme) 55%, transparent);
+  background: var(--surface-1);
+}
+.vahdet-ea-baglar__ad {
+  display: block;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.vahdet-ea-baglar__neden {
+  display: block;
+  font-size: 0.79rem;
+  line-height: 1.5;
   color: var(--text-secondary);
 }
 
@@ -6306,7 +6352,8 @@ body.cizim-lightbox-open {
   .defter-toggle,
   .defter-panel,
   .detail-panel__notebook,
-  .fusus-figure__expand {
+  .fusus-figure__expand,
+  .scroll-top-btn {
     display: none !important;
   }
   @page {
@@ -6499,31 +6546,31 @@ body.cizim-lightbox-open {
   border-color: var(--accent-interactive);
 }
 
-/* B1 kenar soluklaştırma: yalnız #ontology-wrap.confidence-on iken devrede
-   -- varsayılan (kapalı) durumda bütün kenarlar eşit görünür, tıpkı
-   türetilmiş-kenar ilkesindeki gibi "önce sessiz, tıklayınca konuşan"
-   katman. */
-/* 2026-08-02 (kullanıcı bildirimi): yalnız opaklık farkı grafikte pek
-   fark edilmiyordu -- şimdi düşük güvenli kenarlar RENK olarak da
-   değişiyor (soluk mavi-gri + hafif blur, GORSEL_DIL.md'nin
-   "bulanıklık=bilgisizlik" kuralı), yüksek güvenliler de kendi
-   rengiyle (altın) öne çıkıyor -- iki grup artık sadece saydamlıkla
-   değil, hem renk hem netlikle ayrışıyor.
-   2026-08-06 (kullanıcı bildirimi, canlıda etki görünmüyordu): kök neden
-   `opacity` kullanmışız -- ama .link'in KENDİSİ zaten `stroke-opacity:
-   0.55` taşıyor (yukarıda), ikisi çarpımsal birleşince (0.32×0.55≈0.18)
-   kesikli deseni fark edilmez kılıyordu. `stroke-opacity`'ye geçip aynı
-   birimde kalıyoruz; kesikli desen de (2 5 -> 5 4) ve kalınlık farkı da
-   (düşük ince / yüksek kalın) belirginliği artırıyor. */
+/* Düşük güvenli kenarlar (2026-08-06, kullanıcı kararı): önceki iki tur
+   (2026-08-02, 2026-08-06 erken) bu ayrımı yalnız #ontology-wrap
+   .confidence-on iken -- yani "Ne kadar eminiz?" düğmesine tıklanınca --
+   gösteriyordu. Kullanıcı bunun yeterince NET olmadığını, düşük güvenli
+   bağlantıların TAM GÖRÜNÜR haldeyken bile (düğmeye dokunmadan) farklı
+   renkte ve kesikli olması gerektiğini belirtti -- düğme yalnız EK bir
+   soluklaştırma katmanı eklemeli, ayrımın KENDİSİ varsayılan olmalı.
+   Renk: --series-celal (kesik pembe/gül rengi, kullanıcının önerisi). */
+.link--conf-orta,
+.link--conf-dusuk,
+.link--conf-hipotez,
+.link--conf-bilinmiyor,
+.link--conf-gelecek {
+  stroke: var(--series-celal);
+  stroke-dasharray: 5 4;
+}
+/* Düğme ("Ne kadar eminiz?") hâlâ ek bir soluklaştırma katmanı ekliyor --
+   yukarıdaki renk/kesik ayrımının ÜSTÜNE, onun yerine değil. */
 #ontology-wrap.confidence-on .link--conf-orta,
 #ontology-wrap.confidence-on .link--conf-dusuk,
 #ontology-wrap.confidence-on .link--conf-hipotez,
 #ontology-wrap.confidence-on .link--conf-bilinmiyor,
 #ontology-wrap.confidence-on .link--conf-gelecek {
-  stroke-opacity: 0.4;
-  stroke: var(--text-muted);
+  stroke-opacity: 0.35;
   stroke-width: 1.2px;
-  stroke-dasharray: 5 4;
   filter: blur(0.4px);
 }
 #ontology-wrap.confidence-on .link--conf-yuksek {
@@ -6652,8 +6699,6 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
 @media (prefers-reduced-motion: reduce) {
   .esmaX-controls, .esmaX-explore { transition: none; }
 }
-.esmaX-depth { display: flex; flex-direction: column; gap: 10px; pointer-events: auto; }
-.esmaX-depth-btn.is-active span { background: var(--series-theme); border-color: var(--series-theme); transform: scale(1.25); }
 .esmaX-depth-hint {
   pointer-events: none; max-width: 190px; text-align: right; margin: 0;
   font-size: 0.74rem; line-height: 1.35; color: var(--text-muted);
@@ -7842,7 +7887,7 @@ mark.durus-vurgu-es {
 }
 .tasiyicilar-left { min-width: 0; }
 
-.tasiyici-intro { max-width: 62ch; margin: 0 auto 0.4rem; }
+.tasiyici-intro { max-width: 62ch; margin: 0.9rem auto 0.4rem; }
 .tasiyici-intro__p {
   margin: 0 0 0.7rem;
   color: var(--text-secondary);
@@ -9076,9 +9121,12 @@ mark.durus-vurgu-es {
   padding: 3px 10px;
   border: 1px solid var(--border);
   border-radius: 999px;
+  background: none;
+  font: inherit;
   font-size: 0.82rem;
   text-decoration: none;
   color: var(--text-primary);
+  cursor: pointer;
 }
 .acik-soru__bag:hover { border-color: var(--accent-interactive); }
 
@@ -9178,61 +9226,24 @@ mark.durus-vurgu-es {
 .bilmiyoruz-madde__kaynak em { color: var(--text-primary); font-style: italic; }
 .bilmiyoruz-madde__kaynak-not { color: var(--text-muted); }
 
+/* "Taraflar" (2026-08-06, docs/icerik-uretim-plani.md ADIM 5'ten alınan
+   fikir): kaynaklar bir isim listesiyse, taraflar o isimlerden her birinin
+   NE dediğini ayrı ayrı gösteriyor -- sol kenar çizgisiyle bir alıntı
+   bloğu gibi değil, her taraf kendi küçük kartında. */
+.bilmiyoruz-madde__taraflar { display: flex; flex-direction: column; gap: 8px; }
+.bilmiyoruz-madde__taraf {
+  padding: 8px 10px;
+  border-left: 2px solid var(--gridline);
+  background: var(--surface-1);
+  border-radius: 0 8px 8px 0;
+}
+.bilmiyoruz-madde__taraf-kim { margin: 0 0 2px; font-size: 0.78rem; font-weight: 600; color: var(--text-primary); }
+.bilmiyoruz-madde__taraf-ne { margin: 0; font-size: 0.86rem; color: var(--text-secondary); }
+
 @media (prefers-reduced-motion: reduce) {
   .bilmiyoruz-madde__yay,
   .bilmiyoruz-madde__etiket { transition: none !important; }
 }
-
-/* --- Kuantum (docs/icerik-yol-haritasi.md D3, 2026-08-04) -----------------
-   Bilmiyoruz'un yay-halkasından FARKLI bir biçim bilinçli: burada ölçülen
-   "ne kadar açık" değil, üç ayrı TÜRDE pozisyonun (zayıf/temkinli/yerleşik)
-   yan yana durması -- bu bir karşılaştırma listesi, bir halka değil. Sol
-   kenar rengi, panelde açılan durum rozetiyle aynı üç renge dayanıyor
-   (zayıf->kemal, temkinli->theme, yerleşik->nötr sınır). */
-.kuantum-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 16px;
-  max-width: 640px;
-  margin: 0 auto;
-  overflow-y: auto;
-  height: 100%;
-}
-.kuantum-satir {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  width: 100%;
-  text-align: left;
-  padding: 10px 14px;
-  border: 1px solid var(--border);
-  border-left-width: 3px;
-  border-radius: 8px;
-  background: var(--surface-1);
-  color: var(--text-primary);
-  font: inherit;
-  cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-.kuantum-satir:hover,
-.kuantum-satir:focus-visible {
-  border-color: var(--accent-interactive);
-  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
-}
-.kuantum-satir--zayif { border-left-color: color-mix(in srgb, var(--series-kemal) 55%, var(--border)); }
-.kuantum-satir--temkinli { border-left-color: color-mix(in srgb, var(--series-theme) 55%, var(--border)); }
-.kuantum-satir--yerlesik { border-left-color: var(--border); }
-.kuantum-satir__durum {
-  display: inline-block;
-  padding: 1px 8px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  font-size: 0.72rem;
-  color: var(--text-secondary);
-}
-.kuantum-satir__iddia { font-size: 0.9rem; }
 
 /* --- Eleştiri Arkeolojisi (docs/icerik-yol-haritasi.md D4, 2026-08-04) ----
    Diğer yeni görünümlerden farkı: bir yay-halka ya da liste değil, gerçek
@@ -9341,13 +9352,48 @@ mark.durus-vurgu-es {
 }
 .elestiri-bag-satiri__tur { color: var(--text-secondary); flex-shrink: 0; font-size: 0.78rem; }
 
+/* Vahdet-i Vücûd Eleştirileri köprüsü (2026-08-06) -- .vahdet-ea-baglar'ın
+   ters yönü, aynı görsel dil. */
+.elestiri-vahdet-baglar { display: flex; flex-direction: column; gap: 6px; }
+.elestiri-vahdet-baglar__satir {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.elestiri-vahdet-baglar__satir:hover,
+.elestiri-vahdet-baglar__satir:focus-visible {
+  border-color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
+}
+.elestiri-vahdet-baglar__baslik {
+  display: block;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.elestiri-vahdet-baglar__neden {
+  display: block;
+  font-size: 0.79rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .elestiri-kisi__sekil,
   .elestiri-kenar { transition: none !important; }
 }
 
 /* --- Hocalar (docs/icerik-yol-haritasi.md D6, 2026-08-04) -----------------
-   Kuantum'un liste-panel iskeleti, ama panel bir "durum" değil bir "anlatı"
+   Basit bir liste-panel iskeleti, ama panel bir "durum" değil bir "anlatı"
    taşıyor -- birden fazla doğrudan alıntı, her biri kendi bağlamıyla. */
 .hocalar-list {
   display: flex;
@@ -9415,10 +9461,13 @@ mark.durus-vurgu-es {
 .hoca-alinti__kaynak { display: block; margin-top: 8px; font-size: 0.78rem; color: var(--text-secondary); font-style: normal; }
 
 /* --- Eser Ağı (docs/icerik-yol-haritasi.md D7, 2026-08-04) ----------------
-   CLAUDE.md'nin daire/merkez ilkesi + roadmap'in kendi isteği: merkezde
-   ilk eser, dışa doğru zaman. Yarıçap = yıl, açı = sıra -- sarmalın kendi
-   çizgisi süs değil, kronolojinin görünür izi. */
-.eser-agi-sarmal {
+   2026-08-06'da sarmaldan dikey zaman çizelgesine çevrildi (kullanıcı
+   bulgusu: 28 eserlik seyrek veride sarmal okunmuyordu; CLAUDE.md'nin
+   kendisi de "doğası gereği dairesel değilse zorla daireye sokma" diyor).
+   Omurga = sıralı satırların birleştiği tek dikey çizgi, süs değil,
+   kronolojinin görünür izi -- satır aralığı yıla değil SIRAYA orantılı
+   (kümelenmiş yılların üst üste binmesini önler). */
+.eser-agi-omurga {
   stroke: var(--border);
   stroke-width: 1;
   opacity: 0.6;
@@ -9450,15 +9499,17 @@ mark.durus-vurgu-es {
 }
 .eser-agi-eser--katalog .eser-agi-eser__sekil { fill: var(--series-theme); }
 .eser-agi-eser__etiket {
-  /* 2026-08-05 G13 SVG etiket turu: 0.66rem -> 0.98rem denendi, Playwright
-     ekran görüntüsüyle YOĞUN kümede gerçek metin çakışması GÖRÜLDÜ --
-     büyütülmüş ama üst üste binen metin, küçük ama okunaklı metinden
-     daha kötü. Geri alındı. Buraya körlemesine 14px basmadan önce
-     hal-label'ın kullandığı türden bir etiket-çakışma-çözücü (greedy
-     yerleştirme + düşük öncelikliyi gizle) kurulmalı; bkz. esma.js'teki
-     mevcut örnek. Tek başına punto büyütmek bu diyagramda ÇALIŞMIYOR. */
+  /* 2026-08-06: zaman çizelgesinde her eser kendi dikey satırında (58px) --
+     sarmalın yoğun kümelerindeki çakışma riski artık yok, bu yüzden 0.66rem
+     hâlâ küçük ama okunaklı; punto büyütmek isteyen bkz. eski not: G13
+     turunda büyütme YALNIZ sarmalın sıkışık açılarında sorun çıkarmıştı. */
   font-size: 0.66rem;
   fill: var(--text-secondary);
+  pointer-events: none;
+}
+.eser-agi-eser__yil {
+  font-size: 0.62rem;
+  fill: var(--text-muted);
   pointer-events: none;
 }
 .eser-agi-eser--deginiliyor .eser-agi-eser__sekil,
@@ -9607,202 +9658,6 @@ button.kuran-dokusu-satir:focus-visible {
   .kuran-dokusu-sure__nokta,
   .kuran-dokusu-bab__nokta,
   .kuran-dokusu-kenar { transition: none !important; }
-}
-
-/* --- Fütûhât'ın Mimarisi (docs/icerik-yol-haritasi.md D11, 2026-08-04) ----
-   CLAUDE.md'nin daire/merkez ilkesi: altı fasıl tek bir halkada, her
-   dilimin yayı kendi bab sayısıyla orantılı -- büyüklük süs değil, ölçünün
-   kendisi (GORSEL_DIL.md: davranışı resmet). */
-.futuhat-mimarisi-dilim {
-  fill: var(--series-ibnarabi);
-  stroke: var(--surface-1);
-  stroke-width: 1.5;
-  cursor: pointer;
-  opacity: 0.82;
-  transition: opacity 0.15s ease;
-}
-.futuhat-mimarisi-dilim:nth-child(2n) { fill: var(--series-theme); }
-.futuhat-mimarisi-dilim--deginiliyor,
-.futuhat-mimarisi-dilim:focus-visible {
-  opacity: 1;
-  outline: none;
-}
-/* Odaklanılan fasılın dış halkasında boşluk kalan bab aralığı -- bab
-   halkasındaki --bos ile aynı dil: silinmiyor, çok soluk duruyor,
-   tıklanmıyor. */
-.futuhat-mimarisi-dilim--bos {
-  opacity: 0.14;
-  pointer-events: none;
-  cursor: default;
-}
-.futuhat-mimarisi-etiket {
-  font-size: 1.03rem;
-  fill: var(--text-secondary);
-  /* 2026-08-06: isme hover etmek de bilgi versin diye artık tıklanabilir
-     (assets/futuhat-mimarisi.js, dilimEtkilesimBagla). tabindex yalnız
-     çizgide kalıyor -- aynı fasıl için iki ayrı Tab durağı olmasın. */
-  pointer-events: auto;
-  cursor: pointer;
-  transition: fill 0.15s ease;
-}
-.futuhat-mimarisi-etiket--deginiliyor {
-  fill: var(--text-primary);
-}
-.futuhat-mimarisi-kapanis {
-  fill: var(--helix-gold-rim);
-}
-
-/* İç halka: 560 babın her biri için bir çentik. Kur'ân Dokusu'ndaki kararın
-   aynısı -- okunmayan bab silinmiyor, soluk duruyor; halka tam okunuyor ve
-   boşluk onun içinde görünür kalıyor. Dolu çentik tıklanabilir, o babı
-   işleyen okuma birimine götürüyor. */
-.futuhat-mimarisi-bab {
-  stroke-width: 1.1px;
-  stroke-linecap: butt;
-}
-.futuhat-mimarisi-bab--bos {
-  stroke: var(--text-muted);
-  opacity: 0.22;
-  pointer-events: none;
-}
-.futuhat-mimarisi-bab--dolu {
-  stroke: var(--series-ibnarabi);
-  opacity: 0.85;
-  pointer-events: none;   /* etkileşim avcı halkasında */
-}
-/* Vurgu bab'a değil KISMA veriliyor: tıklayınca gidilen yer okuma birimi,
-   o yüzden aynı kısmın bütün çentikleri birlikte parlıyor. */
-.futuhat-mimarisi-bab--deginiliyor {
-  stroke: var(--helix-gold-rim);
-  stroke-width: 2.6px;
-  opacity: 1;
-}
-/* Tek saydam halka bütün imleç olaylarını yakalıyor; bab açıdan hesaplanıyor.
-   560 çentiğe tek tek vuruş alanı vermek komşuların üstüne biniyordu. */
-.futuhat-mimarisi-bab-avci {
-  fill: transparent;
-  cursor: pointer;
-}
-/* Klavye durakları: görünmez, yalnız odaklanınca beliriyor. */
-.futuhat-mimarisi-kisim-odak {
-  stroke: transparent;
-  stroke-width: 2px;
-  pointer-events: none;
-}
-.futuhat-mimarisi-kisim-odak:focus-visible {
-  stroke: var(--helix-gold-rim);
-  stroke-width: 3px;
-  outline: none;
-}
-.futuhat-mimarisi-kapsam {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  margin-top: 0.4rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .futuhat-mimarisi-dilim,
-  .futuhat-mimarisi-etiket { transition: none !important; }
-}
-
-/* Fasıllar / İçindekiler görünüm anahtarı -- iki metin düğmeli bir hap,
-   diğer ikon düğmelerin (recenter/hint, sol üstte) karşısında sağ üstte. */
-.futuhat-mimarisi-mod {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 2;
-  display: flex;
-  border-radius: 999px;
-  padding: 3px;
-  background: color-mix(in srgb, var(--surface-1) 90%, transparent);
-  border: 1px solid var(--border);
-}
-.futuhat-mimarisi-mod-btn {
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 0.82rem;
-  font-family: inherit;
-  padding: 0 14px;
-  min-height: 44px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: color 0.15s ease, background 0.15s ease;
-}
-.futuhat-mimarisi-mod-btn.is-on {
-  background: var(--series-ibnarabi);
-  color: #fff;
-}
-.futuhat-mimarisi-mod-btn:not(.is-on):hover,
-.futuhat-mimarisi-mod-btn:not(.is-on):focus-visible {
-  color: var(--text-primary);
-}
-.futuhat-mimarisi-mod-btn:focus-visible {
-  outline: 2px solid var(--accent-interactive);
-  outline-offset: 1px;
-}
-@media (max-width: 480px) {
-  /* İkon düğmeleri (recenter/hint) sol üstte, ~108px genişlik kaplıyor;
-     hap sağ üstte kalmaya devam ediyor, yalnız en dar ekranlarda metni
-     küçültüp çakışma payını artırıyoruz. Tam genişliğe YAYMIYORUZ --
-     önceki deneme (top:64, sol+sağ 12) hapı grafiğin İLK satırının
-     (cilt) üzerine bindiriyordu; ayrı köşe daha güvenli (Playwright,
-     2026-08-06, ic-9-mobil.png).  */
-  .futuhat-mimarisi-mod-btn { padding: 0 10px; font-size: 0.76rem; }
-}
-
-/* --- İçindekiler: cilt → sifr/belirsiz → kısım → konu, yakınlaştırılabilir
-   dört şeritli "icicle". Her şerit bir DERİNLİK; genişlik değere (yaprak/konu
-   sayısına) oranlı. Tıklanan düğüm tam genişliğe yayılır, atalar üstte ince
-   bir şeride sıkışır, kardeş dallar kaybolur (assets/futuhat-mimarisi.js,
-   İÇİNDEKİLER bloğu). */
-.futuhat-icindekiler-rect {
-  /* İnce çizgi: kısım satırında 223 dilim dar ekranlarda ~1,6px'e düşüyor
-     -- 1,5px'lik bir kenarlık o genişlikte dolgudan geniş kalıp şeridi
-     arka plan rengine boyuyordu (Playwright, 2026-08-06, mobil 390px'te
-     ölçüldü). 0,4px kenarlık komşuları hâlâ ayırıyor ama dolguyu ezmiyor. */
-  stroke: var(--surface-1);
-  stroke-width: 0.4;
-  cursor: pointer;
-  transition: opacity 0.15s ease;
-}
-.futuhat-icindekiler-dugum--cilt .futuhat-icindekiler-rect { fill: var(--series-esma-neutral); opacity: 0.55; }
-.futuhat-icindekiler-dugum--sifr .futuhat-icindekiler-rect { fill: var(--series-ibnarabi); opacity: 0.72; }
-.futuhat-icindekiler-dugum--kisim .futuhat-icindekiler-rect { fill: var(--series-theme); opacity: 0.72; }
-.futuhat-icindekiler-dugum--konu .futuhat-icindekiler-rect { fill: var(--series-daphne); opacity: 0.62; }
-/* Komşu düğümleri ayırt etmek için çift/tek hafif kontrast -- dilimlerdeki
-   nth-child(2n) alternasyonunun düz şerit karşılığı. */
-.futuhat-icindekiler-dugum:nth-child(odd) .futuhat-icindekiler-rect { filter: brightness(1.08); }
-/* Sınırı metinde hiç anılmayan aralıklar: dolu renk yerine çizgili doku --
-   fasıl/bab halkasındaki "soluk = okunmamış" dilinin aynısı, burada
-   "çizgili = sınırı bilinmiyor". Gizlenmiyor, ayırt edilebilir kalıyor. */
-.futuhat-icindekiler-dugum--belirsiz .futuhat-icindekiler-rect {
-  fill: var(--text-muted);
-  opacity: 0.28;
-}
-.futuhat-icindekiler-dugum--deginiliyor .futuhat-icindekiler-rect,
-.futuhat-icindekiler-rect:focus-visible {
-  opacity: 1;
-  outline: none;
-}
-.futuhat-icindekiler-dugum--odak .futuhat-icindekiler-rect {
-  stroke: var(--helix-gold-rim);
-  stroke-width: 2px;
-}
-.futuhat-icindekiler-metin {
-  font-size: 0.78rem;
-  fill: var(--text-on-series, #fff);
-  pointer-events: none;
-  dominant-baseline: middle;
-}
-.futuhat-icindekiler-dugum--cilt .futuhat-icindekiler-metin,
-.futuhat-icindekiler-dugum--belirsiz .futuhat-icindekiler-metin {
-  fill: var(--text-primary);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .futuhat-icindekiler-rect { transition: none !important; }
 }
 
 /* --- Seyahat Atlası (docs/icerik-yol-haritasi.md D8, 2026-08-04) ----------

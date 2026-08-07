@@ -834,7 +834,7 @@
     // istendiğinde 2B'ye dönülebiliyor.
     openIn3D();
     ensureFrame();
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", GU.debounceResize(onResize));
   }
 
   function onResize() {

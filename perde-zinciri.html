@@ -7,10 +7,10 @@
 <!-- Perde Zinciri — Dost Arabi -->
 <title>Perde Zinciri — Dost Arabi</title>
 <style>
-:root{--bg:#09080F;--su:#12101A;--bo:#2A2438;--tx:#E8E2D0;--mu:#6E6558;--go:#FFC94D;--am:#B8832A;--pa:#14101E}
-@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--su:#EDE8DC;--bo:#C8BEA0;--tx:#221810;--mu:#665845;--pa:#E8E2D4;--go:#7A5200;--am:#6E4A12}}
-:root[data-theme=dark]{--bg:#09080F;--su:#12101A;--bo:#2A2438;--tx:#E8E2D0;--mu:#6E6558;--pa:#14101E}
-:root[data-theme=light]{--bg:#F5F2EA;--su:#EDE8DC;--bo:#C8BEA0;--tx:#221810;--mu:#665845;--pa:#E8E2D4;--go:#7A5200;--am:#6E4A12}
+:root{--bg:#0D0D0D;--su:#1A1A19;--bo:#2C2C2A;--tx:#EDE9E2;--mu:#898781;--go:#FFC233;--am:#C98500;--pa:#161614}
+@media(prefers-color-scheme:light){:root{--bg:#F9F9F7;--su:#FCFCFB;--bo:#E1E0D9;--tx:#1A1A1A;--mu:#6F6D65;--pa:#FCFCFB;--go:#8A6100;--am:#8C6D1A}}
+:root[data-theme=dark]{--bg:#0D0D0D;--su:#1A1A19;--bo:#2C2C2A;--tx:#EDE9E2;--mu:#898781;--pa:#161614}
+:root[data-theme=light]{--bg:#F9F9F7;--su:#FCFCFB;--bo:#E1E0D9;--tx:#1A1A1A;--mu:#6F6D65;--pa:#FCFCFB;--go:#8A6100;--am:#8C6D1A}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--tx);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
 header{text-align:center;margin-bottom:1.1rem}
@@ -336,7 +336,14 @@ window.addEventListener('message',function(e){
 
 <script>
 // Sahneden çıkış: ESC + görünür bağlantı (2026-08-05 geri bildirimi).
-(function () {
+// 2026-08-06: bu sahne meditasyon.html içinde bir <iframe> olarak da gömülü
+// (bkz. meditasyon.html'in kendi tab yapısı). Gömülüyken bu enjekte edilen
+// pilli düğme iframe'in kendi köşesinde ikinci kez çiziliyor, ve
+// meditasyon.html'in KENDİ başlık şeridinde zaten eşdeğer bir "Haritaya"
+// bağlantısı olduğundan bu üst üste binen ikinci düğme gereksiz bir
+// "kemer" gibi görünüyordu (kullanıcı bulgusu: "yukarda başka bir kemer
+// daha görünüyor"). Yalnız üst pencerede (iframe DIŞINDA) çalış.
+if (window.self === window.top) (function () {
   var ETIKET = { tr: "Sahneler", en: "Scenes", pt: "Cenas" };
   var dil = "tr";
   try { var d = localStorage.getItem("dost-lang"); if (ETIKET[d]) dil = d; } catch (e) {}

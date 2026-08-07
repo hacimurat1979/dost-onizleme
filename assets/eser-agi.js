@@ -1,13 +1,20 @@
-// Eser Ağı — Dost'un eserlerinin kronolojik sarmalı (docs/icerik-yol-
-// haritasi.md D7). Roadmap'in "gerçek kenarları olan ilk graf" isteği:
+// Eser Ağı — Dost'un eserlerinin kronolojik zaman çizelgesi (docs/icerik-
+// yol-haritasi.md D7). Roadmap'in "gerçek kenarları olan ilk graf" isteği:
 // düğümler (eserler) MIAS'ın kendi tarih/şehir verisinden, kenarlar (aynı
 // şehirde art arda yazılan eserler) yine o veriden -- hiçbiri uydurma değil.
 //
-// NEDEN SARMAL. CLAUDE.md'nin daire/merkez ilkesi + roadmap'in kendi isteği
-// ("merkezde ilk eser, dışa doğru zaman") birleşiyor: yarıçap = yıl (Dost'un
-// ilk eseri merkezde), açı = sıra (aynı yılda yazılan birkaç eser bile farklı
-// açılarda durur, üst üste binmez). Kaç tur döndüğü kronolojinin 44 yıllık
-// uzunluğunu okunur kılıyor.
+// NEDEN ZAMAN ÇİZELGESİ (2026-08-06, kullanıcı bulgusu -- sarmal karışık
+// görünüyordu). Görünüm bir sarmaldı: yarıçap = yıl, açı = sıra. CLAUDE.md'nin
+// daire/merkez ilkesine uyuyordu ama 28 eserlik seyrek, kümelenmiş bir
+// veride (dört yılda üçer eser birden var) okunması zorlaşıyordu. Kullanıcı
+// doğrudan "modern bir timeline" istedi -- CLAUDE.md'nin kendisi de
+// "bir öğe doğası gereği dairesel değilse zorla daireye sokma" diyor, ve
+// bir kronoloji doğası gereği DOĞRUSAL. Tek dikey bir omurga, sırayla
+// eşit aralıklı 28 satır (yıla ORANTILI değil, SIRAYA göre -- kümelenmiş
+// yılların üst üste binmesini önler), her satırda yıl solda, eser adı
+// sağda. Kenarlar (aynı şehir zinciri) omurga üzerinde renkli bir parça
+// olarak kalıyor -- görsel olarak hâlâ "ardışık" okunuyor, şimdi konum
+// sarmaldaki açı değil, listedeki sıra.
 window.__eserAgiApp = (function () {
   "use strict";
 
@@ -26,8 +33,11 @@ window.__eserAgiApp = (function () {
 
   function tt(dict) { return I18n.pick3(dict || {}); }
 
-  const LOOPS = 3;
-  const R_MIN = 30;
+  // Satır aralığı SIRAYA göre eşit -- yıla orantılı olsaydı 1203/1205/1229
+  // gibi aynı yılda üç eser birden yazılan kümeler üst üste binerdi.
+  const ROW_H = 58;
+  const TOP_PAD = 36;
+  const BOTTOM_PAD = 36;
 
   let data = null;
   let eserler = [];
@@ -37,6 +47,8 @@ window.__eserAgiApp = (function () {
   let g = null;
   let focusId = null;
   let focusEdge = null;
+  let spineX = 90;
+  let contentH = 0;
 
   function boyut() {
     const r = wrapEl.getBoundingClientRect();
@@ -45,41 +57,20 @@ window.__eserAgiApp = (function () {
 
   function yerlestir() {
     const { w, h } = boyut();
-    const R_MAX = Math.min(w, h) * 0.42;
-    const n = eserler.length;
-    const years = eserler.map((d) => d.yil.miladi);
-    const minY = Math.min(...years), maxY = Math.max(...years);
-    const rScale = d3.scaleLinear().domain([minY, maxY]).range([R_MIN, R_MAX]);
-    const angleStep = (2 * Math.PI * LOOPS) / n;
+    spineX = Math.max(56, Math.min(140, w * 0.22));
     eserler.forEach((d, i) => {
-      const a = -Math.PI / 2 + i * angleStep;
-      const rad = rScale(d.yil.miladi);
-      d.x = Math.cos(a) * rad;
-      d.y = Math.sin(a) * rad;
+      d.x = spineX;
+      d.y = TOP_PAD + i * ROW_H;
+      d.yilYeni = i === 0 || d.yil.miladi !== eserler[i - 1].yil.miladi;
     });
+    contentH = TOP_PAD + Math.max(0, eserler.length - 1) * ROW_H + BOTTOM_PAD;
     return { w, h };
   }
 
-  function spiralYolu() {
-    const n = eserler.length;
-    const angleStep = (2 * Math.PI * LOOPS) / n;
-    const { w, h } = boyut();
-    const R_MAX = Math.min(w, h) * 0.42;
-    const years = eserler.map((d) => d.yil.miladi);
-    const minY = Math.min(...years), maxY = Math.max(...years);
-    const rScale = d3.scaleLinear().domain([minY, maxY]).range([R_MIN, R_MAX]);
-    const pts = [];
-    for (let t = 0; t <= n - 1; t += 0.1) {
-      const i0 = Math.floor(t), frac = t - i0;
-      const y0 = eserler[i0].yil.miladi;
-      const y1 = eserler[Math.min(i0 + 1, n - 1)].yil.miladi;
-      const yr = y0 + (y1 - y0) * frac;
-      const a = -Math.PI / 2 + t * angleStep;
-      const rad = rScale(yr);
-      pts.push([Math.cos(a) * rad, Math.sin(a) * rad]);
-    }
-    const line = d3.line();
-    return line(pts);
+  function omurgaYolu() {
+    if (!eserler.length) return "";
+    const ilk = eserler[0], son = eserler[eserler.length - 1];
+    return `M${spineX},${ilk.y} L${spineX},${son.y}`;
   }
 
   function ciz() {
@@ -87,12 +78,13 @@ window.__eserAgiApp = (function () {
     svg.selectAll("*").remove();
     svg.attr("viewBox", `0 0 ${w} ${h}`);
     g = svg.append("g").attr("class", "eser-agi-scene");
-    const kok = g.append("g").attr("transform", `translate(${w / 2}, ${h / 2})`);
+    const kok = g.append("g");
 
-    kok.append("path").attr("class", "eser-agi-sarmal").attr("d", spiralYolu()).attr("fill", "none");
+    kok.append("path").attr("class", "eser-agi-omurga").attr("d", omurgaYolu()).attr("fill", "none");
 
-    // Kenarlar (aynı şehir zinciri) -- sarmalın kendi çizgisinden ayrı,
-    // doğrudan iki düğüm merkezini birleştiren kısa akorlar.
+    // Kenarlar (aynı şehir zinciri) -- omurganın kendi çizgisi üzerinde,
+    // kaynaktan hedefe kısa DİKEY bir parça. Ardışıklık artık sarmaldaki
+    // açı değil, listedeki sıradır.
     const kenarG = kok.append("g").attr("class", "eser-agi-kenarler");
     const kenarSel = kenarG.selectAll("line.eser-agi-kenar").data(baglar, (d, i) => d.kaynak_id + "|" + i).join("line")
       .attr("class", "eser-agi-kenar")
@@ -133,11 +125,19 @@ window.__eserAgiApp = (function () {
       }
     });
 
+    // Yıl yalnız bir önceki satırdan farklıysa yazılıyor -- aynı yılda
+    // yazılmış üç eserin yılı üç kez tekrarlanmasın diye.
+    sel.filter((d) => d.yilYeni).append("text").attr("class", "eser-agi-eser__yil")
+      .attr("text-anchor", "end")
+      .attr("x", -(R + 10))
+      .attr("y", 4)
+      .text((d) => (d.yil.hicri ? d.yil.hicri + "/" : "") + d.yil.miladi);
+
     sel.append("text").attr("class", "eser-agi-eser__etiket")
-      .attr("text-anchor", (d) => (d.x > 8 ? "start" : d.x < -8 ? "end" : "middle"))
-      .attr("x", (d) => (d.x > 8 ? R + 7 : d.x < -8 ? -(R + 7) : 0))
-      .attr("y", (d) => (Math.abs(d.x) > 8 ? 4 : (d.y >= 0 ? R + 14 : -(R + 8))))
-      .text((d) => kisalt(d.eser, 22));
+      .attr("text-anchor", "start")
+      .attr("x", R + 12)
+      .attr("y", 4)
+      .text((d) => kisalt(d.eser, 34));
 
     sel.on("mouseenter", function (ev, d) { vurgulaEser(d.id, true); ipucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
@@ -149,7 +149,7 @@ window.__eserAgiApp = (function () {
         if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); eserPaneli(d); }
       });
 
-    zoom = GU.createZoomBehavior(svg, g, [0.6, 3.5]);
+    zoom = GU.createZoomBehavior(svg, g, [0.25, 3.5]);
     ortala(false);
   }
 
@@ -226,17 +226,31 @@ window.__eserAgiApp = (function () {
     focusId = null;
     focusEdge = null;
     detailContent.innerHTML = `
-      <p class="detail-eyebrow">${tt({ tr: "Eser Ağı", en: "The Works Spiral", pt: "A Espiral das Obras" })}</p>
+      <p class="detail-eyebrow">${tt({ tr: "Eser Ağı", en: "The Works Timeline", pt: "A Linha do Tempo das Obras" })}</p>
       <h2 class="detail-title">${eserler.length} ${tt({ tr: "eser", en: "works", pt: "obras" })}, ${baglar.length} ${tt({ tr: "bağ", en: "connections", pt: "ligações" })}</h2>
       <div class="detail-block detail-block--soru"><p>${tt(data.not)}</p></div>
       <p class="elestiri-kaynak-satiri elestiri-kaynak-satiri--omurga">${data.kaynak.yazar}, <em>${data.kaynak.eser}</em></p>`;
     detailPanel.hidden = false;
   }
 
+  // Kimlik dönüşümü (d3.zoomIdentity) sarmalda işe yarıyordu çünkü sahne
+  // zaten container'a sığacak şekilde ölçeklenmişti (R_MAX = min(w,h)*.42).
+  // Dikey listede içerik boyu (contentH) container yüksekliğini kolayca
+  // aşıyor -- bu yüzden "ortala" artık bütün listeyi sığdıran bir ölçek
+  // hesaplıyor, sabit 1:1 değil.
+  // 68px üst boşluk bilerek sabit: recenter+hint düğmeleri sol üstte
+  // top:12/left:12-108 bandını kaplıyor (bkz. style.css .graph-recenter/
+  // .graph-hint) -- ilk satır oraya denk gelirse tıklanamaz hâle geliyordu
+  // (Playwright'ta ölçüldü, 2026-08-06).
   function ortala(animate) {
     if (!zoom) return;
+    const { h } = boyut();
+    const k = Math.max(0.25, Math.min(1.4, h / Math.max(1, contentH)));
+    const tx = 24;
+    const ty = Math.max(68, (h - contentH * k) / 2);
+    const t = d3.zoomIdentity.translate(tx, ty).scale(k);
     const hedef = animate && !reduceMotion ? svg.transition().duration(420) : svg;
-    hedef.call(zoom.transform, d3.zoomIdentity);
+    hedef.call(zoom.transform, t);
   }
 
   let yuklendi = false;
@@ -246,7 +260,11 @@ window.__eserAgiApp = (function () {
     const url = (base ? base + "/" : "") + "data/ibn-arabi/eser-agi.json";
     return GU.fetchJson(url).then((d) => {
       data = d;
-      eserler = (d.eserler || []).map((e) => Object.assign({}, e));
+      // Satır sırası doğrudan yıla dayanıyor artık (bkz. yerlestir()) --
+      // veri zaten kronolojik ama sırayı veriye bırakmak yerine burada
+      // garanti ediyoruz.
+      eserler = (d.eserler || []).map((e) => Object.assign({}, e))
+        .sort((a, b) => a.yil.miladi - b.yil.miladi);
       baglar = d.baglar || [];
       eserById = new Map(eserler.map((e) => [e.id, e]));
       yuklendi = true;
@@ -264,16 +282,19 @@ window.__eserAgiApp = (function () {
       if (focusId || focusEdge) { girisPaneli(); return true; }
       return false;
     });
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", GU.debounceResize(() => {
       if (!yuklendi || wrapEl.hidden) return;
       ciz();
-    });
+    }));
   }
 
   return {
     activate() {
+      // 2026-08-06 kullanıcı bulgusu: girisPaneli() burada çağrılıp panel
+      // her açılışta otomatik gösteriliyordu -- artık yalnız bir eser/bağ
+      // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
-      yukle().then(() => { ciz(); girisPaneli(); }).catch(() => {
+      yukle().then(() => { ciz(); }).catch(() => {
         const st = document.getElementById("eser-agi-wrap-status");
         if (st) {
           st.hidden = false;
@@ -287,10 +308,10 @@ window.__eserAgiApp = (function () {
       ciz();
       if (focusId) {
         const d = eserById.get(focusId);
-        if (d) eserPaneli(d); else girisPaneli();
+        if (d) eserPaneli(d); else if (!detailPanel.hidden) girisPaneli();
       } else if (focusEdge) {
         kenarPaneli(focusEdge);
-      } else girisPaneli();
+      } else if (!detailPanel.hidden) girisPaneli();
     },
     goToNode(id) {
       this.activate();

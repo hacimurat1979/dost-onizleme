@@ -378,16 +378,19 @@ window.__kuranDokusuApp = (function () {
       if (focusSureNo != null || focusBabId != null) { girisPaneli(); return true; }
       return false;
     });
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", GU.debounceResize(() => {
       if (!yuklendi || wrapEl.hidden) return;
       ciz();
-    });
+    }));
   }
 
   return {
     activate() {
+      // 2026-08-06 kullanıcı bulgusu: girisPaneli() burada çağrılıp panel
+      // her açılışta otomatik gösteriliyordu -- artık yalnız bir sûre/bab
+      // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
-      yukle().then(() => { ciz(); girisPaneli(); }).catch(() => {
+      yukle().then(() => { ciz(); }).catch(() => {
         const st = document.getElementById("kuran-dokusu-wrap-status");
         if (st) {
           st.hidden = false;
@@ -401,11 +404,11 @@ window.__kuranDokusuApp = (function () {
       ciz();
       if (focusSureNo != null) {
         const d = sureByNo.get(focusSureNo);
-        if (d) surePaneli(d); else girisPaneli();
+        if (d) surePaneli(d); else if (!detailPanel.hidden) girisPaneli();
       } else if (focusBabId != null) {
         const d = babById.get(focusBabId);
-        if (d) babPaneli(d); else girisPaneli();
-      } else girisPaneli();
+        if (d) babPaneli(d); else if (!detailPanel.hidden) girisPaneli();
+      } else if (!detailPanel.hidden) girisPaneli();
     },
     goToNode(id) {
       this.activate();

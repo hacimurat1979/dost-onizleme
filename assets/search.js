@@ -15,6 +15,17 @@
     sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
     futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
     kavram: { tr: "Kavramlar", en: "Concepts", pt: "Conceitos" },
+    fusus: { tr: "Füsûs", en: "Fusus", pt: "Fusus" },
+    menziller: { tr: "Menziller", en: "Mansions", pt: "Mansões" },
+    tasiyicilar: { tr: "Taşıyanlar", en: "The Bearers", pt: "Os Portadores" },
+    hocalar: { tr: "Hocalar", en: "Teachers", pt: "Mestres" },
+    "eser-agi": { tr: "Eser Ağı", en: "The Works Timeline", pt: "A Linha do Tempo das Obras" },
+    "seyahat-atlasi": { tr: "Seyahat Atlası", en: "Travel Atlas", pt: "Atlas de Viagem" },
+    "elestiri-arkeolojisi": { tr: "Eleştiri Arkeolojisi", en: "Archaeology of Criticism", pt: "Arqueologia da Crítica" },
+    "kuran-dokusu": { tr: "Kur'ân Dokusu", en: "The Qur'ânic Weave", pt: "A Trama Alcorânica" },
+    "acik-sorular": { tr: "Açık Sorular", en: "Open Questions", pt: "Perguntas em Aberto" },
+    bilmiyoruz: { tr: "Bilmiyoruz", en: "We Don't Know", pt: "Não Sabemos" },
+    ayethadis: { tr: "Âyet & Hadis", en: "Verses & Hadith", pt: "Versículos e Hadith" },
   };
 
   // Sonuç gruplarının başında, hangi görünüme ait olduğunu tek bakışta
@@ -30,6 +41,17 @@
     sorular: "--series-sorular-en-temel",
     futuhat: "--series-hal-muameleler",
     kavram: "--series-theme",
+    fusus: "--series-theme",
+    menziller: "--series-theme",
+    tasiyicilar: "--series-theme",
+    hocalar: "--series-theme",
+    "eser-agi": "--series-theme",
+    "seyahat-atlasi": "--series-theme",
+    "elestiri-arkeolojisi": "--series-theme",
+    "kuran-dokusu": "--series-theme",
+    "acik-sorular": "--series-theme",
+    bilmiyoruz: "--series-theme",
+    ayethadis: "--series-theme",
   };
 
   let index = [];
@@ -40,6 +62,14 @@
     if (!dict) return "";
     if (typeof dict === "string") return dict;
     return [dict.tr, dict.en, dict.pt].filter(Boolean).join(" ␟ ");
+  }
+
+  // Bazı veri dosyalarında başlık alanı üç dilli bir sözlük değil, tek bir
+  // öz ad (şehir/eser/menzil adı gibi, dillere göre değişmeyen). tt()/pick3
+  // yalnız {tr,en,pt} şeklini kabul ettiği için düz string'i aynı üç alana
+  // kopyalayıp sarmalıyoruz.
+  function wrap3(s) {
+    return { tr: s, en: s, pt: s };
   }
 
   function buildIndex() {
@@ -107,6 +137,101 @@
             view: "kavram", id: k.view + "/" + k.id, label: k.isim,
             sub: { tr: "Bütün hayatı", en: "Life across the corpus", pt: "Vida ao longo do corpus" },
             searchText: allLangText(k.isim),
+          });
+        });
+      }),
+      // 2026-08-06 denetiminde bulundu: arama yalnız 9/23 görünümü
+      // indeksliyordu, nav çekmecesindeki 14 bölüm hiç aranamıyordu.
+      // Aşağıdaki 13 kaynak o boşluğu kapatıyor (vahdet hariç -- o
+      // Hakkında sayfasının bir alt-sekmesi, goTo() dispatch'inde bağımsız
+      // bir "view" değil, ayrı bir iş gerektirir).
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/fusus-atlas.json").then((d) => {
+        (d.fasses || []).forEach((f) => {
+          index.push({
+            view: "fusus", id: f.id, label: f.title, sub: f.hikmet,
+            searchText: allLangText(f.title) + " " + allLangText(f.hikmet) + " " + allLangText(f.prophet) + " " + allLangText(f.hero && f.hero.summary),
+          });
+        });
+      }),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/menziller.json").then((d) => {
+        (d.menziller || []).forEach((n) => {
+          index.push({
+            view: "menziller", id: n.sira, label: wrap3(n.menzil), sub: n.zuhur,
+            searchText: n.menzil + " " + n.isim + " " + n.harf + " " + allLangText(n.zuhur),
+          });
+        });
+      }),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/tasiyicilar.json").then((d) => {
+        (d.sistemler || []).forEach((s) => {
+          index.push({
+            view: "tasiyicilar", id: s.id, label: s.label, sub: null,
+            searchText: allLangText(s.label) + " " + allLangText(s.note),
+          });
+        });
+      }),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/hocalar.json").then((d) => {
+        (d.hocalar || []).forEach((h) => {
+          index.push({
+            view: "hocalar", id: h.id, label: h.ad, sub: h.konum,
+            searchText: allLangText(h.ad) + " " + allLangText(h.kimlik) + " " + allLangText(h.konum),
+          });
+        });
+      }),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/eser-agi.json").then((d) => {
+        (d.eserler || []).forEach((e) => {
+          index.push({
+            view: "eser-agi", id: e.id, label: wrap3(e.eser), sub: e.aciklama,
+            searchText: e.eser + " " + allLangText(e.aciklama) + " " + allLangText(e.sehir),
+          });
+        });
+      }),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/seyahat-atlasi.json").then((d) => {
+        (d.duraklar || []).forEach((s) => {
+          index.push({
+            view: "seyahat-atlasi", id: s.id, label: s.sehir, sub: s.ozet,
+            searchText: allLangText(s.sehir) + " " + allLangText(s.ozet),
+          });
+        });
+      }),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/elestiri-arkeolojisi.json").then((d) => {
+        (d.kisiler || []).forEach((k) => {
+          index.push({
+            view: "elestiri-arkeolojisi", id: k.id, label: k.ad, sub: k.sehir,
+            searchText: allLangText(k.ad) + " " + allLangText(k.ozet) + " " + allLangText(k.sehir),
+          });
+        });
+      }),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/kuran-dokusu.json").then((d) => {
+        (d.sureler || []).forEach((s) => {
+          index.push({
+            view: "kuran-dokusu", id: s.no, label: s.ad, sub: null,
+            searchText: allLangText(s.ad),
+          });
+        });
+      }),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/acik-sorular.json").then((d) => {
+        (d.sorular || []).forEach((s) => {
+          index.push({
+            view: "acik-sorular", id: s.id, label: s.soru, sub: s.dogdugu_yer,
+            searchText: allLangText(s.soru) + " " + allLangText(s.dogdugu_yer),
+          });
+        });
+      }),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/bilmiyoruz.json").then((d) => {
+        (d.maddeler || []).forEach((m) => {
+          index.push({
+            view: "bilmiyoruz", id: m.id, label: m.baslik, sub: null,
+            searchText: allLangText(m.baslik) + " " + allLangText(m.aciklama),
+          });
+        });
+      }),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/kuran.json").then((d) => {
+        const ayetler = d.ayetler || {};
+        Object.keys(ayetler).forEach((key) => {
+          const a = ayetler[key];
+          index.push({
+            view: "ayethadis", id: key, label: a.meal, sub: null,
+            searchText: key + " " + (a.ar || "") + " " + allLangText(a.meal),
           });
         });
       }),

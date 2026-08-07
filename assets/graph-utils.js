@@ -578,5 +578,25 @@ window.DostGraphUtils = (function () {
          + `<p>${I18n.pick3(analogy)}</p></div>`;
   }
 
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor };
+  // "Resize" tepkisi — pencere/orientation değişirken tam layout+render'ı
+  // her piksel olayında değil, hareket durduktan sonra bir kez çalıştırır.
+  // 11 görünüm (hal/menziller/sorular/esma/sirlar-graph/eser-agi/
+  // elestiri-arkeolojisi/kuran-dokusu/seyahat-atlasi/acik-sorular/
+  // bilmiyoruz) aynı `window.addEventListener("resize", onResize)` +
+  // debounce'suz tam yeniden-hesaplama desenini ayrı ayrı taşıyordu
+  // (2026-08-06 denetiminde bulundu) -- kenarı sürükleyerek yeniden
+  // boyutlandırmak saniyede onlarca kez güç-yönlendirmeli bir grafiği
+  // yeniden hesaplatabiliyordu.
+  function debounceResize(fn, waitMs) {
+    waitMs = typeof waitMs === "number" ? waitMs : 150;
+    let timer = null;
+    return function () {
+      const args = arguments;
+      const self = this;
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(self, args), waitMs);
+    };
+  }
+
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor, debounceResize };
 })();

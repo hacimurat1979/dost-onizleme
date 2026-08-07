@@ -16,7 +16,6 @@
     { "yol": "data/ibn-arabi/concepts.json", "gorunum": null, "etiket": "Kavramlar" },
 
     { "yol": "data/ibn-arabi/bilmiyoruz.json", "gorunum": null, "etiket": "Bilmiyoruz" },
-    { "yol": "data/ibn-arabi/kuantum.json", "gorunum": null, "etiket": "Kuantum" },
     { "yol": "data/ibn-arabi/elestiri-arkeolojisi.json", "gorunum": null, "etiket": "Eleştiri Arkeolojisi" },
     { "yol": "data/ibn-arabi/acik-sorular.json", "gorunum": null, "etiket": "Açık Sorular" },
 
@@ -25,13 +24,14 @@
     { "yol": "data/ibn-arabi/esma-fca.json", "gorunum": null, "etiket": "Esmâ örgüsü" },
     { "yol": "data/ibn-arabi/ceviri-kaybi.json", "gorunum": null, "etiket": "Çeviri Kaybı" },
     { "yol": "data/ibn-arabi/sirlar-sorular.json", "gorunum": null, "etiket": "Sırlar–Sorular" },
+    { "yol": "data/ibn-arabi/vahdet-elestiri-kopru.json", "gorunum": null, "etiket": "Vahdet–Eleştiri Arkeolojisi" },
     { "yol": "data/ibn-arabi/seyahat-atlasi.json", "gorunum": null, "etiket": "Seyahat Atlası" },
     { "yol": "data/ibn-arabi/hocalar.json", "gorunum": null, "etiket": "Hocalar" },
     { "yol": "data/ibn-arabi/eser-agi.json", "gorunum": null, "etiket": "Eser Ağı" },
     { "yol": "data/ibn-arabi/anlamsal-baglantilar.json", "gorunum": null, "etiket": "Anlamsal Bağlantılar" },
     { "yol": "data/ibn-arabi/hadis-dizini.json", "gorunum": null, "etiket": "Hadis Dizini" },
     { "yol": "data/ibn-arabi/sozluk-ipuclari.json", "gorunum": null, "etiket": "Sözlük İpuçları" },
-    { "yol": "data/ibn-arabi/futuhat-mimarisi.json", "gorunum": null, "etiket": "Fütûhât Mimarisi" }
+    { "yol": "data/ibn-arabi/okuma-yollari.json", "gorunum": null, "etiket": "Okuma Yolları" }
   ],
 
   "gorunumNotu": "`gorunum` yalnız duruş taraması için: bulgudan o görünüme atlamayı sağlıyor. null olan dosyalar için atlama yok -- bilmediğimiz görünüm adını UYDURMAK yerine boş bıraktık, bulgu yine listeleniyor, yalnız tıklayınca bir yere gitmiyor.",
@@ -45,7 +45,6 @@
   "kapsamDisi": {
     "data/ibn-arabi/futuhat-atlas.json": "yayına gitmiyor (9,7 MB yazım kaynağı); tarayıcı okuyamaz -- karşılığı futuhat-parts/ olarak taranıyor",
     "data/ibn-arabi/futuhat-atlas-index.json": "türetilmiş: özet/başlık alanları atlas'tan kopyalanıyor, aynı metni iki kez bildirmiş oluruz",
-    "data/ibn-arabi/futuhat-bab-eslesme.json": "türetilmiş (scripts/futuhat-bab-eslesme.py)",
     "data/ibn-arabi/futuhat-sifir-eslesme.json": "türetilmiş: başlık/konu alanları atlas-index'ten kopyalanıyor, aynı metni iki kez bildirmiş oluruz",
     "data/ibn-arabi/kavram-hayati.json": "türetilmiş (scripts/kavram-hayati-uret.py)",
     "data/ibn-arabi/capraz-baglanti-indeksi.json": "türetilmiş (scripts/capraz-indeks-uret.py)",

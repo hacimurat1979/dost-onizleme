@@ -39,7 +39,7 @@ window.__acikSorularApp = (function () {
   const DURUM_VAR = {
     acik: "--series-kemal",
     kismen: "--series-theme",
-    kaynak_tukendi: "--muted",
+    kaynak_tukendi: "--text-muted",
   };
 
   let data = null;
@@ -129,7 +129,7 @@ window.__acikSorularApp = (function () {
     sel.append("path")
       .attr("class", (d) => "acik-soru__yay acik-soru__yay--" + d.durum)
       .attr("d", (d) => yayYolu(R, BOSLUK[d.durum] || 90))
-      .attr("stroke", (d) => GU.getVar(DURUM_VAR[d.durum] || "--muted"));
+      .attr("stroke", (d) => GU.getVar(DURUM_VAR[d.durum] || "--text-muted"));
 
     // Kayıt çentikleri: hover'dan ÖNCE de görünüyorlar (sönük), çünkü
     // "kanıt var ama soru kapanmıyor" bilgisi ilk bakışta okunmalı.
@@ -140,7 +140,7 @@ window.__acikSorularApp = (function () {
         .join("circle")
         .attr("class", "acik-soru__centik")
         .attr("cx", (p) => p.x).attr("cy", (p) => p.y).attr("r", 1.9)
-        .attr("fill", GU.getVar(DURUM_VAR[d.durum] || "--muted"))
+        .attr("fill", GU.getVar(DURUM_VAR[d.durum] || "--text-muted"))
         .style("transition-delay", (p) => (reduceMotion ? "0ms" : (p.i * 45) + "ms"));
     });
 
@@ -189,19 +189,35 @@ window.__acikSorularApp = (function () {
     const kanit = adet
       ? tt({ tr: adet + " kayıtta iz", en: "traces in " + adet + " records", pt: "vestígios em " + adet + " registos" })
       : tt({ tr: "kaydımızda iz yok", en: "no trace in our record", pt: "sem vestígio no nosso registo" });
+    // Numara (#144 gibi) tek başına anlaşılmıyor -- 19 soru varken 144
+    // görmek okuyucuyu şaşırtır. "kayıt no" etiketi bunun bir sıra değil,
+    // okuma kaydımızdaki yer olduğunu ilk bakışta açıklıyor (bkz. data.not).
+    const kayitNo = tt({ tr: "kayıt no " + d.no, en: "log #" + d.no, pt: "registo nº " + d.no });
     tooltip.innerHTML =
       `<strong>${tt(d.soru)}</strong>` +
-      `<span class="node-hover-tip__meta">${tt(durum)} · ${kanit}</span>`;
+      `<span class="node-hover-tip__meta">${kayitNo} · ${tt(durum)} · ${kanit}</span>`;
     tooltip.hidden = false;
     GU.moveTooltip(tooltip, wrapEl, ev);
   }
 
   function baglarHtml(d) {
     if (!d.baglar || !d.baglar.length) return "";
+    // 2026-08-06 denetiminde bulundu: bu satır bir `<a href="#/view/id">`
+    // idi -- site hash tabanlı değil History API tabanlı yönlendirme
+    // kullanıyor (bkz. ontology.js updateHash), o yüzden bu href hiçbir
+    // yere gitmiyordu, 18 bağın hepsi sessizce ölüydü. data-view/data-id +
+    // goTo() sitedeki her yerde kullanılan gerçek desen.
     const rows = d.baglar.map((b) =>
-      `<a class="acik-soru__bag" href="#/${b.view}/${b.id}">${b.id.replace(/-/g, " ")}</a>`).join("");
+      `<button type="button" class="acik-soru__bag" data-view="${b.view}" data-id="${b.id}">${b.id.replace(/-/g, " ")}</button>`).join("");
     return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Nereye dokunuyor", en: "What it touches", pt: "O que toca" })}</p>
             <div class="acik-soru__baglar">${rows}</div>`;
+  }
+  function wireBaglar() {
+    detailContent.querySelectorAll(".acik-soru__bag").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id);
+      });
+    });
   }
 
   function panelGoster(d) {
@@ -230,6 +246,7 @@ window.__acikSorularApp = (function () {
       <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Kapanması için ne gerekir", en: "What would close it", pt: "O que a fecharia" })}</p>
       <div class="detail-block detail-block--soru"><p>${tt(d.ne_gerekir)}</p></div>
       ${baglarHtml(d)}`;
+    wireBaglar();
     detailPanel.hidden = false;
     vurgula(d.id, true);
   }
@@ -289,17 +306,20 @@ window.__acikSorularApp = (function () {
       if (focusId) { girisPaneli(); return true; }
       return false;
     });
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", GU.debounceResize(() => {
       if (!yuklendi || wrapEl.hidden) return;
       yerlestir(); ciz();
-    });
+    }));
   }
 
   return {
     activate() {
+      // 2026-08-06 kullanıcı bulgusu: girisPaneli() burada çağrılıp panel
+      // her açılışta otomatik gösteriliyordu -- artık yalnız bir soru
+      // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
       yukle().then(() => {
-        yerlestir(); ciz(); girisPaneli();
+        yerlestir(); ciz();
       }).catch(() => {
         const st = document.getElementById("acik-sorular-wrap-status");
         if (st) {
@@ -314,8 +334,8 @@ window.__acikSorularApp = (function () {
       ciz();
       if (focusId) {
         const d = nodes.find((x) => x.id === focusId);
-        if (d) panelGoster(d); else girisPaneli();
-      } else girisPaneli();
+        if (d) panelGoster(d); else if (!detailPanel.hidden) girisPaneli();
+      } else if (!detailPanel.hidden) girisPaneli();
     },
     goToNode(id) {
       this.activate();

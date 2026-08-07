@@ -39,7 +39,7 @@ window.__bilmiyoruzApp = (function () {
   const DURUM_VAR = {
     tartismali: "--series-kemal",
     belirsiz: "--series-theme",
-    bizim_sinirimiz: "--muted",
+    bizim_sinirimiz: "--text-muted",
   };
 
   let data = null;
@@ -65,8 +65,12 @@ window.__bilmiyoruzApp = (function () {
 
   function yerlestir() {
     const { w, h } = boyut();
-    const R = Math.min(w, h) * 0.36;
     const n = nodes.length;
+    // acik-sorular.js'in aynı sabit yarıçapı burada (bugün 4 madde) dört
+    // düğümü sahnenin uçlarına fırlatıp ortayı boş bırakıyordu -- az
+    // sayıda madde varken halka küçülüyor, ki az madde de bir "küme" gibi
+    // okunsun, dağınık bir haç gibi değil. n>=10'da davranış değişmiyor.
+    const R = Math.min(w, h) * 0.36 * Math.min(1, Math.max(0.5, n / 10));
     nodes.forEach((d, i) => {
       const a = (-Math.PI / 2) + (i / n) * Math.PI * 2;
       d.x = Math.cos(a) * R;
@@ -108,7 +112,7 @@ window.__bilmiyoruzApp = (function () {
     sel.append("path")
       .attr("class", (d) => "bilmiyoruz-madde__yay bilmiyoruz-madde__yay--" + d.durum)
       .attr("d", (d) => yayYolu(R, BOSLUK[d.durum] || 90))
-      .attr("stroke", (d) => GU.getVar(DURUM_VAR[d.durum] || "--muted"));
+      .attr("stroke", (d) => GU.getVar(DURUM_VAR[d.durum] || "--text-muted"));
 
     sel.append("text").attr("class", "bilmiyoruz-madde__ikon")
       .attr("text-anchor", "middle").attr("dy", "0.35em").text("?");
@@ -167,12 +171,37 @@ window.__bilmiyoruzApp = (function () {
             <ul class="bilmiyoruz-madde__kaynaklar">${rows}</ul>`;
   }
 
+  // docs/icerik-uretim-plani.md Bölüm G / ADIM 5'in önerdiği "taraflar"
+  // fikri mevcut sayfaya EKLENDİ (2026-08-06, kullanıcı kararı) -- ayrı bir
+  // şemaya geçmek yerine. "kaynaklar" bir isim listesiyken, "taraflar" o
+  // isimlerden her birinin NE dediğini ayrı ayrı yapılandırıyor.
+  function taraflarHtml(d) {
+    if (!d.taraflar || !d.taraflar.length) return "";
+    const rows = d.taraflar.map((t) =>
+      `<div class="bilmiyoruz-madde__taraf">
+         <p class="bilmiyoruz-madde__taraf-kim">${t.kim}</p>
+         <p class="bilmiyoruz-madde__taraf-ne">${tt(t.ne_diyor)}</p>
+       </div>`).join("");
+    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Taraflar", en: "Positions", pt: "Posições" })}</p>
+            <div class="bilmiyoruz-madde__taraflar">${rows}</div>`;
+  }
+
   function baglarHtml(d) {
     if (!d.baglar || !d.baglar.length) return "";
+    // 2026-08-06 denetiminde bulundu: acik-sorular.js'teki aynı hatanın
+    // kopyası -- `<a href="#/view/id">` site hash tabanlı değil History
+    // API tabanlı yönlendirme kullandığı için hiçbir yere gitmiyordu.
     const rows = d.baglar.map((b) =>
-      `<a class="acik-soru__bag" href="#/${b.view}/${b.id}">${b.id.replace(/-/g, " ")}</a>`).join("");
+      `<button type="button" class="acik-soru__bag" data-view="${b.view}" data-id="${b.id}">${b.id.replace(/-/g, " ")}</button>`).join("");
     return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Nereye dokunuyor", en: "What it touches", pt: "O que toca" })}</p>
             <div class="acik-soru__baglar">${rows}</div>`;
+  }
+  function wireBaglar() {
+    detailContent.querySelectorAll(".acik-soru__bag").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id);
+      });
+    });
   }
 
   function panelGoster(d) {
@@ -184,8 +213,10 @@ window.__bilmiyoruzApp = (function () {
         <span class="bilmiyoruz-madde__durum bilmiyoruz-madde__durum--${d.durum}">${tt(durum)}</span></p>
       <h2 class="detail-title">${tt(d.baslik)}</h2>
       <div class="detail-block detail-block--soru"><p>${tt(d.aciklama)}</p></div>
+      ${taraflarHtml(d)}
       ${kaynaklarHtml(d)}
       ${baglarHtml(d)}`;
+    wireBaglar();
     detailPanel.hidden = false;
     vurgula(d.id, true);
   }
@@ -245,17 +276,20 @@ window.__bilmiyoruzApp = (function () {
       if (focusId) { girisPaneli(); return true; }
       return false;
     });
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", GU.debounceResize(() => {
       if (!yuklendi || wrapEl.hidden) return;
       yerlestir(); ciz();
-    });
+    }));
   }
 
   return {
     activate() {
+      // 2026-08-06 kullanıcı bulgusu: girisPaneli() burada çağrılıp panel
+      // her açılışta otomatik gösteriliyordu -- artık yalnız bir madde
+      // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
       yukle().then(() => {
-        yerlestir(); ciz(); girisPaneli();
+        yerlestir(); ciz();
       }).catch(() => {
         const st = document.getElementById("bilmiyoruz-wrap-status");
         if (st) {
@@ -270,8 +304,8 @@ window.__bilmiyoruzApp = (function () {
       ciz();
       if (focusId) {
         const d = nodes.find((x) => x.id === focusId);
-        if (d) panelGoster(d); else girisPaneli();
-      } else girisPaneli();
+        if (d) panelGoster(d); else if (!detailPanel.hidden) girisPaneli();
+      } else if (!detailPanel.hidden) girisPaneli();
     },
     goToNode(id) {
       this.activate();

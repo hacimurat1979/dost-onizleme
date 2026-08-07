@@ -1231,7 +1231,7 @@
       return false;
     });
 
-    window.addEventListener("resize", () => { if (built && !wrapEl.hidden) { onResize(); } });
+    window.addEventListener("resize", GU.debounceResize(() => { if (built && !wrapEl.hidden) { onResize(); } }));
   }
 
   function onResize() {
@@ -1263,8 +1263,16 @@
     return getVar("--series-esma-neutral");
   }
 
-  function edgeRow(nameDict, arrow, note) {
-    return `<div class="detail-block detail-block--edge"><h3>${arrow} ${tt(nameDict)}</h3>${note ? `<p>${note}</p>` : ""}</div>`;
+  // id verilirse (aynı görünüm içindeki bir esma düğümüne işaret ediyorsa)
+  // kart çapraz-link olur -- document'a bağlı genel `a.cross-link` tıklama
+  // dinleyicisi (bkz. ontology.js) href'e bakmadan data-view/data-id'yi
+  // okuyup goTo() çağırıyor, burada ayrı bir tıklama bağlama gerekmiyor.
+  // 2026-08-06 kullanıcı bulgusu: bu kartlar tıklanamıyordu.
+  function edgeRow(nameDict, arrow, note, id) {
+    const inner = `<h3>${arrow} ${tt(nameDict)}</h3>${note ? `<p>${note}</p>` : ""}`;
+    if (!id) return `<div class="detail-block detail-block--edge">${inner}</div>`;
+    const href = window.__dostNav ? window.__dostNav.href("esma", id) : "#";
+    return `<a class="detail-block detail-block--edge cross-link" href="${href}" data-view="esma" data-id="${id}">${inner}</a>`;
   }
 
   function relatedNamesHtml(sceneNode) {
@@ -1274,16 +1282,16 @@
     // Üst (çizilen ebeveyn: küme ya da Allah ya da gerçek ebeveyn)
     if (sceneNode.parentId) {
       const par = byId.get(sceneNode.parentId);
-      if (par) rows.push(edgeRow(par.raw.name, "↑", tt(par.raw.short)));
+      if (par) rows.push(edgeRow(par.raw.name, "↑", tt(par.raw.short), sceneNode.parentId));
     }
     // Alt (çocuklar)
-    sceneNode.childIds.forEach((cid) => { const c = byId.get(cid); if (c) rows.push(edgeRow(c.raw.name, "↓", tt(c.raw.short))); });
+    sceneNode.childIds.forEach((cid) => { const c = byId.get(cid); if (c) rows.push(edgeRow(c.raw.name, "↓", tt(c.raw.short), cid)); });
     // Tamamlayıcı isimler (çapraz ilişkiler)
     relations.forEach((r) => {
       if (r.from === raw.id || r.to === raw.id) {
         const otherId = r.from === raw.id ? r.to : r.from;
         const o = rawById.get(otherId);
-        if (o) rows.push(edgeRow(o.name, "↔", tt(r.label)));
+        if (o) rows.push(edgeRow(o.name, "↔", tt(r.label), otherId));
       }
     });
     if (!rows.length) return "";
@@ -1337,7 +1345,7 @@
       ${analogyHtml(raw.analogy)}
       ${insightsHtml(raw.insights, raw.sources, "zat")}
       <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "İlişkiler", en: "Relations", pt: "Relações" })}</p>
-      ${edgeRow(allah.name, "↓", tt(allah.short))}
+      ${edgeRow(allah.name, "↓", tt(allah.short), "allah")}
     `);
   }
 

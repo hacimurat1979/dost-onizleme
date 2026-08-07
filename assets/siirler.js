@@ -239,6 +239,12 @@
   // is added only once via a guard flag on the element). Kept here (rather
   // than split per-tab) because it already owned the DOM wiring before the
   // third tab existed -- three tabs still doesn't justify a dedicated module.
+  // switchTo, wireTabs()'in yerel bir kapanışı -- her "hakkında" aktivasyonunda
+  // yeniden atanır. Modül dışından (elestiri-arkeolojisi.js'in vahdet köprüsü
+  // gibi) çağrılabilmesi için son atanan sürüm burada tutulur (bkz. altta
+  // window.__siirlerApp.switchTo).
+  let switchToTab = null;
+
   function wireTabs() {
     const tabs = {
       hakkinda: { btn: document.getElementById("hakkinda-subtab-hakkinda"), panel: document.getElementById("hakkinda-content-panel") },
@@ -258,6 +264,7 @@
       if (which === "siirler" && !initialized) activate();
       if (which === "vahdet") window.__vahdetApp && window.__vahdetApp.activate();
     }
+    switchToTab = switchTo;
 
     if (!tabs.hakkinda.btn.dataset.wired) {
       keys.forEach((k) => tabs[k].btn.addEventListener("click", () => switchTo(k)));
@@ -265,5 +272,8 @@
     }
   }
 
-  window.__siirlerApp = { activate, onLangChange, wireTabs };
+  window.__siirlerApp = {
+    activate, onLangChange, wireTabs,
+    switchTo(which) { switchToTab && switchToTab(which); },
+  };
 })();

@@ -751,7 +751,7 @@
     // createDragBehavior sim'i ısıtır; sürükleme sırasında rAF sürsün
     svgNode.addEventListener("pointerdown", () => { dragging = true; ensureFrame(); });
     window.addEventListener("pointerup", () => { dragging = false; });
-    window.addEventListener("resize", () => { if (built && !wrapEl.hidden) onResize(); });
+    window.addEventListener("resize", GU.debounceResize(() => { if (built && !wrapEl.hidden) onResize(); }));
   }
 
   function onResize() {

@@ -260,13 +260,11 @@
     else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
     else if (currentMainView === "aciksorular") window.__acikSorularApp && window.__acikSorularApp.onLangChange();
     else if (currentMainView === "bilmiyoruz") window.__bilmiyoruzApp && window.__bilmiyoruzApp.onLangChange();
-    else if (currentMainView === "kuantum") window.__kuantumApp && window.__kuantumApp.onLangChange();
     else if (currentMainView === "elestiriArkeolojisi") window.__elestiriArkeolojisiApp && window.__elestiriArkeolojisiApp.onLangChange();
     else if (currentMainView === "hocalar") window.__hocalarApp && window.__hocalarApp.onLangChange();
     else if (currentMainView === "eserAgi") window.__eserAgiApp && window.__eserAgiApp.onLangChange();
     else if (currentMainView === "seyahatAtlasi") window.__seyahatAtlasiApp && window.__seyahatAtlasiApp.onLangChange();
     else if (currentMainView === "kuranDokusu") window.__kuranDokusuApp && window.__kuranDokusuApp.onLangChange();
-    else if (currentMainView === "futuhatMimarisi") window.__futuhatMimarisiApp && window.__futuhatMimarisiApp.onLangChange();
     else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
     else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
@@ -383,6 +381,28 @@
     });
   }
 
+  // Sayfa başına dönme kısayolu (2026-08-06 kullanıcı bulgusu): /hakkinda
+  // uzun bir sayfa, başa dönmek için çokça kaydırma gerekiyordu. Düğme
+  // hakkindaWrap'ın İÇİNDE yaşıyor -- görünüm değişince section'ın kendi
+  // `hidden`'ı düğmeyi de otomatik gizliyor, ayrı bir görünüm-kontrolüne
+  // gerek yok.
+  let hakkindaScrollTopWired = false;
+  function wireHakkindaScrollTop() {
+    const btn = document.getElementById("hakkinda-scroll-top");
+    if (!btn || hakkindaScrollTopWired) return;
+    hakkindaScrollTopWired = true;
+    btn.hidden = false;
+    const onScroll = () => {
+      if (hakkindaWrap.hidden) return;
+      btn.classList.toggle("is-visible", window.scrollY > 480);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+    onScroll();
+  }
+
   function loadOntologyData() {
     if (window.DostViewStatus) window.DostViewStatus.showLoading("ontology-wrap");
     window.DostGraphUtils.fetchJson("data/ibn-arabi/ontology.json")
@@ -484,13 +504,11 @@
   const sorularBtn = document.getElementById("sorular-btn");
   const acikSorularBtn = document.getElementById("acik-sorular-btn");
   const bilmiyoruzBtn = document.getElementById("bilmiyoruz-btn");
-  const kuantumBtn = document.getElementById("kuantum-btn");
   const elestiriArkeolojisiBtn = document.getElementById("elestiri-arkeolojisi-btn");
   const hocalarBtn = document.getElementById("hocalar-btn");
   const eserAgiBtn = document.getElementById("eser-agi-btn");
   const seyahatAtlasiBtn = document.getElementById("seyahat-atlasi-btn");
   const kuranDokusuBtn = document.getElementById("kuran-dokusu-btn");
-  const futuhatMimarisiBtn = document.getElementById("futuhat-mimarisi-btn");
   const menzillerBtn = document.getElementById("menziller-btn");
   const tasiyicilarBtn = document.getElementById("tasiyicilar-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
@@ -508,13 +526,11 @@
   const sorularWrap = document.getElementById("sorular-wrap");
   const acikSorularWrap = document.getElementById("acik-sorular-wrap");
   const bilmiyoruzWrap = document.getElementById("bilmiyoruz-wrap");
-  const kuantumWrap = document.getElementById("kuantum-wrap");
   const elestiriArkeolojisiWrap = document.getElementById("elestiri-arkeolojisi-wrap");
   const hocalarWrap = document.getElementById("hocalar-wrap");
   const eserAgiWrap = document.getElementById("eser-agi-wrap");
   const seyahatAtlasiWrap = document.getElementById("seyahat-atlasi-wrap");
   const kuranDokusuWrap = document.getElementById("kuran-dokusu-wrap");
-  const futuhatMimarisiWrap = document.getElementById("futuhat-mimarisi-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
   const tasiyicilarWrap = document.getElementById("tasiyicilar-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
@@ -583,13 +599,11 @@
     markActiveNavButton(sorularBtn, view === "sorular");
     markActiveNavButton(acikSorularBtn, view === "aciksorular");
     markActiveNavButton(bilmiyoruzBtn, view === "bilmiyoruz");
-    markActiveNavButton(kuantumBtn, view === "kuantum");
     markActiveNavButton(elestiriArkeolojisiBtn, view === "elestiriArkeolojisi");
     markActiveNavButton(hocalarBtn, view === "hocalar");
     markActiveNavButton(eserAgiBtn, view === "eserAgi");
     markActiveNavButton(seyahatAtlasiBtn, view === "seyahatAtlasi");
     markActiveNavButton(kuranDokusuBtn, view === "kuranDokusu");
-    markActiveNavButton(futuhatMimarisiBtn, view === "futuhatMimarisi");
     markActiveNavButton(menzillerBtn, view === "menziller");
     markActiveNavButton(tasiyicilarBtn, view === "tasiyicilar");
     markActiveNavButton(futuhatBtn, view === "futuhat");
@@ -607,13 +621,11 @@
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
     if (acikSorularWrap) acikSorularWrap.hidden = view !== "aciksorular";
     if (bilmiyoruzWrap) bilmiyoruzWrap.hidden = view !== "bilmiyoruz";
-    if (kuantumWrap) kuantumWrap.hidden = view !== "kuantum";
     if (elestiriArkeolojisiWrap) elestiriArkeolojisiWrap.hidden = view !== "elestiriArkeolojisi";
     if (hocalarWrap) hocalarWrap.hidden = view !== "hocalar";
     if (eserAgiWrap) eserAgiWrap.hidden = view !== "eserAgi";
     if (seyahatAtlasiWrap) seyahatAtlasiWrap.hidden = view !== "seyahatAtlasi";
     if (kuranDokusuWrap) kuranDokusuWrap.hidden = view !== "kuranDokusu";
-    if (futuhatMimarisiWrap) futuhatMimarisiWrap.hidden = view !== "futuhatMimarisi";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (tasiyicilarWrap) tasiyicilarWrap.hidden = view !== "tasiyicilar";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
@@ -625,6 +637,7 @@
     if (view === "sahneler") wireSahnelerKartHref();
     if (view === "hakkinda") {
       wireHakkindaDiagrams();
+      wireHakkindaScrollTop();
       window.__siirlerApp && window.__siirlerApp.wireTabs();
     }
     currentDetailNode = null;
@@ -655,9 +668,6 @@
     } else if (view === "bilmiyoruz") {
       currentDetailView = null;
       window.__bilmiyoruzApp && window.__bilmiyoruzApp.activate();
-    } else if (view === "kuantum") {
-      currentDetailView = null;
-      window.__kuantumApp && window.__kuantumApp.activate();
     } else if (view === "elestiriArkeolojisi") {
       currentDetailView = null;
       window.__elestiriArkeolojisiApp && window.__elestiriArkeolojisiApp.activate();
@@ -673,9 +683,6 @@
     } else if (view === "kuranDokusu") {
       currentDetailView = null;
       window.__kuranDokusuApp && window.__kuranDokusuApp.activate();
-    } else if (view === "futuhatMimarisi") {
-      currentDetailView = null;
-      window.__futuhatMimarisiApp && window.__futuhatMimarisiApp.activate();
     } else if (view === "menziller") {
       currentDetailView = "menziller";
       window.__menzillerApp && window.__menzillerApp.activate();
@@ -711,13 +718,11 @@
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
   if (acikSorularBtn) acikSorularBtn.addEventListener("click", () => { setMainView("aciksorular"); updateHash("acik-sorular"); });
   if (bilmiyoruzBtn) bilmiyoruzBtn.addEventListener("click", () => { setMainView("bilmiyoruz"); updateHash("bilmiyoruz"); });
-  if (kuantumBtn) kuantumBtn.addEventListener("click", () => { setMainView("kuantum"); updateHash("kuantum"); });
   if (elestiriArkeolojisiBtn) elestiriArkeolojisiBtn.addEventListener("click", () => { setMainView("elestiriArkeolojisi"); updateHash("elestiri-arkeolojisi"); });
   if (hocalarBtn) hocalarBtn.addEventListener("click", () => { setMainView("hocalar"); updateHash("hocalar"); });
   if (eserAgiBtn) eserAgiBtn.addEventListener("click", () => { setMainView("eserAgi"); updateHash("eser-agi"); });
   if (seyahatAtlasiBtn) seyahatAtlasiBtn.addEventListener("click", () => { setMainView("seyahatAtlasi"); updateHash("seyahat-atlasi"); });
   if (kuranDokusuBtn) kuranDokusuBtn.addEventListener("click", () => { setMainView("kuranDokusu"); updateHash("kuran-dokusu"); });
-  if (futuhatMimarisiBtn) futuhatMimarisiBtn.addEventListener("click", () => { setMainView("futuhatMimarisi"); updateHash("futuhat-mimarisi"); });
   if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
   if (tasiyicilarBtn) tasiyicilarBtn.addEventListener("click", () => { setMainView("tasiyicilar"); updateHash("tasiyicilar"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
@@ -828,14 +833,6 @@
         pt: "Itens que o site declara abertamente desconhecidos ou contestados — da história do manuscrito à herança de uma leitura, da classificação das obras às analogias modernas.",
       },
     },
-    kuantum: {
-      title: { tr: "Kuantum Meselesi", en: "The Quantum Question", pt: "A Questão Quântica" },
-      desc: {
-        tr: "İbn Arabî ile kuantum fiziği benzetmelerinin üç sütunlu, dürüst bir değerlendirmesi: iddia, ne kadar dayandığı, ve kimin ne dediği.",
-        en: "A three-column, honest assessment of analogies drawn between Ibn al-'Arabi and quantum physics: the claim, how much it holds up, and who says what.",
-        pt: "Uma avaliação honesta, em três colunas, das analogias entre Ibn al-'Arabi e a física quântica: a afirmação, o quanto se sustenta, e quem diz o quê.",
-      },
-    },
     "elestiri-arkeolojisi": {
       title: { tr: "Eleştiri Arkeolojisi", en: "Archaeology of Criticism", pt: "Arqueologia da Crítica" },
       desc: {
@@ -853,11 +850,11 @@
       },
     },
     "eser-agi": {
-      title: { tr: "Eser Ağı", en: "The Works Spiral", pt: "A Espiral das Obras" },
+      title: { tr: "Eser Ağı", en: "The Works Timeline", pt: "A Linha do Tempo das Obras" },
       desc: {
-        tr: "Eserlerinin kronolojik sarmalı — merkezde ilk eser, dışa doğru zaman; kenarlar aynı şehirde art arda yazılan eserleri bağlıyor.",
-        en: "A chronological spiral of his works — the earliest at the center, time unwinding outward; connections link works written in the same city back to back.",
-        pt: "Uma espiral cronológica das suas obras — a mais antiga no centro, o tempo desenrolando-se para fora; as ligações unem obras escritas na mesma cidade em sequência.",
+        tr: "Eserlerinin kronolojik zaman çizelgesi — en erken eser üstte, aşağıya doğru zaman; kenarlar aynı şehirde art arda yazılan eserleri bağlıyor.",
+        en: "A chronological timeline of his works — the earliest at the top, time moving downward; connections link works written in the same city back to back.",
+        pt: "Uma linha do tempo cronológica das suas obras — a mais antiga no topo, o tempo avançando para baixo; as ligações unem obras escritas na mesma cidade em sequência.",
       },
     },
     "seyahat-atlasi": {
@@ -874,14 +871,6 @@
         tr: "Fütûhât ve Füsûs özetlerimizde işaretlediğimiz âyet atıflarının sûre↔bap grafı — kısmi bir iz, tam bir tarama değil.",
         en: "A sûrah↔chapter graph of the verse citations we've marked in our Futûhât and Fusûs summaries — a partial trace, not a full scan.",
         pt: "Um grafo surata↔capítulo das citações de versículos que marcámos nos nossos resumos das Futûhât e Fusûs — um traço parcial, não uma varredura completa.",
-      },
-    },
-    "futuhat-mimarisi": {
-      title: { tr: "Fütûhât'ın Mimarisi", en: "The Futûhât's Architecture", pt: "A Arquitetura das Futûhât" },
-      desc: {
-        tr: "Kitabın 560 babının altı büyük fasıla bölünüşü — bir sözlük değil, bir seyir planı.",
-        en: "The book's 560 chapters divided into six major sections — not a dictionary, a journey's plan.",
-        pt: "Os 560 capítulos do livro divididos em seis grandes seções — não um dicionário, um plano de jornada.",
       },
     },
     sorular: {
@@ -1052,8 +1041,11 @@
         if (!d || currentMainView !== "sirlar") return;
         const bekleyen = pendingSirlarId;
         pendingSirlarId = null;
+        // 2026-08-06 kullanıcı bulgusu: id yoksa (yalnız nav'dan açılış)
+        // showSirlarOverview() paneli otomatik açıyordu -- artık yalnız
+        // bir kayıt seçildiğinde açılıyor (bkz. hocalar.js'teki aynı
+        // düzeltme).
         if (bekleyen) showSirlarEntry(bekleyen);
-        else showSirlarOverview();
       });
       return;
     }
@@ -1084,11 +1076,6 @@
     if (id) window.__bilmiyoruzApp && window.__bilmiyoruzApp.goToNode(id);
   }
 
-  function goToKuantum(id) {
-    setMainView("kuantum");
-    if (id) window.__kuantumApp && window.__kuantumApp.goToNode(id);
-  }
-
   function goToElestiriArkeolojisi(id) {
     setMainView("elestiriArkeolojisi");
     if (id) window.__elestiriArkeolojisiApp && window.__elestiriArkeolojisiApp.goToNode(id);
@@ -1112,11 +1099,6 @@
   function goToKuranDokusu(id) {
     setMainView("kuranDokusu");
     if (id) window.__kuranDokusuApp && window.__kuranDokusuApp.goToNode(id);
-  }
-
-  function goToFutuhatMimarisi(id) {
-    setMainView("futuhatMimarisi");
-    if (id) window.__futuhatMimarisiApp && window.__futuhatMimarisiApp.goToNode(id);
   }
 
   // Taşıyanlar tek bir şemadan ibaret; derin bağlantı için ayrı bir id'si
@@ -1146,8 +1128,12 @@
     if (id) window.__fususApp && window.__fususApp.activate(id);
   }
 
-  function goToHakkinda() {
+  function goToHakkinda(sub) {
     setMainView("hakkinda");
+    // "hakkinda"nın kendi id'si yok (view içi üç alt-sekme var); goTo'nun
+    // ikinci argümanı köprü bağlantılarının (2026-08-06, vahdet-elestiri
+    // köprüsü) hangi alt-sekmeye açılacağını taşıması için kullanılıyor.
+    if (sub) window.__siirlerApp && window.__siirlerApp.switchTo(sub);
   }
 
   // Sahneler galerisi (2026-08-05): kartların href'i statik HTML'de YAZILMIYOR
@@ -1177,7 +1163,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|kuantum|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|kuran-dokusu|futuhat-mimarisi|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis|sahneler)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|kuran-dokusu|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis|sahneler)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -1197,18 +1183,16 @@
     else if (view === "sorular") goToSorular(id);
     else if (view === "acik-sorular") goToAcikSorular(id);
     else if (view === "bilmiyoruz") goToBilmiyoruz(id);
-    else if (view === "kuantum") goToKuantum(id);
     else if (view === "elestiri-arkeolojisi") goToElestiriArkeolojisi(id);
     else if (view === "hocalar") goToHocalar(id);
     else if (view === "eser-agi") goToEserAgi(id);
     else if (view === "seyahat-atlasi") goToSeyahatAtlasi(id);
     else if (view === "kuran-dokusu") goToKuranDokusu(id);
-    else if (view === "futuhat-mimarisi") goToFutuhatMimarisi(id);
     else if (view === "menziller") goToMenziller(id);
     else if (view === "tasiyicilar") goToTasiyicilar();
     else if (view === "futuhat") goToFutuhat(id);
     else if (view === "fusus") goToFusus(id);
-    else if (view === "hakkinda") goToHakkinda();
+    else if (view === "hakkinda") goToHakkinda(id);
     else if (view === "kavram") goToKavram(id);
     else if (view === "ayethadis") goToAyetHadis();
     else if (view === "sahneler") goToSahneler();
@@ -1244,18 +1228,16 @@
       else if (view === "sorular") goToSorular(id);
     else if (view === "acik-sorular") goToAcikSorular(id);
       else if (view === "bilmiyoruz") goToBilmiyoruz(id);
-      else if (view === "kuantum") goToKuantum(id);
       else if (view === "elestiri-arkeolojisi") goToElestiriArkeolojisi(id);
       else if (view === "hocalar") goToHocalar(id);
       else if (view === "eser-agi") goToEserAgi(id);
       else if (view === "seyahat-atlasi") goToSeyahatAtlasi(id);
       else if (view === "kuran-dokusu") goToKuranDokusu(id);
-      else if (view === "futuhat-mimarisi") goToFutuhatMimarisi(id);
       else if (view === "menziller") goToMenziller(id);
       else if (view === "tasiyicilar") goToTasiyicilar();
       else if (view === "futuhat") goToFutuhat(id);
       else if (view === "fusus") goToFusus(id);
-      else if (view === "hakkinda") goToHakkinda();
+      else if (view === "hakkinda") goToHakkinda(id);
       else if (view === "kavram") goToKavram(id);
       else if (view === "ayethadis") goToAyetHadis();
       else if (view === "sahneler") goToSahneler();

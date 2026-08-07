@@ -1,11 +1,10 @@
 // Hocalar — İbnü'l-Arabî'nin Rûhu'l-kuds'ta andığı 55 hocadan son ikisi,
 // ikisi de kadın (docs/icerik-yol-haritasi.md D6).
 //
-// NEDEN BU BİÇİM. Kuantum'un liste-panel'iyle aynı iskelet ama farklı
-// yoğunluk taşıyor: orada üç kısa pozisyon vardı, burada iki uzun PORTRE --
-// her biri birden fazla doğrudan alıntı taşıyor (İbnü'l-Arabî'nin kendi
-// sözleri, Austin'in çevirisinden). Bu yüzden panel bir "durum" değil bir
-// "anlatı" gösteriyor; alıntılar sırayla, bağlamlarıyla birlikte.
+// NEDEN BU BİÇİM. Basit bir liste-panel iskeleti, ama iki uzun PORTRE
+// taşıyor -- her biri birden fazla doğrudan alıntı içeriyor (İbnü'l-Arabî'nin
+// kendi sözleri, Austin'in çevirisinden). Bu yüzden panel bir "durum" değil
+// bir "anlatı" gösteriyor; alıntılar sırayla, bağlamlarıyla birlikte.
 window.__hocalarApp = (function () {
   "use strict";
 
@@ -108,8 +107,14 @@ window.__hocalarApp = (function () {
 
   return {
     activate() {
+      // 2026-08-06 kullanıcı bulgusu: görünüm ilk açıldığında detay paneli
+      // otomatik açılıyordu (girisPaneli() burada çağrılıyordu) -- oysa
+      // ETKILESIM_DILI.md'nin "bağlanmamış düğme" ilkesinin tersi bir
+      // sorun bu: kullanıcı hiçbir şey seçmeden panel zaten açık geliyordu.
+      // Artık veri sessizce yükleniyor, panel yalnız bir kayıt seçildiğinde
+      // açılıyor.
       baglaBirKez();
-      yukle().then(() => { girisPaneli(); }).catch(() => {
+      yukle().catch(() => {
         const st = document.getElementById("hocalar-wrap-status");
         if (st) {
           st.hidden = false;
@@ -123,8 +128,8 @@ window.__hocalarApp = (function () {
       renderList();
       if (focusId) {
         const d = hocalar.find((x) => x.id === focusId);
-        if (d) panelGoster(d); else girisPaneli();
-      } else girisPaneli();
+        if (d) panelGoster(d); else if (!detailPanel.hidden) girisPaneli();
+      } else if (!detailPanel.hidden) girisPaneli();
     },
     goToNode(id) {
       this.activate();

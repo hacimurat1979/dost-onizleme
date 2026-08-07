@@ -13,6 +13,11 @@ window.__seyahatAtlasiApp = (function () {
 
   const I18n = window.DostI18n;
   const GU = window.DostGraphUtils;
+  // Duraklar gerçek enlem/boylamla yerleşiyor -- iki durak coğrafyada
+  // gerçekten yakınsa (Mekke/Tâif, İşbiliye/Mevrûr gibi) etiketleri
+  // üst üste biniyordu. Ortak motor (Hâller/Ontoloji/Sorular'da zaten
+  // kanıtlanmış) etiketleri ölçüp çakışanı aşağı kaydırıyor.
+  const deconflictLabels = GU.createLabelDeconflictor();
 
   const svg = d3.select("#seyahat-atlasi-graph");
   const svgNode = svg.node();
@@ -94,11 +99,22 @@ window.__seyahatAtlasiApp = (function () {
 
     durakSel.append("circle").attr("class", "seyahat-durak__vurus").attr("r", 16).attr("fill", "transparent");
     durakSel.append("circle").attr("class", "seyahat-durak__nokta").attr("r", 6);
-    durakSel.append("text").attr("class", "seyahat-durak__etiket")
+    const etiketSel = durakSel.append("text").attr("class", "seyahat-durak__etiket")
       .attr("text-anchor", (d) => (d.x > w * 0.7 ? "end" : "start"))
       .attr("x", (d) => (d.x > w * 0.7 ? -10 : 10))
       .attr("y", 4)
       .text((d) => tt(d.sehir));
+
+    // Coğrafyada yakın duraklar (Mekke/Tâif gibi) etiketleri çakıştırıyordu
+    // -- çakışan aşağı kaydırılıyor, dur noktalarının kendisi de birer
+    // engel sayılıyor ki etiket komşu bir noktanın TAM üstüne düşmesin.
+    const pendingLabels = [];
+    etiketSel.each(function (d) {
+      const offsetX = d.x > w * 0.7 ? -10 : 10;
+      pendingLabels.push({ lbl: d3.select(this), txt: tt(d.sehir), x: d.x + offsetX, y: d.y + 4, baseY: 4 });
+    });
+    const obstacles = duraklar.map((d) => ({ x: d.x, y: d.y, half: 7, h: 14 }));
+    deconflictLabels(pendingLabels, obstacles);
 
     durakSel.on("mouseenter", function (ev, d) { vurgula(d.id, true); ipucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
@@ -221,16 +237,19 @@ window.__seyahatAtlasiApp = (function () {
       if (focusId) { girisPaneli(); return true; }
       return false;
     });
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", GU.debounceResize(() => {
       if (!yuklendi || wrapEl.hidden) return;
       ciz();
-    });
+    }));
   }
 
   return {
     activate() {
+      // 2026-08-06 kullanıcı bulgusu: girisPaneli() burada çağrılıp panel
+      // her açılışta otomatik gösteriliyordu -- artık yalnız bir durak
+      // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
-      yukle().then(() => { girisPaneli(); }).catch(() => {
+      yukle().catch(() => {
         const st = document.getElementById("seyahat-atlasi-wrap-status");
         if (st) {
           st.hidden = false;
@@ -244,8 +263,8 @@ window.__seyahatAtlasiApp = (function () {
       ciz();
       if (focusId) {
         const d = durakById.get(focusId);
-        if (d) durakPaneli(d); else girisPaneli();
-      } else girisPaneli();
+        if (d) durakPaneli(d); else if (!detailPanel.hidden) girisPaneli();
+      } else if (!detailPanel.hidden) girisPaneli();
     },
     goToNode(id) {
       this.activate();

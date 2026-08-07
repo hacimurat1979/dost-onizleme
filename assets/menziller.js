@@ -535,7 +535,7 @@
     render(performance.now());
     fitView(false);
     ensureFrame();
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", GU.debounceResize(onResize));
   }
 
   function onResize() {

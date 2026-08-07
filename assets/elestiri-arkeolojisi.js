@@ -2,9 +2,9 @@
 // önce haritalıyoruz (docs/icerik-yol-haritasi.md D4). Omurga: Alexander D.
 // Knysh, "Ibn 'Arabi in the Later Islamic Tradition" (1999).
 //
-// NEDEN BU BİÇİM. Diğer yeni görünümlerden (Bilmiyoruz'un yay-halkası,
-// Kuantum'un liste-panel'i) FARKLI: burada asıl anlatılan şey bir "ne kadar
-// biliyoruz" ölçüsü değil, KİŞİLER ARASI BİR AĞ -- kim kimin öğrencisiydi,
+// NEDEN BU BİÇİM. Diğer yeni görünümlerden (Bilmiyoruz'un yay-halkası)
+// FARKLI: burada asıl anlatılan şey bir "ne kadar biliyoruz" ölçüsü değil,
+// KİŞİLER ARASI BİR AĞ -- kim kimin öğrencisiydi,
 // kim kime cevap yazdı, kim kimin himayesindeydi. GORSEL_DIL.md'nin "davranışı
 // resmet" kuralı burada şöyle okunuyor: eksen SÜSLİ bir düzen değil, gerçek
 // bir zaman çizelgesi (x = ölüm yılı) ve gerçek bir coğrafya (y = bölge) --
@@ -20,6 +20,12 @@ window.__elestiriArkeolojisiApp = (function () {
 
   const I18n = window.DostI18n;
   const GU = window.DostGraphUtils;
+  // yerlestir()'in satır ataması aynı banttaki DÜĞÜMLERİN üst üste
+  // binmesini önlüyor (ölüm yılına göre), ama ETİKETLERİN kendisi hâlâ
+  // çakışabiliyordu -- beş kişinin bir on yılda öldüğü Yemen bandında
+  // ölçüldü. Ortak motor (Hâller/Ontoloji/Sorular/Seyahat Atlası'nda
+  // zaten kanıtlanmış) burada da çakışan etiketi kaydırıyor.
+  const deconflictLabels = GU.createLabelDeconflictor();
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const svg = d3.select("#elestiri-arkeolojisi-graph");
@@ -36,7 +42,7 @@ window.__elestiriArkeolojisiApp = (function () {
   const ROL_VAR = {
     elestirmen: "--series-celal",
     savunmaci: "--series-cemal",
-    hakem: "--muted",
+    hakem: "--text-muted",
     "kaynak-tarihci": "--series-ibnarabi",
     kurban: "--series-celal",
     hukumdar: "--series-theme",
@@ -170,7 +176,7 @@ window.__elestiriArkeolojisiApp = (function () {
     sel.each(function (d) {
       const node = d3.select(this);
       const rol = birincilRol(d);
-      const renk = GU.getVar(ROL_VAR[rol] || "--muted");
+      const renk = GU.getVar(ROL_VAR[rol] || "--text-muted");
       if (rol === "kurban") {
         node.append("path").attr("class", "elestiri-kisi__sekil")
           .attr("d", `M0,${-R} L${R},0 L0,${R} L${-R},0 Z`).attr("fill", renk);
@@ -183,10 +189,21 @@ window.__elestiriArkeolojisiApp = (function () {
       }
     });
 
-    sel.append("text").attr("class", "elestiri-kisi__etiket")
+    const etiketSel = sel.append("text").attr("class", "elestiri-kisi__etiket")
       .attr("text-anchor", "middle")
       .attr("y", (d) => (d.y > d.laneY ? R + 14 : -(R + 8)))
       .text((d) => kisalt(tt(d.ad), 20));
+
+    // Satır ataması düğümleri ayırıyordu ama etiketler hâlâ çakışabiliyordu
+    // (bir on yılda ölen beşinci kişide ölçüldü, Yemen bandı) -- çakışan
+    // aşağı kaydırılıyor, düğümlerin kendisi birer engel sayılıyor.
+    const pendingLabels = [];
+    etiketSel.each(function (d) {
+      const baseY = d.y > d.laneY ? R + 14 : -(R + 8);
+      pendingLabels.push({ lbl: d3.select(this), txt: kisalt(tt(d.ad), 20), x: d.x, y: d.y + baseY, baseY });
+    });
+    const obstacles = kisiler.map((d) => ({ x: d.x, y: d.y, half: R, h: R * 2 }));
+    deconflictLabels(pendingLabels, obstacles);
 
     sel.on("mouseenter", function (ev, d) { vurgulaKisi(d.id, true); ipucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
@@ -283,6 +300,52 @@ window.__elestiriArkeolojisiApp = (function () {
     return `<p class="elestiri-kaynak-satiri">${kaynakRef.eser}${not}</p>`;
   }
 
+  // Vahdet-i Vücûd Eleştirileri köprüsü (2026-08-06) -- vahdet.js'teki aynı
+  // bağların ters yönü: bir kişinin Eleştiri Arkeolojisi dışında hangi
+  // vahdet-elestiri maddesinde de geçtiği. Bkz.
+  // data/ibn-arabi/vahdet-elestiri-kopru.json'un `not` alanı (bağlar ELLE
+  // kuruldu, gerekçesiyle).
+  let vahdetKopru = null;
+  const vahdetBaslik = new Map();
+  function vahdetKopruYukle() {
+    if (vahdetKopru) return Promise.resolve(vahdetKopru);
+    const base = window.__dostRouteBase || "";
+    const pre = base ? base + "/" : "";
+    return Promise.all([
+      GU.fetchJson(pre + "data/ibn-arabi/vahdet-elestiri-kopru.json"),
+      GU.fetchJson(pre + "data/ibn-arabi/vahdet-elestiri.json"),
+    ]).then(([k, ve]) => {
+      vahdetKopru = k;
+      (ve.maddeler || []).forEach((m) => vahdetBaslik.set(m.id, m.baslik));
+      return k;
+    }).catch(() => null);
+  }
+  function vahdetKopruHtml(kisiId) {
+    if (!vahdetKopru) return "";
+    const bag = (vahdetKopru.baglar || []).filter((b) => b.kisi === kisiId);
+    if (!bag.length) return "";
+    const satir = bag.map((b) => {
+      const baslik = vahdetBaslik.get(b.madde);
+      if (!baslik) return "";
+      return `<button class="elestiri-vahdet-baglar__satir" type="button">
+        <span class="elestiri-vahdet-baglar__baslik">${tt(baslik)}</span>
+        <span class="elestiri-vahdet-baglar__neden">${tt(b.neden)}</span></button>`;
+    }).join("");
+    if (!satir) return "";
+    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({
+      tr: "Vahdet-i Vücûd Eleştirileri'nde de geçiyor",
+      en: "Also appears in Wahdat al-Wujud Criticisms",
+      pt: "Também aparece nas Críticas ao Wahdat al-Wujud" })}</p>
+      <div class="elestiri-vahdet-baglar">${satir}</div>`;
+  }
+  function wireVahdetBaglar() {
+    detailContent.querySelectorAll(".elestiri-vahdet-baglar__satir").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        window.__dostNav && window.__dostNav.goTo("hakkinda", "vahdet");
+      });
+    });
+  }
+
   function iliskiliBaglarHtml(kisiId) {
     const ilgili = baglar.filter((b) => b.kaynak_id === kisiId || b.hedef_id === kisiId);
     if (!ilgili.length) return "";
@@ -309,10 +372,15 @@ window.__elestiriArkeolojisiApp = (function () {
       <p class="elestiri-kimlik">${tt(d.sehir)} — ö. ${d.olum.hicri ? d.olum.hicri + "/" : ""}${d.olum.miladi}${d.olum.kesin ? "" : " " + tt({ tr: "(kesin değil)", en: "(uncertain)", pt: "(incerto)" })}</p>
       <div class="detail-block detail-block--soru"><p>${tt(d.ozet)}</p></div>
       ${kaynakSatiri(d.kaynak)}
-      ${iliskiliBaglarHtml(d.id)}`;
+      ${iliskiliBaglarHtml(d.id)}
+      ${vahdetKopruHtml(d.id)}`;
     wireBagSatirlari();
+    wireVahdetBaglar();
     detailPanel.hidden = false;
     vurgulaKisi(d.id, true);
+    // Köprü verisi geç gelirse paneli tazele -- sirlar/sorular köprüsüyle
+    // aynı desen (bkz. o dosyadaki yorum).
+    if (!vahdetKopru) vahdetKopruYukle().then((k) => { if (k && focusId === d.id) kisiPaneli(d); });
   }
 
   function kenarPaneli(b) {
@@ -380,16 +448,19 @@ window.__elestiriArkeolojisiApp = (function () {
       if (focusId || focusEdge) { girisPaneli(); return true; }
       return false;
     });
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", GU.debounceResize(() => {
       if (!yuklendi || wrapEl.hidden) return;
       ciz();
-    });
+    }));
   }
 
   return {
     activate() {
+      // 2026-08-06 kullanıcı bulgusu: girisPaneli() burada çağrılıp panel
+      // her açılışta otomatik gösteriliyordu -- artık yalnız bir kişi/bağ
+      // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
-      yukle().then(() => { ciz(); girisPaneli(); }).catch(() => {
+      yukle().then(() => { ciz(); }).catch(() => {
         const st = document.getElementById("elestiri-arkeolojisi-wrap-status");
         if (st) {
           st.hidden = false;
@@ -403,10 +474,10 @@ window.__elestiriArkeolojisiApp = (function () {
       ciz();
       if (focusId) {
         const d = kisiById.get(focusId);
-        if (d) kisiPaneli(d); else girisPaneli();
+        if (d) kisiPaneli(d); else if (!detailPanel.hidden) girisPaneli();
       } else if (focusEdge) {
         kenarPaneli(focusEdge);
-      } else girisPaneli();
+      } else if (!detailPanel.hidden) girisPaneli();
     },
     goToNode(id) {
       this.activate();
