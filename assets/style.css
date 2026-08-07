@@ -6815,6 +6815,22 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   fill: var(--text-muted);
   letter-spacing: 0.14em;
 }
+/* Ay: sarmalın kendi eğrisinde süren, düğümlerden bağımsız bir devinim
+   (2026-08-07) -- bkz. assets/menziller.js MOON_RATE notu. Kasıtlı olarak
+   tıklanamaz/etkileşimsiz (yalnız native <title> ile açıklanıyor), rengi
+   menzillerin renkli küreleriyle karışmasın diye bilerek soluk/gümüşi. */
+.menziller-moon { pointer-events: none; }
+.menziller-moon__glow {
+  fill: var(--series-theme);
+  opacity: 0.16;
+}
+.menziller-moon__body {
+  fill: #e9e7df;
+  stroke: var(--surface-1);
+  stroke-width: 1;
+}
+:root[data-theme="dark"] .menziller-moon__body,
+body[data-theme="dark"] .menziller-moon__body { fill: #cfcdc4; }
 .menzil-node { cursor: pointer; }
 .menzil-node__glow { pointer-events: none; }
 .menzil-node__sphere { stroke: var(--surface-1); stroke-width: 1.2; }

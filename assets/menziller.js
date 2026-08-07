@@ -36,13 +36,23 @@
 
   let data = null, dataPromise = null;
   let nodes = [];
-  let zoomLayer, ringLayer, nodeLayer, centerLayer, defs;
+  let zoomLayer, ringLayer, nodeLayer, centerLayer, moonLayer, defs;
   let zoomBehavior = null;
   let width = 900, height = 640, cx = 450, cy = 320, ringR = 240, dropH = 420;
   let rafId = null, lastTs = 0, spin = 0, hoveredId = null, activeId = null;
 
   // Sakin, huzurlu dönüş -- öteki graflarla aynı hız ailesinden (~140 sn/tur).
   const SPIN_RATE = 0.000045;
+  // Ay'ın kendi turu: 28 menzili sürekli parametre üzerinde geçiyor (düğüm
+  // atlamıyor, sarmalın kendi eğrisinde kayıyor) -- sayfanın konusunu
+  // ("28 ay menzili") bir cümleyle anlatmak yerine DAVRANIŞINI gösteren
+  // bir öge (GORSEL_DIL.md). Halkanın kendi SPIN_RATE'inden bilinçli
+  // farklı: ikisi aynı hızda olsaydı Ay hep sabit bir düğümün üstünde
+  // durur gibi görünürdü, kendi hareketi seçilemezdi. GERÇEK ZAMANLI bir
+  // konum İDDİASI DEĞİL -- bir tur ~200 sn'de tamamlanan, yalnız "Ay
+  // menzilden menzile böyle geçer" diyen örnekleyici bir devinim.
+  const MOON_RATE = nodesCount => nodesCount / 200000;
+  let moonT = 0;
 
   // --- 3B durumu (hal.js'teki sarmal motorunun aynısı; referansımız o) ---
   // Fark şu: Hâller'de yol YÜKSELİYOR (nefsten hayrete), burada İNİYOR --
@@ -190,9 +200,23 @@
       rg.append("stop").attr("offset", "100%").attr("stop-color", c.darker(0.85).formatHex());
     });
 
+    // Ay için hilal maskesi -- gerçek bir hilal fazı iddiası değil, yalnız
+    // "bir top değil, Ay" diye okunsun diye bir kertik (bkz. MOON_RATE notu).
+    const moonMask = defs.append("mask").attr("id", "menzil-moon-mask");
+    moonMask.append("circle").attr("r", 11).attr("fill", "#fff");
+    moonMask.append("circle").attr("cx", 4.5).attr("cy", -3.5).attr("r", 9).attr("fill", "#000");
+
     zoomLayer = svg.append("g").attr("class", "menziller-canvas");
     ringLayer = zoomLayer.append("g").attr("class", "menziller-ringlayer");
     nodeLayer = zoomLayer.append("g").attr("class", "menziller-nodes");
+    moonLayer = zoomLayer.append("g").attr("class", "menziller-moon").attr("aria-hidden", "true");
+    moonLayer.append("circle").attr("class", "menziller-moon__glow").attr("r", 20);
+    moonLayer.append("circle").attr("class", "menziller-moon__body").attr("r", 11).attr("mask", "url(#menzil-moon-mask)");
+    moonLayer.append("title").text(tt({
+      tr: "Ay'ın menzilden menzile örnekleyici bir turu -- gerçek zamanlı bir konum değil.",
+      en: "An illustrative lap of the Moon through the mansions -- not a real-time position.",
+      pt: "Uma volta ilustrativa da Lua pelas mansões -- não é uma posição em tempo real.",
+    }));
     centerLayer = zoomLayer.append("g").attr("class", "menziller-center");
 
     // 2B'de düz halka, 3B'de sarmalın kendisi: tek bir path ikisini de çiziyor.
@@ -225,6 +249,16 @@
     ringLayer.select("path.menziller-close-chord")
       .attr("d", `M${a.x.toFixed(1)},${a.y.toFixed(1)} L${b.x.toFixed(1)},${b.y.toFixed(1)}`)
       .style("opacity", tilt * 0.5);
+
+    // Ay: sarmalın kendi eğrisinde, düğümlerden bağımsız sürekli bir t
+    // değerinde -- 28 düğümün arasından geçerken görülüyor, bir düğüme
+    // "atlamıyor". Derinlik/soluklaşma düğümlerle AYNI formül (3B'de tutarlı
+    // görünsün diye).
+    const mp = projectT(moonT);
+    const mdep = 1 + (mp.depth - 1) * tilt;
+    const mfade = tilt > 0 ? Math.max(0.35, Math.min(1, 0.35 + 0.9 * (mp.depth - 0.55))) : 1;
+    moonLayer.attr("transform", `translate(${mp.x.toFixed(1)},${mp.y.toFixed(1)}) scale(${mdep.toFixed(3)})`)
+      .style("opacity", mfade);
 
     // Merkezdeki nefes işareti yalnız 2B'de anlamlı: 3B'de halka yatınca
     // merkez sarmalın ortasına düşüyor ve düğümlerin arkasında kalıyor.
@@ -362,7 +396,10 @@
       }
     }
     // Bir menzil açıkken ve sürüklerken durur: okurken sahne kıpırdamasın.
-    if (!reduceMotion && !activeId && !dragging) spin += dt * SPIN_RATE;
+    if (!reduceMotion && !activeId && !dragging) {
+      spin += dt * SPIN_RATE;
+      moonT = (moonT + dt * MOON_RATE(nodes.length)) % nodes.length;
+    }
     render(ts);
     if (!reduceMotion) ensureFrame();
   }
