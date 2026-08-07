@@ -1287,6 +1287,9 @@
       return { x: cx3d + dx * c - dy * sn, y: cy3d + dx * sn + dy * c };
     }
     let yaw = 0, pitch = 0.26, rotating = false;
+    // spinFrame()'in 3B yaw-döngü kolunun kendi tazeleme eşiği için --
+    // bkz. spinFrame içindeki kullanım ve aynı kusurun ölçüldüğü not.
+    let yawPainted = 0;
 
     const defs = svg.append("defs");
     ["descent", "return", "paradox"].forEach((kind) => {
@@ -1762,7 +1765,18 @@
       // etrafında olduğu için "yukarısı" hep yukarıda kalır -- yani mertebe
       // iddiası bozulmaz (bu, aşağıdaki salınımın var oluş sebebiydi).
       if (tilt > 0.5) {
-        if (!rotating && !reduceMotion && detailPanel.hidden) { yaw += dt * 0.00005; paintPositions(); }
+        if (!rotating && !reduceMotion && detailPanel.hidden) {
+          yaw += dt * 0.00005;
+          // Aynı kusur sway kolunda da vardı (bkz. aşağıdaki not): burada
+          // hiç eşik YOKTU, paintPositions() (deconflictLabels dahil) her
+          // karede koşulsuz çağrılıyordu -- sahnenin VARSAYILAN 3B açılış
+          // durumunda, sonsuza dek. Tablette "sürekli titriyor" bildirimiyle
+          // 2026-08-07'de ölçülüp yakalandı.
+          if (Math.abs(yaw - yawPainted) > 0.3 * Math.PI / 180) {
+            yawPainted = yaw;
+            paintPositions();
+          }
+        }
         spinGroup.attr("transform", null);
         labelSel.attr("transform", null);
         spinRaf = requestAnimationFrame(spinFrame);
@@ -1780,7 +1794,14 @@
       // Etiket çakışma-önleme salınımın ORTASINDA (0°) hesaplanıyordu --
       // yerleşim ucunda sınırdaki çiftler yeniden çakışıyordu (2026-08-06
       // ölçüldü). swayRad'ı güncel açıya taşıyıp yerleşimi tazeliyoruz.
-      if (deg !== swayRad * 180 / Math.PI) {
+      // Eşik ÖNEMLİ: `deg` her karede sürekli değişen bir sinüs değeri,
+      // yani "!==" neredeyse HER karede doğruydu -- paintPositions() (tüm
+      // düğümler için deconflictLabels dahil) saniyede 60 kez çalışıyordu,
+      // sürekli açık kalan görünümde sonsuza dek. Tablette "sürekli
+      // titriyor" bildirimiyle 2026-08-07'de ölçülüp yakalandı. 0.3°'lik
+      // eşik, yerleşimi hâlâ tazeliyor (yaklaşık 2,5 saniyede bir, salınımın
+      // ~46 sn'lik yarı periyoduna göre) ama her kareyi tüketmiyor.
+      if (Math.abs(deg - swayRad * 180 / Math.PI) > 0.3) {
         swayRad = deg * Math.PI / 180;
         paintPositions();
       }
