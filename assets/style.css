@@ -6789,17 +6789,17 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
     color-mix(in srgb, var(--series-theme) 4%, transparent), transparent 62%);
 }
 #menziller-graph:active { cursor: grabbing; }
-.menziller-ring-path {
+/* Halka artık n kısa parça (assets/menziller.js: menziller-ring-seg) --
+   Ay'ın önünden/arkasından geçebilsin diye (bkz. render()'daki depth
+   sort). Temel görünüm eski tek-path'le birebir aynı; yalnız SON parça
+   (kapanış) 3B'de ayrı bir sınıfla kesikli/soluk kirişe dönüşüyor. */
+.menziller-ring-seg {
   pointer-events: none;
   fill: none;
   stroke: var(--border);
   stroke-width: 1;
-  opacity: 0.55;
 }
-/* Sonu başa bağlayan kapanış kirişi: yalnız 3B'de görünür, kesik çizgi. */
-.menziller-close-chord {
-  pointer-events: none;
-  fill: none;
+.menziller-ring-seg--close {
   stroke: var(--series-theme);
   stroke-width: 1.2;
   stroke-dasharray: 5 6;
@@ -6815,22 +6815,27 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   fill: var(--text-muted);
   letter-spacing: 0.14em;
 }
-/* Ay: sarmalın kendi eğrisinde süren, düğümlerden bağımsız bir devinim
-   (2026-08-07) -- bkz. assets/menziller.js MOON_RATE notu. Kasıtlı olarak
-   tıklanamaz/etkileşimsiz (yalnız native <title> ile açıklanıyor), rengi
-   menzillerin renkli küreleriyle karışmasın diye bilerek soluk/gümüşi. */
+/* Ay: sarmalın döndüğü eksenin tam merkezinde duran bir küre -- 28 menzil
+   onun etrafında geziniyor (kullanıcının tarifi, 2026-08-07). Düğümlerin
+   zaten kullandığı radyal-gradyan-küre tekniğinin büyütülmüş hâli (bkz.
+   assets/menziller.js menzil-sphere-* gradyanları) -- yeni bir "sahte 3B"
+   değil, sayfanın kendi diline büyütülmüş bir tutarlılık. Yalnız 3B'de
+   belirir (tilt); 2B'de merkezdeki nefes işaretine yer bırakır. */
 .menziller-moon { pointer-events: none; }
 .menziller-moon__glow {
   fill: var(--series-theme);
-  opacity: 0.16;
+  opacity: 0.14;
+  filter: blur(6px);
 }
 .menziller-moon__body {
-  fill: #e9e7df;
   stroke: var(--surface-1);
   stroke-width: 1;
 }
-:root[data-theme="dark"] .menziller-moon__body,
-body[data-theme="dark"] .menziller-moon__body { fill: #cfcdc4; }
+.menziller-moon__leke {
+  fill: #00000014;
+}
+:root[data-theme="dark"] .menziller-moon__leke,
+body[data-theme="dark"] .menziller-moon__leke { fill: #00000030; }
 .menzil-node { cursor: pointer; }
 .menzil-node__glow { pointer-events: none; }
 .menzil-node__sphere { stroke: var(--surface-1); stroke-width: 1.2; }

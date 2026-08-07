@@ -36,23 +36,29 @@
 
   let data = null, dataPromise = null;
   let nodes = [];
-  let zoomLayer, ringLayer, nodeLayer, centerLayer, moonLayer, defs;
+  let zoomLayer, nodeLayer, centerLayer, moonLayer, defs;
   let zoomBehavior = null;
   let width = 900, height = 640, cx = 450, cy = 320, ringR = 240, dropH = 420;
   let rafId = null, lastTs = 0, spin = 0, hoveredId = null, activeId = null;
+  // Derinlik yeniden-sıralaması (aşağıda render() içinde) saniyede 60 kez
+  // GEREKMİYOR -- dönüş çok yavaş (~140 sn/tur), iki komşu ögenin önü/arkası
+  // birkaç yüz ms'de bir değişir. ontology.js'te ÖLÇÜLEN kusurdan ders:
+  // eşiksiz bir "her karede" pahalı iş, düşük güçlü cihazlarda titremeye
+  // dönüşebiliyordu (2026-08-07, tablet bildirimi). Burada baştan eşikli.
+  let lastDepthSortTs = 0;
 
   // Sakin, huzurlu dönüş -- öteki graflarla aynı hız ailesinden (~140 sn/tur).
   const SPIN_RATE = 0.000045;
-  // Ay'ın kendi turu: 28 menzili sürekli parametre üzerinde geçiyor (düğüm
-  // atlamıyor, sarmalın kendi eğrisinde kayıyor) -- sayfanın konusunu
-  // ("28 ay menzili") bir cümleyle anlatmak yerine DAVRANIŞINI gösteren
-  // bir öge (GORSEL_DIL.md). Halkanın kendi SPIN_RATE'inden bilinçli
-  // farklı: ikisi aynı hızda olsaydı Ay hep sabit bir düğümün üstünde
-  // durur gibi görünürdü, kendi hareketi seçilemezdi. GERÇEK ZAMANLI bir
-  // konum İDDİASI DEĞİL -- bir tur ~200 sn'de tamamlanan, yalnız "Ay
-  // menzilden menzile böyle geçer" diyen örnekleyici bir devinim.
-  const MOON_RATE = nodesCount => nodesCount / 200000;
-  let moonT = 0;
+  // Ay: sarmalın DÖNDÜĞÜ eksenin üzerinde, tam merkezde duran bir küre --
+  // 28 menzil onun etrafında geçiyor (kullanıcının kendi tarifi ve
+  // referans görüntüsü, 2026-08-07). helixPoint(t)'in x/y/z'si hep 0
+  // etrafında salınıyor, yani "merkez" gerçekten (0,0,0) -- project(0,0,0)
+  // her yaw/tilt'te DEĞİŞMEDEN {x:cx, y:cy, z:0} verir (aşağıda MOON_R).
+  // Yalnız 3B'de anlamlı: 2B'de (tilt=0) bütün z'ler zaten 0, "sarma"
+  // görünmez -- bu yüzden Ay tilt ile birlikte belirir, merkezdeki nefes
+  // işareti (centerLayer) tilt ile birlikte kaybolur; ikisi aynı yeri
+  // farklı hâllerde paylaşıyor.
+  const MOON_R = () => ringR * 0.5;
 
   // --- 3B durumu (hal.js'teki sarmal motorunun aynısı; referansımız o) ---
   // Fark şu: Hâller'de yol YÜKSELİYOR (nefsten hayrete), burada İNİYOR --
@@ -199,30 +205,39 @@
       rg.append("stop").attr("offset", "52%").attr("stop-color", c.formatHex());
       rg.append("stop").attr("offset", "100%").attr("stop-color", c.darker(0.85).formatHex());
     });
-
-    // Ay için hilal maskesi -- gerçek bir hilal fazı iddiası değil, yalnız
-    // "bir top değil, Ay" diye okunsun diye bir kertik (bkz. MOON_RATE notu).
-    const moonMask = defs.append("mask").attr("id", "menzil-moon-mask");
-    moonMask.append("circle").attr("r", 11).attr("fill", "#fff");
-    moonMask.append("circle").attr("cx", 4.5).attr("cy", -3.5).attr("r", 9).attr("fill", "#000");
+    // Ay'ın kendi küresi -- düğümlerin ZATEN kullandığı "radyal gradyanla
+    // top" tekniğinin (yukarısı) aynısı, yalnız büyütülmüş ve gümüşi.
+    // GORSEL_DIL.md'nin "sahte 3B yapma" kuralı kutu-perspektifi/parlaklık
+    // numaralarını yasaklıyor; bu sayfa zaten kendi 28 küresinde bu deseni
+    // taşıyor, Ay'ı aynı dilde büyütmek yeni bir ihlal değil, tutarlılık.
+    const moonGrad = defs.append("radialGradient").attr("id", "menzil-moon-grad")
+      .attr("cx", "36%").attr("cy", "30%").attr("r", "75%");
+    moonGrad.append("stop").attr("offset", "0%").attr("stop-color", "#f4f2ea");
+    moonGrad.append("stop").attr("offset", "55%").attr("stop-color", "#d9d6c9");
+    moonGrad.append("stop").attr("offset", "100%").attr("stop-color", "#9c988a");
 
     zoomLayer = svg.append("g").attr("class", "menziller-canvas");
-    ringLayer = zoomLayer.append("g").attr("class", "menziller-ringlayer");
-    nodeLayer = zoomLayer.append("g").attr("class", "menziller-nodes");
-    moonLayer = zoomLayer.append("g").attr("class", "menziller-moon").attr("aria-hidden", "true");
-    moonLayer.append("circle").attr("class", "menziller-moon__glow").attr("r", 20);
-    moonLayer.append("circle").attr("class", "menziller-moon__body").attr("r", 11).attr("mask", "url(#menzil-moon-mask)");
+    // Ring parçaları + düğümler + Ay AYNI katmanın çocukları: 3B'de sarmalın
+    // Ay'ın önünden/arkasından geçmesi gerçek bir derinlik-sıralamasıdır
+    // (bkz. render()'daki depthSort -- appendChild ile DOM sırası z'ye göre
+    // yeniden kuruluyor, "sahte" bir üst-üste-bindirme değil).
+    nodeLayer = zoomLayer.append("g").attr("class", "menziller-scene");
+    moonLayer = nodeLayer.append("g").attr("class", "menziller-moon").attr("aria-hidden", "true");
+    moonLayer.append("circle").attr("class", "menziller-moon__glow");
+    moonLayer.append("circle").attr("class", "menziller-moon__body").attr("fill", "url(#menzil-moon-grad)");
+    // Yüzeydeki birkaç koyu leke -- gerçek bir krater haritası değil,
+    // "düz bir top değil, Ay" diye okunması için birkaç düzensiz leke.
+    [[-4, -2, 3.4], [3, 5, 2.6], [-2, 6, 1.9], [5, -4, 1.6]].forEach(([dx, dy, r]) => {
+      moonLayer.append("circle").attr("class", "menziller-moon__leke")
+        .attr("cx", dx).attr("cy", dy).attr("r", r);
+    });
     moonLayer.append("title").text(tt({
-      tr: "Ay'ın menzilden menzile örnekleyici bir turu -- gerçek zamanlı bir konum değil.",
-      en: "An illustrative lap of the Moon through the mansions -- not a real-time position.",
-      pt: "Uma volta ilustrativa da Lua pelas mansões -- não é uma posição em tempo real.",
+      tr: "Menzillerin ait olduğu Ay -- sarmal onun etrafında geziniyor.",
+      en: "The Moon these mansions belong to -- the spiral moves around it.",
+      pt: "A Lua a que pertencem estas mansões -- a espiral move-se à sua volta.",
     }));
     centerLayer = zoomLayer.append("g").attr("class", "menziller-center");
 
-    // 2B'de düz halka, 3B'de sarmalın kendisi: tek bir path ikisini de çiziyor.
-    ringLayer.append("path").attr("class", "menziller-ring-path").attr("fill", "none");
-    // Sonu başa bağlayan kapanış kirişi (yalnız 3B'de görünür).
-    ringLayer.append("path").attr("class", "menziller-close-chord").attr("fill", "none");
     centerLayer.append("circle").attr("class", "node-halo").attr("r", 46);
     centerLayer.append("text").attr("class", "menziller-center__label").attr("text-anchor", "middle").attr("y", -4);
     centerLayer.append("text").attr("class", "menziller-center__sub").attr("text-anchor", "middle").attr("y", 15);
@@ -235,30 +250,62 @@
     svg.on("click", () => { if (activeId) { activeId = null; showIntro(); ensureFrame(); } });
   }
 
+  function depthFade(dep) {
+    return tilt > 0 ? Math.max(0.35, Math.min(1, 0.35 + 0.9 * (dep - 0.55))) : 1;
+  }
+
   function render(ts) {
     if (!nodeLayer) return;
     positionNodes();
+    const n = nodes.length;
 
-    // Yol: 2B'de kapalı halka, 3B'de inen sarmal -- aynı parametrik eğri.
-    ringLayer.select("path.menziller-ring-path")
-      .attr("d", samplePath(0, nodes.length - 1 + (tilt < 0.5 ? 1 : 0), 240));
+    // Halka artık TEK bir path değil, ardışık düğüm çiftleri arasında n
+    // kısa parça (+ son->ilk kapanış parçası) -- her biri kendi z'siyle,
+    // Ay'ın önünden/arkasından geçebilsin diye (bkz. depthSort aşağıda).
+    // 2B'de hepsi düz, tam opak bir halka gibi davranır (eski davranış);
+    // yalnız SON parça 3B'de "mertebeleri tayin ediyor" kirişine dönüşür
+    // (düz çizgi, kesikli, soluk -- eski .menziller-close-chord).
+    const segData = [];
+    for (let i = 0; i < n; i++) {
+      const j = (i + 1) % n;
+      const isClose = i === n - 1;
+      segData.push({ id: "seg" + i, i, j, isClose });
+    }
+    const segSel = nodeLayer.selectAll("path.menziller-ring-seg").data(segData, (d) => d.id);
+    const segEnter = segSel.enter().append("path").attr("class", "menziller-ring-seg").attr("fill", "none");
+    const segMerged = segEnter.merge(segSel);
+    segSel.exit().remove();
+    segMerged.each(function (d) {
+      const p = d3.select(this);
+      const a = nodes[d.i], b = nodes[d.j];
+      const dep = ((a.__depth || 1) + (b.__depth || 1)) / 2;
+      d.__z = ((a.__z || 0) + (b.__z || 0)) / 2;
+      if (d.isClose && tilt >= 0.5) {
+        p.attr("d", `M${a.x.toFixed(1)},${a.y.toFixed(1)} L${b.x.toFixed(1)},${b.y.toFixed(1)}`)
+          .classed("menziller-ring-seg--close", true)
+          .style("opacity", tilt * 0.5);
+      } else {
+        p.attr("d", samplePath(d.i, d.isClose ? d.i + 1 : d.j, 8))
+          .classed("menziller-ring-seg--close", false)
+          .style("opacity", depthFade(dep));
+      }
+    });
 
-    // Kapanış kirişi: son menzil (mertebeleri tayin eden) ilk menzile (İlk
-    // Akıl) geri bağlanıyor. 2B'de halka zaten kapalı olduğu için gizli.
-    const a = projectT(nodes.length - 1), b = projectT(0);
-    ringLayer.select("path.menziller-close-chord")
-      .attr("d", `M${a.x.toFixed(1)},${a.y.toFixed(1)} L${b.x.toFixed(1)},${b.y.toFixed(1)}`)
-      .style("opacity", tilt * 0.5);
-
-    // Ay: sarmalın kendi eğrisinde, düğümlerden bağımsız sürekli bir t
-    // değerinde -- 28 düğümün arasından geçerken görülüyor, bir düğüme
-    // "atlamıyor". Derinlik/soluklaşma düğümlerle AYNI formül (3B'de tutarlı
-    // görünsün diye).
-    const mp = projectT(moonT);
-    const mdep = 1 + (mp.depth - 1) * tilt;
-    const mfade = tilt > 0 ? Math.max(0.35, Math.min(1, 0.35 + 0.9 * (mp.depth - 0.55))) : 1;
-    moonLayer.attr("transform", `translate(${mp.x.toFixed(1)},${mp.y.toFixed(1)}) scale(${mdep.toFixed(3)})`)
-      .style("opacity", mfade);
+    // Ay: sarmalın döndüğü eksenin TAM merkezinde, sabit -- 28 menzil onun
+    // etrafında geziniyor (kullanıcının tarifi). project(0,0,0) her zaman
+    // {x:cx,y:cy,z:0} verdiği için konum sabit; yalnız 3B'ye geçişte
+    // belirir (2B'de "sarma" görünmediği için nefes işaretine yer bırakır).
+    const moonR = MOON_R();
+    const breathM = reduceMotion ? 1 : 1 + 0.015 * Math.sin(ts / 4200);
+    moonLayer.attr("transform", `translate(${cx.toFixed(1)},${cy.toFixed(1)}) scale(${(breathM).toFixed(3)})`)
+      .style("opacity", tilt);
+    moonLayer.select(".menziller-moon__glow").attr("r", moonR * 1.35);
+    moonLayer.select(".menziller-moon__body").attr("r", moonR);
+    moonLayer.selectAll(".menziller-moon__leke").each(function (d, idx) {
+      const spots = [[-0.36, -0.18, 0.31], [0.27, 0.45, 0.24], [-0.18, 0.55, 0.17], [0.45, -0.36, 0.15]];
+      const s = spots[idx];
+      d3.select(this).attr("cx", (s[0] * moonR).toFixed(1)).attr("cy", (s[1] * moonR).toFixed(1)).attr("r", (s[2] * moonR).toFixed(1));
+    });
 
     // Merkezdeki nefes işareti yalnız 2B'de anlamlı: 3B'de halka yatınca
     // merkez sarmalın ortasına düşüyor ve düğümlerin arkasında kalıyor.
@@ -313,9 +360,21 @@
         .text(n.menzil);
     });
 
-    // Yakındaki düğümler uzaktakilerin üstünde çizilsin (3B derinlik sırası).
-    if (tilt > 0.05) {
-      nodeLayer.selectAll("g.menzil-node").sort((p, q) => (p.__z || 0) - (q.__z || 0));
+    // Derinlik sıralaması: ring parçaları + düğümler + Ay AYNI katmanın
+    // çocukları, hepsi z'ye göre TEK bir listede sıralanıp DOM'a o sırayla
+    // geri takılıyor (appendChild var olan düğümü TAŞIR, kopyalamaz --
+    // dinleyiciler/durum korunur). Bu, Ay'ın sarmalın önünden/arkasından
+    // GERÇEKTEN geçmesini sağlıyor (GORSEL_DIL.md: "sahte 3B yapma" --
+    // burada üst-üste-bindirme numarası değil, gerçek z karşılaştırması).
+    if (tilt > 0.02 && ts - lastDepthSortTs > 120) {
+      lastDepthSortTs = ts;
+      const items = [];
+      nodeLayer.selectAll("g.menzil-node").each(function (n) { items.push({ el: this, z: n.__z || 0 }); });
+      nodeLayer.selectAll("path.menziller-ring-seg").each(function (d) { items.push({ el: this, z: d.__z || 0 }); });
+      items.push({ el: moonLayer.node(), z: 0 });
+      items.sort((a, b) => a.z - b.z);
+      const parent = nodeLayer.node();
+      items.forEach((it) => parent.appendChild(it.el));
     }
   }
 
@@ -396,10 +455,7 @@
       }
     }
     // Bir menzil açıkken ve sürüklerken durur: okurken sahne kıpırdamasın.
-    if (!reduceMotion && !activeId && !dragging) {
-      spin += dt * SPIN_RATE;
-      moonT = (moonT + dt * MOON_RATE(nodes.length)) % nodes.length;
-    }
+    if (!reduceMotion && !activeId && !dragging) spin += dt * SPIN_RATE;
     render(ts);
     if (!reduceMotion) ensureFrame();
   }
