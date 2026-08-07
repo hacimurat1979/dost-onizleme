@@ -13,6 +13,7 @@ window.__hocalarApp = (function () {
 
   const wrapEl = document.getElementById("hocalar-wrap");
   const listEl = document.getElementById("hocalar-list");
+  const digerEl = document.getElementById("hocalar-diger");
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
 
@@ -72,6 +73,39 @@ window.__hocalarApp = (function () {
     });
   }
 
+  // Fütûhât s.335'in Şems/Fâtıma'yla birlikte andığı dört kişi -- Rûhu'l-kuds'un
+  // 55 hocalık listesinden değiller, o yüzden hoca-satir/panelGoster akışına
+  // değil, sade ve tıklanamaz bir listeye giriyorlar (bkz. schema notu).
+  function renderDiger() {
+    if (!digerEl) return;
+    let html = "";
+    const dve = data.digerVeraEhli;
+    if (dve) {
+      const satirlar = dve.kisiler.map((k) =>
+        `<li class="hocalar-diger__satir"><strong>${tt(k.ad)}</strong> — ${tt(k.konum)}</li>`).join("");
+      html += `
+        <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Fütûhât'ta da adı geçen diğerleri", en: "Others also named in the Futuhat", pt: "Outros também nomeados nas Futuhat" })}</p>
+        <p class="hocalar-diger__not">${tt(dve.not)}</p>
+        <ul class="hocalar-diger__liste">${satirlar}</ul>
+        ${alintiHtml(dve.paylasilanNot)}`;
+    }
+    // Fütûhât'ın BAŞKA bölümlerinde tek cümlelik "üstad" izleri -- her biri
+    // ayrı bir bölümden geldiği için digerVeraEhli'nin listesine karışmıyor.
+    const dba = data.digerBolumlerdeAnilanlar;
+    if (dba && dba.length) {
+      const kartlar = dba.map((k) =>
+        `<div class="hocalar-diger__satir">
+           <strong>${tt(k.ad)}</strong>
+           <p class="hoca-alinti__baglam">${tt(k.not)}</p>
+           <cite class="hoca-alinti__kaynak">${k.kaynak.eser}, s. ${k.kaynak.sayfa}</cite>
+         </div>`).join("");
+      html += `
+        <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Fütûhât'ın başka bölümlerinde geçen izler", en: "Traces in other chapters of the Futuhat", pt: "Vestígios noutros capítulos das Futuhat" })}</p>
+        <div class="hocalar-diger__liste">${kartlar}</div>`;
+    }
+    digerEl.innerHTML = html;
+  }
+
   function girisPaneli() {
     focusId = null;
     detailContent.innerHTML = `
@@ -91,6 +125,7 @@ window.__hocalarApp = (function () {
       hocalar = d.hocalar || [];
       yuklendi = true;
       renderList();
+      renderDiger();
     });
   }
 
@@ -126,6 +161,7 @@ window.__hocalarApp = (function () {
     onLangChange() {
       if (!yuklendi) return;
       renderList();
+      renderDiger();
       if (focusId) {
         const d = hocalar.find((x) => x.id === focusId);
         if (d) panelGoster(d); else if (!detailPanel.hidden) girisPaneli();

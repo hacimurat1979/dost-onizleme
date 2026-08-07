@@ -9395,6 +9395,10 @@ mark.durus-vurgu-es {
 /* --- Hocalar (docs/icerik-yol-haritasi.md D6, 2026-08-04) -----------------
    Basit bir liste-panel iskeleti, ama panel bir "durum" değil bir "anlatı"
    taşıyor -- birden fazla doğrudan alıntı, her biri kendi bağlamıyla. */
+.hocalar-scroll {
+  overflow-y: auto;
+  height: 100%;
+}
 .hocalar-list {
   display: flex;
   flex-direction: column;
@@ -9402,8 +9406,6 @@ mark.durus-vurgu-es {
   padding: 16px;
   max-width: 640px;
   margin: 0 auto;
-  overflow-y: auto;
-  height: 100%;
 }
 .hoca-satir {
   display: flex;
@@ -9459,6 +9461,18 @@ mark.durus-vurgu-es {
 .hoca-alinti__metin { margin: 0; font-style: italic; }
 .hoca-alinti__baglam { margin: 8px 0 0; font-size: 0.82rem; color: var(--text-secondary); font-style: normal; }
 .hoca-alinti__kaynak { display: block; margin-top: 8px; font-size: 0.78rem; color: var(--text-secondary); font-style: normal; }
+
+/* Fütûhât s.335'in Şems/Fâtıma'yla birlikte andığı dört kişi -- ayrı bir
+   panel/tıklama akışı yok (2026-08-07): kaynakta yalnız isim+yer var,
+   tam bir hoca-satir gibi davranmak eksik veriyi varmış gibi gösterirdi. */
+.hocalar-diger {
+  max-width: 640px;
+  margin: 8px auto 24px;
+  padding: 0 16px;
+}
+.hocalar-diger__not { color: var(--text-secondary); font-size: 0.86rem; margin: 4px 0 12px; }
+.hocalar-diger__liste { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.hocalar-diger__satir { font-size: 0.9rem; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-1); }
 
 /* --- Eser Ağı (docs/icerik-yol-haritasi.md D7, 2026-08-04) ----------------
    2026-08-06'da sarmaldan dikey zaman çizelgesine çevrildi (kullanıcı

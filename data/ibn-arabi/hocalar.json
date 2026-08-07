@@ -63,6 +63,11 @@
           "eser": "Sufis of Andalusia: The Ruh al-quds and al-Durrat al-fakhirah of Ibn 'Arabi",
           "yil": 1971,
           "not": "1971 baskısının 2008 Routledge yeni basımı; s. 142."
+        },
+        {
+          "yazar": "İbnü'l-Arabî",
+          "eser": "Fütûhât-ı Mekkiyye",
+          "not": "s. 335'te, İşbiliyye/Tilimsan/Mekke'de tanıklık ettiği vera ehlini isim isim andığı bölümde -- Rûhu'l-kuds'tan yıllar sonra, ayrı bir eserde -- adı yine geçiyor. Burada onun hakkında doğrudan bir alıntı yok, yalnız isim listede sayılıyor (bkz. data/ibn-arabi/futuhat-atlas.json, isimlerle-anilan-vera-ehli-fatima-bint-musenna)."
         }
       ]
     },
@@ -127,6 +132,22 @@
             "eser": "R.W.J. Austin (çev.), Sufis of Andalusia: The Ruh al-quds and al-Durrat al-fakhirah of Ibn 'Arabi",
             "sayfa": "144"
           }
+        },
+        {
+          "metin": {
+            "tr": "\"Bu meyanda, gördüğüm en dürüst kadınlardan biri, İşbiliyye'de görüp kendisine hizmet ettiğim Fatıma bint İbnü'l-Müsenna idi. Doksan beş yaşındaydı.\"",
+            "en": "\"Among these, one of the most upright women I have seen was Fatima bint Ibn al-Muthanna, whom I saw and served in Seville. She was ninety-five years old.\"",
+            "pt": "\"Entre estas, uma das mulheres mais retas que vi foi Fátima bint Ibn al-Muthanna, a quem vi e servi em Sevilha. Ela tinha noventa e cinco anos.\""
+          },
+          "baglam": {
+            "tr": "Rûhu'l-kuds'tan yıllar sonra, Fütûhât-ı Mekkiyye'nin 'İsimlerle Anılan Vera Ehli' bölümünde adı yeniden geçiyor -- bu kez yaşı doksan beş olarak veriliyor (Rûhu'l-kuds'ta 'doksanı geçkin'). Bu satırlar Şems, Gülbahar ve dört erkek vera ehliyle birlikte tek bir isim listesinin parçası; onlar için bkz. aşağıdaki 'Fütûhât'ta da adı geçen diğerleri' bölümü.",
+            "en": "Years after the Ruh al-quds, her name appears again in the Futuhat al-Makkiyya's chapter 'The Scrupulous Named by Name' -- this time her age is given as ninety-five (the Ruh al-quds says 'over ninety'). These lines are part of a single list of names alongside Shams, Gulbahar, and four other named men and women of scrupulousness; see them in the 'Others also named in the Futuhat' section below.",
+            "pt": "Anos depois do Ruh al-quds, o seu nome surge de novo no capítulo 'Os Escrupulosos Nomeados' das Futuhat al-Makkiyya -- desta vez a sua idade é dada como noventa e cinco (o Ruh al-quds diz 'passados os noventa'). Estas linhas fazem parte de uma única lista de nomes ao lado de Shams, Gulbahar, e mais quatro homens e mulheres escrupulosos nomeados; veja-os na secção 'Outros também nomeados nas Futuhat' abaixo."
+          },
+          "kaynak": {
+            "eser": "Fütûhât-ı Mekkiyye",
+            "sayfa": "335"
+          }
         }
       ],
       "kaynaklar": [
@@ -135,8 +156,104 @@
           "eser": "Sufis of Andalusia: The Ruh al-quds and al-Durrat al-fakhirah of Ibn 'Arabi",
           "yil": 1971,
           "not": "1971 baskısının 2008 Routledge yeni basımı; s. 143-145 ve giriş ~s. 25."
+        },
+        {
+          "yazar": "İbnü'l-Arabî",
+          "eser": "Fütûhât-ı Mekkiyye",
+          "not": "s. 335, 'İsimlerle Anılan Vera Ehli' bölümü (bkz. data/ibn-arabi/futuhat-atlas.json, isimlerle-anilan-vera-ehli-fatima-bint-musenna)."
         }
       ]
+    }
+  ],
+  "digerVeraEhli": {
+    "not": {
+      "tr": "Fütûhât-ı Mekkiyye'nin aynı bölümü (s. 335), Şems ve Fâtıma'yla birlikte dört kişi daha isim isim anıyor: Rûhu'l-kuds'un elli beş hocalık listesinden değiller -- Dost'un yıllar sonra, İşbiliyye/Tilimsan/Mekke'de tanıklık ettiği vera ehli arasında. Kaynakta yalnız adları ve nerede yaşadıkları geçiyor; her biri için ayrı bir kimlik/anlatı yok, o yüzden burada portre değil, sade bir liste sunuyoruz.",
+      "en": "The same chapter of the Futuhat al-Makkiyya (p. 335) names four more people alongside Shams and Fatima: not from the Ruh al-quds's list of fifty-five teachers -- but among the scrupulous Dost personally witnessed, years later, in Seville, Tlemcen, and Mecca. The source gives only their names and where they lived; there is no separate identity/narrative for each, so what follows is a plain list, not a portrait.",
+      "pt": "O mesmo capítulo das Futuhat al-Makkiyya (p. 335) nomeia mais quatro pessoas ao lado de Shams e Fátima: não da lista dos cinquenta e cinco mestres do Ruh al-quds -- mas entre os escrupulosos que Dost testemunhou pessoalmente, anos depois, em Sevilha, Tlemecém e Meca. A fonte dá apenas os seus nomes e onde viveram; não há identidade/narrativa separada para cada um, por isso o que se segue é uma lista simples, não um retrato."
+    },
+    "kisiler": [
+      {
+        "id": "gulbahar-seyyide-gazale",
+        "ad": {
+          "tr": "Gülbahar (Mekke'de \"Seyyide Gazâle\" diye anılırdı)",
+          "en": "Gulbahar (known in Mecca as \"Sayyida Ghazala\")",
+          "pt": "Gulbahar (conhecida em Meca como \"Sayyida Ghazala\")"
+        },
+        "konum": {
+          "tr": "Mekke",
+          "en": "Mecca",
+          "pt": "Meca"
+        }
+      },
+      {
+        "id": "ebu-abbas-el-munzir",
+        "ad": {
+          "tr": "Ebû Abbas el-Münzir",
+          "en": "Abu al-Abbas al-Mundhir",
+          "pt": "Abu al-Abbas al-Mundhir"
+        },
+        "konum": {
+          "tr": "İşbiliyye (Sevilla)",
+          "en": "Seville",
+          "pt": "Sevilha"
+        }
+      },
+      {
+        "id": "ebul-haccac-es-suburbeli",
+        "ad": {
+          "tr": "Ebu'l-Haccac eş-Şuburbelî",
+          "en": "Abu al-Hajjaj al-Shuburbeli",
+          "pt": "Abu al-Hajjaj al-Shuburbeli"
+        },
+        "konum": {
+          "tr": "Şuburbil köyü",
+          "en": "The village of Shuburbil",
+          "pt": "A aldeia de Shuburbil"
+        }
+      },
+      {
+        "id": "yusuf-b-sahr",
+        "ad": {
+          "tr": "Yûsuf b. Sahr",
+          "en": "Yusuf b. Sakhr",
+          "pt": "Yusuf b. Sakhr"
+        },
+        "konum": {
+          "tr": "Kurtuba (Córdoba)",
+          "en": "Córdoba",
+          "pt": "Córdova"
+        }
+      }
+    ],
+    "paylasilanNot": {
+      "metin": {
+        "tr": "Dost bu kişilerin \"sözlerinin doğruluğuna tanıklık eden kanıtlara sahip\" olduğunu, ve kendisinin böyle bir alameti gördüğünde -- kişi kendisi farkında olmasa bile -- doğruluğu anladığını ekliyor.",
+        "en": "Dost adds that these people \"possessed proofs bearing witness to the truthfulness of their words,\" and that upon seeing such a sign he could tell its bearer was truthful -- even when the bearer was unaware of it.",
+        "pt": "Dost acrescenta que essas pessoas \"possuíam provas que testemunhavam a veracidade de suas palavras,\" e que, ao ver tal sinal, ele podia identificar que seu portador era verdadeiro -- mesmo quando o próprio portador não tinha consciência disso."
+      },
+      "kaynak": {
+        "eser": "Fütûhât-ı Mekkiyye",
+        "sayfa": "335"
+      }
+    }
+  },
+  "digerBolumlerdeAnilanlar": [
+    {
+      "id": "ebu-medyen",
+      "ad": {
+        "tr": "Ebû Medyen",
+        "en": "Abu Madyan",
+        "pt": "Abu Madyan"
+      },
+      "not": {
+        "tr": "Fütûhât'ın vera (kuşkulu şeylerden sakınma) makamını anlattığı bir bölümde, Dost o makamın kutuplarından örnekler verir: Ebû Yezîd el-Bistâmî ve \"şeyhimiz Ebû Medyen\" 'seçkinlerden' diye anılır, Bişr-i Hâfî ise açıkça 'o makamın kutuplarından biri' diye adlandırılır. Burada tam bir portre yok -- yalnız Dost'un kendi ifadesiyle onu \"şeyhimiz\" diye andığı tek bir cümle.",
+        "en": "In a chapter of the Futuhat on the station of wara' (guarding against the doubtful), Dost gives examples of that station's poles: Abu Yazid al-Bistami and \"our shaykh Abu Madyan\" are named among 'the elite,' while Bishr al-Hafi is explicitly called 'one of that station's poles.' There is no full portrait here -- only this one sentence where Dost, in his own words, calls him \"our shaykh.\"",
+        "pt": "Num capítulo das Futuhat sobre a estação do wara' (cautela diante do duvidoso), Dost dá exemplos dos polos dessa estação: Abu Yazid al-Bistami e \"nosso xeque Abu Madyan\" são nomeados entre 'a elite,' enquanto Bishr al-Hafi é explicitamente chamado 'um dos polos dessa estação.' Não há aqui um retrato completo -- apenas esta única frase em que Dost, nas suas próprias palavras, o chama de \"nosso xeque\"."
+      },
+      "kaynak": {
+        "eser": "Fütûhât-ı Mekkiyye",
+        "sayfa": "254"
+      }
     }
   ]
 }
