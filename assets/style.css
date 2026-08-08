@@ -1378,6 +1378,7 @@ body.sessiz-mod-on .app-header {
   stroke-width: 3px;
   stroke-linejoin: round;
   pointer-events: none;
+  user-select: none;
   transition: opacity 0.25s ease;
 }
 .hal-label--landmark { fill: var(--text-primary); font-weight: 600; font-size: 15.5px; }
@@ -4615,6 +4616,17 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   font-style: italic;
   color: rgba(245,234,208,0.72);
   margin-top: 7px;
+}
+
+/* Karşılama halkasında TR+EN vardı, PT hiç yazılmamıştı (UI denetimi
+   bulgusu) -- "Geç · Skip · Pular" düğmesi zaten üçünü birden gösteriyor,
+   sitenin en görünür anı bu tutarlılığı taşımıyordu. Aynı --en kuralı,
+   biraz daha soluk (üçüncü satır, en az vurgulu). */
+.welcome-screen__line--pt {
+  font-size: clamp(0.8rem, 2.4vw, 0.95rem);
+  font-style: italic;
+  color: rgba(245,234,208,0.56);
+  margin-top: 3px;
 }
 
 .welcome-screen__skip {
@@ -7998,7 +8010,14 @@ mark.durus-vurgu-es {
 .tasiyici-node.is-focus circle { stroke-width: 2.6; }
 .tasiyici-node--accent text { fill: var(--text-primary); font-weight: 600; }
 .tasiyici-node.is-focus text { fill: var(--text-primary); font-weight: 600; }
-.tasiyici-node:focus-visible { outline: none; }
+/* :focus-visible tek başına yetmiyordu: tıklama sonrası tasiyicilar.js'in
+   çağırdığı programatik .focus() (klavye ok tuşlarıyla gezinme için)
+   Chromium'da :focus-visible SAYILMIYOR, yani outline:none o kurala hiç
+   girmiyor ve tarayıcının HAM varsayılan anahat (outline:auto 5px) her
+   tıklamada geride kalıyordu (UI denetimi bulgusu). Seçim zaten
+   .is-focus sınıfıyla (altın çerçeve, üstte) görünür kalıyor -- düz
+   :focus de kapatılıyor. */
+.tasiyici-node:focus { outline: none; }
 .tasiyici-node:focus-visible circle {
   stroke: var(--accent-interactive);
   stroke-width: 3;

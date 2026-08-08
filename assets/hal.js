@@ -288,7 +288,15 @@
     // Odak burada kamerayı taşıyor (fitView bir odağa göre çerçeveliyor), o
     // yüzden geri çekilirken odak da bırakılıyor -- bkz. ETKILESIM_DILI.md:
     // "kaydıysa geri alınır, seçtiysen korunur".
-    GU.wireRecenter("hal-recenter", () => { clearFocus(); fitView(true); });
+    GU.wireRecenter("hal-recenter", () => {
+      clearFocus();
+      // ETKILESIM_DILI.md'nin kendi tanımı: Recenter "serbest döndürme"yi
+      // de sıfırlamalı. yaw/pitch'e hiç dokunulmuyordu -- sürükleyerek
+      // döndürülmüş bir sahnede Recenter yalnız kadrajı düzeltiyor, açı
+      // aynı kalıyordu (UI denetimi bulgusu; menziller.js'te aynı eksiklik).
+      yaw = 0; pitch = 0.62;
+      fitView(true);
+    });
     svg.on("click", () => { if (currentDetailNode || currentRelation) clearFocus(); });
     // Hâller'de odak ile açık panel TEK durumdur (clearFocus ikisini birden
     // bırakıyor), o yüzden bir adım geri = odağı bırak.
@@ -353,6 +361,11 @@
       // tıklamanın click olayını hiçbir zaman kirişe ulaştırmamasına yol
       // açıyordu -- CSS pointer-events sırası doğru olsa bile.
       if (e.target.closest(".hal-node") || e.target.closest(".hal-chord-g")) return;
+      // menziller.js'teki aynı bulgu: preventDefault yoktu, sürükleyerek
+      // döndürmek ekrandaki etiketleri tarayıcı metin-seçimi olarak
+      // boyuyordu (UI denetimi). .hal-label'e user-select:none eklendi,
+      // burada da menziller'deki gibi önlem alınıyor.
+      e.preventDefault();
       dragging = true; lastX = e.clientX; lastY = e.clientY;
       svgNode.setPointerCapture(e.pointerId);
     });

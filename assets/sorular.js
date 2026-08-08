@@ -310,9 +310,13 @@
     GU.wireRecenter("sorular-recenter", () => fitView(true));
     if (backBtn) { backBtn.hidden = !currentDetailQuestion && !expandedCatId; backBtn.onclick = () => showAllQuestionsList(); }
     // Boşluğa tıklamak: önce odağı bırakır, sonra açık kategoriyi kapatır.
+    // toggleCategory()'nin aynı kapatma yolunda yaptığı gibi panel de
+    // listeye dönmeli -- eskiden yalnız grafik kapanıyordu, panel eski
+    // kategori listesini göstermeye devam ediyordu (UI denetimi bulgusu:
+    // grafikte artık karşılığı olmayan bir içerik).
     svg.on("click", () => {
       if (focusId) { clearFocus(); return; }
-      if (expandedCatId) collapseCategory(true);
+      if (expandedCatId) { collapseCategory(true); showAllQuestionsList(true); }
     });
 
   }

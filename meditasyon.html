@@ -32,6 +32,17 @@ body{
   border-bottom:1px solid var(--border);
   background:var(--surface);
   flex-shrink:0;
+  flex-wrap:wrap;
+  row-gap:.4rem;
+}
+/* Dar ekranlarda (375px gibi) geri düğmesi + iki sekme + üç dil düğmesi
+   tek satıra sığmıyordu, sağ kenar (PT) ekran dışında kalıp yatay taşma
+   yaratıyordu (UI denetimi bulgusu, ölçüldü: scrollWidth 398 vs 375).
+   Bu, iframe'leri saran TEK sayfa -- kardeş sahnelerin hiçbirinde hem
+   sekme hem dil anahtarı birlikte yok. flex-wrap ikinci satıra taşıyor. */
+@media (max-width:480px){
+  .hdr{justify-content:center}
+  .hdr-tabs{flex:1 1 100%;order:3;justify-content:center}
 }
 .hdr-back{
   background:none;border:1px solid var(--border);color:var(--muted);

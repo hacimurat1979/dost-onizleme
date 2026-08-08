@@ -246,7 +246,15 @@
 
     // activeId burada kamerayı taşıyor (bir menzil seçilince sahne ona
     // yaklaşıyor), o yüzden geri çekilirken o da bırakılıyor.
-    GU.wireRecenter("menziller-recenter", () => { activeId = null; showIntro(); fitView(true); });
+    GU.wireRecenter("menziller-recenter", () => {
+      activeId = null; showIntro();
+      // ETKILESIM_DILI.md'nin kendi tanımı: Recenter kaydırma/yakınlaştırma
+      // yanında "serbest döndürme"yi de sıfırlamalı. yaw/pitch'e hiç
+      // dokunulmuyordu -- sürükleyerek döndürülmüş bir sahnede Recenter
+      // yalnız kadrajı düzeltiyor, açı aynı kalıyordu (UI denetimi bulgusu).
+      yaw = 0; pitch = 0.18;
+      fitView(true);
+    });
     svg.on("click", () => { if (activeId) { activeId = null; showIntro(); ensureFrame(); } });
   }
 

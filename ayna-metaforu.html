@@ -30,6 +30,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
 .pairs{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;width:100%;max-width:700px;margin-bottom:1rem}
 .pair{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:.85rem .95rem;min-width:148px;flex:1;cursor:pointer;transition:border-color .2s,background .2s}
 .pair:hover,.pair.on{border-color:var(--liminal);background:var(--surface)}
+.pair:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
 .pair-top{display:flex;align-items:center;gap:.35rem;margin-bottom:.45rem;font-size:.78rem}
 .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .dg{background:var(--gold)}
@@ -360,7 +361,7 @@ function setLang(l){
 function renderPairs(l){
   const d=LA[l];
   $('pairs').innerHTML=d.pairs.map(p=>`
-    <div class="pair" id="${p.id}" onclick="selectPair('${p.id}')">
+    <div class="pair" id="${p.id}" tabindex="0" role="button" aria-label="${p.t1} / ${p.t2} — ${p.label}" onclick="selectPair('${p.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectPair('${p.id}');}">
       <div class="pair-top">
         <span class="dot d${p.d1}"></span>
         <span style="font-size:.72rem;color:var(--${dc(p.d1)})">${p.t1}</span>
