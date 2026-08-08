@@ -170,6 +170,43 @@ window.__seyahatAtlasiApp = (function () {
       ${eserlerHtml(d)}`;
     detailPanel.hidden = false;
     vurgula(d.id, true);
+    kayirPanelinDisina();
+  }
+
+  // Panel (#detail-panel) position:fixed; harita konteynerinin genişliğini
+  // DEĞİŞTİRMİYOR, yalnız sağdaki ~420px'i (bkz. style.css .detail-panel
+  // width:min(420px,92vw)) üstüne kaplıyor. Haritadaki 15 duraktan çoğu
+  // (varış noktası Şam dahil) bu şeritte kalıp panel açıkken tıklanamıyordu
+  // (UI denetimi bulgusu). Yalnız tıklanan durağı kaydırmak yetmiyor --
+  // ÖNCEKİ deneme bunu yaptı ama diğer 8 durak yine örtülü kaldı, çünkü
+  // güzergâhın geri kalanı hâlâ panelin altındaydı. Bunun yerine bütün
+  // güzergâhı panelin SOLUNDAKİ boşluğa sığdırıyoruz (gerekirse küçülterek)
+  // -- odaklanılan durak değil, güzergâhın TAMAMI erişilebilir kalsın diye.
+  function kayirPanelinDisina() {
+    if (!zoom || !svg || !wrapEl || !duraklar.length) return;
+    requestAnimationFrame(() => {
+      const panelRect = detailPanel.getBoundingClientRect();
+      const wrapRect = wrapEl.getBoundingClientRect();
+      const panelLeftInWrap = panelRect.left - wrapRect.left;
+      if (panelLeftInWrap >= wrapRect.width - 4) return; // panel bu genişlikte haritayı örtmüyor (örn. mobil tam ekran panel)
+      const margin = 28;
+      const availW = panelLeftInWrap - margin * 2;
+      if (availW < 80) return; // ekran çok dar, sığdırmaya yer yok
+      const xs = duraklar.map((s) => s.x), ys = duraklar.map((s) => s.y);
+      const minX = Math.min(...xs), maxX = Math.max(...xs);
+      const minY = Math.min(...ys), maxY = Math.max(...ys);
+      const routeW = Math.max(1, maxX - minX), routeH = Math.max(1, maxY - minY);
+      const wrapH = wrapRect.height;
+      const currentT = d3.zoomTransform(svg.node());
+      let k = Math.min(3, availW / routeW, (wrapH - margin * 2) / routeH);
+      k = Math.min(k, currentT.k); // yalnız küçültüyoruz -- kullanıcının kendi yakınlaştırdığı bir görünümü büyütüp bozmuyoruz
+      if (currentT.k * routeW <= availW) return; // güzergâh zaten tamamen görünür alanda sığıyor
+      k = Math.max(0.7, k);
+      const tx = margin - minX * k + Math.max(0, (availW - routeW * k) / 2);
+      const ty = margin - minY * k + Math.max(0, (wrapH - margin * 2 - routeH * k) / 2);
+      const newT = d3.zoomIdentity.translate(tx, ty).scale(k);
+      svg.transition().duration(420).call(zoom.transform, newT);
+    });
   }
 
   function girisPaneli() {
