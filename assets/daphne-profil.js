@@ -64,7 +64,7 @@
   }
 
   let pageData = null;
-  let nodeSel, linkSel, labelSel;
+  let nodeSel, linkSel, labelSel, zoomBehavior;
   let currentDetailParam = null;
 
   function loadData() {
@@ -165,10 +165,15 @@
       .force("y", d3.forceY((d) => (d.type === "param" ? d.ty : hubY)).strength(0.25))
       .force("collide", d3.forceCollide().radius((d) => radiusFor(d) + 22));
 
+    // Ortak Temalar grafiğiyle aynı sebep: bu ağaç da yakınlaşma/geri-
+    // merkezleme taşımıyordu (UI denetimi bulgusu, #17). Gövde/dallar/
+    // düğümler artık tek bir yakınlaşma katmanının içinde.
+    const zoomLayer = svg.append("g").attr("class", "compare-zoom-layer");
+
     // Gövde: sabit (hub fx/fy ile kilitli), tek seferlik çiziliyor.
     // Dalların/kökün altına düşsün diye ilk eklenen katman bu.
     const trunkHalfWidth = 15;
-    svg
+    zoomLayer
       .append("path")
       .attr("class", "daphne-trunk")
       .attr(
@@ -178,7 +183,7 @@
           `C ${cx + 5} ${hubY + 8}, ${cx + trunkHalfWidth} ${hubY + 34}, ${cx + trunkHalfWidth} ${trunkBaseY} Z`
       );
 
-    linkSel = svg
+    linkSel = zoomLayer
       .append("g")
       .attr("class", "links")
       .selectAll("path")
@@ -186,7 +191,7 @@
       .join("path")
       .attr("class", "link daphne-branch");
 
-    const nodeGroup = svg.append("g").attr("class", "nodes");
+    const nodeGroup = zoomLayer.append("g").attr("class", "nodes");
 
     nodeSel = nodeGroup
       .selectAll("g.node")
@@ -238,6 +243,12 @@
     simulation.on("tick", () => {
       linkSel.attr("d", (d) => branchPath(d.source, d.target));
       nodeSel.attr("transform", (d) => `translate(${d.x},${d.y})`);
+    });
+
+    zoomBehavior = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.4, 3]);
+    window.DostGraphUtils.wireRecenter("profile-recenter", () => {
+      const sel = svg.transition().duration(420);
+      sel.call(zoomBehavior.transform, d3.zoomIdentity);
     });
 
     window.__daphneProfileApp = { nodes, links, data };
