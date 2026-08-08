@@ -189,9 +189,13 @@ window.__elestiriArkeolojisiApp = (function () {
       }
     });
 
+    // Alt konumdaki etiketin taban çizgisi (R+14), görünmez tıklama
+    // dairesinin (r=R+9) 5 birim dışında başlıyordu -- fare o dar şeritte
+    // ne daireye ne yazının mürekkebine değiyordu (UI denetimi bulgusu,
+    // eser-agi.js'teki aynı düzeltmeyle tutarlı). R+9'a çekildi.
     const etiketSel = sel.append("text").attr("class", "elestiri-kisi__etiket")
       .attr("text-anchor", "middle")
-      .attr("y", (d) => (d.y > d.laneY ? R + 14 : -(R + 8)))
+      .attr("y", (d) => (d.y > d.laneY ? R + 9 : -(R + 8)))
       .text((d) => kisalt(tt(d.ad), 20));
 
     // Satır ataması düğümleri ayırıyordu ama etiketler hâlâ çakışabiliyordu
@@ -199,7 +203,7 @@ window.__elestiriArkeolojisiApp = (function () {
     // aşağı kaydırılıyor, düğümlerin kendisi birer engel sayılıyor.
     const pendingLabels = [];
     etiketSel.each(function (d) {
-      const baseY = d.y > d.laneY ? R + 14 : -(R + 8);
+      const baseY = d.y > d.laneY ? R + 9 : -(R + 8);
       pendingLabels.push({ lbl: d3.select(this), txt: kisalt(tt(d.ad), 20), x: d.x, y: d.y + baseY, baseY });
     });
     const obstacles = kisiler.map((d) => ({ x: d.x, y: d.y, half: R, h: R * 2 }));

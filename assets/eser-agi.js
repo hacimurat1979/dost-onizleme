@@ -129,13 +129,17 @@ window.__eserAgiApp = (function () {
     // yazılmış üç eserin yılı üç kez tekrarlanmasın diye.
     sel.filter((d) => d.yilYeni).append("text").attr("class", "eser-agi-eser__yil")
       .attr("text-anchor", "end")
-      .attr("x", -(R + 10))
+      .attr("x", -(R + 9))
       .attr("y", 4)
       .text((d) => (d.yil.hicri ? d.yil.hicri + "/" : "") + d.yil.miladi);
 
     sel.append("text").attr("class", "eser-agi-eser__etiket")
       .attr("text-anchor", "start")
-      .attr("x", R + 12)
+      // x, "vurus" görünmez tıklama dairesinin (r=R+9) yarıçapını AŞMIYOR --
+      // eskiden R+12 idi, R+9'luk daireden 3 birim dışarıda kalıyordu ve
+      // fare o dar şeritte ne daireye ne yazının kendi mürekkebine değiyordu
+      // (UI denetimi bulgusu, ~1-2px tıklanamayan boşluk).
+      .attr("x", R + 9)
       .attr("y", 4)
       .text((d) => kisalt(d.eser, 34));
 

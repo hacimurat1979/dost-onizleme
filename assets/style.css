@@ -8575,10 +8575,17 @@ mark.durus-vurgu-es {
    motifiyle tutarlı, bkz. CLAUDE.md daire ilkesi). */
 .hadis-ref {
   cursor: help;
+}
+/* Metin içindeki gövde kullanımı (küçük "○" işareti) ile /ayethadis/
+   dizinindeki kart başlığı kullanımı (.ayethadis-item__ref, kendi tam
+   metni var) aynı .hadis-ref sınıfını paylaşıyor -- ama biri 0.5em'lik
+   bir işaret, öbürü tam bir başlık. :not() olmadan başlık da işaretin
+   dar genişliğini alıp harf harf satır kırıyordu. */
+.hadis-ref:not(.ayethadis-item__ref) {
   display: inline-block;
   width: 0.5em;
 }
-.hadis-ref::after {
+.hadis-ref:not(.ayethadis-item__ref)::after {
   content: "○";
   font-size: 0.7em;
   vertical-align: super;

@@ -99,7 +99,6 @@
         id: f.id,
         label: fassLabel(f),
         accent: f.status === "active",
-        __planned: f.status !== "active",
       };
     });
     mapScene = window.DostHelix.mount(mapEl, {

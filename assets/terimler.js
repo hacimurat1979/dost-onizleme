@@ -450,9 +450,13 @@
     const renderer = diagramRenderers[dg.type];
     if (!renderer) return;
     window.dostTrack && window.dostTrack("sema_acildi", { type: dg.type });
+    // DIAGRAM_DEFS burada tekrar eklenmiyor: bu çizim zaten açık olan detay
+    // panelinin (groupDiagramHtml) kendi kopyası DOM'da duruyor ve url(#...)
+    // referansı belge genelinde çözüldüğü için o yeterli -- cizimler.js'teki
+    // aynı düzeltmeyle tutarlı (UI denetimi bulgusu, iki modülde de vardı).
     window.DostLightbox.open({
       closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
-      svgHtml: DIAGRAM_DEFS + renderer(dg),
+      svgHtml: renderer(dg),
       caption: tt(dg.note),
     });
   }

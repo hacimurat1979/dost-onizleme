@@ -283,9 +283,14 @@
     if (!item) return;
     const renderer = cizimRenderers[item.diagram.type];
     const svg = renderer ? renderer(item.diagram) : "";
+    // CIZIM_DEFS'i burada TEKRAR eklemiyoruz: render()'ın zaten listEl'e
+    // yazdığı tek kopya, id="cizimArrowEnd" SVG belge genelinde çözüldüğü
+    // için (url(#...) referansı DOM'daki herhangi bir yerden çalışır) burada
+    // da geçerli. İkinci bir kopya yalnız aynı id'yi mükerrer basardı --
+    // görünürde belirti yoktu ama geçersiz HTML'di (UI denetimi bulgusu).
     window.DostLightbox.open({
       closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
-      svgHtml: CIZIM_DEFS + svg,
+      svgHtml: svg,
       ref: item.source_ref,
       name: tt(item.name),
     });

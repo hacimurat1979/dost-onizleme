@@ -101,9 +101,18 @@ window.__kavramApp = (function () {
           `<text class="kavram-minigraf__label" x="${x.toFixed(1)}" y="${(y + r + 13).toFixed(1)}" text-anchor="${anchor}"><title>${escapeHtmlKavram(isim)}</title>${escapeHtmlKavram(etiket)}</text>`
       );
     });
+    // Merkez dairenin yarıçapı (20px) sabit -- ama etiket eskiden sabit
+    // 10 karakterde kesiliyordu, dairenin gerçek genişliğinden bağımsız.
+    // Kalın (600) 14px'lik bir yazı için 10 karakter dairenin iki katından
+    // fazla taşıyor ve kenar çizgileriyle çakışıyordu (UI denetimi bulgusu).
+    // Uydu etiketlerindeki aynı mesafe-tabanlı yaklaşım burada da geçerli.
+    const merkezIsim = tt(k.isim);
+    const merkezRoom = 2 * 20 - 8;
+    const merkezMaxChars = Math.max(3, Math.floor(merkezRoom / 6.4));
+    const merkezEtiket = merkezIsim.length > merkezMaxChars ? merkezIsim.slice(0, merkezMaxChars - 1) + "…" : merkezIsim;
     parts.push(
       `<circle class="kavram-minigraf__center" cx="${cx}" cy="${cy}" r="20" style="fill:hsl(${hue} 55% 45%)"></circle>` +
-        `<text class="kavram-minigraf__center-label" x="${cx}" y="${cy + 4}" text-anchor="middle">${escapeHtmlKavram(tt(k.isim)).slice(0, 10)}</text>`
+        `<text class="kavram-minigraf__center-label" x="${cx}" y="${cy + 4}" text-anchor="middle"><title>${escapeHtmlKavram(merkezIsim)}</title>${escapeHtmlKavram(merkezEtiket)}</text>`
     );
     const label = escapeHtmlKavram(
       tt({

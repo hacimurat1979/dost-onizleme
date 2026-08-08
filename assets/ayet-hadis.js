@@ -23,13 +23,20 @@ window.__ayetHadisApp = (function () {
   let dataPromise = null;
   let kuran = null, ayetDizin = null, hadisDizin = null;
 
+  // ayet-onizleme.js (künye hover kutusu) da AYNI üç dosyayı indiriyor; onun
+  // GU.fetchJson önbelleğiyle gerçekten paylaşabilmemiz için o modülün
+  // kullandığı yolu birebir kullanıyoruz -- ROUTE_BASE + kök-göreli yol.
+  // Aksi hâlde iki farklı anahtar ("data/..." burada, base()+"/data/..."
+  // orada) önbelleği ayırır ve aynı sayfada aynı dosya iki kez iner.
+  function base() { return window.__dostRouteBase || ""; }
+
   function fetchData() {
     if (dataPromise) return dataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("ayethadis-wrap");
     dataPromise = Promise.all([
-      GU.fetchJson("data/ibn-arabi/kuran.json"),
-      GU.fetchJson("data/ibn-arabi/ayet-dizini.json"),
-      GU.fetchJson("data/ibn-arabi/hadis-dizini.json"),
+      GU.fetchJson(base() + "/data/ibn-arabi/kuran.json"),
+      GU.fetchJson(base() + "/data/ibn-arabi/ayet-dizini.json"),
+      GU.fetchJson(base() + "/data/ibn-arabi/hadis-dizini.json"),
     ])
       .then(([k, ad, hd]) => {
         kuran = k;
