@@ -61,12 +61,30 @@ window.__ayetHadisApp = (function () {
     return s ? esc(tt(s.ad)) : "";
   }
 
+  // ayet-onizleme.js'teki (künye hover kutusu) AYNI dosya -- kuran.json'da
+  // Portekizce meal yok -- ama PT modunda burada sessizce İngilizce/Türkçe
+  // meale düşülüyordu, hiçbir uyarı yoktu. Aynı verinin bir gösterim yüzeyi
+  // dürüst, öbürü değildi (UI denetimi bulgusu; CLAUDE.md'nin "yaptığımız
+  // işi olduğundan farklı gösterme" ilkesiyle çelişiyordu).
+  const DIL_ADI = {
+    tr: { tr: "Türkçe", en: "Turkish", pt: "turco" },
+    en: { tr: "İngilizce", en: "English", pt: "inglês" },
+  };
   function ayetMeal(ref) {
     const a = kuran.ayetler && kuran.ayetler[ref];
     if (!a) return "";
     const lang = I18n ? I18n.getLang() : "tr";
     const meal = a.meal || {};
-    return esc(meal[lang] || meal.en || meal.tr || "");
+    const mealDili = meal[lang] ? lang : (meal.en ? "en" : (meal.tr ? "tr" : null));
+    const govde = mealDili ? meal[mealDili] : "";
+    const not = (mealDili && mealDili !== lang && DIL_ADI[mealDili])
+      ? ` <span class="ayethadis-item__meal-not">${esc(tt({
+          tr: `(meal ${DIL_ADI[mealDili].tr} — bu dilde meal elimizde yok)`,
+          en: `(translation in ${DIL_ADI[mealDili].en} — we have none in this language)`,
+          pt: `(tradução em ${DIL_ADI[mealDili].pt} — não temos nenhuma neste idioma)`,
+        }))}</span>`
+      : "";
+    return esc(govde) + not;
   }
 
   function locHtml(list) {

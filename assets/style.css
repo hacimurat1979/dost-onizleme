@@ -4462,6 +4462,15 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 
 .app-footer {
   padding: 16px clamp(16px, 4vw, 48px) 32px;
+  /* Sabit "Kavram Defterim" düğmesi (.defter-toggle, position:fixed,
+     left:18px bottom:18px) sayfanın akışını hiç bilmiyor -- içerik
+     viewport'u doldurmayan kısa sayfalarda (ör. /sahneler/) altbilgi
+     tam düğmenin bulunduğu banda denk gelip metnin ilk harflerini
+     kapatıyordu (UI denetimi bulgusu). .detail-panel__close/__print/
+     __notebook'un A-/A+ düğmelerine karşı zaten yaptığı gibi (bkz.
+     .typography-controls yorumu), hesaplamak yerine sabit bir pay
+     ayrılıyor. */
+  padding-left: max(clamp(16px, 4vw, 48px), 74px);
   color: var(--text-muted);
   font-size: 0.78rem;
   max-width: 80ch;
@@ -8535,6 +8544,13 @@ mark.durus-vurgu-es {
   font-size: 0.88rem;
   line-height: 1.5;
   color: var(--text-secondary);
+}
+/* PT modda meal İngilizce/Türkçeye düşerse bunu söyleyen not (aynı verinin
+   hover önizlemesindeki -- ayet-onizleme.js -- notla aynı desen). */
+.ayethadis-item__meal-not {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-muted);
 }
 .ayethadis-item__locs {
   display: flex;

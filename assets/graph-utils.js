@@ -73,6 +73,19 @@ window.DostGraphUtils = (function () {
     // imlecin ALTINA doğru büyümeye çeviriyoruz.
     tooltip.classList.remove("node-hover-tip--flip");
     if (tooltip.getBoundingClientRect().top < 4) tooltip.classList.add("node-hover-tip--flip");
+    // Yukarıdaki 60px pay, kutunun GERÇEK genişliğini değil sabit bir
+    // tahmini varsayıyordu -- konteynerin sol kenarına yakın bir düğümün
+    // (örn. Eser Ağı'nın en eski satırı) uzun başlığı yine de viewport
+    // dışına taşıp kırpılıyordu (UI denetimi bulgusu). transform:
+    // translate(-50%,...) ile ortalanmış kutu artık YERLEŞTİKTEN SONRA
+    // ölçülüp, ekranın (wrap değil -- kutu fixed değil ama viewport'a göre
+    // kırpılıyor) solundan/sağından taşıyorsa x buna göre düzeltiliyor.
+    const tipRect = tooltip.getBoundingClientRect();
+    const overflowLeft = tipRect.left;
+    const overflowRight = tipRect.right - window.innerWidth;
+    if (overflowLeft < 4) x -= overflowLeft - 4;
+    else if (overflowRight > -4) x -= overflowRight + 4;
+    tooltip.style.left = x + "px";
   }
 
   function hideTooltip(tooltip) {
