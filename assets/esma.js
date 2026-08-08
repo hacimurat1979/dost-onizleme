@@ -26,7 +26,30 @@
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
   const wrapEl = document.getElementById("esma-wrap");
+  const tooltip = document.getElementById("esma-tooltip");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // hal.js/ontology.js'in kenar hover'ıyla aynı desen -- #esma-tooltip
+  // DOM'da vardı ama hiçbir JS'ten bağlanmıyordu (UI denetimi bulgusu):
+  // .esmaX-rel'e değinmek/tıklamak öncesinde hiçbir gerekçe göstermiyordu.
+  function showRelTooltipEsma(r, event) {
+    if (!tooltip) return;
+    const from = rawById.get(r.from), to = rawById.get(r.to);
+    if (!from || !to) return;
+    // Elle yazılmış ilişkiler (.esmaX-rel) r.label/r.type taşır; türetilmiş
+    // kenarlar (.esmaX-derived) r.aciklama taşır ve tipsiz -- ikisi de aynı
+    // tooltip'i paylaşıyor, o yüzden ikisini de kabul ediyor.
+    const meta = r.type ? RELATION_TYPE_META[r.type] : null;
+    tooltip.innerHTML = GU.edgeReasonHtml({
+      title: `${tt(from.name)} ↔ ${tt(to.name)}`,
+      kindLabel: meta ? tt(meta.label) : tt({ tr: "Saydığımız bir bağ", en: "A link we counted", pt: "Um vínculo que contamos" }),
+      reason: tt(r.label) || tt(r.aciklama),
+    });
+    tooltip.hidden = false;
+    GU.moveTooltip(tooltip, wrapEl, event);
+  }
+  function moveTooltipEsma(event) { GU.moveTooltip(tooltip, wrapEl, event); }
+  function hideTooltipEsma() { GU.hideTooltip(tooltip); }
 
   function tt(dict) { return I18n.pick3(dict || {}); }
   function linkify(text, view, id) {
@@ -815,7 +838,27 @@
         if (forced) always.push(item); else candidates.push(item);
       });
       const placed = [];
-      always.forEach((it) => { placed.push(it.box); plan.set(it.n.id, it.mode); });
+      const labelDy = new Map();
+      // Zorunlu ("her zaman kazanır") etiketler eskiden BİRBİRLERİYLE hiç
+      // çakışma kontrolüne girmeden sırayla yerleştiriliyordu -- Zât/Allah/
+      // kutuplar sık sık üst üste biniyordu (2026-08-07 UI denetimi,
+      // varsayılan açılışta, hiç etkileşim olmadan). "Her zaman kazanır"ın
+      // anlamı gösterilmemesi değil, gösterilirken de okunur kalması --
+      // burada da dikey kaydırmayla çözülüyor (graph-utils.js'in
+      // createLabelDeconflictor'ıyla aynı fikir, esma.js'in kendi
+      // full/short/none kutu sistemine yerelce uygulanmış).
+      always.forEach((it) => {
+        let dy = 0, guard = 0;
+        while (guard++ < 24) {
+          const b = { x0: it.box.x0, x1: it.box.x1, y0: it.box.y0 + dy, y1: it.box.y1 + dy };
+          const hit = placed.find((p) => boxesOverlap(b, p));
+          if (!hit) break;
+          dy -= (it.box.y1 - it.box.y0) + 4; // yukarı doğru kaydır -- etiketler düğümün üstünde
+        }
+        if (dy) { it.box = { x0: it.box.x0, x1: it.box.x1, y0: it.box.y0 + dy, y1: it.box.y1 + dy, text: it.box.text }; labelDy.set(it.n.id, dy); }
+        placed.push(it.box);
+        plan.set(it.n.id, it.mode);
+      });
       candidates.sort((a, b) => b.priority - a.priority);
       candidates.forEach((it) => {
         const collides = placed.some((p) => boxesOverlap(it.box, p));
@@ -823,9 +866,9 @@
         placed.push(it.box);
         plan.set(it.n.id, it.mode);
       });
-      return plan;
+      return { plan, labelDy };
     }
-    const labelPlan = buildLabelPlan();
+    const { plan: labelPlan, labelDy } = buildLabelPlan();
 
     // düğümler (ressam algoritması: arkadan öne)
     const ordered = nodes.slice().sort((a, b) => b.pz - a.pz);
@@ -887,7 +930,7 @@
       if (mode === "none") { label.style("display", "none"); }
       else {
         label.style("display", null)
-          .attr("y", -r - 7)
+          .attr("y", -r - 7 + (labelDy.get(n.id) || 0))
           .style("font-size", Math.max(14, Math.min(21, 15 + n.importance * 8)) + "px")
           .classed("esmaX-label--strong", n.kind !== "name" || isActive || n.id === hoverId)
           .text(mode === "full" ? fullName(n.raw) : shortName(n.raw));
@@ -915,7 +958,19 @@
     const rs = relLayer.selectAll("line.esmaX-rel").data(visRel, (r) => r.from + "~" + r.to);
     rs.exit().remove();
     const re = rs.enter().append("line").attr("class", (r) => "esmaX-rel esmaX-rel--" + r.type)
-      .on("click", (e, r) => { e.stopPropagation(); showRelationDetail(r); });
+      .attr("tabindex", 0).attr("role", "button")
+      .attr("aria-label", (r) => {
+        const a = byId.get(r.from), b = byId.get(r.to);
+        const nm = (n) => (tt(n.raw ? n.raw.name : n.name) || n.id);
+        return nm(a) + " – " + nm(b);
+      })
+      .on("pointerenter", (e, r) => showRelTooltipEsma(r, e))
+      .on("pointermove", (e) => moveTooltipEsma(e))
+      .on("pointerleave", hideTooltipEsma)
+      .on("focus", (e, r) => showRelTooltipEsma(r, e))
+      .on("blur", hideTooltipEsma)
+      .on("click", (e, r) => { e.stopPropagation(); showRelationDetail(r); })
+      .on("keydown", (e, r) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); showRelationDetail(r); } });
     re.merge(rs).each(function (r) {
       const a = byId.get(r.from), b = byId.get(r.to);
       const rel = selectedId && (r.from === selectedId || r.to === selectedId);
@@ -939,6 +994,11 @@
         return tt({ tr: "Saydığımız bir bağ", en: "A link we counted", pt: "Um vínculo que contamos" })
           + ": " + nm(a) + " – " + nm(b);
       })
+      .on("pointerenter", (e, r) => showRelTooltipEsma(r, e))
+      .on("pointermove", (e) => moveTooltipEsma(e))
+      .on("pointerleave", hideTooltipEsma)
+      .on("focus", (e, r) => showRelTooltipEsma(r, e))
+      .on("blur", hideTooltipEsma)
       .on("click", (e, r) => { e.stopPropagation(); showDerivedDetail(r); })
       .on("keydown", (e, r) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showDerivedDetail(r); } });
     de.merge(ds).each(function (r) {

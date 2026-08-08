@@ -611,16 +611,19 @@ function setupScene() {
     renderDurakPanel(stopIndex);
   }
 
+  let curDurak = null;
   function renderDurakPanel(stopIndex) {
     const t = DURAKLAR[stopIndex][curLang];
+    curDurak = t;
     if ($('dpBaslik').textContent === t.baslik) return; // aynı durak, yeniden yazma
     $('dpBaslik').textContent = t.baslik;
     $('dpOzet').textContent = t.ozet;
-    $('dpGovde').textContent = t.giris + ' ' + t.govde;
     $('dpDayanak').textContent = t.dayanak;
     $('dpGovde').hidden = true;
+    $('dpGovde').dataset.acikBtn = '';
     $('dpDayanak').hidden = true;
     $('btnGiris').setAttribute('aria-pressed', 'false');
+    $('btnGovde').setAttribute('aria-pressed', 'false');
     $('btnDayanak').setAttribute('aria-pressed', 'false');
   }
 
@@ -694,16 +697,23 @@ function setupScene() {
   $('btnIleri').addEventListener('click', () => setDepth(depth + UNIT, true));
   $('btnGeri').addEventListener('click', () => setDepth(depth - UNIT, true));
 
-  $('btnGiris').addEventListener('click', () => {
-    const on = $('dpGovde').hidden;
-    $('dpGovde').hidden = !on;
-    $('btnGiris').setAttribute('aria-pressed', String(on));
-  });
-  $('btnGovde').addEventListener('click', () => {
-    const on = $('dpGovde').hidden;
-    $('dpGovde').hidden = !on;
-    $('btnGiris').setAttribute('aria-pressed', String(on));
-  });
+  function toggleDurakGovde(btn, text) {
+    const dp = $('dpGovde');
+    const wasOpenHere = !dp.hidden && dp.dataset.acikBtn === btn.id;
+    if (wasOpenHere) {
+      dp.hidden = true;
+      dp.dataset.acikBtn = '';
+      btn.setAttribute('aria-pressed', 'false');
+      return;
+    }
+    dp.textContent = text;
+    dp.hidden = false;
+    dp.dataset.acikBtn = btn.id;
+    $('btnGiris').setAttribute('aria-pressed', String(btn.id === 'btnGiris'));
+    $('btnGovde').setAttribute('aria-pressed', String(btn.id === 'btnGovde'));
+  }
+  $('btnGiris').addEventListener('click', () => toggleDurakGovde($('btnGiris'), curDurak.giris));
+  $('btnGovde').addEventListener('click', () => toggleDurakGovde($('btnGovde'), curDurak.giris + ' ' + curDurak.govde));
   $('btnDayanak').addEventListener('click', () => {
     const on = $('dpDayanak').hidden;
     $('dpDayanak').hidden = !on;

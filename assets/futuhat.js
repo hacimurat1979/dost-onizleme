@@ -497,7 +497,7 @@
       .attr("class", "node-sheen")
       .attr("r", (d) => (d.depth === 0 ? 15 : d.depth === 1 ? 11 : 8));
 
-    nodeSel
+    const labelSel = nodeSel
       .append("text")
       .attr("class", "futuhat-tree__label")
       .attr("text-anchor", (d) => {
@@ -514,6 +514,23 @@
       .attr("dy", (d) => (d.depth === 0 ? -22 : "0.32em"))
       .style("font-size", etiketPunto.toFixed(2) + "px")
       .text((d) => tt(d.data.label));
+
+    // Sabit 220px pay yalnız TAHMİNDİ -- uzun düğüm adlarında (bkz. yukarıdaki
+    // etiketPunto yorumu) gerçek metin genişliğini aşıp kırpılıyordu, büyüteç
+    // (lightbox) de aynı viewBox'ı kullandığı için düzeltmiyordu (UI denetimi
+    // bulgusu). graph-utils.js'in createLabelDeconflictor'ındaki aynı ders:
+    // tahmin değil ÖLÇÜM tutuyor -- her etiket gerçekten çizildikten SONRA
+    // getBBox() ile ölçülüp viewBox gerekirse genişletiliyor.
+    labelSel.each(function (d) {
+      let bb;
+      try { bb = this.getBBox(); } catch (e) { return; }
+      if (!bb || (!bb.width && !bb.height)) return;
+      x0 = Math.min(x0, d.px + bb.x);
+      x1 = Math.max(x1, d.px + bb.x + bb.width);
+      y0 = Math.min(y0, d.py + bb.y);
+      y1 = Math.max(y1, d.py + bb.y + bb.height);
+    });
+    svg.attr("viewBox", `${x0} ${y0} ${x1 - x0} ${y1 - y0}`);
   }
 
   function showTip(d, event) {

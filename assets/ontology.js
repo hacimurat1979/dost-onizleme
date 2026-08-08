@@ -1206,10 +1206,16 @@
   // yenilemesi tetiklemesin diye burada yakalayıp SPA içi yönlendirmeye
   // çeviriyoruz; yeni sekmede aç / orta tık gibi tarayıcı varsayılanlarını
   // bozmamak için değiştirici tuş basılıysa dokunmuyoruz.
+  // Seçici bilerek "a.cross-link" DEĞİL "a[data-view]": Sırlar↔Sorular
+  // köprüsü gibi kart tarzı linkler (.sorular-sir) .cross-link'in kendi
+  // stilini (noktalı alt çizgi/renk) İSTEMİYOR ama SPA yönlendirmesine
+  // aynı şekilde ihtiyaç duyuyor -- yalnız .cross-link'e bakmak bu ikisini
+  // birbirine bağlıyordu, sınıf eksikse tıklama sessizce tam sayfa
+  // yenilemesine düşüyordu (2026-08-07 UI denetimi, 33 bağın tamamı).
   document.addEventListener("click", (event) => {
     if (event.defaultPrevented || event.button !== 0) return;
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const a = event.target.closest("a.cross-link");
+    const a = event.target.closest("a[data-view]");
     if (!a) return;
     const view = a.dataset.view;
     if (!view) return;
@@ -1899,6 +1905,19 @@
     }
 
     window.__ontologyApp = { nodes, links, nodeById, is3d: () => tiltTarget > 0.5 };
+
+    // İlk boya @font-face yüklenmeden önce olabilir; deconflictLabels'ın
+    // ölçüm önbelleği (graph-utils.js) fontlar hazır olunca kendini
+    // temizliyor ama BURADA yeniden çizdirecek biri gerekiyor -- yukarıdaki
+    // yaw/sway eşikleri (satır ~1775/1804) sürekli dönüşte gereksiz
+    // tekrar-boyamayı önlemek için var, fakat varsayılan 3B açılışta
+    // sonraki eşiği aşan kareye kadar (dakikalar sürebilir) etiketler eski
+    // (fontsuz ölçülmüş) konumunda kalırdı (2026-08-07 UI denetimi: sayfa
+    // ilk açıldığında hiç tıklamadan çakışan etiketler). Eşiği bir kere
+    // bypass edip zorla tazeliyoruz.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => paintPositions());
+    }
   }
 
   function pullBack(fromX, fromY, toX, toY, dist) {

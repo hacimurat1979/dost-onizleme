@@ -812,7 +812,7 @@
     const base = window.__dostRouteBase || "";
     const href = id ? `${base}/${view}/${id}` : `${base}/${view}`;
     const label = q.linkLabel ? I18n.pick3(q.linkLabel) : tt({ tr: "Devamını oku", en: "Read more", pt: "Ler mais" });
-    return `<a class="cross-link sorular-readmore" href="${href}">${label} →</a>`;
+    return `<a class="cross-link sorular-readmore" href="${href}" data-view="${view}"${id ? ` data-id="${id}"` : ""}>${label} →</a>`;
   }
   function sourceHtml(q) { return q.source ? `<cite class="sorular-source">${q.source}</cite>` : ""; }
 

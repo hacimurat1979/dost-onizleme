@@ -346,7 +346,13 @@
     let lastX = 0, lastY = 0;
     svgNode.addEventListener("pointerdown", (e) => {
       if (tiltTarget < 0.5) return;
-      if (e.target.closest(".hal-node")) return;
+      // .hal-node zaten hariç tutuluyordu; .hal-chord-g'nin (kiriş + isabet
+      // şeridi) hariç tutulmaması gerçek hatanın asıl kaynağıydı -- burada
+      // yakalanan HER pointerdown sahneyi döndürmeye başlıyor ve pointer'ı
+      // svg'ye "capture" ediyordu (setPointerCapture), bu da bir kirişe
+      // tıklamanın click olayını hiçbir zaman kirişe ulaştırmamasına yol
+      // açıyordu -- CSS pointer-events sırası doğru olsa bile.
+      if (e.target.closest(".hal-node") || e.target.closest(".hal-chord-g")) return;
       dragging = true; lastX = e.clientX; lastY = e.clientY;
       svgNode.setPointerCapture(e.pointerId);
     });

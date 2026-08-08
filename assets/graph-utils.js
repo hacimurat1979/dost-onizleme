@@ -349,6 +349,19 @@ window.DostGraphUtils = (function () {
   // 12px'e çıkarmak mobil çakışmayı 12'den 14'e taşıdı. Yer açan şey kaydırma.
   function createLabelDeconflictor() {
     const box = new Map();            // metin -> {w,h}
+    // İlk boya, kendi @font-face'lerimiz (font-display:swap) yüklenmeden
+    // ÖNCE bir yedek fontla olabilir -- getBBox() o an ölçtüğü genişliği
+    // sonsuza dek önbelleğe alıyordu (metin başına bir kez). Ölçüldü:
+    // aynı etiket yedek fontla ~%13 daha GENİŞ görünüyor -- yani gerçek
+    // font yüklendikten sonra kutu küçülmüyor, tam tersi: erken ölçüm çok
+    // DAR kalıyor ve deconfliction o günden sonra hep az davranıyordu
+    // (2026-08-07 UI denetimi: varsayılan açılışta, hiç tıklamadan çakışan
+    // etiketler). Fontlar hazır olunca önbellek bir kez temizleniyor;
+    // sahnelerin zaten sürekli çalışan animasyon döngüsü bir sonraki
+    // karede doğru ölçümle yeniden yerleştiriyor.
+    if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => box.clear());
+    }
     function measure(node, txt) {
       let m = box.get(txt);
       if (!m) {

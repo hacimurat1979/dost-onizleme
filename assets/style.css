@@ -4471,8 +4471,15 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 @media (max-width: 640px) {
   .app-header { flex-direction: column; }
   .detail-panel { width: 100vw; top: var(--app-header-height, 64px); height: calc(100% - var(--app-header-height, 64px)); z-index: 60; }
-  .detail-panel__close { top: 12px; z-index: 61; }
-  .detail-panel__print { top: 12px; right: 64px; z-index: 61; }
+  /* top:12px sabitiydi -- app-header dar ekranda flex-direction:column'a
+     geçip iki satıra bölününce (satır 4472), gerçek başlık yüksekliğini
+     yok sayıp panel düğmelerini başlığın ilk satırındaki arama/sürpriz
+     düğmelerinin ÜSTÜNE bindiriyordu (2026-08-07 tarayici-denetimi bulgusu:
+     360-390px'te tıklama arama yerine yazdırmaya gidiyordu). Temel kural
+     zaten --app-header-height'i (ontology.js'te ölçülen gerçek yükseklik)
+     kullanıyor -- burada yalnız z-index'i yükseltmek yeterli. */
+  .detail-panel__close { z-index: 61; }
+  .detail-panel__print { right: 64px; z-index: 61; }
   .btn-ghost { padding: 8px 11px; font-size: 0.8rem; }
   .lang-btn { padding: 8px 12px; }
   .welcome-screen__stage { width: min(78vw, 300px); }
@@ -6575,7 +6582,6 @@ body.cizim-lightbox-open {
 }
 #ontology-wrap.confidence-on .link--conf-yuksek {
   stroke-opacity: 0.95;
-  stroke: var(--accent-interactive);
   stroke-width: 2px;
   filter: none;
 }
@@ -6667,6 +6673,13 @@ body[data-theme="dark"] .esmaX-dot { stroke: rgba(255,255,255,0.14); }
 
 /* Çapraz ilişkiler -- sakin, ince kesikli altın; seçince parlar */
 .esmaX-rel { stroke: var(--series-theme); stroke-width: 1.2; stroke-dasharray: 3 5; cursor: pointer; }
+/* Hover/focus'ta hiçbir görsel tepki yoktu (UI denetimi bulgusu) --
+   .esmaX-derived'in aynı hareketi zaten kalınlaşarak karşılıyor. */
+.esmaX-rel:hover,
+.esmaX-rel:focus-visible {
+  stroke-width: 2.1px;
+  outline: none;
+}
 
 /* Yavaş ışık parçacıkları */
 .esmaX-particle { fill: var(--series-theme); pointer-events: none; }
@@ -6727,7 +6740,15 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
    onun altında duran ikinci bir dokuyu gösteriyor. Türe göre renk/desen:
    gerilim = sırayla çelişen bağ (kesikli), doğurur = biri ötekini açan,
    yankı = aynı hamlenin iki ayrı yerde tekrarı. */
-.hal-chord { fill: none; stroke-linecap: round; pointer-events: stroke; cursor: pointer; }
+/* .hal-chord (görünür ince çizgi) hal.js'te .hal-chord-hit'in ÜSTÜNE
+   çiziliyor (satır 556, .hal-chord-hit'ten sonra append ediliyor) ama
+   olay dinleyicileri yalnız .hal-chord-hit'e bağlı (satır 551-555) --
+   pointer-events:stroke burada kalırsa görünür çizginin tam üstüne
+   gelmek, dinleyicisiz üst katmanda "yutulup" hiçbir tepki vermiyordu
+   (tıklama/hover yalnız birkaç piksel yana kayınca çalışıyordu).
+   Ontoloji'nin aynı deseni (görünür .link pointer-events:none, altındaki
+   geniş isabet şeridi olayı yakalıyor) burada da uygulanıyor. */
+.hal-chord { fill: none; stroke-linecap: round; pointer-events: none; }
 .hal-chord-hit { fill: none; stroke: transparent; stroke-width: 14; pointer-events: stroke; cursor: pointer; }
 
 /* "Makamı ve Terki": Fütûhât'ta ayrıca bir terk bölümü olan makamların
@@ -6849,6 +6870,7 @@ body[data-theme="dark"] .menziller-moon__leke { fill: #00000030; }
   font-weight: 600;
   fill: var(--surface-1);
   pointer-events: none;
+  user-select: none;
 }
 .menzil-node__label {
   font-size: 1.175rem;
@@ -6858,6 +6880,7 @@ body[data-theme="dark"] .menziller-moon__leke { fill: #00000030; }
   stroke-width: 3px;
   stroke-linejoin: round;
   pointer-events: none;
+  user-select: none;
 }
 .menzil-node__label--active { fill: var(--text-primary); font-weight: 600; }
 

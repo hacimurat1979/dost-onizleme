@@ -75,9 +75,30 @@ window.__kavramApp = (function () {
       nodes.push({ x, y, r, e, strength, nodeHue: MINIGRAF_PALET[i % MINIGRAF_PALET.length] });
     });
     nodes.forEach(({ x, y, r, e, strength, nodeHue }) => {
+      // Etiket ortalanmış (text-anchor:middle) kalırsa kenara yakın
+      // düğümlerde (sol/sağ) metnin yarısı viewBox dışına taşıp
+      // kırpılıyordu (UI denetimi bulgusu, 206 kavram sayfasının %61'i).
+      // futuhat.js'in radyal ağacındaki AYNI çözüm: yatayda merkeze göre
+      // hangi tarafta olduğuna bakıp metni merkeze doğru (boşluğun olduğu
+      // yöne) büyüt, kenara doğru değil.
+      // tx = x (kaydırma yok): "start" metni tam x'ten sağa, "end" metni tam
+      // x'ten sola büyütür -- yani hiçbir karakter düğümün kendi x'inden
+      // KENARA doğru taşmıyor, yalnız merkeze doğru büyüyor.
+      const anchor = x <= cx ? "start" : "end";
+      // Yön düzeltmesi tek başına yetmiyor: "Ar-Rahim (The Especially
+      // Merciful)" gibi ad+çeviri birleşik etiketler, merkeze en yakın
+      // düğümde bile ayrılan tek yönlü boşluğu (~110px) aşıyordu (ölçüldü).
+      // Merkeze uzaklığa göre kalan boşluk tahmin edilip (~6.4px/karakter,
+      // codebase'in başka yerlerinde de kullanılan aynı kaba oran) gerekirse
+      // "…" ile kısaltılıyor -- merkez etiketin zaten yaptığı gibi (aşağıda,
+      // .slice(0,10)), yalnız burada sabit değil mesafeye göre.
+      const isim = tt(e.isim);
+      const room = anchor === "start" ? 220 - x : x;
+      const maxChars = Math.max(6, Math.floor(room / 6.4));
+      const etiket = isim.length > maxChars ? isim.slice(0, maxChars - 1) + "…" : isim;
       parts.push(
         `<circle class="kavram-minigraf__node" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" style="fill:hsl(${nodeHue} 75% 68% / ${(0.75 + strength * 0.25).toFixed(2)})"></circle>` +
-          `<text class="kavram-minigraf__label" x="${x.toFixed(1)}" y="${(y + r + 13).toFixed(1)}" text-anchor="middle">${escapeHtmlKavram(tt(e.isim))}</text>`
+          `<text class="kavram-minigraf__label" x="${x.toFixed(1)}" y="${(y + r + 13).toFixed(1)}" text-anchor="${anchor}"><title>${escapeHtmlKavram(isim)}</title>${escapeHtmlKavram(etiket)}</text>`
       );
     });
     parts.push(

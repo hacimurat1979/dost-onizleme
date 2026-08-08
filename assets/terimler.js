@@ -984,6 +984,11 @@
     window.dostTrack && window.dostTrack("kavram_sayfasi_goruntulendi", { id: t.id });
     const group = groupById(t.group);
     detailPanel.dataset.currentTerm = id;
+    // URL'yi güncelle -- bunsuz Kavram Defterim (kavram-defteri.js) her
+    // terimi aynı location.href'e (bare /terimler/) göre kaydediyordu,
+    // panelde ikinci bir terime geçip yıldızlamak ilkinin kaydını sessizce
+    // siliyordu (href tabanlı kimlik ayrımı sağlayamıyordu).
+    window.__dostNav && window.__dostNav.setHash && window.__dostNav.setHash("terimler", id);
 
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt((group && group.name) || {})}</p>

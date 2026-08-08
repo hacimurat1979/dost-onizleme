@@ -418,6 +418,7 @@
     svgNode.addEventListener("pointerdown", (e) => {
       if (tiltTarget < 0.5) return;
       if (e.target.closest(".menzil-node")) return;
+      e.preventDefault();
       dragging = true; lastX = e.clientX; lastY = e.clientY;
       svgNode.setPointerCapture(e.pointerId);
     });
