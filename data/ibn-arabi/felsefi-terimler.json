@@ -3832,6 +3832,50 @@
         "himmet"
       ]
     },
+    "araf": {
+      "id": "araf",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "A'râf (Yükseklikler)",
+        "en": "Al-A'raf (The Heights)",
+        "pt": "Al-A'raf (As Alturas)"
+      },
+      "arabic": "أعراف",
+      "ozet_tr": "cenneti cehennemden ayıran sınır, 7. sûrenin de adı",
+      "ozet_en": "the boundary separating paradise from hell, also the name of the Qur'an's 7th sura",
+      "ozet_pt": "a fronteira que separa o paraíso do inferno, também o nome da 7ª sura do Alcorão",
+      "felsefi_tanim": {
+        "tr": "Kur'an'da aynı adı taşıyan sûrede (7:46-48) geçen, cenneti cehennemden ayıran bir sınır/duvar (sûr). Fütûhât'ın 371. bâbındaki 'haşir yeri' haritasında, sırât köprüsünü dikey olarak kesen bir çizgi olarak resmediliyor -- yolun başlangıç noktasıyla varış noktasını ayıran bu sınır, hükmün henüz verilmediği bir ara durumu da imliyor.",
+        "en": "A boundary/wall (sur) separating paradise from hell, appearing in the Qur'anic sura of the same name (7:46-48). In the 'Land of Gathering' map in Chapter 371 of the Futuhat, it is drawn as a vertical line intersecting the bridge of the path (sirat) -- this boundary, separating the path's point of departure from its point of arrival, also marks an intermediate state in which judgment has not yet been rendered.",
+        "pt": "Uma fronteira/muro (sur) que separa o paraíso do inferno, mencionada na sura alcorânica do mesmo nome (7:46-48). No mapa da 'Terra da Reunião' do capítulo 371 das Futuhat, é desenhada como uma linha vertical que intersecta a ponte do caminho (sirat) -- esta fronteira, que separa o ponto de partida do ponto de chegada do caminho, também assinala um estado intermédio em que o julgamento ainda não foi proferido."
+      },
+      "iliskili_kavramlar": [
+        "berzah"
+      ]
+    },
+    "sirat": {
+      "id": "sirat",
+      "tier": 3,
+      "group": "kurani-kozmoloji",
+      "title": {
+        "tr": "Sırât (Köprü)",
+        "en": "Al-Sirat (The Bridge)",
+        "pt": "Al-Sirat (A Ponte)"
+      },
+      "arabic": "صراط",
+      "ozet_tr": "kılın incesinde, kılıcın keskininde, cehennemin üstünde gerili köprü",
+      "ozet_en": "the bridge stretched over hell, thinner than a hair and sharper than a sword",
+      "ozet_pt": "a ponte estendida sobre o inferno, mais fina que um cabelo e mais afiada que uma espada",
+      "felsefi_tanim": {
+        "tr": "Kıyamet günü bütün insanların üzerinden geçeceği, bir hadiste 'kılın incesinden, kılıcın keskininden' diye tarif edilen köprü. Fütûhât'ın 371. bâbındaki 'haşir yeri' haritasında yeryüzünden sabit yıldızlar küresinin yüzeyine kadar uzanan yatay bir çizgi olarak resmediliyor; üzerinde ölümün kesilişini simgeleyen bir daire (siyah-beyaz bir koç imgesiyle) duruyor.",
+        "en": "The bridge all people will cross on the Day of Judgment, described in a hadith as 'thinner than a hair, sharper than a sword.' In the 'Land of Gathering' map in Chapter 371 of the Futuhat, it is drawn as a horizontal line stretching from the earth to the surface of the sphere of the fixed stars; upon it sits a circle symbolizing the slaughter of death, in the image of a black-and-white ram.",
+        "pt": "A ponte que todos atravessarão no Dia do Juízo, descrita num hadith como 'mais fina que um cabelo, mais afiada que uma espada.' No mapa da 'Terra da Reunião' do capítulo 371 das Futuhat, é desenhada como uma linha horizontal que se estende da terra até à superfície da esfera das estrelas fixas; sobre ela encontra-se um círculo que simboliza o abate da morte, na imagem de um carneiro preto e branco."
+      },
+      "iliskili_kavramlar": [
+        "araf"
+      ]
+    },
     "berzah": {
       "id": "berzah",
       "tier": 3,
