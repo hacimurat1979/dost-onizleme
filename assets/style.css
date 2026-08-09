@@ -9828,6 +9828,46 @@ button.kuran-dokusu-satir:focus-visible {
 .seyahat-atlasi-zaman input[type="range"] { flex: 1; }
 #seyahat-atlasi-slider-etiket { min-width: 3em; text-align: right; color: var(--text-primary); font-variant-numeric: tabular-nums; }
 
+/* Yıl kaydırıcısına ileri/geri/oynat -- kullanıcı isteği: rotayı elle
+   sürüklemek yerine zamanın kendiliğinden akmasını izleyebilme. Site
+   genelindeki dairesel ikon-düğme diliyle (bkz. .graph-recenter) tutarlı,
+   yalnız bu barın küçük yüksekliğine (daha küçük) uyacak boyutta. */
+.seyahat-atlasi-zaman__adim,
+.seyahat-atlasi-zaman__oynat {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.seyahat-atlasi-zaman__adim:hover,
+.seyahat-atlasi-zaman__oynat:hover,
+.seyahat-atlasi-zaman__adim:focus-visible,
+.seyahat-atlasi-zaman__oynat:focus-visible {
+  color: var(--text-primary);
+  border-color: var(--accent-interactive);
+}
+.seyahat-atlasi-zaman__oynat[aria-pressed="true"] {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+
+/* İki yeni adım düğümü + oynat düğmesi dar ekranlarda çubuğu taşırıyordu
+   (375px'te ölçüldü: yıl etiketi kırpılıyordu). "Yıl" sözcüğü zaten
+   kaydırıcının kendisiyle anlaşılıyor -- dar ekranda gizlenip yer açıyor. */
+@media (max-width: 480px) {
+  .seyahat-atlasi-zaman { gap: 6px; padding: 7px 10px; }
+  .seyahat-atlasi-zaman > label { display: none; }
+  #seyahat-atlasi-slider-etiket { min-width: 2.6em; }
+}
+
 .seyahat-eser-listesi { display: flex; flex-direction: column; gap: 6px; }
 .seyahat-eser-bag {
   padding: 6px 10px;

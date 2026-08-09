@@ -2,8 +2,14 @@
 // yazdığı eserlerle birlikte (docs/icerik-yol-haritasi.md D8).
 //
 // NEDEN BU BİÇİM. Statik site kısıtıyla uyumlu: harita tile servisi yok,
-// kendi çizdiğimiz şematik bir kıyı şeridi var -- "dönemin coğrafya
-// tasavvuruna yakın, modern sınırlar yok" (roadmap'in kendi isteği).
+// kendi çizdiğimiz bir kıyı şeridi var. İlk hâli (2026-08) tamamen soyuk
+// Bezier lekelerdi -- hiçbir gerçek noktaya bağlı değildi. Kullanıcı
+// isteğiyle (2026-08-09) sitenin dokusuna uyan, TANINABİLİR bir dünya
+// haritası biçimine dönüştü: KIYI_SERITLERI'ndeki enlem/boylam dizileri
+// elle basitleştirilmiş bir yaklaşıklama (coğrafya ders kitabı hassasiyeti
+// İDDİA ETMİYORUZ), ama artık İber Yarımadası/Mağrib/Anadolu-Arabistan
+// gerçekten o biçimde duruyor. Modern siyasi sınır yine yok (roadmap'in
+// ilk isteği), yalnız kıyı çizgisi eklendi.
 // Zaman kaydırıcısı GORSEL_DIL.md'nin "davranışı resmet" kuralını
 // karşılıyor: bir yıl seçildiğinde, o yıldan SONRA varılan duraklar ve
 // onlara giden rota parçaları sönükleşiyor -- güzergâh zamanla AÇILIYOR,
@@ -27,6 +33,11 @@ window.__seyahatAtlasiApp = (function () {
   const detailContent = document.getElementById("detail-content");
   const slider = document.getElementById("seyahat-atlasi-slider");
   const sliderEtiket = document.getElementById("seyahat-atlasi-slider-etiket");
+  const geriBtn = document.getElementById("seyahat-atlasi-geri");
+  const ileriBtn = document.getElementById("seyahat-atlasi-ileri");
+  const oynatBtn = document.getElementById("seyahat-atlasi-oynat");
+  const OYNAT_IKON = '<svg class="seyahat-atlasi-zaman__oynat-ikon" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z" fill="currentColor"/></svg>';
+  const DURAKLAT_IKON = '<svg class="seyahat-atlasi-zaman__oynat-ikon" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M7 5 H10 V19 H7 Z M14 5 H17 V19 H14 Z" fill="currentColor"/></svg>';
 
   if (!svgNode || !wrapEl) return { activate() {}, onLangChange() {}, goToNode() {} };
 
@@ -41,6 +52,7 @@ window.__seyahatAtlasiApp = (function () {
   let g = null;
   let focusId = null;
   let minYear = 1165, maxYear = 1240, sliderYear = 1240;
+  let xScale = null, yScale = null;
 
   function boyut() {
     const r = wrapEl.getBoundingClientRect();
@@ -53,23 +65,45 @@ window.__seyahatAtlasiApp = (function () {
     const { w, h } = boyut();
     const PAD = 50;
     const lons = duraklar.map((d) => d.lon), lats = duraklar.map((d) => d.lat);
-    const x = d3.scaleLinear().domain([Math.min(...lons) - 3, Math.max(...lons) + 3]).range([PAD, w - PAD]);
-    const y = d3.scaleLinear().domain([Math.max(...lats) + 3, Math.min(...lats) - 3]).range([PAD, h - PAD]);
-    duraklar.forEach((d) => { d.x = x(d.lon); d.y = y(d.lat); });
+    xScale = d3.scaleLinear().domain([Math.min(...lons) - 3, Math.max(...lons) + 3]).range([PAD, w - PAD]);
+    yScale = d3.scaleLinear().domain([Math.max(...lats) + 3, Math.min(...lats) - 3]).range([PAD, h - PAD]);
+    duraklar.forEach((d) => { d.x = xScale(d.lon); d.y = yScale(d.lat); });
     return { w, h };
   }
 
-  // Kara parçalarının ÇOK şematik, yumuşak lekeleri -- gerçek bir kıyı
-  // şeridi değil, "burada kara var" izlenimi. Kasıtlı belirsiz.
-  function karaLekeleri(w, h) {
-    return [
-      `M ${w * 0.02} ${h * 0.1} Q ${w * 0.15} ${h * 0.02} ${w * 0.32} ${h * 0.12}
-       Q ${w * 0.4} ${h * 0.3} ${w * 0.28} ${h * 0.42} Q ${w * 0.1} ${h * 0.45} ${w * 0.02} ${h * 0.3} Z`,
-      `M ${w * 0.05} ${h * 0.55} Q ${w * 0.3} ${h * 0.5} ${w * 0.55} ${h * 0.58}
-       Q ${w * 0.6} ${h * 0.78} ${w * 0.35} ${h * 0.95} Q ${w * 0.05} ${h * 0.98} ${w * 0.0} ${h * 0.7} Z`,
-      `M ${w * 0.62} ${h * 0.35} Q ${w * 0.85} ${h * 0.15} ${w * 1.0} ${h * 0.3}
-       Q ${w * 1.0} ${h * 0.7} ${w * 0.9} ${h * 0.95} Q ${w * 0.65} ${h * 0.9} ${w * 0.6} ${h * 0.6} Z`,
-    ];
+  // Kıyı şeritleri -- kullanıcı isteğiyle (2026-08-09) eskiki tamamen soyut
+  // Bezier lekelerin (rastgele eğriler, hiçbir gerçek noktaya bağlı değildi)
+  // yerine geçti. Aşağıdaki enlem/boylam dizileri elle basitleştirilmiş bir
+  // yaklaşıklama -- coğrafya ders kitabı hassasiyetinde DEĞİL, ama artık
+  // GERÇEK kıyı biçimine (İber Yarımadası, Cebelitarık Boğazı, Kızıldeniz'in
+  // Hicaz kıyısı boyunca çizdiği eğri) yakın ve durakların KENDİSİYLE AYNI
+  // projeksiyondan geçiyor -- yani her durak, ait olduğu kara parçasının
+  // gerçekten İÇİNDE duruyor. Modern siyasi sınır yok (roadmap'in ilk
+  // isteği hâlâ geçerli), yalnız kıyı çizgisi.
+  const KIYI_SERITLERI = [
+    // İber Yarımadası
+    [[-9.3, 43.1], [-8.8, 41.5], [-9.5, 38.7], [-8.9, 37.0], [-7.5, 36.7],
+     [-5.4, 36.1], [-2.5, 36.7], [-0.5, 37.9], [0.3, 39.5], [1.2, 41.0],
+     [2.2, 41.4], [3.2, 42.4], [1.5, 43.4], [-1.8, 43.4], [-6.5, 43.6]],
+    // Mağrib kıyısı (Fas'tan Tunus'a)
+    [[-9.3, 35.7], [-6.0, 35.4], [-2.9, 35.2], [-0.6, 35.7], [3.0, 36.8],
+     [7.0, 37.0], [9.5, 37.2], [10.5, 34.5], [8.5, 32.3], [3.0, 32.0],
+     [-2.0, 33.2], [-4.5, 34.3], [-7.5, 34.0]],
+    // Anadolu + Şam bölgesi + Mezopotamya + Arabistan (tek parça, kıyısı
+    // Hicaz boyunca Kızıldeniz'e sokularak gerçek biçimine yaklaşıyor)
+    [[26.5, 40.3], [29.0, 41.3], [35.0, 42.0], [41.5, 41.2], [44.3, 39.5],
+     [43.0, 37.2], [41.2, 36.5], [44.4, 33.3], [48.0, 30.0], [48.5, 27.0],
+     [50.0, 24.0], [46.0, 19.5], [39.8, 21.4], [38.9, 22.5], [37.2, 24.5],
+     [34.9, 27.9], [34.5, 31.5], [34.8, 32.8], [35.9, 34.9], [36.2, 36.2],
+     [38.0, 37.5], [35.5, 37.0], [30.5, 36.7], [27.0, 37.0]],
+  ];
+
+  function karaLekeleri() {
+    const line = d3.line()
+      .x((p) => xScale(p[0]))
+      .y((p) => yScale(p[1]))
+      .curve(d3.curveCatmullRomClosed.alpha(0.7));
+    return KIYI_SERITLERI.map((seri) => line(seri));
   }
 
   function ciz() {
@@ -78,7 +112,7 @@ window.__seyahatAtlasiApp = (function () {
     svg.attr("viewBox", `0 0 ${w} ${h}`);
     g = svg.append("g").attr("class", "seyahat-scene");
 
-    g.append("g").attr("class", "seyahat-kara").selectAll("path").data(karaLekeleri(w, h)).join("path").attr("d", (d) => d);
+    g.append("g").attr("class", "seyahat-kara").selectAll("path").data(karaLekeleri()).join("path").attr("d", (d) => d);
 
     // Rota: kronolojik sırayla duraklar arası kavisli çizgi.
     const line = d3.line().x((d) => d.x).y((d) => d.y).curve(d3.curveCatmullRom.alpha(0.6));
@@ -229,6 +263,24 @@ window.__seyahatAtlasiApp = (function () {
     hedef.call(zoom.transform, d3.zoomIdentity);
   }
 
+  // Yıl kaydırıcısına ileri/geri/oynat -- eskiden yalnız elle sürüklenebiliyordu
+  // (kullanıcı bulgusu: "ileri geri gibi bir seçenek ekleyelim"). setYear tek bir
+  // yerden slider.value + etiket + filtreyi birlikte günceller ki geri/ileri/
+  // oynat/elle sürükleme dördü de aynı yoldan geçsin.
+  let oynatTimer = null;
+  function oynatDurdur() {
+    if (oynatTimer) { clearInterval(oynatTimer); oynatTimer = null; }
+    if (oynatBtn) {
+      oynatBtn.setAttribute("aria-pressed", "false");
+      oynatBtn.innerHTML = OYNAT_IKON;
+    }
+  }
+  function setYear(y) {
+    sliderYear = Math.max(minYear, Math.min(maxYear, y));
+    if (slider) slider.value = String(sliderYear);
+    if (sliderEtiket) sliderEtiket.textContent = String(sliderYear);
+    uygulaZamanFiltresi();
+  }
   function slidereBagla() {
     if (!slider) return;
     slider.min = String(minYear);
@@ -237,10 +289,30 @@ window.__seyahatAtlasiApp = (function () {
     sliderYear = maxYear;
     if (sliderEtiket) sliderEtiket.textContent = String(sliderYear);
     slider.addEventListener("input", () => {
+      oynatDurdur();
       sliderYear = Number(slider.value);
       if (sliderEtiket) sliderEtiket.textContent = String(sliderYear);
       uygulaZamanFiltresi();
     });
+    if (geriBtn) geriBtn.addEventListener("click", () => { oynatDurdur(); setYear(sliderYear - 1); });
+    if (ileriBtn) ileriBtn.addEventListener("click", () => { oynatDurdur(); setYear(sliderYear + 1); });
+    if (oynatBtn) {
+      oynatBtn.addEventListener("click", () => {
+        if (oynatTimer) { oynatDurdur(); return; }
+        // Sona gelinmişse baştan başlat -- aksi hâlde "oynat"a basınca hiçbir
+        // şey olmuyor izlenimi verir.
+        if (sliderYear >= maxYear) setYear(minYear);
+        oynatBtn.setAttribute("aria-pressed", "true");
+        oynatBtn.innerHTML = DURAKLAT_IKON;
+        oynatTimer = setInterval(() => {
+          // Görünüm arka plana geçtiyse (başka bir bölüme geçildiyse)
+          // oynatmayı durdur -- aksi hâlde kullanıcı geri döndüğünde
+          // beklenmedik bir yılda bulur kendini.
+          if (!GU.isViewActive(wrapEl) || sliderYear >= maxYear) { oynatDurdur(); return; }
+          setYear(sliderYear + 1);
+        }, 650);
+      });
+    }
   }
 
   let yuklendi = false;
