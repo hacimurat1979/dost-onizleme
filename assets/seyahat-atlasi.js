@@ -43,6 +43,14 @@ window.__seyahatAtlasiApp = (function () {
 
   function tt(dict) { return I18n.pick3(dict || {}); }
 
+  // Eser Ağı/Sorular'da iki kez işe yarayan üçlü (2026-08-09): otomatik
+  // kavram linki + kronolojik önce/sonra gezinme + katlanır kaynak notu.
+  // Seyahat Atlası zaten kronolojik bir güzergah (duraklar sırayla), bu
+  // üçlü buraya da doğal bir sonraki durak.
+  function linkify(text) {
+    return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text;
+  }
+
   let data = null;
   let eserAgiData = null;
   let duraklar = [];
@@ -195,16 +203,47 @@ window.__seyahatAtlasiApp = (function () {
             <div class="seyahat-eser-listesi">${rows}</div>`;
   }
 
+  // "Bu durak güzergâhın neresinde?" -- duraklar zaten kronolojik sırada
+  // (bkz. yukle()), yalnız dizideki komşuları okuyoruz. Tıklanınca gerçekten
+  // o durağa gidiyor (wireIzAdimlari) -- ETKILESIM_DILI.md'nin "bağlanmamış
+  // düğme" yasağına uyuyor.
+  function izHtml(d) {
+    const idx = duraklar.indexOf(d);
+    const onceki = idx > 0 ? duraklar[idx - 1] : null;
+    const sonraki = idx < duraklar.length - 1 ? duraklar[idx + 1] : null;
+    if (!onceki && !sonraki) return "";
+    const adim = (yon, hedef) => hedef
+      ? `<button type="button" class="eser-agi-iz__adim eser-agi-iz__adim--${yon}" data-id="${hedef.id}">
+          <span class="eser-agi-iz__etiket">${tt(yon === "once"
+            ? { tr: "Öncesinde", en: "Before", pt: "Antes" }
+            : { tr: "Sonrasında", en: "After", pt: "Depois" })}</span>
+          <span class="eser-agi-iz__eser">${tt(hedef.sehir)}</span></button>`
+      : "<span></span>";
+    return `<nav class="eser-agi-iz" aria-label="${tt({ tr: "Güzergâhtaki komşu duraklar", en: "Neighbouring stops on the route", pt: "Paragens vizinhas na rota" })}">
+      ${adim("once", onceki)}${adim("sonra", sonraki)}</nav>`;
+  }
+
+  function wireIzAdimlari() {
+    detailContent.querySelectorAll(".eser-agi-iz__adim").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const hedef = durakById.get(btn.dataset.id);
+        if (hedef) durakPaneli(hedef);
+      });
+    });
+  }
+
   function durakPaneli(d) {
     focusId = d.id;
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${d.yil_baslangic}${d.yil_bitis !== d.yil_baslangic ? "–" + d.yil_bitis : ""}</p>
       <h2 class="detail-title">${tt(d.sehir)}</h2>
-      <div class="detail-block detail-block--soru"><p>${tt(d.ozet)}</p></div>
+      ${izHtml(d)}
+      <div class="detail-block detail-block--soru"><p>${linkify(tt(d.ozet))}</p></div>
       ${eserlerHtml(d)}`;
     detailPanel.hidden = false;
     vurgula(d.id, true);
     kayirPanelinDisina();
+    wireIzAdimlari();
   }
 
   // Panel (#detail-panel) position:fixed; harita konteynerinin genişliğini
@@ -248,12 +287,15 @@ window.__seyahatAtlasiApp = (function () {
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Seyahat Atlası", en: "Travel Atlas", pt: "Atlas de Viagem" })}</p>
       <h2 class="detail-title">${duraklar.length} ${tt({ tr: "durak", en: "stops", pt: "paragens" })}</h2>
-      <div class="detail-block detail-block--soru"><p>${tt(data.not)}</p></div>
-      <ul class="bilmiyoruz-madde__kaynaklar">${data.kaynaklar.map((k) => {
-        const not = k.not ? ` <span class="bilmiyoruz-madde__kaynak-not">— ${k.not}</span>` : "";
-        const yil = k.yil ? ", " + k.yil : "";
-        return `<li class="bilmiyoruz-madde__kaynak">${k.yazar}, <em>${k.eser}</em>${yil}${not}</li>`;
-      }).join("")}</ul>`;
+      <div class="detail-block detail-block--soru"><p>${linkify(tt(data.not))}</p></div>
+      <details class="eser-agi-kaynak-detay">
+        <summary>${tt({ tr: "Kaynak ve yöntem", en: "Source and method", pt: "Fonte e método" })}</summary>
+        <ul class="bilmiyoruz-madde__kaynaklar">${data.kaynaklar.map((k) => {
+          const not = k.not ? ` <span class="bilmiyoruz-madde__kaynak-not">— ${k.not}</span>` : "";
+          const yil = k.yil ? ", " + k.yil : "";
+          return `<li class="bilmiyoruz-madde__kaynak">${k.yazar}, <em>${k.eser}</em>${yil}${not}</li>`;
+        }).join("")}</ul>
+      </details>`;
     detailPanel.hidden = false;
   }
 

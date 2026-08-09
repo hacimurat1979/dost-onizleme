@@ -9783,6 +9783,24 @@ mark.durus-vurgu-es {
   padding: 0 16px;
 }
 .hocalar-diger__not { color: var(--text-secondary); font-size: 0.86rem; margin: 4px 0 12px; }
+/* Vuslat şeması (2026-08-09): altı ismin AYNI Fütûhât pasajında (s. 335)
+   yakınsadığını gösteren küçük, statik bir çizim -- GORSEL_DIL.md'nin
+   "davranışı resmet" ilkesi, iç içe çember DEĞİL. */
+.hoca-vuslat { display: block; width: 100%; max-width: 420px; height: auto; margin: 0 auto 16px; }
+.hoca-vuslat__cizgi { stroke: var(--border); stroke-width: 1; opacity: 0.65; }
+.hoca-vuslat__merkez {
+  fill: var(--series-cemal);
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--series-cemal) 55%, transparent));
+}
+.hoca-vuslat__merkez-etiket { font-size: 0.62rem; font-style: italic; fill: var(--text-secondary); text-anchor: middle; }
+.hoca-vuslat__nokta circle { fill: var(--text-muted); stroke: var(--surface-1); stroke-width: 1; }
+.hoca-vuslat__nokta text { font-size: 0.6rem; fill: var(--text-secondary); }
+.hoca-vuslat__nokta--tiklanabilir { cursor: pointer; }
+.hoca-vuslat__nokta--tiklanabilir circle { fill: var(--series-cemal); }
+.hoca-vuslat__nokta--tiklanabilir text { fill: var(--text-primary); font-weight: 600; }
+.hoca-vuslat__nokta--tiklanabilir:hover circle,
+.hoca-vuslat__nokta--tiklanabilir:focus-visible circle { fill: var(--accent-interactive); }
+.hoca-vuslat__nokta--tiklanabilir:focus-visible { outline: none; }
 .hocalar-diger__liste { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .hocalar-diger__satir { font-size: 0.9rem; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-1); }
 

@@ -82,6 +82,74 @@ window.__hocalarApp = (function () {
     });
   }
 
+  // 2026-08-09 (kullanıcı isteği): altısının (Şems, Fâtıma + dört diğeri)
+  // GERÇEK bağı -- hepsi Fütûhât'ın AYNI pasajında (s. 335), yıllar sonra,
+  // tek tek anılıyor. GORSEL_DIL.md'nin "davranışı resmet" ilkesi: altı
+  // nokta kendi başlarına durmuyor, hepsi o TEK kaynağa doğru yakınsıyor --
+  // iç içe çemberler DEĞİL (GORSEL_DIL.md yasağı), her nokta merkeze kendi
+  // çizgisiyle bağlanan bir yakınsama. Şems/Fâtıma'nın kendi portresi
+  // olduğu için tıklanabilir; diğer dördünün yalnız adı/yeri var (veri
+  // kendi notunda söylüyor: "her biri için ayrı bir kimlik/anlatı yok") --
+  // o yüzden onlar tıklanamaz, yalnız etiketli.
+  function vuslatSemasiHtml(dve) {
+    if (!dve || !dve.kisiler || !dve.kisiler.length) return "";
+    const kisiler = hocalar.slice(0, 2).concat(dve.kisiler);
+    const n = kisiler.length;
+    const cx = 160, cy = 148, r = 112;
+    const noktalar = kisiler.map((k, i) => {
+      const t = n === 1 ? 0.5 : i / (n - 1);
+      const a = Math.PI * (0.08 + t * 0.84);
+      const x = cx + r * Math.cos(a), y = cy - r * Math.sin(a);
+      return { ad: tt(k.ad), id: k.id, x, y, tiklanabilir: i < 2 };
+    });
+    const cizgiler = noktalar.map((p) =>
+      `<line class="hoca-vuslat__cizgi" x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${cx}" y2="${cy}" />`).join("");
+    // 2026-08-09 UI denetimi bulgusu (pa11y): rolsüz bir <g>'ye aria-label
+    // koymak axe'in aria-prohibited-attr kuralını ihliyor -- tıklanamayan
+    // dört nokta için <title> kullanılıyor (SVG'nin kendi, her zaman geçerli
+    // erişilebilir-ad yöntemi); yalnız GERÇEKTEN interaktif olan ikisi
+    // role="button" TAŞIDIĞI için aria-label alabiliyor. Dış <svg>'nin
+    // role="img" olması da "interaktif kontrol img içine yerleşmez" kuralını
+    // ihliyordu (içeride iki gerçek düğme var) -- kaldırıldı, aria-label
+    // SVG'nin kendi örtük rolüyle (graphics-document) zaten geçerli.
+    const noktaEl = noktalar.map((p, i) => {
+      const kisaAd = p.ad.length > 15 ? p.ad.slice(0, 14) + "…" : p.ad;
+      // Komşu yaylardaki etiketler yatayda birbirine yakın düşebiliyor (6
+      // nokta, dar bir yay) -- çift/tek indeksi iki farklı uzaklığa
+      // ayırmak (eser-agi/seyahat-atlasi'nin kullandığı "iki sıraya diz"
+      // ile aynı fikir) art arda gelen ikisinin üst üste binmesini önlüyor.
+      const uzaklik = i % 2 === 0 ? 10 : 24;
+      const etiketY = p.y < cy - 10 ? p.y - uzaklik : p.y + 18;
+      const interaktif = p.tiklanabilir ? ` data-id="${p.id}" tabindex="0" role="button" aria-label="${p.ad}"` : "";
+      const baslik = p.tiklanabilir ? "" : `<title>${p.ad}</title>`;
+      return `<g class="hoca-vuslat__nokta${p.tiklanabilir ? " hoca-vuslat__nokta--tiklanabilir" : ""}"${interaktif}>
+        ${baslik}<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5"></circle>
+        <text x="${p.x.toFixed(1)}" y="${etiketY.toFixed(1)}" text-anchor="middle">${kisaAd}</text>
+      </g>`;
+    }).join("");
+    return `<svg class="hoca-vuslat" viewBox="0 0 320 190" aria-label="${tt({
+      tr: "Altısı da Fütûhât-ı Mekkiyye'nin aynı bölümünde (s. 335) bir arada anılıyor",
+      en: "All six are named together in the same chapter of the Futuhat al-Makkiyya (p. 335)",
+      pt: "Todos os seis são nomeados juntos no mesmo capítulo das Futuhat al-Makkiyya (p. 335)" })}">
+      ${cizgiler}
+      <circle class="hoca-vuslat__merkez" cx="${cx}" cy="${cy}" r="7"></circle>
+      <text class="hoca-vuslat__merkez-etiket" x="${cx}" y="${cy + 24}" text-anchor="middle">${tt({ tr: "Fütûhât, s. 335", en: "Futuhat, p. 335", pt: "Futuhat, p. 335" })}</text>
+      ${noktaEl}
+    </svg>`;
+  }
+
+  function wireVuslatSemasi() {
+    if (!digerEl) return;
+    digerEl.querySelectorAll(".hoca-vuslat__nokta--tiklanabilir").forEach((el) => {
+      const git = () => {
+        const d = hocalar.find((x) => x.id === el.dataset.id);
+        if (d) panelGoster(d);
+      };
+      el.addEventListener("click", git);
+      el.addEventListener("keydown", (ev) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); git(); } });
+    });
+  }
+
   // Fütûhât s.335'in Şems/Fâtıma'yla birlikte andığı dört kişi -- Rûhu'l-kuds'un
   // 55 hocalık listesinden değiller, o yüzden hoca-satir/panelGoster akışına
   // değil, sade ve tıklanamaz bir listeye giriyorlar (bkz. schema notu).
@@ -95,6 +163,7 @@ window.__hocalarApp = (function () {
       html += `
         <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Fütûhât'ta da adı geçen diğerleri", en: "Others also named in the Futuhat", pt: "Outros também nomeados nas Futuhat" })}</p>
         <p class="hocalar-diger__not">${tt(dve.not)}</p>
+        ${vuslatSemasiHtml(dve)}
         <ul class="hocalar-diger__liste">${satirlar}</ul>
         ${alintiHtml(dve.paylasilanNot)}`;
     }
@@ -113,6 +182,7 @@ window.__hocalarApp = (function () {
         <div class="hocalar-diger__liste">${kartlar}</div>`;
     }
     digerEl.innerHTML = html;
+    wireVuslatSemasi();
   }
 
   function girisPaneli() {
