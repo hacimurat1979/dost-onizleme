@@ -9776,24 +9776,23 @@ mark.durus-vurgu-es {
 .hocalar-diger__satir { font-size: 0.9rem; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-1); }
 
 /* --- Eser Ağı (docs/icerik-yol-haritasi.md D7, 2026-08-04) ----------------
-   2026-08-06'da sarmaldan dikey zaman çizelgesine çevrildi (kullanıcı
-   bulgusu: 28 eserlik seyrek veride sarmal okunmuyordu; CLAUDE.md'nin
-   kendisi de "doğası gereği dairesel değilse zorla daireye sokma" diyor).
-   Omurga = sıralı satırların birleştiği tek dikey çizgi, süs değil,
-   kronolojinin görünür izi -- satır aralığı yıla değil SIRAYA orantılı
-   (kümelenmiş yılların üst üste binmesini önler). */
-.eser-agi-omurga {
-  /* 2026-08-09 kullanıcı geri bildirimi: "eserler bir liste gibi görünüyor,
-     oysa anlatmak istediğin bir yolculuk" -- omurga bir cetvel değil bir İZ
-     hissi versin diye ince noktalı bir çizgiye çevrildi; kesin bağlar (aynı
-     şehir) zaten .eser-agi-kenar ile üstüne dolu/renkli çiziliyor, ikisi
-     arasındaki karşıtlık "bildiğimiz bağ" ile "yalnız kronolojik yakınlık"
-     ayrımını da görünür kılıyor. */
+   2026-08-06'da sarmaldan dikey zaman çizelgesine, 2026-08-09'da dikey
+   listeden YATAY yıl eksenine çevrildi (kullanıcının paylaştığı "Collection
+   Timeline" referansı) -- eksen artık gerçek yıla orantılı, çakışan
+   tarihler kartları üst üste yığarak (bkz. eser-agi.js'teki katAta())
+   çözülüyor, satır aralığı sabitleyerek değil. */
+.eser-agi-eksen {
   stroke: var(--border);
   stroke-width: 1;
-  stroke-dasharray: 0.5 5;
-  stroke-linecap: round;
-  opacity: 0.55;
+  opacity: 0.7;
+}
+.eser-agi-tik line {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+.eser-agi-tik text {
+  font-size: 0.68rem;
+  fill: var(--text-muted);
 }
 .eser-agi-kenar {
   stroke: var(--series-ibnarabi);
@@ -9812,47 +9811,56 @@ mark.durus-vurgu-es {
 
 .eser-agi-eser { cursor: pointer; }
 .eser-agi-eser:focus { outline: none; }
-.eser-agi-eser__sekil {
+.eser-agi-eser__sap {
+  /* Eksendeki noktadan kartına yükselen ince iz -- kavramsal olarak
+     GORSEL_DIL.md'nin "davranışı resmet" ilkesiyle aynı aile: bu çizgi
+     süs değil, kartın eksendeki GERÇEK tarihine bağlı olduğunu gösteren
+     tek görsel kanıt. */
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-dasharray: 0.5 4;
+}
+.eser-agi-eser__nokta {
   fill: var(--series-ibnarabi);
   stroke: var(--surface-1);
-  stroke-width: 1.2;
+  stroke-width: 1;
   /* GORSEL_DIL.md: ışık = zuhûr -- her eser zamanda bir belirişin izi,
      hafif bir parıltı bunu süs değil anlam olarak taşıyor (2026-08-09). */
-  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--series-ibnarabi) 55%, transparent));
-  transition: transform 0.15s ease;
-  transform-box: fill-box;
-  transform-origin: center;
+  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--series-ibnarabi) 55%, transparent));
 }
-.eser-agi-eser--katalog .eser-agi-eser__sekil {
-  fill: var(--series-theme);
-  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--series-theme) 55%, transparent));
+.eser-agi-eser--katalog .eser-agi-eser__nokta { fill: var(--series-theme); }
+.eser-agi-eser__govde {
+  fill: var(--surface-1);
+  stroke: var(--border);
+  stroke-width: 1;
+  transition: stroke 0.15s ease, filter 0.15s ease;
 }
-.eser-agi-eser__etiket {
-  /* 2026-08-06: zaman çizelgesinde her eser kendi dikey satırında (58px) --
-     sarmalın yoğun kümelerindeki çakışma riski artık yok, bu yüzden 0.66rem
-     hâlâ küçük ama okunaklı; punto büyütmek isteyen bkz. eski not: G13
-     turunda büyütme YALNIZ sarmalın sıkışık açılarında sorun çıkarmıştı. */
-  font-size: 0.66rem;
-  fill: var(--text-secondary);
+.eser-agi-eser--katalog .eser-agi-eser__govde { stroke: var(--series-theme); }
+.eser-agi-eser__baslik {
+  font-size: 0.72rem;
+  font-weight: 600;
+  fill: var(--text-primary);
   pointer-events: none;
 }
-.eser-agi-eser__yil {
+.eser-agi-eser__alt-satir {
   /* 2026-08-09: "602/1205 küçük gri bir metadata olmaktan çıkıp daha zarif
      bir tarih işareti olsun" -- salt veri etiketi değil, elyazması kenar
      notu gibi okunsun diye italik + harf aralığı. */
-  font-size: 0.68rem;
+  font-size: 0.6rem;
   font-style: italic;
   letter-spacing: 0.02em;
   fill: var(--text-secondary);
   pointer-events: none;
 }
-.eser-agi-eser--deginiliyor .eser-agi-eser__sekil,
-.eser-agi-eser:focus-visible .eser-agi-eser__sekil {
-  transform: scale(1.35);
+.eser-agi-eser--deginiliyor .eser-agi-eser__govde,
+.eser-agi-eser:focus-visible .eser-agi-eser__govde {
+  stroke: var(--accent-interactive);
+  stroke-width: 1.6;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent-interactive) 35%, transparent));
 }
-.eser-agi-eser--deginiliyor .eser-agi-eser__etiket,
-.eser-agi-eser:focus-visible .eser-agi-eser__etiket {
-  fill: var(--text-primary);
+.eser-agi-eser--deginiliyor .eser-agi-eser__nokta,
+.eser-agi-eser:focus-visible .eser-agi-eser__nokta {
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--series-ibnarabi) 80%, transparent));
 }
 
 .eser-agi-rozet {
@@ -9921,7 +9929,7 @@ mark.durus-vurgu-es {
 .eser-agi-kaynak-detay .elestiri-kaynak-satiri { margin-top: 6px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .eser-agi-eser__sekil,
+  .eser-agi-eser__govde,
   .eser-agi-kenar { transition: none !important; }
 }
 

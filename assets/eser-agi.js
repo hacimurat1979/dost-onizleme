@@ -9,12 +9,22 @@
 // veride (dört yılda üçer eser birden var) okunması zorlaşıyordu. Kullanıcı
 // doğrudan "modern bir timeline" istedi -- CLAUDE.md'nin kendisi de
 // "bir öğe doğası gereği dairesel değilse zorla daireye sokma" diyor, ve
-// bir kronoloji doğası gereği DOĞRUSAL. Tek dikey bir omurga, sırayla
-// eşit aralıklı 28 satır (yıla ORANTILI değil, SIRAYA göre -- kümelenmiş
-// yılların üst üste binmesini önler), her satırda yıl solda, eser adı
-// sağda. Kenarlar (aynı şehir zinciri) omurga üzerinde renkli bir parça
-// olarak kalıyor -- görsel olarak hâlâ "ardışık" okunuyor, şimdi konum
-// sarmaldaki açı değil, listedeki sıra.
+// bir kronoloji doğası gereği DOĞRUSAL.
+//
+// YATAY YIL EKSENİ (2026-08-09, kullanıcı iki referans görsel paylaştı --
+// biri gerçek elyazması sayfaları üstünde çalışıyordu, bizde öyle bir
+// kaynak yok; öbürü YATAY bir eksende, kartların üstte yüzdüğü ve
+// üst üste geldiklerinde KATLARA (lane) ayrıldığı bir düzendi. Bu ikinciyi
+// kurduk). Önceki sürüm (dikey liste, SIRAYA göre eşit satır) yıl
+// bilgisini yalnız metinde taşıyordu -- iki eserin 2 ay mı 23 yıl mı ara
+// verdiği görsel olarak AYNI satır aralığıydı (bkz. tercumanul-esvak →
+// futuhatul-mekkiyye kenarının kendi notu: "aralarında yirmi üç yıl var").
+// Şimdi x ekseni GERÇEK yıla orantılı -- yakın tarihli eserler görsel
+// olarak da yakın duruyor. Kümelenme sorunu (aynı yılda 3-4 eser) bu kez
+// eksen sıkıştırılarak değil, KART YIĞMA (laneAta) ile çözülüyor: bir
+// kartın x'i bir öncekiyle çakışıyorsa bir üst kata çıkıyor, kat boşalınca
+// (kronolojik olarak yeterince ileri gidilince) yeniden kullanılıyor --
+// klasik takvim/genom-tarayıcı yığma algoritması.
 window.__eserAgiApp = (function () {
   "use strict";
 
@@ -44,11 +54,14 @@ window.__eserAgiApp = (function () {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text;
   }
 
-  // Satır aralığı SIRAYA göre eşit -- yıla orantılı olsaydı 1203/1205/1229
-  // gibi aynı yılda üç eser birden yazılan kümeler üst üste binerdi.
-  const ROW_H = 58;
-  const TOP_PAD = 36;
-  const BOTTOM_PAD = 36;
+  const PX_PER_YIL = 90;
+  const SOL_PAD = 60;
+  const KART_W = 148;
+  const KART_H = 40;
+  const SAP_TABAN = 16;   // eksenden ilk katın kart altına kadar
+  const KAT_ADIM = KART_H + 10;
+  const AXIS_ALT_PAD = 44; // yıl etiketleri için eksenin altında bırakılan yer
+  const R = 4;             // eksen üstündeki nokta -- artık asıl tıklama hedefi kart
 
   let data = null;
   let eserler = [];
@@ -58,7 +71,8 @@ window.__eserAgiApp = (function () {
   let g = null;
   let focusId = null;
   let focusEdge = null;
-  let spineX = 90;
+  let axisY = 0;
+  let minYil = 0;
   let contentH = 0;
   let contentW = 0;
   let contentX0 = 0;
@@ -68,22 +82,52 @@ window.__eserAgiApp = (function () {
     return { w: Math.max(360, r.width), h: Math.max(360, r.height) };
   }
 
+  function xOfYil(yil) {
+    return SOL_PAD + (yil - minYil) * PX_PER_YIL;
+  }
+
+  // Klasik takvim/genom-tarayıcı yığma algoritması: x'e göre sıralı liste
+  // üzerinde ilerler, bir kartın x'i mevcut kattaki son kartla (KART_W +
+  // boşluk kadar) çakışıyorsa bir üst kata geçer; kat, önceki kart yeterince
+  // gerideyse yeniden kullanılır -- yükseklik sınırsız büyümez.
+  function katAta(list) {
+    const katSonX = [];
+    list.forEach((d) => {
+      let kat = 0;
+      while (kat < katSonX.length && d.x - katSonX[kat] < KART_W + 14) kat++;
+      katSonX[kat] = d.x;
+      d.kat = kat;
+    });
+  }
+
   function yerlestir() {
     const { w, h } = boyut();
-    spineX = Math.max(56, Math.min(140, w * 0.22));
-    eserler.forEach((d, i) => {
-      d.x = spineX;
-      d.y = TOP_PAD + i * ROW_H;
-      d.yilYeni = i === 0 || d.yil.miladi !== eserler[i - 1].yil.miladi;
-    });
-    contentH = TOP_PAD + Math.max(0, eserler.length - 1) * ROW_H + BOTTOM_PAD;
+    minYil = eserler.length ? eserler[0].yil.miladi : 0;
+    eserler.forEach((d) => { d.x = xOfYil(d.yil.miladi); });
+    katAta(eserler);
+    const maxKat = eserler.reduce((m, d) => Math.max(m, d.kat), 0);
+    axisY = SAP_TABAN + (maxKat + 1) * KAT_ADIM;
+    eserler.forEach((d) => { d.y = axisY; });
+    contentH = axisY + AXIS_ALT_PAD;
     return { w, h };
   }
 
-  function omurgaYolu() {
-    if (!eserler.length) return "";
-    const ilk = eserler[0], son = eserler[eserler.length - 1];
-    return `M${spineX},${ilk.y} L${spineX},${son.y}`;
+  // Yıl ekseni: 5'in katlarında düzgün tikler + her iki uçta gerçek
+  // ilk/son yıl (veri hangi yıldan başlayıp bittiğini görünür kılmak için).
+  // basla/bitis BİLEREK [minYil, maxYil] ARALIĞINA sıkıştırılıyor -- floor/
+  // ceil ile dışarı taşan bir tik (örn. minYil=1193 iken 1190) veri
+  // başlamadan/bittikten SONRA boşlukta asılı kalır ve eksenin gerçek
+  // sınırlarını (getBBox ile ölçülen contentW/contentX0) yanlış genişletir.
+  function yilTikleri() {
+    if (!eserler.length) return [];
+    const maxYil = eserler[eserler.length - 1].yil.miladi;
+    const basla = Math.ceil(minYil / 5) * 5;
+    const bitis = Math.floor(maxYil / 5) * 5;
+    const tikler = [];
+    for (let y = basla; y <= bitis; y += 5) tikler.push(y);
+    if (!tikler.includes(minYil)) tikler.unshift(minYil);
+    if (!tikler.includes(maxYil)) tikler.push(maxYil);
+    return tikler;
   }
 
   function ciz() {
@@ -93,19 +137,33 @@ window.__eserAgiApp = (function () {
     g = svg.append("g").attr("class", "eser-agi-scene");
     const kok = g.append("g");
 
-    kok.append("path").attr("class", "eser-agi-omurga").attr("d", omurgaYolu()).attr("fill", "none");
+    const eksenSonX = eserler.length ? eserler[eserler.length - 1].x + KART_W : SOL_PAD;
+    kok.append("line").attr("class", "eser-agi-eksen")
+      .attr("x1", SOL_PAD - 12).attr("y1", axisY)
+      .attr("x2", eksenSonX + 12).attr("y2", axisY);
 
-    // Kenarlar (aynı şehir zinciri) -- omurganın kendi çizgisi üzerinde,
-    // kaynaktan hedefe kısa DİKEY bir parça. Ardışıklık artık sarmaldaki
-    // açı değil, listedeki sıradır.
+    // Yıl tikleri -- eksenin gerçek bir zaman ekseni olduğunu görünür kılan
+    // tek görsel öğe; kısa dikey çentik + altında yıl etiketi.
+    const tikG = kok.append("g").attr("class", "eser-agi-tikler");
+    const tikSel = tikG.selectAll("g.eser-agi-tik").data(yilTikleri()).join("g")
+      .attr("class", "eser-agi-tik")
+      .attr("transform", (y) => `translate(${xOfYil(y)}, ${axisY})`);
+    tikSel.append("line").attr("y1", 0).attr("y2", 7);
+    tikSel.append("text").attr("y", 20).attr("text-anchor", "middle").text((y) => y);
+
+    // Kenarlar (aynı şehir zinciri) -- eksenin kendi çizgisi üzerinde,
+    // kaynaktan hedefe YATAY bir parça (2026-08-09: eksen artık yıla
+    // orantılı, bu yüzden bu parçanın GENİŞLİĞİ de iki eser arasındaki
+    // gerçek zaman farkını gösteriyor -- eskiden sabit satır aralığında
+    // her bağ aynı uzunluktaydı).
     const kenarG = kok.append("g").attr("class", "eser-agi-kenarler");
     const kenarSel = kenarG.selectAll("line.eser-agi-kenar").data(baglar, (d, i) => d.kaynak_id + "|" + i).join("line")
       .attr("class", "eser-agi-kenar")
       .attr("tabindex", 0)
       .attr("role", "button")
       .attr("aria-label", (d) => edgeAriaLabel(d))
-      .attr("x1", (d) => eserById.get(d.kaynak_id).x).attr("y1", (d) => eserById.get(d.kaynak_id).y)
-      .attr("x2", (d) => eserById.get(d.hedef_id).x).attr("y2", (d) => eserById.get(d.hedef_id).y);
+      .attr("x1", (d) => eserById.get(d.kaynak_id).x).attr("y1", axisY)
+      .attr("x2", (d) => eserById.get(d.hedef_id).x).attr("y2", axisY);
 
     kenarSel.on("mouseenter", function (ev, d) { vurgulaKenar(d, true); kenarIpucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
@@ -117,6 +175,10 @@ window.__eserAgiApp = (function () {
         if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); kenarPaneli(d); }
       });
 
+    // Her eser artık eksende bir nokta + o noktadan yükselen bir sap + sapın
+    // ucunda yüzen bir kart (2026-08-09, kullanıcının paylaştığı "Collection
+    // Timeline" referansı). Çakışan tarihler laneAta()'nın verdiği "kat"a
+    // göre üst üste yığılıyor -- her kat kendi sap uzunluğuyla.
     const dugumG = kok.append("g").attr("class", "eser-agi-dugumler");
     const sel = dugumG.selectAll("g.eser-agi-eser").data(eserler, (d) => d.id).join("g")
       .attr("class", (d) => "eser-agi-eser" + (d.ozel === "katalog" ? " eser-agi-eser--katalog" : ""))
@@ -125,36 +187,44 @@ window.__eserAgiApp = (function () {
       .attr("role", "button")
       .attr("aria-label", (d) => d.eser);
 
-    const R = 6;
-    sel.append("circle").attr("class", "eser-agi-eser__vurus").attr("r", R + 9).attr("fill", "transparent");
+    function sapUzunlugu(d) { return SAP_TABAN + d.kat * KAT_ADIM; }
+    function kartAltY(d) { return -sapUzunlugu(d); }
+    function kartUstY(d) { return kartAltY(d) - KART_H; }
+
+    // Görünmez tıklama alanı artık küçük bir daire değil, sap+kart'ın
+    // TAMAMINI kaplayan bir dikdörtgen -- asıl etkileşim yüzeyi kart oldu.
+    sel.append("rect").attr("class", "eser-agi-eser__vurus")
+      .attr("x", -(KART_W / 2 + 6)).attr("width", KART_W + 12)
+      .attr("y", (d) => kartUstY(d) - 4).attr("height", (d) => sapUzunlugu(d) + KART_H + 10)
+      .attr("fill", "transparent");
+
+    sel.append("line").attr("class", "eser-agi-eser__sap")
+      .attr("x1", 0).attr("y1", 0).attr("x2", 0).attr("y2", (d) => kartAltY(d));
 
     sel.each(function (d) {
       const node = d3.select(this);
       if (d.ozel === "katalog") {
-        node.append("path").attr("class", "eser-agi-eser__sekil")
-          .attr("d", `M0,${-R * 1.2} L${R * 1.2},0 L0,${R * 1.2} L${-R * 1.2},0 Z`);
+        node.append("path").attr("class", "eser-agi-eser__nokta")
+          .attr("d", `M0,${-R * 1.3} L${R * 1.3},0 L0,${R * 1.3} L${-R * 1.3},0 Z`);
       } else {
-        node.append("circle").attr("class", "eser-agi-eser__sekil").attr("r", R);
+        node.append("circle").attr("class", "eser-agi-eser__nokta").attr("r", R);
       }
     });
 
-    // Yıl yalnız bir önceki satırdan farklıysa yazılıyor -- aynı yılda
-    // yazılmış üç eserin yılı üç kez tekrarlanmasın diye.
-    sel.filter((d) => d.yilYeni).append("text").attr("class", "eser-agi-eser__yil")
-      .attr("text-anchor", "end")
-      .attr("x", -(R + 9))
-      .attr("y", 4)
-      .text((d) => (d.yil.hicri ? d.yil.hicri + "/" : "") + d.yil.miladi);
+    sel.append("rect").attr("class", "eser-agi-eser__govde")
+      .attr("x", -(KART_W / 2)).attr("width", KART_W)
+      .attr("y", (d) => kartUstY(d)).attr("height", KART_H)
+      .attr("rx", 8);
 
-    sel.append("text").attr("class", "eser-agi-eser__etiket")
-      .attr("text-anchor", "start")
-      // x, "vurus" görünmez tıklama dairesinin (r=R+9) yarıçapını AŞMIYOR --
-      // eskiden R+12 idi, R+9'luk daireden 3 birim dışarıda kalıyordu ve
-      // fare o dar şeritte ne daireye ne yazının kendi mürekkebine değiyordu
-      // (UI denetimi bulgusu, ~1-2px tıklanamayan boşluk).
-      .attr("x", R + 9)
-      .attr("y", 4)
-      .text((d) => kisalt(d.eser, 34));
+    sel.append("text").attr("class", "eser-agi-eser__baslik")
+      .attr("text-anchor", "middle")
+      .attr("x", 0).attr("y", (d) => kartUstY(d) + 16)
+      .text((d) => kisalt(d.eser, 20));
+
+    sel.append("text").attr("class", "eser-agi-eser__alt-satir")
+      .attr("text-anchor", "middle")
+      .attr("x", 0).attr("y", (d) => kartUstY(d) + 31)
+      .text((d) => (d.yil.hicri ? d.yil.hicri + "/" : "") + d.yil.miladi + " — " + kisalt(tt(d.sehir), 14));
 
     sel.on("mouseenter", function (ev, d) { vurgulaEser(d.id, true); ipucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
@@ -166,32 +236,21 @@ window.__eserAgiApp = (function () {
         if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); eserPaneli(d); }
       });
 
-    // Etiketlerin gerçek genişliği (yıl sütunu solda, eser adı sağda) ölçmeden
-    // önce bilinmiyor -- futuhat.js'in radyal ağacındaki aynı yöntem: tahmin
-    // etmek yerine getBBox() ile ölç. ortala()'nın eskiden yalnız YÜKSEKLİĞE
-    // göre sığdırması, geniş+kısa bir kapsayıcıda dar+uzun içeriği sola
-    // sıkışmış minik bir sütun bırakıyordu (UI denetimi bulgusu).
     try {
       const bb = kok.node().getBBox();
       contentW = bb.width;
       contentX0 = bb.x;
     } catch (e) {
-      contentW = spineX + 260;
-      contentX0 = -(spineX);
+      contentW = eksenSonX + 60;
+      contentX0 = 0;
     }
 
-    // 2026-08-09 kullanıcı bulgusu: "sadece 5 düğüm görünüyor, sayfaya
-    // sığmıyor". Kök neden küçüklük değildi -- ortala() zaten yalnız
-    // GENİŞLİĞE göre sığdırıyor (küçültmüyor), ama 28 satırlık omurga
-    // (~1600px) kapsayıcıdan (~500-700px) çok daha uzun ve GU'nun paylaşılan
-    // zoom filtresi düz tekerleği bilerek yakalamıyor (sayfanın kendi
-    // kaydırması için serbest bırakılıyor) -- ama bu görünüm `overflow:
-    // hidden` bir kutunun içinde, "sayfa" diye bir şey yok. Tek yol
-    // sürükleyerek kaydırmaktı ve keşfedilebilir değildi. Aşağıdaki
-    // wheel dinleyicisi düz tekerleği bu görünüme özel bir dikey kaydırmaya
-    // çeviriyor; translateExtent de sürüklemeyi (ve yeni kaydırmayı)
-    // içerik sınırlarında tutuyor (eskiden sınırsızdı, kullanıcı içeriği
-    // sürükleyip kaybedebilirdi).
+    // Eksen artık YATAY ve tipik olarak kapsayıcıdan çok daha geniş (45
+    // yıllık bir aralık × 90px/yıl) -- ortala() bu yüzden YÜKSEKLİĞE göre
+    // sığdırıp genişlikte kaydırmayı (tekerlek/sürükleme) serbest bırakıyor,
+    // eski dikey sürümün tam tersi (bkz. o zamanki not: "sadece 5 düğüm
+    // görünüyor" bulgusu -- burada da aynı sınıf bir sorun yaşanmaması için
+    // translateExtent ve tekerlek dinleyicisi eksen yönüne göre kuruluyor).
     zoom = GU.createZoomBehavior(svg, g, [0.25, 3.5], null, { allowSingleTouchPan: true });
     const pad = 48;
     zoom.translateExtent([
@@ -201,16 +260,17 @@ window.__eserAgiApp = (function () {
     ortala(false);
   }
 
-  // Düz tekerlek = bu listede dikey kaydırma (esma.js'teki "düz tekerlek =
+  // Düz tekerlek = bu eksende YATAY kaydırma (esma.js'teki "düz tekerlek =
   // anlamlı bir hareket, Ctrl+tekerlek = klasik yakınlaştırma" kuralıyla
-  // aynı ayrım). Ctrl/Cmd basılıyken GU'nun kendi "wheel.zoom" dinleyicisi
-  // zaten devrede; burada erken çıkılıp ona karışılmıyor.
+  // aynı ayrım, yön eksene göre değişti). Ctrl/Cmd basılıyken GU'nun kendi
+  // "wheel.zoom" dinleyicisi zaten devrede; burada erken çıkılıp ona
+  // karışılmıyor.
   function tekerlekleKaydir(e) {
     if (e.ctrlKey || e.metaKey) return;
     if (!zoom) return;
     e.preventDefault();
     const t = d3.zoomTransform(svgNode);
-    zoom.translateBy(svg, 0, -e.deltaY / t.k);
+    zoom.translateBy(svg, -e.deltaY / t.k, 0);
   }
 
   function kisalt(s, n) {
@@ -287,7 +347,7 @@ window.__eserAgiApp = (function () {
   function panaGetir(d) {
     if (!zoom) return;
     const hedef = reduceMotion ? svg : svg.transition().duration(360);
-    zoom.translateTo(hedef, spineX, d.y);
+    zoom.translateTo(hedef, d.x, contentH / 2);
   }
 
   function eserPaneli(d) {
@@ -337,25 +397,30 @@ window.__eserAgiApp = (function () {
     detailPanel.hidden = false;
   }
 
-  // Kimlik dönüşümü (d3.zoomIdentity) sarmalda işe yarıyordu çünkü sahne
-  // zaten container'a sığacak şekilde ölçeklenmişti (R_MAX = min(w,h)*.42).
-  // Dikey listede içerik SADECE yüksekliğe göre sığdırılınca (eski kod),
-  // kapsayıcı geniş+kısa olduğunda ölçek küçülüyor ve zaten dar olan içerik
-  // (bir omurga + tek satır etiket) sola sıkışmış minik bir sütuna dönüyordu
-  // (UI denetimi bulgusu, foto: "eser ağı grafiği solda çok küçük"). Asıl
-  // ölçü artık GENİŞLİK -- içerik kapsayıcının kullanılabilir genişliğinin
-  // çoğunu kaplasın ve YATAYDA ortalansın; 28 satırın hepsi tek ekranda
-  // sığmayabilir ama zaten sürüklenerek dikey gezinme var.
-  // 68px üst boşluk bilerek sabit: recenter+hint düğmeleri sol üstte
-  // top:12/left:12-108 bandını kaplıyor (bkz. style.css .graph-recenter/
-  // .graph-hint) -- ilk satır oraya denk gelirse tıklanamaz hâle geliyordu
-  // (Playwright'ta ölçüldü, 2026-08-06).
+  // 2026-08-09: eksen artık YATAY ve tipik olarak kapsayıcıdan çok daha
+  // geniş (45 yıl × 90px/yıl ≈ 4000px) -- eski dikey sürümün tam tersi.
+  // ortala() bu yüzden YÜKSEKLİĞE göre sığdırıyor (tüm katlar+eksen+yıl
+  // etiketleri tek bakışta görünsün) ve sahneyi en BAŞA (en erken yıla)
+  // yaslıyor -- ortalamak değil, kronolojinin başlangıcından açmak: bir
+  // "yolculuk" ilk durağıyla başlar. 68px üst boşluk bilerek sabit:
+  // recenter+hint düğmeleri sol üstte top:12/left:12-108 bandını kaplıyor
+  // (bkz. style.css .graph-recenter/.graph-hint) -- ilk kart oraya denk
+  // gelirse tıklanamaz hâle geliyordu (Playwright'ta ölçüldü, 2026-08-06,
+  // aynı ölçüm burada da geçerli).
   function ortala(animate) {
     if (!zoom) return;
     const { w, h } = boyut();
-    const availW = Math.max(120, w - 48);
-    const k = Math.max(0.6, Math.min(1.8, availW / Math.max(1, contentW)));
-    const tx = Math.max(24, (w - contentW * k) / 2 - contentX0 * k);
+    const availH = Math.max(120, h - 96);
+    const availW = Math.max(160, w - 48);
+    // Salt YÜKSEKLİĞE göre sığdırmak (kısa içerik, geniş kapsayıcıda) aşırı
+    // yakınlaştırırdı -- en sık kümede bile birkaç kat olduğundan contentH
+    // küçük kalıyor, k=2'ye tırmanıp yalnız birkaç yıl gösterirdi. En az
+    // ~12 yıllık bir pencere görünür kalsın diye ikinci bir üst sınır daha:
+    // ikisinin küçüğü (daha uzak görünüm) seçiliyor.
+    const kYukseklik = availH / Math.max(1, contentH);
+    const kYilPenceresi = availW / (12 * PX_PER_YIL);
+    const k = Math.max(0.5, Math.min(2, kYukseklik, kYilPenceresi));
+    const tx = Math.max(24, 24 - contentX0 * k);
     const ty = Math.max(68, (h - contentH * k) / 2);
     const t = d3.zoomIdentity.translate(tx, ty).scale(k);
     const hedef = animate && !reduceMotion ? svg.transition().duration(420) : svg;
