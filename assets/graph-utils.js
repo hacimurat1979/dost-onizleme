@@ -152,10 +152,17 @@ window.DostGraphUtils = (function () {
   // is what touch users expect from a list.
   function createZoomBehavior(svg, zoomLayer, scaleExtent, extraFilter, opts) {
     const allowSingleTouchPan = opts && opts.allowSingleTouchPan;
+    // Varsayılan: düz tekerlek ctrl/cmd olmadan zum YAPMAZ (ETKILESIM_DILI.md'nin
+    // "düz tekerlek = anlamlı bir hareket, Ctrl+tekerlek = klasik yakınlaştırma"
+    // ayrımı) -- ama bu ayrım yalnız düz tekerleğe BAŞKA bir anlam (sayfa kaydırma,
+    // liste kaydırma) yüklenen görünümlerde gerekli. Altında kaydıracak bir
+    // "sayfa" olmayan, tam ekran bir harita/graf için düz tekerlek serbest
+    // bırakılabilir -- opts.plainWheelZooms bunun için (2026-08-09, Sorular).
+    const plainWheelZooms = opts && opts.plainWheelZooms;
     const zoomBehavior = d3.zoom()
       .scaleExtent(scaleExtent)
       .filter((event) => {
-        if (event.type === "wheel") return event.ctrlKey || event.metaKey;
+        if (event.type === "wheel") return plainWheelZooms || event.ctrlKey || event.metaKey;
         if (event.touches) return allowSingleTouchPan ? event.touches.length >= 1 : event.touches.length > 1;
         return extraFilter ? extraFilter(event) : true;
       })

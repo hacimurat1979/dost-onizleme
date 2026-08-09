@@ -438,7 +438,13 @@
     // merkezde nefes alan sessiz işaret (daire/merkez ilkesi)
     centerLayer.append("circle").attr("class", "node-halo").attr("r", 34);
 
-    zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.4, 3], (event) => !event.target.closest(".node"));
+    // plainWheelZooms (2026-08-09, kullanıcı isteği): bu görünümün altında
+    // kaydıracak bir "sayfa" yok -- tam ekran bir harita, o yüzden ctrl/cmd
+    // gerektirmeden düz tekerlekle yakınlaştırma serbest (bkz. graph-utils.js
+    // içindeki gerekçe). Sorular'ın kendi ETKILESIM_DILI.md kaydı yok çünkü
+    // esma/eser-agi'deki gibi düz tekerleğe BAŞKA bir anlam yüklenmiyor --
+    // burada yalnız site geneli varsayılanın (ctrl+tekerlek) gevşetilmesi.
+    zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.4, 3], (event) => !event.target.closest(".node"), { plainWheelZooms: true });
     svgNode.addEventListener("wheel", () => { setTimeout(() => { currentK = d3.zoomTransform(svgNode).k; }, 0); }, { passive: true });
 
     // 2026-08-03'e kadar bu düğme showAllQuestionsList() çağırıyordu -- yani
@@ -938,7 +944,20 @@
     const bw = Math.max(1, x1 - x0), bh = Math.max(1, y1 - y0);
     const vw = visibleWidth();
     const [mn, mx] = zoomBehavior.scaleExtent();
-    const k = Math.max(mn, Math.min(mx, Math.min(vw / bw, height / bh)));
+    // 2026-08-09 (kullanıcı geri bildirimi: Nehir'de düğümler/yazılar çok
+    // küçük geliyordu). Evren'de içerik zaten kapsayıcıya yakın boyutta,
+    // WIDTH+HEIGHT'ın küçüğüne sığdırmak sorun değil. Nehir dokuz ayrı akış
+    // üst üste dizildiği için dikeyde çok uzun olabiliyor -- YÜKSEKLİĞE göre
+    // sığdırmak hepsini göstermeye çalışıp her şeyi küçültüyordu. Artık düz
+    // tekerlek zaten yakınlaştırıyor ve sürükleyerek dikey gezinilebiliyor,
+    // o yüzden Nehir'de yalnız GENİŞLİĞE sığdırıp (okuma yönü soldan sağa)
+    // altta bir taban ölçek koyuyoruz -- kalan akışlar sürüklenerek görülür.
+    let k;
+    if (viewMode === "nehir") {
+      k = Math.max(mn, Math.min(mx, Math.max(vw / bw, 0.85)));
+    } else {
+      k = Math.max(mn, Math.min(mx, Math.min(vw / bw, height / bh)));
+    }
     const t = d3.zoomIdentity.translate(vw / 2 - k * (x0 + bw / 2), height / 2 - k * (y0 + bh / 2)).scale(k);
     const sel = (animate && !reduceMotion) ? svg.transition().duration(500).ease(d3.easeCubicInOut) : svg;
     sel.call(zoomBehavior.transform, t);
