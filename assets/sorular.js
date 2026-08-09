@@ -144,6 +144,119 @@
   let bgParticles = [], edgeParticles = [];
   let flashId = null, flashStart = 0;
 
+  // ---------------------------------------------------------------------------
+  // SORU NEHRİ (2026-08-09) — ikinci bir görünüm modu, aynı veriyi (qNodes +
+  // relLinks) farklı okuyor. Kategori-sarmalı yerine `sorularData.relations`
+  // (38 elle kurulmuş, gerekçeli soru→soru bağı) bir akış olarak gösteriliyor.
+  // Katman-yerleşimi klasik bir DAG "layering" (Sugiyama'nın ilk adımı):
+  // her bağlantılı bileşen kendi ırmağı, katman = o bileşendeki köklerden
+  // en uzun yol. Bileşenler kesin ayrı tutuluyor -- veri TEK bir kaynaktan
+  // çıkan tek bir nehir olduğunu iddia etmiyor, biz de görselde uydurmuyoruz.
+  let viewMode = "evren";
+  const RIVER_LEFT_PAD = 90, RIVER_LAYER_GAP = 190, RIVER_NODE_GAP = 74, RIVER_BAND_GAP = 48;
+  let riverContentW = 0, riverContentH = 0, riverBuilt = false;
+
+  function buildRiverLayout() {
+    if (riverBuilt) return;
+    riverBuilt = true;
+    const adj = new Map(qNodes.map((n) => [n.id, []]));
+    relLinks.forEach((r) => { adj.get(r.from).push(r.to); adj.get(r.to).push(r.from); });
+
+    // Bağlantılı bileşenler (undirected BFS) -- ilişkisi olmayan sorular
+    // kendi bileşenine değil, ayrı bir "kaynaksız" kümeye düşer.
+    const compOf = new Map();
+    const comps = [];
+    qNodes.forEach((n) => {
+      if (compOf.has(n.id) || !adj.get(n.id).length) return;
+      const stack = [n.id], comp = [];
+      while (stack.length) {
+        const x = stack.pop();
+        if (compOf.has(x)) continue;
+        compOf.set(x, comps.length);
+        comp.push(x);
+        adj.get(x).forEach((y) => { if (!compOf.has(y)) stack.push(y); });
+      }
+      comps.push(comp);
+    });
+    const compNodes = comps.map((ids) => ids.map((id) => qNodes.find((n) => n.id === id)));
+
+    // Katman = bileşen içindeki en uzun yol (Kahn topolojik sırayla ilerleyen
+    // gevşetme) -- iki soru arasında birden fazla yol varsa en derin olanı
+    // kazanır, akış hep ileri doğru okunsun diye.
+    const outEdges = new Map(qNodes.map((n) => [n.id, []]));
+    relLinks.forEach((r) => outEdges.get(r.from).push(r.to));
+    compNodes.forEach((comp) => {
+      const ids = new Set(comp.map((n) => n.id));
+      const localIndeg = new Map(comp.map((n) => [n.id, 0]));
+      relLinks.forEach((r) => { if (ids.has(r.from) && ids.has(r.to)) localIndeg.set(r.to, localIndeg.get(r.to) + 1); });
+      let queue = comp.filter((n) => localIndeg.get(n.id) === 0).map((n) => n.id);
+      // Döngü varsa (beklenmiyor ama savunma amaçlı) rastgele bir başlangıç seç.
+      if (!queue.length) queue = [comp[0].id];
+      const layer = new Map(queue.map((id) => [id, 0]));
+      let guard = 0;
+      while (queue.length && guard++ < 4000) {
+        const cur = queue.shift();
+        const curLayer = layer.get(cur);
+        outEdges.get(cur).forEach((nxt) => {
+          if (!ids.has(nxt)) return;
+          if (!layer.has(nxt) || layer.get(nxt) < curLayer + 1) { layer.set(nxt, curLayer + 1); queue.push(nxt); }
+        });
+      }
+      comp.forEach((n) => { n.riverLayer = layer.has(n.id) ? layer.get(n.id) : 0; });
+    });
+
+    // En temel sorunun bileşeni en üstteki (ana) ırmak; kalanlar boyuna göre.
+    compNodes.sort((a, b) => {
+      const aHas = a.some((n) => n.category.id === CENTER_CAT), bHas = b.some((n) => n.category.id === CENTER_CAT);
+      if (aHas !== bHas) return aHas ? -1 : 1;
+      return b.length - a.length;
+    });
+
+    let bandY = 0, maxLayer = 0;
+    compNodes.forEach((comp) => {
+      const byLayer = new Map();
+      comp.forEach((n) => {
+        maxLayer = Math.max(maxLayer, n.riverLayer);
+        if (!byLayer.has(n.riverLayer)) byLayer.set(n.riverLayer, []);
+        byLayer.get(n.riverLayer).push(n);
+      });
+      const rows = Math.max(...Array.from(byLayer.values()).map((a) => a.length));
+      byLayer.forEach((arr) => {
+        arr.forEach((n, i) => {
+          n.rx = RIVER_LEFT_PAD + n.riverLayer * RIVER_LAYER_GAP;
+          n.ry = bandY + (i + 0.5) * RIVER_NODE_GAP + Math.max(0, (rows - arr.length) / 2) * RIVER_NODE_GAP;
+        });
+      });
+      bandY += rows * RIVER_NODE_GAP + RIVER_BAND_GAP;
+    });
+
+    // İlişkisi hiç olmayan sorular -- akışın parçası değiller, bunu gizlemek
+    // yerine ayrı, adı konmuş küçük bir "kaynaksız sorular" şeridinde duruyorlar.
+    const isolated = qNodes.filter((n) => !adj.get(n.id).length);
+    isolated.forEach((n, i) => {
+      n.riverLayer = 0;
+      n.rx = RIVER_LEFT_PAD;
+      n.ry = bandY + (i + 0.5) * RIVER_NODE_GAP;
+    });
+    bandY += isolated.length * RIVER_NODE_GAP;
+
+    riverContentH = bandY;
+    riverContentW = RIVER_LEFT_PAD + (maxLayer + 1) * RIVER_LAYER_GAP;
+  }
+
+  // source/target BURADA elle çözülüyor -- Evren modunda bu işi
+  // d3.forceLink(links).id(...) simülasyonu kurarken kendiliğinden yapıyor
+  // (string id'yi gerçek düğüm nesnesine çeviriyor); Nehir'de simülasyon hiç
+  // kurulmadığı için (yerleşim zaten sabit) aynı çözümlemeyi burada elle
+  // yapmak gerekiyor -- yoksa render()'daki nx_(l.source) gibi çağrılar bir
+  // string üzerinde .x arayıp sessizce NaN üretirdi.
+  function riverLinks() {
+    return relLinks.map((r) => Object.assign({}, r, {
+      id: "riv:" + r.from + ">" + r.to, kind: "river",
+      source: nodeById.get(r.from), target: nodeById.get(r.to),
+    })).filter((l) => l.source && l.target);
+  }
+
   function fetchData() {
     if (dataPromise) return dataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("sorular-wrap");
@@ -528,7 +641,23 @@
   function nx_(d) { return d.px == null ? d.x : d.px; }
   function ny_(d) { return d.py == null ? d.y : d.py; }
 
+  // Nehir kenarları klasik akış-diyagramı eğrisi (Sankey/org-chart tarzı):
+  // kontrol noktaları YATAY eksende, düğümün kenarından çıkıp kenarına giren
+  // dik bir eğri değil, suyun kendi kendine bulduğu yumuşak bir S. Evren
+  // modunun dikine bükülen bezier'i burada anlamsız kalırdı (akış yönü hep
+  // soldan sağa, dikey sapma yalnız kat farkından geliyor).
+  function riverPathCoords(l) {
+    const s = l.source, t = l.target;
+    const sr = radiusFor(s) + 2, tr = radiusFor(t) + 2;
+    const sx = nx_(s) + sr, sy = ny_(s), ex = nx_(t) - tr, ey = ny_(t);
+    const midx = (sx + ex) / 2;
+    return { sx, sy, ex, ey, midx };
+  }
   function linkPath(l) {
+    if (l.kind === "river") {
+      const { sx, sy, ex, ey, midx } = riverPathCoords(l);
+      return `M${sx.toFixed(1)},${sy.toFixed(1)} C${midx.toFixed(1)},${sy.toFixed(1)} ${midx.toFixed(1)},${ey.toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)}`;
+    }
     const s = l.source, t = l.target;
     const dx = nx_(t) - nx_(s), dy = ny_(t) - ny_(s);
     const len = Math.hypot(dx, dy) || 1;
@@ -542,6 +671,13 @@
     return `M${sx.toFixed(1)},${sy.toFixed(1)} Q${(mx + nx * bow).toFixed(1)},${(my + ny * bow).toFixed(1)} ${ex.toFixed(1)},${ey.toFixed(1)}`;
   }
   function pointOnLink(l, u) {
+    if (l.kind === "river") {
+      const { sx, sy, ex, ey, midx } = riverPathCoords(l);
+      const mu = 1 - u;
+      const x = mu * mu * mu * sx + 3 * mu * mu * u * midx + 3 * mu * u * u * midx + u * u * u * ex;
+      const y = mu * mu * mu * sy + 3 * mu * mu * u * sy + 3 * mu * u * u * ey + u * u * u * ey;
+      return [x, y];
+    }
     const s = l.source, t = l.target;
     const dx = nx_(t) - nx_(s), dy = ny_(t) - ny_(s);
     const len = Math.hypot(dx, dy) || 1;
@@ -600,8 +736,11 @@
       bg.exit().remove();
     }
 
-    // --- kategori halkası ---
-    ringLayer.select("path.sorular-ring-path").attr("d", spiralPath());
+    // --- kategori halkası (yalnız Evren'de -- Nehir'in kendi ekseni var) ---
+    ringLayer.select("path.sorular-ring-path").attr("d", viewMode === "nehir" ? "" : spiralPath());
+    // Sarmalın merkezindeki nefes alan işaret de Evren'e ait -- Nehir'de
+    // eski cx/cy'de asılı kalan, akışla ilgisiz bir daire olurdu.
+    if (centerLayer) centerLayer.style("display", viewMode === "nehir" ? "none" : null);
 
     // --- bağlantılar (bezier, düşük opaklık) (#3) ---
     const lk = linkLayer.selectAll("path.sorular-link").data(links, (l) => l.id);
@@ -610,24 +749,36 @@
         const p = d3.select(this);
         const dv = true;
         let op = 0.16;
-        if (act) op = (act.set.has(l.source.id) && act.set.has(l.target.id)) ? 0.8 : 0.05;
+        const bothActive = act && act.set.has(l.source.id) && act.set.has(l.target.id);
+        if (l.kind === "river") {
+          // Nehir'in kanalları hover beklemeden kendi renginde akıyor --
+          // bir su kütlesi hover'da "belirmiyor", zaten oradaydı.
+          op = act ? (bothActive ? 0.85 : 0.12) : 0.4;
+        } else if (act) op = bothActive ? 0.8 : 0.05;
         // Kategoriler arası "köprü" kenarı kesikli çiziliyor: doğrudan bir
         // soru-soru ilişkisi değil, "bu ilişkinin öteki ucu şu kolda"
         // işareti (bkz. activeLinks()'teki bridges).
         if (l.kind === "bridge") op = act ? op : 0.13;
         p.attr("d", linkPath(l))
           .classed("sorular-link--bridge", l.kind === "bridge")
-          .classed("sorular-link--active", act && act.set.has(l.source.id) && act.set.has(l.target.id))
-          .style("stroke", act && act.set.has(l.source.id) && act.set.has(l.target.id) ? catColor(l.source) : null)
+          .classed("sorular-link--river", l.kind === "river")
+          .classed("sorular-link--active", bothActive)
+          .style("stroke", l.kind === "river" ? catColor(l.source) : (bothActive ? catColor(l.source) : null))
           .style("opacity", op * (dv ? 1 : 0.25));
       });
     lk.exit().remove();
 
-    // --- aktif bağlantılarda ışık akışı (#3 "ışık akışı") ---
-    if (!reduceMotion && act) {
-      const vis = edgeParticles.filter((p) => act.set.has(p.l.source.id) && act.set.has(p.l.target.id));
+    // --- ışık akışı (#3): Evren'de yalnız aktif (üzerine gelinen) bağlarda,
+    // Nehir'de İSE her zaman -- bir nehir hover beklemez, sürekli akar
+    // (kullanıcının isteği: "sakin, şiirsel, çok yavaş"). Nehir'deki ambiyans
+    // parçacıkları hover'dakinden daha soluk (.sorular-flow--ambient).
+    if (!reduceMotion && (act || viewMode === "nehir")) {
+      const vis = act
+        ? edgeParticles.filter((p) => act.set.has(p.l.source.id) && act.set.has(p.l.target.id))
+        : edgeParticles;
       const ps = particleLayer.selectAll("circle.sorular-flow").data(vis, (d) => d.l.id);
       ps.enter().append("circle").attr("class", "sorular-flow").attr("r", 1.6).merge(ps)
+        .classed("sorular-flow--ambient", (p) => !act)
         .each(function (p) { const [x, y] = pointOnLink(p.l, p.t); d3.select(this).attr("cx", x).attr("cy", y).style("fill", catColor(p.l.source)); });
       ps.exit().remove();
     } else { particleLayer.selectAll("circle.sorular-flow").remove(); }
@@ -709,11 +860,14 @@
       // Kategori etiketi hep açık (haritanın okunur kalması için); soru
       // etiketi eskisi gibi üstüne gelince / yakınlaşınca / seçiliyken.
       const inOpenArm = !d.isCat && expandedCatId === d.category.id;
-      const showLabel = d.isCat || inOpenArm || isHover || isActive || currentK >= 1.15 || (act && act.set.has(d.id));
+      // Nehir'de bloom/kademeli açılım yok -- 48 soru da hep sahnede, o yüzden
+      // etiketler de hep açık (aksi hâlde harita "boş noktalar" gibi görünür,
+      // akışın nereye gittiği okunmaz).
+      const showLabel = viewMode === "nehir" || d.isCat || inOpenArm || isHover || isActive || currentK >= 1.15 || (act && act.set.has(d.id));
       // Açılan koldaki soruların etiketi merkezden DIŞARI bakan tarafa yazılır;
       // yoksa iki sıralı yelpazede dış sıranın etiketi iç sıranın üstüne düşüyor.
       const labelY = inOpenArm && (d.y - cy) < 0 ? -(r + 7) : r + 13;
-      const txt = d.isCat ? I18n.pick3(d.category.name) : labelFor(d.question, inOpenArm ? 20 : 30);
+      const txt = d.isCat ? I18n.pick3(d.category.name) : labelFor(d.question, inOpenArm ? 20 : (viewMode === "nehir" ? 22 : 30));
       lbl.attr("y", labelY).style("display", showLabel ? null : "none")
         .classed("sorular-label--strong", isHover || isActive)
         .classed("sorular-label--cat", !!d.isCat)
@@ -921,23 +1075,81 @@
       ${satir}</div>`;
   }
   function relationNote(r) { return r && r.note ? I18n.pick3(r.note) : ""; }
+  // 2026-08-09 (Soru Nehri): relations[] zaten YÖNLÜ (from→to, gerekçeli) --
+  // eskiden bu yön atılıp tek bir "İlişkili Sorular" listesinde
+  // düzleştiriliyordu. Artık "nereden geliyor / nereye götürüyor" ayrı ayrı
+  // gösteriliyor; bu hem Nehir'in kendi mantığı hem Evren'de de gerçek bir
+  // iyileştirme (aynı veri, daha dürüst bir okuma).
   function relatedQuestionsHtml(q) {
-    const rel = relationsOf(q.id);
-    if (!rel.length) return "";
-    const rows = rel.map((r) => {
-      const otherId = r.from === q.id ? r.to : r.from;
+    const gelen = (sorularData.relations || []).filter((r) => r.to === q.id);
+    const giden = (sorularData.relations || []).filter((r) => r.from === q.id);
+    if (!gelen.length && !giden.length) return "";
+    const row = (r, otherId) => {
       const entry = questionIndex.get(otherId); if (!entry) return "";
       return `<button class="sorular-question-row sorular-question-row--related" type="button" data-id="${otherId}">
         <span><span class="sorular-related__q">${I18n.pick3(entry.question.question)}</span>
         <span class="sorular-related__note">${relationNote(r)}</span></span>
         <span class="sorular-question-row__arrow" aria-hidden="true">→</span></button>`;
-    }).join("");
-    return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "İlişkili Sorular", en: "Related Questions", pt: "Perguntas Relacionadas" })}</p><div class="sorular-question-list">${rows}</div>`;
+    };
+    const onceRows = gelen.map((r) => row(r, r.from)).join("");
+    const sonraRows = giden.map((r) => row(r, r.to)).join("");
+    let html = "";
+    if (onceRows) html += `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Bu soru nereden geliyor?", en: "Where does this question come from?", pt: "De onde vem esta pergunta?" })}</p><div class="sorular-question-list">${onceRows}</div>`;
+    if (sonraRows) html += `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Bu soru nereye götürüyor?", en: "Where does this question lead?", pt: "Para onde leva esta pergunta?" })}</p><div class="sorular-question-list">${sonraRows}</div>`;
+    return html;
+  }
+
+  // --- Görünüm modu: Evren (sarmal) / Nehir (akış) ---------------------------
+  // Nehir'in kendi yerleşimi zaten sabit (buildRiverLayout) -- force
+  // simülasyonuna ihtiyacı yok, yalnız rx/ry'yi x/y'ye kopyalayıp sabitliyor.
+  // tilt3d'yi 0'a çekmek `positionNodes()`'un px/py'yi x/y'yle birebir aynı
+  // hesaplamasını sağlıyor (bkz. graph-utils.js: project(...,tilt<0.001) ==
+  // identity) -- akış sakin ve DÜZ kalsın diye (kullanıcının isteği: "çok
+  // yavaş hareket eden bir yapı", 3B eğim burada anlam taşımıyor).
+  function wireModeToggle() {
+    const btn = document.getElementById("sorular-nehir-toggle");
+    if (!btn || btn.dataset.wiredNehir) return;
+    btn.dataset.wiredNehir = "1";
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setViewMode(viewMode === "evren" ? "nehir" : "evren");
+    });
+  }
+
+  function setViewMode(mode) {
+    if (viewMode === mode) return;
+    viewMode = mode;
+    const nehirBtn = document.getElementById("sorular-nehir-toggle");
+    const tiltBtn = document.getElementById("sorular-3d-toggle");
+    if (nehirBtn) { nehirBtn.classList.toggle("is-on", mode === "nehir"); nehirBtn.setAttribute("aria-pressed", mode === "nehir" ? "true" : "false"); }
+    expandedCatId = null; currentDetailQuestion = null; focusId = null;
+    if (backBtn) backBtn.hidden = true;
+    if (mode === "nehir") {
+      qNodes.forEach((n) => { n.x = n.rx; n.y = n.ry; n.fx = n.rx; n.fy = n.ry; n.px = n.rx; n.py = n.ry; });
+      if (tilt3d) tilt3d.set(0, true);
+      if (tiltBtn) tiltBtn.hidden = true;
+    } else {
+      qNodes.forEach((n) => { n.fx = null; n.fy = null; });
+      if (tilt3d) tilt3d.set(1, true);
+      if (tiltBtn) tiltBtn.hidden = false;
+    }
+    // rebuildScene ÖNCE: nodes/links yeni moda göre kurulmadan
+    // showAllQuestionsList() çağrılırsa, onun kendi fitView() çağrısı hâlâ
+    // ESKİ moddaki nodes dizisine göre sığdırır -- bir anlık yanlış kadraj.
+    rebuildScene(true);
+    showAllQuestionsList(true);
   }
 
   // --- Kademeli açılım: kategori aç / kapat ----------------------------------
   function rebuildScene(animate) {
-    buildSim();
+    if (viewMode === "nehir") {
+      if (simulation) { simulation.stop(); simulation = null; }
+      nodes = qNodes;
+      links = riverLinks();
+      initEdgeParticles();
+    } else {
+      buildSim();
+    }
     render(performance.now());
     fitView(animate !== false);
     ensureFrame();
@@ -1017,7 +1229,12 @@
     const entry = questionIndex.get(d.id);
     // Soru başka bir kategorideyse (ör. "İlişkili Sorular"dan gelindiyse) önce
     // o kol açılır; düğüm sahneye çıkınca simülasyon yerleşince ona pan edilir.
-    if (entry && expandedCatId !== entry.category.id) {
+    // Nehir'de "kol" diye bir şey yok -- 48 soru da zaten sahnede -- bu dalı
+    // hiç almadan doğrudan pan/panel'e geçiyoruz. (Bir kez atlandı: bu dal
+    // alınırsa expandCategory() expandedCatId'yi doldurur, render()'daki
+    // "backgrounded" bulanıklaştırması TÜM diğer düğümleri Nehir'de de
+    // bulanıklaştırırdı -- kategori-kol mantığı orada anlamsız.)
+    if (viewMode !== "nehir" && entry && expandedCatId !== entry.category.id) {
       expandCategory(entry.category.id, true);
       focusId = d.id;
       flashId = d.id; flashStart = performance.now();
@@ -1059,7 +1276,9 @@
     const built = buildGraphData(data);
     catNodes = built.catNodes; qNodes = built.qNodes; relLinks = built.links;
     nodeById = new Map(catNodes.concat(qNodes).map((n) => [n.id, n]));
+    buildRiverLayout();
     buildDom();
+    wireModeToggle();
     layoutSeed();
     buildSim();
     initAtmosphere();

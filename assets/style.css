@@ -1407,7 +1407,14 @@ body.sessiz-mod-on .app-header {
    öteki ucunun başka bir kolda olduğunu söyleyen kesikli bir işaret
    (bkz. assets/sorular.js activeLinks()). */
 .sorular-link--bridge { stroke-dasharray: 3 5; }
+/* Nehir kenarları (2026-08-09): bir "bağ" değil bir "kanal" hissi versin diye
+   biraz daha kalın ve akan suyun rengini taşıyan (kaynak düğümün kategori
+   rengi, JS'te .style("stroke", ...) ile veriliyor) yumuşak bir çizgi. */
+.sorular-link--river { stroke-width: 2.2px; }
 .sorular-flow, .sorular-glow, .sorular-halo, .sorular-sheen { pointer-events: none; }
+/* Nehir'in her zaman akan (hover beklemeyen) parçacıkları -- sürekli hareket
+   göze batmasın diye Evren'in hover-parçacığından belirgin biçimde soluk. */
+.sorular-flow--ambient { opacity: 0.4; }
 .sorular-halo { fill: none; stroke-width: 1.5px; }
 .sorular-sphere { filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.26)); }
 .viz-root[data-theme="dark"] .sorular-sphere { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)); }
@@ -6685,6 +6692,10 @@ body.cizim-lightbox-open {
    tutuyor; eğim düğmesi onun yanına kayıyor. */
 #sorular-3d-toggle {
   left: 168px;
+}
+/* Soru Nehri düğmesi (2026-08-09), eğim düğmesinin hemen sağında. */
+#sorular-nehir-toggle {
+  left: 220px;
 }
 /* B1: "ne kadar eminiz" düğmesi, eğim düğmesinin hemen sağında. */
 .graph-confidence-toggle {
