@@ -272,6 +272,7 @@
     else if (currentMainView === "hakkinda") {
       window.__siirlerApp && window.__siirlerApp.onLangChange();
       window.__vahdetApp && window.__vahdetApp.onLangChange();
+      window.__okumaYollariApp && window.__okumaYollariApp.onLangChange();
     }
     else if (currentMainView === "kavram") window.__kavramApp && window.__kavramApp.onLangChange();
     else if (currentMainView === "ayethadis") window.__ayetHadisApp && window.__ayetHadisApp.onLangChange();

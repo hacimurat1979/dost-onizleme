@@ -4142,6 +4142,97 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   color: var(--text-secondary);
 }
 
+/* ===== Okuma Yolları (Hakkında'nın dördüncü sekmesi, 2026-08-09) =====
+   Her konu için üç kademe (makale/kitap/birincil), .vahdet-card'ın aynı
+   dilini (üstte renkli çizgi, büyük harf etiket) kullanıyor ama yan yana
+   üç kart + aralarında bir ok -- bir "sıra" hissi vermek için. */
+.okuma-yolu-intro {
+  max-width: 720px;
+  margin: 0 auto 32px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  text-align: center;
+}
+.okuma-yolu {
+  max-width: 1000px;
+  margin: 0 auto 48px;
+}
+.okuma-yolu__konu {
+  font-size: 1.15rem;
+  margin: 0 0 16px;
+  text-align: center;
+}
+.okuma-yolu__kademeler {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+}
+.okuma-yolu__ok {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  padding-top: 20px;
+}
+@media (max-width: 720px) {
+  .okuma-yolu__kademeler { flex-direction: column; }
+  .okuma-yolu__ok { transform: rotate(90deg); padding: 0; }
+}
+.okuma-yolu-kademe {
+  flex: 1 1 0;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--text-muted);
+  border-radius: 16px;
+  padding: 18px;
+  background: var(--surface-1);
+  min-width: 0;
+}
+.okuma-yolu-kademe--birincil { border-top-color: var(--series-theme); }
+.okuma-yolu-kademe__etiket {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+}
+.okuma-yolu-kademe--birincil .okuma-yolu-kademe__etiket { color: var(--series-theme); }
+.okuma-yolu-kademe__baslik {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+.okuma-yolu-kademe__kunye {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+.okuma-yolu-kademe__neden {
+  margin: 0 0 10px;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.okuma-yolu-kademe__doi,
+.okuma-yolu-kademe__git {
+  display: inline-block;
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 0.76rem;
+  color: var(--accent-interactive);
+  cursor: pointer;
+  text-decoration: none;
+}
+.okuma-yolu-kademe__doi:hover, .okuma-yolu-kademe__doi:focus-visible,
+.okuma-yolu-kademe__git:hover, .okuma-yolu-kademe__git:focus-visible { text-decoration: underline; }
+
 /* ===== ANLAM TAŞIYAN ANİMASYON (#2, 2026-08-03) =====
    Bir düğüme tıklamak artık her yerde aynı şeyi yapmıyor: her düğüm KENDİ
    davranışını gösteriyor (bkz. assets/ontology.js'teki DUGUM_DAVRANISI ve

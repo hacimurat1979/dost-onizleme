@@ -689,6 +689,9 @@
         <button class="hakkinda-subtab" id="hakkinda-subtab-vahdet"
                 type="button" role="tab" aria-selected="false" aria-controls="vahdet-panel"
                 data-tr="Eleştiriler" data-en="Criticisms" data-pt="Críticas">Eleştiriler</button>
+        <button class="hakkinda-subtab" id="hakkinda-subtab-okuma-yollari"
+                type="button" role="tab" aria-selected="false" aria-controls="okuma-yollari-panel"
+                data-tr="Okuma Yolları" data-en="Reading Paths" data-pt="Caminhos de Leitura">Okuma Yolları</button>
       </div>
       <div id="hakkinda-content-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-hakkinda">
       <div class="hakkinda-content">
@@ -1162,6 +1165,14 @@ mesmo antes que o assombro exista."></blockquote>
         </div>
         <div id="vahdet-content"></div>
       </div>
+      <div id="okuma-yollari-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-okuma-yollari" hidden>
+        <div class="view-status" id="okuma-yollari-panel-status" hidden>
+          <div class="view-status__spinner" aria-hidden="true"></div>
+          <p class="view-status__text"></p>
+          <button class="view-status__retry" type="button" hidden></button>
+        </div>
+        <div id="okuma-yollari-content"></div>
+      </div>
       <button class="scroll-top-btn" id="hakkinda-scroll-top" type="button" hidden
         data-tr-title="Başa dön" data-en-title="Back to top" data-pt-title="Voltar ao topo"
         title="Başa dön" aria-label="Başa dön">
@@ -1342,8 +1353,8 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
   <script src="assets/futuhat.js" defer integrity="sha384-rfBRvmcoKYLIawa0nWi1lIuFguz2xu/4gd/ZTkJesT+PhHZhVRJqEUjVHjP6pnCa"></script>
   <script src="assets/fusus.js" defer integrity="sha384-NWndNFf07ZRehuPP29Nc/iMRBsDyMjSIfCUSvp7ycm+1r3mf7pjTGJlZBcBPBcQt"></script>
-  <script src="assets/view-loader.js" defer integrity="sha384-HPD52KEoVAuUAOskDeMdDiXW6+zxkMJxvggvKVf0ZPBWa97I8Wjx4ClbOFipLwHq"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-2iUvPXqtLVbglIMxjyGKUdEK/x8tdv/AGC1VlRJSFaFhPJYiJEh+E5+AppjPrMfU"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-yhK/ls600NSuxofvnwLZGgQoj/skJlwvFEf9E3+YBm4qTW141njA/TWpwGu4rg4z"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-1FaynEgN7ysowFUl9uGpRJ1KO8fvw9jj99vCK3sjNfWBjfI362RhIUMTjt/AnNiX"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-9qv/Q/FBNgrPHnUOAukAqwsa/DVkrKY78fVJR+l6Kro4bz3an1mUQ8Tg1yG83pGw"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>
