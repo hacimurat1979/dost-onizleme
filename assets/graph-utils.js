@@ -142,12 +142,21 @@ window.DostGraphUtils = (function () {
   // into the fallback case (ontology.js's force-layout needs this to keep
   // a node-drag click from also panning the whole canvas; the four
   // fixed-layout tree/radial views don't need it and pass nothing).
-  function createZoomBehavior(svg, zoomLayer, scaleExtent, extraFilter) {
+  //
+  // `opts.allowSingleTouchPan` (2026-08-09, eser-agi.js): the default
+  // two-finger-only touch filter exists because several views have
+  // force-drag-draggable nodes, where single-touch on a node needs to stay
+  // a node-drag, not a canvas-pan -- ambiguous on touch. eser-agi's rows
+  // are plain click targets (no per-node drag), so that ambiguity doesn't
+  // exist there; opting in lets a single finger scroll a tall list, which
+  // is what touch users expect from a list.
+  function createZoomBehavior(svg, zoomLayer, scaleExtent, extraFilter, opts) {
+    const allowSingleTouchPan = opts && opts.allowSingleTouchPan;
     const zoomBehavior = d3.zoom()
       .scaleExtent(scaleExtent)
       .filter((event) => {
         if (event.type === "wheel") return event.ctrlKey || event.metaKey;
-        if (event.touches) return event.touches.length > 1;
+        if (event.touches) return allowSingleTouchPan ? event.touches.length >= 1 : event.touches.length > 1;
         return extraFilter ? extraFilter(event) : true;
       })
       .on("zoom", (event) => zoomLayer.attr("transform", event.transform));

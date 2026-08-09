@@ -169,8 +169,37 @@ window.__eserAgiApp = (function () {
       contentX0 = -(spineX);
     }
 
-    zoom = GU.createZoomBehavior(svg, g, [0.25, 3.5]);
+    // 2026-08-09 kullanıcı bulgusu: "sadece 5 düğüm görünüyor, sayfaya
+    // sığmıyor". Kök neden küçüklük değildi -- ortala() zaten yalnız
+    // GENİŞLİĞE göre sığdırıyor (küçültmüyor), ama 28 satırlık omurga
+    // (~1600px) kapsayıcıdan (~500-700px) çok daha uzun ve GU'nun paylaşılan
+    // zoom filtresi düz tekerleği bilerek yakalamıyor (sayfanın kendi
+    // kaydırması için serbest bırakılıyor) -- ama bu görünüm `overflow:
+    // hidden` bir kutunun içinde, "sayfa" diye bir şey yok. Tek yol
+    // sürükleyerek kaydırmaktı ve keşfedilebilir değildi. Aşağıdaki
+    // wheel dinleyicisi düz tekerleği bu görünüme özel bir dikey kaydırmaya
+    // çeviriyor; translateExtent de sürüklemeyi (ve yeni kaydırmayı)
+    // içerik sınırlarında tutuyor (eskiden sınırsızdı, kullanıcı içeriği
+    // sürükleyip kaybedebilirdi).
+    zoom = GU.createZoomBehavior(svg, g, [0.25, 3.5], null, { allowSingleTouchPan: true });
+    const pad = 48;
+    zoom.translateExtent([
+      [contentX0 - pad, -pad],
+      [contentX0 + contentW + pad, contentH + pad],
+    ]);
     ortala(false);
+  }
+
+  // Düz tekerlek = bu listede dikey kaydırma (esma.js'teki "düz tekerlek =
+  // anlamlı bir hareket, Ctrl+tekerlek = klasik yakınlaştırma" kuralıyla
+  // aynı ayrım). Ctrl/Cmd basılıyken GU'nun kendi "wheel.zoom" dinleyicisi
+  // zaten devrede; burada erken çıkılıp ona karışılmıyor.
+  function tekerlekleKaydir(e) {
+    if (e.ctrlKey || e.metaKey) return;
+    if (!zoom) return;
+    e.preventDefault();
+    const t = d3.zoomTransform(svgNode);
+    zoom.translateBy(svg, 0, -e.deltaY / t.k);
   }
 
   function kisalt(s, n) {
@@ -302,6 +331,7 @@ window.__eserAgiApp = (function () {
     if (baglandi) return;
     baglandi = true;
     GU.wireRecenter("eser-agi-recenter", () => ortala(true));
+    svgNode.addEventListener("wheel", tekerlekleKaydir, { passive: false });
     if (GU.setupDetailPanelFocus) GU.setupDetailPanelFocus();
     GU.registerStepBack("eser-agi-wrap", () => {
       if (focusId || focusEdge) { girisPaneli(); return true; }

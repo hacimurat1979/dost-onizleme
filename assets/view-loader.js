@@ -42,7 +42,7 @@
     __bilmiyoruzApp: { src: "assets/bilmiyoruz.js", integrity: "sha384-Uof74u0u/MQ5bO27Xpu6DHyX3lWHwBJ3AdDQm08bOjv6vBGfDyOFXb6SsRbLWT38" },
     __elestiriArkeolojisiApp: { src: "assets/elestiri-arkeolojisi.js", integrity: "sha384-3cepdoknyM6G+dol88EL6XNoCrFGY3RJ5IZ1pgvdP8D5Hragt+BiOvDc0qwGmD5/" },
     __hocalarApp: { src: "assets/hocalar.js", integrity: "sha384-mysztWEVTlk3RQDNyI/SqXx9C5jLvb27CrQwiR+e0Z+8wImI7ofybYkAPt30LhQS" },
-    __eserAgiApp: { src: "assets/eser-agi.js", integrity: "sha384-DG1Omf2jdkCYClmZsYs0ObVLbqjBBZ7iXT6m3EnbF3EK/JliejPlG3F0kOgWUnRV" },
+    __eserAgiApp: { src: "assets/eser-agi.js", integrity: "sha384-blZmUyHTB5GZ4+s2DSslE5myw+5JnRecdMoRXJ8bPsxEUPhoWx3k/u2OK7G33MeM" },
     __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-kApGgFioUA0ODQW9SZyMzHZMuK3ZTaEfLl7/5lHgHtWO2yh4re+x4MrY8/7fG4bs" },
     __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-zpleZYoxcar7e1EFE5mpgq6sXk5G/9Vg/xqryNGLqsi4n8eY/KzPl2zYCz3v5EQG" },
   };
