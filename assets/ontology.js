@@ -1862,6 +1862,7 @@
     (function wireRotateDrag() {
       const el = svg.node();
       let lastX = 0, lastY = 0;
+      let dragRepaintQueued = false;
       el.addEventListener("pointerdown", (e) => {
         if (tiltTarget < 0.5) return;
         if (e.target.closest && e.target.closest(".node")) return;
@@ -1873,7 +1874,17 @@
         yaw += (e.clientX - lastX) * 0.006;
         pitch = Math.max(0.02, Math.min(1.1, pitch + (e.clientY - lastY) * 0.004));
         lastX = e.clientX; lastY = e.clientY;
-        paintPositions();
+        // Aşağıdaki idle-spin kolunda (bkz. spinFrame, ~satır 1776) zaten
+        // düzeltilmiş AYNI kusur -- paintPositions() (deconflictLabels
+        // dahil) burada da koşulsuz çağrılıyordu. Touch'ta pointermove
+        // fare hareketinden çok daha sık ve küçük artışlarla ateşleniyor;
+        // her birinde çakışma-önleme yeniden koşunca eşik-yakını etiketler
+        // sıçrıyordu (tablette "sürüklerken titriyor" bildirimi). rAF ile
+        // tekilleştirip kare başına en fazla bir kez boyuyoruz.
+        if (!dragRepaintQueued) {
+          dragRepaintQueued = true;
+          requestAnimationFrame(() => { dragRepaintQueued = false; paintPositions(); });
+        }
       });
       const stop = (e) => {
         if (!rotating) return;
