@@ -6,6 +6,7 @@
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
   if (!grid || !detailPanel || !detailContent) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let glossaryData = null;
   let fetchPromise = null;
@@ -199,6 +200,84 @@
     return `<svg class="terim-card__icon-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[key]}</svg>`;
   }
 
+  // GORSEL_DIL.md: "Soyut ok kullanma... Kesik çizgili ok + üçgen uç bir
+  // diyagram dilidir, istiare dili değil." Aşağıdaki iki fonksiyon, bu
+  // çizimlerin hepsinde kesik-üçgen-uçlu oku değiştiren ORTAK teknik:
+  // yönü bir ok başıyla değil, ışığın kendi mantığıyla (kaynakta sönük,
+  // vardığı yerde parlak -- ya da karşılıklı ilişkilerde ortada parlak,
+  // uçlarda sönük) gösteren bir gradyan çizgi. isikYollariniCalistir ise
+  // panel açıldığında/büyütüldüğünde HER ışık yolu boyunca bir kıvılcım
+  // koşturuyor -- ontology.js'in ana grafiğindeki AYNI teknik (kivilcim/
+  // getPointAtLength), yalnız burada tetikleyici düğüme tıklamak değil,
+  // terimi/çizimi AÇMAK: "her etkileşimin görünür bir sonucu olmalı."
+  let isikYoluSayaci = 0;
+  function isikCizgisi(x1, y1, x2, y2, yon, extraClass) {
+    const id = "tdIsik" + (isikYoluSayaci++);
+    // stop-color'ı bir XML özniteliği DEĞİL, style= içinde veriyoruz --
+    // yalnız öyle yazılırsa CSS değişkeni (var(--series-theme)) çözülüyor;
+    // currentColor'a güvenmek burada işe yaramazdı çünkü <defs> bu satırın
+    // KARDEŞİ, atası değil -- .term-diagram-isikyolu'ya renk vermek
+    // gradyanın kendi <stop>'larına hiç ulaşmıyordu (ölçüldü).
+    const renk = "var(--series-theme)";
+    let stops;
+    if (yon === "mutual") {
+      stops = `<stop offset="0%" style="stop-color:${renk};stop-opacity:0.12"/>` +
+        `<stop offset="50%" style="stop-color:${renk};stop-opacity:0.95"/>` +
+        `<stop offset="100%" style="stop-color:${renk};stop-opacity:0.12"/>`;
+    } else if (yon === "return") {
+      stops = `<stop offset="0%" style="stop-color:${renk};stop-opacity:0.9"/>` +
+        `<stop offset="100%" style="stop-color:${renk};stop-opacity:0.1"/>`;
+    } else {
+      stops = `<stop offset="0%" style="stop-color:${renk};stop-opacity:0.1"/>` +
+        `<stop offset="100%" style="stop-color:${renk};stop-opacity:0.9"/>`;
+    }
+    return (
+      `<defs><linearGradient id="${id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" gradientUnits="userSpaceOnUse">${stops}</linearGradient></defs>` +
+      `<line class="term-diagram-isikyolu${extraClass ? " " + extraClass : ""}" data-isikyolu-yon="${yon || "oneway"}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#${id})"/>`
+    );
+  }
+  function kivilcimKostur(pathNode, gecikme, sure, ters) {
+    const uzunluk = pathNode.getTotalLength ? pathNode.getTotalLength() : 0;
+    if (!uzunluk) return;
+    const parent = pathNode.parentNode;
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute("class", "term-diagram-kivilcim");
+    c.setAttribute("r", "4");
+    c.setAttribute("opacity", "0");
+    parent.appendChild(c);
+    const bas = performance.now() + gecikme;
+    function adim(t) {
+      // Kullanıcı animasyon bitmeden başka bir terime geçmiş olabilir --
+      // panel innerHTML'i değişince bu çizgi (ve kıvılcım) belgeden
+      // kopuyor ama rAF döngüsü onu bilmiyordu, her karede
+      // getPointAtLength'i kopmuş bir düğümde çağırıp hata basıyordu.
+      if (!pathNode.isConnected) { c.remove(); return; }
+      const p = (t - bas) / sure;
+      if (p < 0) { requestAnimationFrame(adim); return; }
+      if (p >= 1) { c.remove(); return; }
+      const nokta = pathNode.getPointAtLength((ters ? 1 - p : p) * uzunluk);
+      c.setAttribute("cx", nokta.x);
+      c.setAttribute("cy", nokta.y);
+      c.setAttribute("opacity", Math.sin(p * Math.PI).toFixed(3));
+      requestAnimationFrame(adim);
+    }
+    requestAnimationFrame(adim);
+  }
+  function isikYollariniCalistir(root) {
+    if (reduceMotion || !root) return;
+    const lines = root.querySelectorAll(".term-diagram-isikyolu");
+    lines.forEach((line, i) => {
+      const yon = line.dataset.isikyoluYon;
+      const gecikme = i * 90;
+      if (yon === "mutual") {
+        kivilcimKostur(line, gecikme, 1300, false);
+        kivilcimKostur(line, gecikme + 140, 1300, true);
+      } else {
+        kivilcimKostur(line, gecikme, 1100, yon === "return");
+      }
+    });
+  }
+
   // İki (veya daha fazla) kavram arasındaki ilişkiyi tek bakışta gösteren
   // küçük SVG şemalar. Her grubun "diagram" alanındaki tipe göre seçilir.
   const diagramRenderers = {
@@ -208,14 +287,14 @@
         <text class="term-diagram-label" x="60" y="39" text-anchor="middle">${tt(d.left)}</text>
         <circle class="term-diagram-node" cx="280" cy="34" r="24"/>
         <text class="term-diagram-label" x="280" y="39" text-anchor="middle">${tt(d.right)}</text>
-        <line class="term-diagram-arrow term-diagram-arrow--mutual" x1="86" y1="34" x2="254" y2="34" marker-start="url(#tdArrowStart)" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(86, 34, 254, 34, "mutual")}
         <text class="term-diagram-note" x="170" y="20" text-anchor="middle">${tt(d.mutualLabel)}</text>
 
         <circle class="term-diagram-node term-diagram-node--accent" cx="60" cy="116" r="24"/>
         <text class="term-diagram-label" x="60" y="121" text-anchor="middle">${tt(d.oneWayFrom)}</text>
         <circle class="term-diagram-node" cx="280" cy="116" r="24"/>
         <text class="term-diagram-label" x="280" y="121" text-anchor="middle">${tt(d.oneWayTo)}</text>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="86" y1="116" x2="254" y2="116" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(86, 116, 254, 116, "oneway")}
         <text class="term-diagram-note term-diagram-note--accent" x="170" y="145" text-anchor="middle">${tt(d.oneWayLabel)}</text>
       </svg>
     `,
@@ -241,20 +320,17 @@
     `;
     },
     "formula-merge": (d) => `
-      <svg class="term-diagram__svg" viewBox="0 0 340 100" role="img" aria-label="${tt(d.note)}">
-        <circle class="term-diagram-node" cx="55" cy="50" r="30"/>
-        <text class="term-diagram-label" x="55" y="55" text-anchor="middle">${tt(d.a)}</text>
-        <text class="term-diagram-op" x="120" y="58" text-anchor="middle">+</text>
-        <circle class="term-diagram-node" cx="185" cy="50" r="30"/>
-        <text class="term-diagram-label" x="185" y="55" text-anchor="middle">${tt(d.b)}</text>
-        <text class="term-diagram-op" x="245" y="58" text-anchor="middle">=</text>
-        <circle class="term-diagram-node term-diagram-node--accent" cx="290" cy="50" r="34"/>
-        <text class="term-diagram-label" x="290" y="55" text-anchor="middle">${tt(d.result)}</text>
+      <svg class="term-diagram__svg" viewBox="0 0 300 150" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node--venn" cx="112" cy="75" r="58"/>
+        <circle class="term-diagram-node--venn" cx="188" cy="75" r="58"/>
+        <text class="term-diagram-label--small" x="68" y="75" text-anchor="middle">${tt(d.a)}</text>
+        <text class="term-diagram-label--small" x="232" y="75" text-anchor="middle">${tt(d.b)}</text>
+        <text class="term-diagram-label term-diagram-label--result" x="150" y="80" text-anchor="middle">${tt(d.result)}</text>
       </svg>
     `,
     spectrum: (d) => `
       <svg class="term-diagram__svg" viewBox="0 0 340 120" role="img" aria-label="${tt(d.note)}">
-        <line class="term-diagram-axis" x1="30" y1="55" x2="310" y2="55" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(30, 55, 310, 55, "mutual")}
         <circle class="term-diagram-node term-diagram-node--sm" cx="80" cy="55" r="16"/>
         <circle class="term-diagram-node term-diagram-node--accent term-diagram-node--sm" cx="270" cy="55" r="16"/>
         <text class="term-diagram-note" x="80" y="90" text-anchor="middle">${tt(d.leftMarker)}</text>
@@ -278,7 +354,7 @@
       const arrows = d.steps.slice(1).map((s, i) => {
         const x1 = 30 + i * gap + 30;
         const x2 = 30 + (i + 1) * gap - 30;
-        return `<line class="term-diagram-arrow term-diagram-arrow--oneway" x1="${x1}" y1="60" x2="${x2}" y2="60" marker-end="url(#tdArrowEnd)"/>`;
+        return isikCizgisi(x1, 60, x2, 60, "oneway");
       }).join("");
       return `
       <svg class="term-diagram__svg" viewBox="0 0 340 110" role="img" aria-label="${tt(d.note)}">
@@ -292,7 +368,7 @@
         <circle class="term-diagram-node term-diagram-node--accent" cx="55" cy="55" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="55" y="60" text-anchor="middle">${tt(d.source)}</text>
         <line class="term-diagram-mirror" x1="160" y1="15" x2="140" y2="95"/>
-        <line class="term-diagram-arrow term-diagram-arrow--dashed" x1="83" y1="55" x2="215" y2="55" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(83, 55, 215, 55, "oneway")}
         <circle class="term-diagram-node term-diagram-node--faint" cx="245" cy="55" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="245" y="60" text-anchor="middle">${tt(d.target)}</text>
       </svg>
@@ -303,14 +379,14 @@
         <text class="term-diagram-label term-diagram-label--small" x="150" y="95" text-anchor="middle">${tt(d.wax)}</text>
         <rect class="term-diagram-node term-diagram-node--accent" x="120" y="15" width="60" height="40" rx="8"/>
         <text class="term-diagram-label term-diagram-label--small" x="150" y="40" text-anchor="middle">${tt(d.seal)}</text>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="150" y1="58" x2="150" y2="68" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(150, 58, 150, 68, "oneway")}
       </svg>
     `,
     "potential-actual": (d) => `
       <svg class="term-diagram__svg" viewBox="0 0 300 100" role="img" aria-label="${tt(d.note)}">
         <circle class="term-diagram-node term-diagram-node--dashed" cx="60" cy="50" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="60" y="55" text-anchor="middle">${tt(d.potential)}</text>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="90" y1="50" x2="210" y2="50" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(90, 50, 210, 50, "oneway")}
         <circle class="term-diagram-node term-diagram-node--accent" cx="240" cy="50" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="240" y="55" text-anchor="middle">${tt(d.actual)}</text>
       </svg>
@@ -319,8 +395,8 @@
       <svg class="term-diagram__svg" viewBox="0 0 300 200" role="img" aria-label="${tt(d.note)}">
         <circle class="term-diagram-node term-diagram-node--accent" cx="150" cy="42" r="32"/>
         <text class="term-diagram-label term-diagram-label--small" x="150" y="47" text-anchor="middle">${tt(d.ruler)}</text>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="126" y1="66" x2="82" y2="132" marker-end="url(#tdArrowEnd)"/>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="174" y1="66" x2="218" y2="132" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(126, 66, 82, 132, "oneway")}
+        ${isikCizgisi(174, 66, 218, 132, "oneway")}
         <circle class="term-diagram-node term-diagram-node--dashed" cx="70" cy="158" r="28"/>
         <text class="term-diagram-label term-diagram-label--small" x="70" y="163" text-anchor="middle">${tt(d.left)}</text>
         <circle class="term-diagram-node term-diagram-node--dashed" cx="230" cy="158" r="28"/>
@@ -365,9 +441,9 @@
     },
     "tinted-glass": (d) => `
       <svg class="term-diagram__svg" viewBox="0 0 340 130" role="img" aria-label="${tt(d.note)}">
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="20" y1="65" x2="150" y2="65"/>
+        ${isikCizgisi(20, 65, 150, 65, "oneway")}
         <rect class="term-diagram-node--dashed" x="150" y="25" width="24" height="80" fill="none"/>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="174" y1="65" x2="315" y2="65" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(174, 65, 315, 65, "oneway")}
         <text class="term-diagram-label--small" x="162" y="18" text-anchor="middle">${tt(d.glassLabel)}</text>
         <text class="term-diagram-note" x="85" y="45" text-anchor="middle">${tt(d.reasonReading)}</text>
         <text class="term-diagram-note--accent" x="245" y="45" text-anchor="middle">${tt(d.senseReading)}</text>
@@ -401,12 +477,6 @@
   const DIAGRAM_DEFS = `
     <svg width="0" height="0" style="position:absolute">
       <defs>
-        <marker id="tdArrowEnd" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" class="term-diagram-arrowhead"/>
-        </marker>
-        <marker id="tdArrowStart" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto">
-          <path d="M8,0 L0,4 L8,8 Z" class="term-diagram-arrowhead"/>
-        </marker>
         <filter id="tdSketchy" x="-20%" y="-20%" width="140%" height="140%">
           <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="tdNoise"/>
           <feDisplacementMap in="SourceGraphic" in2="tdNoise" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
@@ -459,6 +529,8 @@
       svgHtml: renderer(dg),
       caption: tt(dg.note),
     });
+    // Büyütmek de bir etkileşim -- kendi ışık geçişini tekrar yaşatıyor.
+    isikYollariniCalistir(document.querySelector(".cizim-lightbox__svg-wrap"));
   }
 
   function relatedChipsInline(t) {
@@ -1036,8 +1108,12 @@
         }
       });
     });
-
     detailPanel.hidden = false;
+    // GORSEL_DIL.md: "her etkileşimin görünür bir sonucu olmalı." Bu küçük
+    // çizimlerin tek etkileşimi terimi AÇMAK -- o yüzden tetikleyici tıklama
+    // değil, panelin kendisi: terim açılınca ışık yolları boyunca (yukarıdaki
+    // isikCizgisi'nin ürettiği çizgiler) bir kıvılcım koşuyor.
+    isikYollariniCalistir(detailContent);
 
     // Türetilmiş bağlar dosyası küçük ama ayrı bir fetch; panel bu terimi
     // veri gelmeden önce açtıysa (nadir -- idle callback genelde önden

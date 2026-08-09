@@ -6100,6 +6100,18 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   font-weight: 600;
 }
 
+.term-diagram-label--result {
+  fill: var(--series-theme);
+  font-size: 15.5px;
+  font-weight: 700;
+}
+
+/* Bu dörtlü (.term-diagram-arrow* / --axis / --arrowhead / --op) artık
+   terimler.js'te KULLANILMIYOR (bkz. aşağıdaki isikyolu/kivilcim) -- ama
+   cizimler.js (Fütûhât'ın kendi el yazısı diyagramlarının BİREBİR yeniden
+   çizimleri, tarihî bir facsimile; GORSEL_DIL.md'nin "kendi görsel
+   istiaremizi kur" ilkesi bunlara uygulanmaz, kaynağa sadakat esas) ve
+   ontology.js'in kendi küçük tanım çizimleri hâlâ kullanıyor. Silme.  */
 .term-diagram-op {
   fill: var(--text-muted);
   font-size: 20px;
@@ -6123,15 +6135,19 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   stroke-dasharray: 4 3;
 }
 
-.term-diagram-tether {
-  stroke: color-mix(in srgb, var(--series-theme) 38%, var(--gridline));
-  stroke-width: 0.9px;
-  filter: url(#tdSketchy);
-}
-
 .term-diagram-axis {
   stroke: color-mix(in srgb, var(--series-theme) 55%, var(--text-secondary));
   stroke-width: 1.1px;
+  filter: url(#tdSketchy);
+}
+
+.term-diagram-arrowhead {
+  fill: var(--series-theme);
+}
+
+.term-diagram-tether {
+  stroke: color-mix(in srgb, var(--series-theme) 38%, var(--gridline));
+  stroke-width: 0.9px;
   filter: url(#tdSketchy);
 }
 
@@ -6142,8 +6158,22 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   filter: url(#tdSketchy);
 }
 
-.term-diagram-arrowhead {
+/* GORSEL_DIL.md: "Soyut ok kullanma... Zuhûr bir ışık yolu olarak çizilir."
+   Eskiden her ilişki kesik-üçgen-uçlu bir <marker> okuyla gösteriliyordu
+   (24 diyagramın en az 9'unda, UI denetimi bulgusu). Artık yön bir ok
+   başıyla değil, çizginin KENDİ ışığıyla okunuyor -- bkz. terimler.js'teki
+   isikCizgisi (gradyan) ve isikYollariniCalistir (kıvılcım). */
+.term-diagram-isikyolu {
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+}
+.term-diagram-kivilcim {
   fill: var(--series-theme);
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--series-theme) 75%, transparent));
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .term-diagram-kivilcim { display: none; }
 }
 
 @media (max-width: 640px) {
