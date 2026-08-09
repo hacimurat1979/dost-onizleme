@@ -33,6 +33,30 @@ window.__acikSorularApp = (function () {
 
   function tt(dict) { return I18n.pick3(dict || {}); }
 
+  // Sitede üç ayrı "soru" görünümü var (Sorular/Bilmiyoruz/Açık Sorular) --
+  // isim benzerliği kafa karıştırabiliyor (kullanıcı bulgusu, 2026-08-09).
+  // sorular.js'teki AYNI fonksiyon (görünümler birbirinden bağımsız tembel
+  // yükleniyor, paylaşılamaz -- tt() de aynı sebeple her dosyada ayrı).
+  function soruAilesiNavHtml(buradaki) {
+    const base = window.__dostRouteBase || "";
+    const AILE = {
+      sorular: { view: "sorular", href: "/sorular", baslik: { tr: "Sorular", en: "Questions", pt: "Perguntas" }, aciklama: { tr: "okuyucuya cevap veren bir SSS", en: "an FAQ that answers the reader", pt: "um FAQ que responde ao leitor" } },
+      bilmiyoruz: { view: "bilmiyoruz", href: "/bilmiyoruz", baslik: { tr: "Bilmiyoruz", en: "We Don't Know", pt: "Não Sabemos" }, aciklama: { tr: "metnin kendi çözülmemiş noktaları -- biz sormuyoruz, sınırı o gösteriyor", en: "the text's own unresolved points -- not our question, its own limit", pt: "os próprios pontos não resolvidos do texto" } },
+      "acik-sorular": { view: "acik-sorular", href: "/acik-sorular", baslik: { tr: "Açık Sorular", en: "Open Questions", pt: "Perguntas em Aberto" }, aciklama: { tr: "bizim okurken kapanmayan sorularımız", en: "our own questions that don't close as we read", pt: "as nossas perguntas que não se fecham" } },
+    };
+    const digerleri = Object.keys(AILE).filter((k) => k !== buradaki);
+    const linkler = digerleri.map((k) => {
+      const a = AILE[k];
+      return `<a class="soru-ailesi-nav__link" href="${base}${a.href}" data-view="${a.view}">
+        <strong>${tt(a.baslik)}</strong><span>${tt(a.aciklama)}</span>
+      </a>`;
+    }).join("");
+    return `<div class="soru-ailesi-nav">
+      <p class="soru-ailesi-nav__baslik">${tt({ tr: "Sitede üç ayrı “soru” görünümü var, birbirinin yerine geçmiyor:", en: "The site has three separate “question” views, not interchangeable:", pt: "O site tem três vistas de “pergunta” diferentes, não intercambiáveis:" })}</p>
+      ${linkler}
+    </div>`;
+  }
+
   // Boşluk açısı = sorunun ne kadar açık olduğu. Sayılar keyfi değil,
   // üç durumu birbirinden GÖZLE ayırt edilebilecek kadar ayırıyor.
   const BOSLUK = { acik: 118, kismen: 54, kaynak_tukendi: 92 };
@@ -262,6 +286,7 @@ window.__acikSorularApp = (function () {
       <p class="detail-eyebrow">${tt({ tr: "Açık Sorular", en: "Open Questions", pt: "Perguntas em Aberto" })}</p>
       <h2 class="detail-title">${nodes.length} ${tt({ tr: "kapanmamış soru", en: "questions that have not closed", pt: "perguntas que não se fecharam" })}</h2>
       <div class="detail-block detail-block--soru"><p>${tt(data.not)}</p></div>
+      ${soruAilesiNavHtml("acik-sorular")}
       <div class="acik-soru-liste">${satirlar}</div>`;
     detailContent.querySelectorAll(".acik-soru-satir").forEach((btn) => {
       btn.addEventListener("click", () => {

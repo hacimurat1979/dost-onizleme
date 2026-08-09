@@ -39,6 +39,33 @@
 
   function tt(dict) { return I18n.pick3(dict || {}); }
   function getVar(n) { return GU.getVar(n); }
+
+  // Sitede üç ayrı "soru" görünümü var (Sorular/Bilmiyoruz/Açık Sorular) --
+  // isim benzerliği ("soru" üçünde de geçiyor) kafa karıştırabiliyor
+  // (kullanıcı bulgusu, 2026-08-09). Veriyi birleştirmek yanlış olurdu
+  // (üçü kasıtlı olarak farklı şeyler -- SSS / metnin sınırı / bizim
+  // araştırma günlüğümüz), o yüzden küçük bir çözüm: her görünümün giriş
+  // panelinde diğer ikisine giden, aralarındaki farkı bir cümleyle
+  // açıklayan bir yönlendirme.
+  function soruAilesiNavHtml(buradaki) {
+    const base = window.__dostRouteBase || "";
+    const AILE = {
+      sorular: { view: "sorular", href: "/sorular", baslik: { tr: "Sorular", en: "Questions", pt: "Perguntas" }, aciklama: { tr: "okuyucuya cevap veren bir SSS", en: "an FAQ that answers the reader", pt: "um FAQ que responde ao leitor" } },
+      bilmiyoruz: { view: "bilmiyoruz", href: "/bilmiyoruz", baslik: { tr: "Bilmiyoruz", en: "We Don't Know", pt: "Não Sabemos" }, aciklama: { tr: "metnin kendi çözülmemiş noktaları -- biz sormuyoruz, sınırı o gösteriyor", en: "the text's own unresolved points -- not our question, its own limit", pt: "os próprios pontos não resolvidos do texto" } },
+      "acik-sorular": { view: "acik-sorular", href: "/acik-sorular", baslik: { tr: "Açık Sorular", en: "Open Questions", pt: "Perguntas em Aberto" }, aciklama: { tr: "bizim okurken kapanmayan sorularımız", en: "our own questions that don't close as we read", pt: "as nossas perguntas que não se fecham" } },
+    };
+    const digerleri = Object.keys(AILE).filter((k) => k !== buradaki);
+    const linkler = digerleri.map((k) => {
+      const a = AILE[k];
+      return `<a class="soru-ailesi-nav__link" href="${base}${a.href}" data-view="${a.view}">
+        <strong>${tt(a.baslik)}</strong><span>${tt(a.aciklama)}</span>
+      </a>`;
+    }).join("");
+    return `<div class="soru-ailesi-nav">
+      <p class="soru-ailesi-nav__baslik">${tt({ tr: "Sitede üç ayrı “soru” görünümü var, birbirinin yerine geçmiyor:", en: "The site has three separate “question” views, not interchangeable:", pt: "O site tem três vistas de “pergunta” diferentes, não intercambiáveis:" })}</p>
+      ${linkler}
+    </div>`;
+  }
   function linkify(text, view, id) {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, view, id) : text;
   }
@@ -971,7 +998,7 @@
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Sorular", en: "Questions", pt: "Perguntas" })}</p>
       <h2 class="detail-title">${tt({ tr: "Bütün Sorular", en: "All Questions", pt: "Todas as Perguntas" })}</h2>
-      ${introBlock}${sections}`;
+      ${introBlock}${soruAilesiNavHtml("sorular")}${sections}`;
     wireQuestionRows();
     detailPanel.hidden = false;
     ensureFrame();
