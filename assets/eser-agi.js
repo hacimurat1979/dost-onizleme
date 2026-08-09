@@ -49,6 +49,8 @@ window.__eserAgiApp = (function () {
   let focusEdge = null;
   let spineX = 90;
   let contentH = 0;
+  let contentW = 0;
+  let contentX0 = 0;
 
   function boyut() {
     const r = wrapEl.getBoundingClientRect();
@@ -153,6 +155,20 @@ window.__eserAgiApp = (function () {
         if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); eserPaneli(d); }
       });
 
+    // Etiketlerin gerçek genişliği (yıl sütunu solda, eser adı sağda) ölçmeden
+    // önce bilinmiyor -- futuhat.js'in radyal ağacındaki aynı yöntem: tahmin
+    // etmek yerine getBBox() ile ölç. ortala()'nın eskiden yalnız YÜKSEKLİĞE
+    // göre sığdırması, geniş+kısa bir kapsayıcıda dar+uzun içeriği sola
+    // sıkışmış minik bir sütun bırakıyordu (UI denetimi bulgusu).
+    try {
+      const bb = kok.node().getBBox();
+      contentW = bb.width;
+      contentX0 = bb.x;
+    } catch (e) {
+      contentW = spineX + 260;
+      contentX0 = -(spineX);
+    }
+
     zoom = GU.createZoomBehavior(svg, g, [0.25, 3.5]);
     ortala(false);
   }
@@ -239,18 +255,23 @@ window.__eserAgiApp = (function () {
 
   // Kimlik dönüşümü (d3.zoomIdentity) sarmalda işe yarıyordu çünkü sahne
   // zaten container'a sığacak şekilde ölçeklenmişti (R_MAX = min(w,h)*.42).
-  // Dikey listede içerik boyu (contentH) container yüksekliğini kolayca
-  // aşıyor -- bu yüzden "ortala" artık bütün listeyi sığdıran bir ölçek
-  // hesaplıyor, sabit 1:1 değil.
+  // Dikey listede içerik SADECE yüksekliğe göre sığdırılınca (eski kod),
+  // kapsayıcı geniş+kısa olduğunda ölçek küçülüyor ve zaten dar olan içerik
+  // (bir omurga + tek satır etiket) sola sıkışmış minik bir sütuna dönüyordu
+  // (UI denetimi bulgusu, foto: "eser ağı grafiği solda çok küçük"). Asıl
+  // ölçü artık GENİŞLİK -- içerik kapsayıcının kullanılabilir genişliğinin
+  // çoğunu kaplasın ve YATAYDA ortalansın; 28 satırın hepsi tek ekranda
+  // sığmayabilir ama zaten sürüklenerek dikey gezinme var.
   // 68px üst boşluk bilerek sabit: recenter+hint düğmeleri sol üstte
   // top:12/left:12-108 bandını kaplıyor (bkz. style.css .graph-recenter/
   // .graph-hint) -- ilk satır oraya denk gelirse tıklanamaz hâle geliyordu
   // (Playwright'ta ölçüldü, 2026-08-06).
   function ortala(animate) {
     if (!zoom) return;
-    const { h } = boyut();
-    const k = Math.max(0.25, Math.min(1.4, h / Math.max(1, contentH)));
-    const tx = 24;
+    const { w, h } = boyut();
+    const availW = Math.max(120, w - 48);
+    const k = Math.max(0.6, Math.min(1.8, availW / Math.max(1, contentW)));
+    const tx = Math.max(24, (w - contentW * k) / 2 - contentX0 * k);
     const ty = Math.max(68, (h - contentH * k) / 2);
     const t = d3.zoomIdentity.translate(tx, ty).scale(k);
     const hedef = animate && !reduceMotion ? svg.transition().duration(420) : svg;
