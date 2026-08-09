@@ -4167,14 +4167,32 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   align-items: stretch;
   gap: 14px;
 }
+/* 2026-08-09 kullanıcı geri bildirimi: üç kart bir "liste" gibi durmasın,
+   aralarındaki ok bir DURAK GEÇİŞİ hissi versin -- ince bir iz üstünde
+   duran bir işaret, boşlukta asılı bir glif değil. */
 .okuma-yolu__ok {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 auto;
+  flex: 0 0 28px;
+  position: relative;
   color: var(--text-muted);
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding-top: 20px;
+}
+.okuma-yolu__ok::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(20px + 0.6em);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border) 25%, var(--border) 75%, transparent);
+}
+.okuma-yolu__ok span {
+  position: relative;
+  background: var(--page-plane);
+  padding: 0 3px;
 }
 @media (max-width: 720px) {
   .okuma-yolu__kademeler { flex-direction: column; }
@@ -4188,8 +4206,30 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   padding: 18px;
   background: var(--surface-1);
   min-width: 0;
+  /* Üç durağı sırayla, aynı anda değil -- bir yol yürünür, bir liste
+     taranır. prefers-reduced-motion'da aşağıdaki media query devre dışı
+     bırakıyor (site geneli kural, bkz. eser-agi/ontology.js'in aynı deseni). */
+  opacity: 0;
+  transform: translateY(6px);
+  animation: okuma-yolu-durak-belir 0.4s ease forwards;
+  animation-delay: calc(var(--okuma-yolu-sira, 0) * 110ms);
 }
-.okuma-yolu-kademe--birincil { border-top-color: var(--series-theme); }
+@keyframes okuma-yolu-durak-belir {
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .okuma-yolu-kademe { opacity: 1; transform: none; animation: none; }
+}
+.okuma-yolu-kademe--birincil {
+  border-top-color: var(--series-theme);
+  background: color-mix(in srgb, var(--series-theme) 6%, var(--surface-1));
+  /* Bu kademe "Şeyh'in kendi metnine dönüş" -- yolun vardığı yer, GORSEL_DIL
+     ışık=zuhûr diliyle hafifçe parlıyor (hocalar.js'teki "Kendi ağzından"
+     vurgusuyla aynı ilke: sitenin farkı akademik özet değil, Dost'un kendi
+     sesi). */
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--series-theme) 25%, transparent),
+              0 0 18px color-mix(in srgb, var(--series-theme) 12%, transparent);
+}
 .okuma-yolu-kademe__etiket {
   display: block;
   font-size: 0.72rem;
@@ -9693,16 +9733,35 @@ mark.durus-vurgu-es {
 }
 .hoca-kimlik { color: var(--text-secondary); font-size: 0.86rem; margin: 2px 0 12px; }
 
+/* 2026-08-09 kullanıcı geri bildirimi: sitenin asıl farkı "Dost onu nasıl
+   anlatıyor?" sorusunda -- bu yüzden "Kendi ağzından" başlığı diğer
+   .detail-eyebrow--section'lardan görünür biçimde daha baskın: daha büyük,
+   düz metin (küçük harf, KÜÇÜK HARFE ÇEVRİLMEMİŞ), vurgu rengiyle. */
+.hoca-sozler-baslik {
+  margin: 22px 0 10px;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--series-cemal);
+  letter-spacing: 0.01em;
+}
+.hoca-sozler { display: flex; flex-direction: column; gap: 14px; }
 .hoca-alinti {
-  margin: 0 0 12px;
-  padding: 12px 14px;
+  margin: 0;
+  padding: 16px 18px;
   border-left: 3px solid var(--series-cemal);
   border-radius: 0 8px 8px 0;
   background: var(--surface-1);
+  position: relative;
 }
-.hoca-alinti__metin { margin: 0; font-style: italic; }
-.hoca-alinti__baglam { margin: 8px 0 0; font-size: 0.82rem; color: var(--text-secondary); font-style: normal; }
-.hoca-alinti__kaynak { display: block; margin-top: 8px; font-size: 0.78rem; color: var(--text-secondary); font-style: normal; }
+.hoca-alinti__metin {
+  margin: 0;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+.hoca-alinti__baglam { margin: 10px 0 0; font-size: 0.82rem; color: var(--text-secondary); font-style: normal; }
+.hoca-alinti__kaynak { display: block; margin-top: 10px; font-size: 0.75rem; color: var(--text-secondary); font-style: normal; }
 
 /* Fütûhât s.335'in Şems/Fâtıma'yla birlikte andığı dört kişi -- ayrı bir
    panel/tıklama akışı yok (2026-08-07): kaynakta yalnız isim+yer var,
@@ -9724,9 +9783,17 @@ mark.durus-vurgu-es {
    kronolojinin görünür izi -- satır aralığı yıla değil SIRAYA orantılı
    (kümelenmiş yılların üst üste binmesini önler). */
 .eser-agi-omurga {
+  /* 2026-08-09 kullanıcı geri bildirimi: "eserler bir liste gibi görünüyor,
+     oysa anlatmak istediğin bir yolculuk" -- omurga bir cetvel değil bir İZ
+     hissi versin diye ince noktalı bir çizgiye çevrildi; kesin bağlar (aynı
+     şehir) zaten .eser-agi-kenar ile üstüne dolu/renkli çiziliyor, ikisi
+     arasındaki karşıtlık "bildiğimiz bağ" ile "yalnız kronolojik yakınlık"
+     ayrımını da görünür kılıyor. */
   stroke: var(--border);
   stroke-width: 1;
-  opacity: 0.6;
+  stroke-dasharray: 0.5 5;
+  stroke-linecap: round;
+  opacity: 0.55;
 }
 .eser-agi-kenar {
   stroke: var(--series-ibnarabi);
@@ -9749,11 +9816,17 @@ mark.durus-vurgu-es {
   fill: var(--series-ibnarabi);
   stroke: var(--surface-1);
   stroke-width: 1.2;
+  /* GORSEL_DIL.md: ışık = zuhûr -- her eser zamanda bir belirişin izi,
+     hafif bir parıltı bunu süs değil anlam olarak taşıyor (2026-08-09). */
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--series-ibnarabi) 55%, transparent));
   transition: transform 0.15s ease;
   transform-box: fill-box;
   transform-origin: center;
 }
-.eser-agi-eser--katalog .eser-agi-eser__sekil { fill: var(--series-theme); }
+.eser-agi-eser--katalog .eser-agi-eser__sekil {
+  fill: var(--series-theme);
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--series-theme) 55%, transparent));
+}
 .eser-agi-eser__etiket {
   /* 2026-08-06: zaman çizelgesinde her eser kendi dikey satırında (58px) --
      sarmalın yoğun kümelerindeki çakışma riski artık yok, bu yüzden 0.66rem
@@ -9764,8 +9837,13 @@ mark.durus-vurgu-es {
   pointer-events: none;
 }
 .eser-agi-eser__yil {
-  font-size: 0.62rem;
-  fill: var(--text-muted);
+  /* 2026-08-09: "602/1205 küçük gri bir metadata olmaktan çıkıp daha zarif
+     bir tarih işareti olsun" -- salt veri etiketi değil, elyazması kenar
+     notu gibi okunsun diye italik + harf aralığı. */
+  font-size: 0.68rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  fill: var(--text-secondary);
   pointer-events: none;
 }
 .eser-agi-eser--deginiliyor .eser-agi-eser__sekil,
@@ -9787,6 +9865,60 @@ mark.durus-vurgu-es {
   color: var(--text-secondary);
 }
 .eser-agi-kimlik { color: var(--text-secondary); font-size: 0.86rem; margin: 2px 0 12px; }
+
+/* "Bu eser ağın neresinde?" -- kronolojik komşulara gezinme (2026-08-09
+   kullanıcı geri bildirimi: panel yalnız başlık/tarih/açıklama/kaynak
+   vermesin, eserin ağdaki yerini de göstersin). İki düğme de gerçek bir
+   esere gidiyor -- ETKILESIM_DILI.md'nin "bağlanmamış düğme" yasağına
+   uyuyor, süs değil gezinme. */
+.eser-agi-iz {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 4px 0 14px;
+}
+.eser-agi-iz__adim {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.eser-agi-iz__adim--sonra { text-align: right; align-items: flex-end; }
+.eser-agi-iz__adim:hover,
+.eser-agi-iz__adim:focus-visible {
+  border-color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 8%, transparent);
+}
+.eser-agi-iz__etiket {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+}
+.eser-agi-iz__eser { font-size: 0.86rem; line-height: 1.3; }
+
+/* Kaynak notu -- 2026-08-09 kullanıcı geri bildirimi: "Kaynak: ... bana
+   biraz web sitesi açıklaması hissi veriyor, daha sessiz hale getirirdim".
+   <details> ana atmosferi bozmadan, isteyen için açık kalıyor. */
+.eser-agi-kaynak-detay {
+  margin: 8px 0 0;
+}
+.eser-agi-kaynak-detay summary {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+.eser-agi-kaynak-detay summary:hover { color: var(--text-primary); }
+.eser-agi-kaynak-detay .elestiri-kaynak-satiri { margin-top: 6px; }
 
 @media (prefers-reduced-motion: reduce) {
   .eser-agi-eser__sekil,

@@ -71,7 +71,11 @@ window.__okumaYollariApp = (function () {
     return esc(parcalar.join(" — "));
   }
 
-  function kademeHtml(basamak) {
+  function kademeHtml(basamak, i) {
+    // --okuma-yolu-sira: üç kademenin sırayla belirmesi için (bkz.
+    // style.css'teki okuma-yolu-durak-belir) -- bir yol yürünür, bir liste
+    // taranır; salt süs değil, "üç durak" çerçevesinin görsel karşılığı.
+    const sira = ` style="--okuma-yolu-sira: ${i}"`;
     const etiket = esc(tt(KADEME_ETIKET[basamak.kademe]));
     const neden = `<p class="okuma-yolu-kademe__neden">${esc(tt(basamak.neden))}</p>`;
     if (basamak.kademe === "birincil") {
@@ -85,7 +89,7 @@ window.__okumaYollariApp = (function () {
             tr: "Eser Ağı'nda gör ↗", en: "See in the Works Timeline ↗", pt: "Ver na Linha do Tempo das Obras ↗",
           }))}</button>`
         : "";
-      return `<div class="okuma-yolu-kademe okuma-yolu-kademe--birincil">
+      return `<div class="okuma-yolu-kademe okuma-yolu-kademe--birincil"${sira}>
         <span class="okuma-yolu-kademe__etiket">${etiket}</span>
         <p class="okuma-yolu-kademe__baslik">${baslik}</p>
         <p class="okuma-yolu-kademe__kunye">${kunye}</p>
@@ -96,7 +100,7 @@ window.__okumaYollariApp = (function () {
     const baslik = k ? esc(k.baslik) : esc(basamak.kaynak_id);
     const doi = k && k.doi
       ? `<a class="okuma-yolu-kademe__doi" href="https://doi.org/${esc(k.doi)}" target="_blank" rel="noopener noreferrer">DOI ↗</a>` : "";
-    return `<div class="okuma-yolu-kademe">
+    return `<div class="okuma-yolu-kademe"${sira}>
       <span class="okuma-yolu-kademe__etiket">${etiket}</span>
       <p class="okuma-yolu-kademe__baslik">${baslik}</p>
       <p class="okuma-yolu-kademe__kunye">${kunyeSatiri(k)}</p>
@@ -108,7 +112,7 @@ window.__okumaYollariApp = (function () {
     return `<article class="okuma-yolu">
       <h3 class="okuma-yolu__konu">${esc(tt(y.konu))}</h3>
       <div class="okuma-yolu__kademeler">
-        ${y.uc_kademe.map(kademeHtml).join('<span class="okuma-yolu__ok" aria-hidden="true">→</span>')}
+        ${y.uc_kademe.map((b, i) => kademeHtml(b, i)).join('<span class="okuma-yolu__ok" aria-hidden="true"><span>→</span></span>')}
       </div>
     </article>`;
   }

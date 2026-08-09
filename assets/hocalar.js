@@ -44,16 +44,25 @@ window.__hocalarApp = (function () {
 
   function panelGoster(d) {
     focusId = d.id;
+    // 2026-08-09 kullanıcı geri bildirimi: başka bir akademik site "Şems
+    // hakkında şunları biliyoruz" der, Dostarabi "Dost onu nasıl anlatıyor?"
+    // diyebilmeli -- bu yüzden "Kendi ağzından" artık diğer bölümlerle aynı
+    // ağırlıkta bir alt başlık değil, kendi görsel sınıfıyla (.hoca-sozler-
+    // baslik) daha baskın; alıntılar da kendi sarmalayıcısında (.hoca-
+    // sozler) daha ferah. Akademik kaynak listesi ise tam tersi yönde
+    // sessizleşiyor -- eser-agi.js'teki aynı <details> deseni.
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt(d.konum)}
         <span class="hoca-sira-rozet">${d.sira}</span></p>
       <h2 class="detail-title">${tt(d.ad)}</h2>
       <p class="hoca-kimlik">${tt(d.kimlik)}</p>
       <div class="detail-block detail-block--soru"><p>${tt(d.ozet)}</p></div>
-      <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Kendi ağzından", en: "In his own words", pt: "Nas suas próprias palavras" })}</p>
-      ${d.alintilar.map(alintiHtml).join("")}
-      <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Kaynaklar", en: "Sources", pt: "Fontes" })}</p>
-      <ul class="bilmiyoruz-madde__kaynaklar">${kaynaklarHtml(d.kaynaklar)}</ul>`;
+      <p class="hoca-sozler-baslik">${tt({ tr: "Kendi ağzından", en: "In his own words", pt: "Nas suas próprias palavras" })}</p>
+      <div class="hoca-sozler">${d.alintilar.map(alintiHtml).join("")}</div>
+      <details class="eser-agi-kaynak-detay hoca-kaynak-detay">
+        <summary>${tt({ tr: "Kaynaklar", en: "Sources", pt: "Fontes" })}</summary>
+        <ul class="bilmiyoruz-madde__kaynaklar">${kaynaklarHtml(d.kaynaklar)}</ul>
+      </details>`;
     detailPanel.hidden = false;
   }
 

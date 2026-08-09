@@ -33,6 +33,17 @@ window.__eserAgiApp = (function () {
 
   function tt(dict) { return I18n.pick3(dict || {}); }
 
+  // 2026-08-09 kullanıcı geri bildirimi: liste bir "liste" gibi okunuyordu,
+  // bir "yolculuk" gibi değil. window.__dostCrossLink zaten ontology.js'te
+  // kurulu, glossary'deki bilinen terimleri metin içinde otomatik tanıyıp
+  // tıklanabilir linke çeviren paylaşılan bir yardımcı (hal.js/esma.js/
+  // terimler.js'in hepsi aynı deseni kullanıyor) -- burada YENİ bir içerik
+  // yazmadan, var olan aciklama/neden metinlerindeki geçen kavramları
+  // "eser → kavram → başka eser" gezintisine açıyor.
+  function linkify(text) {
+    return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text;
+  }
+
   // Satır aralığı SIRAYA göre eşit -- yıla orantılı olsaydı 1203/1205/1229
   // gibi aynı yılda üç eser birden yazılan kümeler üst üste binerdi.
   const ROW_H = 58;
@@ -114,7 +125,7 @@ window.__eserAgiApp = (function () {
       .attr("role", "button")
       .attr("aria-label", (d) => d.eser);
 
-    const R = 7;
+    const R = 6;
     sel.append("circle").attr("class", "eser-agi-eser__vurus").attr("r", R + 9).attr("fill", "transparent");
 
     sel.each(function (d) {
@@ -243,19 +254,60 @@ window.__eserAgiApp = (function () {
     GU.moveTooltip(tooltip, wrapEl, ev);
   }
 
+  // "Bu eser ağın neresinde?" -- kronolojik komşuları göstermek için ayrı
+  // bir veri yapısına gerek yok, eserler zaten sıralı (bkz. yukle()); yalnız
+  // dizideki komşu iki öğeyi okuyoruz. Süs değil: tıklanınca gerçekten o
+  // esere gidiyor (wireIzAdimlari), ETKILESIM_DILI.md'nin "bağlanmamış
+  // düğme" yasağına uyuyor.
+  function izHtml(d) {
+    const idx = eserler.indexOf(d);
+    const onceki = idx > 0 ? eserler[idx - 1] : null;
+    const sonraki = idx < eserler.length - 1 ? eserler[idx + 1] : null;
+    if (!onceki && !sonraki) return "";
+    const adim = (yon, hedef) => hedef
+      ? `<button type="button" class="eser-agi-iz__adim eser-agi-iz__adim--${yon}" data-id="${hedef.id}">
+          <span class="eser-agi-iz__etiket">${tt(yon === "once"
+            ? { tr: "Öncesinde", en: "Before", pt: "Antes" }
+            : { tr: "Sonrasında", en: "After", pt: "Depois" })}</span>
+          <span class="eser-agi-iz__eser">${hedef.eser}</span></button>`
+      : "<span></span>";
+    return `<nav class="eser-agi-iz" aria-label="${tt({ tr: "Ağdaki komşu eserler", en: "Neighbouring works in the network", pt: "Obras vizinhas na rede" })}">
+      ${adim("once", onceki)}${adim("sonra", sonraki)}</nav>`;
+  }
+
+  function wireIzAdimlari() {
+    detailContent.querySelectorAll(".eser-agi-iz__adim").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const hedef = eserById.get(btn.dataset.id);
+        if (hedef) { eserPaneli(hedef); panaGetir(hedef); }
+      });
+    });
+  }
+
+  function panaGetir(d) {
+    if (!zoom) return;
+    const hedef = reduceMotion ? svg : svg.transition().duration(360);
+    zoom.translateTo(hedef, spineX, d.y);
+  }
+
   function eserPaneli(d) {
     focusId = d.id;
     focusEdge = null;
     const katalogRozet = d.ozel === "katalog"
       ? `<span class="eser-agi-rozet">${tt({ tr: "katalog", en: "catalogue", pt: "catálogo" })}</span>` : "";
     detailContent.innerHTML = `
-      <p class="detail-eyebrow">${tt(d.sehir)}${katalogRozet}</p>
+      <p class="detail-eyebrow">${tt({ tr: "Eser", en: "Work", pt: "Obra" })}${katalogRozet}</p>
       <h2 class="detail-title">${d.eser}</h2>
-      <p class="eser-agi-kimlik">${d.yil.hicri ? d.yil.hicri + "/" : ""}${d.yil.miladi}${d.yil.kesin ? "" : " " + tt({ tr: "(yaklaşık)", en: "(approximate)", pt: "(aproximado)" })}</p>
-      <div class="detail-block detail-block--soru"><p>${tt(d.aciklama)}</p></div>
-      <p class="elestiri-kaynak-satiri">${data.kaynak.yazar}, <em>${data.kaynak.eser}</em></p>`;
+      <p class="eser-agi-kimlik">${d.yil.hicri ? d.yil.hicri + "/" : ""}${d.yil.miladi}${d.yil.kesin ? "" : " " + tt({ tr: "(yaklaşık)", en: "(approximate)", pt: "(aproximado)" })} — ${tt(d.sehir)}</p>
+      ${izHtml(d)}
+      <div class="detail-block detail-block--soru"><p>${linkify(tt(d.aciklama))}</p></div>
+      <details class="eser-agi-kaynak-detay">
+        <summary>${tt({ tr: "Kaynak ve yöntem", en: "Source and method", pt: "Fonte e método" })}</summary>
+        <p class="elestiri-kaynak-satiri">${data.kaynak.yazar}, <em>${data.kaynak.eser}</em></p>
+      </details>`;
     detailPanel.hidden = false;
     vurgulaEser(d.id, true);
+    wireIzAdimlari();
   }
 
   function kenarPaneli(b) {
@@ -266,7 +318,7 @@ window.__eserAgiApp = (function () {
       <p class="detail-eyebrow">${tt({ tr: "Bağ", en: "Connection", pt: "Ligação" })}
         <span class="eser-agi-rozet">${tt({ tr: "aynı şehir", en: "same city", pt: "mesma cidade" })}</span></p>
       <h2 class="detail-title">${a ? a.eser : b.kaynak_id} → ${h ? h.eser : b.hedef_id}</h2>
-      <div class="detail-block detail-block--soru"><p>${tt(b.neden)}</p></div>`;
+      <div class="detail-block detail-block--soru"><p>${linkify(tt(b.neden))}</p></div>`;
     detailPanel.hidden = false;
     vurgulaKenar(b, true);
   }
@@ -277,8 +329,11 @@ window.__eserAgiApp = (function () {
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Eser Ağı", en: "The Works Timeline", pt: "A Linha do Tempo das Obras" })}</p>
       <h2 class="detail-title">${eserler.length} ${tt({ tr: "eser", en: "works", pt: "obras" })}, ${baglar.length} ${tt({ tr: "bağ", en: "connections", pt: "ligações" })}</h2>
-      <div class="detail-block detail-block--soru"><p>${tt(data.not)}</p></div>
-      <p class="elestiri-kaynak-satiri elestiri-kaynak-satiri--omurga">${data.kaynak.yazar}, <em>${data.kaynak.eser}</em></p>`;
+      <div class="detail-block detail-block--soru"><p>${linkify(tt(data.not))}</p></div>
+      <details class="eser-agi-kaynak-detay">
+        <summary>${tt({ tr: "Kaynak ve yöntem", en: "Source and method", pt: "Fonte e método" })}</summary>
+        <p class="elestiri-kaynak-satiri elestiri-kaynak-satiri--omurga">${data.kaynak.yazar}, <em>${data.kaynak.eser}</em></p>
+      </details>`;
     detailPanel.hidden = false;
   }
 
