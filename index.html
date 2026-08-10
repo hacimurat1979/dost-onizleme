@@ -138,9 +138,17 @@
         <p class="welcome-screen__line welcome-screen__line--pt">D'Ele a Ele</p>
       </div>
     </div>
+    <!-- 2026-08-10 denetim bulgusu (G1/G56): sitenin en görünür ânı, sitenin
+         ne olduğunu söylemiyordu. Tek cümle; halkanın metniyle birlikte
+         beliriyor (welcome.js finish()). -->
+    <div class="welcome-screen__tagline" id="welcome-tagline">
+      <p class="welcome-screen__tagline-line welcome-screen__tagline-line--tr">Muhyiddîn İbnü'l-Arabî'nin iç dünyasının bir haritası — anlamaya çalışıyoruz, anlatmaya değil.</p>
+      <p class="welcome-screen__tagline-line welcome-screen__tagline-line--en">A map of Muhyiddin Ibn Arabi's inner world — trying to understand, not to explain.</p>
+      <p class="welcome-screen__tagline-line welcome-screen__tagline-line--pt">Um mapa do mundo interior de Muhyiddin Ibn Arabi — tentando compreender, não explicar.</p>
+    </div>
     <button class="welcome-screen__skip" id="welcome-skip" type="button" aria-label="Geç / Skip / Pular">Geç · Skip · Pular</button>
   </div>
-  <script src="assets/welcome.js" integrity="sha384-e41MAerT8Ps6IDaT0JtuSHLm97RPxeYTVW94nG/GGfb2OlPfI2YJTwpxPE8tSEiy"></script>
+  <script src="assets/welcome.js" integrity="sha384-YzVVdAndTMiESAm0pNfqKol87tCu8iUkx8f2BkpctANxyKZmsDLfZN/GgYniRL6N"></script>
   <header class="app-header">
     <div class="app-header__controls">
       <!-- FAZ 1 (grafik-önce arayüz, 2026-08-03): 14 eşit ağırlıklı sekme
@@ -173,6 +181,11 @@
             <button class="btn-ghost btn-ghost--sub" id="kuran-dokusu-btn" type="button" title="Fütûhât ve Füsûs özetlerimizde işaretlediğimiz âyet atıflarının sûre↔bap grafı — kısmi bir iz, tam bir tarama değil — A sûrah↔chapter graph of the verse citations we've marked in our Futûhât and Fusûs summaries — a partial trace, not a full scan — Um grafo surata↔capítulo das citações de versículos que marcámos nos nossos resumos das Futûhât e Fusûs — um traço parcial, não uma varredura completa" data-tr="↳ Kur'ân Dokusu" data-en="↳ The Qur'ânic Weave" data-pt="↳ A Trama Alcorânica">↳ Kur'ân Dokusu</button>
             <button class="btn-ghost" id="fusus-btn" type="button" title="Füsûsu'l-Hikem, fass fass — The Bezels of Wisdom, chapter by chapter — Os Engastes da Sabedoria, capítulo por capítulo" data-tr="Füsûs" data-en="Fusus" data-pt="Fusus">Füsûs</button>
             <button class="btn-ghost btn-ghost--yeni" id="kavram-btn" type="button" title="Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti — A data-derived life summary tracing each concept through the Futuhat and Fusus — Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus" data-tr="Kavramlar" data-en="Concepts" data-pt="Conceitos">Kavramlar</button>
+            <!-- 2026-08-10 denetim bulgusu (G50): Okuma Yolları /hakkinda içinde
+                 bir alt-sekmeydi ve çekmecede hiç yoktu — "nereden başlamalıyım"
+                 özelliği en az bulunur yerdeydi. Alt-sekme yapısı korunuyor;
+                 bu düğme yalnız oraya açılan görünür bir kapı. -->
+            <button class="btn-ghost" id="okuma-yollari-btn" type="button" title="Konu konu, kaynak kartlarına bağlı okuma yolları: nereden başlamalı, hangi sırayla — Topic-by-topic reading paths tied to source cards: where to start, in what order — Caminhos de leitura por tema, ligados aos cartões de fontes: por onde começar, em que ordem" data-tr="Okuma Yolları" data-en="Reading Paths" data-pt="Caminhos de Leitura">Okuma Yolları</button>
           </div>
         </div>
         <div class="nav-drawer__group">
@@ -1345,7 +1358,7 @@ mesmo antes que o assombro exista."></blockquote>
        tembel-yükleme listesine değil buraya konuyor: ontology.js sır
        detayını çizerken window.__dostKademe hazır olmalı. -->
   <script src="assets/kademe.js" defer integrity="sha384-qstXPmVEy5j/ElqnV6hvOfNFBOxlrwj8IhlrgYL2vtn8VzXUESTxdpuBfDN2uZM9"></script>
-  <script src="assets/search.js" defer integrity="sha384-5Yyh9+KFZUNYGuaq85yJxNQa+WNzWhRAZ8S4WOve/S9ggeQs9Gf+zDXGjWORsxO3"></script>
+  <script src="assets/search.js" defer integrity="sha384-Ql89AUNNDH4H6IE4nLWlE8c54GzdpM/ADcgRxt3RUhgtxX+k85aB2yrrVq9mqprp"></script>
   <script src="assets/graph-enhancement.js" defer integrity="sha384-hNAPzflfBDqRj8om8hmAV7ziYfsXLPIlZQ0YYH0Y6ZKqCKlLhX/giLkNaVyzoTn4"></script>
   <script src="assets/font-scale.js" defer integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
   <script src="assets/reading-mode.js" defer integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
@@ -1353,15 +1366,15 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/esma.js" defer integrity="sha384-FbO8E8p9w/0Pa3iPcRKn5CIJYfuhk3Xa8cOqdtTMrToORwQ7ZfPQW0lwnp+6MX9d"></script>
   <script src="assets/hal.js" defer integrity="sha384-0J7uTx7utdHJysurWDXQVlYUeuEFrzKBXec6fh+V4hy4Rg3PLNiSFB7DLQj/FjN9"></script>
   <script src="assets/terimler.js" defer integrity="sha384-cR+XgOx3EIEim+wTrA0U7r/sPz53aTcsGKIMIRYxlIpzGFJUFTeZY0ulnZVIHgB+"></script>
-  <script src="assets/cizimler.js" defer integrity="sha384-HGB3/yp679JsCF3/M//gAIldFfGZmsSNnYO7E7rBWO8M+g2BcdQrW0pspJj6eUng"></script>
+  <script src="assets/cizimler.js" defer integrity="sha384-hTMb1pM5NibKjGPpzsndGQMf7S3ZA7aVqCMjh0lQoSaXc54ARcHFZ8BV5xB8TXWy"></script>
   <script src="assets/sorular.js" defer integrity="sha384-18Vk3qgWU/BGjXEg8GEmYEhD6Ivfu9h0XsZiUvfQ4mbmWADk5YVwAKVo+HhnjYY1"></script>
   <script src="assets/menziller.js" defer integrity="sha384-BaVwq6On1oNjJn+y4+zAOsT35koCgr5GhofyUdM4PgEZofU/EI2x9+AR/MN/4hqL"></script>
   <script src="assets/tasiyicilar.js" defer integrity="sha384-lNVugceLvCvCJVmiaeondeMkZidLr/xkMU7e3FIfHyE0tYhzXcLpm8x7Ztni2FxQ"></script>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
   <script src="assets/futuhat.js" defer integrity="sha384-rfBRvmcoKYLIawa0nWi1lIuFguz2xu/4gd/ZTkJesT+PhHZhVRJqEUjVHjP6pnCa"></script>
   <script src="assets/fusus.js" defer integrity="sha384-NWndNFf07ZRehuPP29Nc/iMRBsDyMjSIfCUSvp7ycm+1r3mf7pjTGJlZBcBPBcQt"></script>
-  <script src="assets/view-loader.js" defer integrity="sha384-zH4Rz0uZblLZSMLnsSEL/2s1F/ASQI5ukOZRnkcNqEW0pDLdEhlpsce/wLVj4e+T"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-1FaynEgN7ysowFUl9uGpRJ1KO8fvw9jj99vCK3sjNfWBjfI362RhIUMTjt/AnNiX"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-BrP/wjG/didr8+Wf6TjubPVQv0lAe9HXui9hkmqARNqU4oTl6Btq+EuSDD1cMZgl"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-IbANwyjsntFnZLZuhudO4f6oMscNDufDQ8b7M2YaDAB1IsgwE9R3dJ2yvUJva+om"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-9qv/Q/FBNgrPHnUOAukAqwsa/DVkrKY78fVJR+l6Kro4bz3an1mUQ8Tg1yG83pGw"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>
@@ -1378,7 +1391,7 @@ mesmo antes que o assombro exista."></blockquote>
        toplu taramada değil sayfa başına /tahkik ile yapılmasını istiyor. -->
   <script src="assets/tahkik-tarama.js" defer integrity="sha384-o7iy4Guhl4x1S9aruNJTF87ZD7EqgPsr4rW06QIK7ngQ9zwkAZ0mXZjwgYQn3Klr"></script>
   <script src="assets/share-mode.js" defer integrity="sha384-i2oc77mzwAX89mG12xoppkKfke0haOObas6mRZ59l878RTyHZjAO8Kc2Ll6IiA7c"></script>
-  <script src="assets/sessiz-mod.js" defer integrity="sha384-/6AkH3wfyX9LT4F/rsTAL9gzqHgY6pSMhtdkYjOcci0mkc+9ED8V4/3lOHHBNQdM"></script>
+  <script src="assets/sessiz-mod.js" defer integrity="sha384-eFRBlMWSM/4fq8oWooKbKYWTxOWMygOzjyco9hQ8jhcZCdkPikl4e1MoeLjtB5w8"></script>
   <script src="assets/kavram-defteri.js" defer integrity="sha384-SEHFK/8YrjhNTF34/mS1FCXdHVORstWfUN3HMMJLT2GqxTBd7Ng60K1Xim6/prYG"></script>
   <script>
     // B1: çevrimdışı destek. document.baseURI'ye göre çözülüyor ki bu script

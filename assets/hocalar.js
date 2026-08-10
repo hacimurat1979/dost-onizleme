@@ -67,7 +67,16 @@ window.__hocalarApp = (function () {
   }
 
   function renderList() {
-    listEl.innerHTML = hocalar.map((d) => `<button class="hoca-satir" type="button" data-id="${d.id}">
+    // 2026-08-10 denetim bulgusu (G32): sayfa başlıksız, doğrudan "54/55"
+    // numaralı kartla açılıyordu -- 55 hocadan neden yalnız ikisinin
+    // portresi olduğu görünmüyordu. Gerekçe zaten veride yazılıydı
+    // (hocalar.json "not" alanı, üç dilde, duruşa uygun: "okumadığımızı
+    // söylemeyi tercih ettik") ama hiç ÇİZİLMİYORDU. Başlık + o not.
+    const giris = `<div class="hocalar-giris">
+        <h2 class="hocalar-giris__baslik">${tt({ tr: "Hocalar", en: "Teachers", pt: "Professores" })}</h2>
+        <p class="hocalar-giris__not">${tt(data.not)}</p>
+      </div>`;
+    listEl.innerHTML = giris + hocalar.map((d) => `<button class="hoca-satir" type="button" data-id="${d.id}">
         <span class="hoca-satir__sira">${d.sira}</span>
         <span class="hoca-satir__govde">
           <span class="hoca-satir__ad">${tt(d.ad)}</span>

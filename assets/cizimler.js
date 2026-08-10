@@ -304,9 +304,9 @@
     const base = window.__dostRouteBase || "";
     return `<div class="detail-gate detail-gate--sahne cizimler-sahne">
       <p class="detail-gate__note">${tt({
-        tr: "Yukarıdaki kartlar 371. bab'ın dokuz haritasını tek tek gösteriyor. Ayrı bir sahne, aralarında sürüklenerek gezilebilecek şekilde bir araya getiriyor.",
-        en: "The cards above show the nine maps of chapter 371 one by one. A separate scene brings them together so you can drag between them.",
-        pt: "Os cartões acima mostram os nove mapas do capítulo 371 um a um. Uma cena separada os reúne para que você possa arrastar entre eles.",
+        tr: "Aşağıdaki kartlar 371. bab'ın dokuz haritasını tek tek gösteriyor. Ayrı bir sahne, aralarında sürüklenerek gezilebilecek şekilde bir araya getiriyor.",
+        en: "The cards below show the nine maps of chapter 371 one by one. A separate scene brings them together so you can drag between them.",
+        pt: "Os cartões abaixo mostram os nove mapas do capítulo 371 um a um. Uma cena separada os reúne para que você possa arrastar entre eles.",
       })}</p>
       <a class="detail-gate__btn" href="${base}/futuhat-371.html">${tt({
         tr: "Sahneyi aç: 371. Bab, Dokuz Harita",

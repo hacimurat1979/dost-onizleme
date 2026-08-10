@@ -515,6 +515,7 @@
   const futuhatBtn = document.getElementById("futuhat-btn");
   const fususBtn = document.getElementById("fusus-btn");
   const hakkindaBtn = document.getElementById("hakkinda-btn");
+  const okumaYollariBtn = document.getElementById("okuma-yollari-btn");
   const kavramBtn = document.getElementById("kavram-btn");
   const ayethadisBtn = document.getElementById("ayethadis-btn");
   const sahnelerBtn = document.getElementById("sahneler-btn");
@@ -729,6 +730,11 @@
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
   if (fususBtn) fususBtn.addEventListener("click", () => { setMainView("fusus"); updateHash("fusus"); });
   if (hakkindaBtn) hakkindaBtn.addEventListener("click", () => { setMainView("hakkinda"); updateHash("hakkinda"); });
+  // Okuma Yolları çekmece kapısı (2026-08-10, G50): görünümün kendisi
+  // hakkinda'nın alt-sekmesi olarak kalıyor; buradan yalnız o sekmeye
+  // gidiliyor ve URL derin-bağlantı olarak /hakkinda/okuma-yollari oluyor
+  // (parseHashAndGo bu yolu zaten çözüyor).
+  if (okumaYollariBtn) okumaYollariBtn.addEventListener("click", () => { goToHakkinda("okuma-yollari"); updateHash("hakkinda", "okuma-yollari"); });
   if (kavramBtn) kavramBtn.addEventListener("click", () => { setMainView("kavram"); updateHash("kavram"); });
   if (ayethadisBtn) ayethadisBtn.addEventListener("click", () => { setMainView("ayethadis"); updateHash("ayethadis"); });
   if (sahnelerBtn) sahnelerBtn.addEventListener("click", () => { setMainView("sahneler"); updateHash("sahneler"); });

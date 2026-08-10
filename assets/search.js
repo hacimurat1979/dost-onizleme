@@ -296,6 +296,16 @@
     const threshold = fuzzyThreshold(q.length);
     const scored = [];
     index.forEach((item) => {
+      // Dizin kurulumu bitmeden yazılan sorgularda normText/words henüz
+      // atanmamış olabiliyordu (openPanel buildIndex'i beklemiyor); ilk
+      // öğede TypeError bütün harita aramasını çökertiyor ve ekranda bir
+      // önceki "haritada bulamadık" hâli kalıyordu -- "tecelli bulunamıyor"
+      // diye görünen kusurun asıl sebebi buydu. Tembel normalizasyon o
+      // aralıkta da doğru sonuç verir.
+      if (item.normText === undefined) {
+        item.normText = normalize(item.searchText);
+        item.words = item.normText.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+      }
       if (item.normText.includes(q)) {
         scored.push({ item, score: 0 });
         return;
@@ -586,6 +596,14 @@
   let fullTextTimer = null;
   input.addEventListener("input", () => {
     renderResults(search(input.value));
+    // Dizin hâlâ kuruluyorsa, kurulum bitince aynı sorguyu bir kez daha
+    // çiz: erken yazılan sorgu kısmî dizinle eksik sonuç göstermesin.
+    if (!indexLoaded) {
+      const q = input.value;
+      buildIndex().then(() => {
+        if (!panel.hidden && input.value === q) renderResults(search(q));
+      });
+    }
     clearTimeout(fullTextTimer);
     fullTextTimer = setTimeout(() => runFullText(input.value), 220);
     const q = input.value.trim();

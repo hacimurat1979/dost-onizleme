@@ -15,6 +15,7 @@
   const beam = document.getElementById("welcome-beam");
   const spark = document.getElementById("welcome-spark");
   const text = document.getElementById("welcome-text");
+  const tagline = document.getElementById("welcome-tagline");
   const glow = document.getElementById("welcome-glow");
   const skipBtn = document.getElementById("welcome-skip");
 
@@ -62,8 +63,11 @@
     glow.style.opacity = "0.5";
     setTimeout(() => {
       text.classList.add("welcome-screen__text--visible");
+      if (tagline) tagline.classList.add("welcome-screen__tagline--visible");
     }, 260);
-    const holdMs = reduceMotion ? 1300 : 2900;
+    // Tanıtım cümlesi eklenince (2026-08-10) bekleme, cümlenin okunabileceği
+    // kadar uzatıldı; tıklama/Esc ile her an geçilebilir.
+    const holdMs = reduceMotion ? 1800 : 4200;
     setTimeout(leave, holdMs);
   }
 
