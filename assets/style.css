@@ -9920,6 +9920,21 @@ mark.durus-vurgu-es {
   fill: var(--text-secondary);
   pointer-events: none;
 }
+/* Kılavuz çizgi (leader-line): deconflictor bir etiketi kendi düğümünden
+   uzağa ittiğinde -- 1400-1450 Şam-Kahire yoğunluğunda etiketler tek bir
+   sütuna yığılıyordu (G37) -- hangi ad hangi noktaya ait olduğu bu ince
+   çizgiyle okunuyor. Görünürlük opasity'yle JS'te (kayma < 4 birim ise
+   sönümlü kalıyor). */
+.elestiri-kisi__leader {
+  stroke: var(--text-muted);
+  stroke-width: 0.6;
+  pointer-events: none;
+}
+.elestiri-kisi--deginiliyor .elestiri-kisi__leader,
+.elestiri-kisi:focus-visible .elestiri-kisi__leader {
+  stroke: var(--text-primary);
+  stroke-width: 1;
+}
 .elestiri-kisi--deginiliyor .elestiri-kisi__sekil,
 .elestiri-kisi:focus-visible .elestiri-kisi__sekil {
   transform: scale(1.3);
