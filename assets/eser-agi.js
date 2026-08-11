@@ -201,17 +201,22 @@ window.__eserAgiApp = (function () {
     sel.append("line").attr("class", "eser-agi-eser__sap")
       .attr("x1", 0).attr("y1", 0).attr("x2", 0).attr("y2", (d) => kartAltY(d));
 
+    // kesin=false (tartışmalı tarih) olan eserler için ayrı bir görsel
+    // sınıf ekleniyor -- CSS'te noktayı içi boş + kesikli çevre, kartın
+    // kenarını da kesikli yapıyor. /eklem kronoloji ilkesi: "kesin
+    // olmayan tarih, zaman ekseninde kesin gibi çizilmez".
     sel.each(function (d) {
       const node = d3.select(this);
+      const noktaSinif = "eser-agi-eser__nokta" + (d.yil.kesin ? "" : " eser-agi-eser__nokta--yaklasik");
       if (d.ozel === "katalog") {
-        node.append("path").attr("class", "eser-agi-eser__nokta")
+        node.append("path").attr("class", noktaSinif)
           .attr("d", `M0,${-R * 1.3} L${R * 1.3},0 L0,${R * 1.3} L${-R * 1.3},0 Z`);
       } else {
-        node.append("circle").attr("class", "eser-agi-eser__nokta").attr("r", R);
+        node.append("circle").attr("class", noktaSinif).attr("r", R);
       }
     });
 
-    sel.append("rect").attr("class", "eser-agi-eser__govde")
+    sel.append("rect").attr("class", (d) => "eser-agi-eser__govde" + (d.yil.kesin ? "" : " eser-agi-eser__govde--yaklasik"))
       .attr("x", -(KART_W / 2)).attr("width", KART_W)
       .attr("y", (d) => kartUstY(d)).attr("height", KART_H)
       .attr("rx", 8);
@@ -361,6 +366,7 @@ window.__eserAgiApp = (function () {
       <p class="eser-agi-kimlik">${d.yil.hicri ? d.yil.hicri + "/" : ""}${d.yil.miladi}${d.yil.kesin ? "" : " " + tt({ tr: "(yaklaşık)", en: "(approximate)", pt: "(aproximado)" })} — ${tt(d.sehir)}</p>
       ${izHtml(d)}
       <div class="detail-block detail-block--soru"><p>${linkify(tt(d.aciklama))}</p></div>
+      ${dayanakHtml(d)}
       <details class="eser-agi-kaynak-detay">
         <summary>${tt({ tr: "Kaynak ve yöntem", en: "Source and method", pt: "Fonte e método" })}</summary>
         <p class="elestiri-kaynak-satiri">${data.kaynak.yazar}, <em>${data.kaynak.eser}</em></p>
@@ -368,6 +374,29 @@ window.__eserAgiApp = (function () {
     detailPanel.hidden = false;
     vurgulaEser(d.id, true);
     wireIzAdimlari();
+  }
+
+  // /eklem kronoloji A4: eser paneline "Tarih dayanağı" bölümü.
+  // dayanak alanı data'da varsa gösterilir; yoksa hiç çizilmez (backward
+  // compatible). Güven seviyesi (yuksek/orta/dusuk) küçük bir rozet olur.
+  function dayanakHtml(d) {
+    const dayanaklar = d.yil && d.yil.dayanak;
+    if (!Array.isArray(dayanaklar) || !dayanaklar.length) return "";
+    const guvenEtiket = { yuksek: { tr: "yüksek güven", en: "high confidence", pt: "confiança alta" },
+                          orta: { tr: "orta güven", en: "medium confidence", pt: "confiança média" },
+                          dusuk: { tr: "düşük güven", en: "low confidence", pt: "confiança baixa" } };
+    const baslik = tt({ tr: "Tarih dayanağı", en: "Date evidence", pt: "Base da datação" });
+    const satirlar = dayanaklar.map((r) => {
+      const g = guvenEtiket[r.guven] || guvenEtiket.orta;
+      return `<li><span class="eser-agi-dayanak__guven eser-agi-dayanak__guven--${r.guven}">${tt(g)}</span> ${r.detay}</li>`;
+    }).join("");
+    const notu = d.yil.not
+      ? `<p class="eser-agi-dayanak__not">${d.yil.not}</p>` : "";
+    return `<details class="eser-agi-dayanak" open>
+      <summary>${baslik}</summary>
+      <ul class="eser-agi-dayanak__liste">${satirlar}</ul>
+      ${notu}
+    </details>`;
   }
 
   function kenarPaneli(b) {
@@ -386,6 +415,15 @@ window.__eserAgiApp = (function () {
   function girisPaneli() {
     focusId = null;
     focusEdge = null;
+    // Kaç eser tartışmalı tarihe sahip? Bu bir "durum tablosu" değil,
+    // eserler yüklendikçe ölçülen bir sayı -- panelin altında da bir kez
+    // sayılıyor ki kullanıcı grafik dolu iken de görsün.
+    const tartismali = eserler.filter((e) => !e.yil.kesin).length;
+    const yontemNotu = tt({
+      tr: "Tarih ve şehir bilgileri MIAS'ın 'Selected Major Works' listesinden (Osman Yahia 1964 tasnifine dayanır) alınıp elle işlendi. Her eserde 'Tarih dayanağı' bölümü hangi kaynağın ne kadar güvenle konuştuğunu belgeliyor; " + tartismali + "/" + eserler.length + " eserin tarihi kaynaklar arasında tartışmalıdır ve grafikte içi boş, kesikli çevreyle gösterilir. Zaten bilinmeyen bir tarihi bilinir gibi çizmiyoruz; bu, hayretin bir kaydıdır.",
+      en: "Dates and cities come from MIAS's 'Selected Major Works' list (itself based on Osman Yahia's 1964 classification), manually curated. Each work carries a 'Date evidence' block that documents how confidently each source speaks; " + tartismali + "/" + eserler.length + " works have contested dates and are shown with hollow, dashed circles. We refuse to draw an unknown date as if it were known; this is a record of that hesitation.",
+      pt: "As datas e cidades vêm da lista 'Selected Major Works' da MIAS (baseada na classificação de Osman Yahia de 1964), curadas manualmente. Cada obra traz um bloco 'Base da datação' que documenta com que confiança cada fonte fala; " + tartismali + "/" + eserler.length + " obras têm datas contestadas e são mostradas com círculos vazios e tracejados. Recusamo-nos a desenhar uma data desconhecida como se fosse conhecida; este é um registo dessa hesitação.",
+    });
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Eser Ağı", en: "The Works Timeline", pt: "A Linha do Tempo das Obras" })}</p>
       <h2 class="detail-title">${eserler.length} ${tt({ tr: "eser", en: "works", pt: "obras" })}, ${baglar.length} ${tt({ tr: "bağ", en: "connections", pt: "ligações" })}</h2>
@@ -393,6 +431,7 @@ window.__eserAgiApp = (function () {
       <details class="eser-agi-kaynak-detay">
         <summary>${tt({ tr: "Kaynak ve yöntem", en: "Source and method", pt: "Fonte e método" })}</summary>
         <p class="elestiri-kaynak-satiri elestiri-kaynak-satiri--omurga">${data.kaynak.yazar}, <em>${data.kaynak.eser}</em></p>
+        <p class="eser-agi-yontem-notu">${yontemNotu}</p>
       </details>`;
     detailPanel.hidden = false;
   }

@@ -10231,6 +10231,21 @@ mark.durus-vurgu-es {
   transition: stroke 0.15s ease, filter 0.15s ease;
 }
 .eser-agi-eser--katalog .eser-agi-eser__govde { stroke: var(--series-theme); }
+
+/* /eklem kronoloji görsel ayrım: kesin=false (tartışmalı tarih) eserler.
+   Nokta içi boş + kesikli çevre; kart kenarı da kesikli. Sitede halen
+   kart alt satırında "(yaklaşık)" metin işareti zaten var; buradaki
+   görsel damga onun yanına duran, "bu tarih tam kesin değil" işaretidir.
+   GORSEL_DIL.md ilkesi (bulanıklık = bilgisizlik) ile uyumlu. */
+.eser-agi-eser__nokta--yaklasik {
+  fill: var(--surface-1);
+  stroke: var(--series-ibnarabi);
+  stroke-width: 1.4;
+  stroke-dasharray: 2 1.5;
+  filter: none;
+}
+.eser-agi-eser--katalog .eser-agi-eser__nokta--yaklasik { stroke: var(--series-theme); }
+.eser-agi-eser__govde--yaklasik { stroke-dasharray: 4 2; }
 .eser-agi-eser__baslik {
   font-size: 0.72rem;
   font-weight: 600;
@@ -10322,6 +10337,79 @@ mark.durus-vurgu-es {
 }
 .eser-agi-kaynak-detay summary:hover { color: var(--text-primary); }
 .eser-agi-kaynak-detay .elestiri-kaynak-satiri { margin-top: 6px; }
+
+/* /eklem kronoloji A4: eser paneline "Tarih dayanağı" bölümü.
+   Kaynak+güven listesi -- her satırda bir dayanak (MIAS, yazar
+   Mukaddime, akademik atıf vb.) + güven düzeyi rozeti (yuksek/orta/
+   dusuk). Açık gelir çünkü bu bir "detay" değil, iddianın kanıtı;
+   kullanıcının detayı kapalı bulmayı tercih etmemesi gerek. */
+.eser-agi-dayanak {
+  margin: 8px 0 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface-1) 60%, var(--surface-0));
+  border: 1px solid var(--border);
+}
+.eser-agi-dayanak summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.eser-agi-dayanak summary:hover { color: var(--text-primary); }
+.eser-agi-dayanak__liste {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.eser-agi-dayanak__liste li {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+.eser-agi-dayanak__guven {
+  display: inline-block;
+  padding: 0 6px;
+  margin-inline-end: 6px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  vertical-align: baseline;
+  border: 1px solid var(--border);
+}
+.eser-agi-dayanak__guven--yuksek {
+  color: color-mix(in srgb, var(--series-ibnarabi) 80%, var(--text-primary));
+  border-color: color-mix(in srgb, var(--series-ibnarabi) 40%, var(--border));
+}
+.eser-agi-dayanak__guven--orta {
+  color: var(--text-secondary);
+}
+.eser-agi-dayanak__guven--dusuk {
+  color: var(--text-secondary);
+  opacity: 0.75;
+  font-style: italic;
+}
+.eser-agi-dayanak__not {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  border-inline-start: 2px solid var(--border);
+  padding-inline-start: 8px;
+}
+
+/* Eser Ağı giriş panelinde "Tarihlendirme yöntemi" küçük notu -- şu ana
+   kadar Kaynak ve yöntem detay'ının içinde yer alıyor, kaynak satırının
+   hemen altında. */
+.eser-agi-yontem-notu {
+  margin: 8px 0 0;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .eser-agi-eser__govde,

@@ -26,7 +26,11 @@
       "yil": {
         "hicri": 590,
         "miladi": 1194,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS listesinde 590/1194, Endülüs/Tunus, erken keşif eseri", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -45,7 +49,11 @@
       "yil": {
         "hicri": null,
         "miladi": 1193,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 'Meşâhid'den önce yazılıp sonra yeniden işlendi'; kesin tarih verilmiyor", "guven": "orta" }
+        ]
       }
     },
     {
@@ -64,7 +72,11 @@
       "yil": {
         "hicri": 594,
         "miladi": 1198,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 594/1198'den sonra Fas'ta bir mirac rüyetinin ardından", "guven": "orta" }
+        ]
       }
     },
     {
@@ -83,7 +95,11 @@
       "yil": {
         "hicri": 595,
         "miladi": 1199,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 595/1199 Temmuz Meriye'de tamamlandı", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -102,7 +118,11 @@
       "yil": {
         "hicri": 595,
         "miladi": 1199,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 595/1199 İspanya (Endülüs)", "guven": "orta" }
+        ]
       }
     },
     {
@@ -121,7 +141,11 @@
       "yil": {
         "hicri": 598,
         "miladi": 1201,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 598/1201 Tunus, kozmolojik daireleri konu alan risale", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -140,7 +164,13 @@
       "yil": {
         "hicri": 599,
         "miladi": 1202,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: kırk kutsî hadisin bir derlemesi", "guven": "orta" },
+          { "kaynak": "yazar-mukaddime", "detay": "İbn Arabî kitabın Mukaddime'sinde h.599/M.1202 Mekke'de derlediğini yazıyor (Vahdettin İnce çevirisi, Kitsan; bkz. research/anlayis-evrimi/OKUMALAR/NURLAR_MENBAI.md)", "guven": "yuksek" }
+        ],
+        "not": "MIAS 'kesin değil' işaretlemiş, ama İbn Arabî'nin kendi Mukaddime'si tarih veriyor -- MIAS'ın kesin işaretlememesinin nedeni belirsiz. Bu tutarsızlığı olduğu gibi bırakıyoruz."
       }
     },
     {
@@ -159,7 +189,11 @@
       "yil": {
         "hicri": 599,
         "miladi": 1203,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 599/1203 Tâif, ricâlü'l-gayb'dan ebdâl velîleri", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -178,7 +212,11 @@
       "yil": {
         "hicri": 600,
         "miladi": 1203,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 600/1203 Mekke, Endülüs'te tanıdığı hocaların portreleri", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -197,7 +235,11 @@
       "yil": {
         "hicri": 600,
         "miladi": 1203,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 600/1203 Mekke, aynı dönemde yazılan kısa risale", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -216,7 +258,11 @@
       "yil": {
         "hicri": 601,
         "miladi": 1204,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 601/1204'ten itibaren Kudüs, Arap harflerinin sırları üzerine dizi", "guven": "orta" }
+        ]
       }
     },
     {
@@ -235,7 +281,11 @@
       "yil": {
         "hicri": 601,
         "miladi": 1205,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 601/1205 Nisan Musul", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -254,7 +304,11 @@
       "yil": {
         "hicri": 601,
         "miladi": 1205,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: Musul Nisan-Mayıs 1205, aynı ziyaret", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -273,7 +327,11 @@
       "yil": {
         "hicri": 601,
         "miladi": 1205,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: Musul Nisan-Mayıs 1205, üçüncü eser", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -292,7 +350,11 @@
       "yil": {
         "hicri": 602,
         "miladi": 1205,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 602/1205 Konya, seyr u sülûk risalesi", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -311,7 +373,11 @@
       "yil": {
         "hicri": 602,
         "miladi": 1206,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 602/1206 Kudüs, insanda Kur'ân işaretleri", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -330,7 +396,11 @@
       "yil": {
         "hicri": 603,
         "miladi": 1207,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: yaklaşık 603/1207; şehir belirtilmiyor", "guven": "orta" }
+        ]
       }
     },
     {
@@ -349,7 +419,11 @@
       "yil": {
         "hicri": 606,
         "miladi": 1209,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 606/1209'dan önce, Halep'te yazıldığı düşünülüyor", "guven": "orta" }
+        ]
       }
     },
     {
@@ -368,7 +442,11 @@
       "yil": {
         "hicri": 608,
         "miladi": 1212,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: ~608/1212 Bağdat, fenâ hâli üzerine kısa risale", "guven": "orta" }
+        ]
       }
     },
     {
@@ -387,7 +465,11 @@
       "yil": {
         "hicri": 611,
         "miladi": 1215,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 611/1215 Mekke/Halep, Nizâm için yazılan aşk şiirleri divanı", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -406,7 +488,11 @@
       "yil": {
         "hicri": 615,
         "miladi": 1218,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 615/1218 Malatya, sûfî ıstılahları sözlüğü", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -425,7 +511,11 @@
       "yil": {
         "hicri": 626,
         "miladi": 1229,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 626/1229'dan önce Şam, üretken dönemin başları", "guven": "orta" }
+        ]
       }
     },
     {
@@ -444,7 +534,11 @@
       "yil": {
         "hicri": 627,
         "miladi": 1229,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 627/1229'dan sonra Şam; İbn Arabî bunu rüyada Hz. Peygamber'den aldığını söylüyor", "guven": "orta" }
+        ]
       }
     },
     {
@@ -464,7 +558,11 @@
       "yil": {
         "hicri": 627,
         "miladi": 1229,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 627/1229-1230 Şam, öğrencisi Sadreddin Konevî için öz katalog", "guven": "orta" }
+        ]
       }
     },
     {
@@ -484,7 +582,11 @@
       "yil": {
         "hicri": 632,
         "miladi": 1234,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 632/1234 Ekim Şam, Eyyûbî hükümdarı el-Melikü'l-Muzaffer'e yazılan icâzet (~290 eser, 71 hoca listesi)", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -503,7 +605,13 @@
       "yil": {
         "hicri": 633,
         "miladi": 1236,
-        "kesin": false
+        "kesin": false,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: ~633/1236 Şam, sûfî hırkasının aktarım zinciri risalesi", "guven": "orta" },
+          { "kaynak": "bagdadi-menkabeler-1972", "detay": "Menkıbelerde hırka olaylarının kendileri (Kassâr h.599 Mekke, İbn Câmi h.601 Musul) belgeli — ama risalenin YAZILIŞ tarihi ayrı bir mesele", "guven": "dusuk" }
+        ],
+        "not": "MIAS ~633/1236 diyor; ama risalede anlatılan hırka olayları çok daha erken (h.599 Mekke, h.601 Musul). Yazılış tarihi ile olayların tarihi ayrı."
       }
     },
     {
@@ -522,7 +630,11 @@
       "yil": {
         "hicri": 634,
         "miladi": 1237,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 634/1237 Şam, büyük şiir divanı", "guven": "yuksek" }
+        ]
       }
     },
     {
@@ -541,7 +653,12 @@
       "yil": {
         "hicri": 636,
         "miladi": 1238,
-        "kesin": true
+        "kesin": true,
+
+        "dayanak": [
+          { "kaynak": "mias-selected-major-works", "detay": "MIAS: 629-636/1202-1238 boyunca; Mekke'de başlayıp Şam'da tamamlanan başyapıt; iki büyük yazım turu", "guven": "yuksek" }
+        ],
+        "not": "Tek nokta değil, 30+ yıllık bir aralık: 1202 Mekke -> 1238 Şam. Grafiğe yıl aralığı çubuğu olarak çizilebilir."
       }
     }
   ],
