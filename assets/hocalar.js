@@ -190,6 +190,29 @@ window.__hocalarApp = (function () {
         <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Fütûhât'ın başka bölümlerinde geçen izler", en: "Traces in other chapters of the Futuhat", pt: "Vestígios noutros capítulos das Futuhat" })}</p>
         <div class="hocalar-diger__liste">${kartlar}</div>`;
     }
+    // Nesebü'l-Hırka (Hırka Kitabı) silsile bağlantıları -- Rûhu'l-kuds
+    // portresinden ayrı bir eksen: 'hoca-talebe' değil 'hırka veren-alan'
+    // sözleşmesi (bkz. hocalar.schema.json hirkaSilsilesi tanımı).
+    const hs = data.hirkaSilsilesi;
+    if (hs && hs.kisiler && hs.kisiler.length) {
+      const rolRozet = { "hirka-veren": { tr: "hırka veren", en: "gave the robe", pt: "deu o manto" },
+                         "hirka-alan":  { tr: "hırka alan",  en: "received the robe", pt: "recebeu o manto" } };
+      const kartlar = hs.kisiler.map((k) => {
+        const rEt = rolRozet[k.rol] || rolRozet["hirka-veren"];
+        const yilYer = (k.yil_hicri ? "h." + k.yil_hicri + ", " : "") + tt(k.yer);
+        return `<div class="hocalar-diger__satir">
+          <strong>${tt(k.ad)}</strong>
+          <span class="hocalar-diger__rozet hocalar-diger__rozet--${k.rol}">${tt(rEt)}</span>
+          <span class="hocalar-diger__meta"> — ${yilYer}</span>
+          <p class="hoca-alinti__baglam">${tt(k.not)}</p>
+          <cite class="hoca-alinti__kaynak">${k.kaynak.eser}, ${k.kaynak.sayfa}</cite>
+        </div>`;
+      }).join("");
+      html += `
+        <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Hırka silsilesi (Nesebü'l-Hırka'dan)", en: "Chain of the robe (from Nesebü'l-Hırka)", pt: "Cadeia do manto (do Nesebü'l-Hırka)" })}</p>
+        <p class="hocalar-diger__not">${tt(hs.not)}</p>
+        <div class="hocalar-diger__liste">${kartlar}</div>`;
+    }
     digerEl.innerHTML = html;
     wireVuslatSemasi();
   }

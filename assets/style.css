@@ -10169,6 +10169,11 @@ mark.durus-vurgu-es {
 .hoca-vuslat__nokta--tiklanabilir:focus-visible { outline: none; }
 .hocalar-diger__liste { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .hocalar-diger__satir { font-size: 0.9rem; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-1); }
+.hocalar-diger__rozet { display: inline-block; margin-left: 8px; padding: 1px 8px; font-size: 0.75rem; border-radius: 999px; background: var(--surface-2); color: var(--muted-fg); border: 1px solid var(--border); }
+.hocalar-diger__rozet--hirka-veren { background: color-mix(in oklab, var(--accent) 12%, var(--surface-2)); color: var(--fg); }
+.hocalar-diger__rozet--hirka-alan { background: color-mix(in oklab, var(--accent-interactive) 12%, var(--surface-2)); color: var(--fg); }
+.hocalar-diger__meta { color: var(--muted-fg); font-size: 0.85rem; }
+.hocalar-diger__not { font-size: 0.9rem; color: var(--muted-fg); margin: 6px 0 12px; }
 
 /* --- Eser Ağı (docs/icerik-yol-haritasi.md D7, 2026-08-04) ----------------
    2026-08-06'da sarmaldan dikey zaman çizelgesine, 2026-08-09'da dikey

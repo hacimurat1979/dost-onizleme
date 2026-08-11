@@ -256,4 +256,134 @@
       }
     }
   ]
+,
+  "hirkaSilsilesi": {
+    "not": {
+      "tr": "İbn Arabî'nin Nesebü'l-Hırka (Hırka Kitabı) risalesinde belgelenen hırka silsile bağlantıları. Hırka burada bir kumaş değil, İbn Arabî'nin kendi tanımıyla \"sohbet, terbiye, güzel ahlaktan ibaret\" bir sözleşmedir (Fütûhât 1/208, Hırka Kitabı'nda alıntılı). Kitapta İbn Arabî'nin toplam altı hırka giydiği yazılıyor -- üçü Peygamber silsilesinden, üçü Hızır aleyhisselâm'ın. Aşağıdaki liste kitabın açıkça belgelediği dört hırka-veren bağlantı ile İbn Arabî'nin kendi giydirdiği bir talebeyi kapsıyor. Kaynak: research/anlayis-evrimi/OKUMALAR/HIRKA_KITABI.md.",
+      "en": "The chain-of-investiture links documented in Ibn Arabi's Nesebü'l-Hırka (Book of the Robe). The robe here is not a garment but, in Ibn Arabi's own words, a covenant of \"companionship, upbringing and good character\" (Futuhat 1/208, quoted in the Book of the Robe). The book records six robes altogether -- three in the Prophet's chain, three from al-Khidr. The list below covers the four robe-givers the book explicitly documents plus the one disciple to whom Ibn Arabi himself gave the robe.",
+      "pt": "Os elos da cadeia de investidura documentados no Nesebü'l-Hırka (Livro do Manto) de Ibn Arabi. O manto aqui não é uma peça de vestuário, mas, nas próprias palavras de Ibn Arabi, um pacto de \"companhia, educação e bom carácter\" (Futuhat 1/208, citado no Livro do Manto). O livro regista seis mantos ao todo -- três na cadeia do Profeta, três de al-Khidr. A lista abaixo cobre os quatro doadores de manto que o livro documenta explicitamente e o único discípulo a quem Ibn Arabi próprio deu o manto."
+    },
+    "kisiler": [
+      {
+        "id": "hirka-et-tevzeri",
+        "ad": {
+          "tr": "et-Tevzerî",
+          "en": "al-Tawzari",
+          "pt": "al-Tawzari"
+        },
+        "rol": "hirka-veren",
+        "yil_hicri": 592,
+        "yer": {
+          "tr": "İşbiliye (Sevilla)",
+          "en": "Seville (Ishbiliya)",
+          "pt": "Sevilha (Ishbiliya)"
+        },
+        "not": {
+          "tr": "İbn Arabî'nin belgelenen ilk hırkası -- h.592 (m.1195/96), İşbiliye'de et-Tevzerî'den. Bu, Peygamber silsilesinden gelen üç hırkadan ilki. Hırka Kitabı'nda hoca hakkında ayrıntı geniş değil; kayıt bir tarih + yer + hoca üçlüsü olarak duruyor.",
+          "en": "Ibn Arabi's first documented robe -- H.592 (1195/96 CE), in Seville from al-Tawzari. This is the first of the three robes from the Prophet's chain. The Book of the Robe does not give a full biographical portrait; the record stands as a date + place + master triplet.",
+          "pt": "O primeiro manto documentado de Ibn Arabi -- H.592 (1195/96 EC), em Sevilha, de al-Tawzari. É o primeiro dos três mantos da cadeia do Profeta. O Livro do Manto não dá um retrato biográfico completo; o registo mantém-se como um tríptico data + local + mestre."
+        },
+        "kaynak": {
+          "eser": "Nesebü'l-Hırka (Hırka Kitabı)",
+          "sayfa": "Vahdettin İnce çev., Kitsan 2007"
+        }
+      },
+      {
+        "id": "hirka-ibn-kasim",
+        "ad": {
+          "tr": "İbn Kasım",
+          "en": "Ibn Qasim",
+          "pt": "Ibn Qasim"
+        },
+        "rol": "hirka-veren",
+        "yil_hicri": 594,
+        "yer": {
+          "tr": "Fas (Fez)",
+          "en": "Fez (Fas)",
+          "pt": "Fez (Fas)"
+        },
+        "not": {
+          "tr": "İbn Arabî'nin belgelenen ikinci hırkası -- h.594 (m.1197/98), Fas'ta İbn Kasım'dan. Peygamber silsilesinin ikinci hırkası. Batı güzergâhının (İşbiliye → Fas) hırka duraklarından biri.",
+          "en": "Ibn Arabi's second documented robe -- H.594 (1197/98 CE), in Fez from Ibn Qasim. The second robe from the Prophet's chain. One of the robe stations along the western route (Seville → Fez).",
+          "pt": "O segundo manto documentado de Ibn Arabi -- H.594 (1197/98 EC), em Fez, de Ibn Qasim. O segundo manto da cadeia do Profeta. Uma das paragens de manto ao longo da rota ocidental (Sevilha → Fez)."
+        },
+        "kaynak": {
+          "eser": "Nesebü'l-Hırka (Hırka Kitabı)",
+          "sayfa": "Vahdettin İnce çev., Kitsan 2007"
+        }
+      },
+      {
+        "id": "hirka-kassar",
+        "ad": {
+          "tr": "Yunus b. Yahyâ el-Kassâr el-Haşimî el-Abbasî",
+          "en": "Yunus b. Yahya al-Kassar al-Hashimi al-Abbasi",
+          "pt": "Yunus b. Yahya al-Kassar al-Hashimi al-Abbasi"
+        },
+        "rol": "hirka-veren",
+        "yil_hicri": 599,
+        "yer": {
+          "tr": "Mekke",
+          "en": "Mecca",
+          "pt": "Meca"
+        },
+        "not": {
+          "tr": "Abdulkādir Geylânî silsilesinden -- Kassâr, Geylânî'nin talebesiydi. Kassâr'ın anlatımına göre Geylânî kendisine \"künyem Muhyiddin adlı bir velî Endülüs'ten gelecek, hırkamı ona teslim et\" diye vasiyet bırakmıştı; Kassâr bu hırkayı İbn Arabî'ye Mekke'de h.599 (m.1202) teslim etti. Ayrıca Kassâr'ın adı Mişkâtü'l-Envâr'ın (Nurlar Menbaı) isnâd zincirinde de geçiyor -- iki farklı eserde geçen tek hocamız.",
+          "en": "From the chain of Abd al-Qadir al-Jilani -- Kassar was Jilani's disciple. According to Kassar's account, Jilani had bequeathed to him: \"A saint whose kunya is Muhyiddin will come from Andalusia; deliver my robe to him.\" Kassar delivered this robe to Ibn Arabi in Mecca in H.599 (1202 CE). Kassar's name also appears in the isnad chain of Mishkat al-Anwar (Nurlar Menbaı) -- our only teacher who appears in two different works.",
+          "pt": "Da cadeia de Abd al-Qadir al-Jilani -- Kassar era discípulo de Jilani. Segundo o relato de Kassar, Jilani deixara-lhe a incumbência: \"Um santo cuja kunya é Muhyiddin virá de al-Andalus; entrega-lhe o meu manto.\" Kassar entregou este manto a Ibn Arabi em Meca em H.599 (1202 EC). O nome de Kassar aparece também na cadeia isnad de Mishkat al-Anwar (Nurlar Menbaı) -- o nosso único mestre que surge em duas obras diferentes."
+        },
+        "kaynak": {
+          "eser": "Nesebü'l-Hırka (Hırka Kitabı) + Mişkâtü'l-Envâr (Nurlar Menbaı)",
+          "sayfa": "Vahdettin İnce çev., Kitsan 2007"
+        }
+      },
+      {
+        "id": "hirka-ibn-cami",
+        "ad": {
+          "tr": "Ali ibn Abdullah ibn Câmi",
+          "en": "Ali ibn Abdullah ibn Jami'",
+          "pt": "Ali ibn Abdullah ibn Jami'"
+        },
+        "rol": "hirka-veren",
+        "yil_hicri": 601,
+        "yer": {
+          "tr": "Musul",
+          "en": "Mosul",
+          "pt": "Mossul"
+        },
+        "not": {
+          "tr": "Hızır aleyhisselâm silsilesinden gelen ilk belgelenen hırka -- h.601 (m.1204), Musul'da, İbn Câmi'nin bostanında. İbn Câmi bu hırkayı Kadîb'ül-Bân'ın huzurunda Hızır'dan almıştı; İbn Arabî'ye o yerin ve o şeklin taklidiyle verildi. Hırka Kitabı bu hâdiseyi ayrıntısıyla anlatır -- yer, kişi, tanık ve giydirme âyini.",
+          "en": "The first documented robe from the chain of al-Khidr -- H.601 (1204 CE), in Mosul, in Ibn Jami's garden. Ibn Jami had received this robe from al-Khidr in the presence of Qadib al-Ban; he gave it to Ibn Arabi in imitation of that place and manner. The Book of the Robe recounts this event in detail -- place, person, witness and investiture rite.",
+          "pt": "O primeiro manto documentado da cadeia de al-Khidr -- H.601 (1204 EC), em Mossul, no jardim de Ibn Jami. Ibn Jami tinha recebido este manto de al-Khidr na presença de Qadib al-Ban; deu-o a Ibn Arabi imitando aquele lugar e maneira. O Livro do Manto conta este acontecimento em detalhe -- lugar, pessoa, testemunha e rito de investidura."
+        },
+        "kaynak": {
+          "eser": "Nesebü'l-Hırka (Hırka Kitabı)",
+          "sayfa": "Vahdettin İnce çev., Kitsan 2007"
+        }
+      },
+      {
+        "id": "hirka-konevi",
+        "ad": {
+          "tr": "Sadreddin Konevî",
+          "en": "Sadr al-Din al-Qunawi",
+          "pt": "Sadr al-Din al-Qunawi"
+        },
+        "rol": "hirka-alan",
+        "yil_hicri": null,
+        "yer": {
+          "tr": "Konya",
+          "en": "Konya",
+          "pt": "Konya"
+        },
+        "not": {
+          "tr": "İbn Arabî'nin kendi giydirdiği tek belgelenen talebe -- Sadreddin Konevî, İbn Arabî'nin üvey oğlu. Aldığı hırkanın hangi silsileden olduğu Hırka Kitabı'nda kesin belirtilmiyor; ama zincirin sonraki halkası olduğu netleşiyor. Konevî sonraki nesle Ekberî geleneğin taşıyıcısı oldu.",
+          "en": "The only documented disciple to whom Ibn Arabi himself gave the robe -- Sadr al-Din al-Qunawi, Ibn Arabi's stepson. The Book of the Robe does not specify which chain this robe was from; but Qunawi is clearly established as the next link. Qunawi went on to become the transmitter of the Akbarian tradition to the next generation.",
+          "pt": "O único discípulo documentado a quem Ibn Arabi próprio deu o manto -- Sadr al-Din al-Qunawi, enteado de Ibn Arabi. O Livro do Manto não especifica de que cadeia é este manto; mas Qunawi fica claramente estabelecido como o próximo elo. Qunawi tornou-se depois o transmissor da tradição akbariana para a geração seguinte."
+        },
+        "kaynak": {
+          "eser": "Nesebü'l-Hırka (Hırka Kitabı)",
+          "sayfa": "Vahdettin İnce çev., Kitsan 2007"
+        }
+      }
+    ]
+  }
 }
