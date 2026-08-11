@@ -363,10 +363,11 @@ window.__eserAgiApp = (function () {
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Eser", en: "Work", pt: "Obra" })}${katalogRozet}</p>
       <h2 class="detail-title">${d.eser}</h2>
-      <p class="eser-agi-kimlik">${d.yil.hicri ? d.yil.hicri + "/" : ""}${d.yil.miladi}${d.yil.kesin ? "" : " " + tt({ tr: "(yaklaşık)", en: "(approximate)", pt: "(aproximado)" })} — ${tt(d.sehir)}</p>
+      <p class="eser-agi-kimlik">${d.yil.hicri ? d.yil.hicri + "/" : ""}${d.yil.miladi}${d.yil.kesin ? "" : " " + tt({ tr: "(yaklaşık)", en: "(approximate)", pt: "(aproximado)" })} — ${tt(d.sehir)}${d.sehir_belirsiz ? " " + tt({ tr: "(şehir belirsiz)", en: "(city uncertain)", pt: "(cidade incerta)" }) : ""}</p>
       ${izHtml(d)}
       <div class="detail-block detail-block--soru"><p>${linkify(tt(d.aciklama))}</p></div>
       ${dayanakHtml(d)}
+      ${sehirDayanakHtml(d)}
       <details class="eser-agi-kaynak-detay">
         <summary>${tt({ tr: "Kaynak ve yöntem", en: "Source and method", pt: "Fonte e método" })}</summary>
         <p class="elestiri-kaynak-satiri">${data.kaynak.yazar}, <em>${data.kaynak.eser}</em></p>
@@ -399,6 +400,28 @@ window.__eserAgiApp = (function () {
     </details>`;
   }
 
+  // /birlestir onkoşul: eser paneline "Şehir dayanağı" bölümü. Tarih
+  // dayanağının paraleli -- şehir bilgisi belirsiz ya da çoklu ise
+  // (sehir_belirsiz=true, ya da "Mekke → Şam" / "Mekke / Halep" gibi
+  // geçişli), dayanağın açıkça belgelenmesi gerekir. Yıl.dayanak ile
+  // aynı görsel gramer.
+  function sehirDayanakHtml(d) {
+    const dayanaklar = d.sehir_dayanak;
+    if (!Array.isArray(dayanaklar) || !dayanaklar.length) return "";
+    const guvenEtiket = { yuksek: { tr: "yüksek güven", en: "high confidence", pt: "confiança alta" },
+                          orta: { tr: "orta güven", en: "medium confidence", pt: "confiança média" },
+                          dusuk: { tr: "düşük güven", en: "low confidence", pt: "confiança baixa" } };
+    const baslik = tt({ tr: "Şehir dayanağı", en: "City evidence", pt: "Base do local" });
+    const satirlar = dayanaklar.map((r) => {
+      const g = guvenEtiket[r.guven] || guvenEtiket.orta;
+      return `<li><span class="eser-agi-dayanak__guven eser-agi-dayanak__guven--${r.guven}">${tt(g)}</span> ${r.detay}</li>`;
+    }).join("");
+    return `<details class="eser-agi-dayanak" open>
+      <summary>${baslik}</summary>
+      <ul class="eser-agi-dayanak__liste">${satirlar}</ul>
+    </details>`;
+  }
+
   function kenarPaneli(b) {
     focusEdge = b;
     focusId = null;
@@ -419,10 +442,11 @@ window.__eserAgiApp = (function () {
     // eserler yüklendikçe ölçülen bir sayı -- panelin altında da bir kez
     // sayılıyor ki kullanıcı grafik dolu iken de görsün.
     const tartismali = eserler.filter((e) => !e.yil.kesin).length;
+    const sehirBelirsiz = eserler.filter((e) => e.sehir_belirsiz).length;
     const yontemNotu = tt({
-      tr: "Tarih ve şehir bilgileri MIAS'ın 'Selected Major Works' listesinden (Osman Yahia 1964 tasnifine dayanır) alınıp elle işlendi. Her eserde 'Tarih dayanağı' bölümü hangi kaynağın ne kadar güvenle konuştuğunu belgeliyor; " + tartismali + "/" + eserler.length + " eserin tarihi kaynaklar arasında tartışmalıdır ve grafikte içi boş, kesikli çevreyle gösterilir. Zaten bilinmeyen bir tarihi bilinir gibi çizmiyoruz; bu, hayretin bir kaydıdır.",
-      en: "Dates and cities come from MIAS's 'Selected Major Works' list (itself based on Osman Yahia's 1964 classification), manually curated. Each work carries a 'Date evidence' block that documents how confidently each source speaks; " + tartismali + "/" + eserler.length + " works have contested dates and are shown with hollow, dashed circles. We refuse to draw an unknown date as if it were known; this is a record of that hesitation.",
-      pt: "As datas e cidades vêm da lista 'Selected Major Works' da MIAS (baseada na classificação de Osman Yahia de 1964), curadas manualmente. Cada obra traz um bloco 'Base da datação' que documenta com que confiança cada fonte fala; " + tartismali + "/" + eserler.length + " obras têm datas contestadas e são mostradas com círculos vazios e tracejados. Recusamo-nos a desenhar uma data desconhecida como se fosse conhecida; este é um registo dessa hesitação.",
+      tr: "Tarih ve şehir bilgileri MIAS'ın 'Selected Major Works' listesinden (Osman Yahia 1964 tasnifine dayanır) alınıp elle işlendi. Her eserde 'Tarih dayanağı' ve gerektiğinde 'Şehir dayanağı' bölümleri hangi kaynağın ne kadar güvenle konuştuğunu belgeliyor; " + tartismali + "/" + eserler.length + " eserin tarihi kaynaklar arasında tartışmalıdır ve grafikte içi boş, kesikli çevreyle gösterilir. " + sehirBelirsiz + "/" + eserler.length + " eserin ise şehri belirsiz -- birleşik grafik yapıldığında mekân eksenine giremezler. Zaten bilinmeyen bir bilgiyi bilinir gibi çizmiyoruz; bu, hayretin bir kaydıdır.",
+      en: "Dates and cities come from MIAS's 'Selected Major Works' list (itself based on Osman Yahia's 1964 classification), manually curated. Each work carries a 'Date evidence' block and, where needed, a 'City evidence' block documenting how confidently each source speaks; " + tartismali + "/" + eserler.length + " works have contested dates and are shown with hollow, dashed circles. " + sehirBelirsiz + "/" + eserler.length + " works have an uncertain city -- when a combined graph is built they cannot enter the spatial axis. We refuse to draw an unknown as if it were known; this is a record of that hesitation.",
+      pt: "As datas e cidades vêm da lista 'Selected Major Works' da MIAS (baseada na classificação de Osman Yahia de 1964), curadas manualmente. Cada obra traz um bloco 'Base da datação' e, quando necessário, um bloco 'Base do local' que documenta com que confiança cada fonte fala; " + tartismali + "/" + eserler.length + " obras têm datas contestadas e são mostradas com círculos vazios e tracejados. " + sehirBelirsiz + "/" + eserler.length + " obras têm cidade incerta -- quando um gráfico combinado for construído não podem entrar no eixo espacial. Recusamo-nos a desenhar o desconhecido como se fosse conhecido; este é um registo dessa hesitação.",
     });
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Eser Ağı", en: "The Works Timeline", pt: "A Linha do Tempo das Obras" })}</p>
