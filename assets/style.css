@@ -1786,12 +1786,19 @@ button.futuhat-part-chip:hover {
   .futuhat-shell {
     grid-template-columns: 1fr;
   }
-  .futuhat-stats {
-    position: static !important;
+  /* 2026-08-10 denetim (G58): mobilde metin, NEREDEYIM halkası + 18 ciltlik
+     listenin ALTINDA kalıyor, ilk ekranda okuyacak bir şey yok. Sıra tersine
+     çevrildi: önce makale (metin), ardından "BU KISIMDA" envanteri, en altta
+     tam gezinme sidebar'ı -- ihtiyaç anında hâlâ tek scroll uzakta. */
+  .futuhat-article {
     order: -1;
   }
+  .futuhat-stats {
+    position: static !important;
+    order: 0;
+  }
   .futuhat-sidebar {
-    order: -2;
+    order: 1;
   }
   .futuhat-parts {
     position: static;
@@ -1804,8 +1811,14 @@ button.futuhat-part-chip:hover {
     margin-top: 6px;
   }
   .futuhat-part-chip {
+    /* Mobil dokunma-hedefi ve tutarlılık: "I"/"II" çipleri tek karakterle
+       mini kalıyordu. min-width dokunma-hedefini korur, "Kısım" öneki de
+       ne olduğunu söyler. */
     width: auto;
     border-radius: 999px;
+    min-width: 44px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
   .futuhat-parts__more {
     margin-top: 6px;
@@ -9614,8 +9627,8 @@ mark.durus-vurgu-es {
 /* Manifesto — sitenin duruş beyanı sayfasının görünür açılış cümlesi
    (2026-08-10, G41). Grafik SVG'sinden AYRI (absolute değil) -- yoksa
    düğüm etiketleri üstüne biniyor. Wrap flex sütun; SVG kalan boşluğu
-   doldurur. */
-#bilmiyoruz-wrap {
+   doldurur. :not([hidden]) SART -- yoksa gizli görünüm de yer kaplıyor. */
+#bilmiyoruz-wrap:not([hidden]) {
   display: flex;
   flex-direction: column;
 }
@@ -9641,7 +9654,10 @@ mark.durus-vurgu-es {
 }
 .viz-root[data-theme="dark"] .bilmiyoruz-manifest__p { color: var(--ink-soft-dark, #b5afa2); }
 @media (max-width: 640px) {
-  .bilmiyoruz-manifest { position: static; transform: none; width: 100%; padding: 12px 12px 4px; }
+  /* Sol paddingi büyütüyoruz: recenter+ipucu düğmeleri absolute konumda
+     top:12 left:12 civarında ve manifesto metniyle çakışıyordu (denetim
+     ikinci turunda görüldü). */
+  .bilmiyoruz-manifest { padding: 60px 16px 8px; }
   .bilmiyoruz-manifest__p { font-size: 0.86rem; text-align: left; }
 }
 
