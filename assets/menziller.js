@@ -236,8 +236,19 @@
       en: "The Moon these mansions belong to -- the spiral moves around it.",
       pt: "A Lua a que pertencem estas mansões -- a espiral move-se à sua volta.",
     }));
+    // Ay altında etiket: 3B varsayılan görünümde center katmanı (Nefes-i
+    // Rahmânî yazısı) sönümlü olduğu için Ay uzun süre etiketsiz duruyordu
+    // (denetim G21: "etiketsiz gri topak"). moonLayer'a kendi metnini
+    // ekliyoruz -- burada text'in y'si Ay'ın yarıçapının BİRAZ altına
+    // koyulacak (render'da moonR'ye göre güncellenir).
+    moonLayer.append("text").attr("class", "menziller-moon__label").attr("text-anchor", "middle");
+    moonLayer.append("text").attr("class", "menziller-moon__sub").attr("text-anchor", "middle");
+
     centerLayer = zoomLayer.append("g").attr("class", "menziller-center");
 
+    // Nefes halosu: 2B'de merkez etiket arkasında usulca genişleyip daralan
+    // bir daire -- "resmet davranışı" (nefes) ilkesinin yalın karşılığı,
+    // CSS keyframe'inde tanımlı (bkz. .menziller-center .node-halo).
     centerLayer.append("circle").attr("class", "node-halo").attr("r", 46);
     centerLayer.append("text").attr("class", "menziller-center__label").attr("text-anchor", "middle").attr("y", -4);
     centerLayer.append("text").attr("class", "menziller-center__sub").attr("text-anchor", "middle").attr("y", 15);
@@ -319,7 +330,17 @@
     // merkez sarmalın ortasına düşüyor ve düğümlerin arkasında kalıyor.
     centerLayer.attr("transform", `translate(${cx},${cy})`).style("opacity", 1 - tilt);
     centerLayer.select(".menziller-center__label").text(tt(data.center.baslik));
-    centerLayer.select(".menziller-center__sub").text("28");
+    centerLayer.select(".menziller-center__sub").text(tt({tr: "28 menzil", en: "28 mansions", pt: "28 mansões"}));
+    // Ay etiketi: 3B'de Ay altında. Denetim G21'de gözlendiği gibi Ay
+    // varsayılan görünümde uzun süre etiketsiz kalıyordu; şimdi 2B/3B
+    // geçişinde etiket sabit kalıyor (aynı ad iki yerde), yalnız yerleşim
+    // değişiyor.
+    moonLayer.select(".menziller-moon__label")
+      .attr("y", (moonR + 24).toFixed(1))
+      .text(tt(data.center.baslik));
+    moonLayer.select(".menziller-moon__sub")
+      .attr("y", (moonR + 42).toFixed(1))
+      .text(tt({tr: "harfler bu nefesten ayrışır", en: "the letters separate from this breath", pt: "as letras separam-se deste sopro"}));
 
     const gsel = nodeLayer.selectAll("g.menzil-node").data(nodes, (n) => n.sira);
     const enter = gsel.enter().append("g")

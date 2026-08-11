@@ -7289,9 +7289,49 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
   fill: var(--text-primary);
 }
 .menziller-center__sub {
-  font-size: 1.25rem;
+  font-size: 0.9rem;
   fill: var(--text-muted);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.06em;
+}
+/* Nefes halosu: 2B merkezde usulca genişleyip daralan bir daire --
+   Nefes-i Rahmânî'nin kendi davranışı (bkz. GORSEL_DIL.md, "resmet
+   davranışı"), sorular-center ile aynı desen. Yalnız 2B'de görünür
+   (centerLayer opacity=1-tilt), 3B'de sönümlenir. */
+.menziller-center .node-halo {
+  fill: var(--series-theme);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-halo-breathe 6s ease-in-out infinite;
+}
+:root[data-theme="dark"] .menziller-center .node-halo,
+body[data-theme="dark"] .menziller-center .node-halo {
+  fill: var(--accent-glow-dark);
+  filter: blur(4px);
+  animation: node-halo-breathe-dark 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .menziller-center .node-halo { animation: none; opacity: 0.16; }
+}
+/* Ay altındaki etiket -- 3B varsayılan görünümde Ay uzun süre etiketsiz
+   kalıyordu (G21). moonLayer'da yaşar, moonR'ye göre y konumu render'da
+   verilir. */
+.menziller-moon__label {
+  font-size: 1.15rem;
+  font-weight: 600;
+  fill: var(--text-primary);
+  paint-order: stroke;
+  stroke: var(--surface-1);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+.menziller-moon__sub {
+  font-size: 0.82rem;
+  fill: var(--text-muted);
+  font-style: italic;
+  paint-order: stroke;
+  stroke: var(--surface-1);
+  stroke-width: 3;
+  stroke-linejoin: round;
 }
 /* Ay: sarmalın döndüğü eksenin tam merkezinde duran bir küre -- 28 menzil
    onun etrafında geziniyor (kullanıcının tarifi, 2026-08-07). Düğümlerin
