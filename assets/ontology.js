@@ -537,6 +537,7 @@
   const hocalarWrap = document.getElementById("hocalar-wrap");
   const eserAgiWrap = document.getElementById("eser-agi-wrap");
   const seyahatAtlasiWrap = document.getElementById("seyahat-atlasi-wrap");
+  const yolculukWrap = document.getElementById("yolculuk-wrap");
   const kuranDokusuWrap = document.getElementById("kuran-dokusu-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
   const tasiyicilarWrap = document.getElementById("tasiyicilar-wrap");
@@ -632,6 +633,7 @@
     if (hocalarWrap) hocalarWrap.hidden = view !== "hocalar";
     if (eserAgiWrap) eserAgiWrap.hidden = view !== "eserAgi";
     if (seyahatAtlasiWrap) seyahatAtlasiWrap.hidden = view !== "seyahatAtlasi";
+    if (yolculukWrap) yolculukWrap.hidden = view !== "yolculuk";
     if (kuranDokusuWrap) kuranDokusuWrap.hidden = view !== "kuranDokusu";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (tasiyicilarWrap) tasiyicilarWrap.hidden = view !== "tasiyicilar";
@@ -687,6 +689,9 @@
     } else if (view === "seyahatAtlasi") {
       currentDetailView = null;
       window.__seyahatAtlasiApp && window.__seyahatAtlasiApp.activate();
+    } else if (view === "yolculuk") {
+      currentDetailView = null;
+      window.__yolculukApp && window.__yolculukApp.activate();
     } else if (view === "kuranDokusu") {
       currentDetailView = null;
       window.__kuranDokusuApp && window.__kuranDokusuApp.activate();
@@ -875,6 +880,14 @@
         tr: "Mürsiye'den Şam'a, her durakta yazdığı eserlerle birlikte.",
         en: "From Murcia to Damascus, together with the works he wrote at each stop.",
         pt: "De Múrcia a Damasco, juntamente com as obras que escreveu em cada paragem.",
+      },
+    },
+    yolculuk: {
+      title: { tr: "Yolculuk", en: "The Journey", pt: "A Jornada" },
+      desc: {
+        tr: "Eser Ağı ve Seyahat Atlası'nın birleşik atlas görünümü — her durak coğrafi konumunda, her eser o durakta yazıldığı için durağın yakınında.",
+        en: "The combined atlas view of the Works Timeline and the Travel Atlas — each stop at its geographic position, each work next to the stop where it was written.",
+        pt: "A vista atlas combinada da Linha do Tempo das Obras e do Atlas de Viagem — cada paragem na sua posição geográfica, cada obra ao lado da paragem onde foi escrita.",
       },
     },
     "kuran-dokusu": {
@@ -1108,6 +1121,11 @@
     if (id) window.__seyahatAtlasiApp && window.__seyahatAtlasiApp.goToNode(id);
   }
 
+  function goToYolculuk(id) {
+    setMainView("yolculuk");
+    if (id) window.__yolculukApp && window.__yolculukApp.goToNode(id);
+  }
+
   function goToKuranDokusu(id) {
     setMainView("kuranDokusu");
     if (id) window.__kuranDokusuApp && window.__kuranDokusuApp.goToNode(id);
@@ -1175,7 +1193,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|kuran-dokusu|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis|sahneler)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|yolculuk|kuran-dokusu|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis|sahneler)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -1199,6 +1217,7 @@
     else if (view === "hocalar") goToHocalar(id);
     else if (view === "eser-agi") goToEserAgi(id);
     else if (view === "seyahat-atlasi") goToSeyahatAtlasi(id);
+    else if (view === "yolculuk") goToYolculuk(id);
     else if (view === "kuran-dokusu") goToKuranDokusu(id);
     else if (view === "menziller") goToMenziller(id);
     else if (view === "tasiyicilar") goToTasiyicilar();
@@ -1250,6 +1269,7 @@
       else if (view === "hocalar") goToHocalar(id);
       else if (view === "eser-agi") goToEserAgi(id);
       else if (view === "seyahat-atlasi") goToSeyahatAtlasi(id);
+    else if (view === "yolculuk") goToYolculuk(id);
       else if (view === "kuran-dokusu") goToKuranDokusu(id);
       else if (view === "menziller") goToMenziller(id);
       else if (view === "tasiyicilar") goToTasiyicilar();

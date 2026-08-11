@@ -639,6 +639,23 @@
       </div>
     </section>
 
+    <section class="graph-wrap" id="yolculuk-wrap" hidden>
+      <svg id="yolculuk-graph" role="group" aria-label="Yolculuk"
+           data-tr-aria-label="Yolculuk" data-en-aria-label="The Journey" data-pt-aria-label="A Jornada"></svg>
+      <div class="view-status" id="yolculuk-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="yolculuk-tooltip" hidden></div>
+      <button class="graph-recenter" id="yolculuk-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Duraklar coğrafi konumlarında; her durağın yakınındaki küçük noktalar o durakta yazılan eserler. Bir durağa ya da esere tıklayın; tekerlekle zumlayın, sürükleyerek gezinin." data-en-title="Stops are shown at their geographic positions; the small dots near each stop are works written there. Click a stop or a work; scroll to zoom, drag to pan." data-pt-title="As paragens são mostradas nas suas posições geográficas; os pequenos pontos junto a cada paragem são obras escritas ali. Clique numa paragem ou obra; role para ampliar, arraste para navegar." title="Duraklar coğrafi konumlarında; her durağın yakınındaki küçük noktalar o durakta yazılan eserler." aria-label="Duraklar coğrafi konumlarında; her durağın yakınındaki küçük noktalar o durakta yazılan eserler.">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+    </section>
+
     <section class="graph-wrap" id="sorular-wrap" hidden>
       <svg id="sorular-graph" role="group" aria-label="Sorular haritası"
            data-tr-aria-label="Sorular haritası" data-en-aria-label="Map of questions" data-pt-aria-label="Mapa das perguntas"></svg>
@@ -1456,8 +1473,8 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
   <script src="assets/futuhat.js" defer integrity="sha384-rfBRvmcoKYLIawa0nWi1lIuFguz2xu/4gd/ZTkJesT+PhHZhVRJqEUjVHjP6pnCa"></script>
   <script src="assets/fusus.js" defer integrity="sha384-NWndNFf07ZRehuPP29Nc/iMRBsDyMjSIfCUSvp7ycm+1r3mf7pjTGJlZBcBPBcQt"></script>
-  <script src="assets/view-loader.js" defer integrity="sha384-ODx2te+5hfhgiGXoXZ03TaAw2A8jLZHPjySpEYeDZ6hl/T6I4NdvfGQmUAJ//JcZ"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-Pyxe6Z5QVcKbvnKjLLQeTDkyHht/PUhK3NbR/bkk0L4dynr3gVCxk7zBk/BAgb5S"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-rbRpiBC4y02pZw8/2bwZzOnbXQKifDHozJ2O5oNhvoBHOxVzHpbeLRfRUNLkEdiZ"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-/ix7jEHkv/JyQ8zZ2+GaYBxiswf3/LT+GdFsA5kOm5LXzgFGmhAm5x57FGb2s4tq"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-9qv/Q/FBNgrPHnUOAukAqwsa/DVkrKY78fVJR+l6Kro4bz3an1mUQ8Tg1yG83pGw"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>

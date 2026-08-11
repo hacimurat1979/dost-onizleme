@@ -10169,6 +10169,39 @@ mark.durus-vurgu-es {
 .hoca-vuslat__nokta--tiklanabilir:focus-visible { outline: none; }
 .hocalar-diger__liste { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .hocalar-diger__satir { font-size: 0.9rem; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-1); }
+
+/* --- Yolculuk (docs .claude/commands/birlestir.md izdusum, dilim 1, 2026-08-11) --
+   Seyahat Atlası'nın CSS'inden yararlanır (aynı görsel gramer): kıyı çizgisi,
+   kavisli rota, durak noktaları -- ama duraklar KENDİ sınıfını taşır ki iki
+   sayfa birbirini etkilemesin. Eser noktaları duraklara göre daha küçük;
+   içi dolu (kesin) ya da içi boş kesikli (kesin=false); katalog eserleri
+   elmas (Eser Ağı ile aynı ikonografi). */
+.yolculuk-kara path { fill: var(--series-theme); opacity: 0.1; stroke: none; }
+.yolculuk-rota-parca { stroke: var(--series-theme); stroke-width: 1.6px; stroke-dasharray: 2 4; opacity: 0.6; fill: none; transition: opacity 0.3s ease; }
+
+.yolculuk-durak { cursor: pointer; }
+.yolculuk-durak:focus { outline: none; }
+.yolculuk-durak:focus-visible .yolculuk-durak__nokta { stroke: var(--text-primary); stroke-width: 2.4; }
+.yolculuk-durak__nokta { fill: var(--series-ibnarabi); stroke: var(--surface-1); stroke-width: 1.4; transition: transform 0.15s ease, opacity 0.3s ease; transform-box: fill-box; transform-origin: center; }
+.yolculuk-durak--deginiliyor .yolculuk-durak__nokta { transform: scale(1.3); }
+.yolculuk-durak__etiket { font-size: 0.72rem; fill: var(--text-secondary); pointer-events: none; transition: opacity 0.3s ease; }
+.yolculuk-durak__leader { stroke: var(--border-strong, var(--text-tertiary)); stroke-width: 0.7; opacity: 0.5; pointer-events: none; }
+
+.yolculuk-eser { cursor: pointer; }
+.yolculuk-eser:focus { outline: none; }
+.yolculuk-eser:focus-visible .yolculuk-eser__isaret { stroke: var(--text-primary); stroke-width: 1.6; }
+.yolculuk-eser__isaret { fill: var(--accent); stroke: var(--surface-1); stroke-width: 0.8; transition: transform 0.15s ease; transform-box: fill-box; transform-origin: center; }
+.yolculuk-eser--yaklasik .yolculuk-eser__isaret { fill: transparent; stroke: var(--accent); stroke-dasharray: 2 2; }
+.yolculuk-eser--katalog .yolculuk-eser__isaret { fill: color-mix(in oklab, var(--accent) 60%, var(--surface-2)); }
+.yolculuk-eser--deginiliyor .yolculuk-eser__isaret { transform: scale(1.4); }
+
+.yolculuk-panel__meta { font-size: 0.85rem; color: var(--muted-fg); }
+.yolculuk-panel__eser-listesi { list-style: none; margin: 6px 0 12px; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.yolculuk-panel__eser-listesi li { font-size: 0.9rem; }
+.yolculuk-panel__eser-btn { background: none; border: none; color: var(--accent); cursor: pointer; padding: 2px 0; text-align: left; text-decoration: underline; }
+.yolculuk-panel__eser-btn:hover { color: var(--accent-interactive); }
+.yolculuk-belirsiz { font-size: 0.9rem; color: var(--muted-fg); border-left: 3px solid var(--border); padding: 8px 12px; margin: 12px 0 0; }
+.yolculuk-belirsiz__btn { background: none; border: none; color: var(--accent); cursor: pointer; padding: 0 2px; text-decoration: underline; font-size: inherit; }
 .hocalar-diger__rozet { display: inline-block; margin-left: 8px; padding: 1px 8px; font-size: 0.75rem; border-radius: 999px; background: var(--surface-2); color: var(--muted-fg); border: 1px solid var(--border); }
 .hocalar-diger__rozet--hirka-veren { background: color-mix(in oklab, var(--accent) 12%, var(--surface-2)); color: var(--fg); }
 .hocalar-diger__rozet--hirka-alan { background: color-mix(in oklab, var(--accent-interactive) 12%, var(--surface-2)); color: var(--fg); }
