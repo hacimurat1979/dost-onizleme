@@ -9923,17 +9923,19 @@ mark.durus-vurgu-es {
 /* Kılavuz çizgi (leader-line): deconflictor bir etiketi kendi düğümünden
    uzağa ittiğinde -- 1400-1450 Şam-Kahire yoğunluğunda etiketler tek bir
    sütuna yığılıyordu (G37) -- hangi ad hangi noktaya ait olduğu bu ince
-   çizgiyle okunuyor. Görünürlük opasity'yle JS'te (kayma < 4 birim ise
-   sönümlü kalıyor). */
+   çizgiyle okunuyor. Motor graph-utils.js'te (attachLeaderLines): line
+   yalnız kayma eşiği aşıldığında eklenir. */
 .elestiri-kisi__leader {
   stroke: var(--text-muted);
   stroke-width: 0.6;
+  opacity: 0.55;
   pointer-events: none;
 }
 .elestiri-kisi--deginiliyor .elestiri-kisi__leader,
 .elestiri-kisi:focus-visible .elestiri-kisi__leader {
   stroke: var(--text-primary);
   stroke-width: 1;
+  opacity: 1;
 }
 .elestiri-kisi--deginiliyor .elestiri-kisi__sekil,
 .elestiri-kisi:focus-visible .elestiri-kisi__sekil {
@@ -10495,8 +10497,23 @@ button.kuran-dokusu-satir:focus-visible {
 }
 .seyahat-durak--deginiliyor .seyahat-durak__nokta { transform: scale(1.4); }
 .seyahat-durak--deginiliyor .seyahat-durak__etiket { fill: var(--text-primary); }
+/* Leader-line: Mekke/Tâif gibi coğrafyada yakın duraklarda etiketleri
+   kaydırılmış olanları kendi noktalarına bağlar. Motor graph-utils.js
+   attachLeaderLines'ta. */
+.seyahat-durak__leader {
+  stroke: var(--text-muted);
+  stroke-width: 0.6;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.seyahat-durak--deginiliyor .seyahat-durak__leader {
+  stroke: var(--text-primary);
+  stroke-width: 1;
+  opacity: 1;
+}
 .seyahat-durak--gelecek .seyahat-durak__nokta,
-.seyahat-durak--gelecek .seyahat-durak__etiket { opacity: 0.15; }
+.seyahat-durak--gelecek .seyahat-durak__etiket,
+.seyahat-durak--gelecek .seyahat-durak__leader { opacity: 0.15; }
 
 .seyahat-atlasi-zaman {
   position: absolute;

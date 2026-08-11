@@ -157,6 +157,14 @@ window.__seyahatAtlasiApp = (function () {
     });
     const obstacles = duraklar.map((d) => ({ x: d.x, y: d.y, half: 7, h: 14 }));
     deconflictLabels(pendingLabels, obstacles);
+    // Kaydırılan etiketleri kendi durak noktalarına ince bir çizgiyle
+    // bağla -- Mekke/Tâif yoğunluğunda hangi ad hangi noktaya ait
+    // okunmuyordu (motor elestiri G37'den gelme, graph-utils.js).
+    GU.attachLeaderLines(pendingLabels, {
+      className: "seyahat-durak__leader",
+      threshold: 6,
+      gap: 6,
+    });
 
     durakSel.on("mouseenter", function (ev, d) { vurgula(d.id, true); ipucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))

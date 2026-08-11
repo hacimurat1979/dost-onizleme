@@ -454,6 +454,49 @@ window.DostGraphUtils = (function () {
     };
   }
 
+  // Leader-line: deconflict sonrası kaydırılan bir etiketten kendi düğümüne
+  // ince bir kılavuz çizgi. G37 (Eleştiri Arkeolojisi 1400-1450 Şam-Kahire
+  // yoğunluğu) bu kalıbı doğdurdu; artık aynı ihtiyacı olan başka
+  // görünümlere (Seyahat Atlası'nın Mekke/Tâif çakışması, Menziller
+  // zirvesindeki etiket sıkışması) tekrar yazmadan uygulayabilelim diye
+  // ortak motora taşındı.
+  //
+  // Çağıran, deconflictLabels() bittikten sonra items dizisini geri
+  // veriyor; her item'da .lbl (etiket), .baseY (deconflict öncesi konum),
+  // .anchor (etiketin düğüm merkezindeki başlangıcı, ops. varsayılan
+  // {x:0,y:0}) bulunmalı. Line etiket ile aynı SVG grubuna, etiketten
+  // ÖNCE eklenir (altta çizilsin diye). Sınıf adı çağıranın CSS'iyle
+  // eşleşmeli.
+  //
+  // options: {className, threshold, gap}
+  //   className: line'ın CSS sınıfı (ör. "seyahat-durak__leader")
+  //   threshold: kayma bu değerden az ise line eklenmez (varsayılan 4)
+  //   gap: line'ın etikete yaklaşırken bırakacağı boşluk (varsayılan 3px)
+  function attachLeaderLines(items, options) {
+    const opts = options || {};
+    const cls = opts.className || "leader-line";
+    const threshold = opts.threshold != null ? opts.threshold : 4;
+    const gap = opts.gap != null ? opts.gap : 3;
+    for (const it of items) {
+      const lblNode = it.lbl.node();
+      if (!lblNode || !lblNode.parentNode) continue;
+      const parent = d3.select(lblNode.parentNode);
+      const yFinal = +it.lbl.attr("y");
+      const kayma = yFinal - it.baseY;
+      if (Math.abs(kayma) < threshold) continue;
+      const anchor = it.anchor || { x: 0, y: 0 };
+      const labelX = +it.lbl.attr("x") || 0;
+      const y2 = kayma > 0 ? yFinal - gap : yFinal + gap;
+      // Etiket öncesine ekle -- çizim sırası SVG'de belirleyici.
+      const existing = parent.select("." + cls);
+      const line = existing.empty()
+        ? parent.insert("line", () => lblNode).attr("class", cls)
+        : existing;
+      line.attr("x1", anchor.x).attr("y1", anchor.y)
+        .attr("x2", labelX).attr("y2", y2);
+    }
+  }
+
   // KAPI — bkz. ETKILESIM_DILI.md: "geçiş dekor değil, dönüşümdür."
   //
   // İki bölüm arasındaki ilişki metafizik olarak "içinde" ise (Esmâ, Zât'ın
@@ -640,5 +683,5 @@ window.DostGraphUtils = (function () {
     };
   }
 
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor, debounceResize };
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize };
 })();

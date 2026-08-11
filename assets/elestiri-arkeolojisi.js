@@ -193,16 +193,11 @@ window.__elestiriArkeolojisiApp = (function () {
     // dairesinin (r=R+9) 5 birim dışında başlıyordu -- fare o dar şeritte
     // ne daireye ne yazının mürekkebine değiyordu (UI denetimi bulgusu,
     // eser-agi.js'teki aynı düzeltmeyle tutarlı). R+9'a çekildi.
-    // Kılavuz çizgi (leader-line): deconflictor bir etiketi kendi baseY'sinden
-    // uzağa ittiğinde -- 1400-1450 Şam-Kahire yoğunluğunda etiketler tek bir
-    // sütuna yığılıyordu (G37); leader-line eklenmeden hangi noktaya ait
-    // olduğu okunmuyordu. Her düğüm grubuna ÖNCE line, sonra text ekleniyor
-    // (line SVG'de daha altta çizilsin diye). Uzunluk deconflict sonrası
-    // hesaplanacak.
-    sel.append("line").attr("class", "elestiri-kisi__leader")
-      .attr("x1", 0).attr("x2", 0)
-      .attr("y1", 0).attr("y2", 0)
-      .style("opacity", 0);
+    // Kılavuz çizgi (leader-line): deconflictor bir etiketi kendi
+    // baseY'sinden uzağa ittiğinde (G37 Şam-Kahire yoğunluğu) hangi ad
+    // hangi noktaya ait okunmuyordu. Motor graph-utils.js'te; line
+    // deconflict sonrası eklenecek. Text buraya, line ondan ÖNCE eklenmiş
+    // olacak (attachLeaderLines parent'a insert ile koyuyor).
     const etiketSel = sel.append("text").attr("class", "elestiri-kisi__etiket")
       .attr("text-anchor", "middle")
       .attr("y", (d) => (d.y > d.laneY ? R + 9 : -(R + 8)))
@@ -219,23 +214,15 @@ window.__elestiriArkeolojisiApp = (function () {
     const obstacles = kisiler.map((d) => ({ x: d.x, y: d.y, half: R, h: R * 2 }));
     deconflictLabels(pendingLabels, obstacles);
 
-    // Deconflictor bittikten sonra hangi etiket kendi baseY'sinden çok
-    // uzaklaştıysa (>= 4 birim), o düğümün leader-line'ını görünür kıl.
-    // Etiket ile düğüm arasındaki dikey boşluk ölçülüp line'ın uçları
-    // ayarlanıyor. 4 birim eşiği: ufak salınımlarda çizgi görünmesin diye
-    // -- bir on yılda tek kişi olduğunda etiket zaten yerinde duruyor.
-    sel.each(function (d) {
-      const g = d3.select(this);
-      const etiket = g.select(".elestiri-kisi__etiket");
-      const yFinal = +etiket.attr("y");
-      const baseY = d.y > d.laneY ? R + 9 : -(R + 8);
-      const kaydi = yFinal - baseY;
-      if (Math.abs(kaydi) < 4) return;
-      const yStart = kaydi > 0 ? R : -R;
-      const yEnd = kaydi > 0 ? yFinal - 10 : yFinal + 3;
-      g.select(".elestiri-kisi__leader")
-        .attr("y1", yStart).attr("y2", yEnd)
-        .style("opacity", 0.55);
+    // Leader-line'lar: deconflict sonrası ötelenen etiketleri kendi
+    // düğümlerine ince bir çizgiyle bağla. Motor graph-utils.js'te
+    // attachLeaderLines'ta (G37 yoğunluğunda bu kalıp bulundu, sonra
+    // ortak motora taşındı). Görünürlüğü CSS'te tanımlı, JS opacity ile
+    // uğraşmıyor.
+    GU.attachLeaderLines(pendingLabels, {
+      className: "elestiri-kisi__leader",
+      threshold: 4,
+      gap: 10,
     });
 
     sel.on("mouseenter", function (ev, d) { vurgulaKisi(d.id, true); ipucu(ev, d); })
