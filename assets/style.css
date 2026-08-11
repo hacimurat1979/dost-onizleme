@@ -2939,6 +2939,57 @@ body[data-theme="dark"] #sirlar-legend {
 .legend__dot--hal-yanki   { background: var(--series-hal-cemfark); }
 .legend__dot--celal    { background: var(--series-celal); }
 .legend__dot--cemal    { background: var(--series-cemal); }
+/* Kur'ân Dokusu lejantı (2026-08-10, G27) */
+.legend__dot--kd-sure    { background: var(--series-ibnarabi); }
+.legend__dot--kd-bap     { background: var(--series-theme); }
+.legend__dot--kd-kalinlik {
+  background: transparent;
+  border: none;
+  width: 22px;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--series-ibnarabi) 0%, var(--series-ibnarabi) 30%, rgba(107,127,215,0.9) 100%);
+}
+/* Taşıyıcılar lejantı (2026-08-10, G23) */
+.legend__dot--tas-dolu { background: var(--series-theme); }
+.legend__dot--tas-bos  { background: transparent; border: 1.5px solid var(--series-theme); box-sizing: border-box; }
+/* Eleştiri Arkeolojisi lejantı (2026-08-10, G36) */
+.legend__dot--el-elestirmen { background: var(--series-celal); }
+.legend__dot--el-savunmaci  { background: var(--series-cemal); }
+.legend__dot--el-benimseyen { background: var(--series-kemal); }
+.legend__dot--el-kaynak     { background: var(--series-ibnarabi); }
+.legend__dot--el-hakem      { background: var(--text-muted); }
+.legend__marker--el-kurban {
+  display: inline-block;
+  width: 12px; height: 12px;
+  background: var(--series-celal);
+  transform: rotate(45deg);
+  border-radius: 1px;
+  margin: 0 4px;
+}
+.legend__marker--el-hukumdar {
+  display: inline-block;
+  width: 12px; height: 12px;
+  background: var(--series-theme);
+  border-radius: 1px;
+  margin: 0 4px;
+}
+/* Eser Ağı lejantı (2026-08-10, G34) */
+.legend__marker--eser-nokta {
+  display: inline-block;
+  width: 10px; height: 10px;
+  background: var(--series-theme);
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.legend__marker--eser-katalog {
+  display: inline-block;
+  width: 12px; height: 12px;
+  background: var(--series-theme);
+  transform: rotate(45deg);
+  border-radius: 1px;
+  margin: 0 4px;
+}
 .legend__dot--kemal    { background: var(--series-kemal); }
 .legend__dot--esma-neutral { background: var(--series-esma-neutral); }
 
