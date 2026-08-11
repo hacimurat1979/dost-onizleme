@@ -1091,11 +1091,13 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
-  max-width: min(440px, 90%);
+  /* 2026-08-10 (G7 + rapor EK A.3): ikinci düğme (Kalp) eklendi; container
+     genişletildi ve metin sarmalayan sığar hâle getirildi. */
+  max-width: min(640px, 92%);
   background: color-mix(in srgb, var(--surface-1) 96%, transparent);
   border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 10px 10px 10px 20px;
+  border-radius: 22px;
+  padding: 12px 12px 12px 20px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1103,6 +1105,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   z-index: 3;
   animation: start-hint-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.start-hint__text { flex: 1; min-width: 0; }
 .start-hint[hidden] { display: none; }
 .viz-root[data-theme="dark"] .start-hint {
   box-shadow: 0 4px 18px rgba(0,0,0,0.4);
@@ -1142,6 +1145,20 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
 .start-hint__go:hover,
 .start-hint__go:focus-visible {
   background: var(--accent-interactive);
+}
+/* 2026-08-10 denetim (G7 + rapor EK A.3): ikinci kapı (Kalp) daha yumuşak,
+   çünkü metafiziksel olarak "bize en yakın uç" -- görsel olarak da
+   ikincil ama eş değerli. */
+.start-hint__go--kalp {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.start-hint__go--kalp:hover,
+.start-hint__go--kalp:focus-visible {
+  background: transparent;
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
 }
 .start-hint__close {
   position: relative;
@@ -9571,6 +9588,63 @@ mark.durus-vurgu-es {
    davranış taşıyor: boşluk kanıt biriktikçe daralmıyor, maddenin `durum`una
    göre SABİT -- tartışmalı en geniş, bizim sınırımız en dar. Çentik yok,
    çünkü burada ölçülen bir "kaç kayıtta iz bulduk" değil. */
+/* Açık Sorular liste düğmesi (2026-08-10, G40): kesik metinleri açar. */
+.acik-sorular-liste-btn {
+  position: absolute;
+  top: 18px;
+  right: 66px;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.acik-sorular-liste-btn:hover,
+.acik-sorular-liste-btn:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+
+/* Manifesto — sitenin duruş beyanı sayfasının görünür açılış cümlesi
+   (2026-08-10, G41). Grafik SVG'sinden AYRI (absolute değil) -- yoksa
+   düğüm etiketleri üstüne biniyor. Wrap flex sütun; SVG kalan boşluğu
+   doldurur. */
+#bilmiyoruz-wrap {
+  display: flex;
+  flex-direction: column;
+}
+#bilmiyoruz-wrap #bilmiyoruz-graph {
+  flex: 1;
+  min-height: 0;
+}
+.bilmiyoruz-manifest {
+  padding: 16px 24px 6px;
+  z-index: 2;
+  pointer-events: none;
+}
+.bilmiyoruz-manifest__p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-soft, #55524b);
+  text-align: center;
+  font-style: italic;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.viz-root[data-theme="dark"] .bilmiyoruz-manifest__p { color: var(--ink-soft-dark, #b5afa2); }
+@media (max-width: 640px) {
+  .bilmiyoruz-manifest { position: static; transform: none; width: 100%; padding: 12px 12px 4px; }
+  .bilmiyoruz-manifest__p { font-size: 0.86rem; text-align: left; }
+}
+
 .bilmiyoruz-madde { cursor: pointer; }
 .bilmiyoruz-madde:focus { outline: none; }
 .bilmiyoruz-madde__yay {

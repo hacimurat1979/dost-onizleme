@@ -72,6 +72,19 @@ window.__bilmiyoruzApp = (function () {
   let g = null;
   let focusId = null;
 
+  // 2026-08-10 denetim (G41): sitenin duruş beyanı olan bu sayfa görsel olarak
+  // neredeyse boş kalıyor, manifesto metni yalnız ipucu/panel arkasında
+  // duruyordu. Şimdi bilmiyoruz.json'daki `not` alanı (üç dilli) sayfanın
+  // başına DOĞRUDAN yazılıyor -- ana ilkenin en görünür sözü.
+  function renderManifest() {
+    const el = document.getElementById("bilmiyoruz-manifest");
+    if (!el || !data) return;
+    const metin = tt(data.not);
+    if (!metin) { el.hidden = true; return; }
+    el.innerHTML = `<p class="bilmiyoruz-manifest__p">${metin}</p>`;
+    el.hidden = false;
+  }
+
   function boyut() {
     const r = wrapEl.getBoundingClientRect();
     return { w: Math.max(320, r.width), h: Math.max(320, r.height) };
@@ -314,7 +327,7 @@ window.__bilmiyoruzApp = (function () {
       // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
       yukle().then(() => {
-        yerlestir(); ciz();
+        yerlestir(); ciz(); renderManifest();
       }).catch(() => {
         const st = document.getElementById("bilmiyoruz-wrap-status");
         if (st) {
@@ -326,6 +339,7 @@ window.__bilmiyoruzApp = (function () {
     },
     onLangChange() {
       if (!yuklendi) return;
+      renderManifest();
       ciz();
       if (focusId) {
         const d = nodes.find((x) => x.id === focusId);

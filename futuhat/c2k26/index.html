@@ -259,10 +259,16 @@
       <button class="graph-confidence-toggle" id="ontology-confidence-toggle" type="button" data-tr-title="Ne kadar eminiz? — düşük güvenli bağlantıları soluklaştır" data-en-title="How certain are we? — fade low-confidence links" data-pt-title="Quão certos estamos? — esmaecer vínculos de baixa confiança" title="Ne kadar eminiz? — düşük güvenli bağlantıları soluklaştır" aria-label="Ne kadar eminiz? — düşük güvenli bağlantıları soluklaştır">
         <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M12 3.5 4.5 6.8v5.1c0 4.6 3.1 7.9 7.5 8.6 4.4-0.7 7.5-4 7.5-8.6V6.8L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.6 12.1l2.4 2.4 4.4-4.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/></svg>
       </button>
+      <!-- 2026-08-10 denetim (G7 + rapor EK A.3): "Zât'a git" tek yönlendirmesi
+           yeni ziyaretçiyi sitenin en soyut/uzun paneline indiriyordu; ama
+           Zât'tan başlamak sitenin metafiziğine sadık — çözüm iki-uçlu:
+           "iki uçtan biri: O'ndan inen yol, O'na dönen yol". Çerçeve korunur,
+           bilişsel yük hafifler. -->
       <div class="start-hint" id="start-hint" hidden>
-        <p class="start-hint__text" data-tr="İlk kez mi buradasın? Her şeyin çıktığı ve döndüğü merkezden, Zât'tan (her nitelemenin ötesindeki öz) başla." data-en="First time here? Start from the center everything emerges from and returns to: the Essence." data-pt="Primeira vez aqui? Comece pelo centro de onde tudo emerge e para onde tudo retorna: a Essência.">İlk kez mi buradasın? Her şeyin çıktığı ve döndüğü merkezden, Zât'tan (her nitelemenin ötesindeki öz) başla.</p>
+        <p class="start-hint__text" data-tr="İlk kez mi buradasın? Bu harita iki uçlu bir çember: her şey Zât'tan çıkıyor, Kalp'ten Zât'a dönüyor. İki uçtan birini seç." data-en="First time here? This map is a two-ended circle: everything issues from the Essence and returns to it through the Heart. Pick one of the two ends." data-pt="Primeira vez aqui? Este mapa é um círculo com duas pontas: tudo emana da Essência e retorna a ela pelo Coração. Escolha uma das duas pontas.">İlk kez mi buradasın? Bu harita iki uçlu bir çember: her şey Zât'tan çıkıyor, Kalp'ten Zât'a dönüyor. İki uçtan birini seç.</p>
         <div class="start-hint__actions">
-          <button class="start-hint__go" id="start-hint-go" type="button" data-tr="Zât'a git" data-en="Go to the Essence" data-pt="Ir para a Essência">Zât'a git</button>
+          <button class="start-hint__go" id="start-hint-go" type="button" data-tr="Zât'tan başla" data-en="Start from the Essence" data-pt="Comece pela Essência" title="Her nitelemenin ötesindeki öz — derin uç" data-tr-title="Her nitelemenin ötesindeki öz — derin uç" data-en-title="The Essence beyond all naming — the deep end" data-pt-title="A Essência além de toda nomeação — a ponta profunda">Zât'tan başla</button>
+          <button class="start-hint__go start-hint__go--kalp" id="start-hint-go-kalp" type="button" data-tr="Kalp'ten başla" data-en="Start from the Heart" data-pt="Comece pelo Coração" title="Bize en yakın uç — dönüşün başladığı yer" data-tr-title="Bize en yakın uç — dönüşün başladığı yer" data-en-title="The end closest to us — where the return begins" data-pt-title="A ponta mais próxima de nós — onde começa o retorno">Kalp'ten başla</button>
           <button class="start-hint__close" id="start-hint-close" type="button" aria-label="Kapat / Close / Fechar">×</button>
         </div>
       </div>
@@ -457,9 +463,20 @@
       <button class="graph-hint" type="button" data-tr-title="Her yay bir soru; çizilmeyen boşluk sorunun ne kadar açık olduğu, yay üzerindeki çentikler okuma kaydımızda bulduğumuz izler. Bir yaya tıklayın." data-en-title="Each arc is a question; the undrawn gap is how open it still is, and the ticks along the arc are the traces we found in our reading record. Click an arc." data-pt-title="Cada arco é uma pergunta; a lacuna não desenhada é o quanto continua em aberto, e as marcas ao longo do arco são os vestígios que encontrámos no nosso registo. Clique num arco." title="Her yay bir soru; çizilmeyen boşluk sorunun ne kadar açık olduğu, yay üzerindeki çentikler okuma kaydımızda bulduğumuz izler. Bir yaya tıklayın." aria-label="Her yay bir soru; çizilmeyen boşluk sorunun ne kadar açık olduğu, yay üzerindeki çentikler okuma kaydımızda bulduğumuz izler. Bir yaya tıklayın.">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
       </button>
+      <!-- 2026-08-10 denetim (G40): soru metinleri "..." ile kesikti; bir bakışta
+           yalnız numara görünüyordu. Bu düğme mevcut giriş panelini (soruların
+           tam metinli listesini) açar. -->
+      <button class="acik-sorular-liste-btn" id="acik-sorular-liste-btn" type="button" data-tr-title="Soruların tam metnini liste olarak göster" data-en-title="Show the full text of the questions as a list" data-pt-title="Mostrar o texto completo das perguntas em lista" title="Soruların tam metnini liste olarak göster" aria-label="Soruların tam metnini liste olarak göster">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
     </section>
 
     <section class="graph-wrap" id="bilmiyoruz-wrap" hidden>
+      <!-- 2026-08-10 denetim (G41): sitenin duruş beyanı sayfası görsel olarak
+           neredeyse boştu; bilmiyoruz.json'daki manifesto (üç dilli) bilmiyoruz.js
+           tarafından etkinleştirilirken doldurulur. Boş varsayılan, JS
+           yüklenmezse hiç metin göstermek yerine yalnız sessizce boş kalsın. -->
+      <div class="bilmiyoruz-manifest" id="bilmiyoruz-manifest"></div>
       <svg id="bilmiyoruz-graph" role="group" aria-label="Bilmiyoruz halkası"
            data-tr-aria-label="Bilmiyoruz halkası" data-en-aria-label="Ring of unknowns" data-pt-aria-label="Anel do que não sabemos"></svg>
       <div class="view-status" id="bilmiyoruz-wrap-status" hidden>
@@ -1428,11 +1445,11 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
   <script src="assets/futuhat.js" defer integrity="sha384-rfBRvmcoKYLIawa0nWi1lIuFguz2xu/4gd/ZTkJesT+PhHZhVRJqEUjVHjP6pnCa"></script>
   <script src="assets/fusus.js" defer integrity="sha384-NWndNFf07ZRehuPP29Nc/iMRBsDyMjSIfCUSvp7ycm+1r3mf7pjTGJlZBcBPBcQt"></script>
-  <script src="assets/view-loader.js" defer integrity="sha384-BrP/wjG/didr8+Wf6TjubPVQv0lAe9HXui9hkmqARNqU4oTl6Btq+EuSDD1cMZgl"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-dyC4go+hvx1jJBSU7rfqxdSxrn+1kctjfGXW2+PuSpgnzq6JdG9vE4T/2ySBwr+3"></script>
   <script src="assets/ontology.js" defer integrity="sha384-IbANwyjsntFnZLZuhudO4f6oMscNDufDQ8b7M2YaDAB1IsgwE9R3dJ2yvUJva+om"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-9qv/Q/FBNgrPHnUOAukAqwsa/DVkrKY78fVJR+l6Kro4bz3an1mUQ8Tg1yG83pGw"></script>
-  <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>
+  <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>
   <script src="assets/secret-nav.js" defer integrity="sha384-bxSN300rzY5eTjVk6TAWQVedjEJKuWieA2pZLzqq8xZNFBtlkjahenZSN2Jhiuut"></script>
   <script src="assets/edit-mode.js" defer integrity="sha384-2QRKBfGQXrPh3VXJgkQq6mJjmZM6UgW2VljqTs6LOTCGnRORBCJ0nh0mVd39+jbz"></script>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in

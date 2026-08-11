@@ -331,6 +331,11 @@ window.__acikSorularApp = (function () {
       if (focusId) { girisPaneli(); return true; }
       return false;
     });
+    // 2026-08-10 denetim (G40): soruların tam metnini görmek için grafik
+    // yerine liste görünümü. Mevcut girisPaneli() ZATEN üç dilli tam liste
+    // gösteriyordu -- düğme yalnız o paneli tetikler, mimari değişmez.
+    const listeBtn = document.getElementById("acik-sorular-liste-btn");
+    if (listeBtn) listeBtn.addEventListener("click", () => girisPaneli());
     window.addEventListener("resize", GU.debounceResize(() => {
       if (!yuklendi || wrapEl.hidden) return;
       yerlestir(); ciz();
