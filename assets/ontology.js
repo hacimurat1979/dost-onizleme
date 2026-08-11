@@ -276,6 +276,11 @@
     }
     else if (currentMainView === "kavram") window.__kavramApp && window.__kavramApp.onLangChange();
     else if (currentMainView === "ayethadis") window.__ayetHadisApp && window.__ayetHadisApp.onLangChange();
+    // Ontoloji görünümündeki mobil alternatif liste (grafik ekrana sığmazsa).
+    // Aynı sayfada yaşadığı için ontoloji dalı gibi else-if içine
+    // sıkıştırılmıyor; render() zaten grafiği tazeliyor, mobil liste
+    // kendi doldur()'ıyla tazelensin.
+    window.__ontolojiMobilListeApp && window.__ontolojiMobilListeApp.onLangChange();
     updateHeaderHeightVar();
   });
 

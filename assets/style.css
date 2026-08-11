@@ -733,6 +733,93 @@ html {
 [data-theme="light"] .theme-toggle__icon--moon { display: block; }
 [data-theme="dark"] .theme-toggle__icon--sun { display: block; }
 
+/* Ontoloji mobil alternatif liste (2026-08-10, G57 + rapor 16-A):
+   grafik mobilde okunmaz yumak olduğu için varsayılan liste. Mobilde
+   grafik gizli, "Haritayı aç" düğmesi gerçek grafiği açar. Masaüstünde
+   liste hep gizli. */
+.ontoloji-mobil-liste { display: none; }
+.ontoloji-mobil-liste__baslik {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--text-primary);
+}
+.ontoloji-mobil-liste__not {
+  margin: 0 0 14px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.ontoloji-mobil-liste__ul { list-style: none; margin: 0; padding: 0; }
+.ontoloji-mobil-liste__satir {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  min-height: 48px;
+}
+.ontoloji-mobil-liste__satir:hover,
+.ontoloji-mobil-liste__satir:focus-visible {
+  border-color: var(--accent-interactive);
+  color: var(--accent-interactive);
+}
+.ontoloji-mobil-liste__pip {
+  flex: 0 0 auto;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  margin-top: 4px;
+  background: var(--series-ibnarabi);
+}
+.ontoloji-mobil-liste__pip--zat { background: var(--surface-1); border: 2px solid var(--helix-gold-rim); }
+.ontoloji-mobil-liste__pip--return { background: var(--series-theme); }
+.ontoloji-mobil-liste__pip--paradox { background: var(--series-daphne); }
+.ontoloji-mobil-liste__govde { flex: 1; min-width: 0; }
+.ontoloji-mobil-liste__ad { font-weight: 600; font-size: 0.95rem; }
+.ontoloji-mobil-liste__ozet { font-size: 0.82rem; color: var(--text-secondary); margin-top: 3px; line-height: 1.45; }
+.ontoloji-mobil-liste__grafik-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.ontoloji-mobil-liste__grafik-btn:hover,
+.ontoloji-mobil-liste__grafik-btn:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+@media (max-width: 640px) {
+  #ontology-wrap:not(.ontoloji-grafik-acik) > #graph,
+  #ontology-wrap:not(.ontoloji-grafik-acik) > .graph-recenter,
+  #ontology-wrap:not(.ontoloji-grafik-acik) > .graph-hint,
+  #ontology-wrap:not(.ontoloji-grafik-acik) > #legend,
+  #ontology-wrap:not(.ontoloji-grafik-acik) > .graph-3d-toggle,
+  #ontology-wrap:not(.ontoloji-grafik-acik) > .graph-confidence-toggle,
+  #ontology-wrap:not(.ontoloji-grafik-acik) > .graph-fca-btn,
+  #ontology-wrap:not(.ontoloji-grafik-acik) > .start-hint { display: none !important; }
+  #ontology-wrap:not(.ontoloji-grafik-acik) {
+    height: auto;
+    min-height: 0;
+    padding: 16px 14px 24px;
+    overflow: visible;
+  }
+  #ontology-wrap:not(.ontoloji-grafik-acik) .ontoloji-mobil-liste { display: block; }
+}
+
 /* Sessiz Mod: sabit, dairesel bir anahtar -- açıkken üst menüyü kaldırır.
    Aynı düğme aynı yerde kalır (geri dönmek de tek tıkla, ya da Esc). */
 .sessiz-mod-toggle {

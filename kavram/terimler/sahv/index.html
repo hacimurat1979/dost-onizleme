@@ -241,6 +241,12 @@
     <section class="graph-wrap" id="ontology-wrap">
       <svg id="graph" role="group" aria-label="Ontoloji haritası"
            data-tr-aria-label="Ontoloji haritası" data-en-aria-label="Ontology map" data-pt-aria-label="Mapa de ontologia"></svg>
+      <!-- 2026-08-10 denetim (G57 + rapor 16-A): mobilde grafik fiilen okunmuyor
+           (bitişik etiket yumağı). Bu alternatif liste iniş sırasına göre 15
+           düğümü verir; her satır o düğümün paneline gider. Mobilde varsayılan
+           GÖRÜNÜR, grafik gizli; "Haritayı aç" düğmesi grafiğe geçirir.
+           Masaüstünde tam tersi (grafik varsayılan, liste gizli). -->
+      <nav class="ontoloji-mobil-liste" id="ontoloji-mobil-liste" aria-label="Ontoloji: mertebe listesi (mobil alternatif)" data-tr-aria-label="Ontoloji: mertebe listesi (mobil alternatif)" data-en-aria-label="Ontology: rank list (mobile alternative)" data-pt-aria-label="Ontologia: lista das hierarquias (alternativa móvel)"></nav>
       <div class="view-status" id="ontology-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
         <p class="view-status__text"></p>
@@ -1446,10 +1452,12 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/futuhat.js" defer integrity="sha384-rfBRvmcoKYLIawa0nWi1lIuFguz2xu/4gd/ZTkJesT+PhHZhVRJqEUjVHjP6pnCa"></script>
   <script src="assets/fusus.js" defer integrity="sha384-NWndNFf07ZRehuPP29Nc/iMRBsDyMjSIfCUSvp7ycm+1r3mf7pjTGJlZBcBPBcQt"></script>
   <script src="assets/view-loader.js" defer integrity="sha384-dyC4go+hvx1jJBSU7rfqxdSxrn+1kctjfGXW2+PuSpgnzq6JdG9vE4T/2ySBwr+3"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-IbANwyjsntFnZLZuhudO4f6oMscNDufDQ8b7M2YaDAB1IsgwE9R3dJ2yvUJva+om"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-Pyxe6Z5QVcKbvnKjLLQeTDkyHht/PUhK3NbR/bkk0L4dynr3gVCxk7zBk/BAgb5S"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-9qv/Q/FBNgrPHnUOAukAqwsa/DVkrKY78fVJR+l6Kro4bz3an1mUQ8Tg1yG83pGw"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>
+  <!-- 2026-08-10 denetim (G57 + rapor 16-A): mobil için grafik yerine liste. -->
+  <script src="assets/ontoloji-mobil-liste.js" defer integrity="sha384-YvQpuu2GLrdXPHaUaSFqgKxXtVoFbZRpxltW8rJRyvXa6QDIS1CBTf7h1LIDm9WD"></script>
   <script src="assets/secret-nav.js" defer integrity="sha384-bxSN300rzY5eTjVk6TAWQVedjEJKuWieA2pZLzqq8xZNFBtlkjahenZSN2Jhiuut"></script>
   <script src="assets/edit-mode.js" defer integrity="sha384-2QRKBfGQXrPh3VXJgkQq6mJjmZM6UgW2VljqTs6LOTCGnRORBCJ0nh0mVd39+jbz"></script>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in
