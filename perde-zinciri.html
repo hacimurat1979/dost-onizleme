@@ -27,6 +27,11 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 .grab-hint.gone{opacity:.28}
 .aha{font-size:.85rem;font-style:italic;line-height:1.75;color:var(--am);margin-top:.7rem;white-space:pre-line;opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease}
 .aha.show{opacity:1;transform:none}
+/* /sahne motor: sahne oynarken sürükleme kapalı; bittikten sonra açılıyor. */
+body:not(.sahne-bitti) #scene{cursor:default}
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.4rem;min-height:34px}
+.olcu-gosterge{font-size:.7rem;color:var(--mu);letter-spacing:.15em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge,body.sahne-bitti .motor-kontroller{opacity:1}
 .kardes{margin-top:1rem;font-size:.75rem;line-height:1.6}
 .kardes a{color:var(--am);text-decoration:none;border-bottom:1px solid var(--bo)}
 .kardes a:hover,.kardes a:focus-visible{border-bottom-color:var(--am)}
@@ -157,6 +162,10 @@ blockquote{font-size:.87rem;font-style:italic;line-height:1.8}
     </svg>
     <div class="stage">
       <p class="state" id="state"></p>
+      <div class="motor-kontroller">
+        <span class="olcu-gosterge" id="olcuGosterge" aria-live="polite"></span>
+        <span id="motorBiter"></span>
+      </div>
       <p class="grab-hint" id="grabHint"></p>
       <p class="aha" id="aha"></p>
     </div>
@@ -175,6 +184,8 @@ blockquote{font-size:.87rem;font-style:italic;line-height:1.8}
   </div>
 </div>
 
+<!-- Sahne motoru — .claude/commands/sahne.md motor adımı -->
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const L={
   tr:{title:'Perde Zinciri',sub:'Sıfatlar Zât\'ı perdeler · Fiiller Sıfatları perdeler · Eserler Fiilleri perdeler',
@@ -232,6 +243,10 @@ const IDS=['rE','rF','rS','rZ'];
 const $=id=>document.getElementById(id);
 
 let lang='tr', cur=null, t=0, touched=false;
+// /sahne motor entegrasyonu
+let motorBitti=false;
+let tFrom=0, tTo=0;
+function easeInOut(x){ return x<0.5 ? 2*x*x : 1 - Math.pow(-2*x+2,2)/2; }
 
 // Her perde kendi payında incelir; Sıfatlar hiçbir zaman tam kalkmaz.
 function veil(i){
@@ -254,11 +269,16 @@ function render(){
   $('tS').setAttribute('opacity',(0.25+0.75*oS).toFixed(3));
   $('tZ').setAttribute('opacity',(0.30+0.28*t).toFixed(3));
 
-  const d=L[lang];
-  const step = t<0.22?0 : t<0.52?1 : t<0.84?2 : 3;
-  $('state').textContent=d.st[step];
-  $('state').classList.toggle('deep',step===3);
-  if(t>0.97) $('aha').classList.add('show');
+  // v-tabanlı state metni yalnız keşif modunda (motor bittikten sonra)
+  if(motorBitti){
+    const d=L[lang];
+    const step = t<0.22?0 : t<0.52?1 : t<0.84?2 : 3;
+    $('state').textContent=d.st[step];
+    $('state').classList.toggle('deep',step===3);
+    if(t>0.97) $('aha').classList.add('show');
+  } else {
+    $('state').classList.toggle('deep', t>0.84);
+  }
 }
 
 function setT(x){ t=Math.max(0,Math.min(1,x)); render(); }
@@ -267,6 +287,7 @@ const scene=$('scene');
 let dragging=false,lastX=0,lastY=0;
 function markTouched(){ if(!touched){touched=true;$('grabHint').classList.add('gone');} }
 scene.addEventListener('pointerdown',e=>{
+  if(!motorBitti) return; // motor konuşurken müdahale yok
   dragging=true;lastX=e.clientX;lastY=e.clientY;
   try{scene.setPointerCapture(e.pointerId);}catch(_){}
   markTouched();e.preventDefault();
@@ -279,6 +300,7 @@ scene.addEventListener('pointermove',e=>{
 });
 ['pointerup','pointercancel','pointerleave'].forEach(k=>scene.addEventListener(k,()=>{dragging=false;}));
 scene.addEventListener('keydown',e=>{
+  if(!motorBitti) return; // motor konuşurken müdahale yok
   const k={ArrowRight:0.05,ArrowUp:0.05,ArrowLeft:-0.05,ArrowDown:-0.05}[e.key];
   if(k===undefined) return;
   markTouched();setT(t+k);e.preventDefault();
@@ -316,7 +338,7 @@ function setLang(l){
   $('i-title').textContent=d.title;
   $('i-sub').textContent=d.sub;
   $('i-ql').textContent=d.ql;
-  $('grabHint').textContent=d.grab;
+  $('grabHint').textContent = motorBitti ? d.grab : "";
   $('aha').textContent=d.aha;
   $('kardesLink').textContent=d.kardes;
   $('tE').textContent=d.rings[0];
@@ -328,6 +350,51 @@ function setLang(l){
 }
 
 setLang('tr');
+
+// ── Motor entegrasyonu ──────────────────────────────────────────────────────
+(function baslatMotor(){
+  const base = (window.__dostRouteBase || "");
+  const url = (base ? base + "/" : "") + "data/ibn-arabi/sahne-partisyonlari/perde-zinciri.json";
+  fetch(url).then(function(r){ return r.json(); }).then(function(partisyon){
+    if(!window.__sahneMotoru){ console.warn("sahne-motoru yüklenemedi"); return; }
+    // İlk ölçünün hedef t değerine atla
+    const ilk = partisyon.olcuLer[0];
+    t = ilk.hedef_hal.t;
+    tFrom = t; tTo = t;
+    render();
+    window.__sahneMotoru.yarat({
+      container: scene,
+      partisyon: partisyon,
+      applyOlcu: function(olcu){
+        tFrom = t;
+        tTo = (olcu.hedef_hal && typeof olcu.hedef_hal.t === "number") ? olcu.hedef_hal.t : t;
+        if(olcu.hedef_hal && olcu.hedef_hal.aha){ $('aha').classList.add('show'); }
+      },
+      frame: function(fraz, olcu){
+        const e = easeInOut(fraz);
+        t = tFrom + (tTo - tFrom) * e;
+        render();
+      },
+      metinGoster: function(metin){
+        if(!metin){ $('state').textContent = ""; return; }
+        $('state').textContent = metin[lang] || metin.tr || "";
+      },
+      olcuGoster: function(idx, toplam){
+        $('olcuGosterge').textContent = (idx+1) + " / " + toplam;
+      },
+      biterEl: $('motorBiter'),
+      tepki: function(ev){
+        if(ev.tip === "bitti"){
+          motorBitti = true;
+          document.body.classList.add('sahne-bitti');
+          $('grabHint').textContent = L[lang].grab;
+          const olcu = partisyon.olcuLer[partisyon.olcuLer.length - 1];
+          if(olcu.hedef_hal && olcu.hedef_hal.aha) $('aha').classList.add('show');
+        }
+      },
+    });
+  }).catch(function(err){ console.warn("partisyon yüklenemedi", err); });
+})();
 
 window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);
