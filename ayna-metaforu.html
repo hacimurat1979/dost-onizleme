@@ -21,31 +21,32 @@
 <title>Ayna Metaforu — Dost Arabi</title>
 <style>
 :root{
+  /* Dark tema varsayılanı */
   --bg:#0D0D0D; --surface:#1A1A19; --border:#2C2C2A;
   --text:#EDE9E2; --muted:#898781;
-  --gold:#FFC233;
-  --gold-soft:#FFDE84;
-  --gold-warm:#FFF3C9;
-  --amber:#D89B3C;
-  --amber-soft:#F5C874;
-  --cerceve:#8C6D2E;     /* aynanın ince altın çerçevesi -- HİÇ DEĞİŞMEZ */
+  --gold:#FFC233; --gold-soft:#FFDE84; --gold-warm:#FFF3C9;
+  --amber:#D89B3C; --amber-soft:#F5C874;
+  --cerceve:#8C6D2E;     /* aynanın ince altın çerçevesi -- iki temada aynı */
   --ic-derin:#241D12;    /* aynanın iç yüzeyi, koyu sıcak */
   --ic-yumus:#3A2C15;    /* iç yüzeyin merkez ışığı */
   --suret:#E9CE7A;       /* suretlerin siluet rengi -- ışıklı ama silik */
-  --panel:#0B0906;
+  --panel:#0B0906;       /* sahne alanı zemini */
 }
-/* Sayfa çevresi (header, footer, sahne-dışı) tema değişkenlerine
-   uyar; ama sahnenin İÇİ (--panel, --ic-derin, --ic-yumus, --suret,
-   --cerceve) HER İKİ TEMADA da koyu ve sıcaktır -- "karanlıkta
-   beliren antik ayna" motifi teması-agnostik bir sahne kararıdır. */
+/* Light tema: sahne alanı zemini SICAK KREM (siyah kare değil).
+   Ayna iç yüzeyi de light temaya uygun: açık amber → koyu amber
+   gradient. Suret rengi koyu altın (ışıklı zemin üzerinde okunur). */
 @media(prefers-color-scheme:light){:root{
   --bg:#F9F9F7; --surface:#FCFCFB; --border:#E1E0D9;
   --text:#1A1A1A; --muted:#6F6D65;
   --gold:#B07800; --gold-soft:#D4A03E; --gold-warm:#F1E3B7;
   --amber:#8C5A18; --amber-soft:#BE8E48;
+  --cerceve:#8C6D2E;
+  --ic-derin:#B7924A; --ic-yumus:#F1E3B7;
+  --suret:#5D4718;
+  --panel:#E6DFCA;
 }}
-:root[data-theme=dark]{--bg:#0D0D0D;--surface:#1A1A19;--border:#2C2C2A;--text:#EDE9E2;--muted:#898781;--gold:#FFC233;--gold-soft:#FFDE84;--gold-warm:#FFF3C9;--amber:#D89B3C;--amber-soft:#F5C874}
-:root[data-theme=light]{--bg:#F9F9F7;--surface:#FCFCFB;--border:#E1E0D9;--text:#1A1A1A;--muted:#6F6D65;--gold:#B07800;--gold-soft:#D4A03E;--gold-warm:#F1E3B7;--amber:#8C5A18;--amber-soft:#BE8E48}
+:root[data-theme=dark]{--bg:#0D0D0D;--surface:#1A1A19;--border:#2C2C2A;--text:#EDE9E2;--muted:#898781;--gold:#FFC233;--gold-soft:#FFDE84;--gold-warm:#FFF3C9;--amber:#D89B3C;--amber-soft:#F5C874;--cerceve:#8C6D2E;--ic-derin:#241D12;--ic-yumus:#3A2C15;--suret:#E9CE7A;--panel:#0B0906}
+:root[data-theme=light]{--bg:#F9F9F7;--surface:#FCFCFB;--border:#E1E0D9;--text:#1A1A1A;--muted:#6F6D65;--gold:#B07800;--gold-soft:#D4A03E;--gold-warm:#F1E3B7;--amber:#8C5A18;--amber-soft:#BE8E48;--cerceve:#8C6D2E;--ic-derin:#B7924A;--ic-yumus:#F1E3B7;--suret:#5D4718;--panel:#E6DFCA}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;
@@ -209,11 +210,11 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
                      C 300 220, 293 180, 315 150
                      C 340 138, 365 152, 360 195
                      C 355 215, 345 228, 330 232 Z"/>
-            <!-- iç ana damar -->
-            <path fill="none" stroke="var(--panel)" stroke-width="0.9" opacity="0.55"
+            <!-- iç ana damar (koyu altın, iki temada okunur) -->
+            <path fill="none" stroke="var(--cerceve)" stroke-width="0.9" opacity="0.6"
                   d="M 330 232 C 325 210, 322 180, 322 152"/>
             <!-- yan damarlar (ince) -->
-            <path fill="none" stroke="var(--panel)" stroke-width="0.6" opacity="0.42"
+            <path fill="none" stroke="var(--cerceve)" stroke-width="0.6" opacity="0.5"
                   d="M 328 220 L 315 222 M 325 200 L 308 200 M 323 178 L 310 176 M 323 158 L 335 152"/>
             <!-- sap -->
             <path fill="none" stroke="var(--suret)" stroke-width="1.4" opacity="0.75"
@@ -249,8 +250,8 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
                   d="M 330 178
                      C 310 168, 307 132, 330 112
                      C 353 132, 350 168, 330 178 Z"/>
-            <!-- orta damar (koyu iç gölge) -->
-            <path fill="none" stroke="var(--panel)" stroke-width="0.9" opacity="0.5"
+            <!-- orta damar (koyu altın, iki temada okunur) -->
+            <path fill="none" stroke="var(--cerceve)" stroke-width="0.9" opacity="0.55"
                   d="M 330 122 L 330 175"/>
           </g>
 
@@ -352,13 +353,16 @@ window.addEventListener("message", function(e){
 });
 
 // ── SAHNE ──────────────────────────────────────────────────────────
-// 9 sn, 5 mantıksal kare. Tek fikir: ayna sabit; suretler değişir.
-//   K1 (0.0-1.2): ayna karanlıktan belirir. Çerçeve ve iç yüzey.
-//   K2 (1.2-7.4): 6 suret sırayla belirip söner (~1.0 sn her biri).
+// ~17 sn, 5 mantıksal kare. Tek fikir: ayna sabit; suretler değişir.
+//   K1 (0.0-2.5): ayna karanlıktan belirir. Çerçeve ve iç yüzey.
+//   K2 (2.5-14.5): 6 suret art arda -- yumuşak CROSSFADE ile birinden
+//                 diğerine dönüşür. Her suret 3.2 sn görünür (appear
+//                 1.2, hold 0.8, disappear 1.2), sonraki 1.7 sn sonra
+//                 başlar -- 1.5 sn overlap crossfade.
 //                 Kamera hafif yaklaşır (scale 1.0 → 1.08).
-//   K3 (7.4-8.2): 6 suret kısa bir an düşük opasitede bir arada.
-//   K4 (8.2-8.7): hepsi ortak sıcak bir ışığa eriyor.
-//   K5 (8.7-9.0): ayna yine boş, sadece iç ışık. Kamera durur (1.0'a).
+//   K3 (14.5-15.8): 6 suret kısa bir an düşük opasitede bir arada.
+//   K4 (15.8-16.8): hepsi ortak sıcak bir ışığa eriyor.
+//   K5 (16.8-17.5): ayna yine boş, sadece iç ışık. Kamera durur (1.0'a).
 const gsap = window.gsap;
 const SURETLER = ["#s1","#s2","#s3","#s4","#s5","#s6"];
 
@@ -396,44 +400,46 @@ function oynat(){
   if(!gsap) return;
   if(azHareket){ sonKare(); return; }
   baslangica();
-  const tl = gsap.timeline({delay:1.2});
+  const tl = gsap.timeline({delay:1.5});
 
-  // K1 (0.0-1.2): ayna karanlıktan belirir.
-  // Kamera 0.92'den 1.0'a. Çerçeve ve iç yüzey aynı anda ama farklı
-  // eğrilerde -- iç önce yumuşak, sonra çerçeve netleşir.
-  tl.to("#kamera", {scale:1.0, duration:1.2, ease:"power2.out"}, 0);
-  tl.to("#ic",     {opacity:1, duration:1.0, ease:"power1.out"}, 0.05);
-  tl.to("#cerceve",{opacity:0.9, duration:1.0, ease:"power2.out"}, 0.15);
+  // K1 (0.0-2.5): ayna karanlıktan belirir. Uzun, yumuşak bir belirme.
+  // Kamera 0.92'den 1.0'a. İç yüzey önce, çerçeve arkasından netleşir.
+  tl.to("#kamera", {scale:1.0, duration:2.5, ease:"power2.out"}, 0);
+  tl.to("#ic",     {opacity:1, duration:2.2, ease:"power1.out"}, 0.1);
+  tl.to("#cerceve",{opacity:0.9, duration:2.0, ease:"power2.out"}, 0.4);
 
-  // K2 (1.2-7.4): 6 suret art arda. Her biri ~0.55 sn beliriyor,
-  // ~0.45 sn peak'te kalıyor, ~0.4 sn sönüyor. Toplam ~1.03 sn/suret.
+  // K2 (2.5-14.5): 6 suret art arda CROSSFADE ile. Her suret 3.2 sn
+  // görünür (appear 1.2, hold 0.8, disappear 1.2). Bir sonraki 1.7 sn
+  // sonra başlar -- ilk yaklaşık 1.5 sn eskisi hâlâ sönerken yeni
+  // beliriyor. Birinden diğerine yavaşça DÖNÜŞÜM.
   // Kamera aynada hafif yakınlaşır (1.0 → 1.08).
-  tl.to("#kamera", {scale:1.08, duration:6.2, ease:"sine.inOut"}, 1.2);
+  tl.to("#kamera", {scale:1.08, duration:12.0, ease:"sine.inOut"}, 2.5);
 
-  var t = 1.2;
-  var perSuret = 1.03;
-  var appear = 0.5, hold = 0.15, disappear = 0.38;
+  var t = 2.5;
+  var perSuret = 1.7;   // sonraki suretin başlangıç aralığı
+  var appear = 1.2, hold = 0.8, disappear = 1.2;
   for(var i=0; i<SURETLER.length; i++){
     var sid = SURETLER[i];
-    tl.to(sid, {opacity:0.9, duration:appear, ease:"power2.out"}, t);
-    tl.to(sid, {opacity:0, duration:disappear, ease:"power1.in"}, t + appear + hold);
+    tl.to(sid, {opacity:0.9, duration:appear, ease:"sine.inOut"}, t);
+    tl.to(sid, {opacity:0, duration:disappear, ease:"sine.inOut"}, t + appear + hold);
     t += perSuret;
   }
+  // Son suret (S6): t=2.5 + 5*1.7 = 11.0. appear→12.2, hold→13.0,
+  // disappear→14.2. K3 başlangıcı 14.5.
 
-  // K3 (7.4-8.2): 6 suret düşük opasitede bir arada -- bir arayış anı,
-  // "hepsi aynı aynada yaşadı" duygusu.
-  tl.to(SURETLER, {opacity:0.35, duration:0.55, ease:"power1.out"}, 7.4);
+  // K3 (14.5-15.8): 6 suret düşük opasitede bir arada -- "hepsi aynı
+  // aynada yaşadı" duygusu. Yumuşak, uzun bir buluşma.
+  tl.to(SURETLER, {opacity:0.32, duration:1.2, ease:"sine.inOut"}, 14.5);
 
-  // K4 (8.2-8.7): hepsi ortak sıcak bir ışığa eriyor. Suretler söner,
-  // aynanın içinde tek-ışık belirir.
-  tl.to(SURETLER, {opacity:0, duration:0.5, ease:"power1.in"}, 8.2);
-  tl.to("#tekIsik", {opacity:0.95, duration:0.5, ease:"power2.out"}, 8.2);
+  // K4 (15.8-16.8): hepsi ortak sıcak bir ışığa eriyor.
+  tl.to(SURETLER, {opacity:0, duration:1.0, ease:"sine.inOut"}, 15.8);
+  tl.to("#tekIsik", {opacity:0.95, duration:1.0, ease:"power2.out"}, 15.8);
 
-  // K5 (8.7-9.0): tek-ışık geri çekilir, ayna yine boş kalır.
+  // K5 (16.8-17.5): tek-ışık geri çekilir, ayna yine boş kalır.
   // Kamera durur (1.08 → 1.0 -- son bakışta "tümü görünsün").
-  tl.to("#tekIsik", {opacity:0, duration:0.3, ease:"power1.inOut"}, 8.7);
-  tl.to("#kamera",  {scale:1.0, duration:0.4, ease:"sine.inOut"}, 8.6);
-  tl.call(function(){ $("tekrar").classList.add("gorunur"); }, null, 9.0);
+  tl.to("#tekIsik", {opacity:0, duration:0.6, ease:"power1.inOut"}, 16.8);
+  tl.to("#kamera",  {scale:1.0, duration:0.7, ease:"sine.inOut"}, 16.7);
+  tl.call(function(){ $("tekrar").classList.add("gorunur"); }, null, 17.5);
 }
 
 if(document.visibilityState === "visible"){
