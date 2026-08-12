@@ -46,13 +46,23 @@ window.__yolculukApp = (function () {
   let g = null;
   let focusId = null;
   let focusKind = null; // 'durak' | 'eser'
+  // İki izdüşüm arası geçiş anahtar durumu. Varsayılan: atlas (coğrafi).
+  // Değeri değişince ciz() yeniden çağrılır; iki izdüşüm arasında SMOOTH
+  // ANİMASYON YOK (bu, `.claude/commands/birlestir.md`'nin `gecis` adımının
+  // işi -- bu dilimde toggle anlık). Kullanıcı geri geldiğinde son
+  // izdüşümü hatırlar (sessionStorage üzerinden, kalıcı değil).
+  let currentProjection = "atlas"; // "atlas" | "zaman"
+  try {
+    const s = sessionStorage.getItem("yolculuk-projection");
+    if (s === "atlas" || s === "zaman") currentProjection = s;
+  } catch (_) { /* sessionStorage yasak/dolu olabilir */ }
 
   function boyut() {
     const r = wrapEl.getBoundingClientRect();
     return { w: Math.max(360, r.width), h: Math.max(320, r.height) };
   }
 
-  function yerlestir() {
+  function yerlestirAtlas() {
     const { w, h } = boyut();
     const PAD = 50;
     const lons = duraklar.map((d) => d.lon), lats = duraklar.map((d) => d.lat);
@@ -79,6 +89,43 @@ window.__yolculukApp = (function () {
       }
     }
     return { w, h };
+  }
+
+  // Zaman izdüşümü: x=yıl, y=boylam. Coğrafya düzleşir, zaman açılır.
+  // /birlestir.md izdusum spec: "hareket tek yönlü, batıdan doğuya ve geri
+  // dönüşsüz; izdüşümde bu bir çizgi olarak GÖRÜNÜR, anlatılması gerekmez."
+  // Endülüs-Fas gidiş gelişleri sol altta dalgalanma, 1200'deki kopuş
+  // ortada dik bir tırmanış, Şam'daki son on yedi yıl sağda uzun düz bir
+  // hat olur.
+  function yerlestirZaman() {
+    const { w, h } = boyut();
+    const PAD_L = 60, PAD_R = 30, PAD_T = 30, PAD_B = 50;
+    const lons = duraklar.map((d) => d.lon);
+    const yillar = [...duraklar.map((d) => d.yil_baslangic), ...duraklar.map((d) => d.yil_bitis).filter(Boolean)];
+    const xScale = d3.scaleLinear().domain([Math.min(...yillar) - 2, Math.max(...yillar) + 2]).range([PAD_L, w - PAD_R]);
+    // y-ekseninde boylam: küçük boylam (batı) üstte olsun ki İber Yarımadası
+    // yukarıda, Şam aşağıda kalsın -- bu "batıdan doğuya" hareketi görsel
+    // olarak "yukarıdan aşağıya" bir zaman çizgisiyle çakışıyor.
+    const yScale = d3.scaleLinear().domain([Math.min(...lons) - 3, Math.max(...lons) + 3]).range([PAD_T, h - PAD_B]);
+    duraklar.forEach((d) => { d.x = xScale(d.yil_baslangic); d.y = yScale(d.lon); });
+    // Eserleri kendi yıllarında yerleştir; y ekseni ise ait olduğu durağın
+    // boylamı. Aynı yıl+boylam çakışması olursa küçük bir dikey ofsetle
+    // ayır (aynı durakta aynı yıl birden fazla eser varsa görünsün).
+    const grup = new Map(); // key: `${x|0}-${y|0}` -> count
+    for (const [durakId, list] of eserlerByDurakId.entries()) {
+      const dur = durakById.get(durakId);
+      if (!dur) continue;
+      list.forEach((eser) => {
+        const ex = xScale(eser.yil.miladi);
+        const ey = yScale(dur.lon);
+        const key = `${Math.round(ex / 8)}-${Math.round(ey / 8)}`;
+        const idx = grup.get(key) || 0;
+        grup.set(key, idx + 1);
+        eser.x = ex;
+        eser.y = ey - idx * 8;
+      });
+    }
+    return { w, h, xScale, yScale };
   }
 
   // KIYI_SERITLERI seyahat-atlasi.js'den bilinçli kopya (statik coğrafya)
@@ -108,26 +155,69 @@ window.__yolculukApp = (function () {
   function ciz() {
     if (!duraklar.length) return;
     svg.selectAll("*").remove();
-    const { w, h } = yerlestir();
-    const lons = duraklar.map((d) => d.lon), lats = duraklar.map((d) => d.lat);
-    const xScale = d3.scaleLinear().domain([Math.min(...lons) - 3, Math.max(...lons) + 3]).range([50, w - 50]);
-    const yScale = d3.scaleLinear().domain([Math.max(...lats) + 3, Math.min(...lats) - 3]).range([50, h - 50]);
+    let w, h, xScale, yScale;
+    if (currentProjection === "atlas") {
+      ({ w, h } = yerlestirAtlas());
+      const lons = duraklar.map((d) => d.lon), lats = duraklar.map((d) => d.lat);
+      xScale = d3.scaleLinear().domain([Math.min(...lons) - 3, Math.max(...lons) + 3]).range([50, w - 50]);
+      yScale = d3.scaleLinear().domain([Math.max(...lats) + 3, Math.min(...lats) - 3]).range([50, h - 50]);
+    } else {
+      ({ w, h, xScale, yScale } = yerlestirZaman());
+    }
 
     svg.attr("viewBox", `0 0 ${w} ${h}`);
-    g = svg.append("g").attr("class", "yolculuk-scene");
+    g = svg.append("g").attr("class", "yolculuk-scene yolculuk-scene--" + currentProjection);
 
-    // Kara lekeleri (kıyı çizgisi)
-    g.append("g").attr("class", "yolculuk-kara").selectAll("path")
-      .data(karaLekeleri(xScale, yScale)).join("path").attr("d", (d) => d);
-
-    // Duraklar arası rota (kronolojik zincir, kavisli)
-    const line = d3.line().x((d) => d.x).y((d) => d.y).curve(d3.curveCatmullRom.alpha(0.6));
-    g.append("g").attr("class", "yolculuk-rota-g").selectAll("path.yolculuk-rota-parca")
-      .data(duraklar.slice(1).map((d, i) => ({ a: duraklar[i], b: d })))
-      .join("path")
-      .attr("class", "yolculuk-rota-parca")
-      .attr("d", (d) => line([d.a, d.b]))
-      .attr("fill", "none");
+    if (currentProjection === "atlas") {
+      // Kara lekeleri (kıyı çizgisi)
+      g.append("g").attr("class", "yolculuk-kara").selectAll("path")
+        .data(karaLekeleri(xScale, yScale)).join("path").attr("d", (d) => d);
+      // Duraklar arası rota (kronolojik zincir, kavisli)
+      const line = d3.line().x((d) => d.x).y((d) => d.y).curve(d3.curveCatmullRom.alpha(0.6));
+      g.append("g").attr("class", "yolculuk-rota-g").selectAll("path.yolculuk-rota-parca")
+        .data(duraklar.slice(1).map((d, i) => ({ a: duraklar[i], b: d })))
+        .join("path")
+        .attr("class", "yolculuk-rota-parca")
+        .attr("d", (d) => line([d.a, d.b]))
+        .attr("fill", "none");
+    } else {
+      // Zaman izdüşümü: alt kenarda yıl ekseni, sol kenarda boylam ekseni.
+      // Duraklar arası bağ kronolojik zincir olarak korunur -- ama artık
+      // görünürde "batıdan doğuya" YUKARIDAN aşağıya bir çizgi.
+      const yillar = xScale.domain();
+      // On yıllık aralıklarla tick + etiket
+      const tickStep = 10;
+      const ilkTick = Math.ceil(yillar[0] / tickStep) * tickStep;
+      const ticks = [];
+      for (let y = ilkTick; y <= yillar[1]; y += tickStep) ticks.push(y);
+      const axisG = g.append("g").attr("class", "yolculuk-eksen-yil");
+      axisG.selectAll("line.yolculuk-eksen-yil__grid")
+        .data(ticks).join("line").attr("class", "yolculuk-eksen-yil__grid")
+        .attr("x1", (t) => xScale(t)).attr("x2", (t) => xScale(t))
+        .attr("y1", 20).attr("y2", h - 40);
+      axisG.selectAll("text.yolculuk-eksen-yil__etiket")
+        .data(ticks).join("text").attr("class", "yolculuk-eksen-yil__etiket")
+        .attr("x", (t) => xScale(t)).attr("y", h - 22)
+        .attr("text-anchor", "middle").text((t) => t);
+      axisG.append("text").attr("class", "yolculuk-eksen__baslik")
+        .attr("x", (w) / 2).attr("y", h - 6).attr("text-anchor", "middle")
+        .text(tt({ tr: "Yıl (Miladi)", en: "Year (CE)", pt: "Ano (EC)" }));
+      // Sol kenarda boylam ekseni: batı üstte, doğu altta
+      const lonTicks = [-5, 0, 10, 20, 30, 40];
+      axisG.selectAll("text.yolculuk-eksen-lon__etiket")
+        .data(lonTicks).join("text").attr("class", "yolculuk-eksen-lon__etiket")
+        .attr("x", 8).attr("y", (l) => yScale(l) + 4)
+        .attr("text-anchor", "start")
+        .text((l) => (l >= 0 ? l + "°E" : Math.abs(l) + "°W"));
+      // Kronolojik zincir: duraklardan çizilen bağ
+      const line = d3.line().x((d) => d.x).y((d) => d.y).curve(d3.curveMonotoneX);
+      g.append("g").attr("class", "yolculuk-rota-g").selectAll("path.yolculuk-rota-parca")
+        .data(duraklar.slice(1).map((d, i) => ({ a: duraklar[i], b: d })))
+        .join("path")
+        .attr("class", "yolculuk-rota-parca")
+        .attr("d", (d) => line([d.a, d.b]))
+        .attr("fill", "none");
+    }
 
     // Duraklar
     const durakSel = g.append("g").attr("class", "yolculuk-durak-g").selectAll("g.yolculuk-durak")
@@ -315,9 +405,9 @@ window.__yolculukApp = (function () {
       <p class="detail-eyebrow">${tt({tr:"Yolculuk",en:"The Journey",pt:"A Jornada"})}</p>
       <h2 class="detail-title">${duraklar.length} ${tt({tr:"durak",en:"stops",pt:"paragens"})}, ${eserler.length} ${tt({tr:"eser",en:"works",pt:"obras"})}</h2>
       <div class="detail-block detail-block--soru"><p>${tt({
-        tr: "Eser Ağı ve Seyahat Atlası'nın birleşmiş atlas izdüşümü. Her durak (nokta) bir şehirdir; her eser (küçük nokta / elmas) o durakta yazıldığı için durağın yakınında oturur. Zaman izdüşümü ve iki izdüşüm arasında geçiş bir sonraki iş.",
-        en: "The combined atlas projection of the Works Timeline and the Travel Atlas. Each stop (circle) is a city; each work (small circle / diamond) sits near its stop because it was written there. The time projection and the transition between projections are the next step.",
-        pt: "A projeção atlas combinada da Linha do Tempo das Obras e do Atlas de Viagem. Cada paragem (círculo) é uma cidade; cada obra (círculo pequeno / losango) fica perto da sua paragem porque foi escrita ali. A projeção temporal e a transição entre projeções são o próximo passo."
+        tr: "Eser Ağı ve Seyahat Atlası'nın birleşmesi -- iki izdüşümlü. **Atlas** izdüşümünde her durak coğrafi konumunda ve her eser o durakta yazıldığı için durağın yakınında. **Zaman** izdüşümünde aynı düğümler yer değiştirir: x=yıl, y=boylam. Harita düzleşir, zaman açılır. Endülüs-Fas gidiş gelişleri sol üstte dalgalanma, 1200'deki kopuş ortada dik bir tırmanış, Şam'daki son on yedi yıl sağda düz bir hat olur. Üstteki iki düğmeyle izdüşümü değiştirin.",
+        en: "The combining of the Works Timeline with the Travel Atlas -- two projections. In **Atlas** each stop sits at its geographic position, each work next to the stop where it was written. In **Time** the same nodes take new positions: x=year, y=longitude. The map flattens, time unfolds. The Andalusia-Morocco crossings become an undulation at upper left, the 1200 rupture a steep climb in the middle, the last seventeen years in Damascus a straight line to the right. Use the two buttons above to switch projections.",
+        pt: "A união da Linha do Tempo das Obras com o Atlas de Viagem -- duas projeções. No **Atlas** cada paragem está na sua posição geográfica, cada obra ao lado da paragem onde foi escrita. Em **Tempo** os mesmos nós tomam novas posições: x=ano, y=longitude. O mapa aplana-se, o tempo desdobra-se. As travessias Al-Andalus–Marrocos tornam-se uma ondulação no canto superior esquerdo, a rutura de 1200 uma subida abrupta no meio, os últimos dezassete anos em Damasco uma linha reta à direita. Use os dois botões acima para alternar as projeções."
       })}</p></div>
       ${belirsizListe}`;
     detailPanel.hidden = false;
@@ -373,6 +463,28 @@ window.__yolculukApp = (function () {
     });
   }
 
+  function setProjection(next) {
+    if (next !== "atlas" && next !== "zaman") return;
+    if (next === currentProjection) return;
+    currentProjection = next;
+    try { sessionStorage.setItem("yolculuk-projection", next); } catch (_) {}
+    updateToggleUI();
+    if (yuklendi) ciz();
+    // Kimlik korunur: aynı düğüm seçiliyse yeniden çizimden sonra panel
+    // aynı seçili kayda dönsün.
+    if (focusId) {
+      if (focusKind === "durak") { const d = durakById.get(focusId); if (d) vurgula(d.id, "durak"); }
+      else if (focusKind === "eser") { const e = eserById.get(focusId); if (e) vurgula(e.id, "eser"); }
+    }
+  }
+
+  function updateToggleUI() {
+    const atlasBtn = document.getElementById("yolculuk-toggle-atlas");
+    const zamanBtn = document.getElementById("yolculuk-toggle-zaman");
+    if (atlasBtn) atlasBtn.setAttribute("aria-pressed", String(currentProjection === "atlas"));
+    if (zamanBtn) zamanBtn.setAttribute("aria-pressed", String(currentProjection === "zaman"));
+  }
+
   let baglandi = false;
   function baglaBirKez() {
     if (baglandi) return;
@@ -387,6 +499,12 @@ window.__yolculukApp = (function () {
       if (!yuklendi || wrapEl.hidden) return;
       ciz();
     }));
+    // Toggle butonları: atlas ⇄ zaman izdüşümü
+    const atlasBtn = document.getElementById("yolculuk-toggle-atlas");
+    const zamanBtn = document.getElementById("yolculuk-toggle-zaman");
+    if (atlasBtn) atlasBtn.addEventListener("click", () => setProjection("atlas"));
+    if (zamanBtn) zamanBtn.addEventListener("click", () => setProjection("zaman"));
+    updateToggleUI();
   }
 
   return {

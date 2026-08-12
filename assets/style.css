@@ -10202,6 +10202,22 @@ mark.durus-vurgu-es {
 .yolculuk-panel__eser-btn:hover { color: var(--accent-interactive); }
 .yolculuk-belirsiz { font-size: 0.9rem; color: var(--muted-fg); border-left: 3px solid var(--border); padding: 8px 12px; margin: 12px 0 0; }
 .yolculuk-belirsiz__btn { background: none; border: none; color: var(--accent); cursor: pointer; padding: 0 2px; text-decoration: underline; font-size: inherit; }
+
+/* Yolculuk toggle: atlas ⇄ zaman izdüşümü. Recenter butonuyla aynı köşede
+   (sağ üstte) durur ama ondan biraz daha soldadır. iki düğüm segmented
+   control gibi. */
+.yolculuk-toggle { position: absolute; top: 12px; right: 60px; display: inline-flex; background: var(--surface-1); border: 1px solid var(--border); border-radius: 999px; overflow: hidden; z-index: 4; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.yolculuk-toggle__btn { background: none; border: none; padding: 6px 12px; font-size: 0.8rem; color: var(--muted-fg); cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
+.yolculuk-toggle__btn:hover { color: var(--fg); background: var(--surface-2); }
+.yolculuk-toggle__btn[aria-pressed="true"] { background: var(--accent); color: var(--surface-1); }
+.yolculuk-toggle__btn:focus-visible { outline: 2px solid var(--accent-interactive); outline-offset: 2px; }
+
+/* Zaman izdüşümü ekseni: hafif gri grid çizgileri, küçük yıl etiketleri */
+.yolculuk-eksen-yil__grid { stroke: var(--border); stroke-width: 0.5; stroke-dasharray: 2 3; opacity: 0.4; }
+.yolculuk-eksen-yil__etiket, .yolculuk-eksen-lon__etiket { font-size: 0.65rem; fill: var(--muted-fg); pointer-events: none; }
+.yolculuk-eksen__baslik { font-size: 0.72rem; fill: var(--muted-fg); pointer-events: none; }
+/* Zaman izdüşümünde kara lekeleri yok, rota kavisi de farklı */
+.yolculuk-scene--zaman .yolculuk-rota-parca { stroke-dasharray: none; opacity: 0.4; }
 .hocalar-diger__rozet { display: inline-block; margin-left: 8px; padding: 1px 8px; font-size: 0.75rem; border-radius: 999px; background: var(--surface-2); color: var(--muted-fg); border: 1px solid var(--border); }
 .hocalar-diger__rozet--hirka-veren { background: color-mix(in oklab, var(--accent) 12%, var(--surface-2)); color: var(--fg); }
 .hocalar-diger__rozet--hirka-alan { background: color-mix(in oklab, var(--accent-interactive) 12%, var(--surface-2)); color: var(--fg); }
