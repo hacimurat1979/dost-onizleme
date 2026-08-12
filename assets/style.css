@@ -3602,6 +3602,108 @@ a.daphne-bag__ad { color: var(--accent-interactive); }
   line-height: 1.5;
 }
 
+/* Akordeon: <details> ile klavye/ekran okuyucu erişimi zaten hazır.
+   Kart açık/kapalı sadece görsel değişim; JS gerekmez. Derinlik
+   sınıfları (--yok/--hafif/--orta/--derin) sol şerit kalınlığını
+   değiştirir: kartların yoğunluğu bir bakışta seçilebiliyor. */
+.daphne-profile-card__acilir { display: block; }
+.daphne-profile-card__acilir > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0;
+  outline: none;
+}
+.daphne-profile-card__acilir > summary::-webkit-details-marker { display: none; }
+.daphne-profile-card__acilir > summary:focus-visible {
+  outline: 2px solid var(--series-daphne);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+/* Ok imi: kapalı ▸ / açık ▾. CSS-only, JS yok. */
+.daphne-profile-card__acilir > summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 0.8em;
+  color: var(--series-daphne);
+  transition: transform 0.15s;
+}
+.daphne-profile-card__acilir[open] > summary::before { transform: rotate(90deg); }
+.daphne-profile-card__ozet .daphne-profile-card__title { display: inline; }
+.daphne-profile-card__meta {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.daphne-profile-card__icerik { margin-top: 4px; }
+/* Derinlik: Dost bağı sayısıyla sol şerit koyulaşıyor. Bir "puan"
+   değil, dolaşırken kartların birbirinden ayrılmasına yarayan bir
+   yoğunluk işareti. */
+.daphne-profile-card--yok { border-left: 3px solid var(--border); padding-left: 15px; }
+.daphne-profile-card--hafif { border-left: 3px solid color-mix(in srgb, var(--series-daphne) 30%, transparent); padding-left: 15px; }
+.daphne-profile-card--orta { border-left: 3px solid color-mix(in srgb, var(--series-daphne) 60%, transparent); padding-left: 15px; }
+.daphne-profile-card--derin { border-left: 3px solid var(--series-daphne); padding-left: 15px; }
+/* Rozetler: kapalı kartın altında da görünsün diye sade ve küçük. */
+.daphne-rozet-satiri { display: inline-flex; flex-wrap: wrap; gap: 5px; }
+.daphne-rozet {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-weight: 500;
+}
+.daphne-rozet--eksen {
+  color: var(--series-daphne);
+  background: color-mix(in srgb, var(--series-daphne) 10%, transparent);
+}
+.daphne-rozet--dost {
+  color: var(--accent-interactive);
+  background: color-mix(in srgb, var(--accent-interactive) 10%, transparent);
+}
+.daphne-rozet--soru {
+  color: var(--series-kemal-text, var(--series-daphne));
+  background: color-mix(in srgb, var(--series-kemal, var(--series-daphne)) 14%, transparent);
+}
+/* Sorular bölümü: her sorunun başında numara. Cevap değil sorular
+   olduğu için hepsi bir "açık soru" -- sol şerit kemal serisi rengi. */
+.daphne-baglar--sorular {
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--series-kemal, var(--series-daphne)) 4%, transparent);
+  border-radius: 8px;
+  border-top: none;
+  border-left: 3px solid color-mix(in srgb, var(--series-kemal, var(--series-daphne)) 50%, transparent);
+}
+.daphne-soru-liste { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.daphne-soru {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+.daphne-soru:last-child { margin-bottom: 0; }
+.daphne-soru__no {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--series-kemal-text, var(--series-daphne));
+  background: color-mix(in srgb, var(--series-kemal, var(--series-daphne)) 16%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+.daphne-soru__metin {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+}
+
 .detail-panel {
   position: fixed;
   /* Starting the box below the app header (not padding-top alone) removes

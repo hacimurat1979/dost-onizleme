@@ -4,502 +4,333 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<!-- Ayna Metaforu — Dost Arabi görselleştirme -->
+<!-- Ayna Metaforu — Dost Arabi görselleştirme
+     2026-08-12: sahne sıfırdan yazıldı. Etkileşim yok, seyredilen bir
+     anlatım. Storyboard: 6 kare, 7.2 sn. GSAP timeline. Tek hedef cümle:
+     "Subhanallah, demek mana, hakikat buymuş." Ayrıntı için:
+     research/anlayis-evrimi/AYNA-SIFIRDAN.md (henüz yazılmadıysa: sohbet
+     kaydında storyboard duruyor). -->
 <title>Ayna Metaforu — Dost Arabi</title>
 <style>
-:root{--bg:#0D0D0D;--surface:#1A1A19;--border:#2C2C2A;--text:#EDE9E2;--muted:#898781;--gold:#FFC233;--blue:#8A5018;--liminal:#C98500;--panel:#161614}
-@media(prefers-color-scheme:light){:root{--bg:#F9F9F7;--surface:#FCFCFB;--border:#E1E0D9;--text:#1A1A1A;--muted:#6F6D65;--panel:#FCFCFB;--gold:#8A6100;--blue:#6E3A08;--liminal:#8C6D1A}}
-:root[data-theme=dark]{--bg:#0D0D0D;--surface:#1A1A19;--border:#2C2C2A;--text:#EDE9E2;--muted:#898781;--panel:#161614;--gold:#FFC233;--blue:#8A5018;--liminal:#C98500}
-:root[data-theme=light]{--bg:#F9F9F7;--surface:#FCFCFB;--border:#E1E0D9;--text:#1A1A1A;--muted:#6F6D65;--panel:#FCFCFB;--gold:#8A6100;--blue:#6E3A08;--liminal:#8C6D1A}
+:root{
+  --bg:#0D0D0D; --surface:#1A1A19; --border:#2C2C2A;
+  --text:#EDE9E2; --muted:#898781;
+  --gold:#FFC233;         /* ışık = tecellî */
+  --gold-soft:#FFDE84;
+  --amber:#C98500;        /* yansıma = bilgi */
+  --dust:#4A4842;         /* mat kalp, perde durumu */
+  --world:#8A5018;        /* âlem, sıcak toprak */
+  --panel:#161614;
+}
+@media(prefers-color-scheme:light){:root{
+  --bg:#F9F9F7; --surface:#FCFCFB; --border:#E1E0D9;
+  --text:#1A1A1A; --muted:#6F6D65;
+  --gold:#8A6100; --gold-soft:#C7973C; --amber:#8C6D1A;
+  --dust:#C8C4B6; --world:#6E3A08; --panel:#FCFCFB;
+}}
+:root[data-theme=dark]{--bg:#0D0D0D;--surface:#1A1A19;--border:#2C2C2A;--text:#EDE9E2;--muted:#898781;--gold:#FFC233;--gold-soft:#FFDE84;--amber:#C98500;--dust:#4A4842;--world:#8A5018;--panel:#161614}
+:root[data-theme=light]{--bg:#F9F9F7;--surface:#FCFCFB;--border:#E1E0D9;--text:#1A1A1A;--muted:#6F6D65;--gold:#8A6100;--gold-soft:#C7973C;--amber:#8C6D1A;--dust:#C8C4B6;--world:#6E3A08;--panel:#FCFCFB}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
-header{text-align:center;margin-bottom:.9rem}
+header{text-align:center;margin-bottom:1.2rem}
 h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:var(--gold);margin-bottom:.4rem}
-.sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65;max-width:480px}
-.vis-wrap{position:relative;width:min(580px,96vw);margin-bottom:.5rem}
-.main-svg{width:100%;display:block;touch-action:none;cursor:grab}
-.main-svg:active{cursor:grabbing}
-.main-svg:focus-visible{outline:2px solid var(--liminal);outline-offset:3px;border-radius:6px}
-.stage{width:100%;max-width:700px;text-align:center;margin-bottom:.7rem;min-height:4.4rem}
-.state{font-size:.92rem;line-height:1.6;color:var(--muted);transition:color .3s}
-.state.on{color:var(--gold)}
-.aha{font-size:.86rem;font-style:italic;line-height:1.7;color:var(--liminal);margin-top:.5rem;white-space:pre-line;opacity:0;transform:translateY(6px);transition:opacity .9s ease,transform .9s ease}
-.aha.show{opacity:1;transform:none}
-.grab-hint{font-size:.78rem;color:var(--muted);font-style:italic;margin-bottom:1.1rem;transition:opacity .5s}
-.grab-hint.gone{opacity:.28}
-/* /sahne motor: sahne oynarken sürükleme kapalı; bittikten sonra açılıyor.
-   Motor bittiğinde .sahne-bitti sınıfı body'ye eklenir. */
-body:not(.sahne-bitti) .main-svg{cursor:default}
-.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin:.3rem 0 .6rem;min-height:34px}
-.olcu-gosterge{font-size:.7rem;color:var(--muted);letter-spacing:.15em;opacity:0;transition:opacity .4s ease}
-body.sahne-bitti .olcu-gosterge,body.sahne-bitti .motor-kontroller{opacity:1}
-.pairs{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;width:100%;max-width:700px;margin-bottom:1rem}
-.pair{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:.85rem .95rem;min-width:148px;flex:1;cursor:pointer;transition:border-color .2s,background .2s}
-.pair:hover,.pair.on{border-color:var(--liminal);background:var(--surface)}
-.pair:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
-.pair-top{display:flex;align-items:center;gap:.35rem;margin-bottom:.45rem;font-size:.78rem}
-.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.dg{background:var(--gold)}
-.db{background:var(--blue)}
-.dl{background:var(--liminal);box-shadow:0 0 6px var(--liminal)}
-.arr{color:var(--muted);font-size:.75rem}
-.pair-label{font-size:.82rem;color:var(--text);line-height:1.5}
-.pair-note{font-size:.74rem;color:var(--muted);font-style:italic;margin-top:.3rem;line-height:1.5}
-.qbox{width:100%;max-width:700px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1rem 1.15rem;margin-bottom:.8rem;min-height:80px}
-.qbox blockquote{font-size:.9rem;font-style:italic;line-height:1.8;border-left:2px solid var(--liminal);padding-left:.8rem}
-.qbox .src{font-size:.73rem;color:var(--muted);margin-top:.4rem}
-.qbox .hint{font-size:.82rem;color:var(--muted);font-style:italic}
-.paradox{width:100%;max-width:700px;text-align:center;font-size:.8rem;color:var(--muted);font-style:italic;line-height:1.7;white-space:pre-line}
+.sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65;max-width:520px;margin:0 auto}
 
-/* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
-   ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
-   da var. Renkler zincirleme var() yedekleriyle: sahnelerin değişken adları
-   tek tip değil (--border/--bo, --text/--tx ...). */
-.sahne-geri{position:fixed;top:12px;left:12px;z-index:60;display:inline-flex;align-items:center;
-  gap:.35rem;min-height:44px;padding:0 .9rem;border-radius:999px;font-size:.82rem;
-  font-family:inherit;text-decoration:none;opacity:.72;
-  border:1px solid var(--border,var(--bo,currentColor));
-  background:var(--surface,var(--su,transparent));
-  color:var(--muted,var(--mu,inherit));
-  transition:opacity .2s ease,color .2s ease,border-color .2s ease}
-.sahne-geri:hover,.sahne-geri:focus-visible{opacity:1;
-  color:var(--text,var(--tx,inherit));
-  border-color:var(--gold,var(--go,currentColor))}
-.sahne-geri:focus-visible{outline:2px solid var(--gold,var(--go,currentColor));outline-offset:2px}
+.stage{position:relative;width:min(620px,96vw);aspect-ratio:11/6;background:var(--panel);
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,.14)}
+.stage svg{width:100%;height:100%;display:block}
+
+/* GORSEL_DIL.md yasağı: Zât'ı parlak bir cisim gibi çizmek. Onun yerine
+   sağ üst köşede bir sis — koyu, hafif dokulu, yaklaştıkça netleşmez. */
+.zat-sis{opacity:.85}
+
+/* Kalp: matlıktan yansıtır hâle. Mat=perde, düşük opaklık, kontursuz. */
+.kalp-govde{fill:var(--dust);opacity:.75;transition:none}
+.kalp-yuzey{fill:var(--gold-soft);opacity:0}
+.kalp-hale{fill:none;stroke:var(--gold);stroke-width:1;opacity:0}
+
+/* Işık koridoru: sağ üst sisten kalbe. Başta yok, sonra netleşir. */
+.isik-koridor{stroke:var(--gold);stroke-width:2;fill:none;opacity:0;
+  stroke-linecap:round}
+
+/* İkinci ışık: kalbin yansımasından âleme. Kaynak Zât değil, kalp. */
+.isik-ikinci{stroke:var(--amber);stroke-width:1.6;fill:none;opacity:0;
+  stroke-linecap:round}
+
+/* Âlem: sol altta sönük, sonra sıcak-altın. */
+.alem-govde{fill:var(--dust);opacity:.55}
+
+/* Cümle: sahnenin altında, sonda beliriyor. */
+.sozcuk-alan{width:min(620px,96vw);text-align:center;margin-top:1.2rem;min-height:2.2rem}
+.sozcuk{display:inline-block;font-size:clamp(.95rem,2.6vw,1.15rem);color:var(--gold);
+  font-style:italic;line-height:1.6;letter-spacing:.02em;opacity:0}
+
+.tekrar-alan{margin-top:.9rem;min-height:2.2rem;display:flex;justify-content:center}
+.tekrar-btn{display:none;align-items:center;gap:.4rem;padding:.45rem 1.1rem;
+  min-height:40px;border-radius:999px;background:transparent;
+  color:var(--muted);border:1px solid var(--border);
+  font-family:inherit;font-size:.82rem;cursor:pointer;
+  transition:color .2s,border-color .2s}
+.tekrar-btn.gorunur{display:inline-flex}
+.tekrar-btn:hover,.tekrar-btn:focus-visible{color:var(--gold);border-color:var(--gold);outline:none}
+.tekrar-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* Etiketler yok. Sahnenin başarı ölçütü: cümlesiz de anlaşılır olsun.
+   Yalnız erişilebilirlik için görünmez ARIA açıklaması. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Sahneden çıkış: ESC + görünür bağlantı (2026-08-05 mirası). */
+.sahne-geri{position:fixed;top:12px;left:12px;z-index:60;display:inline-flex;
+  align-items:center;gap:.35rem;min-height:44px;padding:0 .9rem;border-radius:999px;
+  font-size:.82rem;font-family:inherit;text-decoration:none;opacity:.72;
+  border:1px solid var(--border);background:var(--surface);color:var(--muted);
+  transition:opacity .2s,color .2s,border-color .2s}
+.sahne-geri:hover,.sahne-geri:focus-visible{opacity:1;color:var(--text);border-color:var(--gold)}
+.sahne-geri:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 @media(max-width:520px){.sahne-geri{top:8px;left:8px;padding:0 .7rem}}
 
-/* ETKILESIM_DILI.md: hareket "atlanır, taklit edilmez". Kardeş sahneler
-   (berzah, nefes-i-rahmani...) bu kuralı baştan taşıyordu; bu sayfada
-   unutulmuştu -- 2026-08-05 çapraz denetiminde yedi sayfada birden
-   yakalandı. Süreleri sıfırlamak animasyonun SON karesini gösterir:
-   içerik kaybolmaz, yalnız hareket kalkar. */
-@media (prefers-reduced-motion: reduce){
+/* ETKILESIM_DILI.md: hareket "atlanır, taklit edilmez". Reduced-motion
+   açıkken timeline'ı hiç kurmuyoruz -- doğrudan son kareyi gösteriyoruz
+   (aşağıda JS içinde). CSS burada yalnız emniyet katmanı. */
+@media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
     transition-duration:.01ms !important;
-    scroll-behavior:auto !important;
   }
 }
 </style>
 <script>
-// Sitenin tema seçimini miras al. Bu sayfaların CSS'inde ":root[data-theme=
-// light/dark]" kuralları en baştan vardı ama data-theme'i KİMSE yazmıyordu --
-// yani o kurallar ölü kod, sahne yalnız işletim sisteminin
-// prefers-color-scheme'ini izliyordu. Sonuç: kullanıcı siteyi ☰'den gündüz
-// moduna alsa bile, cihazı gece modundaysa sahne gece modunda açılıyordu
-// (2026-08-05 tablette bildirildi).
-//
-// Depoda bir şey YOKSA öznitelik bilerek yazılmaz: o zaman
-// @media(prefers-color-scheme) devreye girer -- doğru varsayılan odur.
-// <head> içinde ve senkron: ilk boyamadan önce çalışsın, tema sıçraması olmasın.
-(function () {
-  try {
-    var s = localStorage.getItem("dost-theme");
-    if (s === "light" || s === "dark") document.documentElement.setAttribute("data-theme", s);
-  } catch (e) {}
-})();
+// Sitenin tema seçimini miras al. Tema sıçraması olmasın diye <head>'de
+// senkron çalışıyor.
+(function(){try{var s=localStorage.getItem("dost-theme");
+  if(s==="light"||s==="dark")document.documentElement.setAttribute("data-theme",s);
+}catch(e){}})();
 </script>
 </head>
 <body>
 <header>
   <h1 id="hTitle">Ayna Metaforu</h1>
-  <p class="sub" id="hSub">Sûret ne bakandır ne ondan başka — ayna olmasaydı görüntü olmazdı, bakan olmasaydı ayna boş kalırdı</p>
+  <p class="sub" id="hSub">Bir ayna nasıl aydınlanır — ondan âlem nasıl aydınlanır.</p>
 </header>
 
-<div class="vis-wrap">
-<svg class="main-svg" id="scene" viewBox="0 0 580 300" tabindex="0" role="application"
-     aria-label="Aynayı çevirerek görüntünün doğuşunu dene / Rotate the mirror to see the image appear">
-  <defs>
-    <radialGradient id="gSrc" cx="110" cy="150" r="150" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFF8DC" stop-opacity=".95"/>
-      <stop offset="14%" stop-color="#FFDE84" stop-opacity=".5"/>
-      <stop offset="40%" stop-color="#C89040" stop-opacity=".16"/>
-      <stop offset="100%" stop-color="#C89040" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="gGround" cx="290" cy="150" r="330" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#08060E" stop-opacity=".97"/>
-      <stop offset="72%" stop-color="#08060E" stop-opacity=".93"/>
-      <stop offset="100%" stop-color="#08060E" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="gPlane" x1="0" y1="-105" x2="0" y2="105" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#C89040" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#FFD976" stop-opacity=".85"/>
-      <stop offset="100%" stop-color="#C89040" stop-opacity="0"/>
-    </linearGradient>
-    <radialGradient id="gImg" cx="0" cy="0" r="46" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFF6D6"/>
-      <stop offset="45%" stop-color="#FFD268"/>
-      <stop offset="100%" stop-color="#8A5A18" stop-opacity="0"/>
-    </radialGradient>
-    <!-- the night this happens in dissolves at every edge instead of stopping -->
-    <linearGradient id="gFadeV" x1="0" y1="0" x2="0" y2="300" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
-      <stop offset="11%" stop-color="#fff"/>
-      <stop offset="89%" stop-color="#fff"/>
-      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="gFadeH" x1="0" y1="0" x2="580" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
-      <stop offset="9%" stop-color="#fff"/>
-      <stop offset="91%" stop-color="#fff"/>
-      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
-    </linearGradient>
-    <mask id="mV"><rect x="0" y="0" width="580" height="300" fill="url(#gFadeV)"/></mask>
-    <mask id="mH"><rect x="0" y="0" width="580" height="300" fill="url(#gFadeH)"/></mask>
-    <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
-    <filter id="imgBlur" x="-90%" y="-90%" width="280%" height="280%">
-      <feGaussianBlur id="imgBlurNode" stdDeviation="14"/>
-    </filter>
-  </defs>
+<div class="stage" role="img" aria-labelledby="hTitle" aria-describedby="sceneDesc">
+  <p id="sceneDesc" class="sr-only">
+    Ekranın sağ üstünde koyu bir sis (Zât — çizilmiyor). Sisten ortadaki
+    kalbe doğru bir ışık uzanıyor. Kalbin yüzeyinde bir yansıma doğuyor.
+    O yansımadan sol alttaki âleme ikinci bir ışık akıyor. Sonunda bir
+    cümle beliriyor: Subhanallah, demek mana, hakikat buymuş.
+  </p>
+  <svg viewBox="0 0 660 360" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <!-- Zât sisi: sağ üst, netleşmeyen bir bulut. Yaklaştıkça netleşmemesi
+           GORSEL_DIL kuralı: Zât resmedilmez. -->
+      <radialGradient id="sis" cx="0.82" cy="0.18" r="0.42">
+        <stop offset="0%" stop-color="#1a1a1a" stop-opacity="0.55"/>
+        <stop offset="55%" stop-color="#1a1a1a" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#1a1a1a" stop-opacity="0"/>
+      </radialGradient>
+      <!-- Kalbin yüzey yansıması: doğduğunda ışığın kendisi değil,
+           ışığın kalpteki hâli. Merkez soluk-altın, kenar yumuşak. -->
+      <radialGradient id="yansima" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0%" stop-color="var(--gold-soft)" stop-opacity="0.95"/>
+        <stop offset="60%" stop-color="var(--gold)" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="var(--gold)" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="yumusat"><feGaussianBlur stdDeviation="0.9"/></filter>
+    </defs>
 
-  <g mask="url(#mV)"><g mask="url(#mH)">
-    <rect x="0" y="0" width="580" height="300" fill="url(#gGround)"/>
-  </g></g>
+    <!-- Zât sisi (çizilmemiş; sadece hissedilen bir varlık) -->
+    <rect class="zat-sis" x="380" y="0" width="280" height="180" fill="url(#sis)"/>
 
-  <!-- tecellî: the going-out. It never stops, whatever the mirror does -->
-  <line id="rayIn" x1="110" y1="150" x2="390" y2="150" stroke="#FFE79A" stroke-width="2.4" opacity=".5"/>
-  <!-- where the light goes after the surface — this is what the hand changes -->
-  <line id="rayOut" x1="390" y1="150" x2="110" y2="150" stroke="#D8A44C" stroke-width="2" opacity=".45"/>
+    <!-- Işık koridoru: sisten kalbe. Yay değil düz kavis: yumuşak Bezier. -->
+    <path id="isikA" class="isik-koridor"
+          d="M 520 90 Q 460 145, 370 175"
+          filter="url(#yumusat)"/>
 
-  <!-- the image: drawn behind the surface, and only while the light returns -->
-  <g id="imgG" opacity="0">
-    <circle cx="0" cy="0" r="46" fill="url(#gImg)" filter="url(#imgBlur)"/>
-    <text id="imgLabel" x="0" y="4" text-anchor="middle" fill="#3A2400" font-size="10" font-family="Georgia,serif">Sûret</text>
-  </g>
+    <!-- Kalp: merkeze yakın, hafif kavisli bir kap. Yüzey ayrı bir katman. -->
+    <g id="kalp" transform="translate(330,190)">
+      <!-- Kalp gövdesi: mat, perdeli hâlden aydınlanana. -->
+      <ellipse class="kalp-govde" id="kalpGovde" cx="0" cy="0" rx="42" ry="36"/>
+      <!-- Yüzeyde doğan yansıma -->
+      <ellipse class="kalp-yuzey" id="kalpYuzey" cx="0" cy="-4" rx="30" ry="22" fill="url(#yansima)"/>
+      <!-- Aydınlanma halesi (ince, sadece parlak bir kayış izlenimi) -->
+      <ellipse class="kalp-hale" id="kalpHale" cx="0" cy="0" rx="46" ry="40"/>
+    </g>
 
-  <!-- the mirror: a surface, and the thing the hand touches -->
-  <g id="mirrorG">
-    <line x1="0" y1="-105" x2="0" y2="105" stroke="url(#gPlane)" stroke-width="11" opacity=".3" filter="url(#soft)"/>
-    <line x1="0" y1="-105" x2="0" y2="105" stroke="url(#gPlane)" stroke-width="1.6"/>
-  </g>
+    <!-- İkinci ışık: kalpten âleme. Kaynak Zât değil, kalp. -->
+    <path id="isikB" class="isik-ikinci"
+          d="M 300 210 Q 240 260, 175 285"
+          filter="url(#yumusat)"/>
 
-  <!-- Bakan: a field of light entering from beyond the frame -->
-  <circle id="srcHalo" cx="110" cy="150" r="150" fill="url(#gSrc)"/>
-
-  <text id="lbObs" x="110" y="44" text-anchor="middle" fill="#E0BC72" font-size="10" letter-spacing="2.5" font-family="Georgia,serif">BAKAN</text>
-  <text id="lbMir" x="390" y="284" text-anchor="middle" fill="#C09A58" font-size="10" letter-spacing="2.5" font-family="Georgia,serif">AYNA</text>
-</svg>
+    <!-- Âlem: sol altta, sönükten sıcağa. -->
+    <g id="alem" transform="translate(150,295)">
+      <circle class="alem-govde" id="alemGovde" r="30"/>
+    </g>
+  </svg>
 </div>
 
-<div class="stage">
-  <p class="state" id="state"></p>
-  <p class="aha" id="aha"></p>
+<div class="sozcuk-alan">
+  <span class="sozcuk" id="sozcuk">Subhanallah, demek mana, hakikat buymuş.</span>
 </div>
-<div class="motor-kontroller">
-  <span class="olcu-gosterge" id="olcuGosterge" aria-live="polite"></span>
-  <span id="motorBiter"></span>
+
+<div class="tekrar-alan">
+  <button type="button" class="tekrar-btn" id="tekrar" aria-label="Sahneyi tekrar oynat">
+    <span aria-hidden="true">↻</span> <span id="tekrarMetin">Tekrar</span>
+  </button>
 </div>
-<p class="grab-hint" id="grabHint"></p>
 
-<div class="pairs" id="pairs"></div>
-<div class="qbox" id="qbox"><span class="hint" id="qhint">Bir ayna çiftine dokunarak o ilişkiye ait söylemi gör.</span></div>
-<p class="paradox" id="paradox"></p>
-
-<!-- Sahne motoru — .claude/commands/sahne.md motor adımının çıktısı.
-     Partisyonla birleşerek sahnenin kendi kendini anlatmasını sağlar. -->
-<script src="assets/sahne-motoru.js"></script>
+<script src="vendor/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
 <script>
-const LA={
-  tr:{
-    title:'Ayna Metaforu',
-    sub:'Sûret ne bakandır ne ondan başka — ayna olmasaydı görüntü olmazdı, bakan olmasaydı ayna boş kalırdı',
-    obs:'BAKAN', mir:'AYNA', img:'Sûret',
-    grab:'Aynayı sürükleyerek çevir (ok tuşları da çalışır)',
-    st0:'Işık gidiyor. Ama dönmüyor — ortada görüntü yok.',
-    st1:'Bir şey belirmeye başladı…',
-    st2:'Görüntü doğdu.',
-    aha:'Ne aynayı değiştirdin ne bakanı — yalnız aralarındaki açıyı.\nDemek görüntü ikisinin de değilmiş; aralarındaki ilişkinin.',
-    hint:'Bir ayna çiftine dokunarak o ilişkiye ait söylemi gör.',
-    pairs:[
-      {id:'p1',d1:'g',t1:'Zât',d2:'b',t2:'İnsan-ı Kâmil',label:'İlk Ayna',note:"Hakk kendini ancak câmi' bir aynada görebilir"},
-      {id:'p2',d1:'g',t1:'Hak',d2:'b',t2:'Âlem',label:'Ters Ayna',note:'"Hak âlemin aynasıdır" — yön çift taraflı'},
-      {id:'p3',d1:'l',t1:'Kalp',d2:'g',t2:'Tecellî',label:'Derinleşen Ayna',note:'Kalp cilâlandıkça tecellî artar, tecellî arttıkça kalp açılır'},
-      {id:'p4',d1:'g',t1:'Varlık',d2:'b',t2:'Yokluk',label:'Ontolojik Ayna',note:'Mutlak yokluk mutlak varlığın aynasıdır — mümkün burada görünür'},
-    ],
-    paradox:'"Aynaya bakan olmasa aynadaki görüntü ortaya çıkmaz.\nAyna olmasa yine görüntü ortaya çıkmaz.\nBu sûret ancak sende seninle sana gitmektedir." — Fütûhât',
-  },
-  en:{
-    title:'Mirror Metaphor',
-    sub:'The Form is neither the observer nor apart from it — without a mirror no image appears, without an observer the mirror stays empty',
-    obs:'OBSERVER', mir:'MIRROR', img:'Form',
-    grab:'Drag to turn the mirror (arrow keys work too)',
-    st0:'The light goes out. But it does not come back — there is no image.',
-    st1:'Something is beginning to appear…',
-    st2:'The image is born.',
-    aha:'You changed neither the mirror nor the observer — only the angle between them.\nSo the image belonged to neither; it belonged to their relation.',
-    hint:'Touch a mirror pair to see its related discourse.',
-    pairs:[
-      {id:'p1',d1:'g',t1:'Essence',d2:'b',t2:'Perfect Man',label:'First Mirror',note:'The Real can only see Itself in an all-encompassing mirror'},
-      {id:'p2',d1:'g',t1:'The Real',d2:'b',t2:'World',label:'Inverted Mirror',note:'"The Real is the mirror of the world" — the direction is bilateral'},
-      {id:'p3',d1:'l',t1:'Heart',d2:'g',t2:'Manifestation',label:'Deepening Mirror',note:'As the heart is polished manifestation increases, and vice versa'},
-      {id:'p4',d1:'g',t1:'Existence',d2:'b',t2:'Non-existence',label:'Ontological Mirror',note:'Absolute non-existence mirrors absolute existence — the contingent appears here'},
-    ],
-    paradox:'"Were there no observer at the mirror, no image would appear in it.\nWere there no mirror, again no image would appear.\nThis Form goes to you in you from you." — Futûhât',
-  },
-  pt:{
-    title:'Metáfora do Espelho',
-    sub:'A Forma não é o observador nem está além dele — sem espelho não há imagem, sem observador o espelho fica vazio',
-    obs:'OBSERVADOR', mir:'ESPELHO', img:'Forma',
-    grab:'Arraste para girar o espelho (as setas também funcionam)',
-    st0:'A luz sai. Mas não volta — não há imagem alguma.',
-    st1:'Algo começa a aparecer…',
-    st2:'A imagem nasceu.',
-    aha:'Não mudaste nem o espelho nem o observador — apenas o ângulo entre eles.\nEntão a imagem não era de nenhum dos dois; era da relação entre eles.',
-    hint:'Toque num par espelhado para ver o discurso relacionado.',
-    pairs:[
-      {id:'p1',d1:'g',t1:'Essência',d2:'b',t2:'Homem Perfeito',label:'Primeiro Espelho',note:'O Real só pode ver-Se num espelho que tudo abrange'},
-      {id:'p2',d1:'g',t1:'O Real',d2:'b',t2:'Mundo',label:'Espelho Invertido',note:'"O Real é o espelho do mundo" — a direção é bilateral'},
-      {id:'p3',d1:'l',t1:'Coração',d2:'g',t2:'Manifestação',label:'Espelho Aprofundante',note:'À medida que o coração é polido a manifestação aumenta, e vice-versa'},
-      {id:'p4',d1:'g',t1:'Existência',d2:'b',t2:'Não-existência',label:'Espelho Ontológico',note:'A não-existência absoluta espelha a existência absoluta — o contingente aparece aqui'},
-    ],
-    paradox:'"Se não houvesse observador diante do espelho, nenhuma imagem apareceria nele.\nSem espelho, também não apareceria imagem alguma.\nEsta Forma vai a ti em ti de ti." — Futûhât',
-  }
+// Sahne dili (i18n). Sözcük ve alt-başlık dile göre değişiyor.
+// meditasyon.html'den dil postMessage'ı geliyor (mevcut olan yerde).
+const LA = {
+  tr:{title:"Ayna Metaforu",
+      sub:"Bir ayna nasıl aydınlanır — ondan âlem nasıl aydınlanır.",
+      sozcuk:"Subhanallah, demek mana, hakikat buymuş.",
+      tekrar:"Tekrar", geri:"Sahneler"},
+  en:{title:"Mirror Metaphor",
+      sub:"How a mirror is lit — how a world is lit from it.",
+      sozcuk:"Subḥān Allāh — so THIS is what meaning was, what the reality was.",
+      tekrar:"Replay", geri:"Scenes"},
+  pt:{title:"Metáfora do Espelho",
+      sub:"Como um espelho se acende — como um mundo se acende a partir dele.",
+      sozcuk:"Subḥān Allāh — então ERA isto o sentido, era isto a realidade.",
+      tekrar:"Repetir", geri:"Cenas"}
 };
 
-const PD={
-  p1:{
-    tr:{q:'"Zât, bilinme arzusuyla şehâdet âlemini yarattı, ama bu âlem tam cilâlı bir ayna olmadığından Âdem\'in yaratılışı bu aynanın \'cilâsı\' oldu. Yalnız câmi\' (her şeyi toplayan) ayna, kendisine tecellî edeni tanıyabilir."',src:"Füsûsü'l-Hikem — Konuk şerhi (insan-i-kamil)"},
-    en:{q:'"The Essence created the manifest world from a desire to be known, but this world was not a perfectly polished mirror, so the creation of Adam became the \'polishing\' of that mirror. Only the all-comprehensive mirror can recognize the one who manifests within it."',src:'Fusûs al-Hikam — Konuk commentary (insan-i-kamil)'},
-    pt:{q:'"A Essência criou o mundo manifesto pelo desejo de ser conhecida, mas este mundo não era um espelho perfeitamente polido, então a criação de Adão tornou-se o \'polimento\' daquele espelho. Somente o espelho que tudo abrange pode reconhecer Aquele que nele se manifesta."',src:'Fusûs al-Hikam — comentário de Konuk (insan-i-kamil)'},
-  },
-  p2:{
-    tr:{q:'"Hak âlemin aynasıdır. O aynada âlemin sûretleri ortaya çıkmış, mümkünler kendilerini varlığı zorunlu Hakkın aynasında görmüşlerdir. Mümkünler var olmada Allah\'a bağlı oldukları gibi O da kendisini bilmede mümkünler hakkındaki bilgiye dayanmıştır."',src:"Fütûhât — 415. Bölüm (c15k169): \"Ayna Ters Çevriliyor\""},
-    en:{q:'"The Real is the mirror of the world. In that mirror the forms of the world appeared, and contingent beings saw themselves in the mirror of the Necessarily Existent. Just as contingent beings depend on God for their existence, He relies on His knowledge of contingent beings to know Himself."',src:'Futûhât — Chapter 415 (c15k169): "The Mirror Inverted"'},
-    pt:{q:'"O Real é o espelho do mundo. Naquele espelho as formas do mundo apareceram, e os seres contingentes se viram no espelho do Necessariamente Existente. Assim como os seres contingentes dependem de Allah para existir, Ele também se apoia no conhecimento dos contingentes para conhecer a Si mesmo."',src:'Futûhât — Capítulo 415 (c15k169): "O Espelho Invertido"'},
-  },
-  p3:{
-    tr:{q:'"Hak en kâmil, mutedil ve güzel tarzda Muhammed aynasında zuhur eder. Kalbim her sûreti kabul eder hâle geldi." Kalp sürekli tekallüb eden (hâlden hâle giren) ve Hakk\'ın her tecellisini yeniden yansıtabilen bir aynadır.',src:"Fütûhât (c12k146) · concepts.json — kalp"},
-    en:{q:'"The Real manifests in the most perfect, balanced, and beautiful manner in the mirror of Muhammad. My heart has become capable of receiving every form." The heart is a mirror in perpetual oscillation — passing from state to state — capable of reflecting each new manifestation of the Real.',src:'Futûhât (c12k146) · concepts.json — heart'},
-    pt:{q:'"O Real manifesta-se da maneira mais perfeita, equilibrada e bela no espelho de Muhammad. Meu coração tornou-se capaz de receber toda forma." O coração é um espelho em perpétua oscilação — passando de estado em estado — capaz de refletir cada nova manifestação do Real.',src:'Futûhât (c12k146) · concepts.json — coração'},
-  },
-  p4:{
-    tr:{q:'"Mutlak yokluk mutlak varlığın karşısında bir aynadır. Varlık aynada kendi sûretini görür. Bu durumda o sûret mümkünün kendisidir… Ne görendir ne ondan başkadır!"',src:"Fütûhât — 312. Bölüm (c11k135): \"Berzah: Varlık ile Yokluk Arasında Ayna\""},
-    en:{q:'"Absolute non-existence is a mirror opposite absolute existence. Existence sees its own form in that mirror. In this case, that form is the contingent being itself… It is neither the seer nor other than the seer!"',src:'Futûhât — Chapter 312 (c11k135): "Barzakh: Mirror Between Existence and Non-existence"'},
-    pt:{q:'"A não-existência absoluta é um espelho diante da existência absoluta. A existência vê sua própria forma naquele espelho. Neste caso, aquela forma é o próprio ser contingente… Não é o vidente nem algo além dele!"',src:'Futûhât — Capítulo 312 (c11k135): "Barzakh: Espelho Entre Existência e Não-existência"'},
-  }
-};
-
-// ── Sahne ────────────────────────────────────────────────────────────────────
-const CX=390, CY=150;   // aynanın merkezi
-const MAXA=52;          // aynanın çevrilebildiği açı
-
-let curLang='tr', curPair=null;
-// /sahne motor: sahne artık motorla oynar. angle başlangıç değeri motorun
-// ilk ölçüsünün hedef_hal.angle'ıyla hemen üzerine yazılır. touched ilk
-// gerçek kullanıcı etkileşiminde tetiklenir (motor bittikten sonra).
-let angle=45;
-let sawImage=false, sawLoss=false, touched=false;
-let motorBitti=false;   // true olunca sürükleme açılır ("kendim gezineyim")
-// Motor bir ölçüden sonrakine geçerken bu ikili tween için kullanılır.
-let angleFrom=45, angleTo=45;
-function easeInOut(t){ return t<0.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2; }
-
-const $=id=>document.getElementById(id);
-
-// Motor stateText yazıyor -- v-tabanlı otomatik metin (aşağıdaki maybeState)
-// yalnız keşif modunda (motor bittikten sonra) devreye girer.
-function maybeUpdateStateFromV(v){
-  if(!motorBitti) return;   // motor konuşurken müdahale etme
-  const d=LA[curLang];
-  const st=$('state');
-  st.textContent = v<0.06 ? d.st0 : (v<0.5 ? d.st1 : d.st2);
-  st.classList.toggle('on', v>=0.5);
-}
-
-function render(){
-  const th=angle*Math.PI/180;
-  // yansıyan yön: r = -(cos2θ, sin2θ) — ayna kadar değil, iki katı hızla sapar
-  const rx=-Math.cos(2*th), ry=-Math.sin(2*th);
-  // ışık bakana ancak θ≈0'da döner; gerisinde karanlığa gider
-  const v=Math.pow(Math.max(0,Math.cos(2*th)),6);
-
-  $('mirrorG').setAttribute('transform','translate('+CX+','+CY+') rotate('+angle.toFixed(2)+')');
-  $('rayOut').setAttribute('x2',(CX+rx*300).toFixed(1));
-  $('rayOut').setAttribute('y2',(CY+ry*300).toFixed(1));
-  $('rayOut').setAttribute('opacity',(.30+.45*v).toFixed(3));
-  $('rayIn').setAttribute('opacity',(.42+.30*v).toFixed(3));
-
-  // sûret yüzeyin ARKASINDA, aynanın normali boyunca durur
-  const nx=Math.cos(th), ny=Math.sin(th);
-  $('imgG').setAttribute('transform','translate('+(CX+nx*74).toFixed(1)+','+(CY+ny*74).toFixed(1)+')');
-  $('imgG').setAttribute('opacity',v.toFixed(3));
-  // ışık döndükçe görüntü netleşir: bulanıklık süs değil, sonuç
-  $('imgBlurNode').setAttribute('stdDeviation',(14-13.2*v).toFixed(2));
-  $('imgLabel').setAttribute('opacity',Math.max(0,(v-.45)/.55).toFixed(3));
-  // giden geri döndüğünde bakanın kendisi de parlar
-  $('srcHalo').setAttribute('opacity',(.8+.2*v).toFixed(3));
-
-  // Keşif modunda v-tabanlı otomatik state metni (motor konuşmuyor)
-  maybeUpdateStateFromV(v);
-
-  if(v>0.6) sawImage=true;
-  if(sawImage && v<0.06) sawLoss=true;
-  // aha yalnız kullanıcı kendi keşfederken v-tabanlı tetiklenir (motor
-  // bitmişse). Motor kendi sonunda 'aha:true' ile açar (aşağıda).
-  if(motorBitti && sawImage && sawLoss) $('aha').classList.add('show');
-}
-
-function setAngle(a){
-  angle=Math.max(-MAXA,Math.min(MAXA,a));
-  render();
-}
-
-const scene=$('scene');
-let dragging=false, lastX=0, lastY=0;
-function markTouched(){ if(!touched){touched=true;$('grabHint').classList.add('gone');} }
-scene.addEventListener('pointerdown',e=>{
-  if(!motorBitti) return;  // motor oynuyorken sürükleme kapalı
-  dragging=true; lastX=e.clientX; lastY=e.clientY;
-  try{scene.setPointerCapture(e.pointerId);}catch(_){}
-  markTouched(); e.preventDefault();
-});
-scene.addEventListener('pointermove',e=>{
-  if(!dragging) return;
-  const r=scene.getBoundingClientRect();
-  const k=150/Math.max(1,r.height);
-  setAngle(angle + ((e.clientY-lastY)+(e.clientX-lastX)*0.35)*k);
-  lastX=e.clientX; lastY=e.clientY;
-});
-['pointerup','pointercancel','pointerleave'].forEach(t=>scene.addEventListener(t,()=>{dragging=false;}));
-scene.addEventListener('keydown',e=>{
-  if(!motorBitti) return;  // motor oynuyorken klavye kapalı
-  const k={ArrowUp:-3,ArrowDown:3,ArrowLeft:-3,ArrowRight:3}[e.key];
-  if(k===undefined) return;
-  markTouched(); setAngle(angle+k); e.preventDefault();
-});
-
-// ── Motor entegrasyonu ──────────────────────────────────────────────────────
-// .claude/commands/sahne.md motor adımı: sahne kendi kendini anlatır. Bir
-// partisyon JSON'u fetch et, motora ver, motor rAF döngüsünde her frame'de
-// açıyı tween eder. Bitince "Tekrar" düğmesi + "kendim gezineyim" kipi açılır.
-(function baslatMotor(){
-  const base = (window.__dostRouteBase || "");
-  const url = (base ? base + "/" : "") + "data/ibn-arabi/sahne-partisyonlari/ayna-metaforu.json";
-  fetch(url).then(function(r){ return r.json(); }).then(function(partisyon){
-    if(!window.__sahneMotoru){ console.warn("sahne-motoru yüklenemedi"); return; }
-    // İlk ölçünün hedef angle'ına atla
-    const ilk = partisyon.olcuLer[0];
-    angle = ilk.hedef_hal.angle;
-    angleFrom = angle;
-    angleTo = angle;
-    render();
-
-    window.__sahneMotoru.yarat({
-      container: scene,
-      partisyon: partisyon,
-      applyOlcu: function(olcu){
-        // Ölçü değişti: tween'in başlangıç/hedef değerlerini kilitle
-        angleFrom = angle;
-        angleTo = (olcu.hedef_hal && typeof olcu.hedef_hal.angle === "number") ? olcu.hedef_hal.angle : angle;
-        // Ölçü metnini state'a yaz (motor konuşuyor)
-        const st = $('state');
-        st.textContent = ""; // frame'de doldurulur (metinGoster'dan)
-        st.classList.toggle('on', Math.abs(angleTo) < 8);
-        // 'aha' bayrağı bu ölçüde açılıyorsa metin görünsün
-        if(olcu.hedef_hal && olcu.hedef_hal.aha){ $('aha').classList.add('show'); }
-      },
-      frame: function(fraz, olcu){
-        const t = easeInOut(fraz);
-        angle = angleFrom + (angleTo - angleFrom) * t;
-        render();
-      },
-      metinGoster: function(metin){
-        if(!metin){ $('state').textContent = ""; return; }
-        const dilKey = curLang;
-        $('state').textContent = metin[dilKey] || metin.tr || "";
-      },
-      olcuGoster: function(idx, toplam){
-        $('olcuGosterge').textContent = (idx+1) + " / " + toplam;
-      },
-      biterEl: $('motorBiter'),
-      tepki: function(ev){
-        if(ev.tip === "bitti"){
-          motorBitti = true;
-          document.body.classList.add('sahne-bitti');
-          // grabHint görünür: artık kullanıcı sürükleyebilir
-          $('grabHint').textContent = LA[curLang].grab;
-          // 'aha' henüz açılmadıysa (reduced-motion durumunda) aç
-          const olcu = partisyon.olcuLer[partisyon.olcuLer.length - 1];
-          if(olcu.hedef_hal && olcu.hedef_hal.aha) $('aha').classList.add('show');
-        }
-      },
-    });
-  }).catch(function(err){ console.warn("partisyon yüklenemedi", err); });
-})();
-
-// ── i18n + içerik ────────────────────────────────────────────────────────────
-function dc(d){return d==='g'?'gold':d==='b'?'blue':'liminal';}
+const $ = id => document.getElementById(id);
+let curLang = "tr";
+try {
+  const l = localStorage.getItem("dost-lang");
+  if(LA[l]) curLang = l;
+} catch(e){}
 
 function setLang(l){
-  curLang=l;
-  const d=LA[l];
-  $('hTitle').textContent=d.title;
-  $('hSub').textContent=d.sub;
-  $('lbObs').textContent=d.obs;
-  $('lbMir').textContent=d.mir;
-  $('imgLabel').textContent=d.img;
-  // grabHint yalnız motor bittikten sonra anlamlı; öncesinde boş bırak
-  $('grabHint').textContent = motorBitti ? d.grab : "";
-  $('aha').textContent=d.aha;
-  $('paradox').textContent=d.paradox;
-  renderPairs(l);
-  const qh=$('qhint');
-  if(qh) qh.textContent=d.hint;
-  if(curPair) showQuote(curPair);
-  render();
+  if(!LA[l]) return;
+  curLang = l;
+  const d = LA[l];
+  $("hTitle").textContent = d.title;
+  $("hSub").textContent = d.sub;
+  $("sozcuk").textContent = d.sozcuk;
+  $("tekrarMetin").textContent = d.tekrar;
+  document.documentElement.setAttribute("lang", l);
+  const geri = document.querySelector(".sahne-geri");
+  if(geri){ const s = geri.querySelector(".sahne-geri-metin");
+    if(s) s.textContent = d.geri; }
+}
+setLang(curLang);
+
+window.addEventListener("message", function(e){
+  if(e.data && e.data.type === "setLang") setLang(e.data.lang);
+});
+
+// ── SAHNE ───────────────────────────────────────────────────────────────
+// Storyboard: 6 kare, 7.2 sn. Ayrıntılar için üstteki dosya-başı yorumuna
+// ve sohbet kaydındaki storyboard'a bak. Bu timeline SADECE storyboard'u
+// oynatır -- yeni bir sahne kararı burada değil, storyboard'da alınır.
+const gsap = window.gsap;
+if(!gsap){
+  // GSAP yüklenmediyse (SRI hatası ya da ağ): sahneyi son kareye kilitle.
+  // Sessiz bir düşüş, kırık bir sayfa değil.
+  document.getElementById("sozcuk").style.opacity = 1;
+  document.getElementById("isikA").style.opacity = .85;
+  document.getElementById("kalpYuzey").style.opacity = .95;
+  document.getElementById("kalpHale").style.opacity = .55;
+  document.getElementById("isikB").style.opacity = .8;
+  document.getElementById("alemGovde").setAttribute("fill", "var(--world)");
+  document.getElementById("alemGovde").style.opacity = .9;
 }
 
-function renderPairs(l){
-  const d=LA[l];
-  $('pairs').innerHTML=d.pairs.map(p=>`
-    <div class="pair" id="${p.id}" tabindex="0" role="button" aria-label="${p.t1} / ${p.t2} — ${p.label}" onclick="selectPair('${p.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectPair('${p.id}');}">
-      <div class="pair-top">
-        <span class="dot d${p.d1}"></span>
-        <span style="font-size:.72rem;color:var(--${dc(p.d1)})">${p.t1}</span>
-        <span class="arr">⇔</span>
-        <span class="dot d${p.d2}"></span>
-        <span style="font-size:.72rem;color:var(--${dc(p.d2)})">${p.t2}</span>
-      </div>
-      <div class="pair-label">${p.label}</div>
-      <div class="pair-note">${p.note}</div>
-    </div>`).join('');
-  if(curPair) document.getElementById(curPair)?.classList.add('on');
+// Reduced-motion: timeline'ı hiç kurmuyoruz, direkt son kareyi gösteriyoruz.
+const azHareket = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function sonKarey(){
+  // Storyboard'un Kare 5 sonundaki hâl.
+  gsap.set("#isikA", {opacity:.85});
+  gsap.set("#kalpGovde", {opacity:.4, fill:"var(--gold-soft)"});
+  gsap.set("#kalpYuzey", {opacity:.95});
+  gsap.set("#kalpHale", {opacity:.55});
+  gsap.set("#isikB", {opacity:.8});
+  gsap.set("#alemGovde", {opacity:.9, fill:"var(--world)"});
+  gsap.set("#sozcuk", {opacity:1});
+  $("tekrar").classList.add("gorunur");
 }
 
-function showQuote(id){
-  const pd=PD[id][curLang];
-  $('qbox').innerHTML=`<blockquote>${pd.q}</blockquote><div class="src">${pd.src}</div>`;
+function baslangica(){
+  // Kare 1: perdeli kalp, ışık yok, âlem sönük.
+  gsap.set("#isikA", {opacity:0});
+  gsap.set("#kalpGovde", {opacity:.75, fill:"var(--dust)"});
+  gsap.set("#kalpYuzey", {opacity:0});
+  gsap.set("#kalpHale", {opacity:0});
+  gsap.set("#isikB", {opacity:0});
+  gsap.set("#alemGovde", {opacity:.55, fill:"var(--dust)"});
+  gsap.set("#sozcuk", {opacity:0});
+  $("tekrar").classList.remove("gorunur");
 }
 
-function selectPair(id){
-  if(curPair===id){
-    curPair=null;
-    document.querySelectorAll('.pair').forEach(p=>p.classList.remove('on'));
-    $('qbox').innerHTML=`<span class="hint" id="qhint">${LA[curLang].hint}</span>`;
-    return;
-  }
-  curPair=id;
-  document.querySelectorAll('.pair').forEach(p=>p.classList.toggle('on',p.id===id));
-  showQuote(id);
+function oynat(){
+  if(!gsap) return;
+  if(azHareket){ sonKarey(); return; }
+  baslangica();
+  // Timeline: sayfaya girildikten 1.5 sn sonra başlar.
+  const tl = gsap.timeline({delay:1.5});
+
+  // KARE 1 (0.0-1.4): kalpteki nefes — çok yavaş bir ölçek dalgası.
+  tl.to("#kalpGovde", {scale:0.98, transformOrigin:"50% 50%",
+                       duration:0.7, ease:"sine.inOut"}, 0);
+  tl.to("#kalpGovde", {scale:1.0, duration:0.7, ease:"sine.inOut"}, 0.7);
+
+  // KARE 2 (1.4-3.2): ışık koridoru netleşiyor, kalbin matlığı azalıyor.
+  tl.to("#isikA", {opacity:0.85, duration:1.6, ease:"power1.out"}, 1.4);
+  tl.to("#kalpGovde", {opacity:0.55, fill:"var(--gold-soft)",
+                       duration:1.6, ease:"power1.out"}, 1.4);
+
+  // KARE 3 (3.2-4.6): yansıma yüzeyde doğuyor, hale hafifçe beliriyor.
+  tl.to("#kalpYuzey", {opacity:0.95, duration:1.2, ease:"power2.out"}, 3.2);
+  tl.to("#kalpHale", {opacity:0.55, duration:1.2, ease:"power2.out"}, 3.4);
+  // Kalbin gövde matlığı yansımayla birlikte biraz daha azalıyor
+  // (gövde artık yansımayı taşıyor).
+  tl.to("#kalpGovde", {opacity:0.4, duration:1.2, ease:"power1.out"}, 3.2);
+
+  // KARE 4 (4.6-5.8): kalpten âleme ikinci ışık, âlem sıcaklaşıyor.
+  tl.to("#isikB", {opacity:0.8, duration:1.0, ease:"power1.out"}, 4.6);
+  tl.to("#alemGovde", {opacity:0.9, fill:"var(--world)",
+                       duration:1.2, ease:"power1.out"}, 4.8);
+
+  // KARE 5 (5.8-7.0): cümle beliriyor (fade-in). Başka hareket yok.
+  tl.to("#sozcuk", {opacity:1, duration:0.9, ease:"power1.out"}, 5.9);
+
+  // KARE 6 (7.0-7.2): dinginlik, "Tekrar" düğmesi görünür.
+  tl.call(function(){ $("tekrar").classList.add("gorunur"); }, null, 7.0);
 }
 
-setLang('tr');
+// Sayfa hazır: oynat. Görünürlük gizli değilken oynasın; sekme arkadaysa
+// beklesin (kullanıcının sahneyi kaçırmaması için).
+if(document.visibilityState === "visible"){
+  oynat();
+} else {
+  document.addEventListener("visibilitychange", function once(){
+    if(document.visibilityState === "visible"){
+      document.removeEventListener("visibilitychange", once);
+      oynat();
+    }
+  });
+}
 
-window.addEventListener('message',function(e){
-  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+$("tekrar").addEventListener("click", function(){
+  // Tekrar: timeline'ı sıfırla, baştan başlat.
+  if(gsap) gsap.killTweensOf(["#isikA","#isikB","#kalpGovde","#kalpYuzey","#kalpHale","#alemGovde","#sozcuk"]);
+  oynat();
+  $("tekrar").blur();
 });
 </script>
 
 <script>
-// Sahneden çıkış: ESC + görünür bağlantı (2026-08-05 geri bildirimi).
-// 2026-08-06: bu sahne meditasyon.html içinde bir <iframe> olarak da gömülü
-// (bkz. meditasyon.html'in kendi tab yapısı). Gömülüyken bu enjekte edilen
-// pilli düğme iframe'in kendi köşesinde ikinci kez çiziliyor, ve
-// meditasyon.html'in KENDİ başlık şeridinde zaten eşdeğer bir "Haritaya"
-// bağlantısı olduğundan bu üst üste binen ikinci düğme gereksiz bir
-// "kemer" gibi görünüyordu (kullanıcı bulgusu: "yukarda başka bir kemer
-// daha görünüyor"). Yalnız üst pencerede (iframe DIŞINDA) çalış.
+// Sahneden çıkış: ESC + görünür bağlantı (2026-08-05 mirası; iframe'de
+// çift çizmemek için yalnız üst pencerede çalışıyor).
 if (window.self === window.top) (function () {
   var ETIKET = { tr: "Sahneler", en: "Scenes", pt: "Cenas" };
   var dil = "tr";
@@ -507,16 +338,16 @@ if (window.self === window.top) (function () {
 
   var a = document.createElement("a");
   a.className = "sahne-geri";
-  a.href = "sahneler/";          // sahneler kökte, önizlemede de doğru çözülür
-  a.textContent = "\u2190 " + ETIKET[dil];
+  a.href = "sahneler/";
   a.setAttribute("aria-label", ETIKET[dil]);
+  var ok = document.createElement("span");
+  ok.setAttribute("aria-hidden","true"); ok.textContent = "←";
+  var t = document.createElement("span");
+  t.className = "sahne-geri-metin"; t.textContent = ETIKET[dil];
+  a.appendChild(ok); a.appendChild(document.createTextNode(" ")); a.appendChild(t);
   document.body.appendChild(a);
 
   function geriGit() {
-    // Aynı siteden geldiysek geçmiş doğru olan: bir önceki SAHNEYE döner.
-    // Doğrudan bu adrese gelindiyse (referrer yok / dış site / yeni sekme)
-    // galeriye gider -- history.back() orada ya hiçbir şey yapmaz ya da
-    // kullanıcıyı siteden ATAR.
     try {
       if (document.referrer && history.length > 1 &&
           new URL(document.referrer).origin === location.origin) {
@@ -530,7 +361,6 @@ if (window.self === window.top) (function () {
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
     var el = document.activeElement;
-    // Metin/kaydırıcı odaktayken ESC'i çalma -- orada kendi anlamı var.
     if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
     e.preventDefault();
     geriGit();

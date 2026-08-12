@@ -381,6 +381,27 @@
       <ul class="daphne-bag-liste">${rows}</ul></div>`;
   }
 
+  // "Bu yazıyı okuduktan sonra doğal olarak akla gelen sorular." Cevap
+  // vermiyor; okuyucuyu bir sonraki durağa doğru itiyor. Renk anahtarı:
+  // ortusme/fark/soru gibi bir tür değil, tek bir bölüm -- açık bir
+  // yönelim rengiyle (kemal) çerçeveleniyor, çünkü hepsi birer açık soru.
+  function sorularHtml(a) {
+    if (!a.sorular || !a.sorular.length) return "";
+    const rows = a.sorular.map((s, i) => `<li class="daphne-soru">
+      <span class="daphne-soru__no">${i + 1}</span>
+      <span class="daphne-soru__metin">${tt(s)}</span></li>`).join("");
+    return `<div class="daphne-baglar daphne-baglar--sorular">
+      <p class="daphne-baglar__baslik">${tt({
+        tr: "Okurken açılan sorular",
+        en: "Questions this reading opens",
+        pt: "Perguntas que esta leitura abre" })}</p>
+      <p class="daphne-baglar__not">${tt({
+        tr: "Cevap değil; ilerlemek istersen kendine sorabileceğin şeyler. Doğru cevabı biz de bilmiyoruz.",
+        en: "Not answers; things you can ask yourself if you want to keep going. We do not know the right answer either.",
+        pt: "Não respostas; coisas que você pode se perguntar se quiser prosseguir. Também não sabemos a resposta certa." })}</p>
+      <ol class="daphne-soru-liste">${rows}</ol></div>`;
+  }
+
   function dostHtml(a) {
     if (!a.dost || !a.dost.length) return "";
     const base = window.__dostRouteBase || "";
@@ -413,27 +434,50 @@
         // "İşlendi" rozeti not_tr'nin VARLIĞINA değil, kartta gerçekten
         // gösterilecek bir şey olup olmadığına bakmalı (2026-08-04 kullanıcı
         // bildirimi: "profile işlendi" görünen bazı yazıların detayı yoktu).
-        // Eski mantık (`!a.note_tr`) tam tersini yapıyordu: not_tr'si OLMAYAN
-        // -- yani eksen/Dost bağı da özeti de olmayan, tamamen boş -- on beş
-        // kayıt "İşlendi" görünüyordu; not_tr'sinde açıkça "henüz işlenmedi"
-        // yazan sekiz kayıt ise (metne erişilemedi ya da örtüşme bulunamadı)
-        // zaten doğru rozeti alıyordu, bu yüzden karışıklık asıl boş
-        // kayıtlardaydı.
-        const islendi = !!(a.ozet || (a.eksenler && a.eksenler.length) || (a.dost && a.dost.length));
+        const eksenSayisi = (a.eksenler || []).length;
+        const dostSayisi = (a.dost || []).length;
+        const soruSayisi = (a.sorular || []).length;
+        const islendi = !!(a.ozet || eksenSayisi || dostSayisi);
+        // Kartın kalınlığı (--derinlik) Dost bağı sayısıyla değişiyor:
+        // 4+ = derin (dolu şerit), 2-3 = orta, 0-1 = ince, işlenmemiş = boş.
+        // Bu bir "puan" değil, kartların birbirine bir bakışta ayrılması
+        // için görsel bir dokunuş.
+        let derinlik = "yok";
+        if (dostSayisi >= 4) derinlik = "derin";
+        else if (dostSayisi >= 2) derinlik = "orta";
+        else if (islendi) derinlik = "hafif";
         const status = !islendi
           ? `<span class="daphne-profile-card__status daphne-profile-card__status--pending">${tt({ tr: "Henüz işlenmedi", en: "Not yet processed", pt: "Ainda não processado" })}</span>`
           : `<span class="daphne-profile-card__status daphne-profile-card__status--done">${tt({ tr: "Profile işlendi", en: "Worked into profile", pt: "Incorporado ao perfil" })}</span>`;
+        // Kısa rozetler kartın kapalı hâlinde de görünsün: kaç eksen, kaç
+        // Dost bağı, kaç soru. Böylece detay açmadan kartın "yoğunluğu"
+        // anlaşılıyor.
+        const rozetler = islendi
+          ? `<span class="daphne-rozet-satiri">
+              ${eksenSayisi ? `<span class="daphne-rozet daphne-rozet--eksen" title="${tt({ tr: "eksen", en: "axes", pt: "eixos" })}">${eksenSayisi} ${tt({ tr: "eksen", en: "axes", pt: "eixos" })}</span>` : ""}
+              ${dostSayisi ? `<span class="daphne-rozet daphne-rozet--dost" title="${tt({ tr: "Dost bağı", en: "Dost link", pt: "vínculo com Dost" })}">${dostSayisi} ${tt({ tr: "Dost bağı", en: "Dost link", pt: "vínculo Dost" })}</span>` : ""}
+              ${soruSayisi ? `<span class="daphne-rozet daphne-rozet--soru" title="${tt({ tr: "açık soru", en: "open questions", pt: "perguntas abertas" })}">${soruSayisi} ${tt({ tr: "soru", en: "questions", pt: "perguntas" })}</span>` : ""}
+            </span>`
+          : "";
         const note = a.note_tr ? `<p class="daphne-profile-card__note">${tt({ tr: a.note_tr, en: a.note_en, pt: a.note_pt })}</p>` : "";
         const ozet = a.ozet ? `<p class="daphne-profile-card__note">${tt(a.ozet)}</p>` : "";
         const tarih = a.date ? `<span class="daphne-profile-card__tarih">${a.date}</span>` : "";
-        // Kart artık bir <a> değil: içinde başka bağlantılar var (eksenler,
-        // Dost kavramları) ve iç içe bağlantı hem geçersiz HTML hem
-        // erişilebilirlik hatasıdır.
-        return `<article class="daphne-profile-card">
-          <a class="daphne-profile-card__link" href="${a.url}" target="_blank" rel="noopener">
-            <span class="daphne-profile-card__title">${a.title}</span></a>
-          ${tarih}${status}${note}${ozet}
-          ${eksenlerHtml(a, data)}${dostHtml(a)}
+        // <details>: klavye/ekran okuyucu erişimi hazır, JS gerekmez.
+        // İlk açılışta hepsi kapalı -- kullanıcı bir kartı açtığında
+        // altındaki bütün detay (ozet, eksenler, Dost bağları, sorular)
+        // görünüyor.
+        return `<article class="daphne-profile-card daphne-profile-card--${derinlik}">
+          <details class="daphne-profile-card__acilir">
+            <summary class="daphne-profile-card__ozet">
+              <a class="daphne-profile-card__link" href="${a.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+                <span class="daphne-profile-card__title">${a.title}</span></a>
+              <div class="daphne-profile-card__meta">${tarih}${status}${rozetler}</div>
+            </summary>
+            <div class="daphne-profile-card__icerik">
+              ${note}${ozet}
+              ${eksenlerHtml(a, data)}${dostHtml(a)}${sorularHtml(a)}
+            </div>
+          </details>
         </article>`;
       })
       .join("");
