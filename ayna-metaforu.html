@@ -11,7 +11,12 @@
      blur ile). Merkezdeki kalp/ayna açıkça bir ayna: parlatılmış disk
      + ince çerçeve + yüzey highlight. Sol alttaki âlem küresel bir
      gezegen: atmosfer halkası + gradient. Storyboard adımları aynı.
-     GSAP timeline 7.2 sn. Cümle aynı. -->
+     GSAP timeline 7.2 sn. Cümle aynı.
+     2026-08-12 v2.1: Her kareye bir mikro metin cümlesi (üç dilli),
+     alt başlığın altında, kare başında fade-in / kare sonunda
+     fade-out. Kastî: Kare 3'te ayna parlarken âlem hâlâ mat —
+     mikro metin "ayna ışığı kabul etti / âlem sonra aydınlanır"
+     farkını söylüyor. -->
 <title>Ayna Metaforu — Dost Arabi</title>
 <style>
 :root{
@@ -80,7 +85,18 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
 .alem-kure-mat{fill:var(--dust);opacity:.7}   /* Kare 1 hâli */
 .alem-kure-parlak{opacity:0}                   /* Kare 4 hâli, üstüne yazılır */
 
-.tekrar-alan{margin-top:1.2rem;min-height:2.2rem;display:flex;justify-content:center}
+/* Kare-başına mikro metin: alt başlığın "büyütülmüş" bir kardeşi
+   değil, sahnenin ritmine bağlı düşük vurgulu bir alt katman.
+   Kare geçişleriyle GSAP fade in/out. Statik alt başlıkla
+   çakışmasın diye italik değil, "muted" ton. */
+.mikro-alan{margin-top:.9rem;min-height:1.35rem;display:flex;
+  justify-content:center;padding:0 .8rem}
+.mikro-metin{color:var(--muted);font-size:.95rem;line-height:1.35;
+  text-align:center;max-width:520px;opacity:0;margin:0;
+  font-family:inherit}
+.mikro-metin.statik{opacity:1;font-style:italic}
+
+.tekrar-alan{margin-top:.9rem;min-height:2.2rem;display:flex;justify-content:center}
 .tekrar-btn{display:none;align-items:center;gap:.4rem;padding:.45rem 1.1rem;
   min-height:40px;border-radius:999px;background:transparent;
   color:var(--muted);border:1px solid var(--border);
@@ -255,6 +271,10 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
   </svg>
 </div>
 
+<div class="mikro-alan" aria-hidden="true">
+  <p class="mikro-metin" id="mikroMetin"></p>
+</div>
+
 <div class="tekrar-alan">
   <button type="button" class="tekrar-btn" id="tekrar" aria-label="Sahneyi tekrar oynat">
     <span aria-hidden="true">↻</span> <span id="tekrarMetin">Tekrar</span>
@@ -263,17 +283,39 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
 
 <script src="vendor/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
 <script>
+// Kare-başına mikro metin: dört kısa cümle, dört kare (K5 dinginlik, metin yok).
+// Bilgiç değil, gözlemci: ne olduğunu değil, ne olduğunu söylüyor.
+// "Ayna ışığı kabul etti" ile "âlem sonra aydınlanıyor" arasında bir aralık
+// var; Kare 3'te ayna parlarken âlem hâlâ mat -- mikro metin bu farkı
+// okuyucuya işitilebilir kılar.
 const LA = {
   tr:{title:"Ayna Metaforu",
       sub:"Bir ayna nasıl aydınlanır — ondan âlem nasıl aydınlanır.",
-      tekrar:"Tekrar", geri:"Sahneler"},
+      tekrar:"Tekrar", geri:"Sahneler",
+      mikro:["Önce ayna karanlıkta.",
+             "Işık geliyor.",
+             "Ayna ışığı kabul etti.",
+             "Şimdi âlem, o aynadan aydınlanıyor."]},
   en:{title:"Mirror Metaphor",
       sub:"How a mirror is lit — how a world is lit from it.",
-      tekrar:"Replay", geri:"Scenes"},
+      tekrar:"Replay", geri:"Scenes",
+      mikro:["First, the mirror in the dark.",
+             "Light arrives.",
+             "The mirror has received the light.",
+             "Now a world lights up, from that mirror."]},
   pt:{title:"Metáfora do Espelho",
       sub:"Como um espelho se acende — como um mundo se acende a partir dele.",
-      tekrar:"Repetir", geri:"Cenas"}
+      tekrar:"Repetir", geri:"Cenas",
+      mikro:["Primeiro, o espelho no escuro.",
+             "A luz chega.",
+             "O espelho recebeu a luz.",
+             "Agora um mundo se acende, a partir desse espelho."]}
 };
+
+// Aktif mikro kare -- dil değişince o karenin metni yeni dile göre
+// yeniden yazılır (aksi hâlde animasyon esnasında dil değişirse önceki
+// dildeki cümle donmuş kalır).
+let aktifMikroIdx = -1;
 
 const $ = id => document.getElementById(id);
 let curLang = "tr";
@@ -293,6 +335,17 @@ function setLang(l){
   const geri = document.querySelector(".sahne-geri");
   if(geri){ const s = geri.querySelector(".sahne-geri-metin");
     if(s) s.textContent = d.geri; }
+  // Aktif kare varsa mikro metnini yeni dile göre yeniden yaz.
+  if(aktifMikroIdx >= 0){
+    const m = LA[curLang].mikro[aktifMikroIdx];
+    if(m) $("mikroMetin").textContent = m;
+  }
+}
+
+function mikroAyarla(idx){
+  aktifMikroIdx = idx;
+  const m = LA[curLang].mikro[idx];
+  $("mikroMetin").textContent = m || "";
 }
 setLang(curLang);
 
@@ -318,6 +371,10 @@ function sonKare(){
   gsap.set("#isikCizgiler2", {opacity:0.75});
   gsap.set("#alemMat", {opacity:0});
   gsap.set("#alemParlak", {opacity:1});
+  // Son mikro cümle (K4) sahne bittikten sonra da kalır -- geç gelen
+  // biri bir cümlelik özeti görsün.
+  mikroAyarla(3);
+  gsap.set("#mikroMetin", {opacity:1});
   $("tekrar").classList.add("gorunur");
 }
 
@@ -328,6 +385,10 @@ if(!gsap){
     .forEach(function(id){ var e = $(id); if(e) e.style.opacity = 1; });
   ["aynaMat","alemMat"]
     .forEach(function(id){ var e = $(id); if(e) e.style.opacity = 0; });
+  // Mikro metinlerin hepsi statik olarak, birleşik gösterilir.
+  var mm = $("mikroMetin");
+  if(mm){ mm.textContent = LA[curLang].mikro.join("  ·  ");
+    mm.classList.add("statik"); }
   $("tekrar").classList.add("gorunur");
 }
 
@@ -345,12 +406,26 @@ function baslangica(){
   gsap.set("#alemMat", {opacity:0.7});
   gsap.set("#alemParlak", {opacity:0});
   gsap.set("#ayna", {scale:1, transformOrigin:"50% 50%"});
+  gsap.set("#mikroMetin", {opacity:0});
+  $("mikroMetin").textContent = "";
+  $("mikroMetin").classList.remove("statik");
+  aktifMikroIdx = -1;
   $("tekrar").classList.remove("gorunur");
 }
 
 function oynat(){
   if(!gsap) return;
-  if(azHareket){ sonKare(); return; }
+  if(azHareket){
+    // Reduced motion: son kareyi göster + dört mikro cümleyi birleşik
+    // statik metin olarak sun. Bu sahnenin "ikinci meşru biçimi",
+    // düşük kaliteli bir yedek değil.
+    sonKare();
+    var mm = $("mikroMetin");
+    if(mm){ mm.textContent = LA[curLang].mikro.join("  ·  ");
+      mm.classList.add("statik");
+      gsap.set("#mikroMetin", {opacity:1}); }
+    return;
+  }
   baslangica();
   const tl = gsap.timeline({delay:1.5});
 
@@ -380,6 +455,29 @@ function oynat(){
 
   // KARE 5 (6.0-6.2): dinginlik, "Tekrar" düğmesi görünür.
   tl.call(function(){ $("tekrar").classList.add("gorunur"); }, null, 6.0);
+
+  // ── MİKRO METİN KATMANI ────────────────────────────────────────────
+  // Dört cümle, kareyle senkron. Her cümle kare başında yumuşakça belirir
+  // (fade in), kare sonuna doğru söner. K4 sahne bittikten sonra da
+  // ekranda kalır -- geç gelen okuyucu bir cümlelik özeti görsün.
+  // Görsel gramerin "aynı anda ≤ 2 hareket" kuralına uyuyor: ana olay
+  // kare ortasında olur, metin sadece başta belirir/sonda söner
+  // (ana olayla çakışmaz).
+  tl.call(function(){ mikroAyarla(0); }, null, 0.1);
+  tl.to("#mikroMetin", {opacity:1, duration:0.4, ease:"power1.out"}, 0.15);
+  tl.to("#mikroMetin", {opacity:0, duration:0.3, ease:"power1.in"}, 1.15);
+
+  tl.call(function(){ mikroAyarla(1); }, null, 1.5);
+  tl.to("#mikroMetin", {opacity:1, duration:0.4, ease:"power1.out"}, 1.55);
+  tl.to("#mikroMetin", {opacity:0, duration:0.3, ease:"power1.in"}, 2.9);
+
+  tl.call(function(){ mikroAyarla(2); }, null, 3.3);
+  tl.to("#mikroMetin", {opacity:1, duration:0.4, ease:"power1.out"}, 3.35);
+  tl.to("#mikroMetin", {opacity:0, duration:0.3, ease:"power1.in"}, 4.35);
+
+  tl.call(function(){ mikroAyarla(3); }, null, 4.7);
+  tl.to("#mikroMetin", {opacity:1, duration:0.4, ease:"power1.out"}, 4.75);
+  // K4 son cümle -- sahne bittikten sonra da ekranda kalır.
 }
 
 if(document.visibilityState === "visible"){
