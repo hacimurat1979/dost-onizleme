@@ -10203,6 +10203,29 @@ mark.durus-vurgu-es {
 .yolculuk-belirsiz { font-size: 0.9rem; color: var(--muted-fg); border-left: 3px solid var(--border); padding: 8px 12px; margin: 12px 0 0; }
 .yolculuk-belirsiz__btn { background: none; border: none; color: var(--accent); cursor: pointer; padding: 0 2px; text-decoration: underline; font-size: inherit; }
 
+/* Sahne motoru — .claude/commands/sahne.md motor adımı. Motor bitince
+   biterEl içine sadece bu düğmeyi ekler; ilk oynatma boyunca hiçbir
+   kontrol yok kuralı burada tutulur (bkz. assets/sahne-motoru.js). Sakin
+   ve sessiz bir düğme -- büyük değil, dikkat çekmiyor. */
+.sahne-motoru-tekrar {
+  background: transparent;
+  border: 1px solid var(--border, rgba(255,255,255,0.25));
+  color: var(--sahne-metin, currentColor);
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.25s ease;
+}
+.sahne-motoru-tekrar:hover, .sahne-motoru-tekrar:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+.sahne-motoru-tekrar:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent-interactive, rgba(255, 196, 77, 0.5));
+}
+
 /* Yolculuk toggle: atlas ⇄ zaman izdüşümü. Recenter butonuyla aynı köşede
    (sağ üstte) durur ama ondan biraz daha soldadır. iki düğüm segmented
    control gibi. */
