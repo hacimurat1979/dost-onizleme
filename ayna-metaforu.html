@@ -27,6 +27,12 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
 .aha.show{opacity:1;transform:none}
 .grab-hint{font-size:.78rem;color:var(--muted);font-style:italic;margin-bottom:1.1rem;transition:opacity .5s}
 .grab-hint.gone{opacity:.28}
+/* /sahne motor: sahne oynarken sürükleme kapalı; bittikten sonra açılıyor.
+   Motor bittiğinde .sahne-bitti sınıfı body'ye eklenir. */
+body:not(.sahne-bitti) .main-svg{cursor:default}
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin:.3rem 0 .6rem;min-height:34px}
+.olcu-gosterge{font-size:.7rem;color:var(--muted);letter-spacing:.15em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge,body.sahne-bitti .motor-kontroller{opacity:1}
 .pairs{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;width:100%;max-width:700px;margin-bottom:1rem}
 .pair{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:.85rem .95rem;min-width:148px;flex:1;cursor:pointer;transition:border-color .2s,background .2s}
 .pair:hover,.pair.on{border-color:var(--liminal);background:var(--surface)}
@@ -180,12 +186,19 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
   <p class="state" id="state"></p>
   <p class="aha" id="aha"></p>
 </div>
+<div class="motor-kontroller">
+  <span class="olcu-gosterge" id="olcuGosterge" aria-live="polite"></span>
+  <span id="motorBiter"></span>
+</div>
 <p class="grab-hint" id="grabHint"></p>
 
 <div class="pairs" id="pairs"></div>
 <div class="qbox" id="qbox"><span class="hint" id="qhint">Bir ayna çiftine dokunarak o ilişkiye ait söylemi gör.</span></div>
 <p class="paradox" id="paradox"></p>
 
+<!-- Sahne motoru — .claude/commands/sahne.md motor adımının çıktısı.
+     Partisyonla birleşerek sahnenin kendi kendini anlatmasını sağlar. -->
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const LA={
   tr:{
@@ -272,10 +285,27 @@ const CX=390, CY=150;   // aynanın merkezi
 const MAXA=52;          // aynanın çevrilebildiği açı
 
 let curLang='tr', curPair=null;
-let angle=28;           // hizasız başlıyor: ilk görülen şey "görüntü yok" olmalı
+// /sahne motor: sahne artık motorla oynar. angle başlangıç değeri motorun
+// ilk ölçüsünün hedef_hal.angle'ıyla hemen üzerine yazılır. touched ilk
+// gerçek kullanıcı etkileşiminde tetiklenir (motor bittikten sonra).
+let angle=45;
 let sawImage=false, sawLoss=false, touched=false;
+let motorBitti=false;   // true olunca sürükleme açılır ("kendim gezineyim")
+// Motor bir ölçüden sonrakine geçerken bu ikili tween için kullanılır.
+let angleFrom=45, angleTo=45;
+function easeInOut(t){ return t<0.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2; }
 
 const $=id=>document.getElementById(id);
+
+// Motor stateText yazıyor -- v-tabanlı otomatik metin (aşağıdaki maybeState)
+// yalnız keşif modunda (motor bittikten sonra) devreye girer.
+function maybeUpdateStateFromV(v){
+  if(!motorBitti) return;   // motor konuşurken müdahale etme
+  const d=LA[curLang];
+  const st=$('state');
+  st.textContent = v<0.06 ? d.st0 : (v<0.5 ? d.st1 : d.st2);
+  st.classList.toggle('on', v>=0.5);
+}
 
 function render(){
   const th=angle*Math.PI/180;
@@ -300,14 +330,14 @@ function render(){
   // giden geri döndüğünde bakanın kendisi de parlar
   $('srcHalo').setAttribute('opacity',(.8+.2*v).toFixed(3));
 
-  const d=LA[curLang];
-  const st=$('state');
-  st.textContent = v<0.06 ? d.st0 : (v<0.5 ? d.st1 : d.st2);
-  st.classList.toggle('on', v>=0.5);
+  // Keşif modunda v-tabanlı otomatik state metni (motor konuşmuyor)
+  maybeUpdateStateFromV(v);
 
   if(v>0.6) sawImage=true;
   if(sawImage && v<0.06) sawLoss=true;
-  if(sawImage && sawLoss) $('aha').classList.add('show');
+  // aha yalnız kullanıcı kendi keşfederken v-tabanlı tetiklenir (motor
+  // bitmişse). Motor kendi sonunda 'aha:true' ile açar (aşağıda).
+  if(motorBitti && sawImage && sawLoss) $('aha').classList.add('show');
 }
 
 function setAngle(a){
@@ -319,6 +349,7 @@ const scene=$('scene');
 let dragging=false, lastX=0, lastY=0;
 function markTouched(){ if(!touched){touched=true;$('grabHint').classList.add('gone');} }
 scene.addEventListener('pointerdown',e=>{
+  if(!motorBitti) return;  // motor oynuyorken sürükleme kapalı
   dragging=true; lastX=e.clientX; lastY=e.clientY;
   try{scene.setPointerCapture(e.pointerId);}catch(_){}
   markTouched(); e.preventDefault();
@@ -332,10 +363,70 @@ scene.addEventListener('pointermove',e=>{
 });
 ['pointerup','pointercancel','pointerleave'].forEach(t=>scene.addEventListener(t,()=>{dragging=false;}));
 scene.addEventListener('keydown',e=>{
+  if(!motorBitti) return;  // motor oynuyorken klavye kapalı
   const k={ArrowUp:-3,ArrowDown:3,ArrowLeft:-3,ArrowRight:3}[e.key];
   if(k===undefined) return;
   markTouched(); setAngle(angle+k); e.preventDefault();
 });
+
+// ── Motor entegrasyonu ──────────────────────────────────────────────────────
+// .claude/commands/sahne.md motor adımı: sahne kendi kendini anlatır. Bir
+// partisyon JSON'u fetch et, motora ver, motor rAF döngüsünde her frame'de
+// açıyı tween eder. Bitince "Tekrar" düğmesi + "kendim gezineyim" kipi açılır.
+(function baslatMotor(){
+  const base = (window.__dostRouteBase || "");
+  const url = (base ? base + "/" : "") + "data/ibn-arabi/sahne-partisyonlari/ayna-metaforu.json";
+  fetch(url).then(function(r){ return r.json(); }).then(function(partisyon){
+    if(!window.__sahneMotoru){ console.warn("sahne-motoru yüklenemedi"); return; }
+    // İlk ölçünün hedef angle'ına atla
+    const ilk = partisyon.olcuLer[0];
+    angle = ilk.hedef_hal.angle;
+    angleFrom = angle;
+    angleTo = angle;
+    render();
+
+    window.__sahneMotoru.yarat({
+      container: scene,
+      partisyon: partisyon,
+      applyOlcu: function(olcu){
+        // Ölçü değişti: tween'in başlangıç/hedef değerlerini kilitle
+        angleFrom = angle;
+        angleTo = (olcu.hedef_hal && typeof olcu.hedef_hal.angle === "number") ? olcu.hedef_hal.angle : angle;
+        // Ölçü metnini state'a yaz (motor konuşuyor)
+        const st = $('state');
+        st.textContent = ""; // frame'de doldurulur (metinGoster'dan)
+        st.classList.toggle('on', Math.abs(angleTo) < 8);
+        // 'aha' bayrağı bu ölçüde açılıyorsa metin görünsün
+        if(olcu.hedef_hal && olcu.hedef_hal.aha){ $('aha').classList.add('show'); }
+      },
+      frame: function(fraz, olcu){
+        const t = easeInOut(fraz);
+        angle = angleFrom + (angleTo - angleFrom) * t;
+        render();
+      },
+      metinGoster: function(metin){
+        if(!metin){ $('state').textContent = ""; return; }
+        const dilKey = curLang;
+        $('state').textContent = metin[dilKey] || metin.tr || "";
+      },
+      olcuGoster: function(idx, toplam){
+        $('olcuGosterge').textContent = (idx+1) + " / " + toplam;
+      },
+      biterEl: $('motorBiter'),
+      tepki: function(ev){
+        if(ev.tip === "bitti"){
+          motorBitti = true;
+          document.body.classList.add('sahne-bitti');
+          // grabHint görünür: artık kullanıcı sürükleyebilir
+          $('grabHint').textContent = LA[curLang].grab;
+          // 'aha' henüz açılmadıysa (reduced-motion durumunda) aç
+          const olcu = partisyon.olcuLer[partisyon.olcuLer.length - 1];
+          if(olcu.hedef_hal && olcu.hedef_hal.aha) $('aha').classList.add('show');
+        }
+      },
+    });
+  }).catch(function(err){ console.warn("partisyon yüklenemedi", err); });
+})();
 
 // ── i18n + içerik ────────────────────────────────────────────────────────────
 function dc(d){return d==='g'?'gold':d==='b'?'blue':'liminal';}
@@ -348,7 +439,8 @@ function setLang(l){
   $('lbObs').textContent=d.obs;
   $('lbMir').textContent=d.mir;
   $('imgLabel').textContent=d.img;
-  $('grabHint').textContent=d.grab;
+  // grabHint yalnız motor bittikten sonra anlamlı; öncesinde boş bırak
+  $('grabHint').textContent = motorBitti ? d.grab : "";
   $('aha').textContent=d.aha;
   $('paradox').textContent=d.paradox;
   renderPairs(l);

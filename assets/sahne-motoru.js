@@ -64,6 +64,14 @@
 
   // Motorun ana fabrikası. Bir sahne için yalnız BİR örnek üretin ve destroy'a
   // kadar aynı örneği kullanın.
+  //
+  // opts.applyOlcu(olcu) — bir ölçü değişince çağrılır (BOUNDARY). Sahne
+  //   burada hedef hâli sabitler (ör. angle=0 hedef diye kaydeder).
+  // opts.frame(fraz, olcu) — OPSİYONEL. Her rAF turunda çağrılır; fraz
+  //   0..1 arası bu ölçünün ne kadarının geçtiğini söyler. Sahne burada
+  //   tween yapar (ör. angle = eskiHedef + (yeniHedef - eskiHedef) * ease(fraz)).
+  //   Motor kendi rAF döngüsünü zaten sürüyor; opsiyonel frame sadece bu
+  //   döngünün her ticker'ında da sahneyi haberdar eder.
   function yarat(opts) {
     if (!opts || !opts.container || !opts.partisyon) {
       throw new Error("sahne-motoru.yarat: container ve partisyon zorunlu");
@@ -71,6 +79,7 @@
     var container = opts.container;
     var partisyon = opts.partisyon;
     var applyOlcu = opts.applyOlcu || function () {};
+    var frame = opts.frame || null;
     var olcuGoster = opts.olcuGoster || function () {};
     var metinGoster = opts.metinGoster || function () {};
     var biterEl = opts.biterEl || null;
@@ -179,10 +188,12 @@
       if (durum !== "oynuyor") return;
       var simdi = performance.now();
       var gecen = simdi - olcuBaslangicTs;
-      if (gecen >= aktifOlcuSuresiMs()) {
+      var suresi = aktifOlcuSuresiMs();
+      if (gecen >= suresi) {
         // Sıradaki ölçüye geç
         if (aktifIdx + 1 >= olcuLer.length) {
           // Sahne bitti: durulur; tekrar düğmesi belirir
+          if (frame) frame(1, olcuLer[aktifIdx]);
           durum = "bitti";
           biterDugmesiniGoster();
           tepki({ tip: "bitti" });
@@ -191,6 +202,9 @@
         aktifIdx += 1;
         olcuBaslangicTs = simdi;
         olcuUygula(aktifIdx);
+        if (frame) frame(0, olcuLer[aktifIdx]);
+      } else if (frame) {
+        frame(gecen / suresi, olcuLer[aktifIdx]);
       }
       rafId = requestAnimationFrame(rafDongusu);
     }

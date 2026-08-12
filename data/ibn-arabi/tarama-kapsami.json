@@ -31,7 +31,8 @@
     { "yol": "data/ibn-arabi/anlamsal-baglantilar.json", "gorunum": null, "etiket": "Anlamsal Bağlantılar" },
     { "yol": "data/ibn-arabi/hadis-dizini.json", "gorunum": null, "etiket": "Hadis Dizini" },
     { "yol": "data/ibn-arabi/sozluk-ipuclari.json", "gorunum": null, "etiket": "Sözlük İpuçları" },
-    { "yol": "data/ibn-arabi/okuma-yollari.json", "gorunum": null, "etiket": "Okuma Yolları" }
+    { "yol": "data/ibn-arabi/okuma-yollari.json", "gorunum": null, "etiket": "Okuma Yolları" },
+    { "yol": "data/ibn-arabi/sahne-partisyonlari/ayna-metaforu.json", "gorunum": "sahneler", "etiket": "Ayna Metaforu partisyonu" }
   ],
 
   "gorunumNotu": "`gorunum` yalnız duruş taraması için: bulgudan o görünüme atlamayı sağlıyor. null olan dosyalar için atlama yok -- bilmediğimiz görünüm adını UYDURMAK yerine boş bıraktık, bulgu yine listeleniyor, yalnız tıklayınca bir yere gitmiyor.",

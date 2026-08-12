@@ -1,0 +1,78 @@
+{
+  "id": "ayna-metaforu",
+  "baslik": {
+    "tr": "Ayna Metaforu",
+    "en": "Mirror Metaphor",
+    "pt": "Metáfora do Espelho"
+  },
+  "toplam_sure_sn": 45,
+  "max_olcu_sn": 8,
+  "not": "Ayna θ=45°'de başlar (görüntü yok), yavaşça θ=0'a döner (görüntü doğar), sonra tekrar dönüp θ=28°'de durur (görüntü kaybolur). Son ölçüde 'aha' belirir: bakan da ayna da değişmedi, yalnız arasındaki açı. Sahne bittikten sonra kullanıcı sürükleyerek keşfetmeye başlar (kendim gezineyim).",
+  "olcuLer": [
+    {
+      "id": "hazirlik",
+      "sure_sn": 6,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": { "angle": 45 },
+      "metin": {
+        "tr": "Işık gidiyor. Ama dönmüyor -- ortada görüntü yok.",
+        "en": "The light goes out. But it does not come back -- there is no image.",
+        "pt": "A luz sai. Mas não volta -- não há imagem alguma."
+      }
+    },
+    {
+      "id": "yaklasma",
+      "sure_sn": 6,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": { "angle": 18 },
+      "metin": {
+        "tr": "Ayna usulca hizaya yaklaşıyor.",
+        "en": "The mirror slowly comes into line.",
+        "pt": "O espelho aproxima-se lentamente do alinhamento."
+      }
+    },
+    {
+      "id": "belirme",
+      "sure_sn": 5,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": { "angle": 6 },
+      "metin": {
+        "tr": "Bir şey belirmeye başladı...",
+        "en": "Something is beginning to appear...",
+        "pt": "Algo começa a aparecer..."
+      }
+    },
+    {
+      "id": "hizalanma",
+      "sure_sn": 8,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": { "angle": 0 },
+      "metin": {
+        "tr": "Görüntü doğdu.",
+        "en": "The image is born.",
+        "pt": "A imagem nasceu."
+      }
+    },
+    {
+      "id": "cekilme",
+      "sure_sn": 6,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": { "angle": 28 },
+      "metin": {
+        "tr": "Aynı ayna, aynı bakan. Yalnız açı döndü. Görüntü çekildi.",
+        "en": "Same mirror, same observer. Only the angle turned. The image withdrew.",
+        "pt": "Mesmo espelho, mesmo observador. Só o ângulo virou. A imagem retirou-se."
+      }
+    },
+    {
+      "id": "hayret",
+      "sure_sn": 8,
+      "hedef_hal": { "angle": 28, "aha": true },
+      "metin": {
+        "tr": "Ne aynayı değiştirdin ne bakanı — yalnız aralarındaki açıyı. Demek görüntü ikisinin de değilmiş; aralarındaki ilişkinin.",
+        "en": "You changed neither the mirror nor the observer — only the angle between them. So the image belonged to neither; it belonged to their relation.",
+        "pt": "Não mudaste nem o espelho nem o observador — apenas o ângulo entre eles. Então a imagem não era de nenhum dos dois; era da relação entre eles."
+      }
+    }
+  ]
+}
