@@ -80,11 +80,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
 .alem-kure-mat{fill:var(--dust);opacity:.7}   /* Kare 1 hâli */
 .alem-kure-parlak{opacity:0}                   /* Kare 4 hâli, üstüne yazılır */
 
-.sozcuk-alan{width:min(680px,96vw);text-align:center;margin-top:1.2rem;min-height:2.2rem}
-.sozcuk{display:inline-block;font-size:clamp(.95rem,2.6vw,1.15rem);color:var(--gold);
-  font-style:italic;line-height:1.6;letter-spacing:.02em;opacity:0}
-
-.tekrar-alan{margin-top:.9rem;min-height:2.2rem;display:flex;justify-content:center}
+.tekrar-alan{margin-top:1.2rem;min-height:2.2rem;display:flex;justify-content:center}
 .tekrar-btn{display:none;align-items:center;gap:.4rem;padding:.45rem 1.1rem;
   min-height:40px;border-radius:999px;background:transparent;
   color:var(--muted);border:1px solid var(--border);
@@ -131,7 +127,6 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
     O ışıktan ortadaki parlatılmış aynaya doğru yayılan bir ışık akıyor.
     Aynanın yüzeyi mat hâlden parlak hâle geçiyor. O yansımadan sol
     alttaki küresel âleme ikinci bir ışık akıyor ve âlem aydınlanıyor.
-    Sonunda bir cümle beliriyor: Subhanallah, demek mana, hakikat buymuş.
   </p>
   <svg viewBox="0 0 660 360" preserveAspectRatio="xMidYMid meet">
     <defs>
@@ -260,10 +255,6 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
   </svg>
 </div>
 
-<div class="sozcuk-alan">
-  <span class="sozcuk" id="sozcuk">Subhanallah, demek mana, hakikat buymuş.</span>
-</div>
-
 <div class="tekrar-alan">
   <button type="button" class="tekrar-btn" id="tekrar" aria-label="Sahneyi tekrar oynat">
     <span aria-hidden="true">↻</span> <span id="tekrarMetin">Tekrar</span>
@@ -275,15 +266,12 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
 const LA = {
   tr:{title:"Ayna Metaforu",
       sub:"Bir ayna nasıl aydınlanır — ondan âlem nasıl aydınlanır.",
-      sozcuk:"Subhanallah, demek mana, hakikat buymuş.",
       tekrar:"Tekrar", geri:"Sahneler"},
   en:{title:"Mirror Metaphor",
       sub:"How a mirror is lit — how a world is lit from it.",
-      sozcuk:"Subḥān Allāh — so THIS is what meaning was, what the reality was.",
       tekrar:"Replay", geri:"Scenes"},
   pt:{title:"Metáfora do Espelho",
       sub:"Como um espelho se acende — como um mundo se acende a partir dele.",
-      sozcuk:"Subḥān Allāh — então ERA isto o sentido, era isto a realidade.",
       tekrar:"Repetir", geri:"Cenas"}
 };
 
@@ -300,7 +288,6 @@ function setLang(l){
   const d = LA[l];
   $("hTitle").textContent = d.title;
   $("hSub").textContent = d.sub;
-  $("sozcuk").textContent = d.sozcuk;
   $("tekrarMetin").textContent = d.tekrar;
   document.documentElement.setAttribute("lang", l);
   const geri = document.querySelector(".sahne-geri");
@@ -331,14 +318,13 @@ function sonKare(){
   gsap.set("#isikCizgiler2", {opacity:0.75});
   gsap.set("#alemMat", {opacity:0});
   gsap.set("#alemParlak", {opacity:1});
-  gsap.set("#sozcuk", {opacity:1});
   $("tekrar").classList.add("gorunur");
 }
 
 if(!gsap){
   // GSAP yüklenmediyse (SRI hatası ya da ağ): son kareye kilitle.
   ["zatHale","isikHuni","isikCizgiler","aynaParlak","aynaHighlight",
-   "isikHuni2","isikCizgiler2","alemParlak","sozcuk"]
+   "isikHuni2","isikCizgiler2","alemParlak"]
     .forEach(function(id){ var e = $(id); if(e) e.style.opacity = 1; });
   ["aynaMat","alemMat"]
     .forEach(function(id){ var e = $(id); if(e) e.style.opacity = 0; });
@@ -358,7 +344,6 @@ function baslangica(){
   gsap.set("#isikCizgiler2", {opacity:0});
   gsap.set("#alemMat", {opacity:0.7});
   gsap.set("#alemParlak", {opacity:0});
-  gsap.set("#sozcuk", {opacity:0});
   gsap.set("#ayna", {scale:1, transformOrigin:"50% 50%"});
   $("tekrar").classList.remove("gorunur");
 }
@@ -393,11 +378,8 @@ function oynat(){
   tl.to("#alemParlak", {opacity:1, duration:1.2, ease:"power1.out"}, 4.8);
   tl.to("#alemMat", {opacity:0, duration:1.2, ease:"power1.out"}, 4.8);
 
-  // KARE 5 (5.8-7.0): cümle beliriyor (fade-in). Başka hareket yok.
-  tl.to("#sozcuk", {opacity:1, duration:0.9, ease:"power1.out"}, 5.9);
-
-  // KARE 6 (7.0-7.2): dinginlik, "Tekrar" düğmesi görünür.
-  tl.call(function(){ $("tekrar").classList.add("gorunur"); }, null, 7.0);
+  // KARE 5 (6.0-6.2): dinginlik, "Tekrar" düğmesi görünür.
+  tl.call(function(){ $("tekrar").classList.add("gorunur"); }, null, 6.0);
 }
 
 if(document.visibilityState === "visible"){
@@ -414,7 +396,7 @@ if(document.visibilityState === "visible"){
 $("tekrar").addEventListener("click", function(){
   if(gsap) gsap.killTweensOf(["#zatHale","#isikHuni","#isikCizgiler",
     "#aynaMat","#aynaParlak","#aynaHighlight","#isikHuni2","#isikCizgiler2",
-    "#alemMat","#alemParlak","#sozcuk","#ayna"]);
+    "#alemMat","#alemParlak","#ayna"]);
   oynat();
   $("tekrar").blur();
 });
