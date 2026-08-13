@@ -6,25 +6,11 @@ window.DostGraphUtils = (function () {
   // deploy, renamed file) surfaced as an opaque "Unexpected token '<'"
   // JSON-parse error instead of a clear failure. One shared helper for all
   // ~24 call sites across the site's view modules.
-  // ÖNBELLEK (2026-08-03, denetimde ölçüldü). Aynı JSON'u birden çok modül
-  // istiyor ve her biri ayrı bir indirme başlatıyordu: ana sayfada
-  // sirlar.json (345KB) İKİ kez, /sirlar/'da ÜÇ kez, /esma/'da esma.json
-  // (415KB) iki kez iniyordu -- yani her sayfa yüklemesinde 350-760KB saf
-  // israf. Tarayıcının HTTP önbelleği bunu kurtarmıyordu çünkü istekler
-  // eşzamanlı başlıyor (biri bitmeden öteki çıkıyor).
-  //
-  // Söz (promise) düzeyinde önbellek: aynı URL için ikinci çağrı YENİ bir
-  // istek açmıyor, ilkinin sözünü paylaşıyor. Hata durumunda kayıt
-  // siliniyor ki geçici bir ağ hatası kalıcı bir başarısızlığa dönüşmesin.
-  const jsonCache = new Map();
   function fetchJson(url) {
-    if (jsonCache.has(url)) return jsonCache.get(url);
-    const p = fetch(url).then((r) => {
+    return fetch(url).then((r) => {
       if (!r.ok) throw new Error(`fetchJson: ${url} -> HTTP ${r.status}`);
       return r.json();
-    }).catch((e) => { jsonCache.delete(url); throw e; });
-    jsonCache.set(url, p);
-    return p;
+    });
   }
 
   function getVar(name) {
@@ -73,19 +59,6 @@ window.DostGraphUtils = (function () {
     // imlecin ALTINA doğru büyümeye çeviriyoruz.
     tooltip.classList.remove("node-hover-tip--flip");
     if (tooltip.getBoundingClientRect().top < 4) tooltip.classList.add("node-hover-tip--flip");
-    // Yukarıdaki 60px pay, kutunun GERÇEK genişliğini değil sabit bir
-    // tahmini varsayıyordu -- konteynerin sol kenarına yakın bir düğümün
-    // (örn. Eser Ağı'nın en eski satırı) uzun başlığı yine de viewport
-    // dışına taşıp kırpılıyordu (UI denetimi bulgusu). transform:
-    // translate(-50%,...) ile ortalanmış kutu artık YERLEŞTİKTEN SONRA
-    // ölçülüp, ekranın (wrap değil -- kutu fixed değil ama viewport'a göre
-    // kırpılıyor) solundan/sağından taşıyorsa x buna göre düzeltiliyor.
-    const tipRect = tooltip.getBoundingClientRect();
-    const overflowLeft = tipRect.left;
-    const overflowRight = tipRect.right - window.innerWidth;
-    if (overflowLeft < 4) x -= overflowLeft - 4;
-    else if (overflowRight > -4) x -= overflowRight + 4;
-    tooltip.style.left = x + "px";
   }
 
   function hideTooltip(tooltip) {
@@ -142,28 +115,12 @@ window.DostGraphUtils = (function () {
   // into the fallback case (ontology.js's force-layout needs this to keep
   // a node-drag click from also panning the whole canvas; the four
   // fixed-layout tree/radial views don't need it and pass nothing).
-  //
-  // `opts.allowSingleTouchPan` (2026-08-09, eser-agi.js): the default
-  // two-finger-only touch filter exists because several views have
-  // force-drag-draggable nodes, where single-touch on a node needs to stay
-  // a node-drag, not a canvas-pan -- ambiguous on touch. eser-agi's rows
-  // are plain click targets (no per-node drag), so that ambiguity doesn't
-  // exist there; opting in lets a single finger scroll a tall list, which
-  // is what touch users expect from a list.
-  function createZoomBehavior(svg, zoomLayer, scaleExtent, extraFilter, opts) {
-    const allowSingleTouchPan = opts && opts.allowSingleTouchPan;
-    // Varsayılan: düz tekerlek ctrl/cmd olmadan zum YAPMAZ (ETKILESIM_DILI.md'nin
-    // "düz tekerlek = anlamlı bir hareket, Ctrl+tekerlek = klasik yakınlaştırma"
-    // ayrımı) -- ama bu ayrım yalnız düz tekerleğe BAŞKA bir anlam (sayfa kaydırma,
-    // liste kaydırma) yüklenen görünümlerde gerekli. Altında kaydıracak bir
-    // "sayfa" olmayan, tam ekran bir harita/graf için düz tekerlek serbest
-    // bırakılabilir -- opts.plainWheelZooms bunun için (2026-08-09, Sorular).
-    const plainWheelZooms = opts && opts.plainWheelZooms;
+  function createZoomBehavior(svg, zoomLayer, scaleExtent, extraFilter) {
     const zoomBehavior = d3.zoom()
       .scaleExtent(scaleExtent)
       .filter((event) => {
-        if (event.type === "wheel") return plainWheelZooms || event.ctrlKey || event.metaKey;
-        if (event.touches) return allowSingleTouchPan ? event.touches.length >= 1 : event.touches.length > 1;
+        if (event.type === "wheel") return event.ctrlKey || event.metaKey;
+        if (event.touches) return event.touches.length > 1;
         return extraFilter ? extraFilter(event) : true;
       })
       .on("zoom", (event) => zoomLayer.attr("transform", event.transform));
@@ -204,13 +161,6 @@ window.DostGraphUtils = (function () {
   function setupDetailPanelFocus() {
     const panel = document.getElementById("detail-panel");
     if (!panel) return;
-    // Bir kez bağla: bu fonksiyonu ontology.js + on küsur görünüm modülü
-    // ayrı ayrı çağırıyor ve hepsinde panel AYNI #detail-panel. Bekçisiz
-    // hâli her çağrıda yeni bir MutationObserver + keydown tuzağı
-    // biriktiriyordu; sonraki observer'lar lastFocused olarak kapatma
-    // düğmesini kaydedip kapanışta odağı yanlış yere taşıyabiliyordu.
-    if (panel.dataset.focusWired) return;
-    panel.dataset.focusWired = "1";
     let lastFocused = null;
     const observer = new MutationObserver(() => {
       if (panel.hidden) {
@@ -378,19 +328,6 @@ window.DostGraphUtils = (function () {
   // 12px'e çıkarmak mobil çakışmayı 12'den 14'e taşıdı. Yer açan şey kaydırma.
   function createLabelDeconflictor() {
     const box = new Map();            // metin -> {w,h}
-    // İlk boya, kendi @font-face'lerimiz (font-display:swap) yüklenmeden
-    // ÖNCE bir yedek fontla olabilir -- getBBox() o an ölçtüğü genişliği
-    // sonsuza dek önbelleğe alıyordu (metin başına bir kez). Ölçüldü:
-    // aynı etiket yedek fontla ~%13 daha GENİŞ görünüyor -- yani gerçek
-    // font yüklendikten sonra kutu küçülmüyor, tam tersi: erken ölçüm çok
-    // DAR kalıyor ve deconfliction o günden sonra hep az davranıyordu
-    // (2026-08-07 UI denetimi: varsayılan açılışta, hiç tıklamadan çakışan
-    // etiketler). Fontlar hazır olunca önbellek bir kez temizleniyor;
-    // sahnelerin zaten sürekli çalışan animasyon döngüsü bir sonraki
-    // karede doğru ölçümle yeniden yerleştiriyor.
-    if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => box.clear());
-    }
     function measure(node, txt) {
       let m = box.get(txt);
       if (!m) {
@@ -400,45 +337,24 @@ window.DostGraphUtils = (function () {
       }
       return m;
     }
-    // items: {lbl (d3 seçimi), txt, x, y, baseY, priority?, scale?}
+    // items: {lbl (d3 seçimi), txt, x, y, baseY, priority?}
     // priority yüksek olan önce yerleşir (kategoriler, dönüm noktaları).
-    // scale (ops., varsayılan 1): etiketin kendi düğüm grubuna uygulanan
-    // ek transform.scale(s) çarpanı (Ontoloji'nin 3B derinlik eğiminde
-    // her düğüm farklı s alıyor). x/y/half/h bu uzayda GÖRSEL ölçekle
-    // karşılaştırılmalı, yoksa derinlikçe küçülen bir düğümün etiketi
-    // "yeterince uzak" sayılıp komşusuyla ekranda üst üste biniyordu
-    // (2026-08-06, "Decree and Destiny" / "The Divine Names and
-    // Attributes" ile ölçüldü, varsayılan açılış görünümü 3B eğimli).
-    // obstacles (ops.): {x, y, half, h} -- sabit, kendisi kaymayan engeller
-    // (düğüm daireleri gibi). Önceden başka bir ETİKETLE çakışmıyor diye
-    // güvenli sayılan bir yazı, komşu bir düğümün DAİRESİNİN tam üstüne
-    // denk gelebiliyordu (2026-08-06, Ontoloji ana sayfasında ölçüldü) --
-    // motor yalnız yazı-yazı çakışmasına bakıyordu, yazı-daire'ye değil.
-    // pad (ops.): {x, y} -- ek güvenlik payı. Ontoloji sahnesi çok yavaş
-    // salınıyor (±2.6°, bkz. ontology.js SWAY_DEG); yerleşim bu salınımın
-    // TAM ORTASINDA (0°) hesaplanıyor ama gerçek çizim her an biraz
-    // dönmüş oluyor -- sınırda kalan çiftler salınımın ucunda yeniden
-    // çakışabiliyordu (2026-08-06 ölçüldü). Varsayılan pay küçük tutuluyor
-    // (salınımı olmayan /hal/ ve /sorular/ için yeterli).
-    return function deconflict(items, obstacles, pad) {
+    return function deconflict(items) {
       if (!items.length) return;
-      const padY = (pad && pad.y) || 2;
-      const padX = (pad && pad.x) || 5;
       for (const it of items) {
         const m = measure(it.lbl.node(), it.txt);
-        const sc = it.scale || 1;
-        it.half = (m.w / 2) * sc;
-        it.h = (m.h || 12) * sc;
+        it.half = m.w / 2;
+        it.h = m.h || 12;
       }
       items.sort((a, b) => ((b.priority || 0) - (a.priority || 0)) || (a.y - b.y));
-      const placed = (obstacles || []).map((o) => ({ x: o.x, y: o.y, half: o.half, h: o.h }));
+      const placed = [];
       for (const it of items) {
         let y = it.y, guard = 0, clash = true;
         while (clash && guard++ < 24) {
           clash = false;
           for (const p of placed) {
-            const dyGap = (it.h + p.h) / 2 + padY;
-            if (Math.abs(y - p.y) < dyGap && Math.abs(it.x - p.x) < it.half + p.half + padX) {
+            const dyGap = (it.h + p.h) / 2 + 2;
+            if (Math.abs(y - p.y) < dyGap && Math.abs(it.x - p.x) < it.half + p.half + 5) {
               y = p.y + dyGap;        // aşağı doğru kaydır
               clash = true;
               break;
@@ -446,208 +362,9 @@ window.DostGraphUtils = (function () {
           }
         }
         placed.push({ x: it.x, y, half: it.half, h: it.h });
-        // Uygulanan y ATTR, düğümün kendi transform.scale(s)'ine tekrar
-        // tabi olacak (label o grubun çocuğu) -- görsel kaydırma miktarını
-        // geri yerel birime çevirmek için s'e bölünüyor.
-        if (y !== it.y) it.lbl.attr("y", it.baseY + (y - it.y) / (it.scale || 1));
+        if (y !== it.y) it.lbl.attr("y", it.baseY + (y - it.y));
       }
     };
-  }
-
-  // Leader-line: deconflict sonrası kaydırılan bir etiketten kendi düğümüne
-  // ince bir kılavuz çizgi. G37 (Eleştiri Arkeolojisi 1400-1450 Şam-Kahire
-  // yoğunluğu) bu kalıbı doğdurdu; artık aynı ihtiyacı olan başka
-  // görünümlere (Seyahat Atlası'nın Mekke/Tâif çakışması, Menziller
-  // zirvesindeki etiket sıkışması) tekrar yazmadan uygulayabilelim diye
-  // ortak motora taşındı.
-  //
-  // Çağıran, deconflictLabels() bittikten sonra items dizisini geri
-  // veriyor; her item'da .lbl (etiket), .baseY (deconflict öncesi konum),
-  // .anchor (etiketin düğüm merkezindeki başlangıcı, ops. varsayılan
-  // {x:0,y:0}) bulunmalı. Line etiket ile aynı SVG grubuna, etiketten
-  // ÖNCE eklenir (altta çizilsin diye). Sınıf adı çağıranın CSS'iyle
-  // eşleşmeli.
-  //
-  // options: {className, threshold, gap}
-  //   className: line'ın CSS sınıfı (ör. "seyahat-durak__leader")
-  //   threshold: kayma bu değerden az ise line eklenmez (varsayılan 4)
-  //   gap: line'ın etikete yaklaşırken bırakacağı boşluk (varsayılan 3px)
-  function attachLeaderLines(items, options) {
-    const opts = options || {};
-    const cls = opts.className || "leader-line";
-    const threshold = opts.threshold != null ? opts.threshold : 4;
-    const gap = opts.gap != null ? opts.gap : 3;
-    for (const it of items) {
-      const lblNode = it.lbl.node();
-      if (!lblNode || !lblNode.parentNode) continue;
-      const parent = d3.select(lblNode.parentNode);
-      const yFinal = +it.lbl.attr("y");
-      const kayma = yFinal - it.baseY;
-      if (Math.abs(kayma) < threshold) continue;
-      const anchor = it.anchor || { x: 0, y: 0 };
-      const labelX = +it.lbl.attr("x") || 0;
-      const y2 = kayma > 0 ? yFinal - gap : yFinal + gap;
-      // Etiket öncesine ekle -- çizim sırası SVG'de belirleyici.
-      const existing = parent.select("." + cls);
-      const line = existing.empty()
-        ? parent.insert("line", () => lblNode).attr("class", cls)
-        : existing;
-      line.attr("x1", anchor.x).attr("y1", anchor.y)
-        .attr("x2", labelX).attr("y2", y2);
-    }
-  }
-
-  // KAPI — bkz. ETKILESIM_DILI.md: "geçiş dekor değil, dönüşümdür."
-  //
-  // İki bölüm arasındaki ilişki metafizik olarak "içinde" ise (Esmâ, Zât'ın
-  // ilk belirişinin İÇİDİR), geçiş de "içine girme" gibi görünmeli — yan
-  // yana iki sekme gibi değil. Bu yüzden kapıdan geçerken sahne kesilmiyor:
-  // kapı olan düğüm BÜYÜYEREK gidilen haritanın merkezine oturuyor, yeni
-  // sahne onun içinden açılıyor.
-  //
-  // Ucuz tutuldu (planın kendi ölçüsü: "tek canvas hissinin ~%80'i,
-  // maliyetinin ~%20'siyle"): iki grafiği tek bir canvas'a taşımıyoruz;
-  // yalnız kapı düğümünün ekrandaki dairesini alıp hedefin merkezine doğru
-  // büyütüyoruz. Gerçek grafikler altında sessizce yer değiştiriyor.
-  //
-  // reduced-motion'da hiç çalışmaz — atlanır, taklit edilmez. Doğrudan bir
-  // adrese gelindiğinde de çağrılmaz (çağıran taraf karar verir):
-  // gelinmemiş bir yerden çıkış animasyonu yalan olurdu.
-  function gateTransition(opts, onSwitch) {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const kaynak = opts.fromRect;
-    if (reduce || !kaynak || !kaynak.width) { onSwitch(); return; }
-
-    // Hedef merkez, GÖRÜNÜR olan sahne alanından ölçülür. Gidilecek görünümün
-    // sarmalayıcısı o an `hidden` olduğu için ölçüsü 0x0'dır -- ilk yazımda
-    // hedef olarak o alınmıştı ve daire ekranın sol üst köşesine (0,0) doğru
-    // açılıyordu. İki graf görünümü aynı alanı paylaştığı için görünür olanı
-    // ölçmek hem doğru hem sağlam.
-    let hedefEl = document.querySelector(".graph-wrap:not([hidden])");
-    if (opts.targetEl && opts.targetEl.getBoundingClientRect().width > 0) hedefEl = opts.targetEl;
-    const hedef = hedefEl && hedefEl.getBoundingClientRect().width > 0
-      ? hedefEl.getBoundingClientRect()
-      : { left: 0, top: 0, width: window.innerWidth, height: window.innerHeight };
-    const hx = hedef.left + hedef.width / 2;
-    const hy = hedef.top + hedef.height / 2;
-
-    const daire = document.createElement("div");
-    daire.className = "gate-orb";
-    daire.setAttribute("aria-hidden", "true");
-    const r0 = Math.max(6, Math.min(kaynak.width, kaynak.height) / 2);
-    daire.style.left = (kaynak.left + kaynak.width / 2) + "px";
-    daire.style.top = (kaynak.top + kaynak.height / 2) + "px";
-    daire.style.width = daire.style.height = (r0 * 2) + "px";
-    // Yalnız DÜZ bir renk kabul ediliyor. SVG'de bir düğümün `fill`i
-    // gradyan olabiliyor (`url(#...)`) ve bu CSS'te geçerli bir
-    // background-image olarak ayrıştığı için sınıfın rengini eziyor,
-    // daire de görünmez kalıyordu (ilk yazımda öyle oldu, ölçülüp
-    // düzeltildi: computed background "rgba(0,0,0,0) none" çıkıyordu).
-    if (opts.color && /^(rgb|#|hsl)/i.test(opts.color.trim())) {
-      daire.style.background = `radial-gradient(circle at 50% 50%, ${opts.color} 0%, ${opts.color} 45%, transparent 72%)`;
-    }
-    document.body.appendChild(daire);
-
-    // İki hareket, tek devir: önce kapı merkeze doğru büyür (sahne onun
-    // içine çekilir), sonra yeni sahne onun içinden açılırken daire söner.
-    const buyume = daire.animate(
-      [
-        { transform: "translate(-50%, -50%) scale(1)", opacity: 0.85 },
-        { transform: `translate(-50%, -50%) translate(${hx - (kaynak.left + kaynak.width / 2)}px, ${hy - (kaynak.top + kaynak.height / 2)}px) scale(${Math.max(6, hedef.height / (r0 * 2))})`, opacity: 0.5 },
-      ],
-      { duration: 620, easing: "cubic-bezier(.5,0,.3,1)", fill: "forwards" }
-    );
-
-    buyume.onfinish = () => {
-      onSwitch();
-      const sonme = daire.animate([{ opacity: 0.5 }, { opacity: 0 }],
-        { duration: 420, easing: "ease-out", fill: "forwards" });
-      sonme.onfinish = () => daire.remove();
-      // Animasyon API'si bir sebeple sessiz kalırsa daire ekranda asılı
-      // kalmasın: her hâlükârda temizleyen bir emniyet.
-      setTimeout(() => daire.remove(), 900);
-    };
-    setTimeout(() => { if (daire.isConnected && buyume.playState !== "finished") { buyume.cancel(); onSwitch(); daire.remove(); } }, 1600);
-  }
-
-  // "Değinmek" — bkz. ETKILESIM_DILI.md'nin dördüncü fiili: hover'ın
-  // gösterdiği şey, tıklamanın göstereceğinin KÜÇÜLTÜLMÜŞ hâli olmalı.
-  //
-  // Kenarlarda bu tutmuyordu: Ontoloji'de bir çizgiye değinmek yalnız onu
-  // vurguluyordu (hiç metin yok), Hâller'de ise ilişkinin TÜRÜNÜ yazıyordu
-  // ("yankı") ama GEREKÇESİNİ değil. Yani "bu ikisi neden bağlı" sorusunun
-  // cevabı ancak tıklayınca görünüyordu. Bir çizgi çizip gerekçesini
-  // saklamak, sitenin "biz bunu böyle okuyoruz" duruşunun tersidir.
-  //
-  // İlk cümle(ler)i alır: kısa bir gerekçe tek cümlede biterse ikinciyi de
-  // ekler. Cümle sınırı ancak noktalamadan SONRA büyük harf geliyorsa
-  // kabul ediliyor -- "s.58", "bkz.", "c.14", "vb." gibi kısaltmalar
-  // yüzünden cümle ortasından kesilmesin diye.
-  const CUMLE_SINIRI = /(?<=[.!?…])\s+(?=[A-ZÂÎÛÖÜÇĞİŞ"'«])/;
-  function ilkCumleler(metin, hedef) {
-    if (!metin) return "";
-    const parcalar = String(metin).split(CUMLE_SINIRI);
-    let out = parcalar[0] || "";
-    for (let i = 1; i < parcalar.length && out.length < (hedef || 110); i++) out += " " + parcalar[i];
-    if (out.length > 260) out = out.slice(0, 257).replace(/\s+\S*$/, "") + "…";
-    return out;
-  }
-
-  // Kenar önizlemesi: başlık (iki uç ya da ilişkinin adı), varsa tür etiketi,
-  // ve gerekçenin ilk cümlesi. `guven` verilirse bizim okuma güvenimizi de
-  // yazar -- sitede zaten panelde gösterilen etiketin aynısı.
-  function edgeReasonHtml(opts) {
-    const parts = ['<div class="node-hover-tip__title">' + opts.title + "</div>"];
-    if (opts.kindLabel) parts.push('<div class="node-hover-tip__eyebrow">' + opts.kindLabel + "</div>");
-    const gerekce = ilkCumleler(opts.reason);
-    if (gerekce) parts.push('<div class="node-hover-tip__short">' + gerekce + "</div>");
-    if (opts.confidence) parts.push('<div class="node-hover-tip__conf">' + opts.confidence + "</div>");
-    return parts.join("");
-  }
-
-  // "Bir adım geri" (Esc) — bkz. ETKILESIM_DILI.md'nin üçüncü fiili.
-  //
-  // 2026-08-03'e kadar ESC beş dosyada beş ayrı `keydown` dinleyicisiyle
-  // yazılmıştı; daha kötüsü, SIRLAR'ın geri davranışı kendi dosyasında
-  // değil ontology.js'in içinde özel bir dal olarak yaşıyordu
-  // (`window.__sirlarGraphApp.isFocused() -> unfocusTheme()`). Bir
-  // görünümün davranışının başka bir dosyada durması, sözleşmenin
-  // olmadığının en açık işaretiydi.
-  //
-  // Sözleşme: ortak katman NE ZAMAN sorusunu bilir (hangi görünüm açık,
-  // sıra kimde), görünüm NE YAPILACAĞINI bilir. Görünümün geri-adım
-  // fonksiyonu bir adım aldıysa `true` döner ve zincir orada durur;
-  // `false` dönerse genel geri adım (açık paneli kapat) devreye girer.
-  const stepBacks = [];
-  function registerStepBack(wrapId, fn) {
-    stepBacks.push({ wrapId: wrapId, fn: fn });
-  }
-  window.addEventListener("keydown", (e) => {
-    if (e.key !== "Escape") return;
-    for (let i = 0; i < stepBacks.length; i++) {
-      const wrap = document.getElementById(stepBacks[i].wrapId);
-      if (!wrap || wrap.hidden) continue;
-      if (stepBacks[i].fn() === true) return;
-    }
-    const panel = document.getElementById("detail-panel");
-    if (panel && !panel.hidden) panel.hidden = true;
-  });
-
-  // Recenter ("geri çekilmek") — bkz. ETKILESIM_DILI.md'nin ikinci fiili.
-  // Altı graf görünümünün altısında da bir `.graph-recenter` düğmesi var ve
-  // her biri kendi bağlama satırını, kendi tekrar-bağlama koruyucusunu
-  // (dataset.wiredHal / dataset.wiredSir / hiç) ayrı yazmıştı -- Esmâ'nınki
-  // ise HİÇ yazılmamıştı: düğme duruyor, hiçbir dinleyicisi yok, tıklayınca
-  // sahne başlangıca dönmüyordu (2026-08-03'te ölçülüp Playwright ile
-  // doğrulandı). "Bağlanmamış düğme" o yüzden bu tur yasak oldu ve bağlama
-  // işi tek bir yere alındı: bir görünüm reset'in NE OLDUĞUNU bilir, bağlama
-  // disiplinini burası bilir.
-  function wireRecenter(buttonId, reset) {
-    const btn = document.getElementById(buttonId);
-    if (!btn || btn.dataset.wiredRecenter) return null;
-    btn.dataset.wiredRecenter = "1";
-    btn.addEventListener("click", () => reset());
-    return btn;
   }
 
   // "Bir benzetmeyle" bloğu. Dört görünümde (esma/hal/ontology/sorular)
@@ -663,25 +380,5 @@ window.DostGraphUtils = (function () {
          + `<p>${I18n.pick3(analogy)}</p></div>`;
   }
 
-  // "Resize" tepkisi — pencere/orientation değişirken tam layout+render'ı
-  // her piksel olayında değil, hareket durduktan sonra bir kez çalıştırır.
-  // 11 görünüm (hal/menziller/sorular/esma/sirlar-graph/eser-agi/
-  // elestiri-arkeolojisi/kuran-dokusu/seyahat-atlasi/acik-sorular/
-  // bilmiyoruz) aynı `window.addEventListener("resize", onResize)` +
-  // debounce'suz tam yeniden-hesaplama desenini ayrı ayrı taşıyordu
-  // (2026-08-06 denetiminde bulundu) -- kenarı sürükleyerek yeniden
-  // boyutlandırmak saniyede onlarca kez güç-yönlendirmeli bir grafiği
-  // yeniden hesaplatabiliyordu.
-  function debounceResize(fn, waitMs) {
-    waitMs = typeof waitMs === "number" ? waitMs : 150;
-    let timer = null;
-    return function () {
-      const args = arguments;
-      const self = this;
-      clearTimeout(timer);
-      timer = setTimeout(() => fn.apply(self, args), waitMs);
-    };
-  }
-
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize };
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor };
 })();

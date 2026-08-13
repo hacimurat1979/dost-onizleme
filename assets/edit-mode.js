@@ -421,24 +421,12 @@
     panel.querySelector('[data-action="exit"]').addEventListener("click", disableEditMode);
   }
 
-  // D3 grafiklerinin (Ontoloji/Esmâ vb.) sık DOM güncellemesi yaptığı
-  // görünümlerde, düzenleme kipi açıkken her mutasyonda tüm sayfayı yeniden
-  // taramak (childList+subtree gözlemi) gözle görülür bir yavaşlığa yol
-  // açabiliyordu (2026-08-06 denetiminde bulundu). Bu kip yalnız gizli
-  // @revise tetikleyicisiyle açıldığı için ziyaretçiyi etkilemiyordu, ama
-  // debounce'suz bırakmanın bir gerekçesi de yok.
-  let scanDebounce = null;
-  function debouncedScan() {
-    clearTimeout(scanDebounce);
-    scanDebounce = setTimeout(scanAndMakeEditable, 150);
-  }
-
   function enableEditMode() {
     editModeOn = true;
     setAnalogyVisible(true);
     document.body.classList.add("dost-edit-mode");
     scanAndMakeEditable();
-    observer = new MutationObserver(debouncedScan);
+    observer = new MutationObserver(scanAndMakeEditable);
     observer.observe(document.body, { childList: true, subtree: true });
     buildPanel();
   }

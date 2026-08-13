@@ -233,20 +233,8 @@
     svgNode.addEventListener("wheel", () => { setTimeout(readZoom, 0); }, { passive: true });
     svg.on("click", () => { if (focusedTheme) exitReading(); });
 
-    // exitReading burada da bir KAMERA geri alma: focusOnTheme sahneyi
-    // temaya yaklaştırıyor (bkz. ETKILESIM_DILI.md, ikinci fiil).
-    GU.wireRecenter("sirlar-recenter", () => { exitReading(); fitAll(); });
-
-    // "Bir adım geri": açık panel varsa sıra ortak katmanın (false dönüyoruz,
-    // o kapatıyor); panel kapalıyken odaklı bir tema varsa odağı bırakıyoruz.
-    // Bu dal 2026-08-03'e kadar ontology.js'in içinde duruyordu.
-    GU.registerStepBack("sirlar-wrap", () => {
-      const panel = document.getElementById("detail-panel");
-      if (panel && !panel.hidden) return false;
-      if (!focusedTheme) return false;
-      exitReading();
-      return true;
-    });
+    const rc = document.getElementById("sirlar-recenter");
+    if (rc && !rc.dataset.wiredSir) { rc.dataset.wiredSir = "1"; rc.addEventListener("click", () => { exitReading(); fitAll(); }); }
   }
 
   function readZoom() {
@@ -560,7 +548,7 @@
           .classed("sir-label--root", d.kind === "root")
           .classed("sir-label--theme", d.kind === "theme")
           .classed("sir-label--strong", act && (d.id === act.anchor))
-          .style("font-size", (d.kind === "root" ? 24 : d.kind === "theme" ? 20 : 18) + "px")
+          .style("font-size", (d.kind === "root" ? 16 : d.kind === "theme" ? 13 : 11) + "px")
           .text(long ? longLabelFor(d) : labelFor(d));
       }
     });
@@ -578,16 +566,10 @@
   function measureLabel(textEl) {
     const key = textEl.textContent + "|" + textEl.style.fontSize;
     if (labelWidthCache.has(key)) return labelWidthCache.get(key);
-    let m = { w: 0, h: 14 };
-    try { m.w = textEl.getComputedTextLength(); } catch (e) { m.w = key.length * 6; }
-    // Yükseklik de ÖLÇÜLMELİ, tahmin edilmemeli (bkz. graph-utils.js'teki
-    // aynı ilke) -- sabit 17px boşluk, 20px punto tema etiketlerinin GERÇEK
-    // satır yüksekliğinden (~24px) dardı, bu yüzden dikeyde bile üst üste
-    // biniyorlardı (2026-08-06, "Secrets Hidden.../The Perfect Human..." ile
-    // ölçüldü).
-    try { m.h = textEl.getBBox().height || m.h; } catch (e) {}
-    labelWidthCache.set(key, m);
-    return m;
+    let w = 0;
+    try { w = textEl.getComputedTextLength(); } catch (e) { w = key.length * 6; }
+    labelWidthCache.set(key, w);
+    return w;
   }
 
   function spreadThemeLabels(merged) {
@@ -603,15 +585,14 @@
       if (!lbl || lbl.style.display === "none") return;
       const baseY = parseFloat(lbl.getAttribute("y")) || 0;
       lbl.__baseY = lbl.__baseY == null ? baseY : lbl.__baseY;
-      const m = measureLabel(lbl);
-      items.push({ id: d.id, el: lbl, x: nx_(d), y: ny_(d) + lbl.__baseY, w: m.w, h: m.h, baseY: lbl.__baseY });
+      items.push({ id: d.id, el: lbl, x: nx_(d), y: ny_(d) + lbl.__baseY, w: measureLabel(lbl), baseY: lbl.__baseY });
     });
     if (items.length < 2) return;
     items.sort((a, b) => a.y - b.y);
-    // Ekstra boşluk (yazı-yazı arası nefes payı), yalnız ekranda küçük
-    // sahnelerde (currentK < 1) yetersiz kalmasın diye ölçeklenir -- asıl
-    // boşluğu artık ölçülen satır yüksekliği (cur.h/prev.h) belirliyor.
-    const PAD = 4 / Math.max(0.35, currentK);
+    // Boşluk EKRAN ölçüsünde tutulmalı: satır yüksekliği ~15 ekran pikseli,
+    // ama burada SVG birimindeyiz ve sahne uzaklaşınca (currentK < 1) sabit
+    // bir SVG boşluğu ekranda yetersiz kalıyor.
+    const MIN_GAP = 17 / Math.max(0.35, currentK);
     for (let i = 0; i < items.length; i++) {
       const cur = items[i];
       let shift = 0;
@@ -619,8 +600,7 @@
         const prev = items[j];
         const overlapX = Math.abs(cur.x - prev.x) < (cur.w + prev.w) / 2 + 6;
         if (!overlapX) continue;
-        const minGap = (prev.h + cur.h) / 2 + PAD;
-        const need = prev.y + shiftOf(prev) + minGap - cur.y;
+        const need = prev.y + shiftOf(prev) + MIN_GAP - cur.y;
         if (need > shift) shift = need;
       }
       // Etiket, BAŞKA bir temanın dairesinin üstüne de binmemeli -- yoksa
@@ -751,7 +731,7 @@
     // createDragBehavior sim'i ısıtır; sürükleme sırasında rAF sürsün
     svgNode.addEventListener("pointerdown", () => { dragging = true; ensureFrame(); });
     window.addEventListener("pointerup", () => { dragging = false; });
-    window.addEventListener("resize", GU.debounceResize(() => { if (built && !wrapEl.hidden) onResize(); }));
+    window.addEventListener("resize", () => { if (built && !wrapEl.hidden) onResize(); });
   }
 
   function onResize() {

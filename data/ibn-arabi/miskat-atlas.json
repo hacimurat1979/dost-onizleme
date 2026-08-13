@@ -1,0 +1,202 @@
+{
+  "book": {
+    "title": {
+      "tr": "Mişkâtü'l-Envâr",
+      "en": "Mishkat al-Anwar",
+      "pt": "Mishkat al-Anwar"
+    },
+    "subtitle": {
+      "tr": "Nurlar Menbaı",
+      "en": "The Niche of Lights",
+      "pt": "O Nicho das Luzes"
+    },
+    "note": {
+      "tr": "Dost'un kendi seçip bir araya getirdiği 101 hadîs-i kudsî — burada şerh yazmıyor, sözü doğrudan rivayete bırakıyor. Vahdettin İnce'nin Türkçe çevirisini (Kitsan Yayınevi, 2007) okuyoruz; İngilizce ve Portekizce metinler bu çeviriden bizim kendi aktarımımızdır, yayınlanmış bir çeviri değildir. Aynı ciltte yer alan, Dost'tan sonra yaşamış Molla Ali el-Kari'nin eklediği kırk hadis bu okumanın kapsamı dışında — Dost'un kendi derlediği yalnız bu 101'idir.",
+      "en": "101 hadith qudsi that Dost himself selected and gathered — he adds no commentary here, leaving the word to the narration itself. We read Vahdettin İnce's Turkish translation (Kitsan Yayınevi, 2007); the English and Portuguese texts are our own rendering from that translation, not a published translation. The forty additional hadith that Molla Ali al-Qari, a scholar who came after Dost, appended in the same volume fall outside this reading — only these 101 are Dost's own compilation.",
+      "pt": "101 hadith qudsi que o próprio Dost selecionou e reuniu — ele não acrescenta comentário aqui, deixando a palavra à própria narração. Lemos a tradução turca de Vahdettin İnce (Kitsan Yayınevi, 2007); os textos em inglês e português são a nossa própria versão a partir dessa tradução, não uma tradução publicada. Os quarenta hadith adicionais que Molla Ali el-Kari, um estudioso posterior a Dost, anexou no mesmo volume ficam fora desta leitura — apenas estes 101 são a compilação do próprio Dost."
+    },
+    "source": {
+      "tr": "Mişkâtü'l-Envâr (Nurlar Menbaı), çev. Vahdettin İnce, Kitsan Yayınevi, 2007",
+      "en": "Mishkat al-Anwar, trans. Vahdettin İnce (Turkish), Kitsan Yayınevi, 2007",
+      "pt": "Mishkat al-Anwar, trad. Vahdettin İnce (turco), Kitsan Yayınevi, 2007"
+    },
+    "hadisCount": 101,
+    "bolumler": [
+      { "no": 1, "toplam": 40, "etiket": "hadis" },
+      { "no": 2, "toplam": 40, "etiket": "haber" },
+      { "no": 3, "toplam": 21, "etiket": "hadis" }
+    ]
+  },
+  "activeHadisId": "h1",
+  "hadisler": [
+    {
+      "id": "h1",
+      "no": 1,
+      "bolum": 1,
+      "bolumNo": 1,
+      "etiket": "hadis",
+      "status": "active",
+      "title": {
+        "tr": "Ey Kullarım — Zulmü Kendime Haram Kıldım",
+        "en": "O My Servants — I Have Forbidden Oppression for Myself",
+        "pt": "Ó Meus Servos — Proibi a Opressão para Mim Mesmo"
+      },
+      "pageRange": {
+        "tr": "1. Bölüm, 1. Hadis (Ebû Zer'den)",
+        "en": "Section 1, Hadith 1 (from Abu Dharr)",
+        "pt": "Seção 1, Hadith 1 (de Abu Dharr)"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Mişkâtü'l-Envâr'ın ilk hadisi, Dost'un neden bu kitaba bu sözle başladığını hemen belli ediyor: Ebû Zer'den gelen ve Sahih-i Müslim'de de yer alan meşhur bir rivayet, on kere tekrarlanan <em>“Ey kullarım!”</em> sesleniyle ilerliyor. Her seslenişte insanın kendinden bir şeyi — zulüm yapma kudretini, doğru yolu, doyma ve giyinmeyi, günahsızlığı — Allah'a havale etmesi isteniyor; son seslenişte ise bütün bunların sayılıp kaydedildiği söyleniyor. Dost burada hiç şerh yazmıyor; hadisin kendisi, sanki bütün kitabın kapısı gibi duruyor.",
+          "en": "The first hadith of Mishkat al-Anwar makes clear right away why Dost opens the book with this word: it is a well-known hadith going back to Abu Dharr, also found in Sahih Muslim, unfolding through ten repetitions of the address <em>“O My servants!”</em> Each address asks the human being to hand something over to God — the power to oppress, guidance, being fed, being clothed, being free of sin — and the last address says that all of this is being counted and recorded. Dost adds no commentary here; the hadith itself stands like the doorway to the whole book.",
+          "pt": "O primeiro hadith de Mishkat al-Anwar já deixa claro por que Dost abre o livro com esta palavra: é um hadith conhecido que remonta a Abu Dharr, também encontrado no Sahih Muslim, que se desenrola em dez repetições do chamado <em>“Ó Meus servos!”</em> Cada chamado pede que o ser humano entregue algo a Deus — o poder de oprimir, a orientação, ser alimentado, ser vestido, estar livre de pecado — e o último chamado diz que tudo isso está sendo contado e registrado. Dost não acrescenta comentário aqui; o próprio hadith permanece como a porta de entrada de todo o livro."
+        }
+      },
+      "mainHelix": {
+        "source": {
+          "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 1. Hadis",
+          "en": "Mishkat al-Anwar, Section 1, Hadith 1",
+          "pt": "Mishkat al-Anwar, Seção 1, Hadith 1"
+        },
+        "caption": {
+          "tr": "Sarmalı biz çizdik; basamaklar hadisin kendi cümleleri — Dost'un metnine hiçbir şey eklemedik. On kere tekrarlanan “Ey kullarım!” sesleniş, sona doğru bir kayda (amellerin sayılmasına) varıyor; sarmal bu tekrarı ve birikmeyi göstermek için kullanıldı. Düğümlere dokunarak (ya da ok tuşlarıyla) tek tek okuyabilirsiniz.",
+          "en": "We drew the spiral; the steps are the hadith's own sentences — we added nothing to Dost's text. The tenfold repetition of “O My servants!” arrives, by the end, at a record (the counting of deeds); the spiral is used to show this repetition and accumulation. Touch the nodes (or use the arrow keys) to read them one by one.",
+          "pt": "Desenhámos a espiral; os degraus são as próprias frases do hadith — não acrescentámos nada ao texto de Dost. A repetição décupla de “Ó Meus servos!” chega, ao final, a um registro (a contagem dos atos); a espiral é usada para mostrar essa repetição e acumulação. Toque nos nós (ou use as setas) para os ler um a um."
+        },
+        "helix": {
+          "id": "h1-nida",
+          "turns": 1.6,
+          "closing": true,
+          "nodes": [
+            {
+              "id": "h1-c1",
+              "label": { "tr": "Zulüm", "en": "Oppression", "pt": "Opressão" },
+              "note": {
+                "tr": "<em>“Ey kullarım! Ben zulmetmeyi kendime haram kıldım. Onu sizin aranızda da haram kıldım. Birbirinize zulmetmeyiniz.”</em>",
+                "en": "<em>“O My servants! I have forbidden oppression for Myself, and I have made it forbidden among you. So do not oppress one another.”</em>",
+                "pt": "<em>“Ó Meus servos! Proibi a opressão para Mim mesmo, e a tornei proibida entre vós. Não vos oprimais uns aos outros.”</em>"
+              }
+            },
+            {
+              "id": "h1-c2",
+              "label": { "tr": "Hidayet", "en": "Guidance", "pt": "Orientação" },
+              "note": {
+                "tr": "<em>“Ey kullarım! Doğru yola ilettiklerim hariç, hepiniz sapmışsınız. O halde benden doğru yola iletilmeyi dileyin ki sizi doğru yola ileteyim.”</em>",
+                "en": "<em>“O My servants! All of you are astray except those I have guided, so ask Me for guidance and I shall guide you.”</em>",
+                "pt": "<em>“Ó Meus servos! Todos vós estais desviados, exceto aqueles a quem guiei; pedi-Me orientação e Eu vos guiarei.”</em>"
+              }
+            },
+            {
+              "id": "h1-c3",
+              "label": { "tr": "Doyma", "en": "Being fed", "pt": "Ser alimentado" },
+              "note": {
+                "tr": "<em>“Ey kullarım! Benim doyurduklarım hariç, hepiniz açsınız. Sizi doyurmamı benden isteyin ki, sizi doyurayım.”</em>",
+                "en": "<em>“O My servants! All of you are hungry except those I have fed, so ask Me for food and I shall feed you.”</em>",
+                "pt": "<em>“Ó Meus servos! Todos vós estais famintos, exceto aqueles a quem alimentei; pedi-Me alimento e Eu vos alimentarei.”</em>"
+              }
+            },
+            {
+              "id": "h1-c4",
+              "label": { "tr": "Giyinme", "en": "Being clothed", "pt": "Ser vestido" },
+              "note": {
+                "tr": "<em>“Ey kullarım! Benim giydirdiklerim hariç, hepiniz çıplaksınız. Sizi giydirmemi benden isteyin ki sizi giydireyim.”</em>",
+                "en": "<em>“O My servants! All of you are naked except those I have clothed, so ask Me for clothing and I shall clothe you.”</em>",
+                "pt": "<em>“Ó Meus servos! Todos vós estais nus, exceto aqueles a quem vesti; pedi-Me vestimenta e Eu vos vestirei.”</em>"
+              }
+            },
+            {
+              "id": "h1-c5",
+              "label": { "tr": "Mağfiret", "en": "Forgiveness", "pt": "Perdão" },
+              "note": {
+                "tr": "<em>“Ey kullarım! Siz gece gündüz günah işlersiniz, bense bütün günahları bağışlarım. Benden bağışlanma dileyin ki sizi bağışlayayım.”</em>",
+                "en": "<em>“O My servants! You sin by night and by day, and I forgive all sins; so ask forgiveness of Me and I shall forgive you.”</em>",
+                "pt": "<em>“Ó Meus servos! Vós pecais noite e dia, e Eu perdoo todos os pecados; pedi-Me perdão e Eu vos perdoarei.”</em>"
+              }
+            },
+            {
+              "id": "h1-c6",
+              "label": { "tr": "Acz", "en": "Powerlessness", "pt": "Impotência" },
+              "note": {
+                "tr": "<em>“Ey kullarım! Siz asla Bana zarar verecek düzeye ulaşamayacağınız için Bana zarar veremezsiniz; asla Bana fayda verecek düzeye ulaşamayacağınız için de Bana fayda veremezsiniz.”</em>",
+                "en": "<em>“O My servants! You will never reach a point where you could harm Me, and you will never reach a point where you could benefit Me.”</em>",
+                "pt": "<em>“Ó Meus servos! Nunca alcançareis um ponto em que possais prejudicar-Me; e nunca alcançareis um ponto em que possais beneficiar-Me.”</em>"
+              }
+            },
+            {
+              "id": "h1-c7",
+              "label": { "tr": "Mülk (artmaz)", "en": "Dominion (unincreased)", "pt": "Domínio (não aumenta)" },
+              "note": {
+                "tr": "<em>“Ey kullarım! Öncekileriniz ve sonrakileriniz, insanlarınız ve cinleriniz en muttaki bir adamın kalbi üzere olsanız dahi, bu Benim mülküme bir şey katmaz.”</em>",
+                "en": "<em>“O My servants! Were the first and last of you, human and jinn alike, to be as pious as the most God-fearing heart among you, that would not add a thing to My dominion.”</em>",
+                "pt": "<em>“Ó Meus servos! Ainda que os primeiros e os últimos de vós, humanos e gênios, fôsseis tão piedosos quanto o coração mais temente a Deus entre vós, isso nada acrescentaria ao Meu domínio.”</em>"
+              }
+            },
+            {
+              "id": "h1-c8",
+              "label": { "tr": "Mülk (eksilmez)", "en": "Dominion (undiminished)", "pt": "Domínio (não diminui)" },
+              "note": {
+                "tr": "<em>“Ey kullarım! Öncekileriniz ve sonrakileriniz, insanlarınız ve cinleriniz en günahkâr bir adamın kalbi üzere olsanız dahi, bu Benim mülkümden bir şey eksiltmez.”</em>",
+                "en": "<em>“O My servants! Were the first and last of you, human and jinn alike, to be as sinful as the most wicked heart among you, that would not diminish My dominion in the least.”</em>",
+                "pt": "<em>“Ó Meus servos! Ainda que os primeiros e os últimos de vós, humanos e gênios, fôsseis tão pecadores quanto o coração mais perverso entre vós, isso em nada diminuiria o Meu domínio.”</em>"
+              }
+            },
+            {
+              "id": "h1-c9",
+              "label": { "tr": "İğne ve deniz", "en": "The needle and the sea", "pt": "A agulha e o mar" },
+              "note": {
+                "tr": "<em>“Ey kullarım! Öncekileriniz ve sonrakileriniz bir yerde toplanıp Benden isteseniz, Ben de her insana istediğini versem, bu Benim katımdakinden ancak bir iğne denize daldırıldığında ondan eksilttiği kadar eksiltir.”</em>",
+                "en": "<em>“O My servants! Were the first and last of you to gather in one place and ask of Me, and I were to give everyone what they asked, that would diminish what is with Me no more than a needle diminishes the sea when dipped into it.”</em>",
+                "pt": "<em>“Ó Meus servos! Ainda que os primeiros e os últimos de vós se reunissem num só lugar e Me pedissem, e Eu desse a cada um o que pedisse, isso diminuiria o que está comigo tanto quanto uma agulha diminui o mar quando nele é mergulhada.”</em>"
+              }
+            },
+            {
+              "id": "h1-c10",
+              "label": { "tr": "Kayıt ve karşılık", "en": "Record and reward", "pt": "Registro e recompensa" },
+              "note": {
+                "tr": "<em>“Ey kullarım! Ben sizin amellerinizi sayıp kaydediyorum, sonra karşılığını eksiksiz veririm. Hayırla karşılaşan Allah'a hamdetsin; bundan başkasıyla karşılaşan da kendinden başka kimseyi kınamasın.”</em>",
+                "en": "<em>“O My servants! It is your deeds that I record for you, then repay you in full; so let whoever finds good praise God, and whoever finds otherwise blame no one but himself.”</em>",
+                "pt": "<em>“Ó Meus servos! São os vossos atos que registro para vós, e depois retribuo integralmente; que quem encontrar o bem louve a Deus, e quem encontrar outra coisa não culpe senão a si mesmo.”</em>"
+              }
+            }
+          ]
+        }
+      },
+      "blocks": [
+        {
+          "type": "hadis",
+          "metin": {
+            "tr": "Ey kullarım! Ben zulmetmeyi kendime haram kıldım. Onu sizin aranızda da haram kıldım. Birbirinize zulmetmeyiniz.\n\nEy kullarım! Doğru yola ilettiklerim hariç, hepiniz sapmışsınız. O halde benden doğru yola iletilmeyi dileyin ki sizi doğru yola ileteyim.\n\nEy kullarım! Benim doyurduklarım hariç, hepiniz açsınız. Sizi doyurmamı benden isteyin ki, sizi doyurayım.\n\nEy kullarım! Benim giydirdiklerim hariç, hepiniz çıplaksınız. Sizi giydirmemi benden isteyin ki sizi giydireyim.\n\nEy kullarım! Siz gece gündüz günah işlersiniz, bense bütün günahları bağışlarım. Benden bağışlanma dileyin ki sizi bağışlayayım.\n\nEy kullarım! Siz asla Bana zarar verecek düzeye ulaşamayacağınız için Bana zarar veremezsiniz; asla Bana fayda verecek düzeye ulaşamayacağınız için de Bana fayda veremezsiniz.\n\nEy kullarım! Öncekileriniz ve sonrakileriniz, insanlarınız ve cinleriniz en muttaki bir adamın kalbi üzere olsanız dahi, bu Benim mülküme bir şey katmaz.\n\nEy kullarım! Öncekileriniz ve sonrakileriniz, insanlarınız ve cinleriniz en günahkâr bir adamın kalbi üzere olsanız dahi, bu Benim mülkümden bir şey eksiltmez.\n\nEy kullarım! Öncekileriniz ve sonrakileriniz bir yerde toplanıp Benden isteseniz, Ben de her insana istediğini versem, bu Benim katımdakinden ancak bir iğne denize daldırıldığında ondan eksilttiği kadar eksiltir.\n\nEy kullarım! Ben sizin amellerinizi sayıp kaydediyorum, sonra karşılığını eksiksiz veririm. Hayırla karşılaşan Allah'a hamdetsin; bundan başkasıyla karşılaşan da kendinden başka kimseyi kınamasın.",
+            "en": "O My servants! I have forbidden oppression for Myself, and I have made it forbidden among you. So do not oppress one another.\n\nO My servants! All of you are astray except those I have guided, so ask Me for guidance and I shall guide you.\n\nO My servants! All of you are hungry except those I have fed, so ask Me for food and I shall feed you.\n\nO My servants! All of you are naked except those I have clothed, so ask Me for clothing and I shall clothe you.\n\nO My servants! You sin by night and by day, and I forgive all sins; so ask forgiveness of Me and I shall forgive you.\n\nO My servants! You will never reach a point where you could harm Me, and you will never reach a point where you could benefit Me.\n\nO My servants! Were the first and last of you, human and jinn alike, to be as pious as the most God-fearing heart among you, that would not add a thing to My dominion.\n\nO My servants! Were the first and last of you, human and jinn alike, to be as sinful as the most wicked heart among you, that would not diminish My dominion in the least.\n\nO My servants! Were the first and last of you to gather in one place and ask of Me, and I were to give everyone what they asked, that would diminish what is with Me no more than a needle diminishes the sea when dipped into it.\n\nO My servants! It is your deeds that I record for you, then repay you in full; so let whoever finds good praise God, and whoever finds otherwise blame no one but himself.",
+            "pt": "Ó Meus servos! Proibi a opressão para Mim mesmo, e a tornei proibida entre vós. Não vos oprimais uns aos outros.\n\nÓ Meus servos! Todos vós estais desviados, exceto aqueles a quem guiei; pedi-Me orientação e Eu vos guiarei.\n\nÓ Meus servos! Todos vós estais famintos, exceto aqueles a quem alimentei; pedi-Me alimento e Eu vos alimentarei.\n\nÓ Meus servos! Todos vós estais nus, exceto aqueles a quem vesti; pedi-Me vestimenta e Eu vos vestirei.\n\nÓ Meus servos! Vós pecais noite e dia, e Eu perdoo todos os pecados; pedi-Me perdão e Eu vos perdoarei.\n\nÓ Meus servos! Nunca alcançareis um ponto em que possais prejudicar-Me; e nunca alcançareis um ponto em que possais beneficiar-Me.\n\nÓ Meus servos! Ainda que os primeiros e os últimos de vós, humanos e gênios, fôsseis tão piedosos quanto o coração mais temente a Deus entre vós, isso nada acrescentaria ao Meu domínio.\n\nÓ Meus servos! Ainda que os primeiros e os últimos de vós, humanos e gênios, fôsseis tão pecadores quanto o coração mais perverso entre vós, isso em nada diminuiria o Meu domínio.\n\nÓ Meus servos! Ainda que os primeiros e os últimos de vós se reunissem num só lugar e Me pedissem, e Eu desse a cada um o que pedisse, isso diminuiria o que está comigo tanto quanto uma agulha diminui o mar quando nele é mergulhada.\n\nÓ Meus servos! São os vossos atos que registro para vós, e depois retribuo integralmente; que quem encontrar o bem louve a Deus, e quem encontrar outra coisa não culpe senão a si mesmo."
+          },
+          "ravi": {
+            "tr": "Ebû Zer (r.a.)'den",
+            "en": "From Abu Dharr (may God be pleased with him)",
+            "pt": "De Abu Dharr (que Deus esteja satisfeito com ele)"
+          },
+          "senet": {
+            "tr": "Dost, hadisi Muhammed b. Kāsım'dan başlayıp İdrîs el-Havlânî üzerinden Ebû Zer'e ulaşan uzun bir râvi zinciriyle aktarıyor.",
+            "en": "Dost transmits the hadith through a long chain of narrators, beginning with Muhammad b. Qasim and reaching, through Idris al-Khawlani, back to Abu Dharr.",
+            "pt": "Dost transmite o hadith através de uma longa cadeia de narradores, começando com Muhammad b. Qasim e remontando, através de Idris al-Khawlani, até Abu Dharr."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu hadis, büyük ölçüde aynı lafızlarla Sahih-i Müslim'de de (Birr bölümünde) yer alan, tasavvuf çevrelerinde en çok okunan hadis-i kudsilerden biridir. Dost'un bu kitabı tam da bununla açması, kitabın tamamına bir kapı gibi duruyor: her şey Allah'tan istenir, hiçbir şey kulun kendi gücünden değildir.",
+            "en": "This hadith, in largely the same wording, is also found in Sahih Muslim (in the Book of Righteousness) and is among the most widely read hadith qudsi in Sufi circles. That Dost opens the whole book with exactly this one reads like a doorway to everything that follows: everything is asked of God, nothing from the servant's own power.",
+            "pt": "Este hadith, em grande parte com as mesmas palavras, também se encontra no Sahih Muslim (no Livro da Retidão) e está entre os hadith qudsi mais lidos nos círculos sufis. Que Dost abra todo o livro exatamente com este parece uma porta para tudo o que se segue: tudo se pede a Deus, nada do poder próprio do servo."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 1. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "en": "Mishkat al-Anwar, Section 1, Hadith 1 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "pt": "Mishkat al-Anwar, Seção 1, Hadith 1 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
+        }
+      ]
+    }
+  ]
+}

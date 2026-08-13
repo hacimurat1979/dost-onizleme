@@ -4,7 +4,6 @@
   const SEEN_KEY = "dost-start-hint-seen";
   const hint = document.getElementById("start-hint");
   const goBtn = document.getElementById("start-hint-go");
-  const goKalpBtn = document.getElementById("start-hint-go-kalp");
   const closeBtn = document.getElementById("start-hint-close");
   if (!hint || !goBtn || !closeBtn) return;
 
@@ -27,12 +26,6 @@
   goBtn.addEventListener("click", () => {
     dismiss();
     if (window.__dostNav) window.__dostNav.goTo("ontoloji", "dhat");
-  });
-  // 2026-08-10 denetim (G7 + rapor EK A.3): ikinci başlangıç noktası olarak
-  // Kalp -- "bize en yakın uç, dönüşün başladığı yer".
-  if (goKalpBtn) goKalpBtn.addEventListener("click", () => {
-    dismiss();
-    if (window.__dostNav) window.__dostNav.goTo("ontoloji", "kalp");
   });
   closeBtn.addEventListener("click", dismiss);
 })();

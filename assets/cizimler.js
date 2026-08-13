@@ -283,37 +283,12 @@
     if (!item) return;
     const renderer = cizimRenderers[item.diagram.type];
     const svg = renderer ? renderer(item.diagram) : "";
-    // CIZIM_DEFS'i burada TEKRAR eklemiyoruz: render()'ın zaten listEl'e
-    // yazdığı tek kopya, id="cizimArrowEnd" SVG belge genelinde çözüldüğü
-    // için (url(#...) referansı DOM'daki herhangi bir yerden çalışır) burada
-    // da geçerli. İkinci bir kopya yalnız aynı id'yi mükerrer basardı --
-    // görünürde belirti yoktu ama geçersiz HTML'di (UI denetimi bulgusu).
     window.DostLightbox.open({
       closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
-      svgHtml: svg,
+      svgHtml: CIZIM_DEFS + svg,
       ref: item.source_ref,
       name: tt(item.name),
     });
-  }
-
-  // 371. bab'ın dokuz haritasının ayrı, sürüklenebilir bir sahnesi var
-  // (futuhat-371.html, docs/icerik-yol-haritasi.md D1) ama hiçbir yerden
-  // linklenmiyordu (2026-08-04 taramasında ölçüldü) -- yukarıdaki statik
-  // kartların en doğal tamamlayıcısı burası.
-  function sahneHtml() {
-    const base = window.__dostRouteBase || "";
-    return `<div class="detail-gate detail-gate--sahne cizimler-sahne">
-      <p class="detail-gate__note">${tt({
-        tr: "Aşağıdaki kartlar 371. bab'ın dokuz haritasını tek tek gösteriyor. Ayrı bir sahne, aralarında sürüklenerek gezilebilecek şekilde bir araya getiriyor.",
-        en: "The cards below show the nine maps of chapter 371 one by one. A separate scene brings them together so you can drag between them.",
-        pt: "Os cartões abaixo mostram os nove mapas do capítulo 371 um a um. Uma cena separada os reúne para que você possa arrastar entre eles.",
-      })}</p>
-      <a class="detail-gate__btn" href="${base}/futuhat-371.html">${tt({
-        tr: "Sahneyi aç: 371. Bab, Dokuz Harita",
-        en: "Open the scene: Chapter 371, Nine Maps",
-        pt: "Abrir a cena: Capítulo 371, Nove Mapas",
-      })}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
-    </div>`;
   }
 
   function render() {
@@ -323,7 +298,6 @@
     listEl.innerHTML = `
       ${CIZIM_DEFS}
       <p class="cizimler-intro">${linkify(tt(data.intro), null)}</p>
-      ${sahneHtml()}
       ${cards}
       <ul class="cizimler-sources">${sources}</ul>
     `;

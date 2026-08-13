@@ -112,7 +112,7 @@
   }
   loadData();
 
-  let simulation, nodeSel, linkSel, labelSel, zoomBehavior;
+  let simulation, nodeSel, linkSel, labelSel;
 
   function buildGraph(themes, conceptById) {
     const width = svg.node().clientWidth;
@@ -158,13 +158,7 @@
       if (d.type === "hub-daphne") { d.x = width * 0.8; d.y = height / 2; }
     });
 
-    // Siteki diğer 12 grafik görünümünün hepsi yakınlaştırma/geri-merkezleme
-    // taşırken bu ikisi (Ortak Temalar + Daphne'nin Profili) hiç taşımıyordu
-    // -- yoğun bir kümede etiketler okunamıyor, ve okumak için yakınlaşmanın
-    // hiçbir yolu yoktu (UI denetimi bulgusu, ETKILESIM_DILI.md'nin "bir
-    // hareket her yerde aynı anlam taşır" ilkesiyle çelişiyordu).
-    const zoomLayer = svg.append("g").attr("class", "compare-zoom-layer");
-    linkSel = zoomLayer
+    linkSel = svg
       .append("g")
       .attr("class", "links")
       .selectAll("line")
@@ -172,7 +166,7 @@
       .join("line")
       .attr("class", "link");
 
-    const nodeGroup = zoomLayer.append("g").attr("class", "nodes");
+    const nodeGroup = svg.append("g").attr("class", "nodes");
 
     nodeSel = nodeGroup
       .selectAll("g.node")
@@ -215,12 +209,6 @@
         .attr("y2", (d) => d.target.y);
 
       nodeSel.attr("transform", (d) => `translate(${d.x},${d.y})`);
-    });
-
-    zoomBehavior = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.4, 3]);
-    window.DostGraphUtils.wireRecenter("compare-recenter", () => {
-      const sel = svg.transition().duration(420);
-      sel.call(zoomBehavior.transform, d3.zoomIdentity);
     });
 
     window.__daphneApp = { nodes, links, conceptById, themes };

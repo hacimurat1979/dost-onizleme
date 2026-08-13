@@ -1,5 +1,5 @@
 {
-  "description": "Sitede sık geçen felsefî ve tasavvufî terimlerin okurken oluşturduğumuz bir sözlüğü. Başlangıçta yalnız Meşşâî (Aristo kökenli İslam) felsefesinden devralınmış mantık/metafizik terimlerini toplamayı düşünüyorduk — Dost'un icadı olmayan, onun sözlüğünü anlamak için gereken zemin. Ama okumamız derinleştikçe sözlük büyüdü ve bugün 24 gruba, 92 terime yayılıyor: klasik felsefe kavramlarının yanına ahvâl/makamlar, kutbiyet, velâyet-risâlet, ve doğrudan Kur'ânî kozmoloji terimleri de girdi. Bu yüzden burada anılan her terimin İbn Arabî'ye ait olduğunu söylemiyoruz; hangi terimin nereden geldiği ve nasıl kullanıldığı her kartın kendisinde yazıyor. Tecellî gibi bazı terimler bu sözlüğe ait, A'yân-ı Sâbite ve İnsan-ı Kâmil gibi çekirdek düğümler ise Ontoloji haritasında kendi kartlarında duruyor.",
+  "description": "İbn Arabî'nin Meşşâî (Aristo kökenli İslam) felsefesinden devraldığı ve kendi sisteminde yeniden yorumladığı temel mantık/metafizik kavramları. Bu terimler İbn Arabî'nin kendi icadı değildir — onun sözlüğünü (Vahdet-i Vücûd, A'yân-ı Sâbite, Tecellî gibi) anlamak için gereken felsefi zemin/araç kutusudur.",
   "groups": [
     {
       "id": "toz-nitelik",
@@ -1137,25 +1137,6 @@
             "en": "Between the two stands Wonder-Working (Karamat): it has a real existential counterpart, but comes about through the wali's power of knowledge and aspiration. The difference lies not in whether external reality is present, but in how much knowledge/authority the agent has over it.",
             "pt": "Entre os dois está o Prodígio (Karamat): ele tem uma contraparte existencial real, mas advém do poder de conhecimento e aspiração do wali. A diferença não está na presença ou não de realidade externa, mas em quanto conhecimento/autoridade o agente tem sobre ela."
           }
-        },
-        {
-          "type": "potential-actual",
-          "termId": "himmet",
-          "potential": {
-            "tr": "vehim/hayâl: yalnız zihinde",
-            "en": "imagination: only in the mind",
-            "pt": "imaginação: só na mente"
-          },
-          "actual": {
-            "tr": "himmet: Âlem-i Şehâdet'te, herkes görür",
-            "en": "aspiration: in the Visible World, everyone sees it",
-            "pt": "aspiração: no Mundo Visível, todos veem"
-          },
-          "note": {
-            "tr": "Konuk'un kuş örneği: herkes hayal ettiğini yalnız kendi zihninde yaratır, ârif ise himmetiyle onu zihninin dışına çıkarır -- ama bu geçiş kalıcı değil. Ârifin müşâhedesi başka bir Hazret'e kayarsa, yarattığı kuş da oradan silinip vehmin âlemine geri döner.",
-            "en": "Konuk's bird example: everyone creates what they imagine only within their own mind, while the gnostic, through aspiration, brings it outside the mind -- but this passage is not permanent. If the gnostic's attention shifts to another Presence, the bird he created vanishes from there and returns to the realm of imagination.",
-            "pt": "O exemplo do pássaro de Konuk: todos criam o que imaginam apenas na própria mente, enquanto o gnóstico, através da aspiração, o traz para fora da mente -- mas essa passagem não é permanente. Se a atenção do gnóstico se desvia para outra Presença, o pássaro que ele criou desaparece dali e retorna ao reino da imaginação."
-          }
         }
       ]
     },
@@ -1205,29 +1186,6 @@
             "tr": "'Hak, bazı himmetleri İlk Akıl'da karşılar... bazı himmetler ise, O'nunla Amâ'da karşılaşırken bazı himmetler Âdem'in toprağının kalıntısından yaratılmış yerde O'nunla karşılaşır.'",
             "en": "'The Real meets some aspirations at the First Intellect... some aspirations meet Him at the Cloud, while some meet Him at the place created from the remnant of Adam's clay.'",
             "pt": "'O Real recebe algumas aspirações no Primeiro Intelecto... algumas aspirações O encontram na Nuvem, enquanto outras O encontram no lugar criado a partir do resto do barro de Adão.'"
-          }
-        },
-        {
-          "type": "tinted-glass",
-          "glassLabel": {
-            "tr": "cam",
-            "en": "glass",
-            "pt": "vidro"
-          },
-          "reasonReading": {
-            "tr": "akıl: \"renksiz\" -- haklısın",
-            "en": "reason: \"colorless\" -- you're right",
-            "pt": "a razão: \"incolor\" -- tens razão"
-          },
-          "senseReading": {
-            "tr": "duyu: \"yeşil\" -- haklısın",
-            "en": "the senses: \"green\" -- you're right",
-            "pt": "os sentidos: \"verde\" -- tens razão"
-          },
-          "note": {
-            "tr": "İbn Arabî'nin kendi analojisi: aynı ışık camdan geçerken rengini alır gibi görünür. Duyu da akıl da haklı -- ikisi de aynı ışığın farklı bir yüzüne bakıyor.",
-            "en": "Ibn Arabi's own analogy: the same light seems to take on a color as it passes through glass. The senses and reason are both right -- each looks at a different face of the same light.",
-            "pt": "A própria analogia de Ibn Arabi: a mesma luz parece assumir uma cor ao passar pelo vidro. Os sentidos e a razão têm ambos razão -- cada um olha para uma face diferente da mesma luz."
           }
         }
       ]
@@ -2649,47 +2607,6 @@
         "velayet"
       ]
     },
-    "vahiy": {
-      "id": "vahiy",
-      "tier": 1,
-      "group": "vahyin-mertebeleri",
-      "title": {
-        "tr": "Vahiy",
-        "en": "Revelation (Wahy)",
-        "pt": "Revelação (Wahy)"
-      },
-      "arabic": "الوحي",
-      "ozet_tr": "havas için: ulvi taraftan gelen, kabule hazır olana yöneltilen hafif işaret",
-      "ozet_en": "for the elite: a light sign directed to one ready to receive it, from the higher side",
-      "ozet_pt": "para a elite: um sinal ligeiro dirigido a quem está pronto para o receber, do lado superior",
-      "felsefi_tanim": {
-        "tr": "İbn Arabî'nin El-Bülgâ fi'l-Hikme'de mucize ve keramet ile birlikte tanımladığı üç terimden biri. Sözlükte, bir şeyi bir şeye süratle ulaştırmak anlamına gelir ve bu genel anlamıyla cismani veya ruhani bütün varlıkları kapsar. Havas (seçkinler) için ise daha dar bir anlamı vardır: ulvi taraftan, kabule hazır olan kimseye yöneltilen hafif bir işaret.",
-        "en": "One of three terms Ibn Arabi defines together with miracle (mu'jiza) and charisma (karama) in al-Bulgha fi'l-Hikma. In its lexical sense it means swiftly conveying something to something, and in that general sense covers all beings, corporeal or spiritual. For the elite (havas) it has a narrower sense: a light sign directed, from the higher side, to one who is ready to receive it.",
-        "pt": "Um dos três termos que Ibn Arabi define junto com milagre (mu'jiza) e carisma (karama) em al-Bulgha fi'l-Hikma. No sentido lexical significa transmitir algo a algo com rapidez, e nesse sentido geral abrange todos os seres, corpóreos ou espirituais. Para a elite (havas) tem um sentido mais estrito: um sinal ligeiro dirigido, do lado superior, a quem está pronto para o receber."
-      },
-      "ibn_arabi_yorumu": {
-        "tr": "Aynı bölümde İbn Arabî üç terimi yan yana tanımlıyor. Mucize: <em>“harikulade bir şey… karşı çıkmaya imkan olmayan meydan okumayla eş anlamlıdır”</em> — dört şarttan örülü, öyle ki bizzat gerçekleştiği kişi bile onu tam bilmeyebilir (bkz. Musa'nın asası). Keramet: <em>“olağan üstü bir şeydir ve mucize için söz konusu olan diğer iki kayıttan yoksundur… bu yüzden keramet'le meydan okumak veya makamına güvenmek caiz değildir”</em> — velinin kendi bilgi ve himmet gücüne dayanır, karşı çıkılabilir. Vahiy ise ikisinden de ayrı bir kapı: bir meydan okuma ya da bir güç gösterisi değil, bir <em>iletim</em>. Bu üç terimin birlikte tanımlanması, sitede zaten ayrı ayrı duran <em>mucize</em> ve <em>keramet</em> düğümlerinin aslında İbn Arabî'nin kendi elinde bir üçlü olarak kurulduğunu gösteriyor.",
-        "en": "In the same passage Ibn Arabi defines all three terms side by side. Miracle: <em>“something extraordinary… synonymous with an unanswerable challenge”</em> — woven from four conditions, such that even the one through whom it occurs may not fully know it (see Moses's staff). Charisma: <em>“something extraordinary that lacks the other two conditions required for a miracle… for this reason it is not permitted to issue a challenge with a charisma or to rely on one's own rank because of it”</em> — it rests on the wali's own power of knowledge and aspiration, and can be answered. Revelation is a different door from both: not a challenge or a display of power, but a <em>conveying</em>. That the three terms are defined together shows that the site's already-existing, separately standing nodes for <em>miracle</em> and <em>charisma</em> were in fact set up by Ibn Arabi himself as a threesome.",
-        "pt": "Na mesma passagem Ibn Arabi define os três termos lado a lado. Milagre: <em>“algo extraordinário… sinônimo de um desafio ao qual não se pode responder”</em> — tecido a partir de quatro condições, de tal modo que mesmo aquele por meio de quem ocorre pode não o conhecer plenamente (ver o cajado de Moisés). Carisma: <em>“algo extraordinário que carece das outras duas condições exigidas para um milagre… por isso não é permitido lançar um desafio com um carisma nem confiar na própria posição por causa dele”</em> — assenta no próprio poder de conhecimento e aspiração do wali, e pode ser contestado. A revelação é uma porta diferente de ambas: não um desafio nem uma demonstração de poder, mas uma <em>transmissão</em>. Que os três termos sejam definidos juntos mostra que os nós já existentes no sítio para <em>milagre</em> e <em>carisma</em>, mantidos separados, foram na verdade constituídos pelo próprio Ibn Arabi como um trio."
-      },
-      "analogy": {
-        "tr": "Üçünü bir arada düşünmenin bir yolu: mucize kimsenin duruşamayacağı bir kapı, keramet bir kapı ama zorlanabilir, vahiy ise hiç kapı değil — bir mektubun gelmesi gibi, ne meydan okur ne güç gösterir, yalnız ulaştırır.",
-        "en": "One way to hold the three together: a miracle is a door no one can force open, a charisma is a door that can be pushed against, and revelation is not a door at all — like a letter arriving, it neither challenges nor displays power, it only conveys.",
-        "pt": "Um modo de pensar os três juntos: o milagre é uma porta que ninguém pode forçar, o carisma é uma porta que pode ser empurrada, e a revelação não é porta nenhuma — como uma carta que chega, não desafia nem exibe poder, apenas transmite."
-      },
-      "kaynaklar": [
-        {
-          "kaynak_adi": "El-Bülgâ fi'l-Hikme",
-          "alinti_tr": "Birinci kelime, mucize. Tanımı, harikulade bir şey olarak belirlenmiştir. Karşı çıkmaya imkan olmayan meydan okumayla eş anlamlıdır… İkinci kelime: Keramet. Olağan üstü bir şeydir ve mucize için söz konusu olan diğer iki kayıttan yoksundur… Üçüncü kelime: Vahiy: Sözlükte, bir şeyi bir şeye süratle ilka etmek anlamına gelir… Havas açısından ise vahiy, ulvi taraftan kabule hazır olan kimseye yöneltilen hafif işaret demektir.",
-          "not_tr": "Mucize/keramet/vahiy üçlüsünün İbn Arabî tarafından tek bir bölümde ('Nebilerden ve filozoflardan oluşan çok sayıda insanın dilinden düşmeyen bazı kelimelerin tefsiri') art arda tanımlandığı pasaj."
-        }
-      ],
-      "iliskili_kavramlar": [
-        "mucize",
-        "keramet",
-        "vahyin-uc-menzili"
-      ]
-    },
     "vahyin-uc-menzili": {
       "id": "vahyin-uc-menzili",
       "tier": 2,
@@ -2903,12 +2820,6 @@
           "satir": "2538-2539",
           "alinti_tr": "Rical'den (adamlar) benzerleri, on iki nakip ve yedi beldeldir. Bu yedi bedelden dördü evtad (direkler), iki tanesi iki imam, biri kutuptur.",
           "not_tr": "Kutbiyet hiyerarşisinin sayısal formülü: 12 Nakip + 7 Bedel (4 Evtad + 2 İmam + 1 Kutup) = 19 Rical."
-        },
-        {
-          "cilt": "affifi-tasavvuf",
-          "satir": "4613-4645",
-          "alinti_tr": "Philo'nun Kelâm Felsefesinin İbnu'l-Arabî'nin öğretisi üzerine etkisi pek açık bir şekilde terminolojileri arasındaki hayret verici benzerlikte görülür... İbnu'l-Arabi ve Philo'dan derlenen şu terimler bu benzerliği ortaya koymaya yardım edebilir: (1) Yüce Haham -- İmâm ya da Kutup; (2) Şefaatçi (Paraclete) -- eş-Şefî'; (3) Allah'ın Yüceliği -- İnsânu 'aynu'l-Hakk; (4) Allah'ın Karanlığı ya da Gölgesi -- El-Habâ ya da Sûret el-Hakk; (5) İdelerin İdesi ya da İlk Örnek İde -- Hakikat el-Hakâ'ik; (6) Allah ile Âlem arasındaki orta merhale -- Berzah; (7) Vahiy İlkesi -- Muhammed'in Hakikatı, Nûr; (8) Allah'ın ilk doğan Oğlu -- et-Ta'ayyün el-Evvel; (9) Meleklerin İlki -- Rûh; (10) Halife -- Halife; (11) Anthropos Theoü toü aidioü logos -- Kelâm, Yetkin İnsan, Rûh, Âlemin Sebebi.",
-          "not_tr": "Affifi'nin, İbn Arabî'nin Kelâm terminolojisini İskenderiyeli Yahudi filozof Philon'unkiyle karşılaştırdığı on bir maddelik tablo -- birinci sırada doğrudan Kutup/İmâm karşılığı var. Affifi'nin kendi temkiniyle: doğrudan bir kaynaklık iddiası değil, 'terminolojileri arasındaki hayret verici benzerlik'in tespiti; bunun bir etkilenme mi yoksa aynı hakikate iki ayrı gelenekten ayrı ayrı ulaşma mı olduğunu Affifi de açık bırakıyor."
         }
       ],
       "iliskili_kavramlar": [
@@ -3080,9 +2991,9 @@
       "ozet_en": "the collective name given to the whole hierarchy of pole-hood, nineteen persons",
       "ozet_pt": "o nome coletivo dado a toda a hierarquia do polo, dezenove pessoas",
       "felsefi_tanim": {
-        "tr": "Kutbiyet hiyerarşisinin tamamına verilen ad -- Nakip'in oniki kişisiyle Bedel'in yedi kişisinin toplamından oluşan 19 kişilik bütün. (Bedel'in kendisi zaten Kutup, İki İmam ve Evtad'ın aynı yedi kişiyi başka bir mertebeden anlatan adıdır, dolayısıyla bu beşi ayrı ayrı toplanmaz.) Fütûhât bu sayıyı Kur'an'daki cehennem bekçilerinin sayısıyla (19 melek) ve başka sembolik onsekiz/ondokuzluklarla karşılaştırır. Bu 19, hiyerarşinin TAMAMI değil, Kısım 75'te (Cilt VI) sayılan bir DİLİM: aynı kısım Nakiplerin ötesinde sekiz Necib, tek bir Havari, kırk Recebî ve tek bir Mühür'ü de sayar, sonra hiyerarşiyi Âdem'in kalbi üzerindeki \"Üç Yüzler\"e kadar genişletir -- yani Fütûhât'ın kendi sayımı da risalelerdeki 300 rakamına yabancı değildir, sitedeki 19 yalnız bir bölümün durduğu noktadır.",
-        "en": "The name given to the whole of the pole-hierarchy -- a total of nineteen persons made up of the Naqibs' twelve plus the Abdal's seven. (The Abdal are themselves just the Pole, the Two Imams and the Awtad -- the same seven people named from another level -- so these five are not summed separately.) The Futuhat compares this number to the number of hell's gatekeepers in the Qur'an (nineteen angels) and other symbolic groupings of eighteen or nineteen. This 19 is not the WHOLE hierarchy but a SLICE counted in part 75 (Volume VI): the same part goes on to count, beyond the Naqibs, eight Najibs, a single Hawari, forty Rajabis and a single Seal, then extends the hierarchy up to the \"Three Hundred\" over Adam's heart -- so the Futuhat's own count is not foreign to the treatises' figure of 300; the 19 on this site is simply where one chapter stops counting.",
-        "pt": "O nome dado ao todo da hierarquia do polo -- um total de dezenove pessoas, formado pelos doze Naqibs somados aos sete Abdal. (Os próprios Abdal são o Polo, os Dois Imames e os Awtad -- as mesmas sete pessoas nomeadas a partir de outro nível -- por isso esses cinco não se somam separadamente.) O Futuhat compara esse número ao número dos guardiões do inferno no Alcorão (dezenove anjos) e a outros agrupamentos simbólicos de dezoito ou dezenove. Este 19 não é a hierarquia INTEIRA mas uma FATIA contada na parte 75 (Volume VI): essa mesma parte conta ainda, para além dos Naqibs, oito Najibs, um único Hawari, quarenta Rajabis e um único Selo, e depois estende a hierarquia até aos \"Trezentos\" sobre o coração de Adão -- ou seja, a própria contagem das Futuhat não é estranha ao número 300 dos tratados; o 19 deste sítio é apenas onde um capítulo para de contar."
+        "tr": "Kutbiyet hiyerarşisinin tamamına verilen ad -- Nakip'in oniki kişisiyle Bedel'in yedi kişisinin toplamından oluşan 19 kişilik bütün. (Bedel'in kendisi zaten Kutup, İki İmam ve Evtad'ın aynı yedi kişiyi başka bir mertebeden anlatan adıdır, dolayısıyla bu beşi ayrı ayrı toplanmaz.) Fütûhât bu sayıyı Kur'an'daki cehennem bekçilerinin sayısıyla (19 melek) ve başka sembolik onsekiz/ondokuzluklarla karşılaştırır.",
+        "en": "The name given to the whole of the pole-hierarchy -- a total of nineteen persons made up of the Naqibs' twelve plus the Abdal's seven. (The Abdal are themselves just the Pole, the Two Imams and the Awtad -- the same seven people named from another level -- so these five are not summed separately.) The Futuhat compares this number to the number of hell's gatekeepers in the Qur'an (nineteen angels) and other symbolic groupings of eighteen or nineteen.",
+        "pt": "O nome dado ao todo da hierarquia do polo -- um total de dezenove pessoas, formado pelos doze Naqibs somados aos sete Abdal. (Os próprios Abdal são o Polo, os Dois Imames e os Awtad -- as mesmas sete pessoas nomeadas a partir de outro nível -- por isso esses cinco não se somam separadamente.) O Futuhat compara esse número ao número dos guardiões do inferno no Alcorão (dezenove anjos) e a outros agrupamentos simbólicos de dezoito ou dezenove."
       },
       "analogy": {
         "tr": "Tam bilemesek de, bir kervandaki bütün yolculara toplu olarak 'kervan' denmesini düşünmek yardımcı olabilir -- Ricâl de, tek tek mertebelerin (Kutup, İmam, Evtad...) toplamına verilen ortak bir isim gibi görünüyor bize.",
@@ -3205,59 +3116,12 @@
           "satir": "9991-9999",
           "alinti_tr": "Hak, himmetlerin bir kısmını yakın gökte, bir kısmını ikinci gökte... bir kısmını ilk inişte Arş'ta ve o ikisinin (Arş ile Kürsü) arasında karşılar.",
           "not_tr": "Himmetlerin gökler hiyerarşisinde karşılanması, Fütûhât Kısım XXII."
-        },
-        {
-          "cilt": "izutsu-anahtar",
-          "satir": "18942-18978",
-          "alinti_tr": "Her insân bu dış âlemde değil de yalnız kendi hayâlinde varlığı olabilen şeyi vehim ve hayâl gücü ile (kendi zihninde) yaratır. Ârif ise bunu himmetiyle zihninin dışında yaratır. Fakat Ârif'in himmeti o şeyin varlığını ancak, bu himmet devâm ettiği sürece korur... Ahmed Avni Konuk bu hususta şu açıklayıcı misâli takdim etmektedir: 'Meselâ Ârif bir kuş halk ve tasvir murâd etse himmeti ile hâriçte, yâni Âlem-i Şehâdet'te, ona vücüd verir. Ve herkes o kuşu görür. Eğer Ârif Âlem-i Şehâdetin müşâhedesinden gafletle Âlem-i Misâle müteveccih olsa, o kuş Âlem-i Şehâdet'te ma'düm (yok) olup Âlem-i Misâl'e intikâl eyler.'",
-          "not_tr": "Konuk'un dipnotu (Fusûsu'l-Hikem Tercüme ve Şerhi, II. cilt, s. 122), Izutsu'nun aktardığı yerde. Fütûhât'taki himmetin gökler hiyerarşisinde karşılanması soyut kalabilir; bu kuş örneği aynı gücü somutlaştırıyor -- ama bedeli de gösteriyor: yaratılan şey, ârifin müşahedesi başka bir Hazret'e kaydığı an, oradan siliniyor. Himmet bir kere yaratıp bırakılan bir şey değil, sürmesi için sürekli tutulması gereken bir şey."
         }
       ],
       "iliskili_kavramlar": [
         "kutup",
         "kursi",
         "ars"
-      ]
-    },
-    "makam-sutunu": {
-      "id": "makam-sutunu",
-      "tier": 2,
-      "group": "ahval-makamat",
-      "title": {
-        "tr": "Makâmın Dış Sütunu",
-        "en": "The Station's Outer Pillar",
-        "pt": "O Pilar Externo da Estação"
-      },
-      "arabic": "العمود الخارجي",
-      "ozet_tr": "makâma girilmez; dışına bitişik tek bir sütuna dokunularak bilgisi alınır",
-      "ozet_en": "the station itself is never entered; its knowledge is received by touching a single pillar attached outside",
-      "ozet_pt": "a estação em si nunca é adentrada; seu conhecimento é recebido tocando um único pilar preso do lado de fora",
-      "felsefi_tanim": {
-        "tr": "İbn Arabî'nin, tenzih et-tevhid (Allah'ın mutlak aşkınlığı) makâmı için kurduğu bir bina benzetmesi: her makâm, beş sütuna dayalı bir çatısı olan, kapısız duvarlarla çevrili -- yani içine girilemeyen -- bir ev gibidir. Ama evin dış duvarına bitişik, tek bir sütun vardır. Aydınlanmış sûfîler, Müslümanların Hacer-i Esved'e dokunup öptükleri gibi, bu dış sütuna dokunur ve onu öperler; makâm hakkındaki bilgilerini yalnız bu sütundan alırlar.",
-        "en": "A building analogy Ibn Arabi builds for the station of tanzih al-tawhid (God's absolute transcendence): every station is like a house whose roof rests on five pillars, surrounded by doorless walls -- that is, a house no one can enter. But attached to the house's outer wall there is a single pillar. Enlightened Sufis touch and kiss this outer pillar, the way Muslims touch and kiss the Black Stone; they receive their knowledge of the station from that pillar alone.",
-        "pt": "Uma analogia arquitetónica que Ibn Arabi constrói para a estação do tanzih al-tawhid (a transcendência absoluta de Deus): cada estação é como uma casa cujo telhado assenta sobre cinco pilares, cercada por paredes sem portas -- ou seja, uma casa que ninguém pode adentrar. Mas, encostado à parede externa da casa, há um único pilar. Os sufis iluminados tocam e beijam esse pilar externo, tal como os muçulmanos tocam e beijam a Pedra Negra; recebem o seu conhecimento da estação apenas a partir desse pilar."
-      },
-      "ibn_arabi_yorumu": {
-        "tr": "İbn Arabî'nin kendi devamı çarpıcı: bu sütun yalnız tenzih makâmına değil, BÜTÜN makâmlara aynı şekilde eşlik ediyor -- 'açık bir dili vardır', yani sorulabilir, konuşur. Sûfîler makâmların çoğuna girme imkânından yoksun olsa da, dışarıdaki bu sütundan aldıkları bilgiyi doğru kabul ederler, çünkü kendi keşif âlemlerinde bu sütunun yanılmazlığına dair delilleri vardır. Bize göre bu, sitenin başka yerlerinde de karşılaştığımız bir örüntüyle akraba: doğrudan görülemeyen bir hakikatin, ona bitişik ama ondan ayrı duran bir işaretle -- görülen bir gölge, duyulan bir yankı, dokunulan bir taş -- dolaylı olarak bilinmesi.",
-        "en": "Ibn Arabi's own continuation is striking: this pillar accompanies not only the station of transcendence but ALL stations in the same way -- 'it has a clear tongue,' meaning it can be questioned, it speaks. Though Sufis lack the means to enter most of the stations, they accept as true the knowledge they receive from this outer pillar, because within their own world of unveiling they have proof of the pillar's infallibility. To us this is kin to a pattern we meet elsewhere on the site: a reality that cannot be seen directly becomes known indirectly through a sign attached to it yet standing apart from it -- a seen shadow, a heard echo, a touched stone.",
-        "pt": "A continuação do próprio Ibn Arabi é marcante: este pilar acompanha não só a estação da transcendência, mas TODAS as estações da mesma forma -- 'tem uma língua clara', ou seja, pode ser questionado, fala. Embora os sufis não tenham meios de entrar na maioria das estações, aceitam como verdadeiro o conhecimento que recebem deste pilar externo, porque no seu próprio mundo de desvelamento têm provas da infalibilidade do pilar. Para nós isto é parente de um padrão que encontramos noutros pontos do sítio: uma realidade que não pode ser vista diretamente torna-se conhecida indiretamente através de um sinal ligado a ela mas que permanece à parte dela -- uma sombra vista, um eco ouvido, uma pedra tocada."
-      },
-      "analogy": {
-        "tr": "Tam bilemesek de, kapalı bir arşivin yalnız bir danışma penceresi olmasını düşünmek yardımcı olabilir: içeri giremezsin, ama pencereden sorduğun her şeye doğru cevap alırsın -- çünkü orada oturanın güvenilirliğine dair, geçmişte defalarca doğrulanmış bir tanıklığın var.",
-        "en": "We can't be certain, but a sealed archive with only a single inquiry window may help: you cannot enter, but every question you ask through the window receives a true answer -- because you carry a testimony, confirmed many times before, to the reliability of the one who sits there.",
-        "pt": "Não temos certeza, mas um arquivo fechado com uma única janela de consulta talvez ajude: não podes entrar, mas cada pergunta que fazes pela janela recebe uma resposta verdadeira -- porque carregas um testemunho, confirmado muitas vezes antes, sobre a fiabilidade de quem ali se senta."
-      },
-      "kaynaklar": [
-        {
-          "cilt": "affifi-tasavvuf",
-          "satir": "3936-3989",
-          "alinti_tr": "Bu, bir çatının, üzerinde yayıldığı 5 sütuna dayalı bir ev gibidir. Ev, kendisine ulaşmayı imkânsız kılan kapısız duvarlarla çevrilidir. Evin dışında, bununla birlikte, dış duvara bitişik bir sütun vardır. Aydınlanmış sûfîler, Müslümanların Hacer-i Esved'e dokunup onu öptükleri gibi, bu sütuna dokunup onu öperler... Sütun yalnızca bu sûfî makâmda değil, bütün makâmlarda da görülür ve dokunulur. O, bu makâmlarda sûfîye açılan bilginin bir yorumcusu durumundadır. Açık bir dili vardır.",
-          "not_tr": "İbn Arabî'nin kendi sözü (Affifi'nin serbest çevirisiyle aktardığı), tenzih et-tevhid makâmı bahsinde. Affifi bu sembolizmin İbn Meserre'den alındığını, ama İbn Arabî'nin ona giydirdiği yorumun kendine ait olduğunu ekliyor."
-        }
-      ],
-      "iliskili_kavramlar": [
-        "keramet",
-        "himmet"
       ]
     },
     "keramet": {
@@ -3830,50 +3694,6 @@
         "kursi",
         "ama",
         "himmet"
-      ]
-    },
-    "araf": {
-      "id": "araf",
-      "tier": 3,
-      "group": "kurani-kozmoloji",
-      "title": {
-        "tr": "A'râf (Yükseklikler)",
-        "en": "Al-A'raf (The Heights)",
-        "pt": "Al-A'raf (As Alturas)"
-      },
-      "arabic": "أعراف",
-      "ozet_tr": "cenneti cehennemden ayıran sınır, 7. sûrenin de adı",
-      "ozet_en": "the boundary separating paradise from hell, also the name of the Qur'an's 7th sura",
-      "ozet_pt": "a fronteira que separa o paraíso do inferno, também o nome da 7ª sura do Alcorão",
-      "felsefi_tanim": {
-        "tr": "Kur'an'da aynı adı taşıyan sûrede (7:46-48) geçen, cenneti cehennemden ayıran bir sınır/duvar (sûr). Fütûhât'ın 371. bâbındaki 'haşir yeri' haritasında, sırât köprüsünü dikey olarak kesen bir çizgi olarak resmediliyor -- yolun başlangıç noktasıyla varış noktasını ayıran bu sınır, hükmün henüz verilmediği bir ara durumu da imliyor.",
-        "en": "A boundary/wall (sur) separating paradise from hell, appearing in the Qur'anic sura of the same name (7:46-48). In the 'Land of Gathering' map in Chapter 371 of the Futuhat, it is drawn as a vertical line intersecting the bridge of the path (sirat) -- this boundary, separating the path's point of departure from its point of arrival, also marks an intermediate state in which judgment has not yet been rendered.",
-        "pt": "Uma fronteira/muro (sur) que separa o paraíso do inferno, mencionada na sura alcorânica do mesmo nome (7:46-48). No mapa da 'Terra da Reunião' do capítulo 371 das Futuhat, é desenhada como uma linha vertical que intersecta a ponte do caminho (sirat) -- esta fronteira, que separa o ponto de partida do ponto de chegada do caminho, também assinala um estado intermédio em que o julgamento ainda não foi proferido."
-      },
-      "iliskili_kavramlar": [
-        "berzah"
-      ]
-    },
-    "sirat": {
-      "id": "sirat",
-      "tier": 3,
-      "group": "kurani-kozmoloji",
-      "title": {
-        "tr": "Sırât (Köprü)",
-        "en": "Al-Sirat (The Bridge)",
-        "pt": "Al-Sirat (A Ponte)"
-      },
-      "arabic": "صراط",
-      "ozet_tr": "kılın incesinde, kılıcın keskininde, cehennemin üstünde gerili köprü",
-      "ozet_en": "the bridge stretched over hell, thinner than a hair and sharper than a sword",
-      "ozet_pt": "a ponte estendida sobre o inferno, mais fina que um cabelo e mais afiada que uma espada",
-      "felsefi_tanim": {
-        "tr": "Kıyamet günü bütün insanların üzerinden geçeceği, bir hadiste 'kılın incesinden, kılıcın keskininden' diye tarif edilen köprü. Fütûhât'ın 371. bâbındaki 'haşir yeri' haritasında yeryüzünden sabit yıldızlar küresinin yüzeyine kadar uzanan yatay bir çizgi olarak resmediliyor; üzerinde ölümün kesilişini simgeleyen bir daire (siyah-beyaz bir koç imgesiyle) duruyor.",
-        "en": "The bridge all people will cross on the Day of Judgment, described in a hadith as 'thinner than a hair, sharper than a sword.' In the 'Land of Gathering' map in Chapter 371 of the Futuhat, it is drawn as a horizontal line stretching from the earth to the surface of the sphere of the fixed stars; upon it sits a circle symbolizing the slaughter of death, in the image of a black-and-white ram.",
-        "pt": "A ponte que todos atravessarão no Dia do Juízo, descrita num hadith como 'mais fina que um cabelo, mais afiada que uma espada.' No mapa da 'Terra da Reunião' do capítulo 371 das Futuhat, é desenhada como uma linha horizontal que se estende da terra até à superfície da esfera das estrelas fixas; sobre ela encontra-se um círculo que simboliza o abate da morte, na imagem de um carneiro preto e branco."
-      },
-      "iliskili_kavramlar": [
-        "araf"
       ]
     },
     "berzah": {
@@ -4573,12 +4393,6 @@
           "satir": "1680-1791",
           "alinti_tr": "Görülen Âlemle karşılaştırıldığında o [akli tenzih], Hak olarak Allah'a yüklenebilir ve subjective'tir. Birinci [Zâtî, daha yüksek] aşkınlık objective'tir.",
           "not_tr": "Affifi'nin okuması tenzihin KENDİ İÇİNDE de iki katman taşıdığını gösteriyor: (1) akıl tarafından ileri sürülen, her zaman teşbihle birlikte ele alınması gereken 'göreli' bir tenzih -- bu bile bir sınırlamadır, çünkü bir şeyi bir başka şeyle (isnat edenle) ilişkiye sokar; (2) Zât'a kendiliğinden ait, hiçbir şeyle karşılaştırılamayan mutlak tenzih (Ahadiyet hâli) -- öznenin/nesnenin bile ayrılmadığı, yalnız Zât'ın kendisinin bildiği bir aşkınlık. Yani teşbihle simetrik olan tenzih (aklî) ile hiçbir şeyle simetrik olmayan tenzih (Zâtî) birbirinden ayrılıyor -- bu ikinci kademe, yukarıdaki basit tenzih/teşbih çiftinin ötesinde bir derinlik ekliyor."
-        },
-        {
-          "cilt": "izutsu-anahtar",
-          "satir": "6994-7030",
-          "alinti_tr": "İbn Arabî'nin kendisi de bu mânevi makamları, renkli cam parçalarının içinden geçerken çeşitli renklere bürünen, tabii olarak renksiz olan bir ışık ile kıyaslamaktadır... Eğer sen nûrun, camın yeşilliğinden dolayı yeşil olduğunu söylersen haklısın. Buna şehâdet eden senin hissi idrâkindir. Fakat eğer nûrun yeşil olmadığını ve gerçekte de renksiz olduğunu da söylersen gene de haklısın.",
-          "not_tr": "İbn Arabî'nin kendi analojisi (Fusûs, Kâşânî şerhiyle Izutsu'nun aktardığı). Bize göre bu, yukarıdaki Nûh/Muhammed karşıtlığına somut bir örnek katıyor: aynı ışık için 'yeşil' demek de (teşbih -- duyusal idrak) 'renksiz' demek de (tenzih -- aklî muhakeme) haklı olabiliyor, çünkü ikisi de ışığın kendisine değil, ışığın içinden geçtiği cama bakıyor."
         }
       ],
       "iliskili_kavramlar": [

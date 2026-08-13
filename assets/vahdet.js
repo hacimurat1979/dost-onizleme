@@ -18,46 +18,6 @@ window.__vahdetApp = (function () {
   let data = null;
   let fetchPromise = null;
 
-  // Eleştiri Arkeolojisi köprüsü (2026-08-06). vahdet-elestiri.json'daki
-  // maddeler ile elestiri-arkeolojisi.json'daki kişiler arasında ELLE
-  // kurulmuş bağlar -- sirlar-sorular.json ile aynı desen (bkz.
-  // data/ibn-arabi/vahdet-elestiri-kopru.json'un `not` alanı). Bağlar geç
-  // gelirse (ikinci fetch daha yavaşsa) panel bağlar olmadan bir kez
-  // render olur, sonra kendini tazeler -- sirlar/sorular köprüsüyle aynı
-  // desen.
-  let koprü = null;
-  const kisiAdi = new Map();
-  function koprüYukle() {
-    if (koprü) return Promise.resolve(koprü);
-    return Promise.all([
-      GU.fetchJson("data/ibn-arabi/vahdet-elestiri-kopru.json"),
-      GU.fetchJson("data/ibn-arabi/elestiri-arkeolojisi.json"),
-    ]).then(([k, ea]) => {
-      koprü = k;
-      (ea.kisiler || []).forEach((p) => kisiAdi.set(p.id, p.ad));
-      return k;
-    }).catch(() => null);
-  }
-  function elestiriArkeolojisiHtml(maddeId) {
-    if (!koprü) return "";
-    const bag = (koprü.baglar || []).filter((b) => b.madde === maddeId);
-    if (!bag.length) return "";
-    const satir = bag.map((b) => {
-      const ad = kisiAdi.get(b.kisi);
-      if (!ad) return "";
-      return `<button type="button" class="vahdet-ea-baglar__satir" data-view="elestiri-arkeolojisi" data-id="${esc(b.kisi)}">
-        <span class="vahdet-ea-baglar__ad">${esc(tt(ad))}</span>
-        <span class="vahdet-ea-baglar__neden">${esc(tt(b.neden))}</span></button>`;
-    }).join("");
-    if (!satir) return "";
-    return `<div class="vahdet-ea-baglar">
-      <p class="detail-eyebrow detail-eyebrow--section">${esc(tt({
-        tr: "Eleştiri Arkeolojisi'nde de var",
-        en: "Also in Archaeology of Criticism",
-        pt: "Também na Arqueologia da Crítica" }))}</p>
-      ${satir}</div>`;
-  }
-
   function tt(dict) {
     return I18n ? I18n.pick3(dict || {}) : (dict && (dict.tr || dict.en || dict.pt)) || "";
   }
@@ -137,46 +97,17 @@ window.__vahdetApp = (function () {
       `</div>` +
       `</div>` +
       gerilim +
-      elestiriArkeolojisiHtml(m.id) +
       `</article>`
     );
-  }
-
-  // D5'in kendi konusu -- "vahdet-i vücûd" TERİMİNİN Şeyh'e nasıl yapıştığı
-  // (bir zaman çizelgesi: İbn Teymiyye -> Câmî -> Sirhindî) -- burada
-  // listelenen "yedi bağlam" (cem-i ezdâd) maddesinden AYRI bir şey; kendi
-  // bağımsız sahnesi var (vahdet-i-vucud-omru.html) ama hiçbir yerden
-  // linklenmiyordu (2026-08-04 taramasında ölçüldü). En doğru yer burası --
-  // aynı terimin aynı sekmede iki farklı yüzü.
-  function omurSahneHtml() {
-    const base = window.__dostRouteBase || "";
-    return `<div class="detail-gate detail-gate--sahne vahdet-omur-sahne">
-      <p class="detail-gate__note">${esc(tt({
-        tr: "Yukarıdaki maddeler terimin İbn Arabî'nin kendi metnindeki izini sürüyor. Ayrı bir sahne, terimin Şeyh'ten SONRA nasıl bir ömür sürdüğünü -- İbn Teymiyye'den Sirhindî'ye -- bir çizelgede topluyor.",
-        en: "The items above trace the term within Ibn Arabi's own text. A separate scene gathers, on a timeline, the life the term went on to have AFTER him -- from Ibn Taymiyya to Sirhindi.",
-        pt: "Os itens acima rastreiam o termo dentro do próprio texto de Ibn Arabi. Uma cena separada reúne, numa linha do tempo, a vida que o termo teve DEPOIS dele -- de Ibn Taymiyya a Sirhindi.",
-      }))}</p>
-      <a class="detail-gate__btn" href="${base}/vahdet-i-vucud-omru.html">${esc(tt({
-        tr: "Sahneyi aç: Vahdet-i Vücûd'un Ömrü",
-        en: "Open the scene: The Life of Wahdat al-Wujud",
-        pt: "Abrir a cena: A Vida do Wahdat al-Wujud",
-      }))}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
-    </div>`;
   }
 
   function render() {
     if (!contentEl || !data) return;
     const intro =
       `<p class="vahdet-intro">${esc(tt(data.description))}</p>` +
-      (data.not ? `<p class="vahdet-not">${esc(tt(data.not))}</p>` : "") +
-      omurSahneHtml();
+      (data.not ? `<p class="vahdet-not">${esc(tt(data.not))}</p>` : "");
     contentEl.innerHTML = intro + data.maddeler.map(maddeHtml).join("");
     contentEl.querySelectorAll(".vahdet-alinti__site").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id || undefined);
-      });
-    });
-    contentEl.querySelectorAll(".vahdet-ea-baglar__satir").forEach((btn) => {
       btn.addEventListener("click", () => {
         window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id || undefined);
       });
@@ -187,8 +118,6 @@ window.__vahdetApp = (function () {
     activate() {
       fetchData().then((d) => {
         if (d) render();
-        // Köprü verisi geç gelirse paneli tazele -- bağlar görünmeden kalmasın.
-        if (!koprü) koprüYukle().then((k) => { if (k && data) render(); });
       });
     },
     onLangChange() {

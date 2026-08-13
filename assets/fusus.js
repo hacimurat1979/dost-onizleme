@@ -99,6 +99,7 @@
         id: f.id,
         label: fassLabel(f),
         accent: f.status === "active",
+        __planned: f.status !== "active",
       };
     });
     mapScene = window.DostHelix.mount(mapEl, {
@@ -390,11 +391,7 @@
         sonuclar.forEach(function (s) {
           var item = document.createElement("a");
           item.className = "futuhat-anlamsal-box__item";
-          // pasaj-vektorleri-*.json'daki route kök-göreli ("/futuhat/...") --
-          // canlıda (base="/") sorun çıkarmıyordu ama önizlemede (base=
-          // "/dost-onizleme/") kökten çözüldüğü için 404 veriyordu (2026-08-04
-          // kullanıcı bildirimi, futuhat.js'teki ikizinde bulundu).
-          item.href = s.route.replace(/^\//, "");
+          item.href = s.route;
           item.innerHTML = '<span class="futuhat-anlamsal-box__title">' + esc(s.baslik) + "</span>"
             + '<span class="futuhat-anlamsal-box__sebep">' + esc(s.ozet) + "</span>";
           box.appendChild(item);
@@ -408,12 +405,6 @@
   function activate(id) {
     load().then(function () {
       if (!data) return;
-      // Yavaş ağ bekçisi: veri gelene kadar kullanıcı başka görünüme
-      // geçmiş olabilir; geç gelen .then render+setHash ile URL'yi ve
-      // başlığı artık bakılmayan görünüme yazıyordu (futuhat.js'teki
-      // bekçiyle aynı aile). Aynı bekçi aşağıdaki onReady aboneliğinde de
-      // var: o abonelik başka görünümlerin verisi hazır olunca da düşüyor.
-      if (!window.DostGraphUtils.isViewActive(wrap)) return;
       var f = fassById(id) || (!id ? fassById(loadLastFass()) : null) || fassById(data.activeFassId) || data.fasses[0];
       if (!f) return;
       isDefaultLanding = !id && !loadLastFass();
@@ -425,9 +416,7 @@
       if (window.__dostNav) window.__dostNav.setHash("fusus", f.id);
       if (!crossLinkSubscribed && window.__dostCrossLink && window.__dostCrossLink.onReady) {
         crossLinkSubscribed = true;
-        window.__dostCrossLink.onReady(function () {
-          if (data && activeId && window.DostGraphUtils.isViewActive(wrap)) renderArticle(fassById(activeId));
-        });
+        window.__dostCrossLink.onReady(function () { if (data && activeId) renderArticle(fassById(activeId)); });
       }
     });
   }

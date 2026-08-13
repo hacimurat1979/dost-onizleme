@@ -247,17 +247,7 @@
   });
   document.addEventListener("click", (e) => {
     const el = isaretEl(e.target);
-    if (el) {
-      e.preventDefault();
-      // Fare tıklaması önce focusin'i tetikler (el odaklanılabilir), o da
-      // goster()'ı çağırıp acikRef'i SENKRON olarak ayarlar -- kutu içerik
-      // gelmeden (asenkron) henüz görünür olmadan. Burada yalnız acikRef'e
-      // bakılsaydı, focusin'in az önce açtığı kutuyu click hemen kapatırdı
-      // (kutu hiç görünür olmadan) -- dokunmatik cihazlarda özellik hiç
-      // çalışmıyordu. Yalnız kutu GERÇEKTEN görünürse "kapat" sayılıyor.
-      const acik = tip && !tip.hidden && acikRef === isaretAnahtari(el);
-      acik ? gizle() : goster(el);
-    }
+    if (el) { e.preventDefault(); acikRef === isaretAnahtari(el) ? gizle() : goster(el); }
     else gizle();
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") gizle(); });

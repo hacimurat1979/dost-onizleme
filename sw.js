@@ -65,16 +65,7 @@ self.addEventListener("fetch", (event) => {
     fetch(isNavOrAsset ? new Request(req, { cache: "reload" }) : req)
       .then((resp) => {
         if (resp.ok && (req.destination === "script" || req.destination === "style" || req.mode === "navigate")) {
-          // clone() HEMEN burada, senkron olarak: caches.open() bekleyen bir
-          // await/then arasına düşerse, tarayıcı bu sırada return edilen
-          // resp'in gövdesini okumaya başlıyor ve sonra çağrılan clone()
-          // "Response body is already used" hatasıyla patlıyor -- konsolda
-          // her navigasyonda görülen TypeError (2026-08-06, kullanıcı
-          // bildirimi). Sonucu: cache.put() hiç tamamlanmıyor, SW'nin kendi
-          // önbelleği asla tazelenmiyor, "yeni sürüm görünmüyor" şikâyetinin
-          // asıl kaynağı satır 62'deki ctrl+shift+r notundan FARKLI bir kusurmuş.
-          const toCache = resp.clone();
-          caches.open(CACHE_VERSION).then((cache) => cache.put(req, toCache));
+          caches.open(CACHE_VERSION).then((cache) => cache.put(req, resp.clone()));
         }
         return resp;
       })
