@@ -1600,7 +1600,12 @@
     candidates = [];
     renderCandidateList();
     const seq = ++refreshSeq;
-    const N = 3;
+    // "gunun" (Günün Sözü) gün-endeksli bir formülle seçiliyor -- o gün
+    // için herkese aynı kayıt gösteriliyor (yukarıdaki buildScene notuna
+    // bkz.), yani rastgele DEĞİL. 3 aday istemek üç kez aynı sonucu
+    // getiriyordu (kullanıcı geri bildirimi, 2026-08-13); bu şablon için
+    // tek aday yeterli.
+    const N = currentTpl === "gunun" ? 1 : 3;
     const tasks = [];
     for (let i = 0; i < N; i++) tasks.push(buildScene(currentTpl).catch(function () { return null; }));
     Promise.all(tasks).then(function (results) {

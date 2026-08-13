@@ -871,7 +871,7 @@
     ensureFrame();
   }
 
-  function showAllQuestionsList(keepScene) {
+  function showAllQuestionsList(keepScene, openPanel) {
     currentDetailQuestion = null; focusId = null;
     if (backBtn) backBtn.hidden = true;
     if (expandedCatId && !keepScene) collapseCategory(true);
@@ -887,7 +887,7 @@
       <h2 class="detail-title">${tt({ tr: "Bütün Sorular", en: "All Questions", pt: "Todas as Perguntas" })}</h2>
       ${introBlock}${sections}`;
     wireQuestionRows();
-    detailPanel.hidden = false;
+    if (openPanel !== false) detailPanel.hidden = false;
     ensureFrame();
   }
 
@@ -1007,7 +1007,7 @@
     activate() {
       fetchData().then((data) => {
         if (!data) return;
-        if (!catNodes.length) { buildGraph(data); showAllQuestionsList(true); }
+        if (!catNodes.length) { buildGraph(data); showAllQuestionsList(true, false); }
         else ensureFrame();
       });
     },

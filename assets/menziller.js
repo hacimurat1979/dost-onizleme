@@ -511,7 +511,7 @@
     ensureFrame();
   }
 
-  function showIntro() {
+  function showIntro(openPanel) {
     const notlar = (data.notlar || []).map((x) => `<li>${tt(x)}</li>`).join("");
     const kaynaklar = (data.sources || []).map((s) => `<li>${tt(s)}</li>`).join("");
     detailContent.innerHTML = `
@@ -524,7 +524,7 @@
       <ul class="menzil-notlar">${notlar}</ul>
       <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Kaynak", en: "Sources", pt: "Fontes" })}</p>
       <ul class="menzil-notlar">${kaynaklar}</ul>`;
-    detailPanel.hidden = false;
+    if (openPanel !== false) detailPanel.hidden = false;
     window.__dostNav && window.__dostNav.setHash("menziller");
   }
 
@@ -559,7 +559,7 @@
     activate() {
       fetchData().then((d) => {
         if (!d) return;
-        if (!nodes.length) { build(); showIntro(); fitView(false); openIn3D(); }
+        if (!nodes.length) { build(); showIntro(false); fitView(false); openIn3D(); }
         else ensureFrame();
       });
     },

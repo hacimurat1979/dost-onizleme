@@ -87,7 +87,7 @@
 
   // Tek karelik canlı ekran yakalama; desteklenmiyorsa ya da kullanıcı izni
   // iptal ederse null döner (modal bunu sessizce görmezden gelir).
-  async function captureScreenshotToDataUrl() {
+  async function captureScreenshotToDataUrl(opts) {
     if (!supportsCapture) return null;
     let stream;
     try {
@@ -99,12 +99,14 @@
       return null; // kullanıcı izni vermedi/iptal etti
     }
     try {
+      if (opts && opts.onStreamReady) opts.onStreamReady();
       const video = document.createElement("video");
       video.srcObject = stream;
       video.muted = true;
       await video.play();
       // Karenin gerçekten çizildiğinden emin olmak için bir sonraki
-      // animasyon karesine kadar bekle.
+      // animasyon karesine kadar bekle -- onStreamReady'nin gizlediği
+      // öğenin de bu kareye yansıması için gereken süre bu.
       await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
       return drawToCanvas(video, video.videoWidth, video.videoHeight);
     } finally {
@@ -168,7 +170,15 @@
     const captureBtn = modal.querySelector('[data-action="capture"]');
     if (captureBtn) {
       captureBtn.addEventListener("click", async () => {
-        const dataUrl = await captureScreenshotToDataUrl();
+        // Yakalama sırasında modalin kendisi de sekmenin bir parçası olduğu
+        // için görüntüye giriyordu (kullanıcı geri bildirimi, 2026-08-13);
+        // izin istemi sırasında (henüz sayfa görünür) gizlemiyoruz, yalnız
+        // asıl kare çizilirken -- bu yüzden gizleme burada değil, capture
+        // fonksiyonuna bir geri çağırım olarak veriliyor.
+        const dataUrl = await captureScreenshotToDataUrl({
+          onStreamReady: () => { modal.style.visibility = "hidden"; },
+        });
+        modal.style.visibility = "";
         if (dataUrl) setImage(dataUrl);
       });
     }
