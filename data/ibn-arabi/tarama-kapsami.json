@@ -33,7 +33,10 @@
     { "yol": "data/ibn-arabi/sozluk-ipuclari.json", "gorunum": null, "etiket": "Sözlük İpuçları" },
     { "yol": "data/ibn-arabi/okuma-yollari.json", "gorunum": null, "etiket": "Okuma Yolları" },
     { "yol": "data/ibn-arabi/sahne-partisyonlari/perde-zinciri.json", "gorunum": "sahneler", "etiket": "Perde Zinciri partisyonu" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/hayret.json", "gorunum": "sahneler", "etiket": "Karanlığı Görmek (hayret) partisyonu" }
+    { "yol": "data/ibn-arabi/sahne-partisyonlari/hayret.json", "gorunum": "sahneler", "etiket": "Karanlığı Görmek (hayret) partisyonu" },
+    { "yol": "data/ibn-arabi/sahne-partisyonlari/uc-kap.json", "gorunum": "sahneler", "etiket": "Tek Tecellî, Üç Kap partisyonu" },
+    { "yol": "data/ibn-arabi/sahne-partisyonlari/kalbe-sigan.json", "gorunum": "sahneler", "etiket": "Sığmayanın Sığdığı partisyonu" },
+    { "yol": "data/ibn-arabi/sahne-partisyonlari/kandil.json", "gorunum": "sahneler", "etiket": "Kandil partisyonu" }
   ],
 
   "gorunumNotu": "`gorunum` yalnız duruş taraması için: bulgudan o görünüme atlamayı sağlıyor. null olan dosyalar için atlama yok -- bilmediğimiz görünüm adını UYDURMAK yerine boş bıraktık, bulgu yine listeleniyor, yalnız tıklayınca bir yere gitmiyor.",

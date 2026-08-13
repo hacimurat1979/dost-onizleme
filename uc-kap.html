@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Tek Tecellî, Üç Kap — Dost Arabi. docs/04 S3. Aynı ışık, üç kabın
+     üç ayrı hâli. Işık şiddeti bütün sahne boyunca hiç değişmez. -->
+<title>Tek Tecellî, Üç Kap — Dost Arabi</title>
+<style>
+:root{--bg:#0D0D0D;--su:#1A1A19;--bo:#2C2C2A;--tx:#EDE9E2;--mu:#898781;--go:#FFC233;--am:#C98500;--pa:#161614}
+@media(prefers-color-scheme:light){:root{--bg:#F9F9F7;--su:#FCFCFB;--bo:#E1E0D9;--tx:#1A1A1A;--mu:#6F6D65;--pa:#FCFCFB;--go:#8A6100;--am:#8C6D1A}}
+:root[data-theme=dark]{--bg:#0D0D0D;--su:#1A1A19;--bo:#2C2C2A;--tx:#EDE9E2;--mu:#898781;--go:#FFC233;--am:#C98500;--pa:#161614}
+:root[data-theme=light]{--bg:#F9F9F7;--su:#FCFCFB;--bo:#E1E0D9;--tx:#1A1A1A;--mu:#6F6D65;--pa:#FCFCFB;--go:#8A6100;--am:#8C6D1A}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1.1rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:var(--go);margin-bottom:.45rem}
+.sub{color:var(--mu);font-size:.88rem;font-style:italic;line-height:1.65;max-width:520px}
+.sw{display:flex;flex-direction:column;align-items:center;width:100%;max-width:520px}
+#scene{width:480px;height:360px;max-width:96vw;display:block;border-radius:8px;background:#08070C}
+#scene:focus-visible{outline:2px solid var(--am);outline-offset:3px}
+.stage{width:480px;max-width:96vw;text-align:center;margin-top:.5rem}
+.state{font-size:.92rem;line-height:1.7;color:var(--mu);min-height:3.2rem}
+.state.alinti{font-style:italic;color:var(--tx)}
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.4rem;min-height:34px}
+.olcu-gosterge{font-size:.7rem;color:var(--mu);letter-spacing:.15em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge,body.sahne-bitti .motor-kontroller{opacity:1}
+.gezin-ipucu{font-size:.75rem;color:var(--mu);font-style:italic;margin-top:.35rem;opacity:0;transition:opacity .6s ease}
+body.sahne-bitti .gezin-ipucu{opacity:.75}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--bo);color:var(--mu);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--am);color:var(--tx)}
+.sahne-kunye{width:480px;max-width:96vw;margin-top:1.2rem;background:var(--pa);border:1px solid var(--bo);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
+.sahne-kunye summary{cursor:pointer;color:var(--mu);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
+.sahne-kunye ul{list-style:none;margin-top:.7rem}.sahne-kunye li{margin-bottom:.65rem}
+.sahne-kunye li.sahne-kunye__dost span{font-style:italic}
+.sahne-kunye li.sahne-kunye__okuma span{color:var(--mu)}
+.sahne-kunye li.sahne-kunye__serh{color:var(--mu);font-size:.76rem}
+.sahne-kunye a{color:var(--am);text-decoration:none;border-bottom:1px solid var(--bo);white-space:nowrap}
+.sahne-kunye a:hover{border-bottom-color:var(--am)}
+.sahne-metni{margin:.8rem 0 0 1.1rem;padding-top:.7rem;border-top:1px solid var(--bo);color:var(--mu);font-size:.78rem}
+.sahne-metni li{margin-bottom:.3rem}
+.sc-kap{stroke:#E8D2A4;fill:none;stroke-linejoin:round;stroke-linecap:round;transition:opacity 1.5s ease,transform 1.5s ease}
+.sahne-geri{position:fixed;top:12px;left:12px;z-index:60;display:inline-flex;align-items:center;gap:.35rem;min-height:44px;padding:0 .9rem;border-radius:999px;font-size:.82rem;font-family:inherit;text-decoration:none;opacity:.72;border:1px solid var(--bo);background:var(--su);color:var(--mu)}
+.sahne-geri:hover,.sahne-geri:focus-visible{opacity:1;color:var(--tx);border-color:var(--go)}
+@media(max-width:520px){.sahne-geri{top:8px;left:8px;padding:0 .7rem}}
+</style>
+<script>(function(){try{var s=localStorage.getItem("dost-theme");if(s==="light"||s==="dark")document.documentElement.setAttribute("data-theme",s);}catch(e){}})();</script>
+</head>
+<body>
+<header>
+  <h1 id="i-title">Tek Tecellî, Üç Kap</h1>
+  <p class="sub" id="i-sub">A'râf 7:143 — aynı ışık, üç kabın kapasitesine göre üç ayrı hâl</p>
+</header>
+
+<div class="sw">
+  <svg id="scene" viewBox="0 0 480 360" tabindex="0" role="img"
+       aria-label="Sabit bir ışık altında dağ, eğilen bir biçim ve bir kap — üç ayrı hâlde">
+    <defs>
+      <clipPath id="cl"><rect x="0" y="0" width="480" height="360" rx="8"/></clipPath>
+      <!-- Zemin: derin lacivert-gece, gölge=gizlilik gramerine oturur. -->
+      <radialGradient id="gGece" cx="240" cy="180" r="300" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#0F0E1A"/><stop offset="100%" stop-color="#050510"/>
+      </radialGradient>
+    </defs>
+    <g clip-path="url(#cl)">
+      <rect x="0" y="0" width="480" height="360" fill="url(#gGece)"/>
+      <!-- Kaynak yok: yalnız sahnenin üstünde bir aydınlık alanı — kaynak
+           koordinatı sahne-cizim.js tarafından viewBox DIŞINA konur. -->
+      <g id="isikYuvasi"></g>
+      <!-- Üç kap: dağ, eğilen biçim (Musa), kap. -->
+      <g id="kaplarYuvasi"></g>
+    </g>
+  </svg>
+  <div class="stage">
+    <p class="state" id="state" aria-live="polite"></p>
+    <div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
+    <p class="gezin-ipucu" id="gezinIpucu"></p>
+  </div>
+  <div id="kunyeYuvasi"></div>
+</div>
+
+<script src="assets/sahne-motoru.js"></script>
+<script src="assets/sahne-cizim.js"></script>
+<script>
+const L={
+  tr:{title:'Tek Tecellî, Üç Kap',sub:"A'râf 7:143 — aynı ışık, üç kabın kapasitesine göre üç ayrı hâl",gezin:'Ok tuşları ölçüler arasında gezdirir; boşluk duraklatır.',kunyeBaslik:'Künye — bu sahne nereden geliyor?'},
+  en:{title:'One Disclosure, Three Vessels',sub:"Al-A'rāf 7:143 — the same light; three states, one per vessel's capacity",gezin:'Arrow keys move between measures; space pauses.',kunyeBaslik:'Sources — where this scene comes from'},
+  pt:{title:'Uma Revelação, Três Vasos',sub:"Al-A'rāf 7:143 — a mesma luz; três estados, um por capacidade do vaso",gezin:'As setas percorrem os compassos; espaço pausa.',kunyeBaslik:'Fontes — de onde vem esta cena'}
+};
+
+const KUNYE=[
+  {tur:'dost',
+   metin:{tr:'“Rabbi dağa tecellî ettiğinde onu param parça etmiş, Musa bayılıp düşmüştür.”',
+          en:'“When his Lord disclosed Himself to the mountain, He shattered it to pieces, and Moses fell down in a swoon.”',
+          pt:'“Quando o seu Senhor Se revelou à montanha, despedaçou-a, e Moisés desmaiou e caiu.”'},
+   kaynak:{href:'futuhat/c2k23',etiket:'Fütûhât (c2k23)'}},
+  {tur:'dost',
+   metin:{tr:'“‘Beni göremeyeceksin’ cevabını, gramerden başlayarak okuyor: âyetteki olumsuzluk edatı ‘len’…”',
+          en:'“It reads the answer ‘You shall not see Me’ starting from grammar: the negation particle ‘lan’ in the verse…”',
+          pt:'“Lê a resposta ‘Não Me verás’ a partir da gramática: a partícula de negação ‘lan’ no versículo…”'},
+   kaynak:{href:'futuhat/c15k196',etiket:'Fütûhât, bab 475 (c15k196)'}},
+  {tur:'dost',
+   metin:{tr:'“Aynı tecellî farklı tecelligâhlarda farklı sûretler alır — bu, mahrumiyetin Allah’tan değil kişinin kendi yatkınlığından kaynaklandığını gösterir.”',
+          en:'“The same disclosure takes different forms in different loci — showing that deprivation comes not from God but from the person’s own capacity.”',
+          pt:'“A mesma revelação toma formas diferentes em lugares diferentes — mostrando que a privação não vem de Deus mas da capacidade da própria pessoa.”'},
+   kaynak:{href:'futuhat/c2k26',etiket:'Fütûhât (c2k26)'}},
+  {tur:'okuma',
+   metin:{tr:'Bize göre değişen ışık değil, kabın kapasitesi. Bu cümle bizim okumamız (c16k220 p-bloğu “gibi görünüyor bize:” diye açılıyor); Dost’un metnini oraya çektik.',
+          en:'In our reading, what changes is not the light but the vessel’s capacity. This sentence is ours (the c16k220 p-block opens with “it seems to us that:”); we brought Dost’s text into that shape.',
+          pt:'Na nossa leitura, o que muda não é a luz mas a capacidade do vaso. Esta frase é nossa (o bloco-p de c16k220 abre com “parece-nos que:”); trouxemos o texto do Dost para essa forma.'},
+   kaynak:{href:'futuhat/c16k220',etiket:'c16k220'}},
+  {tur:'serh',
+   metin:{tr:'`ayet-dizini.json` türetilmiş bir dizin; başka 7:143 geçişleri atlanmış olabilir. Sahne “üç uç” değil “üç tanık” diye söyler.',
+          en:'The `ayet-dizini.json` index is derived; other passes of 7:143 may have been missed. The scene says “three witnesses,” not “three ends.”',
+          pt:'O índice `ayet-dizini.json` é derivado; outras passagens de 7:143 podem ter sido omitidas. A cena diz “três testemunhas”, não “três extremidades”.'}}
+];
+
+const $=id=>document.getElementById(id);
+let lang='tr';
+const scene=$('scene');
+const C=window.DostSahneCizim;
+
+// Sabit ışık: bütün sahne boyunca hiç değişmez (iddianın koddaki güvencesi).
+C.isikKatmani(scene, {yon:'ust', gradyanId:'uc-kap-isik', siddet:0.75, tasma:0.30});
+$('isikYuvasi').innerHTML=''; // katman scene'e eklendi
+
+// Üç kap yerleştirme
+const kaplar=$('kaplarYuvasi');
+const dag=C.kap(kaplar,{bicim:'dag', cx:120, cy:280, r:52, cizgi:'#8FA6B8', kalinlik:2.4});
+const insan=C.kap(kaplar,{bicim:'insan', cx:240, cy:280, r:60, cizgi:'#C89A50', kalinlik:2.2});
+const kap=C.kap(kaplar,{bicim:'kap', cx:360, cy:280, r:48, cizgi:'#E8D2A4', kalinlik:2.4});
+
+// Bir kap "dolu" olduğunda içinin aydınlanması için ikinci bir dolgu düğümü:
+const kapDolgu=document.createElementNS('http://www.w3.org/2000/svg','path');
+kapDolgu.setAttribute('d',(function(r){return 'M '+(-r)+' 0 A '+r+' '+r+' 0 0 0 '+r+' 0 Z';})(48));
+kapDolgu.setAttribute('transform','translate(360 280)');
+kapDolgu.setAttribute('fill','url(#uc-kap-isik)');
+kapDolgu.setAttribute('opacity','0');
+kapDolgu.style.transition='opacity 1.8s ease';
+kaplar.appendChild(kapDolgu);
+
+// Dağ parçalanması: yolun d'sini iki hâl arasında değiştirmek yerine
+// aynı yolun ikinci bir "parçalı" kopyasını crossfade ediyoruz.
+const dagParca=C.kap(kaplar,{bicim:'dag', cx:120, cy:280, r:52, cizgi:'#8FA6B8', kalinlik:2.4});
+dagParca.setAttribute('d','M -73 0 L -50 -30 M -30 -20 L -12 -70 M 5 -50 L 22 -22 M 40 -30 L 73 0');
+dagParca.setAttribute('opacity','0');
+dagParca.style.transition='opacity 1.8s ease';
+
+// Musa'nın eğilmesi: 'insan' yolunun rotate'i.
+function uygula(hal){
+  // Ölçü 1: hiçbir kap "yok" değil — hafif silik başlarlar.
+  dag.style.opacity     = (hal.dag==='parcalanmis' ? 0 : 0.85);
+  dagParca.style.opacity= (hal.dag==='parcalanmis' ? 0.95 : 0);
+  const egik=(hal.insan==='egilmis');
+  insan.style.opacity   = (hal.insan==='gizli' ? 0.55 : 0.9);
+  insan.setAttribute('transform', 'translate(240 280) rotate(' + (egik?70:0) + ')');
+  kap.style.opacity     = (hal.kap==='gizli' ? 0.55 : 0.95);
+  kapDolgu.style.opacity= (hal.kap==='dolu' ? 0.9 : 0);
+  if(hal.aktif==='birlikte') document.body.classList.add('sahne-nefes');
+  else document.body.classList.remove('sahne-nefes');
+}
+
+const kunye=C.kunye($('kunyeYuvasi'), KUNYE, {tr:L.tr.kunyeBaslik,en:L.en.kunyeBaslik,pt:L.pt.kunyeBaslik});
+let sahneMetniEl=null, partisyonRef=null;
+function sahneMetniniKur(p){ if(sahneMetniEl) return; sahneMetniEl=document.createElement('ol'); sahneMetniEl.className='sahne-metni'; kunye.el.appendChild(sahneMetniEl); sahneMetniniGuncelle(); }
+function sahneMetniniGuncelle(){ if(!sahneMetniEl||!partisyonRef) return; sahneMetniEl.innerHTML=''; partisyonRef.olcuLer.forEach(o=>{if(!o.metin) return; const li=document.createElement('li'); li.textContent=o.metin[lang]||o.metin.tr; sahneMetniEl.appendChild(li);}); }
+
+let motorAPI=null, sonMetin=null;
+function metinYaz(m){ const s=$('state'); if(!m){s.textContent='';s.classList.remove('alinti');return;} const t=m[lang]||m.tr||''; s.textContent=t; s.classList.toggle('alinti', t.indexOf('“')===0 || t.indexOf('“')>=0 && t.indexOf('“')<3); }
+function setLang(l){lang=l;const d=L[l];$('i-title').textContent=d.title;$('i-sub').textContent=d.sub;$('gezinIpucu').textContent=d.gezin;kunye.guncelle(l);sahneMetniniGuncelle();if(sonMetin) metinYaz(sonMetin);}
+
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/uc-kap.json').then(r=>r.json()).then(function(p){
+    partisyonRef=p; sahneMetniniKur(p);
+    motorAPI=window.__sahneMotoru.yarat({
+      container:scene, partisyon:p,
+      applyOlcu:function(o){ uygula(o.hedef_hal||{}); },
+      metinGoster:function(m){ sonMetin=m; metinYaz(m); },
+      olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){ if(ev.tip==='bitti') document.body.classList.add('sahne-bitti'); }
+    });
+  });
+})();
+
+scene.addEventListener('keydown',function(e){
+  if(!motorAPI) return;
+  if(e.key===' '){e.preventDefault(); if(motorAPI.durum==='oynuyor')motorAPI.pause(); else if(motorAPI.durum==='durakli')motorAPI.resume(); return;}
+  const y={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(y===undefined) return; e.preventDefault();
+  motorAPI.gotoOlcu(Math.max(0,Math.min(motorAPI.olcuSayisi-1,motorAPI.aktifIdx+y)));
+});
+
+setLang('tr');
+window.addEventListener('message',function(e){ if(e.data&&e.data.type==='setLang'&&L[e.data.lang]) setLang(e.data.lang); });
+</script>
+
+<script>
+if (window.self === window.top) (function () {
+  var ETIKET = { tr: "Sahneler", en: "Scenes", pt: "Cenas" };
+  var dil = "tr"; try { var d = localStorage.getItem("dost-lang"); if (ETIKET[d]) dil = d; } catch (e) {}
+  var a = document.createElement("a"); a.className = "sahne-geri"; a.href = "sahneler/";
+  a.textContent = "← " + ETIKET[dil]; document.body.appendChild(a);
+  function geriGit(){try{if(document.referrer&&history.length>1&&new URL(document.referrer).origin===location.origin){history.back();return;}}catch(e){} location.href="sahneler/";}
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return; var el=document.activeElement;
+    if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
+    e.preventDefault(); geriGit();
+  });
+})();
+</script>
+</body>
+</html>

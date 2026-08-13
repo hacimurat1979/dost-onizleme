@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Sığmayanın Sığdığı — Dost Arabi. docs/04 S4. Kudsî hadis dört ciltte.
+     "İçi dışı kadar parlak" — çevre aydınlığı diner + kabın iç degradesi
+     sabit kalır (storyboard iki prototipinden birincisi seçildi). -->
+<title>Sığmayanın Sığdığı — Dost Arabi</title>
+<style>
+:root{--bg:#0D0D0D;--su:#1A1A19;--bo:#2C2C2A;--tx:#EDE9E2;--mu:#898781;--go:#FFC233;--am:#C98500;--pa:#161614}
+@media(prefers-color-scheme:light){:root{--bg:#F9F9F7;--su:#FCFCFB;--bo:#E1E0D9;--tx:#1A1A1A;--mu:#6F6D65;--pa:#FCFCFB;--go:#8A6100;--am:#8C6D1A}}
+:root[data-theme=dark]{--bg:#0D0D0D;--su:#1A1A19;--bo:#2C2C2A;--tx:#EDE9E2;--mu:#898781;--go:#FFC233;--am:#C98500;--pa:#161614}
+:root[data-theme=light]{--bg:#F9F9F7;--su:#FCFCFB;--bo:#E1E0D9;--tx:#1A1A1A;--mu:#6F6D65;--pa:#FCFCFB;--go:#8A6100;--am:#8C6D1A}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1.1rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:var(--go);margin-bottom:.45rem}
+.sub{color:var(--mu);font-size:.88rem;font-style:italic;line-height:1.65;max-width:520px}
+.sw{display:flex;flex-direction:column;align-items:center;width:100%;max-width:520px}
+#scene{width:440px;height:440px;max-width:92vw;display:block;border-radius:8px;background:#050510}
+#scene:focus-visible{outline:2px solid var(--am);outline-offset:3px}
+.stage{width:440px;max-width:92vw;text-align:center;margin-top:.5rem}
+.state{font-size:.92rem;line-height:1.7;color:var(--mu);min-height:3.2rem}
+.state.alinti{font-style:italic;color:var(--tx)}
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.4rem;min-height:34px}
+.olcu-gosterge{font-size:.7rem;color:var(--mu);letter-spacing:.15em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge,body.sahne-bitti .motor-kontroller{opacity:1}
+.gezin-ipucu{font-size:.75rem;color:var(--mu);font-style:italic;margin-top:.35rem;opacity:0;transition:opacity .6s ease}
+body.sahne-bitti .gezin-ipucu{opacity:.75}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--bo);color:var(--mu);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--am);color:var(--tx)}
+.sahne-kunye{width:440px;max-width:92vw;margin-top:1.2rem;background:var(--pa);border:1px solid var(--bo);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
+.sahne-kunye summary{cursor:pointer;color:var(--mu);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
+.sahne-kunye ul{list-style:none;margin-top:.7rem}.sahne-kunye li{margin-bottom:.65rem}
+.sahne-kunye li.sahne-kunye__dost span{font-style:italic}
+.sahne-kunye li.sahne-kunye__okuma span{color:var(--mu)}
+.sahne-kunye li.sahne-kunye__serh{color:var(--mu);font-size:.76rem}
+.sahne-kunye a{color:var(--am);text-decoration:none;border-bottom:1px solid var(--bo);white-space:nowrap}
+.sahne-metni{margin:.8rem 0 0 1.1rem;padding-top:.7rem;border-top:1px solid var(--bo);color:var(--mu);font-size:.78rem}.sahne-metni li{margin-bottom:.3rem}
+/* Ortak: kaplar transform+opacity ile. */
+.k{transition:opacity 1.8s ease,transform 1.8s ease;transform-origin:center;transform-box:fill-box}
+.sahne-geri{position:fixed;top:12px;left:12px;z-index:60;display:inline-flex;align-items:center;gap:.35rem;min-height:44px;padding:0 .9rem;border-radius:999px;font-size:.82rem;font-family:inherit;text-decoration:none;opacity:.72;border:1px solid var(--bo);background:var(--su);color:var(--mu)}
+.sahne-geri:hover,.sahne-geri:focus-visible{opacity:1;color:var(--tx);border-color:var(--go)}
+@media(max-width:520px){.sahne-geri{top:8px;left:8px;padding:0 .7rem}}
+</style>
+<script>(function(){try{var s=localStorage.getItem("dost-theme");if(s==="light"||s==="dark")document.documentElement.setAttribute("data-theme",s);}catch(e){}})();</script>
+</head>
+<body>
+<header>
+  <h1 id="i-title">Sığmayanın Sığdığı</h1>
+  <p class="sub" id="i-sub">"Beni yerim ve göğüm sığdıramadı, mümin kulumun kalbi sığdırdı." — kudsî hadis, dört ciltte</p>
+</header>
+
+<div class="sw">
+  <svg id="scene" viewBox="0 0 440 440" tabindex="0" role="img"
+       aria-label="Taşan bir aydınlık; iki büyük kap alamıyor, küçük bir kap alıyor">
+    <defs>
+      <clipPath id="cl"><rect x="0" y="0" width="440" height="440" rx="8"/></clipPath>
+      <!-- Dış aydınlık: sahne dışından, kaynak görünmez. Kenarlardan taşar. -->
+      <radialGradient id="gDis" cx="220" cy="-260" r="720" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#FFE9B8" stop-opacity="0.9"/>
+        <stop offset="70%" stop-color="#FFE9B8" stop-opacity="0.28"/>
+        <stop offset="100%" stop-color="#FFE9B8" stop-opacity="0"/>
+      </radialGradient>
+      <!-- Kalbin iç aydınlığı: sabit güçte; dış aydınlık dinerken bu değişmez. -->
+      <radialGradient id="gKalpIci" cx="0" cy="0" r="55" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#FFF3D6" stop-opacity="0.95"/>
+        <stop offset="80%" stop-color="#FFE9B8" stop-opacity="0.65"/>
+        <stop offset="100%" stop-color="#FFE9B8" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <g clip-path="url(#cl)">
+      <rect x="0" y="0" width="440" height="440" fill="#050510"/>
+      <rect id="disAydinlik" x="0" y="0" width="440" height="440" fill="url(#gDis)" style="transition:opacity 1.8s ease" opacity="0"/>
+
+      <!-- Gök-kabı: sahnenin üstünde büyük yay -->
+      <path id="gokKap" class="k" d="M 30 200 A 190 170 0 0 1 410 200"
+            fill="none" stroke="#89A8C2" stroke-width="2.6" opacity="0"/>
+      <!-- Yer-kabı: alt yarım kap -->
+      <path id="yerKap" class="k" d="M 40 300 A 180 90 0 0 0 400 300"
+            fill="none" stroke="#8FA6B8" stroke-width="2.6" opacity="0"/>
+
+      <!-- Küçük kap (kalp değil, kap): sade daire soyundan bir çanak. -->
+      <g id="kalpG" class="k" transform="translate(220 260)" opacity="0">
+        <!-- iç aydınlık (dış aydınlıktan bağımsız, sabit) -->
+        <circle id="kalpIci" cx="0" cy="-4" r="46" fill="url(#gKalpIci)" opacity="0" style="transition:opacity 2s ease"/>
+        <!-- çeperi -->
+        <path d="M -50 0 A 50 50 0 0 0 50 0" fill="none" stroke="#E8D2A4" stroke-width="2.6" stroke-linecap="round"/>
+      </g>
+    </g>
+  </svg>
+  <div class="stage">
+    <p class="state" id="state" aria-live="polite"></p>
+    <div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
+    <p class="gezin-ipucu" id="gezinIpucu"></p>
+  </div>
+  <div id="kunyeYuvasi"></div>
+</div>
+
+<script src="assets/sahne-motoru.js"></script>
+<script src="assets/sahne-cizim.js"></script>
+<script>
+const L={
+  tr:{title:'Sığmayanın Sığdığı',sub:'"Beni yerim ve göğüm sığdıramadı, mümin kulumun kalbi sığdırdı." — kudsî hadis, dört ciltte',gezin:'Ok tuşları ölçüler arasında gezdirir; boşluk duraklatır.',kunyeBaslik:'Künye — bu sahne nereden geliyor?'},
+  en:{title:'What Cannot Be Contained, Contained',sub:'"Neither My earth nor My heaven contained Me, but the heart of My believing servant did." — a divine hadith across four volumes',gezin:'Arrow keys move between measures; space pauses.',kunyeBaslik:'Sources — where this scene comes from'},
+  pt:{title:'O que Não Cabe, Cabendo',sub:'"Nem a Minha terra nem o Meu céu Me contiveram, mas o coração do Meu servente crente conteve." — um hadith divino em quatro volumes',gezin:'As setas percorrem os compassos; espaço pausa.',kunyeBaslik:'Fontes — de onde vem esta cena'}
+};
+
+const KUNYE=[
+  {tur:'dost',metin:{tr:'“Beni yerim ve göğüm sığdıramadı, mümin kulumun kalbi sığdırdı.”',en:'“My earth and My heaven did not contain Me, but the heart of My believing servant did.”',pt:'“A Minha terra e o Meu céu não Me contiveram, mas o coração do Meu servente crente conteve.”'},kaynak:{href:'futuhat/c2k24',etiket:'Fütûhât (c2k24)'}},
+  {tur:'dost',metin:{tr:'“Beni mümin kulumun kalbi sığdırdı” kudsî hadisi arifin kalbinin genişliğine bağlanıyor.',en:'The divine hadith “the heart of My believing servant contained Me” is tied to the breadth of the knower’s heart.',pt:'O hadith divino “o coração do Meu servente crente conteve-Me” é ligado à amplitude do coração do conhecedor.'},kaynak:{href:'futuhat/c4k42',etiket:'c4k42'}},
+  {tur:'dost',metin:{tr:'Aynı hadis burada da: “Beni yerim ve göğüm sığdıramadı, mümin kulumun kalbi sığdırdı.”',en:'The same hadith here too: “My earth and My heaven did not contain Me, but the heart of My believing servant did.”',pt:'O mesmo hadith aqui também: “A Minha terra e o Meu céu não Me contiveram, mas o coração do Meu servente crente conteve.”'},kaynak:{href:'futuhat/c14k165',etiket:'c14k165'}},
+  {tur:'dost',metin:{tr:'“Dayanağı da kutsî hadis: ‘Beni mümin kulumun kalbi sığdırdı.’”',en:'“Its ground is the divine hadith: ‘the heart of My believing servant contained Me.’”',pt:'“O seu fundamento é o hadith divino: ‘o coração do Meu servente crente conteve-Me.’”'},kaynak:{href:'futuhat/c15k190',etiket:'c15k190'}},
+  {tur:'okuma',metin:{tr:'Bu sahne S3 ile aynı aileden ama iddiası farklı: S3’te kaplar ışığa göre değişir; burada ışık kaba sığar. İçin dışarısı kadar parlak olabilmesi için çevre aydınlığı diner — hacim kaybı değil, ölçünün gramerinin gereği.',en:'This scene is of the same family as S3 but its claim differs: in S3 vessels vary with the light; here the light fits itself into the vessel. For the inside to be as bright as the outside, the outer brightness quiets — not a loss of scale, but a requirement of the measure’s grammar.',pt:'Esta cena pertence à mesma família que S3, mas a sua afirmação difere: em S3 os vasos variam com a luz; aqui a luz cabe-se no vaso. Para que o interior seja tão brilhante quanto o exterior, a luminosidade exterior aquieta-se — não é uma perda de escala, mas uma exigência da gramática do compasso.'}},
+  {tur:'serh',metin:{tr:'Bu kudsî hadisin senedi tartışmalıdır (`hadis-dizini.json` bunu kendi notunda söylüyor); yaygın kabulüne rağmen kaynakta bir açık soru olarak duruyor.',en:'The chain of transmission of this divine hadith is disputed (as `hadis-dizini.json` itself notes); despite its wide acceptance, it stands as an open question in the source.',pt:'A cadeia de transmissão deste hadith divino é disputada (como o próprio `hadis-dizini.json` observa); apesar da sua ampla aceitação, permanece como uma questão em aberto na fonte.'}}
+];
+
+const $=id=>document.getElementById(id);
+let lang='tr';
+const scene=$('scene');
+const C=window.DostSahneCizim;
+
+function uygula(hal){
+  if(typeof hal.disAydinlik==='number') $('disAydinlik').style.opacity=String(hal.disAydinlik);
+  if(typeof hal.gokKap==='number') $('gokKap').style.opacity=String(hal.gokKap);
+  if(typeof hal.yerKap==='number') $('yerKap').style.opacity=String(hal.yerKap);
+  if(typeof hal.kalp==='number') $('kalpG').style.opacity=String(hal.kalp);
+  if(typeof hal.kalpIci==='number') $('kalpIci').style.opacity=String(hal.kalpIci);
+  if(hal.nefes) document.body.classList.add('sahne-nefes');
+}
+
+const kunye=C.kunye($('kunyeYuvasi'), KUNYE, {tr:L.tr.kunyeBaslik,en:L.en.kunyeBaslik,pt:L.pt.kunyeBaslik});
+let sahneMetniEl=null, partisyonRef=null;
+function sahneMetniniKur(p){ if(sahneMetniEl) return; sahneMetniEl=document.createElement('ol'); sahneMetniEl.className='sahne-metni'; kunye.el.appendChild(sahneMetniEl); sahneMetniniGuncelle(); }
+function sahneMetniniGuncelle(){ if(!sahneMetniEl||!partisyonRef) return; sahneMetniEl.innerHTML=''; partisyonRef.olcuLer.forEach(o=>{if(!o.metin) return; const li=document.createElement('li'); li.textContent=o.metin[lang]||o.metin.tr; sahneMetniEl.appendChild(li);}); }
+
+let motorAPI=null, sonMetin=null;
+function metinYaz(m){ const s=$('state'); if(!m){s.textContent='';s.classList.remove('alinti');return;} const t=m[lang]||m.tr||''; s.textContent=t; s.classList.toggle('alinti', t.indexOf('“')===0); }
+function setLang(l){lang=l;const d=L[l];$('i-title').textContent=d.title;$('i-sub').textContent=d.sub;$('gezinIpucu').textContent=d.gezin;kunye.guncelle(l);sahneMetniniGuncelle();if(sonMetin) metinYaz(sonMetin);}
+
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/kalbe-sigan.json').then(r=>r.json()).then(function(p){
+    partisyonRef=p; sahneMetniniKur(p);
+    motorAPI=window.__sahneMotoru.yarat({
+      container:scene, partisyon:p,
+      applyOlcu:function(o){ uygula(o.hedef_hal||{}); },
+      metinGoster:function(m){ sonMetin=m; metinYaz(m); },
+      olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){ if(ev.tip==='bitti') document.body.classList.add('sahne-bitti'); }
+    });
+  });
+})();
+
+scene.addEventListener('keydown',function(e){
+  if(!motorAPI) return;
+  if(e.key===' '){e.preventDefault(); if(motorAPI.durum==='oynuyor')motorAPI.pause(); else if(motorAPI.durum==='durakli')motorAPI.resume(); return;}
+  const y={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(y===undefined) return; e.preventDefault();
+  motorAPI.gotoOlcu(Math.max(0,Math.min(motorAPI.olcuSayisi-1,motorAPI.aktifIdx+y)));
+});
+
+setLang('tr');
+window.addEventListener('message',function(e){ if(e.data&&e.data.type==='setLang'&&L[e.data.lang]) setLang(e.data.lang); });
+</script>
+
+<script>
+if (window.self === window.top) (function () {
+  var ETIKET = { tr: "Sahneler", en: "Scenes", pt: "Cenas" };
+  var dil = "tr"; try { var d = localStorage.getItem("dost-lang"); if (ETIKET[d]) dil = d; } catch (e) {}
+  var a = document.createElement("a"); a.className = "sahne-geri"; a.href = "sahneler/";
+  a.textContent = "← " + ETIKET[dil]; document.body.appendChild(a);
+  function geriGit(){try{if(document.referrer&&history.length>1&&new URL(document.referrer).origin===location.origin){history.back();return;}}catch(e){} location.href="sahneler/";}
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return; var el=document.activeElement;
+    if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
+    e.preventDefault(); geriGit();
+  });
+})();
+</script>
+</body>
+</html>
