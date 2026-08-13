@@ -27,7 +27,7 @@
       { "no": 3, "toplam": 21, "etiket": "hadis" }
     ]
   },
-  "activeHadisId": "h5",
+  "activeHadisId": "h6",
   "hadisler": [
     {
       "id": "h1",
@@ -435,6 +435,66 @@
           "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 5. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "en": "Mishkat al-Anwar, Section 1, Hadith 5 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "pt": "Mishkat al-Anwar, Seção 1, Hadith 5 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
+        }
+      ]
+    },
+    {
+      "id": "h6",
+      "no": 6,
+      "bolum": 1,
+      "bolumNo": 6,
+      "etiket": "hadis",
+      "status": "active",
+      "title": {
+        "tr": "Dört Kez Yemin Edilen Söz: Besmele ve Fâtiha",
+        "en": "A Promise Sworn Four Times Over: The Basmala and the Opening Sura",
+        "pt": "Uma Promessa Jurada Quatro Vezes: A Basmala e a Sura de Abertura"
+      },
+      "pageRange": {
+        "tr": "1. Bölüm, 6. Hadis (Ebû Bekir es-Sıddîk'tan)",
+        "en": "Section 1, Hadith 6 (from Abu Bakr al-Siddiq)",
+        "pt": "Seção 1, Hadith 6 (de Abu Bakr al-Siddiq)"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Altıncı hadis, önceki beşinden farklı bir biçimde geliyor: Ebû Bekir, Peygamber'in kendisine anlattığını, Peygamber'in de Cebrâil'den, Cebrâil'in Mîkâil'den, Mîkâil'in İsrâfil'den duyduğunu — her aktarımın kendi yeminiyle mühürlenerek — naklediyor. Dört kez tekrarlanan “Azamet sahibi Allah'a yemin ederim ki” sözü, aktarılan vaadin (Besmele'yi Fâtiha ile birlikte bir kere okuyanın bağışlanması) ağırlığını vurguluyor gibi duruyor.",
+          "en": "The sixth hadith arrives in a different shape than the previous five: Abu Bakr recounts what the Prophet told him, which the Prophet heard from Gabriel, who heard it from Michael, who heard it from Israfil — each link sealed by its own oath. The fourfold repetition of “By the Almighty God, I swear” seems to underline the weight of the promise being carried: that whoever recites the Basmala together with the Opening Sura even once will be forgiven.",
+          "pt": "O sexto hadith chega numa forma diferente dos cinco anteriores: Abu Bakr relata o que o Profeta lhe disse, que o Profeta ouviu de Gabriel, que ouviu de Miguel, que ouviu de Israfil — cada elo selado pelo seu próprio juramento. A repetição quádrupla de “Juro pelo Deus Todo-Poderoso” parece sublinhar o peso da promessa transmitida: que quem recitar a Basmala junto com a Sura de Abertura, mesmo uma única vez, será perdoado."
+        }
+      },
+      "blocks": [
+        {
+          "type": "hadis",
+          "metin": {
+            "tr": "Azamet sahibi Allah'a yemin ederim ki, Muhammed Mustafa (s.a.v.) bana şöyle dedi: “Azamet sahibi Allah'a yemin ederim ki, bana Cebrâil (a.s.) anlattı: Azamet sahibi Allah'a yemin ederim ki, bana Mîkâil (a.s.) anlattı: Azamet sahibi Allah'a yemin ederim ki, bana İsrâfil (a.s.) anlattı: Yüce Allah dedi ki: Ey İsrâfil! İzzetim, ululuğum, cömertliğim ve kerem sahibi olmam hakkı için, kim ‘Bismillâhirrahmânirrahîm’i Fâtiha sûresiyle birlikte bir kere okursa, şahit olun ki Ben onu bağışladım, iyiliklerini kabul ettim, işlediği kötülükleri sildim. Onun dilini cehennemde yakmayacağım. Onu cehennem azabından, kıyamet azabından, en büyük dehşetten kurtaracağım. O, bütün nebî ve velîlerden önce Benimle buluşur.”",
+            "en": "By the Almighty God, I swear that Muhammad Mustafa (peace be upon him) said to me: “By the Almighty God, I swear that Gabriel told me: By the Almighty God, I swear that Michael told me: By the Almighty God, I swear that Israfil told me: The Exalted God said: O Israfil, by My might, My majesty, My generosity, and My bounty — whoever recites ‘In the name of God, the Compassionate, the Merciful’ once together with the Opening Sura, bear witness that I have forgiven him, accepted his good deeds, and erased the evils he has done. I will not burn his tongue in Hell. I will save him from the punishment of Hell, from the terror of the Resurrection, from the greatest dread. He will meet Me before all the prophets and the saints.”",
+            "pt": "Juro pelo Deus Todo-Poderoso que Muhammad Mustafa (que a paz esteja com ele) me disse: “Juro pelo Deus Todo-Poderoso que Gabriel me contou: Juro pelo Deus Todo-Poderoso que Miguel me contou: Juro pelo Deus Todo-Poderoso que Israfil me contou: Disse Deus, o Altíssimo: Ó Israfil, pelo Meu poder, Minha majestade, Minha generosidade e Minha munificência — quem recitar ‘Em nome de Deus, o Compassivo, o Misericordioso’ uma vez junto com a Sura de Abertura, testemunhai que Eu o perdoei, aceitei as suas boas ações, e apaguei os males que cometeu. Não queimarei a sua língua no Inferno. Salvá-lo-ei do castigo do Inferno, do terror da Ressurreição, do maior pavor. Ele Me encontrará antes de todos os profetas e santos.”"
+          },
+          "ravi": {
+            "tr": "Ebû Bekir es-Sıddîk (r.a.)'tan",
+            "en": "From Abu Bakr al-Siddiq (may God be pleased with him)",
+            "pt": "De Abu Bakr al-Siddiq (que Deus esteja satisfeito com ele)"
+          },
+          "senet": {
+            "tr": "Dost, hadisi Muhammed b. Kāsım'dan başlayan bir râvi zinciriyle Ebû Bekir'e ulaştırarak aktarıyor; hadisin kendisi de ayrıca Peygamber-Cebrâil-Mîkâil-İsrâfil arasında dört kez yemin edilerek aktarılan iç içe bir zincir taşıyor.",
+            "en": "Dost transmits the hadith through a chain of narrators beginning with Muhammad b. Qasim, reaching back to Abu Bakr; the hadith's own content additionally carries a nested chain of oaths passed between the Prophet, Gabriel, Michael, and Israfil.",
+            "pt": "Dost transmite o hadith através de uma cadeia de narradores que começa com Muhammad b. Qasim, remontando até Abu Bakr; o próprio conteúdo do hadith carrega ainda uma cadeia aninhada de juramentos transmitidos entre o Profeta, Gabriel, Miguel e Israfil."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu hadisin taşıdığı zincir — dört meleğin/Peygamber'in art arda yemin ederek birbirinden aktarması — önceki beş hadiste görülen, altı hadis kitabında da izi kolayca sürülebilen türden bir yapı değil. Bir amelin sevabını anlatan bu tür rivayetler (fezâil hadisleri), hadis usulünde sahihliği en çok tartışılan türlerden biridir. Bunu, önceki hadislerin aksine bir kaynak paralelliği iddia etmeden, yalnız Dost'un kendi kitabında aktardığı bir rivayet olarak kaydediyoruz.",
+            "en": "The chain this hadith carries — four angels and the Prophet passing it one to another, each sealed by an oath — is not the kind of structure found in the previous five hadiths, nor easily traced in the six major hadith collections. Reports of this kind, praising the reward of a particular act (fada'il literature), are among the types whose authenticity is most debated in hadith scholarship. Unlike the earlier hadiths, we record this one without claiming any parallel in those collections — only as a report Dost himself conveys in his book.",
+            "pt": "A cadeia que este hadith carrega — quatro anjos e o Profeta transmitindo um ao outro, cada elo selado por um juramento — não é o tipo de estrutura encontrada nos cinco hadiths anteriores, nem facilmente rastreável nas seis grandes coleções de hadith. Relatos deste tipo, que louvam a recompensa de um ato específico (literatura de fada'il), estão entre os tipos cuja autenticidade é mais debatida na erudição do hadith. Ao contrário dos hadiths anteriores, registamos este sem alegar qualquer paralelo nessas coleções — apenas como um relato que o próprio Dost transmite no seu livro."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 6. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "en": "Mishkat al-Anwar, Section 1, Hadith 6 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "pt": "Mishkat al-Anwar, Seção 1, Hadith 6 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
         }
       ]
     }
