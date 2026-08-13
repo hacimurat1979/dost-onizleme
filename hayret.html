@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Karanlığı Görmek (hayret) — Dost Arabi. docs/04-sahne-storyboard.md S1;
+     teknik karar: docs/05-teknik-plan.md §3. Bulanıklık animasyonu YOK —
+     net+bulanık çift katman, yalnız opaklık crossfade. Işık kısma nötr
+     örtüyle. GSAP kullanılmıyor: S1'in hiçbir ölçüsünde ölçü-içi
+     mikro-zamanlama yok, CSS transition yetiyor. -->
+<title>Karanlığı Görmek — Dost Arabi</title>
+<style>
+:root{--bg:#0D0D0D;--su:#1A1A19;--bo:#2C2C2A;--tx:#EDE9E2;--mu:#898781;--go:#FFC233;--am:#C98500;--pa:#161614}
+@media(prefers-color-scheme:light){:root{--bg:#F9F9F7;--su:#FCFCFB;--bo:#E1E0D9;--tx:#1A1A1A;--mu:#6F6D65;--pa:#FCFCFB;--go:#8A6100;--am:#8C6D1A}}
+:root[data-theme=dark]{--bg:#0D0D0D;--su:#1A1A19;--bo:#2C2C2A;--tx:#EDE9E2;--mu:#898781;--go:#FFC233;--am:#C98500;--pa:#161614}
+:root[data-theme=light]{--bg:#F9F9F7;--su:#FCFCFB;--bo:#E1E0D9;--tx:#1A1A1A;--mu:#6F6D65;--pa:#FCFCFB;--go:#8A6100;--am:#8C6D1A}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1.1rem}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:var(--go);margin-bottom:.45rem}
+.sub{color:var(--mu);font-size:.88rem;font-style:italic;line-height:1.65;max-width:460px}
+.sw{display:flex;flex-direction:column;align-items:center;width:100%;max-width:520px}
+#scene{width:440px;height:440px;max-width:92vw;display:block;border-radius:8px}
+#scene:focus-visible{outline:2px solid var(--am);outline-offset:3px}
+.stage{width:440px;max-width:92vw;text-align:center;margin-top:.5rem}
+.state{font-size:.92rem;line-height:1.7;color:var(--mu);min-height:3.2rem;transition:opacity .6s ease}
+.state.alinti{font-style:italic;color:var(--tx)}
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.4rem;min-height:34px}
+.olcu-gosterge{font-size:.7rem;color:var(--mu);letter-spacing:.15em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge,body.sahne-bitti .motor-kontroller{opacity:1}
+.gezin-ipucu{font-size:.75rem;color:var(--mu);font-style:italic;margin-top:.35rem;opacity:0;transition:opacity .6s ease}
+body.sahne-bitti .gezin-ipucu{opacity:.75}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--bo);color:var(--mu);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer;transition:.2s}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--am);color:var(--tx)}
+/* Künye — kapalı gelir; içinde Dost'un cümleleri ile bizim okumamız ayrık. */
+.sahne-kunye{width:440px;max-width:92vw;margin-top:1.2rem;background:var(--pa);border:1px solid var(--bo);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
+.sahne-kunye summary{cursor:pointer;color:var(--mu);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
+.sahne-kunye summary:focus-visible{outline:2px solid var(--am);outline-offset:2px}
+.sahne-kunye ul{list-style:none;margin-top:.7rem}
+.sahne-kunye li{margin-bottom:.65rem}
+.sahne-kunye li.sahne-kunye__dost span{font-style:italic}
+.sahne-kunye li.sahne-kunye__okuma span{color:var(--mu)}
+.sahne-kunye li.sahne-kunye__serh{color:var(--mu);font-size:.76rem}
+.sahne-kunye a{color:var(--am);text-decoration:none;border-bottom:1px solid var(--bo);white-space:nowrap}
+.sahne-kunye a:hover,.sahne-kunye a:focus-visible{border-bottom-color:var(--am)}
+.sahne-metni{margin:.8rem 0 0 1.1rem;padding-top:.7rem;border-top:1px solid var(--bo);color:var(--mu);font-size:.78rem}
+.sahne-metni li{margin-bottom:.3rem}
+/* Bitiş nefesi: neredeyse fark edilmez, yalnız hareket-azaltma kapalıyken. */
+@media(prefers-reduced-motion:no-preference){
+  body.sahne-nefes .sc-net{animation:nefes 12s ease-in-out infinite alternate}
+  @keyframes nefes{from{opacity:1}to{opacity:.94}}
+}
+.sahne-geri{position:fixed;top:12px;left:12px;z-index:60;display:inline-flex;align-items:center;
+  gap:.35rem;min-height:44px;padding:0 .9rem;border-radius:999px;font-size:.82rem;
+  font-family:inherit;text-decoration:none;opacity:.72;
+  border:1px solid var(--bo);background:var(--su);color:var(--mu);
+  transition:opacity .2s ease,color .2s ease,border-color .2s ease}
+.sahne-geri:hover,.sahne-geri:focus-visible{opacity:1;color:var(--tx);border-color:var(--go)}
+.sahne-geri:focus-visible{outline:2px solid var(--go);outline-offset:2px}
+@media(max-width:520px){.sahne-geri{top:8px;left:8px;padding:0 .7rem}}
+</style>
+<script>
+// Sitenin tema seçimini miras al (perde-zinciri.html'deki desenin aynısı).
+(function () {
+  try {
+    var s = localStorage.getItem("dost-theme");
+    if (s === "light" || s === "dark") document.documentElement.setAttribute("data-theme", s);
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<header>
+  <h1 id="i-title">Karanlığı Görmek</h1>
+  <p class="sub" id="i-sub">Işık kısıldıkça sahne netleşir — hayret körlük değil, bir durak</p>
+</header>
+
+<div class="sw">
+  <svg id="scene" viewBox="0 0 440 440" tabindex="0" role="img"
+       aria-label="Aydınlıkta bulanık duran sade bir manzara, ışık kısıldıkça netleşir / A plain landscape, blurred in bright light, sharpens as the light dims">
+    <defs>
+      <clipPath id="cl"><rect x="0" y="0" width="440" height="440" rx="8"/></clipPath>
+      <!-- Yanlış aydınlık: sıcak, gölgesiz, her yeri eşit dolduran alan.
+           Kaynak yok — degrade merkezi viewBox DIŞINDA (parlak-Zât yasağı). -->
+      <radialGradient id="gAydinlik" cx="220" cy="-160" r="640" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#F5E3BC"/>
+        <stop offset="72%" stop-color="#E8D2A4"/>
+        <stop offset="100%" stop-color="#DCC28E"/>
+      </radialGradient>
+    </defs>
+    <g clip-path="url(#cl)">
+      <rect x="0" y="0" width="440" height="440" fill="url(#gAydinlik)"/>
+      <!-- Biçimler sahne-cizim.js ile iki kopya (bulanık + net) kurulur -->
+      <g id="bicimYuvasi"></g>
+      <!-- Nötr ışık örtüsü de sahne-cizim.js'ten; en üst katman -->
+      <g id="ortuYuvasi"></g>
+    </g>
+  </svg>
+  <div class="stage">
+    <p class="state" id="state" aria-live="polite"></p>
+    <div class="motor-kontroller">
+      <span class="olcu-gosterge" id="olcuGosterge"></span>
+      <span id="motorBiter"></span>
+    </div>
+    <p class="gezin-ipucu" id="gezinIpucu"></p>
+  </div>
+  <div id="kunyeYuvasi"></div>
+</div>
+
+<script src="assets/sahne-motoru.js"></script>
+<script src="assets/sahne-cizim.js"></script>
+<script>
+const L={
+  tr:{title:'Karanlığı Görmek',
+      sub:'Işık kısıldıkça sahne netleşir — hayret körlük değil, bir durak',
+      gezin:'Ok tuşları ölçüler arasında gezdirir; boşluk duraklatır.',
+      kunyeBaslik:'Künye — bu sahne nereden geliyor?'},
+  en:{title:'Seeing the Darkness',
+      sub:'As the light dims, the scene sharpens — bewilderment is not blindness but a resting',
+      gezin:'Arrow keys move between measures; space pauses.',
+      kunyeBaslik:'Sources — where this scene comes from'},
+  pt:{title:'Ver a Escuridão',
+      sub:'Quando a luz esmorece, a cena aguça-se — o espanto não é cegueira, é um repouso',
+      gezin:'As setas percorrem os compassos; espaço pausa.',
+      kunyeBaslik:'Fontes — de onde vem esta cena'}
+};
+
+// Künye kayıtları: Dost'un cümleleri (dost) / bizim okumamız (okuma) / şerh (serh).
+// Alıntılar p-blok doğrulamalı (docs/04-sahne-storyboard.md, S1).
+const KUNYE=[
+  {tur:'dost',
+   metin:{tr:'“Karanlık bu menzilden öğrenilir; karanlık körlük ve dalalet demektir ki, o da hayrettir.”',
+          en:'“Darkness is learned from this waypoint; darkness means blindness and error, which is bewilderment.”',
+          pt:'“A escuridão aprende-se nesta estação; escuridão significa cegueira e erro, que é o espanto.”'},
+   kaynak:{href:'futuhat/c14k153',etiket:'Fütûhât, bab 378 (c14k153)'}},
+  {tur:'dost',
+   metin:{tr:'“Allah hakkında en güçlü hayret, Allah’ı bilenlerde meydana gelir” — delili de Peygamber’in duası: “Benim Sendeki hayretimi artır.”',
+          en:'“The strongest bewilderment regarding God occurs in those who know God” — with the Prophet’s prayer as evidence: “Increase me in bewilderment concerning You.”',
+          pt:'“O mais forte espanto acerca de Deus ocorre naqueles que conhecem Deus” — com a oração do Profeta como prova: “Aumenta o meu espanto a Teu respeito.”'},
+   kaynak:{href:'futuhat/c14k153',etiket:'Fütûhât, bab 378 (c14k153)'}},
+  {tur:'dost',
+   metin:{tr:'Bab 559, bab 39’dan aktarıyor: “dalalet hayret demektir.”',
+          en:'Chapter 559 quotes chapter 39: “error means bewilderment.”',
+          pt:'O capítulo 559 cita o capítulo 39: “erro significa espanto.”'},
+   kaynak:{href:'futuhat/c17k224',etiket:'Fütûhât, bab 559 (c17k224)'}},
+  {tur:'okuma',
+   metin:{tr:'Hayret, sitenin Hâller sarmalında yolun son durağı olarak zaten duruyor; bu sahne o durağın bab 378 ile 559\'dan gelen yüzünü gösteriyor.',
+          en:'Bewilderment already stands as the final station of this site\'s helix of States; this scene shows the face of that station as it comes from chapters 378 and 559.',
+          pt:'O espanto já está presente como a estação final da hélice dos Estados deste site; esta cena mostra a face dessa estação tal como vem dos capítulos 378 e 559.'},
+   kaynak:{href:'hal/hayret',etiket:'Hâller — Hayret'}},
+  {tur:'okuma',
+   metin:{tr:'Bize göre körlük de basiret de hayrette toplanıyor: biri dalalete doğru açılıyor, öteki kalp içinden geçiyor. Bu bir sonuç değil, elimizdeki pasajlardan bir okuma.',
+          en:'In our reading, both blindness and insight gather in bewilderment: one opens toward error, the other passes through the heart. Not a conclusion — a reading of the passages we have.',
+          pt:'Na nossa leitura, tanto a cegueira quanto a clarividência se reúnem no espanto: uma abre-se para o erro, a outra passa pelo coração. Não é uma conclusão — é uma leitura das passagens que temos.'},
+   kaynak:{href:'futuhat/c16k218',etiket:'c16k218'}},
+  {tur:'serh',
+   metin:{tr:'Bab 39’daki “dalalet”in bağlamı Arapça asıldan henüz doğrulanmadı; sahne bu yüzden iki babın aynı cümleyi kurduğunu söylüyor, aynı iddia olduğunu değil.',
+          en:'The context of “error” in chapter 39 is not yet verified against the Arabic original; hence the scene says the two chapters build the same sentence, not that they make the same claim.',
+          pt:'O contexto de “erro” no capítulo 39 ainda não foi verificado no original árabe; por isso a cena diz que os dois capítulos constroem a mesma frase, não que fazem a mesma afirmação.'}}
+];
+
+const $=id=>document.getElementById(id);
+let lang='tr';
+
+// ── Sahne kurulumu (çizim sözlüğünden) ─────────────────────────────────
+const scene=$('scene');
+const C=window.DostSahneCizim;
+
+// Sade biçimler: alçak tepe, duran taş, ince bir ağaç. Figüratif değil,
+// GORSEL_DIL: kavramı değil davranışını resmet — buradaki davranış
+// "aydınlıkta bulanık, karanlıkta net" olmanın kendisi.
+function bicimleriCiz(g){
+  const ns='http://www.w3.org/2000/svg';
+  function p(d,w){const e=document.createElementNS(ns,'path');e.setAttribute('d',d);
+    e.setAttribute('fill','none');e.setAttribute('stroke','#3A2F1E');
+    e.setAttribute('stroke-width',String(w||2.4));e.setAttribute('stroke-linecap','round');
+    e.setAttribute('stroke-linejoin','round');g.appendChild(e);return e;}
+  // ufuk çizgisi
+  p('M 18 318 C 120 306 320 330 422 314',2.2);
+  // alçak tepe
+  p('M 60 318 C 120 268 200 262 262 314',2.6);
+  // duran taş
+  p('M 300 316 C 298 292 318 284 332 294 C 344 302 342 314 336 318 Z',2.4);
+  // ince ağaç (servi soyundan, soyut)
+  p('M 148 316 C 146 268 150 232 148 196 M 148 262 C 136 250 132 236 136 222 M 148 244 C 160 234 164 220 160 208',2.2);
+}
+
+const cift=C.netBulanikCifti($('bicimYuvasi'), bicimleriCiz, {filtreId:'hayret-bulanik', stdDeviation:6});
+const ortu=C.isikOrtusu(scene);
+$('ortuYuvasi').appendChild(ortu); // örtü clip'in içinde, en üstte dursun
+
+// Geçiş süreleri partisyondan gelir (gecis_sure_sn); hareket-azaltmada 0.
+const reduce=window.__sahneMotoru && window.__sahneMotoru.reduceMotionAcik();
+function gecisSuresi(sn){ return reduce ? '0s' : (sn||1.5)+'s'; }
+[cift.net,cift.bulanik,ortu].forEach(el=>{
+  el.style.transitionProperty='opacity';
+  el.style.transitionTimingFunction='ease-in-out';
+});
+
+let sonGecis=1.5, partisyonRef=null;
+// hedef_hal delta-temellidir (aynı anda tek değişim kuralı: her ölçü tek
+// alan değiştirir). Ama geri gezinme, tekrar ve hareket-azaltmanın
+// "yalnız son ölçüyü uygula" yolu için mutlak hâl gerekir — bu yüzden
+// 0..idx aralığı her uygulamada KÜMÜLATİF birleştirilir.
+function kumulatifHal(idx){
+  const hal={ortu:0, net:0, bulanik:1, nefes:false};
+  if(!partisyonRef) return hal;
+  for(let i=0;i<=idx && i<partisyonRef.olcuLer.length;i++){
+    const h=partisyonRef.olcuLer[i].hedef_hal||{};
+    if(typeof h.ortu==='number') hal.ortu=h.ortu;
+    if(typeof h.net==='number') hal.net=h.net;
+    if(typeof h.bulanik==='number') hal.bulanik=h.bulanik;
+    if(typeof h.nefes==='boolean'||h.nefes) hal.nefes=!!h.nefes;
+  }
+  return hal;
+}
+function uygula(idx){
+  const hal=kumulatifHal(idx);
+  [cift.net,cift.bulanik,ortu].forEach(el=>{ el.style.transitionDuration=gecisSuresi(sonGecis); });
+  ortu.style.opacity=String(hal.ortu);
+  cift.net.style.opacity=String(hal.net);
+  cift.bulanik.style.opacity=String(hal.bulanik);
+  document.body.classList.toggle('sahne-nefes', hal.nefes);
+}
+
+// ── Künye ──────────────────────────────────────────────────────────────
+const kunye=C.kunye($('kunyeYuvasi'), KUNYE, {
+  tr:L.tr.kunyeBaslik, en:L.en.kunyeBaslik, pt:L.pt.kunyeBaslik});
+
+// Ölçü metinlerinin sıralı hâli gerçek DOM olarak da dursun
+// (.claude/commands/sahne.md `partisyon` şartı: erişilebilirlik + arama).
+let sahneMetniEl=null;
+function sahneMetniniKur(partisyon){
+  if(sahneMetniEl) return;
+  sahneMetniEl=document.createElement('ol');
+  sahneMetniEl.className='sahne-metni';
+  kunye.el.appendChild(sahneMetniEl);
+  sahneMetniniGuncelle();
+}
+function sahneMetniniGuncelle(){
+  if(!sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl.innerHTML='';
+  partisyonRef.olcuLer.forEach(function(o){
+    if(!o.metin) return;
+    const li=document.createElement('li');
+    li.textContent=o.metin[lang]||o.metin.tr;
+    sahneMetniEl.appendChild(li);
+  });
+}
+
+function setLang(l){
+  lang=l;const d=L[l];
+  $('i-title').textContent=d.title;
+  $('i-sub').textContent=d.sub;
+  $('gezinIpucu').textContent=d.gezin;
+  kunye.guncelle(l);
+  sahneMetniniGuncelle();
+  if(sonMetin) metinYaz(sonMetin);
+}
+
+// ── Motor ──────────────────────────────────────────────────────────────
+let motorAPI=null, sonMetin=null;
+function metinYaz(metin){
+  const s=$('state');
+  if(!metin){ s.textContent=''; s.classList.remove('alinti'); return; }
+  const t=metin[lang]||metin.tr||'';
+  s.textContent=t;
+  s.classList.toggle('alinti', t.indexOf('“')===0);
+}
+
+(function baslatMotor(){
+  const base=(window.__dostRouteBase||'');
+  const url=(base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/hayret.json';
+  fetch(url).then(r=>r.json()).then(function(partisyon){
+    if(!window.__sahneMotoru){ console.warn('sahne-motoru yüklenemedi'); return; }
+    partisyonRef=partisyon;
+    sahneMetniniKur(partisyon);
+    motorAPI=window.__sahneMotoru.yarat({
+      container:scene,
+      partisyon:partisyon,
+      applyOlcu:function(olcu){
+        const idx=partisyon.olcuLer.findIndex(o=>o.id===olcu.id);
+        uygula(idx<0?0:idx);
+        sonGecis=(typeof olcu.gecis_sure_sn==='number')?olcu.gecis_sure_sn:1.5;
+      },
+      metinGoster:function(metin){ sonMetin=metin; metinYaz(metin); },
+      olcuGoster:function(idx,toplam){ $('olcuGosterge').textContent=(idx+1)+' / '+toplam; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if(ev.tip==='bitti'){ document.body.classList.add('sahne-bitti'); }
+        if(ev.tip==='tekrar'){ document.body.classList.remove('sahne-nefes'); }
+      },
+    });
+  }).catch(function(err){ console.warn('partisyon yüklenemedi', err); });
+})();
+
+// Klavye: boşluk duraklat/devam; oklar ölçüler arasında (bitti'den sonra
+// da çalışır — motor gotoOlcu oynatmayı o ölçüden sürdürür).
+scene.addEventListener('keydown',function(e){
+  if(!motorAPI) return;
+  if(e.key===' '){
+    e.preventDefault();
+    if(motorAPI.durum==='oynuyor') motorAPI.pause();
+    else if(motorAPI.durum==='durakli') motorAPI.resume();
+    return;
+  }
+  const yon={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(yon===undefined) return;
+  e.preventDefault();
+  document.body.classList.remove('sahne-nefes');
+  motorAPI.gotoOlcu(Math.max(0,Math.min(motorAPI.olcuSayisi-1,motorAPI.aktifIdx+yon)));
+});
+
+setLang('tr');
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang' && L[e.data.lang]) setLang(e.data.lang);
+});
+</script>
+
+<script>
+// Sahneden çıkış: ESC + görünür bağlantı (site geneli desen; iframe içinde çizme).
+if (window.self === window.top) (function () {
+  var ETIKET = { tr: "Sahneler", en: "Scenes", pt: "Cenas" };
+  var dil = "tr";
+  try { var d = localStorage.getItem("dost-lang"); if (ETIKET[d]) dil = d; } catch (e) {}
+
+  var a = document.createElement("a");
+  a.className = "sahne-geri";
+  a.href = "sahneler/";
+  a.textContent = "← " + ETIKET[dil];
+  a.setAttribute("aria-label", ETIKET[dil]);
+  document.body.appendChild(a);
+
+  function geriGit() {
+    try {
+      if (document.referrer && history.length > 1 &&
+          new URL(document.referrer).origin === location.origin) {
+        history.back();
+        return;
+      }
+    } catch (e) {}
+    location.href = "sahneler/";
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    var el = document.activeElement;
+    if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
+    e.preventDefault();
+    geriGit();
+  });
+})();
+</script>
+</body>
+</html>
