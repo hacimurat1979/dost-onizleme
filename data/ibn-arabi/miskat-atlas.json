@@ -27,7 +27,7 @@
       { "no": 3, "toplam": 21, "etiket": "hadis" }
     ]
   },
-  "activeHadisId": "h6",
+  "activeHadisId": "h7",
   "hadisler": [
     {
       "id": "h1",
@@ -495,6 +495,66 @@
           "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 6. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "en": "Mishkat al-Anwar, Section 1, Hadith 6 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "pt": "Mishkat al-Anwar, Seção 1, Hadith 6 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
+        }
+      ]
+    },
+    {
+      "id": "h7",
+      "no": 7,
+      "bolum": 1,
+      "bolumNo": 7,
+      "etiket": "hadis",
+      "status": "active",
+      "title": {
+        "tr": "Yeniden Yaratmak, İlk Yaratmaktan Zor Değildir",
+        "en": "Creating Anew Is No Harder Than Creating for the First Time",
+        "pt": "Criar de Novo Não É Mais Difícil que Criar pela Primeira Vez"
+      },
+      "pageRange": {
+        "tr": "1. Bölüm, 7. Hadis (Ebû Hureyre'den)",
+        "en": "Section 1, Hadith 7 (from Abu Hureyre)",
+        "pt": "Seção 1, Hadith 7 (de Abu Hureyre)"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Yedinci hadis, Dost'un aynı rivayeti iki ayrı senetle — ikisi de Buhârî'ye dayanarak — yan yana koyduğu bir hadis. Âdemoğlunun Allah'a yönelttiği iki iddia -- yeniden diriltemeyeceği ve bir çocuğu olduğu -- tek tek çürütülüyor: ilki, ilk yaratmanın yeniden yaratmaktan zor olmadığı; ikincisi, Allah'ın Samed (hiçbir şeye muhtaç olmayan, her şeyin Kendisine muhtaç olduğu) oluşuyla.",
+          "en": "The seventh hadith is one Dost places side by side through two separate chains — both resting on al-Bukhari. Two claims the son of Adam raises against God are answered one by one: that He could not create anew, refuted by the fact that the first creation was no harder; and that He has a son, refuted by God's being al-Samad — utterly self-sufficient, the one on whom everything else depends.",
+          "pt": "O sétimo hadith é um que Dost coloca lado a lado através de duas cadeias distintas — ambas assentes em al-Bukhari. Duas alegações que o filho de Adão levanta contra Deus são respondidas uma a uma: que Ele não poderia criar de novo, refutada pelo facto de a primeira criação não ter sido mais difícil; e que Ele tem um filho, refutada pelo facto de Deus ser al-Samad — absolutamente autossuficiente, Aquele de quem tudo o mais depende."
+        }
+      },
+      "blocks": [
+        {
+          "type": "hadis",
+          "metin": {
+            "tr": "Âdemoğlu Beni yalanladı, oysa bunu yapmaması gerekir. Bana dil uzattı, bunu da yapmaması gerekir. Beni yalanlaması; “Allah beni ilk yarattığı gibi bir daha diriltmeyecek” demesidir — oysa mahlûkatı ilk kez yaratmak, Ona, yeniden yaratmaktan daha kolay değildir. Bana dil uzatması ise; “Allah çocuk edindi” demesidir. Oysa Ben Bir'im, Samed'im; doğmadım, doğurmadım, dengim hiç kimse yoktur.",
+            "en": "The son of Adam has denied Me, though he ought not to. And he has insulted Me, though he ought not to. His denial of Me is his saying: “God will not bring me back to life as He created me the first time” — yet creating a thing for the first time is no easier for Him than bringing it back again. His insult to Me is his saying: “God has taken a son.” Yet I am the One, the Everlasting Refuge; I was not born, nor do I give birth, and there is none comparable to Me.",
+            "pt": "O filho de Adão negou-Me, embora não devesse fazê-lo. E insultou-Me, embora não devesse fazê-lo. A sua negação é dizer: “Deus não me devolverá à vida como me criou da primeira vez” — mas criar algo pela primeira vez não é mais fácil para Ele do que devolvê-lo à vida de novo. O seu insulto é dizer: “Deus tomou um filho.” Mas Eu sou o Único, o Refúgio Eterno; não fui gerado, nem gero, e não há ninguém comparável a Mim."
+          },
+          "ravi": {
+            "tr": "Ebû Hureyre (r.a.)'den",
+            "en": "From Abu Hureyre (may God be pleased with him)",
+            "pt": "De Abu Hureyre (que Deus esteja satisfeito com ele)"
+          },
+          "senet": {
+            "tr": "Dost, aynı hadisi Buhârî'ye dayanan iki ayrı râvi zinciriyle art arda aktarıyor — ilkinde Ebû Ahmed-Süfyân-Zennâd-A'rec üzerinden, ikincisinde Ebü'l-Yemân-Şuayb-Ebû Zennâd-A'rec üzerinden; ikisi de Ebû Hureyre'ye ulaşıyor.",
+            "en": "Dost transmits the same hadith through two separate chains one after another, both resting on al-Bukhari — one through Abu Ahmad, Sufyan, al-Zannad, and al-A'raj, the other through Abu al-Yaman, Shu'ayb, Abu al-Zannad, and al-A'raj — both reaching back to Abu Hureyre.",
+            "pt": "Dost transmite o mesmo hadith através de duas cadeias distintas, uma após a outra, ambas assentes em al-Bukhari — uma através de Abu Ahmad, Sufyan, al-Zannad e al-A'raj, a outra através de Abu al-Yaman, Shu'ayb, Abu al-Zannad e al-A'raj — ambas remontando até Abu Hureyre."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu hadis, Buhârî'nin Sahih'inde de (Tefsir/Tevhid bölümlerinde) yer alan, sıkça anılan bir rivayettir. İki iddianın da cevabı, aslında tek bir noktaya çıkıyor: Allah hakkında imkânsız sanılan şey, O'nun sıfatlarını insan ölçüsüyle tartmaktan doğuyor.",
+            "en": "This hadith, also found in Sahih al-Bukhari (in the books of Tafsir and Tawhid), is a frequently cited report. The answer to both claims converges on a single point: what seems impossible for God arises from measuring His attributes by a human scale.",
+            "pt": "Este hadith, também encontrado no Sahih al-Bukhari (nos livros de Tafsir e Tawhid), é um relato frequentemente citado. A resposta às duas alegações converge num único ponto: o que parece impossível para Deus surge de medir os Seus atributos por uma escala humana."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 7. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "en": "Mishkat al-Anwar, Section 1, Hadith 7 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "pt": "Mishkat al-Anwar, Seção 1, Hadith 7 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
         }
       ]
     }
