@@ -27,7 +27,7 @@
       { "no": 3, "toplam": 21, "etiket": "hadis" }
     ]
   },
-  "activeHadisId": "h9",
+  "activeHadisId": "h10",
   "hadisler": [
     {
       "id": "h1",
@@ -675,6 +675,66 @@
           "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 9. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "en": "Mishkat al-Anwar, Section 1, Hadith 9 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "pt": "Mishkat al-Anwar, Seção 1, Hadith 9 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
+        }
+      ]
+    },
+    {
+      "id": "h10",
+      "no": 10,
+      "bolum": 1,
+      "bolumNo": 10,
+      "etiket": "hadis",
+      "status": "active",
+      "title": {
+        "tr": "Dudaklar Kıpırdadığında",
+        "en": "When the Lips Move",
+        "pt": "Quando os Lábios se Movem"
+      },
+      "pageRange": {
+        "tr": "1. Bölüm, 10. Hadis (Ebû Hureyre'den)",
+        "en": "Section 1, Hadith 10 (from Abu Hureyre)",
+        "pt": "Seção 1, Hadith 10 (de Abu Hureyre)"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Onuncu hadis, dokuzuncu hadisin infak temasından zikre geri dönüyor — ama sekizinci hadisten farklı bir vurguyla: orada anmak şükürdü, burada anmanın kendisi bir yakınlık ânı. Dudakların yalnızca kıpırdaması bile Allah'ın yanında oluşuna vesile.",
+          "en": "The tenth hadith returns from the ninth's theme of spending to remembrance — but with a different emphasis than the eighth: there, remembering was gratitude; here, the act of remembering itself is a moment of nearness. Even the mere movement of the lips becomes an occasion for God's presence.",
+          "pt": "O décimo hadith regressa do tema do gasto do nono à lembrança — mas com uma ênfase diferente do oitavo: ali, lembrar era gratidão; aqui, o próprio ato de lembrar é um momento de proximidade. Até o simples movimento dos lábios se torna uma ocasião para a presença de Deus."
+        }
+      },
+      "blocks": [
+        {
+          "type": "hadis",
+          "metin": {
+            "tr": "Beni andığı ve Benim ismimi telaffuz etmek için dudakları kıpırdadığı zaman, Ben kulumun yanındayım.",
+            "en": "When My servant remembers Me and his lips move to pronounce My name, I am beside him.",
+            "pt": "Quando o Meu servo se lembra de Mim e os seus lábios se movem para pronunciar o Meu nome, Eu estou ao lado dele."
+          },
+          "ravi": {
+            "tr": "Ebû Hureyre (r.a.)'den (Ümmü'd-Derdâ'nın rivayetiyle)",
+            "en": "From Abu Hureyre (as related by Umm al-Darda)",
+            "pt": "De Abu Hureyre (conforme relatado por Umm al-Darda)"
+          },
+          "senet": {
+            "tr": "Dost, hadisi Mesûd b. Abdullah el-Habeşî'den başlayan bir râvi zinciriyle, Ümmü'd-Derdâ'nın Ebû Hureyre'den duyduğu şekliyle aktarıyor.",
+            "en": "Dost transmits the hadith through a chain of narrators beginning with Mas'ud b. Abdullah al-Habashi, as heard by Umm al-Darda from Abu Hureyre.",
+            "pt": "Dost transmite o hadith através de uma cadeia de narradores que começa com Mas'ud b. Abdullah al-Habashi, tal como ouvido por Umm al-Darda de Abu Hureyre."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu hadis, Buhârî ve Müslim'de de geçen daha geniş bir hadisin (“Ben kulumun zannı üzereyim, beni andığında onunla beraberim”) bir yankısı gibi okunabilir — zikrin yalnız bir söz değil, bizzat bir beraberlik ânı olduğu fikri her ikisinde de ortak.",
+            "en": "This hadith can be read as an echo of a broader, well-known hadith also found in Bukhari and Muslim (“I am as My servant thinks of Me, and I am with him when he remembers Me”) — both share the idea that remembrance is not merely speech but itself a moment of togetherness.",
+            "pt": "Este hadith pode ser lido como um eco de um hadith mais amplo e bem conhecido, também encontrado em Bukhari e Muslim (“Eu sou como o Meu servo Me imagina, e estou com ele quando se lembra de Mim”) — ambos partilham a ideia de que a lembrança não é apenas fala, mas ela própria um momento de companhia."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 10. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "en": "Mishkat al-Anwar, Section 1, Hadith 10 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "pt": "Mishkat al-Anwar, Seção 1, Hadith 10 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
         }
       ]
     }
