@@ -27,7 +27,7 @@
       { "no": 3, "toplam": 21, "etiket": "hadis" }
     ]
   },
-  "activeHadisId": "h8",
+  "activeHadisId": "h9",
   "hadisler": [
     {
       "id": "h1",
@@ -615,6 +615,66 @@
           "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 8. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "en": "Mishkat al-Anwar, Section 1, Hadith 8 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "pt": "Mishkat al-Anwar, Seção 1, Hadith 8 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
+        }
+      ]
+    },
+    {
+      "id": "h9",
+      "no": 9,
+      "bolum": 1,
+      "bolumNo": 9,
+      "etiket": "hadis",
+      "status": "active",
+      "title": {
+        "tr": "Elinde Eksilmeyen Terazi",
+        "en": "The Scale in a Hand That Never Empties",
+        "pt": "A Balança numa Mão que Nunca se Esvazia"
+      },
+      "pageRange": {
+        "tr": "1. Bölüm, 9. Hadis (Ebû Hureyre'den)",
+        "en": "Section 1, Hadith 9 (from Abu Hureyre)",
+        "pt": "Seção 1, Hadith 9 (de Abu Hureyre)"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Dokuzuncu hadis, sekizincinin “anmak-unutmak” ikiliğinden infaka (Allah rızası için harcamaya) geçiyor: Allah'ın eli, yaratılıştan bu yana durmadan verdiği hâlde hiç eksilmez. Sonundaki terazi imgesi — bir kefesi inen, biri kalkan — bu vermenin bir defalık değil, sürekli bir hareket olduğunu gösteriyor.",
+          "en": "The ninth hadith moves from the eighth's remember/forget pairing to spending (infaq, giving for God's sake): God's hand, though it has been giving without pause since creation, never diminishes. The scale-image at the end — one pan going down as the other rises — shows this giving to be not a one-time act but a continuous motion.",
+          "pt": "O nono hadith passa do par lembrar/esquecer do oitavo para o gasto (infaq, doar por amor de Deus): a mão de Deus, embora tenha estado a dar sem pausa desde a criação, nunca diminui. A imagem da balança no final — um prato descendo enquanto o outro sobe — mostra que este dar não é um ato único, mas um movimento contínuo."
+        }
+      },
+      "blocks": [
+        {
+          "type": "hadis",
+          "metin": {
+            "tr": "(Benim için) hayır amaçlı harcamada (infakta) bulun, Ben de sana vereyim.\n\nAllah'ın eli doludur; gece gündüz yapılan hiçbir harcama onu eksiltmez.\n\nGörmüyor musunuz, gökleri ve yeri yarattığından beri harcadığı hâlde elindeki eksilmemiştir? O'nun arşı su üzerindedir; elinde bir kefesi inen, biri kalkan bir terazi vardır.",
+            "en": "(For My sake) spend, and I will give to you.\n\nGod's hand is full; no spending, night or day, diminishes it.\n\nDo you not see that He has been spending since He created the heavens and the earth, yet what is in His hand has not diminished? His Throne is upon the water, and in His hand is a scale, one pan of which goes down as the other rises.",
+            "pt": "(Por Meu amor) gasta, e Eu te darei.\n\nA mão de Deus está cheia; nenhum gasto, noite ou dia, a diminui.\n\nNão vedes que Ele tem gasto desde que criou os céus e a terra, e no entanto o que está na Sua mão não diminuiu? O Seu Trono está sobre a água; na Sua mão há uma balança, um prato da qual desce enquanto o outro sobe."
+          },
+          "ravi": {
+            "tr": "Ebû Hureyre (r.a.)'den",
+            "en": "From Abu Hureyre (may God be pleased with him)",
+            "pt": "De Abu Hureyre (que Deus esteja satisfeito com ele)"
+          },
+          "senet": {
+            "tr": "Dost, hadisi Buhârî'ye dayanan bir senetle, Ebü'l-Yemân-Şuayb-Ebû Zennâd-A'rec üzerinden Ebû Hureyre'ye ulaştırarak aktarıyor.",
+            "en": "Dost transmits the hadith through a chain resting on al-Bukhari, through Abu al-Yaman, Shu'ayb, Abu al-Zannad, and al-A'raj, reaching back to Abu Hureyre.",
+            "pt": "Dost transmite o hadith através de uma cadeia assente em al-Bukhari, passando por Abu al-Yaman, Shu'ayb, Abu al-Zannad e al-A'raj, até Abu Hureyre."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu hadis de Buhârî'nin Sahih'inde (İstiskâ ve Tevhid bölümlerinde) yer alır. Terazi imgesi, ilerleyen hadislerde de karşımıza çıkacak bir tasvir biçimi — Allah'ın fiillerini insan diliyle, ama insan ölçüsüyle sınırlamadan anlatma çabası.",
+            "en": "This hadith too is found in Sahih al-Bukhari (in the books on the rain-prayer and on divine unity). The scale-image is a mode of depiction that will recur in later hadiths — an attempt to speak of God's acts in human language without confining them to a human measure.",
+            "pt": "Este hadith também se encontra no Sahih al-Bukhari (nos livros sobre a oração da chuva e sobre a unidade divina). A imagem da balança é um modo de representação que voltará a aparecer em hadiths posteriores — uma tentativa de falar dos atos de Deus em linguagem humana sem os confinar a uma medida humana."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 9. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "en": "Mishkat al-Anwar, Section 1, Hadith 9 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "pt": "Mishkat al-Anwar, Seção 1, Hadith 9 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
         }
       ]
     }
