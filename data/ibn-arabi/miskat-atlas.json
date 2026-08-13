@@ -27,7 +27,7 @@
       { "no": 3, "toplam": 21, "etiket": "hadis" }
     ]
   },
-  "activeHadisId": "h1",
+  "activeHadisId": "h2",
   "hadisler": [
     {
       "id": "h1",
@@ -195,6 +195,66 @@
           "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 1. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "en": "Mishkat al-Anwar, Section 1, Hadith 1 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "pt": "Mishkat al-Anwar, Seção 1, Hadith 1 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
+        }
+      ]
+    },
+    {
+      "id": "h2",
+      "no": 2,
+      "bolum": 1,
+      "bolumNo": 2,
+      "etiket": "hadis",
+      "status": "active",
+      "title": {
+        "tr": "Ortaktan En Müstağni Olan",
+        "en": "The One Most Free of Need for a Partner",
+        "pt": "Aquele Mais Livre da Necessidade de um Parceiro"
+      },
+      "pageRange": {
+        "tr": "1. Bölüm, 2. Hadis (Ebû Hureyre'den)",
+        "en": "Section 1, Hadith 2 (from Abu Hureyre)",
+        "pt": "Seção 1, Hadith 2 (de Abu Hureyre)"
+      },
+      "hero": {
+        "summary": {
+          "tr": "İkinci hadis, ilkinin genişliğinden sonra tek bir noktaya iniyor: bir amelin içine gizlice başka bir şey karıştırmak. Ebû Hureyre'den gelen bu kısa rivayette Allah, kendisiyle birlikte başka bir şeyin de gözetildiği her ameli tümüyle o “başka şey”e bırakıyor — kendisi ondan hiçbir pay almıyor. Şirkin en görünmez hâli belki de tam burada: niyetin ortasına sızan, kula bile fark ettirmeyen bir ortaklık.",
+          "en": "The second hadith narrows, after the breadth of the first, to a single point: secretly mixing something else into a deed. In this short report from Abu Hureyre, God hands over entirely to that “something else” any deed in which He is watched alongside it — He takes no share of it at all. Perhaps the most invisible face of association lies exactly here: a partnership that slips into the middle of an intention without the servant even noticing.",
+          "pt": "O segundo hadith, depois da amplitude do primeiro, estreita-se a um único ponto: misturar secretamente algo mais numa ação. Neste breve relato de Abu Hureyre, Deus entrega inteiramente a esse “algo mais” qualquer ação em que Ele seja observado junto com isso — Ele não toma nenhuma parte dela. Talvez a face mais invisível da associação esteja exatamente aqui: uma parceria que se infiltra no meio de uma intenção sem que o servo sequer perceba."
+        }
+      },
+      "blocks": [
+        {
+          "type": "hadis",
+          "metin": {
+            "tr": "Ben, ortaklardan (şirkten) en müstağni olanım. Kim bir amel (iş) yapar da bu amele Benden başkasını ortak kılarsa, Ben o amelden beriyim; o amel, ortak koştuğu şeye aittir.",
+            "en": "I am the most free of need for any partner. Whoever does a deed and associates someone other than Me with it, I disown that deed; it belongs to the one he associated with it.",
+            "pt": "Eu sou o mais livre da necessidade de qualquer parceiro. Quem realizar uma ação e associar a ela outro além de Mim, Eu me desligo dessa ação; ela pertence a quem ele associou a ela."
+          },
+          "ravi": {
+            "tr": "Ebû Hureyre (r.a.)'den",
+            "en": "From Abu Hureyre (may God be pleased with him)",
+            "pt": "De Abu Hureyre (que Deus esteja satisfeito com ele)"
+          },
+          "senet": {
+            "tr": "Dost, hadisi Yûnus b. Yahyâ'dan başlayan bir râvi zinciriyle, A'lâ ve babası üzerinden Ebû Hureyre'ye ulaştırarak aktarıyor.",
+            "en": "Dost transmits the hadith through a chain of narrators beginning with Yunus b. Yahya, reaching through al-A'la and his father back to Abu Hureyre.",
+            "pt": "Dost transmite o hadith através de uma cadeia de narradores que começa com Yunus b. Yahya, passando por al-A'la e seu pai, até Abu Hureyre."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu hadis, riyânın (gösteriş için ibadet etmenin) “gizli şirk” olarak anıldığı tartışmalarda sıkça anılan, Sahih-i Müslim'de de yer alan bir rivayettir. İlk hadis Allah'ın kulundan hiçbir şeyi eksiltmeyeceğini söylüyordu; bu ikincisi ise kulun kendi elinden bir şeyi — amelinin tamamını — nasıl kaçırabileceğini gösteriyor.",
+            "en": "This hadith, also found in Sahih Muslim, is often cited in discussions of riya (performing an act of worship to be seen) as a “hidden association.” The first hadith said that God would not diminish anything from His servant; this second one shows how a servant can lose something — an entire deed — through his own hand.",
+            "pt": "Este hadith, também encontrado no Sahih Muslim, é frequentemente citado em discussões sobre riya (realizar um ato de adoração para ser visto) como uma “associação oculta”. O primeiro hadith dizia que Deus não diminuiria nada do Seu servo; este segundo mostra como um servo pode perder algo — uma ação inteira — pelas próprias mãos."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 2. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "en": "Mishkat al-Anwar, Section 1, Hadith 2 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "pt": "Mishkat al-Anwar, Seção 1, Hadith 2 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
         }
       ]
     }
