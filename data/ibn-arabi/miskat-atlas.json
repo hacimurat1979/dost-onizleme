@@ -27,7 +27,7 @@
       { "no": 3, "toplam": 21, "etiket": "hadis" }
     ]
   },
-  "activeHadisId": "h2",
+  "activeHadisId": "h3",
   "hadisler": [
     {
       "id": "h1",
@@ -255,6 +255,66 @@
           "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 2. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "en": "Mishkat al-Anwar, Section 1, Hadith 2 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
           "pt": "Mishkat al-Anwar, Seção 1, Hadith 2 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
+        }
+      ]
+    },
+    {
+      "id": "h3",
+      "no": 3,
+      "bolum": 1,
+      "bolumNo": 3,
+      "etiket": "hadis",
+      "status": "active",
+      "title": {
+        "tr": "Parmakla Gösterilmeyen Velî",
+        "en": "The Friend No One Points Out",
+        "pt": "O Amigo que Ninguém Aponta"
+      },
+      "pageRange": {
+        "tr": "1. Bölüm, 3. Hadis (Ebû İmâme'den)",
+        "en": "Section 1, Hadith 3 (from Abu Umama)",
+        "pt": "Seção 1, Hadith 3 (de Abu Umama)"
+      },
+      "hero": {
+        "summary": {
+          "tr": "Üçüncü hadis, ikincisinin açtığı “gizlilik” ipini beklenmedik bir yöne çeker: orada gizli olan şey bir tehlikeydi (amele karışan gizli ortak), burada ise gizlilik bizzat övülen bir hâl. Ebû İmâme'den gelen bu rivayette Allah'ın en çok gıpta ettiği velî, malı az, namazın tadını çok alan, insanlar arasında tanınmayan, kimsenin parmağıyla bir başkasına göstermediği bir mümin. Dost'un bütün eserinde sıkça döneceği bir tema burada ilk kez beliriyor: görünmeyen velî.",
+          "en": "The third hadith pulls the thread of “hiddenness” opened by the second in an unexpected direction: there, what was hidden was a danger (a secret partner slipping into a deed); here, hiddenness itself is what is praised. In this report from Abu Umama, the friend of God most envied is one whose wealth is little, whose taste for prayer is great, who is unknown among people, whom no one points out to another. A theme Dost will return to often across his work appears here for the first time: the unseen friend of God.",
+          "pt": "O terceiro hadith puxa o fio da “ocultação” aberto pelo segundo numa direção inesperada: ali, o que estava oculto era um perigo (um parceiro secreto que se infiltra numa ação); aqui, a própria ocultação é o que é louvado. Neste relato de Abu Umama, o amigo de Deus mais invejado é aquele cuja riqueza é pouca, cujo gosto pela oração é grande, que é desconhecido entre as pessoas, a quem ninguém aponta para outro. Um tema ao qual Dost voltará frequentemente em toda a sua obra aparece aqui pela primeira vez: o amigo oculto de Deus."
+        }
+      },
+      "blocks": [
+        {
+          "type": "hadis",
+          "metin": {
+            "tr": "Benim katımda en çok gıpta edilen velim, malı az, salâtının lezzetinde payı büyük, Rabbine güzellikle ibadet eden, gizli ve açık O'na itaat eden mümin kulumdur. İnsanlar arasında tanınmaz, kimse onu parmağıyla bir başkasına göstermez. Rızkı az olur, ama o buna sabreder.\n\n— Resûlullah, eliyle yere vurarak, sözlerine şöyle devam etti: “Ölümü çabuk, ağlayanı ve mirası az olur.”",
+            "en": "The friend of Mine most envied in My sight is a believing servant whose wealth is little, whose share of sweetness in prayer is great, who worships his Lord with excellence, and who obeys Him in secret and in the open. He is not known among people; no one points him out with a finger to another. His provision is scant, yet he bears it patiently.\n\n— The Messenger of God, striking the ground with his hand, went on: “His death comes swiftly, few mourn him, and his inheritance is small.”",
+            "pt": "O amigo Meu mais invejado a Meus olhos é um servo crente cuja riqueza é pouca, cujo quinhão na doçura da oração é grande, que adora o seu Senhor com excelência, e que Lhe obedece em segredo e às claras. Não é conhecido entre as pessoas; ninguém o aponta com o dedo a outro. O seu sustento é escasso, mas ele o suporta com paciência.\n\n— O Mensageiro de Deus, batendo no chão com a mão, continuou: “A sua morte é rápida, poucos o choram, e a sua herança é pequena.”"
+          },
+          "ravi": {
+            "tr": "Ebû İmâme (r.a.)'den",
+            "en": "From Abu Umama (may God be pleased with him)",
+            "pt": "De Abu Umama (que Deus esteja satisfeito com ele)"
+          },
+          "senet": {
+            "tr": "Dost, hadisi Mesûd b. Abdullah el-Habeşî'den başlayan uzun bir râvi zinciriyle Ebû İmâme'ye ulaştırarak aktarıyor.",
+            "en": "Dost transmits the hadith through a long chain of narrators beginning with Mas'ud b. Abdullah al-Habashi, reaching back to Abu Umama.",
+            "pt": "Dost transmite o hadith através de uma longa cadeia de narradores que começa com Mas'ud b. Abdullah al-Habashi, remontando até Abu Umama."
+          }
+        },
+        {
+          "type": "p",
+          "text": {
+            "tr": "Bu rivayette anlatılan “gizli velî” motifi, tasavvuf yazınında sıkça karşılaşılan bir imgedir — Dost'un kendi eserlerinde de ricâlullah (Allah'ın erenleri) ve gizli velayet üzerine çok şey söylediğini biliyoruz. Bu hadisin bu külliyattaki izini sürmek, okuma ilerledikçe ayrı bir soru olarak önümüzde duruyor.",
+            "en": "The image of the “hidden friend of God” told in this report recurs often in Sufi writing — we know Dost himself says a great deal, across his works, about the rijal Allah (God's men) and hidden sainthood. Tracing this hadith's echo through that wider body of work remains, as the reading continues, a separate question standing before us.",
+            "pt": "A imagem do “amigo oculto de Deus” contada neste relato recorre frequentemente na literatura sufi — sabemos que o próprio Dost diz muito, ao longo de suas obras, sobre os rijal Allah (os homens de Deus) e a santidade oculta. Rastrear o eco deste hadith nessa obra mais ampla permanece, à medida que a leitura avança, uma questão à parte diante de nós."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "tr": "Mişkâtü'l-Envâr, 1. Bölüm, 3. Hadis (çev. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "en": "Mishkat al-Anwar, Section 1, Hadith 3 (trans. Vahdettin İnce, Kitsan Yayınevi, 2007)",
+          "pt": "Mishkat al-Anwar, Seção 1, Hadith 3 (trad. Vahdettin İnce, Kitsan Yayınevi, 2007)"
         }
       ]
     }
