@@ -51,6 +51,25 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 .aha{width:min(640px,96vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.75;color:var(--liminal);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;white-space:pre-line}
 .aha.show{opacity:1;transform:none}
 
+/* "Hepsini gör": üç âyetin okuma-çiftini yan yana koyan sentez paneli.
+   Sahnenin geri kalanı gibi -- yeni bir mekanizma değil, var olan üç
+   künyenin (left/right) tek bir listede yeniden düzenlenmesi. */
+.verse-list{width:min(760px,96vw);display:flex;flex-direction:column;gap:0;margin-bottom:1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.3rem 1.2rem}
+.verse-list-item{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;padding:.75rem 0;border-bottom:1px solid var(--border)}
+.verse-list-item:last-child{border-bottom:none}
+.verse-list-ref{font-size:.86rem;color:var(--gold);white-space:nowrap}
+.verse-list-pair{font-size:.83rem;color:var(--muted);text-align:right;line-height:1.6}
+.verse-list-pair b{color:var(--text);font-weight:400;font-style:italic}
+.verse-list-arrow{opacity:.5;padding:0 .15rem}
+
+.insc-wrap.all-mode .grab-hint,.insc-wrap.all-mode .track-labels{visibility:hidden}
+#hitRect.inert{pointer-events:none}
+/* .readings ve .verse-list kendi display:flex'ini taşıyor -- yazar kuralı
+   tarayıcının [hidden]{display:none} kuralını kökene göre ezer (eşit
+   özgüllükte bile). hidden özniteliği hep kazansın diye açıkça yeniden
+   beyan ediliyor. */
+.readings[hidden],.verse-list[hidden]{display:none}
+
 /* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
    ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
    da var. Renkler zincirleme var() yedekleriyle: sahnelerin değişken adları
@@ -109,7 +128,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 
 <div class="picker" id="picker"></div>
 
-<div class="verse-box">
+<div class="verse-box" id="verseBox">
   <p class="verse-ar" id="verseAr"></p>
   <p class="verse-meal" id="verseMeal"></p>
   <p class="verse-src" id="verseSrc"></p>
@@ -150,7 +169,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   <p class="grab-hint" id="grabHint">Sürükle (ok tuşları da çalışır)</p>
 </div>
 
-<div class="readings">
+<div class="readings" id="readingsWrap">
   <div class="reading" id="readingLeft">
     <p class="reading-label" id="rlLabel"></p>
     <p class="reading-text" id="rlText"></p>
@@ -163,6 +182,8 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   </div>
 </div>
 
+<div class="verse-list" id="verseList" hidden></div>
+
 <p class="aha" id="aha"></p>
 
 <script>
@@ -174,6 +195,9 @@ const LA={
     grab:'Sürükle (ok tuşları da çalışır)',
     aha:'Âyetin tek bir kelimesi değişmedi.\nSen yerini değiştirdin.',
     svgAria:'Sabit duran bir yazı; bakış konumuna göre iki farklı okuma beliriyor.',
+    allBtn:'Hepsini gör',
+    allSvgAria:'Sabit duran bir yazı; üç ayrı âyetin de üzerinde aynı iki okuma-yolu duruyor.',
+    allAha:'Üç âyet, üç ayrı konu — üçünde de aynı ikilik: bir mertebe yakından okunuyor, biri uzaktan.',
   },
   en:{
     title:'The Same Verse, Two Levels',
@@ -182,6 +206,9 @@ const LA={
     grab:'Drag (arrow keys work too)',
     aha:"Not one word of the verse changed.\nYou changed where you stood.",
     svgAria:'A fixed inscription; two different readings emerge depending on viewing position.',
+    allBtn:'See all together',
+    allSvgAria:'A fixed inscription; the same two reading-paths sit over all three verses.',
+    allAha:'Three verses, three different subjects — the same duality in each: one level read up close, one from afar.',
   },
   pt:{
     title:'O Mesmo Versículo, Dois Graus',
@@ -190,6 +217,9 @@ const LA={
     grab:'Arraste (as setas também funcionam)',
     aha:'Nem uma palavra do versículo mudou.\nFoste tu que mudaste de lugar.',
     svgAria:'Uma inscrição fixa; duas leituras diferentes emergem conforme a posição de observação.',
+    allBtn:'Ver todos juntos',
+    allSvgAria:'Uma inscrição fixa; os mesmos dois caminhos de leitura assentam sobre os três versículos.',
+    allAha:'Três versículos, três assuntos diferentes — a mesma dualidade em cada um: um grau lido de perto, outro de longe.',
   }
 };
 
@@ -378,15 +408,21 @@ const axisCapLeft=$('axisCapLeft'), axisCapRight=$('axisCapRight');
 const hitRect=$('hitRect'), inscrSvg=$('inscrSvg');
 
 function renderPicker(){
-  $('picker').innerHTML=ORDER.map(ref=>`
+  const verseBtns=ORDER.map(ref=>`
     <button class="pick-btn${ref===curVerse?' on':''}" data-ref="${ref}" type="button">${VERSES[ref].label[curLang]}</button>
   `).join('');
+  const allBtn=`<button class="pick-btn${curVerse==='all'?' on':''}" data-ref="all" type="button">${LA[curLang].allBtn}</button>`;
+  $('picker').innerHTML=verseBtns+allBtn;
   $('picker').querySelectorAll('.pick-btn').forEach(b=>{
     b.addEventListener('click',()=>{ curVerse=b.dataset.ref; pos=0.5; touched=false; renderAll(); });
   });
 }
 
 function renderVerse(){
+  const allMode=curVerse==='all';
+  $('verseBox').hidden=allMode;
+  $('fixedNote').hidden=allMode;
+  if(allMode) return;
   const v=VERSES[curVerse];
   $('verseAr').textContent=v.ar+' …';
   $('verseMeal').textContent='“'+(v.meal[curLang]||v.meal.en)+'…”';
@@ -394,6 +430,29 @@ function renderVerse(){
 }
 
 function applyPosition(){
+  const inscWrap=document.querySelector('.insc-wrap');
+  if(curVerse==='all'){
+    // "Hepsini gör": tek bir bakış noktası yok -- iki okuma-yolu da aynı
+    // sabit yazının üstünde, eşit ve durgun görünür. Sürükleme burada
+    // anlamsız olduğu için devre dışı bırakılıyor (koşul: bir hareketin
+    // anlamı tek, ETKILESIM_DILI.md); göz işaretçisi de bir "konum"
+    // göstermediği için gizleniyor.
+    inscWrap.classList.add('all-mode');
+    hitRect.classList.add('inert');
+    hitRect.setAttribute('tabindex','-1');
+    viewerC.setAttribute('opacity','0'); viewerP.setAttribute('opacity','0'); sightLine.setAttribute('opacity','0');
+    pathLeftG.setAttribute('opacity','0.62'); pathRightG.setAttribute('opacity','0.62');
+    ringsLeft.forEach(r=>r.setAttribute('opacity','0'));
+    ringsRight.forEach(r=>r.setAttribute('opacity','0'));
+    $('aha').textContent=LA[curLang].allAha;
+    $('aha').classList.add('show');
+    return;
+  }
+  inscWrap.classList.remove('all-mode');
+  hitRect.classList.remove('inert');
+  hitRect.setAttribute('tabindex','0');
+  viewerC.setAttribute('opacity','1'); viewerP.setAttribute('opacity','1'); sightLine.setAttribute('opacity','0.5');
+
   const front=Math.max(0,1-pos), back=Math.max(0,pos);
 
   // Bakış işaretçisi eksende kayar; yazı yerinde kalır.
@@ -428,6 +487,21 @@ function applyPosition(){
 applyPosition._sawL=false; applyPosition._sawR=false;
 
 function renderReadings(){
+  const allMode=curVerse==='all';
+  $('readingsWrap').hidden=allMode;
+  $('verseList').hidden=!allMode;
+  if(allMode){
+    $('verseList').innerHTML=ORDER.map(ref=>{
+      const v=VERSES[ref];
+      return `<div class="verse-list-item">
+        <span class="verse-list-ref">${v.label[curLang]}</span>
+        <span class="verse-list-pair"><b>${v.left.label[curLang]}</b><span class="verse-list-arrow">↔</span><b>${v.right.label[curLang]}</b></span>
+      </div>`;
+    }).join('');
+    axisCapLeft.textContent='';
+    axisCapRight.textContent='';
+    return;
+  }
   const v=VERSES[curVerse];
   $('rlLabel').textContent=v.left.label[curLang];
   $('rlText').textContent=v.left.text[curLang];
@@ -449,7 +523,7 @@ function renderAll(){
   $('grabHint').textContent=d.grab;
   $('aha').textContent=d.aha;
   hitRect.setAttribute('aria-label',d.grab);
-  inscrSvg.setAttribute('aria-label',d.svgAria);
+  inscrSvg.setAttribute('aria-label', curVerse==='all' ? d.allSvgAria : d.svgAria);
   renderPicker();
   renderVerse();
   renderReadings();
@@ -474,10 +548,11 @@ function setPosFromClientX(clientX){
   applyPosition();
 }
 let dragging=false;
-hitRect.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{hitRect.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
+hitRect.addEventListener('pointerdown',e=>{ if(curVerse==='all') return; dragging=true; markTouched(); try{hitRect.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
 hitRect.addEventListener('pointermove',e=>{ if(dragging) setPosFromClientX(e.clientX); });
 ['pointerup','pointercancel','pointerleave'].forEach(t=>hitRect.addEventListener(t,()=>{dragging=false;}));
 hitRect.addEventListener('keydown',e=>{
+  if(curVerse==='all') return;
   const k={ArrowLeft:-0.05,ArrowRight:0.05,ArrowDown:-0.05,ArrowUp:0.05}[e.key];
   if(k===undefined) return;
   markTouched(); pos=Math.max(0,Math.min(1,pos+k)); applyPosition(); e.preventDefault();
