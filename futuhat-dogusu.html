@@ -17,22 +17,18 @@ header{text-align:center;margin-bottom:1rem;max-width:650px}
 h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
 .sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
 
-#stage{width:min(430px,92vw);height:min(430px,92vw);display:block;margin:.4rem auto .9rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+#stageWrap{position:relative;width:min(430px,92vw);margin:.4rem auto .9rem}
+#stage{width:100%;aspect-ratio:1/1;display:block;background:var(--panel);border:1px solid var(--border);border-radius:12px;touch-action:none;cursor:grab}
+#stage:active{cursor:grabbing}
+#stage:focus-visible{outline:2px solid var(--liminal);outline-offset:3px}
+
+#ipucu{position:absolute;top:14px;right:16px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);animation:fd-pulse 3s ease-in-out 2s 3;pointer-events:none}
+@keyframes fd-pulse{0%,100%{opacity:.55}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){#ipucu{animation:none}}
 
 .savt{width:min(560px,96vw);text-align:center;font-size:.78rem;color:var(--muted);letter-spacing:.06em;margin-bottom:.7rem}
 .savt b{color:var(--gold);font-weight:400}
-
-.track-wrap{width:min(560px,94vw);margin:0 auto 1.1rem;text-align:center;padding:0 12px}
-.track{position:relative;height:34px;margin:0 auto}
-.track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
-.track-end{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:var(--border);transform:translate(-50%,-50%)}
-.track-end.left{left:0}
-.track-end.right{left:100%}
-.track-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal);transform:translate(-50%,-50%);cursor:grab;touch-action:none}
-.track-handle:active{cursor:grabbing}
-.track:focus-visible{outline:2px solid var(--liminal);outline-offset:6px;border-radius:4px}
-.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
-.grab-hint.gone{opacity:.28}
 
 .konusma{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;min-height:9.5rem}
 .konusma ol{list-style:none;counter-reset:savt}
@@ -110,19 +106,13 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   <p class="sub" id="hSub"></p>
 </header>
 
-<svg id="stage" viewBox="0 0 430 430" role="img" aria-label="Kâbe'nin çevresinde yedi şavtlık bir tavaf"></svg>
+<div id="stageWrap">
+  <svg id="stage" viewBox="0 0 430 430" role="slider" tabindex="0"
+       aria-valuemin="0" aria-valuemax="7" aria-valuenow="0"></svg>
+  <div id="ipucu"><span id="ipucuMetin"></span></div>
+</div>
 
 <p class="savt" id="savt"></p>
-
-<div class="track-wrap">
-  <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" aria-label="Tavafı yürüt">
-    <div class="track-line"></div>
-    <div class="track-end left"></div>
-    <div class="track-end right"></div>
-    <div class="track-handle" id="handle"></div>
-  </div>
-  <p class="grab-hint" id="grabHint"></p>
-</div>
 
 <div class="konusma"><ol id="konusma"></ol></div>
 
@@ -148,6 +138,7 @@ const LA={
     title:'Tavafta Bir Karşılaşma',
     sub:'Dost, Kâbe’yi tavaf ederken biriyle karşılaşır ve kitabının oradan doğduğunu söyler. Yedi şavtı yürüt; karşılaşma dönerken açılsın.',
     grab:'Sürükle (ok tuşları da çalışır)',
+    ariaLabel:'Tavafı sürükleyerek yürüt — Kâbe’nin çevresinde yedi şavt',
     savt:(n)=>`<b>${n}</b> / 7 şavt`,
     satirlar:[
       { t:'Tavaf ederken biriyle karşılaştım: geçkin-genç, susan-konuşan.' },
@@ -170,6 +161,7 @@ const LA={
     title:'An Encounter During the Circling',
     sub:'While circling the Ka‘ba, Dost meets someone — and says his book was born there. Walk the seven circuits; let the encounter open as you go round.',
     grab:'Drag (arrow keys work too)',
+    ariaLabel:'Drag to walk the circling — seven circuits around the Ka‘ba',
     savt:(n)=>`<b>${n}</b> / 7 circuits`,
     satirlar:[
       { t:'While circling, I met someone: aged-yet-young, silent-yet-speaking.' },
@@ -192,6 +184,7 @@ const LA={
     title:'Um Encontro na Circum-ambulação',
     sub:'Ao circundar a Caaba, Dost encontra alguém — e diz que o seu livro nasceu ali. Percorra as sete voltas; deixe o encontro abrir-se enquanto anda.',
     grab:'Arraste (as setas também funcionam)',
+    ariaLabel:'Arraste para percorrer a circum-ambulação — sete voltas à volta da Caaba',
     savt:(n)=>`<b>${n}</b> / 7 voltas`,
     satirlar:[
       { t:'Enquanto circundava, encontrei alguém: velho-e-jovem, calado-e-falante.' },
@@ -213,9 +206,11 @@ const LA={
 };
 
 const SAVT=7;
-let curLang='tr', pos=0, touched=false, quoteIdx=0;
+const SAVT2PI=SAVT*2*Math.PI;
+let curLang='tr', a=0, userActive=false, quoteIdx=0;
 const $=id=>document.getElementById(id);
-const clamp01=x=>Math.max(0,Math.min(1,x));
+const clampA=x=>Math.max(0,Math.min(SAVT2PI,x));
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ── Sahne ────────────────────────────────────────────────────────────────────
 // GORSEL_DIL.md: Zât'ı ya da Ev'i parlak bir cisim gibi ÇİZME. Ortadaki taş
@@ -252,7 +247,8 @@ svg.innerHTML=`
           cx="${CX+R*Math.cos(GENC_ACI)}" cy="${CY+R*Math.sin(GENC_ACI)}"/>
   <circle id="yuruyen" r="4.5" fill="var(--gold)" cx="${CX+R*Math.cos(GENC_ACI)}" cy="${CY+R*Math.sin(GENC_ACI)}"/>
   <rect x="-40" y="-40" width="510" height="510" fill="#000" filter="url(#sis)" opacity=".4" pointer-events="none"/>
-</g>`;
+</g>
+<rect id="tutamac" x="0" y="0" width="430" height="430" fill="transparent"/>`;
 
 // Tamamlanan her şavt, halkanın üstünde kalıcı bir iz bırakıyor: kaç kez
 // döndüğün görülebilir olsun (yalnız sayı değişmesin -- GORSEL_DIL: hiçbir
@@ -272,12 +268,12 @@ function izleriCiz(tam){
   }
 }
 
-function paint(p){
+function paint(){
   // Tavaf saat yönünün TERSİNE: açı azalarak ilerliyor.
-  const aci = GENC_ACI - p*SAVT*2*Math.PI;
+  const aci = GENC_ACI - a;
   $('yuruyen').setAttribute('cx',(CX+R*Math.cos(aci)).toFixed(1));
   $('yuruyen').setAttribute('cy',(CY+R*Math.sin(aci)).toFixed(1));
-  izleriCiz(Math.floor(p*SAVT+1e-9));
+  izleriCiz(Math.floor(a/(2*Math.PI)+1e-9));
 }
 
 function konusmaCiz(){
@@ -291,7 +287,8 @@ function render(){
   const t=LA[curLang];
   $('hTitle').textContent=t.title;
   $('hSub').textContent=t.sub;
-  $('grabHint').textContent=t.grab;
+  $('ipucuMetin').textContent=t.grab;
+  svg.setAttribute('aria-label',t.ariaLabel);
   $('aha').textContent=t.aha;
   $('kardesLink').textContent=t.kardes;
   $('yontem').textContent=t.yontem;
@@ -310,15 +307,12 @@ setInterval(()=>{
   $('quoteSrc').textContent=qs[quoteIdx].src;
 }, 10000);
 
-const track=$('track');
-function markTouched(){ if(!touched){ touched=true; $('grabHint').classList.add('gone'); } }
 function uygula(){
-  const tam=Math.floor(pos*SAVT+1e-9);
-  $('handle').style.left=(pos*100)+'%';
-  track.setAttribute('aria-valuenow',tam);
-  track.setAttribute('aria-valuetext', LA[curLang].savt(tam).replace(/<[^>]+>/g,''));
+  const tam=Math.floor(a/(2*Math.PI)+1e-9);
+  svg.setAttribute('aria-valuenow',tam);
+  svg.setAttribute('aria-valuetext', LA[curLang].savt(tam).replace(/<[^>]+>/g,''));
   $('savt').innerHTML=LA[curLang].savt(tam);
-  paint(pos);
+  paint();
   // Her tamamlanan şavt bir satır açıyor: karşılaşma dönerken açılıyor.
   document.querySelectorAll('#konusma li').forEach((li,i)=>{
     li.classList.toggle('show', i < tam);
@@ -326,21 +320,74 @@ function uygula(){
   // Hayret önce, anlama sonra: yedi şavt tamamlanmadan aha yok.
   $('aha').classList.toggle('show', tam >= SAVT);
 }
-function posFromX(x){ const r=track.getBoundingClientRect(); pos=clamp01((x-r.left)/r.width); uygula(); }
-let dragging=false;
-track.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{track.setPointerCapture(e.pointerId);}catch(_){} posFromX(e.clientX); e.preventDefault(); });
-track.addEventListener('pointermove',e=>{ if(dragging) posFromX(e.clientX); });
-['pointerup','pointercancel'].forEach(t=>track.addEventListener(t,()=>{dragging=false;}));
-track.addEventListener('keydown',e=>{
-  const adim=1/SAVT;
-  const k={ArrowLeft:-adim,ArrowRight:adim,ArrowDown:-adim,ArrowUp:adim,Home:-1,End:1}[e.key];
-  if(k===undefined) return;
-  markTouched();
-  pos = e.key==='Home' ? 0 : e.key==='End' ? 1 : clamp01(pos+k);
-  uygula(); e.preventDefault();
+
+// ── Sürükleme: doğrudan halkanın üstünde, merkez etrafındaki açıyla. ──────────
+// (Eski yatay çubuk yerine -- tavaf halkanın kendisi üzerinde yürünür.)
+const hit=$('tutamac');
+const svgEl=hit.ownerSVGElement;
+const toSvg=(clientX,clientY)=>{
+  const pt=svgEl.createSVGPoint();
+  pt.x=clientX; pt.y=clientY;
+  const m=svgEl.getScreenCTM();
+  if(!m) return {x:CX,y:CY};
+  return pt.matrixTransform(m.inverse());
+};
+const angleOf=(x,y)=>Math.atan2(y-CY,x-CX);
+const stopIntro=()=>{ userActive=true; $('ipucu').style.animation='none'; };
+let dragging=false, lastAngle=0;
+
+const onDown=(e)=>{
+  dragging=true; stopIntro(); svg.focus();
+  const p0=e.touches?e.touches[0]:e;
+  const p=toSvg(p0.clientX,p0.clientY);
+  lastAngle=angleOf(p.x,p.y);
+  e.preventDefault();
+};
+const onMove=(e)=>{
+  if(!dragging) return;
+  const p0=e.touches?e.touches[0]:e;
+  const p=toSvg(p0.clientX,p0.clientY);
+  const ang=angleOf(p.x,p.y);
+  let delta=ang-lastAngle;
+  if(delta>Math.PI) delta-=Math.PI*2;
+  if(delta<-Math.PI) delta+=Math.PI*2;
+  lastAngle=ang;
+  a=clampA(a+delta);
+  uygula();
+};
+const onUp=()=>{ dragging=false; };
+hit.addEventListener('mousedown',onDown);
+window.addEventListener('mousemove',onMove);
+window.addEventListener('mouseup',onUp);
+hit.addEventListener('touchstart',onDown,{passive:false});
+window.addEventListener('touchmove',onMove,{passive:false});
+window.addEventListener('touchend',onUp);
+
+svg.addEventListener('keydown',e=>{
+  const adim=2*Math.PI;   // bir ok tuşu = bir tam şavt
+  let handled=true;
+  if(e.key==='ArrowLeft'||e.key==='ArrowDown') a=clampA(a-adim);
+  else if(e.key==='ArrowRight'||e.key==='ArrowUp') a=clampA(a+adim);
+  else if(e.key==='Home') a=0;
+  else if(e.key==='End') a=SAVT2PI;
+  else handled=false;
+  if(handled){ stopIntro(); uygula(); e.preventDefault(); }
 });
 
 render();
+
+// Kullanıcı devralana kadar tavaf kendiliğinden, yavaşça döner -- önce hayret,
+// sonra anlama (bkz. GORSEL_DIL.md). Vestibüler rahatsızlıklar için:
+// prefers-reduced-motion'da kendiliğinden hiç başlamaz, sahne yalnız
+// sürükleme/klavye ile ilerler.
+let last=performance.now(), rafId=0;
+const loop=(now)=>{
+  const dt=Math.min(60,now-last); last=now;
+  if(!userActive){ a=clampA(a+dt/4200); uygula(); }
+  rafId=requestAnimationFrame(loop);
+};
+if(!reduceMotion){ rafId=requestAnimationFrame(loop); }
+else { $('ipucu').style.animation='none'; }
 
 window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);

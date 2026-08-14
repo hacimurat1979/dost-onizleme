@@ -27,15 +27,16 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 .verse-src{font-size:.74rem;color:var(--muted);margin-top:.5rem}
 .verse-fixed-note{font-size:.72rem;color:var(--muted);text-align:center;margin:.4rem 0 1.3rem;font-style:italic}
 
-.track-wrap{width:min(420px,90vw);margin:0 auto 1.5rem;text-align:center}
-.track{position:relative;height:34px;margin:0 auto}
-.track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
-.track-end{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:var(--border);transform:translate(-50%,-50%)}
-.track-end.left{left:0}
-.track-end.right{left:100%}
-.track-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal);transform:translate(-50%,-50%);cursor:grab;touch-action:none}
-.track-handle:active{cursor:grabbing}
-.track-handle:focus-visible{outline:2px solid var(--liminal);outline-offset:3px}
+/* Sahne: yazı hiç kımıldamıyor -- sabit bir dizi soyut işaret. Sürüklenen
+   şey bakış NOKTASI (SVG'nin içindeki "göz" işaretçisi); konumuna göre iki
+   okuma-yolu (sol/sağ mertebe) üst üste beliriyor ya da soluyor. Aşağıdaki
+   okuma kartları da aynı pozisyona göre netleşiyor/bulanıklaşıyor. */
+.insc-wrap{width:min(700px,94vw);margin:0 auto 1.2rem;text-align:center}
+.insc-frame{position:relative;width:100%;aspect-ratio:16/10;margin:0 auto;background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.insc-frame svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+#hitRect{cursor:grab}
+#hitRect:active{cursor:grabbing}
+#hitRect:focus-visible{outline:2px solid var(--liminal);outline-offset:-3px}
 .track-labels{display:flex;justify-content:space-between;margin-top:.55rem;font-size:.76rem;color:var(--muted);gap:1rem}
 .track-labels span{max-width:150px;line-height:1.4}
 .grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
@@ -115,12 +116,32 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 </div>
 <p class="verse-fixed-note" id="fixedNote">Bu kutu hareket etmiyor — sürüklediğinde değişen yalnız aşağıdaki iki okumadan hangisinin netleştiği.</p>
 
-<div class="track-wrap">
-  <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Bakış noktanı sürükle">
-    <div class="track-line"></div>
-    <div class="track-end left"></div>
-    <div class="track-end right"></div>
-    <div class="track-handle" id="handle"></div>
+<div class="insc-wrap">
+  <div class="insc-frame">
+    <svg id="inscrSvg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" role="img" aria-label="">
+      <!-- Sabit yazı: bir dizi soyut işaret. Bu grup asla hareket etmiyor. -->
+      <g id="insGlyphs"></g>
+
+      <!-- İki okuma-yolu, aynı işaretlerin üstünde -- bakış konumuna göre belirip soluyor. -->
+      <g id="pathLeft" fill="none"></g>
+      <g id="pathRight" fill="none"></g>
+
+      <line x1="200" y1="820" x2="1400" y2="820" stroke="var(--border)" stroke-width="1" opacity="0.6"></line>
+      <circle cx="200" cy="820" r="5" fill="var(--border)"></circle>
+      <circle cx="1400" cy="820" r="5" fill="var(--border)"></circle>
+
+      <!-- Bakış işaretçisi: eksen üzerinde sürüklenen "göz". -->
+      <g id="viewer">
+        <circle id="viewerC" cx="800" cy="820" r="16" fill="var(--bg)" stroke="var(--text)" stroke-width="2"></circle>
+        <circle id="viewerP" cx="800" cy="820" r="5" fill="var(--text)"></circle>
+        <line id="sightLine" x1="800" y1="806" x2="800" y2="500" stroke="var(--text)" stroke-width="1" stroke-dasharray="3 5" opacity="0.5"></line>
+      </g>
+
+      <text id="axisCapLeft" x="240" y="880" text-anchor="start" font-family="Georgia, serif" font-size="20" letter-spacing="1" fill="var(--text)" opacity="0.35"></text>
+      <text id="axisCapRight" x="1360" y="880" text-anchor="end" font-family="Georgia, serif" font-size="20" letter-spacing="1" fill="var(--text)" opacity="0.35"></text>
+
+      <rect id="hitRect" x="0" y="0" width="1600" height="1000" fill="transparent" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></rect>
+    </svg>
   </div>
   <div class="track-labels">
     <span id="labelLeft"></span>
@@ -152,6 +173,7 @@ const LA={
     fixedNote:'Bu kutu hareket etmiyor — sürüklediğinde değişen yalnız aşağıdaki iki okumadan hangisinin netleştiği.',
     grab:'Sürükle (ok tuşları da çalışır)',
     aha:'Âyetin tek bir kelimesi değişmedi.\nSen yerini değiştirdin.',
+    svgAria:'Sabit duran bir yazı; bakış konumuna göre iki farklı okuma beliriyor.',
   },
   en:{
     title:'The Same Verse, Two Levels',
@@ -159,6 +181,7 @@ const LA={
     fixedNote:"This box does not move — dragging only changes which of the two readings below comes into focus.",
     grab:'Drag (arrow keys work too)',
     aha:"Not one word of the verse changed.\nYou changed where you stood.",
+    svgAria:'A fixed inscription; two different readings emerge depending on viewing position.',
   },
   pt:{
     title:'O Mesmo Versículo, Dois Graus',
@@ -166,6 +189,7 @@ const LA={
     fixedNote:'Esta caixa não se move — arrastar só muda qual das duas leituras abaixo entra em foco.',
     grab:'Arraste (as setas também funcionam)',
     aha:'Nem uma palavra do versículo mudou.\nFoste tu que mudaste de lugar.',
+    svgAria:'Uma inscrição fixa; duas leituras diferentes emergem conforme a posição de observação.',
   }
 };
 
@@ -264,6 +288,95 @@ const ORDER=['7:143','7:172','24:35'];
 let curLang='tr', curVerse='7:143', pos=0.5, touched=false;
 const $=id=>document.getElementById(id);
 
+// ── Sabit yazı (SVG): bir dizi soyut işaret, hiçbir zaman kımıldamıyor.
+// Bakış konumuna göre iki okuma-yolu (sol/sağ mertebe) üstünde belirip
+// soluyor. GORSEL_DIL.md: kavramı değil davranışını resmet -- nesne sabit,
+// bakan hareket ediyor.
+const svgNS='http://www.w3.org/2000/svg';
+const AXIS_X0=200, AXIS_X1=1400;
+const glyphs=[];
+const GLYPH_N=12;
+for(let i=0;i<GLYPH_N;i++){
+  glyphs.push({x:260+(i/(GLYPH_N-1))*(1340-260), y:460});
+}
+const insGlyphs=$('insGlyphs');
+glyphs.forEach((g,i)=>{
+  const grp=document.createElementNS(svgNS,'g');
+  grp.setAttribute('transform','translate('+g.x+' '+g.y+')');
+  const kind=i%4;
+  let el;
+  if(kind===0){
+    el=document.createElementNS(svgNS,'circle');
+    el.setAttribute('cx',0); el.setAttribute('cy',0); el.setAttribute('r',12);
+    el.setAttribute('fill','var(--text)');
+  } else if(kind===1){
+    el=document.createElementNS(svgNS,'path');
+    el.setAttribute('d','M -14 0 Q 0 -22 14 0 Q 0 12 -14 0 Z');
+    el.setAttribute('fill','var(--text)');
+  } else if(kind===2){
+    el=document.createElementNS(svgNS,'path');
+    el.setAttribute('d','M -12 -12 L 12 12 M -12 12 L 12 -12');
+    el.setAttribute('stroke','var(--text)'); el.setAttribute('stroke-width',3);
+    el.setAttribute('fill','none'); el.setAttribute('stroke-linecap','round');
+  } else {
+    el=document.createElementNS(svgNS,'path');
+    el.setAttribute('d','M -14 6 Q 0 -20 14 6');
+    el.setAttribute('stroke','var(--text)'); el.setAttribute('stroke-width',3);
+    el.setAttribute('fill','none'); el.setAttribute('stroke-linecap','round');
+  }
+  el.setAttribute('opacity','0.82');
+  grp.appendChild(el);
+  insGlyphs.appendChild(grp);
+});
+
+const buildPathD=(indices,height)=>{
+  let d='';
+  indices.forEach((i,k)=>{
+    const p=glyphs[i];
+    if(k===0) d+='M '+p.x+' '+p.y;
+    else{
+      const prev=glyphs[indices[k-1]];
+      const mx=(prev.x+p.x)/2;
+      const my=(prev.y+p.y)/2+height;
+      d+=' Q '+mx+' '+my+' '+p.x+' '+p.y;
+    }
+  });
+  return d;
+};
+const pathLeftG=$('pathLeft'), pathRightG=$('pathRight');
+const pLeftIdx=[0,2,4,6,8,10,11], pRightIdx=[1,3,5,7,9,11,10];
+const pLeftEl=document.createElementNS(svgNS,'path');
+pLeftEl.setAttribute('d',buildPathD(pLeftIdx,-60));
+pLeftEl.setAttribute('fill','none'); pLeftEl.setAttribute('stroke','var(--gold)');
+pLeftEl.setAttribute('stroke-width',3); pLeftEl.setAttribute('stroke-linecap','round');
+pathLeftG.appendChild(pLeftEl);
+const pRightEl=document.createElementNS(svgNS,'path');
+pRightEl.setAttribute('d',buildPathD(pRightIdx,-140));
+pRightEl.setAttribute('fill','none'); pRightEl.setAttribute('stroke','var(--liminal)');
+pRightEl.setAttribute('stroke-width',3); pRightEl.setAttribute('stroke-linecap','round');
+pathRightG.appendChild(pRightEl);
+
+const ringsLeft=pLeftIdx.map(i=>{
+  const r=document.createElementNS(svgNS,'circle');
+  r.setAttribute('cx',glyphs[i].x); r.setAttribute('cy',glyphs[i].y); r.setAttribute('r',22);
+  r.setAttribute('fill','none'); r.setAttribute('stroke','var(--gold)'); r.setAttribute('stroke-width',1.5);
+  r.setAttribute('opacity','0');
+  pathLeftG.appendChild(r);
+  return r;
+});
+const ringsRight=pRightIdx.map(i=>{
+  const r=document.createElementNS(svgNS,'circle');
+  r.setAttribute('cx',glyphs[i].x); r.setAttribute('cy',glyphs[i].y); r.setAttribute('r',22);
+  r.setAttribute('fill','none'); r.setAttribute('stroke','var(--liminal)'); r.setAttribute('stroke-width',1.5);
+  r.setAttribute('opacity','0');
+  pathRightG.appendChild(r);
+  return r;
+});
+
+const viewerC=$('viewerC'), viewerP=$('viewerP'), sightLine=$('sightLine');
+const axisCapLeft=$('axisCapLeft'), axisCapRight=$('axisCapRight');
+const hitRect=$('hitRect'), inscrSvg=$('inscrSvg');
+
 function renderPicker(){
   $('picker').innerHTML=ORDER.map(ref=>`
     <button class="pick-btn${ref===curVerse?' on':''}" data-ref="${ref}" type="button">${VERSES[ref].label[curLang]}</button>
@@ -281,19 +394,30 @@ function renderVerse(){
 }
 
 function applyPosition(){
-  const v=VERSES[curVerse];
-  $('handle').style.left=(pos*100)+'%';
-  $('track').setAttribute('aria-valuenow',Math.round(pos*100));
+  const front=Math.max(0,1-pos), back=Math.max(0,pos);
+
+  // Bakış işaretçisi eksende kayar; yazı yerinde kalır.
+  const vx=AXIS_X0+pos*(AXIS_X1-AXIS_X0);
+  viewerC.setAttribute('cx',vx); viewerP.setAttribute('cx',vx);
+  sightLine.setAttribute('x1',vx); sightLine.setAttribute('x2',vx);
+
+  // Okuma-yolları ve halkalar: bakış konumuna göre belirip soluyor.
+  pathLeftG.setAttribute('opacity',(front*0.9).toFixed(3));
+  pathRightG.setAttribute('opacity',(back*0.9).toFixed(3));
+  ringsLeft.forEach(r=>r.setAttribute('opacity',(front*0.7).toFixed(3)));
+  ringsRight.forEach(r=>r.setAttribute('opacity',(back*0.7).toFixed(3)));
+  axisCapLeft.setAttribute('opacity',(0.3+front*0.65).toFixed(3));
+  axisCapRight.setAttribute('opacity',(0.3+back*0.65).toFixed(3));
+
+  hitRect.setAttribute('aria-valuenow',Math.round(pos*100));
 
   // Odaklanma: bulanıklık + opaklık + hafif ölçek, "burada duruyorsun" hissi.
-  const leftFocus=1-pos, rightFocus=pos;
-  const blurL=(1-leftFocus)*5.5, blurR=(1-rightFocus)*5.5;
-  $('readingLeft').style.filter='blur('+blurL.toFixed(2)+'px)';
-  $('readingLeft').style.opacity=(0.35+0.65*leftFocus).toFixed(2);
-  $('readingLeft').style.transform='scale('+(0.97+0.03*leftFocus).toFixed(3)+')';
-  $('readingRight').style.filter='blur('+blurR.toFixed(2)+'px)';
-  $('readingRight').style.opacity=(0.35+0.65*rightFocus).toFixed(2);
-  $('readingRight').style.transform='scale('+(0.97+0.03*rightFocus).toFixed(3)+')';
+  $('readingLeft').style.filter='blur('+((1-front)*5.5).toFixed(2)+'px)';
+  $('readingLeft').style.opacity=(0.35+0.65*front).toFixed(2);
+  $('readingLeft').style.transform='scale('+(0.97+0.03*front).toFixed(3)+')';
+  $('readingRight').style.filter='blur('+((1-back)*5.5).toFixed(2)+'px)';
+  $('readingRight').style.opacity=(0.35+0.65*back).toFixed(2);
+  $('readingRight').style.transform='scale('+(0.97+0.03*back).toFixed(3)+')';
 
   if(pos<0.08 || pos>0.92){
     if(!applyPosition._sawL) applyPosition._sawL = pos<0.08;
@@ -313,6 +437,8 @@ function renderReadings(){
   $('rrSrc').textContent=v.right.src[curLang];
   $('labelLeft').textContent=v.left.label[curLang];
   $('labelRight').textContent=v.right.label[curLang];
+  axisCapLeft.textContent=v.left.label[curLang];
+  axisCapRight.textContent=v.right.label[curLang];
 }
 
 function renderAll(){
@@ -322,6 +448,8 @@ function renderAll(){
   $('fixedNote').textContent=d.fixedNote;
   $('grabHint').textContent=d.grab;
   $('aha').textContent=d.aha;
+  hitRect.setAttribute('aria-label',d.grab);
+  inscrSvg.setAttribute('aria-label',d.svgAria);
   renderPicker();
   renderVerse();
   renderReadings();
@@ -333,18 +461,23 @@ function renderAll(){
 function setLang(l){ curLang=l; renderAll(); }
 
 // ── Sürükleme ──────────────────────────────────────────────────────────────
-const track=$('track');
 function markTouched(){ if(!touched){ touched=true; $('grabHint').classList.add('gone'); } }
+function toSvgX(clientX){
+  const pt=inscrSvg.createSVGPoint(); pt.x=clientX; pt.y=0;
+  const m=inscrSvg.getScreenCTM();
+  if(!m) return AXIS_X0;
+  return pt.matrixTransform(m.inverse()).x;
+}
 function setPosFromClientX(clientX){
-  const r=track.getBoundingClientRect();
-  pos=Math.max(0,Math.min(1,(clientX-r.left)/r.width));
+  const sx=toSvgX(clientX);
+  pos=Math.max(0,Math.min(1,(sx-AXIS_X0)/(AXIS_X1-AXIS_X0)));
   applyPosition();
 }
 let dragging=false;
-track.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{track.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
-track.addEventListener('pointermove',e=>{ if(dragging) setPosFromClientX(e.clientX); });
-['pointerup','pointercancel','pointerleave'].forEach(t=>track.addEventListener(t,()=>{dragging=false;}));
-track.addEventListener('keydown',e=>{
+hitRect.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{hitRect.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
+hitRect.addEventListener('pointermove',e=>{ if(dragging) setPosFromClientX(e.clientX); });
+['pointerup','pointercancel','pointerleave'].forEach(t=>hitRect.addEventListener(t,()=>{dragging=false;}));
+hitRect.addEventListener('keydown',e=>{
   const k={ArrowLeft:-0.05,ArrowRight:0.05,ArrowDown:-0.05,ArrowUp:0.05}[e.key];
   if(k===undefined) return;
   markTouched(); pos=Math.max(0,Math.min(1,pos+k)); applyPosition(); e.preventDefault();
@@ -367,7 +500,7 @@ window.addEventListener('message',function(e){
   var a = document.createElement("a");
   a.className = "sahne-geri";
   a.href = "sahneler/";          // sahneler kökte, önizlemede de doğru çözülür
-  a.textContent = "\u2190 " + ETIKET[dil];
+  a.textContent = "← " + ETIKET[dil];
   a.setAttribute("aria-label", ETIKET[dil]);
   document.body.appendChild(a);
 

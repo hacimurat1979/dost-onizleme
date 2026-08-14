@@ -19,28 +19,33 @@ h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color
 .honesty{color:var(--muted);font-size:.72rem;line-height:1.6;max-width:520px;margin:.6rem auto 0;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
 .next-step{color:var(--muted);font-size:.72rem;line-height:1.6;max-width:520px;margin:1.2rem auto 0;text-align:center}
 
-#stage{width:min(380px,86vw);height:min(380px,86vw);display:block;margin:1rem auto .6rem;transition:transform .5s ease}
-#stage.pull-back{transform:scale(0.72)}
+@keyframes s13-pulse{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes s13-caption{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
-.nav-row{display:flex;align-items:center;justify-content:center;gap:.9rem;margin-bottom:.4rem}
-.step-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:999px;width:38px;height:38px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
-.step-btn:hover:not(:disabled),.step-btn:focus-visible{border-color:var(--liminal)}
-.step-btn:disabled{opacity:.3;cursor:default}
-.dots{display:flex;gap:.34rem}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;padding:0;cursor:pointer}
-.dot.on{background:var(--gold)}
-.dot:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+#stageWrap{position:relative;width:min(94vw,860px);margin-top:.6rem}
+#mapsStage{width:100%;aspect-ratio:16/10;display:block;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+#hint{position:absolute;top:12px;right:16px;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);animation:s13-pulse 3s ease-in-out 1.5s 3}
 
-.card{width:min(520px,94vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin:.7rem 0}
-.card-no{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--liminal);margin-bottom:.4rem}
-.card-label{font-size:1.02rem;margin-bottom:.5rem}
-.card-gloss{font-size:.87rem;line-height:1.7;font-style:italic;margin-bottom:.5rem}
-.card-cite{font-size:.72rem;color:var(--muted)}
+.slider-wrap{width:min(560px,92vw);margin:.9rem auto 0;text-align:center}
+.slider-labels{display:flex;justify-content:space-between;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
+input[type="range"]{-webkit-appearance:none;appearance:none;background:transparent;width:100%;height:40px;padding:0;margin:0;cursor:pointer}
+input[type="range"]::-webkit-slider-runnable-track{height:2px;background:var(--border);border-radius:2px}
+input[type="range"]::-moz-range-track{height:2px;background:var(--border);border-radius:2px}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);margin-top:-10px;box-shadow:0 0 0 1px var(--liminal)}
+input[type="range"]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal)}
+input[type="range"]:focus{outline:none}
+input[type="range"]:focus-visible{outline:2px solid var(--liminal);outline-offset:4px}
+.caption-wrap{text-align:center;padding:.85rem .5rem 0;max-width:560px;margin:0 auto;opacity:0;animation:s13-caption 900ms 900ms ease-out forwards}
+#caption{font-size:.85rem;line-height:1.6;color:var(--text)}
 
-.eyes-wrap{display:none;width:min(520px,94vw);flex-direction:column;align-items:center;margin-top:.4rem}
-.eyes-wrap.show{display:flex}
-#eyesStage{width:min(420px,90vw);height:180px;display:block}
-.aha{width:min(520px,94vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.8;color:var(--liminal);margin-top:.7rem;white-space:pre-line}
+.legend{width:min(600px,94vw);margin:1.5rem auto 0}
+.legend-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--liminal);text-align:center;margin-bottom:.6rem}
+.legend-item{padding:.75rem 0;border-top:1px solid var(--border)}
+.legend-item:first-child{border-top:none}
+.legend-no{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--liminal);margin-bottom:.3rem}
+.legend-label{font-size:.92rem;margin-bottom:.35rem}
+.legend-gloss{font-size:.82rem;line-height:1.65;font-style:italic;color:var(--text);margin-bottom:.35rem}
+.legend-cite{font-size:.68rem;color:var(--muted)}
 
 /* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
    ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
@@ -99,25 +104,25 @@ h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color
   <p class="honesty" id="hHonesty">Bu sahne, manüskriptin bir kopyası değil — Sophie Tyser'ın "Visualizing the Architecture of the Universe" (Brill, 2023) makalesinde ele alınan dokuz haritanın sırasını ve içeriğini izleyen, bizim kendi sadeleştirilmiş okumamız. Gerçek çizimler Konya nüshasında (TİEM/Evkaf Müzesi 1870) duruyor.</p>
 </header>
 
-<div class="nav-row">
-  <button class="step-btn" id="prevBtn" type="button" aria-label="Önceki">‹</button>
-  <div class="dots" id="dots" role="group" aria-label="Harita adımları"></div>
-  <button class="step-btn" id="nextBtn" type="button" aria-label="Sonraki">›</button>
+<div id="stageWrap">
+  <svg id="mapsStage" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Dokuz harita: ayrı çizimler ve merkezde birleşen tek bir kompozisyon">
+    <g id="mapsG"></g>
+  </svg>
+  <div id="hint"><span id="hintText"></span></div>
 </div>
 
-<svg id="stage" viewBox="0 0 380 380" role="img" aria-label="İç içe dairelerle kozmosun mertebeleri"></svg>
-
-<div class="card">
-  <p class="card-no" id="cardNo"></p>
-  <p class="card-label" id="cardLabel"></p>
-  <p class="card-gloss" id="cardGloss"></p>
-  <p class="card-cite" id="cardCite"></p>
+<div class="slider-wrap">
+  <div class="slider-labels">
+    <span id="labelApart"></span>
+    <span id="labelOne"></span>
+  </div>
+  <input id="mergeSlider" type="range" min="0" max="100" value="0">
+  <div class="caption-wrap" id="captionWrap">
+    <div id="caption" aria-live="polite"></div>
+  </div>
 </div>
 
-<div class="eyes-wrap" id="eyesWrap">
-  <svg id="eyesStage" viewBox="0 0 420 180" role="img" aria-label="İki daire, iki göz"></svg>
-  <p class="aha" id="aha"></p>
-</div>
+<div class="legend" id="legend"></div>
 
 <p class="next-step" id="hNextStep"></p>
 
@@ -128,21 +133,33 @@ const LA={
     title:'371. Bab: Dokuz Harita',
     sub:'İbn Arabî\'nin, Fütûhât\'ın ikinci telifine kendi eliyle çizdiği dokuz harita — "tek bir kompozisyon" olarak görülmesini istediği bir dizi.',
     honesty:'Bu sahne, manüskriptin bir kopyası değil — Sophie Tyser\'ın "Visualizing the Architecture of the Universe" (Brill, 2023) makalesinde ele alınan dokuz haritanın sırasını ve içeriğini izleyen, bizim kendi sadeleştirilmiş okumamız. Gerçek çizimler Konya nüshasında (TİEM/Evkaf Müzesi 1870) duruyor. Güven düzeyimiz yerleşik: dokuz kart, hakemli ve DOI\'li bu tek kaynakla satır satır karşılaştırıldı, kaynağın söylemediği hiçbir kesinlik eklenmedi. Diyagramların anlamına dair bu okumayla çelişen başka bir akademik yorum arandı, bulunamadı.',
-    aha:'Dokuzuncu haritanın sağında cennetin açılışı, solunda kozmosun tamamı duruyor.\nİkisi birlikte, bölümün başındaki "iki göz" imgesine dönüyor — biri farkı, biri benzerliği görüyor.\nKitabı kapattığında, sana bakan kendi iki gözündür.',
+    hint:'Sürgüyü kaydır',
+    apart:'Ayrık',
+    one:'Birleşik',
+    caption:'Dokuz harita, ayrıyken dokuz çizim; birleşince tek bir kompozisyon. Örtüşme anı bu sahnenin hayret anı.',
+    legendTitle:'Dokuz Harita — Sırasıyla',
     nextStep:'Bu dokuz harita, sitenin Çizimler görünümündeki öteki tarihî şemalarla birlikte duruyor — devam etmek isteyenler oraya bakabilir.',
   },
   en:{
     title:'Chapter 371: Nine Maps',
     sub:"Nine maps Ibn al-'Arabi drew with his own hand into the second recension of the Futuhat — meant, in his words, to be seen as a single composition.",
     honesty:'This scene is not a copy of the manuscript — it follows the sequence and content of the nine maps as treated in Sophie Tyser\'s "Visualizing the Architecture of the Universe" (Brill, 2023), in our own simplified reading. The real drawings are in the Konya manuscript (TİEM/Evkaf Müzesi 1870). Our confidence level is well-established: the nine cards were checked line by line against this single peer-reviewed, DOI-carrying source, and no certainty beyond what the source states was added. We looked for another academic reading that contradicts this one on what the diagrams mean, and found none.',
-    aha:"To the right of the ninth map stands the unveiling of paradise; to its left, the whole of the cosmos.\nTogether they return to the image of \"two eyes\" from the start of the chapter — one seeing difference, one seeing likeness.\nWhen you close the book, it is your own two eyes looking back.",
+    hint:'Move the slider',
+    apart:'Apart',
+    one:'Together',
+    caption:"Nine maps: nine drawings when apart; one composition when together. The moment they overlap is this scene's astonishment.",
+    legendTitle:'The Nine Maps — In Sequence',
     nextStep:"These nine maps stand alongside the site's other historical diagrams in the Drawings view — those who want to continue can look there.",
   },
   pt:{
     title:'Capítulo 371: Nove Mapas',
     sub:'Nove mapas que Ibn al-\'Arabi desenhou com a própria mão na segunda recensão das Futuhat — pensados, nas suas palavras, para serem vistos como uma única composição.',
     honesty:'Esta cena não é uma cópia do manuscrito — segue a sequência e o conteúdo dos nove mapas tal como tratados no artigo de Sophie Tyser, "Visualizing the Architecture of the Universe" (Brill, 2023), na nossa própria leitura simplificada. Os desenhos reais estão no manuscrito de Konya (TİEM/Evkaf Müzesi 1870). O nosso nível de confiança é consolidado: os nove cartões foram comparados linha a linha com esta única fonte revista por pares e com DOI, sem acrescentar nenhuma certeza que a fonte não afirme. Procurámos outra leitura académica que contradissesse esta quanto ao significado dos diagramas e não a encontrámos.',
-    aha:'À direita do nono mapa está o desvelar do paraíso; à sua esquerda, a totalidade do cosmos.\nJuntos, regressam à imagem dos "dois olhos" do início do capítulo — um vendo a diferença, outro a semelhança.\nQuando fechas o livro, são os teus próprios dois olhos que olham de volta.',
+    hint:'Deslize o controle',
+    apart:'Separados',
+    one:'Reunidos',
+    caption:'Nove mapas: nove desenhos quando separados; uma só composição quando reunidos. O instante da sobreposição é o espanto desta cena.',
+    legendTitle:'Os Nove Mapas — Em Sequência',
     nextStep:'Estes nove mapas encontram-se junto aos outros diagramas históricos do site na vista de Desenhos — quem quiser continuar pode ali explorar.',
   },
 };
@@ -155,8 +172,12 @@ const LA={
 // hem Tyser'ın kendi bölüm numarasına (4.1-4.9) hem elindeki Konya holograf
 // nüshasının varak numarasına (TİEM/Evkaf Müzesi 1870) işaret ediyor --
 // ikisi de makalenin dipnotlarında doğrudan verilmiş, tahmin edilmemiş.
+// shortLabel alanı bizim eklediğimiz -- her adımın kendi (yukarıdaki) tam
+// etiketinin kısaltılmış biçimi, mandala üstündeki dar alana sığması için;
+// yeni bir iddia taşımıyor.
 const STEPS=[
   { id:'ama', r:172,
+    shortLabel:{tr:'Bulut', en:'The Cloud', pt:'A Nuvem'},
     label:{tr:'Bulut (Amâ)', en:'The Cloud (al-ʿamāʾ)', pt:'A Nuvem (al-ʿamāʾ)'},
     gloss:{
       tr:'Dizinin başlangıcı: varlığın ilk mertebeleri, "merhametli bir buhar" olan Bulut\'ta açılıyor. "Dünyanın sûreti bütünüyle küresel bir dairedir" -- Şeyh\'in kendi sözü.',
@@ -165,6 +186,7 @@ const STEPS=[
     },
     cite:'Fütûhât, 9.316 (Tyser 2023, böl. 4.1; TİEM/Evkaf Müzesi 1870, vr. 90a)' },
   { id:'ars-kursi', r:142,
+    shortLabel:{tr:'Arş – Kürsî', en:'Throne – Footstool', pt:'Trono – Escabelo'},
     label:{tr:'Arş-ı İstivâ, Kürsî, İki Ayak, Su, Hava, Karanlık', en:'The Throne of Sitting, Footstool, Two Feet, Water, Air, Darkness', pt:'O Trono de Assento, Escabelo, Dois Pés, Água, Ar, Escuridão'},
     gloss:{
       tr:'Bir önceki haritanın en iç dairesine iniliyor. Arş dört unsura (ateş, hava, su, toprak) dayanıyor. Metindeki "iki ayak" imgesi, cismi teşbihe düşürmeden okunur -- biri cennette, biri cehennemde, ikisi de Kürsî\'nin üstünde.',
@@ -173,6 +195,7 @@ const STEPS=[
     },
     cite:'Tyser 2023, böl. 4.2; TİEM/Evkaf Müzesi 1870, vr. 90b' },
   { id:'atlas', r:112,
+    shortLabel:{tr:'Atlas Feleği', en:'Sphere of Atlas', pt:'Esfera de Atlas'},
     label:{tr:'Atlas Feleği, Cennetler, Sabit Yıldızlar Küresi, Tûbâ Ağacı', en:'The Sphere of Atlas, the Gardens, the Root of the Starry Sphere, the Tree of Ṭūbā', pt:'A Esfera de Atlas, os Jardins, a Raiz da Esfera Estelar, a Árvore de Ṭūbā'},
     gloss:{
       tr:'İniş sürüyor. Atlas feleği ile sabit yıldızlar küresi arasında sekiz cennet konağı sıralanıyor -- her biri, Şeriat\'a tâbi bir organa (göz, kulak, dil, el, mide, üreme organı, ayak, kalp) karşılık geliyor.',
@@ -181,6 +204,7 @@ const STEPS=[
     },
     cite:'Tyser 2023, böl. 4.3; TİEM/Evkaf Müzesi 1870, vr. 91a' },
   { id:'sabit-yildizlar-insan', r:100,
+    shortLabel:{tr:'Sabit Yıldızlar', en:'Fixed Stars', pt:'Estrelas Fixas'},
     label:{tr:'Sabit Yıldızlar Küresi, Gökkubbeler, Yer, Dört Mertebe ve İnsan', en:'The Sphere of the Fixed Stars, the Domes of the Heavens, the Earth, the Four Realms, and Man', pt:'A Esfera das Estrelas Fixas, as Cúpulas dos Céus, a Terra, os Quatro Reinos e o Homem'},
     gloss:{
       tr:'Bir çadır biçiminde: dünyanın üstünde yedi gök, yedi gezegen. Bütün küreleri dikey bir "direk" kesiyor -- Kur\'an\'daki görünmez direğe (13:2) işaret eden bu çizgi, İbn Arabî\'ye göre İnsân-ı Kâmil\'dir; gökleri yeryüzüne düşmekten O tutuyor.',
@@ -189,6 +213,7 @@ const STEPS=[
     },
     cite:'Fütûhât, 9.313 (Tyser 2023, böl. 4.4; TİEM/Evkaf Müzesi 1870, vr. 91b)' },
   { id:'arz-i-hasr', r:88,
+    shortLabel:{tr:'Haşir Yeri', en:'Gathering', pt:'Reunião'},
     label:{tr:'Haşir Yeri, Ayrım ve Hüküm Arşı, Melek Safları', en:'The Land of Gathering, the Throne of Separation and Judgement, the Rows of Angels', pt:'A Terra da Reunião, o Trono de Separação e Julgamento, as Fileiras de Anjos'},
     gloss:{
       tr:'Kıldan ince, kılıçtan keskin sırât köprüsü cehennemin üstünde gerili. Ölümün kesilişini simgeleyen bir daire, cenneti cehennemden ayıran a\'râf çizgisiyle kesişiyor. Yedi melek safı ve sekiz sütun üzerindeki Hüküm Arşı, sahneyi yukarıdan kuşatıyor.',
@@ -197,6 +222,7 @@ const STEPS=[
     },
     cite:'Tyser 2023, böl. 4.5; TİEM/Evkaf Müzesi 1870, vr. 92a' },
   { id:'cehennem-kapilari', r:76,
+    shortLabel:{tr:'Cehennem Kapıları', en:'Gates of Hell', pt:'Portões do Inferno'},
     label:{tr:'Cehennemin Kapıları, Konakları ve İnen Dereceleri', en:'The Gates of Hell, Its Abodes, and Its Descending Levels', pt:'Os Portões do Inferno, as suas Moradas e Níveis Descendentes'},
     gloss:{
       tr:'Cehennemin yedi kapısı, insanın Şeriat\'a tâbi yedi organına karşılık geliyor. Şemanın tam merkezinde, kalbi örten bir kapı duruyor -- insanın içindeki "gayb"ın yeri. "İnsanın dünyadaki bâtını, ahirette zâhir olur."',
@@ -205,6 +231,7 @@ const STEPS=[
     },
     cite:'Fütûhât, 9.356 (Tyser 2023, böl. 4.6; TİEM/Evkaf Müzesi 1870, vr. 92b)' },
   { id:'esma-hazretleri', r:64,
+    shortLabel:{tr:'İlahî İsimler', en:'Divine Names', pt:'Nomes Divinos'},
     label:{tr:'İlahî İsimler Huzuru, Alt Dünya, Ahiret, Berzah', en:'The Presence of the Divine Names, the Lowest World, the Hereafter, the Intermediary World', pt:'A Presença dos Nomes Divinos, o Mundo Inferior, o Além, o Mundo Intermédio'},
     gloss:{
       tr:'İlahî isimlerin de kendi aralarında bir düzeni var: "öncüler" ve "hizmetkârlar." Varlığın sebebi olan yedi ana isim -- Hayy, Alîm, Mürîd, Kâdir, Kâil, Cevvâd, Muksit -- bu dünya, ahiret ve ikisi arasındaki berzahın kesiştiği yerde beliriyor.',
@@ -213,6 +240,7 @@ const STEPS=[
     },
     cite:'Tyser 2023, böl. 4.7; TİEM/Evkaf Müzesi 1870, vr. 93a' },
   { id:'ruyet', r:52,
+    shortLabel:{tr:'Rü\'yet Tepesi', en:'Dune of Vision', pt:'Duna da Visão'},
     label:{tr:'Rü\'yet Kum Tepesi — Allah\'ın yüzünün açıldığı an', en:'The Dune of Vision — the moment God\'s face is unveiled', pt:'A Duna da Visão — o momento em que o rosto de Deus se revela'},
     gloss:{
       tr:'Cennette, halkın Allah\'ın yüzünü gördüğü belirli bir an ve yer — "beyaz misktendir."',
@@ -221,6 +249,7 @@ const STEPS=[
     },
     cite:'Tyser 2023, böl. 4.8; TİEM/Evkaf Müzesi 1870, vr. 93b' },
   { id:'kozmos', r:172, full:true,
+    shortLabel:{tr:'Kozmosun Tamamı', en:'The Whole Cosmos', pt:'Todo o Cosmos'},
     label:{tr:'Kozmosun tamamı — sekiz haritanın sentezi', en:'The entirety of the cosmos — a synthesis of eight maps', pt:'A totalidade do cosmos — uma síntese de oito mapas'},
     gloss:{
       tr:'Şeklinin merkezi, Rü\'yet Kum Tepesi\'yle aynı biçimi taşıyor -- ahiret, dünyanın tam merkezinde duruyor. İbn Arabî\'nin kendi ifadesiyle: "dünya, Bulut ile Allah\'ın bakışı arasında beliriyor."',
@@ -230,129 +259,212 @@ const STEPS=[
     cite:'Fütûhât, 9.461 (Tyser 2023, böl. 4.9; TİEM/Evkaf Müzesi 1870, vr. 93b-94a)' },
 ];
 
-let curLang='tr', idx=0;
+let curLang='tr';
 const $=id=>document.getElementById(id);
 
-function renderStage(){
-  const svg=$('stage');
-  svg.innerHTML='';
-  const cx=190, cy=190;
-  const s=STEPS[idx];
-  if(s.full){
-    // Kozmosun tamamı: bugüne kadar kurulan bütün dairelerin bir arada
-    // görünmesi -- son harita, önceki sekiz haritanın "hepsini içeriyor"
-    // fikrini, önceki yarıçapları aynı anda göstererek taşıyor. Makale bu
-    // haritanın kendi iç geometrisini ayrıntılı vermiyor, biz de icat
-    // etmiyoruz -- bu yalnız bir sentez motifi.
-    const radii=[172,142,112,96,78,60,44,30,18];
-    radii.forEach((r,i)=>{
-      const c=document.createElementNS(NS,'circle');
-      c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r',r);
-      c.setAttribute('fill','none');
-      c.setAttribute('stroke','var(--gold)');
-      c.setAttribute('stroke-width','1');
-      c.setAttribute('opacity',(0.15+0.06*i).toFixed(2));
-      svg.appendChild(c);
-    });
-    const center=document.createElementNS(NS,'circle');
-    center.setAttribute('cx',cx); center.setAttribute('cy',cy); center.setAttribute('r',10);
-    center.setAttribute('fill','var(--gold)');
-    svg.appendChild(center);
-    return;
+// ── Sahne: dokuz harita, ayrıyken dokuz çizim, birleşince tek kompozisyon ──
+// Kaynak sahnenin (unbundled/sahne13) mantığı: her haritanın PAYLAŞILAN bir
+// temel dairesi ve KENDİNE ÖZGÜ tek bir çizgisel öğesi var; sürgü 0'dan
+// 100'e giderken dokuzu da 3x3 bir dizilimden merkeze doğru kayıp küçülüyor
+// ve üst üste biniyor. GORSEL_DIL.md gereği, kaynağın 9. haritasındaki iç
+// içe İKİ eşmerkezli daire (dış çember + noktalı iç halka) burada
+// KALDIRILDI -- yerine merkezden dışa dört kısa çizgi (bir "yıldız" işareti)
+// kondu; iç içe çemberler "Perde" imgesiyle çakıştığı için yasak.
+const mapsG = $('mapsG');
+const CENTER_X = 800, CENTER_Y = 500;
+
+const drawShared = (g) => {
+  const c = document.createElementNS(NS,'circle');
+  c.setAttribute('cx',0); c.setAttribute('cy',0); c.setAttribute('r',90);
+  c.setAttribute('fill','none'); c.setAttribute('stroke','var(--text)');
+  c.setAttribute('stroke-width',1.4);
+  c.setAttribute('opacity',0.6);
+  g.appendChild(c);
+};
+
+const drawUnique = (g, idx) => {
+  const el = document.createElementNS(NS,'g');
+  el.setAttribute('stroke','var(--text)');
+  el.setAttribute('stroke-width',1.6);
+  el.setAttribute('fill','none');
+  el.setAttribute('stroke-linecap','round');
+
+  const addLine = (x1,y1,x2,y2) => {
+    const l = document.createElementNS(NS,'line');
+    l.setAttribute('x1',x1); l.setAttribute('y1',y1);
+    l.setAttribute('x2',x2); l.setAttribute('y2',y2);
+    el.appendChild(l);
+  };
+  const addCircle = (cx,cy,r,filled) => {
+    const c = document.createElementNS(NS,'circle');
+    c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r',r);
+    if (filled) c.setAttribute('fill','var(--text)');
+    el.appendChild(c);
+  };
+
+  switch (idx) {
+    case 0: // ama — yatay çap
+      addLine(-110,0,110,0);
+      break;
+    case 1: // ars-kursi — dikey çap
+      addLine(0,-110,0,110);
+      break;
+    case 2: // atlas — KD-GB köşegen
+      addLine(-78,-78,78,78);
+      break;
+    case 3: // sabit-yildizlar-insan — KB-GD köşegen
+      addLine(-78,78,78,-78);
+      break;
+    case 4: { // arz-i-hasr — dış halka noktaları (8)
+      for (let i=0;i<8;i++){
+        const a=(i/8)*Math.PI*2;
+        addCircle(Math.cos(a)*90, Math.sin(a)*90, 4, true);
+      }
+      break;
+    }
+    case 5: { // cehennem-kapilari — iç halka noktaları (6)
+      for (let i=0;i<6;i++){
+        const a=(i/6)*Math.PI*2 + Math.PI/6;
+        addCircle(Math.cos(a)*55, Math.sin(a)*55, 3, true);
+      }
+      break;
+    }
+    case 6: { // esma-hazretleri — içe yazılı üçgen
+      const pts=[];
+      for (let i=0;i<3;i++){
+        const a=(i/3)*Math.PI*2 - Math.PI/2;
+        pts.push([Math.cos(a)*88, Math.sin(a)*88]);
+      }
+      const p=document.createElementNS(NS,'polygon');
+      p.setAttribute('points', pts.map(pt=>pt.join(',')).join(' '));
+      p.setAttribute('fill','none');
+      el.appendChild(p);
+      break;
+    }
+    case 7: { // ruyet — içe yazılı, 45° döndürülmüş kare
+      const s=88;
+      const p=document.createElementNS(NS,'polygon');
+      p.setAttribute('points', `0,${-s} ${s},0 0,${s} ${-s},0`);
+      el.appendChild(p);
+      break;
+    }
+    case 8: { // kozmos — merkez nokta + dört kısa ışın (eşmerkezli çember DEĞİL)
+      addCircle(0,0,4,true);
+      [0,90,180,270].forEach(deg=>{
+        const rad=deg*Math.PI/180;
+        addLine(Math.cos(rad)*22, Math.sin(rad)*22, Math.cos(rad)*40, Math.sin(rad)*40);
+      });
+      break;
+    }
   }
-  // Önceki bütün dairelerin soluk izleri (kaç adım geçildiğini göstermek
-  // için), üstünde şu anki adımın dairesi belirgin.
-  for(let i=0;i<idx;i++){
-    const prev=STEPS[i];
-    const c=document.createElementNS(NS,'circle');
-    c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r',prev.r);
-    c.setAttribute('fill','none');
-    c.setAttribute('stroke','var(--border)');
-    c.setAttribute('stroke-width','1');
-    svg.appendChild(c);
-  }
-  const cur=document.createElementNS(NS,'circle');
-  cur.setAttribute('cx',cx); cur.setAttribute('cy',cy); cur.setAttribute('r',s.r);
-  cur.setAttribute('fill','none');
-  cur.setAttribute('stroke','var(--gold)');
-  cur.setAttribute('stroke-width','2.2');
-  svg.appendChild(cur);
+  g.appendChild(el);
+};
+
+// Ayrıyken 3x3 ızgara konumları; birleşince hepsi merkeze göç ediyor.
+const gridCX = [300,800,1300,300,800,1300,300,800,1300];
+const gridCY = [250,250,250,500,500,500,750,750,750];
+const gridScale = 0.65;
+
+const mapEls = [];
+for (let i=0;i<STEPS.length;i++){
+  const g = document.createElementNS(NS,'g');
+  const num = document.createElementNS(NS,'text');
+  num.setAttribute('x',-110); num.setAttribute('y',-100);
+  num.setAttribute('font-family','Georgia, serif');
+  num.setAttribute('font-size','22');
+  num.setAttribute('fill','var(--liminal)');
+  num.setAttribute('opacity',0.9);
+  num.textContent = String(i+1);
+  g.appendChild(num);
+
+  const labelEl = document.createElementNS(NS,'text');
+  labelEl.setAttribute('x',-110); labelEl.setAttribute('y',-78);
+  labelEl.setAttribute('font-family','Georgia, serif');
+  labelEl.setAttribute('font-size','13');
+  labelEl.setAttribute('fill','var(--muted)');
+  labelEl.setAttribute('opacity',0.85);
+  g.appendChild(labelEl);
+
+  drawShared(g);
+  drawUnique(g, i);
+  mapsG.appendChild(g);
+  mapEls.push({ g, num, labelEl });
 }
 
-function renderDots(){
-  $('dots').innerHTML=STEPS.map((s,i)=>`<button class="dot${i===idx?' on':''}" data-i="${i}" aria-label="${i+1}"></button>`).join('');
-  $('dots').querySelectorAll('.dot').forEach(b=>b.addEventListener('click',()=>{ idx=parseInt(b.dataset.i,10); update(); }));
+const slider = $('mergeSlider');
+const hint = $('hint');
+const ease = p => p * p * (3 - 2 * p);
+
+function applyMerge(v){
+  const t = ease(v/100);
+  for (let i=0;i<STEPS.length;i++){
+    const gx=gridCX[i], gy=gridCY[i];
+    const cx = gx + (CENTER_X-gx)*t;
+    const cy = gy + (CENTER_Y-gy)*t;
+    const sc = gridScale + (1-gridScale)*t;
+    mapEls[i].g.setAttribute('transform', `translate(${cx.toFixed(1)} ${cy.toFixed(1)}) scale(${sc.toFixed(3)})`);
+    mapEls[i].g.setAttribute('opacity', (1 - t*0.30).toFixed(3));
+    mapEls[i].num.setAttribute('opacity', (1 - t*0.9).toFixed(3));
+    mapEls[i].labelEl.setAttribute('opacity', (0.85*(1 - t*0.9)).toFixed(3));
+  }
+}
+slider.addEventListener('input', e=>{
+  applyMerge(+e.target.value);
+  if (hint) hint.style.animation = 'none';
+});
+
+function updateMapLabels(){
+  STEPS.forEach((s,i)=>{ mapEls[i].labelEl.textContent = s.shortLabel[curLang]; });
 }
 
-function renderEyes(){
-  const svg=$('eyesStage');
-  svg.innerHTML='';
-  const specs=[{cx:130,cy:90,label:STEPS[7].label},{cx:290,cy:90,label:STEPS[8].label}];
-  specs.forEach(sp=>{
-    const c=document.createElementNS(NS,'circle');
-    c.setAttribute('cx',sp.cx); c.setAttribute('cy',sp.cy); c.setAttribute('r',52);
-    c.setAttribute('fill','none');
-    c.setAttribute('stroke','var(--gold)');
-    c.setAttribute('stroke-width','2');
-    svg.appendChild(c);
-    const dot=document.createElementNS(NS,'circle');
-    dot.setAttribute('cx',sp.cx); dot.setAttribute('cy',sp.cy); dot.setAttribute('r',6);
-    dot.setAttribute('fill','var(--gold)');
-    svg.appendChild(dot);
+function renderLegend(){
+  const wrap = $('legend');
+  wrap.innerHTML='';
+  const title = document.createElement('p');
+  title.className='legend-title';
+  title.id='legendTitle';
+  title.textContent = LA[curLang].legendTitle;
+  wrap.appendChild(title);
+  STEPS.forEach((s,i)=>{
+    const item=document.createElement('div'); item.className='legend-item';
+    const no=document.createElement('p'); no.className='legend-no'; no.textContent=(i+1)+' / '+STEPS.length;
+    const label=document.createElement('p'); label.className='legend-label'; label.textContent=s.label[curLang];
+    const gloss=document.createElement('p'); gloss.className='legend-gloss'; gloss.textContent=s.gloss[curLang];
+    const cite=document.createElement('p'); cite.className='legend-cite'; cite.textContent=s.cite;
+    item.appendChild(no); item.appendChild(label); item.appendChild(gloss); item.appendChild(cite);
+    wrap.appendChild(item);
   });
-  const line=document.createElementNS(NS,'line');
-  line.setAttribute('x1',182); line.setAttribute('y1',90);
-  line.setAttribute('x2',238); line.setAttribute('y2',90);
-  line.setAttribute('stroke','var(--border)');
-  line.setAttribute('stroke-width','1');
-  line.setAttribute('stroke-dasharray','2 4');
-  svg.appendChild(line);
-}
-
-function update(){
-  const d=LA[curLang];
-  const s=STEPS[idx];
-  renderStage();
-  renderDots();
-  $('prevBtn').disabled=idx===0;
-  $('nextBtn').disabled=idx===STEPS.length-1;
-  $('cardNo').textContent=(idx+1)+' / '+STEPS.length;
-  $('cardLabel').textContent=s.label[curLang];
-  $('cardGloss').textContent=s.gloss[curLang];
-  $('cardCite').textContent=s.cite;
-  $('stage').classList.remove('pull-back');
-  const eyesWrap=$('eyesWrap');
-  if(idx===STEPS.length-1){
-    $('stage').classList.add('pull-back');
-    eyesWrap.classList.add('show');
-    renderEyes();
-    $('aha').textContent=d.aha;
-  } else {
-    eyesWrap.classList.remove('show');
-  }
 }
 
 function renderAll(){
-  const d=LA[curLang];
-  $('hTitle').textContent=d.title;
-  $('hSub').textContent=d.sub;
-  $('hHonesty').textContent=d.honesty;
-  $('hNextStep').textContent=d.nextStep;
-  update();
+  const d = LA[curLang];
+  $('hTitle').textContent = d.title;
+  $('hSub').textContent = d.sub;
+  $('hHonesty').textContent = d.honesty;
+  $('hintText').textContent = d.hint;
+  $('labelApart').textContent = d.apart;
+  $('labelOne').textContent = d.one;
+  $('caption').textContent = d.caption;
+  $('hNextStep').textContent = d.nextStep;
+  slider.setAttribute('aria-label', d.apart + ' / ' + d.one);
+  updateMapLabels();
+  renderLegend();
 }
-function setLang(l){ curLang=l; renderAll(); }
-
-$('prevBtn').addEventListener('click',()=>{ if(idx>0){ idx--; update(); } });
-$('nextBtn').addEventListener('click',()=>{ if(idx<STEPS.length-1){ idx++; update(); } });
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft' && idx>0){ idx--; update(); }
-  if(e.key==='ArrowRight' && idx<STEPS.length-1){ idx++; update(); }
-});
+function setLang(l){ if (LA[l]){ curLang = l; renderAll(); } }
 
 renderAll();
+applyMerge(0);
 
-window.addEventListener('message',function(e){
-  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (reduced){
+  slider.value = 55; applyMerge(55);
+  const cw = $('captionWrap');
+  cw.style.animation = 'none'; cw.style.opacity = '1';
+  if (hint) hint.style.animation = 'none';
+}
+
+window.addEventListener('message', function(e){
+  if (e.data && e.data.type === 'setLang') setLang(e.data.lang);
 });
 </script>
 
@@ -366,7 +478,7 @@ window.addEventListener('message',function(e){
   var a = document.createElement("a");
   a.className = "sahne-geri";
   a.href = "sahneler/";          // sahneler kökte, önizlemede de doğru çözülür
-  a.textContent = "\u2190 " + ETIKET[dil];
+  a.textContent = "← " + ETIKET[dil];
   a.setAttribute("aria-label", ETIKET[dil]);
   document.body.appendChild(a);
 

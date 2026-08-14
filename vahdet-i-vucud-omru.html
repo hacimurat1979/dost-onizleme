@@ -7,38 +7,30 @@
 <!-- Vahdet-i Vücûd'un Ömrü — Dost Arabi görselleştirme (docs/icerik-yol-haritasi.md D5) -->
 <title>Vahdet-i Vücûd'un Ömrü — Dost Arabi</title>
 <style>
-:root{--bg:#0D0D0D;--surface:#1A1A19;--border:#2C2C2A;--text:#EDE9E2;--muted:#898781;--gold:#FFC233;--liminal:#C98500;--panel:#161614;--harsh:#B85C3E}
-@media(prefers-color-scheme:light){:root{--bg:#F9F9F7;--surface:#FCFCFB;--border:#E1E0D9;--text:#1A1A1A;--muted:#6F6D65;--panel:#FCFCFB;--gold:#8A6100;--liminal:#8C6D1A;--harsh:#8A3D26}}
-:root[data-theme=dark]{--bg:#0D0D0D;--surface:#1A1A19;--border:#2C2C2A;--text:#EDE9E2;--muted:#898781;--panel:#161614;--gold:#FFC233;--liminal:#C98500;--harsh:#B85C3E}
-:root[data-theme=light]{--bg:#F9F9F7;--surface:#FCFCFB;--border:#E1E0D9;--text:#1A1A1A;--muted:#6F6D65;--panel:#FCFCFB;--gold:#8A6100;--liminal:#8C6D1A;--harsh:#8A3D26}
+:root{--bg:#0D0D0D;--surface:#1A1A19;--border:#2C2C2A;--text:#EDE9E2;--muted:#898781;--gold:#FFC233;--liminal:#C98500;--panel:#161614}
+@media(prefers-color-scheme:light){:root{--bg:#F9F9F7;--surface:#FCFCFB;--border:#E1E0D9;--text:#1A1A1A;--muted:#6F6D65;--panel:#FCFCFB;--gold:#8A6100;--liminal:#8C6D1A}}
+:root[data-theme=dark]{--bg:#0D0D0D;--surface:#1A1A19;--border:#2C2C2A;--text:#EDE9E2;--muted:#898781;--panel:#161614;--gold:#FFC233;--liminal:#C98500}
+:root[data-theme=light]{--bg:#F9F9F7;--surface:#FCFCFB;--border:#E1E0D9;--text:#1A1A1A;--muted:#6F6D65;--panel:#FCFCFB;--gold:#8A6100;--liminal:#8C6D1A}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
-header{text-align:center;margin-bottom:.9rem;max-width:620px}
+header{text-align:center;margin-bottom:.9rem;max-width:640px}
 h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color:var(--gold);margin-bottom:.4rem}
 .sub{color:var(--muted);font-size:.85rem;font-style:italic;line-height:1.65}
 .honesty{color:var(--muted);font-size:.72rem;line-height:1.6;max-width:520px;margin:.6rem auto 0;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
 
-.term-stage{width:min(560px,94vw);height:150px;display:flex;align-items:center;justify-content:center;margin:1.1rem 0 .3rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
-.term-word{font-size:clamp(1.6rem,7vw,2.6rem);letter-spacing:.02em;transition:filter .5s ease,opacity .5s ease,color .5s ease,transform .5s ease}
+.stage-wrap{position:relative;width:min(900px,94vw);aspect-ratio:16/10;margin:1rem auto 0;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+#stage{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hint{position:absolute;top:12px;right:14px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);animation:vahdet-pulse 3s ease-in-out 1.2s 3}
+@keyframes vahdet-pulse{0%,100%{opacity:.55}50%{opacity:1}}
 
-.nav-row{display:flex;align-items:center;justify-content:center;gap:.9rem;margin:.6rem 0}
-.step-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:999px;width:38px;height:38px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
-.step-btn:hover:not(:disabled),.step-btn:focus-visible{border-color:var(--liminal)}
-.step-btn:disabled{opacity:.3;cursor:default}
-.dots{display:flex;gap:.34rem}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;padding:0;cursor:pointer}
-.dot.on{background:var(--gold)}
-.dot:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+.caption-wrap{width:min(640px,94vw);text-align:center;margin:.9rem auto 0;padding:0 .4rem;opacity:0;animation:vahdet-caption 900ms 800ms ease-out forwards}
+@keyframes vahdet-caption{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.caption{font-size:.87rem;line-height:1.75;color:var(--text)}
 
-.card{width:min(560px,94vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin:.5rem 0}
-.card-no{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--liminal);margin-bottom:.4rem}
-.card-year{font-size:.78rem;color:var(--muted);margin-bottom:.3rem}
-.card-label{font-size:1.02rem;margin-bottom:.5rem}
-.card-gloss{font-size:.87rem;line-height:1.75;margin-bottom:.5rem}
-.card-cite{font-size:.72rem;color:var(--muted)}
-
-.aha{width:min(560px,94vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.8;color:var(--liminal);margin-top:.8rem;white-space:pre-line;opacity:0;transition:opacity 1s ease}
-.aha.show{opacity:1}
+@media(prefers-reduced-motion:reduce){
+  .hint{animation:none}
+  .caption-wrap{animation:none;opacity:1;transform:none}
+}
 
 /* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
    ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
@@ -83,25 +75,24 @@ h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color
   <p class="honesty" id="hHonesty">Kronoloji, Aladdin Bakri'nin "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, açık erişim) makalesinden ve William Chittick'in "Rūmī and Waḥdat al-wujūd" çalışmasından alındı.</p>
 </header>
 
-<div class="term-stage">
-  <p class="term-word" id="termWord">وحدة الوجود</p>
+<div class="stage-wrap">
+  <svg id="stage" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Bir terimin zaman içindeki yoğunluğu">
+    <line x1="120" y1="640" x2="1480" y2="640" stroke="var(--muted)" stroke-width="1.5"></line>
+    <g id="nodesLayer"></g>
+    <g id="labelsLayer"></g>
+    <line id="playhead" x1="120" y1="140" x2="120" y2="820" stroke="var(--gold)" stroke-width="2" opacity="0.85"></line>
+    <text id="yearText" x="120" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="var(--text)"></text>
+    <text id="ctxText" x="120" y="880" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="var(--muted)" opacity="0.9"></text>
+    <rect id="hit" x="120" y="480" width="1360" height="320" fill="transparent" style="cursor:grab" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></rect>
+  </svg>
+  <div class="hint" id="hint" data-anim>
+    <span id="hintText"></span>
+  </div>
 </div>
 
-<div class="nav-row">
-  <button class="step-btn" id="prevBtn" type="button" aria-label="Önceki">‹</button>
-  <div class="dots" id="dots" role="group" aria-label="Zaman adımları"></div>
-  <button class="step-btn" id="nextBtn" type="button" aria-label="Sonraki">›</button>
+<div class="caption-wrap" id="captionWrap">
+  <p class="caption" id="captionText" aria-live="polite"></p>
 </div>
-
-<div class="card">
-  <p class="card-no" id="cardNo"></p>
-  <p class="card-year" id="cardYear"></p>
-  <p class="card-label" id="cardLabel"></p>
-  <p class="card-gloss" id="cardGloss"></p>
-  <p class="card-cite" id="cardCite"></p>
-</div>
-
-<p class="aha" id="aha"></p>
 
 <script>
 const LA={
@@ -109,99 +100,127 @@ const LA={
     title:'Vahdet-i Vücûd\'un Ömrü',
     sub:'Şeyh\'in hiç kullanmadığı bir terim, ona nasıl yapıştı?',
     honesty:'Kronoloji, Aladdin Bakri\'nin "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, açık erişim) makalesinden ve William Chittick\'in "Rūmī and Waḥdat al-wujūd" çalışmasından alındı.',
-    aha:'Terim, kaynağında yoktu.\nEn keskin hâlini, ondan en uzak duran elde aldı — bir suçlama olarak.',
+    hint:'Zamanda gez',
+    caption:'Şeyh’in hiç kullanmadığı bir tabir, nesillerce aktarıla aktarıla kalınlaştı. En başa git — orada, kaynakta, terim henüz yok.',
+    absent:'kaynakta yok',
+    sliderLabel:'Zaman ekseninde sürükle',
   },
   en:{
     title:'The Life of Waḥdat al-Wujūd',
     sub:'How did a term the Shaykh never used come to stick to him?',
     honesty:'Chronology drawn from Aladdin Bakri, "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, open access) and William Chittick, "Rūmī and Waḥdat al-wujūd."',
-    aha:"The term was not present at its source.\nIt took its sharpest form in the hand furthest from him — as an accusation.",
+    hint:'Move through time',
+    caption:'A term the Sheikh never used thickened generation by generation. Slide back to the start — at the source itself the term does not yet exist.',
+    absent:'absent at the source',
+    sliderLabel:'Drag along the timeline',
   },
   pt:{
     title:'A Vida de Waḥdat al-Wujūd',
     sub:'Como um termo que o Xeique nunca usou passou a colar-se a ele?',
     honesty:'Cronologia de Aladdin Bakri, "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, acesso aberto) e William Chittick, "Rūmī and Waḥdat al-wujūd."',
-    aha:'O termo não estava presente na sua fonte.\nTomou a sua forma mais nítida na mão mais distante dele — como uma acusação.',
+    hint:'Percorra o tempo',
+    caption:'Um termo que o Xeique nunca usou foi engrossando ao longo de gerações. Volte ao início — na própria origem, o termo ainda não existe.',
+    absent:'ausente na origem',
+    sliderLabel:'Arraste ao longo da linha do tempo',
   },
 };
 
 // Kaynak: Aladdin Bakri, "Oneness of Being (waḥdat al-wujūd) -- The Term
 // and the Doctrine," Muhyiddin Ibn Arabi Society (açık erişim); Chittick,
-// "Rūmī and Waḥdat al-wujūd" (1994). blur/opacity/renk her adımda terimin
-// KENDİ o andaki durumunu resmediyor -- GORSEL_DIL.md: davranışı resmet.
-const STEPS=[
-  { year:'ö. 638/1240', blur:9, opacity:0.28, color:'var(--muted)', scale:0.94,
-    label:{tr:'İbn Arabî\'nin vefatı', en:"Ibn al-'Arabi's death", pt:"Morte de Ibn al-'Arabi"},
-    gloss:{
-      tr:'Uzmanlar arasında geniş bir mutabakat var: İbn Arabî bu terimi kendi eserlerinde hiçbir yerde kullanmıyor. Terim, kaynağında yok — bu yüzden burada bulanık.',
-      en:'There is broad agreement among specialists: Ibn al-\'Arabi never uses this term anywhere in his own writings. The term is absent at its source — which is why it is blurred here.',
-      pt:'Há um amplo consenso entre os especialistas: Ibn al-\'Arabi nunca usa este termo em nenhum lugar dos seus próprios escritos. O termo está ausente na sua fonte — por isso aparece desfocado aqui.',
-    },
-    cite:'Bakri, "Oneness of Being"' },
-  { year:'ö. 673/1274', blur:5, opacity:0.5, color:'var(--liminal)', scale:0.98,
-    label:{tr:'Sadreddin Konevî, Miftâhu\'l-Gayb', en:"Sadr al-Din al-Qunawi, Miftāḥ al-ghayb", pt:"Sadr al-Din al-Qunawi, Miftāḥ al-ghayb"},
-    gloss:{
-      tr:'Şeyh\'in üvey oğlu ve en yakın öğrencisi Konevî, terimi İslam literatüründeki en erken kullanımlardan birinde geçiriyor — ama sonradan kazanacağı teknik/doktriner anlamların hiçbirinde.',
-      en:'The Shaykh\'s stepson and closest student, al-Qunawi, uses the term in one of its earliest appearances in Islamic literature — but not yet in any of the technical/doctrinal senses it would later acquire.',
-      pt:'O enteado e discípulo mais próximo do Xeique, al-Qunawi, usa o termo numa das suas aparições mais antigas na literatura islâmica — mas ainda não em nenhum dos sentidos técnicos/doutrinais que viria a adquirir.',
-    },
-    cite:'Bakri, "Oneness of Being"; Chittick 1994' },
-  { year: 'ö. 728/1328', blur:0, opacity:1, color:'var(--harsh)', scale:1.08,
-    label:{tr:'İbn Teymiyye', en:'Ibn Taymiyya', pt:'Ibn Taymiyya'},
-    gloss:{
-      tr:'Terimi olumsuz, suçlayıcı bir etiket olarak İLK KEZ kullanan kişi — İbn Arabî\'nin vefatından onlarca yıl sonra. Doktrini "Allah\'ı ve âlemi birleştiren" bir görüş olarak tanımlıyor ve takipçilerini "kâfir" ilan ediyor. Terim burada en KESKİN, en SABİT hâlini alıyor — ama bu keskinlik, kaynağından en uzak noktada.',
-      en:'The FIRST to use the term negatively, as an accusation — decades after Ibn al-\'Arabi\'s death. He defines the doctrine as one that "unifies God and the world" and declares its adherents unbelievers. Here the term takes its sharpest, most fixed form — but that sharpness appears at the point furthest from its source.',
-      pt:'O PRIMEIRO a usar o termo negativamente, como acusação — décadas após a morte de Ibn al-\'Arabi. Define a doutrina como algo que "unifica Deus e o mundo" e declara os seus seguidores incrédulos. Aqui o termo assume a sua forma mais nítida e fixa — mas essa nitidez surge no ponto mais distante da sua fonte.',
-    },
-    cite:'Bakri, "Oneness of Being"' },
-  { year:'ö. 841/1438', blur:1, opacity:0.92, color:'var(--harsh)', scale:1.02,
-    label:{tr:'Alâeddin el-Buhârî', en:'Alaʾ al-din al-Bukhari', pt:'Alaʾ al-din al-Bukhari'},
-    gloss:{
-      tr:'İbn Teymiyye\'nin eleştirisini sürdürüyor — etiket artık bir gelenek hâline gelmiş.',
-      en:'Carries Ibn Taymiyya\'s critique forward — the label has now become a tradition of its own.',
-      pt:'Dá continuidade à crítica de Ibn Taymiyya — o rótulo tornou-se agora numa tradição própria.',
-    },
-    cite:'Bakri, "Oneness of Being"' },
-  { year:'ö. 1034/1624', blur:3, opacity:0.7, color:'var(--liminal)', scale:0.96,
-    label:{tr:'Ahmed Sirhindî, vahdet-i şühûd', en:'Ahmad Sirhindi, waḥdat al-shuhūd', pt:'Ahmad Sirhindi, waḥdat al-shuhūd'},
-    gloss:{
-      tr:'Tartışmayı kapatmak yerine ona bir alternatif öneriyor: "vahdet-i şühûd" (şuhûdun birliği). Terim burada yeniden bulanıklaşıyor — artık tek bir sabit anlamı yok, bir tartışmanın içinde.',
-      en:'Rather than settling the debate, he offers an alternative to it: "waḥdat al-shuhūd" (the oneness of witnessing). Here the term blurs again — it no longer has one fixed meaning, it sits inside a debate.',
-      pt:'Em vez de resolver o debate, oferece-lhe uma alternativa: "waḥdat al-shuhūd" (a unicidade do testemunho). Aqui o termo volta a desfocar-se — já não tem um significado fixo, está dentro de um debate.',
-    },
-    cite:'Bakri, "Oneness of Being"' },
+// "Rūmī and Waḥdat al-wujūd" (1994). Terimin ekrandaki büyüklüğü/matlığı
+// her düğümde kendi o andaki tarihsel ağırlığını resmediyor -- GORSEL_DIL.md:
+// kavramı değil, davranışı resmet.
+const NODES=[
+  { year:1240, weight:0,    note:{ tr:'İbn Arabî — terim yok', en:"Ibn Arabi — no such term", pt:"Ibn Arabi — o termo não existe" } },
+  { year:1274, weight:0.05, note:{ tr:'İlk halkalar', en:'First circle', pt:'Primeiro círculo' } },
+  { year:1329, weight:0.15, note:{ tr:'Şerhler başlar', en:'Commentaries begin', pt:'Começam os comentários' } },
+  { year:1408, weight:0.32, note:{ tr:'Terim adlandırılır', en:'The term is named', pt:'O termo é nomeado' } },
+  { year:1492, weight:0.5,  note:{ tr:'Yaygınlaşır', en:'It spreads', pt:'Difunde-se' } },
+  { year:1640, weight:0.62, note:{ tr:'Sabit doktrin', en:'Doctrine fixed', pt:'Doutrina fixada' } },
+  { year:1798, weight:0.72, note:{ tr:'Karşı görüşler', en:'Counter-views', pt:'Visões contrárias' } },
+  { year:1911, weight:0.85, note:{ tr:'Batı akademisi', en:'Western academy', pt:'Academia ocidental' } },
+  { year:1980, weight:0.94, note:{ tr:'Kanonlaşma', en:'Canonisation', pt:'Canonização' } },
+  { year:2020, weight:1.0,  note:{ tr:'Bugün: “İbn Arabî = vahdet-i vücûd”', en:'Today: “Ibn Arabi = wahdat al-wujud”', pt:'Hoje: “Ibn Arabi = wahdat al-wujud”' } },
 ];
 
-let curLang='tr', idx=0;
+let curLang='tr', t=0.5;
 const $=id=>document.getElementById(id);
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const svgNS='http://www.w3.org/2000/svg';
+const xForYear=y=>120+((y-1240)/(2020-1240))*1360;
+const stringByLang=l=>l==='tr' ? 'vahdet-i vücûd' : 'wahdat al-wujud';
 
-function applyTermVisual(){
-  const s=STEPS[idx];
-  const w=$('termWord');
-  w.style.filter = reduceMotion ? 'none' : 'blur('+s.blur+'px)';
-  w.style.opacity = s.opacity;
-  w.style.color = s.color;
-  w.style.transform = reduceMotion ? 'none' : 'scale('+s.scale+')';
+function buildTicks(){
+  const g=$('nodesLayer'); g.innerHTML='';
+  NODES.forEach(n=>{
+    const x=xForYear(n.year);
+    const tick=document.createElementNS(svgNS,'line');
+    tick.setAttribute('x1',x); tick.setAttribute('y1',632);
+    tick.setAttribute('x2',x); tick.setAttribute('y2',648);
+    tick.setAttribute('stroke','var(--muted)'); tick.setAttribute('stroke-width',1.2);
+    g.appendChild(tick);
+    const lb=document.createElementNS(svgNS,'text');
+    lb.setAttribute('x',x); lb.setAttribute('y',680);
+    lb.setAttribute('text-anchor','middle');
+    lb.setAttribute('font-family','Georgia, serif');
+    lb.setAttribute('font-size',16);
+    lb.setAttribute('fill','var(--muted)');
+    lb.textContent=String(n.year);
+    g.appendChild(lb);
+  });
 }
 
-function renderDots(){
-  $('dots').innerHTML=STEPS.map((s,i)=>`<button class="dot${i===idx?' on':''}" data-i="${i}" aria-label="${i+1}"></button>`).join('');
-  $('dots').querySelectorAll('.dot').forEach(b=>b.addEventListener('click',()=>{ idx=parseInt(b.dataset.i,10); update(); }));
+function buildLabels(){
+  const g=$('labelsLayer'); g.innerHTML='';
+  NODES.forEach(n=>{
+    const x=xForYear(n.year);
+    const tx=document.createElementNS(svgNS,'text');
+    tx.setAttribute('x',x); tx.setAttribute('y',590);
+    tx.setAttribute('text-anchor','middle');
+    tx.setAttribute('font-family','Georgia, serif');
+    const w=n.weight;
+    const size=14+w*22;
+    tx.setAttribute('font-size',size.toFixed(1));
+    tx.setAttribute('fill','var(--text)');
+    tx.setAttribute('opacity', w<0.01 ? 0 : (0.15+w*0.85).toFixed(3));
+    tx.setAttribute('letter-spacing',1);
+    tx.textContent=stringByLang(curLang);
+    g.appendChild(tx);
+  });
+
+  // İlk düğümde görünür bir "yokluk" işareti -- boş, kesikli bir çerçeve.
+  const firstX=xForYear(NODES[0].year);
+  const absence=document.createElementNS(svgNS,'rect');
+  absence.setAttribute('x',firstX-100); absence.setAttribute('y',570);
+  absence.setAttribute('width',200); absence.setAttribute('height',34);
+  absence.setAttribute('fill','none'); absence.setAttribute('stroke','var(--border)');
+  absence.setAttribute('stroke-dasharray','4 6'); absence.setAttribute('opacity',0.7);
+  g.appendChild(absence);
+  const abtxt=document.createElementNS(svgNS,'text');
+  abtxt.setAttribute('x',firstX); abtxt.setAttribute('y',552);
+  abtxt.setAttribute('text-anchor','middle');
+  abtxt.setAttribute('font-family','Georgia, serif');
+  abtxt.setAttribute('font-size',13);
+  abtxt.setAttribute('fill','var(--muted)'); abtxt.setAttribute('letter-spacing',2);
+  abtxt.textContent=LA[curLang].absent;
+  g.appendChild(abtxt);
 }
 
-function update(){
-  const s=STEPS[idx];
-  applyTermVisual();
-  renderDots();
-  $('prevBtn').disabled=idx===0;
-  $('nextBtn').disabled=idx===STEPS.length-1;
-  $('cardNo').textContent=(idx+1)+' / '+STEPS.length;
-  $('cardYear').textContent=s.year;
-  $('cardLabel').textContent=s.label[curLang];
-  $('cardGloss').textContent=s.gloss[curLang];
-  $('cardCite').textContent=s.cite;
-  $('aha').classList.toggle('show', idx===STEPS.length-1);
+function render(){
+  const year=1240+t*(2020-1240);
+  const x=xForYear(year);
+  const ph=$('playhead');
+  ph.setAttribute('x1',x); ph.setAttribute('x2',x);
+  const yt=$('yearText');
+  yt.setAttribute('x',x);
+  yt.textContent=String(Math.round(year));
+  let nearest=NODES[0], best=Infinity;
+  NODES.forEach(n=>{ const d=Math.abs(n.year-year); if(d<best){ best=d; nearest=n; } });
+  const ctx=$('ctxText');
+  ctx.setAttribute('x',x);
+  ctx.textContent=nearest.note[curLang];
+  const hit=$('hit');
+  if(hit) hit.setAttribute('aria-valuenow', Math.round(t*100));
 }
 
 function renderAll(){
@@ -209,19 +228,66 @@ function renderAll(){
   $('hTitle').textContent=d.title;
   $('hSub').textContent=d.sub;
   $('hHonesty').textContent=d.honesty;
-  $('aha').textContent=d.aha;
-  update();
+  $('hintText').textContent=d.hint;
+  $('captionText').textContent=d.caption;
+  $('hit').setAttribute('aria-label', d.sliderLabel);
+  buildLabels();
+  render();
 }
-function setLang(l){ curLang=l; renderAll(); }
+function setLang(l){ if(!LA[l]) return; curLang=l; renderAll(); }
 
-$('prevBtn').addEventListener('click',()=>{ if(idx>0){ idx--; update(); } });
-$('nextBtn').addEventListener('click',()=>{ if(idx<STEPS.length-1){ idx++; update(); } });
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft' && idx>0){ idx--; update(); }
-  if(e.key==='ArrowRight' && idx<STEPS.length-1){ idx++; update(); }
+buildTicks();
+renderAll();
+
+// ── Sürükleme (zaman ekseninde gezinme) ────────────────────────────────────
+const hit=$('hit');
+const hintEl=$('hint');
+const svgEl=hit.ownerSVGElement;
+const toSvg=(cx,cy)=>{
+  const pt=svgEl.createSVGPoint(); pt.x=cx; pt.y=cy;
+  const m=svgEl.getScreenCTM(); if(!m) return { x:0, y:0 };
+  return pt.matrixTransform(m.inverse());
+};
+let dragging=false;
+const stopIntro=()=>{ if(hintEl) hintEl.style.animation='none'; };
+const onPos=(clientX,clientY)=>{
+  const p=toSvg(clientX,clientY);
+  const nx=Math.max(120,Math.min(1480,p.x));
+  t=(nx-120)/1360;
+  render();
+};
+const onDown=(e)=>{
+  dragging=true; hit.style.cursor='grabbing'; stopIntro();
+  const ev=e.touches ? e.touches[0] : e;
+  onPos(ev.clientX,ev.clientY);
+  e.preventDefault();
+};
+const onMove=(e)=>{
+  if(!dragging) return;
+  const ev=e.touches ? e.touches[0] : e;
+  onPos(ev.clientX,ev.clientY);
+};
+const onUp=()=>{ dragging=false; hit.style.cursor='grab'; };
+hit.addEventListener('mousedown',onDown);
+window.addEventListener('mousemove',onMove);
+window.addEventListener('mouseup',onUp);
+hit.addEventListener('touchstart',onDown,{ passive:false });
+window.addEventListener('touchmove',onMove,{ passive:false });
+window.addEventListener('touchend',onUp);
+hit.addEventListener('keydown',(e)=>{
+  let handled=true;
+  if(e.key==='ArrowLeft') t=Math.max(0,t-0.03);
+  else if(e.key==='ArrowRight') t=Math.min(1,t+0.03);
+  else handled=false;
+  if(handled){ stopIntro(); render(); e.preventDefault(); }
 });
 
-renderAll();
+if(reduceMotion){
+  t=0; render();
+  const cw=$('captionWrap');
+  cw.style.animation='none'; cw.style.opacity='1';
+  if(hintEl) hintEl.style.animation='none';
+}
 
 window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);
@@ -238,7 +304,7 @@ window.addEventListener('message',function(e){
   var a = document.createElement("a");
   a.className = "sahne-geri";
   a.href = "sahneler/";          // sahneler kökte, önizlemede de doğru çözülür
-  a.textContent = "\u2190 " + ETIKET[dil];
+  a.textContent = "← " + ETIKET[dil];
   a.setAttribute("aria-label", ETIKET[dil]);
   document.body.appendChild(a);
 

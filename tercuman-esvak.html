@@ -13,36 +13,20 @@
 :root[data-theme=light]{--bg:#F9F9F7;--surface:#FCFCFB;--border:#E1E0D9;--text:#1A1A1A;--muted:#6F6D65;--panel:#FCFCFB;--gold:#8A6100;--liminal:#8C6D1A}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
-header{text-align:center;margin-bottom:1.1rem;max-width:660px}
+header{text-align:center;margin-bottom:1rem;max-width:640px}
 h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
 .sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
 
-.siir-kutu{width:min(560px,96vw);background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.6rem;margin-bottom:1.1rem}
-.siir{font-size:.98rem;line-height:2.0;white-space:pre-wrap}
-.siir .satir{display:block;transition:color .5s ease}
-.siir .satir--suret{color:var(--text)}
-.siir-kaynak{font-size:.71rem;color:var(--muted);margin-top:1rem;line-height:1.55}
+.stage-wrap{position:relative;width:min(640px,94vw);aspect-ratio:16/9;margin:.6rem auto 0}
+#stage{position:absolute;inset:0;width:100%;height:100%;display:block}
+#hit{cursor:grab}
+#hit:focus-visible{outline:2px solid var(--liminal);outline-offset:-3px}
+.hint{position:absolute;top:10px;right:12px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);animation:hintPulse 3s ease-in-out 1.5s 3;pointer-events:none}
+@keyframes hintPulse{0%,100%{opacity:.55}50%{opacity:1}}
 
-/* Sağ uçtaki kol left:100% + translate(-50%) ile duruyor, yani izin
-   sağından ~11px taşıyor. İzi 12px içeri alıyoruz ki kol en sağdayken
-   bile sayfa yatay kaymasın (375px'te ölçüldü: 5px taşıyordu). */
-.track-wrap{width:min(560px,94vw);margin:0 auto 1.1rem;text-align:center;padding:0 12px}
-.track{position:relative;height:34px;margin:0 auto}
-.track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
-.track-end{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:var(--border);transform:translate(-50%,-50%)}
-.track-end.left{left:0}
-.track-end.right{left:100%}
-.track-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal);transform:translate(-50%,-50%);cursor:grab;touch-action:none}
-.track-handle:active{cursor:grabbing}
-.track:focus-visible{outline:2px solid var(--liminal);outline-offset:6px;border-radius:4px}
-.track-labels{display:flex;justify-content:space-between;margin-top:.55rem;font-size:.78rem;color:var(--muted);gap:1rem}
-.track-labels span{max-width:190px;line-height:1.4}
-.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
-.grab-hint.gone{opacity:.28}
-
-.okuma{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;min-height:7.2rem}
+.okuma{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;min-height:7.2rem;margin-top:.6rem}
 .okuma-kim{font-size:.71rem;text-transform:uppercase;letter-spacing:.12em;color:var(--liminal);margin-bottom:.5rem}
-.okuma-metin{font-size:.87rem;line-height:1.75}
+.okuma-metin{font-size:.87rem;line-height:1.75;transition:opacity .3s ease}
 
 .sayac{width:min(560px,96vw);text-align:center;font-size:.78rem;color:var(--muted);margin-top:.9rem;letter-spacing:.03em}
 .sayac b{color:var(--gold);font-weight:400}
@@ -112,23 +96,37 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   <p class="sub" id="hSub"></p>
 </header>
 
-<div class="siir-kutu">
-  <div class="siir" id="siir"></div>
-  <p class="siir-kaynak" id="siirKaynak"></p>
-</div>
+<div class="stage-wrap">
+  <svg id="stage" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Bir kaside, ışığın konumuna göre iki okuma arasında">
+    <defs>
+      <radialGradient id="backGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="var(--gold)" stop-opacity="0.9"></stop>
+        <stop offset="100%" stop-color="var(--gold)" stop-opacity="0"></stop>
+      </radialGradient>
+      <filter id="blurFilter">
+        <feGaussianBlur stdDeviation="14"></feGaussianBlur>
+      </filter>
+    </defs>
 
-<div class="track-wrap">
-  <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="İki okuma arasında sürükle">
-    <div class="track-line"></div>
-    <div class="track-end left"></div>
-    <div class="track-end right"></div>
-    <div class="track-handle" id="handle"></div>
-  </div>
-  <div class="track-labels">
-    <span id="labelLeft"></span>
-    <span id="labelRight"></span>
-  </div>
-  <p class="grab-hint" id="grabHint"></p>
+    <!-- Arkadan gelen ışık (harflerin arkasında). Opaklık kaydırıcıyla sürülüyor. -->
+    <ellipse id="backlight" cx="800" cy="320" rx="650" ry="330" fill="url(#backGrad)" opacity="0"></ellipse>
+
+    <!-- Önden düşen gölge (harflerin altında/sağında). Opaklık kaydırıcıyla sürülüyor. -->
+    <g id="shadow" style="filter:url(#blurFilter);opacity:0">
+      <text id="verseShadow" text-anchor="middle" font-family="Georgia,'Iowan Old Style',serif" font-size="30" letter-spacing=".5" fill="var(--text)" opacity="0.55"></text>
+    </g>
+
+    <!-- Kasidenin kendisi — hiç değişmiyor, hiç kaymıyor. -->
+    <text id="verse" text-anchor="middle" font-family="Georgia,'Iowan Old Style',serif" font-size="30" letter-spacing=".5" fill="var(--text)"></text>
+
+    <!-- İki konumun etiketleri -->
+    <text id="lblWorldly" x="200" y="820" text-anchor="start" font-family="Georgia,serif" font-size="14" letter-spacing="2" fill="var(--muted)"></text>
+    <text id="lblDivine" x="1400" y="820" text-anchor="end" font-family="Georgia,serif" font-size="14" letter-spacing="2" fill="var(--muted)"></text>
+
+    <rect id="hit" x="0" y="0" width="1600" height="900" fill="transparent" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></rect>
+  </svg>
+
+  <div class="hint" id="hint"><span id="hintText"></span></div>
 </div>
 
 <div class="okuma">
@@ -151,13 +149,17 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 // şerhten alıntı DEĞİLDİR. Bu ayrım sayfanın .yontem notunda da yazılı.
 // (.claude/skills/siir-okuma/SKILL.md: şiiri şerh etmek bu sitenin kapsamı
 // dışında; burada yapılan şerh değil, bir tartışmanın iki tarafını aktarmak.)
+//
+// Sahne motoru: ışık dizenin önünden mi (gölge, dünyevî/zahirî okuma) yoksa
+// arkasından mı (parıltı, ilahî/bâtınî okuma) geldiğine göre aynı harfler
+// iki ayrı okumaya açılıyor -- harfler kendisi hiç değişmeden.
 const LA={
   tr:{
     title:'Kendi Şiirini Savunmak',
-    sub:'Dost Mekke’de Nizâm adlı genç kadın için bir aşk şiirleri divanı yazdı. “Bu ilahî değil, dünyevî aşk” dendi. O da kendi şiirine kendi şerhini yazdı. Aşağıdaki kaside o divandan. Sürükleyerek iki okuma arasında gezin — ve şiire bak.',
-    labelLeft:'Eleştirinin okuması',
-    labelRight:'Dost’un savunması',
-    grab:'Sürükle (ok tuşları da çalışır)',
+    sub:'Dost Mekke’de Nizâm adlı genç kadın için bir aşk şiirleri divanı yazdı. “Bu ilahî değil, dünyevî aşk” dendi. O da kendi şiirine kendi şerhini yazdı. Aşağıdaki kaside o divandan. Sürükleyerek ışığın önden mi arkadan mı geldiğini değiştir — iki okuma arasında gezin.',
+    lblWorldly:'Eleştirinin okuması',
+    lblDivine:'Dost’un savunması',
+    hint:'Sürükle (ok tuşları da çalışır)',
     kimSol:'Eleştiri',
     kimSag:'Dost’un cevabı',
     okumaSol:'Bu satırlar bir kadına yazılmış dünyevî bir aşk şiiridir: ceylan, çayır, manastır, develer — hepsi klasik Arap aşk şiirinin kendi sözlüğü. Bir sûfîden beklenen dil bu değildir; şairin “dinim aşkın gittiği yoldur” demesi de bu yüzden fazla ileri gider.',
@@ -169,10 +171,10 @@ const LA={
   },
   en:{
     title:'Defending His Own Poem',
-    sub:'In Mecca, Dost wrote a collection of love poems for a young woman named Nizam. “This is worldly love, not divine,” it was said. So he wrote his own commentary on his own poem. The ode below is from that collection. Drag between the two readings — and watch the poem.',
-    labelLeft:'The critics’ reading',
-    labelRight:'Dost’s defence',
-    grab:'Drag (arrow keys work too)',
+    sub:'In Mecca, Dost wrote a collection of love poems for a young woman named Nizam. “This is worldly love, not divine,” it was said. So he wrote his own commentary on his own poem. The ode below is from that collection. Drag to move the light from in front of the lines to behind them — and move between the two readings.',
+    lblWorldly:'The critics’ reading',
+    lblDivine:'Dost’s defence',
+    hint:'Drag (arrow keys work too)',
     kimSol:'The criticism',
     kimSag:'Dost’s reply',
     okumaSol:'These lines are a worldly love poem written for a woman: gazelles, pasture, cloister, camels — all the standard vocabulary of classical Arabic love poetry. This is not the language expected of a Sufi; and the poet’s “my religion is whatever way Love takes” goes further still.',
@@ -184,10 +186,10 @@ const LA={
   },
   pt:{
     title:'Defender o Próprio Poema',
-    sub:'Em Meca, Dost escreveu uma coleção de poemas de amor para uma jovem chamada Nizam. “Isto é amor mundano, não divino”, disseram. Então ele escreveu o seu próprio comentário ao seu próprio poema. A ode abaixo é dessa coleção. Arraste entre as duas leituras — e olhe para o poema.',
-    labelLeft:'A leitura dos críticos',
-    labelRight:'A defesa de Dost',
-    grab:'Arraste (as setas também funcionam)',
+    sub:'Em Meca, Dost escreveu uma coleção de poemas de amor para uma jovem chamada Nizam. “Isto é amor mundano, não divino”, disseram. Então ele escreveu o seu próprio comentário ao seu próprio poema. A ode abaixo é dessa coleção. Arraste para mover a luz de diante das linhas para trás delas — e passe entre as duas leituras.',
+    lblWorldly:'A leitura dos críticos',
+    lblDivine:'A defesa de Dost',
+    hint:'Arraste (as setas também funcionam)',
     kimSol:'A crítica',
     kimSag:'A resposta de Dost',
     okumaSol:'Estes versos são um poema de amor mundano escrito para uma mulher: gazelas, pasto, convento, camelos — todo o vocabulário da poesia amorosa árabe clássica. Não é a linguagem que se espera de um sufi; e o “minha religião é o caminho que o Amor tomar” vai ainda mais longe.',
@@ -203,10 +205,20 @@ const LA={
 // sayıldığı altı satır. Tartışmanın döndüğü yer tam olarak bunlar --
 // bu yüzden vurgulanan onlar. (Üç dilde de aynı satır sıraları.)
 const SURET_SATIRLARI=[3,4,5,6,7,8];
+const VERSE_START_Y=110, VERSE_DY=46;
+const SVGNS='http://www.w3.org/2000/svg';
 
-let curLang='tr', pos=0, touched=false, siirVeri=null, referansMetin=null;
+let curLang='tr', t=0.5, siirVeri=null, referansMetin=null;
 const $=id=>document.getElementById(id);
 const clamp01=x=>Math.max(0,Math.min(1,x));
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function clearChildren(el){ while(el.firstChild) el.removeChild(el.firstChild); }
+function svgTspan(x,y,text){
+  const el=document.createElementNS(SVGNS,'tspan');
+  el.setAttribute('x',x); el.setAttribute('y',y); el.textContent=text;
+  return el;
+}
 
 // Şiir metni siteyle tek kaynaktan gelsin diye kataloğun kendisinden
 // okunuyor (gömülü bir kopya zamanla veriden ayrı düşerdi).
@@ -214,87 +226,140 @@ fetch('data/ibn-arabi/siirler.json')
   .then(r=>r.json())
   .then(d=>{
     siirVeri=(d.siirler||[]).find(s=>s.id==='te-kalp')||null;
-    render();
+    renderAll();
   })
-  .catch(()=>{ $('siir').textContent='—'; render(); });
+  .catch(()=>{ renderAll(); });
 
 function siirCiz(){
+  const verseEl=$('verse'), shadowEl=$('verseShadow');
+  clearChildren(verseEl); clearChildren(shadowEl);
   if(!siirVeri) return;
   const satirlar=(siirVeri.metin[curLang]||siirVeri.metin.tr||'').split('\n');
-  $('siir').innerHTML=satirlar.map((s,i)=>
-    `<span class="satir${SURET_SATIRLARI.includes(i)?' satir--suret':''}" data-i="${i}">${s}</span>`
-  ).join('');
-  $('siirKaynak').textContent=(siirVeri.kaynak_bilgisi||{})[curLang]||'';
+  satirlar.forEach((s,i)=>{
+    const y=VERSE_START_Y+i*VERSE_DY;
+    const main=svgTspan(800,y,s);
+    if(SURET_SATIRLARI.includes(i)) main.classList.add('satir--suret');
+    verseEl.appendChild(main);
+    shadowEl.appendChild(svgTspan(800,y,s));
+  });
   // Referans: şiirin o anki düz metni. Sürükledikçe bununla karşılaştırıp
   // "kaç harf değişti" sayısını GERÇEKTEN ölçüyoruz -- iddiayı yazmıyoruz,
   // sahnenin kendisi kanıtlıyor.
-  referansMetin=$('siir').textContent;
+  referansMetin=verseEl.textContent;
 }
 
-function boya(p){
-  // Tek değişen şey: hangi okumanın merceğinden bakıldığı. Sûret satırları
-  // iki uçta da görünür kalıyor; ortada -- yani hiçbir tarafı seçmemişken --
-  // en sönük hâlde. Metnin KENDİSİ hiç değişmiyor.
-  const uc=Math.abs(p-0.5)*2;                    // 0 ortada, 1 uçlarda
-  document.querySelectorAll('.satir--suret').forEach(el=>{
-    el.style.color = `color-mix(in srgb, var(--gold) ${(28+52*uc).toFixed(0)}%, var(--text))`;
+let gordu={sol:false, sag:false};
+
+// t=0 → ışık önden (gölge güçlü, arka ışık kapalı, zahirî/dünyevî okuma)
+// t=1 → ışık arkadan (arka ışık güçlü, gölge kapalı, bâtınî/ilahî okuma)
+// t=0.5 → ikisi birden, eşit ağırlıkta
+function render(){
+  if(!siirVeri) return;
+  const d=LA[curLang];
+  const front=Math.max(0,1-t);
+  const back=Math.max(0,t);
+  $('shadow').style.opacity=Math.min(1,front*1.4).toFixed(3);
+  $('backlight').setAttribute('opacity', Math.min(0.85, back*0.95).toFixed(3));
+  // Gölgenin kayması önden gelen ışığın gücüyle birlikte artıyor (güneş açısı gibi).
+  const off=(4+front*10).toFixed(1);
+  $('shadow').setAttribute('transform', `translate(${off},${off})`);
+
+  // Sûret satırları: iki uçta da görünür kalıyor, ortada -- yani hiçbir
+  // tarafı seçmemişken -- en sönük hâlde. Metnin KENDİSİ hiç değişmiyor.
+  const uc=Math.abs(t-0.5)*2;
+  document.querySelectorAll('#verse .satir--suret').forEach(el=>{
+    el.style.fill = `color-mix(in srgb, var(--gold) ${(28+52*uc).toFixed(0)}%, var(--text))`;
   });
-  const t=LA[curLang];
-  $('okumaKim').textContent = p<0.5 ? t.kimSol : t.kimSag;
-  $('okumaMetin').textContent = p<0.5 ? t.okumaSol : t.okumaSag;
+
+  $('okumaKim').textContent = t<0.5 ? d.kimSol : d.kimSag;
+  $('okumaMetin').textContent = t<0.5 ? d.okumaSol : d.okumaSag;
   $('okumaMetin').style.opacity = (0.55+0.45*uc).toFixed(2);
+
   // Ölçüm: şiirin düz metni referanstan kaç karakter farklı?
-  const simdi=$('siir').textContent;
+  const simdi=$('verse').textContent;
   let fark=0;
   if(referansMetin!==null){
     const n=Math.max(simdi.length, referansMetin.length);
     for(let i=0;i<n;i++) if(simdi[i]!==referansMetin[i]) fark++;
   }
-  $('sayac').innerHTML=t.sayac(fark);
-}
+  $('sayac').innerHTML=d.sayac(fark);
 
-function render(){
-  const t=LA[curLang];
-  $('hTitle').textContent=t.title;
-  $('hSub').textContent=t.sub;
-  $('labelLeft').textContent=t.labelLeft;
-  $('labelRight').textContent=t.labelRight;
-  $('grabHint').textContent=t.grab;
-  $('aha').textContent=t.aha;
-  $('kardesLink').textContent=t.kardes;
-  $('yontem').textContent=t.yontem;
-  siirCiz();
-  uygula();
-}
-function setLang(l){ if(LA[l]){ curLang=l; document.documentElement.lang=l; render(); } }
+  const hit=$('hit');
+  hit.setAttribute('aria-valuenow', Math.round(t*100));
+  hit.setAttribute('aria-valuetext', t<0.5 ? d.lblWorldly : d.lblDivine);
 
-const track=$('track');
-function markTouched(){ if(!touched){ touched=true; $('grabHint').classList.add('gone'); } }
-let gordu={sol:false, sag:false};
-function uygula(){
-  $('handle').style.left=(pos*100)+'%';
-  track.setAttribute('aria-valuenow',Math.round(pos*100));
-  track.setAttribute('aria-valuetext', pos<0.5 ? LA[curLang].kimSol : LA[curLang].kimSag);
-  boya(pos);
   // Hayret önce: aha ancak kullanıcı İKİ ucu da gördükten sonra.
-  if(pos<=0.08) gordu.sol=true;
-  if(pos>=0.92) gordu.sag=true;
+  if(t<=0.08) gordu.sol=true;
+  if(t>=0.92) gordu.sag=true;
   if(gordu.sol && gordu.sag) $('aha').classList.add('show');
 }
-function posFromX(x){ const r=track.getBoundingClientRect(); pos=clamp01((x-r.left)/r.width); uygula(); }
+
+function renderAll(){
+  const d=LA[curLang];
+  $('hTitle').textContent=d.title;
+  $('hSub').textContent=d.sub;
+  $('lblWorldly').textContent=d.lblWorldly;
+  $('lblDivine').textContent=d.lblDivine;
+  $('hintText').textContent=d.hint;
+  $('aha').textContent=d.aha;
+  $('kardesLink').textContent=d.kardes;
+  $('yontem').textContent=d.yontem;
+  $('hit').setAttribute('aria-label', d.hint);
+  siirCiz();
+  render();
+}
+function setLang(l){ if(LA[l]){ curLang=l; document.documentElement.lang=l; renderAll(); } }
+
+// ── Sürükleme: diyagramın kendi üstünde, ışığı doğrudan taşıyarak ──────────
+const hit=$('hit');
+const hint=$('hint');
+const svgEl=hit.ownerSVGElement;
+function toSvg(cx,cy){
+  const pt=svgEl.createSVGPoint(); pt.x=cx; pt.y=cy;
+  const m=svgEl.getScreenCTM(); if(!m) return {x:0};
+  return pt.matrixTransform(m.inverse());
+}
 let dragging=false;
-track.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{track.setPointerCapture(e.pointerId);}catch(_){} posFromX(e.clientX); e.preventDefault(); });
-track.addEventListener('pointermove',e=>{ if(dragging) posFromX(e.clientX); });
-['pointerup','pointercancel'].forEach(t=>track.addEventListener(t,()=>{dragging=false;}));
-track.addEventListener('keydown',e=>{
-  const k={ArrowLeft:-0.05,ArrowRight:0.05,ArrowDown:-0.05,ArrowUp:0.05,Home:-1,End:1}[e.key];
-  if(k===undefined) return;
-  markTouched();
-  pos = e.key==='Home' ? 0 : e.key==='End' ? 1 : clamp01(pos+k);
-  uygula(); e.preventDefault();
+function stopIntro(){ hint.style.animation='none'; }
+function posFromClient(cx){
+  const p=toSvg(cx,0);
+  t=clamp01((p.x-200)/1200);
+}
+function onDown(e){
+  dragging=true; hit.style.cursor='grabbing'; stopIntro();
+  const ev=e.touches?e.touches[0]:e;
+  posFromClient(ev.clientX);
+  render();
+  e.preventDefault();
+}
+function onMove(e){
+  if(!dragging) return;
+  const ev=e.touches?e.touches[0]:e;
+  posFromClient(ev.clientX);
+  render();
+}
+function onUp(){ dragging=false; hit.style.cursor='grab'; }
+hit.addEventListener('mousedown', onDown);
+window.addEventListener('mousemove', onMove);
+window.addEventListener('mouseup', onUp);
+hit.addEventListener('touchstart', onDown, { passive:false });
+window.addEventListener('touchmove', onMove, { passive:false });
+window.addEventListener('touchend', onUp);
+hit.addEventListener('keydown', e=>{
+  let handled=true;
+  if(e.key==='ArrowLeft'||e.key==='ArrowDown') t=Math.max(0, t-0.05);
+  else if(e.key==='ArrowRight'||e.key==='ArrowUp') t=Math.min(1, t+0.05);
+  else if(e.key==='Home') t=0;
+  else if(e.key==='End') t=1;
+  else handled=false;
+  if(handled){ stopIntro(); render(); e.preventDefault(); }
 });
 
-render();
+if(reduceMotion){
+  hint.style.animation='none';
+}
+
+renderAll();
 
 window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);
@@ -311,7 +376,7 @@ window.addEventListener('message',function(e){
   var a = document.createElement("a");
   a.className = "sahne-geri";
   a.href = "sahneler/";          // sahneler kökte, önizlemede de doğru çözülür
-  a.textContent = "\u2190 " + ETIKET[dil];
+  a.textContent = "← " + ETIKET[dil];
   a.setAttribute("aria-label", ETIKET[dil]);
   document.body.appendChild(a);
 

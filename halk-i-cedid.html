@@ -18,28 +18,33 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 .sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
 .honesty{color:var(--muted);font-size:.72rem;line-height:1.6;max-width:520px;margin:.6rem auto 0;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
 
-#stage{width:min(420px,92vw);height:min(420px,92vw);display:block;margin:.4rem auto 1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+/* Sahne: bir siluet alanı, her karede tümüyle yok olup neredeyse aynı
+   yerde yeniden beliriyor. Kaydırıcı "sürekli↔yavaş" arasında dünyanın
+   hızını değil, tık aralığını uzatıyor -- aradaki yokluk ânı görünür olur. */
+.stage-frame{position:relative;width:min(640px,92vw);aspect-ratio:16/10;max-height:58vh;margin:.4rem auto 1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.stage-frame svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hint{position:absolute;top:10px;right:14px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@keyframes s2Pulse{0%,100%{opacity:.6}50%{opacity:1}}
+.hint[data-anim]{animation:s2Pulse 3s ease-in-out 1.5s 3}
 
-.track-wrap{width:min(420px,90vw);margin:0 auto 1.3rem;text-align:center}
-.track{position:relative;height:34px;margin:0 auto}
-.track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
-.track-end{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:var(--border);transform:translate(-50%,-50%)}
-.track-end.left{left:0}
-.track-end.right{left:100%}
-.track-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal);transform:translate(-50%,-50%);cursor:grab;touch-action:none}
-.track-handle:active{cursor:grabbing}
-.track-handle:focus-visible{outline:2px solid var(--liminal);outline-offset:3px}
-.track-labels{display:flex;justify-content:space-between;margin-top:.55rem;font-size:.76rem;color:var(--muted);gap:1rem}
-.track-labels span{max-width:150px;line-height:1.4}
-.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
-.grab-hint.gone{opacity:.28}
+.track-wrap{width:min(560px,92vw);margin:0 auto 1.2rem;text-align:center}
+.track-labels{display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+#slider{-webkit-appearance:none;appearance:none;background:transparent;width:100%;height:34px;padding:0;margin:0;cursor:pointer;display:block}
+#slider::-webkit-slider-runnable-track{height:2px;background:var(--border);border-radius:2px}
+#slider::-moz-range-track{height:2px;background:var(--border);border-radius:2px}
+#slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);margin-top:-10px;box-shadow:0 0 0 1px var(--liminal)}
+#slider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal)}
+#slider:focus{outline:none}
+#slider:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 1px var(--liminal),0 0 0 5px var(--border)}
+#slider:focus-visible::-moz-range-thumb{box-shadow:0 0 0 1px var(--liminal),0 0 0 5px var(--border)}
 
-.quote-box{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem}
-.quote-text{font-size:.88rem;line-height:1.75;font-style:italic}
-.quote-src{font-size:.72rem;color:var(--muted);margin-top:.55rem}
+.caption{font-size:clamp(.82rem,1.6vw,.92rem);line-height:1.65;color:var(--text);opacity:0;padding:.9rem .4rem 0;max-width:560px;margin:0 auto;min-height:3em;text-wrap:pretty}
+@keyframes s2Caption{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.caption[data-anim]{animation:s2Caption 900ms 900ms ease-out forwards}
 
-.aha{width:min(560px,96vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.75;color:var(--liminal);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;white-space:pre-line}
-.aha.show{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  [data-anim]{animation:none!important}
+}
 
 /* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
    ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
@@ -84,73 +89,54 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   <p class="honesty" id="hHonesty"></p>
 </header>
 
-<svg id="stage" viewBox="0 0 420 420" role="img" aria-label="Bir noktanın her an yeniden belirişi"></svg>
+<div class="stage-frame">
+  <svg id="stage" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Her karede yeniden beliren bir siluet alanı">
+    <g id="sceneG"></g>
+  </svg>
+  <div class="hint" id="hint" data-anim><span id="hintText"></span></div>
+</div>
 
 <div class="track-wrap">
-  <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Bakışının çözünürlüğünü sürükle">
-    <div class="track-line"></div>
-    <div class="track-end left"></div>
-    <div class="track-end right"></div>
-    <div class="track-handle" id="handle"></div>
-  </div>
   <div class="track-labels">
-    <span id="labelLeft"></span>
-    <span id="labelRight"></span>
+    <span id="labelFast"></span>
+    <span id="labelSlow"></span>
   </div>
-  <p class="grab-hint" id="grabHint">Sürükle (ok tuşları da çalışır)</p>
+  <input id="slider" type="range" min="0" max="100" value="0">
+  <p class="caption" id="caption" data-anim aria-live="polite"><span id="captionText"></span></p>
 </div>
-
-<div class="quote-box">
-  <p class="quote-text" id="quoteText"></p>
-  <p class="quote-src" id="quoteSrc"></p>
-</div>
-
-<p class="aha" id="aha"></p>
 
 <script>
 const LA={
   tr:{
     title:'Halk-ı Cedîd',
     sub:'Âlem bir kez yaratılıp bırakılmış değil — her nefeste yeniden yaratılıyor. Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor.',
-    labelLeft:'fark etmediğin hâliyle',
-    labelRight:'yavaşça baktığında',
-    grab:'Sürükle (ok tuşları da çalışır)',
-    aha:'Nokta hiç durmadı.\nSen daha yavaş bakmaya başladın — ve aradaki karanlık göründü.',
+    hint:'Yavaşlat',
+    fast:'Sürekli',
+    slow:'Yavaş',
+    caption:'Sahne duruyor gibi görünüyor. Aslında her karede tümüyle yok oluyor ve neredeyse aynı yerde yeniden beliriyor. Yavaşlattıkça aradaki yokluk anı görünür oluyor.',
     honesty:'Bu sahnenin güven düzeyi yerleşik: "her nefeste yeniden yaratılış" iddiası iki ayrı Fütûhât alıntısına (Cilt XV, 416. Bölüm; Cilt XIV, 408. Bölüm) doğrudan dayanıyor, kaynağın söylemediği bir kesinlik eklenmedi. Doktrinin akademik okuması için Mohamed Haj Yousef\'in "Ibn \'Arabî - Time and Cosmology" (Routledge, 2007) kitabına bakılabilir; ama kitabın kendi fizik-kıyasları (modern fizik teorileriyle karşılaştırma) yayınlanmış eleştirilerde aşırı iddialı bulunmuş — bu sahne o kıyaslara hiç başvurmuyor, yalnız doktrinin kendisini taşıyor.',
-    quotes:[
-      { text:'"Bu makam sahibi her nefes yeni bir bilgi içindedir. O sürekli bir yaratılıştayken başkaları o yaratılıştan perdelenmiştir."', src:'Fütûhât-ı Mekkiyye, Cilt XV, 416. Bölüm' },
-      { text:'"Cömertlik ve nefesler vesilesiyle oluşmakta; yaratılış daimi / Bir gayede sona ermez."', src:'Fütûhât-ı Mekkiyye, Cilt XIV, 408. Bölüm (açılış şiiri)' },
-    ],
   },
   en:{
     title:'Perpetual Renewal',
     sub:'The world is not something created once and left — it is recreated at every breath. We do not notice, because two successive creations resemble each other so closely.',
-    labelLeft:'as you never notice it',
-    labelRight:'once you look slowly',
-    grab:'Drag (arrow keys work too)',
-    aha:"The point never stopped.\nYou began looking more slowly — and the darkness between became visible.",
+    hint:'Slow down',
+    fast:'Continuous',
+    slow:'Slow',
+    caption:'The scene looks still. In fact it vanishes each frame and reappears almost — but not quite — where it was. Slow it down and the moment of absence becomes visible.',
     honesty:"This scene's confidence level is well-established: the claim of \"perpetual re-creation with every breath\" rests directly on two separate Futuhat passages (Vol. XV, Chapter 416; Vol. XIV, Chapter 408), with no certainty added beyond what the source states. For an academic treatment of the doctrine, see Mohamed Haj Yousef's \"Ibn 'Arabi - Time and Cosmology\" (Routledge, 2007); but the book's own physics comparisons (drawing parallels with modern physical theories) have been called overreaching in published reviews — this scene does not draw on those comparisons, only on the doctrine itself.",
-    quotes:[
-      { text:'"The holder of this station is in a new knowledge with every breath. He is in a perpetual creation while others are veiled from that creation."', src:'Al-Futuhat al-Makkiyya, Vol. XV, Chapter 416' },
-      { text:'"Coming-to-be through generosity and breaths; creation is perpetual / It does not end at any goal."', src:'Al-Futuhat al-Makkiyya, Vol. XIV, Chapter 408 (opening poem)' },
-    ],
   },
   pt:{
     title:'Renovação Perpétua',
     sub:'O mundo não é algo criado uma vez e deixado — é recriado a cada alento. Não damos por isso, porque duas criações sucessivas se assemelham muito.',
-    labelLeft:'como nunca reparas',
-    labelRight:'quando olhas devagar',
-    grab:'Arraste (as setas também funcionam)',
-    aha:'O ponto nunca parou.\nComeçaste a olhar mais devagar — e a escuridão entre eles tornou-se visível.',
+    hint:'Desacelerar',
+    fast:'Contínuo',
+    slow:'Lento',
+    caption:'A cena parece imóvel. Na verdade, a cada quadro ela desaparece por inteiro e retorna quase — não exatamente — onde estava. Ao desacelerar, o instante de ausência se torna visível.',
     honesty:'O nível de confiança desta cena é consolidado: a afirmação de "recriação perpétua a cada alento" assenta diretamente em duas passagens separadas das Futuhat (Vol. XV, Capítulo 416; Vol. XIV, Capítulo 408), sem qualquer certeza acrescentada além do que a fonte afirma. Para uma leitura académica da doutrina, pode consultar-se o livro de Mohamed Haj Yousef, "Ibn \'Arabi - Time and Cosmology" (Routledge, 2007); mas as próprias comparações do livro com a física (traçando paralelos com teorias físicas modernas) foram consideradas excessivas em avaliações publicadas — esta cena não recorre a essas comparações, apenas à doutrina em si.',
-    quotes:[
-      { text:'"Quem detém esta estação está num conhecimento novo a cada alento. Está numa criação perpétua enquanto outros estão velados dessa criação."', src:'Al-Futuhat al-Makkiyya, Vol. XV, Capítulo 416' },
-      { text:'"Vir-a-ser pela generosidade e pelos alentos; a criação é perpétua / Não termina em nenhuma meta."', src:'Al-Futuhat al-Makkiyya, Vol. XIV, Capítulo 408 (poema de abertura)' },
-    ],
   },
 };
 
-let curLang='tr', pos=0, touched=false;
+let curLang='tr';
 const $=id=>document.getElementById(id);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -159,125 +145,161 @@ function renderAll(){
   $('hTitle').textContent=d.title;
   $('hSub').textContent=d.sub;
   $('hHonesty').textContent=d.honesty;
-  $('labelLeft').textContent=d.labelLeft;
-  $('labelRight').textContent=d.labelRight;
-  $('grabHint').textContent=d.grab;
-  $('aha').textContent=d.aha;
-  const q=d.quotes[quoteIdx];
-  $('quoteText').textContent=q.text;
-  $('quoteSrc').textContent=q.src;
+  $('hintText').textContent=d.hint;
+  $('labelFast').textContent=d.fast;
+  $('labelSlow').textContent=d.slow;
+  $('captionText').textContent=d.caption;
+  $('slider').setAttribute('aria-label',d.hint);
 }
-function setLang(l){ curLang=l; renderAll(); }
+function setLang(l){ if(!LA[l]) return; curLang=l; renderAll(); }
 
-let quoteIdx=0;
-setInterval(()=>{ quoteIdx=(quoteIdx+1)%LA[curLang].quotes.length; const q=LA[curLang].quotes[quoteIdx]; $('quoteText').textContent=q.text; $('quoteSrc').textContent=q.src; }, 9000);
-
-// ── Sahne: bir noktanın her an yeniden belirişi ────────────────────────────
-// GORSEL_DIL.md: kavramı resmetme, davranışını resmet. Nokta hiçbir zaman
-// "kayarak" hareket etmiyor -- her tık'ta ekran bir an KARARIYOR (yokluk
-// aralığı), sonra nokta yeni bir açıda YENİDEN BELİRİYOR. Çözünürlük
-// yüksekken (tık aralığı ~16ms) bu karartı gözle görülmeyecek kadar kısa --
-// göz onu "sürekli dönen bir nokta" diye okur (416: "başkaları o
-// yaratılıştan perdelenmiştir"). Kullanıcı sürükledikçe DÜNYA yavaşlamıyor
-// -- tık aralığı büyüdükçe aynı açısal hızda çok daha fazla mesafe atlanmış
-// oluyor, bu yüzden ardışık iki beliriş birbirine daha az benziyor: önce
-// karartı görünür oluyor, sonra sıçramalar öngörülemez hale gelip nokta bir
-// "dönen şey" olmaktan çıkıp dağınık parıltılara dönüşüyor -- form,
-// form olmaktan çıkıyor.
-const svg=document.getElementById('stage');
-const NS='http://www.w3.org/2000/svg';
-const cx=210, cy=210, R=140;
-const orbit=document.createElementNS(NS,'circle');
-orbit.setAttribute('cx',cx); orbit.setAttribute('cy',cy); orbit.setAttribute('r',R);
-orbit.setAttribute('fill','none');
-orbit.setAttribute('stroke','var(--border)');
-orbit.setAttribute('stroke-width','1');
-orbit.setAttribute('stroke-dasharray','1 5');
-svg.appendChild(orbit);
-const dot=document.createElementNS(NS,'circle');
-dot.setAttribute('r','7');
-dot.setAttribute('fill','var(--gold)');
-svg.appendChild(dot);
-
-const PERIOD_MS=3200; // bir tam tur -- "gerçek" açısal hız, hiç değişmiyor
-let rafId=0;
-
-function tickIntervalFromPos(p){
-  // 16ms (60fps, sürekli görünür) -> 1400ms (sıçramalar öngörülemez)
-  return 16*Math.pow(1400/16, p);
+function detectLang(){
+  const dl = document.documentElement.getAttribute('data-lang') || document.documentElement.lang || 'tr';
+  const l = dl.slice(0,2).toLowerCase();
+  return LA[l] ? l : 'tr';
 }
-function voidRatioFromPos(p){
-  // Karartının o tık aralığı içindeki payı -- düşük çözünürlükte belirgin.
-  return Math.min(0.55, 0.05+0.5*p);
-}
+curLang = detectLang();
+renderAll();
 
-function paintDot(a){
-  const x=cx+R*Math.cos(a), y=cy+R*Math.sin(a);
-  dot.setAttribute('cx',x.toFixed(1));
-  dot.setAttribute('cy',y.toFixed(1));
-}
+// ── Sahne: bir siluet alanı, her karede yeniden yaratılıyor ────────────────
+// GORSEL_DIL.md: kavramı değil davranışını resmet. Sahne hiç "kaymıyor" --
+// her tık'ta bütünüyle GÖRÜNMEZ oluyor (yokluk ânı), sonra neredeyse aynı
+// konumlarda, küçük bir sapmayla YENİDEN BELİRİYOR. Çözünürlük yüksekken
+// (tık aralığı ~55ms, yokluk ~0ms) bu göz için süreklilik olarak okunuyor --
+// tıpkı 416. Bölüm'ün "başkaları o yaratılıştan perdelenmiştir" dediği gibi.
+// Kaydırıcı "sürekli↔yavaş" arasında DÜNYANIN hızını değiştirmiyor, yalnız
+// tık aralığını ve aradaki yokluk payını büyütüyor -- yavaşladıkça karartı
+// görünür oluyor.
+const svgNS='http://www.w3.org/2000/svg';
+const rand=(seed => () => (seed = (seed * 9301 + 49297) % 233280) / 233280)(31);
 
-// requestAnimationFrame ~16.67ms'lik tanelerle geliyor -- interval küçükken
-// (hızlı uçta 16ms) "şu an belirme penceresindeyiz" durumunu bir kareden
-// diğerine ARA VERMEDEN yakalamaya çalışmak, o dar pencereyi çoğu zaman
-// atlıyordu (ölçüldü: nokta hiç boyanmıyordu). Bunun yerine her karede,
-// SADECE ts'ten, o an hangi tık'ın içinde ve o tık'ın hangi evresinde
-// olduğumuzu MODULO ile baştan hesaplıyoruz -- önceki kareye bağlı bir
-// durum yok, bu yüzden kaçırılacak bir pencere de yok.
-function frame(ts){
-  const interval=tickIntervalFromPos(pos);
-  const voidMs=interval*voidRatioFromPos(pos);
-  const tickStart=ts-(ts%interval);
-  const withinTick=ts-tickStart;
-  if(withinTick<voidMs){
-    dot.style.opacity='0';
-  } else {
-    // Açı tık BAŞLANGICINDAN türetiliyor, ts'ten değil -- konum bir tık
-    // boyunca sabit kalıyor (yeniden belirdiği ândaki hâliyle), akıp
-    // gitmiyor; bu da "her an yeniden yaratılış" iddiasına tam uyuyor.
-    paintDot((tickStart/PERIOD_MS)*2*Math.PI);
-    dot.style.opacity='1';
+const sceneG=document.getElementById('sceneG');
+const shapes={
+  cypress:'M 20 40 L 12 34 Q 8 22 14 14 Q 16 6 20 0 Q 24 6 26 14 Q 32 22 28 34 L 20 40 Z',
+  hill:'M 0 40 Q 20 8 40 40 Z',
+  arch:'M 0 40 L 0 18 Q 0 0 20 0 Q 40 0 40 18 L 40 40 Z',
+  bird:'M 0 6 Q 8 -2 14 4 Q 20 -2 28 6',
+  leaf:'M 20 4 Q 32 20 20 40 Q 8 20 20 4 Z',
+  moon:'M 30 8 A 16 16 0 1 0 30 40 A 12 14 0 1 1 30 8 Z',
+  door:'M 4 40 L 4 14 Q 4 2 20 2 Q 36 2 36 14 L 36 40 Z',
+};
+const filled=new Set(['cypress','hill','arch','leaf','moon','door']);
+const keys=Object.keys(shapes);
+
+const items=[];
+const placed=[];
+let attempts=0;
+const target=70;
+while(placed.length<target && attempts<target*40){
+  attempts++;
+  const x=60+rand()*1480;
+  const y=60+rand()*880;
+  const scale=0.6+rand()*1.2;
+  const minDist=90*scale;
+  let ok=true;
+  for(const p of placed){
+    const dx=p.x-x, dy=p.y-y;
+    if(dx*dx+dy*dy<minDist*minDist){ ok=false; break; }
   }
-  rafId=requestAnimationFrame(frame);
+  if(!ok) continue;
+  placed.push({x,y,scale});
+  const kind=keys[Math.floor(rand()*keys.length)];
+  const g=document.createElementNS(svgNS,'g');
+  const el=document.createElementNS(svgNS,'path');
+  el.setAttribute('d',shapes[kind]);
+  if(filled.has(kind)){
+    el.setAttribute('fill','var(--text)'); el.setAttribute('stroke','none');
+  } else {
+    el.setAttribute('fill','none'); el.setAttribute('stroke','var(--text)');
+    el.setAttribute('stroke-width',1.4); el.setAttribute('stroke-linecap','round');
+  }
+  const baseOp=0.75+rand()*0.2;
+  el.setAttribute('opacity',baseOp.toFixed(2));
+  g.appendChild(el);
+  sceneG.appendChild(g);
+  items.push({g,el,x,y,scale,baseOp,w:40*scale,h:40*scale});
+}
+// Bir de her seferinde yeniden yaratılan ince bir toz katmanı.
+const dust=[];
+for(let i=0;i<180;i++){
+  const c=document.createElementNS(svgNS,'circle');
+  const x=rand()*1600, y=rand()*1000;
+  const r=0.8+rand()*1.1;
+  const op=0.35+rand()*0.35;
+  c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',r);
+  c.setAttribute('fill','var(--text)'); c.setAttribute('opacity',op.toFixed(2));
+  sceneG.appendChild(c);
+  dust.push({el:c,x,y,r,op});
 }
 
-if(reduceMotion){
-  // Hareket taklit edilmiyor -- sabit bir kare + iki durumu (sürekli/kesikli)
-  // metinle anlatan durağan bir görünüm.
-  paintDot(0.3);
-  dot.style.opacity='1';
-} else {
-  rafId=requestAnimationFrame(frame);
+function recreate(){
+  // Her yeni dünya öncekinden çok küçük bir farkla ayrılıyor -- fark edilmez.
+  for(const it of items){
+    const jx=(Math.random()-0.5)*2.2;
+    const jy=(Math.random()-0.5)*2.2;
+    const jr=(Math.random()-0.5)*0.9;
+    it.g.setAttribute('transform',`translate(${it.x-it.w/2+jx} ${it.y-it.h+jy}) scale(${it.scale}) rotate(${jr} ${it.w/(2*it.scale)} ${it.h/(2*it.scale)})`);
+    it.el.setAttribute('opacity',(it.baseOp+(Math.random()-0.5)*0.06).toFixed(3));
+  }
+  for(const d of dust){
+    d.el.setAttribute('cx',(d.x+(Math.random()-0.5)*1.4).toFixed(2));
+    d.el.setAttribute('cy',(d.y+(Math.random()-0.5)*1.4).toFixed(2));
+    d.el.setAttribute('opacity',(d.op+(Math.random()-0.5)*0.08).toFixed(3));
+  }
+}
+recreate();
+
+const slider=$('slider');
+const hint=$('hint');
+let t=0; // yavaşlama 0..1
+
+// Döngü: görünür → yokluk → yeniden yaratılış → görünür.
+// t=0: görünür ~55ms, yokluk ~0ms → süreklilik olarak okunur.
+// t=1: görünür ~1400ms, yokluk ~900ms → kesinti açıkça görünür.
+let phase='visible';
+let phaseStart=performance.now();
+let rafId=0;
+function loop(now){
+  const visMs=55+t*t*1400;
+  const voidMs=t*t*900;
+  const elapsed=now-phaseStart;
+  if(phase==='visible'){
+    sceneG.setAttribute('opacity','1');
+    if(elapsed>=visMs){
+      if(voidMs>8){
+        phase='void';
+        phaseStart=now;
+        sceneG.setAttribute('opacity','0');
+      } else {
+        recreate();
+        phaseStart=now;
+      }
+    }
+  } else {
+    if(elapsed>=voidMs){
+      recreate();
+      phase='visible';
+      phaseStart=now;
+      sceneG.setAttribute('opacity','1');
+    }
+  }
+  rafId=requestAnimationFrame(loop);
 }
 
-// ── Sürükleme ──────────────────────────────────────────────────────────────
-const track=$('track');
-function markTouched(){ if(!touched){ touched=true; $('grabHint').classList.add('gone'); } }
-function applyPosition(){
-  $('handle').style.left=(pos*100)+'%';
-  $('track').setAttribute('aria-valuenow',Math.round(pos*100));
-  if(pos>0.55 && !applyPosition._sawSlow) applyPosition._sawSlow=true;
-  if(pos<0.1 && applyPosition._sawSlow && !applyPosition._sawFast) applyPosition._sawFast=true;
-  if(applyPosition._sawSlow && applyPosition._sawFast) $('aha').classList.add('show');
-}
-applyPosition._sawSlow=false; applyPosition._sawFast=false;
-function setPosFromClientX(clientX){
-  const r=track.getBoundingClientRect();
-  pos=Math.max(0,Math.min(1,(clientX-r.left)/r.width));
-  applyPosition();
-}
-let dragging=false;
-track.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{track.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
-track.addEventListener('pointermove',e=>{ if(dragging) setPosFromClientX(e.clientX); });
-['pointerup','pointercancel','pointerleave'].forEach(t=>track.addEventListener(t,()=>{dragging=false;}));
-track.addEventListener('keydown',e=>{
-  const k={ArrowLeft:-0.05,ArrowRight:0.05,ArrowDown:-0.05,ArrowUp:0.05}[e.key];
-  if(k===undefined) return;
-  markTouched(); pos=Math.max(0,Math.min(1,pos+k)); applyPosition(); e.preventDefault();
+slider.addEventListener('input',e=>{
+  t=(+e.target.value)/100;
+  if(hint) hint.style.animation='none';
 });
 
-renderAll();
-applyPosition();
+if(reduceMotion){
+  // Hareket taklit edilmiyor -- tek, sabit bir kare; başlık her zaman görünür.
+  sceneG.setAttribute('opacity','1');
+  const cap=$('caption');
+  cap.style.animation='none'; cap.style.opacity='1';
+  if(hint) hint.style.animation='none';
+} else {
+  rafId=requestAnimationFrame(loop);
+}
 
 window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);
@@ -294,7 +316,7 @@ window.addEventListener('message',function(e){
   var a = document.createElement("a");
   a.className = "sahne-geri";
   a.href = "sahneler/";          // sahneler kökte, önizlemede de doğru çözülür
-  a.textContent = "\u2190 " + ETIKET[dil];
+  a.textContent = "← " + ETIKET[dil];
   a.setAttribute("aria-label", ETIKET[dil]);
   document.body.appendChild(a);
 

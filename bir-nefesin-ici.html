@@ -4,19 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<!-- Bir Nefesin İçi — Dost Arabi görselleştirme.
-     TAM SÜRÜM (8 durak: nefes, harf, kelime, ayn, tecellî, varlık, insan,
-     kalp) -- 3 duraklı prototipin (nefes/harf/kelime) mekaniği kullanıcı
-     tarafından 2026-08-05'te onaylandıktan sonra üretildi.
-     Merdiven değil halka: son durak (kalp) derinleşince yeniden nefese
-     döner, kesme yok -- kod 8 benzersiz durak tutuyor ve doğal modulo
-     sarmasıyla (kalp -> nefes) halkayı kapatıyor; kavramsal olarak bu
-     "dokuzuncu durağın birinciyle aynı olması" ile birebir aynı sonucu
-     verir, yalnız içerik ikinci kez kopyalanmıyor.
-     GSAP değil -- site zaten hiçbir sahnede üçüncü taraf animasyon
-     kütüphanesi kullanmıyor (bkz. nefes-i-rahmani.html, ayna-metaforu.html);
-     aynı elle-yazılmış requestAnimationFrame deseni burada da kullanıldı,
-     prod'a yeni bir runtime bağımlılığı eklenmedi. -->
+<!-- Bir Nefesin İçi — Dost Arabi görselleştirme. -->
 <title>Bir Nefesin İçi — Dost Arabi</title>
 <style>
 :root{--bg:#0D0D0D;--surface:#1A1A19;--border:#2C2C2A;--text:#EDE9E2;--muted:#898781;--gold:#FFC233;--liminal:#C98500;--panel:#161614}
@@ -29,58 +17,23 @@ header{text-align:center;margin-bottom:1rem;max-width:640px}
 h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
 .sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
 
-#stageWrap{position:relative;width:min(460px,92vw);height:min(460px,92vw);margin:.4rem auto 1rem}
-#stage{width:100%;height:100%;display:block;background:var(--panel);border:1px solid var(--border);border-radius:12px;touch-action:none;cursor:grab}
+#stageWrap{position:relative;width:min(920px,92vw);margin:.4rem auto 1rem}
+#stage{width:100%;aspect-ratio:16/10;display:block;background:var(--panel);border:1px solid var(--border);border-radius:12px;touch-action:none;cursor:grab}
 #stage:active{cursor:grabbing}
 #stage:focus-visible{outline:2px solid var(--liminal);outline-offset:3px}
-.durak-glow{fill:var(--gold)}
-.durak-harf{font-size:120px;fill:var(--gold);text-anchor:middle;dominant-baseline:middle}
-.durak-kelime{font-size:64px;fill:var(--gold);text-anchor:middle;dominant-baseline:middle}
-.durak-ayn__cekirdek{fill:var(--gold)}
-.durak-ayn__potansiyel{fill:none;stroke:var(--liminal);stroke-width:1;stroke-dasharray:3 5;opacity:.5}
-.durak-tecelli__isik{fill:url(#tecelliGradyan)}
-.durak-tecelli__kap{fill:none;stroke:var(--gold);stroke-width:2.5}
-.durak-varlik{fill:var(--gold);filter:url(#varlikBulanikligi)}
-.durak-insan__isin{stroke:var(--liminal);stroke-width:1.4;stroke-linecap:round}
-.durak-insan__odak{fill:var(--gold)}
-.durak-kalp__disk{fill:none;stroke:var(--gold);stroke-width:2}
-.durak-kalp__yansima{fill:var(--gold);opacity:.55}
 
-.derinlik-cubugu{position:absolute;left:10px;right:10px;bottom:10px;height:3px;background:var(--border);border-radius:2px;overflow:hidden;pointer-events:none}
-.derinlik-cubugu__dolu{height:100%;background:var(--liminal);width:0%;transition:width .05s linear}
+#durakEtiketi{position:absolute;left:50%;top:50%;transform:translate(-50%,calc(-50% - 90px));
+  font-size:clamp(14px,1.6vw,20px);letter-spacing:.14em;text-transform:uppercase;color:var(--text);
+  opacity:0;transition:opacity .3s ease;pointer-events:none;white-space:nowrap}
 
-.istidad-row{display:flex;align-items:center;gap:.6rem;width:min(460px,92vw);margin:0 auto 1rem;font-size:.8rem;color:var(--muted)}
-.istidad-row[hidden]{display:none}
-.istidad-slider{flex:1;accent-color:var(--liminal)}
-.istidad-slider:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+#ipucu{position:absolute;top:14px;right:16px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);animation:bn-pulse 3s ease-in-out 2s 3}
+@keyframes bn-pulse{0%,100%{opacity:.55}50%{opacity:1}}
 
-.nav-row{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-bottom:1.1rem;flex-wrap:wrap}
-.nav-btn{font-family:inherit;font-size:.82rem;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.5rem 1.1rem;cursor:pointer;min-height:38px}
-.nav-btn:hover{border-color:var(--liminal)}
-.nav-btn:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
-.an-sayaci{font-size:.76rem;color:var(--muted);font-style:italic}
+.caption{width:min(640px,92vw);text-align:center;margin:.2rem auto 1.1rem;font-size:.87rem;
+  line-height:1.65;color:var(--muted);font-style:italic}
 
-.durak-panel{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:.7rem}
-.durak-panel__baslik{font-size:1rem;color:var(--gold);margin-bottom:.4rem}
-.durak-panel__ozet{font-size:.9rem;line-height:1.7}
-.kademe-btnler{display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
-.kademe-btn{font-family:inherit;font-size:.74rem;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:999px;padding:.3rem .8rem;cursor:pointer;min-height:30px}
-.kademe-btn[aria-pressed="true"]{color:var(--liminal);border-color:var(--liminal)}
-.kademe-btn:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
-.durak-panel__govde,.durak-panel__dayanak{font-size:.85rem;line-height:1.7;margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--border)}
-.durak-panel__dayanak{color:var(--muted);font-size:.76rem;font-style:italic}
-.durak-panel__govde[hidden],.durak-panel__dayanak[hidden]{display:none}
-
-/* prefers-reduced-motion: sürekli yakınlaşma yerine kademeli, statik
-   sekiz kartlık görünüm -- hepsi aynı anda DOM'da, JS'siz de okunabilir. */
-.adim-liste{display:none}
-@media(prefers-reduced-motion:reduce){
-  #stageWrap,.nav-row,#durakPanel,.istidad-row{display:none}
-  .adim-liste{display:block;width:min(560px,96vw)}
-  .adim-liste .durak-panel{margin-bottom:.9rem}
-}
-.js-devre-disi #stageWrap,.js-devre-disi .nav-row,.js-devre-disi #durakPanel,.js-devre-disi .istidad-row{display:none}
-.js-devre-disi .adim-liste{display:block;width:min(560px,96vw)}
+@media(prefers-reduced-motion:reduce){#ipucu{animation:none}}
 
 /* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
    ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
@@ -118,633 +71,314 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 })();
 </script>
 </head>
-<body class="js-devre-disi">
+<body>
 <header>
   <h1 id="hTitle">Bir Nefesin İçi</h1>
-  <p class="sub" id="hSub">Merdiven değil, halka: her durak bir öncekinin içinden çıkar, kesme yok. Sekizinci duraktan (kalp) derine inince birinci durağa (nefes) dönersin -- bu bir tasarım hilesi değil, doktrinin kendisi.</p>
 </header>
 
 <div id="stageWrap">
-  <svg id="stage" viewBox="0 0 460 460" role="slider" tabindex="0"
-       aria-valuemin="0" aria-valuemax="799" aria-valuenow="0"
-       aria-label="Derinlik -- kaydır, sürükle ya da ok tuşlarıyla ilerle">
+  <svg id="stage" viewBox="0 0 1600 1000" role="slider" tabindex="0"
+       aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+       aria-label="Halka boyunca sürükle">
     <defs>
-      <radialGradient id="tecelliGradyan" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="var(--gold)" stop-opacity="0.55"/>
+      <radialGradient id="isikGradyan" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="var(--gold)" stop-opacity="0.95"/>
+        <stop offset="40%" stop-color="var(--gold)" stop-opacity="0.35"/>
         <stop offset="100%" stop-color="var(--gold)" stop-opacity="0"/>
       </radialGradient>
-      <filter id="varlikBulanikligi" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="10"/>
-      </filter>
-      <filter id="istidadBulaniklik" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur id="istidadBlurStd" stdDeviation="6"/>
-      </filter>
     </defs>
+
+    <path id="sarmalYol" d="" stroke="var(--border)" stroke-width="1.4" fill="none" opacity="0.55" stroke-linecap="round"/>
+
+    <g id="duraklar"></g>
+    <g id="form"></g>
+
+    <circle id="isikHalesi" cx="0" cy="0" r="60" fill="url(#isikGradyan)"/>
+    <circle id="isik" cx="0" cy="0" r="6" fill="var(--gold)"/>
+
+    <rect id="tutamac" x="0" y="0" width="1600" height="1000" fill="transparent"/>
   </svg>
-  <div class="derinlik-cubugu" aria-hidden="true"><div class="derinlik-cubugu__dolu" id="derinlikDolu"></div></div>
+
+  <div id="durakEtiketi" aria-live="polite"></div>
+  <div id="ipucu"><span id="ipucuMetin"></span></div>
 </div>
 
-<!-- İstidâd kaydırıcısı -- yalnız tecellî durağındayken görünür. Kaydırıcı
-     SADECE formun aldığı ışığı (kap'ın netliği/parlaklığı) değiştirir;
-     ışığın kendisi (durak-tecelli__isik, TECELLI_ISIK_SABIT'ten) hiçbir
-     zaman bu kaydırıcıdan okunmaz -- bkz. aşağıdaki JS yorumu. -->
-<div class="istidad-row" id="istidadRow" hidden>
-  <label id="istidadLabel" for="istidadSlider">İstidâd</label>
-  <input type="range" id="istidadSlider" class="istidad-slider" min="0" max="100" value="50"
-         aria-label="İstidâd -- formun tecellîyi ne kadar berrak aldığı">
-</div>
-
-<div class="nav-row">
-  <button class="nav-btn" id="btnGeri" type="button">Geri</button>
-  <span class="an-sayaci" id="anSayaci">Tamamlanan an: 0</span>
-  <button class="nav-btn" id="btnIleri" type="button">Derine in</button>
-</div>
-
-<div class="durak-panel" id="durakPanel">
-  <p class="durak-panel__baslik" id="dpBaslik"></p>
-  <p class="durak-panel__ozet" id="dpOzet"></p>
-  <div class="kademe-btnler">
-    <button class="kademe-btn" id="btnGiris" type="button" aria-pressed="false"></button>
-    <button class="kademe-btn" id="btnGovde" type="button" aria-pressed="false"></button>
-    <button class="kademe-btn" id="btnDayanak" type="button" aria-pressed="false"></button>
-  </div>
-  <p class="durak-panel__govde" id="dpGovde" hidden></p>
-  <p class="durak-panel__dayanak" id="dpDayanak" hidden></p>
-</div>
-
-<!-- Azaltılmış hareket / JS'siz alternatif: sekiz durak da tam metniyle
-     burada. STATİK -- JS'siz de okunsun diye baştan HTML'de yazılı
-     (Türkçe); JS varsa renderAdimListe() aynı içeriği (ve dil değişince
-     başka dili) üstüne yazar, ama JS hiç çalışmasa bile bu metin zaten
-     okunabilir. -->
-<div class="adim-liste" id="adimListe">
-  <div class="durak-panel">
-    <p class="durak-panel__baslik">Nefes</p>
-    <p class="durak-panel__ozet">Henüz hiçbir şekle ayrılmamış, tek bir soluk.</p>
-    <p class="durak-panel__govde" style="display:block">İlahî isimler, dayanılmaz bir sınırda, tek bir nefesle dışarı fışkırır. Bu fışkırma âlemin var oluşudur -- ama bu nefes henüz hiçbir harfe, hiçbir kelimeye ayrılmamıştır. Fütûhât'ta bu, kerb (sıkışma) ve teneffüs (soluk verme) ikilisiyle anlatılır: ilahî isimler Hakk'ın sinesinde birikir, dayanılmaz son sınıra ulaşınca bir nefesle dışarı çıkar. İzutsu'nun okumasına göre bu, tasavvufun "yaratılış" dediği şeyin kendisidir -- ex nihilo bir üretim değil, birikmiş bir basıncın açığa çıkışı.</p>
-    <p class="durak-panel__dayanak" style="display:block">felsefi-terimler.json, "nefes-i-rahmani" maddesi (Izutsu'nun aktarımına dayanır); aynı doktrini farklı bir etkileşimle işleyen nefes-i-rahmani.html sahnesine de bakın.</p>
-  </div>
-  <div class="durak-panel">
-    <p class="durak-panel__baslik">Harf</p>
-    <p class="durak-panel__ozet">O tek nefes harflere ayrılıyor -- ama her harf hâlâ nefesin ta kendisi.</p>
-    <p class="durak-panel__govde" style="display:block">Nefes tek başına kalmaz: ayrışır, ve ilk ayrışma harflerdir. İbnü'l-Arabî'ye göre harfler yeni bir yaratılış değil, nefesin kendi hâlidir -- yalnızca ayrışmış. İlmü'l-hurûf (harfler ilmi) Fütûhât'ta geniş bir yer tutar: her harfin kendi mertebesi, kendi ontolojik konumu vardır. Harekeleri (harfin üstündeki/altındaki işaretler) Şeyh "küçük harfler" diye tanımlar -- tıpkı insanın beden ve ruh üflenmesinden var olması gibi, kelime de harf ve harekenin birleşiminden bambaşka bir yaratılış olarak çıkar.</p>
-    <p class="durak-panel__dayanak" style="display:block">Fütûhât-ı Mekkiyye, Kısım VIII (Harekeler: Kelimelerin Ruhu). Ayrıca bkz. Denis Gril'in Chodkiewicz (ed.), Les Illuminations de la Mecque / The Meccan Illuminations (Sindbad, 1988) içindeki ilmü'l-hurûf üzerine giriş ve şerhi -- bu bölümün kendi metnine doğrudan erişemedik, taramaya dayanıyoruz.</p>
-  </div>
-  <div class="durak-panel">
-    <p class="durak-panel__baslik">Kelime</p>
-    <p class="durak-panel__ozet">Harfler birleşip bir kelime oluyor -- ve o kelimenin taşıdığı isim, daha derin bir şeye işaret ediyor.</p>
-    <p class="durak-panel__govde" style="display:block">Harfler bir araya gelip bir kelime kurar: "er-Rahmân". Ama bu kelime kendi başına durmuyor -- taşıdığı isim, ona daha derinden bakınca, sende sabit duran bir öze işaret ediyor. Nefes, harf, kelime -- şimdiye kadarki üç durak, aynı şeyin art arda gelen üç görünüşüydü: ayrışmamış bir soluk, o soluğun ayrıştığı sesler, o seslerin kurduğu bir isim. Ama isim boşluğa işaret etmiyor -- gerçek bir şeye, senin ezelî hakikatine işaret ediyor. Derinleş, ve gör.</p>
-    <p class="durak-panel__dayanak" style="display:block">Aynı doktrinin genişletilmiş anlatımı için nefes-i-rahmani.html sahnesine bakın.</p>
-  </div>
-  <div class="durak-panel">
-    <p class="durak-panel__baslik">Ayn</p>
-    <p class="durak-panel__ozet">Kelimenin taşıdığı isim, sende ezelden beri sabit duran bir öze -- bir "ayn"a -- işaret ediyor.</p>
-    <p class="durak-panel__govde" style="display:block">İbn Arabî'ye göre her mümkin varlığın, Allah'ın ilminde -- henüz dış varlığa hiç çıkmadan önce -- sahip olduğu ezelî, değişmez bir hakikati vardır: onun ayn-ı sâbitesi. Bu, dış varlık kazanmış bir şey değil; ama tam bir yokluk da değil. Tıpkı küçücük bir meşe palamudunun içinde, dalları henüz hiç görünmese de, o palamudun büyüyünce olacağı koca meşe ağacının tam olarak zaten var olması gibi: a'yân-ı sâbite de her varlığın, dış âleme çıkmadan önce Allah'ın ilminde bulunan, bu şekilde zaten tam olan "tohum hâli"dir. Senin de böyle bir "ayn"ın var -- dış varlığa hiç çıkmadan önceki hakikatin.</p>
-    <p class="durak-panel__dayanak" style="display:block">data/ibn-arabi/ontology.json, "a'yân-ı sâbite" düğümü (Fütûhât-ı Mekkiyye'nin Ekrem Demirli çevirisi ve Ahmed Avni Konuk'un Füsûs şerhi taramasına dayanır).</p>
-  </div>
-  <div class="durak-panel">
-    <p class="durak-panel__baslik">Tecellî</p>
-    <p class="durak-panel__ozet">O sabit ayn, bir nefesle dışarı taşıyor -- ve bu taşma hiç durmadan, her an yenileniyor.</p>
-    <p class="durak-panel__govde" style="display:block">İbn Arabî buna "Nefesü'r-Rahmân" der: tıpkı insan nefesinin içindeki sıkışmayı gidermesi gibi, Hakk da isimlerin "bilinme sıkıntısını" bu nefesle giderir, varlık a'yân üzerinden akıp taşar. Bu tecellî bir kerelik değil; her an yenileniyor. Tıpkı bir sinema filminin, aslında art arda dizilmiş sabit kareler olduğu hâlde gözünüze kesintisiz bir hareket gibi görünmesi gibi: âlem de her an yeniden yaratılıp yok edilir, ama bu yenilenme o kadar hızlı ve düzenlidir ki bize hep "aynı" tek bir âlemmiş gibi görünür. Kaydırıcı bunu hissettiriyor: kaydırdıkça değişen şey, formun bu tecellîyi ne kadar aldığı -- ışığın kendisi hiç kıpırdamıyor.</p>
-    <p class="durak-panel__dayanak" style="display:block">data/ibn-arabi/ontology.json, "tecellî ve Nefesü'r-Rahmân" düğümü.</p>
-  </div>
-  <div class="durak-panel">
-    <p class="durak-panel__baslik">Varlık</p>
-    <p class="durak-panel__ozet">Tecellî durmadan akarken, artık bir şey gerçekten var -- kelimeden, harften, hatta a'yândan ayrı, elle tutulur bir varlık.</p>
-    <p class="durak-panel__govde" style="display:block">Tecellî bir mekanizmaysa, varlık onun ürünüdür: a'yân üzerinden akıp taşan şey artık soyut bir imkân değil, gerçekten var olan bir şeydir. Ama bu "var"lık bile tek bir kaynaktan geliyor -- İbn Arabî'nin vahdet-i vücûdu tam bunu söylüyor: "Onlar (yaratıklar) hakikatleri (a'yân) bakımından kullardır, varlıkları bakımından ise Haktır." Seni başkasından ayıran şey (senin ayn'ın) gerçek ve çokluğun kaynağı, ama o ayrılığı taşıyan Varlığın kendisi tektir. Bu doktrin, adı Şeyh'e sonradan yapıştırılmış olsa da (bkz. Vahdet-i Vücûd'un Ömrü sahnesi), onun metinlerinde defalarca bu şekilde işleniyor.</p>
-    <p class="durak-panel__dayanak" style="display:block">data/ibn-arabi/ontology.json, "a'yân-ı sâbite" düğümündeki Fütûhât Cilt 6 alıntısı (Ekrem Demirli çevirisi). Terimin kendisinin tarihi için vahdet-i-vucud-omru.html sahnesine bakın.</p>
-  </div>
-  <div class="durak-panel">
-    <p class="durak-panel__baslik">İnsan</p>
-    <p class="durak-panel__ozet">Bütün isimlerin dağınık tecellîleri, tek bir varlıkta -- insanda -- toplanabiliyor.</p>
-    <p class="durak-panel__govde" style="display:block">İbn Arabî'ye göre üç âlemin (ervâh, misâl, ecsâm) ve tüm ilahî isimlerin kendisinde toplandığı biricik varlık İnsan-ı Kâmil'dir -- "Rahmân sûreti üzere" yaratıldığı söylenir. Diğer her varlık isimlerden yalnızca bir kısmını yansıtırken, o hepsini birden toplayabilen bir ayna gibi okunur. Tıpkı dağınık güneş ışınlarının bir büyüteç merceğinden geçtiğinde tek bir noktada yoğunlaşıp ateş yakabilecek güce ulaşması gibi: insan da, bütün isimlerin âlemde dağınık hâlde bulunan tecellîlerini kendinde topluyor, onları tek bir noktada -- kendi varlığında -- yoğunlaştırıyor. Bu bir imtiyaz değil, bize göre bir emanet: ne kadar berrak bir ayna olursa, o kadar tam yansıtır.</p>
-    <p class="durak-panel__dayanak" style="display:block">data/ibn-arabi/ontology.json, "İnsan-ı Kâmil" düğümü.</p>
-  </div>
-  <div class="durak-panel">
-    <p class="durak-panel__baslik">Kalp</p>
-    <p class="durak-panel__ozet">Bu toplanma soyut kalmıyor: her insanın kendi tecrübesinde gerçekleştiği yer kalptir.</p>
-    <p class="durak-panel__govde" style="display:block">Kalp kelimesi Arapçada "takallüb" (durmadan dönüşüm, hâlden hâle geçiş) köküyle akraba -- bize göre bu, sabit bir inanca değil, her tecellîyi yeniden kabul edebilen akışkan bir idrake işaret ediyor olabilir. Meşhur kutsî hadis: "Ne yerim ne göğüm Beni kapsar, ancak mü'min kulumun kalbi Beni kapsar." Tıpkı bir aynanın üzerine toz kondukça netliğini kaybetmesi ve ancak sürekli silinirse berrak kalması gibi: kalp de gafletin tozundan arındıkça Hakk'ı daha net yansıtır -- parlaklığı, sahibinin ona ne kadar özen gösterdiğine bağlıdır. Ve derinleştikçe -- bu berraklaşan aynanın içine bakınca -- gördüğün şey yeniden nefestir. Halka kapanıyor.</p>
-    <p class="durak-panel__dayanak" style="display:block">data/ibn-arabi/ontology.json, "Kalp" düğümü.</p>
-  </div>
-</div>
+<p class="caption" id="caption" aria-live="polite"></p>
 
 <script>
-const DURAKLAR = [
-  {
-    id: 'nefes',
-    tr: {
-      baslik: 'Nefes',
-      ozet: 'Henüz hiçbir şekle ayrılmamış, tek bir soluk.',
-      giris: 'İlahî isimler, dayanılmaz bir sınırda, tek bir nefesle dışarı fışkırır. Bu fışkırma âlemin var oluşudur -- ama bu nefes henüz hiçbir harfe, hiçbir kelimeye ayrılmamıştır.',
-      govde: 'Fütûhât\'ta bu, kerb (sıkışma) ve teneffüs (soluk verme) ikilisiyle anlatılır: ilahî isimler Hakk\'ın sinesinde birikir, dayanılmaz son sınıra ulaşınca bir nefesle dışarı çıkar. İzutsu\'nun okumasına göre bu, tasavvufun "yaratılış" dediği şeyin kendisidir -- ex nihilo bir üretim değil, birikmiş bir basıncın açığa çıkışı.',
-      dayanak: 'felsefi-terimler.json, "nefes-i-rahmani" maddesi (Izutsu\'nun aktarımına dayanır); aynı doktrini farklı bir etkileşimle işleyen nefes-i-rahmani.html sahnesine de bakın.',
-    },
-    en: {
-      baslik: 'Breath',
-      ozet: 'Not yet separated into any shape, a single breath.',
-      giris: 'The divine names burst out in a single breath at an unbearable limit. That bursting-forth is the world\'s coming into existence -- but this breath has not yet separated into any letter, any word.',
-      govde: 'The Futuhat narrates this through the pair karb (pressure) and tanaffus (exhaling): the divine names accumulate in the Real\'s breast, and upon reaching an unbearable limit they burst forth in a breath. On Izutsu\'s reading, this is what Sufism calls "creation" itself -- not a production ex nihilo, but the release of an accumulated pressure.',
-      dayanak: 'felsefi-terimler.json, entry "nefes-i-rahmani" (as related by Izutsu); see also the nefes-i-rahmani.html scene, which treats the same doctrine through a different interaction.',
-    },
-    pt: {
-      baslik: 'Sopro',
-      ozet: 'Ainda não separado em nenhuma forma, um único sopro.',
-      giris: 'Os nomes divinos irrompem num único sopro no limite insuportável. Esse irromper é o vir-a-existir do mundo -- mas este sopro ainda não se separou em nenhuma letra, nenhuma palavra.',
-      govde: 'O Futuhat narra isto através do par karb (pressão) e tanaffus (exalar): os nomes divinos se acumulam no peito do Real, e ao atingir um limite insuportável irrompem num sopro. Na leitura de Izutsu, isto é o que o sufismo chama de "criação" -- não uma produção ex nihilo, mas a libertação de uma pressão acumulada.',
-      dayanak: 'felsefi-terimler.json, verbete "nefes-i-rahmani" (conforme relatado por Izutsu); veja também a cena nefes-i-rahmani.html, que trata da mesma doutrina através de outra interação.',
-    },
+const LA = {
+  title:   { tr: 'Bir Nefesin İçi', en: 'Inside a Breath', pt: 'Dentro de um Sopro' },
+  caption: {
+    tr: 'Merdiven değil halka. Sekiz durak; tur tamamlandığında ışık başladığı yerin üstüne değil, bir kat içine düşer.',
+    en: 'Not a ladder but a ring. Eight stations; when the tour completes, the light falls not onto its starting point but one layer inside it.',
+    pt: 'Não uma escada, mas um anel. Oito estações; ao fim da volta, a luz cai não sobre o ponto inicial, mas uma camada dentro dele.'
   },
-  {
-    id: 'harf',
-    tr: {
-      baslik: 'Harf',
-      ozet: 'O tek nefes harflere ayrılıyor -- ama her harf hâlâ nefesin ta kendisi.',
-      giris: 'Nefes tek başına kalmaz: ayrışır, ve ilk ayrışma harflerdir. İbnü\'l-Arabî\'ye göre harfler yeni bir yaratılış değil, nefesin kendi hâlidir -- yalnızca ayrışmış.',
-      govde: 'İlmü\'l-hurûf (harfler ilmi) Fütûhât\'ta geniş bir yer tutar: her harfin kendi mertebesi, kendi ontolojik konumu vardır. Harekeleri (harfin üstündeki/altındaki işaretler) Şeyh "küçük harfler" diye tanımlar -- tıpkı insanın beden ve ruh üflenmesinden var olması gibi, kelime de harf ve harekenin birleşiminden bambaşka bir yaratılış olarak çıkar.',
-      dayanak: 'Fütûhât-ı Mekkiyye, Kısım VIII (Harekeler: Kelimelerin Ruhu). Ayrıca bkz. Denis Gril\'in Chodkiewicz (ed.), Les Illuminations de la Mecque / The Meccan Illuminations (Sindbad, 1988) içindeki ilmü\'l-hurûf üzerine giriş ve şerhi -- bu bölümün kendi metnine doğrudan erişemedik, taramaya dayanıyoruz.',
-    },
-    en: {
-      baslik: 'Letter',
-      ozet: 'That single breath separates into letters -- but each letter is still the breath itself.',
-      giris: 'Breath does not stay alone: it separates, and the first separation is letters. For Ibn al-\'Arabi, letters are not a new creation but the breath\'s own state -- only separated.',
-      govde: 'The science of letters (\'ilm al-huruf) occupies a large place in the Futuhat: every letter has its own rank, its own ontological position. The Shaykh defines the vowel-marks (the signs above/below a letter) as "small letters" -- just as a human comes into being from body plus the breathing-in of spirit, a word too emerges as an entirely different kind of creation from the combination of letter plus vowel-mark.',
-      dayanak: 'Al-Futuhat al-Makkiyya, Part VIII (Vowel-Marks: The Spirit of Words). See also Denis Gril\'s introduction and commentary on the science of letters in Chodkiewicz (ed.), Les Illuminations de la Mecque / The Meccan Illuminations (Sindbad, 1988) -- we could not access that section\'s own text directly, this rests on a search-based scan.',
-    },
-    pt: {
-      baslik: 'Letra',
-      ozet: 'Aquele único sopro se separa em letras -- mas cada letra ainda é o próprio sopro.',
-      giris: 'O sopro não fica sozinho: separa-se, e a primeira separação são as letras. Para Ibn al-\'Arabi, as letras não são uma nova criação, mas o próprio estado do sopro -- apenas separado.',
-      govde: 'A ciência das letras (\'ilm al-huruf) ocupa um lugar amplo no Futuhat: cada letra tem o seu próprio grau, a sua própria posição ontológica. O Xeique define as vogais (os sinais acima/abaixo de uma letra) como "pequenas letras" -- assim como um humano vem à existência a partir do corpo mais o sopro do espírito, uma palavra também surge como um tipo inteiramente diferente de criação a partir da combinação de letra mais vogal.',
-      dayanak: 'Al-Futuhat al-Makkiyya, Parte VIII (Vogais: O Espírito das Palavras). Veja também a introdução e comentário de Denis Gril sobre a ciência das letras em Chodkiewicz (ed.), Les Illuminations de la Mecque / The Meccan Illuminations (Sindbad, 1988) -- não pudemos aceder diretamente ao texto dessa secção, isto assenta numa pesquisa.',
-    },
-  },
-  {
-    id: 'kelime',
-    tr: {
-      baslik: 'Kelime',
-      ozet: 'Harfler birleşip bir kelime oluyor -- ve o kelimenin taşıdığı isim, daha derin bir şeye işaret ediyor.',
-      giris: 'Harfler bir araya gelip bir kelime kurar: "er-Rahmân". Ama bu kelime kendi başına durmuyor -- taşıdığı isim, ona daha derinden bakınca, sende sabit duran bir öze işaret ediyor.',
-      govde: 'Nefes, harf, kelime -- şimdiye kadarki üç durak, aynı şeyin art arda gelen üç görünüşüydü: ayrışmamış bir soluk, o soluğun ayrıştığı sesler, o seslerin kurduğu bir isim. Ama isim boşluğa işaret etmiyor -- gerçek bir şeye, senin ezelî hakikatine işaret ediyor. Derinleş, ve gör.',
-      dayanak: 'Aynı doktrinin genişletilmiş anlatımı için nefes-i-rahmani.html sahnesine bakın.',
-    },
-    en: {
-      baslik: 'Word',
-      ozet: 'The letters join into a word -- and the name that word carries points to something deeper.',
-      giris: 'The letters come together to form a word: "Ar-Rahman". But this word does not stand alone -- look deeper into the name it carries, and it points to something fixed within you.',
-      govde: 'Breath, letter, word -- the three stops so far were three successive appearances of the same thing: an undivided breath, the sounds that breath separates into, the name those sounds form. But the name does not point at emptiness -- it points at something real, your own eternal reality. Go deeper, and see.',
-      dayanak: 'For an extended telling of the same doctrine, see the nefes-i-rahmani.html scene.',
-    },
-    pt: {
-      baslik: 'Palavra',
-      ozet: 'As letras se juntam numa palavra -- e o nome que essa palavra carrega aponta para algo mais profundo.',
-      giris: 'As letras juntam-se para formar uma palavra: "Ar-Rahman". Mas esta palavra não fica sozinha -- olhe mais fundo para o nome que carrega, e ele aponta para algo fixo dentro de ti.',
-      govde: 'Sopro, letra, palavra -- as três paragens até agora foram três aparições sucessivas da mesma coisa: um sopro indiviso, os sons em que esse sopro se separa, o nome que esses sons formam. Mas o nome não aponta para o vazio -- aponta para algo real, a tua própria realidade eterna. Aprofunda, e vê.',
-      dayanak: 'Para um relato mais extenso da mesma doutrina, veja a cena nefes-i-rahmani.html.',
-    },
-  },
-  {
-    id: 'ayn',
-    tr: {
-      baslik: 'Ayn',
-      ozet: 'Kelimenin taşıdığı isim, sende ezelden beri sabit duran bir öze -- bir "ayn"a -- işaret ediyor.',
-      giris: 'İbn Arabî\'ye göre her mümkin varlığın, Allah\'ın ilminde -- henüz dış varlığa hiç çıkmadan önce -- sahip olduğu ezelî, değişmez bir hakikati vardır: onun ayn-ı sâbitesi. Bu, dış varlık kazanmış bir şey değil; ama tam bir yokluk da değil.',
-      govde: 'Tıpkı küçücük bir meşe palamudunun içinde, dalları henüz hiç görünmese de, o palamudun büyüyünce olacağı koca meşe ağacının tam olarak zaten var olması gibi: a\'yân-ı sâbite de her varlığın, dış âleme çıkmadan önce Allah\'ın ilminde bulunan, bu şekilde zaten tam olan "tohum hâli"dir. Senin de böyle bir "ayn"ın var -- dış varlığa hiç çıkmadan önceki hakikatin.',
-      dayanak: 'data/ibn-arabi/ontology.json, "a\'yân-ı sâbite" düğümü (Fütûhât-ı Mekkiyye\'nin Ekrem Demirli çevirisi ve Ahmed Avni Konuk\'un Füsûs şerhi taramasına dayanır).',
-    },
-    en: {
-      baslik: 'Ayn',
-      ozet: 'The name the word carries points to something in you fixed since before time -- an "ayn."',
-      giris: 'For Ibn al-\'Arabi, every possible existent has an eternal, unchanging reality within God\'s knowledge -- before it ever steps into outward existence: its fixed archetype ("ayn thabita"). This has not acquired outward existence, yet it is not sheer nonexistence either.',
-      govde: 'Just as within a tiny acorn, though not a single branch is yet visible, the full oak tree it will become when grown is already, exactly, there: the immutable entities are likewise each existent\'s already-complete "seed-form," present in God\'s knowledge before it steps out into the visible world. You have such an "ayn" too -- your reality prior to ever stepping into outward existence.',
-      dayanak: 'data/ibn-arabi/ontology.json, the "Immutable Entities" node (drawn from a scan of Ekrem Demirli\'s Turkish translation of the Futuhat and Ahmed Avni Konuk\'s Fusus commentary).',
-    },
-    pt: {
-      baslik: 'Ayn',
-      ozet: 'O nome que a palavra carrega aponta para algo em ti, fixo desde antes do tempo -- um "ayn."',
-      giris: 'Para Ibn al-\'Arabi, cada existente possível tem uma realidade eterna e imutável dentro do conhecimento de Deus -- antes mesmo de entrar na existência exterior: seu arquétipo fixo ("ayn thabita"). Isto ainda não adquiriu existência exterior, mas também não é pura inexistência.',
-      govde: 'Assim como dentro de uma pequena bolota, embora nenhum galho ainda seja visível, o carvalho completo que ela se tornará ao crescer já está, exatamente, ali: as entidades imutáveis são igualmente a "forma-semente" já completa de cada existente, presente no conhecimento de Deus antes que ele surja no mundo visível. Tu também tens um "ayn" assim -- a tua realidade antes de jamais entrar na existência exterior.',
-      dayanak: 'data/ibn-arabi/ontology.json, o nó "As Entidades Imutáveis" (baseado numa pesquisa da tradução turca de Ekrem Demirli do Futuhat e do comentário de Ahmed Avni Konuk ao Fusus).',
-    },
-  },
-  {
-    id: 'tecelli',
-    tr: {
-      baslik: 'Tecellî',
-      ozet: 'O sabit ayn, bir nefesle dışarı taşıyor -- ve bu taşma hiç durmadan, her an yenileniyor.',
-      giris: 'İbn Arabî buna "Nefesü\'r-Rahmân" der: tıpkı insan nefesinin içindeki sıkışmayı gidermesi gibi, Hakk da isimlerin "bilinme sıkıntısını" bu nefesle giderir, varlık a\'yân üzerinden akıp taşar. Bu tecellî bir kerelik değil; her an yenileniyor.',
-      govde: 'Tıpkı bir sinema filminin, aslında art arda dizilmiş sabit kareler olduğu hâlde gözünüze kesintisiz bir hareket gibi görünmesi gibi: âlem de her an yeniden yaratılıp yok edilir, ama bu yenilenme o kadar hızlı ve düzenlidir ki bize hep "aynı" tek bir âlemmiş gibi görünür. Kaydırıcı bunu hissettiriyor: kaydırdıkça değişen şey, formun bu tecellîyi ne kadar aldığı -- ışığın kendisi hiç kıpırdamıyor.',
-      dayanak: 'data/ibn-arabi/ontology.json, "tecellî ve Nefesü\'r-Rahmân" düğümü.',
-    },
-    en: {
-      baslik: 'Self-Disclosure',
-      ozet: 'That fixed archetype overflows in a breath -- and this overflow never stops, renewed every instant.',
-      giris: 'Ibn al-\'Arabi calls this the "Breath of the All-Merciful": just as a human breath relieves an inner constriction, the Real relieves the Names\' "anguish of wanting to be known" through this breath, and existence flows out over the archetypes. This self-disclosure is not a one-time event -- it renews every instant.',
-      govde: 'Just as a film is, in truth, a sequence of still frames, yet appears to your eye as unbroken motion: the world too is recreated anew every instant, but so swiftly and regularly that it always looks like one single world. The slider below lets you feel this: what changes as you slide is how much of this disclosure the form receives -- the light itself never moves.',
-      dayanak: 'data/ibn-arabi/ontology.json, the "Self-Disclosure and the Breath of the All-Merciful" node.',
-    },
-    pt: {
-      baslik: 'Autorrevelação',
-      ozet: 'Esse arquétipo fixo transborda num sopro -- e esse transbordar nunca para, renovado a cada instante.',
-      giris: 'Ibn al-\'Arabi chama isto de "Sopro do Todo-Misericordioso": assim como a respiração humana alivia uma constrição interna, o Real alivia a "angústia de querer ser conhecido" dos Nomes através desse sopro, e a existência flui sobre os arquétipos. Essa autorrevelação não é um evento único -- renova-se a cada instante.',
-      govde: 'Assim como um filme é, na verdade, uma sequência de quadros estáticos, mas aparece aos seus olhos como movimento ininterrupto: o mundo também é recriado a cada instante, mas tão rápida e regularmente que sempre parece um único mundo. O controlo abaixo deixa-te sentir isso: o que muda ao deslizar é o quanto a forma recebe dessa revelação -- a luz em si nunca se move.',
-      dayanak: 'data/ibn-arabi/ontology.json, o nó "Autorrevelação e o Sopro do Todo-Misericordioso".',
-    },
-  },
-  {
-    id: 'varlik',
-    tr: {
-      baslik: 'Varlık',
-      ozet: 'Tecellî durmadan akarken, artık bir şey gerçekten var -- kelimeden, harften, hatta a\'yândan ayrı, elle tutulur bir varlık.',
-      giris: 'Tecellî bir mekanizmaysa, varlık onun ürünüdür: a\'yân üzerinden akıp taşan şey artık soyut bir imkân değil, gerçekten var olan bir şeydir. Ama bu "var"lık bile tek bir kaynaktan geliyor -- İbn Arabî\'nin vahdet-i vücûdu tam bunu söylüyor: çokluk gerçek, ama onu taşıyan Varlık tek.',
-      govde: '"Onlar (yaratıklar) hakikatleri (a\'yân) bakımından kullardır, varlıkları bakımından ise Haktır" -- İbn Arabî\'nin vahdet-i vücûdu bu satırda özetleniyor: seni başkasından ayıran şey (senin ayn\'ın) gerçek ve çokluğun kaynağı, ama o ayrılığı taşıyan Varlığın kendisi tektir. Bu doktrin, adı Şeyh\'e sonradan yapıştırılmış olsa da (bkz. Vahdet-i Vücûd\'un Ömrü sahnesi), onun metinlerinde defalarca bu şekilde işleniyor.',
-      dayanak: 'data/ibn-arabi/ontology.json, "a\'yân-ı sâbite" düğümündeki Fütûhât Cilt 6 alıntısı (Ekrem Demirli çevirisi). Terimin kendisinin tarihi için vahdet-i-vucud-omru.html sahnesine bakın.',
-    },
-    en: {
-      baslik: 'Existence',
-      ozet: 'As disclosure keeps flowing, something is now truly real -- distinct even from the archetype, tangible.',
-      giris: 'If disclosure is a mechanism, existence is its product: what overflows through the archetypes is no longer an abstract possibility but something that truly exists. Yet even this "existing" comes from a single source -- Ibn al-\'Arabi\'s wahdat al-wujud says exactly this: multiplicity is real, but the Existence carrying it is one.',
-      govde: '"They [creatures] are, in respect of their realities, servants; but in respect of their existence, they are the Real" -- Ibn al-\'Arabi\'s wahdat al-wujud is summed up in this line: what distinguishes you from everything else (your own "ayn") is real and is the source of multiplicity, but the Existence carrying that distinction is one. This doctrine holds throughout his texts, even though the name itself was attached to him only later (see the scene "The Life of Wahdat al-Wujud").',
-      dayanak: 'data/ibn-arabi/ontology.json, the citation from Futuhat Volume 6 (Ekrem Demirli translation) within the "Immutable Entities" node. For the term\'s own history, see the vahdet-i-vucud-omru.html scene.',
-    },
-    pt: {
-      baslik: 'Existência',
-      ozet: 'Enquanto a revelação continua a fluir, algo agora é verdadeiramente real -- distinto até do arquétipo, tangível.',
-      giris: 'Se a revelação é um mecanismo, a existência é o seu produto: o que transborda através dos arquétipos já não é uma possibilidade abstrata, mas algo que verdadeiramente existe. Mas mesmo esse "existir" vem de uma única fonte -- o wahdat al-wujud de Ibn al-\'Arabi diz exatamente isto: a multiplicidade é real, mas a Existência que a carrega é uma só.',
-      govde: '"Eles [as criaturas] são, quanto às suas realidades, servos; mas quanto à sua existência, são o Real" -- o wahdat al-wujud de Ibn al-\'Arabi resume-se nesta linha: aquilo que te distingue de tudo o mais (o teu próprio "ayn") é real e é a fonte da multiplicidade, mas a Existência que carrega essa distinção é uma só. Esta doutrina percorre os seus textos, ainda que o próprio nome só lhe tenha sido atribuído mais tarde (ver a cena "A Vida do Wahdat al-Wujud").',
-      dayanak: 'data/ibn-arabi/ontology.json, a citação do Futuhat Volume 6 (tradução de Ekrem Demirli) dentro do nó "As Entidades Imutáveis". Para a história do próprio termo, veja a cena vahdet-i-vucud-omru.html.',
-    },
-  },
-  {
-    id: 'insan',
-    tr: {
-      baslik: 'İnsan',
-      ozet: 'Bütün isimlerin dağınık tecellîleri, tek bir varlıkta -- insanda -- toplanabiliyor.',
-      giris: 'İbn Arabî\'ye göre üç âlemin (ervâh, misâl, ecsâm) ve tüm ilahî isimlerin kendisinde toplandığı biricik varlık İnsan-ı Kâmil\'dir -- "Rahmân sûreti üzere" yaratıldığı söylenir. Diğer her varlık isimlerden yalnızca bir kısmını yansıtırken, o hepsini birden toplayabilen bir ayna gibi okunur.',
-      govde: 'Tıpkı dağınık güneş ışınlarının bir büyüteç merceğinden geçtiğinde tek bir noktada yoğunlaşıp ateş yakabilecek güce ulaşması gibi: insan da, bütün isimlerin âlemde dağınık hâlde bulunan tecellîlerini kendinde topluyor, onları tek bir noktada -- kendi varlığında -- yoğunlaştırıyor. Bu bir imtiyaz değil, bize göre bir emanet: ne kadar berrak bir ayna olursa, o kadar tam yansıtır.',
-      dayanak: 'data/ibn-arabi/ontology.json, "İnsan-ı Kâmil" düğümü.',
-    },
-    en: {
-      baslik: 'The Human',
-      ozet: 'The scattered self-disclosures of every Name can gather into a single existent -- the human.',
-      giris: 'For Ibn al-\'Arabi, the Perfect Human is the unique existent in which the three worlds and all the Divine Names are said to be gathered together -- "created upon the form of the All-Merciful." While every other existent reflects only a portion of the Names, this one is read as a mirror able to gather them all at once.',
-      govde: 'Just as scattered sunbeams, passing through a magnifying lens, concentrate at a single point with enough power to kindle fire: the human too gathers within itself all the Names\' disclosures scattered throughout the cosmos, concentrating them at a single point -- its own existence. We take this station to be not a privilege but a trust: the clearer the mirror, the more complete the reflection.',
-      dayanak: 'data/ibn-arabi/ontology.json, the "Perfect Human" node.',
-    },
-    pt: {
-      baslik: 'O Humano',
-      ozet: 'As autorrevelações dispersas de cada Nome podem reunir-se num único existente -- o humano.',
-      giris: 'Para Ibn al-\'Arabi, o Ser Humano Perfeito é o existente único no qual os três mundos e todos os Nomes Divinos se dizem reunidos -- "criado à forma do Todo-Misericordioso." Enquanto todo outro existente reflete apenas uma parte dos Nomes, este é lido como um espelho capaz de reuni-los todos de uma vez.',
-      govde: 'Assim como os raios de sol dispersos, ao passarem por uma lente de aumento, se concentram num único ponto com poder suficiente para acender fogo: o humano também reúne em si todas as autorrevelações dos Nomes espalhadas pelo cosmos, concentrando-as num único ponto -- a sua própria existência. Entendemos essa posição não como um privilégio, mas como uma confiança: quanto mais límpido o espelho, mais completo o reflexo.',
-      dayanak: 'data/ibn-arabi/ontology.json, o nó "O Ser Humano Perfeito".',
-    },
-  },
-  {
-    id: 'kalp',
-    tr: {
-      baslik: 'Kalp',
-      ozet: 'Bu toplanma soyut kalmıyor: her insanın kendi tecrübesinde gerçekleştiği yer kalptir.',
-      giris: 'Kalp kelimesi Arapçada "takallüb" (durmadan dönüşüm, hâlden hâle geçiş) köküyle akraba -- bize göre bu, sabit bir inanca değil, her tecellîyi yeniden kabul edebilen akışkan bir idrake işaret ediyor olabilir. Meşhur kutsî hadis: "Ne yerim ne göğüm Beni kapsar, ancak mü\'min kulumun kalbi Beni kapsar."',
-      govde: 'Tıpkı bir aynanın üzerine toz kondukça netliğini kaybetmesi ve ancak sürekli silinirse berrak kalması gibi: kalp de gafletin tozundan arındıkça Hakk\'ı daha net yansıtır -- parlaklığı, sahibinin ona ne kadar özen gösterdiğine bağlıdır. Ve derinleştikçe -- bu berraklaşan aynanın içine bakınca -- gördüğün şey yeniden nefestir. Halka kapanıyor.',
-      dayanak: 'data/ibn-arabi/ontology.json, "Kalp" düğümü.',
-    },
-    en: {
-      baslik: 'The Heart',
-      ozet: 'This gathering does not stay abstract: the place where it is realized in each person\'s own experience is the heart.',
-      giris: 'The Arabic word qalb shares its root with taqallub -- ceaseless transformation, turning from state to state -- which, we think, may point not to a fixed belief but to a fluid perception capable of receiving each new disclosure. The famous hadith qudsi: "Neither My earth nor My heaven contains Me, but the heart of My believing servant contains Me."',
-      govde: 'Just as a mirror loses its clarity as dust settles on it, and stays clear only if constantly wiped: the heart too reflects the Real more clearly the more it is cleared of the dust of heedlessness -- its brightness depends on how much care its owner gives it. And going deeper -- looking into this clearing mirror -- what you see is breath again. The ring closes.',
-      dayanak: 'data/ibn-arabi/ontology.json, the "Heart" node.',
-    },
-    pt: {
-      baslik: 'O Coração',
-      ozet: 'Essa reunião não fica abstrata: o lugar onde se realiza na experiência de cada pessoa é o coração.',
-      giris: 'A palavra árabe qalb compartilha a sua raiz com taqallub -- transformação incessante, passagem de um estado a outro -- o que, pensamos, talvez aponte não para uma crença fixa, mas para uma percepção fluida capaz de receber cada nova revelação. O famoso hadith qudsi: "Nem Minha terra nem Meu céu Me contêm, mas o coração de Meu servo crente Me contém."',
-      govde: 'Assim como um espelho perde a nitidez conforme a poeira se acumula, e só permanece claro se for constantemente limpo: o coração também reflete o Real com mais clareza quanto mais se livra da poeira da negligência -- o seu brilho depende do quanto o seu dono cuida dele. E ao aprofundar -- olhando para dentro deste espelho que se clareia -- o que vês é sopro de novo. O anel fecha-se.',
-      dayanak: 'data/ibn-arabi/ontology.json, o nó "O Coração".',
-    },
-  },
-];
-
-const UI = {
-  tr: { back: 'Geri', deeper: 'Derine in', moments: n => `Tamamlanan an: ${n}`, giris: 'Giriş', govde: 'Tam metin', dayanak: 'Dayanak', slider: 'Derinlik -- kaydır, sürükle ya da ok tuşlarıyla ilerle', istidad: 'İstidâd' },
-  en: { back: 'Back', deeper: 'Go deeper', moments: n => `Completed moments: ${n}`, giris: 'Intro', govde: 'Full text', dayanak: 'Grounds', slider: 'Depth -- scroll, drag, or use arrow keys', istidad: 'Receptivity' },
-  pt: { back: 'Voltar', deeper: 'Aprofundar', moments: n => `Momentos completados: ${n}`, giris: 'Introdução', govde: 'Texto completo', dayanak: 'Fundamentos', slider: 'Profundidade -- deslize, arraste ou use as setas', istidad: 'Receptividade' },
+  hint:    { tr: 'Sürükle', en: 'Drag', pt: 'Arraste' },
+  slider:  { tr: 'Halka boyunca sürükle', en: 'Drag along the ring', pt: 'Arraste ao longo do anel' },
+  nefes:   { tr: 'Nefes',   en: 'Breath',        pt: 'Sopro' },
+  harf:    { tr: 'Harf',    en: 'Letter',        pt: 'Letra' },
+  kelime:  { tr: 'Kelime',  en: 'Word',          pt: 'Palavra' },
+  oz:      { tr: 'Öz',      en: 'Essence',       pt: 'Essência' },
+  tecelli: { tr: 'Tecellî', en: 'Manifestation', pt: 'Manifestação' },
+  varlik:  { tr: 'Varlık',  en: 'Being',         pt: 'Ser' },
+  insan:   { tr: 'İnsan',   en: 'Human',         pt: 'Humano' },
+  kalp:    { tr: 'Kalp',    en: 'Heart',         pt: 'Coração' },
 };
+const STATION_KEYS = ['nefes', 'harf', 'kelime', 'oz', 'tecelli', 'varlik', 'insan', 'kalp'];
 
 let curLang = 'tr';
 const $ = id => document.getElementById(id);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const N = DURAKLAR.length;
-const UNIT = 100;
-const TOTAL = N * UNIT;
-const TECELLI_INDEX = DURAKLAR.findIndex(d => d.id === 'tecelli');
 
-// ── JS var: canlı sahne göster; azaltılmış hareket/no-JS: adım listesini
-// göster (CSS zaten .js-devre-disi sınıfıyla sahneyi gizliyor). ──────────
-document.body.classList.remove('js-devre-disi');
-
-function renderAdimListe() {
-  $('adimListe').innerHTML = DURAKLAR.map(d => {
-    const t = d[curLang];
-    return `<div class="durak-panel">
-      <p class="durak-panel__baslik">${t.baslik}</p>
-      <p class="durak-panel__ozet">${t.ozet}</p>
-      <p class="durak-panel__govde" style="display:block">${t.giris} ${t.govde}</p>
-      <p class="durak-panel__dayanak" style="display:block">${t.dayanak}</p>
-    </div>`;
-  }).join('');
+function renderText() {
+  $('hTitle').textContent = LA.title[curLang];
+  $('caption').textContent = LA.caption[curLang];
+  $('ipucuMetin').textContent = LA.hint[curLang];
+  $('stage').setAttribute('aria-label', LA.slider[curLang]);
+  updateLabel();
 }
-renderAdimListe();
+function setLang(l) {
+  if (!LA.title[l]) return;
+  curLang = l;
+  renderText();
+}
+
+// ── Geometri: dıştan içe, iki tur atan bir Arşimet sarmalı. ────────────────
+const svgNS = 'http://www.w3.org/2000/svg';
+const CX = 800, CY = 500;
+const rOuter = 380, rInner = 40;
+const turns = 2;
+const thetaMax = turns * Math.PI * 2;
+const pointAt = (t) => {
+  const theta = t * thetaMax;
+  const r = rOuter - (rOuter - rInner) * t;
+  return { x: CX + r * Math.cos(theta - Math.PI / 2), y: CY + r * Math.sin(theta - Math.PI / 2) };
+};
+
+// Sarmal yolun kendisini çiz.
+const N = 400;
+let dAttr = '';
+for (let i = 0; i <= N; i++) {
+  const p = pointAt(i / N);
+  dAttr += (i === 0 ? 'M ' : ' L ') + p.x.toFixed(2) + ' ' + p.y.toFixed(2);
+}
+$('sarmalYol').setAttribute('d', dAttr);
+
+// Sekiz durak, sarmal üzerinde eşit aralıklarla.
+const stationsG = $('duraklar');
+const stationTs = STATION_KEYS.map((_, i) => 0.04 + (i / STATION_KEYS.length) * 0.96);
+stationTs.forEach((t) => {
+  const p = pointAt(t);
+  const c = document.createElementNS(svgNS, 'circle');
+  c.setAttribute('cx', p.x); c.setAttribute('cy', p.y); c.setAttribute('r', 3);
+  c.setAttribute('fill', 'var(--muted)'); c.setAttribute('opacity', 0.6);
+  stationsG.appendChild(c);
+});
+
+const formG = $('form');
+const lightG = $('isik');
+const glowG = $('isikHalesi');
+const label = $('durakEtiketi');
+const hit = $('tutamac');
+const hint = $('ipucu');
+
+// Işığın her durağa yaklaştıkça büründüğü form -- kavramın kendisi değil,
+// o kavrama yaklaşırken beliren biçim (GORSEL_DIL.md: davranışı resmet).
+const drawForm = (t) => {
+  while (formG.firstChild) formG.removeChild(formG.firstChild);
+  stationTs.forEach((st, i) => {
+    const dt = Math.abs(t - st);
+    const nearness = Math.max(0, 1 - dt / 0.08);
+    if (nearness < 0.02) return;
+    const p = pointAt(st);
+    const g = document.createElementNS(svgNS, 'g');
+    g.setAttribute('opacity', nearness.toFixed(3));
+    g.setAttribute('transform', `translate(${p.x} ${p.y})`);
+
+    if (i === 0) {
+      // Nefes -- dağınık pus.
+      for (let k = 0; k < 22; k++) {
+        const a = (k / 22) * Math.PI * 2 + i;
+        const rr = 8 + ((k * 13) % 22);
+        const c = document.createElementNS(svgNS, 'circle');
+        c.setAttribute('cx', Math.cos(a) * rr);
+        c.setAttribute('cy', Math.sin(a) * rr);
+        c.setAttribute('r', 0.9);
+        c.setAttribute('fill', 'var(--text)');
+        c.setAttribute('opacity', 0.55);
+        g.appendChild(c);
+      }
+    } else if (i === 1) {
+      // Harf -- tek çizgi.
+      const l = document.createElementNS(svgNS, 'path');
+      l.setAttribute('d', 'M -20 6 Q -8 -14 4 -2 Q 12 6 18 -6');
+      l.setAttribute('stroke', 'var(--text)'); l.setAttribute('stroke-width', 1.6);
+      l.setAttribute('fill', 'none'); l.setAttribute('stroke-linecap', 'round');
+      g.appendChild(l);
+    } else if (i === 2) {
+      // Kelime -- çizgi kümesi.
+      for (let k = 0; k < 4; k++) {
+        const l = document.createElementNS(svgNS, 'path');
+        const ox = -22 + k * 12;
+        l.setAttribute('d', `M ${ox} 6 Q ${ox + 3} -8 ${ox + 8} 0 Q ${ox + 11} 6 ${ox + 14} -2`);
+        l.setAttribute('stroke', 'var(--text)'); l.setAttribute('stroke-width', 1.4);
+        l.setAttribute('fill', 'none'); l.setAttribute('stroke-linecap', 'round');
+        g.appendChild(l);
+      }
+    } else if (i === 3) {
+      // Öz -- çekirdek.
+      const c = document.createElementNS(svgNS, 'circle');
+      c.setAttribute('cx', 0); c.setAttribute('cy', 0); c.setAttribute('r', 6);
+      c.setAttribute('fill', 'var(--text)');
+      g.appendChild(c);
+    } else if (i === 4) {
+      // Tecellî -- ince halka.
+      const ring = document.createElementNS(svgNS, 'circle');
+      ring.setAttribute('cx', 0); ring.setAttribute('cy', 0); ring.setAttribute('r', 16);
+      ring.setAttribute('stroke', 'var(--text)'); ring.setAttribute('stroke-width', 1.2);
+      ring.setAttribute('fill', 'none');
+      g.appendChild(ring);
+      for (let k = 0; k < 8; k++) {
+        const a = (k / 8) * Math.PI * 2;
+        const l = document.createElementNS(svgNS, 'line');
+        l.setAttribute('x1', Math.cos(a) * 20); l.setAttribute('y1', Math.sin(a) * 20);
+        l.setAttribute('x2', Math.cos(a) * 26); l.setAttribute('y2', Math.sin(a) * 26);
+        l.setAttribute('stroke', 'var(--text)'); l.setAttribute('stroke-width', 1);
+        g.appendChild(l);
+      }
+    } else if (i === 5) {
+      // Varlık -- dolu daire.
+      const c = document.createElementNS(svgNS, 'circle');
+      c.setAttribute('cx', 0); c.setAttribute('cy', 0); c.setAttribute('r', 12);
+      c.setAttribute('fill', 'var(--text)');
+      g.appendChild(c);
+    } else if (i === 6) {
+      // İnsan -- küçük ayakta duran figür.
+      const path = document.createElementNS(svgNS, 'path');
+      path.setAttribute('d', 'M 0 -14 A 3 3 0 1 1 -0.01 -14 M 0 -10 L 0 6 L -6 16 M 0 6 L 6 16 M 0 -4 L -8 -1 M 0 -4 L 8 -1');
+      path.setAttribute('stroke', 'var(--text)'); path.setAttribute('stroke-width', 1.4);
+      path.setAttribute('fill', 'none'); path.setAttribute('stroke-linecap', 'round');
+      g.appendChild(path);
+    } else if (i === 7) {
+      // Kalp -- içi boş, merkezli oval-yumuşak form (klişe kalp değil).
+      const c = document.createElementNS(svgNS, 'ellipse');
+      c.setAttribute('cx', 0); c.setAttribute('cy', 0);
+      c.setAttribute('rx', 14); c.setAttribute('ry', 10);
+      c.setAttribute('stroke', 'var(--text)'); c.setAttribute('stroke-width', 1.4);
+      c.setAttribute('fill', 'none');
+      g.appendChild(c);
+      const inner = document.createElementNS(svgNS, 'circle');
+      inner.setAttribute('cx', 0); inner.setAttribute('cy', 0); inner.setAttribute('r', 2);
+      inner.setAttribute('fill', 'var(--text)');
+      g.appendChild(inner);
+    }
+    formG.appendChild(g);
+  });
+};
+
+let currentT = 0;
+
+function updateLabel() {
+  let best = -1, bestDt = 1;
+  stationTs.forEach((st, i) => {
+    const dt = Math.abs(currentT - st);
+    if (dt < bestDt) { bestDt = dt; best = i; }
+  });
+  if (bestDt < 0.025) {
+    label.textContent = LA[STATION_KEYS[best]][curLang] || '';
+    label.style.opacity = '1';
+  } else {
+    label.style.opacity = '0';
+  }
+}
+
+const setT = (t) => {
+  currentT = ((t % 1) + 1) % 1;
+  const p = pointAt(currentT);
+  lightG.setAttribute('cx', p.x); lightG.setAttribute('cy', p.y);
+  glowG.setAttribute('cx', p.x); glowG.setAttribute('cy', p.y);
+  // Hâle küçülür sarmal içe kıvrıldıkça -- uzaklık çokluk, derinlik hakikate yaklaşma.
+  const g = 60 - (currentT * 32);
+  glowG.setAttribute('r', g.toFixed(1));
+  const lightR = 6 - currentT * 2;
+  lightG.setAttribute('r', lightR.toFixed(2));
+  drawForm(currentT);
+  updateLabel();
+  hit.setAttribute('aria-valuenow', Math.round(currentT * 100));
+};
+
+// Kullanıcı devralana kadar kendiliğinden döner.
+let userActive = false;
+let last = performance.now();
+let rafId = 0;
+const loop = (now) => {
+  const dt = Math.min(60, now - last); last = now;
+  if (!userActive) setT(currentT + dt / 16000);
+  rafId = requestAnimationFrame(loop);
+};
+
+// ── Sürükleme: merkez etrafındaki açıyla turu tarar. ───────────────────────
+const svgEl = hit.ownerSVGElement;
+const toSvg = (clientX, clientY) => {
+  const pt = svgEl.createSVGPoint();
+  pt.x = clientX; pt.y = clientY;
+  const m = svgEl.getScreenCTM();
+  if (!m) return { x: CX, y: CY };
+  return pt.matrixTransform(m.inverse());
+};
+let dragging = false;
+let lastAngle = 0;
+const angleOf = (x, y) => Math.atan2(y - CY, x - CX);
+const stopIntro = () => { userActive = true; if (hint) hint.style.animation = 'none'; };
+
+const onDown = (e) => {
+  dragging = true; stopIntro();
+  $('stage').focus();
+  const t = e.touches ? e.touches[0] : e;
+  const p = toSvg(t.clientX, t.clientY);
+  lastAngle = angleOf(p.x, p.y);
+  e.preventDefault();
+};
+const onMove = (e) => {
+  if (!dragging) return;
+  const t = e.touches ? e.touches[0] : e;
+  const p = toSvg(t.clientX, t.clientY);
+  const a = angleOf(p.x, p.y);
+  let delta = a - lastAngle;
+  if (delta > Math.PI) delta -= Math.PI * 2;
+  if (delta < -Math.PI) delta += Math.PI * 2;
+  lastAngle = a;
+  setT(currentT + delta / (Math.PI * 2 * turns));
+};
+const onUp = () => { dragging = false; };
+
+hit.addEventListener('mousedown', onDown);
+window.addEventListener('mousemove', onMove);
+window.addEventListener('mouseup', onUp);
+hit.addEventListener('touchstart', onDown, { passive: false });
+window.addEventListener('touchmove', onMove, { passive: false });
+window.addEventListener('touchend', onUp);
+
+$('stage').addEventListener('keydown', (e) => {
+  let handled = true;
+  if (e.key === 'ArrowLeft') setT(currentT - 1 / 64);
+  else if (e.key === 'ArrowRight') setT(currentT + 1 / 64);
+  else handled = false;
+  if (handled) { stopIntro(); e.preventDefault(); }
+});
+
+renderText();
+setT(0);
 
 if (reduceMotion) {
-  // Sahne hiç kurulmuyor -- azaltılmış harekette JS'in geri kalanına gerek yok.
+  setT(0.45);
+  if (hint) hint.style.animation = 'none';
 } else {
-  setupScene();
+  rafId = requestAnimationFrame(loop);
 }
-
-function setupScene() {
-  const svg = $('stage');
-  const NS = 'http://www.w3.org/2000/svg';
-  const cx = 230, cy = 230;
-
-  // TECELLİ'NİN IŞIĞI -- İSTİDÂD KAYDIRICISINDAN TAMAMEN BAĞIMSIZ BİR SABİT.
-  // İstidâd yalnız durak-tecelli__kap'ın (aşağıda) netliğini/opaklığını
-  // değiştirir; bu obje HİÇBİR YERDE istidadSlider'ın değerini okumaz --
-  // kullanıcının isteği tam olarak buydu ("ışık değerini kaydırıcıdan
-  // tamamen bağımsız bir sabit yaparak garanti et").
-  const TECELLI_ISIK_SABIT = Object.freeze({ r: 170, opacity: 1 });
-
-  // Her durak için bir <g> katmanı; içerik türüne göre farklı çizim.
-  const layers = DURAKLAR.map((d, i) => {
-    const g = document.createElementNS(NS, 'g');
-    g.style.transformOrigin = `${cx}px ${cy}px`;
-    if (d.id === 'nefes') {
-      const c = document.createElementNS(NS, 'circle');
-      c.setAttribute('class', 'durak-glow');
-      c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', 46);
-      g.appendChild(c);
-    } else if (d.id === 'harf') {
-      const t = document.createElementNS(NS, 'text');
-      t.setAttribute('class', 'durak-harf');
-      t.setAttribute('x', cx); t.setAttribute('y', cy);
-      t.textContent = 'ا';
-      g.appendChild(t);
-    } else if (d.id === 'kelime') {
-      const t = document.createElementNS(NS, 'text');
-      t.setAttribute('class', 'durak-kelime');
-      t.setAttribute('x', cx); t.setAttribute('y', cy);
-      t.textContent = 'الرحمن';
-      g.appendChild(t);
-    } else if (d.id === 'ayn') {
-      // Meşe palamudu benzetmesi: küçük, kesin bir çekirdek + henüz
-      // görünmeyen ama zaten "orada" olan potansiyeli işaret eden soluk,
-      // kesikli bir dış halka.
-      const potansiyel = document.createElementNS(NS, 'circle');
-      potansiyel.setAttribute('class', 'durak-ayn__potansiyel');
-      potansiyel.setAttribute('cx', cx); potansiyel.setAttribute('cy', cy); potansiyel.setAttribute('r', 44);
-      g.appendChild(potansiyel);
-      const cekirdek = document.createElementNS(NS, 'circle');
-      cekirdek.setAttribute('class', 'durak-ayn__cekirdek');
-      cekirdek.setAttribute('cx', cx); cekirdek.setAttribute('cy', cy); cekirdek.setAttribute('r', 7);
-      g.appendChild(cekirdek);
-    } else if (d.id === 'tecelli') {
-      // Sabit ışık (yukarıdaki TECELLI_ISIK_SABIT'ten) + istidâda göre
-      // netleşen/bulanıklaşan bir "kap". Kap'ın konumu/boyutu sabit;
-      // yalnız stroke-opacity ve blur miktarı değişir.
-      const isik = document.createElementNS(NS, 'circle');
-      isik.setAttribute('class', 'durak-tecelli__isik');
-      isik.setAttribute('cx', cx); isik.setAttribute('cy', cy);
-      isik.setAttribute('r', TECELLI_ISIK_SABIT.r);
-      g.appendChild(isik);
-      const kap = document.createElementNS(NS, 'circle');
-      kap.setAttribute('class', 'durak-tecelli__kap');
-      kap.setAttribute('id', 'tecelliKap');
-      kap.setAttribute('cx', cx); kap.setAttribute('cy', cy); kap.setAttribute('r', 34);
-      kap.setAttribute('filter', 'url(#istidadBulaniklik)');
-      g.appendChild(kap);
-    } else if (d.id === 'varlik') {
-      // Nefes'in sıkı glow'undan daha büyük, daha yumuşak-kenarlı bir
-      // bulanık disk -- "taşma"yı işaret ediyor.
-      const c = document.createElementNS(NS, 'circle');
-      c.setAttribute('class', 'durak-varlik');
-      c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', 60);
-      g.appendChild(c);
-    } else if (d.id === 'insan') {
-      // Büyüteç benzetmesi: merkeze yakınsayan sekiz kısa ışın + odak noktası.
-      for (let k = 0; k < 8; k++) {
-        const ang = (k / 8) * Math.PI * 2;
-        const r1 = 70, r2 = 26;
-        const line = document.createElementNS(NS, 'line');
-        line.setAttribute('class', 'durak-insan__isin');
-        line.setAttribute('x1', (cx + r1 * Math.cos(ang)).toFixed(1));
-        line.setAttribute('y1', (cy + r1 * Math.sin(ang)).toFixed(1));
-        line.setAttribute('x2', (cx + r2 * Math.cos(ang)).toFixed(1));
-        line.setAttribute('y2', (cy + r2 * Math.sin(ang)).toFixed(1));
-        g.appendChild(line);
-      }
-      const odak = document.createElementNS(NS, 'circle');
-      odak.setAttribute('class', 'durak-insan__odak');
-      odak.setAttribute('cx', cx); odak.setAttribute('cy', cy); odak.setAttribute('r', 10);
-      g.appendChild(odak);
-    } else if (d.id === 'kalp') {
-      // Ayna/kap motifinin tecellîdeki karşılığı -- burada kişisel,
-      // "berraklaşabilen" bir disk olarak, iç yansımasıyla.
-      const disk = document.createElementNS(NS, 'circle');
-      disk.setAttribute('class', 'durak-kalp__disk');
-      disk.setAttribute('cx', cx); disk.setAttribute('cy', cy); disk.setAttribute('r', 40);
-      g.appendChild(disk);
-      const yansima = document.createElementNS(NS, 'circle');
-      yansima.setAttribute('class', 'durak-kalp__yansima');
-      yansima.setAttribute('cx', cx - 12); yansima.setAttribute('cy', cy - 12); yansima.setAttribute('r', 6);
-      g.appendChild(yansima);
-    }
-    svg.appendChild(g);
-    return g;
-  });
-
-  function smooth01(a, b, x) {
-    const t = Math.max(0, Math.min(1, (x - a) / (b - a)));
-    return t * t * (3 - 2 * t);
-  }
-
-  let depth = 0; // 0..TOTAL, sonra sarar
-  let moments = 0;
-  let istidad = 50;
-
-  function updateIstidad() {
-    const kap = document.getElementById('tecelliKap');
-    if (!kap) return;
-    const t = istidad / 100;
-    kap.style.strokeOpacity = (0.15 + 0.85 * t).toFixed(2);
-    const std = document.getElementById('istidadBlurStd');
-    if (std) std.setAttribute('stdDeviation', (8 * (1 - t)).toFixed(2));
-  }
-  $('istidadSlider').addEventListener('input', (e) => {
-    istidad = Number(e.target.value);
-    updateIstidad();
-  });
-
-  function paint() {
-    const wrapped = ((depth % TOTAL) + TOTAL) % TOTAL;
-    const stopIndex = Math.floor(wrapped / UNIT) % N;
-    const nextIndex = (stopIndex + 1) % N;
-    const localT = (wrapped % UNIT) / UNIT;
-
-    layers.forEach((g, i) => {
-      if (i === stopIndex) {
-        const scale = 1 + 1.6 * localT;
-        const opacity = 1 - smooth01(0.55, 1, localT);
-        g.style.transform = `scale(${scale.toFixed(3)})`;
-        g.style.opacity = opacity.toFixed(3);
-      } else if (i === nextIndex) {
-        const scale = 0.12 + 0.88 * smooth01(0.15, 1, localT);
-        const opacity = smooth01(0.15, 0.75, localT);
-        g.style.transform = `scale(${scale.toFixed(3)})`;
-        g.style.opacity = opacity.toFixed(3);
-      } else {
-        g.style.opacity = '0';
-      }
-    });
-
-    $('derinlikDolu').style.width = (localT * 100).toFixed(1) + '%';
-    svg.setAttribute('aria-valuenow', Math.round(wrapped));
-    $('istidadRow').hidden = stopIndex !== TECELLI_INDEX;
-    renderDurakPanel(stopIndex);
-  }
-
-  let curDurak = null;
-  function renderDurakPanel(stopIndex) {
-    const t = DURAKLAR[stopIndex][curLang];
-    curDurak = t;
-    if ($('dpBaslik').textContent === t.baslik) return; // aynı durak, yeniden yazma
-    $('dpBaslik').textContent = t.baslik;
-    $('dpOzet').textContent = t.ozet;
-    $('dpDayanak').textContent = t.dayanak;
-    $('dpGovde').hidden = true;
-    $('dpGovde').dataset.acikBtn = '';
-    $('dpDayanak').hidden = true;
-    $('btnGiris').setAttribute('aria-pressed', 'false');
-    $('btnGovde').setAttribute('aria-pressed', 'false');
-    $('btnDayanak').setAttribute('aria-pressed', 'false');
-  }
-
-  function setDepth(next, animate) {
-    const prevWraps = Math.floor(depth / TOTAL);
-    if (!animate) {
-      depth = next;
-      const nowWraps = Math.floor(depth / TOTAL);
-      if (nowWraps > prevWraps) { moments += (nowWraps - prevWraps); $('anSayaci').textContent = UI[curLang].moments(moments); }
-      paint();
-      return;
-    }
-    const start = depth, delta = next - start, dur = 420, t0 = performance.now();
-    function tick(now) {
-      const t = Math.min(1, (now - t0) / dur);
-      const eased = t * t * (3 - 2 * t);
-      depth = start + delta * eased;
-      const nowWraps = Math.floor(depth / TOTAL);
-      if (nowWraps > Math.floor((depth - delta * eased + delta) / TOTAL) - 1 && nowWraps > prevWraps && t >= 0.999) {
-        moments += (nowWraps - prevWraps);
-        $('anSayaci').textContent = UI[curLang].moments(moments);
-      }
-      paint();
-      if (t < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
-
-  // ── Kaydırma (wheel) ────────────────────────────────────────────────
-  svg.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    setDepth(depth + (e.deltaY > 0 ? 14 : -14), false);
-  }, { passive: false });
-
-  // ── Sürükleme (fare/dokunma) ────────────────────────────────────────
-  let dragging = false, lastY = 0;
-  svg.addEventListener('pointerdown', (e) => { dragging = true; lastY = e.clientY; svg.focus(); try { svg.setPointerCapture(e.pointerId); } catch (_) {} });
-  svg.addEventListener('pointermove', (e) => {
-    if (!dragging) return;
-    const dy = e.clientY - lastY; lastY = e.clientY;
-    setDepth(depth + dy * 0.6, false);
-  });
-  ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => svg.addEventListener(ev, () => { dragging = false; }));
-
-  // ── Pinch (iki parmak) ──────────────────────────────────────────────
-  let pinchStartDist = null, pinchStartDepth = 0;
-  svg.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 2) {
-      const [a, b] = e.touches;
-      pinchStartDist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
-      pinchStartDepth = depth;
-    }
-  }, { passive: true });
-  svg.addEventListener('touchmove', (e) => {
-    if (e.touches.length === 2 && pinchStartDist != null) {
-      e.preventDefault();
-      const [a, b] = e.touches;
-      const dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
-      setDepth(pinchStartDepth + (pinchStartDist - dist) * 0.9, false);
-    }
-  }, { passive: false });
-  svg.addEventListener('touchend', () => { pinchStartDist = null; });
-
-  // ── Klavye ──────────────────────────────────────────────────────────
-  svg.addEventListener('keydown', (e) => {
-    if (['ArrowDown', 'ArrowRight', 'PageDown'].includes(e.key)) { setDepth(depth + UNIT, true); e.preventDefault(); }
-    else if (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key)) { setDepth(depth - UNIT, true); e.preventDefault(); }
-  });
-
-  // ── Düğmeler ────────────────────────────────────────────────────────
-  $('btnIleri').addEventListener('click', () => setDepth(depth + UNIT, true));
-  $('btnGeri').addEventListener('click', () => setDepth(depth - UNIT, true));
-
-  function toggleDurakGovde(btn, text) {
-    const dp = $('dpGovde');
-    const wasOpenHere = !dp.hidden && dp.dataset.acikBtn === btn.id;
-    if (wasOpenHere) {
-      dp.hidden = true;
-      dp.dataset.acikBtn = '';
-      btn.setAttribute('aria-pressed', 'false');
-      return;
-    }
-    dp.textContent = text;
-    dp.hidden = false;
-    dp.dataset.acikBtn = btn.id;
-    $('btnGiris').setAttribute('aria-pressed', String(btn.id === 'btnGiris'));
-    $('btnGovde').setAttribute('aria-pressed', String(btn.id === 'btnGovde'));
-  }
-  $('btnGiris').addEventListener('click', () => toggleDurakGovde($('btnGiris'), curDurak.giris));
-  $('btnGovde').addEventListener('click', () => toggleDurakGovde($('btnGovde'), curDurak.giris + ' ' + curDurak.govde));
-  $('btnDayanak').addEventListener('click', () => {
-    const on = $('dpDayanak').hidden;
-    $('dpDayanak').hidden = !on;
-    $('btnDayanak').setAttribute('aria-pressed', String(on));
-  });
-
-  updateIstidad();
-  paint();
-  window.__bnIciRepaint = () => { $('dpBaslik').textContent = ''; paint(); };
-}
-
-function renderUiText() {
-  const t = UI[curLang];
-  $('btnGeri').textContent = t.back;
-  $('btnIleri').textContent = t.deeper;
-  $('btnGiris').textContent = t.giris;
-  $('btnGovde').textContent = t.govde;
-  $('btnDayanak').textContent = t.dayanak;
-  $('istidadLabel').textContent = t.istidad;
-  const stage = $('stage');
-  if (stage) stage.setAttribute('aria-label', t.slider);
-}
-renderUiText();
 
 window.addEventListener('message', function (e) {
-  if (e.data && e.data.type === 'setLang' && UI[e.data.lang]) {
-    curLang = e.data.lang;
-    renderUiText();
-    renderAdimListe();
-    if (window.__bnIciRepaint) window.__bnIciRepaint();
-  }
+  if (e.data && e.data.type === 'setLang') setLang(e.data.lang);
 });
 </script>
 
@@ -758,7 +392,7 @@ window.addEventListener('message', function (e) {
   var a = document.createElement("a");
   a.className = "sahne-geri";
   a.href = "sahneler/";          // sahneler kökte, önizlemede de doğru çözülür
-  a.textContent = "\u2190 " + ETIKET[dil];
+  a.textContent = "← " + ETIKET[dil];
   a.setAttribute("aria-label", ETIKET[dil]);
   document.body.appendChild(a);
 
