@@ -15,14 +15,15 @@
         "ucDilTam": true,
         "birincilKaynakVar": true,
         "ikincilKaynakKartiVar": true,
-        "guvenAlaniDolu": false,
-        "karsiGorusVar": false,
+        "guvenAlaniDolu": true,
+        "karsiGorusVar": true,
         "tahkikCalisti": true,
         "erisilebilirlikTemiz": true,
-        "sonrakiAdimVar": false
+        "sonrakiAdimVar": true
       },
       "kaynakKartlari": ["tyser-2023"],
-      "engel": "/cizimler/ ve /futuhat-371.html (dokuz harita, Hafta 3-4'ün 'üç durak prototipi') canlıda. Karjoo-Ravary makalesine erişilemediği için (bkz. futuhat-371.html'in kendi dürüstlük kutusu) 2026-08-09'da bunun yerine Tyser 2023'e (tyser-2023.yaml) geçildi -- dokuz haritanın metni ve künyeleri buna göre düzeltildi, /tahkik ile tarandı (docs/tahkik/futuhat-371.md). Kalan koşullar: guvenAlaniDolu, karsiGorusVar, sonrakiAdimVar.",
+      "engel": null,
+      "not": "2026-08-14: sekiz koşul da tamamlandı, D1 yayına tam hazır. futuhat-371.html'in dürüstlük kutusu güven düzeyini (yerleşik -- tek, hakemli, DOI'li kaynağa satır satır doğrulandı) ve karşı-görüş taramasını (diyagramların anlamına dair çelişen bir okuma aranmış, bulunamamış) üç dilde açıkça söylüyor; sayfa sonuna Çizimler görünümüne yönlendiren bir sonraki-adım cümlesi eklendi. WebSearch ile Karjoo-Ravary'nin 2023 makalesinin özetine ulaşıldı (tam metne değil) -- sahnenin kapanış 'iki göz' imgesiyle örtüşen bir okuma taşıyor, olası bir atıf sorusu research/anlayis-evrimi/RESEARCH_LOG.md'ye (2026-08-14 girdisi) not düşüldü, bu sayfaya İŞLENMEDİ (kullanıcı kararı: 'not olarak al, devam et').",
       "slug": "cizimler"
     },
     {

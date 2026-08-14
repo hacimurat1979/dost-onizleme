@@ -17,6 +17,7 @@ header{text-align:center;margin-bottom:.9rem;max-width:640px}
 h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color:var(--gold);margin-bottom:.4rem}
 .sub{color:var(--muted);font-size:.85rem;font-style:italic;line-height:1.65}
 .honesty{color:var(--muted);font-size:.72rem;line-height:1.6;max-width:520px;margin:.6rem auto 0;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+.next-step{color:var(--muted);font-size:.72rem;line-height:1.6;max-width:520px;margin:1.2rem auto 0;text-align:center}
 
 #stage{width:min(380px,86vw);height:min(380px,86vw);display:block;margin:1rem auto .6rem;transition:transform .5s ease}
 #stage.pull-back{transform:scale(0.72)}
@@ -118,26 +119,31 @@ h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color
   <p class="aha" id="aha"></p>
 </div>
 
+<p class="next-step" id="hNextStep"></p>
+
 <script>
 const NS='http://www.w3.org/2000/svg';
 const LA={
   tr:{
     title:'371. Bab: Dokuz Harita',
     sub:'İbn Arabî\'nin, Fütûhât\'ın ikinci telifine kendi eliyle çizdiği dokuz harita — "tek bir kompozisyon" olarak görülmesini istediği bir dizi.',
-    honesty:'Bu sahne, manüskriptin bir kopyası değil — Sophie Tyser\'ın "Visualizing the Architecture of the Universe" (Brill, 2023) makalesinde ele alınan dokuz haritanın sırasını ve içeriğini izleyen, bizim kendi sadeleştirilmiş okumamız. Gerçek çizimler Konya nüshasında (TİEM/Evkaf Müzesi 1870) duruyor.',
+    honesty:'Bu sahne, manüskriptin bir kopyası değil — Sophie Tyser\'ın "Visualizing the Architecture of the Universe" (Brill, 2023) makalesinde ele alınan dokuz haritanın sırasını ve içeriğini izleyen, bizim kendi sadeleştirilmiş okumamız. Gerçek çizimler Konya nüshasında (TİEM/Evkaf Müzesi 1870) duruyor. Güven düzeyimiz yerleşik: dokuz kart, hakemli ve DOI\'li bu tek kaynakla satır satır karşılaştırıldı, kaynağın söylemediği hiçbir kesinlik eklenmedi. Diyagramların anlamına dair bu okumayla çelişen başka bir akademik yorum arandı, bulunamadı.',
     aha:'Dokuzuncu haritanın sağında cennetin açılışı, solunda kozmosun tamamı duruyor.\nİkisi birlikte, bölümün başındaki "iki göz" imgesine dönüyor — biri farkı, biri benzerliği görüyor.\nKitabı kapattığında, sana bakan kendi iki gözündür.',
+    nextStep:'Bu dokuz harita, sitenin Çizimler görünümündeki öteki tarihî şemalarla birlikte duruyor — devam etmek isteyenler oraya bakabilir.',
   },
   en:{
     title:'Chapter 371: Nine Maps',
     sub:"Nine maps Ibn al-'Arabi drew with his own hand into the second recension of the Futuhat — meant, in his words, to be seen as a single composition.",
-    honesty:'This scene is not a copy of the manuscript — it follows the sequence and content of the nine maps as treated in Sophie Tyser\'s "Visualizing the Architecture of the Universe" (Brill, 2023), in our own simplified reading. The real drawings are in the Konya manuscript (TİEM/Evkaf Müzesi 1870).',
+    honesty:'This scene is not a copy of the manuscript — it follows the sequence and content of the nine maps as treated in Sophie Tyser\'s "Visualizing the Architecture of the Universe" (Brill, 2023), in our own simplified reading. The real drawings are in the Konya manuscript (TİEM/Evkaf Müzesi 1870). Our confidence level is well-established: the nine cards were checked line by line against this single peer-reviewed, DOI-carrying source, and no certainty beyond what the source states was added. We looked for another academic reading that contradicts this one on what the diagrams mean, and found none.',
     aha:"To the right of the ninth map stands the unveiling of paradise; to its left, the whole of the cosmos.\nTogether they return to the image of \"two eyes\" from the start of the chapter — one seeing difference, one seeing likeness.\nWhen you close the book, it is your own two eyes looking back.",
+    nextStep:"These nine maps stand alongside the site's other historical diagrams in the Drawings view — those who want to continue can look there.",
   },
   pt:{
     title:'Capítulo 371: Nove Mapas',
     sub:'Nove mapas que Ibn al-\'Arabi desenhou com a própria mão na segunda recensão das Futuhat — pensados, nas suas palavras, para serem vistos como uma única composição.',
-    honesty:'Esta cena não é uma cópia do manuscrito — segue a sequência e o conteúdo dos nove mapas tal como tratados no artigo de Sophie Tyser, "Visualizing the Architecture of the Universe" (Brill, 2023), na nossa própria leitura simplificada. Os desenhos reais estão no manuscrito de Konya (TİEM/Evkaf Müzesi 1870).',
+    honesty:'Esta cena não é uma cópia do manuscrito — segue a sequência e o conteúdo dos nove mapas tal como tratados no artigo de Sophie Tyser, "Visualizing the Architecture of the Universe" (Brill, 2023), na nossa própria leitura simplificada. Os desenhos reais estão no manuscrito de Konya (TİEM/Evkaf Müzesi 1870). O nosso nível de confiança é consolidado: os nove cartões foram comparados linha a linha com esta única fonte revista por pares e com DOI, sem acrescentar nenhuma certeza que a fonte não afirme. Procurámos outra leitura académica que contradissesse esta quanto ao significado dos diagramas e não a encontrámos.',
     aha:'À direita do nono mapa está o desvelar do paraíso; à sua esquerda, a totalidade do cosmos.\nJuntos, regressam à imagem dos "dois olhos" do início do capítulo — um vendo a diferença, outro a semelhança.\nQuando fechas o livro, são os teus próprios dois olhos que olham de volta.',
+    nextStep:'Estes nove mapas encontram-se junto aos outros diagramas históricos do site na vista de Desenhos — quem quiser continuar pode ali explorar.',
   },
 };
 
@@ -331,6 +337,7 @@ function renderAll(){
   $('hTitle').textContent=d.title;
   $('hSub').textContent=d.sub;
   $('hHonesty').textContent=d.honesty;
+  $('hNextStep').textContent=d.nextStep;
   update();
 }
 function setLang(l){ curLang=l; renderAll(); }
