@@ -41,6 +41,12 @@ button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border
 .sahne-metni{margin:.8rem 0 0 1.1rem;padding-top:.7rem;border-top:1px solid var(--bo);color:var(--mu);font-size:.78rem}
 .sahne-metni li{margin-bottom:.3rem}
 .sc-kap{stroke:#E8D2A4;fill:none;stroke-linejoin:round;stroke-linecap:round;transition:opacity 1.5s ease,transform 1.5s ease}
+/* "Birlikte" durağında ışık çok hafif nefes alır -- yeni bir sembol değil,
+   var olan ışık katmanının kendi kararı; "sahne-nefes" adı buradan gelir. */
+@media (prefers-reduced-motion:no-preference){
+  .sahne-nefes .sc-isik{animation:ucKapNefes 4.5s ease-in-out infinite}
+}
+@keyframes ucKapNefes{0%,100%{opacity:.88}50%{opacity:1}}
 .sahne-geri{position:fixed;top:12px;left:12px;z-index:60;display:inline-flex;align-items:center;gap:.35rem;min-height:44px;padding:0 .9rem;border-radius:999px;font-size:.82rem;font-family:inherit;text-decoration:none;opacity:.72;border:1px solid var(--bo);background:var(--su);color:var(--mu)}
 .sahne-geri:hover,.sahne-geri:focus-visible{opacity:1;color:var(--tx);border-color:var(--go)}
 @media(max-width:520px){.sahne-geri{top:8px;left:8px;padding:0 .7rem}}
@@ -135,6 +141,18 @@ kapDolgu.setAttribute('opacity','0');
 kapDolgu.style.transition='opacity 1.8s ease';
 kaplar.appendChild(kapDolgu);
 
+// "Birlikte" durağında (Yakınsama Deseni, 2026-08-14): üçünün de aynı
+// ışığa ait olduğunu yeni bir sembol icat etmeden göstermek için, ışığın
+// KENDİ degradesini (uc-kap-isik) yeniden kullanan paylaşılan bir ışık
+// havuzu -- üç kabın tabanının altında, yalnız bu durakta beliriyor.
+const kapZemin=document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+kapZemin.setAttribute('cx','240'); kapZemin.setAttribute('cy','300');
+kapZemin.setAttribute('rx','230'); kapZemin.setAttribute('ry','16');
+kapZemin.setAttribute('fill','url(#uc-kap-isik)');
+kapZemin.setAttribute('opacity','0');
+kapZemin.style.transition='opacity 2s ease';
+kaplar.insertBefore(kapZemin, kaplar.firstChild);
+
 // Dağ parçalanması: yolun d'sini iki hâl arasında değiştirmek yerine
 // aynı yolun ikinci bir "parçalı" kopyasını crossfade ediyoruz.
 const dagParca=C.kap(kaplar,{bicim:'dag', cx:120, cy:280, r:52, cizgi:'#8FA6B8', kalinlik:2.4});
@@ -143,7 +161,19 @@ dagParca.setAttribute('opacity','0');
 dagParca.style.transition='opacity 1.8s ease';
 
 // Musa'nın eğilmesi: 'insan' yolunun rotate'i.
-function uygula(hal){
+//
+// DÜZELTME (Yakınsama Deseni turu, 2026-08-14): partisyondaki her ölçü
+// yalnız KENDİ hedef_hal'ini taşıyor (ör. "musa" ölçüsü yalnız
+// {insan:'egilmis'} verir, dag/kap'tan hiç söz etmez). uygula() bu nesneyi
+// olduğu gibi okursa, her yeni ölçüde önceki ölçünün kazanımı (dağın
+// parçalanmışlığı, Musa'nın eğikliği) sessizce sıfırlanıyordu -- "durak"
+// ölçüsüne gelindiğinde üçü de nötr hâle dönmüş oluyordu, ki sahnenin
+// kendi kapanış cümlesi tam bunun tersini ("üç tanık... üç ayrı hâlde")
+// söylüyor. sonHal, görülmüş her anahtarı koruyarak biriktiriyor.
+let sonHal={};
+function uygula(hamHal){
+  sonHal=Object.assign({}, sonHal, hamHal);
+  const hal=sonHal;
   // Ölçü 1: hiçbir kap "yok" değil — hafif silik başlarlar.
   dag.style.opacity     = (hal.dag==='parcalanmis' ? 0 : 0.85);
   dagParca.style.opacity= (hal.dag==='parcalanmis' ? 0.95 : 0);
@@ -152,7 +182,19 @@ function uygula(hal){
   insan.setAttribute('transform', 'translate(240 280) rotate(' + (egik?70:0) + ')');
   kap.style.opacity     = (hal.kap==='gizli' ? 0.55 : 0.95);
   kapDolgu.style.opacity= (hal.kap==='dolu' ? 0.9 : 0);
-  if(hal.aktif==='birlikte') document.body.classList.add('sahne-nefes');
+
+  // "Birlikte": üçü de birbirine doğru çok hafif kayar (aynı ışığa ait
+  // olduklarını hissettiren tek hareket, .sc-kap zaten transform'u
+  // geçişliyor) ve paylaşılan ışık havuzu belirir.
+  const birlikte=(hal.aktif==='birlikte');
+  const kaymaX=birlikte?14:0;
+  dag.setAttribute('transform', 'translate(' + (120+kaymaX) + ' 280)');
+  dagParca.setAttribute('transform', 'translate(' + (120+kaymaX) + ' 280)');
+  kap.setAttribute('transform', 'translate(' + (360-kaymaX) + ' 280)');
+  kapDolgu.setAttribute('transform', 'translate(' + (360-kaymaX) + ' 280)');
+  kapZemin.style.opacity = birlikte ? 0.55 : 0;
+
+  if(birlikte) document.body.classList.add('sahne-nefes');
   else document.body.classList.remove('sahne-nefes');
 }
 

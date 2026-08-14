@@ -52,6 +52,15 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 .sahne-geri{position:fixed;top:12px;left:12px;z-index:60;display:inline-flex;align-items:center;gap:.35rem;min-height:44px;padding:0 .9rem;border-radius:999px;font-size:.82rem;font-family:inherit;text-decoration:none;opacity:.72;border:1px solid var(--bo);background:var(--su);color:var(--mu)}
 .sahne-geri:hover,.sahne-geri:focus-visible{opacity:1;color:var(--tx);border-color:var(--go)}
 @media(max-width:520px){.sahne-geri{top:8px;left:8px;padding:0 .7rem}}
+
+/* Dört yer, tek kalp (Yakınsama Deseni, 2026-08-14): künyedeki dört gerçek
+   geçiş, kabın çevresinde dört iz olarak beliriyor. */
+#dortYer a{cursor:pointer}
+#dortYer a:focus-visible{outline:2px solid var(--am);outline-offset:4px}
+#dortYer a:hover .dort-yer-halka,#dortYer a:focus-visible .dort-yer-halka{opacity:1}
+#dortYer a:hover .dort-yer-etiket,#dortYer a:focus-visible .dort-yer-etiket{opacity:1}
+.dort-yer-etiket{opacity:.62;transition:opacity .2s ease}
+.dort-yer-halka{transition:opacity .2s ease}
 </style>
 <script>(function(){try{var s=localStorage.getItem("dost-theme");if(s==="light"||s==="dark")document.documentElement.setAttribute("data-theme",s);}catch(e){}})();</script>
 </head>
@@ -63,7 +72,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 
 <div class="sw">
   <div class="stage-wrap">
-    <svg id="scene" viewBox="0 0 1600 1000" role="img" aria-label="Çevre uzaklaştıkça sönen bir alan; ortadaki kap hiç değişmeden duruyor">
+    <svg id="scene" viewBox="0 0 1600 1000" role="group" aria-label="Çevre uzaklaştıkça sönen bir alan; ortadaki kap hiç değişmeden duruyor">
       <defs>
         <radialGradient id="ksKapGlow" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stop-color="var(--go)" stop-opacity="0.95"/>
@@ -113,7 +122,8 @@ const L={
     hint:'Sürükle', near:'Dar', far:'Uçsuz',
     sliderLabel:'Dış alanın ölçeği',
     caption:'Dış alan büyüdükçe yoğunluğu düşer; küçüldükçe artar. Ortadaki kap ise ne büyür ne söner — sığmaz görünen ona sığar, hacim işi değildir.',
-    kunyeBaslik:'Künye — bu sahne nereden geliyor?'
+    kunyeBaslik:'Künye — bu sahne nereden geliyor?',
+    dortYerLabel:'Aynı hadis, dört yerde',
   },
   en:{
     title:'What Cannot Be Contained, Contained',
@@ -121,7 +131,8 @@ const L={
     hint:'Drag', near:'Narrow', far:'Vast',
     sliderLabel:'Scale of the outer field',
     caption:'As the outer field widens, its brightness thins; as it narrows, it swells. The vessel at the center neither grows nor dims — what cannot fit is held by it, and it is not a matter of volume.',
-    kunyeBaslik:'Sources — where this scene comes from'
+    kunyeBaslik:'Sources — where this scene comes from',
+    dortYerLabel:'The same hadith, in four places',
   },
   pt:{
     title:'O que Não Cabe, Cabendo',
@@ -129,7 +140,8 @@ const L={
     hint:'Arraste', near:'Estreito', far:'Vasto',
     sliderLabel:'Escala do campo externo',
     caption:'À medida que a área externa se alarga, sua intensidade se dilui; ao estreitar-se, aumenta. O vaso central nem cresce nem se apaga — o que não caberia nele cabe, e isso não é uma questão de volume.',
-    kunyeBaslik:'Fontes — de onde vem esta cena'
+    kunyeBaslik:'Fontes — de onde vem esta cena',
+    dortYerLabel:'O mesmo hadith, em quatro lugares',
   }
 };
 
@@ -182,6 +194,7 @@ function setLang(l){
   $('caption').textContent=d.caption;
   $('slider').setAttribute('aria-label', d.sliderLabel);
   kunye.guncelle(l);
+  if(dortYerLabelEl) dortYerLabelEl.textContent=d.dortYerLabel;
 }
 
 // ── Sahne: dış alan uzaklaştıkça sönüyor, kap hiç değişmiyor ───────────────
@@ -261,6 +274,80 @@ if(reduced){
   slider.value=55; apply(55);
   $('captionWrap').style.animation='none'; $('captionWrap').style.opacity='1';
   if(hint) hint.style.animation='none';
+}
+
+// ── Dört yer, tek kalp (Yakınsama Deseni, 2026-08-14) ───────────────────────
+// Künye'de zaten duran dört gerçek geçiş (aynı kudsî hadis, dört ayrı cilt)
+// burada kabın çevresinde dört iz olarak beliriyor -- kap zaten hiç
+// değişmiyordu (yukarıdaki asıl ilke); şimdi "kaça sığdığı" da görünür:
+// dört ayrı yerden, aynı kaba. Yeni veri icat edilmedi, KUNYE'nin kendi
+// kaynak alanları kullanıldı. Sürgünün kendi anlamına (dış alan ölçeği)
+// dokunulmuyor -- bu ayrı, küçük bir keşif katmanı.
+const DORT_YER=KUNYE.filter(k=>k.kaynak).map(k=>({href:k.kaynak.href, etiket:k.kaynak.etiket}));
+const DORT_YER_ACI=[-45,45,135,225];
+const R_UZAK=300, R_YAKIN=148;
+const dortYerG=document.createElementNS(svgNS,'g');
+dortYerG.setAttribute('id','dortYer');
+$('scene').appendChild(dortYerG);
+
+const dortYerLabelEl=document.createElementNS(svgNS,'text');
+dortYerLabelEl.setAttribute('x','800'); dortYerLabelEl.setAttribute('y','325');
+dortYerLabelEl.setAttribute('text-anchor','middle');
+dortYerLabelEl.setAttribute('font-family','Georgia, serif');
+dortYerLabelEl.setAttribute('font-size','15');
+dortYerLabelEl.setAttribute('letter-spacing','.5');
+dortYerLabelEl.setAttribute('fill','var(--mu)');
+dortYerLabelEl.setAttribute('opacity','0');
+dortYerLabelEl.style.transition='opacity 1.4s ease 1.1s';
+dortYerG.appendChild(dortYerLabelEl);
+
+const dortYerNoktalar=DORT_YER.map((yer,i)=>{
+  const rad=DORT_YER_ACI[i]*Math.PI/180;
+  const a=document.createElementNS(svgNS,'a');
+  a.setAttribute('href', yer.href);
+  a.setAttribute('aria-label', yer.etiket);
+  const uzakX=800+Math.cos(rad)*R_UZAK, uzakY=500+Math.sin(rad)*R_UZAK;
+  a.setAttribute('transform', `translate(${uzakX.toFixed(1)} ${uzakY.toFixed(1)})`);
+  a.style.opacity='0';
+  a.style.transition='transform 1.9s cubic-bezier(.22,.61,.36,1) '+(0.9+i*0.13).toFixed(2)+'s, opacity 1.3s ease '+(0.9+i*0.13).toFixed(2)+'s';
+  // Görünmeyen ama gerçek bir dokunma alanı: nokta+halka görsel olarak
+  // küçük (r=11), parmakla hedeflemesi zor olurdu.
+  const dokunmaAlani=document.createElementNS(svgNS,'circle');
+  dokunmaAlani.setAttribute('r','26'); dokunmaAlani.setAttribute('fill','transparent');
+  a.appendChild(dokunmaAlani);
+  const halka=document.createElementNS(svgNS,'circle');
+  halka.setAttribute('class','dort-yer-halka');
+  halka.setAttribute('r','11'); halka.setAttribute('fill','none');
+  halka.setAttribute('stroke','var(--go)'); halka.setAttribute('stroke-width','1.2'); halka.setAttribute('opacity','0.55');
+  a.appendChild(halka);
+  const nokta=document.createElementNS(svgNS,'circle');
+  nokta.setAttribute('r','5'); nokta.setAttribute('fill','var(--go)');
+  a.appendChild(nokta);
+  const etiket=document.createElementNS(svgNS,'text');
+  etiket.setAttribute('class','dort-yer-etiket');
+  etiket.setAttribute('y','-18'); etiket.setAttribute('text-anchor','middle');
+  etiket.setAttribute('font-family','Georgia, serif'); etiket.setAttribute('font-size','13');
+  etiket.setAttribute('fill','var(--tx)');
+  etiket.textContent=yer.etiket;
+  a.appendChild(etiket);
+  dortYerG.appendChild(a);
+  return {a, rad};
+});
+
+function dortYerYerlestir(){
+  dortYerNoktalar.forEach(d=>{
+    const x=800+Math.cos(d.rad)*R_YAKIN, y=500+Math.sin(d.rad)*R_YAKIN;
+    d.a.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
+    d.a.style.opacity='0.9';
+  });
+  dortYerLabelEl.setAttribute('opacity','0.85');
+}
+if(reduced){
+  dortYerNoktalar.forEach(d=>{ d.a.style.transition='none'; });
+  dortYerLabelEl.style.transition='none';
+  dortYerYerlestir();
+} else {
+  requestAnimationFrame(()=>requestAnimationFrame(dortYerYerlestir));
 }
 
 setLang('tr');
