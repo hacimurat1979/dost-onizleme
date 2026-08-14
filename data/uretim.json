@@ -38,14 +38,15 @@
         "ucDilTam": true,
         "birincilKaynakVar": true,
         "ikincilKaynakKartiVar": true,
-        "guvenAlaniDolu": false,
-        "karsiGorusVar": false,
+        "guvenAlaniDolu": true,
+        "karsiGorusVar": true,
         "tahkikCalisti": true,
         "erisilebilirlikTemiz": true,
         "sonrakiAdimVar": true
       },
       "kaynakKartlari": ["haj-yousef-2007"],
-      "engel": "2026-08-14: docs/tahkik/halk-i-cedid.md yazıldı, haj-yousef-2007.yaml künye-only eklendi. Kalan iki koşul (guvenAlaniDolu, karsiGorusVar) sayfaya eklenecek dürüstlük-kutusu metni onay bekliyor -- bkz. tahkik raporunun 'Karar bekleyenler' bölümü.",
+      "engel": null,
+      "not": "2026-08-14: sekiz koşul da tamamlandı, D2 yayına tam hazır. halk-i-cedid.html'e (D1'deki kalıpla) bir dürüstlük kutusu eklendi -- güven düzeyi (yerleşik: iki ayrı Fütûhât alıntısına doğrudan dayanıyor) ve karşı-görüş (Haj Yousef 2007'nin doktrini iyi belgelediği ama kendi fizik-kıyaslarının yayınlanmış eleştirilerde aşırı iddialı bulunduğu, sitenin bu kıyaslara hiç başvurmadığı) üç dilde açık. Murat onayıyla yayınlandı.",
       "slug": "halk-i-cedid"
     },
     {

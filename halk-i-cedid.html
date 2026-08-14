@@ -16,6 +16,7 @@ body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman
 header{text-align:center;margin-bottom:1rem;max-width:640px}
 h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
 .sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
+.honesty{color:var(--muted);font-size:.72rem;line-height:1.6;max-width:520px;margin:.6rem auto 0;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
 
 #stage{width:min(420px,92vw);height:min(420px,92vw);display:block;margin:.4rem auto 1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
 
@@ -80,6 +81,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 <header>
   <h1 id="hTitle">Halk-ı Cedîd</h1>
   <p class="sub" id="hSub">Âlem bir kez yaratılıp bırakılmış değil — her nefeste yeniden yaratılıyor. Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor.</p>
+  <p class="honesty" id="hHonesty"></p>
 </header>
 
 <svg id="stage" viewBox="0 0 420 420" role="img" aria-label="Bir noktanın her an yeniden belirişi"></svg>
@@ -114,6 +116,7 @@ const LA={
     labelRight:'yavaşça baktığında',
     grab:'Sürükle (ok tuşları da çalışır)',
     aha:'Nokta hiç durmadı.\nSen daha yavaş bakmaya başladın — ve aradaki karanlık göründü.',
+    honesty:'Bu sahnenin güven düzeyi yerleşik: "her nefeste yeniden yaratılış" iddiası iki ayrı Fütûhât alıntısına (Cilt XV, 416. Bölüm; Cilt XIV, 408. Bölüm) doğrudan dayanıyor, kaynağın söylemediği bir kesinlik eklenmedi. Doktrinin akademik okuması için Mohamed Haj Yousef\'in "Ibn \'Arabî - Time and Cosmology" (Routledge, 2007) kitabına bakılabilir; ama kitabın kendi fizik-kıyasları (modern fizik teorileriyle karşılaştırma) yayınlanmış eleştirilerde aşırı iddialı bulunmuş — bu sahne o kıyaslara hiç başvurmuyor, yalnız doktrinin kendisini taşıyor.',
     quotes:[
       { text:'"Bu makam sahibi her nefes yeni bir bilgi içindedir. O sürekli bir yaratılıştayken başkaları o yaratılıştan perdelenmiştir."', src:'Fütûhât-ı Mekkiyye, Cilt XV, 416. Bölüm' },
       { text:'"Cömertlik ve nefesler vesilesiyle oluşmakta; yaratılış daimi / Bir gayede sona ermez."', src:'Fütûhât-ı Mekkiyye, Cilt XIV, 408. Bölüm (açılış şiiri)' },
@@ -126,6 +129,7 @@ const LA={
     labelRight:'once you look slowly',
     grab:'Drag (arrow keys work too)',
     aha:"The point never stopped.\nYou began looking more slowly — and the darkness between became visible.",
+    honesty:"This scene's confidence level is well-established: the claim of \"perpetual re-creation with every breath\" rests directly on two separate Futuhat passages (Vol. XV, Chapter 416; Vol. XIV, Chapter 408), with no certainty added beyond what the source states. For an academic treatment of the doctrine, see Mohamed Haj Yousef's \"Ibn 'Arabi - Time and Cosmology\" (Routledge, 2007); but the book's own physics comparisons (drawing parallels with modern physical theories) have been called overreaching in published reviews — this scene does not draw on those comparisons, only on the doctrine itself.",
     quotes:[
       { text:'"The holder of this station is in a new knowledge with every breath. He is in a perpetual creation while others are veiled from that creation."', src:'Al-Futuhat al-Makkiyya, Vol. XV, Chapter 416' },
       { text:'"Coming-to-be through generosity and breaths; creation is perpetual / It does not end at any goal."', src:'Al-Futuhat al-Makkiyya, Vol. XIV, Chapter 408 (opening poem)' },
@@ -138,6 +142,7 @@ const LA={
     labelRight:'quando olhas devagar',
     grab:'Arraste (as setas também funcionam)',
     aha:'O ponto nunca parou.\nComeçaste a olhar mais devagar — e a escuridão entre eles tornou-se visível.',
+    honesty:'O nível de confiança desta cena é consolidado: a afirmação de "recriação perpétua a cada alento" assenta diretamente em duas passagens separadas das Futuhat (Vol. XV, Capítulo 416; Vol. XIV, Capítulo 408), sem qualquer certeza acrescentada além do que a fonte afirma. Para uma leitura académica da doutrina, pode consultar-se o livro de Mohamed Haj Yousef, "Ibn \'Arabi - Time and Cosmology" (Routledge, 2007); mas as próprias comparações do livro com a física (traçando paralelos com teorias físicas modernas) foram consideradas excessivas em avaliações publicadas — esta cena não recorre a essas comparações, apenas à doutrina em si.',
     quotes:[
       { text:'"Quem detém esta estação está num conhecimento novo a cada alento. Está numa criação perpétua enquanto outros estão velados dessa criação."', src:'Al-Futuhat al-Makkiyya, Vol. XV, Capítulo 416' },
       { text:'"Vir-a-ser pela generosidade e pelos alentos; a criação é perpétua / Não termina em nenhuma meta."', src:'Al-Futuhat al-Makkiyya, Vol. XIV, Capítulo 408 (poema de abertura)' },
@@ -153,6 +158,7 @@ function renderAll(){
   const d=LA[curLang];
   $('hTitle').textContent=d.title;
   $('hSub').textContent=d.sub;
+  $('hHonesty').textContent=d.honesty;
   $('labelLeft').textContent=d.labelLeft;
   $('labelRight').textContent=d.labelRight;
   $('grabHint').textContent=d.grab;
