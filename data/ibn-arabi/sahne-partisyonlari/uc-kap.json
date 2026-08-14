@@ -1,0 +1,83 @@
+{
+  "id": "uc-kap",
+  "baslik": {
+    "tr": "Tek Tecellî, Üç Kap",
+    "en": "One Disclosure, Three Vessels",
+    "pt": "Uma Revelação, Três Vasos"
+  },
+  "toplam_sure_sn": 60,
+  "max_olcu_sn": 9,
+  "not": "A'râf 7:143 üç tanıkta üç ayrı sonuç. Işık şiddeti bütün sahne boyunca hiç değişmez (iddianın koddaki güvencesi). Ölçü 2 dağın parçalanması, ölçü 3 Musa'nın eğilmesi, ölçü 4 üçüncü kap: aynı ışık, üç kabın kapasitesine göre üç ayrı hâl.",
+  "olcuLer": [
+    {
+      "id": "talep",
+      "sure_sn": 6,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": {
+        "dag": "sabit",
+        "insan": "gizli",
+        "kap": "gizli",
+        "aktif": "talep"
+      },
+      "metin": {
+        "tr": "“Rabbim, göster kendini bana da bakayım Sana.” — Talep açık ve yalın.",
+        "en": "“My Lord, show Yourself to me, that I may look upon You.” — The request is bare and open.",
+        "pt": "“Meu Senhor, mostra-Te a mim, para que eu Te veja.” — O pedido está nu e aberto."
+      }
+    },
+    {
+      "id": "dag",
+      "sure_sn": 8,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": {
+        "dag": "parcalanmis",
+        "aktif": "dag"
+      },
+      "metin": {
+        "tr": "“Rabbi dağa tecellî ettiğinde onu param parça etti.” Aynı ışık, ilk kap.",
+        "en": "“When his Lord disclosed Himself to the mountain, He shattered it to pieces.” The same light, the first vessel.",
+        "pt": "“Quando o seu Senhor Se revelou à montanha, despedaçou-a.” A mesma luz, o primeiro vaso."
+      }
+    },
+    {
+      "id": "musa",
+      "sure_sn": 8,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": {
+        "insan": "egilmis",
+        "aktif": "insan"
+      },
+      "metin": {
+        "tr": "“Musa bayılıp düştü.” Ardından cevap: “Beni göremeyeceksin.”",
+        "en": "“Moses fell down in a swoon.” Then the answer: “You shall not see Me.”",
+        "pt": "“Moisés desmaiou e caiu.” Depois a resposta: “Não Me verás.”"
+      }
+    },
+    {
+      "id": "kap",
+      "sure_sn": 9,
+      "gecis_sure_sn": 2.0,
+      "hedef_hal": {
+        "kap": "dolu",
+        "aktif": "kap"
+      },
+      "metin": {
+        "tr": "Üçüncü kap kırılmadan doldu — aynı ışık, farklı bir kap.",
+        "en": "The third vessel filled without breaking — the same light, a different vessel.",
+        "pt": "O terceiro vaso encheu-se sem quebrar — a mesma luz, um vaso diferente."
+      }
+    },
+    {
+      "id": "durak",
+      "sure_sn": 9,
+      "hedef_hal": {
+        "aktif": "birlikte"
+      },
+      "metin": {
+        "tr": "Üç tanık, aynı ışık altında, üç ayrı hâlde. Bize göre değişen ışık değil, kabın kapasitesi.",
+        "en": "Three witnesses, under the same light, in three different states. In our reading, what changes is not the light but the vessel's capacity.",
+        "pt": "Três testemunhas, sob a mesma luz, em três estados diferentes. Na nossa leitura, o que muda não é a luz mas a capacidade do vaso."
+      }
+    }
+  ]
+}

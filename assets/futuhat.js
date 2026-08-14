@@ -92,6 +92,26 @@
     if (activeTipNodeId) hideTip();
   });
 
+  // Diyagramı büyüten AYRI bir <button> -- diyagramın kendisini
+  // sarmalayan bir role="button" değil, çünkü ağaç tipi diyagramların
+  // içindeki düğümler de kendi başlarına klavyeyle odaklanabilir/
+  // etkileşimli (bkz. renderRadialTree); bir düğmenin içinde başka
+  // düğmeler olması axe'in "Interactive controls must not be nested"
+  // kuralını ihlal ediyordu (2026-08-04, pa11y-ci'yi kontrol.py'ye
+  // bağlarken bulundu). container SIBLING olarak eklenir, mount'u SARMALAMAZ.
+  function addEnlargeButton(container, mount, captionText) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "futuhat-diagram-enlarge-btn";
+    btn.setAttribute("aria-label", tt({ tr: "Çizimi büyüt", en: "Enlarge diagram", pt: "Ampliar diagrama" }));
+    btn.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="14.6" y1="14.6" x2="20" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openDiagramLightbox(mount, captionText);
+    });
+    container.appendChild(btn);
+  }
+
   // --- Diagram lightbox (click a diagram to see it enlarged) ---
   function openDiagramLightbox(mount, captionText) {
     window.DostLightbox.open({
@@ -390,12 +410,34 @@
     });
     x0 -= 220; x1 += 220; y0 -= 36; y1 += 36;
 
+    // Etiket punto boyu SABİT bir CSS değeriyle (.futuhat-tree__label,
+    // eskiden 0.74rem) VERİLEMEZ: viewBox her ağacın kendi düğüm
+    // sınırlarına göre otomatik boyutlanıyor (yukarıda), yani aynı SVG
+    // kullanıcı-alanı punto boyu, dallı bir ağaçta (geniş viewBox) daha
+    // KÜÇÜK render ediyor. Ölçüldü (2026-08-05, Playwright): 0.74rem'lik
+    // sabit değer bazı bölümlerde ekranda 11px'e kadar düşüyordu (G13
+    // hedefi: 14px taban). Bunun yerine viewBox genişliğini SVG'nin CSS
+    // max-width'ine (inline diyagram: 480px, ana diyagram: 560px --
+    // .futuhat-tree__svg / .futuhat-tree--inline kuralları) oranlayıp
+    // punto boyunu tersine ölçekliyoruz; ekranda GERÇEKTEN kaç piksel
+    // göründüğü, ağacın dallılığından bağımsız olarak sabit kalır.
+    const referansGenislik = mount.classList.contains("futuhat-tree--inline") ? 480 : 560;
+    const viewBoxGenislik = x1 - x0;
+    const etiketPunto = (14 * viewBoxGenislik) / referansGenislik;
+
     const svg = d3
       .select(mount)
       .append("svg")
       .attr("class", "futuhat-tree__svg")
       .attr("viewBox", `${x0} ${y0} ${x1 - x0} ${y1 - y0}`)
-      .attr("role", "img")
+      // role="img" (diğer diyagram tiplerinde olduğu gibi statik/tek parça)
+      // burada YANLIŞ: bu SVG'nin içinde tek tek klavyeyle odaklanabilen,
+      // role="button" taşıyan gerçek düğümler var (aşağıda). "img" rolü
+      // ARIA'da "içeriği tek bir bütün olarak sun, altındakileri gizle"
+      // demek -- axe bunu haklı olarak "düğmenin içinde düğme" gibi
+      // işaretliyordu (nested-interactive, 2026-08-04). "group" bir
+      // kapsayıcıdır, etkileşimli torunları gizlemez.
+      .attr("role", "group")
       .attr("aria-label", tt(opts.ariaLabel || { tr: "Kavram haritası", en: "Concept map", pt: "Mapa de conceitos" }));
 
     const linkGen = d3.linkRadial().angle((d) => d.x).radius((d) => d.y);
@@ -425,6 +467,7 @@
       .attr("data-note-en", (d) => (d.data.note ? d.data.note.en : ""))
       .attr("data-note-pt", (d) => (d.data.note ? d.data.note.pt : ""))
       .attr("tabindex", "0")
+      .attr("role", "button")
       .attr("aria-label", (d) => tt(d.data.label))
       .on("mouseenter", (event, d) => showTip(d, event))
       .on("mousemove", (event) => moveTip(event))
@@ -454,7 +497,7 @@
       .attr("class", "node-sheen")
       .attr("r", (d) => (d.depth === 0 ? 15 : d.depth === 1 ? 11 : 8));
 
-    nodeSel
+    const labelSel = nodeSel
       .append("text")
       .attr("class", "futuhat-tree__label")
       .attr("text-anchor", (d) => {
@@ -469,7 +512,25 @@
         return a > Math.PI ? -(r + 6) : r + 6;
       })
       .attr("dy", (d) => (d.depth === 0 ? -22 : "0.32em"))
+      .style("font-size", etiketPunto.toFixed(2) + "px")
       .text((d) => tt(d.data.label));
+
+    // Sabit 220px pay yalnız TAHMİNDİ -- uzun düğüm adlarında (bkz. yukarıdaki
+    // etiketPunto yorumu) gerçek metin genişliğini aşıp kırpılıyordu, büyüteç
+    // (lightbox) de aynı viewBox'ı kullandığı için düzeltmiyordu (UI denetimi
+    // bulgusu). graph-utils.js'in createLabelDeconflictor'ındaki aynı ders:
+    // tahmin değil ÖLÇÜM tutuyor -- her etiket gerçekten çizildikten SONRA
+    // getBBox() ile ölçülüp viewBox gerekirse genişletiliyor.
+    labelSel.each(function (d) {
+      let bb;
+      try { bb = this.getBBox(); } catch (e) { return; }
+      if (!bb || (!bb.width && !bb.height)) return;
+      x0 = Math.min(x0, d.px + bb.x);
+      x1 = Math.max(x1, d.px + bb.x + bb.width);
+      y0 = Math.min(y0, d.py + bb.y);
+      y1 = Math.max(y1, d.py + bb.y + bb.height);
+    });
+    svg.attr("viewBox", `${x0} ${y0} ${x1 - x0} ${y1 - y0}`);
   }
 
   function showTip(d, event) {
@@ -668,6 +729,292 @@
       .attr("y", 31)
       .text((d) => tt(d.note))
       .call(wrapSvgText, 24);
+  }
+
+  // --- Nöbet halkası: "Fâtiha'nın nöbeti" (c14k163, 2026-08-04) --
+  // yukarıdaki .pair diyagramının (kisim-c14k163-pair-nobet) alıntılarını
+  // TAŞIYAN ayrı bir bilgi bloğu değil, aynı içeriğin DAİRESEL bir okuma
+  // eşlik eder -- iki yarım tur, aynı iki nöbet etiketi (VISUALIZATION_
+  // IDEAS.md #29: "aynı şema DAİRESEL olarak da kurulabilir... sitenin
+  // daire ilkesine pair'den daha iyi oturur"). GORSEL_DIL.md'nin
+  // "kavramı resmetme, davranışını resmet" kuralı burada da geçerli: bir
+  // nokta halka boyunca durmadan dönüyor (nöbetin KENDİSİ hiç bitmiyor),
+  // ve nokta hangi yarımın üstündeyse o yarım aydınlanıp öbürü soluyor --
+  // metnin kendi cümlesi böyle (14256-68): sıra değişince zâhir/bâtın da
+  // yer değiştiriyor, sabit bir taraf yok.
+  function renderNobet(mount, nobet) {
+    // İlk yazımda halka (r=78), 220 genişlik dar bir viewBox'ta kenara
+    // neredeyse dayanıyordu -- yan etiketler sarılınca kart kenarından
+    // taşıp kırpılıyordu (Puppeteer'la ölçüldü). pair/triad'ın kendi
+    // marjı (~80-90px, wrap 24 karakter) örnek alınarak viewBox
+    // genişletildi, halka küçültüldü, sarma daha dar tutuldu.
+    const width = 320, height = 220, cx = 160, cy = 110, r = 66;
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-nobet__svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", tt(nobet.a) + " / " + tt(nobet.b));
+
+    function arcPath(a0, a1) {
+      const p0 = [cx + r * Math.cos(a0), cy + r * Math.sin(a0)];
+      const p1 = [cx + r * Math.cos(a1), cy + r * Math.sin(a1)];
+      return `M${p0[0].toFixed(1)},${p0[1].toFixed(1)} A${r},${r} 0 0 1 ${p1[0].toFixed(1)},${p1[1].toFixed(1)}`;
+    }
+    const TOP = -Math.PI / 2, BOTTOM = Math.PI / 2;
+
+    const arcA = svg.append("path").attr("class", "futuhat-nobet__arc futuhat-nobet__arc--a").attr("d", arcPath(TOP, BOTTOM));
+    const arcB = svg.append("path").attr("class", "futuhat-nobet__arc futuhat-nobet__arc--b").attr("d", arcPath(BOTTOM, TOP + Math.PI * 2));
+
+    svg.append("text").attr("class", "futuhat-nobet__label futuhat-nobet__label--a")
+      .attr("x", cx - r - 8).attr("y", cy).attr("text-anchor", "end")
+      .text(tt(nobet.a)).call(wrapSvgText, 13);
+    svg.append("text").attr("class", "futuhat-nobet__label futuhat-nobet__label--b")
+      .attr("x", cx + r + 8).attr("y", cy).attr("text-anchor", "start")
+      .text(tt(nobet.b)).call(wrapSvgText, 13);
+
+    // Dönen nokta: bir devir ne "a" ne "b"de durur, ikisinin arasında
+    // sürekli geçiyor -- bkz. yukarıdaki yorum.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const orbit = svg.append("g").attr("class", "futuhat-nobet__orbit-anchor");
+    const marker = orbit.append("circle").attr("class", "futuhat-nobet__marker").attr("r", 6).attr("cx", cx).attr("cy", cy - r);
+    if (!reduceMotion) {
+      const anim = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+      anim.setAttribute("attributeName", "transform");
+      anim.setAttribute("type", "rotate");
+      anim.setAttribute("from", `0 ${cx} ${cy}`);
+      anim.setAttribute("to", `360 ${cx} ${cy}`);
+      anim.setAttribute("dur", "12s");
+      anim.setAttribute("repeatCount", "indefinite");
+      orbit.node().appendChild(anim);
+      // Nokta hangi yarımdaysa o yay aydınlanıyor -- iki yayı da eşit
+      // sürede (6s) dönüşümlü olarak vurgulayan bir CSS animasyonu,
+      // yukarıdaki SMIL dönüşle AYNI 12s'lik döngüye kilitli (bkz. style.css
+      // futuhat-nobet__arc--glow keyframes).
+      arcA.classed("futuhat-nobet__arc--glow", true);
+      arcB.classed("futuhat-nobet__arc--glow", true).style("animation-delay", "6s");
+    } else {
+      // Hareket kısıtlıyken dönüş taklit edilmiyor (GORSEL_DIL.md) --
+      // nokta "a" yarımında sabit durup o yayı durağan aydınlık gösteriyor.
+      arcA.classed("futuhat-nobet__arc--static-a", true);
+    }
+  }
+
+  // --- Karşılıklı akış (münâcât) diyagramı: kul-satırı/Hak-cevabı iki
+  // sütun (c3k37 "İkiye böldüm" hadisi, 2026-08-04). Önceki hâli tek yönlü
+  // bir ağaçtı (fatiha-munacat-tree) -- ama kaynak metin kul ile Hakkın
+  // karşılıklı konuştuğu bir münâcât anlatıyor, tek kökten dallanan bir
+  // hiyerarşi değil. Sol ve sağ sütunu birleştiren çizgi soyut bir ok değil
+  // (GORSEL_DIL.md bunu yasaklıyor) -- .futuhat-triad__axis'in aynısı,
+  // kaynaktaki gerçek eşleşmeyi (bu ayete bu cevap) gösteriyor.
+  function renderAkis(mount, akis) {
+    const rowH = 92, padTop = 34, colKul = 150, colHak = 210, width = 420;
+    const n = akis.adimlar.length;
+    const height = padTop + n * rowH + 14;
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-akis__svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", tt(akis.label));
+
+    svg.append("text")
+      .attr("class", "futuhat-akis__col-head")
+      .attr("x", colKul).attr("y", 16).attr("text-anchor", "end")
+      .text(tt(akis.kulBasligi));
+    svg.append("text")
+      .attr("class", "futuhat-akis__col-head")
+      .attr("x", colHak).attr("y", 16).attr("text-anchor", "start")
+      .text(tt(akis.hakBasligi));
+
+    const rows = svg
+      .selectAll("g.futuhat-akis__row")
+      .data(akis.adimlar)
+      .join("g")
+      .attr("class", "futuhat-akis__row")
+      .attr("data-node-id", (d) => d.id)
+      .attr("transform", (d, i) => `translate(0,${padTop + i * rowH + rowH / 2})`);
+
+    rows.append("line")
+      .attr("class", "futuhat-akis__link")
+      .attr("x1", colKul + 6).attr("x2", colHak - 6);
+
+    rows.append("circle").attr("class", "futuhat-akis__dot futuhat-akis__dot--kul").attr("cx", colKul + 6).attr("r", 4);
+    rows.append("circle").attr("class", "futuhat-akis__dot futuhat-akis__dot--hak").attr("cx", colHak - 6).attr("r", 4);
+
+    rows.append("text")
+      .attr("class", "futuhat-akis__kul")
+      .attr("x", colKul).attr("y", 4).attr("text-anchor", "end")
+      .text((d) => tt(d.kul))
+      .call(wrapSvgText, 20);
+
+    rows.append("text")
+      .attr("class", "futuhat-akis__hak")
+      .attr("x", colHak).attr("y", -8).attr("text-anchor", "start")
+      .text((d) => tt(d.hak))
+      .call(wrapSvgText, 26);
+  }
+
+  // --- Radyal (merkez + kollar) diyagramı: Amâ'nın dört bağlamı (c6k83,
+  // 2026-08-04). Kollar KESİKLİ çizgiyle bağlanıyor -- kaynak metin dört
+  // bağlamın aynı kavramın farklı yüzleri mi yoksa gerilimli iki ayrı
+  // kullanım mı olduğunu ÇÖZMÜYOR (OPEN_QUESTIONS #37); kesikli çizgi bu
+  // kararsızlığı, sağlam bir çizgi verirdiği kesinliği vermeden taşıyor.
+  function renderRadyal(mount, radyal) {
+    const cx = 150, cy = 150, hostR = 34, satR = 26, orbit = 100;
+    const n = radyal.kollar.length;
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-radyal__svg")
+      .attr("viewBox", "0 0 300 300")
+      .attr("role", "img")
+      .attr("aria-label", tt(radyal.merkez));
+
+    const kollar = svg
+      .selectAll("g.futuhat-radyal__kol")
+      .data(radyal.kollar)
+      .join("g")
+      .attr("class", "futuhat-radyal__kol")
+      .attr("data-node-id", (d) => d.id);
+
+    kollar.each(function (d, i) {
+      const deg = -90 + (360 / n) * i;
+      const rad = (deg * Math.PI) / 180;
+      const sx = cx + orbit * Math.cos(rad), sy = cy + orbit * Math.sin(rad);
+      const g = d3.select(this);
+      g.append("line")
+        .attr("class", "futuhat-radyal__tether")
+        .attr("x1", cx).attr("y1", cy).attr("x2", sx).attr("y2", sy);
+      g.append("circle")
+        .attr("class", "futuhat-radyal__dot")
+        .attr("cx", sx).attr("cy", sy).attr("r", satR);
+      g.append("text")
+        .attr("class", "futuhat-radyal__label")
+        .attr("x", sx).attr("y", sy - 2).attr("text-anchor", "middle")
+        .text(tt(d.label))
+        .call(wrapSvgText, 15);
+      g.append("text")
+        .attr("class", "futuhat-radyal__not")
+        .attr("x", sx).attr("y", sy + orbit * 0.34).attr("text-anchor", "middle")
+        .text(tt(d.not))
+        .call(wrapSvgText, 20);
+    });
+
+    svg.append("circle").attr("class", "futuhat-radyal__merkez-dot").attr("cx", cx).attr("cy", cy).attr("r", hostR);
+    svg.append("text")
+      .attr("class", "futuhat-radyal__merkez-label")
+      .attr("x", cx).attr("y", cy + 5).attr("text-anchor", "middle")
+      .text(tt(radyal.merkez));
+  }
+
+  // --- "Perde nerede?" (c14k162, 2026-08-04): kaynak kesintisiz ışık
+  // yayıyor, ışınlar perdeye kadar sönmeden gidiyor -- perde kaynakta değil
+  // gözün önünde. GORSEL_DIL.md'nin ışık=zuhûr/matlık=perdelenme grameri
+  // burada birebir: kaynak dolu-parlak, perde yarı saydam+bulanık (keskin
+  // konturlu bir halka değil), göz perdenin ARKASINDA soluk kalıyor.
+  let perdeBlurSeq = 0;
+  function renderPerdeGoz(mount, pg) {
+    const width = 360, height = 150, cy = 75;
+    const kaynakX = 55, perdeX = 248, gozX = 312;
+    const blurId = "futuhat-perde-blur-" + ++perdeBlurSeq;
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-perdegoz__svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", tt(pg.kaynakEtiket) + " / " + tt(pg.gozEtiket));
+
+    const defs = svg.append("defs");
+    const blur = defs.append("filter").attr("id", blurId).attr("x", "-60%").attr("y", "-60%").attr("width", "220%").attr("height", "220%");
+    blur.append("feGaussianBlur").attr("stdDeviation", "4.2");
+
+    // Işınlar: kaynaktan perdeye kadar SÖNMEDEN giden birkaç ince çizgi --
+    // perdede aniden duruyorlar, giderek soluklaşmıyorlar (metin: ışık
+    // zayıflamıyor, perde onu durduruyor).
+    const rayYs = [cy - 10, cy - 3, cy + 4, cy + 11];
+    svg.selectAll("line.futuhat-perdegoz__ray")
+      .data(rayYs)
+      .join("line")
+      .attr("class", "futuhat-perdegoz__ray")
+      .attr("x1", kaynakX + 30).attr("y1", (d) => d)
+      .attr("x2", perdeX - 4).attr("y2", (d) => d);
+
+    svg.append("circle").attr("class", "futuhat-perdegoz__kaynak-hale").attr("cx", kaynakX).attr("cy", cy).attr("r", 34);
+    svg.append("circle").attr("class", "futuhat-perdegoz__kaynak").attr("cx", kaynakX).attr("cy", cy).attr("r", 24);
+
+    svg.append("rect")
+      .attr("class", "futuhat-perdegoz__perde")
+      .attr("x", perdeX).attr("y", 8).attr("width", 26).attr("height", height - 16)
+      .attr("filter", `url(#${blurId})`);
+
+    svg.append("circle").attr("class", "futuhat-perdegoz__goz").attr("cx", gozX).attr("cy", cy).attr("r", 20);
+
+    svg.append("text").attr("class", "futuhat-perdegoz__label").attr("x", kaynakX).attr("y", cy + 48).attr("text-anchor", "middle")
+      .text(tt(pg.kaynakEtiket)).call(wrapSvgText, 16);
+    svg.append("text").attr("class", "futuhat-perdegoz__note").attr("x", kaynakX).attr("y", cy - 42).attr("text-anchor", "middle")
+      .text(tt(pg.kaynakNot)).call(wrapSvgText, 16);
+
+    svg.append("text").attr("class", "futuhat-perdegoz__label").attr("x", perdeX + 13).attr("y", cy + 48).attr("text-anchor", "middle")
+      .text(tt(pg.perdeEtiket)).call(wrapSvgText, 12);
+
+    svg.append("text").attr("class", "futuhat-perdegoz__label").attr("x", gozX).attr("y", cy + 48).attr("text-anchor", "middle")
+      .text(tt(pg.gozEtiket)).call(wrapSvgText, 14);
+    svg.append("text").attr("class", "futuhat-perdegoz__note").attr("x", gozX).attr("y", cy - 42).attr("text-anchor", "middle")
+      .text(tt(pg.gozNot)).call(wrapSvgText, 16);
+  }
+
+  // --- Nested-circles diagram (c13k150, "sonsuz iç içe daireler") ---
+  // GORSEL_DIL.md keskin konturlu iç içe halka çizmeyi yasaklıyor ("Perde
+  // çizilecekse yarı saydam perde çizilir... keskin konturlu bir halka bir
+  // sınır verir"). İlk denemede beş ayrı, aynı renkte, üst üste dolgulu
+  // daire kullanılmıştı -- ama SVG'de üst üste binen yarı saydam aynı renk
+  // dolgular TOPLANIR: merkezde en çok katman üst üste bindiği için merkez
+  // en KOYU çıktı, dış kenar en soluk -- yani anlam tam TERSİNE dönmüştü
+  // (metin "merkez gizli/soluk, dış ortaya çıkan/net" diyor). Tek bir radyal
+  // gradyan bu sorunu ortadan kaldırıyor: kompozisyon tek bir katman, merkez
+  // gerçekten en soluk, dış kenar gerçekten en dolu -- hem doğru yönde hem
+  // GORSEL_DIL.md'nin istediği yarı saydam/kademeli katman, sert kontur değil.
+  let nestedGradSeq = 0;
+  function renderNested(mount) {
+    const width = 240, height = 200, cx = 120, cy = 100, r = 84;
+    const gradId = "futuhat-nested-grad-" + ++nestedGradSeq;
+
+    const svg = d3
+      .select(mount)
+      .append("svg")
+      .attr("class", "futuhat-nested__svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr(
+        "aria-label",
+        tt({
+          tr: "Sonsuz sayıda iç içe daire; dış kenar ortaya çıkan daire, merkeze doğru giderek soluklaşan derinlik kendinden önceki daireleri gizli taşıyor",
+          en: "Endless circles nested within one another; the outer edge is the circle that appears, the depth fading toward the centre hides the ones that generated it",
+          pt: "Círculos infinitos aninhados uns nos outros; a borda externa é o círculo que aparece, a profundidade que se dissolve para o centro oculta os que o geraram",
+        })
+      );
+
+    const grad = svg.append("defs").append("radialGradient").attr("id", gradId).attr("class", "futuhat-nested__grad");
+    grad.append("stop").attr("offset", "0%").attr("class", "futuhat-nested__stop").style("stop-opacity", 0.02);
+    grad.append("stop").attr("offset", "38%").attr("class", "futuhat-nested__stop").style("stop-opacity", 0.14);
+    grad.append("stop").attr("offset", "68%").attr("class", "futuhat-nested__stop").style("stop-opacity", 0.42);
+    grad.append("stop").attr("offset", "100%").attr("class", "futuhat-nested__stop").style("stop-opacity", 0.88);
+
+    svg
+      .append("circle")
+      .attr("class", "futuhat-nested__field")
+      .attr("cx", cx)
+      .attr("cy", cy)
+      .attr("r", r)
+      .attr("fill", `url(#${gradId})`);
   }
 
   // --- Article rendering ---
@@ -1001,17 +1348,9 @@
       ariaLabel: part.title,
     });
     mainTreeEl.classList.add("futuhat-tree--clickable");
-    mainTreeEl.tabIndex = 0;
-    mainTreeEl.setAttribute("role", "button");
-    mainTreeEl.setAttribute("aria-label", tt({ tr: "Çizimi büyüt", en: "Enlarge diagram", pt: "Ampliar diagrama" }));
     const mainCaption = tt(part.mainDiagram.caption);
     mainTreeEl.addEventListener("click", () => openDiagramLightbox(mainTreeEl, mainCaption));
-    mainTreeEl.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openDiagramLightbox(mainTreeEl, mainCaption);
-      }
-    });
+    addEnlargeButton(mainTreeEl.parentElement, mainTreeEl, mainCaption);
 
     const sectionsEl = document.getElementById("futuhat-sections");
     part.sections.forEach((section, si) => {
@@ -1061,6 +1400,16 @@
             renderTriad(mount, block.triad);
           } else if (block.pair) {
             renderPair(mount, block.pair);
+          } else if (block.nobet) {
+            renderNobet(mount, block.nobet);
+          } else if (block.akis) {
+            renderAkis(mount, block.akis);
+          } else if (block.radyal) {
+            renderRadyal(mount, block.radyal);
+          } else if (block.perdeGoz) {
+            renderPerdeGoz(mount, block.perdeGoz);
+          } else if (block.nested) {
+            renderNested(mount);
           } else if (block.useMainDiagram) {
             renderRadialTree(mount, part.mainDiagram.tree, { radius: 160, ariaLabel: part.title });
           } else if (block.tree) {
@@ -1068,17 +1417,9 @@
           }
 
           mount.classList.add("futuhat-tree--clickable");
-          mount.tabIndex = 0;
-          mount.setAttribute("role", "button");
-          mount.setAttribute("aria-label", tt({ tr: "Çizimi büyüt", en: "Enlarge diagram", pt: "Ampliar diagrama" }));
           const lightboxCaption = block.caption ? tt(block.caption) : tt(block.source);
           mount.addEventListener("click", () => openDiagramLightbox(mount, lightboxCaption));
-          mount.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              openDiagramLightbox(mount, lightboxCaption);
-            }
-          });
+          addEnlargeButton(dCard, mount, lightboxCaption);
         }
       });
       sectionsEl.appendChild(secEl);
@@ -1175,7 +1516,12 @@
         sonuclar.forEach((s) => {
           const item = document.createElement("a");
           item.className = "futuhat-anlamsal-box__item";
-          item.href = s.route;
+          // pasaj-vektorleri-*.json'daki route kök-göreli üretildi ("/futuhat/...")
+          // -- canlıda (base="/") sorun çıkarmıyordu ama önizlemede (base=
+          // "/dost-onizleme/") kökten çözüldüğü için 404 veriyordu (2026-08-04
+          // kullanıcı bildirimi). Baştaki "/" atılınca <base> etiketine göre
+          // doğru çözülüyor -- sitede zaten kurulu olan aynı düzeltme.
+          item.href = s.route.replace(/^\//, "");
           item.innerHTML = `<span class="futuhat-anlamsal-box__title">${escapeHtml(s.baslik)}</span><span class="futuhat-anlamsal-box__sebep">${escapeHtml(s.ozet)}</span>`;
           box.appendChild(item);
         });
@@ -1411,10 +1757,22 @@
         // terms as their own data arrives, which can be after our first
         // render; re-render once more terms are available so links appear
         // without the reader needing to do anything.
-        window.__dostCrossLink.onReady(() => { if (futuhatData) render(); });
+        // Görünürlük bekçisi şart: bu abonelik BAŞKA görünümlerin verisi
+        // hazır olduğunda da tetikleniyor (Terimler ilk kez açılınca
+        // notifyReady buraya da düşer). Bekçisiz hâli, Fütûhât görünmezken
+        // tam re-render yapıp URL'yi /terimler'den /futuhat/<id>'ye,
+        // title/canonical'ı da kısım metasına geri yazıyordu. Kullanıcı
+        // Fütûhât'a dönünce activate() zaten render() çağırıyor.
+        window.__dostCrossLink.onReady(() => {
+          if (futuhatData && window.DostGraphUtils.isViewActive(wrapEl)) render();
+        });
       }
       fetchData().then((data) => {
         if (!data) return;
+        // Yavaş ağ bekçisi: veri gelene kadar kullanıcı başka görünüme
+        // geçmiş olabilir. Geç gelen .then bekçisiz render+setHash yapıp
+        // URL'yi ve başlığı artık bakılmayan görünüme yazıyordu.
+        if (!window.DostGraphUtils.isViewActive(wrapEl)) return;
         if (id && data.parts.some((p) => p.id === id)) {
           activePartId = id;
           isDefaultLanding = false;

@@ -75,14 +75,44 @@ window.__kavramApp = (function () {
       nodes.push({ x, y, r, e, strength, nodeHue: MINIGRAF_PALET[i % MINIGRAF_PALET.length] });
     });
     nodes.forEach(({ x, y, r, e, strength, nodeHue }) => {
+      // Etiket ortalanmış (text-anchor:middle) kalırsa kenara yakın
+      // düğümlerde (sol/sağ) metnin yarısı viewBox dışına taşıp
+      // kırpılıyordu (UI denetimi bulgusu, 206 kavram sayfasının %61'i).
+      // futuhat.js'in radyal ağacındaki AYNI çözüm: yatayda merkeze göre
+      // hangi tarafta olduğuna bakıp metni merkeze doğru (boşluğun olduğu
+      // yöne) büyüt, kenara doğru değil.
+      // tx = x (kaydırma yok): "start" metni tam x'ten sağa, "end" metni tam
+      // x'ten sola büyütür -- yani hiçbir karakter düğümün kendi x'inden
+      // KENARA doğru taşmıyor, yalnız merkeze doğru büyüyor.
+      const anchor = x <= cx ? "start" : "end";
+      // Yön düzeltmesi tek başına yetmiyor: "Ar-Rahim (The Especially
+      // Merciful)" gibi ad+çeviri birleşik etiketler, merkeze en yakın
+      // düğümde bile ayrılan tek yönlü boşluğu (~110px) aşıyordu (ölçüldü).
+      // Merkeze uzaklığa göre kalan boşluk tahmin edilip (~6.4px/karakter,
+      // codebase'in başka yerlerinde de kullanılan aynı kaba oran) gerekirse
+      // "…" ile kısaltılıyor -- merkez etiketin zaten yaptığı gibi (aşağıda,
+      // .slice(0,10)), yalnız burada sabit değil mesafeye göre.
+      const isim = tt(e.isim);
+      const room = anchor === "start" ? 220 - x : x;
+      const maxChars = Math.max(6, Math.floor(room / 6.4));
+      const etiket = isim.length > maxChars ? isim.slice(0, maxChars - 1) + "…" : isim;
       parts.push(
         `<circle class="kavram-minigraf__node" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" style="fill:hsl(${nodeHue} 75% 68% / ${(0.75 + strength * 0.25).toFixed(2)})"></circle>` +
-          `<text class="kavram-minigraf__label" x="${x.toFixed(1)}" y="${(y + r + 13).toFixed(1)}" text-anchor="middle">${escapeHtmlKavram(tt(e.isim))}</text>`
+          `<text class="kavram-minigraf__label" x="${x.toFixed(1)}" y="${(y + r + 13).toFixed(1)}" text-anchor="${anchor}"><title>${escapeHtmlKavram(isim)}</title>${escapeHtmlKavram(etiket)}</text>`
       );
     });
+    // Merkez dairenin yarıçapı (20px) sabit -- ama etiket eskiden sabit
+    // 10 karakterde kesiliyordu, dairenin gerçek genişliğinden bağımsız.
+    // Kalın (600) 14px'lik bir yazı için 10 karakter dairenin iki katından
+    // fazla taşıyor ve kenar çizgileriyle çakışıyordu (UI denetimi bulgusu).
+    // Uydu etiketlerindeki aynı mesafe-tabanlı yaklaşım burada da geçerli.
+    const merkezIsim = tt(k.isim);
+    const merkezRoom = 2 * 20 - 8;
+    const merkezMaxChars = Math.max(3, Math.floor(merkezRoom / 6.4));
+    const merkezEtiket = merkezIsim.length > merkezMaxChars ? merkezIsim.slice(0, merkezMaxChars - 1) + "…" : merkezIsim;
     parts.push(
       `<circle class="kavram-minigraf__center" cx="${cx}" cy="${cy}" r="20" style="fill:hsl(${hue} 55% 45%)"></circle>` +
-        `<text class="kavram-minigraf__center-label" x="${cx}" y="${cy + 4}" text-anchor="middle">${escapeHtmlKavram(tt(k.isim)).slice(0, 10)}</text>`
+        `<text class="kavram-minigraf__center-label" x="${cx}" y="${cy + 4}" text-anchor="middle"><title>${escapeHtmlKavram(merkezIsim)}</title>${escapeHtmlKavram(merkezEtiket)}</text>`
     );
     const label = escapeHtmlKavram(
       tt({
@@ -111,6 +141,109 @@ window.__kavramApp = (function () {
   let dataPromise = null;
   let kavramlar = [];
   let byKey = new Map();
+
+  // D9 "Bir kavramın bütün ömrü (anlamsal)" -- kavram-hayati.json'un KELİME
+  // eşleşmesinin (ilk/son/en-yoğun) kaçırdığı, aynı kavramı FARKLI
+  // kelimelerle konuşan pasajları embedding benzerliğiyle bulan ayrı bir
+  // veri seti (data/kavramlar/<id>.json, scripts/kavram-vektoru-uret.mjs +
+  // scripts/kavram-vektoru-onay.mjs). Şimdilik yalnız bir pilot kavram için
+  // üretildi -- kayıt burada elle tutuluyor, her kısım için 404 denemek
+  // yerine.
+  const KAVRAM_VEKTORU_IDS = new Set(["perde"]);
+  const vektoruCache = new Map(); // id -> Promise<data|null>
+  function fetchKavramVektoru(id) {
+    if (vektoruCache.has(id)) return vektoruCache.get(id);
+    const p = GU.fetchJson("data/kavramlar/" + id + ".json").catch(() => null);
+    vektoruCache.set(id, p);
+    return p;
+  }
+
+  function anlamsalOmurItemHtml(item, gosterSkor) {
+    const skorBar = gosterSkor
+      ? `<span class="kavram-anlamsal__skor" style="--skor:${Math.max(0, item.skor).toFixed(3)}" title="${(item.skor * 100).toFixed(1)}%"></span>`
+      : "";
+    const gerekce = item.gerekce
+      ? `<span class="futuhat-anlamsal-box__sebep">${tt(item.gerekce)}</span>`
+      : `<span class="futuhat-anlamsal-box__sebep">${tt(item.ozet)}</span>`;
+    return `<a class="futuhat-anlamsal-box__item kavram-anlamsal__item" href="${item.route.replace(/^\//, "")}" data-nav-route="${item.route}">` +
+      skorBar +
+      `<span class="futuhat-anlamsal-box__title">${tt(item.baslik)}</span>` +
+      gerekce +
+      `</a>`;
+  }
+
+  // "perde" kavramının iki bağımsız sahnesi var (meditasyon.html'in içinde
+  // gömülü perde-zinciri.html + ayna-metaforu.html) ama hiçbir yerden
+  // linklenmiyordu (2026-08-04 taramasında ölçüldü). Bu kavramdan daha
+  // doğal bir bağlama noktası yok.
+  function perdeSahneHtml(k) {
+    if (k.view !== "ontoloji" || k.id !== "perde") return "";
+    const base = window.__dostRouteBase || "";
+    return `<div class="detail-gate detail-gate--sahne kavram-perde-sahne">
+      <p class="detail-gate__note">${tt({
+        tr: "İki ayrı sahne, perde ile aynayı sürüklenerek keşfedilebilen bir hâle getiriyor: perdenin zincirlenmesi, ve Hakk'ın kulun aynasında görünmesi.",
+        en: "Two separate scenes turn the veil and the mirror into something you can explore by dragging: the veil's chaining, and the Real appearing in the servant's mirror.",
+        pt: "Duas cenas separadas transformam o véu e o espelho em algo que se pode explorar arrastando: o encadeamento do véu, e o Real aparecendo no espelho do servo.",
+      })}</p>
+      <a class="detail-gate__btn" href="${base}/meditasyon.html">${tt({
+        tr: "Sahneleri aç: Perde Zinciri, Ayna Metaforu",
+        en: "Open the scenes: Chain of Veils, Mirror Metaphor",
+        pt: "Abrir as cenas: Cadeia de Véus, Metáfora do Espelho",
+      })}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
+    </div>`;
+  }
+
+  function renderAnlamsalOmur(k, mount) {
+    if (!KAVRAM_VEKTORU_IDS.has(k.id)) { mount.innerHTML = ""; return; }
+    mount.innerHTML = `<div class="futuhat-anlamsal-box futuhat-anlamsal-box--deneysel kavram-anlamsal">
+      <p class="futuhat-anlamsal-box__eyebrow">${tt({
+        tr: "Bir kavramın bütün ömrü — anlamsal (deneysel)",
+        en: "The whole life of a concept — semantic (experimental)",
+        pt: "Toda a vida de um conceito — semântica (experimental)",
+      })}</p>
+      <p class="futuhat-anlamsal-box__not">${tt({
+        tr: "Yukarıdaki ilk/son/en-yoğun taraması kelimenin KENDİSİNİ arıyor. Burada, aynı kavramı FARKLI kelimelerle konuşan pasajları embedding benzerliğiyle arıyoruz.",
+        en: "The first/last/densest scan above searches for the word ITSELF. Here we search for passages that speak of the same concept in DIFFERENT words, by embedding similarity.",
+        pt: "A varredura primeira/última/mais-densa acima busca a própria palavra. Aqui buscamos passagens que falam do mesmo conceito com OUTRAS palavras, por similaridade de embedding.",
+      })}</p>
+      <p class="kavram-anlamsal__yukleniyor">${tt({ tr: "Yükleniyor…", en: "Loading…", pt: "Carregando…" })}</p>
+    </div>`;
+    fetchKavramVektoru(k.id).then((d) => {
+      if (!d) { mount.innerHTML = ""; return; }
+      const bagli = [...d.cekirdek, ...d.sonuclar.filter((s) => s.verified)];
+      const adaylar = d.sonuclar.filter((s) => !s.verified);
+      const box = mount.querySelector(".kavram-anlamsal");
+      const yukleniyor = mount.querySelector(".kavram-anlamsal__yukleniyor");
+      if (yukleniyor) yukleniyor.remove();
+      const tabsHtml = `<div class="kavram-anlamsal__tabs" role="tablist">
+          <button type="button" class="kavram-anlamsal__tab kavram-anlamsal__tab--active" data-tab="bagli" role="tab" aria-selected="true">${tt({ tr: "Bağlantılar", en: "Connections", pt: "Conexões" })} (${bagli.length})</button>
+          <button type="button" class="kavram-anlamsal__tab" data-tab="aday" role="tab" aria-selected="false">${tt({ tr: "Adaylar", en: "Candidates", pt: "Candidatos" })} (${adaylar.length})</button>
+        </div>
+        <div class="kavram-anlamsal__panel" data-panel="bagli">${bagli.map((it) => anlamsalOmurItemHtml(it, false)).join("") || `<p class="futuhat-anlamsal-box__not">${tt({ tr: "Henüz onaylanmış bağlantı yok.", en: "No confirmed connections yet.", pt: "Ainda sem conexões confirmadas." })}</p>`}</div>
+        <div class="kavram-anlamsal__panel" data-panel="aday" hidden>${adaylar.map((it) => anlamsalOmurItemHtml(it, true)).join("")}</div>`;
+      box.insertAdjacentHTML("beforeend", tabsHtml);
+      box.querySelectorAll(".kavram-anlamsal__tab").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          box.querySelectorAll(".kavram-anlamsal__tab").forEach((b) => {
+            b.classList.toggle("kavram-anlamsal__tab--active", b === btn);
+            b.setAttribute("aria-selected", b === btn ? "true" : "false");
+          });
+          box.querySelectorAll(".kavram-anlamsal__panel").forEach((p) => {
+            p.hidden = p.dataset.panel !== btn.dataset.tab;
+          });
+        });
+      });
+      box.querySelectorAll(".kavram-anlamsal__item").forEach((a) => {
+        a.addEventListener("click", (e) => {
+          if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          e.preventDefault();
+          const route = a.dataset.navRoute || "";
+          const m = /^\/futuhat\/([a-z0-9]+)\/?$/.exec(route);
+          if (m) nav("futuhat", m[1]);
+        });
+      });
+    });
+  }
 
   // B3 "mini zaman çizelgesi": ilk/en yoğun/son geçiş noktalarını kitabın
   // TÜM açıklığı (kısım/fass sayısı) içinde konumlamak için toplam sayı
@@ -168,10 +301,14 @@ window.__kavramApp = (function () {
 
   const KAVRAM_GAUGE_R = 8;
   const KAVRAM_GAUGE_C = 2 * Math.PI * KAVRAM_GAUGE_R;
-  function kavramGaugeSvg(frac, hue) {
+  // Halkanın rengi ONCE görünüme göre değişiyordu (ontoloji/esma/terimler ayrı
+  // ton) -- kullanıcı 2026-08-04'te bunun "yoğunluk" göstergesi olarak site
+  // genelinde tek renge (Füsûs sarmalının düğüm rengi, --helix-gold-rim)
+  // getirilmesini istedi.
+  function kavramGaugeSvg(frac) {
     const f = Math.max(0.05, Math.min(1, frac));
     const off = KAVRAM_GAUGE_C * (1 - f);
-    return `<svg class="kavram-tile__gauge" viewBox="0 0 22 22" aria-hidden="true" style="--tag-hue:${hue}">
+    return `<svg class="kavram-tile__gauge" viewBox="0 0 22 22" aria-hidden="true">
       <circle class="kavram-tile__gauge-track" cx="11" cy="11" r="${KAVRAM_GAUGE_R}"></circle>
       <circle class="kavram-tile__gauge-arc" cx="11" cy="11" r="${KAVRAM_GAUGE_R}"
         stroke-dasharray="${KAVRAM_GAUGE_C.toFixed(2)}" stroke-dashoffset="${off.toFixed(2)}"></circle>
@@ -202,7 +339,6 @@ window.__kavramApp = (function () {
           const items = groups[v];
           const scores = items.map(zenginlikSkoru);
           const lo = Math.min.apply(null, scores), hi = Math.max.apply(null, scores);
-          const hue = VIEW_HUE[v] != null ? VIEW_HUE[v] : 0;
           return (
             `<div class="kavram-list__group"><h2>${tt(VIEW_LABEL[v])}</h2><div class="kavram-list__grid">` +
             items
@@ -210,7 +346,7 @@ window.__kavramApp = (function () {
                 const frac = hi === lo ? 0.5 : (scores[i] - lo) / (hi - lo);
                 return (
                   `<button type="button" class="kavram-tile" data-view="${k.view}" data-id="${k.id}" title="${escapeHtmlKavram(tt(k.isim))}">` +
-                  kavramGaugeSvg(frac, hue) +
+                  kavramGaugeSvg(frac) +
                   `<span class="kavram-tile__label">${tt(k.isim)}</span>` +
                   `</button>`
                 );
@@ -313,6 +449,7 @@ window.__kavramApp = (function () {
         tr: "Kaynak görünüm", en: "Source view", pt: "Visão de origem",
       })}: <button type="button" class="kavram-source-link" data-view="${k.view}" data-id="${k.id}">${tt(VIEW_LABEL[k.view])}</button></p>`
     );
+    parts.push(perdeSahneHtml(k));
 
     if (k.otomatikEslesmeYok) {
       parts.push(
@@ -390,8 +527,10 @@ window.__kavramApp = (function () {
         pt: "Método: o nome do conceito foi buscado com uma varredura de limite de palavra no texto das partes/capítulos; a densidade é uma taxa por mil palavras, não uma contagem bruta (para que partes longas não sejam automaticamente \"mais densas\"). Esta é uma varredura APROXIMADA, não um índice exato.",
       })}</p>`
     );
+    parts.push(`<div class="kavram-anlamsal-mount"></div>`);
 
     detailEl.innerHTML = parts.join("");
+    renderAnlamsalOmur(k, detailEl.querySelector(".kavram-anlamsal-mount"));
     // window.__dostNav.goTo("kavram", undefined) burada İŞE YARAMAZ:
     // setMainView zaten "kavram" görünümündeyken (bkz. currentMainView ===
     // view erken çıkışı) hiçbir şey tetiklemiyor -- liste hâline dönmek

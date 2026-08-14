@@ -1,0 +1,83 @@
+{
+  "id": "kandil",
+  "baslik": {
+    "tr": "Kandil — Sınırlanınca Görünen",
+    "en": "The Lamp — What Becomes Visible When Bounded",
+    "pt": "A Lâmpada — O que Se Torna Visível quando Limitado"
+  },
+  "toplam_sure_sn": 60,
+  "max_olcu_sn": 9,
+  "not": "Nûr 24:35 ailesi. Ölçü 1'de biçim HİÇ yok (S1'in bulanık biçimleriyle karışmasın diye), boş eşit alan. Ölçü 3 sahne ilk kez okunur olur; ölçü 4'te karanlık payı görünür bırakılır (ışığın erişmediği yer); ölçü 5'te kandil çekilir, ışık da onunla.",
+  "olcuLer": [
+    {
+      "id": "bicimsiz-aydinlik",
+      "sure_sn": 7,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": {
+        "kandilOpaklik": 0.0,
+        "toplanma": 0.0,
+        "karanlikPayi": 0.0,
+        "sonSonme": 0.0
+      },
+      "metin": {
+        "tr": "“Allah göklerin ve yerin nûrudur.” Her yer eşit, gölgesiz, okunamaz parlaklıkta.",
+        "en": "“God is the light of the heavens and the earth.” Everywhere is equally bright, shadowless, unreadable.",
+        "pt": "“Deus é a luz dos céus e da terra.” Tudo é igualmente brilhante, sem sombra, ilegível."
+      }
+    },
+    {
+      "id": "kandil-belirir",
+      "sure_sn": 8,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": {
+        "kandilOpaklik": 1.0,
+        "toplanma": 1.0
+      },
+      "metin": {
+        "tr": "Bir kandil biçimi belirir; nûr içine girer, sahne kandilde toplanır.",
+        "en": "A lamp shape appears; the light enters it, and the scene gathers in the lamp.",
+        "pt": "Uma forma de lâmpada surge; a luz entra nela, e a cena reúne-se na lâmpada."
+      }
+    },
+    {
+      "id": "okunur-olur",
+      "sure_sn": 8,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": {
+        "disKaranlik": 0.35
+      },
+      "metin": {
+        "tr": "“Işığı duvarlara yayılan kandil.” Şimdi gölge ve biçim vardır; sahne ilk kez okunur.",
+        "en": "“The lamp whose light spreads to the walls.” Now there are shadow and form; the scene becomes readable for the first time.",
+        "pt": "“A lâmpada cuja luz se espalha pelas paredes.” Agora há sombra e forma; a cena torna-se legível pela primeira vez."
+      }
+    },
+    {
+      "id": "karanlik-payi",
+      "sure_sn": 9,
+      "gecis_sure_sn": 2.0,
+      "hedef_hal": {
+        "karanlikPayi": 1.0
+      },
+      "metin": {
+        "tr": "“Kandilin ışığı ile gökleri ve yeri aydınlatan ışık bir olabilir mi?” Aydınlatılmayan pay görünür kalır.",
+        "en": "“Can the lamp's light and the light that illumines the heavens and the earth be one?” The unlit share stays visible.",
+        "pt": "“Poderá a luz da lâmpada e a luz que ilumina os céus e a terra ser uma só?” A parte não iluminada permanece visível."
+      }
+    },
+    {
+      "id": "cekilis",
+      "sure_sn": 9,
+      "hedef_hal": {
+        "kandilOpaklik": 0.0,
+        "sonSonme": 1.0,
+        "nefes": true
+      },
+      "metin": {
+        "tr": "“Kandilin cismi gizlendiğinde ışık da kaybolur.” Görünmeyen nûra dönüş.",
+        "en": "“When the lamp's body is hidden, the light too disappears.” A return to the unseen light.",
+        "pt": "“Quando o corpo da lâmpada se esconde, a luz também desaparece.” Um regresso à luz invisível."
+      }
+    }
+  ]
+}

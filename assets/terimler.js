@@ -6,6 +6,7 @@
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
   if (!grid || !detailPanel || !detailContent) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let glossaryData = null;
   let fetchPromise = null;
@@ -73,11 +74,74 @@
     return derivedTermPromise;
   }
 
-  // Diğer görünümlerdeki metinler (örn. Fütûhât Atlası) terimlere bağlantı
-  // verebilsin diye, kullanıcı Terimler sekmesini hiç açmasa da veriyi
-  // erkenden (ana iş parçacığı boştayken) çekip kaydediyoruz.
-  const deferFetch = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
-  deferFetch(() => { fetchData(); fetchDerivedTerms(); });
+  // ÇEVİRİNİN KAYBETTİĞİ ŞEY (docs/icerik-yol-haritasi.md D17). Üç dilli
+  // olmanın yan ürünü: aynı terimi üç kez seçmek zorunda kaldık ve her
+  // seferinde bir şey düştü. Ayrı dosyada tutuluyor -- felsefi-terimler.json
+  // terimin KENDİ tanımıdır; bu ise bizim çeviri kararlarımız üzerine bir
+  // not, yani ayrı bir iddia sınıfı (türetilmiş kenarlarla aynı gerekçe).
+  let ceviriKaybi = null, ceviriKaybiPromise = null;
+  function fetchCeviriKaybi() {
+    if (ceviriKaybiPromise) return ceviriKaybiPromise;
+    ceviriKaybiPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/ceviri-kaybi.json")
+      .then((d) => { ceviriKaybi = d || null; return ceviriKaybi; })
+      .catch((e) => { console.warn("Çeviri kaybı verisi yüklenemedi", e); ceviriKaybiPromise = null; return null; });
+    return ceviriKaybiPromise;
+  }
+
+  const CEVIRI_DIL_ADI = {
+    tr: { tr: "Türkçe", en: "Turkish", pt: "Turco" },
+    en: { tr: "İngilizce", en: "English", pt: "Inglês" },
+    pt: { tr: "Portekizce", en: "Portuguese", pt: "Português" },
+  };
+
+  function ceviriKaybiHtml(id) {
+    const kayit = ceviriKaybi && ceviriKaybi.terimler && ceviriKaybi.terimler[id];
+    if (!kayit) return "";
+    // diller bir LİSTE: {dil, kelime, kayip}. Dil koduyla anahtarlanmış bir
+    // sözlük olamaz -- scripts/dil-denetimi.py {tr,en,pt} anahtarlı HER
+    // sözlüğü "üç dilli metin" sayıp içindekileri string bekliyor, ve bu
+    // yapı onu çökertiyordu (2026-08-04'te ölçüldü).
+    const secenekler = kayit.diller.map((d, i) =>
+      `<button class="ceviri-kaybi__dil${i === 0 ? " on" : ""}" type="button" data-dil="${d.dil}">${tt(CEVIRI_DIL_ADI[d.dil])}: ${d.kelime}</button>`
+    ).join("");
+    return `<div class="ceviri-kaybi">
+      <p class="detail-eyebrow detail-eyebrow--section">${tt({
+        tr: "Çevrilirken ne düştü", en: "What fell away in translation", pt: "O que se perdeu na tradução" })}</p>
+      <p class="ceviri-kaybi__kok"><span class="ceviri-kaybi__harf" dir="rtl" lang="ar">${kayit.kok.harf}</span>
+        <span class="ceviri-kaybi__translit">${kayit.kok.translit}</span></p>
+      <p class="ceviri-kaybi__kok-anlam">${tt(kayit.kok.anlam)}</p>
+      <div class="ceviri-kaybi__diller">${secenekler}</div>
+      <p class="ceviri-kaybi__kayip" id="ceviri-kaybi-kayip">${tt(kayit.diller[0].kayip)}</p>
+      <p class="ceviri-kaybi__not">${tt(ceviriKaybi.meta.not)}</p>
+    </div>`;
+  }
+
+  function ceviriKaybiBagla(id) {
+    const kayit = ceviriKaybi && ceviriKaybi.terimler && ceviriKaybi.terimler[id];
+    if (!kayit) return;
+    const kutu = detailContent.querySelector(".ceviri-kaybi");
+    if (!kutu) return;
+    kutu.querySelectorAll(".ceviri-kaybi__dil").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        kutu.querySelectorAll(".ceviri-kaybi__dil").forEach((b) => b.classList.remove("on"));
+        btn.classList.add("on");
+        const secili = kayit.diller.find((d) => d.dil === btn.dataset.dil);
+        const hedef = kutu.querySelector("#ceviri-kaybi-kayip");
+        if (hedef && secili) hedef.textContent = tt(secili.kayip);
+      });
+    });
+  }
+
+  // 2026-08-03'e kadar burada `deferFetch(() => { fetchData(); ... })`
+  // vardı: kullanıcı Terimler sekmesini hiç açmasa da felsefi-terimler.json
+  // (409KB) HER sayfada iniyordu -- tek sebebi çapraz-bağlantı önizlemesinin
+  // terim adlarına ihtiyaç duymasıydı. O adlar artık derleme zamanında
+  // üretilen ortak indekste (data/ibn-arabi/capraz-baglanti-indeksi.json,
+  // ontology.js yüklüyor), yani önizleme hiçbir şey kaybetmiyor. Tam dosya
+  // ancak Terimler görünümü gerçekten açıldığında geliyor (activate()).
+  //
+  // Türetilmiş kenarlar (12KB) da aynı sebeple erteleniyor: yalnız bu
+  // görünümün grafiğinde kullanılıyor.
 
   function groupById(id) {
     return glossaryData.groups.find((g) => g.id === id);
@@ -136,6 +200,84 @@
     return `<svg class="terim-card__icon-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[key]}</svg>`;
   }
 
+  // GORSEL_DIL.md: "Soyut ok kullanma... Kesik çizgili ok + üçgen uç bir
+  // diyagram dilidir, istiare dili değil." Aşağıdaki iki fonksiyon, bu
+  // çizimlerin hepsinde kesik-üçgen-uçlu oku değiştiren ORTAK teknik:
+  // yönü bir ok başıyla değil, ışığın kendi mantığıyla (kaynakta sönük,
+  // vardığı yerde parlak -- ya da karşılıklı ilişkilerde ortada parlak,
+  // uçlarda sönük) gösteren bir gradyan çizgi. isikYollariniCalistir ise
+  // panel açıldığında/büyütüldüğünde HER ışık yolu boyunca bir kıvılcım
+  // koşturuyor -- ontology.js'in ana grafiğindeki AYNI teknik (kivilcim/
+  // getPointAtLength), yalnız burada tetikleyici düğüme tıklamak değil,
+  // terimi/çizimi AÇMAK: "her etkileşimin görünür bir sonucu olmalı."
+  let isikYoluSayaci = 0;
+  function isikCizgisi(x1, y1, x2, y2, yon, extraClass) {
+    const id = "tdIsik" + (isikYoluSayaci++);
+    // stop-color'ı bir XML özniteliği DEĞİL, style= içinde veriyoruz --
+    // yalnız öyle yazılırsa CSS değişkeni (var(--series-theme)) çözülüyor;
+    // currentColor'a güvenmek burada işe yaramazdı çünkü <defs> bu satırın
+    // KARDEŞİ, atası değil -- .term-diagram-isikyolu'ya renk vermek
+    // gradyanın kendi <stop>'larına hiç ulaşmıyordu (ölçüldü).
+    const renk = "var(--series-theme)";
+    let stops;
+    if (yon === "mutual") {
+      stops = `<stop offset="0%" style="stop-color:${renk};stop-opacity:0.12"/>` +
+        `<stop offset="50%" style="stop-color:${renk};stop-opacity:0.95"/>` +
+        `<stop offset="100%" style="stop-color:${renk};stop-opacity:0.12"/>`;
+    } else if (yon === "return") {
+      stops = `<stop offset="0%" style="stop-color:${renk};stop-opacity:0.9"/>` +
+        `<stop offset="100%" style="stop-color:${renk};stop-opacity:0.1"/>`;
+    } else {
+      stops = `<stop offset="0%" style="stop-color:${renk};stop-opacity:0.1"/>` +
+        `<stop offset="100%" style="stop-color:${renk};stop-opacity:0.9"/>`;
+    }
+    return (
+      `<defs><linearGradient id="${id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" gradientUnits="userSpaceOnUse">${stops}</linearGradient></defs>` +
+      `<line class="term-diagram-isikyolu${extraClass ? " " + extraClass : ""}" data-isikyolu-yon="${yon || "oneway"}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#${id})"/>`
+    );
+  }
+  function kivilcimKostur(pathNode, gecikme, sure, ters) {
+    const uzunluk = pathNode.getTotalLength ? pathNode.getTotalLength() : 0;
+    if (!uzunluk) return;
+    const parent = pathNode.parentNode;
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute("class", "term-diagram-kivilcim");
+    c.setAttribute("r", "4");
+    c.setAttribute("opacity", "0");
+    parent.appendChild(c);
+    const bas = performance.now() + gecikme;
+    function adim(t) {
+      // Kullanıcı animasyon bitmeden başka bir terime geçmiş olabilir --
+      // panel innerHTML'i değişince bu çizgi (ve kıvılcım) belgeden
+      // kopuyor ama rAF döngüsü onu bilmiyordu, her karede
+      // getPointAtLength'i kopmuş bir düğümde çağırıp hata basıyordu.
+      if (!pathNode.isConnected) { c.remove(); return; }
+      const p = (t - bas) / sure;
+      if (p < 0) { requestAnimationFrame(adim); return; }
+      if (p >= 1) { c.remove(); return; }
+      const nokta = pathNode.getPointAtLength((ters ? 1 - p : p) * uzunluk);
+      c.setAttribute("cx", nokta.x);
+      c.setAttribute("cy", nokta.y);
+      c.setAttribute("opacity", Math.sin(p * Math.PI).toFixed(3));
+      requestAnimationFrame(adim);
+    }
+    requestAnimationFrame(adim);
+  }
+  function isikYollariniCalistir(root) {
+    if (reduceMotion || !root) return;
+    const lines = root.querySelectorAll(".term-diagram-isikyolu");
+    lines.forEach((line, i) => {
+      const yon = line.dataset.isikyoluYon;
+      const gecikme = i * 90;
+      if (yon === "mutual") {
+        kivilcimKostur(line, gecikme, 1300, false);
+        kivilcimKostur(line, gecikme + 140, 1300, true);
+      } else {
+        kivilcimKostur(line, gecikme, 1100, yon === "return");
+      }
+    });
+  }
+
   // İki (veya daha fazla) kavram arasındaki ilişkiyi tek bakışta gösteren
   // küçük SVG şemalar. Her grubun "diagram" alanındaki tipe göre seçilir.
   const diagramRenderers = {
@@ -145,14 +287,14 @@
         <text class="term-diagram-label" x="60" y="39" text-anchor="middle">${tt(d.left)}</text>
         <circle class="term-diagram-node" cx="280" cy="34" r="24"/>
         <text class="term-diagram-label" x="280" y="39" text-anchor="middle">${tt(d.right)}</text>
-        <line class="term-diagram-arrow term-diagram-arrow--mutual" x1="86" y1="34" x2="254" y2="34" marker-start="url(#tdArrowStart)" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(86, 34, 254, 34, "mutual")}
         <text class="term-diagram-note" x="170" y="20" text-anchor="middle">${tt(d.mutualLabel)}</text>
 
         <circle class="term-diagram-node term-diagram-node--accent" cx="60" cy="116" r="24"/>
         <text class="term-diagram-label" x="60" y="121" text-anchor="middle">${tt(d.oneWayFrom)}</text>
         <circle class="term-diagram-node" cx="280" cy="116" r="24"/>
         <text class="term-diagram-label" x="280" y="121" text-anchor="middle">${tt(d.oneWayTo)}</text>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="86" y1="116" x2="254" y2="116" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(86, 116, 254, 116, "oneway")}
         <text class="term-diagram-note term-diagram-note--accent" x="170" y="145" text-anchor="middle">${tt(d.oneWayLabel)}</text>
       </svg>
     `,
@@ -178,20 +320,17 @@
     `;
     },
     "formula-merge": (d) => `
-      <svg class="term-diagram__svg" viewBox="0 0 340 100" role="img" aria-label="${tt(d.note)}">
-        <circle class="term-diagram-node" cx="55" cy="50" r="30"/>
-        <text class="term-diagram-label" x="55" y="55" text-anchor="middle">${tt(d.a)}</text>
-        <text class="term-diagram-op" x="120" y="58" text-anchor="middle">+</text>
-        <circle class="term-diagram-node" cx="185" cy="50" r="30"/>
-        <text class="term-diagram-label" x="185" y="55" text-anchor="middle">${tt(d.b)}</text>
-        <text class="term-diagram-op" x="245" y="58" text-anchor="middle">=</text>
-        <circle class="term-diagram-node term-diagram-node--accent" cx="290" cy="50" r="34"/>
-        <text class="term-diagram-label" x="290" y="55" text-anchor="middle">${tt(d.result)}</text>
+      <svg class="term-diagram__svg" viewBox="0 0 300 150" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node--venn" cx="112" cy="75" r="58"/>
+        <circle class="term-diagram-node--venn" cx="188" cy="75" r="58"/>
+        <text class="term-diagram-label--small" x="68" y="75" text-anchor="middle">${tt(d.a)}</text>
+        <text class="term-diagram-label--small" x="232" y="75" text-anchor="middle">${tt(d.b)}</text>
+        <text class="term-diagram-label term-diagram-label--result" x="150" y="80" text-anchor="middle">${tt(d.result)}</text>
       </svg>
     `,
     spectrum: (d) => `
       <svg class="term-diagram__svg" viewBox="0 0 340 120" role="img" aria-label="${tt(d.note)}">
-        <line class="term-diagram-axis" x1="30" y1="55" x2="310" y2="55" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(30, 55, 310, 55, "mutual")}
         <circle class="term-diagram-node term-diagram-node--sm" cx="80" cy="55" r="16"/>
         <circle class="term-diagram-node term-diagram-node--accent term-diagram-node--sm" cx="270" cy="55" r="16"/>
         <text class="term-diagram-note" x="80" y="90" text-anchor="middle">${tt(d.leftMarker)}</text>
@@ -215,7 +354,7 @@
       const arrows = d.steps.slice(1).map((s, i) => {
         const x1 = 30 + i * gap + 30;
         const x2 = 30 + (i + 1) * gap - 30;
-        return `<line class="term-diagram-arrow term-diagram-arrow--oneway" x1="${x1}" y1="60" x2="${x2}" y2="60" marker-end="url(#tdArrowEnd)"/>`;
+        return isikCizgisi(x1, 60, x2, 60, "oneway");
       }).join("");
       return `
       <svg class="term-diagram__svg" viewBox="0 0 340 110" role="img" aria-label="${tt(d.note)}">
@@ -229,7 +368,7 @@
         <circle class="term-diagram-node term-diagram-node--accent" cx="55" cy="55" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="55" y="60" text-anchor="middle">${tt(d.source)}</text>
         <line class="term-diagram-mirror" x1="160" y1="15" x2="140" y2="95"/>
-        <line class="term-diagram-arrow term-diagram-arrow--dashed" x1="83" y1="55" x2="215" y2="55" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(83, 55, 215, 55, "oneway")}
         <circle class="term-diagram-node term-diagram-node--faint" cx="245" cy="55" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="245" y="60" text-anchor="middle">${tt(d.target)}</text>
       </svg>
@@ -240,14 +379,14 @@
         <text class="term-diagram-label term-diagram-label--small" x="150" y="95" text-anchor="middle">${tt(d.wax)}</text>
         <rect class="term-diagram-node term-diagram-node--accent" x="120" y="15" width="60" height="40" rx="8"/>
         <text class="term-diagram-label term-diagram-label--small" x="150" y="40" text-anchor="middle">${tt(d.seal)}</text>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="150" y1="58" x2="150" y2="68" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(150, 58, 150, 68, "oneway")}
       </svg>
     `,
     "potential-actual": (d) => `
       <svg class="term-diagram__svg" viewBox="0 0 300 100" role="img" aria-label="${tt(d.note)}">
         <circle class="term-diagram-node term-diagram-node--dashed" cx="60" cy="50" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="60" y="55" text-anchor="middle">${tt(d.potential)}</text>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="90" y1="50" x2="210" y2="50" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(90, 50, 210, 50, "oneway")}
         <circle class="term-diagram-node term-diagram-node--accent" cx="240" cy="50" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="240" y="55" text-anchor="middle">${tt(d.actual)}</text>
       </svg>
@@ -256,8 +395,8 @@
       <svg class="term-diagram__svg" viewBox="0 0 300 200" role="img" aria-label="${tt(d.note)}">
         <circle class="term-diagram-node term-diagram-node--accent" cx="150" cy="42" r="32"/>
         <text class="term-diagram-label term-diagram-label--small" x="150" y="47" text-anchor="middle">${tt(d.ruler)}</text>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="126" y1="66" x2="82" y2="132" marker-end="url(#tdArrowEnd)"/>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="174" y1="66" x2="218" y2="132" marker-end="url(#tdArrowEnd)"/>
+        ${isikCizgisi(126, 66, 82, 132, "oneway")}
+        ${isikCizgisi(174, 66, 218, 132, "oneway")}
         <circle class="term-diagram-node term-diagram-node--dashed" cx="70" cy="158" r="28"/>
         <text class="term-diagram-label term-diagram-label--small" x="70" y="163" text-anchor="middle">${tt(d.left)}</text>
         <circle class="term-diagram-node term-diagram-node--dashed" cx="230" cy="158" r="28"/>
@@ -272,13 +411,13 @@
         <circle class="term-diagram-node term-diagram-node--accent" cx="85" cy="48" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="85" y="53" text-anchor="middle">${tt(d.sunLabel)}</text>
         <circle class="term-diagram-node term-diagram-node--dashed" cx="85" cy="112" r="18"/>
-        <text class="term-diagram-label--small" x="85" y="116" text-anchor="middle" style="font-size:8px">${tt(d.moonLabel)}</text>
+        <text class="term-diagram-label--small" x="85" y="116" text-anchor="middle">${tt(d.moonLabel)}</text>
         <text class="term-diagram-note" x="85" y="145" text-anchor="middle">${tt(d.presentCaption)}</text>
 
         <circle class="term-diagram-node term-diagram-node--faint" cx="255" cy="48" r="26"/>
         <text class="term-diagram-label term-diagram-label--small" x="255" y="53" text-anchor="middle">${tt(d.sunLabel)}</text>
         <circle class="term-diagram-node term-diagram-node--accent" cx="255" cy="112" r="18"/>
-        <text class="term-diagram-label--small" x="255" y="116" text-anchor="middle" style="font-size:8px">${tt(d.moonLabel)}</text>
+        <text class="term-diagram-label--small" x="255" y="116" text-anchor="middle">${tt(d.moonLabel)}</text>
         <text class="term-diagram-note" x="255" y="145" text-anchor="middle">${tt(d.absentCaption)}</text>
       </svg>
     `,
@@ -291,7 +430,7 @@
         return `
           <circle class="term-diagram-node ${nodeClass}" cx="${x}" cy="50" r="21"/>
           <text class="term-diagram-label" x="${x}" y="55" text-anchor="middle">${tt(it.harf)}</text>
-          <text class="term-diagram-label--small" x="${x}" y="93" text-anchor="middle" style="font-size:8px">${tt(it.anlam)}</text>
+          <text class="term-diagram-label--small" x="${x}" y="93" text-anchor="middle">${tt(it.anlam)}</text>
         `;
       }).join("");
       return `
@@ -300,6 +439,16 @@
       </svg>
     `;
     },
+    "tinted-glass": (d) => `
+      <svg class="term-diagram__svg" viewBox="0 0 340 130" role="img" aria-label="${tt(d.note)}">
+        ${isikCizgisi(20, 65, 150, 65, "oneway")}
+        <rect class="term-diagram-node--dashed" x="150" y="25" width="24" height="80" fill="none"/>
+        ${isikCizgisi(174, 65, 315, 65, "oneway")}
+        <text class="term-diagram-label--small" x="162" y="18" text-anchor="middle">${tt(d.glassLabel)}</text>
+        <text class="term-diagram-note" x="85" y="45" text-anchor="middle">${tt(d.reasonReading)}</text>
+        <text class="term-diagram-note--accent" x="245" y="45" text-anchor="middle">${tt(d.senseReading)}</text>
+      </svg>
+    `,
     "heart-visitors": (d) => {
       const cx = 170, cy = 170, hostR = 34, satR = 26, orbit = 112;
       const n = d.visitors.length;
@@ -328,12 +477,6 @@
   const DIAGRAM_DEFS = `
     <svg width="0" height="0" style="position:absolute">
       <defs>
-        <marker id="tdArrowEnd" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" class="term-diagram-arrowhead"/>
-        </marker>
-        <marker id="tdArrowStart" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto">
-          <path d="M8,0 L0,4 L8,8 Z" class="term-diagram-arrowhead"/>
-        </marker>
         <filter id="tdSketchy" x="-20%" y="-20%" width="140%" height="140%">
           <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="tdNoise"/>
           <feDisplacementMap in="SourceGraphic" in2="tdNoise" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
@@ -377,11 +520,17 @@
     const renderer = diagramRenderers[dg.type];
     if (!renderer) return;
     window.dostTrack && window.dostTrack("sema_acildi", { type: dg.type });
+    // DIAGRAM_DEFS burada tekrar eklenmiyor: bu çizim zaten açık olan detay
+    // panelinin (groupDiagramHtml) kendi kopyası DOM'da duruyor ve url(#...)
+    // referansı belge genelinde çözüldüğü için o yeterli -- cizimler.js'teki
+    // aynı düzeltmeyle tutarlı (UI denetimi bulgusu, iki modülde de vardı).
     window.DostLightbox.open({
       closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
-      svgHtml: DIAGRAM_DEFS + renderer(dg),
+      svgHtml: renderer(dg),
       caption: tt(dg.note),
     });
+    // Büyütmek de bir etkileşim -- kendi ışık geçişini tekrar yaşatıyor.
+    isikYollariniCalistir(document.querySelector(".cizim-lightbox__svg-wrap"));
   }
 
   function relatedChipsInline(t) {
@@ -788,8 +937,9 @@
   // `iliskili_kavramlar`dan görsel olarak (kesikli çerçeve, ayrı başlık,
   // her çipte "biz saydık" açıklaması) ayrı tutulur. Veri henüz yüklenmediyse
   // (kullanıcı sekmeyi açar açmaz detay panelini açtıysa) sessizce boş döner
-  // -- fetchDerivedTerms() zaten arka planda çalışıyor, bir sonraki
-  // showTermDetail çağrısında (örn. ilişkili bir terime tıklanınca) dolu gelir.
+  // -- showTermDetail'in sonundaki tembel çağrı veriyi getirip paneli
+  // tazeliyor. (2026-08-03'e kadar bu dosya açılışta çekiliyordu; artık
+  // yalnız gerektiğinde.)
   function derivedTermsHtml(t) {
     const rows = derivedTermRelations.filter((r) => r.from === t.id || r.to === t.id);
     if (!rows.length) return "";
@@ -861,12 +1011,60 @@
       <div class="bookmap-concept-tags">${chips}</div>`;
   }
 
+  // Bazı terimlerin ayrı, sürüklenebilir bir sahnesi var. İlki
+  // (nefes-i-rahmani, D12) tek bir terime gömülü yazılmıştı; berzah (D13)
+  // eklenirken aynı kod ikinci kez yazılmasın diye tabloya çevrildi --
+  // yeni bir sahne eklemek artık buraya bir satır eklemek demek.
+  const TERIM_SAHNELERI = {
+    "nefes-i-rahmani": {
+      dosya: "nefes-i-rahmani.html",
+      not: {
+        tr: "Ayrı bir sahne, bu terimin kendi yorumunun önerdiği fikri -- basınç biriken tek bir nefesin harflere, harflerin bir kelimeye ayrışması -- sürüklenerek keşfedilebilir hale getiriyor.",
+        en: "A separate scene turns the idea this term's own interpretation suggests -- a single breath under pressure separating into letters, the letters into a word -- into something you can explore by dragging.",
+        pt: "Uma cena separada transforma a ideia que a própria interpretação deste termo sugere -- um único sopro sob pressão se separando em letras, as letras numa palavra -- em algo que se pode explorar arrastando.",
+      },
+      dugme: {
+        tr: "Sahneyi aç: Nefes-i Rahmânî",
+        en: "Open the scene: The Breath of the All-Merciful",
+        pt: "Abrir a cena: O Sopro do Misericordioso",
+      },
+    },
+    berzah: {
+      dosya: "berzah.html",
+      not: {
+        tr: "Ayrı bir sahne, Dost'un dünya–berzah–âhiret sıralamasını üç uyanıklık mertebesi olarak sürüklenebilir hâle getiriyor: nerede durursan yalnız orası netleşiyor.",
+        en: "A separate scene turns Dost's world–barzakh–afterlife ordering into three degrees of wakefulness you can drag through: only where you stand comes into focus.",
+        pt: "Uma cena separada transforma a ordenação mundo–barzakh–vida futura de Dost em três graus de vigília que se pode percorrer arrastando: só o lugar onde você está fica nítido.",
+      },
+      dugme: {
+        tr: "Sahneyi aç: Berzah",
+        en: "Open the scene: The Barzakh",
+        pt: "Abrir a cena: O Barzakh",
+      },
+    },
+  };
+
+  function terimSahneHtml(id) {
+    const s = TERIM_SAHNELERI[id];
+    if (!s) return "";
+    const base = window.__dostRouteBase || "";
+    return `<div class="detail-gate detail-gate--sahne terim-nefes-sahne">
+      <p class="detail-gate__note">${tt(s.not)}</p>
+      <a class="detail-gate__btn" href="${base}/${s.dosya}">${tt(s.dugme)}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
+    </div>`;
+  }
+
   function showTermDetail(id) {
     const t = glossaryData.terms[id];
     if (!t) return;
     window.dostTrack && window.dostTrack("kavram_sayfasi_goruntulendi", { id: t.id });
     const group = groupById(t.group);
     detailPanel.dataset.currentTerm = id;
+    // URL'yi güncelle -- bunsuz Kavram Defterim (kavram-defteri.js) her
+    // terimi aynı location.href'e (bare /terimler/) göre kaydediyordu,
+    // panelde ikinci bir terime geçip yıldızlamak ilkinin kaydını sessizce
+    // siliyordu (href tabanlı kimlik ayrımı sağlayamıyordu).
+    window.__dostNav && window.__dostNav.setHash && window.__dostNav.setHash("terimler", id);
 
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt((group && group.name) || {})}</p>
@@ -879,6 +1077,8 @@
         <h3>${tt({ tr: "İbn Arabî'nin Yorumu", en: "Ibn Arabi's Interpretation", pt: "A Interpretação de Ibn Arabi" })}</h3>
         <p>${linkify(tt(t.ibn_arabi_yorumu), "terimler", t.id)}</p>
       </div>
+      ${terimSahneHtml(t.id)}
+      ${ceviriKaybiHtml(t.id)}
       ${analogyHtml(t)}
       ${groupDiagramHtml(group)}
       ${kaynaklarHtml(t.kaynaklar, t.id)}
@@ -908,8 +1108,12 @@
         }
       });
     });
-
     detailPanel.hidden = false;
+    // GORSEL_DIL.md: "her etkileşimin görünür bir sonucu olmalı." Bu küçük
+    // çizimlerin tek etkileşimi terimi AÇMAK -- o yüzden tetikleyici tıklama
+    // değil, panelin kendisi: terim açılınca ışık yolları boyunca (yukarıdaki
+    // isikCizgisi'nin ürettiği çizgiler) bir kıvılcım koşuyor.
+    isikYollariniCalistir(detailContent);
 
     // Türetilmiş bağlar dosyası küçük ama ayrı bir fetch; panel bu terimi
     // veri gelmeden önce açtıysa (nadir -- idle callback genelde önden
@@ -917,6 +1121,14 @@
     if (!derivedTermRelations.length) {
       fetchDerivedTerms().then(() => {
         if (detailPanel.dataset.currentTerm === id) showTermDetail(id);
+      });
+    }
+
+    // Çeviri kaybı katmanı da ayrı bir fetch: aynı sessiz tazeleme.
+    ceviriKaybiBagla(id);
+    if (!ceviriKaybi) {
+      fetchCeviriKaybi().then((d) => {
+        if (d && detailPanel.dataset.currentTerm === id) showTermDetail(id);
       });
     }
   }

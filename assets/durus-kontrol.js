@@ -18,13 +18,15 @@
  * <em> ile işaretleniyor; Dost'un/Konuk'un/Daphne'nin kendi kesinliği ya
  * da kendi süre ifadesi bizim iddiamız değil (CLAUDE.md "Kapsam DIŞI").
  *
- * Yalnızca önizlemede yayınlanır: sync-to-live.py hem bu dosyayı hem de
- * script etiketini çıkarır ve çıkardığını doğrular.
+ * Canlıda da yayındadır (kullanıcı kararı, 2026-07-29): sync-to-live.py
+ * artık dosyanın canlıda VAR olduğunu doğrular. Bu başlık uzun süre
+ * tersini söyledi ("yalnızca önizlemede"); karar değişince yorum
+ * unutulmuştu, 2026-08-05 çapraz denetiminde yakalandı.
  */
 (function () {
   "use strict";
 
-  var SURUM = "s5";
+  var SURUM = "s6";
   var DISMISS_KEY = "dost-durus-susturulan";
 
   // YALNIZ TÜRKÇE (s3, kullanıcı kararı). Gerekçe: kalıplar Türkçe için
@@ -206,22 +208,13 @@
     ".futuhat-hero__summary", ".fusus-hero__summary",
   ].join(", ");
 
-  // Site taraması için: hangi veri dosyası hangi görünüme ait.
-  var VERI = [
-    ["data/ibn-arabi/ontology.json", "ontoloji", "Ontoloji"],
-    ["data/ibn-arabi/esma.json", "esma", "Esmâ"],
-    ["data/ibn-arabi/hal.json", "hal", "Hâller"],
-    ["data/ibn-arabi/felsefi-terimler.json", "terimler", "Terimler"],
-    ["data/ibn-arabi/sirlar.json", "sirlar", "Sırlar"],
-    ["data/ibn-arabi/sorular.json", "sorular", "Sorular"],
-    ["data/ibn-arabi/menziller.json", "menziller", "Menziller"],
-    ["data/ibn-arabi/futuhat-cizimleri.json", "cizimler", "Çizimler"],
-    ["data/ibn-arabi/tasiyicilar.json", "tasiyicilar", "Taşıyanlar"],
-    ["data/ibn-arabi/fusus-atlas.json", "fusus", "Füsûs"],
-    ["data/ibn-arabi/concepts.json", null, "Kavramlar"],
-  ];
-  // Fütûhât kısımları ayrı dosyalarda; listeyi index'ten alıyoruz.
-  var FUTUHAT_INDEX = "data/ibn-arabi/futuhat-atlas-index.json";
+  // Site taraması için hangi veri dosyası hangi görünüme ait:
+  // data/ibn-arabi/tarama-kapsami.json. Liste eskiden hem burada hem
+  // tahkik-tarama.js içinde ayrı ayrı dururdu; ikisi zamanla ayrıştı ve
+  // kimse fark etmedi. Artık tek kaynak var, üstelik
+  // scripts/tarama-kapsami-kontrol.py kapsam kararı verilmemiş bir veri
+  // dosyası bulduğunda derlemeyi durduruyor.
+  var KAPSAM = "data/ibn-arabi/tarama-kapsami.json";
 
   // Taranmayan alanlar. `analogy`: CLAUDE.md'nin "Kapsam DIŞI" maddesi
   // günlük hayat analojilerini açıkça muaf tutuyor. Ötekiler metin değil
@@ -414,10 +407,19 @@
       cip.className = "durus-cip";
       cip.innerHTML =
         '<button type="button" class="durus-cip__sayac"></button>'
-        + '<button type="button" class="durus-cip__site" title="Bütün veri dosyalarını tara">Siteyi tara</button>';
+        + '<button type="button" class="durus-cip__site" title="Bütün veri dosyalarını tara">Siteyi tara</button>'
+        // Mekanik tahkik (assets/tahkik-tarama.js) aynı çipten açılıyor:
+        // ikisi de @revise kipinin "metne bakma" araçları ve aynı veri
+        // dosyalarını okuyorlar. Ayrı düğme, çünkü ayrı soru soruyorlar --
+        // duruş: "bu cümle duruşumuza uyuyor mu"; tahkik: "bu metin
+        // ölçülebilir biçimde yoğun mu, bir dili eksik mi".
+        + '<button type="button" class="durus-cip__tahkik" title="Mekanik tahkik: M5 yoğunluk + M7 üç dil kayması">Tahkik</button>';
       document.body.appendChild(cip);
       cip.querySelector(".durus-cip__sayac").addEventListener("click", sonrakineGit);
       cip.querySelector(".durus-cip__site").addEventListener("click", siteAc);
+      cip.querySelector(".durus-cip__tahkik").addEventListener("click", function () {
+        if (window.__dostTahkik) window.__dostTahkik.ac();
+      });
     }
     var s = cip.querySelector(".durus-cip__sayac");
     if (!turkceMi()) {
@@ -593,15 +595,19 @@
 
   function siteTara() {
     var bulgular = [];
-    var isler = VERI.map(function (v) { return dosyaTara(v[0], v[1], v[2], bulgular); });
-    isler.push(json(FUTUHAT_INDEX).then(function (idx) {
-      var parcalar = (idx.parts || []).map(function (p) { return p.id; });
-      return Promise.all(parcalar.map(function (pid) {
-        return dosyaTara("data/ibn-arabi/futuhat-parts/" + pid + ".json",
-                         "futuhat", "Fütûhât " + pid, bulgular);
-      }));
-    }).catch(function (e) { console.warn("Duruş taraması: kısım listesi okunamadı", e); }));
-    return Promise.all(isler).then(function () {
+    return json(KAPSAM).then(function (kapsam) {
+      var isler = kapsam.dosyalar.map(function (d) {
+        return dosyaTara(d.yol, d.gorunum, d.etiket, bulgular);
+      });
+      isler.push(json(kapsam.futuhat.indeks).then(function (idx) {
+        var parcalar = (idx.parts || []).map(function (p) { return p.id; });
+        return Promise.all(parcalar.map(function (pid) {
+          return dosyaTara(kapsam.futuhat.parcaKlasoru + pid + ".json",
+                           "futuhat", "Fütûhât " + pid, bulgular);
+        }));
+      }).catch(function (e) { console.warn("Duruş taraması: kısım listesi okunamadı", e); }));
+      return Promise.all(isler);
+    }).then(function () {
       // Aynı metin birden çok dosyada geçebiliyor (atlas + parça kopyası);
       // aynı kural+metin çiftini bir kez gösteriyoruz.
       var gorulen = {};
@@ -636,6 +642,15 @@
     yukle.then(function (bs) {
       siteBulgulari = bs;
       siteCiz();
+    }).catch(function (e) {
+      // Kapsam dosyası (tarama-kapsami.json) okunamazsa panel sonsuza
+      // dek "taranıyor…" diyordu + yakalanmamış bir rejection kalıyordu.
+      // Tek tek veri dosyaları zaten sessizce atlanıyor; buraya yalnız
+      // kapsamın kendisi düşer -- o da susturulacak bir şey değil.
+      var govde = sitePanel && sitePanel.querySelector(".durus-site__body");
+      if (govde) govde.innerHTML = '<p class="durus-site__yukleniyor">Tarama başlatılamadı: '
+        + 'kapsam listesi (tarama-kapsami.json) okunamadı. Konsola bakın.</p>';
+      console.error("Duruş taraması başlatılamadı", e);
     });
   }
 

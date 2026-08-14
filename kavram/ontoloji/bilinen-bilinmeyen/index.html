@@ -189,6 +189,7 @@
             <button class="btn-ghost" id="futuhat-btn" type="button" title="Fütûhât-ı Mekkiyye, kısım kısım — The Meccan Revelations, part by part — As Revelações de Meca, parte por parte" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
             <button class="btn-ghost btn-ghost--sub" id="kuran-dokusu-btn" type="button" title="Fütûhât ve Füsûs özetlerimizde işaretlediğimiz âyet atıflarının sûre↔bap grafı — kısmi bir iz, tam bir tarama değil — A sûrah↔chapter graph of the verse citations we've marked in our Futûhât and Fusûs summaries — a partial trace, not a full scan — Um grafo surata↔capítulo das citações de versículos que marcámos nos nossos resumos das Futûhât e Fusûs — um traço parcial, não uma varredura completa" data-tr="↳ Kur'ân Dokusu" data-en="↳ The Qur'ânic Weave" data-pt="↳ A Trama Alcorânica">↳ Kur'ân Dokusu</button>
             <button class="btn-ghost" id="fusus-btn" type="button" title="Füsûsu'l-Hikem, fass fass — The Bezels of Wisdom, chapter by chapter — Os Engastes da Sabedoria, capítulo por capítulo" data-tr="Füsûs" data-en="Fusus" data-pt="Fusus">Füsûs</button>
+            <button class="btn-ghost btn-ghost--yeni" id="miskat-btn" type="button" title="İbn Arabî'nin kendi seçtiği 101 hadîs-i kudsî, hadis hadis — 101 hadith qudsi selected by Ibn Arabi himself, hadith by hadith — 101 hadith qudsi selecionados pelo próprio Ibn Arabi, hadith a hadith" data-tr="Mişkâtü'l-Envâr" data-en="Mishkat al-Anwar" data-pt="Mishkat al-Anwar">Mişkâtü'l-Envâr</button>
             <button class="btn-ghost btn-ghost--yeni" id="kavram-btn" type="button" title="Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti — A data-derived life summary tracing each concept through the Futuhat and Fusus — Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus" data-tr="Kavramlar" data-en="Concepts" data-pt="Conceitos">Kavramlar</button>
             <!-- 2026-08-10 denetim bulgusu (G50): Okuma Yolları /hakkinda içinde
                  bir alt-sekmeydi ve çekmecede hiç yoktu — "nereden başlamalıyım"
@@ -786,6 +787,21 @@
           <div class="fusus-list" id="fusus-list"></div>
         </div>
         <article class="fusus-article" id="fusus-article"></article>
+      </div>
+    </section>
+
+    <section class="fusus-wrap" id="miskat-wrap" hidden>
+      <div class="view-status" id="miskat-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="fusus-shell">
+        <div class="fusus-sidebar">
+          <div class="fusus-map" id="miskat-map"></div>
+          <div class="fusus-list" id="miskat-list"></div>
+        </div>
+        <article class="fusus-article" id="miskat-article"></article>
       </div>
     </section>
 
@@ -1507,21 +1523,22 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/hal.js" defer integrity="sha384-0J7uTx7utdHJysurWDXQVlYUeuEFrzKBXec6fh+V4hy4Rg3PLNiSFB7DLQj/FjN9"></script>
   <script src="assets/terimler.js" defer integrity="sha384-cR+XgOx3EIEim+wTrA0U7r/sPz53aTcsGKIMIRYxlIpzGFJUFTeZY0ulnZVIHgB+"></script>
   <script src="assets/cizimler.js" defer integrity="sha384-hTMb1pM5NibKjGPpzsndGQMf7S3ZA7aVqCMjh0lQoSaXc54ARcHFZ8BV5xB8TXWy"></script>
-  <script src="assets/sorular.js" defer integrity="sha384-18Vk3qgWU/BGjXEg8GEmYEhD6Ivfu9h0XsZiUvfQ4mbmWADk5YVwAKVo+HhnjYY1"></script>
-  <script src="assets/menziller.js" defer integrity="sha384-W5n7tL/Ipvx5z3Pxnc/1PyxIjRUf77UMZwq+XYcCpx7ir4hiMTopZ1f5ziqpazgQ"></script>
+  <script src="assets/sorular.js" defer integrity="sha384-KoIx/ZC+WDQNft4O3xNVFqEnkHEUpImGpwY++IDGp7QIJ4XcLVstnXEVMdq9klIt"></script>
+  <script src="assets/menziller.js" defer integrity="sha384-OETzsWbn+BHO1sAM8B9BBVeiyxcw1/gxd9OiIFTp0CFlm7QkZ4BmDPJLtvCpnEmL"></script>
   <script src="assets/tasiyicilar.js" defer integrity="sha384-lNVugceLvCvCJVmiaeondeMkZidLr/xkMU7e3FIfHyE0tYhzXcLpm8x7Ztni2FxQ"></script>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
   <script src="assets/futuhat.js" defer integrity="sha384-rfBRvmcoKYLIawa0nWi1lIuFguz2xu/4gd/ZTkJesT+PhHZhVRJqEUjVHjP6pnCa"></script>
   <script src="assets/fusus.js" defer integrity="sha384-NWndNFf07ZRehuPP29Nc/iMRBsDyMjSIfCUSvp7ycm+1r3mf7pjTGJlZBcBPBcQt"></script>
+  <script src="assets/miskat.js" defer integrity="sha384-SVqnOkjzVO8MTOwBadAatUPDnuD0lq7Ujvo9RA2DMgEm1DTVHs2awjygv97mis98"></script>
   <script src="assets/view-loader.js" defer integrity="sha384-EWXqH8Z52XIN7ZJvFAnYsrOLhgWVLSQ+a4fT6nwkaIPWn4Byh3OCYnqDOj+d4aVC"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-/ix7jEHkv/JyQ8zZ2+GaYBxiswf3/LT+GdFsA5kOm5LXzgFGmhAm5x57FGb2s4tq"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-xV6m2D9t8q3nHv+PcT5KOugxSasg4FzcKRcAOPb+ykiEPpp/pDGDK/otOqhK1jKr"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-9qv/Q/FBNgrPHnUOAukAqwsa/DVkrKY78fVJR+l6Kro4bz3an1mUQ8Tg1yG83pGw"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>
   <!-- 2026-08-10 denetim (G57 + rapor 16-A): mobil için grafik yerine liste. -->
   <script src="assets/ontoloji-mobil-liste.js" defer integrity="sha384-YvQpuu2GLrdXPHaUaSFqgKxXtVoFbZRpxltW8rJRyvXa6QDIS1CBTf7h1LIDm9WD"></script>
   <script src="assets/secret-nav.js" defer integrity="sha384-bxSN300rzY5eTjVk6TAWQVedjEJKuWieA2pZLzqq8xZNFBtlkjahenZSN2Jhiuut"></script>
-  <script src="assets/edit-mode.js" defer integrity="sha384-2QRKBfGQXrPh3VXJgkQq6mJjmZM6UgW2VljqTs6LOTCGnRORBCJ0nh0mVd39+jbz"></script>
+  <script src="assets/edit-mode.js" defer integrity="sha384-7iXPGrWLrIsGmzLLGg2VO5KH/04WinMik9uxQrDgIDKeBqiGPMDkwcG00Faa7WvN"></script>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in
        bayrağına bakar), kip kapalıyken hiçbir şey çizmez. 2026-07-29'a
        kadar önizlemeye özeldi; kullanıcı kararıyla canlıda da yayınlanıyor. -->
@@ -1532,7 +1549,7 @@ mesmo antes que o assombro exista."></blockquote>
        (M1-M4, M8) burada BİLEREK yok -- protokolün kendi kuralı, yargının
        toplu taramada değil sayfa başına /tahkik ile yapılmasını istiyor. -->
   <script src="assets/tahkik-tarama.js" defer integrity="sha384-o7iy4Guhl4x1S9aruNJTF87ZD7EqgPsr4rW06QIK7ngQ9zwkAZ0mXZjwgYQn3Klr"></script>
-  <script src="assets/share-mode.js" defer integrity="sha384-i2oc77mzwAX89mG12xoppkKfke0haOObas6mRZ59l878RTyHZjAO8Kc2Ll6IiA7c"></script>
+  <script src="assets/share-mode.js" defer integrity="sha384-kr+gfk37Lrr5mmy2aXx5A4Z51DCt+YysCYOdFHUfa4/ckcTYUwKB+3IySi2cROmD"></script>
   <script src="assets/sessiz-mod.js" defer integrity="sha384-eFRBlMWSM/4fq8oWooKbKYWTxOWMygOzjyco9hQ8jhcZCdkPikl4e1MoeLjtB5w8"></script>
   <script src="assets/kavram-defteri.js" defer integrity="sha384-SEHFK/8YrjhNTF34/mS1FCXdHVORstWfUN3HMMJLT2GqxTBd7Ng60K1Xim6/prYG"></script>
   <script>

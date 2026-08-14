@@ -15,6 +15,14 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://dostarabi.com/kavram/terimler/ayn-i-sabite">
 
+<!-- Dil değişimi client-side (aynı URL, i18n.js tarafı seçiyor); hreflang üç
+     satır da aynı canonical URL'e işaret eder. pt_BR şu an içerikte yok --
+     og:locale:alternate ve hreflang'a bir dil eklerken data/ibn-arabi/*.json
+     içinde en az bir "pt-BR" alanı olduğunu doğrula. -->
+<link rel="alternate" hreflang="tr" href="https://dostarabi.com/kavram/terimler/ayn-i-sabite">
+<link rel="alternate" hreflang="en" href="https://dostarabi.com/kavram/terimler/ayn-i-sabite">
+<link rel="alternate" hreflang="x-default" href="https://dostarabi.com/kavram/terimler/ayn-i-sabite">
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dost Arabî">
 <meta property="og:title" content="Dost Arabî — Ayn-ı Sâbite (Sabit Ayn)">
@@ -26,7 +34,6 @@
 <meta property="og:image:alt" content="Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin varlık haritası">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:locale:alternate" content="en_US">
-<meta property="og:locale:alternate" content="pt_BR">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Dost Arabî — Ayn-ı Sâbite (Sabit Ayn)">
@@ -103,7 +110,7 @@
     })();
   </script>
   <h1 class="sr-only" data-tr="Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası" data-en="Dost Arabî — A Map of Muhyiddin Ibn Arabi's Ontology" data-pt="Dost Arabî — Um Mapa da Ontologia de Muhyiddin Ibn Arabi">Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası</h1>
-  <a class="skip-link" href="#main-content" data-tr="İçeriğe atla" data-en="Skip to content" data-pt="Pular para o conteúdo">İçeriğe atla</a>
+  <a class="skip-link" href="#main-content" data-tr="İçeriğe atla" data-en="Skip to content" data-pt="Pular para o conteúdo">İçeriğe atla</a><noscript><h2>Ayn-ı Sâbite (Sabit Ayn)</h2><p>İbn Arabî&#x27;nin külliyatında merkezi bir kavram -- her varlığın Allah&#x27;ın ilmindeki değişmez, sabit sureti/kimliği. Fütûhât&#x27;ta matla&#x27; (doğum yeri) kavramıyla birlikte anılır: bir hakikatin âleme &#x27;doğduğu&#x27; yer, onun ilimdeki sabit özüyle (ayn-ı sâbite) ilişkilendirilir.</p></noscript>
   <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
     <defs>
       <radialGradient id="node-sheen" cx="34%" cy="28%" r="72%">
@@ -137,15 +144,20 @@
       <div class="welcome-screen__text" id="welcome-text">
         <p class="welcome-screen__line welcome-screen__line--tr">O<span class="welcome-screen__suffix">'ndan</span> O<span class="welcome-screen__suffix">'na</span></p>
         <p class="welcome-screen__line welcome-screen__line--en">From Him to Him</p>
-        <p class="welcome-screen__line welcome-screen__line--pt">D'Ele para Ele</p>
-        <p class="welcome-screen__line welcome-screen__line--tagline" data-tr="Dost'u anlamaya bir çaba" data-en="An effort to understand Dost" data-pt="Um esforço para compreender Dost">Dost'u anlamaya bir çaba</p>
-        <p class="welcome-screen__line welcome-screen__line--gunun" id="welcome-gunun" hidden></p>
-        <p class="welcome-screen__line welcome-neredeyiz" id="welcome-neredeyiz" hidden></p>
+        <p class="welcome-screen__line welcome-screen__line--pt">D'Ele a Ele</p>
       </div>
+    </div>
+    <!-- 2026-08-10 denetim bulgusu (G1/G56): sitenin en görünür ânı, sitenin
+         ne olduğunu söylemiyordu. Tek cümle; halkanın metniyle birlikte
+         beliriyor (welcome.js finish()). -->
+    <div class="welcome-screen__tagline" id="welcome-tagline">
+      <p class="welcome-screen__tagline-line welcome-screen__tagline-line--tr">Muhyiddîn İbnü'l-Arabî'nin iç dünyasının bir haritası — anlamaya çalışıyoruz, anlatmaya değil.</p>
+      <p class="welcome-screen__tagline-line welcome-screen__tagline-line--en">A map of Muhyiddin Ibn Arabi's inner world — trying to understand, not to explain.</p>
+      <p class="welcome-screen__tagline-line welcome-screen__tagline-line--pt">Um mapa do mundo interior de Muhyiddin Ibn Arabi — tentando compreender, não explicar.</p>
     </div>
     <button class="welcome-screen__skip" id="welcome-skip" type="button" aria-label="Geç / Skip / Pular">Geç · Skip · Pular</button>
   </div>
-  <script src="assets/welcome.js" integrity="sha384-PMKwr/F/S21Mv9Ib2EUXwHLmM76aY8CjL7q9zGVfhHG/BSWfluullnp/wTnnzrUn"></script>
+  <script src="assets/welcome.js" integrity="sha384-YzVVdAndTMiESAm0pNfqKol87tCu8iUkx8f2BkpctANxyKZmsDLfZN/GgYniRL6N"></script>
   <header class="app-header">
     <div class="app-header__controls">
       <!-- FAZ 1 (grafik-önce arayüz, 2026-08-03): 14 eşit ağırlıklı sekme
@@ -162,7 +174,7 @@
       <nav class="nav-drawer" id="nav-drawer" hidden
            data-tr-aria-label="Bölümler" data-en-aria-label="Sections" data-pt-aria-label="Seções" aria-label="Bölümler">
         <div class="nav-drawer__group">
-          <p class="nav-drawer__heading" data-tr="Harita" data-en="The Map" data-pt="O Mapa">Harita</p>
+          <p class="nav-drawer__heading" role="button" tabindex="0" aria-expanded="true" data-tr="Harita" data-en="The Map" data-pt="O Mapa">Harita</p>
           <div class="nav-drawer__items">
             <button class="btn-ghost btn-ghost--active" id="ontology-btn" type="button" aria-current="page" title="Varlık mertebelerinin haritası — Map of the ranks of being — Mapa dos graus do ser" data-tr="Ontoloji" data-en="Ontology" data-pt="Ontologia">Ontoloji</button>
             <button class="btn-ghost" id="esma-btn" type="button" title="Allah'ın güzel isimleri — The Beautiful Names of Allah — Os Belos Nomes de Allah" data-tr="Esmâü'l-Hüsnâ" data-en="The Beautiful Names" data-pt="Os Belos Nomes">Esmâü'l-Hüsnâ</button>
@@ -172,22 +184,50 @@
           </div>
         </div>
         <div class="nav-drawer__group">
-          <p class="nav-drawer__heading" data-tr="Külliyat" data-en="The Works" data-pt="A Obra">Külliyat</p>
+          <p class="nav-drawer__heading" role="button" tabindex="0" aria-expanded="true" data-tr="Külliyat" data-en="The Works" data-pt="A Obra">Külliyat</p>
           <div class="nav-drawer__items">
             <button class="btn-ghost" id="futuhat-btn" type="button" title="Fütûhât-ı Mekkiyye, kısım kısım — The Meccan Revelations, part by part — As Revelações de Meca, parte por parte" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
+            <button class="btn-ghost btn-ghost--sub" id="kuran-dokusu-btn" type="button" title="Fütûhât ve Füsûs özetlerimizde işaretlediğimiz âyet atıflarının sûre↔bap grafı — kısmi bir iz, tam bir tarama değil — A sûrah↔chapter graph of the verse citations we've marked in our Futûhât and Fusûs summaries — a partial trace, not a full scan — Um grafo surata↔capítulo das citações de versículos que marcámos nos nossos resumos das Futûhât e Fusûs — um traço parcial, não uma varredura completa" data-tr="↳ Kur'ân Dokusu" data-en="↳ The Qur'ânic Weave" data-pt="↳ A Trama Alcorânica">↳ Kur'ân Dokusu</button>
             <button class="btn-ghost" id="fusus-btn" type="button" title="Füsûsu'l-Hikem, fass fass — The Bezels of Wisdom, chapter by chapter — Os Engastes da Sabedoria, capítulo por capítulo" data-tr="Füsûs" data-en="Fusus" data-pt="Fusus">Füsûs</button>
             <button class="btn-ghost btn-ghost--yeni" id="miskat-btn" type="button" title="İbn Arabî'nin kendi seçtiği 101 hadîs-i kudsî, hadis hadis — 101 hadith qudsi selected by Ibn Arabi himself, hadith by hadith — 101 hadith qudsi selecionados pelo próprio Ibn Arabi, hadith a hadith" data-tr="Mişkâtü'l-Envâr" data-en="Mishkat al-Anwar" data-pt="Mishkat al-Anwar">Mişkâtü'l-Envâr</button>
             <button class="btn-ghost btn-ghost--yeni" id="kavram-btn" type="button" title="Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti — A data-derived life summary tracing each concept through the Futuhat and Fusus — Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus" data-tr="Kavramlar" data-en="Concepts" data-pt="Conceitos">Kavramlar</button>
+            <!-- 2026-08-10 denetim bulgusu (G50): Okuma Yolları /hakkinda içinde
+                 bir alt-sekmeydi ve çekmecede hiç yoktu — "nereden başlamalıyım"
+                 özelliği en az bulunur yerdeydi. Alt-sekme yapısı korunuyor;
+                 bu düğme yalnız oraya açılan görünür bir kapı. -->
+            <button class="btn-ghost" id="okuma-yollari-btn" type="button" title="Konu konu, kaynak kartlarına bağlı okuma yolları: nereden başlamalı, hangi sırayla — Topic-by-topic reading paths tied to source cards: where to start, in what order — Caminhos de leitura por tema, ligados aos cartões de fontes: por onde começar, em que ordem" data-tr="Okuma Yolları" data-en="Reading Paths" data-pt="Caminhos de Leitura">Okuma Yolları</button>
           </div>
         </div>
         <div class="nav-drawer__group">
-          <p class="nav-drawer__heading" data-tr="Sözlük ve Sorular" data-en="Lexicon &amp; Questions" data-pt="Léxico e Perguntas">Sözlük ve Sorular</p>
+          <p class="nav-drawer__heading" role="button" tabindex="0" aria-expanded="true" data-tr="Dost'un Hayatı" data-en="Dost's Life" data-pt="A Vida de Dost">Dost'un Hayatı</p>
+          <div class="nav-drawer__items">
+            <button class="btn-ghost" id="hocalar-btn" type="button" title="Rûhu'l-kuds'ta andığı 55 hocadan son ikisi, ikisi de kadın — kendi ağzından iki portre — The last two of the 55 teachers named in the Ruh al-quds, both women — two portraits in his own words — Os dois últimos dos 55 mestres nomeados no Ruh al-quds, ambas mulheres — dois retratos nas suas próprias palavras" data-tr="Hocalar" data-en="Teachers" data-pt="Mestres">Hocalar</button>
+            <button class="btn-ghost" id="eser-agi-btn" type="button" title="Eserlerinin kronolojik zaman çizelgesi — en erken eser üstte, aşağıya doğru zaman; kenarlar aynı şehirde art arda yazılan eserleri bağlıyor — A chronological timeline of his works — the earliest at the top, time moving downward; connections link works written in the same city back to back — Uma linha do tempo cronológica das suas obras — a mais antiga no topo, o tempo avançando para baixo; as ligações unem obras escritas na mesma cidade em sequência" data-tr="Eser Ağı" data-en="The Works Timeline" data-pt="A Linha do Tempo das Obras">Eser Ağı</button>
+            <button class="btn-ghost" id="seyahat-atlasi-btn" type="button" title="Mürsiye'den Şam'a, her durakta yazdığı eserlerle birlikte — From Murcia to Damascus, together with the works he wrote at each stop — De Múrcia a Damasco, juntamente com as obras que escreveu em cada paragem" data-tr="Seyahat Atlası" data-en="Travel Atlas" data-pt="Atlas de Viagem">Seyahat Atlası</button>
+            <button class="btn-ghost" id="elestiri-arkeolojisi-btn" type="button" title="Dost'a yöneltilen eleştiri ve savunmaları cevaplamadan önce haritalıyoruz: kim, ne zaman, hangi şehirde, kimin himayesinde yazdı — We map the criticisms and defenses aimed at Dost before answering them: who wrote what, when, in which city, under whose patronage — Mapeamos as críticas e defesas dirigidas a Dost antes de lhes responder: quem escreveu o quê, quando, em que cidade, sob que patrocínio" data-tr="Eleştiri Arkeolojisi" data-en="Archaeology of Criticism" data-pt="Arqueologia da Crítica">Eleştiri Arkeolojisi</button>
+          </div>
+        </div>
+        <div class="nav-drawer__group">
+          <p class="nav-drawer__heading" role="button" tabindex="0" aria-expanded="true" data-tr="Bilinmeyenler" data-en="The Unknowns" data-pt="Os Desconhecidos">Bilinmeyenler</p>
+          <div class="nav-drawer__items">
+            <button class="btn-ghost" id="sirlar-btn" type="button" title="İşaret edilen ama açıklanmayan konular — Matters pointed to but never explained — Assuntos apontados mas nunca explicados" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
+            <button class="btn-ghost" id="acik-sorular-btn" type="button" title="Okurken bize kalan, henüz kapanmamış sorular — ve araştırmamızın verdiği olası yanıtlar — Questions left with us while reading, not yet closed — and the possible answers our research gives — Perguntas que ficaram connosco ao ler, ainda em aberto — e as respostas possíveis que a nossa pesquisa dá" data-tr="Açık Sorular" data-en="Open Questions" data-pt="Perguntas em Aberto">Açık Sorular</button>
+            <button class="btn-ghost" id="bilmiyoruz-btn" type="button" title="Sitenin açıkça bilmediğini ya da tartışmalı olduğunu ilan ettiği maddeler — Items the site openly declares unknown or contested — Itens que o site declara abertamente desconhecidos ou contestados" data-tr="Bilmiyoruz" data-en="We Don't Know" data-pt="Não Sabemos">Bilmiyoruz</button>
+          </div>
+        </div>
+        <div class="nav-drawer__group">
+          <p class="nav-drawer__heading" role="button" tabindex="0" aria-expanded="true" data-tr="Sözlük ve Sorular" data-en="Lexicon &amp; Questions" data-pt="Léxico e Perguntas">Sözlük ve Sorular</p>
           <div class="nav-drawer__items">
             <button class="btn-ghost" id="terimler-btn" type="button" title="İbn Arabî'nin terimleri, tek tek — Ibn Arabi's terms, one by one — Os termos de Ibn Arabi, um a um" data-tr="Terimler" data-en="Terms" data-pt="Termos">Terimler</button>
             <button class="btn-ghost" id="sorular-btn" type="button" title="Sık sorulan sorular, kısa cevaplarla — Frequently asked questions, briefly answered — Perguntas frequentes, respondidas brevemente" data-tr="Sorular" data-en="Questions" data-pt="Perguntas">Sorular</button>
-            <button class="btn-ghost" id="sirlar-btn" type="button" title="İşaret edilen ama açıklanmayan konular — Matters pointed to but never explained — Assuntos apontados mas nunca explicados" data-tr="Sırlar" data-en="Mysteries" data-pt="Mistérios">Sırlar</button>
             <button class="btn-ghost" id="cizimler-btn" type="button" title="Kavramlar arası ilişkileri gösteren şemalar — Diagrams showing relationships between concepts — Diagramas mostrando relações entre conceitos" data-tr="Çizimler" data-en="Diagrams" data-pt="Diagramas">Çizimler</button>
             <button class="btn-ghost btn-ghost--yeni" id="ayethadis-btn" type="button" title="Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin — An index of quoted verses and hadiths, ordered by how often each recurs — Um índice de versículos e ditos citados, ordenados por quantas vezes cada um recorre" data-tr="Âyet &amp; Hadis" data-en="Verses &amp; Hadith" data-pt="Versículos e Hadith">Âyet &amp; Hadis</button>
+          </div>
+        </div>
+        <div class="nav-drawer__group">
+          <p class="nav-drawer__heading" role="button" tabindex="0" aria-expanded="true" data-tr="Sahneler" data-en="Scenes" data-pt="Cenas">Sahneler</p>
+          <div class="nav-drawer__items">
+            <button class="btn-ghost" id="sahneler-btn" type="button" title="Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin galerisi — A gallery of the site's standalone, drag-or-scroll scenes — Uma galeria das cenas independentes e exploráveis do site" data-tr="Sahneler" data-en="Scenes" data-pt="Cenas">Sahneler</button>
           </div>
         </div>
         <div class="nav-drawer__group">
@@ -209,6 +249,12 @@
     <section class="graph-wrap" id="ontology-wrap">
       <svg id="graph" role="group" aria-label="Ontoloji haritası"
            data-tr-aria-label="Ontoloji haritası" data-en-aria-label="Ontology map" data-pt-aria-label="Mapa de ontologia"></svg>
+      <!-- 2026-08-10 denetim (G57 + rapor 16-A): mobilde grafik fiilen okunmuyor
+           (bitişik etiket yumağı). Bu alternatif liste iniş sırasına göre 15
+           düğümü verir; her satır o düğümün paneline gider. Mobilde varsayılan
+           GÖRÜNÜR, grafik gizli; "Haritayı aç" düğmesi grafiğe geçirir.
+           Masaüstünde tam tersi (grafik varsayılan, liste gizli). -->
+      <nav class="ontoloji-mobil-liste" id="ontoloji-mobil-liste" aria-label="Ontoloji: mertebe listesi (mobil alternatif)" data-tr-aria-label="Ontoloji: mertebe listesi (mobil alternatif)" data-en-aria-label="Ontology: rank list (mobile alternative)" data-pt-aria-label="Ontologia: lista das hierarquias (alternativa móvel)"></nav>
       <div class="view-status" id="ontology-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
         <p class="view-status__text"></p>
@@ -227,10 +273,16 @@
       <button class="graph-confidence-toggle" id="ontology-confidence-toggle" type="button" data-tr-title="Ne kadar eminiz? — düşük güvenli bağlantıları soluklaştır" data-en-title="How certain are we? — fade low-confidence links" data-pt-title="Quão certos estamos? — esmaecer vínculos de baixa confiança" title="Ne kadar eminiz? — düşük güvenli bağlantıları soluklaştır" aria-label="Ne kadar eminiz? — düşük güvenli bağlantıları soluklaştır">
         <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M12 3.5 4.5 6.8v5.1c0 4.6 3.1 7.9 7.5 8.6 4.4-0.7 7.5-4 7.5-8.6V6.8L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.6 12.1l2.4 2.4 4.4-4.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/></svg>
       </button>
+      <!-- 2026-08-10 denetim (G7 + rapor EK A.3): "Zât'a git" tek yönlendirmesi
+           yeni ziyaretçiyi sitenin en soyut/uzun paneline indiriyordu; ama
+           Zât'tan başlamak sitenin metafiziğine sadık — çözüm iki-uçlu:
+           "iki uçtan biri: O'ndan inen yol, O'na dönen yol". Çerçeve korunur,
+           bilişsel yük hafifler. -->
       <div class="start-hint" id="start-hint" hidden>
-        <p class="start-hint__text" data-tr="İlk kez mi buradasın? Her şeyin çıktığı ve döndüğü merkezden, Zât'tan (her nitelemenin ötesindeki öz) başla." data-en="First time here? Start from the center everything emerges from and returns to: the Essence." data-pt="Primeira vez aqui? Comece pelo centro de onde tudo emerge e para onde tudo retorna: a Essência.">İlk kez mi buradasın? Her şeyin çıktığı ve döndüğü merkezden, Zât'tan (her nitelemenin ötesindeki öz) başla.</p>
+        <p class="start-hint__text" data-tr="İlk kez mi buradasın? Bu harita iki uçlu bir çember: her şey Zât'tan çıkıyor, Kalp'ten Zât'a dönüyor. İki uçtan birini seç." data-en="First time here? This map is a two-ended circle: everything issues from the Essence and returns to it through the Heart. Pick one of the two ends." data-pt="Primeira vez aqui? Este mapa é um círculo com duas pontas: tudo emana da Essência e retorna a ela pelo Coração. Escolha uma das duas pontas.">İlk kez mi buradasın? Bu harita iki uçlu bir çember: her şey Zât'tan çıkıyor, Kalp'ten Zât'a dönüyor. İki uçtan birini seç.</p>
         <div class="start-hint__actions">
-          <button class="start-hint__go" id="start-hint-go" type="button" data-tr="Zât'a git" data-en="Go to the Essence" data-pt="Ir para a Essência">Zât'a git</button>
+          <button class="start-hint__go" id="start-hint-go" type="button" data-tr="Zât'tan başla" data-en="Start from the Essence" data-pt="Comece pela Essência" title="Her nitelemenin ötesindeki öz — derin uç" data-tr-title="Her nitelemenin ötesindeki öz — derin uç" data-en-title="The Essence beyond all naming — the deep end" data-pt-title="A Essência além de toda nomeação — a ponta profunda">Zât'tan başla</button>
+          <button class="start-hint__go start-hint__go--kalp" id="start-hint-go-kalp" type="button" data-tr="Kalp'ten başla" data-en="Start from the Heart" data-pt="Comece pelo Coração" title="Bize en yakın uç — dönüşün başladığı yer" data-tr-title="Bize en yakın uç — dönüşün başladığı yer" data-en-title="The end closest to us — where the return begins" data-pt-title="A ponta mais próxima de nós — onde começa o retorno">Kalp'ten başla</button>
           <button class="start-hint__close" id="start-hint-close" type="button" aria-label="Kapat / Close / Fechar">×</button>
         </div>
       </div>
@@ -240,6 +292,7 @@
           <span class="legend__toggle-icon" aria-hidden="true">▾</span>
         </button>
         <div class="legend__body" tabindex="0">
+          <div class="legend__item"><span class="legend__dot legend__dot--zat"></span><span data-tr="Zât (merkez, altın halka)" data-en="The Essence (center, gold ring)" data-pt="A Essência (centro, anel dourado)">Zât (merkez, altın halka)</span></div>
           <div class="legend__item"><span class="legend__dot legend__dot--descent"></span><span data-tr="Tenezzül (iniş / tecellî)" data-en="Descent (self-disclosure)" data-pt="Descida (autorrevelação)">Tenezzül</span></div>
           <div class="legend__item"><span class="legend__dot legend__dot--return"></span><span data-tr="Rücû (dönüş)" data-en="Return" data-pt="Retorno">Rücû</span></div>
           <div class="legend__item"><span class="legend__dot legend__dot--paradox"></span><span data-tr="Tenzîh-Teşbîh" data-en="Tanzih-Tashbih" data-pt="Tanzih-Tashbih">Tenzîh-Teşbîh</span></div>
@@ -325,6 +378,18 @@
       <button class="hal-walk-btn" id="hal-walk-btn" type="button" data-tr-title="Yolu yürü — Nefs'ten Hayret'e sarmal boyunca ilerle" data-en-title="Walk the path — proceed along the spiral from the Soul to Bewilderment" data-pt-title="Percorrer o caminho — avance pela espiral da Alma ao Espanto" title="Yolu yürü — Nefs'ten Hayret'e sarmal boyunca ilerle" aria-label="Yolu yürü — Nefs'ten Hayret'e sarmal boyunca ilerle">
         <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M6 19c2-5 2-9 6-9s2 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="6" cy="19" r="1.6" fill="currentColor"/><circle cx="18" cy="16" r="1.6" fill="currentColor"/></svg>
       </button>
+      <!-- Ortak oryantasyon-halkası pilotu (2026-08-04, VISUALIZATION_IDEAS.md
+           "Ortak oryantasyon-halkası"): düğme değil, canlı bir gösterge --
+           tıklanmaz, aç/kapa yapmaz, yalnız o an hangi yaw/pitch'te
+           olduğumuzu gösterir. Hâller'de pilot; diğer beş görünüme
+           (ontoloji/esma/sirlar/sorular/menziller) kullanıcı onayından
+           sonra yayılabilir. -->
+      <div class="graph-orient-ring" id="hal-orient-ring" aria-hidden="true">
+        <svg viewBox="-12 -12 24 24" width="24" height="24">
+          <circle class="graph-orient-ring__track" r="9" fill="none"></circle>
+          <circle class="graph-orient-ring__marker" cx="0" cy="-9" r="2"></circle>
+        </svg>
+      </div>
       <div class="legend" id="hal-legend">
         <button class="legend__toggle" type="button" aria-expanded="true">
           <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
@@ -397,6 +462,211 @@
       </div>
     </section>
 
+    <section class="graph-wrap" id="acik-sorular-wrap" hidden>
+      <svg id="acik-sorular-graph" role="group" aria-label="Açık sorular halkası"
+           data-tr-aria-label="Açık sorular halkası" data-en-aria-label="Ring of open questions" data-pt-aria-label="Anel de perguntas em aberto"></svg>
+      <div class="view-status" id="acik-sorular-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="acik-sorular-tooltip" hidden></div>
+      <button class="graph-recenter" id="acik-sorular-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Her yay bir soru; çizilmeyen boşluk sorunun ne kadar açık olduğu, yay üzerindeki çentikler okuma kaydımızda bulduğumuz izler. Bir yaya tıklayın." data-en-title="Each arc is a question; the undrawn gap is how open it still is, and the ticks along the arc are the traces we found in our reading record. Click an arc." data-pt-title="Cada arco é uma pergunta; a lacuna não desenhada é o quanto continua em aberto, e as marcas ao longo do arco são os vestígios que encontrámos no nosso registo. Clique num arco." title="Her yay bir soru; çizilmeyen boşluk sorunun ne kadar açık olduğu, yay üzerindeki çentikler okuma kaydımızda bulduğumuz izler. Bir yaya tıklayın." aria-label="Her yay bir soru; çizilmeyen boşluk sorunun ne kadar açık olduğu, yay üzerindeki çentikler okuma kaydımızda bulduğumuz izler. Bir yaya tıklayın.">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+      <!-- 2026-08-10 denetim (G40): soru metinleri "..." ile kesikti; bir bakışta
+           yalnız numara görünüyordu. Bu düğme mevcut giriş panelini (soruların
+           tam metinli listesini) açar. -->
+      <button class="acik-sorular-liste-btn" id="acik-sorular-liste-btn" type="button" data-tr-title="Soruların tam metnini liste olarak göster" data-en-title="Show the full text of the questions as a list" data-pt-title="Mostrar o texto completo das perguntas em lista" title="Soruların tam metnini liste olarak göster" aria-label="Soruların tam metnini liste olarak göster">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </section>
+
+    <section class="graph-wrap" id="bilmiyoruz-wrap" hidden>
+      <!-- 2026-08-10 denetim (G41): sitenin duruş beyanı sayfası görsel olarak
+           neredeyse boştu; bilmiyoruz.json'daki manifesto (üç dilli) bilmiyoruz.js
+           tarafından etkinleştirilirken doldurulur. Boş varsayılan, JS
+           yüklenmezse hiç metin göstermek yerine yalnız sessizce boş kalsın. -->
+      <div class="bilmiyoruz-manifest" id="bilmiyoruz-manifest"></div>
+      <svg id="bilmiyoruz-graph" role="group" aria-label="Bilmiyoruz halkası"
+           data-tr-aria-label="Bilmiyoruz halkası" data-en-aria-label="Ring of unknowns" data-pt-aria-label="Anel do que não sabemos"></svg>
+      <div class="view-status" id="bilmiyoruz-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="bilmiyoruz-tooltip" hidden></div>
+      <button class="graph-recenter" id="bilmiyoruz-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Her yay sitenin açıkça bilmediğini ya da tartışmalı bulduğunu ilan ettiği bir madde; boşluk maddenin durumuna göre değişir. Bir yaya tıklayın." data-en-title="Each arc is an item the site openly declares unknown or contested; the gap varies by the item's status. Click an arc." data-pt-title="Cada arco é um item que o site declara abertamente desconhecido ou contestado; a lacuna varia consoante o estado do item. Clique num arco." title="Her yay sitenin açıkça bilmediğini ya da tartışmalı bulduğunu ilan ettiği bir madde; boşluk maddenin durumuna göre değişir. Bir yaya tıklayın." aria-label="Her yay sitenin açıkça bilmediğini ya da tartışmalı bulduğunu ilan ettiği bir madde; boşluk maddenin durumuna göre değişir. Bir yaya tıklayın.">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+    </section>
+
+    <section class="graph-wrap" id="elestiri-arkeolojisi-wrap" hidden>
+      <svg id="elestiri-arkeolojisi-graph" role="group" aria-label="Eleştiri arkeolojisi haritası"
+           data-tr-aria-label="Eleştiri arkeolojisi haritası" data-en-aria-label="Map of the archaeology of criticism" data-pt-aria-label="Mapa da arqueologia da crítica"></svg>
+      <div class="view-status" id="elestiri-arkeolojisi-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="elestiri-arkeolojisi-tooltip" hidden></div>
+      <button class="graph-recenter" id="elestiri-arkeolojisi-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Yatay eksen ölüm yılı, düşey bant bölge; elmas kurbanı, kare hükümdarı/hâmîyi işaret ediyor. Bir kişiye ya da bağa tıklayın." data-en-title="The horizontal axis is the year of death, the vertical band is the region; a diamond marks a victim, a square a ruler/patron. Click a person or a connection." data-pt-title="O eixo horizontal é o ano de morte, a faixa vertical é a região; um diamante marca uma vítima, um quadrado um governante/patrono. Clique numa pessoa ou numa ligação." title="Yatay eksen ölüm yılı, düşey bant bölge; elmas kurbanı, kare hükümdarı/hâmîyi işaret ediyor. Bir kişiye ya da bağa tıklayın." aria-label="Yatay eksen ölüm yılı, düşey bant bölge; elmas kurbanı, kare hükümdarı/hâmîyi işaret ediyor. Bir kişiye ya da bağa tıklayın.">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+      <!-- 2026-08-10 denetim (G36): renk ve biçim kodları yalnız ipucundaydı; iyi/kötü okumasını önlemek için "eleştiren/savunan/aktaran" adlandırması. -->
+      <div class="legend" id="elestiri-arkeolojisi-legend">
+        <button class="legend__toggle" type="button" aria-expanded="true">
+          <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
+          <span class="legend__toggle-icon" aria-hidden="true">▾</span>
+        </button>
+        <div class="legend__body" tabindex="0">
+          <p class="legend__note" data-tr="Rol tarafın kendi kaydettiği şey — bir yargı değil, tarihçinin nasıl işaretlediği." data-en="A role is what the source records of that person — not a verdict, but how the historian marks them." data-pt="O papel é o que a fonte regista dessa pessoa — não é um veredicto, mas a forma como o historiador a marca.">Rol tarafın kendi kaydettiği şey — bir yargı değil, tarihçinin nasıl işaretlediği.</p>
+          <div class="legend__item"><span class="legend__dot legend__dot--el-elestirmen"></span><span data-tr="Eleştirmen (Celâl)" data-en="Critic (Jalal)" data-pt="Crítico (Jalal)">Eleştirmen</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--el-savunmaci"></span><span data-tr="Savunmacı (Cemâl)" data-en="Defender (Jamal)" data-pt="Defensor (Jamal)">Savunmacı</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--el-benimseyen"></span><span data-tr="Benimseyen eleştirmen (Kemâl)" data-en="Adopting critic (Kamal)" data-pt="Crítico que adere (Kamal)">Benimseyen eleştirmen</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--el-kaynak"></span><span data-tr="Kaynak / tarihçi" data-en="Source / historian" data-pt="Fonte / historiador">Kaynak / tarihçi</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--el-hakem"></span><span data-tr="Hakem (tarafsız)" data-en="Arbiter (neutral)" data-pt="Árbitro (neutro)">Hakem</span></div>
+          <div class="legend__item"><span class="legend__marker legend__marker--el-kurban" aria-hidden="true"></span><span data-tr="Kurban (elmas)" data-en="Victim (diamond)" data-pt="Vítima (diamante)">Kurban</span></div>
+          <div class="legend__item"><span class="legend__marker legend__marker--el-hukumdar" aria-hidden="true"></span><span data-tr="Hükümdar / hâmî (kare)" data-en="Ruler / patron (square)" data-pt="Governante / patrono (quadrado)">Hükümdar / hâmî</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="graph-wrap" id="hocalar-wrap" hidden>
+      <div class="hocalar-scroll">
+        <div class="hocalar-list" id="hocalar-list" role="group" aria-label="Hocalar listesi"></div>
+        <div class="hocalar-diger" id="hocalar-diger"></div>
+      </div>
+      <div class="view-status" id="hocalar-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+    </section>
+
+    <section class="graph-wrap" id="eser-agi-wrap" hidden>
+      <svg id="eser-agi-graph" role="group" aria-label="Eserlerin zaman çizelgesi"
+           data-tr-aria-label="Eserlerin zaman çizelgesi" data-en-aria-label="Timeline of the works" data-pt-aria-label="Linha do tempo das obras"></svg>
+      <div class="view-status" id="eser-agi-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="eser-agi-tooltip" hidden></div>
+      <button class="graph-recenter" id="eser-agi-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Sürükleyerek ya da tekerlekle aşağı kayın, Ctrl (⌘) + tekerlek ile yakınlaştırın; elmas biçimi eserlerinin kataloğu olan iki eseri işaret ediyor. Bir esere ya da bağa tıklayın." data-en-title="Drag or scroll to move down the list, Ctrl (⌘) + scroll to zoom; the diamond shape marks the two works that catalogue the rest. Click a work or a connection." data-pt-title="Arraste ou role para descer na lista, Ctrl (⌘) + rolagem para ampliar; o formato de diamante marca as duas obras que catalogam as restantes. Clique numa obra ou numa ligação." title="Sürükleyerek ya da tekerlekle aşağı kayın, Ctrl (⌘) + tekerlek ile yakınlaştırın; elmas biçimi eserlerinin kataloğu olan iki eseri işaret ediyor. Bir esere ya da bağa tıklayın." aria-label="Sürükleyerek ya da tekerlekle aşağı kayın, Ctrl (⌘) + tekerlek ile yakınlaştırın; elmas biçimi eserlerinin kataloğu olan iki eseri işaret ediyor. Bir esere ya da bağa tıklayın.">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+      <!-- 2026-08-10 denetim (G34): elmas işaretinin anlamı yalnız ipucundaydı. -->
+      <div class="legend" id="eser-agi-legend">
+        <button class="legend__toggle" type="button" aria-expanded="true">
+          <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
+          <span class="legend__toggle-icon" aria-hidden="true">▾</span>
+        </button>
+        <div class="legend__body" tabindex="0">
+          <div class="legend__item"><span class="legend__marker legend__marker--eser-nokta" aria-hidden="true"></span><span data-tr="Eser (dolu daire)" data-en="Work (filled circle)" data-pt="Obra (círculo cheio)">Eser</span></div>
+          <div class="legend__item"><span class="legend__marker legend__marker--eser-katalog" aria-hidden="true"></span><span data-tr="Katalog eseri: diğer eserleri listeleyen iki eser (elmas)" data-en="Catalogue work: the two works that list the others (diamond)" data-pt="Obra-catálogo: as duas obras que listam as restantes (diamante)">Katalog eseri</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="graph-wrap" id="kuran-dokusu-wrap" hidden>
+      <svg id="kuran-dokusu-graph" role="group" aria-label="Sûre ve bap atıf grafı"
+           data-tr-aria-label="Sûre ve bap atıf grafı" data-en-aria-label="Sûrah and chapter citation graph" data-pt-aria-label="Grafo de citações de suratas e capítulos"></svg>
+      <div class="view-status" id="kuran-dokusu-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="kuran-dokusu-tooltip" hidden></div>
+      <button class="graph-recenter" id="kuran-dokusu-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Dış halka sûreler, iç halka bablar; kenar kalınlığı atıf sayısı. Sûreler Kur'ân sırasında ama eşit aralıkla dizili — aralık bilgi taşımıyor. 114 sûrenin 35'inde atıf bulduk. Bir sûreye ya da baba tıklayın." data-en-title="The outer ring is sûrahs, the inner ring is chapters; edge thickness is citation count. The sûrahs follow Qur'ânic order but are spaced evenly — the spacing carries no information. We found citations in 35 of the 114 sûrahs. Click a sûrah or a chapter." data-pt-title="O anel externo são as suratas, o anel interno são os capítulos; a espessura da aresta é o número de citações. As suratas seguem a ordem alcorânica mas estão espaçadas por igual — o espaçamento não transmite informação. Encontrámos citações em 35 das 114 suratas. Clique numa surata ou num capítulo." title="Dış halka sûreler, iç halka bablar; kenar kalınlığı atıf sayısı. Sûreler Kur'ân sırasında ama eşit aralıkla dizili — aralık bilgi taşımıyor. 114 sûrenin 35'inde atıf bulduk. Bir sûreye ya da baba tıklayın." aria-label="Dış halka sûreler, iç halka bablar; kenar kalınlığı atıf sayısı. Sûreler Kur'ân sırasında ama eşit aralıkla dizili — aralık bilgi taşımıyor. 114 sûrenin 35'inde atıf bulduk. Bir sûreye ya da baba tıklayın.">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+      <!-- 2026-08-10 denetim (G27): iki halkanın ne olduğu ilk bakışta okunmuyordu. Lejant ipucundakinin özeti. -->
+      <div class="legend" id="kuran-dokusu-legend">
+        <button class="legend__toggle" type="button" aria-expanded="true">
+          <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
+          <span class="legend__toggle-icon" aria-hidden="true">▾</span>
+        </button>
+        <div class="legend__body" tabindex="0">
+          <div class="legend__item"><span class="legend__dot legend__dot--kd-sure"></span><span data-tr="Dış halka: sûre" data-en="Outer ring: sûrah" data-pt="Anel externo: surata">Dış halka: sûre</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--kd-bap"></span><span data-tr="İç halka: Fütûhât / Füsûs bölümü" data-en="Inner ring: chapter of Futuhat / Fusus" data-pt="Anel interno: capítulo do Futuhat / Fusus">İç halka: bölüm</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--kd-kalinlik"></span><span data-tr="Kenar kalınlığı: atıf sayısı" data-en="Edge thickness: citation count" data-pt="Espessura da aresta: número de citações">Kenar kalınlığı</span></div>
+          <p class="legend__note" data-tr="Aralık bilgi taşımıyor — sûreler Kur'ân sırasında ama eşit aralıkla dizildi. 114 sûrenin 35'inde atıf bulduk." data-en="Spacing carries no information — sûrahs follow Qur'anic order but are evenly spaced. We found citations in 35 of 114 sûrahs." data-pt="O espaçamento não transmite informação — as suratas seguem a ordem alcorânica mas estão espaçadas por igual. Encontrámos citações em 35 das 114 suratas.">Aralık bilgi taşımıyor — sûreler Kur'ân sırasında ama eşit aralıkla dizildi. 114 sûrenin 35'inde atıf bulduk.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="graph-wrap" id="seyahat-atlasi-wrap" hidden>
+      <svg id="seyahat-atlasi-graph" role="group" aria-label="Seyahat atlası"
+           data-tr-aria-label="Seyahat atlası" data-en-aria-label="Travel atlas" data-pt-aria-label="Atlas de viagem"></svg>
+      <div class="view-status" id="seyahat-atlasi-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="seyahat-atlasi-tooltip" hidden></div>
+      <button class="graph-recenter" id="seyahat-atlasi-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Duraklar Mürsiye'den Şam'a kronolojik sırayla; kaydırıcıyı hareket ettirerek güzergâhın zamanla nasıl açıldığını görün. Bir durağa tıklayın." data-en-title="Stops run from Murcia to Damascus in chronological order; drag the slider to see the route unfold over time. Click a stop." data-pt-title="As paragens vão de Múrcia a Damasco por ordem cronológica; arraste o cursor para ver o percurso a desenrolar-se com o tempo. Clique numa paragem." title="Duraklar Mürsiye'den Şam'a kronolojik sırayla; kaydırıcıyı hareket ettirerek güzergâhın zamanla nasıl açıldığını görün. Bir durağa tıklayın." aria-label="Duraklar Mürsiye'den Şam'a kronolojik sırayla; kaydırıcıyı hareket ettirerek güzergâhın zamanla nasıl açıldığını görün. Bir durağa tıklayın.">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+      <div class="seyahat-atlasi-zaman">
+        <label for="seyahat-atlasi-slider" data-tr="Yıl" data-en="Year" data-pt="Ano">Yıl</label>
+        <button class="seyahat-atlasi-zaman__adim" id="seyahat-atlasi-geri" type="button" data-tr-title="Bir yıl geri" data-en-title="One year back" data-pt-title="Um ano atrás" title="Bir yıl geri" aria-label="Bir yıl geri">
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M15 6 L9 12 L15 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="seyahat-atlasi-zaman__oynat" id="seyahat-atlasi-oynat" type="button" data-tr-title="Oynat" data-en-title="Play" data-pt-title="Reproduzir" title="Oynat" aria-label="Oynat" aria-pressed="false">
+          <svg class="seyahat-atlasi-zaman__oynat-ikon" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z" fill="currentColor"/></svg>
+        </button>
+        <input type="range" id="seyahat-atlasi-slider" min="1165" max="1240" value="1240" step="1">
+        <button class="seyahat-atlasi-zaman__adim" id="seyahat-atlasi-ileri" type="button" data-tr-title="Bir yıl ileri" data-en-title="One year forward" data-pt-title="Um ano à frente" title="Bir yıl ileri" aria-label="Bir yıl ileri">
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M9 6 L15 12 L9 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span id="seyahat-atlasi-slider-etiket">1240</span>
+      </div>
+    </section>
+
+    <section class="graph-wrap" id="yolculuk-wrap" hidden>
+      <svg id="yolculuk-graph" role="group" aria-label="Yolculuk"
+           data-tr-aria-label="Yolculuk" data-en-aria-label="The Journey" data-pt-aria-label="A Jornada"></svg>
+      <div class="view-status" id="yolculuk-wrap-status" hidden>
+        <div class="view-status__spinner" aria-hidden="true"></div>
+        <p class="view-status__text"></p>
+        <button class="view-status__retry" type="button" hidden></button>
+      </div>
+      <div class="node-hover-tip" id="yolculuk-tooltip" hidden></div>
+      <div class="yolculuk-toggle" role="group" aria-label="İzdüşüm seçimi" data-tr-aria-label="İzdüşüm seçimi" data-en-aria-label="Projection selector" data-pt-aria-label="Seletor de projeção">
+        <button id="yolculuk-toggle-atlas" class="yolculuk-toggle__btn" type="button" aria-pressed="true" data-tr-title="Coğrafi konum" data-en-title="Geographic position" data-pt-title="Posição geográfica" title="Coğrafi konum">
+          <span data-tr="Atlas" data-en="Atlas" data-pt="Atlas">Atlas</span>
+        </button>
+        <button id="yolculuk-toggle-zaman" class="yolculuk-toggle__btn" type="button" aria-pressed="false" data-tr-title="Yıl ekseninde" data-en-title="On the year axis" data-pt-title="No eixo temporal" title="Yıl ekseninde">
+          <span data-tr="Zaman" data-en="Time" data-pt="Tempo">Zaman</span>
+        </button>
+      </div>
+      <button class="graph-recenter" id="yolculuk-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+      </button>
+      <button class="graph-hint" type="button" data-tr-title="Duraklar coğrafi konumlarında; her durağın yakınındaki küçük noktalar o durakta yazılan eserler. Bir durağa ya da esere tıklayın; tekerlekle zumlayın, sürükleyerek gezinin." data-en-title="Stops are shown at their geographic positions; the small dots near each stop are works written there. Click a stop or a work; scroll to zoom, drag to pan." data-pt-title="As paragens são mostradas nas suas posições geográficas; os pequenos pontos junto a cada paragem são obras escritas ali. Clique numa paragem ou obra; role para ampliar, arraste para navegar." title="Duraklar coğrafi konumlarında; her durağın yakınındaki küçük noktalar o durakta yazılan eserler." aria-label="Duraklar coğrafi konumlarında; her durağın yakınındaki küçük noktalar o durakta yazılan eserler.">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
+      </button>
+    </section>
+
     <section class="graph-wrap" id="sorular-wrap" hidden>
       <svg id="sorular-graph" role="group" aria-label="Sorular haritası"
            data-tr-aria-label="Sorular haritası" data-en-aria-label="Map of questions" data-pt-aria-label="Mapa das perguntas"></svg>
@@ -409,11 +679,18 @@
       <button class="graph-recenter" id="sorular-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
       </button>
-      <button class="graph-hint" type="button" data-tr-title="Bir düğümü sürükleyerek yerini değiştirin, boş alanı sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın" data-en-title="Drag a node to reposition it, drag empty space to pan, Ctrl (⌘) + scroll to zoom, click a node" data-pt-title="Arraste um nó para reposicioná-lo, arraste um espaço vazio para navegar, Ctrl (⌘) + rolagem para ampliar, clique num nó" title="Bir düğümü sürükleyerek yerini değiştirin, boş alanı sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın" aria-label="Bir düğümü sürükleyerek yerini değiştirin, boş alanı sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın, bir düğüme tıklayın">
+      <button class="graph-hint" type="button" data-tr-title="Bir düğümü sürükleyerek yerini değiştirin, boş alanı sürükleyerek gezinin, tekerlek ile yakınlaştırın, bir düğüme tıklayın" data-en-title="Drag a node to reposition it, drag empty space to pan, scroll to zoom, click a node" data-pt-title="Arraste um nó para reposicioná-lo, arraste um espaço vazio para navegar, role para ampliar, clique num nó" title="Bir düğümü sürükleyerek yerini değiştirin, boş alanı sürükleyerek gezinin, tekerlek ile yakınlaştırın, bir düğüme tıklayın" aria-label="Bir düğümü sürükleyerek yerini değiştirin, boş alanı sürükleyerek gezinin, tekerlek ile yakınlaştırın, bir düğüme tıklayın">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
       </button>
       <button class="graph-3d-toggle" id="sorular-3d-toggle" type="button" data-tr-title="Derinliğe eğ — en temel soru önde, tek tek sorular arkada" data-en-title="Tilt into depth — the most basic question in front, single questions behind" data-pt-title="Incline para a profundidade — a pergunta mais básica à frente, as perguntas isoladas atrás" title="Derinliğe eğ — en temel soru önde, tek tek sorular arkada" aria-label="Derinliğe eğ — en temel soru önde, tek tek sorular arkada">
         <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><ellipse cx="12" cy="6.5" rx="7.5" ry="3" fill="none" stroke="currentColor" stroke-width="1.4"/><ellipse cx="12" cy="12" rx="7.5" ry="3" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.72"/><ellipse cx="12" cy="17.5" rx="7.5" ry="3" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.45"/></svg>
+      </button>
+      <!-- Soru Nehri (2026-08-09): sorular.json'un `relations` alanındaki 38
+           elle kurulmuş soru→soru bağını, kategori-sarmalı yerine akan bir
+           nehir olarak gösteren ikinci görünüm modu. Kategori-eğim düğmesiyle
+           aynı .graph-3d-toggle sınıfını paylaşıyor (aynı buton dili). -->
+      <button class="graph-3d-toggle" id="sorular-nehir-toggle" type="button" data-tr-title="Soru Nehri — sorular arası bağları akan bir nehir olarak göster" data-en-title="Question River — show the links between questions as a flowing river" data-pt-title="Rio de Perguntas — mostrar as ligações entre perguntas como um rio que flui" title="Soru Nehri — sorular arası bağları akan bir nehir olarak göster" aria-label="Soru Nehri — sorular arası bağları akan bir nehir olarak göster">
+        <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M3 8c2 0 2-2.5 4-2.5S9 8 11 8s2-2.5 4-2.5S17 8 19 8s2-2.5 2-2.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M3 14.5c2 0 2-2.5 4-2.5s2 2.5 4 2.5 2-2.5 4-2.5 2 2.5 4 2.5 2-2.5 2-2.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/></svg>
       </button>
       <button class="graph-back" id="sorular-back" type="button" hidden data-tr-title="Bütün sorulara dön" data-en-title="Back to all questions" data-pt-title="Voltar a todas as perguntas" title="Bütün sorulara dön" aria-label="Bütün sorulara dön">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M14 6 A7 7 0 1 1 7.5 10.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7.5 6.5 L7.5 10.5 L11.5 10.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -451,11 +728,23 @@
       </div>
       <div class="tasiyicilar-shell">
         <div class="tasiyicilar-left">
-          <div class="tasiyici-intro" id="tasiyicilar-intro"></div>
           <div class="tasiyici-scene" id="tasiyicilar-scene"></div>
+          <div class="tasiyici-intro" id="tasiyicilar-intro"></div>
           <div class="tasiyici-note" id="tasiyicilar-note" aria-live="polite"></div>
         </div>
         <div class="tasiyici-foot" id="tasiyicilar-foot"></div>
+      </div>
+      <!-- 2026-08-10 denetim (G23): dolu/boş düğüm ve iki sarmalın anlamı yalnız metinde geçiyordu. -->
+      <div class="legend" id="tasiyicilar-legend">
+        <button class="legend__toggle" type="button" aria-expanded="true">
+          <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
+          <span class="legend__toggle-icon" aria-hidden="true">▾</span>
+        </button>
+        <div class="legend__body" tabindex="0">
+          <div class="legend__item"><span class="legend__dot legend__dot--tas-dolu"></span><span data-tr="Dolu altın: kalbin taşıyıcısı ya da Arş'ın peygamber-katı" data-en="Filled gold: bearer of the Heart, or the prophet-tier of the Throne" data-pt="Ouro cheio: portador do Coração, ou o nível-profético do Trono">Dolu altın: kalp taşıyıcısı / peygamber-katı</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--tas-bos"></span><span data-tr="İçi boş halka: Arş'ın karşılıklı melek-katı" data-en="Hollow ring: the mirror angel-tier of the Throne" data-pt="Anel oco: o nível-angélico espelhado do Trono">İçi boş halka: melek-katı</span></div>
+          <p class="legend__note" data-tr="Dıştaki geniş sarmal kalbi taşıyanları, içteki dar sarmal Arş'ı taşıyanları çiziyor — Fütûhât'ın iki bölümü yan yana." data-en="The outer wide spiral traces the bearers of the Heart, the inner narrow spiral traces the bearers of the Throne — two chapters of the Futuhat placed side by side." data-pt="A espiral externa e larga traça os portadores do Coração; a interna e estreita traça os portadores do Trono — dois capítulos do Futuhat lado a lado.">Dıştaki geniş sarmal kalbi taşıyanları, içteki dar sarmal Arş'ı taşıyanları çiziyor — Fütûhât'ın iki bölümü yan yana.</p>
+        </div>
       </div>
     </section>
 
@@ -546,6 +835,9 @@
         <button class="hakkinda-subtab" id="hakkinda-subtab-vahdet"
                 type="button" role="tab" aria-selected="false" aria-controls="vahdet-panel"
                 data-tr="Eleştiriler" data-en="Criticisms" data-pt="Críticas">Eleştiriler</button>
+        <button class="hakkinda-subtab" id="hakkinda-subtab-okuma-yollari"
+                type="button" role="tab" aria-selected="false" aria-controls="okuma-yollari-panel"
+                data-tr="Okuma Yolları" data-en="Reading Paths" data-pt="Caminhos de Leitura">Okuma Yolları</button>
       </div>
       <div id="hakkinda-content-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-hakkinda">
       <div class="hakkinda-content">
@@ -563,6 +855,12 @@
           <h3 data-tr="Fütûhât-ı Mekkiyye ve Füsûsu'l-Hikem Okuması" data-en="Reading al-Futuhat al-Makkiyya and Fusus al-Hikam" data-pt="Leitura do al-Futuhat al-Makkiyya e do Fusus al-Hikam">Fütûhât-ı Mekkiyye ve Füsûsu'l-Hikem Okuması</h3>
           <p data-tr="Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalışıyoruz — bir özet değil, tafsilatlı anlattığı konuların çizimlerle görünür kılınmaya çalışıldığı, süregiden bir okuma. Füsûsu'l-Hikem'i de (Ahmed Avni Konuk'un şerhiyle) aynı yolla, fass fass okuyoruz; bu okumaya Fütûhât'ın ortasında başladık, şimdi Fütûhât'a dönüp onu bitirmeye çalışıyoruz, sonra Füsûs'a devam edeceğiz. İki okuma da yarım; hangisinde nerede olduğumuz ilgili bölümün kendi sayfasında yazıyor." data-en="We are trying to read al-Futuhat al-Makkiyya volume by volume, part by part, following Dost's own order of exposition — not a summary, but an ongoing reading in which the topics he treats in detail are made visible through diagrams. We are reading Fusus al-Hikam the same way, bezel by bezel, through Ahmed Avni Konuk's commentary; we began that reading partway through the Futuhat, and have now gone back to finish the Futuhat before continuing with the Fusus. Both readings are unfinished; where we stand in each is stated on that section's own page." data-pt="Estamos a tentar ler o al-Futuhat al-Makkiyya volume por volume, parte por parte, seguindo a própria ordem de exposição de Dost — não um resumo, mas uma leitura em curso na qual os temas que ele trata em detalhe são tornados visíveis através de diagramas. Lemos o Fusus al-Hikam do mesmo modo, engaste por engaste, através do comentário de Ahmed Avni Konuk; começámos essa leitura a meio das Futuhat e voltámos agora às Futuhat para as terminar, antes de prosseguir com o Fusus. Ambas as leituras estão por acabar; onde estamos em cada uma é indicado na página da respetiva secção.">Fütûhât-ı Mekkiyye'yi cilt ve kısım sırasıyla, Dost'un kendi anlatım sırasını izleyerek okumaya çalışıyoruz — bir özet değil, tafsilatlı anlattığı konuların çizimlerle görünür kılınmaya çalışıldığı, süregiden bir okuma. Füsûsu'l-Hikem'i de (Ahmed Avni Konuk'un şerhiyle) aynı yolla, fass fass okuyoruz; bu okumaya Fütûhât'ın ortasında başladık, şimdi Fütûhât'a dönüp onu bitirmeye çalışıyoruz, sonra Füsûs'a devam edeceğiz. İki okuma da yarım; hangisinde nerede olduğumuz ilgili bölümün kendi sayfasında yazıyor.</p>
           <p class="hakkinda-niyet" data-tr="Dost'u anlamaya çalışıyoruz. Anlamakta zorlanıyoruz. Belki hiç anlayamayacağız — tâ ki ölüm gelene kadar. O güne kadar, kalbimize geldiği gibi yazıyoruz. Yanlış olan ne varsa bizdedir: anlayışımızda, kavrayışımızda. Rabbim, ilmimi artır." data-en="We are trying to understand Dost. We find it hard. Perhaps we never will — not until death comes. Until that day, we write as it comes to our heart. Whatever is wrong is in us: in our understanding, in our grasp. My Lord, increase me in knowledge." data-pt="Estamos a tentar compreender Dost. Custa-nos. Talvez nunca cheguemos a compreendê-lo — não até que a morte venha. Até esse dia, escrevemos como nos vem ao coração. O que houver de errado está em nós: no nosso entendimento, na nossa apreensão. Senhor meu, aumenta-me em conhecimento.">Dost'u anlamaya çalışıyoruz. Anlamakta zorlanıyoruz. Belki hiç anlayamayacağız — tâ ki ölüm gelene kadar. O güne kadar, kalbimize geldiği gibi yazıyoruz. Yanlış olan ne varsa bizdedir: anlayışımızda, kavrayışımızda. Rabbim, ilmimi artır.</p>
+        </div>
+        <div class="hakkinda-content__section">
+          <h3 data-tr="Bu Sitenin Zemininde Kim Var" data-en="Who Stands Beneath This Site" data-pt="Quem Sustenta Este Site">Bu Sitenin Zemininde Kim Var</h3>
+          <p data-tr="Sitenin şu an ana omurgasını taşıyan 'Ontoloji' görünümünün dörtlü yapısı (vahdet-i vücûd, sudur nazariyesi, insan-ı kâmil, tasavvufî bilgi) yeni bir şey değil — A. E. Affifi'nin 1939 Cambridge doktora tezi bu dört temayı bir arada, ilk kez, sistematik olarak kurdu. Bizim yaptığımız — 90 yıl sonra — o çerçeveyi ayrı ayrı okuyup yeniden görselleştirmeye çalışmak. Nicholson (1911, Tercümânü'l-Eşvâk çevirisi) → Affifi (1939, dörtlü ana tema) → Chittick (1989, Vahdet-i Vücûd tanımı) hattı, İbn Arabî'nin bize günümüzde ulaşan modern akademik zeminidir. Kaynakçamızın bu hattaki halkaları docs/kaynaklar/'da tek tek işlenmiştir."
+             data-en="The four-fold spine of the 'Ontology' view that carries this site today (unity of being, emanationism, the perfect human, mystical knowledge) is not a new frame — A. E. Affifi's 1939 Cambridge doctorate laid out these four themes together, systematically, for the first time. What we are doing — ninety years later — is reading that frame one thread at a time and trying to render it visible again. The lineage Nicholson (1911, translation of Tarjuman al-Ashwaq) → Affifi (1939, the four-fold main theme) → Chittick (1989, definition of the Unity of Being) is the modern academic ground on which Ibn Arabi reaches us today. Each link along this lineage is documented one by one in our docs/kaynaklar/."
+             data-pt="A espinha quádrupla da vista 'Ontologia' que sustenta este site hoje (unidade do ser, emanacionismo, o Ser Humano perfeito, conhecimento místico) não é um quadro novo — o doutoramento de A. E. Affifi em Cambridge, em 1939, apresentou estes quatro temas em conjunto, sistematicamente, pela primeira vez. O que estamos a fazer — noventa anos depois — é ler esse quadro fio a fio e tentar torná-lo visível de novo. A linhagem Nicholson (1911, tradução de Tarjuman al-Ashwaq) → Affifi (1939, os quatro temas principais) → Chittick (1989, definição da Unidade do Ser) é o solo académico moderno sobre o qual Ibn Arabi nos chega hoje. Cada elo desta linhagem está documentado um a um no nosso docs/kaynaklar/.">Sitenin şu an ana omurgasını taşıyan 'Ontoloji' görünümünün dörtlü yapısı (vahdet-i vücûd, sudur nazariyesi, insan-ı kâmil, tasavvufî bilgi) yeni bir şey değil — A. E. Affifi'nin 1939 Cambridge doktora tezi bu dört temayı bir arada, ilk kez, sistematik olarak kurdu. Bizim yaptığımız — 90 yıl sonra — o çerçeveyi ayrı ayrı okuyup yeniden görselleştirmeye çalışmak.</p>
         </div>
         <div class="hakkinda-content__section">
           <h3 data-tr="Bir Şiirinden" data-en="From One of His Poems" data-pt="De Um de Seus Poemas">Bir Şiirinden</h3>
@@ -719,6 +1017,10 @@ mesmo antes que o assombro exista."></blockquote>
              data-tr="İlk iki sefer bir hedefe varır ve orada yükünü indirir: biri merkezden çıkıp bir yerde durur, öbürünün hedefi merkezin ta kendisidir. Üçüncüsü — O'nda süren sefer — merkezden açılır ama hiçbir yerde kapanmaz; çizimde ucu bilerek kesik bırakıldı."
              data-en="The first two journeys reach a destination and set down their loads there: one leaves the centre and stops somewhere, the other's destination is the centre itself. The third — the journey in Him — opens out from the centre but closes nowhere; in the drawing its end is deliberately left unfinished."
              data-pt="As duas primeiras viagens alcançam um destino e ali descarregam sua bagagem: uma parte do centro e para em algum lugar, o destino da outra é o próprio centro. A terceira — a viagem nEle — abre-se a partir do centro mas não se fecha em lugar nenhum; no desenho seu fim foi deixado deliberadamente inacabado.">İlk iki sefer bir hedefe varır ve orada yükünü indirir: biri merkezden çıkıp bir yerde durur, öbürünün hedefi merkezin ta kendisidir. Üçüncüsü — O'nda süren sefer — merkezden açılır ama hiçbir yerde kapanmaz; çizimde ucu bilerek kesik bırakıldı.</p>
+          <p class="hakkinda-poem__source"
+             data-tr="— Sitede tercih ettiğimiz dairesel form yalnız bizim bir tercihimiz değil: Dost, Fütûhât'ın Cilt XII, 360. Bölümünde nokta ve çevre ilişkisini bizzat bir şekille çizip göstermiş, &quot;nokta Haktır… çıkan çizgiler ve mümkünler Allah'tan başlar ve yine O'na döner&quot; diyerek (bkz. <a href=&quot;futuhat/c12k147&quot;>Cilt XII, 147. Kısım</a>). Biz bu şemayı burada yeniden çizmiyoruz, yalnız sitenin dairesel diline bir kaynak olarak işaret ediyoruz."
+             data-en="— The circular form we favour on this site is not only our own preference: in Volume XII, Chapter 360 of the Futuhat, Dost draws the relation between the point and the circumference with his own hand, saying &quot;the point is the Real… the lines and possibles that emerge begin from God and return to Him&quot; (see <a href=&quot;futuhat/c12k147&quot;>Volume XII, Part 147</a>). We are not redrawing that diagram here, only pointing to it as a source for the site's circular language."
+             data-pt="— A forma circular que privilegiamos neste site não é apenas nossa preferência: no Volume XII, Capítulo 360 do Futuhat, o próprio Dost desenha a relação entre o ponto e a circunferência, dizendo &quot;o ponto é o Real… as linhas e possíveis que emergem começam de Deus e a Ele retornam&quot; (ver <a href=&quot;futuhat/c12k147&quot;>Volume XII, Parte 147</a>). Não estamos redesenhando esse diagrama aqui, apenas apontando-o como fonte da linguagem circular do site.">— Sitede tercih ettiğimiz dairesel form yalnız bizim bir tercihimiz değil: Dost, Fütûhât'ın Cilt XII, 360. Bölümünde nokta ve çevre ilişkisini bizzat bir şekille çizip göstermiş, "nokta Haktır… çıkan çizgiler ve mümkünler Allah'tan başlar ve yine O'na döner" diyerek (bkz. <a href="futuhat/c12k147">Cilt XII, 147. Kısım</a>). Biz bu şemayı burada yeniden çizmiyoruz, yalnız sitenin dairesel diline bir kaynak olarak işaret ediyoruz.</p>
           <p class="hakkinda-poem__source"
              data-tr="— Kitâbü'l-İsfâr an Netâici'l-Esfâr. Bu risale elimizdeki külliyatta yok; Dost'un kendisi Fütûhât'ın üç ayrı yerinde sefer konusunu bu risaleye havale ediyor (93. kısım, 190. bölüm ve XI. cilt). Yani metni doğrudan doğrulayamadık. Buna karşılık aynı fikri, elimizde olan ve doğrulayabildiğimiz bir yerde de buluyoruz: Fütûhât'ın 189. bölümünde Dost, aynı üç edatı — O'ndan / O'na / O'nda — birleştirerek yedi ayrı sülûk tarzı sayıyor; 190. bölümün açılış şiirinde ise &quot;O'nda yolculuk eder, O'na değil… kul hayrete düşmüştür&quot; diyor ve bölümü, yolculuğun hiç bitmediğini söyleyerek kapatıyor. Not: İsmail Hakkı Bursevî'nin Lübbü'l-Lübb'ünde de bir &quot;üç sefer&quot; faslı var, ama tasnifi başkadır — karıştırmamak gerekiyor."
              data-en="— Kitab al-Isfar 'an Nata'ij al-Asfar. This treatise is not in our corpus; Dost himself refers the question of journeying to it in three separate places in the Futuhat (part 93, chapter 190, and volume XI). So we could not verify the text directly. We do, however, find the same idea somewhere we do have and could verify: in chapter 189 of the Futuhat, Dost combines the same three prepositions — from Him / toward Him / in Him — into seven distinct modes of wayfaring; and the opening poem of chapter 190 says &quot;he journeys in Him, not toward Him… the servant has fallen into bewilderment,&quot; closing the chapter by saying the journey never ends. Note: Ismail Hakki Bursevi's Lubb al-Lubb also has a section on &quot;three journeys,&quot; but its classification is a different one — the two should not be confused."
@@ -1015,6 +1317,137 @@ mesmo antes que o assombro exista."></blockquote>
         </div>
         <div id="vahdet-content"></div>
       </div>
+      <div id="okuma-yollari-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-okuma-yollari" hidden>
+        <div class="view-status" id="okuma-yollari-panel-status" hidden>
+          <div class="view-status__spinner" aria-hidden="true"></div>
+          <p class="view-status__text"></p>
+          <button class="view-status__retry" type="button" hidden></button>
+        </div>
+        <div id="okuma-yollari-content"></div>
+      </div>
+      <button class="scroll-top-btn" id="hakkinda-scroll-top" type="button" hidden
+        data-tr-title="Başa dön" data-en-title="Back to top" data-pt-title="Voltar ao topo"
+        title="Başa dön" aria-label="Başa dön">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M8 13.2 12 9l4 4.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </section>
+
+    <!-- Sahneler galerisi (2026-08-05). Bağımsız HTML "sahne"lerin (D2/D12-
+         D15/D19 vb.) her biri yalnız TEK bir bağlamsal noktadan linkleniyordu
+         (bkz. scripts/varlik-denetimi.py'nin "yetim sahne" denetimi -- hepsi
+         teknik olarak linkli ama keşfedilebilirlik neredeyse sıfırdı: o tek
+         kavram/terim sayfasına denk gelmeyen okuyucu hiçbirini bulamıyordu).
+         Bu galeri onları TEK yerde topluyor; hiçbiri kendi asıl bağlamsal
+         linkinden kaldırılmadı, bu yalnız ikinci bir keşif yolu.
+         perde-zinciri.html + ayna-metaforu.html tek kart: ikisi zaten
+         meditasyon.html içinde birlikte sunuluyor (bkz. assets/kavram.js
+         perdeSahneHtml), ayrı kartlar yanıltıcı olurdu.
+         href'ler burada YAZILMIYOR -- data-scene-href'ten window.__dostRouteBase
+         ile kuruluyor (assets/ontology.js), çünkü sitede bu tür sahne linkleri
+         için tek test edilmiş yol bu (bkz. kavram.js'teki ${base}/...html
+         deseni); ham göreli href burada denenmedi. -->
+    <section class="sahneler-wrap" id="sahneler-wrap" hidden>
+      <div class="sahneler-intro">
+        <h2 data-tr="Sahneler" data-en="Scenes" data-pt="Cenas">Sahneler</h2>
+        <p data-tr="Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin hepsi burada -- her biri sitenin başka bir yerinde de bağlamıyla birlikte duruyor, bu yalnız ikinci bir yol."
+           data-en="Every one of the site's standalone, drag-or-scroll scenes, gathered here -- each also lives elsewhere on the site with its own context; this is just a second way to find them."
+           data-pt="Todas as cenas independentes do site, exploráveis arrastando ou deslizando, reunidas aqui -- cada uma também vive noutro lugar do site com o seu próprio contexto; esta é apenas uma segunda forma de as encontrar.">Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin hepsi burada -- her biri sitenin başka bir yerinde de bağlamıyla birlikte duruyor, bu yalnız ikinci bir yol.</p>
+      </div>
+      <div class="sahneler-grid">
+        <a class="sahneler-kart" data-scene-href="bir-nefesin-ici.html">
+          <span class="sahneler-kart__title" data-tr="Bir Nefesin İçi" data-en="Inside a Breath" data-pt="Dentro de um Sopro">Bir Nefesin İçi</span>
+          <p class="sahneler-kart__ozet" data-tr="Merdiven değil, halka: nefes harfe, harf kelimeye, kelime bir öze, öz tecellîye, tecellî varlığa, varlık insana, insan kalbe -- ve kalp yeniden nefese açılır. Sekiz durak, tek sürekli yakınlaşma."
+             data-en="A ring, not a ladder: breath into letter, letter into word, word into an archetype, archetype into self-disclosure, disclosure into existence, existence into the human, the human into the heart -- and the heart back into breath. Eight stops, one continuous zoom."
+             data-pt="Um anel, não uma escada: sopro em letra, letra em palavra, palavra num arquétipo, arquétipo em autorrevelação, revelação em existência, existência no humano, o humano no coração -- e o coração de volta em sopro. Oito paragens, um único mergulho contínuo.">Merdiven değil, halka: nefes harfe, harf kelimeye, kelime bir öze, öz tecellîye, tecellî varlığa, varlık insana, insan kalbe -- ve kalp yeniden nefese açılır.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="halk-i-cedid.html">
+          <span class="sahneler-kart__title" data-tr="Halk-ı Cedîd" data-en="Perpetual Renewal" data-pt="Renovação Perpétua">Halk-ı Cedîd</span>
+          <p class="sahneler-kart__ozet" data-tr="Âlem bir kez yaratılıp bırakılmış değil -- her nefeste yeniden yaratılıyor. Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor."
+             data-en="The world is not something created once and left -- it is recreated at every breath. We do not notice, because two successive creations resemble each other so closely."
+             data-pt="O mundo não é algo criado uma vez e deixado -- é recriado a cada alento. Não damos por isso, porque duas criações sucessivas se assemelham muito.">Âlem bir kez yaratılıp bırakılmış değil -- her nefeste yeniden yaratılıyor. Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="nefes-i-rahmani.html">
+          <span class="sahneler-kart__title" data-tr="Nefes-i Rahmânî" data-en="The Breath of the All-Merciful" data-pt="O Sopro do Misericordioso">Nefes-i Rahmânî</span>
+          <p class="sahneler-kart__ozet" data-tr="İlahî isimler göğüste birikir, dayanılmaz sınırda bir nefesle dışarı fışkırır -- ve o tek nefes, harflere, harfler kelimeye ayrılır. Sürükleyerek geri aldığında, hepsi yeniden tek nefese döner."
+             data-en="The divine names accumulate in the breast under pressure, then burst out in a single breath at the unbearable limit -- and that one breath separates into letters, the letters into a word. Drag it back, and it all returns to a single breath."
+             data-pt="Os nomes divinos se acumulam no peito sob pressão, e irrompem num único sopro no limite insuportável -- e esse sopro se separa em letras, as letras numa palavra. Arraste de volta, e tudo retorna a um único sopro.">İlahî isimler göğüste birikir, dayanılmaz sınırda bir nefesle dışarı fışkırır -- ve o tek nefes, harflere, harfler kelimeye ayrılır.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="berzah.html">
+          <span class="sahneler-kart__title" data-tr="Berzah" data-en="The Barzakh" data-pt="O Barzakh">Berzah</span>
+          <p class="sahneler-kart__ozet" data-tr="Dost, dünya ile âhiret arasına üçüncü bir mertebe koyuyor: berzah. Dünya bir uykudur; berzah ondan uyanmış olma hâli; âhiret ise hiç uyku içermeyen uyanıklık. Sürükleyerek durduğun yeri değiştir."
+             data-en="Dost places a third degree between this world and the afterlife: the barzakh. This world is a sleep; the barzakh is being awake from it; the afterlife is a wakefulness containing no sleep at all. Drag to change where you stand."
+             data-pt="Dost coloca um terceiro grau entre este mundo e a vida futura: o barzakh. Este mundo é um sono; o barzakh é estar desperto dele; a vida futura é uma vigília que não contém sono algum. Arraste para mudar onde você está.">Dost, dünya ile âhiret arasına üçüncü bir mertebe koyuyor: berzah.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="uc-kap.html">
+          <span class="sahneler-kart__title" data-tr="Tek Tecellî, Üç Kap" data-en="One Disclosure, Three Vessels" data-pt="Uma Revelação, Três Vasos">Tek Tecellî, Üç Kap</span>
+          <p class="sahneler-kart__ozet" data-tr="A'râf 7:143'ün üç tanığı: dağ paramparça olur, Musa bayılıp düşer, üçüncü kap kırılmadan dolar. Işık aynı — değişen, kabın kapasitesi. Aynı âyet üç ayrı fasılda; üç uç değil, üç tanık diye okuyoruz."
+             data-en="Three witnesses of Al-A'rāf 7:143: the mountain is shattered, Moses falls in a swoon, the third vessel fills without breaking. The light is the same — what changes is the vessel's capacity. Same verse across three sections; we read them as three witnesses, not three ends."
+             data-pt="Três testemunhas de Al-A'rāf 7:143: a montanha é despedaçada, Moisés desmaia, o terceiro vaso enche-se sem quebrar. A luz é a mesma — o que muda é a capacidade do vaso. O mesmo versículo em três secções; lemo-las como três testemunhas, não três extremidades.">A'râf 7:143'ün üç tanığı: dağ paramparça olur, Musa bayılıp düşer, üçüncü kap kırılmadan dolar.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="kalbe-sigan.html">
+          <span class="sahneler-kart__title" data-tr="Sığmayanın Sığdığı" data-en="What Cannot Be Contained, Contained" data-pt="O que Não Cabe, Cabendo">Sığmayanın Sığdığı</span>
+          <p class="sahneler-kart__ozet" data-tr="Gök ve yer alamadı; küçücük bir kap aldı. Kudsî hadis dört ciltte tekrar tekrar geçiyor; senedi tartışmalı ama Dost için merkezî. Sığmak hacim işi değil — dışın diner, içi eşit parlak kalır."
+             data-en="Heaven and earth did not contain It; a small vessel did. The divine hadith recurs across four volumes; its chain is disputed but central for Dost. Containment is not a matter of volume — the outside quiets, the inside stays as bright."
+             data-pt="Nem o céu nem a terra O contiveram; um pequeno vaso conteve. O hadith divino repete-se em quatro volumes; a sua cadeia é disputada mas central para o Dost. Conter não é uma questão de volume — o exterior aquieta-se, o interior permanece igualmente brilhante.">Gök ve yer alamadı; küçücük bir kap aldı. Sığmak hacim işi değil.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="kandil.html">
+          <span class="sahneler-kart__title" data-tr="Kandil — Sınırlanınca Görünen" data-en="The Lamp — What Becomes Visible When Bounded" data-pt="A Lâmpada — O que Se Torna Visível quando Limitado">Kandil — Sınırlanınca Görünen</span>
+          <p class="sahneler-kart__ozet" data-tr="Nûr âyeti: her yer eşit ve okunamaz aydınlıktayken bir kandil belirir, ışık içine girer; sahne ilk kez okunur. Ama kandilin ışığı ile gökleri aydınlatan ışık bir olamaz — aydınlatılmayan pay görünür kalır. Kandil çekildiğinde ışık da onunla çekilir."
+             data-en="The Light verse: when everywhere is equally, unreadably bright, a lamp appears and the light enters it; the scene becomes readable for the first time. Yet the lamp's light and the light that illumines the heavens cannot be one — the unlit share stays visible. When the lamp withdraws, the light withdraws with it."
+             data-pt="O versículo da Luz: quando tudo é igualmente, ilegívelmente brilhante, surge uma lâmpada e a luz entra nela; a cena torna-se legível pela primeira vez. Mas a luz da lâmpada e a luz que ilumina os céus não podem ser uma — a parte não iluminada permanece visível. Quando a lâmpada se retira, a luz retira-se com ela.">Nûr âyeti: sınırsız nûr kandile girer, sahne ilk kez okunur; kandil çekilince ışık da.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="hayret.html">
+          <span class="sahneler-kart__title" data-tr="Karanlığı Görmek" data-en="Seeing the Darkness" data-pt="Ver a Escuridão">Karanlığı Görmek</span>
+          <p class="sahneler-kart__ozet" data-tr="Bol ışıkta göz her şeyi gördüğünü sanır; ışık kısıldıkça sahne netleşir. Bab 378'in cümlesiyle: karanlık bu menzilden öğrenilir — o da hayrettir. Hayreti bir körlük değil, bir durak olarak okumaya çalışıyoruz."
+             data-en="In plenty of light the eye supposes it sees everything; as the light dims, the scene sharpens. In the words of chapter 378: darkness is learned from this waypoint — and that is bewilderment. We are trying to read bewilderment not as blindness but as a resting."
+             data-pt="Em plena luz o olho supõe que vê tudo; quando a luz esmorece, a cena aguça-se. Nas palavras do capítulo 378: a escuridão aprende-se nesta estação — e isso é o espanto. Tentamos ler o espanto não como cegueira, mas como um repouso.">Bol ışıkta göz her şeyi gördüğünü sanır; ışık kısıldıkça sahne netleşir.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="ilah-i-mutekad.html">
+          <span class="sahneler-kart__title" data-tr="İnandığın Tanrı" data-en="The God You Believe In" data-pt="O Deus em Que Você Crê">İnandığın Tanrı</span>
+          <p class="sahneler-kart__ozet" data-tr="Dost'a göre herkes kendi inancındaki Tanrı'ya inanır ve O'nu öyle görür. Aşağıdaki beş soru bir sınav değil; cevapların bir sûret çiziyor. Sonunda ne olduğuna bak."
+             data-en="For Dost, everyone believes in the God of their own belief, and sees Him accordingly. The five questions below are not a test; your answers draw a form. Look at what happens at the end."
+             data-pt="Para Dost, cada um crê no Deus da sua própria crença e O vê conforme ela. As cinco perguntas abaixo não são um teste; suas respostas desenham uma forma. Veja o que acontece no fim.">Dost'a göre herkes kendi inancındaki Tanrı'ya inanır ve O'nu öyle görür.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="vahdet-i-vucud-omru.html">
+          <span class="sahneler-kart__title" data-tr="Vahdet-i Vücûd'un Ömrü" data-en="The Life of Waḥdat al-Wujūd" data-pt="A Vida de Waḥdat al-Wujūd">Vahdet-i Vücûd'un Ömrü</span>
+          <p class="sahneler-kart__ozet" data-tr="Şeyh'in hiç kullanmadığı bir terim, ona nasıl yapıştı?"
+             data-en="How did a term the Shaykh never used come to stick to him?"
+             data-pt="Como um termo que o Xeique nunca usou passou a colar-se a ele?">Şeyh'in hiç kullanmadığı bir terim, ona nasıl yapıştı?</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="tercuman-esvak.html">
+          <span class="sahneler-kart__title" data-tr="Kendi Şiirini Savunmak" data-en="Defending His Own Poem" data-pt="Defender o Próprio Poema">Kendi Şiirini Savunmak</span>
+          <p class="sahneler-kart__ozet" data-tr="Dost Mekke'de Nizâm adlı genç kadın için bir aşk şiirleri divanı yazdı. &quot;Bu ilahî değil, dünyevî aşk&quot; dendi. O da kendi şiirine kendi şerhini yazdı. Sürükleyerek iki okuma arasında gezin."
+             data-en="In Mecca, Dost wrote a collection of love poems for a young woman named Nizam. &quot;This is worldly love, not divine,&quot; it was said. So he wrote his own commentary on his own poem. Drag between the two readings."
+             data-pt="Em Meca, Dost escreveu uma coleção de poemas de amor para uma jovem chamada Nizam. &quot;Isto é amor mundano, não divino&quot;, disseram. Então ele escreveu o seu próprio comentário ao seu próprio poema. Arraste entre as duas leituras.">Dost Mekke'de Nizâm adlı genç kadın için bir aşk şiirleri divanı yazdı.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="iki-mertebe.html">
+          <span class="sahneler-kart__title" data-tr="Aynı Âyet, İki Mertebe" data-en="The Same Verse, Two Levels" data-pt="O Mesmo Versículo, Dois Graus">Aynı Âyet, İki Mertebe</span>
+          <p class="sahneler-kart__ozet" data-tr="Bir âyet, okuduğumuz bölümlerin birden fazlasında geçiyor -- ve her defasında farklı bir mertebeden okunuyor. Âyet hiç değişmiyor; değişen, ona nereden baktığımız."
+             data-en="One verse comes up in more than one of the chapters we've read -- and is read from a different level each time. The verse never changes; what changes is where we're looking from."
+             data-pt="Um versículo aparece em mais de um dos capítulos que lemos -- e é lido a partir de um grau diferente cada vez. O versículo nunca muda; o que muda é de onde olhamos para ele.">Bir âyet, okuduğumuz bölümlerin birden fazlasında geçiyor -- ve her defasında farklı bir mertebeden okunuyor.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="futuhat-371.html">
+          <span class="sahneler-kart__title" data-tr="371. Bab: Dokuz Harita" data-en="Chapter 371: Nine Maps" data-pt="Capítulo 371: Nove Mapas">371. Bab: Dokuz Harita</span>
+          <p class="sahneler-kart__ozet" data-tr="İbn Arabî'nin, Fütûhât'ın ikinci telifine kendi eliyle çizdiği dokuz harita -- &quot;tek bir kompozisyon&quot; olarak görülmesini istediği bir dizi."
+             data-en="Nine maps Ibn al-'Arabi drew with his own hand into the second recension of the Futuhat -- meant, in his words, to be seen as a single composition."
+             data-pt="Nove mapas que Ibn al-'Arabi desenhou com a própria mão na segunda recensão das Futuhat -- pensados, nas suas palavras, para serem vistos como uma única composição.">İbn Arabî'nin, Fütûhât'ın ikinci telifine kendi eliyle çizdiği dokuz harita.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="futuhat-dogusu.html">
+          <span class="sahneler-kart__title" data-tr="Tavafta Bir Karşılaşma" data-en="An Encounter During the Circling" data-pt="Um Encontro na Circum-ambulação">Tavafta Bir Karşılaşma</span>
+          <p class="sahneler-kart__ozet" data-tr="Dost, Kâbe'yi tavaf ederken biriyle karşılaşır ve kitabının oradan doğduğunu söyler. Yedi şavtı yürüt; karşılaşma dönerken açılsın."
+             data-en="While circling the Ka'ba, Dost meets someone -- and says his book was born there. Walk the seven circuits; let the encounter open as you go round."
+             data-pt="Ao circundar a Caaba, Dost encontra alguém -- e diz que o seu livro nasceu ali. Percorra as sete voltas; deixe o encontro abrir-se enquanto anda.">Dost, Kâbe'yi tavaf ederken biriyle karşılaşır ve kitabının oradan doğduğunu söyler.</p>
+        </a>
+        <a class="sahneler-kart" data-scene-href="meditasyon.html">
+          <span class="sahneler-kart__title" data-tr="Perde Zinciri &amp; Ayna Metaforu" data-en="Chain of Veils &amp; Mirror Metaphor" data-pt="Cadeia de Véus &amp; Metáfora do Espelho">Perde Zinciri &amp; Ayna Metaforu</span>
+          <p class="sahneler-kart__ozet" data-tr="İki ayrı sahne, perde ile aynayı sürüklenerek keşfedilebilen bir hâle getiriyor: perdenin zincirlenmesi, ve Hakk'ın kulun aynasında görünmesi."
+             data-en="Two separate scenes turn the veil and the mirror into something you can explore by dragging: the veil's chaining, and the Real appearing in the servant's mirror."
+             data-pt="Duas cenas separadas transformam o véu e o espelho em algo que se pode explorar arrastando: o encadeamento do véu, e o Real aparecendo no espelho do servo.">İki ayrı sahne, perde ile aynayı sürüklenerek keşfedilebilen bir hâle getiriyor.</p>
+        </a>
+      </div>
     </section>
 
     <aside class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detail-content" hidden>
@@ -1071,41 +1504,53 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/theme.js" defer integrity="sha384-NegwurN40eZr0Cwp0FE3fFU6d1ptUcUoeGVSaX+M74KAJDTn8QVt2hP+z+Pf29Kf"></script>
   <script src="assets/vendor/d3.min.js" defer integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i"></script>
   <script src="assets/i18n.js" defer integrity="sha384-bqPgHDorfYKkI+ErvFXEAGead8E3pDVsel6p3S9LkyxoY1QRWrMrTUpeiooWejvL"></script>
-  <script src="assets/nav-drawer.js" defer integrity="sha384-w6OCnJNlTrR9buON6EjEnkfdzV6RodSt/ciBYIUSfj9bqSK84efk3mmLbgweQaD2"></script>
+  <script src="assets/nav-drawer.js" defer integrity="sha384-zb4slVlgCynHQ3L4+XgvRT9Bk6gzEirnKFzeuCIi2AJ+v0zimfJiBYCiup0bpqa0"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
-  <script src="assets/graph-utils.js" defer integrity="sha384-aq3L/0GXCohq40GtPpQAm6QCAu7Z8GqP73/ATFArgRdAvzKII4I2YqcFSpzpza4m"></script>
+  <script src="assets/graph-utils.js" defer integrity="sha384-PPly27ke9VDNUqQA2i8LoBkCU7LzzGPVWeOSnHmaqQr+WjtQCZOm+gE0jF089KCG"></script>
   <script src="assets/helix.js" defer integrity="sha384-+aEXNIbO2q7MLWaAl0OFtAYEF/52nQoLUKK1W4mhHc0P2DJdQNRlebKKaIh4TSF7"></script>
   <script src="assets/graph-hint.js" defer integrity="sha384-3PjCLUJoOIi1t7duvbSRNLvzJiTCNzmtDW5/KrVH5D+G8MiuYcF/UfJyv19FG578"></script>
   <script src="assets/lightbox.js" defer integrity="sha384-txI/emOUsh4ASe/MSV1vzHmFXEUC7CTDF4tcxuVHmGyhnCmaU24buPLUrKF3BbG7"></script>
-  <script src="assets/search.js" defer integrity="sha384-DL+bLz2q6HyCUbJp8W0e9Gj8x+UzWMKT7dFEafHL3KK7z3bD2fZ8JVRTRiesswju"></script>
+  <!-- Kademeli açılım (G15). Küçük ve görünümden bağımsız olduğu için
+       tembel-yükleme listesine değil buraya konuyor: ontology.js sır
+       detayını çizerken window.__dostKademe hazır olmalı. -->
+  <script src="assets/kademe.js" defer integrity="sha384-qstXPmVEy5j/ElqnV6hvOfNFBOxlrwj8IhlrgYL2vtn8VzXUESTxdpuBfDN2uZM9"></script>
+  <script src="assets/search.js" defer integrity="sha384-Ql89AUNNDH4H6IE4nLWlE8c54GzdpM/ADcgRxt3RUhgtxX+k85aB2yrrVq9mqprp"></script>
   <script src="assets/graph-enhancement.js" defer integrity="sha384-hNAPzflfBDqRj8om8hmAV7ziYfsXLPIlZQ0YYH0Y6ZKqCKlLhX/giLkNaVyzoTn4"></script>
   <script src="assets/font-scale.js" defer integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
   <script src="assets/reading-mode.js" defer integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
   <script src="assets/honorifics.js" defer integrity="sha384-IwA4Fe1Lz4RekuTCKaeamOx5H2VogRQH66+kK99tc5SRCQL7ezB4EK8jbMw/uOhm"></script>
-  <script src="assets/esma.js" defer integrity="sha384-tgAeIHrpzMp+/cPu99c3WijcBdJ0UVU3vWSpAmqSJS7CcKKiTyZ5jaFHWmWgRCEn"></script>
-  <script src="assets/hal.js" defer integrity="sha384-KCNrMz7l1Fs3XNst6fsadqgXNO9OeL0pH/8O+nh6VosPW1+tZS7lG9ZBvV2xSEez"></script>
-  <script src="assets/terimler.js" defer integrity="sha384-8mm5Ec0kaoxO9tKF/rungOHafSXTdvVGlm+e6FdqyIY4Zkcr4E05a/gv5BOCVrVc"></script>
-  <script src="assets/cizimler.js" defer integrity="sha384-ApePyK753G9arEk136d72OKvIaTHT2ibCK1TIUD3zLgn8Nfzq4u+KtBmPZCusbRa"></script>
-  <script src="assets/sorular.js" defer integrity="sha384-kYv6CiXYIOzVLE/FPNujorZABCc8Gr0bdFyb20XDBXrYKYMsR/8SvkRZnR+yvlgR"></script>
-  <script src="assets/menziller.js" defer integrity="sha384-0it7lvwoTw0c6Z1LYrpMcvbg9z2bGK19Fb0KnjeWr1Wk9w9eqCpWXjA+trmxu3wB"></script>
+  <script src="assets/esma.js" defer integrity="sha384-FbO8E8p9w/0Pa3iPcRKn5CIJYfuhk3Xa8cOqdtTMrToORwQ7ZfPQW0lwnp+6MX9d"></script>
+  <script src="assets/hal.js" defer integrity="sha384-0J7uTx7utdHJysurWDXQVlYUeuEFrzKBXec6fh+V4hy4Rg3PLNiSFB7DLQj/FjN9"></script>
+  <script src="assets/terimler.js" defer integrity="sha384-cR+XgOx3EIEim+wTrA0U7r/sPz53aTcsGKIMIRYxlIpzGFJUFTeZY0ulnZVIHgB+"></script>
+  <script src="assets/cizimler.js" defer integrity="sha384-hTMb1pM5NibKjGPpzsndGQMf7S3ZA7aVqCMjh0lQoSaXc54ARcHFZ8BV5xB8TXWy"></script>
+  <script src="assets/sorular.js" defer integrity="sha384-KoIx/ZC+WDQNft4O3xNVFqEnkHEUpImGpwY++IDGp7QIJ4XcLVstnXEVMdq9klIt"></script>
+  <script src="assets/menziller.js" defer integrity="sha384-OETzsWbn+BHO1sAM8B9BBVeiyxcw1/gxd9OiIFTp0CFlm7QkZ4BmDPJLtvCpnEmL"></script>
   <script src="assets/tasiyicilar.js" defer integrity="sha384-lNVugceLvCvCJVmiaeondeMkZidLr/xkMU7e3FIfHyE0tYhzXcLpm8x7Ztni2FxQ"></script>
-  <script src="assets/anlamsal-yakin.js" defer integrity="sha384-RF49Q32g0d6y3SRc2V3pOK6w72vIbpcudDUq0MMIuqs8JinkwA0MuRNfuzwYpWU0"></script>
-  <script src="assets/futuhat.js" defer integrity="sha384-yJWC240f2U3Hy8gRILItRJx0UkveKkWW0N7go6Zg8ooEiZLYHDSknspY2fY2+VA1"></script>
-  <script src="assets/fusus.js" defer integrity="sha384-LysUYN1mzDZB3kcyYXKoE5EmK1VSdmCE6+E/CG2yM+6fq2cNlu7cNJvvVNoSIdXA"></script>
+  <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
+  <script src="assets/futuhat.js" defer integrity="sha384-rfBRvmcoKYLIawa0nWi1lIuFguz2xu/4gd/ZTkJesT+PhHZhVRJqEUjVHjP6pnCa"></script>
+  <script src="assets/fusus.js" defer integrity="sha384-NWndNFf07ZRehuPP29Nc/iMRBsDyMjSIfCUSvp7ycm+1r3mf7pjTGJlZBcBPBcQt"></script>
   <script src="assets/miskat.js" defer integrity="sha384-SVqnOkjzVO8MTOwBadAatUPDnuD0lq7Ujvo9RA2DMgEm1DTVHs2awjygv97mis98"></script>
-  <script src="assets/view-loader.js" defer integrity="sha384-GXTCr4tQgdBIEEdmd4MkHd793aQGPW/ieqloIo3VSzelUgihsEn3H0yMIv2aVGS6"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-+l0THGezA9wabNx54UhLiu/xMyBSz9IgSt9z/idSCsL4JpqC5AIvO5HetwCwPT6e"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-EWXqH8Z52XIN7ZJvFAnYsrOLhgWVLSQ+a4fT6nwkaIPWn4Byh3OCYnqDOj+d4aVC"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-xV6m2D9t8q3nHv+PcT5KOugxSasg4FzcKRcAOPb+ykiEPpp/pDGDK/otOqhK1jKr"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
-  <script src="assets/ayet-onizleme.js" defer integrity="sha384-pUGs2ZLA6M1Uv5y5m6q8SzOrNwoimvexeWXg1MwnVMdlNPg4urvUdMtthr/qlAE1"></script>
-  <script src="assets/start-hint.js" defer integrity="sha384-1eDBLqkFn/IXFsP9qDaRtiQ3vBqwaOW+r4zMeprCDOLuVDa2nThfSL85Pb7r4X5k"></script>
+  <script src="assets/ayet-onizleme.js" defer integrity="sha384-9qv/Q/FBNgrPHnUOAukAqwsa/DVkrKY78fVJR+l6Kro4bz3an1mUQ8Tg1yG83pGw"></script>
+  <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>
+  <!-- 2026-08-10 denetim (G57 + rapor 16-A): mobil için grafik yerine liste. -->
+  <script src="assets/ontoloji-mobil-liste.js" defer integrity="sha384-YvQpuu2GLrdXPHaUaSFqgKxXtVoFbZRpxltW8rJRyvXa6QDIS1CBTf7h1LIDm9WD"></script>
   <script src="assets/secret-nav.js" defer integrity="sha384-bxSN300rzY5eTjVk6TAWQVedjEJKuWieA2pZLzqq8xZNFBtlkjahenZSN2Jhiuut"></script>
-  <script src="assets/edit-mode.js" defer integrity="sha384-WSlhVmepChr387AxdWfc30uj7YTEI3zNhumXVeYNHI96bIFWid9aEASvW7knhjwp"></script>
+  <script src="assets/edit-mode.js" defer integrity="sha384-7iXPGrWLrIsGmzLLGg2VO5KH/04WinMik9uxQrDgIDKeBqiGPMDkwcG00Faa7WvN"></script>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in
        bayrağına bakar), kip kapalıyken hiçbir şey çizmez. 2026-07-29'a
        kadar önizlemeye özeldi; kullanıcı kararıyla canlıda da yayınlanıyor. -->
-  <script src="assets/durus-kontrol.js" defer integrity="sha384-mOaPr1KcLaieLM7Dsc9IJR5DoayUHvlAQVVAb5qWHg3W/JIfbZX6DPdOHZ5zqO3J"></script>
-  <script src="assets/share-mode.js" defer integrity="sha384-l8yaTk9dbYjK0RwVGl04NKBvpZdLy5RobMTe3c0DBXUl+STK3JntZ6E5XUOdPnAx"></script>
-  <script src="assets/sessiz-mod.js" defer integrity="sha384-/6AkH3wfyX9LT4F/rsTAL9gzqHgY6pSMhtdkYjOcci0mkc+9ED8V4/3lOHHBNQdM"></script>
+  <script src="assets/durus-kontrol.js" defer integrity="sha384-MWV7GWjnVXfKLQJv9f24+n/3626atxm5+2sfDBL6VZ5BDEcOeMaokR0SOzwMeezu"></script>
+  <!-- Mekanik tahkik (docs/tahkik-protokolu.md'nin M5/M7 mercekleri).
+       Duruş taramasının kardeşi: aynı @revise çipinden açılıyor, aynı veri
+       dosyalarını okuyor, ama başka bir soru soruyor. Yargı mercekleri
+       (M1-M4, M8) burada BİLEREK yok -- protokolün kendi kuralı, yargının
+       toplu taramada değil sayfa başına /tahkik ile yapılmasını istiyor. -->
+  <script src="assets/tahkik-tarama.js" defer integrity="sha384-o7iy4Guhl4x1S9aruNJTF87ZD7EqgPsr4rW06QIK7ngQ9zwkAZ0mXZjwgYQn3Klr"></script>
+  <script src="assets/share-mode.js" defer integrity="sha384-kr+gfk37Lrr5mmy2aXx5A4Z51DCt+YysCYOdFHUfa4/ckcTYUwKB+3IySi2cROmD"></script>
+  <script src="assets/sessiz-mod.js" defer integrity="sha384-eFRBlMWSM/4fq8oWooKbKYWTxOWMygOzjyco9hQ8jhcZCdkPikl4e1MoeLjtB5w8"></script>
   <script src="assets/kavram-defteri.js" defer integrity="sha384-SEHFK/8YrjhNTF34/mS1FCXdHVORstWfUN3HMMJLT2GqxTBd7Ng60K1Xim6/prYG"></script>
   <script>
     // B1: çevrimdışı destek. document.baseURI'ye göre çözülüyor ki bu script

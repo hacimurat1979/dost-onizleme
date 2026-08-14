@@ -197,9 +197,36 @@
     if (!renderer) return "";
     return `<div class="term-diagram-row"><div class="term-diagram-card">
       ${ODD_DIAGRAM_DEFS}
-      ${renderer(obj.diagram)}
+      <div class="term-diagram-svg-wrap" data-entity-diagram="1" role="button" tabindex="0"
+           aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${renderer(obj.diagram)}</div>
       <p class="term-diagram-caption">${tt(obj.diagram.note)}</p>
     </div></div>`;
+  }
+
+  // terimler.js'nin aynı adı taşıyan çizimleri (groupDiagramHtml) tıklayınca
+  // büyüyor (DostLightbox); bu görünümdeki karşılığı (ör. perde düğümünün
+  // "veil-likeness" şeması) aynı .term-diagram-card görselini paylaşıyor ama
+  // hiçbir yerde büyütme bağlanmamıştı -- düğme görünüyor, tutmuyordu
+  // (kullanıcı bildirimi, 2026-08-04). showNodeDetail/showEdgeDetail
+  // innerHTML'i yazdıktan hemen sonra çağrılmalı.
+  function wireEntityDiagram(obj) {
+    if (!obj.diagram || !window.DostLightbox) return;
+    const renderer = entityDiagramRenderers[obj.diagram.type];
+    if (!renderer) return;
+    const wrap = detailContent.querySelector('[data-entity-diagram="1"]');
+    if (!wrap) return;
+    const open = () => {
+      window.dostTrack && window.dostTrack("sema_acildi", { type: obj.diagram.type });
+      window.DostLightbox.open({
+        closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+        svgHtml: ODD_DIAGRAM_DEFS + renderer(obj.diagram),
+        caption: tt(obj.diagram.note),
+      });
+    };
+    wrap.addEventListener("click", open);
+    wrap.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
   }
 
   function sirlarGestureDiagramHtml() {
@@ -231,6 +258,13 @@
     else if (currentMainView === "cizimler") window.__cizimlerApp && window.__cizimlerApp.onLangChange();
     else if (currentMainView === "sirlar") window.__sirlarGraphApp && window.__sirlarGraphApp.onLangChange();
     else if (currentMainView === "sorular") window.__sorularApp && window.__sorularApp.onLangChange();
+    else if (currentMainView === "aciksorular") window.__acikSorularApp && window.__acikSorularApp.onLangChange();
+    else if (currentMainView === "bilmiyoruz") window.__bilmiyoruzApp && window.__bilmiyoruzApp.onLangChange();
+    else if (currentMainView === "elestiriArkeolojisi") window.__elestiriArkeolojisiApp && window.__elestiriArkeolojisiApp.onLangChange();
+    else if (currentMainView === "hocalar") window.__hocalarApp && window.__hocalarApp.onLangChange();
+    else if (currentMainView === "eserAgi") window.__eserAgiApp && window.__eserAgiApp.onLangChange();
+    else if (currentMainView === "seyahatAtlasi") window.__seyahatAtlasiApp && window.__seyahatAtlasiApp.onLangChange();
+    else if (currentMainView === "kuranDokusu") window.__kuranDokusuApp && window.__kuranDokusuApp.onLangChange();
     else if (currentMainView === "menziller") window.__menzillerApp && window.__menzillerApp.onLangChange();
     else if (currentMainView === "tasiyicilar") window.__tasiyicilarApp && window.__tasiyicilarApp.onLangChange();
     else if (currentMainView === "futuhat") window.__futuhatApp && window.__futuhatApp.onLangChange();
@@ -239,9 +273,15 @@
     else if (currentMainView === "hakkinda") {
       window.__siirlerApp && window.__siirlerApp.onLangChange();
       window.__vahdetApp && window.__vahdetApp.onLangChange();
+      window.__okumaYollariApp && window.__okumaYollariApp.onLangChange();
     }
     else if (currentMainView === "kavram") window.__kavramApp && window.__kavramApp.onLangChange();
     else if (currentMainView === "ayethadis") window.__ayetHadisApp && window.__ayetHadisApp.onLangChange();
+    // Ontoloji görünümündeki mobil alternatif liste (grafik ekrana sığmazsa).
+    // Aynı sayfada yaşadığı için ontoloji dalı gibi else-if içine
+    // sıkıştırılmıyor; render() zaten grafiği tazeliyor, mobil liste
+    // kendi doldur()'ıyla tazelensin.
+    window.__ontolojiMobilListeApp && window.__ontolojiMobilListeApp.onLangChange();
     updateHeaderHeightVar();
   });
 
@@ -269,19 +309,11 @@
     });
   }
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key !== "Escape") return;
-    // Bir adım geri: önce açık detay panelini kapat; panel zaten kapalıysa
-    // ve Sırlar grafiğinde bir tema odaklanmışsa (bkz. sirlar-graph.js
-    // focusOnTheme), o odağı geri al -- "mevcut durumdan bir önceki duruma."
-    if (!detailPanel.hidden) {
-      detailPanel.hidden = true;
-      return;
-    }
-    if (window.__sirlarGraphApp && window.__sirlarGraphApp.isFocused && window.__sirlarGraphApp.isFocused()) {
-      window.__sirlarGraphApp.unfocusTheme();
-    }
-  });
+  // ESC ("bir adım geri") artık burada değil: ortak zincir graph-utils.js'te
+  // (registerStepBack), açık panelin kapanması da onun genel son adımı.
+  // Sırlar'ın tema odağını geri alan dal buradan KALDIRILDI ve kendi
+  // dosyasına taşındı -- bir görünümün davranışı başka bir dosyada
+  // yaşamamalı (bkz. ETKILESIM_DILI.md'nin son yasağı).
 
   // Lejant kutuları (Ontoloji/Esmâ/Hâller/Sırlar), özellikle dokunmatik/
   // tablet ekranlarda kısa viewport yüksekliğinde grafiğin üstüne düşüp
@@ -356,6 +388,28 @@
     });
   }
 
+  // Sayfa başına dönme kısayolu (2026-08-06 kullanıcı bulgusu): /hakkinda
+  // uzun bir sayfa, başa dönmek için çokça kaydırma gerekiyordu. Düğme
+  // hakkindaWrap'ın İÇİNDE yaşıyor -- görünüm değişince section'ın kendi
+  // `hidden`'ı düğmeyi de otomatik gizliyor, ayrı bir görünüm-kontrolüne
+  // gerek yok.
+  let hakkindaScrollTopWired = false;
+  function wireHakkindaScrollTop() {
+    const btn = document.getElementById("hakkinda-scroll-top");
+    if (!btn || hakkindaScrollTopWired) return;
+    hakkindaScrollTopWired = true;
+    btn.hidden = false;
+    const onScroll = () => {
+      if (hakkindaWrap.hidden) return;
+      btn.classList.toggle("is-visible", window.scrollY > 480);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+    onScroll();
+  }
+
   function loadOntologyData() {
     if (window.DostViewStatus) window.DostViewStatus.showLoading("ontology-wrap");
     window.DostGraphUtils.fetchJson("data/ibn-arabi/ontology.json")
@@ -391,40 +445,52 @@
   }
   loadOntologyData();
 
-  // Bu üç veri seti yalnızca cross-link kaydı için gerekli; kritik olan
-  // ontoloji haritasının ilk boyanmasıyla bant genişliği için yarışmasınlar
-  // diye ana iş parçacığı boşta kalınca (veya en geç kısa bir gecikmeyle)
-  // çekiliyor.
   const deferFetch = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
 
-  let sirlarData = null;
+  // ÇAPRAZ-BAĞLANTI İNDEKSİ (2026-08-03). Buraya kadar esma.json (415KB),
+  // hal.json (93KB) ve (terimler.js'te) felsefi-terimler.json (409KB)
+  // AÇILIŞTA iniyordu -- yalnızca her kavramın ADINI ve KISA ÖZETİNİ almak
+  // için. Yani 917KB indirip ~115KB'lık bir sözlük kuruyorduk, üstelik
+  // sitenin HER sayfasında. Artık o sözlük derleme zamanında üretiliyor
+  // (scripts/capraz-indeks-uret.py) ve tam dosyalar ancak o görünüm
+  // gerçekten açıldığında geliyor.
   deferFetch(() => {
-    window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar.json")
+    window.DostGraphUtils.fetchJson("data/ibn-arabi/capraz-baglanti-indeksi.json")
+      .then((data) => {
+        (data.kayitlar || []).forEach((k) => {
+          // Ontoloji kayıtları zaten ontology.json'dan kaydedildi; indeksten
+          // tekrar kaydetmek zararsız ama gereksiz iş.
+          if (k.view === "ontoloji") return;
+          registerCrossLinkTerm(k.name, k.view, k.id, k.short);
+        });
+        notifyCrossLinkReady();
+        render();
+      })
+      .catch((err) => console.error("Çapraz-bağlantı indeksi yüklenemedi / Failed to load cross-link index", err));
+  });
+
+  // Sırlar verisi (345KB) da açılışta iniyordu, oysa YALNIZ Sırlar görünümü
+  // açıldığında gerekiyor (goToSirlar, showSirlarEntry, merkez paneli).
+  // Artık talep üzerine; ortak fetchJson önbelleği sayesinde sirlar-graph.js
+  // ile aynı indirmeyi paylaşıyor.
+  let sirlarData = null;
+  let sirlarPromise = null;
+  function ensureSirlarData() {
+    if (sirlarData) return Promise.resolve(sirlarData);
+    if (sirlarPromise) return sirlarPromise;
+    sirlarPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar.json")
       .then((data) => {
         sirlarData = data;
-        if (pendingSirlarId) goToSirlar(pendingSirlarId);
         render();
+        return data;
       })
-      .catch((err) => console.error("Sırlar verisi yüklenemedi / Failed to load mysteries data", err));
-  });
-
-  deferFetch(() => {
-    window.DostGraphUtils.fetchJson("data/ibn-arabi/esma.json")
-      .then((data) => {
-        registerEsmaCrossLinks(data);
-        render();
-      })
-      .catch((err) => console.error("Esmâ verisi yüklenemedi / Failed to load Esma data", err));
-  });
-
-  deferFetch(() => {
-    window.DostGraphUtils.fetchJson("data/ibn-arabi/hal.json")
-      .then((data) => {
-        registerHalCrossLinks(data);
-        render();
-      })
-      .catch((err) => console.error("Hâller verisi yüklenemedi / Failed to load States data", err));
-  });
+      .catch((err) => {
+        sirlarPromise = null;
+        console.error("Sırlar verisi yüklenemedi / Failed to load mysteries data", err);
+        return null;
+      });
+    return sirlarPromise;
+  }
 
   deferFetch(() => {
     window.DostGraphUtils.fetchJson("data/ibn-arabi/sozluk-ipuclari.json")
@@ -443,14 +509,23 @@
   const cizimlerBtn = document.getElementById("cizimler-btn");
   const sirlarBtn = document.getElementById("sirlar-btn");
   const sorularBtn = document.getElementById("sorular-btn");
+  const acikSorularBtn = document.getElementById("acik-sorular-btn");
+  const bilmiyoruzBtn = document.getElementById("bilmiyoruz-btn");
+  const elestiriArkeolojisiBtn = document.getElementById("elestiri-arkeolojisi-btn");
+  const hocalarBtn = document.getElementById("hocalar-btn");
+  const eserAgiBtn = document.getElementById("eser-agi-btn");
+  const seyahatAtlasiBtn = document.getElementById("seyahat-atlasi-btn");
+  const kuranDokusuBtn = document.getElementById("kuran-dokusu-btn");
   const menzillerBtn = document.getElementById("menziller-btn");
   const tasiyicilarBtn = document.getElementById("tasiyicilar-btn");
   const futuhatBtn = document.getElementById("futuhat-btn");
   const fususBtn = document.getElementById("fusus-btn");
   const miskatBtn = document.getElementById("miskat-btn");
   const hakkindaBtn = document.getElementById("hakkinda-btn");
+  const okumaYollariBtn = document.getElementById("okuma-yollari-btn");
   const kavramBtn = document.getElementById("kavram-btn");
   const ayethadisBtn = document.getElementById("ayethadis-btn");
+  const sahnelerBtn = document.getElementById("sahneler-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
   const halWrap = document.getElementById("hal-wrap");
@@ -458,6 +533,14 @@
   const cizimlerWrap = document.getElementById("cizimler-wrap");
   const sirlarWrap = document.getElementById("sirlar-wrap");
   const sorularWrap = document.getElementById("sorular-wrap");
+  const acikSorularWrap = document.getElementById("acik-sorular-wrap");
+  const bilmiyoruzWrap = document.getElementById("bilmiyoruz-wrap");
+  const elestiriArkeolojisiWrap = document.getElementById("elestiri-arkeolojisi-wrap");
+  const hocalarWrap = document.getElementById("hocalar-wrap");
+  const eserAgiWrap = document.getElementById("eser-agi-wrap");
+  const seyahatAtlasiWrap = document.getElementById("seyahat-atlasi-wrap");
+  const yolculukWrap = document.getElementById("yolculuk-wrap");
+  const kuranDokusuWrap = document.getElementById("kuran-dokusu-wrap");
   const menzillerWrap = document.getElementById("menziller-wrap");
   const tasiyicilarWrap = document.getElementById("tasiyicilar-wrap");
   const futuhatWrap = document.getElementById("futuhat-wrap");
@@ -466,6 +549,7 @@
   const hakkindaWrap = document.getElementById("hakkinda-wrap");
   const kavramWrap = document.getElementById("kavram-wrap");
   const ayethadisWrap = document.getElementById("ayethadis-wrap");
+  const sahnelerWrap = document.getElementById("sahneler-wrap");
 
   // Görsel olarak aktif sekmeyi işaretlemek (.btn-ghost--active) ekran
   // okuyucuya hiçbir şey söylemiyordu -- dil seçicideki aria-pressed'in
@@ -481,6 +565,17 @@
   // Yeni eklenen bölümlere (Kavramlar/Âyet-Hadis) nav'da küçük bir
   // rozet koyup, kullanıcı o bölümü bir kere ziyaret edince kaldırıyoruz
   // -- "kaldığın yer" özelliğindeki localStorage deseninin aynısı.
+  //
+  // 2026-08-05'te temizlendi: harita bir zamanlar on bir görünüm
+  // taşıyordu (kuantum, elestiriArkeolojisi, hocalar, eserAgi,
+  // seyahatAtlasi, kuranDokusu, futuhatMimarisi de dahil) -- yani
+  // drawer'daki 22 girdinin YARISI "yeni" rozeti taşıyordu, ki bu
+  // ayırt ediciliği sıfırlıyordu (11/22'nin hepsi "yeni" olamaz).
+  // Nav konsolidasyonu (Fütûhât/Hayat/Bilinmeyenler akraba-sekmeleri)
+  // o yedisini zaten gruplarken rozetsiz bıraktı; kuantum ayrıca
+  // gerçekten eski bir dalgaydı (Dalga 2, D3) ve rozeti bilerek
+  // kaldırıldı. Harita şimdi yalnız gerçekten güncel iki girdiyi
+  // (Dalga 3'ün kendi dalgası: Kavramlar/D9, Âyet-Hadis) izliyor.
   const NAV_YENI_KEY = "dost-nav-yeni-gorulmus";
   function markNavYeniSeen(view) {
     const btn = { kavram: kavramBtn, ayethadis: ayethadisBtn, miskat: miskatBtn }[view];
@@ -513,6 +608,13 @@
     markActiveNavButton(cizimlerBtn, view === "cizimler");
     markActiveNavButton(sirlarBtn, view === "sirlar");
     markActiveNavButton(sorularBtn, view === "sorular");
+    markActiveNavButton(acikSorularBtn, view === "aciksorular");
+    markActiveNavButton(bilmiyoruzBtn, view === "bilmiyoruz");
+    markActiveNavButton(elestiriArkeolojisiBtn, view === "elestiriArkeolojisi");
+    markActiveNavButton(hocalarBtn, view === "hocalar");
+    markActiveNavButton(eserAgiBtn, view === "eserAgi");
+    markActiveNavButton(seyahatAtlasiBtn, view === "seyahatAtlasi");
+    markActiveNavButton(kuranDokusuBtn, view === "kuranDokusu");
     markActiveNavButton(menzillerBtn, view === "menziller");
     markActiveNavButton(tasiyicilarBtn, view === "tasiyicilar");
     markActiveNavButton(futuhatBtn, view === "futuhat");
@@ -521,6 +623,7 @@
     markActiveNavButton(hakkindaBtn, view === "hakkinda");
     markActiveNavButton(kavramBtn, view === "kavram");
     markActiveNavButton(ayethadisBtn, view === "ayethadis");
+    markActiveNavButton(sahnelerBtn, view === "sahneler");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
@@ -528,6 +631,14 @@
     if (cizimlerWrap) cizimlerWrap.hidden = view !== "cizimler";
     if (sirlarWrap) sirlarWrap.hidden = view !== "sirlar";
     if (sorularWrap) sorularWrap.hidden = view !== "sorular";
+    if (acikSorularWrap) acikSorularWrap.hidden = view !== "aciksorular";
+    if (bilmiyoruzWrap) bilmiyoruzWrap.hidden = view !== "bilmiyoruz";
+    if (elestiriArkeolojisiWrap) elestiriArkeolojisiWrap.hidden = view !== "elestiriArkeolojisi";
+    if (hocalarWrap) hocalarWrap.hidden = view !== "hocalar";
+    if (eserAgiWrap) eserAgiWrap.hidden = view !== "eserAgi";
+    if (seyahatAtlasiWrap) seyahatAtlasiWrap.hidden = view !== "seyahatAtlasi";
+    if (yolculukWrap) yolculukWrap.hidden = view !== "yolculuk";
+    if (kuranDokusuWrap) kuranDokusuWrap.hidden = view !== "kuranDokusu";
     if (menzillerWrap) menzillerWrap.hidden = view !== "menziller";
     if (tasiyicilarWrap) tasiyicilarWrap.hidden = view !== "tasiyicilar";
     if (futuhatWrap) futuhatWrap.hidden = view !== "futuhat";
@@ -536,8 +647,11 @@
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
     if (kavramWrap) kavramWrap.hidden = view !== "kavram";
     if (ayethadisWrap) ayethadisWrap.hidden = view !== "ayethadis";
+    if (sahnelerWrap) sahnelerWrap.hidden = view !== "sahneler";
+    if (view === "sahneler") wireSahnelerKartHref();
     if (view === "hakkinda") {
       wireHakkindaDiagrams();
+      wireHakkindaScrollTop();
       window.__siirlerApp && window.__siirlerApp.wireTabs();
     }
     currentDetailNode = null;
@@ -562,6 +676,30 @@
     } else if (view === "sorular") {
       currentDetailView = "sorular";
       window.__sorularApp && window.__sorularApp.activate();
+    } else if (view === "aciksorular") {
+      currentDetailView = null;
+      window.__acikSorularApp && window.__acikSorularApp.activate();
+    } else if (view === "bilmiyoruz") {
+      currentDetailView = null;
+      window.__bilmiyoruzApp && window.__bilmiyoruzApp.activate();
+    } else if (view === "elestiriArkeolojisi") {
+      currentDetailView = null;
+      window.__elestiriArkeolojisiApp && window.__elestiriArkeolojisiApp.activate();
+    } else if (view === "hocalar") {
+      currentDetailView = null;
+      window.__hocalarApp && window.__hocalarApp.activate();
+    } else if (view === "eserAgi") {
+      currentDetailView = null;
+      window.__eserAgiApp && window.__eserAgiApp.activate();
+    } else if (view === "seyahatAtlasi") {
+      currentDetailView = null;
+      window.__seyahatAtlasiApp && window.__seyahatAtlasiApp.activate();
+    } else if (view === "yolculuk") {
+      currentDetailView = null;
+      window.__yolculukApp && window.__yolculukApp.activate();
+    } else if (view === "kuranDokusu") {
+      currentDetailView = null;
+      window.__kuranDokusuApp && window.__kuranDokusuApp.activate();
     } else if (view === "menziller") {
       currentDetailView = "menziller";
       window.__menzillerApp && window.__menzillerApp.activate();
@@ -598,14 +736,27 @@
   if (terimlerBtn) terimlerBtn.addEventListener("click", () => { setMainView("terimler"); updateHash("terimler"); });
   if (cizimlerBtn) cizimlerBtn.addEventListener("click", () => { setMainView("cizimler"); updateHash("cizimler"); });
   if (sorularBtn) sorularBtn.addEventListener("click", () => { setMainView("sorular"); updateHash("sorular"); });
+  if (acikSorularBtn) acikSorularBtn.addEventListener("click", () => { setMainView("aciksorular"); updateHash("acik-sorular"); });
+  if (bilmiyoruzBtn) bilmiyoruzBtn.addEventListener("click", () => { setMainView("bilmiyoruz"); updateHash("bilmiyoruz"); });
+  if (elestiriArkeolojisiBtn) elestiriArkeolojisiBtn.addEventListener("click", () => { setMainView("elestiriArkeolojisi"); updateHash("elestiri-arkeolojisi"); });
+  if (hocalarBtn) hocalarBtn.addEventListener("click", () => { setMainView("hocalar"); updateHash("hocalar"); });
+  if (eserAgiBtn) eserAgiBtn.addEventListener("click", () => { setMainView("eserAgi"); updateHash("eser-agi"); });
+  if (seyahatAtlasiBtn) seyahatAtlasiBtn.addEventListener("click", () => { setMainView("seyahatAtlasi"); updateHash("seyahat-atlasi"); });
+  if (kuranDokusuBtn) kuranDokusuBtn.addEventListener("click", () => { setMainView("kuranDokusu"); updateHash("kuran-dokusu"); });
   if (menzillerBtn) menzillerBtn.addEventListener("click", () => { setMainView("menziller"); updateHash("menziller"); });
   if (tasiyicilarBtn) tasiyicilarBtn.addEventListener("click", () => { setMainView("tasiyicilar"); updateHash("tasiyicilar"); });
   if (futuhatBtn) futuhatBtn.addEventListener("click", () => { setMainView("futuhat"); updateHash("futuhat"); });
   if (fususBtn) fususBtn.addEventListener("click", () => { setMainView("fusus"); updateHash("fusus"); });
   if (miskatBtn) miskatBtn.addEventListener("click", () => { setMainView("miskat"); updateHash("miskat"); });
   if (hakkindaBtn) hakkindaBtn.addEventListener("click", () => { setMainView("hakkinda"); updateHash("hakkinda"); });
+  // Okuma Yolları çekmece kapısı (2026-08-10, G50): görünümün kendisi
+  // hakkinda'nın alt-sekmesi olarak kalıyor; buradan yalnız o sekmeye
+  // gidiliyor ve URL derin-bağlantı olarak /hakkinda/okuma-yollari oluyor
+  // (parseHashAndGo bu yolu zaten çözüyor).
+  if (okumaYollariBtn) okumaYollariBtn.addEventListener("click", () => { goToHakkinda("okuma-yollari"); updateHash("hakkinda", "okuma-yollari"); });
   if (kavramBtn) kavramBtn.addEventListener("click", () => { setMainView("kavram"); updateHash("kavram"); });
   if (ayethadisBtn) ayethadisBtn.addEventListener("click", () => { setMainView("ayethadis"); updateHash("ayethadis"); });
+  if (sahnelerBtn) sahnelerBtn.addEventListener("click", () => { setMainView("sahneler"); updateHash("sahneler"); });
 
   // --- Deep linking & cross-view navigation ---
   let pendingSirlarId = null;
@@ -692,6 +843,70 @@
         pt: "Um diagrama que junta os Capítulos 13 e 476 das Futuhat: os quatro suportes que sustentam o Trono e os quatro que sustentam o coração, como duas espirais entrelaçadas.",
       },
     },
+    "acik-sorular": {
+      title: { tr: "Açık Sorular", en: "Open Questions", pt: "Perguntas em Aberto" },
+      desc: {
+        tr: "Okurken bize kalan, kapanmamış sorular — ve her biri için okuma kaydımızda ne bulduğumuz, ne bulamadığımız.",
+        en: "Questions left with us while reading, still unclosed — and, for each, what we found and what we did not find in our reading record.",
+        pt: "Perguntas que ficaram connosco ao ler, ainda por fechar — e, para cada uma, o que encontrámos e o que não encontrámos no nosso registo de leitura.",
+      },
+    },
+    bilmiyoruz: {
+      title: { tr: "Bilmiyoruz", en: "We Don't Know", pt: "Não Sabemos" },
+      desc: {
+        tr: "Sitenin açıkça bilmediğini ya da tartışmalı olduğunu ilan ettiği maddeler — nüsha tarihinden yorum mirasına, eser tasnifinden modern benzetmelere.",
+        en: "Items the site openly declares unknown or contested — from manuscript history to a reading's inheritance, from classification of works to modern analogies.",
+        pt: "Itens que o site declara abertamente desconhecidos ou contestados — da história do manuscrito à herança de uma leitura, da classificação das obras às analogias modernas.",
+      },
+    },
+    "elestiri-arkeolojisi": {
+      title: { tr: "Eleştiri Arkeolojisi", en: "Archaeology of Criticism", pt: "Arqueologia da Crítica" },
+      desc: {
+        tr: "Dost'a yöneltilen eleştiri ve savunmaları cevaplamadan önce haritalıyoruz: kim, ne zaman, hangi şehirde, kimin himayesinde, neyi okuyarak yazdı.",
+        en: "We map the criticisms and defenses aimed at Dost before answering them: who wrote what, when, in which city, under whose patronage, reading what.",
+        pt: "Mapeamos as críticas e defesas dirigidas a Dost antes de lhes responder: quem escreveu o quê, quando, em que cidade, sob que patrocínio, lendo o quê.",
+      },
+    },
+    hocalar: {
+      title: { tr: "Hocalar", en: "Teachers", pt: "Mestres" },
+      desc: {
+        tr: "Rûhu'l-kuds'ta andığı 55 hocadan son ikisi, ikisi de kadın — kendi ağzından iki portre.",
+        en: "The last two of the 55 teachers named in the Ruh al-quds, both women — two portraits in his own words.",
+        pt: "Os dois últimos dos 55 mestres nomeados no Ruh al-quds, ambas mulheres — dois retratos nas suas próprias palavras.",
+      },
+    },
+    "eser-agi": {
+      title: { tr: "Eser Ağı", en: "The Works Timeline", pt: "A Linha do Tempo das Obras" },
+      desc: {
+        tr: "Eserlerinin kronolojik zaman çizelgesi — en erken eser üstte, aşağıya doğru zaman; kenarlar aynı şehirde art arda yazılan eserleri bağlıyor.",
+        en: "A chronological timeline of his works — the earliest at the top, time moving downward; connections link works written in the same city back to back.",
+        pt: "Uma linha do tempo cronológica das suas obras — a mais antiga no topo, o tempo avançando para baixo; as ligações unem obras escritas na mesma cidade em sequência.",
+      },
+    },
+    "seyahat-atlasi": {
+      title: { tr: "Seyahat Atlası", en: "Travel Atlas", pt: "Atlas de Viagem" },
+      desc: {
+        tr: "Mürsiye'den Şam'a, her durakta yazdığı eserlerle birlikte.",
+        en: "From Murcia to Damascus, together with the works he wrote at each stop.",
+        pt: "De Múrcia a Damasco, juntamente com as obras que escreveu em cada paragem.",
+      },
+    },
+    yolculuk: {
+      title: { tr: "Yolculuk", en: "The Journey", pt: "A Jornada" },
+      desc: {
+        tr: "Eser Ağı ve Seyahat Atlası'nın birleşik atlas görünümü — her durak coğrafi konumunda, her eser o durakta yazıldığı için durağın yakınında.",
+        en: "The combined atlas view of the Works Timeline and the Travel Atlas — each stop at its geographic position, each work next to the stop where it was written.",
+        pt: "A vista atlas combinada da Linha do Tempo das Obras e do Atlas de Viagem — cada paragem na sua posição geográfica, cada obra ao lado da paragem onde foi escrita.",
+      },
+    },
+    "kuran-dokusu": {
+      title: { tr: "Kur'ân Dokusu", en: "The Qur'ânic Weave", pt: "A Trama Alcorânica" },
+      desc: {
+        tr: "Fütûhât ve Füsûs özetlerimizde işaretlediğimiz âyet atıflarının sûre↔bap grafı — kısmi bir iz, tam bir tarama değil.",
+        en: "A sûrah↔chapter graph of the verse citations we've marked in our Futûhât and Fusûs summaries — a partial trace, not a full scan.",
+        pt: "Um grafo surata↔capítulo das citações de versículos que marcámos nos nossos resumos das Futûhât e Fusûs — um traço parcial, não uma varredura completa.",
+      },
+    },
     sorular: {
       title: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
       desc: {
@@ -746,6 +961,14 @@
         tr: "Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin.",
         en: "An index of the verses and hadiths quoted across the site, ordered by how often each recurs.",
         pt: "Um índice dos versículos e hadiths citados no site, ordenados por quantas vezes cada um recorre.",
+      },
+    },
+    sahneler: {
+      title: { tr: "Sahneler", en: "Scenes", pt: "Cenas" },
+      desc: {
+        tr: "Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin galerisi.",
+        en: "A gallery of the site's standalone, drag-or-scroll scenes.",
+        pt: "Uma galeria das cenas independentes e exploráveis do site.",
       },
     },
   };
@@ -852,7 +1075,20 @@
     currentDetailNode = null;
     currentDetailEdge = null;
     if (!sirlarData) {
+      // Veri artık talep üzerine geliyor; istenen kaydı bekletip veri
+      // gelince açıyoruz (eskiden veri açılışta indiği için burada
+      // yalnızca beklemek yetiyordu).
       pendingSirlarId = id || null;
+      ensureSirlarData().then((d) => {
+        if (!d || currentMainView !== "sirlar") return;
+        const bekleyen = pendingSirlarId;
+        pendingSirlarId = null;
+        // 2026-08-06 kullanıcı bulgusu: id yoksa (yalnız nav'dan açılış)
+        // showSirlarOverview() paneli otomatik açıyordu -- artık yalnız
+        // bir kayıt seçildiğinde açılıyor (bkz. hocalar.js'teki aynı
+        // düzeltme).
+        if (bekleyen) showSirlarEntry(bekleyen);
+      });
       return;
     }
     pendingSirlarId = null;
@@ -870,6 +1106,46 @@
   function goToSorular(id) {
     setMainView("sorular");
     window.__sorularApp && window.__sorularApp.goToNode(id);
+  }
+
+  function goToAcikSorular(id) {
+    setMainView("aciksorular");
+    if (id) window.__acikSorularApp && window.__acikSorularApp.goToNode(id);
+  }
+
+  function goToBilmiyoruz(id) {
+    setMainView("bilmiyoruz");
+    if (id) window.__bilmiyoruzApp && window.__bilmiyoruzApp.goToNode(id);
+  }
+
+  function goToElestiriArkeolojisi(id) {
+    setMainView("elestiriArkeolojisi");
+    if (id) window.__elestiriArkeolojisiApp && window.__elestiriArkeolojisiApp.goToNode(id);
+  }
+
+  function goToHocalar(id) {
+    setMainView("hocalar");
+    if (id) window.__hocalarApp && window.__hocalarApp.goToNode(id);
+  }
+
+  function goToEserAgi(id) {
+    setMainView("eserAgi");
+    if (id) window.__eserAgiApp && window.__eserAgiApp.goToNode(id);
+  }
+
+  function goToSeyahatAtlasi(id) {
+    setMainView("seyahatAtlasi");
+    if (id) window.__seyahatAtlasiApp && window.__seyahatAtlasiApp.goToNode(id);
+  }
+
+  function goToYolculuk(id) {
+    setMainView("yolculuk");
+    if (id) window.__yolculukApp && window.__yolculukApp.goToNode(id);
+  }
+
+  function goToKuranDokusu(id) {
+    setMainView("kuranDokusu");
+    if (id) window.__kuranDokusuApp && window.__kuranDokusuApp.goToNode(id);
   }
 
   // Taşıyanlar tek bir şemadan ibaret; derin bağlantı için ayrı bir id'si
@@ -904,8 +1180,28 @@
     if (id) window.__miskatApp && window.__miskatApp.activate(id);
   }
 
-  function goToHakkinda() {
+  function goToHakkinda(sub) {
     setMainView("hakkinda");
+    // "hakkinda"nın kendi id'si yok (view içi üç alt-sekme var); goTo'nun
+    // ikinci argümanı köprü bağlantılarının (2026-08-06, vahdet-elestiri
+    // köprüsü) hangi alt-sekmeye açılacağını taşıması için kullanılıyor.
+    if (sub) window.__siirlerApp && window.__siirlerApp.switchTo(sub);
+  }
+
+  // Sahneler galerisi (2026-08-05): kartların href'i statik HTML'de YAZILMIYOR
+  // -- kavram.js'teki perdeSahneHtml'in ${base}/meditasyon.html deseniyle
+  // aynı sebepten (bkz. index.html'deki sahneler-wrap yorumu). setMainView
+  // her "sahneler" görünümüne geçişte çağırıyor; a.href'i tekrar tekrar
+  // atamak zararsız, o yüzden "bir kez bağla" bayrağı yok.
+  function wireSahnelerKartHref() {
+    if (!sahnelerWrap) return;
+    sahnelerWrap.querySelectorAll(".sahneler-kart[data-scene-href]").forEach((a) => {
+      a.href = ROUTE_BASE + "/" + a.dataset.sceneHref;
+    });
+  }
+
+  function goToSahneler() {
+    setMainView("sahneler");
   }
 
   function goToKavram(id) {
@@ -919,7 +1215,7 @@
 
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|tasiyicilar|futuhat|fusus|miskat|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|yolculuk|kuran-dokusu|menziller|tasiyicilar|futuhat|fusus|miskat|hakkinda|kavram|ayethadis|sahneler)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -937,14 +1233,23 @@
     else if (view === "terimler") goToTerimler(id);
     else if (view === "cizimler") goToCizimler();
     else if (view === "sorular") goToSorular(id);
+    else if (view === "acik-sorular") goToAcikSorular(id);
+    else if (view === "bilmiyoruz") goToBilmiyoruz(id);
+    else if (view === "elestiri-arkeolojisi") goToElestiriArkeolojisi(id);
+    else if (view === "hocalar") goToHocalar(id);
+    else if (view === "eser-agi") goToEserAgi(id);
+    else if (view === "seyahat-atlasi") goToSeyahatAtlasi(id);
+    else if (view === "yolculuk") goToYolculuk(id);
+    else if (view === "kuran-dokusu") goToKuranDokusu(id);
     else if (view === "menziller") goToMenziller(id);
     else if (view === "tasiyicilar") goToTasiyicilar();
     else if (view === "futuhat") goToFutuhat(id);
     else if (view === "fusus") goToFusus(id);
     else if (view === "miskat") goToMiskat(id);
-    else if (view === "hakkinda") goToHakkinda();
+    else if (view === "hakkinda") goToHakkinda(id);
     else if (view === "kavram") goToKavram(id);
     else if (view === "ayethadis") goToAyetHadis();
+    else if (view === "sahneler") goToSahneler();
   }
 
   window.addEventListener("popstate", parseHashAndGo);
@@ -955,10 +1260,16 @@
   // yenilemesi tetiklemesin diye burada yakalayıp SPA içi yönlendirmeye
   // çeviriyoruz; yeni sekmede aç / orta tık gibi tarayıcı varsayılanlarını
   // bozmamak için değiştirici tuş basılıysa dokunmuyoruz.
+  // Seçici bilerek "a.cross-link" DEĞİL "a[data-view]": Sırlar↔Sorular
+  // köprüsü gibi kart tarzı linkler (.sorular-sir) .cross-link'in kendi
+  // stilini (noktalı alt çizgi/renk) İSTEMİYOR ama SPA yönlendirmesine
+  // aynı şekilde ihtiyaç duyuyor -- yalnız .cross-link'e bakmak bu ikisini
+  // birbirine bağlıyordu, sınıf eksikse tıklama sessizce tam sayfa
+  // yenilemesine düşüyordu (2026-08-07 UI denetimi, 33 bağın tamamı).
   document.addEventListener("click", (event) => {
     if (event.defaultPrevented || event.button !== 0) return;
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const a = event.target.closest("a.cross-link");
+    const a = event.target.closest("a[data-view]");
     if (!a) return;
     const view = a.dataset.view;
     if (!view) return;
@@ -975,14 +1286,23 @@
       else if (view === "terimler") goToTerimler(id);
       else if (view === "cizimler") goToCizimler();
       else if (view === "sorular") goToSorular(id);
+    else if (view === "acik-sorular") goToAcikSorular(id);
+      else if (view === "bilmiyoruz") goToBilmiyoruz(id);
+      else if (view === "elestiri-arkeolojisi") goToElestiriArkeolojisi(id);
+      else if (view === "hocalar") goToHocalar(id);
+      else if (view === "eser-agi") goToEserAgi(id);
+      else if (view === "seyahat-atlasi") goToSeyahatAtlasi(id);
+    else if (view === "yolculuk") goToYolculuk(id);
+      else if (view === "kuran-dokusu") goToKuranDokusu(id);
       else if (view === "menziller") goToMenziller(id);
       else if (view === "tasiyicilar") goToTasiyicilar();
       else if (view === "futuhat") goToFutuhat(id);
       else if (view === "fusus") goToFusus(id);
       else if (view === "miskat") goToMiskat(id);
-      else if (view === "hakkinda") goToHakkinda();
+      else if (view === "hakkinda") goToHakkinda(id);
       else if (view === "kavram") goToKavram(id);
-    else if (view === "ayethadis") goToAyetHadis();
+      else if (view === "ayethadis") goToAyetHadis();
+      else if (view === "sahneler") goToSahneler();
       updateHash(view, id);
     },
     setHash: updateHash,
@@ -994,7 +1314,7 @@
     },
   };
 
-  let simulation, nodeSel, pathSel, labelSel, nodeById;
+  let simulation, nodeSel, pathSel, hitSel, labelSel, nodeById;
   // FAZ 1 (grafik-önce, 2026-08-03): buildGraph doğuş animasyonunu bu
   // değişkene bırakır; loadOntologyData rota çözüldükten sonra (yalnız
   // gerçekten ontoloji ana ekranındaysak) çağırır. Bkz. runBirth.
@@ -1016,7 +1336,22 @@
     const ringR3d = Math.max(120, Math.min(width, height) / 2 - 110);
     const dropH = ringR3d * 2.2;
     let tilt = 0, tiltTarget = 0, tiltFrom = 0, tiltAnimStart = 0;
+    // Sahnenin yavaş salınımı (bkz. aşağıdaki spinFrame/SWAY_DEG) burada da
+    // biliniyor olmalı: yerleşim hep salınımın ortasında (0°) hesaplanırsa,
+    // ucunda sınırdaki etiket çiftleri yeniden çakışıyordu (2026-08-06
+    // ölçüldü). cx3d/cy3d, spinFrame'in döndürdüğü aynı merkez (0.5·width,
+    // 0.52·height) -- iki ayrı sabit tutmaya gerek yok.
+    let swayRad = 0;
+    function swayRotate(x, y) {
+      if (!swayRad) return { x, y };
+      const dx = x - cx3d, dy = y - cy3d;
+      const c = Math.cos(swayRad), sn = Math.sin(swayRad);
+      return { x: cx3d + dx * c - dy * sn, y: cy3d + dx * sn + dy * c };
+    }
     let yaw = 0, pitch = 0.26, rotating = false;
+    // spinFrame()'in 3B yaw-döngü kolunun kendi tazeleme eşiği için --
+    // bkz. spinFrame içindeki kullanım ve aynı kusurun ölçüldüğü not.
+    let yawPainted = 0;
 
     const defs = svg.append("defs");
     ["descent", "return", "paradox"].forEach((kind) => {
@@ -1134,16 +1469,42 @@
     const zoomLayer = svg.append("g").attr("class", "zoom-layer");
 
     const zoom = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.5, 4], (event) => !event.target.closest(".node"));
-    window.__ontologyZoom = { svg, zoom };
-
-    const recenterBtn = document.getElementById("ontology-recenter");
-    if (recenterBtn) {
-      recenterBtn.addEventListener("click", () => {
-        const sel = reduceMotion ? svg : svg.transition().duration(400);
+    // `fit`: bütün haritayı çerçeveye sığdırır. Yayılma davranışları (#2)
+    // buna ihtiyaç duyuyor -- ışığın Zât'tan bütün mertebelere gitmesi,
+    // ancak bütün mertebeler ekrandayken görülebilir. Tıklamanın olağan
+    // panToNode'u o sahneyi ekran dışında bırakıyordu (ölçüldü).
+    window.__ontologyZoom = {
+      svg, zoom,
+      fit(animate) {
+        const sel = (animate && !reduceMotion) ? svg.transition().duration(520) : svg;
         sel.call(zoom.transform, computeFitTransform());
-      });
-    }
+      },
+    };
 
+    window.DostGraphUtils.wireRecenter("ontology-recenter", () => {
+      // Seçim burada kamerayı taşımıyor (düğüme tıklamak yalnız paneli
+      // açıyor), o yüzden yalnız çerçeve sıfırlanıyor -- seçili düğüm kalır.
+      const sel = reduceMotion ? svg : svg.transition().duration(400);
+      sel.call(zoom.transform, computeFitTransform());
+    });
+
+    // Etiket genişlikleri metne göre değişir (bkz. labelFor); ölçüm ucuz
+    // olsun diye metin başına önbelleğe alınır.
+    const fitLabelWidthCache = new Map();
+    function labelHalfWidth(d) {
+      const txt = labelFor(d);
+      let w = fitLabelWidthCache.get(txt);
+      if (w == null) {
+        w = 0;
+        if (labelSel) {
+          const el = labelSel.filter((n) => n.id === d.id).node();
+          if (el) { try { w = el.getComputedTextLength(); } catch (e) {} }
+        }
+        if (!w) w = txt.length * 6.4;
+        fitLabelWidthCache.set(txt, w);
+      }
+      return w / 2;
+    }
     function computeFitTransform() {
       const pad = 48;
       let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
@@ -1153,16 +1514,24 @@
         // yüzden hedef (tx/ty) yerine güncel ekran konumuna bakmalı.
         const bx = tiltTarget > 0.5 && n.px != null ? n.px : n.tx;
         const by = tiltTarget > 0.5 && n.py != null ? n.py : n.ty;
-        minX = Math.min(minX, bx - r);
-        maxX = Math.max(maxX, bx + r);
+        // Sığdırma yalnız düğüm DAİRESİNE bakıyordu, altındaki yazıya değil
+        // -- uzun etiketler (ör. "Self-Disclosure and the Breath of the
+        // All-Merciful") dairenin çok dışına taşıyor, dar (mobil) ekranda
+        // iki kenardan birden kırpılıyordu (2026-08-06 ölçüldü). Yazı
+        // düğümün altında ORTALANMIŞ ve YATAYDA yarı genişliği kadar
+        // dışarı taşıyor; dikeyde de düğümün altına (baseY + satır
+        // yüksekliği kadar) sarkıyor.
+        const half = Math.max(r, labelHalfWidth(n));
+        minX = Math.min(minX, bx - half);
+        maxX = Math.max(maxX, bx + half);
         minY = Math.min(minY, by - r);
-        maxY = Math.max(maxY, by + r);
+        maxY = Math.max(maxY, by + r + 14 + 16);
       });
       const bboxW = Math.max(maxX - minX, 1);
       const bboxH = Math.max(maxY - minY, 1);
       const scale = Math.min(
         4,
-        Math.max(0.5, Math.min((width - pad * 2) / bboxW, (height - pad * 2) / bboxH))
+        Math.max(0.22, Math.min((width - pad * 2) / bboxW, (height - pad * 2) / bboxH))
       );
       const cx = (minX + maxX) / 2;
       const cy = (minY + maxY) / 2;
@@ -1194,15 +1563,38 @@
 
     const linkGroup = spinGroup.append("g").attr("class", "links");
 
+    // GÖRÜNEN çizgi: yalnız çizim. 1,6px'lik bir çizgiyi fareyle tutturmak
+    // zordu (kullanıcı notu 2026-08-03) -- etkileşim bu yüzden ayrı,
+    // GÖRÜNMEZ ve kalın bir "isabet şeridine" taşındı (aşağıda). Şerit
+    // çizginin altında duruyor ki okları/çizgiyi örtmesin; saydam olduğu
+    // için görünüşe hiç karışmıyor.
     pathSel = linkGroup
-      .selectAll("path")
+      .selectAll("path.link")
       .data(links)
       .join("path")
       .attr("class", (d) => "link link--" + d.kind + " link--conf-" + confSlug(d.confidence))
       .attr("marker-end", (d) => "url(#arrow-" + (d.kind === "gather" ? "descent" : d.kind) + ")")
       .attr("fill", "none")
-      .on("mouseenter", (event, d) => highlightEdge(d))
-      .on("mouseleave", () => highlight(null))
+      .attr("pointer-events", "none");
+
+    // İsabet şeridi: "değinmek" fiilinin gerçekten mümkün olması için
+    // (#10 + ETKILESIM_DILI.md'nin dördüncü fiili). Klavye karşılığı da
+    // burada -- odaklanabilir olan bu şerit, çünkü tıklanabilir olan da o.
+    hitSel = linkGroup
+      .selectAll("path.link-hit")
+      .data(links)
+      .join("path")
+      .attr("class", "link-hit")
+      .attr("fill", "none")
+      .attr("tabindex", 0)
+      .attr("role", "button")
+      .attr("aria-label", (d) => edgeAriaLabel(d))
+      .on("mouseenter", (event, d) => { highlightEdge(d); showEdgeTooltip(d, event); })
+      .on("mousemove", (event) => moveTooltip(event))
+      .on("mouseleave", () => { highlight(null); hideTooltip(); })
+      .on("focus", (event, d) => { highlightEdge(d); showEdgeTooltip(d, event); })
+      .on("blur", () => { highlight(null); hideTooltip(); })
+      .on("keydown", (event, d) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onEdgeClick(d); } })
       .on("click", (event, d) => onEdgeClick(d));
 
     // Ok tuşuyla gezinme: verilen yön vektörüne (dx,dy) en çok hizalı VE en
@@ -1283,16 +1675,23 @@
       .attr("text-anchor", "middle")
       .text((d) => labelFor(d));
 
+    // 3B derinlik eğiminde her düğüm kendi grubuna translate+scale(s)
+    // alıyor -- s, düğümün dairesini VE altındaki etiketi birlikte
+    // küçültüp büyütüyor. Hem çizim hem çakışma-önleme AYNI s'i kullanmalı.
+    function nodeScale(d) {
+      return Math.max(0.55, 1 + (d.__depth - 1) * tilt);
+    }
+
     function paintPositions() {
       positionNodes();
       pathSel.attr("d", (d) => edgePath(d));
+      // İsabet şeridi görünen çizgiyle AYNI yolu izlemeli, yoksa
+      // kullanıcı gördüğü çizgiye değil başka bir yere değinir.
+      if (hitSel) hitSel.attr("d", (d) => edgePath(d));
       // 3B'de uzaktakiler önce çizilsin ki örtüşme doğru olsun.
       if (tilt > 0.02) nodeSel.sort((a, b) => (b.__z || 0) - (a.__z || 0));
       nodeSel
-        .attr("transform", (d) => {
-          const s = 1 + (d.__depth - 1) * tilt;
-          return `translate(${d.px},${d.py}) scale(${Math.max(0.55, s).toFixed(3)})`;
-        })
+        .attr("transform", (d) => `translate(${d.px},${d.py}) scale(${nodeScale(d).toFixed(3)})`)
         // Atmosfer: uzaktaki düğüm soluklaşır (Hâller'deki aynı ölçü).
         // __birth: doğuş animasyonu sırasında katman katman belirme çarpanı
         // (runBirth); animasyon bitince alan siliniyor, çarpan 1'e düşüyor.
@@ -1308,13 +1707,33 @@
       const pend = [];
       labelSel.each(function (d) {
         const baseY = radiusFor(d) + 14;
+        const s = nodeScale(d);
+        // Etiket kendi grubu içinde ters döndürülüp dik tutuluyor (bkz.
+        // spinFrame), yani salınımdan yalnız ANKRAJ noktası (px,py) etkileniyor
+        // -- dikey ofset (baseY) hep ekranda düz aşağı iniyor.
+        const anchor = swayRotate(d.px, d.py);
         pend.push({
           lbl: d3.select(this), txt: labelFor(d),
-          x: d.px, y: d.py + baseY, baseY,
+          x: anchor.x, y: anchor.y + baseY * s, baseY, scale: s,
           priority: d.id === "dhat" ? 2 : (d.kind === "hub" ? 1 : 0),
         });
       });
-      deconflictLabels(pend);
+      // Etiketler yalnız birbirini değil, komşu düğümlerin DAİRELERİNİ de
+      // engel saymalı -- bkz. graph-utils.js'teki not. Daireler de kendi
+      // düğümünün s'iyle küçülüp büyüyor; dairenin kendisi dönse de
+      // biçimi (çember) değişmediği için ankraj noktasını döndürmek yeter.
+      const nodeObstacles = nodes.map((d) => {
+        const s = nodeScale(d);
+        const anchor = swayRotate(d.px, d.py);
+        return { x: anchor.x, y: anchor.y, half: radiusFor(d) * s, h: radiusFor(d) * 2 * s };
+      });
+      // Ekstra pay: bu sahne yavaşça yaw ile dönüyor (varsayılan 3B eğim),
+      // yani her karede biraz farklı bir projeksiyon -- tam sınırda kalan
+      // çiftler bir sonraki karede yeniden çakışabiliyordu (2026-08-06
+      // ölçüldü). Küçük bir tampon bunu azaltıyor (garanti değil, çünkü
+      // sürekli dönen bir 3B sahnede HER açıda çakışmasızlık matematiksel
+      // olarak garanti edilemez -- bkz. graph-utils.js'teki not).
+      deconflictLabels(pend, nodeObstacles, { y: 10, x: 10 });
     }
 
     simulation.on("tick", paintPositions);
@@ -1384,7 +1803,7 @@
     // nefes alıyor gibi durur, ama "yukarısı" hep yukarıda kalır. Bir düğümün
     // detayı açıkken ve simülasyon hareketliyken (ilk yerleşme, sürükleme)
     // durur.
-    const spinCenter = { x: 0.5 * width, y: 0.52 * height };
+    const spinCenter = { x: cx3d, y: cy3d };
     let swayT = 0, spinRaf = null, spinLast = 0;
     const SWAY_PERIOD = 46000;   // bir gidiş-geliş ~46 sn
     const SWAY_DEG = 2.6;        // genlik: ±2.6 derece
@@ -1408,7 +1827,18 @@
       // etrafında olduğu için "yukarısı" hep yukarıda kalır -- yani mertebe
       // iddiası bozulmaz (bu, aşağıdaki salınımın var oluş sebebiydi).
       if (tilt > 0.5) {
-        if (!rotating && !reduceMotion && detailPanel.hidden) { yaw += dt * 0.00005; paintPositions(); }
+        if (!rotating && !reduceMotion && detailPanel.hidden) {
+          yaw += dt * 0.00005;
+          // Aynı kusur sway kolunda da vardı (bkz. aşağıdaki not): burada
+          // hiç eşik YOKTU, paintPositions() (deconflictLabels dahil) her
+          // karede koşulsuz çağrılıyordu -- sahnenin VARSAYILAN 3B açılış
+          // durumunda, sonsuza dek. Tablette "sürekli titriyor" bildirimiyle
+          // 2026-08-07'de ölçülüp yakalandı.
+          if (Math.abs(yaw - yawPainted) > 0.3 * Math.PI / 180) {
+            yawPainted = yaw;
+            paintPositions();
+          }
+        }
         spinGroup.attr("transform", null);
         labelSel.attr("transform", null);
         spinRaf = requestAnimationFrame(spinFrame);
@@ -1423,6 +1853,20 @@
         const ly = radiusFor(d) + 14;
         return `rotate(${(-deg).toFixed(3)},0,${ly.toFixed(1)})`;
       });
+      // Etiket çakışma-önleme salınımın ORTASINDA (0°) hesaplanıyordu --
+      // yerleşim ucunda sınırdaki çiftler yeniden çakışıyordu (2026-08-06
+      // ölçüldü). swayRad'ı güncel açıya taşıyıp yerleşimi tazeliyoruz.
+      // Eşik ÖNEMLİ: `deg` her karede sürekli değişen bir sinüs değeri,
+      // yani "!==" neredeyse HER karede doğruydu -- paintPositions() (tüm
+      // düğümler için deconflictLabels dahil) saniyede 60 kez çalışıyordu,
+      // sürekli açık kalan görünümde sonsuza dek. Tablette "sürekli
+      // titriyor" bildirimiyle 2026-08-07'de ölçülüp yakalandı. 0.3°'lik
+      // eşik, yerleşimi hâlâ tazeliyor (yaklaşık 2,5 saniyede bir, salınımın
+      // ~46 sn'lik yarı periyoduna göre) ama her kareyi tüketmiyor.
+      if (Math.abs(deg - swayRad * 180 / Math.PI) > 0.3) {
+        swayRad = deg * Math.PI / 180;
+        paintPositions();
+      }
       spinRaf = requestAnimationFrame(spinFrame);
     }
     function ensureSpin() { if (spinRaf == null) spinRaf = requestAnimationFrame(spinFrame); }
@@ -1474,6 +1918,7 @@
     (function wireRotateDrag() {
       const el = svg.node();
       let lastX = 0, lastY = 0;
+      let dragRepaintQueued = false;
       el.addEventListener("pointerdown", (e) => {
         if (tiltTarget < 0.5) return;
         if (e.target.closest && e.target.closest(".node")) return;
@@ -1485,7 +1930,17 @@
         yaw += (e.clientX - lastX) * 0.006;
         pitch = Math.max(0.02, Math.min(1.1, pitch + (e.clientY - lastY) * 0.004));
         lastX = e.clientX; lastY = e.clientY;
-        paintPositions();
+        // Aşağıdaki idle-spin kolunda (bkz. spinFrame, ~satır 1776) zaten
+        // düzeltilmiş AYNI kusur -- paintPositions() (deconflictLabels
+        // dahil) burada da koşulsuz çağrılıyordu. Touch'ta pointermove
+        // fare hareketinden çok daha sık ve küçük artışlarla ateşleniyor;
+        // her birinde çakışma-önleme yeniden koşunca eşik-yakını etiketler
+        // sıçrıyordu (tablette "sürüklerken titriyor" bildirimi). rAF ile
+        // tekilleştirip kare başına en fazla bir kez boyuyoruz.
+        if (!dragRepaintQueued) {
+          dragRepaintQueued = true;
+          requestAnimationFrame(() => { dragRepaintQueued = false; paintPositions(); });
+        }
       });
       const stop = (e) => {
         if (!rotating) return;
@@ -1517,6 +1972,19 @@
     }
 
     window.__ontologyApp = { nodes, links, nodeById, is3d: () => tiltTarget > 0.5 };
+
+    // İlk boya @font-face yüklenmeden önce olabilir; deconflictLabels'ın
+    // ölçüm önbelleği (graph-utils.js) fontlar hazır olunca kendini
+    // temizliyor ama BURADA yeniden çizdirecek biri gerekiyor -- yukarıdaki
+    // yaw/sway eşikleri (satır ~1775/1804) sürekli dönüşte gereksiz
+    // tekrar-boyamayı önlemek için var, fakat varsayılan 3B açılışta
+    // sonraki eşiği aşan kareye kadar (dakikalar sürebilir) etiketler eski
+    // (fontsuz ölçülmüş) konumunda kalırdı (2026-08-07 UI denetimi: sayfa
+    // ilk açıldığında hiç tıklamadan çakışan etiketler). Eşiği bir kere
+    // bypass edip zorla tazeliyoruz.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => paintPositions());
+    }
   }
 
   function pullBack(fromX, fromY, toX, toY, dist) {
@@ -1566,19 +2034,10 @@
     notifyCrossLinkReady();
   }
 
-  function registerEsmaCrossLinks(data) {
-    data.nodes.forEach((n) => {
-      registerCrossLinkTerm(n.name, "esma", n.id, n.short);
-    });
-    notifyCrossLinkReady();
-  }
-
-  function registerHalCrossLinks(data) {
-    data.nodes.forEach((n) => {
-      registerCrossLinkTerm(n.name, "hal", n.id, n.short);
-    });
-    notifyCrossLinkReady();
-  }
+  // registerEsmaCrossLinks / registerHalCrossLinks kaldırıldı (2026-08-05):
+  // hiçbir yerden çağrılmıyorlardı -- cross-link kaydı artık tümüyle
+  // capraz-baglanti-indeksi.json'dan geliyor. Ölü hâlleri, kaydın hâlâ
+  // görünüm verilerinden beslendiği izlenimini veriyordu.
 
   // --- Cross-linking between insights ---
   const crossLinkTermsByLang = { tr: [], en: [], pt: [] };
@@ -2179,9 +2638,98 @@
         <cite>${entry.source}</cite>
       </div>
       ${bagimsizKaynakBadgeHtml(entry)}
+      <div id="sir-derin-icerik"></div>
+      ${sirlarSorularHtml(entry)}
       ${sirlarOkumaHtml(entry)}
     `;
     detailPanel.hidden = false;
+    derinIcerikCiz(id);
+    // Köprü verisi geç gelirse paneli tazele.
+    if (!sirlarSorularVeri) sirlarSorularYukle().then((k) => {
+      if (k && currentDetailSirlarId === id) showSirlarEntry(id);
+    });
+  }
+
+  // KADEMELİ AÇILIM (G15). data/icerik/<id>.json bir sır kaydının DERİN
+  // katmanı: aynı sırrın üç yoğunlukta yazılmış hâli (ozet/giris/govde).
+  // Her sır için yok -- şu an yalnız üçünde var, gerisi elle yazılacak.
+  //
+  // Önce _index.json okunuyor: onsuz tek seçenek her sır tıklamasında bir
+  // fetch deneyip 404 yutmak olurdu (99 kayıt, konsol dolusu 404).
+  let derinIndeks = null;
+  let derinIndeksSozu = null;
+  const derinOnbellek = new Map();
+
+  function derinIndeksYukle() {
+    if (derinIndeks) return Promise.resolve(derinIndeks);
+    if (!derinIndeksSozu) {
+      derinIndeksSozu = window.DostGraphUtils.fetchJson("data/icerik/_index.json")
+        .then((d) => { derinIndeks = new Set((d && d.idler) || []); return derinIndeks; })
+        .catch(() => { derinIndeks = new Set(); return derinIndeks; });
+    }
+    return derinIndeksSozu;
+  }
+
+  function derinIcerikCiz(id) {
+    derinIndeksYukle().then((indeks) => {
+      if (!indeks.has(id) || currentDetailSirlarId !== id) return;
+      const yerlestir = (kayit) => {
+        // Panel bu arada başka bir kayda geçmiş olabilir.
+        if (!kayit || currentDetailSirlarId !== id) return;
+        const kap = document.getElementById("sir-derin-icerik");
+        if (!kap || !window.__dostKademe) return;
+        kap.innerHTML = `<p class="detail-eyebrow detail-eyebrow--section">${tt({
+          tr: "Daha yakından", en: "A closer look", pt: "Mais de perto" })}</p>`;
+        window.__dostKademe.kur(kap, { ozet: kayit.ozet, giris: kayit.giris, govde: kayit.govde });
+      };
+      if (derinOnbellek.has(id)) { yerlestir(derinOnbellek.get(id)); return; }
+      window.DostGraphUtils.fetchJson(`data/icerik/${id}.json`)
+        .then((kayit) => { derinOnbellek.set(id, kayit); yerlestir(kayit); })
+        .catch(() => { /* kayıt okunamadıysa panel eskisi gibi kalsın */ });
+    });
+  }
+
+  // SIRLAR -> SORULAR köprüsü (2026-08-03). sorular.js'teki aynı bağların
+  // ters yönü: bir sır kaydının hangi açık soruya dokunduğu. Bağlar ELLE
+  // kuruldu ve gerekçesiyle birlikte duruyor -- bkz.
+  // data/ibn-arabi/sirlar-sorular.json'un `not` alanı.
+  let sirlarSorularVeri = null;
+  const soruBaslik = new Map();
+  function sirlarSorularYukle() {
+    if (sirlarSorularVeri) return Promise.resolve(sirlarSorularVeri);
+    return Promise.all([
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar-sorular.json"),
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/sorular.json"),
+    ]).then(([k, sor]) => {
+      sirlarSorularVeri = k;
+      (sor.categories || []).forEach((c) =>
+        (c.questions || []).forEach((q) => soruBaslik.set(q.id, q.question)));
+      return k;
+    }).catch(() => null);
+  }
+  function sirlarSorularHtml(entry) {
+    if (!sirlarSorularVeri) return "";
+    const bag = (sirlarSorularVeri.baglar || []).filter((b) => b.sir === entry.id);
+    if (!bag.length) return "";
+    const base = window.__dostRouteBase || "";
+    const satir = bag.map((b) => {
+      const q = soruBaslik.get(b.soru);
+      if (!q) return "";
+      return `<a class="sorular-sir" href="${base}/sorular/${b.soru}" data-view="sorular" data-id="${b.soru}">
+        <span class="sorular-sir__baslik">${I18n.pick3(q)}</span>
+        <span class="sorular-sir__neden">${I18n.pick3(b.neden)}</span></a>`;
+    }).join("");
+    if (!satir) return "";
+    return `<div class="sorular-sirlar">
+      <p class="detail-eyebrow detail-eyebrow--section">${tt({
+        tr: "Bu sırrın dokunduğu açık sorular",
+        en: "Open questions this mystery touches",
+        pt: "Perguntas abertas que este mistério toca" })}</p>
+      <p class="sorular-sirlar__not">${tt({
+        tr: "Bu bağları biz kurduk; sır soruyu cevaplamıyor, çoğu zaman onun neden açık kaldığını gösteriyor.",
+        en: "We made these links ourselves; the mystery does not answer the question — more often it shows why it stays open.",
+        pt: "Fizemos estes vínculos nós mesmos; o mistério não responde à pergunta — mais frequentemente mostra por que ela permanece aberta." })}</p>
+      ${satir}</div>`;
   }
 
   const RADIUS_BY_ID = {
@@ -2257,6 +2805,42 @@
     moveTooltip(event);
   }
 
+  // Kenar önizlemesi (#10): tıklamayla açılan kenar panelinin küçültülmüş
+  // hâli -- ilişkinin adı, iki ucu, gerekçesinin ilk cümlesi ve (kesin
+  // saymadığımız yerlerde) güven etiketimiz. Odakla da açılıyor.
+  function edgeConfidenceText(c) {
+    if (!c || c === "Yüksek") return "";
+    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
+    return tt({ tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " }) + tt(label);
+  }
+
+  function showEdgeTooltip(l, event) {
+    if (!tooltip) return;
+    tooltip.innerHTML = window.DostGraphUtils.edgeReasonHtml({
+      title: I18n.pick3(l.source.name) + " → " + I18n.pick3(l.target.name),
+      kindLabel: I18n.pick3(l.relation),
+      reason: I18n.pick3(l.nature),
+      confidence: edgeConfidenceText(l.confidence),
+    });
+    tooltip.hidden = false;
+    if (event && typeof event.clientX === "number") moveTooltip(event);
+    else positionTooltipOnEdge(l);
+  }
+
+  // Klavyeyle gelindiğinde imleç konumu yok; ipucu kenarın orta noktasına
+  // konuyor (SVG koordinatı -> ekran koordinatı, zoom/eğim dahil).
+  function positionTooltipOnEdge(l) {
+    const pathNode = pathSel && pathSel.nodes().find((n) => d3.select(n).datum() === l);
+    if (!pathNode) return;
+    const box = pathNode.getBoundingClientRect();
+    moveTooltip({ clientX: box.left + box.width / 2, clientY: box.top + box.height / 2 });
+  }
+
+  function edgeAriaLabel(l) {
+    return I18n.pick3(l.source.name) + " → " + I18n.pick3(l.target.name)
+      + " — " + I18n.pick3(l.relation);
+  }
+
   function moveTooltip(event) {
     window.DostGraphUtils.moveTooltip(tooltip, wrapEl, event);
   }
@@ -2306,6 +2890,156 @@
     showNodeDetail(d);
     updateHash("ontoloji", d.id);
     panToNode(d);
+    dugumDavranisi(d);
+  }
+
+  // ---------------------------------------------------------------------
+  // ANLAM TAŞIYAN ANİMASYON (#2, 2026-08-03)
+  //
+  // GORSEL_DIL.md: "kavramı resmetme, onun davranışını resmet." Bu ilke
+  // bugüne kadar tek tek sahnelerde (ayna, perde, iki mertebe) uygulanmıştı;
+  // ana grafiğin KENDİ etkileşiminde uygulanmamıştı: her düğüme tıklamak
+  // aynı şeyi yapıyordu (panel açılır, kamera kayar), oysa bu düğümlerin
+  // hepsi FARKLI şeyler yapan kavramlar.
+  //
+  // Aşağıdaki beş davranışın hiçbiri süs değil; her biri o düğümün kendi
+  // tanımından çıkıyor ve sitede zaten yazılı olan bir kenar/ilişki türünü
+  // hareket olarak gösteriyor:
+  //   dhat          -> tecellî: ışık Zât'tan bütün mertebelere yayılıyor
+  //                   (descent kenarları, tenezzül sırasıyla)
+  //   kalp          -> rücû: aynı yol TERS yönde, kalpten Zât'a
+  //                   (ontology.json'daki `return` kenarı: kalp -> dhat)
+  //   insan-i-kamil -> cem': üç âlemin ışığı onda toplanıyor
+  //                   (üç `gather` kenarı)
+  //   teceddud      -> halk-ı cedîd: bütün düğümler bir an sönüp yeniden
+  //                   yanıyor -- âlem her an yeniden yaratılıyor
+  //   perde         -> perdelenme: sahne bir an bulanıp açılıyor
+  //
+  // reduced-motion'da HİÇBİRİ çalışmaz (taklit de edilmez).
+  const DUGUM_DAVRANISI = {
+    dhat: "yayil",
+    kalp: "rucu",
+    "insan-i-kamil": "topla",
+    teceddud: "teceddud",
+    perde: "perde",
+  };
+  let davranisTimer = null;
+
+  function dugumDavranisi(d) {
+    if (reduceMotion || !pathSel || !nodeSel) return;
+    const tur = DUGUM_DAVRANISI[d.id];
+    if (!tur) return;
+    if (davranisTimer) { clearTimeout(davranisTimer); davranisTimer = null; }
+    if (tur === "teceddud") return teceddudEt();
+    if (tur === "perde") return perdelen();
+    // Yayılmanın görülebilmesi için bütün harita ekranda olmalı; tıklamanın
+    // olağan yakınlaşması (panToNode) sahneyi ekran dışında bırakıyordu.
+    // Kamera oturduktan SONRA ışık yola çıkıyor.
+    if (window.__ontologyZoom && window.__ontologyZoom.fit) window.__ontologyZoom.fit(true);
+    davranisTimer = setTimeout(() => yayilimEt(d.id, tur), reduceMotion ? 0 : 540);
+  }
+
+  // Kenar boyunca ilerleyen bir ışık. Yolun kendi geometrisini
+  // (getPointAtLength) izliyor -- düz bir çizgi değil, kenarın gerçek yayı.
+  function kivilcim(pathNode, gecikme, sure, ters) {
+    const uzunluk = pathNode.getTotalLength ? pathNode.getTotalLength() : 0;
+    if (!uzunluk) return;
+    const parent = pathNode.parentNode;
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute("class", "onto-kivilcim");
+    c.setAttribute("r", "4.5");
+    c.setAttribute("opacity", "0");
+    parent.appendChild(c);
+    const bas = performance.now() + gecikme;
+    function adim(t) {
+      const p = (t - bas) / sure;
+      if (p < 0) { requestAnimationFrame(adim); return; }
+      if (p >= 1) { c.remove(); return; }
+      const nokta = pathNode.getPointAtLength((ters ? 1 - p : p) * uzunluk);
+      c.setAttribute("cx", nokta.x);
+      c.setAttribute("cy", nokta.y);
+      // Uçlarda sönük, ortada parlak: bir geçiş, bir varış değil.
+      c.setAttribute("opacity", Math.sin(p * Math.PI).toFixed(3));
+      requestAnimationFrame(adim);
+    }
+    requestAnimationFrame(adim);
+  }
+
+  function komsuluk() {
+    const ileri = new Map(), geri = new Map();
+    (window.__ontologyApp.links || []).forEach((l) => {
+      const s = l.source.id, t = l.target.id;
+      if (!ileri.has(s)) ileri.set(s, []);
+      if (!geri.has(t)) geri.set(t, []);
+      ileri.get(s).push(l);
+      geri.get(t).push(l);
+    });
+    return { ileri, geri };
+  }
+
+  function pathFor(l) {
+    return pathSel.nodes().find((n) => d3.select(n).datum() === l);
+  }
+
+  // Kaynaktan dalga dalga yayılma. `tur`:
+  //   yayil -> kenarların kendi yönünde (tenezzül)
+  //   rucu  -> ters yönde, kaynağa doğru (dönüş)
+  //   topla -> kaynağa GİREN kenarlar boyunca içeri (cem')
+  function yayilimEt(kaynakId, tur) {
+    const { ileri, geri } = komsuluk();
+    const ADIM = 320, SURE = 620;
+    const gorulen = new Set([kaynakId]);
+    let kat = [kaynakId], derinlik = 0;
+    while (kat.length && derinlik < 8) {
+      const sonraki = [];
+      kat.forEach((id) => {
+        const kenarlar = (tur === "yayil" ? (ileri.get(id) || []) : (geri.get(id) || []));
+        kenarlar.forEach((l) => {
+          const p = pathFor(l);
+          if (p) kivilcim(p, derinlik * ADIM, SURE, tur !== "yayil");
+          const oteki = tur === "yayil" ? l.target.id : l.source.id;
+          if (!gorulen.has(oteki)) { gorulen.add(oteki); sonraki.push(oteki); }
+        });
+      });
+      // "topla" tek adımlık: üç âlemin ışığı doğrudan İnsân-ı Kâmil'e girer,
+      // zincirleme bir yayılma değil.
+      if (tur === "topla") break;
+      kat = sonraki;
+      derinlik++;
+    }
+    // Işık geçerken düğümler sırayla parlıyor -- yalnız çizgi değil, varış
+    // da görünsün.
+    let i = 0;
+    gorulen.forEach((id) => {
+      const el = nodeSel.nodes().find((n) => d3.select(n).datum().id === id);
+      if (!el) return;
+      const gecikme = i * 90;
+      i++;
+      setTimeout(() => {
+        el.classList.add("node--isik");
+        setTimeout(() => el.classList.remove("node--isik"), 700);
+      }, gecikme);
+    });
+  }
+
+  // Halk-ı cedîd: âlem her an yeniden yaratılıyor. Bütün düğümler kısa bir
+  // an sönüp yeniden yanıyor -- aynı düğümler, yeni bir yaratılışta.
+  function teceddudEt() {
+    nodeSel.nodes().forEach((el, i) => {
+      setTimeout(() => {
+        el.classList.add("node--teceddud");
+        setTimeout(() => el.classList.remove("node--teceddud"), 620);
+      }, (i % 6) * 70);
+    });
+  }
+
+  // Perdelenme: sahne bir an bulanıp açılıyor. Perde bir halka değil, bir
+  // süreçtir (GORSEL_DIL.md).
+  function perdelen() {
+    const kat = document.querySelector("#graph g.zoom-layer");
+    if (!kat) return;
+    kat.classList.add("onto-perdeli");
+    davranisTimer = setTimeout(() => kat.classList.remove("onto-perdeli"), 1150);
   }
 
   function onEdgeClick(l) {
@@ -2407,10 +3141,103 @@
       ${analogyHtml(d.analogy)}
       ${entityDiagramHtml(d)}
       ${insightsHtml(d.insights, d.sources, "ontoloji", d.id)}
+      ${gateHtml(d)}
+      ${sahneHtml(d)}
       ${relatedEdgesHtml(d)}
     `;
     detailPanel.hidden = false;
+    wireGate(d);
+    wireEntityDiagram(d);
     if (nodeSel) nodeSel.classed("node--active", (n) => n.id === d.id);
+  }
+
+  // KAPILAR (FAZ 2b) — bkz. ETKILESIM_DILI.md: "geçiş dekor değil,
+  // dönüşümdür." Ontoloji'nin bazı düğümlerinin sitede kendi haritası var;
+  // "Esmâ-i Hüsnâ ve Sıfat" düğümü ile Esmâ görünümü aynı şeyin iki
+  // çözünürlüğü. Tıklama sözleşme gereği yalnız paneli açıyor (habersiz
+  // gezinme yok); geçiş buradaki ADI KONMUŞ kapıdan oluyor.
+  const GATES = {
+    "sifat-asma": {
+      view: "esma",
+      label: {
+        tr: "Yüz bir ismin haritasına gir",
+        en: "Enter the map of the hundred and one Names",
+        pt: "Entre no mapa dos cento e um Nomes",
+      },
+      note: {
+        tr: "Bu düğüm bir liste değil, bir kapı: aynı beliriş, orada tek tek isimler olarak açılıyor.",
+        en: "This node is not a list but a door: the same self-determination opens there as the Names one by one.",
+        pt: "Este nó não é uma lista, mas uma porta: a mesma autodeterminação se abre ali como os Nomes, um a um.",
+      },
+    },
+  };
+
+  function gateHtml(d) {
+    const g = GATES[d.id];
+    if (!g) return "";
+    return `<div class="detail-gate">
+      <p class="detail-gate__note">${tt(g.note)}</p>
+      <button class="detail-gate__btn" type="button" data-gate="${d.id}">${tt(g.label)}
+        <span class="detail-gate__arrow" aria-hidden="true">→</span></button>
+    </div>`;
+  }
+
+  // Bazı düğümlerin, SPA rotalamasının DIŞINDA duran (docs/icerik-yol-
+  // haritasi.md D1/D2/D5 gibi) bağımsız bir "sahne" sayfası var --
+  // halk-i-cedid.html teceddüd'ün ta kendisi. 2026-08-04 taramasında bu tür
+  // sayfaların hiçbirinin siteden gerçekten LİNKLENMEDİĞİ (yetim olduğu)
+  // ölçüldü; burası düğümün kendi davranışıyla (teceddudEt()) zaten aynı
+  // fikri taşıdığı için en doğru bağlama noktası. GATES'ten farklı: bu bir
+  // SPA-içi dönüşüm değil, ayrı bir sayfaya düz bir bağlantı -- bu yüzden
+  // aynı görsel dili (.detail-gate) taşıyan ama <a href> kullanan ayrı bir
+  // fonksiyon.
+  const SAHNELER = {
+    teceddud: {
+      href: "halk-i-cedid.html",
+      label: {
+        tr: "Sahneyi aç: Halk-ı Cedîd",
+        en: "Open the scene: Perpetual Renewal",
+        pt: "Abrir a cena: Renovação Perpétua",
+      },
+      note: {
+        tr: "Bu düğümün tıklanınca yaptığı şey (bütün düğümlerin bir an sönüp yeniden yanması) burada tek başına, yavaşça sürüklenebilen bir sahneye açılıyor.",
+        en: "What this node does when clicked (every node flickering out and relighting) opens here on its own, as a scene you can slowly drag through.",
+        pt: "O que este nó faz ao ser clicado (todos os nós apagando e reacendendo por um instante) se abre aqui sozinho, como uma cena que você pode arrastar lentamente.",
+      },
+    },
+  };
+  function sahneHtml(d) {
+    const s = SAHNELER[d.id];
+    if (!s) return "";
+    const base = window.__dostRouteBase || "";
+    return `<div class="detail-gate detail-gate--sahne">
+      <p class="detail-gate__note">${tt(s.note)}</p>
+      <a class="detail-gate__btn" href="${base}/${s.href}">${tt(s.label)}
+        <span class="detail-gate__arrow" aria-hidden="true">→</span></a>
+    </div>`;
+  }
+
+  function wireGate(d) {
+    const btn = detailContent.querySelector(".detail-gate__btn");
+    if (!btn) return;
+    const g = GATES[btn.dataset.gate];
+    if (!g) return;
+    btn.addEventListener("click", () => {
+      // Kapı düğümünün ekrandaki dairesi: dönüşüm oradan başlıyor.
+      let rect = null, renk = null;
+      if (nodeSel) {
+        const el = nodeSel.nodes().find((n) => d3.select(n).datum().id === d.id);
+        const circle = el && el.querySelector("circle");
+        if (circle) {
+          rect = circle.getBoundingClientRect();
+          renk = getComputedStyle(circle).fill;
+        }
+      }
+      window.DostGraphUtils.gateTransition(
+        { fromRect: rect, color: renk, targetEl: document.getElementById(g.view + "-wrap") },
+        () => { setMainView(g.view); updateHash(g.view); }
+      );
+    });
   }
 
   function relatedEdgesHtml(d) {
@@ -2443,6 +3270,7 @@
       </div>
     `;
     detailPanel.hidden = false;
+    wireEntityDiagram(l);
     if (nodeSel) nodeSel.classed("node--active", false);
   }
 

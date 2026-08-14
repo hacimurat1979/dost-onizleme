@@ -16,6 +16,29 @@
     "evrad": "☽",
   };
 
+  // Ayrı sahnesi olan şiirler (bkz. terimler.js TERIM_SAHNELERI,
+  // sorular.js SORU_SAHNELERI -- aynı sözleşmenin üçüncü yeri).
+  const SIIR_SAHNELERI = {
+    "te-kalp": {
+      dosya: "tercuman-esvak.html",
+      dugme: {
+        tr: "Sahneyi aç: Kendi şiirini savunmak",
+        en: "Open the scene: Defending his own poem",
+        pt: "Abrir a cena: Defender o próprio poema",
+      },
+    },
+    // Bu şiir zaten tavaf sahnesinin İÇİNDEN geliyor (Kısım IV); sahne de
+    // o karşılaşmayı yürütüyor -- docs/icerik-yol-haritasi.md D19.
+    "fut-tavaf-genc": {
+      dosya: "futuhat-dogusu.html",
+      dugme: {
+        tr: "Sahneyi aç: Tavafta bir karşılaşma",
+        en: "Open the scene: An encounter during the circling",
+        pt: "Abrir a cena: Um encontro na circum-ambulação",
+      },
+    },
+  };
+
   function tt(dict) {
     return I18n.pick3(dict);
   }
@@ -155,6 +178,16 @@
           html += `<a class="siir-card__kisim-link" href="${escHtml(window.__dostNav.href("futuhat", p.futuhat_kisim_id))}" data-kisim-id="${escHtml(p.futuhat_kisim_id)}">${escHtml(L("kisma_git"))}</a>`;
         }
 
+        // Bazı şiirlerin ayrı, oynanabilir bir sahnesi var (terimler.js
+        // TERIM_SAHNELERI / sorular.js SORU_SAHNELERI ile aynı sözleşme).
+        // İlk örnek te-kalp: Tercümânü'l-Eşvâk'ın eleştirilmesi ve Dost'un
+        // kendi şerhini yazması -- docs/icerik-yol-haritasi.md D15.
+        const sahne = SIIR_SAHNELERI[p.id];
+        if (sahne) {
+          const base = window.__dostRouteBase || "";
+          html += `<a class="siir-card__sahne-link" href="${escHtml(base + "/" + sahne.dosya)}">${escHtml(tt(sahne.dugme))} →</a>`;
+        }
+
         html += `</article>`;
       });
     }
@@ -206,11 +239,18 @@
   // is added only once via a guard flag on the element). Kept here (rather
   // than split per-tab) because it already owned the DOM wiring before the
   // third tab existed -- three tabs still doesn't justify a dedicated module.
+  // switchTo, wireTabs()'in yerel bir kapanışı -- her "hakkında" aktivasyonunda
+  // yeniden atanır. Modül dışından (elestiri-arkeolojisi.js'in vahdet köprüsü
+  // gibi) çağrılabilmesi için son atanan sürüm burada tutulur (bkz. altta
+  // window.__siirlerApp.switchTo).
+  let switchToTab = null;
+
   function wireTabs() {
     const tabs = {
       hakkinda: { btn: document.getElementById("hakkinda-subtab-hakkinda"), panel: document.getElementById("hakkinda-content-panel") },
       siirler: { btn: document.getElementById("hakkinda-subtab-siirler"), panel: document.getElementById("siirler-panel") },
       vahdet: { btn: document.getElementById("hakkinda-subtab-vahdet"), panel: document.getElementById("vahdet-panel") },
+      "okuma-yollari": { btn: document.getElementById("hakkinda-subtab-okuma-yollari"), panel: document.getElementById("okuma-yollari-panel") },
     };
     const keys = Object.keys(tabs);
     if (keys.some((k) => !tabs[k].btn || !tabs[k].panel)) return;
@@ -224,7 +264,9 @@
       });
       if (which === "siirler" && !initialized) activate();
       if (which === "vahdet") window.__vahdetApp && window.__vahdetApp.activate();
+      if (which === "okuma-yollari") window.__okumaYollariApp && window.__okumaYollariApp.activate();
     }
+    switchToTab = switchTo;
 
     if (!tabs.hakkinda.btn.dataset.wired) {
       keys.forEach((k) => tabs[k].btn.addEventListener("click", () => switchTo(k)));
@@ -232,5 +274,8 @@
     }
   }
 
-  window.__siirlerApp = { activate, onLangChange, wireTabs };
+  window.__siirlerApp = {
+    activate, onLangChange, wireTabs,
+    switchTo(which) { switchToTab && switchToTab(which); },
+  };
 })();

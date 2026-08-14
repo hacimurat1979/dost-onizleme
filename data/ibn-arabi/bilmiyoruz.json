@@ -1,0 +1,328 @@
+{
+  "not": {
+    "tr": "Bu sayfa cevap toplamıyor, sınır işaretliyor. Dördü de kendi türünde: biri metnin fiziksel tarihine (hangi nüsha, kimin eliyle), biri bir okuma geleneğinin kendisine (o okuma Şeyh'e mi ait yoksa okuyana mı), biri akademik bir tasnife (hangi eser gerçekten kime ait), biri de günümüzde sık kurulan bir benzetme türüne (metinle modern bilim arasında) dair. Bazılarında alanın kendisi anlaşamıyor; bazılarında bizim şu ana kadar doğrulayabildiğimiz burada bitiyor — ikisini birbirine karıştırmamak için her maddenin durumu ayrı etiketlendi.",
+    "en": "This page does not collect answers, it marks limits. Each of the four belongs to a different kind: one to the text's physical history (which manuscript, whose hand), one to a reading tradition itself (whether that reading belongs to the Shaykh or to the reader), one to a scholarly classification (which work truly belongs to whom), one to a comparison often drawn today (between the text and modern science). In some, the field itself has not agreed; in others, what we have been able to verify so far simply ends here — each item's status is labelled separately so the two are not confused.",
+    "pt": "Esta página não reúne respostas, marca limites. Cada um dos quatro pertence a um tipo diferente: um à história física do texto (qual manuscrito, de que mão), um a uma tradição de leitura em si (se essa leitura pertence ao Xeique ou a quem lê), um a uma classificação académica (que obra pertence verdadeiramente a quem), um a uma comparação hoje frequente (entre o texto e a ciência moderna). Em alguns, o próprio campo não chegou a acordo; noutros, o que conseguimos verificar até agora termina simplesmente aqui — o estado de cada item está etiquetado separadamente para não confundir os dois."
+  },
+  "kategoriler": {
+    "nusha": {
+      "tr": "Nüsha ve metin",
+      "en": "Manuscript & text",
+      "pt": "Manuscrito e texto"
+    },
+    "yorum": {
+      "tr": "Bir okumanın mülkiyeti",
+      "en": "Whose reading is it",
+      "pt": "De quem é a leitura"
+    },
+    "tasnif": {
+      "tr": "Eser tasnifi",
+      "en": "Classification of works",
+      "pt": "Classificação das obras"
+    },
+    "benzetme": {
+      "tr": "Modern benzetmeler",
+      "en": "Modern analogies",
+      "pt": "Analogias modernas"
+    }
+  },
+  "durumlar": {
+    "tartismali": {
+      "tr": "araştırmacılar arasında tartışmalı",
+      "en": "contested among researchers",
+      "pt": "contestado entre investigadores"
+    },
+    "belirsiz": {
+      "tr": "sınırları henüz net değil",
+      "en": "its boundaries are not yet clear",
+      "pt": "os seus limites ainda não são claros"
+    },
+    "bizim_sinirimiz": {
+      "tr": "bizim doğrulayabildiğimizin sınırı burada bitiyor",
+      "en": "the limit of what we could verify ends here",
+      "pt": "o limite do que conseguimos verificar termina aqui"
+    }
+  },
+  "maddeler": [
+    {
+      "id": "konya-nushasi-dokuzuncu-cilt",
+      "kategori": "nusha",
+      "durum": "belirsiz",
+      "baslik": {
+        "tr": "Konya nüshasının dokuzuncu cildi başka bir elle yazılmış",
+        "en": "The ninth volume of the Konya manuscript was copied by another hand",
+        "pt": "O nono volume do manuscrito de Konya foi copiado por outra mão"
+      },
+      "aciklama": {
+        "tr": "Fütûhât'ın Şeyh'in kendi eliyle yazdığı ikinci telifi Konya'da (Türk ve İslam Eserleri Müzesi, Evkaf 1845+) duruyor, ama cildin tamamı aynı elden çıkmadı — dokuzuncu cilt sonradan başka bir hattatın eliyle tamamlanmış. Bu, kritik neşrin nerede Şeyh'in kendi metnine, nerede sonraki bir aktarıma dayandığını her cilt için ayrı ayrı sormayı gerektiriyor; biz bu ayrımı henüz cilt cilt işlemedik.",
+        "en": "The second, autograph recension of the Futuhat in Ibn Arabi's own hand is held in Konya (Turkish and Islamic Arts Museum, Evkaf 1845+), but not the whole volume set is in the same hand — the ninth volume was completed later by another copyist's hand. This means asking, volume by volume, where a critical edition rests on the Shaykh's own text and where on a later transmission; we have not yet worked through that distinction volume by volume.",
+        "pt": "A segunda recensão autógrafa das Futuhat, da própria mão de Ibn Arabi, encontra-se em Konya (Museu de Arte Turca e Islâmica, Evkaf 1845+), mas nem todo o conjunto de volumes está na mesma mão — o nono volume foi completado mais tarde por outra mão copista. Isto exige perguntar, volume a volume, onde uma edição crítica assenta no próprio texto do Xeique e onde numa transmissão posterior; ainda não trabalhámos essa distinção volume a volume."
+      },
+      "kaynaklar": [
+        {
+          "yazar": "Claude Addas",
+          "eser": "Quest for the Red Sulphur: The Life of Ibn 'Arabī",
+          "yil": 1993,
+          "not": "MIAS'ın baskı karşılaştırması"
+        },
+        {
+          "yazar": "Ibn al-Arabi Foundation",
+          "eser": "Yeni Fütûhât tahkiki (ed. Abd al-Aziz Sultan al-Mansub)",
+          "not": "Konya holografını esas alan yeni tahkik"
+        },
+        {
+          "yazar": "Osman Yahia",
+          "eser": "Fütûhât'ın kısmî neşri",
+          "not": "Neşrin kendi aparatı, nüsha farklarını kaydeder"
+        }
+      ]
+    },
+    {
+      "id": "corbinin-okumasi-kime-ait",
+      "kategori": "yorum",
+      "durum": "tartismali",
+      "baslik": {
+        "tr": "Corbin'in 'hayal âlemi' okuması ne kadar Şeyh'in, ne kadar Corbin'in",
+        "en": "How much of Corbin's reading of the 'imaginal world' is the Shaykh's, how much Corbin's",
+        "pt": "Quanto da leitura de Corbin do 'mundo imaginal' é do Xeique, quanto é de Corbin"
+      },
+      "aciklama": {
+        "tr": "Henry Corbin'in İbnü'l-Arabî'deki hayal âlemini yirminci yüzyıl fenomenolojisinden gelen bir çerçeveyle okuması, alanın en etkili ama en çok tartışılan okumalarından biri. Corbin'in kendisi de akademik eleştiri konusu — okumasının ne kadarı Şeyh'in metnine sadık kalıyor, ne kadarı İranî-fenomenolojik bir çerçeveyi metne geri okuyor, uzmanlar arasında kapanmış bir mesele değil.",
+        "en": "Henry Corbin's reading of Ibn Arabi's imaginal world through a framework drawn from twentieth-century phenomenology is one of the field's most influential and most contested readings. Corbin himself is a subject of academic critique — how much of his reading stays faithful to the Shaykh's text, and how much reads an Iranian-phenomenological framework back into it, is not a settled matter among specialists.",
+        "pt": "A leitura que Henry Corbin faz do mundo imaginal de Ibn Arabi, através de um enquadramento vindo da fenomenologia do século XX, é uma das leituras mais influentes e mais contestadas do campo. O próprio Corbin é objeto de crítica académica — quanto da sua leitura permanece fiel ao texto do Xeique, e quanto relê nele um enquadramento fenomenológico-iraniano, não é uma questão resolvida entre especialistas."
+      },
+      "kaynaklar": [
+        {
+          "yazar": "Henry Corbin",
+          "eser": "Creative Imagination in the Sufism of Ibn 'Arabi (Alone with the Alone)",
+          "not": "Tartışmanın kendi nesnesi olan çalışma"
+        },
+        {
+          "yazar": "William C. Chittick",
+          "eser": "Imaginal Worlds: Ibn al-'Arabī and the Problem of Religious Diversity",
+          "yil": 1994
+        },
+        {
+          "yazar": "James W. Morris",
+          "eser": "The Reflective Heart: Discovering Spiritual Intelligence in Ibn 'Arabī's Meccan Illuminations",
+          "yil": 2005
+        }
+      ],
+      "baglar": [
+        {
+          "view": "kavram",
+          "id": "alem-misal"
+        }
+      ]
+    },
+    {
+      "id": "osman-yahianin-tasnifindeki-atiflar",
+      "kategori": "tasnif",
+      "durum": "bizim_sinirimiz",
+      "baslik": {
+        "tr": "Osman Yahia'nın eser tasnifindeki bazı atıflar tartışmalı",
+        "en": "Some attributions in Osman Yahia's classification of works are contested",
+        "pt": "Algumas atribuições na classificação das obras de Osman Yahia são contestadas"
+      },
+      "aciklama": {
+        "tr": "Osman Yahia'nın Histoire et classification de l'œuvre d'Ibn 'Arabī'si (1964) hâlâ alanın eser-tasnifi için temel referansı, ama kendi eleştirilerine rağmen — bazı eserlerin Şeyh'e atfının tartışmalı olduğu literatürde not ediliyor. Biz bu tartışmanın hangi eserleri, hangi gerekçelerle kapsadığını henüz tek tek doğrulayabilmiş değiliz; bu yüzden burada genel bir uyarının ötesine geçmiyoruz.",
+        "en": "Osman Yahia's Histoire et classification de l'œuvre d'Ibn 'Arabī (1964) remains the field's basic reference for classifying the works, despite its own criticisms — the literature notes that some attributions to the Shaykh are contested. We have not yet verified, work by work, which titles this dispute covers and on what grounds; so here we go no further than a general flag.",
+        "pt": "A Histoire et classification de l'œuvre d'Ibn 'Arabī de Osman Yahia (1964) continua a ser a referência básica do campo para a classificação das obras, apesar das suas próprias críticas — a literatura assinala que algumas atribuições ao Xeique são contestadas. Ainda não verificámos, obra a obra, que títulos esta disputa abrange e com que fundamentos; por isso aqui não vamos além de um aviso geral."
+      },
+      "kaynaklar": [
+        {
+          "yazar": "Osman Yahia",
+          "eser": "Histoire et classification de l'œuvre d'Ibn 'Arabī",
+          "yil": 1964
+        },
+        {
+          "yazar": "Ibn Arabi Society",
+          "eser": "Çevrimiçi eser veritabanı",
+          "not": "ibnarabisociety.org, güncellenen bir referans"
+        }
+      ]
+    },
+    {
+      "id": "kuantum-benzetmelerinin-durumu",
+      "kategori": "benzetme",
+      "durum": "tartismali",
+      "baslik": {
+        "tr": "İbn Arabî ile kuantum fiziği benzetmelerinin bilimsel/ilahiyat statüsü",
+        "en": "The scientific/theological status of Ibn Arabi–quantum physics analogies",
+        "pt": "O estatuto científico/teológico das analogias entre Ibn Arabi e a física quântica"
+      },
+      "aciklama": {
+        "tr": "Kutsal ya da klasik bir metinden çağdaş bilimsel bir sonuç 'çıkarmak' — akademide i'câz-ı ilmî ya da Bucaillecilik adıyla bilinen bir literatür türü — hem kötü bilim hem kötü ilahiyat olarak eleştiriliyor: bilimsel model değiştiğinde metafizik iddia da çöküyor. Bu, benzetmenin tamamen değersiz olduğu anlamına gelmiyor; bazı akademisyenler (örn. Altaie) daha temkinli, yapısal bir karşılaştırmayı savunuyor. Ama 'İbn Arabî 800 yıl önce şunu söylemişti' kalıbı, bu eleştirinin tam hedefinde. Biz bu tartışmayı kapatmıyoruz — sadece hangi cümlenin hangi tarafta durduğunu ayırt etmeye çalışıyoruz.",
+        "en": "'Deriving' a contemporary scientific conclusion from a sacred or classical text — a literary genre known in academia as i'jaz 'ilmi or Bucailleism — is criticized as both bad science and bad theology: when the scientific model changes, the metaphysical claim collapses with it. This does not mean the analogy is worthless; some scholars (e.g. Altaie) argue for a more cautious, structural comparison. But the pattern 'Ibn Arabi said this 800 years ago' sits squarely in that critique's crosshairs. We are not closing this debate here — only trying to tell which sentence stands on which side of it.",
+        "pt": "'Extrair' uma conclusão científica contemporânea de um texto sagrado ou clássico — um género literário conhecido na academia como i'jaz 'ilmi ou Bucailleísmo — é criticado como má ciência e má teologia ao mesmo tempo: quando o modelo científico muda, a afirmação metafísica desmorona com ele. Isto não significa que a analogia seja inútil; alguns académicos (por exemplo, Altaie) defendem uma comparação mais cautelosa e estrutural. Mas o padrão 'Ibn Arabi disse isto há 800 anos' está exatamente na mira dessa crítica. Não fechamos aqui este debate — tentamos apenas distinguir que frase está de que lado dele."
+      },
+      "kaynaklar": [
+        {
+          "yazar": "Stefano Bigliardi",
+          "eser": "The 'Scientific Miracle of the Qur'ān,' Pseudoscience, and Conspiracism",
+          "yil": 2017,
+          "not": "Zygon 52/1, 146-171"
+        },
+        {
+          "yazar": "Nidhal Guessoum",
+          "eser": "Islam's Quantum Question: Reconciling Muslim Tradition and Modern Science",
+          "yil": 2011
+        },
+        {
+          "yazar": "Guessoum & Bigliardi",
+          "eser": "Islam and Science: Past, Present, and Future Debates",
+          "yil": 2023,
+          "not": "Cambridge University Press (Elements)"
+        },
+        {
+          "yazar": "Mohammed Basil Altaie",
+          "eser": "Re-creation: A Possible Interpretation of Quantum Indeterminism",
+          "not": "arXiv:0907.3419, temkinli/yapısal karşılaştırma tarafı"
+        }
+      ]
+    },
+    {
+      "id": "lubbul-lubb-aidiyeti",
+      "kategori": "tasnif",
+      "durum": "tartismali",
+      "baslik": {
+        "tr": "'Lübb'ül-Lübb' Şeyh'in mi, Muhammed Nûrü'l-Arabî'nin mi",
+        "en": "Is 'Lubb al-Lubb' the Shaykh's or Muhammed Nur al-Arabi's",
+        "pt": "'Lubb al-Lubb' é do Xeique ou de Muhammed Nur al-Arabi"
+      },
+      "aciklama": {
+        "tr": "Türkiye'de 'Özün Özü — Lübb'ül-Lübb ve Sırrü's-Sırr' ismiyle çeşitli baskılarda İbn Arabî'ye atfedilerek yayınlanan bir eser var (elimizde 2000 baskısı). Ancak klasik atıf bu risalenin 19. yüzyıl Nakşî-Melâmî şeyhi Muhammed Nûrü'l-Arabî'ye (ö. 1305) ait olduğu yönünde; Osman Yahia'nın 1964 tasnifinde İbn Arabî'nin bir eseri olarak yer almıyor. Muhammed Nûrü'l-Arabî İbn Arabî ekolünün geç bir temsilcisi olduğu için 'İbn Arabî'nin şerhi/özeti' olarak da alınabilir — ama bu, 'İbn Arabî'nin kendi kalemi' olmakla aynı şey değil. Türkiye piyasasında bu ayrım genellikle korunmuyor.",
+        "en": "In Turkey a work titled 'Özün Özü — Lübb'ül-Lübb ve Sırrü's-Sırr' is published in various editions attributed to Ibn Arabi (we hold the 2000 edition). But the classical attribution assigns this treatise to the 19th-century Naqshi-Melami shaykh Muhammad Nur al-Arabi (d. 1305); it does not appear in Osman Yahia's 1964 classification as a work by Ibn Arabi. Muhammad Nur al-Arabi is a late representative of the Akbari school, so the treatise can be read as 'a commentary/digest within the Ibn Arabi tradition' — but that is not the same as 'from Ibn Arabi's own pen'. This distinction is often not preserved in the Turkish market.",
+        "pt": "Na Turquia é publicada, em várias edições, uma obra intitulada 'Özün Özü — Lübb'ül-Lübb ve Sırrü's-Sırr' atribuída a Ibn Arabi (temos a edição de 2000). Mas a atribuição clássica associa este tratado ao Xeique naqshi-melami do século XIX Muhammad Nur al-Arabi (m. 1305); ele não figura na classificação de Osman Yahia (1964) como obra de Ibn Arabi. Muhammad Nur al-Arabi é um representante tardio da escola akbariana, por isso o tratado pode ler-se como 'um comentário/resumo dentro da tradição de Ibn Arabi' — o que não é o mesmo que 'da própria pena de Ibn Arabi'. Esta distinção muitas vezes não se preserva no mercado turco."
+      },
+      "kaynaklar": [
+        {
+          "yazar": "Osman Yahia",
+          "eser": "Histoire et classification de l'œuvre d'Ibn 'Arabī",
+          "yil": 1964,
+          "not": "Lübb'ül-Lübb bu tasnifte İbn Arabî'nin eseri olarak yer almıyor"
+        },
+        {
+          "yazar": "Muhyiddin İbn Arabî (atfedilen)",
+          "eser": "Özün Özü — Lübb'ül-Lübb ve Sırrü's-Sırr (2000 Türkçe baskısı)",
+          "yil": 2000,
+          "not": "Kitabın kendi başlık sayfası İbn Arabî'yi yazar olarak gösteriyor; bkz. research/anlayis-evrimi/OKUMALAR/OZUN_OZU.md"
+        }
+      ]
+    },
+    {
+      "id": "sceretul-kevn-aidiyeti",
+      "kategori": "tasnif",
+      "durum": "tartismali",
+      "baslik": {
+        "tr": "'Şeceretü'l-Kevn' (Varlık Ağacı) Şeyh'in mi, Geylânî'nin mi",
+        "en": "Is 'Shajarat al-Kawn' (The Tree of Being) the Shaykh's or Gaylani's",
+        "pt": "'Shajarat al-Kawn' (A Árvore do Ser) é do Xeique ou de Gaylani"
+      },
+      "aciklama": {
+        "tr": "Türkçede 'Varlık Ağacı — Şeceretü'l-Kevn' adıyla İbn Arabî'ye atfedilerek yayınlanan bir alegorik risale var (Vahdettin İnce çevirisi, Kitsan). Geleneksel atıf İbn Arabî yönünde, ama akademik konsensus bu eserin büyük olasılıkla İbn Arabî'ye ait olmadığı yönünde — sıklıkla Abdulkadir Geylânî'ye ya da geç bir Ekberî takipçiye atfediliyor. Osman Yahia'nın 1964 tasnifinde İbn Arabî'nin şüpheli veya reddedilmiş eserleri arasında. 'Varlık = ağaç' metaforu İbn Arabî sonrası Ekberî geleneğin sık kullandığı bir alegoridir, ama bu, alegoriyi İbn Arabî'nin bizzat kaleme aldığı anlamına gelmez.",
+        "en": "In Turkish an allegorical treatise titled 'Varlık Ağacı — Shajarat al-Kawn' is published attributed to Ibn Arabi (Vahdettin İnce's translation, Kitsan). The traditional attribution favors Ibn Arabi, but the scholarly consensus is that this work is most likely not by him — it is often attributed to Abd al-Qadir al-Gaylani or to a late Akbari follower. In Osman Yahia's 1964 classification it sits among Ibn Arabi's doubtful or rejected works. The 'being = tree' allegory is a common metaphor in the post–Ibn Arabi Akbari tradition, but that does not mean Ibn Arabi himself wrote the treatise.",
+        "pt": "Em turco publica-se, atribuído a Ibn Arabi, um tratado alegórico intitulado 'Varlık Ağacı — Shajarat al-Kawn' (tradução de Vahdettin İnce, Kitsan). A atribuição tradicional favorece Ibn Arabi, mas o consenso académico é que esta obra provavelmente não é dele — frequentemente é atribuída a Abd al-Qadir al-Gaylani ou a um seguidor akbariano tardio. Na classificação de Osman Yahia (1964) figura entre as obras duvidosas ou rejeitadas de Ibn Arabi. A alegoria 'ser = árvore' é comum na tradição akbariana pós–Ibn Arabi, mas isso não significa que o próprio Ibn Arabi tenha escrito o tratado."
+      },
+      "kaynaklar": [
+        {
+          "yazar": "Osman Yahia",
+          "eser": "Histoire et classification de l'œuvre d'Ibn 'Arabī",
+          "yil": 1964,
+          "not": "Şeceretü'l-Kevn şüpheliler/reddedilenler kümesinde"
+        },
+        {
+          "yazar": "Muhyiddin İbn Arabî (atfedilen)",
+          "eser": "Şeceretü'l-Kevn — Varlık Ağacı (Vahdettin İnce çev., Kitsan)",
+          "not": "Kitsan Tasavvuf Serisi 25; bkz. research/anlayis-evrimi/OKUMALAR/VARLIK_AGACI.md"
+        }
+      ]
+    },
+    {
+      "id": "durri-meknun-aidiyeti",
+      "kategori": "tasnif",
+      "durum": "bizim_sinirimiz",
+      "baslik": {
+        "tr": "'Dürr'i Meknûn'un aidiyeti — kaynağı hâlâ bulunmuş değil",
+        "en": "The attribution of 'Durr al-Maknun' — its source is still unlocated",
+        "pt": "A atribuição de 'Durr al-Maknun' — a sua fonte ainda não foi localizada"
+      },
+      "aciklama": {
+        "tr": "Türkçede 'Dürr'i Meknûn — İnci Dizileri' adıyla İbn Arabî'ye atfedilerek 1962 ve 1997 baskılarında yayınlanan bir tasavvuf metni var (Şevket Gürel çevirisi). Ama çevirmenin kendi önsözü açıkça yazıyor: 'Sizlere iftiharla sunduğum bu eserin hangi tarihte yazıldığını bulamadım.' Yani hangi Arapça yazmadan çevrildiği belirsiz. Osman Yahia tasnifinde 'Dürr-i Meknûn' başlıklı sağlam bir İbn Arabî eseri açık değil. Elimizde şu an bu eseri İbn Arabî'ye ya da başka bir yazara güvenle bağlayacak bir çeviri-öncesi kaynak referansı yok — biz de bu sınırın ötesine geçemiyoruz.",
+        "en": "In Turkish a Sufi text titled 'Dürr'i Meknûn — Necklaces of Pearls' has been published in 1962 and 1997 editions attributed to Ibn Arabi (Şevket Gürel's translation). But the translator's own foreword states plainly: 'I have been unable to find the date this work was written.' Which Arabic manuscript was translated is thus unclear. Osman Yahia's classification shows no unambiguous work by Ibn Arabi under this title. We currently have no pre-translation source reference by which to confidently attribute this text either to Ibn Arabi or to another author — and we cannot go past this limit.",
+        "pt": "Em turco publica-se, atribuído a Ibn Arabi, um texto sufi intitulado 'Dürr'i Meknûn — Colares de Pérolas' nas edições de 1962 e 1997 (tradução de Şevket Gürel). Mas o prefácio do próprio tradutor diz claramente: 'Não consegui encontrar em que data esta obra foi escrita.' Qual manuscrito árabe foi traduzido é assim pouco claro. A classificação de Osman Yahia não apresenta nenhuma obra inequívoca de Ibn Arabi sob este título. Não temos, no momento, nenhuma referência-fonte anterior à tradução que permita atribuir com confiança este texto a Ibn Arabi ou a outro autor — e não conseguimos ir além deste limite."
+      },
+      "kaynaklar": [
+        {
+          "yazar": "Osman Yahia",
+          "eser": "Histoire et classification de l'œuvre d'Ibn 'Arabī",
+          "yil": 1964,
+          "not": "Dürr-i Meknûn başlığında sağlam bir İbn Arabî eseri açık değil"
+        },
+        {
+          "yazar": "Muhyiddin İbn Arabî (atfedilen)",
+          "eser": "Dürr'i Meknûn — İnci Dizileri (Şevket Gürel çev.)",
+          "yil": 1980,
+          "not": "Çevirmen kaynak Arapça yazmayı bilmediğini önsözde yazıyor; bkz. research/anlayis-evrimi/OKUMALAR/DURRI_MEKNUN.md"
+        }
+      ]
+    },
+    {
+      "id": "saatlerin-hazinesi-aidiyeti",
+      "kategori": "tasnif",
+      "durum": "belirsiz",
+      "baslik": {
+        "tr": "'Saatlerin Hazinesi'nin aidiyeti — Eyyâmi'ş-Şe'n ile ilişkisi belirsiz",
+        "en": "The attribution of 'The Treasury of Hours' — its relationship with Ayyam al-Sha'n is uncertain",
+        "pt": "A atribuição de 'O Tesouro das Horas' — a sua relação com Ayyam al-Sha'n é incerta"
+      },
+      "aciklama": {
+        "tr": "Türkçe'de 'Saatlerin Hazinesi — İlâhi Saatlerin Verdiği Haberler' adıyla İbn Arabî'ye atfedilerek 1973 baskısında yayınlanan bir metin var (Selahaddin Alpay çevirisi). Osman Yahia'nın 1964 tasnifinde tam olarak 'Hazînetü's-Sâʿât' başlıklı bir İbn Arabî eseri doğrulayamıyoruz. Ama alt başlığın 'İlâhi Saatlerin Verdiği Haberler' oluşu, bu eserin belki 'Kitâbü Eyyâmi'ş-Şe'n'in (Eser Ağı'nda `eyyamus-san` düğümü, MIAS 603/1207) farklı bir çevirisi olabileceğini düşündürüyor. Şu an için ikisi arasındaki ilişkiyi kesinleştirebilecek bir kaynak-karşılaştırması elimizde yok. Eser Ağı'na yeni bir düğüm eklemeden önce bu netleştirilmeli.",
+        "en": "A text titled 'The Treasury of Hours — Reports from the Divine Hours' has been published in Turkish in a 1973 edition attributed to Ibn Arabi (Selahaddin Alpay's translation). We cannot verify an Ibn Arabi work titled exactly 'Khazinat al-Sa'at' in Osman Yahia's 1964 classification. But its subtitle 'Reports from the Divine Hours' suggests it may be a different translation of 'Kitab Ayyam al-Sha'n' (`eyyamus-san` in the Works Timeline, MIAS 603/1207). We currently lack a source-comparison that could settle the relationship. This must be clarified before adding a new node to the Timeline.",
+        "pt": "Em turco publica-se, atribuído a Ibn Arabi, um texto intitulado 'O Tesouro das Horas — Notícias das Horas Divinas' numa edição de 1973 (tradução de Selahaddin Alpay). Não conseguimos verificar uma obra de Ibn Arabi intitulada exatamente 'Khazinat al-Sa'at' na classificação de Osman Yahia de 1964. Mas o seu subtítulo 'Notícias das Horas Divinas' sugere que pode ser uma tradução diferente de 'Kitab Ayyam al-Sha'n' (`eyyamus-san` na Linha do Tempo das Obras, MIAS 603/1207). Falta-nos, no momento, uma comparação-fonte que possa resolver a relação. Isto deve ser esclarecido antes de adicionar um novo nó à Linha do Tempo."
+      },
+      "kaynaklar": [
+        {
+          "yazar": "Osman Yahia",
+          "eser": "Histoire et classification de l'œuvre d'Ibn 'Arabī",
+          "yil": 1964,
+          "not": "'Hazînetü's-Sâʿât' başlığı tasnifte doğrulanmadı; Eyyâmi'ş-Şe'n (MIAS 603/1207) var"
+        },
+        {
+          "yazar": "Muhyiddin İbn Arabî (atfedilen)",
+          "eser": "Saatlerin Hazinesi (Selahaddin Alpay çev.)",
+          "yil": 1973,
+          "not": "Alt başlık 'İlâhi Saatlerin Verdiği Haberler'; Eyyâmi'ş-Şe'n ile ilişkisi belirsiz. Bkz. research/anlayis-evrimi/OKUMALAR/SAATLERIN_HAZINESI.md"
+        }
+      ]
+    },
+    {
+      "id": "ittihad-tevhid-kanik-okumasi",
+      "kategori": "yorum",
+      "durum": "tartismali",
+      "baslik": {
+        "tr": "'İttihâd ≠ Tevhîd' ayrımı: Şeyh'in mi, Kanık'ın Guénon-vari okumasının mı?",
+        "en": "The 'ittihad ≠ tawhid' distinction: is it the Shaykh's, or is it Kanık's Guénonian reading?",
+        "pt": "A distinção 'ittihad ≠ tawhid': é do Xeique, ou é a leitura guénoniana de Kanık?"
+      },
+      "aciklama": {
+        "tr": "Mahmut Kanık'ın Fenâ Risâlesi Türkçe çevirisi (İz Yayıncılık, 1991) bir 'çeviri + geniş Guénon-vari şerh' olarak yayınlanmıştır. Kanık'ın vurguladığı bir teknik ayrım -- 'ittihâd' (iki zâtın birleşmesi) ile 'tevhîd' (bir olanın bir olduğunun idraki) kavramsal olarak farklı -- İbn Arabî'nin Fütûhât Cilt 4 Bâb 399'daki bir pasajına dayanır ('...biz burada tek bir zât görmekteyiz, iki zât değil'). Ama bu ayrımı Şeyh'in kendi çerçevesi mi bize verir, yoksa Kanık'ın René Guénon geleneksel-metafizik hattından okuma tarzı mı öne çıkarır -- iki farklı sorudur. Türkçe İbn Arabî okumasının Guénon-vari hattı (Kanık aynı yayınevinde Guénon eserlerini de çeviriyor) bu tür teknik ayrımları belirgin biçimde yükseltir; bu bir katkı olabilir, bir sızıntı da olabilir. Bkz. research/anlayis-evrimi/OKUMALAR/FENA_RISALESI.md.",
+        "en": "Mahmut Kanık's Turkish translation of Fena Risalesi (İz Yayıncılık, 1991) is published as a 'translation + expanded Guénonian commentary'. A technical distinction Kanık foregrounds -- ittihad (two essences merging) vs. tawhid (grasping that what is One is One) -- rests on a passage from Ibn Arabi's Futuhat Volume 4, Chapter 399 ('...here we see a single essence, not two essences'). But whether this distinction is given to us by the Shaykh's own frame, or foregrounded by Kanık's René Guénon–informed traditionalist-metaphysical reading, are two different questions. The Guénonian lineage of Turkish Ibn Arabi reading (Kanık also translates Guénon at the same publisher) tends to raise such technical distinctions to prominence; that can be a contribution, or a leak. See research/anlayis-evrimi/OKUMALAR/FENA_RISALESI.md.",
+        "pt": "A tradução turca de Fena Risalesi feita por Mahmut Kanık (İz Yayıncılık, 1991) foi publicada como 'tradução + comentário guénoniano alargado'. Uma distinção técnica que Kanık destaca -- ittihad (fusão de duas essências) vs. tawhid (compreender que o Uno é Uno) -- assenta numa passagem das Futuhat de Ibn Arabi, Volume 4, Capítulo 399 ('...aqui vemos uma única essência, não duas essências'). Mas se esta distinção nos é dada pelo próprio enquadramento do Xeique, ou é elevada pela leitura tradicionalista-metafísica de Kanık, informada por René Guénon, são duas questões distintas. A linhagem guénoniana da leitura turca de Ibn Arabi (Kanık também traduz Guénon na mesma editora) tende a destacar tais distinções técnicas; isso pode ser um contributo, ou uma fuga."
+      },
+      "kaynaklar": [
+        {
+          "yazar": "Muhyiddin İbn Arabî (Mahmut Kanık çev. + şerh)",
+          "eser": "Fenâ Risâlesi",
+          "yil": 1991,
+          "not": "Kaynak metnin kendisi + Kanık'ın şerhinin sınırının OCR'da net olmadığı hakkında not FENA_RISALESI.md'de"
+        },
+        {
+          "yazar": "Muhyiddin İbn Arabî",
+          "eser": "el-Fütûhâtü'l-Mekkiyye, Bâb 399",
+          "not": "Kanık'ın alıntıladığı 'tek zât görmekteyiz' pasajının yeri; Ekrem Demirli tam çevirisinde de kontrol edilebilir"
+        }
+      ]
+    }
+  ]
+}

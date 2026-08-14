@@ -23,13 +23,20 @@ window.__ayetHadisApp = (function () {
   let dataPromise = null;
   let kuran = null, ayetDizin = null, hadisDizin = null;
 
+  // ayet-onizleme.js (künye hover kutusu) da AYNI üç dosyayı indiriyor; onun
+  // GU.fetchJson önbelleğiyle gerçekten paylaşabilmemiz için o modülün
+  // kullandığı yolu birebir kullanıyoruz -- ROUTE_BASE + kök-göreli yol.
+  // Aksi hâlde iki farklı anahtar ("data/..." burada, base()+"/data/..."
+  // orada) önbelleği ayırır ve aynı sayfada aynı dosya iki kez iner.
+  function base() { return window.__dostRouteBase || ""; }
+
   function fetchData() {
     if (dataPromise) return dataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("ayethadis-wrap");
     dataPromise = Promise.all([
-      GU.fetchJson("data/ibn-arabi/kuran.json"),
-      GU.fetchJson("data/ibn-arabi/ayet-dizini.json"),
-      GU.fetchJson("data/ibn-arabi/hadis-dizini.json"),
+      GU.fetchJson(base() + "/data/ibn-arabi/kuran.json"),
+      GU.fetchJson(base() + "/data/ibn-arabi/ayet-dizini.json"),
+      GU.fetchJson(base() + "/data/ibn-arabi/hadis-dizini.json"),
     ])
       .then(([k, ad, hd]) => {
         kuran = k;
@@ -61,12 +68,30 @@ window.__ayetHadisApp = (function () {
     return s ? esc(tt(s.ad)) : "";
   }
 
+  // ayet-onizleme.js'teki (künye hover kutusu) AYNI dosya -- kuran.json'da
+  // Portekizce meal yok -- ama PT modunda burada sessizce İngilizce/Türkçe
+  // meale düşülüyordu, hiçbir uyarı yoktu. Aynı verinin bir gösterim yüzeyi
+  // dürüst, öbürü değildi (UI denetimi bulgusu; CLAUDE.md'nin "yaptığımız
+  // işi olduğundan farklı gösterme" ilkesiyle çelişiyordu).
+  const DIL_ADI = {
+    tr: { tr: "Türkçe", en: "Turkish", pt: "turco" },
+    en: { tr: "İngilizce", en: "English", pt: "inglês" },
+  };
   function ayetMeal(ref) {
     const a = kuran.ayetler && kuran.ayetler[ref];
     if (!a) return "";
     const lang = I18n ? I18n.getLang() : "tr";
     const meal = a.meal || {};
-    return esc(meal[lang] || meal.en || meal.tr || "");
+    const mealDili = meal[lang] ? lang : (meal.en ? "en" : (meal.tr ? "tr" : null));
+    const govde = mealDili ? meal[mealDili] : "";
+    const not = (mealDili && mealDili !== lang && DIL_ADI[mealDili])
+      ? ` <span class="ayethadis-item__meal-not">${esc(tt({
+          tr: `(meal ${DIL_ADI[mealDili].tr} — bu dilde meal elimizde yok)`,
+          en: `(translation in ${DIL_ADI[mealDili].en} — we have none in this language)`,
+          pt: `(tradução em ${DIL_ADI[mealDili].pt} — não temos nenhuma neste idioma)`,
+        }))}</span>`
+      : "";
+    return esc(govde) + not;
   }
 
   function locHtml(list) {

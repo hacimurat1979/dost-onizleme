@@ -187,6 +187,27 @@
 
   function projectT(t) { return project(helixPoint(t)); }
 
+  // ---- Ortak oryantasyon-halkası pilotu (VISUALIZATION_IDEAS.md) ----
+  // Düğme değil, yalnız bir gösterge: işaretin AÇISI yaw'ı (hangi yöne
+  // dönmüşüz), merkeze UZAKLIĞI pitch'i (ne kadar yukarıdan/yandan
+  // bakıyoruz) taşıyor. tilt=0'da (düz halka) yaw/pitch'in görsel bir
+  // karşılığı yok, o yüzden halka tamamen soluk; sarmala eğilince belirir.
+  let orientRingEl = null, orientMarkerEl = null;
+  function updateOrientRing() {
+    if (orientRingEl === null) {
+      orientRingEl = document.getElementById("hal-orient-ring");
+      orientMarkerEl = orientRingEl ? orientRingEl.querySelector(".graph-orient-ring__marker") : null;
+    }
+    if (!orientRingEl || !orientMarkerEl) return;
+    orientRingEl.style.opacity = String(0.85 * tilt);
+    const a = yaw % (Math.PI * 2);
+    const pClamped = Math.max(-1.3, Math.min(1.3, pitch));
+    const radiusFrac = Math.max(0.18, Math.cos(pClamped));
+    const R = 7.5;
+    orientMarkerEl.setAttribute("cx", String(Math.sin(a) * R * radiusFrac));
+    orientMarkerEl.setAttribute("cy", String(-Math.cos(a) * R * radiusFrac));
+  }
+
   function layout() {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 640;
     cx = w / 2; cy = h / 2;
@@ -264,15 +285,27 @@
     wireTiltToggle();
     wireWalkButton();
 
-    const rc = document.getElementById("hal-recenter");
-    if (rc && !rc.dataset.wiredHal) { rc.dataset.wiredHal = "1"; rc.addEventListener("click", () => { clearFocus(); fitView(true); }); }
+    // Odak burada kamerayı taşıyor (fitView bir odağa göre çerçeveliyor), o
+    // yüzden geri çekilirken odak da bırakılıyor -- bkz. ETKILESIM_DILI.md:
+    // "kaydıysa geri alınır, seçtiysen korunur".
+    GU.wireRecenter("hal-recenter", () => {
+      clearFocus();
+      // ETKILESIM_DILI.md'nin kendi tanımı: Recenter "serbest döndürme"yi
+      // de sıfırlamalı. yaw/pitch'e hiç dokunulmuyordu -- sürükleyerek
+      // döndürülmüş bir sahnede Recenter yalnız kadrajı düzeltiyor, açı
+      // aynı kalıyordu (UI denetimi bulgusu; menziller.js'te aynı eksiklik).
+      yaw = 0; pitch = 0.62;
+      fitView(true);
+    });
     svg.on("click", () => { if (currentDetailNode || currentRelation) clearFocus(); });
+    // Hâller'de odak ile açık panel TEK durumdur (clearFocus ikisini birden
+    // bırakıyor), o yüzden bir adım geri = odağı bırak.
     if (!document.body.dataset.wiredHalEsc) {
       document.body.dataset.wiredHalEsc = "1";
-      document.addEventListener("keydown", (e) => {
-        if (e.key !== "Escape") return;
-        if (wrapEl.hidden) return;
-        if (currentDetailNode || currentRelation) clearFocus();
+      GU.registerStepBack("hal-wrap", () => {
+        if (!currentDetailNode && !currentRelation) return false;
+        clearFocus();
+        return true;
       });
     }
   }
@@ -321,7 +354,18 @@
     let lastX = 0, lastY = 0;
     svgNode.addEventListener("pointerdown", (e) => {
       if (tiltTarget < 0.5) return;
-      if (e.target.closest(".hal-node")) return;
+      // .hal-node zaten hariç tutuluyordu; .hal-chord-g'nin (kiriş + isabet
+      // şeridi) hariç tutulmaması gerçek hatanın asıl kaynağıydı -- burada
+      // yakalanan HER pointerdown sahneyi döndürmeye başlıyor ve pointer'ı
+      // svg'ye "capture" ediyordu (setPointerCapture), bu da bir kirişe
+      // tıklamanın click olayını hiçbir zaman kirişe ulaştırmamasına yol
+      // açıyordu -- CSS pointer-events sırası doğru olsa bile.
+      if (e.target.closest(".hal-node") || e.target.closest(".hal-chord-g")) return;
+      // menziller.js'teki aynı bulgu: preventDefault yoktu, sürükleyerek
+      // döndürmek ekrandaki etiketleri tarayıcı metin-seçimi olarak
+      // boyuyordu (UI denetimi). .hal-label'e user-select:none eklendi,
+      // burada da menziller'deki gibi önlem alınıyor.
+      e.preventDefault();
       dragging = true; lastX = e.clientX; lastY = e.clientY;
       svgNode.setPointerCapture(e.pointerId);
     });
@@ -440,6 +484,7 @@
 
   function render(ts) {
     if (!nodeLayer) return;
+    updateOrientRing();
     positionNodes();
     const n = orderedNodes.length;
     const foc = focusSet();
@@ -684,9 +729,13 @@
     if (!tooltip) return;
     const s = nodeById.get(r.source), t = nodeById.get(r.target);
     if (!s || !t) return;
-    tooltip.innerHTML =
-      `<div class="node-hover-tip__title">${I18n.pick3(s.name)} ↔ ${I18n.pick3(t.name)}</div>` +
-      `<div class="node-hover-tip__short">${tt(KIND_LABEL[r.kind] || {})}</div>`;
+    // 2026-08-03'e kadar burada yalnız ilişkinin TÜRÜ yazıyordu ("yankı",
+    // "karşıtlık"…) -- yani ne olduğu, neden öyle okuduğumuz değil (#10).
+    tooltip.innerHTML = GU.edgeReasonHtml({
+      title: `${I18n.pick3(s.name)} ↔ ${I18n.pick3(t.name)}`,
+      kindLabel: tt(KIND_LABEL[r.kind] || {}),
+      reason: I18n.pick3(r.note),
+    });
     tooltip.hidden = false; moveTooltip(event);
   }
   function moveTooltip(event) { GU.moveTooltip(tooltip, wrapEl, event); }
@@ -804,7 +853,7 @@
     // istendiğinde 2B'ye dönülebiliyor.
     openIn3D();
     ensureFrame();
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", GU.debounceResize(onResize));
   }
 
   function onResize() {

@@ -1,0 +1,54 @@
+{
+  "not": {
+    "tr": "Vahdet-i Vücûd Eleştirileri ile Eleştiri Arkeolojisi aynı tarihi iki ayrı mercekten anlatıyor: biri Dost'a yöneltilen doktrin itirazlarını, öteki ona yöneltilen itham/savunma ağını kişi kişi haritalıyor. İkisi hiçbir yerde bağlı değildi. Bu dosya, aynı kişinin her iki tarafta da adı geçtiği yerlerde ELLE kurulmuş bağları taşıyor -- bir ölçüm ya da isim eşleşmesi değil, bizim okumamız; her birinin yanında neden öyle okuduğumuz yazıyor. Yalnız isim aynı OLDUĞU için değil, aynı kişiye ait olduğundan eminsek bağladık -- örneğin vahdet-elestiri.json'daki 'el-Belkīnî' ile Eleştiri Arkeolojisi'ndeki 'el-Bikâî' aynı kişi olabilir, ama bundan emin olmadığımız için bilerek bağlamadık.",
+    "en": "Wahdat al-Wujud Criticisms and Archaeology of Criticism tell the same history through two different lenses: one lays out the doctrinal objections raised against Dost, the other maps the network of accusation and defense against him, person by person. The two were linked nowhere. This file carries the links we made BY HAND wherever the same person is named on both sides -- not a measurement or a name match, but our reading; each carries the reason we read it that way. We only linked where we are confident it is the same person, not merely because the name looks similar -- for instance 'al-Balqini' in vahdet-elestiri.json may be the same person as 'al-Biqa'i' in Archaeology of Criticism, but since we are not certain, we deliberately left it unlinked.",
+    "pt": "As Críticas ao Wahdat al-Wujud e a Arqueologia da Crítica contam a mesma história por duas lentes diferentes: uma expõe as objeções doutrinárias levantadas contra Dost, a outra mapeia a rede de acusação e defesa contra ele, pessoa por pessoa. As duas não estavam ligadas em lugar nenhum. Este arquivo carrega os vínculos que fizemos À MÃO sempre que a mesma pessoa é nomeada nos dois lados -- não uma medição ou correspondência de nomes, mas nossa leitura; cada um traz a razão pela qual lemos assim. Só ligamos onde temos confiança de que é a mesma pessoa, não apenas porque o nome parece semelhante -- por exemplo, 'al-Balqini' em vahdet-elestiri.json pode ser a mesma pessoa que 'al-Biqa'i' na Arqueologia da Crítica, mas como não temos certeza, deixamos deliberadamente sem ligar."
+  },
+  "baglar": [
+    {
+      "madde": "sirk-pantheism",
+      "kisi": "ibn-teymiyye",
+      "neden": {
+        "tr": "Bu maddedeki 'şirk/panteizm' ithamının kaynağı doğrudan İbn Teymiyye; Eleştiri Arkeolojisi onu bu tarihin başlattığı kişi olarak ayrı bir düğümde, kaynaklarıyla birlikte işliyor.",
+        "en": "The source of the 'shirk/pantheism' charge in this item is Ibn Taymiyya directly; Archaeology of Criticism treats him, with its own sources, as the figure who started this history.",
+        "pt": "A fonte da acusação de 'shirk/panteísmo' neste item é diretamente Ibn Taymiyya; a Arqueologia da Crítica trata-o, com as suas próprias fontes, como a figura que iniciou esta história."
+      }
+    },
+    {
+      "madde": "takfir-tarihi",
+      "kisi": "ez-zehebi",
+      "neden": {
+        "tr": "Burada aktarılan 'onun sözleri küfür değilse dünyada küfür diye bir şey yok' sözü ez-Zehebî'ye ait; Eleştiri Arkeolojisi onu eleştirmen rolüyle ayrı bir düğümde işliyor.",
+        "en": "The saying quoted here, 'if his words are not disbelief, there is no such thing as disbelief in the world,' belongs to al-Dhahabi; Archaeology of Criticism treats him, in the role of critic, as a separate node.",
+        "pt": "O dito citado aqui, 'se as suas palavras não são descrença, não existe descrença no mundo', pertence a al-Dhahabi; a Arqueologia da Crítica trata-o, no papel de crítico, como um nó separado."
+      }
+    },
+    {
+      "madde": "takfir-tarihi",
+      "kisi": "es-sarani",
+      "neden": {
+        "tr": "Burada anılan Şa'rânî'nin savunması ('İbn Teymiyye'nin görüşünü üç ayrı eserinde reddetti'), Eleştiri Arkeolojisi'nde savunmacı rolüyle ayrı bir düğümde, kaynaklarıyla birlikte işleniyor.",
+        "en": "The defense by al-Sha'rani mentioned here (\"rejected Ibn Taymiyya's view in three separate works\") is treated, in the role of defender and with its own sources, as a separate node in Archaeology of Criticism.",
+        "pt": "A defesa de al-Sha'rani mencionada aqui (\"rejeitou a visão de Ibn Taymiyya em três obras separadas\") é tratada, no papel de defensor e com as suas próprias fontes, como um nó separado na Arqueologia da Crítica."
+      }
+    },
+    {
+      "madde": "takfir-tarihi",
+      "kisi": "es-suyuti",
+      "neden": {
+        "tr": "Burada savunma tarafında anılan Süyûtî, Eleştiri Arkeolojisi'nde savunmacı rolüyle ayrı bir düğümde, kaynaklarıyla birlikte işleniyor.",
+        "en": "Al-Suyuti, named here on the defending side, is treated, in the role of defender and with its own sources, as a separate node in Archaeology of Criticism.",
+        "pt": "Al-Suyuti, nomeado aqui do lado da defesa, é tratado, no papel de defensor e com as suas próprias fontes, como um nó separado na Arqueologia da Crítica."
+      }
+    },
+    {
+      "madde": "firavunun-imani",
+      "kisi": "el-buhari",
+      "neden": {
+        "tr": "Firavun'un imanı meselesindeki eleştirinin kaynağı Alâeddin el-Buhârî; Eleştiri Arkeolojisi onu eleştirmen rolüyle ayrı bir düğümde, kaynaklarıyla birlikte işliyor.",
+        "en": "The source of the criticism on the matter of Pharaoh's faith is 'Ala al-Din al-Bukhari; Archaeology of Criticism treats him, in the role of critic and with its own sources, as a separate node.",
+        "pt": "A fonte da crítica sobre a questão da fé do Faraó é 'Ala al-Din al-Bukhari; a Arqueologia da Crítica trata-o, no papel de crítico e com as suas próprias fontes, como um nó separado."
+      }
+    }
+  ]
+}

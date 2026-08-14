@@ -7,10 +7,10 @@
 <!-- Perde Zinciri — Dost Arabi -->
 <title>Perde Zinciri — Dost Arabi</title>
 <style>
-:root{--bg:#09080F;--su:#12101A;--bo:#2A2438;--tx:#E8E2D0;--mu:#6E6558;--go:#FFC94D;--am:#B8832A;--pa:#14101E}
-@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--su:#EDE8DC;--bo:#C8BEA0;--tx:#221810;--mu:#665845;--pa:#E8E2D4;--go:#7A5200;--am:#6E4A12}}
-:root[data-theme=dark]{--bg:#09080F;--su:#12101A;--bo:#2A2438;--tx:#E8E2D0;--mu:#6E6558;--pa:#14101E}
-:root[data-theme=light]{--bg:#F5F2EA;--su:#EDE8DC;--bo:#C8BEA0;--tx:#221810;--mu:#665845;--pa:#E8E2D4;--go:#7A5200;--am:#6E4A12}
+:root{--bg:#0D0D0D;--su:#1A1A19;--bo:#2C2C2A;--tx:#EDE9E2;--mu:#898781;--go:#FFC233;--am:#C98500;--pa:#161614}
+@media(prefers-color-scheme:light){:root{--bg:#F9F9F7;--su:#FCFCFB;--bo:#E1E0D9;--tx:#1A1A1A;--mu:#6F6D65;--pa:#FCFCFB;--go:#8A6100;--am:#8C6D1A}}
+:root[data-theme=dark]{--bg:#0D0D0D;--su:#1A1A19;--bo:#2C2C2A;--tx:#EDE9E2;--mu:#898781;--pa:#161614}
+:root[data-theme=light]{--bg:#F9F9F7;--su:#FCFCFB;--bo:#E1E0D9;--tx:#1A1A1A;--mu:#6F6D65;--pa:#FCFCFB;--go:#8A6100;--am:#8C6D1A}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--tx);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
 header{text-align:center;margin-bottom:1.1rem}
@@ -27,6 +27,14 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 .grab-hint.gone{opacity:.28}
 .aha{font-size:.85rem;font-style:italic;line-height:1.75;color:var(--am);margin-top:.7rem;white-space:pre-line;opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease}
 .aha.show{opacity:1;transform:none}
+/* /sahne motor: sahne oynarken sürükleme kapalı; bittikten sonra açılıyor. */
+body:not(.sahne-bitti) #scene{cursor:default}
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.4rem;min-height:34px}
+.olcu-gosterge{font-size:.7rem;color:var(--mu);letter-spacing:.15em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge,body.sahne-bitti .motor-kontroller{opacity:1}
+.kardes{margin-top:1rem;font-size:.75rem;line-height:1.6}
+.kardes a{color:var(--am);text-decoration:none;border-bottom:1px solid var(--bo)}
+.kardes a:hover,.kardes a:focus-visible{border-bottom-color:var(--am)}
 .qp{flex:1;min-width:210px;max-width:310px;background:var(--pa);border:1px solid var(--bo);border-radius:12px;padding:1.3rem 1.1rem;min-height:250px}
 .ql{font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:var(--mu);margin-bottom:.7rem}
 .chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.9rem}
@@ -42,7 +50,42 @@ blockquote{font-size:.87rem;font-style:italic;line-height:1.8}
   .drift2{animation:drift 88s linear infinite reverse}
   @keyframes drift{to{transform:rotate(360deg)}}
 }
+
+/* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
+   ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
+   da var. Renkler zincirleme var() yedekleriyle: sahnelerin değişken adları
+   tek tip değil (--border/--bo, --text/--tx ...). */
+.sahne-geri{position:fixed;top:12px;left:12px;z-index:60;display:inline-flex;align-items:center;
+  gap:.35rem;min-height:44px;padding:0 .9rem;border-radius:999px;font-size:.82rem;
+  font-family:inherit;text-decoration:none;opacity:.72;
+  border:1px solid var(--border,var(--bo,currentColor));
+  background:var(--surface,var(--su,transparent));
+  color:var(--muted,var(--mu,inherit));
+  transition:opacity .2s ease,color .2s ease,border-color .2s ease}
+.sahne-geri:hover,.sahne-geri:focus-visible{opacity:1;
+  color:var(--text,var(--tx,inherit));
+  border-color:var(--gold,var(--go,currentColor))}
+.sahne-geri:focus-visible{outline:2px solid var(--gold,var(--go,currentColor));outline-offset:2px}
+@media(max-width:520px){.sahne-geri{top:8px;left:8px;padding:0 .7rem}}
 </style>
+<script>
+// Sitenin tema seçimini miras al. Bu sayfaların CSS'inde ":root[data-theme=
+// light/dark]" kuralları en baştan vardı ama data-theme'i KİMSE yazmıyordu --
+// yani o kurallar ölü kod, sahne yalnız işletim sisteminin
+// prefers-color-scheme'ini izliyordu. Sonuç: kullanıcı siteyi ☰'den gündüz
+// moduna alsa bile, cihazı gece modundaysa sahne gece modunda açılıyordu
+// (2026-08-05 tablette bildirildi).
+//
+// Depoda bir şey YOKSA öznitelik bilerek yazılmaz: o zaman
+// @media(prefers-color-scheme) devreye girer -- doğru varsayılan odur.
+// <head> içinde ve senkron: ilk boyamadan önce çalışsın, tema sıçraması olmasın.
+(function () {
+  try {
+    var s = localStorage.getItem("dost-theme");
+    if (s === "light" || s === "dark") document.documentElement.setAttribute("data-theme", s);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
 <header>
@@ -119,6 +162,10 @@ blockquote{font-size:.87rem;font-style:italic;line-height:1.8}
     </svg>
     <div class="stage">
       <p class="state" id="state"></p>
+      <div class="motor-kontroller">
+        <span class="olcu-gosterge" id="olcuGosterge" aria-live="polite"></span>
+        <span id="motorBiter"></span>
+      </div>
       <p class="grab-hint" id="grabHint"></p>
       <p class="aha" id="aha"></p>
     </div>
@@ -133,9 +180,12 @@ blockquote{font-size:.87rem;font-style:italic;line-height:1.8}
       <div class="qs" id="qs"></div>
     </div>
     <p class="qn" id="qn">Bir mertebeye dokunarak ona ait söylemi gör.</p>
+    <p class="kardes"><a id="kardesLink" href="berzah.html"></a></p>
   </div>
 </div>
 
+<!-- Sahne motoru — .claude/commands/sahne.md motor adımı -->
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const L={
   tr:{title:'Perde Zinciri',sub:'Sıfatlar Zât\'ı perdeler · Fiiller Sıfatları perdeler · Eserler Fiilleri perdeler',
@@ -146,7 +196,8 @@ const L={
         'Eserler inceldi. Ardında bir kıpırtı var — ama hâlâ bir şey duruyor.',
         'Fiiller de çekildi. Işık arttı; yine de bakılacak bir şey belirmedi.',
         'Sıfatlar inceliyor. Her şey aydınlandı — merkez hariç.'],
-    aha:'Perdelerin hepsini araladın. Işık arttı, ama merkez bir adım bile netleşmedi.\nDemek Zât\'ı perdeler gizlemiyordu; gizlilik O\'nun kendi sıfatıymış.'},
+    aha:'Perdelerin hepsini araladın. Işık arttı, ama merkez bir adım bile netleşmedi.\nDemek Zât\'ı perdeler gizlemiyordu; gizlilik O\'nun kendi sıfatıymış.',
+    kardes:'Kardeş sahne: Berzah — nerede durursan yalnız orası netleşir →'},
   en:{title:'Chain of Veiling',sub:'Attributes veil the Essence · Actions veil Attributes · Effects veil Actions',
     ql:'DEGREES OF REALITY',dqt:'Chain of Veiling',dqn:'Touch a degree to see its testimony.',
     grab:'Drag to part the veils (arrow keys work too)',
@@ -155,7 +206,8 @@ const L={
         'Effects have thinned. Something stirs behind them — yet something still stands.',
         'Actions have withdrawn too. The light has grown; still nothing has appeared to look at.',
         'Attributes are thinning. Everything has brightened — except the centre.'],
-    aha:'You parted every veil. The light grew, but the centre did not clarify by a single step.\nSo it was not the veils that hid the Essence; hiddenness is Its own quality.'},
+    aha:'You parted every veil. The light grew, but the centre did not clarify by a single step.\nSo it was not the veils that hid the Essence; hiddenness is Its own quality.',
+    kardes:'Sibling scene: The Barzakh — only where you stand comes into focus →'},
   pt:{title:'Cadeia do Véu',sub:'Os Atributos velam a Essência · as Ações velam os Atributos · as Obras velam as Ações',
     ql:'GRAUS DE REALIDADE',dqt:'Cadeia do Véu',dqn:'Toque num grau para ver o seu testemunho.',
     grab:'Arraste para afastar os véus (as setas também funcionam)',
@@ -164,7 +216,8 @@ const L={
         'As Obras afinaram. Algo se move por trás — mas algo ainda permanece.',
         'As Ações também recuaram. A luz cresceu; ainda assim nada apareceu para ser visto.',
         'Os Atributos afinam. Tudo se iluminou — exceto o centro.'],
-    aha:'Afastaste todos os véus. A luz cresceu, mas o centro não clareou um único passo.\nEntão não eram os véus que ocultavam a Essência; a ocultação é a Sua própria qualidade.'}
+    aha:'Afastaste todos os véus. A luz cresceu, mas o centro não clareou um único passo.\nEntão não eram os véus que ocultavam a Essência; a ocultação é a Sua própria qualidade.',
+    kardes:'Cena irmã: O Barzakh — só o lugar onde você está fica nítido →'}
 };
 
 const D={
@@ -190,6 +243,10 @@ const IDS=['rE','rF','rS','rZ'];
 const $=id=>document.getElementById(id);
 
 let lang='tr', cur=null, t=0, touched=false;
+// /sahne motor entegrasyonu
+let motorBitti=false;
+let tFrom=0, tTo=0;
+function easeInOut(x){ return x<0.5 ? 2*x*x : 1 - Math.pow(-2*x+2,2)/2; }
 
 // Her perde kendi payında incelir; Sıfatlar hiçbir zaman tam kalkmaz.
 function veil(i){
@@ -212,11 +269,16 @@ function render(){
   $('tS').setAttribute('opacity',(0.25+0.75*oS).toFixed(3));
   $('tZ').setAttribute('opacity',(0.30+0.28*t).toFixed(3));
 
-  const d=L[lang];
-  const step = t<0.22?0 : t<0.52?1 : t<0.84?2 : 3;
-  $('state').textContent=d.st[step];
-  $('state').classList.toggle('deep',step===3);
-  if(t>0.97) $('aha').classList.add('show');
+  // v-tabanlı state metni yalnız keşif modunda (motor bittikten sonra)
+  if(motorBitti){
+    const d=L[lang];
+    const step = t<0.22?0 : t<0.52?1 : t<0.84?2 : 3;
+    $('state').textContent=d.st[step];
+    $('state').classList.toggle('deep',step===3);
+    if(t>0.97) $('aha').classList.add('show');
+  } else {
+    $('state').classList.toggle('deep', t>0.84);
+  }
 }
 
 function setT(x){ t=Math.max(0,Math.min(1,x)); render(); }
@@ -225,6 +287,7 @@ const scene=$('scene');
 let dragging=false,lastX=0,lastY=0;
 function markTouched(){ if(!touched){touched=true;$('grabHint').classList.add('gone');} }
 scene.addEventListener('pointerdown',e=>{
+  if(!motorBitti) return; // motor konuşurken müdahale yok
   dragging=true;lastX=e.clientX;lastY=e.clientY;
   try{scene.setPointerCapture(e.pointerId);}catch(_){}
   markTouched();e.preventDefault();
@@ -237,6 +300,7 @@ scene.addEventListener('pointermove',e=>{
 });
 ['pointerup','pointercancel','pointerleave'].forEach(k=>scene.addEventListener(k,()=>{dragging=false;}));
 scene.addEventListener('keydown',e=>{
+  if(!motorBitti) return; // motor konuşurken müdahale yok
   const k={ArrowRight:0.05,ArrowUp:0.05,ArrowLeft:-0.05,ArrowDown:-0.05}[e.key];
   if(k===undefined) return;
   markTouched();setT(t+k);e.preventDefault();
@@ -274,8 +338,9 @@ function setLang(l){
   $('i-title').textContent=d.title;
   $('i-sub').textContent=d.sub;
   $('i-ql').textContent=d.ql;
-  $('grabHint').textContent=d.grab;
+  $('grabHint').textContent = motorBitti ? d.grab : "";
   $('aha').textContent=d.aha;
+  $('kardesLink').textContent=d.kardes;
   $('tE').textContent=d.rings[0];
   $('tF').textContent=d.rings[1];
   $('tS').textContent=d.rings[2];
@@ -286,9 +351,101 @@ function setLang(l){
 
 setLang('tr');
 
+// ── Motor entegrasyonu ──────────────────────────────────────────────────────
+(function baslatMotor(){
+  const base = (window.__dostRouteBase || "");
+  const url = (base ? base + "/" : "") + "data/ibn-arabi/sahne-partisyonlari/perde-zinciri.json";
+  fetch(url).then(function(r){ return r.json(); }).then(function(partisyon){
+    if(!window.__sahneMotoru){ console.warn("sahne-motoru yüklenemedi"); return; }
+    // İlk ölçünün hedef t değerine atla
+    const ilk = partisyon.olcuLer[0];
+    t = ilk.hedef_hal.t;
+    tFrom = t; tTo = t;
+    render();
+    window.__sahneMotoru.yarat({
+      container: scene,
+      partisyon: partisyon,
+      applyOlcu: function(olcu){
+        tFrom = t;
+        tTo = (olcu.hedef_hal && typeof olcu.hedef_hal.t === "number") ? olcu.hedef_hal.t : t;
+        if(olcu.hedef_hal && olcu.hedef_hal.aha){ $('aha').classList.add('show'); }
+      },
+      frame: function(fraz, olcu){
+        const e = easeInOut(fraz);
+        t = tFrom + (tTo - tFrom) * e;
+        render();
+      },
+      metinGoster: function(metin){
+        if(!metin){ $('state').textContent = ""; return; }
+        $('state').textContent = metin[lang] || metin.tr || "";
+      },
+      olcuGoster: function(idx, toplam){
+        $('olcuGosterge').textContent = (idx+1) + " / " + toplam;
+      },
+      biterEl: $('motorBiter'),
+      tepki: function(ev){
+        if(ev.tip === "bitti"){
+          motorBitti = true;
+          document.body.classList.add('sahne-bitti');
+          $('grabHint').textContent = L[lang].grab;
+          const olcu = partisyon.olcuLer[partisyon.olcuLer.length - 1];
+          if(olcu.hedef_hal && olcu.hedef_hal.aha) $('aha').classList.add('show');
+        }
+      },
+    });
+  }).catch(function(err){ console.warn("partisyon yüklenemedi", err); });
+})();
+
 window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);
 });
+</script>
+
+<script>
+// Sahneden çıkış: ESC + görünür bağlantı (2026-08-05 geri bildirimi).
+// 2026-08-06: bu sahne meditasyon.html içinde bir <iframe> olarak da gömülü
+// (bkz. meditasyon.html'in kendi tab yapısı). Gömülüyken bu enjekte edilen
+// pilli düğme iframe'in kendi köşesinde ikinci kez çiziliyor, ve
+// meditasyon.html'in KENDİ başlık şeridinde zaten eşdeğer bir "Haritaya"
+// bağlantısı olduğundan bu üst üste binen ikinci düğme gereksiz bir
+// "kemer" gibi görünüyordu (kullanıcı bulgusu: "yukarda başka bir kemer
+// daha görünüyor"). Yalnız üst pencerede (iframe DIŞINDA) çalış.
+if (window.self === window.top) (function () {
+  var ETIKET = { tr: "Sahneler", en: "Scenes", pt: "Cenas" };
+  var dil = "tr";
+  try { var d = localStorage.getItem("dost-lang"); if (ETIKET[d]) dil = d; } catch (e) {}
+
+  var a = document.createElement("a");
+  a.className = "sahne-geri";
+  a.href = "sahneler/";          // sahneler kökte, önizlemede de doğru çözülür
+  a.textContent = "\u2190 " + ETIKET[dil];
+  a.setAttribute("aria-label", ETIKET[dil]);
+  document.body.appendChild(a);
+
+  function geriGit() {
+    // Aynı siteden geldiysek geçmiş doğru olan: bir önceki SAHNEYE döner.
+    // Doğrudan bu adrese gelindiyse (referrer yok / dış site / yeni sekme)
+    // galeriye gider -- history.back() orada ya hiçbir şey yapmaz ya da
+    // kullanıcıyı siteden ATAR.
+    try {
+      if (document.referrer && history.length > 1 &&
+          new URL(document.referrer).origin === location.origin) {
+        history.back();
+        return;
+      }
+    } catch (e) {}
+    location.href = "sahneler/";
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    var el = document.activeElement;
+    // Metin/kaydırıcı odaktayken ESC'i çalma -- orada kendi anlamı var.
+    if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
+    e.preventDefault();
+    geriGit();
+  });
+})();
 </script>
 </body>
 </html>

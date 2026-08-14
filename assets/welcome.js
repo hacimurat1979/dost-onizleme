@@ -15,65 +15,9 @@
   const beam = document.getElementById("welcome-beam");
   const spark = document.getElementById("welcome-spark");
   const text = document.getElementById("welcome-text");
+  const tagline = document.getElementById("welcome-tagline");
   const glow = document.getElementById("welcome-glow");
   const skipBtn = document.getElementById("welcome-skip");
-
-  // B4 "Bugünün parçası": Sırlar'ın zaten kürasyonlu 86 kaydından, güne göre
-  // sabit (herkes için aynı gün aynı kayıt) tek bir başlık seçip karşılama
-  // ekranına ekliyor. Yeni bir içerik üretmiyor -- var olan, zaten üç dilli
-  // ve kaynaklı bir kaydı gösteriyor. window.__dostRouteBase/DostI18n bu
-  // script'in kendi script etiketinden SONRA yüklendiği için DOMContentLoaded'a
-  // erteleniyor (o ana kadar ikisi de hazır olur).
-  document.addEventListener("DOMContentLoaded", function () {
-    const gununEl = document.getElementById("welcome-gunun");
-    if (!gununEl) return;
-    const base = window.__dostRouteBase || "";
-    fetch(base + "/data/ibn-arabi/sirlar.json")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
-        if (!d || !Array.isArray(d.entries) || !d.entries.length) return;
-        const dayIndex = Math.floor(Date.now() / 86400000);
-        const entry = d.entries[dayIndex % d.entries.length];
-        const I18n = window.DostI18n;
-        const topic = entry.topic || {};
-        const text3 = (I18n ? I18n.pick3(topic) : null) || topic.tr || topic.en || "";
-        if (!text3) return;
-        gununEl.textContent = text3;
-        gununEl.hidden = false;
-      })
-      .catch(() => {});
-
-    // B3 "Neredeyiz" halkası: Fütûhât/Füsûs okumasının SAYISAL durumu --
-    // yorum değil, sayım (bkz. CLAUDE.md: "yaptığımız işi olduğundan
-    // farklı göstermeme"). futuhat-atlas-index.json/fusus-atlas.json
-    // karşılama ekranında ağır kalırdı (1MB/900KB); bu yüzden ayrı, küçük
-    // bir özet dosyası (data/ibn-arabi/okuma-durumu.json) okunuyor.
-    const neredeyizEl = document.getElementById("welcome-neredeyiz");
-    if (!neredeyizEl) return;
-    fetch(base + "/data/ibn-arabi/okuma-durumu.json")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
-        if (!d || !d.futuhat || !d.fusus) return;
-        const I18n = window.DostI18n;
-        const t = (dict) => (I18n ? I18n.pick3(dict) : dict.tr);
-        const ring = (label, done, total) => {
-          const r = 8, c = 2 * Math.PI * r, fill = (done / total) * c;
-          return `<span class="welcome-neredeyiz__item" title="${label}: ${done}/${total}">
-            <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">
-              <circle class="welcome-neredeyiz__track" cx="10" cy="10" r="${r}" fill="none" stroke-width="2.2"></circle>
-              <circle class="welcome-neredeyiz__fill" cx="10" cy="10" r="${r}" fill="none" stroke-width="2.2"
-                stroke-dasharray="${fill} ${c}" transform="rotate(-90 10 10)"></circle>
-            </svg>
-            <span class="welcome-neredeyiz__label">${label} ${done}/${total}</span>
-          </span>`;
-        };
-        neredeyizEl.innerHTML =
-          ring(t({ tr: "Fütûhât", en: "Futuhat", pt: "Futuhat" }), d.futuhat.done, d.futuhat.total) +
-          ring(t({ tr: "Füsûs", en: "Fusus", pt: "Fusus" }), d.fusus.done, d.fusus.total);
-        neredeyizEl.hidden = false;
-      })
-      .catch(() => {});
-  });
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -119,8 +63,11 @@
     glow.style.opacity = "0.5";
     setTimeout(() => {
       text.classList.add("welcome-screen__text--visible");
+      if (tagline) tagline.classList.add("welcome-screen__tagline--visible");
     }, 260);
-    const holdMs = reduceMotion ? 1300 : 2900;
+    // Tanıtım cümlesi eklenince (2026-08-10) bekleme, cümlenin okunabileceği
+    // kadar uzatıldı; tıklama/Esc ile her an geçilebilir.
+    const holdMs = reduceMotion ? 1800 : 4200;
     setTimeout(leave, holdMs);
   }
 
