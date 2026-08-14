@@ -37,15 +37,15 @@
       "bitmisSayfaKosullari": {
         "ucDilTam": true,
         "birincilKaynakVar": true,
-        "ikincilKaynakKartiVar": false,
+        "ikincilKaynakKartiVar": true,
         "guvenAlaniDolu": false,
         "karsiGorusVar": false,
-        "tahkikCalisti": false,
+        "tahkikCalisti": true,
         "erisilebilirlikTemiz": true,
         "sonrakiAdimVar": true
       },
-      "kaynakKartlari": [],
-      "engel": "halk-i-cedid.html, bir-nefesin-ici.html, nefes-i-rahmani.html canlıda. Haj Yousef / Hämeen-Anttila (Kat 2) kartı yok.",
+      "kaynakKartlari": ["haj-yousef-2007"],
+      "engel": "2026-08-14: docs/tahkik/halk-i-cedid.md yazıldı, haj-yousef-2007.yaml künye-only eklendi. Kalan iki koşul (guvenAlaniDolu, karsiGorusVar) sayfaya eklenecek dürüstlük-kutusu metni onay bekliyor -- bkz. tahkik raporunun 'Karar bekleyenler' bölümü.",
       "slug": "halk-i-cedid"
     },
     {
