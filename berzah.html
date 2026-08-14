@@ -45,6 +45,15 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 .quote-text{font-size:.88rem;line-height:1.75;font-style:italic}
 .quote-src{font-size:.72rem;color:var(--muted);margin-top:.55rem}
 
+/* Berzah'a tam durunca (Yakınsama Deseni, 2026-08-14): üç tanıklık artık
+   sırayla değil birlikte görünür -- aynı eşiği üç ayrı açıdan doğruluyorlar. */
+.quote-eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--liminal);margin-bottom:.7rem}
+.quote-all-item{margin-bottom:.9rem}
+.quote-all-item:last-child{margin-bottom:0}
+.quote-all-item .quote-text{margin-bottom:.3rem}
+#quoteSingle,#quoteAll{transition:opacity .6s ease}
+@media(prefers-reduced-motion:reduce){#quoteSingle,#quoteAll{transition:none}}
+
 .kardes{width:min(560px,96vw);text-align:center;margin-top:1.1rem;font-size:.75rem;line-height:1.6}
 .kardes a{color:var(--liminal);text-decoration:none;border-bottom:1px solid var(--border)}
 .kardes a:hover,.kardes a:focus-visible{border-bottom-color:var(--liminal)}
@@ -125,9 +134,13 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   <p class="caption" id="caption" data-anim="" aria-live="polite"></p>
 </div>
 
-<div class="quote-box">
-  <p class="quote-text" id="quoteText"></p>
-  <p class="quote-src" id="quoteSrc"></p>
+<div class="quote-box" id="quoteBox">
+  <p class="quote-eyebrow" id="quoteEyebrow" hidden></p>
+  <div id="quoteSingle">
+    <p class="quote-text" id="quoteText"></p>
+    <p class="quote-src" id="quoteSrc"></p>
+  </div>
+  <div id="quoteAll" hidden aria-live="polite"></div>
 </div>
 
 <p class="kardes"><a id="kardesLink" href="perde-zinciri.html"></a></p>
@@ -147,6 +160,7 @@ const LA={
     caption:'Aynı manzara. Nesneler hiç değişmiyor; yalnız görme değişiyor. Ortada durursan iki kenar birden görünür — merkez net, çeperler hâlâ bulanık.',
     kardes:'Kardeş sahne: Perde Zinciri — bütün perdeler aralanır, merkez yine de netleşmez →',
     yontem:'Üçlü sıralama (dünya–berzah–âhiret) Dost’un kendi cümlesi. “Yalnız durduğun yer netleşir” ise bizim okumamız — sahneye onu biz ekledik; metin bunu böyle söylemiyor.',
+    quoteAllLabel:'Üç tanıklık, aynı eşikte',
     quotes:[
       {text:'"Öyleyse dünya berzaha göre uyku içinde uykudur. Çünkü berzah gerçek duruma daha yakındır."', src:'Fütûhât-ı Mekkiyye, Cilt II, Kısım XXVIII — Altmış Dördüncü Bölüm, s. 447'},
       {text:'"İnsanlar uykudadır, öldüklerinde uyanırlar."', src:'Hz. Peygamber’e nispet edilen söz — Dost bu üçlü kademelenmeyi onun üzerine kuruyor (a.g.e., s. 447)'},
@@ -164,6 +178,7 @@ const LA={
     caption:'The same landscape. The objects never change; only the seeing changes. Stop in the middle and both edges show at once — the center sharp, the periphery still blurred.',
     kardes:'Sibling scene: Chain of Veiling — every veil parts, and the centre still does not resolve →',
     yontem:'The triad (world–barzakh–afterlife) is Dost’s own sentence. “Only where you stand resolves” is our reading — we added it to the scene; the text does not put it this way.',
+    quoteAllLabel:'Three testimonies, at the same threshold',
     quotes:[
       {text:'"So this world, relative to the barzakh, is sleep within sleep. For the barzakh is nearer to the real situation."', src:'al-Futuhat al-Makkiyya, Vol. II, Part XXVIII — Chapter Sixty-Four, p. 447'},
       {text:'"People are asleep; when they die, they awaken."', src:'A saying attributed to the Prophet — Dost builds this three-part hierarchy upon it (ibid., p. 447)'},
@@ -181,6 +196,7 @@ const LA={
     caption:'A mesma paisagem. Os objetos nunca mudam; muda apenas o olhar. Ao parar no meio, ambas as margens aparecem — o centro nítido, a periferia ainda embaçada.',
     kardes:'Cena irmã: Cadeia de Véus — todos os véus se afastam, e o centro ainda não se resolve →',
     yontem:'A tríade (mundo–barzakh–vida futura) é a própria frase de Dost. “Só o lugar onde você está fica nítido” é a nossa leitura — nós a acrescentamos à cena; o texto não diz isso assim.',
+    quoteAllLabel:'Três testemunhos, no mesmo limiar',
     quotes:[
       {text:'"Portanto este mundo, em relação ao barzakh, é sono dentro do sono. Pois o barzakh está mais próximo da situação real."', src:'al-Futuhat al-Makkiyya, Vol. II, Parte XXVIII — Capítulo Sexagésimo Quarto, p. 447'},
       {text:'"As pessoas estão dormindo; quando morrem, despertam."', src:'Dito atribuído ao Profeta — Dost constrói esta hierarquia tripla sobre ele (ibid., p. 447)'},
@@ -194,6 +210,38 @@ let quoteIdx=0;
 const $=id=>document.getElementById(id);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Berzah'a tam durunca (Yakınsama Deseni, 2026-08-14): tek tek dönen üç
+// tanıklık, birlikte görünen üçe dönüşür -- aynı eşiği doğruluyorlar.
+// Yeni alıntı yok, KUNYE'deki üçü olduğu gibi yeniden düzenleniyor.
+let atBerzah=false;
+
+function renderQuoteSingle(){
+  const q=LA[curLang].quotes[quoteIdx];
+  $('quoteText').textContent=q.text;
+  $('quoteSrc').textContent=q.src;
+}
+function renderQuoteAll(){
+  $('quoteEyebrow').textContent=LA[curLang].quoteAllLabel;
+  const wrap=$('quoteAll');
+  wrap.innerHTML='';
+  LA[curLang].quotes.forEach(q=>{
+    const item=document.createElement('div'); item.className='quote-all-item';
+    const p1=document.createElement('p'); p1.className='quote-text'; p1.textContent=q.text;
+    const p2=document.createElement('p'); p2.className='quote-src'; p2.textContent=q.src;
+    item.appendChild(p1); item.appendChild(p2);
+    wrap.appendChild(item);
+  });
+}
+function setBerzahState(on){
+  if(on===atBerzah){ if(on) renderQuoteAll(); return; }
+  atBerzah=on;
+  $('quoteEyebrow').hidden=!on;
+  $('quoteSingle').hidden=on;
+  $('quoteAll').hidden=!on;
+  if(on){ stopRotate(); renderQuoteAll(); }
+  else { startRotate(); renderQuoteSingle(); }
+}
+
 function renderAll(){
   const t=LA[curLang];
   $('hTitle').textContent=t.title;
@@ -206,18 +254,20 @@ function renderAll(){
   $('caption').textContent=t.caption;
   $('yontem').textContent=t.yontem;
   $('kardesLink').textContent=t.kardes;
-  const q=t.quotes[quoteIdx];
-  $('quoteText').textContent=q.text;
-  $('quoteSrc').textContent=q.src;
+  if(atBerzah) renderQuoteAll(); else renderQuoteSingle();
 }
 function setLang(l){ if(LA[l]){ curLang=l; document.documentElement.lang=l; renderAll(); } }
 
-setInterval(()=>{
-  const qs=LA[curLang].quotes;
-  quoteIdx=(quoteIdx+1)%qs.length;
-  $('quoteText').textContent=qs[quoteIdx].text;
-  $('quoteSrc').textContent=qs[quoteIdx].src;
-}, 9000);
+let rotateTimer=null;
+function startRotate(){
+  if(rotateTimer||atBerzah) return;
+  rotateTimer=setInterval(()=>{
+    quoteIdx=(quoteIdx+1)%LA[curLang].quotes.length;
+    renderQuoteSingle();
+  }, 9000);
+}
+function stopRotate(){ if(rotateTimer){ clearInterval(rotateTimer); rotateTimer=null; } }
+startRotate();
 
 // ── Sahne: aynı manzara, iki bakış ─────────────────────────────────────────
 // GORSEL_DIL.md: kavramı resmetme, davranışını resmet. Manzaranın nesneleri
@@ -307,6 +357,8 @@ function apply(v){
   blurEl.setAttribute('stdDeviation',b.toFixed(2));
   const L=0.94-Math.abs(t-0.5)*0.02;
   stageWrap.style.background=`oklch(${L} 0.014 ${70+t*12})`;
+
+  setBerzahState(Math.abs(t-0.5)<=0.07);
 }
 
 slider.addEventListener('input',e=>{
