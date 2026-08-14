@@ -22,7 +22,9 @@
  *   nodes:   [{ id, label:{tr,en,pt}, note:{tr,en,pt}, accent?:true }, ...],
  *   turns:   1.35,        // sarmalın kaç tur döneceği (varsayılan 1.25)
  *   closing: false,       // son düğümden ilkine dönüş izi çizilsin mi
- *   caption: {tr,en,pt}   // (opsiyonel) sahnenin altına yazılacak not
+ *   caption: {tr,en,pt},  // (opsiyonel) sahnenin altına yazılacak not
+ *   spinSpeed: 1,         // (opsiyonel) dönüş hızı çarpanı, varsayılan 1
+ *   labelMode: "all",     // "all" | "sparse" (yalnız vurgulu+odak) | "none"
  * }
  */
 (function () {
@@ -178,7 +180,13 @@
       // labelMode "sparse": yalnız vurgulu ve odaktaki düğümün adı yazılır.
       // Kalabalık sahnelerde (yirmi yedi fasslı harita) hepsini yazmak
       // üst üste binen okunmaz bir yığın üretiyordu (2026-07-29).
-      var goster = sc.labelMode !== "sparse" || node.accent || sc.focus === it.i;
+      // labelMode "none": hiç etiket yazılmaz (101 düğümlü Mişkât sarmalı
+      // gibi çok kalabalık sahnelerde "sparse" bile odak kaydıkça sürekli
+      // metin belirip kaybolan bir gürültü üretiyordu, 2026-08-14). Erişilebilir
+      // ad (title/aria-label) her durumda ayrıca yazılıyor, aşağıda.
+      var goster = sc.labelMode === "none" ? false
+        : sc.labelMode !== "sparse" ? true
+        : (node.accent || sc.focus === it.i);
       // Sıra numarası: üç boyutlu perspektifte hangi düğümün önce geldiği
       // gözle anlaşılmıyordu (2026-07-29). Veriye dokunmadan, yalnız
       // gösterimde ekleniyor; etiket zaten numarayla başlıyorsa tekrarlanmaz.
@@ -238,7 +246,7 @@
       if (!sc.el.isConnected) return;
       if (sc.spin && sc.visible && !sc.hover) {
         var dt = sc.last ? Math.min(64, ts - sc.last) : 16;
-        sc.yaw += dt * SPIN_PER_MS * Math.PI * 2;
+        sc.yaw += dt * SPIN_PER_MS * sc.spinSpeed * Math.PI * 2;
         draw(sc);
       }
       sc.last = ts;
@@ -266,6 +274,7 @@
       visible: true,
       last: 0,
       spin: !reducedMotion(),
+      spinSpeed: spec.spinSpeed != null ? spec.spinSpeed : 1,
       onActivate: spec.onActivate || null,
       labelMode: spec.labelMode || "all",
       hRatio: spec.hRatio || 0.78,

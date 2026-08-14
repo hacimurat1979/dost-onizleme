@@ -60,6 +60,16 @@
     return d.innerHTML;
   }
 
+  // Kaynak metindeki alıntıları vurgulamak için <em> etiketleri taşıyan
+  // note/label alanları, tooltip'te (innerHTML) doğru render oluyor ama
+  // SVG <text>/<tspan> düğümlerine d3'ün .text() (textContent) ile
+  // yazıldığında etiketler HTML olarak yorumlanmıyor, düz karakter olarak
+  // görünüyor (2026-08-14, kullanıcı bulgusu). SVG metin düğümleri kısmi
+  // italik biçimlendirmeyi desteklemediği için etiketleri burada atıyoruz.
+  function stripTags(s) {
+    return s == null ? "" : String(s).replace(/<[^>]+>/g, "");
+  }
+
   // --- Popup (used by the "in this part" stats panel) ---
   function openPopup(title, items, renderRow, onItemClick) {
     if (!popupEl) return;
@@ -513,7 +523,7 @@
       })
       .attr("dy", (d) => (d.depth === 0 ? -22 : "0.32em"))
       .style("font-size", etiketPunto.toFixed(2) + "px")
-      .text((d) => tt(d.data.label));
+      .text((d) => stripTags(tt(d.data.label)));
 
     // Sabit 220px pay yalnız TAHMİNDİ -- uzun düğüm adlarında (bkz. yukarıdaki
     // etiketPunto yorumu) gerçek metin genişliğini aşıp kırpılıyordu, büyüteç
@@ -678,12 +688,12 @@
       .attr("class", "futuhat-triad__label")
       .attr("text-anchor", "middle")
       .attr("y", -26)
-      .text((d) => tt(d.label));
+      .text((d) => stripTags(tt(d.label)));
     g.append("text")
       .attr("class", "futuhat-triad__note")
       .attr("text-anchor", "middle")
       .attr("y", 32)
-      .text((d) => tt(d.note))
+      .text((d) => stripTags(tt(d.note)))
       .call(wrapSvgText, 24);
   }
 
@@ -722,12 +732,12 @@
       .attr("class", "futuhat-triad__label")
       .attr("text-anchor", "middle")
       .attr("y", -25)
-      .text((d) => tt(d.label));
+      .text((d) => stripTags(tt(d.label)));
     g.append("text")
       .attr("class", "futuhat-triad__note")
       .attr("text-anchor", "middle")
       .attr("y", 31)
-      .text((d) => tt(d.note))
+      .text((d) => stripTags(tt(d.note)))
       .call(wrapSvgText, 24);
   }
 
@@ -770,10 +780,10 @@
 
     svg.append("text").attr("class", "futuhat-nobet__label futuhat-nobet__label--a")
       .attr("x", cx - r - 8).attr("y", cy).attr("text-anchor", "end")
-      .text(tt(nobet.a)).call(wrapSvgText, 13);
+      .text(stripTags(tt(nobet.a))).call(wrapSvgText, 13);
     svg.append("text").attr("class", "futuhat-nobet__label futuhat-nobet__label--b")
       .attr("x", cx + r + 8).attr("y", cy).attr("text-anchor", "start")
-      .text(tt(nobet.b)).call(wrapSvgText, 13);
+      .text(stripTags(tt(nobet.b))).call(wrapSvgText, 13);
 
     // Dönen nokta: bir devir ne "a" ne "b"de durur, ikisinin arasında
     // sürekli geçiyor -- bkz. yukarıdaki yorum.
@@ -825,11 +835,11 @@
     svg.append("text")
       .attr("class", "futuhat-akis__col-head")
       .attr("x", colKul).attr("y", 16).attr("text-anchor", "end")
-      .text(tt(akis.kulBasligi));
+      .text(stripTags(tt(akis.kulBasligi)));
     svg.append("text")
       .attr("class", "futuhat-akis__col-head")
       .attr("x", colHak).attr("y", 16).attr("text-anchor", "start")
-      .text(tt(akis.hakBasligi));
+      .text(stripTags(tt(akis.hakBasligi)));
 
     const rows = svg
       .selectAll("g.futuhat-akis__row")
@@ -849,13 +859,13 @@
     rows.append("text")
       .attr("class", "futuhat-akis__kul")
       .attr("x", colKul).attr("y", 4).attr("text-anchor", "end")
-      .text((d) => tt(d.kul))
+      .text((d) => stripTags(tt(d.kul)))
       .call(wrapSvgText, 20);
 
     rows.append("text")
       .attr("class", "futuhat-akis__hak")
       .attr("x", colHak).attr("y", -8).attr("text-anchor", "start")
-      .text((d) => tt(d.hak))
+      .text((d) => stripTags(tt(d.hak)))
       .call(wrapSvgText, 26);
   }
 
@@ -897,12 +907,12 @@
       g.append("text")
         .attr("class", "futuhat-radyal__label")
         .attr("x", sx).attr("y", sy - 2).attr("text-anchor", "middle")
-        .text(tt(d.label))
+        .text(stripTags(tt(d.label)))
         .call(wrapSvgText, 15);
       g.append("text")
         .attr("class", "futuhat-radyal__not")
         .attr("x", sx).attr("y", sy + orbit * 0.34).attr("text-anchor", "middle")
-        .text(tt(d.not))
+        .text(stripTags(tt(d.not)))
         .call(wrapSvgText, 20);
     });
 
@@ -910,7 +920,7 @@
     svg.append("text")
       .attr("class", "futuhat-radyal__merkez-label")
       .attr("x", cx).attr("y", cy + 5).attr("text-anchor", "middle")
-      .text(tt(radyal.merkez));
+      .text(stripTags(tt(radyal.merkez)));
   }
 
   // --- "Perde nerede?" (c14k162, 2026-08-04): kaynak kesintisiz ışık
@@ -958,17 +968,17 @@
     svg.append("circle").attr("class", "futuhat-perdegoz__goz").attr("cx", gozX).attr("cy", cy).attr("r", 20);
 
     svg.append("text").attr("class", "futuhat-perdegoz__label").attr("x", kaynakX).attr("y", cy + 48).attr("text-anchor", "middle")
-      .text(tt(pg.kaynakEtiket)).call(wrapSvgText, 16);
+      .text(stripTags(tt(pg.kaynakEtiket))).call(wrapSvgText, 16);
     svg.append("text").attr("class", "futuhat-perdegoz__note").attr("x", kaynakX).attr("y", cy - 42).attr("text-anchor", "middle")
-      .text(tt(pg.kaynakNot)).call(wrapSvgText, 16);
+      .text(stripTags(tt(pg.kaynakNot))).call(wrapSvgText, 16);
 
     svg.append("text").attr("class", "futuhat-perdegoz__label").attr("x", perdeX + 13).attr("y", cy + 48).attr("text-anchor", "middle")
-      .text(tt(pg.perdeEtiket)).call(wrapSvgText, 12);
+      .text(stripTags(tt(pg.perdeEtiket))).call(wrapSvgText, 12);
 
     svg.append("text").attr("class", "futuhat-perdegoz__label").attr("x", gozX).attr("y", cy + 48).attr("text-anchor", "middle")
-      .text(tt(pg.gozEtiket)).call(wrapSvgText, 14);
+      .text(stripTags(tt(pg.gozEtiket))).call(wrapSvgText, 14);
     svg.append("text").attr("class", "futuhat-perdegoz__note").attr("x", gozX).attr("y", cy - 42).attr("text-anchor", "middle")
-      .text(tt(pg.gozNot)).call(wrapSvgText, 16);
+      .text(stripTags(tt(pg.gozNot))).call(wrapSvgText, 16);
   }
 
   // --- Nested-circles diagram (c13k150, "sonsuz iç içe daireler") ---

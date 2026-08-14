@@ -109,7 +109,8 @@
       hRatio: 1.45,
       maxH: 620,
       numbered: false,
-      labelMode: "sparse",
+      labelMode: "none",
+      spinSpeed: 0.5,
       title: { tr: "Yüz bir hadisin sarmalı", en: "The spiral of the hundred and one hadith", pt: "A espiral dos cento e um hadith" },
       onActivate: function (node) {
         var h = hadisById(node.id);
