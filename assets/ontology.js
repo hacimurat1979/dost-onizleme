@@ -1902,7 +1902,11 @@
     const confidenceBtn = document.getElementById("ontology-confidence-toggle");
     if (confidenceBtn && !confidenceBtn.dataset.wiredOntoConf) {
       confidenceBtn.dataset.wiredOntoConf = "1";
-      confidenceBtn.setAttribute("aria-pressed", "false");
+      // Varsayılan artık AÇIK (2026-08-14 karar): ilk bakışta yalnız
+      // yüksek-güvenli bağlantılar tam görünür kalsın, düşükler kullanıcı
+      // isterse açılsın -- index.html'deki ontology-wrap zaten
+      // "confidence-on" sınıfıyla ve bu düğme "is-on"/aria-pressed=true
+      // ile başlıyor, burada onu YANLIŞLIKLA sıfırlamıyoruz.
       confidenceBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         const on = !ontologyWrap.classList.contains("confidence-on");

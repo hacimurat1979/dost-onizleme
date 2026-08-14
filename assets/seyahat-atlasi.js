@@ -60,6 +60,12 @@ window.__seyahatAtlasiApp = (function () {
   let g = null;
   let focusId = null;
   let minYear = 1165, maxYear = 1240, sliderYear = 1240;
+  // Kaydırıcı artık yıl değil DURAK indeksiyle çalışıyor (2026-08-14 karar):
+  // 75 yıllık aralıkta 1'er adım, yalnız 15 anlamlı durağa karşılık geliyordu
+  // -- baştan sona 75 tıklama gerektiriyordu (kullanıcı bulgusu). sliderYear
+  // hâlâ gerçek filtre/render mantığının (uygulaZamanFiltresi, ...) dayandığı
+  // değer; stopIndex yalnız kaydırıcının kendi ölçeğini durağa hizalıyor.
+  let stopIndex = 0;
   let xScale = null, yScale = null;
 
   function boyut() {
@@ -314,7 +320,7 @@ window.__seyahatAtlasiApp = (function () {
   }
 
   // Yıl kaydırıcısına ileri/geri/oynat -- eskiden yalnız elle sürüklenebiliyordu
-  // (kullanıcı bulgusu: "ileri geri gibi bir seçenek ekleyelim"). setYear tek bir
+  // (kullanıcı bulgusu: "ileri geri gibi bir seçenek ekleyelim"). setStop tek bir
   // yerden slider.value + etiket + filtreyi birlikte günceller ki geri/ileri/
   // oynat/elle sürükleme dördü de aynı yoldan geçsin.
   let oynatTimer = null;
@@ -325,41 +331,42 @@ window.__seyahatAtlasiApp = (function () {
       oynatBtn.innerHTML = OYNAT_IKON;
     }
   }
-  function setYear(y) {
-    sliderYear = Math.max(minYear, Math.min(maxYear, y));
-    if (slider) slider.value = String(sliderYear);
+  function setStop(i) {
+    stopIndex = Math.max(0, Math.min(duraklar.length - 1, i));
+    sliderYear = duraklar[stopIndex].yil_baslangic;
+    if (slider) slider.value = String(stopIndex);
     if (sliderEtiket) sliderEtiket.textContent = String(sliderYear);
     uygulaZamanFiltresi();
   }
   function slidereBagla() {
-    if (!slider) return;
-    slider.min = String(minYear);
-    slider.max = String(maxYear);
-    slider.value = String(maxYear);
-    sliderYear = maxYear;
+    if (!slider || !duraklar.length) return;
+    slider.min = "0";
+    slider.max = String(duraklar.length - 1);
+    slider.step = "1";
+    stopIndex = duraklar.length - 1;
+    slider.value = String(stopIndex);
+    sliderYear = duraklar[stopIndex].yil_baslangic;
     if (sliderEtiket) sliderEtiket.textContent = String(sliderYear);
     slider.addEventListener("input", () => {
       oynatDurdur();
-      sliderYear = Number(slider.value);
-      if (sliderEtiket) sliderEtiket.textContent = String(sliderYear);
-      uygulaZamanFiltresi();
+      setStop(Number(slider.value));
     });
-    if (geriBtn) geriBtn.addEventListener("click", () => { oynatDurdur(); setYear(sliderYear - 1); });
-    if (ileriBtn) ileriBtn.addEventListener("click", () => { oynatDurdur(); setYear(sliderYear + 1); });
+    if (geriBtn) geriBtn.addEventListener("click", () => { oynatDurdur(); setStop(stopIndex - 1); });
+    if (ileriBtn) ileriBtn.addEventListener("click", () => { oynatDurdur(); setStop(stopIndex + 1); });
     if (oynatBtn) {
       oynatBtn.addEventListener("click", () => {
         if (oynatTimer) { oynatDurdur(); return; }
         // Sona gelinmişse baştan başlat -- aksi hâlde "oynat"a basınca hiçbir
         // şey olmuyor izlenimi verir.
-        if (sliderYear >= maxYear) setYear(minYear);
+        if (stopIndex >= duraklar.length - 1) setStop(0);
         oynatBtn.setAttribute("aria-pressed", "true");
         oynatBtn.innerHTML = DURAKLAT_IKON;
         oynatTimer = setInterval(() => {
           // Görünüm arka plana geçtiyse (başka bir bölüme geçildiyse)
           // oynatmayı durdur -- aksi hâlde kullanıcı geri döndüğünde
-          // beklenmedik bir yılda bulur kendini.
-          if (!GU.isViewActive(wrapEl) || sliderYear >= maxYear) { oynatDurdur(); return; }
-          setYear(sliderYear + 1);
+          // beklenmedik bir durakta bulur kendini.
+          if (!GU.isViewActive(wrapEl) || stopIndex >= duraklar.length - 1) { oynatDurdur(); return; }
+          setStop(stopIndex + 1);
         }, 650);
       });
     }
@@ -374,7 +381,11 @@ window.__seyahatAtlasiApp = (function () {
     return Promise.all([GU.fetchJson(urlAtlas), GU.fetchJson(urlEser)]).then(([d, e]) => {
       data = d;
       eserAgiData = e;
-      duraklar = (d.duraklar || []).map((x) => Object.assign({}, x));
+      // Kronolojik sırayla -- ham veri dizisi bu sırada değil (ör. "meriye"
+      // 1199, ondan sonraki "fas" 1194'te geçiyor); durak-indeksli kaydırıcı
+      // (aşağı bkz.) bu sıraya güveniyor.
+      duraklar = (d.duraklar || []).map((x) => Object.assign({}, x))
+        .sort((a, b) => a.yil_baslangic - b.yil_baslangic);
       durakById = new Map(duraklar.map((x) => [x.id, x]));
       eserById = new Map((e.eserler || []).map((x) => [x.id, x]));
       const years = duraklar.map((x) => x.yil_baslangic);
