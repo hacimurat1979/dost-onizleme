@@ -37,9 +37,9 @@
 
   var VIEWS = {
     __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-GAkpG/fiyuMb5dI6zbtM9QBuUefv80x0SeiDhY0xJclXtdylwqjxcasfHqZskQ5b" },
-    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-6X2e7OFYaHkqno9xgF0yyPttgXVZrc7fUbADJ5nsb/Yv3l5vtGciRkwAs1HdQmes" },
+    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-inZ27eH5OcpCTxfx3E8FqSg6YGaI0LO0EMKqhQokX15Ek4nM5JSm6iwZlplZWmM+" },
     __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-ueJyuy/b04NHTcHqZ0FdSQVTq3egRzUMDMlzsTW9FbKOpJ1RAIxqRvS7ukUSIoaI" },
-    __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-tnUujR0/9VXod3fMsZhg/TpcB6kG4FsJYxCyVQkjPlaDOGneSHSEopCeccba364W" },
+    __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-shR0WA4WhzPz71v4fCkv/IPBjpnQoyNB2/o2kEOPFzH/ysFjjuW6QCpOyQYyw5X2" },
     __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-vUMUhTP8C9J1eYREPxr3KjV3gHHUGHuV9kXb1E2WDKMgpEXdG5bedODRU4Wavpp9" },
     __okumaYollariApp: { src: "assets/okuma-yollari.js", integrity: "sha384-f3AwGIN00ENzTIgo4xzB1bgSzYoqz0VsDiHFCA63q4mDpaEHg1fMRVfCESArkdzL" },
     __acikSorularApp: { src: "assets/acik-sorular.js", integrity: "sha384-QP3Zz2J33MW27jd+vdHJmpkGdHzxETnMM8izdG4JGcYgwIxidbkuBbtcmTL1wSkZ" },
@@ -53,7 +53,7 @@
     __esmaApp: { src: "assets/esma.js", integrity: "sha384-LEB+VD1I/3TlhKUAJdFMYfrqKVpqEVN+33jaP/R1kQ2INKyb2ks23oDv0k2hXyxu" },
     __halApp: { src: "assets/hal.js", integrity: "sha384-X1LL9QQPt+M8z9i8hwppf3oU5CZv7KrC+wgA6Rd9TESErhCPHrDw2F826yH2qPoE" },
     __terimlerApp: { src: "assets/terimler.js", integrity: "sha384-i67cRlJ7Vs3BqHvXKw1PV/rHVYymerkC3SXJ0WuprGA0rjMWSQA6oRKwrRywta1k" },
-    __sorularApp: { src: "assets/sorular.js", integrity: "sha384-2Vln1BcKKcsY87l6Idx+oBsa7pIaCqYw6/OzfIM6cpFLICa/M0j+Tu4VwWqES5h4" },
+    __sorularApp: { src: "assets/sorular.js", integrity: "sha384-UD/p8nMLoI5fob3ZedcDwWWiaxFQd1aEpatM8dLLYf+DFxFDjOvLWGW9Rkhq7l1J" },
     __menzillerApp: { src: "assets/menziller.js", integrity: "sha384-UNu3PnlIt9nPiOz7RUEfTq8M81l0rtrf5cQx9wtO/mE1QIoal04Ibprhbzsa4EhQ" },
     __futuhatApp: { src: "assets/futuhat.js", integrity: "sha384-f6dBy8DGb9oAuE5pE9INObqa5OLOZlp37WZB6C1Xts802eJfLlFkkI2IXvFMukre" },
   };

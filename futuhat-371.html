@@ -47,6 +47,30 @@ input[type="range"]:focus-visible{outline:2px solid var(--liminal);outline-offse
 .legend-gloss{font-size:.82rem;line-height:1.65;font-style:italic;color:var(--text);margin-bottom:.35rem}
 .legend-cite{font-size:.68rem;color:var(--muted)}
 
+/* Harita büyütme (2026-08-15 @revise): dokuz harita birleştirilmeden önce
+   tek tek incelenebilsin diye her biri tıklanabilir bir kapı. */
+.map-clickable{cursor:pointer}
+.map-clickable:hover circle:not(.map-hit),.map-clickable:focus-visible circle:not(.map-hit){stroke:var(--gold)}
+.map-clickable:focus-visible{outline:2px solid var(--liminal);outline-offset:4px}
+.map-hit{fill:transparent;stroke:none}
+#mapsStage{cursor:default}
+
+.map-popup{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;padding:20px}
+.map-popup[hidden]{display:none}
+.map-popup__backdrop{position:absolute;inset:0;background:color-mix(in srgb, var(--bg) 60%, black 30%)}
+.map-popup__card{position:relative;z-index:1;width:min(480px,100%);max-height:88vh;overflow-y:auto;
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;
+  display:flex;flex-direction:column;gap:.6rem}
+.map-popup__close{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--border);background:transparent;color:var(--muted);font-size:1.1rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.map-popup__close:hover,.map-popup__close:focus-visible{color:var(--text);border-color:var(--gold)}
+.map-popup__svg{width:100%;aspect-ratio:1/1;background:var(--panel);border:1px solid var(--border);border-radius:10px}
+.map-popup__no{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--liminal)}
+.map-popup__label{font-size:1.02rem;color:var(--text)}
+.map-popup__gloss{font-size:.86rem;line-height:1.65;font-style:italic;color:var(--text)}
+.map-popup__cite{font-size:.7rem;color:var(--muted)}
+
 /* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
    ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
    da var. Renkler zincirleme var() yedekleriyle: sahnelerin değişken adları
@@ -126,6 +150,18 @@ input[type="range"]:focus-visible{outline:2px solid var(--liminal);outline-offse
 
 <p class="next-step" id="hNextStep"></p>
 
+<div class="map-popup" id="mapPopup" hidden role="dialog" aria-modal="true">
+  <div class="map-popup__backdrop"></div>
+  <div class="map-popup__card">
+    <button type="button" class="map-popup__close" id="mapPopupClose" aria-label="Kapat">×</button>
+    <svg class="map-popup__svg" id="mapPopupSvg" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet" role="img"></svg>
+    <p class="map-popup__no" id="mapPopupNo"></p>
+    <p class="map-popup__label" id="mapPopupLabel"></p>
+    <p class="map-popup__gloss" id="mapPopupGloss"></p>
+    <p class="map-popup__cite" id="mapPopupCite"></p>
+  </div>
+</div>
+
 <script>
 const NS='http://www.w3.org/2000/svg';
 const LA={
@@ -139,6 +175,7 @@ const LA={
     caption:'Dokuz harita, ayrıyken dokuz çizim; birleşince tek bir kompozisyon. Örtüşme anı bu sahnenin hayret anı.',
     legendTitle:'Dokuz Harita — Sırasıyla',
     nextStep:'Bu dokuz harita, sitenin Çizimler görünümündeki öteki tarihî şemalarla birlikte duruyor — devam etmek isteyenler oraya bakabilir.',
+    popupClose:'Kapat',
   },
   en:{
     title:'Chapter 371: Nine Maps',
@@ -150,6 +187,7 @@ const LA={
     caption:"Nine maps: nine drawings when apart; one composition when together. The moment they overlap is this scene's astonishment.",
     legendTitle:'The Nine Maps — In Sequence',
     nextStep:"These nine maps stand alongside the site's other historical diagrams in the Drawings view — those who want to continue can look there.",
+    popupClose:'Close',
   },
   pt:{
     title:'Capítulo 371: Nove Mapas',
@@ -161,6 +199,7 @@ const LA={
     caption:'Nove mapas: nove desenhos quando separados; uma só composição quando reunidos. O instante da sobreposição é o espanto desta cena.',
     legendTitle:'Os Nove Mapas — Em Sequência',
     nextStep:'Estes nove mapas encontram-se junto aos outros diagramas históricos do site na vista de Desenhos — quem quiser continuar pode ali explorar.',
+    popupClose:'Fechar',
   },
 };
 
@@ -368,6 +407,15 @@ const gridScale = 0.65;
 const mapEls = [];
 for (let i=0;i<STEPS.length;i++){
   const g = document.createElementNS(NS,'g');
+  // Büyütme kapısı: her haritanın tüm alanı tıklanabilir olsun diye,
+  // görünmez ama dokunulabilir bir daire önce (en altta) ekleniyor --
+  // yalnız ince çizgilere tıklamak zorunda kalınmasın.
+  const hit = document.createElementNS(NS,'circle');
+  hit.setAttribute('cx',0); hit.setAttribute('cy',0); hit.setAttribute('r',112);
+  hit.setAttribute('class','map-hit');
+  hit.setAttribute('pointer-events','fill');
+  g.appendChild(hit);
+
   const num = document.createElementNS(NS,'text');
   num.setAttribute('x',-110); num.setAttribute('y',-100);
   num.setAttribute('font-family','Georgia, serif');
@@ -387,6 +435,13 @@ for (let i=0;i<STEPS.length;i++){
 
   drawShared(g);
   drawUnique(g, i);
+  g.setAttribute('class','map-clickable');
+  g.setAttribute('tabindex','0');
+  g.setAttribute('role','button');
+  g.addEventListener('click', () => openMapPopup(i));
+  g.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMapPopup(i); }
+  });
   mapsG.appendChild(g);
   mapEls.push({ g, num, labelEl });
 }
@@ -413,9 +468,48 @@ slider.addEventListener('input', e=>{
   if (hint) hint.style.animation = 'none';
 });
 
+const ENLARGE_LABEL = { tr:'Büyüt: ', en:'Enlarge: ', pt:'Ampliar: ' };
 function updateMapLabels(){
-  STEPS.forEach((s,i)=>{ mapEls[i].labelEl.textContent = s.shortLabel[curLang]; });
+  STEPS.forEach((s,i)=>{
+    mapEls[i].labelEl.textContent = s.shortLabel[curLang];
+    mapEls[i].g.setAttribute('aria-label', ENLARGE_LABEL[curLang] + s.label[curLang]);
+  });
 }
+
+// ── Harita büyütme popup'ı (2026-08-15 @revise) ──────────────────────────
+let popupOpenIdx = null;
+let popupLastFocus = null;
+function renderMapPopupSvg(idx){
+  const svg = $('mapPopupSvg');
+  svg.innerHTML = '';
+  svg.setAttribute('viewBox','-150 -150 300 300');
+  const g = document.createElementNS(NS,'g');
+  drawShared(g);
+  drawUnique(g, idx);
+  svg.appendChild(g);
+}
+function openMapPopup(idx){
+  popupOpenIdx = idx;
+  popupLastFocus = document.activeElement;
+  const s = STEPS[idx];
+  renderMapPopupSvg(idx);
+  $('mapPopupNo').textContent = (idx+1) + ' / ' + STEPS.length;
+  $('mapPopupLabel').textContent = s.label[curLang];
+  $('mapPopupGloss').textContent = s.gloss[curLang];
+  $('mapPopupCite').textContent = s.cite;
+  $('mapPopupClose').setAttribute('aria-label', LA[curLang].popupClose || 'Kapat');
+  $('mapPopup').hidden = false;
+  $('mapPopupClose').focus();
+}
+function closeMapPopup(){
+  if (popupOpenIdx === null) return;
+  popupOpenIdx = null;
+  $('mapPopup').hidden = true;
+  if (popupLastFocus && document.contains(popupLastFocus)) popupLastFocus.focus();
+  popupLastFocus = null;
+}
+$('mapPopup').querySelector('.map-popup__backdrop').addEventListener('click', closeMapPopup);
+$('mapPopupClose').addEventListener('click', closeMapPopup);
 
 function renderLegend(){
   const wrap = $('legend');
@@ -449,6 +543,7 @@ function renderAll(){
   slider.setAttribute('aria-label', d.apart + ' / ' + d.one);
   updateMapLabels();
   renderLegend();
+  if (popupOpenIdx !== null) openMapPopup(popupOpenIdx);
 }
 function setLang(l){ if (LA[l]){ curLang = l; renderAll(); } }
 
@@ -503,9 +598,17 @@ window.addEventListener('message', function(e){
     // Metin/kaydırıcı odaktayken ESC'i çalma -- orada kendi anlamı var.
     if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
     e.preventDefault();
+    // ETKILESIM_DILI.md: "bir adım geri" -- açık panel (harita popup'ı) önce
+    // kapanır, sahneden çıkış yalnız popup zaten kapalıysa çalışır.
+    if (typeof popupOpenIdx !== "undefined" && popupOpenIdx !== null) {
+      closeMapPopup();
+      return;
+    }
     geriGit();
   });
 })();
 </script>
+<link rel="stylesheet" href="assets/edit-mode-sahne.css">
+<script src="assets/edit-mode.js" defer></script>
 </body>
 </html>

@@ -18,26 +18,11 @@
 
   // Ayrı sahnesi olan şiirler (bkz. terimler.js TERIM_SAHNELERI,
   // sorular.js SORU_SAHNELERI -- aynı sözleşmenin üçüncü yeri).
-  const SIIR_SAHNELERI = {
-    "te-kalp": {
-      dosya: "tercuman-esvak.html",
-      dugme: {
-        tr: "Sahneyi aç: Kendi şiirini savunmak",
-        en: "Open the scene: Defending his own poem",
-        pt: "Abrir a cena: Defender o próprio poema",
-      },
-    },
-    // Bu şiir zaten tavaf sahnesinin İÇİNDEN geliyor (Kısım IV); sahne de
-    // o karşılaşmayı yürütüyor -- docs/icerik-yol-haritasi.md D19.
-    "fut-tavaf-genc": {
-      dosya: "futuhat-dogusu.html",
-      dugme: {
-        tr: "Sahneyi aç: Tavafta bir karşılaşma",
-        en: "Open the scene: An encounter during the circling",
-        pt: "Abrir a cena: Um encontro na circum-ambulação",
-      },
-    },
-  };
+  // 2026-08-15 @revise: "Kendi Şiirini Savunmak" (tercuman-esvak.html) ve
+  // "Tavafta Bir Karşılaşma" (futuhat-dogusu.html) sahneleri kullanıcı
+  // isteğiyle kaldırıldı; bu iki şiirin kendi metni sayfada kalıyor,
+  // yalnız "Sahneyi aç" düğmeleri gitti.
+  const SIIR_SAHNELERI = {};
 
   const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 

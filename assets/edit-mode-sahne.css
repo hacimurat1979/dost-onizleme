@@ -1,0 +1,321 @@
+/* assets/edit-mode.js'in gizli düzenleme modu (@revise) için stil --
+   sahneler kendi tek-dosyalık HTML'leri içinde assets/style.css'i hiç
+   yüklemiyor (2026-08-15 bulgusu: bu yüzden sahne sayfalarında @revise
+   hiç çalışmıyordu -- edit-mode.js dosyası bile eksikti). Ana sitedeki
+   .dost-edit-panel/.dost-shot-modal/.dost-notes__* kurallarının aynısı,
+   ama sahnelerin kendi --surface/--border/--text (bazılarında kısaltılmış
+   --su/--bo/--tx) token adlarına bağlı kalmadan, kendi kapalı token
+   kümesiyle -- 15 sahnenin hepsi aynı koyu/açık palet değerlerini
+   kullanıyor (bkz. her sahnenin kendi <style> bloğu), o yüzden burada
+   sabit değerler yerine SITENIN o paleti kopyalanıyor. */
+:root {
+  --dem-bg: #1A1A19;
+  --dem-border: #2C2C2A;
+  --dem-text: #EDE9E2;
+  --dem-muted: #898781;
+  --dem-accent: #FFC233;
+  --dem-accent-text: #161311;
+  --dem-shadow: rgba(0, 0, 0, 0.45);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --dem-bg: #FCFCFB;
+    --dem-border: #E1E0D9;
+    --dem-text: #1A1A1A;
+    --dem-muted: #6F6D65;
+    --dem-accent: #8A6100;
+    --dem-accent-text: #FCFCFB;
+    --dem-shadow: rgba(20, 15, 8, 0.22);
+  }
+}
+:root[data-theme="dark"] {
+  --dem-bg: #1A1A19;
+  --dem-border: #2C2C2A;
+  --dem-text: #EDE9E2;
+  --dem-muted: #898781;
+  --dem-accent: #FFC233;
+  --dem-accent-text: #161311;
+  --dem-shadow: rgba(0, 0, 0, 0.45);
+}
+:root[data-theme="light"] {
+  --dem-bg: #FCFCFB;
+  --dem-border: #E1E0D9;
+  --dem-text: #1A1A1A;
+  --dem-muted: #6F6D65;
+  --dem-accent: #8A6100;
+  --dem-accent-text: #FCFCFB;
+  --dem-shadow: rgba(20, 15, 8, 0.22);
+}
+
+.dost-edit-mode [data-dost-editable] {
+  cursor: text;
+  border-radius: 3px;
+  outline: 1px dashed transparent;
+  outline-offset: 3px;
+  transition: outline-color 0.15s ease, background-color 0.15s ease;
+}
+.dost-edit-mode [data-dost-editable]:hover {
+  outline-color: color-mix(in srgb, var(--dem-accent) 55%, transparent);
+}
+.dost-edit-mode [data-dost-editable]:focus {
+  outline: 1px solid var(--dem-accent);
+  background-color: color-mix(in srgb, var(--dem-accent) 8%, transparent);
+}
+
+.dost-edit-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.dost-edit-panel__toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--dem-accent);
+  background: var(--dem-bg);
+  color: var(--dem-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--dem-shadow);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.dost-edit-panel__icon { font-size: 0.95rem; }
+
+.dost-edit-panel__count {
+  font-variant-numeric: tabular-nums;
+}
+
+.dost-edit-panel__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  width: 240px;
+  max-width: calc(100vw - 40px);
+  border-radius: 12px;
+  border: 1px solid var(--dem-border);
+  background: var(--dem-bg);
+  box-shadow: 0 8px 24px var(--dem-shadow);
+}
+.dost-edit-panel__menu[hidden] {
+  display: none;
+}
+
+.dost-edit-panel__hint {
+  margin: 0 0 4px;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: var(--dem-muted);
+}
+
+.dost-edit-panel__menu button {
+  font: inherit;
+  font-size: 0.82rem;
+  text-align: left;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--dem-border);
+  background: transparent;
+  color: var(--dem-text);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.dost-edit-panel__menu button:hover,
+.dost-edit-panel__menu button:focus-visible {
+  border-color: var(--dem-accent);
+}
+
+.dost-shot-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.dost-shot-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--dem-bg) 55%, black 25%);
+  backdrop-filter: blur(3px);
+}
+
+.dost-shot-modal__card {
+  position: relative;
+  z-index: 1;
+  width: min(480px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--dem-border);
+  background: var(--dem-bg);
+  box-shadow: 0 12px 32px var(--dem-shadow);
+  color: var(--dem-text);
+}
+
+.dost-shot-modal__attach {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.dost-shot-modal__attach button {
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 6px 11px;
+  border-radius: 8px;
+  border: 1px solid var(--dem-border);
+  background: transparent;
+  color: var(--dem-text);
+  cursor: pointer;
+}
+.dost-shot-modal__attach button:hover,
+.dost-shot-modal__attach button:focus-visible {
+  border-color: var(--dem-accent);
+}
+
+.dost-shot-modal__remove {
+  border-color: transparent !important;
+  background: transparent !important;
+  color: var(--dem-muted) !important;
+  text-decoration: underline;
+}
+
+.dost-shot-modal__preview {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--dem-border);
+  display: block;
+}
+.dost-shot-modal__preview[hidden] {
+  display: none;
+}
+
+.dost-shot-modal__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--dem-text);
+}
+
+.dost-shot-modal__note {
+  font: inherit;
+  font-size: 0.88rem;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--dem-border);
+  background: transparent;
+  color: var(--dem-text);
+  resize: vertical;
+}
+
+.dost-shot-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.dost-shot-modal__actions button {
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--dem-border);
+  background: transparent;
+  color: var(--dem-text);
+  cursor: pointer;
+}
+
+.dost-shot-modal__save {
+  border-color: var(--dem-accent);
+  background: var(--dem-accent);
+  color: var(--dem-accent-text);
+  font-weight: 600;
+}
+
+.dost-notes__card { width: min(560px, 100%); }
+.dost-notes__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 58vh;
+  overflow-y: auto;
+}
+.dost-notes__empty { margin: 0; font-size: 0.86rem; color: var(--dem-muted); }
+.dost-notes__item {
+  border: 1px solid var(--dem-border);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dost-notes__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.dost-notes__title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--dem-muted);
+  overflow-wrap: anywhere;
+}
+.dost-notes__del {
+  font: inherit;
+  font-size: 0.74rem;
+  padding: 3px 9px;
+  border-radius: 7px;
+  border: 1px solid var(--dem-border);
+  background: transparent;
+  color: var(--dem-muted);
+  cursor: pointer;
+  flex: none;
+}
+.dost-notes__del:hover,
+.dost-notes__del:focus-visible { border-color: var(--dem-accent); color: var(--dem-accent); }
+.dost-notes__before {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--dem-muted);
+  text-decoration: line-through;
+  opacity: 0.75;
+}
+.dost-notes__thumb {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 7px;
+  border: 1px solid var(--dem-border);
+}
+.dost-notes__text {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 7px 9px;
+  border-radius: 8px;
+  border: 1px solid var(--dem-border);
+  background: transparent;
+  color: var(--dem-text);
+  resize: vertical;
+}

@@ -184,7 +184,13 @@ blockquote{font-size:.87rem;font-style:italic;line-height:1.8}
   </div>
 </div>
 
-<!-- Sahne motoru — .claude/commands/sahne.md motor adımı -->
+<!-- Sahne motoru — .claude/commands/sahne.md motor adımı. i18n.js önce
+     yüklenmeli: sahne-motoru.js modül-yükleme anında window.DostI18n.pick3'ü
+     okuyor (2026-08-15 bulgusu: bu sayfa bağımsız çalıştığında/meditasyon.html
+     iframe'i içinde de site'nin i18n.js'i hiç yüklü değildi, motor sessizce
+     çöküyordu -- @revise #6 bu sahneyi galeri kartına doğrudan bağlayınca
+     ortaya çıktı). -->
+<script src="assets/i18n.js"></script>
 <script src="assets/sahne-motoru.js"></script>
 <script>
 const L={
@@ -447,5 +453,7 @@ if (window.self === window.top) (function () {
   });
 })();
 </script>
+<link rel="stylesheet" href="assets/edit-mode-sahne.css">
+<script src="assets/edit-mode.js" defer></script>
 </body>
 </html>

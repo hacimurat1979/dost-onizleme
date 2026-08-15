@@ -561,6 +561,11 @@ html {
   justify-content: center;
 }
 .btn-ghost:hover { background: var(--gridline); }
+/* Sahneler alt-menüsü (2026-08-15 @revise): tost menüdeki sahne bağlantıları
+   gerçek sayfa geçişi yapan <a>'lar (SPA görünümü değil, bağımsız HTML) --
+   .btn-ghost'un geri kalanı hep <button>, o yüzden tarayıcının varsayılan
+   link alt çizgisi yalnız burada elle sıfırlanıyor. */
+a.btn-ghost { text-decoration: none; }
 /* Fütûhât'ın kendi kardeş görünümleri (Kur'ân Dokusu / Mimarisi) --
    drawer'ın kendisi kaydırmalı-flex bir pill dizisi olduğu için girinti
    satır kaydığında anlamını kaybediyor; "↳" öneki (etikette, HTML'de) ve
@@ -4697,6 +4702,18 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
 .detail-gate__btn:focus-visible {
   background: var(--accent-interactive);
   color: var(--surface-1);
+}
+/* İki sahneye birden açılan kapılar (ör. "perde" kavramı, 2026-08-15
+   perde-zinciri/ayna-metaforu ayrımından sonra) -- düğmeler yan yana,
+   dar ekranda alt alta sarıldığında da boşluk kalsın diye. */
+.detail-gate__btn + .detail-gate__btn {
+  margin-left: 10px;
+}
+@media (max-width: 480px) {
+  .detail-gate__btn + .detail-gate__btn {
+    margin-left: 0;
+    margin-top: 8px;
+  }
 }
 .detail-gate__arrow {
   transition: transform 0.18s ease;

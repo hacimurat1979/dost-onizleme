@@ -170,10 +170,13 @@ window.__kavramApp = (function () {
       `</a>`;
   }
 
-  // "perde" kavramının iki bağımsız sahnesi var (meditasyon.html'in içinde
-  // gömülü perde-zinciri.html + ayna-metaforu.html) ama hiçbir yerden
-  // linklenmiyordu (2026-08-04 taramasında ölçüldü). Bu kavramdan daha
-  // doğal bir bağlama noktası yok.
+  // "perde" kavramının iki bağımsız sahnesi var (perde-zinciri.html +
+  // ayna-metaforu.html) ama hiçbir yerden linklenmiyordu (2026-08-04
+  // taramasında ölçüldü). Bu kavramdan daha doğal bir bağlama noktası yok.
+  // 2026-08-15 @revise: eskiden ikisi meditasyon.html içinde tek bir
+  // sekmeli sayfada, tek düğmeyle sunuluyordu; kullanıcı iki sahneyi
+  // ayırmamızı istedi (bkz. Sahneler galerisindeki iki ayrı kart), o
+  // yüzden burada da iki ayrı düğme.
   function perdeSahneHtml(k) {
     if (k.view !== "ontoloji" || k.id !== "perde") return "";
     const base = window.__dostRouteBase || "";
@@ -183,10 +186,15 @@ window.__kavramApp = (function () {
         en: "Two separate scenes turn the veil and the mirror into something you can explore by dragging: the veil's chaining, and the Real appearing in the servant's mirror.",
         pt: "Duas cenas separadas transformam o véu e o espelho em algo que se pode explorar arrastando: o encadeamento do véu, e o Real aparecendo no espelho do servo.",
       })}</p>
-      <a class="detail-gate__btn" href="${base}/meditasyon.html">${tt({
-        tr: "Sahneleri aç: Perde Zinciri, Ayna Metaforu",
-        en: "Open the scenes: Chain of Veils, Mirror Metaphor",
-        pt: "Abrir as cenas: Cadeia de Véus, Metáfora do Espelho",
+      <a class="detail-gate__btn" href="${base}/perde-zinciri.html">${tt({
+        tr: "Sahneyi aç: Perde Zinciri",
+        en: "Open the scene: Chain of Veils",
+        pt: "Abrir a cena: Cadeia de Véus",
+      })}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
+      <a class="detail-gate__btn" href="${base}/ayna-metaforu.html">${tt({
+        tr: "Sahneyi aç: Ayna Metaforu",
+        en: "Open the scene: Mirror Metaphor",
+        pt: "Abrir a cena: Metáfora do Espelho",
       })}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
     </div>`;
   }

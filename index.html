@@ -239,13 +239,42 @@
         </div>
         <div class="nav-drawer__group">
           <p class="nav-drawer__heading" role="button" tabindex="0" aria-expanded="true" data-tr="Sahneler" data-en="Scenes" data-pt="Cenas">Sahneler</p>
+          <!-- 2026-08-15 @revise: eskiden bu alt-menü açılınca tek bir
+               "Sahneler" düğmesi görünüyordu (üstteki başlıkla aynı ad) --
+               kullanıcı "sahnelerin isimlerinin yazılı olduğu butonlar
+               olsun" dedi. Her sahne artık kendi adıyla, doğrudan kendi
+               sayfasına giden bir bağlantı (data-scene-href, .sahneler-kart
+               galerisiyle aynı desen -- href assets/ontology.js'te
+               ROUTE_BASE ile kuruluyor). Liste, galerideki sırayla aynı. -->
           <div class="nav-drawer__items">
-            <button class="btn-ghost" id="sahneler-btn" type="button" title="Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin galerisi — A gallery of the site's standalone, drag-or-scroll scenes — Uma galeria das cenas independentes e exploráveis do site" data-tr="Sahneler" data-en="Scenes" data-pt="Cenas">Sahneler</button>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="bir-nefesin-ici.html" data-tr="Bir Nefesin İçi" data-en="Inside a Breath" data-pt="Dentro de um Sopro">Bir Nefesin İçi</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="halk-i-cedid.html" data-tr="Halk-ı Cedîd" data-en="Perpetual Renewal" data-pt="Renovação Perpétua">Halk-ı Cedîd</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="nefes-i-rahmani.html" data-tr="Nefes-i Rahmânî" data-en="The Breath of the All-Merciful" data-pt="O Sopro do Misericordioso">Nefes-i Rahmânî</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="berzah.html" data-tr="Berzah" data-en="The Barzakh" data-pt="O Barzakh">Berzah</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="uc-kap.html" data-tr="Tek Tecellî, Üç Kap" data-en="One Disclosure, Three Vessels" data-pt="Uma Revelação, Três Vasos">Tek Tecellî, Üç Kap</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="kalbe-sigan.html" data-tr="Sığmayanın Sığdığı" data-en="What Cannot Be Contained, Contained" data-pt="O que Não Cabe, Cabendo">Sığmayanın Sığdığı</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="kandil.html" data-tr="Kandil — Sınırlanınca Görünen" data-en="The Lamp — What Becomes Visible When Bounded" data-pt="A Lâmpada — O que Se Torna Visível quando Limitado">Kandil — Sınırlanınca Görünen</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="hayret.html" data-tr="Karanlığı Görmek" data-en="Seeing the Darkness" data-pt="Ver a Escuridão">Karanlığı Görmek</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="vahdet-i-vucud-omru.html" data-tr="Vahdet-i Vücûd'un Ömrü" data-en="The Life of Waḥdat al-Wujūd" data-pt="A Vida de Waḥdat al-Wujūd">Vahdet-i Vücûd'un Ömrü</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="iki-mertebe.html" data-tr="Aynı Âyet, İki Mertebe" data-en="The Same Verse, Two Levels" data-pt="O Mesmo Versículo, Dois Graus">Aynı Âyet, İki Mertebe</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="futuhat-371.html" data-tr="371. Bab: Dokuz Harita" data-en="Chapter 371: Nine Maps" data-pt="Capítulo 371: Nove Mapas">371. Bab: Dokuz Harita</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="perde-zinciri.html" data-tr="Perde Zinciri" data-en="Chain of Veils" data-pt="Cadeia de Véus">Perde Zinciri</a>
+            <a class="btn-ghost btn-ghost--sub" data-scene-href="ayna-metaforu.html" data-tr="Ayna Metaforu" data-en="Mirror Metaphor" data-pt="Metáfora do Espelho">Ayna Metaforu</a>
+            <button class="btn-ghost" id="sahneler-btn" type="button" title="Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin galerisi — A gallery of the site's standalone, drag-or-scroll scenes — Uma galeria das cenas independentes e exploráveis do site" data-tr="Tüm Sahneler" data-en="All Scenes" data-pt="Todas as Cenas">Tüm Sahneler</button>
           </div>
         </div>
         <div class="nav-drawer__group">
           <div class="nav-drawer__items">
             <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
+            <!-- 2026-08-15 @revise: "Hakkında sayfasındaki sekmeleri butonlar
+                 olarak alalım" -- hakkinda-wrap'in dört alt-sekmesi
+                 (#hakkinda-subtab-*) burada doğrudan erişilebilir. Okuma
+                 Yolları'nın kendi düğmesi başka bir grupta da var (satır
+                 ~226) -- burada yinelenmesi bilinçli, iki ayrı keşif yolu
+                 (bkz. Sahneler galerisi kartlarının aynı gerekçesi). -->
+            <button class="btn-ghost btn-ghost--sub" id="hakkinda-sub-siirler-btn" type="button" data-tr="Şiirleri" data-en="Poems" data-pt="Poemas">Şiirleri</button>
+            <button class="btn-ghost btn-ghost--sub" id="hakkinda-sub-vahdet-btn" type="button" data-tr="Eleştiriler" data-en="Criticisms" data-pt="Críticas">Eleştiriler</button>
+            <button class="btn-ghost btn-ghost--sub" id="hakkinda-sub-okuma-yollari-btn" type="button" data-tr="Okuma Yolları" data-en="Reading Paths" data-pt="Caminhos de Leitura">Okuma Yolları</button>
           </div>
         </div>
       </nav>
@@ -1377,9 +1406,14 @@ mesmo antes que o assombro exista."></blockquote>
          kavram/terim sayfasına denk gelmeyen okuyucu hiçbirini bulamıyordu).
          Bu galeri onları TEK yerde topluyor; hiçbiri kendi asıl bağlamsal
          linkinden kaldırılmadı, bu yalnız ikinci bir keşif yolu.
-         perde-zinciri.html + ayna-metaforu.html tek kart: ikisi zaten
-         meditasyon.html içinde birlikte sunuluyor (bkz. assets/kavram.js
-         perdeSahneHtml), ayrı kartlar yanıltıcı olurdu.
+         perde-zinciri.html + ayna-metaforu.html artık AYRI kart (2026-08-15
+         @revise: eskiden meditasyon.html'in iki sekmesi olarak birlikte
+         sunuluyorlardı, kullanıcı "içinde iki ayrı sekme var, ikisini de
+         iki ayrı sahneye alalım" dedi -- iki dosya zaten bağımsız çalışacak
+         şekilde yazılmıştı (bkz. her ikisinin de window.self===window.top
+         korumalı geri-düğmesi), yalnız galeri kartı hiç bölünmemişti).
+         meditasyon.html kaldırıldı; assets/kavram.js'teki perdeSahneHtml de
+         artık iki ayrı düğme veriyor.
          href'ler burada YAZILMIYOR -- data-scene-href'ten window.__dostRouteBase
          ile kuruluyor (assets/ontology.js), çünkü sitede bu tür sahne linkleri
          için tek test edilmiş yol bu (bkz. kavram.js'teki ${base}/...html
@@ -1440,23 +1474,11 @@ mesmo antes que o assombro exista."></blockquote>
              data-en="In plenty of light the eye supposes it sees everything; as the light dims, the scene sharpens. In the words of chapter 378: darkness is learned from this waypoint — and that is bewilderment. We are trying to read bewilderment not as blindness but as a resting."
              data-pt="Em plena luz o olho supõe que vê tudo; quando a luz esmorece, a cena aguça-se. Nas palavras do capítulo 378: a escuridão aprende-se nesta estação — e isso é o espanto. Tentamos ler o espanto não como cegueira, mas como um repouso.">Bol ışıkta göz her şeyi gördüğünü sanır; ışık kısıldıkça sahne netleşir.</p>
         </a>
-        <a class="sahneler-kart" data-scene-href="ilah-i-mutekad.html">
-          <span class="sahneler-kart__title" data-tr="İnandığın Tanrı" data-en="The God You Believe In" data-pt="O Deus em Que Você Crê">İnandığın Tanrı</span>
-          <p class="sahneler-kart__ozet" data-tr="Dost'a göre herkes kendi inancındaki Tanrı'ya inanır ve O'nu öyle görür. Aşağıdaki beş soru bir sınav değil; cevapların bir sûret çiziyor. Sonunda ne olduğuna bak."
-             data-en="For Dost, everyone believes in the God of their own belief, and sees Him accordingly. The five questions below are not a test; your answers draw a form. Look at what happens at the end."
-             data-pt="Para Dost, cada um crê no Deus da sua própria crença e O vê conforme ela. As cinco perguntas abaixo não são um teste; suas respostas desenham uma forma. Veja o que acontece no fim.">Dost'a göre herkes kendi inancındaki Tanrı'ya inanır ve O'nu öyle görür.</p>
-        </a>
         <a class="sahneler-kart" data-scene-href="vahdet-i-vucud-omru.html">
           <span class="sahneler-kart__title" data-tr="Vahdet-i Vücûd'un Ömrü" data-en="The Life of Waḥdat al-Wujūd" data-pt="A Vida de Waḥdat al-Wujūd">Vahdet-i Vücûd'un Ömrü</span>
           <p class="sahneler-kart__ozet" data-tr="Şeyh'in hiç kullanmadığı bir terim, ona nasıl yapıştı?"
              data-en="How did a term the Shaykh never used come to stick to him?"
              data-pt="Como um termo que o Xeique nunca usou passou a colar-se a ele?">Şeyh'in hiç kullanmadığı bir terim, ona nasıl yapıştı?</p>
-        </a>
-        <a class="sahneler-kart" data-scene-href="tercuman-esvak.html">
-          <span class="sahneler-kart__title" data-tr="Kendi Şiirini Savunmak" data-en="Defending His Own Poem" data-pt="Defender o Próprio Poema">Kendi Şiirini Savunmak</span>
-          <p class="sahneler-kart__ozet" data-tr="Dost Mekke'de Nizâm adlı genç kadın için bir aşk şiirleri divanı yazdı. &quot;Bu ilahî değil, dünyevî aşk&quot; dendi. O da kendi şiirine kendi şerhini yazdı. Sürükleyerek iki okuma arasında gezin."
-             data-en="In Mecca, Dost wrote a collection of love poems for a young woman named Nizam. &quot;This is worldly love, not divine,&quot; it was said. So he wrote his own commentary on his own poem. Drag between the two readings."
-             data-pt="Em Meca, Dost escreveu uma coleção de poemas de amor para uma jovem chamada Nizam. &quot;Isto é amor mundano, não divino&quot;, disseram. Então ele escreveu o seu próprio comentário ao seu próprio poema. Arraste entre as duas leituras.">Dost Mekke'de Nizâm adlı genç kadın için bir aşk şiirleri divanı yazdı.</p>
         </a>
         <a class="sahneler-kart" data-scene-href="iki-mertebe.html">
           <span class="sahneler-kart__title" data-tr="Aynı Âyet, İki Mertebe" data-en="The Same Verse, Two Levels" data-pt="O Mesmo Versículo, Dois Graus">Aynı Âyet, İki Mertebe</span>
@@ -1470,17 +1492,17 @@ mesmo antes que o assombro exista."></blockquote>
              data-en="Nine maps Ibn al-'Arabi drew with his own hand into the second recension of the Futuhat -- meant, in his words, to be seen as a single composition."
              data-pt="Nove mapas que Ibn al-'Arabi desenhou com a própria mão na segunda recensão das Futuhat -- pensados, nas suas palavras, para serem vistos como uma única composição.">İbn Arabî'nin, Fütûhât'ın ikinci telifine kendi eliyle çizdiği dokuz harita.</p>
         </a>
-        <a class="sahneler-kart" data-scene-href="futuhat-dogusu.html">
-          <span class="sahneler-kart__title" data-tr="Tavafta Bir Karşılaşma" data-en="An Encounter During the Circling" data-pt="Um Encontro na Circum-ambulação">Tavafta Bir Karşılaşma</span>
-          <p class="sahneler-kart__ozet" data-tr="Dost, Kâbe'yi tavaf ederken biriyle karşılaşır ve kitabının oradan doğduğunu söyler. Yedi şavtı yürüt; karşılaşma dönerken açılsın."
-             data-en="While circling the Ka'ba, Dost meets someone -- and says his book was born there. Walk the seven circuits; let the encounter open as you go round."
-             data-pt="Ao circundar a Caaba, Dost encontra alguém -- e diz que o seu livro nasceu ali. Percorra as sete voltas; deixe o encontro abrir-se enquanto anda.">Dost, Kâbe'yi tavaf ederken biriyle karşılaşır ve kitabının oradan doğduğunu söyler.</p>
+        <a class="sahneler-kart" data-scene-href="perde-zinciri.html">
+          <span class="sahneler-kart__title" data-tr="Perde Zinciri" data-en="Chain of Veils" data-pt="Cadeia de Véus">Perde Zinciri</span>
+          <p class="sahneler-kart__ozet" data-tr="Perde ışığı engellemez, görülebilir kılar; perdesiz olan hiç görülemez. Perdeleri tek tek kaldır — her kalkışta görüş netleşmez, artar ve bulanır."
+             data-en="A veil doesn't block light, it makes it visible; without a veil, nothing can be seen at all. Lift the veils one by one — each lift doesn't sharpen the view, it grows and blurs it."
+             data-pt="Um véu não bloqueia a luz, torna-a visível; sem véu, nada pode ser visto. Levante os véus um a um — cada levantamento não clareia a visão, aumenta-a e turva-a.">Perde ışığı engellemez, görülebilir kılar; perdesiz olan hiç görülemez.</p>
         </a>
-        <a class="sahneler-kart" data-scene-href="meditasyon.html">
-          <span class="sahneler-kart__title" data-tr="Perde Zinciri &amp; Ayna Metaforu" data-en="Chain of Veils &amp; Mirror Metaphor" data-pt="Cadeia de Véus &amp; Metáfora do Espelho">Perde Zinciri &amp; Ayna Metaforu</span>
-          <p class="sahneler-kart__ozet" data-tr="İki ayrı sahne, perde ile aynayı sürüklenerek keşfedilebilen bir hâle getiriyor: perdenin zincirlenmesi, ve Hakk'ın kulun aynasında görünmesi."
-             data-en="Two separate scenes turn the veil and the mirror into something you can explore by dragging: the veil's chaining, and the Real appearing in the servant's mirror."
-             data-pt="Duas cenas separadas transformam o véu e o espelho em algo que se pode explorar arrastando: o encadeamento do véu, e o Real aparecendo no espelho do servo.">İki ayrı sahne, perde ile aynayı sürüklenerek keşfedilebilen bir hâle getiriyor.</p>
+        <a class="sahneler-kart" data-scene-href="ayna-metaforu.html">
+          <span class="sahneler-kart__title" data-tr="Ayna Metaforu" data-en="Mirror Metaphor" data-pt="Metáfora do Espelho">Ayna Metaforu</span>
+          <p class="sahneler-kart__ozet" data-tr="Ayna sana onu değil seni gösterir; ama seni gösterebilmesini ona borçlusun. Aynayı çevir — yansıyan hep senin izin, ama görme imkânı senden değil."
+             data-en="A mirror shows you yourself, not it; but you owe your being shown to it. Turn the mirror — what reflects is always your own trace, but the possibility of seeing isn't yours."
+             data-pt="Um espelho mostra você mesmo, não a ele; mas você deve a possibilidade de ser mostrado a ele. Vire o espelho — o que se reflete é sempre o seu próprio traço, mas a possibilidade de ver não vem de você.">Ayna sana onu değil seni gösterir; ama seni gösterebilmesini ona borçlusun.</p>
         </a>
       </div>
 
@@ -1592,8 +1614,8 @@ mesmo antes que o assombro exista."></blockquote>
   <!-- esma/hal/terimler/sorular/menziller/futuhat: assets/view-loader.js'in
        VIEWS haritasında tembel yükleniyor (2026-08-15), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-W1Yk+u5g9QfVY8RxR+Y9pbhe31xqm0KRLEOxDgw1dpSDwvs8Oj7GJp78cBYu0aDu"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-/U3UIDBnwWwnpQFSiCfMwSeJHWq1JPIbwAF536FGN+F1jao1WDZN0emdT+fUIPPq"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-wZ6jKzGABKxi19jfFRMDt++YDkl0TJiQ3mj7ltQjJX5k3U6cNtO95QOrS5w3aBPK"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-4OS2RNh0wXC6XAIK+ENiBFxUUUmg96KwbADOONSd/8quVhs1ISQYPUwS2Jd3T0Wh"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>

@@ -1021,25 +1021,11 @@
   function sourceHtml(q) { return q.source ? `<cite class="sorular-source">${q.source}</cite>` : ""; }
 
   // Bir sorunun ayrı, oynanabilir bir sahnesi olabilir (terimler.js'deki
-  // TERIM_SAHNELERI ile aynı sözleşme: detail-gate--sahne). İlk örnek
-  // "hakikat neden herkese aynı görünmez?" -- ilâh-ı mu'tekad sahnesi,
-  // docs/icerik-yol-haritasi.md D14. Sorunun kendi cevabı zaten "herkes
-  // kendi kabının rengini görür" diyor; sahne onu oynatılabilir kılıyor.
-  const SORU_SAHNELERI = {
-    "hakikat-neden-farkli-gorunur": {
-      dosya: "ilah-i-mutekad.html",
-      not: {
-        tr: "Ayrı bir sahne, bu sorunun kendi cevabını -- herkesin kendi kabının rengini görmesi -- beş soruyla oynanabilir hâle getiriyor: cevapların bir sûret çiziyor.",
-        en: "A separate scene turns this question's own answer -- that each sees the colour of their own vessel -- into something you can play through in five questions: your answers draw a form.",
-        pt: "Uma cena separada transforma a própria resposta desta pergunta -- que cada um vê a cor do seu próprio vaso -- em algo jogável em cinco perguntas: suas respostas desenham uma forma.",
-      },
-      dugme: {
-        tr: "Sahneyi aç: İnandığın Tanrı",
-        en: "Open the scene: The God You Believe In",
-        pt: "Abrir a cena: O Deus em Que Você Crê",
-      },
-    },
-  };
+  // TERIM_SAHNELERI ile aynı sözleşme: detail-gate--sahne).
+  // 2026-08-15 @revise: tek örnek olan "İnandığın Tanrı" (ilah-i-mutekad.html)
+  // sahnesi kullanıcı isteğiyle kaldırıldı; sorunun kendi cevabı sayfada
+  // kalıyor, yalnız "Sahneyi aç" düğmesi gitti.
+  const SORU_SAHNELERI = {};
 
   function soruSahneHtml(id) {
     const s = SORU_SAHNELERI[id];

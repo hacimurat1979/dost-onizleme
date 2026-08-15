@@ -520,6 +520,9 @@
   const fususBtn = document.getElementById("fusus-btn");
   const miskatBtn = document.getElementById("miskat-btn");
   const hakkindaBtn = document.getElementById("hakkinda-btn");
+  const hakkindaSubSiirlerBtn = document.getElementById("hakkinda-sub-siirler-btn");
+  const hakkindaSubVahdetBtn = document.getElementById("hakkinda-sub-vahdet-btn");
+  const hakkindaSubOkumaYollariBtn = document.getElementById("hakkinda-sub-okuma-yollari-btn");
   const okumaYollariBtn = document.getElementById("okuma-yollari-btn");
   const kavramBtn = document.getElementById("kavram-btn");
   const ayethadisBtn = document.getElementById("ayethadis-btn");
@@ -752,6 +755,12 @@
   // gidiliyor ve URL derin-bağlantı olarak /hakkinda/okuma-yollari oluyor
   // (parseHashAndGo bu yolu zaten çözüyor).
   if (okumaYollariBtn) okumaYollariBtn.addEventListener("click", () => { goToHakkinda("okuma-yollari"); updateHash("hakkinda", "okuma-yollari"); });
+  // 2026-08-15 @revise: tost menüdeki "Dost Arabî Hakkında" grubunun altına,
+  // hakkinda-wrap'in kendi alt-sekmelerine (Şiirleri/Eleştiriler/Okuma
+  // Yolları) doğrudan giden üç düğme -- aynı goToHakkinda(sub) sözleşmesi.
+  if (hakkindaSubSiirlerBtn) hakkindaSubSiirlerBtn.addEventListener("click", () => { goToHakkinda("siirler"); updateHash("hakkinda", "siirler"); });
+  if (hakkindaSubVahdetBtn) hakkindaSubVahdetBtn.addEventListener("click", () => { goToHakkinda("vahdet"); updateHash("hakkinda", "vahdet"); });
+  if (hakkindaSubOkumaYollariBtn) hakkindaSubOkumaYollariBtn.addEventListener("click", () => { goToHakkinda("okuma-yollari"); updateHash("hakkinda", "okuma-yollari"); });
   if (kavramBtn) kavramBtn.addEventListener("click", () => { setMainView("kavram"); updateHash("kavram"); });
   if (ayethadisBtn) ayethadisBtn.addEventListener("click", () => { setMainView("ayethadis"); updateHash("ayethadis"); });
   if (sahnelerBtn) sahnelerBtn.addEventListener("click", () => { setMainView("sahneler"); updateHash("sahneler"); });
@@ -775,6 +784,7 @@
     }
   })();
   window.__dostRouteBase = ROUTE_BASE;
+  wireSahnelerKartHref();
 
   const VIEW_META = {
     ontoloji: {
@@ -1186,14 +1196,17 @@
     if (sub) window.__siirlerApp && window.__siirlerApp.switchTo(sub);
   }
 
-  // Sahneler galerisi (2026-08-05): kartların href'i statik HTML'de YAZILMIYOR
-  // -- kavram.js'teki perdeSahneHtml'in ${base}/meditasyon.html deseniyle
-  // aynı sebepten (bkz. index.html'deki sahneler-wrap yorumu). setMainView
-  // her "sahneler" görünümüne geçişte çağırıyor; a.href'i tekrar tekrar
-  // atamak zararsız, o yüzden "bir kez bağla" bayrağı yok.
+  // Sahneler galerisi (2026-08-05) + tost menünün Sahneler alt-menüsü
+  // (2026-08-15 @revise): href'ler statik HTML'de YAZILMIYOR, çünkü
+  // ROUTE_BASE (önizleme/canlı ayrımı) yalnız burada, çalışma zamanında
+  // biliniyor (bkz. index.html'deki sahneler-wrap yorumu). Galeri kartları
+  // yalnız "sahneler" görünümüne geçişte var olduğu için setMainView onları
+  // her seferinde bağlıyor; alt-menü öğeleri her sayfada baştan DOM'da
+  // olduğundan bir kez, sayfa açılışında bağlanması yeterli (aşağıda
+  // ROUTE_BASE atandıktan hemen sonra çağrılıyor). Aynı fonksiyon ikisini de
+  // kapsıyor -- a.href'i tekrar tekrar atamak zararsız.
   function wireSahnelerKartHref() {
-    if (!sahnelerWrap) return;
-    sahnelerWrap.querySelectorAll(".sahneler-kart[data-scene-href]").forEach((a) => {
+    document.querySelectorAll("[data-scene-href]").forEach((a) => {
       a.href = ROUTE_BASE + "/" + a.dataset.sceneHref;
     });
   }
