@@ -454,12 +454,15 @@
   }
 
   // Görünür düğümleri (2B taban konumlarına göre) çerçeveye sığdır; hiçbir
-  // şey kırpılmasın, alt-sol lejanta olabildiğince az girsin.
-  function fitVisible() {
+  // şey kırpılmasın, alt-sol lejanta olabildiğince az girsin. `idFilter`
+  // verilirse (küme odağı) yalnız o kümeye kadraj alınır -- açılım
+  // katmanından bağımsız olarak.
+  function fitVisible(idFilter) {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 620;
     let minx = 1e9, miny = 1e9, maxx = -1e9, maxy = -1e9, any = false;
     nodes.forEach((n) => {
-      if (n.visTarget > 0.5 && n.bx !== undefined) {
+      const included = idFilter ? idFilter.has(n.id) : n.visTarget > 0.5;
+      if (included && n.bx !== undefined) {
         any = true;
         const r = n.radius + 18; // etiket payı
         minx = Math.min(minx, n.bx - r); maxx = Math.max(maxx, n.bx + r);
@@ -535,7 +538,7 @@
     return n;
   }
 
-  let bgLayer, edgeLayer, relLayer, flowLayer, particleLayer, nodeLayer;
+  let bgLayer, edgeLayer, relLayer, flowLayer, clusterLayer, particleLayer, nodeLayer;
   let particles = [];
   let flow = null;   // { chain:[ids], start, dur }
   let flowRepeatTimer = null;
@@ -571,6 +574,7 @@
     relLayer = svg.append("g").attr("class", "esmaX-relations");
     particleLayer = svg.append("g").attr("class", "esmaX-particles");
     flowLayer = svg.append("g").attr("class", "esmaX-flow");
+    clusterLayer = svg.append("g").attr("class", "esmaX-cluster-focus");
     nodeLayer = svg.append("g").attr("class", "esmaX-nodes");
   }
 
@@ -601,6 +605,10 @@
   // İlişkili küme: seçilenin kendisi + Allah'a giden zincir + Zât + çocuklar +
   // çapraz ilişki ortakları (1. derece); ikinci derece = bunların komşuları.
   let selectedId = null, hoverId = null;
+  // Küme odağı (FCA): { id, members:Set<esmaId>, nitelikler } -- lightbox'taki
+  // bir kümeye "haritada göster" denince kurulur. `selectedId` gibi bağımsız
+  // bir kip: nodeOpacity() ikisini çarparak birleştirir, aynı anda çalışabilirler.
+  let clusterFocus = null;
   function relationSets(id) {
     const first = new Set([id]);
     chainToAllah(id).forEach((x) => first.add(x));
@@ -673,6 +681,9 @@
 
     // altın akış
     if (flow) { active = true; if (ts - flow.start > flow.dur + 400) flow = null; }
+
+    // küme odağı: merkezden üyelere uzanan ışınların yavaş nefesi
+    if (clusterFocus && !reduceMotion) active = true;
 
     // Sakin, huzurlu dönüş -- artık HEM 2B HEM 3B'de (bkz. project()'teki
     // `spin`). Bir düğüm seçiliyken, keşif modunda, sürüklerken ve hareket
@@ -790,6 +801,10 @@
     function nodeOpacity(n) {
       let o = n.vis;
       if (o < 0.01) return 0;
+      // Küme odağı: üyeler tam zuhûr eder, geri kalanı perdelenir (görsel
+      // gramerdeki ışık=zuhûr / opaklık=perdelenme eşleşmesinin doğrudan
+      // uygulanması -- yeni bir kural icat edilmedi).
+      if (clusterFocus) o *= clusterFocus.members.has(n.id) ? 1 : 0.15;
       if (selectedId) {
         if (n.id === selectedId) o *= 1;
         else if (relSet.first.has(n.id)) o *= 1;
@@ -1009,6 +1024,7 @@
 
     renderParticles();
     renderFlow();
+    renderClusterFocus(ts);
   }
 
   // Türetilmiş bir kenara tıklanınca: ne olduğunu SÖYLEYEN bir panel.
@@ -1139,6 +1155,33 @@
     flowLayer.append("polyline").attr("class", "esmaX-flow-line")
       .attr("points", passed.map((p) => p.join(",")).join(" "));
     flowLayer.append("circle").attr("class", "esmaX-flow-comet").attr("cx", cx).attr("cy", cy).attr("r", 4.5).attr("filter", "url(#esmaX-glow)");
+  }
+
+  // Küme odağı (FCA): üyeler bir soy zinciri değil, ORTAK bir nitelikle
+  // (pole/grup/mertebe/ilişki) bir araya geliyor -- bu yüzden altın akıştaki
+  // yönlü "kaynaktan seçiliye" çizgisi burada yanlış olurdu (var olmayan bir
+  // sıra/köken iddia eder). Onun yerine üyelerin ortak ağırlık merkezinden
+  // her birine uzanan, ucu açık, yumuşak ışınlar: "aynı niteliği aynı anda
+  // taşıyorlar" davranışını resmeder (ışık = zuhûr grameri, doğrudan
+  // uygulanmış -- soyut ok değil).
+  function renderClusterFocus(ts) {
+    clusterLayer.selectAll("*").remove();
+    if (!clusterFocus) return;
+    const members = Array.from(clusterFocus.members).map((id) => byId.get(id)).filter((n) => n && n.vis > 0.05);
+    if (members.length < 2) return;
+    let cx = 0, cy = 0;
+    members.forEach((n) => { cx += n.px; cy += n.py; });
+    cx /= members.length; cy /= members.length;
+    const breathe = reduceMotion ? 0.5 : (1 - Math.cos((ts / 4200) * 2 * Math.PI)) / 2;
+    members.forEach((n) => {
+      clusterLayer.append("line").attr("class", "esmaX-cluster-ray")
+        .attr("x1", cx).attr("y1", cy).attr("x2", n.px).attr("y2", n.py)
+        .style("opacity", (0.14 + 0.12 * breathe) * n.vis);
+    });
+    clusterLayer.append("circle").attr("class", "esmaX-cluster-core")
+      .attr("cx", cx).attr("cy", cy).attr("r", 4.5 + 1.5 * breathe)
+      .attr("filter", "url(#esmaX-glow)")
+      .style("opacity", 0.45 + 0.25 * breathe);
   }
 
   // ---------------------------------------------------------------------------
@@ -1278,7 +1321,10 @@
 
     // boşluğa tıklama: seçimi kaldır
     svgNode.addEventListener("click", (e) => {
-      if (e.target === svgNode || e.target.classList.contains("esmaX-bg-rect")) { if (selectedId) deselect(); }
+      if (e.target === svgNode || e.target.classList.contains("esmaX-bg-rect")) {
+        if (selectedId) deselect();
+        if (clusterFocus) exitClusterFocus();
+      }
     });
 
     // "Bir adım geri": Esmâ'da bir adım, panel açıkken GEÇMİŞTE bir adımdır
@@ -1288,6 +1334,7 @@
     GU.registerStepBack("esma-wrap", () => {
       if (!detailPanel.hidden && (currentDetailNode || currentDetailIsZat || currentDetailRelation)) { goBackInHistory(); return true; }
       if (selectedId) { deselect(); return true; }
+      if (clusterFocus) { exitClusterFocus(); return true; }
       return false;
     });
 
@@ -1567,6 +1614,7 @@
     }
     return fcaData;
   }
+  const FCA_SHOW_LABEL = { tr: "Haritada göster", en: "Show on the map", pt: "Mostrar no mapa" };
   function fcaClusterHtml(kume) {
     const nitelikler = kume.nitelikler.map((n) => tt(n.label)).join(", ");
     const isimler = kume.esma.map((id) => {
@@ -1577,6 +1625,7 @@
     return `<div class="esma-fca-cluster">
       <p class="esma-fca-cluster__nitelik">${nitelikler}</p>
       <p class="esma-fca-cluster__isimler">${isimler}</p>
+      <button class="esma-fca-cluster__show" type="button" data-cluster-id="${kume.id}">${tt(FCA_SHOW_LABEL)}</button>
     </div>`;
   }
   function openFcaLightbox() {
@@ -1603,6 +1652,16 @@
         wrap.querySelectorAll(".cross-link").forEach((a) => {
           a.addEventListener("click", () => { window.DostLightbox.close(); });
         });
+        // "Haritada göster": lightbox'ı kapatıp o kümeyi ana haritada
+        // odağa alır -- liste bir menüye, harita gerçek çizime dönüşür.
+        wrap.querySelectorAll(".esma-fca-cluster__show").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const kume = data.kumeler.find((k) => String(k.id) === btn.dataset.clusterId);
+            if (!kume) return;
+            window.DostLightbox.close();
+            enterClusterFocus(kume);
+          });
+        });
       }
     });
   }
@@ -1611,6 +1670,49 @@
     if (!btn || btn.dataset.wiredX) return;
     btn.dataset.wiredX = "1";
     btn.addEventListener("click", openFcaLightbox);
+  }
+
+  // Küme odağı: bkz. `clusterFocus`/`nodeOpacity`/`renderClusterFocus`
+  // yukarıda. Burada yalnız kipin giriş/çıkışı ve altyazısı var.
+  function enterClusterFocus(kume) {
+    const memberIds = new Set(kume.esma);
+    let maxLevel = 0;
+    memberIds.forEach((id) => { const n = byId.get(id); if (n && n.level > maxLevel) maxLevel = n.level; });
+    if (maxLevel > revealLevel) setRevealLevel(maxLevel);
+    if (selectedId) deselect();
+    clusterFocus = { id: kume.id, members: memberIds, nitelikler: kume.nitelikler };
+    idleRotate = false;
+    fitVisible(memberIds);
+    showClusterFocusCaption(kume);
+    window.dostTrack && window.dostTrack("esma_fca_odak", { id: kume.id });
+    ensureFrame();
+  }
+
+  function exitClusterFocus() {
+    if (!clusterFocus) return;
+    clusterFocus = null;
+    idleRotate = true;
+    hideClusterFocusCaption();
+    fitVisible();
+    ensureFrame();
+  }
+
+  function showClusterFocusCaption(kume) {
+    const cap = document.getElementById("esma-fca-caption");
+    const text = document.getElementById("esma-fca-caption-nitelik");
+    if (!cap || !text) return;
+    text.textContent = kume.nitelikler.map((n) => tt(n.label)).join(" · ");
+    cap.hidden = false;
+  }
+  function hideClusterFocusCaption() {
+    const cap = document.getElementById("esma-fca-caption");
+    if (cap) cap.hidden = true;
+  }
+  function wireFcaCaptionExit() {
+    const btn = document.getElementById("esma-fca-caption-exit");
+    if (!btn || btn.dataset.wiredX) return;
+    btn.dataset.wiredX = "1";
+    btn.addEventListener("click", exitClusterFocus);
   }
 
   function wireTiltToggle() {
@@ -1742,6 +1844,7 @@
     wireTiltToggle();
     wireDerivedToggle();
     wireFcaButton();
+    wireFcaCaptionExit();
     wirePanelAwareControls();
     rebuildParticles();
     renderPoleDonut(data);
