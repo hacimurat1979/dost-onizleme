@@ -12,6 +12,7 @@
   let fetchPromise = null;
   let derivedTermRelations = [];
   let derivedTermPromise = null;
+  let clusterFocus = null;
 
   const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
@@ -665,6 +666,12 @@
           placeholder="${tt({ tr: "Terim ara…", en: "Search terms…", pt: "Procurar termos…" })}"
           aria-label="${tt({ tr: "Terim ara", en: "Search terms", pt: "Procurar termos" })}">
       </label>
+      <button class="terimler-fca-btn" id="terimler-fca-btn" type="button"
+        title="${tt({ tr: "Makine kümelemesi — grup/mertebe niteliklerinden kurulan bir kavram kafesi", en: "Machine clustering — a concept lattice built from group/tier attributes", pt: "Agrupamento por máquina — uma rede de conceitos construída a partir dos atributos grupo/nível" })}"
+        aria-label="${tt({ tr: "Makine kümelemesi (FCA)", en: "Machine clustering (FCA)", pt: "Agrupamento por máquina (FCA)" })}">
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="8.5" y="14" width="7" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="6.5" y1="10" x2="10.5" y2="14.5" stroke="currentColor" stroke-width="1.3"/><line x1="17.5" y1="10" x2="13.5" y2="14.5" stroke="currentColor" stroke-width="1.3"/></svg>
+        <span>${tt({ tr: "Makine Kümelemesi", en: "Machine Clustering", pt: "Agrupamento por Máquina" })}</span>
+      </button>
       <p class="terimler-rail__count" id="terimler-rail-count"></p>
       <ol class="terimler-rail__list">${groups
         .map((g) => {
@@ -730,6 +737,8 @@
     });
     wireRail();
     wireFilter();
+    wireFcaButton();
+    if (clusterFocus) applyClusterClasses();
   }
 
   // Sol sırttaki bağlantılar sayfayı gerçekten kaydırıyor; ayrıca hangi
@@ -816,6 +825,122 @@
       if (b.top < c.top) vert.scrollTop += b.top - c.top - 8;
       else if (b.bottom > c.bottom) vert.scrollTop += b.bottom - c.bottom + 8;
     }
+  }
+
+  // --- Makine kümelemesi (FCA) ---
+  // scripts/fca-terimler.py -> research/fca-terimler.json (elle seçilmiş
+  // 3-12 nesnelik kümeler, grup/mertebe niteliklerinden). Terimler bir graf
+  // değil kart listesi olduğu için esma.js/hal.js'teki "haritada göster"
+  // burada "listede vurgula" olarak uyarlandı: üye kartlar parlıyor, diğer
+  // her şey soluklaşıyor, ilk üyenin bölümüne kaydırılıyor.
+  let fcaData = null;
+  function fetchFcaData() {
+    if (!fcaData) {
+      fcaData = window.DostGraphUtils.fetchJson("data/ibn-arabi/terimler-fca.json").catch(() => null);
+    }
+    return fcaData;
+  }
+  const FCA_SHOW_LABEL = { tr: "Listede vurgula", en: "Highlight in list", pt: "Destacar na lista" };
+  function fcaClusterHtml(kume) {
+    const nitelikler = kume.nitelikler.map((n) => tt(n.label)).join(", ");
+    const isimler = kume.uyeler
+      .map((id) => {
+        const term = glossaryData.terms[id];
+        const label = term ? tt(term.title) : id;
+        return `<a class="cross-link" href="${window.__dostNav.href("terimler", id)}" data-view="terimler" data-id="${id}">${label}</a>`;
+      })
+      .join(", ");
+    return `<div class="esma-fca-cluster">
+      <p class="esma-fca-cluster__nitelik">${nitelikler}</p>
+      <p class="esma-fca-cluster__isimler">${isimler}</p>
+      <button class="esma-fca-cluster__show" type="button" data-cluster-id="${kume.id}">${tt(FCA_SHOW_LABEL)}</button>
+    </div>`;
+  }
+  function openFcaLightbox() {
+    fetchFcaData().then((data) => {
+      if (!data || !window.DostLightbox) return;
+      window.dostTrack && window.dostTrack("sema_acildi", { type: "terimler-fca" });
+      const clusters = data.kumeler.map(fcaClusterHtml).join("");
+      window.DostLightbox.open({
+        closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+        name: tt({ tr: "Makine Kümelemesi (FCA)", en: "Machine Clustering (FCA)", pt: "Agrupamento por Máquina (FCA)" }),
+        svgHtml: `<div class="esma-fca-lightbox">
+          <p class="esma-fca-lightbox__not">${tt(data.not)}</p>
+          <div class="esma-fca-lightbox__list">${clusters}</div>
+        </div>`,
+        caption: "",
+      });
+      // İsme tıklayınca önce lightbox kapanmalı (esma.js'teki aynı gerekçe):
+      // hedefe eklenen dinleyici kabarcıklanmada document'teki delege
+      // navigasyon dinleyicisinden önce çalışır.
+      const wrap = document.querySelector(".cizim-lightbox__svg-wrap");
+      if (wrap) {
+        wrap.querySelectorAll(".cross-link").forEach((a) => {
+          a.addEventListener("click", () => { window.DostLightbox.close(); });
+        });
+        wrap.querySelectorAll(".esma-fca-cluster__show").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const kume = data.kumeler.find((k) => String(k.id) === btn.dataset.clusterId);
+            if (!kume) return;
+            window.DostLightbox.close();
+            enterClusterFocus(kume);
+          });
+        });
+      }
+    });
+  }
+  function wireFcaButton() {
+    const btn = document.getElementById("terimler-fca-btn");
+    if (!btn || btn.dataset.wiredFcaButton) return;
+    btn.dataset.wiredFcaButton = "1";
+    btn.addEventListener("click", openFcaLightbox);
+  }
+
+  function applyClusterClasses() {
+    grid.classList.toggle("terimler-shell--cluster-active", !!clusterFocus);
+    grid.querySelectorAll(".terim-entry").forEach((el) => {
+      el.classList.toggle("is-cluster-member", !!clusterFocus && clusterFocus.members.has(el.dataset.id));
+    });
+  }
+
+  function enterClusterFocus(kume) {
+    clusterFocus = { id: kume.id, members: new Set(kume.uyeler), nitelikler: kume.nitelikler };
+    applyClusterClasses();
+    showClusterFocusCaption(kume);
+    const firstTerm = glossaryData.terms[kume.uyeler[0]];
+    const sec = firstTerm ? grid.querySelector("#terim-grup-" + CSS.escape(firstTerm.group)) : null;
+    if (sec) {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      sec.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    }
+    window.dostTrack && window.dostTrack("terimler_fca_odak", { id: kume.id });
+  }
+
+  function exitClusterFocus() {
+    if (!clusterFocus) return;
+    clusterFocus = null;
+    applyClusterClasses();
+    hideClusterFocusCaption();
+  }
+
+  function showClusterFocusCaption(kume) {
+    const cap = document.getElementById("terimler-fca-caption");
+    const text = document.getElementById("terimler-fca-caption-nitelik");
+    if (!cap || !text) return;
+    text.textContent = kume.nitelikler.map((n) => tt(n.label)).join(" · ");
+    cap.hidden = false;
+  }
+  function hideClusterFocusCaption() {
+    const cap = document.getElementById("terimler-fca-caption");
+    if (cap) cap.hidden = true;
+  }
+
+  if (window.DostGraphUtils) {
+    window.DostGraphUtils.registerStepBack("terimler-wrap", () => {
+      if (!clusterFocus) return false;
+      exitClusterFocus();
+      return true;
+    });
   }
 
   function wireFilter() {

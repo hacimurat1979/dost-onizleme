@@ -1,0 +1,86 @@
+{
+  "uretim": "scripts/fca-hal.py -> research/fca-hal.json (elle seçilmiş 3-12 nesnelik kümeler)",
+  "not": {
+    "tr": "Bu kümeler İbn Arabî'nin kendi sınıflandırması değildir -- evre/terk/kiriş-tipi nitelikleriyle kurduğumuz bir Formal Concept Analysis (biçimsel kavram analizi) kafesinin matematiksel sonucudur. Bir hâl burada başka bir hâlle aynı kümede görünüyorsa, bu ikisinin bu üç boyutta ortak nitelik taşıdığı anlamına gelir -- İbn Arabî'nin onları birlikte andığı anlamına gelmez.",
+    "en": "These clusters are not Ibn Arabi's own classification -- they are the mathematical result of a Formal Concept Analysis lattice built from the stage/renunciation/bond-type attributes. If a state appears here in the same cluster as another, it means they share attributes along these three dimensions -- not that Ibn Arabi mentioned them together.",
+    "pt": "Estes agrupamentos não são a classificação do próprio Ibn Arabi -- são o resultado matemático de uma rede de Análise Formal de Conceitos construída a partir dos atributos etapa/renúncia/tipo-de-vínculo. Se um estado aparece aqui no mesmo agrupamento que outro, significa que partilham atributos nestas três dimensões -- não que Ibn Arabi os tenha mencionado juntos."
+  },
+  "kumeler": [
+    {
+      "id": 8,
+      "nitelikler": [
+        {
+          "kod": "kiris:dogurur",
+          "label": {
+            "tr": "birbirini doğuran hâller",
+            "en": "states that give rise to one another",
+            "pt": "estados que dão origem um ao outro"
+          }
+        }
+      ],
+      "uyeler": [
+        "cemfark",
+        "fenabeka",
+        "hayret"
+      ]
+    },
+    {
+      "id": 9,
+      "nitelikler": [
+        {
+          "kod": "evre:muameleler",
+          "label": {
+            "tr": "Muâmeleler evresi",
+            "en": "the Transactions phase",
+            "pt": "a fase das Transações"
+          }
+        },
+        {
+          "kod": "terk:var",
+          "label": {
+            "tr": "terk halkası (kazanılıp sonra bırakılan)",
+            "en": "the renunciation ring (gained, then relinquished)",
+            "pt": "o anel de renúncia (conquistado, depois abandonado)"
+          }
+        }
+      ],
+      "uyeler": [
+        "zuhd",
+        "tevekkul",
+        "yakin",
+        "murakabe"
+      ]
+    },
+    {
+      "id": 10,
+      "nitelikler": [
+        {
+          "kod": "evre:muameleler",
+          "label": {
+            "tr": "Muâmeleler evresi",
+            "en": "the Transactions phase",
+            "pt": "a fase das Transações"
+          }
+        },
+        {
+          "kod": "kiris:yanki",
+          "label": {
+            "tr": "yankılanan hâller",
+            "en": "echoing states",
+            "pt": "estados ressoantes"
+          }
+        }
+      ],
+      "uyeler": [
+        "tovbe",
+        "mucahede",
+        "zuhd",
+        "sabir",
+        "murakabe",
+        "riza",
+        "kulluk",
+        "istikamet"
+      ]
+    }
+  ]
+}

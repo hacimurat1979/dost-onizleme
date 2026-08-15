@@ -395,6 +395,13 @@
       <button class="hal-walk-btn" id="hal-walk-btn" type="button" data-tr-title="Yolu yürü — Nefs'ten Hayret'e sarmal boyunca ilerle" data-en-title="Walk the path — proceed along the spiral from the Soul to Bewilderment" data-pt-title="Percorrer o caminho — avance pela espiral da Alma ao Espanto" title="Yolu yürü — Nefs'ten Hayret'e sarmal boyunca ilerle" aria-label="Yolu yürü — Nefs'ten Hayret'e sarmal boyunca ilerle">
         <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M6 19c2-5 2-9 6-9s2 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="6" cy="19" r="1.6" fill="currentColor"/><circle cx="18" cy="16" r="1.6" fill="currentColor"/></svg>
       </button>
+      <button class="esma-fca-btn" id="hal-fca-btn" type="button" data-tr-title="Makine kümelemesi — evre/terk/kiriş niteliklerinden kurulan bir kavram kafesi" data-en-title="Machine clustering — a concept lattice built from stage/renunciation/bond attributes" data-pt-title="Agrupamento por máquina — uma rede de conceitos construída a partir dos atributos etapa/renúncia/vínculo" title="Makine kümelemesi — evre/terk/kiriş niteliklerinden kurulan bir kavram kafesi" aria-label="Makine kümelemesi — evre/terk/kiriş niteliklerinden kurulan bir kavram kafesi">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="8.5" y="14" width="7" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="6.5" y1="10" x2="10.5" y2="14.5" stroke="currentColor" stroke-width="1.3"/><line x1="17.5" y1="10" x2="13.5" y2="14.5" stroke="currentColor" stroke-width="1.3"/></svg>
+      </button>
+      <div class="esma-fca-caption" id="hal-fca-caption" hidden>
+        <span class="esma-fca-caption__tag">FCA</span>
+        <p class="esma-fca-caption__nitelik" id="hal-fca-caption-nitelik"></p>
+      </div>
       <!-- Ortak oryantasyon-halkası pilotu (2026-08-04, VISUALIZATION_IDEAS.md
            "Ortak oryantasyon-halkası"): düğme değil, canlı bir gösterge --
            tıklanmaz, aç/kapa yapmaz, yalnız o an hangi yaw/pitch'te
@@ -435,6 +442,10 @@
         <button class="view-status__retry" type="button" hidden></button>
       </div>
       <div class="terimler-list" id="terimler-list"></div>
+      <div class="esma-fca-caption terimler-fca-caption" id="terimler-fca-caption" hidden>
+        <span class="esma-fca-caption__tag">FCA</span>
+        <p class="esma-fca-caption__nitelik" id="terimler-fca-caption-nitelik"></p>
+      </div>
     </section>
 
     <section class="cizimler-wrap" id="cizimler-wrap" hidden>
@@ -1581,7 +1592,7 @@ mesmo antes que o assombro exista."></blockquote>
   <!-- esma/hal/terimler/sorular/menziller/futuhat: assets/view-loader.js'in
        VIEWS haritasında tembel yükleniyor (2026-08-15), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-70xWOvhZcbWiyNr4KE0+/476ex+NNbPvNj8Sn3xDMRrkFFub25pHCWpXnCRqLbUI"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-W1Yk+u5g9QfVY8RxR+Y9pbhe31xqm0KRLEOxDgw1dpSDwvs8Oj7GJp78cBYu0aDu"></script>
   <script src="assets/ontology.js" defer integrity="sha384-/U3UIDBnwWwnpQFSiCfMwSeJHWq1JPIbwAF536FGN+F1jao1WDZN0emdT+fUIPPq"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>

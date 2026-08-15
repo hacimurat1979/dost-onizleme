@@ -1,0 +1,158 @@
+{
+  "uretim": "scripts/fca-terimler.py -> research/fca-terimler.json (elle seçilmiş 3-12 nesnelik kümeler)",
+  "not": {
+    "tr": "Bu kümeler İbn Arabî'nin kendi sınıflandırması değildir -- grup/mertebe nitelikleriyle kurduğumuz bir Formal Concept Analysis (biçimsel kavram analizi) kafesinin matematiksel sonucudur. Mertebe, sitenin kendi görsel öncelik sırası (1: öne çıkarılan, 3: ikincil); bir terim burada başka bir terimle aynı kümede görünüyorsa, bu ikisinin grup ve mertebe boyutlarında ortak nitelik taşıdığı anlamına gelir -- İbn Arabî'nin onları birlikte andığı anlamına gelmez.",
+    "en": "These clusters are not Ibn Arabi's own classification -- they are the mathematical result of a Formal Concept Analysis lattice built from the group/tier attributes. Tier is the site's own visual priority ranking (1: foregrounded, 3: secondary); if a term appears here in the same cluster as another, it means they share attributes along the group and tier dimensions -- not that Ibn Arabi mentioned them together.",
+    "pt": "Estes agrupamentos não são a classificação do próprio Ibn Arabi -- são o resultado matemático de uma rede de Análise Formal de Conceitos construída a partir dos atributos grupo/nível. O nível é a própria hierarquia visual de prioridade do site (1: destacado, 3: secundário); se um termo aparece aqui no mesmo agrupamento que outro, significa que partilham atributos nas dimensões de grupo e nível -- não que Ibn Arabi os tenha mencionado juntos."
+  },
+  "kumeler": [
+    {
+      "id": 35,
+      "nitelikler": [
+        {
+          "kod": "grup:nefsin-gucleri",
+          "label": {
+            "tr": "Nefsin Üç Gücü grubu",
+            "en": "The Soul's Three Faculties group",
+            "pt": "O grupo das Três Faculdades da Alma"
+          }
+        },
+        {
+          "kod": "mertebe:3",
+          "label": {
+            "tr": "3. mertebe (ikincil)",
+            "en": "tier 3 (secondary)",
+            "pt": "nível 3 (secundário)"
+          }
+        }
+      ],
+      "uyeler": [
+        "sehvani-nefis",
+        "gazap-nefsi",
+        "batini-hisler"
+      ]
+    },
+    {
+      "id": 39,
+      "nitelikler": [
+        {
+          "kod": "grup:siniflandirma",
+          "label": {
+            "tr": "Sınıflandırma Mantığı grubu",
+            "en": "The Logic of Classification group",
+            "pt": "O grupo da Lógica de Classificação"
+          }
+        },
+        {
+          "kod": "mertebe:3",
+          "label": {
+            "tr": "3. mertebe (ikincil)",
+            "en": "tier 3 (secondary)",
+            "pt": "nível 3 (secundário)"
+          }
+        }
+      ],
+      "uyeler": [
+        "cins",
+        "fasil",
+        "nev",
+        "dokuz-makulat",
+        "fiil-kavramlari-sozlugu",
+        "isim-musemma-tesmiye"
+      ]
+    },
+    {
+      "id": 40,
+      "nitelikler": [
+        {
+          "kod": "grup:kutbiyet-hiyerarsisi",
+          "label": {
+            "tr": "Kutbiyet Hiyerarşisi grubu",
+            "en": "The Hierarchy of Pole-hood group",
+            "pt": "O grupo da Hierarquia do Polo"
+          }
+        },
+        {
+          "kod": "mertebe:1",
+          "label": {
+            "tr": "1. mertebe (öne çıkarılan)",
+            "en": "tier 1 (foregrounded)",
+            "pt": "nível 1 (destacado)"
+          }
+        }
+      ],
+      "uyeler": [
+        "kutup",
+        "efrad",
+        "bedel",
+        "evtad",
+        "nakip",
+        "rical"
+      ]
+    },
+    {
+      "id": 41,
+      "nitelikler": [
+        {
+          "kod": "grup:velayet-risalet",
+          "label": {
+            "tr": "Velâyet ve Risâlet grubu",
+            "en": "The Sainthood and Messengership group",
+            "pt": "O grupo Santidade e Mensageirato"
+          }
+        },
+        {
+          "kod": "mertebe:2",
+          "label": {
+            "tr": "2. mertebe",
+            "en": "tier 2",
+            "pt": "nível 2"
+          }
+        }
+      ],
+      "uyeler": [
+        "velayet",
+        "nubuvvet",
+        "risalet",
+        "hatmul-velaye",
+        "mesrep",
+        "nispet",
+        "halife"
+      ]
+    },
+    {
+      "id": 43,
+      "nitelikler": [
+        {
+          "kod": "grup:ahval-makamat",
+          "label": {
+            "tr": "Hâller ve Makamlar Sözlüğü grubu",
+            "en": "The Glossary of States and Stations group",
+            "pt": "O grupo Glossário de Estados e Estações"
+          }
+        },
+        {
+          "kod": "mertebe:2",
+          "label": {
+            "tr": "2. mertebe",
+            "en": "tier 2",
+            "pt": "nível 2"
+          }
+        }
+      ],
+      "uyeler": [
+        "vera",
+        "futuvvet",
+        "himmet",
+        "makam-sutunu",
+        "keramet",
+        "mucize",
+        "sihir",
+        "fena",
+        "beka",
+        "istidrac",
+        "kamillere-gelen-bela-uclu-taksim"
+      ]
+    }
+  ]
+}

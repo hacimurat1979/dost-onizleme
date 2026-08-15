@@ -99,9 +99,11 @@
   let halData = null, halDataPromise = null, built = false;
   let orderedNodes = [], nodeById = new Map();
   let relations = [];
-  let zoomLayer, bgLayer, ghostLayer, linkLayer, chordLayer, glowLayer, nodeLayer, walkLayer, defs;
+  let zoomLayer, bgLayer, ghostLayer, linkLayer, chordLayer, glowLayer, nodeLayer, walkLayer, clusterLayer, defs;
   let zoomBehavior = null;
   let currentDetailNode = null, currentRelation = null, hoveredId = null, hoveredRel = null;
+  // Küme odağı (FCA) -- esma.js'teki clusterFocus'un aynısı: { id, members:Set<hal id>, nitelikler }
+  let clusterFocus = null;
   let rafId = null, startTs = 0, lastTs = 0, reveal = 1;
   let shimmer = [];
   let cx = 0, cy = 0, baseR = 200, riseH = 240;
@@ -267,6 +269,7 @@
     chordLayer = zoomLayer.append("g").attr("class", "hal-chords");
     linkLayer = zoomLayer.append("g").attr("class", "hal-links");
     glowLayer = zoomLayer.append("g").attr("class", "hal-glows");
+    clusterLayer = zoomLayer.append("g").attr("class", "hal-cluster-focus");
     nodeLayer = zoomLayer.append("g").attr("class", "hal-nodes");
     walkLayer = zoomLayer.append("g").attr("class", "hal-walk-layer");
 
@@ -284,6 +287,7 @@
     wireRotateDrag();
     wireTiltToggle();
     wireWalkButton();
+    wireFcaButton();
 
     // Odak burada kamerayı taşıyor (fitView bir odağa göre çerçeveliyor), o
     // yüzden geri çekilirken odak da bırakılıyor -- bkz. ETKILESIM_DILI.md:
@@ -295,17 +299,21 @@
       // döndürülmüş bir sahnede Recenter yalnız kadrajı düzeltiyor, açı
       // aynı kalıyordu (UI denetimi bulgusu; menziller.js'te aynı eksiklik).
       yaw = 0; pitch = 0.62;
+      if (clusterFocus) exitClusterFocus();
       fitView(true);
     });
-    svg.on("click", () => { if (currentDetailNode || currentRelation) clearFocus(); });
+    svg.on("click", () => {
+      if (currentDetailNode || currentRelation) clearFocus();
+      if (clusterFocus) exitClusterFocus();
+    });
     // Hâller'de odak ile açık panel TEK durumdur (clearFocus ikisini birden
     // bırakıyor), o yüzden bir adım geri = odağı bırak.
     if (!document.body.dataset.wiredHalEsc) {
       document.body.dataset.wiredHalEsc = "1";
       GU.registerStepBack("hal-wrap", () => {
-        if (!currentDetailNode && !currentRelation) return false;
-        clearFocus();
-        return true;
+        if (currentDetailNode || currentRelation) { clearFocus(); return true; }
+        if (clusterFocus) { exitClusterFocus(); return true; }
+        return false;
       });
     }
   }
@@ -629,6 +637,9 @@
         appear = Math.max(0, Math.min(1, (reveal - thr) / 0.12));
       }
       let op = appear;
+      // Küme odağı (FCA): üyeler tam zuhûr eder, geri kalanı perdelenir --
+      // esma.js'teki aynı görsel-gramer eşleşmesi (ışık=zuhûr/opaklık=perde).
+      if (clusterFocus) op *= clusterFocus.members.has(d.id) ? 1 : 0.15;
       const isAnchor = foc && d.id === foc.anchor;
       if (foc && !foc.set.has(d.id)) op *= 0.22;
       if (tilt > 0.02) op *= Math.max(0.62, Math.min(1, d.__depth * 1.02)); // atmosfer
@@ -684,6 +695,31 @@
         .style("opacity", (p) => (0.15 + 0.35 * Math.abs(Math.sin(ts / 1400 + p.ph))) * reveal);
       sh.exit().remove();
     }
+
+    renderClusterFocus(ts);
+  }
+
+  // Küme odağı (FCA): üyeler bir soy zinciri değil, ORTAK bir nitelikle
+  // (evre/terk/kiriş) bir araya geliyor -- esma.js'teki aynı çözüm: yönlü
+  // bir ok yerine, ortak ağırlık merkezinden her üyeye uzanan, ucu açık,
+  // yumuşak ışınlar ("aynı niteliği aynı anda taşıyorlar").
+  function renderClusterFocus(ts) {
+    clusterLayer.selectAll("*").remove();
+    if (!clusterFocus) return;
+    const members = orderedNodes.filter((n) => clusterFocus.members.has(n.id));
+    if (members.length < 2) return;
+    let cx3 = 0, cy3 = 0;
+    members.forEach((n) => { cx3 += n.x; cy3 += n.y; });
+    cx3 /= members.length; cy3 /= members.length;
+    const breathe = reduceMotion ? 0.5 : (1 - Math.cos((ts / 4200) * 2 * Math.PI)) / 2;
+    members.forEach((n) => {
+      clusterLayer.append("line").attr("class", "hal-cluster-ray")
+        .attr("x1", cx3).attr("y1", cy3).attr("x2", n.x).attr("y2", n.y)
+        .style("opacity", 0.14 + 0.12 * breathe);
+    });
+    clusterLayer.append("circle").attr("class", "hal-cluster-core")
+      .attr("cx", cx3).attr("cy", cy3).attr("r", 4.5 + 1.5 * breathe)
+      .style("opacity", 0.45 + 0.25 * breathe);
   }
 
   // ---------------------------------------------------------------------------
@@ -693,12 +729,15 @@
     detailPanel.hidden = true; ensureFrame();
   }
 
-  function fitView(animate) {
+  // members (ops.): yalnız bu alt kümeye sığdır (küme odağı) -- verilmezse
+  // eskisi gibi bütün sarmalı + dönüş yayının tepe noktasını kapsar.
+  function fitView(animate, members) {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 640;
     let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
     const n = orderedNodes.length;
-    // Düğümlerin yanı sıra dönüş yayının tepe noktasını da kapsa.
-    const pts = orderedNodes.map((d) => ({ x: d.x, y: d.y })).concat([projectT(n - 0.5), projectT(n)]);
+    const pts = members
+      ? members.map((d) => ({ x: d.x, y: d.y }))
+      : orderedNodes.map((d) => ({ x: d.x, y: d.y })).concat([projectT(n - 0.5), projectT(n)]);
     pts.forEach((p) => { x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x); y0 = Math.min(y0, p.y); y1 = Math.max(y1, p.y); });
     // Lejant paneli grafiğin ÜSTÜNDE (sol altta) duruyor; sığdırma onu hesaba
     // katmazsa soldaki düğümler panelin arkasında kalıyor. Panel açıkken sol
@@ -717,6 +756,98 @@
     const t = d3.zoomIdentity.translate(w / 2 - k * (x0 + bw / 2), h / 2 - k * (y0 + bh / 2)).scale(k);
     const sel = (animate && !reduceMotion) ? svg.transition().duration(500).ease(d3.easeCubicInOut) : svg;
     sel.call(zoomBehavior.transform, t);
+  }
+
+  // Küme odağı: bkz. clusterFocus/renderClusterFocus yukarıda -- giriş/çıkış
+  // ve altyazı burada.
+  function enterClusterFocus(kume) {
+    const memberIds = new Set(kume.uyeler);
+    if (currentDetailNode || currentRelation) clearFocus();
+    clusterFocus = { id: kume.id, members: memberIds, nitelikler: kume.nitelikler };
+    const members = orderedNodes.filter((n) => memberIds.has(n.id));
+    fitView(true, members.length ? members : undefined);
+    showClusterFocusCaption(kume);
+    window.dostTrack && window.dostTrack("hal_fca_odak", { id: kume.id });
+    ensureFrame();
+  }
+  function exitClusterFocus() {
+    if (!clusterFocus) return;
+    clusterFocus = null;
+    hideClusterFocusCaption();
+    fitView(true);
+    ensureFrame();
+  }
+  function showClusterFocusCaption(kume) {
+    const cap = document.getElementById("hal-fca-caption");
+    const text = document.getElementById("hal-fca-caption-nitelik");
+    if (!cap || !text) return;
+    text.textContent = kume.nitelikler.map((n) => tt(n.label)).join(" · ");
+    cap.hidden = false;
+  }
+  function hideClusterFocusCaption() {
+    const cap = document.getElementById("hal-fca-caption");
+    if (cap) cap.hidden = true;
+  }
+
+  // FCA (Formal Concept Analysis) kavram kafesi (2026-08-15) -- esma.js'teki
+  // aynı desen. scripts/fca-hal.py'nin ürettiği kafesten elle seçilmiş,
+  // 3-12 nesnelik "anlamlı küme" bandı.
+  let fcaData = null;
+  function fetchFcaData() {
+    if (!fcaData) {
+      fcaData = window.DostGraphUtils.fetchJson("data/ibn-arabi/hal-fca.json").catch(() => null);
+    }
+    return fcaData;
+  }
+  const FCA_SHOW_LABEL = { tr: "Haritada göster", en: "Show on the map", pt: "Mostrar no mapa" };
+  function fcaClusterHtml(kume) {
+    const nitelikler = kume.nitelikler.map((n) => tt(n.label)).join(", ");
+    const isimler = kume.uyeler.map((id) => {
+      const node = nodeById.get(id);
+      const label = node ? tt(node.name) : id;
+      return `<a class="cross-link" href="${window.__dostNav.href("hal", id)}" data-view="hal" data-id="${id}">${label}</a>`;
+    }).join(", ");
+    return `<div class="esma-fca-cluster">
+      <p class="esma-fca-cluster__nitelik">${nitelikler}</p>
+      <p class="esma-fca-cluster__isimler">${isimler}</p>
+      <button class="esma-fca-cluster__show" type="button" data-cluster-id="${kume.id}">${tt(FCA_SHOW_LABEL)}</button>
+    </div>`;
+  }
+  function openFcaLightbox() {
+    fetchFcaData().then((data) => {
+      if (!data || !window.DostLightbox) return;
+      window.dostTrack && window.dostTrack("sema_acildi", { type: "hal-fca" });
+      const clusters = data.kumeler.map(fcaClusterHtml).join("");
+      window.DostLightbox.open({
+        closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
+        name: tt({ tr: "Makine Kümelemesi (FCA)", en: "Machine Clustering (FCA)", pt: "Agrupamento por Máquina (FCA)" }),
+        svgHtml: `<div class="esma-fca-lightbox">
+          <p class="esma-fca-lightbox__not">${tt(data.not)}</p>
+          <div class="esma-fca-lightbox__list">${clusters}</div>
+        </div>`,
+        caption: "",
+      });
+      const wrap = document.querySelector(".cizim-lightbox__svg-wrap");
+      if (wrap) {
+        wrap.querySelectorAll(".cross-link").forEach((a) => {
+          a.addEventListener("click", () => { window.DostLightbox.close(); });
+        });
+        wrap.querySelectorAll(".esma-fca-cluster__show").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const kume = data.kumeler.find((k) => String(k.id) === btn.dataset.clusterId);
+            if (!kume) return;
+            window.DostLightbox.close();
+            enterClusterFocus(kume);
+          });
+        });
+      }
+    });
+  }
+  function wireFcaButton() {
+    const btn = document.getElementById("hal-fca-btn");
+    if (!btn || btn.dataset.wiredFcaButton) return;
+    btn.dataset.wiredFcaButton = "1";
+    btn.addEventListener("click", openFcaLightbox);
   }
 
   function showTooltip(d, event) {

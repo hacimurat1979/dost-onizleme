@@ -6066,6 +6066,29 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 .terimler-filter input::placeholder { color: var(--text-muted); }
 .terimler-filter input::-webkit-search-cancel-button { cursor: pointer; }
 
+/* FCA düğmesi (2026-08-15): Terimler bir graf değil kart-sırtı olduğu için
+   esma-fca-btn/hal-fca-btn'in dairesel-mutlak konumu yerine sırtın kendi
+   akışına oturan düz bir düğme. */
+.terimler-fca-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--page-plane);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.terimler-fca-btn:hover,
+.terimler-fca-btn:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+
 .terimler-rail__count {
   margin: 0 0 2px 4px;
   font-size: 0.74rem;
@@ -6287,6 +6310,20 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 .terim-entry--tier-1 .terim-entry__title { font-size: 1.06rem; font-weight: 700; }
 .terim-entry--tier-3 .terim-entry__title { font-size: 0.9rem; font-weight: 500; }
 .terim-entry--tier-3 .terim-entry__ozet { font-size: 0.78rem; }
+
+/* Küme odağı (FCA, 2026-08-15): esma.js/hal.js'teki "haritada göster" burada
+   bir graf olmadığı için "listede vurgula"ya dönüşüyor -- üye kartlar tam
+   opaklıkta ışıklı bir kenarlıkla belirir, diğerleri matlık/perdelenme
+   diliyle (GORSEL_DIL.md) soluklaşır. */
+.terimler-shell--cluster-active .terim-entry {
+  opacity: 0.28;
+  transition: opacity 0.35s ease, background 0.18s ease, border-color 0.18s ease;
+}
+.terimler-shell--cluster-active .terim-entry.is-cluster-member {
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--series-theme) 55%, var(--border));
+  background: color-mix(in srgb, var(--series-theme) 7%, transparent);
+}
 
 /* Dönüş yoğunluğu halkası */
 .terim-entry__gauge {
@@ -7046,6 +7083,12 @@ body.cizim-lightbox-open {
   color: var(--series-theme-text, var(--accent-interactive));
   border-color: var(--series-theme, var(--accent-interactive));
 }
+/* FCA düğmesi (2026-08-15): .esma-fca-btn sınıfını paylaşıyor ama Hâller'in
+   kendi düğme sırası farklı -- 220px zaten oryantasyon halkasının yeri
+   (aşağıya bakınız), FCA bir sonraki boş yuvaya (168+52) kayıyor. */
+#hal-fca-btn {
+  left: 272px;
+}
 /* Ortak oryantasyon-halkası pilotu (Hâller). Düğme değil -- tıklanmaz,
    odak almaz; yalnız hal.js'in canlı yaw/pitch durumunu yansıtır. Düz
    (2B) haldeyken yaw/pitch'in bir anlamı yok, bu yüzden tilt=0'da tamamen
@@ -7260,6 +7303,11 @@ body[data-theme="dark"] .esmaX-flow-line { stroke: var(--accent-glow-dark); }
 .esmaX-cluster-core { fill: #fff6db; }
 :root[data-theme="dark"] .esmaX-cluster-ray,
 body[data-theme="dark"] .esmaX-cluster-ray { stroke: var(--accent-glow-dark); }
+/* Hâller'in aynı küme-odağı ışınları (2026-08-15) -- görsel gramer aynı. */
+.hal-cluster-ray { fill: none; stroke: var(--series-theme); stroke-width: 1.3; stroke-linecap: round; }
+.hal-cluster-core { fill: #fff6db; }
+:root[data-theme="dark"] .hal-cluster-ray,
+body[data-theme="dark"] .hal-cluster-ray { stroke: var(--accent-glow-dark); }
 
 /* Derinlik göstergesi (sağ orta, dikey dairesel noktalar) */
 .esmaX-controls {
@@ -9433,6 +9481,15 @@ mark.durus-vurgu-es {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+/* Terimler bir sabit-viewport graf değil, uzun kaydırılabilir bir kart
+   listesi -- altyazı da grafiklerde olduğu gibi "wrap"ın içinde absolute
+   değil, ekrana sabit (fixed) kalmalı ki kaydırırken kaybolmasın. */
+.terimler-fca-caption {
+  position: fixed;
+  top: auto;
+  bottom: 22px;
+  left: 50%;
 }
 /* İlk-görüş noktası: düğme dört benzer dairesel ikonun arasında kayboluyordu
    (2026-07-31'de kullanıcı "göremedim, ya da işlevsiz" dedi — buton aslında
