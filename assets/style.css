@@ -9434,18 +9434,26 @@ mark.durus-vurgu-es {
 }
 .esma-fca-caption__exit {
   flex-shrink: 0;
-  border: none;
-  background: transparent;
-  color: var(--text-muted);
-  font-size: 0.76rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
   cursor: pointer;
-  padding: 0.2rem 0.4rem;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  padding: 0.28rem 0.65rem;
+}
+.esma-fca-caption__exit span:first-child {
+  font-size: 1rem;
+  line-height: 1;
 }
 .esma-fca-caption__exit:hover,
 .esma-fca-caption__exit:focus-visible {
   color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+  background: var(--surface-1);
 }
 /* İlk-görüş noktası: düğme dört benzer dairesel ikonun arasında kayboluyordu
    (2026-07-31'de kullanıcı "göremedim, ya da işlevsiz" dedi — buton aslında
