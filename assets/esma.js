@@ -1708,13 +1708,6 @@
     const cap = document.getElementById("esma-fca-caption");
     if (cap) cap.hidden = true;
   }
-  function wireFcaCaptionExit() {
-    const btn = document.getElementById("esma-fca-caption-exit");
-    if (!btn || btn.dataset.wiredX) return;
-    btn.dataset.wiredX = "1";
-    btn.addEventListener("click", exitClusterFocus);
-  }
-
   function wireTiltToggle() {
     const btn = document.getElementById("esma-3d-toggle");
     if (!btn || btn.dataset.wiredX) return;
@@ -1844,7 +1837,6 @@
     wireTiltToggle();
     wireDerivedToggle();
     wireFcaButton();
-    wireFcaCaptionExit();
     wirePanelAwareControls();
     rebuildParticles();
     renderPoleDonut(data);

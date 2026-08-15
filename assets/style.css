@@ -9397,7 +9397,9 @@ mark.durus-vurgu-es {
 /* Küme odağı altyazısı: "haritada göster" bir kümeye basınca beliren,
    hangi ortak nitelikle bir araya geldiklerini söyleyen kısa şerit. İlk
    oynatma/animasyon değil, sabit bir durum -- bu yüzden yalnız görünürlük
-   geçişi var, kendiliğinden kapanmaz (kullanıcı ESC/tıklama/düğmeyle çıkar). */
+   geçişi var, kendiliğinden kapanmaz (kullanıcı ESC/boşluğa tıklayarak çıkar
+   -- ayrı bir çıkış düğmesi yok, ETKILESIM_DILI'nin "bir adım geri" ve
+   "boşluğa tıklama" fiilleri zaten bu kipi kapatıyor). */
 .esma-fca-caption {
   position: absolute;
   top: 64px;
@@ -9431,29 +9433,6 @@ mark.durus-vurgu-es {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.esma-fca-caption__exit {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface-2);
-  color: var(--text-secondary);
-  font-size: 0.72rem;
-  cursor: pointer;
-  padding: 0.28rem 0.65rem;
-}
-.esma-fca-caption__exit span:first-child {
-  font-size: 1rem;
-  line-height: 1;
-}
-.esma-fca-caption__exit:hover,
-.esma-fca-caption__exit:focus-visible {
-  color: var(--accent-interactive);
-  border-color: var(--accent-interactive);
-  background: var(--surface-1);
 }
 /* İlk-görüş noktası: düğme dört benzer dairesel ikonun arasında kayboluyordu
    (2026-07-31'de kullanıcı "göremedim, ya da işlevsiz" dedi — buton aslında
