@@ -619,14 +619,27 @@ window.DostGraphUtils = (function () {
   // fonksiyonu bir adım aldıysa `true` döner ve zincir orada durur;
   // `false` dönerse genel geri adım (açık paneli kapat) devreye girer.
   const stepBacks = [];
+  // wrapId ver: yalnız o id'li eleman görünürken (!hidden) fn() denenir --
+  // graf görünümlerinin kullandığı özgün sözleşme. wrapId=null ver: fn()
+  // her Escape'te denenir, "açık mıyım" kararını kendisi verip true/false
+  // döner -- 2026-08-15'te lightbox/nav-drawer/kavram-defteri/search/
+  // sessiz-mod/durus-kontrol/futuhat-popup/graph-hint için eklendi: dokuz
+  // bağımsız Escape dinleyicisinin hiçbiri stopPropagation() çağırmıyordu,
+  // iki katman (örn. çekmece + lightbox) aynı anda açıksa tek bir Escape
+  // hepsini birden kapatıyordu -- ETKILESIM_DILI'nin yasakladığı "hepsini
+  // kapat" kalıbı. Artık hepsi bu tek merkezi sıraya kayıtlı, sırada kim
+  // önce "ben kapattım" (true) derse zincir orada duruyor.
   function registerStepBack(wrapId, fn) {
     stepBacks.push({ wrapId: wrapId, fn: fn });
   }
   window.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     for (let i = 0; i < stepBacks.length; i++) {
-      const wrap = document.getElementById(stepBacks[i].wrapId);
-      if (!wrap || wrap.hidden) continue;
+      const wrapId = stepBacks[i].wrapId;
+      if (wrapId) {
+        const wrap = document.getElementById(wrapId);
+        if (!wrap || wrap.hidden) continue;
+      }
       if (stepBacks[i].fn() === true) return;
     }
     const panel = document.getElementById("detail-panel");

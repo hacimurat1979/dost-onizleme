@@ -3,18 +3,21 @@
 // raporu, 2026-08). Başlangıçta 5 dosyayla (sirlar-graph/kavram/ayet-hadis/
 // siirler/vahdet, ~82 KB) başladı; 2026-08-04 sonrası eklenen 7 görünüm de
 // (acik-sorular, bilmiyoruz, elestiri-arkeolojisi, hocalar, eser-agi,
-// seyahat-atlasi, kuran-dokusu) aynı desene katıldı -- VIEWS'teki 12
-// girişin hepsi tembel yükleniyor. (kuantum ve futuhat-mimarisi
-// görünümleri 2026-08-06'da kaldırıldı, bkz. CLAUDE.md.)
+// seyahat-atlasi, kuran-dokusu) aynı desene katıldı.
 //
-// NEDEN esma/hal/terimler/cizimler/sorular/menziller/tasiyicilar/futuhat/
-// fusus BURADA DEĞİL: bu 9 görünüm dosyası kendi üst-seviye kodunda
-// registerCrossLinkTerm() çağırıyor -- yani başka bir sayfadaki bir
-// kelimenin üzerine gelindiğinde anında önizleme göstermesi, o dosyanın
-// SAYFA AÇILIŞINDA çalışmış olmasına bağlı. Onları da tembel yüklersek, o
-// görünüm hiç ziyaret edilmeden önce çapraz-bağlantı önizlemesi sessizce
-// kaybolurdu -- bu ölçülüp bilerek dışarıda bırakıldı. VIEWS'teki 12 dosya
-// cross-link kaydı YAPMIYOR (doğrulandı), bu yüzden güvenli.
+// 2026-08-15: esma/hal/menziller/sorular/terimler/futuhat (~390 KB gzip,
+// altısı da her sayfada koşulsuz iniyordu) de eklendi. Eskiden bu altısı
+// (ve cizimler/tasiyicilar/fusus) registerCrossLinkTerm() çağırdığı için
+// dışarıda bırakılmıştı -- ama terimler.js'in 2026-08-03 tarihli kendi
+// yorumunun belgelediği gibi o bağımlılık artık yok: çapraz-bağlantı
+// önizlemesi derleme zamanında üretilen ortak indeksten
+// (data/ibn-arabi/capraz-baglanti-indeksi.json) besleniyor, ontology.js
+// bunu SAYFA AÇILIŞINDA yüklüyor -- tek tek görünüm dosyalarının o anda
+// yüklenmiş olmasına bağlı değil. cizimler/tasiyicilar/fusus/miskat şimdilik
+// dışarıda kalmaya devam ediyor (ayrı bir ölçüm konusu).
+//
+// VIEWS'teki girişlerin hiçbiri cross-link kaydını SAYFA AÇILIŞINDA
+// yapmıyor (doğrulandı), bu yüzden tembel yükleme güvenli.
 //
 // Yöntem: her görünüm dosyası kendi window.__xApp'ini KOŞULSUZ, TEK bir
 // atamayla kurar (doğrulandı -- hiçbiri bir guard'ın arkasında değil). Bu
@@ -33,20 +36,26 @@
   "use strict";
 
   var VIEWS = {
-    __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-K9PQeYGqjajla+bt+wh4SGx1tV35QSUgrPBOTAP5+E8yNNtoHfhFNlFPVKku5O0z" },
-    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-i8/9VFY8BMOqTPx3VOHJmOIb31fAhCmXHK6OZ7MGIR9F8+FxJcz0iTWklXvXrGz6" },
-    __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-GpUaMIEGBhps5r0MKFnWciC/O5ySr+GVhvJ1yepaC8LRhf/dWaEHT5NZPzdCG3ou" },
-    __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-BpTiVS/tR2HCtg0LO6GDqc9AJcpdE3Z4xLr3FMP+QGfPk7XNVuzZUwlhAACHWnTG" },
-    __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-+MRrJXhBAHBlXEtXB63QkL/Yo/kFMsKUcMt46TzYFXdmcBAJ4XyxRI0izTR2TA6a" },
-    __okumaYollariApp: { src: "assets/okuma-yollari.js", integrity: "sha384-7OyQU5sFVr9maE5chX4myAMBbRTMTyep8wX9/ZTn6/RJZRZgNrFQyYXb2H5VPBco" },
-    __acikSorularApp: { src: "assets/acik-sorular.js", integrity: "sha384-jlq0FxALd+m1RZacWXwJy/zR1D61numdvf+J9K452u55BjlCjB8/Nu8EUmTt7W8v" },
-    __bilmiyoruzApp: { src: "assets/bilmiyoruz.js", integrity: "sha384-ddviFXH0Y4NLMQmP284dwlLeZ1PIQiENiuMJEXUTdpxLapmf/Tm3sUBcJKBRciyI" },
-    __elestiriArkeolojisiApp: { src: "assets/elestiri-arkeolojisi.js", integrity: "sha384-wMl2x3s/kOdwvMCj5o0ZLcuw9pi1g+6OzfeKrxHUbrWm86kJjLUCsYh8BzT9k1zy" },
-    __hocalarApp: { src: "assets/hocalar.js", integrity: "sha384-WaulL1FwRtRkZiLIOMR1/byXs5Mi03jZb0Y1Wuv3RASRaaP1ZwTBwdiPD27avPQp" },
-    __eserAgiApp: { src: "assets/eser-agi.js", integrity: "sha384-3NefTdJkfqau3bnj+tPZgQerLpHQZZytuC/59jeNUel13F1QVXWUzT8pa3W0w+P+" },
-    __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-yWSLb/gY1L8zTVjb+PqTdUQ3XrXRqO7aOaTX/Z7jZcxzSKyORVoK3hMJkOrNnpbZ" },
-    __yolculukApp: { src: "assets/yolculuk.js", integrity: "sha384-P+IIZxr2sH0OsE6VCzM2BOLzBXS5nA218Y/hCOcXaeR47q09majCcadhVYiHHOHi" },
-    __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-zpleZYoxcar7e1EFE5mpgq6sXk5G/9Vg/xqryNGLqsi4n8eY/KzPl2zYCz3v5EQG" },
+    __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-GAkpG/fiyuMb5dI6zbtM9QBuUefv80x0SeiDhY0xJclXtdylwqjxcasfHqZskQ5b" },
+    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-6X2e7OFYaHkqno9xgF0yyPttgXVZrc7fUbADJ5nsb/Yv3l5vtGciRkwAs1HdQmes" },
+    __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-ueJyuy/b04NHTcHqZ0FdSQVTq3egRzUMDMlzsTW9FbKOpJ1RAIxqRvS7ukUSIoaI" },
+    __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-tnUujR0/9VXod3fMsZhg/TpcB6kG4FsJYxCyVQkjPlaDOGneSHSEopCeccba364W" },
+    __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-vUMUhTP8C9J1eYREPxr3KjV3gHHUGHuV9kXb1E2WDKMgpEXdG5bedODRU4Wavpp9" },
+    __okumaYollariApp: { src: "assets/okuma-yollari.js", integrity: "sha384-f3AwGIN00ENzTIgo4xzB1bgSzYoqz0VsDiHFCA63q4mDpaEHg1fMRVfCESArkdzL" },
+    __acikSorularApp: { src: "assets/acik-sorular.js", integrity: "sha384-QP3Zz2J33MW27jd+vdHJmpkGdHzxETnMM8izdG4JGcYgwIxidbkuBbtcmTL1wSkZ" },
+    __bilmiyoruzApp: { src: "assets/bilmiyoruz.js", integrity: "sha384-XdrBtKW8Y2fGfX05UUXKut0g6V8x5nXNSvFjou/cjrr3UvgNXDHLFfjbOj6pIrx+" },
+    __elestiriArkeolojisiApp: { src: "assets/elestiri-arkeolojisi.js", integrity: "sha384-pjHCNouaInwoh1kfegO5inUHqz5C7m1IcgIexxwzUtE2USqMH1icbqH3iuw6hwDm" },
+    __hocalarApp: { src: "assets/hocalar.js", integrity: "sha384-zcLam01u2hhsitjOxEAy74Z1eR36QELGCdHPTDa+IFekZtCvSZvQ06F0nuqSUnEK" },
+    __eserAgiApp: { src: "assets/eser-agi.js", integrity: "sha384-+DxF+zZlrJmQGenYy+pB3B/3UquZlKMBT+gQ3DHl9MjnIjBes3Xg+o8K7pEi01Lp" },
+    __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-ZeccvfV8m4hAk+oSIEmcCBx84qMV3xbvwqbwwy+ad1/1t3VWDsrU94LQQM1YftMt" },
+    __yolculukApp: { src: "assets/yolculuk.js", integrity: "sha384-QlAIDOlNSY8+Pgryegu5T8dh2tRJz/qrqAOafemsIgGBWq9vkgpUEp2PZjz177I8" },
+    __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-XmeCLWDI3sg38uvXQVgf//GTNCe7l99cf+uYvC5jPQxJEr1/oKI0HLeTgb8bfMLC" },
+    __esmaApp: { src: "assets/esma.js", integrity: "sha384-LEB+VD1I/3TlhKUAJdFMYfrqKVpqEVN+33jaP/R1kQ2INKyb2ks23oDv0k2hXyxu" },
+    __halApp: { src: "assets/hal.js", integrity: "sha384-AkcVHZvqY9DdOasH+SkqHXo+mlXfVyw970a5pxMnNeeRnZ0PrQug6fiSX6148zsr" },
+    __terimlerApp: { src: "assets/terimler.js", integrity: "sha384-dtYNh/nI5MO+strYiH+UZy2O5Oln0RcaFnhb89glaN3oKRGEwRis5kk+1YIdwWvz" },
+    __sorularApp: { src: "assets/sorular.js", integrity: "sha384-2Vln1BcKKcsY87l6Idx+oBsa7pIaCqYw6/OzfIM6cpFLICa/M0j+Tu4VwWqES5h4" },
+    __menzillerApp: { src: "assets/menziller.js", integrity: "sha384-UNu3PnlIt9nPiOz7RUEfTq8M81l0rtrf5cQx9wtO/mE1QIoal04Ibprhbzsa4EhQ" },
+    __futuhatApp: { src: "assets/futuhat.js", integrity: "sha384-f6dBy8DGb9oAuE5pE9INObqa5OLOZlp37WZB6C1Xts802eJfLlFkkI2IXvFMukre" },
   };
 
   var loadingPromises = {};

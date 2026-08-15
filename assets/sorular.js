@@ -37,7 +37,7 @@
   const wrapEl = document.getElementById("sorular-wrap");
   const backBtn = document.getElementById("sorular-back");
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
   function getVar(n) { return GU.getVar(n); }
 
   // Sitede üç ayrı "soru" görünümü var (Sorular/Bilmiyoruz/Açık Sorular) --

@@ -33,7 +33,9 @@ window.DostLightbox = (function () {
     el.querySelector(".cizim-lightbox__close").addEventListener("click", close);
     document.addEventListener("keydown", (e) => {
       if (!el || el.hidden) return;
-      if (e.key === "Escape") { close(); return; }
+      // Escape artık burada değil, GU.registerStepBack'in merkezi sırasında
+      // (bkz. dosya sonu) -- iki katman aynı anda açıkken tek Escape'in
+      // hepsini kapatmaması için.
       // Basit odak-tuzağı: panel açıkken Tab, arkadaki sayfaya kaçmasın.
       if (e.key === "Tab") {
         const panel = el.querySelector(".cizim-lightbox__panel");
@@ -95,6 +97,14 @@ window.DostLightbox = (function () {
     // içine yeniden monte ettiği sarmal sahnesi) burada temizlensin --
     // yoksa requestAnimationFrame döngüsü görünmez DOM'da sonsuza dek sürer.
     if (onCloseCb) { const cb = onCloseCb; onCloseCb = null; cb(); }
+  }
+
+  if (window.DostGraphUtils) {
+    window.DostGraphUtils.registerStepBack(null, () => {
+      if (!el || el.hidden) return false;
+      close();
+      return true;
+    });
   }
 
   return { open, close };

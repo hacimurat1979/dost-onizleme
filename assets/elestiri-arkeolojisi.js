@@ -37,7 +37,7 @@ window.__elestiriArkeolojisiApp = (function () {
 
   if (!svgNode || !wrapEl) return { activate() {}, onLangChange() {}, goToNode() {} };
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   const ROL_VAR = {
     elestirmen: "--series-celal",
@@ -481,12 +481,7 @@ window.__elestiriArkeolojisiApp = (function () {
       // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
       yukle().then(() => { ciz(); }).catch(() => {
-        const st = document.getElementById("elestiri-arkeolojisi-wrap-status");
-        if (st) {
-          st.hidden = false;
-          st.querySelector(".view-status__text").textContent =
-            tt({ tr: "Harita yüklenemedi.", en: "The map could not be loaded.", pt: "O mapa não pôde ser carregado." });
-        }
+        if (window.DostViewStatus) window.DostViewStatus.showError("elestiri-arkeolojisi-wrap", () => window.__elestiriArkeolojisiApp.activate());
       });
     },
     onLangChange() {

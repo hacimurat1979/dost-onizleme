@@ -8,9 +8,7 @@
   const detailContent = document.getElementById("detail-content");
   const detailClose = document.getElementById("detail-close");
 
-  function tt(dict) {
-    return I18n.pick3(dict);
-  }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   I18n.applyStatic();
   // Dil değişince İKİ graf da yeniden çizilmeli: Daphne profili artık ayrı

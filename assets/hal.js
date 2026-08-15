@@ -39,7 +39,7 @@
   const tooltip = document.getElementById("hal-tooltip");
   const wrapEl = document.getElementById("hal-wrap");
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
   function getVar(n) { return GU.getVar(n); }
   function linkify(text, view, id) {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, view, id) : text;
@@ -821,9 +821,33 @@
     ensureFrame();
   }
 
+  // Hayret'e kamera davranışı (2026-08-15): ontology.js'teki DUGUM_DAVRANISI
+  // ("anlam taşıyan animasyon", 2026-08-03) beş düğüme kendi davranışını
+  // vermişti (ışık yayılır/rücû eder/toplanır, sahne söner-yanar, bulanır-
+  // açılır) ama "Hayret'te kameranın yavaşça uzaklaşıp yakınlaşması" fikri
+  // hiç uygulanmamıştı -- research/anlayis-evrimi/VISUALIZATION_IDEAS.md'de
+  // "sitede kamera hareketine dokunan İLK davranış olacağı için ayrı bir iş
+  // kalemi" diye açık bırakılmıştı. Hayret hâli Ontoloji'nin değil Hâller'in
+  // düğümü, o yüzden burada, aynı "davranışı resmet" ilkesiyle (GORSEL_DIL.md)
+  // yaşıyor: hayret şaşkınlık, bilmenin sınırında durmak -- kamera bir an
+  // geri çekilip haritanın tamamını görür, sonra yavaşça hayrete geri döner.
+  function hayretKamerasi() {
+    if (reduceMotion || !zoomBehavior) return;
+    const mevcut = d3.zoomTransform(svgNode);
+    const geri = d3.zoomIdentity
+      .translate(mevcut.x + (svgNode.clientWidth / 2 - mevcut.x) * 0.22,
+                 mevcut.y + (svgNode.clientHeight / 2 - mevcut.y) * 0.22)
+      .scale(mevcut.k * 0.82);
+    svg.transition().duration(1400).ease(d3.easeSinInOut)
+      .call(zoomBehavior.transform, geri)
+      .transition().duration(1600).ease(d3.easeSinInOut)
+      .call(zoomBehavior.transform, mevcut);
+  }
+
   function selectNode(d) {
     showDetail(d);
     window.__dostNav && window.__dostNav.setHash("hal", d.id);
+    if (d.id === "hayret") hayretKamerasi();
   }
 
   // ---------------------------------------------------------------------------

@@ -60,14 +60,18 @@
     return b;
   }
 
-  function onKeydown(e) {
-    if (e.key === "Escape" && isOn()) setOn(false);
-  }
-
   function init() {
     btn = buildButton();
     setOn(isOn());
-    document.addEventListener("keydown", onKeydown);
+    // Escape artık burada değil, GU.registerStepBack'in merkezi sırasında --
+    // iki katman aynı anda açıkken tek Escape'in hepsini kapatmaması için.
+    if (window.DostGraphUtils) {
+      window.DostGraphUtils.registerStepBack(null, () => {
+        if (!isOn()) return false;
+        setOn(false);
+        return true;
+      });
+    }
   }
 
   if (document.readyState === "loading") {

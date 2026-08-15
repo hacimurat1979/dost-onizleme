@@ -110,7 +110,9 @@
   document.addEventListener("click", (e) => {
     if (!drawer.hidden && !drawer.contains(e.target) && !toggle.contains(e.target)) close();
   });
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close(true);
-  });
+  // Escape artık burada değil, GU.registerStepBack'in merkezi sırasında --
+  // iki katman aynı anda açıkken tek Escape'in hepsini kapatmaması için.
+  if (window.DostGraphUtils) {
+    window.DostGraphUtils.registerStepBack("nav-drawer", () => { close(true); return true; });
+  }
 })();

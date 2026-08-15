@@ -20,8 +20,9 @@
   const wrapEl = document.getElementById("sirlar-wrap");
   const tooltip = document.getElementById("sirlar-tooltip");
   if (!svgNode || !wrapEl) return;
+  const deconflictLabels = GU.createLabelDeconflictor();
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
   function getVar(n) { return GU.getVar(n); }
 
   const THEME_LABELS = {
@@ -480,6 +481,8 @@
     if (tilt3d && tilt3d.value > 0.02) merged.sort((a, b) => (b.__z || 0) - (a.__z || 0));
 
     const t3 = tilt3d ? tilt3d.value : 0;
+    const labelItems = [];
+    const labelObstacles = [];
     merged.each(function (d) {
       const g = d3.select(this);
       const br = breath(d, ts);
@@ -562,89 +565,41 @@
           .classed("sir-label--strong", act && (d.id === act.anchor))
           .style("font-size", (d.kind === "root" ? 24 : d.kind === "theme" ? 20 : 18) + "px")
           .text(long ? longLabelFor(d) : labelFor(d));
+        // Yalnız TEMA etiketleri birbiriyle çakışıyordu (kök tek, yaprak
+        // etiketleri yalnız yakınlaşınca/hover'da tek tek görünür) --
+        // eski spreadThemeLabels da yalnız d.kind === "theme" işliyordu,
+        // kapsam aynı kalsın diye burada da öyle.
+        if (d.kind === "theme") {
+          labelItems.push({
+            lbl, txt: long ? longLabelFor(d) : labelFor(d),
+            x: nx_(d), y: ny_(d) + ly, baseY: ly,
+          });
+        }
+      }
+      // Başka bir temanın dairesinin üstüne binmemeli (kullanıcı notu
+      // 2026-07-27) -- eski clearOfDiscs de yalnız tema dairelerini
+      // engel sayıyordu.
+      if (d.kind === "theme") {
+        labelObstacles.push({ x: nx_(d), y: ny_(d), half: r, h: r * 2 });
       }
     });
 
-    spreadThemeLabels(merged);
+    // Eskiden bu dosyanın kendi bespoke etiket-çakışma-önleme kodu vardı
+    // (spreadThemeLabels/clearOfDiscs); paylaşılan motora taşındı
+    // (2026-08-15) -- hal.js/sorular.js zaten bunu kullanıyor, üçüncü bir
+    // kopya birikmesin diye. PAD dinamikti (yakınlaşınca daralıyordu),
+    // burada da aynı şekilde her karede yeniden hesaplanıyor.
+    deconflictLabels(labelItems, labelObstacles, { x: 6, y: 4 / Math.max(0.35, currentK) });
   }
 
   // Tema etiketleri uzun ("Dilde ve Kelimede Gizlenen Sırlar" gibi) ve 3B'de
   // halka dikeyde sıkıştığı için yan yana gelen ikisi birbirinin üstüne
-  // biniyordu (kullanıcı notu 2026-07-27). Beş tema var; her karede ekran
-  // konumlarına bakıp yatayda örtüşenleri dikeyde ayırıyoruz. Genişlik
-  // ölçümü (getComputedTextLength) metin başına bir kez yapılıp
-  // önbelleğe alınıyor -- her karede layout zorlamamak için.
-  const labelWidthCache = new Map();
-  function measureLabel(textEl) {
-    const key = textEl.textContent + "|" + textEl.style.fontSize;
-    if (labelWidthCache.has(key)) return labelWidthCache.get(key);
-    let m = { w: 0, h: 14 };
-    try { m.w = textEl.getComputedTextLength(); } catch (e) { m.w = key.length * 6; }
-    // Yükseklik de ÖLÇÜLMELİ, tahmin edilmemeli (bkz. graph-utils.js'teki
-    // aynı ilke) -- sabit 17px boşluk, 20px punto tema etiketlerinin GERÇEK
-    // satır yüksekliğinden (~24px) dardı, bu yüzden dikeyde bile üst üste
-    // biniyorlardı (2026-08-06, "Secrets Hidden.../The Perfect Human..." ile
-    // ölçüldü).
-    try { m.h = textEl.getBBox().height || m.h; } catch (e) {}
-    labelWidthCache.set(key, m);
-    return m;
-  }
-
-  function spreadThemeLabels(merged) {
-    const items = [];
-    const discs = [];
-    merged.each(function (d) {
-      if (d.kind !== "theme") return;
-      const g = this;
-      if (g.style.display === "none") return;
-      const dot = g.querySelector(".sir-dot");
-      discs.push({ id: d.id, x: nx_(d), y: ny_(d), r: parseFloat(dot && dot.getAttribute("r")) || R_THEME });
-      const lbl = g.querySelector(".sir-label");
-      if (!lbl || lbl.style.display === "none") return;
-      const baseY = parseFloat(lbl.getAttribute("y")) || 0;
-      lbl.__baseY = lbl.__baseY == null ? baseY : lbl.__baseY;
-      const m = measureLabel(lbl);
-      items.push({ id: d.id, el: lbl, x: nx_(d), y: ny_(d) + lbl.__baseY, w: m.w, h: m.h, baseY: lbl.__baseY });
-    });
-    if (items.length < 2) return;
-    items.sort((a, b) => a.y - b.y);
-    // Ekstra boşluk (yazı-yazı arası nefes payı), yalnız ekranda küçük
-    // sahnelerde (currentK < 1) yetersiz kalmasın diye ölçeklenir -- asıl
-    // boşluğu artık ölçülen satır yüksekliği (cur.h/prev.h) belirliyor.
-    const PAD = 4 / Math.max(0.35, currentK);
-    for (let i = 0; i < items.length; i++) {
-      const cur = items[i];
-      let shift = 0;
-      for (let j = 0; j < i; j++) {
-        const prev = items[j];
-        const overlapX = Math.abs(cur.x - prev.x) < (cur.w + prev.w) / 2 + 6;
-        if (!overlapX) continue;
-        const minGap = (prev.h + cur.h) / 2 + PAD;
-        const need = prev.y + shiftOf(prev) + minGap - cur.y;
-        if (need > shift) shift = need;
-      }
-      // Etiket, BAŞKA bir temanın dairesinin üstüne de binmemeli -- yoksa
-      // ilk harfleri düğümün arkasında kalıyor (kullanıcı notu 2026-07-27).
-      shift = Math.max(shift, clearOfDiscs(cur, shift));
-      cur.__shift = shift;
-      cur.el.setAttribute("y", (cur.baseY + shift).toFixed(1));
-    }
-
-    function clearOfDiscs(it, shift) {
-      let need = shift;
-      const half = it.w / 2;
-      discs.forEach((dc) => {
-        if (dc.id === it.id) return;
-        const y = it.y + shift;
-        const overlapX = dc.x + dc.r > it.x - half - 4 && dc.x - dc.r < it.x + half + 4;
-        if (!overlapX) return;
-        if (Math.abs(y - dc.y) > dc.r + 9) return;
-        need = Math.max(need, dc.y + dc.r + 11 - it.y);
-      });
-      return need;
-    }
-    function shiftOf(it) { return it.__shift || 0; }
-  }
+  // biniyordu (kullanıcı notu 2026-07-27). Bu dosyanın eskiden burada duran
+  // kendi bespoke çakışma-önleme kodu (spreadThemeLabels/clearOfDiscs),
+  // graph-utils.js'teki paylaşılan GU.createLabelDeconflictor()'a taşındı
+  // (2026-08-15) -- hal.js/sorular.js zaten aynı motoru kullanıyordu, bu
+  // üçüncü kopya paylaşılan motora aday olarak duruyordu. Çağrı, merged.each
+  // döngüsünün içinde (bkz. yukarıdaki labelItems/labelObstacles) yapılıyor.
 
   function labelVisible(d, act) {
     if (d.kind === "root") return true;

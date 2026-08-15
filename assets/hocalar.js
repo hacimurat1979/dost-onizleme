@@ -19,7 +19,7 @@ window.__hocalarApp = (function () {
 
   if (!wrapEl || !listEl) return { activate() {}, onLangChange() {}, goToNode() {} };
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   let data = null;
   let hocalar = [];
@@ -261,12 +261,7 @@ window.__hocalarApp = (function () {
       // açılıyor.
       baglaBirKez();
       yukle().catch(() => {
-        const st = document.getElementById("hocalar-wrap-status");
-        if (st) {
-          st.hidden = false;
-          st.querySelector(".view-status__text").textContent =
-            tt({ tr: "İçerik yüklenemedi.", en: "The content could not be loaded.", pt: "O conteúdo não pôde ser carregado." });
-        }
+        if (window.DostViewStatus) window.DostViewStatus.showError("hocalar-wrap", () => window.__hocalarApp.activate());
       });
     },
     onLangChange() {

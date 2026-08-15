@@ -21,9 +21,7 @@ window.__kavramApp = (function () {
   const listEl = document.getElementById("kavram-list");
   const detailEl = document.getElementById("kavram-detail");
 
-  function tt(dict) {
-    return I18n ? I18n.pick3(dict || {}) : (dict && (dict.tr || dict.en || dict.pt)) || "";
-  }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   const VIEW_LABEL = {
     ontoloji: { tr: "Ontoloji", en: "Ontology", pt: "Ontologia" },

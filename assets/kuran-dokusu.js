@@ -45,7 +45,7 @@ window.__kuranDokusuApp = (function () {
 
   if (!svgNode || !wrapEl) return { activate() {}, onLangChange() {}, goToNode() {} };
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   let data = null;
   let sureler = [];
@@ -391,12 +391,7 @@ window.__kuranDokusuApp = (function () {
       // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
       yukle().then(() => { ciz(); }).catch(() => {
-        const st = document.getElementById("kuran-dokusu-wrap-status");
-        if (st) {
-          st.hidden = false;
-          st.querySelector(".view-status__text").textContent =
-            tt({ tr: "Graf yüklenemedi.", en: "The graph could not be loaded.", pt: "O grafo não pôde ser carregado." });
-        }
+        if (window.DostViewStatus) window.DostViewStatus.showError("kuran-dokusu-wrap", () => window.__kuranDokusuApp.activate());
       });
     },
     onLangChange() {

@@ -31,7 +31,7 @@ window.__yolculukApp = (function () {
 
   if (!svgNode || !wrapEl) return { activate() {}, onLangChange() {}, goToNode() {} };
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
   function linkify(text) { return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text; }
 
   let atlasData = null;
@@ -511,12 +511,7 @@ window.__yolculukApp = (function () {
     activate() {
       baglaBirKez();
       yukle().catch(() => {
-        const st = document.getElementById("yolculuk-wrap-status");
-        if (st) {
-          st.hidden = false;
-          st.querySelector(".view-status__text").textContent =
-            tt({ tr: "Yolculuk yüklenemedi.", en: "The Journey could not be loaded.", pt: "A Jornada não pôde ser carregada." });
-        }
+        if (window.DostViewStatus) window.DostViewStatus.showError("yolculuk-wrap", () => window.__yolculukApp.activate());
       });
     },
     onLangChange() {

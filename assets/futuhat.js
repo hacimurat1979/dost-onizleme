@@ -14,9 +14,7 @@
   const popupTitleEl = document.getElementById("futuhat-popup-title");
   const popupListEl = document.getElementById("futuhat-popup-list");
 
-  function tt(dict) {
-    return I18n.pick3(dict);
-  }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   // Kısımlar iki farklı `sources` şemasıyla yazıldı: eski kısımlarda her
   // kaynak düz {tr,en,pt} (sayfa aralığı metnin içine gömülü, "s. 291-299."
@@ -91,9 +89,11 @@
 
   if (popupBackdrop) popupBackdrop.addEventListener("click", closePopup);
   if (popupClose) popupClose.addEventListener("click", closePopup);
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && popupEl && !popupEl.hidden) closePopup();
-  });
+  // Escape artık burada değil, GU.registerStepBack'in merkezi sırasında --
+  // iki katman aynı anda açıkken tek Escape'in hepsini kapatmaması için.
+  if (window.DostGraphUtils && popupEl) {
+    window.DostGraphUtils.registerStepBack("futuhat-popup", () => { closePopup(); return true; });
+  }
 
   // Ağaç düğümüne tıklanınca gösterilen bilgi kutusu; aynı düğüme tekrar
   // tıklanınca veya başka bir yere tıklanınca kapanır.

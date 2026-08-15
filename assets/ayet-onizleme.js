@@ -42,8 +42,12 @@
   let hadisDizin = null, hadisDizinSozu = null;
 
   function base() { return window.__dostRouteBase || ""; }
-  const fetcher = (window.DostGraphUtils && window.DostGraphUtils.fetchJson)
-    || ((u) => fetch(u).then((r) => r.json()));
+  // graph-utils.js script sırasında bu dosyadan hep önce geliyor (index.html),
+  // yani window.DostGraphUtils burada her zaman tanımlı -- eskiden buradaki
+  // "yoksa kendi fetch'ini kur" fallback'i pratikte hiç tetiklenmiyordu ve
+  // tetiklense de GU.fetchJson'ın yaptığı HTTP-durum kontrolünü yapmıyordu
+  // (2026-08-15 tespiti).
+  const fetcher = window.DostGraphUtils.fetchJson;
 
   function yukle() {
     if (sozu) return sozu;

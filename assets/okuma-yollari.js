@@ -27,9 +27,7 @@ window.__okumaYollariApp = (function () {
   let eserler = null;
   let fetchPromise = null;
 
-  function tt(dict) {
-    return I18n ? I18n.pick3(dict || {}) : (dict && (dict.tr || dict.en || dict.pt)) || "";
-  }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
   function esc(s) {
     return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }

@@ -45,7 +45,7 @@
     return metin.length / CPS;
   }
 
-  function tt(dict) { return I18n && I18n.pick3 ? I18n.pick3(dict || {}) : (dict && (dict.tr || dict.en || "")); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   // Ölçü süresi: partisyondaki `sure_sn` alt sınır; metin varsa aktif dildeki
   // okuma süresine yukarı yuvarlanır; max ile üst sınır. Böylece kısa

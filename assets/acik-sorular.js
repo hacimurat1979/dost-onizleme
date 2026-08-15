@@ -31,7 +31,7 @@ window.__acikSorularApp = (function () {
 
   if (!svgNode || !wrapEl) return { activate() {}, onLangChange() {}, goToNode() {} };
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   // Sitede üç ayrı "soru" görünümü var (Sorular/Bilmiyoruz/Açık Sorular) --
   // isim benzerliği kafa karıştırabiliyor (kullanıcı bulgusu, 2026-08-09).
@@ -351,12 +351,7 @@ window.__acikSorularApp = (function () {
       yukle().then(() => {
         yerlestir(); ciz();
       }).catch(() => {
-        const st = document.getElementById("acik-sorular-wrap-status");
-        if (st) {
-          st.hidden = false;
-          st.querySelector(".view-status__text").textContent =
-            tt({ tr: "Sorular yüklenemedi.", en: "The questions could not be loaded.", pt: "As perguntas não puderam ser carregadas." });
-        }
+        if (window.DostViewStatus) window.DostViewStatus.showError("acik-sorular-wrap", () => window.__acikSorularApp.activate());
       });
     },
     onLangChange() {

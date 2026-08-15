@@ -2,6 +2,21 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
+<!-- 2026-08-15: site yalnız kendi origin'inden (SRI'lı) + gtag/clarity'den
+     script yüklüyor (bkz. aşağıdaki iki analitik bloğu) -- bu politika
+     escape-at-output bulgularının (crosslink-preview.js, search.js)
+     gelecekteki bir kaçağının başka bir DOMAIN'den script/veri yükleme
+     etkisini sınırlar. 'unsafe-inline' script-src/style-src'te duruyor
+     çünkü index.html'de nonce/hash altyapısı olmayan birkaç inline
+     <script>/style="" bloğu var (tema başlatma, çevrimdışı algılama,
+     gtag/clarity kurulumu, birkaç SVG stop-color) -- inline yürütmeyi de
+     engelleyen sıkı bir CSP, bunları önce hash/nonce altyapısına
+     taşıyacak ayrı bir iş gerektirir. -->
+<!-- frame-ancestors/report-uri/sandbox <meta> ile ÇALIŞMIYOR (CSP spec'i
+     bunları yalnız gerçek HTTP başlığında tanıyor) -- GitHub Pages özel
+     başlık desteklemediği için bu üçü buraya yazılmıyor (yazılırsa sessizce
+     yok sayılır, tarayıcı konsoluna bir uyarı düşer, koruma sağlamaz). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'">
 <!-- Gerçek path'lerle gezinme (bkz. 404.html) adres çubuğunu /futuhat/c1k9 gibi
      köke bağlı olmayan derinliklere taşıyor; bu <base> olmadan o an sayfadaki
      her bağıl fetch/asset yolu ("data/...", "assets/...") o yanlış dizine göre
@@ -13,21 +28,21 @@
 <title>[ÖNİZLEME] Dost Arabî — Amâ (Bulut)</title>
 <meta name="description" content="Amâ (Bulut) kavramının Fütûhât-ı Mekkiyye ve Füsûsu&#x27;l-Hikem boyunca izini süren, veriden türetilmiş bir hayat özeti.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="canonical" href="https://dostarabi.com/kavram/terimler/ama">
+<link rel="canonical" href="https://dostarabi.com/kavram/terimler/ama/">
 
 <!-- Dil değişimi client-side (aynı URL, i18n.js tarafı seçiyor); hreflang üç
      satır da aynı canonical URL'e işaret eder. pt_BR şu an içerikte yok --
      og:locale:alternate ve hreflang'a bir dil eklerken data/ibn-arabi/*.json
      içinde en az bir "pt-BR" alanı olduğunu doğrula. -->
-<link rel="alternate" hreflang="tr" href="https://dostarabi.com/kavram/terimler/ama">
-<link rel="alternate" hreflang="en" href="https://dostarabi.com/kavram/terimler/ama">
-<link rel="alternate" hreflang="x-default" href="https://dostarabi.com/kavram/terimler/ama">
+<link rel="alternate" hreflang="tr" href="https://dostarabi.com/kavram/terimler/ama/">
+<link rel="alternate" hreflang="en" href="https://dostarabi.com/kavram/terimler/ama/">
+<link rel="alternate" hreflang="x-default" href="https://dostarabi.com/kavram/terimler/ama/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dost Arabî">
 <meta property="og:title" content="Dost Arabî — Amâ (Bulut)">
 <meta property="og:description" content="Amâ (Bulut) kavramının Fütûhât-ı Mekkiyye ve Füsûsu&#x27;l-Hikem boyunca izini süren, veriden türetilmiş bir hayat özeti.">
-<meta property="og:url" content="https://dostarabi.com/kavram/terimler/ama">
+<meta property="og:url" content="https://dostarabi.com/kavram/terimler/ama/">
 <meta property="og:image" content="https://dostarabi.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -1312,7 +1327,14 @@ mesmo antes que o assombro exista."></blockquote>
         </div>
       </div>
       </div>
-      <div id="siirler-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-siirler" hidden></div>
+      <div id="siirler-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-siirler" hidden>
+        <div class="view-status" id="siirler-panel-status" hidden>
+          <div class="view-status__spinner" aria-hidden="true"></div>
+          <p class="view-status__text"></p>
+          <button class="view-status__retry" type="button" hidden></button>
+        </div>
+        <div id="siirler-content"></div>
+      </div>
       <div id="vahdet-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-vahdet" hidden>
         <div class="view-status" id="vahdet-panel-status" hidden>
           <div class="view-status__spinner" aria-hidden="true"></div>
@@ -1452,6 +1474,34 @@ mesmo antes que o assombro exista."></blockquote>
              data-pt="Duas cenas separadas transformam o véu e o espelho em algo que se pode explorar arrastando: o encadeamento do véu, e o Real aparecendo no espelho do servo.">İki ayrı sahne, perde ile aynayı sürüklenerek keşfedilebilen bir hâle getiriyor.</p>
         </a>
       </div>
+
+      <!-- 2026-08-15: research/anlayis-evrimi/'de biriken, henüz sahneye
+           dönüşmemiş ham malzemeyi görünür kılıyor -- CLAUDE.md'nin dördüncü
+           ilkesi ("yaşayan bilgi sistemi... donmaması"). Yeni bir yorum/metin
+           DEĞİL: yalnız VISUALIZATION_IDEAS.md'nin kendi izlediği durumun
+           (metin var/diyagram yok, ya da hiç işlenmedi) üç dilde bir özeti.
+           Tıklanamaz -- henüz gidecek bir sahne yok. -->
+      <div class="sahneler-bekleyen">
+        <h3 data-tr="Sıradaki adaylar" data-en="Candidates in the queue" data-pt="Candidatos na fila">Sıradaki adaylar</h3>
+        <p class="sahneler-bekleyen__not"
+           data-tr="Okuma ilerledikçe biriken, henüz bir sahneye dönüşmemiş güçlü imgeler — donduğumuzu değil, biriktirmeye devam ettiğimizi gösteriyor."
+           data-en="Strong images that have accumulated as the reading progresses but haven't become a scene yet — a sign we keep accumulating, not that we've stopped."
+           data-pt="Imagens fortes que se acumularam com a leitura mas ainda não viraram uma cena — sinal de que continuamos a acumular, não de que paramos.">Okuma ilerledikçe biriken, henüz bir sahneye dönüşmemiş güçlü imgeler.</p>
+        <ul class="sahneler-bekleyen__liste">
+          <li>
+            <span class="sahneler-bekleyen__ad" data-tr="Renkli cam analojisi" data-en="The colored-glass analogy" data-pt="A analogia do vidro colorido">Renkli cam analojisi</span>
+            <span class="sahneler-bekleyen__durum" data-tr="henüz işlenmedi" data-en="not yet worked in" data-pt="ainda não incorporado">henüz işlenmedi</span>
+          </li>
+          <li>
+            <span class="sahneler-bekleyen__ad" data-tr="Mühür-yüzük (Halîfetullah) imgesi" data-en="The seal-ring (Khalīfatullāh) image" data-pt="A imagem do anel-selo (Khalīfatullāh)">Mühür-yüzük (Halîfetullah) imgesi</span>
+            <span class="sahneler-bekleyen__durum" data-tr="metin var, diyagramı yok" data-en="text is in, no diagram yet" data-pt="texto pronto, sem diagrama">metin var, diyagramı yok</span>
+          </li>
+          <li>
+            <span class="sahneler-bekleyen__ad" data-tr="Halk-ı Cedîd — &quot;yanıp sönen ışıklar ağı&quot;" data-en="Perpetual Renewal — &quot;a web of flickering lights&quot;" data-pt="Renovação Perpétua — &quot;uma rede de luzes cintilantes&quot;">Halk-ı Cedîd — "yanıp sönen ışıklar ağı"</span>
+            <span class="sahneler-bekleyen__durum" data-tr="metin var, diyagramı yok" data-en="text is in, no diagram yet" data-pt="texto pronto, sem diagrama">metin var, diyagramı yok</span>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <aside class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detail-content" hidden>
@@ -1508,36 +1558,35 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/theme.js" defer integrity="sha384-NegwurN40eZr0Cwp0FE3fFU6d1ptUcUoeGVSaX+M74KAJDTn8QVt2hP+z+Pf29Kf"></script>
   <script src="assets/vendor/d3.min.js" defer integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i"></script>
   <script src="assets/i18n.js" defer integrity="sha384-bqPgHDorfYKkI+ErvFXEAGead8E3pDVsel6p3S9LkyxoY1QRWrMrTUpeiooWejvL"></script>
-  <script src="assets/nav-drawer.js" defer integrity="sha384-zb4slVlgCynHQ3L4+XgvRT9Bk6gzEirnKFzeuCIi2AJ+v0zimfJiBYCiup0bpqa0"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
-  <script src="assets/graph-utils.js" defer integrity="sha384-PPly27ke9VDNUqQA2i8LoBkCU7LzzGPVWeOSnHmaqQr+WjtQCZOm+gE0jF089KCG"></script>
+  <script src="assets/graph-utils.js" defer integrity="sha384-m3kyDfoI8HQ5GgINB1c+2H4JQhNMB55LcqrtAHuRm/iRzH9eKwon3ApPaYcMaFc5"></script>
+  <!-- nav-drawer.js graph-utils.js'ten SONRA gelmeli (2026-08-15): artık
+       açılışta GU.registerStepBack çağırıyor. -->
+  <script src="assets/nav-drawer.js" defer integrity="sha384-4idNbjiUMnddv77MS/DP19EyhfuP1tOGQ8qWlFwIyAOc5tIKyGLUcIKW3Lsu9TDk"></script>
   <script src="assets/helix.js" defer integrity="sha384-B3YHfyIMylqIJZh+Kqn8rcd9QEqVaUiCFPAdCtSY18e3Wd65bOvMERf1Jod7L6ao"></script>
-  <script src="assets/graph-hint.js" defer integrity="sha384-3PjCLUJoOIi1t7duvbSRNLvzJiTCNzmtDW5/KrVH5D+G8MiuYcF/UfJyv19FG578"></script>
-  <script src="assets/lightbox.js" defer integrity="sha384-txI/emOUsh4ASe/MSV1vzHmFXEUC7CTDF4tcxuVHmGyhnCmaU24buPLUrKF3BbG7"></script>
+  <script src="assets/graph-hint.js" defer integrity="sha384-X9m2G527jZ4206R85Mx9UwMXx88yyLYBNsLOvNMmWfS2157Z1FwPTD8wiTeGJV5I"></script>
+  <script src="assets/lightbox.js" defer integrity="sha384-TDvma/+BP131maM3JIl5cFvo+vnYxexF1FwxIhBck6kV8Yuq/4Gj/osPA6Foolok"></script>
   <!-- Kademeli açılım (G15). Küçük ve görünümden bağımsız olduğu için
        tembel-yükleme listesine değil buraya konuyor: ontology.js sır
        detayını çizerken window.__dostKademe hazır olmalı. -->
   <script src="assets/kademe.js" defer integrity="sha384-qstXPmVEy5j/ElqnV6hvOfNFBOxlrwj8IhlrgYL2vtn8VzXUESTxdpuBfDN2uZM9"></script>
-  <script src="assets/search.js" defer integrity="sha384-Ql89AUNNDH4H6IE4nLWlE8c54GzdpM/ADcgRxt3RUhgtxX+k85aB2yrrVq9mqprp"></script>
+  <script src="assets/search.js" defer integrity="sha384-5tCHT8Gez9nLGyoDfB7IKW1YbQxfeWNiA4ysNiod/Y673aKnAAEEV2dfjiXpEJT6"></script>
   <script src="assets/graph-enhancement.js" defer integrity="sha384-hNAPzflfBDqRj8om8hmAV7ziYfsXLPIlZQ0YYH0Y6ZKqCKlLhX/giLkNaVyzoTn4"></script>
   <script src="assets/font-scale.js" defer integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
   <script src="assets/reading-mode.js" defer integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
   <script src="assets/honorifics.js" defer integrity="sha384-IwA4Fe1Lz4RekuTCKaeamOx5H2VogRQH66+kK99tc5SRCQL7ezB4EK8jbMw/uOhm"></script>
-  <script src="assets/esma.js" defer integrity="sha384-k0FvHDArBruders0EdICaFdUjh31twNu5RSiBwbwydTghXg9jtCv6qP/nLyV1f1X"></script>
-  <script src="assets/hal.js" defer integrity="sha384-0J7uTx7utdHJysurWDXQVlYUeuEFrzKBXec6fh+V4hy4Rg3PLNiSFB7DLQj/FjN9"></script>
-  <script src="assets/terimler.js" defer integrity="sha384-cR+XgOx3EIEim+wTrA0U7r/sPz53aTcsGKIMIRYxlIpzGFJUFTeZY0ulnZVIHgB+"></script>
-  <script src="assets/cizimler.js" defer integrity="sha384-hTMb1pM5NibKjGPpzsndGQMf7S3ZA7aVqCMjh0lQoSaXc54ARcHFZ8BV5xB8TXWy"></script>
-  <script src="assets/sorular.js" defer integrity="sha384-KoIx/ZC+WDQNft4O3xNVFqEnkHEUpImGpwY++IDGp7QIJ4XcLVstnXEVMdq9klIt"></script>
-  <script src="assets/menziller.js" defer integrity="sha384-OETzsWbn+BHO1sAM8B9BBVeiyxcw1/gxd9OiIFTp0CFlm7QkZ4BmDPJLtvCpnEmL"></script>
+  <script src="assets/cizimler.js" defer integrity="sha384-bqBv8CPI2pB6JsXigBKuvdnT84wLPLxk3hcQQgiTildAF74VKxxtVPyUYYBY8+lk"></script>
   <script src="assets/tasiyicilar.js" defer integrity="sha384-lNVugceLvCvCJVmiaeondeMkZidLr/xkMU7e3FIfHyE0tYhzXcLpm8x7Ztni2FxQ"></script>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
-  <script src="assets/futuhat.js" defer integrity="sha384-6GtyzZb+ko5h82EIv/s+J+kYtLu3UowLS9yYq2tnllhVYr5JlHHP4BjvDuXXuWu5"></script>
   <script src="assets/fusus.js" defer integrity="sha384-NWndNFf07ZRehuPP29Nc/iMRBsDyMjSIfCUSvp7ycm+1r3mf7pjTGJlZBcBPBcQt"></script>
   <script src="assets/miskat.js" defer integrity="sha384-tEJTN21WqsVu9Z14cdzwjiaqQTJZ9C5XFl1vyGvrR31cqebU73Br1ivIq5quX5rs"></script>
-  <script src="assets/view-loader.js" defer integrity="sha384-idUG/dbnphsIIv0ovIB3HNuWminSYmB9yEmTyZkEVbrjh9IFF7Mq3zJ4snI3GjEl"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-WTo42elsgFRq9nm8OD9BtL9NmP87tnY0mx1TdsTElpMQB4QkuMHSoRstvmuB1nZ9"></script>
-  <script src="assets/crosslink-preview.js" defer integrity="sha384-LB2CZqiRwZe7OuYv0hNYRxTczXVo5XxW1KNFeh+gKdeP5Hosj6h4povtLbm1t9c3"></script>
-  <script src="assets/ayet-onizleme.js" defer integrity="sha384-9qv/Q/FBNgrPHnUOAukAqwsa/DVkrKY78fVJR+l6Kro4bz3an1mUQ8Tg1yG83pGw"></script>
+  <!-- esma/hal/terimler/sorular/menziller/futuhat: assets/view-loader.js'in
+       VIEWS haritasında tembel yükleniyor (2026-08-15), o yüzden burada
+       static <script> etiketi yok. -->
+  <script src="assets/view-loader.js" defer integrity="sha384-70xWOvhZcbWiyNr4KE0+/476ex+NNbPvNj8Sn3xDMRrkFFub25pHCWpXnCRqLbUI"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-/U3UIDBnwWwnpQFSiCfMwSeJHWq1JPIbwAF536FGN+F1jao1WDZN0emdT+fUIPPq"></script>
+  <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
+  <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>
   <!-- 2026-08-10 denetim (G57 + rapor 16-A): mobil için grafik yerine liste. -->
   <script src="assets/ontoloji-mobil-liste.js" defer integrity="sha384-YvQpuu2GLrdXPHaUaSFqgKxXtVoFbZRpxltW8rJRyvXa6QDIS1CBTf7h1LIDm9WD"></script>
@@ -1546,7 +1595,7 @@ mesmo antes que o assombro exista."></blockquote>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in
        bayrağına bakar), kip kapalıyken hiçbir şey çizmez. 2026-07-29'a
        kadar önizlemeye özeldi; kullanıcı kararıyla canlıda da yayınlanıyor. -->
-  <script src="assets/durus-kontrol.js" defer integrity="sha384-MWV7GWjnVXfKLQJv9f24+n/3626atxm5+2sfDBL6VZ5BDEcOeMaokR0SOzwMeezu"></script>
+  <script src="assets/durus-kontrol.js" defer integrity="sha384-Mp9H5TzeXvWnSzRrPCE3R60gl5Raj0z/l0zDjB40pPHFfcx83EN4U8MGjWRMFusv"></script>
   <!-- Mekanik tahkik (docs/tahkik-protokolu.md'nin M5/M7 mercekleri).
        Duruş taramasının kardeşi: aynı @revise çipinden açılıyor, aynı veri
        dosyalarını okuyor, ama başka bir soru soruyor. Yargı mercekleri
@@ -1554,8 +1603,8 @@ mesmo antes que o assombro exista."></blockquote>
        toplu taramada değil sayfa başına /tahkik ile yapılmasını istiyor. -->
   <script src="assets/tahkik-tarama.js" defer integrity="sha384-o7iy4Guhl4x1S9aruNJTF87ZD7EqgPsr4rW06QIK7ngQ9zwkAZ0mXZjwgYQn3Klr"></script>
   <script src="assets/share-mode.js" defer integrity="sha384-kr+gfk37Lrr5mmy2aXx5A4Z51DCt+YysCYOdFHUfa4/ckcTYUwKB+3IySi2cROmD"></script>
-  <script src="assets/sessiz-mod.js" defer integrity="sha384-eFRBlMWSM/4fq8oWooKbKYWTxOWMygOzjyco9hQ8jhcZCdkPikl4e1MoeLjtB5w8"></script>
-  <script src="assets/kavram-defteri.js" defer integrity="sha384-SEHFK/8YrjhNTF34/mS1FCXdHVORstWfUN3HMMJLT2GqxTBd7Ng60K1Xim6/prYG"></script>
+  <script src="assets/sessiz-mod.js" defer integrity="sha384-5GFytUm+Wcx7pEB0AF0deivwAVJHndNa/TRngZztUN7mmh0EGfNgz8MZNw2oQk2N"></script>
+  <script src="assets/kavram-defteri.js" defer integrity="sha384-xkJEH+qGBiumsuXheD2YbLbMbRv6Xg3bY3Iq261DhUjzzIZxGt0SG+9gTtjlw3cF"></script>
   <script>
     // B1: çevrimdışı destek. document.baseURI'ye göre çözülüyor ki bu script
     // hangi rota kopyasından (futuhat/c1kN/index.html dahil) çalışırsa

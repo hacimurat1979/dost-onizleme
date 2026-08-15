@@ -13,9 +13,7 @@
   let derivedTermRelations = [];
   let derivedTermPromise = null;
 
-  function tt(dict) {
-    return I18n.pick3(dict);
-  }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   function linkify(text, view, id) {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, view, id) : text;

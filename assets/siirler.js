@@ -39,9 +39,7 @@
     },
   };
 
-  function tt(dict) {
-    return I18n.pick3(dict);
-  }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   function escHtml(s) {
     return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -57,18 +55,28 @@
   function fetchData() {
     if (data) return Promise.resolve(data);
     if (fetchPromise) return fetchPromise;
+    if (window.DostViewStatus) window.DostViewStatus.showLoading("siirler-panel");
     fetchPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/siirler.json")
-      .then((d) => { data = d; return d; })
+      .then((d) => {
+        data = d;
+        if (window.DostViewStatus) window.DostViewStatus.hide("siirler-panel");
+        return d;
+      })
       .catch((err) => {
         console.error("siirler.json yüklenemedi / Failed to load", err);
         fetchPromise = null;
+        // 2026-08-15: eskiden bu hata tamamen sessizdi -- console.error
+        // dışında hiçbir görsel iz düşmüyordu (kardeşi vahdet.js gibi bir
+        // .view-status elemanı da yoktu). Artık diğer 8 görünümün izlediği
+        // DostViewStatus kalıbı burada da uygulanıyor.
+        if (window.DostViewStatus) window.DostViewStatus.showError("siirler-panel", () => window.__siirlerApp.activate());
         return null;
       });
     return fetchPromise;
   }
 
   function render(d) {
-    const panel = document.getElementById("siirler-panel");
+    const panel = document.getElementById("siirler-content");
     if (!panel) return;
 
     const lang = I18n.getLang();

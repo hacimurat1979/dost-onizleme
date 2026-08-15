@@ -54,7 +54,13 @@
     openForBtn = btn;
   });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-  });
+  // Escape artık burada değil, GU.registerStepBack'in merkezi sırasında --
+  // iki katman aynı anda açıkken tek Escape'in hepsini kapatmaması için.
+  if (window.DostGraphUtils) {
+    window.DostGraphUtils.registerStepBack(null, () => {
+      if (!openPopover) return false;
+      close();
+      return true;
+    });
+  }
 })();

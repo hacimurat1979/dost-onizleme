@@ -16,6 +16,16 @@
     return !!el.closest("#futuhat-article");
   }
 
+  // 2026-08-15: iki innerHTML noktası da escape'siz basıyordu -- anchorEl'in
+  // textContent'i (güvenle okunur) ve dataset.glossaryDef (tarayıcı otomatik
+  // decode eder) burada escape'siz geri yazılıyordu. Bugün her iki kaynak da
+  // statik/derlenmiş veriden geliyor, gerçek bir XSS yolu değil, ama
+  // "escape at output" ilkesini ihlal eden bir mimari desendi -- search.js'in
+  // kendi escapeHtml'iyle tutarlı hale getirildi.
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  }
+
   let tip = null;
 
   function ensureTip() {
@@ -55,7 +65,7 @@
     const summary = window.__dostCrossLink.getSummary(view, id);
     if (!summary) return;
     const el = ensureTip();
-    el.innerHTML = `<div class="node-hover-tip__title">${anchorEl.textContent}</div><p>${summary}</p>`;
+    el.innerHTML = `<div class="node-hover-tip__title">${escapeHtml(anchorEl.textContent)}</div><p>${escapeHtml(summary)}</p>`;
     el.hidden = false;
     moveTip(event, anchorEl);
   }
@@ -68,7 +78,7 @@
     const def = el.dataset.glossaryDef;
     if (!def) return;
     const tip = ensureTip();
-    tip.innerHTML = `<p>${def}</p>`;
+    tip.innerHTML = `<p>${escapeHtml(def)}</p>`;
     tip.hidden = false;
     moveTip(event, el);
   }

@@ -11079,3 +11079,46 @@ button.kuran-dokusu-satir:focus-visible {
   color: var(--text-secondary);
   line-height: 1.55;
 }
+
+.sahneler-bekleyen {
+  margin: 0 clamp(16px, 4vw, 48px) 32px;
+  padding: 16px 18px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+.sahneler-bekleyen h3 {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  margin: 0 0 6px;
+  color: var(--text-secondary);
+}
+.sahneler-bekleyen__not {
+  margin: 0 0 12px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  max-width: 62ch;
+}
+.sahneler-bekleyen__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sahneler-bekleyen__liste li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  font-size: 0.88rem;
+}
+.sahneler-bekleyen__ad {
+  color: var(--text-primary);
+}
+.sahneler-bekleyen__durum {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-style: italic;
+}

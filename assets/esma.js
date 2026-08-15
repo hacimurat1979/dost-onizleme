@@ -51,7 +51,7 @@
   function moveTooltipEsma(event) { GU.moveTooltip(tooltip, wrapEl, event); }
   function hideTooltipEsma() { GU.hideTooltip(tooltip); }
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
   function linkify(text, view, id) {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, view, id) : text;
   }
@@ -1281,8 +1281,8 @@
   }
 
   function wireInteractions() {
-    if (svgNode.dataset.wiredX) return;
-    svgNode.dataset.wiredX = "1";
+    if (svgNode.dataset.wiredInteractions) return;
+    svgNode.dataset.wiredInteractions = "1";
 
     svgNode.addEventListener("wheel", onWheel, { passive: false });
 
@@ -1588,8 +1588,8 @@
   const DERIVED_SEEN_KEY = "dost-esma-derived-seen";
   function wireDerivedToggle() {
     const btn = document.getElementById("esma-derived-toggle");
-    if (!btn || btn.dataset.wiredX) return;
-    btn.dataset.wiredX = "1";
+    if (!btn || btn.dataset.wiredDerivedToggle) return;
+    btn.dataset.wiredDerivedToggle = "1";
     const dot = btn.querySelector(".esma-derived-toggle__dot");
     try { if (dot && localStorage.getItem(DERIVED_SEEN_KEY)) dot.hidden = true; } catch (_) {}
     btn.addEventListener("click", () => {
@@ -1667,8 +1667,8 @@
   }
   function wireFcaButton() {
     const btn = document.getElementById("esma-fca-btn");
-    if (!btn || btn.dataset.wiredX) return;
-    btn.dataset.wiredX = "1";
+    if (!btn || btn.dataset.wiredFcaButton) return;
+    btn.dataset.wiredFcaButton = "1";
     btn.addEventListener("click", openFcaLightbox);
   }
 
@@ -1710,8 +1710,8 @@
   }
   function wireTiltToggle() {
     const btn = document.getElementById("esma-3d-toggle");
-    if (!btn || btn.dataset.wiredX) return;
-    btn.dataset.wiredX = "1";
+    if (!btn || btn.dataset.wiredTiltToggle) return;
+    btn.dataset.wiredTiltToggle = "1";
     btn.setAttribute("aria-pressed", "false");
     btn.title = tt({ tr: "3 boyuta eğ — mertebe derinliğini göster / 2B'ye dön", en: "Tilt into 3D — show the depth of ranks / back to 2D", pt: "Incline para 3D — mostre a profundidade das hierarquias / voltar ao 2D" });
     btn.addEventListener("click", () => {

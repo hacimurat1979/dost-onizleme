@@ -41,7 +41,7 @@ window.__eserAgiApp = (function () {
 
   if (!svgNode || !wrapEl) return { activate() {}, onLangChange() {}, goToNode() {} };
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   // 2026-08-09 kullanıcı geri bildirimi: liste bir "liste" gibi okunuyordu,
   // bir "yolculuk" gibi değil. window.__dostCrossLink zaten ontology.js'te
@@ -533,12 +533,7 @@ window.__eserAgiApp = (function () {
       // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
       yukle().then(() => { ciz(); }).catch(() => {
-        const st = document.getElementById("eser-agi-wrap-status");
-        if (st) {
-          st.hidden = false;
-          st.querySelector(".view-status__text").textContent =
-            tt({ tr: "Ağ yüklenemedi.", en: "The network could not be loaded.", pt: "A rede não pôde ser carregada." });
-        }
+        if (window.DostViewStatus) window.DostViewStatus.showError("eser-agi-wrap", () => window.__eserAgiApp.activate());
       });
     },
     onLangChange() {

@@ -35,9 +35,7 @@
   const tooltip = document.getElementById("ontology-tooltip");
   const wrapEl = document.getElementById("ontology-wrap");
 
-  function tt(dict) {
-    return I18n.pick3(dict);
-  }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   // B1: "ne kadar eminiz" katmanı. Etiketler research/anlayis-evrimi/
   // CONFIDENCE_MAP.md'nin sözlüğünden (Yüksek/Orta/Hipotez/Gelecekte-

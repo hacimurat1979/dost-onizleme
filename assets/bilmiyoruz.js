@@ -29,7 +29,7 @@ window.__bilmiyoruzApp = (function () {
 
   if (!svgNode || !wrapEl) return { activate() {}, onLangChange() {}, goToNode() {} };
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   // Sitede üç ayrı "soru" görünümü var (Sorular/Bilmiyoruz/Açık Sorular) --
   // isim benzerliği kafa karıştırabiliyor (kullanıcı bulgusu, 2026-08-09).
@@ -329,12 +329,7 @@ window.__bilmiyoruzApp = (function () {
       yukle().then(() => {
         yerlestir(); ciz(); renderManifest();
       }).catch(() => {
-        const st = document.getElementById("bilmiyoruz-wrap-status");
-        if (st) {
-          st.hidden = false;
-          st.querySelector(".view-status__text").textContent =
-            tt({ tr: "Maddeler yüklenemedi.", en: "The items could not be loaded.", pt: "Os itens não puderam ser carregados." });
-        }
+        if (window.DostViewStatus) window.DostViewStatus.showError("bilmiyoruz-wrap", () => window.__bilmiyoruzApp.activate());
       });
     },
     onLangChange() {

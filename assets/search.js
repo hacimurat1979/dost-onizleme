@@ -252,9 +252,7 @@
     return indexPromise;
   }
 
-  function tt(dict) {
-    return I18n.pick3(dict);
-  }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   function normalize(s) {
     return (s || "").toLocaleLowerCase("tr").normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -408,8 +406,12 @@
     if (e.target === panel) closePanel();
   });
 
+  // Escape artık burada değil, GU.registerStepBack'in merkezi sırasında --
+  // iki katman aynı anda açıkken tek Escape'in hepsini kapatmaması için.
+  if (window.DostGraphUtils) {
+    window.DostGraphUtils.registerStepBack("search-panel", () => { closePanel(); return true; });
+  }
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !panel.hidden) closePanel();
     if (e.key === "/" && panel.hidden && document.activeElement.tagName !== "INPUT") {
       e.preventDefault();
       openPanel();
@@ -541,7 +543,7 @@
       const title = (r.meta && r.meta.title) || "";
       return `<button class="search-result" role="option" data-href="${escapeAttr(href)}">
           <span class="search-result__label">${escapeHtml(title)}</span>
-          <span class="search-result__sub search-result__excerpt">${r.excerpt || ""}</span>
+          <span class="search-result__sub search-result__excerpt">${escapeExcerpt(r.excerpt)}</span>
         </button>`;
     }).join("");
     const div = document.createElement("div");
@@ -555,6 +557,14 @@
     return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   }
   const escapeAttr = escapeHtml;
+
+  // 2026-08-15: title/href aynı satırda escapeHtml/escapeAttr ile korunmuşken
+  // excerpt korunmamıştı (düşük risk -- pagefind kendi <mark> vurgusunu
+  // güvenli üretiyor -- ama tutarsız). Her şeyi escape'leyip yalnız
+  // pagefind'ın kendi <mark>/</mark> etiketlerini whitelist ediyoruz.
+  function escapeExcerpt(s) {
+    return escapeHtml(s || "").replace(/&lt;mark&gt;/g, "<mark>").replace(/&lt;\/mark&gt;/g, "</mark>");
+  }
 
   // Ok tuşu gezinmesi tek bir listede yürüsün: metin içi sonuçlar sonradan
   // (asenkron) geldiği için buton listesini yeniden kuruyoruz.

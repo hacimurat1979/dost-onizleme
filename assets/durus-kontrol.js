@@ -803,11 +803,16 @@
   document.addEventListener("click", function (e) {
     if (acikKutu && !e.target.closest(".durus-kutu") && !e.target.closest(".durus-rozet")) kutuKapat();
   });
-  document.addEventListener("keydown", function (e) {
-    if (e.key !== "Escape") return;
-    if (sitePanel) siteKapat();
-    else kutuKapat();
-  });
+  // Escape artık burada değil, GU.registerStepBack'in merkezi sırasında --
+  // iki katman aynı anda açıkken tek Escape'in hepsini kapatmaması için.
+  // İki alt-katman arasındaki öncelik (site paneli > tekil kutu) korunuyor.
+  if (window.DostGraphUtils) {
+    window.DostGraphUtils.registerStepBack(null, function () {
+      if (sitePanel) { siteKapat(); return true; }
+      if (acikKutu) { kutuKapat(); return true; }
+      return false;
+    });
+  }
 
   // Testler ve elden tarama için.
   window.__dostDurus = {

@@ -41,7 +41,7 @@ window.__seyahatAtlasiApp = (function () {
 
   if (!svgNode || !wrapEl) return { activate() {}, onLangChange() {}, goToNode() {} };
 
-  function tt(dict) { return I18n.pick3(dict || {}); }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   // Eser Ağı/Sorular'da iki kez işe yarayan üçlü (2026-08-09): otomatik
   // kavram linki + kronolojik önce/sonra gezinme + katlanır kaynak notu.
@@ -420,12 +420,7 @@ window.__seyahatAtlasiApp = (function () {
       // seçildiğinde açılıyor (bkz. hocalar.js'teki aynı düzeltme).
       baglaBirKez();
       yukle().catch(() => {
-        const st = document.getElementById("seyahat-atlasi-wrap-status");
-        if (st) {
-          st.hidden = false;
-          st.querySelector(".view-status__text").textContent =
-            tt({ tr: "Atlas yüklenemedi.", en: "The atlas could not be loaded.", pt: "O atlas não pôde ser carregado." });
-        }
+        if (window.DostViewStatus) window.DostViewStatus.showError("seyahat-atlasi-wrap", () => window.__seyahatAtlasiApp.activate());
       });
     },
     onLangChange() {

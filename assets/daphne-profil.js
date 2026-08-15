@@ -15,9 +15,7 @@
   const articlesList = document.getElementById("articles-list");
   if (!svg.node()) return;
 
-  function tt(dict) {
-    return I18n.pick3(dict);
-  }
+  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   window.DostGraphUtils.setupDetailPanelFocus();
 
@@ -34,34 +32,14 @@
     detailPanel.hidden = true;
   });
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key !== "Escape") return;
-    if (!detailPanel.hidden) {
-      detailPanel.hidden = true;
-    } else {
-      window.location.href = "compare.html";
-    }
-  });
-
-  // Touch devices have no Escape key. The tappable title below is the quiet
-  // fallback, but it is invisible -- nothing tells you it can be tapped. The
-  // header's back circle is the discoverable version of the same move.
-  const headerBack = document.getElementById("header-back");
-  if (headerBack) {
-    headerBack.addEventListener("click", () => {
-      window.location.href = "compare.html";
-    });
-  }
-
-  const headerTitle = document.querySelector(".app-header__title");
-  if (headerTitle) {
-    headerTitle.classList.add("app-header__title--clickable");
-    headerTitle.style.cursor = "pointer";
-    headerTitle.title = "Geri dön / Go back / Voltar";
-    headerTitle.addEventListener("click", () => {
-      window.location.href = "compare.html";
-    });
-  }
+  // Escape/header-back/header-title navigasyonu buradan kaldırıldı
+  // (2026-08-15): compare.js aynı #detail-panel, #header-back ve
+  // .app-header__title'a kendi dinleyicilerini de bağlıyordu -- iki
+  // bağımsız keydown dinleyicisi aynı Escape basışında hem paneli kapatıp
+  // hem kullanıcıyı index.html'e atıyordu (ve headerBack/headerTitle
+  // tıklamaları aynı yarış koşuluyla compare.html yerine index.html'e
+  // gidiyordu, çünkü compare.js script sırasında sonra yükleniyor).
+  // Sayfa/geri-gitme mantığının tek sahibi artık compare.js.
 
   let pageData = null;
   let nodeSel, linkSel, labelSel, zoomBehavior;
