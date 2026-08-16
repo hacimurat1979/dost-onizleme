@@ -51,6 +51,45 @@
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
   }
+
+  // Yazdır düğmesinin yanına paylaş düğmesi (kullanıcı isteği, 2026-08-16):
+  // futuhat.js/fusus.js'teki sharePart/showToast ile aynı desen.
+  function routeBase() {
+    var baseEl = document.querySelector("base");
+    if (!baseEl) return "";
+    try {
+      var u = new URL(baseEl.getAttribute("href"), location.origin);
+      return u.pathname.replace(/\/+$/, "");
+    } catch (e) { return ""; }
+  }
+  function shareHadis(h) {
+    var url = location.origin + routeBase() + "/miskat/" + h.id;
+    var title = t({ tr: "Dost Arabî", en: "Dost Arabi", pt: "Dost Arabi" }) + " — " + t(h.title);
+    if (navigator.share) {
+      navigator.share({ title: title, url: url }).catch(function () {});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () {
+        showToast(t({ tr: "Bağlantı kopyalandı", en: "Link copied", pt: "Link copiado" }));
+      });
+    }
+  }
+  var toastEl = null, toastTimer = null;
+  function showToast(message) {
+    if (!toastEl) {
+      toastEl = document.createElement("div");
+      toastEl.className = "futuhat-toast";
+      toastEl.setAttribute("role", "status");
+      toastEl.setAttribute("aria-live", "polite");
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = message;
+    toastEl.classList.add("futuhat-toast--visible");
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove("futuhat-toast--visible"); }, 2400);
+  }
+
   function linkify(text) {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text;
   }
@@ -104,10 +143,16 @@
     mapScene = window.DostHelix.mount(mapEl, {
       id: "miskat-map",
       nodes: nodes,
-      turns: 2.4,
+      // Yüz bir düğüm, Füsûs'un 27 düğümüyle aynı turns/hRatio/maxH'ı
+      // paylaşıyordu -- aynı sarmal uzunluğuna ~3,8 kat daha sık paket
+      // edilince düğümler üst üste biniyordu (kullanıcı bildirimi,
+      // 2026-08-16). turns'ü artırmak (açısal aralığı büyütür, dikey adımı
+      // etkilemez) ve maxH'ı artırmak (geniş ekranlarda daha fazla dikey
+      // alan) tek başına yeterli -- helix.js'in konum motoruna dokunmadan.
+      turns: 6,
       closing: false,
       hRatio: 1.45,
-      maxH: 620,
+      maxH: 900,
       numbered: false,
       labelMode: "none",
       spinSpeed: 0.5,
@@ -241,6 +286,9 @@
       + '<button type="button" class="fusus-print-btn" title="' + esc(t({ tr: "Yazdır", en: "Print", pt: "Imprimir" })) + ' / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">'
       + '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="6" y="3" width="12" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="9" width="16" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>'
       + "</button>"
+      + '<button type="button" class="fusus-share-btn" title="' + esc(t({ tr: "Paylaş", en: "Share", pt: "Compartilhar" })) + ' / Share / Compartilhar" aria-label="Paylaş / Share / Compartilhar">'
+      + '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="6" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="5.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="10.8" x2="15.7" y2="6.7" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="13.2" x2="15.7" y2="17.3" stroke="currentColor" stroke-width="1.6"/></svg>'
+      + "</button>"
       + '<p class="fusus-article__eyebrow">'
       + esc(bolumEtiket + " " + h.bolum + " · " + h.no + ". " + birimEtiket) + "</p>"
       + '<h2 class="fusus-article__title">' + esc(t(h.title)) + "</h2>"
@@ -279,6 +327,8 @@
     mountHelixBlocks(articleEl, helixes, captions);
     var printBtn = articleEl.querySelector(".fusus-print-btn");
     if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
+    var shareBtn = articleEl.querySelector(".fusus-share-btn");
+    if (shareBtn) shareBtn.addEventListener("click", function () { shareHadis(h); });
     var startBtn = articleEl.querySelector("[data-start-hadis]");
     var startClose = articleEl.querySelector(".fusus-start-hint .futuhat-start-hint__close");
     if (startBtn) {

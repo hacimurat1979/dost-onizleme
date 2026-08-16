@@ -19,6 +19,7 @@ window.__bilmiyoruzApp = (function () {
   const I18n = window.DostI18n;
   const GU = window.DostGraphUtils;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const deconflictLabels = GU.createLabelDeconflictor();
 
   const svg = d3.select("#bilmiyoruz-graph");
   const svgNode = svg.node();
@@ -154,11 +155,26 @@ window.__bilmiyoruzApp = (function () {
     sel.append("text").attr("class", "bilmiyoruz-madde__ikon")
       .attr("text-anchor", "middle").attr("dy", "0.35em").text("?");
 
-    sel.append("text").attr("class", "bilmiyoruz-madde__etiket")
+    // Ölçüm tabanlı deconflictLabels (hal.js/menziller/seyahat-atlası'nda
+    // kanıtlanmış) -- acik-sorular.js'teki aynı düzeltme: madde sayısı
+    // arttıkça komşu etiketler halkanın dışında bile üst üste binebiliyordu
+    // (kullanıcı isteği, "grafiği zenginleştir", 2026-08-16).
+    const etiketSel = sel.append("text").attr("class", "bilmiyoruz-madde__etiket")
       .attr("text-anchor", (d) => (d.x > 6 ? "start" : d.x < -6 ? "end" : "middle"))
       .attr("x", (d) => (d.x > 6 ? R + 8 : d.x < -6 ? -(R + 8) : 0))
       .attr("y", (d) => (Math.abs(d.x) > 6 ? 4 : (d.y >= 0 ? R + 16 : -(R + 10))))
       .text((d) => kisalt(tt(d.baslik), 30));
+
+    const pendingLabels = [];
+    etiketSel.each(function (d) {
+      const lx = d.x > 6 ? R + 8 : d.x < -6 ? -(R + 8) : 0;
+      const ly = Math.abs(d.x) > 6 ? 4 : (d.y >= 0 ? R + 16 : -(R + 10));
+      pendingLabels.push({
+        lbl: d3.select(this), txt: kisalt(tt(d.baslik), 30),
+        x: d.x + lx, y: d.y + ly, baseY: ly,
+      });
+    });
+    deconflictLabels(pendingLabels);
 
     sel.on("mouseenter", function (ev, d) { vurgula(d.id, true); ipucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))

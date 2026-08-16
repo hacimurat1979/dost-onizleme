@@ -787,23 +787,29 @@
       </div>
       <div class="tasiyicilar-shell">
         <div class="tasiyicilar-left">
-          <div class="tasiyici-scene" id="tasiyicilar-scene"></div>
+          <!-- 2026-08-16 düzeltme: lejant, .tasiyicilar-wrap'ın (dolu içerikle
+               büyüyen, sabit yükseklikli olmayan) bottom:12px'ine değil,
+               grafiğin kendi köşesine (bu wrap) sabitleniyor -- eskiden
+               #tasiyicilar-foot'un kapanış metniyle üst üste biniyordu. -->
+          <div class="tasiyici-scene-wrap">
+            <div class="tasiyici-scene" id="tasiyicilar-scene"></div>
+            <!-- 2026-08-10 denetim (G23): dolu/boş düğüm ve iki sarmalın anlamı yalnız metinde geçiyordu. -->
+            <div class="legend" id="tasiyicilar-legend">
+              <button class="legend__toggle" type="button" aria-expanded="true">
+                <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
+                <span class="legend__toggle-icon" aria-hidden="true">▾</span>
+              </button>
+              <div class="legend__body" tabindex="0">
+                <div class="legend__item"><span class="legend__dot legend__dot--tas-dolu"></span><span data-tr="Dolu altın: kalbin taşıyıcısı ya da Arş'ın peygamber-katı" data-en="Filled gold: bearer of the Heart, or the prophet-tier of the Throne" data-pt="Ouro cheio: portador do Coração, ou o nível-profético do Trono">Dolu altın: kalp taşıyıcısı / peygamber-katı</span></div>
+                <div class="legend__item"><span class="legend__dot legend__dot--tas-bos"></span><span data-tr="İçi boş halka: Arş'ın karşılıklı melek-katı" data-en="Hollow ring: the mirror angel-tier of the Throne" data-pt="Anel oco: o nível-angélico espelhado do Trono">İçi boş halka: melek-katı</span></div>
+                <p class="legend__note" data-tr="Dıştaki geniş sarmal kalbi taşıyanları, içteki dar sarmal Arş'ı taşıyanları çiziyor — Fütûhât'ın iki bölümü yan yana." data-en="The outer wide spiral traces the bearers of the Heart, the inner narrow spiral traces the bearers of the Throne — two chapters of the Futuhat placed side by side." data-pt="A espiral externa e larga traça os portadores do Coração; a interna e estreita traça os portadores do Trono — dois capítulos do Futuhat lado a lado.">Dıştaki geniş sarmal kalbi taşıyanları, içteki dar sarmal Arş'ı taşıyanları çiziyor — Fütûhât'ın iki bölümü yan yana.</p>
+              </div>
+            </div>
+          </div>
           <div class="tasiyici-intro" id="tasiyicilar-intro"></div>
           <div class="tasiyici-note" id="tasiyicilar-note" aria-live="polite"></div>
         </div>
         <div class="tasiyici-foot" id="tasiyicilar-foot"></div>
-      </div>
-      <!-- 2026-08-10 denetim (G23): dolu/boş düğüm ve iki sarmalın anlamı yalnız metinde geçiyordu. -->
-      <div class="legend" id="tasiyicilar-legend">
-        <button class="legend__toggle" type="button" aria-expanded="true">
-          <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
-          <span class="legend__toggle-icon" aria-hidden="true">▾</span>
-        </button>
-        <div class="legend__body" tabindex="0">
-          <div class="legend__item"><span class="legend__dot legend__dot--tas-dolu"></span><span data-tr="Dolu altın: kalbin taşıyıcısı ya da Arş'ın peygamber-katı" data-en="Filled gold: bearer of the Heart, or the prophet-tier of the Throne" data-pt="Ouro cheio: portador do Coração, ou o nível-profético do Trono">Dolu altın: kalp taşıyıcısı / peygamber-katı</span></div>
-          <div class="legend__item"><span class="legend__dot legend__dot--tas-bos"></span><span data-tr="İçi boş halka: Arş'ın karşılıklı melek-katı" data-en="Hollow ring: the mirror angel-tier of the Throne" data-pt="Anel oco: o nível-angélico espelhado do Trono">İçi boş halka: melek-katı</span></div>
-          <p class="legend__note" data-tr="Dıştaki geniş sarmal kalbi taşıyanları, içteki dar sarmal Arş'ı taşıyanları çiziyor — Fütûhât'ın iki bölümü yan yana." data-en="The outer wide spiral traces the bearers of the Heart, the inner narrow spiral traces the bearers of the Throne — two chapters of the Futuhat placed side by side." data-pt="A espiral externa e larga traça os portadores do Coração; a interna e estreita traça os portadores do Trono — dois capítulos do Futuhat lado a lado.">Dıştaki geniş sarmal kalbi taşıyanları, içteki dar sarmal Arş'ı taşıyanları çiziyor — Fütûhât'ın iki bölümü yan yana.</p>
-        </div>
       </div>
     </section>
 
@@ -1544,6 +1550,9 @@ mesmo antes que o assombro exista."></blockquote>
     <button class="detail-panel__print" id="detail-print" type="button" title="Yazdır / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="6" y="3" width="12" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="9" width="16" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
     </button>
+    <button class="detail-panel__share" id="detail-share" type="button" title="Paylaş / Share / Compartilhar" aria-label="Paylaş / Share / Compartilhar">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="6" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="5.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="10.8" x2="15.7" y2="6.7" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="13.2" x2="15.7" y2="17.3" stroke="currentColor" stroke-width="1.6"/></svg>
+    </button>
     <button class="detail-panel__notebook" id="detail-notebook-toggle" type="button" title="Kavram defterime ekle / kaldır — Add to / remove from my concept notebook — Adicionar a / remover do meu caderno de conceitos" aria-label="Kavram defterime ekle / kaldır — Add to / remove from my concept notebook — Adicionar a / remover do meu caderno de conceitos" aria-pressed="false">
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="detail-panel__notebook-star" d="M12 4.2l2.2 4.6 5 .7-3.6 3.5.85 5-4.45-2.4-4.45 2.4.85-5-3.6-3.5 5-.7Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
     </button>
@@ -1611,13 +1620,13 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/cizimler.js" defer integrity="sha384-bqBv8CPI2pB6JsXigBKuvdnT84wLPLxk3hcQQgiTildAF74VKxxtVPyUYYBY8+lk"></script>
   <script src="assets/tasiyicilar.js" defer integrity="sha384-lNVugceLvCvCJVmiaeondeMkZidLr/xkMU7e3FIfHyE0tYhzXcLpm8x7Ztni2FxQ"></script>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
-  <script src="assets/fusus.js" defer integrity="sha384-NWndNFf07ZRehuPP29Nc/iMRBsDyMjSIfCUSvp7ycm+1r3mf7pjTGJlZBcBPBcQt"></script>
-  <script src="assets/miskat.js" defer integrity="sha384-tEJTN21WqsVu9Z14cdzwjiaqQTJZ9C5XFl1vyGvrR31cqebU73Br1ivIq5quX5rs"></script>
+  <script src="assets/fusus.js" defer integrity="sha384-A+j5QFwQ8xt3uFpxBGMKqI2Gjvy7TFxPhljqQYJ538sidwbh4TTraF18K6cRt4eM"></script>
+  <script src="assets/miskat.js" defer integrity="sha384-vcZvmiN7oygyV3w+BeFDnjCeI/gEsmqNhAQV+5pOgjgH6s/R5k1klh4c1E8jFiuY"></script>
   <!-- esma/hal/terimler/sorular/menziller/futuhat: assets/view-loader.js'in
        VIEWS haritasında tembel yükleniyor (2026-08-15), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-wZ6jKzGABKxi19jfFRMDt++YDkl0TJiQ3mj7ltQjJX5k3U6cNtO95QOrS5w3aBPK"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-4OS2RNh0wXC6XAIK+ENiBFxUUUmg96KwbADOONSd/8quVhs1ISQYPUwS2Jd3T0Wh"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-7oplQXB4j768sNWFpXo20/7YtZx7KAxEa8SUOPDAJW9B0OlSs5Ny5hRGq8skeVpa"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-o9N15xF5G7M9kG8IkZ1VvcoR8iyCxGgNJ0Fl7tqFTJpLypJiWdzeICYoYwTO5wNs"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>
@@ -1635,7 +1644,7 @@ mesmo antes que o assombro exista."></blockquote>
        (M1-M4, M8) burada BİLEREK yok -- protokolün kendi kuralı, yargının
        toplu taramada değil sayfa başına /tahkik ile yapılmasını istiyor. -->
   <script src="assets/tahkik-tarama.js" defer integrity="sha384-o7iy4Guhl4x1S9aruNJTF87ZD7EqgPsr4rW06QIK7ngQ9zwkAZ0mXZjwgYQn3Klr"></script>
-  <script src="assets/share-mode.js" defer integrity="sha384-kr+gfk37Lrr5mmy2aXx5A4Z51DCt+YysCYOdFHUfa4/ckcTYUwKB+3IySi2cROmD"></script>
+  <script src="assets/share-mode.js" defer integrity="sha384-yCMtdjeg1wJbbQCAH8tRR9MKYXr0/1KYOQTCtE/olzCDFHeBHNeCKZUD7l88qbXc"></script>
   <script src="assets/sessiz-mod.js" defer integrity="sha384-5GFytUm+Wcx7pEB0AF0deivwAVJHndNa/TRngZztUN7mmh0EGfNgz8MZNw2oQk2N"></script>
   <script src="assets/kavram-defteri.js" defer integrity="sha384-xkJEH+qGBiumsuXheD2YbLbMbRv6Xg3bY3Iq261DhUjzzIZxGt0SG+9gTtjlw3cF"></script>
   <script>

@@ -21,6 +21,7 @@ window.__acikSorularApp = (function () {
   const I18n = window.DostI18n;
   const GU = window.DostGraphUtils;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const deconflictLabels = GU.createLabelDeconflictor();
 
   const svg = d3.select("#acik-sorular-graph");
   const svgNode = svg.node();
@@ -173,12 +174,28 @@ window.__acikSorularApp = (function () {
       .text((d) => "#" + d.no);
 
     // Etiketler halkanın DIŞINA taşınıyor (yayın merkezinden dışa doğru),
-    // yoksa on dokuz etiket halkanın içinde üst üste biner.
-    sel.append("text").attr("class", "acik-soru__etiket")
+    // yoksa on dokuz etiket halkanın içinde üst üste biner. Bu bile komşu
+    // sorular birbirine yakın açılarda düşünce (ör. yeni kayıtlar eklendikçe
+    // halka kalabalıklaştıkça) yetmiyor -- ölçüm tabanlı deconflictLabels
+    // (hal.js/menziller/seyahat-atlası'nda kanıtlanmış) etiketleri kendi
+    // aralarında çakışmayacak şekilde kaydırıyor (kullanıcı isteği, "grafiği
+    // zenginleştir", 2026-08-16).
+    const etiketSel = sel.append("text").attr("class", "acik-soru__etiket")
       .attr("text-anchor", (d) => (d.x > 6 ? "start" : d.x < -6 ? "end" : "middle"))
       .attr("x", (d) => (d.x > 6 ? R + 8 : d.x < -6 ? -(R + 8) : 0))
       .attr("y", (d) => (Math.abs(d.x) > 6 ? 4 : (d.y >= 0 ? R + 16 : -(R + 10))))
       .text((d) => kisalt(tt(d.soru), 30));
+
+    const pendingLabels = [];
+    etiketSel.each(function (d) {
+      const lx = d.x > 6 ? R + 8 : d.x < -6 ? -(R + 8) : 0;
+      const ly = Math.abs(d.x) > 6 ? 4 : (d.y >= 0 ? R + 16 : -(R + 10));
+      pendingLabels.push({
+        lbl: d3.select(this), txt: kisalt(tt(d.soru), 30),
+        x: d.x + lx, y: d.y + ly, baseY: ly,
+      });
+    });
+    deconflictLabels(pendingLabels);
 
     sel.on("mouseenter", function (ev, d) { vurgula(d.id, true); ipucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))

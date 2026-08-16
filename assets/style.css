@@ -3817,6 +3817,32 @@ html:has(.detail-panel:not([hidden])) {
   display: flex;
 }
 
+.detail-panel__share {
+  display: none;
+  position: fixed;
+  top: calc(var(--app-header-height, 96px) + 12px);
+  right: 172px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  z-index: 56;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.detail-panel__share:hover,
+.detail-panel__share:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+#detail-panel:not([hidden]) ~ .detail-panel__share {
+  display: flex;
+}
+
 .detail-panel__notebook {
   display: none;
   position: fixed;
@@ -6951,6 +6977,7 @@ body.cizim-lightbox-open {
   .view-status,
   .detail-panel__close,
   .detail-panel__print,
+  .detail-panel__share,
   .typography-controls,
   .detail-breadcrumb,
   .app-footer,
@@ -6964,6 +6991,7 @@ body.cizim-lightbox-open {
   .futuhat-toast,
   .fusus-sidebar,
   .fusus-print-btn,
+  .fusus-share-btn,
   .sessiz-mod-toggle,
   .defter-toggle,
   .defter-panel,
@@ -7938,13 +7966,17 @@ body.share-stage-open { overflow: hidden; }
   .share-line { transition: none; }
 }
 
-/* "Füsûs Halkası" şablonu (kullanıcı isteği, 2026-08-03): ambient sarmal
-   yerine Füsûs bölümünün kendi 27-fass halkasını (DostHelix, bkz.
-   assets/fusus.js) doğrudan taşıyor -- aynı görsel dilin tekrarı yerine
-   sitede zaten kanıtlanmış grafiği ödünç alıyoruz. */
+/* "Füsûs Halkası" (kullanıcı isteği, 2026-08-03) ve "Mişkât Sarmalı"
+   (2026-08-16) şablonları, ambient sarmal yerine kendi bölümlerinin
+   gerçek DostHelix grafiğini (bkz. assets/fusus.js, assets/miskat.js)
+   doğrudan taşıyor -- aynı görsel dilin tekrarı yerine sitede zaten
+   kanıtlanmış grafiği ödünç alıyoruz. */
 .share-stage__frame--fusus .share-spiral,
 .share-stage__frame--fusus .share-dot,
-.share-stage__frame--fusus .share-halo { opacity: 0; }
+.share-stage__frame--fusus .share-halo,
+.share-stage__frame--miskat .share-spiral,
+.share-stage__frame--miskat .share-dot,
+.share-stage__frame--miskat .share-halo { opacity: 0; }
 .share-stage__helix {
   position: absolute;
   inset: 4% 3% 30% 3%;
@@ -7965,7 +7997,8 @@ body.share-stage-open { overflow: hidden; }
   --accent-interactive: var(--sahne-vurgu);
 }
 .share-stage__helix .helix-scene { width: 100%; }
-.share-stage__frame--fusus .share-stage__text {
+.share-stage__frame--fusus .share-stage__text,
+.share-stage__frame--miskat .share-stage__text {
   top: auto;
   bottom: 9%;
   right: 8%;
@@ -8623,6 +8656,11 @@ mark.durus-vurgu-es {
 
 /* Sahne bilerek dar tutuluyor: sarmal dikey ve ince bir gövde; geniş
    ekranda kolonun tamamına yayılınca yatık bir elipse dönüşüyor. */
+/* .legend'in position:absolute'ı (bkz. genel .legend kuralı) bu sarmalayıcıya
+   göre konumlanır, .tasiyicilar-wrap'a göre değil -- aksi hâlde lejant
+   grafiğin kendi köşesi yerine tüm bölümün altına (kapanış metninin üstüne)
+   sabitleniyordu (2026-08-16 düzeltme). */
+.tasiyici-scene-wrap { position: relative; max-width: 560px; margin: 0 auto; }
 .tasiyici-scene { display: block; width: 100%; max-width: 560px; margin: 0 auto; }
 .tasiyici-svg {
   display: block;
@@ -8829,6 +8867,27 @@ mark.durus-vurgu-es {
 }
 .fusus-print-btn:hover,
 .fusus-print-btn:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+.fusus-share-btn {
+  position: absolute;
+  top: 0;
+  right: 46px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.fusus-share-btn:hover,
+.fusus-share-btn:focus-visible {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
 }

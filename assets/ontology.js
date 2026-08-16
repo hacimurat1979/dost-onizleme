@@ -307,6 +307,43 @@
     });
   }
 
+  // Yazdır düğmesinin yanına paylaş düğmesi (kullanıcı isteği, 2026-08-16):
+  // futuhat.js'teki sharePart/showToast ile aynı desen. URL için location.href
+  // yeterli -- updateHash() zaten her kavram açıldığında history.replaceState
+  // ile pathname'i o kavrama göre güncelliyor (yukarıda, satır ~998).
+  const detailShare = document.getElementById("detail-share");
+  let detailShareToastEl = null, detailShareToastTimer = null;
+  function showDetailShareToast(message) {
+    if (!detailShareToastEl) {
+      detailShareToastEl = document.createElement("div");
+      detailShareToastEl.className = "futuhat-toast";
+      detailShareToastEl.setAttribute("role", "status");
+      detailShareToastEl.setAttribute("aria-live", "polite");
+      document.body.appendChild(detailShareToastEl);
+    }
+    detailShareToastEl.textContent = message;
+    detailShareToastEl.classList.add("futuhat-toast--visible");
+    if (detailShareToastTimer) clearTimeout(detailShareToastTimer);
+    detailShareToastTimer = setTimeout(() => { detailShareToastEl.classList.remove("futuhat-toast--visible"); }, 2400);
+  }
+  if (detailShare) {
+    detailShare.addEventListener("click", () => {
+      const titleEl = detailContent.querySelector(".detail-title");
+      const concept = titleEl ? titleEl.textContent.trim() : "";
+      const title = I18n.pick3({ tr: "Dost Arabî", en: "Dost Arabi", pt: "Dost Arabi" }) + (concept ? " — " + concept : "");
+      const url = location.href;
+      if (navigator.share) {
+        navigator.share({ title, url }).catch(() => {});
+        return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => showDetailShareToast(
+          I18n.pick3({ tr: "Bağlantı kopyalandı", en: "Link copied", pt: "Link copiado" })
+        ));
+      }
+    });
+  }
+
   // ESC ("bir adım geri") artık burada değil: ortak zincir graph-utils.js'te
   // (registerStepBack), açık panelin kapanması da onun genel son adımı.
   // Sırlar'ın tema odağını geri alan dal buradan KALDIRILDI ve kendi

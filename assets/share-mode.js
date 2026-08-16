@@ -73,6 +73,7 @@
       gunun:    { tr: "Günün Sözü", en: "Word of the Day", pt: "Palavra do Dia" },
       benzetme: { tr: "Bir Benzetmeyle", en: "Through an Analogy", pt: "Através de uma Analogia" },
       fusus:    { tr: "Füsûs Halkası", en: "Fusus Ring", pt: "Anel dos Fusus" },
+      miskat:   { tr: "Mişkât Sarmalı", en: "Mishkat Spiral", pt: "Espiral do Mishkat" },
       dizi:     { tr: "Dizi", en: "Series", pt: "Série" },
       karsilastir: { tr: "Karşılaştır", en: "Compare", pt: "Comparar" },
       ozelgun:  { tr: "Özel Gün", en: "Special Day", pt: "Dia Especial" },
@@ -89,6 +90,10 @@
     histList:    { tr: "Son kullanılanlar", en: "Recent",               pt: "Recentes" },
     ikiDilli:    { tr: "İki dilli kart", en: "Bilingual card", pt: "Cartão bilíngue" },
     ikinciDil:   { tr: "İkinci dil", en: "Second language", pt: "Segundo idioma" },
+    // Füsûs Halkası'nın 27 düğümü "sparse" modda vurgulu+odak adını yazıyor
+    // -- bazı paylaşımlarda hiç metin istenmiyor, yalnız halkanın kendisi
+    // (kullanıcı isteği, 2026-08-16).
+    metinsiz:    { tr: "Düğüm metni yok", en: "No node labels", pt: "Sem legendas dos nós" },
     karsilastirSol: { tr: "Sol", en: "Left", pt: "Esquerda" },
     karsilastirSag: { tr: "Sağ", en: "Right", pt: "Direita" },
     karsilastirAc:  { tr: "Bu ikisini aç", en: "Open these two", pt: "Abrir estes dois" },
@@ -170,6 +175,7 @@
     return cachedFetch("vahdet", "data/ibn-arabi/vahdet-elestiri.json").catch(() => ({ maddeler: [] }));
   }
   function loadFususAtlas() { return cachedFetch("fusus-atlas", "data/ibn-arabi/fusus-atlas.json"); }
+  function loadMiskatAtlas() { return cachedFetch("miskat-atlas", "data/ibn-arabi/miskat-atlas.json"); }
 
   // "Karşılaştır" şablonu (kullanıcı önerisi, 2026-08-03): esma+ontoloji
   // havuzunu (benzetme şablonuyla aynı kaynak) düz bir listeye çeviriyor ki
@@ -519,6 +525,32 @@
         };
       });
     }
+    if (tpl === "miskat") {
+      // Mişkâtü'l-Envâr'ın 101 hadisinin açılış sarmalını (kullanıcının
+      // /miskat/ sayfasında gördüğü aynı grafik, bkz. assets/miskat.js
+      // renderMap) Füsûs Halkası'yla aynı yöntemle ödünç alıyoruz.
+      return loadMiskatAtlas().then((d) => {
+        const all = d.hadisler || [];
+        const active = all.filter((h) => h.status === "active");
+        if (!active.length) return null;
+        const h = pick(active);
+        const idx = all.findIndex((x) => x.id === h.id);
+        const nodeLabel = (x) => (x.etiket === "haber"
+          ? { tr: x.no + ". Haber", en: "Report " + x.no, pt: "Relato " + x.no }
+          : { tr: x.no + ". Hadis", en: "Hadith " + x.no, pt: "Hadith " + x.no });
+        return {
+          tpl: "miskat",
+          helix: {
+            nodes: all.map((x) => ({ id: x.id, label: nodeLabel(x), accent: x.status === "active" })),
+            initialFocus: idx < 0 ? 0 : idx,
+          },
+          lines: [
+            mkBilingualLine(h.title, "baslik"),
+            mkBilingualLine(h.pageRange, "soz", 310),
+          ],
+        };
+      });
+    }
     if (tpl === "dizi") {
       // "Dizi" (kullanıcı önerisi, 2026-08-03): bir Fütûhât kısmının 3-4
       // alıntısını sırayla, tek bir kaynak başlığı altında gösteren daha
@@ -661,6 +693,7 @@
     esma:     { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
     benzetme: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
     fusus:    { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
+    miskat:   { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
     karsilastir: { loop: 8500, beats: [[0.09, 0.94], [0.22, 0.94]] },
     ozelgun:  { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
   };
@@ -880,6 +913,7 @@
   const ZEMIN_ANAHTAR  = "dost-share-zemin";
   const ISIK_ANAHTAR   = "dost-share-isik";
   const KARE_ANAHTAR   = "dost-share-kare";
+  const METINSIZ_ANAHTAR = "dost-share-metinsiz";
   const FAV_ANAHTAR    = "dost-share-fav";
   const KAYNAK_ANAHTAR = "dost-share-kaynak";
   const TARIH_ANAHTAR  = "dost-share-tarih";
@@ -889,6 +923,8 @@
   // Kullanıcı isteği (2026-08-02): kare (1:1) format seçeneği -- feed
   // paylaşımı için 9:16 dikey gereksiz uzun kalıyordu.
   let kareMod  = safeGet(KARE_ANAHTAR) === "1";
+  // Füsûs Halkası şablonu için düğüm-metinsiz seçenek (2026-08-16).
+  let metinsizMod = safeGet(METINSIZ_ANAHTAR) === "1";
   let kaynakId = safeGet(KAYNAK_ANAHTAR) || "all";
 
   function safeGet(k) {
@@ -920,15 +956,16 @@
     // "Füsûs Halkası" İÇERİK şablonu (scene.tpl === "fusus" -- bu, aşağıdaki
     // BACKDROP seçeneklerinden biri olan "Uzun sarmal" zemininden [z.id ===
     // "fusus"] AYRI bir kimlik, ikisi de "fusus" adını taşıdığı için
-    // karışıyor) bu genel prosedürel sarmal yerine kendi gerçek DostHelix
-    // sahnesini taşıyor (bkz. .share-stage__frame--fusus CSS'i, share-spiral/
-    // dot/halo'yu opacity:0 yapar) -- ama bu fonksiyon her karede KOŞULSUZ
-    // çalışıp aynı elemanlara satır-içi style.opacity yazıyordu, ki satır-içi
-    // stil her zaman sınıf kuralını eziyor. Sonuç: CSS'in gizlemeye çalıştığı
-    // eski sarmal, gerçek Füsûs sarmalının arkasında sönük sönük nefes
-    // alırken görünüyordu (2026-08-04 kullanıcı bildirimi). Bu şablonda hiç
-    // çizmeden erken çıkıyoruz.
-    if (scene && scene.tpl === "fusus") {
+    // karışıyor) ve aynı yöntemi paylaşan "Mişkât Sarmalı" (scene.tpl ===
+    // "miskat", 2026-08-16) bu genel prosedürel sarmal yerine kendi gerçek
+    // DostHelix sahnesini taşıyor (bkz. .share-stage__frame--fusus/--miskat
+    // CSS'i, share-spiral/dot/halo'yu opacity:0 yapar) -- ama bu fonksiyon
+    // her karede KOŞULSUZ çalışıp aynı elemanlara satır-içi style.opacity
+    // yazıyordu, ki satır-içi stil her zaman sınıf kuralını eziyor. Sonuç:
+    // CSS'in gizlemeye çalıştığı eski sarmal, gerçek grafiğin arkasında
+    // sönük sönük nefes alırken görünüyordu (2026-08-04 kullanıcı
+    // bildirimi, Füsûs için). Bu şablonlarda hiç çizmeden erken çıkıyoruz.
+    if (scene && (scene.tpl === "fusus" || scene.tpl === "miskat")) {
       if (cacheSpiral) cacheSpiral.setAttribute("d", "");
       if (cacheHalo) cacheHalo.style.opacity = "0";
       // display:none, opacity değil -- .share-zat-halo'nun CSS nefes
@@ -1099,9 +1136,10 @@
       // çifti arasında (grup içi, CSS'te daha dar) ayrı tutmak için sarma.
       return '<div class="share-line-group">' + primary + secondary + "</div>";
     }).join(s.tpl === "ikili" || s.tpl === "karsilastir" ? '<span class="share-rule" aria-hidden="true"></span>' : "");
-    // "Füsûs Halkası" şablonu, ambient sarmal yerine Füsûs bölümünün kendi
-    // 27-fass halkasını (DostHelix) taşıyor -- bkz. openStage/closeStage.
-    const helixMarkup = s.tpl === "fusus" ? '<div class="share-stage__helix" aria-hidden="true"></div>' : "";
+    // "Füsûs Halkası" ve "Mişkât Sarmalı" şablonları, ambient sarmal yerine
+    // kendi bölümlerinin gerçek DostHelix grafiğini taşıyor -- bkz.
+    // openStage/closeStage.
+    const helixMarkup = (s.tpl === "fusus" || s.tpl === "miskat") ? '<div class="share-stage__helix" aria-hidden="true"></div>' : "";
     return (
       '<div class="share-stage__frame share-stage__frame--' + s.tpl + '">' +
       '<svg class="share-stage__svg" aria-hidden="true">' +
@@ -1436,18 +1474,24 @@
     startTs = 0;
     rafId = requestAnimationFrame(frame);
 
-    if (s.tpl === "fusus" && s.helix && window.DostHelix) {
+    if ((s.tpl === "fusus" || s.tpl === "miskat") && s.helix && window.DostHelix) {
       const helixEl = stageEl.querySelector(".share-stage__helix");
       if (helixEl) {
         helixHandle = window.DostHelix.mount(helixEl, {
-          id: "share-fusus",
+          id: "share-" + s.tpl,
           nodes: s.helix.nodes,
           turns: 2.4,
           closing: false,
           hRatio: 1.05,
           maxH: 620,
           numbered: false,
-          labelMode: "sparse",
+          // Mişkât'ın 101 düğümü hepsi "active" -- "sparse" mod (yalnız
+          // vurgulu+odaktaki adı yazar) burada "hepsi" anlamına gelip aynı
+          // üst-üste-binme sorununu üretirdi (bkz. assets/helix.js:183-186,
+          // /miskat/ sayfası zaten bu yüzden "none" kullanıyor). Füsûs
+          // Halkası'nda ise "metinsiz" panel anahtarıyla kullanıcı kendi
+          // seçiyor (kullanıcı isteği, 2026-08-16).
+          labelMode: s.tpl === "miskat" ? "none" : (metinsizMod ? "none" : "sparse"),
           initialFocus: s.helix.initialFocus,
           // Sahne yalnız dekoratif -- düğüme tıklamanın site sayfasındaki
           // gibi bir not paneli açmasını istemiyoruz (kayıt/kart yakalama
@@ -1766,6 +1810,13 @@
       '<label class="share-panel__switch">' +
       '<input type="checkbox" data-action="ikidilli"' + (ikiDilliMod ? " checked" : "") + ">" +
       "<span>" + escapeHtml(tt(UI.ikiDilli)) + "</span></label>" +
+      // Düğüm metni yok -- yalnız Füsûs Halkası'nda anlamlı (kullanıcı
+      // isteği, 2026-08-16); Mişkât Sarmalı zaten hep etiketsiz.
+      (currentTpl === "fusus"
+        ? '<label class="share-panel__switch">' +
+          '<input type="checkbox" data-action="metinsiz"' + (metinsizMod ? " checked" : "") + ">" +
+          "<span>" + escapeHtml(tt(UI.metinsiz)) + "</span></label>"
+        : "") +
       (ikiDilliMod
         ? '<p class="share-panel__label">' + escapeHtml(tt(UI.ikinciDil)) + "</p>" +
           '<div class="share-panel__chips share-panel__chips--zemin">' + ikinciDilChips + "</div>"
@@ -1925,6 +1976,18 @@
       safeSet(KARE_ANAHTAR, kareMod ? "1" : "0");
       if (stageEl) stageEl.classList.toggle("share-stage--kare", kareMod);
     });
+
+    // Yalnız currentTpl === "fusus" iken panelde var -- bkz. buildPanel().
+    // Sahne her açılışta yeniden mount edildiği için (openStage) burada
+    // canlı bir yeniden çizim gerekmiyor, yalnız bir sonraki açılışta
+    // okunacak bayrağı kaydediyoruz.
+    const metinsizBox = panel.querySelector('[data-action="metinsiz"]');
+    if (metinsizBox) {
+      metinsizBox.addEventListener("change", function (e) {
+        metinsizMod = e.target.checked;
+        safeSet(METINSIZ_ANAHTAR, metinsizMod ? "1" : "0");
+      });
+    }
 
     panel.querySelector('[data-action="shuffle"]').addEventListener("click", refresh);
     const panelCloseBtn = panel.querySelector('[data-action="quit"]');
