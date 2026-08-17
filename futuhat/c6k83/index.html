@@ -16,19 +16,12 @@
      bunları yalnız gerçek HTTP başlığında tanıyor) -- GitHub Pages özel
      başlık desteklemediği için bu üçü buraya yazılmıyor (yazılırsa sessizce
      yok sayılır, tarayıcı konsoluna bir uyarı düşer, koruma sağlamaz). -->
-<!-- 2026-08-17 (uzman paneli denetimi sonrası CI'da bulundu): script-src
-     yalnız www.clarity.ms'e izin veriyordu, ama Clarity'nin kendi
-     yükleyicisi (aşağıdaki inline script) gerçek izleme paketini
-     scripts.clarity.ms'ten çekiyor, izleme pikselini de c.clarity.ms'ten
-     -- ikisi de bloklanıp konsolda CSP hatası veriyordu (js-smoke-test.js
-     bunu her rotada "console.error" olarak yakalayıp CI'yı kırıyordu).
-     connect-src'teki joker'iyle tutarlı olsun diye
-     script-src/img-src'e de aynı joker eklendi. -->
-<!-- 2026-08-17 (canlı CI çalıştırmasında ikinci bulgu): Clarity'nin izleme
-     pikseli c.clarity.ms değil, c.bing.com'dan geliyor (Clarity Microsoft'un
-     ürünü -- pikseli kendi Bing altyapısından senkronluyor). Bu, kum
-     havuzunda test edilemedi (ağ proxy'si clarity.ms'e bile ulaşamıyor,
-     gerçek zincir yalnız CI'nın gerçek internet erişiminde görüldü). -->
+<!-- Clarity'nin yükleyicisi (aşağıdaki inline script) tek bir domain'den
+     çalışmıyor: paketi scripts.clarity.ms'ten çeker, izleme pikselini ise
+     kendi domain'inden değil c.bing.com'dan senkronlar (Clarity Microsoft'un
+     ürünü, Bing altyapısını kullanıyor). script-src/img-src bu yüzden
+     www.clarity.ms yerine *.clarity.ms joker'ini ve ayrıca c.bing.com'u
+     içeriyor -- connect-src'teki jokerle tutarlı. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'">
 <!-- Gerçek path'lerle gezinme (bkz. 404.html) adres çubuğunu /futuhat/c1k9 gibi
      köke bağlı olmayan derinliklere taşıyor; bu <base> olmadan o an sayfadaki
