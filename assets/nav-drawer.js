@@ -37,12 +37,13 @@
   });
   updateLabel();
 
-  // GRUP COLLAPSE (2026-08-05). Nav konsolidasyonu drawer'ı 22 girdiden
-  // ~16'ya indirdi ve altı gruba topladı -- mobilde bu hâlâ, çekmecenin
-  // kendi max-height:auto kutusunda uzun bir kaydırma demek. Küçük/kaba
-  // işaretçili ekranlarda gruplar varsayılan KAPALI başlıyor, kullanıcının
-  // ŞU AN İÇİNDE olduğu grup hariç -- deep-link'le doğrudan örn.
-  // /hocalar/'a gelen biri kendi bölümünü kapalı bulmasın diye.
+  // GRUP COLLAPSE (2026-08-05, 2026-08-17 @revise: her ekranda varsayılan
+  // kapalı). Nav konsolidasyonu drawer'ı 22 girdiden ~16'ya indirdi ve
+  // altı gruba topladı -- bu hâlâ, çekmecenin kendi max-height:auto
+  // kutusunda uzun bir kaydırma demek. Gruplar ekran boyutundan bağımsız
+  // varsayılan KAPALI başlıyor, kullanıcının ŞU AN İÇİNDE olduğu grup
+  // hariç -- deep-link'le doğrudan örn. /hocalar/'a gelen biri kendi
+  // bölümünü kapalı bulmasın diye.
   //
   // Başlık gerçek bir <button> DEĞİL (<p role="button">): drawer'ın
   // "bir düğmeye tıklayınca kapan" dinleyicisi (aşağıda) closest("button")
@@ -53,8 +54,7 @@
       .filter((x) => x.baslik);
     if (!gruplar.length) return;
 
-    const collapseByDefault = window.matchMedia("(max-height: 700px)").matches
-      || window.matchMedia("(pointer: coarse)").matches;
+    const collapseByDefault = true;
 
     function ayarla(entry, kapali) {
       entry.g.classList.toggle("nav-drawer__group--collapsed", kapali);
