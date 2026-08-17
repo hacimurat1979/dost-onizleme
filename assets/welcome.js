@@ -4,10 +4,33 @@
   const root = document.getElementById("welcome-screen");
   if (!root) return;
 
+  // 2026-08-16 (uzman paneli denetimi, G-01/ONBOARDING-01): sessionStorage
+  // yerine localStorage -- ritüel cihaz başına bir kez gösterilsin, her
+  // yeni sekmede yeniden oynamasın.
   const SEEN_KEY = "dost-welcome-seen";
   let seen = false;
-  try { seen = !!sessionStorage.getItem(SEEN_KEY); } catch (e) {}
+  try { seen = !!localStorage.getItem(SEEN_KEY); } catch (e) {}
   if (seen) {
+    root.hidden = true;
+    return;
+  }
+
+  // Derin bir rotaya doğrudan gelindiğinde (paylaşılan link, arama sonucu)
+  // ritüel araya girmesin -- gateTransition'ın zaten benimsediği "gelinmemiş
+  // bir yerden çıkış animasyonu yalan olurdu" ilkesi karşılama ekranına da
+  // uygulanıyor. Kök rotanın kendisi <base href> yüzünden her dağıtımda
+  // (canlı "/", önizleme "/dost-onizleme/") farklı olabildiği için ROUTE_BASE
+  // buradan hesaplanıyor (bkz. assets/ontology.js'teki aynı desen). "Seen"
+  // OLARAK işaretlenmiyor -- kullanıcı ileride köke gelirse ritüeli yine görsün.
+  const ROUTE_BASE = (function () {
+    const baseEl = document.querySelector("base");
+    if (!baseEl) return "";
+    try {
+      const u = new URL(baseEl.getAttribute("href"), location.origin);
+      return u.pathname.replace(/\/+$/, "");
+    } catch (e) { return ""; }
+  })();
+  if (location.pathname.replace(/\/+$/, "") !== ROUTE_BASE) {
     root.hidden = true;
     return;
   }
@@ -43,7 +66,7 @@
   function leave() {
     if (root.classList.contains("welcome-screen--leaving") || root.hidden) return;
     root.classList.add("welcome-screen--leaving");
-    try { sessionStorage.setItem(SEEN_KEY, "1"); } catch (e) {}
+    try { localStorage.setItem(SEEN_KEY, "1"); } catch (e) {}
     // FAZ 1 (grafik-önce, 2026-08-03): karşılama halkası sönmeye BAŞLARKEN
     // haber veriyoruz ki altındaki ontoloji grafiği doğuş animasyonuna
     // (ontology.js runBirth) tam bu esnada başlasın — halka kaybolurken
@@ -90,28 +113,24 @@
     requestAnimationFrame(frame);
   }
 
+  // 2026-08-16 (uzman paneli denetimi, G-01): ilk tıklama/dokunuş artık
+  // doğrudan siteye girer -- "bir hareket her yerde aynı anlam" ilkesiyle
+  // uyumlu (tıklama = geç). Eskiden ilk tıklama yalnız halka çizimini
+  // tamamlıyordu, asıl girişe ikinci bir tıklama/bekleme gerekiyordu.
   skipBtn.addEventListener("click", (event) => {
     event.stopPropagation();
     finished = true;
     leave();
   });
   root.addEventListener("click", () => {
-    if (!finished) {
-      finished = true;
-      finish();
-    } else {
-      leave();
-    }
+    finished = true;
+    leave();
   });
   window.addEventListener("keydown", (event) => {
     if (root.hidden) return;
     if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
-      if (!finished) {
-        finished = true;
-        finish();
-      } else {
-        leave();
-      }
+      finished = true;
+      leave();
     }
   });
 

@@ -159,13 +159,24 @@ window.__eserAgiApp = (function () {
     const kenarG = kok.append("g").attr("class", "eser-agi-kenarler");
     const kenarSel = kenarG.selectAll("line.eser-agi-kenar").data(baglar, (d, i) => d.kaynak_id + "|" + i).join("line")
       .attr("class", "eser-agi-kenar")
+      .attr("pointer-events", "none")
+      .attr("x1", (d) => eserById.get(d.kaynak_id).x).attr("y1", axisY)
+      .attr("x2", (d) => eserById.get(d.hedef_id).x).attr("y2", axisY);
+
+    // İsabet şeridi (K-04/O-02, uzman paneli denetimi 2026-08-17): görünen
+    // çizgi çok ince, doğrudan onun üstünde tabindex/click taşımak dokunmatik
+    // ekranda tutturulmasını zorlaştırıyordu. ontology.js'teki path.link-hit
+    // deseniyle aynı -- görünmez, kalın (bkz. style.css .link-hit),
+    // etkileşimi taşıyan asıl şerit bu.
+    const hitSel = kenarG.selectAll("line.link-hit").data(baglar, (d, i) => d.kaynak_id + "|" + i).join("line")
+      .attr("class", "link-hit")
       .attr("tabindex", 0)
       .attr("role", "button")
       .attr("aria-label", (d) => edgeAriaLabel(d))
       .attr("x1", (d) => eserById.get(d.kaynak_id).x).attr("y1", axisY)
       .attr("x2", (d) => eserById.get(d.hedef_id).x).attr("y2", axisY);
 
-    kenarSel.on("mouseenter", function (ev, d) { vurgulaKenar(d, true); kenarIpucu(ev, d); })
+    hitSel.on("mouseenter", function (ev, d) { vurgulaKenar(d, true); kenarIpucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
       .on("mouseleave", function () { vurgulaKenar(null, false); GU.hideTooltip(tooltip); })
       .on("focus", function (ev, d) { vurgulaKenar(d, true); })

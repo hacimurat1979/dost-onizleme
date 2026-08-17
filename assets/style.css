@@ -738,25 +738,29 @@ a.btn-ghost { text-decoration: none; }
 [data-theme="light"] .theme-toggle__icon--moon { display: block; }
 [data-theme="dark"] .theme-toggle__icon--sun { display: block; }
 
-/* Ontoloji mobil alternatif liste (2026-08-10, G57 + rapor 16-A):
-   grafik mobilde okunmaz yumak olduğu için varsayılan liste. Mobilde
-   grafik gizli, "Haritayı aç" düğmesi gerçek grafiği açar. Masaüstünde
-   liste hep gizli. */
-.ontoloji-mobil-liste { display: none; }
-.ontoloji-mobil-liste__baslik {
+/* Mobil alternatif liste -- ortak yardımcı (GU.createMobileListFallback,
+   assets/graph-utils.js). Kaynak: Ontoloji'de tek başına doğrulanmış desen
+   (2026-08-10, G57 + rapor 16-A: grafik mobilde okunmaz yumak). Uzman
+   paneli denetiminin O-01/F4 bulgusu (2026-08-16) aynı kök nedenin Esmâ/
+   Sırlar'da da açık olduğunu gösterdi -- görünüm-özel sınıf adı yalnız dış
+   sarmalayıcıda (`*-mobil-liste`, `#esma-wrap`'in altında vb.) kalıyor, iç
+   yapı (`mobil-liste__*`) ve "haritayı aç" durumu (`grafik-acik`) artık
+   tek bir kural setiyle her `.graph-wrap` örneğine uygulanıyor. */
+[class$="-mobil-liste"] { display: none; }
+.mobil-liste__baslik {
   margin: 0 0 8px;
   font-family: var(--font-display);
   font-size: 1.15rem;
   color: var(--text-primary);
 }
-.ontoloji-mobil-liste__not {
+.mobil-liste__not {
   margin: 0 0 14px;
   font-size: 0.82rem;
   color: var(--text-secondary);
   line-height: 1.5;
 }
-.ontoloji-mobil-liste__ul { list-style: none; margin: 0; padding: 0; }
-.ontoloji-mobil-liste__satir {
+.mobil-liste__ul { list-style: none; margin: 0; padding: 0; }
+.mobil-liste__satir {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -772,25 +776,25 @@ a.btn-ghost { text-decoration: none; }
   color: inherit;
   min-height: 48px;
 }
-.ontoloji-mobil-liste__satir:hover,
-.ontoloji-mobil-liste__satir:focus-visible {
+.mobil-liste__satir:hover,
+.mobil-liste__satir:focus-visible {
   border-color: var(--accent-interactive);
   color: var(--accent-interactive);
 }
-.ontoloji-mobil-liste__pip {
+.mobil-liste__pip {
   flex: 0 0 auto;
   width: 12px; height: 12px;
   border-radius: 50%;
   margin-top: 4px;
   background: var(--series-ibnarabi);
 }
-.ontoloji-mobil-liste__pip--zat { background: var(--surface-1); border: 2px solid var(--helix-gold-rim); }
-.ontoloji-mobil-liste__pip--return { background: var(--series-theme); }
-.ontoloji-mobil-liste__pip--paradox { background: var(--series-daphne); }
-.ontoloji-mobil-liste__govde { flex: 1; min-width: 0; }
-.ontoloji-mobil-liste__ad { font-weight: 600; font-size: 0.95rem; }
-.ontoloji-mobil-liste__ozet { font-size: 0.82rem; color: var(--text-secondary); margin-top: 3px; line-height: 1.45; }
-.ontoloji-mobil-liste__grafik-btn {
+.mobil-liste__pip--zat { background: var(--surface-1); border: 2px solid var(--helix-gold-rim); }
+.mobil-liste__pip--return { background: var(--series-theme); }
+.mobil-liste__pip--paradox { background: var(--series-daphne); }
+.mobil-liste__govde { flex: 1; min-width: 0; }
+.mobil-liste__ad { font-weight: 600; font-size: 0.95rem; }
+.mobil-liste__ozet { font-size: 0.82rem; color: var(--text-secondary); margin-top: 3px; line-height: 1.45; }
+.mobil-liste__grafik-btn {
   display: block;
   width: 100%;
   padding: 10px;
@@ -802,27 +806,37 @@ a.btn-ghost { text-decoration: none; }
   font-size: 0.82rem;
   cursor: pointer;
 }
-.ontoloji-mobil-liste__grafik-btn:hover,
-.ontoloji-mobil-liste__grafik-btn:focus-visible {
+.mobil-liste__grafik-btn:hover,
+.mobil-liste__grafik-btn:focus-visible {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
 }
+/* Mobil-liste fallback'i şu an yalnız bu üç görünümde kurulu (Ontoloji
+   2026-08-10, Esmâ+Sırlar 2026-08-16 -- O-01/F4). Kalan ~8 grafik görünümü
+   (hal/sorular/kuran-dokusu/eser-agi/seyahat-atlasi/elestiri-arkeolojisi/
+   acik-sorular/bilmiyoruz/menziller/hocalar/yolculuk) HENÜZ kapsanmıyor --
+   bu yüzden kural genel `.graph-wrap` yerine burada AÇIKÇA listelenen
+   ID'lere uygulanıyor. Yeni bir görünüm GU.createMobileListFallback ile
+   donatıldığında ID'si buraya eklenmeli; aksi hâlde bu seçici genel
+   `.graph-wrap`'e genişletilirse kapsanmayan görünümlerin mobilde TÜM
+   içeriği (yerine koyacak liste olmadan) gizlenir. */
 @media (max-width: 640px) {
-  #ontology-wrap:not(.ontoloji-grafik-acik) > #graph,
-  #ontology-wrap:not(.ontoloji-grafik-acik) > .graph-recenter,
-  #ontology-wrap:not(.ontoloji-grafik-acik) > .graph-hint,
-  #ontology-wrap:not(.ontoloji-grafik-acik) > #legend,
-  #ontology-wrap:not(.ontoloji-grafik-acik) > .graph-3d-toggle,
-  #ontology-wrap:not(.ontoloji-grafik-acik) > .graph-confidence-toggle,
-  #ontology-wrap:not(.ontoloji-grafik-acik) > .graph-fca-btn,
-  #ontology-wrap:not(.ontoloji-grafik-acik) > .start-hint { display: none !important; }
-  #ontology-wrap:not(.ontoloji-grafik-acik) {
+  #ontology-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
+  #esma-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
+  #sirlar-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status) {
+    display: none !important;
+  }
+  #ontology-wrap:not(.grafik-acik),
+  #esma-wrap:not(.grafik-acik),
+  #sirlar-wrap:not(.grafik-acik) {
     height: auto;
     min-height: 0;
     padding: 16px 14px 24px;
     overflow: visible;
   }
-  #ontology-wrap:not(.ontoloji-grafik-acik) .ontoloji-mobil-liste { display: block; }
+  #ontology-wrap:not(.grafik-acik) [class$="-mobil-liste"],
+  #esma-wrap:not(.grafik-acik) [class$="-mobil-liste"],
+  #sirlar-wrap:not(.grafik-acik) [class$="-mobil-liste"] { display: block; }
 }
 
 /* Sessiz Mod: sabit, dairesel bir anahtar -- açıkken üst menüyü kaldırır.
@@ -2564,6 +2578,13 @@ button.futuhat-part-chip:hover {
   0%, 45%  { stroke: var(--series-theme); stroke-width: 5px; }
   50%, 95% { stroke: var(--gridline); stroke-width: 3px; }
   100%     { stroke: var(--series-theme); stroke-width: 5px; }
+}
+/* MOTION-01 (uzman paneli denetimi, 2026-08-17): futuhat.js zaten
+   reduceMotion iken bu sınıfı hiç eklemiyor (bkz. renderNobet) -- bu
+   kural, sitenin diğer 40 CSS animasyonuyla aynı ikili güvenceyi
+   (JS + CSS) kuruyor. */
+@media (prefers-reduced-motion: reduce) {
+  .futuhat-nobet__arc--glow { animation: none; }
 }
 .futuhat-nobet__arc--static-a {
   stroke: var(--series-theme);
@@ -5181,7 +5202,12 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 
 .welcome-screen__tagline-line--pt {
   font-size: clamp(0.7rem, 2.1vw, 0.8rem);
-  color: rgba(245,234,208,0.42);
+  /* K-08 (uzman paneli denetimi, 2026-08-17): 0.42 opaklık bu koyu
+     zeminde ~3.6:1 kontrast veriyordu, WCAG AA'nın normal metin için
+     istediği 4.5:1'in altında. 0.5'e çıkarıldı (~4.6:1) -- TR/EN/PT
+     soluklaşma sırası (bilinçli tasarım) korunuyor, PT hâlâ üçünün en
+     soluğu, ama artık okunaklı. */
+  color: rgba(245,234,208,0.5);
   margin-top: 2px;
 }
 

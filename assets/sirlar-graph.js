@@ -758,9 +758,45 @@
 
   GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });
 
+  function goToEntry(id) {
+    if (window.__dostNav && typeof window.__dostNav.goTo === "function") {
+      window.__dostNav.goTo("sirlar", id);
+    } else {
+      const base = window.__dostRouteBase || "";
+      history.pushState(null, "", base + "/sirlar/" + id);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    }
+  }
+
+  // 2026-08-16 (uzman paneli denetimi, O-01/F4): 104 kenarlı grafik mobilde
+  // okunmuyor -- Ontoloji'nin G57 çözümüyle aynı desen. Kayıtlar temaya göre
+  // gruplanıyor (THEME_ORDER); sirlar.json'ın kendi label/topic alanları
+  // helper'ın name/short beklentisine burada eşleniyor.
+  const sirlarMobilListe = GU.createMobileListFallback({
+    wrapEl: wrapEl,
+    listEl: document.getElementById("sirlar-mobil-liste"),
+    fetchUrl: "data/ibn-arabi/sirlar.json",
+    extractNodes: (d) => (d.entries || []).map((e) => ({ id: e.id, name: e.label, short: e.topic, theme: e.theme })),
+    groupBy: (n) => n.theme,
+    groupOrder: THEME_ORDER,
+    groupTitle: (theme) => THEME_LABELS[theme],
+    title: { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" },
+    note: {
+      tr: "Grafiği okumak için ekran dar geldi — kayıtlar burada tema başlıklarıyla listede. Bir başlığa dokun, paneli oku.",
+      en: "The graph does not fit this narrow screen — the records are here as a list, under their themes. Tap a title to read its panel.",
+      pt: "O gráfico não cabe neste ecrã estreito — os registos estão aqui como lista, sob os seus temas. Toque num título para ler o painel.",
+    },
+    graphButtonLabel: {
+      tr: "Haritayı aç (grafiği göster)",
+      en: "Open the map (show the graph)",
+      pt: "Abrir o mapa (mostrar o grafo)",
+    },
+    goTo: goToEntry,
+  });
+
   window.__sirlarGraphApp = {
     activate() { fetchData().then((data) => { if (!data) return; if (!built) buildGraph(data); else ensureFrame(); }); },
-    onLangChange() { if (built) { muteCache.clear(); render(performance.now()); } },
+    onLangChange() { if (built) { muteCache.clear(); render(performance.now()); } if (sirlarMobilListe) sirlarMobilListe.onLangChange(); },
     isFocused() { return !!focusedTheme; },
     unfocusTheme() { if (focusedTheme) exitReading(); },
   };

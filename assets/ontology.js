@@ -1272,7 +1272,19 @@
     // istenebiliyor, hatta id'siz bir görünüm de ("/esma/") aynı şekilde
     // sondaki slaş'la gelebiliyor -- baştaki/sondaki slaş'ları ayıklayıp
     // geriye boş kalırsa id'yi undefined yap.
-    const id = restRaw ? (restRaw.replace(/^\//, "").replace(/\/$/, "") || undefined) : undefined;
+    let id = restRaw ? (restRaw.replace(/^\//, "").replace(/\/$/, "") || undefined) : undefined;
+    // XSS-01/02 (uzman paneli denetimi, 2026-08-17): id buradan yaklaşık
+    // kırk ayrı görünümün "data-id"/"data-view" içeren şablon dizesine
+    // (escape'lenmeden) akıyor. Normalde bu veri dosyalarından (güvenilir)
+    // geliyor, ama BURADAKİ id tarayıcı adres çubuğundan geliyor --
+    // 404.html'in ?p= yeniden yazması + history.replaceState ile
+    // saldırganın kurduğu bir bağlantı, gerçek bir veri kaydına hiç
+    // uğramadan buraya rastgele metin taşıyabilir. Güven sınırı burası:
+    // sitedeki gerçek id'lerin hepsi bu kalıba uyuyor (harf/rakam/tire/alt
+    // çizgi, "edge/nodeA-nodeB" gibi tek düzey iç eğik çizgiyle) --
+    // uymayan her şey (tırnak, açı ayracı, & vb. taşıyan) id'siz görünüm
+    // durumuna düşürülüyor, hiçbir render fonksiyonuna ulaşmıyor.
+    if (id && !/^[a-zA-Z0-9_-]+(\/[a-zA-Z0-9_-]+)?$/.test(id)) id = undefined;
     updateMeta(view);
     if (view === "ontoloji") goToOntologyNode(id);
     else if (view === "esma") goToEsma(id);

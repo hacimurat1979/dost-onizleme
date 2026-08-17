@@ -149,11 +149,27 @@ window.__kuranDokusuApp = (function () {
       .attr("class", "kuran-dokusu-kenar")
       .attr("d", kenarYolu)
       .attr("fill", "none")
+      .attr("pointer-events", "none")
       .attr("stroke-width", (d) => 1 + d.agirlik * 0.6);
 
-    kenarSel.on("mouseenter", function (ev, d) { vurgula(d.sureNo, d.view + "/" + d.id, true); kenarIpucu(ev, d); })
+    // İsabet şeridi (K-04/O-02, uzman paneli denetimi 2026-08-17): görünen
+    // çizgi 1-2px, fareyle/parmakla tutturmak zordu. ontology.js'teki
+    // path.link-hit deseniyle aynı -- görünmez, kalın (bkz. style.css
+    // .link-hit), etkileşimi taşıyan asıl şerit bu; görünen çizgi yalnız
+    // çizim (pointer-events kapalı, yukarıda).
+    const hitSel = kenarG.selectAll("path.link-hit").data(kenarlar, (d) => d.sureNo + "|" + d.view + "|" + d.id).join("path")
+      .attr("class", "link-hit")
+      .attr("d", kenarYolu)
+      .attr("fill", "none")
+      .attr("tabindex", 0)
+      .attr("role", "img")
+      .attr("aria-label", (d) => kenarAriaLabel(d));
+
+    hitSel.on("mouseenter", function (ev, d) { vurgula(d.sureNo, d.view + "/" + d.id, true); kenarIpucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
-      .on("mouseleave", function () { vurgula(null, null, false); GU.hideTooltip(tooltip); });
+      .on("mouseleave", function () { vurgula(null, null, false); GU.hideTooltip(tooltip); })
+      .on("focus", function (ev, d) { vurgula(d.sureNo, d.view + "/" + d.id, true); kenarIpucu(ev, d); })
+      .on("blur", function () { vurgula(null, null, false); GU.hideTooltip(tooltip); });
 
     // Sûre düğümleri (dış halka)
     const sureG = kok.append("g").attr("class", "kuran-dokusu-sureler");
@@ -254,6 +270,12 @@ window.__kuranDokusuApp = (function () {
     tooltip.innerHTML = `<strong>${tt(d.title)}</strong><span class="node-hover-tip__meta">${d.atifSayisi} ${tt({ tr: "atıf", en: "citation", pt: "citação" })}</span>`;
     tooltip.hidden = false;
     GU.moveTooltip(tooltip, wrapEl, ev);
+  }
+  function kenarAriaLabel(d) {
+    const s = sureByNo.get(d.sureNo), b = babById.get(d.view + "/" + d.id);
+    const sureAdi = s ? tt(s.ad) : d.sureNo;
+    const babBaslik = b ? tt(b.title) : d.id;
+    return `${sureAdi} → ${babBaslik} (${d.ayetler.length} ${tt({ tr: "âyet atfı", en: "verse citations", pt: "citações de versículo" })})`;
   }
   function kenarIpucu(ev, d) {
     const s = sureByNo.get(d.sureNo), b = babById.get(d.view + "/" + d.id);

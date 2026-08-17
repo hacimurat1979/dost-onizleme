@@ -16,6 +16,19 @@
      bunları yalnız gerçek HTTP başlığında tanıyor) -- GitHub Pages özel
      başlık desteklemediği için bu üçü buraya yazılmıyor (yazılırsa sessizce
      yok sayılır, tarayıcı konsoluna bir uyarı düşer, koruma sağlamaz). -->
+<!-- 2026-08-17 (uzman paneli denetimi sonrası CI'da bulundu): script-src
+     yalnız www.clarity.ms'e izin veriyordu, ama Clarity'nin kendi
+     yükleyicisi (aşağıdaki inline script) gerçek izleme paketini
+     scripts.clarity.ms'ten çekiyor, izleme pikselini de c.clarity.ms'ten
+     -- ikisi de bloklanıp konsolda CSP hatası veriyordu (js-smoke-test.js
+     bunu her rotada "console.error" olarak yakalayıp CI'yı kırıyordu).
+     connect-src'teki joker'iyle tutarlı olsun diye
+     script-src/img-src'e de aynı joker eklendi. -->
+<!-- 2026-08-17 (canlı CI çalıştırmasında ikinci bulgu): Clarity'nin izleme
+     pikseli c.clarity.ms değil, c.bing.com'dan geliyor (Clarity Microsoft'un
+     ürünü -- pikseli kendi Bing altyapısından senkronluyor). Bu, kum
+     havuzunda test edilemedi (ağ proxy'si clarity.ms'e bile ulaşamıyor,
+     gerçek zincir yalnız CI'nın gerçek internet erişiminde görüldü). -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'">
 <!-- Gerçek path'lerle gezinme (bkz. 404.html) adres çubuğunu /futuhat/c1k9 gibi
      köke bağlı olmayan derinliklere taşıyor; bu <base> olmadan o an sayfadaki
@@ -26,7 +39,7 @@
 <base href="/dost-onizleme/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>[ÖNİZLEME] Dost Arabî — Âlem-i Misâl (Hayal)</title>
-<meta name="description" content="Âlem-i Misâl (Hayal) kavramının Fütûhât-ı Mekkiyye ve Füsûsu&#x27;l-Hikem boyunca izini süren, veriden türetilmiş bir hayat özeti.">
+<meta name="description" content="Ne saf ruh kadar soyut, ne beden kadar kesif olan bir ara mertebe olarak okunur: rüyalarda, sembollerde ve mânevî görülerde tecrübe edilen &#x27;hayal âlemi&#x27;. İbn…">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://dostarabi.com/kavram/ontoloji/alem-misal/">
 
@@ -41,7 +54,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dost Arabî">
 <meta property="og:title" content="Dost Arabî — Âlem-i Misâl (Hayal)">
-<meta property="og:description" content="Âlem-i Misâl (Hayal) kavramının Fütûhât-ı Mekkiyye ve Füsûsu&#x27;l-Hikem boyunca izini süren, veriden türetilmiş bir hayat özeti.">
+<meta property="og:description" content="Ne saf ruh kadar soyut, ne beden kadar kesif olan bir ara mertebe olarak okunur: rüyalarda, sembollerde ve mânevî görülerde tecrübe edilen &#x27;hayal âlemi&#x27;. İbn…">
 <meta property="og:url" content="https://dostarabi.com/kavram/ontoloji/alem-misal/">
 <meta property="og:image" content="https://dostarabi.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -52,7 +65,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Dost Arabî — Âlem-i Misâl (Hayal)">
-<meta name="twitter:description" content="Âlem-i Misâl (Hayal) kavramının Fütûhât-ı Mekkiyye ve Füsûsu&#x27;l-Hikem boyunca izini süren, veriden türetilmiş bir hayat özeti.">
+<meta name="twitter:description" content="Ne saf ruh kadar soyut, ne beden kadar kesif olan bir ara mertebe olarak okunur: rüyalarda, sembollerde ve mânevî görülerde tecrübe edilen &#x27;hayal âlemi&#x27;. İbn…">
 <meta name="twitter:image" content="https://dostarabi.com/assets/og-image.png">
 
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -120,12 +133,22 @@
       try {
         var params = new URLSearchParams(location.search);
         var redirect = params.get("p");
-        if (redirect) history.replaceState(null, "", redirect);
+        // XSS-01/02 (uzman paneli denetimi, 2026-08-17): redirect burada
+        // tarayıcı adres çubuğundan geliyor, doğrulanmadan
+        // history.replaceState'e geçiyordu -- güven sınırı burası. Aynı
+        // kökene ait, "/" ile başlayan, "//" ile başlamayan (protokol-
+        // görece adres taklidi) ve HTML/URL özel karakteri taşımayan bir
+        // yol dışındaki her şey yok sayılıyor. (İkinci katman: ontology.js
+        // parseHashAndGo() bu yoldan çıkan id'yi ayrıca kendi kalıbıyla
+        // doğruluyor.)
+        if (redirect && /^\/(?!\/)[a-zA-Z0-9\-_./%]*$/.test(redirect)) {
+          history.replaceState(null, "", redirect);
+        }
       } catch (e) {}
     })();
   </script>
   <h1 class="sr-only" data-tr="Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası" data-en="Dost Arabî — A Map of Muhyiddin Ibn Arabi's Ontology" data-pt="Dost Arabî — Um Mapa da Ontologia de Muhyiddin Ibn Arabi">Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası</h1>
-  <a class="skip-link" href="#main-content" data-tr="İçeriğe atla" data-en="Skip to content" data-pt="Pular para o conteúdo">İçeriğe atla</a><noscript><h2>Âlem-i Misâl (Hayal)</h2><p>Ne saf ruh kadar soyut, ne beden kadar kesif olan bir ara mertebe olarak okunur: rüyalarda, sembollerde ve mânevî görülerde tecrübe edilen &#x27;hayal âlemi&#x27;. İbn Arabî&#x27;nin sisteminde &#x27;berzah&#x27; (iki karşıt hâli aynı anda taşıyan ara varlık) kavramının en somut örneği gibi görünüyor - bu yüzden hem ruhu hem bedeni birbirine bağlayan bir menteşe konumunda okunabilir.</p></noscript>
+  <a class="skip-link" href="#main-content" data-tr="İçeriğe atla" data-en="Skip to content" data-pt="Pular para o conteúdo">İçeriğe atla</a><noscript><h2>Âlem-i Misâl (Hayal)</h2><p>Ne saf ruh kadar soyut, ne beden kadar kesif olan bir ara mertebe olarak okunur: rüyalarda, sembollerde ve mânevî görülerde tecrübe edilen &#x27;hayal âlemi&#x27;. İbn Arabî&#x27;nin sisteminde &#x27;berzah&#x27; (iki karşıt hâli aynı anda taşıyan ara varlık) kavramının en somut örneği gibi görünüyor - bu yüzden hem ruhu hem bedeni birbirine bağlayan bir menteşe konumunda okunabilir.</p><nav aria-label="İlgili kavramlar"><ul><li><a href="kavram/ontoloji/alem-ervah/">Âlem-i Ervâh</a></li><li><a href="kavram/ontoloji/alem-ecsam/">Âlem-i Ecsâm (Şehâdet)</a></li><li><a href="kavram/ontoloji/insan-i-kamil/">İnsan-ı Kâmil</a></li></ul></nav></noscript>
   <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
     <defs>
       <radialGradient id="node-sheen" cx="34%" cy="28%" r="72%">
@@ -172,7 +195,7 @@
     </div>
     <button class="welcome-screen__skip" id="welcome-skip" type="button" aria-label="Geç / Skip / Pular">Geç · Skip · Pular</button>
   </div>
-  <script src="assets/welcome.js" integrity="sha384-YzVVdAndTMiESAm0pNfqKol87tCu8iUkx8f2BkpctANxyKZmsDLfZN/GgYniRL6N"></script>
+  <script src="assets/welcome.js" integrity="sha384-Gh1pwp27PZJ8ml4AF1y8zYh7/bPvAk8JcIrciJu8cLt6y0XpJpFRmXYIC4hyLS7M"></script>
   <header class="app-header">
     <div class="app-header__controls">
       <!-- FAZ 1 (grafik-önce arayüz, 2026-08-03): 14 eşit ağırlıklı sekme
@@ -347,6 +370,10 @@
     <section class="graph-wrap" id="esma-wrap" hidden>
       <svg id="esma-graph" role="group" aria-label="Esmâü'l-Hüsnâ haritası"
            data-tr-aria-label="Esmâü'l-Hüsnâ haritası" data-en-aria-label="Map of the Beautiful Names" data-pt-aria-label="Mapa dos Belos Nomes"></svg>
+      <!-- 2026-08-16 (uzman paneli denetimi, O-01/F4): 101 düğümlü grafik
+           mobilde okunmuyor -- Ontoloji'nin G57 çözümüyle aynı mobil-liste
+           alternatifi (bkz. GU.createMobileListFallback, assets/esma.js). -->
+      <nav class="esma-mobil-liste" id="esma-mobil-liste" aria-label="Esmâ: isim listesi (mobil alternatif)" data-tr-aria-label="Esmâ: isim listesi (mobil alternatif)" data-en-aria-label="Divine Names: name list (mobile alternative)" data-pt-aria-label="Nomes Divinos: lista de nomes (alternativa móvel)"></nav>
       <div class="view-status" id="esma-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
         <p class="view-status__text"></p>
@@ -491,6 +518,10 @@
     <section class="graph-wrap" id="sirlar-wrap" hidden>
       <svg id="sirlar-graph" role="group" aria-label="Sırlar haritası"
            data-tr-aria-label="Sırlar haritası" data-en-aria-label="Map of secrets" data-pt-aria-label="Mapa dos segredos"></svg>
+      <!-- 2026-08-16 (uzman paneli denetimi, O-01/F4): 104 kenarlı grafik
+           mobilde okunmuyor -- Ontoloji'nin G57 çözümüyle aynı mobil-liste
+           alternatifi (bkz. GU.createMobileListFallback, assets/sirlar-graph.js). -->
+      <nav class="sirlar-mobil-liste" id="sirlar-mobil-liste" aria-label="Sırlar: kayıt listesi (mobil alternatif)" data-tr-aria-label="Sırlar: kayıt listesi (mobil alternatif)" data-en-aria-label="Mysteries: record list (mobile alternative)" data-pt-aria-label="Mistérios: lista de registos (alternativa móvel)"></nav>
       <div class="view-status" id="sirlar-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
         <p class="view-status__text"></p>
@@ -1371,6 +1402,12 @@ mesmo antes que o assombro exista."></blockquote>
             </article>
           </div>
         </div>
+        <div class="hakkinda-content__section">
+          <h3 data-tr="Site ve Gizlilik" data-en="Site &amp; Privacy" data-pt="Site e Privacidade">Site ve Gizlilik</h3>
+          <p class="hakkinda-gizlilik" data-tr="Bu site, ziyaretleri anlamak için Google Analytics (GA4) ve Microsoft Clarity kullanır — hangi sayfaların okunduğu, oturum süresi gibi toplu, kimliksiz kullanım verisi toplanır. Kişisel bilgi istenmez, üçüncü taraflara satılmaz."
+             data-en="This site uses Google Analytics (GA4) and Microsoft Clarity to understand visits — aggregate, non-identifying usage data such as which pages are read and session length. No personal information is requested or sold to third parties."
+             data-pt="Este site usa Google Analytics (GA4) e Microsoft Clarity para entender as visitas — dados de uso agregados e não identificáveis, como quais páginas são lidas e a duração da sessão. Nenhuma informação pessoal é solicitada ou vendida a terceiros.">Bu site, ziyaretleri anlamak için Google Analytics (GA4) ve Microsoft Clarity kullanır — hangi sayfaların okunduğu, oturum süresi gibi toplu, kimliksiz kullanım verisi toplanır. Kişisel bilgi istenmez, üçüncü taraflara satılmaz.</p>
+        </div>
       </div>
       </div>
       <div id="siirler-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-siirler" hidden>
@@ -1601,7 +1638,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/vendor/d3.min.js" defer integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i"></script>
   <script src="assets/i18n.js" defer integrity="sha384-bqPgHDorfYKkI+ErvFXEAGead8E3pDVsel6p3S9LkyxoY1QRWrMrTUpeiooWejvL"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
-  <script src="assets/graph-utils.js" defer integrity="sha384-m3kyDfoI8HQ5GgINB1c+2H4JQhNMB55LcqrtAHuRm/iRzH9eKwon3ApPaYcMaFc5"></script>
+  <script src="assets/graph-utils.js" defer integrity="sha384-Zado0trtoHlepCiNjIh8NJwtGtm9PHExthaXFKFhgU9i6G87chZPbUOfPtkw39uz"></script>
   <!-- nav-drawer.js graph-utils.js'ten SONRA gelmeli (2026-08-15): artık
        açılışta GU.registerStepBack çağırıyor. -->
   <script src="assets/nav-drawer.js" defer integrity="sha384-4idNbjiUMnddv77MS/DP19EyhfuP1tOGQ8qWlFwIyAOc5tIKyGLUcIKW3Lsu9TDk"></script>
@@ -1625,13 +1662,13 @@ mesmo antes que o assombro exista."></blockquote>
   <!-- esma/hal/terimler/sorular/menziller/futuhat: assets/view-loader.js'in
        VIEWS haritasında tembel yükleniyor (2026-08-15), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-7oplQXB4j768sNWFpXo20/7YtZx7KAxEa8SUOPDAJW9B0OlSs5Ny5hRGq8skeVpa"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-o9N15xF5G7M9kG8IkZ1VvcoR8iyCxGgNJ0Fl7tqFTJpLypJiWdzeICYoYwTO5wNs"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-O4KnFrK8MhlsuzqLrsFqpkfsyvKemVW7ECUFXMJy9aiUcjPQjVLWY4A7lhLaoCHY"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-sPardFFpsbxJtWntqYdn0nJ5Fi2Nd0NlszSu6oxP6EV0L6FENPywvEWo6hp1aczQ"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>
   <!-- 2026-08-10 denetim (G57 + rapor 16-A): mobil için grafik yerine liste. -->
-  <script src="assets/ontoloji-mobil-liste.js" defer integrity="sha384-YvQpuu2GLrdXPHaUaSFqgKxXtVoFbZRpxltW8rJRyvXa6QDIS1CBTf7h1LIDm9WD"></script>
+  <script src="assets/ontoloji-mobil-liste.js" defer integrity="sha384-89v27eX+GOKBTOIYrW1qeCvlXhZx7skXR08uXcC1jZXZCHhnKvcfyU5HscvJMdDX"></script>
   <script src="assets/secret-nav.js" defer integrity="sha384-bxSN300rzY5eTjVk6TAWQVedjEJKuWieA2pZLzqq8xZNFBtlkjahenZSN2Jhiuut"></script>
   <script src="assets/edit-mode.js" defer integrity="sha384-7iXPGrWLrIsGmzLLGg2VO5KH/04WinMik9uxQrDgIDKeBqiGPMDkwcG00Faa7WvN"></script>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in

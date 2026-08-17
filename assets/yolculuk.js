@@ -242,7 +242,10 @@ window.__yolculukApp = (function () {
       .attr("aria-label", (d) => d.eser);
     eserSel.each(function (d) {
       const node = d3.select(this);
-      node.append("circle").attr("class", "yolculuk-eser__vurus").attr("r", 10).attr("fill", "transparent");
+      // K-04/O-02 (uzman paneli denetimi 2026-08-17): 10px yarıçap
+      // durağın kendi isabet dairesinden (18px) belirgin küçüktü, aynı
+      // görünümde iki farklı dokunma hedefi boyutu tutarsızlık yaratıyordu.
+      node.append("circle").attr("class", "yolculuk-eser__vurus").attr("r", 13).attr("fill", "transparent");
       if (d.ozel === "katalog") {
         node.append("path").attr("class", "yolculuk-eser__isaret")
           .attr("d", "M0,-5 L5,0 L0,5 L-5,0 Z");

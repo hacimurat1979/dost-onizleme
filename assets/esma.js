@@ -1887,6 +1887,32 @@
   // Sekme arkaya alınıp geri gelindiğinde döngü yeniden uyansın.
   GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });
 
+  // 2026-08-16 (uzman paneli denetimi, O-01/F4): 101 düğümlü grafik mobilde
+  // okunmuyor -- Ontoloji'nin G57 çözümüyle aynı desen, GU.createMobileListFallback
+  // üzerinden. celâl/cemâl/kemâl dağılımı veri yüklenmeden bilinmediği için
+  // statik id listesi yerine groupBy kullanılıyor.
+  const esmaMobilListe = GU.createMobileListFallback({
+    wrapEl: wrapEl,
+    listEl: document.getElementById("esma-mobil-liste"),
+    fetchUrl: "data/ibn-arabi/esma.json",
+    extractNodes: (d) => (d.nodes || []).filter((n) => n.id !== "zat"),
+    groupBy: (n) => n.pole || "neutral",
+    groupOrder: ["kemal", "cemal", "celal", "neutral"],
+    groupTitle: (pole) => POLE_LABEL[pole] || POLE_LABEL.neutral,
+    title: { tr: "Esmâü'l-Hüsnâ", en: "The Beautiful Names", pt: "Os Belos Nomes" },
+    note: {
+      tr: "Grafiği okumak için ekran dar geldi — yüz bir isim burada Celâl/Cemâl/Kemâl gruplarıyla listede. Bir isme dokun, paneli oku.",
+      en: "The graph does not fit this narrow screen — the hundred and one Names are here as a list, grouped by Jalal/Jamal/Kamal. Tap a Name to read its panel.",
+      pt: "O gráfico não cabe neste ecrã estreito — os cento e um Nomes estão aqui como lista, agrupados por Jalal/Jamal/Kamal. Toque num Nome para ler o painel.",
+    },
+    graphButtonLabel: {
+      tr: "Haritayı aç (grafiği göster)",
+      en: "Open the map (show the graph)",
+      pt: "Abrir o mapa (mostrar o grafo)",
+    },
+    goTo: goToNode,
+  });
+
   window.__esmaApp = {
     activate() {
       fetchData().then((data) => { if (!data) return; if (!built) buildAll(data); else { ensureFrame(); } });
@@ -1902,6 +1928,7 @@
       else if (currentDetailIsZat) showZatDetail();
       else if (currentDetailRelation) showRelationDetail(currentDetailRelation);
       render();
+      if (esmaMobilListe) esmaMobilListe.onLangChange();
     },
   };
 })();

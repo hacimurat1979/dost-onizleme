@@ -696,5 +696,130 @@ window.DostGraphUtils = (function () {
     };
   }
 
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize };
+  // Mobil alternatif liste (kaynak: assets/ontoloji-mobil-liste.js, G57
+  // CONFIRMED, 2026-08-10) -- D3 force-graph'lar dar ekranda okunmuyor;
+  // "Bu bir kimlik değil, bir kolaylık" duruşuyla aynı veriyi düz bir
+  // listeye çeviriyor, "Haritayı aç" düğmesi gerçek grafiği yine sunuyor.
+  // Ontoloji'de tek başına doğrulanmış desen; uzman paneli denetiminin
+  // O-01/F4 bulgusu (2026-08-16) aynı kök nedenin en az 8 başka görünümde
+  // (başta Esmâ'nın 101 düğümü, Sırlar'ın 104 kenarı) açık kaldığını
+  // gösterdi -- burada tek yardımcıya çıkarılıyor ki yayılması dosya
+  // başına yeniden yazmak yerine bir çağrı olsun.
+  //
+  // opts: {
+  //   wrapEl, listEl, mediaQuery (ops., vars. "(max-width: 640px)"),
+  //   fetchUrl, extractNodes(data) -> [{id, name:{tr,en,pt}, short:{tr,en,pt}}],
+  //   groups (ops.): [{title:{tr,en,pt}|null, ids:[...]}] -- statik gruplama
+  //     (id'ler veri yüklenmeden biliniyorsa, ör. Ontoloji'nin OMURGA/YAN'ı).
+  //   groupBy(node)->anahtar, groupOrder:[anahtar,...] (ops.), groupTitle(anahtar)
+  //     ->{tr,en,pt} (ops.) -- dinamik gruplama (id'ler veri yüklenmeden
+  //     bilinmiyorsa, ör. Esmâ'nın celâl/cemâl/kemâl dağılımı). `groups`
+  //     verilmişse bu üçü yok sayılır.
+  //   groups/groupBy hiçbiri verilmezse: tek, başlıksız grup (düğümler
+  //     extractNodes sırasıyla).
+  //   pipClass(node) (ops.): satır işaretine ek sınıf.
+  //   title:{tr,en,pt}, note:{tr,en,pt}, graphButtonLabel:{tr,en,pt},
+  //   goTo(id): düğüme git,
+  //   onGraphOpen(): "Haritayı aç" tıklanınca (resize dispatch çağırana kalır).
+  // }
+  function createMobileListFallback(opts) {
+    const wrapEl = opts.wrapEl, listEl = opts.listEl;
+    if (!wrapEl || !listEl) return null;
+    const I18n = window.DostI18n;
+    function tt(v) {
+      if (I18n && typeof I18n.pick3 === "function") return I18n.pick3(v || {});
+      return (v && (v.tr || v.en || v.pt)) || "";
+    }
+    let sonNodes = null;
+
+    function satirHtml(node) {
+      const ad = tt(node.name);
+      const ozet = tt(node.short);
+      const pip = (opts.pipClass && opts.pipClass(node)) || "";
+      return `<li><button class="mobil-liste__satir" type="button" data-id="${node.id}">
+        <span class="mobil-liste__pip ${pip}"></span>
+        <span class="mobil-liste__govde">
+          <span class="mobil-liste__ad">${ad}</span>
+          ${ozet ? `<span class="mobil-liste__ozet">${ozet}</span>` : ""}
+        </span>
+      </button></li>`;
+    }
+
+    function groupsHtml(nodes) {
+      const byId = new Map(nodes.map((n) => [n.id, n]));
+      let gruplar = opts.groups;
+      if (!gruplar && opts.groupBy) {
+        // Esmâ tarzı: gruplar veri yüklenmeden bilinmiyor (celâl/cemâl/kemâl
+        // dağılımı), o yüzden statik id listesi yerine düğüm başına anahtar
+        // üreten bir fonksiyon + sabit sıra veriliyor.
+        const byKey = new Map();
+        nodes.forEach((n) => {
+          const k = opts.groupBy(n);
+          if (!byKey.has(k)) byKey.set(k, []);
+          byKey.get(k).push(n.id);
+        });
+        const order = opts.groupOrder || Array.from(byKey.keys());
+        gruplar = order.filter((k) => byKey.has(k)).map((k) => ({
+          title: opts.groupTitle ? opts.groupTitle(k) : null,
+          ids: byKey.get(k),
+        }));
+      }
+      if (gruplar) {
+        const bilinenler = new Set(gruplar.flatMap((g) => g.ids));
+        const kalanlar = nodes.filter((n) => !bilinenler.has(n.id));
+        if (kalanlar.length) gruplar = gruplar.concat([{ title: null, ids: kalanlar.map((n) => n.id) }]);
+      } else {
+        gruplar = [{ title: null, ids: nodes.map((n) => n.id) }];
+      }
+      return gruplar.map((g, i) => {
+        const gnodes = g.ids.map((id) => byId.get(id)).filter(Boolean);
+        if (!gnodes.length) return "";
+        const baslik = g.title
+          ? `<h3 class="mobil-liste__baslik" style="font-size:0.95rem;margin-top:${i ? "18px" : "0"}">${tt(g.title)}</h3>`
+          : "";
+        return baslik + `<ul class="mobil-liste__ul">${gnodes.map(satirHtml).join("")}</ul>`;
+      }).join("");
+    }
+
+    function doldur(nodes) {
+      sonNodes = nodes;
+      listEl.innerHTML = `
+        <h2 class="mobil-liste__baslik">${tt(opts.title)}</h2>
+        <p class="mobil-liste__not">${tt(opts.note)}</p>
+        ${groupsHtml(nodes)}
+        <button class="mobil-liste__grafik-btn" type="button">${tt(opts.graphButtonLabel)}</button>
+      `;
+      listEl.querySelectorAll(".mobil-liste__satir").forEach((btn) => {
+        btn.addEventListener("click", () => opts.goTo(btn.dataset.id));
+      });
+      const grafikBtn = listEl.querySelector(".mobil-liste__grafik-btn");
+      if (grafikBtn) {
+        grafikBtn.addEventListener("click", () => {
+          wrapEl.classList.add("grafik-acik");
+          requestAnimationFrame(() => {
+            if (opts.onGraphOpen) opts.onGraphOpen();
+            else window.dispatchEvent(new Event("resize"));
+          });
+        });
+      }
+    }
+
+    function yukle() {
+      fetchJson(opts.fetchUrl).then((d) => doldur(opts.extractNodes(d) || [])).catch(() => {
+        // Sessizce başarısız ol: masaüstünde liste zaten hiç gösterilmez.
+      });
+    }
+
+    const mq = window.matchMedia(opts.mediaQuery || "(max-width: 640px)");
+    if (mq.matches) {
+      yukle();
+    } else {
+      const kez = () => { if (mq.matches) { yukle(); mq.removeEventListener("change", kez); } };
+      mq.addEventListener("change", kez);
+    }
+
+    return { onLangChange: () => { if (sonNodes) doldur(sonNodes); } };
+  }
+
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback };
 })();
