@@ -61,29 +61,46 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
   box-shadow:0 4px 24px rgba(0,0,0,.25)}
 .stage svg{width:100%;height:100%;display:block}
 
-/* Aynanın çerçevesi -- HİÇ DEĞİŞMEZ. */
-.cerceve{fill:none;stroke:var(--cerceve);stroke-width:2.2;opacity:0}
+/* Aynanın çerçevesi -- Kapoor eklemesi: tam yansıtırken silikleşir. */
+.cerceve{fill:none;stroke:var(--cerceve);stroke-width:2.2;opacity:0;transition:opacity 1.7s ease}
 /* Aynanın iç yüzeyi -- boş hâlde bile "ışıklı" (koyu değil, sıcak). */
-.ic{opacity:0}
+.ic{opacity:0;transition:opacity 1.7s ease}
+
+/* Kamera: CSS transform (SVG transform ÖZNİTELİĞİ değil) -- yalnız böyle
+   ölçüler arası geçiş CSS transition ile yumuşar. Merkez aynanın
+   merkeziyle aynı (330,180), viewBox birimlerinde. */
+#kamera{transform-origin:330px 180px;transition:transform 2.2s ease}
 
 /* Suretler -- aynanın içinde beliren siluetler. Fill'li, iç detaylı;
    bir "yansıma" olarak silik ama tanınır. Tek başlarına belirir,
    tek başlarına söner. */
-.suret{opacity:0}
+.suret{opacity:0;transition:opacity 1.8s ease}
 .suret path, .suret ellipse{stroke-linecap:round;stroke-linejoin:round}
 
 /* Ortak ışığa erime anında (K4) — bütün suretlerin ortak sıcak ışığı. */
-.tek-isik{opacity:0}
+.tek-isik{opacity:0;transition:opacity 1.7s ease}
 
-.tekrar-alan{margin-top:1.2rem;min-height:2.2rem;display:flex;justify-content:center}
-.tekrar-btn{display:none;align-items:center;gap:.4rem;padding:.45rem 1.1rem;
-  min-height:40px;border-radius:999px;background:transparent;
-  color:var(--muted);border:1px solid var(--border);
-  font-family:inherit;font-size:.82rem;cursor:pointer;
-  transition:color .2s,border-color .2s}
-.tekrar-btn.gorunur{display:inline-flex}
-.tekrar-btn:hover,.tekrar-btn:focus-visible{color:var(--gold);border-color:var(--gold);outline:none}
-.tekrar-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.fan-caption{width:min(560px,96vw);text-align:center;font-size:.86rem;line-height:1.75;color:var(--text);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;margin:1.1rem auto 0}
+.fan-caption.show{opacity:1;transform:none}
+
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.5rem;margin-bottom:.8rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--muted);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--gold);color:var(--text)}
+
+.sahne-kunye{width:min(560px,96vw);margin:0 auto 1rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
+.sahne-kunye summary{cursor:pointer;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
+.sahne-kunye summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.sahne-metni{list-style:none;margin-top:.7rem}
+.sahne-metni li{margin-bottom:.65rem;font-style:italic}
+
+.stage:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+@media(prefers-reduced-motion:no-preference){
+  #cerceve.nefes-al{animation:aynaNefes 7s ease-in-out infinite}
+}
+@keyframes aynaNefes{0%,100%{opacity:1}50%{opacity:.82}}
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
   overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -112,7 +129,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
   <p class="sub" id="hSub">Bir ayna, sayısız suret.</p>
 </header>
 
-<div class="stage" role="img" aria-labelledby="hTitle" aria-describedby="sceneDesc">
+<div class="stage" role="img" aria-labelledby="hTitle" aria-describedby="sceneDesc" tabindex="0">
   <p id="sceneDesc" class="sr-only">
     Karanlık bir alanda antik bir ayna belirir. Aynanın içinde art arda
     farklı suretler görünür: dağ, yaprak, alev, ağaç, yıldızlı gece, bir
@@ -168,9 +185,10 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
            değiştirir. -->
     </defs>
 
-    <!-- KAMERA GRUBU: bütün sahne bunun altında; GSAP ile hafif zoom
-         yapılır (kamera yavaşça aynaya yaklaşır). -->
-    <g id="kamera" transform="translate(330 180) scale(1) translate(-330 -180)">
+    <!-- KAMERA GRUBU: bütün sahne bunun altında; motor ölçüleri arasında
+         CSS transform (style.transform) ile hafif zoom yapılır (kamera
+         yavaşça aynaya yaklaşır). -->
+    <g id="kamera">
 
       <!-- AYNA -->
       <g id="ayna">
@@ -305,42 +323,86 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
   </svg>
 </div>
 
-<div class="tekrar-alan">
-  <button type="button" class="tekrar-btn" id="tekrar" aria-label="Sahneyi tekrar oynat">
-    <span aria-hidden="true">↻</span> <span id="tekrarMetin">Tekrar</span>
-  </button>
-</div>
+<p class="fan-caption" id="aynaCaption"></p>
+<div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
 
-<script src="vendor/gsap.min.js" crossorigin="anonymous"></script>
+<div id="kunyeYuvasi"></div>
+
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. diğer
+     motorlanmış sahneler aynı düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
-// Alt başlık ve düğme metinleri -- üç dilli. Sahne içinde metin YOK.
+// Alt başlık metinleri -- üç dilli. Sahne İÇİNDE metin yalnız son
+// ölçüde (tek aha-cümlesi, partisyondan gelir); "Metin yok" duruşu
+// büyük ölçüde korunur.
 const LA = {
   tr:{title:"Ayna Metaforu",
       sub:"Bir ayna, sayısız suret.",
-      tekrar:"Tekrar", geri:"Sahneler"},
+      geri:"Sahneler",
+      kunyeBaslik:"Künye — bu sahne nereden geliyor?"},
   en:{title:"Mirror Metaphor",
       sub:"One mirror, countless forms.",
-      tekrar:"Replay", geri:"Scenes"},
+      geri:"Scenes",
+      kunyeBaslik:"Sources — where this scene comes from"},
   pt:{title:"Metáfora do Espelho",
       sub:"Um espelho, incontáveis formas.",
-      tekrar:"Repetir", geri:"Cenas"}
+      geri:"Cenas",
+      kunyeBaslik:"Fontes — de onde vem esta cena"}
+};
+
+// Künye: felsefi-terimler.json "mazhar" terimi, aynanın aynı benzetmesini
+// zaten taşıyordu -- yeni bir kaynak icat edilmiyor, var olanı alıntılıyor.
+const KUNYE_QUOTES = {
+  tr:[
+    {text:"Tam bilemesek de, bir aynayı düşünmek yaklaşmamıza yardım ediyor: güneş aynada “görünür” ama ayna güneşin sebebi ya da sonucu değildir, sadece onun göründüğü yerdir (mazhardır). İbn Arabî'ye göre her yaratılmış şey, Allah'ın bir ismi için böyle bir aynadır -- biz bunu ancak bu benzetmeyle sezebiliyoruz.", src:"felsefi-terimler.json, “mazhar”"},
+    {text:"İsim aynada görünür ama ayna, ismin ne sebebi ne sonucudur — sadece göründüğü yerdir.", src:"felsefi-terimler.json, “mazhar” diyagram notu (Fütûhât VI, 10665'e dayanır)"},
+  ],
+  en:[
+    {text:"We can't fully know this, but a mirror may help us draw near: the sun “appears” in the mirror, yet the mirror is neither the cause nor the effect of the sun — it is simply the place where it appears (its mazhar). According to Ibn Arabi, every created thing is such a mirror for one of God's Names; we can only sense this, not prove it.", src:"felsefi-terimler.json, “mazhar”"},
+    {text:"The Name appears in the mirror, but the mirror is neither the Name's cause nor effect — only where it appears.", src:"felsefi-terimler.json, “mazhar” diagram note (based on Futuhat VI, 10665)"},
+  ],
+  pt:[
+    {text:"Não sabemos isso ao certo, mas um espelho talvez nos aproxime: o sol “aparece” no espelho, mas o espelho não é a causa nem o efeito do sol — é simplesmente o lugar onde ele aparece (seu mazhar). Segundo Ibn Arabi, cada coisa criada é um espelho assim para um dos Nomes de Deus; só conseguimos pressentir isso, não prová-lo.", src:"felsefi-terimler.json, “mazhar”"},
+    {text:"O Nome aparece no espelho, mas o espelho não é nem a causa nem o efeito do Nome — apenas onde ele aparece.", src:"felsefi-terimler.json, “mazhar” nota do diagrama (baseado em Futuhat VI, 10665)"},
+  ],
 };
 
 const $ = id => document.getElementById(id);
 let curLang = "tr";
 try { const l = localStorage.getItem("dost-lang"); if(LA[l]) curLang = l; } catch(e){}
 
+function kunyeOlustur(container, baslikObj){
+  const det=document.createElement('details'); det.className='sahne-kunye';
+  const sum=document.createElement('summary'); det.appendChild(sum);
+  const ol=document.createElement('ol'); ol.className='sahne-metni'; det.appendChild(ol);
+  container.appendChild(det);
+  return { el:det, guncelle:function(l){
+    sum.textContent=(baslikObj&&(baslikObj[l]||baslikObj.tr))||'Künye';
+    ol.innerHTML='';
+    (KUNYE_QUOTES[l]||KUNYE_QUOTES.tr).forEach(function(q){
+      const li=document.createElement('li');
+      li.textContent=q.text+' — '+q.src;
+      ol.appendChild(li);
+    });
+  }};
+}
+const kunye=kunyeOlustur($('kunyeYuvasi'), {tr:LA.tr.kunyeBaslik,en:LA.en.kunyeBaslik,pt:LA.pt.kunyeBaslik});
+
+let sonMetin=null;
 function setLang(l){
   if(!LA[l]) return;
   curLang = l;
   const d = LA[l];
   $("hTitle").textContent = d.title;
   $("hSub").textContent = d.sub;
-  $("tekrarMetin").textContent = d.tekrar;
   document.documentElement.setAttribute("lang", l);
   const geri = document.querySelector(".sahne-geri");
   if(geri){ const s = geri.querySelector(".sahne-geri-metin");
     if(s) s.textContent = d.geri; }
+  if(sonMetin) $('aynaCaption').textContent = sonMetin[curLang]||sonMetin.tr;
+  kunye.guncelle(curLang);
 }
 setLang(curLang);
 
@@ -349,110 +411,68 @@ window.addEventListener("message", function(e){
 });
 
 // ── SAHNE ──────────────────────────────────────────────────────────
-// ~17 sn, 5 mantıksal kare. Tek fikir: ayna sabit; suretler değişir.
-//   K1 (0.0-2.5): ayna karanlıktan belirir. Çerçeve ve iç yüzey.
-//   K2 (2.5-14.5): 6 suret art arda -- yumuşak CROSSFADE ile birinden
-//                 diğerine dönüşür. Her suret 3.2 sn görünür (appear
-//                 1.2, hold 0.8, disappear 1.2), sonraki 1.7 sn sonra
-//                 başlar -- 1.5 sn overlap crossfade.
-//                 Kamera hafif yaklaşır (scale 1.0 → 1.08).
-//   K3 (14.5-15.8): 6 suret kısa bir an düşük opasitede bir arada.
-//   K4 (15.8-16.8): hepsi ortak sıcak bir ışığa eriyor.
-//   K5 (16.8-17.5): ayna yine boş, sadece iç ışık. Kamera durur (1.0'a).
-const gsap = window.gsap;
-const SURETLER = ["#s1","#s2","#s3","#s4","#s5","#s6"];
+// Tek fikir: ayna sabit; suretler değişir. Kapoor eklemesi: bir suret
+// tam görünürken (hal.suret dolu) çerçeve+iç yüzey SİLİKLEŞİR -- "ayna
+// kendini göstermez, gösterdiğini gösterir". Boşken (ilk/son ölçü)
+// çerçeve/iç tam varlığını geri kazanır. hedef_hal KÜMÜLATİF: her ölçü
+// yalnız kendi değişen anahtarlarını taşır (bkz. kandil/kalbe-sigan/
+// uc-kap aynı desen).
+const SURETLER = ["s1","s2","s3","s4","s5","s6"];
+const cercevEl=$('cerceve'), icEl=$('ic'), kameraEl=$('kamera'), tekIsikEl=$('tekIsik');
+const suretEls={}; SURETLER.forEach(function(id){ suretEls[id]=$(id); });
 
-function sonKare(){
-  gsap.set("#cerceve", {opacity:0.9});
-  gsap.set("#ic", {opacity:1});
-  gsap.set(SURETLER, {opacity:0});
-  gsap.set("#tekIsik", {opacity:0});
-  gsap.set("#kamera", {scale:1, transformOrigin:"330px 180px"});
-  $("tekrar").classList.add("gorunur");
-}
-
-if(!gsap){
-  // GSAP yüklenmediyse: son kareye kilitle.
-  var c=$("cerceve"); if(c) c.style.opacity=0.9;
-  var i=$("ic"); if(i) i.style.opacity=1;
-  ["s1","s2","s3","s4","s5","s6","tekIsik"].forEach(function(id){
-    var e=$(id); if(e) e.style.opacity=0;
+let sonHal={};
+function uygulaHal(hamHal){
+  sonHal=Object.assign({}, sonHal, hamHal);
+  if(sonHal.cerceve!==undefined) cercevEl.style.opacity=sonHal.cerceve;
+  if(sonHal.ic!==undefined) icEl.style.opacity=sonHal.ic;
+  if(sonHal.tekIsik!==undefined) tekIsikEl.style.opacity=sonHal.tekIsik;
+  if(sonHal.kamera!==undefined) kameraEl.style.transform='scale('+sonHal.kamera+')';
+  SURETLER.forEach(function(id){
+    var hedef = sonHal.suret==='hepsi' ? 0.32 : (sonHal.suret===id ? 0.9 : 0);
+    suretEls[id].style.opacity=hedef;
   });
-  $("tekrar").classList.add("gorunur");
+  cercevEl.classList.toggle('nefes-al', !!sonHal.nefes);
 }
 
-const azHareket = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-function baslangica(){
-  gsap.set("#cerceve", {opacity:0});
-  gsap.set("#ic", {opacity:0});
-  gsap.set(SURETLER, {opacity:0});
-  gsap.set("#tekIsik", {opacity:0});
-  gsap.set("#kamera", {scale:0.92, transformOrigin:"330px 180px"});
-  $("tekrar").classList.remove("gorunur");
+function metinYaz(m){
+  sonMetin=m;
+  const t=m?(m[curLang]||m.tr||''):'';
+  $('aynaCaption').classList.remove('show');
+  window.setTimeout(function(){
+    $('aynaCaption').textContent=t;
+    if(t) $('aynaCaption').classList.add('show');
+  }, t?150:0);
 }
 
-function oynat(){
-  if(!gsap) return;
-  if(azHareket){ sonKare(); return; }
-  baslangica();
-  const tl = gsap.timeline({delay:1.5});
-
-  // K1 (0.0-2.5): ayna karanlıktan belirir. Uzun, yumuşak bir belirme.
-  // Kamera 0.92'den 1.0'a. İç yüzey önce, çerçeve arkasından netleşir.
-  tl.to("#kamera", {scale:1.0, duration:2.5, ease:"power2.out"}, 0);
-  tl.to("#ic",     {opacity:1, duration:2.2, ease:"power1.out"}, 0.1);
-  tl.to("#cerceve",{opacity:0.9, duration:2.0, ease:"power2.out"}, 0.4);
-
-  // K2 (2.5-14.5): 6 suret art arda CROSSFADE ile. Her suret 3.2 sn
-  // görünür (appear 1.2, hold 0.8, disappear 1.2). Bir sonraki 1.7 sn
-  // sonra başlar -- ilk yaklaşık 1.5 sn eskisi hâlâ sönerken yeni
-  // beliriyor. Birinden diğerine yavaşça DÖNÜŞÜM.
-  // Kamera aynada hafif yakınlaşır (1.0 → 1.08).
-  tl.to("#kamera", {scale:1.08, duration:12.0, ease:"sine.inOut"}, 2.5);
-
-  var t = 2.5;
-  var perSuret = 1.7;   // sonraki suretin başlangıç aralığı
-  var appear = 1.2, hold = 0.8, disappear = 1.2;
-  for(var i=0; i<SURETLER.length; i++){
-    var sid = SURETLER[i];
-    tl.to(sid, {opacity:0.9, duration:appear, ease:"sine.inOut"}, t);
-    tl.to(sid, {opacity:0, duration:disappear, ease:"sine.inOut"}, t + appear + hold);
-    t += perSuret;
-  }
-  // Son suret (S6): t=2.5 + 5*1.7 = 11.0. appear→12.2, hold→13.0,
-  // disappear→14.2. K3 başlangıcı 14.5.
-
-  // K3 (14.5-15.8): 6 suret düşük opasitede bir arada -- "hepsi aynı
-  // aynada yaşadı" duygusu. Yumuşak, uzun bir buluşma.
-  tl.to(SURETLER, {opacity:0.32, duration:1.2, ease:"sine.inOut"}, 14.5);
-
-  // K4 (15.8-16.8): hepsi ortak sıcak bir ışığa eriyor.
-  tl.to(SURETLER, {opacity:0, duration:1.0, ease:"sine.inOut"}, 15.8);
-  tl.to("#tekIsik", {opacity:0.95, duration:1.0, ease:"power2.out"}, 15.8);
-
-  // K5 (16.8-17.5): tek-ışık geri çekilir, ayna yine boş kalır.
-  // Kamera durur (1.08 → 1.0 -- son bakışta "tümü görünsün").
-  tl.to("#tekIsik", {opacity:0, duration:0.6, ease:"power1.inOut"}, 16.8);
-  tl.to("#kamera",  {scale:1.0, duration:0.7, ease:"sine.inOut"}, 16.7);
-  tl.call(function(){ $("tekrar").classList.add("gorunur"); }, null, 17.5);
-}
-
-if(document.visibilityState === "visible"){
-  oynat();
-} else {
-  document.addEventListener("visibilitychange", function once(){
-    if(document.visibilityState === "visible"){
-      document.removeEventListener("visibilitychange", once);
-      oynat();
-    }
+let motorAPI=null;
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/ayna-metaforu.json').then(function(r){ return r.json(); }).then(function(p){
+    motorAPI=window.__sahneMotoru.yarat({
+      container:document.querySelector('.stage'), partisyon:p,
+      applyOlcu:function(o){ uygulaHal(o.hedef_hal||{}); },
+      metinGoster:metinYaz,
+      olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if(ev.tip==='bitti') document.body.classList.add('sahne-bitti');
+      },
+    });
   });
-}
+})();
 
-$("tekrar").addEventListener("click", function(){
-  if(gsap) gsap.killTweensOf(["#cerceve","#ic","#tekIsik","#kamera"].concat(SURETLER));
-  oynat();
-  $("tekrar").blur();
+// Klavye: sahneye odaklanınca boşluk duraklat/devam, ok tuşları ölçüler
+// arasında gezer -- diğer motorlanmış sahnelerle aynı genel kontrol
+// yüzeyi (bu sahnenin kendine özgü sürükleme/slider'ı hiç yoktu).
+const stageEl=document.querySelector('.stage');
+stageEl.addEventListener('keydown', function(e){
+  if(!motorAPI) return;
+  if(e.key===' '){ e.preventDefault(); if(motorAPI.durum==='oynuyor') motorAPI.pause(); else if(motorAPI.durum==='durakli') motorAPI.resume(); return; }
+  const y={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(y===undefined) return;
+  e.preventDefault();
+  motorAPI.gotoOlcu(Math.max(0, Math.min(motorAPI.olcuSayisi-1, motorAPI.aktifIdx+y)));
 });
 </script>
 
