@@ -23,6 +23,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 .stage-wrap{position:relative;width:min(640px,92vw);aspect-ratio:16/10;margin:.5rem auto 1rem;background:var(--pa);border:1px solid var(--bo);border-radius:12px;overflow:hidden}
 #scene{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hint{position:absolute;top:12px;right:16px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);animation:ks-pulse 3s ease-in-out 1.2s 3}
+#ksGok,#ksYer,#ksKalpDis,#ksKalpIci,#ksOuterContent,#ksOuterBound{transition:opacity 1.6s ease}
 
 .track-wrap{width:min(560px,92vw);margin:0 auto}
 .track-labels{display:flex;justify-content:space-between;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:.5rem}
@@ -34,12 +35,26 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 #slider:focus{outline:none}
 #slider:focus-visible::-webkit-slider-thumb,#slider:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--am)}
 
-.caption-wrap{width:min(560px,92vw);margin:.75rem auto 0;text-align:center;opacity:0;animation:ks-caption .9s 1s ease-out forwards}
+.caption-wrap{width:min(560px,92vw);margin:.75rem auto 0;text-align:center;opacity:0;transition:opacity 1s ease}
+.caption-wrap.gorunur{opacity:1}
 .caption{font-size:.88rem;line-height:1.75;color:var(--tx);min-height:3.2em}
 
-@keyframes ks-caption{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 @keyframes ks-pulse{0%,100%{opacity:.55}50%{opacity:1}}
-@media(prefers-reduced-motion:reduce){.hint{animation:none}.caption-wrap{animation:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.hint{animation:none}}
+
+.track-wrap,.hint{opacity:0;max-height:0;overflow:hidden;transition:opacity .5s ease}
+body.sahne-bitti .track-wrap,body.sahne-bitti .hint{opacity:1;max-height:80px}
+
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.5rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--mu);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--bo);color:var(--mu);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--am);color:var(--tx)}
+
+@media(prefers-reduced-motion:no-preference){
+  .ks-nefes{animation:ksNefes 7s ease-in-out infinite}
+}
+@keyframes ksNefes{0%,100%{opacity:1}50%{opacity:.85}}
 
 .sahne-kunye{width:min(560px,92vw);margin-top:1.2rem;background:var(--pa);border:1px solid var(--bo);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
 .sahne-kunye summary{cursor:pointer;color:var(--mu);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
@@ -72,7 +87,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 
 <div class="sw">
   <div class="stage-wrap">
-    <svg id="scene" viewBox="0 0 1600 1000" role="group" aria-label="Çevre uzaklaştıkça sönen bir alan; ortadaki kap hiç değişmeden duruyor">
+    <svg id="scene" viewBox="0 0 1600 1000" role="group" aria-label="Kendi kendini anlatan sahne: taşan aydınlık, boş kalan iki büyük kap, dışı kadar parlayan küçük bir kalp">
       <defs>
         <radialGradient id="ksKapGlow" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stop-color="var(--go)" stop-opacity="0.95"/>
@@ -88,13 +103,26 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
         <g id="ksOuterContent"></g>
       </g>
 
-      <!-- Kap: sabit boyut, sabit yoğunluk. Kaydırıcı ne kadar oynatılırsa
-           oynatılsın bu grup hiç değişmez — "ne büyür ne söner". -->
-      <g>
-        <circle cx="800" cy="500" r="120" fill="url(#ksKapGlow)"></circle>
-        <circle cx="800" cy="500" r="28" fill="var(--go)"></circle>
-        <circle cx="800" cy="500" r="28" fill="none" stroke="var(--tx)" stroke-width="2"></circle>
-        <circle cx="800" cy="500" r="6" fill="var(--tx)"></circle>
+      <!-- Üç kap: gök ve yer aydınlanır ama içleri boş kalır (yalnız ana
+           hat + soluk hâle); kalp aydınlanınca içi de dışarısı kadar
+           parlar (dolgu + çekirdek de belirir). Kaydırıcı (kendim
+           gezineyim kipi) yalnız dış alanı ölçekler -- bu üç grup ondan
+           bağımsız, motorun kendi ölçülerine göre değişir. -->
+      <g id="ksGok" opacity="0" transform="translate(800 260)">
+        <circle r="70" fill="url(#ksKapGlow)" opacity="0.4"></circle>
+        <circle r="22" fill="none" stroke="var(--tx)" stroke-width="1.6"></circle>
+      </g>
+      <g id="ksYer" opacity="0" transform="translate(800 740)">
+        <circle r="70" fill="url(#ksKapGlow)" opacity="0.4"></circle>
+        <circle r="22" fill="none" stroke="var(--tx)" stroke-width="1.6"></circle>
+      </g>
+      <g id="ksKalpDis" opacity="0" transform="translate(800 500)">
+        <circle r="30" fill="none" stroke="var(--tx)" stroke-width="2"></circle>
+      </g>
+      <g id="ksKalpIci" opacity="0" transform="translate(800 500)">
+        <circle r="120" fill="url(#ksKapGlow)"></circle>
+        <circle r="28" fill="var(--go)"></circle>
+        <circle r="6" fill="var(--tx)"></circle>
       </g>
     </svg>
     <div class="hint" id="hint"><span id="hintText"></span></div>
@@ -107,6 +135,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
     </div>
     <input id="slider" type="range" min="0" max="100" value="20" aria-label="Dış alanın ölçeği">
   </div>
+  <div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
   <div class="caption-wrap" id="captionWrap">
     <p class="caption" id="caption" aria-live="polite"></p>
   </div>
@@ -114,12 +143,17 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
   <div id="kunyeYuvasi"></div>
 </div>
 
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. hayret.html/
+     kandil.html aynı düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const L={
   tr:{
     title:'Sığmayanın Sığdığı',
     sub:'"Beni yerim ve göğüm sığdıramadı, mümin kulumun kalbi sığdırdı." — kudsî hadis, dört ciltte',
-    hint:'Sürükle', near:'Dar', far:'Uçsuz',
+    hint:'Sahne durdu — dış alanı artık sen ölçekle', near:'Dar', far:'Uçsuz',
     sliderLabel:'Dış alanın ölçeği',
     caption:'Dış alan büyüdükçe yoğunluğu düşer; küçüldükçe artar. Ortadaki kap ise ne büyür ne söner — sığmaz görünen ona sığar, hacim işi değildir.',
     kunyeBaslik:'Künye — bu sahne nereden geliyor?',
@@ -128,7 +162,7 @@ const L={
   en:{
     title:'What Cannot Be Contained, Contained',
     sub:'"Neither My earth nor My heaven contained Me, but the heart of My believing servant did." — a divine hadith across four volumes',
-    hint:'Drag', near:'Narrow', far:'Vast',
+    hint:'The scene has settled — now scale the outer field yourself', near:'Narrow', far:'Vast',
     sliderLabel:'Scale of the outer field',
     caption:'As the outer field widens, its brightness thins; as it narrows, it swells. The vessel at the center neither grows nor dims — what cannot fit is held by it, and it is not a matter of volume.',
     kunyeBaslik:'Sources — where this scene comes from',
@@ -137,7 +171,7 @@ const L={
   pt:{
     title:'O que Não Cabe, Cabendo',
     sub:'"Nem a Minha terra nem o Meu céu Me contiveram, mas o coração do Meu servente crente conteve." — um hadith divino em quatro volumes',
-    hint:'Arraste', near:'Estreito', far:'Vasto',
+    hint:'A cena parou — agora dimensione você mesmo a área externa', near:'Estreito', far:'Vasto',
     sliderLabel:'Escala do campo externo',
     caption:'À medida que a área externa se alarga, sua intensidade se dilui; ao estreitar-se, aumenta. O vaso central nem cresce nem se apaga — o que não caberia nele cabe, e isso não é uma questão de volume.',
     kunyeBaslik:'Fontes — de onde vem esta cena',
@@ -191,11 +225,13 @@ function setLang(l){
   $('hintText').textContent=d.hint;
   $('lblNear').textContent=d.near;
   $('lblFar').textContent=d.far;
-  $('caption').textContent=d.caption;
+  if(sonMetin) $('caption').textContent=sonMetin[l]||sonMetin.tr;
   $('slider').setAttribute('aria-label', d.sliderLabel);
   kunye.guncelle(l);
   if(dortYerLabelEl) dortYerLabelEl.textContent=d.dortYerLabel;
+  sahneMetniniGuncelle();
 }
+let sonMetin=null;
 
 // ── Sahne: dış alan uzaklaştıkça sönüyor, kap hiç değişmiyor ───────────────
 // GORSEL_DIL.md: soyut ok yok, iç içe eşmerkezli çember yok, sahte 3B yok.
@@ -264,17 +300,97 @@ function apply(v){
 }
 
 slider.addEventListener('input', e=>{
+  if(!document.body.classList.contains('sahne-bitti')) return;
   apply(+e.target.value);
   if(hint) hint.style.animation='none';
 });
-apply(+slider.value);
 
-const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(reduced){
-  slider.value=55; apply(55);
-  $('captionWrap').style.animation='none'; $('captionWrap').style.opacity='1';
-  if(hint) hint.style.animation='none';
+// ── Ölçü hedef_hal'leri kümülatiftir (her ölçü yalnız kendi değişen
+// anahtarlarını taşır) -- sonHal deseni, bkz. hayret.html/kandil.html/
+// uc-kap.html. ──────────────────────────────────────────────────────────
+const ksGok=$('ksGok'), ksYer=$('ksYer'), ksKalpDis=$('ksKalpDis'), ksKalpIci=$('ksKalpIci');
+let sonHal={};
+function uygulaHal(hamHal){
+  sonHal=Object.assign({}, sonHal, hamHal);
+  const hal=sonHal;
+  const disAydinlik=hal.disAydinlik!==undefined?hal.disAydinlik:0;
+  outerContent.setAttribute('opacity', disAydinlik.toFixed(3));
+  outerBound.setAttribute('opacity', (disAydinlik*0.6).toFixed(3));
+  ksGok.setAttribute('opacity', String(hal.gokKap!==undefined?hal.gokKap:0));
+  ksYer.setAttribute('opacity', String(hal.yerKap!==undefined?hal.yerKap:0));
+  ksKalpDis.setAttribute('opacity', String(hal.kalp!==undefined?hal.kalp:0));
+  ksKalpIci.setAttribute('opacity', String(hal.kalpIci!==undefined?hal.kalpIci:0));
+  ksKalpIci.classList.toggle('ks-nefes', !!hal.nefes);
 }
+
+let sahneMetniEl=null, partisyonRef=null;
+function sahneMetniniKur(){
+  if(sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl=document.createElement('ol');
+  sahneMetniEl.className='sahne-metni';
+  kunye.el.appendChild(sahneMetniEl);
+  sahneMetniniGuncelle();
+}
+function sahneMetniniGuncelle(){
+  if(!sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl.innerHTML='';
+  partisyonRef.olcuLer.forEach(function(o){
+    if(!o.metin) return;
+    const li=document.createElement('li');
+    li.textContent=o.metin[lang]||o.metin.tr;
+    sahneMetniEl.appendChild(li);
+  });
+}
+
+function metinYaz(m){
+  sonMetin=m;
+  const t=m?(m[lang]||m.tr||''):'';
+  $('captionWrap').classList.remove('gorunur');
+  window.setTimeout(function(){
+    $('caption').textContent=t;
+    if(t) $('captionWrap').classList.add('gorunur');
+  }, t?150:0);
+}
+
+let motorAPI=null, reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/kalbe-sigan.json').then(function(r){ return r.json(); }).then(function(p){
+    partisyonRef=p;
+    sahneMetniniKur();
+    motorAPI=window.__sahneMotoru.yarat({
+      container:document.querySelector('.stage-wrap'), partisyon:p,
+      applyOlcu:function(o){ uygulaHal(o.hedef_hal||{}); },
+      metinGoster:metinYaz,
+      olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if(ev.tip==='bitti'){
+          document.body.classList.add('sahne-bitti');
+          // apply() BİLEREK çağrılmıyor: motorun bıraktığı hâl (dış aydınlık
+          // dindi) korunur, slider yalnız kullanıcı GERÇEKTEN sürüklediğinde
+          // devreye girer (yukarıdaki 'input' dinleyicisi).
+          if(reduced){
+            dortYerNoktalar.forEach(function(d){ d.a.style.transition='none'; });
+            dortYerLabelEl.style.transition='none';
+          }
+          dortYerYerlestir();
+        }
+      },
+    });
+  });
+})();
+
+const stageWrap=document.querySelector('.stage-wrap');
+stageWrap.setAttribute('tabindex','0');
+stageWrap.addEventListener('keydown', function(e){
+  if(!motorAPI) return;
+  if(e.key===' '){ e.preventDefault(); if(motorAPI.durum==='oynuyor') motorAPI.pause(); else if(motorAPI.durum==='durakli') motorAPI.resume(); return; }
+  const y={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(y===undefined) return;
+  e.preventDefault();
+  motorAPI.gotoOlcu(Math.max(0, Math.min(motorAPI.olcuSayisi-1, motorAPI.aktifIdx+y)));
+});
 
 // ── Dört yer, tek kalp (Yakınsama Deseni, 2026-08-14) ───────────────────────
 // Künye'de zaten duran dört gerçek geçiş (aynı kudsî hadis, dört ayrı cilt)
@@ -342,13 +458,9 @@ function dortYerYerlestir(){
   });
   dortYerLabelEl.setAttribute('opacity','0.85');
 }
-if(reduced){
-  dortYerNoktalar.forEach(d=>{ d.a.style.transition='none'; });
-  dortYerLabelEl.style.transition='none';
-  dortYerYerlestir();
-} else {
-  requestAnimationFrame(()=>requestAnimationFrame(dortYerYerlestir));
-}
+// Tetikleme artık motorun 'bitti' tepkisinden -- bkz. yukarıdaki
+// window.__sahneMotoru.yarat({... tepki ...}) çağrısı. İlk oynatma
+// bitmeden hiçbir kontrol/ikincil katman görünmez (/sahne ilkesi).
 
 setLang('tr');
 window.addEventListener('message',function(e){
