@@ -20,15 +20,35 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 #stage{width:min(640px,94vw);aspect-ratio:16/10;height:auto;display:block;margin:.4rem auto .7rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;touch-action:none}
 
 @keyframes fanHint{0%,100%{opacity:.6}50%{opacity:1}}
-.fan-hint{fill:var(--muted);font-family:Georgia,'Times New Roman',serif;font-style:italic;animation:fanHint 3s ease-in-out 4s 3}
+.fan-hint{fill:var(--muted);font-family:Georgia,'Times New Roman',serif;font-style:italic;opacity:0;transition:opacity .5s ease}
+body.sahne-bitti .fan-hint{opacity:.6;animation:fanHint 3s ease-in-out .3s 3}
 @media(prefers-reduced-motion:reduce){.fan-hint{animation:none}}
 
 .fan-caption{width:min(640px,96vw);text-align:center;font-size:.86rem;line-height:1.75;color:var(--text);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;margin-bottom:1rem}
 .fan-caption.show{opacity:1;transform:none}
 
-.quote-box{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem}
+#fanInk{transition:opacity 1.8s ease}
+.quote-box{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem;opacity:0;max-height:0;overflow:hidden;transition:opacity .5s ease}
+body.sahne-bitti .quote-box{opacity:1;max-height:220px}
 .quote-text{font-size:.88rem;line-height:1.75;font-style:italic}
 .quote-src{font-size:.72rem;color:var(--muted);margin-top:.55rem}
+
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.2rem;margin-bottom:.8rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--muted);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--liminal);color:var(--text)}
+
+.sahne-kunye{width:min(560px,96vw);margin:0 auto 1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
+.sahne-kunye summary{cursor:pointer;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
+.sahne-kunye summary:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+.sahne-metni{list-style:none;margin-top:.7rem}
+.sahne-metni li{margin-bottom:.65rem;font-style:italic}
+
+@media(prefers-reduced-motion:no-preference){
+  #fanOrigin.nefes-al{animation:nefesNabiz 7s ease-in-out infinite}
+}
+@keyframes nefesNabiz{0%,100%{opacity:1}50%{opacity:.82}}
 
 /* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
    ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
@@ -61,31 +81,52 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
       <stop offset="0%" style="stop-color:var(--gold);stop-opacity:.55"/>
       <stop offset="100%" style="stop-color:var(--gold);stop-opacity:0"/>
     </radialGradient>
+    <radialGradient id="fanInkGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:var(--gold);stop-opacity:.5"/>
+      <stop offset="100%" style="stop-color:var(--gold);stop-opacity:0"/>
+    </radialGradient>
+    <!-- Tenefüs (tek nefesin fışkırdığı ölçü) için kısa bir "mürekkep suda
+         dağılıyor" dalgası -- yeni bağımlılık değil, yerli SVG filtresi.
+         Yalnızca #fanInk üzerinde, yalnızca o ölçü boyunca opaklık alır. -->
+    <filter id="fanInkTurb" x="-60%" y="-60%" width="220%" height="220%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="70" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
   </defs>
   <circle id="fanGlowC" cx="800" cy="820" r="0" fill="url(#fanGlow)"></circle>
+  <circle id="fanInk" cx="800" cy="820" r="0" fill="url(#fanInkGlow)" opacity="0" filter="url(#fanInkTurb)"></circle>
   <g id="fanBranches"></g>
   <g id="fanTips"></g>
   <circle id="fanOrigin" cx="800" cy="820" r="6" fill="var(--gold)"></circle>
   <text id="fanHint" class="fan-hint" x="1560" y="60" text-anchor="end" font-size="28"></text>
-  <rect id="fanHit" x="0" y="0" width="1600" height="1000" fill="transparent" style="cursor:grab"
-    tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+  <rect id="fanHit" x="0" y="0" width="1600" height="1000" fill="transparent" style="cursor:grab;pointer-events:none"
+    tabindex="-1" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
     aria-label="Nefesin dallanma derecesini sürükle"></rect>
 </svg>
 
 <p class="fan-caption" id="fanCaption"></p>
+<div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
 
 <div class="quote-box">
   <p class="quote-text" id="quoteText"></p>
   <p class="quote-src" id="quoteSrc"></p>
 </div>
 
+<div id="kunyeYuvasi"></div>
+
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. hayret.html/
+     kandil.html/kalbe-sigan.html aynı düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const LA={
   tr:{
     title:'Nefes-i Rahmânî',
     sub:'İlahî isimler göğüste birikir, dayanılmaz sınırda bir nefesle dışarı fışkırır — ve o tek nefes, harflere, harfler kelimeye ayrılır. Sürükleyerek geri aldığında, hepsi yeniden tek nefese döner.',
     caption:'İsimler göğüste birikti; tek nefeste dışarı çıktı. Harflere, harfler kelimeye ayrıldı — ama kaynağa hep bağlı kaldı. Geri sürüklersen tek nefese döner.',
-    hint:'Geri sürükle',
+    hint:'Sahne durdu — geri sürükle',
+    kunyeBaslik:'Künye — bu sahne nereden geliyor?',
     quotes:[
       { text:'"Harekeleri küçük harfler olarak tanımlıyoruz... tıpkı insanın cisim ve ruh üflenmesinden var olması gibi, kelime de harf ve hareke bileşiminden bambaşka bir yaratılış olarak ortaya çıkar."', src:'Fütûhât-ı Mekkiyye, Kısım VIII (Harekeler: Kelimelerin Ruhu)' },
       { text:'İlahî isimler Hakk\'ın sinesinde basınç altında birikir (kerb); dayanılmaz son sınıra gelindiğinde bir nefes verişle (teneffüs) dışarı fışkırır — bu fışkırma âlemin varlık kazanmasıdır.', src:'felsefi-terimler.json, "nefes-i-rahmani" (Izutsu\'nun aktarımına dayanır)' },
@@ -95,7 +136,8 @@ const LA={
     title:'The Breath of the All-Merciful',
     sub:'The divine names accumulate in the breast under pressure, then burst out in a single breath at the unbearable limit — and that one breath separates into letters, the letters into a word. Drag it back, and it all returns to a single breath.',
     caption:'The names gathered in the chest; a single breath released them. They divided into letters, letters into words — yet stayed tethered to their source. Drag back and they return to one breath.',
-    hint:'Drag back',
+    hint:'The scene has settled — now drag it back yourself',
+    kunyeBaslik:'Sources — where this scene comes from',
     quotes:[
       { text:'"We define the vowel-marks as small letters... just as a human comes into being from body plus the breathing-in of spirit, a word too emerges as an entirely different kind of creation from the combination of letter plus vowel-mark."', src:'Al-Futuhat al-Makkiyya, Part VIII (Vowel-Marks: The Spirit of Words)' },
       { text:'The Divine Names accumulate under pressure in the Real\'s breast (karb); upon reaching an unbearable limit, they burst forth through an exhalation (tanaffus) — this bursting-forth is the world\'s coming into existence.', src:'felsefi-terimler.json, "nefes-i-rahmani" (as related by Izutsu)' },
@@ -105,7 +147,8 @@ const LA={
     title:'O Sopro do Misericordioso',
     sub:'Os nomes divinos se acumulam no peito sob pressão, e irrompem num único sopro no limite insuportável — e esse sopro se separa em letras, as letras numa palavra. Arraste de volta, e tudo retorna a um único sopro.',
     caption:'Os nomes acumularam-se no peito; um único sopro os libertou. Dividiram-se em letras, letras em palavras — mas mantiveram-se atados à origem. Arraste para trás e voltam a um só sopro.',
-    hint:'Arraste para trás',
+    hint:'A cena parou — agora arraste você mesmo de volta',
+    kunyeBaslik:'Fontes — de onde vem esta cena',
     quotes:[
       { text:'"Definimos as vogais como pequenas letras... assim como um humano vem à existência a partir do corpo mais o sopro do espírito, uma palavra também surge como um tipo inteiramente diferente de criação a partir da combinação de letra mais vogal."', src:'Al-Futuhat al-Makkiyya, Parte VIII (Vogais: O Espírito das Palavras)' },
       { text:'Os Nomes Divinos se acumulam sob pressão no peito do Real (karb); ao atingir um limite insuportável, irrompem através de uma exalação (tanaffus) — esse irromper é o vir-a-existir do mundo.', src:'felsefi-terimler.json, "nefes-i-rahmani" (conforme relatado por Izutsu)' },
@@ -113,23 +156,53 @@ const LA={
   },
 };
 
-let curLang='tr', quoteIdx=0;
+let curLang='tr', quoteIdx=0, sonMetin=null;
 const $=id=>document.getElementById(id);
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Künye: sahnenin zaten iki alıntısı vardı (quote-box), üç dilde -- yeni
+// bir citation formatı icat etmek yerine aynı iki alıntı burada da
+// (gerçek sıralı DOM listesi olarak) tekrar kullanılıyor.
+function kunyeOlustur(container, baslikObj){
+  const det=document.createElement('details'); det.className='sahne-kunye';
+  const sum=document.createElement('summary'); det.appendChild(sum);
+  const ol=document.createElement('ol'); ol.className='sahne-metni'; det.appendChild(ol);
+  container.appendChild(det);
+  return { el:det, guncelle:function(l){
+    sum.textContent=(baslikObj&&(baslikObj[l]||baslikObj.tr))||'Künye';
+    ol.innerHTML='';
+    LA[l].quotes.forEach(function(q){
+      const li=document.createElement('li');
+      li.textContent=q.text+' — '+q.src;
+      ol.appendChild(li);
+    });
+  }};
+}
+const kunye=kunyeOlustur($('kunyeYuvasi'), {tr:LA.tr.kunyeBaslik,en:LA.en.kunyeBaslik,pt:LA.pt.kunyeBaslik});
 
 function renderAll(){
   const d=LA[curLang];
   $('hTitle').textContent=d.title;
   $('hSub').textContent=d.sub;
   $('fanHint').textContent=d.hint;
-  $('fanCaption').textContent=d.caption;
+  if(sonMetin) $('fanCaption').textContent=sonMetin[curLang]||sonMetin.tr;
   const q=d.quotes[quoteIdx];
   $('quoteText').textContent=q.text;
   $('quoteSrc').textContent=q.src;
+  kunye.guncelle(curLang);
+  if(typeof sahneMetniniGuncelle==='function') sahneMetniniGuncelle();
 }
 function setLang(l){ if(!LA[l]) return; curLang=l; renderAll(); }
 
-setInterval(()=>{ quoteIdx=(quoteIdx+1)%LA[curLang].quotes.length; const q=LA[curLang].quotes[quoteIdx]; $('quoteText').textContent=q.text; $('quoteSrc').textContent=q.src; }, 9000);
+let quoteRotateTimer=null;
+function quoteRotateBaslat(){
+  if(quoteRotateTimer) return;
+  quoteRotateTimer=setInterval(function(){
+    quoteIdx=(quoteIdx+1)%LA[curLang].quotes.length;
+    const q=LA[curLang].quotes[quoteIdx];
+    $('quoteText').textContent=q.text;
+    $('quoteSrc').textContent=q.src;
+  }, 9000);
+}
 
 // ── Sahne: nefesin bir gövdeden yelpaze gibi dallanarak harflere/kelimelere
 // ayrışması ("fan-tree") ─────────────────────────────────────────────────
@@ -219,6 +292,7 @@ const tipEls=tips.map(tp=>{
 
 const origin=$('fanOrigin');
 const originGlow=$('fanGlowC');
+const fanInk=$('fanInk');
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 
 let pos=0;
@@ -253,15 +327,29 @@ function render(){
   $('fanHit').setAttribute('aria-valuenow',Math.round(pos*100));
 }
 
-let userActive=false, last=performance.now(), rafId=0;
-const AUTO_SECONDS=5.5;
-function loop(now){
+// ── Motor bağlantısı: sahnenin kendi render(pos) işlevi zaten tek bir
+// sürekli 0-1 yolculuktu (baskı->fışkırma->dallanma). Motor artık pos'un
+// HEDEFİNİ ölçü ölçü veriyor; burada süregelen bir rAF döngüsü pos'u o
+// hedefe doğru yumuşakça (gecis_sure_sn'ye yakın bir hızda) yaklaştırıp
+// her karede render() çağırıyor -- eski otomatik-oynatma mantığının aynısı,
+// artık named ölçülere bölünmüş. ──────────────────────────────────────────
+let targetPos=0, last=performance.now(), rafId=0, easing=false;
+function easeLoop(now){
   const dt=Math.min(80,now-last); last=now;
-  if(!userActive && pos<1){
-    pos=Math.min(1,pos+dt/(AUTO_SECONDS*1000));
+  const diff=targetPos-pos;
+  if(Math.abs(diff)>0.0008){
+    pos+=diff*Math.min(1, dt/900);
     render();
+  } else if(pos!==targetPos){
+    pos=targetPos; render();
   }
-  rafId=requestAnimationFrame(loop);
+  rafId=requestAnimationFrame(easeLoop);
+}
+function posHedefiVer(v){ targetPos=v; if(!easing){ easing=true; last=performance.now(); rafId=requestAnimationFrame(easeLoop); } }
+
+function ayarlaInk(vurgu){
+  fanInk.setAttribute('r', vurgu?'95':'0');
+  fanInk.setAttribute('opacity', vurgu?'0.85':'0');
 }
 
 const hit=$('fanHit');
@@ -275,10 +363,12 @@ function toSvg(clientX,clientY){
   return pt.matrixTransform(m.inverse());
 }
 let dragging=false, lastX=0;
-function stopIntro(){ userActive=true; if(hint) hint.style.animation='none'; }
 
+// Sürükleme (kendim gezineyim kipi, sahne bittikten sonra): eski davranış
+// aynen korunuyor, yalnız artık ikincil bir keşif katmanı.
 function onDown(e){
-  dragging=true; hit.style.cursor='grabbing'; stopIntro();
+  if(!document.body.classList.contains('sahne-bitti')) return;
+  dragging=true; hit.style.cursor='grabbing';
   const ev=e.touches?e.touches[0]:e;
   const p=toSvg(ev.clientX,ev.clientY);
   lastX=p.x;
@@ -289,7 +379,7 @@ function onMove(e){
   const ev=e.touches?e.touches[0]:e;
   const p=toSvg(ev.clientX,ev.clientY);
   const dx=p.x-lastX; lastX=p.x;
-  pos=clamp(pos+dx/1400,0,1);
+  pos=clamp(pos+dx/1400,0,1); targetPos=pos;
   render();
 }
 function onUp(){ dragging=false; hit.style.cursor='grab'; }
@@ -301,23 +391,85 @@ hit.addEventListener('touchstart',onDown,{passive:false});
 window.addEventListener('touchmove',onMove,{passive:false});
 window.addEventListener('touchend',onUp);
 hit.addEventListener('keydown',e=>{
+  if(!document.body.classList.contains('sahne-bitti')) return;
   let handled=true;
   if(e.key==='ArrowLeft') pos=clamp(pos-0.03,0,1);
   else if(e.key==='ArrowRight') pos=clamp(pos+0.03,0,1);
   else handled=false;
-  if(handled){ stopIntro(); render(); e.preventDefault(); }
+  if(handled){ targetPos=pos; render(); e.preventDefault(); }
 });
+
+let sahneMetniEl=null, partisyonRef=null;
+function sahneMetniniKur(){
+  if(sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl=document.createElement('ol');
+  sahneMetniEl.className='sahne-metni';
+  sahneMetniEl.style.marginTop='.4rem';
+  kunye.el.appendChild(sahneMetniEl);
+  sahneMetniniGuncelle();
+}
+function sahneMetniniGuncelle(){
+  if(!sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl.innerHTML='';
+  partisyonRef.olcuLer.forEach(function(o){
+    if(!o.metin) return;
+    const li=document.createElement('li');
+    li.textContent=o.metin[curLang]||o.metin.tr;
+    sahneMetniEl.appendChild(li);
+  });
+}
+
+function metinYaz(m){
+  sonMetin=m;
+  const t=m?(m[curLang]||m.tr||''):'';
+  $('fanCaption').classList.remove('show');
+  window.setTimeout(function(){
+    $('fanCaption').textContent=t;
+    if(t) $('fanCaption').classList.add('show');
+  }, t?150:0);
+}
 
 renderAll();
 render();
 
-if(reduceMotion){
-  pos=1; render();
-  $('fanCaption').classList.add('show');
-} else {
-  rafId=requestAnimationFrame(loop);
-  setTimeout(()=>{ $('fanCaption').classList.add('show'); }, 5200);
-}
+let motorAPI=null;
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/nefes-i-rahmani.json').then(function(r){ return r.json(); }).then(function(p){
+    partisyonRef=p;
+    sahneMetniniKur();
+    motorAPI=window.__sahneMotoru.yarat({
+      container:$('stage'), partisyon:p,
+      applyOlcu:function(o){
+        const hal=o.hedef_hal||{};
+        if(hal.pos!==undefined) posHedefiVer(hal.pos);
+        if(hal.tenefusVurgu!==undefined) ayarlaInk(hal.tenefusVurgu);
+        origin.classList.toggle('nefes-al', !!hal.nefes);
+      },
+      metinGoster:metinYaz,
+      olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if(ev.tip==='bitti'){
+          document.body.classList.add('sahne-bitti');
+          hit.setAttribute('tabindex','0');
+          hit.style.pointerEvents='auto';
+          quoteRotateBaslat();
+        }
+      },
+    });
+  });
+})();
+
+$('stage').setAttribute('tabindex','0');
+$('stage').addEventListener('keydown', function(e){
+  if(!motorAPI || e.target===hit) return;
+  if(e.key===' '){ e.preventDefault(); if(motorAPI.durum==='oynuyor') motorAPI.pause(); else if(motorAPI.durum==='durakli') motorAPI.resume(); return; }
+  const y={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(y===undefined) return;
+  e.preventDefault();
+  motorAPI.gotoOlcu(Math.max(0, Math.min(motorAPI.olcuSayisi-1, motorAPI.aktifIdx+y)));
+});
 
 window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);
