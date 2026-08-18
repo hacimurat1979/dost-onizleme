@@ -23,9 +23,24 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 
 #stageWrap{position:relative;width:min(560px,94vw);aspect-ratio:16/10;margin:.4rem auto 1.1rem;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#efe6d6}
 #stage{position:absolute;inset:0;width:100%;height:100%;display:block}
-#hint{position:absolute;top:10px;right:12px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#6b543a;animation:berzahHint 3s ease-in-out 1.2s 3}
+#hint{position:absolute;top:10px;right:12px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#6b543a;opacity:0;transition:opacity .5s ease}
+body.sahne-bitti #hint{opacity:.6;animation:berzahHint 3s ease-in-out .3s 3}
 
-.track-wrap{width:min(480px,92vw);margin:0 auto 1.1rem;text-align:center}
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin:.2rem 0 .6rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--muted);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--liminal);color:var(--text)}
+
+.sahne-metni{list-style:none;margin-top:.7rem;font-size:.78rem;color:var(--muted);line-height:1.7}
+
+@media(prefers-reduced-motion:no-preference){
+  #berzahEsikVurgu.nefes-al{animation:berzahNefes 7s ease-in-out infinite}
+}
+@keyframes berzahNefes{0%,100%{opacity:.05}50%{opacity:.14}}
+
+.track-wrap{width:min(480px,92vw);margin:0 auto 1.1rem;text-align:center;opacity:0;max-height:0;overflow:hidden;transition:opacity .5s ease}
+body.sahne-bitti .track-wrap{opacity:1;max-height:160px}
 .track-labels3{display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
 .track-labels3 span{max-width:120px;line-height:1.35}
 
@@ -39,9 +54,11 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 .track-wrap input[type="range"]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--liminal);outline-offset:3px}
 .track-wrap input[type="range"]:focus-visible::-moz-range-thumb{outline:2px solid var(--liminal);outline-offset:3px}
 
-.caption{margin-top:.7rem;font-size:.85rem;line-height:1.65;color:var(--text);opacity:0;animation:berzahCaption 900ms 900ms ease-out forwards}
+.caption{margin-top:.7rem;font-size:.85rem;line-height:1.65;color:var(--text);opacity:0;transition:opacity .8s ease,transform .8s ease;transform:translateY(4px)}
+.caption.gorunur{opacity:1;transform:none}
 
-.quote-box{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem}
+.quote-box{width:min(560px,96vw);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem;opacity:0;max-height:0;overflow:hidden;transition:opacity .5s ease}
+body.sahne-bitti .quote-box{opacity:1;max-height:900px}
 .quote-text{font-size:.88rem;line-height:1.75;font-style:italic}
 .quote-src{font-size:.72rem;color:var(--muted);margin-top:.55rem}
 
@@ -87,25 +104,23 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 </header>
 
 <div id="stageWrap">
-  <svg id="stage" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Aynı manzara — durduğun yere göre merkez netleşir, çeperler bulanık kalır">
+  <svg id="stage" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="İki alan ve aralarında hiçbir zaman çizgi olarak çizilmeyen, genişleyen bir eşik">
     <defs>
-      <filter id="berzahBlur" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur id="berzahBlurEl" stdDeviation="12"></feGaussianBlur>
-      </filter>
-      <radialGradient id="berzahMaskGrad" cx="50%" cy="50%" r="50%">
-        <stop id="berzahMaskIn" offset="0%" stop-color="white" stop-opacity="1"></stop>
-        <stop id="berzahMaskMid" offset="0%" stop-color="white" stop-opacity="1"></stop>
-        <stop id="berzahMaskOut" offset="12%" stop-color="black" stop-opacity="1"></stop>
-      </radialGradient>
-      <mask id="berzahSharpMask">
-        <rect x="0" y="0" width="1600" height="1000" fill="url(#berzahMaskGrad)"></rect>
-      </mask>
+      <linearGradient id="berzahGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop id="berzahS0" offset="0%" stop-color="#f3e7c9"></stop>
+        <stop id="berzahS1" offset="99%" stop-color="#f3e7c9"></stop>
+        <stop id="berzahS2" offset="100%" stop-color="#3b2c17"></stop>
+        <stop id="berzahS3" offset="100%" stop-color="#3b2c17"></stop>
+      </linearGradient>
     </defs>
-    <g id="berzahBlurry" style="filter:url(#berzahBlur)"></g>
-    <g id="berzahSharp" mask="url(#berzahSharpMask)"></g>
+    <rect x="0" y="0" width="1600" height="1000" fill="url(#berzahGrad)"></rect>
+    <rect id="berzahEsikVurgu" x="0" y="490" width="1600" height="20" fill="#fff" opacity="0"></rect>
   </svg>
-  <div id="hint" data-anim="" aria-hidden="true"></div>
+  <div id="hint" aria-hidden="true"></div>
 </div>
+
+<p class="caption" id="caption" aria-live="polite"></p>
+<div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
 
 <div class="track-wrap">
   <div class="track-labels3">
@@ -113,8 +128,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
     <span id="labelMid"></span>
     <span id="labelRight"></span>
   </div>
-  <input id="slider" type="range" min="0" max="100" value="0" aria-label="Mertebe">
-  <p class="caption" id="caption" data-anim="" aria-live="polite"></p>
+  <input id="slider" type="range" min="0" max="100" value="0" aria-label="Mertebe" disabled>
 </div>
 
 <div class="quote-box" id="quoteBox">
@@ -124,25 +138,31 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
     <p class="quote-src" id="quoteSrc"></p>
   </div>
   <div id="quoteAll" hidden aria-live="polite"></div>
+  <ol class="sahne-metni" id="sahneMetni"></ol>
 </div>
 
 <p class="kardes"><a id="kardesLink" href="perde-zinciri.html"></a></p>
 
 <p class="yontem" id="yontem"></p>
 
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. hayret.html/
+     kandil.html/kalbe-sigan.html/nefes-i-rahmani.html aynı düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const LA={
   tr:{
     title:'Berzah',
-    sub:'Dost, dünya ile âhiret arasına üçüncü bir mertebe koyuyor: berzah — dünya bir uykudur, berzah ondan uyanmış olma hâli, âhiret ise hiç uyku içermeyen uyanıklık. Manzara hiç değişmiyor; sürükledikçe değişen yalnız bakışın çözünürlüğü.',
-    sliderLabel:'Bakışının çözünürlüğünü sürükle',
-    hint:'Sürükle',
+    sub:'Dost, dünya ile âhiret arasına üçüncü bir mertebe koyuyor: berzah — dünya bir uykudur, berzah ondan uyanmış olma hâli, âhiret ise hiç uyku içermeyen uyanıklık. İki alan var, ama aralarındaki sınır hiçbir zaman bir çizgi olarak görünmez.',
+    sliderLabel:'İki alan arasındaki eşiği sürükle',
+    hint:'Sahne durdu — eşiği artık sen sürükle',
     left:'Uyku',
     mid:'Berzah',
     right:'Uyanıklık',
-    caption:'Aynı manzara. Nesneler hiç değişmiyor; yalnız görme değişiyor. Ortada durursan iki kenar birden görünür — merkez net, çeperler hâlâ bulanık.',
+    caption:'İki alan hiç karışmıyor; yalnız aralarındaki eşik genişliyor. Berzahtan bakınca iki taraf da aynı anda görünür — sınırın kendisi bir yer değildir.',
     kardes:'Kardeş sahne: Perde Zinciri — bütün perdeler aralanır, merkez yine de netleşmez →',
-    yontem:'Üçlü sıralama (dünya–berzah–âhiret) Dost’un kendi cümlesi. “Yalnız durduğun yer netleşir” ise bizim okumamız — sahneye onu biz ekledik; metin bunu böyle söylemiyor.',
+    yontem:'Üçlü sıralama (dünya–berzah–âhiret) Dost’un kendi cümlesi. İki yatay alan ve aralarında genişleyen bir eşik (çizgi değil) ise bizim okumamız — sahneye onu biz ekledik; metin bunu böyle söylemiyor.',
     quoteAllLabel:'Üç tanıklık, aynı eşikte',
     quotes:[
       {text:'"Öyleyse dünya berzaha göre uyku içinde uykudur. Çünkü berzah gerçek duruma daha yakındır."', src:'Fütûhât-ı Mekkiyye, Cilt II, Kısım XXVIII — Altmış Dördüncü Bölüm, s. 447'},
@@ -152,15 +172,15 @@ const LA={
   },
   en:{
     title:'The Barzakh',
-    sub:'Dost places a third degree between this world and the afterlife: the barzakh — this world is a sleep, the barzakh is being awake from it, the afterlife is a wakefulness containing no sleep at all. The landscape never changes; only the resolution of your seeing changes as you drag.',
-    sliderLabel:'Drag to change the resolution of your seeing',
-    hint:'Drag',
+    sub:'Dost places a third degree between this world and the afterlife: the barzakh — this world is a sleep, the barzakh is being awake from it, the afterlife is a wakefulness containing no sleep at all. There are two realms, but the boundary between them never appears as a line.',
+    sliderLabel:'Drag the threshold between the two realms',
+    hint:'The scene has settled — now drag the threshold yourself',
     left:'Sleep',
     mid:'Berzah',
     right:'Waking',
-    caption:'The same landscape. The objects never change; only the seeing changes. Stop in the middle and both edges show at once — the center sharp, the periphery still blurred.',
+    caption:'The two realms never mix; only the threshold between them widens. Seen from the barzakh, both sides show at once — the boundary itself is not a place.',
     kardes:'Sibling scene: Chain of Veiling — every veil parts, and the centre still does not resolve →',
-    yontem:'The triad (world–barzakh–afterlife) is Dost’s own sentence. “Only where you stand resolves” is our reading — we added it to the scene; the text does not put it this way.',
+    yontem:'The triad (world–barzakh–afterlife) is Dost’s own sentence. Two horizontal realms with a widening threshold (not a line) between them is our reading — we added it to the scene; the text does not put it this way.',
     quoteAllLabel:'Three testimonies, at the same threshold',
     quotes:[
       {text:'"So this world, relative to the barzakh, is sleep within sleep. For the barzakh is nearer to the real situation."', src:'al-Futuhat al-Makkiyya, Vol. II, Part XXVIII — Chapter Sixty-Four, p. 447'},
@@ -170,15 +190,15 @@ const LA={
   },
   pt:{
     title:'O Barzakh',
-    sub:'Dost coloca um terceiro grau entre este mundo e a vida futura: o barzakh — este mundo é um sono, o barzakh é estar desperto dele, a vida futura é uma vigília que não contém sono algum. A paisagem nunca muda; muda apenas a resolução do seu olhar ao arrastar.',
-    sliderLabel:'Arraste para mudar a resolução do seu olhar',
-    hint:'Arraste',
+    sub:'Dost coloca um terceiro grau entre este mundo e a vida futura: o barzakh — este mundo é um sono, o barzakh é estar desperto dele, a vida futura é uma vigília que não contém sono algum. Há dois domínios, mas o limite entre eles nunca aparece como uma linha.',
+    sliderLabel:'Arraste o limiar entre os dois domínios',
+    hint:'A cena parou — agora arraste você mesmo o limiar',
     left:'Sono',
     mid:'Berzah',
     right:'Vigília',
-    caption:'A mesma paisagem. Os objetos nunca mudam; muda apenas o olhar. Ao parar no meio, ambas as margens aparecem — o centro nítido, a periferia ainda embaçada.',
+    caption:'Os dois domínios nunca se misturam; apenas o limiar entre eles se alarga. Visto do barzakh, ambos os lados aparecem ao mesmo tempo — o próprio limite não é um lugar.',
     kardes:'Cena irmã: Cadeia de Véus — todos os véus se afastam, e o centro ainda não se resolve →',
-    yontem:'A tríade (mundo–barzakh–vida futura) é a própria frase de Dost. “Só o lugar onde você está fica nítido” é a nossa leitura — nós a acrescentamos à cena; o texto não diz isso assim.',
+    yontem:'A tríade (mundo–barzakh–vida futura) é a própria frase de Dost. Dois domínios horizontais com um limiar que se alarga (não uma linha) entre eles é a nossa leitura — nós a acrescentamos à cena; o texto não diz isso assim.',
     quoteAllLabel:'Três testemunhos, no mesmo limiar',
     quotes:[
       {text:'"Portanto este mundo, em relação ao barzakh, é sono dentro do sono. Pois o barzakh está mais próximo da situação real."', src:'al-Futuhat al-Makkiyya, Vol. II, Parte XXVIII — Capítulo Sexagésimo Quarto, p. 447'},
@@ -191,7 +211,6 @@ const LA={
 let curLang='tr';
 let quoteIdx=0;
 const $=id=>document.getElementById(id);
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Berzah'a tam durunca (Yakınsama Deseni, 2026-08-14): tek tek dönen üç
 // tanıklık, birlikte görünen üçe dönüşür -- aynı eşiği doğruluyorlar.
@@ -234,129 +253,137 @@ function renderAll(){
   $('labelLeft').textContent=t.left;
   $('labelMid').textContent=t.mid;
   $('labelRight').textContent=t.right;
-  $('caption').textContent=t.caption;
+  if(sonMetin) $('caption').textContent=sonMetin[curLang]||sonMetin.tr;
   $('yontem').textContent=t.yontem;
   $('kardesLink').textContent=t.kardes;
   if(atBerzah) renderQuoteAll(); else renderQuoteSingle();
+  if(typeof sahneMetniniGuncelle==='function') sahneMetniniGuncelle();
 }
+let sonMetin=null;
 function setLang(l){ if(LA[l]){ curLang=l; document.documentElement.lang=l; renderAll(); } }
 
 let rotateTimer=null;
 function startRotate(){
-  if(rotateTimer||atBerzah) return;
+  if(rotateTimer||atBerzah||!document.body.classList.contains('sahne-bitti')) return;
   rotateTimer=setInterval(()=>{
     quoteIdx=(quoteIdx+1)%LA[curLang].quotes.length;
     renderQuoteSingle();
   }, 9000);
 }
 function stopRotate(){ if(rotateTimer){ clearInterval(rotateTimer); rotateTimer=null; } }
-startRotate();
 
-// ── Sahne: aynı manzara, iki bakış ─────────────────────────────────────────
-// GORSEL_DIL.md: kavramı resmetme, davranışını resmet. Manzaranın nesneleri
-// (tepeler, servi, ay, kuşlar) hiç değişmiyor -- kaydırıcı yalnız bir radyal
-// maske ile NERESİNİN net görüldüğünü değiştiriyor. Uyanıklığa (sağa) doğru
-// gittikçe net alan büyüyor; berzahta (ortada) yalnız merkez netleşiyor,
-// çeperler hâlâ bulanık kalıyor -- "iki kenarı birden görme" burada.
-const svgNS='http://www.w3.org/2000/svg';
-const blurryG=$('berzahBlurry');
-const sharpG=$('berzahSharp');
-
-const shapes={
-  hillFar:'M 0 640 Q 220 520 460 610 Q 720 490 960 620 Q 1200 500 1440 610 Q 1520 620 1600 600 L 1600 1000 L 0 1000 Z',
-  hillMid:'M 0 720 Q 300 640 620 720 Q 900 630 1200 730 Q 1420 690 1600 720 L 1600 1000 L 0 1000 Z',
-  cypress:'M 20 80 L 8 66 Q 2 46 12 30 Q 16 14 20 0 Q 24 14 28 30 Q 38 46 32 66 L 20 80 Z',
-  arch:'M 0 80 L 0 36 Q 0 0 40 0 Q 80 0 80 36 L 80 80 Z',
-  moon:'M 60 12 A 24 24 0 1 0 60 60 A 18 21 0 1 1 60 12 Z',
-  bird:'M 0 6 Q 8 -2 14 4 Q 20 -2 28 6',
-};
-const items=[
-  { kind:'hillFar' },
-  { kind:'hillMid' },
-  { kind:'moon', x:1220, y:180, s:1.2 },
-  { kind:'cypress', x:220, y:700, s:2.6 },
-  { kind:'cypress', x:300, y:720, s:2.0 },
-  { kind:'cypress', x:1360, y:700, s:2.4 },
-  { kind:'cypress', x:1420, y:720, s:1.8 },
-  { kind:'arch', x:720, y:700, s:2.4 },
-  { kind:'arch', x:940, y:700, s:2.4 },
-  { kind:'arch', x:830, y:620, s:2.4 },
-  { kind:'cypress', x:560, y:720, s:1.6 },
-  { kind:'cypress', x:1100, y:720, s:1.6 },
-];
-let seed=61;
-const rand=()=>{ seed=(seed*9301+49297)%233280; return seed/233280; };
-for(let i=0;i<24;i++){
-  items.push({ kind:'bird', x:100+rand()*1400, y:100+rand()*260, s:0.6+rand()*0.9 });
-}
-
-function drawTo(g){
-  items.forEach(it=>{
-    if(it.kind==='hillFar'||it.kind==='hillMid'){
-      const p=document.createElementNS(svgNS,'path');
-      p.setAttribute('d',shapes[it.kind]);
-      p.setAttribute('fill', it.kind==='hillFar' ? '#a58b62' : '#5a4327');
-      p.setAttribute('opacity', it.kind==='hillFar' ? 0.55 : 0.85);
-      g.appendChild(p);
-      return;
-    }
-    const grp=document.createElementNS(svgNS,'g');
-    const s=it.s;
-    grp.setAttribute('transform',`translate(${it.x-(it.kind==='cypress'?20*s:40*s)} ${it.y-80*s}) scale(${s})`);
-    const el=document.createElementNS(svgNS,'path');
-    el.setAttribute('d',shapes[it.kind]);
-    if(it.kind==='bird'){
-      el.setAttribute('fill','none'); el.setAttribute('stroke','#1a1108');
-      el.setAttribute('stroke-width','1.4'); el.setAttribute('stroke-linecap','round');
-    } else if(it.kind==='moon'){
-      el.setAttribute('fill','#c9b48d'); el.setAttribute('opacity','0.85');
-    } else {
-      el.setAttribute('fill','#1a1108');
-    }
-    grp.appendChild(el);
-    g.appendChild(grp);
-  });
-}
-drawTo(blurryG);
-drawTo(sharpG);
-
+// ── Sahne: iki alan, hiç çizgi olmayan bir eşik ─────────────────────────────
+// GORSEL_DIL.md: kavramı resmetme, davranışını resmet. Sınır hiçbir zaman
+// keskin bir çizgi olarak çizilmiyor -- iki renk arasında dört durgulu bir
+// linearGradient, aradaki geçiş kuşağının GENİŞLİĞİ (esikGenislik) ölçü
+// ölçü büyüyor; "yaklaşınca çizgi olmadığı görülür" burada budur.
 const slider=$('slider');
 const hint=$('hint');
-const stageWrap=$('stageWrap');
-const maskMid=$('berzahMaskMid');
-const maskOut=$('berzahMaskOut');
-const blurEl=$('berzahBlurEl');
+const s1=$('berzahS1'), s2=$('berzahS2');
+const esikVurgu=$('berzahEsikVurgu');
 
-// t=0 uyku: maske hiçbir şeyi net göstermeyecek kadar dar;
-// t=0.5 berzah: maske yalnız merkezi açığa çıkarır;
-// t=1 uyanıklık: maske her yeri kapsar.
+function uygulaGorunum(altYukseklik, esikGenislik){
+  const sinirY=1-altYukseklik; // 1=alt tamamen gizli, 0.5=iki alan eşit
+  const ustOfs=Math.max(0, sinirY-esikGenislik)*100;
+  const altOfs=Math.min(1, sinirY+esikGenislik)*100;
+  s1.setAttribute('offset', ustOfs.toFixed(2)+'%');
+  s2.setAttribute('offset', altOfs.toFixed(2)+'%');
+  esikVurgu.setAttribute('y', (ustOfs/100*1000).toFixed(1));
+  esikVurgu.setAttribute('height', Math.max(2,(altOfs-ustOfs)/100*1000).toFixed(1));
+  return { sinirY, ustOfs, altOfs };
+}
+uygulaGorunum(0,0.01);
+
+// Kendim gezineyim kipi (sahne bittikten sonra): tek kaydırıcı, motorun
+// kendi yolculuğunu (0=yalnız üst alan .. 50=berzah .. 100=eşik iyice
+// genişler) sürekli olarak tekrar yaşatır.
 function apply(v){
   const t=v/100;
-  const midPct=Math.max(0,Math.min(100,t*105-5));
-  maskMid.setAttribute('offset',(midPct/100).toFixed(3));
-  const fade=12+(1-t)*20;
-  maskOut.setAttribute('offset',Math.min(1,(midPct+fade)/100).toFixed(3));
-  const b=14-t*4;
-  blurEl.setAttribute('stdDeviation',b.toFixed(2));
-  const L=0.94-Math.abs(t-0.5)*0.02;
-  stageWrap.style.background=`oklch(${L} 0.014 ${70+t*12})`;
-
-  setBerzahState(Math.abs(t-0.5)<=0.07);
+  const altYukseklik=Math.min(0.5, t*1.0);
+  const esikGenislik=0.01+Math.max(0,t-0.4)/0.6*0.19;
+  uygulaGorunum(altYukseklik, esikGenislik);
+  setBerzahState(esikGenislik>0.1);
 }
 
 slider.addEventListener('input',e=>{
+  if(!document.body.classList.contains('sahne-bitti')) return;
   apply(+e.target.value);
   if(hint) hint.style.animation='none';
 });
 
-apply(0);
-
-if(reduceMotion){
-  slider.value=50; apply(50);
-  const cap=$('caption');
-  cap.style.animation='none'; cap.style.opacity='1';
-  if(hint) hint.style.animation='none';
+// ── Ölçü hedef_hal'leri kümülatiftir -- sonHal deseni, bkz. hayret.html/
+// kandil.html/kalbe-sigan.html/nefes-i-rahmani.html. ────────────────────────
+let sonHal={};
+function uygulaHal(hamHal){
+  sonHal=Object.assign({}, sonHal, hamHal);
+  const hal=sonHal;
+  const altYukseklik=hal.altYukseklik!==undefined?hal.altYukseklik:0;
+  const esikGenislik=hal.esikGenislik!==undefined?hal.esikGenislik:0.01;
+  uygulaGorunum(altYukseklik, esikGenislik);
+  esikVurgu.classList.toggle('nefes-al', !!hal.nefes);
+  setBerzahState(esikGenislik>0.1);
 }
+
+let sahneMetniEl=null, partisyonRef=null;
+function sahneMetniniKur(){
+  if(sahneMetniEl) return;
+  sahneMetniEl=$('sahneMetni');
+}
+function sahneMetniniGuncelle(){
+  if(!sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl.innerHTML='';
+  partisyonRef.olcuLer.forEach(function(o){
+    if(!o.metin) return;
+    const li=document.createElement('li');
+    li.textContent=o.metin[curLang]||o.metin.tr;
+    sahneMetniEl.appendChild(li);
+  });
+}
+
+function metinYaz(m){
+  sonMetin=m;
+  const t=m?(m[curLang]||m.tr||''):'';
+  const cap=$('caption');
+  cap.classList.remove('gorunur');
+  window.setTimeout(function(){
+    cap.textContent=t;
+    if(t) cap.classList.add('gorunur');
+  }, t?150:0);
+}
+
+let motorAPI=null;
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/berzah.json').then(function(r){ return r.json(); }).then(function(p){
+    partisyonRef=p;
+    sahneMetniniKur();
+    sahneMetniniGuncelle();
+    motorAPI=window.__sahneMotoru.yarat({
+      container:$('stageWrap'), partisyon:p,
+      applyOlcu:function(o){ uygulaHal(o.hedef_hal||{}); },
+      metinGoster:metinYaz,
+      olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if(ev.tip==='bitti'){
+          document.body.classList.add('sahne-bitti');
+          slider.disabled=false;
+          startRotate();
+        }
+      },
+    });
+  });
+})();
+
+$('stageWrap').setAttribute('tabindex','0');
+$('stageWrap').addEventListener('keydown', function(e){
+  if(!motorAPI || e.target===slider) return;
+  if(e.key===' '){ e.preventDefault(); if(motorAPI.durum==='oynuyor') motorAPI.pause(); else if(motorAPI.durum==='durakli') motorAPI.resume(); return; }
+  const y={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(y===undefined) return;
+  e.preventDefault();
+  motorAPI.gotoOlcu(Math.max(0, Math.min(motorAPI.olcuSayisi-1, motorAPI.aktifIdx+y)));
+});
 
 renderAll();
 
