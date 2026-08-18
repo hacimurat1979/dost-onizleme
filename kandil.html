@@ -27,8 +27,26 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
 .stage{width:min(94vw,640px);text-align:center;margin-top:.75rem}
 .caption{font-size:.9rem;line-height:1.75;font-style:italic;color:var(--liminal);max-width:520px;margin:0 auto;opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease}
 .caption.show{opacity:1;transform:none}
-.gezin-ipucu{font-size:.75rem;color:var(--muted);font-style:italic;margin-top:.6rem;transition:opacity .5s ease}
+.gezin-ipucu{font-size:.75rem;color:var(--muted);font-style:italic;margin-top:.6rem;opacity:0;max-height:0;overflow:hidden;transition:opacity .5s ease}
+body.sahne-bitti .gezin-ipucu{opacity:.8;max-height:40px}
 .gezin-ipucu.gone{opacity:.3}
+
+#kdl-hit{pointer-events:none}
+body.sahne-bitti #kdl-hit{pointer-events:auto}
+
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.5rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--muted);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--liminal);color:var(--text)}
+
+.kdl-ayet-satir{opacity:0;transition:opacity 1.6s ease;fill:var(--liminal);font-family:Georgia,'Times New Roman',serif;font-style:italic;text-anchor:middle}
+.kdl-ayet-satir.gorunur{opacity:.92}
+
+@media(prefers-reduced-motion:no-preference){
+  #kdl-bg.nefes-al{animation:kdlNefes 7s ease-in-out infinite}
+}
+@keyframes kdlNefes{0%,100%{opacity:1}50%{opacity:.9}}
 
 .sahne-kunye{width:min(94vw,640px);margin-top:1.2rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
 .sahne-kunye summary{cursor:pointer;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
@@ -71,7 +89,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
 </header>
 
 <div class="sw">
-  <div class="scene-wrap">
+  <div class="scene-wrap" id="sceneWrap">
     <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
         <radialGradient id="kdl-glow" cx="50%" cy="50%" r="50%">
@@ -94,31 +112,43 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.06em;color:v
         </mask>
       </defs>
 
-      <rect x="0" y="0" width="1600" height="1000" fill="url(#kdl-glow)"/>
+      <rect id="kdl-bg" x="0" y="0" width="1600" height="1000" fill="url(#kdl-glow)"/>
 
-      <g id="kdl-layer" mask="url(#kdl-mask)" opacity="0.92" style="filter:url(#kdl-soft)"></g>
+      <g id="kdl-layer" mask="url(#kdl-mask)" opacity="0" style="filter:url(#kdl-soft)"></g>
 
-      <g id="kdl-lamp-g" data-anim style="animation:kdl-ignite 1600ms 900ms both, kdl-drift 14s 2500ms ease-in-out infinite">
+      <g id="kdl-lamp-g" data-anim style="opacity:0">
         <circle id="kdl-lamp-c" cx="800" cy="500" r="230" fill="url(#kdl-lamp)"/>
       </g>
 
-      <rect id="kdl-hit" x="0" y="0" width="1600" height="1000" fill="transparent" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></rect>
+      <g id="kdl-ayet-g">
+        <text class="kdl-ayet-satir" id="kdlAyet1" x="800" y="470" font-size="26"></text>
+        <text class="kdl-ayet-satir" id="kdlAyet2" x="800" y="508" font-size="22"></text>
+        <text class="kdl-ayet-satir" id="kdlAyet3" x="800" y="546" font-size="20"></text>
+      </g>
+
+      <rect id="kdl-hit" x="0" y="0" width="1600" height="1000" fill="transparent" tabindex="-1" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></rect>
     </svg>
   </div>
   <div class="stage">
     <p class="caption" id="caption" aria-live="polite"><span id="captionText"></span></p>
+    <div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
     <p class="gezin-ipucu" id="gezinIpucu"></p>
   </div>
   <div id="kunyeYuvasi"></div>
 </div>
 
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. hayret.html/
+     uc-kap.html aynı düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const LA={
   tr:{
     title:'Kandil — Sınırlanınca Görünen',
     sub:'Nûr 24:35 — sınırsız nûr kandile girer, sahne ilk kez okunur; kandil çekilir, ışık da',
     caption:'Her yer eşit aydınlıkken hiçbir şey okunmuyordu. Sınır belirince sahne okundu; sınır çekilince okuma da çekildi.',
-    hint:'Kandili sürükle; ok tuşları da çalışır.',
+    hint:'Sahne durdu — kandili artık sen taşı; ok tuşları da çalışır.',
     hitLabel:'Kandilin ışığının sınırı — sürükleyerek taşı',
     kunyeBaslik:'Künye — bu sahne nereden geliyor?'
   },
@@ -126,7 +156,7 @@ const LA={
     title:'The Lamp — What Becomes Visible When Bounded',
     sub:'Al-Nūr 24:35 — the boundless light enters the lamp and the scene becomes readable; the lamp withdraws, and so does the light',
     caption:'When everything shone equally, nothing could be read. A boundary appeared and the scene became legible; when it withdrew, so did the reading.',
-    hint:'Drag the lamp; arrow keys work too.',
+    hint:'The scene has settled — now carry the lamp yourself; arrow keys work too.',
     hitLabel:'The boundary of the lamp’s light — drag to move it',
     kunyeBaslik:'Sources — where this scene comes from'
   },
@@ -134,7 +164,7 @@ const LA={
     title:'A Lâmpada — O que Se Torna Visível quando Limitado',
     sub:'Al-Nūr 24:35 — a luz sem limites entra na lâmpada e a cena torna-se legível; a lâmpada retira-se, e a luz também',
     caption:'Quando tudo brilhava por igual, nada podia ser lido. Um limite surgiu e a cena tornou-se legível; ao retirar-se, a leitura também partiu.',
-    hint:'Arraste a lâmpada; as setas também funcionam.',
+    hint:'A cena parou — agora leve você mesmo a lâmpada; as setas também funcionam.',
     hitLabel:'O limite da luz da lâmpada — arraste para mover',
     kunyeBaslik:'Fontes — de onde vem esta cena'
   }
@@ -146,6 +176,15 @@ const KUNYE=[
   {tur:'dost',metin:{tr:'“Suret ile ruhaninin ilişkisine örnek olarak ışığı duvarlara yayılan kandil ve onun ışığını verebiliriz. Kandilin cismi gizlendiğinde ışık da kaybolur.” Başka bir bahiste, bir ruhanî varlığın nasıl sûrete girip göründüğünü anlatmak için kullanılıyor — doğrudan Nûr 24:35 üzerine değil, ama aynı imge.',en:'“As an example of the relation between a form and a spirit, we may cite the lamp whose light spreads to the walls, and its light. When the lamp’s body is hidden, the light too disappears.” From a different passage, used to describe how a spiritual being enters and appears through a form — not a direct reading of Al-Nūr 24:35, but the same image.',pt:'“Como exemplo da relação entre uma forma e um espírito, podemos citar a lâmpada cuja luz se espalha pelas paredes, e a sua luz. Quando o corpo da lâmpada se esconde, a luz também desaparece.” De uma passagem diferente, usada para descrever como um ser espiritual entra e aparece através de uma forma — não uma leitura direta de An-Nūr 24:35, mas a mesma imagem.'},kaynak:{href:'futuhat/c1k12',etiket:'c1k12'}},
   {tur:'okuma',metin:{tr:'Ayna-v4 ve S4 ile aynı büyük aile — “sonsuzun kaba girmesi.” Farkı bitişte: ayna çoğaltır (v4), kalp sığdırır (S4), kandil görünür kılar ve çekilir.',en:'Same broad family as Mirror-v4 and S4 — “the boundless entering a vessel.” The difference is at the close: the mirror multiplies (v4), the heart contains (S4), the lamp makes visible and then withdraws.',pt:'Da mesma família alargada que o Espelho-v4 e S4 — “o sem-limites entrando num vaso.” A diferença está no final: o espelho multiplica (v4), o coração contém (S4), a lâmpada torna visível e depois retira-se.'}},
   {tur:'serh',metin:{tr:'Âyetin kendisi tek bir kandilden çok daha katmanlı: “mişkât” (hücre), “mısbah” (kandil), “zücâce” (cam), “zeytin ağacı” art arda geçer. Bu sahne o zinciri tek bir kandile indirdi — katmanları art arda çizmek eşmerkezli çember yasağına çok yaklaşırdı.',en:'The verse itself is far more layered than a single lamp: it moves through “niche” (mishkāt), “lamp” (miṣbāḥ), “glass” (zujāja), “olive tree” in sequence. This scene reduced that chain to one lamp — drawing the layers one inside another would have come too close to the ban on concentric circles.',pt:'O próprio versículo é muito mais estratificado do que uma única lâmpada: passa por “nicho” (mishkāt), “lâmpada” (miṣbāḥ), “vidro” (zujāja), “oliveira” em sequência. Esta cena reduziu essa cadeia a uma única lâmpada — desenhar as camadas uma dentro da outra teria chegado demasiado perto da proibição dos círculos concêntricos.'}}
+];
+
+// Kandilin camında beliren satırlar: YENİ çeviri değil, partisyonun (kandil.json)
+// kendi ölçü metinlerinden ve yukarıdaki künyeden alınmış BİREBİR alıntılar —
+// ölçü 2/3/4'ün metinleriyle aynı üç dilde zaten yayında olan cümleler.
+const AYET_SATIR=[
+  {tr:'“Allah göklerin ve yerin nûrudur.”',en:'“God is the light of the heavens and the earth.”',pt:'“Deus é a luz dos céus e da terra.”'},
+  {tr:'“Işığı duvarlara yayılan kandil.”',en:'“The lamp whose light spreads to the walls.”',pt:'“A lâmpada cuja luz se espalha pelas paredes.”'},
+  {tr:'“Kandilin ışığı ile gökleri ve yeri aydınlatan ışık bir olabilir mi?”',en:'“Can the lamp’s light and the light that illumines the heavens and the earth be one?”',pt:'“Poderá a luz da lâmpada e a luz que ilumina os céus e a terra ser uma só?”'}
 ];
 
 const $=id=>document.getElementById(id);
@@ -179,10 +218,12 @@ function renderChrome(){
   const d=LA[lang];
   $('hTitle').textContent=d.title;
   $('hSub').textContent=d.sub;
-  $('captionText').textContent=d.caption;
+  if(sonMetin) $('captionText').textContent=sonMetin[lang]||sonMetin.tr;
   $('gezinIpucu').textContent=d.hint;
   hit.setAttribute('aria-label', d.hitLabel);
   kunye.guncelle(lang);
+  ayetSatirGuncelle();
+  sahneMetniniGuncelle();
 }
 function setLang(l){ if(!LA[l]) return; lang=l; renderChrome(); }
 
@@ -264,12 +305,14 @@ for(let i=0;i<140;i++){
   layer.appendChild(c);
 }
 
-// ── Kandili sürükleme: konum, ışığın (maskenin) ve kandil gövdesinin
-// sınırını birlikte taşır. Sınır neredeyse orada, dünya okunur olur; başka
-// yerde eşit aydınlık geri döner. ──────────────────────────────────────────
+// ── Kandili taşıma (kendim gezineyim kipi, sahne bittikten sonra): konum,
+// ışığın (maskenin) ve kandil gövdesinin sınırını birlikte taşır. Sınır
+// neredeyse orada, dünya okunur olur; başka yerde eşit aydınlık geri döner.
 const maskC=$('kdl-mask-c');
 const lampG=$('kdl-lamp-g');
 const lampC=$('kdl-lamp-c');
+const ayetG=$('kdl-ayet-g');
+const ayetEls=[$('kdlAyet1'),$('kdlAyet2'),$('kdlAyet3')];
 
 let cx=800, cy=500;
 function setPos(x,y){
@@ -277,6 +320,7 @@ function setPos(x,y){
   cy=Math.max(160, Math.min(840, y));
   maskC.setAttribute('cx', cx); maskC.setAttribute('cy', cy);
   lampC.setAttribute('cx', cx); lampC.setAttribute('cy', cy);
+  ayetG.setAttribute('transform','translate('+(cx-800)+' '+(cy-500)+')');
   hit.setAttribute('aria-valuenow', Math.round((cx/1600)*100));
 }
 
@@ -295,10 +339,14 @@ function firstInteract(){
   if(interacted) return;
   interacted=true;
   lampG.style.animation='kdl-ignite 400ms both';
+  lampG.style.opacity='';
+  layer.style.opacity='0.92';
+  ayetSatirUygula(3);
   $('gezinIpucu').classList.add('gone');
 }
 
 hit.addEventListener('pointerdown', function(e){
+  if(!document.body.classList.contains('sahne-bitti')) return;
   dragging=true; hit.style.cursor='grabbing'; firstInteract();
   try{ hit.setPointerCapture(e.pointerId); }catch(_){}
   const p=toSvg(e.clientX, e.clientY); setPos(p.x, p.y);
@@ -313,6 +361,7 @@ hit.addEventListener('pointermove', function(e){
 });
 
 hit.addEventListener('keydown', function(e){
+  if(!document.body.classList.contains('sahne-bitti')) return;
   const step=40;
   let handled=true;
   if(e.key==='ArrowLeft') setPos(cx-step, cy);
@@ -320,16 +369,101 @@ hit.addEventListener('keydown', function(e){
   else if(e.key==='ArrowUp') setPos(cx, cy-step);
   else if(e.key==='ArrowDown') setPos(cx, cy+step);
   else handled=false;
-  if(handled){ firstInteract(); e.preventDefault(); }
+  if(handled){ firstInteract(); e.preventDefault(); e.stopPropagation(); }
 });
 
-const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(reduced){
-  lampG.style.animation='none';
-  $('caption').classList.add('show');
-} else {
-  setTimeout(function(){ $('caption').classList.add('show'); }, 8200);
+// ── Ölçü hedef_hal'leri kümülatiftir (her ölçü yalnız kendi değişen
+// anahtarlarını taşır) -- sonHal deseni, bkz. uc-kap.html/hayret.html. ─────
+let sonHal={};
+function uygulaHal(hamHal){
+  sonHal=Object.assign({}, sonHal, hamHal);
+  const hal=sonHal;
+  const kandilOpaklik=hal.kandilOpaklik!==undefined?hal.kandilOpaklik:0;
+  const toplanma=hal.toplanma!==undefined?hal.toplanma:0;
+  const sonSonme=hal.sonSonme!==undefined?hal.sonSonme:0;
+  const sonme=1-sonSonme;
+  lampG.style.opacity=String(kandilOpaklik*sonme);
+  layer.style.opacity=String(toplanma*0.92*sonme);
+  maskC.setAttribute('r', String(20+toplanma*160));
+  $('kdl-bg').classList.toggle('nefes-al', !!hal.nefes);
 }
+
+// Kandilin camında beliren satırlar: ölçü kimliğine göre 0/1/2/3 satır
+// görünür -- ışık dolunca satır satır okunur, kandil çekilince hepsi söner.
+function ayetSatirUygula(sayi){
+  ayetEls.forEach(function(el,i){ el.classList.toggle('gorunur', i<sayi); });
+}
+const OLCU_AYET_SAYISI={ 'bicimsiz-aydinlik':0, 'kandil-belirir':1, 'okunur-olur':2, 'karanlik-payi':3, 'cekilis':0 };
+
+let sahneMetniEl=null, partisyonRef=null;
+function sahneMetniniKur(){
+  if(sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl=document.createElement('ol');
+  sahneMetniEl.className='sahne-metni';
+  kunye.el.appendChild(sahneMetniEl);
+  sahneMetniniGuncelle();
+}
+function sahneMetniniGuncelle(){
+  if(!sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl.innerHTML='';
+  partisyonRef.olcuLer.forEach(function(o){
+    if(!o.metin) return;
+    const li=document.createElement('li');
+    li.textContent=o.metin[lang]||o.metin.tr;
+    sahneMetniEl.appendChild(li);
+  });
+}
+
+function ayetSatirGuncelle(){
+  ayetEls.forEach(function(el,i){ el.textContent=(AYET_SATIR[i][lang]||AYET_SATIR[i].tr); });
+}
+
+const captionEl=$('caption');
+let sonMetin=null;
+function metinYaz(m){
+  sonMetin=m;
+  const t=m?(m[lang]||m.tr||''):'';
+  captionEl.classList.remove('show');
+  window.setTimeout(function(){
+    $('captionText').textContent=t;
+    if(t) captionEl.classList.add('show');
+  }, t?150:0);
+}
+
+let motorAPI=null;
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/kandil.json').then(function(r){ return r.json(); }).then(function(p){
+    partisyonRef=p;
+    sahneMetniniKur();
+    motorAPI=window.__sahneMotoru.yarat({
+      container:$('sceneWrap'), partisyon:p,
+      applyOlcu:function(o){
+        uygulaHal(o.hedef_hal||{});
+        ayetSatirUygula(OLCU_AYET_SAYISI[o.id]!==undefined?OLCU_AYET_SAYISI[o.id]:3);
+      },
+      metinGoster:metinYaz,
+      olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if(ev.tip==='bitti'){
+          document.body.classList.add('sahne-bitti');
+          hit.setAttribute('tabindex','0');
+        }
+      },
+    });
+  });
+})();
+
+$('sceneWrap').setAttribute('tabindex','0');
+$('sceneWrap').addEventListener('keydown', function(e){
+  if(!motorAPI || e.target===hit) return;
+  if(e.key===' '){ e.preventDefault(); if(motorAPI.durum==='oynuyor') motorAPI.pause(); else if(motorAPI.durum==='durakli') motorAPI.resume(); return; }
+  const y={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(y===undefined) return;
+  e.preventDefault();
+  motorAPI.gotoOlcu(Math.max(0, Math.min(motorAPI.olcuSayisi-1, motorAPI.aktifIdx+y)));
+});
 
 renderChrome();
 window.addEventListener('message', function(e){
