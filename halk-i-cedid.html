@@ -23,11 +23,23 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
    hızını değil, tık aralığını uzatıyor -- aradaki yokluk ânı görünür olur. */
 .stage-frame{position:relative;width:min(640px,92vw);aspect-ratio:16/10;max-height:58vh;margin:.4rem auto 1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
 .stage-frame svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hint{position:absolute;top:10px;right:14px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hint{position:absolute;top:10px;right:14px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .5s ease}
 @keyframes s2Pulse{0%,100%{opacity:.6}50%{opacity:1}}
-.hint[data-anim]{animation:s2Pulse 3s ease-in-out 1.5s 3}
+body.sahne-bitti .hint{opacity:.7;animation:s2Pulse 3s ease-in-out .3s 3}
 
-.track-wrap{width:min(560px,92vw);margin:0 auto 1.2rem;text-align:center}
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin:.3rem 0 .2rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--muted);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--liminal);color:var(--text)}
+
+.sahne-kunye{width:min(560px,92vw);margin:1rem auto 0;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.85rem 1rem;font-size:.82rem;line-height:1.7}
+.sahne-kunye summary{cursor:pointer;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
+.sahne-kunye summary:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+.sahne-metni{list-style:none;margin-top:.7rem;font-style:italic}
+
+.track-wrap{width:min(560px,92vw);margin:0 auto 1.2rem;text-align:center;opacity:0;max-height:0;overflow:hidden;transition:opacity .5s ease}
+body.sahne-bitti .track-wrap{opacity:1;max-height:160px}
 .track-labels{display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
 #slider{-webkit-appearance:none;appearance:none;background:transparent;width:100%;height:34px;padding:0;margin:0;cursor:pointer;display:block}
 #slider::-webkit-slider-runnable-track{height:2px;background:var(--border);border-radius:2px}
@@ -38,9 +50,8 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 #slider:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 1px var(--liminal),0 0 0 5px var(--border)}
 #slider:focus-visible::-moz-range-thumb{box-shadow:0 0 0 1px var(--liminal),0 0 0 5px var(--border)}
 
-.caption{font-size:clamp(.82rem,1.6vw,.92rem);line-height:1.65;color:var(--text);opacity:0;padding:.9rem .4rem 0;max-width:560px;margin:0 auto;min-height:3em;text-wrap:pretty}
-@keyframes s2Caption{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-.caption[data-anim]{animation:s2Caption 900ms 900ms ease-out forwards}
+.caption{font-size:clamp(.82rem,1.6vw,.92rem);line-height:1.65;color:var(--text);opacity:0;transform:translateY(4px);transition:opacity .8s ease,transform .8s ease;padding:.9rem .4rem 0;max-width:560px;margin:0 auto;min-height:3em;text-wrap:pretty}
+.caption.gorunur{opacity:1;transform:none}
 
 @media (prefers-reduced-motion: reduce){
   [data-anim]{animation:none!important}
@@ -76,52 +87,93 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   <svg id="stage" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Her karede yeniden beliren bir siluet alanı">
     <g id="sceneG"></g>
   </svg>
-  <div class="hint" id="hint" data-anim><span id="hintText"></span></div>
+  <div class="hint" id="hint"><span id="hintText"></span></div>
 </div>
+<div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
+
+<p class="caption" id="caption" aria-live="polite"><span id="captionText"></span></p>
 
 <div class="track-wrap">
   <div class="track-labels">
     <span id="labelFast"></span>
     <span id="labelSlow"></span>
   </div>
-  <input id="slider" type="range" min="0" max="100" value="0">
-  <p class="caption" id="caption" data-anim aria-live="polite"><span id="captionText"></span></p>
+  <input id="slider" type="range" min="0" max="100" value="0" disabled>
 </div>
 
+<div id="kunyeYuvasi"></div>
+
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. hayret.html/
+     kandil.html/kalbe-sigan.html/nefes-i-rahmani.html/berzah.html aynı
+     düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const LA={
   tr:{
     title:'Halk-ı Cedîd',
     sub:'Âlem bir kez yaratılıp bırakılmış değil — her nefeste yeniden yaratılıyor. Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor.',
-    hint:'Yavaşlat',
+    hint:'Sahne durdu — artık hızını sen ayarla',
     fast:'Sürekli',
     slow:'Yavaş',
+    kunyeBaslik:'Künye — bu sahne nereden geliyor?',
     caption:'Sahne duruyor gibi görünüyor. Aslında her karede tümüyle yok oluyor ve neredeyse aynı yerde yeniden beliriyor. Yavaşlattıkça aradaki yokluk anı görünür oluyor.',
     honesty:'Bu sahnenin güven düzeyi yerleşik: "her nefeste yeniden yaratılış" iddiası iki ayrı Fütûhât alıntısına (Cilt XV, 416. Bölüm; Cilt XIV, 408. Bölüm) doğrudan dayanıyor, kaynağın söylemediği bir kesinlik eklenmedi. Doktrinin akademik okuması için Mohamed Haj Yousef\'in "Ibn \'Arabî - Time and Cosmology" (Routledge, 2007) kitabına bakılabilir; ama kitabın kendi fizik-kıyasları (modern fizik teorileriyle karşılaştırma) yayınlanmış eleştirilerde aşırı iddialı bulunmuş — bu sahne o kıyaslara hiç başvurmuyor, yalnız doktrinin kendisini taşıyor.',
   },
   en:{
     title:'Perpetual Renewal',
     sub:'The world is not something created once and left — it is recreated at every breath. We do not notice, because two successive creations resemble each other so closely.',
-    hint:'Slow down',
+    hint:'The scene has settled — now set the pace yourself',
     fast:'Continuous',
     slow:'Slow',
+    kunyeBaslik:'Sources — where this scene comes from',
     caption:'The scene looks still. In fact it vanishes each frame and reappears almost — but not quite — where it was. Slow it down and the moment of absence becomes visible.',
     honesty:"This scene's confidence level is well-established: the claim of \"perpetual re-creation with every breath\" rests directly on two separate Futuhat passages (Vol. XV, Chapter 416; Vol. XIV, Chapter 408), with no certainty added beyond what the source states. For an academic treatment of the doctrine, see Mohamed Haj Yousef's \"Ibn 'Arabi - Time and Cosmology\" (Routledge, 2007); but the book's own physics comparisons (drawing parallels with modern physical theories) have been called overreaching in published reviews — this scene does not draw on those comparisons, only on the doctrine itself.",
   },
   pt:{
     title:'Renovação Perpétua',
     sub:'O mundo não é algo criado uma vez e deixado — é recriado a cada alento. Não damos por isso, porque duas criações sucessivas se assemelham muito.',
-    hint:'Desacelerar',
+    hint:'A cena parou — agora ajuste você mesmo o ritmo',
     fast:'Contínuo',
     slow:'Lento',
+    kunyeBaslik:'Fontes — de onde vem esta cena',
     caption:'A cena parece imóvel. Na verdade, a cada quadro ela desaparece por inteiro e retorna quase — não exatamente — onde estava. Ao desacelerar, o instante de ausência se torna visível.',
     honesty:'O nível de confiança desta cena é consolidado: a afirmação de "recriação perpétua a cada alento" assenta diretamente em duas passagens separadas das Futuhat (Vol. XV, Capítulo 416; Vol. XIV, Capítulo 408), sem qualquer certeza acrescentada além do que a fonte afirma. Para uma leitura académica da doutrina, pode consultar-se o livro de Mohamed Haj Yousef, "Ibn \'Arabi - Time and Cosmology" (Routledge, 2007); mas as próprias comparações do livro com a física (traçando paralelos com teorias físicas modernas) foram consideradas excessivas em avaliações publicadas — esta cena não recorre a essas comparações, apenas à doutrina em si.',
   },
 };
 
 let curLang='tr';
+let sonMetin=null;
 const $=id=>document.getElementById(id);
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Künye kutusu — assets/sahne-cizim.js'teki kunye() işlevine denk, bu
+// sahne kendi içinde kuruyor (self-contained). Bu sahnede ayrı sourced
+// alıntı satırları yok (honesty bloğu zaten iki Fütûhât referansını
+// taşıyor) -- künye burada yalnız sahne metnini barındırıyor.
+function kunyeOlustur(container, baslikObj){
+  const det=document.createElement('details'); det.className='sahne-kunye';
+  const sum=document.createElement('summary'); det.appendChild(sum);
+  const ol=document.createElement('ol'); ol.className='sahne-metni'; det.appendChild(ol);
+  container.appendChild(det);
+  return { el:det, ol, guncelle:function(l){
+    sum.textContent=(baslikObj&&(baslikObj[l]||baslikObj.tr))||'Künye';
+  }};
+}
+const kunye=kunyeOlustur($('kunyeYuvasi'), {});
+
+let sahneMetniEl=null, partisyonRef=null;
+function sahneMetniniGuncelle(){
+  if(!partisyonRef) return;
+  sahneMetniEl=kunye.ol;
+  sahneMetniEl.innerHTML='';
+  partisyonRef.olcuLer.forEach(function(o){
+    if(!o.metin) return;
+    const li=document.createElement('li');
+    li.textContent=o.metin[curLang]||o.metin.tr;
+    sahneMetniEl.appendChild(li);
+  });
+}
 
 function renderAll(){
   const d=LA[curLang];
@@ -131,8 +183,11 @@ function renderAll(){
   $('hintText').textContent=d.hint;
   $('labelFast').textContent=d.fast;
   $('labelSlow').textContent=d.slow;
-  $('captionText').textContent=d.caption;
+  if(sonMetin) $('captionText').textContent=sonMetin[curLang]||sonMetin.tr;
+  else $('captionText').textContent=d.caption;
   $('slider').setAttribute('aria-label',d.hint);
+  kunye.guncelle(curLang);
+  sahneMetniniGuncelle();
 }
 function setLang(l){ if(!LA[l]) return; curLang=l; renderAll(); }
 
@@ -234,15 +289,23 @@ recreate();
 
 const slider=$('slider');
 const hint=$('hint');
-let t=0; // yavaşlama 0..1
+let t=0, targetT=0; // yavaşlama 0..1 -- motor hedefi veriyor, döngü kendi yaklaştırıyor
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Döngü: görünür → yokluk → yeniden yaratılış → görünür.
+// Döngü: görünür → yokluk → yeniden yaratılış → görünür -- SÜREKLİ çalışır
+// (narasyon sırasında da, sahne bittikten sonra da); yalnız t'nin hedefi
+// motordan (ya da kendim gezineyim kaydırıcısından) gelir.
 // t=0: görünür ~55ms, yokluk ~0ms → süreklilik olarak okunur.
-// t=1: görünür ~1400ms, yokluk ~900ms → kesinti açıkça görünür.
+// t=1: görünür ~1400ms, yokluk ~900ms → kesinti açıkça görünür (nefes hızında).
 let phase='visible';
 let phaseStart=performance.now();
+let lastEase=performance.now();
 let rafId=0;
 function loop(now){
+  const dt=Math.min(80, now-lastEase); lastEase=now;
+  if(Math.abs(targetT-t)>0.0008) t+=(targetT-t)*Math.min(1, dt/900);
+  else t=targetT;
+
   const visMs=55+t*t*1400;
   const voidMs=t*t*900;
   const elapsed=now-phaseStart;
@@ -268,21 +331,65 @@ function loop(now){
   }
   rafId=requestAnimationFrame(loop);
 }
+function tHedefiVer(v){ targetT=v; }
 
 slider.addEventListener('input',e=>{
-  t=(+e.target.value)/100;
+  if(!document.body.classList.contains('sahne-bitti')) return;
+  tHedefiVer((+e.target.value)/100);
   if(hint) hint.style.animation='none';
 });
 
-if(reduceMotion){
-  // Hareket taklit edilmiyor -- tek, sabit bir kare; başlık her zaman görünür.
-  sceneG.setAttribute('opacity','1');
+if(!reduced) rafId=requestAnimationFrame(loop);
+
+function metinYaz(m){
+  sonMetin=m;
+  const t2=m?(m[curLang]||m.tr||''):'';
   const cap=$('caption');
-  cap.style.animation='none'; cap.style.opacity='1';
-  if(hint) hint.style.animation='none';
-} else {
-  rafId=requestAnimationFrame(loop);
+  cap.classList.remove('gorunur');
+  window.setTimeout(function(){
+    $('captionText').textContent=t2;
+    if(t2) cap.classList.add('gorunur');
+  }, t2?150:0);
 }
+
+let motorAPI=null;
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/halk-i-cedid.json').then(function(r){ return r.json(); }).then(function(p){
+    partisyonRef=p;
+    sahneMetniniGuncelle();
+    motorAPI=window.__sahneMotoru.yarat({
+      container:document.querySelector('.stage-frame'), partisyon:p,
+      applyOlcu:function(o){
+        const hal=o.hedef_hal||{};
+        if(hal.t!==undefined){
+          targetT=hal.t;
+          if(reduced) t=hal.t; // reduced-motion: döngü çalışmıyor, doğrudan uygula
+        }
+      },
+      metinGoster:metinYaz,
+      olcuGoster:function(i,tot){ $('olcuGosterge').textContent=(i+1)+' / '+tot; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if(ev.tip==='bitti'){
+          document.body.classList.add('sahne-bitti');
+          slider.disabled=false;
+          slider.value=Math.round(targetT*100);
+        }
+      },
+    });
+  });
+})();
+
+document.querySelector('.stage-frame').setAttribute('tabindex','0');
+document.querySelector('.stage-frame').addEventListener('keydown', function(e){
+  if(!motorAPI || e.target===slider) return;
+  if(e.key===' '){ e.preventDefault(); if(motorAPI.durum==='oynuyor') motorAPI.pause(); else if(motorAPI.durum==='durakli') motorAPI.resume(); return; }
+  const y={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(y===undefined) return;
+  e.preventDefault();
+  motorAPI.gotoOlcu(Math.max(0, Math.min(motorAPI.olcuSayisi-1, motorAPI.aktifIdx+y)));
+});
 
 window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);
