@@ -105,9 +105,22 @@
     // Reduced motion: sahneyi hiç oynatma. Son ölçünün hedef hâlini uygula,
     // tüm ölçü metinlerini birleştirip metinGoster'a bir kez ver (statik
     // sunumdır -- TEMPO_GRAMERI.md "ikinci meşru biçim").
+    //
+    // DÜZELTME (2026-08-18, sahne yeniden tasarımı turu): birden çok sahne
+    // (uc-kap, kandil, kalbe-sigan...) hedef_hal'i KÜMÜLATİF veriyor -- her
+    // ölçü yalnız KENDİ değişen anahtarlarını taşıyor, sahnenin kendi
+    // applyOlcu'su bunları biriktiriyor (sonHal deseni). Burada yalnız son
+    // ölçünün ham hedef_hal'i geçilirse önceki ölçülerde set edilmiş
+    // anahtarlar (ör. uc-kap'ta "dag: parcalanmis") reduced-motion'da HİÇ
+    // uygulanmıyordu -- statik sunum eksik/yanlış çıkıyordu. Bütün
+    // ölçülerin hedef_hal'lerini SIRAYLA birleştirip son ölçünün metnini
+    // koruyarak TEK bir sentetik ölçü olarak geçiyoruz; sahnenin kendi
+    // biriktirme mantığı bunu tek çağrıda doğru kurar.
     if (reduce) {
       var sonOlcu = olcuLer[olcuLer.length - 1];
-      applyOlcu(sonOlcu);
+      var birlesikHal = {};
+      olcuLer.forEach(function (o) { Object.assign(birlesikHal, o.hedef_hal || {}); });
+      applyOlcu({ id: sonOlcu.id, metin: sonOlcu.metin, hedef_hal: birlesikHal });
       var tumMetin = olcuLer.map(function (o) { return o.metin ? tt(o.metin) : ""; }).filter(Boolean).join("\n\n");
       metinGoster(tumMetin ? { tr: tumMetin, en: tumMetin, pt: tumMetin } : null);
       olcuGoster(olcuLer.length - 1, olcuLer.length);

@@ -33,12 +33,21 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 */
 #stageWrap{position:relative;width:min(640px,92vw);aspect-ratio:16/10;margin:.4rem auto 1rem;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--panel)}
 #scene{position:absolute;inset:0;width:100%;height:100%;display:block}
-.ipucu{position:absolute;top:12px;right:14px;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ipucu{position:absolute;top:12px;right:14px;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .5s ease}
+body.sahne-bitti .ipucu{opacity:.7}
 @keyframes ipucuNabiz{0%,100%{opacity:.55}50%{opacity:1}}
-.ipucu{animation:ipucuNabiz 3s ease-in-out 1.5s 3}
+body.sahne-bitti .ipucu{animation:ipucuNabiz 3s ease-in-out 1.5s 2}
 
-.kaydirici-blok{width:min(560px,92vw);margin:0 auto 1rem}
+.kaydirici-blok{width:min(560px,92vw);margin:0 auto 1rem;opacity:0;max-height:0;overflow:hidden;transition:opacity .5s ease}
+body.sahne-bitti .kaydirici-blok{opacity:1;max-height:200px}
 .uc-etiket{display:flex;justify-content:space-between;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.kendim-gezin-ipucu{font-size:.72rem;color:var(--muted);font-style:italic;text-align:center;margin-bottom:.4rem;opacity:0;transition:opacity .5s ease}
+body.sahne-bitti .kendim-gezin-ipucu{opacity:.8}
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.3rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--muted);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--liminal);color:var(--text)}
 #isikKaydirici{-webkit-appearance:none;appearance:none;background:transparent;width:100%;height:44px;padding:0;margin:0;cursor:pointer}
 #isikKaydirici::-webkit-slider-runnable-track{height:2px;background:var(--border);border-radius:2px}
 #isikKaydirici::-moz-range-track{height:2px;background:var(--border);border-radius:2px}
@@ -48,10 +57,16 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 #isikKaydirici:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--liminal)}
 #isikKaydirici:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--liminal)}
 
-.caption{text-align:center;font-size:.88rem;line-height:1.7;color:var(--text);opacity:0;padding:.7rem 4px 0;max-width:520px;margin:0 auto;min-height:3em}
-@keyframes captionGir{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-.caption{animation:captionGir 900ms 900ms ease-out forwards}
-@media(prefers-reduced-motion:reduce){.sw [data-anim]{animation:none!important}}
+.caption{text-align:center;font-size:.88rem;line-height:1.7;color:var(--text);opacity:0;padding:.7rem 4px 0;max-width:520px;margin:0 auto;min-height:3em;transition:opacity var(--dur-uzun,.4s) var(--ease-sahne,ease)}
+.caption.gorunur{opacity:1}
+/* Hayret noktası: sahnenin tek cevap-biçimi, "durak" ölçüsünde yavaşça
+   nefes alır (--dur-sahne ölçeğinin çok yavaş ucu) -- ölçülü, neredeyse
+   fark edilmeyen; motorun kabul ettiği tek meşru "bekleme animasyonu". */
+@media(prefers-reduced-motion:no-preference){
+  .hayret-nokta.nefes-al{animation:hayretNefes 6s ease-in-out infinite}
+}
+@keyframes hayretNefes{0%,100%{opacity:.78}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.sw [data-anim]{animation:none!important}.caption{transition:none}}
 
 /* Künye — kapalı gelir; içinde Dost'un cümleleri ile bizim okumamız ayrık. */
 .sahne-kunye{width:min(560px,92vw);margin-top:.3rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
@@ -102,15 +117,23 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
     <div class="ipucu" data-anim="" id="ipucu"><span id="ipucuMetin"></span></div>
   </div>
 
+  <p class="caption" id="caption" aria-live="polite"><span id="captionMetin"></span></p>
+
   <div class="kaydirici-blok">
+    <p class="kendim-gezin-ipucu" id="kendimGezinIpucu"></p>
     <div class="uc-etiket"><span id="etikBol"></span><span id="etikAz"></span></div>
-    <input id="isikKaydirici" type="range" min="0" max="100" value="100" aria-label="Işık">
-    <p class="caption" id="caption" data-anim="" aria-live="polite"><span id="captionMetin"></span></p>
+    <input id="isikKaydirici" type="range" min="0" max="100" value="0" aria-label="Işık">
+    <div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
   </div>
 
   <div id="kunyeYuvasi"></div>
 </div>
 
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. uc-kap.html
+     aynı düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const LA={
   tr:{
@@ -122,6 +145,7 @@ const LA={
     caption:'Bol ışık göze her şeyi gördüğünü söyler. Işık kısıldıkça sahne netleşir; başta görünmeyen katman ortaya çıkar.',
     sceneLabel:'Aydınlıkta bulanık duran sade bir manzara, ışık kısıldıkça netleşir',
     sliderLabel:'Işık',
+    kendimGezin:'Sahne durdu — ışığı artık sen ayarla.',
     kunyeBaslik:'Künye — bu sahne nereden geliyor?'
   },
   en:{
@@ -133,6 +157,7 @@ const LA={
     caption:'Bright light tells the eye it sees everything. As the light dims, the scene sharpens; a layer that was not visible at first appears.',
     sceneLabel:'A plain landscape, blurred in bright light, sharpens as the light dims',
     sliderLabel:'Light',
+    kendimGezin:'The scene has settled — now adjust the light yourself.',
     kunyeBaslik:'Sources — where this scene comes from'
   },
   pt:{
@@ -144,6 +169,7 @@ const LA={
     caption:'A luz forte diz ao olho que ele vê tudo. À medida que a luz diminui, a cena se aguça; uma camada antes invisível aparece.',
     sceneLabel:'Uma paisagem simples, desfocada em luz forte, torna-se nítida à medida que a luz diminui',
     sliderLabel:'Luz',
+    kendimGezin:'A cena parou — ajuste a luz você mesmo agora.',
     kunyeBaslik:'Fontes — de onde vem esta cena'
   }
 };
@@ -194,10 +220,15 @@ function setLang(l){
   $('ipucuMetin').textContent=d.hint;
   $('etikBol').textContent=d.bright;
   $('etikAz').textContent=d.dim;
-  $('captionMetin').textContent=d.caption;
+  $('kendimGezinIpucu').textContent=d.kendimGezin;
   $('isikKaydirici').setAttribute('aria-label',d.sliderLabel);
   $('scene').setAttribute('aria-label',d.sceneLabel);
   kunye.guncelle(l);
+  sahneMetniniGuncelle();
+  // Motor henüz metin vermediyse (partisyon yüklenmeden önce) LA'nın
+  // tanıtım cümlesini göster; motor devreye girince onu geçersiz kılar.
+  if(sonMetin) $('captionMetin').textContent=sonMetin[l]||sonMetin.tr;
+  else { $('captionMetin').textContent=d.caption; captionEl.classList.add('gorunur'); }
 }
 
 // ── Künye bloğu (sahne-cizim.js'teki kunye() ile aynı desen, bu sahne
@@ -292,6 +323,10 @@ while(placed.length<target && attempts<target*40){
   if(!ok) continue;
   placed.push({ x, y, scale, kind:keys[Math.floor(rand()*keys.length)] });
 }
+// "durak" ölçüsünde (hal.nefes) tek bir biçim -- ilk rastlanan 'moon' --
+// yavaşça nefes alır; sahnenin tek cevap-noktası, geri kalanı sabit kalır.
+// Tohum sabit (23) olduğu için bu her yüklemede AYNI biçime düşer.
+let hayretNoktaEl=null;
 for(const p of placed){
   const g=document.createElementNS(svgNS,'g');
   const w=40*p.scale, h=40*p.scale;
@@ -307,6 +342,7 @@ for(const p of placed){
   el.setAttribute('opacity',(0.7+rand()*0.25).toFixed(2));
   g.appendChild(el);
   katInce.appendChild(g);
+  if(!hayretNoktaEl && p.kind==='moon'){ hayretNoktaEl=el; el.classList.add('hayret-nokta'); }
 }
 // ince toz, silüetler arasında
 for(let i=0;i<220;i++){
@@ -335,39 +371,119 @@ const taban=$('taban');
 const ortu=$('ortu');
 const kaydirici=$('isikKaydirici');
 const ipucu=$('ipucu');
+const stageWrap=$('stageWrap');
 
-// parlaklık: 100 = tam aydınlık (ince katman gizli, kaba katman baskın)
-//             0   = kısık   (ince katman net, kaba katman sönük)
-function isikUygula(v){
-  const t=v/100;
-  ortu.setAttribute('opacity',(0.15+t*0.75).toFixed(3));
-  const inceOp=Math.max(0,1-t*1.15);
-  katInce.style.opacity=inceOp.toFixed(3);
-  katKaba.style.opacity=(0.35+t*0.55).toFixed(3);
+// GÖSTERİM: hedef_hal doğrudan opaklık değerleri taşır (ortu/net/bulanik) --
+// slider'ın eski 0-100 ölçeği değil, partisyonun kendi ham değerleri.
+// Sahnenin kendi "sonHal" birikimi burada tutulur (uc-kap.html'deki aynı
+// desen): her ölçü yalnız KENDİ değişen anahtarını taşır, önceki ölçülerin
+// kazanımı korunur.
+let sonHal={};
+function uygulaHal(hamHal){
+  sonHal=Object.assign({}, sonHal, hamHal);
+  const hal=sonHal;
+  if(hal.ortu!==undefined) ortu.style.opacity=String(hal.ortu);
+  if(hal.net!==undefined) katInce.style.opacity=String(hal.net);
+  if(hal.bulanik!==undefined) katKaba.style.opacity=String(hal.bulanik);
+  // Zemin tonu: bulanik (kaba katman) baskınken daha açık, net katman
+  // baskınken daha koyu -- "bol ışık" ile "karanlıkta netlik" arasındaki
+  // aynı ekseni taşıyor, eski isikUygula(v) formülünün aynısı.
+  const t=hal.bulanik!==undefined?hal.bulanik:1;
   const bgL=(0.94-(1-t)*0.10).toFixed(3);
   taban.setAttribute('fill',`oklch(${bgL} 0.015 70)`);
   ortu.setAttribute('fill',`oklch(${bgL} 0.015 70)`);
+  if(hayretNoktaEl) hayretNoktaEl.classList.toggle('nefes-al', !!hal.nefes);
 }
 
+// Kendim gezineyim kipi (sahne bittikten sonra): eski slider formülü,
+// artık ikincil bir keşif aracı -- etiketlerle aynı yönde: 0="Bol Işık"
+// (sol, ölçü 1'in yanlış-aydınlık hâli: örtü düşük, net düşük, bulanık
+// yüksek), 100="Az Işık" (sağ, ölçü 4'ün karanlıkta-netlik hâli: örtü
+// yüksek, net yüksek, bulanık düşük). DÜZELTME (2026-08-18): net ve
+// bulanık eskiden ters yöndeydi -- "Bol Işık" ucunda (v=0) net=1,
+// bulanık=0.35 çıkıyordu, yani etiketin aksine "gerçek form net"
+// gösteriyordu; sahnenin paradoksu tam tersi (bol ışıkta yanılsama,
+// az ışıkta netlik). örtü zaten doğru yöndeydi, yalnız net/bulanık
+// (1-t) ile hesaplanıyor.
+function isikUygulaSlider(v){
+  const t=v/100;
+  uygulaHal({
+    ortu:(0.15+t*0.75),
+    net:Math.max(0,t*1.15-0.15),
+    bulanik:(0.9-t*0.55),
+  });
+}
 kaydirici.addEventListener('input',e=>{
-  isikUygula(+e.target.value);
+  isikUygulaSlider(+e.target.value);
   ipucu.style.animation='none';
 });
 kaydirici.step='1';
 
-isikUygula(100);
-
-const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(reduceMotion){
-  // "Hayret" durağını sabit göster: ne tam aydınlık ne tam kısık, ikisi
-  // birden okunabilir olsun.
-  kaydirici.value=45;
-  isikUygula(45);
-  const cap=$('caption');
-  cap.style.animation='none';
-  cap.style.opacity='1';
-  ipucu.style.animation='none';
+// ── Sahne metni: motorun ürettiği metinleri gerçek, sıralı bir liste
+//    olarak da DOM'a koyar (erişilebilirlik + arama, /sahne "partisyon"
+//    adımının gereği) -- künyenin altına, kapalı panelin içine.
+let sahneMetniEl=null, partisyonRef=null;
+function sahneMetniniKur(){
+  if(sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl=document.createElement('ol');
+  sahneMetniEl.className='sahne-metni';
+  kunye.el.appendChild(sahneMetniEl);
+  sahneMetniniGuncelle();
 }
+function sahneMetniniGuncelle(){
+  if(!sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl.innerHTML='';
+  partisyonRef.olcuLer.forEach(o=>{
+    if(!o.metin) return;
+    const li=document.createElement('li');
+    li.textContent=o.metin[lang]||o.metin.tr;
+    sahneMetniEl.appendChild(li);
+  });
+}
+
+const captionEl=$('caption');
+let sonMetin=null;
+function metinYaz(m){
+  sonMetin=m;
+  const t=m?(m[lang]||m.tr||''):'';
+  captionEl.classList.remove('gorunur');
+  window.setTimeout(function(){
+    $('captionMetin').textContent=t;
+    if(t) captionEl.classList.add('gorunur');
+  }, t?120:0);
+}
+
+let motorAPI=null;
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/hayret.json').then(r=>r.json()).then(function(p){
+    partisyonRef=p;
+    sahneMetniniKur();
+    motorAPI=window.__sahneMotoru.yarat({
+      container:stageWrap, partisyon:p,
+      applyOlcu:function(o){ uygulaHal(o.hedef_hal||{}); },
+      metinGoster:metinYaz,
+      olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if(ev.tip==='bitti'){
+          document.body.classList.add('sahne-bitti');
+          kaydirici.value=100;
+          ipucu.style.animation='';
+        }
+      },
+    });
+  });
+})();
+
+stageWrap.setAttribute('tabindex','0');
+stageWrap.addEventListener('keydown',function(e){
+  if(!motorAPI) return;
+  if(e.key===' '){e.preventDefault(); if(motorAPI.durum==='oynuyor')motorAPI.pause(); else if(motorAPI.durum==='durakli')motorAPI.resume(); return;}
+  const y={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(y===undefined) return; e.preventDefault();
+  motorAPI.gotoOlcu(Math.max(0,Math.min(motorAPI.olcuSayisi-1,motorAPI.aktifIdx+y)));
+});
 
 setLang('tr');
 window.addEventListener('message',function(e){
