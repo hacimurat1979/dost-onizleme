@@ -59,6 +59,23 @@
      deniyoruz -- bulunanı kullanır, yoksa genel serif'e düşer. */
   --font-arabic: "Amiri Quran", "Scheherazade New", "Noto Naskh Arabic", "Traditional Arabic", "Times New Roman", serif;
 
+  /* Tempo grameri (KOD-11/12, uzman paneli denetimi 2026-08-17, Dalga 3.7):
+     denetim 18 farklı transition süresi ve birbirine çok yakın iki ayrı
+     cubic-bezier saydı -- hepsi yerinde birer magic number'dı. Ölçek,
+     mevcut kullanımın EN SIK değerlerinden türetildi (82×0.2s, 74×0.15s,
+     20×0.18s→kisa'ya katlandı, 16×0.25s, 9×0.3s→gecis'e, 6×0.4s), yeni
+     bir tempo İCAT EDİLMEDİ. Yeni kural yazarken önce bu ölçekten seç;
+     ölçek dışına çıkmak bilinçli bir karar olsun. */
+  --dur-aninda: 0.12s;  /* mikro geri bildirim (hover parlaması vb.) */
+  --dur-kisa:   0.15s;  /* küçük durum değişimi */
+  --dur-orta:   0.2s;   /* varsayılan geçiş */
+  --dur-gecis:  0.25s;  /* panel/katman geçişi */
+  --dur-uzun:   0.4s;   /* sahne içi yumuşak değişim */
+  --dur-sahne:  1.1s;   /* sahne/karşılama ölçeği */
+  /* Tek sahne easing'i: iki yakın bezier (0.16,1,0.3,1 ve 0.22,1,0.36,1)
+     buna katlandı -- aynı "hızlı çık, çok yumuşak otur" ailesi. */
+  --ease-sahne: cubic-bezier(0.16, 1, 0.3, 1);
+
   --surface-1:      #fcfcfb;
   --page-plane:     #f9f9f7;
   --text-primary:   #1a1a1a;
@@ -228,7 +245,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
-  transition: top 0.15s ease;
+  transition: top var(--dur-kisa) ease;
 }
 .skip-link:focus {
   top: 12px;
@@ -269,7 +286,7 @@ html, body {
   background: var(--page-plane);
   color: var(--text-primary);
   font-family: var(--font-body);
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color var(--dur-gecis) ease, color var(--dur-gecis) ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -316,7 +333,7 @@ html {
   background: var(--surface-1);
   color: var(--text-muted);
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .app-header__back:hover,
 .app-header__back:focus-visible {
@@ -475,7 +492,7 @@ html {
 .hakkinda-diagram--zoomable {
   cursor: zoom-in;
   border-radius: 14px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform var(--dur-orta) ease, box-shadow var(--dur-orta) ease;
 }
 .hakkinda-diagram--zoomable:hover,
 .hakkinda-diagram--zoomable:focus-visible {
@@ -614,7 +631,7 @@ a.btn-ghost { text-decoration: none; }
   background: var(--surface-1);
   color: var(--text-secondary);
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .nav-toggle:hover,
 .nav-toggle:focus-visible,
@@ -681,7 +698,7 @@ a.btn-ghost { text-decoration: none; }
 .nav-drawer__heading[role="button"]::after {
   content: "▾";
   font-size: 0.85em;
-  transition: transform 0.15s ease;
+  transition: transform var(--dur-kisa) ease;
 }
 .nav-drawer__heading[aria-expanded="false"]::after { transform: rotate(-90deg); }
 .nav-drawer__group--collapsed .nav-drawer__items { display: none; }
@@ -715,7 +732,7 @@ a.btn-ghost { text-decoration: none; }
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .theme-toggle:hover,
 .graph-recenter:hover,
@@ -868,8 +885,8 @@ a.btn-ghost { text-decoration: none; }
   background: var(--page-plane);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
-.sessiz-mod-toggle__ring { transition: opacity 0.25s ease; }
-.sessiz-mod-toggle__dot { transition: r 0.25s ease; }
+.sessiz-mod-toggle__ring { transition: opacity var(--dur-gecis) ease; }
+.sessiz-mod-toggle__dot { transition: r var(--dur-gecis) ease; }
 .sessiz-mod-toggle[aria-pressed="true"] {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
@@ -920,7 +937,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   opacity: 0;
   transform: translateY(6px);
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: opacity var(--dur-orta) ease, transform var(--dur-orta) ease, color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .scroll-top-btn.is-visible {
   opacity: 1;
@@ -1113,7 +1130,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   left: 12px;
   background: color-mix(in srgb, var(--surface-1) 90%, transparent);
   z-index: 2;
-  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease, transform var(--dur-orta) ease;
 }
 .graph-recenter:hover {
   transform: rotate(90deg);
@@ -1200,7 +1217,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   font-weight: 600;
   color: var(--text-primary);
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .view-status__retry:hover,
 .view-status__retry:focus-visible {
@@ -1228,7 +1245,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   gap: 12px;
   box-shadow: 0 4px 18px rgba(20,15,8,0.12);
   z-index: 3;
-  animation: start-hint-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: start-hint-in 0.4s var(--ease-sahne);
 }
 .start-hint__text { flex: 1; min-width: 0; }
 .start-hint[hidden] { display: none; }
@@ -1265,7 +1282,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
-  transition: background 0.2s ease;
+  transition: background var(--dur-orta) ease;
 }
 .start-hint__go:hover,
 .start-hint__go:focus-visible {
@@ -1341,7 +1358,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   justify-content: center;
   cursor: help;
   z-index: 2;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .graph-hint:hover,
 .graph-hint:focus-visible {
@@ -1381,7 +1398,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   text-align: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  transition: opacity var(--dur-kisa) ease, transform var(--dur-kisa) ease;
   z-index: 5;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
@@ -1401,7 +1418,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   .graph-recenter::after, .graph-hint::after, .graph-back::after, .graph-3d-toggle::after,
   .graph-confidence-toggle::after, .esma-3d-toggle::after, .esma-derived-toggle::after,
   .esma-fca-btn::after, .hal-walk-btn::after {
-    transition: opacity 0.15s ease;
+    transition: opacity var(--dur-kisa) ease;
   }
 }
 .graph-back {
@@ -1419,7 +1436,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease, transform var(--dur-orta) ease;
 }
 .graph-back:hover,
 .graph-back:focus-visible {
@@ -1428,7 +1445,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   transform: rotate(-24deg);
 }
 @media (prefers-reduced-motion: reduce) {
-  .graph-recenter { transition: color 0.2s ease, border-color 0.2s ease; }
+  .graph-recenter { transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease; }
   .graph-recenter:hover { transform: none; }
   .graph-back:hover { transform: none; }
 }
@@ -1486,7 +1503,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
     radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--series-hal-hayret) 5%, transparent), transparent 58%),
     radial-gradient(circle at 50% 92%, color-mix(in srgb, var(--series-hal-tevhit) 4%, transparent), transparent 55%);
 }
-.hal-seg { pointer-events: none; stroke-linecap: round; transition: opacity 0.25s ease; }
+.hal-seg { pointer-events: none; stroke-linecap: round; transition: opacity var(--dur-gecis) ease; }
 .hal-seg--major { filter: drop-shadow(0 0 3px currentColor); }
 .hal-return {
   stroke: var(--series-hal-hayret, #e0b545);
@@ -1500,7 +1517,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   font-style: italic;
   fill: var(--series-hal-hayret-text, #8a690e);
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity var(--dur-gecis) ease;
 }
 /* C3: "yolu yürü" -- yürüyen nokta, izi, ve Nefs'in dönüş anındaki yankısı. */
 .hal-walk-trail {
@@ -1512,12 +1529,12 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
 .hal-walk-dot {
   fill: var(--series-hal-hayret, #e0b545);
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--dur-orta) ease;
 }
 .hal-walk-nefs-echo {
   stroke: var(--series-hal-hayret, #e0b545);
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--dur-orta) ease;
 }
 .hal-node { cursor: pointer; outline: none; }
 .hal-glow, .hal-halo, .hal-shimmer { pointer-events: none; }
@@ -1539,7 +1556,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   stroke-linejoin: round;
   pointer-events: none;
   user-select: none;
-  transition: opacity 0.25s ease;
+  transition: opacity var(--dur-gecis) ease;
 }
 .hal-label--landmark { fill: var(--text-primary); font-weight: 600; font-size: 15.5px; }
 .hal-label--peak { fill: var(--series-hal-hayret-text, #8a690e); font-weight: 700; font-size: 14px; letter-spacing: 0.01em; }
@@ -1561,7 +1578,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
     color-mix(in srgb, var(--series-theme) 4%, transparent), transparent 60%);
 }
 .sorular-bg circle { pointer-events: none; fill: var(--text-muted); }
-.sorular-link { pointer-events: none; stroke: var(--gridline); stroke-width: 1px; transition: opacity 0.25s ease; }
+.sorular-link { pointer-events: none; stroke: var(--gridline); stroke-width: 1px; transition: opacity var(--dur-gecis) ease; }
 .sorular-link--active { stroke-width: 1.7px; }
 /* Kategoriler arası köprü: doğrudan bir soru-soru ilişkisi değil, ilişkinin
    öteki ucunun başka bir kolda olduğunu söyleyen kesikli bir işaret
@@ -1588,7 +1605,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   stroke-width: 3px;
   stroke-linejoin: round;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity var(--dur-gecis) ease;
 }
 .sorular-label--strong { fill: var(--text-primary); font-weight: 600; }
 
@@ -1659,7 +1676,7 @@ text.sorular-label--cat {
   font: inherit;
   font-size: 0.92rem;
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--dur-kisa) ease, background var(--dur-kisa) ease;
 }
 .sorular-question-row:hover,
 .sorular-question-row:focus-visible {
@@ -1755,7 +1772,7 @@ text.sorular-label--cat {
 .futuhat-parts__cilt::before {
   content: "▸";
   font-size: 0.875rem;
-  transition: transform 0.2s ease;
+  transition: transform var(--dur-orta) ease;
   flex-shrink: 0;
 }
 .futuhat-cilt-group[open] > .futuhat-parts__cilt::before {
@@ -1772,7 +1789,7 @@ text.sorular-label--cat {
 .futuhat-parts__progress-fill {
   stroke: var(--series-theme);
   stroke-linecap: round;
-  transition: stroke-dasharray 0.4s ease;
+  transition: stroke-dasharray var(--dur-uzun) ease;
 }
 .futuhat-parts__progress-label {
   font-size: 0.72rem;
@@ -1803,7 +1820,7 @@ text.sorular-label--cat {
 
 button.futuhat-part-chip {
   cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color var(--dur-kisa) ease, border-color var(--dur-kisa) ease;
 }
 
 button.futuhat-part-chip:hover {
@@ -1873,7 +1890,7 @@ button.futuhat-part-chip:hover {
   fill: hsl(var(--ring-hue) 34% 46%);
   opacity: 1;
   cursor: pointer;
-  transition: opacity 0.15s ease;
+  transition: opacity var(--dur-kisa) ease;
 }
 .futuhat-map__kisim--published:hover,
 .futuhat-map__kisim--published:focus-visible {
@@ -2024,7 +2041,7 @@ button.futuhat-part-chip:hover {
   background: var(--surface-1);
   font-size: 0.72rem;
   font-weight: 600;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color var(--dur-kisa) ease, border-color var(--dur-kisa) ease;
 }
 
 .futuhat-toolbar__btn:hover,
@@ -2048,7 +2065,7 @@ button.futuhat-part-chip:hover {
   border-radius: 999px;
   font-size: 0.85rem;
   opacity: 0;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity var(--dur-gecis) ease, transform var(--dur-gecis) ease;
   z-index: 70;
   pointer-events: none;
 }
@@ -2145,7 +2162,7 @@ button.futuhat-part-chip:hover {
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color var(--dur-kisa) ease, border-color var(--dur-kisa) ease;
 }
 .futuhat-diagram-enlarge-btn:hover,
 .futuhat-diagram-enlarge-btn:focus-visible {
@@ -2171,7 +2188,7 @@ button.futuhat-part-chip:hover {
 .futuhat-tree--clickable {
   cursor: zoom-in;
   border-radius: 12px;
-  transition: background 0.15s ease;
+  transition: background var(--dur-kisa) ease;
 }
 
 .futuhat-tree--clickable:hover,
@@ -2327,7 +2344,7 @@ button.futuhat-part-chip:hover {
   padding: 6px 8px;
   margin: 0 -8px;
   border-radius: 8px;
-  transition: background 0.15s ease;
+  transition: background var(--dur-kisa) ease;
 }
 .futuhat-anlamsal-box__item:hover,
 .futuhat-anlamsal-box__item:focus-visible {
@@ -2703,7 +2720,7 @@ button.futuhat-part-chip:hover {
   padding: 8px 0;
   cursor: pointer;
   text-align: left;
-  transition: color 0.15s ease;
+  transition: color var(--dur-kisa) ease;
 }
 
 .futuhat-stats__item:first-of-type {
@@ -2733,7 +2750,7 @@ button.futuhat-part-chip:hover {
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--series-theme-text);
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color var(--dur-kisa) ease, color var(--dur-kisa) ease;
 }
 
 .futuhat-stats__item:hover .futuhat-stats__badge,
@@ -2802,7 +2819,7 @@ button.futuhat-part-chip:hover {
   color: var(--text-secondary);
   cursor: pointer;
   padding: 2px 6px;
-  transition: color 0.2s ease;
+  transition: color var(--dur-orta) ease;
 }
 
 .futuhat-popup__close:hover {
@@ -2895,7 +2912,7 @@ li.futuhat-pulse,
 .sir-node .sir-glow,
 .sir-node .sir-halo,
 .sir-node .sir-depth,
-.sir-node .sir-label { transition: opacity 0.25s ease; }
+.sir-node .sir-label { transition: opacity var(--dur-gecis) ease; }
 .sir-node:focus-visible .sir-dot { stroke: var(--text-primary); stroke-width: 1.6px; }
 .sir-glow, .sir-depth, .sir-particle, .sir-link { pointer-events: none; }
 .sir-hit { fill: transparent; stroke: none; pointer-events: all; }
@@ -2939,7 +2956,7 @@ li.futuhat-pulse,
 #sirlar-legend .legend__item {
   border-radius: 9px;
   padding: 2px 5px;
-  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  transition: color var(--dur-orta) ease, background var(--dur-orta) ease, transform var(--dur-orta) ease;
 }
 #sirlar-legend .legend__item:hover {
   color: var(--text-primary);
@@ -3007,7 +3024,7 @@ body[data-theme="dark"] #sirlar-legend {
 }
 .legend__toggle-icon {
   font-size: 0.72rem;
-  transition: transform 0.2s ease;
+  transition: transform var(--dur-orta) ease;
 }
 .legend--collapsed .legend__toggle-icon {
   transform: rotate(-90deg);
@@ -3020,7 +3037,7 @@ body[data-theme="dark"] #sirlar-legend {
   overflow-y: auto;
   margin-top: 6px;
   opacity: 1;
-  transition: max-height 0.25s ease, opacity 0.2s ease, margin-top 0.25s ease;
+  transition: max-height var(--dur-gecis) ease, opacity var(--dur-orta) ease, margin-top var(--dur-gecis) ease;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--series-theme) 32%, transparent) transparent;
 }
@@ -3073,7 +3090,7 @@ body[data-theme="dark"] #sirlar-legend {
 .esma-pole-donut__seg {
   stroke: var(--surface-1);
   stroke-width: 0.6;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--dur-orta) ease;
 }
 .esma-pole-donut__seg:hover {
   opacity: 0.8;
@@ -3336,7 +3353,7 @@ body[data-theme="dark"] #sirlar-legend {
   color: inherit;
   border-bottom: none;
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--dur-kisa) ease, background var(--dur-kisa) ease;
 }
 .detail-block--edge.cross-link:hover,
 .detail-block--edge.cross-link:focus-visible {
@@ -3402,7 +3419,7 @@ body[data-theme="dark"] #sirlar-legend {
   background: var(--surface-1);
   text-decoration: none;
   color: var(--text-primary);
-  transition: border-color 0.15s ease;
+  transition: border-color var(--dur-kisa) ease;
 }
 .soru-ailesi-nav__link:hover,
 .soru-ailesi-nav__link:focus-visible {
@@ -3532,7 +3549,7 @@ body[data-theme="dark"] #sirlar-legend {
   border: 1px solid var(--border);
   border-radius: 10px;
   text-decoration: none;
-  transition: border-color 0.15s;
+  transition: border-color var(--dur-kisa);
 }
 /* Kart artık bir <a> değil (içinde başka bağlantılar var); vurgu yalnız
    başlık bağlantısında. Eski `transform: translateY` kaldırıldı: kart
@@ -3671,7 +3688,7 @@ a.daphne-bag__ad { color: var(--accent-interactive); }
   margin-right: 8px;
   font-size: 0.8em;
   color: var(--series-daphne);
-  transition: transform 0.15s;
+  transition: transform var(--dur-kisa);
 }
 .daphne-profile-card__acilir[open] > summary::before { transform: rotate(90deg); }
 .daphne-profile-card__ozet .daphne-profile-card__title { display: inline; }
@@ -3776,7 +3793,7 @@ a.daphne-bag__ad { color: var(--accent-interactive); }
   padding: 0 24px 24px;
   overflow-y: auto;
   z-index: 55;
-  animation: detail-panel-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: detail-panel-in 0.4s var(--ease-sahne);
   /* This is meant to be the one visible scrollbar next to lists that hide
      their own (see .terimler-wrap's comment) -- so instead of hiding it,
      give it a thin, custom-colored track/thumb matching the site's own
@@ -3821,7 +3838,7 @@ html:has(.detail-panel:not([hidden])) {
   z-index: 56;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s ease;
+  transition: color var(--dur-orta) ease;
 }
 .detail-panel__close:hover,
 .detail-panel__close:focus-visible {
@@ -3846,7 +3863,7 @@ html:has(.detail-panel:not([hidden])) {
   z-index: 56;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .detail-panel__print:hover,
 .detail-panel__print:focus-visible {
@@ -3872,7 +3889,7 @@ html:has(.detail-panel:not([hidden])) {
   z-index: 56;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .detail-panel__share:hover,
 .detail-panel__share:focus-visible {
@@ -3898,7 +3915,7 @@ html:has(.detail-panel:not([hidden])) {
   z-index: 56;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .detail-panel__notebook:hover,
 .detail-panel__notebook:focus-visible {
@@ -4146,7 +4163,7 @@ html:has(.detail-panel:not([hidden])) {
   padding: 8px 16px 10px;
   cursor: pointer;
   letter-spacing: 0.01em;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color var(--dur-kisa), border-color var(--dur-kisa);
   margin-bottom: -1px;
 }
 .hakkinda-subtab:hover { color: var(--text-primary); }
@@ -4202,7 +4219,7 @@ html:has(.detail-panel:not([hidden])) {
   padding: 3px 11px;
   cursor: pointer;
   font-family: var(--font-body);
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: background var(--dur-kisa), color var(--dur-kisa), border-color var(--dur-kisa);
 }
 .siirler-chip:hover {
   border-color: color-mix(in srgb, var(--accent-interactive) 60%, transparent);
@@ -4654,7 +4671,7 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
 /* Işık düğüme vardığında: kısa bir zuhûr. */
 .node--isik circle {
   filter: drop-shadow(0 0 10px color-mix(in srgb, var(--series-kemal) 85%, transparent));
-  transition: filter 0.25s ease;
+  transition: filter var(--dur-gecis) ease;
 }
 
 /* Teceddüd: aynı düğüm, yeni bir yaratılışta. Sönüp yeniden yanıyor —
@@ -4900,8 +4917,8 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   padding-top: 10px;
   border-top: 1px solid var(--border);
   border-radius: 6px;
-  transition: background-color 0.4s ease;
-  animation: fade-up-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  transition: background-color var(--dur-uzun) ease;
+  animation: fade-up-in 0.4s var(--ease-sahne) backwards;
 }
 .insight:nth-child(1) { animation-delay: 0ms; }
 .insight:nth-child(2) { animation-delay: 30ms; }
@@ -5139,7 +5156,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   text-align: center;
   opacity: 0;
   transform: scale(0.88);
-  transition: opacity 1.1s ease, transform 1.1s ease;
+  transition: opacity var(--dur-sahne) ease, transform var(--dur-sahne) ease;
   pointer-events: none;
 }
 
@@ -5193,7 +5210,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   width: min(560px, 86vw);
   text-align: center;
   opacity: 0;
-  transition: opacity 1.1s ease, transform 1.1s ease;
+  transition: opacity var(--dur-sahne) ease, transform var(--dur-sahne) ease;
   pointer-events: none;
 }
 
@@ -5243,7 +5260,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   font-size: 0.74rem;
   letter-spacing: 0.03em;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color var(--dur-orta) ease, color var(--dur-orta) ease;
 }
 
 .welcome-screen__skip:hover,
@@ -5253,8 +5270,8 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .welcome-screen { transition: opacity 0.4s ease; }
-  .welcome-screen__text { transition: opacity 0.4s ease; }
+  .welcome-screen { transition: opacity var(--dur-uzun) ease; }
+  .welcome-screen__text { transition: opacity var(--dur-uzun) ease; }
 }
 
 .app-fallback {
@@ -5433,7 +5450,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   cursor: pointer;
   text-decoration: underline;
   text-decoration-color: transparent;
-  transition: text-decoration-color 0.15s ease, color 0.15s ease;
+  transition: text-decoration-color var(--dur-kisa) ease, color var(--dur-kisa) ease;
 }
 .detail-breadcrumb__item:hover,
 .detail-breadcrumb__item:focus-visible {
@@ -5558,7 +5575,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   font-size: 0.85rem;
   cursor: pointer;
   border-bottom: 3px solid transparent;
-  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-bottom-color var(--dur-orta) ease;
 }
 
 .bookmap-tab:hover { color: var(--text-primary); }
@@ -5583,7 +5600,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   padding: 6px 14px;
   font-size: 0.82rem;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background var(--dur-orta) ease, color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 
 .bookmap-concept-tag:hover,
@@ -5661,12 +5678,12 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 /* Search */
 .search-toggle {
   background: transparent;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease, background var(--dur-orta) ease;
 }
 
 .surprise-toggle {
   background: transparent;
-  transition: color 0.2s ease, border-color 0.2s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease, transform 0.5s var(--ease-sahne);
 }
 
 .surprise-toggle:active {
@@ -5674,7 +5691,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .surprise-toggle { transition: color 0.2s ease, border-color 0.2s ease; }
+  .surprise-toggle { transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease; }
   .surprise-toggle:active { transform: none; }
 }
 
@@ -5684,7 +5701,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   border-radius: 3px;
   outline: 1px dashed transparent;
   outline-offset: 3px;
-  transition: outline-color 0.15s ease, background-color 0.15s ease;
+  transition: outline-color var(--dur-kisa) ease, background-color var(--dur-kisa) ease;
 }
 .dost-edit-mode [data-dost-editable]:hover {
   outline-color: color-mix(in srgb, var(--accent-interactive) 55%, transparent);
@@ -5767,7 +5784,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   background: var(--page-plane);
   color: var(--text-primary);
   cursor: pointer;
-  transition: border-color 0.15s ease;
+  transition: border-color var(--dur-kisa) ease;
 }
 .dost-edit-panel__menu button:hover,
 .dost-edit-panel__menu button:focus-visible {
@@ -5999,7 +6016,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   font-size: 1.05rem;
   padding: 18px 20px;
   outline: none;
-  transition: border-bottom-color 0.2s ease;
+  transition: border-bottom-color var(--dur-orta) ease;
 }
 
 .search-panel__input:focus {
@@ -6038,7 +6055,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   text-align: left;
   padding: 8px 20px;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background var(--dur-kisa) ease;
 }
 
 .search-result:hover,
@@ -6133,7 +6150,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   border-radius: 999px;
   background: var(--page-plane);
   color: var(--text-muted);
-  transition: border-color 0.2s ease;
+  transition: border-color var(--dur-orta) ease;
 }
 .terimler-filter:focus-within {
   border-color: color-mix(in srgb, var(--series-theme) 55%, var(--border));
@@ -6169,7 +6186,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   font-family: var(--font-body);
   font-size: 0.78rem;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .terimler-fca-btn:hover,
 .terimler-fca-btn:focus-visible {
@@ -6289,7 +6306,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
    böylece hangi bölüme indiğimiz kaydırma bitince de belli oluyor. */
 .terimler-group.is-pulsing .terimler-group__header {
   background: hsl(var(--tag-hue, 38) 34% 46% / 0.1);
-  transition: background 0.2s ease;
+  transition: background var(--dur-orta) ease;
 }
 .viz-root[data-theme="dark"] .terimler-group.is-pulsing .terimler-group__header {
   background: hsl(var(--tag-hue, 38) 32% 58% / 0.15);
@@ -6360,7 +6377,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   font: inherit;
   color: inherit;
   transition: background 0.18s ease, border-color 0.18s ease;
-  animation: fade-up-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: fade-up-in 0.4s var(--ease-sahne) backwards;
 }
 .terim-entry:hover,
 .terim-entry:focus-visible {
@@ -6432,7 +6449,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   stroke: hsl(var(--tag-hue, 38) 42% 44%);
   stroke-width: 2.2;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: stroke-dashoffset 0.5s var(--ease-sahne);
 }
 .viz-root[data-theme="dark"] .terim-entry__gauge-arc {
   stroke: hsl(var(--tag-hue, 38) 48% 62%);
@@ -6488,7 +6505,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   transform: translate(-50%, calc(-100% - 14px));
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.12s ease, visibility 0s linear 0s;
+  transition: opacity var(--dur-aninda) ease, visibility 0s linear 0s;
 }
 .viz-root[data-theme="dark"] .node-hover-tip {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
@@ -6502,7 +6519,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   display: block;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.12s ease, visibility 0s linear 0.12s;
+  transition: opacity var(--dur-aninda) ease, visibility 0s linear var(--dur-aninda);
 }
 .node-hover-tip--fixed {
   position: fixed;
@@ -6629,7 +6646,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 .term-diagram-svg-wrap {
   cursor: zoom-in;
   border-radius: 10px;
-  transition: background 0.15s;
+  transition: background var(--dur-kisa);
 }
 
 .term-diagram-svg-wrap:hover,
@@ -6888,7 +6905,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 .cizim-card__svg-wrap {
   cursor: zoom-in;
   border-radius: 10px;
-  transition: background 0.15s;
+  transition: background var(--dur-kisa);
 }
 
 .cizim-card__svg-wrap:hover,
@@ -6946,7 +6963,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  transition: background-color 0.15s ease;
+  transition: background-color var(--dur-kisa) ease;
 }
 
 .cizim-lightbox__close:hover {
@@ -7204,7 +7221,7 @@ body.cizim-lightbox-open {
   justify-content: center;
   z-index: 2;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity var(--dur-uzun) ease;
   pointer-events: none;
 }
 .graph-orient-ring__track {
@@ -7234,7 +7251,7 @@ body.cizim-lightbox-open {
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .esma-3d-toggle:hover,
 .esma-3d-toggle:focus-visible,
@@ -7442,7 +7459,7 @@ body[data-theme="dark"] .hal-cluster-ray { stroke: var(--accent-glow-dark); }
   background: color-mix(in srgb, var(--surface-1) 90%, transparent);
   border: 1px solid var(--border); color: var(--text-secondary);
   font-size: 0.82rem; cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, right 0.3s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease, background var(--dur-orta) ease, right 0.3s ease;
 }
 .esmaX-explore:hover { color: var(--series-theme-text); border-color: color-mix(in srgb, var(--series-theme) 45%, var(--border)); }
 .esmaX-explore.is-on { color: var(--series-theme-text); border-color: var(--series-theme); background: color-mix(in srgb, var(--series-theme) 12%, var(--surface-1)); }
@@ -8915,7 +8932,7 @@ mark.durus-vurgu-es {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .fusus-print-btn:hover,
 .fusus-print-btn:focus-visible {
@@ -8936,7 +8953,7 @@ mark.durus-vurgu-es {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .fusus-share-btn:hover,
 .fusus-share-btn:focus-visible {
@@ -8992,7 +9009,7 @@ mark.durus-vurgu-es {
   font-size: 1.05rem;
   line-height: 1;
   cursor: zoom-in;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background var(--dur-kisa) ease, color var(--dur-kisa) ease;
 }
 .fusus-figure__expand:hover,
 .fusus-figure__expand:focus-visible {
@@ -9468,7 +9485,7 @@ mark.durus-vurgu-es {
   line-height: 1.35;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  transition: opacity var(--dur-uzun) ease;
   z-index: 2;
 }
 .graph-toast.is-visible {
@@ -9495,7 +9512,7 @@ mark.durus-vurgu-es {
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .esma-fca-btn:hover,
 .esma-fca-btn:focus-visible {
@@ -9565,7 +9582,7 @@ mark.durus-vurgu-es {
   color: var(--text-secondary);
   font-size: 0.76rem;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
 }
 .esma-fca-cluster__show:hover,
 .esma-fca-cluster__show:focus-visible {
@@ -9703,7 +9720,7 @@ mark.durus-vurgu-es {
   font-size: 0.85rem;
   text-align: left;
   cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  transition: border-color var(--dur-orta) ease, background var(--dur-orta) ease, transform var(--dur-kisa) ease;
 }
 .kavram-tile:hover,
 .kavram-tile:focus-visible {
@@ -9734,7 +9751,7 @@ mark.durus-vurgu-es {
   stroke: var(--helix-gold-rim);
   stroke-width: 2.4;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: stroke-dashoffset 0.5s var(--ease-sahne);
 }
 @media (max-width: 480px) {
   .kavram-list__grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
@@ -9747,7 +9764,7 @@ mark.durus-vurgu-es {
   color: var(--text-primary);
   font-size: 0.84rem;
   cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color var(--dur-orta) ease, background var(--dur-orta) ease;
 }
 .kavram-chip:hover,
 .kavram-chip:focus-visible {
@@ -9871,7 +9888,7 @@ mark.durus-vurgu-es {
   display: block;
   cursor: zoom-in;
   border-radius: 10px;
-  transition: background 0.15s;
+  transition: background var(--dur-kisa);
 }
 .kavram-minigraf-wrap:hover,
 .kavram-minigraf-wrap:focus-visible {
@@ -9942,7 +9959,7 @@ mark.durus-vurgu-es {
   background: transparent;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--dur-kisa) ease, color var(--dur-kisa) ease, background var(--dur-kisa) ease;
 }
 .kavram-anlamsal__tab:hover,
 .kavram-anlamsal__tab:focus-visible {
@@ -10098,7 +10115,7 @@ mark.durus-vurgu-es {
   font: inherit;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--dur-kisa) ease, background var(--dur-kisa) ease;
 }
 .acik-soru-satir:hover,
 .acik-soru-satir:focus-visible {
@@ -10134,7 +10151,7 @@ mark.durus-vurgu-es {
   align-items: center;
   justify-content: center;
   z-index: 3;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color var(--dur-kisa) ease, border-color var(--dur-kisa) ease;
 }
 .acik-sorular-liste-btn:hover,
 .acik-sorular-liste-btn:focus-visible {
@@ -10288,7 +10305,7 @@ mark.durus-vurgu-es {
   stroke-opacity: 0.4;
   cursor: pointer;
   pointer-events: stroke;
-  transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease;
+  transition: stroke-opacity var(--dur-kisa) ease, stroke-width var(--dur-kisa) ease;
 }
 .elestiri-kenar:focus-visible,
 .elestiri-kenar--deginiliyor {
@@ -10302,7 +10319,7 @@ mark.durus-vurgu-es {
 .elestiri-kisi__sekil {
   stroke: var(--surface-1);
   stroke-width: 1.4;
-  transition: transform 0.15s ease;
+  transition: transform var(--dur-kisa) ease;
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -10373,7 +10390,7 @@ mark.durus-vurgu-es {
   font: inherit;
   font-size: 0.86rem;
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--dur-kisa) ease, background var(--dur-kisa) ease;
 }
 .elestiri-bag-satiri:hover,
 .elestiri-bag-satiri:focus-visible {
@@ -10470,7 +10487,7 @@ mark.durus-vurgu-es {
   color: var(--text-primary);
   font: inherit;
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--dur-kisa) ease, background var(--dur-kisa) ease;
 }
 .hoca-satir:hover,
 .hoca-satir:focus-visible {
@@ -10573,7 +10590,7 @@ mark.durus-vurgu-es {
 .yolculuk-durak { cursor: pointer; }
 .yolculuk-durak:focus { outline: none; }
 .yolculuk-durak:focus-visible .yolculuk-durak__nokta { stroke: var(--text-primary); stroke-width: 2.4; }
-.yolculuk-durak__nokta { fill: var(--series-ibnarabi); stroke: var(--surface-1); stroke-width: 1.4; transition: transform 0.15s ease, opacity 0.3s ease; transform-box: fill-box; transform-origin: center; }
+.yolculuk-durak__nokta { fill: var(--series-ibnarabi); stroke: var(--surface-1); stroke-width: 1.4; transition: transform var(--dur-kisa) ease, opacity 0.3s ease; transform-box: fill-box; transform-origin: center; }
 .yolculuk-durak--deginiliyor .yolculuk-durak__nokta { transform: scale(1.3); }
 .yolculuk-durak__etiket { font-size: 0.72rem; fill: var(--text-secondary); pointer-events: none; transition: opacity 0.3s ease; }
 .yolculuk-durak__leader { stroke: var(--border-strong, var(--text-tertiary)); stroke-width: 0.7; opacity: 0.5; pointer-events: none; }
@@ -10581,7 +10598,7 @@ mark.durus-vurgu-es {
 .yolculuk-eser { cursor: pointer; }
 .yolculuk-eser:focus { outline: none; }
 .yolculuk-eser:focus-visible .yolculuk-eser__isaret { stroke: var(--text-primary); stroke-width: 1.6; }
-.yolculuk-eser__isaret { fill: var(--accent); stroke: var(--surface-1); stroke-width: 0.8; transition: transform 0.15s ease; transform-box: fill-box; transform-origin: center; }
+.yolculuk-eser__isaret { fill: var(--accent); stroke: var(--surface-1); stroke-width: 0.8; transition: transform var(--dur-kisa) ease; transform-box: fill-box; transform-origin: center; }
 .yolculuk-eser--yaklasik .yolculuk-eser__isaret { fill: transparent; stroke: var(--accent); stroke-dasharray: 2 2; }
 .yolculuk-eser--katalog .yolculuk-eser__isaret { fill: color-mix(in oklab, var(--accent) 60%, var(--surface-2)); }
 .yolculuk-eser--deginiliyor .yolculuk-eser__isaret { transform: scale(1.4); }
@@ -10607,7 +10624,7 @@ mark.durus-vurgu-es {
   border-radius: 999px;
   cursor: pointer;
   opacity: 0.65;
-  transition: opacity 0.25s ease;
+  transition: opacity var(--dur-gecis) ease;
 }
 .sahne-motoru-tekrar:hover, .sahne-motoru-tekrar:focus-visible {
   opacity: 1;
@@ -10621,7 +10638,7 @@ mark.durus-vurgu-es {
    (sağ üstte) durur ama ondan biraz daha soldadır. iki düğüm segmented
    control gibi. */
 .yolculuk-toggle { position: absolute; top: 12px; right: 60px; display: inline-flex; background: var(--surface-1); border: 1px solid var(--border); border-radius: 999px; overflow: hidden; z-index: 4; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-.yolculuk-toggle__btn { background: none; border: none; padding: 6px 12px; font-size: 0.8rem; color: var(--muted-fg); cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
+.yolculuk-toggle__btn { background: none; border: none; padding: 6px 12px; font-size: 0.8rem; color: var(--muted-fg); cursor: pointer; transition: background var(--dur-kisa) ease, color var(--dur-kisa) ease; }
 .yolculuk-toggle__btn:hover { color: var(--fg); background: var(--surface-2); }
 .yolculuk-toggle__btn[aria-pressed="true"] { background: var(--accent); color: var(--surface-1); }
 .yolculuk-toggle__btn:focus-visible { outline: 2px solid var(--accent-interactive); outline-offset: 2px; }
@@ -10663,7 +10680,7 @@ mark.durus-vurgu-es {
   stroke-opacity: 0.45;
   cursor: pointer;
   pointer-events: stroke;
-  transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease;
+  transition: stroke-opacity var(--dur-kisa) ease, stroke-width var(--dur-kisa) ease;
 }
 .eser-agi-kenar:focus-visible,
 .eser-agi-kenar--deginiliyor {
@@ -10696,7 +10713,7 @@ mark.durus-vurgu-es {
   fill: var(--surface-1);
   stroke: var(--border);
   stroke-width: 1;
-  transition: stroke 0.15s ease, filter 0.15s ease;
+  transition: stroke var(--dur-kisa) ease, filter var(--dur-kisa) ease;
 }
 .eser-agi-eser--katalog .eser-agi-eser__govde { stroke: var(--series-theme); }
 
@@ -10775,7 +10792,7 @@ mark.durus-vurgu-es {
   color: var(--text-primary);
   font: inherit;
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--dur-kisa) ease, background var(--dur-kisa) ease;
 }
 .eser-agi-iz__adim--sonra { text-align: right; align-items: flex-end; }
 .eser-agi-iz__adim:hover,
@@ -10900,7 +10917,7 @@ mark.durus-vurgu-es {
   stroke-opacity: 0.4;
   cursor: pointer;
   pointer-events: stroke;
-  transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease;
+  transition: stroke-opacity var(--dur-kisa) ease, stroke-width var(--dur-kisa) ease;
 }
 .kuran-dokusu-kenar--deginiliyor {
   stroke-opacity: 0.9;
@@ -10912,7 +10929,7 @@ mark.durus-vurgu-es {
   fill: var(--series-ibnarabi);
   stroke: var(--surface-1);
   stroke-width: 1.2;
-  transition: transform 0.15s ease;
+  transition: transform var(--dur-kisa) ease;
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -10939,7 +10956,7 @@ mark.durus-vurgu-es {
   fill: var(--series-theme);
   stroke: var(--surface-1);
   stroke-width: 1;
-  transition: transform 0.15s ease;
+  transition: transform var(--dur-kisa) ease;
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -10966,7 +10983,7 @@ mark.durus-vurgu-es {
   border-radius: 8px;
   background: transparent;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background var(--dur-kisa) ease;
 }
 button.kuran-dokusu-satir:hover,
 button.kuran-dokusu-satir:focus-visible {
@@ -11041,7 +11058,7 @@ button.kuran-dokusu-satir:focus-visible {
   fill: var(--series-ibnarabi);
   stroke: var(--surface-1);
   stroke-width: 1.4;
-  transition: transform 0.15s ease, opacity 0.3s ease;
+  transition: transform var(--dur-kisa) ease, opacity 0.3s ease;
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -11107,7 +11124,7 @@ button.kuran-dokusu-satir:focus-visible {
   background: var(--surface-1);
   color: var(--text-secondary);
   cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color var(--dur-kisa) ease, border-color var(--dur-kisa) ease;
 }
 .seyahat-atlasi-zaman__adim:hover,
 .seyahat-atlasi-zaman__oynat:hover,
@@ -11195,7 +11212,7 @@ button.kuran-dokusu-satir:focus-visible {
   font: inherit;
   font-size: 0.78rem;
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color var(--dur-orta), color var(--dur-orta);
 }
 .ceviri-kaybi__dil:hover,
 .ceviri-kaybi__dil:focus-visible {
@@ -11250,7 +11267,7 @@ button.kuran-dokusu-satir:focus-visible {
   text-decoration: none;
   color: inherit;
   background: var(--surface-1);
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color var(--dur-orta) ease, background var(--dur-orta) ease;
 }
 .sahneler-kart:hover { background: var(--gridline); }
 .sahneler-kart:focus-visible { border-radius: 12px; }

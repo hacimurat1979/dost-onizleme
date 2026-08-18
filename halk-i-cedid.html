@@ -63,24 +63,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 .sahne-geri:focus-visible{outline:2px solid var(--gold,var(--go,currentColor));outline-offset:2px}
 @media(max-width:520px){.sahne-geri{top:8px;left:8px;padding:0 .7rem}}
 </style>
-<script>
-// Sitenin tema seçimini miras al. Bu sayfaların CSS'inde ":root[data-theme=
-// light/dark]" kuralları en baştan vardı ama data-theme'i KİMSE yazmıyordu --
-// yani o kurallar ölü kod, sahne yalnız işletim sisteminin
-// prefers-color-scheme'ini izliyordu. Sonuç: kullanıcı siteyi ☰'den gündüz
-// moduna alsa bile, cihazı gece modundaysa sahne gece modunda açılıyordu
-// (2026-08-05 tablette bildirildi).
-//
-// Depoda bir şey YOKSA öznitelik bilerek yazılmaz: o zaman
-// @media(prefers-color-scheme) devreye girer -- doğru varsayılan odur.
-// <head> içinde ve senkron: ilk boyamadan önce çalışsın, tema sıçraması olmasın.
-(function () {
-  try {
-    var s = localStorage.getItem("dost-theme");
-    if (s === "light" || s === "dark") document.documentElement.setAttribute("data-theme", s);
-  } catch (e) {}
-})();
-</script>
+<script src="assets/sahne-tema.js"></script>
 </head>
 <body>
 <header>
