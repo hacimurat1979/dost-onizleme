@@ -485,6 +485,42 @@ window.__elestiriArkeolojisiApp = (function () {
     }));
   }
 
+  // 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı -- Dalga 2.5): zaman
+  // çizgisi dar ekranda okunmuyor. Kişiler rollerine göre gruplanıyor
+  // (eleştirmen/savunmacı/hakem...) -- rol başlıkları veri dosyasının kendi
+  // `roller` sözlüğünden, extractNodes sırasında yakalanıyor.
+  const mobilRolBaslik = new Map();
+  const elestiriMobilListe = GU.createMobileListFallback({
+    wrapEl: wrapEl,
+    listEl: document.getElementById("elestiri-arkeolojisi-mobil-liste"),
+    // yukle() ile AYNI url dizesi -- GU.fetchJson url-anahtarlı önbellek
+    // kullandığı için fark, önizleme dağıtımında çift indirme olurdu.
+    fetchUrl: ((window.__dostRouteBase || "") ? (window.__dostRouteBase + "/") : "") + "data/ibn-arabi/elestiri-arkeolojisi.json",
+    extractNodes: (d) => {
+      Object.keys(d.roller || {}).forEach((r) => mobilRolBaslik.set(r, d.roller[r]));
+      return (d.kisiler || []).map((k) => ({
+        id: k.id,
+        name: k.ad,
+        short: k.ozet,
+        __rol: k.rol,
+      }));
+    },
+    groupBy: (n) => n.__rol || "diger",
+    groupTitle: (rol) => mobilRolBaslik.get(rol) || null,
+    title: { tr: "Eleştiri Arkeolojisi", en: "Archaeology of Criticism", pt: "Arqueologia da Crítica" },
+    note: {
+      tr: "Zaman çizgisini okumak için ekran dar geldi — kişiler burada rollerine göre listede. Bir kişiye dokun, paneli oku.",
+      en: "The timeline does not fit this narrow screen — the figures are here as a list, grouped by role. Tap a figure to read their panel.",
+      pt: "A linha do tempo não cabe neste ecrã estreito — as figuras estão aqui como lista, agrupadas por papel. Toque numa figura para ler o painel.",
+    },
+    graphButtonLabel: {
+      tr: "Haritayı aç (zaman çizgisini göster)",
+      en: "Open the map (show the timeline)",
+      pt: "Abrir o mapa (mostrar a linha do tempo)",
+    },
+    goTo: (id) => window.__elestiriArkeolojisiApp.goToNode(id),
+  });
+
   return {
     activate() {
       // 2026-08-06 kullanıcı bulgusu: girisPaneli() burada çağrılıp panel
@@ -496,6 +532,7 @@ window.__elestiriArkeolojisiApp = (function () {
       });
     },
     onLangChange() {
+      if (elestiriMobilListe) elestiriMobilListe.onLangChange();
       if (!yuklendi) return;
       ciz();
       if (focusId) {

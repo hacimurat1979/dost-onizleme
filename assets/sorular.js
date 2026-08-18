@@ -750,7 +750,26 @@
 
     // --- bağlantılar (bezier, düşük opaklık) (#3) ---
     const lk = linkLayer.selectAll("path.sorular-link").data(links, (l) => l.id);
-    lk.enter().append("path").attr("class", "sorular-link").attr("fill", "none").merge(lk)
+    const lkEnter = lk.enter().append("path").attr("class", "sorular-link").attr("fill", "none");
+    // K-01/K-03 (uzman paneli denetimi 2026-08-17): ilişki kenarları
+    // klavye/ekran-okuyucuya tamamen kapalıydı. Yalnız ANLAM taşıyan kenarlar
+    // (rel: soru-soru ilişkisi, bridge: kolun öteki ucundaki ilişki işareti)
+    // açılıyor -- stem/river yapısal süs, onları odak sırasına koymak 48
+    // soruluk sahnede klavye kullanıcısını boğardı. Enter, bağın soru ucunu
+    // açıyor (kenarın taşıdığı eylem bu).
+    const soruUcAdi = (n) => n && n.question ? I18n.pick3(n.question)
+      : (n && n.name ? I18n.pick3(n.name) : (n && n.category ? I18n.pick3(n.category.name) : ""));
+    GU.wireEdgeAccessibility(lkEnter.filter((l) => l.kind === "rel" || l.kind === "bridge"), {
+      label: (l) => {
+        const not = l.note ? " — " + I18n.pick3(l.note) : "";
+        return soruUcAdi(l.source) + " ↔ " + soruUcAdi(l.target) + not;
+      },
+      onActivate: (l) => {
+        const hedef = l.target && l.target.question ? l.target : l.source;
+        if (hedef && hedef.question) openQuestion(hedef);
+      },
+    });
+    lkEnter.merge(lk)
       .each(function (l) {
         const p = d3.select(this);
         const dv = true;
@@ -1346,6 +1365,41 @@
   // Sekme arkaya alınıp geri gelindiğinde döngü yeniden uyansın.
   GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });
 
+  // 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı -- Dalga 2.5): soru
+  // grafiği dar ekranda okunmuyor. Kategoriler veri yüklenmeden bilinmediği
+  // için Esmâ'daki gibi groupBy kullanılıyor; başlık haritası extractNodes
+  // sırasında dolduruluyor (groupsHtml extractNodes'tan SONRA çalışır).
+  const mobilKategoriBaslik = new Map();
+  const sorularMobilListe = GU.createMobileListFallback({
+    wrapEl: document.getElementById("sorular-wrap"),
+    listEl: document.getElementById("sorular-mobil-liste"),
+    fetchUrl: "data/ibn-arabi/sorular.json",
+    extractNodes: (d) => {
+      const out = [];
+      (d.categories || []).forEach((cat) => {
+        mobilKategoriBaslik.set(cat.id, cat.name);
+        (cat.questions || []).forEach((q) => {
+          out.push({ id: q.id, name: q.question, __cat: cat.id });
+        });
+      });
+      return out;
+    },
+    groupBy: (n) => n.__cat,
+    groupTitle: (catId) => mobilKategoriBaslik.get(catId) || null,
+    title: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
+    note: {
+      tr: "Grafiği okumak için ekran dar geldi — sorular burada kümeleriyle listede. Bir soruya dokun, cevabı oku.",
+      en: "The graph does not fit this narrow screen — the questions are here as a list, with their clusters. Tap a question to read its answer.",
+      pt: "O grafo não cabe neste ecrã estreito — as perguntas estão aqui como lista, com os seus grupos. Toque numa pergunta para ler a resposta.",
+    },
+    graphButtonLabel: {
+      tr: "Haritayı aç (grafiği göster)",
+      en: "Open the map (show the graph)",
+      pt: "Abrir o mapa (mostrar o grafo)",
+    },
+    goTo: (id) => window.__sorularApp.goToNode(id),
+  });
+
   window.__sorularApp = {
     activate() {
       fetchData().then((data) => {
@@ -1359,9 +1413,21 @@
         if (!data) return;
         if (!catNodes.length) buildGraph(data);
         if (questionIndex.has(id)) { const node = nodeById.get(id); if (node) openQuestion(node); else showQuestionDetail(questionIndex.get(id).question); }
-        else showAllQuestionsList();
+        // id'siz derin bağlantıda (/sorular/) panel eskiden her zaman
+        // açılıyordu; mobil liste aktifken (Dalga 2.5) bu panel listenin
+        // üstünü örtüyor ve ilk dokunuşu yutuyordu (Puppeteer ile ölçüldü:
+        // satır tıklaması panele gidiyordu). Liste görünürken panel
+        // açılmadan içerik hazırlanıyor; masaüstü davranışı değişmedi.
+        else {
+          const mobilListeAktif = window.matchMedia("(max-width: 640px)").matches
+            && !wrapEl.classList.contains("grafik-acik");
+          showAllQuestionsList(undefined, !mobilListeAktif);
+        }
       });
     },
-    onLangChange() { relabel(); },
+    onLangChange() {
+      relabel();
+      if (sorularMobilListe) sorularMobilListe.onLangChange();
+    },
   };
 })();

@@ -36,30 +36,31 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://dostarabi.com/futuhat/c2k19/">
 
-<!-- Dil değişimi client-side (aynı URL, i18n.js tarafı seçiyor); hreflang üç
-     satır da aynı canonical URL'e işaret eder. pt_BR şu an içerikte yok --
-     og:locale:alternate ve hreflang'a bir dil eklerken data/ibn-arabi/*.json
-     içinde en az bir "pt-BR" alanı olduğunu doğrula. -->
-<link rel="alternate" hreflang="tr" href="https://dostarabi.com/futuhat/c2k19/">
-<link rel="alternate" hreflang="en" href="https://dostarabi.com/futuhat/c2k19/">
-<link rel="alternate" hreflang="x-default" href="https://dostarabi.com/futuhat/c2k19/">
+<!-- SEO-03/04 (uzman paneli denetimi 2026-08-17): hreflang artık GERÇEK
+     alternatif URL'lere işaret ediyor -- /en/ ve /pt/ önekli statik
+     kopyalar build-static-routes.py (write_lang_routes) tarafından
+     üretiliyor, üç etiketin aynı URL'i göstermesi sinyali işlevsiz
+     kılıyordu. Alt rotalarda bu blok set_meta() ile yeniden yazılır:
+     dil kopyası OLAN rotalar dörtlü blok alır, olmayanlar hreflang
+     taşımaz (yanlış sinyal vermekten kaçınmak bilinçli tercih). -->
+
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dost Arabî">
 <meta property="og:title" content="Dost Arabî — Niyet Kutupları ve Gecenin Üçe Bölünmesi">
 <meta property="og:description" content="Kısım XIX iki bölümden oluşuyor: önce &#x27;niyet adamları&#x27;nı bir yağmur analojisiyle tanıtıyor -kısmın en dikkat çekici anı, döngüsel semâ hareketinin (devran)…">
 <meta property="og:url" content="https://dostarabi.com/futuhat/c2k19/">
-<meta property="og:image" content="https://dostarabi.com/assets/og-image.png">
+<meta property="og:image" content="https://dostarabi.com/assets/og/futuhat-c2k19.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin varlık haritası">
+<meta property="og:image:alt" content="Dost Arabî — Niyet Kutupları ve Gecenin Üçe Bölünmesi">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:locale:alternate" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Dost Arabî — Niyet Kutupları ve Gecenin Üçe Bölünmesi">
 <meta name="twitter:description" content="Kısım XIX iki bölümden oluşuyor: önce &#x27;niyet adamları&#x27;nı bir yağmur analojisiyle tanıtıyor -kısmın en dikkat çekici anı, döngüsel semâ hareketinin (devran)…">
-<meta name="twitter:image" content="https://dostarabi.com/assets/og-image.png">
+<meta name="twitter:image" content="https://dostarabi.com/assets/og/futuhat-c2k19.jpg">
 
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -101,6 +102,7 @@
 </script>
 
 <link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Book", "@id": "https://dostarabi.com/futuhat/#kitap", "name": "el-Fütûhâtü'l-Mekkiyye", "author": {"@id": "https://dostarabi.com/#ibnarabi"}, "inLanguage": "ar", "hasPart": {"@id": "https://dostarabi.com/futuhat/c2k19/#bolum"}}, {"@type": "Chapter", "@id": "https://dostarabi.com/futuhat/c2k19/#bolum", "isPartOf": {"@id": "https://dostarabi.com/futuhat/#kitap"}, "name": "Niyet Kutupları ve Gecenin Üçe Bölünmesi", "abstract": "Kısım XIX iki bölümden oluşuyor: önce 'niyet adamları'nı bir yağmur analojisiyle tanıtıyor -kısmın en dikkat çekici anı, döngüsel semâ hareketinin (devran) burada yüceltilmek yerine 'hayvani' bir hal olarak konumlanması. Sonra altı idrak aracını ve gecenin gök/yer/insan olmak üzere üçe bölünüşünü…", "url": "https://dostarabi.com/futuhat/c2k19/"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dost Arabî", "item": "https://dostarabi.com/"}, {"@type": "ListItem", "position": 2, "name": "Fütûhât Atlası", "item": "https://dostarabi.com/futuhat/"}, {"@type": "ListItem", "position": 3, "name": "Niyet Kutupları ve Gecenin Üçe Bölünmesi", "item": "https://dostarabi.com/futuhat/c2k19/"}]}]}</script>
 </head>
 <body class="viz-root">
   <div style="position:sticky;top:0;z-index:999;background:#c9971a;color:#1a1917;text-align:center;padding:6px 12px;font-size:0.85rem;font-family:sans-serif;">
@@ -431,6 +433,10 @@
     </section>
 
     <section class="graph-wrap" id="hal-wrap" hidden>
+      <!-- 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı, Dalga 2.5):
+           grafik mobilde okunmuyor -- Ontoloji/Esmâ/Sırlar ile aynı
+           mobil-liste alternatifi (bkz. GU.createMobileListFallback). -->
+      <nav class="hal-mobil-liste" id="hal-mobil-liste" aria-label="Hâller: seyir listesi (mobil alternatif)" data-tr-aria-label="Hâller: seyir listesi (mobil alternatif)" data-en-aria-label="States: journey list (mobile alternative)" data-pt-aria-label="Estados: lista do percurso (alternativa móvel)"></nav>
       <svg id="hal-graph" role="group" aria-label="Hâller haritası"
            data-tr-aria-label="Hâller haritası" data-en-aria-label="Map of states" data-pt-aria-label="Mapa dos estados"></svg>
       <div class="view-status" id="hal-wrap-status" hidden>
@@ -596,6 +602,10 @@
     </section>
 
     <section class="graph-wrap" id="elestiri-arkeolojisi-wrap" hidden>
+      <!-- 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı, Dalga 2.5):
+           grafik mobilde okunmuyor -- Ontoloji/Esmâ/Sırlar ile aynı
+           mobil-liste alternatifi (bkz. GU.createMobileListFallback). -->
+      <nav class="elestiri-arkeolojisi-mobil-liste" id="elestiri-arkeolojisi-mobil-liste" aria-label="Eleştiri Arkeolojisi: kişi listesi (mobil alternatif)" data-tr-aria-label="Eleştiri Arkeolojisi: kişi listesi (mobil alternatif)" data-en-aria-label="Archaeology of Criticism: person list (mobile alternative)" data-pt-aria-label="Arqueologia da Crítica: lista de pessoas (alternativa móvel)"></nav>
       <svg id="elestiri-arkeolojisi-graph" role="group" aria-label="Eleştiri arkeolojisi haritası"
            data-tr-aria-label="Eleştiri arkeolojisi haritası" data-en-aria-label="Map of the archaeology of criticism" data-pt-aria-label="Mapa da arqueologia da crítica"></svg>
       <div class="view-status" id="elestiri-arkeolojisi-wrap-status" hidden>
@@ -642,6 +652,10 @@
     </section>
 
     <section class="graph-wrap" id="eser-agi-wrap" hidden>
+      <!-- 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı, Dalga 2.5):
+           grafik mobilde okunmuyor -- Ontoloji/Esmâ/Sırlar ile aynı
+           mobil-liste alternatifi (bkz. GU.createMobileListFallback). -->
+      <nav class="eser-agi-mobil-liste" id="eser-agi-mobil-liste" aria-label="Eser Ağı: eser listesi (mobil alternatif)" data-tr-aria-label="Eser Ağı: eser listesi (mobil alternatif)" data-en-aria-label="Network of Works: work list (mobile alternative)" data-pt-aria-label="Rede de Obras: lista de obras (alternativa móvel)"></nav>
       <svg id="eser-agi-graph" role="group" aria-label="Eserlerin zaman çizelgesi"
            data-tr-aria-label="Eserlerin zaman çizelgesi" data-en-aria-label="Timeline of the works" data-pt-aria-label="Linha do tempo das obras"></svg>
       <div class="view-status" id="eser-agi-wrap-status" hidden>
@@ -670,6 +684,10 @@
     </section>
 
     <section class="graph-wrap" id="kuran-dokusu-wrap" hidden>
+      <!-- 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı, Dalga 2.5):
+           grafik mobilde okunmuyor -- Ontoloji/Esmâ/Sırlar ile aynı
+           mobil-liste alternatifi (bkz. GU.createMobileListFallback). -->
+      <nav class="kuran-dokusu-mobil-liste" id="kuran-dokusu-mobil-liste" aria-label="Kur'ân Dokusu: sûre listesi (mobil alternatif)" data-tr-aria-label="Kur'ân Dokusu: sûre listesi (mobil alternatif)" data-en-aria-label="Qur'anic Texture: surah list (mobile alternative)" data-pt-aria-label="Textura Corânica: lista de suras (alternativa móvel)"></nav>
       <svg id="kuran-dokusu-graph" role="group" aria-label="Sûre ve bap atıf grafı"
            data-tr-aria-label="Sûre ve bap atıf grafı" data-en-aria-label="Sûrah and chapter citation graph" data-pt-aria-label="Grafo de citações de suratas e capítulos"></svg>
       <div class="view-status" id="kuran-dokusu-wrap-status" hidden>
@@ -700,6 +718,10 @@
     </section>
 
     <section class="graph-wrap" id="seyahat-atlasi-wrap" hidden>
+      <!-- 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı, Dalga 2.5):
+           grafik mobilde okunmuyor -- Ontoloji/Esmâ/Sırlar ile aynı
+           mobil-liste alternatifi (bkz. GU.createMobileListFallback). -->
+      <nav class="seyahat-atlasi-mobil-liste" id="seyahat-atlasi-mobil-liste" aria-label="Seyahat Atlası: durak listesi (mobil alternatif)" data-tr-aria-label="Seyahat Atlası: durak listesi (mobil alternatif)" data-en-aria-label="Travel Atlas: stop list (mobile alternative)" data-pt-aria-label="Atlas de Viagens: lista de paradas (alternativa móvel)"></nav>
       <svg id="seyahat-atlasi-graph" role="group" aria-label="Seyahat atlası"
            data-tr-aria-label="Seyahat atlası" data-en-aria-label="Travel atlas" data-pt-aria-label="Atlas de viagem"></svg>
       <div class="view-status" id="seyahat-atlasi-wrap-status" hidden>
@@ -756,6 +778,10 @@
     </section>
 
     <section class="graph-wrap" id="sorular-wrap" hidden>
+      <!-- 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı, Dalga 2.5):
+           grafik mobilde okunmuyor -- Ontoloji/Esmâ/Sırlar ile aynı
+           mobil-liste alternatifi (bkz. GU.createMobileListFallback). -->
+      <nav class="sorular-mobil-liste" id="sorular-mobil-liste" aria-label="Sorular: soru listesi (mobil alternatif)" data-tr-aria-label="Sorular: soru listesi (mobil alternatif)" data-en-aria-label="Questions: question list (mobile alternative)" data-pt-aria-label="Perguntas: lista de perguntas (alternativa móvel)"></nav>
       <svg id="sorular-graph" role="group" aria-label="Sorular haritası"
            data-tr-aria-label="Sorular haritası" data-en-aria-label="Map of questions" data-pt-aria-label="Mapa das perguntas"></svg>
       <div class="view-status" id="sorular-wrap-status" hidden>
@@ -1634,34 +1660,34 @@ mesmo antes que o assombro exista."></blockquote>
   </script>
   <script src="assets/theme.js" defer integrity="sha384-NegwurN40eZr0Cwp0FE3fFU6d1ptUcUoeGVSaX+M74KAJDTn8QVt2hP+z+Pf29Kf"></script>
   <script src="assets/vendor/d3.min.js" defer integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i"></script>
-  <script src="assets/i18n.js" defer integrity="sha384-bqPgHDorfYKkI+ErvFXEAGead8E3pDVsel6p3S9LkyxoY1QRWrMrTUpeiooWejvL"></script>
+  <script src="assets/i18n.js" defer integrity="sha384-4r6W6PENfRJ7GevJPyR+ACS8M2OZwCzsNWj9W4PfT6psDUZQRTdpCVLi1eUXtN9l"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
-  <script src="assets/graph-utils.js" defer integrity="sha384-Zado0trtoHlepCiNjIh8NJwtGtm9PHExthaXFKFhgU9i6G87chZPbUOfPtkw39uz"></script>
+  <script src="assets/graph-utils.js" defer integrity="sha384-XB9sFZPAWRQ4OKPhnNq7nkOWIQly57Ce2k1FR1bABi4FgBD8hMR4KMUN6q7Jlv2A"></script>
   <!-- nav-drawer.js graph-utils.js'ten SONRA gelmeli (2026-08-15): artık
        açılışta GU.registerStepBack çağırıyor. -->
   <script src="assets/nav-drawer.js" defer integrity="sha384-W64rjVIcpQ5N6aMLtnixLPVKrcJvNuk6nSWtVa3BZF78OCFXjU/rp6mEDHa9HRRe"></script>
-  <script src="assets/helix.js" defer integrity="sha384-B3YHfyIMylqIJZh+Kqn8rcd9QEqVaUiCFPAdCtSY18e3Wd65bOvMERf1Jod7L6ao"></script>
+  <script src="assets/helix.js" defer integrity="sha384-F7JnDwrBK+y9vkNfTXQs/oGDyL/QmM41ndfSbJXufmd4kF6j8uwvhvUqiUxy+caw"></script>
   <script src="assets/graph-hint.js" defer integrity="sha384-X9m2G527jZ4206R85Mx9UwMXx88yyLYBNsLOvNMmWfS2157Z1FwPTD8wiTeGJV5I"></script>
   <script src="assets/lightbox.js" defer integrity="sha384-TDvma/+BP131maM3JIl5cFvo+vnYxexF1FwxIhBck6kV8Yuq/4Gj/osPA6Foolok"></script>
   <!-- Kademeli açılım (G15). Küçük ve görünümden bağımsız olduğu için
        tembel-yükleme listesine değil buraya konuyor: ontology.js sır
        detayını çizerken window.__dostKademe hazır olmalı. -->
   <script src="assets/kademe.js" defer integrity="sha384-qstXPmVEy5j/ElqnV6hvOfNFBOxlrwj8IhlrgYL2vtn8VzXUESTxdpuBfDN2uZM9"></script>
-  <script src="assets/search.js" defer integrity="sha384-5tCHT8Gez9nLGyoDfB7IKW1YbQxfeWNiA4ysNiod/Y673aKnAAEEV2dfjiXpEJT6"></script>
+  <script src="assets/search.js" defer integrity="sha384-IvVJE9F5kMqNdMxXGzD7XVbWGv9opEZuWSy7eFUs9eQuwyksYwlLr8biRRacTJTc"></script>
   <script src="assets/graph-enhancement.js" defer integrity="sha384-hNAPzflfBDqRj8om8hmAV7ziYfsXLPIlZQ0YYH0Y6ZKqCKlLhX/giLkNaVyzoTn4"></script>
   <script src="assets/font-scale.js" defer integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
   <script src="assets/reading-mode.js" defer integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
   <script src="assets/honorifics.js" defer integrity="sha384-IwA4Fe1Lz4RekuTCKaeamOx5H2VogRQH66+kK99tc5SRCQL7ezB4EK8jbMw/uOhm"></script>
   <script src="assets/cizimler.js" defer integrity="sha384-bqBv8CPI2pB6JsXigBKuvdnT84wLPLxk3hcQQgiTildAF74VKxxtVPyUYYBY8+lk"></script>
-  <script src="assets/tasiyicilar.js" defer integrity="sha384-lNVugceLvCvCJVmiaeondeMkZidLr/xkMU7e3FIfHyE0tYhzXcLpm8x7Ztni2FxQ"></script>
+  <script src="assets/tasiyicilar.js" defer integrity="sha384-JXsB9b+edHd9xIsoDp5uxFlT3r76NsLOIARYq+lSDGcCUdNU+j3/azrbsF34/bRk"></script>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
   <script src="assets/fusus.js" defer integrity="sha384-A+j5QFwQ8xt3uFpxBGMKqI2Gjvy7TFxPhljqQYJ538sidwbh4TTraF18K6cRt4eM"></script>
   <script src="assets/miskat.js" defer integrity="sha384-vcZvmiN7oygyV3w+BeFDnjCeI/gEsmqNhAQV+5pOgjgH6s/R5k1klh4c1E8jFiuY"></script>
   <!-- esma/hal/terimler/sorular/menziller/futuhat: assets/view-loader.js'in
        VIEWS haritasında tembel yükleniyor (2026-08-15), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-O4KnFrK8MhlsuzqLrsFqpkfsyvKemVW7ECUFXMJy9aiUcjPQjVLWY4A7lhLaoCHY"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-sPardFFpsbxJtWntqYdn0nJ5Fi2Nd0NlszSu6oxP6EV0L6FENPywvEWo6hp1aczQ"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-XwFcJ8b6Xtb/i3uwXUpl+rzPa1jCo19iIgwtC5N026VbtcEqiBwQ58NnM0qIJ1J5"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-eCDb4XmZVt5BB9RUMtnqirQtKZblTI4gVXPXlBfk9OCRy5dgFutLRcu/W4vRYqbp"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>

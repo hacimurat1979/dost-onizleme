@@ -413,6 +413,41 @@ window.__seyahatAtlasiApp = (function () {
     }));
   }
 
+  // 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı -- Dalga 2.5): harita
+  // dar ekranda okunmuyor. Duraklar veri sırasıyla (yolculuğun kendi
+  // kronolojisi) listeleniyor; yıllar ada ekleniyor ki liste tek başına da
+  // bir zaman çizgisi gibi okunsun.
+  const seyahatMobilListe = GU.createMobileListFallback({
+    wrapEl: wrapEl,
+    listEl: document.getElementById("seyahat-atlasi-mobil-liste"),
+    // yukle() ile AYNI url dizesi -- GU.fetchJson url-anahtarlı önbellek
+    // kullandığı için fark, önizleme dağıtımında çift indirme olurdu.
+    fetchUrl: ((window.__dostRouteBase || "") ? (window.__dostRouteBase + "/") : "") + "data/ibn-arabi/seyahat-atlasi.json",
+    extractNodes: (d) => (d.duraklar || []).map((s) => {
+      const yil = s.yil_baslangic
+        ? (s.yil_bitis && s.yil_bitis !== s.yil_baslangic
+          ? ` (${s.yil_baslangic}–${s.yil_bitis})` : ` (${s.yil_baslangic})`)
+        : "";
+      return {
+        id: s.id,
+        name: { tr: (s.sehir.tr || "") + yil, en: (s.sehir.en || "") + yil, pt: (s.sehir.pt || "") + yil },
+        short: s.ozet,
+      };
+    }),
+    title: { tr: "Seyahat Atlası", en: "Travel Atlas", pt: "Atlas de Viagens" },
+    note: {
+      tr: "Haritayı okumak için ekran dar geldi — duraklar burada yolculuk sırasıyla listede. Bir durağa dokun, paneli oku.",
+      en: "The map does not fit this narrow screen — the stops are here as a list, in the order of the journey. Tap a stop to read its panel.",
+      pt: "O mapa não cabe neste ecrã estreito — as paradas estão aqui como lista, na ordem da viagem. Toque numa parada para ler o painel.",
+    },
+    graphButtonLabel: {
+      tr: "Haritayı aç (atlası göster)",
+      en: "Open the map (show the atlas)",
+      pt: "Abrir o mapa (mostrar o atlas)",
+    },
+    goTo: (id) => window.__seyahatAtlasiApp.goToNode(id),
+  });
+
   return {
     activate() {
       // 2026-08-06 kullanıcı bulgusu: girisPaneli() burada çağrılıp panel
@@ -424,6 +459,7 @@ window.__seyahatAtlasiApp = (function () {
       });
     },
     onLangChange() {
+      if (seyahatMobilListe) seyahatMobilListe.onLangChange();
       if (!yuklendi) return;
       ciz();
       if (focusId) {

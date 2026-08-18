@@ -21,6 +21,13 @@ window.DostI18n = (function () {
     let l = null;
     try { l = localStorage.getItem("dost-lang"); } catch (e) {}
     if (LANGS.includes(l)) return l;
+    // SEO-03/04 (uzman paneli denetimi 2026-08-17): /en/ ve /pt/ önekli
+    // statik kopyalar <html data-dost-lang="en"> taşıyor -- o sayfaya
+    // arama motorundan/dış bağlantıdan gelen ziyaretçi, tarayıcı dili ne
+    // olursa olsun sayfanın vaat ettiği dille karşılanmalı. Kullanıcının
+    // kendi seçimi (localStorage) yine de her şeyin üstünde.
+    const attr = document.documentElement.getAttribute("data-dost-lang");
+    if (LANGS.includes(attr)) return attr;
     return detectBrowserLang();
   }
 

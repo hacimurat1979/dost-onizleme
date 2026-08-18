@@ -92,6 +92,25 @@
     confidenceFeedbackTimer = setTimeout(() => { confidenceFeedbackEl.classList.remove("is-visible"); }, 4200);
   }
 
+  // GORSEL-01 (uzman paneli denetimi 2026-08-17): bu görünümün mini
+  // şemalarındaki üçgen uçlu oklar (odArrowEnd marker'ı) da görsel gramerin
+  // "soyut ok kullanma" yasağına giriyordu. terimler.js'in isikCizgisi()
+  // deseninin buradaki karşılığı: yön, kaynakta soluk / hedefte parlak bir
+  // ışık-yolu gradyanıyla okunur. stop-color style= içinde -- yalnız öyle
+  // yazılınca CSS değişkeni çözülüyor (terimler.js'teki ölçülmüş not).
+  let odIsikSayaci = 0;
+  function odIsik(x1, y1, x2, y2, extraClass) {
+    const id = "odIsik" + (odIsikSayaci++);
+    const renk = "var(--series-theme)";
+    return (
+      `<defs><linearGradient id="${id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" gradientUnits="userSpaceOnUse">` +
+      `<stop offset="0%" style="stop-color:${renk};stop-opacity:0.12"/>` +
+      `<stop offset="100%" style="stop-color:${renk};stop-opacity:0.92"/>` +
+      `</linearGradient></defs>` +
+      `<line class="term-diagram-isikyolu${extraClass ? " " + extraClass : ""}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#${id})"/>`
+    );
+  }
+
   // İki kavram/ilişkinin salt metinle anlatıldığında soyut kalan bağını
   // tek bakışta gösteren küçük SVG şemalar (bkz. CLAUDE.md ikinci ilke).
   const entityDiagramRenderers = {
@@ -124,9 +143,9 @@
     "seed-fork": (d) => `
       <svg class="term-diagram__svg" viewBox="0 0 260 240" role="img" aria-label="${tt(d.note)}">
         <line class="term-diagram-tether" x1="114" y1="167" x2="73" y2="197"/>
-        <line class="term-diagram-arrow" x1="130" y1="135" x2="130" y2="97" marker-end="url(#odArrowEnd)"/>
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="112" y1="63" x2="73" y2="37" marker-end="url(#odArrowEnd)"/>
-        <line class="term-diagram-arrow term-diagram-arrow--dashed" x1="148" y1="63" x2="187" y2="37" marker-end="url(#odArrowEnd)"/>
+        ${odIsik(130, 135, 130, 97)}
+        ${odIsik(112, 63, 73, 37)}
+        ${odIsik(148, 63, 187, 37, "term-diagram-isikyolu--kesik")}
         <circle class="term-diagram-node" cx="130" cy="155" r="20"/>
         <text class="term-diagram-label--small" x="130" y="192" text-anchor="middle">${tt(d.seed)}</text>
         <circle class="term-diagram-node--dashed" cx="55" cy="210" r="22"/>
@@ -169,7 +188,7 @@
         <text class="term-diagram-label--small" x="${xs[i]}" y="60" text-anchor="middle">${tt(s)}</text>
       `).join("");
       const arrows = [0, 1, 2].map((i) => `
-        <line class="term-diagram-arrow term-diagram-arrow--oneway" x1="${xs[i] + 26}" y1="55" x2="${xs[i + 1] - 26}" y2="55" marker-end="url(#odArrowEnd)"/>
+        ${odIsik(xs[i] + 26, 55, xs[i + 1] - 26, 55)}
       `).join("");
       return `
         <svg class="term-diagram__svg" viewBox="0 0 390 110" role="img" aria-label="${tt(d.note)}">
@@ -180,21 +199,10 @@
     },
   };
 
-  const ODD_DIAGRAM_DEFS = `
-    <svg width="0" height="0" style="position:absolute">
-      <defs>
-        <marker id="odArrowEnd" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" class="term-diagram-arrowhead"/>
-        </marker>
-      </defs>
-    </svg>
-  `;
-
   function entityDiagramHtml(obj) {
     const renderer = obj.diagram && entityDiagramRenderers[obj.diagram.type];
     if (!renderer) return "";
     return `<div class="term-diagram-row"><div class="term-diagram-card">
-      ${ODD_DIAGRAM_DEFS}
       <div class="term-diagram-svg-wrap" data-entity-diagram="1" role="button" tabindex="0"
            aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${renderer(obj.diagram)}</div>
       <p class="term-diagram-caption">${tt(obj.diagram.note)}</p>
@@ -217,7 +225,7 @@
       window.dostTrack && window.dostTrack("sema_acildi", { type: obj.diagram.type });
       window.DostLightbox.open({
         closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
-        svgHtml: ODD_DIAGRAM_DEFS + renderer(obj.diagram),
+        svgHtml: renderer(obj.diagram),
         caption: tt(obj.diagram.note),
       });
     };
@@ -229,10 +237,9 @@
 
   function sirlarGestureDiagramHtml() {
     return `<div class="term-diagram-row"><div class="term-diagram-card">
-      ${ODD_DIAGRAM_DEFS}
       <svg class="term-diagram__svg" viewBox="0 0 300 150" role="img" aria-label="${tt({ tr: "İşaret eder, açıklamaz", en: "Points, but does not explain", pt: "Aponta, mas não explica" })}">
         <circle class="term-diagram-node--sm" cx="34" cy="75" r="7"/>
-        <line class="term-diagram-arrow term-diagram-arrow--dashed" x1="48" y1="75" x2="196" y2="75" marker-end="url(#odArrowEnd)"/>
+        ${odIsik(48, 75, 196, 75, "term-diagram-isikyolu--kesik")}
         <line class="term-diagram-mirror" x1="208" y1="35" x2="208" y2="115"/>
         <circle class="term-diagram-node--barrier" cx="256" cy="75" r="38"/>
         <text class="term-diagram-label" x="256" y="80" text-anchor="middle">?</text>
@@ -1262,7 +1269,13 @@
   }
 
   function parseHashAndGo() {
-    const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
+    let rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
+    // SEO-03/04 (uzman paneli denetimi 2026-08-17): /en/ ve /pt/ önekli
+    // statik kopyalar aynı uygulamayı taşıyor -- yönlendirici dil önekini
+    // soyup rotayı aynen çözer (dili i18n.js, <html data-dost-lang>
+    // üzerinden okuyor). Sonraki gezinmeler öneksiz (TR-kanonik) URL'lere
+    // gider; dil, kullanıcı seçimi olarak zaten yanında taşınır.
+    rawPath = rawPath.replace(/^\/(en|pt)(?=\/|$)/, "") || "/";
     const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|yolculuk|kuran-dokusu|menziller|tasiyicilar|futuhat|fusus|miskat|hakkinda|kavram|ayethadis|sahneler)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
@@ -1414,24 +1427,45 @@
     let yawPainted = 0;
 
     const defs = svg.append("defs");
-    ["descent", "return", "paradox"].forEach((kind) => {
-      defs.append("marker")
-        .attr("id", "arrow-" + kind)
-        .attr("viewBox", "0 -5 10 10")
-        .attr("refX", 9)
-        .attr("refY", 0)
-        .attr("markerWidth", 7)
-        .attr("markerHeight", 7)
-        .attr("orient", "auto")
-        .append("path")
-        .attr("d", "M0,-5L10,0L0,5")
-        .attr("class", "arrowhead arrowhead--" + kind);
-    });
 
     const nodes = data.nodes.map((n) => Object.assign({}, n));
     nodeById = new Map(nodes.map((n) => [n.id, n]));
 
     const links = data.edges.map((e) => Object.assign({}, e));
+
+    // GORSEL-01 (uzman paneli denetimi 2026-08-17): kenar uçlarındaki üçgen
+    // ok başları (marker-end) görsel gramerin "soyut ok kullanma" yasağını
+    // en görünür grafikte çiğniyordu. Yön artık kenar başına bir ışık-yolu
+    // gradyanıyla okunuyor (terimler.js isikCizgisi deseninin D3 karşılığı):
+    //   - descent/gather: kaynakta soluk, hedefe yaklaştıkça beliren ışık
+    //     (zuhûr); renk kenarın alışılmış sakin tonu (--text-muted, 2026-08-06
+    //     kullanıcı kararı: "göze batmayan soluk renkler" korunuyor).
+    //   - return: hedefe yaklaştıkça SÖNEN altın ışık ("iade, kaynağına
+    //     dönerken sönen bir ışıktır") -- lejanttaki rücû rengi
+    //     (--series-theme) ilk kez çizginin kendisiyle eşleşiyor.
+    //   - paradox: iki uçta soluk, ortada parlak (terimler.js'in "mutual"
+    //     kalıbı) -- tenzîh-teşbîh tek yönlü bir akış değil, iki ucu birden
+    //     tutan bir gerilim; lejant rengi --series-daphne yine ilk kez
+    //     çizgiye taşınıyor.
+    // stop-color style= içinde: yalnız öyle yazılınca CSS değişkeni
+    // çözülüyor (bkz. terimler.js'teki ölçülmüş not). Uç koordinatları her
+    // karede paintPositions() içinde tazelenir (sahne dönüyor/sallanıyor).
+    const EDGE_STOPS = {
+      descent: [["0%", "var(--text-muted)", "0.18"], ["100%", "var(--text-muted)", "0.95"]],
+      gather: [["0%", "var(--text-muted)", "0.18"], ["100%", "var(--text-muted)", "0.95"]],
+      return: [["0%", "var(--series-theme)", "0.95"], ["78%", "var(--series-theme)", "0.35"], ["100%", "var(--series-theme)", "0.06"]],
+      paradox: [["0%", "var(--series-daphne)", "0.15"], ["50%", "var(--series-daphne)", "0.9"], ["100%", "var(--series-daphne)", "0.15"]],
+    };
+    links.forEach((d, i) => {
+      d.__gradId = "onto-isik-" + i;
+      const g = defs.append("linearGradient")
+        .attr("id", d.__gradId)
+        .attr("gradientUnits", "userSpaceOnUse");
+      (EDGE_STOPS[d.kind] || EDGE_STOPS.descent).forEach(([off, renk, op]) => {
+        g.append("stop").attr("offset", off)
+          .attr("style", `stop-color:${renk};stop-opacity:${op}`);
+      });
+    });
 
     nodes.forEach((n) => {
       const t = TARGET[n.id] || { x: 0.5, y: 0.5 };
@@ -1633,7 +1667,7 @@
       .data(links)
       .join("path")
       .attr("class", (d) => "link link--" + d.kind + " link--conf-" + confSlug(d.confidence))
-      .attr("marker-end", (d) => "url(#arrow-" + (d.kind === "gather" ? "descent" : d.kind) + ")")
+      .style("stroke", (d) => "url(#" + d.__gradId + ")")
       .attr("fill", "none")
       .attr("pointer-events", "none");
 
@@ -1745,6 +1779,15 @@
     function paintPositions() {
       positionNodes();
       pathSel.attr("d", (d) => edgePath(d));
+      // Işık-yolu gradyanlarının uçları kenarla birlikte hareket etmeli --
+      // userSpaceOnUse, spinGroup'un yerel koordinatlarında (px/py ile aynı
+      // uzay) çalışıyor, sahne döndükçe/sallandıkça burada tazeleniyor.
+      links.forEach((d) => {
+        const s = d.source, t = d.target;
+        defs.select("#" + d.__gradId)
+          .attr("x1", s.px != null ? s.px : s.x).attr("y1", s.py != null ? s.py : s.y)
+          .attr("x2", t.px != null ? t.px : t.x).attr("y2", t.py != null ? t.py : t.y);
+      });
       // İsabet şeridi görünen çizgiyle AYNI yolu izlemeli, yoksa
       // kullanıcı gördüğü çizgiye değil başka bir yere değinir.
       if (hitSel) hitSel.attr("d", (d) => edgePath(d));

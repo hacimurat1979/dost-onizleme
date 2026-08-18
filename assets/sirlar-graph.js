@@ -415,6 +415,17 @@
     // --- kenarlar (bezier, #2) + büyüme (#7) ---
     const lk = linkLayer.selectAll("path.sir-link").data(links, (d) => d.target.id || d.target);
     const lkEnter = lk.enter().append("path").attr("class", "sir-link").attr("fill", "none");
+    // K-01/K-03 (uzman paneli denetimi 2026-08-17): 104 kenar klavye/ekran-
+    // okuyucuya tamamen kapalıydı. Çizgi fare için süs (pointer-events:
+    // none, düğümler zaten tıklanabilir) ama klavye kullanıcısı bağın iki
+    // ucunu okuyabilmeli; Enter bağın HEDEFİNİ açıyor (temaya/kayda gitmek,
+    // kenarın taşıdığı tek eylem). Odak, hover'ın görsel vurgusunu veriyor.
+    GU.wireEdgeAccessibility(lkEnter, {
+      label: (l) => labelFor(l.source) + " → " + labelFor(l.target),
+      onActivate: (l) => onActivate(l.target),
+      onFocus: (l) => setHover(l.target.id),
+      onBlur: () => setHover(null),
+    });
     lkEnter.merge(lk).each(function (l) {
       const path = d3.select(this);
       const dep = l.target.kind === "theme" ? 1 : 2;

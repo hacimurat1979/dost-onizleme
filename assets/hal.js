@@ -256,10 +256,23 @@
     svg.attr("viewBox", `0 0 ${w} ${h}`).attr("preserveAspectRatio", "xMidYMid meet");
 
     defs = svg.append("defs");
-    defs.append("marker").attr("id", "hal-arrow-return").attr("viewBox", "0 -5 10 10")
-      .attr("refX", 8).attr("refY", 0).attr("markerWidth", 6.5).attr("markerHeight", 6.5)
-      .attr("orient", "auto").append("path").attr("d", "M0,-5L10,0L0,5")
-      .attr("fill", getVar("--series-hal-hayret"));
+    // GORSEL-01 (uzman paneli denetimi 2026-08-17): dönüş yayının ucundaki
+    // üçgen ok (marker-end) görsel gramerin "soyut ok kullanma" yasağını
+    // çiğniyordu. Yerine ışık-yolu gradyanı: yay Hayret'te parlak başlar,
+    // bir üst tura tırmandıkça sönerek kaybolur ("iade, kaynağına dönerken
+    // sönen bir ışıktır"). Uçlar her karede draw() içinde projeksiyondan
+    // tazelenir (sahne 3B döndüğü için sabit koordinat olmaz). stop-color
+    // style= içinde: yalnız öyle yazılınca CSS değişkeni çözülüyor (bkz.
+    // terimler.js isikCizgisi'ndeki aynı not).
+    const donusRenk = getVar("--series-hal-hayret") || "#e0b545";
+    const donusGrad = defs.append("linearGradient")
+      .attr("id", "hal-return-grad").attr("gradientUnits", "userSpaceOnUse");
+    donusGrad.append("stop").attr("offset", "0%")
+      .attr("style", `stop-color:${donusRenk};stop-opacity:0.95`);
+    donusGrad.append("stop").attr("offset", "78%")
+      .attr("style", `stop-color:${donusRenk};stop-opacity:0.30`);
+    donusGrad.append("stop").attr("offset", "100%")
+      .attr("style", `stop-color:${donusRenk};stop-opacity:0.04`);
     const glow = defs.append("filter").attr("id", "hal-glow").attr("x", "-80%").attr("y", "-80%").attr("width", "260%").attr("height", "260%");
     glow.append("feGaussianBlur").attr("stdDeviation", "3.4");
 
@@ -535,8 +548,12 @@
     //     tilt=0'da helixPoint(n) tam olarak Nefs'in yerine düştüğü için bu
     //     eğri 2B'de halkayı kapatır, 3B'de ise yükselir. Tek formül. ---
     const wrapSel = linkLayer.selectAll("path.hal-return").data([0]);
+    const donusBas = projectT(n - 1), donusSon = projectT(n);
+    defs.select("#hal-return-grad")
+      .attr("x1", donusBas.x).attr("y1", donusBas.y)
+      .attr("x2", donusSon.x).attr("y2", donusSon.y);
     wrapSel.enter().append("path").attr("class", "hal-return").attr("fill", "none")
-      .attr("marker-end", "url(#hal-arrow-return)").merge(wrapSel)
+      .style("stroke", "url(#hal-return-grad)").merge(wrapSel)
       .attr("d", samplePath(n - 1, n, 14))
       .style("opacity", (foc ? 0.12 : 0.85) * (reveal >= 0.99 ? 1 : Math.max(0, reveal * 3 - 2)));
 
@@ -545,7 +562,9 @@
     lblSel.enter().append("text").attr("class", "hal-return-label").attr("text-anchor", "middle").merge(lblSel)
       .attr("x", wrapMid.x).attr("y", wrapMid.y - 10)
       .style("opacity", foc ? 0.25 : 0.85 * (reveal >= 0.99 ? 1 : 0))
-      .text(tt({ tr: "→ aynı hâl, bir üst turda", en: "→ same state, a turn higher", pt: "→ mesmo estado, um giro acima" }));
+      // GORSEL-01: metnin başındaki "→" karakteri de bir soyut oktu; yönü
+      // artık ışık-yolu gradyanının kendisi taşıyor.
+      .text(tt({ tr: "aynı hâl, bir üst turda", en: "same state, a turn higher", pt: "mesmo estado, um giro acima" }));
 
     // --- C3: "yolu yürü" -- Nefs'ten dönüş yayının ucuna ilerleyen nokta ---
     if (walkT !== null) {
@@ -575,11 +594,27 @@
     // --- kirişler: ardışık olmayan hâller arasındaki bağlar ---
     const chSel = chordLayer.selectAll("g.hal-chord-g").data(relations, (r) => r.source + ">" + r.target);
     const chEnter = chSel.enter().append("g").attr("class", "hal-chord-g");
-    chEnter.append("path").attr("class", "hal-chord-hit")
+    const chHitEnter = chEnter.append("path").attr("class", "hal-chord-hit")
       .on("pointerenter", (e, r) => { hoveredRel = r; showRelTooltip(r, e); ensureFrame(); })
       .on("pointermove", (e) => moveTooltip(e))
       .on("pointerleave", () => { hoveredRel = null; hideTooltip(); ensureFrame(); })
       .on("click", (e, r) => { e.stopPropagation(); showRelationDetail(r); });
+    // K-01/K-03 (uzman paneli denetimi 2026-08-17): kirişler yalnız fareye
+    // açıktı -- 18 bağın hiçbirinin gerekçesi klavye/ekran-okuyucudan
+    // okunamıyordu. Ontoloji/Esmâ deseninin ortak yardımcısıyla açılıyor;
+    // odak, hover'ın yaptığı görsel vurgunun aynısını yapıyor.
+    GU.wireEdgeAccessibility(chHitEnter, {
+      label: (r) => {
+        const s = nodeById.get(r.source), t = nodeById.get(r.target);
+        const uclar = (s ? labelFor(s) : r.source) + " – " + (t ? labelFor(t) : r.target);
+        const tur = tt(KIND_LABEL[r.kind] || {});
+        const not = r.note ? tt(r.note) : "";
+        return uclar + (tur ? ". " + tur : "") + (not ? ". " + not : "");
+      },
+      onActivate: (r) => showRelationDetail(r),
+      onFocus: (r) => { hoveredRel = r; ensureFrame(); },
+      onBlur: () => { hoveredRel = null; ensureFrame(); },
+    });
     chEnter.append("path").attr("class", (r) => "hal-chord hal-chord--" + r.kind);
     const chMerged = chEnter.merge(chSel);
     chSel.exit().remove();
@@ -1031,6 +1066,28 @@
   // Sekme arkaya alınıp geri gelindiğinde döngü yeniden uyansın.
   GU.onViewWake(() => { if (built && !wrapEl.hidden) ensureFrame(); });
 
+  // 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı -- Dalga 2.5): sarmal
+  // dar ekranda okunmuyor. Gruplama YOK: hâllerin sırası seyrin kendisi,
+  // listeyi aşamalara bölmek o sırayı ikinci plana atardı.
+  const halMobilListe = GU.createMobileListFallback({
+    wrapEl: document.getElementById("hal-wrap"),
+    listEl: document.getElementById("hal-mobil-liste"),
+    fetchUrl: "data/ibn-arabi/hal.json",
+    extractNodes: (d) => d.nodes || [],
+    title: { tr: "Hâller", en: "The States", pt: "Os Estados" },
+    note: {
+      tr: "Sarmalı okumak için ekran dar geldi — on sekiz hâl burada seyir sırasıyla listede. Bir hâle dokun, paneli oku.",
+      en: "The spiral does not fit this narrow screen — the eighteen states are here as a list, in the order of the journey. Tap a state to read its panel.",
+      pt: "A espiral não cabe neste ecrã estreito — os dezoito estados estão aqui como lista, na ordem do percurso. Toque num estado para ler o painel.",
+    },
+    graphButtonLabel: {
+      tr: "Haritayı aç (sarmalı göster)",
+      en: "Open the map (show the spiral)",
+      pt: "Abrir o mapa (mostrar a espiral)",
+    },
+    goTo: (id) => window.__halApp.goToNode(id),
+  });
+
   window.__halApp = {
     activate() { fetchData().then((data) => { if (!data) return; if (!built) buildGraph(data); else ensureFrame(); }); },
     goToNode(id) {
@@ -1041,6 +1098,9 @@
         if (target) selectNode(target);
       });
     },
-    onLangChange() { render_relabel(); },
+    onLangChange() {
+      render_relabel();
+      if (halMobilListe) halMobilListe.onLangChange();
+    },
   };
 })();

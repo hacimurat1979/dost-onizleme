@@ -303,6 +303,10 @@
   }
   function ensureLoop() { if (rafId == null && sc) rafId = requestAnimationFrame(tick); }
 
+  // K-04/O-02 (uzman paneli denetimi 2026-08-17): bu görünümde ayrı bir
+  // isabet şeridi (link-hit) YOK ve gerekmedi -- svg'nin click dinleyicisi
+  // düğüme doğrudan isabet olmasa da 34px yarıçap içindeki en yakın düğümü
+  // seçiyor; fiilî dokunma hedefi WCAG 2.5.8'in 24px tabanının üstünde.
   function nearest(e) {
     var r = sc.svg.getBoundingClientRect();
     if (!r.width) return -1;

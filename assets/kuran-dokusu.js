@@ -406,6 +406,39 @@ window.__kuranDokusuApp = (function () {
     }));
   }
 
+  // 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı -- Dalga 2.5): sûre-bab
+  // dokusu dar ekranda okunmuyor. Liste sûreleri gösteriyor (bablara her
+  // sûrenin kendi panelinden zaten geçilebiliyor); atıf sayısı kısa özet
+  // olarak veriliyor.
+  const kuranMobilListe = GU.createMobileListFallback({
+    wrapEl: wrapEl,
+    listEl: document.getElementById("kuran-dokusu-mobil-liste"),
+    // yukle() ile AYNI url dizesi -- GU.fetchJson url-anahtarlı önbellek
+    // kullandığı için fark, önizleme dağıtımında çift indirme olurdu.
+    fetchUrl: ((window.__dostRouteBase || "") ? (window.__dostRouteBase + "/") : "") + "data/ibn-arabi/kuran-dokusu.json",
+    extractNodes: (d) => (d.sureler || []).map((s) => ({
+      id: String(s.no),
+      name: { tr: `${s.no}. ${s.ad.tr}`, en: `${s.no}. ${s.ad.en}`, pt: `${s.no}. ${s.ad.pt}` },
+      short: {
+        tr: `${s.atifSayisi} atıf`,
+        en: `${s.atifSayisi} reference${s.atifSayisi === 1 ? "" : "s"}`,
+        pt: `${s.atifSayisi} referência${s.atifSayisi === 1 ? "" : "s"}`,
+      },
+    })),
+    title: { tr: "Kur'ân Dokusu", en: "Qur'anic Texture", pt: "Textura Corânica" },
+    note: {
+      tr: "Dokuyu okumak için ekran dar geldi — atıf alan sûreler burada listede. Bir sûreye dokun, hangi bâblarda geçtiğini panelden oku.",
+      en: "The texture does not fit this narrow screen — the cited surahs are here as a list. Tap a surah to read, in its panel, the chapters where it appears.",
+      pt: "A textura não cabe neste ecrã estreito — as suras citadas estão aqui como lista. Toque numa sura para ler, no painel, em que capítulos aparece.",
+    },
+    graphButtonLabel: {
+      tr: "Haritayı aç (dokuyu göster)",
+      en: "Open the map (show the texture)",
+      pt: "Abrir o mapa (mostrar a textura)",
+    },
+    goTo: (id) => window.__kuranDokusuApp.goToNode(id),
+  });
+
   return {
     activate() {
       // 2026-08-06 kullanıcı bulgusu: girisPaneli() burada çağrılıp panel
@@ -417,6 +450,7 @@ window.__kuranDokusuApp = (function () {
       });
     },
     onLangChange() {
+      if (kuranMobilListe) kuranMobilListe.onLangChange();
       if (!yuklendi) return;
       ciz();
       if (focusSureNo != null) {

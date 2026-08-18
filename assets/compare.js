@@ -205,6 +205,30 @@
       .attr("text-anchor", "middle")
       .text((d) => labelFor(d));
 
+    // H-09 / Çatışma-1 kararı (uzman paneli denetimi 2026-08-17): bu graf,
+    // sitenin merkezi etiket-çakışma çözücüsünden muaf tek kalanlardandı --
+    // iki merkez + onlarca tema düğümünde etiketler üst üste binebiliyordu.
+    // Desen ontology.js'in pend dizisiyle aynı; baseY=0 çünkü etiketin
+    // dikey ofseti zaten dy özniteliğinde, deconflict yalnız EK kaymayı
+    // y'ye yazıyor.
+    const deconflictLabels = window.DostGraphUtils.createLabelDeconflictor();
+
+    function etiketleriYerlestir() {
+      const pend = [];
+      labelSel.each(function (d) {
+        pend.push({
+          lbl: d3.select(this), txt: labelFor(d),
+          x: d.x, y: d.y + radiusFor(d) + 12, baseY: 0,
+          priority: d.type.startsWith("hub") ? 1 : 0,
+        });
+      });
+      // Engeller: düğüm dairelerinin kendisi (ontology.js'teki aynı ders --
+      // yalnız yazı-yazı çakışmasına bakmak, yazıyı komşu dairenin üstüne
+      // oturtabiliyor).
+      const engeller = nodes.map((d) => ({ x: d.x, y: d.y, half: radiusFor(d) + 3, h: radiusFor(d) * 2 + 6 }));
+      deconflictLabels(pend, engeller);
+    }
+
     simulation.on("tick", () => {
       linkSel
         .attr("x1", (d) => d.source.x)
@@ -213,6 +237,14 @@
         .attr("y2", (d) => d.target.y);
 
       nodeSel.attr("transform", (d) => `translate(${d.x},${d.y})`);
+      etiketleriYerlestir();
+    });
+    // Simülasyonun İLK karelerinde getBBox metin daha boyanmadan 0 genişlik
+    // döndürebiliyor (ölçüldü: üç etiket aynı satırda donmuş kalmıştı) --
+    // sahne durulunca, fontlar da yüklüyken, SON bir tam yerleşim geçişi.
+    simulation.on("end", () => {
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(etiketleriYerlestir);
+      else etiketleriYerlestir();
     });
 
     zoomBehavior = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.4, 3]);

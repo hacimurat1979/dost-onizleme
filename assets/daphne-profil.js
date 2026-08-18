@@ -218,9 +218,33 @@
       .attr("text-anchor", "middle")
       .text((d) => labelFor(d));
 
+    // H-09 / Çatışma-1 kararı (uzman paneli denetimi 2026-08-17): compare.js
+    // ile aynı ekleme -- merkezi etiket-çakışma çözücüsü (bkz. oradaki not).
+    const deconflictLabels = window.DostGraphUtils.createLabelDeconflictor();
+
+    function etiketleriYerlestir() {
+      const pend = [];
+      labelSel.each(function (d) {
+        pend.push({
+          lbl: d3.select(this), txt: labelFor(d),
+          x: d.x, y: d.y + radiusFor(d) + 14, baseY: 0,
+          priority: d.type === "hub" ? 1 : 0,
+        });
+      });
+      const engeller = nodes.map((d) => ({ x: d.x, y: d.y, half: radiusFor(d) + 3, h: radiusFor(d) * 2 + 6 }));
+      deconflictLabels(pend, engeller);
+    }
+
     simulation.on("tick", () => {
       linkSel.attr("d", (d) => branchPath(d.source, d.target));
       nodeSel.attr("transform", (d) => `translate(${d.x},${d.y})`);
+      etiketleriYerlestir();
+    });
+    // compare.js ile aynı son-geçiş (bkz. oradaki not): ilk karelerde
+    // getBBox 0 dönebiliyor, sahne durulunca fontlarla bir tam yerleşim.
+    simulation.on("end", () => {
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(etiketleriYerlestir);
+      else etiketleriYerlestir();
     });
 
     zoomBehavior = window.DostGraphUtils.createZoomBehavior(svg, zoomLayer, [0.4, 3]);

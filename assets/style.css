@@ -811,24 +811,37 @@ a.btn-ghost { text-decoration: none; }
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
 }
-/* Mobil-liste fallback'i şu an yalnız bu üç görünümde kurulu (Ontoloji
-   2026-08-10, Esmâ+Sırlar 2026-08-16 -- O-01/F4). Kalan ~8 grafik görünümü
-   (hal/sorular/kuran-dokusu/eser-agi/seyahat-atlasi/elestiri-arkeolojisi/
-   acik-sorular/bilmiyoruz/menziller/hocalar/yolculuk) HENÜZ kapsanmıyor --
-   bu yüzden kural genel `.graph-wrap` yerine burada AÇIKÇA listelenen
-   ID'lere uygulanıyor. Yeni bir görünüm GU.createMobileListFallback ile
-   donatıldığında ID'si buraya eklenmeli; aksi hâlde bu seçici genel
-   `.graph-wrap`'e genişletilirse kapsanmayan görünümlerin mobilde TÜM
-   içeriği (yerine koyacak liste olmadan) gizlenir. */
+/* Mobil-liste fallback'i kurulu görünümler (Ontoloji 2026-08-10,
+   Esmâ+Sırlar 2026-08-16, Hâller/Sorular/Kur'ân Dokusu/Eser Ağı/Seyahat
+   Atlası/Eleştiri Arkeolojisi 2026-08-17 -- O-01/F4, Dalga 2.5). Kalan
+   grafik görünümleri (acik-sorular/bilmiyoruz/menziller/hocalar/yolculuk/
+   terimler-FCA) HENÜZ kapsanmıyor -- bu yüzden kural genel `.graph-wrap`
+   yerine burada AÇIKÇA listelenen ID'lere uygulanıyor. Yeni bir görünüm
+   GU.createMobileListFallback ile donatıldığında ID'si buraya eklenmeli;
+   aksi hâlde bu seçici genel `.graph-wrap`'e genişletilirse kapsanmayan
+   görünümlerin mobilde TÜM içeriği (yerine koyacak liste olmadan)
+   gizlenir. */
 @media (max-width: 640px) {
   #ontology-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
   #esma-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
-  #sirlar-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status) {
+  #sirlar-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
+  #hal-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
+  #sorular-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
+  #kuran-dokusu-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
+  #eser-agi-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
+  #seyahat-atlasi-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
+  #elestiri-arkeolojisi-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status) {
     display: none !important;
   }
   #ontology-wrap:not(.grafik-acik),
   #esma-wrap:not(.grafik-acik),
-  #sirlar-wrap:not(.grafik-acik) {
+  #sirlar-wrap:not(.grafik-acik),
+  #hal-wrap:not(.grafik-acik),
+  #sorular-wrap:not(.grafik-acik),
+  #kuran-dokusu-wrap:not(.grafik-acik),
+  #eser-agi-wrap:not(.grafik-acik),
+  #seyahat-atlasi-wrap:not(.grafik-acik),
+  #elestiri-arkeolojisi-wrap:not(.grafik-acik) {
     height: auto;
     min-height: 0;
     padding: 16px 14px 24px;
@@ -836,7 +849,13 @@ a.btn-ghost { text-decoration: none; }
   }
   #ontology-wrap:not(.grafik-acik) [class$="-mobil-liste"],
   #esma-wrap:not(.grafik-acik) [class$="-mobil-liste"],
-  #sirlar-wrap:not(.grafik-acik) [class$="-mobil-liste"] { display: block; }
+  #sirlar-wrap:not(.grafik-acik) [class$="-mobil-liste"],
+  #hal-wrap:not(.grafik-acik) [class$="-mobil-liste"],
+  #sorular-wrap:not(.grafik-acik) [class$="-mobil-liste"],
+  #kuran-dokusu-wrap:not(.grafik-acik) [class$="-mobil-liste"],
+  #eser-agi-wrap:not(.grafik-acik) [class$="-mobil-liste"],
+  #seyahat-atlasi-wrap:not(.grafik-acik) [class$="-mobil-liste"],
+  #elestiri-arkeolojisi-wrap:not(.grafik-acik) [class$="-mobil-liste"] { display: block; }
 }
 
 /* Sessiz Mod: sabit, dairesel bir anahtar -- açıkken üst menüyü kaldırır.
@@ -6777,6 +6796,13 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   stroke-width: 2.2px;
   stroke-linecap: round;
 }
+/* GORSEL-01 (2026-08-17): ontology.js'in mini şemalarında eski
+   --dashed okların yerini alan kesikli ışık-yolu -- kesiklik "ima /
+   eşikte durma" anlamını taşımaya devam ediyor, ok ucu olmadan. */
+.term-diagram-isikyolu--kesik {
+  stroke-dasharray: 4 5;
+  stroke-linecap: butt;
+}
 .term-diagram-kivilcim {
   fill: var(--series-theme);
   filter: drop-shadow(0 0 5px color-mix(in srgb, var(--series-theme) 75%, transparent));
@@ -9062,14 +9088,17 @@ mark.durus-vurgu-es {
   line-height: 1.5;
   color: var(--text-muted);
 }
-.helix-scene__marker path { fill: var(--gridline); }
+/* GORSEL-01 (2026-08-17): üçgen uçlu marker kaldırıldı; yön artık
+   helix.js'in kurduğu ışık-yolu gradyanıyla okunuyor. Gradyanın rengi bu
+   değişkenden geliyor -- stroke'u doğrudan boyamak işe yaramaz, çünkü
+   helix.js yolu inline style ile url(#...) gradyanına bağlıyor. */
+.helix-scene { --helix-yol: var(--gridline); }
 
 /* Düğüm rengi artık --helix-gold / --helix-gold-rim token'larından
    geliyor (bkz. :root), o yüzden burada tema-özel bir renk kuralına
    gerek kalmadı. Kalan tek fark çizgi rengi: sarmalın ipliği karanlıkta
    ayrı bir gri tonuna ihtiyaç duyuyor. */
-.viz-root[data-theme="dark"] .helix-scene__path { stroke: #46453f; }
-.viz-root[data-theme="dark"] .helix-scene__marker path { fill: #46453f; }
+.viz-root[data-theme="dark"] .helix-scene { --helix-yol: #46453f; }
 
 /* Paylaşım panelindeki zemin seçimi ve açık/koyu anahtarı (2026-07-29). */
 .share-panel__label {

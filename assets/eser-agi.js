@@ -537,6 +537,34 @@ window.__eserAgiApp = (function () {
     }));
   }
 
+  // 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı -- Dalga 2.5): ağ dar
+  // ekranda okunmuyor. Eser adı tek dilli bir başlık (özgün eser adı), üç
+  // dile aynen taşınıyor; kısa özet mevcut üç dilli açıklamadan.
+  const eserAgiMobilListe = GU.createMobileListFallback({
+    wrapEl: wrapEl,
+    listEl: document.getElementById("eser-agi-mobil-liste"),
+    // yukle() ile AYNI url dizesi -- GU.fetchJson url-anahtarlı önbellek
+    // kullandığı için fark, önizleme dağıtımında çift indirme olurdu.
+    fetchUrl: ((window.__dostRouteBase || "") ? (window.__dostRouteBase + "/") : "") + "data/ibn-arabi/eser-agi.json",
+    extractNodes: (d) => (d.eserler || []).map((e) => ({
+      id: e.id,
+      name: { tr: e.eser, en: e.eser, pt: e.eser },
+      short: e.aciklama,
+    })),
+    title: { tr: "Eser Ağı", en: "Network of Works", pt: "Rede de Obras" },
+    note: {
+      tr: "Ağı okumak için ekran dar geldi — eserler burada listede. Bir esere dokun, panelden bağlarını oku.",
+      en: "The network does not fit this narrow screen — the works are here as a list. Tap a work to read its bonds in the panel.",
+      pt: "A rede não cabe neste ecrã estreito — as obras estão aqui como lista. Toque numa obra para ler os seus vínculos no painel.",
+    },
+    graphButtonLabel: {
+      tr: "Haritayı aç (ağı göster)",
+      en: "Open the map (show the network)",
+      pt: "Abrir o mapa (mostrar a rede)",
+    },
+    goTo: (id) => window.__eserAgiApp.goToNode(id),
+  });
+
   return {
     activate() {
       // 2026-08-06 kullanıcı bulgusu: girisPaneli() burada çağrılıp panel
@@ -548,6 +576,7 @@ window.__eserAgiApp = (function () {
       });
     },
     onLangChange() {
+      if (eserAgiMobilListe) eserAgiMobilListe.onLangChange();
       if (!yuklendi) return;
       ciz();
       if (focusId) {

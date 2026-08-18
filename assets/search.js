@@ -16,6 +16,7 @@
     futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
     kavram: { tr: "Kavramlar", en: "Concepts", pt: "Conceitos" },
     fusus: { tr: "Füsûs", en: "Fusus", pt: "Fusus" },
+    miskat: { tr: "Mişkâtü'l-Envâr", en: "Mishkat al-Anwar", pt: "Mishkat al-Anwar" },
     menziller: { tr: "Menziller", en: "Mansions", pt: "Mansões" },
     tasiyicilar: { tr: "Taşıyanlar", en: "The Bearers", pt: "Os Portadores" },
     hocalar: { tr: "Hocalar", en: "Teachers", pt: "Mestres" },
@@ -42,6 +43,7 @@
     futuhat: "--series-hal-muameleler",
     kavram: "--series-theme",
     fusus: "--series-theme",
+    miskat: "--series-theme",
     menziller: "--series-theme",
     tasiyicilar: "--series-theme",
     hocalar: "--series-theme",
@@ -150,6 +152,19 @@
           index.push({
             view: "fusus", id: f.id, label: f.title, sub: f.hikmet,
             searchText: allLangText(f.title) + " " + allLangText(f.hikmet) + " " + allLangText(f.prophet) + " " + allLangText(f.hero && f.hero.summary),
+          });
+        });
+      }),
+      // SEARCH-01 (uzman paneli denetimi 2026-08-17): 101 hadislik Mişkât,
+      // başlık indeksinde HİÇ yoktu -- en yeni külliyat aramada görünmüyordu.
+      // fusus-atlas ile aynı desen (tam atlas zaten fetchJson önbelleğinde
+      // görünümle paylaşılıyor).
+      window.DostGraphUtils.fetchJson("data/ibn-arabi/miskat-atlas.json").then((d) => {
+        (d.hadisler || []).forEach((h) => {
+          if (h.status !== "active") return;
+          index.push({
+            view: "miskat", id: h.id, label: h.title, sub: h.hero && h.hero.summary,
+            searchText: allLangText(h.title) + " " + allLangText(h.hero && h.hero.summary),
           });
         });
       }),

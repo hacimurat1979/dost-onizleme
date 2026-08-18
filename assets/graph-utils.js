@@ -397,6 +397,12 @@ window.DostGraphUtils = (function () {
         try { const b = node.getBBox(); m = { w: b.width, h: b.height }; }
         catch (e) { m = { w: txt.length * 5.6, h: 12 }; }
         if (m.w > 0) box.set(txt, m);
+        // İlk karelerde metin daha boyanmadan getBBox 0 dönebiliyor
+        // (2026-08-17, compare.js'te ölçüldü: sıfır genişlikli etiketler
+        // hiç ayrıştırılmadan aynı satıra yerleşip donuyordu) -- sıfır
+        // ölçüme güvenme, karakter tahminine düş (önbelleğe ALINMAZ,
+        // gerçek ölçüm bir sonraki çağrıda yeniden denenir).
+        if (!(m.w > 0)) m = { w: txt.length * 5.6, h: m.h || 12 };
       }
       return m;
     }
@@ -420,8 +426,18 @@ window.DostGraphUtils = (function () {
     // dönmüş oluyor -- sınırda kalan çiftler salınımın ucunda yeniden
     // çakışabiliyordu (2026-08-06 ölçüldü). Varsayılan pay küçük tutuluyor
     // (salınımı olmayan /hal/ ve /sorular/ için yeterli).
+    // Çatışma-1 kararı (uzman paneli denetimi 2026-08-17, madde 2.9):
+    // ölçüm + yerleşim döngüsü etiket sayısıyla O(n²)'ye yaklaşıyor ve
+    // bazı sahneler bunu HER karede çağırıyor. 60+ etikette tam yerleşim
+    // 3 karede bire seyreltiliyor -- aradaki karelerde etiketler son
+    // kaydırmalarını koruyor (~50ms'lik yerleşim gecikmesi göze görünür
+    // değil; FPS ölçümü değişiklik öncesi/sonrası alındı). Eşik altında
+    // davranış değişmiyor.
+    let kare = 0;
     return function deconflict(items, obstacles, pad) {
       if (!items.length) return;
+      kare++;
+      if (items.length >= 60 && kare % 3 !== 1) return;
       const padY = (pad && pad.y) || 2;
       const padX = (pad && pad.x) || 5;
       for (const it of items) {
@@ -434,22 +450,45 @@ window.DostGraphUtils = (function () {
       const placed = (obstacles || []).map((o) => ({ x: o.x, y: o.y, half: o.half, h: o.h }));
       for (const it of items) {
         let y = it.y, guard = 0, clash = true;
-        while (clash && guard++ < 24) {
+        // Sınır yerleşik öğe sayısına orantılı (2026-08-17, compare.js
+        // entegrasyonunda ölçülerek bulundu): sabit 24, Ontoloji'nin 15
+        // düğümünde hiç dolmuyordu ama compare'ın 29 düğüm + 29 etiketli
+        // yoğun merkezinde itme zinciri bitmeden tükeniyor, üç etiket
+        // AYNI satıra yerleşmiş kalıyordu (model uzayında ölçüldü).
+        const sinir = Math.max(24, placed.length * 2 + 8);
+        while (clash && guard++ < sinir) {
           clash = false;
+          // Tek taramadaki BÜTÜN çakışmaların en altına tek hamlede atla
+          // (2026-08-17, compare.js entegrasyonunda ölçülerek bulundu):
+          // eskiden dizideki İLK çakışana göre atlanıyordu -- yoğun bir
+          // koridorda bu, piksel piksel sürünen ve guard'ı tüketen bir
+          // yakınsamaya dönüşüyordu (4000 iterasyonda 120px!); üç etiket
+          // aynı satırda donmuş kalıyordu. Tek çakışma varken davranış
+          // eskisiyle birebir aynı.
+          let enAlt = y;
           for (const p of placed) {
             const dyGap = (it.h + p.h) / 2 + padY;
             if (Math.abs(y - p.y) < dyGap && Math.abs(it.x - p.x) < it.half + p.half + padX) {
-              y = p.y + dyGap;        // aşağı doğru kaydır
+              if (p.y + dyGap > enAlt) enAlt = p.y + dyGap;
               clash = true;
-              break;
             }
           }
+          if (clash) y = enAlt;       // aşağı doğru kaydır
         }
         placed.push({ x: it.x, y, half: it.half, h: it.h });
         // Uygulanan y ATTR, düğümün kendi transform.scale(s)'ine tekrar
         // tabi olacak (label o grubun çocuğu) -- görsel kaydırma miktarını
         // geri yerel birime çevirmek için s'e bölünüyor.
-        if (y !== it.y) it.lbl.attr("y", it.baseY + (y - it.y) / (it.scale || 1));
+        //
+        // KOŞULSUZ yazılıyor (2026-08-17, compare.js entegrasyonunda
+        // ölçülerek bulundu): eskiden yalnız `y !== it.y` iken yazılıyordu
+        // -- kuvvet simülasyonunun kalabalık İLK karelerinde 100+ piksel
+        // itilen bir etiket, düğümler dağılıp çakışma KALKINCA eski attr'ını
+        // koruyordu; model onu kaydırılmamış sanıp üstüne başka etiket
+        // yerleştiriyordu (compare'da üç etiket aynı satıra binmiş olarak
+        // ölçüldü: y attr 3.5 / 31 / 120). Çakışma yokken y === it.y olduğu
+        // için bu satır kaymayı kendiliğinden SIFIRLIYOR.
+        it.lbl.attr("y", it.baseY + (y - it.y) / (it.scale || 1));
       }
     };
   }
@@ -821,5 +860,35 @@ window.DostGraphUtils = (function () {
     return { onLangChange: () => { if (sonNodes) doldur(sonNodes); } };
   }
 
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback };
+  // Kenar erişilebilirliği (K-01/K-03, uzman paneli denetimi 2026-08-17):
+  // Ontoloji/Esmâ'nın kenar-isabet desenindeki erişilebilirlik katmanı
+  // (tabindex + rol + aria-label + Enter/Boşluk + odak geri bildirimi)
+  // tek yardımcıya çıkarıldı ki hal/sirlar/sorular aynı sözleşmeyi tekrar
+  // yazmadan kullanabilsin (registerStepBack/createZoomBehavior ile aynı
+  // konsolidasyon deseni). `sel` bir D3 seçimi; opts:
+  //   label(d) -> string (zorunlu; "Değinmek" fiilinin ekran-okuyucu metni)
+  //   role (ops., vars. "button" -- yalnız okunacaksa "img" verilebilir)
+  //   onActivate(d, e) (ops.; verilirse Enter/Boşluk çalışır)
+  //   onFocus(d, e) / onBlur() (ops.; hover'daki görsel vurgunun klavye
+  //     karşılığı -- "yalnız fareye ait özellik" yasağı)
+  function wireEdgeAccessibility(sel, opts) {
+    sel
+      .attr("tabindex", 0)
+      .attr("role", opts.role || "button")
+      .attr("aria-label", (d) => opts.label(d));
+    if (opts.onFocus) sel.on("focus.a11y", (e, d) => opts.onFocus(d, e));
+    if (opts.onBlur) sel.on("blur.a11y", () => opts.onBlur());
+    if (opts.onActivate) {
+      sel.on("keydown.a11y", (e, d) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          e.stopPropagation();
+          opts.onActivate(d, e);
+        }
+      });
+    }
+    return sel;
+  }
+
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback, wireEdgeAccessibility };
 })();

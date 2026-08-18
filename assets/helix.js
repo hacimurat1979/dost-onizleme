@@ -117,24 +117,31 @@
   // nitelikleri güncelleniyor.
   function build(sc) {
     sc.svg.textContent = "";
-    // Okun ucu yolun hangi yönde okunacağını gösteriyor; bu olmadan
-    // sarmalın nereden başlayıp nereye gittiği belli olmuyordu.
+    // GORSEL-01 (uzman paneli denetimi 2026-08-17): yolun ucundaki üçgen ok
+    // (marker-end) görsel gramerin "soyut ok kullanma" yasağını çiğniyordu.
+    // Yön artık ışık-yolu gradyanıyla okunuyor: yol başlangıçta soluk,
+    // ilerledikçe belirginleşiyor (hal.js'in kendi segmentlerinin
+    // 0.32+0.5*prog opaklık rampasıyla aynı mantık). Uçlar her karede
+    // draw() içinde projeksiyondan tazelenir (sahne dönerken sabit
+    // koordinat olmaz). stop-color style= içinde: yalnız öyle yazılınca
+    // CSS değişkeni (--helix-yol) çözülüyor (bkz. terimler.js isikCizgisi).
     var defs = svgEl("defs");
-    var mk = svgEl("marker");
-    sc.markerId = "helix-ok-" + (++uid);
-    mk.setAttribute("id", sc.markerId);
-    mk.setAttribute("viewBox", "0 -5 10 10");
-    mk.setAttribute("refX", "9"); mk.setAttribute("refY", "0");
-    mk.setAttribute("markerWidth", "5.5"); mk.setAttribute("markerHeight", "5.5");
-    mk.setAttribute("orient", "auto");
-    mk.setAttribute("class", "helix-scene__marker");
-    var mp = svgEl("path");
-    mp.setAttribute("d", "M0,-4L9,0L0,4");
-    mk.appendChild(mp); defs.appendChild(mk); sc.svg.appendChild(defs);
+    sc.gradId = "helix-isik-" + (++uid);
+    var grad = svgEl("linearGradient");
+    grad.setAttribute("id", sc.gradId);
+    grad.setAttribute("gradientUnits", "userSpaceOnUse");
+    [["0%", "0.22"], ["65%", "0.55"], ["100%", "0.95"]].forEach(function (s) {
+      var st = svgEl("stop");
+      st.setAttribute("offset", s[0]);
+      st.setAttribute("style", "stop-color:var(--helix-yol, #b9b3a4);stop-opacity:" + s[1]);
+      grad.appendChild(st);
+    });
+    defs.appendChild(grad); sc.svg.appendChild(defs);
+    sc.gradEl = grad;
 
     sc.pathEl = svgEl("path");
     sc.pathEl.setAttribute("class", "helix-scene__path");
-    sc.pathEl.setAttribute("marker-end", "url(#" + sc.markerId + ")");
+    sc.pathEl.style.stroke = "url(#" + sc.gradId + ")";
     sc.svg.appendChild(sc.pathEl);
     if (sc.closing) {
       sc.ghostEl = svgEl("path");
@@ -159,6 +166,10 @@
   function draw(sc) {
     var span = Math.max(1, sc.nodes.length - 1);
     sc.pathEl.setAttribute("d", pathBetween(sc, 0, span, 120));
+    // Işık-yolu gradyanının uçları: yolun başı (soluk) → sonu (belirgin).
+    var gBas = projectT(sc, 0), gSon = projectT(sc, span);
+    sc.gradEl.setAttribute("x1", gBas.x); sc.gradEl.setAttribute("y1", gBas.y);
+    sc.gradEl.setAttribute("x2", gSon.x); sc.gradEl.setAttribute("y2", gSon.y);
     if (sc.ghostEl) {
       // Kısa tutuluyor (çeyrek tur): amaç bir tur daha çizmek değil,
       // "burada bitmiyor" demek. Uzun olduğunda sahnenin üstünü kaplayıp
