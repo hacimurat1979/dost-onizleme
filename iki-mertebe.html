@@ -17,7 +17,8 @@ header{text-align:center;margin-bottom:1rem;max-width:640px}
 h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
 .sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
 
-.picker{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.1rem}
+.picker{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.1rem;opacity:0;max-height:0;overflow:hidden;pointer-events:none;transition:opacity .5s ease}
+body.sahne-bitti .picker{opacity:1;max-height:160px;pointer-events:auto}
 .pick-btn{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.4rem 1rem;font:inherit;font-size:.82rem;cursor:pointer;transition:.2s}
 .pick-btn:hover,.pick-btn.on{border-color:var(--liminal);color:var(--text)}
 
@@ -39,8 +40,29 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 #hitRect:focus-visible{outline:2px solid var(--liminal);outline-offset:-3px}
 .track-labels{display:flex;justify-content:space-between;margin-top:.55rem;font-size:.76rem;color:var(--muted);gap:1rem}
 .track-labels span{max-width:150px;line-height:1.4}
-.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
-.grab-hint.gone{opacity:.28}
+.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;opacity:0;transition:opacity .5s}
+body.sahne-bitti .grab-hint{opacity:1}
+body.sahne-bitti .grab-hint.gone{opacity:.28}
+
+.fan-caption{width:min(640px,96vw);text-align:center;font-size:.86rem;line-height:1.75;color:var(--text);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;margin:0 auto 1rem}
+.fan-caption.show{opacity:1;transform:none}
+
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.2rem;margin-bottom:.8rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--muted);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--liminal);color:var(--text)}
+
+.sahne-kunye{width:min(640px,96vw);margin:0 auto 1rem;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
+.sahne-kunye summary{cursor:pointer;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
+.sahne-kunye summary:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+.sahne-metni{list-style:none;margin-top:.7rem}
+.sahne-metni li{margin-bottom:.65rem;font-style:italic}
+
+@media(prefers-reduced-motion:no-preference){
+  #viewer.nefes-al{animation:mNefesNabiz 7s ease-in-out infinite}
+}
+@keyframes mNefesNabiz{0%,100%{opacity:1}50%{opacity:.7}}
 
 .readings{display:flex;gap:1rem;width:min(760px,96vw);flex-wrap:wrap;justify-content:center;margin-bottom:1rem}
 .reading{flex:1;min-width:260px;max-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;transition:opacity .25s ease,filter .25s ease,transform .25s ease;transform-origin:center top}
@@ -116,7 +138,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   <p class="verse-meal" id="verseMeal"></p>
   <p class="verse-src" id="verseSrc"></p>
 </div>
-<p class="verse-fixed-note" id="fixedNote">Bu kutu hareket etmiyor — sürüklediğinde değişen yalnız aşağıdaki iki okumadan hangisinin netleştiği.</p>
+<p class="verse-fixed-note" id="fixedNote">Bu kutu hiç hareket etmiyor — değişen yalnız aşağıdaki iki okumadan hangisinin netleştiği.</p>
 
 <div class="insc-wrap">
   <div class="insc-frame">
@@ -142,7 +164,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
       <text id="axisCapLeft" x="240" y="880" text-anchor="start" font-family="Georgia, serif" font-size="20" letter-spacing="1" fill="var(--text)" opacity="0.35"></text>
       <text id="axisCapRight" x="1360" y="880" text-anchor="end" font-family="Georgia, serif" font-size="20" letter-spacing="1" fill="var(--text)" opacity="0.35"></text>
 
-      <rect id="hitRect" x="0" y="0" width="1600" height="1000" fill="transparent" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></rect>
+      <rect id="hitRect" x="0" y="0" width="1600" height="1000" fill="transparent" style="pointer-events:none" tabindex="-1" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></rect>
     </svg>
   </div>
   <div class="track-labels">
@@ -151,6 +173,9 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   </div>
   <p class="grab-hint" id="grabHint">Sürükle (ok tuşları da çalışır)</p>
 </div>
+
+<p class="fan-caption" id="mCaption"></p>
+<div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
 
 <div class="readings" id="readingsWrap">
   <div class="reading" id="readingLeft">
@@ -167,42 +192,52 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 
 <div class="verse-list" id="verseList" hidden></div>
 
+<div id="kunyeYuvasi"></div>
+
 <p class="aha" id="aha"></p>
 
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. hayret.html/
+     kandil.html/kalbe-sigan.html/nefes-i-rahmani.html aynı düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const LA={
   tr:{
     title:'Aynı Âyet, İki Mertebe',
     sub:"Bir âyet, okuduğumuz bölümlerin birden fazlasında geçiyor — ve her defasında farklı bir mertebeden okunuyor. Âyet hiç değişmiyor; değişen, ona nereden baktığımız.",
-    fixedNote:'Bu kutu hareket etmiyor — sürüklediğinde değişen yalnız aşağıdaki iki okumadan hangisinin netleştiği.',
+    fixedNote:'Bu kutu hiç hareket etmiyor — değişen yalnız aşağıdaki iki okumadan hangisinin netleştiği.',
     grab:'Sürükle (ok tuşları da çalışır)',
     aha:'Âyetin tek bir kelimesi değişmedi.\nSen yerini değiştirdin.',
     svgAria:'Sabit duran bir yazı; bakış konumuna göre iki farklı okuma beliriyor.',
     allBtn:'Hepsini gör',
     allSvgAria:'Sabit duran bir yazı; üç ayrı âyetin de üzerinde aynı iki okuma-yolu duruyor.',
     allAha:'Üç âyet, üç ayrı konu — üçünde de aynı ikilik: bir mertebe yakından okunuyor, biri uzaktan.',
+    kunyeBaslik:'Künye — bu sahne nereden geliyor?',
   },
   en:{
     title:'The Same Verse, Two Levels',
     sub:"One verse comes up in more than one of the chapters we've read — and is read from a different level each time. The verse never changes; what changes is where we're looking from.",
-    fixedNote:"This box does not move — dragging only changes which of the two readings below comes into focus.",
+    fixedNote:"This box never moves — what changes is only which of the two readings below comes into focus.",
     grab:'Drag (arrow keys work too)',
     aha:"Not one word of the verse changed.\nYou changed where you stood.",
     svgAria:'A fixed inscription; two different readings emerge depending on viewing position.',
     allBtn:'See all together',
     allSvgAria:'A fixed inscription; the same two reading-paths sit over all three verses.',
     allAha:'Three verses, three different subjects — the same duality in each: one level read up close, one from afar.',
+    kunyeBaslik:'Sources — where this scene comes from',
   },
   pt:{
     title:'O Mesmo Versículo, Dois Graus',
     sub:'Um versículo aparece em mais de um dos capítulos que lemos — e é lido a partir de um grau diferente cada vez. O versículo nunca muda; o que muda é de onde olhamos para ele.',
-    fixedNote:'Esta caixa não se move — arrastar só muda qual das duas leituras abaixo entra em foco.',
+    fixedNote:'Esta caixa nunca se move — o que muda é apenas qual das duas leituras abaixo entra em foco.',
     grab:'Arraste (as setas também funcionam)',
     aha:'Nem uma palavra do versículo mudou.\nFoste tu que mudaste de lugar.',
     svgAria:'Uma inscrição fixa; duas leituras diferentes emergem conforme a posição de observação.',
     allBtn:'Ver todos juntos',
     allSvgAria:'Uma inscrição fixa; os mesmos dois caminhos de leitura assentam sobre os três versículos.',
     allAha:'Três versículos, três assuntos diferentes — a mesma dualidade em cada um: um grau lido de perto, outro de longe.',
+    kunyeBaslik:'Fontes — de onde vem esta cena',
   }
 };
 
@@ -396,8 +431,10 @@ function renderPicker(){
   `).join('');
   const allBtn=`<button class="pick-btn${curVerse==='all'?' on':''}" data-ref="all" type="button">${LA[curLang].allBtn}</button>`;
   $('picker').innerHTML=verseBtns+allBtn;
+  const bitti=document.body.classList.contains('sahne-bitti');
   $('picker').querySelectorAll('.pick-btn').forEach(b=>{
-    b.addEventListener('click',()=>{ curVerse=b.dataset.ref; pos=0.5; touched=false; renderAll(); });
+    b.tabIndex=bitti?0:-1;
+    b.addEventListener('click',()=>{ curVerse=b.dataset.ref; pos=0.5; targetPos=0.5; touched=false; renderAll(); });
   });
 }
 
@@ -433,7 +470,11 @@ function applyPosition(){
   }
   inscWrap.classList.remove('all-mode');
   hitRect.classList.remove('inert');
-  hitRect.setAttribute('tabindex','0');
+  // tabindex/pointer-events'i yalnız sahne bittikten sonra "0"/auto yapıyoruz
+  // (bkz. markup + tepki:'bitti') -- narasyon sırasında applyPosition() her
+  // karede çağrıldığı için burada koşulsuz açmak hitRect'i erken erişilebilir
+  // kılardı.
+  if(document.body.classList.contains('sahne-bitti')) hitRect.setAttribute('tabindex','0');
   viewerC.setAttribute('opacity','1'); viewerP.setAttribute('opacity','1'); sightLine.setAttribute('opacity','0.5');
 
   const front=Math.max(0,1-pos), back=Math.max(0,pos);
@@ -461,13 +502,40 @@ function applyPosition(){
   $('readingRight').style.opacity=(0.35+0.65*back).toFixed(2);
   $('readingRight').style.transform='scale('+(0.97+0.03*back).toFixed(3)+')';
 
-  if(pos<0.08 || pos>0.92){
-    if(!applyPosition._sawL) applyPosition._sawL = pos<0.08;
-    if(!applyPosition._sawR) applyPosition._sawR = pos>0.92;
+  // Bu "aha" ödülü yalnız kendim-gezineyim kipinde: sahne kendi anlatımı
+  // sırasında pos zaten otomatik olarak 0.08 ve 0.92'ye uğruyor (bkz.
+  // partisyon), o yüzden narasyon sırasında tetiklenirse metin ölçülerle
+  // çakışır. sahne-bitti'den önce sessiz kalır.
+  if(document.body.classList.contains('sahne-bitti')){
+    if(pos<0.08 || pos>0.92){
+      if(!applyPosition._sawL) applyPosition._sawL = pos<0.08;
+      if(!applyPosition._sawR) applyPosition._sawR = pos>0.92;
+    }
+    if(applyPosition._sawL && applyPosition._sawR) $('aha').classList.add('show');
   }
-  if(applyPosition._sawL && applyPosition._sawR) $('aha').classList.add('show');
 }
 applyPosition._sawL=false; applyPosition._sawR=false;
+
+// ── Motor bağlantısı: applyPosition(pos) zaten sürekli bir 0-1 değişkenin
+// saf fonksiyonuydu (yazı sabit, bakış kayar). Motor artık pos'un HEDEFİNİ
+// ölçü ölçü veriyor; burada nefes-i-rahmani/halk-i-cedid ile aynı desen --
+// süregelen bir rAF döngüsü pos'u hedefe yumuşakça yaklaştırıp her karede
+// applyPosition() çağırıyor. Hareket azaltma tercihinde döngü hiç
+// başlamıyor, hedef doğrudan uygulanıyor. ────────────────────────────────
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let targetPos=pos, easeLast=performance.now(), easeRafId=0;
+function easeLoop(now){
+  const dt=Math.min(80, now-easeLast); easeLast=now;
+  if(Math.abs(targetPos-pos)>0.0008) pos+=(targetPos-pos)*Math.min(1, dt/900);
+  else pos=targetPos;
+  applyPosition();
+  easeRafId=requestAnimationFrame(easeLoop);
+}
+function posHedefiVer(v){
+  targetPos=v;
+  if(reduced){ pos=v; applyPosition(); }
+}
+if(!reduced) easeRafId=requestAnimationFrame(easeLoop);
 
 function renderReadings(){
   const allMode=curVerse==='all';
@@ -513,6 +581,9 @@ function renderAll(){
   applyPosition._sawL=false; applyPosition._sawR=false;
   $('aha').classList.remove('show');
   applyPosition();
+  if(sonMetin) $('mCaption').textContent=sonMetin[curLang]||sonMetin.tr;
+  kunye.guncelle(curLang);
+  sahneMetniniGuncelle();
 }
 
 function setLang(l){ curLang=l; renderAll(); }
@@ -528,20 +599,105 @@ function toSvgX(clientX){
 function setPosFromClientX(clientX){
   const sx=toSvgX(clientX);
   pos=Math.max(0,Math.min(1,(sx-AXIS_X0)/(AXIS_X1-AXIS_X0)));
+  targetPos=pos;
   applyPosition();
 }
 let dragging=false;
-hitRect.addEventListener('pointerdown',e=>{ if(curVerse==='all') return; dragging=true; markTouched(); try{hitRect.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
+// Sürükleme, kendim-gezineyim kipi: eski davranış aynen korunuyor, yalnız
+// artık ikincil bir keşif katmanı -- sahne bitmeden erişilemez (bkz.
+// #hitRect'in markup'taki tabindex="-1"/pointer-events:none başlangıcı,
+// tepki:'bitti'de açılıyor).
+hitRect.addEventListener('pointerdown',e=>{ if(!document.body.classList.contains('sahne-bitti')||curVerse==='all') return; dragging=true; markTouched(); try{hitRect.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
 hitRect.addEventListener('pointermove',e=>{ if(dragging) setPosFromClientX(e.clientX); });
 ['pointerup','pointercancel','pointerleave'].forEach(t=>hitRect.addEventListener(t,()=>{dragging=false;}));
 hitRect.addEventListener('keydown',e=>{
-  if(curVerse==='all') return;
+  if(!document.body.classList.contains('sahne-bitti')||curVerse==='all') return;
   const k={ArrowLeft:-0.05,ArrowRight:0.05,ArrowDown:-0.05,ArrowUp:0.05}[e.key];
   if(k===undefined) return;
-  markTouched(); pos=Math.max(0,Math.min(1,pos+k)); applyPosition(); e.preventDefault();
+  markTouched(); pos=Math.max(0,Math.min(1,pos+k)); targetPos=pos; applyPosition(); e.preventDefault();
 });
 
+// Künye: sahnenin zaten üç âyet için iki alıntısı (left/right) vardı --
+// narasyon yalnız İLK âyeti (7:143) anlattığı için künye de onun
+// alıntılarını kullanıyor; yeni bir kaynak formatı icat edilmiyor.
+function kunyeOlustur(container, baslikObj){
+  const det=document.createElement('details'); det.className='sahne-kunye';
+  const sum=document.createElement('summary'); det.appendChild(sum);
+  const ol=document.createElement('ol'); ol.className='sahne-metni'; det.appendChild(ol);
+  container.appendChild(det);
+  return { el:det, guncelle:function(l){
+    sum.textContent=(baslikObj&&(baslikObj[l]||baslikObj.tr))||'Künye';
+    ol.innerHTML='';
+    const v=VERSES['7:143'];
+    [v.left,v.right].forEach(function(part){
+      const li=document.createElement('li');
+      li.textContent=(part.text[l]||part.text.tr)+' — '+(part.src[l]||part.src.tr);
+      ol.appendChild(li);
+    });
+  }};
+}
+const kunye=kunyeOlustur($('kunyeYuvasi'), {tr:LA.tr.kunyeBaslik,en:LA.en.kunyeBaslik,pt:LA.pt.kunyeBaslik});
+
+let sahneMetniEl=null, partisyonRef=null;
+function sahneMetniniKur(){
+  if(sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl=document.createElement('ol');
+  sahneMetniEl.className='sahne-metni';
+  sahneMetniEl.style.marginTop='.4rem';
+  kunye.el.appendChild(sahneMetniEl);
+  sahneMetniniGuncelle();
+}
+function sahneMetniniGuncelle(){
+  if(!sahneMetniEl||!partisyonRef) return;
+  sahneMetniEl.innerHTML='';
+  partisyonRef.olcuLer.forEach(function(o){
+    if(!o.metin) return;
+    const li=document.createElement('li');
+    li.textContent=o.metin[curLang]||o.metin.tr;
+    sahneMetniEl.appendChild(li);
+  });
+}
+
+let sonMetin=null;
+function metinYaz(m){
+  sonMetin=m;
+  const t=m?(m[curLang]||m.tr||''):'';
+  $('mCaption').classList.remove('show');
+  window.setTimeout(function(){
+    $('mCaption').textContent=t;
+    if(t) $('mCaption').classList.add('show');
+  }, t?150:0);
+}
+
 renderAll();
+
+let motorAPI=null;
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/iki-mertebe.json').then(function(r){ return r.json(); }).then(function(p){
+    partisyonRef=p;
+    sahneMetniniKur();
+    motorAPI=window.__sahneMotoru.yarat({
+      container:document.querySelector('.insc-wrap'), partisyon:p,
+      applyOlcu:function(o){
+        const hal=o.hedef_hal||{};
+        if(hal.pos!==undefined) posHedefiVer(hal.pos);
+        $('viewer').classList.toggle('nefes-al', !!hal.nefes);
+      },
+      metinGoster:metinYaz,
+      olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if(ev.tip==='bitti'){
+          document.body.classList.add('sahne-bitti');
+          hitRect.setAttribute('tabindex','0');
+          hitRect.style.pointerEvents='auto';
+          renderPicker();
+        }
+      },
+    });
+  });
+})();
 
 window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);

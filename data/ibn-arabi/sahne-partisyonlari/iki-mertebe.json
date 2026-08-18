@@ -1,0 +1,75 @@
+{
+  "id": "iki-mertebe",
+  "baslik": {
+    "tr": "Aynı Âyet, İki Mertebe — Lentiküler Kayma",
+    "en": "The Same Verse, Two Levels — Lenticular Shift",
+    "pt": "O Mesmo Versículo, Dois Graus — Deslocamento Lenticular"
+  },
+  "toplam_sure_sn": 41,
+  "max_olcu_sn": 9,
+  "not": "Sahnenin kendi applyPosition(pos) işlevi zaten davranışı taşıyordu (metin sabit, bakış kayar). Motor pos'un hedefini veriyor, sahnenin kendi eased döngüsü (nefes-i-rahmani/halk-i-cedid deseninin aynısı) pos'u yaklaştırıyor. Yalnız İLK âyet (7:143, sahnenin varsayılanı) üzerinden anlatılıyor -- âyet metni narasyon boyunca hiç değişmiyor (sahnenin omurga dürüstlüğü). Üç âyet arası seçici ve 'hepsini gör' kipi kendim-gezineyim katmanına taşındı.",
+  "olcuLer": [
+    {
+      "id": "metin-sabit",
+      "sure_sn": 7,
+      "gecis_sure_sn": 1.6,
+      "hedef_hal": {
+        "pos": 0.08
+      },
+      "metin": {
+        "tr": "Bir âyet, okuduğumuz bölümlerin birden fazlasında geçiyor.",
+        "en": "One verse comes up in more than one of the chapters we've read.",
+        "pt": "Um versículo aparece em mais de um dos capítulos que lemos."
+      }
+    },
+    {
+      "id": "mertebe-bir",
+      "sure_sn": 8,
+      "gecis_sure_sn": 2.0,
+      "hedef_hal": {},
+      "metin": {
+        "tr": "Her defasında farklı bir mertebeden okunuyor.",
+        "en": "It is read from a different level each time.",
+        "pt": "É lido a partir de um grau diferente cada vez."
+      }
+    },
+    {
+      "id": "mertebe-iki",
+      "sure_sn": 9,
+      "gecis_sure_sn": 2.0,
+      "hedef_hal": {
+        "pos": 0.92
+      },
+      "metin": {
+        "tr": "Âyetin tek bir kelimesi değişmedi.",
+        "en": "Not one word of the verse changed.",
+        "pt": "Nem uma palavra do versículo mudou."
+      }
+    },
+    {
+      "id": "bakis-degisir",
+      "sure_sn": 8,
+      "gecis_sure_sn": 2.0,
+      "hedef_hal": {
+        "pos": 0.5
+      },
+      "metin": {
+        "tr": "Sen yerini değiştirdin.",
+        "en": "You changed where you stood.",
+        "pt": "Foste tu que mudaste de lugar."
+      }
+    },
+    {
+      "id": "durak",
+      "sure_sn": 9,
+      "hedef_hal": {
+        "nefes": true
+      },
+      "metin": {
+        "tr": "Bir mertebe yakından okunur, biri uzaktan — âyet aynı âyettir.",
+        "en": "One level is read up close, one from afar — the verse remains the same verse.",
+        "pt": "Um grau é lido de perto, outro de longe — o versículo continua o mesmo versículo."
+      }
+    }
+  ]
+}
