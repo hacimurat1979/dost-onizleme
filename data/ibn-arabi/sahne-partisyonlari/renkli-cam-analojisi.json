@@ -1,0 +1,84 @@
+{
+  "id": "renkli-cam-analojisi",
+  "baslik": {
+    "tr": "Renkli Cam Analojisi",
+    "en": "The Tinted-Glass Analogy",
+    "pt": "A Analogia do Vidro Colorido"
+  },
+  "toplam_sure_sn": 42,
+  "max_olcu_sn": 8,
+  "not": "İbn Arabî'nin kendi kıyası (Fusûs, Kâşânî şerhiyle Izutsu'nun aktardığı, izutsu-anahtar 6994-7030). Işık tek ve tabiatı gereği renksiz; camdan geçerken rengini alır GİBİ görünür. Ölçü 3'te akıl ve duyu okumaları AYNI ANDA beliriyor -- biri diğerini iptal etmiyor. Ölçü 4 ikisinin de haklı olduğunu, bakılan şeyin ışık değil cam olduğunu söylüyor.",
+  "olcuLer": [
+    {
+      "id": "gelis",
+      "sure_sn": 6,
+      "gecis_sure_sn": 1.6,
+      "hedef_hal": {
+        "isikGelis": 1,
+        "camOpaklik": 0,
+        "isikSonra": 0,
+        "akilEtiket": 0,
+        "duyuEtiket": 0,
+        "birlikte": 0
+      },
+      "metin": {
+        "tr": "Tek bir ışık, tabiatı gereği renksiz.",
+        "en": "A single light, colorless by its own nature.",
+        "pt": "Uma única luz, incolor pela sua própria natureza."
+      }
+    },
+    {
+      "id": "cam",
+      "sure_sn": 7,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": {
+        "camOpaklik": 1,
+        "isikSonra": 1
+      },
+      "metin": {
+        "tr": "İbn Arabî'nin kendi kıyası: aynı ışık camdan geçerken rengini alır GİBİ görünür.",
+        "en": "Ibn Arabi's own analogy: the same light seems to take on a color as it passes through glass.",
+        "pt": "A própria analogia de Ibn Arabi: a mesma luz parece adquirir uma cor ao passar pelo vidro."
+      }
+    },
+    {
+      "id": "iki-okuma",
+      "sure_sn": 8,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": {
+        "akilEtiket": 1,
+        "duyuEtiket": 1
+      },
+      "metin": {
+        "tr": "“Nûrun camın yeşilliğinden dolayı yeşil olduğunu söylersen haklısın” — duyunun okuması.",
+        "en": "“If you say the light is green because of the glass's greenness, you are right” — the senses' reading.",
+        "pt": "“Se disseres que a luz é verde por causa da verdura do vidro, tens razão” — a leitura dos sentidos."
+      }
+    },
+    {
+      "id": "akil-de-hakli",
+      "sure_sn": 7,
+      "gecis_sure_sn": 1.6,
+      "hedef_hal": {
+        "birlikte": 1
+      },
+      "metin": {
+        "tr": "“Ama nûrun renksiz olduğunu söylersen, gene de haklısın” — aklın okuması.",
+        "en": "“But if you also say the light is colorless, you are right too” — reason's reading.",
+        "pt": "“Mas se disseres também que a luz é incolor, também tens razão” — a leitura da razão."
+      }
+    },
+    {
+      "id": "durak",
+      "sure_sn": 8,
+      "hedef_hal": {
+        "birlikte": 1
+      },
+      "metin": {
+        "tr": "Tenzih ile teşbih, ışığın kendisine değil, içinden geçtiği cama bakıyor. Bize göre ikisi de aynı ışığın farklı bir yüzü.",
+        "en": "Tenzih and tashbih look not at the light itself but at the glass it passes through. In our reading, both face the same light, only from different sides.",
+        "pt": "Tenzih e tashbih olham não para a luz em si mas para o vidro por onde ela passa. Na nossa leitura, ambos encaram a mesma luz, apenas por lados diferentes."
+      }
+    }
+  ]
+}
