@@ -1,0 +1,36 @@
+{
+  "id": "futuhat-371",
+  "baslik": {
+    "tr": "371. Bab: Dokuz Harita — Ziyaret Temposu",
+    "en": "Chapter 371: Nine Maps — A Visit's Pace",
+    "pt": "Capítulo 371: Nove Mapas — O Ritmo de uma Visita"
+  },
+  "toplam_sure_sn": 57,
+  "not": "FACSİMİLE istisnası (GORSEL_DIL.md): çizgilere DOKUNULMADI -- drawShared/drawUnique aynen korunuyor. Eklenen tek boyut ZİYARET temposu: motor dokuz haritayı sırayla gezer, her ölçüde applyMerge(0) hâlindeyken (hâlâ ayrık) o haritanın opaklığı/ölçeği hafifçe öne çıkar, diğerleri atmosferik geri planda kalır (aktifIdx deseni). Son ölçü mevcut applyMerge(100) birleşme animasyonunu tetikler -- yeni bir görsel icat edilmedi, var olan mekanizma motora bağlandı. Her ölçünün metni STEPS dizisindeki zaten var olan shortLabel'dır (yeni içerik değil). Kapanış metni de sahnenin zaten yayınlanmış 'Dokuz harita, ayrıyken...' cümlesidir -- araştırma günlüğünde (RESEARCH_LOG.md, 2026-08-14) atıf belirsizliği bulunan eski 'sana bakan kendi iki gözündür' kapanışı KASITLI OLARAK kullanılmadı.",
+  "olcuLer": [
+    { "id": "bulut", "sure_sn": 4, "gecis_sure_sn": 1.6, "hedef_hal": { "merge": 0, "aktif": 0 },
+      "metin": { "tr": "Bulut", "en": "The Cloud", "pt": "A Nuvem" } },
+    { "id": "ars-kursi", "sure_sn": 4, "gecis_sure_sn": 1.6, "hedef_hal": { "aktif": 1 },
+      "metin": { "tr": "Arş – Kürsî", "en": "Throne – Footstool", "pt": "Trono – Escabelo" } },
+    { "id": "atlas", "sure_sn": 4, "gecis_sure_sn": 1.6, "hedef_hal": { "aktif": 2 },
+      "metin": { "tr": "Atlas Feleği", "en": "Sphere of Atlas", "pt": "Esfera de Atlas" } },
+    { "id": "sabit-yildizlar", "sure_sn": 4, "gecis_sure_sn": 1.6, "hedef_hal": { "aktif": 3 },
+      "metin": { "tr": "Sabit Yıldızlar", "en": "Fixed Stars", "pt": "Estrelas Fixas" } },
+    { "id": "arz-i-hasr", "sure_sn": 4, "gecis_sure_sn": 1.6, "hedef_hal": { "aktif": 4 },
+      "metin": { "tr": "Haşir Yeri", "en": "Gathering", "pt": "Reunião" } },
+    { "id": "cehennem-kapilari", "sure_sn": 4, "gecis_sure_sn": 1.6, "hedef_hal": { "aktif": 5 },
+      "metin": { "tr": "Cehennem Kapıları", "en": "Gates of Hell", "pt": "Portões do Inferno" } },
+    { "id": "esma-hazretleri", "sure_sn": 4, "gecis_sure_sn": 1.6, "hedef_hal": { "aktif": 6 },
+      "metin": { "tr": "İlahî İsimler", "en": "Divine Names", "pt": "Nomes Divinos" } },
+    { "id": "ruyet", "sure_sn": 4, "gecis_sure_sn": 1.6, "hedef_hal": { "aktif": 7 },
+      "metin": { "tr": "Rü'yet Tepesi", "en": "Dune of Vision", "pt": "Duna da Visão" } },
+    { "id": "kozmos", "sure_sn": 4, "gecis_sure_sn": 2.0, "hedef_hal": { "aktif": 8 },
+      "metin": { "tr": "Kozmosun Tamamı", "en": "The Whole Cosmos", "pt": "Todo o Cosmos" } },
+    { "id": "birlesme", "sure_sn": 6, "hedef_hal": { "merge": 100, "aktif": null, "nefes": true },
+      "metin": {
+        "tr": "Dokuz harita, ayrıyken dokuz çizim; birleşince tek bir kompozisyon. Örtüşme anı bu sahnenin hayret anı.",
+        "en": "Nine maps: nine drawings when apart; one composition when together. The moment they overlap is this scene's astonishment.",
+        "pt": "Nove mapas: nove desenhos quando separados; uma só composição quando reunidos. O instante da sobreposição é o espanto desta cena."
+      } }
+  ]
+}

@@ -20,13 +20,40 @@ h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color
 .next-step{color:var(--muted);font-size:.72rem;line-height:1.6;max-width:520px;margin:1.2rem auto 0;text-align:center}
 
 @keyframes s13-pulse{0%,100%{opacity:.55}50%{opacity:1}}
-@keyframes s13-caption{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
 #stageWrap{position:relative;width:min(94vw,860px);margin-top:.6rem}
 #mapsStage{width:100%;aspect-ratio:16/10;display:block;background:var(--panel);border:1px solid var(--border);border-radius:12px}
-#hint{position:absolute;top:12px;right:16px;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);animation:s13-pulse 3s ease-in-out 1.5s 3}
+#hint{position:absolute;top:12px;right:16px;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .5s ease}
+body.sahne-bitti #hint{opacity:.55;animation:s13-pulse 3s ease-in-out .3s 3}
 
-.slider-wrap{width:min(560px,92vw);margin:.9rem auto 0;text-align:center}
+.fan-caption{width:min(560px,96vw);text-align:center;font-size:.86rem;line-height:1.75;color:var(--text);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;margin:.9rem auto 0}
+.fan-caption.show{opacity:1;transform:none}
+
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.5rem;margin-bottom:.4rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--muted);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--liminal);color:var(--text)}
+
+.sahne-kunye{width:min(600px,96vw);margin:.6rem auto 1rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
+.sahne-kunye summary{cursor:pointer;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
+.sahne-kunye summary:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+.sahne-metni{list-style:none;margin-top:.7rem}
+.sahne-metni li{margin-bottom:.65rem;font-style:italic}
+
+/* Ziyaret vurgusu (kendi çizgilerine DOKUNMADAN): ölçüler arası opaklık/
+   ölçek geçişi tek bir CSS transition'a bağlı -- motor yalnız SVG
+   'transform'/'opacity' özniteliklerini değiştirir, aynı desen
+   kalbe-sigan.html/kandil.html'de de kullanılıyor. */
+.map-clickable{transition:opacity 1.6s ease,transform 1.6s ease;pointer-events:none}
+body.sahne-bitti .map-clickable{pointer-events:auto}
+@media(prefers-reduced-motion:no-preference){
+  #mapsG.nefes-al{animation:s371Nefes 7s ease-in-out infinite}
+}
+@keyframes s371Nefes{0%,100%{opacity:1}50%{opacity:.88}}
+
+.slider-wrap{width:min(560px,92vw);margin:.9rem auto 0;text-align:center;opacity:0;max-height:0;overflow:hidden;transition:opacity .5s ease}
+body.sahne-bitti .slider-wrap{opacity:1;max-height:200px}
 .slider-labels{display:flex;justify-content:space-between;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
 input[type="range"]{-webkit-appearance:none;appearance:none;background:transparent;width:100%;height:40px;padding:0;margin:0;cursor:pointer}
 input[type="range"]::-webkit-slider-runnable-track{height:2px;background:var(--border);border-radius:2px}
@@ -35,10 +62,8 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:non
 input[type="range"]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal)}
 input[type="range"]:focus{outline:none}
 input[type="range"]:focus-visible{outline:2px solid var(--liminal);outline-offset:4px}
-.caption-wrap{text-align:center;padding:.85rem .5rem 0;max-width:560px;margin:0 auto;opacity:0;animation:s13-caption 900ms 900ms ease-out forwards}
-#caption{font-size:.85rem;line-height:1.6;color:var(--text)}
-
-.legend{width:min(600px,94vw);margin:1.5rem auto 0}
+.legend{width:min(600px,94vw);margin:1.5rem auto 0;opacity:0;max-height:0;overflow:hidden;transition:opacity .5s ease}
+body.sahne-bitti .legend{opacity:1;max-height:4000px}
 .legend-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--liminal);text-align:center;margin-bottom:.6rem}
 .legend-item{padding:.75rem 0;border-top:1px solid var(--border)}
 .legend-item:first-child{border-top:none}
@@ -118,16 +143,18 @@ input[type="range"]:focus-visible{outline:2px solid var(--liminal);outline-offse
   <div id="hint"><span id="hintText"></span></div>
 </div>
 
+<p class="fan-caption" id="s371Caption" aria-live="polite"></p>
+<div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
+
 <div class="slider-wrap">
   <div class="slider-labels">
     <span id="labelApart"></span>
     <span id="labelOne"></span>
   </div>
-  <input id="mergeSlider" type="range" min="0" max="100" value="0">
-  <div class="caption-wrap" id="captionWrap">
-    <div id="caption" aria-live="polite"></div>
-  </div>
+  <input id="mergeSlider" type="range" min="0" max="100" value="0" disabled>
 </div>
+
+<div id="kunyeYuvasi"></div>
 
 <div class="legend" id="legend"></div>
 
@@ -145,6 +172,11 @@ input[type="range"]:focus-visible{outline:2px solid var(--liminal);outline-offse
   </div>
 </div>
 
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. diğer
+     motorlanmış sahneler aynı düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const NS='http://www.w3.org/2000/svg';
 const LA={
@@ -159,6 +191,7 @@ const LA={
     legendTitle:'Dokuz Harita — Sırasıyla',
     nextStep:'Bu dokuz harita, sitenin Çizimler görünümündeki öteki tarihî şemalarla birlikte duruyor — devam etmek isteyenler oraya bakabilir.',
     popupClose:'Kapat',
+    kunyeBaslik:'Künye — bu sahne nereden geliyor?',
   },
   en:{
     title:'Chapter 371: Nine Maps',
@@ -171,6 +204,7 @@ const LA={
     legendTitle:'The Nine Maps — In Sequence',
     nextStep:"These nine maps stand alongside the site's other historical diagrams in the Drawings view — those who want to continue can look there.",
     popupClose:'Close',
+    kunyeBaslik:'Sources — where this scene comes from',
   },
   pt:{
     title:'Capítulo 371: Nove Mapas',
@@ -183,6 +217,7 @@ const LA={
     legendTitle:'Os Nove Mapas — Em Sequência',
     nextStep:'Estes nove mapas encontram-se junto aos outros diagramas históricos do site na vista de Desenhos — quem quiser continuar pode ali explorar.',
     popupClose:'Fechar',
+    kunyeBaslik:'Fontes — de onde vem esta cena',
   },
 };
 
@@ -419,7 +454,7 @@ for (let i=0;i<STEPS.length;i++){
   drawShared(g);
   drawUnique(g, i);
   g.setAttribute('class','map-clickable');
-  g.setAttribute('tabindex','0');
+  g.setAttribute('tabindex','-1');
   g.setAttribute('role','button');
   g.addEventListener('click', () => openMapPopup(i));
   g.addEventListener('keydown', (e) => {
@@ -433,22 +468,34 @@ const slider = $('mergeSlider');
 const hint = $('hint');
 const ease = p => p * p * (3 - 2 * p);
 
-function applyMerge(v){
-  const t = ease(v/100);
+// updateStage(mergeVal, aktifIdx): applyMerge'in kendisi -- çizgilere hiç
+// dokunulmadı (drawShared/drawUnique aynen kalıyor). Ziyaret vurgusu
+// (aktifIdx) yalnız hâlâ ayrıyken (mergeVal düşük) anlamlı: aktif harita
+// hafifçe büyür, diğerleri atmosferik geri planda söner. Geçişler CSS
+// transition'a bağlı (.map-clickable) -- kalbe-sigan.html/kandil.html'de
+// aynı desen: motor yalnız SVG özniteliğini değiştirir, CSS yumuşatır.
+function updateStage(mergeVal, aktifIdx){
+  const t = ease(mergeVal/100);
   for (let i=0;i<STEPS.length;i++){
     const gx=gridCX[i], gy=gridCY[i];
     const cx = gx + (CENTER_X-gx)*t;
     const cy = gy + (CENTER_Y-gy)*t;
-    const sc = gridScale + (1-gridScale)*t;
+    let sc = gridScale + (1-gridScale)*t;
+    let op = (1 - t*0.30);
+    if (aktifIdx !== null && aktifIdx !== undefined){
+      if (i === aktifIdx) sc *= 1.12;
+      else op *= 0.3;
+    }
     mapEls[i].g.setAttribute('transform', `translate(${cx.toFixed(1)} ${cy.toFixed(1)}) scale(${sc.toFixed(3)})`);
-    mapEls[i].g.setAttribute('opacity', (1 - t*0.30).toFixed(3));
+    mapEls[i].g.setAttribute('opacity', op.toFixed(3));
     mapEls[i].num.setAttribute('opacity', (1 - t*0.9).toFixed(3));
     mapEls[i].labelEl.setAttribute('opacity', (0.85*(1 - t*0.9)).toFixed(3));
   }
 }
+function applyMerge(v){ updateStage(v, null); }
 slider.addEventListener('input', e=>{
+  if (!document.body.classList.contains('sahne-bitti')) return;
   applyMerge(+e.target.value);
-  if (hint) hint.style.animation = 'none';
 });
 
 const ENLARGE_LABEL = { tr:'Büyüt: ', en:'Enlarge: ', pt:'Ampliar: ' };
@@ -513,6 +560,24 @@ function renderLegend(){
   });
 }
 
+// Künye: sahnenin zaten var olan kaynak notu (honesty) -- yeni bir kaynak
+// icat edilmiyor, aynı atıf künyeye de taşınıyor.
+function kunyeOlustur(container, baslikObj){
+  const det=document.createElement('details'); det.className='sahne-kunye';
+  const sum=document.createElement('summary'); det.appendChild(sum);
+  const ol=document.createElement('ol'); ol.className='sahne-metni'; det.appendChild(ol);
+  container.appendChild(det);
+  return { el:det, guncelle:function(l){
+    sum.textContent=(baslikObj&&(baslikObj[l]||baslikObj.tr))||'Künye';
+    ol.innerHTML='';
+    const li=document.createElement('li');
+    li.textContent=LA[l].honesty;
+    ol.appendChild(li);
+  }};
+}
+const kunye=kunyeOlustur($('kunyeYuvasi'), {tr:LA.tr.kunyeBaslik,en:LA.en.kunyeBaslik,pt:LA.pt.kunyeBaslik});
+
+let sonMetin=null;
 function renderAll(){
   const d = LA[curLang];
   $('hTitle').textContent = d.title;
@@ -521,25 +586,59 @@ function renderAll(){
   $('hintText').textContent = d.hint;
   $('labelApart').textContent = d.apart;
   $('labelOne').textContent = d.one;
-  $('caption').textContent = d.caption;
+  if (sonMetin) $('s371Caption').textContent = sonMetin[curLang]||sonMetin.tr;
   $('hNextStep').textContent = d.nextStep;
   slider.setAttribute('aria-label', d.apart + ' / ' + d.one);
   updateMapLabels();
   renderLegend();
+  kunye.guncelle(curLang);
   if (popupOpenIdx !== null) openMapPopup(popupOpenIdx);
 }
 function setLang(l){ if (LA[l]){ curLang = l; renderAll(); } }
 
 renderAll();
-applyMerge(0);
+updateStage(0, null);
 
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (reduced){
-  slider.value = 55; applyMerge(55);
-  const cw = $('captionWrap');
-  cw.style.animation = 'none'; cw.style.opacity = '1';
-  if (hint) hint.style.animation = 'none';
+function metinYaz(m){
+  sonMetin = m;
+  const txt = m ? (m[curLang]||m.tr||'') : '';
+  const cap = $('s371Caption');
+  cap.classList.remove('show');
+  window.setTimeout(function(){
+    cap.textContent = txt;
+    if (txt) cap.classList.add('show');
+  }, txt?150:0);
 }
+
+let motorAPI=null;
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/futuhat-371.json').then(function(r){ return r.json(); }).then(function(p){
+    motorAPI=window.__sahneMotoru.yarat({
+      container:$('stageWrap'), partisyon:p,
+      applyOlcu:function(o){
+        const hal=o.hedef_hal||{};
+        if (hal.merge!==undefined || hal.aktif!==undefined){
+          const mv = hal.merge!==undefined ? hal.merge : (+slider.value||0);
+          const ai = hal.aktif!==undefined ? hal.aktif : null;
+          slider.value = mv;
+          updateStage(mv, ai);
+        }
+        mapsG.classList.toggle('nefes-al', !!hal.nefes);
+      },
+      metinGoster:metinYaz,
+      olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if (ev.tip==='bitti'){
+          document.body.classList.add('sahne-bitti');
+          slider.disabled=false;
+          mapEls.forEach(function(m){ m.g.setAttribute('tabindex','0'); });
+        }
+      },
+    });
+  });
+})();
 
 window.addEventListener('message', function(e){
   if (e.data && e.data.type === 'setLang') setLang(e.data.lang);
