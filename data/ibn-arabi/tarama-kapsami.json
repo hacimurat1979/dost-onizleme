@@ -44,7 +44,8 @@
     { "yol": "data/ibn-arabi/sahne-partisyonlari/berzah.json", "gorunum": "sahneler", "etiket": "Berzah partisyonu" },
     { "yol": "data/ibn-arabi/sahne-partisyonlari/halk-i-cedid.json", "gorunum": "sahneler", "etiket": "Halk-ı Cedîd partisyonu" },
     { "yol": "data/ibn-arabi/sahne-partisyonlari/iki-mertebe.json", "gorunum": "sahneler", "etiket": "Aynı Âyet, İki Mertebe partisyonu" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/ayna-metaforu.json", "gorunum": "sahneler", "etiket": "Ayna Metaforu partisyonu" }
+    { "yol": "data/ibn-arabi/sahne-partisyonlari/ayna-metaforu.json", "gorunum": "sahneler", "etiket": "Ayna Metaforu partisyonu" },
+    { "yol": "data/ibn-arabi/sahne-partisyonlari/bir-nefesin-ici.json", "gorunum": "sahneler", "etiket": "Bir Nefesin İçi partisyonu" }
   ],
 
   "gorunumNotu": "`gorunum` yalnız duruş taraması için: bulgudan o görünüme atlamayı sağlıyor. null olan dosyalar için atlama yok -- bilmediğimiz görünüm adını UYDURMAK yerine boş bıraktık, bulgu yine listeleniyor, yalnız tıklayınca bir yere gitmiyor.",

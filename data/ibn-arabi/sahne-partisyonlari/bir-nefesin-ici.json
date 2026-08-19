@@ -1,0 +1,111 @@
+{
+  "id": "bir-nefesin-ici",
+  "baslik": {
+    "tr": "Bir Nefesin İçi — Zaman Germe",
+    "en": "Inside a Breath — Time-Stretch",
+    "pt": "Dentro de um Sopro — Estiramento do Tempo"
+  },
+  "toplam_sure_sn": 73,
+  "max_olcu_sn": 10,
+  "not": "Sahnenin kendi pointAt(t)/drawForm(t)/setT(t) işlevleri korunur -- yalnız eskiden kendiliğinden dönen (16sn/tur) rAF döngüsü, motorun ölçü ölçü verdiği hedeflere eased bir köprüyle (nefes-i-rahmani/halk-i-cedid/iki-mertebe deseninin aynısı) taşınıyor. 'Zaman germe' burada ÖLÇÜ SÜRELERİNİN KENDİSİ: sekiz durak arası geçiş süresi 4sn'den 10sn'ye kadar KADEMELI UZUYOR -- aynı geometrik mesafe, gitgide daha yavaş kat ediliyor (tempo=mana). Kalp durağı (merkez, t=1) en uzun ölçü. Son ölçüde zaman kısaca geri salınır (6sn, en yavaş 10sn'den belirgin şekilde hızlı) -- 'nefes tamamlanmıştır'. Sürükleme (eski 'kullanıcı devralana kadar dönen' otomatik oynatım artık motorun kendisi) kendim-gezineyim kipine taşındı.",
+  "olcuLer": [
+    {
+      "id": "nefes-baslar",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.6,
+      "hedef_hal": { "t": 0.04 },
+      "metin": {
+        "tr": "Nefes başlar; sarmalın en dışında, en genişte.",
+        "en": "The breath begins, at the spiral's outer, widest edge.",
+        "pt": "O sopro começa, na borda externa e mais larga da espiral."
+      }
+    },
+    {
+      "id": "harfe-varir",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.6,
+      "hedef_hal": { "t": 0.16 },
+      "metin": {
+        "tr": "Nefes bir harfe iner.",
+        "en": "The breath descends into a letter.",
+        "pt": "O sopro desce a uma letra."
+      }
+    },
+    {
+      "id": "kelimeye-varir",
+      "sure_sn": 5,
+      "gecis_sure_sn": 1.7,
+      "hedef_hal": { "t": 0.28 },
+      "metin": {
+        "tr": "Harfler birleşir, kelime olur.",
+        "en": "Letters join and become a word.",
+        "pt": "As letras se juntam e tornam-se palavra."
+      }
+    },
+    {
+      "id": "oze-varir",
+      "sure_sn": 6,
+      "gecis_sure_sn": 1.7,
+      "hedef_hal": { "t": 0.40 },
+      "metin": {
+        "tr": "Kelimenin içinde bir öz durur.",
+        "en": "Inside the word, an essence stands.",
+        "pt": "Dentro da palavra, uma essência permanece."
+      }
+    },
+    {
+      "id": "tecelliye-varir",
+      "sure_sn": 7,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": { "t": 0.52 },
+      "metin": {
+        "tr": "Öz, kendini bir tecellî olarak gösterir.",
+        "en": "The essence shows itself as a disclosure.",
+        "pt": "A essência se mostra como uma revelação."
+      }
+    },
+    {
+      "id": "varliga-varir",
+      "sure_sn": 8,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": { "t": 0.64 },
+      "metin": {
+        "tr": "Tecellî, varlık kazanır.",
+        "en": "The disclosure comes into being.",
+        "pt": "A revelação vem à existência."
+      }
+    },
+    {
+      "id": "insana-varir",
+      "sure_sn": 9,
+      "gecis_sure_sn": 1.9,
+      "hedef_hal": { "t": 0.76 },
+      "metin": {
+        "tr": "Varlık, bir insanda toplanır.",
+        "en": "Being gathers in a human.",
+        "pt": "O ser se reúne num humano."
+      }
+    },
+    {
+      "id": "kalbe-varir",
+      "sure_sn": 10,
+      "gecis_sure_sn": 2.0,
+      "hedef_hal": { "t": 0.88 },
+      "metin": {
+        "tr": "İnsanın merkezinde — kalp.",
+        "en": "At the human's center — the heart.",
+        "pt": "No centro do humano — o coração."
+      }
+    },
+    {
+      "id": "nefes-tamamlanir",
+      "sure_sn": 6,
+      "hedef_hal": { "t": 1.0, "nefes": true },
+      "metin": {
+        "tr": "Zaman geri salınır; bir nefes tamamlanmıştır.",
+        "en": "Time is released back; one breath has been completed.",
+        "pt": "O tempo é solto de volta; um sopro se completou."
+      }
+    }
+  ]
+}

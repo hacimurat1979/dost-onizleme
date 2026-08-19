@@ -27,11 +27,30 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   opacity:0;transition:opacity .3s ease;pointer-events:none;white-space:nowrap}
 
 #ipucu{position:absolute;top:14px;right:16px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--muted);animation:bn-pulse 3s ease-in-out 2s 3}
+  color:var(--muted);opacity:0;transition:opacity .5s ease}
+body.sahne-bitti #ipucu{opacity:.55;animation:bn-pulse 3s ease-in-out .3s 3}
 @keyframes bn-pulse{0%,100%{opacity:.55}50%{opacity:1}}
 
 .caption{width:min(640px,92vw);text-align:center;margin:.2rem auto 1.1rem;font-size:.87rem;
-  line-height:1.65;color:var(--muted);font-style:italic}
+  line-height:1.65;color:var(--text);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease}
+.caption.show{opacity:1;transform:none}
+
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.2rem;margin-bottom:.8rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--muted);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--liminal);color:var(--text)}
+
+.sahne-kunye{width:min(560px,96vw);margin:0 auto 1rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
+.sahne-kunye summary{cursor:pointer;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
+.sahne-kunye summary:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+.sahne-metni{list-style:none;margin-top:.7rem}
+.sahne-metni li{margin-bottom:.65rem;font-style:italic}
+
+@media(prefers-reduced-motion:no-preference){
+  #isik.nefes-al,#isikHalesi.nefes-al{animation:bnNefes 7s ease-in-out infinite}
+}
+@keyframes bnNefes{0%,100%{opacity:1}50%{opacity:.78}}
 
 @media(prefers-reduced-motion:reduce){#ipucu{animation:none}}
 
@@ -87,17 +106,21 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 </div>
 
 <p class="caption" id="caption" aria-live="polite"></p>
+<div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
 
+<div id="kunyeYuvasi"></div>
+
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. diğer
+     motorlanmış sahneler aynı düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const LA = {
   title:   { tr: 'Bir Nefesin İçi', en: 'Inside a Breath', pt: 'Dentro de um Sopro' },
-  caption: {
-    tr: 'Merdiven değil halka. Sekiz durak; tur tamamlandığında ışık başladığı yerin üstüne değil, bir kat içine düşer.',
-    en: 'Not a ladder but a ring. Eight stations; when the tour completes, the light falls not onto its starting point but one layer inside it.',
-    pt: 'Não uma escada, mas um anel. Oito estações; ao fim da volta, a luz cai não sobre o ponto inicial, mas uma camada dentro dele.'
-  },
   hint:    { tr: 'Sürükle', en: 'Drag', pt: 'Arraste' },
   slider:  { tr: 'Halka boyunca sürükle', en: 'Drag along the ring', pt: 'Arraste ao longo do anel' },
+  kunyeBaslik: { tr: 'Künye — bu sahne nereden geliyor?', en: 'Sources — where this scene comes from', pt: 'Fontes — de onde vem esta cena' },
   nefes:   { tr: 'Nefes',   en: 'Breath',        pt: 'Sopro' },
   harf:    { tr: 'Harf',    en: 'Letter',        pt: 'Letra' },
   kelime:  { tr: 'Kelime',  en: 'Word',          pt: 'Palavra' },
@@ -109,15 +132,52 @@ const LA = {
 };
 const STATION_KEYS = ['nefes', 'harf', 'kelime', 'oz', 'tecelli', 'varlik', 'insan', 'kalp'];
 
+// Künye: ontology.json "kalp" düğümü zaten bu sahnenin varış noktasını
+// (merkez = kalp) taşıyordu -- yeni bir kaynak icat edilmiyor, var olanı
+// alıntılıyor.
+const KUNYE_QUOTES = {
+  tr:[
+    {text:"İnsan-ı Kâmil'in soyut bir ünvan olmaktan çıkıp, her insanın kendi tecrübesinde gerçekleşebileceği yer olarak gösterilir: kalp. Kalp kelimesi Arapçada 'taḳallüb' (durmadan dönüşüm, hâlden hâle geçiş) köküyle akraba - bize göre bu, sabit bir inanca değil, her tecellîyi yeniden kabul edebilen akışkan bir idrake işaret ediyor olabilir.", src:"ontology.json, “kalp”"},
+    {text:"Tıpkı bir aynanın üzerine toz kondukça netliğini kaybetmesi ve ancak sürekli silinirse berrak kalması gibi: kalp de gafletin tozundan arındıkça Hakk'ı daha net yansıtır - parlaklığı, sahibinin ona ne kadar özen gösterdiğine bağlıdır.", src:"ontology.json, “kalp” benzetmesi"},
+  ],
+  en:[
+    {text:"This is shown as the place where the Perfect Human ceases to be an abstract title and becomes something realizable in each person's own experience: the heart. The Arabic word qalb shares its root with taqallub — ceaseless transformation, turning from state to state — which, we think, may point not to a fixed belief but to a fluid perception capable of receiving each new disclosure.", src:"ontology.json, “kalp”"},
+    {text:"Just as a mirror loses its clarity as dust settles on it, and stays clear only if it is constantly wiped: the heart, too, reflects the Real more clearly the more it is cleared of the dust of heedlessness - its brightness depends on how much care its owner gives it.", src:"ontology.json, “kalp” analogy"},
+  ],
+  pt:[
+    {text:"Isso é mostrado como o lugar onde o Ser Humano Perfeito deixa de ser um título abstrato e se torna algo realizável na experiência de cada pessoa: o coração. A palavra árabe qalb compartilha sua raiz com taqallub — transformação incessante, passagem de um estado a outro — o que, pensamos, talvez aponte não para uma crença fixa, mas para uma percepção fluida capaz de receber cada nova revelação.", src:"ontology.json, “kalp”"},
+    {text:"Assim como um espelho perde sua nitidez conforme a poeira se acumula, e só permanece claro se for constantemente limpo: o coração também reflete o Real com mais clareza quanto mais se livra da poeira da negligência - seu brilho depende do quanto seu dono cuida dele.", src:"ontology.json, “kalp” analogia"},
+  ],
+};
+
 let curLang = 'tr';
 const $ = id => document.getElementById(id);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+function kunyeOlustur(container, baslikObj){
+  const det=document.createElement('details'); det.className='sahne-kunye';
+  const sum=document.createElement('summary'); det.appendChild(sum);
+  const ol=document.createElement('ol'); ol.className='sahne-metni'; det.appendChild(ol);
+  container.appendChild(det);
+  return { el:det, guncelle:function(l){
+    sum.textContent=(baslikObj&&(baslikObj[l]||baslikObj.tr))||'Künye';
+    ol.innerHTML='';
+    (KUNYE_QUOTES[l]||KUNYE_QUOTES.tr).forEach(function(q){
+      const li=document.createElement('li');
+      li.textContent=q.text+' — '+q.src;
+      ol.appendChild(li);
+    });
+  }};
+}
+const kunye=kunyeOlustur($('kunyeYuvasi'), {tr:LA.kunyeBaslik.tr,en:LA.kunyeBaslik.en,pt:LA.kunyeBaslik.pt});
+
+let sonMetin=null;
 function renderText() {
   $('hTitle').textContent = LA.title[curLang];
-  $('caption').textContent = LA.caption[curLang];
   $('ipucuMetin').textContent = LA.hint[curLang];
   $('stage').setAttribute('aria-label', LA.slider[curLang]);
+  if(sonMetin) $('caption').textContent = sonMetin[curLang]||sonMetin.tr;
+  kunye.guncelle(curLang);
   updateLabel();
 }
 function setLang(l) {
@@ -163,7 +223,6 @@ const lightG = $('isik');
 const glowG = $('isikHalesi');
 const label = $('durakEtiketi');
 const hit = $('tutamac');
-const hint = $('ipucu');
 
 // Işığın her durağa yaklaştıkça büründüğü form -- kavramın kendisi değil,
 // o kavrama yaklaşırken beliren biçim (GORSEL_DIL.md: davranışı resmet).
@@ -276,7 +335,11 @@ function updateLabel() {
 }
 
 const setT = (t) => {
-  currentT = ((t % 1) + 1) % 1;
+  // Sarmal döngüsel değil (r merkeze doğru TEK YÖNDE azalır) -- t=1
+  // "mod 1" ile 0'a sarılırsa ışık merkezden dış kenara SIÇRAR (görsel
+  // dilde yasak: "hiçbir şey çıktığından hızlı girmez"). Bu yüzden
+  // wrap değil clamp: sınırlarda durur, atlamaz.
+  currentT = Math.max(0, Math.min(1, t));
   const p = pointAt(currentT);
   lightG.setAttribute('cx', p.x); lightG.setAttribute('cy', p.y);
   glowG.setAttribute('cx', p.x); glowG.setAttribute('cy', p.y);
@@ -290,17 +353,29 @@ const setT = (t) => {
   hit.setAttribute('aria-valuenow', Math.round(currentT * 100));
 };
 
-// Kullanıcı devralana kadar kendiliğinden döner.
-let userActive = false;
-let last = performance.now();
-let rafId = 0;
-const loop = (now) => {
-  const dt = Math.min(60, now - last); last = now;
-  if (!userActive) setT(currentT + dt / 16000);
-  rafId = requestAnimationFrame(loop);
+// ── Motor bağlantısı: setT(t) zaten sürekli bir 0-1 değişkenin saf
+// fonksiyonuydu. Motor artık t'nin HEDEFİNİ ölçü ölçü veriyor; burada
+// nefes-i-rahmani/halk-i-cedid/iki-mertebe ile aynı desen -- süregelen
+// bir rAF döngüsü t'yi hedefe yumuşakça yaklaştırıp her karede setT()
+// çağırıyor. "Zaman germe" ölçü sürelerinin kendisinde (partisyon) --
+// buradaki köprü yalnız aynı geçişi taşıyor. Hareket azaltmada döngü
+// hiç başlamıyor, hedef doğrudan uygulanıyor.
+let targetT = 0, easeLast = performance.now(), easeRafId = 0;
+const easeLoop = (now) => {
+  const dt = Math.min(80, now - easeLast); easeLast = now;
+  if (Math.abs(targetT - currentT) > 0.0008) setT(currentT + (targetT - currentT) * Math.min(1, dt / 900));
+  else if (currentT !== targetT) setT(targetT);
+  easeRafId = requestAnimationFrame(easeLoop);
 };
+const tHedefiVer = (v) => {
+  targetT = v;
+  if (reduceMotion) setT(v);
+};
+if (!reduceMotion) easeRafId = requestAnimationFrame(easeLoop);
 
-// ── Sürükleme: merkez etrafındaki açıyla turu tarar. ───────────────────────
+// ── Sürükleme: merkez etrafındaki açıyla turu tarar -- kendim-gezineyim
+// kipi, sahne bitmeden erişilemez (eski "kullanıcı devralana kadar
+// kendiliğinden döner" davranışının yerini artık motor aldı). ─────────────
 const svgEl = hit.ownerSVGElement;
 const toSvg = (clientX, clientY) => {
   const pt = svgEl.createSVGPoint();
@@ -312,10 +387,11 @@ const toSvg = (clientX, clientY) => {
 let dragging = false;
 let lastAngle = 0;
 const angleOf = (x, y) => Math.atan2(y - CY, x - CX);
-const stopIntro = () => { userActive = true; if (hint) hint.style.animation = 'none'; };
+const bitti = () => document.body.classList.contains('sahne-bitti');
 
 const onDown = (e) => {
-  dragging = true; stopIntro();
+  if (!bitti()) return;
+  dragging = true;
   $('stage').focus();
   const t = e.touches ? e.touches[0] : e;
   const p = toSvg(t.clientX, t.clientY);
@@ -331,7 +407,8 @@ const onMove = (e) => {
   if (delta > Math.PI) delta -= Math.PI * 2;
   if (delta < -Math.PI) delta += Math.PI * 2;
   lastAngle = a;
-  setT(currentT + delta / (Math.PI * 2 * turns));
+  targetT = currentT + delta / (Math.PI * 2 * turns);
+  setT(targetT);
 };
 const onUp = () => { dragging = false; };
 
@@ -343,22 +420,48 @@ window.addEventListener('touchmove', onMove, { passive: false });
 window.addEventListener('touchend', onUp);
 
 $('stage').addEventListener('keydown', (e) => {
+  if (!bitti()) return;
   let handled = true;
-  if (e.key === 'ArrowLeft') setT(currentT - 1 / 64);
-  else if (e.key === 'ArrowRight') setT(currentT + 1 / 64);
+  if (e.key === 'ArrowLeft') targetT = currentT - 1 / 64;
+  else if (e.key === 'ArrowRight') targetT = currentT + 1 / 64;
   else handled = false;
-  if (handled) { stopIntro(); e.preventDefault(); }
+  if (handled) { setT(targetT); e.preventDefault(); }
 });
+
+function metinYaz(m) {
+  sonMetin = m;
+  const t = m ? (m[curLang] || m.tr || '') : '';
+  $('caption').classList.remove('show');
+  window.setTimeout(function () {
+    $('caption').textContent = t;
+    if (t) $('caption').classList.add('show');
+  }, t ? 150 : 0);
+}
 
 renderText();
 setT(0);
 
-if (reduceMotion) {
-  setT(0.45);
-  if (hint) hint.style.animation = 'none';
-} else {
-  rafId = requestAnimationFrame(loop);
-}
+let motorAPI = null;
+(function () {
+  const base = (window.__dostRouteBase || '');
+  fetch((base ? base + '/' : '') + 'data/ibn-arabi/sahne-partisyonlari/bir-nefesin-ici.json').then(function (r) { return r.json(); }).then(function (p) {
+    motorAPI = window.__sahneMotoru.yarat({
+      container: $('stageWrap'), partisyon: p,
+      applyOlcu: function (o) {
+        const hal = o.hedef_hal || {};
+        if (hal.t !== undefined) tHedefiVer(hal.t);
+        lightG.classList.toggle('nefes-al', !!hal.nefes);
+        glowG.classList.toggle('nefes-al', !!hal.nefes);
+      },
+      metinGoster: metinYaz,
+      olcuGoster: function (i, t) { $('olcuGosterge').textContent = (i + 1) + ' / ' + t; },
+      biterEl: $('motorBiter'),
+      tepki: function (ev) {
+        if (ev.tip === 'bitti') document.body.classList.add('sahne-bitti');
+      },
+    });
+  });
+})();
 
 window.addEventListener('message', function (e) {
   if (e.data && e.data.type === 'setLang') setLang(e.data.lang);
