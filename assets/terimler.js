@@ -1138,20 +1138,9 @@
   // (nefes-i-rahmani, D12) tek bir terime gömülü yazılmıştı; berzah (D13)
   // eklenirken aynı kod ikinci kez yazılmasın diye tabloya çevrildi --
   // yeni bir sahne eklemek artık buraya bir satır eklemek demek.
+  // 2026-08-19 @revise: nefes-i-rahmani girdisi, sahnenin kendisi kullanıcı
+  // notuyla kaldırıldığı için buradan da düşürüldü.
   const TERIM_SAHNELERI = {
-    "nefes-i-rahmani": {
-      dosya: "nefes-i-rahmani.html",
-      not: {
-        tr: "Ayrı bir sahne, bu terimin kendi yorumunun önerdiği fikri -- basınç biriken tek bir nefesin harflere, harflerin bir kelimeye ayrışması -- sürüklenerek keşfedilebilir hale getiriyor.",
-        en: "A separate scene turns the idea this term's own interpretation suggests -- a single breath under pressure separating into letters, the letters into a word -- into something you can explore by dragging.",
-        pt: "Uma cena separada transforma a ideia que a própria interpretação deste termo sugere -- um único sopro sob pressão se separando em letras, as letras numa palavra -- em algo que se pode explorar arrastando.",
-      },
-      dugme: {
-        tr: "Sahneyi aç: Nefes-i Rahmânî",
-        en: "Open the scene: The Breath of the All-Merciful",
-        pt: "Abrir a cena: O Sopro do Misericordioso",
-      },
-    },
     berzah: {
       dosya: "berzah.html",
       not: {
