@@ -20,16 +20,34 @@ h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color
 
 .stage-wrap{position:relative;width:min(900px,94vw);aspect-ratio:16/10;margin:1rem auto 0;background:var(--panel);border:1px solid var(--border);border-radius:12px}
 #stage{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hint{position:absolute;top:12px;right:14px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);animation:vahdet-pulse 3s ease-in-out 1.2s 3}
+.hint{position:absolute;top:12px;right:14px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .5s ease}
+body.sahne-bitti .hint{opacity:.55;animation:vahdet-pulse 3s ease-in-out .3s 3}
 @keyframes vahdet-pulse{0%,100%{opacity:.55}50%{opacity:1}}
 
-.caption-wrap{width:min(640px,94vw);text-align:center;margin:.9rem auto 0;padding:0 .4rem;opacity:0;animation:vahdet-caption 900ms 800ms ease-out forwards}
-@keyframes vahdet-caption{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.caption-wrap{width:min(640px,94vw);text-align:center;margin:.9rem auto 0;padding:0 .4rem;opacity:0;transform:translateY(4px);transition:opacity 1s ease,transform 1s ease}
+.caption-wrap.show{opacity:1;transform:none}
 .caption{font-size:.87rem;line-height:1.75;color:var(--text)}
+
+.motor-kontroller{display:flex;gap:.6rem;align-items:center;justify-content:center;margin-top:.6rem;margin-bottom:.4rem;min-height:30px}
+.olcu-gosterge{font-size:.68rem;color:var(--muted);letter-spacing:.13em;opacity:0;transition:opacity .4s ease}
+body.sahne-bitti .olcu-gosterge{opacity:.7}
+button.sahne-motoru-tekrar{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.28rem .9rem;font:inherit;font-size:.78rem;cursor:pointer}
+button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border-color:var(--liminal);color:var(--text)}
+
+.sahne-kunye{width:min(640px,96vw);margin:.6rem auto 1rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;font-size:.82rem;line-height:1.75}
+.sahne-kunye summary{cursor:pointer;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.13em}
+.sahne-kunye summary:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+.sahne-metni{list-style:none;margin-top:.7rem}
+.sahne-metni li{margin-bottom:.65rem;font-style:italic}
+
+#rucuYol{opacity:0;transition:opacity 2s ease}
+@media(prefers-reduced-motion:no-preference){
+  #playhead.nefes-al{animation:vahdetNefes 7s ease-in-out infinite}
+}
+@keyframes vahdetNefes{0%,100%{opacity:.85}50%{opacity:.6}}
 
 @media(prefers-reduced-motion:reduce){
   .hint{animation:none}
-  .caption-wrap{animation:none;opacity:1;transform:none}
 }
 
 /* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
@@ -60,7 +78,19 @@ h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color
 
 <div class="stage-wrap">
   <svg id="stage" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Bir terimin zaman içindeki yoğunluğu">
+    <defs>
+      <!-- Rücû gradyanı: Konevî/Kâşânî bölgesinden (parlak) İbn Arabî'ye
+           (1240, sönük) doğru geriye akan ışık -- iddianın geriye
+           yansıtılması, ama Şeyh'in üstünde hiç tam parlamıyor. -->
+      <linearGradient id="rucuGrad" gradientUnits="userSpaceOnUse" x1="240" y1="0" x2="120" y2="0">
+        <stop offset="0%" stop-color="var(--gold)" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="var(--gold)" stop-opacity="0.08"/>
+      </linearGradient>
+    </defs>
     <line x1="120" y1="640" x2="1480" y2="640" stroke="var(--muted)" stroke-width="1.5"></line>
+    <!-- Konevî/Kâşânî bölgesinden (x≈179-275, 1274-1329) İbn Arabî'ye
+         (x=120, 1240) geriye akan yay. -->
+    <path id="rucuYol" d="M 240 700 Q 180 692 120 700" stroke="url(#rucuGrad)" stroke-width="3.5" fill="none" stroke-linecap="round"></path>
     <g id="nodesLayer"></g>
     <g id="labelsLayer"></g>
     <line id="playhead" x1="120" y1="140" x2="120" y2="820" stroke="var(--gold)" stroke-width="2" opacity="0.85"></line>
@@ -76,7 +106,15 @@ h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;letter-spacing:.04em;color
 <div class="caption-wrap" id="captionWrap">
   <p class="caption" id="captionText" aria-live="polite"></p>
 </div>
+<div class="motor-kontroller"><span class="olcu-gosterge" id="olcuGosterge"></span><span id="motorBiter"></span></div>
 
+<div id="kunyeYuvasi"></div>
+
+<!-- i18n.js önce yüklenmeli: sahne-motoru.js modül-yükleme anında
+     window.DostI18n.pick3'ü okuyor (2026-08-15 bulgusu, bkz. diğer
+     motorlanmış sahneler aynı düzeltme). -->
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-motoru.js"></script>
 <script>
 const LA={
   tr:{
@@ -84,27 +122,27 @@ const LA={
     sub:'Şeyh\'in hiç kullanmadığı bir terim, ona nasıl yapıştı?',
     honesty:'Kronoloji, Aladdin Bakri\'nin "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, açık erişim) makalesinden ve William Chittick\'in "Rūmī and Waḥdat al-wujūd" çalışmasından alındı.',
     hint:'Zamanda gez',
-    caption:'Şeyh’in hiç kullanmadığı bir tabir, nesillerce aktarıla aktarıla kalınlaştı. En başa git — orada, kaynakta, terim henüz yok.',
     absent:'kaynakta yok',
     sliderLabel:'Zaman ekseninde sürükle',
+    kunyeBaslik:'Künye — bu sahne nereden geliyor?',
   },
   en:{
     title:'The Life of Waḥdat al-Wujūd',
     sub:'How did a term the Shaykh never used come to stick to him?',
     honesty:'Chronology drawn from Aladdin Bakri, "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, open access) and William Chittick, "Rūmī and Waḥdat al-wujūd."',
     hint:'Move through time',
-    caption:'A term the Sheikh never used thickened generation by generation. Slide back to the start — at the source itself the term does not yet exist.',
     absent:'absent at the source',
     sliderLabel:'Drag along the timeline',
+    kunyeBaslik:'Sources — where this scene comes from',
   },
   pt:{
     title:'A Vida de Waḥdat al-Wujūd',
     sub:'Como um termo que o Xeique nunca usou passou a colar-se a ele?',
     honesty:'Cronologia de Aladdin Bakri, "Oneness of Being (waḥdat al-wujūd) — The Term and the Doctrine" (Muhyiddin Ibn Arabi Society, acesso aberto) e William Chittick, "Rūmī and Waḥdat al-wujūd."',
     hint:'Percorra o tempo',
-    caption:'Um termo que o Xeique nunca usou foi engrossando ao longo de gerações. Volte ao início — na própria origem, o termo ainda não existe.',
     absent:'ausente na origem',
     sliderLabel:'Arraste ao longo da linha do tempo',
+    kunyeBaslik:'Fontes — de onde vem esta cena',
   },
 };
 
@@ -126,11 +164,28 @@ const NODES=[
   { year:2020, weight:1.0,  note:{ tr:'Bugün: “İbn Arabî = vahdet-i vücûd”', en:'Today: “Ibn Arabi = wahdat al-wujud”', pt:'Hoje: “Ibn Arabi = wahdat al-wujud”' } },
 ];
 
-let curLang='tr', t=0.5;
+let curLang='tr', t=0;
 const $=id=>document.getElementById(id);
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const svgNS='http://www.w3.org/2000/svg';
 const xForYear=y=>120+((y-1240)/(2020-1240))*1360;
+
+// Künye: sahnenin zaten var olan kaynak notu (honesty) -- yeni bir kaynak
+// icat edilmiyor, aynı atıf künyeye de taşınıyor.
+function kunyeOlustur(container, baslikObj){
+  const det=document.createElement('details'); det.className='sahne-kunye';
+  const sum=document.createElement('summary'); det.appendChild(sum);
+  const ol=document.createElement('ol'); ol.className='sahne-metni'; det.appendChild(ol);
+  container.appendChild(det);
+  return { el:det, guncelle:function(l){
+    sum.textContent=(baslikObj&&(baslikObj[l]||baslikObj.tr))||'Künye';
+    ol.innerHTML='';
+    const li=document.createElement('li');
+    li.textContent=LA[l].honesty;
+    ol.appendChild(li);
+  }};
+}
+const kunye=kunyeOlustur($('kunyeYuvasi'), {tr:LA.tr.kunyeBaslik,en:LA.en.kunyeBaslik,pt:LA.pt.kunyeBaslik});
 const stringByLang=l=>l==='tr' ? 'vahdet-i vücûd' : 'wahdat al-wujud';
 
 function buildTicks(){
@@ -206,14 +261,16 @@ function render(){
   if(hit) hit.setAttribute('aria-valuenow', Math.round(t*100));
 }
 
+let sonMetin=null;
 function renderAll(){
   const d=LA[curLang];
   $('hTitle').textContent=d.title;
   $('hSub').textContent=d.sub;
   $('hHonesty').textContent=d.honesty;
   $('hintText').textContent=d.hint;
-  $('captionText').textContent=d.caption;
+  if(sonMetin) $('captionText').textContent=sonMetin[curLang]||sonMetin.tr;
   $('hit').setAttribute('aria-label', d.sliderLabel);
+  kunye.guncelle(curLang);
   buildLabels();
   render();
 }
@@ -222,7 +279,24 @@ function setLang(l){ if(!LA[l]) return; curLang=l; renderAll(); }
 buildTicks();
 renderAll();
 
-// ── Sürükleme (zaman ekseninde gezinme) ────────────────────────────────────
+// ── Motor bağlantısı: render() zaten sürekli bir 0-1 değişkenin (t) saf
+// fonksiyonuydu. Motor artık t'nin HEDEFİNİ ölçü ölçü veriyor; burada
+// diğer motorlanmış sahnelerle aynı desen -- süregelen bir rAF döngüsü
+// t'yi hedefe yumuşakça yaklaştırıp her karede render() çağırıyor.
+const rucuYol=$('rucuYol'), playheadEl=$('playhead');
+let targetT=0, easeLast=performance.now(), easeRafId=0;
+const easeLoop=(now)=>{
+  const dt=Math.min(80, now-easeLast); easeLast=now;
+  if(Math.abs(targetT-t)>0.0008) t+=(targetT-t)*Math.min(1, dt/900);
+  else if(t!==targetT) t=targetT;
+  render();
+  easeRafId=requestAnimationFrame(easeLoop);
+};
+const tHedefiVer=(v)=>{ targetT=v; if(reduceMotion) { t=v; render(); } };
+if(!reduceMotion) easeRafId=requestAnimationFrame(easeLoop);
+
+// ── Sürükleme (zaman ekseninde gezinme) -- kendim-gezineyim kipi, sahne
+// bitmeden erişilemez. ──────────────────────────────────────────────────
 const hit=$('hit');
 const hintEl=$('hint');
 const svgEl=hit.ownerSVGElement;
@@ -232,15 +306,16 @@ const toSvg=(cx,cy)=>{
   return pt.matrixTransform(m.inverse());
 };
 let dragging=false;
-const stopIntro=()=>{ if(hintEl) hintEl.style.animation='none'; };
+const bitti=()=>document.body.classList.contains('sahne-bitti');
 const onPos=(clientX,clientY)=>{
   const p=toSvg(clientX,clientY);
   const nx=Math.max(120,Math.min(1480,p.x));
-  t=(nx-120)/1360;
+  t=(nx-120)/1360; targetT=t;
   render();
 };
 const onDown=(e)=>{
-  dragging=true; hit.style.cursor='grabbing'; stopIntro();
+  if(!bitti()) return;
+  dragging=true; hit.style.cursor='grabbing';
   const ev=e.touches ? e.touches[0] : e;
   onPos(ev.clientX,ev.clientY);
   e.preventDefault();
@@ -258,19 +333,46 @@ hit.addEventListener('touchstart',onDown,{ passive:false });
 window.addEventListener('touchmove',onMove,{ passive:false });
 window.addEventListener('touchend',onUp);
 hit.addEventListener('keydown',(e)=>{
+  if(!bitti()) return;
   let handled=true;
   if(e.key==='ArrowLeft') t=Math.max(0,t-0.03);
   else if(e.key==='ArrowRight') t=Math.min(1,t+0.03);
   else handled=false;
-  if(handled){ stopIntro(); render(); e.preventDefault(); }
+  if(handled){ targetT=t; render(); e.preventDefault(); }
 });
 
-if(reduceMotion){
-  t=0; render();
+function metinYaz(m){
+  sonMetin=m;
+  const txt=m?(m[curLang]||m.tr||''):'';
   const cw=$('captionWrap');
-  cw.style.animation='none'; cw.style.opacity='1';
-  if(hintEl) hintEl.style.animation='none';
+  cw.classList.remove('show');
+  window.setTimeout(function(){
+    $('captionText').textContent=txt;
+    if(txt) cw.classList.add('show');
+  }, txt?150:0);
 }
+
+let motorAPI=null;
+(function(){
+  const base=(window.__dostRouteBase||'');
+  fetch((base?base+'/':'')+'data/ibn-arabi/sahne-partisyonlari/vahdet-i-vucud-omru.json').then(function(r){ return r.json(); }).then(function(p){
+    motorAPI=window.__sahneMotoru.yarat({
+      container:document.querySelector('.stage-wrap'), partisyon:p,
+      applyOlcu:function(o){
+        const hal=o.hedef_hal||{};
+        if(hal.t!==undefined) tHedefiVer(hal.t);
+        if(hal.rucu!==undefined) rucuYol.style.opacity = hal.rucu ? '1' : '0';
+        playheadEl.classList.toggle('nefes-al', !!hal.nefes);
+      },
+      metinGoster:metinYaz,
+      olcuGoster:function(i,tot){ $('olcuGosterge').textContent=(i+1)+' / '+tot; },
+      biterEl:$('motorBiter'),
+      tepki:function(ev){
+        if(ev.tip==='bitti') document.body.classList.add('sahne-bitti');
+      },
+    });
+  });
+})();
 
 window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);

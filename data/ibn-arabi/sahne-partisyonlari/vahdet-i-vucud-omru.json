@@ -1,0 +1,92 @@
+{
+  "id": "vahdet-i-vucud-omru",
+  "baslik": {
+    "tr": "Vahdet-i Vücûd'un Ömrü — Rücû Gradyanı",
+    "en": "The Life of Waḥdat al-Wujūd — The Return Gradient",
+    "pt": "A Vida de Waḥdat al-Wujūd — O Gradiente de Retorno"
+  },
+  "toplam_sure_sn": 62,
+  "not": "Mevcut render(t) fonksiyonu zaten davranışı taşıyordu (playhead + terimin o andaki ağırlığına göre büyüyen/matlaşan yazı, buildLabels() içinde önceden çizili). Motor pos'un hedefini veriyor; sahnenin kendi eased döngüsü (nefes-i-rahmani/iki-mertebe deseninin aynısı) t'yi yaklaştırıyor. On ölçü NODES dizisindeki gerçek yılları ve zaten var olan üç dilli note metinlerini kullanıyor -- yeni içerik icat edilmedi. On birinci (son) ölçü tasarım dokümanının 'rücû gradyanı' eklemesi: playhead 1240'a geri döner ve aynı anda Konevî/Kâşânî bölgesinden (1274/1329) 1240'a doğru GERİYE sönen bir ışık-yolu belirir -- Şeyh'in üstünde hiç tam parlamadan. Bu, sahnenin zaten yayınlanmış tezinin (başlık: 'Şeyh'in hiç kullanmadığı bir terim, ona nasıl yapıştı?') görsel bir amplifikasyonu, yeni bir iddia değil.",
+  "olcuLer": [
+    {
+      "id": "kaynak-1240",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.4,
+      "hedef_hal": { "t": 0.0 },
+      "metin": { "tr": "İbn Arabî — terim yok", "en": "Ibn Arabi — no such term", "pt": "Ibn Arabi — o termo não existe" }
+    },
+    {
+      "id": "ilk-halkalar-1274",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.4,
+      "hedef_hal": { "t": 0.0436 },
+      "metin": { "tr": "İlk halkalar", "en": "First circle", "pt": "Primeiro círculo" }
+    },
+    {
+      "id": "serhler-1329",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.4,
+      "hedef_hal": { "t": 0.1141 },
+      "metin": { "tr": "Şerhler başlar", "en": "Commentaries begin", "pt": "Começam os comentários" }
+    },
+    {
+      "id": "adlandirilir-1408",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": { "t": 0.2154 },
+      "metin": { "tr": "Terim adlandırılır", "en": "The term is named", "pt": "O termo é nomeado" }
+    },
+    {
+      "id": "yayginlasir-1492",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": { "t": 0.3231 },
+      "metin": { "tr": "Yaygınlaşır", "en": "It spreads", "pt": "Difunde-se" }
+    },
+    {
+      "id": "sabit-doktrin-1640",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": { "t": 0.5128 },
+      "metin": { "tr": "Sabit doktrin", "en": "Doctrine fixed", "pt": "Doutrina fixada" }
+    },
+    {
+      "id": "karsi-gorusler-1798",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": { "t": 0.7154 },
+      "metin": { "tr": "Karşı görüşler", "en": "Counter-views", "pt": "Visões contrárias" }
+    },
+    {
+      "id": "bati-akademisi-1911",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": { "t": 0.8603 },
+      "metin": { "tr": "Batı akademisi", "en": "Western academy", "pt": "Academia ocidental" }
+    },
+    {
+      "id": "kanonlasma-1980",
+      "sure_sn": 4,
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": { "t": 0.9487 },
+      "metin": { "tr": "Kanonlaşma", "en": "Canonisation", "pt": "Canonização" }
+    },
+    {
+      "id": "bugun-2020",
+      "sure_sn": 5,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": { "t": 1.0 },
+      "metin": { "tr": "Bugün: “İbn Arabî = vahdet-i vücûd”", "en": "Today: “Ibn Arabi = wahdat al-wujud”", "pt": "Hoje: “Ibn Arabi = wahdat al-wujud”" }
+    },
+    {
+      "id": "rucu",
+      "sure_sn": 7,
+      "hedef_hal": { "t": 0.0, "rucu": true, "nefes": true },
+      "metin": {
+        "tr": "Terim geriye doğru ona ulaşmaya çalışıyor — ama üstünde hiç tam parlamıyor.",
+        "en": "The term reaches backward toward him — but it never fully brightens over him.",
+        "pt": "O termo tenta alcançá-lo de volta — mas nunca brilha totalmente sobre ele."
+      }
+    }
+  ]
+}
