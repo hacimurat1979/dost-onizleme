@@ -18,8 +18,15 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.07em;color:v
 .sub{color:var(--mu);font-size:.88rem;font-style:italic;line-height:1.65;max-width:430px}
 .layout{display:flex;gap:1.8rem;align-items:flex-start;flex-wrap:wrap;justify-content:center;width:100%;max-width:880px}
 .sw{flex-shrink:0}
-#scene{width:440px;height:440px;max-width:92vw;display:block;touch-action:none;cursor:ew-resize}
+#scene{width:440px;height:440px;max-width:92vw;display:block;touch-action:none;cursor:ew-resize;transition:filter 2s ease}
 #scene:focus-visible{outline:2px solid var(--am);outline-offset:3px;border-radius:6px}
+/* İçeriden bakış (docs/sahne-yeniden-tasarim.md #12): bir ölçüde bakış
+   perdenin İÇİNE alınır -- sınır CSS blur ile kaybolur (Turrell Ganzfeld:
+   tüm alan tek yoğunluk). Perdenin kendi t-durumu değişmiyor, yalnız
+   bakışın konumu. */
+@media(prefers-reduced-motion:no-preference){
+  #scene.icerde{filter:blur(26px) brightness(1.18) saturate(1.1)}
+}
 .stage{width:440px;max-width:92vw;text-align:center;margin-top:.4rem}
 .state{font-size:.9rem;line-height:1.6;color:var(--mu);transition:color .35s;min-height:2.9rem}
 .state.deep{color:var(--go)}
@@ -358,6 +365,9 @@ setLang('tr');
         tFrom = t;
         tTo = (olcu.hedef_hal && typeof olcu.hedef_hal.t === "number") ? olcu.hedef_hal.t : t;
         if(olcu.hedef_hal && olcu.hedef_hal.aha){ $('aha').classList.add('show'); }
+        if(olcu.hedef_hal && typeof olcu.hedef_hal.icerde === "boolean"){
+          scene.classList.toggle('icerde', olcu.hedef_hal.icerde);
+        }
       },
       frame: function(fraz, olcu){
         const e = easeInOut(fraz);

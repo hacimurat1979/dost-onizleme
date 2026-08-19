@@ -5,9 +5,9 @@
     "en": "Chain of Veiling",
     "pt": "Cadeia do Véu"
   },
-  "toplam_sure_sn": 40,
+  "toplam_sure_sn": 53,
   "max_olcu_sn": 8,
-  "not": "Üç perde (Eserler, Fiiller, Sıfatlar) merkezdeki Zât'ı örter. t=0 tam kapalı, t=1 tüm perdeler mümkün olduğunca ince. Ölçüler t değerlerini adım adım artırır; son ölçüde aha belirir: perdeler kalktı ama merkez netleşmedi.",
+  "not": "Üç perde (Eserler, Fiiller, Sıfatlar) merkezdeki Zât'ı örter. t=0 tam kapalı, t=1 tüm perdeler mümkün olduğunca ince. Ölçüler t değerlerini adım adım artırır; son ölçüde aha belirir: perdeler kalktı ama merkez netleşmedi. İÇERİDEN BAKIŞ eklemesi (2026-08-19, docs/sahne-yeniden-tasarim.md #12): fiiller-cekildi ile sifatlar-inceliyor arasına iki yeni ölçü -- icerde:true iken bakış perdenin İÇİNE alınır (CSS blur ile sınır kaybolur, Turrell Ganzfeld), icerde:false ile geri çekilir. t bu iki ölçü boyunca DEĞİŞMEZ (0.65'te kalır) -- yalnız bakışın konumu değişir, perdenin kendi durumu değil.",
   "olcuLer": [
     {
       "id": "eserler-onde",
@@ -40,6 +40,28 @@
         "tr": "Fiiller de çekildi. Işık arttı; yine de bakılacak bir şey belirmedi.",
         "en": "Actions have withdrawn too. The light has grown; still nothing has appeared to look at.",
         "pt": "As Ações também recuaram. A luz cresceu; ainda assim nada apareceu para ser visto."
+      }
+    },
+    {
+      "id": "icine-giris",
+      "sure_sn": 5,
+      "gecis_sure_sn": 1.6,
+      "hedef_hal": { "icerde": true },
+      "metin": {
+        "tr": "Bir an perdenin içine giriyoruz. Dışarısı yok; yalnız tek bir yoğunluk var.",
+        "en": "For a moment we step inside the veil. There is no outside; only a single intensity.",
+        "pt": "Por um instante entramos dentro do véu. Não há exterior; só uma única intensidade."
+      }
+    },
+    {
+      "id": "geri-cekilis",
+      "sure_sn": 5,
+      "gecis_sure_sn": 1.6,
+      "hedef_hal": { "icerde": false },
+      "metin": {
+        "tr": "Geri çekiliyoruz. Perde yine dışarıdan bir katman — ama artık içini de biliyoruz.",
+        "en": "We draw back. The veil is again a layer seen from outside — but now we also know its inside.",
+        "pt": "Recuamos. O véu volta a ser uma camada vista de fora — mas agora também conhecemos o seu interior."
       }
     },
     {

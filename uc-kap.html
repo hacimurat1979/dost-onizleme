@@ -41,6 +41,7 @@ button.sahne-motoru-tekrar:hover,button.sahne-motoru-tekrar:focus-visible{border
 .sahne-metni{margin:.8rem 0 0 1.1rem;padding-top:.7rem;border-top:1px solid var(--bo);color:var(--mu);font-size:.78rem}
 .sahne-metni li{margin-bottom:.3rem}
 .sc-kap{stroke:#E8D2A4;fill:none;stroke-linejoin:round;stroke-linecap:round;transition:opacity 1.5s ease,transform 1.5s ease}
+.uc-kap-kostik{transition:opacity 1.8s ease}
 /* "Birlikte" durağında ışık çok hafif nefes alır -- yeni bir sembol değil,
    var olan ışık katmanının kendi kararı; "sahne-nefes" adı buradan gelir. */
 @media (prefers-reduced-motion:no-preference){
@@ -157,6 +158,46 @@ kapZemin.setAttribute('opacity','0');
 kapZemin.style.transition='opacity 2s ease';
 kaplar.insertBefore(kapZemin, kaplar.firstChild);
 
+// Kostik izdüşümler (docs/sahne-yeniden-tasarim.md #13): her kabın
+// ALTINA, AYNI ışığın (aynı gradyan tanımı, uc-kap-isik -- ışık kaynağı
+// hiç değişmiyor) o kabın biçimine göre nasıl kırıldığını gösteren
+// stilize bir iz düşer. Foto-gerçekçi değil (GORSEL_DIL.md). Dağda iz
+// paramparça, Musa'da bayılmış/sönük, kapta kabın kendisinden BÜYÜK ve
+// sakin. Yeni ölçü gerekmiyor -- mevcut dag/insan/kap hal geçişlerine
+// bağlı (mevcudu derinleştirme).
+function kostikOlustur(build){
+  const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.setAttribute('class','uc-kap-kostik');
+  g.setAttribute('opacity','0');
+  build(g);
+  kaplar.insertBefore(g, kaplar.firstChild);
+  return g;
+}
+const kostikDag=kostikOlustur(function(g){
+  // paramparça: kısa, açılı ışık kırıkları -- dagParca'nın kırık
+  // çizgileriyle aynı görsel dil, zemine düşmüş hâli.
+  const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+  p.setAttribute('d','M -30 0 L -18 -9 M -8 -2 L 4 -13 M 14 -4 L 28 -11 M -22 7 L -6 3 M 10 9 L 24 3');
+  p.setAttribute('transform','translate(120 322)');
+  p.setAttribute('stroke','url(#uc-kap-isik)'); p.setAttribute('stroke-width','2.4');
+  p.setAttribute('fill','none'); p.setAttribute('stroke-linecap','round');
+  g.appendChild(p);
+});
+const kostikMusa=kostikOlustur(function(g){
+  // bayılmış/sönük: küçük, silik, düz bir iz.
+  const e=document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+  e.setAttribute('cx','240'); e.setAttribute('cy','322'); e.setAttribute('rx','18'); e.setAttribute('ry','4');
+  e.setAttribute('fill','url(#uc-kap-isik)');
+  g.appendChild(e);
+});
+const kostikKap=kostikOlustur(function(g){
+  // kabın kendisinden büyük ve sakin: geniş, yumuşak, sabit bir havuz.
+  const e=document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+  e.setAttribute('cx','360'); e.setAttribute('cy','322'); e.setAttribute('rx','82'); e.setAttribute('ry','17');
+  e.setAttribute('fill','url(#uc-kap-isik)');
+  g.appendChild(e);
+});
+
 // Dağ parçalanması: yolun d'sini iki hâl arasında değiştirmek yerine
 // aynı yolun ikinci bir "parçalı" kopyasını crossfade ediyoruz.
 const dagParca=C.kap(kaplar,{bicim:'dag', cx:120, cy:280, r:52, cizgi:'#8FA6B8', kalinlik:2.4});
@@ -181,11 +222,14 @@ function uygula(hamHal){
   // Ölçü 1: hiçbir kap "yok" değil — hafif silik başlarlar.
   dag.style.opacity     = (hal.dag==='parcalanmis' ? 0 : 0.85);
   dagParca.style.opacity= (hal.dag==='parcalanmis' ? 0.95 : 0);
+  kostikDag.style.opacity=(hal.dag==='parcalanmis' ? 0.8 : 0);
   const egik=(hal.insan==='egilmis');
   insan.style.opacity   = (hal.insan==='gizli' ? 0.55 : 0.9);
   insan.setAttribute('transform', 'translate(240 280) rotate(' + (egik?70:0) + ')');
+  kostikMusa.style.opacity=(egik ? 0.22 : 0);
   kap.style.opacity     = (hal.kap==='gizli' ? 0.55 : 0.95);
   kapDolgu.style.opacity= (hal.kap==='dolu' ? 0.9 : 0);
+  kostikKap.style.opacity=(hal.kap==='dolu' ? 0.5 : 0);
 
   // "Birlikte": üçü de birbirine doğru çok hafif kayar (aynı ışığa ait
   // olduklarını hissettiren tek hareket, .sc-kap zaten transform'u
