@@ -7911,6 +7911,9 @@ body.share-stage-open { overflow: hidden; }
   display: flex;
   flex-direction: column;
   gap: 22px;
+  /* share-stage__helix'in kapalı yığılma bağlamının ÜSTÜNDE kalmak için
+     (bkz. oradaki not) -- metin hep sarmalın önünde okunur. */
+  z-index: 1;
 }
 /* İki dilli kart (2026-08-03): bir mantıksal satır artık (primary +
    isteğe bağlı çeviri) bu grup içinde duruyor -- gruplar arasında
@@ -7968,9 +7971,10 @@ body.share-stage-open { overflow: hidden; }
   inset: 0;
   background: var(--sahne-perde);
   pointer-events: none;
+  z-index: 3;
 }
 /* TikTok'un kapattığı bölgeler — yalnız kadraj denetimi için. */
-.share-stage__guides { position: absolute; inset: 0; pointer-events: none; }
+.share-stage__guides { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .share-stage__guides::before,
 .share-stage__guides::after {
   content: "";
@@ -8052,6 +8056,15 @@ body.share-stage-open { overflow: hidden; }
   display: flex;
   align-items: center;
   pointer-events: none;
+  /* DostHelix kendi sayfasında (/miskat) iç katmanları için z-index
+     kullanıyor; bu sarmalın kendisi z-index:auto olduğu için yeni bir
+     yığılma bağlamı AÇMIYORDU -- o iç z-index'ler doğrudan
+     .share-stage__frame düzeyine sızıp .share-stage__text'in (z-index:auto)
+     ÜSTÜNE çıkabiliyordu (kullanıcı bildirimi, 2026-08-19: "spiral needs to
+     be below section, it is a background option"). z-index:0 burada
+     sarmalı kendi kapalı yığılma bağlamına alıyor -- içindeki hiçbir katman
+     artık bu kutunun dışına sızamaz, metin/düğmeler daima üstte kalır. */
+  z-index: 0;
   /* Sahnenin site temasından bağımsız kendi paleti (--sahne-*) var; helix
      sahnesinin genel site token'larını (açık/koyu tema) değil bu paleti
      kullanması için üzerine yazıyoruz -- aksi hâlde sahnenin hep koyu
@@ -9206,6 +9219,7 @@ mark.durus-vurgu-es {
   position: absolute; bottom: 14px; right: 14px;
   width: 52px; height: 52px; border-radius: 4px; overflow: hidden;
   opacity: 0.75;
+  z-index: 1;
 }
 .share-qr { display: block; width: 100%; height: 100%; }
 /* Hale açık zeminde parlama değil leke gibi okunuyor (koyu zeminde ışık
