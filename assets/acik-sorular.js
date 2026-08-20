@@ -1,15 +1,17 @@
-// Açık Sorular — kapanmamış soruların halkası.
+// Açık Sorular — dolmayan kaplar.
 //
-// NEDEN BU BİÇİM (GORSEL_DIL.md: "kavramı resmetme, davranışını resmet").
-// Bir açık sorunun davranışı şudur: etrafında kanıt birikir ama soru
-// KAPANMAZ. Bu yüzden her soru, kapanmamış bir yay olarak çiziliyor —
-// çemberin bir parçası hiç çizilmiyor, ve o boşluk sorunun ne kadar açık
-// olduğu kadar büyük. Yayın üzerindeki küçük çentikler, o soru için okuma
-// kaydımızda bulduğumuz kayıtlar: kanıt arttıkça çentik artıyor, ama yay
-// yine de kapanmıyor. Kapanan tek şey yok; bu bilinçli.
+// NEDEN BU BİÇİM (GORSEL_DIL.md: "kavramı resmetme, davranışını resmet";
+// 2026-08-19 yeniden tasarım -- eski yay-boşluk idiomu bilmiyoruz.js ile
+// ayırt edilemiyordu). Bir açık sorunun davranışı şudur: etrafında kanıt
+// birikir ama soru KAPANMAZ. Her soru artık bir KAP (sahnelerdeki kap
+// ailesinin aynı soyundan): okuma kaydımızda bulduğumuz iz sayısı kabı
+// doldurur, ama `durum`a göre bir TAVAN vardır ve dolgu o kesikli çizgiyi
+// asla geçemez -- ağzıyla arasındaki boşluk her kapta görünür kalır.
+// Doluluk merkeze UZAKLIĞI da belirler: kanıtı birikmiş kaplar merkeze
+// (hakikate) yakın, boş kaplar kesrete (kenara) savrulmuş durur --
+// CLAUDE.md'nin derinlik/uzaklık eşleşmesi graf düzeninin kendisinde.
 //
-// Halkanın kendisi sitenin kalıcı ilkesinden geliyor (CLAUDE.md: daire ve
-// merkez). Merkezde bir cevap değil, bir sayı duruyor: kaç soru hâlâ açık.
+// Merkezde bir cevap değil, bir sayı duruyor: kaç soru hâlâ açık.
 //
 // ETKILESIM_DILI.md sözleşmesi: değinmek (hover) = yayın çentikleri
 // belirir + ipucu; seçmek (tıklama) = panel; bir adım geri (ESC) =
@@ -58,14 +60,28 @@ window.__acikSorularApp = (function () {
     </div>`;
   }
 
-  // Boşluk açısı = sorunun ne kadar açık olduğu. Sayılar keyfi değil,
-  // üç durumu birbirinden GÖZLE ayırt edilebilecek kadar ayırıyor.
-  const BOSLUK = { acik: 118, kismen: 54, kaynak_tukendi: 92 };
+  // 2026-08-19 yeniden tasarım (kullanıcı isteği: "daha doyurucu ve ilk
+  // görüşte kendini ifade eden" -- bilmiyoruz.js'in AYNI yay-boşluk
+  // idiomundan tamamen ayrılıyor). Yeni davranış: her açık soru bir KAP --
+  // kanıt biriktikçe içi dolar, ama `durum`a göre bir TAVAN var; o tavanın
+  // üstüne asla çıkmıyor. Sitedeki "kap" ailesiyle aynı dil (bkz.
+  // sahne-cizim.js KAP_YOLLARI) -- sahnelerde kurulan imge burada grafiğe
+  // taşınıyor. Kabın üstünden ağır ağır kaçan birkaç ışık zerresi, "kanıt
+  // birikir ama hiçbir zaman kapanmaz" davranışını dondurulmuş bir gap
+  // açısı yerine SÜREN bir hareketle anlatıyor.
+  //
+  // İkinci katman: kabın ne kadar dolu olduğu (dolumSkoru) merkeze
+  // UZAKLIĞI da belirliyor -- doluya yakın kaplar merkeze (hakikate) daha
+  // yakın, boş kaplar kesrete (kenara) savruluyor. CLAUDE.md'nin "derinlik
+  // = hakikate yaklaşma, uzaklık = kesret" eşleşmesi burada ilk kez bir
+  // graf düzeninin KENDİSİNE, yalnız bir sahneye değil, uygulanıyor.
+  const KAP_TAVAN = { acik: 0.32, kismen: 0.60, kaynak_tukendi: 0.88 };
   const DURUM_VAR = {
     acik: "--series-kemal",
     kismen: "--series-theme",
     kaynak_tukendi: "--text-muted",
   };
+  const KAP_R = 17;
 
   let data = null;
   let nodes = [];
@@ -78,52 +94,46 @@ window.__acikSorularApp = (function () {
     return { w: Math.max(320, r.width), h: Math.max(320, r.height) };
   }
 
-  // Yay yolu: merkezi (0,0) olan, boşluğu YUKARI bakan bir çember parçası.
-  // Boşluk hep aynı yöne bakıyor ki halkada gezerken boşlukların büyüklüğü
-  // karşılaştırılabilsin — dönen bir boşluk okunamaz.
-  function yayYolu(r, bosluk) {
-    const yariAcik = (360 - bosluk) / 2;
-    const a0 = (-90 + bosluk / 2) * Math.PI / 180;
-    const a1 = (-90 + bosluk / 2 + yariAcik * 2) * Math.PI / 180;
-    const x0 = r * Math.cos(a0), y0 = r * Math.sin(a0);
-    const x1 = r * Math.cos(a1), y1 = r * Math.sin(a1);
-    const buyuk = 360 - bosluk > 180 ? 1 : 0;
-    return `M ${x0.toFixed(2)} ${y0.toFixed(2)} A ${r} ${r} 0 ${buyuk} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
-  }
-
-  // Çentikler: yayın üzerine eşit aralıklarla, bulunan kayıt sayısı kadar.
-  function centikler(r, bosluk, adet) {
-    if (!adet) return [];
-    const yay = 360 - bosluk;
-    const out = [];
-    for (let i = 0; i < adet; i++) {
-      const t = adet === 1 ? 0.5 : i / (adet - 1);
-      const a = (-90 + bosluk / 2 + yay * (0.08 + 0.84 * t)) * Math.PI / 180;
-      out.push({ x: r * Math.cos(a), y: r * Math.sin(a), i: i });
-    }
-    return out;
+  function dolumHesapla(d) {
+    const adet = (d.arama && d.arama.kayitlar ? d.arama.kayitlar.length : 0);
+    const tavan = KAP_TAVAN[d.durum] != null ? KAP_TAVAN[d.durum] : 0.5;
+    return { adet: adet, dolum: tavan * Math.min(1, adet / 6) };
   }
 
   function yerlestir() {
     const { w, h } = boyut();
-    const R = Math.min(w, h) * 0.36;
+    const RMIN = Math.min(w, h) * 0.15, RMAX = Math.min(w, h) * 0.42;
     const n = nodes.length;
+    const TAVAN_MAX = 0.88;
     nodes.forEach((d, i) => {
+      const { adet, dolum } = dolumHesapla(d);
+      d.adet = adet; d.dolum = dolum;
+      const skor = Math.min(1, dolum / TAVAN_MAX);
+      const R = RMIN + (1 - skor) * (RMAX - RMIN);
       const a = (-Math.PI / 2) + (i / n) * Math.PI * 2;
       d.x = Math.cos(a) * R;
       d.y = Math.sin(a) * R;
     });
   }
 
+  // Kap geometrisi: yarım-küre çanak (sahne-cizim.js KAP_YOLLARI.kap ile
+  // aynı soy) + içindeki dolgu, kabın alt yayının bir klip içinde
+  // yükselmesiyle çiziliyor. Dolgunun üst çizgisi ile kabın ağzı arasındaki
+  // boşluk, dondurulmuş bir açı değil GERÇEK bir eksiklik olarak okunuyor.
+  function kapYolu(r) {
+    return "M " + (-r) + " 0 A " + r + " " + r + " 0 0 0 " + r + " 0";
+  }
+
   function ciz() {
     svg.selectAll("*").remove();
     const { w, h } = boyut();
     svg.attr("viewBox", `0 0 ${w} ${h}`);
+    const defs = svg.append("defs");
     g = svg.append("g").attr("class", "acik-sorular-scene");
     const kok = g.append("g").attr("transform", `translate(${w / 2}, ${h / 2})`);
 
-    // Merkez: bir cevap değil, bir sayı. Halka boyunca dolaşan her yay
-    // buraya bakıyor; merkez sitenin kalıcı imgesi (daire ve merkez).
+    // Merkez: bir cevap değil, bir sayı. Dolu kaplar ona yaklaşıyor,
+    // boşlar kesrete savruluyor; merkez sitenin kalıcı imgesi.
     const acikSayisi = nodes.filter((d) => d.durum !== "kaynak_tukendi").length;
     const merkez = kok.append("g").attr("class", "acik-sorular-merkez");
     merkez.append("circle").attr("r", 46).attr("class", "acik-sorular-merkez__halka");
@@ -140,56 +150,61 @@ window.__acikSorularApp = (function () {
       .attr("role", "button")
       .attr("aria-label", (d) => tt(d.soru));
 
-    const R = 27;
+    const R = KAP_R;
 
-    // Vuruş alanı. Yayın kendisi `fill: none` bir çizgi; tıklama yalnız o
-    // 2,4px'lik çizgiye denk gelirse çalışırdı. Ontoloji kenarlarında
-    // ölçülen aynı kusur (bkz. `path.link-hit`): görünmez ama tıklanabilir
-    // bir daire, hedefi ~0'dan yayın tamamına çıkarıyor.
     sel.append("circle")
       .attr("class", "acik-soru__vurus")
-      .attr("r", R + 7)
+      .attr("r", R + 11)
       .attr("fill", "transparent");
 
-    sel.append("path")
-      .attr("class", (d) => "acik-soru__yay acik-soru__yay--" + d.durum)
-      .attr("d", (d) => yayYolu(R, BOSLUK[d.durum] || 90))
-      .attr("stroke", (d) => GU.getVar(DURUM_VAR[d.durum] || "--text-muted"));
-
-    // Kayıt çentikleri: hover'dan ÖNCE de görünüyorlar (sönük), çünkü
-    // "kanıt var ama soru kapanmıyor" bilgisi ilk bakışta okunmalı.
-    sel.each(function (d) {
-      const adet = (d.arama && d.arama.kayitlar ? d.arama.kayitlar.length : 0);
-      d3.select(this).selectAll("circle.acik-soru__centik")
-        .data(centikler(R, BOSLUK[d.durum] || 90, Math.min(adet, 12)))
-        .join("circle")
-        .attr("class", "acik-soru__centik")
-        .attr("cx", (p) => p.x).attr("cy", (p) => p.y).attr("r", 1.9)
-        .attr("fill", GU.getVar(DURUM_VAR[d.durum] || "--text-muted"))
-        .style("transition-delay", (p) => (reduceMotion ? "0ms" : (p.i * 45) + "ms"));
+    // Kap içi dolgu: kabın çanağını klip olarak kullanan, yüksekliği
+    // dolum oranına göre yukarı uzanan bir dikdörtgen. Kap ağzı y=0'da,
+    // çanak y=+R'ye iniyor; dolum 0..1 => dikdörtgen tabandan yükseliyor.
+    sel.each(function (d, i) {
+      const kapsel = d3.select(this);
+      const cid = "acik-kap-klip-" + i;
+      defs.append("clipPath").attr("id", cid)
+        .append("path").attr("d", kapYolu(R) + " Z");
+      // Çanağın derinliği R (ağız y=0, dip y=+R); dolum 1 = ağza kadar.
+      const doluY = R - d.dolum * R;
+      kapsel.append("rect")
+        .attr("class", "acik-soru__dolgu")
+        .attr("clip-path", "url(#" + cid + ")")
+        .attr("x", -R).attr("width", R * 2)
+        .attr("y", doluY).attr("height", R * 2)
+        .attr("fill", GU.getVar(DURUM_VAR[d.durum] || "--text-muted"));
+      // Tavan çizgisi: kabın DOLABİLECEĞİ en üst nokta -- kesikli, sönük.
+      // Dolgu ile ağız arasındaki boşluğun "daha dolabilirdi ama duracak"
+      // değil "buraya kadar dolabilir, yine de kapanmaz" olduğunu söylüyor.
+      const tavan = KAP_TAVAN[d.durum] != null ? KAP_TAVAN[d.durum] : 0.5;
+      const tavanY = R - tavan * R;
+      const tavanW = Math.sqrt(Math.max(0, R * R - tavanY * tavanY));
+      kapsel.append("line")
+        .attr("class", "acik-soru__tavan")
+        .attr("x1", -tavanW).attr("x2", tavanW)
+        .attr("y1", tavanY).attr("y2", tavanY);
     });
 
+    // Kabın kendisi: dolgunun ÜSTÜNE çizilir ki kenar hep okunur kalsın.
+    sel.append("path")
+      .attr("class", (d) => "acik-soru__kap acik-soru__kap--" + d.durum)
+      .attr("d", (d) => kapYolu(R))
+      .attr("stroke", (d) => GU.getVar(DURUM_VAR[d.durum] || "--text-muted"));
+
     sel.append("text").attr("class", "acik-soru__no")
-      .attr("text-anchor", "middle").attr("dy", "0.35em")
+      .attr("text-anchor", "middle").attr("y", -R - 6)
       .text((d) => "#" + d.no);
 
-    // Etiketler halkanın DIŞINA taşınıyor (yayın merkezinden dışa doğru),
-    // yoksa on dokuz etiket halkanın içinde üst üste biner. Bu bile komşu
-    // sorular birbirine yakın açılarda düşünce (ör. yeni kayıtlar eklendikçe
-    // halka kalabalıklaştıkça) yetmiyor -- ölçüm tabanlı deconflictLabels
-    // (hal.js/menziller/seyahat-atlası'nda kanıtlanmış) etiketleri kendi
-    // aralarında çakışmayacak şekilde kaydırıyor (kullanıcı isteği, "grafiği
-    // zenginleştir", 2026-08-16).
     const etiketSel = sel.append("text").attr("class", "acik-soru__etiket")
       .attr("text-anchor", (d) => (d.x > 6 ? "start" : d.x < -6 ? "end" : "middle"))
-      .attr("x", (d) => (d.x > 6 ? R + 8 : d.x < -6 ? -(R + 8) : 0))
-      .attr("y", (d) => (Math.abs(d.x) > 6 ? 4 : (d.y >= 0 ? R + 16 : -(R + 10))))
+      .attr("x", (d) => (d.x > 6 ? R + 10 : d.x < -6 ? -(R + 10) : 0))
+      .attr("y", (d) => (Math.abs(d.x) > 6 ? 4 : (d.y >= 0 ? R + 16 : -(R + 14))))
       .text((d) => kisalt(tt(d.soru), 30));
 
     const pendingLabels = [];
     etiketSel.each(function (d) {
-      const lx = d.x > 6 ? R + 8 : d.x < -6 ? -(R + 8) : 0;
-      const ly = Math.abs(d.x) > 6 ? 4 : (d.y >= 0 ? R + 16 : -(R + 10));
+      const lx = d.x > 6 ? R + 10 : d.x < -6 ? -(R + 10) : 0;
+      const ly = Math.abs(d.x) > 6 ? 4 : (d.y >= 0 ? R + 16 : -(R + 14));
       pendingLabels.push({
         lbl: d3.select(this), txt: kisalt(tt(d.soru), 30),
         x: d.x + lx, y: d.y + ly, baseY: ly,
@@ -226,7 +241,7 @@ window.__acikSorularApp = (function () {
 
   function ipucu(ev, d) {
     const durum = data.durumlar[d.durum] || {};
-    const adet = (d.arama && d.arama.kayitlar ? d.arama.kayitlar.length : 0);
+    const adet = d.adet || 0;
     const kanit = adet
       ? tt({ tr: adet + " kayıtta iz", en: "traces in " + adet + " records", pt: "vestígios em " + adet + " registos" })
       : tt({ tr: "kaydımızda iz yok", en: "no trace in our record", pt: "sem vestígio no nosso registo" });

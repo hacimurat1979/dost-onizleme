@@ -10023,40 +10023,48 @@ mark.durus-vurgu-es {
   .kavram-bookref__label { min-width: 100%; }
 }
 
-/* --- Açık Sorular halkası (2026-08-03) ------------------------------------
-   Her soru KAPANMAMIŞ bir yay. Boşluk = sorunun ne kadar açık olduğu;
-   yay üzerindeki çentikler = okuma kaydımızda bulduğumuz izler. Çentikler
-   ilk bakışta sönük duruyor, değinince (hover/focus) tek tek beliriyor --
-   ETKILESIM_DILI.md: her etkileşimin görünür bir sonucu olmalı. */
+/* --- Açık Sorular: dolmayan kaplar (2026-08-19 yeniden tasarım) -----------
+   Her soru bir KAP (sahnelerdeki kap ailesinin soyundan): dolgu = okuma
+   kaydımızdaki iz sayısı; kesikli tavan çizgisi = durumun izin verdiği
+   en yüksek doluluk. Dolgu ile ağız arasındaki boşluk her kapta görünür
+   kalır -- kanıt birikir, soru kapanmaz. Doluluk merkeze uzaklığı da
+   belirler (derinlik = hakikate yaklaşma). */
 .acik-soru { cursor: pointer; }
 .acik-soru:focus { outline: none; }
-.acik-soru__yay {
+.acik-soru__kap {
   fill: none;
-  stroke-width: 2.4;
+  stroke-width: 2;
   stroke-linecap: round;
-  opacity: 0.78;
+  opacity: 0.82;
   transition: opacity 0.18s ease, stroke-width 0.18s ease;
 }
-.acik-soru__yay--kaynak_tukendi { stroke-dasharray: 3 4; }
-.acik-soru__centik {
-  opacity: 0.22;
-  transition: opacity 0.22s ease, r 0.22s ease;
+.acik-soru__kap--kaynak_tukendi { stroke-dasharray: 3 4; }
+.acik-soru__dolgu {
+  opacity: 0.34;
+  transition: opacity 0.22s ease;
+}
+.acik-soru__tavan {
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+  opacity: 0.55;
 }
 .acik-soru__no {
   font-size: 0.72rem;
   font-weight: 600;
   fill: var(--text-secondary);
   pointer-events: none;
+  text-anchor: middle;
 }
 .acik-soru__etiket {
   font-size: 0.72rem;
   fill: var(--text-secondary);
   pointer-events: none;
 }
-.acik-soru--deginiliyor .acik-soru__yay { opacity: 1; stroke-width: 3.1; }
-.acik-soru--deginiliyor .acik-soru__centik { opacity: 1; r: 2.6; }
+.acik-soru--deginiliyor .acik-soru__kap { opacity: 1; stroke-width: 2.8; }
+.acik-soru--deginiliyor .acik-soru__dolgu { opacity: 0.55; }
 .acik-soru--deginiliyor .acik-soru__etiket { fill: var(--text-primary); }
-.acik-soru:focus-visible .acik-soru__yay { opacity: 1; stroke-width: 3.1; }
+.acik-soru:focus-visible .acik-soru__kap { opacity: 1; stroke-width: 2.8; }
 
 .acik-sorular-merkez__halka {
   fill: none;
@@ -10139,17 +10147,17 @@ mark.durus-vurgu-es {
 .acik-soru-satir__no { color: var(--text-secondary); flex-shrink: 0; font-size: 0.8rem; }
 
 @media (prefers-reduced-motion: reduce) {
-  .acik-soru__yay,
-  .acik-soru__centik,
+  .acik-soru__kap,
+  .acik-soru__dolgu,
   .acik-soru__etiket { transition: none !important; }
 }
 .acik-soru__vurus { pointer-events: all; }
 
-/* --- Bilmiyoruz halkası (docs/icerik-yol-haritasi.md D20, 2026-08-04) -----
-   acik-soru'nun aynı yay-boşluk idiomu (bkz. yukarısı) ama farklı bir
-   davranış taşıyor: boşluk kanıt biriktikçe daralmıyor, maddenin `durum`una
-   göre SABİT -- tartışmalı en geniş, bizim sınırımız en dar. Çentik yok,
-   çünkü burada ölçülen bir "kaç kayıtta iz bulduk" değil. */
+/* --- Bilmiyoruz: görüşün sisli kenarı (2026-08-19 yeniden tasarım) --------
+   Her madde görüş dairesinin sınırında bulanık bir ışık; sise gömülme
+   derinliği ve blur maddenin `durum`una göre (tartışmalı en derin).
+   acik-sorular'ın kap idiomundan ve eski ortak yay-boşluk idiomundan
+   görsel olarak ayrık. */
 /* Açık Sorular liste düğmesi (2026-08-10, G40): kesik metinleri açar. */
 .acik-sorular-liste-btn {
   position: absolute;
@@ -10212,14 +10220,14 @@ mark.durus-vurgu-es {
 
 .bilmiyoruz-madde { cursor: pointer; }
 .bilmiyoruz-madde:focus { outline: none; }
-.bilmiyoruz-madde__yay {
-  fill: none;
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  opacity: 0.78;
-  transition: opacity 0.18s ease, stroke-width 0.18s ease;
+/* Sisin içindeki ışık: bulanıklık = bilgisizlik (GORSEL_DIL). Blur bir
+   dekor değil durum kodlaması olduğu için reduced-motion'da da durur;
+   değinince yarıya iner ama sıfırlanmaz (kaçan merkez). */
+.bilmiyoruz-madde__isik {
+  opacity: 0.62;
+  transition: opacity 0.18s ease;
 }
-.bilmiyoruz-madde__yay--bizim_sinirimiz { stroke-dasharray: 3 4; }
+.bilmiyoruz-gorus { pointer-events: none; }
 .bilmiyoruz-madde__ikon {
   font-size: 0.82rem;
   font-weight: 700;
@@ -10231,17 +10239,11 @@ mark.durus-vurgu-es {
   fill: var(--text-secondary);
   pointer-events: none;
 }
-.bilmiyoruz-madde--deginiliyor .bilmiyoruz-madde__yay { opacity: 1; stroke-width: 3.1; }
+.bilmiyoruz-madde--deginiliyor .bilmiyoruz-madde__isik { opacity: 0.92; }
 .bilmiyoruz-madde--deginiliyor .bilmiyoruz-madde__etiket { fill: var(--text-primary); }
-.bilmiyoruz-madde:focus-visible .bilmiyoruz-madde__yay { opacity: 1; stroke-width: 3.1; }
+.bilmiyoruz-madde:focus-visible .bilmiyoruz-madde__isik { opacity: 0.92; }
 .bilmiyoruz-madde__vurus { pointer-events: all; }
 
-.bilmiyoruz-merkez__halka {
-  fill: none;
-  stroke: var(--border);
-  stroke-width: 1;
-  stroke-dasharray: 2 6;
-}
 .bilmiyoruz-merkez__sayi {
   font-size: 1.6rem;
   font-weight: 600;
@@ -10285,7 +10287,7 @@ mark.durus-vurgu-es {
 .bilmiyoruz-madde__taraf-ne { margin: 0; font-size: 0.86rem; color: var(--text-secondary); }
 
 @media (prefers-reduced-motion: reduce) {
-  .bilmiyoruz-madde__yay,
+  .bilmiyoruz-madde__isik,
   .bilmiyoruz-madde__etiket { transition: none !important; }
 }
 

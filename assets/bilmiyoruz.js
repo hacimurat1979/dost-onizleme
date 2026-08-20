@@ -1,14 +1,18 @@
-// Bilmiyoruz — sitenin açıkça bilmediğini/tartışmalı olduğunu ilan ettiği
-// maddelerin halkası (docs/icerik-yol-haritasi.md D20).
+// Bilmiyoruz — görüşün sisli kenarı.
 //
-// NEDEN BU BİÇİM (GORSEL_DIL.md: "kavramı resmetme, davranışını resmet").
-// acik-sorular.js'in aynı yay-boşluk idiomunu kullanıyor (CLAUDE.md'nin
-// daire/merkez ilkesiyle tutarlı, sitede zaten kanıtlanmış bir dil) ama
-// AYRI bir davranışı taşıyor: açık sorular kanıt biriktikçe çentiklenir,
-// burada öyle bir "kanıt sayımı" yok -- bir maddenin boşluğu SADECE onun
-// `durum`una göre sabit (tartismali en geniş, bizim_sinirimiz en dar),
-// çünkü burada ölçülen şey bizim okuma kaydımızdaki iz sayısı değil,
-// maddenin KENDİ doğasının ne kadar kapanabilir olduğu.
+// NEDEN BU BİÇİM (GORSEL_DIL.md: "kavramı resmetme, davranışını resmet";
+// 2026-08-19 yeniden tasarım -- eski yay-boşluk idiomu acik-sorular.js ile
+// ayırt edilemiyordu). Burada ölçülen şey bizim iz sayımız değil, maddenin
+// KENDİ doğasının ne kadar bilinebilir olduğu. Bu yüzden her madde,
+// görüş dairemizin SINIRINDA duran bir ışık: `durum`una göre sisin daha
+// derinine gömülü (tartismali en derin/en bulanık, bizim_sinirimiz sınıra
+// en yakın/en az bulanık). Bulanıklık = bilgisizlik eşleşmesi (GORSEL_DIL)
+// burada ilk kez bir graf görünümünün ana kodlaması. Değinince ışık bir
+// nebze toparlanır ama HİÇBİR ZAMAN tam netleşmez -- "kaçan merkez"
+// davranışı: bu maddeler hover'la çözülecek şeyler değil.
+//
+// Görüş dairesi (net iç alan + sise geçen kenar) CLAUDE.md'nin
+// daire/merkez ilkesini koruyor; merkezde yine bir cevap değil bir sayı.
 //
 // ETKILESIM_DILI.md sözleşmesi: değinmek (hover) = ipucu; seçmek
 // (tıklama) = panel; bir adım geri (ESC) = panelden halkaya. Bağlanmamış
@@ -56,11 +60,15 @@ window.__bilmiyoruzApp = (function () {
     </div>`;
   }
 
-  // Boşluk açısı = maddenin durumuna göre sabit -- acik-sorular'daki gibi
-  // "kanıt arttıkça daralan" değil, TÜRE bağlı: tartışmalı bir mesele
-  // (alanın kendisi anlaşmamış) en geniş boşluğu, bizim sınırımız (ileride
-  // araştırmayla kapanabilir) en dar boşluğu alıyor.
-  const BOSLUK = { tartismali: 108, belirsiz: 76, bizim_sinirimiz: 48 };
+  // Sise gömülme derinliği = maddenin durumuna göre sabit: tartışmalı bir
+  // mesele (alanın kendisi anlaşmamış) en derinde ve en bulanık, bizim
+  // sınırımız (ileride araştırmayla kapanabilir) görüş sınırına en yakın.
+  // derinlik: görüş yarıçapının ÜSTÜNE binen pay; blur: px cinsinden.
+  const SIS = {
+    tartismali:      { derinlik: 0.34, blur: 3.4 },
+    belirsiz:        { derinlik: 0.20, blur: 2.2 },
+    bizim_sinirimiz: { derinlik: 0.08, blur: 1.1 },
+  };
   const DURUM_VAR = {
     tartismali: "--series-kemal",
     belirsiz: "--series-theme",
@@ -91,25 +99,19 @@ window.__bilmiyoruzApp = (function () {
     return { w: Math.max(320, r.width), h: Math.max(320, r.height) };
   }
 
-  function yayYolu(r, bosluk) {
-    const yariAcik = (360 - bosluk) / 2;
-    const a0 = (-90 + bosluk / 2) * Math.PI / 180;
-    const a1 = (-90 + bosluk / 2 + yariAcik * 2) * Math.PI / 180;
-    const x0 = r * Math.cos(a0), y0 = r * Math.sin(a0);
-    const x1 = r * Math.cos(a1), y1 = r * Math.sin(a1);
-    const buyuk = 360 - bosluk > 180 ? 1 : 0;
-    return `M ${x0.toFixed(2)} ${y0.toFixed(2)} A ${r} ${r} 0 ${buyuk} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+  // Görüş yarıçapı: net iç alan buraya kadar; maddeler bunun DIŞINA,
+  // durumlarının sis derinliğine göre yerleşiyor.
+  function gorusYaricapi() {
+    const { w, h } = boyut();
+    return Math.min(w, h) * 0.24;
   }
 
   function yerlestir() {
-    const { w, h } = boyut();
     const n = nodes.length;
-    // acik-sorular.js'in aynı sabit yarıçapı burada (bugün 4 madde) dört
-    // düğümü sahnenin uçlarına fırlatıp ortayı boş bırakıyordu -- az
-    // sayıda madde varken halka küçülüyor, ki az madde de bir "küme" gibi
-    // okunsun, dağınık bir haç gibi değil. n>=10'da davranış değişmiyor.
-    const R = Math.min(w, h) * 0.36 * Math.min(1, Math.max(0.5, n / 10));
+    const R0 = gorusYaricapi();
     nodes.forEach((d, i) => {
+      const sis = SIS[d.durum] || SIS.belirsiz;
+      const R = R0 * (1 + sis.derinlik + 0.16);
       const a = (-Math.PI / 2) + (i / n) * Math.PI * 2;
       d.x = Math.cos(a) * R;
       d.y = Math.sin(a) * R;
@@ -120,13 +122,38 @@ window.__bilmiyoruzApp = (function () {
     svg.selectAll("*").remove();
     const { w, h } = boyut();
     svg.attr("viewBox", `0 0 ${w} ${h}`);
+    const defs = svg.append("defs");
     g = svg.append("g").attr("class", "bilmiyoruz-scene");
     const kok = g.append("g").attr("transform", `translate(${w / 2}, ${h / 2})`);
+    const R0 = gorusYaricapi();
 
-    // Merkez: bir cevap değil, bir sayı -- acik-sorular'daki aynı imge,
-    // burada "kaç madde açık" yerine "kaç sınır işaretlendi".
+    // Görüş dairesi: net iç alan, kenara doğru sise geçiyor. Keskin bir
+    // halka DEĞİL (GORSEL_DIL: iç içe eşmerkezli çember yasağı) -- tek,
+    // yumuşak kenarlı bir alan; sınır bir çizgi değil bir SOLUŞ.
+    const gid = "bilmiyoruz-gorus-grad";
+    const gorusRenk = GU.getVar("--series-theme") || "#c9971a";
+    const grad = defs.append("radialGradient").attr("id", gid);
+    grad.append("stop").attr("offset", "0%").attr("stop-color", gorusRenk).attr("stop-opacity", 0.10);
+    grad.append("stop").attr("offset", "62%").attr("stop-color", gorusRenk).attr("stop-opacity", 0.05);
+    grad.append("stop").attr("offset", "100%").attr("stop-color", gorusRenk).attr("stop-opacity", 0);
+    kok.append("circle")
+      .attr("class", "bilmiyoruz-gorus")
+      .attr("r", R0 * 1.12)
+      .attr("fill", "url(#" + gid + ")");
+
+    // Durum başına bir blur filtresi (madde başına değil -- filtre sayısı
+    // sabit kalsın). Değinince blur'un yarısına iner ama sıfırlanmaz.
+    Object.keys(SIS).forEach((k) => {
+      const f = defs.append("filter").attr("id", "bilmiyoruz-sis-" + k)
+        .attr("x", "-60%").attr("y", "-60%").attr("width", "220%").attr("height", "220%");
+      f.append("feGaussianBlur").attr("stdDeviation", SIS[k].blur);
+      const f2 = defs.append("filter").attr("id", "bilmiyoruz-sis-" + k + "-yakin")
+        .attr("x", "-60%").attr("y", "-60%").attr("width", "220%").attr("height", "220%");
+      f2.append("feGaussianBlur").attr("stdDeviation", SIS[k].blur * 0.45);
+    });
+
+    // Merkez: bir cevap değil, bir sayı -- "kaç sınır işaretlendi".
     const merkez = kok.append("g").attr("class", "bilmiyoruz-merkez");
-    merkez.append("circle").attr("r", 46).attr("class", "bilmiyoruz-merkez__halka");
     merkez.append("text").attr("class", "bilmiyoruz-merkez__sayi")
       .attr("text-anchor", "middle").attr("dy", "-0.05em").text(nodes.length);
     merkez.append("text").attr("class", "bilmiyoruz-merkez__etiket")
@@ -147,10 +174,15 @@ window.__bilmiyoruzApp = (function () {
       .attr("r", R + 7)
       .attr("fill", "transparent");
 
-    sel.append("path")
-      .attr("class", (d) => "bilmiyoruz-madde__yay bilmiyoruz-madde__yay--" + d.durum)
-      .attr("d", (d) => yayYolu(R, BOSLUK[d.durum] || 90))
-      .attr("stroke", (d) => GU.getVar(DURUM_VAR[d.durum] || "--text-muted"));
+    // Sisin içindeki ışık: durumuna göre bulanık. Işık = zuhur; buradaki
+    // maddeler VAR (metin onları açıkça söylüyor) ama NET DEĞİL -- varlığı
+    // ışıkla, bilinemezliği bulanıklıkla kodlanıyor. reduced-motion'da da
+    // blur duruyor (hareket değil, durum kodlaması).
+    sel.append("circle")
+      .attr("class", (d) => "bilmiyoruz-madde__isik bilmiyoruz-madde__isik--" + d.durum)
+      .attr("r", 10)
+      .attr("fill", (d) => GU.getVar(DURUM_VAR[d.durum] || "--text-muted"))
+      .attr("filter", (d) => "url(#bilmiyoruz-sis-" + (SIS[d.durum] ? d.durum : "belirsiz") + ")");
 
     sel.append("text").attr("class", "bilmiyoruz-madde__ikon")
       .attr("text-anchor", "middle").attr("dy", "0.35em").text("?");
@@ -201,6 +233,13 @@ window.__bilmiyoruzApp = (function () {
   function vurgula(id, on) {
     if (!g) return;
     g.selectAll("g.bilmiyoruz-madde").classed("bilmiyoruz-madde--deginiliyor", (d) => on && d.id === id);
+    // Değinilen ışık bir nebze toparlanır ama TAM netleşmez ("kaçan
+    // merkez") -- blur yarıya iner, sıfırlanmaz.
+    g.selectAll("circle.bilmiyoruz-madde__isik")
+      .attr("filter", (d) => {
+        const k = SIS[d.durum] ? d.durum : "belirsiz";
+        return "url(#bilmiyoruz-sis-" + k + ((on && d.id === id) ? "-yakin" : "") + ")";
+      });
   }
 
   function ipucu(ev, d) {
