@@ -96,6 +96,20 @@ body.sahne-bitti .legend{opacity:1;max-height:4000px}
 .map-popup__gloss{font-size:.86rem;line-height:1.65;font-style:italic;color:var(--text)}
 .map-popup__cite{font-size:.7rem;color:var(--muted)}
 
+/* Hızlı birleştir/başa dön (2026-08-20 kullanıcı notu): sahnenin anlatımı
+   bitmeden de -- "daha en baştan" -- dokuz haritayı tek bir büyük
+   kompozisyonda toplama ve geri alma imkânı. Bilerek sahne-bitti kapısının
+   DIŞINDA: bu ikisi anlatımın bir parçası değil, ayrı bir yetenek. Tıklamak
+   anlatımı duraklatır (varsa) ve doğrudan updateStage'i çağırır -- yeni bir
+   çizim/mekanizma icat edilmedi, var olan sürgü hedefine atlıyor. */
+.quick-merge{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin:.3rem 0 .5rem}
+.quick-merge__btn{background:var(--surface);border:1px solid var(--border);color:var(--text);
+  border-radius:2rem;padding:.4rem 1.05rem;font:inherit;font-size:.82rem;cursor:pointer;
+  transition:border-color .2s ease,color .2s ease}
+.quick-merge__btn:hover,.quick-merge__btn:focus-visible{border-color:var(--gold);color:var(--gold)}
+.quick-merge__btn--ghost{color:var(--muted)}
+.quick-merge__btn:focus-visible{outline:2px solid var(--liminal);outline-offset:2px}
+
 /* Sahneden çıkış (2026-08-05). ESC klavyede; ama hata TABLETTE bildirildi
    ve tablette ESC tuşu yok -- o yüzden görünür, dokunulabilir bir bağlantı
    da var. Renkler zincirleme var() yedekleriyle: sahnelerin değişken adları
@@ -136,6 +150,10 @@ body.sahne-bitti .legend{opacity:1;max-height:4000px}
   <p class="honesty" id="hHonesty">Bu sahne, manüskriptin bir kopyası değil — Sophie Tyser'ın "Visualizing the Architecture of the Universe" (Brill, 2023) makalesinde ele alınan dokuz haritanın sırasını ve içeriğini izleyen, bizim kendi sadeleştirilmiş okumamız. Gerçek çizimler Konya nüshasında (TİEM/Evkaf Müzesi 1870) duruyor.</p>
 </header>
 
+<div class="quick-merge" id="quickMerge">
+  <button type="button" id="quickMergeBtn" class="quick-merge__btn"></button>
+  <button type="button" id="quickResetBtn" class="quick-merge__btn quick-merge__btn--ghost"></button>
+</div>
 <div id="stageWrap">
   <svg id="mapsStage" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Dokuz harita: ayrı çizimler ve merkezde birleşen tek bir kompozisyon">
     <g id="mapsG"></g>
@@ -188,6 +206,8 @@ const LA={
     apart:'Ayrık',
     one:'Birleşik',
     caption:'Dokuz harita, ayrıyken dokuz çizim; birleşince tek bir kompozisyon. Örtüşme anı bu sahnenin hayret anı.',
+    quickMerge:'Tek Haritada Birleştir',
+    quickReset:'Başa Dön',
     legendTitle:'Dokuz Harita — Sırasıyla',
     nextStep:'Bu dokuz harita, sitenin Çizimler görünümündeki öteki tarihî şemalarla birlikte duruyor — devam etmek isteyenler oraya bakabilir.',
     popupClose:'Kapat',
@@ -201,6 +221,8 @@ const LA={
     apart:'Apart',
     one:'Together',
     caption:"Nine maps: nine drawings when apart; one composition when together. The moment they overlap is this scene's astonishment.",
+    quickMerge:'Merge into One Map',
+    quickReset:'Return to Start',
     legendTitle:'The Nine Maps — In Sequence',
     nextStep:"These nine maps stand alongside the site's other historical diagrams in the Drawings view — those who want to continue can look there.",
     popupClose:'Close',
@@ -214,6 +236,8 @@ const LA={
     apart:'Separados',
     one:'Reunidos',
     caption:'Nove mapas: nove desenhos quando separados; uma só composição quando reunidos. O instante da sobreposição é o espanto desta cena.',
+    quickMerge:'Fundir num Só Mapa',
+    quickReset:'Voltar ao Início',
     legendTitle:'Os Nove Mapas — Em Sequência',
     nextStep:'Estes nove mapas encontram-se junto aos outros diagramas históricos do site na vista de Desenhos — quem quiser continuar pode ali explorar.',
     popupClose:'Fechar',
@@ -421,6 +445,10 @@ const drawUnique = (g, idx) => {
 const gridCX = [300,800,1300,300,800,1300,300,800,1300];
 const gridCY = [250,250,250,500,500,500,750,750,750];
 const gridScale = 0.65;
+// 2026-08-20 kullanıcı notu: birleşen kompozisyon KÜÇÜK ızgaranın yalnız
+// biraz büyüğü değil, gerçekten büyük olmalı -- tam birleşmede (t=1) ölçek
+// artık 2.0 (dokuz haritanın toplamı, tek büyük bir harita gibi okunsun).
+const MERGE_SCALE_MAX = 2.0;
 
 const mapEls = [];
 for (let i=0;i<STEPS.length;i++){
@@ -480,7 +508,7 @@ function updateStage(mergeVal, aktifIdx){
     const gx=gridCX[i], gy=gridCY[i];
     const cx = gx + (CENTER_X-gx)*t;
     const cy = gy + (CENTER_Y-gy)*t;
-    let sc = gridScale + (1-gridScale)*t;
+    let sc = gridScale + (MERGE_SCALE_MAX-gridScale)*t;
     let op = (1 - t*0.30);
     if (aktifIdx !== null && aktifIdx !== undefined){
       if (i === aktifIdx) sc *= 1.12;
@@ -496,6 +524,29 @@ function applyMerge(v){ updateStage(v, null); }
 slider.addEventListener('input', e=>{
   if (!document.body.classList.contains('sahne-bitti')) return;
   applyMerge(+e.target.value);
+});
+
+// "Kendim gezineyim" kipini açar -- doğal bitişte de (tepki:'bitti'),
+// hızlı birleştir/başa dön düğmelerinden de (2026-08-20) buraya gelinir.
+function kendimGezineyimAc(){
+  document.body.classList.add('sahne-bitti');
+  slider.disabled = false;
+  mapEls.forEach(function(m){ m.g.setAttribute('tabindex','0'); });
+}
+
+// Hızlı birleştir/başa dön: anlatım sürüyorsa duraklatır, sonra doğrudan
+// var olan updateStage hedefine atlar -- yeni bir görsel/mekanizma yok.
+$('quickMergeBtn').addEventListener('click', function(){
+  if (motorAPI && motorAPI.durum === 'oynuyor') motorAPI.pause();
+  kendimGezineyimAc();
+  slider.value = 100;
+  applyMerge(100);
+});
+$('quickResetBtn').addEventListener('click', function(){
+  if (motorAPI && motorAPI.durum === 'oynuyor') motorAPI.pause();
+  kendimGezineyimAc();
+  slider.value = 0;
+  applyMerge(0);
 });
 
 const ENLARGE_LABEL = { tr:'Büyüt: ', en:'Enlarge: ', pt:'Ampliar: ' };
@@ -586,6 +637,8 @@ function renderAll(){
   $('hintText').textContent = d.hint;
   $('labelApart').textContent = d.apart;
   $('labelOne').textContent = d.one;
+  $('quickMergeBtn').textContent = d.quickMerge;
+  $('quickResetBtn').textContent = d.quickReset;
   if (sonMetin) $('s371Caption').textContent = sonMetin[curLang]||sonMetin.tr;
   $('hNextStep').textContent = d.nextStep;
   slider.setAttribute('aria-label', d.apart + ' / ' + d.one);
@@ -630,11 +683,7 @@ let motorAPI=null;
       olcuGoster:function(i,t){ $('olcuGosterge').textContent=(i+1)+' / '+t; },
       biterEl:$('motorBiter'),
       tepki:function(ev){
-        if (ev.tip==='bitti'){
-          document.body.classList.add('sahne-bitti');
-          slider.disabled=false;
-          mapEls.forEach(function(m){ m.g.setAttribute('tabindex','0'); });
-        }
+        if (ev.tip==='bitti') kendimGezineyimAc();
       },
     });
   });

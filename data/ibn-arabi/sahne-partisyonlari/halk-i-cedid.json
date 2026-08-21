@@ -5,15 +5,15 @@
     "en": "Perpetual Renewal — Vanishing and Re-forming",
     "pt": "Renovação Perpétua — Desaparecer e Refazer-se"
   },
-  "toplam_sure_sn": 40,
+  "toplam_sure_sn": 50,
   "max_olcu_sn": 9,
-  "not": "Sahnenin kendi render döngüsü (visible/void faz geçişi, t=0..1) zaten tam bu davranışı taşıyordu -- eskiden yalnız kaydırıcıyla erişilebiliyordu. Motor artık t'nin HEDEFİNİ ölçü ölçü veriyor, sahnenin kendi rAF döngüsü t'yi o hedefe yumuşakça yaklaştırıyor (nefes-i-rahmani.html'deki posHedefiVer deseninin aynısı). YANIP SÖNME YASAĞI: t=1 durağında tam döngü ~2.35sn (nefes hızında); ara geçiş ölçüleri kısa tutulmalı ki ara-hızlı-titreşen bölgede DURULMASIN.",
+  "not": "2026-08-20 kullanıcı notuyla yeniden düzenlendi. Yeni akış: (1) dünya tam olarak belirir, (2) parçalar halinde -- bazı yerler yok olurken başkaları görünür olarak -- titreşir, (3) sonra bütün dünya komple yok olup geri gelir (yavaş, 1-2 kez), (4) bu tam-yokluk/geri-geliş aralığı gitgide kısalarak göz kırpma hızına çıkar, (5) titreme huzurla yavaşlayıp sabit/durgun bir dünyada durulur, (6) en sonunda fade-out. Tek sürekli parametre (hiz) ölçüler arası hedeflerle eşit eğrideki gibi hızlanıp yavaşlıyor -- ayrı bir 'ivme' kodu gerekmiyor.",
   "olcuLer": [
     {
-      "id": "surekli-gorunur",
-      "sure_sn": 7,
-      "gecis_sure_sn": 1.5,
-      "hedef_hal": { "t": 0.0 },
+      "id": "dogus",
+      "sure_sn": 6,
+      "gecis_sure_sn": 2.0,
+      "hedef_hal": { "faz": "fadein" },
       "metin": {
         "tr": "Âlem bir kez yaratılıp bırakılmış değil — her nefeste yeniden yaratılıyor.",
         "en": "The world is not something created once and left — it is recreated at every breath.",
@@ -21,46 +21,57 @@
       }
     },
     {
-      "id": "fark-edilmez",
-      "sure_sn": 7,
-      "gecis_sure_sn": 1.5,
-      "hedef_hal": {},
-      "metin": {
-        "tr": "Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor.",
-        "en": "We do not notice, because two successive creations resemble each other so closely.",
-        "pt": "Não damos por isso, porque duas criações sucessivas se assemelham muito."
-      }
-    },
-    {
-      "id": "aralik-acilir",
-      "sure_sn": 9,
-      "gecis_sure_sn": 1.8,
-      "hedef_hal": { "t": 1.0 },
-      "metin": {
-        "tr": "Sahne duruyor gibi görünüyor. Aslında her karede tümüyle yok oluyor.",
-        "en": "The scene looks still. In fact it vanishes entirely each frame.",
-        "pt": "A cena parece imóvel. Na verdade, desaparece por inteiro a cada quadro."
-      }
-    },
-    {
-      "id": "yokluk-gorunur",
-      "sure_sn": 9,
-      "gecis_sure_sn": 1.8,
-      "hedef_hal": {},
-      "metin": {
-        "tr": "Neredeyse aynı yerde yeniden beliriyor — aradaki yokluk anı şimdi görünür.",
-        "en": "It reappears almost where it was — the moment of absence between is now visible.",
-        "pt": "Reaparece quase onde estava — o instante de ausência entre elas torna-se agora visível."
-      }
-    },
-    {
-      "id": "siklik-doner",
+      "id": "kismi-titresim",
       "sure_sn": 8,
-      "hedef_hal": { "t": 0.0, "nefes": true },
+      "gecis_sure_sn": 1.5,
+      "hedef_hal": { "faz": "patchy", "patchyHiz": 1 },
       "metin": {
-        "tr": "Aralık sıklaştıkça süreklilik geri gelir; az önce gördüğün artık öyle izlenemez.",
-        "en": "As the interval tightens, continuity returns; what you just saw can no longer be watched that way.",
-        "pt": "À medida que o intervalo se estreita, a continuidade regressa; o que acabou de ver já não pode ser assim observado."
+        "tr": "Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor — kimi yer söner, kimi yer aynı anda belirir.",
+        "en": "We do not notice, because two successive creations resemble each other so closely — some places fade while others appear at the very same instant.",
+        "pt": "Não damos por isso, porque duas criações sucessivas se assemelham muito — alguns lugares apagam-se enquanto outros surgem no mesmo instante."
+      }
+    },
+    {
+      "id": "tam-yokluk",
+      "sure_sn": 8,
+      "gecis_sure_sn": 1.8,
+      "hedef_hal": { "faz": "blink", "hiz": 0.22 },
+      "metin": {
+        "tr": "Sahne duruyor gibi görünüyor. Aslında zaman zaman tümüyle yok oluyor, sonra aynı yerde yeniden beliriyor.",
+        "en": "The scene looks still. In fact it vanishes entirely from time to time, then reappears where it was.",
+        "pt": "A cena parece imóvel. Na verdade, desaparece por inteiro de vez em quando, depois reaparece onde estava."
+      }
+    },
+    {
+      "id": "hizlanma",
+      "sure_sn": 7,
+      "gecis_sure_sn": 2.0,
+      "hedef_hal": { "faz": "blink", "hiz": 1.5 },
+      "metin": {
+        "tr": "Yokluk ile varlık arasındaki aralık kısaldıkça, dünya göz kırpar gibi titremeye başlıyor.",
+        "en": "As the gap between absence and presence shortens, the world begins to flicker like a blinking eye.",
+        "pt": "À medida que o intervalo entre ausência e presença se encurta, o mundo começa a tremeluzir como um piscar de olhos."
+      }
+    },
+    {
+      "id": "huzurla-duruluş",
+      "sure_sn": 8,
+      "gecis_sure_sn": 2.0,
+      "hedef_hal": { "faz": "blink", "hiz": 0 },
+      "metin": {
+        "tr": "Titreme huzurla yavaşlıyor — en sonunda dünya, hiç kesilmeksizin, sabit kalıyor.",
+        "en": "The flicker slows peacefully — at last the world holds steady, uninterrupted.",
+        "pt": "O tremeluzir desacelera com serenidade — por fim o mundo mantém-se estável, ininterrupto."
+      }
+    },
+    {
+      "id": "geri-cekilis",
+      "sure_sn": 7,
+      "hedef_hal": { "faz": "fadeout" },
+      "metin": {
+        "tr": "Sabit kaldığı an bile, o istikrarın kendisi her nefeste yeniden kuruluyordu.",
+        "en": "Even in the moment it held steady, that very steadiness was being remade with every breath.",
+        "pt": "Mesmo no instante em que se manteve estável, essa própria estabilidade estava a ser refeita a cada alento."
       }
     }
   ]

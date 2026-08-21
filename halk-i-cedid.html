@@ -115,8 +115,8 @@ const LA={
     title:'Halk-ı Cedîd',
     sub:'Âlem bir kez yaratılıp bırakılmış değil — her nefeste yeniden yaratılıyor. Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor.',
     hint:'Sahne durdu — artık hızını sen ayarla',
-    fast:'Sürekli',
-    slow:'Yavaş',
+    fast:'Sabit',
+    slow:'Titrek',
     kunyeBaslik:'Künye — bu sahne nereden geliyor?',
     caption:'Sahne duruyor gibi görünüyor. Aslında her karede tümüyle yok oluyor ve neredeyse aynı yerde yeniden beliriyor. Yavaşlattıkça aradaki yokluk anı görünür oluyor.',
     honesty:'Bu sahnenin güven düzeyi yerleşik: "her nefeste yeniden yaratılış" iddiası iki ayrı Fütûhât alıntısına (Cilt XV, 416. Bölüm; Cilt XIV, 408. Bölüm) doğrudan dayanıyor, kaynağın söylemediği bir kesinlik eklenmedi. Doktrinin akademik okuması için Mohamed Haj Yousef\'in "Ibn \'Arabî - Time and Cosmology" (Routledge, 2007) kitabına bakılabilir; ama kitabın kendi fizik-kıyasları (modern fizik teorileriyle karşılaştırma) yayınlanmış eleştirilerde aşırı iddialı bulunmuş — bu sahne o kıyaslara hiç başvurmuyor, yalnız doktrinin kendisini taşıyor.',
@@ -125,8 +125,8 @@ const LA={
     title:'Perpetual Renewal',
     sub:'The world is not something created once and left — it is recreated at every breath. We do not notice, because two successive creations resemble each other so closely.',
     hint:'The scene has settled — now set the pace yourself',
-    fast:'Continuous',
-    slow:'Slow',
+    fast:'Steady',
+    slow:'Flickering',
     kunyeBaslik:'Sources — where this scene comes from',
     caption:'The scene looks still. In fact it vanishes each frame and reappears almost — but not quite — where it was. Slow it down and the moment of absence becomes visible.',
     honesty:"This scene's confidence level is well-established: the claim of \"perpetual re-creation with every breath\" rests directly on two separate Futuhat passages (Vol. XV, Chapter 416; Vol. XIV, Chapter 408), with no certainty added beyond what the source states. For an academic treatment of the doctrine, see Mohamed Haj Yousef's \"Ibn 'Arabi - Time and Cosmology\" (Routledge, 2007); but the book's own physics comparisons (drawing parallels with modern physical theories) have been called overreaching in published reviews — this scene does not draw on those comparisons, only on the doctrine itself.",
@@ -135,8 +135,8 @@ const LA={
     title:'Renovação Perpétua',
     sub:'O mundo não é algo criado uma vez e deixado — é recriado a cada alento. Não damos por isso, porque duas criações sucessivas se assemelham muito.',
     hint:'A cena parou — agora ajuste você mesmo o ritmo',
-    fast:'Contínuo',
-    slow:'Lento',
+    fast:'Estável',
+    slow:'A tremeluzir',
     kunyeBaslik:'Fontes — de onde vem esta cena',
     caption:'A cena parece imóvel. Na verdade, a cada quadro ela desaparece por inteiro e retorna quase — não exatamente — onde estava. Ao desacelerar, o instante de ausência se torna visível.',
     honesty:'O nível de confiança desta cena é consolidado: a afirmação de "recriação perpétua a cada alento" assenta diretamente em duas passagens separadas das Futuhat (Vol. XV, Capítulo 416; Vol. XIV, Capítulo 408), sem qualquer certeza acrescentada além do que a fonte afirma. Para uma leitura académica da doutrina, pode consultar-se o livro de Mohamed Haj Yousef, "Ibn \'Arabi - Time and Cosmology" (Routledge, 2007); mas as próprias comparações do livro com a física (traçando paralelos com teorias físicas modernas) foram consideradas excessivas em avaliações publicadas — esta cena não recorre a essas comparações, apenas à doutrina em si.',
@@ -287,55 +287,101 @@ function recreate(){
 }
 recreate();
 
+// ── 2026-08-20 yeniden düzenleme (kullanıcı notu) ───────────────────────────
+// Akış artık tek bir sürekli "hiz" parametresiyle kuruluyor -- ölçüler
+// arasında hedefler değiştikçe (0.22 → 1.5 → 0) aynı yumuşak-yaklaşma
+// eğrisi önce hızlanıp sonra kendiliğinden yavaşlıyor; ayrı bir "ivme"
+// kodu gerekmiyor (nefes-i-rahmani.html'deki posHedefiVer deseninin aynısı).
+// faz: 'fadein' (dünya belirir) → 'patchy' (parçalar halinde titreşir,
+// dünya hiç tümüyle kaybolmaz) → 'blink' (dünya TÜMÜYLE kaybolup geri
+// gelir; hiz bu fazın periyodunu sürer) → 'fadeout' (dünya çekilir).
+const svgAll=[...items.map(it=>({el:it.el,baseOp:it.baseOp})), ...dust.map(d=>({el:d.el,baseOp:d.op}))];
+function tumunuGoster(){
+  for(const f of svgAll) f.el.setAttribute('opacity', f.baseOp.toFixed(3));
+}
+
 const slider=$('slider');
 const hint=$('hint');
-let t=0, targetT=0; // yavaşlama 0..1 -- motor hedefi veriyor, döngü kendi yaklaştırıyor
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Döngü: görünür → yokluk → yeniden yaratılış → görünür -- SÜREKLİ çalışır
-// (narasyon sırasında da, sahne bittikten sonra da); yalnız t'nin hedefi
-// motordan (ya da kendim gezineyim kaydırıcısından) gelir.
-// t=0: görünür ~55ms, yokluk ~0ms → süreklilik olarak okunur.
-// t=1: görünür ~1400ms, yokluk ~900ms → kesinti açıkça görünür (nefes hızında).
-let phase='visible';
-let phaseStart=performance.now();
+let faz='fadein';
+let hiz=0, targetHiz=0;
+let patchyHiz=1;
 let lastEase=performance.now();
+let blinkPhase='visible';
+let blinkPhaseStart=performance.now();
+let patchyState=new Map(); // el -> {nextToggle, on}
 let rafId=0;
+
+function fazUygula(yeniFaz, gecisSn){
+  const eskiFaz=faz;
+  faz=yeniFaz;
+  sceneG.style.transition='opacity '+(gecisSn||1.8)+'s ease';
+  if(yeniFaz==='fadein'){
+    sceneG.setAttribute('opacity','0');
+    requestAnimationFrame(()=>{ sceneG.setAttribute('opacity','1'); });
+  } else if(yeniFaz==='fadeout'){
+    tumunuGoster();
+    sceneG.setAttribute('opacity','1');
+    requestAnimationFrame(()=>{ sceneG.setAttribute('opacity','0'); });
+  } else {
+    sceneG.setAttribute('opacity','1');
+    if(eskiFaz==='patchy'||eskiFaz==='fadein') tumunuGoster();
+    if(yeniFaz==='blink'){ blinkPhase='visible'; blinkPhaseStart=performance.now(); }
+  }
+}
+
+function patchyStep(now){
+  for(const f of svgAll){
+    let s=patchyState.get(f.el);
+    if(!s){ s={nextToggle:now+Math.random()*500, on:true}; patchyState.set(f.el,s); }
+    if(now>=s.nextToggle){
+      s.on=!s.on;
+      f.el.setAttribute('opacity', s.on?f.baseOp.toFixed(3):'0');
+      const hiz2=Math.max(0.2, patchyHiz);
+      s.nextToggle=now+(260+Math.random()*900)/hiz2;
+    }
+  }
+}
+
+// Döngü SÜREKLİ çalışır (narasyon sırasında da, sahne bittikten sonra da,
+// yalnız 'blink' fazındayken görünür etkisi olur); hiz'in hedefi motordan
+// (ya da kendim gezineyim kaydırıcısından) gelir.
+// hiz≈0: dünya sabit kalır (kesinti yok). hiz büyüdükçe tam-yokluk/tam-
+// varlık döngüsü kısalır -- göz kırpar gibi titrer.
 function loop(now){
   const dt=Math.min(80, now-lastEase); lastEase=now;
-  if(Math.abs(targetT-t)>0.0008) t+=(targetT-t)*Math.min(1, dt/900);
-  else t=targetT;
+  if(Math.abs(targetHiz-hiz)>0.001) hiz+=(targetHiz-hiz)*Math.min(1, dt/1100);
+  else hiz=targetHiz;
 
-  const visMs=55+t*t*1400;
-  const voidMs=t*t*900;
-  const elapsed=now-phaseStart;
-  if(phase==='visible'){
-    sceneG.setAttribute('opacity','1');
-    if(elapsed>=visMs){
-      if(voidMs>8){
-        phase='void';
-        phaseStart=now;
-        sceneG.setAttribute('opacity','0');
-      } else {
+  if(faz==='patchy'){
+    patchyStep(now);
+  } else if(faz==='blink'){
+    if(hiz<=0.03){
+      if(blinkPhase!=='visible'){ blinkPhase='visible'; sceneG.setAttribute('opacity','1'); }
+    } else {
+      const visMs=140+900/hiz;
+      const voidMs=60+280/hiz;
+      const elapsed=now-blinkPhaseStart;
+      if(blinkPhase==='visible'){
+        if(elapsed>=visMs){
+          blinkPhase='void'; blinkPhaseStart=now;
+          sceneG.setAttribute('opacity','0');
+        }
+      } else if(elapsed>=voidMs){
         recreate();
-        phaseStart=now;
+        blinkPhase='visible'; blinkPhaseStart=now;
+        sceneG.setAttribute('opacity','1');
       }
-    }
-  } else {
-    if(elapsed>=voidMs){
-      recreate();
-      phase='visible';
-      phaseStart=now;
-      sceneG.setAttribute('opacity','1');
     }
   }
   rafId=requestAnimationFrame(loop);
 }
-function tHedefiVer(v){ targetT=v; }
+function hizHedefiVer(v){ targetHiz=v; }
 
 slider.addEventListener('input',e=>{
   if(!document.body.classList.contains('sahne-bitti')) return;
-  tHedefiVer((+e.target.value)/100);
+  hizHedefiVer((+e.target.value)/100*1.6);
   if(hint) hint.style.animation='none';
 });
 
@@ -362,9 +408,16 @@ let motorAPI=null;
       container:document.querySelector('.stage-frame'), partisyon:p,
       applyOlcu:function(o){
         const hal=o.hedef_hal||{};
-        if(hal.t!==undefined){
-          targetT=hal.t;
-          if(reduced) t=hal.t; // reduced-motion: döngü çalışmıyor, doğrudan uygula
+        if(hal.patchyHiz!==undefined) patchyHiz=hal.patchyHiz;
+        if(hal.hiz!==undefined) targetHiz=hal.hiz;
+        if(reduced){
+          // reduced-motion: döngü çalışmıyor -- her fazın ANLAMLI durağan
+          // karşılığı doğrudan uygulanır (titreme yok, yalnız son görüntü).
+          sceneG.style.transition='none';
+          if(hal.faz==='fadeout') sceneG.setAttribute('opacity','0');
+          else { tumunuGoster(); sceneG.setAttribute('opacity','1'); }
+        } else if(hal.faz){
+          fazUygula(hal.faz, o.gecis_sure_sn);
         }
       },
       metinGoster:metinYaz,
@@ -373,8 +426,15 @@ let motorAPI=null;
       tepki:function(ev){
         if(ev.tip==='bitti'){
           document.body.classList.add('sahne-bitti');
+          if(faz==='fadeout'){
+            // Bitiş hâli "sahnenin özeti" olmalı (/sahne ilkesi) -- kendim
+            // gezineyim kipine geçince dünya tekrar sabit görünür olsun,
+            // kaydırıcı 0'dan (durgun) başlasın.
+            fazUygula('blink', 1.2);
+            targetHiz=0;
+          }
           slider.disabled=false;
-          slider.value=Math.round(targetT*100);
+          slider.value=Math.round(Math.min(1,targetHiz/1.6)*100);
         }
       },
     });
