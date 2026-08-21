@@ -212,6 +212,26 @@ const svgNS='http://www.w3.org/2000/svg';
 const rand=(seed => () => (seed = (seed * 9301 + 49297) % 233280) / 233280)(31);
 
 const sceneG=document.getElementById('sceneG');
+
+// Ufuk: "dünya"yı tek tek saçılmış simgeler değil, tanınabilir bir YER
+// olarak kuran zemin (kullanıcı bulgusu, 2026-08-21: önceki dağılım rastgele
+// duran ikonlar gibi okunuyordu, bir dünya gibi değil). Ufuk sabit kalır --
+// üzerindeki ağaç/kapı/kuş/toz "patchy" fazında tek tek titrer, ama zemin
+// hiç kaybolmaz: "dünya hiç tümüyle kaybolmaz" burada doğrudan görsel.
+function horizonY(x){
+  return 760 + 55*Math.sin(x/410+1.1) + 22*Math.sin(x/160+3.0) + 9*Math.sin(x/68+0.4);
+}
+{
+  let d='M 0 '+horizonY(0).toFixed(1);
+  for(let x=20;x<=1600;x+=20) d+=' L '+x+' '+horizonY(x).toFixed(1);
+  d+=' L 1600 1000 L 0 1000 Z';
+  const ground=document.createElementNS(svgNS,'path');
+  ground.setAttribute('d',d);
+  ground.setAttribute('fill','var(--text)');
+  ground.setAttribute('opacity','0.16');
+  sceneG.appendChild(ground);
+}
+
 const shapes={
   cypress:'M 20 40 L 12 34 Q 8 22 14 14 Q 16 6 20 0 Q 24 6 26 14 Q 32 22 28 34 L 20 40 Z',
   hill:'M 0 40 Q 20 8 40 40 Z',
@@ -222,26 +242,8 @@ const shapes={
   door:'M 4 40 L 4 14 Q 4 2 20 2 Q 36 2 36 14 L 36 40 Z',
 };
 const filled=new Set(['cypress','hill','arch','leaf','moon','door']);
-const keys=Object.keys(shapes);
 
-const items=[];
-const placed=[];
-let attempts=0;
-const target=70;
-while(placed.length<target && attempts<target*40){
-  attempts++;
-  const x=60+rand()*1480;
-  const y=60+rand()*880;
-  const scale=0.6+rand()*1.2;
-  const minDist=90*scale;
-  let ok=true;
-  for(const p of placed){
-    const dx=p.x-x, dy=p.y-y;
-    if(dx*dx+dy*dy<minDist*minDist){ ok=false; break; }
-  }
-  if(!ok) continue;
-  placed.push({x,y,scale});
-  const kind=keys[Math.floor(rand()*keys.length)];
+function makeItem(kind,x,y,scale){
   const g=document.createElementNS(svgNS,'g');
   const el=document.createElementNS(svgNS,'path');
   el.setAttribute('d',shapes[kind]);
@@ -255,15 +257,40 @@ while(placed.length<target && attempts<target*40){
   el.setAttribute('opacity',baseOp.toFixed(2));
   g.appendChild(el);
   sceneG.appendChild(g);
-  items.push({g,el,x,y,scale,baseOp,w:40*scale,h:40*scale});
+  return {g,el,x,y,scale,baseOp,w:40*scale,h:40*scale};
 }
+
+const items=[];
+
+// Zemine dayanan öğeler: taban ufka değecek şekilde, ufuk boyunca aralıklı.
+const groundKinds=[
+  ...Array(7).fill('cypress'), ...Array(5).fill('hill'),
+  ...Array(2).fill('arch'), ...Array(2).fill('door'), ...Array(8).fill('leaf'),
+];
+{
+  const placedX=[];
+  for(const kind of groundKinds){
+    let x, tries=0;
+    do{ x=70+rand()*1460; tries++; } while(placedX.some(px=>Math.abs(px-x)<95) && tries<40);
+    placedX.push(x);
+    const scale=kind==='cypress'?0.85+rand()*0.5:kind==='hill'?0.7+rand()*0.6:0.6+rand()*0.35;
+    items.push(makeItem(kind,x,horizonY(x)+rand()*6,scale));
+  }
+}
+
+// Gökteki öğeler: ufkun üstünde, dünyadan bağımsız -- ay ve kuşlar.
+items.push(makeItem('moon',1300+rand()*120,130+rand()*40,1.3));
+for(let i=0;i<5;i++){
+  items.push(makeItem('bird',100+rand()*1400,90+rand()*260,0.7+rand()*0.5));
+}
+
 // Bir de her seferinde yeniden yaratılan ince bir toz katmanı.
 const dust=[];
-for(let i=0;i<180;i++){
+for(let i=0;i<140;i++){
   const c=document.createElementNS(svgNS,'circle');
   const x=rand()*1600, y=rand()*1000;
   const r=0.8+rand()*1.1;
-  const op=0.35+rand()*0.35;
+  const op=0.3+rand()*0.3;
   c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',r);
   c.setAttribute('fill','var(--text)'); c.setAttribute('opacity',op.toFixed(2));
   sceneG.appendChild(c);
