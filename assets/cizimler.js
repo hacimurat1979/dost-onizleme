@@ -461,8 +461,8 @@
       const op = 1 - t * 0.30;
       birlesikMapEls[i].g.setAttribute('transform', `translate(${cx.toFixed(1)} ${cy.toFixed(1)}) scale(${sc.toFixed(3)})`);
       birlesikMapEls[i].g.setAttribute('opacity', op.toFixed(3));
-      birlesikMapEls[i].num.setAttribute('opacity', (1 - t * 0.9).toFixed(3));
-      birlesikMapEls[i].labelEl.setAttribute('opacity', (0.85 * (1 - t * 0.9)).toFixed(3));
+      birlesikMapEls[i].num.style.opacity = (1 - t).toFixed(3);
+      birlesikMapEls[i].labelEl.style.opacity = (0.85 * (1 - t)).toFixed(3);
     }
   }
 
