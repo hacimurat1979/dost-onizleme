@@ -1134,38 +1134,6 @@
       <div class="bookmap-concept-tags">${chips}</div>`;
   }
 
-  // Bazı terimlerin ayrı, sürüklenebilir bir sahnesi var. İlki
-  // (nefes-i-rahmani, D12) tek bir terime gömülü yazılmıştı; berzah (D13)
-  // eklenirken aynı kod ikinci kez yazılmasın diye tabloya çevrildi --
-  // yeni bir sahne eklemek artık buraya bir satır eklemek demek.
-  // 2026-08-19 @revise: nefes-i-rahmani girdisi, sahnenin kendisi kullanıcı
-  // notuyla kaldırıldığı için buradan da düşürüldü.
-  const TERIM_SAHNELERI = {
-    berzah: {
-      dosya: "berzah.html",
-      not: {
-        tr: "Ayrı bir sahne, Dost'un dünya–berzah–âhiret sıralamasını üç uyanıklık mertebesi olarak sürüklenebilir hâle getiriyor: nerede durursan yalnız orası netleşiyor.",
-        en: "A separate scene turns Dost's world–barzakh–afterlife ordering into three degrees of wakefulness you can drag through: only where you stand comes into focus.",
-        pt: "Uma cena separada transforma a ordenação mundo–barzakh–vida futura de Dost em três graus de vigília que se pode percorrer arrastando: só o lugar onde você está fica nítido.",
-      },
-      dugme: {
-        tr: "Sahneyi aç: Berzah",
-        en: "Open the scene: The Barzakh",
-        pt: "Abrir a cena: O Barzakh",
-      },
-    },
-  };
-
-  function terimSahneHtml(id) {
-    const s = TERIM_SAHNELERI[id];
-    if (!s) return "";
-    const base = window.__dostRouteBase || "";
-    return `<div class="detail-gate detail-gate--sahne terim-nefes-sahne">
-      <p class="detail-gate__note">${tt(s.not)}</p>
-      <a class="detail-gate__btn" href="${base}/${s.dosya}">${tt(s.dugme)}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
-    </div>`;
-  }
-
   function showTermDetail(id) {
     const t = glossaryData.terms[id];
     if (!t) return;
@@ -1189,7 +1157,6 @@
         <h3>${tt({ tr: "İbn Arabî'nin Yorumu", en: "Ibn Arabi's Interpretation", pt: "A Interpretação de Ibn Arabi" })}</h3>
         <p>${linkify(tt(t.ibn_arabi_yorumu), "terimler", t.id)}</p>
       </div>
-      ${terimSahneHtml(t.id)}
       ${ceviriKaybiHtml(t.id)}
       ${analogyHtml(t)}
       ${groupDiagramHtml(group)}

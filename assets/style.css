@@ -6914,6 +6914,85 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   outline: none;
 }
 
+/* 371. Bab: Dokuz Harita -- eskiden ayrı bir "sahne" sayfasıydı
+   (futuhat-371.html), kullanıcı isteğiyle (2026-08-21) bu görünüme
+   taşındı. Renkler diğer .cizim-card/.term-diagram-* öğeleriyle aynı
+   token'ları kullanır (--series-theme, --text-primary vb.) -- sahnenin
+   kendi --gold/--liminal değişkenleri burada icat edilmedi. */
+.cizim-card--birlesik { margin-bottom: 28px; }
+.cizim-birlesik { display: flex; flex-direction: column; gap: 10px; }
+.cizim-birlesik__svg {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: color-mix(in srgb, var(--series-theme) 3%, var(--surface-1));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.birlesik-map { cursor: pointer; }
+.birlesik-map__hit { fill: transparent; stroke: none; }
+.birlesik-map__no { font-family: Georgia, serif; font-size: 22px; fill: var(--series-theme); opacity: 0.9; }
+.birlesik-map__label { font-family: Georgia, serif; font-size: 13px; fill: var(--text-muted); opacity: 0.85; }
+.birlesik-map:hover .birlesik-map__no,
+.birlesik-map:focus-visible .birlesik-map__no { fill: var(--series-theme-text, var(--series-theme)); }
+.birlesik-map:focus-visible { outline: 2px solid var(--series-theme); outline-offset: 4px; }
+@media (prefers-reduced-motion: no-preference) {
+  .birlesik-map { transition: opacity .5s ease, transform .5s ease; }
+}
+.cizim-birlesik__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.cizim-birlesik__quick { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.cizim-birlesik__btn {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: border-color var(--dur-kisa) ease, color var(--dur-kisa) ease;
+}
+.cizim-birlesik__btn:hover,
+.cizim-birlesik__btn:focus-visible { border-color: var(--series-theme); color: var(--series-theme-text, var(--series-theme)); }
+.cizim-birlesik__btn--ghost { color: var(--text-muted); }
+.cizim-birlesik__slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  width: min(360px, 100%);
+}
+.cizim-birlesik__slider-row input[type="range"] {
+  flex: 1;
+  appearance: none;
+  background: transparent;
+  height: 28px;
+  cursor: pointer;
+}
+.cizim-birlesik__slider-row input[type="range"]::-webkit-slider-runnable-track { height: 2px; background: var(--border); border-radius: 2px; }
+.cizim-birlesik__slider-row input[type="range"]::-moz-range-track { height: 2px; background: var(--border); border-radius: 2px; }
+.cizim-birlesik__slider-row input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--series-theme);
+  border: 2px solid var(--surface-1);
+  margin-top: -8px;
+}
+.cizim-birlesik__slider-row input[type="range"]::-moz-range-thumb {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--series-theme);
+  border: 2px solid var(--surface-1);
+}
+.cizim-birlesik__slider-row input[type="range"]:focus-visible { outline: 2px solid var(--series-theme); outline-offset: 4px; }
+
 .cizim-lightbox {
   position: fixed;
   inset: 0;
@@ -11253,93 +11332,3 @@ button.kuran-dokusu-satir:focus-visible {
   margin: 0;
 }
 
-/* Sahneler galerisi (2026-08-05, bkz. index.html'deki sahneler-wrap yorumu). */
-.sahneler-intro {
-  margin: 0 clamp(16px, 4vw, 48px) 20px;
-  max-width: 62ch;
-}
-.sahneler-intro h2 {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  margin: 0 0 8px;
-  color: var(--text-primary);
-}
-.sahneler-intro p {
-  color: var(--text-secondary);
-  margin: 0;
-  line-height: 1.6;
-}
-.sahneler-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-  margin: 0 clamp(16px, 4vw, 48px) 32px;
-}
-.sahneler-kart {
-  display: block;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 18px;
-  text-decoration: none;
-  color: inherit;
-  background: var(--surface-1);
-  transition: border-color var(--dur-orta) ease, background var(--dur-orta) ease;
-}
-.sahneler-kart:hover { background: var(--gridline); }
-.sahneler-kart:focus-visible { border-radius: 12px; }
-.sahneler-kart__title {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  color: var(--text-primary);
-  margin-bottom: 6px;
-}
-.sahneler-kart__ozet {
-  margin: 0;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.55;
-}
-
-.sahneler-bekleyen {
-  margin: 0 clamp(16px, 4vw, 48px) 32px;
-  padding: 16px 18px;
-  border: 1px dashed var(--border);
-  border-radius: 12px;
-}
-.sahneler-bekleyen h3 {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  margin: 0 0 6px;
-  color: var(--text-secondary);
-}
-.sahneler-bekleyen__not {
-  margin: 0 0 12px;
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  line-height: 1.55;
-  max-width: 62ch;
-}
-.sahneler-bekleyen__liste {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.sahneler-bekleyen__liste li {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 10px;
-  font-size: 0.88rem;
-}
-.sahneler-bekleyen__ad {
-  color: var(--text-primary);
-}
-.sahneler-bekleyen__durum {
-  color: var(--text-secondary);
-  font-size: 0.78rem;
-  font-style: italic;
-}

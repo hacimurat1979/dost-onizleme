@@ -37,7 +37,7 @@
 
   var VIEWS = {
     __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-hHPP3yWv5IXuQkGjWLhFLueJiAS5vfHdoOvrlB2j49dAg6V8w5oHCJGS1TLtZrWO" },
-    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-inZ27eH5OcpCTxfx3E8FqSg6YGaI0LO0EMKqhQokX15Ek4nM5JSm6iwZlplZWmM+" },
+    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-Mv3sxIrliGNS+YVIdKGP5szfd/ick34KzC+BVLyP3Ru+jVH+geIZQef74mQ7GCoL" },
     __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-ueJyuy/b04NHTcHqZ0FdSQVTq3egRzUMDMlzsTW9FbKOpJ1RAIxqRvS7ukUSIoaI" },
     __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-shR0WA4WhzPz71v4fCkv/IPBjpnQoyNB2/o2kEOPFzH/ysFjjuW6QCpOyQYyw5X2" },
     __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-2rN3S/i2hCI+gsfcxXbYk077iG7ineliJ4mSDwiZoVruUR8eOOqc9ctW2W4Q7I79" },
@@ -49,10 +49,10 @@
     __eserAgiApp: { src: "assets/eser-agi.js", integrity: "sha384-u8X5GYrGysI+R4QmoGRTbs8DQYcLj+T9VT59Wed45C2luPtbATRDWLls+gHcCyQm" },
     __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-kl48zvjGhCjql6ilzjKBLNV+o8iJC8Aa9VWWZs2PcW4CRsYqu936jtfJaJDxoY0k" },
     __yolculukApp: { src: "assets/yolculuk.js", integrity: "sha384-4rFNj/JUH7Mr0a6bUe2+DXBMA729ejih0SnKi4JjwiyDpWMm76JHIdiDkCLzplkl" },
-    __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-MQjf+oHgKaxkf9tdY2Aqp2t7UBKQZE0u4z3XOp1EkIhn/0eWEZmFzkLDMwI+3cAJ" },
+    __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-WpfLUp6DVP5UV+d77GtzYBSOK79GBd/yzuWx9KKnhmtnEbLTJCVJx/CgQ2aOEzsh" },
     __esmaApp: { src: "assets/esma.js", integrity: "sha384-/ncnf2gsh7EHjcbRhJZbklApdK0qp9UkmdgWBYIJF8SbPSvdRD7iedkkmVcYvbzZ" },
     __halApp: { src: "assets/hal.js", integrity: "sha384-eJDFXely7UujbOB/qSp9VZtgCfqmsZA89s54UE+/7uQgkbbjqxcbeKM/RY9B7F7A" },
-    __terimlerApp: { src: "assets/terimler.js", integrity: "sha384-2Uf+Tnb/B45nfLK83bVKqEaWbFEWG8XCh0fP7hYObq1FGdu4wx4J5hHZOv9FNbCc" },
+    __terimlerApp: { src: "assets/terimler.js", integrity: "sha384-u87oqF5QBlI9l+ie5gumy17cGVqEQ3UnKKZRGr1NLCbrG3a2pY/lP4XUDO6OYs7P" },
     __sorularApp: { src: "assets/sorular.js", integrity: "sha384-+ufyuoQVyIt1uPeefqJ2NoEaU7ErtTBkyEdvih9ycfOtInUyZc8ftznepU9VNhxo" },
     __menzillerApp: { src: "assets/menziller.js", integrity: "sha384-UNu3PnlIt9nPiOz7RUEfTq8M81l0rtrf5cQx9wtO/mE1QIoal04Ibprhbzsa4EhQ" },
     __futuhatApp: { src: "assets/futuhat.js", integrity: "sha384-f6dBy8DGb9oAuE5pE9INObqa5OLOZlp37WZB6C1Xts802eJfLlFkkI2IXvFMukre" },

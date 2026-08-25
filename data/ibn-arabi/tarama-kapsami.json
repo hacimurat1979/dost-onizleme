@@ -34,16 +34,7 @@
     { "yol": "data/ibn-arabi/anlamsal-baglantilar.json", "gorunum": null, "etiket": "Anlamsal Bağlantılar" },
     { "yol": "data/ibn-arabi/hadis-dizini.json", "gorunum": null, "etiket": "Hadis Dizini" },
     { "yol": "data/ibn-arabi/sozluk-ipuclari.json", "gorunum": null, "etiket": "Sözlük İpuçları" },
-    { "yol": "data/ibn-arabi/okuma-yollari.json", "gorunum": null, "etiket": "Okuma Yolları" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/perde-zinciri.json", "gorunum": "sahneler", "etiket": "Perde Zinciri partisyonu" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/kalbe-sigan.json", "gorunum": "sahneler", "etiket": "Sığmayanın Sığdığı partisyonu" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/berzah.json", "gorunum": "sahneler", "etiket": "Berzah partisyonu" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/halk-i-cedid.json", "gorunum": "sahneler", "etiket": "Halk-ı Cedîd partisyonu" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/iki-mertebe.json", "gorunum": "sahneler", "etiket": "Aynı Âyet, İki Mertebe partisyonu" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/ayna-metaforu.json", "gorunum": "sahneler", "etiket": "Ayna Metaforu partisyonu" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/futuhat-371.json", "gorunum": "sahneler", "etiket": "371. Bab: Dokuz Harita partisyonu" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/renkli-cam-analojisi.json", "gorunum": "sahneler", "etiket": "Renkli Cam Analojisi partisyonu" },
-    { "yol": "data/ibn-arabi/sahne-partisyonlari/kandil.json", "gorunum": "sahneler", "etiket": "Kandil partisyonu" }
+    { "yol": "data/ibn-arabi/okuma-yollari.json", "gorunum": null, "etiket": "Okuma Yolları" }
   ],
 
   "gorunumNotu": "`gorunum` yalnız duruş taraması için: bulgudan o görünüme atlamayı sağlıyor. null olan dosyalar için atlama yok -- bilmediğimiz görünüm adını UYDURMAK yerine boş bıraktık, bulgu yine listeleniyor, yalnız tıklayınca bir yere gitmiyor.",

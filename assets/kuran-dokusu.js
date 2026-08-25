@@ -336,34 +336,13 @@ window.__kuranDokusuApp = (function () {
     vurgula(null, focusBabId, true);
   }
 
-  // Bu grafiğin gösterdiği fikrin (aynı âyet birden fazla bapta, her
-  // seferinde farklı bir mertebeden okunuyor) ayrı, sürüklenebilir bir
-  // sahnesi var (iki-mertebe.html) ama hiçbir yerden linklenmiyordu
-  // (2026-08-04 taramasında ölçüldü). Giriş paneli en doğru yer.
-  function ikiMertebeSahneHtml() {
-    const base = window.__dostRouteBase || "";
-    return `<div class="detail-gate detail-gate--sahne kuran-dokusu-sahne">
-      <p class="detail-gate__note">${tt({
-        tr: "Bu grafik hangi âyetin hangi bapta geçtiğini gösteriyor. Ayrı bir sahne, aynı âyetin iki bapta nasıl FARKLI mertebelerden okunduğunu yan yana koyuyor.",
-        en: "This graph shows which verse appears in which chapter. A separate scene places side by side how the same verse is read from two DIFFERENT ranks across two chapters.",
-        pt: "Este grafo mostra em qual capítulo cada versículo aparece. Uma cena separada coloca lado a lado como o mesmo versículo é lido a partir de duas categorias DIFERENTES em dois capítulos.",
-      })}</p>
-      <a class="detail-gate__btn" href="${base}/iki-mertebe.html">${tt({
-        tr: "Sahneyi aç: Aynı Âyet, İki Mertebe",
-        en: "Open the scene: Same Verse, Two Ranks",
-        pt: "Abrir a cena: Mesmo Versículo, Duas Categorias",
-      })}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
-    </div>`;
-  }
-
   function girisPaneli() {
     focusSureNo = null;
     focusBabId = null;
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Kur'ân Dokusu", en: "The Qur'ânic Weave", pt: "A Trama Alcorânica" })}</p>
       <h2 class="detail-title">${sureler.length} ${tt({ tr: "sûre", en: "sûrahs", pt: "suratas" })}, ${bablar.length} ${tt({ tr: "bap", en: "chapters", pt: "capítulos" })}</h2>
-      <div class="detail-block detail-block--soru"><p>${tt(data.not)}</p></div>
-      ${ikiMertebeSahneHtml()}`;
+      <div class="detail-block detail-block--soru"><p>${tt(data.not)}</p></div>`;
     detailPanel.hidden = false;
   }
 

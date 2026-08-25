@@ -257,28 +257,6 @@
           </div>
         </div>
         <div class="nav-drawer__group">
-          <p class="nav-drawer__heading" role="button" tabindex="0" aria-expanded="true" data-tr="Sahneler" data-en="Scenes" data-pt="Cenas">Sahneler</p>
-          <!-- 2026-08-15 @revise: eskiden bu alt-menü açılınca tek bir
-               "Sahneler" düğmesi görünüyordu (üstteki başlıkla aynı ad) --
-               kullanıcı "sahnelerin isimlerinin yazılı olduğu butonlar
-               olsun" dedi. Her sahne artık kendi adıyla, doğrudan kendi
-               sayfasına giden bir bağlantı (data-scene-href, .sahneler-kart
-               galerisiyle aynı desen -- href assets/ontology.js'te
-               ROUTE_BASE ile kuruluyor). Liste, galerideki sırayla aynı. -->
-          <div class="nav-drawer__items">
-            <a class="btn-ghost" data-scene-href="halk-i-cedid.html" data-tr="Halk-ı Cedîd" data-en="Perpetual Renewal" data-pt="Renovação Perpétua">Halk-ı Cedîd</a>
-            <a class="btn-ghost" data-scene-href="berzah.html" data-tr="Berzah" data-en="The Barzakh" data-pt="O Barzakh">Berzah</a>
-            <a class="btn-ghost" data-scene-href="kalbe-sigan.html" data-tr="Sığmayanın Sığdığı" data-en="What Cannot Be Contained, Contained" data-pt="O que Não Cabe, Cabendo">Sığmayanın Sığdığı</a>
-            <a class="btn-ghost" data-scene-href="iki-mertebe.html" data-tr="Aynı Âyet, İki Mertebe" data-en="The Same Verse, Two Levels" data-pt="O Mesmo Versículo, Dois Graus">Aynı Âyet, İki Mertebe</a>
-            <a class="btn-ghost" data-scene-href="futuhat-371.html" data-tr="371. Bab: Dokuz Harita" data-en="Chapter 371: Nine Maps" data-pt="Capítulo 371: Nove Mapas">371. Bab: Dokuz Harita</a>
-            <a class="btn-ghost" data-scene-href="renkli-cam-analojisi.html" data-tr="Renkli Cam Analojisi" data-en="The Tinted-Glass Analogy" data-pt="A Analogia do Vidro Colorido">Renkli Cam Analojisi</a>
-            <a class="btn-ghost" data-scene-href="kandil.html" data-tr="Kandil — Sınırlanınca Görünen" data-en="The Lamp — What Becomes Visible When Bounded" data-pt="A Lâmpada — O que Se Torna Visível quando Limitado">Kandil — Sınırlanınca Görünen</a>
-            <a class="btn-ghost" data-scene-href="perde-zinciri.html" data-tr="Perde Zinciri" data-en="Chain of Veils" data-pt="Cadeia de Véus">Perde Zinciri</a>
-            <a class="btn-ghost" data-scene-href="ayna-metaforu.html" data-tr="Ayna Metaforu" data-en="Mirror Metaphor" data-pt="Metáfora do Espelho">Ayna Metaforu</a>
-            <button class="btn-ghost" id="sahneler-btn" type="button" title="Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin galerisi — A gallery of the site's standalone, drag-or-scroll scenes — Uma galeria das cenas independentes e exploráveis do site" data-tr="Tüm Sahneler" data-en="All Scenes" data-pt="Todas as Cenas">Tüm Sahneler</button>
-          </div>
-        </div>
-        <div class="nav-drawer__group">
           <p class="nav-drawer__heading" role="button" tabindex="0" aria-expanded="true" data-tr="Hakkında" data-en="About" data-pt="Sobre">Hakkında</p>
           <div class="nav-drawer__items">
             <button class="btn-ghost" id="hakkinda-btn" type="button" data-tr="Dost Arabî Hakkında" data-en="About Dost Arabi" data-pt="Sobre Dost Arabi">Dost Arabî Hakkında</button>
@@ -286,9 +264,8 @@
                  olarak alalım" -- hakkinda-wrap'in dört alt-sekmesi
                  (#hakkinda-subtab-*) burada doğrudan erişilebilir. Okuma
                  Yolları'nın kendi düğmesi başka bir grupta da var (satır
-                 ~226) -- burada yinelenmesi bilinçli, iki ayrı keşif yolu
-                 (bkz. Sahneler galerisi kartlarının aynı gerekçesi). 2026-08-17
-                 @revise: diğer gruplarla tutarlı olsun diye kendi başlığına
+                 ~226) -- burada yinelenmesi bilinçli, iki ayrı keşif yolu.
+                 2026-08-17 @revise: diğer gruplarla tutarlı olsun diye kendi başlığına
                  (akordion) kavuştu -- eskiden bu grubun hiç .nav-drawer__heading'i
                  yoktu, "Dost Arabî Hakkında" düğmesi alt-sekmelerin hemen
                  yanında düz sırada duruyordu. -->
@@ -1463,90 +1440,6 @@ mesmo antes que o assombro exista."></blockquote>
       </button>
     </section>
 
-    <!-- Sahneler galerisi (2026-08-05). Bağımsız HTML "sahne"lerin (D2/D12-
-         D15/D19 vb.) her biri yalnız TEK bir bağlamsal noktadan linkleniyordu
-         (bkz. scripts/varlik-denetimi.py'nin "yetim sahne" denetimi -- hepsi
-         teknik olarak linkli ama keşfedilebilirlik neredeyse sıfırdı: o tek
-         kavram/terim sayfasına denk gelmeyen okuyucu hiçbirini bulamıyordu).
-         Bu galeri onları TEK yerde topluyor; hiçbiri kendi asıl bağlamsal
-         linkinden kaldırılmadı, bu yalnız ikinci bir keşif yolu.
-         perde-zinciri.html + ayna-metaforu.html artık AYRI kart (2026-08-15
-         @revise: eskiden meditasyon.html'in iki sekmesi olarak birlikte
-         sunuluyorlardı, kullanıcı "içinde iki ayrı sekme var, ikisini de
-         iki ayrı sahneye alalım" dedi -- iki dosya zaten bağımsız çalışacak
-         şekilde yazılmıştı (bkz. her ikisinin de window.self===window.top
-         korumalı geri-düğmesi), yalnız galeri kartı hiç bölünmemişti).
-         meditasyon.html kaldırıldı; assets/kavram.js'teki perdeSahneHtml de
-         artık iki ayrı düğme veriyor.
-         href'ler burada YAZILMIYOR -- data-scene-href'ten window.__dostRouteBase
-         ile kuruluyor (assets/ontology.js), çünkü sitede bu tür sahne linkleri
-         için tek test edilmiş yol bu (bkz. kavram.js'teki ${base}/...html
-         deseni); ham göreli href burada denenmedi. -->
-    <section class="sahneler-wrap" id="sahneler-wrap" hidden>
-      <div class="sahneler-intro">
-        <h2 data-tr="Sahneler" data-en="Scenes" data-pt="Cenas">Sahneler</h2>
-        <p data-tr="Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin hepsi burada -- her biri sitenin başka bir yerinde de bağlamıyla birlikte duruyor, bu yalnız ikinci bir yol."
-           data-en="Every one of the site's standalone, drag-or-scroll scenes, gathered here -- each also lives elsewhere on the site with its own context; this is just a second way to find them."
-           data-pt="Todas as cenas independentes do site, exploráveis arrastando ou deslizando, reunidas aqui -- cada uma também vive noutro lugar do site com o seu próprio contexto; esta é apenas uma segunda forma de as encontrar.">Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin hepsi burada -- her biri sitenin başka bir yerinde de bağlamıyla birlikte duruyor, bu yalnız ikinci bir yol.</p>
-      </div>
-      <div class="sahneler-grid">
-        <a class="sahneler-kart" data-scene-href="halk-i-cedid.html">
-          <span class="sahneler-kart__title" data-tr="Halk-ı Cedîd" data-en="Perpetual Renewal" data-pt="Renovação Perpétua">Halk-ı Cedîd</span>
-          <p class="sahneler-kart__ozet" data-tr="Âlem bir kez yaratılıp bırakılmış değil -- her nefeste yeniden yaratılıyor. Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor."
-             data-en="The world is not something created once and left -- it is recreated at every breath. We do not notice, because two successive creations resemble each other so closely."
-             data-pt="O mundo não é algo criado uma vez e deixado -- é recriado a cada alento. Não damos por isso, porque duas criações sucessivas se assemelham muito.">Âlem bir kez yaratılıp bırakılmış değil -- her nefeste yeniden yaratılıyor. Biz bunu fark etmiyoruz, çünkü ardışık iki yaratılış birbirine çok benziyor.</p>
-        </a>
-        <a class="sahneler-kart" data-scene-href="berzah.html">
-          <span class="sahneler-kart__title" data-tr="Berzah" data-en="The Barzakh" data-pt="O Barzakh">Berzah</span>
-          <p class="sahneler-kart__ozet" data-tr="Dost, dünya ile âhiret arasına üçüncü bir mertebe koyuyor: berzah. Dünya bir uykudur; berzah ondan uyanmış olma hâli; âhiret ise hiç uyku içermeyen uyanıklık. Sürükleyerek durduğun yeri değiştir."
-             data-en="Dost places a third degree between this world and the afterlife: the barzakh. This world is a sleep; the barzakh is being awake from it; the afterlife is a wakefulness containing no sleep at all. Drag to change where you stand."
-             data-pt="Dost coloca um terceiro grau entre este mundo e a vida futura: o barzakh. Este mundo é um sono; o barzakh é estar desperto dele; a vida futura é uma vigília que não contém sono algum. Arraste para mudar onde você está.">Dost, dünya ile âhiret arasına üçüncü bir mertebe koyuyor: berzah.</p>
-        </a>
-        <a class="sahneler-kart" data-scene-href="kalbe-sigan.html">
-          <span class="sahneler-kart__title" data-tr="Sığmayanın Sığdığı" data-en="What Cannot Be Contained, Contained" data-pt="O que Não Cabe, Cabendo">Sığmayanın Sığdığı</span>
-          <p class="sahneler-kart__ozet" data-tr="Gök ve yer alamadı; küçücük bir kap aldı. Kudsî hadis dört ciltte tekrar tekrar geçiyor; senedi tartışmalı ama Dost için merkezî. Sığmak hacim işi değil — dışın diner, içi eşit parlak kalır."
-             data-en="Heaven and earth did not contain It; a small vessel did. The divine hadith recurs across four volumes; its chain is disputed but central for Dost. Containment is not a matter of volume — the outside quiets, the inside stays as bright."
-             data-pt="Nem o céu nem a terra O contiveram; um pequeno vaso conteve. O hadith divino repete-se em quatro volumes; a sua cadeia é disputada mas central para o Dost. Conter não é uma questão de volume — o exterior aquieta-se, o interior permanece igualmente brilhante.">Gök ve yer alamadı; küçücük bir kap aldı. Sığmak hacim işi değil.</p>
-        </a>
-        <a class="sahneler-kart" data-scene-href="iki-mertebe.html">
-          <span class="sahneler-kart__title" data-tr="Aynı Âyet, İki Mertebe" data-en="The Same Verse, Two Levels" data-pt="O Mesmo Versículo, Dois Graus">Aynı Âyet, İki Mertebe</span>
-          <p class="sahneler-kart__ozet" data-tr="Bir âyet, okuduğumuz bölümlerin birden fazlasında geçiyor -- ve her defasında farklı bir mertebeden okunuyor. Âyet hiç değişmiyor; değişen, ona nereden baktığımız."
-             data-en="One verse comes up in more than one of the chapters we've read -- and is read from a different level each time. The verse never changes; what changes is where we're looking from."
-             data-pt="Um versículo aparece em mais de um dos capítulos que lemos -- e é lido a partir de um grau diferente cada vez. O versículo nunca muda; o que muda é de onde olhamos para ele.">Bir âyet, okuduğumuz bölümlerin birden fazlasında geçiyor -- ve her defasında farklı bir mertebeden okunuyor.</p>
-        </a>
-        <a class="sahneler-kart" data-scene-href="futuhat-371.html">
-          <span class="sahneler-kart__title" data-tr="371. Bab: Dokuz Harita" data-en="Chapter 371: Nine Maps" data-pt="Capítulo 371: Nove Mapas">371. Bab: Dokuz Harita</span>
-          <p class="sahneler-kart__ozet" data-tr="İbn Arabî'nin, Fütûhât'ın ikinci telifine kendi eliyle çizdiği dokuz harita -- &quot;tek bir kompozisyon&quot; olarak görülmesini istediği bir dizi."
-             data-en="Nine maps Ibn al-'Arabi drew with his own hand into the second recension of the Futuhat -- meant, in his words, to be seen as a single composition."
-             data-pt="Nove mapas que Ibn al-'Arabi desenhou com a própria mão na segunda recensão das Futuhat -- pensados, nas suas palavras, para serem vistos como uma única composição.">İbn Arabî'nin, Fütûhât'ın ikinci telifine kendi eliyle çizdiği dokuz harita.</p>
-        </a>
-        <a class="sahneler-kart" data-scene-href="perde-zinciri.html">
-          <span class="sahneler-kart__title" data-tr="Perde Zinciri" data-en="Chain of Veils" data-pt="Cadeia de Véus">Perde Zinciri</span>
-          <p class="sahneler-kart__ozet" data-tr="Perde ışığı engellemez, görülebilir kılar; perdesiz olan hiç görülemez. Perdeleri tek tek kaldır — her kalkışta görüş netleşmez, artar ve bulanır."
-             data-en="A veil doesn't block light, it makes it visible; without a veil, nothing can be seen at all. Lift the veils one by one — each lift doesn't sharpen the view, it grows and blurs it."
-             data-pt="Um véu não bloqueia a luz, torna-a visível; sem véu, nada pode ser visto. Levante os véus um a um — cada levantamento não clareia a visão, aumenta-a e turva-a.">Perde ışığı engellemez, görülebilir kılar; perdesiz olan hiç görülemez.</p>
-        </a>
-        <a class="sahneler-kart" data-scene-href="ayna-metaforu.html">
-          <span class="sahneler-kart__title" data-tr="Ayna Metaforu" data-en="Mirror Metaphor" data-pt="Metáfora do Espelho">Ayna Metaforu</span>
-          <p class="sahneler-kart__ozet" data-tr="Ayna sana onu değil seni gösterir; ama seni gösterebilmesini ona borçlusun. Aynayı çevir — yansıyan hep senin izin, ama görme imkânı senden değil."
-             data-en="A mirror shows you yourself, not it; but you owe your being shown to it. Turn the mirror — what reflects is always your own trace, but the possibility of seeing isn't yours."
-             data-pt="Um espelho mostra você mesmo, não a ele; mas você deve a possibilidade de ser mostrado a ele. Vire o espelho — o que se reflete é sempre o seu próprio traço, mas a possibilidade de ver não vem de você.">Ayna sana onu değil seni gösterir; ama seni gösterebilmesini ona borçlusun.</p>
-        </a>
-        <a class="sahneler-kart" data-scene-href="renkli-cam-analojisi.html">
-          <span class="sahneler-kart__title" data-tr="Renkli Cam Analojisi" data-en="The Tinted-Glass Analogy" data-pt="A Analogia do Vidro Colorido">Renkli Cam Analojisi</span>
-          <p class="sahneler-kart__ozet" data-tr="İbn Arabî'nin kendi kıyası: tek, tabiatı gereği renksiz bir ışık, camdan geçerken rengini alır gibi görünür. Duyu &quot;yeşil&quot; der, akıl &quot;renksiz&quot; der — ikisi de haklı, çünkü ikisi de ışığa değil, camına bakıyor."
-             data-en="Ibn Arabi's own analogy: a single light, colorless by its own nature, seems to take on a color as it passes through glass. The senses say &quot;green,&quot; reason says &quot;colorless&quot; — both are right, because neither looks at the light, only at its glass."
-             data-pt="A própria analogia de Ibn Arabi: uma única luz, incolor pela sua própria natureza, parece adquirir uma cor ao passar pelo vidro. Os sentidos dizem &quot;verde&quot;, a razão diz &quot;incolor&quot; — ambos têm razão, porque nenhum olha para a luz, só para o seu vidro.">İbn Arabî'nin kendi kıyası: tek, tabiatı gereği renksiz bir ışık, camdan geçerken rengini alır gibi görünür.</p>
-        </a>
-        <a class="sahneler-kart" data-scene-href="kandil.html">
-          <span class="sahneler-kart__title" data-tr="Kandil — Sınırlanınca Görünen" data-en="The Lamp — What Becomes Visible When Bounded" data-pt="A Lâmpada — O que Se Torna Visível quando Limitado">Kandil — Sınırlanınca Görünen</span>
-          <p class="sahneler-kart__ozet" data-tr="Işık her yerdeyken hiçbir şey görünmez; bir sınır çizilince sahne ilk kez okunur. Sınır çekildiğinde karanlık gelmez — ışık gitmemiştir, görünürlük gitmiştir. &quot;Nur kendisiyle perdelenmiştir; hiçbir zaman görülemez.&quot;"
-             data-en="When light is everywhere nothing is visible; when a boundary is drawn the scene reads for the first time. When the boundary withdraws, darkness does not come — the light has not left; visibility has. &quot;Light is veiled by itself; it can never be seen.&quot;"
-             data-pt="Quando a luz está em toda parte nada é visível; quando um limite é traçado a cena lê-se pela primeira vez. Quando o limite se retira, a escuridão não vem — a luz não partiu; a visibilidade partiu. &quot;A luz está velada por si mesma; nunca pode ser vista.&quot;">Işık her yerdeyken hiçbir şey görünmez; bir sınır çizilince sahne ilk kez okunur.</p>
-        </a>
-      </div>
-    </section>
-
     <aside class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detail-content" hidden>
       <div class="detail-breadcrumb" id="detail-breadcrumb" hidden></div>
       <div id="detail-content"></div>
@@ -1621,7 +1514,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/font-scale.js" defer integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
   <script src="assets/reading-mode.js" defer integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
   <script src="assets/honorifics.js" defer integrity="sha384-IwA4Fe1Lz4RekuTCKaeamOx5H2VogRQH66+kK99tc5SRCQL7ezB4EK8jbMw/uOhm"></script>
-  <script src="assets/cizimler.js" defer integrity="sha384-bqBv8CPI2pB6JsXigBKuvdnT84wLPLxk3hcQQgiTildAF74VKxxtVPyUYYBY8+lk"></script>
+  <script src="assets/cizimler.js" defer integrity="sha384-xG0rq9vfE5nV1EM4nRh/qtfmrbLhEYsFEcgacPmB9yZipmVMP/88Cq9gzJMBHvkH"></script>
   <script src="assets/tasiyicilar.js" defer integrity="sha384-JXsB9b+edHd9xIsoDp5uxFlT3r76NsLOIARYq+lSDGcCUdNU+j3/azrbsF34/bRk"></script>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
   <script src="assets/fusus.js" defer integrity="sha384-A+j5QFwQ8xt3uFpxBGMKqI2Gjvy7TFxPhljqQYJ538sidwbh4TTraF18K6cRt4eM"></script>
@@ -1629,8 +1522,8 @@ mesmo antes que o assombro exista."></blockquote>
   <!-- esma/hal/terimler/sorular/menziller/futuhat: assets/view-loader.js'in
        VIEWS haritasında tembel yükleniyor (2026-08-15), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-45aWEriiaFHPiy1d2cKk5lTn8hY68o3LSuJaTVV/1bSwi0HrXFi5jIoZuRFzsHT0"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-eCDb4XmZVt5BB9RUMtnqirQtKZblTI4gVXPXlBfk9OCRy5dgFutLRcu/W4vRYqbp"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-u4BP1hkeakaHBKzSYn6olLqf9/hvoGUhDKr8KzSJ/2QtSMnGsH93r5WM/RY6cMIC"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-1xEfUw147PI+vRQ9BzKt8sXlQaUT6/UHdfAe6kAD/bIX+KQzh1AbM6msPOFLydin"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-hvc1ZAXNMpZq9ujuUd/NAgrMAjcoIMJPykN/DHnjjbh1YjVahrLu/NPmZMbviF2Y"></script>

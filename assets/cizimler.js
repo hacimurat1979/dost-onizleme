@@ -294,24 +294,259 @@
     });
   }
 
-  // 371. bab'ın dokuz haritasının ayrı, sürüklenebilir bir sahnesi var
-  // (futuhat-371.html, docs/icerik-yol-haritasi.md D1) ama hiçbir yerden
-  // linklenmiyordu (2026-08-04 taramasında ölçüldü) -- yukarıdaki statik
-  // kartların en doğal tamamlayıcısı burası.
-  function sahneHtml() {
-    const base = window.__dostRouteBase || "";
-    return `<div class="detail-gate detail-gate--sahne cizimler-sahne">
-      <p class="detail-gate__note">${tt({
-        tr: "Aşağıdaki kartlar 371. bab'ın dokuz haritasını tek tek gösteriyor. Ayrı bir sahne, aralarında sürüklenerek gezilebilecek şekilde bir araya getiriyor.",
-        en: "The cards below show the nine maps of chapter 371 one by one. A separate scene brings them together so you can drag between them.",
-        pt: "Os cartões abaixo mostram os nove mapas do capítulo 371 um a um. Uma cena separada os reúne para que você possa arrastar entre eles.",
+  // 371. bab'ın dokuz haritası (2026-08-21 kullanıcı isteği): eskiden ayrı,
+  // bağımsız bir "sahne" sayfasıydı (futuhat-371.html); kullanıcı tüm
+  // sahne sistemini kaldırıp bu haritayı "en uygun olduğunu düşündüğün
+  // yere" taşımamızı istedi. Yukarıdaki statik kartların zaten aynı 371.
+  // bab'ın çizimlerini tek tek gösterdiği bu görünüm en doğal ev --
+  // sahnenin kendi metni de zaten "bu dokuz harita, Çizimler görünümündeki
+  // öteki tarihî şemalarla birlikte duruyor" diyordu. Çizim geometrisi
+  // (drawShared/drawUnique) FACSİMİLE'dir, aynen taşındı; yalnız renkler
+  // sahnenin kendi --gold/--liminal/--text değişkenlerinden bu sayfanın
+  // --series-theme/--text-primary token'larına çevrildi.
+  const NS = 'http://www.w3.org/2000/svg';
+  const BIRLESIK_STEPS = [
+    { id: 'ama', shortLabel: { tr: 'Bulut', en: 'The Cloud', pt: 'A Nuvem' },
+      label: { tr: 'Bulut (Amâ)', en: 'The Cloud (al-ʿamāʾ)', pt: 'A Nuvem (al-ʿamāʾ)' },
+      gloss: { tr: 'Dizinin başlangıcı: varlığın ilk mertebeleri, "merhametli bir buhar" olan Bulut\'ta açılıyor. "Dünyanın sûreti bütünüyle küresel bir dairedir" -- Şeyh\'in kendi sözü.',
+        en: 'The start of the sequence: the first levels of being unfold within the Cloud, "a merciful vapor." "The form of the world in its entirety is a spherical circle" — in the Shaykh\'s own words.',
+        pt: 'O início da sequência: os primeiros níveis do ser desdobram-se na Nuvem, "um vapor misericordioso." "A forma do mundo na sua totalidade é um círculo esférico" — nas palavras do próprio Xeique.' },
+      cite: 'Fütûhât, 9.316 (Tyser 2023, böl. 4.1; TİEM/Evkaf Müzesi 1870, vr. 90a)' },
+    { id: 'ars-kursi', shortLabel: { tr: 'Arş – Kürsî', en: 'Throne – Footstool', pt: 'Trono – Escabelo' },
+      label: { tr: 'Arş-ı İstivâ, Kürsî, İki Ayak, Su, Hava, Karanlık', en: 'The Throne of Sitting, Footstool, Two Feet, Water, Air, Darkness', pt: 'O Trono de Assento, Escabelo, Dois Pés, Água, Ar, Escuridão' },
+      gloss: { tr: 'Bir önceki haritanın en iç dairesine iniliyor. Arş dört unsura (ateş, hava, su, toprak) dayanıyor. Metindeki "iki ayak" imgesi, cismi teşbihe düşürmeden okunur -- biri cennette, biri cehennemde, ikisi de Kürsî\'nin üstünde.',
+        en: 'Descends into the innermost circle of the previous map. The Throne rests on four elements (fire, air, water, earth). The text\'s image of "two feet" is read without lapsing into anthropomorphism — one set in Paradise, the other in Hell, both resting on the Footstool.',
+        pt: 'Desce para o círculo mais interior do mapa anterior. O Trono assenta em quatro elementos (fogo, ar, água, terra). A imagem dos "dois pés" no texto é lida sem cair no antropomorfismo — um no Paraíso, o outro no Inferno, ambos sobre o Escabelo.' },
+      cite: 'Tyser 2023, böl. 4.2; TİEM/Evkaf Müzesi 1870, vr. 90b' },
+    { id: 'atlas', shortLabel: { tr: 'Atlas Feleği', en: 'Sphere of Atlas', pt: 'Esfera de Atlas' },
+      label: { tr: 'Atlas Feleği, Cennetler, Sabit Yıldızlar Küresi, Tûbâ Ağacı', en: 'The Sphere of Atlas, the Gardens, the Root of the Starry Sphere, the Tree of Ṭūbā', pt: 'A Esfera de Atlas, os Jardins, a Raiz da Esfera Estelar, a Árvore de Ṭūbā' },
+      gloss: { tr: 'İniş sürüyor. Atlas feleği ile sabit yıldızlar küresi arasında sekiz cennet konağı sıralanıyor -- her biri, Şeriat\'a tâbi bir organa (göz, kulak, dil, el, mide, üreme organı, ayak, kalp) karşılık geliyor.',
+        en: 'The descent continues. Between the sphere of Atlas and the sphere of the fixed stars, eight paradisal abodes are arrayed — each corresponding to a bodily member subject to the Law (eye, ear, tongue, hand, stomach, reproductive organ, leg, heart).',
+        pt: 'A descida continua. Entre a esfera de Atlas e a esfera das estrelas fixas, alinham-se oito moradas paradisíacas — cada uma correspondendo a um membro do corpo sujeito à Lei (olho, ouvido, língua, mão, estômago, órgão reprodutor, perna, coração).' },
+      cite: 'Tyser 2023, böl. 4.3; TİEM/Evkaf Müzesi 1870, vr. 91a' },
+    { id: 'sabit-yildizlar-insan', shortLabel: { tr: 'Sabit Yıldızlar', en: 'Fixed Stars', pt: 'Estrelas Fixas' },
+      label: { tr: 'Sabit Yıldızlar Küresi, Gökkubbeler, Yer, Dört Mertebe ve İnsan', en: 'The Sphere of the Fixed Stars, the Domes of the Heavens, the Earth, the Four Realms, and Man', pt: 'A Esfera das Estrelas Fixas, as Cúpulas dos Céus, a Terra, os Quatro Reinos e o Homem' },
+      gloss: { tr: 'Bir çadır biçiminde: dünyanın üstünde yedi gök, yedi gezegen. Bütün küreleri dikey bir "direk" kesiyor -- Kur\'an\'daki görünmez direğe (13:2) işaret eden bu çizgi, İbn Arabî\'ye göre İnsân-ı Kâmil\'dir; gökleri yeryüzüne düşmekten O tutuyor.',
+        en: 'In the shape of a tent: seven heavens above the earth, seven planets. A vertical "pillar" crosses all the spheres — this line, pointing to the invisible pillar of the Qur\'an (13:2), is, for Ibn al-ʿArabī, the Perfect Man; through him God holds the heavens from falling upon the earth.',
+        pt: 'Em forma de tenda: sete céus acima da terra, sete planetas. Um "pilar" vertical atravessa todas as esferas — esta linha, apontando para o pilar invisível do Alcorão (13:2), é, para Ibn al-ʿArabī, o Homem Perfeito; é através dele que Deus impede os céus de caírem sobre a terra.' },
+      cite: 'Fütûhât, 9.313 (Tyser 2023, böl. 4.4; TİEM/Evkaf Müzesi 1870, vr. 91b)' },
+    { id: 'arz-i-hasr', shortLabel: { tr: 'Haşir Yeri', en: 'Gathering', pt: 'Reunião' },
+      label: { tr: 'Haşir Yeri, Ayrım ve Hüküm Arşı, Melek Safları', en: 'The Land of Gathering, the Throne of Separation and Judgement, the Rows of Angels', pt: 'A Terra da Reunião, o Trono de Separação e Julgamento, as Fileiras de Anjos' },
+      gloss: { tr: 'Kıldan ince, kılıçtan keskin sırât köprüsü cehennemin üstünde gerili. Ölümün kesilişini simgeleyen bir daire, cenneti cehennemden ayıran a\'râf çizgisiyle kesişiyor. Yedi melek safı ve sekiz sütun üzerindeki Hüküm Arşı, sahneyi yukarıdan kuşatıyor.',
+        en: 'The bridge of the path (ṣirāṭ), thinner than a hair and sharper than a sword, stretches over hell. A circle symbolizing the slaughter of death intersects the line of the "heights" (al-aʿrāf) separating paradise from hell. Seven rows of angels and the Throne of Judgement, resting on eight pillars, frame the scene from above.',
+        pt: 'A ponte do caminho (ṣirāṭ), mais fina que um cabelo e mais afiada que uma espada, estende-se sobre o inferno. Um círculo simbolizando o abate da morte intersecta a linha das "alturas" (al-aʿrāf) que separa o paraíso do inferno. Sete fileiras de anjos e o Trono do Julgamento, apoiado em oito pilares, emolduram a cena vista do alto.' },
+      cite: 'Tyser 2023, böl. 4.5; TİEM/Evkaf Müzesi 1870, vr. 92a' },
+    { id: 'cehennem-kapilari', shortLabel: { tr: 'Cehennem Kapıları', en: 'Gates of Hell', pt: 'Portões do Inferno' },
+      label: { tr: 'Cehennemin Kapıları, Konakları ve İnen Dereceleri', en: 'The Gates of Hell, Its Abodes, and Its Descending Levels', pt: 'Os Portões do Inferno, as suas Moradas e Níveis Descendentes' },
+      gloss: { tr: 'Cehennemin yedi kapısı, insanın Şeriat\'a tâbi yedi organına karşılık geliyor. Şemanın tam merkezinde, kalbi örten bir kapı duruyor -- insanın içindeki "gayb"ın yeri. "İnsanın dünyadaki bâtını, ahirette zâhir olur."',
+        en: 'Hell\'s seven gates correspond to the seven bodily members subject to the Law. At the very center of the diagram stands a door veiling the heart — the place of the unseen within man. "What is interior in man in this world becomes exterior in the hereafter."',
+        pt: 'Os sete portões do inferno correspondem aos sete membros do corpo sujeitos à Lei. No centro exato do diagrama ergue-se uma porta que vela o coração — o lugar do invisível dentro do homem. "O que é interior no homem neste mundo torna-se exterior no além."' },
+      cite: 'Fütûhât, 9.356 (Tyser 2023, böl. 4.6; TİEM/Evkaf Müzesi 1870, vr. 92b)' },
+    { id: 'esma-hazretleri', shortLabel: { tr: 'İlahî İsimler', en: 'Divine Names', pt: 'Nomes Divinos' },
+      label: { tr: 'İlahî İsimler Huzuru, Alt Dünya, Ahiret, Berzah', en: 'The Presence of the Divine Names, the Lowest World, the Hereafter, the Intermediary World', pt: 'A Presença dos Nomes Divinos, o Mundo Inferior, o Além, o Mundo Intermédio' },
+      gloss: { tr: 'İlahî isimlerin de kendi aralarında bir düzeni var: "öncüler" ve "hizmetkârlar." Varlığın sebebi olan yedi ana isim -- Hayy, Alîm, Mürîd, Kâdir, Kâil, Cevvâd, Muksit -- bu dünya, ahiret ve ikisi arasındaki berzahın kesiştiği yerde beliriyor.',
+        en: 'The divine names, too, have their own order: "chiefs" and "servants." Seven principal names — the Living, the Knower, the One who wills, the One who is able, the One who speaks, the Most-Generous, the Equitable — appear at the point where this world, the hereafter, and the barzakh between them meet.',
+        pt: 'Também os nomes divinos têm a sua própria ordem: "chefes" e "servos." Sete nomes principais — o Vivo, o Sabedor, Aquele que quer, Aquele que pode, Aquele que fala, o Generosíssimo, o Equânime — aparecem no ponto onde este mundo, o além, e o barzakh entre eles se encontram.' },
+      cite: 'Tyser 2023, böl. 4.7; TİEM/Evkaf Müzesi 1870, vr. 93a' },
+    { id: 'ruyet', shortLabel: { tr: 'Rü\'yet Tepesi', en: 'Dune of Vision', pt: 'Duna da Visão' },
+      label: { tr: 'Rü\'yet Kum Tepesi — Allah\'ın yüzünün açıldığı an', en: 'The Dune of Vision — the moment God\'s face is unveiled', pt: 'A Duna da Visão — o momento em que o rosto de Deus se revela' },
+      gloss: { tr: 'Cennette, halkın Allah\'ın yüzünü gördüğü belirli bir an ve yer — "beyaz misktendir."',
+        en: 'A specific moment and place in paradise where the people see God\'s face — "made of white musk."',
+        pt: 'Um momento e lugar específicos no paraíso onde o povo vê o rosto de Deus — "feito de almíscar branco."' },
+      cite: 'Tyser 2023, böl. 4.8; TİEM/Evkaf Müzesi 1870, vr. 93b' },
+    { id: 'kozmos', shortLabel: { tr: 'Kozmosun Tamamı', en: 'The Whole Cosmos', pt: 'Todo o Cosmos' },
+      label: { tr: 'Kozmosun tamamı — sekiz haritanın sentezi', en: 'The entirety of the cosmos — a synthesis of eight maps', pt: 'A totalidade do cosmos — uma síntese de oito mapas' },
+      gloss: { tr: 'Şeklinin merkezi, Rü\'yet Kum Tepesi\'yle aynı biçimi taşıyor -- ahiret, dünyanın tam merkezinde duruyor. İbn Arabî\'nin kendi ifadesiyle: "dünya, Bulut ile Allah\'ın bakışı arasında beliriyor."',
+        en: 'The shape of its center matches that of the Dune of Vision — the hereafter sits at the very core of the world. In Ibn al-ʿArabī\'s own words: "the world appears between the Cloud and the glance of God."',
+        pt: 'A forma do seu centro corresponde à da Duna da Visão — o além situa-se no próprio núcleo do mundo. Nas palavras do próprio Ibn al-ʿArabī: "o mundo aparece entre a Nuvem e o olhar de Deus."' },
+      cite: 'Fütûhât, 9.461 (Tyser 2023, böl. 4.9; TİEM/Evkaf Müzesi 1870, vr. 93b-94a)' },
+  ];
+
+  // Paylaşılan taban + tekil çizgisel öğe -- futuhat-371.html'den DEĞİŞMEDEN
+  // taşındı (facsimile). GORSEL_DIL.md gereği 9. haritadaki iç içe İKİ
+  // eşmerkezli daire burada da yasak -- yerine merkezden dışa dört kısa
+  // çizgi (bir "yıldız" işareti).
+  function drawSharedBirlesik(g) {
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', 0); c.setAttribute('cy', 0); c.setAttribute('r', 90);
+    c.setAttribute('fill', 'none'); c.setAttribute('stroke', 'var(--text-primary)');
+    c.setAttribute('stroke-width', 1.4);
+    c.setAttribute('opacity', 0.6);
+    g.appendChild(c);
+  }
+  function drawUniqueBirlesik(g, idx) {
+    const el = document.createElementNS(NS, 'g');
+    el.setAttribute('stroke', 'var(--text-primary)');
+    el.setAttribute('stroke-width', 1.6);
+    el.setAttribute('fill', 'none');
+    el.setAttribute('stroke-linecap', 'round');
+    const addLine = (x1, y1, x2, y2) => {
+      const l = document.createElementNS(NS, 'line');
+      l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+      l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+      el.appendChild(l);
+    };
+    const addCircle = (cx, cy, r, filled) => {
+      const c = document.createElementNS(NS, 'circle');
+      c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', r);
+      if (filled) c.setAttribute('fill', 'var(--text-primary)');
+      el.appendChild(c);
+    };
+    switch (idx) {
+      case 0: addLine(-110, 0, 110, 0); break;
+      case 1: addLine(0, -110, 0, 110); break;
+      case 2: addLine(-78, -78, 78, 78); break;
+      case 3: addLine(-78, 78, 78, -78); break;
+      case 4: for (let i = 0; i < 8; i++) { const a = (i / 8) * Math.PI * 2; addCircle(Math.cos(a) * 90, Math.sin(a) * 90, 4, true); } break;
+      case 5: for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2 + Math.PI / 6; addCircle(Math.cos(a) * 55, Math.sin(a) * 55, 3, true); } break;
+      case 6: {
+        const pts = [];
+        for (let i = 0; i < 3; i++) { const a = (i / 3) * Math.PI * 2 - Math.PI / 2; pts.push([Math.cos(a) * 88, Math.sin(a) * 88]); }
+        const p = document.createElementNS(NS, 'polygon');
+        p.setAttribute('points', pts.map((pt) => pt.join(',')).join(' '));
+        p.setAttribute('fill', 'none');
+        el.appendChild(p);
+        break;
+      }
+      case 7: {
+        const s = 88;
+        const p = document.createElementNS(NS, 'polygon');
+        p.setAttribute('points', `0,${-s} ${s},0 0,${s} ${-s},0`);
+        el.appendChild(p);
+        break;
+      }
+      case 8: {
+        addCircle(0, 0, 4, true);
+        [0, 90, 180, 270].forEach((deg) => {
+          const rad = deg * Math.PI / 180;
+          addLine(Math.cos(rad) * 22, Math.sin(rad) * 22, Math.cos(rad) * 40, Math.sin(rad) * 40);
+        });
+        break;
+      }
+    }
+    g.appendChild(el);
+  }
+
+  const BIRLESIK_GRID_CX = [300, 800, 1300, 300, 800, 1300, 300, 800, 1300];
+  const BIRLESIK_GRID_CY = [250, 250, 250, 500, 500, 500, 750, 750, 750];
+  const BIRLESIK_GRID_SCALE = 0.65;
+  const BIRLESIK_MERGE_SCALE_MAX = 2.0;
+  const birlesikEase = (p) => p * p * (3 - 2 * p);
+  let birlesikMergeVal = 0;
+  let birlesikMapEls = null;
+
+  function birlesikOpenPopup(idx) {
+    const s = BIRLESIK_STEPS[idx];
+    const g = document.createElementNS(NS, 'g');
+    drawSharedBirlesik(g);
+    drawUniqueBirlesik(g, idx);
+    const svg = `<svg viewBox="-150 -150 300 300" class="cizim-card__svg" role="img" aria-label="${tt(s.label)}">${g.innerHTML}</svg>`;
+    window.DostLightbox.open({
+      closeLabel: tt({ tr: 'Kapat', en: 'Close', pt: 'Fechar' }),
+      svgHtml: svg,
+      ref: (idx + 1) + ' / ' + BIRLESIK_STEPS.length + ' — ' + s.cite,
+      name: tt(s.label),
+      caption: tt(s.gloss),
+    });
+  }
+
+  function birlesikUpdateStage(mergeVal) {
+    if (!birlesikMapEls) return;
+    const t = birlesikEase(mergeVal / 100);
+    for (let i = 0; i < BIRLESIK_STEPS.length; i++) {
+      const gx = BIRLESIK_GRID_CX[i], gy = BIRLESIK_GRID_CY[i];
+      const cx = gx + (800 - gx) * t;
+      const cy = gy + (500 - gy) * t;
+      const sc = BIRLESIK_GRID_SCALE + (BIRLESIK_MERGE_SCALE_MAX - BIRLESIK_GRID_SCALE) * t;
+      const op = 1 - t * 0.30;
+      birlesikMapEls[i].g.setAttribute('transform', `translate(${cx.toFixed(1)} ${cy.toFixed(1)}) scale(${sc.toFixed(3)})`);
+      birlesikMapEls[i].g.setAttribute('opacity', op.toFixed(3));
+      birlesikMapEls[i].num.setAttribute('opacity', (1 - t * 0.9).toFixed(3));
+      birlesikMapEls[i].labelEl.setAttribute('opacity', (0.85 * (1 - t * 0.9)).toFixed(3));
+    }
+  }
+
+  function renderBirlesikStage() {
+    const mapsG = document.getElementById('birlesikMapsG');
+    if (!mapsG) return;
+    mapsG.innerHTML = '';
+    birlesikMapEls = [];
+    const enlargeLabel = tt({ tr: 'Büyüt: ', en: 'Enlarge: ', pt: 'Ampliar: ' });
+    BIRLESIK_STEPS.forEach((s, i) => {
+      const g = document.createElementNS(NS, 'g');
+      const hit = document.createElementNS(NS, 'circle');
+      hit.setAttribute('cx', 0); hit.setAttribute('cy', 0); hit.setAttribute('r', 112);
+      hit.setAttribute('class', 'birlesik-map__hit');
+      hit.setAttribute('pointer-events', 'fill');
+      g.appendChild(hit);
+
+      const num = document.createElementNS(NS, 'text');
+      num.setAttribute('x', -110); num.setAttribute('y', -100);
+      num.setAttribute('class', 'birlesik-map__no');
+      num.textContent = String(i + 1);
+      g.appendChild(num);
+
+      const labelEl = document.createElementNS(NS, 'text');
+      labelEl.setAttribute('x', -110); labelEl.setAttribute('y', -78);
+      labelEl.setAttribute('class', 'birlesik-map__label');
+      labelEl.textContent = tt(s.shortLabel);
+      g.appendChild(labelEl);
+
+      drawSharedBirlesik(g);
+      drawUniqueBirlesik(g, i);
+      g.setAttribute('class', 'birlesik-map');
+      g.setAttribute('tabindex', '0');
+      g.setAttribute('role', 'button');
+      g.setAttribute('aria-label', enlargeLabel + tt(s.label));
+      g.addEventListener('click', () => birlesikOpenPopup(i));
+      g.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); birlesikOpenPopup(i); }
+      });
+      mapsG.appendChild(g);
+      birlesikMapEls.push({ g, num, labelEl });
+    });
+    birlesikUpdateStage(birlesikMergeVal);
+
+    const slider = document.getElementById('birlesikSlider');
+    slider.addEventListener('input', (e) => {
+      birlesikMergeVal = +e.target.value;
+      birlesikUpdateStage(birlesikMergeVal);
+    });
+    document.getElementById('birlesikMergeBtn').addEventListener('click', () => {
+      birlesikMergeVal = 100; slider.value = 100; birlesikUpdateStage(100);
+    });
+    document.getElementById('birlesikResetBtn').addEventListener('click', () => {
+      birlesikMergeVal = 0; slider.value = 0; birlesikUpdateStage(0);
+    });
+  }
+
+  function birlesikHaritaHtml() {
+    return `<article class="cizim-card cizim-card--birlesik">
+      <p class="cizim-card__ref">Fütûhât, 9.316–9.461 — 371. Bab</p>
+      <h2 class="cizim-card__name">${tt({ tr: '371. Bab: Dokuz Harita', en: 'Chapter 371: Nine Maps', pt: 'Capítulo 371: Nove Mapas' })}</h2>
+      <p class="cizim-card__desc">${tt({
+        tr: 'İbn Arabî\'nin, Fütûhât\'ın ikinci telifine kendi eliyle çizdiği dokuz harita — kendi ifadesiyle "tek bir kompozisyon" olarak görülmesini istediği bir dizi. Ayrıyken dokuz çizim, sürgüyü kaydırınca tek bir kompozisyon. Her haritaya ayrı ayrı tıklayıp büyütebilirsin.',
+        en: 'Nine maps Ibn al-ʿArabī drew with his own hand into the second recension of the Futuhat — meant, in his own words, to be seen as a single composition. Nine drawings when apart; one composition when the slider merges them. Click any map on its own to enlarge it.',
+        pt: 'Nove mapas que Ibn al-ʿArabī desenhou com a própria mão na segunda recensão das Futuhat — pensados, nas suas palavras, para serem vistos como uma única composição. Nove desenhos quando separados; uma só composição quando o controle os reúne. Clique em qualquer mapa para o ampliar.',
       })}</p>
-      <a class="detail-gate__btn" href="${base}/futuhat-371.html">${tt({
-        tr: "Sahneyi aç: 371. Bab, Dokuz Harita",
-        en: "Open the scene: Chapter 371, Nine Maps",
-        pt: "Abrir a cena: Capítulo 371, Nove Mapas",
-      })}<span class="detail-gate__arrow" aria-hidden="true">→</span></a>
-    </div>`;
+      <div class="cizim-birlesik">
+        <svg class="cizim-birlesik__svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet"
+             aria-label="${tt({ tr: 'Dokuz harita: ayrı çizimler ve merkezde birleşen tek bir kompozisyon', en: 'Nine maps: separate drawings and a single composition merging at the center', pt: 'Nove mapas: desenhos separados e uma única composição a fundir-se no centro' })}">
+          <g id="birlesikMapsG"></g>
+        </svg>
+        <div class="cizim-birlesik__controls">
+          <div class="cizim-birlesik__quick">
+            <button type="button" class="cizim-birlesik__btn" id="birlesikMergeBtn">${tt({ tr: 'Tek Haritada Birleştir', en: 'Merge into One Map', pt: 'Fundir num Só Mapa' })}</button>
+            <button type="button" class="cizim-birlesik__btn cizim-birlesik__btn--ghost" id="birlesikResetBtn">${tt({ tr: 'Başa Dön', en: 'Return to Start', pt: 'Voltar ao Início' })}</button>
+          </div>
+          <div class="cizim-birlesik__slider-row">
+            <span>${tt({ tr: 'Ayrık', en: 'Apart', pt: 'Separados' })}</span>
+            <input type="range" id="birlesikSlider" min="0" max="100" value="${birlesikMergeVal}" aria-label="${tt({ tr: 'Ayrık / Birleşik', en: 'Apart / Together', pt: 'Separados / Reunidos' })}">
+            <span>${tt({ tr: 'Birleşik', en: 'Together', pt: 'Reunidos' })}</span>
+          </div>
+        </div>
+      </div>
+    </article>`;
   }
 
   function render() {
@@ -321,10 +556,11 @@
     listEl.innerHTML = `
       ${CIZIM_DEFS}
       <p class="cizimler-intro">${linkify(tt(data.intro), null)}</p>
-      ${sahneHtml()}
+      ${birlesikHaritaHtml()}
       ${cards}
       <ul class="cizimler-sources">${sources}</ul>
     `;
+    renderBirlesikStage();
     listEl.querySelectorAll(".cizim-card__svg-wrap").forEach((el) => {
       el.addEventListener("click", () => openLightbox(el.dataset.cizimId));
       el.addEventListener("keydown", (e) => {

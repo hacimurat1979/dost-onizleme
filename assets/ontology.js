@@ -570,7 +570,6 @@
   const okumaYollariBtn = document.getElementById("okuma-yollari-btn");
   const kavramBtn = document.getElementById("kavram-btn");
   const ayethadisBtn = document.getElementById("ayethadis-btn");
-  const sahnelerBtn = document.getElementById("sahneler-btn");
   const ontologyWrap = document.getElementById("ontology-wrap");
   const esmaWrap = document.getElementById("esma-wrap");
   const halWrap = document.getElementById("hal-wrap");
@@ -594,7 +593,6 @@
   const hakkindaWrap = document.getElementById("hakkinda-wrap");
   const kavramWrap = document.getElementById("kavram-wrap");
   const ayethadisWrap = document.getElementById("ayethadis-wrap");
-  const sahnelerWrap = document.getElementById("sahneler-wrap");
 
   // Görsel olarak aktif sekmeyi işaretlemek (.btn-ghost--active) ekran
   // okuyucuya hiçbir şey söylemiyordu -- dil seçicideki aria-pressed'in
@@ -668,7 +666,6 @@
     markActiveNavButton(hakkindaBtn, view === "hakkinda");
     markActiveNavButton(kavramBtn, view === "kavram");
     markActiveNavButton(ayethadisBtn, view === "ayethadis");
-    markActiveNavButton(sahnelerBtn, view === "sahneler");
     if (ontologyWrap) ontologyWrap.hidden = view !== "ontology";
     if (esmaWrap) esmaWrap.hidden = view !== "esma";
     if (halWrap) halWrap.hidden = view !== "hal";
@@ -692,8 +689,6 @@
     if (hakkindaWrap) hakkindaWrap.hidden = view !== "hakkinda";
     if (kavramWrap) kavramWrap.hidden = view !== "kavram";
     if (ayethadisWrap) ayethadisWrap.hidden = view !== "ayethadis";
-    if (sahnelerWrap) sahnelerWrap.hidden = view !== "sahneler";
-    if (view === "sahneler") wireSahnelerKartHref();
     if (view === "hakkinda") {
       wireHakkindaDiagrams();
       wireHakkindaScrollTop();
@@ -807,7 +802,6 @@
   if (hakkindaSubOkumaYollariBtn) hakkindaSubOkumaYollariBtn.addEventListener("click", () => { goToHakkinda("okuma-yollari"); updateHash("hakkinda", "okuma-yollari"); });
   if (kavramBtn) kavramBtn.addEventListener("click", () => { setMainView("kavram"); updateHash("kavram"); });
   if (ayethadisBtn) ayethadisBtn.addEventListener("click", () => { setMainView("ayethadis"); updateHash("ayethadis"); });
-  if (sahnelerBtn) sahnelerBtn.addEventListener("click", () => { setMainView("sahneler"); updateHash("sahneler"); });
 
   // --- Deep linking & cross-view navigation ---
   let pendingSirlarId = null;
@@ -828,7 +822,6 @@
     }
   })();
   window.__dostRouteBase = ROUTE_BASE;
-  wireSahnelerKartHref();
 
   const VIEW_META = {
     ontoloji: {
@@ -1013,14 +1006,6 @@
         tr: "Sitede alıntılanan âyet ve hadislerin, en çok tekrarladıkları yerden başlayarak sıralandığı bir dizin.",
         en: "An index of the verses and hadiths quoted across the site, ordered by how often each recurs.",
         pt: "Um índice dos versículos e hadiths citados no site, ordenados por quantas vezes cada um recorre.",
-      },
-    },
-    sahneler: {
-      title: { tr: "Sahneler", en: "Scenes", pt: "Cenas" },
-      desc: {
-        tr: "Sitenin bağımsız, sürükleyerek/kaydırarak keşfedilen sahnelerinin galerisi.",
-        en: "A gallery of the site's standalone, drag-or-scroll scenes.",
-        pt: "Uma galeria das cenas independentes e exploráveis do site.",
       },
     },
   };
@@ -1240,25 +1225,6 @@
     if (sub) window.__siirlerApp && window.__siirlerApp.switchTo(sub);
   }
 
-  // Sahneler galerisi (2026-08-05) + tost menünün Sahneler alt-menüsü
-  // (2026-08-15 @revise): href'ler statik HTML'de YAZILMIYOR, çünkü
-  // ROUTE_BASE (önizleme/canlı ayrımı) yalnız burada, çalışma zamanında
-  // biliniyor (bkz. index.html'deki sahneler-wrap yorumu). Galeri kartları
-  // yalnız "sahneler" görünümüne geçişte var olduğu için setMainView onları
-  // her seferinde bağlıyor; alt-menü öğeleri her sayfada baştan DOM'da
-  // olduğundan bir kez, sayfa açılışında bağlanması yeterli (aşağıda
-  // ROUTE_BASE atandıktan hemen sonra çağrılıyor). Aynı fonksiyon ikisini de
-  // kapsıyor -- a.href'i tekrar tekrar atamak zararsız.
-  function wireSahnelerKartHref() {
-    document.querySelectorAll("[data-scene-href]").forEach((a) => {
-      a.href = ROUTE_BASE + "/" + a.dataset.sceneHref;
-    });
-  }
-
-  function goToSahneler() {
-    setMainView("sahneler");
-  }
-
   function goToKavram(id) {
     setMainView("kavram");
     if (id) window.__kavramApp && window.__kavramApp.goToNode(id);
@@ -1276,7 +1242,7 @@
     // üzerinden okuyor). Sonraki gezinmeler öneksiz (TR-kanonik) URL'lere
     // gider; dil, kullanıcı seçimi olarak zaten yanında taşınır.
     rawPath = rawPath.replace(/^\/(en|pt)(?=\/|$)/, "") || "/";
-    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|yolculuk|kuran-dokusu|menziller|tasiyicilar|futuhat|fusus|miskat|hakkinda|kavram|ayethadis|sahneler)(\/.*)?$/.exec(rawPath);
+    const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|acik-sorular|bilmiyoruz|elestiri-arkeolojisi|hocalar|eser-agi|seyahat-atlasi|yolculuk|kuran-dokusu|menziller|tasiyicilar|futuhat|fusus|miskat|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
     if (!m) return;
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
@@ -1322,7 +1288,6 @@
     else if (view === "hakkinda") goToHakkinda(id);
     else if (view === "kavram") goToKavram(id);
     else if (view === "ayethadis") goToAyetHadis();
-    else if (view === "sahneler") goToSahneler();
   }
 
   window.addEventListener("popstate", parseHashAndGo);
@@ -1375,7 +1340,6 @@
       else if (view === "hakkinda") goToHakkinda(id);
       else if (view === "kavram") goToKavram(id);
       else if (view === "ayethadis") goToAyetHadis();
-      else if (view === "sahneler") goToSahneler();
       updateHash(view, id);
     },
     setHash: updateHash,
@@ -3249,7 +3213,6 @@
       ${entityDiagramHtml(d)}
       ${insightsHtml(d.insights, d.sources, "ontoloji", d.id)}
       ${gateHtml(d)}
-      ${sahneHtml(d)}
       ${relatedEdgesHtml(d)}
     `;
     detailPanel.hidden = false;
@@ -3286,41 +3249,6 @@
       <p class="detail-gate__note">${tt(g.note)}</p>
       <button class="detail-gate__btn" type="button" data-gate="${d.id}">${tt(g.label)}
         <span class="detail-gate__arrow" aria-hidden="true">→</span></button>
-    </div>`;
-  }
-
-  // Bazı düğümlerin, SPA rotalamasının DIŞINDA duran (docs/icerik-yol-
-  // haritasi.md D1/D2/D5 gibi) bağımsız bir "sahne" sayfası var --
-  // halk-i-cedid.html teceddüd'ün ta kendisi. 2026-08-04 taramasında bu tür
-  // sayfaların hiçbirinin siteden gerçekten LİNKLENMEDİĞİ (yetim olduğu)
-  // ölçüldü; burası düğümün kendi davranışıyla (teceddudEt()) zaten aynı
-  // fikri taşıdığı için en doğru bağlama noktası. GATES'ten farklı: bu bir
-  // SPA-içi dönüşüm değil, ayrı bir sayfaya düz bir bağlantı -- bu yüzden
-  // aynı görsel dili (.detail-gate) taşıyan ama <a href> kullanan ayrı bir
-  // fonksiyon.
-  const SAHNELER = {
-    teceddud: {
-      href: "halk-i-cedid.html",
-      label: {
-        tr: "Sahneyi aç: Halk-ı Cedîd",
-        en: "Open the scene: Perpetual Renewal",
-        pt: "Abrir a cena: Renovação Perpétua",
-      },
-      note: {
-        tr: "Bu düğümün tıklanınca yaptığı şey (bütün düğümlerin bir an sönüp yeniden yanması) burada tek başına, yavaşça sürüklenebilen bir sahneye açılıyor.",
-        en: "What this node does when clicked (every node flickering out and relighting) opens here on its own, as a scene you can slowly drag through.",
-        pt: "O que este nó faz ao ser clicado (todos os nós apagando e reacendendo por um instante) se abre aqui sozinho, como uma cena que você pode arrastar lentamente.",
-      },
-    },
-  };
-  function sahneHtml(d) {
-    const s = SAHNELER[d.id];
-    if (!s) return "";
-    const base = window.__dostRouteBase || "";
-    return `<div class="detail-gate detail-gate--sahne">
-      <p class="detail-gate__note">${tt(s.note)}</p>
-      <a class="detail-gate__btn" href="${base}/${s.href}">${tt(s.label)}
-        <span class="detail-gate__arrow" aria-hidden="true">→</span></a>
     </div>`;
   }
 
