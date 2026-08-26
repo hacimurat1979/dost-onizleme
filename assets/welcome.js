@@ -44,18 +44,43 @@
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const cx = 150;
-  const cy = 150;
-  const r = 120;
-  const len = 2 * Math.PI * r;
-  beam.style.strokeDasharray = String(len);
-  beam.style.strokeDashoffset = String(len);
-
   let finished = false;
+
+  // 2026-08-26 sağlamlaştırma: bu blok eskiden aşağıdaki animasyon
+  // kurulumundan SONRA geliyordu -- getElementById'lerden biri (beam/spark/
+  // glow/skipBtn) ileride bir düzenlemeyle eksik/yanlış id'li kalırsa, o
+  // satırdaki TypeError IIFE'yi burada keserdi ve leave() hiç
+  // tanımlanamadan/kanca hiç takılamadan tam ekran siyah perde kalıcı
+  // olarak asılı kalırdı -- hiçbir tıklama/Esc onu kapatamazdı. Dinleyiciler
+  // artık her şeyden ÖNCE, kendi null-guard'larıyla bağlanıyor; ayrıca bir
+  // üst sınır zamanlayıcısı (aşağıda) normal akış her ne sebeple olursa
+  // olsun tamamlanamazsa perdeyi yine de kaldırıyor.
+  skipBtn && skipBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    finished = true;
+    leave();
+  });
+  root.addEventListener("click", () => {
+    finished = true;
+    leave();
+  });
+  window.addEventListener("keydown", (event) => {
+    if (root.hidden) return;
+    if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
+      finished = true;
+      leave();
+    }
+  });
+  setTimeout(() => { if (!finished) leave(); }, 12000);
 
   function easeInOutCubic(t) {
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
+
+  const cx = 150;
+  const cy = 150;
+  const r = 120;
+  const len = 2 * Math.PI * r;
 
   function placeSpark(progress) {
     const angle = -Math.PI / 2 + progress * Math.PI * 2;
@@ -113,31 +138,21 @@
     requestAnimationFrame(frame);
   }
 
-  // 2026-08-16 (uzman paneli denetimi, G-01): ilk tıklama/dokunuş artık
-  // doğrudan siteye girer -- "bir hareket her yerde aynı anlam" ilkesiyle
-  // uyumlu (tıklama = geç). Eskiden ilk tıklama yalnız halka çizimini
-  // tamamlıyordu, asıl girişe ikinci bir tıklama/bekleme gerekiyordu.
-  skipBtn.addEventListener("click", (event) => {
-    event.stopPropagation();
-    finished = true;
-    leave();
-  });
-  root.addEventListener("click", () => {
-    finished = true;
-    leave();
-  });
-  window.addEventListener("keydown", (event) => {
-    if (root.hidden) return;
-    if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
-      finished = true;
-      leave();
+  // 2026-08-26: animasyon kurulumu/oynatımı try/catch içinde -- beam/spark/
+  // glow eksik ya da SVG API'sinde beklenmeyen bir hata çıkarsa (yukarıdaki
+  // dinleyiciler zaten bağlı olduğu için tıklama/Esc her durumda çalışır),
+  // burada bir hata da perdeyi asılı bırakmasın diye leave() ile geri
+  // dönülüyor.
+  try {
+    beam.style.strokeDasharray = String(len);
+    beam.style.strokeDashoffset = String(len);
+    if (reduceMotion) {
+      placeSpark(1);
+      finish();
+    } else {
+      runDraw(4500);
     }
-  });
-
-  if (reduceMotion) {
-    placeSpark(1);
-    finish();
-  } else {
-    runDraw(4500);
+  } catch (e) {
+    leave();
   }
 })();

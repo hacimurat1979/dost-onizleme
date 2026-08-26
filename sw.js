@@ -11,12 +11,27 @@
  */
 "use strict";
 
-const CACHE_VERSION = "dost-sw-v2";
-const SHELL_URLS = ["./", "./index.html", "./assets/style.css", "./assets/vendor/d3.min.js"];
+const CACHE_VERSION = "dost-sw-v3";
+const SHELL_URLS = ["./", "./index.html", "./assets/style.css", "./assets/vendor/d3-custom.min.js"];
 
 self.addEventListener("install", (event) => {
+  // cache.addAll() tarayıcının kendi HTTP önbelleğinden besleniyor -- satır
+  // 60'taki "cache: reload" düzeltmesiyle aynı sebepten (GitHub Pages'in
+  // Cache-Control: max-age=600'ü), install anında GÜNCEL sürüm yerine 10
+  // dakikaya kadar eski bir kabuk önbelleğe yazılabiliyordu. Her URL ayrı
+  // ayrı reload ile çekilip elle put ediliyor; bir URL 404 verirse (ör.
+  // yeniden adlandırılmış bir vendor dosyası) yalnız o atlanır, TÜM install
+  // addAll()'daki gibi sessizce başarısız olmaz.
   event.waitUntil(
-    caches.open(CACHE_VERSION).then((cache) => cache.addAll(SHELL_URLS)).catch(() => {})
+    caches.open(CACHE_VERSION).then((cache) =>
+      Promise.all(
+        SHELL_URLS.map((url) =>
+          fetch(new Request(url, { cache: "reload" }))
+            .then((resp) => { if (resp.ok) return cache.put(url, resp); })
+            .catch(() => {})
+        )
+      )
+    )
   );
   self.skipWaiting();
 });
@@ -31,7 +46,12 @@ self.addEventListener("activate", (event) => {
 });
 
 function isDataRequest(url) {
-  return url.pathname.includes("/data/ibn-arabi/") || url.pathname.includes("/data/themes.json");
+  // 2026-08-26 genişletme: yalnız /data/ibn-arabi/ ve themes.json'u kapsıyordu;
+  // data/icerik/ (kademeli açılım, G15), data/kavramlar/ (kavram.js) ve
+  // data/daphne* (Daphne profili/arşivi) hiç önbelleğe yazılmıyordu -- ne
+  // stale-while-revalidate ne de pasif çevrimdışı düşme, bu betiğin kendi
+  // üstteki "Veri için stale-while-revalidate" iddiasının aksine.
+  return url.pathname.includes("/data/");
 }
 
 self.addEventListener("fetch", (event) => {
