@@ -104,7 +104,7 @@
   let currentDetailNode = null, currentRelation = null, hoveredId = null, hoveredRel = null;
   // Küme odağı (FCA) -- esma.js'teki clusterFocus'un aynısı: { id, members:Set<hal id>, nitelikler }
   let clusterFocus = null;
-  let rafId = null, startTs = 0, lastTs = 0, reveal = 1;
+  let startTs = 0, reveal = 1;
   let shimmer = [];
   let cx = 0, cy = 0, baseR = 200, riseH = 240;
 
@@ -426,18 +426,12 @@
     for (let i = 0; i < 10; i++) shimmer.push({ a: Math.random() * 6.28, sp: 0.0004 + Math.random() * 0.0006, rr: 20 + Math.random() * 16, ph: Math.random() * 6.28 });
   }
 
-  // ---------------------------------------------------------------------------
-  // Not: lastTs'i BURADA sıfırlamıyoruz. ensureFrame her karenin sonunda
-  // yeniden çağrıldığı için, burada sıfırlamak dt'yi kalıcı olarak 0 yapıp
-  // zamana bağlı her şeyi (sakin dönüş) dondurur. Sıfırlama, döngünün
-  // gerçekten durduğu tek yerde -- frame()'deki görünürlük çıkışında -- yapılır.
-  function ensureFrame() { if (rafId == null) rafId = requestAnimationFrame(frame); }
-  function frame(ts) {
-    rafId = null;
-    // Görünüm ekranda değilse döngüyü tamamen durdur (bkz. GU.isViewActive).
-    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
+  // rAF döngü iskeleti artık GU.createFrameLoop'ta (bkz. graph-utils.js
+  // yorumu -- burada eskiden ensureFrame()'in kendi lastTs sıfırlaması VARDI
+  // ve bu, o dosyada belgelenen "sakin dönüş donuyor" hatasının kaynağıydı;
+  // düzeltme oradan geliyor).
+  const frameLoop = GU.createFrameLoop(wrapEl, function (ts, dt) {
     if (!startTs) startTs = ts;
-    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
     if (reveal < 1 && !reduceMotion) reveal = Math.min(1, (ts - startTs) / 2000);
     else if (reduceMotion) reveal = 1;
 
@@ -472,8 +466,9 @@
     }
 
     render(ts);
-    if (!reduceMotion || active) ensureFrame();
-  }
+    return !reduceMotion || active;
+  });
+  function ensureFrame() { frameLoop.ensureFrame(); }
 
   function focusSet() {
     const anchor = hoveredId || (currentDetailNode ? currentDetailNode.id : null);

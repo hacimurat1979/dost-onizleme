@@ -190,7 +190,17 @@
     </div>
     <button class="welcome-screen__skip" id="welcome-skip" type="button" aria-label="Geç / Skip / Pular">Geç · Skip · Pular</button>
   </div>
-  <script src="assets/welcome.js" integrity="sha384-gXgbiIL7fbHQ9CzFX3EQWNLEwpo/LuH3ce9cUpT9zzC03vmd+rFqS2c5lukYgo3q"></script>
+  <!-- 2026-08-26, yeni fikir (kod taraması): welcome.js kök-dışı bir rotaya
+       (paylaşılan link) doğrudan gelindiğinde tam ritüeli bilerek atlıyor --
+       ama bu, o yoldan gelen bir ilk-kez ziyaretçiyi hiç oryante etmeden
+       bırakıyordu. Tek satırlık, kapatılabilir, yalnız ilk kez ve yalnız
+       kök-dışı ilk varışta görünen bu şerit o boşluğu dolduruyor; welcome.js
+       kendi ROUTE_BASE dalında yönetiyor, ayrı bir "seen" bayrağı taşıyor. -->
+  <div class="deeplink-banner" id="deeplink-banner" hidden>
+    <p class="deeplink-banner__text" data-tr="Muhyiddîn İbnü'l-Arabî'nin iç dünyasının bir haritası — anlamaya çalışıyoruz, anlatmaya değil." data-en="A map of Muhyiddin Ibn Arabi's inner world — trying to understand, not to explain." data-pt="Um mapa do mundo interior de Muhyiddin Ibn Arabi — tentando compreender, não explicar.">Muhyiddîn İbnü'l-Arabî'nin iç dünyasının bir haritası — anlamaya çalışıyoruz, anlatmaya değil.</p>
+    <button class="deeplink-banner__dismiss" id="deeplink-banner-dismiss" type="button" data-tr-aria-label="Kapat" data-en-aria-label="Dismiss" data-pt-aria-label="Fechar" aria-label="Kapat">×</button>
+  </div>
+  <script src="assets/welcome.js" integrity="sha384-wI0YUuPWBJpaTsSDwTzaX9vQhhZQKxB3wU01qWGKiZPRGu0Jm2BifabgiOkeBytS"></script>
   <header class="app-header">
     <div class="app-header__controls">
       <!-- FAZ 1 (grafik-önce arayüz, 2026-08-03): 14 eşit ağırlıklı sekme
@@ -1405,6 +1415,12 @@ mesmo antes que o assombro exista."></blockquote>
              data-en="This site uses Google Analytics (GA4) and Microsoft Clarity to understand visits — aggregate, non-identifying usage data such as which pages are read and session length. No personal information is requested or sold to third parties."
              data-pt="Este site usa Google Analytics (GA4) e Microsoft Clarity para entender as visitas — dados de uso agregados e não identificáveis, como quais páginas são lidas e a duração da sessão. Nenhuma informação pessoal é solicitada ou vendida a terceiros.">Bu site, ziyaretleri anlamak için Google Analytics (GA4) ve Microsoft Clarity kullanır — hangi sayfaların okunduğu, oturum süresi gibi toplu, kimliksiz kullanım verisi toplanır. Kişisel bilgi istenmez, üçüncü taraflara satılmaz.</p>
         </div>
+        <div class="hakkinda-content__section">
+          <h3 data-tr="Çevrimdışı Okuma" data-en="Reading Offline" data-pt="Leitura Offline">Çevrimdışı Okuma</h3>
+          <p data-tr="Site çevrimdışı da okunabilir: bir kez açtığınız sayfalar tarayıcınızda saklanır, internet bağlantınız kesilse de açık kalır. Yeni içerik eklendiğinde, bir sonraki çevrimiçi ziyaretinizde kendiliğinden güncellenir."
+             data-en="The site can also be read offline: pages you've opened once are kept in your browser and stay open even if your connection drops. When new content is added, it updates itself the next time you're online."
+             data-pt="O site também pode ser lido offline: as páginas que já abriu ficam guardadas no seu navegador e continuam acessíveis mesmo que a ligação caia. Quando é acrescentado conteúdo novo, ele atualiza-se sozinho na próxima vez que estiver online.">Site çevrimdışı da okunabilir: bir kez açtığınız sayfalar tarayıcınızda saklanır, internet bağlantınız kesilse de açık kalır. Yeni içerik eklendiğinde, bir sonraki çevrimiçi ziyaretinizde kendiliğinden güncellenir.</p>
+        </div>
       </div>
       </div>
       <div id="siirler-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-siirler" hidden>
@@ -1499,7 +1515,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/vendor/d3-custom.min.js" defer integrity="sha384-k/birSUpT26+T+9Bq9AtcVVDxNlh8ThhBxqX2iTUj656KnoUaNO07aGmVEBBpbpM"></script>
   <script src="assets/i18n.js" defer integrity="sha384-4r6W6PENfRJ7GevJPyR+ACS8M2OZwCzsNWj9W4PfT6psDUZQRTdpCVLi1eUXtN9l"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
-  <script src="assets/graph-utils.js" defer integrity="sha384-XB9sFZPAWRQ4OKPhnNq7nkOWIQly57Ce2k1FR1bABi4FgBD8hMR4KMUN6q7Jlv2A"></script>
+  <script src="assets/graph-utils.js" defer integrity="sha384-xlunhNUhL7p1SYpUebA56+3D8tNLk51mg6s73IHgqolrqm9Au93Z08/lmgd9s/Ye"></script>
   <!-- nav-drawer.js graph-utils.js'ten SONRA gelmeli (2026-08-15): artık
        açılışta GU.registerStepBack çağırıyor. -->
   <script src="assets/nav-drawer.js" defer integrity="sha384-W64rjVIcpQ5N6aMLtnixLPVKrcJvNuk6nSWtVa3BZF78OCFXjU/rp6mEDHa9HRRe"></script>
@@ -1515,15 +1531,15 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/font-scale.js" defer integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
   <script src="assets/reading-mode.js" defer integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
   <script src="assets/honorifics.js" defer integrity="sha384-IwA4Fe1Lz4RekuTCKaeamOx5H2VogRQH66+kK99tc5SRCQL7ezB4EK8jbMw/uOhm"></script>
-  <script src="assets/cizimler.js" defer integrity="sha384-vfBFzcoxhxGhzqRMlZ59DFBYZCIW+icJAdZD3alB+rzlLsVsvEaCquFsI23Gfadu"></script>
-  <script src="assets/tasiyicilar.js" defer integrity="sha384-JXsB9b+edHd9xIsoDp5uxFlT3r76NsLOIARYq+lSDGcCUdNU+j3/azrbsF34/bRk"></script>
   <script src="assets/anlamsal-yakin.js" defer integrity="sha384-u3axVJsn2sMnsWAm4f1jiBReATqufPkIUgqObndcnlLgXS6sPryBjPJL4v3J6rly"></script>
-  <script src="assets/fusus.js" defer integrity="sha384-A+j5QFwQ8xt3uFpxBGMKqI2Gjvy7TFxPhljqQYJ538sidwbh4TTraF18K6cRt4eM"></script>
-  <script src="assets/miskat.js" defer integrity="sha384-vcZvmiN7oygyV3w+BeFDnjCeI/gEsmqNhAQV+5pOgjgH6s/R5k1klh4c1E8jFiuY"></script>
-  <!-- esma/hal/terimler/sorular/menziller/futuhat: assets/view-loader.js'in
-       VIEWS haritasında tembel yükleniyor (2026-08-15), o yüzden burada
+  <!-- esma/hal/terimler/sorular/menziller/futuhat/cizimler/tasiyicilar/
+       fusus/miskat: assets/view-loader.js'in VIEWS haritasında tembel
+       yükleniyor (2026-08-15, son dördü 2026-08-26'da katıldı -- eskiden
+       registerCrossLinkTerm() bağımlılığı yüzünden dışarıda bırakılmıştı,
+       ama o bağımlılık derleme-zamanı çapraz-bağlantı indeksine taşınalı
+       (2026-08-03) kalkmıştı, sadece fark edilmemişti), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-u4BP1hkeakaHBKzSYn6olLqf9/hvoGUhDKr8KzSJ/2QtSMnGsH93r5WM/RY6cMIC"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-8OAX7Nswf1AiOo3VABUlIEJClUQrzbbrA6hrnc3rd9TmwRVv31gVAiTkCOYvqeO1"></script>
   <script src="assets/ontology.js" defer integrity="sha384-1xEfUw147PI+vRQ9BzKt8sXlQaUT6/UHdfAe6kAD/bIX+KQzh1AbM6msPOFLydin"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>

@@ -15,6 +15,28 @@
     return;
   }
 
+  // 2026-08-26, yeni fikir (kod taraması): tam ritüel kök-dışı rotalarda
+  // bilerek atlanıyor (aşağıda), ama bu bir ilk-kez ziyaretçiyi hiç
+  // oryante etmeden bırakıyordu. Ayrı bir "seen" bayrağı -- SEEN_KEY'den
+  // bağımsız, çünkü tam ritüeli görmüş biri köke daha sonra gelirse onu
+  // yine görsün (yukarıdaki yorum), ama bu şeridi bir daha görmesin.
+  const BANNER_SEEN_KEY = "dost-deeplink-banner-seen";
+  function showDeepLinkBanner() {
+    const banner = document.getElementById("deeplink-banner");
+    if (!banner) return;
+    let bannerSeen = false;
+    try { bannerSeen = !!localStorage.getItem(BANNER_SEEN_KEY); } catch (e) {}
+    if (bannerSeen) return;
+    try { localStorage.setItem(BANNER_SEEN_KEY, "1"); } catch (e) {}
+    banner.hidden = false;
+    const dismissBtn = document.getElementById("deeplink-banner-dismiss");
+    if (dismissBtn) dismissBtn.addEventListener("click", () => { banner.hidden = true; });
+    window.addEventListener("keydown", (event) => {
+      if (banner.hidden) return;
+      if (event.key === "Escape") banner.hidden = true;
+    });
+  }
+
   // Derin bir rotaya doğrudan gelindiğinde (paylaşılan link, arama sonucu)
   // ritüel araya girmesin -- gateTransition'ın zaten benimsediği "gelinmemiş
   // bir yerden çıkış animasyonu yalan olurdu" ilkesi karşılama ekranına da
@@ -32,6 +54,7 @@
   })();
   if (location.pathname.replace(/\/+$/, "") !== ROUTE_BASE) {
     root.hidden = true;
+    showDeepLinkBanner();
     return;
   }
 

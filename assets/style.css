@@ -5287,6 +5287,58 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   .welcome-screen__text { transition: opacity var(--dur-uzun) ease; }
 }
 
+/* Derin bağlantı tanıtım şeridi (2026-08-26) -- welcome-screen'in kök-dışı
+   rotalarda BİLEREK atladığı tam ritüelin çok küçük bir yedeği: tek satır,
+   kapatılabilir, yalnız ilk kez. Sakin -- sarı bir uyarı değil, sitenin
+   kendi yüzey/kenar tonlarıyla. */
+.deeplink-banner {
+  position: fixed;
+  top: calc(var(--app-header-height, 96px) + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: min(560px, calc(100vw - 32px));
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 10px 8px 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.deeplink-banner__text {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.deeplink-banner__dismiss {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--dur-kisa) ease, color var(--dur-kisa) ease;
+}
+
+.deeplink-banner__dismiss:hover,
+.deeplink-banner__dismiss:focus-visible {
+  background: color-mix(in oklab, var(--text-primary) 8%, transparent);
+  color: var(--text-primary);
+}
+
+@media (max-width: 640px) {
+  .deeplink-banner { top: auto; bottom: 16px; }
+}
+
 .app-fallback {
   position: fixed;
   inset: 0;

@@ -548,8 +548,6 @@
   // aralıkla kendini tekrarlıyor -- çok sık olmasın diye birkaç saniyede
   // bir (kullanıcının kendi ifadesiyle).
   const FLOW_REPEAT_MS = 5200;
-  let rafId = null;
-  let lastTs = 0;
 
   function buildDom() {
     svg.selectAll("*").remove();
@@ -627,19 +625,14 @@
     return { first, second };
   }
 
-  function ensureFrame() {
-    if (rafId == null) { lastTs = performance.now(); rafId = requestAnimationFrame(frame); }
-  }
-
   function easeInOut(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
 
-  function frame(ts) {
-    rafId = null;
-    // Görünüm ekranda değilse döngüyü tamamen durdur (bkz. GU.isViewActive).
-    // lastTs SIFIRLANMALI: aksi hâlde başka bir bölümden geri dönüldüğünde
-    // ts - lastTs devasa olup 64'e kırpılıyor ve sahne tek karede zıplıyor.
-    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
-    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
+  // rAF döngü iskeleti artık GU.createFrameLoop'ta (bkz. graph-utils.js
+  // yorumu -- burada ensureFrame() lastTs'i performance.now() ile
+  // sıfırlıyordu; sürekli-aktif durumlarda (exploreOn, parçacıklar, idle
+  // dönüş) frame() kendini bu fonksiyonla sürdürdüğünden dt neredeyse 0'a
+  // çöküyordu).
+  const frameLoop = GU.createFrameLoop(wrapEl, function (ts, dt) {
     let active = false;
 
     // tilt animasyonu (zamanlı, 800-1200ms sinematik)
@@ -697,9 +690,10 @@
     // kapalıyken kare döngüsü sürsün ki bu ambient nefes hiç durmasın. AMA
     // yalnızca görünüm ekrandayken: aşağıdaki isViewActive kontrolü olmadan
     // bu döngü, başka bölüme geçildikten sonra bile sonsuza kadar sürüyor ve
-    // bütün siteyi yavaşlatıyordu (bkz. frame() başındaki erken çıkış).
-    if (active || exploreOn || !reduceMotion) ensureFrame();
-  }
+    // bütün siteyi yavaşlatıyordu (bkz. GU.createFrameLoop'un isViewActive kapısı).
+    return active || exploreOn || !reduceMotion;
+  });
+  function ensureFrame() { frameLoop.ensureFrame(); }
 
   function warmthColor(base, depthA) {
     // 3B derinliği: Allah'a yakın = sıcak/parlak, uzak = serin/atmosferik.

@@ -39,7 +39,7 @@
   let zoomLayer, nodeLayer, centerLayer, moonLayer, defs;
   let zoomBehavior = null;
   let width = 900, height = 640, cx = 450, cy = 320, ringR = 240, dropH = 420;
-  let rafId = null, lastTs = 0, spin = 0, hoveredId = null, activeId = null;
+  let spin = 0, hoveredId = null, activeId = null;
   // Derinlik yeniden-sıralaması (aşağıda render() içinde) saniyede 60 kez
   // GEREKMİYOR -- dönüş çok yavaş (~140 sn/tur), iki komşu ögenin önü/arkası
   // birkaç yüz ms'de bir değişir. ontology.js'te ÖLÇÜLEN kusurdan ders:
@@ -467,14 +467,10 @@
     svgNode.addEventListener("pointercancel", stop);
   }
 
-  // Not: lastTs BURADA sıfırlanmıyor -- ensureFrame her karenin sonunda
-  // çağrıldığı için burada sıfırlamak dt'yi kalıcı 0 yapar ve dönüşü dondurur
-  // (hal.js'te bir kez bu hataya düşmüştük).
-  function ensureFrame() { if (rafId == null) rafId = requestAnimationFrame(frame); }
-  function frame(ts) {
-    rafId = null;
-    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
-    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
+  // rAF döngü iskeleti artık GU.createFrameLoop'ta (bkz. graph-utils.js
+  // yorumu -- eskiden burada tam olarak tarif edilen ensureFrame/lastTs
+  // hatasına bir kez düşülmüştü, düzeltme oradan geliyor).
+  const frameLoop = GU.createFrameLoop(wrapEl, function (ts, dt) {
     if (tilt !== tiltTarget) {
       if (reduceMotion) tilt = tiltTarget;
       else {
@@ -487,8 +483,9 @@
     // Bir menzil açıkken ve sürüklerken durur: okurken sahne kıpırdamasın.
     if (!reduceMotion && !activeId && !dragging) spin += dt * SPIN_RATE;
     render(ts);
-    if (!reduceMotion) ensureFrame();
-  }
+    return !reduceMotion;
+  });
+  function ensureFrame() { frameLoop.ensureFrame(); }
 
   function visibleWidth() {
     if (!detailPanel || detailPanel.hidden) return width;

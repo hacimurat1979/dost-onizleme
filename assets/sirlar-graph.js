@@ -124,7 +124,7 @@
   const SPIN_RATE = 0.000057;
   let hoveredId = null, focusedTheme = null;
   let particles = [];
-  let rafId = null, startTs = 0, lastTs = 0;
+  let startTs = 0;
   let growth = 1; // 0..1 ilk açılış ilerlemesi
 
   function fetchData() {
@@ -329,18 +329,12 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Render döngüsü
-  function ensureFrame() { if (rafId == null) { lastTs = performance.now(); rafId = requestAnimationFrame(frame); } }
-
-  function frame(ts) {
-    rafId = null;
-    // Görünüm ekranda değilse döngüyü tamamen durdur -- aşağıdaki `anim`
-    // koşulu (|| true) normal kullanıcıda hep doğru olduğu için, bu kapı
-    // olmadan döngü başka bölüme geçildikten sonra da sonsuza kadar
-    // sürüyordu (bkz. GU.isViewActive).
-    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
+  // Render döngüsü -- rAF iskeleti artık GU.createFrameLoop'ta (bkz.
+  // graph-utils.js yorumu; burada ensureFrame() lastTs'i performance.now()
+  // ile sıfırlıyordu, sürekli-aktif durumdayken -- ki `anim` || true yüzünden
+  // burası hep sürekli-aktifti -- dt'yi neredeyse 0'a çöktürüyordu).
+  const frameLoop = GU.createFrameLoop(wrapEl, function (ts, dt) {
     if (!startTs) startTs = ts;
-    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
     // 3B'de düzlemsel dönüş yerini yaw'a bırakıyor: sahne dikey eksen
     // etrafında dönerken katman sırası (işaret önde, sır arkada) bozulmasın.
     if (tilt3d) tilt3d.step(ts, dt, !focusedTheme);
@@ -362,9 +356,9 @@
 
     const simActive = sim && sim.alpha() > 0.006;
     const anim = !reduceMotion && (growth < 1 || true); // nefes + parçacıklar sürekli
-    if (simActive || anim || dragging) ensureFrame();
-    else rafId = null;
-  }
+    return simActive || anim || dragging;
+  });
+  function ensureFrame() { frameLoop.ensureFrame(); }
 
   const HALO_DUR = 300;
   let haloStart = 0, haloNodeId = null;

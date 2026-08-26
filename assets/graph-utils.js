@@ -44,6 +44,42 @@ window.DostGraphUtils = (function () {
     return !!wrapEl && !wrapEl.hidden && document.visibilityState !== "hidden";
   }
 
+  // Kendi kendini durduran rAF döngüsü -- menziller/sorular/sirlar-graph/
+  // esma/hal'de neredeyse birebir aynı iskelet (rafId/lastTs, isViewActive
+  // kapısı, 64ms'e kırpılmış dt) beş kere ayrı ayrı yazılıyordu. Tek fark
+  // hal.js/menziller.js'in SONRADAN fark ettiği bir hata idi: ensureFrame()
+  // içinde `lastTs = performance.now()` ataması -- frame() kendi kendini
+  // sürdürmek için (rafId hep null olduğu an) HER karede ensureFrame()'i
+  // çağırıyorsa, bu satır lastTs'i az önce frame()'in kendi ts'iyle set
+  // ettiği doğru değerin üzerine, neredeyse aynı ama ayrı bir performance.
+  // now() damgasıyla yeniden yazıyordu -- dt bir sonraki karede gerçek
+  // ~16ms yerine "ensureFrame çağrılalı geçen süre" (neredeyse 0) oluyordu,
+  // yani zamana bağlı her şey (dönüş, fizik) sürekli-aktif durumda görünmez
+  // derecede yavaşlıyordu. hal.js/menziller.js bunu ensureFrame'den lastTs
+  // atamasını kaldırarak düzeltmişti; sorular/sirlar-graph/esma hâlâ eski
+  // (hatalı) deseni taşıyordu -- bu ortak yardımcı hepsini düzeltilmiş
+  // davranışa taşıyor.
+  //
+  // tick(ts, dt) her aktif karede çağrılır; bir sonraki karenin
+  // planlanması için truthy dönmeli (fizik/animasyon sürüyor), aksi hâlde
+  // döngü durur ve dışarıdan bir tetikleyici (hover, sürükleme, onViewWake)
+  // loop.ensureFrame() çağırana kadar uyur.
+  function createFrameLoop(wrapEl, tick) {
+    let rafId = null;
+    let lastTs = 0;
+    function frame(ts) {
+      rafId = null;
+      if (!isViewActive(wrapEl)) { lastTs = 0; return; }
+      const dt = lastTs ? Math.min(64, ts - lastTs) : 16;
+      lastTs = ts;
+      if (tick(ts, dt)) ensureFrame();
+    }
+    function ensureFrame() {
+      if (rafId == null) rafId = requestAnimationFrame(frame);
+    }
+    return { ensureFrame };
+  }
+
   // Sekme geri geldiğinde / görünüm yeniden açıldığında döngüyü uyandırmak
   // isteyen modüller buraya abone olur.
   const _wakeSubs = [];
@@ -890,5 +926,5 @@ window.DostGraphUtils = (function () {
     return sel;
   }
 
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback, wireEdgeAccessibility };
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createFrameLoop, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback, wireEdgeAccessibility };
 })();

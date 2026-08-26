@@ -140,7 +140,7 @@
   let zoomBehavior = null, simulation = null, currentK = 1;
   let currentDetailQuestion = null, hoveredId = null, focusId = null;
   let width = 900, height = 640;
-  let rafId = null, lastTs = 0, dragging = false;
+  let dragging = false;
   let bgParticles = [], edgeParticles = [];
   let flashId = null, flashStart = 0;
 
@@ -697,15 +697,14 @@
   }
 
   // ---------------------------------------------------------------------------
-  function ensureFrame() { if (rafId == null) { lastTs = performance.now(); rafId = requestAnimationFrame(frame); } }
-  function frame(ts) {
-    rafId = null;
-    // Görünüm ekranda değilse (başka bölüme geçilmiş ya da sekme arkada)
-    // döngüyü tamamen durdur. Aksi hâlde bu tam-render döngüsü sonsuza kadar
-    // 60fps sürüyor ve sayfanın geri kalanını -- metin kutusuna yazmayı bile --
-    // yavaşlatıyordu (bkz. GU.isViewActive).
-    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
-    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
+  // rAF döngü iskeleti artık GU.createFrameLoop'ta (bkz. graph-utils.js
+  // yorumu -- burada ensureFrame() lastTs'i performance.now() ile SIFIRLIYORDU
+  // ve frame() sürekli-aktifken (simActive/dragging) kendi kendini bu
+  // fonksiyonla sürdürdüğü için, her karede dt neredeyse 0'a çöküyordu --
+  // yani sürükleme/simülasyon fiziği HER ZAMAN olması gerekenden çok daha
+  // yavaş çalışıyordu, kimse fark etmemiş olabilir çünkü "çalışıyor" gibi
+  // görünüyordu, sadece belirgin şekilde ağır. Ortak yardımcı bunu düzeltir.
+  const frameLoop = GU.createFrameLoop(wrapEl, function (ts, dt) {
     if (tilt3d) tilt3d.step(ts, dt, !expandedCatId);
     if (!reduceMotion) {
       bgParticles.forEach((p) => { p.a += p.sp * dt; });
@@ -713,8 +712,9 @@
     }
     render(ts);
     const simActive = simulation && simulation.alpha() > 0.006;
-    if (!reduceMotion || simActive || dragging) ensureFrame(); else rafId = null;
-  }
+    return !reduceMotion || simActive || dragging;
+  });
+  function ensureFrame() { frameLoop.ensureFrame(); }
 
   function activeSet() {
     const anchor = hoveredId || focusId;
