@@ -110,7 +110,7 @@
   }
   loadData();
 
-  let simulation, nodeSel, linkSel, labelSel, zoomBehavior;
+  let simulation, nodeSel, linkSel, labelSel, zoomBehavior, links;
 
   function buildGraph(themes, conceptById) {
     const width = svg.node().clientWidth;
@@ -119,7 +119,7 @@
     const usedConceptIds = Array.from(new Set(themes.map((th) => th.ibn_arabi_concept)));
 
     const nodes = [];
-    const links = [];
+    links = [];
 
     nodes.push({ id: "hub-ibnarabi", type: "hub-ibnarabi", label: "İbn Arabî" });
     nodes.push({ id: "hub-daphne", type: "hub-daphne", label: "Daphne" });
@@ -288,19 +288,56 @@
     return "";
   }
 
+  // Bir "tema" (Daphne tarafı) ya da "concept" (İbn Arabî tarafı) düğümüne
+  // gelindiğinde, yalnız o düğümün bir komşusunu değil -- iki ana düğüme
+  // (hub-ibnarabi, hub-daphne) kadar uzanan TÜM zinciri öne çıkarır. Zincir
+  // her zaman iki ana düğümde son buluyor: kullanıcı isteği (2026-08-26)
+  // "öne alınan bağlantının son noktası her seferinde her iki tarafın ana
+  // düğümleri de olsun" -- yani hub-ibnarabi ve hub-daphne, ne kadar ara
+  // düğüm (concept/tema) katılırsa katılsın, vurgulanan yolun uçları hep
+  // sabit kalır. Bir concept'e birden çok tema bağlıysa hepsinin
+  // hub-daphne'ye giden kolu birlikte öne çıkar (tek bir yol değil, o
+  // concept'ten yayılan bütün yelpaze).
   function highlight(d) {
     if (!d) {
-      linkSel.classed("link--highlight", false).style("stroke-opacity", null);
+      linkSel.classed("link--highlight", false);
       nodeSel.style("opacity", 1);
       return;
     }
-    const connected = new Set([d.id]);
-    linkSel.each((l) => {
-      if (l.source.id === d.id) connected.add(l.target.id);
-      if (l.target.id === d.id) connected.add(l.source.id);
-    });
-    linkSel.classed("link--highlight", (l) => l.source.id === d.id || l.target.id === d.id);
-    nodeSel.style("opacity", (n) => (connected.has(n.id) ? 1 : 0.25));
+    const connectedNodes = new Set([d.id]);
+    const connectedLinks = new Set();
+    function add(l) {
+      connectedLinks.add(l);
+      connectedNodes.add(l.source.id);
+      connectedNodes.add(l.target.id);
+    }
+    if (d.type === "theme") {
+      const bridge = links.find((l) => l.kind === "bridge" && l.target.id === d.id);
+      if (bridge) {
+        add(bridge);
+        const ibn = links.find((l) => l.kind === "ibnarabi" && l.target.id === bridge.source.id);
+        if (ibn) add(ibn);
+      }
+      const daphne = links.find((l) => l.kind === "daphne" && l.source.id === d.id);
+      if (daphne) add(daphne);
+    } else if (d.type === "concept") {
+      const ibn = links.find((l) => l.kind === "ibnarabi" && l.target.id === d.id);
+      if (ibn) add(ibn);
+      links.filter((l) => l.kind === "bridge" && l.source.id === d.id).forEach((bridge) => {
+        add(bridge);
+        const daphne = links.find((l) => l.kind === "daphne" && l.source.id === bridge.target.id);
+        if (daphne) add(daphne);
+      });
+    } else {
+      // Ana düğümler (hub-ibnarabi / hub-daphne): mevcut, tek-adımlık davranış
+      // korunuyor -- bir hub'a gelince zaten kendi tarafındaki bütün doğrudan
+      // komşuları öne çıkıyor.
+      links.forEach((l) => {
+        if (l.source.id === d.id || l.target.id === d.id) add(l);
+      });
+    }
+    linkSel.classed("link--highlight", (l) => connectedLinks.has(l));
+    nodeSel.style("opacity", (n) => (connectedNodes.has(n.id) ? 1 : 0.25));
   }
 
   let currentDetailTheme = null;
