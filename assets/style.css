@@ -1116,6 +1116,19 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
 }
 
 #graph, #profile-graph {
+  /* Eski kural (width/height: 100%, static akış) BÜYÜYEN bir üst kutuda
+     (ör. flexbox'ta flex:1 ile esneyen .graph-wrap, bkz. compare.html'in
+     sayfa-içi kuralı) SVG gibi "replaced element"lerde güvenilir
+     çalışmıyor -- ölçülen davranış: yükseklik SVG'nin varsayılan içsel
+     boyutuna (150px) düşüyor (kullanıcı bildirimi 2026-08-26: "Daphne
+     profili grafiği sol üst köşede küçük kalıyor"). Mutlak konumlama TEK
+     BAŞINA (inset:0) da yetmiyor -- replaced element'lerde auto boyut yine
+     içsel değere düşüyor (ölçüldü). .graph-wrap zaten position:relative;
+     mutlak konumlama + AÇIK yüzde genişlik/yükseklik üst kutunun padding
+     kutusuna tam oturuyor, her iki eksende de güvenilir. */
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   display: block;
