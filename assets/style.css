@@ -362,6 +362,15 @@ html {
   margin: 0 auto;
   padding: 48px clamp(16px, 4vw, 48px) 60px;
 }
+/* Dar ekranda .sessiz-mod-toggle (sağ altta sabit) ve .scroll-top-btn
+   (aynı köşede, üstüne yığılı, kaydırılınca beliriyor) alt 60px'lik
+   dolguyla yetinmiyor -- son 1-2 satır paragraf metni kaydırılırken bu
+   opak düğmelerin altında kalıyordu (kod taraması bulgusu, 2026-08-27:
+   390x844'te doğrulandı). 140px, en yüksek yığının (74px + 44px + pay)
+   üzerinde rahat bir boşluk bırakıyor. */
+@media (max-width: 640px) {
+  .hakkinda-wrap { padding-bottom: 140px; }
+}
 
 .intro {
   max-width: 760px;

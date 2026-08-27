@@ -1358,8 +1358,17 @@
   let birthFn = null;
 
   function buildGraph(data) {
-    const width = svg.node().clientWidth;
-    const height = svg.node().clientHeight;
+    // Dar ekranda (mobil-liste kipi, bkz. ontoloji-mobil-liste.js) SVG
+    // "haritayı aç" düğmesine kadar CSS ile gizli -- clientWidth/Height 0
+    // döner. buildGraph yine de sayfa yüklenirken koşulsuz çağrıldığı için
+    // (bkz. loadOntologyData) TÜM düğümler n.x=n.y=0'a çöküyordu; aynı
+    // noktadan başlayan forceCollide/forceManyBody sıfır-vektörü
+    // normalize etmeye çalışıp NaN üretiyor, bu da her karede konsola
+    // "translate(NaN,NaN) scale(NaN)" olarak taşıyordu (kod taraması,
+    // 2026-08-27). panToNode() zaten aynı 0 durumuna karşı || 800/600
+    // yedeğini kullanıyor (bkz. altta) -- burada da aynı yedek.
+    const width = svg.node().clientWidth || 800;
+    const height = svg.node().clientHeight || 600;
 
     // --- 3B durumu (Hâller/Menziller ile aynı model) ---
     // pitch 0.26: Menziller'de yerleşen değer. Sarmalın okunur (monoton)
@@ -1814,6 +1823,19 @@
     // welcome.js "dost:welcome-left"), reduced-motion'da hiç çalışmaz.
     birthFn = function runBirth() {
       if (reduceMotion) return;
+      // Dar ekranda (mobil-liste kipi) SVG "haritayı aç"a kadar CSS ile
+      // gizli -- clientWidth 0. d3-zoom'un TRANSITION'lı .transform()'u
+      // (aşağıdaki svg.transition()...call) kendi interpolateZoom
+      // kurulumunda bu değeri DOĞRUDAN DOM'dan okuyor (ontology.js'in
+      // kendi width/height değişkenlerinden değil), 0 olduğunda iç
+      // hesabında sıfıra bölme NaN üretiyor -- her karede konsola
+      // "translate(NaN,NaN) scale(NaN)" olarak taşan asıl kaynak burasıydı
+      // (kod taraması, 2026-08-27; buildGraph'ın kendi || 800/600 yedeği
+      // bunu KAPSAMIYOR, çünkü bu değer hiç JS değişkenine uğramıyor).
+      // Gizliyken doğuş animasyonu zaten görünmez -- 2035. satırdaki
+      // animasyonsuz computeFitTransform() çağrısı grafiği görünür
+      // olmayan ama tutarlı bir dinlenme hâlinde bırakıyor, o yeterli.
+      if (svg.node().clientWidth === 0) return;
       const dhat = nodeById.get("dhat");
       if (!dhat) return;
       // Görünüm açılışta 3B eğimli başlıyor (aşağıdaki "Açılışta doğrudan
