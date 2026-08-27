@@ -87,9 +87,10 @@
     return out;
   }
   function themeColor(theme) { return mute(THEME_COLOR_VAR[theme] || "--series-theme"); }
-  // Kök ("Örten de O, görünen de O") artık Ontoloji/Esmâ'daki Zât ile aynı
-  // gövde rengini taşıyor (GU.ZAT_FILL, beyaz) -- kullanıcı isteği
-  // 2026-07-28. Önceki --text-secondary gri, düğümü çevresindeki temalardan
+  // Kök ("Örten de O, görünen de O") Ontoloji/Esmâ'daki Zât ile aynı gövde
+  // rengini taşıyor (GU.ZAT_FILL -- kullanıcı isteği 2026-07-28; 2026-08-27
+  // revizyonuyla ZAT_FILL kendisi çözülen-karanlık oldu, bu yer otomatik
+  // devralıyor). Önceki --text-secondary gri, düğümü çevresindeki temalardan
   // ayırmıyordu; merkez olduğu belli olmuyordu.
   function rootColor() { return GU.ZAT_FILL; }
 
