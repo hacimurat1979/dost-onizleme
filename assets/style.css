@@ -76,6 +76,62 @@
      buna katlandı -- aynı "hızlı çık, çok yumuşak otur" ailesi. */
   --ease-sahne: cubic-bezier(0.16, 1, 0.3, 1);
 
+  /* Boşluk ölçeği (KOD-11/12 devamı, 2026-08-27): margin/padding/gap'in
+     px değerleri ölçüldü -- --dur-*'nin aksine burada gerçekten temiz bir
+     2-4-8 gridine YAKINSIYORDU (en sık 8 değer: 62×8px, 56×6px, 50×10px,
+     27×2px, 21×16px, 21×14px, 18×12px, 17×4px). Ölçek bunlardan, sırayla,
+     türetildi -- yeni bir sayı İCAT EDİLMEDİ. Yeni kural yazarken önce
+     buradan seç. Not: mevcut ham px değerlerinin TAMAMI henüz bu ölçeğe
+     taşınmadı (bu, kapsamlı+riskli ayrı bir geçiş; şimdilik yalnız ölçek
+     kuruldu, yeni kod bunu kullanır).
+  */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 10px;
+  --space-6: 12px;
+  --space-7: 14px;
+  --space-8: 16px;
+
+  /* Tip ölçeği (aynı tarama): font-size burada --dur- ve --space- gibi
+     temiz, birbirinden ayrık kümelere hiç YAKINSAMIYORDU -- 0.6rem'den
+     2.2rem'e kadar hemen her 0.01-0.02rem adımı dolu (40+ farklı değer,
+     çoğu 1-3 kullanım). Bu, sitenin çok sayıda bileşeninin ayrı ayrı elle
+     ince ayarlanmasının (bu dosyadaki onlarca "kullanıcı bildirimi,
+     ölçüldü" yorumunun) doğal sonucu -- --dur-*'nin aksine burada "temiz
+     bir ölçek keşfetmek" mümkün değildi. Aşağıdaki 8 durak yine de EN SIK
+     kullanılan değerlerden seçildi (yaklaşık 0.05-0.08rem'lik dilimler
+     içindeki en sık değer) -- icat değil ama --dur-*'daki gibi kendiliğinden
+     ayrışmış bir küme de değil, BİLİNÇLİ bir temsilci seçimi. Mevcut ham
+     değerlerin bu ölçeğe taşınması kapsamlı bir ayrı geçiş; burada yalnız
+     ölçek kuruluyor.
+  */
+  --text-1: 0.72rem;
+  --text-2: 0.78rem;
+  --text-3: 0.82rem;
+  --text-4: 0.86rem;
+  --text-5: 0.9rem;
+  --text-6: 1rem;
+  --text-7: 1.15rem;
+  --text-8: 1.6rem;
+
+  /* Kırılma noktası kademeleri (aynı tarama, 2026-08-27): @media içinde
+     CSS özel özelliği KULLANILAMIYOR (dil sınırı), o yüzden bunlar salt
+     belgeleyici bir referans -- gerçek kural 480/640/900/1000px'i yazılı
+     kullanır. Önceden 10 farklı ham değer vardı (480/560/620/640/680/
+     720/760/768/900/1000); 640'a çok yakın 560/620(×2)/680 ve 900'e çok
+     yakın 720(×2)/768/760(min-width) tek bir kademeye toplandı -- hiçbiri
+     "ölçüldü, tam bu genişlikte" diye bir yorum taşımıyordu, yani kasıtlı
+     ayrı eşikler değil, zamanla biriken tutarsızlıktı. 480 ve 1000
+     zaten kendi başlarına ayrışmış duruyordu, dokunulmadı.
+     dar:    480px  (çok dar telefon -- 3 kural)
+     mobil:  640px  (asıl mobil eşiği, GU.createMobileListFallback'in de
+                     varsayılanı -- 17 kural)
+     tablet: 900px  (orta genişlik -- 6 kural, min-width dahil)
+     genis:  1000px (iki sütunlu düzenin başladığı yer -- 2 kural)
+  */
+
   --surface-1:      #fcfcfb;
   --page-plane:     #f9f9f7;
   --text-primary:   #1a1a1a;
@@ -2108,7 +2164,7 @@ button.futuhat-part-chip:hover {
   padding: 48px 16px;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
   .futuhat-hero {
     padding-top: 26px;
   }
@@ -4423,7 +4479,7 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .vahdet-pair { grid-template-columns: 1fr; }
 }
 .vahdet-card {
@@ -4613,7 +4669,7 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   background: var(--page-plane);
   padding: 0 3px;
 }
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .okuma-yolu__kademeler { flex-direction: column; }
   .okuma-yolu__ok { transform: rotate(90deg); padding: 0; }
 }
@@ -5705,7 +5761,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   margin: -4px 0 8px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .bookmap-tabs { flex-direction: column; border-bottom: none; }
   .bookmap-tab { border-bottom: 1px solid var(--border); border-left: 3px solid transparent; }
   .bookmap-tab--active { border-left-color: var(--series-theme); border-bottom-color: var(--border); }
@@ -7556,7 +7612,7 @@ body[data-theme="dark"] .hal-cluster-ray { stroke: var(--accent-glow-dark); }
    tüm genişliği kapladığından kaydırmak yerine gizlemek daha güvenli. */
 #esma-wrap.esma-panel-open .esmaX-controls { right: calc(14px + min(420px, 92vw)); }
 #esma-wrap.esma-panel-open .esmaX-explore { right: calc(12px + min(420px, 92vw)); }
-@media (max-width: 680px) {
+@media (max-width: 640px) {
   #esma-wrap.esma-panel-open .esmaX-controls,
   #esma-wrap.esma-panel-open .esmaX-explore { display: none; }
 }
@@ -7569,7 +7625,7 @@ body[data-theme="dark"] .hal-cluster-ray { stroke: var(--accent-glow-dark); }
   background: color-mix(in srgb, var(--surface-1) 78%, transparent);
   padding: 6px 9px; border-radius: 8px;
 }
-@media (max-width: 620px) { .esmaX-depth-hint { display: none; } .esmaX-controls { right: 8px; } }
+@media (max-width: 640px) { .esmaX-depth-hint { display: none; } .esmaX-controls { right: 8px; } }
 
 /* Keşfet düğmesi (sağ üst) */
 .esmaX-explore {
@@ -7608,7 +7664,7 @@ body[data-theme="dark"] .hal-cluster-ray { stroke: var(--accent-glow-dark); }
 
 /* Sarmalın devam ettiğini gösteren hayalet iz (yalnız 3B'de görünür). */
 .hal-ghost { fill: none; pointer-events: none; }
-@media (max-width: 620px) { .esmaX-explore__txt { display: none; } .esmaX-explore { padding: 0 9px; } }
+@media (max-width: 640px) { .esmaX-explore__txt { display: none; } .esmaX-explore { padding: 0 9px; } }
 
 /* Onboarding (3 adım) */
 .esmaX-onb {
@@ -8357,7 +8413,7 @@ body.share-stage-open { overflow: hidden; }
   width: 100%;
   min-width: 0;
 }
-@media (min-width: 760px) {
+@media (min-width: 900px) {
   .sir-halka__key { grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
 }
 .sir-halka__key-group h4 {
