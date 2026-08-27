@@ -27,6 +27,7 @@
   const detailContent = document.getElementById("detail-content");
   const wrapEl = document.getElementById("esma-wrap");
   const tooltip = document.getElementById("esma-tooltip");
+  const legendEl = document.getElementById("esma-legend");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // hal.js/ontology.js'in kenar hover'ıyla aynı desen -- #esma-tooltip
@@ -539,6 +540,27 @@
   }
 
   let bgLayer, edgeLayer, relLayer, flowLayer, clusterLayer, particleLayer, nodeLayer;
+  // #esma-legend'in ekran dikdörtgeni, SVG'nin kendi (merkez-orijinli, pan/
+  // zoom'a göre ölçeklenmiş) koordinat uzayına çevrilip önbelleğe alınıyor
+  // -- her karede getBoundingClientRect() okumak (kod taraması, 2026-08-27:
+  // render() saniyede 60 kez bekleyen DOM yazımlarını FLUSH ederdi, zorunlu
+  // senkron layout) yerine yalnız gerçekten değiştiğinde (pencere ölçüsü,
+  // lejant aç/kapa) yeniden hesaplanıyor.
+  let legendBox = null, legendBoxDirty = true;
+  function refreshLegendBox() {
+    legendBoxDirty = false;
+    if (!legendEl || !svgNode) { legendBox = null; return; }
+    const lr = legendEl.getBoundingClientRect();
+    if (!lr.width || !lr.height) { legendBox = null; return; }
+    const sr = svgNode.getBoundingClientRect();
+    const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 620;
+    legendBox = {
+      x0: lr.left - sr.left - w / 2,
+      x1: lr.right - sr.left - w / 2,
+      y0: lr.top - sr.top - h / 2,
+      y1: lr.bottom - sr.top - h / 2,
+    };
+  }
   let particles = [];
   let flow = null;   // { chain:[ids], start, dur }
   let flowRepeatTimer = null;
@@ -788,6 +810,7 @@
   function render(ts) {
     if (!nodeLayer) return;
     ts = ts || performance.now();
+    if (legendBoxDirty) refreshLegendBox();
     nodes.forEach(project);
     const pal = renderPalette();
 
@@ -851,6 +874,14 @@
       });
       const placed = [];
       const labelDy = new Map();
+      const labelDx = new Map();
+      // Lejant (#esma-legend) SVG'nin ÜSTÜNE bindirilen sabit bir HTML
+      // panel -- grafiğin kendi çakışma-önleme sistemi bunu hiç bilmiyordu,
+      // "Kamal — Perfection" gibi kutup başlıkları tam lejantın altına
+      // düşünce YÜZDE YÜZ örtülüyordu (kod taraması, 2026-08-27). Lejantın
+      // ekran dikdörtgeni burada da "dolu" bir kutu olarak SAYILIYOR --
+      // etiketler ona da diğer etiketlere kaçtığı gibi kaçıyor.
+      if (legendBox) placed.push(legendBox);
       // Zorunlu ("her zaman kazanır") etiketler eskiden BİRBİRLERİYLE hiç
       // çakışma kontrolüne girmeden sırayla yerleştiriliyordu -- Zât/Allah/
       // kutuplar sık sık üst üste biniyordu (2026-08-07 UI denetimi,
@@ -860,14 +891,27 @@
       // createLabelDeconflictor'ıyla aynı fikir, esma.js'in kendi
       // full/short/none kutu sistemine yerelce uygulanmış).
       always.forEach((it) => {
+        // Lejant dikey kaydırmayla kaçılamayacak kadar yüksek bir dikdörtgen
+        // (küme başlıkları çoğu zaman lejantın Y aralığının ortasına düşüyor,
+        // 24 denemelik yukarı kaydırma onu temizlemeye yetmeyebilir) -- önce
+        // YATAY olarak lejantın sağına kaçırılıyor, sonra her zamanki dikey
+        // döngü KALAN gerçek etiketlerle çakışmayı çözüyor.
+        let dx = 0;
+        if (legendBox && boxesOverlap(it.box, legendBox)) {
+          dx = legendBox.x1 + 8 - it.box.x0;
+        }
         let dy = 0, guard = 0;
         while (guard++ < 24) {
-          const b = { x0: it.box.x0, x1: it.box.x1, y0: it.box.y0 + dy, y1: it.box.y1 + dy };
+          const b = { x0: it.box.x0 + dx, x1: it.box.x1 + dx, y0: it.box.y0 + dy, y1: it.box.y1 + dy };
           const hit = placed.find((p) => boxesOverlap(b, p));
           if (!hit) break;
           dy -= (it.box.y1 - it.box.y0) + 4; // yukarı doğru kaydır -- etiketler düğümün üstünde
         }
-        if (dy) { it.box = { x0: it.box.x0, x1: it.box.x1, y0: it.box.y0 + dy, y1: it.box.y1 + dy, text: it.box.text }; labelDy.set(it.n.id, dy); }
+        if (dx || dy) {
+          it.box = { x0: it.box.x0 + dx, x1: it.box.x1 + dx, y0: it.box.y0 + dy, y1: it.box.y1 + dy, text: it.box.text };
+          labelDy.set(it.n.id, dy);
+          if (dx) labelDx.set(it.n.id, dx);
+        }
         placed.push(it.box);
         plan.set(it.n.id, it.mode);
       });
@@ -878,9 +922,9 @@
         placed.push(it.box);
         plan.set(it.n.id, it.mode);
       });
-      return { plan, labelDy };
+      return { plan, labelDy, labelDx };
     }
-    const { plan: labelPlan, labelDy } = buildLabelPlan();
+    const { plan: labelPlan, labelDy, labelDx } = buildLabelPlan();
 
     // düğümler (ressam algoritması: arkadan öne)
     const ordered = nodes.slice().sort((a, b) => b.pz - a.pz);
@@ -942,6 +986,7 @@
       if (mode === "none") { label.style("display", "none"); }
       else {
         label.style("display", null)
+          .attr("x", labelDx.get(n.id) || 0)
           .attr("y", -r - 7 + (labelDy.get(n.id) || 0))
           .style("font-size", Math.max(14, Math.min(21, 15 + n.importance * 8)) + "px")
           .classed("esmaX-label--strong", n.kind !== "name" || isActive || n.id === hoverId)
@@ -1336,11 +1381,25 @@
     });
 
     window.addEventListener("resize", GU.debounceResize(() => { if (built && !wrapEl.hidden) { onResize(); } }));
+
+    // Lejant aç/kapa dikdörtgeni değiştirir (bkz. legendBox) -- kapanış/
+    // açılışın kendi CSS geçişi bitene kadar (--dur-gecis, 250ms) ölçü
+    // yanlış kalır; iki kez işaretliyoruz: hemen (ok/ikon dönüşü an be an
+    // görünsün) ve geçiş bittikten hemen sonra (gerçek son boyut).
+    const legendToggleBtn = legendEl && legendEl.querySelector(".legend__toggle");
+    if (legendToggleBtn) {
+      legendToggleBtn.addEventListener("click", () => {
+        legendBoxDirty = true;
+        ensureFrame();
+        setTimeout(() => { legendBoxDirty = true; ensureFrame(); }, 300);
+      });
+    }
   }
 
   function onResize() {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 620;
     svg.attr("viewBox", `${-w / 2} ${-h / 2} ${w} ${h}`);
+    legendBoxDirty = true;
     if (bgLayer) bgLayer.select("rect").attr("x", -w).attr("y", -h).attr("width", 2 * w).attr("height", 2 * h);
     layout();
     ensureFrame();

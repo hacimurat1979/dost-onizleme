@@ -50,7 +50,7 @@
     __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-kl48zvjGhCjql6ilzjKBLNV+o8iJC8Aa9VWWZs2PcW4CRsYqu936jtfJaJDxoY0k" },
     __yolculukApp: { src: "assets/yolculuk.js", integrity: "sha384-4rFNj/JUH7Mr0a6bUe2+DXBMA729ejih0SnKi4JjwiyDpWMm76JHIdiDkCLzplkl" },
     __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-WpfLUp6DVP5UV+d77GtzYBSOK79GBd/yzuWx9KKnhmtnEbLTJCVJx/CgQ2aOEzsh" },
-    __esmaApp: { src: "assets/esma.js", integrity: "sha384-Uz1wFIhXkeh7Khn0o/2o05niAs6At7OU5+pYWwTGWVVRyZtdRFAMvsGUT2YjXulc" },
+    __esmaApp: { src: "assets/esma.js", integrity: "sha384-PvyMxDzk9lqtMSmaahtPac7TLaE2Ogy4Kz1/DZ+vQx0oDTWRF9/29NstNgkRBFzv" },
     __halApp: { src: "assets/hal.js", integrity: "sha384-rmTP+V9qyKWIx3nYvjn2UtVQmES+VUlVkRtrqqvsL31xb8ErOp0ggUgAZ8YQWOvd" },
     __terimlerApp: { src: "assets/terimler.js", integrity: "sha384-u87oqF5QBlI9l+ie5gumy17cGVqEQ3UnKKZRGr1NLCbrG3a2pY/lP4XUDO6OYs7P" },
     __sorularApp: { src: "assets/sorular.js", integrity: "sha384-KHvutOBb/6nMyHh4/YfKWF5L/qs1zrHDbhWoxbgZULPnCpGKmL2Z4xcVS9vfYsSA" },

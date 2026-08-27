@@ -1803,6 +1803,26 @@
         const anchor = swayRotate(d.px, d.py);
         return { x: anchor.x, y: anchor.y, half: radiusFor(d) * s, h: radiusFor(d) * 2 * s };
       });
+      // "İlk kez mi buradasın?" kartı (start-hint.js, #start-hint) grafiğin
+      // ÜSTÜNE sabit bir HTML panel olarak biniyor -- etiket yerleştirme bunu
+      // hiç bilmiyordu, kart açılınca altındaki düğüm etiketlerinin üstüne
+      // biniyordu (kod taraması, 2026-08-27; desktop ekran görüntüsüyle
+      // doğrulandı). Kartın ekran dikdörtgeni burada da bir engel: SVG'nin
+      // kendi (zoom-layer'ın transform'undan ÖNCEKİ, ham) uzayına
+      // d3.zoomTransform().invert ile çevriliyor -- kart döngü her tazelendiğinde
+      // (yaklaşık 2,5 saniyede bir, sway eşiği) canlı ölçülüyor, ayrı bir
+      // olay dinleyicisi gerekmiyor.
+      const startHintEl = document.getElementById("start-hint");
+      if (startHintEl && !startHintEl.hidden) {
+        const hr = startHintEl.getBoundingClientRect();
+        const sr = svg.node().getBoundingClientRect();
+        if (hr.width && hr.height) {
+          const t = d3.zoomTransform(svg.node());
+          const x0 = t.invertX(hr.left - sr.left), x1 = t.invertX(hr.right - sr.left);
+          const y0 = t.invertY(hr.top - sr.top), y1 = t.invertY(hr.bottom - sr.top);
+          nodeObstacles.push({ x: (x0 + x1) / 2, y: (y0 + y1) / 2, half: (x1 - x0) / 2, h: y1 - y0 });
+        }
+      }
       // Ekstra pay: bu sahne yavaşça yaw ile dönüyor (varsayılan 3B eğim),
       // yani her karede biraz farklı bir projeksiyon -- tam sınırda kalan
       // çiftler bir sonraki karede yeniden çakışabiliyordu (2026-08-06
