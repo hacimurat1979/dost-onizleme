@@ -138,28 +138,14 @@ window.DostGraphUtils = (function () {
   const LAYER_COLOR = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#2a78d6", "#1c5cab", "#0d366b"];
   const LAYER_COLOR_DARK = ["#184f95", "#256abf", "#2a78d6", "#3987e5", "#5598e7", "#86b6ef", "#cde2fb"];
 
-  // 2026-08-27 (kod taraması, kullanıcı onaylı): eski değer #ffffff (parlak
-  // beyaz + altın nefes alan hâle, style.css .node--root .node-halo) GORSEL_
-  // DIL.md'nin açık yasağını çiğniyordu -- "Zât'ı parlak bir cisim olarak
-  // çizme... yerine sessizlik, yokluk, imkânsız derinlik kullan." Eski
-  // niyet ("kendi rengi bilinemez, yalnız ışımasıyla bilinir") korunuyor,
-  // yalnız "ışıma" yerine "çözülmeyen bir karanlık" ile: keskin bir silüet
-  // değil, kenarları bulanıklaşan, ışık yaymayan bir derinlik. Aydınlık
-  // temada ışığın içindeki bir yokluk gibi durur; karanlık temada gecenin
-  // kendisine karışır (bkz. style.css .node--root .node-halo).
-  const ZAT_FILL = "#0a0806";
-
-  // Aynı revizyonun hâle (halo) rengi -- style.css'teki .node--root
-  // .node-halo'nun fill değerleriyle BİREBİR aynı tutulmalı (biri değişirse
-  // diğeri elle güncellenir; CSS özel özelliği olarak paylaşmak yerine burada
-  // da sabit tutuluyor çünkü esma.js ve share-mode.js DOM'a henüz binmemiş
-  // düğümler için de bu değeri okuyabilmeli). Eskiden Esmâ ve paylaşım
-  // kartındaki Zât hâlesi hâlâ parlak altındı (--series-theme/--accent-glow-
-  // dark) -- ontoloji sessizleşirken bu ikisi unutulmuştu; kullanıcının
-  // "zat düğümü sitede her nerede geçiyorsa daima birebir aynı olmalı"
-  // isteği (2026-08-04, kalıcı) bu üç yeri de tek bir görünüme bağlıyor.
-  const ZAT_HALO_LIGHT = "#2b2314";
-  const ZAT_HALO_DARK = "#000000";
+  // 2026-08-27 (kod taraması, kullanıcı onaylı): kısa bir süre "çözülen
+  // karanlık" (koyu dolgu + ışıksız hâle) denendi -- GORSEL_DIL.md'nin
+  // "Zât'ı parlak bir cisim olarak çizme" yasağına daha sadık bir okumaydı.
+  // Aynı gün kullanıcı asıl bembeyaz + altın nefes alan hâleye dönülmesini
+  // istedi ("eski sarı glow efektli bembeyaz daire haline getirelim") --
+  // GORSEL_DIL.md güncellemesi CLAUDE.md'de not edilmiştir, kod burada o
+  // kararı yansıtıyor: kendi rengi bilinemez, yalnız ışımasıyla bilinir.
+  const ZAT_FILL = "#ffffff";
 
   // Not: OS/tarayıcı tercihini değil, sitenin kendi karanlık-mod anahtarını
   // (document.body[data-theme]) esas alır -- kullanıcı sistem tercihinin
@@ -944,5 +930,5 @@ window.DostGraphUtils = (function () {
     return sel;
   }
 
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, ZAT_HALO_LIGHT, ZAT_HALO_DARK, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createFrameLoop, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback, wireEdgeAccessibility };
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createFrameLoop, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback, wireEdgeAccessibility };
 })();

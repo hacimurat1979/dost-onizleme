@@ -2996,10 +2996,6 @@ li.futuhat-pulse,
 .sir-hit { fill: transparent; stroke: none; pointer-events: all; }
 .sir-halo { fill: none; stroke-width: 1.4px; pointer-events: none; }
 .sir-bg circle { pointer-events: none; fill: var(--text-muted); }
-/* Zât'ın gövdesi keskin bir silüet değil, kenarları çözülen bir derinlik --
-   Ontoloji/Esmâ'daki Zât ile birebir aynı blur (2026-08-27, bkz.
-   .node--root .node-halo yorumu, style.css). */
-.sir-node--root .sir-dot { filter: blur(2.5px); }
 
 /* #4 — yatay, okunur etiket: yumuşak gölge için paint-order ile arka-plan
    renginde bir kontur (glossy değil, sadece zemine karşı okunaklılık). */
@@ -3191,12 +3187,10 @@ body[data-theme="dark"] #sirlar-legend {
 .legend__dot--descent  { background: var(--series-ibnarabi-line); }
 .legend__dot--return   { background: var(--series-theme); }
 .legend__dot--paradox  { background: var(--series-daphne); }
-/* Merkez düğüm (Zât), 2026-08-27 revizyonuyla grafikte ışık yaymayan,
-   çözülen bir karanlık (bkz. .node--root .node-halo yorumu) -- lejanttaki
-   nokta de GU.ZAT_FILL'in aynı koyu dolgusunu taşıyor. İnce kenarlık
-   dekoratif "halka" değil, yalnız lejant listesindeki küçük noktayı sayfa
-   zemininden ayırt edilebilir kılan nötr bir çerçeve (--border). */
-.legend__dot--zat { background: #0a0806; border: 1px solid var(--border); box-sizing: border-box; }
+/* Merkez düğüm (Zât) grafikte içi boş, yalnız altın bir halkayla çiziliyor
+   (bkz. --helix-gold-rim tanımı) -- lejanttaki nokta de aynı görünümü
+   taşısın diye dolgu değil, kenarlık kullanıyoruz. */
+.legend__dot--zat { background: var(--surface-1); border: 2px solid var(--helix-gold-rim); box-sizing: border-box; }
 .legend__dot--hal-gerilim { background: var(--series-hal-nefs); }
 .legend__dot--hal-dogurur { background: var(--series-hal-hayret); }
 .legend__dot--hal-yanki   { background: var(--series-hal-cemfark); }
@@ -3577,50 +3571,39 @@ body[data-theme="dark"] #sirlar-legend {
   stroke-width: 2.6px;
 }
 
-/* Zât/Essence root node (2026-08-27 revizyonu, kod taraması bulgusu +
-   kullanıcı onaylı görsel seçim): eski hâl (altın nefes alan hâle + saf
-   beyaz gövde, bkz. graph-utils.js'in eski ZAT_FILL yorumu) GORSEL_DIL.md'
-   nin açık yasağını çiğniyordu -- "Zât'ı parlak bir cisim gibi çizme...
-   yerine sessizlik, yokluk, imkânsız derinlik kullan." Işık yaymayan,
-   ışık yaymadığı için hareketsiz (nefes animasyonu kaldırıldı -- "sükût"
-   kendisi görsel bir davranış), kenarları çözülen bir derinlik izlenimi
-   ile değiştirildi. .node--root burada YALNIZ Ontoloji/Esmâ/Sırlar'ın
-   Zât/Allah düğümüne uygulanıyor -- sorular-center/menziller-center KENDİ
-   ayrı .node-halo kurallarını taşıyor (aşağıda), bunlar Zât DEĞİL, bu
-   yüzden dokunulmadı; node-halo-breathe(-dark) keyframe'leri o ikisi
-   hâlâ kullandığı için burada AYNEN korunuyor, yalnız .node--root
-   .node-halo'nun kendi animation özelliği kaldırıldı. */
+/* Zât/Essence root node: bir süre "çözülen karanlık" (koyu dolgu, ışıksız
+   hâle) denendi -- GORSEL_DIL.md'nin "Zât'ı parlak bir cisim gibi çizme"
+   yasağına daha sıkı bir okumaydı. Kullanıcı aynı gün eski bembeyaz gövde +
+   altın nefes alan hâleye dönülmesini istedi (2026-08-27, "eski sarı glow
+   efektli bembeyaz daire haline getirelim") -- kendi rengi bilinemez,
+   yalnız ışımasıyla bilinir okuması korunuyor; yavaş, sürekli nefes tek
+   animasyonlu imza (bkz. CLAUDE.md not). */
 .node-halo {
-  stroke: none;
-  filter: none;
-  fill: none;
-  opacity: 0;
-  pointer-events: none;
+  stroke: none; filter: none; fill: none; opacity: 0; pointer-events: none;
 }
 .node--root .node-halo {
-  fill: #2b2314;
-  filter: blur(14px);
-  transform-box: fill-box;
-  transform-origin: center;
-  opacity: 0.16;
+  fill: var(--series-theme);
+  transform-box: fill-box; transform-origin: center;
+  animation: node-halo-breathe 6s ease-in-out infinite;
 }
-.ontology-node.node--root > circle:not(.node-halo) {
-  filter: blur(2.5px);
-}
-.viz-root[data-theme="dark"] .node--root .node-halo {
-  fill: #000000;
-  filter: blur(16px);
-  opacity: 0.5;
-}
-/* sorular-center/menziller-center kendi .node-halo'ları için hâlâ gerekli --
-   Zât değiller, bu ikisi eski altın-nefes davranışını koruyor. */
 @keyframes node-halo-breathe {
   0%, 100% { opacity: 0.14; transform: scale(1); }
   50%      { opacity: 0.34; transform: scale(1.4); }
 }
+@media (prefers-reduced-motion: reduce) {
+  .node--root .node-halo { animation: none; opacity: 0.2; }
+}
+.viz-root[data-theme="dark"] .node--root .node-halo {
+  fill: var(--accent-glow-dark);
+  filter: blur(4px);
+  animation: node-halo-breathe-dark 6s ease-in-out infinite;
+}
 @keyframes node-halo-breathe-dark {
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50%      { opacity: 0.65; transform: scale(1.45); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .viz-root[data-theme="dark"] .node--root .node-halo { animation: none; opacity: 0.45; }
 }
 
 #profile-tabs {
@@ -7540,11 +7523,6 @@ body[data-theme="dark"] .esmaX-halo { fill: var(--accent-glow-dark); filter: blu
 :root[data-theme="dark"] .esmaX-dot,
 body[data-theme="dark"] .esmaX-dot { stroke: rgba(255,255,255,0.14); }
 .esmaX-node.is-active .esmaX-dot { stroke: var(--series-theme); stroke-width: 2; }
-/* Zât'ın gövdesi keskin bir silüet değil, kenarları çözülen bir derinlik --
-   Ontoloji'deki .ontology-node.node--root > circle:not(.node-halo) ile
-   birebir aynı blur (2026-08-27, bkz. .node--root .node-halo yorumu). Allah
-   düğümü hâriç -- yalnız .esmaX-node--zat, .node--root (zat+allah ortak) değil. */
-.esmaX-node--zat .esmaX-dot { filter: blur(2.5px); }
 .node-sheen { pointer-events: none; }
 
 .esmaX-label {
@@ -8039,25 +8017,42 @@ body.share-stage-open { overflow: hidden; }
   filter: blur(18px);
 }
 /* Sarmalın tepesindeki Zât düğümünün hâlesi -- ontoloji/esmâ'daki
-   .node--root .node-halo ile birebir aynı olmalı (2026-08-04, kullanıcı
+   .node--root .node-halo ile AYNI nefes ritmi (2026-08-04, kullanıcı
    isteği: "zat düğümü sitede her nerede geçiyorsa daima birebir aynı
-   olmalı"). 2026-08-27 revizyonu: o kural artık ışık yaymayan, nefes
-   almayan bir hâle -- burası da aynısını taşıyor; eski altın 6sn nefes
-   (share-zat-halo-breathe/-dark) GORSEL_DIL.md'nin Zât yasağını burada
-   hâlâ çiğniyordu, ontoloji sessizleşirken bu unutulmuştu. Değerler
-   doğrudan .node--root .node-halo'dan (style.css ~3529/3539): koyu
-   zemin (varsayılan) = #000000/blur(16px)/0.5, açık zemin
-   (.share-stage--acik) = #2b2314/blur(14px)/0.16. */
+   olmalı"). Işık kaynağı statik bir parıltı filtresi değil, altı
+   saniyelik nefes alan bir hâle -- oradaki gibi burada da.
+   İlk yazım yalnız .node--root .node-halo'nun AÇIK tema değerlerini
+   (0.14->0.34, blur yok) kopyalamıştı -- ama o kuralın kendi yorumu
+   açıkça uyarıyor: "düz --series-theme altını yakın-siyah bir zeminde
+   bu opaklıklarda çok soluk kalıyor," ve kendisi tam bunun için AYRI bir
+   koyu-tema takviyesi taşıyor (blur(4px) + 0.3->0.65). Sahnenin zemini
+   ("koyu" seçeneğinde) --sahne-perde: #05060a ile tam o senaryo -- bu
+   yüzden varsayılan burada da o takviyeli hâl; yalnız .share-stage--acik
+   (açık zemin) seçiliyken ontoloji'nin AÇIK tema değerlerine dönüyor
+   (kullanıcı bildirimi, 2026-08-04: "zat düğümü glow belli değil"). */
 .share-zat-halo {
-  fill: #000000;
-  filter: blur(16px);
-  opacity: 0.5;
+  fill: var(--sahne-vurgu);
+  filter: blur(4px);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: share-zat-halo-breathe-dark 6s ease-in-out infinite;
   pointer-events: none;
 }
+@keyframes share-zat-halo-breathe-dark {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%      { opacity: 0.65; transform: scale(1.45); }
+}
 .share-stage--acik .share-zat-halo {
-  fill: #2b2314;
-  filter: blur(14px);
-  opacity: 0.16;
+  filter: none;
+  animation-name: share-zat-halo-breathe;
+}
+@keyframes share-zat-halo-breathe {
+  0%, 100% { opacity: 0.14; transform: scale(1); }
+  50%      { opacity: 0.34; transform: scale(1.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .share-zat-halo { animation: none; opacity: 0.45; }
+  .share-stage--acik .share-zat-halo { opacity: 0.2; }
 }
 /* Metin, TikTok arayüzünün kapatmadığı orta bandda kalıyor: altta ~%20,
    sağda ~%18 butonlarla örtülüyor. */

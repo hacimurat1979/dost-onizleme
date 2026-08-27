@@ -717,13 +717,10 @@
   });
   function ensureFrame() { frameLoop.ensureFrame(); }
 
-  function warmthColor(base, depthA, isZat) {
+  function warmthColor(base, depthA) {
     // 3B derinliği: Allah'a yakın = sıcak/parlak, uzak = serin/atmosferik.
-    // tilt ile devreye girer (düz 2B'de kutup renkleri korunur). Zât hariç --
-    // O'nun "yakın" göründüğü an bile sıcak/parlak altına ısıtılmaz (2026-08-27
-    // düzeltmesi): tilt modunda önceki hâl tam bunu yapıyordu, GORSEL_DIL.md'nin
-    // yasağını 3B görünümde sessizce geri getiriyordu.
-    if (tilt < 0.02 || isZat) return base;
+    // tilt ile devreye girer (düz 2B'de kutup renkleri korunur).
+    if (tilt < 0.02) return base;
     const near = Math.max(0, 1 - depthA / 5);
     const warm = isDark() ? "#ffd27a" : "#e8a63c"; // sıcak altın
     const cool = isDark() ? "#5b6b82" : "#8f97a6";
@@ -766,29 +763,29 @@
     return Math.max(0.12, 0.6 - (n.depthA - 1) * 0.12);
   }
 
-  // Halo rengi: Zât, Ontoloji grafiğindeki .node--root ile birebir aynı
-  // hâleyi taşımalı (kullanıcı isteği, 2026-08-04: "zat düğümü sitede her
-  // nerede geçiyorsa daima birebir aynı olmalı"). 2026-08-27 revizyonu:
-  // ontoloji'nin ışık yaymayan, çözülen-karanlık hâlesi buraya da taşındı --
-  // GU.ZAT_HALO_LIGHT/DARK, style.css'teki .node--root .node-halo'nun fill
-  // değerleriyle birebir aynı tutulur (bkz. graph-utils.js). Eskiden burada
-  // doğrudan --series-theme/--accent-glow-dark (parlak altın) döndürülüyordu;
-  // ontoloji sessizleşirken bu unutulmuştu.
+  // Halo rengi: Zât, Ontoloji grafiğindeki .node--root ile aynı ışıması
+  // gerekiyor -- orada halo her zaman doğrudan --series-theme (dark modda
+  // --accent-glow-dark), soluk bir beyaz-altın karışımı değil, doygun/solid
+  // altın rengidir (bkz. style.css .node--root .node-halo). Önceki soluk
+  // color-mix burada bir "iyileştirme" sanılmıştı ama aslında Zât'ı sönük/
+  // içi boş bir halkaya çeviriyordu -- iki grafikte de aynı Zât'ın aynı
+  // ışımayla görünmesi için buradan da doğrudan tema rengi kullanılıyor.
   function haloColor(n, pal) {
-    if (n.kind === "zat") return isDark() ? GU.ZAT_HALO_DARK : GU.ZAT_HALO_LIGHT;
+    if (n.kind === "zat") return isDark() ? pal.accentGlowDark : pal.theme;
     return warmthColor(colorForNode(n, pal), n.depthA);
   }
 
-  // Nefes alan halo: yalnız Allah düğümü için -- O bir tecellî/isim, ışıması
-  // görsel gramerle çelişmiyor. Zât 2026-08-27'de dondu (faz sabit 0, dip
-  // değeri): Ontoloji'deki .node--root .node-halo artık nefes almıyor
-  // ("sükût kendisi bir davranış" -- style.css yorumu), Esmâ'nın Zât'ı da
-  // aynı sessiz/sabit hâli taşımalı ("birebir aynı olmalı", 2026-08-04).
+  // Nefes alan halo: Ontoloji'deki .node--root .node-halo keyframe'iyle
+  // (node-halo-breathe: 0%/100% opacity .14 scale 1 -> 50% opacity .34 scale
+  // 1.4, 6sn) BİREBİR aynı genlikte -- 0 (dip) ile 1 (tepe) arasında bir faz
+  // döndürür; çağıran yer bunu ontoloji'deki gibi opacity/scale'e uygular.
+  // Önceki ±%8-10'luk ince salınım ontoloji'nin göze çarpan nefesiyle
+  // eşleşmiyordu ("canlı glow etkisi yok" şikâyeti kısmen buradandı).
   function haloBreathPhase(n, ts) {
-    if (n.kind === "zat") return 0;
     if (reduceMotion) return 0.5;
     const period = 6000;
-    return (1 - Math.cos((ts / period) * 2 * Math.PI)) / 2;
+    const phase = n.kind === "allah" ? 0 : Math.PI; // Zât/Allah farklı ritimde nefes alsın
+    return (1 - Math.cos((ts / period) * 2 * Math.PI + phase)) / 2;
   }
 
   function labelMode(n, effScale) {
@@ -979,7 +976,7 @@
         .attr("r", haloR)
         .style("fill", haloColor(n, pal))
         .style("opacity", haloOp);
-      g.select(".esmaX-dot").attr("r", r).style("fill", warmthColor(colorForNode(n, pal), n.depthA, n.kind === "zat"));
+      g.select(".esmaX-dot").attr("r", r).style("fill", warmthColor(colorForNode(n, pal), n.depthA));
       g.select(".node-sheen").attr("r", r);
       const mode = labelPlan.get(n.id) || "none";
       const label = g.select(".esmaX-label");

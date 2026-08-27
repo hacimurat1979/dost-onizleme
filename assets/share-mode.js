@@ -1053,14 +1053,13 @@
       // (yaw tam turda ekran-Y'yi vert ile aynı yönde taşımıyor) sayısal
       // olarak sınayınca i = n-1'in EKRANDA ALTA, i = 0'ın ÜSTE düştüğü
       // ortaya çıktı -- kullanıcının "düğüm altta" gözlemiyle birebir
-      // örtüşüyor. Düğümün görünümü de ontoloji/esmâ'daki Zât düğümünün
-      // BİREBİR AYNISI olmalı ("her nerede geçiyorsa daima birebir aynı
-      // olmalı") -- 2026-08-27 revizyonuyla o artık bembeyaz+altın nefes
-      // değil, GU.ZAT_FILL'in ışık yaymayan çözülen-karanlığı; oran
-      // (34/13 ≈ 2.6) hâlâ .node--root .node-halo'dan (style.css).
+      // örtüşüyor. Düğümün görünümü de artık ontoloji/esmâ'daki Zât
+      // düğümünün BİREBİR AYNISI: bembeyaz gövde + altın, 6 saniyelik
+      // nefes alan bir hâle (statik bir parıltı filtresi değil) -- bkz.
+      // .node--root .node-halo (style.css), oran (34/13 ≈ 2.6) da oradan.
       if (i === 0) {
-        c.style.fill = GU.ZAT_FILL;
-        c.style.filter = "blur(2.5px)";
+        c.style.fill = "#ffffff";
+        c.style.filter = "";
         c.setAttribute("r", (z.nokta * p.depth * br * 2.6).toFixed(2));
         c.style.opacity = "1";
         zatPt = p;
