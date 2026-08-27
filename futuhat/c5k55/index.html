@@ -22,6 +22,10 @@
      ürünü, Bing altyapısını kullanıyor). script-src/img-src bu yüzden
      www.clarity.ms yerine *.clarity.ms joker'ini ve ayrıca c.bing.com'u
      içeriyor -- connect-src'teki jokerle tutarlı. -->
+<!-- GA4 da tek taşıma biçimi kullanmıyor: isabetleri çoğu zaman connect-src
+     üzerinden (fetch/beacon) yolluyor ama koşullara göre googletagmanager'dan
+     bir GÖRÜNTÜ pikseline (/td?..., /a?...) düşebiliyor -- img-src'de bu iki
+     domain olmayınca o isabetler sessizce bloke oluyordu. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'">
 <!-- Gerçek path'lerle gezinme (bkz. 404.html) adres çubuğunu /futuhat/c1k9 gibi
      köke bağlı olmayan derinliklere taşıyor; bu <base> olmadan o an sayfadaki
@@ -190,7 +194,7 @@
     </div>
     <button class="welcome-screen__skip" id="welcome-skip" type="button" aria-label="Geç / Skip / Pular">Geç · Skip · Pular</button>
   </div>
-  <script src="assets/welcome.js" integrity="sha384-gXgbiIL7fbHQ9CzFX3EQWNLEwpo/LuH3ce9cUpT9zzC03vmd+rFqS2c5lukYgo3q"></script>
+  <script src="assets/welcome.js" integrity="sha384-S5tFjXihlcpK0nv98slTQtYdnNM5LFYkgzgtvYw0WG00+qjAH2MMu9WbX++mQlHA"></script>
   <header class="app-header">
     <div class="app-header__controls">
       <!-- FAZ 1 (grafik-önce arayüz, 2026-08-03): 14 eşit ağırlıklı sekme
@@ -1541,7 +1545,7 @@ mesmo antes que o assombro exista."></blockquote>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in
        bayrağına bakar), kip kapalıyken hiçbir şey çizmez. 2026-07-29'a
        kadar önizlemeye özeldi; kullanıcı kararıyla canlıda da yayınlanıyor. -->
-  <script src="assets/durus-kontrol.js" defer integrity="sha384-Mp9H5TzeXvWnSzRrPCE3R60gl5Raj0z/l0zDjB40pPHFfcx83EN4U8MGjWRMFusv"></script>
+  <script src="assets/durus-kontrol.js" defer integrity="sha384-OjbtYmWI+PXNacj+rAX13GNCnTzQLxxTNNAebRCCVRYOUECHaOawpxp+rNWZ2vGs"></script>
   <!-- Mekanik tahkik (docs/tahkik-protokolu.md'nin M5/M7 mercekleri).
        Duruş taramasının kardeşi: aynı @revise çipinden açılıyor, aynı veri
        dosyalarını okuyor, ama başka bir soru soruyor. Yargı mercekleri

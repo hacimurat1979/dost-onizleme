@@ -76,6 +76,71 @@
      buna katlandı -- aynı "hızlı çık, çok yumuşak otur" ailesi. */
   --ease-sahne: cubic-bezier(0.16, 1, 0.3, 1);
 
+  /* Eğri ölçeği (2026-08-27). --dur-* süreleri tokenize etmişti ama EĞRİ
+     tarafı dışarıda kalmıştı: ölçümde 221 transition easing'inin 218'i
+     tarayıcı varsayılanı `ease`'ti, yani TEMPO_GRAMERI.md zamanın
+     gramerini yazarken eğrinin CSS'te karşılığı yoktu.
+
+     --dur-* ve --space-* ile aynı yöntem: ölçek MEVCUT KULLANIMDAN
+     türetildi, yeni bir eğri İCAT EDİLMEDİ. Sayım (assets/style.css):
+       214× ease         -> --ease-standart
+        16× ease-in-out  -> --ease-nefes   (bkz. aşağıdaki not)
+         3× ease-out     -> --ease-sonme
+         7× var(--ease-sahne)
+     Adlar projenin kendi sözlüğünden: 16 ease-in-out kullanımının
+     neredeyse tamamı `infinite` nefes/nabız animasyonu (hakkinda-nefes-al,
+     node-halo-breathe, esma-forming-pulse, futuhat-nobet-glow...) --
+     simetrik giriş/çıkış zaten nefesin ta kendisi. 3 ease-out kullanımının
+     üçü de sönerek biten (futuhat-pulse, durus-vurgu-sonme, durus-es-sonme).
+
+     `linear` BİLEREK tokenize edilmedi. 5 kullanımının hiçbiri üslup
+     tercihi değil, taşıyıcı: iki spinner (view-status-spin,
+     app-fallback-spin -- dönen bir şey linear olmak ZORUNDA, yavaşlarsa
+     bozulur), `visibility 0s linear` gecikme deyimi (2 yer) ve 0.05s'lik
+     sürekli koordinat takibi. Bunlara ortak bir değişken vermek, ileride
+     merkezden değiştirilip spinner'ları kırma daveti olurdu.
+
+     Not (--space-* ile aynı durum): mevcut kullanımlar HENÜZ bu ölçeğe
+     taşınmadı -- 214 easing'i tek seferde değiştirmek bütün sitenin
+     hissini aynı anda değiştirir ve gözden geçirilemez bir diff üretir.
+     Şimdilik yalnız ölçek kuruldu; yeni kod bunu kullanır, mevcut
+     kullanımların taşınması ayrı ve yüzey yüzey ilerleyen bir karar. */
+  --ease-standart: ease;         /* olağan geçiş -- bugünkü varsayılan */
+  --ease-nefes:    ease-in-out;  /* yumuşak giriş-çıkış (aşağıdaki nota bak) */
+  --ease-sonme:    ease-out;     /* bir kez olup sönerek biten */
+
+  /* SÜRE, eğri seçimine karışır (2026-08-27, A-2'nin karşılama ekranı
+     turunda ortaya çıktı). İlk kural yalnız özelliğe bakıyordu -- "hareket
+     eden şey --ease-sahne alır" -- ve süre-kördü. Karşılama ekranına
+     uygulanınca görüldü: --ease-sahne güçlü bir ease-out; 0,2 sn'lik bir
+     varışta "gelir, yerine oturur" demek, ama 1,1 sn'lik bir açılışta
+     "aniden belirir, sonra sürünür" oluyor. Bu, TEMPO_GRAMERI.md'nin
+     "açılarak belirme = tecellî" satırının tersini söylerdi.
+
+     Bu yüzden eğri artık iki ölçüye birden bakıyor:
+       hareket + kısa (< --dur-uzun)  -> --ease-sahne  (gelir, oturur)
+       hareket + uzun (>= --dur-uzun) -> --ease-nefes  (yumuşak giriş-çıkış)
+       yalnız renk                -> --ease-standart
+       linear                     -> dokunulmaz (bkz. yukarıdaki not)
+     Uzun tarafın dayanağı gramerin kendi ölçüsü: "Ölçüler arası geçiş:
+     1.2-2 saniye, yumuşak giriş-çıkış (ease-in-out)."
+
+     Sınır --dur-uzun (0,4 sn), yani keyfi bir sayı değil, süre ölçeğinin
+     kendi kademesi. Önce 0,3 sn denendi ama 0,3'lük bir panel kayışını
+     (esmaX-controls) yanlış tarafa atıyordu: o hâlâ bir VARIŞ, temkinli
+     bir açılış değil.
+
+     --ease-nefes bu yüzden iki rol taşıyor ve adı ikisini de kapsıyor:
+     sürüp giden nefes/nabız animasyonları VE bir kerelik yavaş açılışlar.
+     İkisinin ortak yanı simetrik giriş-çıkış; ayrı bir token açmak aynı
+     değere ikinci bir ad vermek olurdu.
+
+     Yaylanma denetimi: --ease-sahne'nin kontrol noktaları (0.16, 1) ve
+     (0.3, 1) -- y=1 görünce durup ölçüldü, eğri 1'i HİÇ aşmıyor (en büyük
+     y = 1.000000000, t=1'de). Yani TEMPO_GRAMERI.md'nin "yaylanma /
+     overshoot" yasağını ihlal etmiyor. (Kıyas: gerçekten yaylanan
+     easeInBack -0.097'ye iniyor.) */
+
   /* Boşluk ölçeği (KOD-11/12 devamı, 2026-08-27): margin/padding/gap'in
      px değerleri ölçüldü -- --dur-*'nin aksine burada gerçekten temiz bir
      2-4-8 gridine YAKINSIYORDU (en sık 8 değer: 62×8px, 56×6px, 50×10px,
@@ -301,7 +366,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
-  transition: top var(--dur-kisa) ease;
+  transition: top var(--dur-kisa) var(--ease-sahne);
 }
 .skip-link:focus {
   top: 12px;
@@ -557,7 +622,7 @@ html {
 .hakkinda-diagram--zoomable {
   cursor: zoom-in;
   border-radius: 14px;
-  transition: transform var(--dur-orta) ease, box-shadow var(--dur-orta) ease;
+  transition: transform var(--dur-orta) var(--ease-sahne), box-shadow var(--dur-orta) var(--ease-sahne);
 }
 .hakkinda-diagram--zoomable:hover,
 .hakkinda-diagram--zoomable:focus-visible {
@@ -763,7 +828,7 @@ a.btn-ghost { text-decoration: none; }
 .nav-drawer__heading[role="button"]::after {
   content: "▾";
   font-size: 0.85em;
-  transition: transform var(--dur-kisa) ease;
+  transition: transform var(--dur-kisa) var(--ease-sahne);
 }
 .nav-drawer__heading[aria-expanded="false"]::after { transform: rotate(-90deg); }
 .nav-drawer__group--collapsed .nav-drawer__items { display: none; }
@@ -950,8 +1015,10 @@ a.btn-ghost { text-decoration: none; }
   background: var(--page-plane);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
-.sessiz-mod-toggle__ring { transition: opacity var(--dur-gecis) ease; }
-.sessiz-mod-toggle__dot { transition: r var(--dur-gecis) ease; }
+/* Aynı yüzey, aynı ayrım: ikisi de bir durum değişiminde yerine oturuyor
+   (halka soluyor, nokta büyüyor), o yüzden --ease-sahne. */
+.sessiz-mod-toggle__ring { transition: opacity var(--dur-gecis) var(--ease-sahne); }
+.sessiz-mod-toggle__dot { transition: r var(--dur-gecis) var(--ease-sahne); }
 .sessiz-mod-toggle[aria-pressed="true"] {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
@@ -1002,7 +1069,15 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   opacity: 0;
   transform: translateY(6px);
   pointer-events: none;
-  transition: opacity var(--dur-orta) ease, transform var(--dur-orta) ease, color var(--dur-orta) ease, border-color var(--dur-orta) ease;
+  /* Eğri ölçeğinin ilk uygulandığı yüzey (2026-08-27, bkz. --ease-* bloğu).
+     Ayrım özelliğe göre: GELİP YERİNE OTURAN şey (opacity + transform)
+     --ease-sahne alıyor, yalnız RENGİ değişen şey --ease-standart'ta
+     kalıyor. Gerekçe ölçüldü: 0,2 sn'lik bir renk solmasında eğri
+     neredeyse görünmez, aynı süredeki 6px'lik bir kayışta görünür. */
+  transition: opacity var(--dur-orta) var(--ease-sahne),
+              transform var(--dur-orta) var(--ease-sahne),
+              color var(--dur-orta) var(--ease-standart),
+              border-color var(--dur-orta) var(--ease-standart);
 }
 .scroll-top-btn.is-visible {
   opacity: 1;
@@ -1208,7 +1283,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   left: 12px;
   background: color-mix(in srgb, var(--surface-1) 90%, transparent);
   z-index: 2;
-  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease, transform var(--dur-orta) ease;
+  transition: color var(--dur-orta) var(--ease-standart), border-color var(--dur-orta) var(--ease-standart), transform var(--dur-orta) var(--ease-sahne);
 }
 .graph-recenter:hover {
   transform: rotate(90deg);
@@ -1236,7 +1311,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   letter-spacing: 0.02em;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.6s var(--ease-nefes);
   z-index: 2;
 }
 .esma-forming-hint__dot {
@@ -1476,7 +1551,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   text-align: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--dur-kisa) ease, transform var(--dur-kisa) ease;
+  transition: opacity var(--dur-kisa) var(--ease-sahne), transform var(--dur-kisa) var(--ease-sahne);
   z-index: 5;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
@@ -1496,7 +1571,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   .graph-recenter::after, .graph-hint::after, .graph-back::after, .graph-3d-toggle::after,
   .graph-confidence-toggle::after, .esma-3d-toggle::after, .esma-derived-toggle::after,
   .esma-fca-btn::after, .hal-walk-btn::after {
-    transition: opacity var(--dur-kisa) ease;
+    transition: opacity var(--dur-kisa) var(--ease-sahne);
   }
 }
 .graph-back {
@@ -1514,7 +1589,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease, transform var(--dur-orta) ease;
+  transition: color var(--dur-orta) var(--ease-standart), border-color var(--dur-orta) var(--ease-standart), transform var(--dur-orta) var(--ease-sahne);
 }
 .graph-back:hover,
 .graph-back:focus-visible {
@@ -1581,7 +1656,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
     radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--series-hal-hayret) 5%, transparent), transparent 58%),
     radial-gradient(circle at 50% 92%, color-mix(in srgb, var(--series-hal-tevhit) 4%, transparent), transparent 55%);
 }
-.hal-seg { pointer-events: none; stroke-linecap: round; transition: opacity var(--dur-gecis) ease; }
+.hal-seg { pointer-events: none; stroke-linecap: round; transition: opacity var(--dur-gecis) var(--ease-sahne); }
 .hal-seg--major { filter: drop-shadow(0 0 3px currentColor); }
 .hal-return {
   stroke: var(--series-hal-hayret, #e0b545);
@@ -1595,7 +1670,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   font-style: italic;
   fill: var(--series-hal-hayret-text, #8a690e);
   pointer-events: none;
-  transition: opacity var(--dur-gecis) ease;
+  transition: opacity var(--dur-gecis) var(--ease-sahne);
 }
 /* C3: "yolu yürü" -- yürüyen nokta, izi, ve Nefs'in dönüş anındaki yankısı. */
 .hal-walk-trail {
@@ -1607,12 +1682,12 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
 .hal-walk-dot {
   fill: var(--series-hal-hayret, #e0b545);
   pointer-events: none;
-  transition: opacity var(--dur-orta) ease;
+  transition: opacity var(--dur-orta) var(--ease-sahne);
 }
 .hal-walk-nefs-echo {
   stroke: var(--series-hal-hayret, #e0b545);
   pointer-events: none;
-  transition: opacity var(--dur-orta) ease;
+  transition: opacity var(--dur-orta) var(--ease-sahne);
 }
 .hal-node { cursor: pointer; outline: none; }
 .hal-glow, .hal-halo, .hal-shimmer { pointer-events: none; }
@@ -1634,7 +1709,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   stroke-linejoin: round;
   pointer-events: none;
   user-select: none;
-  transition: opacity var(--dur-gecis) ease;
+  transition: opacity var(--dur-gecis) var(--ease-sahne);
 }
 .hal-label--landmark { fill: var(--text-primary); font-weight: 600; font-size: 15.5px; }
 .hal-label--peak { fill: var(--series-hal-hayret-text, #8a690e); font-weight: 700; font-size: 14px; letter-spacing: 0.01em; }
@@ -1656,7 +1731,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
     color-mix(in srgb, var(--series-theme) 4%, transparent), transparent 60%);
 }
 .sorular-bg circle { pointer-events: none; fill: var(--text-muted); }
-.sorular-link { pointer-events: none; stroke: var(--gridline); stroke-width: 1px; transition: opacity var(--dur-gecis) ease; }
+.sorular-link { pointer-events: none; stroke: var(--gridline); stroke-width: 1px; transition: opacity var(--dur-gecis) var(--ease-sahne); }
 .sorular-link--active { stroke-width: 1.7px; }
 /* Kategoriler arası köprü: doğrudan bir soru-soru ilişkisi değil, ilişkinin
    öteki ucunun başka bir kolda olduğunu söyleyen kesikli bir işaret
@@ -1683,7 +1758,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   stroke-width: 3px;
   stroke-linejoin: round;
   pointer-events: none;
-  transition: opacity var(--dur-gecis) ease;
+  transition: opacity var(--dur-gecis) var(--ease-sahne);
 }
 .sorular-label--strong { fill: var(--text-primary); font-weight: 600; }
 
@@ -1850,7 +1925,7 @@ text.sorular-label--cat {
 .futuhat-parts__cilt::before {
   content: "▸";
   font-size: 0.875rem;
-  transition: transform var(--dur-orta) ease;
+  transition: transform var(--dur-orta) var(--ease-sahne);
   flex-shrink: 0;
 }
 .futuhat-cilt-group[open] > .futuhat-parts__cilt::before {
@@ -1968,7 +2043,7 @@ button.futuhat-part-chip:hover {
   fill: hsl(var(--ring-hue) 34% 46%);
   opacity: 1;
   cursor: pointer;
-  transition: opacity var(--dur-kisa) ease;
+  transition: opacity var(--dur-kisa) var(--ease-sahne);
 }
 .futuhat-map__kisim--published:hover,
 .futuhat-map__kisim--published:focus-visible {
@@ -2143,7 +2218,7 @@ button.futuhat-part-chip:hover {
   border-radius: 999px;
   font-size: 0.85rem;
   opacity: 0;
-  transition: opacity var(--dur-gecis) ease, transform var(--dur-gecis) ease;
+  transition: opacity var(--dur-gecis) var(--ease-sahne), transform var(--dur-gecis) var(--ease-sahne);
   z-index: 70;
   pointer-events: none;
 }
@@ -2990,7 +3065,7 @@ li.futuhat-pulse,
 .sir-node .sir-glow,
 .sir-node .sir-halo,
 .sir-node .sir-depth,
-.sir-node .sir-label { transition: opacity var(--dur-gecis) ease; }
+.sir-node .sir-label { transition: opacity var(--dur-gecis) var(--ease-sahne); }
 .sir-node:focus-visible .sir-dot { stroke: var(--text-primary); stroke-width: 1.6px; }
 .sir-glow, .sir-depth, .sir-particle, .sir-link { pointer-events: none; }
 .sir-hit { fill: transparent; stroke: none; pointer-events: all; }
@@ -3034,7 +3109,7 @@ li.futuhat-pulse,
 #sirlar-legend .legend__item {
   border-radius: 9px;
   padding: 2px 5px;
-  transition: color var(--dur-orta) ease, background var(--dur-orta) ease, transform var(--dur-orta) ease;
+  transition: color var(--dur-orta) var(--ease-standart), background var(--dur-orta) var(--ease-standart), transform var(--dur-orta) var(--ease-sahne);
 }
 #sirlar-legend .legend__item:hover {
   color: var(--text-primary);
@@ -3102,7 +3177,7 @@ body[data-theme="dark"] #sirlar-legend {
 }
 .legend__toggle-icon {
   font-size: 0.72rem;
-  transition: transform var(--dur-orta) ease;
+  transition: transform var(--dur-orta) var(--ease-sahne);
 }
 .legend--collapsed .legend__toggle-icon {
   transform: rotate(-90deg);
@@ -3115,7 +3190,7 @@ body[data-theme="dark"] #sirlar-legend {
   overflow-y: auto;
   margin-top: 6px;
   opacity: 1;
-  transition: max-height var(--dur-gecis) ease, opacity var(--dur-orta) ease, margin-top var(--dur-gecis) ease;
+  transition: max-height var(--dur-gecis) var(--ease-sahne), opacity var(--dur-orta) var(--ease-sahne), margin-top var(--dur-gecis) var(--ease-sahne);
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--series-theme) 32%, transparent) transparent;
 }
@@ -3168,7 +3243,7 @@ body[data-theme="dark"] #sirlar-legend {
 .esma-pole-donut__seg {
   stroke: var(--surface-1);
   stroke-width: 0.6;
-  transition: opacity var(--dur-orta) ease;
+  transition: opacity var(--dur-orta) var(--ease-sahne);
 }
 .esma-pole-donut__seg:hover {
   opacity: 0.8;
@@ -4746,7 +4821,7 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
 /* Işık düğüme vardığında: kısa bir zuhûr. */
 .node--isik circle {
   filter: drop-shadow(0 0 10px color-mix(in srgb, var(--series-kemal) 85%, transparent));
-  transition: filter var(--dur-gecis) ease;
+  transition: filter var(--dur-gecis) var(--ease-sahne);
 }
 
 /* Teceddüd: aynı düğüm, yeni bir yaratılışta. Sönüp yeniden yanıyor —
@@ -4874,7 +4949,7 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   }
 }
 .detail-gate__arrow {
-  transition: transform 0.18s ease;
+  transition: transform 0.18s var(--ease-sahne);
 }
 .detail-gate__btn:hover .detail-gate__arrow {
   transform: translateX(3px);
@@ -5148,7 +5223,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
     radial-gradient(circle at 50% 46%, rgba(201,151,26,0.10), transparent 55%),
     radial-gradient(ellipse at 50% 50%, #0f0e14 0%, #060509 62%, #020203 100%);
   cursor: pointer;
-  transition: opacity 0.95s ease;
+  transition: opacity 0.95s var(--ease-nefes);
 }
 
 .welcome-screen[hidden] { display: none; }
@@ -5181,7 +5256,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   background: radial-gradient(circle, rgba(201,151,26,0.28), rgba(201,151,26,0.05) 55%, transparent 72%);
   opacity: 0.18;
   filter: blur(6px);
-  transition: opacity 0.6s ease;
+  transition: opacity 0.6s var(--ease-nefes);
   pointer-events: none;
 }
 
@@ -5221,7 +5296,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 .welcome-screen__spark {
   fill: #fff3d6;
   filter: drop-shadow(0 0 5px #fff3d6) drop-shadow(0 0 12px rgba(201,151,26,0.9));
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s var(--ease-nefes);
 }
 
 .welcome-screen__spark--hidden { opacity: 0; }
@@ -5231,7 +5306,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   text-align: center;
   opacity: 0;
   transform: scale(0.88);
-  transition: opacity var(--dur-sahne) ease, transform var(--dur-sahne) ease;
+  transition: opacity var(--dur-sahne) var(--ease-nefes), transform var(--dur-sahne) var(--ease-nefes);
   pointer-events: none;
 }
 
@@ -5285,7 +5360,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   width: min(560px, 86vw);
   text-align: center;
   opacity: 0;
-  transition: opacity var(--dur-sahne) ease, transform var(--dur-sahne) ease;
+  transition: opacity var(--dur-sahne) var(--ease-nefes), transform var(--dur-sahne) var(--ease-nefes);
   pointer-events: none;
 }
 
@@ -5345,8 +5420,8 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .welcome-screen { transition: opacity var(--dur-uzun) ease; }
-  .welcome-screen__text { transition: opacity var(--dur-uzun) ease; }
+  .welcome-screen { transition: opacity var(--dur-uzun) var(--ease-nefes); }
+  .welcome-screen__text { transition: opacity var(--dur-uzun) var(--ease-nefes); }
 }
 
 .app-fallback {
@@ -6497,7 +6572,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
    diliyle (GORSEL_DIL.md) soluklaşır. */
 .terimler-shell--cluster-active .terim-entry {
   opacity: 0.28;
-  transition: opacity 0.35s ease, background 0.18s ease, border-color 0.18s ease;
+  transition: opacity 0.35s var(--ease-sahne), background 0.18s var(--ease-standart), border-color 0.18s var(--ease-standart);
 }
 .terimler-shell--cluster-active .terim-entry.is-cluster-member {
   opacity: 1;
@@ -6580,7 +6655,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   transform: translate(-50%, calc(-100% - 14px));
   opacity: 1;
   visibility: visible;
-  transition: opacity var(--dur-aninda) ease, visibility 0s linear 0s;
+  transition: opacity var(--dur-aninda) var(--ease-sahne), visibility 0s linear 0s;
 }
 .viz-root[data-theme="dark"] .node-hover-tip {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
@@ -6594,7 +6669,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   display: block;
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--dur-aninda) ease, visibility 0s linear var(--dur-aninda);
+  transition: opacity var(--dur-aninda) var(--ease-sahne), visibility 0s linear var(--dur-aninda);
 }
 .node-hover-tip--fixed {
   position: fixed;
@@ -7011,7 +7086,7 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 .birlesik-map:focus-visible .birlesik-map__no { fill: var(--series-theme-text, var(--series-theme)); }
 .birlesik-map:focus-visible { outline: 2px solid var(--series-theme); outline-offset: 4px; }
 @media (prefers-reduced-motion: no-preference) {
-  .birlesik-map { transition: opacity .5s ease, transform .5s ease; }
+  .birlesik-map { transition: opacity .5s var(--ease-nefes), transform .5s var(--ease-nefes); }
 }
 .cizim-birlesik__controls {
   display: flex;
@@ -7375,7 +7450,7 @@ body.cizim-lightbox-open {
   justify-content: center;
   z-index: 2;
   opacity: 0;
-  transition: opacity var(--dur-uzun) ease;
+  transition: opacity var(--dur-uzun) var(--ease-nefes);
   pointer-events: none;
 }
 .graph-orient-ring__track {
@@ -7582,7 +7657,7 @@ body[data-theme="dark"] .hal-cluster-ray { stroke: var(--accent-glow-dark); }
   position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
   z-index: 3; display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
   pointer-events: none;
-  transition: right 0.3s ease;
+  transition: right 0.3s var(--ease-sahne);
 }
 /* #esma-wrap açık bir detay paneli izlerken (bkz. wirePanelAwareControls),
    sağa sabitlenmiş bu kontroller panelin (420px) ALTINDA kalıp tıklanamaz
@@ -7613,7 +7688,7 @@ body[data-theme="dark"] .hal-cluster-ray { stroke: var(--accent-glow-dark); }
   background: color-mix(in srgb, var(--surface-1) 90%, transparent);
   border: 1px solid var(--border); color: var(--text-secondary);
   font-size: 0.82rem; cursor: pointer;
-  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease, background var(--dur-orta) ease, right 0.3s ease;
+  transition: color var(--dur-orta) var(--ease-standart), border-color var(--dur-orta) var(--ease-standart), background var(--dur-orta) var(--ease-standart), right 0.3s var(--ease-sahne);
 }
 .esmaX-explore:hover { color: var(--series-theme-text); border-color: color-mix(in srgb, var(--series-theme) 45%, var(--border)); }
 .esmaX-explore.is-on { color: var(--series-theme-text); border-color: var(--series-theme); background: color-mix(in srgb, var(--series-theme) 12%, var(--surface-1)); }
@@ -7652,7 +7727,7 @@ body[data-theme="dark"] .hal-cluster-ray { stroke: var(--accent-glow-dark); }
   backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
   animation: esmaX-onb-in 0.4s ease;
 }
-.esmaX-onb--out { opacity: 0; transition: opacity 0.3s ease; }
+.esmaX-onb--out { opacity: 0; transition: opacity 0.3s var(--ease-sahne); }
 .esmaX-onb__card {
   max-width: min(440px, calc(100% - 40px));
   background: var(--surface-1); border: 1px solid var(--border);
@@ -8146,7 +8221,7 @@ body.share-stage-open { overflow: hidden; }
   right: 14px;
   display: flex;
   gap: 8px;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s var(--ease-nefes);
   z-index: 2;
 }
 .share-stage.is-recording .share-stage__chrome { display: none; }
@@ -8331,7 +8406,7 @@ body.share-stage-open { overflow: hidden; }
   fill: var(--surface-1);
   stroke: var(--series-theme);
   stroke-width: 1.6;
-  transition: r 140ms ease, fill 140ms ease;
+  transition: r 140ms var(--ease-sahne), fill 140ms var(--ease-standart);
 }
 .sir-halka__node text {
   font-size: 10px;
@@ -8525,7 +8600,7 @@ body.share-stage-open { overflow: hidden; }
      panelinde -- renk tek başına hiçbir şeyi anlatmıyor. */
   stroke: var(--helix-gold-rim);
   stroke-width: 1.5;
-  transition: fill 140ms ease, r 140ms ease;
+  transition: fill 140ms var(--ease-standart), r 140ms var(--ease-sahne);
 }
 .helix-scene__node text {
   fill: var(--text-secondary);
@@ -9653,7 +9728,7 @@ mark.durus-vurgu-es {
   line-height: 1.35;
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--dur-uzun) ease;
+  transition: opacity var(--dur-uzun) var(--ease-nefes);
   z-index: 2;
 }
 .graph-toast.is-visible {
@@ -9888,7 +9963,7 @@ mark.durus-vurgu-es {
   font-size: 0.85rem;
   text-align: left;
   cursor: pointer;
-  transition: border-color var(--dur-orta) ease, background var(--dur-orta) ease, transform var(--dur-kisa) ease;
+  transition: border-color var(--dur-orta) var(--ease-standart), background var(--dur-orta) var(--ease-standart), transform var(--dur-kisa) var(--ease-sahne);
 }
 .kavram-tile:hover,
 .kavram-tile:focus-visible {
@@ -10190,12 +10265,12 @@ mark.durus-vurgu-es {
   stroke-width: 2;
   stroke-linecap: round;
   opacity: 0.82;
-  transition: opacity 0.18s ease, stroke-width 0.18s ease;
+  transition: opacity 0.18s var(--ease-sahne), stroke-width 0.18s var(--ease-sahne);
 }
 .acik-soru__kap--kaynak_tukendi { stroke-dasharray: 3 4; }
 .acik-soru__dolgu {
   opacity: 0.34;
-  transition: opacity 0.22s ease;
+  transition: opacity 0.22s var(--ease-sahne);
 }
 .acik-soru__tavan {
   stroke: var(--text-muted);
@@ -10379,7 +10454,7 @@ mark.durus-vurgu-es {
    değinince yarıya iner ama sıfırlanmaz (kaçan merkez). */
 .bilmiyoruz-madde__isik {
   opacity: 0.62;
-  transition: opacity 0.18s ease;
+  transition: opacity 0.18s var(--ease-sahne);
 }
 .bilmiyoruz-gorus { pointer-events: none; }
 .bilmiyoruz-madde__ikon {
@@ -10475,7 +10550,7 @@ mark.durus-vurgu-es {
   stroke-opacity: 0.4;
   cursor: pointer;
   pointer-events: stroke;
-  transition: stroke-opacity var(--dur-kisa) ease, stroke-width var(--dur-kisa) ease;
+  transition: stroke-opacity var(--dur-kisa) var(--ease-sahne), stroke-width var(--dur-kisa) var(--ease-sahne);
 }
 .elestiri-kenar:focus-visible,
 .elestiri-kenar--deginiliyor {
@@ -10489,7 +10564,7 @@ mark.durus-vurgu-es {
 .elestiri-kisi__sekil {
   stroke: var(--surface-1);
   stroke-width: 1.4;
-  transition: transform var(--dur-kisa) ease;
+  transition: transform var(--dur-kisa) var(--ease-sahne);
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -10755,20 +10830,20 @@ mark.durus-vurgu-es {
    içi dolu (kesin) ya da içi boş kesikli (kesin=false); katalog eserleri
    elmas (Eser Ağı ile aynı ikonografi). */
 .yolculuk-kara path { fill: var(--series-theme); opacity: 0.1; stroke: none; }
-.yolculuk-rota-parca { stroke: var(--series-theme); stroke-width: 1.6px; stroke-dasharray: 2 4; opacity: 0.6; fill: none; transition: opacity 0.3s ease; }
+.yolculuk-rota-parca { stroke: var(--series-theme); stroke-width: 1.6px; stroke-dasharray: 2 4; opacity: 0.6; fill: none; transition: opacity 0.3s var(--ease-sahne); }
 
 .yolculuk-durak { cursor: pointer; }
 .yolculuk-durak:focus { outline: none; }
 .yolculuk-durak:focus-visible .yolculuk-durak__nokta { stroke: var(--text-primary); stroke-width: 2.4; }
-.yolculuk-durak__nokta { fill: var(--series-ibnarabi); stroke: var(--surface-1); stroke-width: 1.4; transition: transform var(--dur-kisa) ease, opacity 0.3s ease; transform-box: fill-box; transform-origin: center; }
+.yolculuk-durak__nokta { fill: var(--series-ibnarabi); stroke: var(--surface-1); stroke-width: 1.4; transition: transform var(--dur-kisa) var(--ease-sahne), opacity 0.3s var(--ease-sahne); transform-box: fill-box; transform-origin: center; }
 .yolculuk-durak--deginiliyor .yolculuk-durak__nokta { transform: scale(1.3); }
-.yolculuk-durak__etiket { font-size: 0.72rem; fill: var(--text-secondary); pointer-events: none; transition: opacity 0.3s ease; }
+.yolculuk-durak__etiket { font-size: 0.72rem; fill: var(--text-secondary); pointer-events: none; transition: opacity 0.3s var(--ease-sahne); }
 .yolculuk-durak__leader { stroke: var(--border-strong, var(--text-tertiary)); stroke-width: 0.7; opacity: 0.5; pointer-events: none; }
 
 .yolculuk-eser { cursor: pointer; }
 .yolculuk-eser:focus { outline: none; }
 .yolculuk-eser:focus-visible .yolculuk-eser__isaret { stroke: var(--text-primary); stroke-width: 1.6; }
-.yolculuk-eser__isaret { fill: var(--accent); stroke: var(--surface-1); stroke-width: 0.8; transition: transform var(--dur-kisa) ease; transform-box: fill-box; transform-origin: center; }
+.yolculuk-eser__isaret { fill: var(--accent); stroke: var(--surface-1); stroke-width: 0.8; transition: transform var(--dur-kisa) var(--ease-sahne); transform-box: fill-box; transform-origin: center; }
 .yolculuk-eser--yaklasik .yolculuk-eser__isaret { fill: transparent; stroke: var(--accent); stroke-dasharray: 2 2; }
 .yolculuk-eser--katalog .yolculuk-eser__isaret { fill: color-mix(in oklab, var(--accent) 60%, var(--surface-2)); }
 .yolculuk-eser--deginiliyor .yolculuk-eser__isaret { transform: scale(1.4); }
@@ -10827,7 +10902,7 @@ mark.durus-vurgu-es {
   stroke-opacity: 0.45;
   cursor: pointer;
   pointer-events: stroke;
-  transition: stroke-opacity var(--dur-kisa) ease, stroke-width var(--dur-kisa) ease;
+  transition: stroke-opacity var(--dur-kisa) var(--ease-sahne), stroke-width var(--dur-kisa) var(--ease-sahne);
 }
 .eser-agi-kenar:focus-visible,
 .eser-agi-kenar--deginiliyor {
@@ -10860,7 +10935,7 @@ mark.durus-vurgu-es {
   fill: var(--surface-1);
   stroke: var(--border);
   stroke-width: 1;
-  transition: stroke var(--dur-kisa) ease, filter var(--dur-kisa) ease;
+  transition: stroke var(--dur-kisa) var(--ease-standart), filter var(--dur-kisa) var(--ease-sahne);
 }
 .eser-agi-eser--katalog .eser-agi-eser__govde { stroke: var(--series-theme); }
 
@@ -11064,7 +11139,7 @@ mark.durus-vurgu-es {
   stroke-opacity: 0.4;
   cursor: pointer;
   pointer-events: stroke;
-  transition: stroke-opacity var(--dur-kisa) ease, stroke-width var(--dur-kisa) ease;
+  transition: stroke-opacity var(--dur-kisa) var(--ease-sahne), stroke-width var(--dur-kisa) var(--ease-sahne);
 }
 .kuran-dokusu-kenar--deginiliyor {
   stroke-opacity: 0.9;
@@ -11076,7 +11151,7 @@ mark.durus-vurgu-es {
   fill: var(--series-ibnarabi);
   stroke: var(--surface-1);
   stroke-width: 1.2;
-  transition: transform var(--dur-kisa) ease;
+  transition: transform var(--dur-kisa) var(--ease-sahne);
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -11103,7 +11178,7 @@ mark.durus-vurgu-es {
   fill: var(--series-theme);
   stroke: var(--surface-1);
   stroke-width: 1;
-  transition: transform var(--dur-kisa) ease;
+  transition: transform var(--dur-kisa) var(--ease-sahne);
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -11187,7 +11262,7 @@ button.kuran-dokusu-satir:focus-visible {
   stroke-dasharray: 2 4;
   opacity: 0.7;
   fill: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s var(--ease-sahne);
 }
 .seyahat-rota-parca--gelecek { opacity: 0.12; }
 
@@ -11205,7 +11280,7 @@ button.kuran-dokusu-satir:focus-visible {
   fill: var(--series-ibnarabi);
   stroke: var(--surface-1);
   stroke-width: 1.4;
-  transition: transform var(--dur-kisa) ease, opacity 0.3s ease;
+  transition: transform var(--dur-kisa) var(--ease-sahne), opacity 0.3s var(--ease-sahne);
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -11213,7 +11288,7 @@ button.kuran-dokusu-satir:focus-visible {
   font-size: 0.72rem;
   fill: var(--text-secondary);
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s var(--ease-sahne);
 }
 .seyahat-durak--deginiliyor .seyahat-durak__nokta { transform: scale(1.4); }
 .seyahat-durak--deginiliyor .seyahat-durak__etiket { fill: var(--text-primary); }

@@ -4,24 +4,35 @@
   const root = document.getElementById("welcome-screen");
   if (!root) return;
 
-  // 2026-08-16 (uzman paneli denetimi, G-01/ONBOARDING-01): sessionStorage
-  // yerine localStorage -- ritüel cihaz başına bir kez gösterilsin, her
-  // yeni sekmede yeniden oynamasın.
-  const SEEN_KEY = "dost-welcome-seen";
-  let seen = false;
-  try { seen = !!localStorage.getItem(SEEN_KEY); } catch (e) {}
-  if (seen) {
-    root.hidden = true;
-    return;
-  }
+  // 2026-08-27 (kullanıcı kararı): karşılama ritüeli ARTIK HER SEFERİNDE
+  // gösteriliyor. Daha önce hatırlanıyordu ve kapı iki kez yer değiştirdi:
+  // 2026-08-16'da (uzman paneli, G-01/ONBOARDING-01) sessionStorage'dan
+  // localStorage'a çevrilmişti -- "ritüel cihaz başına bir kez gösterilsin,
+  // her yeni sekmede yeniden oynamasın". Kullanıcının ifadesiyle o karar
+  // geri alındı: "bir kez gören ya da görmeyen herkes için her seferinde
+  // muhakkak görünmeli."
+  //
+  // Gerekçe, sitenin kendi diliyle: "O'ndan O'na" bir bilgilendirme değil,
+  // bir eşiktir. Eşikten her girişte geçilir; bir kez geçip sonra yandan
+  // dolaşılan şey eşik değildir.
+  //
+  // `dost-welcome-seen` anahtarı artık ne okunuyor ne yazılıyor. Daha önce
+  // yazılmış olanlar zararsız biçimde orada kalıyor -- okunmadıkları için
+  // bir etkileri yok; kullanıcıların localStorage'ını temizlemek bizim
+  // işimiz değil.
 
   // Derin bir rotaya doğrudan gelindiğinde (paylaşılan link, arama sonucu)
   // ritüel araya girmesin -- gateTransition'ın zaten benimsediği "gelinmemiş
   // bir yerden çıkış animasyonu yalan olurdu" ilkesi karşılama ekranına da
   // uygulanıyor. Kök rotanın kendisi <base href> yüzünden her dağıtımda
   // (canlı "/", önizleme "/dost-onizleme/") farklı olabildiği için ROUTE_BASE
-  // buradan hesaplanıyor (bkz. assets/ontology.js'teki aynı desen). "Seen"
-  // OLARAK işaretlenmiyor -- kullanıcı ileride köke gelirse ritüeli yine görsün.
+  // buradan hesaplanıyor (bkz. assets/ontology.js'teki aynı desen).
+  //
+  // Bu, "her seferinde göster" kuralının TEK istisnası ve bir hatırlama
+  // değil: kapı, gelinen YERE bakıyor, daha önce görülüp görülmediğine
+  // değil. Paylaşılan bir bölüm bağlantısını açan kişi o bölümü istiyor;
+  // önüne altı saniyelik bir eşik koymak onu karşılamak değil, geciktirmek
+  // olurdu. Aynı kişi köke geldiğinde ritüeli görür -- her seferinde.
   const ROUTE_BASE = (function () {
     const baseEl = document.querySelector("base");
     if (!baseEl) return "";
@@ -91,7 +102,6 @@
   function leave() {
     if (root.classList.contains("welcome-screen--leaving") || root.hidden) return;
     root.classList.add("welcome-screen--leaving");
-    try { localStorage.setItem(SEEN_KEY, "1"); } catch (e) {}
     // FAZ 1 (grafik-önce, 2026-08-03): karşılama halkası sönmeye BAŞLARKEN
     // haber veriyoruz ki altındaki ontoloji grafiği doğuş animasyonuna
     // (ontology.js runBirth) tam bu esnada başlasın — halka kaybolurken

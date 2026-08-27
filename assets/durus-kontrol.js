@@ -1,4 +1,4 @@
-/* Dost Arabî — duruş taraması (s2).
+/* Dost Arabî — duruş taraması (s7).
  *
  * Ne yapar: gizli düzenleme kipi (@revise) açıkken CLAUDE.md'de yazılı
  * duruşumuza uymayabilecek yerleri işaretler. İki yolu var:
@@ -26,7 +26,10 @@
 (function () {
   "use strict";
 
-  var SURUM = "s6";
+  // s7: kod "s6" derken belge (DURUS_KONTROL.md) "sürüm 5" diyordu ve
+  // ikisinde de aynı 14 kural vardı -- numaralar bir noktada ayrışmış,
+  // fark edilmemişti. Dört yeni kural eklenirken ikisi s7'de eşitlendi.
+  var SURUM = "s7";
   var DISMISS_KEY = "dost-durus-susturulan";
 
   // YALNIZ TÜRKÇE (s3, kullanıcı kararı). Gerekçe: kalıplar Türkçe için
@@ -194,6 +197,85 @@
       re: basKelime("buradaki (?:temel )?mesaj|öğretinin özü|bir cümleyle özetl|kısacası şunu söyl|özetle şunu söyl|özetle diyebilir"),
       neden: "Bir pasajı veya öğretiyi tek bir mesaja/öze indirgemek, okumayı kapanmış bir sonuç gibi sunar.",
       yerine: "“Bu satırlar bize şunu düşündürüyor”, “bu bölümden çıkardığımız bir şey şu”.",
+      esKosul: NAKIL_DISI,
+    },
+
+    /* --- s7'de eklenen dört kural -------------------------------------
+       Kaynak: flutter/agent-plugins deposundaki `natural-writing`
+       becerisi (bkz. research/flutter-depolari-inceleme.md). O listenin
+       maddeleri mevcut 14 kuralla tek tek karşılaştırıldı; çoğunun
+       karşılığı zaten vardı (superficial analysis -> gosterme-dili,
+       attribution -> kanit-dili + sarih-hakemligi, absolute claims ->
+       mutlak-genelleme, temporal inflation -> sure-sisirme). Aşağıdaki
+       dördünün karşılığı YOKTU.
+
+       Hepsi corpus'ta ölçüldü (16.427 metin parçası, 2.409.790 karakter)
+       ve ölçüm iki kalıbı ciddi biçimde daralttı -- ayrıntısı her kuralın
+       kendi yorumunda. */
+
+    {
+      id: "konu-sisirme", seviye: "gozden-gecir", ad: "Konuyu şişirme",
+      // K2 (emek-sisirme) BİZİM emeğimizi şişirmeye bakıyor; bu ise
+      // KONUNUN önemini şişirmeye. Site Dost hakkında yazdığı için en
+      // olası tuzak bu.
+      //
+      // Ölçüm kalıbı iki kez daralttı:
+      //  - "doruk noktası" ve "dönüm noktası" çıkarıldı. Bu corpus metin
+      //    YAPISI çözümlüyor; oralarda ikisi de teknik terim ("bölümün
+      //    dönüm noktası" = metnin döndüğü yer, "motif doruk noktasına
+      //    ulaşıyor"). 13 isabetin 12'si bu türdendi.
+      //  - "eşsiz" ve "benzersiz" HİÇ eklenmedi: tenzihin ta kendisi
+      //    ("Zât hiçbir şeye benzemez"). Bunları işaretlemek doktrini
+      //    hata sanmak olurdu.
+      // Kalan: 1 isabet ("başyapıtı").
+      re: basKelime("kilometre taşı|derin (?:bir )?iz bırak|paha biçilmez|çığır aç|müstesna bir yer|abidevi|şaheser|başyapıt"),
+      neden: "Konunun önemini nitelemeyle yükseltmek. Bir şey önemliyse bunu olgular gösterir; övgü bizim sesimiz değil.",
+      yerine: "Niteleme yerine olgu: ne zaman yazıldı, kaç cilt, nerede tamamlandı.",
+      esKosul: NAKIL_DISI,
+    },
+    {
+      id: "zarif-degisim", seviye: "gozden-gecir", ad: "Adı yerine sıfat koymak",
+      // "Elegant variation": adı tekrar etmemek için yücelten bir
+      // dolaylama uydurmak. Kökensel duruşla çelişiyor -- yücelten sıfat
+      // anlamanın değil anlatmanın dili.
+      //
+      // Kalıp ölçümde tamamen değişti. İlk hâli "büyük şeyh|ünlü sûfî|
+      // büyük mutasavvıf" gibi genel unvanları da içeriyordu ve 2 isabetin
+      // İKİSİ de yanlıştı: ikisi de Dost'tan DEĞİL, onun anlattığı
+      // hikâyedeki ÜÇÜNCÜ kişilerden söz ediyordu ("büyük şeyh
+      // Ebü'l-Abbas el-Hassâr", "iki ünlü sûfî anekdotu"). Regex kimden
+      // söz edildiğini bilemez. Bu yüzden kalıp, yalnız Dost'un ADININ
+      // YERİNE geçebilecek dolaylamalara indirildi.
+      // Şimdiki isabet: 0 -- yani bu bir önleme kuralı, bulgu kuralı değil.
+      re: basKelime("Endülüslü (?:mütefekkir|bilge|sûfî|sufi|filozof)|(?:büyük|ulu|yüce|muhteşem) üstat|ulu şeyh"),
+      neden: "Adı tekrar etmekten kaçınmak için yücelten bir dolaylama. Adı tekrar etmek ya da zamir kullanmak serbest.",
+      yerine: "“İbn Arabî”, “Dost”, ya da düpedüz “o”.",
+      esKosul: NAKIL_DISI,
+    },
+    {
+      id: "olumsuz-kosutluk", seviye: "gozden-gecir", ad: "“Sadece … değil, aynı zamanda …”",
+      // Kalıp bilerek TAM yapıyı istiyor: yalnız "sadece" değil, ardından
+      // gelen "değil, aynı zamanda" da şart. Aksi hâlde sıradan "sadece"
+      // kullanımları kuralı kullanılamaz hâle getirirdi.
+      // Ölçüm: 4 isabet, dördü de gerçek -- hepsi bizim çözümleme
+      // cümlelerimiz. Bu yüzden "kural" değil "gözden geçir": kalıp her
+      // zaman yanlış değil, ama kapsamlılık hissi veren bir refleks
+      // olduğu için bakılmayı hak ediyor.
+      re: new RegExp(ONEK + "(?:sadece|yalnız|yalnızca)[^.!?]{0,60}?\\s+değil,\\s*(?:aynı zamanda|bir o kadar da|ayrıca|hem de)", "giu"),
+      neden: "Kapsamlılık hissi veren bir kalıp. Çoğu yerde iki yarı da düz cümleyle söylenebilir.",
+      yerine: "İki şeyi ayrı ayrı söyle: “şu da var”, “bir de şu tarafı”.",
+      esKosul: NAKIL_DISI,
+    },
+    {
+      id: "ragmen-kapanisi", seviye: "gozden-gecir", ad: "“Rağmen … devam ediyor” kapanışı",
+      // Bir metni "bütün bunlara rağmen X önemini korumaya devam ediyor"
+      // diye bitirmek yaygın bir bitiriş refleksi: hiçbir şey söylemez,
+      // yalnız kapanış hissi verir.
+      // Kalıp iki yarıyı birden istiyor (ödün + "devam" fiili); tek
+      // başına "rağmen" yakalanmıyor. Ölçüm: 0 isabet -- önleme kuralı.
+      re: new RegExp(ONEK + "(?:bütün bunlara|tüm bunlara|her şeye|buna) rağmen[^.!?]{0,80}?(?:olmaya devam|önemini koru|canlılığını koru|güncelliğini koru|yaşamaya devam|etkisini sürdür)", "giu"),
+      neden: "Bir şey söylemeyen kapanış formülü. Duruşumuz son olguyla bitmeyi yeğler.",
+      yerine: "Son cümleyi at; metin son olgusuyla bitsin.",
       esKosul: NAKIL_DISI,
     },
   ];
