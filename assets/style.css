@@ -1255,7 +1255,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   overflow: hidden;
 }
 
-#graph, #profile-graph {
+#graph, #profile-graph, #baglar-graph {
   /* Eski kural (width/height: 100%, static akış) BÜYÜYEN bir üst kutuda
      (ör. flexbox'ta flex:1 ile esneyen .graph-wrap, bkz. compare.html'in
      sayfa-içi kuralı) SVG gibi "replaced element"lerde güvenilir
@@ -1275,7 +1275,7 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   cursor: grab;
   touch-action: pan-y;
 }
-#graph:active, #profile-graph:active { cursor: grabbing; }
+#graph:active, #profile-graph:active, #baglar-graph:active { cursor: grabbing; }
 
 .graph-recenter {
   position: absolute;
@@ -3806,6 +3806,75 @@ a.daphne-bag__ad { color: var(--accent-interactive); }
   color: var(--series-kemal-text);
   background: color-mix(in srgb, var(--series-kemal) 16%, transparent);
 }
+/* --- Bağlar Haritası (assets/daphne-baglar.js) --------------------------
+   Merkezden her kavrama uzanan bir IŞIK YOLU. Türü çizginin kendisi
+   söylüyor, ayrı bir rozet değil: örtüşme tam gelen bir ışık, fark
+   kesilen bir ışık, açık soru varmadan sönen bir ışık. Renk anahtarı
+   sitenin geri kalanıyla aynı (fark = celâl, soru = kemâl -- bkz. yukarıda
+   .daphne-bag--fark / --soru). Uç YOK: soyut ok yasak (GORSEL_DIL.md). */
+.baglar-isik {
+  stroke: var(--series-theme);
+  stroke-width: 1.8px;
+  opacity: 0;               /* varsayılan: yok. Değinince/seçince belirir. */
+  pointer-events: none;
+  transition: opacity var(--dur-kisa, 160ms);
+}
+.baglar-isik--fark { stroke: var(--series-celal); stroke-dasharray: 5 6; }
+.baglar-isik--soru { stroke: var(--series-kemal); stroke-dasharray: 1.5 6; }
+.baglar-isik--acik { opacity: 0.95; }
+
+/* Dolgu hangi bölüme ait olduğunu söylüyor, KONTUR baskın bağ türünü:
+   örtüşme düz, fark kesik, açık soru noktalı -- lejanttaki üç çizgiyle
+   aynı anahtar. */
+.baglar-dugum { stroke: var(--text-secondary); stroke-width: 1.1px; }
+/* Tür bir BİÇİM, bir renk değil (gerekçe: daphne-baglar.js'te). */
+.baglar-soru-yay {
+  fill: none;
+  stroke: var(--series-kemal-text);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+}
+.viz-root[data-theme="dark"] .baglar-soru-yay { stroke: var(--series-kemal); }
+.baglar-fark-kiris {
+  stroke: var(--series-celal);
+  stroke-width: 2.4px;
+  stroke-linecap: round;
+}
+
+.baglar-etiket__kilavuz {
+  stroke: var(--text-muted);
+  stroke-width: 0.7px;
+  opacity: 0.5;
+  fill: none;
+  pointer-events: none;
+}
+
+/* Yetmiş adı birden yazmak okunmaz bir yığın veriyordu: ikiden az yazıda
+   dönülen kavramın adı, değinilene (hover / :focus-visible) kadar
+   duruyor. "Değinmek"in gösterdiği şey tıklamanın açacağı panelin
+   başlığı -- söz vermeden gösterme (ETKILESIM_DILI.md). */
+.baglar-etiket--sessiz { opacity: 0; }
+.baglar-etiket--belir { opacity: 1; }
+.node--degin circle { stroke: var(--accent-interactive); stroke-width: 2px; }
+
+.baglar-lejant-cizgi {
+  display: inline-block;
+  width: 22px;
+  height: 0;
+  margin-right: 2px;
+  vertical-align: middle;
+  border-top: 2px solid var(--series-theme);
+}
+.baglar-lejant-cizgi--fark { border-top-style: dashed; border-top-color: var(--series-celal); }
+.baglar-lejant-cizgi--soru { border-top-style: dotted; border-top-color: var(--series-kemal-text); }
+
+/* Veriden yazılan kapsam cümlesi (sayı statik metinde durursa eskir). */
+.intro__olcu {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
 .daphne-bag__neden {
   display: block;
   font-size: 0.8rem;

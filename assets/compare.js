@@ -16,6 +16,7 @@
   I18n.renderLangSwitcher(document.getElementById("lang-switch"), () => {
     render();
     if (window.__dostDaphneProfileApp) window.__dostDaphneProfileApp.render();
+    if (window.__dostDaphneBaglarApp) window.__dostDaphneBaglarApp.render();
   });
   window.DostGraphUtils.setupLegendToggles();
   window.DostGraphUtils.setupDetailPanelFocus();
@@ -31,6 +32,7 @@
     const tabPanels = document.querySelectorAll("[data-tab-panel]");
     const introThemes = document.getElementById("intro-text");
     const introProfile = document.getElementById("intro-text-profile");
+    const introBaglar = document.getElementById("intro-text-baglar");
     tabButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const tab = btn.dataset.tab;
@@ -41,11 +43,17 @@
         tabPanels.forEach((p) => { p.hidden = p.dataset.tabPanel !== tab; });
         if (introThemes) introThemes.hidden = tab !== "temalar";
         if (introProfile) introProfile.hidden = tab !== "profil";
+        if (introBaglar) introBaglar.hidden = tab !== "baglar";
         detailPanel.hidden = true;
         if ((tab === "profil" || tab === "yazilar") && window.__dostDaphneProfileApp) {
           // double-RAF ensures panel has reflowed (clientWidth > 0) before buildGraph reads it
           requestAnimationFrame(() => requestAnimationFrame(() => {
             window.__dostDaphneProfileApp.activate();
+          }));
+        }
+        if (tab === "baglar" && window.__dostDaphneBaglarApp) {
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            window.__dostDaphneBaglarApp.activate();
           }));
         }
       });
@@ -65,13 +73,29 @@
     detailPanel.hidden = true;
   });
 
+  // Esc: bir adım geri (ETKILESIM_DILI.md üçüncü fiil). Önce detay paneli,
+  // o kapalıysa sayfadan çıkış.
+  //
+  // 2026-08-28'de ölçüldü ve düzeltildi: panel AÇIKKEN tek bir Esc hem
+  // paneli kapatıp hem index.html'e gidiyordu -- yani "bir adım" değil
+  // "hepsi". Sebep sıra: graph-utils.js'in merkezî Esc dinleyicisi
+  // (registerStepBack zinciri, sonunda `panel.hidden = true`) compare.js'ten
+  // ÖNCE yükleniyor, dolayısıyla önce o çalışıp paneli kapatıyor; buraya
+  // gelindiğinde panel çoktan kapalı görünüyor ve "kapalıysa çık" dalı
+  // tetikleniyordu. Karar artık tuşa basıldığı ANDAKİ duruma göre
+  // veriliyor; durumu yakalama evresinde (zincirden önce) not ediyoruz.
+  // Bu sayfanın üç sekmesinin hepsinde vardı, yeni sekmede fark edildi.
+  let escPanelAcikti = false;
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") escPanelAcikti = !detailPanel.hidden;
+  }, true);
   window.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
-    if (!detailPanel.hidden) {
-      detailPanel.hidden = true;
-    } else {
-      window.location.href = "index.html";
+    if (escPanelAcikti) {
+      detailPanel.hidden = true;   // zincir zaten kapatmış olabilir; ikisi de aynı sonucu verir
+      return;
     }
+    window.location.href = "index.html";
   });
 
   // Touch devices have no Escape key. The tappable title below is the quiet
