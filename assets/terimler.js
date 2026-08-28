@@ -963,17 +963,17 @@
       const W = Math.max(400, yari * 6, enN(d.caption) + 30, enN(d.altCaption) + 30);
       const a = yari, b = W / 2, c = W - yari;
       return `
-      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} 152" role="img" aria-label="${tt(d.note)}">
+      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} 168" role="img" aria-label="${tt(d.note)}">
         ${isikCizgisi(a + 30, 58, b - 26, 58, "oneway")}
         ${isikCizgisi(b + 26, 58, c - 30, 58, "oneway")}
         <circle class="term-diagram-node term-diagram-node--accent" cx="${a.toFixed(0)}" cy="58" r="30"/>
-        <text class="term-diagram-label--small" x="${a.toFixed(0)}" y="63" text-anchor="middle">${tt(d.asil)}</text>
+        ${dugumYazisi(tt(d.asil), 30).metin(a, 58, 30)}
         <circle class="term-diagram-node term-diagram-node--faint" cx="${b.toFixed(0)}" cy="58" r="26"/>
-        <text class="term-diagram-label--small" x="${b.toFixed(0)}" y="63" text-anchor="middle">${tt(d.vekil)}</text>
+        ${dugumYazisi(tt(d.vekil), 26).metin(b, 58, 26)}
         <circle class="term-diagram-node term-diagram-node--dashed" cx="${c.toFixed(0)}" cy="58" r="26"/>
-        <text class="term-diagram-label--small" x="${c.toFixed(0)}" y="63" text-anchor="middle">${tt(d.alan)}</text>
-        <text class="term-diagram-note" x="${b.toFixed(0)}" y="120" text-anchor="middle">${tt(d.caption)}</text>
-        <text class="term-diagram-note" x="${b.toFixed(0)}" y="140" text-anchor="middle">${tt(d.altCaption)}</text>
+        ${dugumYazisi(tt(d.alan), 26).metin(c, 58, 26)}
+        <text class="term-diagram-note" x="${b.toFixed(0)}" y="136" text-anchor="middle">${tt(d.caption)}</text>
+        <text class="term-diagram-note" x="${b.toFixed(0)}" y="156" text-anchor="middle">${tt(d.altCaption)}</text>
       </svg>
     `;
     },
@@ -1132,16 +1132,16 @@
         96 + Math.max(enNA(d.kaynakNot), enL(d.kaynakAd)) / 2 + 20,
         322 + Math.max(enN(d.yansitanNot), enL(d.yansitanAd)) / 2 + 20);
       return `
-      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} 178" role="img" aria-label="${tt(d.note)}">
+      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} 188" role="img" aria-label="${tt(d.note)}">
         <circle class="term-diagram-hale" cx="96" cy="66" r="46"/>
         <circle class="term-diagram-node term-diagram-node--accent" cx="96" cy="66" r="30"/>
-        <text class="term-diagram-label--small" x="96" y="71" text-anchor="middle">${tt(d.kaynakAd)}</text>
+        ${dugumYazisi(tt(d.kaynakAd), 30).metin(96, 66, 30)}
         ${isikCizgisi(142, 66, 292, 66, "oneway")}
         <circle class="term-diagram-node term-diagram-node--faint" cx="322" cy="66" r="26"/>
-        <text class="term-diagram-label--small" x="322" y="71" text-anchor="middle">${tt(d.yansitanAd)}</text>
-        <text class="term-diagram-note--accent" x="96" y="132" text-anchor="middle">${tt(d.kaynakNot)}</text>
-        <text class="term-diagram-note" x="322" y="132" text-anchor="middle">${tt(d.yansitanNot)}</text>
-        <text class="term-diagram-note" x="${(W / 2).toFixed(0)}" y="168" text-anchor="middle">${tt(d.caption)}</text>
+        ${dugumYazisi(tt(d.yansitanAd), 26).metin(322, 66, 26)}
+        <text class="term-diagram-note--accent" x="96" y="142" text-anchor="middle">${tt(d.kaynakNot)}</text>
+        <text class="term-diagram-note" x="322" y="142" text-anchor="middle">${tt(d.yansitanNot)}</text>
+        <text class="term-diagram-note" x="${(W / 2).toFixed(0)}" y="180" text-anchor="middle">${tt(d.caption)}</text>
       </svg>
     `;
     },
