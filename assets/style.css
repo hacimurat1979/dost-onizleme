@@ -3841,6 +3841,95 @@ a.daphne-bag__ad { color: var(--accent-interactive); }
   stroke-linecap: round;
 }
 
+/* --- 2026-08-28: çizimi olmayan 26 terim için eklenen biçimler --------
+   Hepsi mevcut .term-diagram-* paletini kullanıyor; yeni renk yok. */
+
+/* "ayni-guc": gücü tutan kap. Halka DEĞİL, açık bir tas -- eşmerkezli
+   çember yasağı (GORSEL_DIL.md). Kırık hâli kesik çiziliyor. */
+.term-diagram-kap {
+  fill: none;
+  stroke: var(--text-secondary);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+}
+.term-diagram-kap--kirik { stroke-dasharray: 7 9; opacity: 0.55; }
+
+/* "uc-kapi": ışığın önündeki engel. Geçilmez olan TEK PARÇA, zorlanabilir
+   olan ARALIKLI iki parça -- fark bir renk değil bir açıklık, çünkü
+   "zorlanabilir" demek "arasından geçilebilir" demek. */
+.term-diagram-engel { fill: var(--text-secondary); stroke: none; opacity: 0.8; }
+.term-diagram-engel--kesik { opacity: 0.5; }
+.term-diagram-solgun { opacity: 0.55; }
+
+/* "ikili-eslesme": perde. Keskin bir çizgi değil, yarı saydam bir bant. */
+.term-diagram-perde {
+  fill: var(--text-muted);
+  fill-opacity: 0.22;
+  stroke: var(--text-muted);
+  stroke-opacity: 0.35;
+  stroke-width: 1px;
+}
+
+/* "damla-deniz": deniz yarı saydam bir bant; içinde eriyen daire kendi
+   kenarını yitiriyor ama kaybolmuyor -- "varlık sürer, sahiplik değişir". */
+.term-diagram-deniz {
+  fill: var(--series-theme);
+  fill-opacity: 0.13;
+  stroke: none;
+}
+.term-diagram-eriyen {
+  fill: var(--surface-1);
+  fill-opacity: 0.5;
+  stroke: var(--text-muted);
+  stroke-width: 1px;
+  stroke-dasharray: 3 4;
+}
+.term-diagram-eriyen--soluk { stroke-opacity: 0.35; fill-opacity: 0.28; }
+/* Vurgulanan an (fenâ ya da bekâ) görünür olmalı: --accent'in dolgusu
+   .term-diagram-eriyen'in yarı saydamlığıyla eziliyordu. */
+.term-diagram-eriyen.term-diagram-node--accent {
+  stroke: var(--series-theme);
+  stroke-opacity: 1;
+  stroke-width: 2px;
+  fill-opacity: 0.5;
+}
+
+/* "suren-ve-biten": süren bantın ucu yok (gradyanla soluyor); biten
+   parçanın iki ucu belli. */
+.term-diagram-parca { fill: var(--surface-1); }
+.term-diagram-uc { stroke: var(--text-secondary); stroke-width: 1.8px; stroke-linecap: round; }
+
+/* "kapisiz-ev": girilemeyen duvar kesik çizgili; dış sütun vurgulu. */
+.term-diagram-duvar {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1.4px;
+  stroke-dasharray: 5 5;
+}
+.term-diagram-cati { fill: none; stroke: var(--text-secondary); stroke-width: 1.6px; stroke-linejoin: round; }
+.term-diagram-sutun { fill: var(--surface-1); stroke: var(--text-muted); stroke-width: 1.1px; }
+.term-diagram-sutun--dis { stroke: var(--series-theme); stroke-width: 2px; }
+
+/* "yavas-sapma": doğru yol kesik bir referans çizgisi; sapma sürekli bir
+   eğri -- ok yok, sapma eğrinin kendisi. */
+.term-diagram-dogru-yol { stroke-dasharray: 6 6; }
+.term-diagram-sapma { stroke: var(--series-theme); stroke-width: 1.8px; opacity: 0.85; }
+
+/* "gunes-ay": kaynağın kendi ışıması. */
+.term-diagram-hale {
+  fill: var(--series-theme);
+  fill-opacity: 0.16;
+  stroke: none;
+}
+
+/* "kuskulu-orta": üç bölge. Ortadaki taralı değil, YARI SAYDAM --
+   belirsizlik bir desen değil, bir görülememe. */
+.term-diagram-bolge { stroke: var(--border); stroke-width: 1px; }
+.term-diagram-bolge--acik { fill: var(--surface-1); }
+.term-diagram-bolge--kusku { fill: var(--text-muted); fill-opacity: 0.16; }
+.term-diagram-bolge--yasak { fill: var(--series-celal); fill-opacity: 0.12; }
+.term-diagram-sinir { stroke: var(--series-theme); stroke-width: 2.2px; stroke-linecap: round; }
+
 .baglar-etiket__kilavuz {
   stroke: var(--text-muted);
   stroke-width: 0.7px;

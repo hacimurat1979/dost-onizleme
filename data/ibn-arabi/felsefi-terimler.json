@@ -180,10 +180,26 @@
           "type": "cift-okunus",
           "termId": "tepetaklak-hiyerarsi",
           "stations": [
-            { "tr": "İnsan (Akıl)", "en": "The human (Reason)", "pt": "O humano (Razão)" },
-            { "tr": "Hayvan", "en": "Animal", "pt": "Animal" },
-            { "tr": "Bitki", "en": "Plant", "pt": "Planta" },
-            { "tr": "Cansız", "en": "Inanimate", "pt": "Inanimado" }
+            {
+              "tr": "İnsan (Akıl)",
+              "en": "The human (Reason)",
+              "pt": "O humano (Razão)"
+            },
+            {
+              "tr": "Hayvan",
+              "en": "Animal",
+              "pt": "Animal"
+            },
+            {
+              "tr": "Bitki",
+              "en": "Plant",
+              "pt": "Planta"
+            },
+            {
+              "tr": "Cansız",
+              "en": "Inanimate",
+              "pt": "Inanimado"
+            }
           ],
           "readingA": {
             "tr": "cem'iyyet sırası",
@@ -255,11 +271,31 @@
           "type": "sarmal-mertebe",
           "termId": "hazerat-i-hamse",
           "ranks": [
-            { "tr": "Zât / Gayb-ı Mutlak", "en": "The Essence / Absolute Unseen", "pt": "A Essência / Invisível Absoluto" },
-            { "tr": "Sıfatlar ve Esmâ", "en": "Attributes and Names", "pt": "Atributos e Nomes" },
-            { "tr": "Ef'âl (Rubûbiyyet)", "en": "Acts (Lordship)", "pt": "Atos (Senhorio)" },
-            { "tr": "Emsâl ve Hayâl", "en": "Likenesses and Imagination", "pt": "Semelhanças e Imaginação" },
-            { "tr": "Hisler ve Müşâhede", "en": "Senses and Witnessing", "pt": "Sentidos e Testemunho" }
+            {
+              "tr": "Zât / Gayb-ı Mutlak",
+              "en": "The Essence / Absolute Unseen",
+              "pt": "A Essência / Invisível Absoluto"
+            },
+            {
+              "tr": "Sıfatlar ve Esmâ",
+              "en": "Attributes and Names",
+              "pt": "Atributos e Nomes"
+            },
+            {
+              "tr": "Ef'âl (Rubûbiyyet)",
+              "en": "Acts (Lordship)",
+              "pt": "Atos (Senhorio)"
+            },
+            {
+              "tr": "Emsâl ve Hayâl",
+              "en": "Likenesses and Imagination",
+              "pt": "Semelhanças e Imaginação"
+            },
+            {
+              "tr": "Hisler ve Müşâhede",
+              "en": "Senses and Witnessing",
+              "pt": "Sentidos e Testemunho"
+            }
           ],
           "caption": {
             "tr": "beş hazret: merkezden dışa doğru bir iniş",
@@ -508,6 +544,32 @@
             "en": "Ibn Arabi defines both neutrally, without ranking one above the other — sukr is being lost through the intensity of a self-disclosure; sahw is the forceful return that follows that loss.",
             "pt": "Ibn Arabi define ambos de forma neutra, sem hierarquizar um sobre o outro — sukr é perder-se pela intensidade de uma autorrevelação; sahw é o retorno vigoroso que se segue a essa perda."
           }
+        },
+        {
+          "type": "cascade",
+          "termId": "sahv",
+          "steps": [
+            {
+              "tr": "Sekr (sarhoşluk)",
+              "en": "Sukr (intoxication)",
+              "pt": "Sukr (embriaguez)"
+            },
+            {
+              "tr": "Sahv (ayıklık)",
+              "en": "Sahw (sobriety)",
+              "pt": "Sahw (sobriedade)"
+            }
+          ],
+          "relationLabel": {
+            "tr": "ondan sonra, onun izinde",
+            "en": "after it, and in its wake",
+            "pt": "depois dela, e no seu rasto"
+          },
+          "note": {
+            "tr": "Sahv tek başına bir hâl değil: metin onu \"kuvvetli bir tecellînin ARDINDAN\" gelen dönüş olarak tanımlıyor. İki basamak olarak çizilmesinin sebebi bu -- \"sanki hiç dalga olmamış gibi\" bir ayıklık değil.",
+            "en": "Sahw is not a state on its own: the text defines it as the return that comes AFTER a powerful self-disclosure. That is why it is drawn as two rungs -- not a sobriety \"as if there had been no wave\".",
+            "pt": "Sahw não é um estado por si só: o texto define-o como o retorno que vem DEPOIS de uma forte automanifestação. É por isso que é desenhado em dois degraus -- não uma sobriedade \"como se não tivesse havido onda\"."
+          }
         }
       ]
     },
@@ -562,6 +624,298 @@
             "en": "Even within the Prophet Muhammad himself, his being a saint outranks his being a messenger — because sainthood is permanent while messengership is bounded by the act of delivery. This is a comparison of stations, not of persons.",
             "pt": "Mesmo dentro do próprio Profeta Muhammad, seu ser santo supera seu ser mensageiro — porque a santidade é permanente enquanto o mensageirato é limitado pelo ato de entrega. Esta é uma comparação de estações, não de pessoas."
           }
+        },
+        {
+          "type": "suren-ve-biten",
+          "termId": "nubuvvet",
+          "vurgu": "suren",
+          "suren": {
+            "tr": "Nübüvvet — ucu görünmüyor",
+            "en": "Prophethood — no end is visible",
+            "pt": "Profecia — nenhum fim é visível"
+          },
+          "biten": {
+            "tr": "Risâlet — iki ucu belli",
+            "en": "Messengerhood — both ends are marked",
+            "pt": "Mensagem — ambas as extremidades marcadas"
+          },
+          "caption": {
+            "tr": "\"Âdem su ve toprak arasındayken ben peygamber idim\"",
+            "en": "\"I was a prophet while Adam was between water and clay\"",
+            "pt": "\"Eu era profeta enquanto Adão estava entre a água e o barro\""
+          },
+          "altCaption": {
+            "tr": "bedeni yaratılmadan önce de taşınan bir mertebe",
+            "en": "a rank borne even before the body was created",
+            "pt": "uma ordem carregada mesmo antes de o corpo ser criado"
+          },
+          "note": {
+            "tr": "Bantın ucu gradyanla soluyor: başlangıcı ve sonu çizilmedi, çünkü metin bu mertebeyi bedenin yaratılışından önceye taşıyor. Bandın içindeki kısa parça risâlet -- iki ucu belli, çünkü tebliğ görevi tamamlanınca sona eriyor.",
+            "en": "The band's ends fade by gradient: no beginning and no end were drawn, because the text carries this rank back before the body's creation. The short piece inside the band is messengerhood -- both ends marked, because the task ends when the message is delivered.",
+            "pt": "As extremidades da faixa esbatem-se por gradiente: não se desenhou princípio nem fim, porque o texto leva esta ordem para antes da criação do corpo. A peça curta dentro da faixa é a mensagem -- ambas as extremidades marcadas, porque a tarefa termina quando a mensagem é entregue."
+          }
+        },
+        {
+          "type": "suren-ve-biten",
+          "termId": "risalet",
+          "vurgu": "biten",
+          "suren": {
+            "tr": "Nübüvvet — ucu görünmüyor",
+            "en": "Prophethood — no end is visible",
+            "pt": "Profecia — nenhum fim é visível"
+          },
+          "biten": {
+            "tr": "Risâlet — iki ucu belli",
+            "en": "Messengerhood — both ends are marked",
+            "pt": "Mensagem — ambas as extremidades marcadas"
+          },
+          "caption": {
+            "tr": "belli bir ümmete, tebliğ bitince biter",
+            "en": "to a particular community; it ends when the message is delivered",
+            "pt": "a uma comunidade determinada; termina quando a mensagem é entregue"
+          },
+          "altCaption": {
+            "tr": "ve daha geniş olanın içinde duruyor",
+            "en": "and it stands inside the wider one",
+            "pt": "e situa-se dentro da mais ampla"
+          },
+          "note": {
+            "tr": "Aynı resim, vurgusu değişik. Musa kendi döneminde kendi ümmetinin \"kapının teşrifatçısı\"ydı; \"Musa yaşıyor olsaydı, bana uymaktan başka çaresi olmazdı\" hadisiyle risâletin daha geniş bir mertebenin içinde durduğu söyleniyor.",
+            "en": "The same picture, with the emphasis moved. Moses was, in his own time, the \"chamberlain of the door\" for his own community; the hadith \"had Moses been alive he would have had no choice but to follow me\" places messengerhood inside a wider rank.",
+            "pt": "A mesma imagem, com a ênfase deslocada. Moisés foi, no seu tempo, o \"camareiro da porta\" da sua comunidade; o hadith \"se Moisés estivesse vivo não teria escolha senão seguir-me\" coloca a mensagem dentro de uma ordem mais ampla."
+          }
+        },
+        {
+          "type": "bulusma",
+          "termId": "hatmul-velaye",
+          "merkez": {
+            "tr": "Hatmü'l-Velâye",
+            "en": "The Seal of Sainthood",
+            "pt": "O Selo da Santidade"
+          },
+          "kaynaklar": [
+            {
+              "tr": "Mesih",
+              "en": "the Messiah",
+              "pt": "o Messias"
+            },
+            {
+              "tr": "Hâşimî mirası",
+              "en": "the Hashimi inheritance",
+              "pt": "a herança hashimita"
+            },
+            {
+              "tr": "Ebû Bekir",
+              "en": "Abu Bakr",
+              "pt": "Abu Bakr"
+            }
+          ],
+          "caption": {
+            "tr": "tek bir kimlikle değil, birkaç referansın kesişimiyle",
+            "en": "not by a single identity but by the crossing of several references",
+            "pt": "não por uma única identidade, mas pelo cruzamento de várias referências"
+          },
+          "note": {
+            "tr": "İbn Arabî'nin kendisi için kullandığı iddialı bir öz-tanımlama; kasidesinde kendini üç ayrı noktaya birden bağlıyor. Çizim bir onay değil, o cümlenin şekli: kapanış öncekileri reddetmiyor, onları bir araya getiriyor gibi görünüyor bize.",
+            "en": "An assertive self-description Ibn Arabi uses of himself; in his ode he ties himself to three separate points at once. The diagram is not an endorsement but the shape of that sentence: the closing does not reject what came before but seems, to us, to gather it.",
+            "pt": "Uma autodescrição assertiva que Ibn Arabi usa de si mesmo; na sua ode liga-se a três pontos distintos ao mesmo tempo. O diagrama não é um aval, mas a forma dessa frase: o fecho não rejeita o que veio antes, mas parece-nos reuni-lo."
+          }
+        },
+        {
+          "type": "cascade",
+          "termId": "mesrep",
+          "steps": [
+            {
+              "tr": "İsevî",
+              "en": "Christic",
+              "pt": "Crística"
+            },
+            {
+              "tr": "Musevî-Şemsî",
+              "en": "Mosaic-Solar",
+              "pt": "Mosaica-Solar"
+            },
+            {
+              "tr": "Hûdî",
+              "en": "Hudian",
+              "pt": "Hudiana"
+            },
+            {
+              "tr": "Muhammedî",
+              "en": "Muhammadan",
+              "pt": "Muhammadiana"
+            }
+          ],
+          "relationLabel": {
+            "tr": "İbn Arabî kendi seyrini böyle anlatıyor",
+            "en": "this is how Ibn Arabi describes his own passage",
+            "pt": "é assim que Ibn Arabi descreve o seu próprio percurso"
+          },
+          "note": {
+            "tr": "Meşrep, bir velinin yolunun hangi peygamberin zevkine göre şekillendiğini gösteriyor. Bunu bir sıralama olarak çiziyoruz çünkü İbn Arabî kendi terakkisini bir SEYİR olarak anlatıyor -- bir yerde durulan bir sınıf değil, nakledilen bir hâl.",
+            "en": "Mashrab names which prophet's taste shapes a saint's way. We draw it as a sequence because Ibn Arabi recounts his own progress as a passage -- not a class one belongs to but a state one is moved through.",
+            "pt": "O mashrab indica de que profeta o gosto molda o caminho de um santo. Desenhamo-lo como sequência porque Ibn Arabi narra o seu próprio progresso como uma passagem -- não uma classe a que se pertence, mas um estado por onde se é levado."
+          }
+        },
+        {
+          "type": "ikili-eslesme",
+          "termId": "nispet",
+          "perdeLabel": {
+            "tr": "perde",
+            "en": "a veil",
+            "pt": "um véu"
+          },
+          "satirlar": [
+            {
+              "sol": {
+                "tr": "su üstünde yürümek",
+                "en": "walking on water",
+                "pt": "andar sobre a água"
+              },
+              "sag": {
+                "tr": "İsevî nispet",
+                "en": "Christic relation",
+                "pt": "relação crística"
+              }
+            },
+            {
+              "sol": {
+                "tr": "havada yürümek",
+                "en": "walking on air",
+                "pt": "andar no ar"
+              },
+              "sag": {
+                "tr": "Muhammedî nispet",
+                "en": "Muhammadan relation",
+                "pt": "relação muhammadiana"
+              }
+            }
+          ],
+          "caption": {
+            "tr": "üstünlük bir inanç gücü yarışı değil — hangi peygambere tabi olunduğuna bağlı",
+            "en": "precedence is not a contest of faith's strength — it follows which prophet one follows",
+            "pt": "a precedência não é um concurso de força de fé — depende de que profeta se segue"
+          },
+          "note": {
+            "tr": "Nispet, bir velinin hâlinin hangi peygamberin mirasına bağlandığını gösteriyor. İki satır arasında bir derece farkı çizmedik, çünkü metin bunu bir yarış olarak sunmuyor.",
+            "en": "Nisba shows to which prophet's inheritance a saint's state is tied. We drew no difference of degree between the two rows, because the text does not present this as a contest.",
+            "pt": "A nisba mostra a que herança profética o estado de um santo está ligado. Não desenhámos diferença de grau entre as duas linhas, porque o texto não apresenta isto como um concurso."
+          }
+        },
+        {
+          "type": "odunc-yetki",
+          "termId": "halife",
+          "asil": {
+            "tr": "Asıl",
+            "en": "The Principal",
+            "pt": "O Principal"
+          },
+          "vekil": {
+            "tr": "Halife",
+            "en": "The Vicegerent",
+            "pt": "O Vice-regente"
+          },
+          "alan": {
+            "tr": "Yeryüzü",
+            "en": "The earth",
+            "pt": "A terra"
+          },
+          "caption": {
+            "tr": "kendi adına bir egemenlik değil, temsil ettiği asıl adına bir vekâlet",
+            "en": "not a sovereignty in one's own name but a deputyship in the name of the principal",
+            "pt": "não uma soberania em nome próprio, mas uma delegação em nome do principal"
+          },
+          "altCaption": {
+            "tr": "yetkisi gerçek ama ödünç",
+            "en": "its authority is real but borrowed",
+            "pt": "a sua autoridade é real, mas emprestada"
+          },
+          "note": {
+            "tr": "Halife solgun çiziliyor: ışık ondan çıkmıyor, ondan geçiyor. Metnin benzetmesi bir bahçe bekçisi -- kendi adına değil, emanet edenin adına tasarrufta bulunuyor.",
+            "en": "The vicegerent is drawn faint: the light does not issue from him but passes through him. The text's analogy is a garden's keeper -- he acts not in his own name but in the name of the one who entrusted it.",
+            "pt": "O vice-regente é desenhado ténue: a luz não parte dele, mas passa por ele. A analogia do texto é o guarda de um jardim -- age não em nome próprio, mas em nome de quem lho confiou."
+          }
+        },
+        {
+          "type": "ikili-eslesme",
+          "termId": "sifat-evliyasi-zat-evliyasi",
+          "vurgu": 1,
+          "perdeLabel": {
+            "tr": "nefis/gölge bâki kalıyor",
+            "en": "the self, the shadow, remains",
+            "pt": "o eu, a sombra, permanece"
+          },
+          "satirlar": [
+            {
+              "sol": {
+                "tr": "Kurbü'n-nevâfil",
+                "en": "Nearness of supererogatory acts",
+                "pt": "Proximidade dos atos supererrogatórios"
+              },
+              "sag": {
+                "tr": "Sıfat Evliyâsı",
+                "en": "Saints of the Attributes",
+                "pt": "Santos dos Atributos"
+              },
+              "perde": true
+            },
+            {
+              "sol": {
+                "tr": "Kurbü'l-ferâiz",
+                "en": "Nearness of obligatory acts",
+                "pt": "Proximidade dos atos obrigatórios"
+              },
+              "sag": {
+                "tr": "Zât Evliyâsı",
+                "en": "Saints of the Essence",
+                "pt": "Santos da Essência"
+              }
+            }
+          ],
+          "caption": {
+            "tr": "fenâ tek bir mertebe değil — en azından iki derinliği var",
+            "en": "fana is not a single rank — it has at least two depths",
+            "pt": "fana não é uma única ordem — tem pelo menos duas profundidades"
+          },
+          "note": {
+            "tr": "Kâşânî'nin iki hadîs-i kudsî üzerine kurduğu ayrım. Bize göre bu, sitedeki \"fenâ\" terimine tamamlayıcı bir katman ekliyor ve Konevî'den aldığımız tahalluk/tahakkuk ayrımıyla akraba görünüyor -- iki farklı şârih, iki farklı kelime çiftiyle benzer bir derinlik kademesi kuruyor.",
+            "en": "Qashani's distinction, built on two divine sayings. To us this adds a layer to the site's term \"fana\" and looks akin to the takhalluq/tahaqquq distinction we took from Qunawi -- two different commentators building a similar gradation of depth with two different word-pairs.",
+            "pt": "A distinção de Qashani, construída sobre dois ditos divinos. Para nós isto acrescenta uma camada ao termo \"fana\" do site e parece aparentado com a distinção takhalluq/tahaqquq que tomámos de Qunawi -- dois comentadores diferentes a construir uma gradação de profundidade semelhante com dois pares de palavras diferentes."
+          }
+        },
+        {
+          "type": "gunes-ay",
+          "termId": "gunes-ay-velayeti",
+          "kaynakAd": {
+            "tr": "Hâtemü'l-Evliyâ",
+            "en": "The Seal of the Saints",
+            "pt": "O Selo dos Santos"
+          },
+          "yansitanAd": {
+            "tr": "öteki veliler",
+            "en": "the other saints",
+            "pt": "os outros santos"
+          },
+          "kaynakNot": {
+            "tr": "kendi ışığı — Güneş",
+            "en": "its own light — the Sun",
+            "pt": "luz própria — o Sol"
+          },
+          "yansitanNot": {
+            "tr": "yansıyan ışık — Ay",
+            "en": "reflected light — the Moon",
+            "pt": "luz refletida — a Lua"
+          },
+          "caption": {
+            "tr": "Ay karanlık değil — ışığı var, ama kaynağı başkası",
+            "en": "the Moon is not dark — it has light, but its source is another",
+            "pt": "a Lua não é escura — tem luz, mas a sua fonte é outra"
+          },
+          "note": {
+            "tr": "Kâşânî'nin ayrımı, Izutsu'nun aktardığı. GORSEL_DIL.md'nin \"ışık = zuhûr\" grameriyle doğrudan konuşan somut bir imge olduğu için buraya olduğu gibi geçti.",
+            "en": "Qashani's distinction, as related by Izutsu. It passed through here as it stands because it is a concrete image speaking directly in GORSEL_DIL.md's grammar of \"light = manifestation\".",
+            "pt": "A distinção de Qashani, tal como relatada por Izutsu. Passou para aqui tal como está por ser uma imagem concreta que fala diretamente na gramática de \"luz = manifestação\" do GORSEL_DIL.md."
+          }
         }
       ]
     },
@@ -583,24 +937,64 @@
           "termId": "lafza-i-celal",
           "letters": [
             {
-              "harf": { "tr": "ا (Elif)", "en": "ا (Alif)", "pt": "ا (Alif)" },
-              "anlam": { "tr": "Ezeliyet", "en": "Eternity", "pt": "Eternidade" }
+              "harf": {
+                "tr": "ا (Elif)",
+                "en": "ا (Alif)",
+                "pt": "ا (Alif)"
+              },
+              "anlam": {
+                "tr": "Ezeliyet",
+                "en": "Eternity",
+                "pt": "Eternidade"
+              }
             },
             {
-              "harf": { "tr": "ل (Lâm)", "en": "ل (Lam)", "pt": "ل (Lam)" },
-              "anlam": { "tr": "Marifet makamı", "en": "Station of gnosis", "pt": "Estação da gnose" }
+              "harf": {
+                "tr": "ل (Lâm)",
+                "en": "ل (Lam)",
+                "pt": "ل (Lam)"
+              },
+              "anlam": {
+                "tr": "Marifet makamı",
+                "en": "Station of gnosis",
+                "pt": "Estação da gnose"
+              }
             },
             {
-              "harf": { "tr": "ل (Lâm)", "en": "ل (Lam)", "pt": "ل (Lam)" },
-              "anlam": { "tr": "Mülkiyet", "en": "Ownership", "pt": "Propriedade" }
+              "harf": {
+                "tr": "ل (Lâm)",
+                "en": "ل (Lam)",
+                "pt": "ل (Lam)"
+              },
+              "anlam": {
+                "tr": "Mülkiyet",
+                "en": "Ownership",
+                "pt": "Propriedade"
+              }
             },
             {
-              "harf": { "tr": "ه (Hâ)", "en": "ه (Ha)", "pt": "ه (Ha)" },
-              "anlam": { "tr": "Mutlak gayb", "en": "Absolute unseen", "pt": "Oculto absoluto" }
+              "harf": {
+                "tr": "ه (Hâ)",
+                "en": "ه (Ha)",
+                "pt": "ه (Ha)"
+              },
+              "anlam": {
+                "tr": "Mutlak gayb",
+                "en": "Absolute unseen",
+                "pt": "Oculto absoluto"
+              }
             },
             {
-              "harf": { "tr": "و (gizli Vav)", "en": "و (hidden Waw)", "pt": "و (Waw oculto)" },
-              "anlam": { "tr": "Şehâdet (gizli)", "en": "Visible world (hidden)", "pt": "Mundo visível (oculto)" },
+              "harf": {
+                "tr": "و (gizli Vav)",
+                "en": "و (hidden Waw)",
+                "pt": "و (Waw oculto)"
+              },
+              "anlam": {
+                "tr": "Şehâdet (gizli)",
+                "en": "Visible world (hidden)",
+                "pt": "Mundo visível (oculto)"
+              },
               "hidden": true
             }
           ],
@@ -655,6 +1049,62 @@
             "en": "Nothing proceeds from Ahad; from Wahid all numbers (multiplicity, the world) proceed — yet even if the numbers vanish, the One does not.",
             "pt": "Nada procede de Ahad; de Wahid procedem todos os números (multiplicidade, o mundo) — mas mesmo que os números desapareçam, o Um não desaparece."
           }
+        },
+        {
+          "type": "bir-carpim",
+          "termId": "vahid",
+          "bir": {
+            "tr": "1",
+            "en": "1",
+            "pt": "1"
+          },
+          "satirlar": [
+            {
+              "carpan": {
+                "tr": "1",
+                "en": "1",
+                "pt": "1"
+              },
+              "sonuc": {
+                "tr": "1",
+                "en": "1",
+                "pt": "1"
+              },
+              "ayni": true,
+              "not": {
+                "tr": "kendisiyle çarpılınca yine kendisi",
+                "en": "multiplied by itself it stays itself",
+                "pt": "multiplicado por si mesmo continua sendo si mesmo"
+              }
+            },
+            {
+              "carpan": {
+                "tr": "15",
+                "en": "15",
+                "pt": "15"
+              },
+              "sonuc": {
+                "tr": "15",
+                "en": "15",
+                "pt": "15"
+              },
+              "not": {
+                "tr": "başkasıyla çarpılınca ona dönüşür",
+                "en": "multiplied by another it becomes that other",
+                "pt": "multiplicado por outro torna-se esse outro"
+              }
+            }
+          ],
+          "caption": {
+            "tr": "bütün sayılar Bir'den doğar; Bir hiçbir sayıdan doğmaz",
+            "en": "every number is born of the One; the One is born of no number",
+            "pt": "todo número nasce do Um; o Um não nasce de nenhum número"
+          },
+          "note": {
+            "tr": "İbn Arabî'nin kendi örneği. Bir sayı yok olduğunda Bir yok olmaz, ama Bir olmadan hiçbir sayı var olamaz -- âlemdeki bütün çokluk tek bir kaynaktan çoğalıyor.",
+            "en": "Ibn Arabi's own example. When a number vanishes the One does not, but without the One no number could be -- all the multiplicity of the cosmos multiplies from a single source.",
+            "pt": "O próprio exemplo de Ibn Arabi. Quando um número desaparece o Um não desaparece, mas sem o Um nenhum número poderia existir -- toda a multiplicidade do cosmos multiplica-se a partir de uma única fonte."
+          }
         }
       ]
     },
@@ -703,14 +1153,176 @@
         {
           "type": "eclipse",
           "termId": "akil-vezir",
-          "sunLabel": { "tr": "Ruh (Sultan)", "en": "Spirit (Sultan)", "pt": "Espírito (Sultão)" },
-          "moonLabel": { "tr": "Akıl (Vezir)", "en": "Reason (Vizier)", "pt": "Razão (Vizir)" },
-          "presentCaption": { "tr": "Ruh huzurda", "en": "Spirit present", "pt": "Espírito presente" },
-          "absentCaption": { "tr": "Ruh gaip", "en": "Spirit absent", "pt": "Espírito ausente" },
+          "sunLabel": {
+            "tr": "Ruh (Sultan)",
+            "en": "Spirit (Sultan)",
+            "pt": "Espírito (Sultão)"
+          },
+          "moonLabel": {
+            "tr": "Akıl (Vezir)",
+            "en": "Reason (Vizier)",
+            "pt": "Razão (Vizir)"
+          },
+          "presentCaption": {
+            "tr": "Ruh huzurda",
+            "en": "Spirit present",
+            "pt": "Espírito presente"
+          },
+          "absentCaption": {
+            "tr": "Ruh gaip",
+            "en": "Spirit absent",
+            "pt": "Espírito ausente"
+          },
           "note": {
             "tr": "Ay güneşin huzurunda görünmez; güneş gaip olunca kendi ışığıyla (aslında yansıyan ışıkla) parlar. Akıl da ruhun doğrudan tecellisi karşısında değil, onun perde arkasında kaldığı yerde iş görür.",
             "en": "The moon is invisible in the sun's presence; once the sun is absent, it shines with its own (in truth, reflected) light. Reason likewise operates not in the spirit's direct disclosure, but where it stays behind a veil.",
             "pt": "A lua é invisível na presença do sol; uma vez que o sol está ausente, ela brilha com sua própria luz (na verdade, refletida). A razão, da mesma forma, atua não na autorrevelação direta do espírito, mas onde ele permanece por trás de um véu."
+          }
+        },
+        {
+          "type": "ayni-guc",
+          "termId": "sehvani-nefis",
+          "guc": {
+            "tr": "Şehvet",
+            "en": "Appetite",
+            "pt": "Apetite"
+          },
+          "solHal": {
+            "tr": "ocakta",
+            "en": "in the hearth",
+            "pt": "na lareira"
+          },
+          "solSonuc": {
+            "tr": "pişirir, ısıtır",
+            "en": "it cooks, it warms",
+            "pt": "cozinha, aquece"
+          },
+          "sagHal": {
+            "tr": "kontrolden çıkmış",
+            "en": "out of control",
+            "pt": "fora de controlo"
+          },
+          "sagSonuc": {
+            "tr": "yakar",
+            "en": "it burns",
+            "pt": "queima"
+          },
+          "caption": {
+            "tr": "aynı ateş — terbiye edilip edilmemesi sonucu belirliyor",
+            "en": "the same fire — whether it is disciplined decides the outcome",
+            "pt": "o mesmo fogo — a diferença está em ser ou não disciplinado"
+          },
+          "note": {
+            "tr": "Metnin kendi benzetmesi. İki ayrı güç çizmedik: aynı daire iki kez duruyor, değişen yalnız onu tutan kap. \"Nefis kötü değildir, kontrolsüz bırakılması kötüdür\" -- çizim de bunu söylemeli.",
+            "en": "The text's own analogy. We did not draw two different forces: the same circle stands twice, and only the vessel holding it changes. \"The soul is not evil; leaving it unchecked is\" -- the diagram has to say that too.",
+            "pt": "A analogia do próprio texto. Não desenhámos duas forças diferentes: o mesmo círculo aparece duas vezes, e só muda o recipiente que o contém. \"A alma não é má; deixá-la sem freio é que é\" -- o diagrama tem de dizer isso também."
+          }
+        },
+        {
+          "type": "ayni-guc",
+          "termId": "gazap-nefsi",
+          "guc": {
+            "tr": "Gazap",
+            "en": "Anger",
+            "pt": "Ira"
+          },
+          "solHal": {
+            "tr": "setler içinde",
+            "en": "within its banks",
+            "pt": "dentro das margens"
+          },
+          "solSonuc": {
+            "tr": "değirmeni döndürür",
+            "en": "it turns the mill",
+            "pt": "faz girar o moinho"
+          },
+          "sagHal": {
+            "tr": "taşmış",
+            "en": "flooding",
+            "pt": "transbordando"
+          },
+          "sagSonuc": {
+            "tr": "sürükler",
+            "en": "it sweeps away",
+            "pt": "arrasta tudo"
+          },
+          "caption": {
+            "tr": "aynı nehir — dizginlenirse cesaret, dizginlenmezse şiddet",
+            "en": "the same river — reined it becomes courage, unreined violence",
+            "pt": "o mesmo rio — refreado torna-se coragem, solto violência"
+          },
+          "note": {
+            "tr": "Şehvet nefsininkiyle aynı şekil, çünkü metin ikisi için de aynı şeyi söylüyor: belirleyici olan gücün kendisi değil, nefs-i nâtıkaya boyun eğip eğmemesi.",
+            "en": "The same shape as the appetitive soul's, because the text says the same thing of both: what decides is not the force itself but whether it submits to the rational soul.",
+            "pt": "A mesma forma da alma apetitiva, porque o texto diz o mesmo de ambas: o que decide não é a força em si, mas se ela se submete à alma racional."
+          }
+        },
+        {
+          "type": "bes-his",
+          "termId": "batini-hisler",
+          "gruplar": [
+            {
+              "ad": {
+                "tr": "sureti idrak eden",
+                "en": "perceiving forms",
+                "pt": "que percebem formas"
+              },
+              "hisler": [
+                {
+                  "tr": "hiss-i müşterek",
+                  "en": "common sense",
+                  "pt": "sentido comum"
+                },
+                {
+                  "tr": "hayal (musavvira)",
+                  "en": "imagination",
+                  "pt": "imaginação"
+                }
+              ]
+            },
+            {
+              "ad": {
+                "tr": "anlamı idrak eden",
+                "en": "perceiving meanings",
+                "pt": "que percebem sentidos"
+              },
+              "hisler": [
+                {
+                  "tr": "vehim",
+                  "en": "estimation",
+                  "pt": "estimativa"
+                },
+                {
+                  "tr": "hafıza (zâkire)",
+                  "en": "memory",
+                  "pt": "memória"
+                }
+              ]
+            },
+            {
+              "ad": {
+                "tr": "ikisini terkip eden",
+                "en": "combining the two",
+                "pt": "que combina as duas"
+              },
+              "hisler": [
+                {
+                  "tr": "mütehayyile",
+                  "en": "compositive imagination",
+                  "pt": "imaginação compositiva"
+                }
+              ]
+            }
+          ],
+          "caption": {
+            "tr": "beş his, üç işlevden çıkıyor",
+            "en": "five senses, arising from three functions",
+            "pt": "cinco sentidos, nascidos de três funções"
+          },
+          "note": {
+            "tr": "Metin duyuların neden beş olduğunu kendisi soruyor ve cevabını üç işlevle veriyor: suret idrak eden, anlam idrak eden, ikisini terkip eden. Beşliyi düz bir liste olarak çizmek bu hesabı gizlerdi.",
+            "en": "The text itself asks why the senses are five, and answers with three functions: perceiving forms, perceiving meanings, combining the two. Drawing the five as a flat list would hide that reckoning.",
+            "pt": "O próprio texto pergunta por que os sentidos são cinco, e responde com três funções: perceber formas, perceber sentidos, combinar as duas. Desenhar os cinco como uma lista plana esconderia esse cálculo."
           }
         }
       ]
@@ -807,6 +1419,45 @@
             "tr": "İbn Arabî, kalıbın da toprak kabrinden dirildiğini ekler — dönüş en yoğun/cismanî olandan en ince/soyut olana doğru ilerler.",
             "en": "Ibn Arabi adds that the bodily form itself rises from the grave of the earth — the return proceeds from what is densest/most corporeal toward what is subtlest/most abstract.",
             "pt": "Ibn Arabi acrescenta que a própria forma corporal ressurge do túmulo da terra — o retorno segue do que é mais denso/corpóreo para o que é mais sutil/abstrato."
+          }
+        },
+        {
+          "type": "berraklik",
+          "termId": "cennet-cehennem-idrak",
+          "nesne": {
+            "tr": "Aynı şey",
+            "en": "The same thing",
+            "pt": "A mesma coisa"
+          },
+          "berrak": {
+            "tr": "uyumlu idrak",
+            "en": "perception in accord",
+            "pt": "percepção em acordo"
+          },
+          "berrakSonuc": {
+            "tr": "lezzet",
+            "en": "pleasure",
+            "pt": "prazer"
+          },
+          "bulanik": {
+            "tr": "uyumsuz idrak",
+            "en": "perception out of accord",
+            "pt": "percepção em desacordo"
+          },
+          "bulanikSonuc": {
+            "tr": "acı",
+            "en": "pain",
+            "pt": "dor"
+          },
+          "caption": {
+            "tr": "\"cennet ve cehennem ruhlardadır\"",
+            "en": "\"the Garden and the Fire are in the spirits\"",
+            "pt": "\"o Jardim e o Fogo estão nos espíritos\""
+          },
+          "note": {
+            "tr": "El-Bülgâ'nın kendi cümlesi: \"Lezzet, eşyayla uyumlu idrakin ta kendisidir; acı, eşyayla uyumsuz idrakin ta kendisidir.\" Sağdaki daire gerçekten bulanık çiziliyor -- GORSEL_DIL.md'de bulanıklık zaten bilgisizliğin karşılığı, burada bir benzetme değil resmin kendisi. Bunu kesin bir doktrin olarak değil, kitabın kendi diliyle sunuyoruz.",
+            "en": "Al-Bulgha's own sentence: \"Pleasure is precisely perception in accord with things; pain is precisely perception out of accord with them.\" The circle on the right is really drawn blurred -- in GORSEL_DIL.md blur already stands for unknowing, and here it is not a likeness but the picture itself. We offer this in the book's own idiom, not as settled doctrine.",
+            "pt": "A frase do próprio al-Bulgha: \"O prazer é precisamente a percepção em acordo com as coisas; a dor é precisamente a percepção em desacordo com elas.\" O círculo da direita está mesmo desenhado desfocado -- no GORSEL_DIL.md o desfoque já representa o não-saber, e aqui não é uma semelhança, mas a própria imagem. Oferecemos isto na linguagem do próprio livro, não como doutrina assente."
           }
         }
       ]
@@ -924,6 +1575,62 @@
             "en": "From heart to hearing, from hearing to sight — revelation reaches the next sense like overflowing water.",
             "pt": "Do coração para a audição, da audição para a visão — a revelação alcança o próximo sentido como água transbordando."
           }
+        },
+        {
+          "type": "uc-kapi",
+          "termId": "vahiy",
+          "kapilar": [
+            {
+              "ad": {
+                "tr": "Mucize",
+                "en": "Miracle",
+                "pt": "Milagre"
+              },
+              "tur": "gecilmez",
+              "hal": {
+                "tr": "karşı çıkılamaz",
+                "en": "cannot be met",
+                "pt": "não pode ser enfrentado"
+              }
+            },
+            {
+              "ad": {
+                "tr": "Keramet",
+                "en": "Karama",
+                "pt": "Karama"
+              },
+              "tur": "zorlanabilir",
+              "hal": {
+                "tr": "karşı çıkılabilir",
+                "en": "can be met",
+                "pt": "pode ser enfrentado"
+              }
+            },
+            {
+              "ad": {
+                "tr": "Vahiy",
+                "en": "Revelation",
+                "pt": "Revelação"
+              },
+              "tur": "kapi-degil",
+              "hal": {
+                "tr": "kapı değil, iletim",
+                "en": "not a door but a conveying",
+                "pt": "não uma porta, mas uma transmissão"
+              }
+            }
+          ],
+          "vurgu": 2,
+          "caption": {
+            "tr": "aynı ışık, üç ayrı engel",
+            "en": "the same light, three different barriers",
+            "pt": "a mesma luz, três barreiras diferentes"
+          },
+          "note": {
+            "tr": "Metnin kendi benzetmesi: \"mucize kimsenin duruşamayacağı bir kapı, keramet bir kapı ama zorlanabilir, vahiy ise hiç kapı değil.\" Üçünde de yukarıdan aynı ışık iniyor; fark ışığın önündeki engelde.",
+            "en": "The text's own analogy: \"the miracle is a door no one can stand against, the karama a door but one that can be forced, revelation not a door at all.\" The same light descends in all three; the difference is the barrier before it.",
+            "pt": "A analogia do próprio texto: \"o milagre é uma porta contra a qual ninguém pode resistir, a karama uma porta mas que pode ser forçada, a revelação não é porta alguma.\" A mesma luz desce nos três; a diferença está na barreira à sua frente."
+          }
         }
       ]
     },
@@ -1004,17 +1711,33 @@
           },
           "visitors": [
             {
-              "label": { "tr": "Hak", "en": "God", "pt": "Deus" },
+              "label": {
+                "tr": "Hak",
+                "en": "God",
+                "pt": "Deus"
+              },
               "accent": true
             },
             {
-              "label": { "tr": "Melek", "en": "The Angel", "pt": "O Anjo" }
+              "label": {
+                "tr": "Melek",
+                "en": "The Angel",
+                "pt": "O Anjo"
+              }
             },
             {
-              "label": { "tr": "Nefis", "en": "The Ego", "pt": "O Ego" }
+              "label": {
+                "tr": "Nefis",
+                "en": "The Ego",
+                "pt": "O Ego"
+              }
             },
             {
-              "label": { "tr": "İblis", "en": "Iblis", "pt": "Iblis" }
+              "label": {
+                "tr": "İblis",
+                "en": "Iblis",
+                "pt": "Iblis"
+              }
             }
           ],
           "note": {
@@ -1209,6 +1932,465 @@
             "en": "Konuk's bird example: everyone creates what they imagine only within their own mind, while the gnostic, through aspiration, brings it outside the mind -- but this passage is not permanent. If the gnostic's attention shifts to another Presence, the bird he created vanishes from there and returns to the realm of imagination.",
             "pt": "O exemplo do pássaro de Konuk: todos criam o que imaginam apenas na própria mente, enquanto o gnóstico, através da aspiração, o traz para fora da mente -- mas essa passagem não é permanente. Se a atenção do gnóstico se desvia para outra Presença, o pássaro que ele criou desaparece dali e retorna ao reino da imaginação."
           }
+        },
+        {
+          "type": "uc-kapi",
+          "termId": "mucize",
+          "kapilar": [
+            {
+              "ad": {
+                "tr": "Mucize",
+                "en": "Miracle",
+                "pt": "Milagre"
+              },
+              "tur": "gecilmez",
+              "hal": {
+                "tr": "karşı çıkılamaz",
+                "en": "cannot be met",
+                "pt": "não pode ser enfrentado"
+              }
+            },
+            {
+              "ad": {
+                "tr": "Keramet",
+                "en": "Karama",
+                "pt": "Karama"
+              },
+              "tur": "zorlanabilir",
+              "hal": {
+                "tr": "karşı çıkılabilir",
+                "en": "can be met",
+                "pt": "pode ser enfrentado"
+              }
+            },
+            {
+              "ad": {
+                "tr": "Vahiy",
+                "en": "Revelation",
+                "pt": "Revelação"
+              },
+              "tur": "kapi-degil",
+              "hal": {
+                "tr": "kapı değil, iletim",
+                "en": "not a door but a conveying",
+                "pt": "não uma porta, mas uma transmissão"
+              }
+            }
+          ],
+          "vurgu": 0,
+          "caption": {
+            "tr": "aynı ışık, üç ayrı engel",
+            "en": "the same light, three different barriers",
+            "pt": "a mesma luz, três barreiras diferentes"
+          },
+          "note": {
+            "tr": "Metnin kendi benzetmesi: \"mucize kimsenin duruşamayacağı bir kapı, keramet bir kapı ama zorlanabilir, vahiy ise hiç kapı değil.\" Üçünde de yukarıdan aynı ışık iniyor; fark ışığın önündeki engelde.",
+            "en": "The text's own analogy: \"the miracle is a door no one can stand against, the karama a door but one that can be forced, revelation not a door at all.\" The same light descends in all three; the difference is the barrier before it.",
+            "pt": "A analogia do próprio texto: \"o milagre é uma porta contra a qual ninguém pode resistir, a karama uma porta mas que pode ser forçada, a revelação não é porta alguma.\" A mesma luz desce nos três; a diferença está na barreira à sua frente."
+          }
+        },
+        {
+          "type": "uc-kapi",
+          "termId": "keramet",
+          "kapilar": [
+            {
+              "ad": {
+                "tr": "Mucize",
+                "en": "Miracle",
+                "pt": "Milagre"
+              },
+              "tur": "gecilmez",
+              "hal": {
+                "tr": "karşı çıkılamaz",
+                "en": "cannot be met",
+                "pt": "não pode ser enfrentado"
+              }
+            },
+            {
+              "ad": {
+                "tr": "Keramet",
+                "en": "Karama",
+                "pt": "Karama"
+              },
+              "tur": "zorlanabilir",
+              "hal": {
+                "tr": "karşı çıkılabilir",
+                "en": "can be met",
+                "pt": "pode ser enfrentado"
+              }
+            },
+            {
+              "ad": {
+                "tr": "Vahiy",
+                "en": "Revelation",
+                "pt": "Revelação"
+              },
+              "tur": "kapi-degil",
+              "hal": {
+                "tr": "kapı değil, iletim",
+                "en": "not a door but a conveying",
+                "pt": "não uma porta, mas uma transmissão"
+              }
+            }
+          ],
+          "vurgu": 1,
+          "caption": {
+            "tr": "aynı ışık, üç ayrı engel",
+            "en": "the same light, three different barriers",
+            "pt": "a mesma luz, três barreiras diferentes"
+          },
+          "note": {
+            "tr": "Metnin kendi benzetmesi: \"mucize kimsenin duruşamayacağı bir kapı, keramet bir kapı ama zorlanabilir, vahiy ise hiç kapı değil.\" Üçünde de yukarıdan aynı ışık iniyor; fark ışığın önündeki engelde.",
+            "en": "The text's own analogy: \"the miracle is a door no one can stand against, the karama a door but one that can be forced, revelation not a door at all.\" The same light descends in all three; the difference is the barrier before it.",
+            "pt": "A analogia do próprio texto: \"o milagre é uma porta contra a qual ninguém pode resistir, a karama uma porta mas que pode ser forçada, a revelação não é porta alguma.\" A mesma luz desce nos três; a diferença está na barreira à sua frente."
+          }
+        },
+        {
+          "type": "kuskulu-orta",
+          "termId": "vera",
+          "sol": {
+            "tr": "açıkça helâl",
+            "en": "clearly lawful",
+            "pt": "claramente lícito"
+          },
+          "orta": {
+            "tr": "kuşkulu",
+            "en": "doubtful",
+            "pt": "duvidoso"
+          },
+          "sag": {
+            "tr": "açıkça haram",
+            "en": "clearly forbidden",
+            "pt": "claramente proibido"
+          },
+          "sinirNot": {
+            "tr": "vera burada durur",
+            "en": "vera stops here",
+            "pt": "o vera para aqui"
+          },
+          "solNot": {
+            "tr": "girilebilir",
+            "en": "may be entered",
+            "pt": "pode ser entrado"
+          },
+          "ortaNot": {
+            "tr": "zarar bilinmiyor — ihtimal yeter",
+            "en": "no harm is known — the possibility suffices",
+            "pt": "nenhum dano é conhecido — a possibilidade basta"
+          },
+          "caption": {
+            "tr": "sınır ortadan değil, ortanın solundan geçiyor",
+            "en": "the line runs not through the middle but to the left of it",
+            "pt": "a linha não passa pelo meio, mas à esquerda dele"
+          },
+          "note": {
+            "tr": "Vera sahibi haram olduğu BİLİNMEYEN şeyden de sakınıyor: kuşkulu bölge yasak bölgeye değil, sakınılan tarafa düşüyor. Çizimin tek söylediği bu -- sınırın yeri.",
+            "en": "One with wara' abstains even from what is NOT known to be forbidden: the doubtful zone falls on the side that is avoided, not on the permitted side. That placement of the line is all the diagram says.",
+            "pt": "Quem tem wara' abstém-se mesmo do que NÃO se sabe ser proibido: a zona duvidosa cai do lado evitado, não do lado permitido. Essa posição da linha é tudo o que o diagrama diz."
+          }
+        },
+        {
+          "type": "odunc-yetki",
+          "termId": "futuvvet",
+          "asil": {
+            "tr": "Efendinin hükmü",
+            "en": "The Master's command",
+            "pt": "A ordem do Senhor"
+          },
+          "vekil": {
+            "tr": "Fetâ (Genç)",
+            "en": "The Fata (Youth)",
+            "pt": "O Fata (Jovem)"
+          },
+          "alan": {
+            "tr": "Kavim",
+            "en": "The people",
+            "pt": "O povo"
+          },
+          "caption": {
+            "tr": "kendi arzusunu bırakır, hükmü taşır",
+            "en": "he sets aside his own wish and carries the command",
+            "pt": "põe de lado o próprio desejo e carrega a ordem"
+          },
+          "altCaption": {
+            "tr": "\"kavmin hizmetkârı onların efendisidir\"",
+            "en": "\"the servant of a people is their master\"",
+            "pt": "\"o servo de um povo é o seu senhor\""
+          },
+          "note": {
+            "tr": "Fetâ solgun çiziliyor: ışığın kaynağı o değil, geçtiği yer. İki çatışan insanı aynı anda memnun edemeyeceği için kendi arzusunu düşürüyor -- işleri gerçekte yürüten de bu yüzden o oluyor.",
+            "en": "The fata is drawn faint: he is not the source of the light but the place it passes through. Unable to satisfy two conflicting people at once, he drops his own wish -- and that is precisely why the work runs through him.",
+            "pt": "O fata é desenhado ténue: não é a fonte da luz, mas o lugar por onde ela passa. Incapaz de satisfazer dois em conflito ao mesmo tempo, abandona o próprio desejo -- e é exatamente por isso que o trabalho passa por ele."
+          }
+        },
+        {
+          "type": "kapisiz-ev",
+          "termId": "makam-sutunu",
+          "ev": {
+            "tr": "Makâm",
+            "en": "The station",
+            "pt": "A estação"
+          },
+          "evNot": {
+            "tr": "kapısı yok — içine girilemiyor",
+            "en": "it has no door — it cannot be entered",
+            "pt": "não tem porta — não se pode entrar"
+          },
+          "disSutun": {
+            "tr": "dış sütun",
+            "en": "the outer column",
+            "pt": "a coluna exterior"
+          },
+          "disNot": {
+            "tr": "dokunulur, sorulur, cevap verir",
+            "en": "it is touched, it is asked, it answers",
+            "pt": "toca-se nela, pergunta-se-lhe, ela responde"
+          },
+          "caption": {
+            "tr": "makâm hakkındaki bilgi yalnız bu sütundan geliyor",
+            "en": "all knowledge of the station comes from this column alone",
+            "pt": "todo o conhecimento da estação vem apenas desta coluna"
+          },
+          "note": {
+            "tr": "İbn Arabî'nin kendi bina benzetmesi: beş sütuna dayalı çatı, kapısız duvarlar, ve dış duvara bitişik tek bir sütun. Sûfîler ona Hacer-i Esved'e dokunur gibi dokunuyor. Devamı bize önemli göründü: bu sütun yalnız tenzih makâmına değil, BÜTÜN makâmlara eşlik ediyor.",
+            "en": "Ibn Arabi's own building analogy: a roof on five columns, doorless walls, and a single column attached to the outer wall. The Sufis touch it as they touch the Black Stone. What follows struck us: this column accompanies not only the station of transcendence but EVERY station.",
+            "pt": "A analogia arquitetónica do próprio Ibn Arabi: um telhado sobre cinco colunas, paredes sem porta, e uma única coluna encostada à parede exterior. Os sufis tocam-na como tocam a Pedra Negra. O que se segue impressionou-nos: esta coluna acompanha não só a estação da transcendência, mas TODAS as estações."
+          }
+        },
+        {
+          "type": "damla-deniz",
+          "termId": "fena",
+          "vurgu": "fena",
+          "damla": {
+            "tr": "Kul",
+            "en": "The servant",
+            "pt": "O servo"
+          },
+          "deniz": {
+            "tr": "Kadîm",
+            "en": "The Eternal",
+            "pt": "O Eterno"
+          },
+          "fenaLabel": {
+            "tr": "fenâ: sınır erir",
+            "en": "fana: the border dissolves",
+            "pt": "fana: a fronteira dissolve-se"
+          },
+          "bekaLabel": {
+            "tr": "bekâ: varlık sürer",
+            "en": "baqa: being continues",
+            "pt": "baqa: o ser continua"
+          },
+          "caption": {
+            "tr": "damla kaybolmuyor — \"ben buradayım\" diyebileceği kenarını yitiriyor",
+            "en": "the drop does not vanish — it loses the edge from which it could say \"here I am\"",
+            "pt": "a gota não desaparece — perde a borda a partir da qual poderia dizer \"aqui estou\""
+          },
+          "note": {
+            "tr": "Metnin kendi benzetmesi. Fenâ hâlindeki kişi kendi \"ben\"ini öne çıkaran bir söz bile söylemekten kaçınıyor -- çünkü ortada ispat edilecek bir \"kul\" izlenimi kalmıyor. Çizimde daire silinmiyor, yalnız kenarı kesikleşiyor.",
+            "en": "The text's own analogy. One in fana avoids even a sentence that puts his own \"I\" forward -- because there is no longer an impression of a \"servant\" to be proved. In the diagram the circle is not erased; only its edge goes dashed.",
+            "pt": "A analogia do próprio texto. Quem está em fana evita mesmo uma frase que ponha o próprio \"eu\" à frente -- porque já não há a impressão de um \"servo\" a ser provada. No diagrama o círculo não é apagado; apenas a sua borda fica tracejada."
+          }
+        },
+        {
+          "type": "damla-deniz",
+          "termId": "beka",
+          "vurgu": "beka",
+          "damla": {
+            "tr": "Kul",
+            "en": "The servant",
+            "pt": "O servo"
+          },
+          "deniz": {
+            "tr": "Bâki olan",
+            "en": "The Everlasting",
+            "pt": "O Perene"
+          },
+          "fenaLabel": {
+            "tr": "fenâ: sınır erir",
+            "en": "fana: the border dissolves",
+            "pt": "fana: a fronteira dissolve-se"
+          },
+          "bekaLabel": {
+            "tr": "bekâ: varlık sürer",
+            "en": "baqa: being continues",
+            "pt": "baqa: o ser continua"
+          },
+          "caption": {
+            "tr": "varlık sürer, sahiplik değişir",
+            "en": "being continues; ownership changes",
+            "pt": "o ser continua; a posse é que muda"
+          },
+          "note": {
+            "tr": "Fenâ ile aynı resim, vurgusu değişik: bekâ fenânın ardından gelen ve onsuz düşünülemeyen ikinci an. Üçüncü daire kayboluyor değil, artık kendi adına durmuyor.",
+            "en": "The same picture as fana, with the emphasis moved: baqa is the second moment, coming after fana and unthinkable without it. The third circle has not vanished; it simply no longer stands in its own name.",
+            "pt": "A mesma imagem de fana, com a ênfase deslocada: baqa é o segundo momento, que vem depois de fana e é impensável sem ela. O terceiro círculo não desapareceu; apenas já não está em seu próprio nome."
+          }
+        },
+        {
+          "type": "yavas-sapma",
+          "termId": "istidrac",
+          "dogruYol": {
+            "tr": "doğru yol",
+            "en": "the straight way",
+            "pt": "o caminho reto"
+          },
+          "adimlar": [
+            {
+              "tr": "kolaylık",
+              "en": "an ease",
+              "pt": "uma facilidade"
+            },
+            {
+              "tr": "kolaylık",
+              "en": "an ease",
+              "pt": "uma facilidade"
+            },
+            {
+              "tr": "kolaylık",
+              "en": "an ease",
+              "pt": "uma facilidade"
+            },
+            {
+              "tr": "kolaylık",
+              "en": "an ease",
+              "pt": "uma facilidade"
+            }
+          ],
+          "caption": {
+            "tr": "her adım bir lütuf gibi görünüyor",
+            "en": "each step looks like a favour",
+            "pt": "cada passo parece um favor"
+          },
+          "altCaption": {
+            "tr": "ama eğri yoldan ayrılıyor",
+            "en": "but the curve is leaving the way",
+            "pt": "mas a curva está a deixar o caminho"
+          },
+          "note": {
+            "tr": "İstidrâc bir ceza değil, cezanın gelmemesi. Fütûhât işareti şöyle veriyor: günah işlenmiş ve Allah cezalandırmamışsa bile, utanma ve kırıklık hâlâ hâkimse mesele yok; o duygunun YOKLUĞU istidrâcın işareti olabilir. Çizimde sapmanın bir oku yok, çünkü sapma bir hamle değil, eğrinin kendisi.",
+            "en": "Istidraj is not a punishment but the absence of one. The Futuhat gives the sign thus: even if a sin was committed and God did not punish, so long as shame and brokenness still hold there is no problem; it is the ABSENCE of that feeling that may be the sign. The drift has no arrow in the diagram, because the drift is not a move but the curve itself.",
+            "pt": "O istidraj não é um castigo, mas a ausência dele. O Futuhat dá o sinal assim: mesmo que um pecado tenha sido cometido e Deus não tenha castigado, enquanto a vergonha e o quebrantamento persistirem não há problema; é a AUSÊNCIA desse sentimento que pode ser o sinal. O desvio não tem seta no diagrama, porque o desvio não é um gesto, mas a própria curva."
+          }
+        },
+        {
+          "type": "ikili-eslesme",
+          "termId": "tahalluk-tahakkuk",
+          "vurgu": 1,
+          "perdeLabel": {
+            "tr": "perde",
+            "en": "a veil",
+            "pt": "um véu"
+          },
+          "satirlar": [
+            {
+              "sol": {
+                "tr": "Tahalluk",
+                "en": "Takhalluq",
+                "pt": "Takhalluq"
+              },
+              "sag": {
+                "tr": "sıfatın mahalli",
+                "en": "the locus of an attribute",
+                "pt": "o lugar de um atributo"
+              },
+              "perde": true
+            },
+            {
+              "sol": {
+                "tr": "Tahakkuk",
+                "en": "Tahaqquq",
+                "pt": "Tahaqquq"
+              },
+              "sag": {
+                "tr": "Zât'ın aynası",
+                "en": "the mirror of the Essence",
+                "pt": "o espelho da Essência"
+              }
+            }
+          ],
+          "caption": {
+            "tr": "fark ilişkinin türü değil — arada perde kalıp kalmaması",
+            "en": "the difference is not the kind of relation but whether a veil remains",
+            "pt": "a diferença não é o tipo de relação, mas se resta ou não um véu"
+          },
+          "note": {
+            "tr": "Konevî'nin El-Fükük'teki ayrımı: tahalluk çaba ve gayretle bir sıfatın tecellisine mazhar olmak, tahakkuk ise zâtî bir münasebetle doğrudan Zât'ın aynası olmak. Bunun Füsûs metninde bu keskinlikte bulunmadığını düşünüyoruz -- Konevî'nin şerh diline özgü bir netleştirme.",
+            "en": "Qunawi's distinction in al-Fukuk: takhalluq is becoming, through effort, the locus of an attribute's disclosure; tahaqquq is becoming, through an essential relation, the mirror of the Essence itself. We think this sharpness is not found in the Fusus itself -- it is a clarification proper to Qunawi's commentarial idiom.",
+            "pt": "A distinção de Qunawi em al-Fukuk: takhalluq é tornar-se, pelo esforço, o lugar da manifestação de um atributo; tahaqquq é tornar-se, por uma relação essencial, o espelho da própria Essência. Pensamos que esta nitidez não se encontra nos próprios Fusus -- é um esclarecimento próprio da linguagem comentarial de Qunawi."
+          }
+        },
+        {
+          "type": "bulusma",
+          "termId": "kamillere-gelen-bela-uclu-taksim",
+          "merkez": {
+            "tr": "Belâ",
+            "en": "Affliction",
+            "pt": "Aflição"
+          },
+          "kaynaklar": [
+            {
+              "tr": "kalbin cilası",
+              "en": "the polishing of the heart",
+              "pt": "o polimento do coração"
+            },
+            {
+              "tr": "eksik amelin yerine geçen sabır",
+              "en": "patience standing in for a deed left undone",
+              "pt": "a paciência que substitui um ato não realizado"
+            },
+            {
+              "tr": "aynası en geniş olanın payı",
+              "en": "the share of the one whose mirror is widest",
+              "pt": "a parte de quem tem o espelho mais amplo"
+            }
+          ],
+          "caption": {
+            "tr": "tek bir hâl, üç ayrı ilahî gerekçe",
+            "en": "one condition, three different divine reasons",
+            "pt": "uma só condição, três razões divinas distintas"
+          },
+          "note": {
+            "tr": "Konevî bunu Eyyûb fassından çıkarıyor ve kendi katkısını saklamıyor: \"sana bela ve sıkıntıların sırlarını açıkladım.\" Üç kolun tek bir noktada buluşması, üç sebebin aynı görünen hâli üretmesi demek -- yani belâya bakıp sebebini okumak mümkün görünmüyor.",
+            "en": "Qunawi draws this from the bezel of Job and does not hide his own contribution: \"I have disclosed to you the secrets of affliction and hardship.\" Three arms meeting at one point means three causes producing the same apparent state -- so reading the cause off the affliction does not look possible.",
+            "pt": "Qunawi extrai isto do engaste de Jó e não esconde a sua própria contribuição: \"revelei-te os segredos da aflição e da dificuldade.\" Três braços a encontrar-se num ponto significa três causas a produzir o mesmo estado aparente -- de modo que ler a causa a partir da aflição não parece possível."
+          }
+        },
+        {
+          "type": "bulusma",
+          "termId": "uc-iman-yolu",
+          "merkez": {
+            "tr": "Bir olan",
+            "en": "The One",
+            "pt": "O Uno"
+          },
+          "kaynaklar": [
+            {
+              "tr": "Peygamberi takip eden — örnek alma",
+              "en": "the follower of a prophet — imitation",
+              "pt": "o seguidor de um profeta — imitação"
+            },
+            {
+              "tr": "Filozof — akıl",
+              "en": "the philosopher — reason",
+              "pt": "o filósofo — razão"
+            },
+            {
+              "tr": "Ârif — zevk",
+              "en": "the gnostic — direct tasting",
+              "pt": "o gnóstico — degustação direta"
+            }
+          ],
+          "caption": {
+            "tr": "üç ayrı yol, tek merkezde buluşuyor",
+            "en": "three separate ways, meeting at one centre",
+            "pt": "três caminhos separados, encontrando-se num centro"
+          },
+          "note": {
+            "tr": "Affifi'nin aktardığı üçleme. İbn Arabî'nin kendi cümlesi: \"aslâ kararmıyacak görüş keskinliği ile kendisini imanlarımızın sonsuz sayıdaki aynalarında aksettiren Bir nesneyi görürüz.\" Bu, sitenin \"daire ve merkez\" ilkesiyle örtüşen bir imge -- merkezde bir sonuç değil, aynı Bir'in görülmesi var.",
+            "en": "A triad related by Affifi. Ibn Arabi's own sentence: \"with a sharpness of sight that will never dim, we see the One thing reflecting itself in the countless mirrors of our beliefs.\" This is an image that coincides with the site's \"circle and centre\" principle -- at the centre is not a conclusion but the seeing of the same One.",
+            "pt": "Uma tríade relatada por Affifi. A frase do próprio Ibn Arabi: \"com uma agudeza de visão que jamais se apagará, vemos a Coisa Una a refletir-se nos incontáveis espelhos das nossas crenças.\" É uma imagem que coincide com o princípio de \"círculo e centro\" do site -- no centro não está uma conclusão, mas a visão do mesmo Uno."
+          }
         }
       ]
     },
@@ -1331,7 +2513,12 @@
             "en": "the second does not narrow the first; it is added on top of it",
             "pt": "a segunda não restringe a primeira; acrescenta-se a ela"
           },
-          "selected": [3, 9, 12, 16],
+          "selected": [
+            3,
+            9,
+            12,
+            16
+          ],
           "note": {
             "tr": "Metin \"Rahîm, Rahmân'ın içinde\" diyor: ikinci rahmet birincinin özel bir hâli. İç içe iki daire çizmedik -- daire çizmek ikincisini birincinin bir PARÇASI gibi gösterirdi; oysa aynı ışık hepsinin üstünde, bir kısmı ayrıca işaretlenmiş.",
             "en": "The text says \"al-Rahim is within al-Rahman\": the second mercy is a special mode of the first. We did not draw two nested circles -- a circle would show the second as a PART cut out of the first; whereas the same light falls on all of them, and some are additionally marked.",
@@ -1357,11 +2544,31 @@
           "type": "cascade",
           "termId": "idrak-bes-kademe",
           "steps": [
-            { "tr": "Duyu", "en": "Sense", "pt": "Sentido" },
-            { "tr": "Akıl", "en": "Reason", "pt": "Razão" },
-            { "tr": "Hayalgücü", "en": "Imagination", "pt": "Imaginação" },
-            { "tr": "Müfekkire", "en": "Analytic Faculty", "pt": "Faculdade Analítica" },
-            { "tr": "Hâfıza", "en": "Memory", "pt": "Memória" }
+            {
+              "tr": "Duyu",
+              "en": "Sense",
+              "pt": "Sentido"
+            },
+            {
+              "tr": "Akıl",
+              "en": "Reason",
+              "pt": "Razão"
+            },
+            {
+              "tr": "Hayalgücü",
+              "en": "Imagination",
+              "pt": "Imaginação"
+            },
+            {
+              "tr": "Müfekkire",
+              "en": "Analytic Faculty",
+              "pt": "Faculdade Analítica"
+            },
+            {
+              "tr": "Hâfıza",
+              "en": "Memory",
+              "pt": "Memória"
+            }
           ],
           "relationLabel": {
             "tr": "her adımda kalpteki Nur faaliyette",
@@ -1392,10 +2599,26 @@
         {
           "type": "spectrum",
           "termId": "mesia-irade-ayrimi",
-          "leftLabel": { "tr": "Dinî Emir", "en": "Religious Command", "pt": "Ordem Religiosa" },
-          "leftNote": { "tr": "tutulmayabilir", "en": "may not be obeyed", "pt": "pode não ser obedecida" },
-          "rightLabel": { "tr": "Ezelî Meşîa", "en": "Eternal Mashi'a", "pt": "Mashi'a Eterna" },
-          "rightNote": { "tr": "her zaman gerçekleşir", "en": "always comes to pass", "pt": "sempre se realiza" },
+          "leftLabel": {
+            "tr": "Dinî Emir",
+            "en": "Religious Command",
+            "pt": "Ordem Religiosa"
+          },
+          "leftNote": {
+            "tr": "tutulmayabilir",
+            "en": "may not be obeyed",
+            "pt": "pode não ser obedecida"
+          },
+          "rightLabel": {
+            "tr": "Ezelî Meşîa",
+            "en": "Eternal Mashi'a",
+            "pt": "Mashi'a Eterna"
+          },
+          "rightNote": {
+            "tr": "her zaman gerçekleşir",
+            "en": "always comes to pass",
+            "pt": "sempre se realiza"
+          },
           "leftMarker": {
             "tr": "kulun tâat/isyanına bağlı",
             "en": "depends on the servant's obedience or defiance",
