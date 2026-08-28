@@ -1,4 +1,4 @@
-/* Dost Arabî — duruş taraması (s7).
+/* Dost Arabî — duruş taraması (s8).
  *
  * Ne yapar: gizli düzenleme kipi (@revise) açıkken CLAUDE.md'de yazılı
  * duruşumuza uymayabilecek yerleri işaretler. İki yolu var:
@@ -29,7 +29,8 @@
   // s7: kod "s6" derken belge (DURUS_KONTROL.md) "sürüm 5" diyordu ve
   // ikisinde de aynı 14 kural vardı -- numaralar bir noktada ayrışmış,
   // fark edilmemişti. Dört yeni kural eklenirken ikisi s7'de eşitlendi.
-  var SURUM = "s7";
+  // s8: rekabet-dili (kullanıcı bulgusu; 19 kural).
+  var SURUM = "s8";
   var DISMISS_KEY = "dost-durus-susturulan";
 
   // YALNIZ TÜRKÇE (s3, kullanıcı kararı). Gerekçe: kalıplar Türkçe için
@@ -277,6 +278,74 @@
       neden: "Bir şey söylemeyen kapanış formülü. Duruşumuz son olguyla bitmeyi yeğler.",
       yerine: "Son cümleyi at; metin son olgusuyla bitsin.",
       esKosul: NAKIL_DISI,
+    },
+    {
+      id: "rekabet-dili", seviye: "kural", ad: "Rekabet dili",
+      // Kullanıcı kararı, 2026-08-28: "Allah dostları arasında rekabet
+      // olmaz." Bu kural o cümlenin taramadaki karşılığı.
+      //
+      // Kuralı doğuran bulgu bizim kendi cümlemizdi: Daphne kartlarından
+      // birinde "üç yol birbirinin RAKİBİ değil" yazmıştık. Cümle rekabeti
+      // olumsuzluyordu ama çerçeveyi yine de kuruyordu -- Affifi'nin
+      // aktardığı üçlemede böyle bir çerçeve yok, onu biz getirmiştik.
+      // Düzeltildi ("birbirini dışlamıyor").
+      //
+      // Kalıp DAR tutuldu, çünkü mertebe/derece dili meşru: Dost'un kendisi
+      // makamları sıralıyor ("nikâhın nafilesi daha güçlüdür"). Bu yüzden
+      // "üstün", "daha yüksek", "derece" HİÇ eklenmedi -- onları
+      // işaretlemek doktrini hata sanmak olurdu. Yakalanan yalnız kişiler
+      // arası YARIŞ çerçevesi.
+      //
+      // Muafiyet iki katmanlı ve zaten hazırdı: (1) <em> içi hiç taranmıyor,
+      // yani Dost'un/Konuk'un/Daphne'nin kendi sözü kapsam dışı; (2)
+      // NAKIL_DISI, "İbn Arabî: …" gibi atıf ifadesinden sonra gelen düz
+      // tırnaklı nakilleri de eliyor. Geriye yalnız BİZİM sesimiz kalıyor.
+      //
+      // ÖLÇÜM (2026-08-28, bütün veri dosyalarında, <em> ve nakil
+      // muafiyetleri uygulanmış hâlde): önce 19 isabet, düzeltmelerden
+      // sonra 15. Döküm, çünkü sayı tek başına yanıltıcı.
+      //
+      // BİZİM sesimizde çıkan ve DÜZELTİLEN dördü:
+      //   - "üç yol birbirinin rakibi değil" (Daphne kartı, uc-iman-yolu)
+      //     -> "birbirini dışlamıyor". Kuralı doğuran bulgu buydu.
+      //   - "İki okuma yarışıyor" (c14k165, iki yerde)
+      //     -> "İki okuma yan yana duruyor".
+      //   - "iki rakip okuma" (c15k182) -> "iki ayrı okuma".
+      //   Dördü de rekabeti olumsuzluyor ya da reddediyordu; çerçeveyi
+      //   yine de kuruyorlardı. Bir de İbnü Atâullah alıntısının bir
+      //   nüshası ileri-bakışlı muafiyetle elendi.
+      //
+      // KALAN 15, dosya dosya -- hiçbiri düzeltilmedi, çünkü hiçbiri
+      // bizim yorumumuz değil:
+      //   elestiri-arkeolojisi 7 -- Knysh künyeli tarihsel polemikler
+      //     (Timur'un düzenlettiği münazara, kadılık makamı mücadelesi)
+      //     ve bu düzeltmenin kendi kaydı.
+      //   daphne-profile 2      -- İbnü Atâullah'ın Hikem'inden bir cümle.
+      //   fusus-atlas 2         -- "şirk, rakip bir ilah icad etmek değildir".
+      //   c1k10 1               -- Dost'un Hevâ'yı "rakip güç" sayması.
+      //   c7k95 1               -- nafilelerin birbirine "rakip çıkması".
+      //   c8k108 1              -- Dost'un ressam-hakîm kıyası.
+      //   esma 1                -- bayrak yarışı benzetmesi (günlük analoji,
+      //                            CLAUDE.md'de açıkça kapsam dışı).
+      //
+      // Kalıcı isabet sayısının sıfır olmaması bilerek: bu kural bir
+      // temizlik listesi değil, her yeni metinde tekrar bakılacak bir yer.
+      //
+      // Bu kuralın nakil muafiyeti ötekilerden GENİŞ: atıf, alıntının
+      // ARDINDAN da gelebiliyor ("'…' -- İbnü Atâullah'ın bu cümlesi").
+      // Ortak NAKIL_DISI yalnız geriye bakıyor; burada ileriye de
+      // bakılıyor. Muafiyeti yalnız bu kurala verdik, ötekilerin ölçülmüş
+      // davranışını değiştirmemek için.
+      re: tamKelime("rakip|rakibi|rakibiydi|rakipler|rakipleri|rekabet|rekabeti|rekabetçi|yarışıyor|yarıştı|yarışır|yarışında|boy ölçüş\\w*"),
+      neden: "Rekabet çerçevesi. Allah dostları arasında rekabet olmaz; velîler, yollar ve mertebeler birbirine karşı yarışmaz. Çerçeveyi olumsuzlayarak kurmak da (“rakibi değil”) aynı kapıya çıkar.",
+      yerine: "Kaynağın kendi sözüyse ya da künyeli tarihsel bir polemikse KALSIN -- yeter ki kimin sözü olduğu görünsün. Bizim yorumumuzsa çerçeveyi değiştir: “birbirini dışlamıyor”, “yan yana duruyor”, “ayrı yollar”, “itiraz etti”, “mektup yazdı”.",
+      esKosul: function (metin, index) {
+        if (!NAKIL_DISI(metin, index)) return false;
+        // İleriye bakış: isabetten sonraki kısa pencerede bir atıf varsa
+        // (ör. "-- İbnü Atâullah'ın bu cümlesi") bu bir nakildir.
+        return !/(--|—|–)?\s*(İbn Arabî|İbn Arabi|Dost|Konuk|İzutsu|Affifi|Daphne|İbnü [A-ZÇĞİÖŞÜ]|[A-ZÇĞİÖŞÜ][\wçğıöşü'’-]+(?:'in|'ın|'nin|'nın|'un|'ün|'nun|'nün))\s+(?:bu )?(?:cümlesi|sözü|ifadesi|deyişi|kıyası|benzetmesi)/u
+          .test(metin.slice(index, index + 120));
+      },
     },
   ];
 

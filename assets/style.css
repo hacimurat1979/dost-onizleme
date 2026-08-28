@@ -11503,3 +11503,127 @@ button.kuran-dokusu-satir:focus-visible {
   margin: 0;
 }
 
+
+/* Daphne — taranan yazıların TAM SAYFA okuması (2026-08-28, kullanıcı
+   isteği). Kartlar eskiden yerinde açılan <details> idi; işlenmiş bir
+   kartın içeriği (üç dilde özet + eksenler + Dost bağları + sorular)
+   260 pikselik bir ızgara hücresinde okunmuyordu ve açıldığında
+   ızgarayı itip kaydırıyordu.
+
+   Kapanış üç yoldan: Esc, "Geri" düğmesi, zemine tıklama.
+   ETKILESIM_DILI: tıklama = panel açılır, Esc = bir adım geri. */
+.daphne-profile-card__ac {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: inherit;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.daphne-profile-card__ac:focus-visible {
+  outline: 2px solid var(--series-daphne);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+.daphne-profile-card__ac .daphne-profile-card__title { transition: color var(--dur-kisa); }
+.daphne-profile-card__ac:hover .daphne-profile-card__title { color: var(--series-daphne); }
+.daphne-profile-card__ac[data-bos] .daphne-profile-card__title { color: var(--text-secondary); }
+.daphne-profile-card__kaynak {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.daphne-profile-card__kaynak:hover { color: var(--series-daphne); }
+
+.daphne-okuma {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Tam OPAK: ilk denemede %97'lik bir color-mix kullanıldı ve arkadaki
+     kart ızgarası okumanın içinden görünüyordu (ekran görüntüsüyle
+     yakalandı). Bir okuma sayfasında zemin bir efekt değil, zemindir. */
+  background: var(--surface-1);
+  animation: daphne-okuma-in 0.22s var(--ease-sahne);
+}
+.daphne-okuma[hidden] { display: none; }
+@keyframes daphne-okuma-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .daphne-okuma { animation: none; }
+}
+/* Arka plan kaydırmasın: okuma açıkken sayfa değil okuma kayar. */
+body.daphne-okuma-acik { overflow: hidden; }
+
+.daphne-okuma__ic {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 18px 20px 64px;
+}
+.daphne-okuma__ust {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  background: inherit;
+  border-bottom: 1px solid var(--border);
+}
+.daphne-okuma__kapat {
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.daphne-okuma__kapat:hover,
+.daphne-okuma__kapat:focus-visible { border-color: var(--series-daphne); }
+.daphne-okuma__kaynak { font-size: 0.76rem; color: var(--text-muted); }
+.daphne-okuma__kaynak:hover { color: var(--series-daphne); }
+
+.daphne-okuma__govde { padding-top: 22px; }
+.daphne-okuma__baslik {
+  margin: 0 0 4px;
+  font-size: 1.35rem;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+.daphne-okuma__tarih {
+  margin: 0 0 18px;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.daphne-okuma__ozet {
+  margin: 0 0 22px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.daphne-okuma__bos {
+  margin: 0 0 22px;
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  background: var(--surface-2, var(--surface-1));
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+}
+@media (max-width: 640px) {
+  .daphne-okuma__ic { padding: 12px 14px 56px; }
+  .daphne-okuma__baslik { font-size: 1.15rem; }
+}

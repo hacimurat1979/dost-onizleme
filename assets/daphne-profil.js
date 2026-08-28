@@ -45,14 +45,22 @@
   let nodeSel, linkSel, labelSel, zoomBehavior;
   let currentDetailParam = null;
 
+  // Veri yüklemesi ile GRAF KURULUMU ayrı (2026-08-28). Eskiden ikisi tek
+  // adımdı ve bu iki yönlü sorun üretiyordu:
+  //   - "Taranan yazılar" sekmesi doğrudan açıldığında profil paneli
+  //     gizli, dolayısıyla svg genişliği 0; graf bozuk kuruluyordu.
+  //   - Genişlik 0 iken kurmayı reddetmeye başlayınca (aşağıdaki tablet
+  //     düzeltmesi) bu sefer YAZI LİSTESİ de hiç çizilmiyordu -- oysa
+  //     listenin svg ile hiçbir işi yok.
+  // Artık veri gelir gelmez liste çiziliyor; graf yalnız ölçü varken.
   function loadData() {
     if (window.DostViewStatus) window.DostViewStatus.showLoading("profile-wrap");
     window.DostGraphUtils.fetchJson("data/daphne-profile.json")
       .then((data) => {
         pageData = data;
         if (window.DostViewStatus) window.DostViewStatus.hide("profile-wrap");
-        buildGraph(data);
         renderArticles(data);
+        grafiKur();
       })
       .catch((err) => {
         console.error("Daphne profil verisi yüklenemedi / Failed to load Daphne profile data", err);
@@ -61,21 +69,84 @@
   }
   // loadData() artık açılışta çağrılmıyor: bölüm gizliyken svg genişliği
   // 0 oluyor ve graf bozuk kuruluyor. Sekmesi ilk açıldığında çağrılıyor.
-  let started = false;
+  //
+  // 2026-08-28 (tablet bulgusu, kullanıcı): "grafik sol üst köşede
+  // kaybolmak üzere görünüyor." İki ayrı kusur vardı, ikisi de burada:
+  //
+  //  1) Bekleme koşulsuz PES EDİYORDU. 12 kare sonra `started = true`
+  //     olup graf yine kuruluyordu -- genişlik hâlâ 0 olsa bile. cx = 0/2
+  //     = 0, orbit = 0 demek; bütün düğümler tek noktaya, sol üste
+  //     yığılıyor. Yavaş bir tablette 12 kare (~200 ms) yetmiyor. Artık
+  //     genişlik 0 iken ASLA kurulmuyor: raf denemeleri bitince
+  //     ResizeObserver devreye giriyor ve ölçü gerçekten geldiğinde
+  //     kuruluyor.
+  //  2) Kurulduktan sonra yeniden ÖLÇÜLMÜYORDU. Tablet döndürüldüğünde
+  //     ya da panel yeniden boyutlandığında graf eski (belki çok dar)
+  //     geometride kalıyordu. Artık ölçü anlamlı biçimde değişince
+  //     yeniden kuruluyor.
+  //
+  // rAF yerine sonunda ResizeObserver: rAF arka plandaki sekmede hiç
+  // ateşlenmiyor, ResizeObserver ise ölçü değişince ateşleniyor.
+  let started = false;      // veri yüklendi mi
+  let grafKuruldu = false;  // graf ÇİZİLDİ mi (ölçü geldiğinde)
+  let sonGenislik = 0;
+
+  function kurulabilirMi() {
+    const s = svg.node();
+    return !!(s && s.clientWidth > 0 && s.clientHeight > 0);
+  }
+
+  // Ölçü varsa çizer, yoksa dokunmaz. Genişlik 0 iken çizmek demek
+  // cx = 0, orbit = 0 demek: bütün düğümler sol üst köşede tek noktaya
+  // yığılır. Bildirilen tablet hatası buydu.
+  function grafiKur() {
+    if (grafKuruldu || !pageData || !kurulabilirMi()) return;
+    grafKuruldu = true;
+    sonGenislik = svg.node().clientWidth;
+    buildGraph(pageData);
+    render();
+  }
+
+  // Tablet döndürüldüğünde ya da panel yeniden boyutlandığında graf eski
+  // (belki çok dar) geometride kalıyordu. Küçük dalgalanmalar (kaydırma
+  // çubuğu, adres çubuğu) sayılmıyor; yalnız gerçek bir boyut değişimi.
+  function yenidenKur() {
+    if (!grafKuruldu || !pageData || !kurulabilirMi()) return;
+    const g = svg.node().clientWidth;
+    if (Math.abs(g - sonGenislik) < 24) return;
+    sonGenislik = g;
+    svg.selectAll("*").remove();
+    buildGraph(pageData);
+    render();
+  }
+
+  // rAF yerine ResizeObserver: rAF arka plandaki sekmede hiç ateşlenmiyor,
+  // ResizeObserver ise ölçü değişince ateşleniyor. Panel gizliyken açılan
+  // "Taranan yazılar" sekmesinden profile geçildiğinde graf burada kuruluyor.
+  let gozlemci = null;
+  function olcuyuIzle() {
+    if (gozlemci || typeof ResizeObserver === "undefined" || !svg.node()) return;
+    gozlemci = new ResizeObserver(() => {
+      if (!grafKuruldu) grafiKur();
+      else yenidenKur();
+    });
+    gozlemci.observe(svg.node());
+  }
+
   window.__dostDaphneProfileApp = {
-    activate: function (retries) {
-      if (started) return;
-      // SVG genişliği henüz 0'sa (layout reflow bitmemiş) bir kare daha bekle.
-      const s = svg.node();
-      if (s && s.clientWidth === 0 && (retries || 0) < 12) {
-        requestAnimationFrame(() => window.__dostDaphneProfileApp.activate((retries || 0) + 1));
-        return;
-      }
+    activate: function () {
+      // Veri her iki sekmede de hemen yükleniyor: yazı listesinin svg ile
+      // işi yok, ölçü beklemesi gerekmiyor.
+      olcuyuIzle();
+      if (started) { grafiKur(); return; }
       started = true;
       loadData();
     },
-    render: function () { if (started) render(); },
+    render: function () { if (grafKuruldu) render(); },
   };
+
+  window.addEventListener("resize", window.DostGraphUtils.debounceResize(yenidenKur, 200));
+  window.addEventListener("orientationchange", window.DostGraphUtils.debounceResize(yenidenKur, 300));
 
   function radiusFor(d) {
     if (d.type === "hub") return 30;
@@ -427,12 +498,18 @@
       <ul class="daphne-bag-liste">${rows}</ul></div>`;
   }
 
+  // Okuma görünümünün veri kaynağı: kartlar tarihe göre sıralı çiziliyor,
+  // düğmedeki data-okuma o SIRALANMIŞ dizideki indeks. İkisi tek yerde
+  // tutuluyor ki sıralama değişirse bağ kopmasın.
+  let siraliYazilar = [];
+
   function renderArticles(data) {
     if (!articlesList) return;
-    articlesList.innerHTML = data.articles
+    siraliYazilar = data.articles
       .slice()
-      .sort((a, b) => (b.date || "").localeCompare(a.date || ""))
-      .map((a) => {
+      .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    articlesList.innerHTML = siraliYazilar
+      .map((a, i) => {
         // "İşlendi" rozeti not_tr'nin VARLIĞINA değil, kartta gerçekten
         // gösterilecek bir şey olup olmadığına bakmalı (2026-08-04 kullanıcı
         // bildirimi: "profile işlendi" görünen bazı yazıların detayı yoktu).
@@ -464,22 +541,30 @@
         const note = a.note_tr ? `<p class="daphne-profile-card__note">${tt({ tr: a.note_tr, en: a.note_en, pt: a.note_pt })}</p>` : "";
         const ozet = a.ozet ? `<p class="daphne-profile-card__note">${tt(a.ozet)}</p>` : "";
         const tarih = a.date ? `<span class="daphne-profile-card__tarih">${a.date}</span>` : "";
-        // <details>: klavye/ekran okuyucu erişimi hazır, JS gerekmez.
-        // İlk açılışta hepsi kapalı -- kullanıcı bir kartı açtığında
-        // altındaki bütün detay (ozet, eksenler, Dost bağları, sorular)
-        // görünüyor.
+        // 2026-08-28 (kullanıcı isteği): kart artık yerinde açılan bir
+        // <details> değil, TAM SAYFA bir okumaya açılıyor. Sebebi ölçülür:
+        // işlenmiş bir kartın içeriği üç dilde özet + 3-4 eksen + 3-4 Dost
+        // bağı + 2-3 soru, yani 260 pikselik bir ızgara hücresinde
+        // okunacak bir metin değil. Açıldığında ızgarayı da itip
+        // kaydırıyordu.
+        //
+        // ETKILESIM_DILI'nin beşinci fiili ("seçmek: tek anlamı, o şeyin
+        // paneli açılır") ve üçüncüsü ("bir adım geri: Esc") burada
+        // birebir uygulanıyor: tıklama okumayı açar, Esc kapatır --
+        // registerStepBack üzerinden, yani Esc sırası bozulmadan. Ayrıca
+        // görünür bir "Geri" düğmesi var (dokunmatikte Esc yok).
+        //
+        // <details>'in verdiği klavye/ekran okuyucu erişimi kaybolmasın
+        // diye açıcı gerçek bir <button>: Enter/Space zaten çalışıyor,
+        // aria-haspopup="dialog" da ne açılacağını söylüyor.
         return `<article class="daphne-profile-card daphne-profile-card--${derinlik}">
-          <details class="daphne-profile-card__acilir">
-            <summary class="daphne-profile-card__ozet">
-              <a class="daphne-profile-card__link" href="${a.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
-                <span class="daphne-profile-card__title">${a.title}</span></a>
-              <div class="daphne-profile-card__meta">${tarih}${status}${rozetler}</div>
-            </summary>
-            <div class="daphne-profile-card__icerik">
-              ${note}${ozet}
-              ${eksenlerHtml(a, data)}${dostHtml(a)}${sorularHtml(a)}
-            </div>
-          </details>
+          <button class="daphne-profile-card__ac" type="button" data-okuma="${i}"
+                  aria-haspopup="dialog"${islendi ? "" : ' data-bos="1"'}>
+            <span class="daphne-profile-card__title">${a.title}</span>
+            <span class="daphne-profile-card__meta">${tarih}${status}${rozetler}</span>
+          </button>
+          <a class="daphne-profile-card__link daphne-profile-card__kaynak" href="${a.url}"
+             target="_blank" rel="noopener">${tt({ tr: "kaynağı aç", en: "open source", pt: "abrir a fonte" })} ↗</a>
         </article>`;
       })
       .join("");
@@ -488,4 +573,106 @@
   function drag(sim) {
     return window.DostGraphUtils.createDragBehavior(sim, (d) => d.type === "hub");
   }
+
+  // --- Tam sayfa okuma ---------------------------------------------------
+  //
+  // Kartın içeriği ızgara hücresinde değil, kendi sayfasında okunuyor.
+  // Kapanış üç yoldan: Esc (registerStepBack sırasına takılı), görünür
+  // "Geri" düğmesi, ve zeminin kendisine tıklama.
+  //
+  // Odak yönetimi: açılırken odak okumanın başına gider, kapanırken
+  // GELİNEN KARTA döner -- klavyeyle gezen biri listede yerini
+  // kaybetmesin. Sekme dolaşımı okumanın içinde tutuluyor (odak tuzağı),
+  // çünkü arkadaki ızgara hâlâ DOM'da.
+  let okuma = null;
+  let okumaAcanOge = null;
+
+  function okumaKur() {
+    if (okuma) return okuma;
+    okuma = document.createElement("div");
+    okuma.className = "daphne-okuma";
+    okuma.id = "daphne-okuma";
+    okuma.hidden = true;
+    okuma.setAttribute("role", "dialog");
+    okuma.setAttribute("aria-modal", "true");
+    okuma.setAttribute("aria-labelledby", "daphne-okuma-baslik");
+    document.body.appendChild(okuma);
+    okuma.addEventListener("click", (e) => {
+      if (e.target === okuma || e.target.closest(".daphne-okuma__kapat")) okumaKapat();
+    });
+    okuma.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab") return;
+      const odaklanabilir = okuma.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+      if (!odaklanabilir.length) return;
+      const ilk = odaklanabilir[0];
+      const son = odaklanabilir[odaklanabilir.length - 1];
+      if (e.shiftKey && document.activeElement === ilk) { e.preventDefault(); son.focus(); }
+      else if (!e.shiftKey && document.activeElement === son) { e.preventDefault(); ilk.focus(); }
+    });
+    return okuma;
+  }
+
+  function okumaAc(i, acanOge) {
+    const a = siraliYazilar[i];
+    if (!a || !pageData) return;
+    const el = okumaKur();
+    okumaAcanOge = acanOge || null;
+    const islendi = !!(a.ozet || (a.eksenler || []).length || (a.dost || []).length);
+    const note = a.note_tr ? `<p class="daphne-profile-card__note">${tt({ tr: a.note_tr, en: a.note_en, pt: a.note_pt })}</p>` : "";
+    const ozet = a.ozet ? `<p class="daphne-okuma__ozet">${tt(a.ozet)}</p>` : "";
+    const bos = islendi ? "" : `<p class="daphne-okuma__bos">${tt({
+      tr: "Bu yazı korpüste var ama henüz profile işlenmedi. Kaynağı açıp okuyabilirsin.",
+      en: "This piece is in the corpus but has not yet been worked into the profile. You can open the source and read it.",
+      pt: "Este texto está no corpus mas ainda não foi incorporado ao perfil. Pode abrir a fonte e lê-lo." })}</p>`;
+    el.innerHTML = `
+      <div class="daphne-okuma__ic">
+        <div class="daphne-okuma__ust">
+          <button class="daphne-okuma__kapat" type="button">← ${tt({ tr: "Geri", en: "Back", pt: "Voltar" })}</button>
+          <a class="daphne-okuma__kaynak" href="${a.url}" target="_blank" rel="noopener">${tt({ tr: "kaynağı aç", en: "open source", pt: "abrir a fonte" })} ↗</a>
+        </div>
+        <article class="daphne-okuma__govde">
+          <h2 class="daphne-okuma__baslik" id="daphne-okuma-baslik">${a.title}</h2>
+          ${a.date ? `<p class="daphne-okuma__tarih">${a.date}</p>` : ""}
+          ${note}${ozet}${bos}
+          ${eksenlerHtml(a, pageData)}${dostHtml(a)}${sorularHtml(a)}
+        </article>
+      </div>`;
+    el.hidden = false;
+    document.body.classList.add("daphne-okuma-acik");
+    const kapat = el.querySelector(".daphne-okuma__kapat");
+    if (kapat) kapat.focus();
+  }
+
+  function okumaKapat() {
+    if (!okuma || okuma.hidden) return false;
+    okuma.hidden = true;
+    document.body.classList.remove("daphne-okuma-acik");
+    if (okumaAcanOge && document.contains(okumaAcanOge)) okumaAcanOge.focus();
+    okumaAcanOge = null;
+    return true;
+  }
+
+  if (articlesList) {
+    articlesList.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-okuma]");
+      if (!btn) return;
+      okumaAc(Number(btn.getAttribute("data-okuma")), btn);
+    });
+  }
+  // Esc: YAKALAMA (capture) evresinde dinleniyor, çünkü compare.js'in
+  // kendi Esc dinleyicisi kabarma evresinde ve detay paneli kapalıysa
+  // doğrudan `location.href = "index.html"` diyor -- yani okuma açıkken
+  // Esc'e basmak siteden çıkıyordu (ölçüldü: sayfa index.html'e gitti).
+  // Yakalama evresi kabarmadan önce çalışır; okuma açıksa kapatıp
+  // yayılmayı burada durduruyoruz.
+  //
+  // Sonuç, ETKILESIM_DILI'nin istediği sıra: önce okuma kapanır, sonra
+  // (bir daha basılırsa) detay paneli, sonra sayfadan çıkış.
+  window.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if (okumaKapat()) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  }, true);
 })();

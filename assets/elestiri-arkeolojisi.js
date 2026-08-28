@@ -300,7 +300,17 @@ window.__elestiriArkeolojisiApp = (function () {
     "cevap-yazdi": { tr: "cevap yazdı", en: "wrote in response", pt: "escreveu em resposta" },
     talebesiydi: { tr: "talebesiydi", en: "was a student of", pt: "foi discípulo de" },
     himayesindeydi: { tr: "himayesindeydi", en: "was under the patronage of", pt: "esteve sob o patrocínio de" },
+    // "rakibiydi" YALNIZ kaynakta belgelenmiş, makam/mevki üzerine kurulmuş
+    // polemikler için: Timur'un sarayında düzenlettiği münazara, kadılık
+    // makamı için verilen mücadele gibi (hepsi Knysh'ten künyeli). Bir
+    // görüş ayrılığı, kendiliğinden rekabet değildir.
+    //
+    // 2026-08-28: Simnani -> Kaşani bağı bu türden ÇIKARILDI. Kendi
+    // gerekçesi "doğrudan bir mektup yazarak eleştirdi" diyordu; belgelenen
+    // şey bir itirazdı, bir rekabet değil -- ve ikisi de sufi. Yerine
+    // "mektup-yazdi" kondu.
     rakibiydi: { tr: "rakibiydi", en: "was a rival of", pt: "foi rival de" },
+    "mektup-yazdi": { tr: "mektup yazdı", en: "wrote to", pt: "escreveu a" },
     halefiydi: { tr: "halefiydi", en: "succeeded", pt: "sucedeu a" },
     "ayni-stratejiyi-kullandi": { tr: "aynı stratejiyi kullandı", en: "used the same strategy", pt: "usou a mesma estratégia" },
     "hakemlik-yapti": { tr: "hakemlik yaptı", en: "arbitrated for", pt: "arbitrou para" },
