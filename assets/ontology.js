@@ -282,6 +282,7 @@
       window.__siirlerApp && window.__siirlerApp.onLangChange();
       window.__vahdetApp && window.__vahdetApp.onLangChange();
       window.__okumaYollariApp && window.__okumaYollariApp.onLangChange();
+      window.__neredenBaslamaliApp && window.__neredenBaslamaliApp.onLangChange();
     }
     else if (currentMainView === "kavram") window.__kavramApp && window.__kavramApp.onLangChange();
     else if (currentMainView === "ayethadis") window.__ayetHadisApp && window.__ayetHadisApp.onLangChange();
@@ -620,6 +621,7 @@
   const hakkindaSubSiirlerBtn = document.getElementById("hakkinda-sub-siirler-btn");
   const hakkindaSubVahdetBtn = document.getElementById("hakkinda-sub-vahdet-btn");
   const hakkindaSubOkumaYollariBtn = document.getElementById("hakkinda-sub-okuma-yollari-btn");
+  const hakkindaSubNeredenBaslamaliBtn = document.getElementById("hakkinda-sub-nereden-baslamali-btn");
   const okumaYollariBtn = document.getElementById("okuma-yollari-btn");
   const kavramBtn = document.getElementById("kavram-btn");
   const ayethadisBtn = document.getElementById("ayethadis-btn");
@@ -853,6 +855,7 @@
   if (hakkindaSubSiirlerBtn) hakkindaSubSiirlerBtn.addEventListener("click", () => { goToHakkinda("siirler"); updateHash("hakkinda", "siirler"); });
   if (hakkindaSubVahdetBtn) hakkindaSubVahdetBtn.addEventListener("click", () => { goToHakkinda("vahdet"); updateHash("hakkinda", "vahdet"); });
   if (hakkindaSubOkumaYollariBtn) hakkindaSubOkumaYollariBtn.addEventListener("click", () => { goToHakkinda("okuma-yollari"); updateHash("hakkinda", "okuma-yollari"); });
+  if (hakkindaSubNeredenBaslamaliBtn) hakkindaSubNeredenBaslamaliBtn.addEventListener("click", () => { goToHakkinda("nereden-baslamali"); updateHash("hakkinda", "nereden-baslamali"); });
   if (kavramBtn) kavramBtn.addEventListener("click", () => { setMainView("kavram"); updateHash("kavram"); });
   if (ayethadisBtn) ayethadisBtn.addEventListener("click", () => { setMainView("ayethadis"); updateHash("ayethadis"); });
 

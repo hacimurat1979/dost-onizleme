@@ -4755,6 +4755,121 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
    Her konu için üç kademe (makale/kitap/birincil), .vahdet-card'ın aynı
    dilini (üstte renkli çizgi, büyük harf etiket) kullanıyor ama yan yana
    üç kart + aralarında bir ok -- bir "sıra" hissi vermek için. */
+/* --- Nereden Başlamalı (assets/nereden-baslamali.js) ---------------------
+   Bir yol haritası, bir liste değil: duraklar numaralı ve aralarında
+   dikey bir çizgi var -- sıra görünsün diye. Gidilecek yerin adı düğmenin
+   İÇİNDE yazılı, çünkü tıklama kullanıcıyı habersiz taşımamalı
+   (ETKILESIM_DILI.md). */
+.nb-not {
+  max-width: 720px;
+  margin: 0 auto 36px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  text-align: center;
+}
+.nb-yollar {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.nb-yol {
+  margin: 0 0 44px;
+  padding: 0 0 36px;
+  border-bottom: 1px solid var(--border);
+}
+.nb-yol:last-child { border-bottom: none; padding-bottom: 0; }
+.nb-yol__baslik {
+  font-size: 1.18rem;
+  margin: 0 0 4px;
+}
+.nb-yol__olcu {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.nb-yol__kim {
+  margin: 0 0 22px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.nb-durak-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nb-durak {
+  display: flex;
+  gap: 14px;
+  position: relative;
+  padding: 0 0 22px;
+}
+/* Durakları birbirine bağlayan dikey çizgi: sıra bir süs değil, yolun
+   kendisi. Son durakta yok -- yol orada bitiyor. */
+.nb-durak:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 30px;
+  bottom: 2px;
+  width: 1px;
+  background: var(--border);
+}
+.nb-durak__no {
+  flex: 0 0 auto;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.nb-durak__govde { flex: 1 1 auto; min-width: 0; }
+.nb-durak__ne {
+  margin: 3px 0 6px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.nb-durak__bak {
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.nb-durak__git {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--accent-interactive);
+  font: inherit;
+  font-size: 0.87rem;
+  cursor: pointer;
+  transition: background var(--dur-kisa, 160ms), border-color var(--dur-kisa, 160ms);
+}
+.nb-durak__git:hover,
+.nb-durak__git:focus-visible {
+  background: color-mix(in srgb, var(--accent-interactive) 9%, transparent);
+  border-color: var(--accent-interactive);
+}
+.nb-durak__git-sayfa { color: var(--text-secondary); }
+.nb-durak__git-ok { opacity: 0.7; }
+
+@media (max-width: 560px) {
+  .nb-durak { gap: 10px; }
+  .nb-durak:not(:last-child)::before { left: 11px; }
+  .nb-durak__no { width: 23px; height: 23px; font-size: 0.76rem; }
+}
+
 .okuma-yolu-intro {
   max-width: 720px;
   margin: 0 auto 32px;

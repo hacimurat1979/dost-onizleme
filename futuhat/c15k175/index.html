@@ -277,6 +277,7 @@
             <button class="btn-ghost btn-ghost--sub" id="hakkinda-sub-siirler-btn" type="button" data-tr="Şiirleri" data-en="Poems" data-pt="Poemas">Şiirleri</button>
             <button class="btn-ghost btn-ghost--sub" id="hakkinda-sub-vahdet-btn" type="button" data-tr="Eleştiriler" data-en="Criticisms" data-pt="Críticas">Eleştiriler</button>
             <button class="btn-ghost btn-ghost--sub" id="hakkinda-sub-okuma-yollari-btn" type="button" data-tr="Okuma Yolları" data-en="Reading Paths" data-pt="Caminhos de Leitura">Okuma Yolları</button>
+            <button class="btn-ghost btn-ghost--sub" id="hakkinda-sub-nereden-baslamali-btn" type="button" data-tr="Nereden Başlamalı" data-en="Where to Begin" data-pt="Por Onde Começar">Nereden Başlamalı</button>
           </div>
         </div>
       </nav>
@@ -935,6 +936,9 @@
         <button class="hakkinda-subtab" id="hakkinda-subtab-okuma-yollari"
                 type="button" role="tab" aria-selected="false" aria-controls="okuma-yollari-panel"
                 data-tr="Okuma Yolları" data-en="Reading Paths" data-pt="Caminhos de Leitura">Okuma Yolları</button>
+        <button class="hakkinda-subtab" id="hakkinda-subtab-nereden-baslamali"
+                type="button" role="tab" aria-selected="false" aria-controls="nereden-baslamali-panel"
+                data-tr="Nereden Başlamalı" data-en="Where to Begin" data-pt="Por Onde Começar">Nereden Başlamalı</button>
       </div>
       <div id="hakkinda-content-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-hakkinda">
       <div class="hakkinda-content">
@@ -1441,6 +1445,14 @@ mesmo antes que o assombro exista."></blockquote>
         </div>
         <div id="okuma-yollari-content"></div>
       </div>
+      <div id="nereden-baslamali-panel" role="tabpanel" aria-labelledby="hakkinda-subtab-nereden-baslamali" hidden>
+        <div class="view-status" id="nereden-baslamali-panel-status" hidden>
+          <div class="view-status__spinner" aria-hidden="true"></div>
+          <p class="view-status__text"></p>
+          <button class="view-status__retry" type="button" hidden></button>
+        </div>
+        <div id="nereden-baslamali-content"></div>
+      </div>
       <button class="scroll-top-btn" id="hakkinda-scroll-top" type="button" hidden
         data-tr-title="Başa dön" data-en-title="Back to top" data-pt-title="Voltar ao topo"
         title="Başa dön" aria-label="Başa dön">
@@ -1533,8 +1545,8 @@ mesmo antes que o assombro exista."></blockquote>
        ama o bağımlılık derleme-zamanı çapraz-bağlantı indeksine taşınalı
        (2026-08-03) kalkmıştı, sadece fark edilmemişti), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-BIse9cc6mHCMPDg/v8n+f41zJDzxk0Lk7maq+OqaznjcNptq5ORTcp5ENeb5zlF5"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-ylA47N20hNv6V1m5cEkYX5EgntHTcZ0yshGgb+4TyqDA9WLXpBi1QrDMdzn9R155"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-1tUy+W9O3nvrfX7Jn/yL6lW1yH6sVXGEye0EFCBQV0FDMcKr2Oy/pFLcZ6nPkDgr"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-2MhyQDDPkyfhGBeTJtO7IUj9FWPz9tlSyPK39T8AYst4EY6i5V+sOIctoNrBFxqo"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-S5YfedCmBW9/W/3OybJ+5K9BRmf2zdJinvGfO94lJC2R90B/j/II4Qh98xEIDISO"></script>

@@ -1,0 +1,343 @@
+{
+  "not": {
+    "tr": "Bu sayfa Dost'un metnine dair bir yorum değil, SİTENİN kendi haritası: hangi kapıdan girilirse ne görüleceğini söylüyor. Yollar bizim seçimimiz -- 'doğru sıra' diye bir şey bildiğimiz için değil, bir yerden başlamak gerektiği için. Her durak sitede gerçekten var olan bir sayfaya gidiyor; hiçbiri bir özet değil, hepsi asıl sayfanın kendisi. İstediğiniz durakta durabilir, istediğiniz yerden ayrılabilirsiniz.",
+    "en": "This page is not an interpretation of Dost's text but the site's own map: it says what you will find behind which door. The paths are our choice -- not because we know there is a 'right order', but because one has to begin somewhere. Every stop leads to a page that really exists here; none of them is a summary, each is the page itself. You can stop at any stop, and leave from anywhere.",
+    "pt": "Esta página não é uma interpretação do texto de Dost, mas o mapa do próprio site: diz o que se encontra atrás de cada porta. Os caminhos são a nossa escolha -- não porque saibamos que existe uma 'ordem certa', mas porque é preciso começar em algum lugar. Cada parada leva a uma página que existe mesmo aqui; nenhuma é um resumo, cada uma é a própria página. Pode parar em qualquer parada e sair de qualquer ponto."
+  },
+  "yollar": [
+    {
+      "id": "ilk-defa",
+      "baslik": {
+        "tr": "İlk defa buradayım",
+        "en": "I am here for the first time",
+        "pt": "Estou aqui pela primeira vez"
+      },
+      "kim": {
+        "tr": "İbn Arabî'yi hiç okumamış, adını yeni duymuş biri için. Hiçbir ön bilgi gerekmiyor.",
+        "en": "For someone who has never read Ibn Arabi and has only just heard the name. No prior knowledge is needed.",
+        "pt": "Para quem nunca leu Ibn Arabi e apenas ouviu o nome. Nenhum conhecimento prévio é necessário."
+      },
+      "duraklar": [
+        {
+          "view": "ontoloji",
+          "id": "dhat",
+          "hedef": {
+            "tr": "Zât",
+            "en": "The Essence",
+            "pt": "A Essência"
+          },
+          "ne": {
+            "tr": "Haritanın merkezi: Zât.",
+            "en": "The center of the map: the Essence.",
+            "pt": "O centro do mapa: a Essência."
+          },
+          "bak": {
+            "tr": "Düğüme tıklayın ve panelin altındaki \"Bir benzetmeyle\" kutusunu okuyun. Bütün site o kutunun dilini konuşmaya çalışıyor: iddia değil, benzetme.",
+            "en": "Click the node and read the \"In one analogy\" box at the bottom of the panel. The whole site is trying to speak in that box's register: not a claim, a likeness.",
+            "pt": "Clique no nó e leia a caixa \"Numa analogia\" no fim do painel. O site inteiro tenta falar no registo dessa caixa: não uma afirmação, uma semelhança."
+          }
+        },
+        {
+          "view": "ontoloji",
+          "id": "kalp",
+          "hedef": {
+            "tr": "Kalp",
+            "en": "The Heart",
+            "pt": "O Coração"
+          },
+          "ne": {
+            "tr": "Merkeze en yakın duran şey: Kalp.",
+            "en": "What stands nearest to the center: the Heart.",
+            "pt": "O que está mais próximo do centro: o Coração."
+          },
+          "bak": {
+            "tr": "Kalp'ten Zât'a giden çizgi haritadaki en kısa çizgi. Kalp düğümünün çizimine bakın: merkezdeki noktayı ilkin Kalp sanmıştık, o okumayı düzelttik ve neden düzelttiğimizi çizimin notunda yazdık.",
+            "en": "The line from the Heart to the Essence is the shortest line on the map. Look at the Heart's diagram: we first took the point at the center to be the Heart; we corrected that reading, and the diagram's own note says why.",
+            "pt": "A linha do Coração à Essência é a mais curta do mapa. Veja o diagrama do Coração: primeiro tomámos o ponto central pelo Coração; corrigimos essa leitura, e a nota do próprio diagrama diz porquê."
+          }
+        },
+        {
+          "view": "terimler",
+          "id": "berzah",
+          "hedef": {
+            "tr": "Berzah",
+            "en": "Barzakh",
+            "pt": "Barzakh"
+          },
+          "ne": {
+            "tr": "Bir terim, kendi çizimiyle: Berzah.",
+            "en": "One term, with its own diagram: barzakh.",
+            "pt": "Um termo, com o seu próprio diagrama: barzakh."
+          },
+          "bak": {
+            "tr": "Çizim kavramı değil, davranışını resmediyor -- berzah bir sınır çizgisi değil, iki tarafın birlikte bulunduğu yer. Sitedeki bütün çizimler bu ölçüye göre yapılmaya çalışılıyor.",
+            "en": "The diagram draws not the concept but its behaviour -- the barzakh is not a boundary line but the place where both sides are present at once. Every diagram on the site is made by that measure.",
+            "pt": "O diagrama desenha não o conceito, mas o seu comportamento -- o barzakh não é uma linha de fronteira, mas o lugar onde ambos os lados estão presentes. Todos os diagramas do site seguem essa medida."
+          }
+        },
+        {
+          "view": "bilmiyoruz",
+          "ne": {
+            "tr": "Bilmediklerimizin listesi.",
+            "en": "The list of what we do not know.",
+            "pt": "A lista do que não sabemos."
+          },
+          "bak": {
+            "tr": "Bir kaydı açın. Bu sayfa sitenin en kısa özeti sayılabilir: burada anlatmaya değil, anlamaya çalışıyoruz, ve nerede takıldığımızı saklamıyoruz.",
+            "en": "Open one entry. This page may be the shortest summary of the site: here we are trying to understand rather than to explain, and we do not hide where we got stuck.",
+            "pt": "Abra uma entrada. Esta página talvez seja o resumo mais curto do site: aqui procuramos compreender, não explicar, e não escondemos onde ficámos presos."
+          }
+        }
+      ]
+    },
+    {
+      "id": "bir-kavramin-pesinde",
+      "baslik": {
+        "tr": "Tek bir kavramın peşinden gitmek",
+        "en": "Following a single concept",
+        "pt": "Seguir um único conceito"
+      },
+      "kim": {
+        "tr": "Sitenin nasıl bağlandığını görmek isteyen için. Aynı kavram -- Perde -- dört ayrı yerde, dört ayrı biçimde karşınıza çıkıyor.",
+        "en": "For someone who wants to see how the site is wired. The same concept -- the Veil -- appears in four different places, in four different forms.",
+        "pt": "Para quem quer ver como o site está ligado. O mesmo conceito -- o Véu -- aparece em quatro lugares diferentes, em quatro formas diferentes."
+      },
+      "duraklar": [
+        {
+          "view": "ontoloji",
+          "id": "perde",
+          "hedef": {
+            "tr": "Perde",
+            "en": "The Veil",
+            "pt": "O Véu"
+          },
+          "ne": {
+            "tr": "Grafikteki yeri.",
+            "en": "Its place on the graph.",
+            "pt": "O seu lugar no grafo."
+          },
+          "bak": {
+            "tr": "Perde, Tecellî'den açılan bir dal -- merkezden bir adım daha uzakta duruyor. Yarıçap burada bir şey söylüyor: uzaklık, çokluk.",
+            "en": "The Veil branches off from Self-Disclosure -- it stands one step further from the center. The radius says something here: distance is multiplicity.",
+            "pt": "O Véu ramifica-se da Automanifestação -- fica um passo mais longe do centro. O raio diz algo aqui: distância é multiplicidade."
+          }
+        },
+        {
+          "view": "futuhat",
+          "id": "c14k162",
+          "hedef": {
+            "tr": "Cilt XIV, 162. Kısım",
+            "en": "Vol. XIV, part 162",
+            "pt": "Vol. XIV, parte 162"
+          },
+          "ne": {
+            "tr": "Metnin kendisi: \"Her Sureti Kabul Eden — ve Gözdeki Perde\".",
+            "en": "The text itself: \"That Which Accepts Every Form — and the Veil upon the Eye\".",
+            "pt": "O texto em si: \"Aquilo que Aceita Toda Forma — e o Véu sobre o Olho\"."
+          },
+          "bak": {
+            "tr": "Kısmın kendi kayıtlarını okuyun. Bizim yorumumuz italik olmayan kısımda; italikler Dost'un sözleri. İkisini karıştırmamaya çalışıyoruz.",
+            "en": "Read the section's own entries. Our reading is in the non-italic text; the italics are Dost's own words. We try not to blur the two.",
+            "pt": "Leia as entradas da própria secção. A nossa leitura está no texto não itálico; os itálicos são as palavras do próprio Dost. Tentamos não confundir os dois."
+          }
+        },
+        {
+          "view": "futuhat",
+          "id": "c15k173",
+          "hedef": {
+            "tr": "Cilt XV, 173. Kısım",
+            "en": "Vol. XV, part 173",
+            "pt": "Vol. XV, parte 173"
+          },
+          "ne": {
+            "tr": "Aynı imge, bir cilt sonra: \"Nur Kendisiyle Perdelenmiştir\".",
+            "en": "The same image, one volume later: \"Light Is Veiled by Itself\".",
+            "pt": "A mesma imagem, um volume depois: \"A Luz Está Velada por Si Mesma\"."
+          },
+          "bak": {
+            "tr": "Bir motifin ciltler arasında geri dönmesi bizim için rastlantı değil. Ne anlama geldiğini bilmiyoruz; parçaları biriktirip yan yana koyuyoruz.",
+            "en": "A motif returning across volumes is not, for us, a coincidence. We do not know what it means; we accumulate the pieces and set them side by side.",
+            "pt": "Um motivo que retorna entre volumes não é, para nós, coincidência. Não sabemos o que significa; acumulamos as peças e pomo-las lado a lado."
+          }
+        },
+        {
+          "view": "kavram",
+          "id": "ontoloji/perde",
+          "hedef": {
+            "tr": "Perde",
+            "en": "The Veil",
+            "pt": "O Véu"
+          },
+          "ne": {
+            "tr": "Kavramın kendi sayfası: hepsi bir arada.",
+            "en": "The concept's own page: everything in one place.",
+            "pt": "A página do próprio conceito: tudo num só lugar."
+          },
+          "bak": {
+            "tr": "Bu sayfa yeni bir şey söylemiyor; yalnız o kavramın sitede geçtiği bütün yerleri topluyor. Bir kavramın \"hayatı\" burada görünüyor.",
+            "en": "This page says nothing new; it only gathers every place the concept appears on the site. A concept's \"life\" becomes visible here.",
+            "pt": "Esta página não diz nada de novo; apenas reúne todos os lugares onde o conceito aparece no site. A \"vida\" de um conceito torna-se visível aqui."
+          }
+        }
+      ]
+    },
+    {
+      "id": "metnin-kendisine",
+      "baslik": {
+        "tr": "Doğrudan metne gitmek",
+        "en": "Going straight to the text",
+        "pt": "Ir diretamente ao texto"
+      },
+      "kim": {
+        "tr": "Aracıyı atlayıp kaynağın kendisine bakmak isteyen için. Bizim yorumumuzu okumadan da gezilebilir.",
+        "en": "For someone who wants to skip the intermediary and look at the source. It can be walked without reading our commentary at all.",
+        "pt": "Para quem quer saltar o intermediário e olhar a fonte. Pode ser percorrido sem ler o nosso comentário."
+      },
+      "duraklar": [
+        {
+          "view": "hakkinda",
+          "id": "okuma-yollari",
+          "hedef": {
+            "tr": "Okuma Yolları",
+            "en": "Reading Paths",
+            "pt": "Caminhos de Leitura"
+          },
+          "ne": {
+            "tr": "Önce: hangi kitaptan başlanır?",
+            "en": "First: which book to begin with?",
+            "pt": "Primeiro: com que livro começar?"
+          },
+          "bak": {
+            "tr": "Bir konu için üç kademeli bir sıra: bir makale, bir kitap, sonra birincil metin. Bu site o birincil metnin yerini tutmuyor.",
+            "en": "A three-rung order for one topic: an article, a book, then the primary text. This site does not stand in for that primary text.",
+            "pt": "Uma ordem de três degraus para um tema: um artigo, um livro, depois o texto primário. Este site não substitui esse texto primário."
+          }
+        },
+        {
+          "view": "futuhat",
+          "id": "c1k3",
+          "hedef": {
+            "tr": "Cilt I, 3. Kısım",
+            "en": "Vol. I, part 3",
+            "pt": "Vol. I, parte 3"
+          },
+          "ne": {
+            "tr": "Fütûhât'ın başından bir kısım: \"İlimlerin Mertebeleri\".",
+            "en": "A section from the opening of the Futuhat: \"The Ranks of the Sciences\".",
+            "pt": "Uma secção da abertura do Futuhat: \"As Ordens das Ciências\"."
+          },
+          "bak": {
+            "tr": "Fütûhât kronolojik bir kitap değil; nereden açılırsa oradan okunuyor. Kısmın üstündeki ölçüler, o kısmı bizim nasıl okuduğumuzu değil, neyi sayabildiğimizi gösteriyor.",
+            "en": "The Futuhat is not a chronological book; it is read from wherever it is opened. The measures above a section show not how we read it but what we were able to count.",
+            "pt": "O Futuhat não é um livro cronológico; lê-se a partir de onde se abre. As medidas acima de uma secção mostram não como a lemos, mas o que conseguimos contar."
+          }
+        },
+        {
+          "view": "fusus",
+          "id": "fs1",
+          "hedef": {
+            "tr": "1. Fass — Âdem",
+            "en": "Bezel 1 — Adam",
+            "pt": "Engaste 1 — Adão"
+          },
+          "ne": {
+            "tr": "Füsûs'un ilk fassı: \"Ayna Cilâlandı\".",
+            "en": "The first bezel of the Fusus: \"The Mirror Was Polished\".",
+            "pt": "O primeiro engaste dos Fusus: \"O Espelho Foi Polido\"."
+          },
+          "bak": {
+            "tr": "Füsûs, Fütûhât'ın yanında çok daha kısa ve çok daha yoğun. Yirmi yedi fass, yirmi yedi peygamber, yirmi yedi \"hikmet\".",
+            "en": "Beside the Futuhat the Fusus is far shorter and far denser. Twenty-seven bezels, twenty-seven prophets, twenty-seven \"wisdoms\".",
+            "pt": "Ao lado do Futuhat, os Fusus são muito mais curtos e muito mais densos. Vinte e sete engastes, vinte e sete profetas, vinte e sete \"sabedorias\"."
+          }
+        },
+        {
+          "view": "miskat",
+          "id": "h1",
+          "hedef": {
+            "tr": "1. hadis",
+            "en": "Saying 1",
+            "pt": "Dito 1"
+          },
+          "ne": {
+            "tr": "Mişkâtü'l-Envâr: hadîs-i kudsîler.",
+            "en": "Mishkat al-Anwar: the divine sayings.",
+            "pt": "Mishkat al-Anwar: os ditos divinos."
+          },
+          "bak": {
+            "tr": "İbn Arabî'nin derlediği yüz bir hadis. Buradaki metin bir şerh değil, derlemenin kendisi -- en kısa yoldan onun neyi topladığını görmek için.",
+            "en": "The hundred and one sayings Ibn Arabi collected. The text here is not a commentary but the collection itself -- the shortest way to see what he gathered.",
+            "pt": "Os cento e um ditos que Ibn Arabi reuniu. O texto aqui não é um comentário, mas a própria coletânea -- o caminho mais curto para ver o que ele juntou."
+          }
+        }
+      ]
+    },
+    {
+      "id": "neyi-bilmiyoruz",
+      "baslik": {
+        "tr": "Neyi bilmediğimize bakmak",
+        "en": "Looking at what we do not know",
+        "pt": "Olhar para o que não sabemos"
+      },
+      "kim": {
+        "tr": "Bir sitenin kendi sınırını nerede çizdiğini merak eden için. Bu yol bir şey öğretmiyor; neyi öğretmediğimizi gösteriyor.",
+        "en": "For someone curious where a site draws its own limit. This path teaches nothing; it shows what we do not teach.",
+        "pt": "Para quem tem curiosidade sobre onde um site traça o seu próprio limite. Este caminho não ensina nada; mostra o que não ensinamos."
+      },
+      "duraklar": [
+        {
+          "view": "bilmiyoruz",
+          "ne": {
+            "tr": "Bilmediklerimiz.",
+            "en": "What we do not know.",
+            "pt": "O que não sabemos."
+          },
+          "bak": {
+            "tr": "Her kaydın bir durumu var: kapanmış mı, açık mı, yoksa hiç açılmamış mı. Kapanmayanları silmiyoruz.",
+            "en": "Each entry has a state: closed, open, or never opened. We do not delete the ones that stay open.",
+            "pt": "Cada entrada tem um estado: fechada, aberta ou nunca aberta. Não apagamos as que continuam abertas."
+          }
+        },
+        {
+          "view": "acik-sorular",
+          "ne": {
+            "tr": "Açık sorular.",
+            "en": "Open questions.",
+            "pt": "Perguntas abertas."
+          },
+          "bak": {
+            "tr": "Bunlar cevaplanmayı bekleyen sorular değil; cevabını bilmediğimiz için yazdığımız sorular. Aradaki fark bizim için önemli.",
+            "en": "These are not questions awaiting an answer; they are questions we wrote down because we do not know the answer. The difference matters to us.",
+            "pt": "Estas não são perguntas à espera de resposta; são perguntas que escrevemos por não sabermos a resposta. A diferença importa-nos."
+          }
+        },
+        {
+          "view": "elestiri-arkeolojisi",
+          "ne": {
+            "tr": "Dost'a yöneltilen eleştiriler.",
+            "en": "The criticisms directed at Dost.",
+            "pt": "As críticas dirigidas a Dost."
+          },
+          "bak": {
+            "tr": "Eleştirileri cevaplamadan önce haritalıyoruz: kim, ne zaman, hangi şehirde, kimin himayesinde, neyi okuyarak yazdı. Cevap vermek başka bir iş.",
+            "en": "Before answering the criticisms we map them: who wrote, when, in which city, under whose patronage, having read what. Answering is a different job.",
+            "pt": "Antes de responder às críticas, mapeamo-las: quem escreveu, quando, em que cidade, sob que patrocínio, tendo lido o quê. Responder é outro trabalho."
+          }
+        },
+        {
+          "view": "hakkinda",
+          "ne": {
+            "tr": "Sitenin kendi künyesi.",
+            "en": "The site's own account of itself.",
+            "pt": "A ficha do próprio site."
+          },
+          "bak": {
+            "tr": "Bu işi kimin, neyle, ne kadar yaptığı burada yazılı. Yaptığımız işi olduğundan büyük göstermemeye çalışıyoruz.",
+            "en": "Who did this work, with what, and how much of it, is written here. We try not to make the work look larger than it is.",
+            "pt": "Quem fez este trabalho, com o quê e quanto, está escrito aqui. Tentamos não fazer o trabalho parecer maior do que é."
+          }
+        }
+      ]
+    }
+  ]
+}
