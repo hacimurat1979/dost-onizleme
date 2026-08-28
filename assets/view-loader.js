@@ -52,7 +52,7 @@
     __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-WpfLUp6DVP5UV+d77GtzYBSOK79GBd/yzuWx9KKnhmtnEbLTJCVJx/CgQ2aOEzsh" },
     __esmaApp: { src: "assets/esma.js", integrity: "sha384-+MuHT55yTY1hayayBCIVc+8CWITJ4cS4vZ61kAQ6EfTQ3J1PKq0PAW2JxdkGV2qj" },
     __halApp: { src: "assets/hal.js", integrity: "sha384-rmTP+V9qyKWIx3nYvjn2UtVQmES+VUlVkRtrqqvsL31xb8ErOp0ggUgAZ8YQWOvd" },
-    __terimlerApp: { src: "assets/terimler.js", integrity: "sha384-u87oqF5QBlI9l+ie5gumy17cGVqEQ3UnKKZRGr1NLCbrG3a2pY/lP4XUDO6OYs7P" },
+    __terimlerApp: { src: "assets/terimler.js", integrity: "sha384-3cItXKl+ZBjPaJgkr6y8ppzdPb5Uwiy/USubK3oSSYzg1LS2hupwaP7FvG07tyf5" },
     __sorularApp: { src: "assets/sorular.js", integrity: "sha384-KHvutOBb/6nMyHh4/YfKWF5L/qs1zrHDbhWoxbgZULPnCpGKmL2Z4xcVS9vfYsSA" },
     __menzillerApp: { src: "assets/menziller.js", integrity: "sha384-G18OFBK0/iEqrPlW10Y7U+t4lprPJF8eAR+3qntlRsViPbgrSh2MJrncEEJOO6uc" },
     __futuhatApp: { src: "assets/futuhat.js", integrity: "sha384-f6dBy8DGb9oAuE5pE9INObqa5OLOZlp37WZB6C1Xts802eJfLlFkkI2IXvFMukre" },

@@ -235,6 +235,24 @@
       `<line class="term-diagram-isikyolu${extraClass ? " " + extraClass : ""}" data-isikyolu-yon="${yon || "oneway"}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#${id})"/>`
     );
   }
+  // Düğüm adı: kısaysa dairenin İÇİNE, uzunsa ALTINA yazılır. Üç dilde
+  // aynı çizim kullanıldığı için aynı alan bir dilde 5, ötekinde 50
+  // karakter olabiliyor ("Kuvve" -> "vehim/hayâl: yalnız zihinde"); sabit
+  // yerleşim uzun olanı dairenin ve kutunun dışına taşırıyordu (üç dilde
+  // de ölçüldü). Genişlik tahmini 7.0 birim/karakter -- tarayıcıda ölçülen
+  // 6.3-6.8'in üstünde, konturun payıyla birlikte.
+  function dugumYazisi(yazi, r) {
+    const uzun = yazi.length > 14;
+    return {
+      yari: (yazi.length * 7.0) / 2,
+      tasma: uzun ? 22 : 0,
+      metin(x, y, rr) {
+        const ty = uzun ? y + (rr || r) + 17 : y + 5;
+        return `<text class="term-diagram-label term-diagram-label--small" x="${x.toFixed(0)}" y="${ty.toFixed(0)}" text-anchor="middle">${yazi}</text>`;
+      },
+    };
+  }
+
   function kivilcimKostur(pathNode, gecikme, sure, ters) {
     const uzunluk = pathNode.getTotalLength ? pathNode.getTotalLength() : 0;
     if (!uzunluk) return;
@@ -318,60 +336,107 @@
       </svg>
     `;
     },
-    "formula-merge": (d) => `
-      <svg class="term-diagram__svg" viewBox="0 0 300 150" role="img" aria-label="${tt(d.note)}">
-        <circle class="term-diagram-node--venn" cx="112" cy="75" r="58"/>
-        <circle class="term-diagram-node--venn" cx="188" cy="75" r="58"/>
-        <text class="term-diagram-label--small" x="68" y="75" text-anchor="middle">${tt(d.a)}</text>
-        <text class="term-diagram-label--small" x="232" y="75" text-anchor="middle">${tt(d.b)}</text>
-        <text class="term-diagram-label term-diagram-label--result" x="150" y="80" text-anchor="middle">${tt(d.result)}</text>
-      </svg>
-    `,
-    spectrum: (d) => `
-      <svg class="term-diagram__svg" viewBox="0 0 340 120" role="img" aria-label="${tt(d.note)}">
-        ${isikCizgisi(30, 55, 310, 55, "mutual")}
-        <circle class="term-diagram-node term-diagram-node--sm" cx="80" cy="55" r="16"/>
-        <circle class="term-diagram-node term-diagram-node--accent term-diagram-node--sm" cx="270" cy="55" r="16"/>
-        <text class="term-diagram-note" x="80" y="90" text-anchor="middle">${tt(d.leftMarker)}</text>
-        <text class="term-diagram-note" x="270" y="90" text-anchor="middle">${tt(d.rightMarker)}</text>
-        <text class="term-diagram-label" x="30" y="20" text-anchor="start">${tt(d.leftLabel)}</text>
-        <text class="term-diagram-label--small" x="30" y="35" text-anchor="start">${tt(d.leftNote)}</text>
-        <text class="term-diagram-label" x="310" y="20" text-anchor="end">${tt(d.rightLabel)}</text>
-        <text class="term-diagram-label--small" x="310" y="35" text-anchor="end">${tt(d.rightNote)}</text>
-      </svg>
-    `,
-    cascade: (d) => {
-      const n = d.steps.length;
-      const gap = 300 / (n - 1);
-      const circles = d.steps.map((s, i) => {
-        const x = 30 + i * gap;
-        return `
-          <circle class="term-diagram-node${i === 0 ? " term-diagram-node--accent" : ""}" cx="${x}" cy="60" r="28"/>
-          <text class="term-diagram-label term-diagram-label--small" x="${x}" y="65" text-anchor="middle">${tt(s)}</text>
-        `;
-      }).join("");
-      const arrows = d.steps.slice(1).map((s, i) => {
-        const x1 = 30 + i * gap + 30;
-        const x2 = 30 + (i + 1) * gap - 30;
-        return isikCizgisi(x1, 60, x2, 60, "oneway");
-      }).join("");
+    // Kutu içerikten (2026-08-28): PT'de "Necessidade da Criação" 300
+    // birimlik kutunun sağından taşıyordu.
+    "formula-merge": (d) => {
+      const a = tt(d.a), bb = tt(d.b);
+      const W = Math.max(300, 2 * (88 + Math.max(a.length, bb.length) * 3.5));
+      const c = W / 2;
       return `
-      <svg class="term-diagram__svg" viewBox="0 0 340 110" role="img" aria-label="${tt(d.note)}">
-        ${arrows}${circles}
-        <text class="term-diagram-note" x="170" y="100" text-anchor="middle">${tt(d.relationLabel)}</text>
+      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} 150" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node--venn" cx="${(c - 38).toFixed(0)}" cy="75" r="58"/>
+        <circle class="term-diagram-node--venn" cx="${(c + 38).toFixed(0)}" cy="75" r="58"/>
+        <text class="term-diagram-label--small" x="${(c - 82).toFixed(0)}" y="75" text-anchor="middle">${a}</text>
+        <text class="term-diagram-label--small" x="${(c + 82).toFixed(0)}" y="75" text-anchor="middle">${bb}</text>
+        <text class="term-diagram-label term-diagram-label--result" x="${c.toFixed(0)}" y="80" text-anchor="middle">${tt(d.result)}</text>
       </svg>
     `;
     },
-    mirror: (d) => `
-      <svg class="term-diagram__svg" viewBox="0 0 300 120" role="img" aria-label="${tt(d.note)}">
-        <circle class="term-diagram-node term-diagram-node--accent" cx="55" cy="55" r="26"/>
-        <text class="term-diagram-label term-diagram-label--small" x="55" y="60" text-anchor="middle">${tt(d.source)}</text>
-        <line class="term-diagram-mirror" x1="160" y1="15" x2="140" y2="95"/>
-        ${isikCizgisi(83, 55, 215, 55, "oneway")}
-        <circle class="term-diagram-node term-diagram-node--faint" cx="245" cy="55" r="26"/>
-        <text class="term-diagram-label term-diagram-label--small" x="245" y="60" text-anchor="middle">${tt(d.target)}</text>
+    // Kutu genişliği içerikten (2026-08-28): sabit 340 birimde uzun
+    // işaretler ("kudretli bir tecellî ile yitirilir" gibi) iki uçtan da
+    // taşıyordu -- altı terimde ölçüldü. Uçtaki iki kısa metin ortalanmış
+    // olduğu için yarısı kadar yer istiyor; kutu ikisinin toplamına göre
+    // açılıyor.
+    spectrum: (d) => {
+      const en = (s) => tt(s).length;
+      const yariAlt = Math.max(en(d.leftMarker), en(d.rightMarker)) * 3.1;
+      const ustSol = Math.max(en(d.leftLabel) * 7.6, en(d.leftNote) * 7.0);
+      const ustSag = Math.max(en(d.rightLabel) * 7.6, en(d.rightNote) * 7.0);
+      const W = Math.max(360, ustSol + ustSag + 40, yariAlt * 2 + 180);
+      const solX = Math.max(80, yariAlt + 14);
+      const sagX = W - solX;
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} 120" role="img" aria-label="${tt(d.note)}">
+        ${isikCizgisi(solX - 50, 55, sagX + 50, 55, "mutual")}
+        <circle class="term-diagram-node term-diagram-node--sm" cx="${solX.toFixed(0)}" cy="55" r="16"/>
+        <circle class="term-diagram-node term-diagram-node--accent term-diagram-node--sm" cx="${sagX.toFixed(0)}" cy="55" r="16"/>
+        <text class="term-diagram-note" x="${solX.toFixed(0)}" y="90" text-anchor="middle">${tt(d.leftMarker)}</text>
+        <text class="term-diagram-note" x="${sagX.toFixed(0)}" y="90" text-anchor="middle">${tt(d.rightMarker)}</text>
+        <text class="term-diagram-label" x="14" y="20" text-anchor="start">${tt(d.leftLabel)}</text>
+        <text class="term-diagram-label--small" x="14" y="35" text-anchor="start">${tt(d.leftNote)}</text>
+        <text class="term-diagram-label" x="${(W - 14).toFixed(0)}" y="20" text-anchor="end">${tt(d.rightLabel)}</text>
+        <text class="term-diagram-label--small" x="${(W - 14).toFixed(0)}" y="35" text-anchor="end">${tt(d.rightNote)}</text>
       </svg>
-    `,
+    `;
+    },
+    // Basamaklar. 2026-08-28'e kadar YATAYDI ve adlar r=28'lik dairelerin
+    // İÇİNE yazılıyordu: "Yedi Gök" 56 birimlik daireye 116 birim olarak
+    // sığmıyor, komşusunun üstüne taşıyordu (tarayıcıda ölçüldü; dokuz
+    // çizimin hepsinde). Yatayda düzeltmek kutuyu 868 birime çıkarıyordu,
+    // yani kartta okunmayacak kadar küçültüyordu. Dikey dizilim hem yazıya
+    // yer açıyor hem de yön söylemeye izin veriyor.
+    //
+    // YÖN bir tercih değil, verinin kendi iddiası: bu çizimlerin altısı bir
+    // iniş/açılım (Zât -> İlk Akıl -> Tümel Nefs), üçü ise açıkça bir
+    // YÜKSELİŞ ("Her perdede durmayıp zikre devam eden, bir sonrakine
+    // yükselir"; "mertebe yükseldikçe himmet de yükselir"). Hepsini aşağı
+    // çizmek o üçünde metnin tersini söylerdi -- `yon: "yukselis"` olan
+    // çizim aşağıdan yukarı diziliyor.
+    cascade: (d) => {
+      const n = d.steps.length;
+      const yukari = d.yon === "yukselis";
+      const yazilar = d.steps.map((s) => tt(s));
+      const enGenis = Math.max.apply(null, yazilar.map((s) => s.length * 7.0));
+      const alt = tt(d.relationLabel);
+      const W = Math.max(66 + enGenis + 12, alt.length * 6.2 + 24);
+      const H = (n - 1) * 64 + 60 + 28;
+      const yOf = (i) => 30 + (yukari ? n - 1 - i : i) * 64;
+      const circles = yazilar.map((s, i) => {
+        const y = yOf(i);
+        return `
+          <circle class="term-diagram-node${i === 0 ? " term-diagram-node--accent" : ""}" cx="34" cy="${y}" r="22"/>
+          <text class="term-diagram-label--small" x="66" y="${y + 5}" text-anchor="start">${s}</text>
+        `;
+      }).join("");
+      const arrows = yazilar.slice(1).map((s, i) => {
+        const y1 = yOf(i) + (yukari ? -24 : 24);
+        const y2 = yOf(i + 1) + (yukari ? 24 : -24);
+        return isikCizgisi(34, y1, 34, y2, "oneway");
+      }).join("");
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} ${H}" role="img" aria-label="${tt(d.note)}">
+        ${arrows}${circles}
+        <text class="term-diagram-note" x="${(W / 2).toFixed(0)}" y="${H - 8}" text-anchor="middle">${alt}</text>
+      </svg>
+    `;
+    },
+    mirror: (d) => {
+      const sol = dugumYazisi(tt(d.source), 26), sag = dugumYazisi(tt(d.target), 26);
+      const solX = Math.max(55, sol.yari + 10);
+      const W = Math.max(300, solX + Math.max(55, sag.yari + 10) + 190);
+      const sagX = W - Math.max(55, sag.yari + 10);
+      const H = 120 + Math.max(sol.tasma, sag.tasma);
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} ${H.toFixed(0)}" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node term-diagram-node--accent" cx="${solX.toFixed(0)}" cy="55" r="26"/>
+        ${sol.metin(solX, 55, 26)}
+        <line class="term-diagram-mirror" x1="${(W / 2 + 10).toFixed(0)}" y1="15" x2="${(W / 2 - 10).toFixed(0)}" y2="95"/>
+        ${isikCizgisi(solX + 28, 55, sagX - 30, 55, "oneway")}
+        <circle class="term-diagram-node term-diagram-node--faint" cx="${sagX.toFixed(0)}" cy="55" r="26"/>
+        ${sag.metin(sagX, 55, 26)}
+      </svg>
+    `;
+    },
     "seal-wax": (d) => `
       <svg class="term-diagram__svg" viewBox="0 0 300 130" role="img" aria-label="${tt(d.note)}">
         <ellipse class="term-diagram-node term-diagram-node--faint" cx="150" cy="90" rx="90" ry="30"/>
@@ -381,15 +446,23 @@
         ${isikCizgisi(150, 58, 150, 68, "oneway")}
       </svg>
     `,
-    "potential-actual": (d) => `
-      <svg class="term-diagram__svg" viewBox="0 0 300 100" role="img" aria-label="${tt(d.note)}">
-        <circle class="term-diagram-node term-diagram-node--dashed" cx="60" cy="50" r="26"/>
-        <text class="term-diagram-label term-diagram-label--small" x="60" y="55" text-anchor="middle">${tt(d.potential)}</text>
-        ${isikCizgisi(90, 50, 210, 50, "oneway")}
-        <circle class="term-diagram-node term-diagram-node--accent" cx="240" cy="50" r="26"/>
-        <text class="term-diagram-label term-diagram-label--small" x="240" y="55" text-anchor="middle">${tt(d.actual)}</text>
+    "potential-actual": (d) => {
+      const sol = dugumYazisi(tt(d.potential), 26), sag = dugumYazisi(tt(d.actual), 26);
+      const solX = Math.max(60, sol.yari + 10);
+      const sagPay = Math.max(60, sag.yari + 10);
+      const W = Math.max(300, solX + sagPay + 180);
+      const sagX = W - sagPay;
+      const H = 100 + Math.max(sol.tasma, sag.tasma);
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} ${H.toFixed(0)}" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node term-diagram-node--dashed" cx="${solX.toFixed(0)}" cy="50" r="26"/>
+        ${sol.metin(solX, 50, 26)}
+        ${isikCizgisi(solX + 30, 50, sagX - 30, 50, "oneway")}
+        <circle class="term-diagram-node term-diagram-node--accent" cx="${sagX.toFixed(0)}" cy="50" r="26"/>
+        ${sag.metin(sagX, 50, 26)}
       </svg>
-    `,
+    `;
+    },
     reins: (d) => `
       <svg class="term-diagram__svg" viewBox="0 0 300 200" role="img" aria-label="${tt(d.note)}">
         <circle class="term-diagram-node term-diagram-node--accent" cx="150" cy="42" r="32"/>
@@ -420,34 +493,49 @@
         <text class="term-diagram-note" x="255" y="145" text-anchor="middle">${tt(d.absentCaption)}</text>
       </svg>
     `,
+    // Harf dizisi. Aralık 2026-08-28'de içerikten hesaplanır oldu: sabit
+    // 400/(n-1) aralıkta "Görünür âlem (gizli)" gibi uzun anlamlar hem
+    // komşusuna hem de kutunun dışına taşıyordu (ölçüldü).
     "letter-sequence": (d) => {
       const n = d.letters.length;
-      const gap = 400 / (n - 1);
+      const anlamlar = d.letters.map((it) => tt(it.anlam));
+      const enGenis = Math.max.apply(null, anlamlar.map((s) => s.length * 7.0));
+      const gap = Math.max(96, enGenis + 10);
+      const kenar = enGenis / 2 + 10;
+      const W = kenar * 2 + gap * (n - 1);
       const items = d.letters.map((it, i) => {
-        const x = 20 + i * gap;
+        const x = kenar + i * gap;
         const nodeClass = it.hidden ? "term-diagram-node--dashed" : i === 0 ? "term-diagram-node--accent" : "term-diagram-node";
         return `
-          <circle class="term-diagram-node ${nodeClass}" cx="${x}" cy="50" r="21"/>
-          <text class="term-diagram-label" x="${x}" y="55" text-anchor="middle">${tt(it.harf)}</text>
-          <text class="term-diagram-label--small" x="${x}" y="93" text-anchor="middle">${tt(it.anlam)}</text>
+          <circle class="term-diagram-node ${nodeClass}" cx="${x.toFixed(0)}" cy="50" r="21"/>
+          <text class="term-diagram-label" x="${x.toFixed(0)}" y="55" text-anchor="middle">${tt(it.harf)}</text>
+          <text class="term-diagram-label--small" x="${x.toFixed(0)}" y="93" text-anchor="middle">${anlamlar[i]}</text>
         `;
       }).join("");
       return `
-      <svg class="term-diagram__svg" viewBox="0 0 440 115" role="img" aria-label="${tt(d.note)}">
+      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} 115" role="img" aria-label="${tt(d.note)}">
         ${items}
       </svg>
     `;
     },
-    "tinted-glass": (d) => `
-      <svg class="term-diagram__svg" viewBox="0 0 340 130" role="img" aria-label="${tt(d.note)}">
-        ${isikCizgisi(20, 65, 150, 65, "oneway")}
-        <rect class="term-diagram-node--dashed" x="150" y="25" width="24" height="80" fill="none"/>
-        ${isikCizgisi(174, 65, 315, 65, "oneway")}
-        <text class="term-diagram-label--small" x="162" y="18" text-anchor="middle">${tt(d.glassLabel)}</text>
-        <text class="term-diagram-note" x="85" y="45" text-anchor="middle">${tt(d.reasonReading)}</text>
-        <text class="term-diagram-note--accent" x="245" y="45" text-anchor="middle">${tt(d.senseReading)}</text>
+    // Kutu 2026-08-28'de genişletildi: iki okuma metni 340 birimlik
+    // kutuda iki kenardan birden taşıyordu (tarayıcıda ölçüldü).
+    "tinted-glass": (d) => {
+      const sol = tt(d.reasonReading), sag = tt(d.senseReading);
+      const yari = Math.max(sol.length, sag.length) * 3.1 + 12;
+      const W = Math.max(360, yari * 4);
+      const cam = W / 2;
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 ${W.toFixed(0)} 130" role="img" aria-label="${tt(d.note)}">
+        ${isikCizgisi(20, 65, cam - 12, 65, "oneway")}
+        <rect class="term-diagram-node--dashed" x="${(cam - 12).toFixed(0)}" y="25" width="24" height="80" style="fill:none"/>
+        ${isikCizgisi(cam + 12, 65, W - 22, 65, "oneway")}
+        <text class="term-diagram-label--small" x="${cam.toFixed(0)}" y="18" text-anchor="middle">${tt(d.glassLabel)}</text>
+        <text class="term-diagram-note" x="${(cam / 2).toFixed(0)}" y="45" text-anchor="middle">${sol}</text>
+        <text class="term-diagram-note--accent" x="${(cam + cam / 2).toFixed(0)}" y="45" text-anchor="middle">${sag}</text>
       </svg>
-    `,
+    `;
+    },
     "heart-visitors": (d) => {
       const cx = 170, cy = 170, hostR = 34, satR = 26, orbit = 112;
       const n = d.visitors.length;
@@ -471,6 +559,163 @@
       </svg>
     `;
     },
+
+    // Berzah: ikisinden de pay alan, ikisine de indirgenemeyen ara bölge.
+    // İki yarı saydam alan ve ortadaki MERCEK. Keskin bir sınır çizgisi
+    // yok, çünkü berzah bir sınır değil, iki tarafın birlikte bulunduğu
+    // bir yer -- GORSEL_DIL'in "perde keskin halka değil, yarı saydam
+    // katman" kuralı burada da geçerli. (Eşmerkezli değil, kesişen: yasak
+    // olan iç içe halkalar, örtüşen alanlar değil.)
+    "berzah-ara-bolge": (d) => {
+      // r=72, merkezler 122/218 -> kesişim noktaları x=170, y=80±53.67.
+      const mercek = "M 170 26.33 A 72 72 0 0 1 170 133.67 A 72 72 0 0 1 170 26.33 Z";
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 340 180" role="img" aria-label="${tt(d.note)}">
+        <circle class="term-diagram-node--venn" cx="122" cy="80" r="72"/>
+        <circle class="term-diagram-node--venn" cx="218" cy="80" r="72"/>
+        <path class="term-diagram-node--venn" d="${mercek}"/>
+        <text class="term-diagram-label--small" x="66" y="84" text-anchor="middle">${tt(d.left)}</text>
+        <text class="term-diagram-label--small" x="274" y="84" text-anchor="middle">${tt(d.right)}</text>
+        <text class="term-diagram-label term-diagram-label--small" x="170" y="84" text-anchor="middle">${tt(d.middle)}</text>
+        <text class="term-diagram-note--accent" x="170" y="170" text-anchor="middle">${tt(d.caption)}</text>
+      </svg>
+    `;
+    },
+
+    // Mertebeler bir merdiven değil, merkezden açılan bir sarmal üzerinde
+    // -- Ontoloji'nin 2B düzeniyle aynı biçim, aynı sebeple (CLAUDE.md,
+    // "Sarmal -- üçüncü boyut" ve "daire ve merkez"). Merkezdeki mertebe
+    // (Gayb-ı Mutlak / Zât) PARLAK BİR CİSİM DEĞİL, kesik çizgili bir
+    // yokluk: en gizli sıfatı gizliliği (GORSEL_DIL yasağı).
+    "sarmal-mertebe": (d) => {
+      const n = d.ranks.length;
+      const adim = 360 / Math.max(n, 1);
+      // İlk halka merkezden BELİRGİN uzakta başlar: doğrusal bir yarıçap
+      // (r = kMax*i/(n-1)) ikinci mertebeyi merkezdeki dairenin üstüne
+      // bindiriyordu (15+11=26 birim yarıçap, 27.5 birim uzaklık).
+      const R0 = 56, R1 = 138;
+      const yaricap = (i) => (i === 0 ? 0 : R0 + ((R1 - R0) * (i - 1)) / Math.max(n - 2, 1));
+      const aci = (t) => ((-90 + adim * t) * Math.PI) / 180;
+      const nokta = (t) => {
+        const a = aci(t), r = yaricap(t);
+        return { x: r * Math.cos(a), y: r * Math.sin(a), a: a };
+      };
+      // Sürekli iplik: düğümlerin üstünde durduğu eğrinin ta kendisi.
+      const orgu = [];
+      for (let j = 0; j <= (n - 1) * 16; j += 1) {
+        const p = nokta(j / 16);
+        orgu.push([p.x, p.y]);
+      }
+      // Kutu içerikten hesaplanıyor: TR/EN/PT etiketleri farklı uzunlukta,
+      // sabit bir viewBox birinde taşıyor ötekinde boş kalıyordu.
+      const parca = d.ranks.map((it, i) => {
+        const p = nokta(i);
+        const yazi = tt(it);
+        // Merkezdeki mertebenin "dışarısı" yok; adı SOLA yazılıyor, çünkü
+        // sarmal merkezden yukarı-sağa doğru çıkıyor -- altına yazınca
+        // yazı ipliğin altında kalıyordu (ölçüldü).
+        const yan = i === 0 || Math.abs(Math.cos(p.a)) >= 0.3;
+        const yon = i === 0 ? -1 : Math.sign(Math.cos(p.a));
+        const anchor = !yan ? "middle" : (yon > 0 ? "start" : "end");
+        const lx = yan ? p.x + yon * 26 : p.x;
+        const ly = yan ? p.y + 4 : p.y + (Math.sin(p.a) >= 0 ? 28 : -18);
+        // 7.0 birim/karakter: tarayıcıda ölçüldü (14.5px, 600 ağırlık ->
+        // 6.3-6.8 birim/karakter) + 3px'lik konturun payı.
+        const gen = yazi.length * 7.0;
+        const x0 = anchor === "start" ? lx : anchor === "end" ? lx - gen : lx - gen / 2;
+        return { p: p, i: i, yazi: yazi, lx: lx, ly: ly, anchor: anchor, x0: x0, x1: x0 + gen };
+      });
+      let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+      orgu.forEach(([x, y]) => {
+        minX = Math.min(minX, x - 14); maxX = Math.max(maxX, x + 14);
+        minY = Math.min(minY, y - 14); maxY = Math.max(maxY, y + 14);
+      });
+      parca.forEach((s) => {
+        minX = Math.min(minX, s.x0); maxX = Math.max(maxX, s.x1);
+        minY = Math.min(minY, s.ly - 12); maxY = Math.max(maxY, s.ly + 6);
+      });
+      const altYazi = tt(d.caption);
+      const altYari = (altYazi.length * 6.2) / 2;
+      const orta = (minX + maxX) / 2;
+      minX = Math.min(minX, orta - altYari); maxX = Math.max(maxX, orta + altYari);
+      const pay = 10;
+      const vbX = minX - pay, vbY = minY - pay;
+      const vbW = maxX - minX + pay * 2, vbH = maxY - minY + pay * 2 + 26;
+      const dugumler = parca.map((s) => `
+          <circle class="term-diagram-node ${s.i === 0 ? "term-diagram-node--dashed" : "term-diagram-node"}"
+                  cx="${s.p.x.toFixed(1)}" cy="${s.p.y.toFixed(1)}" r="${s.i === 0 ? 15 : 11}"/>
+          <text class="term-diagram-label--small" x="${s.lx.toFixed(1)}" y="${s.ly.toFixed(1)}" text-anchor="${s.anchor}">${s.yazi}</text>
+        `).join("");
+      return `
+      <svg class="term-diagram__svg" viewBox="${vbX.toFixed(1)} ${vbY.toFixed(1)} ${vbW.toFixed(1)} ${vbH.toFixed(1)}" role="img" aria-label="${tt(d.note)}">
+        <polyline class="term-diagram-tether" fill="none" points="${orgu.map(([x, y]) => x.toFixed(1) + "," + y.toFixed(1)).join(" ")}"/>
+        ${dugumler}
+        <text class="term-diagram-note" x="${orta.toFixed(1)}" y="${(vbY + vbH - 8).toFixed(1)}" text-anchor="middle">${altYazi}</text>
+      </svg>
+    `;
+    },
+
+    // İki rahmet. İç içe iki daire ÇİZMİYORUZ (yasak) -- ayrım kapsamda
+    // değil, işaretlemede: aynı ışık hepsinin üstünde (İmtinân, fark
+    // gözetmez), bir kısmı ayrıca işaretlenmiş (Vücûb, seçer). Yani
+    // ikincisi birincisini daraltmıyor, onun üstüne bir şey ekliyor.
+    "kapsayan-secen": (d) => {
+      const kolon = 7, satir = 3;
+      const secili = new Set(d.selected || [3, 9, 12, 16]);
+      let hucre = "";
+      for (let s = 0; s < satir; s += 1) {
+        for (let k = 0; k < kolon; k += 1) {
+          const i = s * kolon + k;
+          const x = 80 + k * 50, y = 52 + s * 42;
+          hucre += `<circle class="term-diagram-node term-diagram-node--sm" cx="${x}" cy="${y}" r="9"/>`;
+          if (secili.has(i)) {
+            // fill style= ile veriliyor, öznitelikle DEĞİL: sınıfın CSS
+            // dolgusu (--accent) bir sunum özniteliğini yener, halka içi
+            // dolu çıkıp altındaki noktayı örtüyordu -- o zaman çizim
+            // "işaretlenmiş olanlar" değil "başka bir şey" diyordu.
+            hucre += `<circle class="term-diagram-node--accent" cx="${x}" cy="${y}" r="15" style="fill:none"/>`;
+          }
+        }
+      }
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 460 216" role="img" aria-label="${tt(d.note)}">
+        ${isikCizgisi(20, 24, 440, 24, "mutual")}
+        <text class="term-diagram-note" x="230" y="16" text-anchor="middle">${tt(d.allLabel)}</text>
+        ${hucre}
+        <text class="term-diagram-note--accent" x="230" y="192" text-anchor="middle">${tt(d.someLabel)}</text>
+        <text class="term-diagram-note" x="230" y="209" text-anchor="middle">${tt(d.caption)}</text>
+      </svg>
+    `;
+    },
+
+    // Aynı dizi, iki yönde okunuyor: bir ölçüt en üste koyduğunu öbürü en
+    // alta koyuyor. Tek bir halka, iki sayı dizisi -- iki ayrı çizim değil,
+    // çünkü söylenen şey "iki ayrı sıralama" değil, "aynı sıralamanın iki
+    // ucundan okunması".
+    "cift-okunus": (d) => {
+      const cx = 250, cy = 150, R = 96, n = d.stations.length;
+      const items = d.stations.map((st, i) => {
+        const a = ((-90 + (360 / n) * i) * Math.PI) / 180;
+        const x = cx + R * Math.cos(a), y = cy + R * Math.sin(a);
+        const ix = cx + (R - 30) * Math.cos(a), iy = cy + (R - 30) * Math.sin(a);
+        const ox = cx + (R + 30) * Math.cos(a), oy = cy + (R + 30) * Math.sin(a);
+        const anchor = Math.abs(Math.cos(a)) < 0.3 ? "middle" : (Math.cos(a) > 0 ? "start" : "end");
+        return `
+          <circle class="term-diagram-node" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11"/>
+          <text class="term-diagram-label--small" x="${ox.toFixed(1)}" y="${(oy + 4).toFixed(1)}" text-anchor="${anchor}">${tt(st)}</text>
+          <text class="term-diagram-note--accent" x="${ix.toFixed(1)}" y="${(iy + 4).toFixed(1)}" text-anchor="middle">${i + 1}</text>
+          <text class="term-diagram-note" x="${ix.toFixed(1)}" y="${(iy + 18).toFixed(1)}" text-anchor="middle">${n - i}</text>
+        `;
+      }).join("");
+      return `
+      <svg class="term-diagram__svg" viewBox="0 0 500 330" role="img" aria-label="${tt(d.note)}">
+        ${items}
+        <text class="term-diagram-note--accent" x="${cx}" y="${cy - 4}" text-anchor="middle">${tt(d.readingA)}</text>
+        <text class="term-diagram-note" x="${cx}" y="${cy + 12}" text-anchor="middle">${tt(d.readingB)}</text>
+        <text class="term-diagram-note" x="${cx}" y="320" text-anchor="middle">${tt(d.caption)}</text>
+      </svg>
+    `;
+    },
   };
 
   const DIAGRAM_DEFS = `
@@ -486,30 +731,51 @@
 
   let currentDiagrams = [];
 
-  // Bir terimin grubunun çizimi varsa, terim detayının içine (Benzetme'den
-  // hemen sonra) gömülü olarak gösteriyoruz -- ayrı bir tıklama gerekmeden,
+  // Bir terimin çizimi varsa, terim detayının içine (Benzetme'den hemen
+  // sonra) gömülü olarak gösteriyoruz -- ayrı bir tıklama gerekmeden,
   // terime bakan herkes çizimi de görsün diye. Tıklanınca büyütme (lightbox)
   // aynı şekilde çalışıyor.
-  function groupDiagramHtml(group) {
-    const diagrams = group && group.diagram;
-    if (!diagrams || !diagrams.length) return "";
-    currentDiagrams = diagrams;
-    const cards = diagrams
-      .map((dg, i) => {
-        const renderer = diagramRenderers[dg.type];
-        if (!renderer) return "";
-        return `<div class="term-diagram-card">
-          <div class="term-diagram-svg-wrap" data-diagram-index="${i}" role="button" tabindex="0"
-               aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${renderer(dg)}</div>
-          <p class="term-diagram-caption">${tt(dg.note)}</p>
-        </div>`;
-      })
-      .join("");
-    return `
-      <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Grup Çizimi", en: "Group Diagram", pt: "Diagrama do Grupo" })}</p>
-      ${DIAGRAM_DEFS}
-      <div class="term-diagram-row term-diagram-row--panel">${cards}</div>
-    `;
+  //
+  // 2026-08-28: çizimler grubun altında duruyor ama 31'inin 23'ü kendi
+  // `termId`siyle HANGİ terime ait olduğunu söylüyordu -- ve bu alanı kod
+  // hiç okumuyordu. Sonuç: 19 terimlik kurani-kozmoloji grubunda "berzah"a
+  // bakan biri, Arş/Kürsî basamaklarını ve yeşil camı kendi teriminin
+  // çizimi sanıyordu. Artık ayrım yapılıyor:
+  //   * termId bu terim ise    -> "Çizim" (terimin kendisinin)
+  //   * termId hiç yoksa       -> "Grup Çizimi" (gruba ait, herkese)
+  //   * termId BAŞKA terim ise -> gösterilmiyor; o çizim onun sayfasında,
+  //     oraya İlgili Kavramlar'dan geçiliyor.
+  function termDiagramHtml(group, term) {
+    const hepsi = (group && group.diagram) || [];
+    const kendi = hepsi.filter((dg) => dg.termId === term.id);
+    const grup = hepsi.filter((dg) => !dg.termId);
+    // Lightbox indisleri bu birleşik dizinin üstünden yürüyor.
+    currentDiagrams = kendi.concat(grup);
+    if (!currentDiagrams.length) return "";
+    function kartlar(liste, kaydir) {
+      return liste
+        .map((dg, i) => {
+          const renderer = diagramRenderers[dg.type];
+          if (!renderer) return "";
+          return `<div class="term-diagram-card">
+            <div class="term-diagram-svg-wrap" data-diagram-index="${i + kaydir}" role="button" tabindex="0"
+                 aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${renderer(dg)}</div>
+            <p class="term-diagram-caption">${tt(dg.note)}</p>
+          </div>`;
+        })
+        .join("");
+    }
+    function bolum(baslik, liste, kaydir) {
+      const html = kartlar(liste, kaydir);
+      if (!html.trim()) return "";
+      return `
+        <p class="detail-eyebrow detail-eyebrow--section">${tt(baslik)}</p>
+        <div class="term-diagram-row term-diagram-row--panel">${html}</div>
+      `;
+    }
+    return DIAGRAM_DEFS
+      + bolum({ tr: "Çizim", en: "Diagram", pt: "Diagrama" }, kendi, 0)
+      + bolum({ tr: "Grup Çizimi", en: "Group Diagram", pt: "Diagrama do Grupo" }, grup, kendi.length);
   }
 
   // --- Büyütme (lightbox) ---
@@ -520,7 +786,7 @@
     if (!renderer) return;
     window.dostTrack && window.dostTrack("sema_acildi", { type: dg.type });
     // DIAGRAM_DEFS burada tekrar eklenmiyor: bu çizim zaten açık olan detay
-    // panelinin (groupDiagramHtml) kendi kopyası DOM'da duruyor ve url(#...)
+    // panelinin (termDiagramHtml) kendi kopyası DOM'da duruyor ve url(#...)
     // referansı belge genelinde çözüldüğü için o yeterli -- cizimler.js'teki
     // aynı düzeltmeyle tutarlı (UI denetimi bulgusu, iki modülde de vardı).
     window.DostLightbox.open({
@@ -1159,7 +1425,7 @@
       </div>
       ${ceviriKaybiHtml(t.id)}
       ${analogyHtml(t)}
-      ${groupDiagramHtml(group)}
+      ${termDiagramHtml(group, t)}
       ${kaynaklarHtml(t.kaynaklar, t.id)}
       ${celisenYorumlarHtml(t)}
       ${relatedTermsHtml(t)}

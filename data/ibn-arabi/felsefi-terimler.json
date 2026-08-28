@@ -175,6 +175,36 @@
             "en": "Everything created stands at the contingent end; only God's existence is necessary.",
             "pt": "Tudo o que é criado está na extremidade contingente; apenas a existência de Deus é necessária."
           }
+        },
+        {
+          "type": "cift-okunus",
+          "termId": "tepetaklak-hiyerarsi",
+          "stations": [
+            { "tr": "İnsan (Akıl)", "en": "The human (Reason)", "pt": "O humano (Razão)" },
+            { "tr": "Hayvan", "en": "Animal", "pt": "Animal" },
+            { "tr": "Bitki", "en": "Plant", "pt": "Planta" },
+            { "tr": "Cansız", "en": "Inanimate", "pt": "Inanimado" }
+          ],
+          "readingA": {
+            "tr": "cem'iyyet sırası",
+            "en": "by comprehensiveness",
+            "pt": "por abrangência"
+          },
+          "readingB": {
+            "tr": "kulluk sırası",
+            "en": "by servanthood",
+            "pt": "por servidão"
+          },
+          "caption": {
+            "tr": "aynı dizi, iki ölçüt, taban tabana zıt iki sıra",
+            "en": "one sequence, two criteria, two exactly opposed orders",
+            "pt": "uma sequência, dois critérios, duas ordens exatamente opostas"
+          },
+          "note": {
+            "tr": "Iki ayrı çizim yapmadık: söylenen şey \"iki ayrı sıralama\" değil, AYNI sıralamanın iki ucundan okunması. Cem'iyyet ölçütüyle en üstte olan (insan), kulluk ölçütüyle en altta -- çünkü insana has olan Akıl, metne göre giderek kalınlaşan bir perde örüyor.",
+            "en": "We did not draw two separate diagrams: what is being said is not \"two different rankings\" but the SAME sequence read from its two ends. What stands highest by comprehensiveness (the human) stands lowest by servanthood -- because Reason, which is proper to the human, weaves (says the text) an ever-thickening veil.",
+            "pt": "Não desenhámos dois diagramas separados: o que se diz não são \"duas classificações diferentes\", mas a MESMA sequência lida a partir das suas duas extremidades. O que está mais alto pela abrangência (o humano) está mais baixo pela servidão -- porque a Razão, própria do humano, tece (diz o texto) um véu cada vez mais espesso."
+          }
         }
       ]
     },
@@ -219,6 +249,27 @@
             "tr": "İbn Arabî: Kalem yazar, Levha üzerine yazılan her şeyi taşır.",
             "en": "Ibn Arabi: the Pen writes, the Tablet carries all that is written upon it.",
             "pt": "Ibn Arabi: a Pena escreve, a Tábua carrega tudo o que é escrito nela."
+          }
+        },
+        {
+          "type": "sarmal-mertebe",
+          "termId": "hazerat-i-hamse",
+          "ranks": [
+            { "tr": "Zât / Gayb-ı Mutlak", "en": "The Essence / Absolute Unseen", "pt": "A Essência / Invisível Absoluto" },
+            { "tr": "Sıfatlar ve Esmâ", "en": "Attributes and Names", "pt": "Atributos e Nomes" },
+            { "tr": "Ef'âl (Rubûbiyyet)", "en": "Acts (Lordship)", "pt": "Atos (Senhorio)" },
+            { "tr": "Emsâl ve Hayâl", "en": "Likenesses and Imagination", "pt": "Semelhanças e Imaginação" },
+            { "tr": "Hisler ve Müşâhede", "en": "Senses and Witnessing", "pt": "Sentidos e Testemunho" }
+          ],
+          "caption": {
+            "tr": "beş hazret: merkezden dışa doğru bir iniş",
+            "en": "the five presences: a descent from the centre outward",
+            "pt": "as cinco presenças: uma descida do centro para fora"
+          },
+          "note": {
+            "tr": "Izutsu beşliyi düz bir çizelge olarak veriyor; biz onu merkezden açılan bir sarmal olarak çiziyoruz -- merdiven \"nereden nereye\" der ama \"neye göre\" demez; sarmalda yarıçap bunu söylüyor: merkezden uzaklık. Merkezdeki mertebe kesik çizgili, çünkü orada henüz hiçbir tecellî yok; onu parlak bir cisim gibi çizmek doktrinin tersini söylerdi.",
+            "en": "Izutsu gives the five as a plain table; we draw them as a spiral opening from the centre -- a ladder says \"from where to where\" but not \"measured by what\"; on a spiral the radius says it: distance from the centre. The level at the centre is drawn dashed, because no self-disclosure has yet occurred there; drawing it as a bright body would say the opposite of the doctrine.",
+            "pt": "Izutsu apresenta as cinco como uma tabela simples; nós desenhamo-las como uma espiral que se abre a partir do centro -- uma escada diz \"de onde para onde\", mas não \"medido por quê\"; numa espiral o raio di-lo: a distância ao centro. O nível no centro é tracejado, porque ali ainda não ocorreu nenhuma manifestação; desenhá-lo como um corpo brilhante diria o oposto da doutrina."
           }
         }
       ]
@@ -364,6 +415,7 @@
       "diagram": [
         {
           "type": "cascade",
+          "yon": "yukselis",
           "termId": "halvet-perdeleri",
           "steps": [
             {
@@ -717,6 +769,7 @@
         },
         {
           "type": "cascade",
+          "yon": "yukselis",
           "termId": "bes-menzil-dirilis",
           "steps": [
             {
@@ -1174,6 +1227,7 @@
       "diagram": [
         {
           "type": "cascade",
+          "yon": "yukselis",
           "steps": [
             {
               "tr": "Yedi Gök",
@@ -1228,6 +1282,60 @@
             "tr": "İbn Arabî'nin kendi analojisi: aynı ışık camdan geçerken rengini alır gibi görünür. Duyu da akıl da haklı -- ikisi de aynı ışığın farklı bir yüzüne bakıyor.",
             "en": "Ibn Arabi's own analogy: the same light seems to take on a color as it passes through glass. The senses and reason are both right -- each looks at a different face of the same light.",
             "pt": "A própria analogia de Ibn Arabi: a mesma luz parece assumir uma cor ao passar pelo vidro. Os sentidos e a razão têm ambos razão -- cada um olha para uma face diferente da mesma luz."
+          }
+        },
+        {
+          "type": "berzah-ara-bolge",
+          "termId": "berzah",
+          "left": {
+            "tr": "var",
+            "en": "existent",
+            "pt": "existente"
+          },
+          "right": {
+            "tr": "yok",
+            "en": "non-existent",
+            "pt": "não existente"
+          },
+          "middle": {
+            "tr": "berzah",
+            "en": "barzakh",
+            "pt": "barzakh"
+          },
+          "caption": {
+            "tr": "ikisinden de pay alır, ikisine de indirgenemez",
+            "en": "it shares in both and reduces to neither",
+            "pt": "participa de ambos e não se reduz a nenhum"
+          },
+          "note": {
+            "tr": "Berzah bir sınır çizgisi değil, iki tarafın birlikte bulunduğu yer -- bu yüzden keskin bir kenarla değil, örtüşen iki yarı saydam alanla çiziyoruz. Metnin verdiği örnek aynadaki suret: ona ne \"gerçek\" ne \"yok\" diyebiliyoruz.",
+            "en": "The barzakh is not a boundary line but the place where both sides are present at once -- which is why we draw it as two overlapping translucent fields rather than a sharp edge. The text's own example is the image in a mirror: we can call it neither \"real\" nor \"non-existent\".",
+            "pt": "O barzakh não é uma linha de fronteira, mas o lugar onde ambos os lados estão presentes ao mesmo tempo -- por isso o desenhamos como dois campos translúcidos sobrepostos, e não como uma borda nítida. O exemplo do próprio texto é a imagem no espelho: não podemos chamá-la nem de \"real\" nem de \"inexistente\"."
+          }
+        },
+        {
+          "type": "kapsayan-secen",
+          "termId": "iki-rahmet-imtinan-vucub",
+          "allLabel": {
+            "tr": "Rahmetü'l-İmtinân — fark gözetmeksizin hepsine",
+            "en": "Rahmat al-Imtinan — to all, without distinction",
+            "pt": "Rahmat al-Imtinan — a todos, sem distinção"
+          },
+          "someLabel": {
+            "tr": "Rahmetü'l-Vücûb — amele karşılık, seçerek",
+            "en": "Rahmat al-Wujub — in return for deeds, selectively",
+            "pt": "Rahmat al-Wujub — em troca de atos, seletivamente"
+          },
+          "caption": {
+            "tr": "ikincisi birinciyi daraltmıyor, üstüne ekleniyor",
+            "en": "the second does not narrow the first; it is added on top of it",
+            "pt": "a segunda não restringe a primeira; acrescenta-se a ela"
+          },
+          "selected": [3, 9, 12, 16],
+          "note": {
+            "tr": "Metin \"Rahîm, Rahmân'ın içinde\" diyor: ikinci rahmet birincinin özel bir hâli. İç içe iki daire çizmedik -- daire çizmek ikincisini birincinin bir PARÇASI gibi gösterirdi; oysa aynı ışık hepsinin üstünde, bir kısmı ayrıca işaretlenmiş.",
+            "en": "The text says \"al-Rahim is within al-Rahman\": the second mercy is a special mode of the first. We did not draw two nested circles -- a circle would show the second as a PART cut out of the first; whereas the same light falls on all of them, and some are additionally marked.",
+            "pt": "O texto diz \"al-Rahim está dentro de al-Rahman\": a segunda misericórdia é um modo especial da primeira. Não desenhámos dois círculos concêntricos -- um círculo mostraria a segunda como uma PARTE recortada da primeira; ao passo que a mesma luz cai sobre todos, e alguns são adicionalmente marcados."
           }
         }
       ]
