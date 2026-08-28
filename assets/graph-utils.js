@@ -446,7 +446,8 @@ window.DostGraphUtils = (function () {
       }
       return m;
     }
-    // items: {lbl (d3 seçimi), txt, x, y, baseY, priority?, scale?}
+    // items: {lbl (d3 seçimi), txt, x, y, baseY, priority?, scale?, dir?}
+    // dir (ops.): +1/varsayılan aşağı, -1 yukarı kaçar (bkz. aşağıdaki not).
     // priority yüksek olan önce yerleşir (kategoriler, dönüm noktaları).
     // scale (ops., varsayılan 1): etiketin kendi düğüm grubuna uygulanan
     // ek transform.scale(s) çarpanı (Ontoloji'nin 3B derinlik eğiminde
@@ -505,15 +506,24 @@ window.DostGraphUtils = (function () {
           // yakınsamaya dönüşüyordu (4000 iterasyonda 120px!); üç etiket
           // aynı satırda donmuş kalıyordu. Tek çakışma varken davranış
           // eskisiyle birebir aynı.
-          let enAlt = y;
+          // Kaçış yönü. Varsayılan AŞAĞI (bütün eski çağıranlar böyle
+          // davranıyordu ve davranmaya devam ediyor). it.dir === -1 ise
+          // YUKARI: etiketini düğümünün üstüne koyan bir sahne (Ontoloji,
+          // "dışa bakan taraf" kuralı) aşağı itildiğinde etiket kendi
+          // düğümünün öbür yanına geçip 200 pikselden uzağa düşüyordu --
+          // yani motorun tek yönlü kaçışı, çağıranın yerleştirme kararını
+          // sessizce geri alıyordu.
+          const yon = it.dir === -1 ? -1 : 1;
+          let hedef = y;
           for (const p of placed) {
             const dyGap = (it.h + p.h) / 2 + padY;
             if (Math.abs(y - p.y) < dyGap && Math.abs(it.x - p.x) < it.half + p.half + padX) {
-              if (p.y + dyGap > enAlt) enAlt = p.y + dyGap;
+              if (yon === 1) { if (p.y + dyGap > hedef) hedef = p.y + dyGap; }
+              else if (p.y - dyGap < hedef) hedef = p.y - dyGap;
               clash = true;
             }
           }
-          if (clash) y = enAlt;       // aşağı doğru kaydır
+          if (clash) y = hedef;
         }
         placed.push({ x: it.x, y, half: it.half, h: it.h });
         // Uygulanan y ATTR, düğümün kendi transform.scale(s)'ine tekrar

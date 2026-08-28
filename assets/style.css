@@ -7388,10 +7388,10 @@ body.cizim-lightbox-open {
    radyal ağaç düzenini yeniden kullanıp derinliği gerçek bir Z eksenine
    taşıyan, elle yaw/pitch + perspektif projeksiyonlu bir SVG sahnesi
    (bkz. assets/esma-3d.js). */
-/* Ontolojideki daire: sekiz kavramın üzerinde durduğu, Kalp'in tam
-   merkezinde olduğu elips. Düzen zaten böyleydi ama daire çizilmiyordu --
-   "dairenin noktası / dairenin çevresi" okumasından sonra görünür kılındı.
-   Çok soluk: bir zemin işareti, bir kenar değil. */
+/* Ontolojideki zemin çizgisi: mertebelerin üzerinde durduğu, merkezdeki
+   Zât'tan açılıp ona kapanan sarmal (2026-08-28'e kadar bir elipsti;
+   gerekçesi ontology.js'te RING'in üstünde). Çok soluk: bir zemin işareti,
+   bir kenar değil. */
 .onto-ring {
   fill: none;
   stroke: var(--gridline);

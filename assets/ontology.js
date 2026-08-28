@@ -163,6 +163,9 @@
     // olduğunu görür... insan-ı kâmil dairenin ÇEVRESİ olduğunu görür."
     // Yarıçaplar bilerek eşit uzunlukta: çevrenin her yeri merkeze aynı
     // uzaklıkta, yani hiçbir nokta O'na daha yakın değil.
+    // Merkezdeki etiket 2026-08-28'e kadar "Kalp"ti; cümlede noktayı gören
+    // de görülen de Hak, kalp ise bunun görüldüğü yer -- düzeltme ve
+    // gerekçesi verinin kendi `note` alanında yazılı, gizlenmiş değil.
     "point-circle": (d) => {
       const cx = 150, cy = 96, R = 78;
       const spokes = Array.from({ length: 12 }, (_, i) => {
@@ -366,81 +369,91 @@
   window.DostGraphUtils.setupLegendToggles();
   window.DostGraphUtils.setupDetailPanelFocus();
 
-  // Düzen: iniş yayı + çıkış yayı (kavs-i nüzûl / kavs-i urûc), merkezde kalp.
+  // Düzen: merkezde Zât, ondan açılıp ona kapanan tek bir sarmal.
   //
-  // Önceki düzen yukarıdan aşağıya düz bir merdivendi: Zât en üstte (y=0.09),
-  // kalp en altta (y=0.90). 2026-07-25'te kullanıcının isteğiyle bu görünümü
-  // Hâller Haritası'nda kullandığımız ölçütle -- "grafiğin ŞEKLİ ne iddia
-  // ediyor ve verimiz bunu doğruluyor mu?" -- gözden geçirdik ve iki
-  // uyuşmazlık bulduk:
+  // Düzenin geçmişi, çünkü bu tablo iki kez değişti ve ikisi de bir okumayı
+  // geri aldı:
   //
-  //  1) Verinin kendisi bunun bir DAİRE olduğunu söylüyor: insan-i-kamil ->
-  //     dhat kenarının notu "döngü buradan başladığı yere geri kapanır"
-  //     diyor. Ama şekil bir sütundu; kapanış oku, dibe inen listenin en
-  //     altından tepeye kadar geri uçmak zorundaydı. (Sitenin kurucu
-  //     ilkesi de bu: "O'ndan geldik, O'na gidiyoruz" -- bkz. CLAUDE.md.)
-  //  2) Daha ciddisi: kalp en ALTA, yani Zât'tan en UZAĞA çiziliyordu -- oysa
-  //     kalp->dhat kenarının kendi notu "hiçbir aracıya ihtiyaç duymadan
-  //     doğrudan Zât ile temas kurabilir... ağın en derin/en YAKIN noktası"
-  //     diyor. Şekil, metnin tam tersini söylüyordu: derinliği uzaklık gibi
-  //     gösteriyordu.
+  //  * En eski hâl yukarıdan aşağıya düz bir merdivendi (Zât y=0.09, kalp
+  //    y=0.90). 2026-07-25'te bırakıldı: veri bunun bir DAİRE olduğunu
+  //    söylüyordu (insan-i-kamil -> dhat kenarının notu "döngü buradan
+  //    başladığı yere geri kapanır") ama şekil bir sütundu; ayrıca kalp
+  //    Zât'tan en UZAĞA düşüyordu, oysa kendi kenarının notu onu "ağın en
+  //    YAKIN noktası" diye tarif ediyor.
+  //  * Onun yerine gelen hâlde sekiz mertebe bir çemberin üstündeydi ve
+  //    MERKEZDE KALP duruyordu. Gerekçesi Cilt XIII'ten bir cümleydi: "Hak
+  //    kulunun kalbinde kendisine nazar eder ve dairenin noktası olduğunu
+  //    görür."
   //
-  // Yeni düzen: Zât tepede; iniş yayı sağdan aşağı (Sıfat/Esmâ -> A'yân ->
-  // Tecellî -> üç âlem), en yoğun nokta dipte; çıkış yayı soldan yukarı
-  // (İnsan-ı Kâmil -> Zât). Kalp ise MERKEZDE: böylece Zât'a giden çizgisi
-  // diyagramdaki en kısa çizgi, yani bir yarıçap oluyor. Bu bizim okumamız:
-  // kalp merdivenin son basamağı değil, dairenin merkezi.
+  // 2026-08-28, kullanıcının kararı: merkez Zât. Cümleyi bir daha okuduk ve
+  // kendi eski okumamızın onu kaydırdığını görüyoruz -- orada dairenin
+  // noktası olduğunu gören de, görülen de HAK; kalp, bunun görüldüğü yer.
+  // Cilt I'de aynı imge doğrudan söyleniyor: "Noktadan -dairenin merkezinde
+  // bulunur- çevreye doğru uzayan çizgiler çevrenin her bir parçası için
+  // eşit şekilde ortaya çıktığı gibi, Hakkın bütün yaratılmışlara nispeti de
+  // aynı nispettir." (c1k11) Merkezdeki nokta Hak; biz onun yerine kalbi
+  // koymuşuz. Kalp merkezin kendisi değil, ona en yakın duran şey -- yeni
+  // tabloda k=0.30 ile, yani diyagramın en kısa yarıçapıyla.
   //
-  // 2026-08-28 -- iki ölçülmüş kusur ve düzeni kutupsal yazmanın gerekçesi:
+  // Merkez Zât olunca YARIÇAP bir anlam kazanıyor: Zât'tan uzaklık. Böylece
+  // iniş artık bir yay değil, dışa açılan bir sarmal (Sıfat/Esmâ -> A'yân ->
+  // Tecellî -> üç âlem; en dışta Âlem-i Ecsâm, yani en çok kesret) ve dönüş
+  // içe kapanan bir sarmal (İnsan-ı Kâmil -> Kalp -> Zât). Sarmal 360°'yi
+  // tamamlayıp başladığı yöne dönüyor: "O'ndan geldik, O'na gidiyoruz"
+  // (CLAUDE.md) tek bir kapalı çizgi olarak. Bir halka ile bir sarmal
+  // arasında sarmalı tercih ediyoruz diye zaten yazılı (CLAUDE.md, "Sarmal
+  // -- üçüncü boyut"); 2B görünüm de artık onu söylüyor.
   //
-  //  1) Tablo DOKUZ düğüm için yazılmıştı; veride ON BEŞ düğüm var. Sonradan
-  //     eklenen altısı (Kazâ-Kader, Perde, Teceddüd, Velî, Halîfe, Bilinen-
-  //     Bilinmeyen) tabloda karşılık bulamayınca hepsi aynı yedek konuma --
-  //     (0.5, 0.5), yani tam Kalp'in üstüne -- düşüyordu. Çarpışma kuvveti
-  //     bu yığını açmak için bütün düzeni dağıtıyordu: tarayıcıda ölçüldü,
-  //     düğümler tuvalin yalnız %33'ünü kaplıyordu, Kalp merkezde DEĞİLDİ
-  //     ve etiketler adlandırdıkları düğümden 100-200 piksel uzağa
-  //     itilmişti. Yani "daire ve merkez" okuması yazılıydı ama çizilmiyordu.
-  //     (Dördüncü ilke, CLAUDE.md: graf büyür; büyüdüğünde onu okuyan
-  //     düzenin de büyümesi gerekir. Aşağıdaki uyarı bu sessizliğin bir daha
-  //     olmaması için.)
+  // Görsel gramer uyarısı: merkezdeki Zât PARLAK BİR CİSİM değil -- dolgusu
+  // beyaz ama kendi rengi yok, yalnız hâlesiyle biliniyor (bkz.
+  // graph-utils.js ZAT_FILL'in üstündeki not; bu kullanıcının 2026-08-06
+  // kararı).
   //
-  //  2) Eski tablo kesirleri width/height ile AYRI AYRI çarpıyordu; daire
-  //     ekranda ezilmiş bir elipse dönüşüyordu (1342x778'de 455x280). Halka
-  //     artık tek bir yarıçapla, yani gerçekten DAİRE olarak kuruluyor;
-  //     manzara oranındaki tuvalin yanlarda kalan boşluğu ise dalların ve
-  //     uzun etiketlerin yeri oluyor.
+  // Ayrıca korunan iki ölçülmüş düzeltme (2026-08-28, aynı gün):
+  //  1) Tablo DOKUZ düğüm için yazılmıştı, veride ON BEŞ düğüm var; eksik
+  //     altısı sessizce merkeze yığılıyor, çarpışma kuvveti de bütün düzeni
+  //     dağıtıyordu (düğümler tuvalin %33'ünü kaplıyordu). Aşağıdaki uyarı
+  //     bunun bir daha sessiz olmaması için.
+  //  2) Kesirler width/height ile AYRI AYRI çarpılıyor, daire ezik bir
+  //     elipse dönüşüyordu. Yarıçap tek: gerçekten daire.
   //
-  // Kutupsal yazım eski tablonun aynısını verir (dhat -90°, sifat-asma -40°,
-  // ayan-sabite 5°, tecelli 45° ... hepsi eski kesirlere kadar örtüşüyor);
-  // değişen tek şey, açının artık gizli değil görünür olması.
-  //
-  // Biçim: [açı°, k] -- k=1 çemberin üstü, k>1 dışarısı, k=0 merkez.
+  // Biçim: [açı°, k] -- k = Zât'tan uzaklık (0 = merkez). -90° tepe, açı
+  // saat yönünde artar.
   const RING = {
-    // Mertebeler ÇEMBERİN ÜSTÜNDE: iniş yayı (-90° tepeden saat yönünde),
-    // dip en yoğun bölge, çıkış yayı soldan yukarı.
-    "dhat":               [ -90, 1],     // tepe
-    "sifat-asma":         [ -40, 1],     // iniş yayı
-    "ayan-sabite":        [   5, 1],
-    "tecelli":            [  45, 1],
-    "alem-ervah":         [  80, 1],     // dip
-    "alem-misal":         [ 105, 1],
-    "alem-ecsam":         [ 130, 1],
-    "insan-i-kamil":      [ 180, 1],     // çıkış yayı
-    "kalp":               [   0, 0],     // MERKEZ
-    // Dallar bir mertebe DEĞİL, bir mertebenin açılımıdır -- çemberin
-    // dışında, anasının ışınına yakın duruyorlar. Görsel gramerin
-    // "uzaklık = kesret" karşılığı: çember mertebeleri sayar, dışarısı
-    // onların çoğalmasını gösterir. İçeri (Kalp'e doğru) konmadılar:
-    // "derinlik = hakikate yaklaşma" olduğu için Perde'yi merkeze
-    // yaklaştırmak gramerin tersini söylerdi.
-    "kaza-kader":         [ -20, 1.50],  // A'yân'ın dışa dönük yüzü
-    "perde":              [  20, 1.50],  // Tecellî'den
-    "teceddud":           [  38, 1.74],  // Perde'den, bir adım daha dışarı
-    "halife":             [ 192, 1.45],  // İnsan-ı Kâmil'den yelpaze
-    "veli":               [ 168, 1.45],
-    "bilinen-bilinmeyen": [ 150, 1.64],  // Velî'den
+    // İNİŞ: merkezden dışa, saat yönünde. k her adımda büyüyor.
+    "dhat":               [ -90, 0    ],  // MERKEZ
+    "sifat-asma":         [ -60, 0.44 ],
+    "ayan-sabite":        [  -5, 0.66 ],
+    "tecelli":            [  45, 0.86 ],
+    "alem-ervah":         [  88, 1.00 ],
+    "alem-misal":         [ 120, 1.06 ],
+    "alem-ecsam":         [ 152, 1.12 ],  // en dışta: en çok kesret
+    // DÖNÜŞ: aynı yönde dönmeye devam ederken içeri kapanıyor.
+    "insan-i-kamil":      [ 205, 0.80 ],
+    "kalp":               [ 250, 0.30 ],  // merkeze en yakın (sabit, aşağıya bkz.)
+    // Dallar bir mertebe DEĞİL, bir mertebenin açılımıdır: anasının
+    // ışınına yakın, ondan bir adım DAHA UZAKTA. Yarıçap artık Zât'tan
+    // uzaklık olduğu için bu doğrudan görsel gramerin karşılığı
+    // ("uzaklık = kesret", "derinlik = hakikate yaklaşma").
+    "kaza-kader":         [ -25, 1.05 ],  // A'yân'ın dışa dönük yüzü
+    "perde":              [  55, 1.30 ],  // Tecellî'den
+    "teceddud":           [  70, 1.50 ],  // Perde'den, bir adım daha dışarı
+    "halife":             [ 190, 1.22 ],  // İnsan-ı Kâmil'den yelpaze
+    "veli":               [ 216, 1.28 ],
+    "bilinen-bilinmeyen": [ 228, 1.55 ],  // Velî'den
   };
+
+  // Sarmalın 2B'de çizilen ipliği: yukarıdaki tablonun ta kendisi, yalnız
+  // düğüm başına değil sürekli olarak. Merkezden çıkar (r=0), bir tur döner,
+  // merkeze döner (r=0). Ayrı bir formül yazmıyoruz ki iplik ile düğümler
+  // zamanla birbirinden ayrı düşmesin.
+  const SARMAL_YOL = [
+    [ -90, 0    ],  // Zât'tan
+    [ -60, 0.44 ], [  -5, 0.66 ], [  45, 0.86 ],
+    [  88, 1.00 ], [ 120, 1.06 ], [ 152, 1.12 ],
+    [ 205, 0.80 ], [ 250, 0.30 ],
+    [ 270, 0    ],  // Zât'a (-90° + 360°: aynı yön, tamamlanmış tur)
+  ];
 
   // /hakkinda'daki statik şemalar (şu an "Üç Sefer") de sitenin geri
   // kalanındaki çizimler gibi tıklanıp büyütülebilsin: aynı paylaşılan
@@ -1533,17 +1546,26 @@
       n.ty = ringCy + ringR * t[1] * Math.sin(a);
       n.x = n.tx;
       n.y = n.ty;
-      // Kalp dairenin NOKTASI: kuvvet simülasyonunun onu birkaç piksel
+      // Zât dairenin NOKTASI: kuvvet simülasyonunun onu birkaç piksel
       // kaydırması bile iddiayı yaklaşık hâle getiriyordu. Tam merkeze
-      // sabitliyoruz ki "her yeri merkeze aynı uzaklıkta" doğru olsun.
-      if (n.id === "kalp") { n.fx = n.tx; n.fy = n.ty; }
+      // sabitliyoruz ki "çevrenin her parçasına aynı nispet" doğru olsun.
+      // (Sabit olan düğüm 2026-08-28'e kadar Kalp'ti; gerekçe RING'in
+      // üstündeki notta.)
+      // Kalp de sabit, ama başka bir sebeple: "merkeze en yakın olan"
+      // bir iddia ve serbest bırakıldığında doğru çıkmıyordu. Ölçüldü
+      // (1342x820, 2B, recenter sonrası): Kalp Zât'tan 107 px, Sıfat/Esmâ
+      // 106 px -- yani merkezdeki büyük düğümün itmesi Kalp'i dışarı
+      // atıyor, iddia tam tersine dönüyordu. Sabitlenince tabloda yazan
+      // sıra ekranda da geçerli.
+      if (n.id === "dhat" || n.id === "kalp") { n.fx = n.tx; n.fy = n.ty; }
     });
 
     // ------------------------------------------------------------------
     // Mertebe ekseni (3B). Bu görünümün 2B hâli zaten "daire ve merkez"i
-    // söylüyor: sekiz kavram bir elipsin üzerinde, Kalp tam ortada -- Cilt
-    // XIII'te okuduğumuz "Hak kulunun kalbinde kendisine nazar eder ve
-    // dairenin noktası olduğunu görür" cümlesinin şekle dökülmüş hâli.
+    // söylüyor: Zât tam ortada, mertebeler ondan açılıp ona kapanan bir
+    // sarmalın üstünde -- Cilt I'de okuduğumuz "Noktadan -dairenin
+    // merkezinde bulunur- çevreye doğru uzayan çizgiler..." cümlesinin
+    // şekle dökülmüş hâli (bkz. RING'in üstündeki not).
     //
     // Ama veride ikinci bir iddia daha var ve 2B onu göstermiyor: her
     // düğümün bir `layer`ı (0-6) var, yani Zât'tan Kalp'e bir İNİŞ. 3B
@@ -1708,14 +1730,17 @@
         const half = Math.max(r, labelHalfWidth(n));
         minX = Math.min(minX, bx - half);
         maxX = Math.max(maxX, bx + half);
-        minY = Math.min(minY, by - r);
         // Aşağıdaki pay eskiden sabitti (r + 14 + 16), yani etiketin HEP
         // düğümün hemen altında durduğunu varsayıyordu. Çakışma çözücüsü
         // kalabalıkta etiketleri 100 pikselden fazla aşağı itebiliyor;
         // 2026-08-28'de ölçüldü, alttaki iki etiket ("Halîfe", "Allah
         // Katında Bilinen, Âlemde Bilinmeyen") çerçevenin altına taşıyordu.
-        // Artık etiketin gerçek konumu okunuyor.
-        maxY = Math.max(maxY, by + labelOffsetY(n) + 16);
+        // Artık etiketin gerçek konumu okunuyor -- ve o konum artık
+        // düğümün ÜSTÜ de olabildiği için (dışa bakan taraf kuralı) aynı
+        // ölçü yukarı taşma için de kullanılıyor.
+        const lo = labelOffsetY(n);
+        minY = Math.min(minY, by - r, by + lo - 16);
+        maxY = Math.max(maxY, by + r, by + lo + 16);
       });
       const bboxW = Math.max(maxX - minX, 1);
       const bboxH = Math.max(maxY - minY, 1);
@@ -1734,25 +1759,39 @@
     // yavaşça döner; etiketler ayrıca ters çevrilip dik ve yerinde tutulur.
     const spinGroup = zoomLayer.append("g").attr("class", "onto-spin");
 
-    // Dairenin kendisi. TARGET düzeni sekiz kavramı bir elipsin üzerine,
-    // Kalp'i tam merkezine koyuyordu -- ama daire yalnızca ima ediliyordu,
-    // çizilmiyordu. Cilt XIII'ün "dairenin noktası / dairenin çevresi"
-    // okumasından sonra onu görünür kılmamak eksiklik oldu. Yalnız 2B'de
-    // görünür: 3B'de düzlem yattığı için anlamını yitiriyor.
+    // 2B'nin zemin çizgisi. Düğümlerin üstünde durduğu şey artık bir çember
+    // değil, merkezden (Zât) açılıp merkeze kapanan bir SARMAL -- o yüzden
+    // çizilen de o. Önceki hâli bir elipsti; RING sarmala dönünce çember
+    // düğümlerin geçmediği bir yerden geçiyor, yani olmayan bir şeyi iddia
+    // ediyor olacaktı. Yalnız 2B'de görünür: 3B'de düzlem yattığı için
+    // anlamını yitiriyor (yerini helixLayer alıyor, aşağıda).
     const ringLayer = spinGroup.append("g").attr("class", "onto-ring-layer");
-    // Doğuş animasyonu (runBirth) halkayı da kademeli belirtir; animasyon
+    // Doğuş animasyonu (runBirth) sarmalı da kademeli belirtir; animasyon
     // dışında hep 1 (paintPositions her karede kullanıyor).
     let birthRing = 1;
-    // 2026-08-28: rx/ry ayrı kesirlerle yazılıydı ve ekranda ezik bir elips
-    // çiziyordu. Artık RING tablosunun kullandığı yarıçapın ta kendisi --
-    // yani çizilen şey, düğümlerin gerçekten üstünde durduğu daire.
+    // SARMAL_YOL'un ardışık iki noktası arasında kutupsal olarak
+    // aradeğerleme: açı ve yarıçap birlikte ilerlediği için parça parça
+    // Arşimet sarmalı çıkıyor ve eğri her düğümün TAM üstünden geçiyor.
+    function sarmalYolu() {
+      const ADIM = 24;
+      const pts = [];
+      for (let i = 0; i < SARMAL_YOL.length - 1; i += 1) {
+        const [a0, k0] = SARMAL_YOL[i];
+        const [a1, k1] = SARMAL_YOL[i + 1];
+        const son = i === SARMAL_YOL.length - 2 ? ADIM : ADIM - 1;
+        for (let j = 0; j <= son; j += 1) {
+          const t = j / ADIM;
+          const a = ((a0 + (a1 - a0) * t) * Math.PI) / 180;
+          const r = ringR * (k0 + (k1 - k0) * t);
+          pts.push([ringCx + r * Math.cos(a), ringCy + r * Math.sin(a)]);
+        }
+      }
+      return d3.line().curve(d3.curveCatmullRom.alpha(0.5))(pts);
+    }
     const ringEl = ringLayer
-      .append("ellipse")
+      .append("path")
       .attr("class", "onto-ring")
-      .attr("cx", ringCx)
-      .attr("cy", ringCy)
-      .attr("rx", ringR)
-      .attr("ry", ringR);
+      .attr("d", sarmalYolu());
 
     // Sarmalın kendi ipliği (2026-08-28). 2B'nin dairesi çiziliyordu ama
     // varsayılan olan 3B'nin sarmalı çizilmiyordu: düğümler bir sarmalın
@@ -1793,7 +1832,7 @@
     }
     function paintHelix() {
       if (tilt < 0.02) { helixLayer.style("opacity", 0); return; }
-      // 2B'nin halkası eğim arttıkça sönüyor (ringEl), iplik ise beliriyor:
+      // 2B'nin sarmalı eğim arttıkça sönüyor (ringEl), iplik ise beliriyor:
       // her görünümün kendi şekli var, ikisi aynı anda değil.
       helixLayer.style("opacity", tilt * birthRing * 0.85);
       let onceki = helixCurvePoint(0);
@@ -1980,16 +2019,38 @@
       // Düğüm yerinde kalır, yalnız yazı dikeyde yer açar; motor
       // graph-utils.js'te ortak (aynısı /hal/ ve /sorular/'da da çalışıyor).
       const pend = [];
+      // Etiket, düğümün merkezden DIŞA bakan tarafına yazılır -- sitenin
+      // başka sahnelerinde zaten böyle (sorular.js, helix.js). Bu sahnede
+      // etiket hep AŞAĞI iniyordu; merkez Zât olunca bu, merkeze yakın
+      // düğümlerin (özellikle Kalp'in) yazısını Zât'ın hâlesinin içine
+      // sokuyordu: çakışma çözücüsü onu uzağa itiyor, ad kendi düğümünden
+      // 200 piksel ötede, ince bir kılavuz çizginin ucunda kalıyordu
+      // (1342x820'de ölçüldü).
+      //
+      // Sahne yavaşça döndüğü için yatay eksene yakın bir düğüm her karede
+      // yön değiştirip titreyebilirdi: HISTEREZIS_PAY bunu engelliyor --
+      // yön ancak düğüm merkezden bu kadar ayrıldığında değişiyor, aradaki
+      // bantta en son verilen karar korunuyor.
+      const HISTEREZIS_PAY = 26;
+      const zatDugum = nodes.find((n) => n.id === "dhat");
+      const merkez = zatDugum ? swayRotate(zatDugum.px, zatDugum.py) : { x: 0, y: 0 };
       labelSel.each(function (d) {
-        const baseY = radiusFor(d) + 14;
+        const anc0 = swayRotate(d.px, d.py);
+        const fark = anc0.y - merkez.y;
+        if (fark < -HISTEREZIS_PAY) d.__labelUst = true;
+        else if (fark > HISTEREZIS_PAY) d.__labelUst = false;
+        // Zât'ın kendisi merkez olduğu için "dışarısı" yok: hep altında.
+        if (d.id === "dhat") d.__labelUst = false;
+        const baseY = d.__labelUst ? -(radiusFor(d) + 8) : radiusFor(d) + 14;
         const s = nodeScale(d);
         // Etiket kendi grubu içinde ters döndürülüp dik tutuluyor (bkz.
         // spinFrame), yani salınımdan yalnız ANKRAJ noktası (px,py) etkileniyor
-        // -- dikey ofset (baseY) hep ekranda düz aşağı iniyor.
-        const anchor = swayRotate(d.px, d.py);
+        // -- dikey ofset (baseY) hep ekranda düz iniyor/çıkıyor.
+        const anchor = anc0;
         pend.push({
           lbl: d3.select(this), txt: labelFor(d),
           x: anchor.x, y: anchor.y + baseY * s, baseY, scale: s,
+          dir: d.__labelUst ? -1 : 1,
           priority: d.id === "dhat" ? 2 : (d.kind === "hub" ? 1 : 0),
         });
       });
