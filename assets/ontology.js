@@ -390,16 +390,56 @@
   // (İnsan-ı Kâmil -> Zât). Kalp ise MERKEZDE: böylece Zât'a giden çizgisi
   // diyagramdaki en kısa çizgi, yani bir yarıçap oluyor. Bu bizim okumamız:
   // kalp merdivenin son basamağı değil, dairenin merkezi.
-  const TARGET = {
-    "dhat":          { x: 0.500, y: 0.160 },  // tepe (0°)
-    "sifat-asma":    { x: 0.760, y: 0.289 },  // iniş yayı
-    "ayan-sabite":   { x: 0.839, y: 0.551 },
-    "tecelli":       { x: 0.740, y: 0.775 },
-    "alem-ervah":    { x: 0.559, y: 0.875 },  // en yoğun bölge (dip)
-    "alem-misal":    { x: 0.412, y: 0.868 },
-    "alem-ecsam":    { x: 0.281, y: 0.796 },
-    "insan-i-kamil": { x: 0.160, y: 0.520 },  // çıkış yayı
-    "kalp":          { x: 0.500, y: 0.520 },  // MERKEZ
+  //
+  // 2026-08-28 -- iki ölçülmüş kusur ve düzeni kutupsal yazmanın gerekçesi:
+  //
+  //  1) Tablo DOKUZ düğüm için yazılmıştı; veride ON BEŞ düğüm var. Sonradan
+  //     eklenen altısı (Kazâ-Kader, Perde, Teceddüd, Velî, Halîfe, Bilinen-
+  //     Bilinmeyen) tabloda karşılık bulamayınca hepsi aynı yedek konuma --
+  //     (0.5, 0.5), yani tam Kalp'in üstüne -- düşüyordu. Çarpışma kuvveti
+  //     bu yığını açmak için bütün düzeni dağıtıyordu: tarayıcıda ölçüldü,
+  //     düğümler tuvalin yalnız %33'ünü kaplıyordu, Kalp merkezde DEĞİLDİ
+  //     ve etiketler adlandırdıkları düğümden 100-200 piksel uzağa
+  //     itilmişti. Yani "daire ve merkez" okuması yazılıydı ama çizilmiyordu.
+  //     (Dördüncü ilke, CLAUDE.md: graf büyür; büyüdüğünde onu okuyan
+  //     düzenin de büyümesi gerekir. Aşağıdaki uyarı bu sessizliğin bir daha
+  //     olmaması için.)
+  //
+  //  2) Eski tablo kesirleri width/height ile AYRI AYRI çarpıyordu; daire
+  //     ekranda ezilmiş bir elipse dönüşüyordu (1342x778'de 455x280). Halka
+  //     artık tek bir yarıçapla, yani gerçekten DAİRE olarak kuruluyor;
+  //     manzara oranındaki tuvalin yanlarda kalan boşluğu ise dalların ve
+  //     uzun etiketlerin yeri oluyor.
+  //
+  // Kutupsal yazım eski tablonun aynısını verir (dhat -90°, sifat-asma -40°,
+  // ayan-sabite 5°, tecelli 45° ... hepsi eski kesirlere kadar örtüşüyor);
+  // değişen tek şey, açının artık gizli değil görünür olması.
+  //
+  // Biçim: [açı°, k] -- k=1 çemberin üstü, k>1 dışarısı, k=0 merkez.
+  const RING = {
+    // Mertebeler ÇEMBERİN ÜSTÜNDE: iniş yayı (-90° tepeden saat yönünde),
+    // dip en yoğun bölge, çıkış yayı soldan yukarı.
+    "dhat":               [ -90, 1],     // tepe
+    "sifat-asma":         [ -40, 1],     // iniş yayı
+    "ayan-sabite":        [   5, 1],
+    "tecelli":            [  45, 1],
+    "alem-ervah":         [  80, 1],     // dip
+    "alem-misal":         [ 105, 1],
+    "alem-ecsam":         [ 130, 1],
+    "insan-i-kamil":      [ 180, 1],     // çıkış yayı
+    "kalp":               [   0, 0],     // MERKEZ
+    // Dallar bir mertebe DEĞİL, bir mertebenin açılımıdır -- çemberin
+    // dışında, anasının ışınına yakın duruyorlar. Görsel gramerin
+    // "uzaklık = kesret" karşılığı: çember mertebeleri sayar, dışarısı
+    // onların çoğalmasını gösterir. İçeri (Kalp'e doğru) konmadılar:
+    // "derinlik = hakikate yaklaşma" olduğu için Perde'yi merkeze
+    // yaklaştırmak gramerin tersini söylerdi.
+    "kaza-kader":         [ -20, 1.50],  // A'yân'ın dışa dönük yüzü
+    "perde":              [  20, 1.50],  // Tecellî'den
+    "teceddud":           [  38, 1.74],  // Perde'den, bir adım daha dışarı
+    "halife":             [ 192, 1.45],  // İnsan-ı Kâmil'den yelpaze
+    "veli":               [ 168, 1.45],
+    "bilinen-bilinmeyen": [ 150, 1.64],  // Velî'den
   };
 
   // /hakkinda'daki statik şemalar (şu an "Üç Sefer") de sitenin geri
@@ -1378,9 +1418,35 @@
     // birbirine bindiriyordu.
     const FOCAL3D = 2600;
     const TILT_DUR_3D = 1050;
-    const cx3d = width / 2, cy3d = height * 0.52;
-    const ringR3d = Math.max(120, Math.min(width, height) / 2 - 110);
-    const dropH = ringR3d * 2.2;
+    // Halkanın merkezi ve yarıçapı tek yerde: hem 2B düzen (RING tablosu),
+    // hem çizilen çember, hem 3B sahnenin dönme/salınım merkezi buradan
+    // okur. Yarıçap dikeyle sınırlanır (manzara oranındaki tuvalde yükseklik
+    // dar kenardır); yanlarda kalan boşluk dalların ve uzun etiketlerin yeri.
+    const ringCx = width / 2, ringCy = height / 2;
+    const ringR = Math.max(90, Math.min(height * 0.40, width * 0.27));
+    const cx3d = ringCx, cy3d = ringCy;
+    // Sarmalın iki ölçüsü ayrı sınırlardan okur (2026-08-28). Eskiden ikisi
+    // de tek sayıdan türüyordu -- `min(width, height)/2 - 110`, yani manzara
+    // oranındaki bir tuvalde HEP yükseklikten; sonra `dropH = ringR3d * 2.2`
+    // o dar sayıyı 2.2 ile çarpıyordu. Sonuç ölçüldü: sahne tuvalin yatayda
+    // yalnız %33'ünü kaplıyor, dikeyde ise çerçeveden TAŞIYORDU (Kalp ve
+    // "Allah Katında Bilinen" alt kenarda kırpılıyordu). Yani sarmal, boş
+    // duran yanlara değil, zaten dolu olan dikeye büyüyordu.
+    //
+    // Artık halkanın yarıçapı genişlikten, inişin boyu yükseklikten okuyor:
+    // sarmal enine açılıp boyuna sığıyor. Alt sınırlar dar/mobil ekran için.
+    // Sayılar tarayıcıda taranarak seçildi (36 birleşim, 1440x900). Ölçülen
+    // gerilim şu: sarmalın boyu uzadıkça katmanlar dikeyde ayrışıyor ve
+    // etiketler kendi düğümlerinin altında kalabiliyor, ama sahne
+    // daralıyor; kısaldıkça sahne genişliyor ama etiketler birbirini itip
+    // düğümlerinden uzaklaşıyor. Taramanın dirseği (etiket ortancası hâlâ
+    // ~29 px iken en geniş sahne) burası:
+    //   dh 0.44 -> tuvalin %75'i, etiket ortancası 62 px
+    //   dh 0.54 -> %64, 29 px      <- seçilen
+    //   dh 0.60 -> %59, 27 px
+    // Etiketin düğümünün altında durması, tuvali doldurmaktan önce geliyor.
+    const ringR3d = Math.max(120, Math.min(width * 0.40, height * 0.95));
+    const dropH = Math.max(240, height * 0.54);
     let tilt = 0, tiltTarget = 0, tiltFrom = 0, tiltAnimStart = 0;
     // Sahnenin yavaş salınımı (bkz. aşağıdaki spinFrame/SWAY_DEG) burada da
     // biliniyor olmalı: yerleşim hep salınımın ortasında (0°) hesaplanırsa,
@@ -1394,6 +1460,12 @@
       const c = Math.cos(swayRad), sn = Math.sin(swayRad);
       return { x: cx3d + dx * c - dy * sn, y: cy3d + dx * sn + dy * c };
     }
+    // pitch 0.26: halkayı neredeyse kenardan görüyoruz. 2026-08-28'de daha
+    // açık açılar denendi -- 0.42 ve 0.58'de halka gerçekten halka gibi
+    // okunuyor ama Zât tepeden ayrılıp yığının içine giriyor, iniş de
+    // yukarıdan aşağıya okunmaz oluyordu (Zât'ın etiketi bir düğümün
+    // üstüne, Kalp'inki İnsan-ı Kâmil'inkine biniyordu). Bu görünümün ilk
+    // söylediği şey "Zât'tan iniş"; halkanın açıklığı ondan sonra gelir.
     let yaw = 0, pitch = 0.26, rotating = false;
     // spinFrame()'in 3B yaw-döngü kolunun kendi tazeleme eşiği için --
     // bkz. spinFrame içindeki kullanım ve aynı kusurun ölçüldüğü not.
@@ -1440,10 +1512,25 @@
       });
     });
 
+    // Tabloda karşılığı olmayan düğümler eskiden hep aynı yedek konuma --
+    // merkeze, yani Kalp'in üstüne -- düşüyordu ve bu sessizce oluyordu.
+    // Artık merkezden UZAĞA, dalların dışındaki boş halkaya, sırayla
+    // açılıyorlar: yerleri "doğru" değil ama görünür ve birbirinden ayrı,
+    // yani veri büyüdüğünde şekil bunu bir kez daha saklamıyor.
+    let bilinmeyen = 0;
     nodes.forEach((n) => {
-      const t = TARGET[n.id] || { x: 0.5, y: 0.5 };
-      n.tx = t.x * width;
-      n.ty = t.y * height;
+      let t = RING[n.id];
+      if (!t) {
+        t = [(bilinmeyen * 47) % 360, 2.05];
+        bilinmeyen += 1;
+        if (window.console && console.warn) {
+          console.warn("[ontoloji] düzen tablosunda yok, geçici konum: " + n.id);
+        }
+      }
+      const a = (t[0] * Math.PI) / 180;
+      // x ve y AYNI yarıçapla çarpılır -- ezilmiş elips değil, daire.
+      n.tx = ringCx + ringR * t[1] * Math.cos(a);
+      n.ty = ringCy + ringR * t[1] * Math.sin(a);
       n.x = n.tx;
       n.y = n.ty;
       // Kalp dairenin NOKTASI: kuvvet simülasyonunun onu birkaç piksel
@@ -1548,6 +1635,15 @@
       },
     };
 
+    // Kart açılınca/kapanınca kullanılabilir alan değişiyor -- sahne
+    // yeniden sığar. (Kart kapanınca aşağıdaki boşluk geri kazanılır;
+    // yeniden sığdırmasaydık sahne sebepsiz yere yukarıda asılı kalırdı.)
+    document.addEventListener("dost:start-hint", () => {
+      if (ontologyWrap.hidden) return;
+      const sel = reduceMotion ? svg : svg.transition().duration(520);
+      sel.call(zoom.transform, computeFitTransform());
+    });
+
     window.DostGraphUtils.wireRecenter("ontology-recenter", () => {
       // Seçim burada kamerayı taşımıyor (düğüme tıklamak yalnız paneli
       // açıyor), o yüzden yalnız çerçeve sıfırlanıyor -- seçili düğüm kalır.
@@ -1572,8 +1668,29 @@
       }
       return w / 2;
     }
+    // "İlk kez mi buradasın?" kartı (start-hint.js) grafiğin ÜSTÜNE, tam
+    // sahnenin en kalabalık yerine biniyor. Etiket yerleştirme onu
+    // 2026-08-27'de engel saymaya başlamıştı; sığdırma ise hâlâ bilmiyordu
+    // -- kartın altında yer kalmadığı için aşağı itilen etiketler
+    // çerçevenin dışına düşüyordu. Kart açıkken sahne onun ÜSTÜNDEKİ alana
+    // sığar; kapanınca (dost:start-hint) yeniden sığdırılır.
+    function altPay() {
+      const el = document.getElementById("start-hint");
+      if (!el || el.hidden) return 0;
+      const hr = el.getBoundingClientRect();
+      const sr = svg.node().getBoundingClientRect();
+      if (!hr.height || !sr.height) return 0;
+      // Üst sınır dar tutuluyor. 2026-08-28'de ölçüldü: 1024x700'de kart
+      // kendi düzen kusuru yüzünden 260 px'e uzuyordu (CSS'te ayrıca
+      // düzeltildi) ve cömert bir pay sahneyi pul büyüklüğüne indiriyordu.
+      // Kart ne kadar büyürse büyüsün grafik yüksekliğinin en çok beşte
+      // birini verir; gerisini çakışma çözücüsü zaten engel olarak biliyor.
+      return Math.max(0, Math.min(height * 0.2, sr.bottom - hr.top + 12));
+    }
     function computeFitTransform() {
       const pad = 48;
+      const alt = altPay();
+      const useH = Math.max(height * 0.5, height - alt);
       let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
       nodes.forEach((n) => {
         const r = radiusFor(n);
@@ -1592,18 +1709,24 @@
         minX = Math.min(minX, bx - half);
         maxX = Math.max(maxX, bx + half);
         minY = Math.min(minY, by - r);
-        maxY = Math.max(maxY, by + r + 14 + 16);
+        // Aşağıdaki pay eskiden sabitti (r + 14 + 16), yani etiketin HEP
+        // düğümün hemen altında durduğunu varsayıyordu. Çakışma çözücüsü
+        // kalabalıkta etiketleri 100 pikselden fazla aşağı itebiliyor;
+        // 2026-08-28'de ölçüldü, alttaki iki etiket ("Halîfe", "Allah
+        // Katında Bilinen, Âlemde Bilinmeyen") çerçevenin altına taşıyordu.
+        // Artık etiketin gerçek konumu okunuyor.
+        maxY = Math.max(maxY, by + labelOffsetY(n) + 16);
       });
       const bboxW = Math.max(maxX - minX, 1);
       const bboxH = Math.max(maxY - minY, 1);
       const scale = Math.min(
         4,
-        Math.max(0.22, Math.min((width - pad * 2) / bboxW, (height - pad * 2) / bboxH))
+        Math.max(0.22, Math.min((width - pad * 2) / bboxW, (useH - pad * 2) / bboxH))
       );
       const cx = (minX + maxX) / 2;
       const cy = (minY + maxY) / 2;
       return d3.zoomIdentity
-        .translate(width / 2 - scale * cx, height / 2 - scale * cy)
+        .translate(width / 2 - scale * cx, useH / 2 - scale * cy)
         .scale(scale);
     }
 
@@ -1620,13 +1743,73 @@
     // Doğuş animasyonu (runBirth) halkayı da kademeli belirtir; animasyon
     // dışında hep 1 (paintPositions her karede kullanıyor).
     let birthRing = 1;
+    // 2026-08-28: rx/ry ayrı kesirlerle yazılıydı ve ekranda ezik bir elips
+    // çiziyordu. Artık RING tablosunun kullandığı yarıçapın ta kendisi --
+    // yani çizilen şey, düğümlerin gerçekten üstünde durduğu daire.
     const ringEl = ringLayer
       .append("ellipse")
       .attr("class", "onto-ring")
-      .attr("cx", 0.5 * width)
-      .attr("cy", 0.52 * height)
-      .attr("rx", 0.339 * width)
-      .attr("ry", 0.36 * height);
+      .attr("cx", ringCx)
+      .attr("cy", ringCy)
+      .attr("rx", ringR)
+      .attr("ry", ringR);
+
+    // Sarmalın kendi ipliği (2026-08-28). 2B'nin dairesi çiziliyordu ama
+    // varsayılan olan 3B'nin sarmalı çizilmiyordu: düğümler bir sarmalın
+    // üstünde duruyor, göz ise dağınık bir saçılma görüyordu -- iddia
+    // yalnız veride vardı, şekilde değil. Bir daire (2B) ile bir sarmal
+    // (3B) arasında sarmalı tercih ediyoruz diye yazılı (CLAUDE.md,
+    // "Sarmal -- üçüncü boyut"); tercih edilen şeyin görünür olması gerek.
+    //
+    // İplik yeni bir iddia DEĞİL: helixPoint'in sürekli hâli, yani
+    // düğümlerin zaten üstünde durduğu eğrinin ta kendisi.
+    //
+    // Kısa parçalara bölünüyor çünkü derinlik eğri boyunca değişiyor:
+    // arkaya geçen yarı puslanıp siliniyor, öne gelen yarı beliriyor.
+    // GORSEL_DIL'in kuralı bu -- "sahte 3B yapma; derinlik atmosferik
+    // puslanmayla kurulur". Tek ölçü: uzaktaki soluktur.
+    const IPLIK_PARCA = 96;
+    const helixLayer = spinGroup.append("g").attr("class", "onto-helix-layer");
+    const helixSegs = helixLayer
+      .selectAll("line")
+      .data(d3.range(IPLIK_PARCA))
+      .join("line")
+      .attr("class", "onto-helix");
+
+    // helixPoint ile AYNI eğri, yalnız düğüm başına değil sürekli t için.
+    // (Ayrı bir formül yazsaydık ikisi zamanla birbirinden ayrı düşerdi.)
+    function helixCurvePoint(t) {
+      const a = -Math.PI / 2 + t * Math.PI * 2;
+      const r = ringR3d * (0.72 + 0.28 * t);
+      const hy = r * Math.sin(a);
+      // Salınım UYGULANMIYOR: iplik spinGroup'un içinde, sahnenin dönüşünü
+      // zaten o grup taşıyor (düğümlerde de öyle).
+      const p = project3d({
+        x: r * Math.cos(a),
+        y: hy * (1 - tilt) + (-dropH / 2 + dropH * t) * tilt,
+        z: hy * tilt,
+      });
+      return { x: cx3d + p.x, y: cy3d + p.y, depth: 1 + (p.depth - 1) * tilt };
+    }
+    function paintHelix() {
+      if (tilt < 0.02) { helixLayer.style("opacity", 0); return; }
+      // 2B'nin halkası eğim arttıkça sönüyor (ringEl), iplik ise beliriyor:
+      // her görünümün kendi şekli var, ikisi aynı anda değil.
+      helixLayer.style("opacity", tilt * birthRing * 0.85);
+      let onceki = helixCurvePoint(0);
+      helixSegs.each(function (i) {
+        const simdi = helixCurvePoint((i + 1) / IPLIK_PARCA);
+        const d = (onceki.depth + simdi.depth) / 2;
+        d3.select(this)
+          .attr("x1", onceki.x).attr("y1", onceki.y)
+          .attr("x2", simdi.x).attr("y2", simdi.y)
+          // Eşikler FOCAL3D=2600 ve bu yarıçapta ölçülen derinlik
+          // aralığına (yaklaşık 0.84-1.24) göre: arkadaki neredeyse
+          // görünmez, öndeki tam.
+          .style("opacity", Math.max(0.07, Math.min(1, (d - 0.84) / 0.36)));
+        onceki = simdi;
+      });
+    }
 
     const linkGroup = spinGroup.append("g").attr("class", "links");
 
@@ -1749,6 +1932,21 @@
       return Math.max(0.55, 1 + (d.__depth - 1) * tilt);
     }
 
+    // Etiket bu kadar (yerel birim) ötelenmişse kendi düğümüne ince bir
+    // kılavuz çizgiyle bağlanır. Altında çizgi gereksiz: yazı zaten
+    // düğümün hemen altında duruyor.
+    const LEADER_ESIK = 16;
+    // Etiketin düğüm merkezine göre GÜNCEL dikey konumu. Çerçeveye
+    // sığdırma bunu bilmek zorunda: sabit bir pay (yarıçap + 14) çakışma
+    // çözücüsünün ittiği etiketleri hesaba katmıyordu.
+    function labelOffsetY(d) {
+      const varsayilan = radiusFor(d) + 14;
+      if (!labelSel) return varsayilan;
+      const el = labelSel.filter((n) => n.id === d.id).node();
+      const y = el ? parseFloat(el.getAttribute("y")) : NaN;
+      return isFinite(y) ? y : varsayilan;
+    }
+
     function paintPositions() {
       positionNodes();
       pathSel.attr("d", (d) => edgePath(d));
@@ -1776,6 +1974,7 @@
           return d.__birth == null ? base : base * d.__birth;
         });
       ringEl.style("opacity", (1 - tilt) * birthRing);
+      paintHelix();
       // Etiket çakışması: kuvvet düzeni düğümleri yaklaştırdığında yazılar
       // üst üste biniyordu (ölçüldü 2026-07-31: masaüstü 2, mobil 8).
       // Düğüm yerinde kalır, yalnız yazı dikeyde yer açar; motor
@@ -1830,6 +2029,31 @@
       // sürekli dönen bir 3B sahnede HER açıda çakışmasızlık matematiksel
       // olarak garanti edilemez -- bkz. graph-utils.js'teki not).
       deconflictLabels(pend, nodeObstacles, { y: 10, x: 10 });
+      // Kılavuz çizgi. Çakışma çözücüsü bir etiketi düğümünün altından
+      // uzağa ittiğinde hangi adın hangi noktaya ait olduğu okunmuyordu:
+      // 2026-08-28'de varsayılan açılışta ölçüldü, etiketlerin ortancası
+      // düğümünden 95 piksel uzaktaydı ve dördü ("Tecellî ve Nefesü'r-
+      // Rahmân", "Âlem-i Ervâh", "Âlem-i Misâl", "Esmâ ve Sıfat") boş
+      // alanda, yakınında hiçbir düğüm olmadan duruyordu. Motor
+      // graph-utils.js'te; kalıbı Eleştiri Arkeolojisi doğurdu, Seyahat
+      // Atlası ve Yolculuk da kullanıyor -- bu sahne en kalabalık olanı
+      // olduğu hâlde dışarıda kalmıştı.
+      //
+      // Bu bir OK değil (bkz. GORSEL_DIL.md yasağı): yönü olmayan, uçsuz,
+      // saç teli inceliğinde bir bağ -- "şu yazı şu noktaya ait" demekten
+      // başka bir şey söylemiyor.
+      window.DostGraphUtils.attachLeaderLines(pend, {
+        className: "onto-label__leader", threshold: LEADER_ESIK, gap: 5,
+      });
+      // Öteki kullanıcıların sahnesi bir kez çiziliyor, bu sahne ise her
+      // karede yeniden. Bir etiket eşiğin altına geri döndüğünde
+      // attachLeaderLines onu atlıyor; eski çizgi de hiçbir yere işaret
+      // ederek asılı kalıyordu. Geri dönen etiketin çizgisi siliniyor.
+      pend.forEach((it) => {
+        if (Math.abs((+it.lbl.attr("y")) - it.baseY) >= LEADER_ESIK) return;
+        const par = it.lbl.node() && it.lbl.node().parentNode;
+        if (par) d3.select(par).select(".onto-label__leader").remove();
+      });
     }
 
     simulation.on("tick", paintPositions);
@@ -1950,6 +2174,7 @@
         }
         spinGroup.attr("transform", null);
         labelSel.attr("transform", null);
+        nodeSel.selectAll(".onto-label__leader").attr("transform", null);
         spinRaf = requestAnimationFrame(spinFrame);
         return;
       }
@@ -1958,10 +2183,15 @@
       if (!reduceMotion && !busy) swayT += dt;
       const deg = reduceMotion ? 0 : SWAY_DEG * Math.sin((swayT / SWAY_PERIOD) * Math.PI * 2);
       spinGroup.attr("transform", `rotate(${deg.toFixed(3)},${spinCenter.x.toFixed(1)},${spinCenter.y.toFixed(1)})`);
-      labelSel.attr("transform", function (d) {
+      // Kılavuz çizgi etiketle AYNI ters dönüşü alır: ikisi tek parça gibi
+      // durur, yoksa salınımın ucunda çizginin ucu yazının altından
+      // kayardı (±2.6°, uzun bir kaymada birkaç piksel).
+      const dikTut = function (d) {
         const ly = radiusFor(d) + 14;
         return `rotate(${(-deg).toFixed(3)},0,${ly.toFixed(1)})`;
-      });
+      };
+      labelSel.attr("transform", dikTut);
+      nodeSel.selectAll(".onto-label__leader").attr("transform", dikTut);
       // Etiket çakışma-önleme salınımın ORTASINDA (0°) hesaplanıyordu --
       // yerleşim ucunda sınırdaki çiftler yeniden çakışıyordu (2026-08-06
       // ölçüldü). swayRad'ı güncel açıya taşıyıp yerleşimi tazeliyoruz.
