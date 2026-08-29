@@ -33,7 +33,11 @@
   // s9: sure-sisirme'ye cümle kapsamlı BIZ_SESI koşulu. Kural sayısı
   // değişmedi; kuralın kapsamı, kendi `neden`inin zaten söylediği yere
   // ("kendimiz hakkında") çekildi. Ölçüm K1'in yanında.
-  var SURUM = "s9";
+  // s10: sahiplik testi Türkçe eklere açıldı ve İKİYE ayrıldı (dar/geniş),
+  // çünkü olumlu ve olumsuz kutup aynı kalıbı kaldırmıyor. bag-kimin
+  // 54'ten 20'ye indi, öteki kuralların sayısı değişmedi. Ölçüm G7'nin
+  // yanında.
+  var SURUM = "s10";
   var DISMISS_KEY = "dost-durus-susturulan";
 
   // YALNIZ TÜRKÇE (s3, kullanıcı kararı). Gerekçe: kalıplar Türkçe için
@@ -52,12 +56,65 @@
   // "Bu söz/bağ bizim" diyen işaretler. Birden çok kural buna bakıyor:
   // CLAUDE.md'nin künye kuralları yalnız KENDİMİZ hakkındaki cümleler için
   // geçerli, âlemin tarifi için değil.
-  // Not: \b burada da ASCII, ama bu kalıpların hepsi ASCII harfle
-  // başlıyor (b/k/o/y/i/t) -- sınır doğru kuruluyor. Yine de yeni bir
-  // kalıp eklerken dikkat: "şey" gibi bir sözcük eklenirse çalışmaz.
-  var SAHIPLIK = /\b(biz|bizim|bizce|kuruyoruz|kurduğumuz|kurduk|okuyoruz|okumamız|okuma denemesi|yazdığımız|izlediğimiz|biriktirdiğimiz|taradığımız)\b/i;
+  //
+  // s10: burası eskiden `\b(biz|bizim|bizce|...)\b` idi ve yanındaki
+  // yorum "bu kalıpların hepsi ASCII harfle başlıyor, sınır doğru
+  // kuruluyor" diyordu. Kelimenin BAŞI doğruydu, SONU değildi: Türkçe
+  // eklemeli bir dil ve `\bbiz\b` "bize"ye eşleşmiyor -- "bize göre",
+  // yani bir okumanın bizim olduğunu söylemenin en sık biçimi, bu teste
+  // görünmüyordu. Ölçüldü: bag-kimin'in 54 isabetinin 8'i tam olarak
+  // "bize/bize göre" diyen cümlelerdi ve hiçbiri sayılmıyordu; cümle
+  // kapsamında SAHIPLIK'in eşleşme sayısı 54'te 0'dı.
+  //
+  // Bu, dosyanın iki yerde zaten belgelediği hatanın (JS'in \b'si ASCII)
+  // üçüncü örneği -- orada kelimenin başı, burada sonu. Zamir artık
+  // ekleriyle birlikte yazılıyor, sınırlar da ONEK/SONEK ile Unicode
+  // farkında kuruluyor.
+  // İKİ AYRI TEST, çünkü sahiplik iki ZIT kutupta kullanılıyor ve tek
+  // kalıp ikisine birden yaramıyor:
+  //
+  //   OLUMLU kutup (sure-sisirme, emek-sisirme, sureklilik-ima):
+  //     "yalnız BİZİM hakkımızdaki cümlede tetiklen". Burada testin DAR
+  //     olması gerekir -- iddianın öznesi biz olmalıyız.
+  //   OLUMSUZ kutup (bag-kimin):
+  //     "bağın bizim olduğu SÖYLENMEMİŞSE işaretle". Burada testin GENİŞ
+  //     olması gerekir -- konuştuğumuzu gösteren herhangi bir işaret yeter.
+  //
+  // Ölçüldü (2026-08-29): tek geniş kalıp ikisine birden verildiğinde
+  // bag-kimin 54'ten 27'ye indi (doğru), ama olumlu kutuptaki üç kural
+  // 4 YENİ YANLIŞ ALARM üretti -- "O her gün bir iştedir" âyeti,
+  // Süleyman kıssası, "binlerce mürde-nefis" (Füsûs'un kendi sözü) ve
+  // İbn Arabî'nin Ebû Yahya ile "yıllarca süren dostluğu". Dördünde de
+  // cümle "Bize göre…" ile açılıyor; ama "bize göre" BİZİM HÜKMÜMÜZE
+  // bağlanıyor, sürenin/ölçeğin sahibi hâlâ kaynak. Yani geniş kalıp
+  // olumlu kutupta çerçeveyi içerikle karıştırıyor.
+  var SAHIPLIK = new RegExp(
+    "(?<![\\p{L}\\p{N}])(?:biz|bizim|bizce|kuruyoruz|kurduğumuz|kurduk" +
+    "|okuyoruz|okumamız|okuma denemesi|yazdığımız|izlediğimiz" +
+    "|biriktirdiğimiz|taradığımız)(?![\\p{L}\\p{N}])", "iu");
+
+  // s10: geniş test. Eskiden yalnız dar test vardı ve `\bbiz\b`
+  // "bize"ye eşleşmiyordu -- Türkçe eklemeli bir dil, "bize göre" ise bir
+  // okumanın bizim olduğunu söylemenin en sık biçimi. Ölçüldü:
+  // bag-kimin'in 54 isabetinin 8'i tam olarak "bize/bize göre" diyen
+  // cümlelerdi ve hiçbiri sayılmıyordu; cümle kapsamında dar testin
+  // eşleşme sayısı 54'te 0'dı, yani koşul fiilen ölüydü.
+  //
+  // Bu, dosyanın iki yerde zaten belgelediği hatanın (JS'in \b'si ASCII)
+  // üçüncü örneği -- orada kelimenin BAŞI kaçıyordu, burada SONU.
+  var SAHIPLIK_GENIS = new RegExp(
+    "(?<![\\p{L}\\p{N}])(?:biz(?:e|de|den|i|im|imiz|ce)?" +
+    // birinci çoğul iyelik ortacı: "ettiğimiz", "okuduğumuz", "gördüğümüz"
+    "|[\\p{L}]+[dt][ıiuü]ğ[ıiuü]m[ıiuü]z" +
+    "|kuruyoruz|kurduğumuz|kurduk|okuyoruz|okumamız|okuma denemesi" +
+    "|yazdığımız|izlediğimiz|biriktirdiğimiz|taradığımız)(?![\\p{L}\\p{N}])", "iu");
   function BIZIM(metin) { return SAHIPLIK.test(metin); }
-  function BAGSIZ(metin) { return !SAHIPLIK.test(metin); }
+  // Geniş test ayrıca birinci çoğul ÇEKİMİ de sayar ("gördük", "buluyoruz"):
+  // olumsuz kutupta soru "bu cümlede sesimiz duyuluyor mu", ve bir fiil
+  // çekimi bunu zamir kadar açık söylüyor. BIRINCI_COGUL aşağıda tanımlı.
+  function BAGSIZ(metin) {
+    return !SAHIPLIK_GENIS.test(metin) && !BIRINCI_COGUL.test(metin);
+  }
 
   // Bir isabetin ÖNÜNDE, yakınında bir nakil işareti var mı? Sitede her
   // alıntı <em> ile sarılmıyor -- özellikle esma.json'da "İbn Arabî: '…'"
