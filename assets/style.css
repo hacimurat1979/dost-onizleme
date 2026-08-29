@@ -4461,8 +4461,16 @@ html:has(.detail-panel:not([hidden])) {
 }
 
 /* ── Hakkında alt-sekmeleri (Hakkında / Şiirleri) ──────────────────────── */
+/* Beşinci sekme ("Nereden Başlamalı", 2026-08-29) eklenince satır
+   360px'lik bir ekranda 392px'e çıktı ve SAYFANIN KENDİSİ yana kaydı --
+   ölçüldü: kap 328px, son sekmenin sağ kenarı 408px, gövdede 48px taşma.
+   Sekmeyi ekleyen tur mobile hiç bakmamıştı.
+   Sarmak, yatay kaydırmaya yeğlendi: ETKILESIM_DILI yalın tekerlekle
+   yatay kaymayı istemiyor ve gizlenen bir sekme, görünmeyen bir kapı
+   olurdu. Sarılınca beş sekme iki satıra iniyor, hepsi görünür kalıyor. */
 .hakkinda-subtabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 0;
   border-bottom: 1px solid var(--border);
   margin: 0 0 28px;
