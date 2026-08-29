@@ -30,7 +30,10 @@
   // ikisinde de aynı 14 kural vardı -- numaralar bir noktada ayrışmış,
   // fark edilmemişti. Dört yeni kural eklenirken ikisi s7'de eşitlendi.
   // s8: rekabet-dili (kullanıcı bulgusu; 19 kural).
-  var SURUM = "s8";
+  // s9: sure-sisirme'ye cümle kapsamlı BIZ_SESI koşulu. Kural sayısı
+  // değişmedi; kuralın kapsamı, kendi `neden`inin zaten söylediği yere
+  // ("kendimiz hakkında") çekildi. Ölçüm K1'in yanında.
+  var SURUM = "s9";
   var DISMISS_KEY = "dost-durus-susturulan";
 
   // YALNIZ TÜRKÇE (s3, kullanıcı kararı). Gerekçe: kalıplar Türkçe için
@@ -67,6 +70,28 @@
     return !NAKIL.test(metin.slice(Math.max(0, index - 170), index));
   }
 
+  // İsabetin geçtiği CÜMLE bizim sesimizde mi? SAHIPLIK'ten farkı iki
+  // katmanlı: (1) kapsam cümle, paragraf değil -- paragrafın uzağındaki
+  // bir "biz" yakındaki bir övünmeyi aklamasın; (2) SAHIPLIK'in sabit
+  // sözcük listesine ek olarak birinci çoğul ÇEKİMİ de sayılıyor
+  // ("uğraşıyoruz", "taradık"), çünkü liste ne kadar uzasa da her fiili
+  // sayamaz.
+  // Ek "-ız/-iz" (isim yüklemi: "hazırız") BİLEREK yok: "tanımadığınız"
+  // gibi ikinci çoğullara takılıyordu -- ölçtük, c1k4'ün günlük hayat
+  // analojisini bu yüzden bizim sesimiz sanıyordu.
+  var BIRINCI_COGUL =
+    /[\wçğıöşüÇĞİÖŞÜ]{2,}(?:[ıiuü]yoruz|[ıiuü]yorduk|acağız|eceğiz|[dt][ıiuü]k|[dt]ik|m[ıiuü]ş[ıiuü]zdır)(?![\wçğıöşüÇĞİÖŞÜ])/i;
+  function cumleyiAl(metin, index) {
+    var bas = Math.max(metin.lastIndexOf(".", index), metin.lastIndexOf("?", index),
+                       metin.lastIndexOf("!", index), metin.lastIndexOf(";", index));
+    var son = metin.indexOf(".", index);
+    return metin.slice(bas + 1, son < 0 ? metin.length : son + 1);
+  }
+  function BIZ_SESI(metin, index) {
+    var c = cumleyiAl(metin, index);
+    return SAHIPLIK.test(c) || BIRINCI_COGUL.test(c);
+  }
+
   // JS'in \b'si ASCII: "şüphesiz" sözcüğünün başındaki ş bir "word
   // character" sayılmadığı için /\bşüphesiz\b/ HİÇ eşleşmiyor. s1'de bu
   // sessizce yanlış çalışıyordu (Türkçe harfle başlayan bütün kalıplar
@@ -87,6 +112,24 @@
       re: tamKelime("yıllar boyunca|yıllardır|yıllarca|aylar boyunca|aylardır|haftalardır|uzun süredir|uzun zamandır|nice zamandır"),
       neden: "Kendimiz hakkında süre iddiası. CLAUDE.md: “Okuma tarihimiz kısa; uzunmuş gibi yazmak yalandır.”",
       yerine: "Süre değil kapsam yaz: “bu ciltte”, “okuduğumuz bölümlerde”, “şimdiye kadar” — ya da sayı ver.",
+      // Kural, kendi `neden`inde "KENDİMİZ hakkında" diyordu ama bunu hiç
+      // sınamıyordu; kardeşi emek-sisirme'de `kosul: BIZIM` vardı, burada
+      // yoktu. CLAUDE.md süre ifadelerini kaynağın sözünde ve günlük hayat
+      // analojilerinde açıkça "Kapsam DIŞI" tutuyor.
+      //
+      // ÖLÇÜM (2026-08-29, kapsam listesinin tamamı + Daphne kartları):
+      // kural 12 isabet veriyordu, HİÇBİRİ bizim hakkımızda değildi --
+      // İbn Arabî'nin Fâtıma bint el-Müsennâ'ya yıllarca hizmeti (2),
+      // 1172-1193 İşbiliye yılları, c1k4'ün telefon analojisi, c2k18/c2k25
+      // biyografi, ve Daphne'nin kendi süresini anlattığı 6 kart cümlesi.
+      // Yani 0/12. Cümle kapsamlı BIZ_SESI ile on ikisi de susuyor.
+      //
+      // BİLİNEN SINIR: kişisiz bir övünme ("yıllardır süren bir
+      // çalışmanın ürünü") birinci çoğul taşımadığı için kaçıyor. Elde
+      // kurulmuş altı deneme cümlesinin beşi yakalanıyor, altıncısı bu.
+      // Kaçırmayı bilerek kabul ediyoruz: 12 yanlış alarmın bedeli, bir
+      // kalıbın gözden kaçmasından ağır.
+      esKosul: BIZ_SESI,
     },
     {
       id: "emek-sisirme", seviye: "kural", ad: "Emek/ölçek şişirme",
