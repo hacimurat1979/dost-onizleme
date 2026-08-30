@@ -1030,20 +1030,97 @@
   // --- Article rendering ---
   const CILT_ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII"];
 
-  function progressRingHtml(done, total) {
+  // Kısım başına okuma yoğunluğu (data/ibn-arabi/okuma-yogunlugu.json,
+  // scripts/okuma-yogunlugu-uret.py üretir). Yüklenemezse halka eski
+  // hâline -- tek kalınlıkta dolan daireye -- düşer; ölçü bir süs değil
+  // ama onsuz da sayfa çalışmalı.
+  let yogunlukData = null;
+  let yogunlukPromise = null;
+  function yogunlukYukle() {
+    if (yogunlukPromise) return yogunlukPromise;
+    yogunlukPromise = window.DostGraphUtils
+      .fetchJson("data/ibn-arabi/okuma-yogunlugu.json")
+      .then((d) => { yogunlukData = d; return d; })
+      .catch(() => null);
+    return yogunlukPromise;
+  }
+
+  // Halka iki şeyi birden söyler: YAYIN UZUNLUĞU "nereye kadar geldik",
+  // KALINLIĞI "ne kadar derine indik". İkincisi olmadan on sekiz cildin
+  // hepsi aynı tam daireyi çiziyordu (223/226 girildiği için) -- oysa
+  // kısımlarda biriken not sayfa başına 17 ile 1368 arasında değişiyor.
+  // Ölçüm ve gerekçe: RESEARCH_LOG.md, 2026-08-29.
+  //
+  // Kalınlık eğrisi doğrusal DEĞİL: pow(t, 0.45). Doğrusalda ortancanın
+  // (241) altındaki her şey tek bir ince çizgiye çöküyordu, yani
+  // ciltlerin çoğu ayırt edilemiyordu. Taban 1.1 px: sıfır kalınlık yok,
+  // çünkü "girildi ama ince" ile "hiç girilmedi" aynı şey değil.
+  function yogunlukKalinligi(y, enAz, enCok) {
+    if (!(enCok > enAz)) return 2.5;
+    const t = (y - enAz) / (enCok - enAz);
+    return 1.1 + Math.pow(t, 0.45) * 4.6;
+  }
+
+  function yayYolu(cx, cy, r, a0, a1) {
+    const x0 = cx + r * Math.cos(a0), y0 = cy + r * Math.sin(a0);
+    const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+    return `M ${x0.toFixed(2)} ${y0.toFixed(2)} A ${r} ${r} 0 ${(a1 - a0) > Math.PI ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+  }
+
+  function progressRingHtml(done, total, cilt) {
     const r = 9;
     const circumference = 2 * Math.PI * r;
     const fillLen = (done / total) * circumference;
     const label = tt({ tr: `${done}/${total} kısım işlendi`, en: `${done}/${total} parts read`, pt: `${done}/${total} partes lidas` });
+
+    // Bu cildin ölçülmüş kısımları (sayfa sırasına göre)
+    let dilimler = [];
+    if (yogunlukData && yogunlukData.kisimlar) {
+      dilimler = Object.keys(yogunlukData.kisimlar)
+        .filter((id) => String(yogunlukData.kisimlar[id].cilt) === String(cilt))
+        .map((id) => Object.assign({ id: id }, yogunlukData.kisimlar[id]))
+        .sort((a, b) => (parseInt(a.id.split("k")[1], 10) - parseInt(b.id.split("k")[1], 10)));
+    }
+
+    let ic, olcuLabel = label;
+    if (dilimler.length) {
+      const enAz = yogunlukData.olcut.enSeyrek, enCok = yogunlukData.olcut.enYogun;
+      const toplamSayfa = dilimler.reduce((a, d) => a + d.sayfa, 0);
+      const cx = 11, cy = 11;
+      let aci = -Math.PI / 2, yollar = "";
+      dilimler.forEach((d) => {
+        const uzun = (d.sayfa / toplamSayfa) * Math.PI * 2;
+        const bosluk = Math.min(0.05, uzun * 0.12);
+        const kal = yogunlukKalinligi(d.yogunluk, enAz, enCok);
+        yollar += `<path class="futuhat-parts__progress-seg${d.tahmini ? " futuhat-parts__progress-seg--tahmini" : ""}"`
+          + ` d="${yayYolu(cx, cy, r, aci + bosluk / 2, aci + uzun - bosluk / 2)}"`
+          + ` fill="none" stroke-width="${kal.toFixed(2)}"></path>`;
+        aci += uzun;
+      });
+      ic = `<circle class="futuhat-parts__progress-track" cx="11" cy="11" r="${r}" fill="none" stroke-width="1"></circle>${yollar}`;
+      const yogs = dilimler.map((d) => d.yogunluk).sort((a, b) => a - b);
+      const n = yogs.length;
+      const ortanca = n % 2 ? yogs[(n - 1) / 2] : Math.round((yogs[n / 2 - 1] + yogs[n / 2]) / 2);
+      // Halkanın kalınlığı ölçülü bir şey söylüyor; söylediği şey
+      // ekran okuyucuya da yazıyla geçmeli, yoksa yalnız görene ait olur.
+      olcuLabel = label + " — " + tt({
+        tr: `sayfa başına ortanca ${ortanca} karakter not`,
+        en: `median ${ortanca} characters of notes per page`,
+        pt: `mediana de ${ortanca} caracteres de notas por página`,
+      });
+    } else {
+      ic = `<circle class="futuhat-parts__progress-track" cx="11" cy="11" r="${r}" fill="none" stroke-width="2.5"></circle>
+        <circle class="futuhat-parts__progress-fill" cx="11" cy="11" r="${r}" fill="none" stroke-width="2.5"
+          stroke-dasharray="${fillLen} ${circumference}" transform="rotate(-90 11 11)"></circle>`;
+    }
+
     // svg aria-hidden: halka dekoratif -- okunacak bilgi hem sarmalayıcının
     // aria-label'ında hem de yanındaki "12/14" etiketinde zaten var. Etiketsiz
     // bırakıldığında ekran okuyucuya 15 adet isimsiz grafik düşüyordu
     // (2026-07-28 denetimi).
-    return `<span class="futuhat-parts__progress" title="${label}" aria-label="${label}">
+    return `<span class="futuhat-parts__progress" title="${olcuLabel}" aria-label="${olcuLabel}">
       <svg viewBox="0 0 22 22" width="18" height="18" aria-hidden="true" focusable="false">
-        <circle class="futuhat-parts__progress-track" cx="11" cy="11" r="${r}" fill="none" stroke-width="2.5"></circle>
-        <circle class="futuhat-parts__progress-fill" cx="11" cy="11" r="${r}" fill="none" stroke-width="2.5"
-          stroke-dasharray="${fillLen} ${circumference}" transform="rotate(-90 11 11)"></circle>
+        ${ic}
       </svg>
       <span class="futuhat-parts__progress-label">${done}/${total}</span>
     </span>`;
@@ -1170,7 +1247,7 @@
           })
           .join("");
         return `<details class="futuhat-cilt-group"${c.cilt === openCilt ? " open" : ""}>
-          <summary class="futuhat-parts__cilt">${tt({ tr: "Cilt " + CILT_ROMAN[c.cilt], en: "Volume " + CILT_ROMAN[c.cilt], pt: "Volume " + CILT_ROMAN[c.cilt] })}${progressRingHtml(doneCount, kisimlar.length)}</summary>
+          <summary class="futuhat-parts__cilt">${tt({ tr: "Cilt " + CILT_ROMAN[c.cilt], en: "Volume " + CILT_ROMAN[c.cilt], pt: "Volume " + CILT_ROMAN[c.cilt] })}${progressRingHtml(doneCount, kisimlar.length, c.cilt)}</summary>
           <div class="futuhat-cilt-group__chips">${chips}</div>
         </details>`;
       })
@@ -1742,6 +1819,15 @@
 
   function render() {
     if (!futuhatData) return;
+    // Yoğunluk özeti (24 KB) halkanın kalınlığını taşıyor. Çizimi
+    // BEKLETMİYORUZ: liste hemen çıkar, ölçü gelince yalnız cilt
+    // başlıkları yeniden çizilir. Gelmezse halka eski hâlinde kalır --
+    // sayfa ölçüye bağımlı değil, ölçü sayfaya ekleniyor.
+    if (!yogunlukData) {
+      yogunlukYukle().then((d) => {
+        if (d && futuhatData) renderParts();
+      });
+    }
     renderMap();
     renderParts();
     if (partsEl) {

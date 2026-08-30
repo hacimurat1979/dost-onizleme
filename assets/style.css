@@ -1946,6 +1946,18 @@ text.sorular-label--cat {
   margin-left: auto;
 }
 .futuhat-parts__progress-track { stroke: var(--gridline); }
+/* Yoğunluk dilimleri: halkanın uzunluğu "nereye kadar geldik", kalınlığı
+   "ne kadar derine indik". Kalınlık JS'te hesaplanıyor (ölçüye bağlı),
+   renk burada. --series-theme, dolan halkanın rengiyle aynı: bu yeni bir
+   gösterge değil, aynı halkanın ikinci katmanı. */
+.futuhat-parts__progress-seg { stroke: var(--series-theme); }
+/* Sayfa aralığı ölçülmemiş, tahmin edilmiş kısımlar. Ölçmediğimiz şeyi
+   ölçmüş gibi göstermemek için kesik -- 223'ün 2'si (c17k223, c17k224).
+   Opaklık BİLEREK düşürülmedi: kesik çizgi "tahmini", incelik "az not"
+   demek; ikisi zaten aynı iki dilimde üst üste geliyor ve üçüncü bir
+   soluklaştırma eklendiğinde halka ölçülü bir incelik gibi değil,
+   yüklenmemiş gibi görünüyordu (ölçüldü, 18 px'te). */
+.futuhat-parts__progress-seg--tahmini { stroke-dasharray: 1.6 1.2; }
 .futuhat-parts__progress-fill {
   stroke: var(--series-theme);
   stroke-linecap: round;

@@ -1,50 +1,164 @@
 {
   "aciklama": "İki taramanın (duruş kontrolü ve tahkik) ORTAK kapsam listesi. Daha önce iki liste assets/durus-kontrol.js ve assets/tahkik-tarama.js içinde ayrı ayrı duruyordu; tahkik'in başındaki yorum ikisinin 'AYNI liste' olduğunu söylüyordu ama değildi -- zamanla altı dosya ayrışmış, üstelik tahkik 223 Fütûhât kısmını hiç taramıyordu. Yani 'site taraması' sitenin altıda birine bakıyordu ve bunu kimse fark etmiyordu. Liste artık tek yerde; scripts/tarama-kapsami-kontrol.py da bir veri dosyası ne burada ne 'kapsamDisi'nda ise derlemeyi durduruyor, böylece aynı kayma sessizce tekrarlanamaz.",
   "surum": "k1",
-
   "dosyalar": [
-    { "yol": "data/ibn-arabi/ontology.json", "gorunum": "ontoloji", "etiket": "Ontoloji" },
-    { "yol": "data/ibn-arabi/esma.json", "gorunum": "esma", "etiket": "Esmâ" },
-    { "yol": "data/ibn-arabi/hal.json", "gorunum": "hal", "etiket": "Hâller" },
-    { "yol": "data/ibn-arabi/felsefi-terimler.json", "gorunum": "terimler", "etiket": "Terimler" },
-    { "yol": "data/ibn-arabi/sirlar.json", "gorunum": "sirlar", "etiket": "Sırlar" },
-    { "yol": "data/ibn-arabi/sorular.json", "gorunum": "sorular", "etiket": "Sorular" },
-    { "yol": "data/ibn-arabi/menziller.json", "gorunum": "menziller", "etiket": "Menziller" },
-    { "yol": "data/ibn-arabi/futuhat-cizimleri.json", "gorunum": "cizimler", "etiket": "Çizimler" },
-    { "yol": "data/ibn-arabi/tasiyicilar.json", "gorunum": "tasiyicilar", "etiket": "Taşıyanlar" },
-    { "yol": "data/ibn-arabi/fusus-atlas.json", "gorunum": "fusus", "etiket": "Füsûs" },
-    { "yol": "data/ibn-arabi/miskat-atlas.json", "gorunum": "miskat", "etiket": "Mişkâtü'l-Envâr" },
-    { "yol": "data/ibn-arabi/concepts.json", "gorunum": null, "etiket": "Kavramlar" },
-
-    { "yol": "data/ibn-arabi/bilmiyoruz.json", "gorunum": null, "etiket": "Bilmiyoruz" },
-    { "yol": "data/ibn-arabi/elestiri-arkeolojisi.json", "gorunum": null, "etiket": "Eleştiri Arkeolojisi" },
-    { "yol": "data/ibn-arabi/acik-sorular.json", "gorunum": null, "etiket": "Açık Sorular" },
-
-    { "yol": "data/ibn-arabi/siirler.json", "gorunum": null, "etiket": "Şiirler" },
-    { "yol": "data/ibn-arabi/vahdet-elestiri.json", "gorunum": null, "etiket": "Vahdet Eleştirisi" },
-    { "yol": "data/ibn-arabi/esma-fca.json", "gorunum": null, "etiket": "Esmâ örgüsü" },
-    { "yol": "data/ibn-arabi/hal-fca.json", "gorunum": null, "etiket": "Hâller örgüsü" },
-    { "yol": "data/ibn-arabi/terimler-fca.json", "gorunum": null, "etiket": "Terimler örgüsü" },
-    { "yol": "data/ibn-arabi/ceviri-kaybi.json", "gorunum": null, "etiket": "Çeviri Kaybı" },
-    { "yol": "data/ibn-arabi/sirlar-sorular.json", "gorunum": null, "etiket": "Sırlar–Sorular" },
-    { "yol": "data/ibn-arabi/vahdet-elestiri-kopru.json", "gorunum": null, "etiket": "Vahdet–Eleştiri Arkeolojisi" },
-    { "yol": "data/ibn-arabi/seyahat-atlasi.json", "gorunum": null, "etiket": "Seyahat Atlası" },
-    { "yol": "data/ibn-arabi/hocalar.json", "gorunum": null, "etiket": "Hocalar" },
-    { "yol": "data/ibn-arabi/eser-agi.json", "gorunum": null, "etiket": "Eser Ağı" },
-    { "yol": "data/ibn-arabi/anlamsal-baglantilar.json", "gorunum": null, "etiket": "Anlamsal Bağlantılar" },
-    { "yol": "data/ibn-arabi/hadis-dizini.json", "gorunum": null, "etiket": "Hadis Dizini" },
-    { "yol": "data/ibn-arabi/sozluk-ipuclari.json", "gorunum": null, "etiket": "Sözlük İpuçları" },
-    { "yol": "data/ibn-arabi/okuma-yollari.json", "gorunum": null, "etiket": "Okuma Yolları" }
+    {
+      "yol": "data/ibn-arabi/ontology.json",
+      "gorunum": "ontoloji",
+      "etiket": "Ontoloji"
+    },
+    {
+      "yol": "data/ibn-arabi/esma.json",
+      "gorunum": "esma",
+      "etiket": "Esmâ"
+    },
+    {
+      "yol": "data/ibn-arabi/hal.json",
+      "gorunum": "hal",
+      "etiket": "Hâller"
+    },
+    {
+      "yol": "data/ibn-arabi/felsefi-terimler.json",
+      "gorunum": "terimler",
+      "etiket": "Terimler"
+    },
+    {
+      "yol": "data/ibn-arabi/sirlar.json",
+      "gorunum": "sirlar",
+      "etiket": "Sırlar"
+    },
+    {
+      "yol": "data/ibn-arabi/sorular.json",
+      "gorunum": "sorular",
+      "etiket": "Sorular"
+    },
+    {
+      "yol": "data/ibn-arabi/menziller.json",
+      "gorunum": "menziller",
+      "etiket": "Menziller"
+    },
+    {
+      "yol": "data/ibn-arabi/futuhat-cizimleri.json",
+      "gorunum": "cizimler",
+      "etiket": "Çizimler"
+    },
+    {
+      "yol": "data/ibn-arabi/tasiyicilar.json",
+      "gorunum": "tasiyicilar",
+      "etiket": "Taşıyanlar"
+    },
+    {
+      "yol": "data/ibn-arabi/fusus-atlas.json",
+      "gorunum": "fusus",
+      "etiket": "Füsûs"
+    },
+    {
+      "yol": "data/ibn-arabi/miskat-atlas.json",
+      "gorunum": "miskat",
+      "etiket": "Mişkâtü'l-Envâr"
+    },
+    {
+      "yol": "data/ibn-arabi/concepts.json",
+      "gorunum": null,
+      "etiket": "Kavramlar"
+    },
+    {
+      "yol": "data/ibn-arabi/bilmiyoruz.json",
+      "gorunum": null,
+      "etiket": "Bilmiyoruz"
+    },
+    {
+      "yol": "data/ibn-arabi/elestiri-arkeolojisi.json",
+      "gorunum": null,
+      "etiket": "Eleştiri Arkeolojisi"
+    },
+    {
+      "yol": "data/ibn-arabi/acik-sorular.json",
+      "gorunum": null,
+      "etiket": "Açık Sorular"
+    },
+    {
+      "yol": "data/ibn-arabi/siirler.json",
+      "gorunum": null,
+      "etiket": "Şiirler"
+    },
+    {
+      "yol": "data/ibn-arabi/vahdet-elestiri.json",
+      "gorunum": null,
+      "etiket": "Vahdet Eleştirisi"
+    },
+    {
+      "yol": "data/ibn-arabi/esma-fca.json",
+      "gorunum": null,
+      "etiket": "Esmâ örgüsü"
+    },
+    {
+      "yol": "data/ibn-arabi/hal-fca.json",
+      "gorunum": null,
+      "etiket": "Hâller örgüsü"
+    },
+    {
+      "yol": "data/ibn-arabi/terimler-fca.json",
+      "gorunum": null,
+      "etiket": "Terimler örgüsü"
+    },
+    {
+      "yol": "data/ibn-arabi/ceviri-kaybi.json",
+      "gorunum": null,
+      "etiket": "Çeviri Kaybı"
+    },
+    {
+      "yol": "data/ibn-arabi/sirlar-sorular.json",
+      "gorunum": null,
+      "etiket": "Sırlar–Sorular"
+    },
+    {
+      "yol": "data/ibn-arabi/vahdet-elestiri-kopru.json",
+      "gorunum": null,
+      "etiket": "Vahdet–Eleştiri Arkeolojisi"
+    },
+    {
+      "yol": "data/ibn-arabi/seyahat-atlasi.json",
+      "gorunum": null,
+      "etiket": "Seyahat Atlası"
+    },
+    {
+      "yol": "data/ibn-arabi/hocalar.json",
+      "gorunum": null,
+      "etiket": "Hocalar"
+    },
+    {
+      "yol": "data/ibn-arabi/eser-agi.json",
+      "gorunum": null,
+      "etiket": "Eser Ağı"
+    },
+    {
+      "yol": "data/ibn-arabi/anlamsal-baglantilar.json",
+      "gorunum": null,
+      "etiket": "Anlamsal Bağlantılar"
+    },
+    {
+      "yol": "data/ibn-arabi/hadis-dizini.json",
+      "gorunum": null,
+      "etiket": "Hadis Dizini"
+    },
+    {
+      "yol": "data/ibn-arabi/sozluk-ipuclari.json",
+      "gorunum": null,
+      "etiket": "Sözlük İpuçları"
+    },
+    {
+      "yol": "data/ibn-arabi/okuma-yollari.json",
+      "gorunum": null,
+      "etiket": "Okuma Yolları"
+    }
   ],
-
   "gorunumNotu": "`gorunum` yalnız duruş taraması için: bulgudan o görünüme atlamayı sağlıyor. null olan dosyalar için atlama yok -- bilmediğimiz görünüm adını UYDURMAK yerine boş bıraktık, bulgu yine listeleniyor, yalnız tıklayınca bir yere gitmiyor.",
-
   "futuhat": {
     "indeks": "data/ibn-arabi/futuhat-atlas-index.json",
     "parcaKlasoru": "data/ibn-arabi/futuhat-parts/",
     "not": "Fütûhât düzyazısının YAZIM kaynağı futuhat-atlas.json ama o dosya 9,7 MB ve bilerek yayına gönderilmiyor (scripts/sync-to-preview.py, SENKRON_DISI_DOSYA). Tarayıcının erişebildiği tek biçim build-static-routes.py'nin ürettiği kısım dosyaları; bu yüzden tarama türetilmiş olana bakıyor. Bulgu düzeltilirken elle değiştirilecek yer yine futuhat-atlas.json'dır."
   },
-
   "kapsamDisi": {
     "data/ibn-arabi/futuhat-atlas.json": "yayına gitmiyor (9,7 MB yazım kaynağı); tarayıcı okuyamaz -- karşılığı futuhat-parts/ olarak taranıyor",
     "data/ibn-arabi/futuhat-atlas-index.json": "türetilmiş: özet/başlık alanları atlas'tan kopyalanıyor, aynı metni iki kez bildirmiş oluruz",
@@ -59,8 +173,8 @@
     "data/ibn-arabi/okuma-durumu.json": "düzyazı değil, durum künyesi",
     "data/ibn-arabi/pasaj-vektorleri-tr.json": "sayı dizileri, metin değil",
     "data/ibn-arabi/pasaj-vektorleri-en.json": "sayı dizileri, metin değil",
-    "data/ibn-arabi/pasaj-vektorleri-pt.json": "sayı dizileri, metin değil"
+    "data/ibn-arabi/pasaj-vektorleri-pt.json": "sayı dizileri, metin değil",
+    "data/ibn-arabi/okuma-yogunlugu.json": "türetilmiş (scripts/okuma-yogunlugu-uret.py) -- ölçü sayıları, revize edilecek düzyazı yok"
   },
-
   "kapsamDisiNotu": "Türetilmiş dosyaları taramamamızın nedeni gürültü değil, YERİ: oradaki bir bulgu o dosyada düzeltilemez, üreten kaynakta düzeltilir. İkisini birden taramak aynı cümleyi iki kez bildirir ve düzeltilemeyecek yeri düzeltilebilirmiş gibi gösterir."
 }

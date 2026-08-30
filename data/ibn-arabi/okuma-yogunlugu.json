@@ -1,0 +1,1574 @@
+{
+ "uretim": "scripts/okuma-yogunlugu-uret.py -- ELLE DÜZENLEME; kaynak futuhat-parts/*.json",
+ "not": "Kısım başına okuma yoğunluğu: TR düzyazısının karakter sayısı bölü sayfa sayısı. Cilt halkalarının kalınlığı bunu taşıyor -- halkanın uzunluğu 'nereye kadar geldik', kalınlığı 'ne kadar derine indik' demek. 'tahmini' işaretli kısımların sayfa aralığı ölçülmedi, tahmin edildi.",
+ "olcut": {
+  "kisim": 223,
+  "enSeyrek": 17,
+  "ortanca": 241,
+  "enYogun": 1368,
+  "tahminiKisim": 2
+ },
+ "kisimlar": {
+  "c10k125": {
+   "cilt": 10,
+   "sayfa": 39,
+   "karakter": 5060,
+   "yogunluk": 130,
+   "tahmini": false
+  },
+  "c10k126": {
+   "cilt": 10,
+   "sayfa": 43,
+   "karakter": 4982,
+   "yogunluk": 116,
+   "tahmini": false
+  },
+  "c10k127": {
+   "cilt": 10,
+   "sayfa": 42,
+   "karakter": 5184,
+   "yogunluk": 123,
+   "tahmini": false
+  },
+  "c10k128": {
+   "cilt": 10,
+   "sayfa": 38,
+   "karakter": 4585,
+   "yogunluk": 121,
+   "tahmini": false
+  },
+  "c10k129": {
+   "cilt": 10,
+   "sayfa": 44,
+   "karakter": 4667,
+   "yogunluk": 106,
+   "tahmini": false
+  },
+  "c10k130": {
+   "cilt": 10,
+   "sayfa": 57,
+   "karakter": 4724,
+   "yogunluk": 83,
+   "tahmini": false
+  },
+  "c10k131": {
+   "cilt": 10,
+   "sayfa": 41,
+   "karakter": 5429,
+   "yogunluk": 132,
+   "tahmini": false
+  },
+  "c10k132": {
+   "cilt": 10,
+   "sayfa": 41,
+   "karakter": 4973,
+   "yogunluk": 121,
+   "tahmini": false
+  },
+  "c10k133": {
+   "cilt": 10,
+   "sayfa": 41,
+   "karakter": 4295,
+   "yogunluk": 105,
+   "tahmini": false
+  },
+  "c11k134": {
+   "cilt": 11,
+   "sayfa": 30,
+   "karakter": 4812,
+   "yogunluk": 160,
+   "tahmini": false
+  },
+  "c11k135": {
+   "cilt": 11,
+   "sayfa": 49,
+   "karakter": 4121,
+   "yogunluk": 84,
+   "tahmini": false
+  },
+  "c11k136": {
+   "cilt": 11,
+   "sayfa": 40,
+   "karakter": 4736,
+   "yogunluk": 118,
+   "tahmini": false
+  },
+  "c11k137": {
+   "cilt": 11,
+   "sayfa": 25,
+   "karakter": 4028,
+   "yogunluk": 161,
+   "tahmini": false
+  },
+  "c11k138": {
+   "cilt": 11,
+   "sayfa": 43,
+   "karakter": 4005,
+   "yogunluk": 93,
+   "tahmini": false
+  },
+  "c11k139": {
+   "cilt": 11,
+   "sayfa": 36,
+   "karakter": 4187,
+   "yogunluk": 116,
+   "tahmini": false
+  },
+  "c11k140": {
+   "cilt": 11,
+   "sayfa": 47,
+   "karakter": 4048,
+   "yogunluk": 86,
+   "tahmini": false
+  },
+  "c11k141": {
+   "cilt": 11,
+   "sayfa": 51,
+   "karakter": 4009,
+   "yogunluk": 79,
+   "tahmini": false
+  },
+  "c11k142": {
+   "cilt": 11,
+   "sayfa": 49,
+   "karakter": 4391,
+   "yogunluk": 90,
+   "tahmini": false
+  },
+  "c12k143": {
+   "cilt": 12,
+   "sayfa": 57,
+   "karakter": 3972,
+   "yogunluk": 70,
+   "tahmini": false
+  },
+  "c12k144": {
+   "cilt": 12,
+   "sayfa": 62,
+   "karakter": 3662,
+   "yogunluk": 59,
+   "tahmini": false
+  },
+  "c12k145": {
+   "cilt": 12,
+   "sayfa": 75,
+   "karakter": 3462,
+   "yogunluk": 46,
+   "tahmini": false
+  },
+  "c12k146": {
+   "cilt": 12,
+   "sayfa": 54,
+   "karakter": 3639,
+   "yogunluk": 67,
+   "tahmini": false
+  },
+  "c12k147": {
+   "cilt": 12,
+   "sayfa": 94,
+   "karakter": 3935,
+   "yogunluk": 42,
+   "tahmini": false
+  },
+  "c12k148": {
+   "cilt": 12,
+   "sayfa": 37,
+   "karakter": 4158,
+   "yogunluk": 112,
+   "tahmini": false
+  },
+  "c13k149": {
+   "cilt": 13,
+   "sayfa": 98,
+   "karakter": 3586,
+   "yogunluk": 37,
+   "tahmini": false
+  },
+  "c13k150": {
+   "cilt": 13,
+   "sayfa": 189,
+   "karakter": 3965,
+   "yogunluk": 21,
+   "tahmini": false
+  },
+  "c13k151": {
+   "cilt": 13,
+   "sayfa": 116,
+   "karakter": 3667,
+   "yogunluk": 32,
+   "tahmini": false
+  },
+  "c14k152": {
+   "cilt": 14,
+   "sayfa": 56,
+   "karakter": 4627,
+   "yogunluk": 83,
+   "tahmini": false
+  },
+  "c14k153": {
+   "cilt": 14,
+   "sayfa": 55,
+   "karakter": 5216,
+   "yogunluk": 95,
+   "tahmini": false
+  },
+  "c14k154": {
+   "cilt": 14,
+   "sayfa": 36,
+   "karakter": 5462,
+   "yogunluk": 152,
+   "tahmini": false
+  },
+  "c14k155": {
+   "cilt": 14,
+   "sayfa": 51,
+   "karakter": 5611,
+   "yogunluk": 110,
+   "tahmini": false
+  },
+  "c14k156": {
+   "cilt": 14,
+   "sayfa": 23,
+   "karakter": 5464,
+   "yogunluk": 238,
+   "tahmini": false
+  },
+  "c14k157": {
+   "cilt": 14,
+   "sayfa": 23,
+   "karakter": 5752,
+   "yogunluk": 250,
+   "tahmini": false
+  },
+  "c14k158": {
+   "cilt": 14,
+   "sayfa": 23,
+   "karakter": 5487,
+   "yogunluk": 239,
+   "tahmini": false
+  },
+  "c14k159": {
+   "cilt": 14,
+   "sayfa": 12,
+   "karakter": 6181,
+   "yogunluk": 515,
+   "tahmini": false
+  },
+  "c14k160": {
+   "cilt": 14,
+   "sayfa": 17,
+   "karakter": 6013,
+   "yogunluk": 354,
+   "tahmini": false
+  },
+  "c14k161": {
+   "cilt": 14,
+   "sayfa": 13,
+   "karakter": 6539,
+   "yogunluk": 503,
+   "tahmini": false
+  },
+  "c14k162": {
+   "cilt": 14,
+   "sayfa": 18,
+   "karakter": 9202,
+   "yogunluk": 511,
+   "tahmini": false
+  },
+  "c14k163": {
+   "cilt": 14,
+   "sayfa": 8,
+   "karakter": 8798,
+   "yogunluk": 1100,
+   "tahmini": false
+  },
+  "c14k164": {
+   "cilt": 14,
+   "sayfa": 11,
+   "karakter": 9233,
+   "yogunluk": 839,
+   "tahmini": false
+  },
+  "c14k165": {
+   "cilt": 14,
+   "sayfa": 11,
+   "karakter": 10359,
+   "yogunluk": 942,
+   "tahmini": false
+  },
+  "c14k166": {
+   "cilt": 14,
+   "sayfa": 9,
+   "karakter": 8942,
+   "yogunluk": 994,
+   "tahmini": false
+  },
+  "c14k167": {
+   "cilt": 14,
+   "sayfa": 11,
+   "karakter": 10194,
+   "yogunluk": 927,
+   "tahmini": false
+  },
+  "c15k168": {
+   "cilt": 15,
+   "sayfa": 11,
+   "karakter": 6142,
+   "yogunluk": 558,
+   "tahmini": false
+  },
+  "c15k169": {
+   "cilt": 15,
+   "sayfa": 13,
+   "karakter": 5903,
+   "yogunluk": 454,
+   "tahmini": false
+  },
+  "c15k170": {
+   "cilt": 15,
+   "sayfa": 16,
+   "karakter": 6255,
+   "yogunluk": 391,
+   "tahmini": false
+  },
+  "c15k171": {
+   "cilt": 15,
+   "sayfa": 22,
+   "karakter": 6478,
+   "yogunluk": 294,
+   "tahmini": false
+  },
+  "c15k172": {
+   "cilt": 15,
+   "sayfa": 11,
+   "karakter": 6394,
+   "yogunluk": 581,
+   "tahmini": false
+  },
+  "c15k173": {
+   "cilt": 15,
+   "sayfa": 11,
+   "karakter": 6192,
+   "yogunluk": 563,
+   "tahmini": false
+  },
+  "c15k174": {
+   "cilt": 15,
+   "sayfa": 9,
+   "karakter": 6550,
+   "yogunluk": 728,
+   "tahmini": false
+  },
+  "c15k175": {
+   "cilt": 15,
+   "sayfa": 8,
+   "karakter": 5785,
+   "yogunluk": 723,
+   "tahmini": false
+  },
+  "c15k176": {
+   "cilt": 15,
+   "sayfa": 12,
+   "karakter": 6079,
+   "yogunluk": 507,
+   "tahmini": false
+  },
+  "c15k177": {
+   "cilt": 15,
+   "sayfa": 14,
+   "karakter": 6241,
+   "yogunluk": 446,
+   "tahmini": false
+  },
+  "c15k178": {
+   "cilt": 15,
+   "sayfa": 9,
+   "karakter": 5764,
+   "yogunluk": 640,
+   "tahmini": false
+  },
+  "c15k179": {
+   "cilt": 15,
+   "sayfa": 16,
+   "karakter": 5969,
+   "yogunluk": 373,
+   "tahmini": false
+  },
+  "c15k180": {
+   "cilt": 15,
+   "sayfa": 9,
+   "karakter": 5812,
+   "yogunluk": 646,
+   "tahmini": false
+  },
+  "c15k181": {
+   "cilt": 15,
+   "sayfa": 13,
+   "karakter": 5800,
+   "yogunluk": 446,
+   "tahmini": false
+  },
+  "c15k182": {
+   "cilt": 15,
+   "sayfa": 9,
+   "karakter": 4986,
+   "yogunluk": 554,
+   "tahmini": false
+  },
+  "c15k183": {
+   "cilt": 15,
+   "sayfa": 10,
+   "karakter": 5582,
+   "yogunluk": 558,
+   "tahmini": false
+  },
+  "c15k184": {
+   "cilt": 15,
+   "sayfa": 7,
+   "karakter": 5531,
+   "yogunluk": 790,
+   "tahmini": false
+  },
+  "c15k185": {
+   "cilt": 15,
+   "sayfa": 8,
+   "karakter": 6054,
+   "yogunluk": 757,
+   "tahmini": false
+  },
+  "c15k186": {
+   "cilt": 15,
+   "sayfa": 34,
+   "karakter": 6514,
+   "yogunluk": 192,
+   "tahmini": false
+  },
+  "c15k187": {
+   "cilt": 15,
+   "sayfa": 14,
+   "karakter": 6270,
+   "yogunluk": 448,
+   "tahmini": false
+  },
+  "c15k188": {
+   "cilt": 15,
+   "sayfa": 11,
+   "karakter": 7045,
+   "yogunluk": 640,
+   "tahmini": false
+  },
+  "c15k189": {
+   "cilt": 15,
+   "sayfa": 8,
+   "karakter": 6088,
+   "yogunluk": 761,
+   "tahmini": false
+  },
+  "c15k190": {
+   "cilt": 15,
+   "sayfa": 7,
+   "karakter": 5691,
+   "yogunluk": 813,
+   "tahmini": false
+  },
+  "c15k191": {
+   "cilt": 15,
+   "sayfa": 6,
+   "karakter": 5352,
+   "yogunluk": 892,
+   "tahmini": false
+  },
+  "c15k192": {
+   "cilt": 15,
+   "sayfa": 7,
+   "karakter": 4698,
+   "yogunluk": 671,
+   "tahmini": false
+  },
+  "c15k193": {
+   "cilt": 15,
+   "sayfa": 7,
+   "karakter": 6419,
+   "yogunluk": 917,
+   "tahmini": false
+  },
+  "c15k194": {
+   "cilt": 15,
+   "sayfa": 5,
+   "karakter": 6842,
+   "yogunluk": 1368,
+   "tahmini": false
+  },
+  "c15k195": {
+   "cilt": 15,
+   "sayfa": 6,
+   "karakter": 6019,
+   "yogunluk": 1003,
+   "tahmini": false
+  },
+  "c15k196": {
+   "cilt": 15,
+   "sayfa": 7,
+   "karakter": 6519,
+   "yogunluk": 931,
+   "tahmini": false
+  },
+  "c15k197": {
+   "cilt": 15,
+   "sayfa": 5,
+   "karakter": 4576,
+   "yogunluk": 915,
+   "tahmini": false
+  },
+  "c15k198": {
+   "cilt": 15,
+   "sayfa": 6,
+   "karakter": 7249,
+   "yogunluk": 1208,
+   "tahmini": false
+  },
+  "c15k199": {
+   "cilt": 15,
+   "sayfa": 7,
+   "karakter": 7209,
+   "yogunluk": 1030,
+   "tahmini": false
+  },
+  "c15k200": {
+   "cilt": 15,
+   "sayfa": 8,
+   "karakter": 6799,
+   "yogunluk": 850,
+   "tahmini": false
+  },
+  "c15k201": {
+   "cilt": 15,
+   "sayfa": 10,
+   "karakter": 6124,
+   "yogunluk": 612,
+   "tahmini": false
+  },
+  "c15k202": {
+   "cilt": 15,
+   "sayfa": 9,
+   "karakter": 5972,
+   "yogunluk": 664,
+   "tahmini": false
+  },
+  "c15k203": {
+   "cilt": 15,
+   "sayfa": 12,
+   "karakter": 5303,
+   "yogunluk": 442,
+   "tahmini": false
+  },
+  "c15k204": {
+   "cilt": 15,
+   "sayfa": 6,
+   "karakter": 6096,
+   "yogunluk": 1016,
+   "tahmini": false
+  },
+  "c15k205": {
+   "cilt": 15,
+   "sayfa": 10,
+   "karakter": 5473,
+   "yogunluk": 547,
+   "tahmini": false
+  },
+  "c15k206": {
+   "cilt": 15,
+   "sayfa": 6,
+   "karakter": 6808,
+   "yogunluk": 1135,
+   "tahmini": false
+  },
+  "c16k207": {
+   "cilt": 16,
+   "sayfa": 13,
+   "karakter": 6331,
+   "yogunluk": 487,
+   "tahmini": false
+  },
+  "c16k208": {
+   "cilt": 16,
+   "sayfa": 17,
+   "karakter": 5941,
+   "yogunluk": 349,
+   "tahmini": false
+  },
+  "c16k209": {
+   "cilt": 16,
+   "sayfa": 16,
+   "karakter": 5172,
+   "yogunluk": 323,
+   "tahmini": false
+  },
+  "c16k210": {
+   "cilt": 16,
+   "sayfa": 16,
+   "karakter": 6624,
+   "yogunluk": 414,
+   "tahmini": false
+  },
+  "c16k211": {
+   "cilt": 16,
+   "sayfa": 14,
+   "karakter": 6793,
+   "yogunluk": 485,
+   "tahmini": false
+  },
+  "c16k212": {
+   "cilt": 16,
+   "sayfa": 18,
+   "karakter": 6313,
+   "yogunluk": 351,
+   "tahmini": false
+  },
+  "c16k213": {
+   "cilt": 16,
+   "sayfa": 13,
+   "karakter": 6146,
+   "yogunluk": 473,
+   "tahmini": false
+  },
+  "c16k214": {
+   "cilt": 16,
+   "sayfa": 13,
+   "karakter": 4949,
+   "yogunluk": 381,
+   "tahmini": false
+  },
+  "c16k215": {
+   "cilt": 16,
+   "sayfa": 15,
+   "karakter": 3828,
+   "yogunluk": 255,
+   "tahmini": false
+  },
+  "c16k216": {
+   "cilt": 16,
+   "sayfa": 11,
+   "karakter": 5268,
+   "yogunluk": 479,
+   "tahmini": false
+  },
+  "c16k217": {
+   "cilt": 16,
+   "sayfa": 13,
+   "karakter": 4286,
+   "yogunluk": 330,
+   "tahmini": false
+  },
+  "c16k218": {
+   "cilt": 16,
+   "sayfa": 12,
+   "karakter": 5669,
+   "yogunluk": 472,
+   "tahmini": false
+  },
+  "c16k219": {
+   "cilt": 16,
+   "sayfa": 7,
+   "karakter": 2725,
+   "yogunluk": 389,
+   "tahmini": false
+  },
+  "c16k220": {
+   "cilt": 16,
+   "sayfa": 8,
+   "karakter": 3950,
+   "yogunluk": 494,
+   "tahmini": false
+  },
+  "c16k221": {
+   "cilt": 16,
+   "sayfa": 8,
+   "karakter": 4178,
+   "yogunluk": 522,
+   "tahmini": false
+  },
+  "c16k222": {
+   "cilt": 16,
+   "sayfa": 184,
+   "karakter": 5388,
+   "yogunluk": 29,
+   "tahmini": false
+  },
+  "c17k223": {
+   "cilt": 17,
+   "sayfa": 220,
+   "karakter": 3695,
+   "yogunluk": 17,
+   "tahmini": true
+  },
+  "c17k224": {
+   "cilt": 17,
+   "sayfa": 160,
+   "karakter": 3850,
+   "yogunluk": 24,
+   "tahmini": true
+  },
+  "c18k225": {
+   "cilt": 18,
+   "sayfa": 162,
+   "karakter": 2753,
+   "yogunluk": 17,
+   "tahmini": false
+  },
+  "c18k226": {
+   "cilt": 18,
+   "sayfa": 140,
+   "karakter": 3521,
+   "yogunluk": 25,
+   "tahmini": false
+  },
+  "c1k10": {
+   "cilt": 1,
+   "sayfa": 50,
+   "karakter": 6597,
+   "yogunluk": 132,
+   "tahmini": false
+  },
+  "c1k11": {
+   "cilt": 1,
+   "sayfa": 37,
+   "karakter": 5195,
+   "yogunluk": 140,
+   "tahmini": false
+  },
+  "c1k12": {
+   "cilt": 1,
+   "sayfa": 34,
+   "karakter": 3907,
+   "yogunluk": 115,
+   "tahmini": false
+  },
+  "c1k13": {
+   "cilt": 1,
+   "sayfa": 23,
+   "karakter": 4948,
+   "yogunluk": 215,
+   "tahmini": false
+  },
+  "c1k14": {
+   "cilt": 1,
+   "sayfa": 38,
+   "karakter": 7653,
+   "yogunluk": 201,
+   "tahmini": false
+  },
+  "c1k3": {
+   "cilt": 1,
+   "sayfa": 54,
+   "karakter": 8121,
+   "yogunluk": 150,
+   "tahmini": false
+  },
+  "c1k4": {
+   "cilt": 1,
+   "sayfa": 31,
+   "karakter": 10257,
+   "yogunluk": 331,
+   "tahmini": false
+  },
+  "c1k5": {
+   "cilt": 1,
+   "sayfa": 19,
+   "karakter": 10117,
+   "yogunluk": 532,
+   "tahmini": false
+  },
+  "c1k6": {
+   "cilt": 1,
+   "sayfa": 32,
+   "karakter": 15910,
+   "yogunluk": 497,
+   "tahmini": false
+  },
+  "c1k7": {
+   "cilt": 1,
+   "sayfa": 17,
+   "karakter": 5719,
+   "yogunluk": 336,
+   "tahmini": false
+  },
+  "c1k8": {
+   "cilt": 1,
+   "sayfa": 14,
+   "karakter": 7555,
+   "yogunluk": 540,
+   "tahmini": false
+  },
+  "c1k9": {
+   "cilt": 1,
+   "sayfa": 31,
+   "karakter": 6315,
+   "yogunluk": 204,
+   "tahmini": false
+  },
+  "c2k15": {
+   "cilt": 2,
+   "sayfa": 26,
+   "karakter": 6256,
+   "yogunluk": 241,
+   "tahmini": false
+  },
+  "c2k16": {
+   "cilt": 2,
+   "sayfa": 30,
+   "karakter": 10785,
+   "yogunluk": 360,
+   "tahmini": false
+  },
+  "c2k17": {
+   "cilt": 2,
+   "sayfa": 27,
+   "karakter": 8529,
+   "yogunluk": 316,
+   "tahmini": false
+  },
+  "c2k18": {
+   "cilt": 2,
+   "sayfa": 28,
+   "karakter": 8558,
+   "yogunluk": 306,
+   "tahmini": false
+  },
+  "c2k19": {
+   "cilt": 2,
+   "sayfa": 26,
+   "karakter": 6057,
+   "yogunluk": 233,
+   "tahmini": false
+  },
+  "c2k20": {
+   "cilt": 2,
+   "sayfa": 28,
+   "karakter": 6267,
+   "yogunluk": 224,
+   "tahmini": false
+  },
+  "c2k21": {
+   "cilt": 2,
+   "sayfa": 25,
+   "karakter": 8340,
+   "yogunluk": 334,
+   "tahmini": false
+  },
+  "c2k22": {
+   "cilt": 2,
+   "sayfa": 31,
+   "karakter": 7328,
+   "yogunluk": 236,
+   "tahmini": false
+  },
+  "c2k23": {
+   "cilt": 2,
+   "sayfa": 21,
+   "karakter": 14853,
+   "yogunluk": 707,
+   "tahmini": false
+  },
+  "c2k24": {
+   "cilt": 2,
+   "sayfa": 32,
+   "karakter": 15844,
+   "yogunluk": 495,
+   "tahmini": false
+  },
+  "c2k25": {
+   "cilt": 2,
+   "sayfa": 33,
+   "karakter": 28816,
+   "yogunluk": 873,
+   "tahmini": false
+  },
+  "c2k26": {
+   "cilt": 2,
+   "sayfa": 39,
+   "karakter": 17966,
+   "yogunluk": 461,
+   "tahmini": false
+  },
+  "c2k27": {
+   "cilt": 2,
+   "sayfa": 43,
+   "karakter": 18758,
+   "yogunluk": 436,
+   "tahmini": false
+  },
+  "c2k28": {
+   "cilt": 2,
+   "sayfa": 29,
+   "karakter": 21654,
+   "yogunluk": 747,
+   "tahmini": false
+  },
+  "c3k29": {
+   "cilt": 3,
+   "sayfa": 37,
+   "karakter": 15147,
+   "yogunluk": 409,
+   "tahmini": false
+  },
+  "c3k30": {
+   "cilt": 3,
+   "sayfa": 44,
+   "karakter": 8642,
+   "yogunluk": 196,
+   "tahmini": false
+  },
+  "c3k31": {
+   "cilt": 3,
+   "sayfa": 34,
+   "karakter": 12812,
+   "yogunluk": 377,
+   "tahmini": false
+  },
+  "c3k32": {
+   "cilt": 3,
+   "sayfa": 34,
+   "karakter": 20072,
+   "yogunluk": 590,
+   "tahmini": false
+  },
+  "c3k33": {
+   "cilt": 3,
+   "sayfa": 36,
+   "karakter": 17850,
+   "yogunluk": 496,
+   "tahmini": false
+  },
+  "c3k34": {
+   "cilt": 3,
+   "sayfa": 19,
+   "karakter": 15957,
+   "yogunluk": 840,
+   "tahmini": false
+  },
+  "c3k35": {
+   "cilt": 3,
+   "sayfa": 29,
+   "karakter": 15736,
+   "yogunluk": 543,
+   "tahmini": false
+  },
+  "c3k36": {
+   "cilt": 3,
+   "sayfa": 42,
+   "karakter": 21439,
+   "yogunluk": 510,
+   "tahmini": false
+  },
+  "c3k37": {
+   "cilt": 3,
+   "sayfa": 50,
+   "karakter": 19148,
+   "yogunluk": 383,
+   "tahmini": false
+  },
+  "c3k38": {
+   "cilt": 3,
+   "sayfa": 28,
+   "karakter": 11767,
+   "yogunluk": 420,
+   "tahmini": false
+  },
+  "c3k39": {
+   "cilt": 3,
+   "sayfa": 30,
+   "karakter": 10384,
+   "yogunluk": 346,
+   "tahmini": false
+  },
+  "c3k40": {
+   "cilt": 3,
+   "sayfa": 27,
+   "karakter": 7794,
+   "yogunluk": 289,
+   "tahmini": false
+  },
+  "c4k41": {
+   "cilt": 4,
+   "sayfa": 37,
+   "karakter": 6053,
+   "yogunluk": 164,
+   "tahmini": false
+  },
+  "c4k42": {
+   "cilt": 4,
+   "sayfa": 33,
+   "karakter": 5201,
+   "yogunluk": 158,
+   "tahmini": false
+  },
+  "c4k43": {
+   "cilt": 4,
+   "sayfa": 27,
+   "karakter": 6795,
+   "yogunluk": 252,
+   "tahmini": false
+  },
+  "c4k44": {
+   "cilt": 4,
+   "sayfa": 33,
+   "karakter": 6378,
+   "yogunluk": 193,
+   "tahmini": false
+  },
+  "c4k45": {
+   "cilt": 4,
+   "sayfa": 36,
+   "karakter": 6701,
+   "yogunluk": 186,
+   "tahmini": false
+  },
+  "c4k46": {
+   "cilt": 4,
+   "sayfa": 25,
+   "karakter": 6501,
+   "yogunluk": 260,
+   "tahmini": false
+  },
+  "c4k47": {
+   "cilt": 4,
+   "sayfa": 37,
+   "karakter": 6092,
+   "yogunluk": 165,
+   "tahmini": false
+  },
+  "c4k48": {
+   "cilt": 4,
+   "sayfa": 39,
+   "karakter": 7387,
+   "yogunluk": 189,
+   "tahmini": false
+  },
+  "c4k49": {
+   "cilt": 4,
+   "sayfa": 29,
+   "karakter": 5613,
+   "yogunluk": 194,
+   "tahmini": false
+  },
+  "c4k50": {
+   "cilt": 4,
+   "sayfa": 39,
+   "karakter": 6381,
+   "yogunluk": 164,
+   "tahmini": false
+  },
+  "c4k51": {
+   "cilt": 4,
+   "sayfa": 34,
+   "karakter": 6200,
+   "yogunluk": 182,
+   "tahmini": false
+  },
+  "c4k52": {
+   "cilt": 4,
+   "sayfa": 57,
+   "karakter": 6255,
+   "yogunluk": 110,
+   "tahmini": false
+  },
+  "c4k53": {
+   "cilt": 4,
+   "sayfa": 20,
+   "karakter": 6058,
+   "yogunluk": 303,
+   "tahmini": false
+  },
+  "c5k54": {
+   "cilt": 5,
+   "sayfa": 20,
+   "karakter": 6188,
+   "yogunluk": 309,
+   "tahmini": false
+  },
+  "c5k55": {
+   "cilt": 5,
+   "sayfa": 43,
+   "karakter": 6929,
+   "yogunluk": 161,
+   "tahmini": false
+  },
+  "c5k56": {
+   "cilt": 5,
+   "sayfa": 32,
+   "karakter": 5456,
+   "yogunluk": 170,
+   "tahmini": false
+  },
+  "c5k57": {
+   "cilt": 5,
+   "sayfa": 26,
+   "karakter": 5127,
+   "yogunluk": 197,
+   "tahmini": false
+  },
+  "c5k58": {
+   "cilt": 5,
+   "sayfa": 33,
+   "karakter": 6153,
+   "yogunluk": 186,
+   "tahmini": false
+  },
+  "c5k59": {
+   "cilt": 5,
+   "sayfa": 34,
+   "karakter": 4932,
+   "yogunluk": 145,
+   "tahmini": false
+  },
+  "c5k60": {
+   "cilt": 5,
+   "sayfa": 21,
+   "karakter": 4021,
+   "yogunluk": 191,
+   "tahmini": false
+  },
+  "c5k61": {
+   "cilt": 5,
+   "sayfa": 21,
+   "karakter": 4449,
+   "yogunluk": 212,
+   "tahmini": false
+  },
+  "c5k62": {
+   "cilt": 5,
+   "sayfa": 22,
+   "karakter": 4192,
+   "yogunluk": 191,
+   "tahmini": false
+  },
+  "c5k63": {
+   "cilt": 5,
+   "sayfa": 20,
+   "karakter": 4848,
+   "yogunluk": 242,
+   "tahmini": false
+  },
+  "c5k64": {
+   "cilt": 5,
+   "sayfa": 23,
+   "karakter": 4483,
+   "yogunluk": 195,
+   "tahmini": false
+  },
+  "c5k65": {
+   "cilt": 5,
+   "sayfa": 21,
+   "karakter": 4490,
+   "yogunluk": 214,
+   "tahmini": false
+  },
+  "c5k66": {
+   "cilt": 5,
+   "sayfa": 21,
+   "karakter": 4286,
+   "yogunluk": 204,
+   "tahmini": false
+  },
+  "c5k67": {
+   "cilt": 5,
+   "sayfa": 21,
+   "karakter": 4043,
+   "yogunluk": 193,
+   "tahmini": false
+  },
+  "c5k68": {
+   "cilt": 5,
+   "sayfa": 36,
+   "karakter": 4385,
+   "yogunluk": 122,
+   "tahmini": false
+  },
+  "c5k69": {
+   "cilt": 5,
+   "sayfa": 14,
+   "karakter": 4863,
+   "yogunluk": 347,
+   "tahmini": false
+  },
+  "c6k71": {
+   "cilt": 6,
+   "sayfa": 22,
+   "karakter": 4177,
+   "yogunluk": 190,
+   "tahmini": false
+  },
+  "c6k72": {
+   "cilt": 6,
+   "sayfa": 21,
+   "karakter": 4936,
+   "yogunluk": 235,
+   "tahmini": false
+  },
+  "c6k73": {
+   "cilt": 6,
+   "sayfa": 23,
+   "karakter": 6192,
+   "yogunluk": 269,
+   "tahmini": false
+  },
+  "c6k74": {
+   "cilt": 6,
+   "sayfa": 20,
+   "karakter": 4808,
+   "yogunluk": 240,
+   "tahmini": false
+  },
+  "c6k75": {
+   "cilt": 6,
+   "sayfa": 21,
+   "karakter": 5471,
+   "yogunluk": 261,
+   "tahmini": false
+  },
+  "c6k76": {
+   "cilt": 6,
+   "sayfa": 17,
+   "karakter": 5083,
+   "yogunluk": 299,
+   "tahmini": false
+  },
+  "c6k77": {
+   "cilt": 6,
+   "sayfa": 21,
+   "karakter": 4515,
+   "yogunluk": 215,
+   "tahmini": false
+  },
+  "c6k78": {
+   "cilt": 6,
+   "sayfa": 18,
+   "karakter": 4883,
+   "yogunluk": 271,
+   "tahmini": false
+  },
+  "c6k79": {
+   "cilt": 6,
+   "sayfa": 26,
+   "karakter": 4839,
+   "yogunluk": 186,
+   "tahmini": false
+  },
+  "c6k80": {
+   "cilt": 6,
+   "sayfa": 21,
+   "karakter": 5166,
+   "yogunluk": 246,
+   "tahmini": false
+  },
+  "c6k81": {
+   "cilt": 6,
+   "sayfa": 24,
+   "karakter": 4838,
+   "yogunluk": 202,
+   "tahmini": false
+  },
+  "c6k82": {
+   "cilt": 6,
+   "sayfa": 23,
+   "karakter": 4881,
+   "yogunluk": 212,
+   "tahmini": false
+  },
+  "c6k83": {
+   "cilt": 6,
+   "sayfa": 22,
+   "karakter": 5780,
+   "yogunluk": 263,
+   "tahmini": false
+  },
+  "c6k84": {
+   "cilt": 6,
+   "sayfa": 22,
+   "karakter": 4597,
+   "yogunluk": 209,
+   "tahmini": false
+  },
+  "c6k85": {
+   "cilt": 6,
+   "sayfa": 23,
+   "karakter": 5186,
+   "yogunluk": 225,
+   "tahmini": false
+  },
+  "c6k86": {
+   "cilt": 6,
+   "sayfa": 22,
+   "karakter": 5273,
+   "yogunluk": 240,
+   "tahmini": false
+  },
+  "c6k87": {
+   "cilt": 6,
+   "sayfa": 21,
+   "karakter": 5004,
+   "yogunluk": 238,
+   "tahmini": false
+  },
+  "c6k88": {
+   "cilt": 6,
+   "sayfa": 21,
+   "karakter": 5181,
+   "yogunluk": 247,
+   "tahmini": false
+  },
+  "c6k89": {
+   "cilt": 6,
+   "sayfa": 18,
+   "karakter": 4810,
+   "yogunluk": 267,
+   "tahmini": false
+  },
+  "c7k100": {
+   "cilt": 7,
+   "sayfa": 24,
+   "karakter": 5790,
+   "yogunluk": 241,
+   "tahmini": false
+  },
+  "c7k101": {
+   "cilt": 7,
+   "sayfa": 34,
+   "karakter": 6727,
+   "yogunluk": 198,
+   "tahmini": false
+  },
+  "c7k102": {
+   "cilt": 7,
+   "sayfa": 21,
+   "karakter": 5166,
+   "yogunluk": 246,
+   "tahmini": false
+  },
+  "c7k103": {
+   "cilt": 7,
+   "sayfa": 26,
+   "karakter": 6713,
+   "yogunluk": 258,
+   "tahmini": false
+  },
+  "c7k104": {
+   "cilt": 7,
+   "sayfa": 19,
+   "karakter": 6647,
+   "yogunluk": 350,
+   "tahmini": false
+  },
+  "c7k105": {
+   "cilt": 7,
+   "sayfa": 20,
+   "karakter": 6101,
+   "yogunluk": 305,
+   "tahmini": false
+  },
+  "c7k106": {
+   "cilt": 7,
+   "sayfa": 20,
+   "karakter": 7613,
+   "yogunluk": 381,
+   "tahmini": false
+  },
+  "c7k90": {
+   "cilt": 7,
+   "sayfa": 32,
+   "karakter": 4355,
+   "yogunluk": 136,
+   "tahmini": false
+  },
+  "c7k91": {
+   "cilt": 7,
+   "sayfa": 39,
+   "karakter": 4199,
+   "yogunluk": 108,
+   "tahmini": false
+  },
+  "c7k92": {
+   "cilt": 7,
+   "sayfa": 30,
+   "karakter": 4029,
+   "yogunluk": 134,
+   "tahmini": false
+  },
+  "c7k93": {
+   "cilt": 7,
+   "sayfa": 24,
+   "karakter": 4343,
+   "yogunluk": 181,
+   "tahmini": false
+  },
+  "c7k94": {
+   "cilt": 7,
+   "sayfa": 20,
+   "karakter": 4098,
+   "yogunluk": 205,
+   "tahmini": false
+  },
+  "c7k95": {
+   "cilt": 7,
+   "sayfa": 22,
+   "karakter": 4076,
+   "yogunluk": 185,
+   "tahmini": false
+  },
+  "c7k96": {
+   "cilt": 7,
+   "sayfa": 22,
+   "karakter": 4620,
+   "yogunluk": 210,
+   "tahmini": false
+  },
+  "c7k97": {
+   "cilt": 7,
+   "sayfa": 18,
+   "karakter": 4293,
+   "yogunluk": 238,
+   "tahmini": false
+  },
+  "c7k98": {
+   "cilt": 7,
+   "sayfa": 20,
+   "karakter": 4135,
+   "yogunluk": 207,
+   "tahmini": false
+  },
+  "c7k99": {
+   "cilt": 7,
+   "sayfa": 20,
+   "karakter": 3925,
+   "yogunluk": 196,
+   "tahmini": false
+  },
+  "c8k107": {
+   "cilt": 8,
+   "sayfa": 21,
+   "karakter": 3773,
+   "yogunluk": 180,
+   "tahmini": false
+  },
+  "c8k108": {
+   "cilt": 8,
+   "sayfa": 37,
+   "karakter": 5589,
+   "yogunluk": 151,
+   "tahmini": false
+  },
+  "c8k109": {
+   "cilt": 8,
+   "sayfa": 37,
+   "karakter": 6408,
+   "yogunluk": 173,
+   "tahmini": false
+  },
+  "c8k110": {
+   "cilt": 8,
+   "sayfa": 29,
+   "karakter": 5606,
+   "yogunluk": 193,
+   "tahmini": false
+  },
+  "c8k111": {
+   "cilt": 8,
+   "sayfa": 30,
+   "karakter": 6154,
+   "yogunluk": 205,
+   "tahmini": false
+  },
+  "c8k112": {
+   "cilt": 8,
+   "sayfa": 38,
+   "karakter": 5688,
+   "yogunluk": 150,
+   "tahmini": false
+  },
+  "c8k113": {
+   "cilt": 8,
+   "sayfa": 26,
+   "karakter": 5482,
+   "yogunluk": 211,
+   "tahmini": false
+  },
+  "c8k114": {
+   "cilt": 8,
+   "sayfa": 25,
+   "karakter": 6124,
+   "yogunluk": 245,
+   "tahmini": false
+  },
+  "c8k115": {
+   "cilt": 8,
+   "sayfa": 41,
+   "karakter": 5904,
+   "yogunluk": 144,
+   "tahmini": false
+  },
+  "c8k116": {
+   "cilt": 8,
+   "sayfa": 33,
+   "karakter": 7415,
+   "yogunluk": 225,
+   "tahmini": false
+  },
+  "c8k117": {
+   "cilt": 8,
+   "sayfa": 17,
+   "karakter": 6919,
+   "yogunluk": 407,
+   "tahmini": false
+  },
+  "c8k118": {
+   "cilt": 8,
+   "sayfa": 33,
+   "karakter": 6567,
+   "yogunluk": 199,
+   "tahmini": false
+  },
+  "c8k119": {
+   "cilt": 8,
+   "sayfa": 42,
+   "karakter": 6402,
+   "yogunluk": 152,
+   "tahmini": false
+  },
+  "c9k120": {
+   "cilt": 9,
+   "sayfa": 32,
+   "karakter": 5427,
+   "yogunluk": 170,
+   "tahmini": false
+  },
+  "c9k121": {
+   "cilt": 9,
+   "sayfa": 24,
+   "karakter": 5874,
+   "yogunluk": 245,
+   "tahmini": false
+  },
+  "c9k122": {
+   "cilt": 9,
+   "sayfa": 26,
+   "karakter": 5200,
+   "yogunluk": 200,
+   "tahmini": false
+  },
+  "c9k123": {
+   "cilt": 9,
+   "sayfa": 35,
+   "karakter": 5498,
+   "yogunluk": 157,
+   "tahmini": false
+  },
+  "c9k124": {
+   "cilt": 9,
+   "sayfa": 313,
+   "karakter": 6533,
+   "yogunluk": 21,
+   "tahmini": false
+  }
+ }
+}
