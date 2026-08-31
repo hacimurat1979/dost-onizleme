@@ -31,7 +31,7 @@
 (function () {
   "use strict";
 
-  var SURUM = "t2";
+  var SURUM = "t3";
 
   // Dosya listesi artık burada DEĞİL: data/ibn-arabi/tarama-kapsami.json.
   //
@@ -207,7 +207,21 @@
   }
 
   // Künye/etiket alanları taranmaz -- metin değil, veri.
-  var MUAF = { analogy: 1, source: 1, sources: 1, kaynak: 1, kaynaklar: 1,
+  //
+  // `analogy` BU LİSTEDE DEĞİL, ve bu bilinçli. durus-kontrol.js'in MUAF
+  // listesinde var, ama oradaki gerekçe başka: CLAUDE.md günlük hayat
+  // analojilerini ("yıllarca aynı yoldan geçen biri gibi") süre/emek
+  // ŞİŞİRME kurallarından muaf tutuyor. O muafiyet buraya kopyalanmıştı,
+  // üstelik "metin değil, veri" gerekçesiyle -- oysa analogy düpedüz
+  // metin, hem de okuyucunun gördüğü metin. M5 (uzunluk/yoğunluk) ve M7
+  // (üç dil kayması) için o muafiyetin hiçbir dayanağı yok: bir analojide
+  // de PT eksik kalabilir, cümle 70 kelimeyi aşabilir, sayı tutmayabilir.
+  // Ölçüldü (2026-08-30): muafiyet 202 üç dilli alanı, 190.668 karakteri
+  // taramanın dışında tutuyordu -- listenin gizlediği en büyük blok.
+  // Kaldırılınca çıkan yeni bulgu: SIFIR. Yani saklanan metin bugün
+  // temizdi; muafiyet yine de kalkıyor, çünkü bugün temiz olması yarın
+  // da taranmaması için bir sebep değil.
+  var MUAF = { source: 1, sources: 1, kaynak: 1, kaynaklar: 1,
                cite: 1, url: 1, id: 1, view: 1, pageRange: 1, arabic: 1, ad: 1 };
 
   function gez(o, yol, etiket, bulgular, derinlik) {
