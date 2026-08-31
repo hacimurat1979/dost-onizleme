@@ -31,7 +31,7 @@
 (function () {
   "use strict";
 
-  var SURUM = "t5";
+  var SURUM = "t6";
 
   // Dosya listesi artık burada DEĞİL: data/ibn-arabi/tarama-kapsami.json.
   //
@@ -156,11 +156,19 @@
   //      kısa olanlara verilseydi "üçgen" de eşleşir, gerçek bir bulguyu
   //      yanlışlıkla susturabilirdi.
   //
-  // Sonuç: 144 -> 9 bulgu, hepsi tr. İki sınıf: TR'nin sûre numarasını
-  // yazmadığı künye farkı (5) ve EN'in TR'de bulunmayan bir kısım/cilt
-  // numarası vermesi (4) -- ikincisi gerçek bir asimetri.
-  // t4'ün "PT dört sayı düşürmüş" bulgusu GERİ ÇEKİLDİ: dördü de
-  // merceğin kendi eksiğiydi (üçü romen yüzyıl, biri yazıyla 155).
+  //   5) NOKTALI İ (t6). Bkz. kucult(). "İ".toLowerCase() iki kod noktası
+  //      üretiyor, o yüzden /ikinci/iu deseni "İkinci" ile eşleşmiyordu:
+  //      TR "Yüz İkinci Kısım" diye yazdığı hâlde "TR 102'yi düşürmüş"
+  //      deniyordu. Deponun ASCII \b hatasının kardeşi, dördüncü tekrarı.
+  //
+  // Sonuç: 144 -> 36 (t4) -> 9 (t5) -> 5 (t6). Kalan beşi tek sınıf:
+  // TR'nin sûre numarasını yazmadığı künye farkı; kanonik biçim yapısal
+  // <span data-ayet> ve o yol âyet onay hattından geçiyor.
+  // İki bulgu GERİ ÇEKİLDİ, ikisi de merceğin kendi eksiğiydi:
+  // t4'ün "PT dört sayı düşürmüş"ü (üçü romen yüzyıl, biri yazıyla 155)
+  // ve t5'in "EN dört kısım/cilt numarası fazla veriyor"u -- dördü
+  // açıldığında biri noktalı-İ körlüğü, biri özetin zaten gösterdiği
+  // cilt numarasının tekrarı, ikisi de metnin kendi yazım hatasıydı.
   var SB = { tr: ["", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"],
              en: ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"],
              pt: ["", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove"] };
@@ -250,14 +258,22 @@
     return out.filter(Boolean);
   }
 
+  // Türkçe NOKTALI İ (t6). Bu, deponun ASCII \b hatasının kardeşi ve
+  // aynı aileden dördüncü tekrarı: "İ".toLowerCase() bir harf değil İKİ
+  // kod noktası üretiyor -- "i" (U+0069) + U+0307 birleşen nokta. Bu
+  // yüzden /ikinci/iu deseni "İkinci" ile EŞLEŞMİYOR. Ölçülen sonuç:
+  // c7k101'de TR "Yüz İkinci Kısım" diye açıkça yazdığı hâlde mercek
+  // "TR 102'yi düşürmüş" diyordu. Küçültüp birleşen noktayı atmak iki
+  // yazımı da aynı dizgeye indiriyor.
+  function kucult(s) { return String(s).toLowerCase().replace(/\u0307/g, ""); }
+
   // Unicode farkında kelime sınırı -- ASCII \b Türkçe harfte sessizce
   // çalışmaz; bu depoda aynı hata daha önce üç kez yapıldı.
   function yaziylaVar(n, metin, dil) {
-    var kelimeler = sayiSozcukleri(n, dil).slice();
-    var r = romen(n);
-    if (r) kelimeler.push(r);
+    var kelimeler = sayiSozcukleri(n, dil);
+    var alt = kucult(metin);
     for (var i = 0; i < kelimeler.length; i++) {
-      var k = kelimeler[i].replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      var k = kucult(kelimeler[i]).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       // Türkçe EK toleransı. Metin "iki yüz elli üçü aşkın" yazıyor; katı
       // kelime sonu "üçü"yü "üç" saymıyor ve sayı yazıyla verilmiş olduğu
       // hâlde "TR'de yok" deniyordu. Yalnız DÖRT harften uzun sayı
@@ -265,9 +281,23 @@
       // de eşleşir, gerçek bir bulgu yanlışlıkla susturulurdu.
       var son = kelimeler[i].length > 4 ? "[\\p{Ll}]{0,3}" : "";
       try {
-        if (new RegExp("(?<![\\p{L}\\p{N}])" + k + son + "(?![\\p{L}\\p{N}])", "iu").test(metin)) return true;
+        if (new RegExp("(?<![\\p{L}\\p{N}])" + k + son + "(?![\\p{L}\\p{N}])", "u").test(alt)) return true;
       } catch (e) {
-        if (metin.toLowerCase().indexOf(kelimeler[i].toLowerCase()) >= 0) return true;
+        if (alt.indexOf(kucult(kelimeler[i])) >= 0) return true;
+      }
+    }
+    // Romen rakamı BÜYÜK HARFLE aranıyor, ötekiler gibi küçültülmeden.
+    // Küçültülseydi romen(51)="LI" Portekizce "li" (okudum) sözcüğüyle,
+    // romen(101)="CI" de "ci" ile eşleşir ve 51/101 hakkında GERÇEK bir
+    // bulguyu sessizce susturabilirdi. Külliyatta romen rakamı her yerde
+    // büyük harfle yazılıyor ("Cilt XV", "século XIX"), yani daraltmanın
+    // bir maliyeti yok.
+    var r = romen(n);
+    if (r) {
+      try {
+        if (new RegExp("(?<![\\p{L}\\p{N}])" + r + "(?![\\p{L}\\p{N}])", "u").test(String(metin))) return true;
+      } catch (e2) {
+        if (String(metin).indexOf(r) >= 0) return true;
       }
     }
     return false;
