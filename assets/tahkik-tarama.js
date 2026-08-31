@@ -31,7 +31,7 @@
 (function () {
   "use strict";
 
-  var SURUM = "t3";
+  var SURUM = "t4";
 
   // Dosya listesi artık burada DEĞİL: data/ibn-arabi/tarama-kapsami.json.
   //
@@ -119,11 +119,95 @@
   }
 
   // Sayı ve tarihler üç dilde aynı olmalı: künye, cilt, sayfa, yıl.
-  // Yalnız RAKAM dizileri karşılaştırılıyor -- "üç" / "three" gibi
-  // yazıyla yazılmış sayılar bilerek kapsam dışı (dilden dile değişir).
-  function sayilar(s) {
+  //
+  // ESKİ KURAL: üç dilin RAKAM dizileri birebir karşılaştırılırdı; yazıyla
+  // yazılmış sayılar "dilden dile değişir" diye kapsam dışıydı. Ama kapsam
+  // dışı bırakmak yetmiyordu: TR "43. kısım" yazıp EN "Part Forty-Three"
+  // yazınca diziler tutmuyor ve bulgu çıkıyordu. Yani kural, muaf tuttuğunu
+  // sandığı şeyi arka kapıdan geri sokuyordu. Ölçüldü (2026-08-30):
+  // 144 bulgunun 108'i bu türdendi -- yani dörtte üçü.
+  //
+  // DAR KURAL, iki parça:
+  //   1) ÇOĞUNLUK. Bir sayı ancak İKİ dilde varsa ve ÜÇÜNCÜSÜNDE yoksa
+  //      bulgu. Tek bir dilde geçen sayı (TR'nin ISO tarihindeki ay,
+  //      "1/2, 1/3" kesirleri, yalnız EN'in verdiği cilt numarası) bir
+  //      kayma değil, bir biçim tercihi -- ve üç dilden ikisinin
+  //      anlaştığı yerde üçüncünün susması, gerçekten düşmüş bir sayıya
+  //      işaret ediyor.
+  //   2) YAZIYLA KARŞILANAN MUAF. Eksik görünen sayı, o dilde sözcük
+  //      olarak geçiyorsa ("on iki" / "twelve" / "doze") fark sayılmaz.
+  //      Sözlük TERSİNDEN çalışıyor: yalnız karşı tarafta RAKAM olarak
+  //      gördüğümüz sayının sözcüğünü arıyoruz. Bu önemli, çünkü "bir /
+  //      um / one" aynı zamanda belirsiz artikel; metni bu sözcükler için
+  //      taramak yüzlerce yanlış eşleşme üretirdi.
+  // Sonuç: 144 -> 36 bulgu. Kalanlar iki gerçek sınıf: TR'nin sûre
+  // numarasını yazmadığı künye kuralı farkı (32) ve PT'nin gerçekten
+  // düşürdüğü sayı (4).
+  var SB = { tr: ["", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"],
+             en: ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"],
+             pt: ["", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove"] };
+  var SO = { tr: ["", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"],
+             en: ["", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"],
+             pt: ["", "dez", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa"] };
+  var ONLAR = {
+    en: { 11: "eleven", 12: "twelve", 13: "thirteen", 14: "fourteen", 15: "fifteen",
+          16: "sixteen", 17: "seventeen", 18: "eighteen", 19: "nineteen" },
+    pt: { 11: "onze", 12: "doze", 13: "treze", 14: "catorze", 15: "quinze",
+          16: "dezasseis", 17: "dezassete", 18: "dezoito", 19: "dezanove" }
+  };
+  // Sıra sayıları: metinlerimiz "Kırk Dördüncü Kısım" / "Part Forty-Four"
+  // biçimini bolca kullanıyor, asıl sayı kadar sık.
+  var SIRA = {
+    tr: { "bir": "birinci", "iki": "ikinci", "üç": "üçüncü", "dört": "dördüncü",
+          "beş": "beşinci", "altı": "altıncı", "yedi": "yedinci", "sekiz": "sekizinci",
+          "dokuz": "dokuzuncu", "on": "onuncu", "yirmi": "yirminci", "otuz": "otuzuncu",
+          "kırk": "kırkıncı", "elli": "ellinci", "altmış": "altmışıncı",
+          "yetmiş": "yetmişinci", "seksen": "sekseninci", "doksan": "doksanıncı" },
+    en: { "one": "first", "two": "second", "three": "third", "four": "fourth",
+          "five": "fifth", "six": "sixth", "seven": "seventh", "eight": "eighth",
+          "nine": "ninth", "ten": "tenth", "eleven": "eleventh", "twelve": "twelfth",
+          "twenty": "twentieth", "thirty": "thirtieth", "forty": "fortieth",
+          "fifty": "fiftieth", "sixty": "sixtieth", "seventy": "seventieth",
+          "eighty": "eightieth", "ninety": "ninetieth" },
+    pt: {}
+  };
+
+  function sayiSozcukleri(n, dil) {
+    if (n === 100) return { tr: ["yüz"], en: ["hundred"], pt: ["cem", "cento"] }[dil];
+    if (n === 1000) return { tr: ["bin"], en: ["thousand"], pt: ["mil"] }[dil];
+    if (n < 1 || n > 99) return [];
+    var out = [], b = SB[dil], o = SO[dil], s = SIRA[dil] || {};
+    function ekle(x) { if (x) { out.push(x); if (s[x]) out.push(s[x]); } }
+    if (n < 10) { ekle(b[n]); return out; }
+    if (n < 20 && ONLAR[dil]) { ekle(ONLAR[dil][n] || o[1]); if (n === 10) ekle(o[1]); return out; }
+    var on = Math.floor(n / 10), bir = n % 10;
+    if (bir === 0) { ekle(o[on]); return out; }
+    if (dil === "tr") { out.push(o[on] + " " + b[bir], o[on] + b[bir], o[on] + " " + (s[b[bir]] || "")); }
+    else if (dil === "en") { out.push(o[on] + "-" + b[bir], o[on] + " " + b[bir], o[on] + "-" + (s[b[bir]] || "")); }
+    else { out.push(o[on] + " e " + b[bir]); }
+    return out.filter(Boolean);
+  }
+
+  // Unicode farkında kelime sınırı -- ASCII \b Türkçe harfte sessizce
+  // çalışmaz; bu depoda aynı hata daha önce üç kez yapıldı.
+  function yaziylaVar(n, metin, dil) {
+    var kelimeler = sayiSozcukleri(n, dil);
+    for (var i = 0; i < kelimeler.length; i++) {
+      var k = kelimeler[i].replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      try {
+        if (new RegExp("(?<![\\p{L}\\p{N}])" + k + "(?![\\p{L}\\p{N}])", "iu").test(metin)) return true;
+      } catch (e) {
+        if (metin.toLowerCase().indexOf(kelimeler[i].toLowerCase()) >= 0) return true;
+      }
+    }
+    return false;
+  }
+
+  function rakamKumesi(s) {
     var m = String(s || "").match(/\d+/g) || [];
-    return m.slice().sort().join(",");
+    var out = {};
+    for (var i = 0; i < m.length; i++) out[parseInt(m[i], 10)] = 1;
+    return out;
   }
 
   // --- mercekler --------------------------------------------------------
@@ -156,12 +240,27 @@
            tr);
     }
 
-    var str = sayilar(tr), sen = sayilar(en), spt = sayilar(pt);
-    if (str !== sen || str !== spt) {
+    var metin = { tr: tr, en: en, pt: pt };
+    var rakam = { tr: rakamKumesi(tr), en: rakamKumesi(en), pt: rakamKumesi(pt) };
+    var hepsi = {}, DILLER = ["tr", "en", "pt"];
+    DILLER.forEach(function (d) { for (var n in rakam[d]) hepsi[n] = 1; });
+
+    var eksik = {};
+    Object.keys(hepsi).forEach(function (ns) {
+      var n = parseInt(ns, 10);
+      var var_ = DILLER.filter(function (d) { return rakam[d][n]; });
+      if (var_.length !== 2) return;                 // çoğunluk kuralı
+      var yok = DILLER.filter(function (d) { return !rakam[d][n]; })[0];
+      if (yaziylaVar(n, metin[yok], yok)) return;    // yazıyla karşılanmış
+      (eksik[yok] = eksik[yok] || []).push(n);
+    });
+
+    Object.keys(eksik).forEach(function (d) {
+      var ns = eksik[d].sort(function (a, b) { return a - b; });
       ekle(bulgular, "M7", "sayi-farki", etiket, yol,
-           "sayılar üç dilde aynı değil (tr:" + (str || "—") + " en:" + (sen || "—") + " pt:" + (spt || "—") + ")",
-           tr);
-    }
+           d + " dilinde eksik: " + ns.join(", ") + " (öteki iki dilde var, "
+           + d + "'de ne rakamla ne yazıyla geçiyor)", metin[d] || tr);
+    });
   }
 
   function m5(triple, yol, etiket, bulgular) {
