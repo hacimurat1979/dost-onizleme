@@ -31,7 +31,7 @@
 (function () {
   "use strict";
 
-  var SURUM = "t4";
+  var SURUM = "t5";
 
   // Dosya listesi artık burada DEĞİL: data/ibn-arabi/tarama-kapsami.json.
   //
@@ -140,9 +140,27 @@
   //      gördüğümüz sayının sözcüğünü arıyoruz. Bu önemli, çünkü "bir /
   //      um / one" aynı zamanda belirsiz artikel; metni bu sözcükler için
   //      taramak yüzlerce yanlış eşleşme üretirdi.
-  // Sonuç: 144 -> 36 bulgu. Kalanlar iki gerçek sınıf: TR'nin sûre
-  // numarasını yazmadığı künye kuralı farkı (32) ve PT'nin gerçekten
-  // düşürdüğü sayı (4).
+  //   3) ROMEN VE YÜZLÜKLER (t5). Yukarıdaki sözlük 1-99 + 100/1000 ile
+  //      sınırlıyken iki sınıf daha kaçıyordu ve ikisi de YANLIŞ BULGU
+  //      üretiyordu: PT yüzyılı romen yazıyor ("século XIX", "IX/XV",
+  //      "XVII") ve bileşik yüzlükleri sözcükle yazıyor ("cento e
+  //      cinquenta e cinco" = 155). t4 bu dördünü "PT bu sayıyı DÜŞÜRMÜŞ"
+  //      diye raporlamıştı; düşürmemişti, sözlük yetmiyordu. Romen
+  //      araması TR'ye de yarıyor ("Kısım XXV").
+  //
+  //   4) BİNLİK AYRACI ve TÜRKÇE EK (t5). EN "1,646" / PT "1.646" yazınca
+  //      ayraç sayıyı bölüyor; "2,008" bölününce "008" = 0 çıkıyor ve
+  //      "0 TR'de yok" gibi bir bulgu üretiyordu. Ayrıca TR "iki yüz elli
+  //      ÜÇÜ aşkın" yazıyor, katı kelime sonu "üçü"yü "üç" saymıyordu.
+  //      Ek toleransı yalnız dört harften uzun sayı ibarelerine veriliyor;
+  //      kısa olanlara verilseydi "üçgen" de eşleşir, gerçek bir bulguyu
+  //      yanlışlıkla susturabilirdi.
+  //
+  // Sonuç: 144 -> 9 bulgu, hepsi tr. İki sınıf: TR'nin sûre numarasını
+  // yazmadığı künye farkı (5) ve EN'in TR'de bulunmayan bir kısım/cilt
+  // numarası vermesi (4) -- ikincisi gerçek bir asimetri.
+  // t4'ün "PT dört sayı düşürmüş" bulgusu GERİ ÇEKİLDİ: dördü de
+  // merceğin kendi eksiğiydi (üçü romen yüzyıl, biri yazıyla 155).
   var SB = { tr: ["", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"],
              en: ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"],
              pt: ["", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove"] };
@@ -172,9 +190,53 @@
     pt: {}
   };
 
+  // Yüzlükler. 2026-08-30'da ölçüldü: sözlük 1-99 + 100/1000 ile sınırlıyken
+  // PT'nin "cento e cinquenta e cinco" (155) yazımı bulunamıyor ve "PT bu
+  // sayıyı DÜŞÜRMÜŞ" diye raporlanıyordu. Düşürmemişti; sözlük yetmiyordu.
+  var YUZ = {
+    tr: ["", "yüz", "iki yüz", "üç yüz", "dört yüz", "beş yüz",
+         "altı yüz", "yedi yüz", "sekiz yüz", "dokuz yüz"],
+    en: ["", "one hundred", "two hundred", "three hundred", "four hundred",
+         "five hundred", "six hundred", "seven hundred", "eight hundred", "nine hundred"],
+    pt: ["", "cento", "duzentos", "trezentos", "quatrocentos", "quinhentos",
+         "seiscentos", "setecentos", "oitocentos", "novecentos"]
+  };
+
+  // Romen rakamı. PT yüzyılı "século XIX" diye yazıyor, TR ise kısımları
+  // "Kısım XXV" diye -- ikisi de rakamla yazılmış karşılığı olan sayılar.
+  // Aynı ölçümde üç bulgunun üçü de bu yüzden uydurmaydı.
+  // DİKKAT: tek harfli romen rakamları (I, V, X, L, C, D, M) sıradan
+  // metinde her yerde geçer ("I" İngilizce zamir); yalnız İKİ VE DAHA UZUN
+  // olanlar aranıyor. Bu, gerçek kullanımların hepsini kapsıyor (IX, XV,
+  // XVII, XIX, XXV) ve yanlış susturma riskini kapatıyor.
+  var ROMEN = [[1000, "M"], [900, "CM"], [500, "D"], [400, "CD"], [100, "C"],
+               [90, "XC"], [50, "L"], [40, "XL"], [10, "X"], [9, "IX"],
+               [5, "V"], [4, "IV"], [1, "I"]];
+  function romen(n) {
+    if (n < 1 || n > 3999) return "";
+    var s = "";
+    for (var i = 0; i < ROMEN.length; i++) {
+      while (n >= ROMEN[i][0]) { s += ROMEN[i][1]; n -= ROMEN[i][0]; }
+    }
+    return s.length >= 2 ? s : "";
+  }
+
   function sayiSozcukleri(n, dil) {
-    if (n === 100) return { tr: ["yüz"], en: ["hundred"], pt: ["cem", "cento"] }[dil];
     if (n === 1000) return { tr: ["bin"], en: ["thousand"], pt: ["mil"] }[dil];
+    if (n === 100) return { tr: ["yüz"], en: ["hundred"], pt: ["cem", "cento"] }[dil];
+    if (n > 100 && n < 1000) {
+      var y = Math.floor(n / 100), kalan = n % 100;
+      var bas = YUZ[dil][y];
+      if (!bas) return [];
+      if (kalan === 0) return [bas];
+      var ek = sayiSozcukleri(kalan, dil), cik = [];
+      for (var j = 0; j < ek.length; j++) {
+        if (dil === "pt") cik.push(bas + " e " + ek[j]);
+        else if (dil === "en") cik.push(bas + " " + ek[j], bas + " and " + ek[j]);
+        else cik.push(bas + " " + ek[j]);
+      }
+      return cik;
+    }
     if (n < 1 || n > 99) return [];
     var out = [], b = SB[dil], o = SO[dil], s = SIRA[dil] || {};
     function ekle(x) { if (x) { out.push(x); if (s[x]) out.push(s[x]); } }
@@ -191,11 +253,19 @@
   // Unicode farkında kelime sınırı -- ASCII \b Türkçe harfte sessizce
   // çalışmaz; bu depoda aynı hata daha önce üç kez yapıldı.
   function yaziylaVar(n, metin, dil) {
-    var kelimeler = sayiSozcukleri(n, dil);
+    var kelimeler = sayiSozcukleri(n, dil).slice();
+    var r = romen(n);
+    if (r) kelimeler.push(r);
     for (var i = 0; i < kelimeler.length; i++) {
       var k = kelimeler[i].replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      // Türkçe EK toleransı. Metin "iki yüz elli üçü aşkın" yazıyor; katı
+      // kelime sonu "üçü"yü "üç" saymıyor ve sayı yazıyla verilmiş olduğu
+      // hâlde "TR'de yok" deniyordu. Yalnız DÖRT harften uzun sayı
+      // ibarelerine veriliyor: "üç" gibi kısa olanlara verilseydi "üçgen"
+      // de eşleşir, gerçek bir bulgu yanlışlıkla susturulurdu.
+      var son = kelimeler[i].length > 4 ? "[\\p{Ll}]{0,3}" : "";
       try {
-        if (new RegExp("(?<![\\p{L}\\p{N}])" + k + "(?![\\p{L}\\p{N}])", "iu").test(metin)) return true;
+        if (new RegExp("(?<![\\p{L}\\p{N}])" + k + son + "(?![\\p{L}\\p{N}])", "iu").test(metin)) return true;
       } catch (e) {
         if (metin.toLowerCase().indexOf(kelimeler[i].toLowerCase()) >= 0) return true;
       }
@@ -203,8 +273,16 @@
     return false;
   }
 
+  // Binlik ayracı (t5). TR "1646" yazarken EN "1,646", PT "1.646" yazıyor;
+  // ayraç sayıyı ikiye bölüyor ve iki uydurma bulgu üretiyordu: "646
+  // TR'de yok" ve -- daha da tuhafı -- "2,008" ayrılınca "008" = 0 olduğu
+  // için "0 TR'de yok". Ölçüldü: 14 bulgunun 3'ü bu tek hatadan geliyordu.
+  // Yalnız TAM ÜÇ basamak birleştiriliyor; "3.5" ya da "1/2" bozulmaz.
+  var BINLIK = /(\d)[.,](\d{3})(?!\d)/g;
   function rakamKumesi(s) {
-    var m = String(s || "").match(/\d+/g) || [];
+    var t = String(s || "");
+    for (var k = 0; k < 3; k++) t = t.replace(BINLIK, "$1$2");
+    var m = t.match(/\d+/g) || [];
     var out = {};
     for (var i = 0; i < m.length; i++) out[parseInt(m[i], 10)] = 1;
     return out;
