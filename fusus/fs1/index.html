@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <!-- 2026-08-15: site yalnız kendi origin'inden (SRI'lı) + gtag/clarity'den
-     script yüklüyor (bkz. aşağıdaki iki analitik bloğu) -- bu politika
+     script yüklüyor (bkz. aşağıdaki analitik bloğu) -- bu politika
      escape-at-output bulgularının (crosslink-preview.js, search.js)
      gelecekteki bir kaçağının başka bir DOMAIN'den script/veri yükleme
-     etkisini sınırlar. 'unsafe-inline' script-src/style-src'te duruyor
-     çünkü index.html'de nonce/hash altyapısı olmayan birkaç inline
-     <script>/style="" bloğu var (tema başlatma, çevrimdışı algılama,
-     gtag/clarity kurulumu, birkaç SVG stop-color) -- inline yürütmeyi de
-     engelleyen sıkı bir CSP, bunları önce hash/nonce altyapısına
-     taşıyacak ayrı bir iş gerektirir. -->
+     etkisini sınırlar. Ürün denetimi G1 (2026-09-02): CSP'nin
+     script-src yönergesindeki "unsafe-inline" izni kaldırıldı -- yerine
+     her satır-içi <script>'in SHA-256 özeti yazılıyor
+     (scripts/sri-guncelle.py; yeni bir satır-içi script eklenirse bu
+     betik yeniden çalıştırılmalı, yoksa tarayıcı onu sessizce
+     reddeder). CSS tarafında (style="" öznitelikleri, SVG stop-color)
+     aynı kısıtlama henüz uygulanmadı -- kapsamı ayrı, daha büyük bir
+     iş. -->
 <!-- frame-ancestors/report-uri/sandbox <meta> ile ÇALIŞMIYOR (CSP spec'i
      bunları yalnız gerçek HTTP başlığında tanıyor) -- GitHub Pages özel
      başlık desteklemediği için bu üçü buraya yazılmıyor (yazılırsa sessizce
