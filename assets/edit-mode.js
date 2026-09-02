@@ -288,11 +288,9 @@
   // Önce yalnızca "kaydet ve unut" vardı; kullanıcı bir notu kaydettikten
   // sonra ona bir daha ulaşamadığını bildirdi (2026-07-25). Artık panelden
   // bütün kuyruk açılıp tek tek düzeltilebiliyor ya da silinebiliyor.
-  function escapeHtml(s) {
-    return String(s == null ? "" : s).replace(/[&<>"]/g, (c) => (
-      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
-    ));
-  }
+  // Ürün denetimi D1 (2026-09-02): ortak yardımcıya taşındı, bkz.
+  // graph-utils.js:escapeHtml.
+  const escapeHtml = window.DostGraphUtils.escapeHtml;
 
   function entryTitle(e, i) {
     const where = (e.url || "").replace(/^.*\/(?=[^/]*$)/, "") || "/";

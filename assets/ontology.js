@@ -303,8 +303,13 @@
     }
   }
   updateHeaderHeightVar();
-  window.addEventListener("resize", updateHeaderHeightVar);
-  window.addEventListener("resize", updateTypoHeightVar);
+  // Ürün denetimi P1 (2026-09-02): debounce'suzdu -- pencere sürüklenerek
+  // yeniden boyutlandırılırken saniyede onlarca kez offsetHeight okuyup
+  // style.setProperty yazıyordu (zorunlu senkron layout). 11 diğer görünüm
+  // (hal.js/menziller.js vb.) bunu GU.debounceResize ile çoktan çözmüştü;
+  // en büyük dosya (ontology.js) atlanmıştı.
+  window.addEventListener("resize", window.DostGraphUtils.debounceResize(updateHeaderHeightVar));
+  window.addEventListener("resize", window.DostGraphUtils.debounceResize(updateTypoHeightVar));
 
   detailClose.addEventListener("click", () => {
     detailPanel.hidden = true;

@@ -26,7 +26,7 @@
      üzerinden (fetch/beacon) yolluyor ama koşullara göre googletagmanager'dan
      bir GÖRÜNTÜ pikseline (/td?..., /a?...) düşebiliyor -- img-src'de bu iki
      domain olmayınca o isabetler sessizce bloke oluyordu. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-TUo+lUOFuB3vqzPwlpQKdE3rOkggBquMQ4bEeAt++9Q=' 'sha256-lekwPcLDRjYm37sgERAHDeKpN6qv770FKpoFJzh42eg=' 'sha256-UzfqcMWSpODAoXRen+GJVI7rhlX6LgYVil3V+xd47bg=' 'sha256-cjheSZxdnEzaKXWxMGqsuKGbIzfNWtwQRgcQjUS/++E=' 'sha256-JG8VEOMVh41hGFMcL3AzwbZ6l0d+9CypnZBRrt2oW1w=' 'sha256-FwKXnXjR5CzOiLajQNkPosmGsRdcqBrF2og7gNJn0dE=' 'sha256-dAmqadp4ChLBZwemdXH30TD1omwXI5gup/qxNSn/Goo=' 'sha256-nfaEr3TC1WmyA2Xn6dlOqqmJKMgjzcwJB/K2ezbGb9k='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'">
 <!-- Gerçek path'lerle gezinme (bkz. 404.html) adres çubuğunu /futuhat/c1k9 gibi
      köke bağlı olmayan derinliklere taşıyor; bu <base> olmadan o an sayfadaki
      her bağıl fetch/asset yolu ("data/...", "assets/...") o yanlış dizine göre
@@ -1539,6 +1539,36 @@ mesmo antes que o assombro exista."></blockquote>
     </p>
   </footer>
 
+  <div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Çerez onamı / Cookie consent / Consentimento de cookies" hidden>
+    <p data-tr="Bu site ziyaret verisini yalnız onayınla ölçer (Google Analytics, Microsoft Clarity). Reddedersen hiçbir ölçüm scripti yüklenmez."
+       data-en="This site measures visits only with your consent (Google Analytics, Microsoft Clarity). If you decline, no measurement script loads."
+       data-pt="Este site mede visitas apenas com seu consentimento (Google Analytics, Microsoft Clarity). Se recusar, nenhum script de medição é carregado.">
+    </p>
+    <div class="consent-banner__actions">
+      <button type="button" class="btn-ghost" id="consent-decline" data-tr="Reddet" data-en="Decline" data-pt="Recusar">Reddet</button>
+      <button type="button" class="btn-ghost btn-ghost--filled" id="consent-accept" data-tr="Kabul et" data-en="Accept" data-pt="Aceitar">Kabul et</button>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var KEY = "dost-analytics-consent";
+      var banner = document.getElementById("consent-banner");
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (!stored) banner.hidden = false;
+      function decide(value) {
+        try { localStorage.setItem(KEY, value); } catch (e) {}
+        banner.hidden = true;
+        if (value === "granted" && window.__dostLoadAnalytics) window.__dostLoadAnalytics();
+      }
+      var accept = document.getElementById("consent-accept");
+      var decline = document.getElementById("consent-decline");
+      if (accept) accept.addEventListener("click", function () { decide("granted"); });
+      if (decline) decline.addEventListener("click", function () { decide("denied"); });
+    })();
+  </script>
+
   <div class="app-fallback" id="app-fallback" hidden role="status" aria-live="polite">
     <div class="app-fallback__ring" aria-hidden="true"></div>
     <p class="app-fallback__text">
@@ -1565,7 +1595,7 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/vendor/d3-custom.min.js" defer integrity="sha384-k/birSUpT26+T+9Bq9AtcVVDxNlh8ThhBxqX2iTUj656KnoUaNO07aGmVEBBpbpM"></script>
   <script src="assets/i18n.js" defer integrity="sha384-4r6W6PENfRJ7GevJPyR+ACS8M2OZwCzsNWj9W4PfT6psDUZQRTdpCVLi1eUXtN9l"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
-  <script src="assets/graph-utils.js" defer integrity="sha384-QIidWHbzDesrYl/CsDQN+ro9wxA5fTGEakdYclU4A1vBfUU06UjEuHpMSXL5ss48"></script>
+  <script src="assets/graph-utils.js" defer integrity="sha384-lTShGBbujKQnuLW+cY32nyNS0JPmMGRgEsIOw7F37bMN9ZGEQehZAudaCOvy18Ii"></script>
   <!-- nav-drawer.js graph-utils.js'ten SONRA gelmeli (2026-08-15): artık
        açılışta GU.registerStepBack çağırıyor. -->
   <script src="assets/nav-drawer.js" defer integrity="sha384-W64rjVIcpQ5N6aMLtnixLPVKrcJvNuk6nSWtVa3BZF78OCFXjU/rp6mEDHa9HRRe"></script>
@@ -1576,7 +1606,7 @@ mesmo antes que o assombro exista."></blockquote>
        tembel-yükleme listesine değil buraya konuyor: ontology.js sır
        detayını çizerken window.__dostKademe hazır olmalı. -->
   <script src="assets/kademe.js" defer integrity="sha384-qstXPmVEy5j/ElqnV6hvOfNFBOxlrwj8IhlrgYL2vtn8VzXUESTxdpuBfDN2uZM9"></script>
-  <script src="assets/search.js" defer integrity="sha384-IvVJE9F5kMqNdMxXGzD7XVbWGv9opEZuWSy7eFUs9eQuwyksYwlLr8biRRacTJTc"></script>
+  <script src="assets/search.js" defer integrity="sha384-dx20v+vBSycgg2eqjXTaI6xJhISjXbjaLKwfLwRjsubFA7vC8LrL1fsgXn99Anxi"></script>
   <script src="assets/graph-enhancement.js" defer integrity="sha384-hNAPzflfBDqRj8om8hmAV7ziYfsXLPIlZQ0YYH0Y6ZKqCKlLhX/giLkNaVyzoTn4"></script>
   <script src="assets/font-scale.js" defer integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
   <script src="assets/reading-mode.js" defer integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
@@ -1589,15 +1619,15 @@ mesmo antes que o assombro exista."></blockquote>
        ama o bağımlılık derleme-zamanı çapraz-bağlantı indeksine taşınalı
        (2026-08-03) kalkmıştı, sadece fark edilmemişti), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-WSKCTFlYt2dLPUe5stagYPTE+nx+umxzA5jjbG3Nrr3soJVVCLeWeTY3nNjnoHz6"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-qXLQCaLn3nBkRZYcUDPwKtO35h86p7sh/AXWTvZzhe8wB02JNymMFogX9pw+0nPy"></script>
-  <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-5ZKnOUuykQA/krtuEuY0vHAV74hVgjW7pCCYtmQaQIcq2v1H/tzLWjUpyXCexODn"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-XkcCHAQI9KKHBG3/1Onjz4sZugRUF1WUL2So6OaFn36bArBLrKrdrljwAW1ro5uX"></script>
+  <script src="assets/crosslink-preview.js" defer integrity="sha384-Ql+mJC8qoRFExWxkLBHP+85sCuCXqJwVTmYYk1Bk+EWaRK8amiurfak5/gDhaQg+"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-S5YfedCmBW9/W/3OybJ+5K9BRmf2zdJinvGfO94lJC2R90B/j/II4Qh98xEIDISO"></script>
   <!-- 2026-08-10 denetim (G57 + rapor 16-A): mobil için grafik yerine liste. -->
   <script src="assets/ontoloji-mobil-liste.js" defer integrity="sha384-89v27eX+GOKBTOIYrW1qeCvlXhZx7skXR08uXcC1jZXZCHhnKvcfyU5HscvJMdDX"></script>
   <script src="assets/secret-nav.js" defer integrity="sha384-bxSN300rzY5eTjVk6TAWQVedjEJKuWieA2pZLzqq8xZNFBtlkjahenZSN2Jhiuut"></script>
-  <script src="assets/edit-mode.js" defer integrity="sha384-7iXPGrWLrIsGmzLLGg2VO5KH/04WinMik9uxQrDgIDKeBqiGPMDkwcG00Faa7WvN"></script>
+  <script src="assets/edit-mode.js" defer integrity="sha384-cUaeECH2H/0zS+D/WBmhhDLijhW9gn3gJ162LF3nT4WzmS3StcFzrUD6v0j6yEsD"></script>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in
        bayrağına bakar), kip kapalıyken hiçbir şey çizmez. 2026-07-29'a
        kadar önizlemeye özeldi; kullanıcı kararıyla canlıda da yayınlanıyor. -->
@@ -1608,7 +1638,7 @@ mesmo antes que o assombro exista."></blockquote>
        (M1-M4, M8) burada BİLEREK yok -- protokolün kendi kuralı, yargının
        toplu taramada değil sayfa başına /tahkik ile yapılmasını istiyor. -->
   <script src="assets/tahkik-tarama.js" defer integrity="sha384-7MtrX5K0dvbwcbEs3wiFmK+26HmJ71kN1WD28jWYz76V0Y4bAFqq/9Zo0GLjSwAh"></script>
-  <script src="assets/share-mode.js" defer integrity="sha384-yCMtdjeg1wJbbQCAH8tRR9MKYXr0/1KYOQTCtE/olzCDFHeBHNeCKZUD7l88qbXc"></script>
+  <script src="assets/share-mode.js" defer integrity="sha384-tadycJy7QOYfqJFlFwEIDN0Elfn3Bc3Ki88Nrgq8gtd1U0pyn3v587v4pYaNTFlj"></script>
   <script src="assets/sessiz-mod.js" defer integrity="sha384-5GFytUm+Wcx7pEB0AF0deivwAVJHndNa/TRngZztUN7mmh0EGfNgz8MZNw2oQk2N"></script>
   <script src="assets/kavram-defteri.js" defer integrity="sha384-xkJEH+qGBiumsuXheD2YbLbMbRv6Xg3bY3Iq261DhUjzzIZxGt0SG+9gTtjlw3cF"></script>
   <script>

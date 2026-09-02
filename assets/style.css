@@ -741,6 +741,15 @@ html {
    .btn-ghost'un geri kalanı hep <button>, o yüzden tarayıcının varsayılan
    link alt çizgisi yalnız burada elle sıfırlanıyor. */
 a.btn-ghost { text-decoration: none; }
+/* Ürün denetimi G3 (2026-09-02): onam bandındaki "Kabul et" -- .btn-ghost'un
+   44px dokunma hedefini/kabuğunu koruyup yalnız dolgu/rengi
+   .futuhat-start-hint__btn'deki dolu-CTA desenini tekrarlıyor. */
+.btn-ghost--filled {
+  background: var(--text-primary);
+  color: var(--surface-1);
+  border-color: var(--text-primary);
+}
+.btn-ghost--filled:hover { background: var(--accent-interactive); border-color: var(--accent-interactive); }
 /* Fütûhât'ın kendi kardeş görünümleri (Kur'ân Dokusu / Mimarisi) --
    drawer'ın kendisi kaydırmalı-flex bir pill dizisi olduğu için girinti
    satır kaydığında anlamını kaybediyor; "↳" öneki (etikette, HTML'de) ve
@@ -4196,107 +4205,56 @@ html:has(.detail-panel:not([hidden])) {
   overflow: hidden;
 }
 
-.detail-panel__close {
+/* Ürün denetimi D2 (2026-09-02): beş panel-düğmesi (.detail-panel__close/
+   __print/__share/__notebook/__share-visual) yalnız right/border/font-size'da
+   ayrışan neredeyse özdeş bloklardı -- ortak gövde burada, düğmeye özgü fark
+   ayrı kurallarda. */
+.detail-panel__close,
+.detail-panel__print,
+.detail-panel__share,
+.detail-panel__notebook,
+.detail-panel__share-visual {
   display: none;
   position: fixed;
   top: calc(var(--app-header-height, 96px) + 12px);
-  right: 16px;
   background: var(--surface-1);
-  border: none;
   border-radius: 999px;
   width: 44px;
   height: 44px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  z-index: 56;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
+}
+.detail-panel__close {
+  right: 16px;
+  border: none;
   font-size: 1.6rem;
   line-height: 1;
-  color: var(--text-secondary);
-  cursor: pointer;
-  z-index: 56;
-  align-items: center;
-  justify-content: center;
-  transition: color var(--dur-orta) ease;
 }
+.detail-panel__print { right: 68px; border: 1px solid var(--border); }
+.detail-panel__notebook { right: 120px; border: 1px solid var(--border); }
+.detail-panel__share { right: 172px; border: 1px solid var(--border); }
+.detail-panel__share-visual { right: 224px; border: 1px solid var(--border); }
+
 .detail-panel__close:hover,
-.detail-panel__close:focus-visible {
-  color: var(--accent-interactive);
-}
-#detail-panel:not([hidden]) ~ .detail-panel__close {
-  display: flex;
-}
-
-.detail-panel__print {
-  display: none;
-  position: fixed;
-  top: calc(var(--app-header-height, 96px) + 12px);
-  right: 68px;
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  width: 44px;
-  height: 44px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  z-index: 56;
-  align-items: center;
-  justify-content: center;
-  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
-}
+.detail-panel__close:focus-visible,
 .detail-panel__print:hover,
-.detail-panel__print:focus-visible {
-  color: var(--accent-interactive);
-  border-color: var(--accent-interactive);
-}
-#detail-panel:not([hidden]) ~ .detail-panel__print {
-  display: flex;
-}
-
-.detail-panel__share {
-  display: none;
-  position: fixed;
-  top: calc(var(--app-header-height, 96px) + 12px);
-  right: 172px;
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  width: 44px;
-  height: 44px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  z-index: 56;
-  align-items: center;
-  justify-content: center;
-  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
-}
+.detail-panel__print:focus-visible,
 .detail-panel__share:hover,
-.detail-panel__share:focus-visible {
-  color: var(--accent-interactive);
-  border-color: var(--accent-interactive);
-}
-#detail-panel:not([hidden]) ~ .detail-panel__share {
-  display: flex;
-}
-
-.detail-panel__notebook {
-  display: none;
-  position: fixed;
-  top: calc(var(--app-header-height, 96px) + 12px);
-  right: 120px;
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  width: 44px;
-  height: 44px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  z-index: 56;
-  align-items: center;
-  justify-content: center;
-  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
-}
+.detail-panel__share:focus-visible,
 .detail-panel__notebook:hover,
-.detail-panel__notebook:focus-visible {
+.detail-panel__notebook:focus-visible,
+.detail-panel__share-visual:hover,
+.detail-panel__share-visual:focus-visible {
   color: var(--accent-interactive);
   border-color: var(--accent-interactive);
 }
+#detail-panel:not([hidden]) ~ .detail-panel__close,
+#detail-panel:not([hidden]) ~ .detail-panel__print,
+#detail-panel:not([hidden]) ~ .detail-panel__share,
 #detail-panel:not([hidden]) ~ .detail-panel__notebook {
   display: flex;
 }
@@ -4308,28 +4266,6 @@ html:has(.detail-panel:not([hidden])) {
   fill: currentColor;
 }
 
-.detail-panel__share-visual {
-  display: none;
-  position: fixed;
-  top: calc(var(--app-header-height, 96px) + 12px);
-  right: 224px;
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  width: 44px;
-  height: 44px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  z-index: 56;
-  align-items: center;
-  justify-content: center;
-  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
-}
-.detail-panel__share-visual:hover,
-.detail-panel__share-visual:focus-visible {
-  color: var(--accent-interactive);
-  border-color: var(--accent-interactive);
-}
 /* Yalnız masaüstü (bkz. index.html'deki P0-3 notu) -- min-width, mobildeki
    .detail-panel__X kurallarının aksine burada AÇILIŞ görünürlüğünü de
    kapsıyor: display:flex'i #detail-panel açıkken bu sorguya bağlıyoruz. */
@@ -5565,6 +5501,40 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
 }
 .app-footer p + p { margin-top: 6px; }
 .app-footer a { color: inherit; }
+
+/* Ürün denetimi G3 (2026-09-02): GA4/Clarity onam bandı -- yalnız ilk
+   ziyarette (karar yokken) görünür, kararla birlikte kalıcı kapanır.
+   .defter-toggle (fixed, bottom:18px, z-index:60) ile aynı köşede
+   çakışmasın diye tam genişlikte alt banda konup daha yüksek bir
+   z-index'le geçici olarak üstüne biner -- kararla birlikte hemen kapanır. */
+.consent-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 20px;
+  padding: 14px clamp(16px, 4vw, 32px);
+  background: var(--surface-1);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -2px 14px rgba(0, 0, 0, 0.12);
+}
+.consent-banner p {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.consent-banner__actions {
+  display: flex;
+  gap: 10px;
+  flex: 0 0 auto;
+}
 
 @media (max-width: 640px) {
   .app-header { flex-direction: column; }

@@ -807,17 +807,9 @@
     fitView(true);
     ensureFrame();
   }
-  function showClusterFocusCaption(kume) {
-    const cap = document.getElementById("hal-fca-caption");
-    const text = document.getElementById("hal-fca-caption-nitelik");
-    if (!cap || !text) return;
-    text.textContent = kume.nitelikler.map((n) => tt(n.label)).join(" · ");
-    cap.hidden = false;
-  }
-  function hideClusterFocusCaption() {
-    const cap = document.getElementById("hal-fca-caption");
-    if (cap) cap.hidden = true;
-  }
+  const fcaCaption = GU.fcaCaption("hal");
+  function showClusterFocusCaption(kume) { fcaCaption.show(kume, tt); }
+  function hideClusterFocusCaption() { fcaCaption.hide(); }
 
   // FCA (Formal Concept Analysis) kavram kafesi (2026-08-15) -- esma.js'teki
   // aynı desen. scripts/fca-hal.py'nin ürettiği kafesten elle seçilmiş,
@@ -825,11 +817,10 @@
   let fcaData = null;
   function fetchFcaData() {
     if (!fcaData) {
-      fcaData = window.DostGraphUtils.fetchJson("data/ibn-arabi/hal-fca.json").catch(() => null);
+      fcaData = GU.fetchJson("data/ibn-arabi/hal-fca.json").catch(() => null);
     }
     return fcaData;
   }
-  const FCA_SHOW_LABEL = { tr: "Haritada göster", en: "Show on the map", pt: "Mostrar no mapa" };
   function fcaClusterHtml(kume) {
     const nitelikler = kume.nitelikler.map((n) => tt(n.label)).join(", ");
     const isimler = kume.uyeler.map((id) => {
@@ -840,7 +831,7 @@
     return `<div class="esma-fca-cluster">
       <p class="esma-fca-cluster__nitelik">${nitelikler}</p>
       <p class="esma-fca-cluster__isimler">${isimler}</p>
-      <button class="esma-fca-cluster__show" type="button" data-cluster-id="${kume.id}">${tt(FCA_SHOW_LABEL)}</button>
+      <button class="esma-fca-cluster__show" type="button" data-cluster-id="${kume.id}">${tt(GU.FCA_SHOW_LABEL)}</button>
     </div>`;
   }
   function openFcaLightbox() {
@@ -874,10 +865,7 @@
     });
   }
   function wireFcaButton() {
-    const btn = document.getElementById("hal-fca-btn");
-    if (!btn || btn.dataset.wiredFcaButton) return;
-    btn.dataset.wiredFcaButton = "1";
-    btn.addEventListener("click", openFcaLightbox);
+    GU.wireFcaButton("hal", openFcaLightbox);
   }
 
   function showTooltip(d, event) {

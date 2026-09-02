@@ -1441,11 +1441,9 @@
     }, "image/png");
   }
 
-  function escapeHtml(s) {
-    return String(s == null ? "" : s).replace(/[&<>"]/g, (c) => (
-      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
-    ));
-  }
+  // Ürün denetimi D1 (2026-09-02): ortak yardımcıya taşındı, bkz.
+  // graph-utils.js:escapeHtml.
+  const escapeHtml = GU.escapeHtml;
 
   function openStage(s) {
     scene = s;

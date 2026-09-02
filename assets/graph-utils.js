@@ -940,5 +940,50 @@ window.DostGraphUtils = (function () {
     return sel;
   }
 
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createFrameLoop, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback, wireEdgeAccessibility };
+  // Ürün denetimi D1 (2026-09-02): 6 dosyada (crosslink-preview/edit-mode/
+  // futuhat/review/search/share-mode.js) bağımsız escapeHtml vardı, iki
+  // farklı teknikle (regex+map vs. DOM textContent->innerHTML) ve tutarsız
+  // null-korumasıyla (bazıları String(null)="null" basıyordu). Ölçüldü:
+  // DOM tekniği & < > kaçırıyor ama " KAÇIRMIYOR (metin bağlamında zararsız,
+  // ama tek fonksiyona taşırken en güvenli ortak payda seçildi). Regex
+  // tabanlı, & < > " kaçıran, null-safe TEK sürüm.
+  function escapeHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, (c) => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
+    ));
+  }
+
+  // Ürün denetimi D3 (2026-09-02): hal.js ve esma.js'teki FCA (Formal
+  // Concept Analysis) küme-odağı altyazısı ve düğme-bağlama kodu yalnız DOM
+  // id önekinde (hal-fca-*/esma-fca-*) ayrışıyordu -- burada ortaklandı.
+  // fcaClusterHtml/openFcaLightbox ve asıl küme ODAĞI (enterClusterFocus/
+  // exitClusterFocus) bilerek ortaklanmadı: üye alanı adı (uyeler/esma),
+  // düğüm şekli ve kamera mekaniği (hal.js: orderedNodes/fitView, esma.js:
+  // revealLevel/fitVisible/idleRotate) görünüme özgü -- paylaşılan bir
+  // kabuk yalnızca geri çağırma yığını olurdu (bkz. proje notları: erken
+  // soyutlama).
+  const FCA_SHOW_LABEL = { tr: "Haritada göster", en: "Show on the map", pt: "Mostrar no mapa" };
+  function fcaCaption(prefix) {
+    return {
+      show(kume, tt) {
+        const cap = document.getElementById(`${prefix}-fca-caption`);
+        const text = document.getElementById(`${prefix}-fca-caption-nitelik`);
+        if (!cap || !text) return;
+        text.textContent = kume.nitelikler.map((n) => tt(n.label)).join(" · ");
+        cap.hidden = false;
+      },
+      hide() {
+        const cap = document.getElementById(`${prefix}-fca-caption`);
+        if (cap) cap.hidden = true;
+      },
+    };
+  }
+  function wireFcaButton(prefix, onClick) {
+    const btn = document.getElementById(`${prefix}-fca-btn`);
+    if (!btn || btn.dataset.wiredFcaButton) return;
+    btn.dataset.wiredFcaButton = "1";
+    btn.addEventListener("click", onClick);
+  }
+
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createFrameLoop, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback, wireEdgeAccessibility, escapeHtml, FCA_SHOW_LABEL, fcaCaption, wireFcaButton };
 })();

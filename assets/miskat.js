@@ -283,10 +283,10 @@
       ? { tr: "Haber", en: "Report", pt: "Relato" }
       : { tr: "Hadis", en: "Hadith", pt: "Hadith" });
     html += '<header class="fusus-article__head">'
-      + '<button type="button" class="fusus-print-btn" title="' + esc(t({ tr: "Yazdır", en: "Print", pt: "Imprimir" })) + ' / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">'
+      + '<button type="button" class="fusus-print-btn" title="Yazdır / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">'
       + '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="6" y="3" width="12" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="9" width="16" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>'
       + "</button>"
-      + '<button type="button" class="fusus-share-btn" title="' + esc(t({ tr: "Paylaş", en: "Share", pt: "Compartilhar" })) + ' / Share / Compartilhar" aria-label="Paylaş / Share / Compartilhar">'
+      + '<button type="button" class="fusus-share-btn" title="Paylaş / Share / Compartilhar" aria-label="Paylaş / Share / Compartilhar">'
       + '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="6" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="5.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="10.8" x2="15.7" y2="6.7" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="13.2" x2="15.7" y2="17.3" stroke="currentColor" stroke-width="1.6"/></svg>'
       + "</button>"
       + '<p class="fusus-article__eyebrow">'

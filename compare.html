@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- bkz. index.html'deki aynı etiketin yorumu -- aynı gerekçe, aynı politika. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-lekwPcLDRjYm37sgERAHDeKpN6qv770FKpoFJzh42eg=' 'sha256-UzfqcMWSpODAoXRen+GJVI7rhlX6LgYVil3V+xd47bg=' 'sha256-JG8VEOMVh41hGFMcL3AzwbZ6l0d+9CypnZBRrt2oW1w='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>[ÖNİZLEME] Dost — İbn Arabî &amp; Daphne: İç Dünyaların Haritası</title>
@@ -185,17 +185,47 @@
     </p>
   </footer>
 
+  <div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Çerez onamı / Cookie consent / Consentimento de cookies" hidden>
+    <p data-tr="Bu site ziyaret verisini yalnız onayınla ölçer (Google Analytics, Microsoft Clarity). Reddedersen hiçbir ölçüm scripti yüklenmez."
+       data-en="This site measures visits only with your consent (Google Analytics, Microsoft Clarity). If you decline, no measurement script loads."
+       data-pt="Este site mede visitas apenas com seu consentimento (Google Analytics, Microsoft Clarity). Se recusar, nenhum script de medição é carregado.">
+    </p>
+    <div class="consent-banner__actions">
+      <button type="button" class="btn-ghost" id="consent-decline" data-tr="Reddet" data-en="Decline" data-pt="Recusar">Reddet</button>
+      <button type="button" class="btn-ghost btn-ghost--filled" id="consent-accept" data-tr="Kabul et" data-en="Accept" data-pt="Aceitar">Kabul et</button>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var KEY = "dost-analytics-consent";
+      var banner = document.getElementById("consent-banner");
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (!stored) banner.hidden = false;
+      function decide(value) {
+        try { localStorage.setItem(KEY, value); } catch (e) {}
+        banner.hidden = true;
+        if (value === "granted" && window.__dostLoadAnalytics) window.__dostLoadAnalytics();
+      }
+      var accept = document.getElementById("consent-accept");
+      var decline = document.getElementById("consent-decline");
+      if (accept) accept.addEventListener("click", function () { decide("granted"); });
+      if (decline) decline.addEventListener("click", function () { decide("denied"); });
+    })();
+  </script>
+
   <script src="assets/vendor/d3-custom.min.js" integrity="sha384-k/birSUpT26+T+9Bq9AtcVVDxNlh8ThhBxqX2iTUj656KnoUaNO07aGmVEBBpbpM"></script>
   <script src="assets/theme.js" integrity="sha384-NegwurN40eZr0Cwp0FE3fFU6d1ptUcUoeGVSaX+M74KAJDTn8QVt2hP+z+Pf29Kf"></script>
   <script src="assets/i18n.js" integrity="sha384-4r6W6PENfRJ7GevJPyR+ACS8M2OZwCzsNWj9W4PfT6psDUZQRTdpCVLi1eUXtN9l"></script>
   <script src="assets/view-status.js" integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
-  <script src="assets/graph-utils.js" integrity="sha384-QIidWHbzDesrYl/CsDQN+ro9wxA5fTGEakdYclU4A1vBfUU06UjEuHpMSXL5ss48"></script>
+  <script src="assets/graph-utils.js" integrity="sha384-lTShGBbujKQnuLW+cY32nyNS0JPmMGRgEsIOw7F37bMN9ZGEQehZAudaCOvy18Ii"></script>
   <script src="assets/font-scale.js" integrity="sha384-jW9YOmSCIsqzTZVeFPWgBM7hqIRZ3uOK6bwUrIEU0hh0NTjg657JiSUo3CcQFa+S"></script>
   <script src="assets/reading-mode.js" integrity="sha384-V3B/R/gAjqiTfiirDWjOzGJwzG4NoVRU+0y1nwMKrw563FvkVPfnhbCHGSo1ABPD"></script>
   <script src="assets/honorifics.js" integrity="sha384-IwA4Fe1Lz4RekuTCKaeamOx5H2VogRQH66+kK99tc5SRCQL7ezB4EK8jbMw/uOhm"></script>
   <script src="assets/daphne-profil.js" integrity="sha384-ay+e1uTGv+qi1gUcFu/OOODFfnPkpSizjVZOlhKOj5cEoOcdvha+q2+CLAvVM/0W"></script>
   <script src="assets/daphne-baglar.js" integrity="sha384-7HqxIWHh6WfvLuOhkt+0OzKNog2tNXpAX9oD8oTEI2ZebQimCO1mAc4+w/JnzAA4"></script>
   <script src="assets/compare.js" integrity="sha384-AkJH/kre5xnuWLZFgGjS1IBrfjb8i55T8yNFCBjzvWMW6mrwGM8mQWEA616J3zDB"></script>
-  <script src="assets/edit-mode.js" integrity="sha384-7iXPGrWLrIsGmzLLGg2VO5KH/04WinMik9uxQrDgIDKeBqiGPMDkwcG00Faa7WvN"></script>
+  <script src="assets/edit-mode.js" integrity="sha384-cUaeECH2H/0zS+D/WBmhhDLijhW9gn3gJ162LF3nT4WzmS3StcFzrUD6v0j6yEsD"></script>
 </body>
 </html>

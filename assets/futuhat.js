@@ -52,11 +52,12 @@
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text;
   }
 
-  function escapeHtml(s) {
-    const d = document.createElement("div");
-    d.textContent = s == null ? "" : s;
-    return d.innerHTML;
-  }
+  // Ürün denetimi D1 (2026-09-02): ortak yardımcıya taşındı, bkz.
+  // graph-utils.js:escapeHtml. Eskiden DOM textContent->innerHTML tekniği
+  // kullanılıyordu (& < > kaçırıyordu ama " kaçırmıyordu -- burada yalnız
+  // metin bağlamında kullanıldığı için zararsızdı, ama tek fonksiyona
+  // taşırken en güvenli ortak payda seçildi).
+  const escapeHtml = window.DostGraphUtils.escapeHtml;
 
   // Kaynak metindeki alıntıları vurgulamak için <em> etiketleri taşıyan
   // note/label alanları, tooltip'te (innerHTML) doğru render oluyor ama

@@ -51,16 +51,16 @@
     __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-kl48zvjGhCjql6ilzjKBLNV+o8iJC8Aa9VWWZs2PcW4CRsYqu936jtfJaJDxoY0k" },
     __yolculukApp: { src: "assets/yolculuk.js", integrity: "sha384-4rFNj/JUH7Mr0a6bUe2+DXBMA729ejih0SnKi4JjwiyDpWMm76JHIdiDkCLzplkl" },
     __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-oidFJfgo+xoAz+O7Bbd6B8dvvi7onts6hQrS9QUbJ6KlizRcMxipsiysamiWtf39" },
-    __esmaApp: { src: "assets/esma.js", integrity: "sha384-91vKFznFhKzguHiz8dQx9HEHpW3/VCaaYLRk6WsiPowyGuUFVpQas33FcicGa001" },
-    __halApp: { src: "assets/hal.js", integrity: "sha384-rmTP+V9qyKWIx3nYvjn2UtVQmES+VUlVkRtrqqvsL31xb8ErOp0ggUgAZ8YQWOvd" },
+    __esmaApp: { src: "assets/esma.js", integrity: "sha384-U6SPQdNorekAF/Jj0whX1KBaTzHbm6Q9kZY6d67MP3tM4rLojUg9rhTSsV19LbKd" },
+    __halApp: { src: "assets/hal.js", integrity: "sha384-c11YvzvMeriZtzfG+bIY3MkwsMyd7YaxuZ2H8XPElpMyn8tUbfBvmUN5atv9aKpW" },
     __terimlerApp: { src: "assets/terimler.js", integrity: "sha384-JaRGixBgZye4AXb2TkO7ZUAxRZmfs0BEdlO5LbA2aNs2fRupI+x7fnn1ogeA1F0i" },
     __sorularApp: { src: "assets/sorular.js", integrity: "sha384-KHvutOBb/6nMyHh4/YfKWF5L/qs1zrHDbhWoxbgZULPnCpGKmL2Z4xcVS9vfYsSA" },
     __menzillerApp: { src: "assets/menziller.js", integrity: "sha384-w3Ri6nUjABJfUw1I01CsVwhNibowx8x0bHdCiYqb/JeyoqOGPptt44aCQR1NshIk" },
-    __futuhatApp: { src: "assets/futuhat.js", integrity: "sha384-J1UXn03AtZVGJWh7VVnhrAj0qwSo7MwrXUkWPHTGDBKxQIE/LmJLbQ+3HMBzxXAp" },
+    __futuhatApp: { src: "assets/futuhat.js", integrity: "sha384-N8UvWoFjA71Lj/RtH8nct9bEmR7cNnWznSDCP9GFD0+2WDTIlMK8Mgrx7YGIzAaZ" },
     __cizimlerApp: { src: "assets/cizimler.js", integrity: "sha384-vfBFzcoxhxGhzqRMlZ59DFBYZCIW+icJAdZD3alB+rzlLsVsvEaCquFsI23Gfadu" },
     __tasiyicilarApp: { src: "assets/tasiyicilar.js", integrity: "sha384-QgCqx0oiM2uUWN4NfoO0RYMw9Vl1crt43kzKE4JzgG9To7+0U7bsNrmm3BAG5MVn" },
-    __fususApp: { src: "assets/fusus.js", integrity: "sha384-A+j5QFwQ8xt3uFpxBGMKqI2Gjvy7TFxPhljqQYJ538sidwbh4TTraF18K6cRt4eM" },
-    __miskatApp: { src: "assets/miskat.js", integrity: "sha384-vcZvmiN7oygyV3w+BeFDnjCeI/gEsmqNhAQV+5pOgjgH6s/R5k1klh4c1E8jFiuY" },
+    __fususApp: { src: "assets/fusus.js", integrity: "sha384-hthm8scYI5UnQN80SpAsoWhagPfKoVMuY7vsV2GCqOjV0SjkfdGWvpIXREiFeuV5" },
+    __miskatApp: { src: "assets/miskat.js", integrity: "sha384-4e7t1rWud2O8U016SIu8ToaaFu3ZecPbCJPBo62VA7WAuX1C8k1lRxYi2s9F48kG" },
   };
 
   var loadingPromises = {};

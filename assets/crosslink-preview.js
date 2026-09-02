@@ -22,9 +22,9 @@
   // statik/derlenmiş veriden geliyor, gerçek bir XSS yolu değil, ama
   // "escape at output" ilkesini ihlal eden bir mimari desendi -- search.js'in
   // kendi escapeHtml'iyle tutarlı hale getirildi.
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  }
+  // Ürün denetimi D1 (2026-09-02): ortak yardımcıya taşındı, bkz.
+  // graph-utils.js:escapeHtml.
+  const escapeHtml = window.DostGraphUtils.escapeHtml;
 
   let tip = null;
 

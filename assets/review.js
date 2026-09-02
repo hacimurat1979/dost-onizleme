@@ -28,12 +28,12 @@
     { id: "kavram", dosya: "research/turetilmis-kenarlar.json", tip: "kavram", baslik: "Kavram ko-okurans (PPMI) — Esmâ/Ontoloji/Terim" },
   ];
 
-  var fetchJson = (window.DostGraphUtils && window.DostGraphUtils.fetchJson) || function (url) {
-    return fetch(url).then(function (r) {
-      if (!r.ok) throw new Error("fetchJson: " + url + " -> HTTP " + r.status);
-      return r.json();
-    });
-  };
+  // Ürün denetimi P2 (2026-09-02): önbelleksiz bir fallback tanımlıydı ama
+  // review.html'de graph-utils.js her zaman review.js'ten ÖNCE yükleniyor
+  // (satır sırası doğrulandı) -- window.DostGraphUtils asla eksik olmuyor,
+  // fallback hiç tetiklenmeyen ölü koddu ve varsa da önbelleksiz olduğu
+  // için LEDGER_URL/mevcutKaynak.dosya çift indirme riski taşıyordu.
+  var fetchJson = window.DostGraphUtils.fetchJson;
 
   function keyOf(a, b) {
     return [a, b].sort().join("|");
@@ -152,11 +152,10 @@
     return '<h3><a href="' + taraf.route + '" target="_blank" rel="noopener">' + escapeHtml(taraf.baslik) + " ↗</a></h3>";
   }
 
-  function escapeHtml(s) {
-    var d = document.createElement("div");
-    d.textContent = s == null ? "" : s;
-    return d.innerHTML;
-  }
+  // Ürün denetimi D1 (2026-09-02): ortak yardımcıya taşındı, bkz.
+  // graph-utils.js:escapeHtml (aynı gerekçe: DOM tekniği " kaçırmıyordu,
+  // burada zararsızdı ama tek fonksiyona taşırken en güvenli seçildi).
+  var escapeHtml = window.DostGraphUtils.escapeHtml;
 
   function cardHtml(aday, karar_, salt) {
     var skorTxt = aday.skorEtiket + ": " + (typeof aday.skor === "number" ? aday.skor.toFixed(3) : aday.skor);

@@ -523,15 +523,15 @@
       .map((view) => {
         const rows = byView[view]
           .map(
-            (it) => `<button class="search-result" id="search-result-${rowIndex++}" role="option" data-view="${it.view}" data-id="${it.id}">
-              <span class="search-result__label">${tt(it.label)}</span>
-              ${it.sub ? `<span class="search-result__sub">${tt(it.sub)}</span>` : ""}
+            (it) => `<button class="search-result" id="search-result-${rowIndex++}" role="option" data-view="${escapeAttr(it.view)}" data-id="${escapeAttr(it.id)}">
+              <span class="search-result__label">${escapeHtml(tt(it.label))}</span>
+              ${it.sub ? `<span class="search-result__sub">${escapeHtml(tt(it.sub))}</span>` : ""}
             </button>`
           )
           .join("");
         const dotVar = CATEGORY_DOT_VAR[view];
         return `<div class="search-panel__group">
-          <div class="search-panel__group-label">${dotVar ? `<span class="search-panel__group-dot" style="background:var(${dotVar})"></span>` : ""}${tt(CATEGORY_LABEL[view])}</div>
+          <div class="search-panel__group-label">${dotVar ? `<span class="search-panel__group-dot" style="background:var(${dotVar})"></span>` : ""}${escapeHtml(tt(CATEGORY_LABEL[view]))}</div>
           ${rows}
         </div>`;
       })
@@ -568,9 +568,10 @@
     rewireResultButtons();
   }
 
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  }
+  // Ürün denetimi D1 (2026-09-02): ortak yardımcıya taşındı, bkz.
+  // graph-utils.js:escapeHtml. (Eski String(s) null-korumasız hâli
+  // String(null)="null" basardı; ortak yardımcı null-safe.)
+  const escapeHtml = window.DostGraphUtils.escapeHtml;
   const escapeAttr = escapeHtml;
 
   // 2026-08-15: title/href aynı satırda escapeHtml/escapeAttr ile korunmuşken

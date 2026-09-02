@@ -1668,11 +1668,10 @@
   let fcaData = null;
   function fetchFcaData() {
     if (!fcaData) {
-      fcaData = window.DostGraphUtils.fetchJson("data/ibn-arabi/esma-fca.json").catch(() => null);
+      fcaData = GU.fetchJson("data/ibn-arabi/esma-fca.json").catch(() => null);
     }
     return fcaData;
   }
-  const FCA_SHOW_LABEL = { tr: "Haritada göster", en: "Show on the map", pt: "Mostrar no mapa" };
   function fcaClusterHtml(kume) {
     const nitelikler = kume.nitelikler.map((n) => tt(n.label)).join(", ");
     const isimler = kume.esma.map((id) => {
@@ -1683,7 +1682,7 @@
     return `<div class="esma-fca-cluster">
       <p class="esma-fca-cluster__nitelik">${nitelikler}</p>
       <p class="esma-fca-cluster__isimler">${isimler}</p>
-      <button class="esma-fca-cluster__show" type="button" data-cluster-id="${kume.id}">${tt(FCA_SHOW_LABEL)}</button>
+      <button class="esma-fca-cluster__show" type="button" data-cluster-id="${kume.id}">${tt(GU.FCA_SHOW_LABEL)}</button>
     </div>`;
   }
   function openFcaLightbox() {
@@ -1724,10 +1723,7 @@
     });
   }
   function wireFcaButton() {
-    const btn = document.getElementById("esma-fca-btn");
-    if (!btn || btn.dataset.wiredFcaButton) return;
-    btn.dataset.wiredFcaButton = "1";
-    btn.addEventListener("click", openFcaLightbox);
+    GU.wireFcaButton("esma", openFcaLightbox);
   }
 
   // Küme odağı: bkz. `clusterFocus`/`nodeOpacity`/`renderClusterFocus`
@@ -1755,17 +1751,9 @@
     ensureFrame();
   }
 
-  function showClusterFocusCaption(kume) {
-    const cap = document.getElementById("esma-fca-caption");
-    const text = document.getElementById("esma-fca-caption-nitelik");
-    if (!cap || !text) return;
-    text.textContent = kume.nitelikler.map((n) => tt(n.label)).join(" · ");
-    cap.hidden = false;
-  }
-  function hideClusterFocusCaption() {
-    const cap = document.getElementById("esma-fca-caption");
-    if (cap) cap.hidden = true;
-  }
+  const fcaCaption = GU.fcaCaption("esma");
+  function showClusterFocusCaption(kume) { fcaCaption.show(kume, tt); }
+  function hideClusterFocusCaption() { fcaCaption.hide(); }
   function wireTiltToggle() {
     const btn = document.getElementById("esma-3d-toggle");
     if (!btn || btn.dataset.wiredTiltToggle) return;
