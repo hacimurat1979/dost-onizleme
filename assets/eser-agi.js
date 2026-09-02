@@ -170,21 +170,21 @@ window.__eserAgiApp = (function () {
     // etkileşimi taşıyan asıl şerit bu.
     const hitSel = kenarG.selectAll("line.link-hit").data(baglar, (d, i) => d.kaynak_id + "|" + i).join("line")
       .attr("class", "link-hit")
-      .attr("tabindex", 0)
-      .attr("role", "button")
-      .attr("aria-label", (d) => edgeAriaLabel(d))
       .attr("x1", (d) => eserById.get(d.kaynak_id).x).attr("y1", axisY)
       .attr("x2", (d) => eserById.get(d.hedef_id).x).attr("y2", axisY);
 
     hitSel.on("mouseenter", function (ev, d) { vurgulaKenar(d, true); kenarIpucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
       .on("mouseleave", function () { vurgulaKenar(null, false); GU.hideTooltip(tooltip); })
-      .on("focus", function (ev, d) { vurgulaKenar(d, true); })
-      .on("blur", function () { vurgulaKenar(null, false); })
-      .on("click", (ev, d) => kenarPaneli(d))
-      .on("keydown", function (ev, d) {
-        if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); kenarPaneli(d); }
-      });
+      .on("click", (ev, d) => kenarPaneli(d));
+    // Ürün denetimi P2-6 (2026-09-02): tabindex/role/aria-label/focus/blur/
+    // keydown ortak yardımcıya taşındı (GU.wireEdgeAccessibility).
+    GU.wireEdgeAccessibility(hitSel, {
+      label: (d) => edgeAriaLabel(d),
+      onFocus: (d) => vurgulaKenar(d, true),
+      onBlur: () => vurgulaKenar(null, false),
+      onActivate: (d) => kenarPaneli(d),
+    });
 
     // Her eser artık eksende bir nokta + o noktadan yükselen bir sap + sapın
     // ucunda yüzen bir kart (2026-08-09, kullanıcının paylaştığı "Collection

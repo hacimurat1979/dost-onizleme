@@ -271,6 +271,23 @@
      mavi-yeşil, "ölçüm" hissi veriyor. 2026-08-02: eski --text-muted gri
      grafikte fark edilmiyordu (kullanıcı bildirimi), bu daha belirgin. */
   --series-turetilmis: #2f8fa3;
+
+  /* Menziller lejantı (P2-7, ürün denetimi 2026-09-02). Sekiz görünen
+     nokta, menziller.js'teki hueFor(i)'nin AYNI formülüyle (h=210-175·t,
+     sat 52%, t=mahreç sırası/27) her katmanın orta sırasından hesaplandı --
+     lejant grafiğin kendi rengiyle uyuşsun diye, ayrı bir palet icat
+     edilmedi. Kod ile veri arasında ikinci bir kaynak olmasın diye JS'te
+     dinamik üretmek daha doğru olurdu, ama sekiz sabit renk statik HTML'e
+     gömülü kalarak da veriyle (menziller.json'daki katman ilk/son sıraları)
+     senkron -- ikisi de aynı 2026-09-02 turunda hesaplandı. */
+  --menziller-katman-1: hsl(207, 52%, 42%);
+  --menziller-katman-2: hsl(187, 52%, 43%);
+  --menziller-katman-3: hsl(161, 52%, 44%);
+  --menziller-katman-4: hsl(126, 52%, 45%);
+  --menziller-katman-5: hsl(90, 52%, 46%);
+  --menziller-katman-6: hsl(67, 52%, 47%);
+  --menziller-katman-7: hsl(48, 52%, 48%);
+  --menziller-katman-8: hsl(35, 52%, 48%);
 }
 
 .viz-root[data-theme="dark"] {
@@ -332,6 +349,17 @@
   --series-sorular-deneyim:  #ce6e91;
 
   --series-turetilmis: #5bc4dc;
+
+  /* Menziller lejantı, karanlık tema (bkz. :root'taki not) --
+     menziller.js'teki hueFor()'un GU.isDark() dalıyla aynı l (56+6t). */
+  --menziller-katman-1: hsl(207, 52%, 56%);
+  --menziller-katman-2: hsl(187, 52%, 57%);
+  --menziller-katman-3: hsl(161, 52%, 58%);
+  --menziller-katman-4: hsl(126, 52%, 59%);
+  --menziller-katman-5: hsl(90, 52%, 60%);
+  --menziller-katman-6: hsl(67, 52%, 61%);
+  --menziller-katman-7: hsl(48, 52%, 62%);
+  --menziller-katman-8: hsl(35, 52%, 62%);
 }
 
 
@@ -960,14 +988,15 @@ a.btn-ghost { text-decoration: none; }
 }
 /* Mobil-liste fallback'i kurulu görünümler (Ontoloji 2026-08-10,
    Esmâ+Sırlar 2026-08-16, Hâller/Sorular/Kur'ân Dokusu/Eser Ağı/Seyahat
-   Atlası/Eleştiri Arkeolojisi 2026-08-17 -- O-01/F4, Dalga 2.5). Kalan
-   grafik görünümleri (acik-sorular/bilmiyoruz/menziller/hocalar/yolculuk/
-   terimler-FCA) HENÜZ kapsanmıyor -- bu yüzden kural genel `.graph-wrap`
-   yerine burada AÇIKÇA listelenen ID'lere uygulanıyor. Yeni bir görünüm
-   GU.createMobileListFallback ile donatıldığında ID'si buraya eklenmeli;
-   aksi hâlde bu seçici genel `.graph-wrap`'e genişletilirse kapsanmayan
-   görünümlerin mobilde TÜM içeriği (yerine koyacak liste olmadan)
-   gizlenir. */
+   Atlası/Eleştiri Arkeolojisi 2026-08-17 -- O-01/F4, Dalga 2.5; Menziller
+   2026-09-02 -- ürün denetimi P1-4, sarmalın 28 durağı gruplama olmadan
+   seyir sırasıyla listede). Kalan grafik görünümleri (acik-sorular/
+   bilmiyoruz/hocalar/yolculuk/terimler-FCA) HENÜZ kapsanmıyor -- bu yüzden
+   kural genel `.graph-wrap` yerine burada AÇIKÇA listelenen ID'lere
+   uygulanıyor. Yeni bir görünüm GU.createMobileListFallback ile
+   donatıldığında ID'si buraya eklenmeli; aksi hâlde bu seçici genel
+   `.graph-wrap`'e genişletilirse kapsanmayan görünümlerin mobilde TÜM
+   içeriği (yerine koyacak liste olmadan) gizlenir. */
 @media (max-width: 640px) {
   #ontology-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
   #esma-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
@@ -977,7 +1006,8 @@ a.btn-ghost { text-decoration: none; }
   #kuran-dokusu-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
   #eser-agi-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
   #seyahat-atlasi-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
-  #elestiri-arkeolojisi-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status) {
+  #elestiri-arkeolojisi-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status),
+  #menziller-wrap:not(.grafik-acik) > *:not([class$="-mobil-liste"]):not(.view-status) {
     display: none !important;
   }
   #ontology-wrap:not(.grafik-acik),
@@ -988,7 +1018,8 @@ a.btn-ghost { text-decoration: none; }
   #kuran-dokusu-wrap:not(.grafik-acik),
   #eser-agi-wrap:not(.grafik-acik),
   #seyahat-atlasi-wrap:not(.grafik-acik),
-  #elestiri-arkeolojisi-wrap:not(.grafik-acik) {
+  #elestiri-arkeolojisi-wrap:not(.grafik-acik),
+  #menziller-wrap:not(.grafik-acik) {
     height: auto;
     min-height: 0;
     padding: 16px 14px 24px;
@@ -1002,7 +1033,8 @@ a.btn-ghost { text-decoration: none; }
   #kuran-dokusu-wrap:not(.grafik-acik) [class$="-mobil-liste"],
   #eser-agi-wrap:not(.grafik-acik) [class$="-mobil-liste"],
   #seyahat-atlasi-wrap:not(.grafik-acik) [class$="-mobil-liste"],
-  #elestiri-arkeolojisi-wrap:not(.grafik-acik) [class$="-mobil-liste"] { display: block; }
+  #elestiri-arkeolojisi-wrap:not(.grafik-acik) [class$="-mobil-liste"],
+  #menziller-wrap:not(.grafik-acik) [class$="-mobil-liste"] { display: block; }
 }
 
 /* Sessiz Mod: sabit, dairesel bir anahtar -- açıkken üst menüyü kaldırır.
@@ -1226,6 +1258,13 @@ body.sessiz-mod-on .sessiz-mod-rozet { display: block; }
   border: none;
   color: var(--text-secondary);
   padding: 6px 12px;
+  /* Dokunma hedefi (WCAG 2.5.5, 2026-09-02 denetimi): sitenin geri kalanı
+     44px'i tutarlı uyguluyor, bu düğüm o kuralın dışında kalmıştı --
+     min-height metni büyütmeden alanı büyütüyor, .lang-switch (inline-flex)
+     konteyner içeriğe göre kendiliğinden aynı yüksekliğe geliyor. */
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -3343,6 +3382,15 @@ body[data-theme="dark"] #sirlar-legend {
 }
 .legend__dot--kemal    { background: var(--series-kemal); }
 .legend__dot--esma-neutral { background: var(--series-esma-neutral); }
+/* Menziller lejantı (P2-7, ürün denetimi 2026-09-02) */
+.legend__dot--menziller-1 { background: var(--menziller-katman-1); }
+.legend__dot--menziller-2 { background: var(--menziller-katman-2); }
+.legend__dot--menziller-3 { background: var(--menziller-katman-3); }
+.legend__dot--menziller-4 { background: var(--menziller-katman-4); }
+.legend__dot--menziller-5 { background: var(--menziller-katman-5); }
+.legend__dot--menziller-6 { background: var(--menziller-katman-6); }
+.legend__dot--menziller-7 { background: var(--menziller-katman-7); }
+.legend__dot--menziller-8 { background: var(--menziller-katman-8); }
 
 .pole-badge {
   display: inline-block;
@@ -4258,6 +4306,35 @@ html:has(.detail-panel:not([hidden])) {
 }
 .detail-panel__notebook[aria-pressed="true"] .detail-panel__notebook-star {
   fill: currentColor;
+}
+
+.detail-panel__share-visual {
+  display: none;
+  position: fixed;
+  top: calc(var(--app-header-height, 96px) + 12px);
+  right: 224px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  z-index: 56;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--dur-orta) ease, border-color var(--dur-orta) ease;
+}
+.detail-panel__share-visual:hover,
+.detail-panel__share-visual:focus-visible {
+  color: var(--accent-interactive);
+  border-color: var(--accent-interactive);
+}
+/* Yalnız masaüstü (bkz. index.html'deki P0-3 notu) -- min-width, mobildeki
+   .detail-panel__X kurallarının aksine burada AÇILIŞ görünürlüğünü de
+   kapsıyor: display:flex'i #detail-panel açıkken bu sorguya bağlıyoruz. */
+@media (min-width: 641px) {
+  #detail-panel:not([hidden]) ~ .detail-panel__share-visual { display: flex; }
 }
 
 .detail-title {
@@ -5901,6 +5978,15 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   text-decoration: underline;
   text-decoration-color: transparent;
   transition: text-decoration-color var(--dur-kisa) ease, color var(--dur-kisa) ease;
+  /* Dokunma hedefi (WCAG 2.5.5, 2026-09-02 denetimi): metin satır-içi kısa
+     kaldığı için min-height burada görsel boyutu büyütür -- onun yerine
+     görünmez bir dokunma alanı: min-height 44px + eşit negatif dikey margin,
+     satırdaki görünen konum ve satır yüksekliği aynı kalır, yalnız tıklanan
+     kutu büyür. */
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  margin: -12px 0;
 }
 .detail-breadcrumb__item:hover,
 .detail-breadcrumb__item:focus-visible {

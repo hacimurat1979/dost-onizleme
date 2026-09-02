@@ -355,6 +355,17 @@
     });
   }
 
+  // Görsel kart (P0-3, 2026-09-02): share-mode.js kendi paneli zaten var
+  // (window.__dostShare.open -> buildPanel, 13 şablon arasından seçim);
+  // burada yalnız keşfedilebilir bir kapı açıyoruz, share-mode'un iç
+  // mantığına dokunmuyoruz.
+  const detailShareVisual = document.getElementById("detail-share-visual");
+  if (detailShareVisual) {
+    detailShareVisual.addEventListener("click", () => {
+      if (window.__dostShare && window.__dostShare.open) window.__dostShare.open();
+    });
+  }
+
   // ESC ("bir adım geri") artık burada değil: ortak zincir graph-utils.js'te
   // (registerStepBack), açık panelin kapanması da onun genel son adımı.
   // Sırlar'ın tema odağını geri alan dal buradan KALDIRILDI ve kendi
@@ -1878,16 +1889,20 @@
       .join("path")
       .attr("class", "link-hit")
       .attr("fill", "none")
-      .attr("tabindex", 0)
-      .attr("role", "button")
-      .attr("aria-label", (d) => edgeAriaLabel(d))
       .on("mouseenter", (event, d) => { highlightEdge(d); showEdgeTooltip(d, event); })
       .on("mousemove", (event) => moveTooltip(event))
       .on("mouseleave", () => { highlight(null); hideTooltip(); })
-      .on("focus", (event, d) => { highlightEdge(d); showEdgeTooltip(d, event); })
-      .on("blur", () => { highlight(null); hideTooltip(); })
-      .on("keydown", (event, d) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onEdgeClick(d); } })
       .on("click", (event, d) => onEdgeClick(d));
+    // Ürün denetimi P2-6 (2026-09-02): tabindex/role/aria-label/focus/blur/
+    // keydown burada elle yazılmıştı; hal.js/sirlar-graph.js/sorular.js'in
+    // zaten kullandığı ortak yardımcıya taşındı (GU.wireEdgeAccessibility) --
+    // davranış aynı, yalnız dördüncü kopya kapandı.
+    window.DostGraphUtils.wireEdgeAccessibility(hitSel, {
+      label: (d) => edgeAriaLabel(d),
+      onFocus: (d, event) => { highlightEdge(d); showEdgeTooltip(d, event); },
+      onBlur: () => { highlight(null); hideTooltip(); },
+      onActivate: (d) => onEdgeClick(d),
+    });
 
     // Ok tuşuyla gezinme: verilen yön vektörüne (dx,dy) en çok hizalı VE en
     // yakın düğümü bulur -- yalnız açının 90°'den dar olduğu (aynı yarım

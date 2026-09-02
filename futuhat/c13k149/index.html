@@ -105,6 +105,14 @@
 }
 </script>
 
+<!-- Font preload (P2-9, ürün denetimi 2026-09-02): 7 @font-face'ten yalnız
+     iki tanesi -- gövde metninin varsayılan ağırlığı (html/body'nin kendi
+     kuralı, 400) ve başlıkların ağırlığı (.detail-title vb., 600). Yediyi
+     birden preload etmek preload'ın kendi amacını (tarayıcıya "bunlar ilk
+     ekran için kritik" demek) boşa çıkarırdı -- diğer beşi zaten
+     font-display:swap ile doğal akışında geliyor. -->
+<link rel="preload" href="assets/fonts/SourceSans3-Regular-static.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Fraunces-SemiBold-static.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Book", "@id": "https://dostarabi.com/futuhat/#kitap", "name": "el-Fütûhâtü'l-Mekkiyye", "author": {"@id": "https://dostarabi.com/#ibnarabi"}, "inLanguage": "ar", "hasPart": {"@id": "https://dostarabi.com/futuhat/c13k149/#bolum"}}, {"@type": "Chapter", "@id": "https://dostarabi.com/futuhat/c13k149/#bolum", "isPartOf": {"@id": "https://dostarabi.com/futuhat/#kitap"}, "name": "O İlktir, Sondur, Zâhirdir, Bâtındır: Cilt XIII'ün Açılışı", "abstract": "Yirmi Beşinci Sifr'in açılış dört bölümü, akli tevhid ve şirk meselesinden varlığın \"ikileşme sırrı\"na, Ebu Said el-Harraz'ın \"Allah'ı iki zıddı birleştirmesi özelliğiyle bildim\" sözü ve \"O ilktir, sondur, zâhirdir, bâtındır\" ayetinden -Cilt XII'nin El-Evvel/El-Âhir bulgusunu doğrudan sürdürerek-…", "url": "https://dostarabi.com/futuhat/c13k149/"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Dost Arabî", "item": "https://dostarabi.com/"}, {"@type": "ListItem", "position": 2, "name": "Fütûhât Atlası", "item": "https://dostarabi.com/futuhat/"}, {"@type": "ListItem", "position": 3, "name": "O İlktir, Sondur, Zâhirdir, Bâtındır: Cilt XIII'ün Açılışı", "item": "https://dostarabi.com/futuhat/c13k149/"}]}]}</script>
 </head>
@@ -793,6 +801,10 @@
     </section>
 
     <section class="graph-wrap" id="menziller-wrap" hidden>
+      <!-- Ürün denetimi P1-4 (2026-09-02): diğer sarmal/grafik görünümleriyle
+           aynı desen (bkz. hal-mobil-liste) -- 28 durak gruplama olmadan
+           seyir sırasıyla, çünkü sıra sarmalın kendisi. -->
+      <nav class="menziller-mobil-liste" id="menziller-mobil-liste" aria-label="Menziller: seyir listesi (mobil alternatif)" data-tr-aria-label="Menziller: seyir listesi (mobil alternatif)" data-en-aria-label="Waystations: journey list (mobile alternative)" data-pt-aria-label="Estações: lista do percurso (alternativa móvel)"></nav>
       <svg id="menziller-graph" role="group" aria-label="Menziller haritası"
            data-tr-aria-label="Menziller haritası" data-en-aria-label="Map of waystations" data-pt-aria-label="Mapa das estações"></svg>
       <div class="view-status" id="menziller-wrap-status" hidden>
@@ -810,6 +822,26 @@
       <button class="graph-hint" type="button" data-tr-title="Bir menzile tıklayın; boş alanı sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın" data-en-title="Click a mansion; drag empty space to pan, Ctrl (⌘) + scroll to zoom" data-pt-title="Clique numa mansão; arraste o espaço vazio para navegar, Ctrl (⌘) + rolagem para ampliar" title="Bir menzile tıklayın; boş alanı sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın" aria-label="Bir menzile tıklayın; boş alanı sürükleyerek gezinin, Ctrl (⌘) + tekerlek ile yakınlaştırın">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
       </button>
+      <!-- Lejant (P2-7, ürün denetimi 2026-09-02): renk kategori değil,
+           harfin nefesteki mahreç sırasına bağlı sürekli bir gradyan
+           (menziller.js:hueFor) -- sekiz nokta, gradyanın Dost'un okuduğu
+           SEKİZ varlık-mertebesi katmanına denk düşen kesitleri. -->
+      <div class="legend" id="menziller-legend">
+        <button class="legend__toggle" type="button" aria-expanded="true">
+          <span data-tr="Lejant" data-en="Legend" data-pt="Legenda">Lejant</span>
+          <span class="legend__toggle-icon" aria-hidden="true">▾</span>
+        </button>
+        <div class="legend__body" tabindex="0">
+          <div class="legend__item"><span class="legend__dot legend__dot--menziller-1"></span><span data-tr="Ruhânî mertebeler (1-2)" data-en="The spiritual ranks (1-2)" data-pt="Os graus espirituais (1-2)">Ruhânî mertebeler (1-2)</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--menziller-2"></span><span data-tr="Tabiat ve heyûlâ (3-6)" data-en="Nature and prime matter (3-6)" data-pt="Natureza e matéria-prima (3-6)">Tabiat ve heyûlâ (3-6)</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--menziller-3"></span><span data-tr="Arş, Kürsî ve iki felek (7-10)" data-en="Throne, Footstool and the two spheres (7-10)" data-pt="Trono, Escabelo e as duas esferas (7-10)">Arş, Kürsî ve iki felek (7-10)</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--menziller-4"></span><span data-tr="Yedi gök (11-17)" data-en="The seven heavens (11-17)" data-pt="Os sete céus (11-17)">Yedi gök (11-17)</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--menziller-5"></span><span data-tr="Dört unsur (18-21)" data-en="The four elements (18-21)" data-pt="Os quatro elementos (18-21)">Dört unsur (18-21)</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--menziller-6"></span><span data-tr="Mevâlîd: maden, bitki, hayvan (22-24)" data-en="The three kingdoms: mineral, plant, animal (22-24)" data-pt="Os três reinos: mineral, planta, animal (22-24)">Mevâlîd: maden, bitki, hayvan (22-24)</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--menziller-7"></span><span data-tr="Melek, cin, insan (25-27)" data-en="Angel, jinn, human (25-27)" data-pt="Anjo, génio, humano (25-27)">Melek, cin, insan (25-27)</span></div>
+          <div class="legend__item"><span class="legend__dot legend__dot--menziller-8"></span><span data-tr="Mertebelerin tayini (28)" data-en="The assigning of ranks (28)" data-pt="A atribuição dos graus (28)">Mertebelerin tayini (28)</span></div>
+        </div>
+      </div>
     </section>
 
     <section class="tasiyicilar-wrap" id="tasiyicilar-wrap" hidden>
@@ -1476,6 +1508,18 @@ mesmo antes que o assombro exista."></blockquote>
     <button class="detail-panel__notebook" id="detail-notebook-toggle" type="button" title="Kavram defterime ekle / kaldır — Add to / remove from my concept notebook — Adicionar a / remover do meu caderno de conceitos" aria-label="Kavram defterime ekle / kaldır — Add to / remove from my concept notebook — Adicionar a / remover do meu caderno de conceitos" aria-pressed="false">
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path class="detail-panel__notebook-star" d="M12 4.2l2.2 4.6 5 .7-3.6 3.5.85 5-4.45-2.4-4.45 2.4.85-5-3.6-3.5 5-.7Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
     </button>
+    <!-- Ürün denetimi P0-3 (2026-09-02): share-mode.js (2036 satır, 13
+         paylaşım şablonu) yalnız gizli bir klavye komutuyla (@share)
+         açılıyordu, UI'da hiçbir giriş noktası yoktu. #detail-share zaten
+         her sayfada çalışıyor (native share / link kopyalama); bu düğme
+         onu DEĞİŞTİRMİYOR, yanına görsel kart üretimine giden tek ve sade
+         bir yol ekliyor. Yalnız masaüstünde (bkz. style.css @media
+         max-width:640px) -- mobil başlık zaten iki satıra bölünmüş ve
+         sıkışık (2026-08-07 tarayıcı-denetimi bulgusu), beşinci sabit
+         düğmeyi oraya eklemek o riski büyütürdü. -->
+    <button class="detail-panel__share-visual" id="detail-share-visual" type="button" title="Görsel kart oluştur / Create visual card / Criar cartão visual" aria-label="Görsel kart oluştur / Create visual card / Criar cartão visual">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="9.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 16.5l4.8-4.8a1.4 1.4 0 0 1 2 0l2.9 2.9 2-2a1.4 1.4 0 0 1 2 0l2.3 2.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
     <button class="detail-panel__close" id="detail-close" aria-label="Kapat / Close / Fechar">×</button>
 
   </main>
@@ -1545,8 +1589,8 @@ mesmo antes que o assombro exista."></blockquote>
        ama o bağımlılık derleme-zamanı çapraz-bağlantı indeksine taşınalı
        (2026-08-03) kalkmıştı, sadece fark edilmemişti), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-72fznNoTjeKbmfleEhdZkx72CH+myCScCvuAwEUk54CJoU/4KDK4l+vQJu6tS7XM"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-2MhyQDDPkyfhGBeTJtO7IUj9FWPz9tlSyPK39T8AYst4EY6i5V+sOIctoNrBFxqo"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-WSKCTFlYt2dLPUe5stagYPTE+nx+umxzA5jjbG3Nrr3soJVVCLeWeTY3nNjnoHz6"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-qXLQCaLn3nBkRZYcUDPwKtO35h86p7sh/AXWTvZzhe8wB02JNymMFogX9pw+0nPy"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-/e5bJ2jnzP3BkEcxCQQc1b5DjDsJRO4/5G/9880QJkDOe1FtAVa850ZsdhNPI6XP"></script>
   <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-S5YfedCmBW9/W/3OybJ+5K9BRmf2zdJinvGfO94lJC2R90B/j/II4Qh98xEIDISO"></script>

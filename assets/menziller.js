@@ -675,6 +675,37 @@
 
   GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });
 
+  // Mobil sıralı-liste yedeği (P1-4, ürün denetimi 2026-09-02): diğer
+  // sarmal/grafik görünümleriyle aynı desen (bkz. hal.js). Gruplama YOK --
+  // 28 durağın sırası sarmalın kendisi, listeyi kesitlere bölmek o sırayı
+  // ikinci plana atardı. menziller.json'ın alan adları (sira/menzil/zuhur)
+  // createMobileListFallback'in beklediği {id,name,short} şeklinde değil,
+  // extractNodes burada dönüştürüyor; menzil adları (Şeretân, Butayn...)
+  // özel isim, üç dilde de aynı yazıldığı için tek düz string üç dile
+  // kopyalanıyor.
+  const menzillerMobilListe = GU.createMobileListFallback({
+    wrapEl: document.getElementById("menziller-wrap"),
+    listEl: document.getElementById("menziller-mobil-liste"),
+    fetchUrl: "data/ibn-arabi/menziller.json",
+    extractNodes: (d) => (d.menziller || []).map((m) => ({
+      id: m.sira,
+      name: { tr: m.menzil, en: m.menzil, pt: m.menzil },
+      short: m.zuhur,
+    })),
+    title: { tr: "Menziller", en: "The Waystations", pt: "As Estações" },
+    note: {
+      tr: "Sarmalı okumak için ekran dar geldi — yirmi sekiz menzil burada seyir sırasıyla listede. Bir menzile dokun, paneli oku.",
+      en: "The spiral does not fit this narrow screen — the twenty-eight waystations are here as a list, in the order of the journey. Tap a waystation to read its panel.",
+      pt: "A espiral não cabe neste ecrã estreito — as vinte e oito estações estão aqui como lista, na ordem do percurso. Toque numa estação para ler o painel.",
+    },
+    graphButtonLabel: {
+      tr: "Haritayı aç (sarmalı göster)",
+      en: "Open the map (show the spiral)",
+      pt: "Abrir o mapa (mostrar a espiral)",
+    },
+    goTo: (id) => window.__menzillerApp.goToNode(id),
+  });
+
   window.__menzillerApp = {
     activate() {
       fetchData().then((d) => {
@@ -692,6 +723,7 @@
       });
     },
     onLangChange() {
+      if (menzillerMobilListe) menzillerMobilListe.onLangChange();
       if (!nodes.length) return;
       render(performance.now());
       const n = activeId ? nodes.find((x) => x.sira === activeId) : null;

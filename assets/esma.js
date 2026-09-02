@@ -1012,19 +1012,23 @@
     const rs = relLayer.selectAll("line.esmaX-rel").data(visRel, (r) => r.from + "~" + r.to);
     rs.exit().remove();
     const re = rs.enter().append("line").attr("class", (r) => "esmaX-rel esmaX-rel--" + r.type)
-      .attr("tabindex", 0).attr("role", "button")
-      .attr("aria-label", (r) => {
-        const a = byId.get(r.from), b = byId.get(r.to);
-        const nm = (n) => (tt(n.raw ? n.raw.name : n.name) || n.id);
-        return nm(a) + " – " + nm(b);
-      })
       .on("pointerenter", (e, r) => showRelTooltipEsma(r, e))
       .on("pointermove", (e) => moveTooltipEsma(e))
       .on("pointerleave", hideTooltipEsma)
-      .on("focus", (e, r) => showRelTooltipEsma(r, e))
-      .on("blur", hideTooltipEsma)
-      .on("click", (e, r) => { e.stopPropagation(); showRelationDetail(r); })
-      .on("keydown", (e, r) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); showRelationDetail(r); } });
+      .on("click", (e, r) => { e.stopPropagation(); showRelationDetail(r); });
+    // Ürün denetimi P2-6 (2026-09-02): tabindex/role/aria-label/focus/blur/
+    // keydown ortak yardımcıya taşındı (GU.wireEdgeAccessibility) --
+    // davranış aynı.
+    GU.wireEdgeAccessibility(re, {
+      label: (r) => {
+        const a = byId.get(r.from), b = byId.get(r.to);
+        const nm = (n) => (tt(n.raw ? n.raw.name : n.name) || n.id);
+        return nm(a) + " – " + nm(b);
+      },
+      onFocus: (r, e) => showRelTooltipEsma(r, e),
+      onBlur: () => hideTooltipEsma(),
+      onActivate: (r) => showRelationDetail(r),
+    });
     re.merge(rs).each(function (r) {
       const a = byId.get(r.from), b = byId.get(r.to);
       const rel = selectedId && (r.from === selectedId || r.to === selectedId);
@@ -1041,20 +1045,21 @@
     const ds = relLayer.selectAll("line.esmaX-derived").data(visDer, (r) => r.from + "~" + r.to);
     ds.exit().remove();
     const de = ds.enter().append("line").attr("class", "esmaX-derived")
-      .attr("tabindex", 0).attr("role", "button")
-      .attr("aria-label", (r) => {
+      .on("pointerenter", (e, r) => showRelTooltipEsma(r, e))
+      .on("pointermove", (e) => moveTooltipEsma(e))
+      .on("pointerleave", hideTooltipEsma)
+      .on("click", (e, r) => { e.stopPropagation(); showDerivedDetail(r); });
+    GU.wireEdgeAccessibility(de, {
+      label: (r) => {
         const a = byId.get(r.from), b = byId.get(r.to);
         const nm = (n) => (tt(n.raw ? n.raw.name : n.name) || n.id);
         return tt({ tr: "Saydığımız bir bağ", en: "A link we counted", pt: "Um vínculo que contamos" })
           + ": " + nm(a) + " – " + nm(b);
-      })
-      .on("pointerenter", (e, r) => showRelTooltipEsma(r, e))
-      .on("pointermove", (e) => moveTooltipEsma(e))
-      .on("pointerleave", hideTooltipEsma)
-      .on("focus", (e, r) => showRelTooltipEsma(r, e))
-      .on("blur", hideTooltipEsma)
-      .on("click", (e, r) => { e.stopPropagation(); showDerivedDetail(r); })
-      .on("keydown", (e, r) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showDerivedDetail(r); } });
+      },
+      onFocus: (r, e) => showRelTooltipEsma(r, e),
+      onBlur: () => hideTooltipEsma(),
+      onActivate: (r) => showDerivedDetail(r),
+    });
     de.merge(ds).each(function (r) {
       const a = byId.get(r.from), b = byId.get(r.to);
       d3.select(this).attr("x1", a.px).attr("y1", a.py).attr("x2", b.px).attr("y2", b.py)

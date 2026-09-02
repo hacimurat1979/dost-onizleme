@@ -160,16 +160,20 @@ window.__kuranDokusuApp = (function () {
     const hitSel = kenarG.selectAll("path.link-hit").data(kenarlar, (d) => d.sureNo + "|" + d.view + "|" + d.id).join("path")
       .attr("class", "link-hit")
       .attr("d", kenarYolu)
-      .attr("fill", "none")
-      .attr("tabindex", 0)
-      .attr("role", "img")
-      .attr("aria-label", (d) => kenarAriaLabel(d));
+      .attr("fill", "none");
 
     hitSel.on("mouseenter", function (ev, d) { vurgula(d.sureNo, d.view + "/" + d.id, true); kenarIpucu(ev, d); })
       .on("mousemove", (ev) => GU.moveTooltip(tooltip, wrapEl, ev))
-      .on("mouseleave", function () { vurgula(null, null, false); GU.hideTooltip(tooltip); })
-      .on("focus", function (ev, d) { vurgula(d.sureNo, d.view + "/" + d.id, true); kenarIpucu(ev, d); })
-      .on("blur", function () { vurgula(null, null, false); GU.hideTooltip(tooltip); });
+      .on("mouseleave", function () { vurgula(null, null, false); GU.hideTooltip(tooltip); });
+    // Ürün denetimi P2-6 (2026-09-02): tabindex/role/aria-label/focus/blur
+    // ortak yardımcıya taşındı. role:"img" korunuyor -- bu kenar tıklanamaz,
+    // yalnız bilgi taşır (aktivasyon yok, orijinalde de keydown/click yoktu).
+    GU.wireEdgeAccessibility(hitSel, {
+      role: "img",
+      label: (d) => kenarAriaLabel(d),
+      onFocus: (d, ev) => { vurgula(d.sureNo, d.view + "/" + d.id, true); kenarIpucu(ev, d); },
+      onBlur: () => { vurgula(null, null, false); GU.hideTooltip(tooltip); },
+    });
 
     // Sûre düğümleri (dış halka)
     const sureG = kok.append("g").attr("class", "kuran-dokusu-sureler");
