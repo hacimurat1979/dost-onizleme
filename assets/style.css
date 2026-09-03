@@ -5523,6 +5523,16 @@ a[href]:not([class]):not([target]):not([href^="mailto:"]):focus-visible {
   border-top: 1px solid var(--border);
   box-shadow: 0 -2px 14px rgba(0, 0, 0, 0.12);
 }
+/* Kullanıcı bulgusu (2026-09-03): "Kabul et" bandı kapatmıyordu -- JS
+   banner.hidden = true'yu doğru yazıyordu (DOM özelliği gerçekten
+   değişiyordu), ama .consent-banner { display: flex } YAZAR kuralı,
+   tarayıcının [hidden] { display: none } VARSAYILAN kuralını eziyordu --
+   ikisi de eşit özgüllükte ama yazar kuralı köken olarak her zaman
+   varsayılanı kazanır. Bu satır olmadan hiçbir hidden=true hiçbir zaman
+   görsel olarak gizlemiyordu; yalnızca DOM özelliğini kontrol eden bir
+   test (Playwright'ta olduğu gibi) bunu yakalayamaz, gerçek render'a
+   bakmak gerekir. */
+.consent-banner[hidden] { display: none; }
 .consent-banner p {
   margin: 0;
   max-width: 60ch;
