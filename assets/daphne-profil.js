@@ -44,6 +44,10 @@
   let pageData = null;
   let nodeSel, linkSel, labelSel, zoomBehavior;
   let currentDetailParam = null;
+  // buildGraph() içinde atanır; render() dil değişiminde etiket metni
+  // değişince (TR/EN/PT uzunluğu farklı olduğu için) yeniden çakışma
+  // çözümü yapabilsin diye dışarıdan erişilebilir tutuluyor (2026-09-13).
+  let etiketleriYerlestir = null;
 
   // Veri yüklemesi ile GRAF KURULUMU ayrı (2026-08-28). Eskiden ikisi tek
   // adımdı ve bu iki yönlü sorun üretiyordu:
@@ -293,7 +297,7 @@
     // ile aynı ekleme -- merkezi etiket-çakışma çözücüsü (bkz. oradaki not).
     const deconflictLabels = window.DostGraphUtils.createLabelDeconflictor();
 
-    function etiketleriYerlestir() {
+    etiketleriYerlestir = function () {
       const pend = [];
       labelSel.each(function (d) {
         pend.push({
@@ -304,7 +308,7 @@
       });
       const engeller = nodes.map((d) => ({ x: d.x, y: d.y, half: radiusFor(d) + 3, h: radiusFor(d) * 2 + 6 }));
       deconflictLabels(pend, engeller);
-    }
+    };
 
     simulation.on("tick", () => {
       linkSel.attr("d", (d) => branchPath(d.source, d.target));
@@ -354,6 +358,12 @@
   function render() {
     if (!labelSel) return;
     labelSel.text((d) => labelFor(d));
+    // TR/EN/PT etiket uzunluğu farklı (örn. "Sırlar" / "Mysteries" /
+    // "Mistérios") -- dil değişince metin uzayıp kısalabildiği için
+    // önceki dilde çözülmüş çakışmalar yeniden çakışabiliyordu
+    // (2026-09-13). buildGraph()'taki simulation tick/end'in çağırdığı
+    // aynı yerleştirici burada da çağrılıyor.
+    if (etiketleriYerlestir) etiketleriYerlestir();
     if (currentDetailParam) showParamDetail(currentDetailParam);
     if (pageData) renderArticles(pageData);
   }
@@ -436,6 +446,7 @@
     hal: { tr: "Hâller", en: "States", pt: "Estados" },
     sirlar: { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" },
     sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
+    futuhat: { tr: "Fütûhât", en: "Futuhat", pt: "Futuhat" },
   };
 
   function eksenlerHtml(a, data) {

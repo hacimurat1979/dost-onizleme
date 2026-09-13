@@ -41,23 +41,11 @@
   // CONFIDENCE_MAP.md'nin sözlüğünden (Yüksek/Orta/Hipotez/Gelecekte-
   // doğrulanmalı/...); ontology.json'daki her kenarın kendi `nature`/
   // `insights` metninde YAZILI temkin diline göre atandı, elle ayrı bir
-  // değerlendirme değil.
-  const CONFIDENCE_LABEL = {
-    "Yüksek": { tr: "Yüksek", en: "High", pt: "Alta" },
-    "Orta": { tr: "Orta", en: "Medium", pt: "Média" },
-    "Düşük": { tr: "Düşük", en: "Low", pt: "Baixa" },
-    "Hipotez": { tr: "Hipotez", en: "Hypothesis", pt: "Hipótese" },
-    "Bilinmiyor": { tr: "Bilinmiyor", en: "Unknown", pt: "Desconhecida" },
-    "Gelecekte-doğrulanmalı": { tr: "Gelecekte doğrulanmalı", en: "To be confirmed later", pt: "A confirmar mais tarde" },
-  };
-  function confSlug(c) {
-    return c === "Orta" ? "orta"
-      : c === "Düşük" ? "dusuk"
-      : c === "Hipotez" ? "hipotez"
-      : c === "Bilinmiyor" ? "bilinmiyor"
-      : c === "Gelecekte-doğrulanmalı" ? "gelecek"
-      : "yuksek";
-  }
+  // değerlendirme değil. Sözlüğün kendisi (2026-09-13) graph-utils.js'e
+  // taşındı -- sorular.js de aynı deseni kullanacağı için, GORSEL_DIL.md'nin
+  // "sabit anlam eşleşmeleri" ilkesi gereği tek kaynaktan okunmalı.
+  const CONFIDENCE_LABEL = window.DostGraphUtils.CONFIDENCE_LABEL;
+  const confSlug = window.DostGraphUtils.confSlug;
   function confidenceNoteHtml(c) {
     if (!c || c === "Yüksek") return "";
     const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
@@ -66,6 +54,17 @@
       tr: "kenarın kendi metni bu okumayı henüz kesinleşmiş saymıyor.",
       en: "the edge's own text does not yet treat this reading as settled.",
       pt: "o próprio texto da aresta ainda não trata esta leitura como definitiva." })}</p>`;
+  }
+  // Kompakt biçim: Sırlar<->Sorular köprüsündeki (sirlarSorularHtml) her
+  // bağ kendi küçük kartında duruyor -- tam cümleli confidenceNoteHtml
+  // orada sığmıyor/ağır kaçıyor. Aynı sözlüğü (CONFIDENCE_LABEL/confSlug)
+  // kullanan, yalnız etiketi taşıyan bir <span>; "Yüksek"te (ve etiketsiz
+  // durumda) confidenceNoteHtml gibi hiçbir şey göstermiyor.
+  function confidenceInlineHtml(c) {
+    if (!c || c === "Yüksek") return "";
+    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
+    return `<span class="sorular-sir__confidence detail-confidence detail-confidence--${confSlug(c)}">${tt({
+      tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " })}<strong>${tt(label)}</strong></span>`;
   }
 
   // "Ne kadar eminiz?" düğmesi yalnız kenarları soluklaştırıp kesikli
@@ -2868,6 +2867,7 @@
     return `<div class="detail-block detail-block--bagimsiz-kaynak">
       <p class="detail-eyebrow">${title}</p>
       <div class="bagimsiz-kaynak__list">${links}</div>
+      ${confidenceNoteHtml(entry.confidence)}
     </div>`;
   }
 
@@ -3144,7 +3144,7 @@
       if (!q) return "";
       return `<a class="sorular-sir" href="${base}/sorular/${b.soru}" data-view="sorular" data-id="${b.soru}">
         <span class="sorular-sir__baslik">${I18n.pick3(q)}</span>
-        <span class="sorular-sir__neden">${I18n.pick3(b.neden)}</span></a>`;
+        <span class="sorular-sir__neden">${I18n.pick3(b.neden)}</span>${confidenceInlineHtml(b.confidence)}</a>`;
     }).join("");
     if (!satir) return "";
     return `<div class="sorular-sirlar">
@@ -3585,6 +3585,11 @@
   const GATES = {
     "sifat-asma": {
       view: "esma",
+      // Esmâ görünümünün tek bir "kendi" rengi yok -- celâl/cemâl kutupları
+      // ayrı ayrı renklenir. --series-kemal ikisini birleştiren isimlerin
+      // rengi (bkz. style.css), yani görünümün BÜTÜNÜNE en yakın kimlik;
+      // varış halkası bunu taşıyor.
+      ringVar: "--series-kemal",
       label: {
         tr: "Yüz bir ismin haritasına gir",
         en: "Enter the map of the hundred and one Names",
@@ -3625,7 +3630,12 @@
         }
       }
       window.DostGraphUtils.gateTransition(
-        { fromRect: rect, color: renk, targetEl: document.getElementById(g.view + "-wrap") },
+        {
+          fromRect: rect,
+          color: renk,
+          targetColor: g.ringVar ? getVar(g.ringVar) : null,
+          targetEl: document.getElementById(g.view + "-wrap"),
+        },
         () => { setMainView(g.view); updateHash(g.view); }
       );
     });

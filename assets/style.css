@@ -272,6 +272,24 @@
      grafikte fark edilmiyordu (kullanıcı bildirimi), bu daha belirgin. */
   --series-turetilmis: #2f8fa3;
 
+  /* Kaynak türü renkleri (2026-09-13, kalıcı -- bkz. GORSEL_DIL.md "Kaynak
+     türü renkleri"). Kavram'ın zenginlik halkasını (assets/kavram.js
+     kzrKirilim/kavramGaugeSvg) altı kaynak türüne göre bölen sabit palet.
+     --kzr-kisim BİLEREK yeni bir renk DEĞİL, --helix-gold-rim'in takma adı:
+     halka zaten o rengi (sarmalın düğüm rengi) "kısım/fas" için
+     kullanıyordu, iki farklı yerde aynı şeyi iki ayrı tonla göstermeyelim.
+     Diğer beşi bu tarama için yeni -- kasıtlı olarak --series-*/--menziller-*
+     ailesindeki hiçbir tonla aynı hex değil, çünkü oradaki renkler başka
+     görünümlerin (Sırlar'ın kendi alt kategorileri, Sorular'ın kendi
+     kategorileri) kendi kimliğini taşıyor; burada karışırlarsa iki ayrı
+     eşleme aynı renk üzerinden çakışmış olurdu. */
+  --kzr-kisim: var(--helix-gold-rim); /* amber -- kısım/fas sayısı */
+  --kzr-esma:  #7d4fb0; /* mor -- birlikte anılan esmâ */
+  --kzr-sir:   #2f6fb0; /* mavi -- ilişkili sır */
+  --kzr-cizim: #3f8f52; /* yeşil -- ilişkili çizim */
+  --kzr-ayet:  #b1547e; /* gül -- ilişkili âyet */
+  --kzr-hadis: #b3402c; /* kırmızı -- ilişkili hadis */
+
   /* Menziller lejantı (P2-7, ürün denetimi 2026-09-02). Sekiz görünen
      nokta, menziller.js'teki hueFor(i)'nin AYNI formülüyle (h=210-175·t,
      sat 52%, t=mahreç sırası/27) her katmanın orta sırasından hesaplandı --
@@ -349,6 +367,15 @@
   --series-sorular-deneyim:  #ce6e91;
 
   --series-turetilmis: #5bc4dc;
+
+  /* Kaynak türü renkleri, karanlık tema (bkz. :root'taki not). --kzr-kisim
+     yine ayrıca yazılmıyor: var(--helix-gold-rim) zaten yukarıda karanlık
+     için yeniden tanımlı, buradan otomatik miras alır. */
+  --kzr-esma:  #a480d9;
+  --kzr-sir:   #5b9bdb;
+  --kzr-cizim: #6cbd7c;
+  --kzr-ayet:  #d98aab;
+  --kzr-hadis: #d97a63;
 
   /* Menziller lejantı, karanlık tema (bkz. :root'taki not) --
      menziller.js'teki hueFor()'un GU.isDark() dalıyla aynı l (56+6t). */
@@ -873,6 +900,42 @@ a.btn-ghost { text-decoration: none; }
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+}
+
+/* Fütûhât+Füsûs birleşik okuma ilerlemesi (bkz. assets/nav-drawer.js
+   wireOkumaIlerleme). Tek halka, ortak bir tepe noktasından (12 yönü)
+   Fütûhât sola / Füsûs sağa büyüyen iki yarım-yay; ikisi de tamamlanırsa
+   halka 6 yönünde kapanır -- "O'ndan O'na" ilkesinin küçük bir yansıması.
+   Okunan kısım tam opak (--series-theme), kalan kısım AYNI renk ama soluk:
+   GORSEL_DIL.md'nin sabit "Matlık (opacity) = Perdelenme" eşlemesi --
+   ayrı bir gri "iz" rengi eklenmedi, ikinci bir görsel dil kurmasın diye. */
+.okuma-ilerleme {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 5px;
+  margin-left: 2px;
+  border-radius: 8px;
+  cursor: default;
+}
+.okuma-ilerleme:focus-visible {
+  outline: 2px solid var(--accent-interactive, #e0b545);
+  outline-offset: 1px;
+}
+.okuma-ilerleme__seg {
+  stroke: var(--series-theme);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  fill: none;
+}
+/* Perdelenmiş (henüz okunmamış) dilim -- renk aynı, yalnız matlık farklı. */
+.okuma-ilerleme__seg--soluk { opacity: 0.32; }
+.okuma-ilerleme__label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 /* Shared 44x44 circular icon-button chrome (touch-target minimum) --
@@ -1933,6 +1996,28 @@ text.sorular-label--cat {
   font-size: 0.8rem;
   color: var(--text-secondary);
   font-style: italic;
+}
+/* "Ne kadar eminiz?" katmanı, Ontoloji'nin .detail-confidence'ıyla aynı
+   renk sözleşmesini paylaşıyor (bkz. graph-utils.js CONFIDENCE_LABEL) --
+   yalnız burada satır içi bir rozet, ayrı bir paragraf değil (kompakt
+   liste satırına sığması için). "Yüksek" için hiç gösterilmiyor. */
+.sorular-related__conf {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.72rem;
+  font-style: normal;
+  border-left: 2px solid var(--border);
+  padding-left: 7px;
+  color: var(--text-muted);
+}
+.sorular-related__conf--orta,
+.sorular-related__conf--dusuk {
+  border-left-color: hsl(40 60% 50%);
+}
+.sorular-related__conf--hipotez,
+.sorular-related__conf--bilinmiyor,
+.sorular-related__conf--gelecek {
+  border-left-color: hsl(350 55% 55%);
 }
 
 /* --- Fütûhât Atlas --- */
@@ -5286,9 +5371,25 @@ details[open] .siir-card__not-toggle::before { content: "▾ "; }
   transform: translate(-50%, -50%);
   will-change: transform, opacity;
 }
+/* Kapı geçişinin varış halkası: hedef görünümün kendi kimlik rengini
+   (--series-*) taşıyan ince, dolgusuz bir çember -- .gate-orb'un dolu ışık
+   kütlesinin tersine, yalnız kenarı var. JS rengi (opts.targetColor) satır
+   içi `border-color` olarak veriyor; bu ortak katman hangi görünüme
+   gidildiğini bilmiyor. */
+.gate-ring {
+  position: fixed;
+  z-index: 61;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid var(--accent-interactive);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
 @media (prefers-reduced-motion: reduce) {
   /* Geçiş JS tarafında zaten hiç başlatılmıyor; bu yalnız emniyet. */
   .gate-orb { display: none; }
+  .gate-ring { display: none; }
   .detail-gate__arrow { transition: none; }
 }
 
@@ -7950,6 +8051,16 @@ body.cizim-lightbox-open {
 .detail-confidence--gelecek {
   border-left-color: hsl(350 55% 55%);
 }
+/* Sırlar<->Sorular köprüsündeki kompakt sürüm (confidenceInlineHtml,
+   assets/ontology.js) -- .detail-confidence'ın renk/kenar dilini
+   devralıyor ama panel başlığının altında değil küçük bir kartın İÇİNDE
+   duruyor, o yüzden üstteki negatif margin ve gövde metni boyutu burada
+   uymuyor. */
+.sorular-sir__confidence {
+  display: block;
+  margin: 6px 0 0;
+  font-size: 0.74rem;
+}
 
 /* .graph-hint'e tıklanınca beliren baloncuk (bkz. assets/graph-hint.js) --
    önceden bu buton sadece native title tooltip'ine (yalnızca hover)
@@ -8027,6 +8138,16 @@ body[data-theme="dark"] .esmaX-dot { stroke: rgba(255,255,255,0.14); }
 .esmaX-rel:focus-visible {
   stroke-width: 2.1px;
   outline: none;
+}
+/* Ontoloji'nin "ne kadar eminiz" ayrımıyla aynı desen (bkz. .link--conf-*
+   yukarıda): Yüksek'in dışındaki her ilişki aynı kesik pembe/gül rengine
+   döner. esmaX-rel zaten kesikliydi, burada yalnız renk değişiyor. */
+.esmaX-rel--conf-orta,
+.esmaX-rel--conf-dusuk,
+.esmaX-rel--conf-hipotez,
+.esmaX-rel--conf-bilinmiyor,
+.esmaX-rel--conf-gelecek {
+  stroke: var(--series-celal);
 }
 
 /* Yavaş ışık parçacıkları */
@@ -8286,6 +8407,28 @@ body[data-theme="dark"] .menziller-moon__leke { fill: #00000030; }
   user-select: none;
 }
 .menzil-node__label--active { fill: var(--text-primary); font-weight: 600; }
+
+/* Okunmuş/işlenmiş menziller (2026-09-13): "okuma" alanı olan düğümler --
+   Fütûhât okuma turumuzun bu fasla ulaştığını gösterir (bkz. menziller.json
+   notlar[4]). GORSEL_DIL.md'nin sabit eşlemesi: Işık = zuhûr/tecellî,
+   Matlık (opacity) = perdelenme. Aynı desen nav-drawer'ın okuma
+   ilerlemesinde de var (bkz. .okuma-ilerleme__seg--soluk yukarıda) -- ayrı
+   bir "iz" rengi icat etmiyoruz, --series-theme'i (site genelinde "okunmuş"
+   anlamına gelen renk) burada da kullanıyoruz. Yeni bir düğme ya da iç içe
+   çember yok: aynı küre kendi kenarlığı ve matlığıyla ayrışıyor, panel
+   açılmadan önce sarmalın kendisinde görünür. */
+.menzil-node--okunmus .menzil-node__sphere {
+  stroke: var(--series-theme);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--series-theme) 70%, transparent));
+}
+.menzil-node--perdeli .menzil-node__sphere,
+.menzil-node--perdeli .menzil-node__glow {
+  opacity: 0.55;
+}
+.menzil-node--perdeli .menzil-node__harf {
+  opacity: 0.75;
+}
 
 .menzil-rows { display: flex; flex-direction: column; gap: 6px; margin: 12px 0 4px; }
 .menzil-row {
@@ -10348,7 +10491,46 @@ mark.durus-vurgu-es {
 /* Liste kartları: düz isim yığını yerine, her adın yanında o kavram için
    biriken malzemeyi (kısım sayısı + birlikte-esmâ + ilişkili sır/çizim/
    âyet/hadis) gösteren bir halka -- terim sayfasındaki "dönüş yoğunluğu"
-   ile aynı görsel dil (bkz. zenginlikSkoru/kavramGaugeSvg). */
+   ile aynı görsel dil (bkz. zenginlikSkoru/kavramGaugeSvg). 2026-09-13'ten
+   itibaren bu halka tek renk değil, kzrKirilim()'in altı kaynak türüne göre
+   renkli segmentlere bölünüyor (bkz. GORSEL_DIL.md "Kaynak türü renkleri"). */
+.kzr-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 0 0 20px;
+}
+.kzr-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px 3px 5px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: border-color var(--dur-orta) var(--ease-standart), background var(--dur-orta) var(--ease-standart), color var(--dur-orta) var(--ease-standart);
+}
+.kzr-legend__item:hover,
+.kzr-legend__item:focus-visible {
+  border-color: var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+}
+.kzr-legend__swatch {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  border-radius: 50%;
+}
+.kzr-legend__swatch--kisim { background: var(--kzr-kisim); }
+.kzr-legend__swatch--esma  { background: var(--kzr-esma); }
+.kzr-legend__swatch--sir   { background: var(--kzr-sir); }
+.kzr-legend__swatch--cizim { background: var(--kzr-cizim); }
+.kzr-legend__swatch--ayet  { background: var(--kzr-ayet); }
+.kzr-legend__swatch--hadis { background: var(--kzr-hadis); }
 .kavram-list__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -10394,10 +10576,32 @@ mark.durus-vurgu-es {
 }
 .kavram-tile__gauge-arc {
   fill: none;
-  stroke: var(--helix-gold-rim);
   stroke-width: 2.4;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.5s var(--ease-sahne);
+  transition: stroke-dashoffset 0.5s var(--ease-sahne), opacity var(--dur-orta) var(--ease-standart), stroke-width var(--dur-orta) var(--ease-standart);
+}
+.kavram-tile__gauge-arc--kisim { stroke: var(--kzr-kisim); }
+.kavram-tile__gauge-arc--esma  { stroke: var(--kzr-esma); }
+.kavram-tile__gauge-arc--sir   { stroke: var(--kzr-sir); }
+.kavram-tile__gauge-arc--cizim { stroke: var(--kzr-cizim); }
+.kavram-tile__gauge-arc--ayet  { stroke: var(--kzr-ayet); }
+.kavram-tile__gauge-arc--hadis { stroke: var(--kzr-hadis); }
+/* Hiçbir türde malzeme yoksa (otomatikEslesmeYok ya da gerçekten boş) --
+   renkli bir tür iddia etmeden nötr bir kırıntı. */
+.kavram-tile__gauge-arc--bos { stroke: var(--text-muted); }
+/* Lejant satırının üzerine gelmek/Tab'lamak (assets/kavram.js
+   bindKzrLegend()) wrapEl'e data-kzr-active koyar -- karşılık gelen yay
+   büyüyüp öne çıkar, diğerleri soluklaşır (ETKILESIM_DILI.md "değinmek";
+   GORSEL_DIL.md "her etkileşimin görünür bir sonucu olmalı"). */
+.kavram-wrap[data-kzr-active] .kavram-tile__gauge-arc { opacity: 0.22; }
+.kavram-wrap[data-kzr-active="kisim"] .kavram-tile__gauge-arc--kisim,
+.kavram-wrap[data-kzr-active="esma"] .kavram-tile__gauge-arc--esma,
+.kavram-wrap[data-kzr-active="sir"] .kavram-tile__gauge-arc--sir,
+.kavram-wrap[data-kzr-active="cizim"] .kavram-tile__gauge-arc--cizim,
+.kavram-wrap[data-kzr-active="ayet"] .kavram-tile__gauge-arc--ayet,
+.kavram-wrap[data-kzr-active="hadis"] .kavram-tile__gauge-arc--hadis {
+  opacity: 1;
+  stroke-width: 3.6;
 }
 @media (max-width: 480px) {
   .kavram-list__grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }

@@ -1,5 +1,5 @@
 {
- "kaynak": "quran-json (risan/quran-json), dist/quran_tr + quran_en",
+ "kaynak": "quran-json (risan/quran-json), dist/quran_tr + quran_en. meal.pt: risan/quran-json'da Portekizce meal (quran_pt.json ya da benzeri) YOK -- dist/ dizini 2026-09-13'te klonlanıp doğrulandı, yalnız tr/en/bn/es/fr/id/ru/sv/ur/zh var. Bu yüzden meal.pt hazır bir veri setinden çekilmedi: 65 âyetin her biri için TR ve EN mealleri ile Arapça asıl metin referans alınarak elle, dikkatle üretilmiş bir çeviridir (scripts/kuran-veri-uret.py bunu üretmez, yalnız tr/en'i çeker). Yedi âyette (5:116, 7:172, 8:20, 11:56, 19:30, 26:75, 50:28) mevcut TR meali, kaynak risan/quran-json'un kendi verisindeki bir tekrar/gruplama nedeniyle bir sonraki âyete taşan metin içeriyor (Arapça ve EN ile karşılaştırılarak doğrulandı); meal.pt bu yedi âyette Arapça asıl metnin ve EN mealinin kapsamına sadık kaldı, TR'nin taşan kısmını yansıtmadı.",
  "uretim": "scripts/kuran-veri-uret.py",
  "not": "âyetler yalnız atlasta alıntılananlarla sınırlıdır",
  "sureler": [
@@ -1377,455 +1377,520 @@
    "ar": "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ",
    "meal": {
     "tr": "Rahman ve Rahim olan Allah'ın adıyla",
-    "en": "In the name of Allah, the Entirely Merciful, the Especially Merciful"
+    "en": "In the name of Allah, the Entirely Merciful, the Especially Merciful",
+    "pt": "Em nome de Deus, o Clemente, o Misericordioso"
    }
   },
   "1:2": {
    "ar": "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ",
    "meal": {
     "tr": "Hamd, Alemlerin Rabbi Allah'a mahsustur",
-    "en": "[All] praise is [due] to Allah, Lord of the worlds"
+    "en": "[All] praise is [due] to Allah, Lord of the worlds",
+    "pt": "O louvor pertence a Deus, Senhor dos mundos"
    }
   },
   "1:5": {
    "ar": "إِيَّاكَ نَعۡبُدُ وَإِيَّاكَ نَسۡتَعِينُ",
    "meal": {
     "tr": "Ancak Sana kulluk eder ve yalnız Senden yardım dileriz",
-    "en": "It is You we worship and You we ask for help"
+    "en": "It is You we worship and You we ask for help",
+    "pt": "A Ti só adoramos e a Ti só pedimos socorro"
    }
   },
   "2:30": {
    "ar": "وَإِذۡ قَالَ رَبُّكَ لِلۡمَلَـٰٓئِكَةِ إِنِّي جَاعِلٞ فِي ٱلۡأَرۡضِ خَلِيفَةٗۖ قَالُوٓاْ أَتَجۡعَلُ فِيهَا مَن يُفۡسِدُ فِيهَا وَيَسۡفِكُ ٱلدِّمَآءَ وَنَحۡنُ نُسَبِّحُ بِحَمۡدِكَ وَنُقَدِّسُ لَكَۖ قَالَ إِنِّيٓ أَعۡلَمُ مَا لَا تَعۡلَمُونَ",
    "meal": {
     "tr": "Rabbin meleklere \"Ben yeryüzünde bir halife var edeceğim\" demişti; melekler, \"Orada bozgunculuk yapacak, kanlar akıtacak birini mi var edeceksin? Oysa biz Seni överek yüceltiyor ve Seni devamlı takdis ediyoruz\" dediler; Allah \"Ben şüphesiz sizin bilmediklerinizi bilirim\" dedi",
-    "en": "And [mention, O Muhammad], when your Lord said to the angels, \"Indeed, I will make upon the earth a successive authority.\" They said, \"Will You place upon it one who causes corruption therein and sheds blood, while we declare Your praise and sanctify You?\" Allah said, \"Indeed, I know that which you do not know"
+    "en": "And [mention, O Muhammad], when your Lord said to the angels, \"Indeed, I will make upon the earth a successive authority.\" They said, \"Will You place upon it one who causes corruption therein and sheds blood, while we declare Your praise and sanctify You?\" Allah said, \"Indeed, I know that which you do not know",
+    "pt": "E quando teu Senhor disse aos anjos: \"Vou colocar na terra um sucessor\", disseram: \"Colocarás nela quem vai semear a corrupção e derramar sangue, enquanto nós Te glorificamos com louvor e Te santificamos?\" Disse Ele: \"Em verdade, sei o que vós não sabeis"
    }
   },
   "2:85": {
    "ar": "ثُمَّ أَنتُمۡ هَـٰٓؤُلَآءِ تَقۡتُلُونَ أَنفُسَكُمۡ وَتُخۡرِجُونَ فَرِيقٗا مِّنكُم مِّن دِيَٰرِهِمۡ تَظَٰهَرُونَ عَلَيۡهِم بِٱلۡإِثۡمِ وَٱلۡعُدۡوَٰنِ وَإِن يَأۡتُوكُمۡ أُسَٰرَىٰ تُفَٰدُوهُمۡ وَهُوَ مُحَرَّمٌ عَلَيۡكُمۡ إِخۡرَاجُهُمۡۚ أَفَتُؤۡمِنُونَ بِبَعۡضِ ٱلۡكِتَٰبِ وَتَكۡفُرُونَ بِبَعۡضٖۚ فَمَا جَزَآءُ مَن يَفۡعَلُ ذَٰلِكَ مِنكُمۡ إِلَّا خِزۡيٞ فِي ٱلۡحَيَوٰةِ ٱلدُّنۡيَاۖ وَيَوۡمَ ٱلۡقِيَٰمَةِ يُرَدُّونَ إِلَىٰٓ أَشَدِّ ٱلۡعَذَابِۗ وَمَا ٱللَّهُ بِغَٰفِلٍ عَمَّا تَعۡمَلُونَ",
    "meal": {
     "tr": "Sonra siz, birbirinizi öldüren, aranızdan bir takımı memleketlerinden süren, onlara karşı günah ve düşmanlıkta birleşen, onları çıkarmak haramken size esir olarak geldiklerinde fidyelerini vermeye kalkan kimselersiniz. Kitabın bir kısmına inanıp, bir kısmını inkar mı ediyorsunuz? Aranızda böyle yapanın cezası ancak dünya hayatında rezil olmaktır. Ahiret gününde de azabın en şiddetlisine onlar uğratılırlar. Allah yaptıklarınızdan gafil değildir",
-    "en": "Then, you are those [same ones who are] killing one another and evicting a party of your people from their homes, cooperating against them in sin and aggression. And if they come to you as captives, you ransom them, although their eviction was forbidden to you. So do you believe in part of the Scripture and disbelieve in part? Then what is the recompense for those who do that among you except disgrace in worldly life; and on the Day of Resurrection they will be sent back to the severest of punishment. And Allah is not unaware of what you do"
+    "en": "Then, you are those [same ones who are] killing one another and evicting a party of your people from their homes, cooperating against them in sin and aggression. And if they come to you as captives, you ransom them, although their eviction was forbidden to you. So do you believe in part of the Scripture and disbelieve in part? Then what is the recompense for those who do that among you except disgrace in worldly life; and on the Day of Resurrection they will be sent back to the severest of punishment. And Allah is not unaware of what you do",
+    "pt": "Sois vós, ainda, os que matais uns aos outros e expulsais um grupo dos vossos de seus lares, unindo-vos contra eles no pecado e na hostilidade; e, se vos chegam como cativos, pagais o resgate por eles, embora vos fosse proibido expulsá-los. Credes, então, em parte da Escritura e negais outra parte? Que outra recompensa merece quem entre vós assim procede, senão a humilhação nesta vida? E, no Dia da Ressurreição, serão conduzidos ao mais severo castigo. E Deus não está desatento ao que fazeis"
    }
   },
   "2:149": {
    "ar": "وَمِنۡ حَيۡثُ خَرَجۡتَ فَوَلِّ وَجۡهَكَ شَطۡرَ ٱلۡمَسۡجِدِ ٱلۡحَرَامِۖ وَإِنَّهُۥ لَلۡحَقُّ مِن رَّبِّكَۗ وَمَا ٱللَّهُ بِغَٰفِلٍ عَمَّا تَعۡمَلُونَ",
    "meal": {
     "tr": "Her nereden yola çıkarsan, yüzünü Mescid-i Haram semtine çevir, şüphesiz bu Rabbinden bir haktır. Allah, yaptıklarınızdan gafil değildir",
-    "en": "So from wherever you go out [for prayer, O Muhammad] turn your face toward al- Masjid al-Haram, and indeed, it is the truth from your Lord. And Allah is not unaware of what you do"
+    "en": "So from wherever you go out [for prayer, O Muhammad] turn your face toward al- Masjid al-Haram, and indeed, it is the truth from your Lord. And Allah is not unaware of what you do",
+    "pt": "E de onde quer que saias, volta o teu rosto na direção da Mesquita Sagrada; em verdade, isto é a verdade vinda do teu Senhor. E Deus não está desatento ao que fazeis"
    }
   },
   "2:154": {
    "ar": "وَلَا تَقُولُواْ لِمَن يُقۡتَلُ فِي سَبِيلِ ٱللَّهِ أَمۡوَٰتُۢۚ بَلۡ أَحۡيَآءٞ وَلَٰكِن لَّا تَشۡعُرُونَ",
    "meal": {
     "tr": "Allah yolunda öldürülenlere \"Ölüler\" demeyin, zira onlar diridirler, fakat siz farkında değilsiniz",
-    "en": "And do not say about those who are killed in the way of Allah, \"They are dead.\" Rather, they are alive, but you perceive [it] not"
+    "en": "And do not say about those who are killed in the way of Allah, \"They are dead.\" Rather, they are alive, but you perceive [it] not",
+    "pt": "E não digais que os mortos no caminho de Deus estão mortos; ao contrário, estão vivos, mas não vos apercebeis disso"
    }
   },
   "2:186": {
    "ar": "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌۖ أُجِيبُ دَعۡوَةَ ٱلدَّاعِ إِذَا دَعَانِۖ فَلۡيَسۡتَجِيبُواْ لِي وَلۡيُؤۡمِنُواْ بِي لَعَلَّهُمۡ يَرۡشُدُونَ",
    "meal": {
     "tr": "Kullarım sana Beni sorarlarsa, bilsinler ki Ben, şüphesiz onlara yakınım. Benden isteyenin, dua ettiğinde duasını kabul ederim. Artık onlar da davetimi kabul edip Bana inansınlar ki doğru yolda yürüyenlerden olsunlar",
-    "en": "And when My servants ask you, [O Muhammad], concerning Me - indeed I am near. I respond to the invocation of the supplicant when he calls upon Me. So let them respond to Me [by obedience] and believe in Me that they may be [rightly] guided"
+    "en": "And when My servants ask you, [O Muhammad], concerning Me - indeed I am near. I respond to the invocation of the supplicant when he calls upon Me. So let them respond to Me [by obedience] and believe in Me that they may be [rightly] guided",
+    "pt": "E quando Meus servos te perguntarem sobre Mim, dize-lhes que Eu estou próximo; atendo à súplica de quem Me invoca quando Me suplica. Que eles, pois, Me atendam e creiam em Mim, para que sejam bem guiados"
    }
   },
   "2:269": {
    "ar": "يُؤۡتِي ٱلۡحِكۡمَةَ مَن يَشَآءُۚ وَمَن يُؤۡتَ ٱلۡحِكۡمَةَ فَقَدۡ أُوتِيَ خَيۡرٗا كَثِيرٗاۗ وَمَا يَذَّكَّرُ إِلَّآ أُوْلُواْ ٱلۡأَلۡبَٰبِ",
    "meal": {
     "tr": "Hikmeti dilediğine verir. Kime hikmet verilmişse şüphesiz ona çokça hayır verilmiştir. Bundan ancak akıl sahipleri ibret alır",
-    "en": "He gives wisdom to whom He wills, and whoever has been given wisdom has certainly been given much good. And none will remember except those of understanding"
+    "en": "He gives wisdom to whom He wills, and whoever has been given wisdom has certainly been given much good. And none will remember except those of understanding",
+    "pt": "Ele concede a sabedoria a quem quer; e a quem é concedida a sabedoria, foi-lhe concedido um bem abundante. Mas só recordam disso os dotados de entendimento"
    }
   },
   "2:280": {
    "ar": "وَإِن كَانَ ذُو عُسۡرَةٖ فَنَظِرَةٌ إِلَىٰ مَيۡسَرَةٖۚ وَأَن تَصَدَّقُواْ خَيۡرٞ لَّكُمۡ إِن كُنتُمۡ تَعۡلَمُونَ",
    "meal": {
     "tr": "Borçlu darda ise, eli genişleyinceye kadar ona mühlet verin. Bilmiş olsanız borcu bağışlamanız sizin için daha hayırlıdır",
-    "en": "And if someone is in hardship, then [let there be] postponement until [a time of] ease. But if you give [from your right as] charity, then it is better for you, if you only knew"
+    "en": "And if someone is in hardship, then [let there be] postponement until [a time of] ease. But if you give [from your right as] charity, then it is better for you, if you only knew",
+    "pt": "E se o devedor estiver em dificuldade, concedei-lhe prazo até que lhe seja fácil pagar; mas se perdoardes a dívida como esmola, é melhor para vós, se o soubésseis"
    }
   },
   "3:18": {
    "ar": "شَهِدَ ٱللَّهُ أَنَّهُۥ لَآ إِلَٰهَ إِلَّا هُوَ وَٱلۡمَلَـٰٓئِكَةُ وَأُوْلُواْ ٱلۡعِلۡمِ قَآئِمَۢا بِٱلۡقِسۡطِۚ لَآ إِلَٰهَ إِلَّا هُوَ ٱلۡعَزِيزُ ٱلۡحَكِيمُ",
    "meal": {
     "tr": "Allah, melekler ve adaleti yerine getiren ilim sahibleri, O'ndan başka tanrı olmadığına şahidlik etmişlerdir. O'ndan başka tanrı yoktur, O güçlüdür, Hakim'dir",
-    "en": "Allah witnesses that there is no deity except Him, and [so do] the angels and those of knowledge - [that He is] maintaining [creation] in justice. There is no deity except Him, the Exalted in Might, the Wise"
+    "en": "Allah witnesses that there is no deity except Him, and [so do] the angels and those of knowledge - [that He is] maintaining [creation] in justice. There is no deity except Him, the Exalted in Might, the Wise",
+    "pt": "Deus atesta, e com Ele os anjos e os dotados de saber, que não há divindade senão Ele, mantendo a criação na justiça. Não há divindade senão Ele, o Poderoso, o Sábio"
    }
   },
   "3:27": {
    "ar": "تُولِجُ ٱلَّيۡلَ فِي ٱلنَّهَارِ وَتُولِجُ ٱلنَّهَارَ فِي ٱلَّيۡلِۖ وَتُخۡرِجُ ٱلۡحَيَّ مِنَ ٱلۡمَيِّتِ وَتُخۡرِجُ ٱلۡمَيِّتَ مِنَ ٱلۡحَيِّۖ وَتَرۡزُقُ مَن تَشَآءُ بِغَيۡرِ حِسَابٖ",
    "meal": {
     "tr": "Geceyi gündüze, gündüzü geceye geçirirsin; ölüden diri, diriden ölü çıkarırsın; dilediğini hesapsız rızıklandırırsın",
-    "en": "You cause the night to enter the day, and You cause the day to enter the night; and You bring the living out of the dead, and You bring the dead out of the living. And You give provision to whom You will without account"
+    "en": "You cause the night to enter the day, and You cause the day to enter the night; and You bring the living out of the dead, and You bring the dead out of the living. And You give provision to whom You will without account",
+    "pt": "Fazes a noite penetrar no dia e fazes o dia penetrar na noite; fazes sair o vivo do morto e fazes sair o morto do vivo; e sustentas a quem queres, sem medida"
    }
   },
   "3:31": {
    "ar": "قُلۡ إِن كُنتُمۡ تُحِبُّونَ ٱللَّهَ فَٱتَّبِعُونِي يُحۡبِبۡكُمُ ٱللَّهُ وَيَغۡفِرۡ لَكُمۡ ذُنُوبَكُمۡۚ وَٱللَّهُ غَفُورٞ رَّحِيمٞ",
    "meal": {
     "tr": "De ki: \"Allah'ı seviyorsanız bana uyun. Allah da sizi sevsin ve günahlarınızı bağışlasın. Allah affeder ve merhamet eder",
-    "en": "Say, [O Muhammad], \"If you should love Allah, then follow me, [so] Allah will love you and forgive you your sins. And Allah is Forgiving and Merciful"
+    "en": "Say, [O Muhammad], \"If you should love Allah, then follow me, [so] Allah will love you and forgive you your sins. And Allah is Forgiving and Merciful",
+    "pt": "Dize: \"Se amais a Deus, segui-me; Deus vos amará e perdoará os vossos pecados. E Deus é Perdoador, Misericordioso"
    }
   },
   "3:191": {
    "ar": "ٱلَّذِينَ يَذۡكُرُونَ ٱللَّهَ قِيَٰمٗا وَقُعُودٗا وَعَلَىٰ جُنُوبِهِمۡ وَيَتَفَكَّرُونَ فِي خَلۡقِ ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضِ رَبَّنَا مَا خَلَقۡتَ هَٰذَا بَٰطِلٗا سُبۡحَٰنَكَ فَقِنَا عَذَابَ ٱلنَّارِ",
    "meal": {
     "tr": "Onlar ayakta iken, otururken, yan yatarken Allah'ı anarlar; göklerin ve yerin yaratılışını düşünürler: \"Rabbimiz! Sen bunu boşuna yaratmadın, Sen münezzehsin. Bizi ateşin azabından koru",
-    "en": "Who remember Allah while standing or sitting or [lying] on their sides and give thought to the creation of the heavens and the earth, [saying], \"Our Lord, You did not create this aimlessly; exalted are You [above such a thing]; then protect us from the punishment of the Fire"
+    "en": "Who remember Allah while standing or sitting or [lying] on their sides and give thought to the creation of the heavens and the earth, [saying], \"Our Lord, You did not create this aimlessly; exalted are You [above such a thing]; then protect us from the punishment of the Fire",
+    "pt": "Os que recordam a Deus estando de pé, sentados, ou deitados sobre os seus flancos, e meditam na criação dos céus e da terra: \"Senhor nosso, não criaste isto em vão; glorificado sejas! Preserva-nos, pois, do castigo do Fogo"
    }
   },
   "4:34": {
    "ar": "ٱلرِّجَالُ قَوَّـٰمُونَ عَلَى ٱلنِّسَآءِ بِمَا فَضَّلَ ٱللَّهُ بَعۡضَهُمۡ عَلَىٰ بَعۡضٖ وَبِمَآ أَنفَقُواْ مِنۡ أَمۡوَٰلِهِمۡۚ فَٱلصَّـٰلِحَٰتُ قَٰنِتَٰتٌ حَٰفِظَٰتٞ لِّلۡغَيۡبِ بِمَا حَفِظَ ٱللَّهُۚ وَٱلَّـٰتِي تَخَافُونَ نُشُوزَهُنَّ فَعِظُوهُنَّ وَٱهۡجُرُوهُنَّ فِي ٱلۡمَضَاجِعِ وَٱضۡرِبُوهُنَّۖ فَإِنۡ أَطَعۡنَكُمۡ فَلَا تَبۡغُواْ عَلَيۡهِنَّ سَبِيلًاۗ إِنَّ ٱللَّهَ كَانَ عَلِيّٗا كَبِيرٗا",
    "meal": {
     "tr": "Allah'ın kimini kimine üstün kılmasından ötürü ve erkeklerin, mallarından sarfetmelerinden dolayı erkekler kadınlar üzerine hakimdirler. İyi kadınlar, gönülden boyun eğenler ve Allah'ın korunmasını emrettiğini, kocasının bulunmadığı zaman da koruyanlardır. Serkeşlik etmelerinden endişelendiğiniz kadınlara öğüt verin, yataklarında onları yalnız bırakın, nihayet dövün. Size itaat ediyorlarsa aleyhlerine yol aramayın. Doğrusu Allah Yüce'dir, Büyük'tür",
-    "en": "Men are in charge of women by [right of] what Allah has given one over the other and what they spend [for maintenance] from their wealth. So righteous women are devoutly obedient, guarding in [the husband's] absence what Allah would have them guard. But those [wives] from whom you fear arrogance - [first] advise them; [then if they persist], forsake them in bed; and [finally], strike them. But if they obey you [once more], seek no means against them. Indeed, Allah is ever Exalted and Grand"
+    "en": "Men are in charge of women by [right of] what Allah has given one over the other and what they spend [for maintenance] from their wealth. So righteous women are devoutly obedient, guarding in [the husband's] absence what Allah would have them guard. But those [wives] from whom you fear arrogance - [first] advise them; [then if they persist], forsake them in bed; and [finally], strike them. But if they obey you [once more], seek no means against them. Indeed, Allah is ever Exalted and Grand",
+    "pt": "Os homens são responsáveis pelas mulheres, pelo favor que Deus concedeu a uns sobre os outros e pelo que despendem dos seus bens. As mulheres virtuosas são devotamente obedientes e guardam, na ausência do marido, o que Deus manda guardar. Quanto àquelas de cuja rebeldia temeis, exortai-as; depois, deixai-as sós em seus leitos; e, por fim, batei-lhes. Mas se vos obedecerem, não busqueis pretexto contra elas. Em verdade, Deus é Excelso, Grandioso"
    }
   },
   "4:59": {
    "ar": "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓاْ أَطِيعُواْ ٱللَّهَ وَأَطِيعُواْ ٱلرَّسُولَ وَأُوْلِي ٱلۡأَمۡرِ مِنكُمۡۖ فَإِن تَنَٰزَعۡتُمۡ فِي شَيۡءٖ فَرُدُّوهُ إِلَى ٱللَّهِ وَٱلرَّسُولِ إِن كُنتُمۡ تُؤۡمِنُونَ بِٱللَّهِ وَٱلۡيَوۡمِ ٱلۡأٓخِرِۚ ذَٰلِكَ خَيۡرٞ وَأَحۡسَنُ تَأۡوِيلًا",
    "meal": {
     "tr": "Ey İnananlar! Allah'a itaat edin, Peygambere ve sizden buyruk sahibi olanlara itaat edin. Eğer bir şeyde çekişirseniz, Allah'a ve ahiret gününe inanmışsanız onun halini Allah'a ve Peygambere bırakın. Bu, hayırlı ve netice itibariyle en güzeldir",
-    "en": "O you who have believed, obey Allah and obey the Messenger and those in authority among you. And if you disagree over anything, refer it to Allah and the Messenger, if you should believe in Allah and the Last Day. That is the best [way] and best in result"
+    "en": "O you who have believed, obey Allah and obey the Messenger and those in authority among you. And if you disagree over anything, refer it to Allah and the Messenger, if you should believe in Allah and the Last Day. That is the best [way] and best in result",
+    "pt": "Ó vós que credes! Obedecei a Deus e obedecei ao Mensageiro e aos que, entre vós, detêm a autoridade. E se discordardes sobre algo, remetei-o a Deus e ao Mensageiro, se credes em Deus e no Último Dia. Isso é o melhor e o mais belo em seu resultado"
    }
   },
   "4:80": {
    "ar": "مَّن يُطِعِ ٱلرَّسُولَ فَقَدۡ أَطَاعَ ٱللَّهَۖ وَمَن تَوَلَّىٰ فَمَآ أَرۡسَلۡنَٰكَ عَلَيۡهِمۡ حَفِيظٗا",
    "meal": {
     "tr": "Peygamber'e itaat eden, Allah'a itaat etmiş olur. Kim yüz çevirirse bilsin ki, Biz seni onlara bekçi göndermedik",
-    "en": "He who obeys the Messenger has obeyed Allah; but those who turn away - We have not sent you over them as a guardian"
+    "en": "He who obeys the Messenger has obeyed Allah; but those who turn away - We have not sent you over them as a guardian",
+    "pt": "Quem obedece ao Mensageiro, obedece a Deus; e quanto aos que se afastam, não te enviamos como seu guardião"
    }
   },
   "4:171": {
    "ar": "يَـٰٓأَهۡلَ ٱلۡكِتَٰبِ لَا تَغۡلُواْ فِي دِينِكُمۡ وَلَا تَقُولُواْ عَلَى ٱللَّهِ إِلَّا ٱلۡحَقَّۚ إِنَّمَا ٱلۡمَسِيحُ عِيسَى ٱبۡنُ مَرۡيَمَ رَسُولُ ٱللَّهِ وَكَلِمَتُهُۥٓ أَلۡقَىٰهَآ إِلَىٰ مَرۡيَمَ وَرُوحٞ مِّنۡهُۖ فَـَٔامِنُواْ بِٱللَّهِ وَرُسُلِهِۦۖ وَلَا تَقُولُواْ ثَلَٰثَةٌۚ ٱنتَهُواْ خَيۡرٗا لَّكُمۡۚ إِنَّمَا ٱللَّهُ إِلَٰهٞ وَٰحِدٞۖ سُبۡحَٰنَهُۥٓ أَن يَكُونَ لَهُۥ وَلَدٞۘ لَّهُۥ مَا فِي ٱلسَّمَٰوَٰتِ وَمَا فِي ٱلۡأَرۡضِۗ وَكَفَىٰ بِٱللَّهِ وَكِيلٗا",
    "meal": {
     "tr": "Ey Kitap ehli! Dininizde taşkınlık etmeyin. Allah hakkında ancak gerçeği söyleyin. Meryem oğlu İsa Mesih, Allah'ın peygamberi, Meryem'e ulaştırdığı kelimesi ve kendinden bir ruhtur. Allah'a ve peygamberlerine inanın, \"üçtür\" demeyin, vazgeçin, bu hayrınızadır. Allah ancak bir tek Tanrı'dır, çocuğu olmaktan münezzehtir, göklerde olanlar da yerde olanlar da O'nundur. Vekil olarak Allah yeter",
-    "en": "O People of the Scripture, do not commit excess in your religion or say about Allah except the truth. The Messiah, Jesus, the son of Mary, was but a messenger of Allah and His word which He directed to Mary and a soul [created at a command] from Him. So believe in Allah and His messengers. And do not say, \"Three\"; desist - it is better for you. Indeed, Allah is but one God. Exalted is He above having a son. To Him belongs whatever is in the heavens and whatever is on the earth. And sufficient is Allah as Disposer of affairs"
+    "en": "O People of the Scripture, do not commit excess in your religion or say about Allah except the truth. The Messiah, Jesus, the son of Mary, was but a messenger of Allah and His word which He directed to Mary and a soul [created at a command] from Him. So believe in Allah and His messengers. And do not say, \"Three\"; desist - it is better for you. Indeed, Allah is but one God. Exalted is He above having a son. To Him belongs whatever is in the heavens and whatever is on the earth. And sufficient is Allah as Disposer of affairs",
+    "pt": "Ó gente da Escritura! Não excedais os limites em vossa religião, nem digais de Deus senão a verdade. O Messias, Jesus, filho de Maria, foi apenas um mensageiro de Deus e Sua palavra, que Ele transmitiu a Maria, e um espírito emanado d'Ele. Crede, pois, em Deus e em Seus mensageiros, e não digais \"Três\"; desisti, será melhor para vós. Deus é, unicamente, um Deus Único; glorificado seja, Ele está livre de ter um filho. D'Ele é tudo quanto há nos céus e tudo quanto há na terra. E basta Deus como Guardião de todas as coisas"
    }
   },
   "5:28": {
    "ar": "لَئِنۢ بَسَطتَ إِلَيَّ يَدَكَ لِتَقۡتُلَنِي مَآ أَنَا۠ بِبَاسِطٖ يَدِيَ إِلَيۡكَ لِأَقۡتُلَكَۖ إِنِّيٓ أَخَافُ ٱللَّهَ رَبَّ ٱلۡعَٰلَمِينَ",
    "meal": {
     "tr": "Beni öldürmek üzere elini bana uzatırsan, ben seni öldürmek için sana elimi uzatmam, çünkü ben, Alemlerin Rabbi olan Allah'tan korkarım",
-    "en": "If you should raise your hand against me to kill me - I shall not raise my hand against you to kill you. Indeed, I fear Allah, Lord of the worlds"
+    "en": "If you should raise your hand against me to kill me - I shall not raise my hand against you to kill you. Indeed, I fear Allah, Lord of the worlds",
+    "pt": "Se estenderes a tua mão para me matar, eu não estenderei a minha para te matar; em verdade, temo a Deus, Senhor dos mundos"
    }
   },
   "5:109": {
    "ar": "۞يَوۡمَ يَجۡمَعُ ٱللَّهُ ٱلرُّسُلَ فَيَقُولُ مَاذَآ أُجِبۡتُمۡۖ قَالُواْ لَا عِلۡمَ لَنَآۖ إِنَّكَ أَنتَ عَلَّـٰمُ ٱلۡغُيُوبِ",
    "meal": {
     "tr": "Allah peygamberleri topladığı gün, \"Size ne cevap verildi?\" der; onlar, \"Bizim bir bildiğimiz yoktur, doğrusu görülmeyenleri bilen ancak Sen'sin\" derler",
-    "en": "[Be warned of] the Day when Allah will assemble the messengers and say, \"What was the response you received?\" They will say, \"We have no knowledge. Indeed, it is You who is Knower of the unseen"
+    "en": "[Be warned of] the Day when Allah will assemble the messengers and say, \"What was the response you received?\" They will say, \"We have no knowledge. Indeed, it is You who is Knower of the unseen",
+    "pt": "No dia em que Deus reunir os mensageiros e disser: \"Que resposta vos foi dada?\", dirão: \"Não temos conhecimento algum; és Tu, em verdade, o Conhecedor de tudo quanto está oculto"
    }
   },
   "5:116": {
    "ar": "وَإِذۡ قَالَ ٱللَّهُ يَٰعِيسَى ٱبۡنَ مَرۡيَمَ ءَأَنتَ قُلۡتَ لِلنَّاسِ ٱتَّخِذُونِي وَأُمِّيَ إِلَٰهَيۡنِ مِن دُونِ ٱللَّهِۖ قَالَ سُبۡحَٰنَكَ مَا يَكُونُ لِيٓ أَنۡ أَقُولَ مَا لَيۡسَ لِي بِحَقٍّۚ إِن كُنتُ قُلۡتُهُۥ فَقَدۡ عَلِمۡتَهُۥۚ تَعۡلَمُ مَا فِي نَفۡسِي وَلَآ أَعۡلَمُ مَا فِي نَفۡسِكَۚ إِنَّكَ أَنتَ عَلَّـٰمُ ٱلۡغُيُوبِ",
    "meal": {
     "tr": "Allah, \"Ey Meryem oğlu İsa! Sen mi insanlara Beni ve annemi Allah'tan başka iki tanrı olarak benimseyin dedin?\" demişti de, \"Haşa, hak olmayan sözü söylemek bana yaraşmaz; eğer söylemişsem, şüphesiz Sen onu bilirsin; Sen, benim içimde olanı bilirsin; ben Senin içinde olanı bilmem; doğrusu görülmeyeni bilen ancak Sensin\" demişti, \"Ben onlara sadece 'Rabbim ve Rabbiniz olan Allah'a kulluk edin' diye bana emrettiğini söyledim. Aralarında bulunduğum müddetce onlar hakkında şahiddim, beni aralarından aldığında onları Sen gözlüyordun. Sen her şeye şahidsin",
-    "en": "And [beware the Day] when Allah will say, \"O Jesus, Son of Mary, did you say to the people, 'Take me and my mother as deities besides Allah?'\" He will say, \"Exalted are You! It was not for me to say that to which I have no right. If I had said it, You would have known it. You know what is within myself, and I do not know what is within Yourself. Indeed, it is You who is Knower of the unseen"
+    "en": "And [beware the Day] when Allah will say, \"O Jesus, Son of Mary, did you say to the people, 'Take me and my mother as deities besides Allah?'\" He will say, \"Exalted are You! It was not for me to say that to which I have no right. If I had said it, You would have known it. You know what is within myself, and I do not know what is within Yourself. Indeed, it is You who is Knower of the unseen",
+    "pt": "E quando Deus disser: \"Ó Jesus, filho de Maria, disseste às pessoas: Tomai a mim e a minha mãe como duas divindades além de Deus?\", ele responderá: \"Glorificado sejas! Não me cabia dizer o que não tenho direito de dizer. Se o tivesse dito, Tu já o saberias. Tu sabes o que há em mim, e eu não sei o que há em Ti. Em verdade, és Tu o Conhecedor de tudo quanto está oculto"
    }
   },
   "6:1": {
    "ar": "ٱلۡحَمۡدُ لِلَّهِ ٱلَّذِي خَلَقَ ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضَ وَجَعَلَ ٱلظُّلُمَٰتِ وَٱلنُّورَۖ ثُمَّ ٱلَّذِينَ كَفَرُواْ بِرَبِّهِمۡ يَعۡدِلُونَ",
    "meal": {
     "tr": "Hamd, gökleri ve yeri yaratan, karanlıkları ve aydınlığı vareden Allah'a mahsustur. Öyle iken, inkar edenler Rablerine başkalarını eşit tutuyorlar",
-    "en": "[All] praise is [due] to Allah, who created the heavens and the earth and made the darkness and the light. Then those who disbelieve equate [others] with their Lord"
+    "en": "[All] praise is [due] to Allah, who created the heavens and the earth and made the darkness and the light. Then those who disbelieve equate [others] with their Lord",
+    "pt": "O louvor pertence a Deus, que criou os céus e a terra e fez as trevas e a luz. Ainda assim, os que descreem equiparam outros a seu Senhor"
    }
   },
   "6:149": {
    "ar": "قُلۡ فَلِلَّهِ ٱلۡحُجَّةُ ٱلۡبَٰلِغَةُۖ فَلَوۡ شَآءَ لَهَدَىٰكُمۡ أَجۡمَعِينَ",
    "meal": {
     "tr": "Üstün delil Allah'ın delilidir. O dileseydi hepinizi doğru yola eriştirirdi\" de",
-    "en": "Say, \"With Allah is the far-reaching argument. If He had willed, He would have guided you all"
+    "en": "Say, \"With Allah is the far-reaching argument. If He had willed, He would have guided you all",
+    "pt": "Dize: \"A Deus pertence o argumento decisivo; se Ele quisesse, guiar-vos-ia a todos"
    }
   },
   "6:163": {
    "ar": "لَا شَرِيكَ لَهُۥۖ وَبِذَٰلِكَ أُمِرۡتُ وَأَنَا۠ أَوَّلُ ٱلۡمُسۡلِمِينَ",
    "meal": {
     "tr": "O'nun hiçbir ortağı yoktur; böyle emrolundum ve ben Müslümanların ilkiyim",
-    "en": "No partner has He. And this I have been commanded, and I am the first [among you] of the Muslims"
+    "en": "No partner has He. And this I have been commanded, and I am the first [among you] of the Muslims",
+    "pt": "Ele não tem associado algum; assim me foi ordenado, e eu sou o primeiro dos muçulmanos"
    }
   },
   "7:12": {
    "ar": "قَالَ مَا مَنَعَكَ أَلَّا تَسۡجُدَ إِذۡ أَمَرۡتُكَۖ قَالَ أَنَا۠ خَيۡرٞ مِّنۡهُ خَلَقۡتَنِي مِن نَّارٖ وَخَلَقۡتَهُۥ مِن طِينٖ",
    "meal": {
     "tr": "Allah, \"Sana emrettiğim halde, seni secdeden alıkoyan nedir?\" dedi, \"Beni ateşten onu çamurdan yarattın, ben ondan üstünüm\" cevabını verdi",
-    "en": "[Allah] said, \"What prevented you from prostrating when I commanded you?\" [Satan] said, \"I am better than him. You created me from fire and created him from clay"
+    "en": "[Allah] said, \"What prevented you from prostrating when I commanded you?\" [Satan] said, \"I am better than him. You created me from fire and created him from clay",
+    "pt": "Disse: \"O que te impediu de te prosternares quando to ordenei?\" Respondeu: \"Sou melhor do que ele; a mim criaste do fogo, e a ele criaste do barro"
    }
   },
   "7:143": {
    "ar": "وَلَمَّا جَآءَ مُوسَىٰ لِمِيقَٰتِنَا وَكَلَّمَهُۥ رَبُّهُۥ قَالَ رَبِّ أَرِنِيٓ أَنظُرۡ إِلَيۡكَۚ قَالَ لَن تَرَىٰنِي وَلَٰكِنِ ٱنظُرۡ إِلَى ٱلۡجَبَلِ فَإِنِ ٱسۡتَقَرَّ مَكَانَهُۥ فَسَوۡفَ تَرَىٰنِيۚ فَلَمَّا تَجَلَّىٰ رَبُّهُۥ لِلۡجَبَلِ جَعَلَهُۥ دَكّٗا وَخَرَّ مُوسَىٰ صَعِقٗاۚ فَلَمَّآ أَفَاقَ قَالَ سُبۡحَٰنَكَ تُبۡتُ إِلَيۡكَ وَأَنَا۠ أَوَّلُ ٱلۡمُؤۡمِنِينَ",
    "meal": {
     "tr": "Musa, tayin ettiğimiz vakitte gelip Rabbi onunla konuşunca, Musa: \"Rabbim! Bana Kendini göster, Sana bakayım\" dedi. Allah: \"Sen Beni göremezsin ama dağa bak, eğer o yerinde kalırsa sen de Beni göreceksin\" buyurdu. Rabbi dağa tecelli edince onu yerlebir etti ve Musa da baygın düştü; ayılınca: \"Yarabbi, münezzehsin, Sana tevbe ettim, ben inananların ilkiyim\" dedi",
-    "en": "And when Moses arrived at Our appointed time and his Lord spoke to him, he said, \"My Lord, show me [Yourself] that I may look at You.\" [Allah] said, \"You will not see Me, but look at the mountain; if it should remain in place, then you will see Me.\" But when his Lord appeared to the mountain, He rendered it level, and Moses fell unconscious. And when he awoke, he said, \"Exalted are You! I have repented to You, and I am the first of the believers"
+    "en": "And when Moses arrived at Our appointed time and his Lord spoke to him, he said, \"My Lord, show me [Yourself] that I may look at You.\" [Allah] said, \"You will not see Me, but look at the mountain; if it should remain in place, then you will see Me.\" But when his Lord appeared to the mountain, He rendered it level, and Moses fell unconscious. And when he awoke, he said, \"Exalted are You! I have repented to You, and I am the first of the believers",
+    "pt": "E quando Moisés chegou ao lugar que lhe marcáramos e seu Senhor lhe falou, disse: \"Meu Senhor, mostra-Te a mim, para que eu Te veja\". Disse Ele: \"Não Me verás, mas olha para o monte; se ele permanecer em seu lugar, então Me verás\". E quando seu Senhor Se manifestou ao monte, reduziu-o a pó, e Moisés caiu desfalecido; e quando voltou a si, disse: \"Glorificado sejas! A Ti me volto arrependido, e sou o primeiro dos crentes"
    }
   },
   "7:146": {
    "ar": "سَأَصۡرِفُ عَنۡ ءَايَٰتِيَ ٱلَّذِينَ يَتَكَبَّرُونَ فِي ٱلۡأَرۡضِ بِغَيۡرِ ٱلۡحَقِّ وَإِن يَرَوۡاْ كُلَّ ءَايَةٖ لَّا يُؤۡمِنُواْ بِهَا وَإِن يَرَوۡاْ سَبِيلَ ٱلرُّشۡدِ لَا يَتَّخِذُوهُ سَبِيلٗا وَإِن يَرَوۡاْ سَبِيلَ ٱلۡغَيِّ يَتَّخِذُوهُ سَبِيلٗاۚ ذَٰلِكَ بِأَنَّهُمۡ كَذَّبُواْ بِـَٔايَٰتِنَا وَكَانُواْ عَنۡهَا غَٰفِلِينَ",
    "meal": {
     "tr": "Yeryüzünde haksız yere büyüklük taslayanları, ayetlerimden yüz çevirteceğim. Onlar bütün ayetleri görseler yine de inanmazlar; doğru yolu görseler, yol olarak benimsemezler; azgınlık yolunu görseler, hemen onu yol edinirler. Bu, onların mucizelerimizi yalan saymaları ve onlardan habersiz görünmelerinden ileri gelir",
-    "en": "I will turn away from My signs those who are arrogant upon the earth without right; and if they should see every sign, they will not believe in it. And if they see the way of consciousness, they will not adopt it as a way; but if they see the way of error, they will adopt it as a way. That is because they have denied Our signs and they were heedless of them"
+    "en": "I will turn away from My signs those who are arrogant upon the earth without right; and if they should see every sign, they will not believe in it. And if they see the way of consciousness, they will not adopt it as a way; but if they see the way of error, they will adopt it as a way. That is because they have denied Our signs and they were heedless of them",
+    "pt": "Afastarei de Meus sinais os que se ensoberbecem na terra sem razão; e ainda que vejam todos os sinais, neles não crerão; e se veem o caminho da retidão, não o tomam como caminho, mas se veem o caminho do erro, esse tomam como caminho. Isso porque desmentiram os Nossos sinais e deles estavam desatentos"
    }
   },
   "7:172": {
    "ar": "وَإِذۡ أَخَذَ رَبُّكَ مِنۢ بَنِيٓ ءَادَمَ مِن ظُهُورِهِمۡ ذُرِّيَّتَهُمۡ وَأَشۡهَدَهُمۡ عَلَىٰٓ أَنفُسِهِمۡ أَلَسۡتُ بِرَبِّكُمۡۖ قَالُواْ بَلَىٰ شَهِدۡنَآۚ أَن تَقُولُواْ يَوۡمَ ٱلۡقِيَٰمَةِ إِنَّا كُنَّا عَنۡ هَٰذَا غَٰفِلِينَ",
    "meal": {
     "tr": "Rabbin, insanoğlunun sulbünden soyunu alıp devam ettirmiş, onlara: \"Ben sizin Rabbiniz değil miyim\" demiş ve buna kendilerini şahit tutmuştu. Onlar da: \"Evet şahidiz\" demişlerdi. Bu, kıyamet günü, \"Bizim bundan haberimiz yoktu\" dersiniz veya \"Daha önce babalarımız Allah'a ortak koşmuşlardı, biz de onlardan sonra gelen bir soyuz, bizi, boşa çalışanların yaptıklarından ötürü yok eder misin?\" dersiniz diyedir",
-    "en": "And [mention] when your Lord took from the children of Adam - from their loins - their descendants and made them testify of themselves, [saying to them], \"Am I not your Lord?\" They said, \"Yes, we have testified.\" [This] - lest you should say on the day of Resurrection, \"Indeed, we were of this unaware"
+    "en": "And [mention] when your Lord took from the children of Adam - from their loins - their descendants and made them testify of themselves, [saying to them], \"Am I not your Lord?\" They said, \"Yes, we have testified.\" [This] - lest you should say on the day of Resurrection, \"Indeed, we were of this unaware",
+    "pt": "E quando teu Senhor extraiu dos filhos de Adão, de seus lombos, a sua descendência, e os fez testemunhar sobre si mesmos: \"Não sou Eu o vosso Senhor?\", disseram: \"Sim, testemunhamos\". Isso, para que não digais no Dia da Ressurreição: \"Em verdade, disso não nos apercebíamos"
    }
   },
   "8:20": {
    "ar": "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓاْ أَطِيعُواْ ٱللَّهَ وَرَسُولَهُۥ وَلَا تَوَلَّوۡاْ عَنۡهُ وَأَنتُمۡ تَسۡمَعُونَ",
    "meal": {
     "tr": "Ey inananlar! Allah'a ve Peygamberine itaat edin, Kuran'ı dinleyip dururken yüz çevirmeyin, dinlemedikleri halde \"dinledik\" diyenler gibi olmayın",
-    "en": "O you who have believed, obey Allah and His Messenger and do not turn from him while you hear [his order]"
+    "en": "O you who have believed, obey Allah and His Messenger and do not turn from him while you hear [his order]",
+    "pt": "Ó vós que credes! Obedecei a Deus e a Seu Mensageiro, e não vos afasteis dele enquanto o escutais"
    }
   },
   "9:34": {
    "ar": "۞يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓاْ إِنَّ كَثِيرٗا مِّنَ ٱلۡأَحۡبَارِ وَٱلرُّهۡبَانِ لَيَأۡكُلُونَ أَمۡوَٰلَ ٱلنَّاسِ بِٱلۡبَٰطِلِ وَيَصُدُّونَ عَن سَبِيلِ ٱللَّهِۗ وَٱلَّذِينَ يَكۡنِزُونَ ٱلذَّهَبَ وَٱلۡفِضَّةَ وَلَا يُنفِقُونَهَا فِي سَبِيلِ ٱللَّهِ فَبَشِّرۡهُم بِعَذَابٍ أَلِيمٖ",
    "meal": {
     "tr": "Ey inananlar! Hahamlar ve rahiplerin çoğu, insanların mallarını haksızlıkla yerler. Allah yolundan alıkoyarlar. Altın ve gümüşü biriktirip Allah yolunda sarf etmeyenlere can yakıcı bir azabı müjdele",
-    "en": "O you who have believed, indeed many of the scholars and the monks devour the wealth of people unjustly and avert [them] from the way of Allah. And those who hoard gold and silver and spend it not in the way of Allah - give them tidings of a painful punishment"
+    "en": "O you who have believed, indeed many of the scholars and the monks devour the wealth of people unjustly and avert [them] from the way of Allah. And those who hoard gold and silver and spend it not in the way of Allah - give them tidings of a painful punishment",
+    "pt": "Ó vós que credes! Em verdade, muitos dos rabinos e monges devoram os bens das pessoas injustamente e desviam do caminho de Deus. E aos que acumulam ouro e prata e não os despendem no caminho de Deus, anuncia-lhes um doloroso castigo"
    }
   },
   "9:67": {
    "ar": "ٱلۡمُنَٰفِقُونَ وَٱلۡمُنَٰفِقَٰتُ بَعۡضُهُم مِّنۢ بَعۡضٖۚ يَأۡمُرُونَ بِٱلۡمُنكَرِ وَيَنۡهَوۡنَ عَنِ ٱلۡمَعۡرُوفِ وَيَقۡبِضُونَ أَيۡدِيَهُمۡۚ نَسُواْ ٱللَّهَ فَنَسِيَهُمۡۚ إِنَّ ٱلۡمُنَٰفِقِينَ هُمُ ٱلۡفَٰسِقُونَ",
    "meal": {
     "tr": "İkiyüzlü erkek ve kadınlar da birbirlerindendir: Kötülüğü emreder, iyiliğe engel olurlar; elleri de sıkıdır; Allah'ı unuttular, bu yüzden Allah da onları unuttu. Doğrusu ikiyüzlüler fasıktırlar",
-    "en": "The hypocrite men and hypocrite women are of one another. They enjoin what is wrong and forbid what is right and close their hands. They have forgotten Allah, so He has forgotten them [accordingly]. Indeed, the hypocrites - it is they who are the defiantly disobedient"
+    "en": "The hypocrite men and hypocrite women are of one another. They enjoin what is wrong and forbid what is right and close their hands. They have forgotten Allah, so He has forgotten them [accordingly]. Indeed, the hypocrites - it is they who are the defiantly disobedient",
+    "pt": "Os hipócritas, homens e mulheres, são uns dos outros: ordenam o que é reprovável e proíbem o que é conveniente, e fecham as suas mãos. Esqueceram-se de Deus, e Ele Se esqueceu deles. Em verdade, os hipócritas são os transgressores"
    }
   },
   "9:105": {
    "ar": "وَقُلِ ٱعۡمَلُواْ فَسَيَرَى ٱللَّهُ عَمَلَكُمۡ وَرَسُولُهُۥ وَٱلۡمُؤۡمِنُونَۖ وَسَتُرَدُّونَ إِلَىٰ عَٰلِمِ ٱلۡغَيۡبِ وَٱلشَّهَٰدَةِ فَيُنَبِّئُكُم بِمَا كُنتُمۡ تَعۡمَلُونَ",
    "meal": {
     "tr": "De ki: \"İstediğinizi işleyin; Allah, Peygamberi ve müminler işlediklerinizi görecektir. Hepiniz, görülmeyeni ve görüleni bilen Allah'a döndürüleceksiniz. O size, işlediklerinizi bildirecektir",
-    "en": "And say, \"Do [as you will], for Allah will see your deeds, and [so, will] His Messenger and the believers. And you will be returned to the Knower of the unseen and the witnessed, and He will inform you of what you used to do"
+    "en": "And say, \"Do [as you will], for Allah will see your deeds, and [so, will] His Messenger and the believers. And you will be returned to the Knower of the unseen and the witnessed, and He will inform you of what you used to do",
+    "pt": "E dize: \"Agi, pois Deus verá as vossas obras, e também o Seu Mensageiro e os crentes. E sereis conduzidos de volta ao Conhecedor do oculto e do manifesto, e Ele vos informará do que fazíeis"
    }
   },
   "9:120": {
    "ar": "مَا كَانَ لِأَهۡلِ ٱلۡمَدِينَةِ وَمَنۡ حَوۡلَهُم مِّنَ ٱلۡأَعۡرَابِ أَن يَتَخَلَّفُواْ عَن رَّسُولِ ٱللَّهِ وَلَا يَرۡغَبُواْ بِأَنفُسِهِمۡ عَن نَّفۡسِهِۦۚ ذَٰلِكَ بِأَنَّهُمۡ لَا يُصِيبُهُمۡ ظَمَأٞ وَلَا نَصَبٞ وَلَا مَخۡمَصَةٞ فِي سَبِيلِ ٱللَّهِ وَلَا يَطَـُٔونَ مَوۡطِئٗا يَغِيظُ ٱلۡكُفَّارَ وَلَا يَنَالُونَ مِنۡ عَدُوّٖ نَّيۡلًا إِلَّا كُتِبَ لَهُم بِهِۦ عَمَلٞ صَٰلِحٌۚ إِنَّ ٱللَّهَ لَا يُضِيعُ أَجۡرَ ٱلۡمُحۡسِنِينَ",
    "meal": {
     "tr": "Medinelilere ve çevrelerinde bulunan Bedevilere, savaşta Allah'ın Peygamberinden geri kalmak, kendilerini ona tercih etmek yaraşmaz. Çünkü Allah yolunda susuzluğa, yorgunluğa, açlığa uğramak, kafirleri kızdıracak bir yeri işgal etmek ve düşmana başarı kazanmak karşılığında, onların yararlı bir iş yaptıkları mutlaka yazılır. Doğrusu Allah iyilik yapanların ecrini zayi etmez",
-    "en": "It was not [proper] for the people of Madinah and those surrounding them of the bedouins that they remain behind after [the departure of] the Messenger of Allah or that they prefer themselves over his self. That is because they are not afflicted by thirst or fatigue or hunger in the cause of Allah, nor do they tread on any ground that enrages the disbelievers, nor do they inflict upon an enemy any infliction but that is registered for them as a righteous deed. Indeed, Allah does not allow to be lost the reward of the doers of good"
+    "en": "It was not [proper] for the people of Madinah and those surrounding them of the bedouins that they remain behind after [the departure of] the Messenger of Allah or that they prefer themselves over his self. That is because they are not afflicted by thirst or fatigue or hunger in the cause of Allah, nor do they tread on any ground that enrages the disbelievers, nor do they inflict upon an enemy any infliction but that is registered for them as a righteous deed. Indeed, Allah does not allow to be lost the reward of the doers of good",
+    "pt": "Não convinha aos habitantes de Madina, nem aos beduínos ao seu redor, ficarem para trás do Mensageiro de Deus, nem preferirem as suas próprias vidas à dele. Isso porque nenhuma sede, fadiga ou fome os aflige no caminho de Deus, nem pisam lugar algum que enfureça os incrédulos, nem infligem dano algum a um inimigo, sem que isso lhes seja registado como obra virtuosa. Em verdade, Deus não deixa perder a recompensa dos benfeitores"
    }
   },
   "10:10": {
    "ar": "دَعۡوَىٰهُمۡ فِيهَا سُبۡحَٰنَكَ ٱللَّهُمَّ وَتَحِيَّتُهُمۡ فِيهَا سَلَٰمٞۚ وَءَاخِرُ دَعۡوَىٰهُمۡ أَنِ ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ",
    "meal": {
     "tr": "Oradaki duaları: \"Münezzehsin ey Allah'ım\", dirlik temennileri: \"Selam size\" ve dualarının sonu da: \"Alemlerin Rabbi Allah'a hamd olsun\"dur",
-    "en": "Their call therein will be, \"Exalted are You, O Allah,\" and their greeting therein will be, \"Peace.\" And the last of their call will be, \"Praise to Allah, Lord of the worlds"
+    "en": "Their call therein will be, \"Exalted are You, O Allah,\" and their greeting therein will be, \"Peace.\" And the last of their call will be, \"Praise to Allah, Lord of the worlds",
+    "pt": "Sua súplica ali será: \"Glorificado sejas, ó Deus\", e sua saudação ali será: \"Paz\"; e o final da sua súplica será: \"Louvado seja Deus, Senhor dos mundos"
    }
   },
   "11:56": {
    "ar": "إِنِّي تَوَكَّلۡتُ عَلَى ٱللَّهِ رَبِّي وَرَبِّكُمۚ مَّا مِن دَآبَّةٍ إِلَّا هُوَ ءَاخِذُۢ بِنَاصِيَتِهَآۚ إِنَّ رَبِّي عَلَىٰ صِرَٰطٖ مُّسۡتَقِيمٖ",
    "meal": {
     "tr": "Bir kısım tanrılarımız seni çarpmıştır, demekten başka birşey demeyiz\" dediler. Hud: \"Doğrusu ben Allah'ı şahit tutuyorum; siz de şahit olun ki ben O'nu bırakıp koştuğunuz ortaklardan uzağım. Hepiniz bana tuzak kurun sonra da ertelemeyin. Ben, ancak benim de sizin de Rabbiniz olan Allah'a güvenirim. Hiçbir canlı yoktur ki Allah ona el koymamış bulunsun. Rabbim elbette doğru yoldadır. Eğer yüz çevirirseniz, şüphesiz ben size benimle gönderileni bildirdim. Rabbim sizden başka bir milleti yerinize getirebilir, O'na bir şey de yapamazsınız. Doğrusu Rabbim herşeyi koruyandır\" dedi",
-    "en": "Indeed, I have relied upon Allah, my Lord and your Lord. There is no creature but that He holds its forelock. Indeed, my Lord is on a path [that is] straight"
+    "en": "Indeed, I have relied upon Allah, my Lord and your Lord. There is no creature but that He holds its forelock. Indeed, my Lord is on a path [that is] straight",
+    "pt": "Em verdade, confio em Deus, meu Senhor e vosso Senhor. Não há criatura viva cuja fronte Ele não segure. Em verdade, meu Senhor está sobre uma via reta"
    }
   },
   "11:101": {
    "ar": "وَمَا ظَلَمۡنَٰهُمۡ وَلَٰكِن ظَلَمُوٓاْ أَنفُسَهُمۡۖ فَمَآ أَغۡنَتۡ عَنۡهُمۡ ءَالِهَتُهُمُ ٱلَّتِي يَدۡعُونَ مِن دُونِ ٱللَّهِ مِن شَيۡءٖ لَّمَّا جَآءَ أَمۡرُ رَبِّكَۖ وَمَا زَادُوهُمۡ غَيۡرَ تَتۡبِيبٖ",
    "meal": {
     "tr": "Onlara Biz zulmetmedik, fakat onlar kendilerine yazık ettiler. Rabbinin buyruğu gelince, Allah'ı bırakıp taptıkları tanrılar kendilerine bir fayda vermedi, kayıplarını artırmaktan başka bir şeye yaramadı",
-    "en": "And We did not wrong them, but they wronged themselves. And they were not availed at all by their gods which they invoked other than Allah when there came the command of your Lord. And they did not increase them in other than ruin"
+    "en": "And We did not wrong them, but they wronged themselves. And they were not availed at all by their gods which they invoked other than Allah when there came the command of your Lord. And they did not increase them in other than ruin",
+    "pt": "E não fomos Nós que os injustiçamos, mas eles próprios se injustiçaram; e de nada lhes valeram os seus deuses que invocavam além de Deus, quando chegou a ordem do teu Senhor; e nada lhes acrescentaram senão a ruína"
    }
   },
   "12:108": {
    "ar": "قُلۡ هَٰذِهِۦ سَبِيلِيٓ أَدۡعُوٓاْ إِلَى ٱللَّهِۚ عَلَىٰ بَصِيرَةٍ أَنَا۠ وَمَنِ ٱتَّبَعَنِيۖ وَسُبۡحَٰنَ ٱللَّهِ وَمَآ أَنَا۠ مِنَ ٱلۡمُشۡرِكِينَ",
    "meal": {
     "tr": "De ki: \"Benim yolum budur; ben ve bana uyanlar bilerek insanları Allah'a çağırırız. Allah'ı noksan sıfatlardan tenzih ederim. Ben asla Allah'a eş koşanlardan değilim",
-    "en": "Say, \"This is my way; I invite to Allah with insight, I and those who follow me. And exalted is Allah; and I am not of those who associate others with Him"
+    "en": "Say, \"This is my way; I invite to Allah with insight, I and those who follow me. And exalted is Allah; and I am not of those who associate others with Him",
+    "pt": "Dize: \"Este é o meu caminho; convoco a Deus com discernimento, eu e os que me seguem. Glorificado seja Deus! E eu não sou dos que Lhe associam outros"
    }
   },
   "14:5": {
    "ar": "وَلَقَدۡ أَرۡسَلۡنَا مُوسَىٰ بِـَٔايَٰتِنَآ أَنۡ أَخۡرِجۡ قَوۡمَكَ مِنَ ٱلظُّلُمَٰتِ إِلَى ٱلنُّورِ وَذَكِّرۡهُم بِأَيَّىٰمِ ٱللَّهِۚ إِنَّ فِي ذَٰلِكَ لَأٓيَٰتٖ لِّكُلِّ صَبَّارٖ شَكُورٖ",
    "meal": {
     "tr": "And olsun ki Musa'yı ayetlerimizle, \"Milletini karanlıklardan aydınlığa çıkar ve Allah'ın günlerini onlara hatırlat\" diye göndermiştik. Bunlarda, çokça sabreden ve şükreden herkes için dersler vardır",
-    "en": "And We certainly sent Moses with Our signs, [saying], \"Bring out your people from darknesses into the light and remind them of the days of Allah.\" Indeed in that are signs for everyone patient and grateful"
+    "en": "And We certainly sent Moses with Our signs, [saying], \"Bring out your people from darknesses into the light and remind them of the days of Allah.\" Indeed in that are signs for everyone patient and grateful",
+    "pt": "E enviamos Moisés com os Nossos sinais, [dizendo]: \"Faz sair o teu povo das trevas para a luz e recorda-lhes os dias de Deus\". Nisso há, em verdade, sinais para todo aquele que é paciente e agradecido"
    }
   },
   "16:98": {
    "ar": "فَإِذَا قَرَأۡتَ ٱلۡقُرۡءَانَ فَٱسۡتَعِذۡ بِٱللَّهِ مِنَ ٱلشَّيۡطَٰنِ ٱلرَّجِيمِ",
    "meal": {
     "tr": "Kuran okuyacağın zaman, kovulmuş şeytandan Allah'a sığın",
-    "en": "So when you recite the Qur'an, [first] seek refuge in Allah from Satan, the expelled [from His mercy]"
+    "en": "So when you recite the Qur'an, [first] seek refuge in Allah from Satan, the expelled [from His mercy]",
+    "pt": "Quando recitares o Alcorão, busca refúgio em Deus contra Satanás, o rejeitado"
    }
   },
   "17:44": {
    "ar": "تُسَبِّحُ لَهُ ٱلسَّمَٰوَٰتُ ٱلسَّبۡعُ وَٱلۡأَرۡضُ وَمَن فِيهِنَّۚ وَإِن مِّن شَيۡءٍ إِلَّا يُسَبِّحُ بِحَمۡدِهِۦ وَلَٰكِن لَّا تَفۡقَهُونَ تَسۡبِيحَهُمۡۚ إِنَّهُۥ كَانَ حَلِيمًا غَفُورٗا",
    "meal": {
     "tr": "Yedi gök, yer ve bunlarda bulunanlar O'nu tesbih eder; O'nu hamd ile tesbih etmeyen hiçbir şey yoktur; fakat siz onların tesbihlerini anlamazsınız. Doğrusu O Halim olandır, Bağışlayan'dır",
-    "en": "The seven heavens and the earth and whatever is in them exalt Him. And there is not a thing except that it exalts [Allah] by His praise, but you do not understand their [way of] exalting. Indeed, He is ever Forbearing and Forgiving"
+    "en": "The seven heavens and the earth and whatever is in them exalt Him. And there is not a thing except that it exalts [Allah] by His praise, but you do not understand their [way of] exalting. Indeed, He is ever Forbearing and Forgiving",
+    "pt": "Glorificam-No os sete céus, a terra e quanto neles há; e não há coisa alguma que não Lhe glorifique com louvor, mas não compreendeis a sua glorificação. Em verdade, Ele é Indulgente, Perdoador"
    }
   },
   "17:95": {
    "ar": "قُل لَّوۡ كَانَ فِي ٱلۡأَرۡضِ مَلَـٰٓئِكَةٞ يَمۡشُونَ مُطۡمَئِنِّينَ لَنَزَّلۡنَا عَلَيۡهِم مِّنَ ٱلسَّمَآءِ مَلَكٗا رَّسُولٗا",
    "meal": {
     "tr": "De ki: \"Yeryüzünde yerleşip dolaşanlar melek olsalardı, biz de onlara gökten peygamber olarak bir melek gönderirdik",
-    "en": "Say, \"If there were upon the earth angels walking securely, We would have sent down to them from the heaven an angel [as a] messenger"
+    "en": "Say, \"If there were upon the earth angels walking securely, We would have sent down to them from the heaven an angel [as a] messenger",
+    "pt": "Dize: \"Se na terra houvesse anjos andando tranquilamente, ter-lhes-íamos enviado do céu um anjo como mensageiro"
    }
   },
   "17:110": {
    "ar": "قُلِ ٱدۡعُواْ ٱللَّهَ أَوِ ٱدۡعُواْ ٱلرَّحۡمَٰنَۖ أَيّٗا مَّا تَدۡعُواْ فَلَهُ ٱلۡأَسۡمَآءُ ٱلۡحُسۡنَىٰۚ وَلَا تَجۡهَرۡ بِصَلَاتِكَ وَلَا تُخَافِتۡ بِهَا وَٱبۡتَغِ بَيۡنَ ذَٰلِكَ سَبِيلٗا",
    "meal": {
     "tr": "De ki: \"İster Allah deyin, ister Rahman deyin, hangisini derseniz deyin, en güzel isimler O'nundur.\" Namaz kılarken sesini yükseltme, gizli de okuma, ikisi ortasında bir yol tut",
-    "en": "Say, \"Call upon Allah or call upon the Most Merciful. Whichever [name] you call - to Him belong the best names.\" And do not recite [too] loudly in your prayer or [too] quietly but seek between that an [intermediate] way"
+    "en": "Say, \"Call upon Allah or call upon the Most Merciful. Whichever [name] you call - to Him belong the best names.\" And do not recite [too] loudly in your prayer or [too] quietly but seek between that an [intermediate] way",
+    "pt": "Dize: \"Invocai Deus, ou invocai o Clemente; seja qual for o nome que invoqueis, a Ele pertencem os mais belos nomes\". E não eleves demais a tua voz na oração, nem a sussurres em demasia, mas busca entre isso um caminho"
    }
   },
   "19:30": {
    "ar": "قَالَ إِنِّي عَبۡدُ ٱللَّهِ ءَاتَىٰنِيَ ٱلۡكِتَٰبَ وَجَعَلَنِي نَبِيّٗا",
    "meal": {
     "tr": "Çocuk: \"Ben şüphesiz Allah'ın kuluyum. Bana kitap verdi ve beni peygamber yaptı, nerede olursam olayım beni mübarek kıldı. Yaşadığım müddetçe namaz kılmamı, zekat vermemi ve anneme iyi davranmamı emretti. Beni bedbaht bir zorba kılmadı. Doğduğum günde, öleceğim günde, dirileceğim günde bana selam olsun\" dedi",
-    "en": "[Jesus] said, \"Indeed, I am the servant of Allah. He has given me the Scripture and made me a prophet"
+    "en": "[Jesus] said, \"Indeed, I am the servant of Allah. He has given me the Scripture and made me a prophet",
+    "pt": "Disse [Jesus]: \"Sou, em verdade, servo de Deus; Ele me deu a Escritura e fez de mim um profeta"
    }
   },
   "21:107": {
    "ar": "وَمَآ أَرۡسَلۡنَٰكَ إِلَّا رَحۡمَةٗ لِّلۡعَٰلَمِينَ",
    "meal": {
     "tr": "Biz seni ancak alemlere rahmet olarak gönderdik",
-    "en": "And We have not sent you, [O Muhammad], except as a mercy to the worlds"
+    "en": "And We have not sent you, [O Muhammad], except as a mercy to the worlds",
+    "pt": "E não te enviamos, [ó Muhammad], senão como misericórdia para os mundos"
    }
   },
   "22:2": {
    "ar": "يَوۡمَ تَرَوۡنَهَا تَذۡهَلُ كُلُّ مُرۡضِعَةٍ عَمَّآ أَرۡضَعَتۡ وَتَضَعُ كُلُّ ذَاتِ حَمۡلٍ حَمۡلَهَا وَتَرَى ٱلنَّاسَ سُكَٰرَىٰ وَمَا هُم بِسُكَٰرَىٰ وَلَٰكِنَّ عَذَابَ ٱللَّهِ شَدِيدٞ",
    "meal": {
     "tr": "Kıyameti gören her emzikli kadın emzirdiğini unutur, her hamile kadın çocuğunu düşürür. İnsanları sarhoş gibi görürsün oysa sarhoş değildirler, fakat bu sadece Allah'ın azabının çetin olmasındandır",
-    "en": "On the Day you see it every nursing mother will be distracted from that [child] she was nursing, and every pregnant woman will abort her pregnancy, and you will see the people [appearing] intoxicated while they are not intoxicated; but the punishment of Allah is severe"
+    "en": "On the Day you see it every nursing mother will be distracted from that [child] she was nursing, and every pregnant woman will abort her pregnancy, and you will see the people [appearing] intoxicated while they are not intoxicated; but the punishment of Allah is severe",
+    "pt": "No dia em que a virdes, toda mulher que amamenta esquecerá o que amamentava, e toda mulher grávida abortará a sua gravidez; e verás as pessoas como que embriagadas, sem estarem embriagadas, mas o castigo de Deus é veemente"
    }
   },
   "24:35": {
    "ar": "۞ٱللَّهُ نُورُ ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضِۚ مَثَلُ نُورِهِۦ كَمِشۡكَوٰةٖ فِيهَا مِصۡبَاحٌۖ ٱلۡمِصۡبَاحُ فِي زُجَاجَةٍۖ ٱلزُّجَاجَةُ كَأَنَّهَا كَوۡكَبٞ دُرِّيّٞ يُوقَدُ مِن شَجَرَةٖ مُّبَٰرَكَةٖ زَيۡتُونَةٖ لَّا شَرۡقِيَّةٖ وَلَا غَرۡبِيَّةٖ يَكَادُ زَيۡتُهَا يُضِيٓءُ وَلَوۡ لَمۡ تَمۡسَسۡهُ نَارٞۚ نُّورٌ عَلَىٰ نُورٖۚ يَهۡدِي ٱللَّهُ لِنُورِهِۦ مَن يَشَآءُۚ وَيَضۡرِبُ ٱللَّهُ ٱلۡأَمۡثَٰلَ لِلنَّاسِۗ وَٱللَّهُ بِكُلِّ شَيۡءٍ عَلِيمٞ",
    "meal": {
     "tr": "Allah göklerin ve yerin Nur'udur. O'nun nuru, içinde ışık bulunan bir kandil yuvasına benzer. O ışık bir cam içindedir, cam ise, sanki inci gibi parlayan bir yıldızdır; bu ne yalnız doğuda ve ne de yalnız batıda bulunan bereketli zeytin ağacından yakılır. Ateş değmese bile, nerdeyse yağın kendisi aydınlatacak! Nur üstüne nurdur. Allah dilediğini nuruna kavuşturur. Allah insanlara misaller verir. O, herşeyi bilir",
-    "en": "Allah is the Light of the heavens and the earth. The example of His light is like a niche within which is a lamp, the lamp is within glass, the glass as if it were a pearly [white] star lit from [the oil of] a blessed olive tree, neither of the east nor of the west, whose oil would almost glow even if untouched by fire. Light upon light. Allah guides to His light whom He wills. And Allah presents examples for the people, and Allah is Knowing of all things"
+    "en": "Allah is the Light of the heavens and the earth. The example of His light is like a niche within which is a lamp, the lamp is within glass, the glass as if it were a pearly [white] star lit from [the oil of] a blessed olive tree, neither of the east nor of the west, whose oil would almost glow even if untouched by fire. Light upon light. Allah guides to His light whom He wills. And Allah presents examples for the people, and Allah is Knowing of all things",
+    "pt": "Deus é a Luz dos céus e da terra. O exemplo da Sua luz é como um nicho onde há uma lâmpada; a lâmpada está dentro de um cristal; o cristal é como se fosse um astro brilhante, aceso a partir de uma árvore bendita, uma oliveira que não é do Oriente nem do Ocidente, cujo óleo quase iluminaria mesmo que o fogo não o tocasse. Luz sobre luz! Deus guia à Sua luz quem quer, e Deus propõe exemplos aos homens; e Deus é, de todas as coisas, Sapiente"
    }
   },
   "24:39": {
    "ar": "وَٱلَّذِينَ كَفَرُوٓاْ أَعۡمَٰلُهُمۡ كَسَرَابِۭ بِقِيعَةٖ يَحۡسَبُهُ ٱلظَّمۡـَٔانُ مَآءً حَتَّىٰٓ إِذَا جَآءَهُۥ لَمۡ يَجِدۡهُ شَيۡـٔٗا وَوَجَدَ ٱللَّهَ عِندَهُۥ فَوَفَّىٰهُ حِسَابَهُۥۗ وَٱللَّهُ سَرِيعُ ٱلۡحِسَابِ",
    "meal": {
     "tr": "İnkar edenlerin işleri engin çöllerdeki serap gibidir. Susayan kimse onu su zanneder, fakat oraya geldiğinde hiçbir şey bulamaz. Orada Allah'ı bulur ve O da hesabını görür. Allah hesabı çabuk görendir",
-    "en": "But those who disbelieved - their deeds are like a mirage in a lowland which a thirsty one thinks is water until, when he comes to it, he finds it is nothing but finds Allah before Him, and He will pay him in full his due; and Allah is swift in account"
+    "en": "But those who disbelieved - their deeds are like a mirage in a lowland which a thirsty one thinks is water until, when he comes to it, he finds it is nothing but finds Allah before Him, and He will pay him in full his due; and Allah is swift in account",
+    "pt": "E quanto aos que descreem, as suas obras são como uma miragem numa planície, que o sedento julga ser água, até que, ao alcançá-la, nada encontra, mas encontra Deus junto a si, que lhe salda inteiramente a sua conta; e Deus é rápido em ajustar contas"
    }
   },
   "25:45": {
    "ar": "أَلَمۡ تَرَ إِلَىٰ رَبِّكَ كَيۡفَ مَدَّ ٱلظِّلَّ وَلَوۡ شَآءَ لَجَعَلَهُۥ سَاكِنٗا ثُمَّ جَعَلۡنَا ٱلشَّمۡسَ عَلَيۡهِ دَلِيلٗا",
    "meal": {
     "tr": "Rabbinin gölgeyi nasıl uzattığını görmez misin? İsteseydi onu durdururdu. Sonra Biz güneşi, ona delil kılıp yavaş yavaş kendimize çekmişizdir",
-    "en": "Have you not considered your Lord - how He extends the shadow, and if He willed, He could have made it stationary? Then We made the sun for it an indication"
+    "en": "Have you not considered your Lord - how He extends the shadow, and if He willed, He could have made it stationary? Then We made the sun for it an indication",
+    "pt": "Não reparaste em teu Senhor, como estende a sombra? E se quisesse, tê-la-ia deixado imóvel. Depois fizemos do sol o seu indicador"
    }
   },
   "26:75": {
    "ar": "قَالَ أَفَرَءَيۡتُم مَّا كُنتُمۡ تَعۡبُدُونَ",
    "meal": {
     "tr": "İbrahim: \"Eski atalarınızın ve sizin nelere taptıklarınızı görüyor musunuz? Doğrusu onlar benim düşmanımdır. Dostum ancak Alemlerin Rabbidir. Beni yaratan da, doğru yola eriştiren de O'dur. Beni yediren de, içiren de O'dur. Hasta olduğumda bana O şifa verir. Beni öldürecek, sonra da diriltecek O'dur. Ahiret gününde yanılmalarımı bana bağışlamasını umduğum O'dur. Rabbim! Bana hikmet ver ve beni iyiler arasına kat",
-    "en": "He said, \"Then do you see what you have been worshipping"
+    "en": "He said, \"Then do you see what you have been worshipping",
+    "pt": "Disse [Abraão]: \"Vedes, então, aquilo que adoráveis"
    }
   },
   "27:59": {
    "ar": "قُلِ ٱلۡحَمۡدُ لِلَّهِ وَسَلَٰمٌ عَلَىٰ عِبَادِهِ ٱلَّذِينَ ٱصۡطَفَىٰٓۗ ءَآللَّهُ خَيۡرٌ أَمَّا يُشۡرِكُونَ",
    "meal": {
     "tr": "De ki: \"Hamd Allah'a mahsustur, seçtiği kullarına selam olsun. Allah mı daha iyidir, yoksa O'na koştukları ortaklar mı",
-    "en": "Say, [O Muhammad], \"Praise be to Allah, and peace upon His servants whom He has chosen. Is Allah better or what they associate with Him"
+    "en": "Say, [O Muhammad], \"Praise be to Allah, and peace upon His servants whom He has chosen. Is Allah better or what they associate with Him",
+    "pt": "Dize: \"Louvado seja Deus, e paz sobre os Seus servos que Ele escolheu. É Deus melhor, ou o que Lhe associam"
    }
   },
   "27:88": {
    "ar": "وَتَرَى ٱلۡجِبَالَ تَحۡسَبُهَا جَامِدَةٗ وَهِيَ تَمُرُّ مَرَّ ٱلسَّحَابِۚ صُنۡعَ ٱللَّهِ ٱلَّذِيٓ أَتۡقَنَ كُلَّ شَيۡءٍۚ إِنَّهُۥ خَبِيرُۢ بِمَا تَفۡعَلُونَ",
    "meal": {
     "tr": "Dağları yerinde donmuş gibi durur görürsün, oysa onlar bulutlar gibi geçerler. Bu her şeyi sağlam tutan Allah'ın işidir. Doğrusu O, yaptıklarınızdan haberdardır",
-    "en": "And you see the mountains, thinking them rigid, while they will pass as the passing of clouds. [It is] the work of Allah, who perfected all things. Indeed, He is Acquainted with that which you do"
+    "en": "And you see the mountains, thinking them rigid, while they will pass as the passing of clouds. [It is] the work of Allah, who perfected all things. Indeed, He is Acquainted with that which you do",
+    "pt": "E vês as montanhas, julgando-as fixas, quando elas passam como passam as nuvens; obra de Deus, que tudo aperfeiçoou. Em verdade, Ele está bem informado do que fazeis"
    }
   },
   "28:68": {
    "ar": "وَرَبُّكَ يَخۡلُقُ مَا يَشَآءُ وَيَخۡتَارُۗ مَا كَانَ لَهُمُ ٱلۡخِيَرَةُۚ سُبۡحَٰنَ ٱللَّهِ وَتَعَٰلَىٰ عَمَّا يُشۡرِكُونَ",
    "meal": {
     "tr": "Rabbin dilediğini yaratır ve seçer; onlar için seçim hakkı yoktur. Allah onların koştukları ortaklardan münezzehtir, yücedir",
-    "en": "And your Lord creates what He wills and chooses; not for them was the choice. Exalted is Allah and high above what they associate with Him"
+    "en": "And your Lord creates what He wills and chooses; not for them was the choice. Exalted is Allah and high above what they associate with Him",
+    "pt": "E teu Senhor cria o que quer e escolhe; a eles não pertence a escolha. Glorificado seja Deus, e exaltado esteja acima do que Lhe associam"
    }
   },
   "30:54": {
    "ar": "۞ٱللَّهُ ٱلَّذِي خَلَقَكُم مِّن ضَعۡفٖ ثُمَّ جَعَلَ مِنۢ بَعۡدِ ضَعۡفٖ قُوَّةٗ ثُمَّ جَعَلَ مِنۢ بَعۡدِ قُوَّةٖ ضَعۡفٗا وَشَيۡبَةٗۚ يَخۡلُقُ مَا يَشَآءُۚ وَهُوَ ٱلۡعَلِيمُ ٱلۡقَدِيرُ",
    "meal": {
     "tr": "Sizi güçsüz olarak yaratan, güçsüzlükten sonra kuvvetli kılan, sonra da kuvvetliliğin ardından güçsüz ve ihtiyar yapan Allah'tır. O, dilediğini yaratır; bilendir, Kadir olandır",
-    "en": "Allah is the one who created you from weakness, then made after weakness strength, then made after strength weakness and white hair. He creates what He wills, and He is the Knowing, the Competent"
+    "en": "Allah is the one who created you from weakness, then made after weakness strength, then made after strength weakness and white hair. He creates what He wills, and He is the Knowing, the Competent",
+    "pt": "Deus é Quem vos criou fracos; depois, após a fraqueza, vos deu força; depois, após a força, vos fez fracos e encanecidos. Ele cria o que quer, e Ele é o Onisciente, o Onipotente"
    }
   },
   "33:72": {
    "ar": "إِنَّا عَرَضۡنَا ٱلۡأَمَانَةَ عَلَى ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضِ وَٱلۡجِبَالِ فَأَبَيۡنَ أَن يَحۡمِلۡنَهَا وَأَشۡفَقۡنَ مِنۡهَا وَحَمَلَهَا ٱلۡإِنسَٰنُۖ إِنَّهُۥ كَانَ ظَلُومٗا جَهُولٗا",
    "meal": {
     "tr": "Doğrusu Biz, sorumluluğu (emaneti) göklere, yere, dağlara sunmuşuzdur da onlar bunu yüklenmekten çekinmişler ve ondan korkup titremişlerdir; onu insan yüklendi. Doğrusu o çok zalim ve çok cahildir. (kabulüne rağmen emanete hıyanet etmektedir)",
-    "en": "Indeed, we offered the Trust to the heavens and the earth and the mountains, and they declined to bear it and feared it; but man [undertook to] bear it. Indeed, he was unjust and ignorant"
+    "en": "Indeed, we offered the Trust to the heavens and the earth and the mountains, and they declined to bear it and feared it; but man [undertook to] bear it. Indeed, he was unjust and ignorant",
+    "pt": "Em verdade, oferecemos o Depósito aos céus, à terra e às montanhas, e recusaram-se a carregá-lo, temendo-o; mas o homem se encarregou dele. Em verdade, ele tem sido injusto e ignorante"
    }
   },
   "37:182": {
    "ar": "وَٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ",
    "meal": {
     "tr": "Hamd de Alemlerin Rabbi Allah'adır",
-    "en": "And praise to Allah, Lord of the worlds"
+    "en": "And praise to Allah, Lord of the worlds",
+    "pt": "E o louvor pertence a Deus, Senhor dos mundos"
    }
   },
   "39:67": {
    "ar": "وَمَا قَدَرُواْ ٱللَّهَ حَقَّ قَدۡرِهِۦ وَٱلۡأَرۡضُ جَمِيعٗا قَبۡضَتُهُۥ يَوۡمَ ٱلۡقِيَٰمَةِ وَٱلسَّمَٰوَٰتُ مَطۡوِيَّـٰتُۢ بِيَمِينِهِۦۚ سُبۡحَٰنَهُۥ وَتَعَٰلَىٰ عَمَّا يُشۡرِكُونَ",
    "meal": {
     "tr": "Onlar Allah'ı gereği gibi değerlendiremediler. Bütün yeryüzü, kıyamet günü O'nun avucundadır; gökler O'nun kudretiyle dürülmüş olacaktır. O, putperestlerin ortak koşmalarından yüce ve münezzehtir",
-    "en": "They have not appraised Allah with true appraisal, while the earth entirely will be [within] His grip on the Day of Resurrection, and the heavens will be folded in His right hand. Exalted is He and high above what they associate with Him"
+    "en": "They have not appraised Allah with true appraisal, while the earth entirely will be [within] His grip on the Day of Resurrection, and the heavens will be folded in His right hand. Exalted is He and high above what they associate with Him",
+    "pt": "E não apreciaram a Deus na justa medida da Sua grandeza; e toda a terra estará em Seu punho no Dia da Ressurreição, e os céus estarão dobrados em Sua destra. Glorificado e exaltado seja Ele, acima do que Lhe associam"
    }
   },
   "41:21": {
    "ar": "وَقَالُواْ لِجُلُودِهِمۡ لِمَ شَهِدتُّمۡ عَلَيۡنَاۖ قَالُوٓاْ أَنطَقَنَا ٱللَّهُ ٱلَّذِيٓ أَنطَقَ كُلَّ شَيۡءٖۚ وَهُوَ خَلَقَكُمۡ أَوَّلَ مَرَّةٖ وَإِلَيۡهِ تُرۡجَعُونَ",
    "meal": {
     "tr": "Derilerine: \"Aleyhimize niçin şahidlik ettiniz?\" derler. \"Bizi, her şeyi konuşturan Allah konuşturdu. Sizi önce yaratan O'dur ve O'na döndürülüyorsunuz\" cevabını verirler",
-    "en": "And they will say to their skins, \"Why have you testified against us?\" They will say, \"We were made to speak by Allah, who has made everything speak; and He created you the first time, and to Him you are returned"
+    "en": "And they will say to their skins, \"Why have you testified against us?\" They will say, \"We were made to speak by Allah, who has made everything speak; and He created you the first time, and to Him you are returned",
+    "pt": "E dirão às suas peles: \"Por que testemunhastes contra nós?\" Responderão: \"Fez-nos falar Deus, que faz falar todas as coisas; foi Ele quem vos criou da primeira vez, e a Ele sereis retornados"
    }
   },
   "41:53": {
    "ar": "سَنُرِيهِمۡ ءَايَٰتِنَا فِي ٱلۡأٓفَاقِ وَفِيٓ أَنفُسِهِمۡ حَتَّىٰ يَتَبَيَّنَ لَهُمۡ أَنَّهُ ٱلۡحَقُّۗ أَوَلَمۡ يَكۡفِ بِرَبِّكَ أَنَّهُۥ عَلَىٰ كُلِّ شَيۡءٖ شَهِيدٌ",
    "meal": {
     "tr": "Onun hak olduğu meydana çıkıncaya kadar varlığımızın belgelerini onlara hem dış dünyada ve hem de kendi içlerinde göstereceğiz. Rabbinin her şeye şahit olması yetmez mi",
-    "en": "We will show them Our signs in the horizons and within themselves until it becomes clear to them that it is the truth. But is it not sufficient concerning your Lord that He is, over all things, a Witness"
+    "en": "We will show them Our signs in the horizons and within themselves until it becomes clear to them that it is the truth. But is it not sufficient concerning your Lord that He is, over all things, a Witness",
+    "pt": "Mostrar-lhes-emos os Nossos sinais nos horizontes e em si mesmos, até que se lhes torne evidente que isto é a verdade. E não basta que teu Senhor seja, sobre todas as coisas, Testemunha"
    }
   },
   "42:11": {
    "ar": "فَاطِرُ ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضِۚ جَعَلَ لَكُم مِّنۡ أَنفُسِكُمۡ أَزۡوَٰجٗا وَمِنَ ٱلۡأَنۡعَٰمِ أَزۡوَٰجٗا يَذۡرَؤُكُمۡ فِيهِۚ لَيۡسَ كَمِثۡلِهِۦ شَيۡءٞۖ وَهُوَ ٱلسَّمِيعُ ٱلۡبَصِيرُ",
    "meal": {
     "tr": "Göklerin ve yerin yaratanı, size içinizden eşler, çift çift hayvanlar var etmiştir. Bu suretle, çoğalmanızı sağlamıştır. O'nun benzeri hiçbir şey yoktur. O, işitendir, görendir",
-    "en": "[He is] Creator of the heavens and the earth. He has made for you from yourselves, mates, and among the cattle, mates; He multiplies you thereby. There is nothing like unto Him, and He is the Hearing, the Seeing"
+    "en": "[He is] Creator of the heavens and the earth. He has made for you from yourselves, mates, and among the cattle, mates; He multiplies you thereby. There is nothing like unto Him, and He is the Hearing, the Seeing",
+    "pt": "Ele é o Criador dos céus e da terra. Fez para vós, de vós mesmos, casais, e dentre os animais, casais; assim vos multiplica. Nada há semelhante a Ele, e Ele é o Oniouvinte, o Onividente"
    }
   },
   "45:37": {
    "ar": "وَلَهُ ٱلۡكِبۡرِيَآءُ فِي ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضِۖ وَهُوَ ٱلۡعَزِيزُ ٱلۡحَكِيمُ",
    "meal": {
     "tr": "Göklerde ve yerde azamet O'nundur, O, güçlüdür, Hakim'dir",
-    "en": "And to Him belongs [all] grandeur within the heavens and the earth, and He is the Exalted in Might, the Wise"
+    "en": "And to Him belongs [all] grandeur within the heavens and the earth, and He is the Exalted in Might, the Wise",
+    "pt": "E a Ele pertence a grandeza nos céus e na terra, e Ele é o Poderoso, o Sábio"
    }
   },
   "49:5": {
    "ar": "وَلَوۡ أَنَّهُمۡ صَبَرُواْ حَتَّىٰ تَخۡرُجَ إِلَيۡهِمۡ لَكَانَ خَيۡرٗا لَّهُمۡۚ وَٱللَّهُ غَفُورٞ رَّحِيمٞ",
    "meal": {
     "tr": "Eğer onlar, sen yanlarına çıkıncaya kadar sabretselerdi şüphesiz onlar için daha iyi olurdu. Allah bağışlayandır, merhamet edendir",
-    "en": "And if they had been patient until you [could] come out to them, it would have been better for them. But Allah is Forgiving and Merciful"
+    "en": "And if they had been patient until you [could] come out to them, it would have been better for them. But Allah is Forgiving and Merciful",
+    "pt": "E se eles tivessem sido pacientes até que saísses até eles, teria sido melhor para eles; e Deus é Perdoador, Misericordioso"
    }
   },
   "50:28": {
    "ar": "قَالَ لَا تَخۡتَصِمُواْ لَدَيَّ وَقَدۡ قَدَّمۡتُ إِلَيۡكُم بِٱلۡوَعِيدِ",
    "meal": {
     "tr": "Allah: \"Benim katımda çekişmeyin; size bunu önceden bildirmiştim. Benim katımda söz değişmez; Ben kullara asla zulmetmem\" der",
-    "en": "[Allah] will say, \"Do not dispute before Me, while I had already presented to you the warning"
+    "en": "[Allah] will say, \"Do not dispute before Me, while I had already presented to you the warning",
+    "pt": "Dirá [Deus]: \"Não disputeis perante Mim, pois já vos apresentei a advertência"
    }
   },
   "53:9": {
    "ar": "فَكَانَ قَابَ قَوۡسَيۡنِ أَوۡ أَدۡنَىٰ",
    "meal": {
     "tr": "Araları iki yay aralığı kadar veya daha da yakın oldu",
-    "en": "And was at a distance of two bow lengths or nearer"
+    "en": "And was at a distance of two bow lengths or nearer",
+    "pt": "E ficou à distância de dois arcos, ou ainda mais perto"
    }
   },
   "57:4": {
    "ar": "هُوَ ٱلَّذِي خَلَقَ ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضَ فِي سِتَّةِ أَيَّامٖ ثُمَّ ٱسۡتَوَىٰ عَلَى ٱلۡعَرۡشِۖ يَعۡلَمُ مَا يَلِجُ فِي ٱلۡأَرۡضِ وَمَا يَخۡرُجُ مِنۡهَا وَمَا يَنزِلُ مِنَ ٱلسَّمَآءِ وَمَا يَعۡرُجُ فِيهَاۖ وَهُوَ مَعَكُمۡ أَيۡنَ مَا كُنتُمۡۚ وَٱللَّهُ بِمَا تَعۡمَلُونَ بَصِيرٞ",
    "meal": {
     "tr": "Gökleri ve yeri altı günde yaratan, sonra arşa hükmeden, yere gireni ve ondan çıkanı, gökten ineni ve oraya yükseleni bilen O'dur. Nerede olursanız olun, O, sizinle beraberdir. Allah yaptıklarınızı görür",
-    "en": "It is He who created the heavens and earth in six days and then established Himself above the Throne. He knows what penetrates into the earth and what emerges from it and what descends from the heaven and what ascends therein; and He is with you wherever you are. And Allah, of what you do, is Seeing"
+    "en": "It is He who created the heavens and earth in six days and then established Himself above the Throne. He knows what penetrates into the earth and what emerges from it and what descends from the heaven and what ascends therein; and He is with you wherever you are. And Allah, of what you do, is Seeing",
+    "pt": "Ele é Quem criou os céus e a terra em seis dias; em seguida, estabeleceu-Se sobre o Trono. Sabe o que penetra na terra e o que dela emerge, o que desce do céu e o que a ele ascende; e Ele está convosco onde quer que estejais. E Deus vê tudo o que fazeis"
    }
   },
   "70:4": {
    "ar": "تَعۡرُجُ ٱلۡمَلَـٰٓئِكَةُ وَٱلرُّوحُ إِلَيۡهِ فِي يَوۡمٖ كَانَ مِقۡدَارُهُۥ خَمۡسِينَ أَلۡفَ سَنَةٖ",
    "meal": {
     "tr": "Melekler ve Cebrail o derecelere, miktarı elli bin yıl olan bir günde yükselirler",
-    "en": "The angels and the Spirit will ascend to Him during a Day the extent of which is fifty thousand years"
+    "en": "The angels and the Spirit will ascend to Him during a Day the extent of which is fifty thousand years",
+    "pt": "Os anjos e o Espírito ascendem até Ele, num dia cuja duração é de cinquenta mil anos"
    }
   }
  }

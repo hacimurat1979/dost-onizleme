@@ -345,8 +345,10 @@
     const gsel = nodeLayer.selectAll("g.menzil-node").data(nodes, (n) => n.sira);
     const enter = gsel.enter().append("g")
       .attr("class", "node menzil-node")
+      .classed("menzil-node--okunmus", (n) => n.okunmus)
+      .classed("menzil-node--perdeli", (n) => !n.okunmus)
       .attr("tabindex", 0).attr("role", "button")
-      .attr("aria-label", (n) => `${n.sira}. ${n.menzil}`)
+      .attr("aria-label", menzilAriaLabel)
       .attr("data-sira", (n) => n.sira)
       .on("click", (e, n) => { e.stopPropagation(); openMenzil(n); })
       .on("keydown", (e, n) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); openMenzil(n); } })
@@ -373,9 +375,14 @@
       const fade = tilt > 0 ? Math.max(0.35, Math.min(1, 0.35 + 0.9 * (dep - 0.55))) : 1;
       g.attr("transform", `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`)
         .style("opacity", (activeId && !isActive ? 0.42 : 1) * fade);
+      // Perdeli (henüz okunmadığımız) düğümlerde çevresel parıltı da bir tık
+      // soluk -- GORSEL_DIL.md: "Matlık (opacity) = Perdelenme". Küre ve
+      // harfteki asıl matlık .menzil-node--perdeli CSS kuralında (opacity
+      // JS'in dokunmadığı öğelerde); burada JS'in her karede yazdığı
+      // opacity'ye aynı çarpanı ekliyoruz ki stil çakışmasın.
       g.select(".menzil-node__glow").attr("r", r * 1.9)
         .style("fill", hueFor(n.sira - 1))
-        .style("opacity", (isActive ? 0.42 : 0.15) * (isHover ? 1.6 : 1));
+        .style("opacity", (isActive ? 0.42 : 0.15) * (isHover ? 1.6 : 1) * (n.okunmus ? 1 : 0.7));
       g.select(".menzil-node__sphere").attr("r", r);
       // Halka döndüğü için harf ve etiketi kendi noktaları etrafında ters
       // çevirip dik tutuyoruz.
@@ -622,7 +629,7 @@
       ${okumaNotuHtml(n)}
       ${notu}
       ${okumaBagiHtml(n)}
-      <p class="menzil-kaynak">${L.kaynak}: ${n.kaynak}</p>`;
+      <p class="menzil-kaynak">${L.kaynak}: ${tt(n.kaynak)}</p>`;
     detailContent.querySelector(".menzil-back-link").addEventListener("click", () => { activeId = null; showIntro(); ensureFrame(); });
     detailPanel.hidden = false;
     window.__dostNav && window.__dostNav.setHash("menziller", String(n.sira));
@@ -646,8 +653,23 @@
     window.__dostNav && window.__dostNav.setHash("menziller");
   }
 
+  // Okunmuş/işlenmiş menzil: "okuma" alanı zaten bu bilgiyi taşıyor (bkz.
+  // menziller.json notlar[4] -- ilk on fasıl Cilt IX'da okundu, kalan on
+  // sekizinde bağ yok çünkü henüz o dikkatle okumadık). Ayrı bir veri alanı
+  // eklemeye gerek yok, var olanı bir bayrağa çeviriyoruz.
+  function markOkunmus(list) {
+    return list.map((m) => Object.assign({}, m, { okunmus: !!m.okuma }));
+  }
+
+  function menzilAriaLabel(n) {
+    const status = n.okunmus
+      ? tt({ tr: "okuduğumuz bir bölüm", en: "a section we have read", pt: "uma secção que já lemos" })
+      : tt({ tr: "henüz okumadığımız bir bölüm", en: "a section we have not read yet", pt: "uma secção que ainda não lemos" });
+    return `${n.sira}. ${n.menzil} — ${status}`;
+  }
+
   function build() {
-    nodes = data.menziller.map((m) => Object.assign({}, m));
+    nodes = markOkunmus(data.menziller);
     layout();
     buildDom();
     wireTiltToggle();
@@ -725,6 +747,7 @@
     onLangChange() {
       if (menzillerMobilListe) menzillerMobilListe.onLangChange();
       if (!nodes.length) return;
+      nodeLayer.selectAll("g.menzil-node").attr("aria-label", menzilAriaLabel);
       render(performance.now());
       const n = activeId ? nodes.find((x) => x.sira === activeId) : null;
       if (n) openMenzil(n);

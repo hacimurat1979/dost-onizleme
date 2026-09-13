@@ -264,33 +264,113 @@ window.__kavramApp = (function () {
   // AYNI görsel dilde (dolan bir daire, ısı haritası değil) gösteren bir
   // ölçü -- bu da bir iddia değil, taramanın kendi izini gösteren bir
   // öz-portre.
-  function zenginlikSkoru(k) {
-    if (k.otomatikEslesmeYok) return 0;
-    return (
-      (k.futuhat ? k.futuhat.toplamKisim : 0) +
-      (k.fusus ? k.fusus.toplamKisim : 0) +
-      k.birlikteEsma.length +
-      k.ilgiliSirlar.length +
-      k.ilgiliCizimler.length +
-      k.ilgiliAyet.length +
-      k.ilgiliHadis.length
-    );
+  // Kaynak türüne göre kırılım -- zenginlikSkoru'nun TOPLAMını oluşturan altı
+  // bileşen. otomatikEslesmeYok durumunda (eski davranışla aynı) hepsi 0:
+  // "bu kavram için otomatik tarama güvenilir değil" demek, kısmi bir kırılım
+  // göstermek yanıltıcı olurdu.
+  function kzrKirilim(k) {
+    if (k.otomatikEslesmeYok) {
+      return { kisim: 0, esma: 0, sir: 0, cizim: 0, ayet: 0, hadis: 0 };
+    }
+    return {
+      kisim: (k.futuhat ? k.futuhat.toplamKisim : 0) + (k.fusus ? k.fusus.toplamKisim : 0),
+      esma: k.birlikteEsma.length,
+      sir: k.ilgiliSirlar.length,
+      cizim: k.ilgiliCizimler.length,
+      ayet: k.ilgiliAyet.length,
+      hadis: k.ilgiliHadis.length,
+    };
   }
+
+  function zenginlikSkoru(k) {
+    const b = kzrKirilim(k);
+    return b.kisim + b.esma + b.sir + b.cizim + b.ayet + b.hadis;
+  }
+
+  // Sabit kaynak-türü sırası/renk/etiket sözleşmesi -- bkz. GORSEL_DIL.md
+  // "Kaynak türü renkleri" (--kzr-* değişkenleri, assets/style.css). Sıra
+  // burada ve lejantta AYNI olmalı ki bir türün rengi iki yerde de aynı
+  // konumda görünsün.
+  const KZR_TYPES = [
+    { key: "kisim", label: { tr: "Kısım/fas", en: "Part/chapter", pt: "Parte/capítulo" } },
+    { key: "esma", label: { tr: "Esmâ", en: "Names", pt: "Nomes" } },
+    { key: "sir", label: { tr: "Sır", en: "Mystery", pt: "Mistério" } },
+    { key: "cizim", label: { tr: "Çizim", en: "Diagram", pt: "Diagrama" } },
+    { key: "ayet", label: { tr: "Âyet", en: "Verse", pt: "Versículo" } },
+    { key: "hadis", label: { tr: "Hadis", en: "Hadith", pt: "Hadith" } },
+  ];
 
   const KAVRAM_GAUGE_R = 8;
   const KAVRAM_GAUGE_C = 2 * Math.PI * KAVRAM_GAUGE_R;
-  // Halkanın rengi ONCE görünüme göre değişiyordu (ontoloji/esma/terimler ayrı
-  // ton) -- kullanıcı 2026-08-04'te bunun "yoğunluk" göstergesi olarak site
-  // genelinde tek renge (Füsûs sarmalının düğüm rengi, --helix-gold-rim)
-  // getirilmesini istedi.
-  function kavramGaugeSvg(frac) {
+  // Halka ÖNCE tek renkli/tek oranlıydı (yoğunluk = tek altın yay, bkz. git
+  // tarihçesi). 2026-09-13'te kullanıcı, aynı toplam yay uzunluğunu (grubu
+  // içindeki göreli zenginlik -- değişmedi) ALTI kaynak türüne göre renkli
+  // segmentlere bölünmesini istedi: yay hâlâ "bu kavram için ne kadar
+  // malzeme var" der, ama artık rengiyle "hangi TÜRden" olduğunu da gösterir
+  // -- GORSEL_DIL.md'nin "davranışı resmet" ilkesi: tek bir sayı değil,
+  // sayının NEREDEN geldiği de görünür olsun.
+  function kavramGaugeSvg(k, frac) {
     const f = Math.max(0.05, Math.min(1, frac));
-    const off = KAVRAM_GAUGE_C * (1 - f);
+    const ringLen = KAVRAM_GAUGE_C * f;
+    const b = kzrKirilim(k);
+    const total = KZR_TYPES.reduce((s, t) => s + b[t.key], 0);
+    let arcs;
+    if (total > 0) {
+      let acc = 0;
+      arcs = KZR_TYPES.map((t) => {
+        const count = b[t.key];
+        if (!count) return "";
+        const segLen = (count / total) * ringLen;
+        const dashoffset = -acc;
+        acc += segLen;
+        return `<circle class="kavram-tile__gauge-arc kavram-tile__gauge-arc--${t.key}" data-kzr-type="${t.key}"
+          cx="11" cy="11" r="${KAVRAM_GAUGE_R}"
+          stroke-dasharray="${segLen.toFixed(2)} ${(KAVRAM_GAUGE_C - segLen).toFixed(2)}"
+          stroke-dashoffset="${dashoffset.toFixed(2)}"><title>${escapeHtmlKavram(tt(t.label))}: ${count}</title></circle>`;
+      }).join("");
+    } else {
+      // Hiçbir türde malzeme yok (otomatikEslesmeYok ya da gerçekten boş) --
+      // renkli bir tür iddia etmeden, nötr/soluk bir kırıntı göster.
+      arcs = `<circle class="kavram-tile__gauge-arc kavram-tile__gauge-arc--bos" cx="11" cy="11" r="${KAVRAM_GAUGE_R}"
+        stroke-dasharray="${ringLen.toFixed(2)} ${(KAVRAM_GAUGE_C - ringLen).toFixed(2)}" stroke-dashoffset="0"></circle>`;
+    }
     return `<svg class="kavram-tile__gauge" viewBox="0 0 22 22" aria-hidden="true">
       <circle class="kavram-tile__gauge-track" cx="11" cy="11" r="${KAVRAM_GAUGE_R}"></circle>
-      <circle class="kavram-tile__gauge-arc" cx="11" cy="11" r="${KAVRAM_GAUGE_R}"
-        stroke-dasharray="${KAVRAM_GAUGE_C.toFixed(2)}" stroke-dashoffset="${off.toFixed(2)}"></circle>
+      ${arcs}
     </svg>`;
+  }
+
+  // Lejant: bir satırın üzerine gelmek/Tab'lamak halkalardaki karşılık gelen
+  // yayı büyütüp öne çıkarır, diğerleri soluklaşır -- ETKILESIM_DILI.md'nin
+  // "değinmek" fiili (hover/:focus-visible, klavye karşılığı zorunlu) ve
+  // GORSEL_DIL.md'nin "her etkileşimin görünür bir sonucu olmalı" kuralı.
+  // Vurgu `wrapEl` üzerindeki data-kzr-active ile CSS'e taşınıyor (bkz.
+  // assets/style.css [data-kzr-active] kuralları) -- görünümün davranışı
+  // yine bu dosyada, ama gerçek büyütme/soluklaştırma CSS geçişiyle olur.
+  function kzrLegendHtml() {
+    return (
+      `<div class="kzr-legend" role="list">` +
+      KZR_TYPES.map(
+        (t) =>
+          `<button type="button" class="kzr-legend__item" data-kzr-type="${t.key}" role="listitem">` +
+          `<span class="kzr-legend__swatch kzr-legend__swatch--${t.key}" aria-hidden="true"></span>` +
+          `<span class="kzr-legend__label">${tt(t.label)}</span>` +
+          `</button>`
+      ).join("") +
+      `</div>`
+    );
+  }
+
+  function bindKzrLegend() {
+    listEl.querySelectorAll(".kzr-legend__item").forEach((btn) => {
+      const type = btn.dataset.kzrType;
+      const on = () => { wrapEl.dataset.kzrActive = type; };
+      const off = () => { delete wrapEl.dataset.kzrActive; };
+      btn.addEventListener("mouseenter", on);
+      btn.addEventListener("mouseleave", off);
+      btn.addEventListener("focus", on);
+      btn.addEventListener("blur", off);
+    });
   }
 
   function renderList() {
@@ -298,20 +378,25 @@ window.__kavramApp = (function () {
     listEl.hidden = false;
     const groups = { ontoloji: [], esma: [], terimler: [] };
     kavramlar.forEach((k) => groups[k.view].push(k));
-    Object.keys(groups).forEach((v) => groups[v].sort((a, b) => tt(a.isim).localeCompare(tt(b.isim), "tr")));
+    // "tr" karşılaştırma yalnız TR görünümde doğru sırayı verir (ör. Türkçe
+    // harf sırası); EN/PT'de kendi dillerinin varsayılan sıralamasını
+    // kullanmaları için locale argümanı verilmiyor (2026-09-13).
+    const sortLocale = I18n.getLang() === "tr" ? "tr" : undefined;
+    Object.keys(groups).forEach((v) => groups[v].sort((a, b) => tt(a.isim).localeCompare(tt(b.isim), sortLocale)));
     const intro = tt({
       tr: "Her kavramın, Fütûhât-ı Mekkiyye ve Füsûsu'l-Hikem boyunca nerede ilk geçtiği, nerede en yoğun göründüğü ve hangi sır/çizim/âyet/hadisle birlikte anıldığına dair, veriden türetilmiş bir özet. Bu bir iddia değil, bir tarama denemesi -- yöntem sayfanın altında.",
       en: "A data-derived summary of where each concept first appears across the Meccan Revelations and the Bezels of Wisdom, where it appears most densely, and which mystery/diagram/verse/hadith it's recorded alongside. Not a claim -- a scanning attempt; method noted at the page's foot.",
       pt: "Um resumo derivado de dados de onde cada conceito aparece pela primeira vez nas Revelações de Meca e nos Engastes da Sabedoria, onde aparece com mais densidade, e com qual mistério/diagrama/versículo/hadith é registrado junto. Não uma afirmação -- uma tentativa de varredura; o método está ao pé da página.",
     });
     const gaugeNote = tt({
-      tr: "Her adın yanındaki halka, o kavram için ne kadar malzeme biriktiğini gösterir -- kısım/fass sayısı, birlikte anıldığı esmâ, ilişkili sır/çizim/âyet/hadis toplanarak (kendi grubu içinde ölçeklenmiş).",
-      en: "The ring beside each name shows how much material has accumulated for that concept -- part/chapter count, co-occurring Names, and related mysteries/diagrams/verses/hadiths added together (scaled within its own group).",
-      pt: "O anel ao lado de cada nome mostra quanto material se acumulou para aquele conceito -- número de partes/capítulos, Nomes coocorrentes, e mistérios/diagramas/versículos/hadiths relacionados somados (escalado dentro do próprio grupo).",
+      tr: "Her adın yanındaki halka, o kavram için ne kadar malzeme biriktiğini gösterir -- kısım/fass sayısı, birlikte anıldığı esmâ, ilişkili sır/çizim/âyet/hadis toplanarak (kendi grubu içinde ölçeklenmiş). Halkanın renkli dilimleri bu malzemenin hangi türden geldiğini gösterir -- altta lejantın üzerine gelmek/Tab'lamak bir türü öne çıkarır.",
+      en: "The ring beside each name shows how much material has accumulated for that concept -- part/chapter count, co-occurring Names, and related mysteries/diagrams/verses/hadiths added together (scaled within its own group). The ring's colored slices show which type each piece is -- hovering or tabbing to a row in the legend below highlights one type.",
+      pt: "O anel ao lado de cada nome mostra quanto material se acumulou para aquele conceito -- número de partes/capítulos, Nomes coocorrentes, e mistérios/diagramas/versículos/hadiths relacionados somados (escalado dentro do próprio grupo). As fatias coloridas do anel mostram de qual tipo vem cada parte -- passar o mouse ou usar Tab numa linha da legenda abaixo destaca um tipo.",
     });
     listEl.innerHTML =
       `<p class="kavram-list__intro">${intro}</p>` +
       `<p class="kavram-list__intro kavram-list__intro--gauge">${gaugeNote}</p>` +
+      kzrLegendHtml() +
       Object.keys(groups)
         .map((v) => {
           const items = groups[v];
@@ -324,7 +409,7 @@ window.__kavramApp = (function () {
                 const frac = hi === lo ? 0.5 : (scores[i] - lo) / (hi - lo);
                 return (
                   `<button type="button" class="kavram-tile" data-view="${k.view}" data-id="${k.id}" title="${escapeHtmlKavram(tt(k.isim))}">` +
-                  kavramGaugeSvg(frac) +
+                  kavramGaugeSvg(k, frac) +
                   `<span class="kavram-tile__label">${tt(k.isim)}</span>` +
                   `</button>`
                 );
@@ -337,6 +422,7 @@ window.__kavramApp = (function () {
     listEl.querySelectorAll(".kavram-tile").forEach((btn) => {
       btn.addEventListener("click", () => nav("kavram", btn.dataset.view + "/" + btn.dataset.id));
     });
+    bindKzrLegend();
   }
 
   function parseKisimNo(id) {
@@ -540,6 +626,19 @@ window.__kavramApp = (function () {
     if (k) renderDetail(k);
     else renderList();
   }
+
+  // "Bir adım geri": kavram detayındayken Esc, "Tüm kavramlar" linkiyle
+  // aynı adımı atar (bkz. renderDetail'deki .kavram-back-link) -- ortak
+  // zincir graph-utils.js'te (bkz. esma.js:1420 aynı desen), 2026-09-13'e
+  // kadar kavram görünümü bu zincire hiç katılmıyordu.
+  GU.registerStepBack("kavram-wrap", () => {
+    if (!detailEl.hidden) {
+      showId(undefined);
+      window.__dostNav && window.__dostNav.setHash("kavram");
+      return true;
+    }
+    return false;
+  });
 
   let pendingId;
   return {

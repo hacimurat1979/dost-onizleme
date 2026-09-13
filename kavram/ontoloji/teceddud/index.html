@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-dost-lang="tr">
 <head>
 <meta charset="UTF-8">
 <!-- 2026-08-15: site yalnız kendi origin'inden (SRI'lı) + gtag/clarity'den
@@ -157,7 +157,7 @@
     })();
   </script>
   <h1 class="sr-only" data-tr="Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası" data-en="Dost Arabî — A Map of Muhyiddin Ibn Arabi's Ontology" data-pt="Dost Arabî — Um Mapa da Ontologia de Muhyiddin Ibn Arabi">Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası</h1>
-  <a class="skip-link" href="#main-content" data-tr="İçeriğe atla" data-en="Skip to content" data-pt="Pular para o conteúdo">İçeriğe atla</a><noscript><h2>Teceddüd (Sürekli Yenilenme)</h2><p>Âlem bir kez yaratılıp bırakılmış bir şey değil; Dost&#x27;a göre &lt;em&gt;“yeniden yaratma âlemde her nefes ve her işte gerçekleşir.”&lt;/em&gt; 408&#x27;in açılış şiiri bunu doğrudan söylüyor: &lt;em&gt;“Cömertlik ve nefesler vesilesiyle oluşmakta; yaratılış daimi / Bir gayede sona ermez.”&lt;/em&gt; Bu düğümü Perde ile birlikte okuyoruz, çünkü ikisi birbirini gerektiriyor: yenilenme sürekli olduğu hâlde biz onu fark etmiyorsak, sebebi ardışık iki yaratılışın birbirine benzemesi. 416 bu fikri kelâm tartışmasına da bağlıyor — Eş&#x27;arîlerin &lt;em&gt;“araz iki zamanda baki kalmaz”&lt;/em&gt; ilkesine ve Bâkıllânî&#x27;nin &lt;em&gt;“olgular gerçeği olmayan nispetlerdir”&lt;/em&gt; görüşüne.</p><nav aria-label="İlgili kavramlar"><ul><li><a href="kavram/ontoloji/perde/">Perde (Hicâb)</a></li></ul></nav></noscript>
+  <a class="skip-link" href="#main-content" data-tr="İçeriğe atla" data-en="Skip to content" data-pt="Pular para o conteúdo">İçeriğe atla</a><noscript><h2>Teceddüd (Sürekli Yenilenme)</h2><p>Âlem bir kez yaratılıp bırakılmış bir şey değil; Dost&#x27;a göre “yeniden yaratma âlemde her nefes ve her işte gerçekleşir.” 408&#x27;in açılış şiiri bunu doğrudan söylüyor: “Cömertlik ve nefesler vesilesiyle oluşmakta; yaratılış daimi / Bir gayede sona ermez.” Bu düğümü Perde ile birlikte okuyoruz, çünkü ikisi birbirini gerektiriyor: yenilenme sürekli olduğu hâlde biz onu fark etmiyorsak, sebebi ardışık iki yaratılışın birbirine benzemesi. 416 bu fikri kelâm tartışmasına da bağlıyor — Eş&#x27;arîlerin “araz iki zamanda baki kalmaz” ilkesine ve Bâkıllânî&#x27;nin “olgular gerçeği olmayan nispetlerdir” görüşüne.</p><nav aria-label="İlgili kavramlar"><ul><li><a href="kavram/ontoloji/perde/">Perde (Hicâb)</a></li></ul></nav></noscript>
   <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
     <defs>
       <radialGradient id="node-sheen" cx="34%" cy="28%" r="72%">
@@ -236,6 +236,16 @@
             <button class="btn-ghost" id="futuhat-btn" type="button" title="Fütûhât-ı Mekkiyye, kısım kısım — The Meccan Revelations, part by part — As Revelações de Meca, parte por parte" data-tr="Fütûhât" data-en="Futuhat" data-pt="Futuhat">Fütûhât</button>
             <button class="btn-ghost btn-ghost--sub" id="kuran-dokusu-btn" type="button" title="Fütûhât ve Füsûs özetlerimizde işaretlediğimiz âyet atıflarının sûre↔bap grafı — kısmi bir iz, tam bir tarama değil — A sûrah↔chapter graph of the verse citations we've marked in our Futûhât and Fusûs summaries — a partial trace, not a full scan — Um grafo surata↔capítulo das citações de versículos que marcámos nos nossos resumos das Futûhât e Fusûs — um traço parcial, não uma varredura completa" data-tr="↳ Kur'ân Dokusu" data-en="↳ The Qur'ânic Weave" data-pt="↳ A Trama Alcorânica">↳ Kur'ân Dokusu</button>
             <button class="btn-ghost" id="fusus-btn" type="button" title="Füsûsu'l-Hikem, fass fass — The Bezels of Wisdom, chapter by chapter — Os Engastes da Sabedoria, capítulo por capítulo" data-tr="Füsûs" data-en="Fusus" data-pt="Fusus">Füsûs</button>
+            <!-- Fütûhât+Füsûs birleşik okuma ilerlemesi: TEK halka, ortak bir
+                 tepe noktasından (12 yönü) Fütûhât sola / Füsûs sağa büyüyen
+                 iki yarım-yay -- bkz. assets/nav-drawer.js wireOkumaIlerleme.
+                 Veri gelene kadar hidden; veri data/ibn-arabi/okuma-durumu.json'dan
+                 (karşılama "Neredeyiz" özetiyle paylaşılan aynı kaynak, bkz.
+                 kavram.js'teki aynı yorum). Buton DEĞİL -- ayrı bir görünüme
+                 kapı açmıyor, yalnız iki külliyatın toplam durumunu okuyor;
+                 tıklama davranışı olmadığı için btn-ghost görünümü/imleci
+                 bilerek almıyor (bağlanmamış düğme izlenimi vermesin diye). -->
+            <span class="okuma-ilerleme" id="okuma-ilerleme" tabindex="0" role="img" hidden></span>
             <button class="btn-ghost btn-ghost--yeni" id="miskat-btn" type="button" title="İbn Arabî'nin kendi seçtiği 101 hadîs-i kudsî, hadis hadis — 101 hadith qudsi selected by Ibn Arabi himself, hadith by hadith — 101 hadith qudsi selecionados pelo próprio Ibn Arabi, hadith a hadith" data-tr="Mişkâtü'l-Envâr" data-en="Mishkat al-Anwar" data-pt="Mishkat al-Anwar">Mişkâtü'l-Envâr</button>
             <button class="btn-ghost btn-ghost--yeni" id="kavram-btn" type="button" title="Her kavramın Fütûhât ve Füsûs boyunca izini süren, veriden türetilmiş bir hayat özeti — A data-derived life summary tracing each concept through the Futuhat and Fusus — Um resumo de vida derivado de dados que traça cada conceito através do Futuhat e do Fusus" data-tr="Kavramlar" data-en="Concepts" data-pt="Conceitos">Kavramlar</button>
             <!-- 2026-08-10 denetim bulgusu (G50): Okuma Yolları /hakkinda içinde
@@ -375,7 +385,7 @@
       <button class="graph-recenter" id="esma-recenter" type="button" data-tr-title="Görünümü ortala" data-en-title="Recenter view" data-pt-title="Recentralizar vista" title="Görünümü ortala" aria-label="Görünümü ortala">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
       </button>
-      <button class="graph-hint" type="button" data-tr-title="Kaydırarak katman katman derine inin, bir isme tıklayın; Ctrl (⌘) + tekerlek ile yakınlaştırın" data-en-title="Scroll to descend layer by layer, click a Name; Ctrl (⌘) + scroll to zoom" data-pt-title="Role para descer camada por camada, clique num Nome; Ctrl (⌘) + rolagem para ampliar" title="Kaydırarak katman katman derine inin, bir isme tıklayın; Ctrl (⌘) + tekerlek ile yakınlaştırın" aria-label="Kaydırarak katman katman derine inin, bir isme tıklayın; Ctrl (⌘) + tekerlek ile yakınlaştırın">
+      <button class="graph-hint" type="button" data-tr-title="Kaydırarak katman katman derine inin, bir isme tıklayın; Ctrl (⌘) + tekerlek ya da iki parmakla yakınlaştırın" data-en-title="Scroll to descend layer by layer, click a Name; Ctrl (⌘) + scroll or pinch with two fingers to zoom" data-pt-title="Role para descer camada por camada, clique num Nome; Ctrl (⌘) + rolagem ou dois dedos para ampliar" title="Kaydırarak katman katman derine inin, bir isme tıklayın; Ctrl (⌘) + tekerlek ya da iki parmakla yakınlaştırın" aria-label="Kaydırarak katman katman derine inin, bir isme tıklayın; Ctrl (⌘) + tekerlek ya da iki parmakla yakınlaştırın">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.1" fill="currentColor"/></svg>
       </button>
       <button class="esma-3d-toggle" id="esma-3d-toggle" type="button" data-tr-title="3 boyuta eğ — mertebe derinliğini göster" data-en-title="Tilt into 3D — show the depth of ranks" data-pt-title="Incline para 3D — mostre a profundidade das hierarquias" title="3 boyuta eğ — mertebe derinliğini göster" aria-label="3 boyuta eğ — mertebe derinliğini göster">
@@ -806,9 +816,9 @@
       <!-- Ürün denetimi P1-4 (2026-09-02): diğer sarmal/grafik görünümleriyle
            aynı desen (bkz. hal-mobil-liste) -- 28 durak gruplama olmadan
            seyir sırasıyla, çünkü sıra sarmalın kendisi. -->
-      <nav class="menziller-mobil-liste" id="menziller-mobil-liste" aria-label="Menziller: seyir listesi (mobil alternatif)" data-tr-aria-label="Menziller: seyir listesi (mobil alternatif)" data-en-aria-label="Waystations: journey list (mobile alternative)" data-pt-aria-label="Estações: lista do percurso (alternativa móvel)"></nav>
+      <nav class="menziller-mobil-liste" id="menziller-mobil-liste" aria-label="Menziller: seyir listesi (mobil alternatif)" data-tr-aria-label="Menziller: seyir listesi (mobil alternatif)" data-en-aria-label="Mansions: journey list (mobile alternative)" data-pt-aria-label="Estações: lista do percurso (alternativa móvel)"></nav>
       <svg id="menziller-graph" role="group" aria-label="Menziller haritası"
-           data-tr-aria-label="Menziller haritası" data-en-aria-label="Map of waystations" data-pt-aria-label="Mapa das estações"></svg>
+           data-tr-aria-label="Menziller haritası" data-en-aria-label="Map of the mansions" data-pt-aria-label="Mapa das estações"></svg>
       <div class="view-status" id="menziller-wrap-status" hidden>
         <div class="view-status__spinner" aria-hidden="true"></div>
         <p class="view-status__text"></p>
@@ -1597,10 +1607,10 @@ mesmo antes que o assombro exista."></blockquote>
   <script src="assets/vendor/d3-custom.min.js" defer integrity="sha384-k/birSUpT26+T+9Bq9AtcVVDxNlh8ThhBxqX2iTUj656KnoUaNO07aGmVEBBpbpM"></script>
   <script src="assets/i18n.js" defer integrity="sha384-4r6W6PENfRJ7GevJPyR+ACS8M2OZwCzsNWj9W4PfT6psDUZQRTdpCVLi1eUXtN9l"></script>
   <script src="assets/view-status.js" defer integrity="sha384-RQn+LQne6RZJMiJDUPMau3rkhbbj7xyrYvFavcxNe6FdOK+iGXkJc9nUNrBWUEEw"></script>
-  <script src="assets/graph-utils.js" defer integrity="sha384-lTShGBbujKQnuLW+cY32nyNS0JPmMGRgEsIOw7F37bMN9ZGEQehZAudaCOvy18Ii"></script>
+  <script src="assets/graph-utils.js" defer integrity="sha384-fkiVO4e60RHDkj8/u3KsFoE+lqJSrvrCuyIV6wgZ9zGVqhcERLrc6Y3fMQlapA7M"></script>
   <!-- nav-drawer.js graph-utils.js'ten SONRA gelmeli (2026-08-15): artık
        açılışta GU.registerStepBack çağırıyor. -->
-  <script src="assets/nav-drawer.js" defer integrity="sha384-W64rjVIcpQ5N6aMLtnixLPVKrcJvNuk6nSWtVa3BZF78OCFXjU/rp6mEDHa9HRRe"></script>
+  <script src="assets/nav-drawer.js" defer integrity="sha384-RUOQomk3xppVfXHi7Va+gOaOIXOOhX8tr0HMoQ8Fg6R3SBi3pOjhHOoDEf0ddGdB"></script>
   <script src="assets/helix.js" defer integrity="sha384-F7JnDwrBK+y9vkNfTXQs/oGDyL/QmM41ndfSbJXufmd4kF6j8uwvhvUqiUxy+caw"></script>
   <script src="assets/graph-hint.js" defer integrity="sha384-X9m2G527jZ4206R85Mx9UwMXx88yyLYBNsLOvNMmWfS2157Z1FwPTD8wiTeGJV5I"></script>
   <script src="assets/lightbox.js" defer integrity="sha384-TDvma/+BP131maM3JIl5cFvo+vnYxexF1FwxIhBck6kV8Yuq/4Gj/osPA6Foolok"></script>
@@ -1621,15 +1631,15 @@ mesmo antes que o assombro exista."></blockquote>
        ama o bağımlılık derleme-zamanı çapraz-bağlantı indeksine taşınalı
        (2026-08-03) kalkmıştı, sadece fark edilmemişti), o yüzden burada
        static <script> etiketi yok. -->
-  <script src="assets/view-loader.js" defer integrity="sha384-5ZKnOUuykQA/krtuEuY0vHAV74hVgjW7pCCYtmQaQIcq2v1H/tzLWjUpyXCexODn"></script>
-  <script src="assets/ontology.js" defer integrity="sha384-XkcCHAQI9KKHBG3/1Onjz4sZugRUF1WUL2So6OaFn36bArBLrKrdrljwAW1ro5uX"></script>
+  <script src="assets/view-loader.js" defer integrity="sha384-phHOWCLIAYSbx/+39tM5FjJe5ckW5TtgKn4zwcARI5NiltySYwSRkDgDn8cUl55r"></script>
+  <script src="assets/ontology.js" defer integrity="sha384-exeNmR+EQQVEDc/d2GR6OUHc413PYTSqITcNIem65XkjGuo4Z0RwxGdwBKdcNfmq"></script>
   <script src="assets/crosslink-preview.js" defer integrity="sha384-Ql+mJC8qoRFExWxkLBHP+85sCuCXqJwVTmYYk1Bk+EWaRK8amiurfak5/gDhaQg+"></script>
-  <script src="assets/ayet-onizleme.js" defer integrity="sha384-iTyRuxIgzOdtONOkNLn7TvODEbXPGemjAFI/j/vZ0ShcHq0jXcrMXNgtRUB2Zgu+"></script>
+  <script src="assets/ayet-onizleme.js" defer integrity="sha384-ZpzCQR98ZWAkdZ79RaFKshPxzSPwXkPuCS7FKSgYvx5dzvK3RH0Lc+KErq6R3QHc"></script>
   <script src="assets/start-hint.js" defer integrity="sha384-S5YfedCmBW9/W/3OybJ+5K9BRmf2zdJinvGfO94lJC2R90B/j/II4Qh98xEIDISO"></script>
   <!-- 2026-08-10 denetim (G57 + rapor 16-A): mobil için grafik yerine liste. -->
   <script src="assets/ontoloji-mobil-liste.js" defer integrity="sha384-89v27eX+GOKBTOIYrW1qeCvlXhZx7skXR08uXcC1jZXZCHhnKvcfyU5HscvJMdDX"></script>
   <script src="assets/secret-nav.js" defer integrity="sha384-bxSN300rzY5eTjVk6TAWQVedjEJKuWieA2pZLzqq8xZNFBtlkjahenZSN2Jhiuut"></script>
-  <script src="assets/edit-mode.js" defer integrity="sha384-cUaeECH2H/0zS+D/WBmhhDLijhW9gn3gJ162LF3nT4WzmS3StcFzrUD6v0j6yEsD"></script>
+  <script src="assets/edit-mode.js" defer integrity="sha384-2STUAQtHQPipSaOQm3RMg4ga5//G9uq3TrkB2ymuXCBZRDVxGSHMyUzTn7/wcQYM"></script>
   <!-- Duruş taraması: yalnız @revise kipinde görünür (edit-mode.js'in
        bayrağına bakar), kip kapalıyken hiçbir şey çizmez. 2026-07-29'a
        kadar önizlemeye özeldi; kullanıcı kararıyla canlıda da yayınlanıyor. -->

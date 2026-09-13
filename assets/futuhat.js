@@ -27,9 +27,19 @@
     if (s.title) {
       return tt(s.title) + (s.pageRange ? `, s. ${s.pageRange}.` : "");
     }
+    if (s.cite) {
+      return s.cite + (s.note ? " — " + tt(s.note) : "");
+    }
     return tt(s);
   }
 
+  // Üçüncü şema, Cilt XVI-XVIII'in son on kısmında (c16k217-222, c17k223-224,
+  // c18k225-226) ortaya çıktı: kaynak artık {title,pageRange} yerine düz
+  // metin `cite` + üç dilli `note` çifti olarak yazılıyor. Bu dal olmadan
+  // sourceLabel ne s.title ne s.tr/en/pt bulduğu için tt(s) boş string
+  // dönüyordu -- hem Kaynaklar bölümü hem istatistik popup'ı bu on kısımda
+  // tamamen boş satır gösteriyordu; c18k226 atlas-index'in varsayılan
+  // activePartId'si olduğu için bu en görünür yerde patlıyordu.
   // Kısım düzeyindeki `pageRange` de iki şemayla yazıldı: ilk 67 kısımda
   // düz metin ("73–126", önek yok), sonrakilerde üç dilli sözlük
   // ("s. 361-369" / "pp. 361-369"). Alan veride taşınıyordu ama
@@ -449,7 +459,7 @@
       // işaretliyordu (nested-interactive, 2026-08-04). "group" bir
       // kapsayıcıdır, etkileşimli torunları gizlemez.
       .attr("role", "group")
-      .attr("aria-label", tt(opts.ariaLabel || { tr: "Kavram haritası", en: "Concept map", pt: "Mapa de conceitos" }));
+      .attr("aria-label", stripTags(tt(opts.ariaLabel || { tr: "Kavram haritası", en: "Concept map", pt: "Mapa de conceitos" })));
 
     const linkGen = d3.linkRadial().angle((d) => d.x).radius((d) => d.y);
 
@@ -479,7 +489,7 @@
       .attr("data-note-pt", (d) => (d.data.note ? d.data.note.pt : ""))
       .attr("tabindex", "0")
       .attr("role", "button")
-      .attr("aria-label", (d) => tt(d.data.label))
+      .attr("aria-label", (d) => stripTags(tt(d.data.label)))
       .on("mouseenter", (event, d) => showTip(d, event))
       .on("mousemove", (event) => moveTip(event))
       .on("mouseleave", hideTip)
@@ -556,31 +566,27 @@
     tooltip.hidden = false;
   }
 
+  // Kenar/üst taşma düzeltmesi (bkz. graph-utils.js:moveTooltip yorumu --
+  // gerçek kutu genişliği yerleştirildikten sonra ölçülüp ekran kenarına
+  // göre düzeltiliyor) diğer 13 görünümde ortak yardımcıya taşınmıştı,
+  // futuhat.js'te unutulup kendi (daha zayıf, sabit 90px paylı) kopyasını
+  // taşıyordu. Diğer görünümlerle (ontology.js, hal.js, esma.js…) aynı
+  // örüntü: yerel moveTip/hideTip, GU.moveTooltip/hideTooltip'e sarmalıyor.
   function moveTip(event) {
-    if (!tooltip || tooltip.hidden || !wrapEl) return;
-    const rect = wrapEl.getBoundingClientRect();
-    let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
-    x = Math.max(90, Math.min(rect.width - 90, x));
-    y = Math.max(40, y);
-    tooltip.style.left = x + "px";
-    tooltip.style.top = y + "px";
+    window.DostGraphUtils.moveTooltip(tooltip, wrapEl, event);
   }
 
+  // Klavyeyle (focus) gelindiğinde imleç konumu yok; ipucu, odaklanan
+  // öğenin üstüne, ontology.js:positionTooltipOnEdge ile aynı yöntemle
+  // (gerçek bir fare olayı yerine clientX/clientY taşıyan sahte bir olay)
+  // konuyor.
   function positionTipAtElement(el) {
-    if (!tooltip || !wrapEl) return;
-    const wrapRect = wrapEl.getBoundingClientRect();
     const elRect = el.getBoundingClientRect();
-    let x = elRect.left + elRect.width / 2 - wrapRect.left;
-    let y = elRect.top - wrapRect.top;
-    x = Math.max(90, Math.min(wrapRect.width - 90, x));
-    y = Math.max(40, y);
-    tooltip.style.left = x + "px";
-    tooltip.style.top = y + "px";
+    moveTip({ clientX: elRect.left + elRect.width / 2, clientY: elRect.top });
   }
 
   function hideTip() {
-    if (tooltip) tooltip.hidden = true;
+    window.DostGraphUtils.hideTooltip(tooltip);
     activeTipNodeId = null;
   }
 
@@ -654,6 +660,22 @@
     });
   }
 
+  // Triad/pair/nöbet/akış/radyal/perde-göz diyagramlarının hepsinde aynı
+  // altı satır tekrarlanıyordu: mount'a bir <svg> ekle, sınıfını ver,
+  // viewBox'ını kur, role="img" ve aria-label ata. (renderRadialTree bilinçli
+  // olarak DIŞARIDA kalıyor -- role="group" taşıyor ve tek tek odaklanabilir
+  // düğümleri var, yani "img" statik/bütün semantiğini ihlal ederdi, bkz.
+  // renderRadialTree içindeki role yorumu.)
+  function createDiagramSvg(mount, { className, width, height, ariaLabel }) {
+    return d3
+      .select(mount)
+      .append("svg")
+      .attr("class", className)
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", ariaLabel);
+  }
+
   // --- Triad diagram (three-point comparison, e.g. Teorik / Hâl / Sır) ---
   function renderTriad(mount, triad) {
     const width = 460, height = 130, cy = 55;
@@ -661,13 +683,12 @@
     const items = [triad.left, triad.middle, triad.right];
     const nodeIds = ["left", "middle", "right"];
 
-    const svg = d3
-      .select(mount)
-      .append("svg")
-      .attr("class", "futuhat-triad__svg")
-      .attr("viewBox", `0 0 ${width} ${height}`)
-      .attr("role", "img")
-      .attr("aria-label", tt(triad.middle.label));
+    const svg = createDiagramSvg(mount, {
+      className: "futuhat-triad__svg",
+      width,
+      height,
+      ariaLabel: stripTags(tt(triad.middle.label)),
+    });
 
     svg
       .append("line")
@@ -705,13 +726,12 @@
     const items = [pair.left, pair.right];
     const nodeIds = ["left", "right"];
 
-    const svg = d3
-      .select(mount)
-      .append("svg")
-      .attr("class", "futuhat-triad__svg")
-      .attr("viewBox", `0 0 ${width} ${height}`)
-      .attr("role", "img")
-      .attr("aria-label", tt(pair.left.label) + " / " + tt(pair.right.label));
+    const svg = createDiagramSvg(mount, {
+      className: "futuhat-triad__svg",
+      width,
+      height,
+      ariaLabel: stripTags(tt(pair.left.label)) + " / " + stripTags(tt(pair.right.label)),
+    });
 
     svg
       .append("line")
@@ -761,13 +781,12 @@
     // genişletildi, halka küçültüldü, sarma daha dar tutuldu.
     const width = 320, height = 220, cx = 160, cy = 110, r = 66;
 
-    const svg = d3
-      .select(mount)
-      .append("svg")
-      .attr("class", "futuhat-nobet__svg")
-      .attr("viewBox", `0 0 ${width} ${height}`)
-      .attr("role", "img")
-      .attr("aria-label", tt(nobet.a) + " / " + tt(nobet.b));
+    const svg = createDiagramSvg(mount, {
+      className: "futuhat-nobet__svg",
+      width,
+      height,
+      ariaLabel: stripTags(tt(nobet.a)) + " / " + stripTags(tt(nobet.b)),
+    });
 
     function arcPath(a0, a1) {
       const p0 = [cx + r * Math.cos(a0), cy + r * Math.sin(a0)];
@@ -825,13 +844,12 @@
     const n = akis.adimlar.length;
     const height = padTop + n * rowH + 14;
 
-    const svg = d3
-      .select(mount)
-      .append("svg")
-      .attr("class", "futuhat-akis__svg")
-      .attr("viewBox", `0 0 ${width} ${height}`)
-      .attr("role", "img")
-      .attr("aria-label", tt(akis.label));
+    const svg = createDiagramSvg(mount, {
+      className: "futuhat-akis__svg",
+      width,
+      height,
+      ariaLabel: stripTags(tt(akis.label)),
+    });
 
     svg.append("text")
       .attr("class", "futuhat-akis__col-head")
@@ -879,13 +897,12 @@
     const cx = 150, cy = 150, hostR = 34, satR = 26, orbit = 100;
     const n = radyal.kollar.length;
 
-    const svg = d3
-      .select(mount)
-      .append("svg")
-      .attr("class", "futuhat-radyal__svg")
-      .attr("viewBox", "0 0 300 300")
-      .attr("role", "img")
-      .attr("aria-label", tt(radyal.merkez));
+    const svg = createDiagramSvg(mount, {
+      className: "futuhat-radyal__svg",
+      width: 300,
+      height: 300,
+      ariaLabel: stripTags(tt(radyal.merkez)),
+    });
 
     const kollar = svg
       .selectAll("g.futuhat-radyal__kol")
@@ -935,13 +952,12 @@
     const kaynakX = 55, perdeX = 248, gozX = 312;
     const blurId = "futuhat-perde-blur-" + ++perdeBlurSeq;
 
-    const svg = d3
-      .select(mount)
-      .append("svg")
-      .attr("class", "futuhat-perdegoz__svg")
-      .attr("viewBox", `0 0 ${width} ${height}`)
-      .attr("role", "img")
-      .attr("aria-label", tt(pg.kaynakEtiket) + " / " + tt(pg.gozEtiket));
+    const svg = createDiagramSvg(mount, {
+      className: "futuhat-perdegoz__svg",
+      width,
+      height,
+      ariaLabel: stripTags(tt(pg.kaynakEtiket)) + " / " + stripTags(tt(pg.gozEtiket)),
+    });
 
     const defs = svg.append("defs");
     const blur = defs.append("filter").attr("id", blurId).attr("x", "-60%").attr("y", "-60%").attr("width", "220%").attr("height", "220%");
@@ -1189,22 +1205,92 @@
       })
       .join("");
 
-    const kisimWedges = [];
-    for (let k = 1; k <= maxKisim; k++) {
-      const cilt = cilts.find((c) => k >= c.kisimStart && k <= c.kisimEnd);
-      if (!cilt) continue;
-      const part = futuhatData.parts.find((p) => p.cilt === cilt.cilt && p.kisim === k);
-      const [a0, a1] = angleRange(k, k);
-      const published = !!part;
-      const isCurrent = part && part.id === activePartId;
-      kisimWedges.push(
-        `<path class="futuhat-map__kisim${published ? " futuhat-map__kisim--published" : ""}${isCurrent ? " futuhat-map__kisim--current" : ""}" data-id="${part ? part.id : ""}" style="--ring-hue:${(cilts.indexOf(cilt) * 90 + 40) % 360}" d="${arcWedgePath(cx, cy, rKisimInner, rKisimOuter, a0, a1)}"><title>${tt({ tr: "Kısım " + roman(k), en: "Part " + roman(k), pt: "Parte " + roman(k) })}</title></path>`
-      );
+    // Kısım dilimleri KISIM SAYISINA değil GERÇEK SAYFA SAYISINA orantılı --
+    // önceki hâlde her kısım 1/maxKisim'lik eşit dilim alıyordu, yani 5
+    // sayfalık bir kısımla 313 sayfalık bir kısım haritada aynı yer
+    // kaplıyordu (bkz. okuma-yogunlugu.json: enSeyrek 5, enYogun 313 sayfa).
+    // Cilt/sifr halkalarının sınırları BURADA değişmiyor -- hâlâ kısım
+    // SAYISına göre (angleRange, yukarıda); yalnız her cildin kendi
+    // diliminin İÇİ, o cildin kısımları arasında sayfa ağırlığına göre
+    // yeniden bölüşülüyor. Böylece kısım kamalarının toplamı her zaman tam
+    // olarak kendi cilt diliminin genişliğine eşit kalıyor, iç içe halkalar
+    // hizasını kaybetmiyor.
+    const TAM_DAIRE = Math.PI * 2;
+    // Toplam dairenin binde birbuçuğu kadar taban pay: 1-2 sayfalık bir
+    // kısım bile tıklanabilir kalsın diye (CLAUDE.md görsel gramerinde
+    // "bağlanmamış düğme" yasağının tersi -- burada risk "görünmeyen ama
+    // aslında bağlı" düğme). ciltGenislik/ks.length'in %60'ıyla ayrıca
+    // sınırlı: çok kısımlı bir ciltte taban paylar toplamı asla cildin
+    // kendi diliminden taşmasın.
+    const MIN_KISIM_ACI_ORANI = 0.0015;
+
+    function ortalamaSayfa(ciltNo) {
+      if (!yogunlukData || !yogunlukData.kisimlar) return null;
+      const vals = Object.values(yogunlukData.kisimlar)
+        .filter((v) => ciltNo === null || v.cilt === ciltNo)
+        .map((v) => v.sayfa);
+      if (!vals.length) return null;
+      return vals.reduce((a, b) => a + b, 0) / vals.length;
     }
+
+    const veriHazir = !!(yogunlukData && yogunlukData.kisimlar);
+    const kisimWedges = [];
+    cilts.forEach((cilt) => {
+      const kEnd = Math.min(cilt.kisimEnd, maxKisim);
+      const ks = [];
+      for (let k = cilt.kisimStart; k <= kEnd; k++) ks.push(k);
+      if (!ks.length) return;
+
+      const [ciltA0, ciltA1] = angleRange(cilt.kisimStart, kEnd);
+      const ciltGenislik = ciltA1 - ciltA0;
+
+      // Ölçülmemiş (henüz yayımlanmamış) kısımlar için taban ağırlık:
+      // önce aynı cildin ortalaması, o da yoksa (cilt tümden ölçülmemişse)
+      // kitabın geneli -- ikisi de yoksa (veri hiç yüklenmediyse) 1, ama o
+      // durumda zaten aşağıda eşit dağıtıma düşülüyor.
+      const dolgu = ortalamaSayfa(cilt.cilt) || ortalamaSayfa(null) || 1;
+      const agirliklar = ks.map((k) => {
+        const part = futuhatData.parts.find((p) => p.cilt === cilt.cilt && p.kisim === k);
+        if (part && veriHazir && yogunlukData.kisimlar[part.id]) {
+          return yogunlukData.kisimlar[part.id].sayfa;
+        }
+        return dolgu;
+      });
+      const toplamAgirlik = agirliklar.reduce((a, b) => a + b, 0) || ks.length;
+
+      // Yoğunluk verisi henüz gelmediyse (render() ilk çağrısı, bkz.
+      // render() -- harita bekletilmeden hemen çiziliyor) eşit dağıt; veri
+      // gelince renderMap() yeniden çağrılıp gerçek oranlarla çiziliyor.
+      const tabanAci = veriHazir ? Math.min(TAM_DAIRE * MIN_KISIM_ACI_ORANI, (ciltGenislik / ks.length) * 0.6) : 0;
+      const kalanGenislik = ciltGenislik - tabanAci * ks.length;
+
+      let a = ciltA0;
+      ks.forEach((k, i) => {
+        const pay = veriHazir
+          ? tabanAci + kalanGenislik * (agirliklar[i] / toplamAgirlik)
+          : ciltGenislik / ks.length;
+        const a0 = a, a1 = a + pay;
+        a = a1;
+
+        const part = futuhatData.parts.find((p) => p.cilt === cilt.cilt && p.kisim === k);
+        const published = !!part;
+        const isCurrent = part && part.id === activePartId;
+        const kisimBaslik = tt({ tr: "Kısım " + roman(k), en: "Part " + roman(k), pt: "Parte " + roman(k) });
+        // Yalnız yayımlanmış (tıklanabilir) dilimler klavyeyle de erişilebilir
+        // olmalı -- "Yakında" dilimleri zaten tıklanamıyor, onlara odak
+        // durağı eklemek klavye kullanıcısını boşa dolaştırırdı. aria-label
+        // sadece "Kısım XVII" değil kısmın gerçek başlığını da taşır ki
+        // ekran okuyucu haritada dolaşırken hangi kısma gideceğini bilsin.
+        const ariaEtiket = published ? kisimBaslik + " — " + stripTags(tt(part.title)) : "";
+        kisimWedges.push(
+          `<path class="futuhat-map__kisim${published ? " futuhat-map__kisim--published" : ""}${isCurrent ? " futuhat-map__kisim--current" : ""}" data-id="${part ? part.id : ""}" style="--ring-hue:${(cilts.indexOf(cilt) * 90 + 40) % 360}"${published ? ` tabindex="0" role="button" aria-label="${escapeHtml(ariaEtiket)}"` : ""} d="${arcWedgePath(cx, cy, rKisimInner, rKisimOuter, a0, a1)}"><title>${kisimBaslik}</title></path>`
+        );
+      });
+    });
 
     mapEl.innerHTML = `
       <p class="futuhat-map__label">${tt({ tr: "Neredeyim", en: "Where am I", pt: "Onde estou" })}</p>
-      <svg viewBox="0 0 ${size} ${size}" role="img" aria-label="${tt({ tr: "Fütûhât'ın sifr, cilt ve kısım bölümlemesini gösteren iç içe halka haritası", en: "Nested-ring map of Futuhat's sifr, volume, and part divisions", pt: "Mapa de anéis aninhados das divisões de sifr, volume e parte do Futuhat" })}">
+      <svg viewBox="0 0 ${size} ${size}" role="group" aria-label="${tt({ tr: "Fütûhât'ın sifr, cilt ve kısım bölümlemesini gösteren iç içe halka haritası", en: "Nested-ring map of Futuhat's sifr, volume, and part divisions", pt: "Mapa de anéis aninhados das divisões de sifr, volume e parte do Futuhat" })}">
         ${ciltWedges}
         ${sifrWedges}
         ${kisimWedges.join("")}
@@ -1212,6 +1298,15 @@
     `;
     mapEl.querySelectorAll(".futuhat-map__kisim--published[data-id]").forEach((wedge) => {
       wedge.addEventListener("click", () => activatePart(wedge.dataset.id));
+      // CSS zaten :focus-visible tanımlıyordu ama tabindex/role atanmadığı
+      // için dilimler hiç odak alamıyor, dolayısıyla Enter/Space da hiç
+      // tetiklenmiyordu -- klavye kullanıcısı haritayı hiç kullanamıyordu.
+      wedge.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+          event.preventDefault();
+          activatePart(wedge.dataset.id);
+        }
+      });
     });
   }
 
@@ -1820,13 +1915,18 @@
 
   function render() {
     if (!futuhatData) return;
-    // Yoğunluk özeti (24 KB) halkanın kalınlığını taşıyor. Çizimi
-    // BEKLETMİYORUZ: liste hemen çıkar, ölçü gelince yalnız cilt
-    // başlıkları yeniden çizilir. Gelmezse halka eski hâlinde kalır --
+    // Yoğunluk özeti (24 KB) hem cilt başlıklarındaki ilerleme halkasının
+    // kalınlığını hem de "Neredeyim" haritasındaki kısım kamalarının
+    // sayfa oranını taşıyor. Çizimi BEKLETMİYORUZ: liste ve harita hemen
+    // çıkar (kısım kamaları o ana kadar eşit paylaşımlı), ölçü gelince
+    // ikisi de yeniden çizilir. Gelmezse ikisi de eski hâlinde kalır --
     // sayfa ölçüye bağımlı değil, ölçü sayfaya ekleniyor.
     if (!yogunlukData) {
       yogunlukYukle().then((d) => {
-        if (d && futuhatData) renderParts();
+        if (d && futuhatData) {
+          renderParts();
+          renderMap();
+        }
       });
     }
     renderMap();

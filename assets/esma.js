@@ -45,6 +45,7 @@
       title: `${tt(from.name)} ↔ ${tt(to.name)}`,
       kindLabel: meta ? tt(meta.label) : tt({ tr: "Saydığımız bir bağ", en: "A link we counted", pt: "Um vínculo que contamos" }),
       reason: tt(r.label) || tt(r.aciklama),
+      confidence: edgeConfidenceText(r.confidence),
     });
     tooltip.hidden = false;
     GU.moveTooltip(tooltip, wrapEl, event);
@@ -112,6 +113,43 @@
     wrap.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
     });
+  }
+
+  // B1 karşılığı (bkz. ontology.js aynı adlı blok): "ne kadar eminiz" notu.
+  // Ontoloji'nin 3 kenarı elle taranmış CONFIDENCE_LABEL sözlüğüyle aynı --
+  // burada da veri ayrı bir "rastgele" atama değil, her ilişkinin kendi
+  // düğümlerinin (zati-grup/hayy/alim/murid/kadir/batin/zahir/celal/cemal)
+  // sourced summary metnine bakılarak karar verildi (bkz. esma.json'daki
+  // "confidence" alanı ve bu değişikliğin commit notu).
+  const CONFIDENCE_LABEL = {
+    "Yüksek": { tr: "Yüksek", en: "High", pt: "Alta" },
+    "Orta": { tr: "Orta", en: "Medium", pt: "Média" },
+    "Düşük": { tr: "Düşük", en: "Low", pt: "Baixa" },
+    "Hipotez": { tr: "Hipotez", en: "Hypothesis", pt: "Hipótese" },
+    "Bilinmiyor": { tr: "Bilinmiyor", en: "Unknown", pt: "Desconhecida" },
+    "Gelecekte-doğrulanmalı": { tr: "Gelecekte doğrulanmalı", en: "To be confirmed later", pt: "A confirmar mais tarde" },
+  };
+  function confSlug(c) {
+    return c === "Orta" ? "orta"
+      : c === "Düşük" ? "dusuk"
+      : c === "Hipotez" ? "hipotez"
+      : c === "Bilinmiyor" ? "bilinmiyor"
+      : c === "Gelecekte-doğrulanmalı" ? "gelecek"
+      : "yuksek";
+  }
+  function edgeConfidenceText(c) {
+    if (!c || c === "Yüksek") return "";
+    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
+    return tt({ tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " }) + tt(label);
+  }
+  function confidenceNoteHtml(c) {
+    if (!c || c === "Yüksek") return "";
+    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
+    return `<p class="detail-confidence detail-confidence--${confSlug(c)}">${tt({
+      tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " })}<strong>${tt(label)}</strong> — ${tt({
+      tr: "ilişkinin kendi metni bu okumayı henüz kesinleşmiş saymıyor.",
+      en: "the relation's own text does not yet treat this reading as settled.",
+      pt: "o próprio texto da relação ainda não trata esta leitura como definitiva." })}</p>`;
   }
 
   const RELATION_TYPE_META = {
@@ -210,7 +248,11 @@
         en: "The pole of Majesty gathers the Names that voice God's loftiness, severity and remoteness from the servant (transcendence) — al-Qahhar, al-'Aziz, al-Muntaqim. For Ibn Arabi, Majesty never discloses itself bare; every act of severity comes clothed in a Beauty (nearness, mercy).",
         pt: "O polo da Majestade reúne os Nomes que expressam a altivez, a severidade e a distância de Deus em relação ao servo (transcendência) — al-Qahhar, al-'Aziz, al-Muntaqim. Para Ibn Arabi, a Majestade nunca se revela nua; todo ato de severidade vem revestido de uma Beleza (proximidade, misericórdia)."
       },
-      analogy: { tr: "Gökgürültüsü gibi: sesi korkutur ama getirdiği yağmur rahmettir.", en: "Like thunder: its sound frightens, yet the rain it brings is mercy.", pt: "Como o trovão: seu som assusta, mas a chuva que traz é misericórdia." }
+      analogy: { tr: "Gökgürültüsü gibi: sesi korkutur ama getirdiği yağmur rahmettir.", en: "Like thunder: its sound frightens, yet the rain it brings is mercy.", pt: "Como o trovão: seu som assusta, mas a chuva que traz é misericórdia." },
+      // Kutup özeti sentetik bir gruplama (bkz. yukarıdaki "sentetik" notu),
+      // ama Celâl'i ayrı bir bölüm olarak ele alan asıl kaynak burada --
+      // "celal" isim düğümünün kendi kaynağıyla aynı (esma.json).
+      sources: ["Fütûhât-ı Mekkiyye, Cilt 9 (Ekrem Demirli çev.) — İki Yüz Kırk Birinci Bölüm: Celâl"]
     },
     cemal: {
       name: { tr: "Cemâl — Güzellik", en: "Jamal — Beauty", pt: "Jamal — Beleza" },
@@ -220,7 +262,8 @@
         en: "The pole of Beauty gathers the Names that voice God's beauty, nearness and grace toward the servant (immanence) — ar-Rahman, al-Latif, al-Wadud. Beauty is the wider circle enclosing Majesty: every self-disclosure arrives first as a beauty.",
         pt: "O polo da Beleza reúne os Nomes que expressam a beleza, a proximidade e a graça de Deus para com o servo (imanência) — ar-Rahman, al-Latif, al-Wadud. A Beleza é o círculo mais amplo que envolve a Majestade: toda autorrevelação chega primeiro como uma beleza."
       },
-      analogy: { tr: "Şafak gibi: karanlığı dağıtan ilk ışık her zaman yumuşaktır.", en: "Like dawn: the first light that scatters the dark is always gentle.", pt: "Como a aurora: a primeira luz que dispersa a escuridão é sempre suave." }
+      analogy: { tr: "Şafak gibi: karanlığı dağıtan ilk ışık her zaman yumuşaktır.", en: "Like dawn: the first light that scatters the dark is always gentle.", pt: "Como a aurora: a primeira luz que dispersa a escuridão é sempre suave." },
+      sources: ["Fütûhât-ı Mekkiyye, Cilt 9 (Ekrem Demirli çev.) — İki Yüz Kırk İkinci Bölüm: Cemâl"]
     },
     kemal: {
       name: { tr: "Kemâl — Kemâl (İkisi Birden)", en: "Kamal — Perfection (Both at Once)", pt: "Kamal — Perfeição (Ambos ao Mesmo Tempo)" },
@@ -230,7 +273,11 @@
         en: "The pole of Perfection gathers the Names that carry Majesty and Beauty together, pointing to a wholeness beyond both — Allah, al-Malik, al-Quddus; the classifying group-headings (Names of the Essence / of relation / of act) also rest here. Kamal is completeness: the capacity to hold opposites at once.",
         pt: "O polo da Perfeição reúne os Nomes que carregam Majestade e Beleza juntas, apontando para uma totalidade além de ambas — Allah, al-Malik, al-Quddus; os títulos de grupo classificadores (Nomes da Essência / de relação / de ato) também repousam aqui. Kamal é completude: a capacidade de sustentar opostos ao mesmo tempo."
       },
-      analogy: { tr: "Berzah gibi: iki denizi ayıran ama ikisine de ait olan ince çizgi.", en: "Like a barzakh: the fine line that separates two seas yet belongs to both.", pt: "Como um barzakh: a linha fina que separa dois mares e pertence a ambos." }
+      analogy: { tr: "Berzah gibi: iki denizi ayıran ama ikisine de ait olan ince çizgi.", en: "Like a barzakh: the fine line that separates two seas yet belongs to both.", pt: "Como um barzakh: a linha fina que separa dois mares e pertence a ambos." },
+      // "Kemâl" bağımsız bir isim düğümü değil (bkz. esma.json); özetin
+      // dayandığı bölüm "allah" ve grup başlıklarının (zati-grup vd.) da
+      // kaynağı olan İlahlık Mertebesi bölümü.
+      sources: ["Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"]
     }
   };
 
@@ -310,7 +357,7 @@
     // Üç kutup kümesi (sentetik) -- Allah ile isimler arasına giren katman.
     POLES.forEach((p) => {
       add({
-        id: "cluster-" + p, raw: { id: "cluster-" + p, pole: p, name: CLUSTER_META[p].name, short: CLUSTER_META[p].short, summary: CLUSTER_META[p].summary, analogy: CLUSTER_META[p].analogy, insights: [], sources: [] },
+        id: "cluster-" + p, raw: { id: "cluster-" + p, pole: p, name: CLUSTER_META[p].name, short: CLUSTER_META[p].short, summary: CLUSTER_META[p].summary, analogy: CLUSTER_META[p].analogy, insights: [], sources: CLUSTER_META[p].sources || [] },
         kind: "cluster", pole: p, depthA: 1, parentId: "allah", childIds: [], level: 0, importance: 0.7,
       });
     });
@@ -1011,7 +1058,7 @@
     const visRel = relations.filter((r) => byId.get(r.from) && byId.get(r.to) && byId.get(r.from).vis > 0.05 && byId.get(r.to).vis > 0.05);
     const rs = relLayer.selectAll("line.esmaX-rel").data(visRel, (r) => r.from + "~" + r.to);
     rs.exit().remove();
-    const re = rs.enter().append("line").attr("class", (r) => "esmaX-rel esmaX-rel--" + r.type)
+    const re = rs.enter().append("line").attr("class", (r) => "esmaX-rel esmaX-rel--" + r.type + " esmaX-rel--conf-" + confSlug(r.confidence))
       .on("pointerenter", (e, r) => showRelTooltipEsma(r, e))
       .on("pointermove", (e) => moveTooltipEsma(e))
       .on("pointerleave", hideTooltipEsma)
@@ -1234,6 +1281,19 @@
   let dragging = false, dragCandidate = false, idleRotate = true;
   let dragStartX = 0, dragStartY = 0, dragStartPanX = 0, dragStartPanY = 0, dragStartYaw = 0, dragStartPitch = 0, dragPointerId = null;
 
+  // İki-parmak yaklaştırma ("Yaklaşmak", bkz. ETKILESIM_DILI.md fiil 1) --
+  // Ctrl/⌘+tekerlek masaüstünde var ama dokunmatikte hiçbir yakınlaştırma
+  // yolu yoktu. Aktif pointer'ları id'lerine göre izleyip aralarındaki
+  // mesafenin oranını zoomTarget'a uyguluyoruz; tek parmak sürükleme/döndürme
+  // mantığına dokunmuyor (o hâlâ pointermove içindeki tek-pointer yoluyla).
+  const pinchPointers = new Map();
+  let pinchStartDist = 0, pinchStartZoom = 1;
+  function pinchDistance() {
+    const pts = Array.from(pinchPointers.values());
+    if (pts.length < 2) return 0;
+    return Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+  }
+
   function onNodeActivate(n) {
     // Küme ve isimler seçilebilir; seçildiğinde önce (gerekiyorsa) o katmanı aç.
     // Önceden bu yalnız n'nin KENDİ katmanı gizliyken (deep-link/arama) işe
@@ -1334,12 +1394,30 @@
 
     const DRAG_THRESHOLD = 5;
     svgNode.addEventListener("pointerdown", (e) => {
+      pinchPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pinchPointers.size === 2) {
+        // İkinci parmak indi: tek-parmak sürüklemeyi iptal et, pinch'e geç.
+        dragCandidate = false; dragging = false;
+        pinchStartDist = pinchDistance();
+        pinchStartZoom = zoomTarget;
+        return;
+      }
+      if (pinchPointers.size > 2) return; // üçüncü+ parmak yok sayılır
       dragCandidate = true; dragPointerId = e.pointerId;
       dragStartX = e.clientX; dragStartY = e.clientY;
       dragStartPanX = panTargetX; dragStartPanY = panTargetY;
       dragStartYaw = yaw; dragStartPitch = pitch;
     });
     svgNode.addEventListener("pointermove", (e) => {
+      if (pinchPointers.has(e.pointerId)) pinchPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pinchPointers.size === 2) {
+        const d = pinchDistance();
+        if (pinchStartDist > 1 && d > 0) {
+          zoomTarget = Math.max(0.28, Math.min(3.2, pinchStartZoom * (d / pinchStartDist)));
+          ensureFrame();
+        }
+        return;
+      }
       if (!dragCandidate) return;
       const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY;
       if (!dragging) { if (Math.hypot(dx, dy) < DRAG_THRESHOLD) return; dragging = true; try { svgNode.setPointerCapture(dragPointerId); } catch (_) {} }
@@ -1354,14 +1432,16 @@
       }
       ensureFrame();
     });
-    function endDrag() {
+    function endDrag(e) {
+      if (e && pinchPointers.has(e.pointerId)) pinchPointers.delete(e.pointerId);
+      if (pinchPointers.size < 2) { pinchStartDist = 0; }
       const wasDragging = dragging;
       dragCandidate = false; dragging = false;
       if (dragPointerId != null) { try { svgNode.releasePointerCapture(dragPointerId); } catch (_) {} dragPointerId = null; }
       return wasDragging;
     }
-    svgNode.addEventListener("pointerup", (e) => { const was = endDrag(); });
-    svgNode.addEventListener("pointercancel", endDrag);
+    svgNode.addEventListener("pointerup", (e) => { const was = endDrag(e); });
+    svgNode.addEventListener("pointercancel", (e) => { endDrag(e); });
 
     // boşluğa tıklama: seçimi kaldır
     svgNode.addEventListener("click", (e) => {
@@ -1490,13 +1570,23 @@
     openPanel(`
       <p class="detail-eyebrow">${eyebrow}</p>
       <h2 class="detail-title">${tt(raw.name)} ${poleBadgeHtml(raw)}</h2>
-      <div class="detail-block detail-block--ibnarabi"><h3>${tt(raw.short)}</h3><p>${linkify(tt(raw.summary), "esma", raw.id)}</p></div>
+      <div class="detail-block detail-block--ibnarabi"><h3>${tt(raw.short)}</h3><p>${linkify(tt(raw.summary), "esma", raw.id)}</p>${clusterCiteHtml(sceneNode, raw)}</div>
       ${analogyHtml(raw.analogy)}
       ${insightsHtml(raw.insights, raw.sources, raw.id)}
       ${relatedNamesHtml(sceneNode)}
     `);
   }
   function showClusterDetail(sceneNode) { showNameDetail(sceneNode); }
+
+  // Kutup (cluster) özetleri kendi "insights" dizisine sahip değil (sentetik
+  // düğüm, bkz. CLUSTER_META) -- bu yüzden insightsHtml'in kaynak gösterimi
+  // (yalnız insight başına) onlara hiç uğramıyordu ve özet metni künyesiz
+  // kalıyordu. Buradaki künye içeriği DEĞİL, yalnız kaynağını gösteriyor;
+  // isim düğümlerinde kaynak zaten insightsHtml üzerinden görünüyor.
+  function clusterCiteHtml(sceneNode, raw) {
+    if (sceneNode.kind !== "cluster" || !raw.sources || !raw.sources.length) return "";
+    return `<cite>${raw.sources.join(" · ")}</cite>`;
+  }
 
   function showZatDetail() {
     if (!currentDetailIsZat) pushCurrentToHistory();
@@ -1521,6 +1611,7 @@
     openPanel(`
       <p class="detail-eyebrow">${tt({ tr: "İlişki", en: "Relation", pt: "Relação" })}</p>
       <h2 class="detail-title">${tt(from.name)} ↔ ${tt(to.name)} ${relationTypeBadgeHtml(r)}</h2>
+      ${confidenceNoteHtml(r.confidence)}
       ${relationDiagramHtml(r)}
       <div class="detail-block detail-block--ibnarabi"><p>${tt(r.label)}</p></div>
     `);

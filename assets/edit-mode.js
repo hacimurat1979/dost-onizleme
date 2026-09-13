@@ -127,6 +127,33 @@
     setQueue(queue);
   }
 
+  // Basit odak yardımcıları: modal içindeki odaklanabilir öğeleri bulmak
+  // (açılışta ilkine odaklanmak için) ve Tab/Shift+Tab'ı modal içinde
+  // döngüye almak (focus-trap) için ortak kullanılıyor -- hem ekran
+  // görüntüsü/not modalinde hem de kayıtlı-notlar modalinde.
+  function getFocusables(container) {
+    return Array.prototype.slice
+      .call(container.querySelectorAll(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      ))
+      .filter((el) => !el.hidden && el.offsetParent !== null);
+  }
+
+  function trapTabKey(e, container) {
+    if (e.key !== "Tab") return;
+    const focusables = getFocusables(container);
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
   function buildVisualNoteModal() {
     const modal = document.createElement("div");
     modal.className = "dost-shot-modal";
@@ -193,7 +220,8 @@
       close();
     });
     modal.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") { close(); return; }
+      trapTabKey(e, modal);
     });
   }
 
@@ -350,7 +378,7 @@
     });
   }
 
-  function openNoteList() {
+  function openNoteList(triggerEl) {
     listModal = document.createElement("div");
     listModal.className = "dost-shot-modal dost-notes";
     listModal.innerHTML =
@@ -362,11 +390,26 @@
       '<button type="button" data-action="close" class="dost-shot-modal__save">Kapat</button>' +
       "</div></div>";
     document.body.appendChild(listModal);
-    const close = () => { listModal.remove(); listModal = null; };
+    renderNoteList();
+    const close = () => {
+      listModal.remove();
+      listModal = null;
+      if (triggerEl && typeof triggerEl.focus === "function") triggerEl.focus();
+    };
     listModal.querySelector(".dost-shot-modal__backdrop").addEventListener("click", close);
     listModal.querySelector('[data-action="close"]').addEventListener("click", close);
-    listModal.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
-    renderNoteList();
+    listModal.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { close(); return; }
+      trapTabKey(e, listModal);
+    });
+    // Açılışta modal içindeki ilk odaklanabilir öğeye geç -- klavye/ekran
+    // okuyucu kullanıcısı odağın sayfanın arkasında kalmış öğede
+    // takılı kalmasın diye (kapanışta yukarıdaki close() tetikleyici
+    // düğmeye geri döndürüyor).
+    const card = listModal.querySelector(".dost-notes__card");
+    const focusables = getFocusables(card);
+    if (focusables.length) focusables[0].focus();
+    else card.focus();
   }
 
   function buildPanel() {
@@ -415,13 +458,25 @@
       document.addEventListener("mousemove", onMove);
       document.addEventListener("mouseup", onUp);
     });
+    // mousedown/mouseup yalnız fareyi (ve fare olaylarını taklit eden
+    // dokunmayı) dinliyor -- klavye/ekran okuyucu kullanıcısı Enter/Space
+    // ile düğmeyi "tıklasa" da mousedown hiç ateşlenmediği için panel hiç
+    // açılmıyordu. Gerçek <button> öğeleri klavye etkinleştirmesinde de bir
+    // "click" olayı üretir; `detail === 0` bunun klavye (ya da programatik)
+    // kaynaklı olduğunu, fare tıklamasından (detail >= 1, zaten yukarıda
+    // mouseup içinde ele alınıyor) ayırt etmemizi sağlıyor -- aksi halde
+    // fare tıklamasında panel açılıp hemen kapanırdı (çifte tetikleme).
+    toggle.addEventListener("click", (e) => {
+      if (e.detail !== 0) return;
+      menu.hidden = !menu.hidden;
+    });
     panel.querySelector('[data-action="visual-note"]').addEventListener("click", () => {
       menu.hidden = true;
       buildVisualNoteModal();
     });
     panel.querySelector('[data-action="notes"]').addEventListener("click", () => {
       menu.hidden = true;
-      openNoteList();
+      openNoteList(toggle);
     });
     panel.querySelector('[data-action="export"]').addEventListener("click", exportQueue);
     panel.querySelector('[data-action="clear"]').addEventListener("click", clearQueue);

@@ -66,11 +66,15 @@ window.__ayetHadisApp = (function () {
     return s ? esc(tt(s.ad)) : "";
   }
 
-  // ayet-onizleme.js'teki (künye hover kutusu) AYNI dosya -- kuran.json'da
-  // Portekizce meal yok -- ama PT modunda burada sessizce İngilizce/Türkçe
-  // meale düşülüyordu, hiçbir uyarı yoktu. Aynı verinin bir gösterim yüzeyi
-  // dürüst, öbürü değildi (UI denetimi bulgusu; CLAUDE.md'nin "yaptığımız
-  // işi olduğundan farklı gösterme" ilkesiyle çelişiyordu).
+  // ayet-onizleme.js'teki (künye hover kutusu) AYNI dosyayı kullanıyor.
+  // 2026-09-13'ten beri kuran.json'daki 65 âyetin tümünde meal.pt var
+  // (bkz. kuran.json'daki üst düzey 'kaynak' alanı: hazır bir veri seti
+  // değil, TR/EN mealden elle üretilmiş çeviri) -- bu yüzden PT modunda
+  // artık normalde bu düşme hiç devreye girmiyor. Yine de burada
+  // BIRAKILIYOR: gelecekte yeni bir âyet eklenip pt'si henüz yazılmadan
+  // yayına girerse (ya da yeni bir dil eklenirse), sessizce yanlış dile
+  // düşmek yerine kullanıcıya dürüstçe hangi dilde gösterildiği söylensin
+  // diye (CLAUDE.md: "yaptığımız işi olduğundan farklı gösterme").
   const DIL_ADI = {
     tr: { tr: "Türkçe", en: "Turkish", pt: "turco" },
     en: { tr: "İngilizce", en: "English", pt: "inglês" },

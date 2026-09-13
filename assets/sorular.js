@@ -762,7 +762,11 @@
     GU.wireEdgeAccessibility(lkEnter.filter((l) => l.kind === "rel" || l.kind === "bridge"), {
       label: (l) => {
         const not = l.note ? " — " + I18n.pick3(l.note) : "";
-        return soruUcAdi(l.source) + " ↔ " + soruUcAdi(l.target) + not;
+        const conf = (l.confidence && l.confidence !== "Yüksek")
+          ? " — " + tt({ tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " })
+            + tt(GU.CONFIDENCE_LABEL[l.confidence] || { tr: l.confidence, en: l.confidence, pt: l.confidence })
+          : "";
+        return soruUcAdi(l.source) + " ↔ " + soruUcAdi(l.target) + not + conf;
       },
       onActivate: (l) => {
         const hedef = l.target && l.target.question ? l.target : l.source;
@@ -1099,6 +1103,20 @@
       ${satir}</div>`;
   }
   function relationNote(r) { return r && r.note ? I18n.pick3(r.note) : ""; }
+  // "Ne kadar eminiz?" katmanı (B1, Ontoloji'den; bkz. graph-utils.js
+  // CONFIDENCE_LABEL/confSlug) — 2026-09-13'te sorular.json'daki 38 ilişkiye
+  // de uygulandı. Her ilişkinin `confidence`'ı kendi `note` metnindeki
+  // gerekçeye göre atandı (doğrudan alıntı/ortak doktrin = Yüksek, makul
+  // çıkarım = Orta, spekülatif benzetme = Düşük, soru biçimindeki açık uç =
+  // Hipotez) — otomatik/rastgele bir değer değil. "Yüksek" için not
+  // gösterilmiyor (varsayılan, vurgu istemiyor).
+  function relationConfidenceHtml(r) {
+    const c = r && r.confidence;
+    if (!c || c === "Yüksek") return "";
+    const label = GU.CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
+    return `<span class="sorular-related__conf sorular-related__conf--${GU.confSlug(c)}">${tt({
+      tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " })}${tt(label)}</span>`;
+  }
   // 2026-08-09 (Soru Nehri): relations[] zaten YÖNLÜ (from→to, gerekçeli) --
   // eskiden bu yön atılıp tek bir "İlişkili Sorular" listesinde
   // düzleştiriliyordu. Artık "nereden geliyor / nereye götürüyor" ayrı ayrı
@@ -1112,7 +1130,7 @@
       const entry = questionIndex.get(otherId); if (!entry) return "";
       return `<button class="sorular-question-row sorular-question-row--related" type="button" data-id="${otherId}">
         <span><span class="sorular-related__q">${I18n.pick3(entry.question.question)}</span>
-        <span class="sorular-related__note">${relationNote(r)}</span></span>
+        <span class="sorular-related__note">${relationNote(r)}</span>${relationConfidenceHtml(r)}</span>
         <span class="sorular-question-row__arrow" aria-hidden="true">→</span></button>`;
     };
     const onceRows = gelen.map((r) => row(r, r.from)).join("");

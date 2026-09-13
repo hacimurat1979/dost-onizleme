@@ -89,6 +89,43 @@
     dogurur: { tr: "Biri ötekini doğuruyor", en: "One gives rise to the other", pt: "Um dá origem ao outro" },
     yanki: { tr: "Aynı hamlenin yankısı", en: "Echo of the same move", pt: "Eco do mesmo gesto" },
   };
+
+  // "Ne kadar eminiz" katmanı — ontology.js'teki desenin (CONFIDENCE_LABEL/
+  // confSlug/confidenceNoteHtml) aynısı, kirişler (sıradan taşan bağlar)
+  // için. hal.json'daki her kirişin kendi `confidence` alanı, o kirişin
+  // NOT'unda zaten yazılı olan kanıt gücüne (doğrudan alıntı mı, bizim
+  // kurduğumuz bir bağ mı, tartışmalı bir kaynağa mı dayanıyor) bakılarak
+  // elle atandı; ölçüt ve gerekçe research/anlayis-evrimi/CONFIDENCE_MAP.md.
+  const CONFIDENCE_LABEL = {
+    "Yüksek": { tr: "Yüksek", en: "High", pt: "Alta" },
+    "Orta": { tr: "Orta", en: "Medium", pt: "Média" },
+    "Düşük": { tr: "Düşük", en: "Low", pt: "Baixa" },
+    "Hipotez": { tr: "Hipotez", en: "Hypothesis", pt: "Hipótese" },
+    "Bilinmiyor": { tr: "Bilinmiyor", en: "Unknown", pt: "Desconhecida" },
+    "Gelecekte-doğrulanmalı": { tr: "Gelecekte doğrulanmalı", en: "To be confirmed later", pt: "A confirmar mais tarde" },
+  };
+  function confSlug(c) {
+    return c === "Orta" ? "orta"
+      : c === "Düşük" ? "dusuk"
+      : c === "Hipotez" ? "hipotez"
+      : c === "Bilinmiyor" ? "bilinmiyor"
+      : c === "Gelecekte-doğrulanmalı" ? "gelecek"
+      : "yuksek";
+  }
+  function edgeConfidenceText(c) {
+    if (!c || c === "Yüksek") return "";
+    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
+    return tt({ tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " }) + tt(label);
+  }
+  function confidenceNoteHtml(c) {
+    if (!c || c === "Yüksek") return "";
+    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
+    return `<p class="detail-confidence detail-confidence--${confSlug(c)}">${tt({
+      tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " })}<strong>${tt(label)}</strong> — ${tt({
+      tr: "kirişin kendi metni bu okumayı henüz kesinleşmiş saymıyor.",
+      en: "the chord's own text does not yet treat this reading as settled.",
+      pt: "o próprio texto da corda ainda não trata esta leitura como definitiva." })}</p>`;
+  }
   const TERK_NOTE = {
     tr: "Bu makamın Fütûhât'ta ayrıca bir \"terki\" bölümü var — kazanılıp sonra bırakılan bir basamak.",
     en: "In the Futuhat this station also has a chapter on its \"abandonment\" — a step attained and then let go.",
@@ -610,7 +647,7 @@
       onFocus: (r) => { hoveredRel = r; ensureFrame(); },
       onBlur: () => { hoveredRel = null; ensureFrame(); },
     });
-    chEnter.append("path").attr("class", (r) => "hal-chord hal-chord--" + r.kind);
+    chEnter.append("path").attr("class", (r) => "hal-chord hal-chord--" + r.kind + " hal-chord--conf-" + confSlug(r.confidence));
     const chMerged = chEnter.merge(chSel);
     chSel.exit().remove();
     chMerged.each(function (r) {
@@ -622,10 +659,15 @@
       if (hoveredRel === r) op = 1;
       if (currentRelation === r) op = 1;
       op *= reveal >= 0.99 ? 1 : Math.max(0, reveal * 2 - 1);
+      // Düşük güvenli kirişler (ontology.js'teki .link--conf-* deseninin
+      // aynısı): düğmeye gerek kalmadan, varsayılan olarak farklı renk +
+      // kesik çizgiyle ayrılıyorlar -- ayrım isteğe bağlı bir katman değil.
+      const dusukGuven = r.confidence && r.confidence !== "Yüksek";
       g.select(".hal-chord-hit").attr("d", dpath);
       g.select(".hal-chord")
         .attr("d", dpath)
-        .style("stroke", getVar(KIND_VAR[r.kind] || "--series-hal-cemfark"))
+        .style("stroke", getVar(dusukGuven ? "--series-celal" : (KIND_VAR[r.kind] || "--series-hal-cemfark")))
+        .style("stroke-dasharray", dusukGuven ? "5 4" : null)
         .style("stroke-width", lit || hoveredRel === r || currentRelation === r ? 2.4 : 1.15)
         .style("opacity", op);
     });
@@ -884,6 +926,7 @@
       title: `${I18n.pick3(s.name)} ↔ ${I18n.pick3(t.name)}`,
       kindLabel: tt(KIND_LABEL[r.kind] || {}),
       reason: I18n.pick3(r.note),
+      confidence: edgeConfidenceText(r.confidence),
     });
     tooltip.hidden = false; moveTooltip(event);
   }
@@ -927,6 +970,7 @@
         <p class="detail-eyebrow">${tt(KIND_LABEL[r.kind] || {})}</p>
         <p>${linkify(tt(r.note), "hal", d.id)}</p>
         <cite>${r.cite}</cite>
+        ${confidenceNoteHtml(r.confidence)}
       </div>`;
     }).join("");
     return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Sıradan Taşan Bağlar", en: "Bonds beyond the sequence", pt: "Vínculos além da sequência" })}</p>${items}`;
@@ -965,6 +1009,7 @@
         <h3>${tt(KIND_LABEL[r.kind] || {})}</h3>
         <p>${linkify(tt(r.note), "hal", null)}</p>
         <cite>${r.cite}</cite>
+        ${confidenceNoteHtml(r.confidence)}
       </div>`;
     detailPanel.hidden = false;
     ensureFrame();

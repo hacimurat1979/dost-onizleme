@@ -76,26 +76,28 @@
   // Esc: bir adım geri (ETKILESIM_DILI.md üçüncü fiil). Önce detay paneli,
   // o kapalıysa sayfadan çıkış.
   //
-  // 2026-08-28'de ölçüldü ve düzeltildi: panel AÇIKKEN tek bir Esc hem
-  // paneli kapatıp hem index.html'e gidiyordu -- yani "bir adım" değil
-  // "hepsi". Sebep sıra: graph-utils.js'in merkezî Esc dinleyicisi
-  // (registerStepBack zinciri, sonunda `panel.hidden = true`) compare.js'ten
-  // ÖNCE yükleniyor, dolayısıyla önce o çalışıp paneli kapatıyor; buraya
-  // gelindiğinde panel çoktan kapalı görünüyor ve "kapalıysa çık" dalı
-  // tetikleniyordu. Karar artık tuşa basıldığı ANDAKİ duruma göre
-  // veriliyor; durumu yakalama evresinde (zincirden önce) not ediyoruz.
-  // Bu sayfanın üç sekmesinin hepsinde vardı, yeni sekmede fark edildi.
-  let escPanelAcikti = false;
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") escPanelAcikti = !detailPanel.hidden;
-  }, true);
-  window.addEventListener("keydown", (e) => {
-    if (e.key !== "Escape") return;
-    if (escPanelAcikti) {
-      detailPanel.hidden = true;   // zincir zaten kapatmış olabilir; ikisi de aynı sonucu verir
-      return;
+  // 2026-08-28'de bir kaçamak çözümle "düzeltilmişti": iki ayrı window
+  // keydown dinleyicisi (biri yakalama evresinde durumu not ediyor, diğeri
+  // kabarma evresinde karara bağlıyordu), çünkü graph-utils.js'in merkezî
+  // Esc zinciri (registerStepBack) kendi belgesiz yan etkisiyle -- hiçbir
+  // stepBack üstlenmezse zincir sonunda `#detail-panel`i sessizce kapatıyor
+  // -- compare.js'in kendi mantığından ÖNCE devreye giriyordu ve panel
+  // zaten kapanmış görünüyordu. 2026-09-12 taramasında bu iki dinleyici
+  // kaldırılıp aynı davranış zincirin KENDİSİNE bir stepBack olarak
+  // kaydedildi -- artık zamanlamaya bağlı bir bayrağa (escPanelAcikti)
+  // gerek yok, sıra tek bir merkezi yerde tanımlı. wrapId burada `null`:
+  // bu sayfanın dört sekmesi (temalar/profil/baglar/yazilar) ayrı
+  // wrap'lara bölünmüş ve o an aktif olmayanı `hidden` -- sekme hangisi
+  // olursa olsun Esc aynı anlama gelmeli, o yüzden görünürlük kapısına
+  // bağlanmıyor (lightbox.js/graph-hint.js/durus-kontrol.js'teki aynı
+  // desen: sayfa-genel bir davranış tek bir wrap'a hapsedilmez).
+  window.DostGraphUtils.registerStepBack(null, () => {
+    if (!detailPanel.hidden) {
+      detailPanel.hidden = true;
+      return true;
     }
     window.location.href = "index.html";
+    return true;
   });
 
   // Touch devices have no Escape key. The tappable title below is the quiet
@@ -135,6 +137,11 @@
   loadData();
 
   let simulation, nodeSel, linkSel, labelSel, zoomBehavior, links;
+  // Önceden window.__daphneApp idi. Hiçbir dosya dışarıdan okumuyordu
+  // (grep ile doğrulandı) -- yalnız bu dosyanın kendi showThemeDetail'i
+  // kullanıyordu, yani global'e hiç gerek yoktu; modül kapsamında bir
+  // değişkene indirildi (2026-09-12 taraması).
+  let daphneApp;
 
   function buildGraph(themes, conceptById) {
     const width = svg.node().clientWidth;
@@ -156,28 +163,83 @@
     });
 
     themes.forEach((th) => {
+      // concepts.forEach yukarıda aynı korumayı yapıyor (bulunamayan concept
+      // için düğüm eklemiyor) ama tema burada korumasızdı: concepts.json'da
+      // olmayan bir ibn_arabi_concept'e işaret eden bir tema, var olmayan
+      // "concept-<id>" düğümüne köprü kenarı açardı -- d3.forceLink bunu id
+      // bulamayınca hata verir, simülasyon hiç kurulmaz (2026-09-12
+      // taraması). Concept yoksa o temayı da eklemiyoruz.
+      if (!conceptById.has(th.ibn_arabi_concept)) return;
       nodes.push({ id: "theme-" + th.id, type: "theme", theme: th });
       links.push({ source: "concept-" + th.ibn_arabi_concept, target: "theme-" + th.id, kind: "bridge" });
       links.push({ source: "theme-" + th.id, target: "hub-daphne", kind: "daphne" });
     });
 
-    function targetX(d) {
-      if (d.type === "hub-ibnarabi" || d.type === "concept") return width * 0.24;
-      if (d.type === "hub-daphne") return width * 0.76;
-      return width * 0.5;
-    }
+    // Vesica piscis (2026-09-13): önceki kompozisyon iki hub'ı sabit bir x
+    // sütununa (0.24/0.76), temaları da ortada tek başka bir sabit sütuna
+    // (0.5) iğneliyordu -- dogrusal/eksen tabanlı bir yerleşim. Burada
+    // hub'lar vesica piscis'in iki merkezi gibi düşünülüyor: her biri
+    // kendi "alanının" (dairesinin) merkezi. Kavramlar (concept) yalnız
+    // hub-ibnarabi'nin dairesinde bir yörüngede kalıyor -- özel/tekil alan.
+    // Temalar (theme) ise HEM hub-ibnarabi'ye HEM hub-daphne'ye göre aynı
+    // yarıçapta tutulmaya çalışılıyor; bu iki kısıt birden ancak iki
+    // dairenin kesiştiği bölgede (vesica'nın "gözü") karşılanabildiği için
+    // temalar kendiliğinden oraya toplanıyor -- "Daire ve merkez" ilkesinin
+    // (CLAUDE.md) bu grafiğe uygulanışı, soyut ok ya da eşmerkezli statik
+    // çember yok, yalnız kuvvet dengesi.
+    const hubIbnX = width * 0.32;
+    const hubDaphneX = width * 0.68;
+    const hubY = height / 2;
+    const hubDist = hubDaphneX - hubIbnX;
+    // Klasik vesica piscis oranı, iki dairenin her biri diğerinin
+    // merkezinden geçer (yarıçap = merkezler arası mesafe); grafik
+    // dolup taşmasın diye 0.62 ile hafifçe daraltıldı -- yine de belirgin
+    // bir kesişim ("göz") bırakacak kadar örtüşüyorlar.
+    const vesicaR = hubDist * 0.62;
+    // Kavramların yörünge yarıçapı: hub-ibnarabi dairesinin İÇİNDE ama
+    // kesişime taşmayacak kadar dar (kesişimin en yakın sınırı ~0.38 *
+    // hubDist noktasında başlıyor, 0.30 güvenli payla altında kalıyor).
+    const conceptOrbitR = hubDist * 0.30;
 
     simulation = d3
       .forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id((d) => d.id).distance((l) => (l.kind === "bridge" ? 150 : 170)).strength(0.35))
+      .force("link", d3.forceLink(links).id((d) => d.id).distance((l) => (l.kind === "bridge" ? 90 : 110)).strength(0.35))
       .force("charge", d3.forceManyBody().strength(-420))
-      .force("x", d3.forceX(targetX).strength((d) => (d.type.startsWith("hub") ? 0.35 : 0.12)))
-      .force("y", d3.forceY(height / 2).strength(0.06))
+      // Hub'lar vesica'nın iki sabit merkezinde kalsın (sürüklenebilir
+      // olma özelliği korunuyor: drag sırasında fx/fy devreye girip bu
+      // kuvveti geçici olarak geçersiz kılıyor, bkz. graph-utils.js
+      // createDragBehavior).
+      .force("hubx", d3.forceX((d) => (d.type === "hub-ibnarabi" ? hubIbnX : hubDaphneX)).strength((d) => (d.type.startsWith("hub") ? 0.35 : 0)))
+      .force("huby", d3.forceY(hubY).strength((d) => (d.type.startsWith("hub") ? 0.35 : 0)))
+      // Concept: yalnız hub-ibnarabi'ye göre sabit yarıçap -- açı serbest,
+      // birden çok concept birbirini charge/collide ile ittiği için
+      // yörünge boyunca kendiliğinden dağılıyor (dairesel "yörünge").
+      .force("orbit-concept", d3.forceRadial(conceptOrbitR, hubIbnX, hubY).strength((d) => (d.type === "concept" ? 0.5 : 0)))
+      // Theme: hem hub-ibnarabi hem hub-daphne'den aynı vesicaR uzaklıkta
+      // tutulmaya çalışılan iki yumuşak kuvvet -- ikisi birden ancak iki
+      // dairenin kesiştiği bölgede dengeye gelebiliyor.
+      .force("orbit-theme-ibn", d3.forceRadial(vesicaR, hubIbnX, hubY).strength((d) => (d.type === "theme" ? 0.2 : 0)))
+      .force("orbit-theme-daphne", d3.forceRadial(vesicaR, hubDaphneX, hubY).strength((d) => (d.type === "theme" ? 0.2 : 0)))
       .force("collide", d3.forceCollide().radius((d) => radiusFor(d) + 46));
 
     nodes.forEach((d) => {
-      if (d.type === "hub-ibnarabi") { d.x = width * 0.2; d.y = height / 2; }
-      if (d.type === "hub-daphne") { d.x = width * 0.8; d.y = height / 2; }
+      if (d.type === "hub-ibnarabi") { d.x = hubIbnX; d.y = hubY; }
+      if (d.type === "hub-daphne") { d.x = hubDaphneX; d.y = hubY; }
+      if (d.type === "concept") {
+        // Başlangıçta da kendi yörüngesinin üstünde (rastgele açı) --
+        // d3'ün varsayılan spiral başlangıcı yerine, sahne ilk kareden
+        // itibaren zaten dairesel görünsün.
+        const a = Math.random() * Math.PI * 2;
+        d.x = hubIbnX + Math.cos(a) * conceptOrbitR;
+        d.y = hubY + Math.sin(a) * conceptOrbitR;
+      }
+      if (d.type === "theme") {
+        // Kesişim bölgesinin ortasına yakın bir başlangıç -- simülasyon
+        // oraya zaten yakın başlayınca daha az sıçrayarak yerleşiyor.
+        const midX = (hubIbnX + hubDaphneX) / 2;
+        d.x = midX + (Math.random() - 0.5) * hubDist * 0.2;
+        d.y = hubY + (Math.random() - 0.5) * hubDist * 0.5;
+      }
     });
 
     // Siteki diğer 12 grafik görünümünün hepsi yakınlaştırma/geri-merkezleme
@@ -277,12 +339,16 @@
       sel.call(zoomBehavior.transform, d3.zoomIdentity);
     });
 
-    window.__daphneApp = { nodes, links, conceptById, themes };
+    daphneApp = { nodes, links, conceptById, themes };
   }
 
   function render() {
     if (!labelSel) return;
     labelSel.text((d) => labelFor(d));
+    // Görünen etiketle birlikte ekran okuyucunun okuduğu ad da güncellenmeli
+    // -- yalnız labelSel.text() güncellenirse dil değişiminden sonra
+    // aria-label eski dilde donuk kalıyordu (2026-09-12 taraması).
+    nodeSel.attr("aria-label", (d) => labelFor(d));
     if (currentDetailTheme) showThemeDetail(currentDetailTheme);
     else if (currentDetailConcept) showConceptDetail(currentDetailConcept);
   }
@@ -297,7 +363,13 @@
     if (d.type === "hub-ibnarabi") return getVar("--series-ibnarabi");
     if (d.type === "hub-daphne") return getVar("--series-daphne");
     if (d.type === "theme") return getVar("--series-theme");
-    return getVar("--series-ibnarabi-line");
+    // Concept düğümleri lejantta "İbn Arabî kavramları" olarak --series-ibnarabi
+    // rengiyle vaat ediliyor (legend__dot--ibnarabi); burası önceden çizgi
+    // rengini (--series-ibnarabi-line, çok açık bir mavi) kullanıyordu -- hem
+    // lejantla uyuşmuyordu hem zemine karşı WCAG'nin 3:1 grafik-nesnesi
+    // eşiğinin altında kalıyordu. --series-ibnarabi-text, aynı renk ailesinin
+    // kontrast için koyulaştırılmış hâli (2026-09-12 taraması).
+    return getVar("--series-ibnarabi-text");
   }
 
   function getVar(name) {
@@ -384,8 +456,14 @@
   }
 
   function showThemeDetail(theme) {
-    const concept = window.__daphneApp.conceptById.get(theme.ibn_arabi_concept);
-    const quote = I18n.getLang() === "pt" && theme.daphne_quote_pt ? theme.daphne_quote_pt : theme.daphne_quote;
+    const concept = daphneApp.conceptById.get(theme.ibn_arabi_concept);
+    const lang = I18n.getLang();
+    const quote =
+      lang === "pt" && theme.daphne_quote_pt
+        ? theme.daphne_quote_pt
+        : lang === "tr" && theme.daphne_quote_tr
+          ? theme.daphne_quote_tr
+          : theme.daphne_quote;
     detailContent.innerHTML = `
       <p class="detail-eyebrow">${tt({ tr: "Ortak Tema", en: "Shared Theme", pt: "Tema Compartilhado" })}</p>
       <h2 class="detail-title">${I18n.pick(theme, "title")}</h2>

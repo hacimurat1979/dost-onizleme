@@ -31,6 +31,7 @@
   var activeId = null;
   var mapScene = null;
   var sectionScenes = [];
+  var crossLinkSubscribed = false;
 
   // B2 "Kaldığın yer": bkz. fusus.js'teki aynı isimli mantık.
   var LAST_HADIS_KEY = "dost-miskat-last-hadis";
@@ -348,6 +349,12 @@
   function activate(id) {
     load().then(function () {
       if (!data) return;
+      // Yavaş ağ bekçisi: veri gelene kadar kullanıcı başka görünüme
+      // geçmiş olabilir; geç gelen .then render+setHash ile URL'yi ve
+      // başlığı artık bakılmayan görünüme yazıyordu (fusus.js/futuhat.js'teki
+      // bekçiyle aynı aile). Aynı bekçi aşağıdaki onReady aboneliğinde de
+      // var: o abonelik başka görünümlerin verisi hazır olunca da düşüyor.
+      if (!window.DostGraphUtils.isViewActive(wrap)) return;
       var h = hadisById(id) || (!id ? hadisById(loadLastHadis()) : null) || hadisById(data.activeHadisId) || data.hadisler[0];
       if (!h) return;
       isDefaultLanding = !id && !loadLastHadis();
@@ -357,6 +364,12 @@
       renderList();
       renderArticle(h);
       if (window.__dostNav) window.__dostNav.setHash("miskat", h.id);
+      if (!crossLinkSubscribed && window.__dostCrossLink && window.__dostCrossLink.onReady) {
+        crossLinkSubscribed = true;
+        window.__dostCrossLink.onReady(function () {
+          if (data && activeId && window.DostGraphUtils.isViewActive(wrap)) renderArticle(hadisById(activeId));
+        });
+      }
     });
   }
 

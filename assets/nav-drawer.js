@@ -115,4 +115,66 @@
   if (window.DostGraphUtils) {
     window.DostGraphUtils.registerStepBack("nav-drawer", () => { close(true); return true; });
   }
+
+  // --- Fütûhât+Füsûs birleşik okuma ilerlemesi ----------------------------
+  // Tek halka, ortak bir tepe noktasından (saat 12 yönü) iki yöne büyüyen
+  // yarım-yay: Fütûhât sola, Füsûs sağa. Alt nokta (saat 6) ikisi de
+  // tamamlanınca halkanın kapandığı yer -- "O'ndan geldik, O'na gidiyoruz"
+  // ilkesinin bu küçük göstergeye yansıması (bkz. CLAUDE.md "Daire ve
+  // merkez"). Okunan dilim tam opak (--series-theme), kalan dilim AYNI
+  // renk ama soluk -- GORSEL_DIL.md'nin sabit "Matlık = Perdelenme"
+  // eşlemesi; iç içe eşmerkezli halka YOK, tek yarıçap. Veri
+  // data/ibn-arabi/okuma-durumu.json'dan -- karşılama "Neredeyiz"
+  // özetiyle paylaşılan aynı küçük kaynak (bkz. assets/kavram.js'teki aynı
+  // yorum: futuhat-atlas-index.json/fusus-atlas.json burada da ağır
+  // kalırdı). Bu dosyaya (nav-drawer.js) konması bilinçli: iki kitabın
+  // düğmeleri zaten burada yan yana ve dosya her sayfada tek sefer
+  // yükleniyor -- futuhat.js/fusus.js'in kendi "Neredeyim" alanına
+  // konsaydı iki kitabı BİRDEN gösteren tek bir gösterge için o iki
+  // dosyayı birbirine bağımlı hâle getirmek gerekirdi.
+  function wireOkumaIlerleme() {
+    const el = document.getElementById("okuma-ilerleme");
+    if (!el || !window.DostGraphUtils) return;
+    window.DostGraphUtils.fetchJson("data/ibn-arabi/okuma-durumu.json").then((veri) => {
+      if (!veri || !veri.futuhat || !veri.fusus) return;
+      const cx = 12, cy = 12, r = 9;
+      const tepe = -Math.PI / 2; // saat 12
+      function yay(a0, a1) {
+        const x0 = (cx + r * Math.cos(a0)).toFixed(2), y0 = (cy + r * Math.sin(a0)).toFixed(2);
+        const x1 = (cx + r * Math.cos(a1)).toFixed(2), y1 = (cy + r * Math.sin(a1)).toFixed(2);
+        const sweep = a1 > a0 ? 1 : 0;
+        const buyukYay = Math.abs(a1 - a0) > Math.PI ? 1 : 0;
+        return `M ${x0} ${y0} A ${r} ${r} 0 ${buyukYay} ${sweep} ${x1} ${y1}`;
+      }
+      const fOran = Math.max(0, Math.min(1, veri.futuhat.done / veri.futuhat.total));
+      const suOran = Math.max(0, Math.min(1, veri.fusus.done / veri.fusus.total));
+      // Fütûhât: tepeden SOLA (açı azalarak) büyür. Füsûs: tepeden SAĞA
+      // (açı artarak) büyür. İkisi de alt noktada (tepe ± π) biter.
+      const fBitis = tepe - fOran * Math.PI;
+      const suBitis = tepe + suOran * Math.PI;
+      const segments = [
+        ["okuma-ilerleme__seg", yay(tepe, fBitis)],
+        ["okuma-ilerleme__seg okuma-ilerleme__seg--soluk", yay(fBitis, tepe - Math.PI)],
+        ["okuma-ilerleme__seg", yay(tepe, suBitis)],
+        ["okuma-ilerleme__seg okuma-ilerleme__seg--soluk", yay(suBitis, tepe + Math.PI)],
+      ];
+      const svg = `<svg class="okuma-ilerleme__ring" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">`
+        + segments.map(([cls, d]) => `<path class="${cls}" fill="none" d="${d}"></path>`).join("")
+        + `</svg>`;
+      const etiket = `<span class="okuma-ilerleme__label">${veri.futuhat.done}/${veri.futuhat.total} · ${veri.fusus.done}/${veri.fusus.total}</span>`;
+      el.innerHTML = svg + etiket;
+      el.dataset.trTitle = `Fütûhât ${veri.futuhat.done}/${veri.futuhat.total} kısım, Füsûs ${veri.fusus.done}/${veri.fusus.total} fass okundu`;
+      el.dataset.enTitle = `Futuhat ${veri.futuhat.done}/${veri.futuhat.total} parts, Fusus ${veri.fusus.done}/${veri.fusus.total} bezels read`;
+      el.dataset.ptTitle = `Futuhat ${veri.futuhat.done}/${veri.futuhat.total} partes, Fusus ${veri.fusus.done}/${veri.fusus.total} engastes lidos`;
+      const lang = window.DostI18n ? window.DostI18n.getLang() : "tr";
+      const baslik = el.dataset[lang + "Title"] || el.dataset.enTitle;
+      el.setAttribute("title", baslik);
+      el.setAttribute("aria-label", baslik);
+      el.hidden = false;
+    }).catch(() => {
+      // Sessizce atlanır -- futuhat.js'in kendi yoğunluk halkasıyla aynı
+      // ilke: ölçü bir süs değil ama onsuz da sayfa çalışmalı.
+    });
+  }
+  wireOkumaIlerleme();
 })();

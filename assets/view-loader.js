@@ -37,8 +37,8 @@
 
   var VIEWS = {
     __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-BRzLS2A7b2GtSzC/029wyFnItyzgtts/kZu3yvo2aXTdQgM2qDhVAN4QjbBOlJfK" },
-    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-Mv3sxIrliGNS+YVIdKGP5szfd/ick34KzC+BVLyP3Ru+jVH+geIZQef74mQ7GCoL" },
-    __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-ueJyuy/b04NHTcHqZ0FdSQVTq3egRzUMDMlzsTW9FbKOpJ1RAIxqRvS7ukUSIoaI" },
+    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-cB0CHRDcCKIabXy545C7bSjQNEmI5EBsIZdV4wxkybxE2biVzqdL2hAr7dDmyvnH" },
+    __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-ZK44+CEWgcXb8Ze9mIoAMWSzaXaqLYOJS98f7Jh0b2XXvdIwicCFKrJnOEeLmtgN" },
     __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-3DAmRScI+L9wWXXhl7hJ+vPPOCivyCDlNFjOkGi+POHuSA/16/KYsSWuqWgoKJ/9" },
     __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-2rN3S/i2hCI+gsfcxXbYk077iG7ineliJ4mSDwiZoVruUR8eOOqc9ctW2W4Q7I79" },
     __okumaYollariApp: { src: "assets/okuma-yollari.js", integrity: "sha384-f3AwGIN00ENzTIgo4xzB1bgSzYoqz0VsDiHFCA63q4mDpaEHg1fMRVfCESArkdzL" },
@@ -51,16 +51,16 @@
     __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-kl48zvjGhCjql6ilzjKBLNV+o8iJC8Aa9VWWZs2PcW4CRsYqu936jtfJaJDxoY0k" },
     __yolculukApp: { src: "assets/yolculuk.js", integrity: "sha384-4rFNj/JUH7Mr0a6bUe2+DXBMA729ejih0SnKi4JjwiyDpWMm76JHIdiDkCLzplkl" },
     __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-oidFJfgo+xoAz+O7Bbd6B8dvvi7onts6hQrS9QUbJ6KlizRcMxipsiysamiWtf39" },
-    __esmaApp: { src: "assets/esma.js", integrity: "sha384-U6SPQdNorekAF/Jj0whX1KBaTzHbm6Q9kZY6d67MP3tM4rLojUg9rhTSsV19LbKd" },
-    __halApp: { src: "assets/hal.js", integrity: "sha384-c11YvzvMeriZtzfG+bIY3MkwsMyd7YaxuZ2H8XPElpMyn8tUbfBvmUN5atv9aKpW" },
+    __esmaApp: { src: "assets/esma.js", integrity: "sha384-XSJsmpHWu25qBgQmgRyDAGR5pgy8IqKqM8MVrHJXs6MLBXrn4/2sM6gmioTIU8BE" },
+    __halApp: { src: "assets/hal.js", integrity: "sha384-6FyyE1p9PyylCpdaRSz7Xs+OgKfrbGwCgKchzhoJQ6AEf6o5Pp51EAx+/VD3Yqxw" },
     __terimlerApp: { src: "assets/terimler.js", integrity: "sha384-JaRGixBgZye4AXb2TkO7ZUAxRZmfs0BEdlO5LbA2aNs2fRupI+x7fnn1ogeA1F0i" },
-    __sorularApp: { src: "assets/sorular.js", integrity: "sha384-KHvutOBb/6nMyHh4/YfKWF5L/qs1zrHDbhWoxbgZULPnCpGKmL2Z4xcVS9vfYsSA" },
-    __menzillerApp: { src: "assets/menziller.js", integrity: "sha384-w3Ri6nUjABJfUw1I01CsVwhNibowx8x0bHdCiYqb/JeyoqOGPptt44aCQR1NshIk" },
-    __futuhatApp: { src: "assets/futuhat.js", integrity: "sha384-N8UvWoFjA71Lj/RtH8nct9bEmR7cNnWznSDCP9GFD0+2WDTIlMK8Mgrx7YGIzAaZ" },
+    __sorularApp: { src: "assets/sorular.js", integrity: "sha384-ggBFEifrNf2gNrNohW83SdtICWy4MrrZpk7i24KZ8ZoyNXlbTaE3yWpsRsfycrXH" },
+    __menzillerApp: { src: "assets/menziller.js", integrity: "sha384-aoi9kHFsxJVx2jfmCZFnVN/2Yxol0XzzQ13vpGklzHoaGsIbmBBr1bh+unbpvU3i" },
+    __futuhatApp: { src: "assets/futuhat.js", integrity: "sha384-1fiswUyPfMQ3x4yRzul7OX2UwP5U40j2uiqLdQDtd9TTmOedtk2o1HfEOp2pDCSo" },
     __cizimlerApp: { src: "assets/cizimler.js", integrity: "sha384-vfBFzcoxhxGhzqRMlZ59DFBYZCIW+icJAdZD3alB+rzlLsVsvEaCquFsI23Gfadu" },
     __tasiyicilarApp: { src: "assets/tasiyicilar.js", integrity: "sha384-QgCqx0oiM2uUWN4NfoO0RYMw9Vl1crt43kzKE4JzgG9To7+0U7bsNrmm3BAG5MVn" },
     __fususApp: { src: "assets/fusus.js", integrity: "sha384-hthm8scYI5UnQN80SpAsoWhagPfKoVMuY7vsV2GCqOjV0SjkfdGWvpIXREiFeuV5" },
-    __miskatApp: { src: "assets/miskat.js", integrity: "sha384-4e7t1rWud2O8U016SIu8ToaaFu3ZecPbCJPBo62VA7WAuX1C8k1lRxYi2s9F48kG" },
+    __miskatApp: { src: "assets/miskat.js", integrity: "sha384-ZBFtkyjPCZZ0phaLkLVBAiPg9jV2Nv7XBua0gqbAkZNAWJQJD4UUN6AEY8OOx7/1" },
   };
 
   var loadingPromises = {};
@@ -96,12 +96,19 @@
           if (typeof prop !== "string") return undefined;
           return function () {
             var args = arguments;
-            return loadScript(globalName).then(function () {
-              var real = window[globalName];
-              if (real && typeof real[prop] === "function") {
-                return real[prop].apply(real, args);
-              }
-            });
+            return loadScript(globalName)
+              .then(function () {
+                var real = window[globalName];
+                if (real && typeof real[prop] === "function") {
+                  return real[prop].apply(real, args);
+                }
+              })
+              .catch(function (err) {
+                console.error(
+                  "view-loader: " + globalName + "." + prop + "() çalıştırılamadı --",
+                  err
+                );
+              });
           };
         },
       }

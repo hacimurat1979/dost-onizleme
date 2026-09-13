@@ -147,6 +147,29 @@ window.DostGraphUtils = (function () {
   // kararı yansıtıyor: kendi rengi bilinemez, yalnız ışımasıyla bilinir.
   const ZAT_FILL = "#ffffff";
 
+  // "Ne kadar eminiz?" katmanının sözlüğü (B1, ontology.js'te doğdu,
+  // 2026-09-13'te sorular.js de aynı deseni kullanacağı için buraya
+  // taşındı) -- GORSEL_DIL.md'nin "sabit anlam eşleşmeleri" ilkesi gereği
+  // tek bir yerde tanımlı olmalı, her görünüm kendi kopyasını tutmamalı.
+  // Etiketler kenarın/ilişkinin kendi metnindeki temkin diline göre atanır,
+  // rastgele bir değer değildir.
+  const CONFIDENCE_LABEL = {
+    "Yüksek": { tr: "Yüksek", en: "High", pt: "Alta" },
+    "Orta": { tr: "Orta", en: "Medium", pt: "Média" },
+    "Düşük": { tr: "Düşük", en: "Low", pt: "Baixa" },
+    "Hipotez": { tr: "Hipotez", en: "Hypothesis", pt: "Hipótese" },
+    "Bilinmiyor": { tr: "Bilinmiyor", en: "Unknown", pt: "Desconhecida" },
+    "Gelecekte-doğrulanmalı": { tr: "Gelecekte doğrulanmalı", en: "To be confirmed later", pt: "A confirmar mais tarde" },
+  };
+  function confSlug(c) {
+    return c === "Orta" ? "orta"
+      : c === "Düşük" ? "dusuk"
+      : c === "Hipotez" ? "hipotez"
+      : c === "Bilinmiyor" ? "bilinmiyor"
+      : c === "Gelecekte-doğrulanmalı" ? "gelecek"
+      : "yuksek";
+  }
+
   // Not: OS/tarayıcı tercihini değil, sitenin kendi karanlık-mod anahtarını
   // (document.body[data-theme]) esas alır -- kullanıcı sistem tercihinin
   // aksine bir tema seçtiğinde de doğru rampayı döndürsün diye.
@@ -637,12 +660,35 @@ window.DostGraphUtils = (function () {
     }
     document.body.appendChild(daire);
 
+    // Büyüyen daire hâlâ AYRILAN sahnenin rengini taşıyor -- kaynak
+    // düğümden alındı. Ama VARILAN yerin kendi kimliği yok sayılmasın diye,
+    // dairenin kenarında hedef görünümün kendi --series-* rengini taşıyan
+    // ince, DOLGUSUZ bir halka beliriyor (opts.targetColor; çağıran taraf
+    // hangi görünüme gidildiğini bildiği için rengi o veriyor -- bu ortak
+    // katman görünüm-özel bir renk haritası tutmuyor). Bu iki şekli GORSEL_
+    // DIL.md'nin yasakladığı "iç içe eşmerkezli çember"e döndürmemek için
+    // ikisi aynı ritimde sönmüyor: halka dairenin kenarında BAŞLAYIP kendi
+    // hızında dışa doğru genişleyerek sönüyor, dairenin sönüşünden daha
+    // uzun sürüyor ve ayrı bir gecikmeyle başlıyor -- iki eşmerkezli sabit
+    // kopya değil, iki farklı tempoda yaşayan iki şekil.
+    let halka = null;
+    if (opts.targetColor && /^(rgb|#|hsl)/i.test(String(opts.targetColor).trim())) {
+      halka = document.createElement("div");
+      halka.className = "gate-ring";
+      halka.setAttribute("aria-hidden", "true");
+      halka.style.left = hx + "px";
+      halka.style.top = hy + "px";
+      halka.style.borderColor = opts.targetColor;
+      document.body.appendChild(halka);
+    }
+
     // İki hareket, tek devir: önce kapı merkeze doğru büyür (sahne onun
     // içine çekilir), sonra yeni sahne onun içinden açılırken daire söner.
+    const olcek = Math.max(6, hedef.height / (r0 * 2));
     const buyume = daire.animate(
       [
         { transform: "translate(-50%, -50%) scale(1)", opacity: 0.85 },
-        { transform: `translate(-50%, -50%) translate(${hx - (kaynak.left + kaynak.width / 2)}px, ${hy - (kaynak.top + kaynak.height / 2)}px) scale(${Math.max(6, hedef.height / (r0 * 2))})`, opacity: 0.5 },
+        { transform: `translate(-50%, -50%) translate(${hx - (kaynak.left + kaynak.width / 2)}px, ${hy - (kaynak.top + kaynak.height / 2)}px) scale(${olcek})`, opacity: 0.5 },
       ],
       { duration: 620, easing: "cubic-bezier(.5,0,.3,1)", fill: "forwards" }
     );
@@ -655,8 +701,31 @@ window.DostGraphUtils = (function () {
       // Animasyon API'si bir sebeple sessiz kalırsa daire ekranda asılı
       // kalmasın: her hâlükârda temizleyen bir emniyet.
       setTimeout(() => daire.remove(), 900);
+
+      if (halka) {
+        // Halkanın başlangıç çapı, büyüyen dairenin VARDIĞI çap -- yani
+        // "kenarında" başlıyor, kendi hızıyla biraz daha dışa taşıp sönüyor.
+        const bitisCap = r0 * 2 * olcek;
+        halka.style.width = halka.style.height = bitisCap + "px";
+        const acilma = halka.animate(
+          [
+            { transform: "translate(-50%, -50%) scale(1)", opacity: 0.9 },
+            { transform: "translate(-50%, -50%) scale(1.18)", opacity: 0 },
+          ],
+          { duration: 640, delay: 70, easing: "ease-in", fill: "forwards" }
+        );
+        acilma.onfinish = () => halka.remove();
+        setTimeout(() => halka.remove(), 1100);
+      }
     };
-    setTimeout(() => { if (daire.isConnected && buyume.playState !== "finished") { buyume.cancel(); onSwitch(); daire.remove(); } }, 1600);
+    setTimeout(() => {
+      if (daire.isConnected && buyume.playState !== "finished") {
+        buyume.cancel();
+        onSwitch();
+        daire.remove();
+        if (halka) halka.remove();
+      }
+    }, 1600);
   }
 
   // "Değinmek" — bkz. ETKILESIM_DILI.md'nin dördüncü fiili: hover'ın
@@ -985,5 +1054,5 @@ window.DostGraphUtils = (function () {
     btn.addEventListener("click", onClick);
   }
 
-  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createFrameLoop, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback, wireEdgeAccessibility, escapeHtml, FCA_SHOW_LABEL, fcaCaption, wireFcaButton };
+  return { getVar, analogyHtml, moveTooltip, hideTooltip, LAYER_COLOR, LAYER_COLOR_DARK, ZAT_FILL, CONFIDENCE_LABEL, confSlug, isDark, setupLegendToggles, createDragBehavior, setupDetailPanelFocus, createZoomBehavior, wireRecenter, registerStepBack, edgeReasonHtml, gateTransition, fetchJson, isViewActive, onViewWake, createFrameLoop, createTilt, createLabelDeconflictor, attachLeaderLines, debounceResize, createMobileListFallback, wireEdgeAccessibility, escapeHtml, FCA_SHOW_LABEL, fcaCaption, wireFcaButton };
 })();
