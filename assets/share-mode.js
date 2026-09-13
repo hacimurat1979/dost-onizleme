@@ -169,6 +169,13 @@
   }
   function loadSorular() { return cachedFetch("sorular", "data/ibn-arabi/sorular.json"); }
   function loadSirlar() { return cachedFetch("sirlar", "data/ibn-arabi/sirlar.json"); }
+  // "Hikâye" ve "Bir Soru" şablonlarının havuzu yalnız sorular.json'a
+  // bağlıydı (48 soru) -- bir süre sonra aynı kayıtlara dönmeye başlıyordu
+  // (kullanıcı bildirimi, 2026-09-13). Bilmiyoruz/Açık Sorular da sitenin
+  // ZATEN yayında olan, kürasyonlu kayıtları -- yeni metin YAZMADAN
+  // (bkz. dosya başı KURAL) bu iki şablonun havuzunu genişletiyoruz.
+  function loadBilmiyoruz() { return cachedFetch("bilmiyoruz", "data/ibn-arabi/bilmiyoruz.json"); }
+  function loadAcikSorular() { return cachedFetch("acik-sorular", "data/ibn-arabi/acik-sorular.json"); }
   function loadOntoloji() { return cachedFetch("ontoloji", "data/ibn-arabi/ontology.json"); }
   function loadEsma() { return cachedFetch("esma", "data/ibn-arabi/esma.json"); }
   function loadFelsefiTerimler() { return cachedFetch("felsefi-terimler", "data/ibn-arabi/felsefi-terimler.json"); }
@@ -187,7 +194,14 @@
     if (compareData) return Promise.resolve(compareData);
     return Promise.all([loadEsma(), loadOntoloji()]).then(([esma, onto]) => {
       const list = [];
-      (esma.nodes || []).forEach((n) => { if (n.insights && n.insights.length) list.push({ key: "esma:" + n.id, name: n.name, insights: n.insights }); });
+      // insights taşımayan esma isimleri (85/101) seçilebilir listede hiç
+      // yoktu -- summary'yi TEK ögelik bir insights dizisine sararak
+      // aynı pickInsight() yoluna sokuyoruz (esma şablonunun kendi
+      // düzeltmesiyle aynı gerekçe, bkz. yukarısı).
+      (esma.nodes || []).forEach((n) => {
+        if (n.insights && n.insights.length) list.push({ key: "esma:" + n.id, name: n.name, insights: n.insights });
+        else if (n.summary) list.push({ key: "esma:" + n.id, name: n.name, insights: [{ text: n.summary }] });
+      });
       (onto.nodes || []).forEach((n) => { if (n.insights && n.insights.length) list.push({ key: "onto:" + n.id, name: n.name, insights: n.insights }); });
       compareData = { list: list };
       return compareData;
@@ -349,43 +363,58 @@
   function buildScene(tpl, opts) {
     opts = opts || {};
     if (tpl === "soru") {
-      return loadSorular().then((d) => {
-        const cats = d.categories || [];
-        const q = pick(pick(cats).questions);
+      // Havuz yalnız Sorular'a bağlıydı (48 soru) -- bir süre sonra aynı
+      // kayıtlara dönmeye başlıyordu (kullanıcı bildirimi, 2026-09-13).
+      // Açık Sorular sitenin kendi "soru" alanını zaten TAŞIYAN, gerçekten
+      // soru cümlesi olarak yazılmış 19 kayıt daha -- yeni metin YOK,
+      // yalnız ikinci bir gerçek havuz.
+      return Promise.all([loadSorular(), loadAcikSorular()]).then(([sd, ad]) => {
+        const pool = [];
+        (sd.categories || []).forEach((c) => (c.questions || []).forEach((q) => pool.push(q.question)));
+        (ad.sorular || []).forEach((s) => { if (s.soru) pool.push(s.soru); });
+        if (!pool.length) return null;
         return {
           tpl: "soru",
-          lines: [mkBilingualLine(q.question, "soru")],
+          lines: [mkBilingualLine(pick(pool), "soru")],
         };
       });
     }
     if (tpl === "hikaye") {
       // Daha uzun, TikTok'ta bir "hikâye" gibi izlenebilecek bir sahne:
-      // Sorular'ın kendi cevabından iki cümle (kuruluş) + sonda sitenin
-      // zaten sorduğu soru (kanca). Yeni cümle YAZILMIYOR -- KURAL gereği
-      // yalnız var olan cevap ikiye bölünüp yeniden hızlandırılıyor.
-      return loadSorular().then((d) => {
-        const all = [];
-        (d.categories || []).forEach((c) => (c.questions || []).forEach((q) => all.push(q)));
-        const usable = all.filter((q) => {
-          const s = splitSentences(tt(q.answer)).filter((x) => x.length >= 24 && x.length <= 200);
-          return s.length >= 2;
-        });
+      // bir kaynağın kendi kuruluş cümlelerinden ikisi + sonda sitenin
+      // zaten sorduğu/açtığı bir soru ya da konu (kanca). Yeni cümle
+      // YAZILMIYOR -- KURAL gereği yalnız var olan metin ikiye bölünüp
+      // yeniden hızlandırılıyor.
+      // Havuz yalnız Sorular'a bağlıydı (43 uygun kayıt) -- bir süre sonra
+      // aynı kayıtlara dönmeye başlıyordu (kullanıcı bildirimi, 2026-09-13,
+      // "özellikle story kısmı"). Sırlar'ın kendi çok-cümlelik alıntıları
+      // (67 uygun kayıt) ve Bilmiyoruz'un açıklamaları (6 uygun kayıt) da
+      // aynı ölçütle (en az iki 24-200 karakterlik cümle) havuza katıldı --
+      // üçü de sitenin ZATEN yayında olan kürasyonlu metinleri.
+      return Promise.all([loadSorular(), loadSirlar(), loadBilmiyoruz()]).then(([sd, srd, bd]) => {
+        const usable = [];
+        function ekle(hook, govdeMetin) {
+          const s = splitSentences(tt(govdeMetin)).filter((x) => x.length >= 24 && x.length <= 200);
+          if (s.length >= 2) usable.push({ hook: hook, sents: s });
+        }
+        (sd.categories || []).forEach((c) => (c.questions || []).forEach((q) => ekle(q.question, q.answer)));
+        ((srd && srd.entries) || []).forEach((e) => ekle(e.topic, e.quote));
+        ((bd && bd.maddeler) || []).forEach((m) => ekle(m.baslik, m.aciklama));
         if (!usable.length) return null;
-        const q = pick(usable);
-        const sents = splitSentences(tt(q.answer)).filter((x) => x.length >= 24 && x.length <= 200);
+        const item = pick(usable);
         return {
           tpl: "hikaye",
-          // Kullanıcı notu (2026-08-02): "hikâye" şablonlarında önce soru
-          // verilsin, ardından cevap cümleleri -- kancayı başa çekiyoruz.
-          // İki dillilik yalnız soru satırında güvenli: cevap cümleleri
+          // Kullanıcı notu (2026-08-02): "hikâye" şablonlarında önce soru/
+          // konu verilsin, ardından gövde cümleleri -- kancayı başa çekiyoruz.
+          // İki dillilik yalnız kanca satırında güvenli: gövde cümleleri
           // splitSentences() ile TEK bir dilin metninden bölünüyor, ikinci
           // dilde aynı sınırların düşeceği garanti değil (bkz. "dizi"
           // şablonundaki aynı çekince) -- yanlış hizalanmış bir çeviri
           // göstermektense hiç göstermiyoruz.
           lines: [
-            mkBilingualLine(q.question, "soru"),
-            { text: sents[0], kind: "soz" },
-            { text: sents[1], kind: "soz" },
+            mkBilingualLine(item.hook, "soru"),
+            { text: item.sents[0], kind: "soz" },
+            { text: item.sents[1], kind: "soz" },
           ],
         };
       });
@@ -481,17 +510,26 @@
       });
     }
     if (tpl === "esma") {
+      // Havuz yalnız "insights" taşıyan 16/101 isimle sınırlıydı -- bir
+      // süre sonra aynı 16 isme dönmeye başlıyordu (kullanıcı bildirimi,
+      // 2026-09-13). Esma sayfasının HER isim için gösterdiği "summary"
+      // (assets/esma.js'te doğrudan detay panelinde render edilen, sitede
+      // ZATEN yayında olan metin -- bkz. esma.js:1573) 101/101 düğümde
+      // eksiksiz var; insight'ı olmayan isimler için yeni metin YAZMADAN
+      // bu özeti gövde cümlesi olarak kullanıyoruz.
       return loadEsma().then((d) => {
-        const nodes = (d.nodes || []).filter((n) => n.insights && n.insights.length);
+        const nodes = (d.nodes || []).filter((n) => (n.insights && n.insights.length) || n.summary);
         if (!nodes.length) return null;
         const node = pick(nodes);
-        const picked = pickInsight(node);
-        if (!picked || !picked.text || picked.text.length < 20) return null;
+        const picked = (node.insights && node.insights.length) ? pickInsight(node) : null;
+        const dict = picked ? picked.dict : node.summary;
+        const text = picked ? picked.text : tt(node.summary || {});
+        if (!text || text.length < 20) return null;
         return {
           tpl: "esma",
           lines: [
             mkBilingualLine(node.name || {}, "baslik"),
-            picked.dict ? mkBilingualLine(picked.dict, "soz", 310) : { text: capText(picked.text, 310), kind: "soz" },
+            dict ? mkBilingualLine(dict, "soz", 310) : { text: capText(text, 310), kind: "soz" },
           ],
         };
       });
