@@ -8749,6 +8749,10 @@ body.share-stage-open { overflow: hidden; }
   color: var(--sahne-vurgu);
   font-weight: 700;
 }
+/* "Şiir" şablonu (2026-09-13): dize satırları, düz alıntıdan görsel olarak
+   ayrışsın diye eğik -- yalnız bu şablonun çerçevesi içinde, site genelinde
+   yeni bir anlam eşlemesi eklemeden (bkz. GORSEL_DIL.md). */
+.share-stage__frame--siir .share-line--soz { font-style: italic; }
 /* İki dilli kartın çeviri satırı -- kind ne olursa olsun (baslik/soru/soz)
    tek başına bir çift-sınıf seçici olarak (0,2,0) özgüllüğüyle rengi/
    ağırlığı geçersiz kılıyor: çeviri her zaman aynı, sakin/soluk görünüme
@@ -9957,6 +9961,29 @@ mark.durus-vurgu-es {
 }
 .share-tpl-thumb { width: 17px; height: 28px; flex-shrink: 0; border-radius: 2px; }
 .share-zemin-thumb { width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; }
+/* Zemin çipine değinince beliren büyük CANLI önizleme (2026-09-13) --
+   yüzen, dekoratif (aria-hidden), fareyi/klavyeyi hiç engellemesin diye
+   pointer-events kapalı. Sabit koyu palet kullanıyor -- gerçek sahnenin
+   .share-stage__frame'in kendi CSS değişkenlerinden (--sahne-murekkep vb.)
+   bağımsız, kendi küçük SVG'si; açık/koyu zemin anahtarını burada tekrar
+   etmiyoruz (varsayılan koyu görünüm yeterli bir örnek). */
+.share-zemin-preview {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 200;
+  background: #05060a;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+.share-zemin-preview svg { display: block; width: 100%; height: 100%; }
+.share-zemin-preview .share-spiral { stroke: #eda100; stroke-width: 1.5; opacity: 0.26; fill: none; }
+.share-zemin-preview .share-dot { fill: #eda100; }
+.share-zemin-preview .share-halo { fill: #ffc44d; filter: blur(18px); }
+.share-zemin-preview .share-zat-halo { fill: #ffc44d; filter: blur(4px); }
 .share-panel__switch {
   display: flex;
   align-items: center;
@@ -9994,6 +10021,11 @@ mark.durus-vurgu-es {
   border-radius: 999px;
   cursor: pointer;
 }
+.share-panel__karsilastir-warn {
+  margin: 0;
+  font-size: 0.74rem;
+  color: var(--accent-interactive);
+}
 
 /* Çoklu önizleme kartları */
 .share-panel__candidates { margin: 10px 0 4px; display: flex; flex-direction: column; gap: 6px; }
@@ -10014,6 +10046,7 @@ mark.durus-vurgu-es {
 .share-panel__cand-fav:hover { color: var(--accent-interactive); border-color: var(--accent-interactive); }
 .share-panel__cand-open { padding: 3px 9px; font-size: 0.76rem; border-radius: 4px; }
 .share-panel__cand-empty { margin: 4px 0; font-size: 0.76rem; color: var(--text-muted); font-style: italic; }
+.share-panel__havuz { margin: 0 0 6px; font-size: 0.72rem; color: var(--text-muted); }
 
 /* Favoriler ve Son kullanılanlar */
 .share-panel__details {

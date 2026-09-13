@@ -47,6 +47,12 @@
     recWait: { tr: "Başlıyor…", en: "Starting…", pt: "A começar…" },
     recBusy: { tr: "Kaydediliyor", en: "Recording", pt: "A gravar" },
     recDone: { tr: "İndirildi", en: "Downloaded", pt: "Descarregado" },
+    // "Metni kopyala" (tespit, 2026-09-13): video/kart indirmenin dışında,
+    // bir alıntıyı doğrudan bir mesaja/tweete yapıştırmak isteyen için en
+    // kısa yol -- ekran kaydına/izne hiç ihtiyaç duymuyor.
+    kopyala: { tr: "📋 Metni kopyala", en: "📋 Copy text", pt: "📋 Copiar texto" },
+    kopyalandi: { tr: "Kopyalandı", en: "Copied", pt: "Copiado" },
+    kopyalaFail: { tr: "Kopyalanamadı.", en: "Could not copy.", pt: "Não foi possível copiar." },
     recFail: {
       tr: "Kayıt başlamadı. Ekran paylaşımına izin verilmedi ya da tarayıcı desteklemiyor.",
       en: "Recording did not start. Screen sharing was denied, or the browser does not support it.",
@@ -76,6 +82,7 @@
       fusus:    { tr: "Füsûs Halkası", en: "Fusus Ring", pt: "Anel dos Fusus" },
       miskat:   { tr: "Mişkât Sarmalı", en: "Mishkat Spiral", pt: "Espiral do Mishkat" },
       dizi:     { tr: "Dizi", en: "Series", pt: "Série" },
+      siir:     { tr: "Şiir", en: "Poem", pt: "Poema" },
       karsilastir: { tr: "Karşılaştır", en: "Compare", pt: "Comparar" },
       ozelgun:  { tr: "Özel Gün", en: "Special Day", pt: "Dia Especial" },
     },
@@ -98,6 +105,14 @@
     karsilastirSol: { tr: "Sol", en: "Left", pt: "Esquerda" },
     karsilastirSag: { tr: "Sağ", en: "Right", pt: "Direita" },
     karsilastirAc:  { tr: "Bu ikisini aç", en: "Open these two", pt: "Abrir estes dois" },
+    // Aynı kavram iki tarafa da seçildiğinde eskiden sessizce rastgele bir
+    // ikincisine düşülüyordu -- kullanıcı ne seçtiğini görmüyordu (tespit,
+    // 2026-09-13). Artık açıkça söyleniyor.
+    karsilastirAyni: {
+      tr: "İki taraf için de aynı kavramı seçtin — farklı bir tanesini seç.",
+      en: "You picked the same concept on both sides — choose a different one.",
+      pt: "Escolheste o mesmo conceito nos dois lados — escolhe um diferente.",
+    },
   };
 
   // Sahnenin dili sitenin genel diline BAĞLI DEĞİL: kullanıcı Türkçe
@@ -184,6 +199,10 @@
   }
   function loadFususAtlas() { return cachedFetch("fusus-atlas", "data/ibn-arabi/fusus-atlas.json"); }
   function loadMiskatAtlas() { return cachedFetch("miskat-atlas", "data/ibn-arabi/miskat-atlas.json"); }
+  // "Şiir" şablonu (yeni fikir, 2026-09-13): siirler.json'daki 8 şiir
+  // hiçbir şablonda kullanılmıyordu -- her biri TR/EN/PT'de tam, çok
+  // satırlı gerçek metin taşıyor (bkz. data/ibn-arabi/siirler.json).
+  function loadSiirler() { return cachedFetch("siirler", "data/ibn-arabi/siirler.json"); }
 
   // "Karşılaştır" şablonu (kullanıcı önerisi, 2026-08-03): esma+ontoloji
   // havuzunu (benzetme şablonuyla aynı kaynak) düz bir listeye çeviriyor ki
@@ -222,6 +241,21 @@
     // döner -- slice(0,-1) o zaman TÜM metnin son harfini atıp geri kalanını
     // olduğu gibi bırakırdı, max'ı hiç uygulamamış olurdu.
     return cut > 0 ? raw.slice(0, cut) + "…" : raw.slice(0, max) + "…";
+  }
+
+  // Bazı şablonların havuzu (esma, karşılaştır...) ölçülüp genişletildi
+  // (bkz. loadEsma/loadCompareData yorumları) ama kullanıcı bunu hiç
+  // GÖREMİYORDU (tespit, 2026-09-13) -- adayların üstünde ucuz/kesin
+  // hesaplanabilen havuz büyüklüğü gösteriliyor. Fütûhât'a dayanan
+  // şablonlar (soz/dizi/ikili) burada YOK -- gerçek sayı yalnız bütün
+  // kısımları indirmekle (pahalı) çıkardı, tahmini bir sayı göstermek
+  // KURAL'ın "olduğundan farklı gösterme" ilkesine aykırı olurdu.
+  function havuzText(n) {
+    return tt({
+      tr: n + " kayıt arasından",
+      en: "from " + n + (n === 1 ? " record" : " records"),
+      pt: "entre " + n + (n === 1 ? " registo" : " registos"),
+    });
   }
 
   // Şablonlardan gelen metin bazen kaynak veride <em>/<strong> gibi
@@ -376,6 +410,7 @@
         return {
           tpl: "soru",
           lines: [mkBilingualLine(pick(pool), "soru")],
+          havuz: pool.length,
         };
       });
     }
@@ -416,6 +451,7 @@
             { text: item.sents[0], kind: "soz" },
             { text: item.sents[1], kind: "soz" },
           ],
+          havuz: usable.length,
         };
       });
     }
@@ -490,6 +526,7 @@
             mkBilingualLine(item.name, "baslik"),
             mkBilingualLine(item.analogy, "soz", 310),
           ],
+          havuz: pool.length,
         };
       });
     }
@@ -506,6 +543,7 @@
             mkBilingualLine(node.name || {}, "baslik"),
             picked.dict ? mkBilingualLine(picked.dict, "soz", 310) : { text: capText(picked.text, 310), kind: "soz" },
           ],
+          havuz: nodes.length,
         };
       });
     }
@@ -531,6 +569,7 @@
             mkBilingualLine(node.name || {}, "baslik"),
             dict ? mkBilingualLine(dict, "soz", 310) : { text: capText(text, 310), kind: "soz" },
           ],
+          havuz: nodes.length,
         };
       });
     }
@@ -561,6 +600,7 @@
             mkBilingualLine(nameOf(f), "baslik"),
             mkBilingualLine(f.title, "soz", 310),
           ],
+          havuz: active.length,
         };
       });
     }
@@ -587,6 +627,7 @@
             mkBilingualLine(h.title, "baslik"),
             mkBilingualLine(h.pageRange, "soz", 310),
           ],
+          havuz: active.length,
         };
       });
     }
@@ -603,6 +644,36 @@
         const lines = [{ text: partLabel(r.part), kind: "baslik" }];
         items.forEach((t) => lines.push({ text: capText(t, 200), kind: "soz" }));
         return { tpl: "dizi", lines: lines };
+      });
+    }
+    if (tpl === "siir") {
+      // "Şiir" (yeni fikir, 2026-09-13): siirler.json'un 8 şiiri hiçbir
+      // şablonda kullanılmıyordu -- "Dizi"nin diziBase(n) zamanlama
+      // motorunu (değişken satır sayısına göre) doğrudan ödünç alıyoruz.
+      // Uzun şiirlerde (>5 dize) TÜM şiiri değil, ardışık bir PENCERE
+      // gösteriyoruz -- capText'in karakter yerine SATIR sayısıyla aynı
+      // mantığı: yeni metin YOK, yalnız var olanın bir kesiti. Şiirin her
+      // dizesi TR/EN/PT'de aynı sırada çevrildiği için (satır satır
+      // karşılaştırıldı) -- diğer çok-cümlelik şablonlardan FARKLI olarak
+      // -- iki dilli kart burada güvenle destekleniyor.
+      return loadSiirler().then((d) => {
+        const poems = (d && d.siirler) || [];
+        if (!poems.length) return null;
+        const poem = pick(poems);
+        const linesFor = (l) => String((poem.metin && poem.metin[l]) || "").split("\n").map((x) => x.trim()).filter(Boolean);
+        const primary = linesFor(shareLangId);
+        if (primary.length < 2) return null;
+        const MAX = 5;
+        const start = primary.length > MAX ? Math.floor(Math.random() * (primary.length - MAX + 1)) : 0;
+        const count = Math.min(MAX, primary.length);
+        const secondary = (ikiDilliMod && ikinciDilId !== shareLangId) ? linesFor(ikinciDilId) : null;
+        const lines = [mkBilingualLine(poem.kaynak_ref || {}, "baslik")];
+        for (let i = start; i < start + count; i++) {
+          const line = { text: primary[i], kind: "soz" };
+          if (secondary && secondary[i]) line.text2 = secondary[i];
+          lines.push(line);
+        }
+        return { tpl: "siir", lines: lines, havuz: poems.length };
       });
     }
     if (tpl === "karsilastir") {
@@ -631,7 +702,7 @@
           leftLine.text2 = combine(left.name, leftPicked.dict, leftPicked.text, ikinciDilId);
           rightLine.text2 = combine(right.name, rightPicked.dict, rightPicked.text, ikinciDilId);
         }
-        return { tpl: "karsilastir", lines: [leftLine, rightLine] };
+        return { tpl: "karsilastir", lines: [leftLine, rightLine], havuz: list.length };
       });
     }
     if (tpl === "ozelgun") {
@@ -802,7 +873,9 @@
   // diye burada tanımlı.
   const RULE_BEAT_DEFAULT = [0.30, 0.94];
   function computeTiming(s) {
-    const base = s.tpl === "dizi" ? diziBase(s.lines.length) : (TIMING[s.tpl] || TIMING.soz);
+    // "Şiir" de "Dizi" gibi değişken satır sayısı taşıyor (1 kaynak + 2-5
+    // dize) -- aynı diziBase(n) motorunu paylaşıyor.
+    const base = (s.tpl === "dizi" || s.tpl === "siir") ? diziBase(s.lines.length) : (TIMING[s.tpl] || TIMING.soz);
     const words = s.lines.reduce((n, l) => n + wordCount(l.text) + (l.text2 ? wordCount(l.text2) : 0), 0);
     const extra = Math.min(HOLD_MAX_MS, Math.max(0, words - HOLD_BASE_WORDS) * HOLD_MS_PER_WORD);
     if (!extra) return Object.assign({ ruleBeat: RULE_BEAT_DEFAULT }, base);
@@ -834,8 +907,8 @@
   // Ekrandaki döngü 15000 -> 20000ms'ye uzatıldığı için (2026-08-02),
   // kayıt tavanları da aynı oranda büyütüldü -- indirilen video ekranda
   // görülenden daha aceleci hissetmesin diye.
-  const READ_CAP = { hikaye: 28, dizi: 34 };
-  const TOTAL_CAP = { hikaye: 46, dizi: 52 };
+  const READ_CAP = { hikaye: 28, dizi: 34, siir: 24 };
+  const TOTAL_CAP = { hikaye: 46, dizi: 52, siir: 40 };
   function takePlan(s) {
     const fadeIn = 0.7, fadeOut = 1.2, lineIn = 1.15;
     const cues = [];
@@ -1029,6 +1102,7 @@
     esma: [["baslik", 0.4], ["soz", 0.68]],
     ozelgun: [["baslik", 0.4], ["soz", 0.68]],
     dizi: [["baslik", 0.36], ["soz", 0.5], ["soz", 0.62], ["soz", 0.44]],
+    siir: [["baslik", 0.36], ["soz", 0.42], ["soz", 0.54], ["soz", 0.38]],
     fusus: [["baslik", 0.4], ["soz", 0.5]],
     miskat: [["baslik", 0.4], ["soz", 0.5]],
   };
@@ -1103,8 +1177,15 @@
   // Sarmal: hal.js/menziller ile aynı motor (GU.createTilt'in project'i).
   // Kullanıcının isteği buydu -- sahne, sitenin kendi sakin dairesel
   // dönüşünden beslensin (bkz. CLAUDE.md "Dairenin üçüncü boyutu: sarmal").
-  function drawAmbient(w, h, ts) {
-    const z = zemin();
+  // Bir zemini VERİLEN referanslara (spiral/halo/zatHalo/dots) çizen ortak
+  // motor -- hem gerçek sahne (drawAmbient aşağıda, module-level cache'i
+  // geçiyor) hem de panelde zemin çipine değinince (hover/focus) beliren
+  // KÜÇÜK CANLI önizleme (bkz. mountZeminPreview) aynı fonksiyonu, kendi
+  // ayrı SVG'sini ve kendi ayrı tilt örneğini geçerek çağırıyor -- ikisi
+  // birbirini etkilemesin diye (2026-09-13 zenginleştirmesi, tespit:
+  // "değinmek" (ETKİLEŞİM_DİLİ) sözleşmesi zemin seçiminde hiç
+  // kullanılmıyordu, statik bir rozet dışında canlı bir önizleme yoktu).
+  function drawZeminFrame(refs, z, tiltInst, w, h, ts, hide) {
     // "Füsûs Halkası" İÇERİK şablonu (scene.tpl === "fusus" -- bu, aşağıdaki
     // BACKDROP seçeneklerinden biri olan "Uzun sarmal" zemininden [z.id ===
     // "fusus"] AYRI bir kimlik, ikisi de "fusus" adını taşıdığı için
@@ -1117,15 +1198,15 @@
     // CSS'in gizlemeye çalıştığı eski sarmal, gerçek grafiğin arkasında
     // sönük sönük nefes alırken görünüyordu (2026-08-04 kullanıcı
     // bildirimi, Füsûs için). Bu şablonlarda hiç çizmeden erken çıkıyoruz.
-    if (scene && (scene.tpl === "fusus" || scene.tpl === "miskat")) {
-      if (cacheSpiral) cacheSpiral.setAttribute("d", "");
-      if (cacheHalo) cacheHalo.style.opacity = "0";
+    if (hide) {
+      if (refs.spiral) refs.spiral.setAttribute("d", "");
+      if (refs.halo) refs.halo.style.opacity = "0";
       // display:none, opacity değil -- .share-zat-halo'nun CSS nefes
       // animasyonu opacity'yi her karede kendi yazıyor, satır-içi
       // opacity:0 onu geçici olarak eziyor ama animasyon devam ettiği
       // için bir sonraki karede yeniden görünür oluyordu.
-      if (cacheZatHalo) cacheZatHalo.style.display = "none";
-      if (cacheDots) cacheDots.forEach((c) => { c.style.opacity = "0"; });
+      if (refs.zatHalo) refs.zatHalo.style.display = "none";
+      if (refs.dots) refs.dots.forEach((c) => { c.style.opacity = "0"; });
       return;
     }
     const cx = w / 2, cy = h * 0.5;
@@ -1148,14 +1229,14 @@
       const rr = R * (0.72 + z.ac * adim) * nfs;
       const px = rr * Math.cos(a), py = rr * Math.sin(a);
       const vert = -H / 2 + H * t;
-      const p = tilt ? tilt.project(px, py, vert) : { x: px, y: py, depth: 1 };
+      const p = tiltInst ? tiltInst.project(px, py, vert) : { x: px, y: py, depth: 1 };
       const X = cx + p.x, Y = cy + p.y;
       pts.push({ x: X, y: Y, depth: p.depth == null ? 1 : p.depth, phase: n.phase });
       d += (i === 0 ? "M" : "L") + X.toFixed(1) + "," + Y.toFixed(1);
     }
-    cacheSpiral.setAttribute("d", z.cizgisiz ? "" : d);
+    refs.spiral.setAttribute("d", z.cizgisiz ? "" : d);
     let zatPt = null;
-    cacheDots.forEach((c, i) => {
+    refs.dots.forEach((c, i) => {
       const p = pts[i];
       if (!p) { c.style.opacity = "0"; return; }
       const br = reduceMotion ? 1 : 1 + 0.14 * Math.sin(ts / 3400 + p.phase);
@@ -1215,15 +1296,15 @@
         c.style.filter = "";
       }
     });
-    if (zatPt && cacheZatHalo) {
-      cacheZatHalo.style.display = "";
-      cacheZatHalo.setAttribute("cx", zatPt.x.toFixed(1));
-      cacheZatHalo.setAttribute("cy", zatPt.y.toFixed(1));
-      cacheZatHalo.setAttribute("r", (z.nokta * zatPt.depth * 2.6 * 1.4).toFixed(2));
+    if (zatPt && refs.zatHalo) {
+      refs.zatHalo.style.display = "";
+      refs.zatHalo.setAttribute("cx", zatPt.x.toFixed(1));
+      refs.zatHalo.setAttribute("cy", zatPt.y.toFixed(1));
+      refs.zatHalo.setAttribute("r", (z.nokta * zatPt.depth * 2.6 * 1.4).toFixed(2));
     }
     // Merkezdeki nefes alan halka: ontoloji/esmâ'daki Zât halosuyla aynı
     // 6 saniyelik ritim.
-    const halo = cacheHalo;
+    const halo = refs.halo;
     if (z.renk === "feyz") halo.style.fill = RENK.feyzA;
     else if (z.renk === "esma") halo.style.fill = RENK.esma[3]; // Kadîr -- merkezde
     else if (z.renk === "seher") halo.style.fill = renkGecis(RENK.seherA, RENK.seherB, 0.5);
@@ -1235,6 +1316,66 @@
     halo.setAttribute("cx", cx); halo.setAttribute("cy", cy);
     halo.setAttribute("r", (R * z.hale * (1 + 0.4 * ph)).toFixed(1));
     halo.style.opacity = (0.14 + 0.20 * ph).toFixed(3);
+  }
+  function drawAmbient(w, h, ts) {
+    const hide = !!(scene && (scene.tpl === "fusus" || scene.tpl === "miskat"));
+    drawZeminFrame({ spiral: cacheSpiral, halo: cacheHalo, zatHalo: cacheZatHalo, dots: cacheDots }, zemin(), tilt, w, h, ts, hide);
+  }
+
+  // --- zemin (backdrop) canlı önizlemesi ---------------------------------
+  // Panelde bir zemin çipine değinince (hover/focus) beliren, sahnenin
+  // GERÇEK motoruyla (drawZeminFrame) çizilen küçük dairesel önizleme.
+  // `reduceMotion` tercih edilmişse hiç mount etmiyoruz -- statik rozet
+  // (zeminThumbSvg) zaten şeklin/rengin sabit bir örneğini veriyor, hareket
+  // dayatmıyoruz.
+  let zeminPreviewEl = null, zeminPreviewRaf = 0, zeminPreviewTilt = null, zeminPreviewStart = 0, zeminPreviewRefs = null;
+  function mountZeminPreview(z, anchorEl) {
+    if (reduceMotion) return;
+    teardownZeminPreview();
+    const el = document.createElement("div");
+    el.className = "share-zemin-preview";
+    el.setAttribute("aria-hidden", "true");
+    const size = 200;
+    el.innerHTML =
+      '<svg viewBox="0 0 ' + size + " " + size + '">' +
+      '<circle class="share-halo"></circle>' +
+      '<path class="share-spiral" fill="none"></path>' +
+      '<circle class="share-zat-halo"></circle>' +
+      new Array(NODE_COUNT).fill('<circle class="share-dot"></circle>').join("") +
+      "</svg>";
+    document.body.appendChild(el);
+    const r = anchorEl.getBoundingClientRect();
+    let left = r.left + r.width / 2 - size / 2;
+    left = Math.max(8, Math.min(left, window.innerWidth - size - 8));
+    let top = r.top - size - 12;
+    if (top < 8) top = r.bottom + 12; // üstte yer yoksa çipin altına düşer.
+    el.style.left = left + "px";
+    el.style.top = top + "px";
+    zeminPreviewEl = el;
+    zeminPreviewRefs = {
+      spiral: el.querySelector(".share-spiral"),
+      halo: el.querySelector(".share-halo"),
+      zatHalo: el.querySelector(".share-zat-halo"),
+      dots: el.querySelectorAll(".share-dot"),
+    };
+    zeminPreviewTilt = GU.createTilt ? GU.createTilt({ pitch: 0.20, spinRate: 0.000035 }) : null;
+    if (zeminPreviewTilt) zeminPreviewTilt.set(1, true);
+    zeminPreviewStart = 0;
+    const step = (ts) => {
+      if (!zeminPreviewEl) return;
+      if (!zeminPreviewStart) zeminPreviewStart = ts;
+      if (zeminPreviewTilt) zeminPreviewTilt.step(ts, 16, true);
+      drawZeminFrame(zeminPreviewRefs, z, zeminPreviewTilt, size, size, ts, false);
+      zeminPreviewRaf = requestAnimationFrame(step);
+    };
+    zeminPreviewRaf = requestAnimationFrame(step);
+  }
+  function teardownZeminPreview() {
+    if (zeminPreviewRaf) { cancelAnimationFrame(zeminPreviewRaf); zeminPreviewRaf = 0; }
+    if (zeminPreviewEl) { zeminPreviewEl.remove(); zeminPreviewEl = null; }
+    zeminPreviewRefs = null;
+    zeminPreviewTilt = null;
+    zeminPreviewStart = 0;
   }
 
   function frame(ts) {
@@ -1307,6 +1448,7 @@
       // içeri düşüyor; orada da zaten ekran kaydı kullanılıyor ve krom
       // 2,2 saniye sonra soluyor.)
       '<div class="share-stage__chrome">' +
+      '<button type="button" data-action="kopyala">' + escapeHtml(tt(UI.kopyala)) + "</button>" +
       (canRecord
         ? '<button type="button" data-action="rec">' + escapeHtml(tt(UI.rec)) + "</button>" +
           '<button type="button" data-action="kart">' + escapeHtml(tt(UI.kart)) + "</button>"
@@ -1340,6 +1482,36 @@
       try { if (MediaRecorder.isTypeSupported(m)) return m; } catch (e) {}
     }
     return "";
+  }
+
+  function downloadBlob(blob, filename) {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  }
+  // Cihaz/tarayıcı destekliyorsa dosyayı doğrudan işletim sisteminin
+  // paylaşım sayfasına (Instagram/WhatsApp/Mail...) gönderiyoruz --
+  // kullanıcı "indir, galeriye git, uygulamaya elle yükle" üç adımını
+  // atmak zorunda kalmasın diye (tespit, 2026-09-13). Desteklenmiyorsa ya
+  // da `File` inşası başarısızsa sessizce eski indirme yoluna düşer --
+  // hiçbir platformda mevcut davranıştan daha kötü olmuyor. Kullanıcı
+  // paylaşım diyaloğunu kendi iptal ederse (AbortError) indirmeyi
+  // DAYATMIYORUZ -- vazgeçme bir hata değil.
+  function shareOrDownload(blob, filename, mime) {
+    let file = null;
+    try { file = new File([blob], filename, { type: mime }); } catch (e) { /* aşağıda indirmeye düşer */ }
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({ files: [file] }).catch((e) => {
+        if (e && e.name === "AbortError") return;
+        downloadBlob(blob, filename);
+      });
+      return;
+    }
+    downloadBlob(blob, filename);
   }
 
   function recStatus(text, busy) {
@@ -1458,13 +1630,7 @@
       stream.getTracks().forEach((t) => t.stop());
       const ext = (mime || "video/webm").indexOf("mp4") !== -1 ? "mp4" : "webm";
       const blob = new Blob(chunks, { type: mime || "video/webm" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "dost-" + scene.tpl + "-" + new Date().toISOString().slice(0, 10) + "." + ext;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      shareOrDownload(blob, "dost-" + scene.tpl + "-" + new Date().toISOString().slice(0, 10) + "." + ext, mime || "video/webm");
       recording = false;
       stageEl && stageEl.classList.remove("is-recording");
       recStatus(tt(UI.recDone) + " · " + ext, false);
@@ -1575,13 +1741,7 @@
         setTimeout(() => recStatus("", false), 4000);
         return;
       }
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "dost-" + scene.tpl + "-" + new Date().toISOString().slice(0, 10) + ".png";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      shareOrDownload(blob, "dost-" + scene.tpl + "-" + new Date().toISOString().slice(0, 10) + ".png", "image/png");
       recStatus(tt(UI.recDone) + " · png", false);
       setTimeout(() => recStatus("", false), 3000);
     }, "image/png");
@@ -1591,7 +1751,40 @@
   // graph-utils.js:escapeHtml.
   const escapeHtml = GU.escapeHtml;
 
+  // Kartın satırlarını düz metne çevirir -- YENİ cümle yazmaz, yalnız
+  // sahnede zaten görünen satırları alt alta diziyor (iki dilli kartta
+  // çeviri satırı da dahil). Kaynağı işaret eden alan adı bir cümle değil,
+  // sahnedeki QR kodunun zaten kodladığı aynı bilgi.
+  function sceneText(s) {
+    const out = [];
+    (s.lines || []).forEach((l) => {
+      out.push(plainText(l.text));
+      if (l.text2) out.push(plainText(l.text2));
+    });
+    return out.join("\n") + "\n\n— dostarabi.com";
+  }
+  function copyText() {
+    if (!scene) return;
+    const text = sceneText(scene);
+    const fail = () => {
+      recStatus(tt(UI.kopyalaFail), false);
+      setTimeout(() => recStatus("", false), 4000);
+    };
+    if (!(navigator.clipboard && navigator.clipboard.writeText)) { fail(); return; }
+    navigator.clipboard.writeText(text).then(() => {
+      recStatus(tt(UI.kopyalandi), false);
+      setTimeout(() => recStatus("", false), 2500);
+    }, fail);
+  }
+
   function openStage(s) {
+    // Favori/geçmişten açılan bir sahne, favorilendiği/kaydedildiği andaki
+    // zemin/açık-koyu/kare ayarlarını da taşıyorsa (bkz. snapshotSettings)
+    // burada geri uyguluyoruz -- eskiden favori HER ZAMAN o anki (favoriye
+    // eklendiğinden farklı olabilecek) global zeminle açılıyordu (tespit,
+    // 2026-09-13). Taze bir aday (henüz favorilenmemiş/geçmişe girmemiş)
+    // bu alanları taşımaz, bu yüzden burada hiçbir şey değişmez.
+    applySceneSettings(s);
     scene = s;
     scene._timing = computeTiming(s);
     tarihEkle(s);
@@ -1674,6 +1867,8 @@
       const g = stageEl.querySelector(".share-stage__guides");
       g.hidden = !g.hidden;
     });
+    const kopyalaBtn = stageEl.querySelector('[data-action="kopyala"]');
+    if (kopyalaBtn) kopyalaBtn.addEventListener("click", copyText);
     const recBtn = stageEl.querySelector('[data-action="rec"]');
     if (recBtn) recBtn.addEventListener("click", recordToFile);
     const kartBtn = stageEl.querySelector('[data-action="kart"]');
@@ -1714,6 +1909,21 @@
   }
 
   // --- favori ve geçmiş yardımcıları ---
+  // Favori/geçmiş yalnız sahnenin SATIRLARINI saklıyordu -- o an hangi
+  // zemin/açık-koyu/kare seçiliyse, favorinin kendi görünümü değil, HER
+  // ZAMAN geçerli global ayar uygulanıyordu (tespit, 2026-09-13). Bir
+  // kaydın favorilendiği/tarihe girdiği andaki görsel ayarları da (dil
+  // hariç -- dil zaten satır metnine gömülü, bkz. mkBilingualLine)
+  // taşıyoruz ki favoriyi tekrar açtığında beğendiğin hâliyle karşına
+  // çıksın.
+  function snapshotSettings(scene) {
+    return Object.assign({}, scene, { _zemin: zeminId, _isik: acikMod, _kare: kareMod });
+  }
+  function applySceneSettings(s) {
+    if (s._zemin != null && s._zemin !== zeminId) { zeminId = s._zemin; safeSet(ZEMIN_ANAHTAR, zeminId); }
+    if (s._isik != null && s._isik !== acikMod) { acikMod = s._isik; safeSet(ISIK_ANAHTAR, acikMod ? "1" : "0"); }
+    if (s._kare != null && s._kare !== kareMod) { kareMod = s._kare; safeSet(KARE_ANAHTAR, kareMod ? "1" : "0"); }
+  }
   function favLoad() {
     try { return JSON.parse(localStorage.getItem(FAV_ANAHTAR) || "[]"); } catch (e) { return []; }
   }
@@ -1723,7 +1933,7 @@
     // Aynı metni iki kez ekleme (ilk satır karşılaştırması).
     const key = scene.lines[0].text;
     if (list.some(function (s) { return s.lines[0].text === key; })) return;
-    list.unshift(scene);
+    list.unshift(snapshotSettings(scene));
     if (list.length > MAX_FAV) list.length = MAX_FAV;
     favSave(list);
   }
@@ -1740,7 +1950,7 @@
     const key = scene.lines[0].text;
     const i = list.findIndex(function (s) { return s.lines[0].text === key; });
     if (i !== -1) list.splice(i, 1);
-    list.unshift(scene);
+    list.unshift(snapshotSettings(scene));
     if (list.length > MAX_TARIH) list.length = MAX_TARIH;
     safeSet(TARIH_ANAHTAR, JSON.stringify(list));
   }
@@ -1766,7 +1976,10 @@
       box.innerHTML = '<p class="share-panel__cand-empty">' + escapeHtml(tt(UI.loading)) + "</p>";
       return;
     }
-    box.innerHTML = candidates.map(function (s, i) {
+    const havuzHint = typeof candidates[0].havuz === "number"
+      ? '<p class="share-panel__havuz">' + escapeHtml(havuzText(candidates[0].havuz)) + "</p>"
+      : "";
+    box.innerHTML = havuzHint + candidates.map(function (s, i) {
       return (
         '<div class="share-panel__cand">' +
         '<span class="share-panel__cand-text">' + escapeHtml(candidateSnippet(s)) + "</span>" +
@@ -1882,7 +2095,22 @@
     });
   }
 
-  function buildPanel() {
+  // `focusAfter`: buildPanel() panel'i BAŞTAN kuruyor -- şablon/dil/iki
+  // dilli seçimi gibi iç değişiklikler bile bunu tetikliyor (koşullu alt
+  // bölümler değiştiği için gerekli). Önceden panel her yeniden kurulduğunda
+  // odak koşulsuz kapat düğmesine atlıyordu -- ilk açılışta doğru (dialog
+  // odağının bir yere gitmesi gerekir), ama bir şablon çipine tıklayan
+  // klavye kullanıcısı için habersiz bir "fokus sıçraması"ydı (tespit,
+  // 2026-09-13). Artık yalnız İLK açılışta (focusAfter verilmediğinde)
+  // kapat düğmesine gidiyor; bir iç seçim rebuild'i tetiklediğinde
+  // `focusAfter` o seçimi yapan denetime (aynı seçici, yeniden kurulan
+  // DOM'da) geri dönüyor.
+  function buildPanel(focusAfter) {
+    // Eski panel bir zemin önizlemesi açıkken yeniden kuruluyorsa (ör.
+    // hover'lı bir çip odaktayken şablon değiştirildi) DOM'dan kalkan çip
+    // her zaman bir "blur" tetiklemeyebilir -- yüzen önizleme burada
+    // kesin olarak kapatılıyor.
+    teardownZeminPreview();
     panel = document.createElement("div");
     panel.className = "share-panel";
     panel.setAttribute("role", "dialog");
@@ -1990,6 +2218,7 @@
           '<select id="share-karsilastir-sol" aria-label="' + escapeHtml(tt(UI.karsilastirSol)) + '"></select>' +
           '<select id="share-karsilastir-sag" aria-label="' + escapeHtml(tt(UI.karsilastirSag)) + '"></select>' +
           '<button type="button" class="share-panel__go" data-action="karsilastir-ac">' + escapeHtml(tt(UI.karsilastirAc)) + "</button>" +
+          '<p class="share-panel__karsilastir-warn" hidden>' + escapeHtml(tt(UI.karsilastirAyni)) + "</p>" +
           "</div>"
         : "") +
       "</div>" +
@@ -2023,7 +2252,7 @@
         // düzenini değiştiriyor -- panel gövdesi diğer şablonlardan farklı,
         // o yüzden dil değişimindeki gibi TAM YENİDEN kuruyoruz.
         const old = panel;
-        buildPanel();
+        buildPanel('[data-tpl="' + currentTpl + '"]');
         if (old) old.remove();
       });
     });
@@ -2044,7 +2273,7 @@
         // buildPanel() modül düzeyindeki `panel` değişkenini YENİ bir düğümle
         // değiştiriyor; eskisini biz kaldırmazsak DOM'da iki panel üst üste kalırdı.
         const old = panel;
-        buildPanel();
+        buildPanel('[data-dil="' + shareLangId + '"]');
         if (old) old.remove();
       });
     });
@@ -2055,7 +2284,7 @@
         ikiDilliMod = e.target.checked;
         safeSet(IKIDILLI_ANAHTAR, ikiDilliMod ? "1" : "0");
         const old = panel;
-        buildPanel();
+        buildPanel('[data-action="ikidilli"]');
         if (old) old.remove();
       });
     }
@@ -2087,11 +2316,20 @@
         if (d.list.length > 1) sagSel.selectedIndex = 1;
       }).catch(function () {});
       const acBtn = karsilastirBox.querySelector('[data-action="karsilastir-ac"]');
+      const warnEl = karsilastirBox.querySelector(".share-panel__karsilastir-warn");
       if (acBtn) {
         acBtn.addEventListener("click", function () {
           const solSel = karsilastirBox.querySelector("#share-karsilastir-sol");
           const sagSel = karsilastirBox.querySelector("#share-karsilastir-sag");
           if (!solSel || !sagSel || !solSel.value || !sagSel.value) return;
+          // Aynı kavram iki tarafa da seçilirse eskiden sessizce rastgele bir
+          // ikincisine düşülüyordu -- artık önceden söylüyoruz (tespit,
+          // 2026-09-13), buildScene'e hiç sorulmuyor.
+          if (solSel.value === sagSel.value) {
+            if (warnEl) warnEl.hidden = false;
+            return;
+          }
+          if (warnEl) warnEl.hidden = true;
           buildScene("karsilastir", { leftKey: solSel.value, rightKey: sagSel.value }).then(function (s) {
             if (s) openStage(s);
           }).catch(function () {});
@@ -2108,6 +2346,18 @@
           x.setAttribute("aria-pressed", String(x === b));
         });
       });
+      // Canlı önizleme (2026-09-13 zenginleştirmesi): ETKİLEŞİM_DİLİ'nin
+      // "değinmek" tanımı ("hover'ın gösterdiği, tıklamanın küçültülmüş
+      // hâli") burada hiç kullanılmıyordu -- statik rozet dışında zemini
+      // seçmeden GERÇEK hâlini görmenin yolu yoktu. Hover'ın klavye
+      // karşılığı focus/blur (aynı sözleşmenin gerektirdiği gibi).
+      const z = ZEMIN.find(function (zz) { return zz.id === b.dataset.zemin; });
+      if (z) {
+        b.addEventListener("mouseenter", function () { mountZeminPreview(z, b); });
+        b.addEventListener("mouseleave", teardownZeminPreview);
+        b.addEventListener("focus", function () { mountZeminPreview(z, b); });
+        b.addEventListener("blur", teardownZeminPreview);
+      }
     });
 
     const kaynakBox = panel.querySelector("#share-kaynak-chips");
@@ -2152,9 +2402,13 @@
     panel.querySelector('[data-action="shuffle"]').addEventListener("click", refresh);
     const panelCloseBtn = panel.querySelector('[data-action="quit"]');
     panelCloseBtn.addEventListener("click", closePanel);
-    // bkz. openStage'deki aynı not -- role="dialog" açıldığında odağı
-    // içeri taşımak gerekir, en güvenli ilk durak kapat düğmesi.
-    panelCloseBtn.focus();
+    // bkz. openStage'deki aynı not -- role="dialog" İLK açıldığında odağı
+    // içeri taşımak gerekir, en güvenli ilk durak kapat düğmesi. Ama bir
+    // İÇ seçim (şablon/dil/iki dilli) panel'i yeniden kurduğunda odak o
+    // seçimi yapan denetime geri döner -- bkz. buildPanel(focusAfter)
+    // yorumu (tespit, 2026-09-13).
+    const focusTarget = (focusAfter && panel.querySelector(focusAfter)) || panelCloseBtn;
+    focusTarget.focus();
 
     renderSavedLists();
     refresh();
@@ -2162,6 +2416,7 @@
 
   function closePanel() {
     closeStage();
+    teardownZeminPreview();
     if (panel) { panel.remove(); panel = null; }
   }
 
