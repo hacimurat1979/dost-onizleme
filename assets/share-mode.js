@@ -58,6 +58,7 @@
       en: "No record fits this template — try another.",
       pt: "Nenhum registo serve para este modelo — tenta outro.",
     },
+    sablon: { tr: "Şablon", en: "Template", pt: "Modelo" },
     zemin: { tr: "Zemin", en: "Backdrop", pt: "Fundo" },
     isik: { tr: "Açık zemin", en: "Light backdrop", pt: "Fundo claro" },
     kare: { tr: "Kare (1:1)", en: "Square (1:1)", pt: "Quadrado (1:1)" },
@@ -658,13 +659,48 @@
   const OZEL_GUN = {
     "7-27": {
       ad: { tr: "Miraç Kandili", en: "Night of the Ascension (Mi'raj)", pt: "Noite da Ascensão (Miraj)" },
-      entryIds: ["mirac-in-en-yakin-aninda-ne", "sarabi-icmedim-sirri-aciklamaktan-korktum"],
+      // Üçüncü kayıt (2026-09-13): sirlar.json'da Mi'râc'a dair üçüncü bir
+      // sır daha var (miracta-verilen-ifade-edilemeyen-bilgi) -- havuz
+      // genişledi, "Başkasını getir" artık üç arasından seçebiliyor.
+      entryIds: ["mirac-in-en-yakin-aninda-ne", "sarabi-icmedim-sirri-aciklamaktan-korktum", "miracta-verilen-ifade-edilemeyen-bilgi"],
     },
     "12-10": {
       ad: { tr: "Kurban Bayramı", en: "Feast of Sacrifice (Eid al-Adha)", pt: "Festa do Sacrifício (Eid al-Adha)" },
       entryIds: ["yaratani-yaratilmis-yaratilmisi-yaratan-gormek-ibrahim"],
     },
   };
+
+  // Desteklenmeyen bir günde şablon boş kalınca kullanıcı bunu bozukluk
+  // sanıyordu (2026-09-13 bildirimi, "special day için içerik gelmedi") --
+  // oysa KURAL gereği yalnız GERÇEKTEN ilgili bir kayıt bulduğumuz iki gün
+  // destekleniyor. Aradaki boşlukta sessiz kalmak yerine bir sonraki
+  // desteklenen günü (ve kaç gün kaldığını) söylüyoruz -- bu, kartın
+  // İÇERİĞİ değil panelin kendi arayüz metni, KURAL yalnız sahnedeki
+  // cümleleri kapsıyor (bkz. dosya başı).
+  function nextOzelGun() {
+    try {
+      const fmt = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { day: "numeric", month: "numeric" });
+      for (let i = 0; i <= 366; i++) {
+        const parts = fmt.formatToParts(new Date(Date.now() + i * 86400000));
+        const day = parts.find((p) => p.type === "day");
+        const month = parts.find((p) => p.type === "month");
+        const key = day && month ? month.value + "-" + day.value : null;
+        if (key && OZEL_GUN[key]) return { gun: OZEL_GUN[key], days: i };
+      }
+    } catch (e) { /* Intl desteklenmiyor -- aşağıda UI.none'a düşülür */ }
+    return null;
+  }
+  function ozelgunEmptyText() {
+    const info = nextOzelGun();
+    if (!info) return tt(UI.none);
+    const n = info.days;
+    const dict = {
+      tr: "Bugün için kayıt yok — sıradaki: " + tt(info.gun.ad, "tr") + (n > 0 ? (", " + n + " gün sonra.") : "."),
+      en: "No record for today — next: " + tt(info.gun.ad, "en") + (n > 0 ? (", in " + n + " day" + (n === 1 ? "" : "s") + ".") : "."),
+      pt: "Sem registo para hoje — a seguir: " + tt(info.gun.ad, "pt") + (n > 0 ? (", daqui a " + n + " dia" + (n === 1 ? "" : "s") + ".") : "."),
+    };
+    return tt(dict);
+  }
 
   // --- sahne çizimi ----------------------------------------------------
   let stageEl = null, rafId = 0, tilt = null, startTs = 0, chromeTimer = 0, helixHandle = null;
@@ -843,20 +879,16 @@
       n: 22, tur: 1, yari: 0.28, yuk: 1.2, ac: 0.10, nokta: 4.2, hale: 0.52, halka: 0, nefes: true },
     { id: "sade", ad: { tr: "Sade", en: "Plain", pt: "Simples" },
       n: 14, tur: 1, yari: 0.34, yuk: 1.6, ac: 0.20, nokta: 2.6, hale: 0.20, halka: 0, cizgisiz: true },
-    // Dört yeni zemin (kullanıcı isteği, 2026-07-30): "daha fazla arka plan
+    // İki yeni zemin (kullanıcı isteği, 2026-07-30): "daha fazla arka plan
     // seçeneği, metafizik anlamı kuvvetli, düğümler farklı/canlı renklerle;
     // video gibi canlı hissi de olsun."  Süsleyici renk çarkı yerine hepsi
     // sitenin gerçek kavramlarını kodluyor:
-    //  - "celalcemal": esmâ'nın celâl/cemâl ayrımı -- düğümler dönüşümlü.
-    //  - "esik": iki uç arasındaki berzah/eşik -- renk sürekli kayıyor.
     //  - "feyz": nefes-i Rahmânî'nin feyz/taşması -- bir dalga sarmalı
     //    boyunca aşağı akar; "video-benzeri" canlı his tam burada.
     //  - "esma": yedi Ümmehât-ı Esmâ'nın yedi rengi -- Hayy/Alîm/Mürîd/
     //    Kadîr/Semî'/Basîr/Mütekellim, her düğüm kendi isminin renginde.
-    { id: "celalcemal", ad: { tr: "Celâl-Cemâl", en: "Majesty-Beauty", pt: "Majestade-Beleza" },
-      n: 28, tur: 1.6, yari: 0.30, yuk: 2.4, ac: 0.30, nokta: 3.6, hale: 0.28, halka: 0, renk: "cift" },
-    { id: "esik", ad: { tr: "Eşik", en: "Threshold", pt: "Limiar" },
-      n: 24, tur: 1.2, yari: 0.30, yuk: 2.0, ac: 0.26, nokta: 3.6, hale: 0.30, halka: 0, renk: "gecis" },
+    // ("Celâl-Cemâl" ve "Eşik" zeminleri 2026-09-13'te kaldırıldı --
+    // kullanıcı isteği.)
     { id: "feyz", ad: { tr: "Feyz", en: "Emanation", pt: "Emanação" },
       n: 36, tur: 1.8, yari: 0.29, yuk: 2.8, ac: 0.28, nokta: 3.0, hale: 0.36, halka: 0, renk: "feyz" },
     { id: "esma", ad: { tr: "Esmâ", en: "Divine Names", pt: "Nomes Divinos" },
@@ -866,8 +898,8 @@
     // yine sitenin kendi imgelerine bağlı, süsleyici değil:
     //  - "seher": seherin/teheccüdün sakin uyanışı -- lavanta'dan şeftaliye
     //    yumuşak bir geçiş, sarmal boyunca kayan.
-    //  - "gul": gül bahçesi -- pembe/yeşil dönüşümlü (celâl-cemâl'in
-    //    "cift" mekaniğiyle aynı, farklı bir imge/renk üzerinden).
+    //  - "gul": gül bahçesi -- pembe/yeşil dönüşümlü, düğüm başına
+    //    değişen iki renk.
     //  - "deniz": vahdet-i vücûd'un sık kullanılan okyanus metaforu --
     //    "feyz"le aynı dalga mekaniği, turkuaz-lacivert.
     //  - "ney": ney'in inlemesi -- sıcak bakır tek ton, az düğüm (ney'in
@@ -881,14 +913,10 @@
     { id: "ney", ad: { tr: "Ney İnlemesi", en: "The Reed's Lament", pt: "O Lamento do Ney" },
       n: 18, tur: 1, yari: 0.32, yuk: 1.4, ac: 0.18, nokta: 3.8, hale: 0.30, halka: 0, renk: "ney" },
   ];
-  // "renk: cift" için iki sabit ton (celâl/cemâl); "renk: gecis" için
-  // sarmal boyunca aralarında kayan iki uç. İkisi de hem koyu hem açık
-  // zeminde okunaklı kalacak şekilde seçildi (dekoratif öğeler oldukları
-  // için metin kontrastı ölçütü uygulanmıyor, ama yine de göz önünde
-  // tutuldu).
+  // Renkli zeminlerin sabit tonları -- hem koyu hem açık zeminde okunaklı
+  // kalacak şekilde seçildi (dekoratif öğeler oldukları için metin
+  // kontrastı ölçütü uygulanmıyor, ama yine de göz önünde tutuldu).
   const RENK = {
-    celal: "#e2632b", cemal: "#7c5cff",
-    esikA: "#eda100", esikB: "#4b3f8f",
     // Feyz: sıcak altın (tepe) → derin turuncu (dip); hem koyu hem açık zeminde okunabilir.
     feyzA: "#fdb347", feyzB: "#c04a0f",
     // Yedi Ümmehât: Hayy·Alîm·Mürîd·Kadîr·Semî'·Basîr·Mütekellim sırasıyla.
@@ -909,6 +937,92 @@
     const g = Math.round(A[1] + (B[1] - A[1]) * t);
     const bl = Math.round(A[2] + (B[2] - A[2]) * t);
     return "rgb(" + r + "," + g + "," + bl + ")";
+  }
+  // Panelde zemin seçenekleri düz metin etiketiydi -- kullanıcı hangisini
+  // seçtiğinde neyle karşılaşacağını göremiyordu (2026-09-13 isteği: "arka
+  // plan seçeneklerini görsel olarak görebilmemize imkan ver"). Sahnenin
+  // GERÇEK boyama mantığını (aynı renk fonksiyonları, aynı sarmal açısı)
+  // küçük dairesel bir örnekte tekrarlıyoruz -- ayrı, süsleyici bir ikon
+  // DEĞİL, o zeminin sahnede alacağı biçimin/renginin ölçekli bir örneği
+  // (bkz. CLAUDE.md "kavramı değil davranışını resmet"). Tilt/3B'yi
+  // (yalnız sahnede anlamlı) atlıyoruz; düz üstten bakışlı bir sarmal
+  // yeterli bir örnek.
+  function zeminThumbSvg(z) {
+    const n = Math.min(z.n, 22);
+    const size = 34, cx = size / 2, cy = size / 2, R = size * 0.40;
+    let d = "", dots = "";
+    for (let i = 0; i < n; i++) {
+      const t = i / Math.max(1, n - 1);
+      const a = -Math.PI / 2 + t * Math.PI * 2 * z.tur;
+      const adim = z.halka ? Math.floor(t * z.halka) / Math.max(1, z.halka - 1) : t;
+      const rr = R * (0.20 + 0.80 * adim);
+      const x = cx + rr * Math.cos(a), y = cy + rr * Math.sin(a);
+      d += (i === 0 ? "M" : "L") + x.toFixed(1) + "," + y.toFixed(1);
+      let fill;
+      if (z.renk === "feyz") fill = renkGecis(RENK.feyzA, RENK.feyzB, t);
+      else if (z.renk === "esma") fill = RENK.esma[i % RENK.esma.length];
+      else if (z.renk === "seher") fill = renkGecis(RENK.seherA, RENK.seherB, t);
+      else if (z.renk === "gul") fill = i % 2 === 0 ? RENK.gulPembe : RENK.gulYesil;
+      else if (z.renk === "deniz") fill = renkGecis(RENK.denizA, RENK.denizB, t);
+      else if (z.renk === "ney") fill = RENK.ney;
+      else fill = "#eda100";
+      const r = i === 0 ? 3.2 : 1.5;
+      dots += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + r + '" fill="' + fill + '"/>';
+    }
+    const path = z.cizgisiz ? "" : '<path d="' + d + '" fill="none" stroke="#eda100" stroke-opacity="0.32" stroke-width="1"/>';
+    return '<svg class="share-zemin-thumb" viewBox="0 0 ' + size + " " + size + '" aria-hidden="true" focusable="false">' +
+      '<circle cx="' + cx + '" cy="' + cy + '" r="' + (R * 0.95).toFixed(1) + '" fill="#05060a"/>' +
+      path + dots + "</svg>";
+  }
+  // Aynı gerekçe, şablon seçenekleri için: her ikon o şablonun kartta
+  // GERÇEKTEN alacağı satır sayısını/sırasını (başlık/söz/soru/çizgi)
+  // küçük çubuklarla gösteriyor -- soyut bir sembol değil, kartın kendi
+  // iskeletinin ölçekli bir örneği. Füsûs/Mişkât tek bir halka taşıyor
+  // (o ikisi zaten kendi bölümünün halka görselini ödünç alıyor).
+  const TPL_THUMB_ROWS = {
+    soz: [["soz", 0.62]],
+    gunun: [["soz", 0.62]],
+    soru: [["soru", 0.7]],
+    hikaye: [["soru", 0.68], ["soz", 0.5], ["soz", 0.58]],
+    ikili: [["soz", 0.55], ["rule", 0], ["soz", 0.6]],
+    karsilastir: [["soz", 0.55], ["rule", 0], ["soz", 0.6]],
+    benzetme: [["baslik", 0.4], ["soz", 0.68]],
+    ontoloji: [["baslik", 0.4], ["soz", 0.68]],
+    esma: [["baslik", 0.4], ["soz", 0.68]],
+    ozelgun: [["baslik", 0.4], ["soz", 0.68]],
+    dizi: [["baslik", 0.36], ["soz", 0.5], ["soz", 0.62], ["soz", 0.44]],
+    fusus: [["baslik", 0.4], ["soz", 0.5]],
+    miskat: [["baslik", 0.4], ["soz", 0.5]],
+  };
+  const TPL_THUMB_RING = { fusus: true, miskat: true };
+  function tplThumbSvg(key) {
+    const rows = TPL_THUMB_ROWS[key] || TPL_THUMB_ROWS.soz;
+    const w = 26, h = 42, barH = 2.4, gap = 5;
+    const x0 = w * 0.16;
+    let out = '<rect x="0" y="0" width="' + w + '" height="' + h + '" rx="3" fill="#05060a"/>';
+    let y;
+    if (TPL_THUMB_RING[key]) {
+      out += '<circle cx="' + (w / 2) + '" cy="' + (h * 0.36).toFixed(1) + '" r="' + (w * 0.26).toFixed(1) +
+        '" fill="none" stroke="#eda100" stroke-opacity="0.55" stroke-width="1.1"/>';
+      y = h * 0.66;
+    } else {
+      const totalH = rows.length * barH + (rows.length - 1) * gap;
+      y = (h - totalH) / 2;
+    }
+    rows.forEach(function (row) {
+      if (row[0] === "rule") {
+        out += '<rect x="' + x0.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + (w * 0.68).toFixed(1) +
+          '" height="0.7" fill="#eda100" fill-opacity="0.32"/>';
+        y += gap;
+        return;
+      }
+      const bw = w * 0.68 * row[1];
+      const vurgu = row[0] === "baslik" || row[0] === "soru";
+      out += '<rect x="' + x0.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + barH +
+        '" rx="1.3" fill="' + (vurgu ? "#eda100" : "#cfcabd") + '" fill-opacity="' + (vurgu ? 0.9 : 0.72) + '"/>';
+      y += barH + gap;
+    });
+    return '<svg class="share-tpl-thumb" viewBox="0 0 ' + w + " " + h + '" aria-hidden="true" focusable="false">' + out + "</svg>";
   }
   const ZEMIN_ANAHTAR  = "dost-share-zemin";
   const ISIK_ANAHTAR   = "dost-share-isik";
@@ -1014,11 +1128,7 @@
       // Renkli zeminler: düğüm rengi CSS'teki tek tonun (--sahne-murekkep)
       // yerine geçiyor; öteki zeminlerde her karede boşaltılıyor ki
       // önceki bir renkli zeminden kalan satır-içi renk yapışık kalmasın.
-      if (z.renk === "cift") {
-        c.style.fill = i % 2 === 0 ? RENK.celal : RENK.cemal;
-      } else if (z.renk === "gecis") {
-        c.style.fill = renkGecis(RENK.esikA, RENK.esikB, i / Math.max(1, z.n - 1));
-      } else if (z.renk === "feyz") {
+      if (z.renk === "feyz") {
         // Altın dalga sarmal boyunca aşağı akar -- feyz/taşma hareketi.
         const fPos = i / Math.max(1, z.n - 1);
         c.style.fill = renkGecis(RENK.feyzA, RENK.feyzB, fPos);
@@ -1076,9 +1186,7 @@
     // Merkezdeki nefes alan halka: ontoloji/esmâ'daki Zât halosuyla aynı
     // 6 saniyelik ritim.
     const halo = cacheHalo;
-    if (z.renk === "cift") halo.style.fill = renkGecis(RENK.celal, RENK.cemal, 0.5);
-    else if (z.renk === "gecis") halo.style.fill = renkGecis(RENK.esikA, RENK.esikB, 0.5);
-    else if (z.renk === "feyz") halo.style.fill = RENK.feyzA;
+    if (z.renk === "feyz") halo.style.fill = RENK.feyzA;
     else if (z.renk === "esma") halo.style.fill = RENK.esma[3]; // Kadîr -- merkezde
     else if (z.renk === "seher") halo.style.fill = renkGecis(RENK.seherA, RENK.seherB, 0.5);
     else if (z.renk === "gul") halo.style.fill = RENK.gulPembe;
@@ -1728,7 +1836,8 @@
       candidates = results.filter(Boolean);
       if (!candidates.length) {
         const box = panel.querySelector(".share-panel__candidates");
-        if (box) box.innerHTML = '<p class="share-panel__cand-empty">' + escapeHtml(tt(UI.none)) + "</p>";
+        const msg = currentTpl === "ozelgun" ? ozelgunEmptyText() : tt(UI.none);
+        if (box) box.innerHTML = '<p class="share-panel__cand-empty">' + escapeHtml(msg) + "</p>";
         return;
       }
       renderCandidateList();
@@ -1743,8 +1852,9 @@
     panel.setAttribute("aria-label", tt(UI.title));
 
     const chips = Object.keys(UI.tpl).map(function (k) {
-      return '<button type="button" class="share-panel__chip' + (k === currentTpl ? " is-on" : "") +
-        '" data-tpl="' + k + '" aria-pressed="' + (k === currentTpl) + '">' + escapeHtml(tt(UI.tpl[k])) + "</button>";
+      return '<button type="button" class="share-panel__chip share-panel__chip--tpl' + (k === currentTpl ? " is-on" : "") +
+        '" data-tpl="' + k + '" aria-pressed="' + (k === currentTpl) + '">' + tplThumbSvg(k) +
+        "<span>" + escapeHtml(tt(UI.tpl[k])) + "</span></button>";
     }).join("");
 
     const dilChips = DIL_LANGS.map(function (l) {
@@ -1760,9 +1870,9 @@
     }).join("");
 
     const zeminChips = ZEMIN.map(function (z) {
-      return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
+      return '<button type="button" class="share-panel__chip share-panel__chip--sm share-panel__chip--zemin' +
         (z.id === zeminId ? " is-on" : "") + '" data-zemin="' + z.id + '" aria-pressed="' + (z.id === zeminId) + '">' +
-        escapeHtml(tt(z.ad)) + "</button>";
+        zeminThumbSvg(z) + "<span>" + escapeHtml(tt(z.ad)) + "</span></button>";
     }).join("");
 
     // Filtre satırı yalnız Fütûhât kısmındayken gösterilir.
@@ -1784,11 +1894,21 @@
     const favs = favLoad();
     const tarih = tarihLoad();
 
+    // Panel artık tam sayfa açılıyor (2026-09-13 isteği: "@share açıldığında
+    // tam sayfa aç"). Geniş ekranda bunu boşa harcamamak için içerik iki
+    // sütuna ayrılıyor -- solda kurulum (şablon/dil/zemin/anahtarlar),
+    // sağda sonuç (önizlemeler + favoriler/geçmiş); dar ekranda (telefon)
+    // CSS bu ikisini alt alta yığıyor. Alt eleman seçicileri (querySelector
+    // ile bulunan .share-panel__candidates vb.) değişmedi, yalnız bir
+    // sarmalayıcı katman eklendi.
     panel.innerHTML =
       '<div class="share-panel__head">' + escapeHtml(tt(UI.title)) +
       '<button type="button" data-action="quit" aria-label="' + escapeHtml(tt(UI.close)) + '">✕</button></div>' +
       '<p class="share-panel__hint">' + escapeHtml(tt(UI.hint)) + "</p>" +
+      '<div class="share-panel__body">' +
+      '<div class="share-panel__col share-panel__col--setup">' +
       // Şablon seçici
+      '<p class="share-panel__label">' + escapeHtml(tt(UI.sablon)) + "</p>" +
       '<div class="share-panel__chips">' + chips + "</div>" +
       // Dil seçici
       '<p class="share-panel__label">' + escapeHtml(tt(UI.dil)) + "</p>" +
@@ -1834,6 +1954,8 @@
           '<button type="button" class="share-panel__go" data-action="karsilastir-ac">' + escapeHtml(tt(UI.karsilastirAc)) + "</button>" +
           "</div>"
         : "") +
+      "</div>" +
+      '<div class="share-panel__col share-panel__col--sonuc">' +
       // Çoklu önizleme
       '<div class="share-panel__candidates"></div>' +
       // Başkasını getir
@@ -1849,7 +1971,9 @@
       (tarih.length
         ? '<details class="share-panel__details"><summary>' + escapeHtml(tt(UI.histList)) + "</summary>" +
           '<div class="share-panel__histlist"></div></details>'
-        : "");
+        : "") +
+      "</div>" +
+      "</div>";
 
     document.body.appendChild(panel);
 

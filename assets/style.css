@@ -8475,23 +8475,24 @@ body[data-theme="dark"] .menziller-moon__leke { fill: #00000030; }
    Sahne canlı oynar; kullanıcı telefonun kendi ekran kaydıyla çeker, o
    yüzden burada video/canvas yok. Arayüz kayıtta görünmesin diye sahne
    kromu iki saniye sonra soluyor (.is-dim). */
+/* Panel tam sayfa açılır (2026-09-13 isteği: "@share açıldığında tam sayfa
+   aç ve sayfanın bütün imkanlarını kullan"). Eskiden sağ-alt köşede küçük
+   yüzen bir kart olarak duruyordu -- kurulum (şablon/zemin/dil) ile sonuç
+   (önizlemeler/favoriler) tek dar sütunda üst üste sıkışıyordu. Şimdi
+   `.share-panel__body` geniş ekranda iki sütuna ayrılıyor (bkz. aşağıda). */
 .share-panel {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  inset: 0;
   z-index: 90;
-  width: min(330px, calc(100vw - 32px));
-  /* Panel içeriği (karşılaştır seçici, iki dilli ikinci-dil satırı, favoriler,
-     geçmiş...) toplamda görünen alandan uzun olabiliyor -- taşan kısmı
-     kesmek yerine panelin kendi içinde kaydırılabilir yapıyoruz, aksi
-     hâlde en üstteki şablon çipleri erişilemez hâle gelebiliyor. */
-  max-height: calc(100vh - 32px);
+  width: auto;
+  max-height: none;
+  height: 100dvh;
   overflow-y: auto;
   background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.22);
-  padding: 14px 14px 12px;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 18px clamp(16px, 4vw, 40px) 40px;
   font-size: 0.84rem;
   color: var(--text-secondary);
 }
@@ -8500,22 +8501,48 @@ body[data-theme="dark"] .menziller-moon__leke { fill: #00000030; }
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
+  font-size: 1.05rem;
   color: var(--text-primary);
   margin-bottom: 6px;
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .share-panel__head button {
   background: none;
   border: none;
   color: var(--text-muted);
-  font-size: 1rem;
+  font-size: 1.3rem;
   cursor: pointer;
   padding: 2px 4px;
 }
 .share-panel__hint {
-  margin: 0 0 10px;
-  font-size: 0.76rem;
+  margin: 0 0 18px;
+  font-size: 0.8rem;
   line-height: 1.45;
   color: var(--text-muted);
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Geniş ekranda kurulum solda, sonuç (önizlemeler/favoriler) sağda -- sayfa
+   genişliği kullanılıyor. Dar ekranda (telefon) tek sütuna yığılır. */
+.share-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+@media (min-width: 760px) {
+  .share-panel__body {
+    display: grid;
+    grid-template-columns: minmax(280px, 380px) 1fr;
+    align-items: start;
+    gap: 40px;
+    max-width: 1100px;
+  }
+  .share-panel__col--sonuc { position: sticky; top: 4px; }
 }
 .share-panel__chips {
   display: flex;
@@ -9915,6 +9942,21 @@ mark.durus-vurgu-es {
 }
 .share-panel__chips--zemin { flex-wrap: wrap; }
 .share-panel__chip--sm { font-size: 0.76rem; padding: 0.2rem 0.55rem; }
+/* Şablon/zemin çipleri artık kendi görsel örneklerini taşıyor (2026-09-13
+   isteği: "arka plan seçeneklerini görsel olarak görebilmemize imkan
+   ver" / şablonun "neye benzediği" sorusu) -- metnin yanına, HER ZAMAN
+   görünür (yalnız hover'da değil, dokunmatik cihazda da çalışsın diye)
+   küçük bir örnek ekleniyor. */
+.share-panel__chip--tpl,
+.share-panel__chip--zemin {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 5px;
+  text-align: left;
+}
+.share-tpl-thumb { width: 17px; height: 28px; flex-shrink: 0; border-radius: 2px; }
+.share-zemin-thumb { width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; }
 .share-panel__switch {
   display: flex;
   align-items: center;
