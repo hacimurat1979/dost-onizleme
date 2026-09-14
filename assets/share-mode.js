@@ -1471,12 +1471,24 @@
   // mp4 önce denenir: TikTok webm'i çoğu zaman reddediyor. Chrome 130+ ve
   // Safari MediaRecorder'da mp4 üretebiliyor; üretemeyen tarayıcıda webm'e
   // düşüyoruz (o dosya da yüklenebiliyor ama garantisi yok).
+  // "avc1.4D401F" (Main profile) baseline'dan (avc1.42E01E) AYNI bitrate'te
+  // daha iyi sıkıştırıyor -- kullanıcı bildirimi (2026-09-14: "indirdiğim
+  // videoların kalitesi çok düşük") üzerine önce bunu deniyoruz, cihaz
+  // desteklemiyorsa isTypeSupported() zaten sessizce baseline'a düşüyor.
   const MIMES = [
+    "video/mp4;codecs=avc1.4D401F",
     "video/mp4;codecs=avc1.42E01E",
     "video/mp4",
     "video/webm;codecs=vp9",
     "video/webm",
   ];
+  // Aynı bildirim: MediaRecorder önceden BİTRATE HİÇ BELİRTMİYORDU --
+  // tarayıcı 1080x1920 gibi yüksek bir çözünürlük için kendi varsayılanını
+  // (genelde birkaç Mbps'in altında) seçiyor, bu da özellikle keskin kenarlı
+  // METİN üzerinde bloklaşmaya/bulanıklığa yol açıyor. TikTok/Instagram
+  // kendi tarafında yeniden kodluyor zaten -- yüksek bir sabit bitrate
+  // vererek ilk kopyayı olabildiğince temiz tutuyoruz.
+  const VIDEO_BITRATE = 12000000;
   function pickMime() {
     for (const m of MIMES) {
       try { if (MediaRecorder.isTypeSupported(m)) return m; } catch (e) {}
@@ -1535,6 +1547,24 @@
     return !!surface && surface !== "browser";
   }
 
+  // İSTENEN çözünürlük belirtilmezse tarayıcı sekmeyi kendi varsayılanında
+  // (genelde ekranın gerçek fiziksel piksel sayısından DÜŞÜK) yakalıyor --
+  // biz sonra bunu 1080x1920'lik tuvale BÜYÜTÜNCE metin bulanıklaşıyordu
+  // (kullanıcı bildirimi, 2026-09-14: "indirdiğim videoların kalitesi çok
+  // düşük"). devicePixelRatio dahil gerçek fiziksel piksel sayısını "ideal"
+  // olarak istemek tarayıcıyı olabildiğince yüksek çözünürlükte yakalamaya
+  // zorluyor -- bir üst sınır değil, yalnızca bir tercih (ideal), o yüzden
+  // düşük çözünürlüklü bir ekranda hâlâ güvenli.
+  function captureVideoConstraints(fps) {
+    const dpr = window.devicePixelRatio || 1;
+    return {
+      frameRate: fps,
+      preferCurrentTab: true,
+      width: { ideal: Math.round(window.innerWidth * dpr) },
+      height: { ideal: Math.round(window.innerHeight * dpr) },
+    };
+  }
+
   // getDisplayMedia'nın video()'su play() çözüldüğünde bazen HENÜZ
   // videoWidth/videoHeight=0 (ilk kare kararmamış) ya da bir önceki
   // sekmenin karesini taşıyor olabiliyor -- captureCardToFile bunun için
@@ -1564,7 +1594,7 @@
     let stream;
     try {
       stream = await navigator.mediaDevices.getDisplayMedia({
-        video: { frameRate: 30, preferCurrentTab: true },
+        video: captureVideoConstraints(30),
         preferCurrentTab: true,
         audio: false,
       });
@@ -1617,7 +1647,8 @@
 
     const mime = pickMime();
     const chunks = [];
-    const rec = new MediaRecorder(canvas.captureStream(30), mime ? { mimeType: mime } : undefined);
+    const recOpts = Object.assign({ videoBitsPerSecond: VIDEO_BITRATE }, mime ? { mimeType: mime } : null);
+    const rec = new MediaRecorder(canvas.captureStream(30), recOpts);
     rec.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
     rec.onstop = () => {
       drawing = false;
@@ -1671,7 +1702,7 @@
     let stream;
     try {
       stream = await navigator.mediaDevices.getDisplayMedia({
-        video: { frameRate: 5, preferCurrentTab: true },
+        video: captureVideoConstraints(5),
         preferCurrentTab: true,
         audio: false,
       });

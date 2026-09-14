@@ -1081,12 +1081,24 @@
     },
   };
 
+  // Ev sayfası (view === "ontoloji") kendi SEO/paylaşım başlığını
+  // VIEW_META.ontoloji.title'dan almaz -- o kısa bir SEKME etiketi
+  // ("Ontoloji"/"Ontology"/"Ontologia", nav çiplerinde kullanılır), ev
+  // sayfasının kendisi değil. Önceden document.title bu ayrımı yalnız
+  // TÜRKÇE için yapıyordu (satır aşağıda sabit bir TR dizesiydi) -- EN/PT
+  // kullanıcıda bile view "ontoloji"ye dönünce başlık sessizce Türkçeye
+  // dönüyordu (tespit, 2026-09-14). manifest.json'daki tam adla aynı,
+  // üç dilde.
+  const HOME_TITLE = {
+    tr: "Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası",
+    en: "Ibn Arabi's Map of Being",
+    pt: "O Mapa do Ser de Ibn Arabi",
+  };
+
   function updateMeta(view) {
     const meta = VIEW_META[view];
     if (!meta) return;
-    document.title = view === "ontoloji"
-      ? "Dost Arabî — Muhyiddîn İbnü'l-Arabî'nin Varlık Haritası"
-      : "Dost Arabî — " + I18n.pick3(meta.title);
+    document.title = "Dost Arabî — " + I18n.pick3(view === "ontoloji" ? HOME_TITLE : meta.title);
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute("href", "https://dostarabi.com/" + (view === "ontoloji" ? "" : view));
     const descEl = document.querySelector('meta[name="description"]');
