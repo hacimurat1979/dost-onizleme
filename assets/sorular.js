@@ -1097,9 +1097,9 @@
         en: "Mysteries that touch this question",
         pt: "Mistérios que tocam esta pergunta" })}</p>
       <p class="sorular-sirlar__not">${tt({
-        tr: "Bu bağları biz kurduk; cevap değil, sorunun neden kapanmadığına dair birer işaret olarak okuyoruz.",
-        en: "We made these links ourselves; we read them not as answers but as signs of why the question does not close.",
-        pt: "Fizemos estes vínculos nós mesmos; lemo-los não como respostas, mas como sinais de por que a pergunta não se fecha." })}</p>
+        tr: "Bu bağları biz kurduk.",
+        en: "We made these links ourselves.",
+        pt: "Fizemos estes vínculos nós mesmos." })}</p>
       ${satir}</div>`;
   }
   function relationNote(r) { return r && r.note ? I18n.pick3(r.note) : ""; }

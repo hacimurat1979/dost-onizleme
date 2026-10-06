@@ -1345,9 +1345,9 @@
 
   function introHtml() {
     return `<p class="terimler-intro">${tt({
-      tr: "Bu bir sözlük değil; aynı kelimenin İbn Arabî'nin farklı yerlerinde nasıl karşımıza çıktığını izleme çabası. Bir terime tıklayın, kaynağına ve ilişkili terimlere oradan ulaşın.",
-      en: "This isn't a dictionary; it's an attempt to follow how the same word keeps turning up in different places in Ibn Arabi's work. Click a term to reach its sources and related terms from there.",
-      pt: "Isto não é um dicionário; é uma tentativa de seguir como a mesma palavra volta a aparecer em lugares diferentes na obra de Ibn Arabi. Clique num termo para chegar às suas fontes e termos relacionados a partir dali.",
+      tr: "Aynı kelimenin İbn Arabî'nin farklı yerlerinde nasıl karşımıza çıktığını izleyen bir derleme. Bir terime tıklayın, kaynağına ve ilişkili terimlere oradan ulaşın.",
+      en: "A collection following how the same word turns up in different places in Ibn Arabi's work. Click a term to reach its sources and related terms from there.",
+      pt: "Uma recolha que segue como a mesma palavra aparece em lugares diferentes na obra de Ibn Arabi. Clique num termo para chegar às suas fontes e termos relacionados a partir dali.",
     })}</p>`;
   }
 
@@ -1362,9 +1362,9 @@
         <span>${tt({ tr: "Dönüş yoğunluğu", en: "Return density", pt: "Densidade de retorno" })}</span>
       </p>
       <p class="terimler-heat__note">${tt({
-        tr: "Her terimin yanındaki halka, ona kaç kere geri döndüğümüz kadar doluyor — kaydettiğimiz kaynak pasajları, başka terimlerin ona verdiği atıflar ve sitenin öbür bölümlerine kurduğumuz bağlar toplanarak. Bu, Dost'un neye ağırlık verdiğini değil, bizim okumamızın nerede yoğunlaştığını gösteriyor; yani bir ölçü değil, bir öz-portre.",
-        en: "The ring beside each term fills in proportion to how often we have had to come back to it — the source passages we recorded, the references other terms make to it, and the links we built to other parts of the site, added together. This shows not what Dost emphasised but where our own reading has thickened; a self-portrait rather than a measurement.",
-        pt: "O anel ao lado de cada termo preenche-se na proporção de quantas vezes tivemos de voltar a ele — as passagens-fonte que registámos, as referências que outros termos lhe fazem e os vínculos que construímos com outras partes do site, somados. Isto mostra não o que Dost enfatizou, mas onde a nossa própria leitura se adensou; um autorretrato, não uma medição.",
+        tr: "Her terimin yanındaki halka, ona kaç kere geri döndüğümüz kadar doluyor — kaydettiğimiz kaynak pasajları, başka terimlerin ona verdiği atıflar ve sitenin öbür bölümlerine kurduğumuz bağlar toplanarak. Bu, Dost'un neye ağırlık verdiğini değil, bizim okumamızın nerede yoğunlaştığını gösteriyor.",
+        en: "The ring beside each term fills in proportion to how often we have had to come back to it — the source passages we recorded, the references other terms make to it, and the links we built to other parts of the site, added together. This shows not what Dost emphasised but where our own reading has thickened.",
+        pt: "O anel ao lado de cada termo preenche-se na proporção de quantas vezes tivemos de voltar a ele — as passagens-fonte que registámos, as referências que outros termos lhe fazem e os vínculos que construímos com outras partes do site, somados. Isto mostra não o que Dost enfatizou, mas onde a nossa própria leitura se adensou.",
       })}</p>
     </div>`;
   }
@@ -1716,9 +1716,11 @@
   // kelimeyle geri açılıyor (bkz. assets/edit-mode.js).
   function analogyHtml(t) {
     if (!t.analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
+    const metin = tt(t.analogy);
+    if (!metin || !String(metin).trim()) return "";
     return `<div class="detail-analogy">
       <p class="detail-analogy__label">${tt({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" })}</p>
-      <p>${linkify(tt(t.analogy), "terimler", t.id)}</p>
+      <p>${linkify(metin, "terimler", t.id)}</p>
     </div>`;
   }
 

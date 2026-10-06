@@ -248,7 +248,6 @@
         en: "The pole of Majesty gathers the Names that voice God's loftiness, severity and remoteness from the servant (transcendence) — al-Qahhar, al-'Aziz, al-Muntaqim. For Ibn Arabi, Majesty never discloses itself bare; every act of severity comes clothed in a Beauty (nearness, mercy).",
         pt: "O polo da Majestade reúne os Nomes que expressam a altivez, a severidade e a distância de Deus em relação ao servo (transcendência) — al-Qahhar, al-'Aziz, al-Muntaqim. Para Ibn Arabi, a Majestade nunca se revela nua; todo ato de severidade vem revestido de uma Beleza (proximidade, misericórdia)."
       },
-      analogy: { tr: "Gökgürültüsü gibi: sesi korkutur ama getirdiği yağmur rahmettir.", en: "Like thunder: its sound frightens, yet the rain it brings is mercy.", pt: "Como o trovão: seu som assusta, mas a chuva que traz é misericórdia." },
       // Kutup özeti sentetik bir gruplama (bkz. yukarıdaki "sentetik" notu),
       // ama Celâl'i ayrı bir bölüm olarak ele alan asıl kaynak burada --
       // "celal" isim düğümünün kendi kaynağıyla aynı (esma.json).
@@ -262,18 +261,16 @@
         en: "The pole of Beauty gathers the Names that voice God's beauty, nearness and grace toward the servant (immanence) — ar-Rahman, al-Latif, al-Wadud. Beauty is the wider circle enclosing Majesty: every self-disclosure arrives first as a beauty.",
         pt: "O polo da Beleza reúne os Nomes que expressam a beleza, a proximidade e a graça de Deus para com o servo (imanência) — ar-Rahman, al-Latif, al-Wadud. A Beleza é o círculo mais amplo que envolve a Majestade: toda autorrevelação chega primeiro como uma beleza."
       },
-      analogy: { tr: "Şafak gibi: karanlığı dağıtan ilk ışık her zaman yumuşaktır.", en: "Like dawn: the first light that scatters the dark is always gentle.", pt: "Como a aurora: a primeira luz que dispersa a escuridão é sempre suave." },
       sources: ["Fütûhât-ı Mekkiyye, Cilt 9 (Ekrem Demirli çev.) — İki Yüz Kırk İkinci Bölüm: Cemâl"]
     },
     kemal: {
       name: { tr: "Kemâl — Kemâl (İkisi Birden)", en: "Kamal — Perfection (Both at Once)", pt: "Kamal — Perfeição (Ambos ao Mesmo Tempo)" },
       short: { tr: "Celâl ile Cemâl'i birleştiren isimler", en: "Names uniting Majesty and Beauty", pt: "Nomes que unem Majestade e Beleza" },
       summary: {
-        tr: "Kemâl kutbu, Celâl ile Cemâl'i bir arada taşıyan, ikisinin ötesinde bir bütünlüğe işaret eden isimleri toplar — Allah, el-Melik, el-Kuddûs gibi; ayrıca isimlerin sınıflandırıldığı grup başlıkları (Zâtî/Nispetî/Fiilî) da bu kutupta durur. Kemâl, kemâl (tamlık): zıtları bir arada tutabilme.",
-        en: "The pole of Perfection gathers the Names that carry Majesty and Beauty together, pointing to a wholeness beyond both — Allah, al-Malik, al-Quddus; the classifying group-headings (Names of the Essence / of relation / of act) also rest here. Kamal is completeness: the capacity to hold opposites at once.",
-        pt: "O polo da Perfeição reúne os Nomes que carregam Majestade e Beleza juntas, apontando para uma totalidade além de ambas — Allah, al-Malik, al-Quddus; os títulos de grupo classificadores (Nomes da Essência / de relação / de ato) também repousam aqui. Kamal é completude: a capacidade de sustentar opostos ao mesmo tempo."
+        tr: "Kemâl kutbu, Celâl ile Cemâl'i bir arada taşıyan, ikisinin ötesinde bir bütünlüğe işaret eden isimleri toplar — Allah, el-Melik, el-Kuddûs gibi; ayrıca isimlerin sınıflandırıldığı grup başlıkları (Zâtî/Nispetî/Fiilî) da bu kutupta durur.",
+        en: "The pole of Perfection gathers the Names that carry Majesty and Beauty together, pointing to a wholeness beyond both — Allah, al-Malik, al-Quddus; the classifying group-headings (Names of the Essence / of relation / of act) also rest here.",
+        pt: "O polo da Perfeição reúne os Nomes que carregam Majestade e Beleza juntas, apontando para uma totalidade além de ambas — Allah, al-Malik, al-Quddus; os títulos de grupo classificadores (Nomes da Essência / de relação / de ato) também repousam aqui."
       },
-      analogy: { tr: "Berzah gibi: iki denizi ayıran ama ikisine de ait olan ince çizgi.", en: "Like a barzakh: the fine line that separates two seas yet belongs to both.", pt: "Como um barzakh: a linha fina que separa dois mares e pertence a ambos." },
       // "Kemâl" bağımsız bir isim düğümü değil (bkz. esma.json); özetin
       // dayandığı bölüm "allah" ve grup başlıklarının (zati-grup vd.) da
       // kaynağı olan İlahlık Mertebesi bölümü.

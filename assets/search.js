@@ -162,9 +162,12 @@
       window.DostGraphUtils.fetchJson("data/ibn-arabi/miskat-atlas.json").then((d) => {
         (d.hadisler || []).forEach((h) => {
           if (h.status !== "active") return;
+          // Hadisin kendi metni hem alt satırda gösterilir hem aranır
+          // (2026-10-05) -- önceden yalnız başlık ve bizim özetimiz aranıyordu.
+          const metin = ((h.blocks || []).find((b) => b.type === "hadis") || {}).metin;
           index.push({
-            view: "miskat", id: h.id, label: h.title, sub: h.hero && h.hero.summary,
-            searchText: allLangText(h.title) + " " + allLangText(h.hero && h.hero.summary),
+            view: "miskat", id: h.id, label: h.title, sub: metin || (h.hero && h.hero.summary),
+            searchText: allLangText(h.title) + " " + allLangText(metin) + " " + allLangText(h.hero && h.hero.summary),
           });
         });
       }),

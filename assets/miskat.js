@@ -294,8 +294,16 @@
       + esc(bolumEtiket + " " + h.bolum + " · " + h.no + ". " + birimEtiket) + "</p>"
       + '<h2 class="fusus-article__title">' + esc(t(h.title)) + "</h2>"
       + '<p class="fusus-article__range">' + esc(t(h.pageRange)) + "</p>"
-      + '<div class="fusus-article__summary">' + linkify(t(h.hero.summary)) + "</div>"
       + "</header>";
+
+    // 2026-10-05: hadisin kendi metni başlığın hemen altında, her şeyden
+    // önce -- sayfa okuduğumuz metnin kendisiyle açılır. Özet (varsa) onu
+    // izler.
+    (h.blocks || []).forEach(function (b) {
+      if (b.type === "hadis") html += hadisBlockHtml(b);
+    });
+    var ozet = t(h.hero && h.hero.summary);
+    if (ozet) html += '<div class="fusus-article__summary">' + linkify(ozet) + "</div>";
 
     if (h.mainHelix) {
       var mk = "m" + (idx++);
@@ -307,8 +315,6 @@
     (h.blocks || []).forEach(function (b) {
       if (b.type === "p") {
         html += "<p>" + linkify(t(b.text)) + "</p>";
-      } else if (b.type === "hadis") {
-        html += hadisBlockHtml(b);
       } else if (b.type === "helix") {
         var k = "s" + (idx++);
         helixes[k] = Object.assign({}, b.helix, { title: h.title });

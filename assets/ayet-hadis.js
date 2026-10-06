@@ -111,9 +111,9 @@ window.__ayetHadisApp = (function () {
     const all = ayetItems.concat(hadisItems).sort((a, b) => b.list.length - a.list.length);
 
     const intro = tt({
-      tr: `Fütûhât ve Füsûs okuması boyunca sitede alıntılanan ${ayetItems.length} âyet ve ${hadisItems.length} kutsî hadisin, en çok tekrarladıkları yerden başlayarak sıralanmış bir dizini. Tekrar bir şeyin önemli olduğunun kanıtı değil, ama dikkatimizi çeken bir örüntü -- bkz. sitenin "biriken parçalar" ilkesi.`,
-      en: `An index of the ${ayetItems.length} verses and ${hadisItems.length} sacred sayings quoted across the site's reading of the Futuhat and the Fusus, ordered by how often each recurs. Recurrence isn't proof that something matters -- but it's a pattern that draws our attention; see the site's "accumulating fragments" principle.`,
-      pt: `Um índice dos ${ayetItems.length} versículos e ${hadisItems.length} ditos sagrados citados ao longo da leitura do Futuhat e do Fusus no site, ordenados por quantas vezes cada um recorre. A recorrência não é prova de que algo importa -- mas é um padrão que chama nossa atenção; veja o princípio do site de "acumular fragmentos".`,
+      tr: `Fütûhât ve Füsûs okuması boyunca sitede alıntılanan ${ayetItems.length} âyet ve ${hadisItems.length} kutsî hadisin, en çok tekrarladıkları yerden başlayarak sıralanmış bir dizini.`,
+      en: `An index of the ${ayetItems.length} verses and ${hadisItems.length} sacred sayings quoted across the site's reading of the Futuhat and the Fusus, ordered by how often each recurs.`,
+      pt: `Um índice dos ${ayetItems.length} versículos e ${hadisItems.length} ditos sagrados citados ao longo da leitura do Futuhat e do Fusus no site, ordenados por quantas vezes cada um recorre.`,
     });
 
     const rows = all

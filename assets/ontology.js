@@ -898,17 +898,17 @@
     ontoloji: {
       title: { tr: "Ontoloji", en: "Ontology", pt: "Ontologia" },
       desc: {
-        tr: "Muhyiddîn İbnü'l-Arabî'nin varlık felsefesini (vahdet-i vücûd) anlatmaya değil, anlamaya çalışan mütevazı ve etkileşimli bir harita.",
-        en: "A modest, interactive map that tries to understand — not explain — Ibn Arabi's philosophy of Being (wahdat al-wujud).",
-        pt: "Um mapa modesto e interativo que tenta compreender — não explicar — a filosofia do Ser de Ibn Arabi (wahdat al-wujud).",
+        tr: "Muhyiddîn İbnü'l-Arabî'nin varlık felsefesine (vahdet-i vücûd) dair, eserlerinden yaptığımız okumaların özetinden kurulan etkileşimli bir harita.",
+        en: "An interactive map of Ibn Arabi's philosophy of Being (wahdat al-wujud), built from summaries of our readings of his works.",
+        pt: "Um mapa interativo da filosofia do Ser de Ibn Arabi (wahdat al-wujud), construído a partir dos resumos das nossas leituras das suas obras.",
       },
     },
     esma: {
       title: { tr: "Esmâü'l-Hüsnâ", en: "The Beautiful Names", pt: "Os Belos Nomes" },
       desc: {
-        tr: "Allah'ın güzel isimlerinin İbn Arabî'deki hiyerarşisini ve isimler arası ilişkileri anlamaya çalışan bir harita.",
-        en: "A map that tries to understand the hierarchy of, and relations between, God's Beautiful Names in Ibn Arabi's thought.",
-        pt: "Um mapa que tenta compreender a hierarquia e as relações entre os Belos Nomes de Deus no pensamento de Ibn Arabi.",
+        tr: "Allah'ın güzel isimlerinin İbn Arabî'deki hiyerarşisini ve isimler arası ilişkileri gösteren bir harita.",
+        en: "A map of the hierarchy of, and relations between, God's Beautiful Names in Ibn Arabi's thought.",
+        pt: "Um mapa da hierarquia e das relações entre os Belos Nomes de Deus no pensamento de Ibn Arabi.",
       },
     },
     hal: {
@@ -922,9 +922,9 @@
     terimler: {
       title: { tr: "Terimler", en: "Terms", pt: "Termos" },
       desc: {
-        tr: "İbn Arabî'nin temel terimlerinin (a'yân-ı sâbite, berzah, tecellî...) anlamını ve aralarındaki bağı arayan bir sözlük.",
-        en: "A glossary that searches for the meaning of, and connections between, Ibn Arabi's core terms.",
-        pt: "Um glossário que busca o sentido e as conexões entre os termos fundamentais de Ibn Arabi.",
+        tr: "İbn Arabî'nin temel terimlerinin (a'yân-ı sâbite, berzah, tecellî...) anlamlarını ve aralarındaki bağları derleyen bir sözlük.",
+        en: "A glossary gathering the meanings of, and connections between, Ibn Arabi's core terms.",
+        pt: "Um glossário que reúne o sentido e as conexões entre os termos fundamentais de Ibn Arabi.",
       },
     },
     cizimler: {
@@ -1034,9 +1034,9 @@
     futuhat: {
       title: { tr: "Fütûhât-ı Mekkiyye", en: "Futuhat al-Makkiyya", pt: "Futuhat al-Makkiyya" },
       desc: {
-        tr: "Fütûhât-ı Mekkiyye'nin cilt cilt, kısım kısım okunup anlaşılmaya çalışıldığı bölüm.",
-        en: "A section reading Futuhat al-Makkiyya volume by volume, part by part.",
-        pt: "Uma seção que lê o Futuhat al-Makkiyya volume a volume, parte a parte.",
+        tr: "Fütûhât-ı Mekkiyye'nin cilt cilt, kısım kısım okunup özetlendiği bölüm.",
+        en: "A section reading and summarising Futuhat al-Makkiyya volume by volume, part by part.",
+        pt: "Uma seção que lê e resume o Futuhat al-Makkiyya volume a volume, parte a parte.",
       },
     },
     fusus: {
@@ -3165,9 +3165,9 @@
         en: "Open questions this mystery touches",
         pt: "Perguntas abertas que este mistério toca" })}</p>
       <p class="sorular-sirlar__not">${tt({
-        tr: "Bu bağları biz kurduk; sır soruyu cevaplamıyor, çoğu zaman onun neden açık kaldığını gösteriyor.",
-        en: "We made these links ourselves; the mystery does not answer the question — more often it shows why it stays open.",
-        pt: "Fizemos estes vínculos nós mesmos; o mistério não responde à pergunta — mais frequentemente mostra por que ela permanece aberta." })}</p>
+        tr: "Bu bağları biz kurduk.",
+        en: "We made these links ourselves.",
+        pt: "Fizemos estes vínculos nós mesmos." })}</p>
       ${satir}</div>`;
   }
 
@@ -3608,9 +3608,9 @@
         pt: "Entre no mapa dos cento e um Nomes",
       },
       note: {
-        tr: "Bu düğüm bir liste değil, bir kapı: aynı beliriş, orada tek tek isimler olarak açılıyor.",
-        en: "This node is not a list but a door: the same self-determination opens there as the Names one by one.",
-        pt: "Este nó não é uma lista, mas uma porta: a mesma autodeterminação se abre ali como os Nomes, um a um.",
+        tr: "Bu düğüm bir liste değil, bir kapı: isimler orada tek tek açılıyor.",
+        en: "This node is not a list but a door: the Names open there one by one.",
+        pt: "Este nó não é uma lista, mas uma porta: ali os Nomes se abrem um a um.",
       },
     },
   };

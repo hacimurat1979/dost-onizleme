@@ -829,9 +829,13 @@ window.DostGraphUtils = (function () {
   function analogyHtml(analogy) {
     if (!analogy || !(window.DostAnalogy && window.DostAnalogy.visible())) return "";
     const I18n = window.DostI18n;
+    // Alan var ama metni boşsa (2026-10-05 yorum ayıklaması) başlık tek
+    // başına çizilmesin.
+    const metin = I18n.pick3(analogy);
+    if (!metin || !String(metin).trim()) return "";
     const etiket = I18n.pick3({ tr: "Bir benzetmeyle", en: "In one analogy", pt: "Numa analogia" });
     return `<div class="detail-analogy"><p class="detail-analogy__label">${etiket}</p>`
-         + `<p>${I18n.pick3(analogy)}</p></div>`;
+         + `<p>${metin}</p></div>`;
   }
 
   // "Resize" tepkisi — pencere/orientation değişirken tam layout+render'ı

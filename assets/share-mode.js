@@ -78,7 +78,6 @@
       ontoloji: { tr: "Ontoloji", en: "Ontology",     pt: "Ontologia" },
       esma:     { tr: "Esmâ",     en: "Divine Name",  pt: "Nome Divino" },
       gunun:    { tr: "Günün Sözü", en: "Word of the Day", pt: "Palavra do Dia" },
-      benzetme: { tr: "Bir Benzetmeyle", en: "Through an Analogy", pt: "Através de uma Analogia" },
       fusus:    { tr: "Füsûs Halkası", en: "Fusus Ring", pt: "Anel dos Fusus" },
       miskat:   { tr: "Mişkât Sarmalı", en: "Mishkat Spiral", pt: "Espiral do Mishkat" },
       dizi:     { tr: "Dizi", en: "Series", pt: "Série" },
@@ -508,28 +507,8 @@
         });
       });
     }
-    if (tpl === "benzetme") {
-      // "Bir Benzetmeyle": esma.json/ontology.json/felsefi-terimler.json'un
-      // zaten yazılmış `analogy` alanlarından -- kavram adı + günlük hayat
-      // benzetmesi. Yeni metin yok, yalnız var olan benzetmeler bir araya
-      // toplanıp seçiliyor (kullanıcı önerisi, 2026-08-02).
-      return Promise.all([loadEsma(), loadOntoloji(), loadFelsefiTerimler()]).then(([esma, onto, felsefi]) => {
-        const pool = [];
-        (esma.nodes || []).forEach((n) => { if (n.analogy) pool.push({ name: n.name, analogy: n.analogy }); });
-        (onto.nodes || []).forEach((n) => { if (n.analogy) pool.push({ name: n.name, analogy: n.analogy }); });
-        Object.values(felsefi.terms || {}).forEach((t) => { if (t.analogy) pool.push({ name: t.title, analogy: t.analogy }); });
-        if (!pool.length) return null;
-        const item = pick(pool);
-        return {
-          tpl: "benzetme",
-          lines: [
-            mkBilingualLine(item.name, "baslik"),
-            mkBilingualLine(item.analogy, "soz", 310),
-          ],
-          havuz: pool.length,
-        };
-      });
-    }
+    // "Bir Benzetmeyle" şablonu 2026-10-06'da kaldırıldı: kaynağı olan
+    // `analogy` alanları (bizim benzetmelerimiz) yorum ayıklamasıyla silindi.
     if (tpl === "ontoloji") {
       return loadOntoloji().then((d) => {
         const nodes = (d.nodes || []).filter((n) => n.insights && n.insights.length);
