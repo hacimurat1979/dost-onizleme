@@ -14,14 +14,10 @@
 //
 // DURUŞ NOTU: kutuda gösterilen şey Kur'ân'ın kendisi ve bir meal; bizim
 // yorumumuz değil. O yüzden kutuda hiçbir açıklama/çıkarım yok, yalnız metin
-// ve kaynağı. TR/EN meal quran-json'dan geliyor; PT meali ise (2026-09-13'ten
-// beri, 65 âyetin tümünde) risan/quran-json'da PORTEKİZCE OLMADIĞI için
-// TR/EN meal ve Arapça asıl metin referans alınarak elle üretildi (bkz.
-// kuran.json'daki üst düzey 'kaynak' alanı). Aşağıdaki düşme (fallback)
-// mekanizması artık normal PT gösteriminde devreye girmiyor; yalnız ileride
-// pt'si eksik yeni bir âyet eklenirse sessizce başka bir dile kaydırmak
-// yerine bunu açıkça söylesin diye bırakıldı ("yaptığımız işi olduğundan
-// farklı göstermemek" kuralı).
+// ve kaynağı. Meal quran-json'dan geliyor ve Portekizcesi YOK; pt seçiliyken
+// İngilizce meal gösterilip bu açıkça söyleniyor — sessizce başka bir dile
+// kaydırmak, "yaptığımız işi olduğundan farklı göstermemek" kuralına aykırı
+// olurdu.
 //
 // A1 (2026-07-31): künye artık TERS yönde de çalışıyor — aynı âyetin başka
 // hangi kısımlarda geçtiğini gösteriyor (data/ibn-arabi/ayet-dizini.json,
@@ -46,12 +42,8 @@
   let hadisDizin = null, hadisDizinSozu = null;
 
   function base() { return window.__dostRouteBase || ""; }
-  // graph-utils.js script sırasında bu dosyadan hep önce geliyor (index.html),
-  // yani window.DostGraphUtils burada her zaman tanımlı -- eskiden buradaki
-  // "yoksa kendi fetch'ini kur" fallback'i pratikte hiç tetiklenmiyordu ve
-  // tetiklense de GU.fetchJson'ın yaptığı HTTP-durum kontrolünü yapmıyordu
-  // (2026-08-15 tespiti).
-  const fetcher = window.DostGraphUtils.fetchJson;
+  const fetcher = (window.DostGraphUtils && window.DostGraphUtils.fetchJson)
+    || ((u) => fetch(u).then((r) => r.json()));
 
   function yukle() {
     if (sozu) return sozu;
@@ -143,11 +135,10 @@
     if (!a) return null;
     const lang = I18n ? I18n.getLang() : "tr";
     const meal = a.meal || {};
-    // 2026-09-13'ten beri meal.pt var (65 âyetin tümünde) -- bu düşme artık
-    // normalde devreye girmiyor, yalnız ileride pt'si eksik yeni bir âyet
-    // için güvenlik ağı. Yedek sıra lang -> en -> tr. NOT gerçekten
-    // kullanılan dili söyler (ilk sürümde yedek tr'ye düşüp not "İngilizce"
-    // diyordu — kendi kendine yalan söyleyen bir uyarıydı, düzeltildi).
+    // pt yok: quran-json Portekizce içermiyor. Yedek sıra lang -> en -> tr.
+    // NOT gerçekten kullanılan dili söyler. İlk sürümde yedek tr'ye düşüyor
+    // ama not "İngilizce" diyordu — kendi kendine yalan söyleyen bir uyarı,
+    // yani uyarının koruduğu şeyin tam tersi.
     const mealDili = meal[lang] ? lang : (meal.en ? "en" : (meal.tr ? "tr" : null));
     const govde = mealDili ? meal[mealDili] : "";
     const DIL_ADI = {
@@ -256,17 +247,7 @@
   });
   document.addEventListener("click", (e) => {
     const el = isaretEl(e.target);
-    if (el) {
-      e.preventDefault();
-      // Fare tıklaması önce focusin'i tetikler (el odaklanılabilir), o da
-      // goster()'ı çağırıp acikRef'i SENKRON olarak ayarlar -- kutu içerik
-      // gelmeden (asenkron) henüz görünür olmadan. Burada yalnız acikRef'e
-      // bakılsaydı, focusin'in az önce açtığı kutuyu click hemen kapatırdı
-      // (kutu hiç görünür olmadan) -- dokunmatik cihazlarda özellik hiç
-      // çalışmıyordu. Yalnız kutu GERÇEKTEN görünürse "kapat" sayılıyor.
-      const acik = tip && !tip.hidden && acikRef === isaretAnahtari(el);
-      acik ? gizle() : goster(el);
-    }
+    if (el) { e.preventDefault(); acikRef === isaretAnahtari(el) ? gizle() : goster(el); }
     else gizle();
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") gizle(); });

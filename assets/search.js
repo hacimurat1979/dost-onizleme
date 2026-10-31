@@ -15,18 +15,6 @@
     sorular: { tr: "Sorular", en: "Questions", pt: "Perguntas" },
     futuhat: { tr: "Fütûhât Atlası", en: "Futuhat Atlas", pt: "Atlas do Futuhat" },
     kavram: { tr: "Kavramlar", en: "Concepts", pt: "Conceitos" },
-    fusus: { tr: "Füsûs", en: "Fusus", pt: "Fusus" },
-    miskat: { tr: "Mişkâtü'l-Envâr", en: "Mishkat al-Anwar", pt: "Mishkat al-Anwar" },
-    menziller: { tr: "Menziller", en: "Mansions", pt: "Mansões" },
-    tasiyicilar: { tr: "Taşıyanlar", en: "The Bearers", pt: "Os Portadores" },
-    hocalar: { tr: "Hocalar", en: "Teachers", pt: "Mestres" },
-    "eser-agi": { tr: "Eser Ağı", en: "The Works Timeline", pt: "A Linha do Tempo das Obras" },
-    "seyahat-atlasi": { tr: "Seyahat Atlası", en: "Travel Atlas", pt: "Atlas de Viagem" },
-    "elestiri-arkeolojisi": { tr: "Eleştiri Arkeolojisi", en: "Archaeology of Criticism", pt: "Arqueologia da Crítica" },
-    "kuran-dokusu": { tr: "Kur'ân Dokusu", en: "The Qur'ânic Weave", pt: "A Trama Alcorânica" },
-    "acik-sorular": { tr: "Açık Sorular", en: "Open Questions", pt: "Perguntas em Aberto" },
-    bilmiyoruz: { tr: "Bilmiyoruz", en: "We Don't Know", pt: "Não Sabemos" },
-    ayethadis: { tr: "Âyet & Hadis", en: "Verses & Hadith", pt: "Versículos e Hadith" },
   };
 
   // Sonuç gruplarının başında, hangi görünüme ait olduğunu tek bakışta
@@ -42,18 +30,6 @@
     sorular: "--series-sorular-en-temel",
     futuhat: "--series-hal-muameleler",
     kavram: "--series-theme",
-    fusus: "--series-theme",
-    miskat: "--series-theme",
-    menziller: "--series-theme",
-    tasiyicilar: "--series-theme",
-    hocalar: "--series-theme",
-    "eser-agi": "--series-theme",
-    "seyahat-atlasi": "--series-theme",
-    "elestiri-arkeolojisi": "--series-theme",
-    "kuran-dokusu": "--series-theme",
-    "acik-sorular": "--series-theme",
-    bilmiyoruz: "--series-theme",
-    ayethadis: "--series-theme",
   };
 
   let index = [];
@@ -64,14 +40,6 @@
     if (!dict) return "";
     if (typeof dict === "string") return dict;
     return [dict.tr, dict.en, dict.pt].filter(Boolean).join(" ␟ ");
-  }
-
-  // Bazı veri dosyalarında başlık alanı üç dilli bir sözlük değil, tek bir
-  // öz ad (şehir/eser/menzil adı gibi, dillere göre değişmeyen). tt()/pick3
-  // yalnız {tr,en,pt} şeklini kabul ettiği için düz string'i aynı üç alana
-  // kopyalayıp sarmalıyoruz.
-  function wrap3(s) {
-    return { tr: s, en: s, pt: s };
   }
 
   function buildIndex() {
@@ -142,117 +110,6 @@
           });
         });
       }),
-      // 2026-08-06 denetiminde bulundu: arama yalnız 9/23 görünümü
-      // indeksliyordu, nav çekmecesindeki 14 bölüm hiç aranamıyordu.
-      // Aşağıdaki 13 kaynak o boşluğu kapatıyor (vahdet hariç -- o
-      // Hakkında sayfasının bir alt-sekmesi, goTo() dispatch'inde bağımsız
-      // bir "view" değil, ayrı bir iş gerektirir).
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/fusus-atlas.json").then((d) => {
-        (d.fasses || []).forEach((f) => {
-          index.push({
-            view: "fusus", id: f.id, label: f.title, sub: f.hikmet,
-            searchText: allLangText(f.title) + " " + allLangText(f.hikmet) + " " + allLangText(f.prophet) + " " + allLangText(f.hero && f.hero.summary),
-          });
-        });
-      }),
-      // SEARCH-01 (uzman paneli denetimi 2026-08-17): 101 hadislik Mişkât,
-      // başlık indeksinde HİÇ yoktu -- en yeni külliyat aramada görünmüyordu.
-      // fusus-atlas ile aynı desen (tam atlas zaten fetchJson önbelleğinde
-      // görünümle paylaşılıyor).
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/miskat-atlas.json").then((d) => {
-        (d.hadisler || []).forEach((h) => {
-          if (h.status !== "active") return;
-          // Hadisin kendi metni hem alt satırda gösterilir hem aranır
-          // (2026-10-05) -- önceden yalnız başlık ve bizim özetimiz aranıyordu.
-          const metin = ((h.blocks || []).find((b) => b.type === "hadis") || {}).metin;
-          index.push({
-            view: "miskat", id: h.id, label: h.title, sub: metin || (h.hero && h.hero.summary),
-            searchText: allLangText(h.title) + " " + allLangText(metin) + " " + allLangText(h.hero && h.hero.summary),
-          });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/menziller.json").then((d) => {
-        (d.menziller || []).forEach((n) => {
-          index.push({
-            view: "menziller", id: n.sira, label: wrap3(n.menzil), sub: n.zuhur,
-            searchText: n.menzil + " " + n.isim + " " + n.harf + " " + allLangText(n.zuhur),
-          });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/tasiyicilar.json").then((d) => {
-        (d.sistemler || []).forEach((s) => {
-          index.push({
-            view: "tasiyicilar", id: s.id, label: s.label, sub: null,
-            searchText: allLangText(s.label) + " " + allLangText(s.note),
-          });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/hocalar.json").then((d) => {
-        (d.hocalar || []).forEach((h) => {
-          index.push({
-            view: "hocalar", id: h.id, label: h.ad, sub: h.konum,
-            searchText: allLangText(h.ad) + " " + allLangText(h.kimlik) + " " + allLangText(h.konum),
-          });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/eser-agi.json").then((d) => {
-        (d.eserler || []).forEach((e) => {
-          index.push({
-            view: "eser-agi", id: e.id, label: wrap3(e.eser), sub: e.aciklama,
-            searchText: e.eser + " " + allLangText(e.aciklama) + " " + allLangText(e.sehir),
-          });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/seyahat-atlasi.json").then((d) => {
-        (d.duraklar || []).forEach((s) => {
-          index.push({
-            view: "seyahat-atlasi", id: s.id, label: s.sehir, sub: s.ozet,
-            searchText: allLangText(s.sehir) + " " + allLangText(s.ozet),
-          });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/elestiri-arkeolojisi.json").then((d) => {
-        (d.kisiler || []).forEach((k) => {
-          index.push({
-            view: "elestiri-arkeolojisi", id: k.id, label: k.ad, sub: k.sehir,
-            searchText: allLangText(k.ad) + " " + allLangText(k.ozet) + " " + allLangText(k.sehir),
-          });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/kuran-dokusu.json").then((d) => {
-        (d.sureler || []).forEach((s) => {
-          index.push({
-            view: "kuran-dokusu", id: s.no, label: s.ad, sub: null,
-            searchText: allLangText(s.ad),
-          });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/acik-sorular.json").then((d) => {
-        (d.sorular || []).forEach((s) => {
-          index.push({
-            view: "acik-sorular", id: s.id, label: s.soru, sub: s.dogdugu_yer,
-            searchText: allLangText(s.soru) + " " + allLangText(s.dogdugu_yer),
-          });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/bilmiyoruz.json").then((d) => {
-        (d.maddeler || []).forEach((m) => {
-          index.push({
-            view: "bilmiyoruz", id: m.id, label: m.baslik, sub: null,
-            searchText: allLangText(m.baslik) + " " + allLangText(m.aciklama),
-          });
-        });
-      }),
-      window.DostGraphUtils.fetchJson("data/ibn-arabi/kuran.json").then((d) => {
-        const ayetler = d.ayetler || {};
-        Object.keys(ayetler).forEach((key) => {
-          const a = ayetler[key];
-          index.push({
-            view: "ayethadis", id: key, label: a.meal, sub: null,
-            searchText: key + " " + (a.ar || "") + " " + allLangText(a.meal),
-          });
-        });
-      }),
     ];
     indexPromise = Promise.allSettled(sources).then((results) => {
       results.forEach((r) => {
@@ -270,7 +127,9 @@
     return indexPromise;
   }
 
-  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
+  function tt(dict) {
+    return I18n.pick3(dict);
+  }
 
   function normalize(s) {
     return (s || "").toLocaleLowerCase("tr").normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -312,16 +171,6 @@
     const threshold = fuzzyThreshold(q.length);
     const scored = [];
     index.forEach((item) => {
-      // Dizin kurulumu bitmeden yazılan sorgularda normText/words henüz
-      // atanmamış olabiliyordu (openPanel buildIndex'i beklemiyor); ilk
-      // öğede TypeError bütün harita aramasını çökertiyor ve ekranda bir
-      // önceki "haritada bulamadık" hâli kalıyordu -- "tecelli bulunamıyor"
-      // diye görünen kusurun asıl sebebi buydu. Tembel normalizasyon o
-      // aralıkta da doğru sonuç verir.
-      if (item.normText === undefined) {
-        item.normText = normalize(item.searchText);
-        item.words = item.normText.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
-      }
       if (item.normText.includes(q)) {
         scored.push({ item, score: 0 });
         return;
@@ -424,12 +273,8 @@
     if (e.target === panel) closePanel();
   });
 
-  // Escape artık burada değil, GU.registerStepBack'in merkezi sırasında --
-  // iki katman aynı anda açıkken tek Escape'in hepsini kapatmaması için.
-  if (window.DostGraphUtils) {
-    window.DostGraphUtils.registerStepBack("search-panel", () => { closePanel(); return true; });
-  }
   window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !panel.hidden) closePanel();
     if (e.key === "/" && panel.hidden && document.activeElement.tagName !== "INPUT") {
       e.preventDefault();
       openPanel();
@@ -526,25 +371,25 @@
       .map((view) => {
         const rows = byView[view]
           .map(
-            (it) => `<button class="search-result" id="search-result-${rowIndex++}" role="option" data-view="${escapeAttr(it.view)}" data-id="${escapeAttr(it.id)}">
-              <span class="search-result__label">${escapeHtml(tt(it.label))}</span>
-              ${it.sub ? `<span class="search-result__sub">${escapeHtml(tt(it.sub))}</span>` : ""}
+            (it) => `<button class="search-result" id="search-result-${rowIndex++}" role="option" data-view="${it.view}" data-id="${it.id}">
+              <span class="search-result__label">${tt(it.label)}</span>
+              ${it.sub ? `<span class="search-result__sub">${tt(it.sub)}</span>` : ""}
             </button>`
           )
           .join("");
         const dotVar = CATEGORY_DOT_VAR[view];
         return `<div class="search-panel__group">
-          <div class="search-panel__group-label">${dotVar ? `<span class="search-panel__group-dot" style="background:var(${dotVar})"></span>` : ""}${escapeHtml(tt(CATEGORY_LABEL[view]))}</div>
+          <div class="search-panel__group-label">${dotVar ? `<span class="search-panel__group-dot" style="background:var(${dotVar})"></span>` : ""}${tt(CATEGORY_LABEL[view])}</div>
           ${rows}
         </div>`;
       })
       .join("");
 
-    // Bağlama işini TEK kapı yapar: rewireResultButtons (data-wired
-    // bekçili). Eskiden burada bir kez doğrudan bağlanıp sonra rewire
-    // çağrılıyordu; data-wired henüz atanmadığı için rewire aynı
-    // düğmelere İKİNCİ dinleyiciyi ekliyor, tek tıklama activateResult'ı
-    // iki kez çalıştırıyordu.
+    resultButtons = Array.from(results.querySelectorAll(".search-result"));
+    resultButtons.forEach((btn) => {
+      btn.addEventListener("click", () => activateResult(btn));
+      btn.addEventListener("pointerenter", () => setActive(resultButtons.indexOf(btn)));
+    });
     rewireResultButtons();
   }
 
@@ -561,7 +406,7 @@
       const title = (r.meta && r.meta.title) || "";
       return `<button class="search-result" role="option" data-href="${escapeAttr(href)}">
           <span class="search-result__label">${escapeHtml(title)}</span>
-          <span class="search-result__sub search-result__excerpt">${escapeExcerpt(r.excerpt)}</span>
+          <span class="search-result__sub search-result__excerpt">${r.excerpt || ""}</span>
         </button>`;
     }).join("");
     const div = document.createElement("div");
@@ -571,19 +416,10 @@
     rewireResultButtons();
   }
 
-  // Ürün denetimi D1 (2026-09-02): ortak yardımcıya taşındı, bkz.
-  // graph-utils.js:escapeHtml. (Eski String(s) null-korumasız hâli
-  // String(null)="null" basardı; ortak yardımcı null-safe.)
-  const escapeHtml = window.DostGraphUtils.escapeHtml;
-  const escapeAttr = escapeHtml;
-
-  // 2026-08-15: title/href aynı satırda escapeHtml/escapeAttr ile korunmuşken
-  // excerpt korunmamıştı (düşük risk -- pagefind kendi <mark> vurgusunu
-  // güvenli üretiyor -- ama tutarsız). Her şeyi escape'leyip yalnız
-  // pagefind'ın kendi <mark>/</mark> etiketlerini whitelist ediyoruz.
-  function escapeExcerpt(s) {
-    return escapeHtml(s || "").replace(/&lt;mark&gt;/g, "<mark>").replace(/&lt;\/mark&gt;/g, "</mark>");
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   }
+  const escapeAttr = escapeHtml;
 
   // Ok tuşu gezinmesi tek bir listede yürüsün: metin içi sonuçlar sonradan
   // (asenkron) geldiği için buton listesini yeniden kuruyoruz.
@@ -625,14 +461,6 @@
   let fullTextTimer = null;
   input.addEventListener("input", () => {
     renderResults(search(input.value));
-    // Dizin hâlâ kuruluyorsa, kurulum bitince aynı sorguyu bir kez daha
-    // çiz: erken yazılan sorgu kısmî dizinle eksik sonuç göstermesin.
-    if (!indexLoaded) {
-      const q = input.value;
-      buildIndex().then(() => {
-        if (!panel.hidden && input.value === q) renderResults(search(q));
-      });
-    }
     clearTimeout(fullTextTimer);
     fullTextTimer = setTimeout(() => runFullText(input.value), 220);
     const q = input.value.trim();

@@ -4,44 +4,10 @@
   const root = document.getElementById("welcome-screen");
   if (!root) return;
 
-  // 2026-08-27 (kullanıcı kararı): karşılama ritüeli ARTIK HER SEFERİNDE
-  // gösteriliyor. Daha önce hatırlanıyordu ve kapı iki kez yer değiştirdi:
-  // 2026-08-16'da (uzman paneli, G-01/ONBOARDING-01) sessionStorage'dan
-  // localStorage'a çevrilmişti -- "ritüel cihaz başına bir kez gösterilsin,
-  // her yeni sekmede yeniden oynamasın". Kullanıcının ifadesiyle o karar
-  // geri alındı: "bir kez gören ya da görmeyen herkes için her seferinde
-  // muhakkak görünmeli."
-  //
-  // Gerekçe, sitenin kendi diliyle: "O'ndan O'na" bir bilgilendirme değil,
-  // bir eşiktir. Eşikten her girişte geçilir; bir kez geçip sonra yandan
-  // dolaşılan şey eşik değildir.
-  //
-  // `dost-welcome-seen` anahtarı artık ne okunuyor ne yazılıyor. Daha önce
-  // yazılmış olanlar zararsız biçimde orada kalıyor -- okunmadıkları için
-  // bir etkileri yok; kullanıcıların localStorage'ını temizlemek bizim
-  // işimiz değil.
-
-  // Derin bir rotaya doğrudan gelindiğinde (paylaşılan link, arama sonucu)
-  // ritüel araya girmesin -- gateTransition'ın zaten benimsediği "gelinmemiş
-  // bir yerden çıkış animasyonu yalan olurdu" ilkesi karşılama ekranına da
-  // uygulanıyor. Kök rotanın kendisi <base href> yüzünden her dağıtımda
-  // (canlı "/", önizleme "/dost-onizleme/") farklı olabildiği için ROUTE_BASE
-  // buradan hesaplanıyor (bkz. assets/ontology.js'teki aynı desen).
-  //
-  // Bu, "her seferinde göster" kuralının TEK istisnası ve bir hatırlama
-  // değil: kapı, gelinen YERE bakıyor, daha önce görülüp görülmediğine
-  // değil. Paylaşılan bir bölüm bağlantısını açan kişi o bölümü istiyor;
-  // önüne altı saniyelik bir eşik koymak onu karşılamak değil, geciktirmek
-  // olurdu. Aynı kişi köke geldiğinde ritüeli görür -- her seferinde.
-  const ROUTE_BASE = (function () {
-    const baseEl = document.querySelector("base");
-    if (!baseEl) return "";
-    try {
-      const u = new URL(baseEl.getAttribute("href"), location.origin);
-      return u.pathname.replace(/\/+$/, "");
-    } catch (e) { return ""; }
-  })();
-  if (location.pathname.replace(/\/+$/, "") !== ROUTE_BASE) {
+  const SEEN_KEY = "dost-welcome-seen";
+  let seen = false;
+  try { seen = !!sessionStorage.getItem(SEEN_KEY); } catch (e) {}
+  if (seen) {
     root.hidden = true;
     return;
   }
@@ -49,49 +15,80 @@
   const beam = document.getElementById("welcome-beam");
   const spark = document.getElementById("welcome-spark");
   const text = document.getElementById("welcome-text");
-  const tagline = document.getElementById("welcome-tagline");
   const glow = document.getElementById("welcome-glow");
   const skipBtn = document.getElementById("welcome-skip");
 
+  // B4 "Bugünün parçası": Sırlar'ın zaten kürasyonlu 86 kaydından, güne göre
+  // sabit (herkes için aynı gün aynı kayıt) tek bir başlık seçip karşılama
+  // ekranına ekliyor. Yeni bir içerik üretmiyor -- var olan, zaten üç dilli
+  // ve kaynaklı bir kaydı gösteriyor. window.__dostRouteBase/DostI18n bu
+  // script'in kendi script etiketinden SONRA yüklendiği için DOMContentLoaded'a
+  // erteleniyor (o ana kadar ikisi de hazır olur).
+  document.addEventListener("DOMContentLoaded", function () {
+    const gununEl = document.getElementById("welcome-gunun");
+    if (!gununEl) return;
+    const base = window.__dostRouteBase || "";
+    fetch(base + "/data/ibn-arabi/sirlar.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!d || !Array.isArray(d.entries) || !d.entries.length) return;
+        const dayIndex = Math.floor(Date.now() / 86400000);
+        const entry = d.entries[dayIndex % d.entries.length];
+        const I18n = window.DostI18n;
+        const topic = entry.topic || {};
+        const text3 = (I18n ? I18n.pick3(topic) : null) || topic.tr || topic.en || "";
+        if (!text3) return;
+        gununEl.textContent = text3;
+        gununEl.hidden = false;
+      })
+      .catch(() => {});
+
+    // B3 "Neredeyiz" halkası: Fütûhât/Füsûs okumasının SAYISAL durumu --
+    // yorum değil, sayım (bkz. CLAUDE.md: "yaptığımız işi olduğundan
+    // farklı göstermeme"). futuhat-atlas-index.json/fusus-atlas.json
+    // karşılama ekranında ağır kalırdı (1MB/900KB); bu yüzden ayrı, küçük
+    // bir özet dosyası (data/ibn-arabi/okuma-durumu.json) okunuyor.
+    const neredeyizEl = document.getElementById("welcome-neredeyiz");
+    if (!neredeyizEl) return;
+    fetch(base + "/data/ibn-arabi/okuma-durumu.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!d || !d.futuhat || !d.fusus) return;
+        const I18n = window.DostI18n;
+        const t = (dict) => (I18n ? I18n.pick3(dict) : dict.tr);
+        const ring = (label, done, total) => {
+          const r = 8, c = 2 * Math.PI * r, fill = (done / total) * c;
+          return `<span class="welcome-neredeyiz__item" title="${label}: ${done}/${total}">
+            <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">
+              <circle class="welcome-neredeyiz__track" cx="10" cy="10" r="${r}" fill="none" stroke-width="2.2"></circle>
+              <circle class="welcome-neredeyiz__fill" cx="10" cy="10" r="${r}" fill="none" stroke-width="2.2"
+                stroke-dasharray="${fill} ${c}" transform="rotate(-90 10 10)"></circle>
+            </svg>
+            <span class="welcome-neredeyiz__label">${label} ${done}/${total}</span>
+          </span>`;
+        };
+        neredeyizEl.innerHTML =
+          ring(t({ tr: "Fütûhât", en: "Futuhat", pt: "Futuhat" }), d.futuhat.done, d.futuhat.total) +
+          ring(t({ tr: "Füsûs", en: "Fusus", pt: "Fusus" }), d.fusus.done, d.fusus.total);
+        neredeyizEl.hidden = false;
+      })
+      .catch(() => {});
+  });
+
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  let finished = false;
-
-  // 2026-08-26 sağlamlaştırma: bu blok eskiden aşağıdaki animasyon
-  // kurulumundan SONRA geliyordu -- getElementById'lerden biri (beam/spark/
-  // glow/skipBtn) ileride bir düzenlemeyle eksik/yanlış id'li kalırsa, o
-  // satırdaki TypeError IIFE'yi burada keserdi ve leave() hiç
-  // tanımlanamadan/kanca hiç takılamadan tam ekran siyah perde kalıcı
-  // olarak asılı kalırdı -- hiçbir tıklama/Esc onu kapatamazdı. Dinleyiciler
-  // artık her şeyden ÖNCE, kendi null-guard'larıyla bağlanıyor; ayrıca bir
-  // üst sınır zamanlayıcısı (aşağıda) normal akış her ne sebeple olursa
-  // olsun tamamlanamazsa perdeyi yine de kaldırıyor.
-  skipBtn && skipBtn.addEventListener("click", (event) => {
-    event.stopPropagation();
-    finished = true;
-    leave();
-  });
-  root.addEventListener("click", () => {
-    finished = true;
-    leave();
-  });
-  window.addEventListener("keydown", (event) => {
-    if (root.hidden) return;
-    if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
-      finished = true;
-      leave();
-    }
-  });
-  setTimeout(() => { if (!finished) leave(); }, 12000);
-
-  function easeInOutCubic(t) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
 
   const cx = 150;
   const cy = 150;
   const r = 120;
   const len = 2 * Math.PI * r;
+  beam.style.strokeDasharray = String(len);
+  beam.style.strokeDashoffset = String(len);
+
+  let finished = false;
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
 
   function placeSpark(progress) {
     const angle = -Math.PI / 2 + progress * Math.PI * 2;
@@ -102,6 +99,7 @@
   function leave() {
     if (root.classList.contains("welcome-screen--leaving") || root.hidden) return;
     root.classList.add("welcome-screen--leaving");
+    try { sessionStorage.setItem(SEEN_KEY, "1"); } catch (e) {}
     // FAZ 1 (grafik-önce, 2026-08-03): karşılama halkası sönmeye BAŞLARKEN
     // haber veriyoruz ki altındaki ontoloji grafiği doğuş animasyonuna
     // (ontology.js runBirth) tam bu esnada başlasın — halka kaybolurken
@@ -121,11 +119,8 @@
     glow.style.opacity = "0.5";
     setTimeout(() => {
       text.classList.add("welcome-screen__text--visible");
-      if (tagline) tagline.classList.add("welcome-screen__tagline--visible");
     }, 260);
-    // Tanıtım cümlesi eklenince (2026-08-10) bekleme, cümlenin okunabileceği
-    // kadar uzatıldı; tıklama/Esc ile her an geçilebilir.
-    const holdMs = reduceMotion ? 1800 : 4200;
+    const holdMs = reduceMotion ? 1300 : 2900;
     setTimeout(leave, holdMs);
   }
 
@@ -148,21 +143,35 @@
     requestAnimationFrame(frame);
   }
 
-  // 2026-08-26: animasyon kurulumu/oynatımı try/catch içinde -- beam/spark/
-  // glow eksik ya da SVG API'sinde beklenmeyen bir hata çıkarsa (yukarıdaki
-  // dinleyiciler zaten bağlı olduğu için tıklama/Esc her durumda çalışır),
-  // burada bir hata da perdeyi asılı bırakmasın diye leave() ile geri
-  // dönülüyor.
-  try {
-    beam.style.strokeDasharray = String(len);
-    beam.style.strokeDashoffset = String(len);
-    if (reduceMotion) {
-      placeSpark(1);
+  skipBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    finished = true;
+    leave();
+  });
+  root.addEventListener("click", () => {
+    if (!finished) {
+      finished = true;
       finish();
     } else {
-      runDraw(4500);
+      leave();
     }
-  } catch (e) {
-    leave();
+  });
+  window.addEventListener("keydown", (event) => {
+    if (root.hidden) return;
+    if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
+      if (!finished) {
+        finished = true;
+        finish();
+      } else {
+        leave();
+      }
+    }
+  });
+
+  if (reduceMotion) {
+    placeSpark(1);
+    finish();
+  } else {
+    runDraw(4500);
   }
 })();

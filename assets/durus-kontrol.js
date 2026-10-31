@@ -1,4 +1,4 @@
-/* Dost Arabî — duruş taraması (s8).
+/* Dost Arabî — duruş taraması (s2).
  *
  * Ne yapar: gizli düzenleme kipi (@revise) açıkken CLAUDE.md'de yazılı
  * duruşumuza uymayabilecek yerleri işaretler. İki yolu var:
@@ -18,26 +18,13 @@
  * <em> ile işaretleniyor; Dost'un/Konuk'un/Daphne'nin kendi kesinliği ya
  * da kendi süre ifadesi bizim iddiamız değil (CLAUDE.md "Kapsam DIŞI").
  *
- * Canlıda da yayındadır (kullanıcı kararı, 2026-07-29): sync-to-live.py
- * artık dosyanın canlıda VAR olduğunu doğrular. Bu başlık uzun süre
- * tersini söyledi ("yalnızca önizlemede"); karar değişince yorum
- * unutulmuştu, 2026-08-05 çapraz denetiminde yakalandı.
+ * Yalnızca önizlemede yayınlanır: sync-to-live.py hem bu dosyayı hem de
+ * script etiketini çıkarır ve çıkardığını doğrular.
  */
 (function () {
   "use strict";
 
-  // s7: kod "s6" derken belge (DURUS_KONTROL.md) "sürüm 5" diyordu ve
-  // ikisinde de aynı 14 kural vardı -- numaralar bir noktada ayrışmış,
-  // fark edilmemişti. Dört yeni kural eklenirken ikisi s7'de eşitlendi.
-  // s8: rekabet-dili (kullanıcı bulgusu; 19 kural).
-  // s9: sure-sisirme'ye cümle kapsamlı BIZ_SESI koşulu. Kural sayısı
-  // değişmedi; kuralın kapsamı, kendi `neden`inin zaten söylediği yere
-  // ("kendimiz hakkında") çekildi. Ölçüm K1'in yanında.
-  // s10: sahiplik testi Türkçe eklere açıldı ve İKİYE ayrıldı (dar/geniş),
-  // çünkü olumlu ve olumsuz kutup aynı kalıbı kaldırmıyor. bag-kimin
-  // 54'ten 20'ye indi, öteki kuralların sayısı değişmedi. Ölçüm G7'nin
-  // yanında.
-  var SURUM = "s10";
+  var SURUM = "s5";
   var DISMISS_KEY = "dost-durus-susturulan";
 
   // YALNIZ TÜRKÇE (s3, kullanıcı kararı). Gerekçe: kalıplar Türkçe için
@@ -56,65 +43,12 @@
   // "Bu söz/bağ bizim" diyen işaretler. Birden çok kural buna bakıyor:
   // CLAUDE.md'nin künye kuralları yalnız KENDİMİZ hakkındaki cümleler için
   // geçerli, âlemin tarifi için değil.
-  //
-  // s10: burası eskiden `\b(biz|bizim|bizce|...)\b` idi ve yanındaki
-  // yorum "bu kalıpların hepsi ASCII harfle başlıyor, sınır doğru
-  // kuruluyor" diyordu. Kelimenin BAŞI doğruydu, SONU değildi: Türkçe
-  // eklemeli bir dil ve `\bbiz\b` "bize"ye eşleşmiyor -- "bize göre",
-  // yani bir okumanın bizim olduğunu söylemenin en sık biçimi, bu teste
-  // görünmüyordu. Ölçüldü: bag-kimin'in 54 isabetinin 8'i tam olarak
-  // "bize/bize göre" diyen cümlelerdi ve hiçbiri sayılmıyordu; cümle
-  // kapsamında SAHIPLIK'in eşleşme sayısı 54'te 0'dı.
-  //
-  // Bu, dosyanın iki yerde zaten belgelediği hatanın (JS'in \b'si ASCII)
-  // üçüncü örneği -- orada kelimenin başı, burada sonu. Zamir artık
-  // ekleriyle birlikte yazılıyor, sınırlar da ONEK/SONEK ile Unicode
-  // farkında kuruluyor.
-  // İKİ AYRI TEST, çünkü sahiplik iki ZIT kutupta kullanılıyor ve tek
-  // kalıp ikisine birden yaramıyor:
-  //
-  //   OLUMLU kutup (sure-sisirme, emek-sisirme, sureklilik-ima):
-  //     "yalnız BİZİM hakkımızdaki cümlede tetiklen". Burada testin DAR
-  //     olması gerekir -- iddianın öznesi biz olmalıyız.
-  //   OLUMSUZ kutup (bag-kimin):
-  //     "bağın bizim olduğu SÖYLENMEMİŞSE işaretle". Burada testin GENİŞ
-  //     olması gerekir -- konuştuğumuzu gösteren herhangi bir işaret yeter.
-  //
-  // Ölçüldü (2026-08-29): tek geniş kalıp ikisine birden verildiğinde
-  // bag-kimin 54'ten 27'ye indi (doğru), ama olumlu kutuptaki üç kural
-  // 4 YENİ YANLIŞ ALARM üretti -- "O her gün bir iştedir" âyeti,
-  // Süleyman kıssası, "binlerce mürde-nefis" (Füsûs'un kendi sözü) ve
-  // İbn Arabî'nin Ebû Yahya ile "yıllarca süren dostluğu". Dördünde de
-  // cümle "Bize göre…" ile açılıyor; ama "bize göre" BİZİM HÜKMÜMÜZE
-  // bağlanıyor, sürenin/ölçeğin sahibi hâlâ kaynak. Yani geniş kalıp
-  // olumlu kutupta çerçeveyi içerikle karıştırıyor.
-  var SAHIPLIK = new RegExp(
-    "(?<![\\p{L}\\p{N}])(?:biz|bizim|bizce|kuruyoruz|kurduğumuz|kurduk" +
-    "|okuyoruz|okumamız|okuma denemesi|yazdığımız|izlediğimiz" +
-    "|biriktirdiğimiz|taradığımız)(?![\\p{L}\\p{N}])", "iu");
-
-  // s10: geniş test. Eskiden yalnız dar test vardı ve `\bbiz\b`
-  // "bize"ye eşleşmiyordu -- Türkçe eklemeli bir dil, "bize göre" ise bir
-  // okumanın bizim olduğunu söylemenin en sık biçimi. Ölçüldü:
-  // bag-kimin'in 54 isabetinin 8'i tam olarak "bize/bize göre" diyen
-  // cümlelerdi ve hiçbiri sayılmıyordu; cümle kapsamında dar testin
-  // eşleşme sayısı 54'te 0'dı, yani koşul fiilen ölüydü.
-  //
-  // Bu, dosyanın iki yerde zaten belgelediği hatanın (JS'in \b'si ASCII)
-  // üçüncü örneği -- orada kelimenin BAŞI kaçıyordu, burada SONU.
-  var SAHIPLIK_GENIS = new RegExp(
-    "(?<![\\p{L}\\p{N}])(?:biz(?:e|de|den|i|im|imiz|ce)?" +
-    // birinci çoğul iyelik ortacı: "ettiğimiz", "okuduğumuz", "gördüğümüz"
-    "|[\\p{L}]+[dt][ıiuü]ğ[ıiuü]m[ıiuü]z" +
-    "|kuruyoruz|kurduğumuz|kurduk|okuyoruz|okumamız|okuma denemesi" +
-    "|yazdığımız|izlediğimiz|biriktirdiğimiz|taradığımız)(?![\\p{L}\\p{N}])", "iu");
+  // Not: \b burada da ASCII, ama bu kalıpların hepsi ASCII harfle
+  // başlıyor (b/k/o/y/i/t) -- sınır doğru kuruluyor. Yine de yeni bir
+  // kalıp eklerken dikkat: "şey" gibi bir sözcük eklenirse çalışmaz.
+  var SAHIPLIK = /\b(biz|bizim|bizce|kuruyoruz|kurduğumuz|kurduk|okuyoruz|okumamız|okuma denemesi|yazdığımız|izlediğimiz|biriktirdiğimiz|taradığımız)\b/i;
   function BIZIM(metin) { return SAHIPLIK.test(metin); }
-  // Geniş test ayrıca birinci çoğul ÇEKİMİ de sayar ("gördük", "buluyoruz"):
-  // olumsuz kutupta soru "bu cümlede sesimiz duyuluyor mu", ve bir fiil
-  // çekimi bunu zamir kadar açık söylüyor. BIRINCI_COGUL aşağıda tanımlı.
-  function BAGSIZ(metin) {
-    return !SAHIPLIK_GENIS.test(metin) && !BIRINCI_COGUL.test(metin);
-  }
+  function BAGSIZ(metin) { return !SAHIPLIK.test(metin); }
 
   // Bir isabetin ÖNÜNDE, yakınında bir nakil işareti var mı? Sitede her
   // alıntı <em> ile sarılmıyor -- özellikle esma.json'da "İbn Arabî: '…'"
@@ -125,28 +59,6 @@
   var NAKIL = /(İbn Arabî|İbn Arabi|Dost|Konuk|İzutsu|Affifi|Daphne|şöyle diyor|şöyle der|şöyle yazıyor|buyurur|diyor ki|anlatıyor|aktarıyor|nakleder|yazıyor)\s*[-–—:'"“‘]/i;
   function NAKIL_DISI(metin, index) {
     return !NAKIL.test(metin.slice(Math.max(0, index - 170), index));
-  }
-
-  // İsabetin geçtiği CÜMLE bizim sesimizde mi? SAHIPLIK'ten farkı iki
-  // katmanlı: (1) kapsam cümle, paragraf değil -- paragrafın uzağındaki
-  // bir "biz" yakındaki bir övünmeyi aklamasın; (2) SAHIPLIK'in sabit
-  // sözcük listesine ek olarak birinci çoğul ÇEKİMİ de sayılıyor
-  // ("uğraşıyoruz", "taradık"), çünkü liste ne kadar uzasa da her fiili
-  // sayamaz.
-  // Ek "-ız/-iz" (isim yüklemi: "hazırız") BİLEREK yok: "tanımadığınız"
-  // gibi ikinci çoğullara takılıyordu -- ölçtük, c1k4'ün günlük hayat
-  // analojisini bu yüzden bizim sesimiz sanıyordu.
-  var BIRINCI_COGUL =
-    /[\wçğıöşüÇĞİÖŞÜ]{2,}(?:[ıiuü]yoruz|[ıiuü]yorduk|acağız|eceğiz|[dt][ıiuü]k|[dt]ik|m[ıiuü]ş[ıiuü]zdır)(?![\wçğıöşüÇĞİÖŞÜ])/i;
-  function cumleyiAl(metin, index) {
-    var bas = Math.max(metin.lastIndexOf(".", index), metin.lastIndexOf("?", index),
-                       metin.lastIndexOf("!", index), metin.lastIndexOf(";", index));
-    var son = metin.indexOf(".", index);
-    return metin.slice(bas + 1, son < 0 ? metin.length : son + 1);
-  }
-  function BIZ_SESI(metin, index) {
-    var c = cumleyiAl(metin, index);
-    return SAHIPLIK.test(c) || BIRINCI_COGUL.test(c);
   }
 
   // JS'in \b'si ASCII: "şüphesiz" sözcüğünün başındaki ş bir "word
@@ -169,24 +81,6 @@
       re: tamKelime("yıllar boyunca|yıllardır|yıllarca|aylar boyunca|aylardır|haftalardır|uzun süredir|uzun zamandır|nice zamandır"),
       neden: "Kendimiz hakkında süre iddiası. CLAUDE.md: “Okuma tarihimiz kısa; uzunmuş gibi yazmak yalandır.”",
       yerine: "Süre değil kapsam yaz: “bu ciltte”, “okuduğumuz bölümlerde”, “şimdiye kadar” — ya da sayı ver.",
-      // Kural, kendi `neden`inde "KENDİMİZ hakkında" diyordu ama bunu hiç
-      // sınamıyordu; kardeşi emek-sisirme'de `kosul: BIZIM` vardı, burada
-      // yoktu. CLAUDE.md süre ifadelerini kaynağın sözünde ve günlük hayat
-      // analojilerinde açıkça "Kapsam DIŞI" tutuyor.
-      //
-      // ÖLÇÜM (2026-08-29, kapsam listesinin tamamı + Daphne kartları):
-      // kural 12 isabet veriyordu, HİÇBİRİ bizim hakkımızda değildi --
-      // İbn Arabî'nin Fâtıma bint el-Müsennâ'ya yıllarca hizmeti (2),
-      // 1172-1193 İşbiliye yılları, c1k4'ün telefon analojisi, c2k18/c2k25
-      // biyografi, ve Daphne'nin kendi süresini anlattığı 6 kart cümlesi.
-      // Yani 0/12. Cümle kapsamlı BIZ_SESI ile on ikisi de susuyor.
-      //
-      // BİLİNEN SINIR: kişisiz bir övünme ("yıllardır süren bir
-      // çalışmanın ürünü") birinci çoğul taşımadığı için kaçıyor. Elde
-      // kurulmuş altı deneme cümlesinin beşi yakalanıyor, altıncısı bu.
-      // Kaçırmayı bilerek kabul ediyoruz: 12 yanlış alarmın bedeli, bir
-      // kalıbın gözden kaçmasından ağır.
-      esKosul: BIZ_SESI,
     },
     {
       id: "emek-sisirme", seviye: "kural", ad: "Emek/ölçek şişirme",
@@ -300,153 +194,6 @@
       yerine: "“Bu satırlar bize şunu düşündürüyor”, “bu bölümden çıkardığımız bir şey şu”.",
       esKosul: NAKIL_DISI,
     },
-
-    /* --- s7'de eklenen dört kural -------------------------------------
-       Kaynak: flutter/agent-plugins deposundaki `natural-writing`
-       becerisi (bkz. research/flutter-depolari-inceleme.md). O listenin
-       maddeleri mevcut 14 kuralla tek tek karşılaştırıldı; çoğunun
-       karşılığı zaten vardı (superficial analysis -> gosterme-dili,
-       attribution -> kanit-dili + sarih-hakemligi, absolute claims ->
-       mutlak-genelleme, temporal inflation -> sure-sisirme). Aşağıdaki
-       dördünün karşılığı YOKTU.
-
-       Hepsi corpus'ta ölçüldü (16.427 metin parçası, 2.409.790 karakter)
-       ve ölçüm iki kalıbı ciddi biçimde daralttı -- ayrıntısı her kuralın
-       kendi yorumunda. */
-
-    {
-      id: "konu-sisirme", seviye: "gozden-gecir", ad: "Konuyu şişirme",
-      // K2 (emek-sisirme) BİZİM emeğimizi şişirmeye bakıyor; bu ise
-      // KONUNUN önemini şişirmeye. Site Dost hakkında yazdığı için en
-      // olası tuzak bu.
-      //
-      // Ölçüm kalıbı iki kez daralttı:
-      //  - "doruk noktası" ve "dönüm noktası" çıkarıldı. Bu corpus metin
-      //    YAPISI çözümlüyor; oralarda ikisi de teknik terim ("bölümün
-      //    dönüm noktası" = metnin döndüğü yer, "motif doruk noktasına
-      //    ulaşıyor"). 13 isabetin 12'si bu türdendi.
-      //  - "eşsiz" ve "benzersiz" HİÇ eklenmedi: tenzihin ta kendisi
-      //    ("Zât hiçbir şeye benzemez"). Bunları işaretlemek doktrini
-      //    hata sanmak olurdu.
-      // Kalan: 1 isabet ("başyapıtı").
-      re: basKelime("kilometre taşı|derin (?:bir )?iz bırak|paha biçilmez|çığır aç|müstesna bir yer|abidevi|şaheser|başyapıt"),
-      neden: "Konunun önemini nitelemeyle yükseltmek. Bir şey önemliyse bunu olgular gösterir; övgü bizim sesimiz değil.",
-      yerine: "Niteleme yerine olgu: ne zaman yazıldı, kaç cilt, nerede tamamlandı.",
-      esKosul: NAKIL_DISI,
-    },
-    {
-      id: "zarif-degisim", seviye: "gozden-gecir", ad: "Adı yerine sıfat koymak",
-      // "Elegant variation": adı tekrar etmemek için yücelten bir
-      // dolaylama uydurmak. Kökensel duruşla çelişiyor -- yücelten sıfat
-      // anlamanın değil anlatmanın dili.
-      //
-      // Kalıp ölçümde tamamen değişti. İlk hâli "büyük şeyh|ünlü sûfî|
-      // büyük mutasavvıf" gibi genel unvanları da içeriyordu ve 2 isabetin
-      // İKİSİ de yanlıştı: ikisi de Dost'tan DEĞİL, onun anlattığı
-      // hikâyedeki ÜÇÜNCÜ kişilerden söz ediyordu ("büyük şeyh
-      // Ebü'l-Abbas el-Hassâr", "iki ünlü sûfî anekdotu"). Regex kimden
-      // söz edildiğini bilemez. Bu yüzden kalıp, yalnız Dost'un ADININ
-      // YERİNE geçebilecek dolaylamalara indirildi.
-      // Şimdiki isabet: 0 -- yani bu bir önleme kuralı, bulgu kuralı değil.
-      re: basKelime("Endülüslü (?:mütefekkir|bilge|sûfî|sufi|filozof)|(?:büyük|ulu|yüce|muhteşem) üstat|ulu şeyh"),
-      neden: "Adı tekrar etmekten kaçınmak için yücelten bir dolaylama. Adı tekrar etmek ya da zamir kullanmak serbest.",
-      yerine: "“İbn Arabî”, “Dost”, ya da düpedüz “o”.",
-      esKosul: NAKIL_DISI,
-    },
-    {
-      id: "olumsuz-kosutluk", seviye: "gozden-gecir", ad: "“Sadece … değil, aynı zamanda …”",
-      // Kalıp bilerek TAM yapıyı istiyor: yalnız "sadece" değil, ardından
-      // gelen "değil, aynı zamanda" da şart. Aksi hâlde sıradan "sadece"
-      // kullanımları kuralı kullanılamaz hâle getirirdi.
-      // Ölçüm: 4 isabet, dördü de gerçek -- hepsi bizim çözümleme
-      // cümlelerimiz. Bu yüzden "kural" değil "gözden geçir": kalıp her
-      // zaman yanlış değil, ama kapsamlılık hissi veren bir refleks
-      // olduğu için bakılmayı hak ediyor.
-      re: new RegExp(ONEK + "(?:sadece|yalnız|yalnızca)[^.!?]{0,60}?\\s+değil,\\s*(?:aynı zamanda|bir o kadar da|ayrıca|hem de)", "giu"),
-      neden: "Kapsamlılık hissi veren bir kalıp. Çoğu yerde iki yarı da düz cümleyle söylenebilir.",
-      yerine: "İki şeyi ayrı ayrı söyle: “şu da var”, “bir de şu tarafı”.",
-      esKosul: NAKIL_DISI,
-    },
-    {
-      id: "ragmen-kapanisi", seviye: "gozden-gecir", ad: "“Rağmen … devam ediyor” kapanışı",
-      // Bir metni "bütün bunlara rağmen X önemini korumaya devam ediyor"
-      // diye bitirmek yaygın bir bitiriş refleksi: hiçbir şey söylemez,
-      // yalnız kapanış hissi verir.
-      // Kalıp iki yarıyı birden istiyor (ödün + "devam" fiili); tek
-      // başına "rağmen" yakalanmıyor. Ölçüm: 0 isabet -- önleme kuralı.
-      re: new RegExp(ONEK + "(?:bütün bunlara|tüm bunlara|her şeye|buna) rağmen[^.!?]{0,80}?(?:olmaya devam|önemini koru|canlılığını koru|güncelliğini koru|yaşamaya devam|etkisini sürdür)", "giu"),
-      neden: "Bir şey söylemeyen kapanış formülü. Duruşumuz son olguyla bitmeyi yeğler.",
-      yerine: "Son cümleyi at; metin son olgusuyla bitsin.",
-      esKosul: NAKIL_DISI,
-    },
-    {
-      id: "rekabet-dili", seviye: "kural", ad: "Rekabet dili",
-      // Kullanıcı kararı, 2026-08-28: "Allah dostları arasında rekabet
-      // olmaz." Bu kural o cümlenin taramadaki karşılığı.
-      //
-      // Kuralı doğuran bulgu bizim kendi cümlemizdi: Daphne kartlarından
-      // birinde "üç yol birbirinin RAKİBİ değil" yazmıştık. Cümle rekabeti
-      // olumsuzluyordu ama çerçeveyi yine de kuruyordu -- Affifi'nin
-      // aktardığı üçlemede böyle bir çerçeve yok, onu biz getirmiştik.
-      // Düzeltildi ("birbirini dışlamıyor").
-      //
-      // Kalıp DAR tutuldu, çünkü mertebe/derece dili meşru: Dost'un kendisi
-      // makamları sıralıyor ("nikâhın nafilesi daha güçlüdür"). Bu yüzden
-      // "üstün", "daha yüksek", "derece" HİÇ eklenmedi -- onları
-      // işaretlemek doktrini hata sanmak olurdu. Yakalanan yalnız kişiler
-      // arası YARIŞ çerçevesi.
-      //
-      // Muafiyet iki katmanlı ve zaten hazırdı: (1) <em> içi hiç taranmıyor,
-      // yani Dost'un/Konuk'un/Daphne'nin kendi sözü kapsam dışı; (2)
-      // NAKIL_DISI, "İbn Arabî: …" gibi atıf ifadesinden sonra gelen düz
-      // tırnaklı nakilleri de eliyor. Geriye yalnız BİZİM sesimiz kalıyor.
-      //
-      // ÖLÇÜM (2026-08-28, bütün veri dosyalarında, <em> ve nakil
-      // muafiyetleri uygulanmış hâlde): önce 19 isabet, düzeltmelerden
-      // sonra 15. Döküm, çünkü sayı tek başına yanıltıcı.
-      //
-      // BİZİM sesimizde çıkan ve DÜZELTİLEN dördü:
-      //   - "üç yol birbirinin rakibi değil" (Daphne kartı, uc-iman-yolu)
-      //     -> "birbirini dışlamıyor". Kuralı doğuran bulgu buydu.
-      //   - "İki okuma yarışıyor" (c14k165, iki yerde)
-      //     -> "İki okuma yan yana duruyor".
-      //   - "iki rakip okuma" (c15k182) -> "iki ayrı okuma".
-      //   Dördü de rekabeti olumsuzluyor ya da reddediyordu; çerçeveyi
-      //   yine de kuruyorlardı. Bir de İbnü Atâullah alıntısının bir
-      //   nüshası ileri-bakışlı muafiyetle elendi.
-      //
-      // KALAN 15, dosya dosya -- hiçbiri düzeltilmedi, çünkü hiçbiri
-      // bizim yorumumuz değil:
-      //   elestiri-arkeolojisi 7 -- Knysh künyeli tarihsel polemikler
-      //     (Timur'un düzenlettiği münazara, kadılık makamı mücadelesi)
-      //     ve bu düzeltmenin kendi kaydı.
-      //   daphne-profile 2      -- İbnü Atâullah'ın Hikem'inden bir cümle.
-      //   fusus-atlas 2         -- "şirk, rakip bir ilah icad etmek değildir".
-      //   c1k10 1               -- Dost'un Hevâ'yı "rakip güç" sayması.
-      //   c7k95 1               -- nafilelerin birbirine "rakip çıkması".
-      //   c8k108 1              -- Dost'un ressam-hakîm kıyası.
-      //   esma 1                -- bayrak yarışı benzetmesi (günlük analoji,
-      //                            CLAUDE.md'de açıkça kapsam dışı).
-      //
-      // Kalıcı isabet sayısının sıfır olmaması bilerek: bu kural bir
-      // temizlik listesi değil, her yeni metinde tekrar bakılacak bir yer.
-      //
-      // Bu kuralın nakil muafiyeti ötekilerden GENİŞ: atıf, alıntının
-      // ARDINDAN da gelebiliyor ("'…' -- İbnü Atâullah'ın bu cümlesi").
-      // Ortak NAKIL_DISI yalnız geriye bakıyor; burada ileriye de
-      // bakılıyor. Muafiyeti yalnız bu kurala verdik, ötekilerin ölçülmüş
-      // davranışını değiştirmemek için.
-      re: tamKelime("rakip|rakibi|rakibiydi|rakipler|rakipleri|rekabet|rekabeti|rekabetçi|yarışıyor|yarıştı|yarışır|yarışında|boy ölçüş\\w*"),
-      neden: "Rekabet çerçevesi. Allah dostları arasında rekabet olmaz; velîler, yollar ve mertebeler birbirine karşı yarışmaz. Çerçeveyi olumsuzlayarak kurmak da (“rakibi değil”) aynı kapıya çıkar.",
-      yerine: "Kaynağın kendi sözüyse ya da künyeli tarihsel bir polemikse KALSIN -- yeter ki kimin sözü olduğu görünsün. Bizim yorumumuzsa çerçeveyi değiştir: “birbirini dışlamıyor”, “yan yana duruyor”, “ayrı yollar”, “itiraz etti”, “mektup yazdı”.",
-      esKosul: function (metin, index) {
-        if (!NAKIL_DISI(metin, index)) return false;
-        // İleriye bakış: isabetten sonraki kısa pencerede bir atıf varsa
-        // (ör. "-- İbnü Atâullah'ın bu cümlesi") bu bir nakildir.
-        return !/(--|—|–)?\s*(İbn Arabî|İbn Arabi|Dost|Konuk|İzutsu|Affifi|Daphne|İbnü [A-ZÇĞİÖŞÜ]|[A-ZÇĞİÖŞÜ][\wçğıöşü'’-]+(?:'in|'ın|'nin|'nın|'un|'ün|'nun|'nün))\s+(?:bu )?(?:cümlesi|sözü|ifadesi|deyişi|kıyası|benzetmesi)/u
-          .test(metin.slice(index, index + 120));
-      },
-    },
   ];
 
   var SECICI = [
@@ -459,13 +206,22 @@
     ".futuhat-hero__summary", ".fusus-hero__summary",
   ].join(", ");
 
-  // Site taraması için hangi veri dosyası hangi görünüme ait:
-  // data/ibn-arabi/tarama-kapsami.json. Liste eskiden hem burada hem
-  // tahkik-tarama.js içinde ayrı ayrı dururdu; ikisi zamanla ayrıştı ve
-  // kimse fark etmedi. Artık tek kaynak var, üstelik
-  // scripts/tarama-kapsami-kontrol.py kapsam kararı verilmemiş bir veri
-  // dosyası bulduğunda derlemeyi durduruyor.
-  var KAPSAM = "data/ibn-arabi/tarama-kapsami.json";
+  // Site taraması için: hangi veri dosyası hangi görünüme ait.
+  var VERI = [
+    ["data/ibn-arabi/ontology.json", "ontoloji", "Ontoloji"],
+    ["data/ibn-arabi/esma.json", "esma", "Esmâ"],
+    ["data/ibn-arabi/hal.json", "hal", "Hâller"],
+    ["data/ibn-arabi/felsefi-terimler.json", "terimler", "Terimler"],
+    ["data/ibn-arabi/sirlar.json", "sirlar", "Sırlar"],
+    ["data/ibn-arabi/sorular.json", "sorular", "Sorular"],
+    ["data/ibn-arabi/menziller.json", "menziller", "Menziller"],
+    ["data/ibn-arabi/futuhat-cizimleri.json", "cizimler", "Çizimler"],
+    ["data/ibn-arabi/tasiyicilar.json", "tasiyicilar", "Taşıyanlar"],
+    ["data/ibn-arabi/fusus-atlas.json", "fusus", "Füsûs"],
+    ["data/ibn-arabi/concepts.json", null, "Kavramlar"],
+  ];
+  // Fütûhât kısımları ayrı dosyalarda; listeyi index'ten alıyoruz.
+  var FUTUHAT_INDEX = "data/ibn-arabi/futuhat-atlas-index.json";
 
   // Taranmayan alanlar. `analogy`: CLAUDE.md'nin "Kapsam DIŞI" maddesi
   // günlük hayat analojilerini açıkça muaf tutuyor. Ötekiler metin değil
@@ -658,19 +414,10 @@
       cip.className = "durus-cip";
       cip.innerHTML =
         '<button type="button" class="durus-cip__sayac"></button>'
-        + '<button type="button" class="durus-cip__site" title="Bütün veri dosyalarını tara">Siteyi tara</button>'
-        // Mekanik tahkik (assets/tahkik-tarama.js) aynı çipten açılıyor:
-        // ikisi de @revise kipinin "metne bakma" araçları ve aynı veri
-        // dosyalarını okuyorlar. Ayrı düğme, çünkü ayrı soru soruyorlar --
-        // duruş: "bu cümle duruşumuza uyuyor mu"; tahkik: "bu metin
-        // ölçülebilir biçimde yoğun mu, bir dili eksik mi".
-        + '<button type="button" class="durus-cip__tahkik" title="Mekanik tahkik: M5 yoğunluk + M7 üç dil kayması">Tahkik</button>';
+        + '<button type="button" class="durus-cip__site" title="Bütün veri dosyalarını tara">Siteyi tara</button>';
       document.body.appendChild(cip);
       cip.querySelector(".durus-cip__sayac").addEventListener("click", sonrakineGit);
       cip.querySelector(".durus-cip__site").addEventListener("click", siteAc);
-      cip.querySelector(".durus-cip__tahkik").addEventListener("click", function () {
-        if (window.__dostTahkik) window.__dostTahkik.ac();
-      });
     }
     var s = cip.querySelector(".durus-cip__sayac");
     if (!turkceMi()) {
@@ -846,19 +593,15 @@
 
   function siteTara() {
     var bulgular = [];
-    return json(KAPSAM).then(function (kapsam) {
-      var isler = kapsam.dosyalar.map(function (d) {
-        return dosyaTara(d.yol, d.gorunum, d.etiket, bulgular);
-      });
-      isler.push(json(kapsam.futuhat.indeks).then(function (idx) {
-        var parcalar = (idx.parts || []).map(function (p) { return p.id; });
-        return Promise.all(parcalar.map(function (pid) {
-          return dosyaTara(kapsam.futuhat.parcaKlasoru + pid + ".json",
-                           "futuhat", "Fütûhât " + pid, bulgular);
-        }));
-      }).catch(function (e) { console.warn("Duruş taraması: kısım listesi okunamadı", e); }));
-      return Promise.all(isler);
-    }).then(function () {
+    var isler = VERI.map(function (v) { return dosyaTara(v[0], v[1], v[2], bulgular); });
+    isler.push(json(FUTUHAT_INDEX).then(function (idx) {
+      var parcalar = (idx.parts || []).map(function (p) { return p.id; });
+      return Promise.all(parcalar.map(function (pid) {
+        return dosyaTara("data/ibn-arabi/futuhat-parts/" + pid + ".json",
+                         "futuhat", "Fütûhât " + pid, bulgular);
+      }));
+    }).catch(function (e) { console.warn("Duruş taraması: kısım listesi okunamadı", e); }));
+    return Promise.all(isler).then(function () {
       // Aynı metin birden çok dosyada geçebiliyor (atlas + parça kopyası);
       // aynı kural+metin çiftini bir kez gösteriyoruz.
       var gorulen = {};
@@ -893,15 +636,6 @@
     yukle.then(function (bs) {
       siteBulgulari = bs;
       siteCiz();
-    }).catch(function (e) {
-      // Kapsam dosyası (tarama-kapsami.json) okunamazsa panel sonsuza
-      // dek "taranıyor…" diyordu + yakalanmamış bir rejection kalıyordu.
-      // Tek tek veri dosyaları zaten sessizce atlanıyor; buraya yalnız
-      // kapsamın kendisi düşer -- o da susturulacak bir şey değil.
-      var govde = sitePanel && sitePanel.querySelector(".durus-site__body");
-      if (govde) govde.innerHTML = '<p class="durus-site__yukleniyor">Tarama başlatılamadı: '
-        + 'kapsam listesi (tarama-kapsami.json) okunamadı. Konsola bakın.</p>';
-      console.error("Duruş taraması başlatılamadı", e);
     });
   }
 
@@ -1054,16 +788,11 @@
   document.addEventListener("click", function (e) {
     if (acikKutu && !e.target.closest(".durus-kutu") && !e.target.closest(".durus-rozet")) kutuKapat();
   });
-  // Escape artık burada değil, GU.registerStepBack'in merkezi sırasında --
-  // iki katman aynı anda açıkken tek Escape'in hepsini kapatmaması için.
-  // İki alt-katman arasındaki öncelik (site paneli > tekil kutu) korunuyor.
-  if (window.DostGraphUtils) {
-    window.DostGraphUtils.registerStepBack(null, function () {
-      if (sitePanel) { siteKapat(); return true; }
-      if (acikKutu) { kutuKapat(); return true; }
-      return false;
-    });
-  }
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if (sitePanel) siteKapat();
+    else kutuKapat();
+  });
 
   // Testler ve elden tarama için.
   window.__dostDurus = {

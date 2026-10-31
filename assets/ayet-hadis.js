@@ -16,25 +16,20 @@ window.__ayetHadisApp = (function () {
   const wrapEl = document.getElementById("ayethadis-wrap");
   const listEl = document.getElementById("ayethadis-list");
 
-  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
+  function tt(dict) {
+    return I18n ? I18n.pick3(dict || {}) : (dict && (dict.tr || dict.en || dict.pt)) || "";
+  }
 
   let dataPromise = null;
   let kuran = null, ayetDizin = null, hadisDizin = null;
-
-  // ayet-onizleme.js (künye hover kutusu) da AYNI üç dosyayı indiriyor; onun
-  // GU.fetchJson önbelleğiyle gerçekten paylaşabilmemiz için o modülün
-  // kullandığı yolu birebir kullanıyoruz -- ROUTE_BASE + kök-göreli yol.
-  // Aksi hâlde iki farklı anahtar ("data/..." burada, base()+"/data/..."
-  // orada) önbelleği ayırır ve aynı sayfada aynı dosya iki kez iner.
-  function base() { return window.__dostRouteBase || ""; }
 
   function fetchData() {
     if (dataPromise) return dataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("ayethadis-wrap");
     dataPromise = Promise.all([
-      GU.fetchJson(base() + "/data/ibn-arabi/kuran.json"),
-      GU.fetchJson(base() + "/data/ibn-arabi/ayet-dizini.json"),
-      GU.fetchJson(base() + "/data/ibn-arabi/hadis-dizini.json"),
+      GU.fetchJson("data/ibn-arabi/kuran.json"),
+      GU.fetchJson("data/ibn-arabi/ayet-dizini.json"),
+      GU.fetchJson("data/ibn-arabi/hadis-dizini.json"),
     ])
       .then(([k, ad, hd]) => {
         kuran = k;
@@ -66,34 +61,12 @@ window.__ayetHadisApp = (function () {
     return s ? esc(tt(s.ad)) : "";
   }
 
-  // ayet-onizleme.js'teki (künye hover kutusu) AYNI dosyayı kullanıyor.
-  // 2026-09-13'ten beri kuran.json'daki 65 âyetin tümünde meal.pt var
-  // (bkz. kuran.json'daki üst düzey 'kaynak' alanı: hazır bir veri seti
-  // değil, TR/EN mealden elle üretilmiş çeviri) -- bu yüzden PT modunda
-  // artık normalde bu düşme hiç devreye girmiyor. Yine de burada
-  // BIRAKILIYOR: gelecekte yeni bir âyet eklenip pt'si henüz yazılmadan
-  // yayına girerse (ya da yeni bir dil eklenirse), sessizce yanlış dile
-  // düşmek yerine kullanıcıya dürüstçe hangi dilde gösterildiği söylensin
-  // diye (CLAUDE.md: "yaptığımız işi olduğundan farklı gösterme").
-  const DIL_ADI = {
-    tr: { tr: "Türkçe", en: "Turkish", pt: "turco" },
-    en: { tr: "İngilizce", en: "English", pt: "inglês" },
-  };
   function ayetMeal(ref) {
     const a = kuran.ayetler && kuran.ayetler[ref];
     if (!a) return "";
     const lang = I18n ? I18n.getLang() : "tr";
     const meal = a.meal || {};
-    const mealDili = meal[lang] ? lang : (meal.en ? "en" : (meal.tr ? "tr" : null));
-    const govde = mealDili ? meal[mealDili] : "";
-    const not = (mealDili && mealDili !== lang && DIL_ADI[mealDili])
-      ? ` <span class="ayethadis-item__meal-not">${esc(tt({
-          tr: `(meal ${DIL_ADI[mealDili].tr} — bu dilde meal elimizde yok)`,
-          en: `(translation in ${DIL_ADI[mealDili].en} — we have none in this language)`,
-          pt: `(tradução em ${DIL_ADI[mealDili].pt} — não temos nenhuma neste idioma)`,
-        }))}</span>`
-      : "";
-    return esc(govde) + not;
+    return esc(meal[lang] || meal.en || meal.tr || "");
   }
 
   function locHtml(list) {
@@ -111,9 +84,9 @@ window.__ayetHadisApp = (function () {
     const all = ayetItems.concat(hadisItems).sort((a, b) => b.list.length - a.list.length);
 
     const intro = tt({
-      tr: `Fütûhât ve Füsûs okuması boyunca sitede alıntılanan ${ayetItems.length} âyet ve ${hadisItems.length} kutsî hadisin, en çok tekrarladıkları yerden başlayarak sıralanmış bir dizini.`,
-      en: `An index of the ${ayetItems.length} verses and ${hadisItems.length} sacred sayings quoted across the site's reading of the Futuhat and the Fusus, ordered by how often each recurs.`,
-      pt: `Um índice dos ${ayetItems.length} versículos e ${hadisItems.length} ditos sagrados citados ao longo da leitura do Futuhat e do Fusus no site, ordenados por quantas vezes cada um recorre.`,
+      tr: `Fütûhât ve Füsûs okuması boyunca sitede alıntılanan ${ayetItems.length} âyet ve ${hadisItems.length} kutsî hadisin, en çok tekrarladıkları yerden başlayarak sıralanmış bir dizini. Tekrar bir şeyin önemli olduğunun kanıtı değil, ama dikkatimizi çeken bir örüntü -- bkz. sitenin "biriken parçalar" ilkesi.`,
+      en: `An index of the ${ayetItems.length} verses and ${hadisItems.length} sacred sayings quoted across the site's reading of the Futuhat and the Fusus, ordered by how often each recurs. Recurrence isn't proof that something matters -- but it's a pattern that draws our attention; see the site's "accumulating fragments" principle.`,
+      pt: `Um índice dos ${ayetItems.length} versículos e ${hadisItems.length} ditos sagrados citados ao longo da leitura do Futuhat e do Fusus no site, ordenados por quantas vezes cada um recorre. A recorrência não é prova de que algo importa -- mas é um padrão que chama nossa atenção; veja o princípio do site de "acumular fragmentos".`,
     });
 
     const rows = all

@@ -87,7 +87,7 @@
 
   // Tek karelik canlı ekran yakalama; desteklenmiyorsa ya da kullanıcı izni
   // iptal ederse null döner (modal bunu sessizce görmezden gelir).
-  async function captureScreenshotToDataUrl(opts) {
+  async function captureScreenshotToDataUrl() {
     if (!supportsCapture) return null;
     let stream;
     try {
@@ -99,14 +99,12 @@
       return null; // kullanıcı izni vermedi/iptal etti
     }
     try {
-      if (opts && opts.onStreamReady) opts.onStreamReady();
       const video = document.createElement("video");
       video.srcObject = stream;
       video.muted = true;
       await video.play();
       // Karenin gerçekten çizildiğinden emin olmak için bir sonraki
-      // animasyon karesine kadar bekle -- onStreamReady'nin gizlediği
-      // öğenin de bu kareye yansıması için gereken süre bu.
+      // animasyon karesine kadar bekle.
       await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
       return drawToCanvas(video, video.videoWidth, video.videoHeight);
     } finally {
@@ -125,33 +123,6 @@
       timestamp: new Date().toISOString(),
     });
     setQueue(queue);
-  }
-
-  // Basit odak yardımcıları: modal içindeki odaklanabilir öğeleri bulmak
-  // (açılışta ilkine odaklanmak için) ve Tab/Shift+Tab'ı modal içinde
-  // döngüye almak (focus-trap) için ortak kullanılıyor -- hem ekran
-  // görüntüsü/not modalinde hem de kayıtlı-notlar modalinde.
-  function getFocusables(container) {
-    return Array.prototype.slice
-      .call(container.querySelectorAll(
-        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      ))
-      .filter((el) => !el.hidden && el.offsetParent !== null);
-  }
-
-  function trapTabKey(e, container) {
-    if (e.key !== "Tab") return;
-    const focusables = getFocusables(container);
-    if (!focusables.length) return;
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
-    }
   }
 
   function buildVisualNoteModal() {
@@ -197,15 +168,7 @@
     const captureBtn = modal.querySelector('[data-action="capture"]');
     if (captureBtn) {
       captureBtn.addEventListener("click", async () => {
-        // Yakalama sırasında modalin kendisi de sekmenin bir parçası olduğu
-        // için görüntüye giriyordu (kullanıcı geri bildirimi, 2026-08-13);
-        // izin istemi sırasında (henüz sayfa görünür) gizlemiyoruz, yalnız
-        // asıl kare çizilirken -- bu yüzden gizleme burada değil, capture
-        // fonksiyonuna bir geri çağırım olarak veriliyor.
-        const dataUrl = await captureScreenshotToDataUrl({
-          onStreamReady: () => { modal.style.visibility = "hidden"; },
-        });
-        modal.style.visibility = "";
+        const dataUrl = await captureScreenshotToDataUrl();
         if (dataUrl) setImage(dataUrl);
       });
     }
@@ -220,8 +183,7 @@
       close();
     });
     modal.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") { close(); return; }
-      trapTabKey(e, modal);
+      if (e.key === "Escape") close();
     });
   }
 
@@ -316,9 +278,11 @@
   // Önce yalnızca "kaydet ve unut" vardı; kullanıcı bir notu kaydettikten
   // sonra ona bir daha ulaşamadığını bildirdi (2026-07-25). Artık panelden
   // bütün kuyruk açılıp tek tek düzeltilebiliyor ya da silinebiliyor.
-  // Ürün denetimi D1 (2026-09-02): ortak yardımcıya taşındı, bkz.
-  // graph-utils.js:escapeHtml.
-  const escapeHtml = window.DostGraphUtils.escapeHtml;
+  function escapeHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, (c) => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
+    ));
+  }
 
   function entryTitle(e, i) {
     const where = (e.url || "").replace(/^.*\/(?=[^/]*$)/, "") || "/";
@@ -378,7 +342,7 @@
     });
   }
 
-  function openNoteList(triggerEl) {
+  function openNoteList() {
     listModal = document.createElement("div");
     listModal.className = "dost-shot-modal dost-notes";
     listModal.innerHTML =
@@ -390,26 +354,11 @@
       '<button type="button" data-action="close" class="dost-shot-modal__save">Kapat</button>' +
       "</div></div>";
     document.body.appendChild(listModal);
-    renderNoteList();
-    const close = () => {
-      listModal.remove();
-      listModal = null;
-      if (triggerEl && typeof triggerEl.focus === "function") triggerEl.focus();
-    };
+    const close = () => { listModal.remove(); listModal = null; };
     listModal.querySelector(".dost-shot-modal__backdrop").addEventListener("click", close);
     listModal.querySelector('[data-action="close"]').addEventListener("click", close);
-    listModal.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") { close(); return; }
-      trapTabKey(e, listModal);
-    });
-    // Açılışta modal içindeki ilk odaklanabilir öğeye geç -- klavye/ekran
-    // okuyucu kullanıcısı odağın sayfanın arkasında kalmış öğede
-    // takılı kalmasın diye (kapanışta yukarıdaki close() tetikleyici
-    // düğmeye geri döndürüyor).
-    const card = listModal.querySelector(".dost-notes__card");
-    const focusables = getFocusables(card);
-    if (focusables.length) focusables[0].focus();
-    else card.focus();
+    listModal.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    renderNoteList();
   }
 
   function buildPanel() {
@@ -458,25 +407,13 @@
       document.addEventListener("mousemove", onMove);
       document.addEventListener("mouseup", onUp);
     });
-    // mousedown/mouseup yalnız fareyi (ve fare olaylarını taklit eden
-    // dokunmayı) dinliyor -- klavye/ekran okuyucu kullanıcısı Enter/Space
-    // ile düğmeyi "tıklasa" da mousedown hiç ateşlenmediği için panel hiç
-    // açılmıyordu. Gerçek <button> öğeleri klavye etkinleştirmesinde de bir
-    // "click" olayı üretir; `detail === 0` bunun klavye (ya da programatik)
-    // kaynaklı olduğunu, fare tıklamasından (detail >= 1, zaten yukarıda
-    // mouseup içinde ele alınıyor) ayırt etmemizi sağlıyor -- aksi halde
-    // fare tıklamasında panel açılıp hemen kapanırdı (çifte tetikleme).
-    toggle.addEventListener("click", (e) => {
-      if (e.detail !== 0) return;
-      menu.hidden = !menu.hidden;
-    });
     panel.querySelector('[data-action="visual-note"]').addEventListener("click", () => {
       menu.hidden = true;
       buildVisualNoteModal();
     });
     panel.querySelector('[data-action="notes"]').addEventListener("click", () => {
       menu.hidden = true;
-      openNoteList(toggle);
+      openNoteList();
     });
     panel.querySelector('[data-action="export"]').addEventListener("click", exportQueue);
     panel.querySelector('[data-action="clear"]').addEventListener("click", clearQueue);
@@ -484,24 +421,12 @@
     panel.querySelector('[data-action="exit"]').addEventListener("click", disableEditMode);
   }
 
-  // D3 grafiklerinin (Ontoloji/Esmâ vb.) sık DOM güncellemesi yaptığı
-  // görünümlerde, düzenleme kipi açıkken her mutasyonda tüm sayfayı yeniden
-  // taramak (childList+subtree gözlemi) gözle görülür bir yavaşlığa yol
-  // açabiliyordu (2026-08-06 denetiminde bulundu). Bu kip yalnız gizli
-  // @revise tetikleyicisiyle açıldığı için ziyaretçiyi etkilemiyordu, ama
-  // debounce'suz bırakmanın bir gerekçesi de yok.
-  let scanDebounce = null;
-  function debouncedScan() {
-    clearTimeout(scanDebounce);
-    scanDebounce = setTimeout(scanAndMakeEditable, 150);
-  }
-
   function enableEditMode() {
     editModeOn = true;
     setAnalogyVisible(true);
     document.body.classList.add("dost-edit-mode");
     scanAndMakeEditable();
-    observer = new MutationObserver(debouncedScan);
+    observer = new MutationObserver(scanAndMakeEditable);
     observer.observe(document.body, { childList: true, subtree: true });
     buildPanel();
   }

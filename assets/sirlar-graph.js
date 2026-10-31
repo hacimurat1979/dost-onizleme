@@ -20,9 +20,8 @@
   const wrapEl = document.getElementById("sirlar-wrap");
   const tooltip = document.getElementById("sirlar-tooltip");
   if (!svgNode || !wrapEl) return;
-  const deconflictLabels = GU.createLabelDeconflictor();
 
-  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
+  function tt(dict) { return I18n.pick3(dict || {}); }
   function getVar(n) { return GU.getVar(n); }
 
   const THEME_LABELS = {
@@ -124,7 +123,7 @@
   const SPIN_RATE = 0.000057;
   let hoveredId = null, focusedTheme = null;
   let particles = [];
-  let startTs = 0;
+  let rafId = null, startTs = 0, lastTs = 0;
   let growth = 1; // 0..1 ilk açılış ilerlemesi
 
   function fetchData() {
@@ -234,20 +233,8 @@
     svgNode.addEventListener("wheel", () => { setTimeout(readZoom, 0); }, { passive: true });
     svg.on("click", () => { if (focusedTheme) exitReading(); });
 
-    // exitReading burada da bir KAMERA geri alma: focusOnTheme sahneyi
-    // temaya yaklaştırıyor (bkz. ETKILESIM_DILI.md, ikinci fiil).
-    GU.wireRecenter("sirlar-recenter", () => { exitReading(); fitAll(); });
-
-    // "Bir adım geri": açık panel varsa sıra ortak katmanın (false dönüyoruz,
-    // o kapatıyor); panel kapalıyken odaklı bir tema varsa odağı bırakıyoruz.
-    // Bu dal 2026-08-03'e kadar ontology.js'in içinde duruyordu.
-    GU.registerStepBack("sirlar-wrap", () => {
-      const panel = document.getElementById("detail-panel");
-      if (panel && !panel.hidden) return false;
-      if (!focusedTheme) return false;
-      exitReading();
-      return true;
-    });
+    const rc = document.getElementById("sirlar-recenter");
+    if (rc && !rc.dataset.wiredSir) { rc.dataset.wiredSir = "1"; rc.addEventListener("click", () => { exitReading(); fitAll(); }); }
   }
 
   function readZoom() {
@@ -329,12 +316,18 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Render döngüsü -- rAF iskeleti artık GU.createFrameLoop'ta (bkz.
-  // graph-utils.js yorumu; burada ensureFrame() lastTs'i performance.now()
-  // ile sıfırlıyordu, sürekli-aktif durumdayken -- ki `anim` || true yüzünden
-  // burası hep sürekli-aktifti -- dt'yi neredeyse 0'a çöktürüyordu).
-  const frameLoop = GU.createFrameLoop(wrapEl, function (ts, dt) {
+  // Render döngüsü
+  function ensureFrame() { if (rafId == null) { lastTs = performance.now(); rafId = requestAnimationFrame(frame); } }
+
+  function frame(ts) {
+    rafId = null;
+    // Görünüm ekranda değilse döngüyü tamamen durdur -- aşağıdaki `anim`
+    // koşulu (|| true) normal kullanıcıda hep doğru olduğu için, bu kapı
+    // olmadan döngü başka bölüme geçildikten sonra da sonsuza kadar
+    // sürüyordu (bkz. GU.isViewActive).
+    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
     if (!startTs) startTs = ts;
+    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
     // 3B'de düzlemsel dönüş yerini yaw'a bırakıyor: sahne dikey eksen
     // etrafında dönerken katman sırası (işaret önde, sır arkada) bozulmasın.
     if (tilt3d) tilt3d.step(ts, dt, !focusedTheme);
@@ -356,9 +349,9 @@
 
     const simActive = sim && sim.alpha() > 0.006;
     const anim = !reduceMotion && (growth < 1 || true); // nefes + parçacıklar sürekli
-    return simActive || anim || dragging;
-  });
-  function ensureFrame() { frameLoop.ensureFrame(); }
+    if (simActive || anim || dragging) ensureFrame();
+    else rafId = null;
+  }
 
   const HALO_DUR = 300;
   let haloStart = 0, haloNodeId = null;
@@ -409,17 +402,6 @@
     // --- kenarlar (bezier, #2) + büyüme (#7) ---
     const lk = linkLayer.selectAll("path.sir-link").data(links, (d) => d.target.id || d.target);
     const lkEnter = lk.enter().append("path").attr("class", "sir-link").attr("fill", "none");
-    // K-01/K-03 (uzman paneli denetimi 2026-08-17): 104 kenar klavye/ekran-
-    // okuyucuya tamamen kapalıydı. Çizgi fare için süs (pointer-events:
-    // none, düğümler zaten tıklanabilir) ama klavye kullanıcısı bağın iki
-    // ucunu okuyabilmeli; Enter bağın HEDEFİNİ açıyor (temaya/kayda gitmek,
-    // kenarın taşıdığı tek eylem). Odak, hover'ın görsel vurgusunu veriyor.
-    GU.wireEdgeAccessibility(lkEnter, {
-      label: (l) => labelFor(l.source) + " → " + labelFor(l.target),
-      onActivate: (l) => onActivate(l.target),
-      onFocus: (l) => setHover(l.target.id),
-      onBlur: () => setHover(null),
-    });
     lkEnter.merge(lk).each(function (l) {
       const path = d3.select(this);
       const dep = l.target.kind === "theme" ? 1 : 2;
@@ -486,8 +468,6 @@
     if (tilt3d && tilt3d.value > 0.02) merged.sort((a, b) => (b.__z || 0) - (a.__z || 0));
 
     const t3 = tilt3d ? tilt3d.value : 0;
-    const labelItems = [];
-    const labelObstacles = [];
     merged.each(function (d) {
       const g = d3.select(this);
       const br = breath(d, ts);
@@ -568,43 +548,83 @@
           .classed("sir-label--root", d.kind === "root")
           .classed("sir-label--theme", d.kind === "theme")
           .classed("sir-label--strong", act && (d.id === act.anchor))
-          .style("font-size", (d.kind === "root" ? 24 : d.kind === "theme" ? 20 : 18) + "px")
+          .style("font-size", (d.kind === "root" ? 16 : d.kind === "theme" ? 13 : 11) + "px")
           .text(long ? longLabelFor(d) : labelFor(d));
-        // Yalnız TEMA etiketleri birbiriyle çakışıyordu (kök tek, yaprak
-        // etiketleri yalnız yakınlaşınca/hover'da tek tek görünür) --
-        // eski spreadThemeLabels da yalnız d.kind === "theme" işliyordu,
-        // kapsam aynı kalsın diye burada da öyle.
-        if (d.kind === "theme") {
-          labelItems.push({
-            lbl, txt: long ? longLabelFor(d) : labelFor(d),
-            x: nx_(d), y: ny_(d) + ly, baseY: ly,
-          });
-        }
-      }
-      // Başka bir temanın dairesinin üstüne binmemeli (kullanıcı notu
-      // 2026-07-27) -- eski clearOfDiscs de yalnız tema dairelerini
-      // engel sayıyordu.
-      if (d.kind === "theme") {
-        labelObstacles.push({ x: nx_(d), y: ny_(d), half: r, h: r * 2 });
       }
     });
 
-    // Eskiden bu dosyanın kendi bespoke etiket-çakışma-önleme kodu vardı
-    // (spreadThemeLabels/clearOfDiscs); paylaşılan motora taşındı
-    // (2026-08-15) -- hal.js/sorular.js zaten bunu kullanıyor, üçüncü bir
-    // kopya birikmesin diye. PAD dinamikti (yakınlaşınca daralıyordu),
-    // burada da aynı şekilde her karede yeniden hesaplanıyor.
-    deconflictLabels(labelItems, labelObstacles, { x: 6, y: 4 / Math.max(0.35, currentK) });
+    spreadThemeLabels(merged);
   }
 
   // Tema etiketleri uzun ("Dilde ve Kelimede Gizlenen Sırlar" gibi) ve 3B'de
   // halka dikeyde sıkıştığı için yan yana gelen ikisi birbirinin üstüne
-  // biniyordu (kullanıcı notu 2026-07-27). Bu dosyanın eskiden burada duran
-  // kendi bespoke çakışma-önleme kodu (spreadThemeLabels/clearOfDiscs),
-  // graph-utils.js'teki paylaşılan GU.createLabelDeconflictor()'a taşındı
-  // (2026-08-15) -- hal.js/sorular.js zaten aynı motoru kullanıyordu, bu
-  // üçüncü kopya paylaşılan motora aday olarak duruyordu. Çağrı, merged.each
-  // döngüsünün içinde (bkz. yukarıdaki labelItems/labelObstacles) yapılıyor.
+  // biniyordu (kullanıcı notu 2026-07-27). Beş tema var; her karede ekran
+  // konumlarına bakıp yatayda örtüşenleri dikeyde ayırıyoruz. Genişlik
+  // ölçümü (getComputedTextLength) metin başına bir kez yapılıp
+  // önbelleğe alınıyor -- her karede layout zorlamamak için.
+  const labelWidthCache = new Map();
+  function measureLabel(textEl) {
+    const key = textEl.textContent + "|" + textEl.style.fontSize;
+    if (labelWidthCache.has(key)) return labelWidthCache.get(key);
+    let w = 0;
+    try { w = textEl.getComputedTextLength(); } catch (e) { w = key.length * 6; }
+    labelWidthCache.set(key, w);
+    return w;
+  }
+
+  function spreadThemeLabels(merged) {
+    const items = [];
+    const discs = [];
+    merged.each(function (d) {
+      if (d.kind !== "theme") return;
+      const g = this;
+      if (g.style.display === "none") return;
+      const dot = g.querySelector(".sir-dot");
+      discs.push({ id: d.id, x: nx_(d), y: ny_(d), r: parseFloat(dot && dot.getAttribute("r")) || R_THEME });
+      const lbl = g.querySelector(".sir-label");
+      if (!lbl || lbl.style.display === "none") return;
+      const baseY = parseFloat(lbl.getAttribute("y")) || 0;
+      lbl.__baseY = lbl.__baseY == null ? baseY : lbl.__baseY;
+      items.push({ id: d.id, el: lbl, x: nx_(d), y: ny_(d) + lbl.__baseY, w: measureLabel(lbl), baseY: lbl.__baseY });
+    });
+    if (items.length < 2) return;
+    items.sort((a, b) => a.y - b.y);
+    // Boşluk EKRAN ölçüsünde tutulmalı: satır yüksekliği ~15 ekran pikseli,
+    // ama burada SVG birimindeyiz ve sahne uzaklaşınca (currentK < 1) sabit
+    // bir SVG boşluğu ekranda yetersiz kalıyor.
+    const MIN_GAP = 17 / Math.max(0.35, currentK);
+    for (let i = 0; i < items.length; i++) {
+      const cur = items[i];
+      let shift = 0;
+      for (let j = 0; j < i; j++) {
+        const prev = items[j];
+        const overlapX = Math.abs(cur.x - prev.x) < (cur.w + prev.w) / 2 + 6;
+        if (!overlapX) continue;
+        const need = prev.y + shiftOf(prev) + MIN_GAP - cur.y;
+        if (need > shift) shift = need;
+      }
+      // Etiket, BAŞKA bir temanın dairesinin üstüne de binmemeli -- yoksa
+      // ilk harfleri düğümün arkasında kalıyor (kullanıcı notu 2026-07-27).
+      shift = Math.max(shift, clearOfDiscs(cur, shift));
+      cur.__shift = shift;
+      cur.el.setAttribute("y", (cur.baseY + shift).toFixed(1));
+    }
+
+    function clearOfDiscs(it, shift) {
+      let need = shift;
+      const half = it.w / 2;
+      discs.forEach((dc) => {
+        if (dc.id === it.id) return;
+        const y = it.y + shift;
+        const overlapX = dc.x + dc.r > it.x - half - 4 && dc.x - dc.r < it.x + half + 4;
+        if (!overlapX) return;
+        if (Math.abs(y - dc.y) > dc.r + 9) return;
+        need = Math.max(need, dc.y + dc.r + 11 - it.y);
+      });
+      return need;
+    }
+    function shiftOf(it) { return it.__shift || 0; }
+  }
 
   function labelVisible(d, act) {
     if (d.kind === "root") return true;
@@ -711,7 +731,7 @@
     // createDragBehavior sim'i ısıtır; sürükleme sırasında rAF sürsün
     svgNode.addEventListener("pointerdown", () => { dragging = true; ensureFrame(); });
     window.addEventListener("pointerup", () => { dragging = false; });
-    window.addEventListener("resize", GU.debounceResize(() => { if (built && !wrapEl.hidden) onResize(); }));
+    window.addEventListener("resize", () => { if (built && !wrapEl.hidden) onResize(); });
   }
 
   function onResize() {
@@ -763,45 +783,9 @@
 
   GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });
 
-  function goToEntry(id) {
-    if (window.__dostNav && typeof window.__dostNav.goTo === "function") {
-      window.__dostNav.goTo("sirlar", id);
-    } else {
-      const base = window.__dostRouteBase || "";
-      history.pushState(null, "", base + "/sirlar/" + id);
-      window.dispatchEvent(new PopStateEvent("popstate"));
-    }
-  }
-
-  // 2026-08-16 (uzman paneli denetimi, O-01/F4): 104 kenarlı grafik mobilde
-  // okunmuyor -- Ontoloji'nin G57 çözümüyle aynı desen. Kayıtlar temaya göre
-  // gruplanıyor (THEME_ORDER); sirlar.json'ın kendi label/topic alanları
-  // helper'ın name/short beklentisine burada eşleniyor.
-  const sirlarMobilListe = GU.createMobileListFallback({
-    wrapEl: wrapEl,
-    listEl: document.getElementById("sirlar-mobil-liste"),
-    fetchUrl: "data/ibn-arabi/sirlar.json",
-    extractNodes: (d) => (d.entries || []).map((e) => ({ id: e.id, name: e.label, short: e.topic, theme: e.theme })),
-    groupBy: (n) => n.theme,
-    groupOrder: THEME_ORDER,
-    groupTitle: (theme) => THEME_LABELS[theme],
-    title: { tr: "Sırlar", en: "Mysteries", pt: "Mistérios" },
-    note: {
-      tr: "Grafiği okumak için ekran dar geldi — kayıtlar burada tema başlıklarıyla listede. Bir başlığa dokun, paneli oku.",
-      en: "The graph does not fit this narrow screen — the records are here as a list, under their themes. Tap a title to read its panel.",
-      pt: "O gráfico não cabe neste ecrã estreito — os registos estão aqui como lista, sob os seus temas. Toque num título para ler o painel.",
-    },
-    graphButtonLabel: {
-      tr: "Haritayı aç (grafiği göster)",
-      en: "Open the map (show the graph)",
-      pt: "Abrir o mapa (mostrar o grafo)",
-    },
-    goTo: goToEntry,
-  });
-
   window.__sirlarGraphApp = {
     activate() { fetchData().then((data) => { if (!data) return; if (!built) buildGraph(data); else ensureFrame(); }); },
-    onLangChange() { if (built) { muteCache.clear(); render(performance.now()); } if (sirlarMobilListe) sirlarMobilListe.onLangChange(); },
+    onLangChange() { if (built) { muteCache.clear(); render(performance.now()); } },
     isFocused() { return !!focusedTheme; },
     unfocusTheme() { if (focusedTheme) exitReading(); },
   };

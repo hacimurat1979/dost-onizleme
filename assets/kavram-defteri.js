@@ -166,6 +166,10 @@
     return p;
   }
 
+  function onKeydown(e) {
+    if (e.key === "Escape" && panel && !panel.hidden) setPanelOpen(false);
+  }
+
   function init() {
     toggleBtn = buildToggle();
     panel = buildPanel();
@@ -178,11 +182,7 @@
       var mo = new MutationObserver(refreshStarState);
       mo.observe(detailPanel, { attributes: true, attributeFilter: ["hidden"], childList: true, subtree: true });
     }
-    // Escape artık burada değil, GU.registerStepBack'in merkezi sırasında --
-    // iki katman aynı anda açıkken tek Escape'in hepsini kapatmaması için.
-    if (window.DostGraphUtils) {
-      window.DostGraphUtils.registerStepBack("defter-panel", function () { setPanelOpen(false); return true; });
-    }
+    document.addEventListener("keydown", onKeydown);
   }
 
   if (document.readyState === "loading") {

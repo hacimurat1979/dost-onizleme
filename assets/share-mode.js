@@ -47,12 +47,6 @@
     recWait: { tr: "Başlıyor…", en: "Starting…", pt: "A começar…" },
     recBusy: { tr: "Kaydediliyor", en: "Recording", pt: "A gravar" },
     recDone: { tr: "İndirildi", en: "Downloaded", pt: "Descarregado" },
-    // "Metni kopyala" (tespit, 2026-09-13): video/kart indirmenin dışında,
-    // bir alıntıyı doğrudan bir mesaja/tweete yapıştırmak isteyen için en
-    // kısa yol -- ekran kaydına/izne hiç ihtiyaç duymuyor.
-    kopyala: { tr: "📋 Metni kopyala", en: "📋 Copy text", pt: "📋 Copiar texto" },
-    kopyalandi: { tr: "Kopyalandı", en: "Copied", pt: "Copiado" },
-    kopyalaFail: { tr: "Kopyalanamadı.", en: "Could not copy.", pt: "Não foi possível copiar." },
     recFail: {
       tr: "Kayıt başlamadı. Ekran paylaşımına izin verilmedi ya da tarayıcı desteklemiyor.",
       en: "Recording did not start. Screen sharing was denied, or the browser does not support it.",
@@ -64,7 +58,6 @@
       en: "No record fits this template — try another.",
       pt: "Nenhum registo serve para este modelo — tenta outro.",
     },
-    sablon: { tr: "Şablon", en: "Template", pt: "Modelo" },
     zemin: { tr: "Zemin", en: "Backdrop", pt: "Fundo" },
     isik: { tr: "Açık zemin", en: "Light backdrop", pt: "Fundo claro" },
     kare: { tr: "Kare (1:1)", en: "Square (1:1)", pt: "Quadrado (1:1)" },
@@ -78,10 +71,9 @@
       ontoloji: { tr: "Ontoloji", en: "Ontology",     pt: "Ontologia" },
       esma:     { tr: "Esmâ",     en: "Divine Name",  pt: "Nome Divino" },
       gunun:    { tr: "Günün Sözü", en: "Word of the Day", pt: "Palavra do Dia" },
+      benzetme: { tr: "Bir Benzetmeyle", en: "Through an Analogy", pt: "Através de uma Analogia" },
       fusus:    { tr: "Füsûs Halkası", en: "Fusus Ring", pt: "Anel dos Fusus" },
-      miskat:   { tr: "Mişkât Sarmalı", en: "Mishkat Spiral", pt: "Espiral do Mishkat" },
       dizi:     { tr: "Dizi", en: "Series", pt: "Série" },
-      siir:     { tr: "Şiir", en: "Poem", pt: "Poema" },
       karsilastir: { tr: "Karşılaştır", en: "Compare", pt: "Comparar" },
       ozelgun:  { tr: "Özel Gün", en: "Special Day", pt: "Dia Especial" },
     },
@@ -97,21 +89,9 @@
     histList:    { tr: "Son kullanılanlar", en: "Recent",               pt: "Recentes" },
     ikiDilli:    { tr: "İki dilli kart", en: "Bilingual card", pt: "Cartão bilíngue" },
     ikinciDil:   { tr: "İkinci dil", en: "Second language", pt: "Segundo idioma" },
-    // Füsûs Halkası'nın 27 düğümü "sparse" modda vurgulu+odak adını yazıyor
-    // -- bazı paylaşımlarda hiç metin istenmiyor, yalnız halkanın kendisi
-    // (kullanıcı isteği, 2026-08-16).
-    metinsiz:    { tr: "Düğüm metni yok", en: "No node labels", pt: "Sem legendas dos nós" },
     karsilastirSol: { tr: "Sol", en: "Left", pt: "Esquerda" },
     karsilastirSag: { tr: "Sağ", en: "Right", pt: "Direita" },
     karsilastirAc:  { tr: "Bu ikisini aç", en: "Open these two", pt: "Abrir estes dois" },
-    // Aynı kavram iki tarafa da seçildiğinde eskiden sessizce rastgele bir
-    // ikincisine düşülüyordu -- kullanıcı ne seçtiğini görmüyordu (tespit,
-    // 2026-09-13). Artık açıkça söyleniyor.
-    karsilastirAyni: {
-      tr: "İki taraf için de aynı kavramı seçtin — farklı bir tanesini seç.",
-      en: "You picked the same concept on both sides — choose a different one.",
-      pt: "Escolheste o mesmo conceito nos dois lados — escolhe um diferente.",
-    },
   };
 
   // Sahnenin dili sitenin genel diline BAĞLI DEĞİL: kullanıcı Türkçe
@@ -183,13 +163,6 @@
   }
   function loadSorular() { return cachedFetch("sorular", "data/ibn-arabi/sorular.json"); }
   function loadSirlar() { return cachedFetch("sirlar", "data/ibn-arabi/sirlar.json"); }
-  // "Hikâye" ve "Bir Soru" şablonlarının havuzu yalnız sorular.json'a
-  // bağlıydı (48 soru) -- bir süre sonra aynı kayıtlara dönmeye başlıyordu
-  // (kullanıcı bildirimi, 2026-09-13). Bilmiyoruz/Açık Sorular da sitenin
-  // ZATEN yayında olan, kürasyonlu kayıtları -- yeni metin YAZMADAN
-  // (bkz. dosya başı KURAL) bu iki şablonun havuzunu genişletiyoruz.
-  function loadBilmiyoruz() { return cachedFetch("bilmiyoruz", "data/ibn-arabi/bilmiyoruz.json"); }
-  function loadAcikSorular() { return cachedFetch("acik-sorular", "data/ibn-arabi/acik-sorular.json"); }
   function loadOntoloji() { return cachedFetch("ontoloji", "data/ibn-arabi/ontology.json"); }
   function loadEsma() { return cachedFetch("esma", "data/ibn-arabi/esma.json"); }
   function loadFelsefiTerimler() { return cachedFetch("felsefi-terimler", "data/ibn-arabi/felsefi-terimler.json"); }
@@ -197,11 +170,6 @@
     return cachedFetch("vahdet", "data/ibn-arabi/vahdet-elestiri.json").catch(() => ({ maddeler: [] }));
   }
   function loadFususAtlas() { return cachedFetch("fusus-atlas", "data/ibn-arabi/fusus-atlas.json"); }
-  function loadMiskatAtlas() { return cachedFetch("miskat-atlas", "data/ibn-arabi/miskat-atlas.json"); }
-  // "Şiir" şablonu (yeni fikir, 2026-09-13): siirler.json'daki 8 şiir
-  // hiçbir şablonda kullanılmıyordu -- her biri TR/EN/PT'de tam, çok
-  // satırlı gerçek metin taşıyor (bkz. data/ibn-arabi/siirler.json).
-  function loadSiirler() { return cachedFetch("siirler", "data/ibn-arabi/siirler.json"); }
 
   // "Karşılaştır" şablonu (kullanıcı önerisi, 2026-08-03): esma+ontoloji
   // havuzunu (benzetme şablonuyla aynı kaynak) düz bir listeye çeviriyor ki
@@ -212,14 +180,7 @@
     if (compareData) return Promise.resolve(compareData);
     return Promise.all([loadEsma(), loadOntoloji()]).then(([esma, onto]) => {
       const list = [];
-      // insights taşımayan esma isimleri (85/101) seçilebilir listede hiç
-      // yoktu -- summary'yi TEK ögelik bir insights dizisine sararak
-      // aynı pickInsight() yoluna sokuyoruz (esma şablonunun kendi
-      // düzeltmesiyle aynı gerekçe, bkz. yukarısı).
-      (esma.nodes || []).forEach((n) => {
-        if (n.insights && n.insights.length) list.push({ key: "esma:" + n.id, name: n.name, insights: n.insights });
-        else if (n.summary) list.push({ key: "esma:" + n.id, name: n.name, insights: [{ text: n.summary }] });
-      });
+      (esma.nodes || []).forEach((n) => { if (n.insights && n.insights.length) list.push({ key: "esma:" + n.id, name: n.name, insights: n.insights }); });
       (onto.nodes || []).forEach((n) => { if (n.insights && n.insights.length) list.push({ key: "onto:" + n.id, name: n.name, insights: n.insights }); });
       compareData = { list: list };
       return compareData;
@@ -240,21 +201,6 @@
     // döner -- slice(0,-1) o zaman TÜM metnin son harfini atıp geri kalanını
     // olduğu gibi bırakırdı, max'ı hiç uygulamamış olurdu.
     return cut > 0 ? raw.slice(0, cut) + "…" : raw.slice(0, max) + "…";
-  }
-
-  // Bazı şablonların havuzu (esma, karşılaştır...) ölçülüp genişletildi
-  // (bkz. loadEsma/loadCompareData yorumları) ama kullanıcı bunu hiç
-  // GÖREMİYORDU (tespit, 2026-09-13) -- adayların üstünde ucuz/kesin
-  // hesaplanabilen havuz büyüklüğü gösteriliyor. Fütûhât'a dayanan
-  // şablonlar (soz/dizi/ikili) burada YOK -- gerçek sayı yalnız bütün
-  // kısımları indirmekle (pahalı) çıkardı, tahmini bir sayı göstermek
-  // KURAL'ın "olduğundan farklı gösterme" ilkesine aykırı olurdu.
-  function havuzText(n) {
-    return tt({
-      tr: n + " kayıt arasından",
-      en: "from " + n + (n === 1 ? " record" : " records"),
-      pt: "entre " + n + (n === 1 ? " registo" : " registos"),
-    });
   }
 
   // Şablonlardan gelen metin bazen kaynak veride <em>/<strong> gibi
@@ -396,61 +342,44 @@
   function buildScene(tpl, opts) {
     opts = opts || {};
     if (tpl === "soru") {
-      // Havuz yalnız Sorular'a bağlıydı (48 soru) -- bir süre sonra aynı
-      // kayıtlara dönmeye başlıyordu (kullanıcı bildirimi, 2026-09-13).
-      // Açık Sorular sitenin kendi "soru" alanını zaten TAŞIYAN, gerçekten
-      // soru cümlesi olarak yazılmış 19 kayıt daha -- yeni metin YOK,
-      // yalnız ikinci bir gerçek havuz.
-      return Promise.all([loadSorular(), loadAcikSorular()]).then(([sd, ad]) => {
-        const pool = [];
-        (sd.categories || []).forEach((c) => (c.questions || []).forEach((q) => pool.push(q.question)));
-        (ad.sorular || []).forEach((s) => { if (s.soru) pool.push(s.soru); });
-        if (!pool.length) return null;
+      return loadSorular().then((d) => {
+        const cats = d.categories || [];
+        const q = pick(pick(cats).questions);
         return {
           tpl: "soru",
-          lines: [mkBilingualLine(pick(pool), "soru")],
-          havuz: pool.length,
+          lines: [mkBilingualLine(q.question, "soru")],
         };
       });
     }
     if (tpl === "hikaye") {
       // Daha uzun, TikTok'ta bir "hikâye" gibi izlenebilecek bir sahne:
-      // bir kaynağın kendi kuruluş cümlelerinden ikisi + sonda sitenin
-      // zaten sorduğu/açtığı bir soru ya da konu (kanca). Yeni cümle
-      // YAZILMIYOR -- KURAL gereği yalnız var olan metin ikiye bölünüp
-      // yeniden hızlandırılıyor.
-      // Havuz yalnız Sorular'a bağlıydı (43 uygun kayıt) -- bir süre sonra
-      // aynı kayıtlara dönmeye başlıyordu (kullanıcı bildirimi, 2026-09-13,
-      // "özellikle story kısmı"). Sırlar'ın kendi çok-cümlelik alıntıları
-      // (67 uygun kayıt) ve Bilmiyoruz'un açıklamaları (6 uygun kayıt) da
-      // aynı ölçütle (en az iki 24-200 karakterlik cümle) havuza katıldı --
-      // üçü de sitenin ZATEN yayında olan kürasyonlu metinleri.
-      return Promise.all([loadSorular(), loadSirlar(), loadBilmiyoruz()]).then(([sd, srd, bd]) => {
-        const usable = [];
-        function ekle(hook, govdeMetin) {
-          const s = splitSentences(tt(govdeMetin)).filter((x) => x.length >= 24 && x.length <= 200);
-          if (s.length >= 2) usable.push({ hook: hook, sents: s });
-        }
-        (sd.categories || []).forEach((c) => (c.questions || []).forEach((q) => ekle(q.question, q.answer)));
-        ((srd && srd.entries) || []).forEach((e) => ekle(e.topic, e.quote));
-        ((bd && bd.maddeler) || []).forEach((m) => ekle(m.baslik, m.aciklama));
+      // Sorular'ın kendi cevabından iki cümle (kuruluş) + sonda sitenin
+      // zaten sorduğu soru (kanca). Yeni cümle YAZILMIYOR -- KURAL gereği
+      // yalnız var olan cevap ikiye bölünüp yeniden hızlandırılıyor.
+      return loadSorular().then((d) => {
+        const all = [];
+        (d.categories || []).forEach((c) => (c.questions || []).forEach((q) => all.push(q)));
+        const usable = all.filter((q) => {
+          const s = splitSentences(tt(q.answer)).filter((x) => x.length >= 24 && x.length <= 200);
+          return s.length >= 2;
+        });
         if (!usable.length) return null;
-        const item = pick(usable);
+        const q = pick(usable);
+        const sents = splitSentences(tt(q.answer)).filter((x) => x.length >= 24 && x.length <= 200);
         return {
           tpl: "hikaye",
-          // Kullanıcı notu (2026-08-02): "hikâye" şablonlarında önce soru/
-          // konu verilsin, ardından gövde cümleleri -- kancayı başa çekiyoruz.
-          // İki dillilik yalnız kanca satırında güvenli: gövde cümleleri
+          // Kullanıcı notu (2026-08-02): "hikâye" şablonlarında önce soru
+          // verilsin, ardından cevap cümleleri -- kancayı başa çekiyoruz.
+          // İki dillilik yalnız soru satırında güvenli: cevap cümleleri
           // splitSentences() ile TEK bir dilin metninden bölünüyor, ikinci
           // dilde aynı sınırların düşeceği garanti değil (bkz. "dizi"
           // şablonundaki aynı çekince) -- yanlış hizalanmış bir çeviri
           // göstermektense hiç göstermiyoruz.
           lines: [
-            mkBilingualLine(item.hook, "soru"),
-            { text: item.sents[0], kind: "soz" },
-            { text: item.sents[1], kind: "soz" },
+            mkBilingualLine(q.question, "soru"),
+            { text: sents[0], kind: "soz" },
+            { text: sents[1], kind: "soz" },
           ],
-          havuz: usable.length,
         };
       });
     }
@@ -507,8 +436,27 @@
         });
       });
     }
-    // "Bir Benzetmeyle" şablonu 2026-10-06'da kaldırıldı: kaynağı olan
-    // `analogy` alanları (bizim benzetmelerimiz) yorum ayıklamasıyla silindi.
+    if (tpl === "benzetme") {
+      // "Bir Benzetmeyle": esma.json/ontology.json/felsefi-terimler.json'un
+      // zaten yazılmış `analogy` alanlarından -- kavram adı + günlük hayat
+      // benzetmesi. Yeni metin yok, yalnız var olan benzetmeler bir araya
+      // toplanıp seçiliyor (kullanıcı önerisi, 2026-08-02).
+      return Promise.all([loadEsma(), loadOntoloji(), loadFelsefiTerimler()]).then(([esma, onto, felsefi]) => {
+        const pool = [];
+        (esma.nodes || []).forEach((n) => { if (n.analogy) pool.push({ name: n.name, analogy: n.analogy }); });
+        (onto.nodes || []).forEach((n) => { if (n.analogy) pool.push({ name: n.name, analogy: n.analogy }); });
+        Object.values(felsefi.terms || {}).forEach((t) => { if (t.analogy) pool.push({ name: t.title, analogy: t.analogy }); });
+        if (!pool.length) return null;
+        const item = pick(pool);
+        return {
+          tpl: "benzetme",
+          lines: [
+            mkBilingualLine(item.name, "baslik"),
+            mkBilingualLine(item.analogy, "soz", 310),
+          ],
+        };
+      });
+    }
     if (tpl === "ontoloji") {
       return loadOntoloji().then((d) => {
         const nodes = (d.nodes || []).filter((n) => n.insights && n.insights.length);
@@ -522,33 +470,22 @@
             mkBilingualLine(node.name || {}, "baslik"),
             picked.dict ? mkBilingualLine(picked.dict, "soz", 310) : { text: capText(picked.text, 310), kind: "soz" },
           ],
-          havuz: nodes.length,
         };
       });
     }
     if (tpl === "esma") {
-      // Havuz yalnız "insights" taşıyan 16/101 isimle sınırlıydı -- bir
-      // süre sonra aynı 16 isme dönmeye başlıyordu (kullanıcı bildirimi,
-      // 2026-09-13). Esma sayfasının HER isim için gösterdiği "summary"
-      // (assets/esma.js'te doğrudan detay panelinde render edilen, sitede
-      // ZATEN yayında olan metin -- bkz. esma.js:1573) 101/101 düğümde
-      // eksiksiz var; insight'ı olmayan isimler için yeni metin YAZMADAN
-      // bu özeti gövde cümlesi olarak kullanıyoruz.
       return loadEsma().then((d) => {
-        const nodes = (d.nodes || []).filter((n) => (n.insights && n.insights.length) || n.summary);
+        const nodes = (d.nodes || []).filter((n) => n.insights && n.insights.length);
         if (!nodes.length) return null;
         const node = pick(nodes);
-        const picked = (node.insights && node.insights.length) ? pickInsight(node) : null;
-        const dict = picked ? picked.dict : node.summary;
-        const text = picked ? picked.text : tt(node.summary || {});
-        if (!text || text.length < 20) return null;
+        const picked = pickInsight(node);
+        if (!picked || !picked.text || picked.text.length < 20) return null;
         return {
           tpl: "esma",
           lines: [
             mkBilingualLine(node.name || {}, "baslik"),
-            dict ? mkBilingualLine(dict, "soz", 310) : { text: capText(text, 310), kind: "soz" },
+            picked.dict ? mkBilingualLine(picked.dict, "soz", 310) : { text: capText(picked.text, 310), kind: "soz" },
           ],
-          havuz: nodes.length,
         };
       });
     }
@@ -579,34 +516,6 @@
             mkBilingualLine(nameOf(f), "baslik"),
             mkBilingualLine(f.title, "soz", 310),
           ],
-          havuz: active.length,
-        };
-      });
-    }
-    if (tpl === "miskat") {
-      // Mişkâtü'l-Envâr'ın 101 hadisinin açılış sarmalını (kullanıcının
-      // /miskat/ sayfasında gördüğü aynı grafik, bkz. assets/miskat.js
-      // renderMap) Füsûs Halkası'yla aynı yöntemle ödünç alıyoruz.
-      return loadMiskatAtlas().then((d) => {
-        const all = d.hadisler || [];
-        const active = all.filter((h) => h.status === "active");
-        if (!active.length) return null;
-        const h = pick(active);
-        const idx = all.findIndex((x) => x.id === h.id);
-        const nodeLabel = (x) => (x.etiket === "haber"
-          ? { tr: x.no + ". Haber", en: "Report " + x.no, pt: "Relato " + x.no }
-          : { tr: x.no + ". Hadis", en: "Hadith " + x.no, pt: "Hadith " + x.no });
-        return {
-          tpl: "miskat",
-          helix: {
-            nodes: all.map((x) => ({ id: x.id, label: nodeLabel(x), accent: x.status === "active" })),
-            initialFocus: idx < 0 ? 0 : idx,
-          },
-          lines: [
-            mkBilingualLine(h.title, "baslik"),
-            mkBilingualLine(h.pageRange, "soz", 310),
-          ],
-          havuz: active.length,
         };
       });
     }
@@ -623,36 +532,6 @@
         const lines = [{ text: partLabel(r.part), kind: "baslik" }];
         items.forEach((t) => lines.push({ text: capText(t, 200), kind: "soz" }));
         return { tpl: "dizi", lines: lines };
-      });
-    }
-    if (tpl === "siir") {
-      // "Şiir" (yeni fikir, 2026-09-13): siirler.json'un 8 şiiri hiçbir
-      // şablonda kullanılmıyordu -- "Dizi"nin diziBase(n) zamanlama
-      // motorunu (değişken satır sayısına göre) doğrudan ödünç alıyoruz.
-      // Uzun şiirlerde (>5 dize) TÜM şiiri değil, ardışık bir PENCERE
-      // gösteriyoruz -- capText'in karakter yerine SATIR sayısıyla aynı
-      // mantığı: yeni metin YOK, yalnız var olanın bir kesiti. Şiirin her
-      // dizesi TR/EN/PT'de aynı sırada çevrildiği için (satır satır
-      // karşılaştırıldı) -- diğer çok-cümlelik şablonlardan FARKLI olarak
-      // -- iki dilli kart burada güvenle destekleniyor.
-      return loadSiirler().then((d) => {
-        const poems = (d && d.siirler) || [];
-        if (!poems.length) return null;
-        const poem = pick(poems);
-        const linesFor = (l) => String((poem.metin && poem.metin[l]) || "").split("\n").map((x) => x.trim()).filter(Boolean);
-        const primary = linesFor(shareLangId);
-        if (primary.length < 2) return null;
-        const MAX = 5;
-        const start = primary.length > MAX ? Math.floor(Math.random() * (primary.length - MAX + 1)) : 0;
-        const count = Math.min(MAX, primary.length);
-        const secondary = (ikiDilliMod && ikinciDilId !== shareLangId) ? linesFor(ikinciDilId) : null;
-        const lines = [mkBilingualLine(poem.kaynak_ref || {}, "baslik")];
-        for (let i = start; i < start + count; i++) {
-          const line = { text: primary[i], kind: "soz" };
-          if (secondary && secondary[i]) line.text2 = secondary[i];
-          lines.push(line);
-        }
-        return { tpl: "siir", lines: lines, havuz: poems.length };
       });
     }
     if (tpl === "karsilastir") {
@@ -681,7 +560,7 @@
           leftLine.text2 = combine(left.name, leftPicked.dict, leftPicked.text, ikinciDilId);
           rightLine.text2 = combine(right.name, rightPicked.dict, rightPicked.text, ikinciDilId);
         }
-        return { tpl: "karsilastir", lines: [leftLine, rightLine], havuz: list.length };
+        return { tpl: "karsilastir", lines: [leftLine, rightLine] };
       });
     }
     if (tpl === "ozelgun") {
@@ -747,10 +626,7 @@
   const OZEL_GUN = {
     "7-27": {
       ad: { tr: "Miraç Kandili", en: "Night of the Ascension (Mi'raj)", pt: "Noite da Ascensão (Miraj)" },
-      // Üçüncü kayıt (2026-09-13): sirlar.json'da Mi'râc'a dair üçüncü bir
-      // sır daha var (miracta-verilen-ifade-edilemeyen-bilgi) -- havuz
-      // genişledi, "Başkasını getir" artık üç arasından seçebiliyor.
-      entryIds: ["mirac-in-en-yakin-aninda-ne", "sarabi-icmedim-sirri-aciklamaktan-korktum", "miracta-verilen-ifade-edilemeyen-bilgi"],
+      entryIds: ["mirac-in-en-yakin-aninda-ne", "sarabi-icmedim-sirri-aciklamaktan-korktum"],
     },
     "12-10": {
       ad: { tr: "Kurban Bayramı", en: "Feast of Sacrifice (Eid al-Adha)", pt: "Festa do Sacrifício (Eid al-Adha)" },
@@ -758,45 +634,13 @@
     },
   };
 
-  // Desteklenmeyen bir günde şablon boş kalınca kullanıcı bunu bozukluk
-  // sanıyordu (2026-09-13 bildirimi, "special day için içerik gelmedi") --
-  // oysa KURAL gereği yalnız GERÇEKTEN ilgili bir kayıt bulduğumuz iki gün
-  // destekleniyor. Aradaki boşlukta sessiz kalmak yerine bir sonraki
-  // desteklenen günü (ve kaç gün kaldığını) söylüyoruz -- bu, kartın
-  // İÇERİĞİ değil panelin kendi arayüz metni, KURAL yalnız sahnedeki
-  // cümleleri kapsıyor (bkz. dosya başı).
-  function nextOzelGun() {
-    try {
-      const fmt = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { day: "numeric", month: "numeric" });
-      for (let i = 0; i <= 366; i++) {
-        const parts = fmt.formatToParts(new Date(Date.now() + i * 86400000));
-        const day = parts.find((p) => p.type === "day");
-        const month = parts.find((p) => p.type === "month");
-        const key = day && month ? month.value + "-" + day.value : null;
-        if (key && OZEL_GUN[key]) return { gun: OZEL_GUN[key], days: i };
-      }
-    } catch (e) { /* Intl desteklenmiyor -- aşağıda UI.none'a düşülür */ }
-    return null;
-  }
-  function ozelgunEmptyText() {
-    const info = nextOzelGun();
-    if (!info) return tt(UI.none);
-    const n = info.days;
-    const dict = {
-      tr: "Bugün için kayıt yok — sıradaki: " + tt(info.gun.ad, "tr") + (n > 0 ? (", " + n + " gün sonra.") : "."),
-      en: "No record for today — next: " + tt(info.gun.ad, "en") + (n > 0 ? (", in " + n + " day" + (n === 1 ? "" : "s") + ".") : "."),
-      pt: "Sem registo para hoje — a seguir: " + tt(info.gun.ad, "pt") + (n > 0 ? (", daqui a " + n + " dia" + (n === 1 ? "" : "s") + ".") : "."),
-    };
-    return tt(dict);
-  }
-
   // --- sahne çizimi ----------------------------------------------------
   let stageEl = null, rafId = 0, tilt = null, startTs = 0, chromeTimer = 0, helixHandle = null;
   // frame()/drawAmbient() saniyede 60 kez çalışıyor -- her karede aynı
   // düğümleri querySelector(All) ile yeniden aramak yerine, sahne AÇILIRKEN
   // (bir kez) önbelleğe alınıyor. DOM stageMarkup() tarafından yalnız
   // openStage()'de kuruluyor, döngü boyunca değişmiyor -- bu yüzden güvenli.
-  let cacheFrame = null, cacheSvg = null, cacheSpiral = null, cacheHalo = null, cacheZatHalo = null, cacheDots = null, cacheLines = null, cacheRule = null;
+  let cacheFrame = null, cacheSvg = null, cacheSpiral = null, cacheHalo = null, cacheDots = null, cacheLines = null, cacheRule = null;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Şablon başına döngü uzunluğu (ms) ve metin vuruşları. Vuruşlar
@@ -817,7 +661,6 @@
     esma:     { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
     benzetme: { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
     fusus:    { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
-    miskat:   { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
     karsilastir: { loop: 8500, beats: [[0.09, 0.94], [0.22, 0.94]] },
     ozelgun:  { loop: 9500,  beats: [[0.07, 0.75], [0.22, 0.94]] },
   };
@@ -852,9 +695,7 @@
   // diye burada tanımlı.
   const RULE_BEAT_DEFAULT = [0.30, 0.94];
   function computeTiming(s) {
-    // "Şiir" de "Dizi" gibi değişken satır sayısı taşıyor (1 kaynak + 2-5
-    // dize) -- aynı diziBase(n) motorunu paylaşıyor.
-    const base = (s.tpl === "dizi" || s.tpl === "siir") ? diziBase(s.lines.length) : (TIMING[s.tpl] || TIMING.soz);
+    const base = s.tpl === "dizi" ? diziBase(s.lines.length) : (TIMING[s.tpl] || TIMING.soz);
     const words = s.lines.reduce((n, l) => n + wordCount(l.text) + (l.text2 ? wordCount(l.text2) : 0), 0);
     const extra = Math.min(HOLD_MAX_MS, Math.max(0, words - HOLD_BASE_WORDS) * HOLD_MS_PER_WORD);
     if (!extra) return Object.assign({ ruleBeat: RULE_BEAT_DEFAULT }, base);
@@ -886,8 +727,8 @@
   // Ekrandaki döngü 15000 -> 20000ms'ye uzatıldığı için (2026-08-02),
   // kayıt tavanları da aynı oranda büyütüldü -- indirilen video ekranda
   // görülenden daha aceleci hissetmesin diye.
-  const READ_CAP = { hikaye: 28, dizi: 34, siir: 24 };
-  const TOTAL_CAP = { hikaye: 46, dizi: 52, siir: 40 };
+  const READ_CAP = { hikaye: 28, dizi: 34 };
+  const TOTAL_CAP = { hikaye: 46, dizi: 52 };
   function takePlan(s) {
     const fadeIn = 0.7, fadeOut = 1.2, lineIn = 1.15;
     const cues = [];
@@ -969,16 +810,20 @@
       n: 22, tur: 1, yari: 0.28, yuk: 1.2, ac: 0.10, nokta: 4.2, hale: 0.52, halka: 0, nefes: true },
     { id: "sade", ad: { tr: "Sade", en: "Plain", pt: "Simples" },
       n: 14, tur: 1, yari: 0.34, yuk: 1.6, ac: 0.20, nokta: 2.6, hale: 0.20, halka: 0, cizgisiz: true },
-    // İki yeni zemin (kullanıcı isteği, 2026-07-30): "daha fazla arka plan
+    // Dört yeni zemin (kullanıcı isteği, 2026-07-30): "daha fazla arka plan
     // seçeneği, metafizik anlamı kuvvetli, düğümler farklı/canlı renklerle;
     // video gibi canlı hissi de olsun."  Süsleyici renk çarkı yerine hepsi
     // sitenin gerçek kavramlarını kodluyor:
+    //  - "celalcemal": esmâ'nın celâl/cemâl ayrımı -- düğümler dönüşümlü.
+    //  - "esik": iki uç arasındaki berzah/eşik -- renk sürekli kayıyor.
     //  - "feyz": nefes-i Rahmânî'nin feyz/taşması -- bir dalga sarmalı
     //    boyunca aşağı akar; "video-benzeri" canlı his tam burada.
     //  - "esma": yedi Ümmehât-ı Esmâ'nın yedi rengi -- Hayy/Alîm/Mürîd/
     //    Kadîr/Semî'/Basîr/Mütekellim, her düğüm kendi isminin renginde.
-    // ("Celâl-Cemâl" ve "Eşik" zeminleri 2026-09-13'te kaldırıldı --
-    // kullanıcı isteği.)
+    { id: "celalcemal", ad: { tr: "Celâl-Cemâl", en: "Majesty-Beauty", pt: "Majestade-Beleza" },
+      n: 28, tur: 1.6, yari: 0.30, yuk: 2.4, ac: 0.30, nokta: 3.6, hale: 0.28, halka: 0, renk: "cift" },
+    { id: "esik", ad: { tr: "Eşik", en: "Threshold", pt: "Limiar" },
+      n: 24, tur: 1.2, yari: 0.30, yuk: 2.0, ac: 0.26, nokta: 3.6, hale: 0.30, halka: 0, renk: "gecis" },
     { id: "feyz", ad: { tr: "Feyz", en: "Emanation", pt: "Emanação" },
       n: 36, tur: 1.8, yari: 0.29, yuk: 2.8, ac: 0.28, nokta: 3.0, hale: 0.36, halka: 0, renk: "feyz" },
     { id: "esma", ad: { tr: "Esmâ", en: "Divine Names", pt: "Nomes Divinos" },
@@ -988,8 +833,8 @@
     // yine sitenin kendi imgelerine bağlı, süsleyici değil:
     //  - "seher": seherin/teheccüdün sakin uyanışı -- lavanta'dan şeftaliye
     //    yumuşak bir geçiş, sarmal boyunca kayan.
-    //  - "gul": gül bahçesi -- pembe/yeşil dönüşümlü, düğüm başına
-    //    değişen iki renk.
+    //  - "gul": gül bahçesi -- pembe/yeşil dönüşümlü (celâl-cemâl'in
+    //    "cift" mekaniğiyle aynı, farklı bir imge/renk üzerinden).
     //  - "deniz": vahdet-i vücûd'un sık kullanılan okyanus metaforu --
     //    "feyz"le aynı dalga mekaniği, turkuaz-lacivert.
     //  - "ney": ney'in inlemesi -- sıcak bakır tek ton, az düğüm (ney'in
@@ -1003,10 +848,14 @@
     { id: "ney", ad: { tr: "Ney İnlemesi", en: "The Reed's Lament", pt: "O Lamento do Ney" },
       n: 18, tur: 1, yari: 0.32, yuk: 1.4, ac: 0.18, nokta: 3.8, hale: 0.30, halka: 0, renk: "ney" },
   ];
-  // Renkli zeminlerin sabit tonları -- hem koyu hem açık zeminde okunaklı
-  // kalacak şekilde seçildi (dekoratif öğeler oldukları için metin
-  // kontrastı ölçütü uygulanmıyor, ama yine de göz önünde tutuldu).
+  // "renk: cift" için iki sabit ton (celâl/cemâl); "renk: gecis" için
+  // sarmal boyunca aralarında kayan iki uç. İkisi de hem koyu hem açık
+  // zeminde okunaklı kalacak şekilde seçildi (dekoratif öğeler oldukları
+  // için metin kontrastı ölçütü uygulanmıyor, ama yine de göz önünde
+  // tutuldu).
   const RENK = {
+    celal: "#e2632b", cemal: "#7c5cff",
+    esikA: "#eda100", esikB: "#4b3f8f",
     // Feyz: sıcak altın (tepe) → derin turuncu (dip); hem koyu hem açık zeminde okunabilir.
     feyzA: "#fdb347", feyzB: "#c04a0f",
     // Yedi Ümmehât: Hayy·Alîm·Mürîd·Kadîr·Semî'·Basîr·Mütekellim sırasıyla.
@@ -1028,97 +877,9 @@
     const bl = Math.round(A[2] + (B[2] - A[2]) * t);
     return "rgb(" + r + "," + g + "," + bl + ")";
   }
-  // Panelde zemin seçenekleri düz metin etiketiydi -- kullanıcı hangisini
-  // seçtiğinde neyle karşılaşacağını göremiyordu (2026-09-13 isteği: "arka
-  // plan seçeneklerini görsel olarak görebilmemize imkan ver"). Sahnenin
-  // GERÇEK boyama mantığını (aynı renk fonksiyonları, aynı sarmal açısı)
-  // küçük dairesel bir örnekte tekrarlıyoruz -- ayrı, süsleyici bir ikon
-  // DEĞİL, o zeminin sahnede alacağı biçimin/renginin ölçekli bir örneği
-  // (bkz. CLAUDE.md "kavramı değil davranışını resmet"). Tilt/3B'yi
-  // (yalnız sahnede anlamlı) atlıyoruz; düz üstten bakışlı bir sarmal
-  // yeterli bir örnek.
-  function zeminThumbSvg(z) {
-    const n = Math.min(z.n, 22);
-    const size = 34, cx = size / 2, cy = size / 2, R = size * 0.40;
-    let d = "", dots = "";
-    for (let i = 0; i < n; i++) {
-      const t = i / Math.max(1, n - 1);
-      const a = -Math.PI / 2 + t * Math.PI * 2 * z.tur;
-      const adim = z.halka ? Math.floor(t * z.halka) / Math.max(1, z.halka - 1) : t;
-      const rr = R * (0.20 + 0.80 * adim);
-      const x = cx + rr * Math.cos(a), y = cy + rr * Math.sin(a);
-      d += (i === 0 ? "M" : "L") + x.toFixed(1) + "," + y.toFixed(1);
-      let fill;
-      if (z.renk === "feyz") fill = renkGecis(RENK.feyzA, RENK.feyzB, t);
-      else if (z.renk === "esma") fill = RENK.esma[i % RENK.esma.length];
-      else if (z.renk === "seher") fill = renkGecis(RENK.seherA, RENK.seherB, t);
-      else if (z.renk === "gul") fill = i % 2 === 0 ? RENK.gulPembe : RENK.gulYesil;
-      else if (z.renk === "deniz") fill = renkGecis(RENK.denizA, RENK.denizB, t);
-      else if (z.renk === "ney") fill = RENK.ney;
-      else fill = "#eda100";
-      const r = i === 0 ? 3.2 : 1.5;
-      dots += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + r + '" fill="' + fill + '"/>';
-    }
-    const path = z.cizgisiz ? "" : '<path d="' + d + '" fill="none" stroke="#eda100" stroke-opacity="0.32" stroke-width="1"/>';
-    return '<svg class="share-zemin-thumb" viewBox="0 0 ' + size + " " + size + '" aria-hidden="true" focusable="false">' +
-      '<circle cx="' + cx + '" cy="' + cy + '" r="' + (R * 0.95).toFixed(1) + '" fill="#05060a"/>' +
-      path + dots + "</svg>";
-  }
-  // Aynı gerekçe, şablon seçenekleri için: her ikon o şablonun kartta
-  // GERÇEKTEN alacağı satır sayısını/sırasını (başlık/söz/soru/çizgi)
-  // küçük çubuklarla gösteriyor -- soyut bir sembol değil, kartın kendi
-  // iskeletinin ölçekli bir örneği. Füsûs/Mişkât tek bir halka taşıyor
-  // (o ikisi zaten kendi bölümünün halka görselini ödünç alıyor).
-  const TPL_THUMB_ROWS = {
-    soz: [["soz", 0.62]],
-    gunun: [["soz", 0.62]],
-    soru: [["soru", 0.7]],
-    hikaye: [["soru", 0.68], ["soz", 0.5], ["soz", 0.58]],
-    ikili: [["soz", 0.55], ["rule", 0], ["soz", 0.6]],
-    karsilastir: [["soz", 0.55], ["rule", 0], ["soz", 0.6]],
-    benzetme: [["baslik", 0.4], ["soz", 0.68]],
-    ontoloji: [["baslik", 0.4], ["soz", 0.68]],
-    esma: [["baslik", 0.4], ["soz", 0.68]],
-    ozelgun: [["baslik", 0.4], ["soz", 0.68]],
-    dizi: [["baslik", 0.36], ["soz", 0.5], ["soz", 0.62], ["soz", 0.44]],
-    siir: [["baslik", 0.36], ["soz", 0.42], ["soz", 0.54], ["soz", 0.38]],
-    fusus: [["baslik", 0.4], ["soz", 0.5]],
-    miskat: [["baslik", 0.4], ["soz", 0.5]],
-  };
-  const TPL_THUMB_RING = { fusus: true, miskat: true };
-  function tplThumbSvg(key) {
-    const rows = TPL_THUMB_ROWS[key] || TPL_THUMB_ROWS.soz;
-    const w = 26, h = 42, barH = 2.4, gap = 5;
-    const x0 = w * 0.16;
-    let out = '<rect x="0" y="0" width="' + w + '" height="' + h + '" rx="3" fill="#05060a"/>';
-    let y;
-    if (TPL_THUMB_RING[key]) {
-      out += '<circle cx="' + (w / 2) + '" cy="' + (h * 0.36).toFixed(1) + '" r="' + (w * 0.26).toFixed(1) +
-        '" fill="none" stroke="#eda100" stroke-opacity="0.55" stroke-width="1.1"/>';
-      y = h * 0.66;
-    } else {
-      const totalH = rows.length * barH + (rows.length - 1) * gap;
-      y = (h - totalH) / 2;
-    }
-    rows.forEach(function (row) {
-      if (row[0] === "rule") {
-        out += '<rect x="' + x0.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + (w * 0.68).toFixed(1) +
-          '" height="0.7" fill="#eda100" fill-opacity="0.32"/>';
-        y += gap;
-        return;
-      }
-      const bw = w * 0.68 * row[1];
-      const vurgu = row[0] === "baslik" || row[0] === "soru";
-      out += '<rect x="' + x0.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + barH +
-        '" rx="1.3" fill="' + (vurgu ? "#eda100" : "#cfcabd") + '" fill-opacity="' + (vurgu ? 0.9 : 0.72) + '"/>';
-      y += barH + gap;
-    });
-    return '<svg class="share-tpl-thumb" viewBox="0 0 ' + w + " " + h + '" aria-hidden="true" focusable="false">' + out + "</svg>";
-  }
   const ZEMIN_ANAHTAR  = "dost-share-zemin";
   const ISIK_ANAHTAR   = "dost-share-isik";
   const KARE_ANAHTAR   = "dost-share-kare";
-  const METINSIZ_ANAHTAR = "dost-share-metinsiz";
   const FAV_ANAHTAR    = "dost-share-fav";
   const KAYNAK_ANAHTAR = "dost-share-kaynak";
   const TARIH_ANAHTAR  = "dost-share-tarih";
@@ -1128,8 +889,6 @@
   // Kullanıcı isteği (2026-08-02): kare (1:1) format seçeneği -- feed
   // paylaşımı için 9:16 dikey gereksiz uzun kalıyordu.
   let kareMod  = safeGet(KARE_ANAHTAR) === "1";
-  // Füsûs Halkası şablonu için düğüm-metinsiz seçenek (2026-08-16).
-  let metinsizMod = safeGet(METINSIZ_ANAHTAR) === "1";
   let kaynakId = safeGet(KAYNAK_ANAHTAR) || "all";
 
   function safeGet(k) {
@@ -1156,38 +915,8 @@
   // Sarmal: hal.js/menziller ile aynı motor (GU.createTilt'in project'i).
   // Kullanıcının isteği buydu -- sahne, sitenin kendi sakin dairesel
   // dönüşünden beslensin (bkz. CLAUDE.md "Dairenin üçüncü boyutu: sarmal").
-  // Bir zemini VERİLEN referanslara (spiral/halo/zatHalo/dots) çizen ortak
-  // motor -- hem gerçek sahne (drawAmbient aşağıda, module-level cache'i
-  // geçiyor) hem de panelde zemin çipine değinince (hover/focus) beliren
-  // KÜÇÜK CANLI önizleme (bkz. mountZeminPreview) aynı fonksiyonu, kendi
-  // ayrı SVG'sini ve kendi ayrı tilt örneğini geçerek çağırıyor -- ikisi
-  // birbirini etkilemesin diye (2026-09-13 zenginleştirmesi, tespit:
-  // "değinmek" (ETKİLEŞİM_DİLİ) sözleşmesi zemin seçiminde hiç
-  // kullanılmıyordu, statik bir rozet dışında canlı bir önizleme yoktu).
-  function drawZeminFrame(refs, z, tiltInst, w, h, ts, hide) {
-    // "Füsûs Halkası" İÇERİK şablonu (scene.tpl === "fusus" -- bu, aşağıdaki
-    // BACKDROP seçeneklerinden biri olan "Uzun sarmal" zemininden [z.id ===
-    // "fusus"] AYRI bir kimlik, ikisi de "fusus" adını taşıdığı için
-    // karışıyor) ve aynı yöntemi paylaşan "Mişkât Sarmalı" (scene.tpl ===
-    // "miskat", 2026-08-16) bu genel prosedürel sarmal yerine kendi gerçek
-    // DostHelix sahnesini taşıyor (bkz. .share-stage__frame--fusus/--miskat
-    // CSS'i, share-spiral/dot/halo'yu opacity:0 yapar) -- ama bu fonksiyon
-    // her karede KOŞULSUZ çalışıp aynı elemanlara satır-içi style.opacity
-    // yazıyordu, ki satır-içi stil her zaman sınıf kuralını eziyor. Sonuç:
-    // CSS'in gizlemeye çalıştığı eski sarmal, gerçek grafiğin arkasında
-    // sönük sönük nefes alırken görünüyordu (2026-08-04 kullanıcı
-    // bildirimi, Füsûs için). Bu şablonlarda hiç çizmeden erken çıkıyoruz.
-    if (hide) {
-      if (refs.spiral) refs.spiral.setAttribute("d", "");
-      if (refs.halo) refs.halo.style.opacity = "0";
-      // display:none, opacity değil -- .share-zat-halo'nun CSS nefes
-      // animasyonu opacity'yi her karede kendi yazıyor, satır-içi
-      // opacity:0 onu geçici olarak eziyor ama animasyon devam ettiği
-      // için bir sonraki karede yeniden görünür oluyordu.
-      if (refs.zatHalo) refs.zatHalo.style.display = "none";
-      if (refs.dots) refs.dots.forEach((c) => { c.style.opacity = "0"; });
-      return;
-    }
+  function drawAmbient(w, h, ts) {
+    const z = zemin();
     const cx = w / 2, cy = h * 0.5;
     const R = Math.min(w, h) * z.yari;
     const H = R * z.yuk;
@@ -1208,14 +937,13 @@
       const rr = R * (0.72 + z.ac * adim) * nfs;
       const px = rr * Math.cos(a), py = rr * Math.sin(a);
       const vert = -H / 2 + H * t;
-      const p = tiltInst ? tiltInst.project(px, py, vert) : { x: px, y: py, depth: 1 };
+      const p = tilt ? tilt.project(px, py, vert) : { x: px, y: py, depth: 1 };
       const X = cx + p.x, Y = cy + p.y;
       pts.push({ x: X, y: Y, depth: p.depth == null ? 1 : p.depth, phase: n.phase });
       d += (i === 0 ? "M" : "L") + X.toFixed(1) + "," + Y.toFixed(1);
     }
-    refs.spiral.setAttribute("d", z.cizgisiz ? "" : d);
-    let zatPt = null;
-    refs.dots.forEach((c, i) => {
+    cacheSpiral.setAttribute("d", z.cizgisiz ? "" : d);
+    cacheDots.forEach((c, i) => {
       const p = pts[i];
       if (!p) { c.style.opacity = "0"; return; }
       const br = reduceMotion ? 1 : 1 + 0.14 * Math.sin(ts / 3400 + p.phase);
@@ -1226,7 +954,11 @@
       // Renkli zeminler: düğüm rengi CSS'teki tek tonun (--sahne-murekkep)
       // yerine geçiyor; öteki zeminlerde her karede boşaltılıyor ki
       // önceki bir renkli zeminden kalan satır-içi renk yapışık kalmasın.
-      if (z.renk === "feyz") {
+      if (z.renk === "cift") {
+        c.style.fill = i % 2 === 0 ? RENK.celal : RENK.cemal;
+      } else if (z.renk === "gecis") {
+        c.style.fill = renkGecis(RENK.esikA, RENK.esikB, i / Math.max(1, z.n - 1));
+      } else if (z.renk === "feyz") {
         // Altın dalga sarmal boyunca aşağı akar -- feyz/taşma hareketi.
         const fPos = i / Math.max(1, z.n - 1);
         c.style.fill = renkGecis(RENK.feyzA, RENK.feyzB, fPos);
@@ -1255,36 +987,13 @@
       } else {
         c.style.fill = "";
       }
-      // Sarmalın tepesi: "O'ndan geldik, O'na gidiyoruz" (CLAUDE.md).
-      // ÖLÇÜLEN DÜZELTME (2026-08-04, kullanıcı bildirimi): önce i = n-1'i
-      // "tepe" sandık, ama tilt.project()'in gerçek izdüşüm matematiğini
-      // (yaw tam turda ekran-Y'yi vert ile aynı yönde taşımıyor) sayısal
-      // olarak sınayınca i = n-1'in EKRANDA ALTA, i = 0'ın ÜSTE düştüğü
-      // ortaya çıktı -- kullanıcının "düğüm altta" gözlemiyle birebir
-      // örtüşüyor. Düğümün görünümü de artık ontoloji/esmâ'daki Zât
-      // düğümünün BİREBİR AYNISI: bembeyaz gövde + altın, 6 saniyelik
-      // nefes alan bir hâle (statik bir parıltı filtresi değil) -- bkz.
-      // .node--root .node-halo (style.css), oran (34/13 ≈ 2.6) da oradan.
-      if (i === 0) {
-        c.style.fill = "#ffffff";
-        c.style.filter = "";
-        c.setAttribute("r", (z.nokta * p.depth * br * 2.6).toFixed(2));
-        c.style.opacity = "1";
-        zatPt = p;
-      } else {
-        c.style.filter = "";
-      }
     });
-    if (zatPt && refs.zatHalo) {
-      refs.zatHalo.style.display = "";
-      refs.zatHalo.setAttribute("cx", zatPt.x.toFixed(1));
-      refs.zatHalo.setAttribute("cy", zatPt.y.toFixed(1));
-      refs.zatHalo.setAttribute("r", (z.nokta * zatPt.depth * 2.6 * 1.4).toFixed(2));
-    }
     // Merkezdeki nefes alan halka: ontoloji/esmâ'daki Zât halosuyla aynı
     // 6 saniyelik ritim.
-    const halo = refs.halo;
-    if (z.renk === "feyz") halo.style.fill = RENK.feyzA;
+    const halo = cacheHalo;
+    if (z.renk === "cift") halo.style.fill = renkGecis(RENK.celal, RENK.cemal, 0.5);
+    else if (z.renk === "gecis") halo.style.fill = renkGecis(RENK.esikA, RENK.esikB, 0.5);
+    else if (z.renk === "feyz") halo.style.fill = RENK.feyzA;
     else if (z.renk === "esma") halo.style.fill = RENK.esma[3]; // Kadîr -- merkezde
     else if (z.renk === "seher") halo.style.fill = renkGecis(RENK.seherA, RENK.seherB, 0.5);
     else if (z.renk === "gul") halo.style.fill = RENK.gulPembe;
@@ -1295,66 +1004,6 @@
     halo.setAttribute("cx", cx); halo.setAttribute("cy", cy);
     halo.setAttribute("r", (R * z.hale * (1 + 0.4 * ph)).toFixed(1));
     halo.style.opacity = (0.14 + 0.20 * ph).toFixed(3);
-  }
-  function drawAmbient(w, h, ts) {
-    const hide = !!(scene && (scene.tpl === "fusus" || scene.tpl === "miskat"));
-    drawZeminFrame({ spiral: cacheSpiral, halo: cacheHalo, zatHalo: cacheZatHalo, dots: cacheDots }, zemin(), tilt, w, h, ts, hide);
-  }
-
-  // --- zemin (backdrop) canlı önizlemesi ---------------------------------
-  // Panelde bir zemin çipine değinince (hover/focus) beliren, sahnenin
-  // GERÇEK motoruyla (drawZeminFrame) çizilen küçük dairesel önizleme.
-  // `reduceMotion` tercih edilmişse hiç mount etmiyoruz -- statik rozet
-  // (zeminThumbSvg) zaten şeklin/rengin sabit bir örneğini veriyor, hareket
-  // dayatmıyoruz.
-  let zeminPreviewEl = null, zeminPreviewRaf = 0, zeminPreviewTilt = null, zeminPreviewStart = 0, zeminPreviewRefs = null;
-  function mountZeminPreview(z, anchorEl) {
-    if (reduceMotion) return;
-    teardownZeminPreview();
-    const el = document.createElement("div");
-    el.className = "share-zemin-preview";
-    el.setAttribute("aria-hidden", "true");
-    const size = 200;
-    el.innerHTML =
-      '<svg viewBox="0 0 ' + size + " " + size + '">' +
-      '<circle class="share-halo"></circle>' +
-      '<path class="share-spiral" fill="none"></path>' +
-      '<circle class="share-zat-halo"></circle>' +
-      new Array(NODE_COUNT).fill('<circle class="share-dot"></circle>').join("") +
-      "</svg>";
-    document.body.appendChild(el);
-    const r = anchorEl.getBoundingClientRect();
-    let left = r.left + r.width / 2 - size / 2;
-    left = Math.max(8, Math.min(left, window.innerWidth - size - 8));
-    let top = r.top - size - 12;
-    if (top < 8) top = r.bottom + 12; // üstte yer yoksa çipin altına düşer.
-    el.style.left = left + "px";
-    el.style.top = top + "px";
-    zeminPreviewEl = el;
-    zeminPreviewRefs = {
-      spiral: el.querySelector(".share-spiral"),
-      halo: el.querySelector(".share-halo"),
-      zatHalo: el.querySelector(".share-zat-halo"),
-      dots: el.querySelectorAll(".share-dot"),
-    };
-    zeminPreviewTilt = GU.createTilt ? GU.createTilt({ pitch: 0.20, spinRate: 0.000035 }) : null;
-    if (zeminPreviewTilt) zeminPreviewTilt.set(1, true);
-    zeminPreviewStart = 0;
-    const step = (ts) => {
-      if (!zeminPreviewEl) return;
-      if (!zeminPreviewStart) zeminPreviewStart = ts;
-      if (zeminPreviewTilt) zeminPreviewTilt.step(ts, 16, true);
-      drawZeminFrame(zeminPreviewRefs, z, zeminPreviewTilt, size, size, ts, false);
-      zeminPreviewRaf = requestAnimationFrame(step);
-    };
-    zeminPreviewRaf = requestAnimationFrame(step);
-  }
-  function teardownZeminPreview() {
-    if (zeminPreviewRaf) { cancelAnimationFrame(zeminPreviewRaf); zeminPreviewRaf = 0; }
-    if (zeminPreviewEl) { zeminPreviewEl.remove(); zeminPreviewEl = null; }
-    zeminPreviewRefs = null;
-    zeminPreviewTilt = null;
-    zeminPreviewStart = 0;
   }
 
   function frame(ts) {
@@ -1402,16 +1051,14 @@
       // çifti arasında (grup içi, CSS'te daha dar) ayrı tutmak için sarma.
       return '<div class="share-line-group">' + primary + secondary + "</div>";
     }).join(s.tpl === "ikili" || s.tpl === "karsilastir" ? '<span class="share-rule" aria-hidden="true"></span>' : "");
-    // "Füsûs Halkası" ve "Mişkât Sarmalı" şablonları, ambient sarmal yerine
-    // kendi bölümlerinin gerçek DostHelix grafiğini taşıyor -- bkz.
-    // openStage/closeStage.
-    const helixMarkup = (s.tpl === "fusus" || s.tpl === "miskat") ? '<div class="share-stage__helix" aria-hidden="true"></div>' : "";
+    // "Füsûs Halkası" şablonu, ambient sarmal yerine Füsûs bölümünün kendi
+    // 27-fass halkasını (DostHelix) taşıyor -- bkz. openStage/closeStage.
+    const helixMarkup = s.tpl === "fusus" ? '<div class="share-stage__helix" aria-hidden="true"></div>' : "";
     return (
       '<div class="share-stage__frame share-stage__frame--' + s.tpl + '">' +
       '<svg class="share-stage__svg" aria-hidden="true">' +
       '<circle class="share-halo"></circle>' +
       '<path class="share-spiral" fill="none"></path>' +
-      '<circle class="share-zat-halo"></circle>' +
       new Array(NODE_COUNT).fill('<circle class="share-dot"></circle>').join("") +
       "</svg>" +
       helixMarkup +
@@ -1427,7 +1074,6 @@
       // içeri düşüyor; orada da zaten ekran kaydı kullanılıyor ve krom
       // 2,2 saniye sonra soluyor.)
       '<div class="share-stage__chrome">' +
-      '<button type="button" data-action="kopyala">' + escapeHtml(tt(UI.kopyala)) + "</button>" +
       (canRecord
         ? '<button type="button" data-action="rec">' + escapeHtml(tt(UI.rec)) + "</button>" +
           '<button type="button" data-action="kart">' + escapeHtml(tt(UI.kart)) + "</button>"
@@ -1450,59 +1096,17 @@
   // mp4 önce denenir: TikTok webm'i çoğu zaman reddediyor. Chrome 130+ ve
   // Safari MediaRecorder'da mp4 üretebiliyor; üretemeyen tarayıcıda webm'e
   // düşüyoruz (o dosya da yüklenebiliyor ama garantisi yok).
-  // "avc1.4D401F" (Main profile) baseline'dan (avc1.42E01E) AYNI bitrate'te
-  // daha iyi sıkıştırıyor -- kullanıcı bildirimi (2026-09-14: "indirdiğim
-  // videoların kalitesi çok düşük") üzerine önce bunu deniyoruz, cihaz
-  // desteklemiyorsa isTypeSupported() zaten sessizce baseline'a düşüyor.
   const MIMES = [
-    "video/mp4;codecs=avc1.4D401F",
     "video/mp4;codecs=avc1.42E01E",
     "video/mp4",
     "video/webm;codecs=vp9",
     "video/webm",
   ];
-  // Aynı bildirim: MediaRecorder önceden BİTRATE HİÇ BELİRTMİYORDU --
-  // tarayıcı 1080x1920 gibi yüksek bir çözünürlük için kendi varsayılanını
-  // (genelde birkaç Mbps'in altında) seçiyor, bu da özellikle keskin kenarlı
-  // METİN üzerinde bloklaşmaya/bulanıklığa yol açıyor. TikTok/Instagram
-  // kendi tarafında yeniden kodluyor zaten -- yüksek bir sabit bitrate
-  // vererek ilk kopyayı olabildiğince temiz tutuyoruz.
-  const VIDEO_BITRATE = 12000000;
   function pickMime() {
     for (const m of MIMES) {
       try { if (MediaRecorder.isTypeSupported(m)) return m; } catch (e) {}
     }
     return "";
-  }
-
-  function downloadBlob(blob, filename) {
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-  }
-  // Cihaz/tarayıcı destekliyorsa dosyayı doğrudan işletim sisteminin
-  // paylaşım sayfasına (Instagram/WhatsApp/Mail...) gönderiyoruz --
-  // kullanıcı "indir, galeriye git, uygulamaya elle yükle" üç adımını
-  // atmak zorunda kalmasın diye (tespit, 2026-09-13). Desteklenmiyorsa ya
-  // da `File` inşası başarısızsa sessizce eski indirme yoluna düşer --
-  // hiçbir platformda mevcut davranıştan daha kötü olmuyor. Kullanıcı
-  // paylaşım diyaloğunu kendi iptal ederse (AbortError) indirmeyi
-  // DAYATMIYORUZ -- vazgeçme bir hata değil.
-  function shareOrDownload(blob, filename, mime) {
-    let file = null;
-    try { file = new File([blob], filename, { type: mime }); } catch (e) { /* aşağıda indirmeye düşer */ }
-    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
-      navigator.share({ files: [file] }).catch((e) => {
-        if (e && e.name === "AbortError") return;
-        downloadBlob(blob, filename);
-      });
-      return;
-    }
-    downloadBlob(blob, filename);
   }
 
   function recStatus(text, busy) {
@@ -1526,46 +1130,6 @@
     return !!surface && surface !== "browser";
   }
 
-  // İSTENEN çözünürlük belirtilmezse tarayıcı sekmeyi kendi varsayılanında
-  // (genelde ekranın gerçek fiziksel piksel sayısından DÜŞÜK) yakalıyor --
-  // biz sonra bunu 1080x1920'lik tuvale BÜYÜTÜNCE metin bulanıklaşıyordu
-  // (kullanıcı bildirimi, 2026-09-14: "indirdiğim videoların kalitesi çok
-  // düşük"). devicePixelRatio dahil gerçek fiziksel piksel sayısını "ideal"
-  // olarak istemek tarayıcıyı olabildiğince yüksek çözünürlükte yakalamaya
-  // zorluyor -- bir üst sınır değil, yalnızca bir tercih (ideal), o yüzden
-  // düşük çözünürlüklü bir ekranda hâlâ güvenli.
-  function captureVideoConstraints(fps) {
-    const dpr = window.devicePixelRatio || 1;
-    return {
-      frameRate: fps,
-      preferCurrentTab: true,
-      width: { ideal: Math.round(window.innerWidth * dpr) },
-      height: { ideal: Math.round(window.innerHeight * dpr) },
-    };
-  }
-
-  // getDisplayMedia'nın video()'su play() çözüldüğünde bazen HENÜZ
-  // videoWidth/videoHeight=0 (ilk kare kararmamış) ya da bir önceki
-  // sekmenin karesini taşıyor olabiliyor -- captureCardToFile bunun için
-  // sabit bir 250ms bekleme ekliyordu (2026-08-03 notu, "akışın ilk
-  // karesi bazen bir önceki sekmenin görüntüsünü taşıyor"), ama
-  // recordToFile aynı riski taşıdığı hâlde HİÇ beklemiyordu -- crop
-  // koordinatları (sx/sy/crop.w/crop.h) videoWidth henüz 0 iken
-  // hesaplanınca crop.w/h de 0 çıkıyor, bu da bozuk/siyah bir video
-  // indirmesine yol açıyordu (kullanıcı bildirimi, 2026-08-04: "video
-  // kayıtta sorun var"). Boyut gerçekten hazır olana kadar bekleyip
-  // ardından aynı 250ms'lik "önceki kare" payını her iki fonksiyonda da
-  // ortaklaştırıyoruz.
-  function videoHazirBekle(video) {
-    return new Promise((resolve) => {
-      function check() {
-        if (video.videoWidth && video.videoHeight) resolve();
-        else requestAnimationFrame(check);
-      }
-      check();
-    }).then(() => new Promise((resolve) => setTimeout(resolve, 250)));
-  }
-
   async function recordToFile() {
     if (!stageEl || recording) return;
     const frameEl = stageEl.querySelector(".share-stage__frame");
@@ -1573,7 +1137,7 @@
     let stream;
     try {
       stream = await navigator.mediaDevices.getDisplayMedia({
-        video: captureVideoConstraints(30),
+        video: { frameRate: 30, preferCurrentTab: true },
         preferCurrentTab: true,
         audio: false,
       });
@@ -1596,9 +1160,6 @@
     video.srcObject = stream;
     video.muted = true;
     await video.play();
-    // bkz. videoHazirBekle -- crop hesabı videoWidth henüz 0 iken ya da
-    // önceki sekmenin karesiyle yapılırsa bozuk bir video iner.
-    await videoHazirBekle(video);
 
     const canvas = document.createElement("canvas");
     canvas.width = 1080;
@@ -1626,8 +1187,7 @@
 
     const mime = pickMime();
     const chunks = [];
-    const recOpts = Object.assign({ videoBitsPerSecond: VIDEO_BITRATE }, mime ? { mimeType: mime } : null);
-    const rec = new MediaRecorder(canvas.captureStream(30), recOpts);
+    const rec = new MediaRecorder(canvas.captureStream(30), mime ? { mimeType: mime } : undefined);
     rec.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
     rec.onstop = () => {
       drawing = false;
@@ -1640,7 +1200,13 @@
       stream.getTracks().forEach((t) => t.stop());
       const ext = (mime || "video/webm").indexOf("mp4") !== -1 ? "mp4" : "webm";
       const blob = new Blob(chunks, { type: mime || "video/webm" });
-      shareOrDownload(blob, "dost-" + scene.tpl + "-" + new Date().toISOString().slice(0, 10) + "." + ext, mime || "video/webm");
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "dost-" + scene.tpl + "-" + new Date().toISOString().slice(0, 10) + "." + ext;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
       recording = false;
       stageEl && stageEl.classList.remove("is-recording");
       recStatus(tt(UI.recDone) + " · " + ext, false);
@@ -1681,7 +1247,7 @@
     let stream;
     try {
       stream = await navigator.mediaDevices.getDisplayMedia({
-        video: captureVideoConstraints(5),
+        video: { frameRate: 5, preferCurrentTab: true },
         preferCurrentTab: true,
         audio: false,
       });
@@ -1723,9 +1289,11 @@
     video.srcObject = stream;
     video.muted = true;
     await video.play();
-    // bkz. videoHazirBekle -- ayrıca yukarıdaki tam-görünür stil de bir
-    // karenin boyanmasını bekliyor, bu bekleme onu da garantiliyor.
-    await videoHazirBekle(video);
+    // Akışın ilk karesi bazen bir önceki sekmenin görüntüsünü taşıyor, ve
+    // yukarıdaki tam-görünür stil de bir kareyi boyanmayı bekliyor -- küçük
+    // bir bekleme, yakalanan karenin gerçekten (tam açılmış) sahneye ait
+    // olmasını garantiliyor.
+    await new Promise((resolve) => setTimeout(resolve, 250));
 
     const sx = video.videoWidth / window.innerWidth;
     const sy = video.videoHeight / window.innerHeight;
@@ -1751,50 +1319,25 @@
         setTimeout(() => recStatus("", false), 4000);
         return;
       }
-      shareOrDownload(blob, "dost-" + scene.tpl + "-" + new Date().toISOString().slice(0, 10) + ".png", "image/png");
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "dost-" + scene.tpl + "-" + new Date().toISOString().slice(0, 10) + ".png";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
       recStatus(tt(UI.recDone) + " · png", false);
       setTimeout(() => recStatus("", false), 3000);
     }, "image/png");
   }
 
-  // Ürün denetimi D1 (2026-09-02): ortak yardımcıya taşındı, bkz.
-  // graph-utils.js:escapeHtml.
-  const escapeHtml = GU.escapeHtml;
-
-  // Kartın satırlarını düz metne çevirir -- YENİ cümle yazmaz, yalnız
-  // sahnede zaten görünen satırları alt alta diziyor (iki dilli kartta
-  // çeviri satırı da dahil). Kaynağı işaret eden alan adı bir cümle değil,
-  // sahnedeki QR kodunun zaten kodladığı aynı bilgi.
-  function sceneText(s) {
-    const out = [];
-    (s.lines || []).forEach((l) => {
-      out.push(plainText(l.text));
-      if (l.text2) out.push(plainText(l.text2));
-    });
-    return out.join("\n") + "\n\n— dostarabi.com";
-  }
-  function copyText() {
-    if (!scene) return;
-    const text = sceneText(scene);
-    const fail = () => {
-      recStatus(tt(UI.kopyalaFail), false);
-      setTimeout(() => recStatus("", false), 4000);
-    };
-    if (!(navigator.clipboard && navigator.clipboard.writeText)) { fail(); return; }
-    navigator.clipboard.writeText(text).then(() => {
-      recStatus(tt(UI.kopyalandi), false);
-      setTimeout(() => recStatus("", false), 2500);
-    }, fail);
+  function escapeHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, (c) => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
+    ));
   }
 
   function openStage(s) {
-    // Favori/geçmişten açılan bir sahne, favorilendiği/kaydedildiği andaki
-    // zemin/açık-koyu/kare ayarlarını da taşıyorsa (bkz. snapshotSettings)
-    // burada geri uyguluyoruz -- eskiden favori HER ZAMAN o anki (favoriye
-    // eklendiğinden farklı olabilecek) global zeminle açılıyordu (tespit,
-    // 2026-09-13). Taze bir aday (henüz favorilenmemiş/geçmişe girmemiş)
-    // bu alanları taşımaz, bu yüzden burada hiçbir şey değişmez.
-    applySceneSettings(s);
     scene = s;
     scene._timing = computeTiming(s);
     tarihEkle(s);
@@ -1811,7 +1354,6 @@
     cacheSvg = stageEl.querySelector(".share-stage__svg");
     cacheSpiral = cacheSvg.querySelector(".share-spiral");
     cacheHalo = cacheSvg.querySelector(".share-halo");
-    cacheZatHalo = cacheSvg.querySelector(".share-zat-halo");
     cacheDots = cacheSvg.querySelectorAll(".share-dot");
     cacheLines = stageEl.querySelectorAll(".share-line");
     cacheRule = stageEl.querySelector(".share-rule");
@@ -1821,24 +1363,18 @@
     startTs = 0;
     rafId = requestAnimationFrame(frame);
 
-    if ((s.tpl === "fusus" || s.tpl === "miskat") && s.helix && window.DostHelix) {
+    if (s.tpl === "fusus" && s.helix && window.DostHelix) {
       const helixEl = stageEl.querySelector(".share-stage__helix");
       if (helixEl) {
         helixHandle = window.DostHelix.mount(helixEl, {
-          id: "share-" + s.tpl,
+          id: "share-fusus",
           nodes: s.helix.nodes,
           turns: 2.4,
           closing: false,
           hRatio: 1.05,
           maxH: 620,
           numbered: false,
-          // Mişkât'ın 101 düğümü hepsi "active" -- "sparse" mod (yalnız
-          // vurgulu+odaktaki adı yazar) burada "hepsi" anlamına gelip aynı
-          // üst-üste-binme sorununu üretirdi (bkz. assets/helix.js:183-186,
-          // /miskat/ sayfası zaten bu yüzden "none" kullanıyor). Füsûs
-          // Halkası'nda ise "metinsiz" panel anahtarıyla kullanıcı kendi
-          // seçiyor (kullanıcı isteği, 2026-08-16).
-          labelMode: s.tpl === "miskat" ? "none" : (metinsizMod ? "none" : "sparse"),
+          labelMode: "sparse",
           initialFocus: s.helix.initialFocus,
           // Sahne yalnız dekoratif -- düğüme tıklamanın site sayfasındaki
           // gibi bir not paneli açmasını istemiyoruz (kayıt/kart yakalama
@@ -1877,8 +1413,6 @@
       const g = stageEl.querySelector(".share-stage__guides");
       g.hidden = !g.hidden;
     });
-    const kopyalaBtn = stageEl.querySelector('[data-action="kopyala"]');
-    if (kopyalaBtn) kopyalaBtn.addEventListener("click", copyText);
     const recBtn = stageEl.querySelector('[data-action="rec"]');
     if (recBtn) recBtn.addEventListener("click", recordToFile);
     const kartBtn = stageEl.querySelector('[data-action="kart"]');
@@ -1900,7 +1434,7 @@
     if (chromeTimer) { clearTimeout(chromeTimer); chromeTimer = 0; }
     if (helixHandle) { helixHandle.destroy(); helixHandle = null; }
     if (stageEl) { stageEl.remove(); stageEl = null; }
-    cacheFrame = cacheSvg = cacheSpiral = cacheHalo = cacheZatHalo = cacheDots = cacheLines = cacheRule = null;
+    cacheFrame = cacheSvg = cacheSpiral = cacheHalo = cacheDots = cacheLines = cacheRule = null;
     document.body.classList.remove("share-stage-open");
   }
 
@@ -1919,21 +1453,6 @@
   }
 
   // --- favori ve geçmiş yardımcıları ---
-  // Favori/geçmiş yalnız sahnenin SATIRLARINI saklıyordu -- o an hangi
-  // zemin/açık-koyu/kare seçiliyse, favorinin kendi görünümü değil, HER
-  // ZAMAN geçerli global ayar uygulanıyordu (tespit, 2026-09-13). Bir
-  // kaydın favorilendiği/tarihe girdiği andaki görsel ayarları da (dil
-  // hariç -- dil zaten satır metnine gömülü, bkz. mkBilingualLine)
-  // taşıyoruz ki favoriyi tekrar açtığında beğendiğin hâliyle karşına
-  // çıksın.
-  function snapshotSettings(scene) {
-    return Object.assign({}, scene, { _zemin: zeminId, _isik: acikMod, _kare: kareMod });
-  }
-  function applySceneSettings(s) {
-    if (s._zemin != null && s._zemin !== zeminId) { zeminId = s._zemin; safeSet(ZEMIN_ANAHTAR, zeminId); }
-    if (s._isik != null && s._isik !== acikMod) { acikMod = s._isik; safeSet(ISIK_ANAHTAR, acikMod ? "1" : "0"); }
-    if (s._kare != null && s._kare !== kareMod) { kareMod = s._kare; safeSet(KARE_ANAHTAR, kareMod ? "1" : "0"); }
-  }
   function favLoad() {
     try { return JSON.parse(localStorage.getItem(FAV_ANAHTAR) || "[]"); } catch (e) { return []; }
   }
@@ -1943,7 +1462,7 @@
     // Aynı metni iki kez ekleme (ilk satır karşılaştırması).
     const key = scene.lines[0].text;
     if (list.some(function (s) { return s.lines[0].text === key; })) return;
-    list.unshift(snapshotSettings(scene));
+    list.unshift(scene);
     if (list.length > MAX_FAV) list.length = MAX_FAV;
     favSave(list);
   }
@@ -1960,7 +1479,7 @@
     const key = scene.lines[0].text;
     const i = list.findIndex(function (s) { return s.lines[0].text === key; });
     if (i !== -1) list.splice(i, 1);
-    list.unshift(snapshotSettings(scene));
+    list.unshift(scene);
     if (list.length > MAX_TARIH) list.length = MAX_TARIH;
     safeSet(TARIH_ANAHTAR, JSON.stringify(list));
   }
@@ -1986,10 +1505,7 @@
       box.innerHTML = '<p class="share-panel__cand-empty">' + escapeHtml(tt(UI.loading)) + "</p>";
       return;
     }
-    const havuzHint = typeof candidates[0].havuz === "number"
-      ? '<p class="share-panel__havuz">' + escapeHtml(havuzText(candidates[0].havuz)) + "</p>"
-      : "";
-    box.innerHTML = havuzHint + candidates.map(function (s, i) {
+    box.innerHTML = candidates.map(function (s, i) {
       return (
         '<div class="share-panel__cand">' +
         '<span class="share-panel__cand-text">' + escapeHtml(candidateSnippet(s)) + "</span>" +
@@ -2084,12 +1600,7 @@
     candidates = [];
     renderCandidateList();
     const seq = ++refreshSeq;
-    // "gunun" (Günün Sözü) gün-endeksli bir formülle seçiliyor -- o gün
-    // için herkese aynı kayıt gösteriliyor (yukarıdaki buildScene notuna
-    // bkz.), yani rastgele DEĞİL. 3 aday istemek üç kez aynı sonucu
-    // getiriyordu (kullanıcı geri bildirimi, 2026-08-13); bu şablon için
-    // tek aday yeterli.
-    const N = currentTpl === "gunun" ? 1 : 3;
+    const N = 3;
     const tasks = [];
     for (let i = 0; i < N; i++) tasks.push(buildScene(currentTpl).catch(function () { return null; }));
     Promise.all(tasks).then(function (results) {
@@ -2097,30 +1608,14 @@
       candidates = results.filter(Boolean);
       if (!candidates.length) {
         const box = panel.querySelector(".share-panel__candidates");
-        const msg = currentTpl === "ozelgun" ? ozelgunEmptyText() : tt(UI.none);
-        if (box) box.innerHTML = '<p class="share-panel__cand-empty">' + escapeHtml(msg) + "</p>";
+        if (box) box.innerHTML = '<p class="share-panel__cand-empty">' + escapeHtml(tt(UI.none)) + "</p>";
         return;
       }
       renderCandidateList();
     });
   }
 
-  // `focusAfter`: buildPanel() panel'i BAŞTAN kuruyor -- şablon/dil/iki
-  // dilli seçimi gibi iç değişiklikler bile bunu tetikliyor (koşullu alt
-  // bölümler değiştiği için gerekli). Önceden panel her yeniden kurulduğunda
-  // odak koşulsuz kapat düğmesine atlıyordu -- ilk açılışta doğru (dialog
-  // odağının bir yere gitmesi gerekir), ama bir şablon çipine tıklayan
-  // klavye kullanıcısı için habersiz bir "fokus sıçraması"ydı (tespit,
-  // 2026-09-13). Artık yalnız İLK açılışta (focusAfter verilmediğinde)
-  // kapat düğmesine gidiyor; bir iç seçim rebuild'i tetiklediğinde
-  // `focusAfter` o seçimi yapan denetime (aynı seçici, yeniden kurulan
-  // DOM'da) geri dönüyor.
-  function buildPanel(focusAfter) {
-    // Eski panel bir zemin önizlemesi açıkken yeniden kuruluyorsa (ör.
-    // hover'lı bir çip odaktayken şablon değiştirildi) DOM'dan kalkan çip
-    // her zaman bir "blur" tetiklemeyebilir -- yüzen önizleme burada
-    // kesin olarak kapatılıyor.
-    teardownZeminPreview();
+  function buildPanel() {
     panel = document.createElement("div");
     panel.className = "share-panel";
     panel.setAttribute("role", "dialog");
@@ -2128,9 +1623,8 @@
     panel.setAttribute("aria-label", tt(UI.title));
 
     const chips = Object.keys(UI.tpl).map(function (k) {
-      return '<button type="button" class="share-panel__chip share-panel__chip--tpl' + (k === currentTpl ? " is-on" : "") +
-        '" data-tpl="' + k + '" aria-pressed="' + (k === currentTpl) + '">' + tplThumbSvg(k) +
-        "<span>" + escapeHtml(tt(UI.tpl[k])) + "</span></button>";
+      return '<button type="button" class="share-panel__chip' + (k === currentTpl ? " is-on" : "") +
+        '" data-tpl="' + k + '" aria-pressed="' + (k === currentTpl) + '">' + escapeHtml(tt(UI.tpl[k])) + "</button>";
     }).join("");
 
     const dilChips = DIL_LANGS.map(function (l) {
@@ -2146,9 +1640,9 @@
     }).join("");
 
     const zeminChips = ZEMIN.map(function (z) {
-      return '<button type="button" class="share-panel__chip share-panel__chip--sm share-panel__chip--zemin' +
+      return '<button type="button" class="share-panel__chip share-panel__chip--sm' +
         (z.id === zeminId ? " is-on" : "") + '" data-zemin="' + z.id + '" aria-pressed="' + (z.id === zeminId) + '">' +
-        zeminThumbSvg(z) + "<span>" + escapeHtml(tt(z.ad)) + "</span></button>";
+        escapeHtml(tt(z.ad)) + "</button>";
     }).join("");
 
     // Filtre satırı yalnız Fütûhât kısmındayken gösterilir.
@@ -2170,21 +1664,11 @@
     const favs = favLoad();
     const tarih = tarihLoad();
 
-    // Panel artık tam sayfa açılıyor (2026-09-13 isteği: "@share açıldığında
-    // tam sayfa aç"). Geniş ekranda bunu boşa harcamamak için içerik iki
-    // sütuna ayrılıyor -- solda kurulum (şablon/dil/zemin/anahtarlar),
-    // sağda sonuç (önizlemeler + favoriler/geçmiş); dar ekranda (telefon)
-    // CSS bu ikisini alt alta yığıyor. Alt eleman seçicileri (querySelector
-    // ile bulunan .share-panel__candidates vb.) değişmedi, yalnız bir
-    // sarmalayıcı katman eklendi.
     panel.innerHTML =
       '<div class="share-panel__head">' + escapeHtml(tt(UI.title)) +
       '<button type="button" data-action="quit" aria-label="' + escapeHtml(tt(UI.close)) + '">✕</button></div>' +
       '<p class="share-panel__hint">' + escapeHtml(tt(UI.hint)) + "</p>" +
-      '<div class="share-panel__body">' +
-      '<div class="share-panel__col share-panel__col--setup">' +
       // Şablon seçici
-      '<p class="share-panel__label">' + escapeHtml(tt(UI.sablon)) + "</p>" +
       '<div class="share-panel__chips">' + chips + "</div>" +
       // Dil seçici
       '<p class="share-panel__label">' + escapeHtml(tt(UI.dil)) + "</p>" +
@@ -2204,13 +1688,6 @@
       '<label class="share-panel__switch">' +
       '<input type="checkbox" data-action="ikidilli"' + (ikiDilliMod ? " checked" : "") + ">" +
       "<span>" + escapeHtml(tt(UI.ikiDilli)) + "</span></label>" +
-      // Düğüm metni yok -- yalnız Füsûs Halkası'nda anlamlı (kullanıcı
-      // isteği, 2026-08-16); Mişkât Sarmalı zaten hep etiketsiz.
-      (currentTpl === "fusus"
-        ? '<label class="share-panel__switch">' +
-          '<input type="checkbox" data-action="metinsiz"' + (metinsizMod ? " checked" : "") + ">" +
-          "<span>" + escapeHtml(tt(UI.metinsiz)) + "</span></label>"
-        : "") +
       (ikiDilliMod
         ? '<p class="share-panel__label">' + escapeHtml(tt(UI.ikinciDil)) + "</p>" +
           '<div class="share-panel__chips share-panel__chips--zemin">' + ikinciDilChips + "</div>"
@@ -2228,11 +1705,8 @@
           '<select id="share-karsilastir-sol" aria-label="' + escapeHtml(tt(UI.karsilastirSol)) + '"></select>' +
           '<select id="share-karsilastir-sag" aria-label="' + escapeHtml(tt(UI.karsilastirSag)) + '"></select>' +
           '<button type="button" class="share-panel__go" data-action="karsilastir-ac">' + escapeHtml(tt(UI.karsilastirAc)) + "</button>" +
-          '<p class="share-panel__karsilastir-warn" hidden>' + escapeHtml(tt(UI.karsilastirAyni)) + "</p>" +
           "</div>"
         : "") +
-      "</div>" +
-      '<div class="share-panel__col share-panel__col--sonuc">' +
       // Çoklu önizleme
       '<div class="share-panel__candidates"></div>' +
       // Başkasını getir
@@ -2248,9 +1722,7 @@
       (tarih.length
         ? '<details class="share-panel__details"><summary>' + escapeHtml(tt(UI.histList)) + "</summary>" +
           '<div class="share-panel__histlist"></div></details>'
-        : "") +
-      "</div>" +
-      "</div>";
+        : "");
 
     document.body.appendChild(panel);
 
@@ -2262,7 +1734,7 @@
         // düzenini değiştiriyor -- panel gövdesi diğer şablonlardan farklı,
         // o yüzden dil değişimindeki gibi TAM YENİDEN kuruyoruz.
         const old = panel;
-        buildPanel('[data-tpl="' + currentTpl + '"]');
+        buildPanel();
         if (old) old.remove();
       });
     });
@@ -2283,7 +1755,7 @@
         // buildPanel() modül düzeyindeki `panel` değişkenini YENİ bir düğümle
         // değiştiriyor; eskisini biz kaldırmazsak DOM'da iki panel üst üste kalırdı.
         const old = panel;
-        buildPanel('[data-dil="' + shareLangId + '"]');
+        buildPanel();
         if (old) old.remove();
       });
     });
@@ -2294,7 +1766,7 @@
         ikiDilliMod = e.target.checked;
         safeSet(IKIDILLI_ANAHTAR, ikiDilliMod ? "1" : "0");
         const old = panel;
-        buildPanel('[data-action="ikidilli"]');
+        buildPanel();
         if (old) old.remove();
       });
     }
@@ -2326,20 +1798,11 @@
         if (d.list.length > 1) sagSel.selectedIndex = 1;
       }).catch(function () {});
       const acBtn = karsilastirBox.querySelector('[data-action="karsilastir-ac"]');
-      const warnEl = karsilastirBox.querySelector(".share-panel__karsilastir-warn");
       if (acBtn) {
         acBtn.addEventListener("click", function () {
           const solSel = karsilastirBox.querySelector("#share-karsilastir-sol");
           const sagSel = karsilastirBox.querySelector("#share-karsilastir-sag");
           if (!solSel || !sagSel || !solSel.value || !sagSel.value) return;
-          // Aynı kavram iki tarafa da seçilirse eskiden sessizce rastgele bir
-          // ikincisine düşülüyordu -- artık önceden söylüyoruz (tespit,
-          // 2026-09-13), buildScene'e hiç sorulmuyor.
-          if (solSel.value === sagSel.value) {
-            if (warnEl) warnEl.hidden = false;
-            return;
-          }
-          if (warnEl) warnEl.hidden = true;
           buildScene("karsilastir", { leftKey: solSel.value, rightKey: sagSel.value }).then(function (s) {
             if (s) openStage(s);
           }).catch(function () {});
@@ -2356,18 +1819,6 @@
           x.setAttribute("aria-pressed", String(x === b));
         });
       });
-      // Canlı önizleme (2026-09-13 zenginleştirmesi): ETKİLEŞİM_DİLİ'nin
-      // "değinmek" tanımı ("hover'ın gösterdiği, tıklamanın küçültülmüş
-      // hâli") burada hiç kullanılmıyordu -- statik rozet dışında zemini
-      // seçmeden GERÇEK hâlini görmenin yolu yoktu. Hover'ın klavye
-      // karşılığı focus/blur (aynı sözleşmenin gerektirdiği gibi).
-      const z = ZEMIN.find(function (zz) { return zz.id === b.dataset.zemin; });
-      if (z) {
-        b.addEventListener("mouseenter", function () { mountZeminPreview(z, b); });
-        b.addEventListener("mouseleave", teardownZeminPreview);
-        b.addEventListener("focus", function () { mountZeminPreview(z, b); });
-        b.addEventListener("blur", teardownZeminPreview);
-      }
     });
 
     const kaynakBox = panel.querySelector("#share-kaynak-chips");
@@ -2397,28 +1848,12 @@
       if (stageEl) stageEl.classList.toggle("share-stage--kare", kareMod);
     });
 
-    // Yalnız currentTpl === "fusus" iken panelde var -- bkz. buildPanel().
-    // Sahne her açılışta yeniden mount edildiği için (openStage) burada
-    // canlı bir yeniden çizim gerekmiyor, yalnız bir sonraki açılışta
-    // okunacak bayrağı kaydediyoruz.
-    const metinsizBox = panel.querySelector('[data-action="metinsiz"]');
-    if (metinsizBox) {
-      metinsizBox.addEventListener("change", function (e) {
-        metinsizMod = e.target.checked;
-        safeSet(METINSIZ_ANAHTAR, metinsizMod ? "1" : "0");
-      });
-    }
-
     panel.querySelector('[data-action="shuffle"]').addEventListener("click", refresh);
     const panelCloseBtn = panel.querySelector('[data-action="quit"]');
     panelCloseBtn.addEventListener("click", closePanel);
-    // bkz. openStage'deki aynı not -- role="dialog" İLK açıldığında odağı
-    // içeri taşımak gerekir, en güvenli ilk durak kapat düğmesi. Ama bir
-    // İÇ seçim (şablon/dil/iki dilli) panel'i yeniden kurduğunda odak o
-    // seçimi yapan denetime geri döner -- bkz. buildPanel(focusAfter)
-    // yorumu (tespit, 2026-09-13).
-    const focusTarget = (focusAfter && panel.querySelector(focusAfter)) || panelCloseBtn;
-    focusTarget.focus();
+    // bkz. openStage'deki aynı not -- role="dialog" açıldığında odağı
+    // içeri taşımak gerekir, en güvenli ilk durak kapat düğmesi.
+    panelCloseBtn.focus();
 
     renderSavedLists();
     refresh();
@@ -2426,7 +1861,6 @@
 
   function closePanel() {
     closeStage();
-    teardownZeminPreview();
     if (panel) { panel.remove(); panel = null; }
   }
 

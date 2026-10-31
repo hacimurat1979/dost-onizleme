@@ -11,27 +11,12 @@
  */
 "use strict";
 
-const CACHE_VERSION = "dost-sw-v3";
-const SHELL_URLS = ["./", "./index.html", "./assets/style.css", "./assets/vendor/d3-custom.min.js"];
+const CACHE_VERSION = "dost-sw-v2";
+const SHELL_URLS = ["./", "./index.html", "./assets/style.css", "./assets/vendor/d3.min.js"];
 
 self.addEventListener("install", (event) => {
-  // cache.addAll() tarayıcının kendi HTTP önbelleğinden besleniyor -- satır
-  // 60'taki "cache: reload" düzeltmesiyle aynı sebepten (GitHub Pages'in
-  // Cache-Control: max-age=600'ü), install anında GÜNCEL sürüm yerine 10
-  // dakikaya kadar eski bir kabuk önbelleğe yazılabiliyordu. Her URL ayrı
-  // ayrı reload ile çekilip elle put ediliyor; bir URL 404 verirse (ör.
-  // yeniden adlandırılmış bir vendor dosyası) yalnız o atlanır, TÜM install
-  // addAll()'daki gibi sessizce başarısız olmaz.
   event.waitUntil(
-    caches.open(CACHE_VERSION).then((cache) =>
-      Promise.all(
-        SHELL_URLS.map((url) =>
-          fetch(new Request(url, { cache: "reload" }))
-            .then((resp) => { if (resp.ok) return cache.put(url, resp); })
-            .catch(() => {})
-        )
-      )
-    )
+    caches.open(CACHE_VERSION).then((cache) => cache.addAll(SHELL_URLS)).catch(() => {})
   );
   self.skipWaiting();
 });
@@ -46,12 +31,7 @@ self.addEventListener("activate", (event) => {
 });
 
 function isDataRequest(url) {
-  // 2026-08-26 genişletme: yalnız /data/ibn-arabi/ ve themes.json'u kapsıyordu;
-  // data/icerik/ (kademeli açılım, G15), data/kavramlar/ (kavram.js) ve
-  // data/daphne* (Daphne profili/arşivi) hiç önbelleğe yazılmıyordu -- ne
-  // stale-while-revalidate ne de pasif çevrimdışı düşme, bu betiğin kendi
-  // üstteki "Veri için stale-while-revalidate" iddiasının aksine.
-  return url.pathname.includes("/data/");
+  return url.pathname.includes("/data/ibn-arabi/") || url.pathname.includes("/data/themes.json");
 }
 
 self.addEventListener("fetch", (event) => {
@@ -85,16 +65,7 @@ self.addEventListener("fetch", (event) => {
     fetch(isNavOrAsset ? new Request(req, { cache: "reload" }) : req)
       .then((resp) => {
         if (resp.ok && (req.destination === "script" || req.destination === "style" || req.mode === "navigate")) {
-          // clone() HEMEN burada, senkron olarak: caches.open() bekleyen bir
-          // await/then arasına düşerse, tarayıcı bu sırada return edilen
-          // resp'in gövdesini okumaya başlıyor ve sonra çağrılan clone()
-          // "Response body is already used" hatasıyla patlıyor -- konsolda
-          // her navigasyonda görülen TypeError (2026-08-06, kullanıcı
-          // bildirimi). Sonucu: cache.put() hiç tamamlanmıyor, SW'nin kendi
-          // önbelleği asla tazelenmiyor, "yeni sürüm görünmüyor" şikâyetinin
-          // asıl kaynağı satır 62'deki ctrl+shift+r notundan FARKLI bir kusurmuş.
-          const toCache = resp.clone();
-          caches.open(CACHE_VERSION).then((cache) => cache.put(req, toCache));
+          caches.open(CACHE_VERSION).then((cache) => cache.put(req, resp.clone()));
         }
         return resp;
       })

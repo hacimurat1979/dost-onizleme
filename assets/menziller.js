@@ -28,7 +28,7 @@
   const tooltip = document.getElementById("menziller-tooltip");
   const wrapEl = document.getElementById("menziller-wrap");
 
-  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
+  function tt(dict) { return I18n.pick3(dict || {}); }
   function getVar(n) { return GU.getVar(n); }
   function linkify(text, view, id) {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, view, id) : text;
@@ -36,29 +36,13 @@
 
   let data = null, dataPromise = null;
   let nodes = [];
-  let zoomLayer, nodeLayer, centerLayer, moonLayer, defs;
+  let zoomLayer, ringLayer, nodeLayer, centerLayer, defs;
   let zoomBehavior = null;
   let width = 900, height = 640, cx = 450, cy = 320, ringR = 240, dropH = 420;
-  let spin = 0, hoveredId = null, activeId = null;
-  // Derinlik yeniden-sıralaması (aşağıda render() içinde) saniyede 60 kez
-  // GEREKMİYOR -- dönüş çok yavaş (~140 sn/tur), iki komşu ögenin önü/arkası
-  // birkaç yüz ms'de bir değişir. ontology.js'te ÖLÇÜLEN kusurdan ders:
-  // eşiksiz bir "her karede" pahalı iş, düşük güçlü cihazlarda titremeye
-  // dönüşebiliyordu (2026-08-07, tablet bildirimi). Burada baştan eşikli.
-  let lastDepthSortTs = 0;
+  let rafId = null, lastTs = 0, spin = 0, hoveredId = null, activeId = null;
 
   // Sakin, huzurlu dönüş -- öteki graflarla aynı hız ailesinden (~140 sn/tur).
   const SPIN_RATE = 0.000045;
-  // Ay: sarmalın DÖNDÜĞÜ eksenin üzerinde, tam merkezde duran bir küre --
-  // 28 menzil onun etrafında geçiyor (kullanıcının kendi tarifi ve
-  // referans görüntüsü, 2026-08-07). helixPoint(t)'in x/y/z'si hep 0
-  // etrafında salınıyor, yani "merkez" gerçekten (0,0,0) -- project(0,0,0)
-  // her yaw/tilt'te DEĞİŞMEDEN {x:cx, y:cy, z:0} verir (aşağıda MOON_R).
-  // Yalnız 3B'de anlamlı: 2B'de (tilt=0) bütün z'ler zaten 0, "sarma"
-  // görünmez -- bu yüzden Ay tilt ile birlikte belirir, merkezdeki nefes
-  // işareti (centerLayer) tilt ile birlikte kaybolur; ikisi aynı yeri
-  // farklı hâllerde paylaşıyor.
-  const MOON_R = () => ringR * 0.5;
 
   // --- 3B durumu (hal.js'teki sarmal motorunun aynısı; referansımız o) ---
   // Fark şu: Hâller'de yol YÜKSELİYOR (nefsten hayrete), burada İNİYOR --
@@ -205,150 +189,56 @@
       rg.append("stop").attr("offset", "52%").attr("stop-color", c.formatHex());
       rg.append("stop").attr("offset", "100%").attr("stop-color", c.darker(0.85).formatHex());
     });
-    // Ay'ın kendi küresi -- düğümlerin ZATEN kullandığı "radyal gradyanla
-    // top" tekniğinin (yukarısı) aynısı, yalnız büyütülmüş ve gümüşi.
-    // GORSEL_DIL.md'nin "sahte 3B yapma" kuralı kutu-perspektifi/parlaklık
-    // numaralarını yasaklıyor; bu sayfa zaten kendi 28 küresinde bu deseni
-    // taşıyor, Ay'ı aynı dilde büyütmek yeni bir ihlal değil, tutarlılık.
-    const moonGrad = defs.append("radialGradient").attr("id", "menzil-moon-grad")
-      .attr("cx", "36%").attr("cy", "30%").attr("r", "75%");
-    moonGrad.append("stop").attr("offset", "0%").attr("stop-color", "#f4f2ea");
-    moonGrad.append("stop").attr("offset", "55%").attr("stop-color", "#d9d6c9");
-    moonGrad.append("stop").attr("offset", "100%").attr("stop-color", "#9c988a");
 
     zoomLayer = svg.append("g").attr("class", "menziller-canvas");
-    // Ring parçaları + düğümler + Ay AYNI katmanın çocukları: 3B'de sarmalın
-    // Ay'ın önünden/arkasından geçmesi gerçek bir derinlik-sıralamasıdır
-    // (bkz. render()'daki depthSort -- appendChild ile DOM sırası z'ye göre
-    // yeniden kuruluyor, "sahte" bir üst-üste-bindirme değil).
-    nodeLayer = zoomLayer.append("g").attr("class", "menziller-scene");
-    moonLayer = nodeLayer.append("g").attr("class", "menziller-moon").attr("aria-hidden", "true");
-    moonLayer.append("circle").attr("class", "menziller-moon__glow");
-    moonLayer.append("circle").attr("class", "menziller-moon__body").attr("fill", "url(#menzil-moon-grad)");
-    // Yüzeydeki birkaç koyu leke -- gerçek bir krater haritası değil,
-    // "düz bir top değil, Ay" diye okunması için birkaç düzensiz leke.
-    [[-4, -2, 3.4], [3, 5, 2.6], [-2, 6, 1.9], [5, -4, 1.6]].forEach(([dx, dy, r]) => {
-      moonLayer.append("circle").attr("class", "menziller-moon__leke")
-        .attr("cx", dx).attr("cy", dy).attr("r", r);
-    });
-    moonLayer.append("title").text(tt({
-      tr: "Menzillerin ait olduğu Ay -- sarmal onun etrafında geziniyor.",
-      en: "The Moon these mansions belong to -- the spiral moves around it.",
-      pt: "A Lua a que pertencem estas mansões -- a espiral move-se à sua volta.",
-    }));
-    // Ay altında etiket: 3B varsayılan görünümde center katmanı (Nefes-i
-    // Rahmânî yazısı) sönümlü olduğu için Ay uzun süre etiketsiz duruyordu
-    // (denetim G21: "etiketsiz gri topak"). moonLayer'a kendi metnini
-    // ekliyoruz -- burada text'in y'si Ay'ın yarıçapının BİRAZ altına
-    // koyulacak (render'da moonR'ye göre güncellenir).
-    moonLayer.append("text").attr("class", "menziller-moon__label").attr("text-anchor", "middle");
-    moonLayer.append("text").attr("class", "menziller-moon__sub").attr("text-anchor", "middle");
-
+    ringLayer = zoomLayer.append("g").attr("class", "menziller-ringlayer");
+    nodeLayer = zoomLayer.append("g").attr("class", "menziller-nodes");
     centerLayer = zoomLayer.append("g").attr("class", "menziller-center");
 
-    // Nefes halosu: 2B'de merkez etiket arkasında usulca genişleyip daralan
-    // bir daire -- "resmet davranışı" (nefes) ilkesinin yalın karşılığı,
-    // CSS keyframe'inde tanımlı (bkz. .menziller-center .node-halo).
+    // 2B'de düz halka, 3B'de sarmalın kendisi: tek bir path ikisini de çiziyor.
+    ringLayer.append("path").attr("class", "menziller-ring-path").attr("fill", "none");
+    // Sonu başa bağlayan kapanış kirişi (yalnız 3B'de görünür).
+    ringLayer.append("path").attr("class", "menziller-close-chord").attr("fill", "none");
     centerLayer.append("circle").attr("class", "node-halo").attr("r", 46);
     centerLayer.append("text").attr("class", "menziller-center__label").attr("text-anchor", "middle").attr("y", -4);
     centerLayer.append("text").attr("class", "menziller-center__sub").attr("text-anchor", "middle").attr("y", 15);
 
     zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.5, 3], (event) => !event.target.closest(".node") && tiltTarget < 0.5);
 
-    // activeId burada kamerayı taşıyor (bir menzil seçilince sahne ona
-    // yaklaşıyor), o yüzden geri çekilirken o da bırakılıyor.
-    GU.wireRecenter("menziller-recenter", () => {
-      activeId = null; showIntro();
-      // ETKILESIM_DILI.md'nin kendi tanımı: Recenter kaydırma/yakınlaştırma
-      // yanında "serbest döndürme"yi de sıfırlamalı. yaw/pitch'e hiç
-      // dokunulmuyordu -- sürükleyerek döndürülmüş bir sahnede Recenter
-      // yalnız kadrajı düzeltiyor, açı aynı kalıyordu (UI denetimi bulgusu).
-      yaw = 0; pitch = 0.18;
-      fitView(true);
-    });
+    const rc = document.getElementById("menziller-recenter");
+    if (rc && !rc.dataset.wiredMenziller) {
+      rc.dataset.wiredMenziller = "1";
+      rc.addEventListener("click", () => { activeId = null; showIntro(); fitView(true); });
+    }
     svg.on("click", () => { if (activeId) { activeId = null; showIntro(); ensureFrame(); } });
-  }
-
-  function depthFade(dep) {
-    return tilt > 0 ? Math.max(0.35, Math.min(1, 0.35 + 0.9 * (dep - 0.55))) : 1;
   }
 
   function render(ts) {
     if (!nodeLayer) return;
     positionNodes();
-    const n = nodes.length;
 
-    // Halka artık TEK bir path değil, ardışık düğüm çiftleri arasında n
-    // kısa parça (+ son->ilk kapanış parçası) -- her biri kendi z'siyle,
-    // Ay'ın önünden/arkasından geçebilsin diye (bkz. depthSort aşağıda).
-    // 2B'de hepsi düz, tam opak bir halka gibi davranır (eski davranış);
-    // yalnız SON parça 3B'de "mertebeleri tayin ediyor" kirişine dönüşür
-    // (düz çizgi, kesikli, soluk -- eski .menziller-close-chord).
-    const segData = [];
-    for (let i = 0; i < n; i++) {
-      const j = (i + 1) % n;
-      const isClose = i === n - 1;
-      segData.push({ id: "seg" + i, i, j, isClose });
-    }
-    const segSel = nodeLayer.selectAll("path.menziller-ring-seg").data(segData, (d) => d.id);
-    const segEnter = segSel.enter().append("path").attr("class", "menziller-ring-seg").attr("fill", "none");
-    const segMerged = segEnter.merge(segSel);
-    segSel.exit().remove();
-    segMerged.each(function (d) {
-      const p = d3.select(this);
-      const a = nodes[d.i], b = nodes[d.j];
-      const dep = ((a.__depth || 1) + (b.__depth || 1)) / 2;
-      d.__z = ((a.__z || 0) + (b.__z || 0)) / 2;
-      if (d.isClose && tilt >= 0.5) {
-        p.attr("d", `M${a.x.toFixed(1)},${a.y.toFixed(1)} L${b.x.toFixed(1)},${b.y.toFixed(1)}`)
-          .classed("menziller-ring-seg--close", true)
-          .style("opacity", tilt * 0.5);
-      } else {
-        p.attr("d", samplePath(d.i, d.isClose ? d.i + 1 : d.j, 8))
-          .classed("menziller-ring-seg--close", false)
-          .style("opacity", depthFade(dep));
-      }
-    });
+    // Yol: 2B'de kapalı halka, 3B'de inen sarmal -- aynı parametrik eğri.
+    ringLayer.select("path.menziller-ring-path")
+      .attr("d", samplePath(0, nodes.length - 1 + (tilt < 0.5 ? 1 : 0), 240));
 
-    // Ay: sarmalın döndüğü eksenin TAM merkezinde, sabit -- 28 menzil onun
-    // etrafında geziniyor (kullanıcının tarifi). project(0,0,0) her zaman
-    // {x:cx,y:cy,z:0} verdiği için konum sabit; yalnız 3B'ye geçişte
-    // belirir (2B'de "sarma" görünmediği için nefes işaretine yer bırakır).
-    const moonR = MOON_R();
-    const breathM = reduceMotion ? 1 : 1 + 0.015 * Math.sin(ts / 4200);
-    moonLayer.attr("transform", `translate(${cx.toFixed(1)},${cy.toFixed(1)}) scale(${(breathM).toFixed(3)})`)
-      .style("opacity", tilt);
-    moonLayer.select(".menziller-moon__glow").attr("r", moonR * 1.35);
-    moonLayer.select(".menziller-moon__body").attr("r", moonR);
-    moonLayer.selectAll(".menziller-moon__leke").each(function (d, idx) {
-      const spots = [[-0.36, -0.18, 0.31], [0.27, 0.45, 0.24], [-0.18, 0.55, 0.17], [0.45, -0.36, 0.15]];
-      const s = spots[idx];
-      d3.select(this).attr("cx", (s[0] * moonR).toFixed(1)).attr("cy", (s[1] * moonR).toFixed(1)).attr("r", (s[2] * moonR).toFixed(1));
-    });
+    // Kapanış kirişi: son menzil (mertebeleri tayin eden) ilk menzile (İlk
+    // Akıl) geri bağlanıyor. 2B'de halka zaten kapalı olduğu için gizli.
+    const a = projectT(nodes.length - 1), b = projectT(0);
+    ringLayer.select("path.menziller-close-chord")
+      .attr("d", `M${a.x.toFixed(1)},${a.y.toFixed(1)} L${b.x.toFixed(1)},${b.y.toFixed(1)}`)
+      .style("opacity", tilt * 0.5);
 
     // Merkezdeki nefes işareti yalnız 2B'de anlamlı: 3B'de halka yatınca
     // merkez sarmalın ortasına düşüyor ve düğümlerin arkasında kalıyor.
     centerLayer.attr("transform", `translate(${cx},${cy})`).style("opacity", 1 - tilt);
     centerLayer.select(".menziller-center__label").text(tt(data.center.baslik));
-    centerLayer.select(".menziller-center__sub").text(tt({tr: "28 menzil", en: "28 mansions", pt: "28 mansões"}));
-    // Ay etiketi: 3B'de Ay altında. Denetim G21'de gözlendiği gibi Ay
-    // varsayılan görünümde uzun süre etiketsiz kalıyordu; şimdi 2B/3B
-    // geçişinde etiket sabit kalıyor (aynı ad iki yerde), yalnız yerleşim
-    // değişiyor.
-    moonLayer.select(".menziller-moon__label")
-      .attr("y", (moonR + 24).toFixed(1))
-      .text(tt(data.center.baslik));
-    moonLayer.select(".menziller-moon__sub")
-      .attr("y", (moonR + 42).toFixed(1))
-      .text(tt({tr: "harfler bu nefesten ayrışır", en: "the letters separate from this breath", pt: "as letras separam-se deste sopro"}));
+    centerLayer.select(".menziller-center__sub").text("28");
 
     const gsel = nodeLayer.selectAll("g.menzil-node").data(nodes, (n) => n.sira);
     const enter = gsel.enter().append("g")
       .attr("class", "node menzil-node")
-      .classed("menzil-node--okunmus", (n) => n.okunmus)
-      .classed("menzil-node--perdeli", (n) => !n.okunmus)
       .attr("tabindex", 0).attr("role", "button")
-      .attr("aria-label", menzilAriaLabel)
+      .attr("aria-label", (n) => `${n.sira}. ${n.menzil}`)
       .attr("data-sira", (n) => n.sira)
       .on("click", (e, n) => { e.stopPropagation(); openMenzil(n); })
       .on("keydown", (e, n) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); openMenzil(n); } })
@@ -375,42 +265,25 @@
       const fade = tilt > 0 ? Math.max(0.35, Math.min(1, 0.35 + 0.9 * (dep - 0.55))) : 1;
       g.attr("transform", `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`)
         .style("opacity", (activeId && !isActive ? 0.42 : 1) * fade);
-      // Perdeli (henüz okunmadığımız) düğümlerde çevresel parıltı da bir tık
-      // soluk -- GORSEL_DIL.md: "Matlık (opacity) = Perdelenme". Küre ve
-      // harfteki asıl matlık .menzil-node--perdeli CSS kuralında (opacity
-      // JS'in dokunmadığı öğelerde); burada JS'in her karede yazdığı
-      // opacity'ye aynı çarpanı ekliyoruz ki stil çakışmasın.
       g.select(".menzil-node__glow").attr("r", r * 1.9)
         .style("fill", hueFor(n.sira - 1))
-        .style("opacity", (isActive ? 0.42 : 0.15) * (isHover ? 1.6 : 1) * (n.okunmus ? 1 : 0.7));
+        .style("opacity", (isActive ? 0.42 : 0.15) * (isHover ? 1.6 : 1));
       g.select(".menzil-node__sphere").attr("r", r);
       // Halka döndüğü için harf ve etiketi kendi noktaları etrafında ters
       // çevirip dik tutuyoruz.
       // Etiketler artık grup döndürmesiyle değil, düğümün kendi ekran
       // konumuyla yerleşiyor; hem 2B'de hem 3B'de kendiliğinden dik duruyorlar.
       g.select(".menzil-node__harf").attr("y", 4 * dep)
-        .style("font-size", (1.3 * dep).toFixed(2) + "rem")
+        .style("font-size", (0.72 * dep).toFixed(2) + "rem")
         .text(n.harfArapca);
       g.select(".menzil-node__label").attr("y", r + 14)
         .classed("menzil-node__label--active", isActive)
         .text(n.menzil);
     });
 
-    // Derinlik sıralaması: ring parçaları + düğümler + Ay AYNI katmanın
-    // çocukları, hepsi z'ye göre TEK bir listede sıralanıp DOM'a o sırayla
-    // geri takılıyor (appendChild var olan düğümü TAŞIR, kopyalamaz --
-    // dinleyiciler/durum korunur). Bu, Ay'ın sarmalın önünden/arkasından
-    // GERÇEKTEN geçmesini sağlıyor (GORSEL_DIL.md: "sahte 3B yapma" --
-    // burada üst-üste-bindirme numarası değil, gerçek z karşılaştırması).
-    if (tilt > 0.02 && ts - lastDepthSortTs > 120) {
-      lastDepthSortTs = ts;
-      const items = [];
-      nodeLayer.selectAll("g.menzil-node").each(function (n) { items.push({ el: this, z: n.__z || 0 }); });
-      nodeLayer.selectAll("path.menziller-ring-seg").each(function (d) { items.push({ el: this, z: d.__z || 0 }); });
-      items.push({ el: moonLayer.node(), z: 0 });
-      items.sort((a, b) => a.z - b.z);
-      const parent = nodeLayer.node();
-      items.forEach((it) => parent.appendChild(it.el));
+    // Yakındaki düğümler uzaktakilerin üstünde çizilsin (3B derinlik sırası).
+    if (tilt > 0.05) {
+      nodeLayer.selectAll("g.menzil-node").sort((p, q) => (p.__z || 0) - (q.__z || 0));
     }
   }
 
@@ -454,7 +327,6 @@
     svgNode.addEventListener("pointerdown", (e) => {
       if (tiltTarget < 0.5) return;
       if (e.target.closest(".menzil-node")) return;
-      e.preventDefault();
       dragging = true; lastX = e.clientX; lastY = e.clientY;
       svgNode.setPointerCapture(e.pointerId);
     });
@@ -474,10 +346,14 @@
     svgNode.addEventListener("pointercancel", stop);
   }
 
-  // rAF döngü iskeleti artık GU.createFrameLoop'ta (bkz. graph-utils.js
-  // yorumu -- eskiden burada tam olarak tarif edilen ensureFrame/lastTs
-  // hatasına bir kez düşülmüştü, düzeltme oradan geliyor).
-  const frameLoop = GU.createFrameLoop(wrapEl, function (ts, dt) {
+  // Not: lastTs BURADA sıfırlanmıyor -- ensureFrame her karenin sonunda
+  // çağrıldığı için burada sıfırlamak dt'yi kalıcı 0 yapar ve dönüşü dondurur
+  // (hal.js'te bir kez bu hataya düşmüştük).
+  function ensureFrame() { if (rafId == null) rafId = requestAnimationFrame(frame); }
+  function frame(ts) {
+    rafId = null;
+    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
+    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
     if (tilt !== tiltTarget) {
       if (reduceMotion) tilt = tiltTarget;
       else {
@@ -490,9 +366,8 @@
     // Bir menzil açıkken ve sürüklerken durur: okurken sahne kıpırdamasın.
     if (!reduceMotion && !activeId && !dragging) spin += dt * SPIN_RATE;
     render(ts);
-    return !reduceMotion;
-  });
-  function ensureFrame() { frameLoop.ensureFrame(); }
+    if (!reduceMotion) ensureFrame();
+  }
 
   function visibleWidth() {
     if (!detailPanel || detailPanel.hidden) return width;
@@ -586,9 +461,9 @@
     const katman = katmanAdi(n);
     const zuhur = tt(n.zuhur);
     const txt = I18n.pick3({
-      tr: `Dost'un burada kurduğu şema şu: ayın yirmi sekiz menzilinin her birine bir <em>harf</em> ve bir <em>ilâhî isim</em> düşüyor, ve o menzilden âlemde neyin göründüğü (<em>zuhur</em>) sayılıyor. ${n.sira}. menzil olan <em>${n.menzil}</em>'de harf <em>${n.harf}</em>, isim <em>${n.isim}</em>; halkadaki yeri <em>${katman}</em> katmanı. Zuhur satırında sayılanlar ise şunlar: ${zuhur}. Metin bu karşılıkları çoğu zaman gerekçelendirmeden veriyor.`,
-      en: `The scheme Ibn Arabi sets up here is this: to each of the moon's twenty-eight mansions there falls a <em>letter</em> and a <em>divine name</em>, and what appears in the world from that mansion (<em>zuhur</em>) is enumerated. In mansion ${n.sira}, <em>${n.menzil}</em>, the letter is <em>${n.harf}</em> and the name <em>${n.isim}</em>; its place on the ring is the <em>${katman}</em> tier. What the zuhur line enumerates is: ${zuhur}. The text mostly gives these correspondences without grounding them.`,
-      pt: `O esquema que Ibn Arabi monta aqui é este: a cada uma das vinte e oito mansões da lua cabe uma <em>letra</em> e um <em>nome divino</em>, e enumera-se o que dessa mansão aparece no mundo (<em>zuhur</em>). Na mansão ${n.sira}, <em>${n.menzil}</em>, a letra é <em>${n.harf}</em> e o nome <em>${n.isim}</em>; o seu lugar no anel é o estrato <em>${katman}</em>. O que a linha do zuhur enumera é: ${zuhur}. O texto dá estas correspondências, na maior parte das vezes, sem as fundamentar.`,
+      tr: `Dost'un burada kurduğu şema şu: ayın yirmi sekiz menzilinin her birine bir <em>harf</em> ve bir <em>ilâhî isim</em> düşüyor, ve o menzilden âlemde neyin göründüğü (<em>zuhur</em>) sayılıyor. ${n.sira}. menzil olan <em>${n.menzil}</em>'de harf <em>${n.harf}</em>, isim <em>${n.isim}</em>; halkadaki yeri <em>${katman}</em> katmanı. Zuhur satırında sayılanlar ise şunlar: ${zuhur}. Bu üçünün neden yan yana durduğunu biz de tam çıkarabilmiş değiliz — metin karşılıkları çoğu zaman gerekçelendirmeden veriyor. Olduğu gibi aktarıyoruz, aradaki bağı okuyucunun bizimle birlikte aramasını tercih ederek.`,
+      en: `The scheme Ibn Arabi sets up here is this: to each of the moon's twenty-eight mansions there falls a <em>letter</em> and a <em>divine name</em>, and what appears in the world from that mansion (<em>zuhur</em>) is enumerated. In mansion ${n.sira}, <em>${n.menzil}</em>, the letter is <em>${n.harf}</em> and the name <em>${n.isim}</em>; its place on the ring is the <em>${katman}</em> tier. What the zuhur line enumerates is: ${zuhur}. Why these three stand side by side we have not been able to work out either — the text mostly gives the correspondences without grounding them. We pass them on as they are, preferring that the reader look for the link along with us.`,
+      pt: `O esquema que Ibn Arabi monta aqui é este: a cada uma das vinte e oito mansões da lua cabe uma <em>letra</em> e um <em>nome divino</em>, e enumera-se o que dessa mansão aparece no mundo (<em>zuhur</em>). Na mansão ${n.sira}, <em>${n.menzil}</em>, a letra é <em>${n.harf}</em> e o nome <em>${n.isim}</em>; o seu lugar no anel é o estrato <em>${katman}</em>. O que a linha do zuhur enumera é: ${zuhur}. Porque é que estes três estão lado a lado, também nós não conseguimos apurar — o texto dá as correspondências, na maior parte das vezes, sem as fundamentar. Transmitimo-las tal como estão, preferindo que o leitor procure o elo connosco.`,
     });
     return `<div class="detail-block"><p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Bu satırlar ne diyor?", en: "What do these lines say?", pt: "O que dizem estas linhas?" })}</p><p>${linkify(txt, "menziller", String(n.sira))}</p></div>`;
   }
@@ -629,14 +504,14 @@
       ${okumaNotuHtml(n)}
       ${notu}
       ${okumaBagiHtml(n)}
-      <p class="menzil-kaynak">${L.kaynak}: ${tt(n.kaynak)}</p>`;
+      <p class="menzil-kaynak">${L.kaynak}: ${n.kaynak}</p>`;
     detailContent.querySelector(".menzil-back-link").addEventListener("click", () => { activeId = null; showIntro(); ensureFrame(); });
     detailPanel.hidden = false;
     window.__dostNav && window.__dostNav.setHash("menziller", String(n.sira));
     ensureFrame();
   }
 
-  function showIntro(openPanel) {
+  function showIntro() {
     const notlar = (data.notlar || []).map((x) => `<li>${tt(x)}</li>`).join("");
     const kaynaklar = (data.sources || []).map((s) => `<li>${tt(s)}</li>`).join("");
     detailContent.innerHTML = `
@@ -644,32 +519,17 @@
       <h2 class="detail-title">${tt({ tr: "Yirmi Sekiz Ay Menzili", en: "The Twenty-Eight Mansions of the Moon", pt: "As Vinte e Oito Mansões da Lua" })}</h2>
       <div class="detail-block detail-block--ibnarabi"><p>${tt(data.intro)}</p></div>
       <div class="detail-block detail-block--ibnarabi"><p>${tt(data.center.not)}</p></div>
-      ${tt(data.katmanNotu) ? `<div class="detail-analogy"><p class="detail-analogy__label">${tt({ tr: "Sarmal ne gösteriyor", en: "What the spiral shows", pt: "O que a espiral mostra" })}</p><p>${tt(data.katmanNotu)}</p></div>` : ""}
-      ${notlar ? `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Çekincelerimiz", en: "Our caveats", pt: "As nossas ressalvas" })}</p>
-      <ul class="menzil-notlar">${notlar}</ul>` : ""}
+      <div class="detail-analogy"><p class="detail-analogy__label">${tt({ tr: "Sarmal ne gösteriyor", en: "What the spiral shows", pt: "O que a espiral mostra" })}</p><p>${tt(data.katmanNotu)}</p></div>
+      <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Çekincelerimiz", en: "Our caveats", pt: "As nossas ressalvas" })}</p>
+      <ul class="menzil-notlar">${notlar}</ul>
       <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Kaynak", en: "Sources", pt: "Fontes" })}</p>
       <ul class="menzil-notlar">${kaynaklar}</ul>`;
-    if (openPanel !== false) detailPanel.hidden = false;
+    detailPanel.hidden = false;
     window.__dostNav && window.__dostNav.setHash("menziller");
   }
 
-  // Okunmuş/işlenmiş menzil: "okuma" alanı zaten bu bilgiyi taşıyor (bkz.
-  // menziller.json notlar[4] -- ilk on fasıl Cilt IX'da okundu, kalan on
-  // sekizinde bağ yok çünkü henüz o dikkatle okumadık). Ayrı bir veri alanı
-  // eklemeye gerek yok, var olanı bir bayrağa çeviriyoruz.
-  function markOkunmus(list) {
-    return list.map((m) => Object.assign({}, m, { okunmus: !!m.okuma }));
-  }
-
-  function menzilAriaLabel(n) {
-    const status = n.okunmus
-      ? tt({ tr: "okuduğumuz bir bölüm", en: "a section we have read", pt: "uma secção que já lemos" })
-      : tt({ tr: "henüz okumadığımız bir bölüm", en: "a section we have not read yet", pt: "uma secção que ainda não lemos" });
-    return `${n.sira}. ${n.menzil} — ${status}`;
-  }
-
   function build() {
-    nodes = markOkunmus(data.menziller);
+    nodes = data.menziller.map((m) => Object.assign({}, m));
     layout();
     buildDom();
     wireTiltToggle();
@@ -677,7 +537,7 @@
     render(performance.now());
     fitView(false);
     ensureFrame();
-    window.addEventListener("resize", GU.debounceResize(onResize));
+    window.addEventListener("resize", onResize);
   }
 
   function onResize() {
@@ -688,51 +548,18 @@
     fitView(false);
   }
 
-  // Bir adım geri: açık bir menzil varsa girişe dön.
-  GU.registerStepBack("menziller-wrap", () => {
-    if (!activeId) return false;
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || wrapEl.hidden || !activeId) return;
     activeId = null; showIntro(); ensureFrame();
-    return true;
   });
 
   GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });
-
-  // Mobil sıralı-liste yedeği (P1-4, ürün denetimi 2026-09-02): diğer
-  // sarmal/grafik görünümleriyle aynı desen (bkz. hal.js). Gruplama YOK --
-  // 28 durağın sırası sarmalın kendisi, listeyi kesitlere bölmek o sırayı
-  // ikinci plana atardı. menziller.json'ın alan adları (sira/menzil/zuhur)
-  // createMobileListFallback'in beklediği {id,name,short} şeklinde değil,
-  // extractNodes burada dönüştürüyor; menzil adları (Şeretân, Butayn...)
-  // özel isim, üç dilde de aynı yazıldığı için tek düz string üç dile
-  // kopyalanıyor.
-  const menzillerMobilListe = GU.createMobileListFallback({
-    wrapEl: document.getElementById("menziller-wrap"),
-    listEl: document.getElementById("menziller-mobil-liste"),
-    fetchUrl: "data/ibn-arabi/menziller.json",
-    extractNodes: (d) => (d.menziller || []).map((m) => ({
-      id: m.sira,
-      name: { tr: m.menzil, en: m.menzil, pt: m.menzil },
-      short: m.zuhur,
-    })),
-    title: { tr: "Menziller", en: "The Waystations", pt: "As Estações" },
-    note: {
-      tr: "Sarmalı okumak için ekran dar geldi — yirmi sekiz menzil burada seyir sırasıyla listede. Bir menzile dokun, paneli oku.",
-      en: "The spiral does not fit this narrow screen — the twenty-eight waystations are here as a list, in the order of the journey. Tap a waystation to read its panel.",
-      pt: "A espiral não cabe neste ecrã estreito — as vinte e oito estações estão aqui como lista, na ordem do percurso. Toque numa estação para ler o painel.",
-    },
-    graphButtonLabel: {
-      tr: "Haritayı aç (sarmalı göster)",
-      en: "Open the map (show the spiral)",
-      pt: "Abrir o mapa (mostrar a espiral)",
-    },
-    goTo: (id) => window.__menzillerApp.goToNode(id),
-  });
 
   window.__menzillerApp = {
     activate() {
       fetchData().then((d) => {
         if (!d) return;
-        if (!nodes.length) { build(); showIntro(false); fitView(false); openIn3D(); }
+        if (!nodes.length) { build(); showIntro(); fitView(false); openIn3D(); }
         else ensureFrame();
       });
     },
@@ -745,9 +572,7 @@
       });
     },
     onLangChange() {
-      if (menzillerMobilListe) menzillerMobilListe.onLangChange();
       if (!nodes.length) return;
-      nodeLayer.selectAll("g.menzil-node").attr("aria-label", menzilAriaLabel);
       render(performance.now());
       const n = activeId ? nodes.find((x) => x.sira === activeId) : null;
       if (n) openMenzil(n);

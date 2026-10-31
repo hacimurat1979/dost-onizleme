@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Meditasyon — Dost Arabi</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060810;--surface:#0E101A;--border:#1E2236;--text:#E4E0D4;
+  --muted:#5A5878;--gold:#E8C060;--accent:#8868A0;
+}
+@media(prefers-color-scheme:light){:root{
+  --bg:#F0F2F8;--surface:#E6E8F0;--border:#C4C8DC;--text:#181820;
+  --muted:#5A6080;--gold:#8C6800;--accent:#5840A0;
+}}
+:root[data-theme=dark]{--bg:#060810;--surface:#0E101A;--border:#1E2236;--text:#E4E0D4;--muted:#5A5878;--gold:#E8C060;--accent:#8868A0}
+:root[data-theme=light]{--bg:#F0F2F8;--surface:#E6E8F0;--border:#C4C8DC;--text:#181820;--muted:#5A6080;--gold:#8C6800;--accent:#5840A0}
+
+html,body{height:100%;width:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:Georgia,'Times New Roman',serif;
+  display:flex;flex-direction:column;overflow:hidden;height:100vh;
+}
+
+/* ── Header strip ─────────────────────────────── */
+.hdr{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.55rem 1.1rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+  flex-shrink:0;
+}
+.hdr-back{
+  background:none;border:1px solid var(--border);color:var(--muted);
+  font:inherit;font-size:.78rem;padding:.25rem .7rem;border-radius:2rem;
+  cursor:pointer;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;
+}
+.hdr-back:hover{border-color:var(--accent);color:var(--text)}
+.hdr-tabs{display:flex;gap:.5rem;flex:1;justify-content:center}
+.tab{
+  background:none;border:1px solid transparent;color:var(--muted);
+  font:inherit;font-size:.82rem;letter-spacing:.04em;
+  padding:.28rem 1.1rem;border-radius:2rem;cursor:pointer;transition:.2s;
+}
+.tab:hover{color:var(--text);border-color:var(--border)}
+.tab.on{
+  background:var(--surface);border-color:var(--accent);
+  color:var(--text);
+}
+.hdr-lang{display:flex;gap:.3rem}
+.lbtn{
+  background:none;border:1px solid var(--border);color:var(--muted);
+  font:inherit;font-size:.76rem;padding:.22rem .55rem;border-radius:2rem;cursor:pointer;transition:.2s;
+}
+.lbtn.on,.lbtn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* ── iframe panels ───────────────────────────── */
+.panels{flex:1;position:relative;overflow:hidden}
+.panel{
+  position:absolute;inset:0;border:none;width:100%;height:100%;
+  display:none;
+}
+.panel.on{display:block}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <a href="/" class="hdr-back" id="back-lnk">← Haritaya</a>
+  <div class="hdr-tabs">
+    <button class="tab on" id="tab-perde" onclick="showTab('perde')">
+      <span id="t-perde">Perde Zinciri</span>
+    </button>
+    <button class="tab" id="tab-ayna" onclick="showTab('ayna')">
+      <span id="t-ayna">Ayna Metaforu</span>
+    </button>
+  </div>
+  <div class="hdr-lang">
+    <button class="lbtn on" id="ltr" onclick="setLang('tr')">TR</button>
+    <button class="lbtn" id="len" onclick="setLang('en')">EN</button>
+    <button class="lbtn" id="lpt" onclick="setLang('pt')">PT</button>
+  </div>
+</div>
+
+<div class="panels">
+  <iframe id="if-perde" class="panel on" src="perde-zinciri.html" title="Perde Zinciri" allow="same-origin"></iframe>
+  <iframe id="if-ayna"  class="panel"    src="ayna-metaforu.html"  title="Ayna Metaforu"  allow="same-origin"></iframe>
+</div>
+
+<script>
+const TABS = {
+  tr:{perde:'Perde Zinciri', ayna:'Ayna Metaforu', back:'← Haritaya'},
+  en:{perde:'Chain of Veiling', ayna:'Mirror Metaphor', back:'← Map'},
+  pt:{perde:'Cadeia do Véu', ayna:'Metáfora do Espelho', back:'← Mapa'},
+};
+
+let curLang='tr', curTab='perde';
+// Track which lang each iframe has received
+const ifLang={perde:null, ayna:null};
+
+function setLang(l){
+  curLang=l;
+  ['ltr','len','lpt'].forEach(id=>document.getElementById(id).classList.remove('on'));
+  document.getElementById('l'+l).classList.add('on');
+  const t=TABS[l];
+  document.getElementById('t-perde').textContent=t.perde;
+  document.getElementById('t-ayna').textContent=t.ayna;
+  document.getElementById('back-lnk').textContent=t.back;
+  // Push lang to both iframes (they listen for postMessage)
+  ['perde','ayna'].forEach(id=>{
+    const fr=document.getElementById('if-'+id);
+    if(fr && fr.contentWindow){
+      fr.contentWindow.postMessage({type:'setLang',lang:l},'*');
+    }
+  });
+}
+
+function showTab(tab){
+  curTab=tab;
+  ['perde','ayna'].forEach(id=>{
+    document.getElementById('tab-'+id).classList.toggle('on',id===tab);
+    document.getElementById('if-'+id).classList.toggle('on',id===tab);
+  });
+}
+
+// Forward lang once each iframe finishes loading
+['perde','ayna'].forEach(id=>{
+  const fr=document.getElementById('if-'+id);
+  fr.addEventListener('load',function(){
+    if(curLang!=='tr'){
+      try{ fr.contentWindow.postMessage({type:'setLang',lang:curLang},'*'); }
+      catch(e){}
+    }
+  });
+});
+</script>
+</body>
+</html>

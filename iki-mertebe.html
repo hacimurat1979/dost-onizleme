@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<!-- Aynı Âyet, İki Mertebe — Dost Arabi görselleştirme -->
+<title>Aynı Âyet, İki Mertebe — Dost Arabi</title>
+<style>
+:root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E}
+@media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}}
+:root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040}
+:root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+header{text-align:center;margin-bottom:1rem;max-width:640px}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
+
+.picker{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.1rem}
+.pick-btn{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2rem;padding:.4rem 1rem;font:inherit;font-size:.82rem;cursor:pointer;transition:.2s}
+.pick-btn:hover,.pick-btn.on{border-color:var(--liminal);color:var(--text)}
+
+.verse-box{width:min(640px,96vw);background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:.3rem;text-align:center}
+.verse-ar{font-size:1.15rem;line-height:2.1;direction:rtl;color:var(--gold);margin-bottom:.55rem}
+.verse-meal{font-size:.92rem;line-height:1.7;font-style:italic}
+.verse-src{font-size:.74rem;color:var(--muted);margin-top:.5rem}
+.verse-fixed-note{font-size:.72rem;color:var(--muted);text-align:center;margin:.4rem 0 1.3rem;font-style:italic}
+
+.track-wrap{width:min(420px,90vw);margin:0 auto 1.5rem;text-align:center}
+.track{position:relative;height:34px;margin:0 auto}
+.track-line{position:absolute;left:0;right:0;top:50%;height:2px;background:var(--border);transform:translateY(-50%)}
+.track-end{position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:var(--border);transform:translate(-50%,-50%)}
+.track-end.left{left:0}
+.track-end.right{left:100%}
+.track-handle{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--panel);box-shadow:0 0 0 1px var(--liminal);transform:translate(-50%,-50%);cursor:grab;touch-action:none}
+.track-handle:active{cursor:grabbing}
+.track-handle:focus-visible{outline:2px solid var(--liminal);outline-offset:3px}
+.track-labels{display:flex;justify-content:space-between;margin-top:.55rem;font-size:.76rem;color:var(--muted);gap:1rem}
+.track-labels span{max-width:150px;line-height:1.4}
+.grab-hint{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:.5rem;transition:opacity .5s}
+.grab-hint.gone{opacity:.28}
+
+.readings{display:flex;gap:1rem;width:min(760px,96vw);flex-wrap:wrap;justify-content:center;margin-bottom:1rem}
+.reading{flex:1;min-width:260px;max-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;transition:opacity .25s ease,filter .25s ease,transform .25s ease;transform-origin:center top}
+.reading-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.11em;color:var(--liminal);margin-bottom:.5rem}
+.reading-text{font-size:.87rem;line-height:1.7}
+.reading-src{font-size:.72rem;color:var(--muted);margin-top:.55rem;font-style:italic}
+
+.aha{width:min(640px,96vw);text-align:center;font-size:.86rem;font-style:italic;line-height:1.75;color:var(--liminal);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease;white-space:pre-line}
+.aha.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="hTitle">Aynı Âyet, İki Mertebe</h1>
+  <p class="sub" id="hSub">Bir âyet, okuduğumuz bölümlerin birden fazlasında geçiyor — ve her defasında farklı bir mertebeden okunuyor. Âyet hiç değişmiyor; değişen, ona nereden baktığımız.</p>
+</header>
+
+<div class="picker" id="picker"></div>
+
+<div class="verse-box">
+  <p class="verse-ar" id="verseAr"></p>
+  <p class="verse-meal" id="verseMeal"></p>
+  <p class="verse-src" id="verseSrc"></p>
+</div>
+<p class="verse-fixed-note" id="fixedNote">Bu kutu hareket etmiyor — sürüklediğinde değişen yalnız aşağıdaki iki okumadan hangisinin netleştiği.</p>
+
+<div class="track-wrap">
+  <div class="track" id="track" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Bakış noktanı sürükle">
+    <div class="track-line"></div>
+    <div class="track-end left"></div>
+    <div class="track-end right"></div>
+    <div class="track-handle" id="handle"></div>
+  </div>
+  <div class="track-labels">
+    <span id="labelLeft"></span>
+    <span id="labelRight"></span>
+  </div>
+  <p class="grab-hint" id="grabHint">Sürükle (ok tuşları da çalışır)</p>
+</div>
+
+<div class="readings">
+  <div class="reading" id="readingLeft">
+    <p class="reading-label" id="rlLabel"></p>
+    <p class="reading-text" id="rlText"></p>
+    <p class="reading-src" id="rlSrc"></p>
+  </div>
+  <div class="reading" id="readingRight">
+    <p class="reading-label" id="rrLabel"></p>
+    <p class="reading-text" id="rrText"></p>
+    <p class="reading-src" id="rrSrc"></p>
+  </div>
+</div>
+
+<p class="aha" id="aha"></p>
+
+<script>
+const LA={
+  tr:{
+    title:'Aynı Âyet, İki Mertebe',
+    sub:"Bir âyet, okuduğumuz bölümlerin birden fazlasında geçiyor — ve her defasında farklı bir mertebeden okunuyor. Âyet hiç değişmiyor; değişen, ona nereden baktığımız.",
+    fixedNote:'Bu kutu hareket etmiyor — sürüklediğinde değişen yalnız aşağıdaki iki okumadan hangisinin netleştiği.',
+    grab:'Sürükle (ok tuşları da çalışır)',
+    aha:'Âyetin tek bir kelimesi değişmedi.\nSen yerini değiştirdin.',
+  },
+  en:{
+    title:'The Same Verse, Two Levels',
+    sub:"One verse comes up in more than one of the chapters we've read — and is read from a different level each time. The verse never changes; what changes is where we're looking from.",
+    fixedNote:"This box does not move — dragging only changes which of the two readings below comes into focus.",
+    grab:'Drag (arrow keys work too)',
+    aha:"Not one word of the verse changed.\nYou changed where you stood.",
+  },
+  pt:{
+    title:'O Mesmo Versículo, Dois Graus',
+    sub:'Um versículo aparece em mais de um dos capítulos que lemos — e é lido a partir de um grau diferente cada vez. O versículo nunca muda; o que muda é de onde olhamos para ele.',
+    fixedNote:'Esta caixa não se move — arrastar só muda qual das duas leituras abaixo entra em foco.',
+    grab:'Arraste (as setas também funcionam)',
+    aha:'Nem uma palavra do versículo mudou.\nFoste tu que mudaste de lugar.',
+  }
+};
+
+// Ham veri: data/ibn-arabi/futuhat-atlas.json'daki gerçek alıntılar,
+// olduğu gibi (kısaltılmadan kesilmedi, yalnız buraya kopyalandı).
+// Âyet meali kuran.json'dan; kuran.json'da pt meali yok (kaynağın kendi
+// sınırı), o yüzden pt görünümünde de en meali kullanılıyor.
+const VERSES={
+  '7:143':{
+    ar:'وَلَمَّا جَآءَ مُوسَىٰ لِمِيقَٰتِنَا وَكَلَّمَهُۥ رَبُّهُۥ قَالَ رَبِّ أَرِنِيٓ أَنظُرۡ إِلَيۡكَۚ قَالَ لَن تَرَىٰنِي وَلَٰكِنِ ٱنظُرۡ إِلَى ٱلۡجَبَلِ فَإِنِ ٱسۡتَقَرَّ مَكَانَهُۥ فَسَوۡفَ تَرَىٰنِيۚ فَلَمَّا تَجَلَّىٰ رَبُّهُۥ لِلۡجَبَلِ جَعَلَهُۥ دَكّٗا',
+    label:{tr:"A'râf 7:143",en:'Al-A’raf 7:143',pt:'Al-A’raf 7:143'},
+    meal:{
+      tr:'"Rabbim! Bana Kendini göster, Sana bakayım" dedi. Allah: "Sen Beni göremezsin ama dağa bak, eğer o yerinde kalırsa sen de Beni göreceksin" buyurdu. Rabbi dağa tecelli edince onu yerlebir etti.',
+      en:'"My Lord, show me [Yourself] that I may look at You." [Allah] said, "You will not see Me, but look at the mountain; if it should remain in place, then you will see Me." But when his Lord appeared to the mountain, He rendered it level.',
+    },
+    left:{
+      id:'gramer',
+      label:{tr:'Gramer ve zaman', en:'Grammar and tense', pt:'Gramática e tempo verbal'},
+      src:{tr:'Fütûhât, Kısım XV', en:'Futuhat, Part XV', pt:'Futuhat, Parte XV'},
+      text:{
+        tr:'Bölüm Hz. Musa’nın "Rabbim! Bana kendini göster" talebine verilen "Beni göremeyeceksin" cevabını, gramerden başlayarak okuyor: âyetteki olumsuzluk edatı gelecek fiilleri olumsuzlar. İşârî yorum ise şu: "şimdiki anda bir şeyi bilmeyen kişi gelecekte de onu tanıyamaz." Gelecekte O, senin gelecekteki hâlinin sûretiyle görünecek; şimdi tanımayan o zaman da tanımaz.',
+        en:'The chapter reads the answer given to Moses’ request "My Lord, show me Yourself" — "You shall not see Me" — beginning from grammar: the particle of negation in the verse negates future verbs. The allusive reading: "whoever does not know a thing in the present moment cannot recognise it in the future either." In the future He will appear in the form of your future state; whoever does not recognise Him now will not recognise Him then.',
+        pt:'O capítulo lê a resposta dada ao pedido de Moisés "Meu Senhor, mostra-Te a mim" — "Não Me verás" — começando pela gramática: a partícula de negação no versículo nega verbos futuros. A leitura alusiva: "quem não conhece uma coisa no momento presente também não a poderá reconhecer no futuro." No futuro Ele aparecerá na forma do teu estado futuro; quem não O reconhece agora não O reconhecerá então.',
+      },
+    },
+    right:{
+      id:'istidat',
+      label:{tr:'İstidat ve kapasite', en:'Capacity and preparedness', pt:'Capacidade e preparação'},
+      src:{tr:'Fütûhât, Kısım XVI', en:'Futuhat, Part XVI', pt:'Futuhat, Parte XVI'},
+      text:{
+        tr:'"Rabbi dağa tecelli ettiğinde onu paramparça etti" ayeti, Dost için bir istidat sorusuna dönüşüyor gibi görünüyor bize: Tecellinin gücü sabittir — değişen, tecelligâhın kapasitesidir. Bir varlık tecelliyi almaya istidatlı olsa da beka istidadından yoksunsa, bayılma, fena veya gaybet yaşar. Suri tecellide ise beka, anlama ve konuşma mümkündür.',
+        en:'"When his Lord manifested to the mountain, He shattered it" becomes for the Author a question of capacity: the power of theophany is fixed — what varies is the capacity of its site. A being may be prepared to receive the theophany yet lack beka (capacity for remaining), and will then experience loss of consciousness, annihilation, or absence. In formal theophany, remaining and speech are possible.',
+        pt:'"Quando seu Senhor se manifestou à montanha, Ele a fragmentou" torna-se para o Autor uma questão de capacidade: o poder da teofania é fixo — o que varia é a capacidade de seu lugar. Um ser pode estar preparado para receber a teofania, mas carecer de beka (capacidade de permanecer), e então experimentará perda de consciência, aniquilação ou ausência. Na teofania formal, permanecer e falar são possíveis.',
+      },
+    },
+  },
+  '7:172':{
+    ar:'وَإِذۡ أَخَذَ رَبُّكَ مِنۢ بَنِيٓ ءَادَمَ مِن ظُهُورِهِمۡ ذُرِّيَّتَهُمۡ وَأَشۡهَدَهُمۡ عَلَىٰٓ أَنفُسِهِمۡ أَلَسۡتُ بِرَبِّكُمۡۖ قَالُواْ بَلَىٰ شَهِدۡنَآ',
+    label:{tr:"A'râf 7:172",en:'Al-A’raf 7:172',pt:'Al-A’raf 7:172'},
+    meal:{
+      tr:'Rabbin, insanoğlunun sulbünden soyunu alıp devam ettirmiş, onlara: "Ben sizin Rabbiniz değil miyim" demiş ve buna kendilerini şahit tutmuştu. Onlar da: "Evet şahidiz" demişlerdi.',
+      en:'And when your Lord took from the children of Adam — from their loins — their descendants and made them testify of themselves, [saying to them], "Am I not your Lord?" They said, "Yes, we have testified."',
+    },
+    left:{
+      id:'fitri-temizlik',
+      label:{tr:'Fıtrî temizlik', en:'Innate purity', pt:'Pureza inata'},
+      src:{tr:'Fütûhât, Kısım III', en:'Futuhat, Part III', pt:'Futuhat, Parte III'},
+      text:{
+        tr:'Bir ilkenin dayanağı, kulun fıtrî temizliğidir: "Rabbin Ademoğullarının bellerinden zürriyetlerini alıp… Ben sizin Rabbiniz değil miyim? demişti, onlar da evet diye cevap vermişti" âyeti (Elest bezmi) anılıyor — kul, bu ikrar yüzünden aslında temizdir. Hayat da özü gereği temiz ve temizleyicidir, çünkü "Allah’ın dışındaki her şey canlıdır".',
+        en:'The ground for this principle is the servant’s innate purity: the verse on the Covenant of Alast is invoked — "Your Lord took out the offspring from the loins of the Children of Adam… Am I not your Lord? and they answered, Yes" — the servant, because of this avowal, is in fact pure. Life too is pure and purifying by its very essence, because "everything besides God is alive".',
+        pt:'O fundamento desse princípio é a pureza inata do servo: invoca-se o versículo do Pacto de Alast — "Teu Senhor tirou a descendência dos lombos dos filhos de Adão… Não sou Eu vosso Senhor? E eles responderam: Sim" — o servo, por causa dessa declaração, é de fato puro. A vida também é pura e purificadora por sua própria essência, porque "tudo além de Deus está vivo".',
+      },
+    },
+    right:{
+      id:'icabet',
+      label:{tr:'İbadetin karşılığı', en:'The response in ritual', pt:'A resposta no ritual'},
+      src:{tr:'Fütûhât, Kısım VI', en:'Futuhat, Part VI', pt:'Futuhat, Parte VI'},
+      text:{
+        tr:'Kısmın son hadisi telbiyede sesi yükseltmeyi ele alıyor; bu icabeti, elest bezmindeki cevaba benzetiyor: "İnsanların bu çağrıya icabet etmeleri, kendilerine yöneltilen ‘ben sizin rabbiniz değil miyim?’ nidasına karşı ‘belâ (Evet Rabbimizsin)’ sözüne benzer." Kapanışta el-Bâid (uzak) ismi zikrediliyor — "uzaktaki nida edebilir… ilahi isimler arasında karşılıklı bir üstünlük yoktur!"',
+        en:'The part’s final hadith takes up raising the voice in the talbiya; it likens this response to the answer given at the primordial Covenant: "people’s responding to this call resembles the word ‘balā (yes, indeed You are our Lord!)’ answering the call ‘Am I not your Lord?’" In closing, the name al-Baʿid (the Far) is invoked — "the far one can call out… among the divine names there is no mutual superiority!"',
+        pt:'O hadith final da parte trata de elevar a voz na talbiya; compara essa resposta ao "sim" dado na Aliança primordial: "a resposta das pessoas a esse chamado se assemelha à palavra ‘balā (sim, de fato Tu és nosso Senhor!)’ respondendo ao chamado ‘Não sou Eu vosso Senhor?’" Ao encerrar, o nome al-Baʿid (o Distante) é invocado — "o distante pode chamar… entre os nomes divinos não há superioridade mútua!"',
+      },
+    },
+  },
+  '24:35':{
+    ar:'ٱللَّهُ نُورُ ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضِۚ مَثَلُ نُورِهِۦ كَمِشۡكَوٰةٖ فِيهَا مِصۡبَاحٌۖ ٱلۡمِصۡبَاحُ فِي زُجَاجَةٍ',
+    label:{tr:'Nûr 24:35',en:'An-Nur 24:35',pt:'An-Nur 24:35'},
+    meal:{
+      tr:'Allah göklerin ve yerin Nur’udur. O’nun nuru, içinde ışık bulunan bir kandil yuvasına benzer. O ışık bir cam içindedir, cam ise, sanki inci gibi parlayan bir yıldızdır.',
+      en:'Allah is the Light of the heavens and the earth. The example of His light is like a niche within which is a lamp, the lamp is within glass, the glass as if it were a pearly [white] star.',
+    },
+    left:{
+      id:'temsil-siniri',
+      label:{tr:'Temsilin sınırı', en:'The limit of the analogy', pt:'O limite da analogia'},
+      src:{tr:'Fütûhât, Kısım III', en:'Futuhat, Part III', pt:'Futuhat, Parte III'},
+      text:{
+        tr:'Dost bu okumayı en-Nûr ismine ve "Allah, göklerin ve yerin nurudur" ayetine genişletiyor: Allah, "Mutlak Nur" adını değil, "göklerin ve yerin nuru" ifadesini kullanarak nuru sınırlıyor, ardından bir kandile benzetiyor. Ama bir kandilin ışığı ile gökleri aydınlatan ışık bir olabilir mi? Bu, "Allah" ismi için örnek verilemeyeceğini, yalnız tamlama yapılmış özel bir isim için örnek verilebileceğini öğretiyor.',
+        en:'Dost extends this reading to the name an-Nûr and to the verse "God is the Light of the heavens and the earth": God, instead of the name "the Absolute Light," uses "the light of the heavens and the earth," delimiting the light, then likens it to a lamp. But can a lamp’s light be one with the light that illumines the heavens? This teaches that no example can be given for the name "Allah" itself, only for a name placed in a genitive construction.',
+        pt:'Dost estende essa leitura ao nome an-Nûr e ao versículo "Deus é a Luz dos céus e da terra": Deus, em vez de "a Luz Absoluta," usa "a luz dos céus e da terra," delimitando a luz, e a compara a uma lâmpada. Mas pode a luz de uma lâmpada ser uma só com a luz que ilumina os céus? Isso ensina que nenhum exemplo pode ser dado para o nome "Allah", apenas para um nome numa construção genitiva.',
+      },
+    },
+    right:{
+      id:'nur-perde',
+      label:{tr:'Nur, kendi perdesi', en:'Light, its own veil', pt:'A luz, seu próprio véu'},
+      src:{tr:'Fütûhât, Kısım XV', en:'Futuhat, Part XV', pt:'Futuhat, Parte XV'},
+      text:{
+        tr:'"Allah göklerin ve yerin nurudur" âyetinden yola çıkıp nurun tuhaf bir özelliğini kuruyor: nur, görmeyi mümkün kılan şeydir ama kendisi görülemez. "Bu nur, O’ndan sana bir perde olduğu gibi sen de onun üzerinde perdesin… nur kendisiyle perdelenmiştir. Bu nedenle nur, hiçbir zaman görülemez." Örten ile örtülen ayrı iki şey değil — perde, nurun kendisine yaptığı bir şey.',
+        en:'Starting from "God is the light of the heavens and the earth," it establishes a strange property of light: light makes seeing possible, yet itself cannot be seen. "This light is a veil from Him to you, just as you are a veil over it… light is veiled by itself. For this reason light can never be seen." The coverer and the covered are not two things — the veiling is something light does to itself.',
+        pt:'A partir de "Deus é a luz dos céus e da terra," estabelece uma propriedade estranha da luz: a luz torna a visão possível, mas ela própria não pode ser vista. "Esta luz é um véu d’Ele para ti, assim como tu és um véu sobre ela… a luz está velada por si mesma. Por isso a luz nunca pode ser vista." O que cobre e o coberto não são duas coisas — o velar é algo que a luz faz a si própria.',
+      },
+    },
+  },
+};
+const ORDER=['7:143','7:172','24:35'];
+
+let curLang='tr', curVerse='7:143', pos=0.5, touched=false;
+const $=id=>document.getElementById(id);
+
+function renderPicker(){
+  $('picker').innerHTML=ORDER.map(ref=>`
+    <button class="pick-btn${ref===curVerse?' on':''}" data-ref="${ref}" type="button">${VERSES[ref].label[curLang]}</button>
+  `).join('');
+  $('picker').querySelectorAll('.pick-btn').forEach(b=>{
+    b.addEventListener('click',()=>{ curVerse=b.dataset.ref; pos=0.5; touched=false; renderAll(); });
+  });
+}
+
+function renderVerse(){
+  const v=VERSES[curVerse];
+  $('verseAr').textContent=v.ar+' …';
+  $('verseMeal').textContent='“'+(v.meal[curLang]||v.meal.en)+'…”';
+  $('verseSrc').textContent=v.label[curLang]+(curLang==='pt' ? ' · meal: en (kuran.json’da pt yok)' : '');
+}
+
+function applyPosition(){
+  const v=VERSES[curVerse];
+  $('handle').style.left=(pos*100)+'%';
+  $('track').setAttribute('aria-valuenow',Math.round(pos*100));
+
+  // Odaklanma: bulanıklık + opaklık + hafif ölçek, "burada duruyorsun" hissi.
+  const leftFocus=1-pos, rightFocus=pos;
+  const blurL=(1-leftFocus)*5.5, blurR=(1-rightFocus)*5.5;
+  $('readingLeft').style.filter='blur('+blurL.toFixed(2)+'px)';
+  $('readingLeft').style.opacity=(0.35+0.65*leftFocus).toFixed(2);
+  $('readingLeft').style.transform='scale('+(0.97+0.03*leftFocus).toFixed(3)+')';
+  $('readingRight').style.filter='blur('+blurR.toFixed(2)+'px)';
+  $('readingRight').style.opacity=(0.35+0.65*rightFocus).toFixed(2);
+  $('readingRight').style.transform='scale('+(0.97+0.03*rightFocus).toFixed(3)+')';
+
+  if(pos<0.08 || pos>0.92){
+    if(!applyPosition._sawL) applyPosition._sawL = pos<0.08;
+    if(!applyPosition._sawR) applyPosition._sawR = pos>0.92;
+  }
+  if(applyPosition._sawL && applyPosition._sawR) $('aha').classList.add('show');
+}
+applyPosition._sawL=false; applyPosition._sawR=false;
+
+function renderReadings(){
+  const v=VERSES[curVerse];
+  $('rlLabel').textContent=v.left.label[curLang];
+  $('rlText').textContent=v.left.text[curLang];
+  $('rlSrc').textContent=v.left.src[curLang];
+  $('rrLabel').textContent=v.right.label[curLang];
+  $('rrText').textContent=v.right.text[curLang];
+  $('rrSrc').textContent=v.right.src[curLang];
+  $('labelLeft').textContent=v.left.label[curLang];
+  $('labelRight').textContent=v.right.label[curLang];
+}
+
+function renderAll(){
+  const d=LA[curLang];
+  $('hTitle').textContent=d.title;
+  $('hSub').textContent=d.sub;
+  $('fixedNote').textContent=d.fixedNote;
+  $('grabHint').textContent=d.grab;
+  $('aha').textContent=d.aha;
+  renderPicker();
+  renderVerse();
+  renderReadings();
+  applyPosition._sawL=false; applyPosition._sawR=false;
+  $('aha').classList.remove('show');
+  applyPosition();
+}
+
+function setLang(l){ curLang=l; renderAll(); }
+
+// ── Sürükleme ──────────────────────────────────────────────────────────────
+const track=$('track');
+function markTouched(){ if(!touched){ touched=true; $('grabHint').classList.add('gone'); } }
+function setPosFromClientX(clientX){
+  const r=track.getBoundingClientRect();
+  pos=Math.max(0,Math.min(1,(clientX-r.left)/r.width));
+  applyPosition();
+}
+let dragging=false;
+track.addEventListener('pointerdown',e=>{ dragging=true; markTouched(); try{track.setPointerCapture(e.pointerId);}catch(_){} setPosFromClientX(e.clientX); e.preventDefault(); });
+track.addEventListener('pointermove',e=>{ if(dragging) setPosFromClientX(e.clientX); });
+['pointerup','pointercancel','pointerleave'].forEach(t=>track.addEventListener(t,()=>{dragging=false;}));
+track.addEventListener('keydown',e=>{
+  const k={ArrowLeft:-0.05,ArrowRight:0.05,ArrowDown:-0.05,ArrowUp:0.05}[e.key];
+  if(k===undefined) return;
+  markTouched(); pos=Math.max(0,Math.min(1,pos+k)); applyPosition(); e.preventDefault();
+});
+
+renderAll();
+
+window.addEventListener('message',function(e){
+  if(e.data && e.data.type==='setLang') setLang(e.data.lang);
+});
+</script>
+</body>
+</html>

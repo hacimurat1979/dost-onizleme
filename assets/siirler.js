@@ -16,15 +16,9 @@
     "evrad": "☽",
   };
 
-  // Ayrı sahnesi olan şiirler (bkz. terimler.js TERIM_SAHNELERI,
-  // sorular.js SORU_SAHNELERI -- aynı sözleşmenin üçüncü yeri).
-  // 2026-08-15 @revise: "Kendi Şiirini Savunmak" (tercuman-esvak.html) ve
-  // "Tavafta Bir Karşılaşma" (futuhat-dogusu.html) sahneleri kullanıcı
-  // isteğiyle kaldırıldı; bu iki şiirin kendi metni sayfada kalıyor,
-  // yalnız "Sahneyi aç" düğmeleri gitti.
-  const SIIR_SAHNELERI = {};
-
-  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
+  function tt(dict) {
+    return I18n.pick3(dict);
+  }
 
   function escHtml(s) {
     return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -40,28 +34,18 @@
   function fetchData() {
     if (data) return Promise.resolve(data);
     if (fetchPromise) return fetchPromise;
-    if (window.DostViewStatus) window.DostViewStatus.showLoading("siirler-panel");
     fetchPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/siirler.json")
-      .then((d) => {
-        data = d;
-        if (window.DostViewStatus) window.DostViewStatus.hide("siirler-panel");
-        return d;
-      })
+      .then((d) => { data = d; return d; })
       .catch((err) => {
         console.error("siirler.json yüklenemedi / Failed to load", err);
         fetchPromise = null;
-        // 2026-08-15: eskiden bu hata tamamen sessizdi -- console.error
-        // dışında hiçbir görsel iz düşmüyordu (kardeşi vahdet.js gibi bir
-        // .view-status elemanı da yoktu). Artık diğer 8 görünümün izlediği
-        // DostViewStatus kalıbı burada da uygulanıyor.
-        if (window.DostViewStatus) window.DostViewStatus.showError("siirler-panel", () => window.__siirlerApp.activate());
         return null;
       });
     return fetchPromise;
   }
 
   function render(d) {
-    const panel = document.getElementById("siirler-content");
+    const panel = document.getElementById("siirler-panel");
     if (!panel) return;
 
     const lang = I18n.getLang();
@@ -171,16 +155,6 @@
           html += `<a class="siir-card__kisim-link" href="${escHtml(window.__dostNav.href("futuhat", p.futuhat_kisim_id))}" data-kisim-id="${escHtml(p.futuhat_kisim_id)}">${escHtml(L("kisma_git"))}</a>`;
         }
 
-        // Bazı şiirlerin ayrı, oynanabilir bir sahnesi var (terimler.js
-        // TERIM_SAHNELERI / sorular.js SORU_SAHNELERI ile aynı sözleşme).
-        // İlk örnek te-kalp: Tercümânü'l-Eşvâk'ın eleştirilmesi ve Dost'un
-        // kendi şerhini yazması -- docs/icerik-yol-haritasi.md D15.
-        const sahne = SIIR_SAHNELERI[p.id];
-        if (sahne) {
-          const base = window.__dostRouteBase || "";
-          html += `<a class="siir-card__sahne-link" href="${escHtml(base + "/" + sahne.dosya)}">${escHtml(tt(sahne.dugme))} →</a>`;
-        }
-
         html += `</article>`;
       });
     }
@@ -232,19 +206,11 @@
   // is added only once via a guard flag on the element). Kept here (rather
   // than split per-tab) because it already owned the DOM wiring before the
   // third tab existed -- three tabs still doesn't justify a dedicated module.
-  // switchTo, wireTabs()'in yerel bir kapanışı -- her "hakkında" aktivasyonunda
-  // yeniden atanır. Modül dışından (elestiri-arkeolojisi.js'in vahdet köprüsü
-  // gibi) çağrılabilmesi için son atanan sürüm burada tutulur (bkz. altta
-  // window.__siirlerApp.switchTo).
-  let switchToTab = null;
-
   function wireTabs() {
     const tabs = {
       hakkinda: { btn: document.getElementById("hakkinda-subtab-hakkinda"), panel: document.getElementById("hakkinda-content-panel") },
       siirler: { btn: document.getElementById("hakkinda-subtab-siirler"), panel: document.getElementById("siirler-panel") },
       vahdet: { btn: document.getElementById("hakkinda-subtab-vahdet"), panel: document.getElementById("vahdet-panel") },
-      "okuma-yollari": { btn: document.getElementById("hakkinda-subtab-okuma-yollari"), panel: document.getElementById("okuma-yollari-panel") },
-      "nereden-baslamali": { btn: document.getElementById("hakkinda-subtab-nereden-baslamali"), panel: document.getElementById("nereden-baslamali-panel") },
     };
     const keys = Object.keys(tabs);
     if (keys.some((k) => !tabs[k].btn || !tabs[k].panel)) return;
@@ -258,10 +224,7 @@
       });
       if (which === "siirler" && !initialized) activate();
       if (which === "vahdet") window.__vahdetApp && window.__vahdetApp.activate();
-      if (which === "okuma-yollari") window.__okumaYollariApp && window.__okumaYollariApp.activate();
-      if (which === "nereden-baslamali") window.__neredenBaslamaliApp && window.__neredenBaslamaliApp.activate();
     }
-    switchToTab = switchTo;
 
     if (!tabs.hakkinda.btn.dataset.wired) {
       keys.forEach((k) => tabs[k].btn.addEventListener("click", () => switchTo(k)));
@@ -269,8 +232,5 @@
     }
   }
 
-  window.__siirlerApp = {
-    activate, onLangChange, wireTabs,
-    switchTo(which) { switchToTab && switchToTab(which); },
-  };
+  window.__siirlerApp = { activate, onLangChange, wireTabs };
 })();

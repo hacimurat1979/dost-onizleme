@@ -39,7 +39,7 @@
   const tooltip = document.getElementById("hal-tooltip");
   const wrapEl = document.getElementById("hal-wrap");
 
-  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
+  function tt(dict) { return I18n.pick3(dict || {}); }
   function getVar(n) { return GU.getVar(n); }
   function linkify(text, view, id) {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, view, id) : text;
@@ -89,43 +89,6 @@
     dogurur: { tr: "Biri ötekini doğuruyor", en: "One gives rise to the other", pt: "Um dá origem ao outro" },
     yanki: { tr: "Aynı hamlenin yankısı", en: "Echo of the same move", pt: "Eco do mesmo gesto" },
   };
-
-  // "Ne kadar eminiz" katmanı — ontology.js'teki desenin (CONFIDENCE_LABEL/
-  // confSlug/confidenceNoteHtml) aynısı, kirişler (sıradan taşan bağlar)
-  // için. hal.json'daki her kirişin kendi `confidence` alanı, o kirişin
-  // NOT'unda zaten yazılı olan kanıt gücüne (doğrudan alıntı mı, bizim
-  // kurduğumuz bir bağ mı, tartışmalı bir kaynağa mı dayanıyor) bakılarak
-  // elle atandı; ölçüt ve gerekçe research/anlayis-evrimi/CONFIDENCE_MAP.md.
-  const CONFIDENCE_LABEL = {
-    "Yüksek": { tr: "Yüksek", en: "High", pt: "Alta" },
-    "Orta": { tr: "Orta", en: "Medium", pt: "Média" },
-    "Düşük": { tr: "Düşük", en: "Low", pt: "Baixa" },
-    "Hipotez": { tr: "Hipotez", en: "Hypothesis", pt: "Hipótese" },
-    "Bilinmiyor": { tr: "Bilinmiyor", en: "Unknown", pt: "Desconhecida" },
-    "Gelecekte-doğrulanmalı": { tr: "Gelecekte doğrulanmalı", en: "To be confirmed later", pt: "A confirmar mais tarde" },
-  };
-  function confSlug(c) {
-    return c === "Orta" ? "orta"
-      : c === "Düşük" ? "dusuk"
-      : c === "Hipotez" ? "hipotez"
-      : c === "Bilinmiyor" ? "bilinmiyor"
-      : c === "Gelecekte-doğrulanmalı" ? "gelecek"
-      : "yuksek";
-  }
-  function edgeConfidenceText(c) {
-    if (!c || c === "Yüksek") return "";
-    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
-    return tt({ tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " }) + tt(label);
-  }
-  function confidenceNoteHtml(c) {
-    if (!c || c === "Yüksek") return "";
-    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
-    return `<p class="detail-confidence detail-confidence--${confSlug(c)}">${tt({
-      tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " })}<strong>${tt(label)}</strong> — ${tt({
-      tr: "kirişin kendi metni bu okumayı henüz kesinleşmiş saymıyor.",
-      en: "the chord's own text does not yet treat this reading as settled.",
-      pt: "o próprio texto da corda ainda não trata esta leitura como definitiva." })}</p>`;
-  }
   const TERK_NOTE = {
     tr: "Bu makamın Fütûhât'ta ayrıca bir \"terki\" bölümü var — kazanılıp sonra bırakılan bir basamak.",
     en: "In the Futuhat this station also has a chapter on its \"abandonment\" — a step attained and then let go.",
@@ -136,12 +99,10 @@
   let halData = null, halDataPromise = null, built = false;
   let orderedNodes = [], nodeById = new Map();
   let relations = [];
-  let zoomLayer, bgLayer, ghostLayer, linkLayer, chordLayer, glowLayer, nodeLayer, walkLayer, clusterLayer, defs;
+  let zoomLayer, bgLayer, ghostLayer, linkLayer, chordLayer, glowLayer, nodeLayer, walkLayer, defs;
   let zoomBehavior = null;
   let currentDetailNode = null, currentRelation = null, hoveredId = null, hoveredRel = null;
-  // Küme odağı (FCA) -- esma.js'teki clusterFocus'un aynısı: { id, members:Set<hal id>, nitelikler }
-  let clusterFocus = null;
-  let startTs = 0, reveal = 1;
+  let rafId = null, startTs = 0, lastTs = 0, reveal = 1;
   let shimmer = [];
   let cx = 0, cy = 0, baseR = 200, riseH = 240;
 
@@ -226,27 +187,6 @@
 
   function projectT(t) { return project(helixPoint(t)); }
 
-  // ---- Ortak oryantasyon-halkası pilotu (VISUALIZATION_IDEAS.md) ----
-  // Düğme değil, yalnız bir gösterge: işaretin AÇISI yaw'ı (hangi yöne
-  // dönmüşüz), merkeze UZAKLIĞI pitch'i (ne kadar yukarıdan/yandan
-  // bakıyoruz) taşıyor. tilt=0'da (düz halka) yaw/pitch'in görsel bir
-  // karşılığı yok, o yüzden halka tamamen soluk; sarmala eğilince belirir.
-  let orientRingEl = null, orientMarkerEl = null;
-  function updateOrientRing() {
-    if (orientRingEl === null) {
-      orientRingEl = document.getElementById("hal-orient-ring");
-      orientMarkerEl = orientRingEl ? orientRingEl.querySelector(".graph-orient-ring__marker") : null;
-    }
-    if (!orientRingEl || !orientMarkerEl) return;
-    orientRingEl.style.opacity = String(0.85 * tilt);
-    const a = yaw % (Math.PI * 2);
-    const pClamped = Math.max(-1.3, Math.min(1.3, pitch));
-    const radiusFrac = Math.max(0.18, Math.cos(pClamped));
-    const R = 7.5;
-    orientMarkerEl.setAttribute("cx", String(Math.sin(a) * R * radiusFrac));
-    orientMarkerEl.setAttribute("cy", String(-Math.cos(a) * R * radiusFrac));
-  }
-
   function layout() {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 640;
     cx = w / 2; cy = h / 2;
@@ -293,23 +233,10 @@
     svg.attr("viewBox", `0 0 ${w} ${h}`).attr("preserveAspectRatio", "xMidYMid meet");
 
     defs = svg.append("defs");
-    // GORSEL-01 (uzman paneli denetimi 2026-08-17): dönüş yayının ucundaki
-    // üçgen ok (marker-end) görsel gramerin "soyut ok kullanma" yasağını
-    // çiğniyordu. Yerine ışık-yolu gradyanı: yay Hayret'te parlak başlar,
-    // bir üst tura tırmandıkça sönerek kaybolur ("iade, kaynağına dönerken
-    // sönen bir ışıktır"). Uçlar her karede draw() içinde projeksiyondan
-    // tazelenir (sahne 3B döndüğü için sabit koordinat olmaz). stop-color
-    // style= içinde: yalnız öyle yazılınca CSS değişkeni çözülüyor (bkz.
-    // terimler.js isikCizgisi'ndeki aynı not).
-    const donusRenk = getVar("--series-hal-hayret") || "#e0b545";
-    const donusGrad = defs.append("linearGradient")
-      .attr("id", "hal-return-grad").attr("gradientUnits", "userSpaceOnUse");
-    donusGrad.append("stop").attr("offset", "0%")
-      .attr("style", `stop-color:${donusRenk};stop-opacity:0.95`);
-    donusGrad.append("stop").attr("offset", "78%")
-      .attr("style", `stop-color:${donusRenk};stop-opacity:0.30`);
-    donusGrad.append("stop").attr("offset", "100%")
-      .attr("style", `stop-color:${donusRenk};stop-opacity:0.04`);
+    defs.append("marker").attr("id", "hal-arrow-return").attr("viewBox", "0 -5 10 10")
+      .attr("refX", 8).attr("refY", 0).attr("markerWidth", 6.5).attr("markerHeight", 6.5)
+      .attr("orient", "auto").append("path").attr("d", "M0,-5L10,0L0,5")
+      .attr("fill", getVar("--series-hal-hayret"));
     const glow = defs.append("filter").attr("id", "hal-glow").attr("x", "-80%").attr("y", "-80%").attr("width", "260%").attr("height", "260%");
     glow.append("feGaussianBlur").attr("stdDeviation", "3.4");
 
@@ -319,7 +246,6 @@
     chordLayer = zoomLayer.append("g").attr("class", "hal-chords");
     linkLayer = zoomLayer.append("g").attr("class", "hal-links");
     glowLayer = zoomLayer.append("g").attr("class", "hal-glows");
-    clusterLayer = zoomLayer.append("g").attr("class", "hal-cluster-focus");
     nodeLayer = zoomLayer.append("g").attr("class", "hal-nodes");
     walkLayer = zoomLayer.append("g").attr("class", "hal-walk-layer");
 
@@ -337,33 +263,16 @@
     wireRotateDrag();
     wireTiltToggle();
     wireWalkButton();
-    wireFcaButton();
 
-    // Odak burada kamerayı taşıyor (fitView bir odağa göre çerçeveliyor), o
-    // yüzden geri çekilirken odak da bırakılıyor -- bkz. ETKILESIM_DILI.md:
-    // "kaydıysa geri alınır, seçtiysen korunur".
-    GU.wireRecenter("hal-recenter", () => {
-      clearFocus();
-      // ETKILESIM_DILI.md'nin kendi tanımı: Recenter "serbest döndürme"yi
-      // de sıfırlamalı. yaw/pitch'e hiç dokunulmuyordu -- sürükleyerek
-      // döndürülmüş bir sahnede Recenter yalnız kadrajı düzeltiyor, açı
-      // aynı kalıyordu (UI denetimi bulgusu; menziller.js'te aynı eksiklik).
-      yaw = 0; pitch = 0.62;
-      if (clusterFocus) exitClusterFocus();
-      fitView(true);
-    });
-    svg.on("click", () => {
-      if (currentDetailNode || currentRelation) clearFocus();
-      if (clusterFocus) exitClusterFocus();
-    });
-    // Hâller'de odak ile açık panel TEK durumdur (clearFocus ikisini birden
-    // bırakıyor), o yüzden bir adım geri = odağı bırak.
+    const rc = document.getElementById("hal-recenter");
+    if (rc && !rc.dataset.wiredHal) { rc.dataset.wiredHal = "1"; rc.addEventListener("click", () => { clearFocus(); fitView(true); }); }
+    svg.on("click", () => { if (currentDetailNode || currentRelation) clearFocus(); });
     if (!document.body.dataset.wiredHalEsc) {
       document.body.dataset.wiredHalEsc = "1";
-      GU.registerStepBack("hal-wrap", () => {
-        if (currentDetailNode || currentRelation) { clearFocus(); return true; }
-        if (clusterFocus) { exitClusterFocus(); return true; }
-        return false;
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (wrapEl.hidden) return;
+        if (currentDetailNode || currentRelation) clearFocus();
       });
     }
   }
@@ -412,18 +321,7 @@
     let lastX = 0, lastY = 0;
     svgNode.addEventListener("pointerdown", (e) => {
       if (tiltTarget < 0.5) return;
-      // .hal-node zaten hariç tutuluyordu; .hal-chord-g'nin (kiriş + isabet
-      // şeridi) hariç tutulmaması gerçek hatanın asıl kaynağıydı -- burada
-      // yakalanan HER pointerdown sahneyi döndürmeye başlıyor ve pointer'ı
-      // svg'ye "capture" ediyordu (setPointerCapture), bu da bir kirişe
-      // tıklamanın click olayını hiçbir zaman kirişe ulaştırmamasına yol
-      // açıyordu -- CSS pointer-events sırası doğru olsa bile.
-      if (e.target.closest(".hal-node") || e.target.closest(".hal-chord-g")) return;
-      // menziller.js'teki aynı bulgu: preventDefault yoktu, sürükleyerek
-      // döndürmek ekrandaki etiketleri tarayıcı metin-seçimi olarak
-      // boyuyordu (UI denetimi). .hal-label'e user-select:none eklendi,
-      // burada da menziller'deki gibi önlem alınıyor.
-      e.preventDefault();
+      if (e.target.closest(".hal-node")) return;
       dragging = true; lastX = e.clientX; lastY = e.clientY;
       svgNode.setPointerCapture(e.pointerId);
     });
@@ -463,12 +361,18 @@
     for (let i = 0; i < 10; i++) shimmer.push({ a: Math.random() * 6.28, sp: 0.0004 + Math.random() * 0.0006, rr: 20 + Math.random() * 16, ph: Math.random() * 6.28 });
   }
 
-  // rAF döngü iskeleti artık GU.createFrameLoop'ta (bkz. graph-utils.js
-  // yorumu -- burada eskiden ensureFrame()'in kendi lastTs sıfırlaması VARDI
-  // ve bu, o dosyada belgelenen "sakin dönüş donuyor" hatasının kaynağıydı;
-  // düzeltme oradan geliyor).
-  const frameLoop = GU.createFrameLoop(wrapEl, function (ts, dt) {
+  // ---------------------------------------------------------------------------
+  // Not: lastTs'i BURADA sıfırlamıyoruz. ensureFrame her karenin sonunda
+  // yeniden çağrıldığı için, burada sıfırlamak dt'yi kalıcı olarak 0 yapıp
+  // zamana bağlı her şeyi (sakin dönüş) dondurur. Sıfırlama, döngünün
+  // gerçekten durduğu tek yerde -- frame()'deki görünürlük çıkışında -- yapılır.
+  function ensureFrame() { if (rafId == null) rafId = requestAnimationFrame(frame); }
+  function frame(ts) {
+    rafId = null;
+    // Görünüm ekranda değilse döngüyü tamamen durdur (bkz. GU.isViewActive).
+    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
     if (!startTs) startTs = ts;
+    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
     if (reveal < 1 && !reduceMotion) reveal = Math.min(1, (ts - startTs) / 2000);
     else if (reduceMotion) reveal = 1;
 
@@ -503,9 +407,8 @@
     }
 
     render(ts);
-    return !reduceMotion || active;
-  });
-  function ensureFrame() { frameLoop.ensureFrame(); }
+    if (!reduceMotion || active) ensureFrame();
+  }
 
   function focusSet() {
     const anchor = hoveredId || (currentDetailNode ? currentDetailNode.id : null);
@@ -537,7 +440,6 @@
 
   function render(ts) {
     if (!nodeLayer) return;
-    updateOrientRing();
     positionNodes();
     const n = orderedNodes.length;
     const foc = focusSet();
@@ -580,12 +482,8 @@
     //     tilt=0'da helixPoint(n) tam olarak Nefs'in yerine düştüğü için bu
     //     eğri 2B'de halkayı kapatır, 3B'de ise yükselir. Tek formül. ---
     const wrapSel = linkLayer.selectAll("path.hal-return").data([0]);
-    const donusBas = projectT(n - 1), donusSon = projectT(n);
-    defs.select("#hal-return-grad")
-      .attr("x1", donusBas.x).attr("y1", donusBas.y)
-      .attr("x2", donusSon.x).attr("y2", donusSon.y);
     wrapSel.enter().append("path").attr("class", "hal-return").attr("fill", "none")
-      .style("stroke", "url(#hal-return-grad)").merge(wrapSel)
+      .attr("marker-end", "url(#hal-arrow-return)").merge(wrapSel)
       .attr("d", samplePath(n - 1, n, 14))
       .style("opacity", (foc ? 0.12 : 0.85) * (reveal >= 0.99 ? 1 : Math.max(0, reveal * 3 - 2)));
 
@@ -594,9 +492,7 @@
     lblSel.enter().append("text").attr("class", "hal-return-label").attr("text-anchor", "middle").merge(lblSel)
       .attr("x", wrapMid.x).attr("y", wrapMid.y - 10)
       .style("opacity", foc ? 0.25 : 0.85 * (reveal >= 0.99 ? 1 : 0))
-      // GORSEL-01: metnin başındaki "→" karakteri de bir soyut oktu; yönü
-      // artık ışık-yolu gradyanının kendisi taşıyor.
-      .text(tt({ tr: "aynı hâl, bir üst turda", en: "same state, a turn higher", pt: "mesmo estado, um giro acima" }));
+      .text(tt({ tr: "→ aynı hâl, bir üst turda", en: "→ same state, a turn higher", pt: "→ mesmo estado, um giro acima" }));
 
     // --- C3: "yolu yürü" -- Nefs'ten dönüş yayının ucuna ilerleyen nokta ---
     if (walkT !== null) {
@@ -626,28 +522,12 @@
     // --- kirişler: ardışık olmayan hâller arasındaki bağlar ---
     const chSel = chordLayer.selectAll("g.hal-chord-g").data(relations, (r) => r.source + ">" + r.target);
     const chEnter = chSel.enter().append("g").attr("class", "hal-chord-g");
-    const chHitEnter = chEnter.append("path").attr("class", "hal-chord-hit")
+    chEnter.append("path").attr("class", "hal-chord-hit")
       .on("pointerenter", (e, r) => { hoveredRel = r; showRelTooltip(r, e); ensureFrame(); })
       .on("pointermove", (e) => moveTooltip(e))
       .on("pointerleave", () => { hoveredRel = null; hideTooltip(); ensureFrame(); })
       .on("click", (e, r) => { e.stopPropagation(); showRelationDetail(r); });
-    // K-01/K-03 (uzman paneli denetimi 2026-08-17): kirişler yalnız fareye
-    // açıktı -- 18 bağın hiçbirinin gerekçesi klavye/ekran-okuyucudan
-    // okunamıyordu. Ontoloji/Esmâ deseninin ortak yardımcısıyla açılıyor;
-    // odak, hover'ın yaptığı görsel vurgunun aynısını yapıyor.
-    GU.wireEdgeAccessibility(chHitEnter, {
-      label: (r) => {
-        const s = nodeById.get(r.source), t = nodeById.get(r.target);
-        const uclar = (s ? labelFor(s) : r.source) + " – " + (t ? labelFor(t) : r.target);
-        const tur = tt(KIND_LABEL[r.kind] || {});
-        const not = r.note ? tt(r.note) : "";
-        return uclar + (tur ? ". " + tur : "") + (not ? ". " + not : "");
-      },
-      onActivate: (r) => showRelationDetail(r),
-      onFocus: (r) => { hoveredRel = r; ensureFrame(); },
-      onBlur: () => { hoveredRel = null; ensureFrame(); },
-    });
-    chEnter.append("path").attr("class", (r) => "hal-chord hal-chord--" + r.kind + " hal-chord--conf-" + confSlug(r.confidence));
+    chEnter.append("path").attr("class", (r) => "hal-chord hal-chord--" + r.kind);
     const chMerged = chEnter.merge(chSel);
     chSel.exit().remove();
     chMerged.each(function (r) {
@@ -659,15 +539,10 @@
       if (hoveredRel === r) op = 1;
       if (currentRelation === r) op = 1;
       op *= reveal >= 0.99 ? 1 : Math.max(0, reveal * 2 - 1);
-      // Düşük güvenli kirişler (ontology.js'teki .link--conf-* deseninin
-      // aynısı): düğmeye gerek kalmadan, varsayılan olarak farklı renk +
-      // kesik çizgiyle ayrılıyorlar -- ayrım isteğe bağlı bir katman değil.
-      const dusukGuven = r.confidence && r.confidence !== "Yüksek";
       g.select(".hal-chord-hit").attr("d", dpath);
       g.select(".hal-chord")
         .attr("d", dpath)
-        .style("stroke", getVar(dusukGuven ? "--series-celal" : (KIND_VAR[r.kind] || "--series-hal-cemfark")))
-        .style("stroke-dasharray", dusukGuven ? "5 4" : null)
+        .style("stroke", getVar(KIND_VAR[r.kind] || "--series-hal-cemfark"))
         .style("stroke-width", lit || hoveredRel === r || currentRelation === r ? 2.4 : 1.15)
         .style("opacity", op);
     });
@@ -709,9 +584,6 @@
         appear = Math.max(0, Math.min(1, (reveal - thr) / 0.12));
       }
       let op = appear;
-      // Küme odağı (FCA): üyeler tam zuhûr eder, geri kalanı perdelenir --
-      // esma.js'teki aynı görsel-gramer eşleşmesi (ışık=zuhûr/opaklık=perde).
-      if (clusterFocus) op *= clusterFocus.members.has(d.id) ? 1 : 0.15;
       const isAnchor = foc && d.id === foc.anchor;
       if (foc && !foc.set.has(d.id)) op *= 0.22;
       if (tilt > 0.02) op *= Math.max(0.62, Math.min(1, d.__depth * 1.02)); // atmosfer
@@ -767,31 +639,6 @@
         .style("opacity", (p) => (0.15 + 0.35 * Math.abs(Math.sin(ts / 1400 + p.ph))) * reveal);
       sh.exit().remove();
     }
-
-    renderClusterFocus(ts);
-  }
-
-  // Küme odağı (FCA): üyeler bir soy zinciri değil, ORTAK bir nitelikle
-  // (evre/terk/kiriş) bir araya geliyor -- esma.js'teki aynı çözüm: yönlü
-  // bir ok yerine, ortak ağırlık merkezinden her üyeye uzanan, ucu açık,
-  // yumuşak ışınlar ("aynı niteliği aynı anda taşıyorlar").
-  function renderClusterFocus(ts) {
-    clusterLayer.selectAll("*").remove();
-    if (!clusterFocus) return;
-    const members = orderedNodes.filter((n) => clusterFocus.members.has(n.id));
-    if (members.length < 2) return;
-    let cx3 = 0, cy3 = 0;
-    members.forEach((n) => { cx3 += n.x; cy3 += n.y; });
-    cx3 /= members.length; cy3 /= members.length;
-    const breathe = reduceMotion ? 0.5 : (1 - Math.cos((ts / 4200) * 2 * Math.PI)) / 2;
-    members.forEach((n) => {
-      clusterLayer.append("line").attr("class", "hal-cluster-ray")
-        .attr("x1", cx3).attr("y1", cy3).attr("x2", n.x).attr("y2", n.y)
-        .style("opacity", 0.14 + 0.12 * breathe);
-    });
-    clusterLayer.append("circle").attr("class", "hal-cluster-core")
-      .attr("cx", cx3).attr("cy", cy3).attr("r", 4.5 + 1.5 * breathe)
-      .style("opacity", 0.45 + 0.25 * breathe);
   }
 
   // ---------------------------------------------------------------------------
@@ -801,15 +648,12 @@
     detailPanel.hidden = true; ensureFrame();
   }
 
-  // members (ops.): yalnız bu alt kümeye sığdır (küme odağı) -- verilmezse
-  // eskisi gibi bütün sarmalı + dönüş yayının tepe noktasını kapsar.
-  function fitView(animate, members) {
+  function fitView(animate) {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 640;
     let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
     const n = orderedNodes.length;
-    const pts = members
-      ? members.map((d) => ({ x: d.x, y: d.y }))
-      : orderedNodes.map((d) => ({ x: d.x, y: d.y })).concat([projectT(n - 0.5), projectT(n)]);
+    // Düğümlerin yanı sıra dönüş yayının tepe noktasını da kapsa.
+    const pts = orderedNodes.map((d) => ({ x: d.x, y: d.y })).concat([projectT(n - 0.5), projectT(n)]);
     pts.forEach((p) => { x0 = Math.min(x0, p.x); x1 = Math.max(x1, p.x); y0 = Math.min(y0, p.y); y1 = Math.max(y1, p.y); });
     // Lejant paneli grafiğin ÜSTÜNDE (sol altta) duruyor; sığdırma onu hesaba
     // katmazsa soldaki düğümler panelin arkasında kalıyor. Panel açıkken sol
@@ -830,86 +674,6 @@
     sel.call(zoomBehavior.transform, t);
   }
 
-  // Küme odağı: bkz. clusterFocus/renderClusterFocus yukarıda -- giriş/çıkış
-  // ve altyazı burada.
-  function enterClusterFocus(kume) {
-    const memberIds = new Set(kume.uyeler);
-    if (currentDetailNode || currentRelation) clearFocus();
-    clusterFocus = { id: kume.id, members: memberIds, nitelikler: kume.nitelikler };
-    const members = orderedNodes.filter((n) => memberIds.has(n.id));
-    fitView(true, members.length ? members : undefined);
-    showClusterFocusCaption(kume);
-    window.dostTrack && window.dostTrack("hal_fca_odak", { id: kume.id });
-    ensureFrame();
-  }
-  function exitClusterFocus() {
-    if (!clusterFocus) return;
-    clusterFocus = null;
-    hideClusterFocusCaption();
-    fitView(true);
-    ensureFrame();
-  }
-  const fcaCaption = GU.fcaCaption("hal");
-  function showClusterFocusCaption(kume) { fcaCaption.show(kume, tt); }
-  function hideClusterFocusCaption() { fcaCaption.hide(); }
-
-  // FCA (Formal Concept Analysis) kavram kafesi (2026-08-15) -- esma.js'teki
-  // aynı desen. scripts/fca-hal.py'nin ürettiği kafesten elle seçilmiş,
-  // 3-12 nesnelik "anlamlı küme" bandı.
-  let fcaData = null;
-  function fetchFcaData() {
-    if (!fcaData) {
-      fcaData = GU.fetchJson("data/ibn-arabi/hal-fca.json").catch(() => null);
-    }
-    return fcaData;
-  }
-  function fcaClusterHtml(kume) {
-    const nitelikler = kume.nitelikler.map((n) => tt(n.label)).join(", ");
-    const isimler = kume.uyeler.map((id) => {
-      const node = nodeById.get(id);
-      const label = node ? tt(node.name) : id;
-      return `<a class="cross-link" href="${window.__dostNav.href("hal", id)}" data-view="hal" data-id="${id}">${label}</a>`;
-    }).join(", ");
-    return `<div class="esma-fca-cluster">
-      <p class="esma-fca-cluster__nitelik">${nitelikler}</p>
-      <p class="esma-fca-cluster__isimler">${isimler}</p>
-      <button class="esma-fca-cluster__show" type="button" data-cluster-id="${kume.id}">${tt(GU.FCA_SHOW_LABEL)}</button>
-    </div>`;
-  }
-  function openFcaLightbox() {
-    fetchFcaData().then((data) => {
-      if (!data || !window.DostLightbox) return;
-      window.dostTrack && window.dostTrack("sema_acildi", { type: "hal-fca" });
-      const clusters = data.kumeler.map(fcaClusterHtml).join("");
-      window.DostLightbox.open({
-        closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
-        name: tt({ tr: "Makine Kümelemesi (FCA)", en: "Machine Clustering (FCA)", pt: "Agrupamento por Máquina (FCA)" }),
-        svgHtml: `<div class="esma-fca-lightbox">
-          <p class="esma-fca-lightbox__not">${tt(data.not)}</p>
-          <div class="esma-fca-lightbox__list">${clusters}</div>
-        </div>`,
-        caption: "",
-      });
-      const wrap = document.querySelector(".cizim-lightbox__svg-wrap");
-      if (wrap) {
-        wrap.querySelectorAll(".cross-link").forEach((a) => {
-          a.addEventListener("click", () => { window.DostLightbox.close(); });
-        });
-        wrap.querySelectorAll(".esma-fca-cluster__show").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const kume = data.kumeler.find((k) => String(k.id) === btn.dataset.clusterId);
-            if (!kume) return;
-            window.DostLightbox.close();
-            enterClusterFocus(kume);
-          });
-        });
-      }
-    });
-  }
-  function wireFcaButton() {
-    GU.wireFcaButton("hal", openFcaLightbox);
-  }
-
   function showTooltip(d, event) {
     if (!tooltip) return;
     const short = I18n.pick3(d.short);
@@ -920,14 +684,9 @@
     if (!tooltip) return;
     const s = nodeById.get(r.source), t = nodeById.get(r.target);
     if (!s || !t) return;
-    // 2026-08-03'e kadar burada yalnız ilişkinin TÜRÜ yazıyordu ("yankı",
-    // "karşıtlık"…) -- yani ne olduğu, neden öyle okuduğumuz değil (#10).
-    tooltip.innerHTML = GU.edgeReasonHtml({
-      title: `${I18n.pick3(s.name)} ↔ ${I18n.pick3(t.name)}`,
-      kindLabel: tt(KIND_LABEL[r.kind] || {}),
-      reason: I18n.pick3(r.note),
-      confidence: edgeConfidenceText(r.confidence),
-    });
+    tooltip.innerHTML =
+      `<div class="node-hover-tip__title">${I18n.pick3(s.name)} ↔ ${I18n.pick3(t.name)}</div>` +
+      `<div class="node-hover-tip__short">${tt(KIND_LABEL[r.kind] || {})}</div>`;
     tooltip.hidden = false; moveTooltip(event);
   }
   function moveTooltip(event) { GU.moveTooltip(tooltip, wrapEl, event); }
@@ -970,7 +729,6 @@
         <p class="detail-eyebrow">${tt(KIND_LABEL[r.kind] || {})}</p>
         <p>${linkify(tt(r.note), "hal", d.id)}</p>
         <cite>${r.cite}</cite>
-        ${confidenceNoteHtml(r.confidence)}
       </div>`;
     }).join("");
     return `<p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "Sıradan Taşan Bağlar", en: "Bonds beyond the sequence", pt: "Vínculos além da sequência" })}</p>${items}`;
@@ -1009,39 +767,14 @@
         <h3>${tt(KIND_LABEL[r.kind] || {})}</h3>
         <p>${linkify(tt(r.note), "hal", null)}</p>
         <cite>${r.cite}</cite>
-        ${confidenceNoteHtml(r.confidence)}
       </div>`;
     detailPanel.hidden = false;
     ensureFrame();
   }
 
-  // Hayret'e kamera davranışı (2026-08-15): ontology.js'teki DUGUM_DAVRANISI
-  // ("anlam taşıyan animasyon", 2026-08-03) beş düğüme kendi davranışını
-  // vermişti (ışık yayılır/rücû eder/toplanır, sahne söner-yanar, bulanır-
-  // açılır) ama "Hayret'te kameranın yavaşça uzaklaşıp yakınlaşması" fikri
-  // hiç uygulanmamıştı -- research/anlayis-evrimi/VISUALIZATION_IDEAS.md'de
-  // "sitede kamera hareketine dokunan İLK davranış olacağı için ayrı bir iş
-  // kalemi" diye açık bırakılmıştı. Hayret hâli Ontoloji'nin değil Hâller'in
-  // düğümü, o yüzden burada, aynı "davranışı resmet" ilkesiyle (GORSEL_DIL.md)
-  // yaşıyor: hayret şaşkınlık, bilmenin sınırında durmak -- kamera bir an
-  // geri çekilip haritanın tamamını görür, sonra yavaşça hayrete geri döner.
-  function hayretKamerasi() {
-    if (reduceMotion || !zoomBehavior) return;
-    const mevcut = d3.zoomTransform(svgNode);
-    const geri = d3.zoomIdentity
-      .translate(mevcut.x + (svgNode.clientWidth / 2 - mevcut.x) * 0.22,
-                 mevcut.y + (svgNode.clientHeight / 2 - mevcut.y) * 0.22)
-      .scale(mevcut.k * 0.82);
-    svg.transition().duration(1400).ease(d3.easeSinInOut)
-      .call(zoomBehavior.transform, geri)
-      .transition().duration(1600).ease(d3.easeSinInOut)
-      .call(zoomBehavior.transform, mevcut);
-  }
-
   function selectNode(d) {
     showDetail(d);
     window.__dostNav && window.__dostNav.setHash("hal", d.id);
-    if (d.id === "hayret") hayretKamerasi();
   }
 
   // ---------------------------------------------------------------------------
@@ -1071,7 +804,7 @@
     // istendiğinde 2B'ye dönülebiliyor.
     openIn3D();
     ensureFrame();
-    window.addEventListener("resize", GU.debounceResize(onResize));
+    window.addEventListener("resize", onResize);
   }
 
   function onResize() {
@@ -1094,28 +827,6 @@
   // Sekme arkaya alınıp geri gelindiğinde döngü yeniden uyansın.
   GU.onViewWake(() => { if (built && !wrapEl.hidden) ensureFrame(); });
 
-  // 2026-08-17 (uzman paneli denetimi, O-01/F4 devamı -- Dalga 2.5): sarmal
-  // dar ekranda okunmuyor. Gruplama YOK: hâllerin sırası seyrin kendisi,
-  // listeyi aşamalara bölmek o sırayı ikinci plana atardı.
-  const halMobilListe = GU.createMobileListFallback({
-    wrapEl: document.getElementById("hal-wrap"),
-    listEl: document.getElementById("hal-mobil-liste"),
-    fetchUrl: "data/ibn-arabi/hal.json",
-    extractNodes: (d) => d.nodes || [],
-    title: { tr: "Hâller", en: "The States", pt: "Os Estados" },
-    note: {
-      tr: "Sarmalı okumak için ekran dar geldi — on sekiz hâl burada seyir sırasıyla listede. Bir hâle dokun, paneli oku.",
-      en: "The spiral does not fit this narrow screen — the eighteen states are here as a list, in the order of the journey. Tap a state to read its panel.",
-      pt: "A espiral não cabe neste ecrã estreito — os dezoito estados estão aqui como lista, na ordem do percurso. Toque num estado para ler o painel.",
-    },
-    graphButtonLabel: {
-      tr: "Haritayı aç (sarmalı göster)",
-      en: "Open the map (show the spiral)",
-      pt: "Abrir o mapa (mostrar a espiral)",
-    },
-    goTo: (id) => window.__halApp.goToNode(id),
-  });
-
   window.__halApp = {
     activate() { fetchData().then((data) => { if (!data) return; if (!built) buildGraph(data); else ensureFrame(); }); },
     goToNode(id) {
@@ -1126,9 +837,6 @@
         if (target) selectNode(target);
       });
     },
-    onLangChange() {
-      render_relabel();
-      if (halMobilListe) halMobilListe.onLangChange();
-    },
+    onLangChange() { render_relabel(); },
   };
 })();

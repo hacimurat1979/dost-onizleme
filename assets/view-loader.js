@@ -1,23 +1,15 @@
-// FAZ (JS lazy-load): görünüm-özel script'ler sayfa ilk yüklendiğinde değil,
-// o görünüm ilk kez açıldığında indirilsin diye eklendi (bkz. teknik analiz
-// raporu, 2026-08). Başlangıçta 5 dosyayla (sirlar-graph/kavram/ayet-hadis/
-// siirler/vahdet, ~82 KB) başladı; 2026-08-04 sonrası eklenen 7 görünüm de
-// (acik-sorular, bilmiyoruz, elestiri-arkeolojisi, hocalar, eser-agi,
-// seyahat-atlasi, kuran-dokusu) aynı desene katıldı.
+// FAZ (JS lazy-load): 5 görünüm-özel script'i (sirlar-graph/kavram/ayet-hadis/
+// siirler/vahdet, ~82 KB) sayfa ilk yüklendiğinde değil, o görünüm ilk kez
+// açıldığında indirilsin diye eklendi (bkz. teknik analiz raporu, 2026-08).
 //
-// 2026-08-15: esma/hal/menziller/sorular/terimler/futuhat (~390 KB gzip,
-// altısı da her sayfada koşulsuz iniyordu) de eklendi. Eskiden bu altısı
-// (ve cizimler/tasiyicilar/fusus) registerCrossLinkTerm() çağırdığı için
-// dışarıda bırakılmıştı -- ama terimler.js'in 2026-08-03 tarihli kendi
-// yorumunun belgelediği gibi o bağımlılık artık yok: çapraz-bağlantı
-// önizlemesi derleme zamanında üretilen ortak indeksten
-// (data/ibn-arabi/capraz-baglanti-indeksi.json) besleniyor, ontology.js
-// bunu SAYFA AÇILIŞINDA yüklüyor -- tek tek görünüm dosyalarının o anda
-// yüklenmiş olmasına bağlı değil. cizimler/tasiyicilar/fusus/miskat şimdilik
-// dışarıda kalmaya devam ediyor (ayrı bir ölçüm konusu).
-//
-// VIEWS'teki girişlerin hiçbiri cross-link kaydını SAYFA AÇILIŞINDA
-// yapmıyor (doğrulandı), bu yüzden tembel yükleme güvenli.
+// NEDEN SADECE BU 5'İ (14 DEĞİL): geri kalan 9 görünüm dosyası (esma, hal,
+// terimler, cizimler, sorular, menziller, tasiyicilar, futuhat, fusus) kendi
+// üst-seviye kodunda registerCrossLinkTerm() çağırıyor -- yani başka bir
+// sayfadaki bir kelimenin üzerine gelindiğinde anında önizleme göstermesi,
+// o dosyanın SAYFA AÇILIŞINDA çalışmış olmasına bağlı. Onları da tembel
+// yüklersek, o görünüm hiç ziyaret edilmeden önce çapraz-bağlantı önizlemesi
+// sessizce kaybolurdu -- bu ölçülüp bilerek dışarıda bırakıldı. Aşağıdaki 5
+// dosya cross-link kaydı YAPMIYOR (doğrulandı), bu yüzden güvenli.
 //
 // Yöntem: her görünüm dosyası kendi window.__xApp'ini KOŞULSUZ, TEK bir
 // atamayla kurar (doğrulandı -- hiçbiri bir guard'ın arkasında değil). Bu
@@ -36,31 +28,11 @@
   "use strict";
 
   var VIEWS = {
-    __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-BRzLS2A7b2GtSzC/029wyFnItyzgtts/kZu3yvo2aXTdQgM2qDhVAN4QjbBOlJfK" },
-    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-cB0CHRDcCKIabXy545C7bSjQNEmI5EBsIZdV4wxkybxE2biVzqdL2hAr7dDmyvnH" },
-    __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-nIFZDSqrBwHlvPJqtVx/Jgr+P4JtIuJki94cVcIk2Zhk+8d6D9HaiOFUE3f80zIB" },
-    __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-3DAmRScI+L9wWXXhl7hJ+vPPOCivyCDlNFjOkGi+POHuSA/16/KYsSWuqWgoKJ/9" },
-    __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-2rN3S/i2hCI+gsfcxXbYk077iG7ineliJ4mSDwiZoVruUR8eOOqc9ctW2W4Q7I79" },
-    __okumaYollariApp: { src: "assets/okuma-yollari.js", integrity: "sha384-f3AwGIN00ENzTIgo4xzB1bgSzYoqz0VsDiHFCA63q4mDpaEHg1fMRVfCESArkdzL" },
-    __neredenBaslamaliApp: { src: "assets/nereden-baslamali.js", integrity: "sha384-yDtO/XYSNvn8Pdmncj6PbBcRtcFwXHCYduLifAcnm764wmD5VDT4msgSMHvrPk+C" },
-    __acikSorularApp: { src: "assets/acik-sorular.js", integrity: "sha384-0Yr7y0F+LXN+oMbT+0CCmTOx8npa2Mi9iHedV7xG0xWkFaSeknU93E8qzgGiaTLS" },
-    __bilmiyoruzApp: { src: "assets/bilmiyoruz.js", integrity: "sha384-2fR7iMfe8Vm0JvN/yGmWElcfKaAmcQHH2t5ijPf0CSCJ3LxqqfWy7UpDwdLZzlgg" },
-    __elestiriArkeolojisiApp: { src: "assets/elestiri-arkeolojisi.js", integrity: "sha384-m4BYZstyOGMBJr17vXHvrHjTAja9ebKADMXQqdt+PTqumd9ifXMnXi19GeZaZmkp" },
-    __hocalarApp: { src: "assets/hocalar.js", integrity: "sha384-zcLam01u2hhsitjOxEAy74Z1eR36QELGCdHPTDa+IFekZtCvSZvQ06F0nuqSUnEK" },
-    __eserAgiApp: { src: "assets/eser-agi.js", integrity: "sha384-57omR3wjoY3rD1vTnKv/z5KlRrSjO9IDcjxInujlN7wjAISFF5VIVEWvAn08F9vV" },
-    __seyahatAtlasiApp: { src: "assets/seyahat-atlasi.js", integrity: "sha384-kl48zvjGhCjql6ilzjKBLNV+o8iJC8Aa9VWWZs2PcW4CRsYqu936jtfJaJDxoY0k" },
-    __yolculukApp: { src: "assets/yolculuk.js", integrity: "sha384-4rFNj/JUH7Mr0a6bUe2+DXBMA729ejih0SnKi4JjwiyDpWMm76JHIdiDkCLzplkl" },
-    __kuranDokusuApp: { src: "assets/kuran-dokusu.js", integrity: "sha384-oidFJfgo+xoAz+O7Bbd6B8dvvi7onts6hQrS9QUbJ6KlizRcMxipsiysamiWtf39" },
-    __esmaApp: { src: "assets/esma.js", integrity: "sha384-itI0QocQMU3WJQq6Fc00QuCiiwgzNoOfAlMfLa56oixZNAIbMqOZQIygHvvYXjP8" },
-    __halApp: { src: "assets/hal.js", integrity: "sha384-6FyyE1p9PyylCpdaRSz7Xs+OgKfrbGwCgKchzhoJQ6AEf6o5Pp51EAx+/VD3Yqxw" },
-    __terimlerApp: { src: "assets/terimler.js", integrity: "sha384-jGMyHf2FmsoxMzhIees9cckXaNUce1llkPllNa1C+FEtwkryHYFugE+J/gKWPCcd" },
-    __sorularApp: { src: "assets/sorular.js", integrity: "sha384-N1uSiPe8lffbKjlqmlkz4tGyIFwhxCaNT/EQCkRu0D7JRpFWny4WZLrmV0asTO6c" },
-    __menzillerApp: { src: "assets/menziller.js", integrity: "sha384-8DMi+ndcYocH8RT225ZPxcC0pmi0ChHG3NiFoYbTFJhrAc1k9B4Iz7O0H20nGenB" },
-    __futuhatApp: { src: "assets/futuhat.js", integrity: "sha384-1fiswUyPfMQ3x4yRzul7OX2UwP5U40j2uiqLdQDtd9TTmOedtk2o1HfEOp2pDCSo" },
-    __cizimlerApp: { src: "assets/cizimler.js", integrity: "sha384-mt0ikh8D/Yuo0BC0WYDpGHMSt7hFl/KgK7G4lRfmNRFvogaRqkHnZIkYhOOWhqJO" },
-    __tasiyicilarApp: { src: "assets/tasiyicilar.js", integrity: "sha384-QgCqx0oiM2uUWN4NfoO0RYMw9Vl1crt43kzKE4JzgG9To7+0U7bsNrmm3BAG5MVn" },
-    __fususApp: { src: "assets/fusus.js", integrity: "sha384-hthm8scYI5UnQN80SpAsoWhagPfKoVMuY7vsV2GCqOjV0SjkfdGWvpIXREiFeuV5" },
-    __miskatApp: { src: "assets/miskat.js", integrity: "sha384-meLF0z2MtyiwaYx/wmfbLo+x2gISV64aDp84bdAvZ81BgIdSuZZBbp/jbYORC2oU" },
+    __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-LrCXz1/l2cBf5uJX/8p0I9RZhWrsyQcZh9V7wUt82YSKQmDxOJSo+GuiXJEZ/lg9" },
+    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-3aXX2zmgZnm46ARuTAKtVyXLIhGaekJC5dyyf3nBdXTSRPIxfAGJFvp/h9lvzdP4" },
+    __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-NqjeB685KS7IBcItAvAwOeWxt/vF6SrgMn3SvwFR5aON3x+23Cpcv81QwL2B+Sp8" },
+    __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-9LylDZ5mjiEKs/Bo/Wc+qYTUdeFt56xQCT71VdhE2weqN6MLMuhvgporkSM4qwXW" },
+    __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-u8Hu4zkYTCJHkdw63jhcfroxHJYcXgoeD0jTqrqgwkjmS5fyW/RYFqdqS2kEhxQm" },
   };
 
   var loadingPromises = {};
@@ -96,19 +68,12 @@
           if (typeof prop !== "string") return undefined;
           return function () {
             var args = arguments;
-            return loadScript(globalName)
-              .then(function () {
-                var real = window[globalName];
-                if (real && typeof real[prop] === "function") {
-                  return real[prop].apply(real, args);
-                }
-              })
-              .catch(function (err) {
-                console.error(
-                  "view-loader: " + globalName + "." + prop + "() çalıştırılamadı --",
-                  err
-                );
-              });
+            return loadScript(globalName).then(function () {
+              var real = window[globalName];
+              if (real && typeof real[prop] === "function") {
+                return real[prop].apply(real, args);
+              }
+            });
           };
         },
       }

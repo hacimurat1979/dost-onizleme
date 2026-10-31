@@ -39,13 +39,6 @@ window.DostAnlamsalYakin = (function () {
       }),
     ]).then(function (parts) {
       return { view: new Int8Array(parts[0]), dim: parts[1].boyut, pasajlar: parts[1].pasajlar };
-    }).catch(function (e) {
-      // graph-utils.js'in fetchJson'ıyla aynı ilke: geçici bir ağ hatası
-      // kalıcı bir başarısızlığa dönüşmesin -- önbellekte başarısız Promise
-      // kalırsa bir sonraki çağıran (bugün tek çağrı yeri var, ama API bunu
-      // dışlamıyor) tekrar denemeden hep aynı hatayı alırdı.
-      delete cache[lang];
-      throw e;
     });
     cache[lang] = p;
     return p;

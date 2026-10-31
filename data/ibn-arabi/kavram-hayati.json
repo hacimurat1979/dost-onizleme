@@ -1,8 +1,8 @@
 {
  "uretim": "scripts/kavram-hayati-uret.py",
  "not": "TÜRETİLMİŞ veri: her kavramın Fütûhât/Füsûs'taki geçtiği yerler, adının kısım/fass metinlerinde kelime-sınırlı, büyük/küçük harf duyarsız bir regex taramasıyla bulunmasına dayanır -- sitenin kendi çapraz-link (linkify) eşleştirmesinin basitleştirilmiş bir yansımasıdır, birebir aynı değildir. 4 harften kısa adlar (otomatikEslesmeYok:true) taranmadı. Yoğunluk = binde kaç kelimede bir geçtiği (mutlak sayı değil, kısmın uzunluğuna göre normalize). Kavramlar değiştiğinde ya da atlas metni düzenlendiğinde yeniden üretilmeli (elle tetiklenir).",
- "toplamKavram": 208,
- "eslesenKavram": 203,
+ "toplamKavram": 200,
+ "eslesenKavram": 195,
  "kavramlar": [
   {
    "view": "ontoloji",
@@ -1532,311 +1532,6 @@
    ]
   },
   {
-   "view": "ontoloji",
-   "id": "veli",
-   "isim": {
-    "tr": "Velî (Allah Dostu)",
-    "en": "The Friend (Wali)",
-    "pt": "O Amigo (Wali)"
-   },
-   "otomatikEslesmeYok": false,
-   "eslesenTerim": "Velî",
-   "futuhat": {
-    "ilk": {
-     "id": "c2k21",
-     "route": "/futuhat/c2k21/",
-     "title": {
-      "tr": "Düşüşün Sırrı: Yükseliş Olarak Alçalma, ve Mucizenin Üç Yüzü",
-      "en": "The Secret of the Fall: Descent as Ascent, and the Three Faces of the Miraculous",
-      "pt": "O Segredo da Queda: Descida como Ascensão, e as Três Faces do Miraculoso"
-     }
-    },
-    "son": {
-     "id": "c15k186",
-     "route": "/futuhat/c15k186/",
-     "title": {
-      "tr": "On İki Kutup: Sıra Zamana Ait Değil — ve Birincinin Adı Verilmiyor",
-      "en": "The Twelve Poles: the Order Is Not Chronological — and the First One Is Not Named",
-      "pt": "Os Doze Polos: a Ordem Não É Cronológica — e o Primeiro Não É Nomeado"
-     }
-    },
-    "enYogun": {
-     "id": "c15k179",
-     "route": "/futuhat/c15k179/",
-     "title": {
-      "tr": "Velî ile Halîfe — Hâli Değişmeyen ve Değişen",
-      "en": "The Friend and the Vicegerent — the One Whose State Does Not Change and the One Whose Does",
-      "pt": "O Amigo e o Vigário — Aquele Cujo Estado Não Muda e Aquele Cujo Estado Muda"
-     },
-     "oran": 5.91
-    },
-    "toplamKisim": 9
-   },
-   "fusus": null,
-   "ilgiliAyet": [
-    "2:269"
-   ],
-   "ilgiliHadis": [],
-   "ilgiliSirlar": [],
-   "ilgiliCizimler": [],
-   "birlikteEsma": [
-    {
-     "id": "allah",
-     "isim": {
-      "tr": "Allah",
-      "en": "Allah",
-      "pt": "Allah"
-     },
-     "ortakBolum": 9
-    },
-    {
-     "id": "veli",
-     "isim": {
-      "tr": "el-Velî",
-      "en": "Al-Wali (The Protecting Friend)",
-      "pt": "Al-Wali (O Amigo Protetor)"
-     },
-     "ortakBolum": 9
-    },
-    {
-     "id": "zat",
-     "isim": {
-      "tr": "Zât",
-      "en": "The Essence",
-      "pt": "A Essência"
-     },
-     "ortakBolum": 2
-    },
-    {
-     "id": "nisbi-grup",
-     "isim": {
-      "tr": "Nispet ve İzafet İsimleri",
-      "en": "Names of Relation",
-      "pt": "Nomes de Relação"
-     },
-     "ortakBolum": 2
-    },
-    {
-     "id": "muddebir",
-     "isim": {
-      "tr": "el-Müdebbir",
-      "en": "Al-Mudabbir (The Regulator)",
-      "pt": "Al-Mudabbir (O Regulador)"
-     },
-     "ortakBolum": 1
-    },
-    {
-     "id": "batin",
-     "isim": {
-      "tr": "el-Bâtın",
-      "en": "Al-Batin (The Hidden)",
-      "pt": "Al-Batin (O Oculto)"
-     },
-     "ortakBolum": 1
-    }
-   ]
-  },
-  {
-   "view": "ontoloji",
-   "id": "halife",
-   "isim": {
-    "tr": "Halîfe (Vekil)",
-    "en": "The Vicegerent (Khalifa)",
-    "pt": "O Vigário (Khalifa)"
-   },
-   "otomatikEslesmeYok": false,
-   "eslesenTerim": "Halîfe",
-   "futuhat": {
-    "ilk": {
-     "id": "c15k179",
-     "route": "/futuhat/c15k179/",
-     "title": {
-      "tr": "Velî ile Halîfe — Hâli Değişmeyen ve Değişen",
-      "en": "The Friend and the Vicegerent — the One Whose State Does Not Change and the One Whose Does",
-      "pt": "O Amigo e o Vigário — Aquele Cujo Estado Não Muda e Aquele Cujo Estado Muda"
-     }
-    },
-    "son": {
-     "id": "c15k179",
-     "route": "/futuhat/c15k179/",
-     "title": {
-      "tr": "Velî ile Halîfe — Hâli Değişmeyen ve Değişen",
-      "en": "The Friend and the Vicegerent — the One Whose State Does Not Change and the One Whose Does",
-      "pt": "O Amigo e o Vigário — Aquele Cujo Estado Não Muda e Aquele Cujo Estado Muda"
-     }
-    },
-    "enYogun": {
-     "id": "c15k179",
-     "route": "/futuhat/c15k179/",
-     "title": {
-      "tr": "Velî ile Halîfe — Hâli Değişmeyen ve Değişen",
-      "en": "The Friend and the Vicegerent — the One Whose State Does Not Change and the One Whose Does",
-      "pt": "O Amigo e o Vigário — Aquele Cujo Estado Não Muda e Aquele Cujo Estado Muda"
-     },
-     "oran": 3.94
-    },
-    "toplamKisim": 1
-   },
-   "fusus": {
-    "ilk": {
-     "id": "fs25",
-     "route": "/fusus/fs25/",
-     "title": {
-      "tr": "Kelime-i Müseviyye",
-      "en": "The Word of Moses",
-      "pt": "A Palavra de Moisés"
-     }
-    },
-    "son": {
-     "id": "fs25",
-     "route": "/fusus/fs25/",
-     "title": {
-      "tr": "Kelime-i Müseviyye",
-      "en": "The Word of Moses",
-      "pt": "A Palavra de Moisés"
-     }
-    },
-    "enYogun": {
-     "id": "fs25",
-     "route": "/fusus/fs25/",
-     "title": {
-      "tr": "Kelime-i Müseviyye",
-      "en": "The Word of Moses",
-      "pt": "A Palavra de Moisés"
-     },
-     "oran": 0.92
-    },
-    "toplamKisim": 1
-   },
-   "ilgiliAyet": [],
-   "ilgiliHadis": [],
-   "ilgiliSirlar": [],
-   "ilgiliCizimler": [],
-   "birlikteEsma": [
-    {
-     "id": "zat",
-     "isim": {
-      "tr": "Zât",
-      "en": "The Essence",
-      "pt": "A Essência"
-     },
-     "ortakBolum": 2
-    },
-    {
-     "id": "allah",
-     "isim": {
-      "tr": "Allah",
-      "en": "Allah",
-      "pt": "Allah"
-     },
-     "ortakBolum": 2
-    },
-    {
-     "id": "evvel",
-     "isim": {
-      "tr": "el-Evvel",
-      "en": "Al-Awwal (The First)",
-      "pt": "Al-Awwal (O Primeiro)"
-     },
-     "ortakBolum": 1
-    },
-    {
-     "id": "batin",
-     "isim": {
-      "tr": "el-Bâtın",
-      "en": "Al-Batin (The Hidden)",
-      "pt": "Al-Batin (O Oculto)"
-     },
-     "ortakBolum": 1
-    },
-    {
-     "id": "veli",
-     "isim": {
-      "tr": "el-Velî",
-      "en": "Al-Wali (The Protecting Friend)",
-      "pt": "Al-Wali (O Amigo Protetor)"
-     },
-     "ortakBolum": 1
-    }
-   ]
-  },
-  {
-   "view": "ontoloji",
-   "id": "bilinen-bilinmeyen",
-   "isim": {
-    "tr": "Allah Katında Bilinen, Âlemde Bilinmeyen",
-    "en": "Known to God, Unknown in the World",
-    "pt": "Conhecido junto de Deus, Desconhecido no Mundo"
-   },
-   "otomatikEslesmeYok": false,
-   "eslesenTerim": "Allah Katında Bilinen, Âlemde Bilinmeyen",
-   "futuhat": {
-    "ilk": {
-     "id": "c15k185",
-     "route": "/futuhat/c15k185/",
-     "title": {
-      "tr": "Makamı Olmamak Bir Makamdır — ve Zamanın Kutbu O Odadaydı",
-      "en": "Having No Station Is a Station — and the Pole of the Age Was in That Room",
-      "pt": "Não Ter Estação É Uma Estação — e o Polo da Época Estava Naquela Sala"
-     }
-    },
-    "son": {
-     "id": "c15k186",
-     "route": "/futuhat/c15k186/",
-     "title": {
-      "tr": "On İki Kutup: Sıra Zamana Ait Değil — ve Birincinin Adı Verilmiyor",
-      "en": "The Twelve Poles: the Order Is Not Chronological — and the First One Is Not Named",
-      "pt": "Os Doze Polos: a Ordem Não É Cronológica — e o Primeiro Não É Nomeado"
-     }
-    },
-    "enYogun": {
-     "id": "c15k185",
-     "route": "/futuhat/c15k185/",
-     "title": {
-      "tr": "Makamı Olmamak Bir Makamdır — ve Zamanın Kutbu O Odadaydı",
-      "en": "Having No Station Is a Station — and the Pole of the Age Was in That Room",
-      "pt": "Não Ter Estação É Uma Estação — e o Polo da Época Estava Naquela Sala"
-     },
-     "oran": 1.94
-    },
-    "toplamKisim": 2
-   },
-   "fusus": null,
-   "ilgiliAyet": [],
-   "ilgiliHadis": [],
-   "ilgiliSirlar": [],
-   "ilgiliCizimler": [],
-   "birlikteEsma": [
-    {
-     "id": "allah",
-     "isim": {
-      "tr": "Allah",
-      "en": "Allah",
-      "pt": "Allah"
-     },
-     "ortakBolum": 2
-    },
-    {
-     "id": "veli",
-     "isim": {
-      "tr": "el-Velî",
-      "en": "Al-Wali (The Protecting Friend)",
-      "pt": "Al-Wali (O Amigo Protetor)"
-     },
-     "ortakBolum": 2
-    },
-    {
-     "id": "varis",
-     "isim": {
-      "tr": "el-Vâris",
-      "en": "Al-Warith (The Inheritor)",
-      "pt": "Al-Warith (O Herdeiro)"
-     },
-     "ortakBolum": 1
-    }
-   ]
-  },
-  {
    "view": "esma",
    "id": "zat",
    "isim": {
@@ -2314,7 +2009,7 @@
       "en": "Ar-Rahman (The All-Merciful)",
       "pt": "Ar-Rahman (O Todo-Misericordioso)"
      },
-     "ortakBolum": 22
+     "ortakBolum": 21
     },
     {
      "id": "alim",
@@ -2366,7 +2061,7 @@
      },
      "oran": 5.59
     },
-    "toplamKisim": 17
+    "toplamKisim": 16
    },
    "fusus": {
     "ilk": {
@@ -2422,7 +2117,7 @@
       "en": "Allah",
       "pt": "Allah"
      },
-     "ortakBolum": 22
+     "ortakBolum": 21
     },
     {
      "id": "zat",
@@ -2440,7 +2135,7 @@
       "en": "Names of Relation",
       "pt": "Nomes de Relação"
      },
-     "ortakBolum": 9
+     "ortakBolum": 8
     },
     {
      "id": "batin",
@@ -4724,7 +4419,7 @@
       "en": "Ar-Rahman (The All-Merciful)",
       "pt": "Ar-Rahman (O Todo-Misericordioso)"
      },
-     "ortakBolum": 9
+     "ortakBolum": 8
     },
     {
      "id": "evvel",
@@ -5698,7 +5393,7 @@
       "en": "From the Tashahhud to the Raising of the Hands: Prayer's Closing Movements",
       "pt": "Do Tashahhud ao Levantar das Mãos: Os Movimentos de Encerramento da Oração"
      },
-     "oran": 0.5
+     "oran": 0.51
     },
     "toplamKisim": 1
    },
@@ -11369,7 +11064,7 @@
       "en": "Ar-Rahman (The All-Merciful)",
       "pt": "Ar-Rahman (O Todo-Misericordioso)"
      },
-     "ortakBolum": 12
+     "ortakBolum": 11
     }
    ]
   },
@@ -11553,15 +11248,6 @@
      "ortakBolum": 13
     },
     {
-     "id": "rahman",
-     "isim": {
-      "tr": "er-Rahmân",
-      "en": "Ar-Rahman (The All-Merciful)",
-      "pt": "Ar-Rahman (O Todo-Misericordioso)"
-     },
-     "ortakBolum": 4
-    },
-    {
      "id": "nisbi-grup",
      "isim": {
       "tr": "Nispet ve İzafet İsimleri",
@@ -11569,6 +11255,15 @@
       "pt": "Nomes de Relação"
      },
      "ortakBolum": 4
+    },
+    {
+     "id": "rahman",
+     "isim": {
+      "tr": "er-Rahmân",
+      "en": "Ar-Rahman (The All-Merciful)",
+      "pt": "Ar-Rahman (O Todo-Misericordioso)"
+     },
+     "ortakBolum": 3
     },
     {
      "id": "batin",
@@ -12292,7 +11987,7 @@
       "en": "Ar-Rahman (The All-Merciful)",
       "pt": "Ar-Rahman (O Todo-Misericordioso)"
      },
-     "ortakBolum": 13
+     "ortakBolum": 12
     },
     {
      "id": "evvel",
@@ -13213,158 +12908,6 @@
    "ilgiliSirlar": [],
    "ilgiliCizimler": [],
    "birlikteEsma": []
-  },
-  {
-   "view": "terimler",
-   "id": "vahiy",
-   "isim": {
-    "tr": "Vahiy",
-    "en": "Revelation (Wahy)",
-    "pt": "Revelação (Wahy)"
-   },
-   "otomatikEslesmeYok": false,
-   "eslesenTerim": "Vahiy",
-   "futuhat": {
-    "ilk": {
-     "id": "c1k7",
-     "route": "/futuhat/c1k7/",
-     "title": {
-      "tr": "Harflerin Velâyet Mertebeleri",
-      "en": "The Sainthood Ranks of the Letters",
-      "pt": "As Hierarquias de Santidade das Letras"
-     }
-    },
-    "son": {
-     "id": "c16k212",
-     "route": "/futuhat/c16k212/",
-     "title": {
-      "tr": "Hüviyet: Tecellî Ederken Gayb Kalan Yön",
-      "en": "Identity: the Side That Stays Unseen While He Discloses Himself",
-      "pt": "Identidade: o Lado Que Permanece Invisível Enquanto Ele Se Manifesta"
-     }
-    },
-    "enYogun": {
-     "id": "c6k85",
-     "route": "/futuhat/c6k85/",
-     "title": {
-      "tr": "Göz Açıp Kapayıncaya Kadar: Sezgiden Vakfe'ye",
-      "en": "In the Blink of an Eye: From Intuition to the Standing",
-      "pt": "Num Piscar de Olhos: Da Intuição à Espera"
-     },
-     "oran": 6.08
-    },
-    "toplamKisim": 22
-   },
-   "fusus": {
-    "ilk": {
-     "id": "fs14",
-     "route": "/fusus/fs14/",
-     "title": {
-      "tr": "Kader — Ezelde Kendin Hakkında Söylediğin",
-      "en": "Fate — What You Said About Yourself in Eternity",
-      "pt": "O Destino — O Que Disseste de Ti Próprio na Eternidade"
-     }
-    },
-    "son": {
-     "id": "fs14",
-     "route": "/fusus/fs14/",
-     "title": {
-      "tr": "Kader — Ezelde Kendin Hakkında Söylediğin",
-      "en": "Fate — What You Said About Yourself in Eternity",
-      "pt": "O Destino — O Que Disseste de Ti Próprio na Eternidade"
-     }
-    },
-    "enYogun": {
-     "id": "fs14",
-     "route": "/fusus/fs14/",
-     "title": {
-      "tr": "Kader — Ezelde Kendin Hakkında Söylediğin",
-      "en": "Fate — What You Said About Yourself in Eternity",
-      "pt": "O Destino — O Que Disseste de Ti Próprio na Eternidade"
-     },
-     "oran": 1.05
-    },
-    "toplamKisim": 1
-   },
-   "ilgiliAyet": [
-    "10:10",
-    "12:108",
-    "22:2",
-    "26:75",
-    "2:149",
-    "5:109",
-    "6:1",
-    "7:143",
-    "8:20"
-   ],
-   "ilgiliHadis": [],
-   "ilgiliSirlar": [
-    {
-     "id": "veraset-i-nebeviyye-anlatilamayan-sirri",
-     "topic": {
-      "tr": "Velilerin nebevî varisliği: bir sayfaya sığmayan ince sır",
-      "en": "The saints' inheritance from the prophets: a subtle secret too vast for these pages",
-      "pt": "A herança dos santos vinda dos profetas: um segredo sutil vasto demais para estas páginas"
-     }
-    }
-   ],
-   "ilgiliCizimler": [],
-   "birlikteEsma": [
-    {
-     "id": "allah",
-     "isim": {
-      "tr": "Allah",
-      "en": "Allah",
-      "pt": "Allah"
-     },
-     "ortakBolum": 22
-    },
-    {
-     "id": "batin",
-     "isim": {
-      "tr": "el-Bâtın",
-      "en": "Al-Batin (The Hidden)",
-      "pt": "Al-Batin (O Oculto)"
-     },
-     "ortakBolum": 5
-    },
-    {
-     "id": "nisbi-grup",
-     "isim": {
-      "tr": "Nispet ve İzafet İsimleri",
-      "en": "Names of Relation",
-      "pt": "Nomes de Relação"
-     },
-     "ortakBolum": 4
-    },
-    {
-     "id": "evvel",
-     "isim": {
-      "tr": "el-Evvel",
-      "en": "Al-Awwal (The First)",
-      "pt": "Al-Awwal (O Primeiro)"
-     },
-     "ortakBolum": 3
-    },
-    {
-     "id": "varis",
-     "isim": {
-      "tr": "el-Vâris",
-      "en": "Al-Warith (The Inheritor)",
-      "pt": "Al-Warith (O Herdeiro)"
-     },
-     "ortakBolum": 3
-    },
-    {
-     "id": "muddebir",
-     "isim": {
-      "tr": "el-Müdebbir",
-      "en": "Al-Mudabbir (The Regulator)",
-      "pt": "Al-Mudabbir (O Regulador)"
-     },
-     "ortakBolum": 2
-    }
-   ]
   },
   {
    "view": "terimler",
@@ -14371,7 +13914,7 @@
       "en": "Ar-Rahman (The All-Merciful)",
       "pt": "Ar-Rahman (O Todo-Misericordioso)"
      },
-     "ortakBolum": 3
+     "ortakBolum": 2
     },
     {
      "id": "evvel",
@@ -14392,24 +13935,6 @@
      "ortakBolum": 2
     }
    ]
-  },
-  {
-   "view": "terimler",
-   "id": "makam-sutunu",
-   "isim": {
-    "tr": "Makâmın Dış Sütunu",
-    "en": "The Station's Outer Pillar",
-    "pt": "O Pilar Externo da Estação"
-   },
-   "otomatikEslesmeYok": false,
-   "eslesenTerim": "Makâmın Dış Sütunu",
-   "futuhat": null,
-   "fusus": null,
-   "ilgiliAyet": [],
-   "ilgiliHadis": [],
-   "ilgiliSirlar": [],
-   "ilgiliCizimler": [],
-   "birlikteEsma": []
   },
   {
    "view": "terimler",
@@ -16166,245 +15691,6 @@
   },
   {
    "view": "terimler",
-   "id": "araf",
-   "isim": {
-    "tr": "A'râf (Yükseklikler)",
-    "en": "Al-A'raf (The Heights)",
-    "pt": "Al-A'raf (As Alturas)"
-   },
-   "otomatikEslesmeYok": false,
-   "eslesenTerim": "A'râf",
-   "futuhat": {
-    "ilk": {
-     "id": "c1k12",
-     "route": "/futuhat/c1k12/",
-     "title": {
-      "tr": "Etkin Babalar, Edilgen Analar: Hebâ'nın Doğduğu Yer",
-      "en": "Active Fathers, Receptive Mothers: Where Haba Was Born",
-      "pt": "Pais Ativos, Mães Receptivas: Onde Haba Nasceu"
-     }
-    },
-    "son": {
-     "id": "c16k220",
-     "route": "/futuhat/c16k220/",
-     "title": {
-      "tr": "Tecelli, Görme ve İstiğfar: Kutub'un Sınav Mertebeleri",
-      "en": "Theophany, Seeing, and Seeking Forgiveness: The Pole's Levels of Trial",
-      "pt": "Teofania, Visão e Arrependimento: Os Níveis de Provação do Polo"
-     }
-    },
-    "enYogun": {
-     "id": "c16k220",
-     "route": "/futuhat/c16k220/",
-     "title": {
-      "tr": "Tecelli, Görme ve İstiğfar: Kutub'un Sınav Mertebeleri",
-      "en": "Theophany, Seeing, and Seeking Forgiveness: The Pole's Levels of Trial",
-      "pt": "Teofania, Visão e Arrependimento: Os Níveis de Provação do Polo"
-     },
-     "oran": 1.61
-    },
-    "toplamKisim": 10
-   },
-   "fusus": {
-    "ilk": {
-     "id": "fs16",
-     "route": "/fusus/fs16/",
-     "title": {
-      "tr": "Kelime-i Süleymâniyye",
-      "en": "The Word of Solomon",
-      "pt": "A Palavra de Salomão"
-     }
-    },
-    "son": {
-     "id": "fs25",
-     "route": "/fusus/fs25/",
-     "title": {
-      "tr": "Kelime-i Müseviyye",
-      "en": "The Word of Moses",
-      "pt": "A Palavra de Moisés"
-     }
-    },
-    "enYogun": {
-     "id": "fs16",
-     "route": "/fusus/fs16/",
-     "title": {
-      "tr": "Kelime-i Süleymâniyye",
-      "en": "The Word of Solomon",
-      "pt": "A Palavra de Salomão"
-     },
-     "oran": 1.45
-    },
-    "toplamKisim": 2
-   },
-   "ilgiliAyet": [
-    "22:2",
-    "27:59",
-    "28:68",
-    "7:12",
-    "7:143",
-    "7:146",
-    "7:172",
-    "9:105"
-   ],
-   "ilgiliHadis": [],
-   "ilgiliSirlar": [],
-   "ilgiliCizimler": [],
-   "birlikteEsma": [
-    {
-     "id": "allah",
-     "isim": {
-      "tr": "Allah",
-      "en": "Allah",
-      "pt": "Allah"
-     },
-     "ortakBolum": 12
-    },
-    {
-     "id": "batin",
-     "isim": {
-      "tr": "el-Bâtın",
-      "en": "Al-Batin (The Hidden)",
-      "pt": "Al-Batin (O Oculto)"
-     },
-     "ortakBolum": 7
-    },
-    {
-     "id": "evvel",
-     "isim": {
-      "tr": "el-Evvel",
-      "en": "Al-Awwal (The First)",
-      "pt": "Al-Awwal (O Primeiro)"
-     },
-     "ortakBolum": 4
-    },
-    {
-     "id": "zat",
-     "isim": {
-      "tr": "Zât",
-      "en": "The Essence",
-      "pt": "A Essência"
-     },
-     "ortakBolum": 3
-    },
-    {
-     "id": "rahman",
-     "isim": {
-      "tr": "er-Rahmân",
-      "en": "Ar-Rahman (The All-Merciful)",
-      "pt": "Ar-Rahman (O Todo-Misericordioso)"
-     },
-     "ortakBolum": 2
-    },
-    {
-     "id": "alim",
-     "isim": {
-      "tr": "el-Âlim",
-      "en": "Al-'Alim (The Knowing)",
-      "pt": "Al-'Alim (O Sapiente)"
-     },
-     "ortakBolum": 2
-    }
-   ]
-  },
-  {
-   "view": "terimler",
-   "id": "sirat",
-   "isim": {
-    "tr": "Sırât (Köprü)",
-    "en": "Al-Sirat (The Bridge)",
-    "pt": "Al-Sirat (A Ponte)"
-   },
-   "otomatikEslesmeYok": false,
-   "eslesenTerim": "Sırât",
-   "futuhat": null,
-   "fusus": {
-    "ilk": {
-     "id": "fs10",
-     "route": "/fusus/fs10/",
-     "title": {
-      "tr": "Herkes Kendi Yolunda Doğru Yürüyor — ve Yine de Bir Çağrı Var",
-      "en": "Everyone Walks Straight on His Own Path — and Still There Is a Call",
-      "pt": "Cada Um Anda Direito no Seu Caminho — e Ainda Assim Há um Chamamento"
-     }
-    },
-    "son": {
-     "id": "fs27",
-     "route": "/fusus/fs27/",
-     "title": {
-      "tr": "Kelime-i Muhammediyye",
-      "en": "The Word of Muhammad",
-      "pt": "A Palavra de Muhammad"
-     }
-    },
-    "enYogun": {
-     "id": "fs10",
-     "route": "/fusus/fs10/",
-     "title": {
-      "tr": "Herkes Kendi Yolunda Doğru Yürüyor — ve Yine de Bir Çağrı Var",
-      "en": "Everyone Walks Straight on His Own Path — and Still There Is a Call",
-      "pt": "Cada Um Anda Direito no Seu Caminho — e Ainda Assim Há um Chamamento"
-     },
-     "oran": 1.48
-    },
-    "toplamKisim": 2
-   },
-   "ilgiliAyet": [
-    "11:56",
-    "17:44"
-   ],
-   "ilgiliHadis": [],
-   "ilgiliSirlar": [
-    {
-     "id": "kimse-dogru-yoldan-sapmaz-fatiha-nin",
-     "topic": {
-      "tr": "Kimse doğru yoldan sapmaz: Fâtiha'nın 'gazaba uğrayanlar'ı üzerine radikal bir okuma",
-      "en": "No one ever strays from the straight path: a radical reading of the Fatiha's 'those who incur wrath'",
-      "pt": "Ninguém se desvia do caminho reto: uma leitura radical dos 'que incorrem em ira' da Fatiha"
-     }
-    }
-   ],
-   "ilgiliCizimler": [],
-   "birlikteEsma": [
-    {
-     "id": "zat",
-     "isim": {
-      "tr": "Zât",
-      "en": "The Essence",
-      "pt": "A Essência"
-     },
-     "ortakBolum": 2
-    },
-    {
-     "id": "allah",
-     "isim": {
-      "tr": "Allah",
-      "en": "Allah",
-      "pt": "Allah"
-     },
-     "ortakBolum": 2
-    },
-    {
-     "id": "ahad-esma",
-     "isim": {
-      "tr": "el-Ahad",
-      "en": "Al-Ahad (The Unique One)",
-      "pt": "Al-Ahad (O Único)"
-     },
-     "ortakBolum": 1
-    },
-    {
-     "id": "cami",
-     "isim": {
-      "tr": "el-Câmi'",
-      "en": "Al-Jami' (The Gatherer)",
-      "pt": "Al-Jami' (O Reunidor)"
-     },
-     "ortakBolum": 1
-    }
-   ]
-  },
-  {
-   "view": "terimler",
    "id": "berzah",
    "isim": {
     "tr": "Berzah (Ara Bölge)",
@@ -17090,7 +16376,7 @@
       "en": "Ar-Rahman (The All-Merciful)",
       "pt": "Ar-Rahman (O Todo-Misericordioso)"
      },
-     "ortakBolum": 9
+     "ortakBolum": 8
     },
     {
      "id": "evvel",
@@ -17133,14 +16419,14 @@
      }
     },
     "enYogun": {
-     "id": "c15k175",
-     "route": "/futuhat/c15k175/",
+     "id": "c6k83",
+     "route": "/futuhat/c6k83/",
      "title": {
-      "tr": "“Ben Sadece Seninle Perdelendim” — ve “Öğren Ama İfşa Etme”",
-      "en": "“I Am Veiled Only by You” — and “Learn It, but Do Not Divulge It”",
-      "pt": "“Estou Velado Apenas por Ti” — e “Aprende-o, mas Não o Divulgues”"
+      "tr": "Gizli Kalanın İzinde: Kaderden Âdem'e",
+      "en": "In the Trace of What Stays Hidden: From Destiny to Adam",
+      "pt": "No Rastro do que Permanece Oculto: Do Destino a Adão"
      },
-     "oran": 4.64
+     "oran": 5.14
     },
     "toplamKisim": 18
    },
@@ -17253,11 +16539,11 @@
      "ortakBolum": 3
     },
     {
-     "id": "rahman",
+     "id": "alim",
      "isim": {
-      "tr": "er-Rahmân",
-      "en": "Ar-Rahman (The All-Merciful)",
-      "pt": "Ar-Rahman (O Todo-Misericordioso)"
+      "tr": "el-Âlim",
+      "en": "Al-'Alim (The Knowing)",
+      "pt": "Al-'Alim (O Sapiente)"
      },
      "ortakBolum": 2
     }
@@ -17735,7 +17021,7 @@
       "en": "Wiping Over Footwear, Waters, and What Breaks Ablution: The Five Sources of Transcendence",
       "pt": "O Gesto de Esfregar Sobre o Calçado, as Águas, e o Que Invalida a Ablução: As Cinco Fontes da Transcendência"
      },
-     "oran": 6.04
+     "oran": 6.05
     },
     "toplamKisim": 48
    },
@@ -18148,24 +17434,6 @@
    },
    "otomatikEslesmeYok": false,
    "eslesenTerim": "Dört Varlık Mertebesi: 'Masa' Örneği",
-   "futuhat": null,
-   "fusus": null,
-   "ilgiliAyet": [],
-   "ilgiliHadis": [],
-   "ilgiliSirlar": [],
-   "ilgiliCizimler": [],
-   "birlikteEsma": []
-  },
-  {
-   "view": "terimler",
-   "id": "idrak-bes-kademe",
-   "isim": {
-    "tr": "Beş Kademeli İdrak Zinciri",
-    "en": "The Five-Stage Chain of Perception",
-    "pt": "A Cadeia de Cinco Estágios da Percepção"
-   },
-   "otomatikEslesmeYok": false,
-   "eslesenTerim": "Beş Kademeli İdrak Zinciri",
    "futuhat": null,
    "fusus": null,
    "ilgiliAyet": [],

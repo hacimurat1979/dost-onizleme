@@ -18,47 +18,9 @@ window.__vahdetApp = (function () {
   let data = null;
   let fetchPromise = null;
 
-  // Eleştiri Arkeolojisi köprüsü (2026-08-06). vahdet-elestiri.json'daki
-  // maddeler ile elestiri-arkeolojisi.json'daki kişiler arasında ELLE
-  // kurulmuş bağlar -- sirlar-sorular.json ile aynı desen (bkz.
-  // data/ibn-arabi/vahdet-elestiri-kopru.json'un `not` alanı). Bağlar geç
-  // gelirse (ikinci fetch daha yavaşsa) panel bağlar olmadan bir kez
-  // render olur, sonra kendini tazeler -- sirlar/sorular köprüsüyle aynı
-  // desen.
-  let koprü = null;
-  const kisiAdi = new Map();
-  function koprüYukle() {
-    if (koprü) return Promise.resolve(koprü);
-    return Promise.all([
-      GU.fetchJson("data/ibn-arabi/vahdet-elestiri-kopru.json"),
-      GU.fetchJson("data/ibn-arabi/elestiri-arkeolojisi.json"),
-    ]).then(([k, ea]) => {
-      koprü = k;
-      (ea.kisiler || []).forEach((p) => kisiAdi.set(p.id, p.ad));
-      return k;
-    }).catch(() => null);
+  function tt(dict) {
+    return I18n ? I18n.pick3(dict || {}) : (dict && (dict.tr || dict.en || dict.pt)) || "";
   }
-  function elestiriArkeolojisiHtml(maddeId) {
-    if (!koprü) return "";
-    const bag = (koprü.baglar || []).filter((b) => b.madde === maddeId);
-    if (!bag.length) return "";
-    const satir = bag.map((b) => {
-      const ad = kisiAdi.get(b.kisi);
-      if (!ad) return "";
-      return `<button type="button" class="vahdet-ea-baglar__satir" data-view="elestiri-arkeolojisi" data-id="${esc(b.kisi)}">
-        <span class="vahdet-ea-baglar__ad">${esc(tt(ad))}</span>
-        <span class="vahdet-ea-baglar__neden">${esc(tt(b.neden))}</span></button>`;
-    }).join("");
-    if (!satir) return "";
-    return `<div class="vahdet-ea-baglar">
-      <p class="detail-eyebrow detail-eyebrow--section">${esc(tt({
-        tr: "Eleştiri Arkeolojisi'nde de var",
-        en: "Also in Archaeology of Criticism",
-        pt: "Também na Arqueologia da Crítica" }))}</p>
-      ${satir}</div>`;
-  }
-
-  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
 
   function esc(s) {
     return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -135,7 +97,6 @@ window.__vahdetApp = (function () {
       `</div>` +
       `</div>` +
       gerilim +
-      elestiriArkeolojisiHtml(m.id) +
       `</article>`
     );
   }
@@ -151,19 +112,12 @@ window.__vahdetApp = (function () {
         window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id || undefined);
       });
     });
-    contentEl.querySelectorAll(".vahdet-ea-baglar__satir").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        window.__dostNav && window.__dostNav.goTo(btn.dataset.view, btn.dataset.id || undefined);
-      });
-    });
   }
 
   return {
     activate() {
       fetchData().then((d) => {
         if (d) render();
-        // Köprü verisi geç gelirse paneli tazele -- bağlar görünmeden kalmasın.
-        if (!koprü) koprüYukle().then((k) => { if (k && data) render(); });
       });
     },
     onLangChange() {

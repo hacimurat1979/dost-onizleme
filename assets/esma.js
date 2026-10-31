@@ -26,34 +26,9 @@
   const detailPanel = document.getElementById("detail-panel");
   const detailContent = document.getElementById("detail-content");
   const wrapEl = document.getElementById("esma-wrap");
-  const tooltip = document.getElementById("esma-tooltip");
-  const legendEl = document.getElementById("esma-legend");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // hal.js/ontology.js'in kenar hover'ıyla aynı desen -- #esma-tooltip
-  // DOM'da vardı ama hiçbir JS'ten bağlanmıyordu (UI denetimi bulgusu):
-  // .esmaX-rel'e değinmek/tıklamak öncesinde hiçbir gerekçe göstermiyordu.
-  function showRelTooltipEsma(r, event) {
-    if (!tooltip) return;
-    const from = rawById.get(r.from), to = rawById.get(r.to);
-    if (!from || !to) return;
-    // Elle yazılmış ilişkiler (.esmaX-rel) r.label/r.type taşır; türetilmiş
-    // kenarlar (.esmaX-derived) r.aciklama taşır ve tipsiz -- ikisi de aynı
-    // tooltip'i paylaşıyor, o yüzden ikisini de kabul ediyor.
-    const meta = r.type ? RELATION_TYPE_META[r.type] : null;
-    tooltip.innerHTML = GU.edgeReasonHtml({
-      title: `${tt(from.name)} ↔ ${tt(to.name)}`,
-      kindLabel: meta ? tt(meta.label) : tt({ tr: "Saydığımız bir bağ", en: "A link we counted", pt: "Um vínculo que contamos" }),
-      reason: tt(r.label) || tt(r.aciklama),
-      confidence: edgeConfidenceText(r.confidence),
-    });
-    tooltip.hidden = false;
-    GU.moveTooltip(tooltip, wrapEl, event);
-  }
-  function moveTooltipEsma(event) { GU.moveTooltip(tooltip, wrapEl, event); }
-  function hideTooltipEsma() { GU.hideTooltip(tooltip); }
-
-  const tt = I18n.pick3;  // window.DostI18n.pick3 zaten (!obj) koruması yapıyor (2026-08-15: 26 dosyadaki tekrar buraya toplandı)
+  function tt(dict) { return I18n.pick3(dict || {}); }
   function linkify(text, view, id) {
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text, view, id) : text;
   }
@@ -85,71 +60,9 @@
     const renderer = r.diagram && relationDiagramRenderers[r.diagram.type];
     if (!renderer) return "";
     return `<div class="term-diagram-row"><div class="term-diagram-card">
-      <div class="term-diagram-svg-wrap" data-relation-diagram="1" role="button" tabindex="0"
-           aria-label="${tt({ tr: "Büyüt", en: "Enlarge", pt: "Ampliar" })}">${renderer(r.diagram)}</div>
+      ${renderer(r.diagram)}
       <p class="term-diagram-caption">${tt(r.diagram.note)}</p>
     </div></div>`;
-  }
-
-  // terimler.js'nin aynı .term-diagram-card görselini büyütme (lightbox)
-  // ile bağlayan karşılığı burada eksikti -- düğme görünüyor, tıklama hiçbir
-  // şey yapmıyordu (bkz. ontology.js'teki aynı kusur, kullanıcı bildirimi
-  // 2026-08-04). showRelationDetail'in openPanel'inden hemen sonra çağrılır.
-  function wireRelationDiagram(r) {
-    if (!r.diagram || !window.DostLightbox) return;
-    const renderer = relationDiagramRenderers[r.diagram.type];
-    if (!renderer) return;
-    const wrap = detailContent.querySelector('[data-relation-diagram="1"]');
-    if (!wrap) return;
-    const open = () => {
-      window.dostTrack && window.dostTrack("sema_acildi", { type: r.diagram.type });
-      window.DostLightbox.open({
-        closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
-        svgHtml: renderer(r.diagram),
-        caption: tt(r.diagram.note),
-      });
-    };
-    wrap.addEventListener("click", open);
-    wrap.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
-    });
-  }
-
-  // B1 karşılığı (bkz. ontology.js aynı adlı blok): "ne kadar eminiz" notu.
-  // Ontoloji'nin 3 kenarı elle taranmış CONFIDENCE_LABEL sözlüğüyle aynı --
-  // burada da veri ayrı bir "rastgele" atama değil, her ilişkinin kendi
-  // düğümlerinin (zati-grup/hayy/alim/murid/kadir/batin/zahir/celal/cemal)
-  // sourced summary metnine bakılarak karar verildi (bkz. esma.json'daki
-  // "confidence" alanı ve bu değişikliğin commit notu).
-  const CONFIDENCE_LABEL = {
-    "Yüksek": { tr: "Yüksek", en: "High", pt: "Alta" },
-    "Orta": { tr: "Orta", en: "Medium", pt: "Média" },
-    "Düşük": { tr: "Düşük", en: "Low", pt: "Baixa" },
-    "Hipotez": { tr: "Hipotez", en: "Hypothesis", pt: "Hipótese" },
-    "Bilinmiyor": { tr: "Bilinmiyor", en: "Unknown", pt: "Desconhecida" },
-    "Gelecekte-doğrulanmalı": { tr: "Gelecekte doğrulanmalı", en: "To be confirmed later", pt: "A confirmar mais tarde" },
-  };
-  function confSlug(c) {
-    return c === "Orta" ? "orta"
-      : c === "Düşük" ? "dusuk"
-      : c === "Hipotez" ? "hipotez"
-      : c === "Bilinmiyor" ? "bilinmiyor"
-      : c === "Gelecekte-doğrulanmalı" ? "gelecek"
-      : "yuksek";
-  }
-  function edgeConfidenceText(c) {
-    if (!c || c === "Yüksek") return "";
-    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
-    return tt({ tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " }) + tt(label);
-  }
-  function confidenceNoteHtml(c) {
-    if (!c || c === "Yüksek") return "";
-    const label = CONFIDENCE_LABEL[c] || { tr: c, en: c, pt: c };
-    return `<p class="detail-confidence detail-confidence--${confSlug(c)}">${tt({
-      tr: "Güvenimiz: ", en: "Our confidence: ", pt: "Nossa confiança: " })}<strong>${tt(label)}</strong> — ${tt({
-      tr: "ilişkinin kendi metni bu okumayı henüz kesinleşmiş saymıyor.",
-      en: "the relation's own text does not yet treat this reading as settled.",
-      pt: "o próprio texto da relação ainda não trata esta leitura como definitiva." })}</p>`;
   }
 
   const RELATION_TYPE_META = {
@@ -248,10 +161,7 @@
         en: "The pole of Majesty gathers the Names that voice God's loftiness, severity and remoteness from the servant (transcendence) — al-Qahhar, al-'Aziz, al-Muntaqim. For Ibn Arabi, Majesty never discloses itself bare; every act of severity comes clothed in a Beauty (nearness, mercy).",
         pt: "O polo da Majestade reúne os Nomes que expressam a altivez, a severidade e a distância de Deus em relação ao servo (transcendência) — al-Qahhar, al-'Aziz, al-Muntaqim. Para Ibn Arabi, a Majestade nunca se revela nua; todo ato de severidade vem revestido de uma Beleza (proximidade, misericórdia)."
       },
-      // Kutup özeti sentetik bir gruplama (bkz. yukarıdaki "sentetik" notu),
-      // ama Celâl'i ayrı bir bölüm olarak ele alan asıl kaynak burada --
-      // "celal" isim düğümünün kendi kaynağıyla aynı (esma.json).
-      sources: ["Fütûhât-ı Mekkiyye, Cilt 9 (Ekrem Demirli çev.) — İki Yüz Kırk Birinci Bölüm: Celâl"]
+      analogy: { tr: "Gökgürültüsü gibi: sesi korkutur ama getirdiği yağmur rahmettir.", en: "Like thunder: its sound frightens, yet the rain it brings is mercy.", pt: "Como o trovão: seu som assusta, mas a chuva que traz é misericórdia." }
     },
     cemal: {
       name: { tr: "Cemâl — Güzellik", en: "Jamal — Beauty", pt: "Jamal — Beleza" },
@@ -261,20 +171,17 @@
         en: "The pole of Beauty gathers the Names that voice God's beauty, nearness and grace toward the servant (immanence) — ar-Rahman, al-Latif, al-Wadud. Beauty is the wider circle enclosing Majesty: every self-disclosure arrives first as a beauty.",
         pt: "O polo da Beleza reúne os Nomes que expressam a beleza, a proximidade e a graça de Deus para com o servo (imanência) — ar-Rahman, al-Latif, al-Wadud. A Beleza é o círculo mais amplo que envolve a Majestade: toda autorrevelação chega primeiro como uma beleza."
       },
-      sources: ["Fütûhât-ı Mekkiyye, Cilt 9 (Ekrem Demirli çev.) — İki Yüz Kırk İkinci Bölüm: Cemâl"]
+      analogy: { tr: "Şafak gibi: karanlığı dağıtan ilk ışık her zaman yumuşaktır.", en: "Like dawn: the first light that scatters the dark is always gentle.", pt: "Como a aurora: a primeira luz que dispersa a escuridão é sempre suave." }
     },
     kemal: {
       name: { tr: "Kemâl — Kemâl (İkisi Birden)", en: "Kamal — Perfection (Both at Once)", pt: "Kamal — Perfeição (Ambos ao Mesmo Tempo)" },
       short: { tr: "Celâl ile Cemâl'i birleştiren isimler", en: "Names uniting Majesty and Beauty", pt: "Nomes que unem Majestade e Beleza" },
       summary: {
-        tr: "Kemâl kutbu, Celâl ile Cemâl'i bir arada taşıyan, ikisinin ötesinde bir bütünlüğe işaret eden isimleri toplar — Allah, el-Melik, el-Kuddûs gibi; ayrıca isimlerin sınıflandırıldığı grup başlıkları (Zâtî/Nispetî/Fiilî) da bu kutupta durur.",
-        en: "The pole of Perfection gathers the Names that carry Majesty and Beauty together, pointing to a wholeness beyond both — Allah, al-Malik, al-Quddus; the classifying group-headings (Names of the Essence / of relation / of act) also rest here.",
-        pt: "O polo da Perfeição reúne os Nomes que carregam Majestade e Beleza juntas, apontando para uma totalidade além de ambas — Allah, al-Malik, al-Quddus; os títulos de grupo classificadores (Nomes da Essência / de relação / de ato) também repousam aqui."
+        tr: "Kemâl kutbu, Celâl ile Cemâl'i bir arada taşıyan, ikisinin ötesinde bir bütünlüğe işaret eden isimleri toplar — Allah, el-Melik, el-Kuddûs gibi; ayrıca isimlerin sınıflandırıldığı grup başlıkları (Zâtî/Nispetî/Fiilî) da bu kutupta durur. Kemâl, kemâl (tamlık): zıtları bir arada tutabilme.",
+        en: "The pole of Perfection gathers the Names that carry Majesty and Beauty together, pointing to a wholeness beyond both — Allah, al-Malik, al-Quddus; the classifying group-headings (Names of the Essence / of relation / of act) also rest here. Kamal is completeness: the capacity to hold opposites at once.",
+        pt: "O polo da Perfeição reúne os Nomes que carregam Majestade e Beleza juntas, apontando para uma totalidade além de ambas — Allah, al-Malik, al-Quddus; os títulos de grupo classificadores (Nomes da Essência / de relação / de ato) também repousam aqui. Kamal é completude: a capacidade de sustentar opostos ao mesmo tempo."
       },
-      // "Kemâl" bağımsız bir isim düğümü değil (bkz. esma.json); özetin
-      // dayandığı bölüm "allah" ve grup başlıklarının (zati-grup vd.) da
-      // kaynağı olan İlahlık Mertebesi bölümü.
-      sources: ["Fütûhât-ı Mekkiyye, Cilt 16 (Ekrem Demirli çev.) — Beş Yüz Elli Sekizinci Bölüm: İlahlık Mertebesi"]
+      analogy: { tr: "Berzah gibi: iki denizi ayıran ama ikisine de ait olan ince çizgi.", en: "Like a barzakh: the fine line that separates two seas yet belongs to both.", pt: "Como um barzakh: a linha fina que separa dois mares e pertence a ambos." }
     }
   };
 
@@ -354,7 +261,7 @@
     // Üç kutup kümesi (sentetik) -- Allah ile isimler arasına giren katman.
     POLES.forEach((p) => {
       add({
-        id: "cluster-" + p, raw: { id: "cluster-" + p, pole: p, name: CLUSTER_META[p].name, short: CLUSTER_META[p].short, summary: CLUSTER_META[p].summary, analogy: CLUSTER_META[p].analogy, insights: [], sources: CLUSTER_META[p].sources || [] },
+        id: "cluster-" + p, raw: { id: "cluster-" + p, pole: p, name: CLUSTER_META[p].name, short: CLUSTER_META[p].short, summary: CLUSTER_META[p].summary, analogy: CLUSTER_META[p].analogy, insights: [], sources: [] },
         kind: "cluster", pole: p, depthA: 1, parentId: "allah", childIds: [], level: 0, importance: 0.7,
       });
     });
@@ -499,15 +406,12 @@
   }
 
   // Görünür düğümleri (2B taban konumlarına göre) çerçeveye sığdır; hiçbir
-  // şey kırpılmasın, alt-sol lejanta olabildiğince az girsin. `idFilter`
-  // verilirse (küme odağı) yalnız o kümeye kadraj alınır -- açılım
-  // katmanından bağımsız olarak.
-  function fitVisible(idFilter) {
+  // şey kırpılmasın, alt-sol lejanta olabildiğince az girsin.
+  function fitVisible() {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 620;
     let minx = 1e9, miny = 1e9, maxx = -1e9, maxy = -1e9, any = false;
     nodes.forEach((n) => {
-      const included = idFilter ? idFilter.has(n.id) : n.visTarget > 0.5;
-      if (included && n.bx !== undefined) {
+      if (n.visTarget > 0.5 && n.bx !== undefined) {
         any = true;
         const r = n.radius + 18; // etiket payı
         minx = Math.min(minx, n.bx - r); maxx = Math.max(maxx, n.bx + r);
@@ -583,28 +487,7 @@
     return n;
   }
 
-  let bgLayer, edgeLayer, relLayer, flowLayer, clusterLayer, particleLayer, nodeLayer;
-  // #esma-legend'in ekran dikdörtgeni, SVG'nin kendi (merkez-orijinli, pan/
-  // zoom'a göre ölçeklenmiş) koordinat uzayına çevrilip önbelleğe alınıyor
-  // -- her karede getBoundingClientRect() okumak (kod taraması, 2026-08-27:
-  // render() saniyede 60 kez bekleyen DOM yazımlarını FLUSH ederdi, zorunlu
-  // senkron layout) yerine yalnız gerçekten değiştiğinde (pencere ölçüsü,
-  // lejant aç/kapa) yeniden hesaplanıyor.
-  let legendBox = null, legendBoxDirty = true;
-  function refreshLegendBox() {
-    legendBoxDirty = false;
-    if (!legendEl || !svgNode) { legendBox = null; return; }
-    const lr = legendEl.getBoundingClientRect();
-    if (!lr.width || !lr.height) { legendBox = null; return; }
-    const sr = svgNode.getBoundingClientRect();
-    const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 620;
-    legendBox = {
-      x0: lr.left - sr.left - w / 2,
-      x1: lr.right - sr.left - w / 2,
-      y0: lr.top - sr.top - h / 2,
-      y1: lr.bottom - sr.top - h / 2,
-    };
-  }
+  let bgLayer, edgeLayer, relLayer, flowLayer, particleLayer, nodeLayer;
   let particles = [];
   let flow = null;   // { chain:[ids], start, dur }
   let flowRepeatTimer = null;
@@ -614,6 +497,8 @@
   // aralıkla kendini tekrarlıyor -- çok sık olmasın diye birkaç saniyede
   // bir (kullanıcının kendi ifadesiyle).
   const FLOW_REPEAT_MS = 5200;
+  let rafId = null;
+  let lastTs = 0;
 
   function buildDom() {
     svg.selectAll("*").remove();
@@ -638,7 +523,6 @@
     relLayer = svg.append("g").attr("class", "esmaX-relations");
     particleLayer = svg.append("g").attr("class", "esmaX-particles");
     flowLayer = svg.append("g").attr("class", "esmaX-flow");
-    clusterLayer = svg.append("g").attr("class", "esmaX-cluster-focus");
     nodeLayer = svg.append("g").attr("class", "esmaX-nodes");
   }
 
@@ -669,10 +553,6 @@
   // İlişkili küme: seçilenin kendisi + Allah'a giden zincir + Zât + çocuklar +
   // çapraz ilişki ortakları (1. derece); ikinci derece = bunların komşuları.
   let selectedId = null, hoverId = null;
-  // Küme odağı (FCA): { id, members:Set<esmaId>, nitelikler } -- lightbox'taki
-  // bir kümeye "haritada göster" denince kurulur. `selectedId` gibi bağımsız
-  // bir kip: nodeOpacity() ikisini çarparak birleştirir, aynı anda çalışabilirler.
-  let clusterFocus = null;
   function relationSets(id) {
     const first = new Set([id]);
     chainToAllah(id).forEach((x) => first.add(x));
@@ -691,14 +571,19 @@
     return { first, second };
   }
 
+  function ensureFrame() {
+    if (rafId == null) { lastTs = performance.now(); rafId = requestAnimationFrame(frame); }
+  }
+
   function easeInOut(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
 
-  // rAF döngü iskeleti artık GU.createFrameLoop'ta (bkz. graph-utils.js
-  // yorumu -- burada ensureFrame() lastTs'i performance.now() ile
-  // sıfırlıyordu; sürekli-aktif durumlarda (exploreOn, parçacıklar, idle
-  // dönüş) frame() kendini bu fonksiyonla sürdürdüğünden dt neredeyse 0'a
-  // çöküyordu).
-  const frameLoop = GU.createFrameLoop(wrapEl, function (ts, dt) {
+  function frame(ts) {
+    rafId = null;
+    // Görünüm ekranda değilse döngüyü tamamen durdur (bkz. GU.isViewActive).
+    // lastTs SIFIRLANMALI: aksi hâlde başka bir bölümden geri dönüldüğünde
+    // ts - lastTs devasa olup 64'e kırpılıyor ve sahne tek karede zıplıyor.
+    if (!GU.isViewActive(wrapEl)) { lastTs = 0; return; }
+    const dt = lastTs ? Math.min(64, ts - lastTs) : 16; lastTs = ts;
     let active = false;
 
     // tilt animasyonu (zamanlı, 800-1200ms sinematik)
@@ -741,9 +626,6 @@
     // altın akış
     if (flow) { active = true; if (ts - flow.start > flow.dur + 400) flow = null; }
 
-    // küme odağı: merkezden üyelere uzanan ışınların yavaş nefesi
-    if (clusterFocus && !reduceMotion) active = true;
-
     // Sakin, huzurlu dönüş -- artık HEM 2B HEM 3B'de (bkz. project()'teki
     // `spin`). Bir düğüm seçiliyken, keşif modunda, sürüklerken ve hareket
     // kısıtlaması açıkken durur: kullanıcı bir şeye odaklanmışken sahne
@@ -756,10 +638,9 @@
     // kapalıyken kare döngüsü sürsün ki bu ambient nefes hiç durmasın. AMA
     // yalnızca görünüm ekrandayken: aşağıdaki isViewActive kontrolü olmadan
     // bu döngü, başka bölüme geçildikten sonra bile sonsuza kadar sürüyor ve
-    // bütün siteyi yavaşlatıyordu (bkz. GU.createFrameLoop'un isViewActive kapısı).
-    return active || exploreOn || !reduceMotion;
-  });
-  function ensureFrame() { frameLoop.ensureFrame(); }
+    // bütün siteyi yavaşlatıyordu (bkz. frame() başındaki erken çıkış).
+    if (active || exploreOn || !reduceMotion) ensureFrame();
+  }
 
   function warmthColor(base, depthA) {
     // 3B derinliği: Allah'a yakın = sıcak/parlak, uzak = serin/atmosferik.
@@ -851,7 +732,6 @@
   function render(ts) {
     if (!nodeLayer) return;
     ts = ts || performance.now();
-    if (legendBoxDirty) refreshLegendBox();
     nodes.forEach(project);
     const pal = renderPalette();
 
@@ -862,10 +742,6 @@
     function nodeOpacity(n) {
       let o = n.vis;
       if (o < 0.01) return 0;
-      // Küme odağı: üyeler tam zuhûr eder, geri kalanı perdelenir (görsel
-      // gramerdeki ışık=zuhûr / opaklık=perdelenme eşleşmesinin doğrudan
-      // uygulanması -- yeni bir kural icat edilmedi).
-      if (clusterFocus) o *= clusterFocus.members.has(n.id) ? 1 : 0.15;
       if (selectedId) {
         if (n.id === selectedId) o *= 1;
         else if (relSet.first.has(n.id)) o *= 1;
@@ -889,7 +765,7 @@
     // Zât/Allah/kutup/seçili/hover her zaman kazanır (öncelik sonsuz).
     function estimateLabelBox(n, mode) {
       const eff = n.pscale;
-      const fontSize = Math.max(14, Math.min(21, 15 + n.importance * 8));
+      const fontSize = Math.max(10, Math.min(17, 11 + n.importance * 8));
       const text = mode === "full" ? fullName(n.raw) : shortName(n.raw);
       const w = Math.max(20, text.length * fontSize * 0.56);
       const h = fontSize * 1.25;
@@ -914,48 +790,7 @@
         if (forced) always.push(item); else candidates.push(item);
       });
       const placed = [];
-      const labelDy = new Map();
-      const labelDx = new Map();
-      // Lejant (#esma-legend) SVG'nin ÜSTÜNE bindirilen sabit bir HTML
-      // panel -- grafiğin kendi çakışma-önleme sistemi bunu hiç bilmiyordu,
-      // "Kamal — Perfection" gibi kutup başlıkları tam lejantın altına
-      // düşünce YÜZDE YÜZ örtülüyordu (kod taraması, 2026-08-27). Lejantın
-      // ekran dikdörtgeni burada da "dolu" bir kutu olarak SAYILIYOR --
-      // etiketler ona da diğer etiketlere kaçtığı gibi kaçıyor.
-      if (legendBox) placed.push(legendBox);
-      // Zorunlu ("her zaman kazanır") etiketler eskiden BİRBİRLERİYLE hiç
-      // çakışma kontrolüne girmeden sırayla yerleştiriliyordu -- Zât/Allah/
-      // kutuplar sık sık üst üste biniyordu (2026-08-07 UI denetimi,
-      // varsayılan açılışta, hiç etkileşim olmadan). "Her zaman kazanır"ın
-      // anlamı gösterilmemesi değil, gösterilirken de okunur kalması --
-      // burada da dikey kaydırmayla çözülüyor (graph-utils.js'in
-      // createLabelDeconflictor'ıyla aynı fikir, esma.js'in kendi
-      // full/short/none kutu sistemine yerelce uygulanmış).
-      always.forEach((it) => {
-        // Lejant dikey kaydırmayla kaçılamayacak kadar yüksek bir dikdörtgen
-        // (küme başlıkları çoğu zaman lejantın Y aralığının ortasına düşüyor,
-        // 24 denemelik yukarı kaydırma onu temizlemeye yetmeyebilir) -- önce
-        // YATAY olarak lejantın sağına kaçırılıyor, sonra her zamanki dikey
-        // döngü KALAN gerçek etiketlerle çakışmayı çözüyor.
-        let dx = 0;
-        if (legendBox && boxesOverlap(it.box, legendBox)) {
-          dx = legendBox.x1 + 8 - it.box.x0;
-        }
-        let dy = 0, guard = 0;
-        while (guard++ < 24) {
-          const b = { x0: it.box.x0 + dx, x1: it.box.x1 + dx, y0: it.box.y0 + dy, y1: it.box.y1 + dy };
-          const hit = placed.find((p) => boxesOverlap(b, p));
-          if (!hit) break;
-          dy -= (it.box.y1 - it.box.y0) + 4; // yukarı doğru kaydır -- etiketler düğümün üstünde
-        }
-        if (dx || dy) {
-          it.box = { x0: it.box.x0 + dx, x1: it.box.x1 + dx, y0: it.box.y0 + dy, y1: it.box.y1 + dy, text: it.box.text };
-          labelDy.set(it.n.id, dy);
-          if (dx) labelDx.set(it.n.id, dx);
-        }
-        placed.push(it.box);
-        plan.set(it.n.id, it.mode);
-      });
+      always.forEach((it) => { placed.push(it.box); plan.set(it.n.id, it.mode); });
       candidates.sort((a, b) => b.priority - a.priority);
       candidates.forEach((it) => {
         const collides = placed.some((p) => boxesOverlap(it.box, p));
@@ -963,9 +798,9 @@
         placed.push(it.box);
         plan.set(it.n.id, it.mode);
       });
-      return { plan, labelDy, labelDx };
+      return plan;
     }
-    const { plan: labelPlan, labelDy, labelDx } = buildLabelPlan();
+    const labelPlan = buildLabelPlan();
 
     // düğümler (ressam algoritması: arkadan öne)
     const ordered = nodes.slice().sort((a, b) => b.pz - a.pz);
@@ -1027,9 +862,8 @@
       if (mode === "none") { label.style("display", "none"); }
       else {
         label.style("display", null)
-          .attr("x", labelDx.get(n.id) || 0)
-          .attr("y", -r - 7 + (labelDy.get(n.id) || 0))
-          .style("font-size", Math.max(14, Math.min(21, 15 + n.importance * 8)) + "px")
+          .attr("y", -r - 7)
+          .style("font-size", Math.max(10, Math.min(17, 11 + n.importance * 8)) + "px")
           .classed("esmaX-label--strong", n.kind !== "name" || isActive || n.id === hoverId)
           .text(mode === "full" ? fullName(n.raw) : shortName(n.raw));
       }
@@ -1055,24 +889,8 @@
     const visRel = relations.filter((r) => byId.get(r.from) && byId.get(r.to) && byId.get(r.from).vis > 0.05 && byId.get(r.to).vis > 0.05);
     const rs = relLayer.selectAll("line.esmaX-rel").data(visRel, (r) => r.from + "~" + r.to);
     rs.exit().remove();
-    const re = rs.enter().append("line").attr("class", (r) => "esmaX-rel esmaX-rel--" + r.type + " esmaX-rel--conf-" + confSlug(r.confidence))
-      .on("pointerenter", (e, r) => showRelTooltipEsma(r, e))
-      .on("pointermove", (e) => moveTooltipEsma(e))
-      .on("pointerleave", hideTooltipEsma)
+    const re = rs.enter().append("line").attr("class", (r) => "esmaX-rel esmaX-rel--" + r.type)
       .on("click", (e, r) => { e.stopPropagation(); showRelationDetail(r); });
-    // Ürün denetimi P2-6 (2026-09-02): tabindex/role/aria-label/focus/blur/
-    // keydown ortak yardımcıya taşındı (GU.wireEdgeAccessibility) --
-    // davranış aynı.
-    GU.wireEdgeAccessibility(re, {
-      label: (r) => {
-        const a = byId.get(r.from), b = byId.get(r.to);
-        const nm = (n) => (tt(n.raw ? n.raw.name : n.name) || n.id);
-        return nm(a) + " – " + nm(b);
-      },
-      onFocus: (r, e) => showRelTooltipEsma(r, e),
-      onBlur: () => hideTooltipEsma(),
-      onActivate: (r) => showRelationDetail(r),
-    });
     re.merge(rs).each(function (r) {
       const a = byId.get(r.from), b = byId.get(r.to);
       const rel = selectedId && (r.from === selectedId || r.to === selectedId);
@@ -1089,21 +907,15 @@
     const ds = relLayer.selectAll("line.esmaX-derived").data(visDer, (r) => r.from + "~" + r.to);
     ds.exit().remove();
     const de = ds.enter().append("line").attr("class", "esmaX-derived")
-      .on("pointerenter", (e, r) => showRelTooltipEsma(r, e))
-      .on("pointermove", (e) => moveTooltipEsma(e))
-      .on("pointerleave", hideTooltipEsma)
-      .on("click", (e, r) => { e.stopPropagation(); showDerivedDetail(r); });
-    GU.wireEdgeAccessibility(de, {
-      label: (r) => {
+      .attr("tabindex", 0).attr("role", "button")
+      .attr("aria-label", (r) => {
         const a = byId.get(r.from), b = byId.get(r.to);
         const nm = (n) => (tt(n.raw ? n.raw.name : n.name) || n.id);
         return tt({ tr: "Saydığımız bir bağ", en: "A link we counted", pt: "Um vínculo que contamos" })
           + ": " + nm(a) + " – " + nm(b);
-      },
-      onFocus: (r, e) => showRelTooltipEsma(r, e),
-      onBlur: () => hideTooltipEsma(),
-      onActivate: (r) => showDerivedDetail(r),
-    });
+      })
+      .on("click", (e, r) => { e.stopPropagation(); showDerivedDetail(r); })
+      .on("keydown", (e, r) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showDerivedDetail(r); } });
     de.merge(ds).each(function (r) {
       const a = byId.get(r.from), b = byId.get(r.to);
       d3.select(this).attr("x1", a.px).attr("y1", a.py).attr("x2", b.px).attr("y2", b.py)
@@ -1112,7 +924,6 @@
 
     renderParticles();
     renderFlow();
-    renderClusterFocus(ts);
   }
 
   // Türetilmiş bir kenara tıklanınca: ne olduğunu SÖYLEYEN bir panel.
@@ -1245,51 +1056,11 @@
     flowLayer.append("circle").attr("class", "esmaX-flow-comet").attr("cx", cx).attr("cy", cy).attr("r", 4.5).attr("filter", "url(#esmaX-glow)");
   }
 
-  // Küme odağı (FCA): üyeler bir soy zinciri değil, ORTAK bir nitelikle
-  // (pole/grup/mertebe/ilişki) bir araya geliyor -- bu yüzden altın akıştaki
-  // yönlü "kaynaktan seçiliye" çizgisi burada yanlış olurdu (var olmayan bir
-  // sıra/köken iddia eder). Onun yerine üyelerin ortak ağırlık merkezinden
-  // her birine uzanan, ucu açık, yumuşak ışınlar: "aynı niteliği aynı anda
-  // taşıyorlar" davranışını resmeder (ışık = zuhûr grameri, doğrudan
-  // uygulanmış -- soyut ok değil).
-  function renderClusterFocus(ts) {
-    clusterLayer.selectAll("*").remove();
-    if (!clusterFocus) return;
-    const members = Array.from(clusterFocus.members).map((id) => byId.get(id)).filter((n) => n && n.vis > 0.05);
-    if (members.length < 2) return;
-    let cx = 0, cy = 0;
-    members.forEach((n) => { cx += n.px; cy += n.py; });
-    cx /= members.length; cy /= members.length;
-    const breathe = reduceMotion ? 0.5 : (1 - Math.cos((ts / 4200) * 2 * Math.PI)) / 2;
-    members.forEach((n) => {
-      clusterLayer.append("line").attr("class", "esmaX-cluster-ray")
-        .attr("x1", cx).attr("y1", cy).attr("x2", n.px).attr("y2", n.py)
-        .style("opacity", (0.14 + 0.12 * breathe) * n.vis);
-    });
-    clusterLayer.append("circle").attr("class", "esmaX-cluster-core")
-      .attr("cx", cx).attr("cy", cy).attr("r", 4.5 + 1.5 * breathe)
-      .attr("filter", "url(#esmaX-glow)")
-      .style("opacity", 0.45 + 0.25 * breathe);
-  }
-
   // ---------------------------------------------------------------------------
   // 6) Etkileşim: seçim, kaydırma (semantik derinlik), sürükleme, zoom
   // ---------------------------------------------------------------------------
   let dragging = false, dragCandidate = false, idleRotate = true;
   let dragStartX = 0, dragStartY = 0, dragStartPanX = 0, dragStartPanY = 0, dragStartYaw = 0, dragStartPitch = 0, dragPointerId = null;
-
-  // İki-parmak yaklaştırma ("Yaklaşmak", bkz. ETKILESIM_DILI.md fiil 1) --
-  // Ctrl/⌘+tekerlek masaüstünde var ama dokunmatikte hiçbir yakınlaştırma
-  // yolu yoktu. Aktif pointer'ları id'lerine göre izleyip aralarındaki
-  // mesafenin oranını zoomTarget'a uyguluyoruz; tek parmak sürükleme/döndürme
-  // mantığına dokunmuyor (o hâlâ pointermove içindeki tek-pointer yoluyla).
-  const pinchPointers = new Map();
-  let pinchStartDist = 0, pinchStartZoom = 1;
-  function pinchDistance() {
-    const pts = Array.from(pinchPointers.values());
-    if (pts.length < 2) return 0;
-    return Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
-  }
 
   function onNodeActivate(n) {
     // Küme ve isimler seçilebilir; seçildiğinde önce (gerekiyorsa) o katmanı aç.
@@ -1342,24 +1113,6 @@
 
   function fitAll() { fitVisible(); }
 
-  // "Geri çekilmek" (bkz. ETKILESIM_DILI.md, ikinci fiil). Sıfırlanan şey
-  // yalnız KAYMIŞ bakış: serbest döndürme (yaw/pitch) ve kaydırma/
-  // yakınlaştırma. Kullanıcının bir düğmeye basarak SEÇTİĞİ kipler --
-  // 2B/3B eğimi (tilt), kademe (revealLevel) ve seçili isim -- korunur;
-  // ayrım "seçtin mi, kaydın mı" sorusuyla veriliyor.
-  //
-  // Bu fonksiyon 2026-08-03'e kadar YOKTU: #esma-recenter düğmesi altı
-  // görünüm arasında tek bağlanmamış düğmeydi (grep: assets/*.js içinde tek
-  // referans yok; Playwright ile de doğrulandı -- sürükledikten sonra
-  // tıklayınca sahne dönmüyordu).
-  function recenterView() {
-    yaw = 0;
-    pitch = -0.42;          // ilk kurulumdaki değer (bkz. yukarıdaki tanım)
-    idleRotate = true;
-    fitVisible();           // seçili düğüm varken bile: kamera geri çekilir,
-    ensureFrame();          // seçim korunur
-  }
-
   // Kaydırma: düz tekerlek = semantik derinlik (katman aç/kapa). Ctrl/⌘ +
   // tekerlek = klasik yakınlaştırma (etiket ayrıntı düzeyini de sürer).
   let wheelAccum = 0, wheelLock = false;
@@ -1382,39 +1135,19 @@
   }
 
   function wireInteractions() {
-    if (svgNode.dataset.wiredInteractions) return;
-    svgNode.dataset.wiredInteractions = "1";
+    if (svgNode.dataset.wiredX) return;
+    svgNode.dataset.wiredX = "1";
 
     svgNode.addEventListener("wheel", onWheel, { passive: false });
 
-    GU.wireRecenter("esma-recenter", recenterView);
-
     const DRAG_THRESHOLD = 5;
     svgNode.addEventListener("pointerdown", (e) => {
-      pinchPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      if (pinchPointers.size === 2) {
-        // İkinci parmak indi: tek-parmak sürüklemeyi iptal et, pinch'e geç.
-        dragCandidate = false; dragging = false;
-        pinchStartDist = pinchDistance();
-        pinchStartZoom = zoomTarget;
-        return;
-      }
-      if (pinchPointers.size > 2) return; // üçüncü+ parmak yok sayılır
       dragCandidate = true; dragPointerId = e.pointerId;
       dragStartX = e.clientX; dragStartY = e.clientY;
       dragStartPanX = panTargetX; dragStartPanY = panTargetY;
       dragStartYaw = yaw; dragStartPitch = pitch;
     });
     svgNode.addEventListener("pointermove", (e) => {
-      if (pinchPointers.has(e.pointerId)) pinchPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      if (pinchPointers.size === 2) {
-        const d = pinchDistance();
-        if (pinchStartDist > 1 && d > 0) {
-          zoomTarget = Math.max(0.28, Math.min(3.2, pinchStartZoom * (d / pinchStartDist)));
-          ensureFrame();
-        }
-        return;
-      }
       if (!dragCandidate) return;
       const dx = e.clientX - dragStartX, dy = e.clientY - dragStartY;
       if (!dragging) { if (Math.hypot(dx, dy) < DRAG_THRESHOLD) return; dragging = true; try { svgNode.setPointerCapture(dragPointerId); } catch (_) {} }
@@ -1429,56 +1162,34 @@
       }
       ensureFrame();
     });
-    function endDrag(e) {
-      if (e && pinchPointers.has(e.pointerId)) pinchPointers.delete(e.pointerId);
-      if (pinchPointers.size < 2) { pinchStartDist = 0; }
+    function endDrag() {
       const wasDragging = dragging;
       dragCandidate = false; dragging = false;
       if (dragPointerId != null) { try { svgNode.releasePointerCapture(dragPointerId); } catch (_) {} dragPointerId = null; }
       return wasDragging;
     }
-    svgNode.addEventListener("pointerup", (e) => { const was = endDrag(e); });
-    svgNode.addEventListener("pointercancel", (e) => { endDrag(e); });
+    svgNode.addEventListener("pointerup", (e) => { const was = endDrag(); });
+    svgNode.addEventListener("pointercancel", endDrag);
 
     // boşluğa tıklama: seçimi kaldır
     svgNode.addEventListener("click", (e) => {
-      if (e.target === svgNode || e.target.classList.contains("esmaX-bg-rect")) {
-        if (selectedId) deselect();
-        if (clusterFocus) exitClusterFocus();
-      }
+      if (e.target === svgNode || e.target.classList.contains("esmaX-bg-rect")) { if (selectedId) deselect(); }
     });
 
-    // "Bir adım geri": Esmâ'da bir adım, panel açıkken GEÇMİŞTE bir adımdır
-    // (ismden ilişkiye, ilişkiden bir öncekine) -- paneli kapatmak değil.
-    // Ortak zincir graph-utils.js'te; hangi görünümün açık olduğunu o
-    // biliyor, adımın ne olduğunu burası.
-    GU.registerStepBack("esma-wrap", () => {
-      if (!detailPanel.hidden && (currentDetailNode || currentDetailIsZat || currentDetailRelation)) { goBackInHistory(); return true; }
-      if (selectedId) { deselect(); return true; }
-      if (clusterFocus) { exitClusterFocus(); return true; }
-      return false;
+    // Escape: seçim/geçmiş
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      if (wrapEl.hidden) return;
+      if (!detailPanel.hidden && (currentDetailNode || currentDetailIsZat || currentDetailRelation)) { goBackInHistory(); }
+      else if (selectedId) deselect();
     });
 
-    window.addEventListener("resize", GU.debounceResize(() => { if (built && !wrapEl.hidden) { onResize(); } }));
-
-    // Lejant aç/kapa dikdörtgeni değiştirir (bkz. legendBox) -- kapanış/
-    // açılışın kendi CSS geçişi bitene kadar (--dur-gecis, 250ms) ölçü
-    // yanlış kalır; iki kez işaretliyoruz: hemen (ok/ikon dönüşü an be an
-    // görünsün) ve geçiş bittikten hemen sonra (gerçek son boyut).
-    const legendToggleBtn = legendEl && legendEl.querySelector(".legend__toggle");
-    if (legendToggleBtn) {
-      legendToggleBtn.addEventListener("click", () => {
-        legendBoxDirty = true;
-        ensureFrame();
-        setTimeout(() => { legendBoxDirty = true; ensureFrame(); }, 300);
-      });
-    }
+    window.addEventListener("resize", () => { if (built && !wrapEl.hidden) { onResize(); } });
   }
 
   function onResize() {
     const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 620;
     svg.attr("viewBox", `${-w / 2} ${-h / 2} ${w} ${h}`);
-    legendBoxDirty = true;
     if (bgLayer) bgLayer.select("rect").attr("x", -w).attr("y", -h).attr("width", 2 * w).attr("height", 2 * h);
     layout();
     ensureFrame();
@@ -1505,16 +1216,8 @@
     return getVar("--series-esma-neutral");
   }
 
-  // id verilirse (aynı görünüm içindeki bir esma düğümüne işaret ediyorsa)
-  // kart çapraz-link olur -- document'a bağlı genel `a.cross-link` tıklama
-  // dinleyicisi (bkz. ontology.js) href'e bakmadan data-view/data-id'yi
-  // okuyup goTo() çağırıyor, burada ayrı bir tıklama bağlama gerekmiyor.
-  // 2026-08-06 kullanıcı bulgusu: bu kartlar tıklanamıyordu.
-  function edgeRow(nameDict, arrow, note, id) {
-    const inner = `<h3>${arrow} ${tt(nameDict)}</h3>${note ? `<p>${note}</p>` : ""}`;
-    if (!id) return `<div class="detail-block detail-block--edge">${inner}</div>`;
-    const href = window.__dostNav ? window.__dostNav.href("esma", id) : "#";
-    return `<a class="detail-block detail-block--edge cross-link" href="${href}" data-view="esma" data-id="${id}">${inner}</a>`;
+  function edgeRow(nameDict, arrow, note) {
+    return `<div class="detail-block detail-block--edge"><h3>${arrow} ${tt(nameDict)}</h3>${note ? `<p>${note}</p>` : ""}</div>`;
   }
 
   function relatedNamesHtml(sceneNode) {
@@ -1524,16 +1227,16 @@
     // Üst (çizilen ebeveyn: küme ya da Allah ya da gerçek ebeveyn)
     if (sceneNode.parentId) {
       const par = byId.get(sceneNode.parentId);
-      if (par) rows.push(edgeRow(par.raw.name, "↑", tt(par.raw.short), sceneNode.parentId));
+      if (par) rows.push(edgeRow(par.raw.name, "↑", tt(par.raw.short)));
     }
     // Alt (çocuklar)
-    sceneNode.childIds.forEach((cid) => { const c = byId.get(cid); if (c) rows.push(edgeRow(c.raw.name, "↓", tt(c.raw.short), cid)); });
+    sceneNode.childIds.forEach((cid) => { const c = byId.get(cid); if (c) rows.push(edgeRow(c.raw.name, "↓", tt(c.raw.short))); });
     // Tamamlayıcı isimler (çapraz ilişkiler)
     relations.forEach((r) => {
       if (r.from === raw.id || r.to === raw.id) {
         const otherId = r.from === raw.id ? r.to : r.from;
         const o = rawById.get(otherId);
-        if (o) rows.push(edgeRow(o.name, "↔", tt(r.label), otherId));
+        if (o) rows.push(edgeRow(o.name, "↔", tt(r.label)));
       }
     });
     if (!rows.length) return "";
@@ -1567,23 +1270,13 @@
     openPanel(`
       <p class="detail-eyebrow">${eyebrow}</p>
       <h2 class="detail-title">${tt(raw.name)} ${poleBadgeHtml(raw)}</h2>
-      <div class="detail-block detail-block--ibnarabi"><h3>${tt(raw.short)}</h3><p>${linkify(tt(raw.summary), "esma", raw.id)}</p>${clusterCiteHtml(sceneNode, raw)}</div>
+      <div class="detail-block detail-block--ibnarabi"><h3>${tt(raw.short)}</h3><p>${linkify(tt(raw.summary), "esma", raw.id)}</p></div>
       ${analogyHtml(raw.analogy)}
       ${insightsHtml(raw.insights, raw.sources, raw.id)}
       ${relatedNamesHtml(sceneNode)}
     `);
   }
   function showClusterDetail(sceneNode) { showNameDetail(sceneNode); }
-
-  // Kutup (cluster) özetleri kendi "insights" dizisine sahip değil (sentetik
-  // düğüm, bkz. CLUSTER_META) -- bu yüzden insightsHtml'in kaynak gösterimi
-  // (yalnız insight başına) onlara hiç uğramıyordu ve özet metni künyesiz
-  // kalıyordu. Buradaki künye içeriği DEĞİL, yalnız kaynağını gösteriyor;
-  // isim düğümlerinde kaynak zaten insightsHtml üzerinden görünüyor.
-  function clusterCiteHtml(sceneNode, raw) {
-    if (sceneNode.kind !== "cluster" || !raw.sources || !raw.sources.length) return "";
-    return `<cite>${raw.sources.join(" · ")}</cite>`;
-  }
 
   function showZatDetail() {
     if (!currentDetailIsZat) pushCurrentToHistory();
@@ -1597,7 +1290,7 @@
       ${analogyHtml(raw.analogy)}
       ${insightsHtml(raw.insights, raw.sources, "zat")}
       <p class="detail-eyebrow detail-eyebrow--section">${tt({ tr: "İlişkiler", en: "Relations", pt: "Relações" })}</p>
-      ${edgeRow(allah.name, "↓", tt(allah.short), "allah")}
+      ${edgeRow(allah.name, "↓", tt(allah.short))}
     `);
   }
 
@@ -1608,12 +1301,10 @@
     openPanel(`
       <p class="detail-eyebrow">${tt({ tr: "İlişki", en: "Relation", pt: "Relação" })}</p>
       <h2 class="detail-title">${tt(from.name)} ↔ ${tt(to.name)} ${relationTypeBadgeHtml(r)}</h2>
-      ${confidenceNoteHtml(r.confidence)}
       ${relationDiagramHtml(r)}
       <div class="detail-block detail-block--ibnarabi"><p>${tt(r.label)}</p></div>
     `);
     detailPanel.hidden = false;
-    wireRelationDiagram(r);
   }
 
   // ---------------------------------------------------------------------------
@@ -1675,12 +1366,6 @@
     exploreList = order;
   }
   function exploreStep() {
-    // Görünümden ayrılınca tur KENDİLİĞİNDEN durmalı: görünümler yalnız
-    // gizleniyor, hiçbir deactivate kancası yok. Bu bekçi yokken tur arka
-    // planda dönmeye devam ediyor, 9 saniyede bir paylaşılan
-    // #detail-panel'i Esmâ içeriğiyle yeniden açıyor ve adres çubuğunu
-    // başka görünümdeyken /esma/...'ya yazıyordu.
-    if (!GU.isViewActive(wrapEl)) { stopExplore(); return; }
     if (!exploreList.length) buildExploreList();
     exploreIdx = (exploreIdx + 1) % exploreList.length;
     const id = exploreList[exploreIdx];
@@ -1734,8 +1419,8 @@
   const DERIVED_SEEN_KEY = "dost-esma-derived-seen";
   function wireDerivedToggle() {
     const btn = document.getElementById("esma-derived-toggle");
-    if (!btn || btn.dataset.wiredDerivedToggle) return;
-    btn.dataset.wiredDerivedToggle = "1";
+    if (!btn || btn.dataset.wiredX) return;
+    btn.dataset.wiredX = "1";
     const dot = btn.querySelector(".esma-derived-toggle__dot");
     try { if (dot && localStorage.getItem(DERIVED_SEEN_KEY)) dot.hidden = true; } catch (_) {}
     btn.addEventListener("click", () => {
@@ -1756,7 +1441,7 @@
   let fcaData = null;
   function fetchFcaData() {
     if (!fcaData) {
-      fcaData = GU.fetchJson("data/ibn-arabi/esma-fca.json").catch(() => null);
+      fcaData = window.DostGraphUtils.fetchJson("data/ibn-arabi/esma-fca.json").catch(() => null);
     }
     return fcaData;
   }
@@ -1770,7 +1455,6 @@
     return `<div class="esma-fca-cluster">
       <p class="esma-fca-cluster__nitelik">${nitelikler}</p>
       <p class="esma-fca-cluster__isimler">${isimler}</p>
-      <button class="esma-fca-cluster__show" type="button" data-cluster-id="${kume.id}">${tt(GU.FCA_SHOW_LABEL)}</button>
     </div>`;
   }
   function openFcaLightbox() {
@@ -1797,55 +1481,20 @@
         wrap.querySelectorAll(".cross-link").forEach((a) => {
           a.addEventListener("click", () => { window.DostLightbox.close(); });
         });
-        // "Haritada göster": lightbox'ı kapatıp o kümeyi ana haritada
-        // odağa alır -- liste bir menüye, harita gerçek çizime dönüşür.
-        wrap.querySelectorAll(".esma-fca-cluster__show").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const kume = data.kumeler.find((k) => String(k.id) === btn.dataset.clusterId);
-            if (!kume) return;
-            window.DostLightbox.close();
-            enterClusterFocus(kume);
-          });
-        });
       }
     });
   }
   function wireFcaButton() {
-    GU.wireFcaButton("esma", openFcaLightbox);
+    const btn = document.getElementById("esma-fca-btn");
+    if (!btn || btn.dataset.wiredX) return;
+    btn.dataset.wiredX = "1";
+    btn.addEventListener("click", openFcaLightbox);
   }
 
-  // Küme odağı: bkz. `clusterFocus`/`nodeOpacity`/`renderClusterFocus`
-  // yukarıda. Burada yalnız kipin giriş/çıkışı ve altyazısı var.
-  function enterClusterFocus(kume) {
-    const memberIds = new Set(kume.esma);
-    let maxLevel = 0;
-    memberIds.forEach((id) => { const n = byId.get(id); if (n && n.level > maxLevel) maxLevel = n.level; });
-    if (maxLevel > revealLevel) setRevealLevel(maxLevel);
-    if (selectedId) deselect();
-    clusterFocus = { id: kume.id, members: memberIds, nitelikler: kume.nitelikler };
-    idleRotate = false;
-    fitVisible(memberIds);
-    showClusterFocusCaption(kume);
-    window.dostTrack && window.dostTrack("esma_fca_odak", { id: kume.id });
-    ensureFrame();
-  }
-
-  function exitClusterFocus() {
-    if (!clusterFocus) return;
-    clusterFocus = null;
-    idleRotate = true;
-    hideClusterFocusCaption();
-    fitVisible();
-    ensureFrame();
-  }
-
-  const fcaCaption = GU.fcaCaption("esma");
-  function showClusterFocusCaption(kume) { fcaCaption.show(kume, tt); }
-  function hideClusterFocusCaption() { fcaCaption.hide(); }
   function wireTiltToggle() {
     const btn = document.getElementById("esma-3d-toggle");
-    if (!btn || btn.dataset.wiredTiltToggle) return;
-    btn.dataset.wiredTiltToggle = "1";
+    if (!btn || btn.dataset.wiredX) return;
+    btn.dataset.wiredX = "1";
     btn.setAttribute("aria-pressed", "false");
     btn.title = tt({ tr: "3 boyuta eğ — mertebe derinliğini göster / 2B'ye dön", en: "Tilt into 3D — show the depth of ranks / back to 2D", pt: "Incline para 3D — mostre a profundidade das hierarquias / voltar ao 2D" });
     btn.addEventListener("click", () => {
@@ -2021,32 +1670,6 @@
   // Sekme arkaya alınıp geri gelindiğinde döngü yeniden uyansın.
   GU.onViewWake(() => { if (!wrapEl.hidden) ensureFrame(); });
 
-  // 2026-08-16 (uzman paneli denetimi, O-01/F4): 101 düğümlü grafik mobilde
-  // okunmuyor -- Ontoloji'nin G57 çözümüyle aynı desen, GU.createMobileListFallback
-  // üzerinden. celâl/cemâl/kemâl dağılımı veri yüklenmeden bilinmediği için
-  // statik id listesi yerine groupBy kullanılıyor.
-  const esmaMobilListe = GU.createMobileListFallback({
-    wrapEl: wrapEl,
-    listEl: document.getElementById("esma-mobil-liste"),
-    fetchUrl: "data/ibn-arabi/esma.json",
-    extractNodes: (d) => (d.nodes || []).filter((n) => n.id !== "zat"),
-    groupBy: (n) => n.pole || "neutral",
-    groupOrder: ["kemal", "cemal", "celal", "neutral"],
-    groupTitle: (pole) => POLE_LABEL[pole] || POLE_LABEL.neutral,
-    title: { tr: "Esmâü'l-Hüsnâ", en: "The Beautiful Names", pt: "Os Belos Nomes" },
-    note: {
-      tr: "Grafiği okumak için ekran dar geldi — yüz bir isim burada Celâl/Cemâl/Kemâl gruplarıyla listede. Bir isme dokun, paneli oku.",
-      en: "The graph does not fit this narrow screen — the hundred and one Names are here as a list, grouped by Jalal/Jamal/Kamal. Tap a Name to read its panel.",
-      pt: "O gráfico não cabe neste ecrã estreito — os cento e um Nomes estão aqui como lista, agrupados por Jalal/Jamal/Kamal. Toque num Nome para ler o painel.",
-    },
-    graphButtonLabel: {
-      tr: "Haritayı aç (grafiği göster)",
-      en: "Open the map (show the graph)",
-      pt: "Abrir o mapa (mostrar o grafo)",
-    },
-    goTo: goToNode,
-  });
-
   window.__esmaApp = {
     activate() {
       fetchData().then((data) => { if (!data) return; if (!built) buildAll(data); else { ensureFrame(); } });
@@ -2062,7 +1685,6 @@
       else if (currentDetailIsZat) showZatDetail();
       else if (currentDetailRelation) showRelationDetail(currentDetailRelation);
       render();
-      if (esmaMobilListe) esmaMobilListe.onLangChange();
     },
   };
 })();

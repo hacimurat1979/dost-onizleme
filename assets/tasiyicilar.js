@@ -38,6 +38,7 @@
   var data = null;
   var dataPromise = null;
   var sc = null;                // sahne durumu
+  var rafId = null;
   var focusKey = null;
 
   function t(d) { return d ? I18n.pick3(d) : ""; }
@@ -289,25 +290,19 @@
       + '<p class="tasiyici-note__src">' + esc(t(n.sistem.kaynak)) + "</p>";
   }
 
-  // 2026-08-26: GU.createFrameLoop'a taşındı -- eskiden bu döngü yalnız
-  // sc.el.isConnected'e bakıyordu, GU.isViewActive'in kapattığı asıl deliği
-  // (görünüm gizliyken/sekme arka plandayken bile sonsuza kadar 60fps
-  // tıklamaya devam etmek) kapatmıyordu. wrap artık aynı diğer beş
-  // görünümdeki gibi görünürlük kapısı olarak kullanılıyor.
-  var frameLoop = window.DostGraphUtils.createFrameLoop(wrap, function (ts, dt) {
-    if (!sc || !sc.el.isConnected) return false;
+  function tick(ts) {
+    rafId = null;
+    if (!sc || !sc.el.isConnected) return;
     if (sc.spin && sc.visible && !sc.hover) {
+      var dt = sc.last ? Math.min(64, ts - sc.last) : 16;
       sc.yaw += dt * SPIN_PER_MS * Math.PI * 2;
       draw();
     }
-    return true;
-  });
-  function ensureLoop() { if (sc) frameLoop.ensureFrame(); }
+    sc.last = ts;
+    rafId = requestAnimationFrame(tick);
+  }
+  function ensureLoop() { if (rafId == null && sc) rafId = requestAnimationFrame(tick); }
 
-  // K-04/O-02 (uzman paneli denetimi 2026-08-17): bu görünümde ayrı bir
-  // isabet şeridi (link-hit) YOK ve gerekmedi -- svg'nin click dinleyicisi
-  // düğüme doğrudan isabet olmasa da 34px yarıçap içindeki en yakın düğümü
-  // seçiyor; fiilî dokunma hedefi WCAG 2.5.8'in 24px tabanının üstünde.
   function nearest(e) {
     var r = sc.svg.getBoundingClientRect();
     if (!r.width) return -1;
