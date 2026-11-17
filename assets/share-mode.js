@@ -78,6 +78,7 @@
       ozelgun:  { tr: "Özel Gün", en: "Special Day", pt: "Dia Especial" },
     },
     filter:      { tr: "Filtre",             en: "Filter",               pt: "Filtro" },
+    ayar:        { tr: "Fon ve seçenekler",  en: "Background and options", pt: "Fundo e opções" },
     filterAll:   { tr: "Tümü",              en: "All",                  pt: "Tudo" },
     filterCilt:  { tr: "Bu cilt",           en: "This volume",          pt: "Este volume" },
     filterKisim: { tr: "Bu kısım",          en: "This part",            pt: "Esta parte" },
@@ -883,6 +884,8 @@
   const FAV_ANAHTAR    = "dost-share-fav";
   const KAYNAK_ANAHTAR = "dost-share-kaynak";
   const TARIH_ANAHTAR  = "dost-share-tarih";
+  // K-021: son seçilen şablon ve katlanır bölümlerin açık/kapalı durumu hatırlanır.
+  const TPL_ANAHTAR = "dost-share-tpl", AYAR_ACIK_ANAHTAR = "dost-share-ayar-acik", FILTRE_ACIK_ANAHTAR = "dost-share-filtre-acik";
   const MAX_FAV = 20, MAX_TARIH = 5;
   let zeminId  = safeGet(ZEMIN_ANAHTAR) || "sarmal";
   let acikMod  = safeGet(ISIK_ANAHTAR) === "1";
@@ -1485,7 +1488,8 @@
   }
 
   // --- panel -----------------------------------------------------------
-  let panel = null, currentTpl = "soz", candidates = [];
+  let panel = null, candidates = [];
+  let currentTpl = (function () { const k = safeGet(TPL_ANAHTAR); return k && UI.tpl[k] ? k : "soz"; })();
 
   function candidateSnippet(s) {
     const first = s.lines[0].text;
@@ -1670,33 +1674,6 @@
       '<p class="share-panel__hint">' + escapeHtml(tt(UI.hint)) + "</p>" +
       // Şablon seçici
       '<div class="share-panel__chips">' + chips + "</div>" +
-      // Dil seçici
-      '<p class="share-panel__label">' + escapeHtml(tt(UI.dil)) + "</p>" +
-      '<div class="share-panel__chips share-panel__chips--zemin">' + dilChips + "</div>" +
-      // Zemin seçici
-      '<p class="share-panel__label">' + escapeHtml(tt(UI.zemin)) + "</p>" +
-      '<div class="share-panel__chips share-panel__chips--zemin">' + zeminChips + "</div>" +
-      // Açık zemin
-      '<label class="share-panel__switch">' +
-      '<input type="checkbox" data-action="isik"' + (acikMod ? " checked" : "") + ">" +
-      "<span>" + escapeHtml(tt(UI.isik)) + "</span></label>" +
-      // Kare format
-      '<label class="share-panel__switch">' +
-      '<input type="checkbox" data-action="kare"' + (kareMod ? " checked" : "") + ">" +
-      "<span>" + escapeHtml(tt(UI.kare)) + "</span></label>" +
-      // İki dilli kart (kullanıcı önerisi, 2026-08-03)
-      '<label class="share-panel__switch">' +
-      '<input type="checkbox" data-action="ikidilli"' + (ikiDilliMod ? " checked" : "") + ">" +
-      "<span>" + escapeHtml(tt(UI.ikiDilli)) + "</span></label>" +
-      (ikiDilliMod
-        ? '<p class="share-panel__label">' + escapeHtml(tt(UI.ikinciDil)) + "</p>" +
-          '<div class="share-panel__chips share-panel__chips--zemin">' + ikinciDilChips + "</div>"
-        : "") +
-      // Filtre (koşullu)
-      (kaynak_chips
-        ? '<p class="share-panel__label">' + escapeHtml(tt(UI.filter)) + "</p>" +
-          '<div class="share-panel__chips share-panel__chips--zemin" id="share-kaynak-chips">' + kaynak_chips + "</div>"
-        : "") +
       // "Karşılaştır" şablonu için özel seçici (kullanıcının kendi seçtiği
       // iki kavram, rastgele eşleştirmenin yanında/yerine).
       (currentTpl === "karsilastir"
@@ -1713,6 +1690,34 @@
       '<div class="share-panel__actions">' +
       '<button type="button" data-action="shuffle">' + escapeHtml(tt(UI.shuffle)) + "</button>" +
       "</div>" +
+      // K-021: dil/zemin/anahtarlar KATLANIR (ilk açılışta yalnız şablonlar + önizleme görünür)
+      '<details class="share-panel__details" data-kip="ayar"' + (safeGet(AYAR_ACIK_ANAHTAR) === "1" ? " open" : "") + ">" +
+      "<summary>" + escapeHtml(tt(UI.ayar)) + "</summary>" +
+      '<p class="share-panel__label">' + escapeHtml(tt(UI.dil)) + "</p>" +
+      '<div class="share-panel__chips share-panel__chips--zemin">' + dilChips + "</div>" +
+      '<p class="share-panel__label">' + escapeHtml(tt(UI.zemin)) + "</p>" +
+      '<div class="share-panel__chips share-panel__chips--zemin">' + zeminChips + "</div>" +
+      '<label class="share-panel__switch">' +
+      '<input type="checkbox" data-action="isik"' + (acikMod ? " checked" : "") + ">" +
+      "<span>" + escapeHtml(tt(UI.isik)) + "</span></label>" +
+      '<label class="share-panel__switch">' +
+      '<input type="checkbox" data-action="kare"' + (kareMod ? " checked" : "") + ">" +
+      "<span>" + escapeHtml(tt(UI.kare)) + "</span></label>" +
+      // İki dilli kart (kullanıcı önerisi, 2026-08-03)
+      '<label class="share-panel__switch">' +
+      '<input type="checkbox" data-action="ikidilli"' + (ikiDilliMod ? " checked" : "") + ">" +
+      "<span>" + escapeHtml(tt(UI.ikiDilli)) + "</span></label>" +
+      (ikiDilliMod
+        ? '<p class="share-panel__label">' + escapeHtml(tt(UI.ikinciDil)) + "</p>" +
+          '<div class="share-panel__chips share-panel__chips--zemin">' + ikinciDilChips + "</div>"
+        : "") +
+      "</details>" +
+      // Filtre (koşullu; yalnız Fütûhât kısmında) -- katlanır
+      (kaynak_chips
+        ? '<details class="share-panel__details" data-kip="filtre"' + (safeGet(FILTRE_ACIK_ANAHTAR) === "1" ? " open" : "") + ">" +
+          "<summary>" + escapeHtml(tt(UI.filter)) + "</summary>" +
+          '<div class="share-panel__chips share-panel__chips--zemin" id="share-kaynak-chips">' + kaynak_chips + "</div></details>"
+        : "") +
       // Favoriler
       '<details class="share-panel__details"' + (favs.length ? " open" : "") + ">" +
       '<summary>' + escapeHtml(tt(UI.favList)) + (favs.length ? " (" + favs.length + ")" : "") + "</summary>" +
@@ -1726,10 +1731,19 @@
 
     document.body.appendChild(panel);
 
+    // K-021: katlanır bölümlerin açık/kapalı durumu hatırlanır (panel her
+    // dil/şablon değişiminde TAM yeniden kurulduğu için bu anahtarlardan okunur).
+    panel.querySelectorAll("details[data-kip]").forEach(function (d) {
+      d.addEventListener("toggle", function () {
+        safeSet(d.dataset.kip === "ayar" ? AYAR_ACIK_ANAHTAR : FILTRE_ACIK_ANAHTAR, d.open ? "1" : "0");
+      });
+    });
+
     panel.querySelectorAll("[data-tpl]").forEach(function (b) {
       b.addEventListener("click", function () {
         if (b.dataset.tpl === currentTpl) return;
         currentTpl = b.dataset.tpl;
+        safeSet(TPL_ANAHTAR, currentTpl);
         // "Karşılaştır" kendi seçici bloğunu gösterip candidates/shuffle
         // düzenini değiştiriyor -- panel gövdesi diğer şablonlardan farklı,
         // o yüzden dil değişimindeki gibi TAM YENİDEN kuruyoruz.
@@ -1883,13 +1897,7 @@
       if (stageEl) closeStage(); else closePanel();
       return;
     }
-    if (e.key.length !== 1) return;
-    if (e.metaKey) return;
-    // AltGr (Ctrl+Alt) Türkçe klavyede "@" üretiyor -- bkz. edit-mode.js.
-    if ((e.ctrlKey || e.altKey) && !(e.ctrlKey && e.altKey)) return;
-    const t = e.target;
-    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
-    buffer = (buffer + e.key.toLowerCase()).slice(-CODE.length);
-    if (buffer === CODE) { buffer = ""; toggle(); }
+    // K-020: "@share" kelimesini yakalama assets/kip-acici.js'e taşındı (bu dosya
+    // artık tembel yükleniyor); yalnız Escape burada kaldı.
   });
 })();

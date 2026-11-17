@@ -54,6 +54,87 @@
     return window.__dostCrossLink ? window.__dostCrossLink.linkify(text) : text;
   }
 
+  // --- K-027 Adım 4: künye bloğu ---
+  // Çeviri/baskı ve bölüm (bâb) numarası ayrı bir alanda tutulmuyor; yalnız
+  // `sources[]` metninin içinden, dile göre kalıpla okunabiliyor. Veride
+  // olmayan alan "belirtilmemiş" yazar -- ASLA tahmin edilmez (CLAUDE.md:
+  // yaptığımız işi olduğundan farklı göstermemek).
+  const KUNYE_RX = {
+    ceviri: { tr: /çev\.\s*([^)]+)\)/i, en: /trans\.\s*([^)]+)\)/i, pt: /trad\.\s*([^)]+)\)/i },
+    bolum: {
+      tr: /(\d+(?:\s*[-–]\s*\d+)?)\.\s*Bölüm/i,
+      en: /Chapters?\s+(\d+(?:\s*[-–]\s*\d+)?)/i,
+      pt: /Cap[ií]tulos?\s+(\d+(?:\s*[-–]\s*\d+)?)/i,
+    },
+  };
+  function kunyeFirstMatch(part, rx) {
+    const lang = I18n.getLang();
+    const list = part.sources || [];
+    for (let i = 0; i < list.length; i++) {
+      const s = list[i];
+      const txt = tt(s && s.title ? s.title : s) || "";
+      const m = txt.match(rx[lang]);
+      if (m) return m[1].trim();
+    }
+    return null;
+  }
+  // Kaynak satırlarında geçen sayfa aralıkları (yeni şemada s.pageRange, eskide
+  // metnin içinde "s. 291-299").
+  function kunyeSourcePages(part) {
+    const out = [];
+    (part.sources || []).forEach((s) => {
+      if (!s) return;
+      if (s.pageRange) {
+        const m = /(\d+)\s*[-–]\s*(\d+)/.exec(typeof s.pageRange === "string" ? s.pageRange : tt(s.pageRange));
+        if (m) out.push([+m[1], +m[2]]);
+      }
+      const title = tt(s.title ? s.title : s) || "";
+      const re = /(?:\bs\.|\bpp?\.)\s*(\d+)\s*[-–]\s*(\d+)/g;
+      let m;
+      while ((m = re.exec(title))) out.push([+m[1], +m[2]]);
+    });
+    return out;
+  }
+  function kunyeHtml(part) {
+    const yok = `<span class="yok">${tt({ tr: "belirtilmemiş", en: "not stated", pt: "não informado" })}</span>`;
+    const L = {
+      cilt: tt({ tr: "Cilt", en: "Volume", pt: "Volume" }),
+      kisim: tt({ tr: "Kısım", en: "Part", pt: "Parte" }),
+      sayfa: tt({ tr: "Sayfa aralığı", en: "Page range", pt: "Páginas" }),
+      bolum: tt({ tr: "Bölüm (bâb) no.", en: "Chapter (bāb) no.", pt: "Capítulo (bāb) n.º" }),
+      baski: tt({ tr: "Çeviri / baskı", en: "Translation / edition", pt: "Tradução / edição" }),
+      aria: tt({ tr: "Okuma yeri", en: "Where this part sits", pt: "Onde esta parte se situa" }),
+      kisimIpucu: tt({
+        tr: "Kısım numarası tüm kitap boyunca süren sıradır.",
+        en: "The part number runs continuously across the whole work.",
+        pt: "O número da parte segue em sequência por toda a obra.",
+      }),
+      sayfaFark: tt({ tr: "Kaynak satırlarındaki sayfalar", en: "Pages in the source lines", pt: "Páginas nas linhas de fonte" }),
+    };
+    const pr = pageRangeLabel(part.pageRange);
+    const bolum = kunyeFirstMatch(part, KUNYE_RX.bolum);
+    const baski = kunyeFirstMatch(part, KUNYE_RX.ceviri);
+    const rows = [
+      [L.cilt, escapeHtml(CILT_ROMAN[part.cilt]), ""],
+      [L.kisim, escapeHtml(roman(part.kisim)), L.kisimIpucu],
+      [L.sayfa, pr ? escapeHtml(pr) : yok, ""],
+      [L.bolum, bolum ? escapeHtml(bolum) : yok, ""],
+      [L.baski, baski ? escapeHtml(baski) : yok, ""],
+    ];
+    let note = "";
+    const nums = kunyeSourcePages(part);
+    const rangeStr = typeof part.pageRange === "string" ? part.pageRange : (part.pageRange ? tt(part.pageRange) : "");
+    const rng = /(\d+)\s*[-–]\s*(\d+)/.exec(rangeStr || "");
+    if (nums.length && rng) {
+      const lo = Math.min(...nums.map((n) => n[0]));
+      const hi = Math.max(...nums.map((n) => n[1]));
+      if (lo < +rng[1] || hi > +rng[2]) note = `<div class="kunye__not">${escapeHtml(L.sayfaFark)}: ${lo}–${hi}</div>`;
+    }
+    return `<aside class="kunye kunye--okuma" aria-label="${escapeHtml(L.aria)}"><dl>${rows
+      .map((r) => `<dt${r[2] ? ` title="${escapeHtml(r[2])}"` : ""}>${escapeHtml(r[0])}</dt><dd>${r[1]}</dd>`)
+      .join("")}${note}</dl></aside>`;
+  }
+
   function escapeHtml(s) {
     const d = document.createElement("div");
     d.textContent = s == null ? "" : s;
@@ -94,9 +175,12 @@
 
   // --- Diagram lightbox (click a diagram to see it enlarged) ---
   function openDiagramLightbox(mount, captionText) {
+    // Yoğun diyagramda dar ekranda liste gösteriliyorsa (K-004) lightbox yine
+    // radyal şemayı büyütür: yalnız svg'nin kendisi kopyalanır.
+    const svgEl = mount.querySelector("svg.futuhat-tree__svg");
     window.DostLightbox.open({
       closeLabel: tt({ tr: "Kapat", en: "Close", pt: "Fechar" }),
-      svgHtml: mount.innerHTML,
+      svgHtml: svgEl && mount.classList.contains("futuhat-tree--listmode") ? svgEl.outerHTML : mount.innerHTML,
       caption: captionText || "",
     });
     wireLightboxNodeTooltips();
@@ -207,6 +291,8 @@
   // en son bırakılan yere iniyor -- hiçbir orantı hissi olmadan. Bu bayrak
   // true olduğunda renderPart() ilk parçaya bir bağlantı gösteriyor.
   let isDefaultLanding = false;
+  // K-025: adreste/çağrıda AÇIKÇA verilen kısım kimliği (varsayılan iniş değil); bkz. activatePart.
+  let explicitPartId = null;
 
   // B2 "Kaldığın yer": deep-link olmadan girişte (menüden tıklama, açılış
   // ekranından "devam et" gibi) atlas'ın varsayılan activePartId'si yerine
@@ -226,7 +312,10 @@
   function fetchData() {
     if (dataPromise) return dataPromise;
     if (window.DostViewStatus) window.DostViewStatus.showLoading("futuhat-wrap");
-    dataPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/futuhat-atlas-index.json")
+    // K-027: ilk adım için 1 MB'lık indeks yerine ~57 KB'lık yalın kısım listesi
+    // (id/cilt/kisim/title + book.cilts + activePartId; scripts/build-static-
+    // routes.py üretir). İndeks arama ve diğer araçlar için olduğu gibi duruyor.
+    dataPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/futuhat-kisimlar.json")
       .then((data) => {
         futuhatData = data;
         activePartId = data.activePartId;
@@ -470,6 +559,131 @@
       })
       .attr("dy", (d) => (d.depth === 0 ? -22 : "0.32em"))
       .text((d) => tt(d.data.label));
+
+    // K-004: etiketler ekranda >=11 px olsun; sar + viewBox'ı gerçek sınırlara oturt.
+    const svgNode = svg.node();
+    const refit = () => {
+      if (!mount.isConnected || !mount.clientWidth) return;
+      fitRadialLabels(svgNode, 11.5, 20);
+      denseListFallback(mount, svgNode, treeData);
+    };
+    refit();
+    if (window.ResizeObserver) {
+      let lastW = mount.clientWidth;
+      const ro = new ResizeObserver(() => {
+        const w = mount.clientWidth;
+        if (w && (Math.abs(w - lastW) > 2 || !svgNode.dataset.fit)) { lastW = w; refit(); }
+      });
+      ro.observe(mount);
+    }
+  }
+
+  // K-004: radyal ağacın etiketlerini en çok `maxChar` karakterde satırlara böler
+  // (bir kez), yazıyı `hedefPx / ölçek` kullanıcı birimine çıkarır ve viewBox'ı
+  // düğüm+etiket sınırlarına oturtur (eski sabit ±220 pay etiketleri soldan
+  // kırpıyordu). Ölçek viewBox'a bağlı olduğundan birkaç tur yakınsatılır.
+  // Şeklin kendisi (düğüm konumları, kenarlar, daire/ışın düzeni) değişmez.
+  function fitRadialLabels(svg, hedefPx, maxCharUst) {
+    const NS = "http://www.w3.org/2000/svg";
+    const texts = Array.from(svg.querySelectorAll("text.futuhat-tree__label"));
+    const gen = svg.getBoundingClientRect().width;
+    if (!texts.length || !gen) return;
+    // Satır uzunluğu kap genişliğine göre: dar ekranda uzun satır, etiket payını
+    // viewBox'a katıp ölçeği ~0,2'ye düşürüyordu (yakınsama: W = N / (1 - 23·a/w),
+    // a = 0,55·karakter). ~27 px/karakter 390 px'te 12, 560 px'te 20 verir.
+    const maxChar = Math.max(9, Math.min(maxCharUst, Math.floor(gen / 27)));
+    texts.forEach((t) => {
+      if (t.dataset.mc === String(maxChar)) return;
+      if (!t.dataset.raw) {
+        t.dataset.raw = t.textContent.trim();
+        t.dataset.kok = t.getAttribute("dy") !== "0.32em" ? "1" : "";   // kök etiket düğümün üstünde
+        t.dataset.dx = String(parseFloat(t.getAttribute("dx") || "0") || 0);
+        t.removeAttribute("dx");
+        t.removeAttribute("dy");
+      }
+      t.dataset.mc = String(maxChar);
+      const kelimeler = t.dataset.raw.split(/\s+/);
+      const satirlar = [];
+      let cur = "";
+      kelimeler.forEach((k) => {
+        if (cur && (cur + " " + k).length > maxChar) { satirlar.push(cur); cur = k; }
+        else cur = cur ? cur + " " + k : k;
+      });
+      if (cur) satirlar.push(cur);
+      const kok = !!t.dataset.kok;
+      t.__kok = kok;
+      t.__satir = satirlar.length;
+      t.textContent = "";
+      // dx yalnız ilk harfe uygulanır; tüm satırlar aynı yatay kaymayı taşısın diye
+      // her tspan'a mutlak x verilir.
+      satirlar.forEach((satir, i) => {
+        const ts = document.createElementNS(NS, "tspan");
+        ts.setAttribute("x", t.dataset.dx);
+        ts.setAttribute("dy", (i === 0 ? (kok ? 0 : 0.32 - (satirlar.length - 1) * 0.575) : 1.15) + "em");
+        ts.textContent = satir;
+        t.appendChild(ts);
+      });
+    });
+    // Dar ekranda yakınsama yavaş (etiket payı viewBox'ı büyütüp ölçeği küçültüyor,
+    // yazı birimi yine büyüyor): ekranda görünen boyut hedefe yaklaşana dek (en
+    // çok 40 tur) sürer; kararlı sonuç ölçülen boyutun hedefin ±%1'i içinde olması.
+    for (let tur = 0; tur < 40; tur++) {
+      const olcek = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+      if (!olcek) return;
+      const fu = hedefPx / olcek;
+      if (olcek < 0.2) break;   // yakınsamıyor: ölçek çok küçük, yoğun-diyagram yedeği devreye girer
+      if (tur > 0 && Math.abs(parseFloat(texts[0].style.fontSize) * olcek - hedefPx) < hedefPx * 0.01) break;
+      texts.forEach((t) => {
+        t.style.fontSize = fu.toFixed(2) + "px";
+        // Çok satırlı kök etiket yukarı doğru büyür (düğümün üstünde kalır).
+        // (tspan'ların kendi dy'si metnin dy="-22"sini ezdiği için çok satırlıda -22 buraya katılır.)
+        if (t.__kok) t.setAttribute("y", String(-22 - (t.__satir - 1) * 1.15 * fu));
+      });
+      let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+      svg.querySelectorAll("g.futuhat-tree__node").forEach((g) => {
+        const m = g.transform.baseVal.consolidate().matrix;
+        const bb = g.getBBox();
+        x0 = Math.min(x0, bb.x + m.e); x1 = Math.max(x1, bb.x + bb.width + m.e);
+        y0 = Math.min(y0, bb.y + m.f); y1 = Math.max(y1, bb.y + bb.height + m.f);
+      });
+      const pad = 8 / olcek;
+      svg.setAttribute("viewBox", `${x0 - pad} ${y0 - pad} ${x1 - x0 + 2 * pad} ${y1 - y0 + 2 * pad}`);
+    }
+    svg.dataset.fit = "1";
+  }
+
+  // K-004 YOĞUN DİYAGRAM YEDEĞİ: dar ekranda (<=480 px) 15 düğümlü bir ağacın 11 px
+  // etiketleri radyal yerleşimde sığmıyorsa (çakışma ya da ölçek < 0,30), aynı
+  // ağaç verisinden girintili bir liste gösterilir; "Çizimi büyüt" (lightbox)
+  // radyal şemayı olduğu gibi gösterir. Çakışma ölçüsü: etiket kutularının
+  // kesişimi (>1 x >1 px).
+  function denseListFallback(mount, svg, treeData) {
+    const dar = window.innerWidth <= 480;
+    const olcek = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+    let cakisma = 0;
+    if (dar) {
+      const boxes = Array.from(svg.querySelectorAll("text.futuhat-tree__label")).map((t) => t.getBoundingClientRect());
+      for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+        const a = boxes[i], b = boxes[j];
+        const w = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+        const h = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+        if (w > 1 && h > 1) cakisma++;
+      }
+    }
+    const yogun = dar && (cakisma > 0 || olcek < 0.3);
+    mount.classList.toggle("futuhat-tree--listmode", yogun);
+    let list = mount.querySelector(".futuhat-tree-list");
+    if (!yogun) { if (list) list.remove(); return; }
+    if (!list) {
+      const build = (node) => {
+        const kids = node.children || node.nodes || [];
+        return `<li><span>${escapeHtml(tt(node.label))}</span>${kids.length ? `<ul>${kids.map(build).join("")}</ul>` : ""}</li>`;
+      };
+      list = document.createElement("ul");
+      list.className = "futuhat-tree-list";
+      list.innerHTML = build(treeData);
+      mount.insertBefore(list, svg);
+    }
   }
 
   function showTip(d, event) {
@@ -582,6 +796,79 @@
     });
   }
 
+  // K-004: üçlü/ikili şemalarda (0,72-0,78 rem yazı, sabit 460x130 / 320x130
+  // viewBox) etiket ekranda 8-10 px kalıyordu. Yazıyı `hedefPx / ölçek` kullanıcı
+  // birimine çıkarır, not metnini komşu düğüme çarpmayacak karakter sayısında
+  // yeniden sarar ve viewBox'ı, ORİJİNAL çizim alanını koruyarak, taşan içeriğe
+  // genişletir (düğüm konumları ve daireler değişmez; ölçek hiçbir zaman
+  // özgün ölçeğin üstüne çıkmaz).
+  function fitTriadLabels(svg, hedefPx) {
+    if (!svg.getBoundingClientRect().width) return;
+    const labels = Array.from(svg.querySelectorAll("text.futuhat-triad__label"));
+    const notes = Array.from(svg.querySelectorAll("text.futuhat-triad__note"));
+    if (!svg.dataset.vb0) {
+      const vb = svg.viewBox.baseVal;
+      svg.dataset.vb0 = [vb.x, vb.y, vb.width, vb.height].join(" ");
+      notes.forEach((t) => { t.dataset.raw = t.textContent; });
+      labels.forEach((t) => { t.dataset.raw = t.textContent; });
+    }
+    const [bx, by, bw, bh] = svg.dataset.vb0.split(" ").map(Number);
+    const xs = Array.from(svg.querySelectorAll("g.futuhat-triad__node")).map((g) => g.transform.baseVal.consolidate().matrix.e).sort((a, b) => a - b);
+    const aralik = xs.length > 1 ? Math.min(...xs.slice(1).map((x, i) => x - xs[i])) : bw;
+    for (let tur = 0; tur < 40; tur++) {
+      const olcek = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+      if (!olcek || olcek < 0.2) return;
+      const fu = hedefPx / olcek;
+      if (tur > 0 && Math.abs(parseFloat(labels[0] ? labels[0].style.fontSize : "0") * olcek - hedefPx) < hedefPx * 0.01) break;
+      labels.concat(notes).forEach((t) => { t.style.fontSize = fu.toFixed(2) + "px"; });
+      const maxChar = Math.max(8, Math.min(24, Math.floor((aralik - 8) / (fu * 0.52))));
+      notes.forEach((t) => {
+        const raw = t.dataset.raw;
+        d3.select(t).text(raw).call(wrapSvgText, maxChar);
+      });
+      // Üstteki başlık etiketleri de komşuya çarpmasın: sarılır ve YUKARI doğru büyür.
+      labels.forEach((t) => {
+        const kel = t.dataset.raw.split(/\s+/).filter(Boolean);
+        const sat = [];
+        let cur = "";
+        kel.forEach((k) => {
+          if (cur && (cur + " " + k).length > maxChar) { sat.push(cur); cur = k; } else cur = cur ? cur + " " + k : k;
+        });
+        if (cur) sat.push(cur);
+        t.textContent = "";
+        sat.forEach((satir, i) => {
+          const ts = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+          ts.setAttribute("x", "0");
+          ts.setAttribute("dy", (i === 0 ? -(sat.length - 1) * 1.15 : 1.15) + "em");
+          ts.textContent = satir;
+          t.appendChild(ts);
+        });
+      });
+      let x0 = bx, x1 = bx + bw, y0 = by, y1 = by + bh;
+      svg.querySelectorAll("g.futuhat-triad__node").forEach((g) => {
+        const m = g.transform.baseVal.consolidate().matrix;
+        const bb = g.getBBox();
+        x0 = Math.min(x0, bb.x + m.e - 4); x1 = Math.max(x1, bb.x + bb.width + m.e + 4);
+        y0 = Math.min(y0, bb.y + m.f - 4); y1 = Math.max(y1, bb.y + bb.height + m.f + 4);
+      });
+      svg.setAttribute("viewBox", `${x0} ${y0} ${x1 - x0} ${y1 - y0}`);
+    }
+    svg.dataset.fit = "1";
+  }
+  function watchTriad(mount) {
+    const svgNode = mount.querySelector("svg.futuhat-triad__svg");
+    if (!svgNode) return;
+    const refit = () => { if (mount.isConnected && mount.clientWidth) fitTriadLabels(svgNode, 11.5); };
+    refit();
+    if (window.ResizeObserver) {
+      let lastW = mount.clientWidth;
+      new ResizeObserver(() => {
+        const w = mount.clientWidth;
+        if (w && (Math.abs(w - lastW) > 2 || !svgNode.dataset.fit)) { lastW = w; refit(); }
+      }).observe(mount);
+    }
+  }
+
   // --- Triad diagram (three-point comparison, e.g. Teorik / Hâl / Sır) ---
   function renderTriad(mount, triad) {
     const width = 460, height = 130, cy = 55;
@@ -677,12 +964,14 @@
     const r = 9;
     const circumference = 2 * Math.PI * r;
     const fillLen = (done / total) * circumference;
-    const label = tt({ tr: `${done}/${total} kısım işlendi`, en: `${done}/${total} parts read`, pt: `${done}/${total} partes lidas` });
+    // K-027 Adım 6 (G-04): "12/14" neyi sayıyor, açıkça söylenir. Fiil "okundu":
+    // burada yayımlanan değil, okuduğumuz kısımlar sayılıyor (CLAUDE.md).
+    const label = tt({ tr: `${done}/${total} kısım okundu`, en: `${done} of ${total} parts read`, pt: `${done} de ${total} partes lidas` });
     // svg aria-hidden: halka dekoratif -- okunacak bilgi hem sarmalayıcının
     // aria-label'ında hem de yanındaki "12/14" etiketinde zaten var. Etiketsiz
     // bırakıldığında ekran okuyucuya 15 adet isimsiz grafik düşüyordu
     // (2026-07-28 denetimi).
-    return `<span class="futuhat-parts__progress" title="${label}" aria-label="${label}">
+    return `<span class="futuhat-parts__progress" role="img" title="${label}" aria-label="${label}">
       <svg viewBox="0 0 22 22" width="18" height="18" aria-hidden="true" focusable="false">
         <circle class="futuhat-parts__progress-track" cx="11" cy="11" r="${r}" fill="none" stroke-width="2.5"></circle>
         <circle class="futuhat-parts__progress-fill" cx="11" cy="11" r="${r}" fill="none" stroke-width="2.5"
@@ -809,7 +1098,8 @@
             if (part) {
               return `<button class="futuhat-part-chip futuhat-part-chip--active" type="button" data-id="${part.id}">${tt({ tr: "Kısım " + roman(no), en: "Part " + roman(no), pt: "Parte " + roman(no) })}</button>`;
             }
-            return `<span class="futuhat-part-chip futuhat-part-chip--soon" title="${tt({ tr: "Yakında", en: "Coming soon", pt: "Em breve" })}">${roman(no)}</span>`;
+            // G-04: yalnız Romen rakamı ("I", "II") değil, "Kısım I" + neden tıklanamadığı.
+            return `<span class="futuhat-part-chip futuhat-part-chip--soon" aria-disabled="true" title="${tt({ tr: "Bu kısım henüz okunmadı; metni yok.", en: "This part has not been read yet; no text.", pt: "Esta parte ainda não foi lida; sem texto." })}">${tt({ tr: "Kısım " + roman(no), en: "Part " + roman(no), pt: "Parte " + roman(no) })}</span>`;
           })
           .join("");
         return `<details class="futuhat-cilt-group"${c.cilt === openCilt ? " open" : ""}>
@@ -933,7 +1223,8 @@
     const canonicalEl = document.querySelector('link[rel="canonical"]');
     if (canonicalEl) canonicalEl.setAttribute("href", "https://dostarabi.com/futuhat/" + part.id);
     const descEl = document.querySelector('meta[name="description"]');
-    if (descEl) descEl.setAttribute("content", tt(part.hero.summary));
+    // Yalın kısım listesinde hero yok; özet tam kısım gelince (renderPart) yazılır.
+    if (descEl && part.hero && part.hero.summary) descEl.setAttribute("content", tt(part.hero.summary));
   }
 
   function firstPart() {
@@ -946,9 +1237,9 @@
     return `
       <div class="futuhat-start-hint">
         <p>${tt({
-          tr: "Bu, okumanın en son ulaştığı yer -- 18 ciltlik bir okumanın neredeyse sonu. Yeni geliyorsan, baştan başlamak isteyebilirsin.",
-          en: "This is where the reading currently stands -- near the end of an 18-volume reading. If you're new here, you may want to start from the beginning.",
-          pt: "É aqui que a leitura chegou -- perto do fim de uma leitura de 18 volumes. Se você é novo aqui, talvez queira começar do início.",
+          tr: "Bu, okumanın en son ulaştığı yer — 18 ciltlik bir okumanın neredeyse sonu. Yeni geliyorsan, baştan başlamak isteyebilirsin.",
+          en: "This is where the reading currently stands — near the end of an 18-volume reading. If you're new here, you may want to start from the beginning.",
+          pt: "É aqui que a leitura chegou — perto do fim de uma leitura de 18 volumes. Se você é novo aqui, talvez queira começar do início.",
         })}</p>
         <button type="button" class="futuhat-start-hint__btn" data-start-id="${first.id}">${tt({
           tr: "Baştan başla", en: "Start from the beginning", pt: "Começar do início",
@@ -957,29 +1248,60 @@
       </div>`;
   }
 
+  // K-027 Adım 5: makale sonunda önceki/sonraki kısım (kısım numarası sırasıyla;
+  // metni olan komşu kısımlar -- futuhat-kisimlar.json yalnız okunmuş kısımları taşır).
+  function gezinHtml(part) {
+    if (!futuhatData) return "";
+    const list = futuhatData.parts.slice().sort((a, b) => a.kisim - b.kisim);
+    const i = list.findIndex((p) => p.id === part.id);
+    if (i < 0) return "";
+    const base = (window.__dostRouteBase || "") + "/futuhat/";
+    const box = (p, yon) => {
+      if (!p) return `<span class="futuhat-gezin__bos" aria-hidden="true"></span>`;
+      const etiket = yon < 0
+        ? tt({ tr: "← Önceki kısım", en: "← Previous part", pt: "← Parte anterior" })
+        : tt({ tr: "Sonraki kısım →", en: "Next part →", pt: "Parte seguinte →" });
+      return `<a class="futuhat-gezin__kutu futuhat-gezin__kutu--${yon < 0 ? "onceki" : "sonraki"}" href="${base}${p.id}" data-gezin-id="${p.id}"><small>${etiket}</small><span>${escapeHtml(tt({ tr: "Kısım ", en: "Part ", pt: "Parte " }) + roman(p.kisim) + " · " + tt(p.title))}</span></a>`;
+    };
+    return `<nav class="futuhat-gezin" aria-label="${tt({ tr: "Kısımlar arası gezinti", en: "Navigate between parts", pt: "Navegar entre partes" })}">${box(list[i - 1], -1)}${box(list[i + 1], 1)}</nav>`;
+  }
+
+  // K-027: araç çubuğu (A−/A+/yazdır/paylaş) artık makale başlığının içinde
+  // değil, metnin üstündeki "ust" satırında, "Kısımlar" düğmesinin karşısında.
+  // Düğme kimlikleri aynı; setupToolbar() değişmedi.
+  function placeToolbar() {
+    const ust = document.getElementById("futuhat-ust");
+    if (!ust) return;
+    ust.querySelectorAll(".futuhat-toolbar").forEach((el) => el.remove());
+    ust.insertAdjacentHTML("beforeend", `
+        <div class="futuhat-toolbar">
+        <button class="futuhat-toolbar__btn" id="futuhat-font-decrease" type="button" title="Yazı boyutunu küçült / Decrease font size / Diminuir tamanho da fonte" aria-label="A− / A- / A-">A−</button>
+        <button class="futuhat-toolbar__btn" id="futuhat-font-increase" type="button" title="Yazı boyutunu büyült / Increase font size / Aumentar tamanho da fonte" aria-label="A+">A+</button>
+        <button class="futuhat-toolbar__btn futuhat-toolbar__btn--icon" id="futuhat-print" type="button" title="Yazdır / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="6" y="3" width="12" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="9" width="16" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+        <button class="futuhat-toolbar__btn futuhat-toolbar__btn--icon" id="futuhat-share" type="button" title="Paylaş / Share / Compartilhar" aria-label="Paylaş / Share / Compartilhar">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="6" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="5.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="10.8" x2="15.7" y2="6.7" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="13.2" x2="15.7" y2="17.3" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+      </div>
+    `);
+  }
+
   function renderPart(part) {
+    updatePartMeta(part);
+    placeToolbar();
     articleEl.innerHTML = `
       ${startHintHtml(part)}
       <header class="futuhat-hero">
-        <div class="futuhat-toolbar">
-          <button class="futuhat-toolbar__btn" id="futuhat-font-decrease" type="button" title="Yazı boyutunu küçült / Decrease font size / Diminuir tamanho da fonte" aria-label="A− / A- / A-">A−</button>
-          <button class="futuhat-toolbar__btn" id="futuhat-font-increase" type="button" title="Yazı boyutunu büyült / Increase font size / Aumentar tamanho da fonte" aria-label="A+">A+</button>
-          <button class="futuhat-toolbar__btn futuhat-toolbar__btn--icon" id="futuhat-print" type="button" title="Yazdır / Print / Imprimir" aria-label="Yazdır / Print / Imprimir">
-            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="6" y="3" width="12" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="9" width="16" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="14" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-          </button>
-          <button class="futuhat-toolbar__btn futuhat-toolbar__btn--icon" id="futuhat-share" type="button" title="Paylaş / Share / Compartilhar" aria-label="Paylaş / Share / Compartilhar">
-            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="6" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="5.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="10.8" x2="15.7" y2="6.7" stroke="currentColor" stroke-width="1.6"/><line x1="8.3" y1="13.2" x2="15.7" y2="17.3" stroke="currentColor" stroke-width="1.6"/></svg>
-          </button>
-        </div>
-        <p class="futuhat-hero__eyebrow">${tt({ tr: "Fütûhât-ı Mekkiyye", en: "al-Futuhat al-Makkiyya", pt: "al-Futuhat al-Makkiyya" })} · ${tt({ tr: "Cilt " + CILT_ROMAN[part.cilt], en: "Volume " + CILT_ROMAN[part.cilt], pt: "Volume " + CILT_ROMAN[part.cilt] })} · ${tt({ tr: "Kısım " + roman(part.kisim), en: "Part " + roman(part.kisim), pt: "Parte " + roman(part.kisim) })}</p>
+        <p class="futuhat-hero__eyebrow">${tt({ tr: "Fütûhât-ı Mekkiyye", en: "al-Futuhat al-Makkiyya", pt: "al-Futuhat al-Makkiyya" })}</p>
         <h2 class="futuhat-hero__title">${tt(part.title)}</h2>
-        ${pageRangeLabel(part.pageRange) ? `<p class="futuhat-hero__pages">${pageRangeLabel(part.pageRange)}</p>` : ""}
-        <p class="futuhat-hero__summary">${linkify(tt(part.hero.summary))}</p>
+        ${kunyeHtml(part)}
+        <p class="futuhat-hero__summary">${tt(part.hero.summary)}</p>
       </header>
 
       <section class="futuhat-maindiagram" data-diagram-id="main">
         <div class="futuhat-tree" id="futuhat-main-tree"></div>
-        <p class="futuhat-diagram-source">${linkify(tt(part.mainDiagram.caption))}</p>
+        <p class="futuhat-diagram-source">${tt(part.mainDiagram.caption)}</p>
       </section>
 
       <div class="futuhat-sections" id="futuhat-sections"></div>
@@ -994,7 +1316,16 @@
           ${part.sources.map((s, i) => `<li data-source-index="${i}">${sourceLabel(s)}</li>`).join("")}
         </ul>
       </section>
+
+      ${gezinHtml(part)}
     `;
+
+    // K-027 Adım 3: ilk boyama çapraz bağlantısız (düz metin); bağlantılar
+    // aşağıda boşta, küçük dilimlerle eklenir (bkz. runLinkify).
+    const linkTargets = [
+      { el: articleEl.querySelector(".futuhat-hero__summary"), raw: part.hero.summary },
+      { el: articleEl.querySelector(".futuhat-maindiagram .futuhat-diagram-source"), raw: part.mainDiagram.caption },
+    ];
 
     const mainTreeEl = document.getElementById("futuhat-main-tree");
     renderRadialTree(mainTreeEl, part.mainDiagram.tree, {
@@ -1014,6 +1345,10 @@
     });
 
     const sectionsEl = document.getElementById("futuhat-sections");
+    // K-031: paragraf numarası = kısım içinde type:"p" blokların 1 tabanlı sırası
+    // (bilmiyoruz etiketli olanlar dâhil; Füsûs ile AYNI kural).
+    let parNo = 0;
+    const parTexts = [];
     part.sections.forEach((section, si) => {
       const secEl = document.createElement("section");
       secEl.className = "futuhat-section";
@@ -1027,17 +1362,25 @@
           // kadar bulamadığımızı da göstermek).
           const box = document.createElement("div");
           box.className = "futuhat-bilmiyoruz-box";
+          parNo++;
+          parTexts.push(block.text);
           box.innerHTML = `<p class="futuhat-bilmiyoruz-box__eyebrow">${tt({
             tr: "Bu kesitte bulamadığımız",
             en: "What we did not find in this section",
             pt: "O que não encontrámos nesta secção",
-          })}</p><p class="futuhat-bilmiyoruz-box__text">${linkify(tt(block.text))}</p>`;
+          })}</p><p class="futuhat-bilmiyoruz-box__text" id="p-${parNo}">${tt(block.text)}</p>`;
           secEl.appendChild(box);
+          linkTargets.push({ el: box.querySelector(".futuhat-bilmiyoruz-box__text"), raw: block.text });
         } else if (block.type === "p") {
           const p = document.createElement("p");
           p.className = "futuhat-section__p";
-          p.innerHTML = linkify(tt(block.text));
+          p.innerHTML = tt(block.text);
+          linkTargets.push({ el: p, raw: block.text });
+          parNo++;
+          parTexts.push(block.text);
+          p.id = "p-" + parNo;
           secEl.appendChild(p);
+          if (window.DostParagraf) p.insertAdjacentHTML("afterend", window.DostParagraf.ekHtml(parNo));
         } else if (block.type === "diagram") {
           const dCard = document.createElement("div");
           dCard.className = "futuhat-inline-diagram";
@@ -1048,7 +1391,8 @@
           if (block.caption) {
             const capP = document.createElement("p");
             capP.className = "futuhat-inline-diagram__caption";
-            capP.innerHTML = linkify(tt(block.caption));
+            capP.innerHTML = tt(block.caption);
+            linkTargets.push({ el: capP, raw: block.caption });
             dCard.appendChild(capP);
           }
           const srcP = document.createElement("p");
@@ -1059,8 +1403,10 @@
 
           if (block.triad) {
             renderTriad(mount, block.triad);
+            watchTriad(mount);
           } else if (block.pair) {
             renderPair(mount, block.pair);
+            watchTriad(mount);
           } else if (block.useMainDiagram) {
             renderRadialTree(mount, part.mainDiagram.tree, { radius: 160, ariaLabel: part.title });
           } else if (block.tree) {
@@ -1084,12 +1430,83 @@
       sectionsEl.appendChild(secEl);
     });
 
+    if (window.DostParagraf) {
+      window.DostParagraf.attach({
+        root: articleEl,
+        paragraphs: parTexts,
+        dosya: part.id,
+        // Künye, kısım sayfasının başlığıyla (eyebrow + sayfa aralığı) aynı dizgeler.
+        kunye: () => {
+          const pg = pageRangeLabel(part.pageRange);
+          return {
+            ana: tt({ tr: "Fütûhât-ı Mekkiyye", en: "al-Futuhat al-Makkiyya", pt: "al-Futuhat al-Makkiyya" })
+              + " · " + tt({ tr: "Cilt " + CILT_ROMAN[part.cilt], en: "Volume " + CILT_ROMAN[part.cilt], pt: "Volume " + CILT_ROMAN[part.cilt] })
+              + " · " + tt({ tr: "Kısım " + roman(part.kisim), en: "Part " + roman(part.kisim), pt: "Parte " + roman(part.kisim) })
+              + (pg ? " · " + pg : ""),
+            baslik: tt(part.title),
+          };
+        },
+        kaydir: !!(deepPar && deepPar.id === part.id && Date.now() < deepPar.until),
+      });
+    }
+
+    articleEl.querySelectorAll("[data-gezin-id]").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+        e.preventDefault();
+        window.dostTrack && window.dostTrack("kitap_bolumu_acildi", { part: a.dataset.gezinId });
+        activatePart(a.dataset.gezinId);
+        window.scrollTo({ top: 0 });
+      });
+    });
+
     renderStats(part);
     setupToolbar(part);
     setupStartHint();
     renderMeasurementPanel(part);
     renderAnlamsalBaglantilar(part);
     renderYakinPasajlar(part);
+    currentLinkTargets = linkTargets.filter((t) => t.el);
+    runLinkify(currentLinkTargets);
+    document.documentElement.removeAttribute("data-futuhat-bekle");
+  }
+
+  // K-027 Adım 3: çapraz bağlantı (linkify) ana iş parçacığını kilitliyordu
+  // (CPU x4 altında ~1,8 sn; her paragraf için yüzlerce terimlik dev regex).
+  // Sonuç AYNI (linkify(tt(ham)) -- ham metin bozulmaz), yalnız zamanlaması
+  // değişti: ilk boyama düz metinle, bağlantılar boşta ~10 ms'lik dilimlerle.
+  // Terimler sonradan gelirse (onReady) yalnız makale gövdesi yeniden
+  // bağlanır; harita/liste/şemalar/istatistik yeniden ÇİZİLMEZ.
+  let currentLinkTargets = [];
+  let linkGen = 0;
+  let relinkTimer = null;
+  function whenIdle(fn) {
+    if (window.requestIdleCallback) window.requestIdleCallback(fn, { timeout: 400 });
+    else setTimeout(fn, 16);
+  }
+  function runLinkify(targets) {
+    const gen = ++linkGen;
+    let i = 0;
+    const step = () => {
+      if (gen !== linkGen) return;
+      const t0 = performance.now();
+      do {
+        const t = targets[i++];
+        if (t && t.el.isConnected) {
+          const plain = tt(t.raw);
+          const linked = linkify(plain);
+          if (linked !== plain) t.el.innerHTML = linked;
+        }
+      } while (i < targets.length && performance.now() - t0 < 10);
+      if (i < targets.length) whenIdle(step);
+    };
+    whenIdle(step);
+  }
+  function scheduleRelink() {
+    clearTimeout(relinkTimer);
+    relinkTimer = setTimeout(() => {
+      if (currentLinkTargets.length) runLinkify(currentLinkTargets);
+    }, 150);
   }
 
   // Embedding altyapısı: iki metin gömme (embedding) yakınlığıyla bulunmuş,
@@ -1330,11 +1747,89 @@
     }, 1800);
   }
 
-  function activatePart(id) {
+  // K-031: derin bağlantı "#p-N" yönlendirici/SPA tarafından silinmesin.
+  // Betik yüklenirken adres henüz bozulmamıştır (index.html'deki satır-içi
+  // betik ?p= adresini deferred betiklerden önce geri koyar).
+  const deepPar = (function () {
+    const m = /^#p-(\d+)$/.exec(location.hash);
+    const r = /\/futuhat\/(c\d+k\d+)\/?$/.exec(location.pathname);
+    return m && r ? { id: r[1], n: +m[1], until: Date.now() + 4000 } : null;
+  })();
+  function parHashFor(id) {
+    const m = /^#p-(\d+)$/.exec(location.hash);
+    const r = /\/futuhat\/(c\d+k\d+)\/?$/.exec(location.pathname);
+    if (m && r && r[1] === id) return location.hash;
+    if (deepPar && deepPar.id === id && Date.now() < deepPar.until) return "#p-" + deepPar.n;
+    return "";
+  }
+
+  function activatePart(id, otomatik) {
     const meta = partById(id);
     if (!meta) return;
     activePartId = id;
     saveLastPart(id);
+    // K-025: karşılama ekranının "kaldığın yerden devam et" satırı için ORTAK son-yer kaydı. Yalnız
+    // okuyucunun bilerek açtığı kısım yazılır (çip/harita tıklaması = otomatik değil; ya da adreste
+    // açıkça verilen id). Menüden varsayılan iniş ve "son kısma dön" yolu YAZMAZ.
+    if (window.DostSonYer && (!otomatik || explicitPartId === id)) {
+      window.DostSonYer.kaydet("futuhat", id, {
+        tr: "Fütûhât, Cilt " + CILT_ROMAN[meta.cilt] + " · Kısım " + roman(meta.kisim),
+        en: "Futuhat, Volume " + CILT_ROMAN[meta.cilt] + " · Part " + roman(meta.kisim),
+        pt: "Futuhat, Volume " + CILT_ROMAN[meta.cilt] + " · Parte " + roman(meta.kisim),
+      });
+    }
+    markCurrent(id);
+    if (window.__dostNav) window.__dostNav.setHash("futuhat", id, { replace: !!otomatik, hash: parHashFor(id) });
+    // setHash az önce genel "futuhat" başlık/canonical/description'ını yazdı
+    // (bkz. ontology.js updateMeta) -- bu kısma özel olanlarla en son biz
+    // üzerine yazıyoruz ki kazanan bu olsun. Meta (title+summary) indekste
+    // olduğu için anında; makale gövdesi ise tam kısım gelince render edilir.
+    updatePartMeta(meta);
+    // Zaten bir kısım görünüyorsa, yenisi yüklenene kadar onu bırak (boş
+    // yanıp sönme olmasın); yalnızca ilk açılışta "yükleniyor" göster.
+    const alreadyRendered = articleEl && articleEl.querySelector(".futuhat-hero");
+    if (articleEl) articleEl.setAttribute("aria-busy", "true");
+    if (!partCache.has(id) && !alreadyRendered && articleEl) {
+      // K-027: dönen "Yükleniyor…" yerine gerçek düzenin yaklaşık yüksekliğini
+      // tutan iskelet (altbilgi ve istatistiğin metin gelince itilmesini önler).
+      articleEl.innerHTML = `
+        <div class="futuhat-iskelet" role="status" aria-label="${tt({ tr: "Yükleniyor…", en: "Loading…", pt: "Carregando…" })}">
+          <span class="isk--ust"></span><span class="isk--baslik"></span><span class="isk--baslik"></span><span class="isk--kunye"></span>
+          <span class="isk--satir"></span><span class="isk--satir"></span><span class="isk--satir"></span><span class="isk--satir"></span><span class="isk--satir"></span><span class="isk--satir"></span>
+        </div>`;
+    }
+    fetchPart(id).then((part) => {
+      // Kullanıcı bu fetch dönmeden başka bir kısma geçtiyse eskiyi basma.
+      if (activePartId !== id) return;
+      if (!part) {
+        if (articleEl) {
+          articleEl.setAttribute("aria-busy", "false");
+          document.documentElement.removeAttribute("data-futuhat-bekle");
+          articleEl.innerHTML = `
+            <div class="view-status view-status--error futuhat-part-loading">
+              <div class="view-status__spinner" aria-hidden="true"></div>
+              <p class="view-status__text">${tt({ tr: "Bu kısım yüklenemedi.", en: "This part could not be loaded.", pt: "Esta parte não pôde ser carregada." })}</p>
+              <button type="button" class="view-status__retry futuhat-part-retry">${tt({ tr: "Tekrar dene", en: "Retry", pt: "Tentar novamente" })}</button>
+            </div>`;
+          const retry = articleEl.querySelector(".futuhat-part-retry");
+          if (retry) retry.addEventListener("click", () => activatePart(id));
+        }
+        return;
+      }
+      renderPart(part);
+      if (articleEl) articleEl.setAttribute("aria-busy", "false");
+    });
+  }
+
+  // --- K-027: kısım rayı (Neredeyim halkası + cilt listesi) kapalı bir panel ---
+  const sidebarEl = document.getElementById("futuhat-sidebar");
+  const railToggle = document.getElementById("futuhat-rail-toggle");
+  const RAIL_KEY = "dost-futuhat-kisim-rayi";
+  let railBuilt = false;
+  let railInit = false;
+  const desktopMQ = window.matchMedia ? window.matchMedia("(min-width: 1100px)") : { matches: false };
+
+  function markCurrent(id) {
     if (partsEl) {
       partsEl.querySelectorAll(".futuhat-part-chip").forEach((chip) => {
         chip.classList.toggle("futuhat-part-chip--current", chip.dataset.id === id);
@@ -1348,43 +1843,9 @@
         wedge.classList.toggle("futuhat-map__kisim--current", wedge.dataset.id === id);
       });
     }
-    if (window.__dostNav) window.__dostNav.setHash("futuhat", id);
-    // setHash az önce genel "futuhat" başlık/canonical/description'ını yazdı
-    // (bkz. ontology.js updateMeta) -- bu kısma özel olanlarla en son biz
-    // üzerine yazıyoruz ki kazanan bu olsun. Meta (title+summary) indekste
-    // olduğu için anında; makale gövdesi ise tam kısım gelince render edilir.
-    updatePartMeta(meta);
-    // Zaten bir kısım görünüyorsa, yenisi yüklenene kadar onu bırak (boş
-    // yanıp sönme olmasın); yalnızca ilk açılışta "yükleniyor" göster.
-    const alreadyRendered = articleEl && articleEl.querySelector(".futuhat-hero");
-    if (!partCache.has(id) && !alreadyRendered && articleEl) {
-      articleEl.innerHTML = `
-        <div class="view-status futuhat-part-loading">
-          <div class="view-status__spinner" aria-hidden="true"></div>
-          <p class="view-status__text">${tt({ tr: "Yükleniyor…", en: "Loading…", pt: "Carregando…" })}</p>
-        </div>`;
-    }
-    fetchPart(id).then((part) => {
-      // Kullanıcı bu fetch dönmeden başka bir kısma geçtiyse eskiyi basma.
-      if (activePartId !== id) return;
-      if (!part) {
-        if (articleEl) {
-          articleEl.innerHTML = `
-            <div class="view-status view-status--error futuhat-part-loading">
-              <div class="view-status__spinner" aria-hidden="true"></div>
-              <p class="view-status__text">${tt({ tr: "Bu kısım yüklenemedi.", en: "This part could not be loaded.", pt: "Esta parte não pôde ser carregada." })}</p>
-              <button type="button" class="view-status__retry futuhat-part-retry">${tt({ tr: "Tekrar dene", en: "Retry", pt: "Tentar novamente" })}</button>
-            </div>`;
-          const retry = articleEl.querySelector(".futuhat-part-retry");
-          if (retry) retry.addEventListener("click", () => activatePart(id));
-        }
-        return;
-      }
-      renderPart(part);
-    });
   }
 
-  function render() {
+  function buildRail() {
     if (!futuhatData) return;
     renderMap();
     renderParts();
@@ -1392,11 +1853,75 @@
       partsEl.querySelectorAll(".futuhat-part-chip[data-id]").forEach((chip) => {
         chip.addEventListener("click", () => {
           window.dostTrack && window.dostTrack("kitap_bolumu_acildi", { part: chip.dataset.id });
+          if (!desktopMQ.matches) closeRail(false);
           activatePart(chip.dataset.id);
         });
       });
     }
-    activatePart(activePartId);
+    railBuilt = true;
+    markCurrent(activePartId);
+  }
+
+  function railIsOpen() { return !!sidebarEl && !sidebarEl.hidden; }
+
+  function openRail(opts) {
+    if (!sidebarEl) return;
+    if (!railBuilt) buildRail();
+    sidebarEl.hidden = false;
+    if (railToggle) railToggle.setAttribute("aria-expanded", "true");
+    if (desktopMQ.matches) { try { localStorage.setItem(RAIL_KEY, "1"); } catch (_) {} }
+    if (!opts || opts.focus !== false) {
+      const cur = partsEl && partsEl.querySelector(".futuhat-part-chip--current");
+      if (cur) {
+        cur.focus({ preventScroll: true });
+        cur.scrollIntoView({ block: "center" });
+      }
+    }
+  }
+
+  function closeRail(returnFocus) {
+    if (!sidebarEl || sidebarEl.hidden) return;
+    sidebarEl.hidden = true;
+    if (railToggle) railToggle.setAttribute("aria-expanded", "false");
+    if (desktopMQ.matches) { try { localStorage.setItem(RAIL_KEY, "0"); } catch (_) {} }
+    if (returnFocus && railToggle) railToggle.focus();
+  }
+
+  function scheduleRailBuild() {
+    const job = () => { if (!railBuilt && futuhatData) buildRail(); };
+    if (window.requestIdleCallback) window.requestIdleCallback(job, { timeout: 1500 });
+    else setTimeout(job, 200);
+  }
+
+  if (railToggle) {
+    railToggle.addEventListener("click", () => (railIsOpen() ? closeRail(false) : openRail()));
+  }
+  const railClose = document.getElementById("futuhat-sidebar-close");
+  if (railClose) railClose.addEventListener("click", () => closeRail(true));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && railIsOpen() && wrapEl && !wrapEl.hidden) {
+      e.preventDefault();
+      closeRail(true);
+    }
+  });
+  document.addEventListener("pointerdown", (e) => {
+    if (!railIsOpen()) return;
+    if (sidebarEl.contains(e.target) || (railToggle && railToggle.contains(e.target))) return;
+    closeRail(false);
+  });
+
+  function render() {
+    if (!futuhatData) return;
+    railBuilt = false;
+    if (railIsOpen()) buildRail();
+    else scheduleRailBuild();
+    if (!railInit) {
+      railInit = true;
+      let remembered = null;
+      try { remembered = localStorage.getItem(RAIL_KEY); } catch (_) {}
+      if (desktopMQ.matches && remembered === "1") openRail({ focus: false });
+    }
+    activatePart(activePartId, true);
   }
 
   setupCrossLinkPreviews();
@@ -1409,14 +1934,17 @@
         subscribedToCrossLinkReady = true;
         // Ontoloji/Esmâ/Hâl/Terimler each register their cross-linkable
         // terms as their own data arrives, which can be after our first
-        // render; re-render once more terms are available so links appear
-        // without the reader needing to do anything.
-        window.__dostCrossLink.onReady(() => { if (futuhatData) render(); });
+        // render; once more terms are available the article body is
+        // re-linked (K-027: not the whole view) so links appear without the
+        // reader needing to do anything.
+        window.__dostCrossLink.onReady(() => { if (futuhatData) scheduleRelink(); });
       }
       fetchData().then((data) => {
         if (!data) return;
+        explicitPartId = null;
         if (id && data.parts.some((p) => p.id === id)) {
           activePartId = id;
+          explicitPartId = id;
           isDefaultLanding = false;
         } else {
           const last = loadLastPart();

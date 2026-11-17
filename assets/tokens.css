@@ -1,0 +1,42 @@
+/* Dost Arabî — tasarım token'ları (K-024). YALNIZ EKLEMELİ: bu dosya mevcut hiçbir kuralı/değişkeni
+   değiştirmez; yalnız `--ds-` ön ekli yeni özel özellikler tanımlar. KURAL: bundan sonra yazılan her
+   yeni görünüm font-size / border-radius / box-shadow / hareket süresi / boşluk / zemin rengi için
+   YALNIZ bu token'ları kullanır (CLAUDE.md "Tasarım token'ları" kuralı — sahibin onayını bekliyor).
+   Mevcut görünümler bu kartta MİGRE EDİLMEDİ. Değerlerin kaynağı: lab/ortak/sistem.css (adlandırma: --X → --ds-X). */
+
+/* Değerden ibaret (tema-bağımsız) token'lar: :root */
+:root {
+  /* yazı ölçeği: 6 basamak, taban 17px (1rem=16px), oran ≈1.25; 13px altı yok */
+  --ds-y-1: .8125rem; --ds-y0: 1.0625rem; --ds-y1: 1.3125rem; --ds-y2: 1.625rem; --ds-y3: 2.0625rem; --ds-y4: 2.75rem;
+  /* boşluk: 4'ün katları, 7 basamak */
+  --ds-b1: 4px; --ds-b2: 8px; --ds-b3: 16px; --ds-b4: 24px; --ds-b5: 40px; --ds-b6: 64px; --ds-b7: 104px;
+  /* köşe: 3 değer */
+  --ds-r1: 4px; --ds-r2: 12px; --ds-r-tam: 999px;
+  /* hareket: 4 süre, 2 eğri */
+  --ds-h-hizli: 120ms; --ds-h-orta: 260ms; --ds-h-yavas: 600ms; --ds-h-nefes: 4200ms;
+  --ds-egri: cubic-bezier(.22,.61,.36,1); --ds-egri-yumusak: cubic-bezier(.45,.05,.25,1);
+  /* yerleşim */
+  --ds-dokunma: 44px; --ds-okuma: 38rem;
+  /* tek gölge (açık tema) */
+  --ds-golge: 0 1px 2px rgba(31,29,26,.08), 0 8px 24px rgba(31,29,26,.07);
+}
+
+/* Renk/yazı tipi: sitenin MEVCUT değişkenlerine takma ad. `.viz-root` (= <body>) üzerinde tanımlanmalı:
+   bu değişkenler orada tanımlı; `:root`ta `var()` çözülemez. Koyu temada `.viz-root[data-theme="dark"]`
+   altındaki mevcut değerler otomatik izlenir (yeni koyu renk icat edilmedi). */
+.viz-root {
+  --ds-zemin: var(--page-plane);
+  --ds-yuzey: var(--surface-1);
+  --ds-yuzey-2: color-mix(in srgb, var(--surface-1) 94%, var(--text-primary));
+  --ds-metin: var(--text-primary);
+  --ds-metin-2: var(--text-secondary);
+  --ds-metin-soluk: var(--text-muted);
+  --ds-cizgi: var(--gridline);
+  --ds-vurgu: var(--accent-interactive);
+  --ds-baglanti: var(--series-ibnarabi-text);
+  --ds-f-baslik: var(--font-display);
+  --ds-f-metin: var(--font-body);
+}
+.viz-root[data-theme="dark"] {
+  --ds-golge: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+}

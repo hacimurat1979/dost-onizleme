@@ -39,7 +39,7 @@
   const I18n = window.DostI18n;
   let veri = null, sozu = null, tip = null, acikRef = null, acikTur = null;
   let dizin = null, dizinSozu = null;
-  let hadisDizin = null, hadisDizinSozu = null;
+  let hadisDizin = null, hadisDizinSozu = null, hadisDurum = null;
 
   function base() { return window.__dostRouteBase || ""; }
   const fetcher = (window.DostGraphUtils && window.DostGraphUtils.fetchJson)
@@ -69,7 +69,7 @@
   function yukleHadisDizin() {
     if (hadisDizinSozu) return hadisDizinSozu;
     hadisDizinSozu = fetcher(base() + "/data/ibn-arabi/hadis-dizini.json")
-      .then((d) => { hadisDizin = (d && d.dizin) || {}; return hadisDizin; })
+      .then((d) => { hadisDizin = (d && d.dizin) || {}; hadisDurum = (d && d.durum) || {}; return hadisDizin; })
       .catch((e) => { console.warn("Hadis dizini yüklenemedi", e); hadisDizinSozu = null; return {}; });
     return hadisDizinSozu;
   }
@@ -165,18 +165,24 @@
   }
 
   // Hadis kutusu âyet kutusundan BİLEREK daha az söylüyor: Arapça asıl
-  // yok, sahihlik iddiası yok -- yalnız tekrar eden yerleri gösteriyor.
+  // yok, sahihlik iddiası yok -- tekrar eden yerleri gösteriyor ve (K-018)
+  // hadis-dizini.json'daki "durum" notunu: sıhhatine hüküm vermediğimizi söylüyor.
   function hadisIcerik(anahtar) {
     const liste = (hadisDizin && hadisDizin[anahtar]) || [];
-    if (!liste.length) return null;
-    const baslik = I18n.pick3({
-      tr: "Tekrarlayan bir kutsî hadis", en: "A recurring sacred saying", pt: "Um dito sagrado recorrente",
-    });
-    const digerHtml = digerYerlerHtml(liste, {
+    const durum = hadisDurum && hadisDurum[anahtar];
+    const durumHtml = durum
+      ? `<p class="hadis-tip__baslik">${esc(I18n.pick3({ tr: "Rivayetin durumu", en: "Status of the report", pt: "Situação do relato" }))}</p>`
+        + `<p class="hadis-tip__durum">${esc(I18n.pick3(durum))}</p>`
+      : "";
+    const digerHtml = liste.length ? digerYerlerHtml(liste, {
       tr: "Bu ifade sitede şurada da geçiyor", en: "This wording also appears here", pt: "Esta formulação também aparece aqui",
-    });
-    if (!digerHtml) return null;   // yalnız kendi kısmındaysa gösterecek bir şey yok
-    return `<p class="hadis-tip__baslik">${esc(baslik)}</p>${digerHtml}`;
+    }) : "";
+    // Durum notu da, başka yerde geçme listesi de yoksa gösterecek bir şey yok.
+    if (!durumHtml && !digerHtml) return null;
+    const baslik = digerHtml ? `<p class="hadis-tip__baslik">${esc(I18n.pick3({
+      tr: "Tekrarlayan bir kutsî hadis", en: "A recurring sacred saying", pt: "Um dito sagrado recorrente",
+    }))}</p>` : "";
+    return durumHtml + baslik + digerHtml;
   }
 
   function goster(el) {

@@ -19,7 +19,10 @@
   function updateLabel() {
     if (!label) return;
     const active = drawer.querySelector(".btn-ghost--active");
-    if (active) label.textContent = active.textContent.trim();
+    if (active) {
+      const ad = active.querySelector(".nav-item__ad");
+      label.textContent = (ad || active).textContent.trim();
+    }
   }
   new MutationObserver(updateLabel).observe(drawer, {
     subtree: true,
@@ -50,12 +53,43 @@
   // Bir bölüme tıklanınca çekmece kapanır — gezinme ontology.js'in aynı
   // click dinleyicisiyle zaten gerçekleşiyor (iki dinleyici, tek tık).
   drawer.addEventListener("click", (e) => {
-    if (e.target.closest("button")) close();
+    // K-015: "Ayarlar" grubundaki düğmeler (tema, şaşırt, dil) çekmeceyi kapatmaz.
+    // composedPath: dil düğmeleri tıklamada yeniden çizilir (hedef DOM'dan
+    // kopar); closest() kopmuş düğümde ayarlar grubunu bulamaz.
+    const path = e.composedPath ? e.composedPath() : [];
+    const inAyarlar = path.some((n) => n.id === "nav-ayarlar-items") || !!e.target.closest("#nav-ayarlar-items");
+    if (e.target.closest("button") && !inAyarlar) close();
   });
   document.addEventListener("click", (e) => {
-    if (!drawer.hidden && !drawer.contains(e.target) && !toggle.contains(e.target)) close();
+    // Kopmuş (yeniden çizilmiş) hedef için de çekmecenin içinde sayılır.
+    const path = e.composedPath ? e.composedPath() : [];
+    if (!drawer.hidden && !drawer.contains(e.target) && !path.includes(drawer) && !toggle.contains(e.target)) close();
   });
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") close(true);
   });
+
+  // K-015: ≤640px'te şaşırt/tema/dil düğmeleri üst çubuktan ☰ çekmecesindeki
+  // "Ayarlar" grubuna, defter düğmesi alt köşeden üst çubuğa taşınır (üst çubuk
+  // tek satır kalsın, sabit düğmeler metnin üstüne binmesin). Aynı DOM
+  // düğümleri taşınır: id'ler ve dinleyiciler korunur. Taşıma `load`'da
+  // yapılır — search.js `theme-toggle`ı `.app-header__controls`'ın çocuğu
+  // varsayarak insertBefore çağırıyor, o çalıştıktan SONRA olmalı.
+  const mq = window.matchMedia("(max-width: 640px)");
+  function place() {
+    const ctrls = document.querySelector(".app-header__controls");
+    const box = document.getElementById("nav-ayarlar-items");
+    if (!ctrls || !box) return;
+    const mobile = mq.matches;
+    ["surprise-toggle", "theme-toggle", "lang-switch"].forEach((id) => {
+      const el = document.getElementById(id);
+      const target = mobile ? box : ctrls;
+      if (el && el.parentNode !== target) target.appendChild(el);
+    });
+    const defter = document.getElementById("defter-toggle"); // kavram-defteri.js body'ye ekliyor
+    const dTarget = mobile ? ctrls : document.body;
+    if (defter && defter.parentNode !== dTarget) dTarget.appendChild(defter);
+  }
+  window.addEventListener("load", place);
+  mq.addEventListener("change", place);
 })();

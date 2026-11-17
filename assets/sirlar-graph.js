@@ -229,6 +229,13 @@
     zoomBehavior = GU.createZoomBehavior(svg, zoomLayer, [0.35, 3.2]);
     // başlangıç dönüşümü: sahneyi merkeze al (zoom handler zoomLayer'ı buna göre kurar)
     svg.call(zoomBehavior.transform, d3.zoomIdentity.translate(w / 2, h / 2).scale(1));
+    // K-033: etiketlerin yazı birimi ekran ölçeğine (zoom k dâhil) bağlı; zoom her
+    // değiştiğinde (geçiş, kıstırma, düğmeler) bir kare istenir ve k tazelenir --
+    // yoksa durağan (azaltılmış hareket) görünümde etiket son çizimdeki k'ya göre
+    // kalıyordu.
+    // (currentK'ya DOKUNULMAZ: LOD eşikleri -- yaprak soluklaşması, yaprak etiketi -- mevcut
+    // davranışıyla kalsın; yalnız kare istenir, etiket ölçeği kare içinde zoomTransform'dan okunur.)
+    zoomBehavior.on("zoom.sirlar-etiket", () => { ensureFrame(); });
     // zoom sırasında currentK'yı izleyip LOD güncelle
     svgNode.addEventListener("wheel", () => { setTimeout(readZoom, 0); }, { passive: true });
     svg.on("click", () => { if (focusedTheme) exitReading(); });
@@ -468,6 +475,12 @@
     if (tilt3d && tilt3d.value > 0.02) merged.sort((a, b) => (b.__z || 0) - (a.__z || 0));
 
     const t3 = tilt3d ? tilt3d.value : 0;
+    // K-033: etiketin EKRANDAKİ boyutu = yazı birimi x (svg'nin viewBox ölçeği) x
+    // zoom k. Eskiden 16/13/11 px "birim" yazılıyordu; mobilde ölçek 0,56 olduğundan
+    // tema etiketi 7 px görünüyordu. Yazı birimi hedef/(ölçek*k) yapılır
+    // (kök 15, tema 13, yaprak 12 px etkin).
+    const svgM = svgNode.getScreenCTM();
+    labelScreenScale = Math.max(0.05, (svgM ? Math.hypot(svgM.a, svgM.b) : 1) * (d3.zoomTransform(svgNode).k || 1));
     merged.each(function (d) {
       const g = d3.select(this);
       const br = breath(d, ts);
@@ -537,7 +550,9 @@
       if (!showLabel) lbl.style("display", "none");
       else {
         const long = (d.kind === "entry" && currentK > 1.9);
-        const ly = r + (d.kind === "root" ? 20 : d.kind === "theme" ? 16 : 12);
+        const fsEff = d.kind === "root" ? 15 : d.kind === "theme" ? 13 : 12;
+        const fsU = fsEff / labelScreenScale;
+        const ly = r + 4 / labelScreenScale + fsU * 0.95;
         lbl.style("display", null)
           .attr("y", ly)
           // Sahne döndüğü için etiketi kendi noktası etrafında ters çevirip
@@ -548,7 +563,8 @@
           .classed("sir-label--root", d.kind === "root")
           .classed("sir-label--theme", d.kind === "theme")
           .classed("sir-label--strong", act && (d.id === act.anchor))
-          .style("font-size", (d.kind === "root" ? 16 : d.kind === "theme" ? 13 : 11) + "px")
+          .style("font-size", fsU.toFixed(2) + "px")
+          .style("stroke-width", (3 / labelScreenScale).toFixed(2) + "px")
           .text(long ? longLabelFor(d) : labelFor(d));
       }
     });
@@ -563,9 +579,12 @@
   // ölçümü (getComputedTextLength) metin başına bir kez yapılıp
   // önbelleğe alınıyor -- her karede layout zorlamamak için.
   const labelWidthCache = new Map();
+  let labelScreenScale = 1;   // K-033: yazı birimi -> ekran pikseli çarpanı (kare başına tazelenir)
   function measureLabel(textEl) {
     const key = textEl.textContent + "|" + textEl.style.fontSize;
     if (labelWidthCache.has(key)) return labelWidthCache.get(key);
+    // Yazı birimi k ile her an değiştiğinden anahtar sayısı sınırsız büyürdü.
+    if (labelWidthCache.size > 400) labelWidthCache.clear();
     let w = 0;
     try { w = textEl.getComputedTextLength(); } catch (e) { w = key.length * 6; }
     labelWidthCache.set(key, w);
@@ -573,57 +592,88 @@
   }
 
   function spreadThemeLabels(merged) {
+    // K-033: tema etiketleri artık EKRANDA 13 px (eskiden mobilde ~7 px) olduğundan
+    // yalnız "aşağı kaydır" yetmiyor. Her tema etiketi için aday konumlar
+    // (varsayılan, kürenin üstü, aşağıya kademeli, yatayda kaydırılmış) maliyetle
+    // seçilir: başka etikete binmek 5, BAŞKA bir kürenin (tema/kök) üstüne binmek 2,
+    // görünür çerçeveden taşmak 3 (yalnız 3B kipte; düz kipte sahne dönüyor).
+    // Konumlar sahnenin yerel koordinatında; boyutlar yazı biriminde.
     const items = [];
     const discs = [];
+    const fixed = [];   // kök etiketi vb.: yer değiştirmez, engel olur
     merged.each(function (d) {
-      if (d.kind !== "theme") return;
       const g = this;
       if (g.style.display === "none") return;
       const dot = g.querySelector(".sir-dot");
-      discs.push({ id: d.id, x: nx_(d), y: ny_(d), r: parseFloat(dot && dot.getAttribute("r")) || R_THEME });
+      if (d.kind === "theme" || d.kind === "root") {
+        discs.push({ id: d.id, x: nx_(d), y: ny_(d), r: parseFloat(dot && dot.getAttribute("r")) || R_THEME });
+      }
       const lbl = g.querySelector(".sir-label");
       if (!lbl || lbl.style.display === "none") return;
+      const fs = parseFloat(lbl.style.fontSize) || 12;
       const baseY = parseFloat(lbl.getAttribute("y")) || 0;
-      lbl.__baseY = lbl.__baseY == null ? baseY : lbl.__baseY;
-      items.push({ id: d.id, el: lbl, x: nx_(d), y: ny_(d) + lbl.__baseY, w: measureLabel(lbl), baseY: lbl.__baseY });
-    });
-    if (items.length < 2) return;
-    items.sort((a, b) => a.y - b.y);
-    // Boşluk EKRAN ölçüsünde tutulmalı: satır yüksekliği ~15 ekran pikseli,
-    // ama burada SVG birimindeyiz ve sahne uzaklaşınca (currentK < 1) sabit
-    // bir SVG boşluğu ekranda yetersiz kalıyor.
-    const MIN_GAP = 17 / Math.max(0.35, currentK);
-    for (let i = 0; i < items.length; i++) {
-      const cur = items[i];
-      let shift = 0;
-      for (let j = 0; j < i; j++) {
-        const prev = items[j];
-        const overlapX = Math.abs(cur.x - prev.x) < (cur.w + prev.w) / 2 + 6;
-        if (!overlapX) continue;
-        const need = prev.y + shiftOf(prev) + MIN_GAP - cur.y;
-        if (need > shift) shift = need;
+      const w = measureLabel(lbl);
+      if (d.kind === "theme") {
+        items.push({ id: d.id, el: lbl, x: nx_(d), ny: ny_(d), w, fs, baseY,
+                     r: parseFloat(dot && dot.getAttribute("r")) || R_THEME });
+      } else if (d.kind === "root") {
+        const base = ny_(d) + baseY;
+        fixed.push({ l: nx_(d) - w / 2, r: nx_(d) + w / 2, t: base - fs * 0.9, b: base + fs * 0.3 });
       }
-      // Etiket, BAŞKA bir temanın dairesinin üstüne de binmemeli -- yoksa
-      // ilk harfleri düğümün arkasında kalıyor (kullanıcı notu 2026-07-27).
-      shift = Math.max(shift, clearOfDiscs(cur, shift));
-      cur.__shift = shift;
-      cur.el.setAttribute("y", (cur.baseY + shift).toFixed(1));
+    });
+    if (!items.length) return;
+    const sc = Math.max(0.05, labelScreenScale);
+    let view = null;
+    if (tilt3d && tilt3d.on) {
+      const zt = d3.zoomTransform(svgNode);
+      const w = svgNode.clientWidth || 900, h = svgNode.clientHeight || 620;
+      // zoomLayer'ın dönüşümü zoom handler'ında doğrudan zt'ye eşitleniyor; spinLayer
+      // 3B kipte dönmüyor -> katman koordinatı = (ekran - zt.xy) / k.
+      view = { x0: (-zt.x) / zt.k, x1: (w - zt.x) / zt.k, y0: (-zt.y) / zt.k, y1: (h - zt.y) / zt.k };
     }
-
-    function clearOfDiscs(it, shift) {
-      let need = shift;
-      const half = it.w / 2;
-      discs.forEach((dc) => {
-        if (dc.id === it.id) return;
-        const y = it.y + shift;
-        const overlapX = dc.x + dc.r > it.x - half - 4 && dc.x - dc.r < it.x + half + 4;
-        if (!overlapX) return;
-        if (Math.abs(y - dc.y) > dc.r + 9) return;
-        need = Math.max(need, dc.y + dc.r + 11 - it.y);
-      });
-      return need;
+    items.sort((a, b) => a.ny - b.ny);
+    const placed = fixed.slice();
+    const cost = (it, bx) => {
+      let n = 0;
+      if (view) {
+        const m = 4 / sc;
+        if (bx.l < view.x0 + m || bx.r > view.x1 - m || bx.t < view.y0 + m || bx.b > view.y1 - m) n += 3;
+      }
+      for (const dc of discs) {
+        if (dc.id === it.id) continue;
+        const nx = Math.max(bx.l, Math.min(dc.x, bx.r)), ny = Math.max(bx.t, Math.min(dc.y, bx.b));
+        if (Math.hypot(nx - dc.x, ny - dc.y) < dc.r) n += 2;
+      }
+      const gx = 4 / sc, gy = 2 / sc;
+      for (const p of placed) {
+        if (bx.l < p.r + gx && bx.r > p.l - gx && bx.t < p.b + gy && bx.b > p.t - gy) n += 5;
+      }
+      return n;
+    };
+    const step = 10 / sc;
+    for (const it of items) {
+      const flipY = -(it.r + 4 / sc);
+      const ys = [it.baseY, flipY, it.baseY + it.fs * 1.15, flipY - it.fs * 1.15, it.baseY + it.fs * 2.3, flipY - it.fs * 2.3,
+                  it.baseY + it.fs * 3.45, flipY - it.fs * 3.45, it.baseY + it.fs * 4.6, flipY - it.fs * 4.6];
+      const xs = [0];
+      for (let i = 1; i <= 20; i++) xs.push(i * step, -i * step);
+      // Adaylar düğümden UZAKLIĞA göre sıralı: ilk çakışmasız aday kazanır, etiket
+      // sahibinden gereksiz uzaklaşıp hangi küreye ait olduğu belirsizleşmesin.
+      const cands = [];
+      for (const ox of xs) for (const yb of ys) cands.push({ ox, yb, d: Math.hypot(ox, (yb - it.baseY) * 1.4) });
+      cands.sort((a, b) => a.d - b.d);
+      let best = null;
+      for (const c of cands) {
+        const base = it.ny + c.yb, cx = it.x + c.ox;
+        const bx = { l: cx - it.w / 2, r: cx + it.w / 2, t: base - it.fs * 0.9, b: base + it.fs * 0.3 };
+        const n = cost(it, bx) + c.d * sc / 400;   // küçük yakınlık cezası (ekran pikseli)
+        if (!best || n < best.n) best = { n, ox: c.ox, yb: c.yb, bx };
+        if (n < 0.3) break;
+      }
+      it.el.setAttribute("y", best.yb.toFixed(1));
+      if (best.ox) it.el.setAttribute("x", best.ox.toFixed(1)); else it.el.removeAttribute("x");
+      placed.push(best.bx);
     }
-    function shiftOf(it) { return it.__shift || 0; }
   }
 
   function labelVisible(d, act) {

@@ -16,12 +16,23 @@
   try { seen = !!localStorage.getItem(SEEN_KEY); } catch (e) {}
   if (seen) return;
 
-  setTimeout(() => {
+  // K-025: tek tanıtım. Bu kart yalnız karşılama ekranını (kök adres) görmüş/geçmiş okura çıkar;
+  // derin bağlantıdan gelen okura çıkmaz. Karşılama hâlâ sürüyorsa onun sönmesini bekler, böylece
+  // iki tanıtım üst üste binmez.
+  function show() {
     if (!hint.hidden) return;
     const wrap = document.getElementById("ontology-wrap");
     if (!wrap || wrap.hidden) return;
     hint.hidden = false;
-  }, 3200);
+  }
+  let welcomeSeen = false;
+  try { welcomeSeen = !!sessionStorage.getItem("dost-welcome-seen"); } catch (e) {}
+  const welcomeEl = document.getElementById("welcome-screen");
+  if (welcomeSeen) {
+    setTimeout(show, 3200);
+  } else if (welcomeEl && !welcomeEl.hidden) {
+    document.addEventListener("dost:welcome-left", () => setTimeout(show, 1200), { once: true });
+  }
 
   goBtn.addEventListener("click", () => {
     dismiss();

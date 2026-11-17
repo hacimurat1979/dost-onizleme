@@ -29,6 +29,8 @@
   const I18n = window.DostI18n;
   const GU = window.DostGraphUtils;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // K-014: telefonda açılışta detay paneli kapalı başlar (tam ekran örtüyordu).
+  const isPhone = () => window.matchMedia("(max-width: 640px)").matches;
   const svg = d3.select("#sorular-graph");
   const svgNode = svg.node();
   const detailPanel = document.getElementById("detail-panel");
@@ -616,6 +618,11 @@
     gsel.exit().remove();
 
     const pending = [];   // görünür etiketler; çakışma çözümü döngüden sonra
+    const spheres = [];   // K-033: etiket-küre çarpışması için görünür kürelerin ekranı
+    // K-033: etiketler yakınlaştırılan <g> içinde olduğundan etkin boyut = CSS boyutu x k
+    // (kategori 13,6 px -> masaüstünde 22,8 px). Yazı birimi hedef/k yapılır; k her
+    // karede doğrudan zoomTransform'dan okunur (currentK yalnız tekerlekte güncelleniyor).
+    const kz = Math.max(0.6, (d3.zoomTransform(svgNode).k) || 1);
     merged.each(function (d) {
       const g = d3.select(this);
       const isHover = act && d.id === act.anchor;
@@ -673,25 +680,93 @@
       const showLabel = d.isCat || inOpenArm || isHover || isActive || currentK >= 1.15 || (act && act.set.has(d.id));
       // Açılan koldaki soruların etiketi merkezden DIŞARI bakan tarafa yazılır;
       // yoksa iki sıralı yelpazede dış sıranın etiketi iç sıranın üstüne düşüyor.
-      const labelY = inOpenArm && (d.y - cy) < 0 ? -(r + 7) : r + 13;
+      const fs = (d.isCat ? 14 : 12) / kz;      // etkin boyut: kategori 14 px, soru 12 px
+      const labelY = inOpenArm && (d.y - cy) < 0 ? -(r + 4) : r + 4 + fs * 0.95;
       const txt = d.isCat ? I18n.pick3(d.category.name) : labelFor(d.question, inOpenArm ? 20 : 30);
-      lbl.attr("y", labelY).style("display", showLabel ? null : "none")
+      lbl.attr("y", labelY).attr("x", null).style("display", showLabel ? null : "none")
+        .style("font-size", fs.toFixed(2) + "px").style("stroke-width", (3 / kz).toFixed(2) + "px")
         .classed("sorular-label--strong", isHover || isActive)
         .classed("sorular-label--cat", !!d.isCat)
         .text(txt);
+      if (op >= 0.35) spheres.push({ id: d.id, x: nx_(d) + dx, y: ny_(d) + dy, r });
       if (showLabel && op >= 0.35) {
-        pending.push({ lbl, txt, priority: d.isCat ? 1 : 0,
-                       x: nx_(d) + dx, y: ny_(d) + dy + labelY, baseY: labelY });
+        pending.push({ lbl, txt, priority: d.isCat ? 1 : 0, id: d.id, r, fs, strong: isHover || isActive,
+                       x: nx_(d) + dx, y: ny_(d) + dy + labelY, baseY: labelY,
+                       flipY: -(r + 4), kz });
       }
     });
-    deconflictLabels(pending);
+    // Görünür çerçeve (SVG birimi): etiket kenardan taşıp kırpılmasın. Masaüstünde
+    // sağdaki detay paneli çerçevenin bir kısmını örtüyorsa o kısım hesaba katılır.
+    const zt = d3.zoomTransform(svgNode);
+    const view = { x0: -zt.x / zt.k, x1: (visibleWidth() - zt.x) / zt.k, y0: -zt.y / zt.k, y1: (height - zt.y) / zt.k };
+    placeLabels(pending, spheres, view);
   }
 
   // Etiket çakışması: 3B eğimde ve bir kol açıkken düğümler ekranda birbirine
-  // yaklaşıyor, etiketler üst üste biniyordu. Motor artık graph-utils.js'te
-  // ortak (2026-07-31: /hal/ de aynı kusuru taşıyordu, ikisi tek yerden
-  // besleniyor). Denenip tutmayan iki tahmin yöntemi orada kayıtlı.
-  const deconflictLabels = GU.createLabelDeconflictor();
+  // yaklaşıyor, etiketler üst üste biniyordu. Eskiden graph-utils.js'teki ortak
+  // etiket-etiket çözücü kullanılıyordu (Hâller de onu kullanıyor; o dosyaya ve
+  // Hâller'e DOKUNULMADI). K-033: Sorular'a özgü yerleştirme burada -- etiket
+  // yalnız başka etiketle değil BAŞKA KÜRENİN üstüne de binmesin. Aday sırası:
+  // varsayılan konum, kürenin üstü, sonra yatayda kaydırılmış (±) halleri;
+  // hiçbiri temizse en az çakışanı seçilir. Genişlik ölçümü (metin|boyut|ağırlık
+  // başına bir kez) önbellekte.
+  const labelBoxCache = new Map();
+  function labelWidth(it) {
+    const key = it.txt + "|" + it.fs.toFixed(2) + "|" + (it.strong ? 1 : 0) + "|" + it.priority;
+    let w = labelBoxCache.get(key);
+    if (w == null) {
+      try { w = it.lbl.node().getComputedTextLength(); } catch (e) { w = it.txt.length * it.fs * 0.55; }
+      if (!(w > 0)) w = it.txt.length * it.fs * 0.55;
+      if (labelBoxCache.size > 600) labelBoxCache.clear();
+      labelBoxCache.set(key, w);
+    }
+    return w;
+  }
+  function placeLabels(items, spheres, view) {
+    if (!items.length) return;
+    items.forEach((it) => { it.w = labelWidth(it); });
+    items.sort((a, b) => ((b.priority || 0) - (a.priority || 0)) || (a.y - b.y));
+    const placed = [];
+    const boxOf = (it, ox, yb) => {
+      const cx = it.x + ox, base = it.y - it.baseY + yb;       // düğümün y'si + etiket taban çizgisi
+      return { l: cx - it.w / 2, r: cx + it.w / 2, t: base - it.fs * 0.9, b: base + it.fs * 0.3 };
+    };
+    const score = (it, bx) => {
+      let n = 0;
+      if (view) {
+        const m = 4 / it.kz;
+        if (bx.l < view.x0 + m || bx.r > view.x1 - m || bx.t < view.y0 + m || bx.b > view.y1 - m) n += 3;
+      }
+      for (const sp of spheres) {
+        if (sp.id === it.id) continue;
+        const nx = Math.max(bx.l, Math.min(sp.x, bx.r)), ny = Math.max(bx.t, Math.min(sp.y, bx.b));
+        if (Math.hypot(nx - sp.x, ny - sp.y) < sp.r) n += 2;
+      }
+      for (const p of placed) {
+        if (bx.l < p.r + 3 / it.kz && bx.r > p.l - 3 / it.kz && bx.t < p.b + 2 / it.kz && bx.b > p.t - 2 / it.kz) n += 5;
+      }
+      return n;
+    };
+    for (const it of items) {
+      const step = 8 / it.kz;
+      const ys = [it.baseY, it.flipY, it.baseY + it.fs * 1.15, it.flipY - it.fs * 1.15];
+      const xs = [0];
+      for (let i = 1; i <= 14; i++) xs.push(i * step, -i * step);
+      // Adaylar düğümden UZAKLIĞA göre sıralı: ilk çakışmasız aday kazanır.
+      const cands = [];
+      for (const ox of xs) for (const yb of ys) cands.push({ ox, yb, d: Math.hypot(ox, (yb - it.baseY) * 1.4) });
+      cands.sort((a, b) => a.d - b.d);
+      let best = null;
+      for (const c of cands) {
+        const bx = boxOf(it, c.ox, c.yb);
+        const n = score(it, bx) + c.d * it.kz / 400;
+        if (!best || n < best.n) best = { n, ox: c.ox, yb: c.yb, bx };
+        if (n < 0.3) break;
+      }
+      it.lbl.attr("y", best.yb).attr("x", best.ox || null);
+      placed.push(best.bx);
+    }
+  }
 
   // ---------------------------------------------------------------------------
   function setHover(id) { if (hoveredId === id) return; hoveredId = id; ensureFrame(); }
@@ -1007,7 +1082,7 @@
     activate() {
       fetchData().then((data) => {
         if (!data) return;
-        if (!catNodes.length) { buildGraph(data); showAllQuestionsList(true); }
+        if (!catNodes.length) { buildGraph(data); showAllQuestionsList(true); if (isPhone()) detailPanel.hidden = true; }
         else ensureFrame();
       });
     },
@@ -1016,7 +1091,7 @@
         if (!data) return;
         if (!catNodes.length) buildGraph(data);
         if (questionIndex.has(id)) { const node = nodeById.get(id); if (node) openQuestion(node); else showQuestionDetail(questionIndex.get(id).question); }
-        else showAllQuestionsList();
+        else { showAllQuestionsList(); if (!id && isPhone()) detailPanel.hidden = true; } // K-014: adressiz giriste telefonda panel kapali
       });
     },
     onLangChange() { relabel(); },

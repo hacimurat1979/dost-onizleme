@@ -355,6 +355,13 @@
     });
   }
 
+  // K-020: çapraz-bağlantı kaydında "ilk kayıt kazanır" (registerCrossLinkTerm), o
+  // yüzden Ontoloji adları HER ZAMAN önce kaydolmalı. Küçük crosslink-index.json
+  // (94 KB) ontology.json'dan (378 KB) önce bitebildiği için sıra bu söz ile
+  // garantiye alındı (eskiden büyük dosyaların bitiş sırasına şansla bağlıydı).
+  let resolveOntologyRegistered;
+  const ontologyRegistered = new Promise((r) => { resolveOntologyRegistered = r; });
+
   function loadOntologyData() {
     if (window.DostViewStatus) window.DostViewStatus.showLoading("ontology-wrap");
     window.DostGraphUtils.fetchJson("data/ibn-arabi/ontology.json")
@@ -385,6 +392,7 @@
       })
       .catch((err) => {
         console.error("Ontoloji verisi yüklenemedi / Failed to load ontology data", err);
+        resolveOntologyRegistered();
         if (window.DostViewStatus) window.DostViewStatus.showError("ontology-wrap", loadOntologyData);
       });
   }
@@ -396,33 +404,45 @@
   // çekiliyor.
   const deferFetch = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
 
+  // K-020: sirlar.json (345 KB) yalnız Sırlar görünümünde gerekli -- ilk
+  // açılışta çekilmiyor, görünüm açılınca (setMainView / goToSirlar) çekilir.
   let sirlarData = null;
-  deferFetch(() => {
-    window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar.json")
-      .then((data) => {
-        sirlarData = data;
-        if (pendingSirlarId) goToSirlar(pendingSirlarId);
-        render();
-      })
-      .catch((err) => console.error("Sırlar verisi yüklenemedi / Failed to load mysteries data", err));
-  });
+  let sirlarPromise = null;
+  function ensureSirlar() {
+    if (sirlarData) return Promise.resolve(sirlarData);
+    if (!sirlarPromise) {
+      sirlarPromise = window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar.json")
+        .then((data) => {
+          sirlarData = data;
+          if (pendingSirlarId) goToSirlar(pendingSirlarId);
+          render();
+          return data;
+        })
+        .catch((err) => {
+          sirlarPromise = null;
+          console.error("Sırlar verisi yüklenemedi / Failed to load mysteries data", err);
+        });
+    }
+    return sirlarPromise;
+  }
 
+  // K-020: Esmâ + Hâller + Terimler çapraz-bağlantı kaydı için TEK küçük dizin
+  // (crosslink-index.json, ~94 KB; scripts/crosslink-index-uret.py). Eskiden
+  // esma.json + hal.json + felsefi-terimler.json (~920 KB) boşta çekilirdi.
+  // Tam veriler kendi görünümleri (esma.js / hal.js / terimler.js) açılınca iner.
   deferFetch(() => {
-    window.DostGraphUtils.fetchJson("data/ibn-arabi/esma.json")
-      .then((data) => {
-        registerEsmaCrossLinks(data);
+    Promise.all([window.DostGraphUtils.fetchJson("data/ibn-arabi/crosslink-index.json"), ontologyRegistered])
+      .then(([ix]) => {
+        // Kayıt SIRASI önemli: aynı ad iki veri setinde varsa ilk kayıt kazanır
+        // (registerCrossLinkTerm'deki dedupeKey). Eski akışta (üç ayrı boşta
+        // çekim) pratikte Terimler önce kaydoluyordu (örn. "the One" ->
+        // terimler:vahid); aynı sonuç korunsun diye Terimler -> Esmâ -> Hâller.
+        (ix.terimler || []).forEach((t) => registerCrossLinkTerm(t.title, "terimler", t.id, t.ozet));
+        registerEsmaCrossLinks({ nodes: ix.esma });
+        registerHalCrossLinks({ nodes: ix.hal });
         render();
       })
-      .catch((err) => console.error("Esmâ verisi yüklenemedi / Failed to load Esma data", err));
-  });
-
-  deferFetch(() => {
-    window.DostGraphUtils.fetchJson("data/ibn-arabi/hal.json")
-      .then((data) => {
-        registerHalCrossLinks(data);
-        render();
-      })
-      .catch((err) => console.error("Hâller verisi yüklenemedi / Failed to load States data", err));
+      .catch((err) => console.error("Çapraz-bağlantı dizini yüklenemedi / Failed to load cross-link index", err));
   });
 
   deferFetch(() => {
@@ -503,6 +523,7 @@
     if (currentMainView === view) return;
     if (view === "kavram" || view === "ayethadis") markNavYeniSeen(view);
     currentMainView = view;
+    if (view === "sirlar") ensureSirlar();
     markActiveNavButton(ontologyBtn, view === "ontology");
     markActiveNavButton(esmaBtn, view === "esma");
     markActiveNavButton(halBtn, view === "hal");
@@ -745,9 +766,37 @@
     if (descEl) descEl.setAttribute("content", I18n.pick3(meta.desc));
   }
 
-  function updateHash(view, id) {
+  function kapatDetay() {
+    detailPanel.hidden = true;
+    currentDetailNode = null;
+    currentDetailEdge = null;
+  }
+
+  // K-001: popstate'in tetiklediği çözümleme sırasında modüllerin
+  // yaptığı setHash çağrıları (örn. varsayılan seçim) yeni kayıt eklemesin.
+  let popstateIcinde = false;
+
+  function updateHash(view, id, opts) {
+    // Modül kaynaklı bir setHash, kullanıcı o görünümden çoktan ayrıldıysa
+    // (örn. Fütûhât'ın çapraz-bağlantı onReady yeniden render'ı) URL'i
+    // geri çekmesin: pushState'e geçince hayalet kayıt bırakırdı.
+    const aktif = currentMainView === "ontology" ? "ontoloji" : currentMainView;
+    if (aktif !== view) return;
     const path = ROUTE_BASE + "/" + view + (id ? "/" + id : "");
-    if (location.pathname !== path) history.replaceState(null, "", path);
+    // K-031: opts.hash ("#p-3") paragraf bağlantısı için korunur; verilmezse hash silinir.
+    const h = (opts && opts.hash) || "";
+    if (location.pathname === path && location.hash !== h) {
+      history.replaceState(null, "", path + h);
+    } else if (location.pathname !== path) {
+      // İlk yüklemede (derin bağlantı çözülene kadar), popstate sırasında
+      // ve modülün "varsayılan iniş" düzeltmelerinde kayıt eklenmez.
+      // Zaten bu görünümün içindeyken (örn. /futuhat/c18k226) aynı nav
+      // düğmesine yeniden basmak (id yok) kayıt eklemez, üstüne yazar.
+      const ayniGorunumdeNav = !id && (location.pathname === ROUTE_BASE + "/" + view ||
+        location.pathname.indexOf(ROUTE_BASE + "/" + view + "/") === 0);
+      if (!window.__dostAppReady || popstateIcinde || ayniGorunumdeNav || (opts && opts.replace)) history.replaceState(null, "", path + h);
+      else history.pushState(null, "", path + h);
+    }
     updateMeta(view);
     if (id) pushBreadcrumb(view, id);
   }
@@ -888,7 +937,8 @@
 
   function goToKavram(id) {
     setMainView("kavram");
-    if (id) window.__kavramApp && window.__kavramApp.goToNode(id);
+    // id yokken de çağrılır: Geri ile /kavram/x/y -> /kavram dönüşünde liste açılsın.
+    window.__kavramApp && window.__kavramApp.goToNode(id);
   }
 
   function goToAyetHadis() {
@@ -898,7 +948,14 @@
   function parseHashAndGo() {
     const rawPath = location.pathname.slice(ROUTE_BASE.length) || "/";
     const m = /^\/(ontoloji|esma|sirlar|hal|terimler|cizimler|sorular|menziller|tasiyicilar|futuhat|fusus|hakkinda|kavram|ayethadis)(\/.*)?$/.exec(rawPath);
-    if (!m) return;
+    if (!m) {
+      if (rawPath === "/" || rawPath === "") {
+        updateMeta("ontoloji");
+        goToOntologyNode(undefined);
+        kapatDetay();
+      }
+      return;
+    }
     const [, view, restRaw] = m;
     // id kısmı bir sonraki segment'e kadar bağıl-slaş içerebilir (örn.
     // "edge/nodeA-nodeB"), üstelik gerçek statik dosyalar (futuhat/c1k5/
@@ -907,6 +964,7 @@
     // sondaki slaş'la gelebiliyor -- baştaki/sondaki slaş'ları ayıklayıp
     // geriye boş kalırsa id'yi undefined yap.
     const id = restRaw ? (restRaw.replace(/^\//, "").replace(/\/$/, "") || undefined) : undefined;
+    if (!id) kapatDetay();
     updateMeta(view);
     if (view === "ontoloji") goToOntologyNode(id);
     else if (view === "esma") goToEsma(id);
@@ -924,7 +982,10 @@
     else if (view === "ayethadis") goToAyetHadis();
   }
 
-  window.addEventListener("popstate", parseHashAndGo);
+  window.addEventListener("popstate", () => {
+    popstateIcinde = true;
+    try { parseHashAndGo(); } finally { popstateIcinde = false; }
+  });
 
   // Site içi tüm gezinme #/view yerine gerçek /view yollarını kullanıyor
   // (bkz. 404.html) — bu yüzden linkify()'ın ürettiği <a class="cross-link">
@@ -1540,6 +1601,7 @@
       registerCrossLinkTerm(n.name, "ontoloji", n.id, n.short);
     });
     notifyCrossLinkReady();
+    resolveOntologyRegistered();
   }
 
   function registerEsmaCrossLinks(data) {
@@ -1803,14 +1865,66 @@
   function buildLinkifyCache(lang) {
     const terms = crossLinkTermsByLang[lang].map((t) => ({ ...t, folded: foldForLang(lang, t.term) }));
     terms.sort((a, b) => b.folded.length - a.folded.length);
-    if (!terms.length) return { regex: null, byFoldedLower: new Map() };
+    if (!terms.length) return { regex: null, byFoldedLower: new Map(), buckets: new Map() };
     const byFoldedLower = new Map();
     terms.forEach((t) => {
       const key = t.folded.toLowerCase();
       if (!byFoldedLower.has(key)) byFoldedLower.set(key, t);
     });
-    const pattern = terms.map((t) => `(?<![\\p{L}])${escapeRegExp(t.folded)}(?![\\p{L}])`).join("|");
-    return { regex: new RegExp(pattern, "giu"), byFoldedLower };
+    // K-027 Adım 3b: yüzlerce terimlik TEK dev alternasyon regex'i (eski
+    // `new RegExp(pattern, "giu")`) ilk exec'te derleniyordu -- CPU x4 altında
+    // tek çağrıda 360-650 ms, ve her önbellek geçersizleşmesinde (veri
+    // kümeleri geldikçe 2-4 kez) yeniden. Terim sırası (uzundan kısaya,
+    // kararlı) ve her terimin deseni AYNI; yalnız aday seçimi ilk harfe göre
+    // kovalanıyor ve her terimin kendi küçük "sticky" regex'i ilk gerektiğinde
+    // derleniyor. Çıktı eski motorla karakter karakter aynı olmalı (altın
+    // dosya testi: docs/tarama/uygulama/gunluk-w1.md).
+    const buckets = new Map();
+    terms.forEach((t) => {
+      if (!t.folded) return;
+      const key = t.folded.charAt(0).toLowerCase();
+      let list = buckets.get(key);
+      if (!list) { list = []; buckets.set(key, list); }
+      const tl = t.folded.toLowerCase();
+      // tl uzunluğu değişirse (örn. "İ".toLowerCase() iki birim) ön eleme
+      // güvenilmez; o terim doğrudan regex'e gider.
+      list.push({ t, re: null, tl: tl.length === t.folded.length ? tl : null });
+    });
+    return { regex: true, byFoldedLower, buckets };
+  }
+  const LETTER_RX = /\p{L}/u;
+  // `from`dan itibaren ilk eşleşmeyi bulur (eski regex.exec döngüsünün
+  // eşdeğeri): soldan sağa en erken konum; aynı konumda sıralı listedeki ilk
+  // terim. Dönüş: { index, text } ya da null.
+  function findNextLinkMatch(cache, text, from) {
+    const n = text.length;
+    for (let i = from; i < n; i++) {
+      const bucket = cache.buckets.get(text.charAt(i).toLowerCase());
+      if (!bucket) continue;
+      // Sol bağlam harf ise terim eşleşemez (desendeki (?<![\p{L}]) ile aynı);
+      // vekil çift yarısıysa karar motora bırakılır.
+      if (i > 0) {
+        const pc = text.charCodeAt(i - 1);
+        if ((pc < 0xd800 || pc > 0xdfff) && LETTER_RX.test(text.charAt(i - 1))) continue;
+      }
+      for (let k = 0; k < bucket.length; k++) {
+        const item = bucket[k];
+        // Ucuz ön eleme: harfi harfine (küçük harfle) uyuşmayan terim için regex
+        // hiç derlenmez (derleme asıl maliyetti: 136 karakterlik metinde 374 ms).
+        const tl = item.tl;
+        if (tl) {
+          if (i + tl.length > n) continue;
+          let j = 1;
+          for (; j < tl.length; j++) if (text.charAt(i + j).toLowerCase() !== tl.charAt(j)) break;
+          if (j < tl.length) continue;
+        }
+        if (!item.re) item.re = new RegExp(`(?<![\\p{L}])${escapeRegExp(item.t.folded)}(?![\\p{L}])`, "iuy");
+        item.re.lastIndex = i;
+        const m = item.re.exec(text);
+        if (m) return { index: i, text: m[0] };
+      }
+    }
+    return null;
   }
   function getLinkifyCache(lang) {
     if (!linkifyCacheByLang[lang]) linkifyCacheByLang[lang] = buildLinkifyCache(lang);
@@ -1832,17 +1946,17 @@
     // term mid-sentence ("the pole of the age") even though the glossary
     // registers it title-case ("Pole") for display -- without this, those
     // terms would only ever link when capitalized exactly as registered.
-    const re = cache.regex;
-    re.lastIndex = 0;
     const foldedText = foldForLang(lang, text);
     const seen = new Set();
     let result = "";
     let lastIndex = 0;
+    let searchFrom = 0;
     let m;
-    while ((m = re.exec(foldedText))) {
+    while ((m = findNextLinkMatch(cache, foldedText, searchFrom))) {
       const start = m.index;
-      const end = start + m[0].length;
-      const matchLower = m[0].toLowerCase();
+      const end = start + m.text.length;
+      searchFrom = end;
+      const matchLower = m.text.toLowerCase();
       const hit = cache.byFoldedLower.get(matchLower);
       if (!hit) continue;
       const original = text.slice(start, end);

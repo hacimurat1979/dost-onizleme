@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Meditasyon — Dost Arabi</title>
+<link rel="stylesheet" href="assets/sahne-ortak.css">
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-ortak.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -20,17 +23,17 @@
 
 html,body{height:100%;width:100%}
 body{
-  background:var(--bg);color:var(--text);
-  font-family:Georgia,'Times New Roman',serif;
-  display:flex;flex-direction:column;overflow:hidden;height:100vh;
+  background:var(--page-plane);color:var(--text-primary);
+  font-family:var(--font-body);
+  display:flex;flex-direction:column;overflow:hidden;height:100vh;height:100dvh;
 }
 
 /* ── Header strip ─────────────────────────────── */
 .hdr{
   display:flex;align-items:center;gap:.75rem;
   padding:.55rem 1.1rem;
-  border-bottom:1px solid var(--border);
-  background:var(--surface);
+  border-bottom:1px solid var(--gridline);
+  background:var(--page-plane);
   flex-shrink:0;
 }
 .hdr-back{
@@ -56,9 +59,18 @@ body{
   font:inherit;font-size:.76rem;padding:.22rem .55rem;border-radius:2rem;cursor:pointer;transition:.2s;
 }
 .lbtn.on,.lbtn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.hdr .sahne-theme{min-width:32px;min-height:32px;padding:0 .4rem}
+.hdr-lang{align-items:center}
+@media (max-width:480px){
+  .hdr{flex-wrap:wrap;gap:.5rem .6rem;padding:.5rem .75rem}
+  .hdr-back{order:1}
+  .hdr-lang{order:2;margin-left:auto}
+  .hdr-tabs{order:3;flex:1 1 100%}
+  .tab{flex:1 1 0;min-width:0;padding:.28rem .5rem;text-align:center}
+}
 
 /* ── iframe panels ───────────────────────────── */
-.panels{flex:1;position:relative;overflow:hidden}
+.panels{flex:1;min-height:0;position:relative;overflow:hidden}
 .panel{
   position:absolute;inset:0;border:none;width:100%;height:100%;
   display:none;
@@ -68,8 +80,8 @@ body{
 </head>
 <body>
 
-<div class="hdr">
-  <a href="/" class="hdr-back" id="back-lnk">← Haritaya</a>
+<header class="hdr">
+  <a href="./" class="hdr-back" id="back-lnk">← Haritaya</a>
   <div class="hdr-tabs">
     <button class="tab on" id="tab-perde" onclick="showTab('perde')">
       <span id="t-perde">Perde Zinciri</span>
@@ -83,12 +95,12 @@ body{
     <button class="lbtn" id="len" onclick="setLang('en')">EN</button>
     <button class="lbtn" id="lpt" onclick="setLang('pt')">PT</button>
   </div>
-</div>
+</header>
 
-<div class="panels">
+<main class="panels">
   <iframe id="if-perde" class="panel on" src="perde-zinciri.html" title="Perde Zinciri" allow="same-origin"></iframe>
   <iframe id="if-ayna"  class="panel"    src="ayna-metaforu.html"  title="Ayna Metaforu"  allow="same-origin"></iframe>
-</div>
+</main>
 
 <script>
 const TABS = {
@@ -97,12 +109,14 @@ const TABS = {
   pt:{perde:'Cadeia do Véu', ayna:'Metáfora do Espelho', back:'← Mapa'},
 };
 
-let curLang='tr', curTab='perde';
+let curLang=DostI18n.getLang(), curTab='perde';
 // Track which lang each iframe has received
 const ifLang={perde:null, ayna:null};
 
-function setLang(l){
+function setLang(l,init){
   curLang=l;
+  if(!init) DostI18n.setLang(l);   // dil seçimi ana siteyle ortak kalıcı (dost-lang)
+  document.documentElement.lang=l;
   ['ltr','len','lpt'].forEach(id=>document.getElementById(id).classList.remove('on'));
   document.getElementById('l'+l).classList.add('on');
   const t=TABS[l];
@@ -134,8 +148,20 @@ function showTab(tab){
       try{ fr.contentWindow.postMessage({type:'setLang',lang:curLang},'*'); }
       catch(e){}
     }
+    // Sahne iframe'leri temayı yüklenirken okur; sonradan değişirse biz iletiriz.
+    try{ var t=DostSahne.curTheme(); fr.contentDocument.documentElement.setAttribute('data-theme',t); }catch(e){}
   });
 });
+// Tema düğmesi (sahne-ortak): iki iframe'e de anında yansır.
+(function(){
+  var b=DostSahne.themeToggle(function(t){
+    ['perde','ayna'].forEach(function(id){
+      try{ document.getElementById('if-'+id).contentDocument.documentElement.setAttribute('data-theme',t); }catch(e){}
+    });
+  });
+  document.querySelector('.hdr-lang').appendChild(b);
+})();
+setLang(curLang,true);
 </script>
 </body>
 </html>

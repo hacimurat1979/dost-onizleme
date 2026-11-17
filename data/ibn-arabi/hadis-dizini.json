@@ -1,6 +1,23 @@
 {
  "not": "Bu, kuran.json'daki gibi doğrulanmış bir kaynak DEĞİL — hadis usulünde senedi tartışmalı bir kudsî hadis için elle çıkarılmış bir TEKRAR dizinidir. Yalnız 'bu ifade sitede şu kısımlarda da geçiyor' diyor; sahih olduğu ya da Arapça aslı iddia edilmiyor. Bkz. assets/ayet-onizleme.js ve research/ayet-a2-tamamlama-2026-07-31.md.",
  "uretim": "elle (scripts/kenar-turet.py/ayet-dizini-uret.py tarzı otomatik bir tarama değil)",
+ "durum": {
+  "kenz": {
+   "tr": "Bu rivayetin senedi hadis ehlince tartışmalıdır. İbn Arabî'nin onu keşf yoluyla sahih saydığı söylenir (kaynağı doğrulanmalı). Biz anlamını izliyoruz; sıhhatine hüküm vermiyoruz.",
+   "en": "Hadith scholars dispute the chain of transmission of this report. Ibn Arabi is said to have regarded it as sound through unveiling (source to be verified). We follow its meaning; we do not rule on its authenticity.",
+   "pt": "Os estudiosos do hadith discutem a cadeia de transmissão deste relato. Diz-se que Ibn Arabi o considerava sólido por desvelamento (fonte a verificar). Seguimos o seu sentido; não nos pronunciamos sobre a sua autenticidade."
+  },
+  "kalb": {
+   "tr": "Bu ifade sufi metinlerinde çok geçer; hadis kaynaklarındaki senedi ve derecesi bizce doğrulanmadı. Biz anlamını izliyoruz; sıhhatine hüküm vermiyoruz.",
+   "en": "This wording is very common in Sufi texts; its chain and grade in the hadith collections have not been verified by us. We follow its meaning; we do not rule on its authenticity.",
+   "pt": "Esta formulação é muito comum nos textos sufis; a sua cadeia e grau nas coletâneas de hadith não foram por nós verificados. Seguimos o seu sentido; não nos pronunciamos sobre a sua autenticidade."
+  },
+  "ama": {
+   "tr": "'Amâ' hadisinin senedi ve yorumu hakkında bizce doğrulanmış bir bilgi yok. Biz anlamını izliyoruz; sıhhatine hüküm vermiyoruz.",
+   "en": "We have no verified information on the chain and interpretation of the 'Amâ' report. We follow its meaning; we do not rule on its authenticity.",
+   "pt": "Não temos informação verificada sobre a cadeia e a interpretação do relato do 'Amâ'. Seguimos o seu sentido; não nos pronunciamos sobre a sua autenticidade."
+  }
+ },
  "dizin": {
   "kalb": [
    {

@@ -6,15 +6,19 @@
 <meta name="robots" content="noindex,nofollow">
 <!-- Aynı Âyet, İki Mertebe — Dost Arabi görselleştirme -->
 <title>Aynı Âyet, İki Mertebe — Dost Arabi</title>
+<link rel="stylesheet" href="assets/sahne-ortak.css">
+<script src="assets/i18n.js"></script>
+<script src="assets/sahne-ortak.js"></script>
 <style>
 :root{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--gold:#FFC94D;--liminal:#C89040;--panel:#14101E}
 @media(prefers-color-scheme:light){:root{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}}
 :root[data-theme=dark]{--bg:#09080F;--surface:#12101A;--border:#2A2438;--text:#E8E2D0;--muted:#6E6558;--panel:#14101E;--gold:#FFC94D;--liminal:#C89040}
 :root[data-theme=light]{--bg:#F5F2EA;--surface:#EDE8DC;--border:#C8BEA0;--text:#221810;--muted:#665845;--panel:#E8E2D4;--gold:#7A5200;--liminal:#7E5410}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
+body{background:var(--page-plane);color:var(--text-primary);font-family:var(--font-body);min-height:100vh;padding:1.6rem 1rem 3rem;display:flex;flex-direction:column;align-items:center}
 header{text-align:center;margin-bottom:1rem;max-width:640px}
-h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
+main{display:flex;flex-direction:column;align-items:center;width:100%}
+h1{font-size:clamp(1.4rem,4vw,2rem);font-family:var(--font-display);font-weight:600;letter-spacing:.05em;color:var(--gold);margin-bottom:.4rem}
 .sub{color:var(--muted);font-size:.87rem;font-style:italic;line-height:1.65}
 
 .picker{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.1rem}
@@ -56,6 +60,7 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
   <h1 id="hTitle">Aynı Âyet, İki Mertebe</h1>
   <p class="sub" id="hSub">Bir âyet, okuduğumuz bölümlerin birden fazlasında geçiyor — ve her defasında farklı bir mertebeden okunuyor. Âyet hiç değişmiyor; değişen, ona nereden baktığımız.</p>
 </header>
+<main>
 
 <div class="picker" id="picker"></div>
 
@@ -94,6 +99,8 @@ h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:400;letter-spacing:.05em;color:v
 </div>
 
 <p class="aha" id="aha"></p>
+
+</main>
 
 <script>
 const LA={
@@ -135,7 +142,7 @@ const VERSES={
     left:{
       id:'gramer',
       label:{tr:'Gramer ve zaman', en:'Grammar and tense', pt:'Gramática e tempo verbal'},
-      src:{tr:'Fütûhât, Kısım XV', en:'Futuhat, Part XV', pt:'Futuhat, Parte XV'},
+      src:{tr:'Fütûhât, Cilt XV', en:'Futuhat, Vol. XV', pt:'Futuhat, Vol. XV'},
       text:{
         tr:'Bölüm Hz. Musa’nın "Rabbim! Bana kendini göster" talebine verilen "Beni göremeyeceksin" cevabını, gramerden başlayarak okuyor: âyetteki olumsuzluk edatı gelecek fiilleri olumsuzlar. İşârî yorum ise şu: "şimdiki anda bir şeyi bilmeyen kişi gelecekte de onu tanıyamaz." Gelecekte O, senin gelecekteki hâlinin sûretiyle görünecek; şimdi tanımayan o zaman da tanımaz.',
         en:'The chapter reads the answer given to Moses’ request "My Lord, show me Yourself" — "You shall not see Me" — beginning from grammar: the particle of negation in the verse negates future verbs. The allusive reading: "whoever does not know a thing in the present moment cannot recognise it in the future either." In the future He will appear in the form of your future state; whoever does not recognise Him now will not recognise Him then.',
@@ -145,7 +152,7 @@ const VERSES={
     right:{
       id:'istidat',
       label:{tr:'İstidat ve kapasite', en:'Capacity and preparedness', pt:'Capacidade e preparação'},
-      src:{tr:'Fütûhât, Kısım XVI', en:'Futuhat, Part XVI', pt:'Futuhat, Parte XVI'},
+      src:{tr:'Fütûhât, Cilt XVI', en:'Futuhat, Vol. XVI', pt:'Futuhat, Vol. XVI'},
       text:{
         tr:'"Rabbi dağa tecelli ettiğinde onu paramparça etti" ayeti, Dost için bir istidat sorusuna dönüşüyor gibi görünüyor bize: Tecellinin gücü sabittir — değişen, tecelligâhın kapasitesidir. Bir varlık tecelliyi almaya istidatlı olsa da beka istidadından yoksunsa, bayılma, fena veya gaybet yaşar. Suri tecellide ise beka, anlama ve konuşma mümkündür.',
         en:'"When his Lord manifested to the mountain, He shattered it" becomes for the Author a question of capacity: the power of theophany is fixed — what varies is the capacity of its site. A being may be prepared to receive the theophany yet lack beka (capacity for remaining), and will then experience loss of consciousness, annihilation, or absence. In formal theophany, remaining and speech are possible.',
@@ -163,7 +170,7 @@ const VERSES={
     left:{
       id:'fitri-temizlik',
       label:{tr:'Fıtrî temizlik', en:'Innate purity', pt:'Pureza inata'},
-      src:{tr:'Fütûhât, Kısım III', en:'Futuhat, Part III', pt:'Futuhat, Parte III'},
+      src:{tr:'Fütûhât, Cilt III', en:'Futuhat, Vol. III', pt:'Futuhat, Vol. III'},
       text:{
         tr:'Bir ilkenin dayanağı, kulun fıtrî temizliğidir: "Rabbin Ademoğullarının bellerinden zürriyetlerini alıp… Ben sizin Rabbiniz değil miyim? demişti, onlar da evet diye cevap vermişti" âyeti (Elest bezmi) anılıyor — kul, bu ikrar yüzünden aslında temizdir. Hayat da özü gereği temiz ve temizleyicidir, çünkü "Allah’ın dışındaki her şey canlıdır".',
         en:'The ground for this principle is the servant’s innate purity: the verse on the Covenant of Alast is invoked — "Your Lord took out the offspring from the loins of the Children of Adam… Am I not your Lord? and they answered, Yes" — the servant, because of this avowal, is in fact pure. Life too is pure and purifying by its very essence, because "everything besides God is alive".',
@@ -173,7 +180,7 @@ const VERSES={
     right:{
       id:'icabet',
       label:{tr:'İbadetin karşılığı', en:'The response in ritual', pt:'A resposta no ritual'},
-      src:{tr:'Fütûhât, Kısım VI', en:'Futuhat, Part VI', pt:'Futuhat, Parte VI'},
+      src:{tr:'Fütûhât, Cilt VI', en:'Futuhat, Vol. VI', pt:'Futuhat, Vol. VI'},
       text:{
         tr:'Kısmın son hadisi telbiyede sesi yükseltmeyi ele alıyor; bu icabeti, elest bezmindeki cevaba benzetiyor: "İnsanların bu çağrıya icabet etmeleri, kendilerine yöneltilen ‘ben sizin rabbiniz değil miyim?’ nidasına karşı ‘belâ (Evet Rabbimizsin)’ sözüne benzer." Kapanışta el-Bâid (uzak) ismi zikrediliyor — "uzaktaki nida edebilir… ilahi isimler arasında karşılıklı bir üstünlük yoktur!"',
         en:'The part’s final hadith takes up raising the voice in the talbiya; it likens this response to the answer given at the primordial Covenant: "people’s responding to this call resembles the word ‘balā (yes, indeed You are our Lord!)’ answering the call ‘Am I not your Lord?’" In closing, the name al-Baʿid (the Far) is invoked — "the far one can call out… among the divine names there is no mutual superiority!"',
@@ -191,7 +198,7 @@ const VERSES={
     left:{
       id:'temsil-siniri',
       label:{tr:'Temsilin sınırı', en:'The limit of the analogy', pt:'O limite da analogia'},
-      src:{tr:'Fütûhât, Kısım III', en:'Futuhat, Part III', pt:'Futuhat, Parte III'},
+      src:{tr:'Fütûhât, Cilt III', en:'Futuhat, Vol. III', pt:'Futuhat, Vol. III'},
       text:{
         tr:'Dost bu okumayı en-Nûr ismine ve "Allah, göklerin ve yerin nurudur" ayetine genişletiyor: Allah, "Mutlak Nur" adını değil, "göklerin ve yerin nuru" ifadesini kullanarak nuru sınırlıyor, ardından bir kandile benzetiyor. Ama bir kandilin ışığı ile gökleri aydınlatan ışık bir olabilir mi? Bu, "Allah" ismi için örnek verilemeyeceğini, yalnız tamlama yapılmış özel bir isim için örnek verilebileceğini öğretiyor.',
         en:'Dost extends this reading to the name an-Nûr and to the verse "God is the Light of the heavens and the earth": God, instead of the name "the Absolute Light," uses "the light of the heavens and the earth," delimiting the light, then likens it to a lamp. But can a lamp’s light be one with the light that illumines the heavens? This teaches that no example can be given for the name "Allah" itself, only for a name placed in a genitive construction.',
@@ -201,7 +208,7 @@ const VERSES={
     right:{
       id:'nur-perde',
       label:{tr:'Nur, kendi perdesi', en:'Light, its own veil', pt:'A luz, seu próprio véu'},
-      src:{tr:'Fütûhât, Kısım XV', en:'Futuhat, Part XV', pt:'Futuhat, Parte XV'},
+      src:{tr:'Fütûhât, Cilt XV', en:'Futuhat, Vol. XV', pt:'Futuhat, Vol. XV'},
       text:{
         tr:'"Allah göklerin ve yerin nurudur" âyetinden yola çıkıp nurun tuhaf bir özelliğini kuruyor: nur, görmeyi mümkün kılan şeydir ama kendisi görülemez. "Bu nur, O’ndan sana bir perde olduğu gibi sen de onun üzerinde perdesin… nur kendisiyle perdelenmiştir. Bu nedenle nur, hiçbir zaman görülemez." Örten ile örtülen ayrı iki şey değil — perde, nurun kendisine yaptığı bir şey.',
         en:'Starting from "God is the light of the heavens and the earth," it establishes a strange property of light: light makes seeing possible, yet itself cannot be seen. "This light is a veil from Him to you, just as you are a veil over it… light is veiled by itself. For this reason light can never be seen." The coverer and the covered are not two things — the veiling is something light does to itself.',
@@ -307,5 +314,6 @@ window.addEventListener('message',function(e){
   if(e.data && e.data.type==='setLang') setLang(e.data.lang);
 });
 </script>
+<script>DostSahne.init({setLang:setLang,titles:{tr:'Aynı Âyet, İki Mertebe',en:'The Same Verse, Two Levels',pt:'O Mesmo Versículo, Dois Graus'},current:'iki'});</script>
 </body>
 </html>

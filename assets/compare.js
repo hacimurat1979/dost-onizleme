@@ -194,14 +194,23 @@
       .attr("r", (d) => radiusFor(d))
       .attr("fill", (d) => colorFor(d));
 
+    // Okunurluk (K-033): isimsiz düğümler de adını ipucunda (<title>) ve aria-label'da taşır.
+    nodeSel.append("title").text((d) => labelFor(d));
     labelSel = nodeSel
       .append("text")
       .attr("class", (d) => (d.type.startsWith("hub") ? "node-label node-label--hub" : "node-label"))
-      .attr("dy", (d) => radiusFor(d) + 12)
-      .attr("text-anchor", "middle")
-      .text((d) => labelFor(d));
+      .attr("text-anchor", "middle");
+    layoutLabels(width);
 
     simulation.on("tick", () => {
+      // K-033: kuvvetler düğümleri çerçevenin dışına itebiliyordu (dar ekranda soldaki
+      // düğümler x<0'a düşüyor, adları ekran dışında kalıyordu). Düğüm çerçevenin
+      // içinde tutulur (yarıçap + küçük pay).
+      nodes.forEach((d) => {
+        const m = radiusFor(d) + 8;
+        d.x = Math.max(m, Math.min(width - m, d.x));
+        d.y = Math.max(m, Math.min(height - m, d.y));
+      });
       linkSel
         .attr("x1", (d) => d.source.x)
         .attr("y1", (d) => d.source.y)
@@ -209,14 +218,66 @@
         .attr("y2", (d) => d.target.y);
 
       nodeSel.attr("transform", (d) => `translate(${d.x},${d.y})`);
+      layoutLabels(width);
     });
 
     window.__daphneApp = { nodes, links, conceptById, themes };
   }
 
+  // K-033 (lab/oneri-04 deseni): hub ve kavram etiketleri hep açık; TEMA etiketleri
+  // (uzun başlıklar, 27 tane) yalnız üzerine gelinen/odaklanılan temada ve onun
+  // doğrudan komşularında (kavram + Daphne) görünür. Görünen etiketler 24 karakterde
+  // satırlara bölünür ve düğüm kenara yakınsa yatayda içeri kaydırılır -- kırpılmaz.
+  let focusIds = null;
+  function wrapWords(txt, max) {
+    const lines = [];
+    let cur = "";
+    String(txt).split(/\s+/).filter(Boolean).forEach((w) => {
+      if (cur && (cur + " " + w).length > max) { lines.push(cur); cur = w; } else cur = cur ? cur + " " + w : w;
+    });
+    if (cur) lines.push(cur);
+    return lines.length ? lines : [""];
+  }
+  function layoutLabels(widthPx) {
+    if (!labelSel) return;
+    const NS = "http://www.w3.org/2000/svg";
+    labelSel.each(function (d) {
+      const el = this;
+      const show = d.type !== "theme" || !!(focusIds && focusIds.has(d.id));
+      el.style.display = show ? null : "none";
+      if (!show) return;
+      const key = labelFor(d);
+      if (el.__key !== key) {
+        el.__key = key;
+        el.__w = null;
+        el.textContent = "";
+        wrapWords(key, 24).forEach((ln, i) => {
+          const ts = document.createElementNS(NS, "tspan");
+          ts.setAttribute("x", "0");
+          ts.setAttribute("dy", String(i === 0 ? radiusFor(d) + 12 : 14));
+          ts.textContent = ln;
+          el.appendChild(ts);
+        });
+      }
+      if (el.__w == null) {
+        try { el.__w = el.getBBox().width; } catch (e) { el.__w = 120; }
+      }
+      const w = el.__w;
+      const x = d.x;
+      let ox = 0;
+      if (typeof x === "number" && isFinite(x)) {
+        if (x - w / 2 < 6) ox = 6 - (x - w / 2);
+        else if (x + w / 2 > widthPx - 6) ox = (widthPx - 6) - (x + w / 2);
+      }
+      const oxs = ox.toFixed(1);
+      el.querySelectorAll("tspan").forEach((ts) => ts.setAttribute("x", oxs));
+    });
+  }
+
   function render() {
     if (!labelSel) return;
-    labelSel.text((d) => labelFor(d));
+    nodeSel.select("title").text((d) => labelFor(d));
+    layoutLabels(svg.node().clientWidth);
     if (currentDetailTheme) showThemeDetail(currentDetailTheme);
     else if (currentDetailConcept) showConceptDetail(currentDetailConcept);
   }
@@ -250,6 +311,8 @@
     if (!d) {
       linkSel.classed("link--highlight", false).style("stroke-opacity", null);
       nodeSel.style("opacity", 1);
+      focusIds = null;
+      layoutLabels(svg.node().clientWidth);
       return;
     }
     const connected = new Set([d.id]);
@@ -259,6 +322,8 @@
     });
     linkSel.classed("link--highlight", (l) => l.source.id === d.id || l.target.id === d.id);
     nodeSel.style("opacity", (n) => (connected.has(n.id) ? 1 : 0.25));
+    focusIds = connected;
+    layoutLabels(svg.node().clientWidth);
   }
 
   let currentDetailTheme = null;

@@ -1336,6 +1336,17 @@
     wrapEl.appendChild(exploreBtn);
     exploreBtn.addEventListener("click", () => (exploreOn ? stopExplore() : startExplore()));
 
+    // K-025: tanıtım turu yalnız düğmeyle açılır.
+    const tourBtn = document.createElement("button");
+    tourBtn.id = "esmaX-tour";
+    tourBtn.className = "esmaX-explore esmaX-tour";
+    tourBtn.type = "button";
+    tourBtn.setAttribute("aria-label", tt({ tr: "Tanıtım turunu aç", en: "Open the intro tour", pt: "Abrir o tour de introdução" }));
+    tourBtn.title = tt({ tr: "Tanıtım turunu aç", en: "Open the intro tour", pt: "Abrir o tour de introdução" });
+    tourBtn.innerHTML = `<span class="esmaX-explore__txt esmaX-tour__txt">${tt({ tr: "Tur", en: "Tour", pt: "Tour" })}</span><span class="esmaX-tour__q" aria-hidden="true">?</span>`;
+    wrapEl.appendChild(tourBtn);
+    tourBtn.addEventListener("click", () => maybeShowOnboarding(true));
+
     updateRevealIndicator();
   }
 
@@ -1511,8 +1522,10 @@
   // için tutulan referans -- #f1 düzeltmesi: önceden dil değişince kutucuk
   // ilk açıldığı dilde donuk kalıyordu (sayfa dili ile popup dili uyuşmuyordu).
   let onboardRedraw = null;
-  function maybeShowOnboarding() {
-    try { if (sessionStorage.getItem("dost-esma-onboard-seen")) return; } catch (_) {}
+  // K-025: tur artık kendiliğinden AÇILMAZ (karşılama/başlangıç ipucu zaten var); yalnız "Tur" düğmesiyle (force).
+  function maybeShowOnboarding(force) {
+    if (!force) { try { if (sessionStorage.getItem("dost-esma-onboard-seen")) return; } catch (_) {} }
+    if (document.getElementById("esmaX-onb")) return;
     const steps = [
       { t: { tr: "O'ndan geldik, O'na gidiyoruz", en: "From Him we came, to Him we go", pt: "D'Ele viemos, a Ele vamos" },
         b: { tr: "Bu harita merkezde Allah ismiyle başlar — bütün isimleri kendinde toplayan İsm-i Âzam — ve onun ötesine, her isimlendirmenin ötesindeki Zât'a işaret eder.", en: "This map begins at the center with the Name Allah — the Name that gathers every Name within itself — and points beyond it, to the Essence beyond all naming.", pt: "Este mapa começa no centro com o Nome Allah — o Nome que reúne todos os Nomes em si — e aponta para além dele, para a Essência além de toda nomeação." } },
@@ -1638,7 +1651,6 @@
     render();
     ensureFrame();
     openIn3D();
-    maybeShowOnboarding();
 
     // İlk açılış: merkez bir an sonra (Zât+Allah) yerleşsin, sonra kaydırma
     // ipucu belirsin. reduceMotion'da anında.

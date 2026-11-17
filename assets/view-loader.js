@@ -28,9 +28,9 @@
   "use strict";
 
   var VIEWS = {
-    __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-LrCXz1/l2cBf5uJX/8p0I9RZhWrsyQcZh9V7wUt82YSKQmDxOJSo+GuiXJEZ/lg9" },
-    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-3aXX2zmgZnm46ARuTAKtVyXLIhGaekJC5dyyf3nBdXTSRPIxfAGJFvp/h9lvzdP4" },
-    __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-NqjeB685KS7IBcItAvAwOeWxt/vF6SrgMn3SvwFR5aON3x+23Cpcv81QwL2B+Sp8" },
+    __sirlarGraphApp: { src: "assets/sirlar-graph.js", integrity: "sha384-IvlSoJePk8U7fAtGJ+o9fpTlSJfqEJuFyKUtXMVjAfUyX+WCmhH7VC8NEnmC9DU7" },
+    __kavramApp: { src: "assets/kavram.js", integrity: "sha384-JE9o+XlgWZISjZ/cvdMqZ0yas+svi7Xk5y+N9tJq35QEZhaVaK1zkR0HALTsTKSw" },
+    __ayetHadisApp: { src: "assets/ayet-hadis.js", integrity: "sha384-/fZ6WJHAMPNbhRLe9EYwsNoTudN5rXrjcWEYiEB5LDIam7lG4ZqioTvO7i6MYxZ2" },
     __siirlerApp: { src: "assets/siirler.js", integrity: "sha384-9LylDZ5mjiEKs/Bo/Wc+qYTUdeFt56xQCT71VdhE2weqN6MLMuhvgporkSM4qwXW" },
     __vahdetApp: { src: "assets/vahdet.js", integrity: "sha384-u8Hu4zkYTCJHkdw63jhcfroxHJYcXgoeD0jTqrqgwkjmS5fyW/RYFqdqS2kEhxQm" },
   };
