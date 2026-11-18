@@ -115,8 +115,6 @@
       // Yirmi yedi ad yan yana okunmaz; yalnız yazılmış fassların ve
       // odaktakinin adı yazılıyor, gerisi ipucunda (2026-07-29).
       labelMode: "sparse",
-      // K-033: açılışta etkin fassın adı yazılı olsun (CSS yalnız odaktakini gösterir).
-      initialFocus: Math.max(0, data.fasses.findIndex(function (f) { return f.id === activeId; })),
       title: { tr: "Yirmi yedi fassın sarmalı", en: "The spiral of the twenty-seven bezels", pt: "A espiral dos vinte e sete engastes" },
       onActivate: function (node) {
         var f = fassById(node.id);
@@ -261,19 +259,12 @@
       html += helixBlockHtml(f.mainHelix, mk);
     }
 
-    // K-031: paragraf numarası = fass içinde type:"p" blokların 1 tabanlı sırası
-    // (Fütûhât ile AYNI kural); serh/helix blokları numarasız.
-    var parNo = 0;
-    var parTexts = [];
     f.sections.forEach(function (sec) {
       html += '<section class="fusus-section" id="' + esc(sec.id) + '">'
         + "<h3>" + esc(t(sec.heading)) + "</h3>";
       sec.blocks.forEach(function (b) {
         if (b.type === "p") {
-          parNo++;
-          parTexts.push(b.text);
-          html += '<p id="p-' + parNo + '" class="fusus-par">' + linkify(t(b.text)) + "</p>"
-            + (window.DostParagraf ? window.DostParagraf.ekHtml(parNo) : "");
+          html += "<p>" + linkify(t(b.text)) + "</p>";
         } else if (b.type === "serh") {
           html += '<div class="fusus-serh">'
             + '<div class="fusus-serh__col fusus-serh__col--konuk">'
@@ -306,26 +297,6 @@
 
     articleEl.innerHTML = html;
     mountHelixBlocks(articleEl, helixes, captions);
-    if (window.DostParagraf) {
-      var hh = parHashFor(f.id);
-      var hm = /^#p-(\d+)$/.exec(hh);
-      window.DostParagraf.attach({
-        root: articleEl,
-        paragraphs: parTexts,
-        dosya: f.id,
-        hedef: hm ? +hm[1] : 0,
-        // Künye: kitap + fass/sayfa (veride "I. Fass, s. 20-31") + fass başlığı;
-        // kaynak satırı (şerh sahibi) KISALTILMADAN, olduğu gibi.
-        kunye: function () {
-          return {
-            ana: t(data.book.title) + " · " + t(f.pageRange),
-            baslik: t(f.title),
-            kaynak: t(data.book.source),
-          };
-        },
-        kaydir: !!(deepPar && deepPar.id === f.id && Date.now() < deepPar.until),
-      });
-    }
     renderAnlamsalBaglantilar(f);
     renderYakinPasajlar(f);
     var printBtn = articleEl.querySelector(".fusus-print-btn");
@@ -431,22 +402,7 @@
     });
   }
 
-  // K-031: derin bağlantı "#p-N" korunumu (bkz. futuhat.js'teki aynı mantık).
-  var deepPar = (function () {
-    var m = /^#p-(\d+)$/.exec(location.hash);
-    var r = /\/fusus\/(fs\d+)\/?$/.exec(location.pathname);
-    return m && r ? { id: r[1], n: +m[1], until: Date.now() + 4000 } : null;
-  })();
-  function parHashFor(id) {
-    var m = /^#p-(\d+)$/.exec(location.hash);
-    var r = /\/fusus\/(fs\d+)\/?$/.exec(location.pathname);
-    if (m && r && r[1] === id) return location.hash;
-    if (deepPar && deepPar.id === id && Date.now() < deepPar.until) return "#p-" + deepPar.n;
-    return "";
-  }
-
-  function activate(id, kasitli) {
-    var otomatik = !id;
+  function activate(id) {
     load().then(function () {
       if (!data) return;
       var f = fassById(id) || (!id ? fassById(loadLastFass()) : null) || fassById(data.activeFassId) || data.fasses[0];
@@ -454,19 +410,10 @@
       isDefaultLanding = !id && !loadLastFass();
       activeId = f.id;
       saveLastFass(f.id);
-      // K-025: ortak son-yer kaydı yalnız okuyucunun bilerek açtığı fass için (adres/tıklama);
-      // menüden varsayılan iniş ya da önceki fass'a dönüş yazmaz.
-      if (id && kasitli !== false && window.DostSonYer) {
-        window.DostSonYer.kaydet("fusus", f.id, {
-          tr: "Füsûs, " + f.no + ". fass · " + f.prophet.tr,
-          en: "Fusus, bezel " + f.no + " · " + f.prophet.en,
-          pt: "Fusus, engaste " + f.no + " · " + f.prophet.pt,
-        });
-      }
       renderMap();
       renderList();
       renderArticle(f);
-      if (window.__dostNav) window.__dostNav.setHash("fusus", f.id, { replace: otomatik, hash: parHashFor(f.id) });
+      if (window.__dostNav) window.__dostNav.setHash("fusus", f.id);
       if (!crossLinkSubscribed && window.__dostCrossLink && window.__dostCrossLink.onReady) {
         crossLinkSubscribed = true;
         window.__dostCrossLink.onReady(function () { if (data && activeId) renderArticle(fassById(activeId)); });
@@ -475,7 +422,7 @@
   }
 
   window.__fususApp = {
-    activate: function (id) { activate(id || activeId || null, !!id); },
+    activate: function (id) { activate(id || activeId || null); },
     onLangChange: function () {
       if (!data || !activeId) return;
       renderList();

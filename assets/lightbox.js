@@ -78,8 +78,6 @@ window.DostLightbox = (function () {
     node.hidden = false;
     document.body.classList.add("cizim-lightbox-open");
     node.querySelector(".cizim-lightbox__close").focus();
-    // K-004: kart svg'sinin ayarı lightbox'a taşınmaz (svg sıfırdan kuruluyor).
-    if (window.DostSvgMin) window.DostSvgMin.ensureMinSvgText(node.querySelector(".cizim-lightbox__svg-wrap"), 11);
   }
 
   function close() {

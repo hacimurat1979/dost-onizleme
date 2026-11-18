@@ -483,18 +483,7 @@
     }
   } catch (e) {}
 
-  // K-021: dokunmatik açıcı (assets/kip-acici.js) için dışa açılan küçük arayüz.
-  // Klavye açıcı (aşağıdaki keydown bloğu) değişmedi.
-  window.__dostEdit = {
-    toggle: function () { if (editModeOn) disableEditMode(); else enableEditMode(); },
-    isOn: function () { return editModeOn; },
-  };
-
-  // K-020: gizli kelime ("@revise") yakalama ana sayfada assets/kip-acici.js'e
-  // taşındı (bu dosya orada tembel yükleniyor; kip-acici kelimeyi yakalar,
-  // dosyayı yükler, sonra window.__dostEdit.toggle() çağırır). kip-acici'nin
-  // yüklenmediği sayfalarda (compare.html) kendi dinleyicisi aynen duruyor.
-  if (!window.__dostKipAc) window.addEventListener("keydown", (e) => {
+  window.addEventListener("keydown", (e) => {
     if (e.key.length !== 1) return;
     // AltGr (Ctrl+Alt) Türkçe klavyede "@" üretiyor; bu bileşimi
     // engellemiyoruz, yoksa kelime hiç yazılamaz. Tek başına Ctrl/Alt

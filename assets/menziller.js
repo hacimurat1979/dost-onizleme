@@ -21,8 +21,6 @@
   const I18n = window.DostI18n;
   const GU = window.DostGraphUtils;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // K-014: telefonda açılışta detay paneli kapalı başlar (tam ekran örtüyordu).
-  const isPhone = () => window.matchMedia("(max-width: 640px)").matches;
   const svg = d3.select("#menziller-graph");
   const svgNode = svg.node();
   const detailPanel = document.getElementById("detail-panel");
@@ -561,7 +559,7 @@
     activate() {
       fetchData().then((d) => {
         if (!d) return;
-        if (!nodes.length) { build(); showIntro(); if (isPhone()) detailPanel.hidden = true; fitView(false); openIn3D(); }
+        if (!nodes.length) { build(); showIntro(); fitView(false); openIn3D(); }
         else ensureFrame();
       });
     },
@@ -570,7 +568,7 @@
         if (!d) return;
         if (!nodes.length) build();
         const n = nodes.find((x) => String(x.sira) === String(id));
-        if (n) openMenzil(n); else { showIntro(); if (!id && isPhone()) detailPanel.hidden = true; } // K-014: adressiz giriste telefonda panel kapali
+        if (n) openMenzil(n); else showIntro();
       });
     },
     onLangChange() {

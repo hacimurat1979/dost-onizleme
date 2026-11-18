@@ -315,14 +315,7 @@
     // değilken) bir dil değişimi başka bir görünümün açık lightbox'ını
     // yanlışlıkla kapatmasın.
     if (!wrap.hidden) window.DostLightbox.close();
-    // K-004: kart svg'leri 390 px'te ölçek 0,74-0,94 ile küçülüyor; etiketler
-    // ekranda >=11 px kalsın (şekiller değişmez, yalnız yazı boyutu).
-    if (window.DostSvgMin) {
-      requestAnimationFrame(() => window.DostSvgMin.ensureMinSvgText(listEl, 11));
-      if (!minWatch) minWatch = window.DostSvgMin.watch(listEl, 11, () => !wrap.hidden);
-    }
   }
-  let minWatch = null;
 
   window.__cizimlerApp = {
     activate() {

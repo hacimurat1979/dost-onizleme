@@ -42,70 +42,45 @@
     return [dict.tr, dict.en, dict.pt].filter(Boolean).join(" ␟ ");
   }
 
-  // K-019: kayıt eklenirken HEMEN normalize edilir; böylece kaynakların
-  // yalnız bir kısmı gelmişken yapılan bir arama normText'i olmayan kayda
-  // rastlayıp TypeError atmaz.
-  function addToIndex(item) {
-    item.normText = normalize(item.searchText);
-    item.labelNorm = normalize(allLangText(item.label));
-    item.words = item.normText.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
-    index.push(item);
-  }
-
-  // Terim bilmeyen okurun yazımları; hedef YALNIZ sitede gerçekten var olan
-  // kayıtlar. Tablo bilerek tek satır: başka terim/varyant eklemek içerik
-  // (editoryal) kararıdır, sahibe aittir.
-  const ALIAS = [
-    {
-      keys: ["vahdet-i vucud", "vahdeti vucud", "vahdet i vucud", "vahdat al-wujud", "wahdat al-wujud", "wahdat al wujud", "wahdat ul wujud",
-        "unity of being", "oneness of being", "unidade do ser", "unicidade do ser", "varlik birligi", "varligin birligi", "tek varlik"],
-      targets: [{ view: "sorular", id: "kac-varlik" }],
-    },
-  ];
-
-  // Çok kelimeli sorgularda atılan soru/bağlaç sözcükleri (normalize biçiminde).
-  const STOP = new Set(["nedir", "nasil", "midir", "mudur", "ne", "icin", "ile", "ve", "bir", "the", "of", "is", "what", "a", "an", "o",
-    "que", "e", "de", "do", "da", "como", "por"]);
-
   function buildIndex() {
     if (indexPromise) return indexPromise;
     const sources = [
       window.DostGraphUtils.fetchJson("data/ibn-arabi/ontology.json").then((d) => {
         (d.nodes || []).forEach((n) => {
-          addToIndex({ view: "ontoloji", id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) });
+          index.push({ view: "ontoloji", id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) });
         });
       }),
       window.DostGraphUtils.fetchJson("data/ibn-arabi/esma.json").then((d) => {
         (d.nodes || []).forEach((n) => {
-          addToIndex({ view: "esma", id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) });
+          index.push({ view: "esma", id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) });
         });
       }),
       window.DostGraphUtils.fetchJson("data/ibn-arabi/hal.json").then((d) => {
         (d.nodes || []).forEach((n) => {
-          addToIndex({ view: "hal", id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) });
+          index.push({ view: "hal", id: n.id, label: n.name, sub: n.short, searchText: allLangText(n.name) + " " + allLangText(n.short) });
         });
       }),
       window.DostGraphUtils.fetchJson("data/ibn-arabi/sirlar.json").then((d) => {
         (d.entries || []).forEach((e) => {
-          addToIndex({ view: "sirlar", id: e.id, label: e.topic, sub: null, searchText: allLangText(e.topic) + " " + (e.theme || "") });
+          index.push({ view: "sirlar", id: e.id, label: e.topic, sub: null, searchText: allLangText(e.topic) + " " + (e.theme || "") });
         });
       }),
       window.DostGraphUtils.fetchJson("data/ibn-arabi/felsefi-terimler.json").then((d) => {
         const terms = d.terms || {};
         Object.keys(terms).forEach((key) => {
           const t = terms[key];
-          addToIndex({ view: "terimler", id: t.id, label: t.title, sub: t.felsefi_tanim, searchText: allLangText(t.title) + " " + allLangText(t.felsefi_tanim) + " " + (t.arabic || "") });
+          index.push({ view: "terimler", id: t.id, label: t.title, sub: t.felsefi_tanim, searchText: allLangText(t.title) + " " + allLangText(t.felsefi_tanim) + " " + (t.arabic || "") });
         });
       }),
       window.DostGraphUtils.fetchJson("data/ibn-arabi/futuhat-cizimleri.json").then((d) => {
         (d.diagrams || []).forEach((c) => {
-          addToIndex({ view: "cizimler", id: c.id, label: c.name, sub: c.description, searchText: allLangText(c.name) + " " + allLangText(c.description) });
+          index.push({ view: "cizimler", id: c.id, label: c.name, sub: c.description, searchText: allLangText(c.name) + " " + allLangText(c.description) });
         });
       }),
       window.DostGraphUtils.fetchJson("data/ibn-arabi/sorular.json").then((d) => {
         (d.categories || []).forEach((c) => {
           (c.questions || []).forEach((q) => {
-            addToIndex({ view: "sorular", id: q.id, label: q.question, sub: c.name, searchText: allLangText(q.question) + " " + allLangText(q.answer) });
+            index.push({ view: "sorular", id: q.id, label: q.question, sub: c.name, searchText: allLangText(q.question) + " " + allLangText(q.answer) });
           });
         });
       }),
@@ -117,7 +92,7 @@
         // (tam sections yalnızca kısım açılınca yüklenir -- atlas bölme).
         (d.parts || []).forEach((p) => {
           const sectionHeadings = (p.sectionHeadings || []).map((h) => allLangText(h)).join(" ");
-          addToIndex({
+          index.push({
             view: "futuhat",
             id: p.id,
             label: p.title,
@@ -128,7 +103,7 @@
       }),
       window.DostGraphUtils.fetchJson("data/ibn-arabi/kavram-hayati.json").then((d) => {
         (d.kavramlar || []).forEach((k) => {
-          addToIndex({
+          index.push({
             view: "kavram", id: k.view + "/" + k.id, label: k.isim,
             sub: { tr: "Bütün hayatı", en: "Life across the corpus", pt: "Vida ao longo do corpus" },
             searchText: allLangText(k.isim),
@@ -140,7 +115,13 @@
       results.forEach((r) => {
         if (r.status === "rejected") console.error("Arama kaynağı yüklenemedi / Search source failed to load", r.reason);
       });
-      // Normalize + tokenize artık addToIndex()'te, kayıt eklenirken yapılıyor.
+      // Normalize + tokenize once here, at index-build time, rather than on
+      // every keystroke -- with a few hundred entries the fuzzy pass below
+      // touches every word of every entry per search() call.
+      index.forEach((item) => {
+        item.normText = normalize(item.searchText);
+        item.words = item.normText.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+      });
       indexLoaded = true;
     });
     return indexPromise;
@@ -187,33 +168,6 @@
   function search(query) {
     const q = normalize(query);
     if (!q) return [];
-    // Varyant tablosu: tam sorgu bir anahtara uyarsa hedef kayıtlar EN BAŞA.
-    const qTrim = q.replace(/\s+/g, " ").trim();
-    const alias = ALIAS.find((a) => a.keys.includes(qTrim));
-    const aliasItems = alias
-      ? alias.targets.map((t) => index.find((it) => it.view === t.view && it.id === t.id)).filter(Boolean)
-      : [];
-    const rest = searchCore(q);
-    if (!aliasItems.length) return rest;
-    return aliasItems.concat(rest.filter((it) => aliasItems.indexOf(it) === -1)).slice(0, 30);
-  }
-
-  function searchCore(q) {
-    const tokens = q.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
-    if (tokens.length >= 2) {
-      // Çok kelimeli sorgu: kelime-kelime (AND) eşleşme + etiket-öncelikli sıralama.
-      const kept = tokens.filter((w) => !STOP.has(w));
-      const toks = kept.length ? kept : tokens;
-      const qFull = q.replace(/\s+/g, " ").trim();
-      const out = [];
-      index.forEach((item) => {
-        if (!toks.every((w) => item.normText.includes(w))) return;
-        const score = (item.normText.includes(qFull) || toks.every((w) => item.labelNorm.includes(w))) ? 0 : 1;
-        out.push({ item, score });
-      });
-      out.sort((a, b) => a.score - b.score);   // kararlı sort: eşitlikte dizin sırası
-      return out.slice(0, 30).map((s) => s.item);
-    }
     const threshold = fuzzyThreshold(q.length);
     const scored = [];
     index.forEach((item) => {
@@ -314,11 +268,6 @@
   toggleBtn.addEventListener("click", () => {
     panel.hidden ? openPanel() : closePanel();
   });
-  // Paneli açmadan önce indeksi ısıt (yarışı azaltır): yalnız üzerine gelme /
-  // dokunma olursa, bir kez; açılış maliyetine dokunmaz.
-  ["pointerenter", "touchstart"].forEach((ev) => {
-    toggleBtn.addEventListener(ev, () => { if (!indexLoaded) buildIndex(); }, { once: true, passive: true });
-  });
 
   panel.addEventListener("click", (e) => {
     if (e.target === panel) closePanel();
@@ -407,13 +356,6 @@
     activeIndex = -1;
     input.removeAttribute("aria-activedescendant");
     if (!items.length) {
-      // İndeks henüz hazır değilken "bulamadık" DEME: yükleniyor göster,
-      // yüklenince input dinleyicisi son sorguyu yeniden çalıştırır.
-      if (input.value && !indexLoaded) {
-        results.innerHTML = `<div class="search-panel__empty" data-tr="Harita yükleniyor…" data-en="Loading the map…" data-pt="Carregando o mapa…">...</div>`;
-        I18n.applyStatic(results);
-        return;
-      }
       results.innerHTML = input.value
         ? `<div class="search-panel__empty" data-tr="Bu terimi haritada henüz bulamadık" data-en="We haven't found this term on the map yet" data-pt="Ainda não encontramos este termo no mapa">...</div>`
         : "";
@@ -518,12 +460,7 @@
   let searchTrackTimer = null;
   let fullTextTimer = null;
   input.addEventListener("input", () => {
-    const sorgu = input.value;
-    renderResults(search(sorgu));   // indeks hazırsa gerçek sonuç, değilse "yükleniyor"
-    if (!indexLoaded) {
-      // Yüklenince (ve kullanıcı sorguyu değiştirmediyse) son sorguyu yeniden çalıştır.
-      buildIndex().then(() => { if (input.value === sorgu) renderResults(search(sorgu)); });
-    }
+    renderResults(search(input.value));
     clearTimeout(fullTextTimer);
     fullTextTimer = setTimeout(() => runFullText(input.value), 220);
     const q = input.value.trim();
